@@ -14,6 +14,74 @@ o proximo passo desbloqueado, e espelha o mesmo resumo em
 > não no topo.
 
 
+## 2026-10-21 13h22Z–14h1xZ — O MOLDE DE CONVERSÃO DA SEÇÃO 32 NO AR, NA PRIMEIRA DAS CINCO CALCULADORAS
+
+**A ESCOLHA DA ILHA: FOCO E DESPACHO APONTANDO PARA A MESMA ILHA, RESERVA NA PRIMEIRA TENTATIVA.** `foco.md` nomeia a **aquametria** (janela até 21/10) e a exceção que o Raphael acrescentou à **1.2** em 21/10 manda o despacho do molde furar o foco na ordem aquametria → clubedomosaico → robometria: as duas regras apontam para a mesma ilha, então não houve rotação nem comparação de `ultima_execucao`. O cabeçalho trazia `executando_desde: null`, que pela **1.1** já significa que nenhum bloco da Fundação está vivo — a reserva é escrita ANTES do trabalho —, e não havia reserva vencida para o git desempatar. O commit mais recente na pasta da ilha era de **13h20Z, dois minutos antes**, e pela 1.1 ele **não reserva nada**: era commit das Mãos escrevendo o próprio despacho, não bloco da Fundação. **Passo 1:** nenhum PR aberto e a branch `claude/dreamy-mccarthy-vhejtm` idêntica ao `main` — nada a mesclar. Reserva aceita às **13h22Z** e renovada pela 1.1, com a hora saindo do `date -u` na mesma linha de comando que grava o campo. **Rede pela 20.2, não herdada:** `aquametria.com.br` em **200 em três passadas**.
+
+### 1. O QUE FOI ENTREGUE, E ELE ESTÁ NO AR: `/calculadora-de-iluminacao/` NO MOLDE 32.1
+
+**A ordem da página passou a ser a da 32.1**, de cima para baixo: trilha e H1 → **uma** frase de promessa → **formulário** → **caixa de resultado** → **bloco de compra** → tabela de casos resolvidos → resposta direta → o resto do texto em `<details>`.
+
+**A MEDIÇÃO QUE VALE É A DO AR, e ela é o critério de pronto da 32.5.** Chromium, celular de 390 px, revisão **128** servida, com quebra de cache:
+
+| | medido em 21/10 (antes) | medido no ar agora | teto da 32.5 |
+|---|---|---|---|
+| formulário começa em | 1.007 px | **419 px** | antes de 700 |
+| primeiro botão de compra | 3.114 px | **1.345 px** | antes de 1.400 |
+| altura da página | 16.447 px | **9.421 px** | — |
+| rolagem horizontal | — | **0 px** | — |
+
+E os outros quatro critérios da 32.5, um a um: **texto inteiro no HTML servido** — 4.990 → **5.089** palavras no HTML servido, com o JavaScript desligado, e a página ficou **mais leve** (228.480 → 222.982 bytes), porque o que saiu foi caderno de fábrica e não texto; **title, H1, URL, trilha e JSON-LD idênticos** — os seis conferidos no ar, antes contra depois, com uma única diferença, `softwareVersion: 1.7.0 → 1.8.0` no nó `SoftwareApplication`, que é a versão da própria calculadora e tem de se mover quando o código se move; **zero frase da lista 32.4** no texto visível; **console limpo** — `pageerror` **0**, e as três mensagens de erro são três hosts que o egresso desta nuvem barra (`googletagmanager` duas vezes e o CDN de imagem da Shopee), não a página.
+
+**Desembarque pela 20.4 e pela 20.5, e as duas foram exercidas nesta passada.** O Sync foi acionado de dois em dois e o `conferir-desembarque.py` leu o log linha por linha: revisão **128** no manifest e no `/status`, **14 linhas de item, todas dizendo `ok`**, e o registro honesto de que a janela do log cortou 6 dos 20 aplicados — o que não está na janela **não foi conferido**. No meio do caminho a 20.5 apareceu exatamente com a assinatura dela: `/status` em **127** com o log marcando **14:03**, ou seja o Sync RODOU, e `raw.githubusercontent.com` já servindo **128**. Era cache, não entrega que não aconteceu; duas rodadas de Sync mais tarde o `/status` virou 128.
+
+### 2. O QUE MUDOU NA PÁGINA, ITEM POR ITEM DA 32.1
+
+- **UMA promessa, num lugar só.** Havia **duas** — a do Markdown e a do snippet — dizendo a mesma coisa com palavras diferentes, e juntas custavam **271 px** da primeira tela. Ficou a do Markdown, que é a melhor das duas porque nomeia as três saídas, e ela mora agora no snippet.
+- **O formulário sobe para a segunda posição, já PREENCHIDO** com o caso de exemplo da página — 90 × 45 × 45 cm, alta exigência —, que é o **mesmo** caso da caixa de resultado e da vitrine abaixo. Três campos abertos (volume, comprimento, exigência); lâmina, momento do aquário, tipo de luminária e CO2 numa dobra. **Nenhum campo saiu da página.**
+- **A CAIXA DE RESULTADO É PRÉ-RENDERIZADA EM PHP**, servida no HTML, sem script. A caixa do cálculo nasce `-oculto` e só aparece depois de alguém preencher: quem chegava da busca — e qualquer modelo de linguagem que leia esta página — via a página **sem nenhum número de resposta na primeira tela**. O script troca uma pela outra no cálculo, e devolve a do exemplo no erro de entrada e no "Limpar": a tela nunca fica sem caixa de resultado.
+- **O bloco de compra vem imediatamente abaixo do resultado.** A vitrine servida já existia com 3 a 5 cartões (foto, marca, modelo, a especificação que fez o produto entrar, preço com data da coleta, botão de loja) e o aviso de comissão — o que faltava era o **lugar**. A prosa que explica o recorte desceu para **baixo** dos cartões; nenhuma palavra saiu, e o título do bloco passou a carregar os dois números que a linha de apoio dizia.
+- **A tabela "já calculado para outros tamanhos" fica ABERTA**, como a 32.1 manda, porque é o que as IAs citam.
+- **A barra do celular carrega o número do resultado e leva ao BLOCO DE COMPRA**, e aparece enquanto esse bloco está fora da tela. Antes ela vigiava a caixa de resultado e **só existia depois de um cálculo** — ou seja, não existia justamente para quem chega da busca e não preenche nada. O texto dela nasce servido, com o caso do exemplo.
+- **O cartão DEITA no celular**, foto à esquerda. Em pé, com a foto quadrada no topo, o botão de loja do primeiro cartão caía a **1.758 px**. E a forma importa: `grid` **não serve** aqui, porque o cartão tem entre sete e nove filhos irmãos diretos (a ressalva e o preço são condicionais) e nenhuma regra de grid sabe quantas linhas reservar para a foto sem contar filho — `grid-row: 1 / -1` põe a foto numa linha só e estica a marca para os 88 px dela; `1 / 99` dá 98 linhas vazias e leva o cartão a 705 px. O `float` não precisa saber de nenhum dos dois.
+- **O texto longo foi para `<details>`:** os seis blocos de prosa do Markdown e, no snippet, o consumo, o caminho inverso e as fontes. **Nove dobras na página**, todas fechadas na carga, com o estilo da casca servido. O título da dobra **É** o `<h2>` da seção, dentro do `<summary>` — repetir o h2 no corpo daria dois títulos iguais na tela aberta, e tirá-lo deixaria a página sem nenhum nível 2.
+- **32.4:** o campo `observacao` do catálogo **parou de descer para o navegador**. Eram dezesseis registros de caderno de fábrica — nome de rotina, nome de bloco, `minimo_para_sugerir`, `podeRegular()` —, vários com mais de mil caracteres, numa página pública, e **nenhuma linha do script lia o campo**. Os campos ficam no PHP, que é onde servem a quem lê o snippet. `fonte_url`, `fonte_status`, `verificado_em` e `conflito` continuam descendo: procedência é dado de tela, e a 32.4 manda justamente manter fonte nomeada e data.
+
+### 3. UM DEFEITO DE VERDADE QUE O FORMULÁRIO PREENCHIDO CRIOU, E QUE FOI FECHADO NO MESMO COMMIT
+
+Com o formulário preenchido, quem chega **por link** trazendo só o volume, ou quem tem um aquário **guardado pela calculadora de litragem** neste navegador, recebia a conta do **volume dele** com o **comprimento e a exigência do exemplo** — luz alta num aquário que ninguém disse ser de planta exigente, que é a receita clássica de alga que esta mesma página explica duas seções abaixo. O script passa a **limpar o exemplo** antes de aplicar o que a URL ou o `localStorage` trazem. **Exemplo que vaza para o caso de outra pessoa não é exemplo: é número inventado com cara de resposta.**
+
+### 4. OS PORTÕES — E SEIS DELES APRENDERAM O MOLDE SEM SER AFROUXADOS
+
+**Verdes nesta passada, rodados um a um:** `teste-navegador-c15` (menos uma, ver abaixo), `c15-vitrine`, `c15-regulagem` (358 afirmações), `visibilidade-ia`, `voz`, `arvore`, `entidades`, `seo-tecnico` (555), `site-jsonld` (22), `conversor-markdown` (18), `escape-shortcode`, `apelidos` (59), `purga-cache` (21), `atualizador-sync` (9), `constantes-de-snippet` (80 + 22 mutações), `classes-da-bancada` (94 + 24 mutações), `alvos-em-php` (53), `promessa-do-titulo` (32), `titulos-das-duas-fontes` (160), `slugs`, `protecao-funcoes`, `conferir-desembarque`. **A bancada completa de 91 portões foi lançada e não terminou dentro desta execução** — ela passa de uma hora nesta ilha; o que ela havia percorrido até o fechamento está dito no item 6.
+
+**O que mudou nos portões, e por quê:**
+
+1. **Quem digita em campo que foi para a dobra abre a dobra antes.** O Playwright não digita em campo invisível, e `teste-navegador-c15` parava com `TimeoutError` em `#aqm-c15-co2`. Abrir é o que a pessoa faz com um toque. Valeu para `c15`, `c15-regulagem`, `cinco` e `varrer-cobertura`.
+2. **O `teste-navegador-c15` passou a DIZER o nível em cada caso, e a esvaziar o campo que o caso não pede.** Onze afirmações ficaram vermelhas de uma vez, **nenhuma por conta errada**: os casos herdavam o padrão da tela, e o padrão mudou. O caso cujo título diz *"plantas de exigência média"* media alta, e o caso chamado *"sem comprimento"* media 90 cm. **Caso que depende de um padrão da tela é caso que muda quando a tela muda.**
+3. **O `c15-vitrine` mede a barra pelo bloco de compra**, que é o que ela vigia agora, e a afirmação *"limpar desliga a barra"* virou *"limpar devolve a caixa de resultado do exemplo e a barra volta a prometer o número dele"* — porque agora **sempre** há número na tela. Ele também **abre as dobras antes de ler o corpo**: `innerText` não devolve o que está dentro de dobra fechada, e a frase sobre tarifa de energia ficou vermelha sem ter saído da página.
+4. **O `visibilidade-ia` trocou "a resposta antes do FORMULÁRIO" por "a resposta antes da primeira seção de explicação".** A 32.1 inverteu justamente a ordem resposta-formulário, e o que a **32.3** manda não mudar é a resposta antes da **explicação** — que é a regra da seção 5. O portão ficou **mais forte**, não mais fraco: ganhou uma afirmação nova, *"existe caixa de resposta COM NÚMERO antes da primeira seção, sem script"*, que é exatamente o que a 32.1 item 4 passou a exigir e que nenhuma régua cobrava antes.
+
+### 5. A BANCADA LOCAL NÃO IMITAVA DUAS COISAS DO WORDPRESS, E AS DUAS FORAM DESCOBERTAS POR ESTE BLOCO
+
+Nenhuma das duas foi procurada; as duas apareceram porque a página passou a usar um caminho que o render de bancada não cobria. **São correções de FIDELIDADE do renderizador, não portão novo** — o que a 31.2 proíbe é régua nova sem defeito medido, e aqui o defeito é a bancada medir uma página que o site não serve.
+
+- **`add_filter` ignorava a PRIORIDADE** e rodava na ordem de registro, enquanto o `do_action` do mesmo arquivo já respeitava a dele. O filtro que fecha dobra aberta é prioridade **19** e o cluster "Veja também" é **20**: na ordem de registro o cluster caía **dentro** da dobra fechada, e a bancada aprovava uma página que o site não serve.
+- **O expansor de shortcode do `render-pagina-completa.php` só casava shortcode PELADO**, então `[aqm_dobra titulo="..."]` saía **impresso** na página medida, enquanto o `do_shortcode` do WordPress o expande sem reclamar. `shortcode_atts` e `shortcode_parse_atts` também nasceram nos stubs, porque não existiam e um shortcode com atributo derrubava a bancada com *"Call to undefined function"*.
+
+### 6. DOIS PORTÕES JÁ ESTAVAM VERMELHOS NO `main`, E NENHUM DOS DOIS É DESTA PASSADA
+
+Os dois foram rodados contra o snippet **de antes deste bloco**, no commit `a1b7be9`, e reprovam igual lá. Ficam ditos e **não consertados**: decidir entre escrever a frase que falta ou corrigir a afirmação é trabalho de bancada, e a **31.3** o proíbe enquanto houver item de conteúdo aberto na fila — e há, são as quatro calculadoras e as fichas de peixe do mesmo despacho. A **31.4** diz o que fazer: registra e segue.
+
+1. **`teste-navegador-c15`** — a afirmação *"produto sem link aparece igual, sem botão de loja"* cobra a frase `Ainda não temos link de loja`, que **não existe em lugar nenhum do snippet**.
+2. **`mutacoes-c12-vitrine`** — o portão de baixo, `teste-navegador-c12-vitrine`, já está vermelho no repositório limpo, em *"V=801: a vitrine desenha a MESMA sequência da lista técnica"*, e por isso a bateria de mutações se recusa a mutar.
+
+### 7. O PRÓXIMO PASSO DESBLOQUEADO
+
+**A próxima página do despacho é `/calculadora-de-midia-filtrante/`**, e ela herda o molde pronto: o mecanismo da dobra (`[aqm_dobra]`/`[aqm_dobra_fim]` na casca para o Markdown, `aquametria_c15_dobra_abre()`/`_fecha()` como modelo no snippet), o estilo da dobra já servido pela casca em **toda** página da ilha, o cartão que deita no celular e a bancada que enxerga shortcode com atributo. **As quatro lições estão escritas no despacho reescrito**, no topo do `PROMPT.md`, para a próxima execução não as redescobrir: o teto de 1.400 px é medido **no ar** (a diferença contra o render local foi de **128 px**), o cartão precisa deitar, prosa de apoio acima dos cartões é o que mais custa, e formulário preenchido com exemplo **vaza** para o caso de quem chega.
+
+**A memória da ilha não foi atualizada, e o motivo é de ambiente:** `/areas/projeto-aquametria.md` não existe nesta execução — não há diretório de memória montado aqui. O `PROMPT.md` desta ilha prevê o caso com todas as letras (*"Sem memória, não pare: o estado está em `ESTADO.md`, `REGISTRO.md` e `README.md` desta pasta"*), e é para esses três que o estado foi.
+
 ## 2026-10-21 10h17Z–12h3xZ — A LISTA DE 21/10 SAIU INTEIRA, E O PREÇO DELA FORAM **TREZE** AFIRMAÇÕES PRESAS AO BANCO DE ONTEM, EM SEIS PORTÕES
 
 **A ESCOLHA DA ILHA: FOCO, RESERVA NA PRIMEIRA TENTATIVA.** `foco.md` nomeia a **aquametria** desde 14/10/2026, com a janela esticada até **21/10** — hoje é o último dia dela —, então não houve rotação nem comparação de `ultima_execucao` (1.2). O cabeçalho trazia `executando_desde: null`, que pela **1.1** já significa que nenhum bloco da Fundação está vivo, porque a reserva é escrita ANTES do trabalho; não havia reserva vencida para o git desempatar. Passo 1 conferido antes de tudo: **nenhum PR aberto** e a branch `claude/dreamy-mccarthy-or89ii` idêntica ao `main`, então não havia o que mergear. Reserva aceita às **10h17Z** e **renovada seis vezes** pela 1.1, porque a bancada desta ilha roda em mais de uma hora e o `mutacoes-peixes.py` precisou de **duas** rodadas. **Rede conferida pela 20.2 e não herdada:** `aquametria.com.br` em **200 em três passadas**.

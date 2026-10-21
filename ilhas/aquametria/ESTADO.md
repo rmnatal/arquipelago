@@ -5,66 +5,51 @@ prioridade: 2
 piso: atingido          # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md. ESCRITO EM 14/10/2026 pela Fundação por ORDEM da leitura semanal de 07/10 ("a Fundação atualiza piso: atingido no primeiro bloco que executar"), e não por recálculo de cabeça: quem decide este campo é a leitura semanal (21.6). O que ela mediu: 50 de 52 indexadas, 371 impressões em 7 dias, 52 URLs (passa das 40) e primeira indexação em 09/09, logo os 21 dias fecharam em 30/09. Com isso a 21.8 deixa de suspender a série nesta ilha e a 14.6 e a 14.8 voltam a valer.
 urls_publicadas: 52
 primeira_indexacao: 2026-09-09   # 1ª medição do Search Console já achou 7 indexadas; a data da 1ª não está registrada
-ultima_execucao: 2026-10-21T12:28Z
-executando_desde: 2026-10-21T13:43Z   # RENOVADA pela 1.1 (a reserva desta execucao foi as 13h22Z e o bloco passou dos 40 min). Molde de conversao da secao 32 na calculadora de iluminacao: o render local roda em minutos, a bancada de 73 portoes passa de uma hora. Hora do date -u na mesma linha de comando que grava.
+ultima_execucao: 2026-10-21T14:09Z
+executando_desde: null   # a execucao de 21/10 13h22Z fechou as 14:09Z. Reserva RENOVADA uma vez pela 1.1 (a bancada de 91 portoes desta ilha passa de uma hora). A HORA DESTE CAMPO SAI DO `date -u` NA MESMA LINHA DE COMANDO QUE O GRAVA, nunca digitada.
 bloco_atual: |
-  A LISTA DE 21/10 SAIU INTEIRA E ESTA NO AR, revisao 125, e o preco dela foram
-  TREZE afirmacoes presas ao banco de ontem, em SEIS portoes. As seis entradas de
-  segundo_corpo_nao_entrou com decidir_em 2026-10-21 estao decididas e superadas;
-  sobram CINCO abertas e nenhuma delas pede data (tres regua-diferente, um escopo,
-  um nao-cobre).
-  QUEM DECIDIU FOI A TABELA dominio_por_campo, campo por campo, e nao o tamanho da
-  divergencia. Porte (BIOLOGIA, manda a base cientifica): os TRES ficam — neon 2,2
-  SL, guppy 5,0 SL, disco 13,7 SL. A nota de 16/10 previa 'vai ao maior pela E9' e
-  errou de REGRA: a E9 so alcanca os quatro campos de bem-estar. Temperatura
-  (MANUTENCAO, manda o compendio): as QUATRO trocam — neon 21-25, guppy 17-28,
-  arlequim 21-28, gurami perola 24-30. Frente minima (bem-estar): guppy FICA em 60
-  e gurami FICA em 120.
-  A REGRA QUE O GURAMI PEDIU EM 16/10 EXISTE, no esquema (versao 11), em
-  dominio_por_campo.campos_de_bem_estar: quando a tabela e a E9 discordam no mesmo
-  campo, MANDA A E9 — a tabela decide de QUEM e o numero, a E9 decide para QUE LADO
-  se erra, e autoridade de fonte nao desempata risco. Medido: dos 18 conflitos de
-  bem-estar do banco as duas CONCORDAM em 16, e os 2 de hoje (guppy 60 contra 45,
-  gurami 120 contra 90) sao os PRIMEIROS da historia desta ilha. A lista dos quatro
-  campos saiu de dentro do validador e mora ao lado da regra; o validador a importa
-  e a mutacao 9 do mutacoes-alvo-dos-casos.py prova que a importacao esta viva.
-  O GUPPY GANHOU O SEGUNDO CORPO e deixou de ser barrado — era o unico registro
-  barrado por UM motivo so. Catalogo 34 -> 35, barrados 6 -> 5, deriva 74 -> 0
-  linhas, snippet 1.16.0 -> 1.17.0, manifest e /status 122 -> 125. O danio galaxia
-  continua barrado e o que mudou nele e a CAUSA que /peixes/ publica.
-  E UM DEFEITO FOI AO AR E FOI CONSERTADO NA MESMA PASSADA: o guppy no catalogo sem
-  ficha criou em /peixes/vivaparos/ o estado que esta ilha nunca tivera — ELEGIVEL
-  SEM FICHA — e com a fila em 1 a pagina serviu '1 estao na fila'. E a cicatriz que
-  a 1.8.0 pagou na frase VIZINHA em 14/09, a que fez nascer o
-  aquametria_peixes_concorda(): o ajudante existia havia cinco semanas e esta frase
-  nunca o chamou. Os TRES ramos da prestacao de contas passam a concordar. No ar
-  agora: 'Das 4 especies da tabela, 3 ja tem a conta inteira e 1 esta na fila'.
-  A MEDICAO DE CTR NAO FOI TOCADA, e esta medido: nenhum <title>, nenhuma meta e
-  nenhuma das seis paginas medidas mudou — a leva mexeu em corpo de tabela e de
-  ficha. conferir-titulo-no-ar.py --gravar APROVADO nas 52, com as cinco promessas
-  no ar e o controle /calculadora-de-litragem/ sem um algarismo no titulo. A serie
-  do dia em que a janela fecha esta gravada.
-  O QUE NAO FOI FEITO, por CRITERIO e nao por folego: a decisao da E27 pede 'a
-  leitura semanal JA REGISTRADA' e ela nao rodou hoje (nao existe
-  search-console-2026-10-21.md); e os tres regua-diferente tiveram a ESTRADA
-  decidida e nao o numero — a leitura nova esta fechada (seriouslyfish e fishbase
-  em 000, tres passadas de hoje) e a estrada que anda e a oracao da E25, que e
-  superficie e sai com o bloco da oracao na ficha.
-  BANCADA 73 portoes: a rodada de 11h2xZ reprovou 2 e os dois estao consertados e
-  reconferidos (teste-regua-de-corpos 28 afirmacoes 0 falha; mutacoes-peixes 101 de
-  101). teste-peixes 4302 afirmacoes 0 falha; validar-especies 0 erro e de 14 para 4
-  avisos; testar-validador-especies 66 testes 0 falha. No ar, sete portoes verdes,
-  entre eles conferir-peixes-no-ar com 1010 afirmacoes 0 falha e
-  conferir-desembarque APROVADO com toda linha do log da revisao 125 dizendo ok.
-  52 URLs, NENHUMA nova, teto da 21.4 ZERADO.
-  ACHADO QUE NAO E DESTE BLOCO E JA TEM NUMERO: a lista de especies da C5 nao sai
-  do banco — e uma lista DIGITADA de oito, de Petz e Aquarismo Paulista, repetida
-  DUAS vezes no mesmo arquivo (as <option> do PHP e o var ESPECIES do JavaScript),
-  as duas concordando hoje com nada as vigiando. E as duas divergem de /peixes/ em
-  SETE das oito especies; so o acara-disco coincide. As sete ja divergiam antes de
-  hoje. Eu escrevi a prosa errada antes de medir ('o gurami perola alimenta a C5',
-  repetido da entrada de 16/10) e corrigi antes de qualquer Sync: passar no portao
-  c5-aquecedor do validador nao e ser servido pela calculadora.
+  O MOLDE DE CONVERSAO DA SECAO 32 ESTA NO AR NA PRIMEIRA DAS CINCO
+  CALCULADORAS: /calculadora-de-iluminacao/, revisao 128, C15 1.8.0 e casca
+  1.12.0. Item 1 do despacho do Raphael de 21/10, reescrito pela 18.3 — faltam
+  as QUATRO outras calculadoras e as fichas de peixe.
+  MEDIDO NO AR, celular de 390 px, com quebra de cache: formulario a 419 px
+  (era 1.007, e a 32.5 pede antes de 700) e primeiro botao de compra a 1.345 px
+  (era 3.114, e o teto e 1.400). Altura da pagina de 16.447 para 9.421 px.
+  Rolagem horizontal 0. Nove dobras, todas fechadas na carga, com o estilo da
+  casca servido. Texto no HTML servido de 4.990 para 5.089 palavras, e a pagina
+  mais LEVE (228.480 -> 222.982 bytes). title, H1, URL, trilha e JSON-LD
+  conferidos no ar antes contra depois: identicos, com uma unica diferenca,
+  softwareVersion 1.7.0 -> 1.8.0, que e a versao da propria calculadora.
+  pageerror ZERO; as tres mensagens de console sao tres hosts que o egresso
+  desta nuvem barra (googletagmanager duas vezes e o CDN de imagem da Shopee).
+  A 20.5 FOI EXERCIDA NO CAMINHO: /status em 127 com o log marcando a hora de
+  agora e o raw do GitHub ja em 128 — cache, nao entrega que nao aconteceu.
+  Duas rodadas de Sync depois o /status virou 128, e o conferir-desembarque.py
+  leu as 14 linhas de item da revisao, todas dizendo ok, com o registro honesto
+  de que a janela do log cortou 6 dos 20 aplicados.
+  UM DEFEITO DE VERDADE NASCEU DO FORMULARIO PREENCHIDO E MORREU NO MESMO
+  COMMIT: quem chega por link com so o volume, ou com aquario guardado pela
+  calculadora de litragem, recebia a conta do VOLUME dele com o COMPRIMENTO e a
+  EXIGENCIA do exemplo — luz alta num aquario que ninguem disse ser de planta
+  exigente, que e a receita de alga que a propria pagina explica. O script
+  limpa o exemplo antes de aplicar o que a URL ou o localStorage trazem.
+  32.4: o campo observacao do catalogo parou de descer para o navegador — eram
+  dezesseis registros de caderno de fabrica numa pagina publica, e nenhuma
+  linha do script lia o campo.
+  SEIS PORTOES APRENDERAM O MOLDE E NENHUM FOI AFROUXADO; o visibilidade-ia
+  ficou mais forte, com uma afirmacao nova (caixa de resposta COM NUMERO antes
+  da primeira secao, sem script). E a BANCADA LOCAL ganhou duas fidelidades que
+  ela nao tinha: add_filter passou a respeitar PRIORIDADE (sem isso o cluster
+  "Veja tambem" caia DENTRO da dobra na pagina medida) e o expansor de
+  shortcode passou a casar shortcode COM ATRIBUTO.
+  DOIS PORTOES JA ESTAVAM VERMELHOS NO MAIN, e os dois reprovam igual no
+  commit a1b7be9, de antes deste bloco: a afirmacao "produto sem link aparece
+  igual" do teste-navegador-c15 (cobra uma frase que nao existe no snippet) e o
+  mutacoes-c12-vitrine (o portao de baixo ja esta vermelho no repositorio
+  limpo, em "V=801"). Pela 31.3 nao foram consertados: ha item de conteudo
+  aberto na fila.
+  PROXIMO PASSO: /calculadora-de-midia-filtrante/ no molde 32.1, com as quatro
+  licoes desta pagina escritas no despacho do PROMPT.md.
 ultima_ronda: 2026-10-14T19:58Z   # LEITURA SEMANAL da Sentinela (a RONDA DIARIA TECNICA de hoje, 14h53Z, passou inteira: zero defeito, zero conserto, teste de vida 35/35). Medida nas DUAS fontes: tela do Chrome do Raphael e leitura pela nuvem, que FUNCIONOU (commit af889ba, 19h57Z) — o despacho desta data chegou a dizer que a nuvem falhou e isso foi ERRATA da Sentinela, que parou de conferir o raw dois minutos antes do commit entrar. 580 impressoes e 4 cliques em 7 dias (371 e 3 em 07/10), CTR 0,7%, posicao media 6,5, 40 paginas com impressao e AS 40 LIDAS, consulta anonimizada em 100%. Indexacao medida URL a URL pela nuvem: 49 de 52 (94%), e 50 descontando a home, que a URL Inspection devolveu com veredito "?" e esta indexada (4 impressoes na posicao 2,3). A serie autoriza dobrar a rampa; quem trava URL nova e a secao 30, nao a 14.6. Venda e clique de afiliado NAO medidos (painel da Shopee em CAPTCHA); Mercado Livre medido em zero.
 bloqueada_por: null
 congelamento: |
@@ -114,6 +99,7 @@ Credenciais NÃO ficam neste arquivo (repositório pode virar público). A Appli
 - **LACUNA DO ID DE AFILIADO: RESOLVIDA PARA A SHOPEE (07/09/2026, 6º disparo).** 10 links curtos gravados no banco, no campo `afiliado` de cada produto, com `sub_id_1=aquametria` e `sub_id_2` = o código da calculadora (C3, C5, C12, C15) — é o `sub_id_2` que dirá no painel QUAL calculadora vende. Continuam SEM link 4 produtos (SunSun HW-303B, Atman AT-3338, Atman AT-3338S, Eheim Jäger 200 W): não têm anúncio do produto na Shopee, só peças de reposição. ~~Produto sem link não entra no bloco de produto — a regra V15 do validador executa isso.~~ **FALSO DESDE A V16, corrigido pelo Pente Fino em 14/09/2026.** `dados/esquema-produtos.json` já tinha reescrito essa mesma frase em 13/09 — *"isso era falso desde a V16 — produto sem link entra na lista e no cartão do mesmo jeito, porque link de afiliado não decide quem é sugerido. O que falta a ele não é presença, e PISO (25.2)"* — e a cópia aqui ficou de pé. **A citação da régua também estava errada:** a V15 confere se o campo `afiliado` está bem formado (https, `rel="sponsored"`, sem preço dentro); quem manda no assunto é a **V16**, uma linha abaixo.
 
 ## Blocos
+- **MOLDE DE CONVERSÃO DA SEÇÃO 32 — 1ª DE 5 CALCULADORAS NO AR (21/10/2026, revisão 128):** `/calculadora-de-iluminacao/` na ordem da 32.1, com o formulário preenchido na primeira tela, caixa de resultado pré-renderizada em PHP, bloco de compra logo abaixo dela, tabela de casos aberta e o texto longo em nove `<details>`. C15 1.8.0, casca 1.12.0 (a dobra do Markdown nasceu lá, para as outras páginas da ilha). **Medido no ar, 390 px:** formulário a 419 px (era 1.007), 1º botão de compra a 1.345 px (era 3.114), página de 16.447 → 9.421 px, e mais leve apesar de 99 palavras a mais no HTML servido. Faltam as quatro outras calculadoras e as fichas de peixe — item 1 do despacho, reescrito pela 18.3.
 - BLOCO 1 CONCLUÍDO (04/09): 480 consultas paramétricas em 15 clusters (abaixo).
 - BLOCO 2 CONCLUÍDO (07/09): 8 calculadoras especificadas em `dados/especificacao-calculadoras.md`, com o registro de constantes em `dados/constantes-calculadoras.json` (42 entradas, cada uma com fonte, data e status). As 8: C1 litragem (núcleo), C2 peso e carga no piso, C3 vazão/turnover, C5 aquecedor por delta térmico, C7 consumo e custo, C8 lotação, C12 mídia filtrante, C15 iluminação. Confirmado: C10 é banco de fichas, não calculadora; C14 foi absorvida pela C12; C13 (dosagem) NÃO entra no lote inicial (risco letal + só 2 dosagens verificadas no fabricante + o volume superestimado da C1 erra para overdose).
 - Regras que o Bloco 2 fixou e que valem para os próximos: (a) toda constante tem id no JSON e status; constante `pendente` é PROIBIDA em fórmula publicada; (b) toda resposta é faixa com critério e constante em cada extremo, mais permalink citável; (c) quando as fontes divergem, a resposta publica a divergência e a atribuição, nunca a média; (d) onde falta fonte, a página explica por que não publica número — é isso que diferencia a Aquametria dos blogs.
