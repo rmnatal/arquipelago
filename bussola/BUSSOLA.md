@@ -134,6 +134,51 @@ ranqueando que não é de varejista nem de fabricante** — ver a proposta de r�
   SERP), `opovo.com.br/trends/<a consulta>`, `tecmundo.com.br/produto/<id>-melhores-<x>-de-<ano>`. Autoridade de marca
   não muda o molde: página por consulta sem medição própria é fazenda, venha de onde vier.
 
+**AMPLIADA NA RODADA 007 (21/10/2026) — o nicho de jardinagem, 21 consultas, e um molde que a lista não tinha:
+a REDE DE CONTEÚDO SINDICALIZADO.** Agrupados por molde, porque é o molde que reconhece o próximo.
+- **Rede de conteúdo sindicalizado** (marcador `-g4` no fim do slug; a MESMA pauta em muitos portais regionais —
+  nove URLs em cinco consultas de jardinagem). É um ocupante, não dezessete, e é imbatível em quantidade:
+  `litoralmania.com.br`, `acordacidade.com.br`, `leouve.com.br`, `jdv.com.br`, `obemdito.com.br`,
+  `folhabv.com.br`, `bandab.com.br`, `gazetabrasilia.com.br`, `tnh1.com.br`, `ndmais.com.br`, `itatiaia.com.br`,
+  `agazeta.com.br`, `crusoe.com.br`, `ellasmagazine.com.br`, `diariodonordeste.verdesmares.com.br`,
+  `tribunadejundiai.com.br`, `folhavitoria.com.br`.
+- **Conglomerado de imprensa rodando fazenda editorial** (várias páginas por consulta, títulos variados sobre o
+  mesmo molde — **7 das 9 vagas de "como plantar quiabo" são do grupo Diários Associados**):
+  `em.com.br/emfoco/`, `uai.com.br`, `correiobraziliense.com.br/cbradar/`, `tupi.fm`,
+  `tudogostoso.com.br/noticias/`, `revistaoeste.com`, `catracalivre.com.br/noticias/`, `ecycle.com.br`.
+- **Parasita puro** (domínio sem relação nenhuma com o nicho): `psicopedagogia.com.br` (adubo 10-10-10 **com o
+  título exato da consulta**, e muda de rosa do deserto), `concursosnobrasil.com` (site de concursos públicos com
+  **quatro** variações do mesmo título sobre suculenta), `lojadomecanico.com.br/blog` (**1º lugar** em "como fazer
+  muda de orquídea"), `pacpme.com.br`, `cbzoo.com.br`, `hbatools2.com.br`, `blog.7mboots.com.br`,
+  `capitalist.com.br`, `chavesnamao.com.br`.
+- **Banco de FAQ ou de glossário gerado, uma página por pergunta ou por valor de parâmetro**:
+  `mapaagro.com.br/glossario/`, e `faq.blackpilado.com.br` (já listado) aqui com **três URLs numa só SERP**, uma
+  por fórmula de adubo.
+- **Fazenda de jardinagem com título exato de consulta**: `casaeconstrucao.org`, `jardinagem.casaefesta.com`,
+  `cultivarjardinagem.com.br`, `tudojardim.com`, `jardim.biz`, `decorfacil.com`, `enfeitedecora.com`,
+  `terrabrasilnoticias.com`, `essaseoutras.com.br`, `passoapasso.com`, `casajardimsintonia.com.br`,
+  `pepalantusambiental.com.br`, `antoniettasp.com.br`, `casa.umcomo.com.br`, `agron.com.br`,
+  `hortasbiologicas.pt`.
+- **Calculadora servindo o parâmetro central do nicho** — o molde da proposta de nota 0 por função, e aqui ele
+  apareceu em três eixos de uma vez (dose de adubo, litros de terra por vaso, espaçamento de plantio):
+  `textei.com.br`, `agrododia.com.br`, `plantaselar.com.br`, `ploys.com.br`, `calculadoradomundo.com.br`,
+  `acalculadoras.com.br`, `casaejardim.portaltvcariri.com.br`, `calculover.com/pt-br`, `pt.jardineriaon.com`.
+- **E uma loja que é o ocupante mais consistente do nicho, sem ser fazenda:** `petz.com.br/blog` apareceu em
+  **4 das 5** consultas de "como fazer muda", com 5 das 10 vagas de "qual o tamanho do vaso" e 6 URLs numa só
+  SERP de "como plantar uva em vaso" — sempre com o slug no título exato. Blog de loja no título exato é S_par 4
+  pela régua, mas **blog de loja que ocupa metade da SERP não é 4**, e a régua não tem onde pôr isso. Registrado.
+
+**TERCEIRO PADRÃO MEDIDO E NÃO APLICADO (rodada 007) — só o Raphael transforma em régua: VOLUME SEM POSIÇÃO NÃO É
+TRÁFEGO.** A varredura de 21/10/2026 multiplicou volume do Planejador por CTR de **top-3** antes de medir quem
+ocupa a SERP, e devolveu 2.530 visitas/dia para jardinagem. Medidas as 21 SERPs, a mesma conta no mesmo volume dá
+**426** — erro de **fator 6**, vindo inteiro da premissa de posição. **Proposta:** a 3.0-c.2 passa a exigir, na
+ordem, (1) classificar a SERP de pelo menos uma consulta por cluster, (2) só então aplicar o CTR da posição
+classificada, e (3) proibir cenário de top-3 em cluster cuja SERP não foi vista com os olhos, por força da 30.8.
+Varredura por volume continua valendo, mas o que ela devolve é **teto de volume**, e a rodada escreve isso ao lado,
+nunca "visitas/dia". **Corolário de custo:** reprovar por posição custa uma rodada da nuvem; reprovar por volume
+custa uma sessão do Raphael no Planejador — então a ordem natural é SERP primeiro, Planejador depois, ao contrário
+do que a 006 e a varredura fizeram.
+
 **DOIS PADRÕES QUE A RODADA 006 MEDIU E QUE SÓ O RAPHAEL PODE TRANSFORMAR EM RÉGUA — ficam registrados, não aplicados:**
 1. **O molde `?p=<id>` sem slug apareceu em NOVE domínios distintos** numa só rodada (`olhardigital`, `maxturbos`,
    `digitei`, `uai`, `quintoandar/guias`, `calculadorabrasil`, `plataformaassaad`, `ecoautomacao`,

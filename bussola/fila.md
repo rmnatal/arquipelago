@@ -1,6 +1,8 @@
 # Fila da Bússola — registro de medição
 
-Última rodada que mexeu aqui: **006 (21/10/2026)** — a primeira rodada com o piso de tráfego da seção 3.0-c.
+Última rodada que mexeu aqui: **007 (21/10/2026, noite)** — a rodada que mediu JARDINAGEM inteira, volume e SERP na
+mesma semana, e a reprovou por POSIÇÃO. Antes dela, a 006 (21/10/2026) foi a primeira rodada com o piso de tráfego
+da seção 3.0-c.
 Scorecard v3 (`BUSSOLA.md`, seção 3): S = S_par×0,85 + S_com×0,15 · Facilidade = S×0,60 + P×0,40 ·
 Retorno = M×0,40 + D×0,30 + R×0,15 + A×0,15 · Índice = média harmônica.
 
@@ -62,6 +64,50 @@ Retorno = M×0,40 + D×0,30 + R×0,15 + A×0,15 · Índice = média harmônica.
 > **E uma coisa que ele precisa saber:** a 3.0-c **não tem exceção escrita para ilha com domínio pago**. Se a intenção
 > for que o piso valha só para nicho novo, isso precisa ser escrito na lei — hoje não está, e a rodada seguinte vai ler
 > a letra.
+
+## JARDINAGEM — medida inteira na rodada 007 e REPROVADA (21/10/2026)
+
+O primeiro nicho da história da Bússola a ter **volume medido no Planejador e SERP medida na mesma semana**. Passou
+o rastreio de volume da varredura de 21/10 (405.830 buscas informacionais/mês, o maior de seis nichos varridos) e
+**reprovou quando a posição foi medida**. Ficha completa em `bussola/rodadas/007.md`; evidência de SERP, com URL por
+ocupante, em `bussola/medicoes/serp-jardinagem-2026-10-21.md`.
+
+| componente | valor | medido? | evidência |
+|---|---|---|---|
+| **S_par (do nicho)** | **1** | sim, 21/10/2026 | mediana das 6 consultas paramétricas de insumo — a metade que a ilha responderia. `qual adubo para orquídea`, `substrato para rosa do deserto`, `adubo npk 10 10 10 para que serve` e `qual o tamanho do vaso para cada planta` têm fazenda com o título exato; `br.my-best.com` é 1º em 3 das 6; Petz tem 5 das 10 vagas em vaso. **S_par ≤ 1 desqualifica (seção 3)** |
+| S_par por família | A "como fazer muda" = **2** · B "como plantar" = **3** · C paramétrica = **1** · D nome de planta = **1** | sim, 21 consultas | o próprio coletor da família B registrou que a nota dela é otimista por ~1 ponto (a camada ampliada revela o cinturão de especialista) |
+| **S_com** | **não medido** | **não** | nenhuma consulta "melhor X 2026" foi rodada: as 21 consultas foram gastas na paramétrica e na informacional. **Sem S_com não há S, e sem S não há índice (3.1)** |
+| **S** | **não calculável** | — | falta S_com |
+| **P** | **não medido** | **não** | nenhum procedimento de P foi aplicado nesta rodada. Valor neutro é invenção (3.1) |
+| **D** | **5** | **sim, no Planejador, 21/10/2026** | 405.830 buscas informacionais ranqueáveis/mês em duas fatias (1.461 ideias lidas). Maior demanda medida da fila inteira. Seis fatias ainda não medidas em `medicoes/para-medir-2026-10-21-jardinagem.md` |
+| **M** | **não calculado** | **não** | `help.shopee.com.br` (artigo 16835, a tabela canônica), `affiliate.shopee.com.br` e `seller.shopee.com.br` em **403 CONNECT** no egresso, terceira rodada seguida. Nenhum percentual lido, nem oficial nem de terceiro. Os 3% de 14/09/2026 seguem herdados e **não valem como medição** |
+| **R** | **5** | sim, estrutural | consumível puro: adubo, substrato, semente, condicionador. Recompra por safra e por replantio |
+| **A** | **4** | sim, 21/10/2026 | **10 de 13 produtos com URL de anúncio individual na Shopee** (+1 por categoria = 11/13); categoria-mãe `shopee.com.br/Jardinagem-cat.11059983.11060111` confirmada. **Passa a régua de 7/10 com folga e seria ilha só-Shopee.** Não é 5 porque o link rastreável não foi conferido no painel (host bloqueado) e dois itens (vaso autoirrigável, LED de cultivo) ficaram não alcançados |
+| **V** | **não medido por ferramenta** | **não** | nenhum fabricante de adubo ou substrato foi alcançado (Forth, Dimy, Vitaplan, Mato Verde, Tropstrato, Carolina Soil). Pela 3.1, ferramenta sem fonte de dado **não entra no plano** — e as 3 primeiras ferramentas do plano dependem todas desse dado. Única ficha tabelada achada em 8 buscas: `agropos.com.br/tabela-de-adubacao/`, e é de terceiro |
+| **Ticket** | R$ 100 de cesta (adubo + substrato + vaso) | **NÃO MEDIDO** | zero preço da Shopee alcançado: o HTML é casca de aplicativo (155.904 bytes idênticos para qualquer termo, sem `itemid`, sem `price`) e a API interna devolve 403. Os três valores da soma vêm de faixa de mercado, sem fonte |
+| **Tráfego (3.0-c)** | **354 a 611 visitas/dia** · teto absurdo 426 contando todo o nicho em 4–10 | **sim** | piso é **1.000**. Curva Backlinko (top-3 18,7%, 4–10 4,2%), a mesma de `para-medir-2026-10-21.md`; desconto de 25% de dupla contagem. **Reprovado por fator de 1,6 a 2,8** |
+| **Índice** | **não calculável** | — | faltam S_com, P, M e V |
+
+**Estado:** `reprovado — 3.0-c.1 (tráfego medido abaixo do piso)`, com três reprovações independentes: **tráfego**,
+**S_par = 1 na paramétrica** e **M não calculado**.
+
+**A frase que resume, e que vale para a próxima varredura:** a varredura de 21/10 calculou 2.530 visitas/dia pondo
+**todo** o nicho em top-3, sem ter medido quem ocupa a SERP. Medida a posição, dá 426 no mesmo volume — **erro de
+fator 6, inteiro vindo da premissa de posição.** Para jardinagem passar, 53% de todo o volume informacional do
+nicho teria de ranquear em top-3, e nada medido sustenta top-3 em nenhuma das 21 consultas.
+
+**O que reabre o nicho (só o Raphael pode fazer, 30.8):** abrir a SERP brasileira de seis consultas
+(`como plantar quiabo`, `como plantar uva em vaso`, `como fazer muda de rosa do deserto`,
+`substrato para rosa do deserto`, `adubo para zamioculca`, `qual o tamanho do vaso para cada planta`) e anotar, por
+consulta, se há painel de resposta de IA no topo, se há carrossel de vídeo e quem são os três primeiros orgânicos.
+**Se três dessas famílias tiverem top-3 alcançável, a conta sobe para a faixa dos 1.500/dia e jardinagem volta à
+mesa.** O desenho da ilha no molde da seção 32, o naming e a cobertura Shopee já estão prontos na rodada 007 — não
+precisariam ser refeitos.
+
+**Naming: nada verificado.** Doze candidatos pelo gesto técnico (dosar e dimensionar) estão na rodada 007, e
+**nenhum teve disponibilidade conferida**: `registro.br` responde 403 CONNECT e esta máquina não tem resolvedor de
+DNS nenhum (`dig` não existe; `socket.gethostbyname` falha até para `google.com`). Não houve nem filtro negativo.
+**A Bússola recomenda não registrar nenhum domínio de jardinagem.**
 
 ## Registro de medição — notas componentes preservadas (NÃO é ranking, não ordene por aqui)
 
@@ -181,6 +227,24 @@ publicada. Agora a página conta cinco nos dois lugares.)*
 
 1. **MEDIR as 209 consultas** de `bussola/medicoes/para-medir-2026-10-21.md` no Planejador. É o que destrava a fila de
    medição inteira e o que a 3.0-c exige antes de qualquer dossiê.
+1-A. **A DÍVIDA MAIS BARATA DA FILA, e ela não é de Planejador: abrir a SERP brasileira de seis consultas de
+   jardinagem** (`como plantar quiabo`, `como plantar uva em vaso`, `como fazer muda de rosa do deserto`,
+   `substrato para rosa do deserto`, `adubo para zamioculca`, `qual o tamanho do vaso para cada planta`) e anotar,
+   por consulta, se há painel de resposta de IA no topo, se há carrossel de vídeo e quem são os três primeiros
+   orgânicos. **É a única coisa que reabre jardinagem** — se três famílias tiverem top-3 alcançável, a conta sobe
+   de 354 para a faixa dos 1.500 visitas/dia. Dossiê, naming, cobertura Shopee e desenho da ilha no molde 32 já
+   estão prontos na rodada 007 e não precisariam ser refeitos.
+1-B. **Liberar `help.shopee.com.br`, `affiliate.shopee.com.br` e `seller.shopee.com.br`** nas configurações de
+   capacidades da conta. A tabela canônica de comissão por categoria é `help.shopee.com.br/portal/10/category/
+   16849/16835`, e ela está em **403 CONNECT há três rodadas (006, 007 e a varredura)**. Enquanto não abrir, **M
+   fica não calculado na 008 exatamente como ficou na 006 e na 007**, e o ranking inteiro desta página continua
+   vazio por bloqueio de proxy, não por falta de nicho. Esta é a dívida que desbloqueia mais linhas de uma vez.
+1-C. **Medir o universo inteiro de BEBÊ e de CROCHÊ** no Planejador. A varredura de 21/10 mediu uma fatia de cada
+   (693 e 659 visitas/dia no top-3) e as duas ficaram por isso mesmo — uma fatia só não decide, e as duas estão
+   acima da metade do piso já na fatia medida. **E, pela lição da 007, medir a SERP delas ANTES do volume.**
+1-D. **As seis fatias de jardinagem** de `bussola/medicoes/para-medir-2026-10-21-jardinagem.md` (186 consultas)
+   só devem ser coladas no Planejador **depois** da leitura de navegador do 1-A. Na ordem inversa, são 186
+   consultas para confirmar um número que não decide nada: o que reprovou jardinagem foi posição, não volume.
 2. **P4b, aberta desde 14/09/2026 e agora bloqueante do ranking inteiro** — a tabela de comissão por categoria do
    **Mercado Livre** (`mercadolivre.com.br/ajuda/27913`, só abre logado) e a **comissão extra real da Shopee** nas
    categorias das ilhas. **Sem ela não há M, e sem M não há índice.** É o número que separa "R$ 1 por venda" de
