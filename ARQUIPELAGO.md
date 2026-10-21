@@ -6,10 +6,10 @@ Este contrato tem mais de 500 linhas e continua crescendo. **Ninguém lê tudo.*
 
 | Papel | Seções |
 |---|---|
-| **Fundação** | 1 a 11, 13 a 18, 20, 21, 22, 24, **25**, 26, 29, **30** |
+| **Fundação** | 1 a 11, 13 a 18, 20, 21, 22, 24, **25**, 26, 29, **30**, **31** |
 | **Sentinela — ronda diária** | **1.2**, **1.2-b**, 2, 3, 4, 10, 12, 15, 16, 18, 19, 21, 22, 23, 24, **25**, 29 |
 | **Painel** | quem escreve é a ronda diária, pela seção 23. Quem quiser saber o estado do Arquipélago lê `dados/PAINEL.md` e não precisa de seção nenhuma |
-| **Sentinela — leitura semanal** | **1.2**, **1.2-b**, 2, 3, 4, 10, 12, 12.1, 14, 18, 21, 29 |
+| **Sentinela — leitura semanal** | **1.2**, **1.2-b**, 2, 3, 4, 10, 12, 12.1, 14, 18, 21, 29, **31** |
 | **Bússola** | **7**, 10, 11, **12.2**, 14, **15**, 20, 21 — e `bussola/BUSSOLA.md`, que é a lei dela |
 | **Pauta das ilhas** | 10, 14, 15, 16, 17, 21 |
 | **Mãos no repositório** | nenhuma. A decisão já vem no disparo; ler o contrato é sinal de que virou Fundação |
@@ -1133,3 +1133,21 @@ Medido na aquametria em 14/10/2026, montando a lista que o item 1 do despacho do
 **E A 30.2 NÃO FECHA PARA PÁGINA POR NOME DE MODELO COM PRODUTOS DIFERENTES.** A 30.2 pede *"3 ou mais produtos reais colhidos assim"*. Uma página de `eheim classic 250 2213` tem **um** produto; cumprir a 30.2 ali exige três **anúncios do mesmo modelo**, de vendedores diferentes, e a aquametria tem um. Quem for criar página por nome de modelo conta anúncio, não registro de catálogo — e registro de fabricante sem anúncio colhido é dado **técnico** pela própria 30.2, não produto real a vender.
 
 **O QUE ISTO MUDA NA PRÁTICA, para ninguém ler esta seção como proibição:** a lista e a classificação continuam sendo trabalho da Fundação, e saem inteiras da nuvem — foi o que esta passada entregou. O que sai da nuvem é a lista com os `tomada` **fechados** e os `nao-medida` **nomeados, com as URLs**. Abrir a SERP das que sobraram é um despacho de uma sessão de Chrome, não um bloco: quem abrir escreve quem viu e quando na linha, e a página nasce na execução seguinte sem remedir nada.
+
+---
+
+## 31. A EXECUÇÃO VAI PARA O SITE, NÃO PARA A BANCADA (decisão do Raphael, 21/10/2026)
+
+**Por que existe:** na janela de foco da aquametria (14 a 21/10/2026) quase todas as execuções da Fundação foram para ferramentas de verificação — bancada, portões, mutações, réguas, exercitadores — e o site ficou parado em 52 URLs. Na mesma semana a ilha teve 586 impressões e 2 cliques no Search Console (12 a 18/10). Verificação que não protege nada no ar é custo sem retorno, e o crédito das rotinas é limitado.
+
+**31.1** Pelo menos **7 de cada 10 execuções** de uma ilha entregam algo NO AR que o visitante vê: página nova, `<title>`/description, texto, bloco de compra, link de afiliado, ou correção de defeito medido no ar. A conta é feita pelo `REGISTRO.md` da ilha.
+
+**31.2** Portão, régua, mutação, bancada ou ferramenta de teste NOVA só nasce quando existe **defeito medido no ar** que ela teria pegado — nomeado no commit com URL e data. "Pode acontecer" não basta.
+
+**31.3** Ampliar, refatorar, deduplicar ou testar portão que já existe (mutações, exercitadores, unificação de régua, contagem de funções) é trabalho de bancada e **fica proibido** enquanto a ilha tiver item de conteúdo, CTR ou página pelo nome do produto aberto na fila ou em despacho.
+
+**31.4** Portão que reprova por motivo interno da própria bancada (régua, rótulo, contagem) e não por defeito no ar **não trava desembarque**: registra no `REGISTRO.md` e segue.
+
+**31.5** Nada aqui afrouxa a seção 13: portão de dado, rampa, verificação da URL no ar, visibilidade em IA e "nunca inventar dado" continuam iguais. Os portões que já existem continuam rodando; o que para é a construção de portão novo.
+
+**31.6** A Sentinela, na leitura semanal, conta a proporção da 31.1 na ilha em foco e escreve o número no despacho. Abaixo de 7 em 10, vira item de despacho com prioridade alta.
