@@ -6,7 +6,7 @@ piso: atingido          # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 52
 primeira_indexacao: 2026-09-09   # 1ª medição do Search Console já achou 7 indexadas; a data da 1ª não está registrada
 ultima_execucao: 2026-10-21T16:59Z
-executando_desde: 2026-10-21T17:45Z   # reserva da execucao que abre o item 2 do despacho do Raphael de 21/10 (fichas de peixe no molde 32.2). A HORA DESTE CAMPO SAI DO `date -u` NA MESMA LINHA DE COMANDO QUE O GRAVA, nunca digitada.
+executando_desde: 2026-10-21T18:05Z   # reserva RENOVADA pela 1.1 (a reserva original desta execucao e de 17:45Z, commit 84eaf10, o PRIMEIRO push de reserva desta ilha nesta janela). CORRIDA DUPLA: uma SEGUNDA execucao reservou a mesma aquametria no MESMO minuto (commit 1c7d970) e reescreveu este comentario — ela leu o main antes de o meu push chegar. Pela secao 1, passo 5, quem perde a corrida do push escolhe outra ilha, e quem ganhou foi esta. A hora sai do `date -u` na mesma linha de comando que grava.
 bloco_atual: |
   AS CINCO CALCULADORAS DESTA ILHA ESTAO NO MOLDE DA SECAO 32, e o item 1 do
   despacho do Raphael de 21/10 saiu INTEIRO pela 18.2 — as duas que faltavam

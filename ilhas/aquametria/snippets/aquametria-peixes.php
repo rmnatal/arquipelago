@@ -1,5 +1,29 @@
 /**
  * Aquametria Peixes — a malha do eixo /peixes/
+ * Versão: 1.19.0 (21/10/2026) — O MOLDE DE CONVERSÃO DA 32.2 NAS 29 FICHAS DE
+ * PEIXE, de uma passada: é o item 2 do despacho do Raphael de 21/10/2026, e as
+ * 29 saem juntas porque as 29 nascem da MESMA função. Nada de URL, `title`, H1,
+ * trilha, `BreadcrumbList` ou JSON-LD muda (32.3): o JSON-LD desta ilha é
+ * montado do registro e do catálogo, não do corpo da página, então ele não tem
+ * como se mover por mudança de corpo.
+ *   O QUE ENTROU: (1) o NÚMERO da resposta em Mono no alto da caixa, legível de
+ *   longe antes de alguém ler a frase — e nenhuma palavra saiu da frase; (2) o
+ *   BLOCO DE AÇÃO da 32.2 imediatamente abaixo da caixa, com os três itens do
+ *   despacho (aquário → litragem, aquecedor → potência com a faixa de
+ *   temperatura da espécie, filtro → vazão), cada um com a conta que o devolve e
+ *   com o botão que leva à vitrine dela; (3) as seis seções de explicação em
+ *   `<details>` da casca, com o `<h2>` de cada uma indo para o `<summary>` —
+ *   nenhum título se perdeu e nenhuma palavra saiu do HTML servido (32.3, 22.8);
+ *   (4) a BARRA FIXA do rodapé, a mesma da casca 1.13.0, carregando o número da
+ *   resposta e levando ao bloco de ação.
+ *   A TABELA DE LOTAÇÃO FICA VISÍVEL, nunca recolhida: ela é a tabela-resumo da
+ *   32.1 item 6, o "já calculado para outros tamanhos" desta página, e é o que
+ *   um modelo de linguagem cita.
+ *   O PARÂMETRO DA PÁGINA VIAJA NA URL DE UMA SÓ DAS TRÊS CONTAS, e o motivo
+ *   está escrito em `aquametria_peixes_monte_html()`: o número desta página é a
+ *   BASE, a única calculadora que come base é a de litragem, e as outras duas
+ *   comem volume de ÁGUA — mandar o litro bruto no campo que pergunta a água
+ *   seria o número errado entrando por um link nosso.
  * Versão: 1.18.0 (21/10/2026) — A 32.4 FECHA 40 PÁGINAS DE UMA VEZ: o texto de
  * bastidor da fábrica sai da página pública, e o que sai são SEIS strings deste
  * snippet. O item 3 do despacho do Raphael de 21/10 nomeava a ficha do betta como
@@ -5743,6 +5767,152 @@ function aquametria_peixes_fonte_do_campo( $e, $campo ) {
 }
 }
 
+/**
+ * O NUMERO DA RESPOSTA PARA A URL — formato de query, nunca de tela.
+ *
+ * `aquametria_peixes_num()` devolve numero de LEITOR (virgula decimal, ponto de
+ * milhar), e campo de formulario lido por `parseFloat` nao entende ponto de
+ * milhar. Entao a URL leva o numero cru: inteiro quando e inteiro, com ponto
+ * decimal quando nao e.
+ */
+if ( ! function_exists( 'aquametria_peixes_num_url' ) ) {
+function aquametria_peixes_num_url( $v ) {
+	$t = number_format( (float) $v, 2, '.', '' );
+	$t = rtrim( rtrim( $t, '0' ), '.' );
+
+	return '' === $t ? '0' : $t;
+}
+}
+
+/**
+ * O BLOCO DE ACAO DA 32.2 — "Monte o aquario que essa resposta pede".
+ *
+ * A 32.2 manda a ficha ter, LOGO ABAIXO da caixa de resposta, um bloco com 2 a
+ * 4 itens, cada um com dois botoes: "Calcular" (a ferramenta da ilha, com o
+ * parametro da pagina ja passado na URL) e "Ver produtos" (o bloco de compra da
+ * ferramenta). Os tres itens e a ordem deles sao os do despacho do Raphael de
+ * 21/10/2026: aquario (-> litragem), aquecedor (-> potencia, com a faixa de
+ * temperatura da especie), filtro (-> vazao).
+ *
+ * POR QUE O PARAMETRO DA PAGINA VAI NA URL DE UMA SO DAS TRES, E ISSO NAO E
+ * DESCUIDO: o numero desta pagina e a BASE declarada pela fonte — centimetros
+ * de frente por centimetros de fundo. A unica calculadora da ilha que come base
+ * e a de litragem, e ela devolve `?c=&l=&a=` preenchido e calculado. As outras
+ * duas comem VOLUME REAL DE AGUA, e o litro que esta ficha publica e BRUTO: a
+ * propria pagina diz, duas linhas acima, que "vidro e substrato comem uma
+ * parte". Mandar o bruto no campo que pergunta a agua seria o numero errado
+ * entrando por um link nosso, com cara de medida — e e por isso que a corrente
+ * e esta: a conta dos litros guarda o aquario neste navegador e a dos watts e a
+ * do filtro o retomam de la, como as duas dizem na propria tela.
+ *
+ * OS CARTOES DEITAM LADO A LADO NUM TRILHO, e nao empilhados: o primeiro botao
+ * de produto e o do SEGUNDO cartao (o aquario nao tem link de loja nesta ilha),
+ * e empilhado ele cairia uma tela abaixo do teto de 1.400 px da 32.5. Em trilho
+ * ele fica na mesma altura do primeiro.
+ */
+if ( ! function_exists( 'aquametria_peixes_monte_html' ) ) {
+function aquametria_peixes_monte_html( $e, $nome, $frente, $larg, $litros_alturas, $arranjo ) {
+	$url_c1 = aquametria_casca_url_se_existir( 'calculadora-de-litragem' );
+	$url_c5 = aquametria_casca_url_se_existir( 'calculadora-de-potencia-do-aquecedor' );
+	$url_c3 = aquametria_casca_url_se_existir( 'calculadora-de-vazao-do-filtro' );
+	if ( '' === $url_c1 && '' === $url_c5 && '' === $url_c3 ) {
+		/* Sem nenhuma das tres publicada nao existe bloco de acao: cartao que nao
+		   leva a lugar nenhum e tela gasta. */
+		return '';
+	}
+
+	/* A ALTURA QUE O CARTAO USA E A MAIOR DAS TRES, e o motivo esta escrito na
+	   legenda da tabela de lotacao desta mesma pagina: errar carga para cima e o
+	   lado seguro em equipamento. Aquecedor e filtro dimensionados para o maior
+	   dos tres litros atendem os outros dois; o contrario nao e verdade. */
+	$altura = null;
+	$litros = null;
+	if ( $litros_alturas ) {
+		$altura = max( array_keys( $litros_alturas ) );
+		$litros = $litros_alturas[ $altura ];
+	}
+
+	$h  = '<div class="aqm-px-monte" id="aqm-px-monte">';
+	$h .= '<h2>Monte o aquário que essa resposta pede</h2>';
+	$h .= '<p class="aqm-px-monte-sub">Três coisas saem dessa base, e cada uma tem a conta que a devolve com as suas medidas. '
+		. 'O ' . esc_html( $nome ) . ' não tem link de compra aqui — o equipamento tem.</p>';
+	$h .= '<div class="aqm-px-monte-rolagem"><ul class="aqm-px-monte-trilho">';
+
+	/* ---------------------------------------------------- 1. o aquário (C1) */
+	$h .= '<li class="aqm-px-monte-item"><div class="aqm-px-monte-cartao">';
+	$h .= '<h3>O aquário</h3>';
+	$h .= '<p class="aqm-px-monte-num">' . esc_html( aquametria_peixes_num( $frente[1] ) )
+		. ( $larg ? ' × ' . esc_html( aquametria_peixes_num( $larg ) ) : '' ) . ' cm</p>';
+	if ( null !== $litros ) {
+		$h .= '<p class="aqm-px-monte-leitura">A base declarada pela fonte. Com '
+			. esc_html( aquametria_peixes_num( $altura ) ) . ' cm de altura ela dá '
+			. esc_html( aquametria_peixes_num( $litros ) ) . ' litros brutos — e bruto não é a água que você vai tratar.</p>';
+	} else {
+		$h .= '<p class="aqm-px-monte-leitura">É a frente declarada pela fonte. O fundo não está declarado, '
+			. 'e sem os dois lados do chão não existe litro: a conta pede as três medidas do aquário que você tem na frente.</p>';
+	}
+	if ( '' !== $url_c1 ) {
+		$alvo = $url_c1;
+		if ( null !== $litros ) {
+			$alvo .= ( false === strpos( $url_c1, '?' ) ? '?' : '&' )
+				. 'c=' . aquametria_peixes_num_url( $frente[1] )
+				. '&l=' . aquametria_peixes_num_url( $larg )
+				. '&a=' . aquametria_peixes_num_url( $altura );
+		}
+		$h .= '<p class="aqm-px-monte-acoes"><a class="aqm-px-botao" href="' . esc_url( $alvo ) . '">'
+			. ( null !== $litros ? 'Calcular os litros dessa base' : 'Abrir a conta dos litros' ) . '</a></p>';
+	}
+	$h .= '<p class="aqm-px-monte-nota">Aquário não tem botão de loja nesta ilha: o banco de produtos desta fábrica não registra vidro, '
+		. 'e produto que ninguém conferiu não entra em cartão nenhum.</p>';
+	$h .= '</div></li>';
+
+	/* ------------------------------------------------- 2. o aquecedor (C5) */
+	if ( '' !== $url_c5 ) {
+		$h .= '<li class="aqm-px-monte-item"><div class="aqm-px-monte-cartao">';
+		$h .= '<h3>O aquecedor</h3>';
+		$h .= '<p class="aqm-px-monte-num">' . esc_html( aquametria_peixes_num( $e['temp_min'] ) ) . ' a '
+			. esc_html( aquametria_peixes_num( $e['temp_max'] ) ) . ' °C</p>';
+		$h .= '<p class="aqm-px-monte-leitura">A faixa que a fonte declara para o ' . esc_html( $nome )
+			. '. Quanto de aquecedor isso custa depende do frio que faz no seu cômodo, e é essa a pergunta que a conta dos watts faz.</p>';
+		$h .= '<p class="aqm-px-monte-acoes">';
+		$h .= '<a class="aqm-px-botao" href="' . esc_url( $url_c5 ) . '">Calcular os watts</a>';
+		$h .= '<a class="aqm-px-botao aqm-px-botao-produto" href="' . esc_url( $url_c5 . '#aqm-c5-compra' ) . '">Ver os aquecedores</a>';
+		$h .= '</p>';
+		$h .= '<p class="aqm-px-monte-nota">O volume vem da conta dos litros, guardado neste navegador: ela devolve o litro de '
+			. '<em>água</em>, e é esse que a potência pede — não o bruto da base.</p>';
+		$h .= '</div></li>';
+	}
+
+	/* ----------------------------------------------------- 3. o filtro (C3) */
+	if ( '' !== $url_c3 ) {
+		$h .= '<li class="aqm-px-monte-item"><div class="aqm-px-monte-cartao">';
+		$h .= '<h3>O filtro</h3>';
+		$h .= '<p class="aqm-px-monte-num">'
+			. ( null !== $litros ? esc_html( aquametria_peixes_num( $litros ) ) . ' L brutos' : 'sem litro declarado' )
+			. '</p>';
+		$h .= '<p class="aqm-px-monte-leitura">Peixe come e peixe suja, então a vazão sai do volume — e as fontes brasileiras '
+			. 'discordam em quantas vezes por hora o filtro tem de girar a água. A conta do filtro publica as duas faixas em vez de tirar média.</p>';
+		$h .= '<p class="aqm-px-monte-acoes">';
+		$h .= '<a class="aqm-px-botao" href="' . esc_url( $url_c3 ) . '">Calcular a vazão</a>';
+		$h .= '<a class="aqm-px-botao aqm-px-botao-produto" href="' . esc_url( $url_c3 . '#aqm-c3-compra' ) . '">Ver os filtros</a>';
+		$h .= '</p>';
+		$h .= '<p class="aqm-px-monte-nota">Mesma corrente do aquecedor: a vazão se calcula sobre a água, e o litro de água sai da conta dos litros.</p>';
+		$h .= '</div></li>';
+	}
+
+	$h .= '</ul></div>';
+
+	/* O AVISO DE COMISSAO EM UMA LINHA (32.1, item 5), e ele diz onde o link de
+	   afiliado mora de verdade: nao nesta pagina. */
+	$h .= '<p class="aqm-px-aviso">Os botões de produto levam à vitrine da calculadora, e é lá que os links de loja são de afiliado: '
+		. 'se você comprar por um deles, a Aquametria pode receber comissão, sem mudar o seu preço. '
+		. 'Cada cartão de produto traz cotação com a data da coleta, nunca preço cravado como atual.</p>';
+	$h .= '</div>';
+
+	return $h;
+}
+}
+
 /* ---------------------------------------------------------------------------
  * 5. A ficha de espécie (nível 3)
  * ------------------------------------------------------------------------- */
@@ -5780,6 +5950,20 @@ function aquametria_peixes_ficha_html( $slug ) {
 	/* --- 5.1 A resposta antes da explicação (seção 5, item 2). Frase
 	   autossuficiente: sobrevive a ser citada fora de contexto. --- */
 	$html .= '<div class="aqm-px-direta">';
+
+	/* O NUMERO DA RESPOSTA, EM MONO, ANTES DA FRASE (32.1 item 4, pela 32.2).
+	   A frase mestra abaixo ja trazia o numero no meio dela; o que faltava era o
+	   numero LEGIVEL DE LONGE, que e o que a pessoa no celular ve antes de ler.
+	   Ele nao substitui nenhuma palavra da frase — nada sai da pagina (32.3) —, e
+	   e um <p> de proposito: o portao do `teste-peixes` le a caixa de resposta por
+	   `<div class="aqm-px-direta">(.*?)</div>` sem ganancia, e uma <div> aqui
+	   dentro truncaria a leitura dele no primeiro fechamento. */
+	$html .= '<p class="aqm-px-numero"><span class="aqm-px-numero-valor">'
+		. esc_html( aquametria_peixes_num( $frente[1] ) )
+		. ( $larg ? ' × ' . esc_html( aquametria_peixes_num( $larg ) ) : '' )
+		. '</span> <span class="aqm-px-numero-unidade">cm de '
+		. ( $larg ? 'base' : 'frente' ) . '</span></p>';
+
 	$html .= '<p class="aqm-px-linha-mestra">';
 	/* A ABERTURA NÃO CITA QUEM DECLAROU — item 4 do despacho da Sentinela de
 	   13/09/2026. Até aqui as 11 fichas começavam por "Para os N <peixe> que A
@@ -5883,6 +6067,26 @@ function aquametria_peixes_ficha_html( $slug ) {
 			$litros_alturas[ $a ] = $v;
 		}
 	}
+
+	/* A CAIXA DE RESPOSTA FECHA NA FRASE MESTRA, E O RESTO DESCE (32.2, e a lição
+	   (c) do despacho do molde: prosa de apoio desce para baixo do trilho).
+	   MEDIDO ANTES DE DESCER, nos 29 renders desta ilha a 390 px: com os dois
+	   parágrafos de apoio dentro da caixa, o primeiro botão de produto caía entre
+	   1.273 e 1.760 px e NOVE das 29 estouravam o teto de 1.400 da 32.5 — as
+	   outras passavam por 14 px de margem, que a diferença entre o render local e
+	   o ar (58 a 76 px, medida em 21/10) come inteira. Nenhuma palavra sai da
+	   página: os dois parágrafos continuam no HTML servido, dentro da dobra
+	   abaixo, legíveis com o JavaScript desligado (32.3, 22.8). */
+	$html .= '</div>';
+
+	/* --- 5.1-b O BLOCO DE AÇÃO DA 32.2, imediatamente abaixo da caixa de
+	   resposta: três itens, cada um com a conta que o devolve e, onde existe
+	   produto conferido, o botão que leva à vitrine dela. Ver o cabeçalho de
+	   `aquametria_peixes_monte_html()` para a corrente do volume, que é a razão
+	   de o parâmetro da página viajar na URL de uma só das três. --- */
+	$html .= aquametria_peixes_monte_html( $e, $nome, $frente, $larg, $litros_alturas, $arranjo );
+
+	$html .= aquametria_casca_dobra_abre( 'Como chegamos nesse número' );
 	if ( $litros_alturas ) {
 		$primeira = min( array_keys( $litros_alturas ) );
 		$ultima   = max( array_keys( $litros_alturas ) );
@@ -5964,7 +6168,7 @@ function aquametria_peixes_ficha_html( $slug ) {
 	   fábrica. O que o leitor precisa saber é que a leitura não foi na página da
 	   fonte, e isso continua escrito — em português de leitor. */
 	$html .= 'Nenhum destes números foi lido na página da própria fonte: todos vieram de resultado de busca, e seguem marcados para reconferência. Confira antes de decidir pelo seu aquário.</p>';
-	$html .= '</div>';
+	$html .= aquametria_casca_dobra_fecha();
 
 	/* --- 5.2 Quantos litros para N exemplares: a tabela pré-renderizada
 	   (seção 5, item 1). É o que um modelo de linguagem lê sem preencher
@@ -6022,7 +6226,7 @@ function aquametria_peixes_ficha_html( $slug ) {
 
 	/* --- 5.3 O inverso: quantos cabem na base declarada. --- */
 	if ( $litros_alturas ) {
-		$html .= '<h2>E quantos ' . esc_html( $nome ) . ' cabem no aquário mínimo</h2>';
+		$html .= aquametria_casca_dobra_abre( 'E quantos ' . $nome . ' cabem no aquário mínimo' );
 		$html .= '<div class="aqm-px-rolagem"><table class="aqm-px-tabela">';
 		$html .= '<caption>A base de ' . esc_html( aquametria_peixes_num( $frente[1] ) ) . ' × '
 			. esc_html( aquametria_peixes_num( $larg ) ) . ' cm em três alturas de aquário. '
@@ -6094,10 +6298,11 @@ function aquametria_peixes_ficha_html( $slug ) {
 			}
 			$html .= ' Quem está montando o primeiro aquário faz melhor ficando perto do número apertado: o que sobra de espaço vira margem para o dia em que a filtragem falhar.</p>';
 		}
+		$html .= aquametria_casca_dobra_fecha();
 	}
 
 	/* --- 5.4 O que a fonte declara, campo por campo. --- */
-	$html .= '<h2>O que as fontes declaram sobre o ' . esc_html( $nome ) . '</h2>';
+	$html .= aquametria_casca_dobra_abre( 'O que as fontes declaram sobre o ' . $nome );
 	$html .= '<div class="aqm-px-rolagem"><table class="aqm-px-tabela aqm-px-declarado">';
 	$html .= '<caption>Cada linha com o corpo que a sustenta e a data em que foi colhida.</caption>';
 	$html .= '<thead><tr><th scope="col">O que</th><th scope="col">Declarado</th><th scope="col">Quem declara</th></tr></thead><tbody>';
@@ -6150,10 +6355,11 @@ function aquametria_peixes_ficha_html( $slug ) {
 			. esc_html( $card ) . ' peixes: multiplicar diria que dez ' . esc_html( $nome ) . ' precisam de '
 			. esc_html( aquametria_peixes_num( $por_individuo * 10 ) ) . ' cm, o que nenhuma fonte sustenta.</p>';
 	}
+	$html .= aquametria_casca_dobra_fecha();
 
 	/* --- 5.5 A divergência, publicada com os dois nomes. --- */
 	if ( count( (array) $e['conflitos'] ) ) {
-		$html .= '<h2>Onde as fontes discordam</h2>';
+		$html .= aquametria_casca_dobra_abre( 'Onde as fontes discordam' );
 		$html .= '<p>A Aquametria nunca tira média de fontes que discordam: publica os dois extremos com o nome de quem disse cada um. '
 			. 'E onde o número entra numa conta desta página, vale o extremo seguro — aquário maior, peixe maior —, porque errar espaço para cima não machuca ninguém.</p>';
 		foreach ( (array) $e['conflitos'] as $c ) {
@@ -6189,6 +6395,7 @@ function aquametria_peixes_ficha_html( $slug ) {
 			}
 			$html .= '</p>';
 		}
+		$html .= aquametria_casca_dobra_fecha();
 	}
 
 	/* --- 5.6 Quem divide a mesma água. Critério na frente da lista (14.4). --- */
@@ -6208,7 +6415,7 @@ function aquametria_peixes_ficha_html( $slug ) {
 	   banco dividem a faixa) e diz por que não recomenda nenhuma. */
 	if ( 'agressivo' === $e['comportamento'] ) {
 		$total_faixa = count( $vizinhos['dentro'] ) + count( $vizinhos['maior'] ) + count( $vizinhos['agressivos'] );
-		$html .= '<h2>Com quem ' . esc_html( $arranjo ? $arranjo['este'] : 'esse cardume' ) . ' divide o aquário</h2>';
+		$html .= aquametria_casca_dobra_abre( 'Com quem ' . ( $arranjo ? $arranjo['este'] : 'esse cardume' ) . ' divide o aquário' );
 		/* A RESTRIÇÃO DECLARADA SAI NOS DOIS RAMOS, e aqui ela é acumulativa, não
 		   redundante: este ramo não publica lista porque o banco declara a espécie
 		   agressiva, e a restrição escrita pela fonte é uma SEGUNDA razão, de outra
@@ -6245,8 +6452,9 @@ function aquametria_peixes_ficha_html( $slug ) {
 				. 'é a mesma razão por que a fonte declara ' . esc_html( $arranjo ? $arranjo['minimo'] : 'cardume mínimo' )
 				. ' de ' . esc_html( $card ) . ' e não de dois.</p>';
 		}
+		$html .= aquametria_casca_dobra_fecha();
 	} elseif ( $vizinhos['dentro'] ) {
-		$html .= '<h2>Quem divide a mesma faixa de temperatura</h2>';
+		$html .= aquametria_casca_dobra_abre( 'Quem divide a mesma faixa de temperatura' );
 		/* ANTES DA RESSALVA E ANTES DA TABELA. Ver o cabeçalho de
 		   aquametria_peixes_restricoes_html(): o papilocromis serviu treze
 		   companheiros por nove dias contra a frase que a própria ficha cita. */
@@ -6317,11 +6525,12 @@ function aquametria_peixes_ficha_html( $slug ) {
 				. ': ' . esc_html( implode( ', ', $nomes ) ) . '. ';
 		}
 		$html .= '</p>';
+		$html .= aquametria_casca_dobra_fecha();
 	}
 
 	/* --- 5.7 O equipamento que este aquário pede — o 16.4(d), e o caminho do
 	   dinheiro. A vitrine não mora aqui: mora na calculadora. --- */
-	$html .= '<h2>O equipamento que esse aquário pede</h2>';
+	$html .= aquametria_casca_dobra_abre( 'O equipamento que esse aquário pede' );
 	$html .= '<p>';
 	$url_c1 = aquametria_casca_url_se_existir( 'calculadora-de-litragem' );
 	$url_c5 = aquametria_casca_url_se_existir( 'calculadora-de-potencia-do-aquecedor' );
@@ -6345,6 +6554,7 @@ function aquametria_peixes_ficha_html( $slug ) {
 	$html .= '<p class="aqm-px-sem-loja"><strong>Nesta página não tem link de loja, e isso é decisão, não esquecimento.</strong> '
 		. 'Peixe vivo não se compra por link de afiliado — quem vende é a loja da sua cidade, e a Aquametria não tem como conferir o lote nem a aclimatação de ninguém. '
 		. 'O equipamento tem link, e ele está dentro das calculadoras acima, onde o produto entra como consequência do número que você calculou.</p>';
+	$html .= aquametria_casca_dobra_fecha();
 
 	/* --- 5.8 A mãe no corpo, e as irmãs. 16.4(b) e 16.4(c). --- */
 	$html .= aquametria_peixes_frase_de_mae_html( $slug );
@@ -6371,6 +6581,20 @@ function aquametria_peixes_ficha_html( $slug ) {
 	}
 
 	$html .= '</div>';
+
+	/* A BARRA FIXA DO RODAPE (32.1, ultima linha), desenhada pela casca desde a
+	   1.13.0. Nas calculadoras ela carrega o numero do resultado e leva ao bloco
+	   de compra; aqui carrega o numero da RESPOSTA e leva ao bloco de acao, que e
+	   onde os botoes de produto moram nesta pagina. Fora do `.aqm-px` de
+	   proposito: `position:fixed` nao herda a largura maxima do corpo da ficha, e
+	   deixa-la dentro so faria a regra do CSS depender de onde ela nasceu. */
+	$html .= aquametria_casca_barra_html(
+		aquametria_peixes_num( $frente[1] )
+			. ( $larg ? ' × ' . aquametria_peixes_num( $larg ) : '' ) . ' cm de '
+			. ( $larg ? 'base' : 'frente' ),
+		'Montar o aquário',
+		'aqm-px-monte'
+	);
 
 	return $html;
 }
@@ -6986,9 +7210,46 @@ font-weight:500;color:var(--px-tinta);}
 background:var(--px-superficie);}
 .aqm-px-cat h3{font-family:var(--px-display);font-size:.98rem;margin:0 0 .4rem;}
 .aqm-px-cat p{font-size:.84rem;color:var(--px-legenda);margin:0;}
+.aqm-px-numero{font-family:var(--px-mono);font-variant-numeric:tabular-nums;
+margin:0 0 .5rem;line-height:1.1;}
+.aqm-px-numero-valor{font-size:2rem;font-weight:600;letter-spacing:-.01em;}
+.aqm-px-numero-unidade{font-size:.9rem;color:var(--px-legenda);}
+.aqm-px-monte{margin:0 0 1.6rem;}
+.aqm-px-monte h2{margin-top:0;}
+.aqm-px-monte-sub{font-size:.88rem;color:var(--px-legenda);margin:0;}
+.aqm-px-monte-rolagem{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+.aqm-px-monte-trilho{display:flex;gap:.8rem;margin:.7rem 0 0;
+padding:.15rem .15rem .9rem;list-style:none;scroll-snap-type:x mandatory;
+scroll-padding-left:.15rem;}
+.aqm-px-monte-item{flex:0 0 15rem;margin:0;scroll-snap-align:start;}
+.aqm-px-monte-cartao{display:flex;flex-direction:column;gap:.3rem;height:100%;
+background:var(--px-superficie);border:1px solid var(--px-traco);
+border-radius:3px;padding:.75rem .8rem .85rem;}
+.aqm-px-monte-cartao h3{font-family:var(--px-display);font-size:.95rem;
+font-weight:600;margin:0;}
+.aqm-px-monte-num{font-family:var(--px-mono);font-variant-numeric:tabular-nums;
+font-size:1.15rem;font-weight:600;color:var(--px-lamina);margin:0;}
+.aqm-px-monte-leitura{font-size:.82rem;line-height:1.45;margin:0;}
+.aqm-px-monte-acoes{display:flex;flex-wrap:wrap;gap:.4rem;margin:.35rem 0 0;}
+.aqm-px-monte-nota{font-size:.74rem;line-height:1.4;color:var(--px-legenda);
+margin:auto 0 0;padding:.35rem 0 0;}
+.aqm-px a.aqm-px-botao{display:inline-block;font-family:var(--px-texto);
+font-weight:600;font-size:.84rem;line-height:1.2;padding:.45rem .7rem;
+border:1px solid var(--px-lamina);border-radius:2px;color:var(--px-lamina);
+background:var(--px-superficie);text-decoration:none;}
+.aqm-px a.aqm-px-botao-produto{background:var(--px-lamina);
+color:var(--px-superficie);}
+.aqm-px a.aqm-px-botao:hover{border-color:var(--px-tinta);}
+.aqm-px a.aqm-px-botao:focus-visible{outline:2px solid var(--px-lamina);
+outline-offset:1px;}
+.aqm-px-aviso{font-size:.78rem;line-height:1.45;color:var(--px-legenda);
+border-left:2px solid var(--px-traco);padding:.1rem 0 .1rem .7rem;margin:.3rem 0 0;}
 .aqm-px a{color:var(--px-lamina);}
 @media (max-width:600px){.aqm-px-direta{font-size:.92rem;padding:.85rem .9rem;}
-.aqm-px-tabela{font-size:.82rem;}}
+.aqm-px-tabela{font-size:.82rem;}
+.aqm-px-numero-valor{font-size:1.7rem;}
+.aqm-px-monte-item{flex-basis:13.5rem;}}
+@media (min-width:860px){.aqm-px-monte-item{flex:1 1 0;}}
 CSS;
 }
 }
