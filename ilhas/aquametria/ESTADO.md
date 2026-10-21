@@ -6,7 +6,7 @@ piso: atingido          # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 52
 primeira_indexacao: 2026-09-09   # 1ª medição do Search Console já achou 7 indexadas; a data da 1ª não está registrada
 ultima_execucao: 2026-10-20T20:32Z
-executando_desde: null   # a execucao de 20/10 19h16Z fechou as 20h32Z. A HORA DESTE CAMPO SAI DO `date -u`, nunca de estimativa, e a reserva foi RENOVADA SEIS vezes pela 1.1 porque a bancada de 73 portoes roda em mais de uma hora (o mutacoes-peixes.py sozinho leva ~35min).
+executando_desde: 2026-10-21T10:17Z   # reserva desta execucao (secao 1, passo 5), hora do `date -u` e nunca de estimativa. A reserva anterior era de 20/10 19h16Z e fechou as 20h32Z. Se o bloco passar de 40min, renovo este campo pela 1.1.
 bloco_atual: |
   A PERGUNTA DO ITEM 4 ESTA RESPONDIDA, E A RESPOSTA E 96: sao 96 funcoes
   COMPARTILHADAS de ferramentas/ com um exercitador so, e 92 delas sem leitor de
