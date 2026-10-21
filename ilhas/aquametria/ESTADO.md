@@ -68,6 +68,13 @@ bloco_atual: |
   ANTERIORES A ESTA PASSADA, cada uma conferida rodando o portao de antes sobre o
   render de antes tirado do git: o aviso de voltagem da C5 e o rel do botao de
   busca da C3. Estao nomeadas no despacho.
+  A BANCADA INTEIRA (73 portoes, sem rede) FOI ACIONADA E NAO TERMINOU DENTRO
+  DESTA EXECUCAO: fechou verde em 24 portoes lidos, ZERO falha — a regua do
+  veredito, php -l nos 11 snippets, seis conferir-* e dezessete baterias de
+  mutacoes-*, todas com zero sobrevivente e zero inerte. Parou numa bateria longa
+  e segue rodando depois do fecho. 49 PORTOES FICARAM SEM LEITURA, e portao nao
+  lido nao e portao verde: rode a bancada de ponta a ponta antes de abrir bloco
+  novo nesta ilha.
   PROXIMO PASSO, desbloqueado: o ITEM 2 do despacho — as fichas de peixe no molde
   32.2, comecando pela /peixes/bettas/quantos-litros-para-betta/, a de mais
   impressao da ilha. As cinco calculadoras que as fichas vao linkar ja estao no
