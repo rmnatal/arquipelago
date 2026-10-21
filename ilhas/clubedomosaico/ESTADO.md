@@ -114,7 +114,7 @@ ultima_execucao: 2026-10-21T17:0xZ   # molde da secao 32 nas duas ferramentas, n
                                      # 06/10 envelhecida sete dias: com DOIS produtos saindo pela regra
                                      # 7 na mesma celula, o teste-f2.php media a saida de cada um contra
                                      # o texto do bloco INTEIRO. Passa a medir por PARAGRAFO do produto.
-executando_desde: null   # execucao de 21/10 15:06Z-17:0xZ FECHADA: molde da secao 32 no ar nas duas ferramentas, revisao 89, conferido no ar
+executando_desde: 2026-10-21T18:10Z   # reserva da execucao que abre os TRES GRUPOS que faltam do molde 32.2 (despacho ALTO do Raphael de 21/10, reescrito pela 18.3 as 16h2xZ). A HORA SAI DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA.
                          # limpo as 20h2xZ de 13/10/2026 pela propria execucao que reservou as 19h17Z. Ele foi reescrito as 19h51Z, e o motivo que eu escrevi naquele commit estava errado: dizia que o bloco tinha passado de 40 minutos e ele tinha 34. Renovar antes nao fere nada (o campo so fica mais novo), mas o motivo escrito tinha de ser verdade — e e o mesmo deslize que o comentario da execucao de 13h18Z, mais abaixo, registra.
                          # UMA CORRECAO DE HONESTIDADE, porque ela foi para o `main` num commit: no commit
                          # do bloco este campo saiu com `2026-10-13T13:45Z`, apresentado como renovacao da
