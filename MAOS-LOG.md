@@ -6235,3 +6235,80 @@ executado, nenhum Sync acionado, nenhuma publicação, nenhum `publicar: true`, 
 contato pessoal de terceiro escrito. O ensaio da Shopee **não** foi tentado aqui: sem credencial no ambiente
 das MÃOS não há o que rodar, e rodar coleta não era o pedido — o pedido era corrigir o texto do despacho. O
 `ARQUIPELAGO.md` não foi aberto: a decisão veio pronta no disparo.
+
+---
+
+## 21/10/2026 20:50 (23:50 UTC) — Bússola rodada 007, gravação 3: correção do veredito de jardinagem
+
+**Assunto:** Projeto Arquipélago / Bússola / rodada 007 (nicho jardinagem). Passou na checagem de assunto — é do
+Arquipélago. Partida do `main` real (`f1fa9a1`), destino `main`.
+
+**Travas antes de gravar — as três passaram:**
+
+```
+arquivo novo bussola/medicoes/serp-jardinagem-chrome-2026-10-21.md : NAO EXISTE - OK
+substituição 1 — contagem do trecho antigo em bussola/rodadas/007.md : 1
+substituição 2 — contagem do trecho antigo em bussola/fila.md       : 1
+```
+
+**`git status --porcelain` (antes do commit):**
+
+```
+ M bussola/fila.md
+ M bussola/rodadas/007.md
+?? bussola/medicoes/serp-jardinagem-chrome-2026-10-21.md
+```
+
+**`git diff --stat` (rastreados, antes do commit — o arquivo novo ainda não entrava na conta):**
+
+```
+ bussola/fila.md        | 37 +++++++++++++++++++++++++++++++++++++
+ bussola/rodadas/007.md | 31 +++++++++++++++++++++++++++++++
+ 2 files changed, 68 insertions(+)
+```
+
+**`git show --stat` do commit que foi ao `main`:**
+
+```
+e9e79f2 Bússola rodada 007 — correção: SERP real no Chrome do Raphael inverte o veredito de jardinagem
+ bussola/fila.md                                    |  37 ++++
+ .../medicoes/serp-jardinagem-chrome-2026-10-21.md  | 207 +++++++++++++++++++++
+ bussola/rodadas/007.md                             |  31 +++
+ 3 files changed, 275 insertions(+)
+```
+
+**Hash que foi ao `main`:** `e9e79f2e64870c9f5b7152d5db6cb5e36452ecc6`
+
+**Confirmação em `origin/main`** (`git fetch origin main && git log -1 origin/main`):
+
+```
+e9e79f2e64870c9f5b7152d5db6cb5e36452ecc6
+Bússola rodada 007 — correção: SERP real no Chrome do Raphael inverte o veredito de jardinagem
+```
+
+Push aceito na primeira tentativa, sem rebase, sem force, sem PR.
+
+**Contagem do que mudou, conferida relendo os arquivos DEPOIS de gravar (não pelo que eu acho que escrevi):**
+
+```
+bussola/medicoes/serp-jardinagem-chrome-2026-10-21.md  207 linhas  13450 bytes  (arquivo novo)
+bussola/rodadas/007.md                                 371 linhas  24763 bytes  (+31 linhas)
+bussola/fila.md                                        300 linhas  42223 bytes  (+37 linhas)
+
+marca nova "ESTE VEREDITO FOI REVERTIDO NA MESMA NOITE" em 007.md ........... 1
+marca nova "REPROVAÇÃO REVERTIDA na mesma noite" em fila.md ................. 1
+linha antiga "# VEREDITO: JARDINAGEM REPROVA..." preservada em 007.md ....... 1
+linha antiga "## JARDINAGEM — medida inteira na rodada 007..." em fila.md ... 1
+```
+
+3 arquivos, 275 linhas acrescentadas, 0 removidas. As duas substituições terminam com a linha antiga preservada,
+como a instrução mandava — nada do texto anterior foi apagado.
+
+**Nenhum passo falhou.** Nada a registrar de erro nesta seção.
+
+**Fronteira:** nenhum arquivo além dos três nomeados pela instrução foi tocado, mais este `MAOS-LOG.md`, que é a
+exceção obrigatória. Nenhuma ilha reservada, nenhum `executando_desde` escrito, nenhum cabeçalho de estado
+alterado, nenhum bloco de fila executado, nenhum Sync acionado, nenhuma publicação, nenhum `publicar: true`,
+nenhuma conta criada, nenhum contato pessoal de terceiro escrito. O `ARQUIPELAGO.md` não foi aberto: a decisão
+veio pronta no disparo. O conteúdo foi gravado byte a byte como veio, sem reformatar e sem corrigir — inclusive
+`SERPbrasileira`, sem espaço, no segundo parágrafo da LIÇÃO do arquivo novo, que ficou como estava na instrução.
