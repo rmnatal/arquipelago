@@ -14,6 +14,110 @@ o proximo passo desbloqueado, e espelha o mesmo resumo em
 > não no topo.
 
 
+## 2026-10-21 15h04Z–16h0xZ — O MOLDE VIRA COMPONENTE DA CASCA, DUAS CALCULADORAS NOVAS ENTRAM NELE — E A RONDA ACHOU QUE ELE **PASSAVA NO ESTADO EM QUE NINGUÉM USAVA A PÁGINA E FALHAVA POR 4,2 VEZES NO ESTADO EM QUE ALGUÉM USAVA**
+
+**A ESCOLHA DA ILHA: FOCO E DESPACHO NA MESMA ILHA, RESERVA GANHA NA SEGUNDA TENTATIVA.** `foco.md` nomeia a **aquametria** e a exceção que o Raphael acrescentou à **1.2** em 21/10 manda o despacho do molde furar o foco na ordem aquametria → clubedomosaico → robometria: as duas regras apontam para a mesma ilha, então não houve rotação nem comparação de `ultima_execucao`. O cabeçalho trazia `executando_desde: null`, que pela **1.1** já significa que nenhum bloco da Fundação está vivo; o commit mais recente na pasta era de **14h10Z, 54 minutos antes**, e era commit de fecho da execução anterior, não bloco em andamento. **Passo 1:** nenhum PR aberto e a branch `claude/dreamy-mccarthy-aynfql` idêntica ao `main` — nada a mesclar. O primeiro push da reserva foi **RECUSADO** (outra execução tinha empurrado um `MAOS-LOG`); `fetch` + `rebase` sem force push e a reserva entrou às **15h04Z**, renovada **três** vezes pela 1.1 ao longo do bloco. **Rede pela 20.2, não herdada:** `aquametria.com.br` em **200** em duas passadas. **As ilhas irmãs foram reservadas por outras execuções na mesma janela** (clubedomosaico e robometria às 15h0xZ), que é exatamente o paralelo que a **32.6-b** prevê.
+
+### 1. O MOLDE DEIXA DE SER COPIADO ENTRE SNIPPETS — CASCA 1.13.0, SEÇÃO 3g
+
+A **32.6-b** manda que o que se repete entre as páginas de ferramenta vire componente da casca "em vez de ser reescrito em cada snippet". Até esta passada a barra do rodapé existia **só na C15**, com CSS, JavaScript e HTML próprios (`aqm-c15-barra*`), escritos duas horas antes. **A segunda calculadora a receber o molde copiaria 8 linhas de CSS e ~50 de JavaScript; a quinta teria cinco cópias, e a primeira correção de uma delas deixaria as outras quatro para trás em silêncio** — a família de defeito da seção 4 do contrato.
+
+Nasceram na casca: `aquametria_casca_promessa_html()`, `aquametria_casca_dobra_abre()`/`_fecha()` (o MESMO HTML e as MESMAS classes do shortcode `[aqm_dobra]` que serve o Markdown — dobra que muda de cara conforme quem a abre seria duas dobras), `aquametria_casca_dobra_campos_abre()` e `aquametria_casca_barra_html( $texto, $rotulo, $id_do_alvo )`, com CSS e script próprios.
+
+**A BARRA NÃO SABE O NOME DE NENHUMA CALCULADORA, de propósito:** quem diz qual bloco de compra vigiar é o atributo `data-aqm-barra-alvo` do próprio HTML servido, lido pelo script do rodapé. É isso que a faz servir as cinco sem uma linha de JavaScript por ilha de cada uma. **A C15 migrou para ela na mesma passada** (1.9.0) e o portão `c15-vitrine` provou que nenhum pixel mudou no ar: as oito afirmações da barra passaram iguais.
+
+### 2. UM DEFEITO DE ESTRUTURA QUE UM PORTÃO ACHOU, E ELE VALIA PARA AS CINCO
+
+A dobra de seção põe um `<h2>` dentro do `<summary>`. O `teste-navegador-visibilidade-ia` mede a regra da **seção 5** do contrato — a resposta antes da explicação — pelo **PRIMEIRO `<h2>` da página**. Ao pôr os campos secundários do formulário da C12 dentro de uma dobra de SEÇÃO, o rótulo *"Perfil, manutenção e mídia química"* passou a ser o primeiro `<h2>` do documento, e a resposta direta ficou, para qualquer leitor que lê estrutura, **depois da primeira seção de explicação**. O portão reprovou com `depois` e **estava certo**: grupo de campos de formulário não é seção de texto, e chamá-lo de `<h2>` mente para a busca e para os modelos.
+
+Nasceu `aquametria_casca_dobra_campos_abre()`, sem `<h2>`. A C15 1.8.0 já tinha acertado isso **à mão**, com `<summary>` pelado e uma classe própria; aqui virou componente, e a C15 migrou para ele. **Nenhum portão foi afrouxado para a mudança passar — foi a mudança que se corrigiu.**
+
+### 3. A SEGUNDA CALCULADORA: `/calculadora-de-midia-filtrante/` (C12 1.7.0)
+
+Medido no ar, 390 px, com quebra de cache:
+
+| | antes | depois (novo) | depois de calcular | quem volta | teto da 32.5 |
+|---|---|---|---|---|---|
+| formulário começa em | 1.863 px | **452 px** | 452 | 452 | antes de 700 |
+| 1º botão de loja | 3.168 px | **1.236 px** | **1.253** | **1.348** | antes de 1.400 |
+| altura | 21.677 px | 9.429 px | 19.011 | 19.107 | — |
+| rolagem horizontal | **19 px** | **0** | 0 | 0 | — |
+
+Palavras no corpo servido com o JavaScript desligado: **5.147 → 5.297** — nada saiu. `title`, `H1`, URL, trilha e JSON-LD **idênticos**, conferidos por diff contra o render do `main` de antes (`15409d3`) e no ar: os três nós (`WebApplication`, `FAQPage` com 15 perguntas, `BreadcrumbList` com 3 degraus) iguais, com a única diferença sendo `softwareVersion` 1.6.0 → 1.7.0, que é a versão da própria calculadora. **Zero frase da lista 32.4.** `pageerror` **0**; as mensagens de console são dois hosts que o egresso desta nuvem barra (`googletagmanager` e o CDN de imagem da Shopee).
+
+**As três lições da C15 foram aplicadas sem serem redescobertas:** o cartão **deita** no celular (`float`, não grid — o cartão tem número variável de filhos irmãos); a prosa que explica o recorte **desceu** para baixo do trilho, com os dois números dela subindo para o título do bloco; e o exemplo do formulário **se limpa** antes de aplicar o que a URL ou o `localStorage` trazem.
+
+### 4. A RONDA DAS 14h5xZ ENTROU NO `main` DEPOIS DESTA EXECUÇÃO COMEÇAR, E O ITEM 1 DELA ERA DEFEITO DO MOLDE — NÃO DE UMA PÁGINA
+
+A ronda mediu, no Chrome do Raphael a 390 px, que a `/calculadora-de-iluminacao/` **passava no estado em que ninguém a usou (1.300 px) e falhava por 4,2 vezes no estado em que alguém a usou: 5.839 px depois de um cálculo, 3.839 px para quem volta com aquário guardado**, contra o teto de 1.400. Pela **18.5** o despacho foi fechado antes de qualquer página nova.
+
+**A causa não era a caixa congelada: era o DETALHE do cálculo.** As tabelas, o cesto, as camadas, a química e o permalink nasciam **entre** a caixa de resultado e a vitrine, e empurravam a compra para baixo em vez de ocuparem o lugar do exemplo. A **32.1 item 5** diz "bloco de compra **imediatamente** abaixo do resultado", e *imediatamente* é literal.
+
+O conserto separa a **caixa** do **detalhe** nas duas calculadoras: a caixa fica na posição 4 da 32.1, a compra vem logo abaixo, o detalhe desce para depois da tabela de casos. **Nenhuma palavra saiu da página.** As duas caixas (exemplo e cálculo) passaram a ter a **mesma métrica**, porque são a mesma posição do molde e nunca estão na tela ao mesmo tempo. Na C12, a justificativa longa da faixa e as fichas de entrada saíram da caixa para o detalhe — a 32.1 descreve a caixa como *"número em Mono, frase de leitura embaixo"*, **uma** frase, e eram essas quatro linhas que punham o botão de loja de quem volta a 1.480 px.
+
+**Medido no ar depois, nos três estados, primeiro botão de loja:** C15 **1.177 / 1.325 / 1.352 px** e C12 **1.236 / 1.253 / 1.348 px** — os seis sob o teto. **Uma só caixa de resultado em cena** nos três estados, e quem volta com aquário guardado recebe formulário e resultado **concordando** (120 L nos dois).
+
+**Item 2 da ronda, fechado:** a linha das fichas de luminária dizia *"seis registros e só três podem ser sugeridos: três são barrados por não declararem voltagem ou lúmens"*. No banco de hoje são **26 luminárias, 15 sugeríveis e 11 barradas** — e **nenhuma** por voltagem, que as 26 declaram. A frase foi verdadeira no bloco 3, de 07/09, e **o banco cresceu por baixo dela**: é a família do "número de tela digitado" da seção 8. Agora os três números saem de `count()` sobre os blocos que o gerador embute, e um `grep` no banco os reproduz no mesmo dia. O caminho de arquivo do repositório saiu da página junto, pela 32.4.
+
+### 5. A 32.4 FECHOU AS 52 URLs, E O ESCOPO ERA MAIOR QUE O MEDIDO POR QUEM O MEDIU
+
+O item 3 do despacho do Raphael nomeava a ficha do betta como **exemplo**; a ronda mediu **30** páginas (as 29 fichas e a mãe `/peixes/`). **A varredura do texto servido das 53 páginas desta passada achou mais DEZ de categoria e DUAS fichas, por strings diferentes** — mais dois caminhos de arquivo do repositório que ninguém tinha olhado.
+
+Saíram **seis** strings do `aquametria-peixes` (1.18.0): o egresso da nuvem e a busca restrita ao domínio, a lista de reconferência da ilha, a SERP classificada e a classificação escrita no snippet, o critério inteiro da ilha, *"a SERP brasileira recomenda"* e *"o portão de dado"*. Mais `ferramentas/conferir-privacidade-no-ar.py` da política de privacidade (duas vezes) e `dados/produtos-filtro.json` da mídia filtrante.
+
+**A PROCEDÊNCIA QUE A 32.4 MANDA GUARDAR FICOU INTEIRA:** fonte nomeada e data em todas. O leitor continua sabendo que o número **não foi lido na página da fonte** e que a espécie **ficou de fora por falta de dado declarado** — e qual dado falta. O que saiu foi o vocabulário de quem escreveu a fábrica, não a informação.
+
+**Varredura final nas 52 URLs NO AR**, baixadas com o `User-Agent` de um Chrome de verdade, com `<script>`, `<style>` e comentário fora: **zero termo da lista 32.4**. *(Uma leitura intermediária com `User-Agent` curto devolveu "nenhum achado" porque o Mod_Security do hospedeiro respondeu **406** às 52 — leitura que não mediu nada, e por isso ela não conta como medição. Fica escrito porque a próxima varredura vai topar com isso.)*
+
+### 6. A TERCEIRA CALCULADORA: `/calculadora-de-litragem/` (C1 1.3.0) — E O MOLDE TEVE DE SER LIDO, NÃO COPIADO
+
+**ESTA PÁGINA NÃO TEM BLOCO DE COMPRA, e isso é decisão registrada desta ilha e não esquecimento:** litragem é geometria, e geometria não escolhe produto — é por isso que a C1 é a única das cinco que nunca recebeu vitrine. Sem bloco de compra não existe item 5 da 32.1 **nem barra do rodapé**, e a própria função da casca recusa montar barra sem alvo: tarja fixa que leva a lugar nenhum come tela sem oferecer nada.
+
+Medido no ar: formulário de **(não existia na primeira tela)** para **409 px**; altura **13.451 → 7.536 px**; rolagem horizontal **6 → 0 px**; palavras no corpo servido **3.296 → 3.397**; `title`, H1, URL e os três nós de JSON-LD idênticos; zero termo da 32.4; `pageerror` 0.
+
+O caso de exemplo é o aquário de **80 × 40 × 40 cm** — o **quarto degrau da tabela de casos resolvidos**, que era justamente o exemplo que os `placeholder` dos campos insinuavam sem nunca resolver. A caixa sai do **mesmo espelho em PHP** que monta a tabela, então ela não pode discordar da tabela logo abaixo. Quatro campos abertos e quatro na dobra de campos.
+
+**A lição (d) foi aplicada antes de o defeito nascer:** o exemplo se limpa antes do que a URL ou o `localStorage` trazem, e quem volta com aquário guardado recebe a conta **dele** pintada na tela — que é o item 1 da ronda, aplicado de saída em vez de consertado depois.
+
+**UMA MEDIÇÃO QUE PRECISA SER DITA PARA NÃO SER MAL LIDA DEPOIS:** a leitura semanal de 14/10 usou esta página como o **único controle do arquipélago** — ela foi de 27 para 82 impressões **sem ser tocada**, e é esse controle que mostra que o crescimento de +56% da ilha é de mercado e não das promessas de `<title>`. **O controle não foi destruído:** a 32.3 proíbe mexer em `<title>`, H1, URL, trilha e JSON-LD, e nenhum deles mudou. O que mudou foi o **layout**, às 15h5xZ de 21/10 — **depois** da janela 14→21/10 que a leitura desta data mede. A leitura de 21/10 ainda compara maçã com maçã; a de 28/10 já compara um layout novo, e a nota está escrita no `PROMPT.md` ao lado do item do controle.
+
+### 7. OS PORTÕES — E O QUE ELES APRENDERAM, SEM UM AFROUXAMENTO
+
+**Verdes, rodados um a um:** `visibilidade-ia` nas **CINCO** calculadoras, `navegador-cinco` nas cinco, `c12` (com **cinco** afirmações novas), `c12-vitrine`, `c15`, `c15-vitrine`, `c15-regulagem`, `c1-tabela`, `navegador-arvore` (**658 medições**), `casca`, `casca-paginas`, `voz`, `arvore`, `entidades`, `seo-tecnico`, `site-jsonld`, `conversor-markdown`, `escape-shortcode`, `apelidos`, `purga-cache`, `atualizador-sync`, `teste-peixes`, `validar-especies`, `slugs`, `protecao-funcoes`, `indice-de-levas`, `promessa-do-titulo`, `titulos-das-duas-fontes`, `constantes-de-snippet`, `classes-da-bancada`, `alvos-em-php`, `conferir-desembarque` (duas vezes).
+
+**O que mudou nos portões:**
+1. **Campo que foi para a dobra é digitado com a dobra aberta** — o Playwright não digita em campo invisível, e abrir é o que a pessoa faz com um toque. Valeu para `c12` (em três lugares: o formulário, o caminho inverso e a seção do celular), `c12-vitrine`, `cinco` e `c1-tabela`. **O `c1-tabela` estava morrendo em `TimeoutError`; o conserto o fez chegar ao fim** — e aí ele acusou uma falha, ver abaixo.
+2. **O `c12` ganhou CINCO afirmações novas**, e todas medem o que a 32.1 passou a exigir e nenhuma régua cobrava: caixa de resposta **com número na carga, sem clique nenhum**; formulário **servido preenchido**; a caixa do exemplo **voltando** quando a entrada é inválida, para a tela nunca ficar sem resposta. O cenário "sem volume" passou a **esvaziar** o campo em vez de supor campo vazio na carga — **caso que depende de um padrão da tela é caso que muda quando a tela muda**, e o padrão mudou.
+3. **O filtro de rede do `c12` passou a cobrir `ERR_TUNNEL`, e agora ESCREVE quais hosts desculpou.** A lista anterior (`ERR_CONNECTION|NAME|INTERNET`) não cobria a família do túnel do proxy. **Por que apareceu agora:** com a vitrine na primeira tela, a foto do produto passou a ser **de fato carregada** — no render de antes ela ficava a 3.168 px e nunca saía do lazy. Não é defeito da página, e o portão deixou de dizer "console limpo" sem contar o que excluiu.
+4. **O `c12-vitrine` procura o título da procedência em `h2, h3`**, porque desde a 1.7.0 ele é o `<h2>` do `<summary>` da dobra: é o **título** que o portão quer achar, não a tag.
+
+**TRÊS FALHAS, AS TRÊS PRÉ-EXISTENTES E AS TRÊS CONFERIDAS VERMELHAS NO `main` LIMPO (`15409d3`) com o mesmo comando — pela 31.4, registra e segue:**
+1. `teste-navegador-c15`: *"produto sem link aparece igual, sem botão de loja"* cobra a frase `Ainda não temos link de loja`, que não existe em lugar nenhum do snippet. **Já estava escrita como pré-existente no registro de 14h1xZ.**
+2. `teste-navegador-c12-vitrine`: *"MicroMec 1 L sem anúncio sai pelo piso da 25.2"* — a afirmação supõe o item **sem** anúncio e o banco de hoje o tem **com** anúncio (`s.shopee.com.br`, `sponsored`). É a família das "afirmações presas ao banco de ontem" que a passada de 10h17Z já tinha achado treze vezes.
+3. `teste-navegador-c1-tabela`: *"o console fica sem erro de página"* — `ERR_TUNNEL_CONNECTION_FAILED`, host barrado pelo egresso desta nuvem.
+
+**E UMA BATERIA NÃO CHEGOU AO FIM, E ISSO FICA DITO EM VEZ DE SER ARREDONDADO:** `mutacoes-peixes` tem **101 mutações deliberadas** e foi cortada por **timeout** (`exit=124`) na mutação **80**, com 900 s. Até ali ela não divergiu do `main` limpo — a mesma bateria, lançada em paralelo contra o commit `15409d3` com o mesmo comando, bateu no mesmo teto. **A primeira leitura desta bateria foi mal lida por mim e a correção está aqui:** a linha `FALHA: 54. reprovou — ...` foi tomada por reprovação do portão, e "reprovou" naquele log é a mutação **fazendo o que devia** (o portão acusa a quebra e nomeia a frase que esperava ouvir). O que havia era um relógio, não um defeito. Ela foi relançada com teto de 45 min e o resultado dela não entrou nesta conta: **o que não rodou até o fim não foi medido.**
+
+A **31.3** proíbe trabalho de bancada enquanto houver item de conteúdo aberto na fila, e há: as duas calculadoras que faltam e as fichas de peixe do mesmo despacho.
+
+### 8. O DESEMBARQUE, DUAS VEZES, PELA 20.4 E PELA 20.5
+
+Duas revisões saíram nesta execução. **129** (casca 1.13.0, C15 1.9.0, C12 1.7.0, peixes 1.18.0) e **130** (C1 1.3.0). Nas duas o Sync foi acionado **de dois em dois** por desenho e o `conferir-desembarque.py` leu o log **linha por linha**: `/status` e `manifest.json` na mesma revisão, **14 linhas de item, todas dizendo `ok`**, com o registro honesto de que a janela do log cortou **6** dos 20 aplicados — e o que não está na janela **não foi conferido**. A 20.5 não precisou ser exercida: o `/status` virou 129 e 130 na primeira rodada, com o `raw` do GitHub já servindo a mesma.
+
+**O portão do próprio `atualizar-manifest.py` recusou gravar duas vezes**, e estava certo: a versão **e** a descrição de cada item do manifest tinham ficado para trás das constantes dos snippets. *"A versão do manifest é a etiqueta por onde todo relatório lê o que está no ar; deixá-la para trás é publicar certo e contar errado."*
+
+### 9. UMA DERIVA DE VERSÃO QUE SE LÊ NA TELA
+
+`AQUAMETRIA_C12_VERSAO` estava em **1.6.0** e o changelog do cabeçalho daquele arquivo parava em **1.3.1** — não há entrada de 1.4.0, 1.5.0 nem 1.6.0. O bloco de constantes nasceu já em 1.6.0 no commit `3100e04` (19/10/2026), a passada que tirou as constantes redigitadas dos portões, e o cabeçalho não acompanhou. Esta passada subiu para **1.7.0** em vez de fingir que o salto não houve: é esse número que a página imprime, no rodapé e no `softwareVersion` do JSON-LD.
+
+### 10. O PRÓXIMO PASSO DESBLOQUEADO
+
+**Faltam DUAS calculadoras**, e as duas **têm** bloco de compra, então as duas levam a barra do rodapé e as **seis** lições inteiras: `/calculadora-de-potencia-do-aquecedor/` (no ar hoje: formulário a 2.037 px, primeiro botão de loja a 3.599 px, 22.636 px de altura, **11 px de rolagem horizontal**) e `/calculadora-de-vazao-do-filtro/` (1.816 px, 3.030 px, 15.317 px, rolagem 0). Depois, o item 2 do despacho: as **fichas de peixe** no molde 32.2, que não começou.
+
+**E a régua de pronto mudou de forma nesta passada, e é o que a próxima execução mais precisa saber:** a 32.5 se mede **nos três estados** — visitante novo, o mesmo depois de calcular, e quem volta com aquário guardado. Medir só o primeiro aprova página que falha por 4,2 vezes no estado em que alguém a usa. Está escrito no despacho reescrito, no topo do `PROMPT.md`.
+
+**A memória da ilha não foi atualizada, e o motivo é de ambiente:** `/areas/projeto-aquametria.md` não existe nesta execução — não há diretório de memória montado aqui. O `PROMPT.md` desta ilha prevê o caso com todas as letras (*"Sem memória, não pare: o estado está em `ESTADO.md`, `REGISTRO.md` e `README.md` desta pasta"*), e é para esses três que o estado foi.
+
 ## 2026-10-21 13h22Z–14h1xZ — O MOLDE DE CONVERSÃO DA SEÇÃO 32 NO AR, NA PRIMEIRA DAS CINCO CALCULADORAS
 
 **A ESCOLHA DA ILHA: FOCO E DESPACHO APONTANDO PARA A MESMA ILHA, RESERVA NA PRIMEIRA TENTATIVA.** `foco.md` nomeia a **aquametria** (janela até 21/10) e a exceção que o Raphael acrescentou à **1.2** em 21/10 manda o despacho do molde furar o foco na ordem aquametria → clubedomosaico → robometria: as duas regras apontam para a mesma ilha, então não houve rotação nem comparação de `ultima_execucao`. O cabeçalho trazia `executando_desde: null`, que pela **1.1** já significa que nenhum bloco da Fundação está vivo — a reserva é escrita ANTES do trabalho —, e não havia reserva vencida para o git desempatar. O commit mais recente na pasta da ilha era de **13h20Z, dois minutos antes**, e pela 1.1 ele **não reserva nada**: era commit das Mãos escrevendo o próprio despacho, não bloco da Fundação. **Passo 1:** nenhum PR aberto e a branch `claude/dreamy-mccarthy-vhejtm` idêntica ao `main` — nada a mesclar. Reserva aceita às **13h22Z** e renovada pela 1.1, com a hora saindo do `date -u` na mesma linha de comando que grava o campo. **Rede pela 20.2, não herdada:** `aquametria.com.br` em **200 em três passadas**.

@@ -5,51 +5,67 @@ prioridade: 2
 piso: atingido          # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md. ESCRITO EM 14/10/2026 pela Fundação por ORDEM da leitura semanal de 07/10 ("a Fundação atualiza piso: atingido no primeiro bloco que executar"), e não por recálculo de cabeça: quem decide este campo é a leitura semanal (21.6). O que ela mediu: 50 de 52 indexadas, 371 impressões em 7 dias, 52 URLs (passa das 40) e primeira indexação em 09/09, logo os 21 dias fecharam em 30/09. Com isso a 21.8 deixa de suspender a série nesta ilha e a 14.6 e a 14.8 voltam a valer.
 urls_publicadas: 52
 primeira_indexacao: 2026-09-09   # 1ª medição do Search Console já achou 7 indexadas; a data da 1ª não está registrada
-ultima_execucao: 2026-10-21T14:09Z
-executando_desde: 2026-10-21T15:56Z   # reserva RENOVADA pela 1.1 (terceira renovacao). A hora sai do `date -u` na mesma linha de comando que grava.
+ultima_execucao: 2026-10-21T16:12Z
+executando_desde: null   # a execucao de 21/10 15h04Z fechou as 16h1xZ. Reserva RENOVADA tres vezes pela 1.1: o mutirao da 32.6-b nesta ilha passa de uma hora. A HORA DESTE CAMPO SAI DO `date -u` NA MESMA LINHA DE COMANDO QUE O GRAVA, nunca digitada.
 bloco_atual: |
-  O MOLDE DE CONVERSAO DA SECAO 32 ESTA NO AR NA PRIMEIRA DAS CINCO
-  CALCULADORAS: /calculadora-de-iluminacao/, revisao 128, C15 1.8.0 e casca
-  1.12.0. Item 1 do despacho do Raphael de 21/10, reescrito pela 18.3 — faltam
-  as QUATRO outras calculadoras e as fichas de peixe.
-  MEDIDO NO AR, celular de 390 px, com quebra de cache: formulario a 419 px
-  (era 1.007, e a 32.5 pede antes de 700) e primeiro botao de compra a 1.345 px
-  (era 3.114, e o teto e 1.400). Altura da pagina de 16.447 para 9.421 px.
-  Rolagem horizontal 0. Nove dobras, todas fechadas na carga, com o estilo da
-  casca servido. Texto no HTML servido de 4.990 para 5.089 palavras, e a pagina
-  mais LEVE (228.480 -> 222.982 bytes). title, H1, URL, trilha e JSON-LD
-  conferidos no ar antes contra depois: identicos, com uma unica diferenca,
-  softwareVersion 1.7.0 -> 1.8.0, que e a versao da propria calculadora.
-  pageerror ZERO; as tres mensagens de console sao tres hosts que o egresso
-  desta nuvem barra (googletagmanager duas vezes e o CDN de imagem da Shopee).
-  A 20.5 FOI EXERCIDA NO CAMINHO: /status em 127 com o log marcando a hora de
-  agora e o raw do GitHub ja em 128 — cache, nao entrega que nao aconteceu.
-  Duas rodadas de Sync depois o /status virou 128, e o conferir-desembarque.py
-  leu as 14 linhas de item da revisao, todas dizendo ok, com o registro honesto
-  de que a janela do log cortou 6 dos 20 aplicados.
-  UM DEFEITO DE VERDADE NASCEU DO FORMULARIO PREENCHIDO E MORREU NO MESMO
-  COMMIT: quem chega por link com so o volume, ou com aquario guardado pela
-  calculadora de litragem, recebia a conta do VOLUME dele com o COMPRIMENTO e a
-  EXIGENCIA do exemplo — luz alta num aquario que ninguem disse ser de planta
-  exigente, que e a receita de alga que a propria pagina explica. O script
-  limpa o exemplo antes de aplicar o que a URL ou o localStorage trazem.
-  32.4: o campo observacao do catalogo parou de descer para o navegador — eram
-  dezesseis registros de caderno de fabrica numa pagina publica, e nenhuma
-  linha do script lia o campo.
-  SEIS PORTOES APRENDERAM O MOLDE E NENHUM FOI AFROUXADO; o visibilidade-ia
-  ficou mais forte, com uma afirmacao nova (caixa de resposta COM NUMERO antes
-  da primeira secao, sem script). E a BANCADA LOCAL ganhou duas fidelidades que
-  ela nao tinha: add_filter passou a respeitar PRIORIDADE (sem isso o cluster
-  "Veja tambem" caia DENTRO da dobra na pagina medida) e o expansor de
-  shortcode passou a casar shortcode COM ATRIBUTO.
-  DOIS PORTOES JA ESTAVAM VERMELHOS NO MAIN, e os dois reprovam igual no
-  commit a1b7be9, de antes deste bloco: a afirmacao "produto sem link aparece
-  igual" do teste-navegador-c15 (cobra uma frase que nao existe no snippet) e o
-  mutacoes-c12-vitrine (o portao de baixo ja esta vermelho no repositorio
-  limpo, em "V=801"). Pela 31.3 nao foram consertados: ha item de conteudo
-  aberto na fila.
-  PROXIMO PASSO: /calculadora-de-midia-filtrante/ no molde 32.1, com as quatro
-  licoes desta pagina escritas no despacho do PROMPT.md.
+  O MOLDE DA SECAO 32 ESTA NO AR EM TRES DAS CINCO CALCULADORAS, e nesta passada
+  ele deixou de ser copiado entre snippets: virou COMPONENTE DA CASCA (1.13.0,
+  secao 3g), por ordem da 32.6-b. /calculadora-de-iluminacao/ (C15 1.9.0),
+  /calculadora-de-midia-filtrante/ (C12 1.7.0) e /calculadora-de-litragem/
+  (C1 1.3.0), revisoes 129 e 130. FALTAM DUAS: aquecedor e vazao, as duas com
+  bloco de compra. As fichas de peixe (item 2 do despacho) NAO comecaram.
+  A RONDA DAS 14h5xZ ENTROU NO MAIN DEPOIS DESTA EXECUCAO COMECAR, E O ITEM 1
+  DELA ERA DEFEITO DO MOLDE E NAO DE UMA PAGINA: ela mediu no ar que a C15
+  PASSAVA no estado em que ninguem usou a pagina (1.300 px) e FALHAVA POR 4,2
+  VEZES no estado em que alguem usou (5.839 px depois de um calculo, 3.839 px
+  para quem volta com aquario guardado), contra o teto de 1.400 da 32.5. Pela
+  18.5 o despacho foi fechado antes de qualquer pagina nova, e os TRES itens
+  dele estao conferidos no ar pela 18.4.
+  A CAUSA NAO ERA A CAIXA CONGELADA: era o DETALHE do calculo nascendo ENTRE o
+  resultado e a vitrine. A caixa e o detalhe passaram a ser dois blocos, com a
+  compra entre eles — a 32.1 item 5 diz "imediatamente abaixo do resultado", e
+  imediatamente e literal. Nenhuma palavra saiu da pagina.
+  MEDIDO NO AR, 390 px, nos TRES estados, primeiro botao de loja:
+  C15 1.177 / 1.325 / 1.352 px e C12 1.236 / 1.253 / 1.348 px — os seis sob o
+  teto. UMA SO caixa de resultado em cena nos tres estados, e quem volta com
+  aquario guardado recebe formulario e resultado concordando.
+  C12: formulario de 1.863 para 452 px, botao de loja de 3.168 para 1.236,
+  altura de 21.677 para 9.429, rolagem horizontal de 19 para 0, palavras no
+  corpo servido de 5.147 para 5.297. C1: altura de 13.451 para 7.536, rolagem
+  de 6 para 0, formulario a 409 px, palavras de 3.296 para 3.397. title, H1,
+  URL, trilha e JSON-LD identicos nas tres, com a unica diferenca sendo
+  softwareVersion, que e a versao da propria calculadora.
+  A 32.4 FECHOU AS 52 URLs, e o escopo era maior que o medido por quem o mediu:
+  a ronda contou 30 paginas, a varredura das 53 servidas achou mais DEZ de
+  categoria e DUAS fichas, por strings diferentes. Sairam seis strings do
+  aquametria-peixes (1.18.0), mais dois caminhos de arquivo do repositorio. A
+  procedencia ficou inteira — fonte nomeada e data em todas. Varredura final nas
+  52 URLs no ar: ZERO termo da lista 32.4.
+  UM DEFEITO DE ESTRUTURA ACHADO POR PORTAO, e valia para as cinco: a dobra de
+  SECAO poe um <h2> no <summary>, e o visibilidade-ia mede a regra da secao 5
+  pelo PRIMEIRO <h2> da pagina — com os campos do formulario dentro de uma dobra
+  de secao, a resposta direta passava a vir DEPOIS da explicacao para quem le
+  estrutura. Nasceu a dobra de CAMPOS, sem <h2>, e nenhum portao foi afrouxado.
+  ITEM 2 DA RONDA: a linha das fichas de luminaria nasce CONTADA do banco — 26
+  luminarias, 15 sugeriveis, 11 sem fluxo_lm — contra os "seis registros e tres
+  sugeridos" digitados em 07/09, que o banco envelheceu por baixo.
+  PORTOES: visibilidade-ia nas CINCO, cinco nas cinco, c12 (com cinco afirmacoes
+  novas), c12-vitrine, c15, c15-vitrine, c15-regulagem, c1-tabela,
+  navegador-arvore (658 medicoes), casca, casca-paginas, voz, arvore, entidades,
+  seo-tecnico, site-jsonld, conversor-markdown, escape-shortcode, apelidos,
+  purga-cache, atualizador-sync, teste-peixes, validar-especies, slugs,
+  protecao-funcoes, indice-de-levas, promessa-do-titulo, titulos-das-duas-fontes,
+  constantes-de-snippet, classes-da-bancada, alvos-em-php, conferir-desembarque
+  (duas vezes). TRES falhas, as TRES pre-existentes e conferidas vermelhas no
+  main limpo (15409d3) com o mesmo comando, pela 31.4: c15 ("produto sem
+  link..."), c12-vitrine (MicroMec, afirmacao presa ao banco de ontem) e
+  c1-tabela (ERR_TUNNEL, host barrado pelo egresso desta nuvem).
+  E UMA BATERIA NAO CHEGOU AO FIM: mutacoes-peixes tem 101 mutacoes e foi
+  cortada por TIMEOUT na 80 (exit=124), nao por falha — a mesma bateria contra o
+  main limpo bateu no mesmo teto. O que nao rodou ate o fim nao foi medido.
+  A REGUA DE PRONTO MUDOU DE FORMA, e e o que a proxima execucao mais precisa
+  saber: a 32.5 se mede nos TRES estados. Medir so o visitante novo aprova
+  pagina que falha por 4,2 vezes no estado em que alguem a usa.
 ultima_ronda: 2026-10-21T14:57Z   # RONDA DIARIA TECNICA, no Chrome do Raphael mais medicao da nuvem. 52 de 52 URLs em 200 (a /politica-de-privacidade/ devolveu 504 numa primeira leitura e 200 em tres releituras seguidas — oscilacao do hospedeiro, nao da ilha). Porta de entrada da 29.2 inteira; 404 virgem na pagina da propria ilha; /status em 128 igual ao manifest. Zero defeito da lista 19.1 e ZERO conserto. TRES achados, os tres da lista fechada 19.2 e os tres despachados nesta data: (1) a caixa de resultado do topo da /calculadora-de-iluminacao/ e CONGELADA no exemplo de 170,1 L e nunca recalcula — a resposta real nasce numa SEGUNDA caixa, abaixo dela, e com isso o primeiro cartao de compra cai de 1.300 px para 5.839 px no celular de 390 px, contra o teto de 1.400 px da 32.5; (2) o bloco "Como sabemos" daquela pagina publica "seis registros e tres sugeridos" contra 26 registros e 15 sugeriveis recontados em dados/produtos-iluminacao.json; (3) o texto de bastidor da 32.4 esta em 30 das 52 paginas, nao so na ficha do betta. A regua mecanica passou inteira: zero &#038; dentro de script, zero noindex, JSON-LD e BreadcrumbList nas 52, zero img sem alt ou sem dimensao (13 imagens), description unica nas 52 e a maior com 149 caracteres, aria-expanded e aria-controls nas 52, favicon nas 52, zero corpo comecando por metadado, zero pagina com menos de 2 links de ENTRADA (contado pela 16.9 na direcao de quem aponta; a menor contagem e 3). Console sem uma mensagem. A tabela de casos da 32.1 item 6 esta visivel e as 6 linhas foram recontadas na mao, as 6 certas. Piso da 25.2 recontado nos quatro dados/produtos-*.json: 78 de 78 com url_busca e url_busca_produto, 11 intestaveis, 36 testaveis. TESTE DE VIDA DA 25.4: 0 de 36 medidos — a api/v4/pdp/get_pc devolveu error 90309999 na primeira chamada de DOIS contextos limpos (entrada por ficha e por busca) e as duas abas cairam em verify/captcha; nenhum clique de afiliado gasto e nenhum CAPTCHA resolvido. "Nao medido" nao e "vivo". E a sessao do Shopee Afiliados NAO esta deslogada: o cookie SPC_U estava presente, logo o que trava e o anti-robo, nao o login.
 bloqueada_por: null
 congelamento: |
