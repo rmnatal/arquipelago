@@ -1,5 +1,14 @@
 /**
  * Aquametria Calculadora de Iluminação e Fotoperíodo — C15
+ * Versão: 1.9.0 (21/10/2026) — A BARRA DO RODAPÉ DEIXA DE SER DESTA PÁGINA e
+ * passa a ser componente da casca 1.13.0 (`aquametria_casca_barra_html()`, seção
+ * 3g), por ordem da 32.6-b. Nenhum pixel muda no ar: é a MESMA barra, com as
+ * classes `aqm-barra*` em lugar de `aqm-c15-barra*`. Saíram daqui 3 linhas de
+ * CSS e ~45 de JavaScript — o observador, o mostrar/esconder e a ligação do
+ * botão —, e ficou o que só esta calculadora sabe dizer: o TEXTO da barra, que é
+ * a faixa de lúmens do aquário do formulário. A 1.8.0 escreveu essa barra do
+ * zero em 21/10; as outras quatro calculadoras do mesmo despacho a copiariam, e
+ * a quinta teria cinco cópias que divergem na primeira correção.
  * Versão: 1.4.1 (13/09/2026) — só o catálogo embutido mudou: a única foto de produto
  * desta página passou a viajar com `largura` e `altura`, medidas no Chrome pela
  * ronda da Sentinela de 13/09/2026 (`naturalWidth` x `naturalHeight`) — o egresso
@@ -156,7 +165,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_C15_VERSAO' ) ) {
-	define( 'AQUAMETRIA_C15_VERSAO', '1.8.0' );
+	define( 'AQUAMETRIA_C15_VERSAO', '1.9.0' );
 	define( 'AQUAMETRIA_C15_SLUG', 'calculadora-de-iluminacao' );
 	define( 'AQUAMETRIA_C15_VERIFICADO_EM', '08/09/2026' );
 	define( 'AQUAMETRIA_C15_PAGINA_AFILIADOS', 'divulgacao-de-afiliados' );
@@ -919,10 +928,9 @@ max-width:52rem;font-family:var(--c15-texto);color:var(--c15-tinta);}
 .aqm-c15-exemplo-nota{margin:0 0 .2rem;}
 /* A dobra dos ajustes finos vive DENTRO do painel do formulario, que ja tem
    fundo e borda: a dela some para nao desenhar caixa dentro de caixa. */
-.aqm-c15-ajustes{background:transparent;border-left:0;border-right:0;border-radius:0;margin:1rem 0 0;}
-.aqm-c15-ajustes > .aqm-dobra-titulo{padding:.7rem 0;font-size:.92rem;}
-.aqm-c15-ajustes[open] > .aqm-dobra-titulo{border-bottom:0;}
-.aqm-c15-ajustes > .aqm-dobra-corpo{padding:.2rem 0 .3rem;}
+/* O estilo da dobra de campos e da casca 1.13.0 (`.aqm-dobra-campos`); aqui
+   sobra so a margem de cima, que e desta pagina. */
+.aqm-c15-ajustes{margin:1rem 0 0;}
 .aqm-c15-promessa{font-family:var(--c15-display);font-size:1.02rem;line-height:1.5;color:var(--c15-tinta);border-left:3px solid var(--c15-lamina);padding:.15rem 0 .15rem .8rem;margin:0 0 1.1rem;}
 .aqm-c15-vitrine{margin:1rem 0 0;}
 .aqm-c15-vitrine h4{font-family:var(--c15-display);font-size:.95rem;margin:0 0 .15rem;}
@@ -948,9 +956,8 @@ a.aqm-c15-vt-cartao:focus-visible{outline:2px solid var(--c15-lamina);outline-of
 .aqm-c15-piso:hover{color:var(--c15-lamina);}
 .aqm-c15-vt-selo{font-family:var(--c15-mono);font-size:.62rem;letter-spacing:.06em;text-transform:uppercase;color:var(--c15-legenda);text-align:center;margin-top:.25rem;}
 .aqm-c15-vitrine-servida .aqm-c15-criterio{margin-top:.5rem;}
-.aqm-c15-barra{position:fixed;left:0;right:0;bottom:0;z-index:40;display:none;align-items:center;gap:.7rem;background:var(--c15-superficie);border-top:1px solid var(--c15-traco);padding:.55rem .85rem;}
-.aqm-c15-barra-texto{flex:1 1 auto;font-family:var(--c15-mono);font-size:.8rem;line-height:1.3;color:var(--c15-tinta);font-variant-numeric:tabular-nums;}
-.aqm-c15-barra-botao{flex:0 0 auto;}
+/* A barra fixa do rodape NAO tem CSS aqui desde a 1.9.0: ela e componente da
+   casca 1.13.0 (`.aqm-barra*`, secao 3g), por ordem da 32.6-b. */
 @media (max-width:600px){.aqm-c15-valor{font-size:1.6rem;}
 /* Gutter do painel no celular: 1,2rem de folga em cima e embaixo de cada painel
    custava tela numa largura em que tela e o recurso escasso. */
@@ -973,7 +980,6 @@ a.aqm-c15-vt-cartao:focus-visible{outline:2px solid var(--c15-lamina);outline-of
 .aqm-c15-vt-foto{float:left;width:4.5rem;margin:0 .7rem .3rem 0;}
 .aqm-c15-vt-cartao > span{display:block;margin:0 0 .28rem;}
 .aqm-c15-vt-botao{margin-top:.25rem;}
-.aqm-c15-barra.aqm-c15-barra-ver{display:flex;}
 .aqm-c15-placa{min-height:0;flex-direction:row;gap:.5rem;align-items:baseline;justify-content:flex-start;}}
 @media (prefers-reduced-motion:reduce){.aqm-c15-vt-trilho{scroll-behavior:auto;}}
 CSS;
@@ -1890,22 +1896,22 @@ function aquametria_c15_js() {
 		}
 	}
 
-	/* A barra do rodapé no celular: existe enquanto o resultado está fora da
-	   tela, e some quando ele entra. Quem decide se ela cabe é o CSS (só abaixo
-	   de 600 px); aqui só se liga e desliga a classe. */
-	var barraLigada = true;
-	var observador = null;
-	/* O texto servido da barra e o do caso do formulario. Guardado na carga para
-	   poder VOLTAR: depois de um calculo com erro a tela mostra o exemplo de
-	   novo, e a barra prometendo um numero que nao esta mais na tela seria pior
-	   do que barra nenhuma. */
+	/* A BARRA DO RODAPE E DA CASCA desde a casca 1.13.0 (32.6-b): quem a mostra,
+	   quem a esconde e quem rola a pagina ate o bloco de compra e o script dela,
+	   que le o id do alvo no atributo data-aqm-barra-alvo do proprio HTML. O que
+	   sobra para esta calculadora e o TEXTO, que e o unico pedaco da barra que
+	   depende da conta desta pagina.
+	   O texto servido e o do caso do formulario. Guardado na carga para poder
+	   VOLTAR: depois de um calculo com erro a tela mostra o exemplo de novo, e a
+	   barra prometendo um numero que nao esta mais na tela seria pior do que
+	   barra nenhuma. */
 	var textoExemploBarra = (function () {
-		var n = el('aqm-c15-barra-texto');
+		var n = el('aqm-barra-texto');
 		return n ? n.textContent : '';
 	}());
 
 	function textoBarra(t) {
-		var n = el('aqm-c15-barra-texto');
+		var n = el('aqm-barra-texto');
 		if (n) { n.textContent = t; }
 	}
 
@@ -1919,40 +1925,11 @@ function aquametria_c15_js() {
 		if (ver) { textoBarra(textoExemploBarra); }
 	}
 
-	/* Quem decide se a barra aparece e o BLOCO DE COMPRA estar fora da tela, nao
-	   o resultado: o resultado esta servido desde a carga, e o que a barra
-	   oferece e o caminho para o produto. */
+	/* So o TEXTO: aparecer e desaparecer e trabalho do script da casca. */
 	function armarBarra(r) {
-		var barra = el('aqm-c15-barra');
-		if (!barra) { return; }
-
-		if (r) {
-			textoBarra((r.aberto ? 'a partir de ' + lm(r.min) : lm(r.min) + ' a ' + lm(r.max))
-				+ ' lm para ' + litros(r.entradas.volume) + ' L');
-		}
-		barraLigada = true;
-
-		if (observador) { return; }
-
-		var alvo = el('aqm-c15-compra');
-		if (!alvo || typeof window.IntersectionObserver !== 'function') {
-			mostrarBarra(!!alvo);
-			return;
-		}
-
-		observador = new window.IntersectionObserver(function (entradas) {
-			entradas.forEach(function (entrada) {
-				mostrarBarra(barraLigada && !entrada.isIntersecting);
-			});
-		}, { threshold: 0 });
-		observador.observe(alvo);
-	}
-
-	function mostrarBarra(ver) {
-		var barra = el('aqm-c15-barra');
-		if (!barra) { return; }
-		barra.classList.toggle('aqm-c15-barra-ver', !!ver);
-		barra.setAttribute('aria-hidden', ver ? 'false' : 'true');
+		if (!r) { return; }
+		textoBarra((r.aberto ? 'a partir de ' + lm(r.min) : lm(r.min) + ' a ' + lm(r.max))
+			+ ' lm para ' + litros(r.entradas.volume) + ' L');
 	}
 
 	/* ------------------------------------------------------------- consumo */
@@ -2138,20 +2115,6 @@ function aquametria_c15_js() {
 		irParaResultado();
 	});
 
-	el('aqm-c15-barra-ir').addEventListener('click', function () {
-		var alvo = el('aqm-c15-compra');
-		if (!alvo) { return irParaResultado(); }
-		var suave = true;
-		try {
-			suave = !(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
-		} catch (erro) { suave = true; }
-		try {
-			alvo.scrollIntoView({ behavior: suave ? 'smooth' : 'auto', block: 'start' });
-		} catch (erro) {
-			alvo.scrollIntoView();
-		}
-	});
-
 	el('aqm-c15-limpar').addEventListener('click', function () {
 		el('aqm-c15-form').reset();
 		el('aqm-c15-saida').classList.add('aqm-c15-oculto');
@@ -2184,11 +2147,6 @@ function aquametria_c15_js() {
 		}
 		pintarConsumo(r);
 	});
-
-	/* A barra do celular e armada na CARGA, nao depois do primeiro calculo: a
-	   caixa de resultado e o bloco de compra ja estao servidos no HTML, e a
-	   barra e o caminho para o segundo. */
-	armarBarra(null);
 
 	/* Query string manda; senão, o aquário que a C1 guardou neste navegador. */
 	var daUrl = lerQuery();
@@ -2308,9 +2266,14 @@ function aquametria_c15_form_html() {
 
 	$h .= '</div>';
 
-	$h .= '<details class="aqm-dobra aqm-c15-ajustes" id="aqm-c15-ajustes">';
-	$h .= '<summary class="aqm-dobra-titulo">Ajustes finos: lâmina d\'água, momento do aquário, tipo de luminária e CO2</summary>';
-	$h .= '<div class="aqm-dobra-corpo">';
+	/* Dobra de CAMPOS, da casca 1.13.0: controle de formulario nao leva <h2>
+	   (32.6-b; o porque esta na propria funcao). A classe `aqm-c15-ajustes` fica
+	   para o id e para o portao que a abre. */
+	$h .= str_replace(
+		'class="aqm-dobra aqm-dobra-campos"',
+		'class="aqm-dobra aqm-dobra-campos aqm-c15-ajustes"',
+		aquametria_casca_dobra_campos_abre( 'Ajustes finos: lâmina d\'água, momento do aquário, tipo de luminária e CO2', 'c15-ajustes' )
+	);
 
 	$h .= '<div class="aqm-c15-grade">';
 
@@ -3269,11 +3232,10 @@ function aquametria_c15_barra_html() {
 	$txt  = ( $e['aberto'] ? 'a partir de ' . aquametria_c15_lm( $e['min'] ) : aquametria_c15_lm( $e['min'] ) . ' a ' . aquametria_c15_lm( $e['max'] ) )
 		. ' lm para ' . aquametria_c15_litros( $caso['volume'] ) . ' L';
 
-	$h  = '<div class="aqm-c15-barra" id="aqm-c15-barra" aria-hidden="true">';
-	$h .= '<span class="aqm-c15-barra-texto" id="aqm-c15-barra-texto">' . esc_html( $txt ) . '</span>';
-	$h .= '<button type="button" class="aqm-c15-barra-botao" id="aqm-c15-barra-ir">Ver as luminárias</button>';
-	$h .= '</div>';
-	return $h;
+	/* Quem desenha a barra e a CASCA (1.13.0, secao 3g), por ordem da 32.6-b:
+	   as cinco calculadoras usam a mesma, e o que esta calculadora diz a ela e
+	   so o numero, o rotulo do botao e o id do bloco de compra que ela vigia. */
+	return aquametria_casca_barra_html( $txt, 'Ver as luminárias', 'aqm-c15-compra' );
 }
 }
 

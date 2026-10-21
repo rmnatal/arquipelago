@@ -33,8 +33,22 @@ const erros = [];
 // casca pede a folha do Google Fonts, que o egresso do container barra: sem este
 // filtro o teste fica vermelho por causa da rede, e nao do codigo. Mesmo filtro que
 // teste-navegador-cinco.mjs ja usava desde 08/09/2026 — aqui ele estava faltando.
+const barrados = new Map();
+page.on('requestfailed', (r) => {
+  try {
+    const h = new URL(r.url()).host;
+    barrados.set(h, (barrados.get(h) || 0) + 1);
+  } catch (e) { /* ignora */ }
+});
+// ERR_TUNNEL entrou na lista em 21/10/2026, com a C12 1.7.0, e o motivo e o
+// MOLDE: com a vitrine na primeira tela (32.1, item 5) a foto do produto passou
+// a ser de fato carregada, e o egresso desta nuvem barra o CDN de imagem da
+// Shopee com ERR_TUNNEL_CONNECTION_FAILED — que a lista anterior nao cobria.
+// No render de antes deste bloco o mesmo pedido nao aparecia: a vitrine ficava a
+// 3.168 px e a imagem nunca saia do lazy. Nao e defeito da pagina, e o portao
+// deixa de dizer "console limpo" sem contar o que desculpou (ver secao 19).
 page.on('console', m => {
-  if (m.type() === 'error' && !/ERR_(CONNECTION|NAME|INTERNET)/.test(m.text())) erros.push(m.text());
+  if (m.type() === 'error' && !/ERR_(CONNECTION|NAME|INTERNET|TUNNEL|PROXY|BLOCKED)/.test(m.text())) erros.push(m.text());
 });
 page.on('pageerror', e => erros.push('pageerror: ' + e.message));
 
@@ -42,6 +56,12 @@ async function preencher(v, opts = {}) {
   await page.goto(URL);
   await page.evaluate(() => { try { localStorage.clear(); } catch(e){} });
   await page.goto(URL);
+  /* OS CAMPOS QUE FORAM PARA A DOBRA (C12 1.7.0, 32.1 item 3) sao digitados com a
+     dobra ABERTA: o Playwright nao digita em campo invisivel, e abrir e o que a
+     pessoa faz com um toque. */
+  await page.evaluate(() => {
+    document.querySelectorAll('#aqm-c12-form details.aqm-dobra').forEach((d) => { d.open = true; });
+  });
   await page.fill('#aqm-c12-volume', String(v));
   if (opts.filtro !== undefined) await page.selectOption('#aqm-c12-filtro', opts.filtro);
   if (opts.midia !== undefined) await page.fill('#aqm-c12-midia-manual', String(opts.midia));
@@ -232,6 +252,9 @@ await page.goto(URL + '?v=250&f=atman-at-3338s&q=1');
 await page.waitForTimeout(150);
 ok('query string recalcula sozinha', (await txt('#aqm-c12-faixa-valor')).includes('L'), await txt('#aqm-c12-faixa-valor'));
 ok('query string escolhe o filtro', await page.locator('#aqm-c12-cesto').isVisible());
+/* O caminho inverso foi para uma dobra na C12 1.7.0 (32.1, item 7): abre antes
+   de digitar, que e o que a pessoa faz com um toque. */
+await page.evaluate(() => { document.querySelectorAll('details.aqm-dobra').forEach((d) => { d.open = true; }); });
 await page.fill('#aqm-c12-tenho', '1,0');
 await page.click('#aqm-c12-tenho-calcular');
 await page.waitForTimeout(80);
@@ -242,10 +265,27 @@ console.log('\n17. erros de entrada');
 await page.goto(URL);
 await page.evaluate(() => { try { localStorage.clear(); } catch(e){} });
 await page.goto(URL);
+// A CAIXA DE RESULTADO DA CARGA, antes de qualquer clique: desde a C12 1.7.0 ela
+// e PRE-RENDERIZADA em PHP com o caso do formulario (32.1, item 4), e quem chega
+// da busca nunca mais ve a pagina sem numero de resposta. Afirmacao NOVA, que
+// nenhuma regua cobrava.
+const caixaNaCarga = (await txt('#aqm-c12-exemplo')).replace(/\s+/g, ' ');
+ok('na carga a pagina JA tem caixa de resposta com numero, sem clique nenhum',
+  /\d/.test(caixaNaCarga) && /mL|L\b/.test(caixaNaCarga), caixaNaCarga.slice(0, 120));
+ok('e o formulario ja vem preenchido com o caso dela (32.1, item 3)',
+  (await page.inputValue('#aqm-c12-volume')).trim() !== '',
+  'volume servido = ' + (await page.inputValue('#aqm-c12-volume')));
+
+// O volume e ESVAZIADO de proposito: o formulario agora nasce preenchido, e o que
+// este cenario mede continua sendo o mesmo — campo sem volume nao calcula.
+await page.fill('#aqm-c12-volume', '');
 await page.click('#aqm-c12-form button[type=submit]');
 await page.waitForTimeout(80);
 ok('sem volume, erro na tela', (await txt('#aqm-c12-erros')).includes('volume real'));
 ok('sem volume, resposta escondida', await page.locator('#aqm-c12-saida').isHidden());
+// ... e a tela NAO fica sem resposta: a caixa do exemplo volta (32.1, item 4).
+ok('sem volume, a caixa do exemplo volta e a tela nunca fica sem resposta',
+  await page.locator('#aqm-c12-exemplo').isVisible(), 'visivel');
 await preencher('99999');
 ok('volume absurdo barrado', (await txt('#aqm-c12-erros')).includes('lago'));
 
@@ -253,6 +293,8 @@ console.log('\n18. celular de 390 px');
 const ctx2 = await browser.newContext({ viewport: { width: 390, height: 780 } });
 const p2 = await ctx2.newPage();
 await p2.goto(URL);
+/* A dobra do formulario (C12 1.7.0) guarda a midia quimica: abre antes. */
+await p2.evaluate(() => { document.querySelectorAll('#aqm-c12-form details.aqm-dobra').forEach((d) => { d.open = true; }); });
 await p2.fill('#aqm-c12-volume', '110');
 await p2.selectOption('#aqm-c12-filtro', 'eheim-classic-250-2213');
 await p2.check('#aqm-c12-quimica');
@@ -266,6 +308,11 @@ ok('sem rolagem horizontal no corpo', larguras.corpo <= larguras.janela + 1, JSO
 
 console.log('\n19. console limpo');
 ok('nenhum erro de console', erros.length === 0, erros.join(' | '));
+// O que foi desculpado por rede fica ESCRITO, em vez de o portao passar como se
+// nada tivesse falhado: numero verde que esconde o que excluiu e numero que nao
+// se pode conferir depois (secao 8 do ARQUIPELAGO.md).
+console.log('  nota  hosts que o egresso desta nuvem barrou (nao contam como erro da pagina): '
+  + ([...barrados].map(([h, n]) => n + ' x ' + h).join(' | ') || 'nenhum'));
 
 await browser.close();
 console.log(falhas === 0 ? '\nTODOS OS CENARIOS PASSARAM\n' : `\n${falhas} FALHA(S)\n`);

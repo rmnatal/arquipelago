@@ -1,5 +1,20 @@
 /**
  * Aquametria Casca — identidade e estrutura do site
+ * Versão: 1.13.0 (21/10/2026) — O MOLDE DA 32.1 VIRA COMPONENTE DESTA CASCA, por
+ * ordem da 32.6-b (Raphael, 21/10/2026 12h01): a dobra em PHP
+ * (`aquametria_casca_dobra_abre()`/`_fecha()`, o mesmo HTML e as mesmas classes
+ * do shortcode [aqm_dobra] que serve o Markdown), a frase de promessa
+ * (`aquametria_casca_promessa_html()`) e a BARRA FIXA DO RODAPÉ
+ * (`aquametria_casca_barra_html()`, com CSS e script próprios, na seção 3g).
+ * POR QUE: em 21/10 a C15 recebeu o molde e escreveu barra própria — 8 linhas de
+ * CSS, ~50 de JavaScript e o HTML, com classes `aqm-c15-barra*`. As outras
+ * QUATRO calculadoras do mesmo despacho copiariam aquilo; a quinta teria cinco
+ * cópias, e a primeira correção de uma delas deixaria as outras quatro para trás
+ * em silêncio, que é a família de defeito da seção 4 do contrato.
+ * O QUE A BARRA DA CASCA NÃO SABE, de propósito: o nome de nenhuma calculadora.
+ * Quem diz qual bloco de compra vigiar é o atributo `data-aqm-barra-alvo` do
+ * próprio HTML servido, lido pelo script do rodapé — por isso ela serve as cinco
+ * sem uma linha de JavaScript por ilha.
  * Versão: 1.10.0 (15/09/2026) — A ILHA PASSA A PURGAR O CACHE DO HOSPEDEIRO, e
  * com isso fecha o despacho de prioridade ALTA da Fundação aberto em 14/09/2026
  * em `dados/despachos.md`, que dizia com todas as letras "falta a aquametria".
@@ -245,7 +260,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_CASCA_VERSAO' ) ) {
-	define( 'AQUAMETRIA_CASCA_VERSAO', '1.12.0' );
+	define( 'AQUAMETRIA_CASCA_VERSAO', '1.13.0' );
 	/* A tagline é a primeira frase que um visitante lê no rodapé de toda página.
 	   Até a 1.3.1 ela era a descrição interna do produto ("Calculadoras e dados
 	   técnicos para dimensionar o seu aquário"); agora fala com quem chegou. */
@@ -1156,6 +1171,29 @@ body:has(.aqm-rodape) .wp-site-blocks > footer.wp-block-template-part:not(:has(.
 .aqm-dobra-corpo{padding:.95rem .95rem 1.1rem;}
 .aqm-dobra-corpo > :first-child{margin-top:0;}
 .aqm-dobra-corpo > :last-child{margin-bottom:0;}
+/* A PROMESSA E A BARRA DO MOLDE DA 32.1, NA CASCA E NAO EM CADA SNIPPET.
+   A 32.6-b manda que o que se repete entre as paginas de ferramenta — ordem dos
+   blocos, bloco de compra, barra fixa do rodape e dobra — vire componente desta
+   casca, reaproveitado pelas cinco calculadoras, em vez de ser reescrito cinco
+   vezes. Ate 21/10/2026 a barra existia so na C15, com classes e script
+   proprios: a segunda calculadora a receber o molde copiaria 38 linhas de CSS e
+   50 de JavaScript, e a quinta teria cinco copias que divergem na primeira
+   correcao. */
+.aqm-promessa{font-family:var(--aqm-texto);font-size:1rem;line-height:1.5;color:var(--aqm-tinta);margin:0 0 .9rem;}
+.aqm-barra{position:fixed;left:0;right:0;bottom:0;z-index:40;display:none;align-items:center;gap:.7rem;background:var(--aqm-superficie);border-top:1px solid var(--aqm-traco);padding:.55rem .85rem;}
+.aqm-barra-texto{flex:1 1 auto;font-family:var(--aqm-mono);font-size:.8rem;line-height:1.3;color:var(--aqm-tinta);font-variant-numeric:tabular-nums;}
+.aqm-barra-botao{flex:0 0 auto;font-family:var(--aqm-texto);font-weight:600;font-size:.85rem;line-height:1.2;padding:.5rem .8rem;border:0;border-radius:2px;background:var(--aqm-lamina);color:var(--aqm-superficie);cursor:pointer;}
+.aqm-barra-botao:hover{background:var(--aqm-tinta);}
+.aqm-barra-botao:focus-visible{outline:2px solid var(--aqm-tinta);outline-offset:2px;}
+/* Ela so cabe na tela estreita, e e la que o teto de 1.400 px da 32.5 morde. */
+@media (max-width:600px){.aqm-barra.aqm-barra-ver{display:flex;}}
+/* A DOBRA DE CAMPOS: a que guarda controle de formulario, nao secao de texto.
+   Vive DENTRO do painel do formulario, que ja tem moldura e folga propria, por
+   isso ela nao desenha caixa nenhuma. */
+.aqm-dobra-campos{border:0;background:transparent;margin:0;}
+.aqm-dobra-campos > .aqm-dobra-titulo{padding:.7rem 0;font-size:.92rem;}
+.aqm-dobra-campos[open] > .aqm-dobra-titulo{border-bottom:0;}
+.aqm-dobra-campos > .aqm-dobra-corpo{padding:.2rem 0 .3rem;}
 /* Menu sanfona. 782 px e a largura em que o proprio WordPress considera que a
    tela virou celular; seguir a mesma quebra evita cabecalho meio empilhado.
    Tudo aqui depende de [data-aqm-menu]: sem JavaScript nada disso vale e o menu
@@ -2003,6 +2041,173 @@ add_filter( 'the_content', function ( $html ) {
 
 	return $html . str_repeat( '</div></details>', $abertas );
 }, 19 );
+
+/* ---------------------------------------------------------------------------
+ * 3g. O MOLDE DA 32.1 COMO COMPONENTE — dobra, promessa e barra do rodape
+ *
+ * A 32.6-b (ordem do Raphael de 21/10/2026, 12h01) manda que o que se repete
+ * entre as paginas de ferramenta vire componente DESTA CASCA, reaproveitado por
+ * todas, "em vez de ser reescrito em cada snippet". O que esta aqui e o que as
+ * CINCO calculadoras usam igual; o que e de cada uma — o numero, a frase de
+ * leitura, os cartoes — continua no snippet dela, porque e ali que mora a conta.
+ *
+ * POR QUE AQUI E NAO NO PRIMEIRO SNIPPET QUE PRECISOU: em 21/10/2026 a C15
+ * recebeu o molde e escreveu barra propria (CSS, JavaScript e HTML com classes
+ * `aqm-c15-barra*`). A segunda calculadora a receber o molde copiaria aquelas
+ * linhas; a quinta teria cinco copias, e a primeira correcao de uma delas
+ * deixaria as outras quatro para tras — em silencio, que e a familia de defeito
+ * que a secao 4 do contrato mais paga.
+ * ------------------------------------------------------------------------- */
+
+/* A dobra para quem monta HTML em PHP. O shortcode [aqm_dobra] acima serve o
+   Markdown das paginas de conteudo; esta funcao serve o snippet, e as duas
+   emitem o MESMO HTML e as MESMAS classes de proposito: dobra que muda de cara
+   dependendo de quem a abriu seria duas dobras. */
+if ( ! function_exists( 'aquametria_casca_dobra_abre' ) ) {
+function aquametria_casca_dobra_abre( $titulo, $id = '' ) {
+	$attr = '' === $id ? '' : ' id="aqm-dobra-' . esc_attr( $id ) . '"';
+
+	/* O titulo da dobra E o <h2> da secao, dentro do <summary>. Repetir o h2 no
+	   corpo daria dois titulos iguais na tela aberta; tira-lo deixaria a pagina
+	   sem nenhum nivel 2, que e estrutura que a busca e os modelos leem. */
+	return '<details class="aqm-dobra"' . $attr . '><summary class="aqm-dobra-titulo"><h2>'
+		. esc_html( $titulo ) . '</h2></summary><div class="aqm-dobra-corpo">';
+}
+}
+
+if ( ! function_exists( 'aquametria_casca_dobra_fecha' ) ) {
+function aquametria_casca_dobra_fecha() {
+	return '</div></details>';
+}
+}
+
+/* A DOBRA DE CAMPOS — a que guarda CONTROLE, e por isso NAO leva <h2>.
+ *
+ * Achado por portao em 21/10/2026, ao levar o molde a C12: a dobra de secao
+ * acima poe um <h2> no <summary>, e o `teste-navegador-visibilidade-ia` mede a
+ * regra da secao 5 do contrato — a resposta antes da explicacao — pelo PRIMEIRO
+ * <h2> da pagina. Com os campos secundarios do formulario dentro de uma dobra de
+ * SECAO, o rotulo "Perfil, manutencao e midia quimica" passava a ser o primeiro
+ * <h2> do documento, e a resposta direta ficava, para qualquer leitor que le
+ * estrutura, DEPOIS da primeira secao de explicacao. O portao reprovou com
+ * "depois" e estava certo: grupo de campos de formulario nao e secao de texto, e
+ * chama-lo de <h2> mente para a busca e para os modelos.
+ *
+ * A C15 1.8.0 ja tinha acertado isto a mao, com <summary> sem <h2> e uma classe
+ * propria (`aqm-c15-ajustes`); aqui ela vira componente, que e o que a 32.6-b
+ * manda. */
+if ( ! function_exists( 'aquametria_casca_dobra_campos_abre' ) ) {
+function aquametria_casca_dobra_campos_abre( $rotulo, $id = '' ) {
+	$attr = '' === $id ? '' : ' id="aqm-dobra-' . esc_attr( $id ) . '"';
+
+	return '<details class="aqm-dobra aqm-dobra-campos"' . $attr . '>'
+		. '<summary class="aqm-dobra-titulo">' . esc_html( $rotulo ) . '</summary>'
+		. '<div class="aqm-dobra-corpo">';
+}
+}
+
+/* A frase de promessa da 32.1, item 2: UMA frase, o que entra e o que sai.
+   Curta, sem exclamacao, sem tom de anuncio (secao 6 do contrato). */
+if ( ! function_exists( 'aquametria_casca_promessa_html' ) ) {
+function aquametria_casca_promessa_html( $frase ) {
+	$frase = trim( (string) $frase );
+	if ( '' === $frase ) {
+		return '';
+	}
+	return '<p class="aqm-promessa">' . esc_html( $frase ) . '</p>';
+}
+}
+
+/* A BARRA FIXA DO RODAPE (32.1, ultima linha). Ela carrega o numero do resultado
+   e o botao para o BLOCO DE COMPRA, e aparece enquanto esse bloco esta fora da
+   tela — em tela estreita, que e a unica em que ela cabe.
+ *
+ * O TEXTO NASCE SERVIDO, com o caso do exemplo do formulario. Na C15, ate
+ * 21/10/2026, ele nascia vazio e so ganhava conteudo depois de um calculo: no
+ * celular de quem chega da busca e nao preenche nada, a barra nao existia —
+ * justamente para quem ela foi feita.
+ *
+ * Fora do <form> de proposito: `position:fixed` dentro de um painel com rolagem
+ * propria briga com o painel.
+ *
+ * O id do alvo vai num ATRIBUTO e nao no script, que e o que faz esta barra
+ * servir as cinco calculadoras sem uma linha de JavaScript por ilha de cada
+ * uma: o script do rodape le o atributo. */
+if ( ! function_exists( 'aquametria_casca_barra_html' ) ) {
+function aquametria_casca_barra_html( $texto, $rotulo_botao, $alvo_id ) {
+	$texto = trim( (string) $texto );
+	$alvo  = trim( (string) $alvo_id );
+	if ( '' === $texto || '' === $alvo ) {
+		/* Barra sem numero, ou sem bloco de compra para onde levar, seria uma
+		   tarja fixa comendo tela e nao oferecendo nada. */
+		return '';
+	}
+
+	$h  = '<div class="aqm-barra" id="aqm-barra" data-aqm-barra-alvo="' . esc_attr( $alvo ) . '" aria-hidden="true">';
+	$h .= '<span class="aqm-barra-texto" id="aqm-barra-texto">' . esc_html( $texto ) . '</span>';
+	$h .= '<button type="button" class="aqm-barra-botao" id="aqm-barra-ir">'
+		. esc_html( $rotulo_botao ) . '</button>';
+	$h .= '</div>';
+
+	return $h;
+}
+}
+
+/* O comando da barra. Sai no wp_footer, NUNCA dentro do retorno de um shortcode:
+   e a regra do defeito de 08/09/2026 — os filtros de texto do conteudo trocam
+   cada E-comercial pela entidade numerica e o script morre com erro de sintaxe.
+ *
+ * Ele nao desenha barra nenhuma: assume o comando do que o PHP ja serviu, e nao
+ * sabe o nome de nenhuma calculadora. Quem diz qual bloco vigiar e o atributo
+ * data-aqm-barra-alvo do proprio HTML.
+ *
+ * Sem IntersectionObserver a barra fica VISIVEL em vez de desaparecer: o pior
+ * desfecho aqui e a pessoa no celular nao ter caminho para o produto, nao uma
+ * tarja a mais. */
+add_action( 'wp_footer', function () {
+	$js = <<<'JS'
+(function () {
+	var barra = document.getElementById('aqm-barra');
+	if (!barra) { return; }
+
+	var alvo = document.getElementById(barra.getAttribute('data-aqm-barra-alvo') || '');
+	if (!alvo) { return; }
+
+	function mostrar(ver) {
+		barra.classList.toggle('aqm-barra-ver', !!ver);
+		barra.setAttribute('aria-hidden', ver ? 'false' : 'true');
+	}
+
+	var ir = document.getElementById('aqm-barra-ir');
+	if (ir) {
+		ir.addEventListener('click', function () {
+			var suave = true;
+			try {
+				suave = !(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+			} catch (erro) { suave = true; }
+			try {
+				alvo.scrollIntoView({ behavior: suave ? 'smooth' : 'auto', block: 'start' });
+			} catch (erro) {
+				window.scrollTo(0, alvo.getBoundingClientRect().top + window.scrollY);
+			}
+		});
+	}
+
+	if (typeof window.IntersectionObserver !== 'function') {
+		mostrar(true);
+		return;
+	}
+
+	new window.IntersectionObserver(function (entradas) {
+		entradas.forEach(function (entrada) {
+			mostrar(!entrada.isIntersecting);
+		});
+	}, { threshold: 0 }).observe(alvo);
+})();
+JS;
+
+	echo '<script id="aquametria-casca-barra">' . $js . '</script>' . "\n";
+}, 26 );
 
 /**
  * A home, no molde GUIA do VOZ.md: a pergunta mais frequente em cima, as

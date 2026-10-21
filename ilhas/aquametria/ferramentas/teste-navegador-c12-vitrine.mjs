@@ -272,7 +272,12 @@ esperadaServida.forEach((item, i) => {
 // Contrato 7: a compra vem antes da prova.
 const ordemNoHtml = await semJs.evaluate(() => {
   const vitrine = document.querySelector('.aqm-c12-vitrine-servida');
-  const fontes = Array.from(document.querySelectorAll('h3')).find((h) => /De onde vem cada n/.test(h.textContent));
+  /* Desde a C12 1.7.0 o titulo da procedencia e o <h2> do <summary> da DOBRA que
+     a envolve (32.1, item 7), nao mais um <h3> no corpo: repetir o titulo dentro
+     daria dois titulos iguais na tela aberta. O portao procura o titulo nos dois
+     niveis, porque e o TITULO que ele quer achar — nao a tag. */
+  const fontes = Array.from(document.querySelectorAll('h2, h3'))
+    .find((h) => /De onde vem cada n/.test(h.textContent));
   if (!vitrine || !fontes) { return null; }
   return (vitrine.compareDocumentPosition(fontes) & Node.DOCUMENT_POSITION_FOLLOWING) ? 'antes' : 'depois';
 });
@@ -316,6 +321,12 @@ await page.goto(URL);
 await page.evaluate(() => { try { localStorage.clear(); } catch (e) { /* ignora */ } });
 
 async function calcular(v, opts = {}) {
+  /* OS CAMPOS QUE FORAM PARA A DOBRA (C12 1.7.0, 32.1 item 3) sao digitados com a
+     dobra ABERTA: o Playwright nao digita em campo invisivel, e abrir e o que a
+     pessoa faz com um toque. */
+  await page.evaluate(() => {
+    document.querySelectorAll('#aqm-c12-form details.aqm-dobra').forEach((d) => { d.open = true; });
+  });
   await page.fill('#aqm-c12-volume', String(v).replace('.', ','));
   if (opts.quimica === false) { await page.uncheck('#aqm-c12-quimica'); }
   if (opts.quimica) { await page.check('#aqm-c12-quimica'); }

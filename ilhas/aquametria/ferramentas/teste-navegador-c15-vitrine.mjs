@@ -553,7 +553,7 @@ conferir('e a pagina DIZ por que a lista esta vazia (silencio parece defeito)',
 
 console.log('\ncelular (390 x 720)');
 
-const barraNoDesktop = await pagina.$eval('#aqm-c15-barra', (n) => getComputedStyle(n).display);
+const barraNoDesktop = await pagina.$eval('#aqm-barra', (n) => getComputedStyle(n).display);
 conferir('a barra fixa NAO aparece em tela larga', barraNoDesktop === 'none', barraNoDesktop);
 
 await ctx.close();
@@ -605,17 +605,17 @@ const foraDeVista = await cel.evaluate(async () => {
 });
 conferir('o bloco de compra saiu da tela antes de medir a barra', foraDeVista === true, String(foraDeVista));
 
-const barraForaDaCompra = await cel.$eval('#aqm-c15-barra',
+const barraForaDaCompra = await cel.$eval('#aqm-barra',
   (n) => getComputedStyle(n).display + ' | ' + n.getAttribute('aria-hidden'));
 conferir('com o bloco de compra fora da tela, a barra do celular aparece',
   /flex/.test(barraForaDaCompra) && /false/.test(barraForaDaCompra), barraForaDaCompra);
 
-const textoBarra = await cel.$eval('#aqm-c15-barra-texto', (n) => n.textContent.trim());
+const textoBarra = await cel.$eval('#aqm-barra-texto', (n) => n.textContent.trim());
 conferir('a barra do celular carrega a faixa calculada, nao um texto generico',
   / lm /.test(textoBarra) && textoBarra.includes(br(VOLUME_N, 1)), textoBarra);
 
 // O botao dela leva ao BLOCO DE COMPRA, e ai ela some.
-await cel.click('#aqm-c15-barra-ir');
+await cel.click('#aqm-barra-ir');
 await cel.waitForTimeout(900);
 const compraAVista = await cel.evaluate(() => {
   const c = document.querySelector('#aqm-c15-compra').getBoundingClientRect();
@@ -623,7 +623,7 @@ const compraAVista = await cel.evaluate(() => {
 });
 conferir('o botao da barra leva ao bloco de compra', compraAVista === true, String(compraAVista));
 
-const barraNaCompra = await cel.$eval('#aqm-c15-barra',
+const barraNaCompra = await cel.$eval('#aqm-barra',
   (n) => getComputedStyle(n).display + ' | ' + n.getAttribute('aria-hidden'));
 conferir('com o bloco de compra a vista, a barra some',
   /none/.test(barraNaCompra) && /true/.test(barraNaCompra), barraNaCompra);
@@ -638,7 +638,7 @@ const exemploDeVolta = await cel.evaluate(() => {
   return {
     exemplo: !!e && !e.classList.contains('aqm-c15-oculto'),
     saida: !!s && s.classList.contains('aqm-c15-oculto'),
-    barra: document.querySelector('#aqm-c15-barra-texto').textContent.trim(),
+    barra: document.querySelector('#aqm-barra-texto').textContent.trim(),
   };
 });
 conferir('limpar devolve a caixa de resultado do exemplo', exemploDeVolta.exemplo === true, String(exemploDeVolta.exemplo));

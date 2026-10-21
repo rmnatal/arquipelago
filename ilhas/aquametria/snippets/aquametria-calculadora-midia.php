@@ -1,5 +1,32 @@
 /**
  * Aquametria Calculadora de Mídia Filtrante — C12
+ * Versão: 1.7.0 (21/10/2026) — O MOLDE DE CONVERSÃO DA SEÇÃO 32 CHEGA AQUI, pela
+ * 32.6-b (mutirão), e esta é a SEGUNDA das cinco calculadoras. Medido no ar em
+ * 21/10, no celular de 390 px, antes da mudança: o formulário começava a
+ * **1.863 px** (a 32.5 pede antes de 700) e o primeiro botão de loja a
+ * **3.168 px** (o teto é 1.400); a página tinha 21.677 px de altura e 19 px de
+ * rolagem horizontal, que também não deveria existir.
+ * A ORDEM PASSOU A SER A DA 32.1: promessa → formulário JÁ PREENCHIDO com o
+ * aquário de 60 L da vitrine → caixa de resultado PRÉ-RENDERIZADA em PHP (a do
+ * script nasce oculta, então quem chegava da busca via a página sem nenhum
+ * número de resposta) → bloco de compra → tabela de casos resolvidos, aberta →
+ * resposta direta, aberta (seção 5, de primeira classe) → o resto em `<details>`.
+ * O QUE NÃO É DESTA PÁGINA FICOU NA CASCA 1.13.0, por ordem da 32.6-b: a dobra,
+ * a frase de promessa e a barra fixa do rodapé. Daqui sai só o TEXTO da barra.
+ * AS TRÊS LIÇÕES DA C15 FORAM APLICADAS SEM SEREM REDESCOBERTAS: o cartão DEITA
+ * no celular (float, não grid — o número de filhos do cartão varia); a prosa que
+ * explica o recorte DESCEU para baixo do trilho, com os dois números dela subindo
+ * para o título do bloco; e o exemplo do formulário SE LIMPA antes de aplicar o
+ * que a URL ou o `localStorage` trazem — sem isso, quem chega por link com o
+ * volume dele recebia a conta dele com os campos do exemplo ao lado.
+ * E UMA DERIVA DE VERSÃO FICA DITA, porque ela se lê na tela: a constante
+ * `AQUAMETRIA_C12_VERSAO` estava em **1.6.0** e o changelog deste cabeçalho
+ * parava em **1.3.1** — não há entrada de 1.4.0, 1.5.0 nem 1.6.0. O bloco de
+ * constantes nasceu já em 1.6.0 no commit `3100e04` (19/10/2026), a passada que
+ * tirou as constantes redigitadas dos portões, e o cabeçalho não acompanhou.
+ * Esta entrada sobe de 1.6.0 para 1.7.0 em vez de fingir que o salto não houve:
+ * é esse número que a página imprime, no rodapé e no `softwareVersion` do
+ * JSON-LD.
  * Versão: 1.3.1 (13/09/2026) — só o catálogo embutido mudou: a única foto de produto
  * desta página passou a viajar com `largura` e `altura`, medidas no Chrome pela
  * ronda da Sentinela de 13/09/2026 (`naturalWidth` x `naturalHeight`) — o egresso
@@ -107,7 +134,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_C12_VERSAO' ) ) {
-	define( 'AQUAMETRIA_C12_VERSAO', '1.6.0' );
+	define( 'AQUAMETRIA_C12_VERSAO', '1.7.0' );
 	define( 'AQUAMETRIA_C12_SLUG', 'calculadora-de-midia-filtrante' );
 	define( 'AQUAMETRIA_C12_VERIFICADO_EM', '08/09/2026' );
 	define( 'AQUAMETRIA_C12_ARTIGO', 'quanta-midia-biologica-o-aquario-precisa' );
@@ -607,8 +634,32 @@ a.aqm-c12-vt-cartao:focus-visible{outline:2px solid var(--c12-lamina);outline-of
 .aqm-c12-vitrine-servida .aqm-c12-criterio{margin-top:.5rem;}
 .aqm-c12-aviso-vitrine{background:var(--c12-papel);border:1px solid var(--c12-traco);border-left:3px solid var(--c12-alerta);border-radius:2px;padding:.8rem 1rem;font-size:.86rem;line-height:1.5;color:var(--c12-legenda);margin:1rem 0 0;}
 .aqm-c12-aviso-vitrine strong{color:var(--c12-tinta);}
+/* A caixa de resultado pre-renderizada (32.1, item 4) e a mesma moldura da
+   caixa do calculo, com menos folga embaixo: ela e a resposta de um caso de
+   exemplo e nao o fim de uma interacao. */
+.aqm-c12-exemplo .aqm-c12-faixa{margin-bottom:.7rem;}
 .aqm-c12-oculto{display:none;}
-@media (max-width:600px){.aqm-c12-vt-item{flex-basis:11.5rem;}
+@media (max-width:600px){
+/* Gutter do painel no celular: 1,2rem de folga em cima e embaixo de cada painel
+   custava tela numa largura em que tela e o recurso escasso. */
+.aqm-c12-painel{padding:.9rem .95rem;margin:0 0 .9rem;}
+.aqm-c12-faixa{padding:.85rem .95rem;}
+/* O CARTAO DEITA NO CELULAR, e e a licao (b) que a C15 deixou medida em
+   21/10/2026: em pe, com a foto quadrada no topo, o botao de loja do primeiro
+   cartao nao cabe no teto de 1.400 px da 32.5. Deitado, a foto vira uma coluna
+   a esquerda e o texto inteiro, botao incluido, sobe junto. Nenhuma linha do
+   cartao saiu.
+   FLOAT, e nao grid: o cartao tem numero VARIAVEL de filhos irmaos diretos (a
+   ressalva, o preco e o selo sao condicionais) e nenhuma regra de grid sabe
+   quantas linhas reservar para a foto sem contar filho. O float nao precisa
+   saber de nenhum dos dois: o texto desce ao lado da foto e continua embaixo
+   dela. */
+.aqm-c12-vt-item{flex-basis:20rem;}
+.aqm-c12-vt-cartao{display:block;}
+.aqm-c12-vt-cartao:after{content:"";display:block;clear:both;}
+.aqm-c12-vt-foto{float:left;width:4.5rem;margin:0 .7rem .3rem 0;}
+.aqm-c12-vt-cartao > span{display:block;margin:0 0 .28rem;}
+.aqm-c12-vt-botao{margin-top:.25rem;}
 .aqm-c12-valor{font-size:1.6rem;}
 .aqm-c12-produto{grid-template-columns:1fr;}
 .aqm-c12-placa{min-height:0;flex-direction:row;gap:.5rem;align-items:baseline;justify-content:flex-start;}}
@@ -887,6 +938,32 @@ function aquametria_c12_js() {
 
 	/* ------------------------------------------------------------- a tela */
 
+	/* A CAIXA DE RESULTADO PRE-RENDERIZADA EM PHP e a resposta da pagina para quem
+	   nao calculou nada, e sai de cena quando o calculo de verdade entra: duas
+	   caixas de resultado na mesma tela seriam duas respostas. */
+	function mostrarExemplo(ver) {
+		var bloco = el('aqm-c12-exemplo');
+		if (!bloco) { return; }
+		bloco.classList.toggle('aqm-c12-oculto', !ver);
+		if (ver) { textoBarra(textoExemploBarra); }
+	}
+
+	/* A BARRA DO RODAPE E DA CASCA (1.13.0, 32.6-b): quem a mostra, quem a esconde
+	   e quem rola a pagina ate o bloco de compra e o script dela. O que sobra
+	   para esta calculadora e o TEXTO, que e o unico pedaco que depende da conta
+	   desta pagina. Guardado na carga para poder VOLTAR: depois de um calculo com
+	   erro a tela mostra o exemplo de novo, e a barra prometendo um numero que
+	   nao esta mais na tela seria pior do que barra nenhuma. */
+	var textoExemploBarra = (function () {
+		var n = el('aqm-barra-texto');
+		return n ? n.textContent : '';
+	}());
+
+	function textoBarra(t) {
+		var n = el('aqm-barra-texto');
+		if (n) { n.textContent = t; }
+	}
+
 	function pintar(r) {
 		var erros = el('aqm-c12-erros');
 		erros.innerHTML = '';
@@ -897,9 +974,13 @@ function aquametria_c12_js() {
 				erros.appendChild(li);
 			});
 			el('aqm-c12-saida').classList.add('aqm-c12-oculto');
+			/* A tela nunca fica sem caixa de resultado: entrada invalida devolve
+			   a do exemplo, que e a resposta de um caso de verdade. */
+			mostrarExemplo(true);
 			return;
 		}
 
+		mostrarExemplo(false);
 		el('aqm-c12-saida').classList.remove('aqm-c12-oculto');
 
 		pintarFaixa(r);
@@ -924,6 +1005,10 @@ function aquametria_c12_js() {
 		}
 		el('aqm-c12-faixa-valor').innerHTML = mL(r.piso.mL) + ' a ' + mL(r.teto.mL)
 			+ '<span class="aqm-c12-unidade">de mídia biológica</span>';
+
+		/* A barra do rodape passa a prometer o numero DO CALCULO, nao mais o do
+		   exemplo servido. */
+		textoBarra(mL(r.piso.mL) + ' a ' + mL(r.teto.mL) + ' para ' + litros(r.V) + ' L');
 
 		var vezes = r.teto.ancora.mlL / r.piso.ancora.mlL;
 		el('aqm-c12-faixa-criterio').innerHTML =
@@ -1652,6 +1737,9 @@ function aquametria_c12_js() {
 		el('aqm-c12-form').reset();
 		el('aqm-c12-saida').classList.add('aqm-c12-oculto');
 		el('aqm-c12-erros').innerHTML = '';
+		/* reset() devolve os campos ao caso de exemplo servido no HTML, e por isso
+		   a caixa de exemplo volta junto: ela e a resposta DESSE caso. */
+		mostrarExemplo(true);
 		mostrarManual();
 		try { window.history.replaceState(null, '', window.location.pathname); } catch (erro) { /* segue */ }
 	});
@@ -1672,16 +1760,28 @@ function aquametria_c12_js() {
 
 	mostrarManual();
 
+	/* O EXEMPLO SE LIMPA ANTES DE QUALQUER CASO DE FORA, e esta e a licao (d) que
+	   a C15 deixou escrita em 21/10/2026, medida nela: com o formulario
+	   preenchido, quem chega por LINK trazendo so o volume — ou quem tem um
+	   aquario guardado por outra calculadora neste navegador — recebia a conta do
+	   volume DELE com os campos do EXEMPLO ao lado. Exemplo que vaza para o caso
+	   de outra pessoa nao e exemplo: e numero inventado com cara de resposta. */
+	function limparExemplo() {
+		el('aqm-c12-volume').value = '';
+	}
+
 	/* Query string manda; senão, o aquário que as outras calculadoras
 	   guardaram neste navegador. Aqui o volume basta para calcular. */
 	var daUrl = lerQuery();
 	if (daUrl) {
+		limparExemplo();
 		preencher(daUrl);
 		pintar(calcular(campos()));
 	} else {
 		var antes = recuperar();
 		var volume = antes && antes.volumes ? antes.volumes.real_L : null;
 		if (volume) {
+			limparExemplo();
 			el('aqm-c12-volume').value = String(volume).replace('.', ',');
 			var perfil = (antes.perfil || {}).tipo_aquario;
 			if (perfil === 'plantado' || perfil === 'comunitario') { el('aqm-c12-perfil').value = perfil; }
@@ -1695,9 +1795,11 @@ function aquametria_c12_js() {
 			retomado.textContent = 'Retomamos o aquário de ' + litros(volume) + ' L que as outras calculadoras guardaram neste navegador.';
 			retomado.classList.remove('aqm-c12-oculto');
 			pintar(calcular(campos()));
-		} else {
-			el('aqm-c12-semvolume').classList.remove('aqm-c12-oculto');
 		}
+		/* Sem volume de fora, o formulario FICA com o caso de exemplo e a caixa
+		   pre-renderizada continua na tela: desde a 1.7.0 a pagina nunca esta
+		   sem resposta. O caminho para a calculadora de litragem deixou de ser
+		   revelado por script e mora, servido, na dobra do formulario. */
 	}
 }());
 JS;
@@ -1732,20 +1834,97 @@ function aquametria_c12_opcoes_filtro() {
 }
 }
 
+/* ---- O CASO DE EXEMPLO DA PAGINA ---------------------------------------------
+   UM lugar so, como na C15: dele saem o formulario preenchido (32.1, item 3), a
+   caixa de resultado pre-renderizada (item 4) e a vitrine servida (item 5). O
+   caso e o aquario de referencia que a vitrine ja publicava — e o motivo de ser
+   ELE esta escrito na propria pagina, dentro da vitrine. Formulario que
+   recalculasse por conta propria mostraria um numero na caixa e outro ao clicar
+   em Calcular com o formulario intocado. */
+if ( ! function_exists( 'aquametria_c12_caso_exemplo' ) ) {
+function aquametria_c12_caso_exemplo() {
+	return array( 'volume' => AQUAMETRIA_C12_VITRINE_L );
+}
+}
+
+/* A CAIXA DE RESULTADO PRE-RENDERIZADA (32.1, item 4). Ela existe porque a caixa
+   do script nasce `-oculto` e so aparece depois de alguem preencher: quem chega
+   pela busca — e qualquer modelo de linguagem que leia esta pagina — via a
+   pagina SEM nenhum numero de resposta na primeira tela. Esta caixa e o caso do
+   formulario, resolvido em PHP, servido no HTML, sem script nenhum (32.3: nada
+   de conteudo injetado por JS). Quando a pessoa calcula de verdade, o script a
+   esconde e poe a dele no lugar — duas caixas de resultado na mesma tela seriam
+   duas respostas. */
+if ( ! function_exists( 'aquametria_c12_resposta_exemplo_html' ) ) {
+function aquametria_c12_resposta_exemplo_html() {
+	$caso = aquametria_c12_caso_exemplo();
+	$e    = aquametria_c12_exemplo( $caso['volume'] );
+
+	$valor = aquametria_c12_ml( $e['piso']['mL'] ) . ' a ' . aquametria_c12_ml( $e['teto']['mL'] );
+
+	$h  = '<div class="aqm-c12-resultado aqm-c12-exemplo" id="aqm-c12-exemplo">';
+	$h .= '<div class="aqm-c12-faixa">';
+	$h .= '<span class="aqm-c12-rotulo">Mídia biológica que este aquário pede</span>';
+	$h .= '<span class="aqm-c12-valor">' . esc_html( $valor ) . '</span>';
+	$h .= '<p class="aqm-c12-criterio">' . esc_html( aquametria_c12_litros( $caso['volume'] ) ) . ' L de água real, '
+		. 'pelas dosagens que ' . esc_html( (string) count( aquametria_c12_ancoras_bio() ) ) . ' fabricantes declaram — '
+		. 'de ' . esc_html( aquametria_c12_fmt( $e['piso']['ancora']['mlL'], 2 ) ) . ' a '
+		. esc_html( aquametria_c12_fmt( $e['teto']['ancora']['mlL'], 2 ) ) . ' mL por litro. '
+		. 'A distância entre o piso e o teto é a declaração deles, não uma faixa nossa: é por isso que esta página existe.</p>';
+	$h .= '</div>';
+	$h .= '</div>';
+
+	return $h;
+}
+}
+
+/* A frase de promessa da 32.1, item 2: UMA, e ela mora aqui — o paragrafo de
+   abertura do Markdown desta pagina desceu para dentro de uma dobra na mesma
+   passada, porque duas promessas dizendo a mesma coisa com palavras diferentes
+   custam a primeira tela sem acrescentar nada. Quem a desenha e a casca. */
+if ( ! function_exists( 'aquametria_c12_promessa_html' ) ) {
+function aquametria_c12_promessa_html() {
+	return aquametria_casca_promessa_html(
+		'Entram o volume de água e o seu filtro; saem os mililitros de mídia biológica, '
+		. 'se eles cabem no cesto e quais mídias do nosso banco atendem.'
+	);
+}
+}
+
+/* A BARRA FIXA DO RODAPE (32.1, ultima linha), desenhada pela casca 1.13.0. O
+   texto nasce SERVIDO, com o caso do formulario: barra que so ganha numero
+   depois de um calculo nao existe justamente para quem chega da busca. */
+if ( ! function_exists( 'aquametria_c12_barra_html' ) ) {
+function aquametria_c12_barra_html() {
+	$caso = aquametria_c12_caso_exemplo();
+	$e    = aquametria_c12_exemplo( $caso['volume'] );
+	$txt  = aquametria_c12_ml( $e['piso']['mL'] ) . ' a ' . aquametria_c12_ml( $e['teto']['mL'] )
+		. ' para ' . aquametria_c12_litros( $caso['volume'] ) . ' L';
+
+	return aquametria_casca_barra_html( $txt, 'Ver as mídias', 'aqm-c12-compra' );
+}
+}
+
 if ( ! function_exists( 'aquametria_c12_form_html' ) ) {
 function aquametria_c12_form_html() {
 	$c1 = aquametria_c12_url( 'calculadora-de-litragem' );
 
+	$caso = aquametria_c12_caso_exemplo();
+
+	/* O FORMULARIO JA VEM PREENCHIDO (32.1, item 3), com o MESMO aquario da caixa
+	   de resultado e da vitrine abaixo. Nenhum campo saiu da pagina. */
 	$h  = '<form id="aqm-c12-form" class="aqm-c12-painel" novalidate>';
 	$h .= '<h3>O seu aquário e o seu filtro</h3>';
-	$h .= '<p class="aqm-c12-sub">A pergunta que ninguém responde no Brasil não é qual mídia comprar — é <em>quanta</em>. ';
-	$h .= 'Se você já usou as outras calculadoras neste navegador, o volume vem preenchido daqui. Nada é enviado para servidor nenhum.</p>';
+	$h .= '<p class="aqm-c12-sub">Já preenchido com um aquário de '
+		. esc_html( aquametria_c12_litros( $caso['volume'] ) ) . ' litros de água real: troque pelo seu número. ';
+	$h .= 'Se você já usou as outras calculadoras neste navegador, o volume vem delas. Nada é enviado para servidor nenhum.</p>';
 
 	$h .= '<div class="aqm-c12-grade">';
 
 	$h .= '<div class="aqm-c12-campo">';
 	$h .= '<label for="aqm-c12-volume">Volume real de água (L)</label>';
-	$h .= '<input type="text" inputmode="decimal" autocomplete="off" id="aqm-c12-volume" name="volume" placeholder="110">';
+	$h .= '<input type="text" inputmode="decimal" autocomplete="off" id="aqm-c12-volume" name="volume" placeholder="110" value="'
+		. esc_attr( aquametria_c12_fmt( $caso['volume'], 0 ) ) . '">';
 	$h .= '<span class="aqm-c12-dica">A água que está lá dentro, não o número da etiqueta.</span>';
 	$h .= '</div>';
 
@@ -1760,6 +1939,16 @@ function aquametria_c12_form_html() {
 	$h .= '<input type="text" inputmode="decimal" autocomplete="off" id="aqm-c12-midia-manual" name="midia" placeholder="3,0">';
 	$h .= '<span class="aqm-c12-dica">Meça o cesto: comprimento × largura × altura em centímetros, dividido por mil, dá litros.</span>';
 	$h .= '</div>';
+
+	$h .= '</div>';
+
+	/* OS CAMPOS QUE A MAIORIA NAO MEXE VAO PARA UMA DOBRA (32.1, item 3 e item 7).
+	   Medido no render de 390 px: com os cinco campos empilhados o primeiro botao
+	   de loja ficava a 1.556 px, e o teto da 32.5 e 1.400 — e no ar a pagina e
+	   mais alta que no render local (a C15 mediu 128 px de diferenca). Nenhum
+	   campo saiu da pagina: <details> e HTML nativo e abre sem script. */
+	$h .= aquametria_casca_dobra_campos_abre( 'Perfil, manutenção, mídia química e o volume real', 'c12-campos' );
+	$h .= '<div class="aqm-c12-grade">';
 
 	$h .= '<div class="aqm-c12-campo">';
 	$h .= '<label for="aqm-c12-perfil">Perfil do aquário</label>';
@@ -1781,15 +1970,23 @@ function aquametria_c12_form_html() {
 
 	$h .= '<label class="aqm-c12-caixa"><input type="checkbox" id="aqm-c12-quimica"> <span>Uso (ou quero usar) mídia química — carvão ativado, resina de polimento</span></label>';
 
+	/* O paragrafo do volume real mora aqui desde a 1.7.0, e NAO e mais revelado
+	   por script. Com o formulario preenchido, uma pergunta "nao sabe o volume?"
+	   aparecendo ao lado de um campo que ja traz 60 L se contradizia na tela. O
+	   texto nao saiu da pagina: ele e, afinal, o caminho para a calculadora que
+	   produz essa entrada. */
+	$h .= '<p class="aqm-c12-criterio" id="aqm-c12-semvolume" style="margin-top:.9rem">';
+	$h .= 'Não sabe o volume real? Ele não é o número da etiqueta: o vidro, a borda livre, o substrato e as rochas tiram uma parte, e a mídia é dimensionada sobre a água que existe. ';
+	$h .= 'A <a href="' . esc_url( $c1 ) . '">quantos litros tem o seu aquário</a> devolve esse número a partir das medidas em centímetros e o guarda para esta página usar.</p>';
+
+	$h .= aquametria_casca_dobra_fecha();
+
 	$h .= '<div class="aqm-c12-botoes">';
 	$h .= '<button type="submit">Calcular a mídia</button>';
 	$h .= '<button type="button" class="aqm-c12-secundario" id="aqm-c12-limpar">Limpar</button>';
 	$h .= '<span class="aqm-c12-dica aqm-c12-oculto" id="aqm-c12-retomado"></span>';
 	$h .= '</div>';
 	$h .= '<ul class="aqm-c12-avisos" id="aqm-c12-erros"></ul>';
-	$h .= '<p class="aqm-c12-criterio aqm-c12-oculto" id="aqm-c12-semvolume" style="margin-top:.9rem">';
-	$h .= 'Não sabe o volume real? Ele não é o número da etiqueta: o vidro, a borda livre, o substrato e as rochas tiram uma parte, e a mídia é dimensionada sobre a água que existe. ';
-	$h .= 'A <a href="' . esc_url( $c1 ) . '">quantos litros tem o seu aquário</a> devolve esse número a partir das medidas em centímetros e o guarda para esta página usar.</p>';
 	$h .= '</form>';
 
 	return $h;
@@ -1949,7 +2146,9 @@ function aquametria_c12_produtos_html() {
 if ( ! function_exists( 'aquametria_c12_tenho_html' ) ) {
 function aquametria_c12_tenho_html() {
 	$h  = '<div class="aqm-c12-painel">';
-	$h .= '<h3>Caminho inverso: a mídia que eu já tenho dá para quanto aquário?</h3>';
+	/* Sem <h3> aqui: o titulo desta secao e o da DOBRA que a envolve (32.1, item
+	   7), dentro do <summary>. Repeti-lo daria dois titulos iguais na tela
+	   aberta. */
 	$h .= '<p class="aqm-c12-sub">Informe quantos litros de mídia biológica você já tem e devolvemos, por cada dosagem declarada, até que volume de água ela cobre.</p>';
 	$h .= '<div class="aqm-c12-grade">';
 	$h .= '<div class="aqm-c12-campo"><label for="aqm-c12-tenho">Mídia biológica que eu tenho (L)</label>';
@@ -1967,7 +2166,7 @@ function aquametria_c12_fontes_html() {
 	$artigo = aquametria_c12_url( AQUAMETRIA_C12_ARTIGO );
 
 	$h  = '<div class="aqm-c12-painel">';
-	$h .= '<h3>De onde vem cada número desta página</h3>';
+	/* Sem <h3> aqui: o titulo desta secao e o da DOBRA que a envolve. */
 	$h .= '<p class="aqm-c12-sub">Verificado em ' . esc_html( AQUAMETRIA_C12_VERIFICADO_EM ) . '. Calculadora versão ' . esc_html( AQUAMETRIA_C12_VERSAO ) . '.</p>';
 	$h .= '<div class="aqm-c12-rolagem"><table class="aqm-c12-tabela">';
 	$h .= '<tr><th>Constante</th><th>Valor</th><th>Origem e o que ela significa</th></tr>';
@@ -2743,8 +2942,11 @@ function aquametria_c12_vitrine_servida_html() {
 	$seq        = aquametria_c12_sequencia_vitrine( false );
 	$divulgacao = aquametria_c12_url( AQUAMETRIA_C12_PAGINA_AFILIADOS );
 
-	$h  = '<div class="aqm-c12-painel aqm-c12-vitrine-servida">';
-	$h .= '<h3>As mídias biológicas para um aquário de ' . esc_html( aquametria_c12_litros( $v ) ) . ' litros</h3>';
+	/* O id e o que a barra da casca vigia: ela aparece enquanto ESTE bloco esta
+	   fora da tela, e o botao dela rola a pagina ate aqui (32.1). */
+	$h  = '<div class="aqm-c12-painel aqm-c12-vitrine-servida" id="aqm-c12-compra">';
+	$h .= '<h3>As mídias biológicas para um aquário de ' . esc_html( aquametria_c12_litros( $v ) ) . ' litros — de '
+		. esc_html( aquametria_c12_ml( $e['piso']['mL'] ) ) . ' a ' . esc_html( aquametria_c12_ml( $e['teto']['mL'] ) ) . '</h3>';
 
 	if ( ! $seq ) {
 		$h .= '<p class="aqm-c12-sub">Nenhuma mídia biológica do banco da Aquametria tem hoje ficha suficiente para entrar aqui. '
@@ -2762,17 +2964,21 @@ function aquametria_c12_vitrine_servida_html() {
 		}
 	}
 
-	$h .= '<p class="aqm-c12-sub">Para ' . esc_html( aquametria_c12_litros( $v ) ) . ' litros de água real, as dosagens declaradas pedem de '
-		. esc_html( aquametria_c12_ml( $e['piso']['mL'] ) ) . ' a ' . esc_html( aquametria_c12_ml( $e['teto']['mL'] ) )
-		. ' de mídia biológica — e cada cartão abaixo traz a quantidade pela dosagem que <em>aquele</em> fabricante publica, nunca por um número escolhido por nós. '
-		. 'A ordem é a mesma da lista completa: da dosagem declarada mais econômica para a mais generosa. '
-		. 'Preencha o formulário acima para ver a lista do seu aquário.</p>';
-
+	/* OS CARTOES VEM PRIMEIRO, E A PROSA QUE EXPLICA O RECORTE DESCE PARA BAIXO
+	   DO TRILHO. E a licao (c) que a C15 deixou escrita em 21/10/2026: prosa de
+	   apoio acima dos cartoes e o que mais custa da primeira tela, e o teto da
+	   32.5 e o primeiro BOTAO de loja. Nenhuma palavra saiu; os dois numeros que
+	   a linha de apoio dizia subiram para o titulo do bloco, que e onde eles
+	   trabalham. */
 	$h .= '<ul class="aqm-c12-vt-trilho">';
 	foreach ( $seq as $item ) {
 		$h .= aquametria_c12_vitrine_cartao_html( $item['m'], $v, $item['grupo'] );
 	}
 	$h .= '</ul>';
+
+	$h .= '<p class="aqm-c12-sub">Cada cartão traz a quantidade pela dosagem que <em>aquele</em> fabricante publica, nunca por um número escolhido por nós. '
+		. 'A ordem é a mesma da lista completa: da dosagem declarada mais econômica para a mais generosa. '
+		. 'Preencha o formulário acima para ver a lista do seu aquário.</p>';
 
 	$h .= '<p class="aqm-c12-criterio">' . esc_html( aquametria_c12_criterio_compra_texto( $midias ) ) . ' '
 		. esc_html( $com_dose ) . ' das ' . esc_html( count( $seq ) )
@@ -3215,17 +3421,39 @@ function aquametria_c12_shortcode() {
 	/* O comportamento e o estilo saem no rodapé, fora dos filtros de conteúdo. */
 	add_action( 'wp_footer', 'aquametria_c12_rodape', 20 );
 
+	/* A ORDEM E A DA SECAO 32.1 DO ARQUIPELAGO.md, e ela nao e arbitraria: em
+	   21/10/2026 esta pagina foi medida no ar, no celular de 390 px, com o
+	   formulario comecando a 1.863 px e o primeiro botao de loja a 3.168 px — a
+	   pessoa que chega aqui querendo saber quanta midia o filtro dela pede tinha
+	   de rolar quase cinco telas antes de ver um campo para preencher, e oito
+	   antes de ver um produto. A pagina media 21.677 px de altura.
+	   Agora: promessa, FORMULARIO, caixa de resultado ja renderizada no HTML,
+	   bloco de compra logo abaixo dela, tabela de casos resolvidos, resposta
+	   direta, e o resto do texto em <details>. */
 	$h  = '<div class="aqm-c12">';
-	$h .= aquametria_c12_resposta_direta_html();
+	$h .= aquametria_c12_promessa_html();
 	$h .= aquametria_c12_form_html();
+	$h .= aquametria_c12_resposta_exemplo_html();
+	/* A caixa do CALCULO vem antes do bloco de compra, no mesmo lugar da caixa do
+	   exemplo: as duas sao a posicao 4 da 32.1 e nunca estao na tela ao mesmo
+	   tempo. Com ela depois da vitrine, calcular rolaria a pagina PARA BAIXO do
+	   bloco de compra e o produto ficaria atras do leitor. */
 	$h .= aquametria_c12_resposta_html();
-	$h .= aquametria_c12_exemplos_html();
-	/* A vitrine servida vem depois da tabela e ANTES da procedência (contrato 7):
-	   a prova de onde veio o número não pode ser a única porta de compra. */
 	$h .= aquametria_c12_vitrine_servida_html();
+	$h .= aquametria_c12_exemplos_html();
+	/* A resposta direta continua SERVIDA E VISIVEL, e continua antes de toda
+	   explicacao — o que mudou e que ela deixou de ser o pedagio do formulario.
+	   Dobrar este bloco seria afrouxar a secao 5 do contrato, que e de primeira
+	   classe; por isso ele e o unico texto longo que fica aberto. */
+	$h .= aquametria_c12_resposta_direta_html();
+	$h .= aquametria_casca_dobra_abre( 'Caminho inverso: a mídia que eu já tenho dá para quanto aquário?', 'tenho' );
 	$h .= aquametria_c12_tenho_html();
+	$h .= aquametria_casca_dobra_fecha();
+	$h .= aquametria_casca_dobra_abre( 'De onde vem cada número desta página', 'fontes' );
 	$h .= aquametria_c12_fontes_html();
+	$h .= aquametria_casca_dobra_fecha();
 	$h .= aquametria_c12_adiante_html();
+	$h .= aquametria_c12_barra_html();
 	$h .= '</div>';
 
 	return $h;

@@ -31,7 +31,11 @@ const CASOS = [
   { codigo: 'c5',  arquivo: 'c5.html',  produtos: true,
     preencher: async p => { await p.fill('#aqm-c5-volume', '100'); await p.fill('#aqm-c5-minima', '18'); await p.fill('#aqm-c5-alvo', '26'); } },
   { codigo: 'c12', arquivo: 'c12.html', produtos: true,
-    preencher: async p => { await p.fill('#aqm-c12-volume', '100'); await p.selectOption('#aqm-c12-perfil', 'comunitario'); } },
+    preencher: async p => {
+      /* perfil foi para a dobra na C12 1.7.0 (32.1): abre antes de selecionar. */
+      await p.evaluate(() => { document.querySelectorAll('#aqm-c12-form details.aqm-dobra').forEach((d) => { d.open = true; }); });
+      await p.fill('#aqm-c12-volume', '100'); await p.selectOption('#aqm-c12-perfil', 'comunitario');
+    } },
   // C15: até 09/09/2026 este caso trazia semProduto:true, porque as luminárias
   // do catálogo estavam barradas por falta de lúmen ou voltagem declarados. A
   // leva de catálogo daquele mesmo dia fechou a lacuna (a Chihiros WRGB II Pro
