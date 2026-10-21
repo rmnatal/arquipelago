@@ -6,7 +6,7 @@ piso: atingido          # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 52
 primeira_indexacao: 2026-09-09   # 1ª medição do Search Console já achou 7 indexadas; a data da 1ª não está registrada
 ultima_execucao: 2026-10-21T14:09Z
-executando_desde: 2026-10-21T15:29Z   # reserva RENOVADA pela 1.1: o bloco do mutirao da 32.6-b passou de 40 minutos. A hora sai do `date -u` na mesma linha de comando que grava.
+executando_desde: 2026-10-21T15:41Z   # reserva RENOVADA pela 1.1 (segunda renovacao). A hora sai do `date -u` na mesma linha de comando que grava.
 bloco_atual: |
   O MOLDE DE CONVERSAO DA SECAO 32 ESTA NO AR NA PRIMEIRA DAS CINCO
   CALCULADORAS: /calculadora-de-iluminacao/, revisao 128, C15 1.8.0 e casca

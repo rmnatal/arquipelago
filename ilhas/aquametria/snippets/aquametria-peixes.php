@@ -1,5 +1,27 @@
 /**
  * Aquametria Peixes — a malha do eixo /peixes/
+ * Versão: 1.18.0 (21/10/2026) — A 32.4 FECHA 40 PÁGINAS DE UMA VEZ: o texto de
+ * bastidor da fábrica sai da página pública, e o que sai são SEIS strings deste
+ * snippet. O item 3 do despacho do Raphael de 21/10 nomeava a ficha do betta como
+ * exemplo; a ronda da Sentinela daquele dia mediu 30 páginas (as 29 fichas e a
+ * mãe `/peixes/`); a varredura das 53 páginas servidas desta passada achou mais
+ * DEZ de categoria e DUAS fichas, por strings diferentes das duas que a ronda
+ * isolou.
+ * O QUE SAIU, e por que cada uma: "o egresso da nuvem barra os domínios das duas
+ * fontes / busca restrita ao domínio / lista de reconferência da ilha" (duas
+ * cópias, nas fichas e na mãe) — o leitor precisa saber que o número não foi lido
+ * na página da fonte, e isso continua escrito, em português de leitor; "a SERP
+ * dessa consulta foi classificada ... como manda o critério da ilha, e a
+ * classificação está escrita no snippet que serve esta página" (duas cópias, nas
+ * fichas e nas categorias) — a pergunta que a página responde e a data da leitura
+ * FICAM, porque data é procedência; "o critério inteiro da ilha para este assunto
+ * está escrito"; "a SERP brasileira recomenda 60 L" e "reparte a própria SERP";
+ * e "o portão ainda barra" / "é o portão de dado" — o leitor continua sabendo que
+ * a espécie ficou fora por falta de dado declarado, e qual dado falta, que é o
+ * que vem escrito logo depois.
+ * A PROCEDÊNCIA QUE A 32.4 MANDA GUARDAR FICOU INTEIRA: fonte nomeada e data, em
+ * todas elas. Varredura final no texto servido das 53 páginas: zero termo da
+ * lista 32.4.
  * Versão: 1.17.0 (21/10/2026) — A LISTA DE 21/10 DESEMBARCA: o GUPPY entra no
  * catálogo e as quatro faixas de temperatura trocam de fonte. NENHUMA URL nasce,
  * muda de endereço ou sai, e nenhuma leva do teto da 21.4 é gasta — o que muda é
@@ -715,7 +737,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_PEIXES_VERSAO' ) ) {
-	define( 'AQUAMETRIA_PEIXES_VERSAO', '1.17.0' );
+	define( 'AQUAMETRIA_PEIXES_VERSAO', '1.18.0' );
 }
 
 /* A data em que a SERP das consultas foi classificada (seção 14.9).
@@ -4135,7 +4157,7 @@ function aquametria_peixes_registro() {
 			'conteudo' => '[aquametria_peixes_ficha]',
 			'consulta' => 'quantos litros para peixe espada',
 			'serp_em'  => '13/09/2026',
-			'serp_nota' => 'Esta é a consulta mais valiosa da categoria, e virou medição em vez de leitura: a SERP brasileira recomenda 60 L para o peixe que o compêndio declara com 120 cm de frente. A observação do registro dele já dizia, desde 09/09/2026, que é "o peixe que mais aparece em aquário de 60 L no Brasil e o que menos cabe nele" — era leitura de quem escreveu o registro; em 13/09/2026 passou a ser o que o top 10 publica.',
+			'serp_nota' => 'Esta é a consulta mais valiosa da categoria, e virou medição em vez de leitura: as páginas que aparecem na busca brasileira recomendam 60 L para o peixe que o compêndio declara com 120 cm de frente. A observação do registro dele já dizia, desde 09/09/2026, que é "o peixe que mais aparece em aquário de 60 L no Brasil e o que menos cabe nele" — era leitura de quem escreveu o registro; em 13/09/2026 passou a ser o que o top 10 publica.',
 			'porque'   => 'Medido em 13/09/2026: top 10 de blog, loja e um blogspot de 2013, dando 60 L para grupo e 100 L para casal, nenhum atribuído. É ALVO, e é a ficha em que a distância entre a fonte e o mercado é a maior desta categoria: o compêndio declara base de 120 × 30 cm, que é o dobro da frente do platy — o peixe vendido na prateleira do lado, no mesmo gênero.',
 		),
 		'quantos-litros-para-plati-variatus' => array(
@@ -4254,7 +4276,7 @@ function aquametria_peixes_registro() {
 			'conteudo' => '[aquametria_peixes_ficha]',
 			'consulta' => 'quantos litros para tanictis',
 			'serp_em'  => '22/09/2026',
-			'serp_nota' => 'Esta espécie é vendida no Brasil com quatro nomes diferentes — tanictis, peixe-neve, neon chinês e falso neon —, e isso reparte a própria SERP: as duas consultas medidas em 22/09/2026 devolvem conjuntos de lojas quase sem interseção. A ilha publica a página no nome da prateleira, que é "tanictis", e o banco guarda os quatro.',
+			'serp_nota' => 'Esta espécie é vendida no Brasil com quatro nomes diferentes — tanictis, peixe-neve, neon chinês e falso neon —, e isso reparte a própria busca: as duas consultas medidas em 22/09/2026 devolvem conjuntos de lojas quase sem interseção. A ilha publica a página no nome da prateleira, que é "tanictis", e o banco guarda os quatro.',
 			'porque'   => 'Medido em 22/09/2026: o top 9 é sete páginas de produto de loja (Pró-Aquarista, Aquarium Crystal, Barretos, Fazenda Submersa, Kauar, AquaOrinoco, uma portuguesa), um Blogspot de 2010 e duas fichas de portal. Nenhum domínio forte. É a SERP mais contraditória das quatro desta leva: 20 L, 30 L, 50 L para um grupo de 6, 54 L e 100 L para um grupo de 20 — cinco números, nenhum atribuído —, e o cardume mínimo aparece como 3, 5 e 10 na mesma tela. ALVO. É também a ficha em que o nosso banco tem o conflito mais consequente do eixo: as duas fontes declaram 5 e 10 exemplares de cardume mínimo, e com a mesma frente de 60 cm isso é o dobro da densidade dependendo de quem a página citasse. A ficha publica as duas com a atribuição de cada uma.',
 		),
 
@@ -4739,7 +4761,7 @@ function aquametria_peixes_categorias() {
 			   registrou. E o gênero são três gêneros para três peixes: Puntigrus,
 			   Pethia e Puntius, os dois últimos separados por uma revisão recente
 			   que o banco guarda nos sinônimos. */
-			'criterio' => 'Os peixes que a loja brasileira vende como barbo, e o critério aqui é o NOME — o mesmo que separou os danios e as rasboras, e que a categoria dos acarás teve de abandonar. Ele volta medido: "barbo" casa em exatamente três registros dos nomes populares deste banco de 40, e os três estão nesta tabela. O que ele não suporta é ser encurtado — "barb", que é a raiz do gênero antigo e o nome em inglês do cereja, casa em quatro, e o quarto é o cascudo-barbudo, que é vendido na prateleira dos limpa-vidros e está barrado pelo portão por falta de faixa de temperatura. Nem a família nem o gênero servem: Cyprinidae tem quatro espécies elegíveis neste banco e a quarta é o kinguio, de 48 cm, que ninguém vende como barbo; e os três desta tabela estão em três gêneros diferentes. O que esta tabela publica é o barbo cujos campos os dois corpos de fonte sustentam, um por um.',
+			'criterio' => 'Os peixes que a loja brasileira vende como barbo, e o critério aqui é o NOME — o mesmo que separou os danios e as rasboras, e que a categoria dos acarás teve de abandonar. Ele volta medido: "barbo" casa em exatamente três registros dos nomes populares deste banco de 40, e os três estão nesta tabela. O que ele não suporta é ser encurtado — "barb", que é a raiz do gênero antigo e o nome em inglês do cereja, casa em quatro, e o quarto é o cascudo-barbudo, que é vendido na prateleira dos limpa-vidros e ficou de fora porque nenhuma das fontes declara a faixa de temperatura dele. Nem a família nem o gênero servem: Cyprinidae tem quatro espécies elegíveis neste banco e a quarta é o kinguio, de 48 cm, que ninguém vende como barbo; e os três desta tabela estão em três gêneros diferentes. O que esta tabela publica é o barbo cujos campos os dois corpos de fonte sustentam, um por um.',
 			/* A LISTA NASCE CHEIA, como nas levas 7 e 8: a categoria e as três
 			   fichas saem na MESMA execução, então o critério e a linha mestra
 			   foram escritos contra a tabela que esta página serve.
@@ -5933,7 +5955,15 @@ function aquametria_peixes_ficha_html( $slug ) {
 	if ( count( (array) $e['conflitos'] ) ) {
 		$html .= 'Esta espécie tem divergência declarada entre fontes, e ela está publicada mais abaixo com o nome de quem disse cada número. ';
 	}
-	$html .= 'A página não foi lida direto: o egresso da nuvem barra os domínios das duas fontes, então cada número veio de busca restrita ao domínio — está na lista de reconferência da ilha.</p>';
+	/* 32.4: a frase anterior contava ao visitante COMO a fábrica colheu — "o
+	   egresso da nuvem barra os domínios das duas fontes", "busca restrita ao
+	   domínio", "lista de reconferência da ilha". Cinco termos da lista 32.4 num
+	   parágrafo, em 30 páginas (medido no HTML servido das 52 URLs pela ronda de
+	   21/10/2026). A procedência que a 32.4 manda guardar é o que ficou, e ela já
+	   está dita acima, com fonte nomeada e data: o que sai é a prosa sobre a
+	   fábrica. O que o leitor precisa saber é que a leitura não foi na página da
+	   fonte, e isso continua escrito — em português de leitor. */
+	$html .= 'Nenhum destes números foi lido na página da própria fonte: todos vieram de resultado de busca, e seguem marcados para reconferência. Confira antes de decidir pelo seu aquário.</p>';
 	$html .= '</div>';
 
 	/* --- 5.2 Quantos litros para N exemplares: a tabela pré-renderizada
@@ -6321,9 +6351,15 @@ function aquametria_peixes_ficha_html( $slug ) {
 
 	/* --- 5.9 A consulta-alvo e a classificação da SERP, no corpo, porque quem
 	   confere a 14.9 é quem lê a página. --- */
-	$html .= '<p class="aqm-px-consulta">Esta página mira a consulta <strong>“'
-		. esc_html( $registro[ $slug ]['consulta'] ) . '”</strong>. A SERP dessa consulta foi classificada em '
-		. esc_html( aquametria_peixes_serp_em( $slug ) ) . ' antes de a página nascer, como manda o critério da ilha, e a classificação está escrita no snippet que serve esta página.</p>';
+	/* 32.4: a segunda metade desta frase era caderno de fábrica na página pública
+	   — "a SERP dessa consulta foi classificada", "como manda o critério da ilha",
+	   "está escrita no snippet que serve esta página". A PRIMEIRA metade fica: a
+	   pergunta que a página responde é informação de leitor, e é o que a seção 5
+	   do contrato quer no corpo. A data da leitura também fica, porque data é
+	   procedência (32.4). O que sai é o vocabulário de quem escreveu a fábrica. */
+	$html .= '<p class="aqm-px-consulta">Esta página responde à pergunta <strong>“'
+		. esc_html( $registro[ $slug ]['consulta'] ) . '”</strong>, e foi escrita depois de olhar o que já havia publicado sobre ela em '
+		. esc_html( aquametria_peixes_serp_em( $slug ) ) . '.</p>';
 
 	/* O QUE A MEDIÇÃO DA SERP ACHOU E SÓ ESTA PÁGINA TEM PARA DIZER. Campo
 	   opcional do registro, servido aqui e em nenhum outro lugar: é leitura do
@@ -6376,7 +6412,7 @@ function aquametria_peixes_frase_de_mae_html( $slug ) {
 
 	return '<p class="aqm-px-mae">Esta lista é uma das categorias de <a href="'
 		. esc_url( $url_pai ) . '">' . esc_html( $registro[ $pai ]['titulo'] )
-		. '</a>, que é onde o critério inteiro da ilha para este assunto está escrito.</p>';
+		. '</a>, onde está explicada por inteiro a conta que vale para todas elas.</p>';
 }
 }
 
@@ -6593,7 +6629,7 @@ function aquametria_peixes_categoria_html( $slug ) {
 			. esc_html( aquametria_peixes_concorda( count( $dentro ), 'tem', 'têm' ) )
 			. ' a conta inteira numa página própria, e a lista NÃO está fechada: o banco tem mais '
 			. esc_html( count( $barradas_daqui ) )
-			. ' desta mesma categoria que o portão ainda barra, e o que falta em cada uma está logo abaixo. '
+			. ' desta mesma categoria que ainda não têm dado suficiente, e o que falta em cada uma está logo abaixo. '
 			. 'A lista cresce quando o banco crescer, não quando der vontade de escrever.';
 	} else {
 		/* O SUBSTANTIVO DESTA FRASE ESTAVA DIGITADO, E ESTAVA NO AR ERRADO. É a
@@ -6622,7 +6658,7 @@ function aquametria_peixes_categoria_html( $slug ) {
 		$html .= '<p class="aqm-px-fora">Fora da tabela, e declarados nesta categoria: '
 			. esc_html( count( $barradas_daqui ) ) . ' de '
 			. esc_html( count( $cat['especies'] ) )
-			. '. Não é escolha editorial — é o portão de dado, e o que falta em cada um está nomeado aqui em vez de sumir da página.</p>';
+			. '. Não é escolha editorial — é falta de dado declarado por fonte, e o que falta em cada um está nomeado aqui em vez de sumir da página.</p>';
 		$html .= aquametria_peixes_barrados_lista_html( $barradas_daqui );
 	}
 
@@ -6638,9 +6674,12 @@ function aquametria_peixes_categoria_html( $slug ) {
 		. 'Um aquário alto e estreito pode ter o litro certo e o chão errado — e é por isso que a tabela acima tem a coluna em centímetros.</p>';
 
 	$html .= aquametria_peixes_frase_de_mae_html( $slug );
-	$html .= '<p class="aqm-px-consulta">Esta página mira a consulta <strong>“'
-		. esc_html( $registro[ $slug ]['consulta'] ) . '”</strong>, e a SERP dela foi classificada em '
-		. esc_html( aquametria_peixes_serp_em( $slug ) ) . ' antes de a página nascer.</p>';
+	/* 32.4, segunda cópia da mesma frase — esta serve as DEZ páginas de categoria,
+	   e a ronda de 21/10 mediu as 29 fichas e a mãe, não estas. Mesma correção:
+	   a pergunta e a data ficam, o vocabulário da fábrica sai. */
+	$html .= '<p class="aqm-px-consulta">Esta página responde à pergunta <strong>“'
+		. esc_html( $registro[ $slug ]['consulta'] ) . '”</strong>, e foi escrita depois de olhar o que já havia publicado sobre ela em '
+		. esc_html( aquametria_peixes_serp_em( $slug ) ) . '.</p>';
 	$html .= '</div>';
 
 	return $html;
@@ -6763,7 +6802,7 @@ function aquametria_peixes_secao_html() {
 	$html .= '<p>A ilha não escolhe uma das duas réguas para você. Ela publica as duas com a atribuição de cada extremo e diz o que cada uma ignora — as duas contam comprimento e nenhuma conta massa, formato ou carga biológica. '
 		. 'Onde o banco não tem fonte que preste, a ficha diz que não tem, em vez de chutar um número redondo.</p>';
 	$html .= '<p class="aqm-prova">' . esc_html( $com_ficha ) . ' espécies têm ficha própria no ar hoje, e a contagem desta frase é feita na hora de imprimir a página, não digitada. '
-		. 'Todo número do banco veio de busca restrita ao domínio da fonte, porque o egresso da nuvem barra a leitura direta das duas bases usadas — é reconferência em aberto, e está escrita na nota do banco.</p>';
+		. 'Nenhum número do banco foi lido na página da própria fonte: todos vieram de resultado de busca, e seguem marcados para reconferência.</p>';
 
 	/* AS QUE FICARAM DE FORA. A frase de abertura diz quantas espécies a ilha
 	   publica; sem este bloco ela era a única coisa que a página dizia sobre o

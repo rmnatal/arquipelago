@@ -637,7 +637,10 @@ a.aqm-c12-vt-cartao:focus-visible{outline:2px solid var(--c12-lamina);outline-of
 /* A caixa de resultado pre-renderizada (32.1, item 4) e a mesma moldura da
    caixa do calculo, com menos folga embaixo: ela e a resposta de um caso de
    exemplo e nao o fim de uma interacao. */
-.aqm-c12-exemplo .aqm-c12-faixa{margin-bottom:.7rem;}
+/* A caixa do calculo e a do exemplo sao a MESMA posicao da 32.1 (item 4) e por
+   isso tem a mesma metrica: nunca estao na tela ao mesmo tempo. */
+.aqm-c12-exemplo,#aqm-c12-saida{margin-bottom:0;}
+.aqm-c12-exemplo .aqm-c12-faixa,#aqm-c12-saida .aqm-c12-faixa{margin-bottom:.7rem;}
 .aqm-c12-oculto{display:none;}
 @media (max-width:600px){
 /* Gutter do painel no celular: 1,2rem de folga em cima e embaixo de cada painel
@@ -964,6 +967,15 @@ function aquametria_c12_js() {
 		if (n) { n.textContent = t; }
 	}
 
+	/* A caixa de resultado e o DETALHE do calculo sao dois blocos desde a 1.7.0
+	   (a compra mora entre eles, pela 32.1 item 5): quem liga um liga o outro. */
+	function mostrarCalculo(ver) {
+		['aqm-c12-saida', 'aqm-c12-detalhe'].forEach(function (id) {
+			var n = el(id);
+			if (n) { n.classList.toggle('aqm-c12-oculto', !ver); }
+		});
+	}
+
 	function pintar(r) {
 		var erros = el('aqm-c12-erros');
 		erros.innerHTML = '';
@@ -973,7 +985,7 @@ function aquametria_c12_js() {
 				li.textContent = t;
 				erros.appendChild(li);
 			});
-			el('aqm-c12-saida').classList.add('aqm-c12-oculto');
+			mostrarCalculo(false);
 			/* A tela nunca fica sem caixa de resultado: entrada invalida devolve
 			   a do exemplo, que e a resposta de um caso de verdade. */
 			mostrarExemplo(true);
@@ -981,7 +993,7 @@ function aquametria_c12_js() {
 		}
 
 		mostrarExemplo(false);
-		el('aqm-c12-saida').classList.remove('aqm-c12-oculto');
+		mostrarCalculo(true);
 
 		pintarFaixa(r);
 		pintarAncoras(r);
@@ -1011,14 +1023,25 @@ function aquametria_c12_js() {
 		textoBarra(mL(r.piso.mL) + ' a ' + mL(r.teto.mL) + ' para ' + litros(r.V) + ' L');
 
 		var vezes = r.teto.ancora.mlL / r.piso.ancora.mlL;
+
+		/* UMA frase de leitura na caixa (32.1, item 4), com o volume e as duas
+		   pontas nomeadas: e o que a pessoa precisa para saber o que o numero e. */
 		el('aqm-c12-faixa-criterio').innerHTML =
-			'Para os <strong>' + litros(r.V) + ' L</strong> de água do seu aquário, segundo as '
-			+ r.bio.length + ' dosagens que fabricantes de mídia declaram e que estão no nosso banco. '
-			+ 'O piso é ' + esc(r.piso.ancora.marca) + ' (' + fmt(r.piso.ancora.mlL, 2) + ' mL/L) e o teto é '
-			+ esc(r.teto.ancora.marca) + ' (' + fmt(r.teto.ancora.mlL, 2) + ' mL/L). '
-			+ '<strong>A faixa é ' + fmt(Math.round(vezes * 10) / 10, 1) + ' vezes larga porque os fabricantes discordam '
-			+ fmt(Math.round(vezes * 10) / 10, 1) + ' vezes entre si</strong> — não porque a conta seja imprecisa. '
-			+ 'Nenhuma fonte brasileira que o nosso levantamento encontrou publica este número, nem sequer para discordar dele.';
+			'Para os <strong>' + litros(r.V) + ' L</strong> de água do seu aquário, pelas '
+			+ r.bio.length + ' dosagens declaradas — piso ' + esc(r.piso.ancora.marca)
+			+ ' (' + fmt(r.piso.ancora.mlL, 2) + ' mL/L), teto ' + esc(r.teto.ancora.marca)
+			+ ' (' + fmt(r.teto.ancora.mlL, 2) + ' mL/L).';
+
+		/* O POR QUE da faixa ser larga abre o DETALHE, abaixo do bloco de compra:
+		   nenhuma palavra saiu da pagina, e sao estas quatro linhas que punham o
+		   primeiro botao de loja fora do teto da 32.5. */
+		var porque = el('aqm-c12-faixa-porque');
+		if (porque) {
+			porque.innerHTML =
+				'<strong>A faixa é ' + fmt(Math.round(vezes * 10) / 10, 1) + ' vezes larga porque os fabricantes discordam '
+				+ fmt(Math.round(vezes * 10) / 10, 1) + ' vezes entre si</strong> — não porque a conta seja imprecisa. '
+				+ 'Nenhuma fonte brasileira que o nosso levantamento encontrou publica este número, nem sequer para discordar dele.';
+		}
 
 		var delta = el('aqm-c12-delta');
 		delta.innerHTML = '';
@@ -1735,7 +1758,7 @@ function aquametria_c12_js() {
 
 	el('aqm-c12-limpar').addEventListener('click', function () {
 		el('aqm-c12-form').reset();
-		el('aqm-c12-saida').classList.add('aqm-c12-oculto');
+		mostrarCalculo(false);
 		el('aqm-c12-erros').innerHTML = '';
 		/* reset() devolve os campos ao caso de exemplo servido no HTML, e por isso
 		   a caixa de exemplo volta junto: ela e a resposta DESSE caso. */
@@ -2001,8 +2024,38 @@ function aquametria_c12_resposta_html() {
 	$h .= '<span class="aqm-c12-rotulo">Mídia biológica que o seu aquário pede</span>';
 	$h .= '<span class="aqm-c12-valor" id="aqm-c12-faixa-valor">—</span>';
 	$h .= '<p class="aqm-c12-criterio" id="aqm-c12-faixa-criterio"></p>';
-	$h .= '<div class="aqm-c12-delta" id="aqm-c12-delta"></div>';
 	$h .= '</div>';
+
+	$h .= '</div>';
+	return $h;
+}
+}
+
+/* O DETALHE DO CALCULO: tudo o que o calculo produz e nao e o numero da resposta
+   — as duas tabelas de dosagem, o cesto, as camadas, a quimica, a manutencao e o
+   permalink.
+   POR QUE SEPARADO DA CAIXA, e isto foi medido no ar na IRMA desta pagina pela
+   ronda da Sentinela de 21/10/2026 as 14h5xZ, no Chrome do Raphael a 390 px: com
+   o detalhe dentro da caixa, calcular inseria todos esses paineis ENTRE o
+   resultado e a vitrine, e o primeiro cartao de loja da C15 ia de 1.300 px para
+   **5.839 px** — o teto da 32.5 e 1.400. A pagina passava no estado em que
+   ninguem a usou e falhava por 4,2 vezes no estado em que alguem a usou. A 32.1
+   item 5 diz "bloco de compra IMEDIATAMENTE abaixo do resultado", e imediatamente
+   e literal. Nasce oculto, como a caixa, e aparece junto com ela — mas DEPOIS da
+   compra e da tabela de casos. */
+if ( ! function_exists( 'aquametria_c12_detalhe_html' ) ) {
+function aquametria_c12_detalhe_html() {
+	$h  = '<div class="aqm-c12-resultado aqm-c12-oculto" id="aqm-c12-detalhe">';
+
+	/* A JUSTIFICATIVA DA FAIXA E AS FICHAS DE ENTRADA abrem o detalhe. Elas moravam
+	   DENTRO da caixa de resultado ate a 1.7.0, e eram 4 linhas de texto mais 3
+	   fichas entre o numero e o bloco de compra: no render de 390 px, o primeiro
+	   botao de loja de quem volta com aquario guardado ficava a 1.480 px, contra o
+	   teto de 1.400 da 32.5 — e no ar a pagina e mais alta que no render (a C15
+	   mediu 128 px de diferenca). A 32.1 item 4 descreve a caixa como "numero em
+	   Mono, frase de leitura embaixo": UMA frase. Nenhuma palavra saiu da pagina. */
+	$h .= '<p class="aqm-c12-criterio" id="aqm-c12-faixa-porque"></p>';
+	$h .= '<div class="aqm-c12-delta" id="aqm-c12-delta"></div>';
 
 	/* Tabela 1: quem vende mídia. */
 	$h .= '<div class="aqm-c12-painel">';
@@ -3441,6 +3494,10 @@ function aquametria_c12_shortcode() {
 	$h .= aquametria_c12_resposta_html();
 	$h .= aquametria_c12_vitrine_servida_html();
 	$h .= aquametria_c12_exemplos_html();
+	/* O DETALHE DO CALCULO vem DEPOIS da compra e da tabela: era ele que, nascendo
+	   entre a caixa de resultado e a vitrine, levava o primeiro cartao de loja da
+	   C15 de 1.300 para 5.839 px assim que alguem calculava (ronda de 21/10). */
+	$h .= aquametria_c12_detalhe_html();
 	/* A resposta direta continua SERVIDA E VISIVEL, e continua antes de toda
 	   explicacao — o que mudou e que ela deixou de ser o pedagio do formulario.
 	   Dobrar este bloco seria afrouxar a secao 5 do contrato, que e de primeira

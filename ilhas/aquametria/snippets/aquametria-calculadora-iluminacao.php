@@ -924,7 +924,12 @@ max-width:52rem;font-family:var(--c15-texto);color:var(--c15-tinta);}
 .aqm-c15-oculto{display:none;}
 /* A caixa de resultado pre-renderizada (32.1, item 4) e a mesma moldura da
    caixa do script; o que a distingue e a nota de que o caso e o do formulario. */
-.aqm-c15-exemplo .aqm-c15-faixa{margin-bottom:.7rem;}
+/* A CAIXA DO CALCULO E A DO EXEMPLO SAO A MESMA POSICAO DA 32.1 (item 4) e por
+   isso tem a MESMA metrica: nunca estao na tela ao mesmo tempo, e a que aparece
+   nao pode empurrar a compra mais que a outra. Ate a 1.9.0 a do calculo levava
+   1,2rem do `.aqm-c15-resultado` mais 1rem da faixa; a do exemplo, 0,7rem. */
+.aqm-c15-exemplo,#aqm-c15-saida{margin-bottom:0;}
+.aqm-c15-exemplo .aqm-c15-faixa,#aqm-c15-saida .aqm-c15-faixa{margin-bottom:.7rem;}
 .aqm-c15-exemplo-nota{margin:0 0 .2rem;}
 /* A dobra dos ajustes finos vive DENTRO do painel do formulario, que ja tem
    fundo e borda: a dela some para nao desenhar caixa dentro de caixa. */
@@ -1297,6 +1302,16 @@ function aquametria_c15_js() {
 
 	/* ------------------------------------------------------------------ tela */
 
+	/* A caixa de resultado e o DETALHE do calculo sao dois blocos desde a 1.9.0
+	   (a compra mora entre eles, pela 32.1 item 5): quem liga um liga o outro, e
+	   esta funcao existe para que nenhuma chamada esqueca a metade. */
+	function mostrarCalculo(ver) {
+		['aqm-c15-saida', 'aqm-c15-detalhe'].forEach(function (id) {
+			var n = el(id);
+			if (n) { n.classList.toggle('aqm-c15-oculto', !ver); }
+		});
+	}
+
 	function pintar(r) {
 		var alvo = el('aqm-c15-saida');
 		var ul = el('aqm-c15-erros');
@@ -1314,7 +1329,7 @@ function aquametria_c15_js() {
 				li.textContent = er.texto;
 				ul.appendChild(li);
 			});
-			alvo.classList.add('aqm-c15-oculto');
+			mostrarCalculo(false);
 			/* Sem faixa calculada a resposta da pagina volta a ser a do exemplo
 			   servido: a tela nunca fica sem caixa de resultado, e a barra do
 			   celular volta a prometer o numero que esta na tela. */
@@ -1322,7 +1337,7 @@ function aquametria_c15_js() {
 			return;
 		}
 
-		alvo.classList.remove('aqm-c15-oculto');
+		mostrarCalculo(true);
 		mostrarExemplo(false);
 
 		el('aqm-c15-faixa-valor').innerHTML = lm(r.min) + ' a ' + lm(r.max) + (r.aberto ? '+' : '')
@@ -2117,7 +2132,7 @@ function aquametria_c15_js() {
 
 	el('aqm-c15-limpar').addEventListener('click', function () {
 		el('aqm-c15-form').reset();
-		el('aqm-c15-saida').classList.add('aqm-c15-oculto');
+		mostrarCalculo(false);
 		el('aqm-c15-erros').innerHTML = '';
 		/* reset() devolve os campos ao caso de exemplo servido no HTML, e por
 		   isso a caixa de exemplo volta junto: ela e a resposta DESSE caso. */
@@ -2370,8 +2385,17 @@ function aquametria_c15_resposta_exemplo_html() {
 
 if ( ! function_exists( 'aquametria_c15_resposta_html' ) ) {
 function aquametria_c15_resposta_html() {
-	$artigo = aquametria_c15_url( AQUAMETRIA_C15_ARTIGO );
-
+	/* A CAIXA DO CALCULO, e SO ela. O detalhe — as tabelas, os fotoperiodos, os
+	   barrados, o permalink — mora em aquametria_c15_detalhe_html(), DEPOIS do
+	   bloco de compra.
+	   POR QUE SEPARADAS, medido no ar pela ronda da Sentinela de 21/10/2026 as
+	   14h5xZ, no Chrome do Raphael a 390 px: com o detalhe aqui dentro, calcular
+	   inseria TODOS esses paineis ENTRE a caixa de resultado e a vitrine, e o
+	   primeiro cartao de loja ia de 1.300 px para **5.839 px** — o teto da 32.5 e
+	   1.400, logo a pagina passava no estado em que ninguem a usou e falhava por
+	   4,2 vezes no estado em que alguem a usou. Com aquario guardado no
+	   localStorage, 3.839 px. A 32.1 item 5 diz "bloco de compra IMEDIATAMENTE
+	   abaixo do resultado", e imediatamente e literal. */
 	$h  = '<div class="aqm-c15-resultado aqm-c15-oculto" id="aqm-c15-saida" aria-live="polite">';
 
 	$h .= '<div class="aqm-c15-faixa">';
@@ -2379,6 +2403,21 @@ function aquametria_c15_resposta_html() {
 	$h .= '<span class="aqm-c15-valor" id="aqm-c15-faixa-valor">—</span>';
 	$h .= '<p class="aqm-c15-criterio" id="aqm-c15-faixa-criterio"></p>';
 	$h .= '</div>';
+
+	$h .= '</div>';
+	return $h;
+}
+}
+
+/* O DETALHE DO CALCULO: tudo o que o calculo produz e nao e o numero da resposta.
+   Nasce oculto, como a caixa, e aparece junto com ela — mas DEPOIS do bloco de
+   compra e da tabela de casos, para nao empurrar a compra para fora do teto da
+   32.5 (o porque esta na funcao acima, com o numero medido no ar). */
+if ( ! function_exists( 'aquametria_c15_detalhe_html' ) ) {
+function aquametria_c15_detalhe_html() {
+	$artigo = aquametria_c15_url( AQUAMETRIA_C15_ARTIGO );
+
+	$h  = '<div class="aqm-c15-resultado aqm-c15-oculto" id="aqm-c15-detalhe">';
 
 	$h .= '<div class="aqm-c15-painel">';
 	$h .= '<h3>As três leituras brasileiras, lado a lado</h3>';
@@ -2545,9 +2584,25 @@ function aquametria_c15_fontes_html() {
 	$h .= 'a resposta oficial sobre a tabela de PAR da linha WRGB II Pro é que não existe teste oficial e que o usuário procure medições no YouTube. ';
 	$h .= 'Enquanto não houver PPFD declarado com a distância em centímetros, esta calculadora não publica nenhum.</td></tr>';
 
+	/* OS TRES NUMEROS DESTA LINHA NASCEM CONTADOS, nao digitados — item 2 do
+	   despacho da ronda de 21/10/2026. A frase dizia "seis registros e so tres
+	   podem ser sugeridos: tres barrados por nao declararem voltagem ou lumens",
+	   e no ar, naquele dia, o banco tinha 26 registros, 15 sugeriveis e 11
+	   barrados — nenhum deles por voltagem, que os 26 declaram. A frase foi
+	   verdadeira no bloco 3, de 07/09, e o banco cresceu por baixo dela: e a
+	   familia do "numero de tela digitado" da secao 8. Contando aqui, a proxima
+	   leva de produto nao envelhece a frase em silencio.
+	   O CAMINHO DO ARQUIVO SAIU, pela 32.4: era o repositorio falando com o
+	   visitante. A procedencia que a 32.4 manda guardar e o que ficou — o banco
+	   nomeado, com fonte, endereco e data por campo, que e o que cada cartao
+	   mostra. */
+	$aptas    = count( aquametria_c15_catalogo() );
+	$barradas = count( aquametria_c15_barrados() );
 	$h .= '<tr><td>fichas das luminárias</td><td>ver cada cartão</td>';
-	$h .= '<td>Banco de produtos da Aquametria (dados/produtos-iluminacao.json), com fonte, endereço e data por campo. ';
-	$h .= 'Hoje o banco tem seis registros e só três podem ser sugeridos: três são barrados por não declararem voltagem ou lúmens.</td></tr>';
+	$h .= '<td>Banco de produtos da Aquametria, com fonte, endereço e data por campo. ';
+	$h .= 'Hoje ele tem ' . esc_html( number_format_i18n( $aptas + $barradas, 0 ) ) . ' luminárias e '
+		. esc_html( number_format_i18n( $aptas, 0 ) ) . ' delas podem ser sugeridas — são as que declaram lúmens e o comprimento de aquário que atendem. ';
+	$h .= 'As outras ' . esc_html( number_format_i18n( $barradas, 0 ) ) . ' ficam de fora por não declararem o fluxo luminoso, e estão listadas com nome e motivo na própria página.</td></tr>';
 
 	$h .= '</table></div>';
 	$h .= '</div>';
@@ -3689,6 +3744,11 @@ function aquametria_c15_shortcode() {
 	$h .= aquametria_c15_resposta_html();
 	$h .= aquametria_c15_vitrine_servida_html();
 	$h .= aquametria_c15_exemplos_html();
+	/* O DETALHE DO CALCULO vem DEPOIS da compra e da tabela, desde a 1.9.0: era
+	   ele que, nascendo entre a caixa de resultado e a vitrine, levava o primeiro
+	   cartao de loja de 1.300 px para 5.839 px assim que alguem calculava
+	   (medido no ar pela ronda de 21/10/2026, 390 px). */
+	$h .= aquametria_c15_detalhe_html();
 	/* A resposta direta continua SERVIDA E VISIVEL, e continua antes de toda
 	   explicacao — o que mudou e que ela deixou de ser o pedagio do formulario.
 	   Dobrar este bloco seria afrouxar a secao 5 do contrato, que e de primeira

@@ -19,7 +19,7 @@ Esta página existe porque um site que mede audiência e leva a botão de loja d
 
 ## O que a gente guarda sobre você
 
-Nada que identifique você, e não por delicadeza — não existe onde guardar. A Aquametria não tem banco de usuários, não tem lista de e-mail, não tem carrinho e não recebe formulário. Em 22 de setembro de 2026 as 44 páginas do site foram abertas uma a uma e **nenhuma delas devolveu um cookie sequer vindo do nosso servidor.** A primeira medição desta frase é de 13 de setembro de 2026, quando o site tinha 27 páginas, e ela é refeita por inteiro a cada passada de `ferramentas/conferir-privacidade-no-ar.py`.
+Nada que identifique você, e não por delicadeza — não existe onde guardar. A Aquametria não tem banco de usuários, não tem lista de e-mail, não tem carrinho e não recebe formulário. Em 22 de setembro de 2026 as 44 páginas do site foram abertas uma a uma e **nenhuma delas devolveu um cookie sequer vindo do nosso servidor.** A primeira medição desta frase é de 13 de setembro de 2026, quando o site tinha 27 páginas, e ela é refeita por inteiro, página por página no ar, a cada passada — não é uma frase escrita uma vez e deixada envelhecendo.
 
 ## Para onde o seu navegador liga quando abre uma página daqui
 
@@ -37,7 +37,7 @@ São cinco, e os cinco carregam sozinhos assim que a página abre. Ao pedir um a
 
 **Um sexto endereço aparece no HTML e não é contatado sozinho**, em 5 das 48 páginas, e ele é destino de botão: `s.shopee.com.br`, o link curto que abre ou o anúncio escolhido ou a busca da loja pelo nome do produto. **O seu navegador só fala com ele se você clicar.**
 
-**Em 23 de setembro de 2026 um endereço SAIU desta lista**, e a régua desta página é quem obriga a dizer: até aquele dia havia mais um destino de botão, o da busca da loja escrita por extenso, oferecida quando não havia anúncio escolhido para o item. Naquele dia todas as saídas de compra deste site passaram a ser links curtos, e aquele endereço deixou de ser servido em qualquer página. **A régua cobra as duas direções** — reprova endereço servido que esta lista não traga **e** endereço que esta lista traga e o site não sirva mais —, e por isso ele saiu da tabela em vez de ficar envelhecendo nela. Quem mede é `ferramentas/conferir-privacidade-no-ar.py`, que abre as páginas no ar.
+**Em 23 de setembro de 2026 um endereço SAIU desta lista**, e a régua desta página é quem obriga a dizer: até aquele dia havia mais um destino de botão, o da busca da loja escrita por extenso, oferecida quando não havia anúncio escolhido para o item. Naquele dia todas as saídas de compra deste site passaram a ser links curtos, e aquele endereço deixou de ser servido em qualquer página. **A régua cobra as duas direções** — reprova endereço servido que esta lista não traga **e** endereço que esta lista traga e o site não sirva mais —, e por isso ele saiu da tabela em vez de ficar envelhecendo nela. A medição é feita abrindo as páginas no ar, uma a uma.
 
 ## Cookie, e por que não tem caixa pedindo para você aceitar
 
