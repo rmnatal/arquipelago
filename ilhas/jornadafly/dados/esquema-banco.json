@@ -161,6 +161,11 @@
    "publicavel",
    "pendente_de_releitura",
    "excluido_do_banco"
+  ],
+  "eixo_das_versoes": [
+   "por_quantidade",
+   "por_escopo",
+   "por_momento"
   ]
  },
  "campos_que_exigem_declaracao_de_origem": {
@@ -284,6 +289,14 @@
      "tipo": "texto",
      "obrigatorio": true,
      "observacao": "por que este registro esta no banco. O criterio de entrada do corpus PREFERE operador privado sem tabela publica; registro que entra por outro motivo diz qual e."
+    },
+    "eixo_das_versoes": {
+     "tipo": "enum:eixo_das_versoes",
+     "obrigatorio": true,
+     "null_exige": "motivo_sem_eixo_das_versoes",
+     "null_permitido_quando": "a experiencia tem UMA versao so: sem duas, nao ha eixo a declarar.",
+     "o_que_e": "Em que grandeza as versoes vendidas daquela experiencia diferem entre si. `por_quantidade` = as versoes sao MAIS DA MESMA COISA (o Angkor Pass de 1, 3 e 7 dias). `por_escopo` = as versoes dao COISAS DIFERENTES (o ingresso do Coliseu com ou sem a area restrita; os quatro bilhetes da Torre Eiffel). `por_momento` = as versoes sao a mesma coisa em HORARIO diferente (a gondola de dia e de noite).",
+     "por_que_e_declarado_e_nao_deduzido": "A Conta 3 da F1 (especificacao, 2.5) pergunta a partir de qual quantidade a versao mais cara passa a valer. Essa conta SO tem sentido quando as versoes sao substituiveis em quantidade: comprar dois ingressos de 24 horas do Coliseu NAO da a area restrita da Experiencia Completa, entao o ponto de equilibrio entre elas seria um numero certo sobre uma pergunta sem sentido — o jeito mais eficiente de publicar aritmetica correta dizendo uma mentira. E o eixo nao se deduz do rotulo: deduzir pelo texto de `rotulo` seria ler prosa como se fosse campo, que e exatamente o que a migracao de 22/10/2026 desfez com a `faixa_etaria`."
     }
    }
   },
@@ -377,6 +390,21 @@
      "tipo": "texto",
      "obrigatorio": true,
      "observacao": "a frase da fonte, inteira, do jeito que ela escreveu. E o que permite a tela citar em vez de parafrasear."
+    },
+    "dias_de_uso": {
+     "tipo": "inteiro >= 1",
+     "obrigatorio": true,
+     "null_exige": "motivo_sem_dias_de_uso",
+     "exigido_quando": "a EXPERIENCIA declara `eixo_das_versoes: por_quantidade` — sem ele a Conta 3 nao tem a grandeza do eixo que a propria experiencia declarou ter.",
+     "proibido_quando": "a EXPERIENCIA declara `eixo_das_versoes` diferente de `por_quantidade`: dar quantidade a versao que difere em escopo ou em horario convida a conta que nao existe.",
+     "exige_tambem": "dias_de_uso_transcrito_de",
+     "o_que_e": "Quantos dias de uso aquele bilhete da. Numero TRANSCRITO da declaracao da propria fonte, nunca contado pela ilha: o `declarado_como` da versao tem de dizer o numero, por extenso ou em digito, e a regua confere isso em vez de confiar no rotulo."
+    },
+    "dias_de_uso_transcrito_de": {
+     "tipo": "texto",
+     "obrigatorio": false,
+     "exigido_quando": "`dias_de_uso` preenchido",
+     "o_que_e": "De qual frase da fonte o numero saiu. Mesma disciplina do `transcrito_de` das faixas etarias, escrita em 22/10/2026: prosa que vira campo diz de onde veio."
     }
    }
   },
@@ -633,7 +661,9 @@
   "cidade com mais de uma experiencia",
   "fonte de nivel 5 (plataforma lida na propria plataforma) — a busca de 14/09 devolveu a pagina de produto da Civitatis para o safari de Dubai no conjunto de resultados e NAO devolveu o preco dela; sem ler a plataforma, o numero dela chega por terceiro e cai para nivel 6, que e o que ja aconteceu com a GetYourGuide na gondola",
   "fonte de nivel 1 ou 2, que exige leitura direta — remedida em 15/09/2026 e ainda fora de alcance: curl em 000 e CONNECT recusado por politica em www.coopculture.it, colosseo.it, www.toureiffel.paris e civitatis.com",
-  "faixa etaria com `preco` null e motivo — nenhuma das 11 versoes tem: as faixas que o banco traz hoje ou tem numero (3,80 a 18,40 EUR na Torre Eiffel) ou tem zero, que e a gratuidade declarada. Faixa que a fonte NOMEIA sem dizer o preco e o caso que falta, e ele tem mutacao em mutacoes-banco.py"
+  "faixa etaria com `preco` null e motivo — nenhuma das 11 versoes tem: as faixas que o banco traz hoje ou tem numero (3,80 a 18,40 EUR na Torre Eiffel) ou tem zero, que e a gratuidade declarada. Faixa que a fonte NOMEIA sem dizer o preco e o caso que falta, e ele tem mutacao em mutacoes-banco.py",
+  "EIXO `por_quantidade` COM UMA VERSAO SO. O esquema permite, e nesse mundo nao existe ponto de equilibrio nenhum — ha uma quantidade e nada com que compara-la. A F1 nao pode cair em lista vazia fingindo que a conta foi feita: ela diz que a experiencia declara eixo de quantidade e tem uma versao so. Produzido pela bancada de mutacoes do bloco 4 em 22/10/2026, porque o banco nao o tem.",
+  "EIXO `por_quantidade` COM EMPATE DE PRECO entre duas versoes de quantidades diferentes. O esquema permite, e nesse mundo a versao mais cara nao existe: a de maior quantidade e a de menor custam o mesmo, e o equilibrio e 1. Mundo fabricado pela bancada em 22/10/2026 — a mesma familia do empate no topo que o Clube do Mosaico pagou em 08/10/2026."
  ],
  "o_que_saiu_desta_lista_em_14_09_2026_as_23h": "preco por_pessoa, escada de dias como versoes e faixa_etaria preenchida sairam porque o Angkor Pass entrou no banco com os tres — 1, 3 e 7 dias como versoes, preco por pessoa e a gratuidade de menores de 12 anos como faixa_etaria. Eles continuam tendo mutacao em mutacoes-banco.py: mundo produzido que virou banco real nao dispensa a regua, porque o mundo produzido cobre a combinacao inteira e o registro real cobre so a dele.",
  "por_que_essa_lista_existe": "Todo caso que o ESQUEMA permite e o banco ainda nao tem e um caso que a regua precisa tratar HOJE, nao no dia em que aparecer (secao 8 do ARQUIPELAGO.md). ferramentas/mutacoes-banco.py produz cada um destes mundos e verifica que o validador decide certo nos dois lados da fronteira — o mundo valido tem de PASSAR, e e essa metade que prova que a trava nao esta apenas dizendo nao para tudo.",
@@ -657,5 +687,14 @@
   "como_fechou": "`faixa_etaria` desceu para a VERSAO, as 11 versoes das 4 experiencias foram migradas na mesma passada, e o `proximo_passo` que esta chave escrevia foi cumprido ao pe da letra — com a regua e as mutacoes junto. O que o esquema permitia e o banco nao tinha deixou de ser um buraco nomeado e virou campo contado: `faixas_etarias` e `faixas_declaradas_nao_transcritas` entraram no resumo, que nasce contado (secao 8). A chave fica como registro de que o achado existiu e de que ele levou 37 dias entre ser medido e ser consertado."
  },
  "versao_3_mudou": "Carga de 15/09/2026. Nasceu `regra_de_crescimento_de_vocabulario` (vocabulario cresce com o registro que o usa, nunca antes — e ela responde a pergunta da moeda que a carga de 14/09 deixou aberta). `tipo_de_operador` ganhou `concessionaria_de_bem_publico`, no mesmo commit do registro que precisa dele. O degrau 4 da escada passou a `existe_hoje: true` e `existe_hoje` virou campo DERIVADO, recomputado pelo validador. E ficou escrito o achado de modelo desta carga: `faixa_etaria` e da VERSAO e o esquema a poe na EXPERIENCIA.",
- "versao_4_mudou": "Migracao de 22/10/2026, primeiro dia da jornadafly em foco. `faixa_etaria` saiu da EXPERIENCIA e entrou na VERSAO, com a entidade FAIXA_ETARIA nascendo explicita; a proibicao de faixa fora de `por_pessoa` deixou de ser prosa no registro da gondola e virou regra do esquema, porque `unidade_de_preco` e campo da VERSAO; nasceu `faixas_que_a_fonte_declara_e_a_leitura_nao_transcreveu`, que conta a lacuna em vez de a calar; e nasceu `numero_da_frase_e_de_outra_versao`, que e o defeito que a migracao achou no Angkor — a frase da fonte cita US$ 37, o passe de um dia, e ela estava guardada num campo que valia para os tres passes. NADA foi ao ar: esta ilha nao tem site, nao tem Sync e nao tem /status, e dizer que verificou no ar seria inventar."
+ "versao_4_mudou": "Migracao de 22/10/2026, primeiro dia da jornadafly em foco. `faixa_etaria` saiu da EXPERIENCIA e entrou na VERSAO, com a entidade FAIXA_ETARIA nascendo explicita; a proibicao de faixa fora de `por_pessoa` deixou de ser prosa no registro da gondola e virou regra do esquema, porque `unidade_de_preco` e campo da VERSAO; nasceu `faixas_que_a_fonte_declara_e_a_leitura_nao_transcreveu`, que conta a lacuna em vez de a calar; e nasceu `numero_da_frase_e_de_outra_versao`, que e o defeito que a migracao achou no Angkor — a frase da fonte cita US$ 37, o passe de um dia, e ela estava guardada num campo que valia para os tres passes. NADA foi ao ar: esta ilha nao tem site, nao tem Sync e nao tem /status, e dizer que verificou no ar seria inventar.",
+ "versao": 5,
+ "conta_3_da_F1_exige_EIXO_DECLARADO_e_nao_sai_do_rotulo": {
+  "nascida_em": "2026-10-22",
+  "medida_em": "o bloco 4 desta ilha, escrevendo a F1 como regra sobre o banco versao 4",
+  "o_que_estava_errado": "A especificacao (2.5, Conta 3) manda a F1 mostrar «a partir de qual numero de dias/atracoes a versao mais cara passa a valer», e nomeia Petra e Angkor como os casos medidos. O banco versao 4 nao tinha COMO responder: as 11 versoes das 4 experiencias trazem `preco`, `rotulo` e `declarado_como`, e nenhum campo diz quantas unidades de uso cada bilhete da nem se as versoes sao comparaveis em quantidade. A conta era calculavel apenas lendo o rotulo — «1 dia», «3 dias, usaveis dentro de uma semana» — ou seja lendo PROSA, e prosa nao se conta.",
+  "as_duas_metades_do_conserto": "(1) a EXPERIENCIA declara o EIXO em que suas versoes diferem, porque a comparabilidade e uma decisao sobre o conjunto e nao um atributo de cada item; (2) a VERSAO declara `dias_de_uso` quando o eixo e `por_quantidade`, transcrito da frase da fonte. As duas sao obrigatorias: sem a primeira a F1 compara bilhetes que nao se substituem, sem a segunda ela nao tem a grandeza.",
+  "por_que_a_funcao_e_PURA": "A regra da secao 8 do ARQUIPELAGO.md, aprendida no Clube do Mosaico em 08/10/2026: recusa que depende de uma relacao entre os dados mora numa funcao pura que recebe a relacao JA calculada. O ponto de equilibrio da F1 recebe `[(id, preco, dias_de_uso)]` e o eixo, e devolve as linhas — nunca varre o banco por dentro. Assim a bancada fabrica o mundo (eixo por_quantidade com uma versao so, com empate de preco, com preco null, com dias_de_uso igual em duas versoes) sem precisar fabricar um banco falso.",
+  "o_que_o_banco_de_hoje_tem": "UMA experiencia com eixo `por_quantidade` (o Angkor Pass, 1/3/7 dias), duas `por_escopo` (Coliseu e Torre Eiffel) e uma `por_momento` (a gondola). Ou seja: tres dos quatro valores de eixo existem no banco e o quarto caso — eixo por_quantidade com UMA versao — nao existe, e e mundo que o esquema permite. Esta linha e o registro de que ele foi tratado hoje e nao no dia em que aparecer."
+ }
 }

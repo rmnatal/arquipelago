@@ -1,7 +1,7 @@
 {
  "ilha": "jornadafly",
  "bloco": 3,
- "versao": 4,
+ "versao": 5,
  "publicar": false,
  "cumpre": "dados/esquema-banco.json",
  "nota_da_versao_2": "Carga de 14/09/2026, as 23h. Entrou o Angkor Pass, com Siem Reap como segunda cidade e a escada de dias (1, 3 e 7) como versoes. E entrou o que a coleta MEDIU sobre o canal: das seis experiencias que o bloco 2 nomeou, tres foram tentadas por busca (balao da Capadocia, cruzeiro de Ha Long e quadriciclo de Dubai, em cinco passadas somadas) e as tres devolveram FAIXA sem dono, sem data e as vezes sem unidade — as duas passadas de Ha Long discordam entre por cabine e por pessoa, e entre dolar e dongue. A busca devolve numero onde ha tabela publica e devolve faixa onde o preco e de operador privado, que e justamente o tipo que o criterio de entrada PREFERE. As tres ficam como coleta em aberto com a causa medida, nunca como silencio.",
@@ -136,6 +136,8 @@
    "nome": "Passeio de gôndola em Veneza",
    "cidade": "veneza",
    "categoria": "atividade_com_tarifa_tabelada",
+   "eixo_das_versoes": "por_momento",
+   "nota_do_eixo_das_versoes": "As duas versoes sao O MESMO passeio em horario diferente — a tarifa oficial separa o diurno (30 min, das 9h as 19h) do noturno (35 min, das 19h as 4h). Nao sao quantidades da mesma coisa: comprar dois passeios diurnos nao da um passeio noturno. E tambem nao e escopo, porque o que muda e a janela horaria e nao o que se recebe.",
    "operador": {
     "nome": "gondoleiros de Veneza, com tarifa fixada pelo Comune di Venezia",
     "tipo": "poder_publico",
@@ -152,6 +154,8 @@
      "unidade_de_preco_declarada_por": "no_ato_oficial",
      "capacidade_maxima": 5,
      "capacidade_maxima_declarada_por": "no_ato_oficial",
+     "dias_de_uso": null,
+     "motivo_sem_dias_de_uso": "A experiencia declara `eixo_das_versoes: por_momento`, e o esquema PROIBE `dias_de_uso` fora do eixo de quantidade: dar quantidade a uma versao que difere em horario convida a conta que nao existe. Esta versao vale para um passeio, no horario que o rotulo diz.",
      "faixa_etaria": null,
      "motivo_sem_faixa_etaria": "Não há preço de criança a declarar, e a causa é o próprio desenho da unidade: a tarifa é pela embarcação inteira, não por passageiro. Desde 22/10/2026 isto não é mais só uma frase: `faixa_etaria` mora na VERSÃO, `unidade_de_preco` também, e o esquema PROÍBE faixa etária onde a unidade não é `por_pessoa` — então a régua reprova quem tentar gravá-la aqui, em vez de depender de alguém ler este motivo. Seis pessoas na gôndola são DUAS gôndolas: a criança não tem preço, tem assento.",
      "duracao_minutos": 30,
@@ -183,6 +187,8 @@
      "unidade_de_preco_declarada_por": "no_ato_oficial",
      "capacidade_maxima": 5,
      "capacidade_maxima_declarada_por": "no_ato_oficial",
+     "dias_de_uso": null,
+     "motivo_sem_dias_de_uso": "A experiencia declara `eixo_das_versoes: por_momento`, e o esquema PROIBE `dias_de_uso` fora do eixo de quantidade: dar quantidade a uma versao que difere em horario convida a conta que nao existe. Esta versao vale para um passeio, no horario que o rotulo diz.",
      "faixa_etaria": null,
      "motivo_sem_faixa_etaria": "Não há preço de criança a declarar, e a causa é o próprio desenho da unidade: a tarifa é pela embarcação inteira, não por passageiro. Desde 22/10/2026 isto não é mais só uma frase: `faixa_etaria` mora na VERSÃO, `unidade_de_preco` também, e o esquema PROÍBE faixa etária onde a unidade não é `por_pessoa` — então a régua reprova quem tentar gravá-la aqui, em vez de depender de alguém ler este motivo. Seis pessoas na gôndola são DUAS gôndolas: a criança não tem preço, tem assento.",
      "duracao_minutos": 35,
@@ -302,6 +308,8 @@
    "nome": "Angkor Pass — o ingresso do Parque Arqueológico de Angkor",
    "cidade": "siem-reap",
    "categoria": "ingresso_de_sitio_publico",
+   "eixo_das_versoes": "por_quantidade",
+   "nota_do_eixo_das_versoes": "As tres versoes sao MAIS DA MESMA COISA: 1, 3 e 7 dias de visitacao do mesmo parque, e a propria fonte declara os tres numeros em dolar na mesma leitura. E o unico caso de eixo de quantidade do banco de hoje, e e o caso que a Conta 3 da especificacao nomeia por escrito.",
    "operador": {
     "nome": "Angkor Enterprise, a empresa pública que vende o Angkor Pass",
     "tipo": "poder_publico",
@@ -318,6 +326,8 @@
      "unidade_de_preco_declarada_por": "no_contraste_da_propria_fonte",
      "capacidade_maxima": null,
      "capacidade_maxima_declarada_por": null,
+     "dias_de_uso": 1,
+     "dias_de_uso_transcrito_de": "a frase da propria fonte, gravada em `declarado_como` na carga de 14/09/2026: «US$ 37 para a visitacao de um dia. O passe de um dia vale na data impressa nele.» O numero esta por extenso («um dia») e a regua aceita as duas formas, digito e palavra, porque e a fonte que escolhe como escreve.",
      "faixa_etaria": [
       {
        "rotulo": "menores de 12 anos",
@@ -354,6 +364,8 @@
      "unidade_de_preco_declarada_por": "no_contraste_da_propria_fonte",
      "capacidade_maxima": null,
      "capacidade_maxima_declarada_por": null,
+     "dias_de_uso": 3,
+     "dias_de_uso_transcrito_de": "a frase da propria fonte, gravada em `declarado_como` na carga de 14/09/2026: «US$ 62 para 3 dias. Os tres dias nao precisam ser seguidos: valem em tres dias quaisquer dentro de uma janela de sete.» O numero 3 e o de DIAS DE USO; os sete da janela sao validade e nao quantidade, e confundir os dois publicaria o equilibrio errado.",
      "faixa_etaria": [
       {
        "rotulo": "menores de 12 anos",
@@ -391,6 +403,8 @@
      "unidade_de_preco_declarada_por": "no_contraste_da_propria_fonte",
      "capacidade_maxima": null,
      "capacidade_maxima_declarada_por": null,
+     "dias_de_uso": 7,
+     "dias_de_uso_transcrito_de": "a frase da propria fonte, gravada em `declarado_como` na carga de 14/09/2026: «US$ 72 para 7 dias. Os sete dias nao precisam ser seguidos: valem em sete dias quaisquer dentro de um mes.»",
      "faixa_etaria": [
       {
        "rotulo": "menores de 12 anos",
@@ -447,6 +461,8 @@
    "nome": "Coliseu de Roma — o ingresso do Parco archeologico del Colosseo",
    "cidade": "roma",
    "categoria": "ingresso_de_sitio_publico",
+   "eixo_das_versoes": "por_escopo",
+   "nota_do_eixo_das_versoes": "As duas versoes dao COISAS DIFERENTES: o ingresso comum de 24 horas e a Experiencia Completa, que acrescenta uma area restrita. Comprar dois ingressos comuns NAO da a area restrita, entao nao ha ponto de equilibrio a calcular — e calcular um seria aritmetica certa sobre pergunta sem sentido.",
    "operador": {
     "nome": "Parco archeologico del Colosseo, o órgão público que administra o sítio e vende o ingresso",
     "tipo": "poder_publico",
@@ -463,6 +479,8 @@
      "unidade_de_preco_declarada_por": "no_texto_da_fonte",
      "capacidade_maxima": null,
      "capacidade_maxima_declarada_por": null,
+     "dias_de_uso": null,
+     "motivo_sem_dias_de_uso": "A experiencia declara `eixo_das_versoes: por_escopo`, e o esquema PROIBE `dias_de_uso` fora do eixo de quantidade: dar quantidade a uma versao que difere em escopo convida a conta que nao existe. Esta versao vale para uma entrada, no escopo que o rotulo diz.",
      "faixa_etaria": null,
      "motivo_sem_faixa_etaria": "E este vazio é o achado mais caro desta carga, porque as duas passadas DISCORDAM exatamente onde o leitor brasileiro tem mais a perder. A passada em português diz que a gratuidade para menores de 18 anos é de cidadão de Estado-membro da União Europeia, e que a gratuidade universal é só para menores de 6 anos. A passada em inglês diz o contrário com todas as letras: «tickets for 18 and under are free to citizens of EU and non-EU countries», e acrescenta que o visitante de 18 a 25 anos de fora da UE paga a tarifa cheia. As duas ainda divergem no valor da tarifa reduzida da faixa de 18 a 25 anos da UE: €4 na primeira, cerca de €2 na segunda. Nenhuma das duas é autoridade — as duas são publicador editorial, nível 6 —, e a regra de divergência sem autoridade desta ilha resolve para o valor MAIOR, porque o erro caro é subestimar. Resolvido pelo maior, o adolescente brasileiro paga os €18 do adulto. E é isso que a página vai dizer: que a gratuidade está em disputa entre as fontes, com o nome de quem publicou cada versão, e que a conta do grupo é feita pelo cheio até a autoridade declarar. Não entra em `faixa_etaria` porque `faixa_etaria` guarda PREÇO, e aqui o que existe é uma divergência sobre quem tem direito — e não entra em `declaracoes` porque declaração, neste esquema, discorda de uma VERSÃO, e faixa etária não é versão. O buraco está nomeado no esquema, em `faixa_etaria_e_da_VERSAO_e_o_esquema_a_poe_na_EXPERIENCIA`. MIGRADO EM 22/10/2026 sem mudar de conteúdo: o motivo desceu da EXPERIÊNCIA para as duas versões porque o campo desceu, e a divergência que ele descreve atravessa os dois bilhetes do mesmo jeito — a passada em português e a em inglês discordam sobre QUEM tem direito à gratuidade, não sobre qual bilhete. O que a descida muda é que agora a ausência é afirmada bilhete por bilhete, e não uma vez para os dois.",
      "motivo_sem_capacidade": "Ingresso individual não tem lotação: a unidade já é a pessoa. O degrau que a gôndola tem, onde 6 pessoas viram duas embarcações, não existe aqui.",
@@ -495,6 +513,8 @@
      "unidade_de_preco_declarada_por": "no_texto_da_fonte",
      "capacidade_maxima": null,
      "capacidade_maxima_declarada_por": null,
+     "dias_de_uso": null,
+     "motivo_sem_dias_de_uso": "A experiencia declara `eixo_das_versoes: por_escopo`, e o esquema PROIBE `dias_de_uso` fora do eixo de quantidade: dar quantidade a uma versao que difere em escopo convida a conta que nao existe. Esta versao vale para uma entrada, no escopo que o rotulo diz.",
      "faixa_etaria": null,
      "motivo_sem_faixa_etaria": "E este vazio é o achado mais caro desta carga, porque as duas passadas DISCORDAM exatamente onde o leitor brasileiro tem mais a perder. A passada em português diz que a gratuidade para menores de 18 anos é de cidadão de Estado-membro da União Europeia, e que a gratuidade universal é só para menores de 6 anos. A passada em inglês diz o contrário com todas as letras: «tickets for 18 and under are free to citizens of EU and non-EU countries», e acrescenta que o visitante de 18 a 25 anos de fora da UE paga a tarifa cheia. As duas ainda divergem no valor da tarifa reduzida da faixa de 18 a 25 anos da UE: €4 na primeira, cerca de €2 na segunda. Nenhuma das duas é autoridade — as duas são publicador editorial, nível 6 —, e a regra de divergência sem autoridade desta ilha resolve para o valor MAIOR, porque o erro caro é subestimar. Resolvido pelo maior, o adolescente brasileiro paga os €18 do adulto. E é isso que a página vai dizer: que a gratuidade está em disputa entre as fontes, com o nome de quem publicou cada versão, e que a conta do grupo é feita pelo cheio até a autoridade declarar. Não entra em `faixa_etaria` porque `faixa_etaria` guarda PREÇO, e aqui o que existe é uma divergência sobre quem tem direito — e não entra em `declaracoes` porque declaração, neste esquema, discorda de uma VERSÃO, e faixa etária não é versão. O buraco está nomeado no esquema, em `faixa_etaria_e_da_VERSAO_e_o_esquema_a_poe_na_EXPERIENCIA`. MIGRADO EM 22/10/2026 sem mudar de conteúdo: o motivo desceu da EXPERIÊNCIA para as duas versões porque o campo desceu, e a divergência que ele descreve atravessa os dois bilhetes do mesmo jeito — a passada em português e a em inglês discordam sobre QUEM tem direito à gratuidade, não sobre qual bilhete. O que a descida muda é que agora a ausência é afirmada bilhete por bilhete, e não uma vez para os dois.",
      "motivo_sem_capacidade": "Ingresso individual não tem lotação: a unidade já é a pessoa. O degrau que a gôndola tem, onde 6 pessoas viram duas embarcações, não existe aqui.",
@@ -543,6 +563,8 @@
    "nome": "Torre Eiffel — o bilhete de subida",
    "cidade": "paris",
    "categoria": "ingresso_de_sitio_publico",
+   "eixo_das_versoes": "por_escopo",
+   "nota_do_eixo_das_versoes": "Os quatro bilhetes dao COISAS DIFERENTES: a altura alcancada (segundo piso ou topo) e o meio de subida (escada ou elevador). Dois bilhetes de escada ate o segundo piso nao levam ninguem ao topo. O eixo e escopo, e e por isso que a `faixa_etaria` desceu para a versao em 22/10/2026: cada bilhete tem a sua.",
    "operador": {
     "nome": "SETE — Société d'Exploitation de la Tour Eiffel, a empresa que opera o monumento sob concessão da cidade de Paris",
     "tipo": "concessionaria_de_bem_publico",
@@ -559,6 +581,8 @@
      "unidade_de_preco_declarada_por": "no_texto_da_fonte",
      "capacidade_maxima": null,
      "capacidade_maxima_declarada_por": null,
+     "dias_de_uso": null,
+     "motivo_sem_dias_de_uso": "A experiencia declara `eixo_das_versoes: por_escopo`, e o esquema PROIBE `dias_de_uso` fora do eixo de quantidade: dar quantidade a uma versao que difere em escopo convida a conta que nao existe. Esta versao vale para uma entrada, no escopo que o rotulo diz.",
      "faixa_etaria": [
       {
        "rotulo": "menores de 4 anos",
@@ -627,6 +651,8 @@
      "unidade_de_preco_declarada_por": "no_texto_da_fonte",
      "capacidade_maxima": null,
      "capacidade_maxima_declarada_por": null,
+     "dias_de_uso": null,
+     "motivo_sem_dias_de_uso": "A experiencia declara `eixo_das_versoes: por_escopo`, e o esquema PROIBE `dias_de_uso` fora do eixo de quantidade: dar quantidade a uma versao que difere em escopo convida a conta que nao existe. Esta versao vale para uma entrada, no escopo que o rotulo diz.",
      "faixa_etaria": [
       {
        "rotulo": "menores de 4 anos",
@@ -678,6 +704,8 @@
      "unidade_de_preco_declarada_por": "no_texto_da_fonte",
      "capacidade_maxima": null,
      "capacidade_maxima_declarada_por": null,
+     "dias_de_uso": null,
+     "motivo_sem_dias_de_uso": "A experiencia declara `eixo_das_versoes: por_escopo`, e o esquema PROIBE `dias_de_uso` fora do eixo de quantidade: dar quantidade a uma versao que difere em escopo convida a conta que nao existe. Esta versao vale para uma entrada, no escopo que o rotulo diz.",
      "faixa_etaria": [
       {
        "rotulo": "menores de 4 anos",
@@ -732,6 +760,8 @@
      "unidade_de_preco_declarada_por": "no_texto_da_fonte",
      "capacidade_maxima": null,
      "capacidade_maxima_declarada_por": null,
+     "dias_de_uso": null,
+     "motivo_sem_dias_de_uso": "A experiencia declara `eixo_das_versoes: por_escopo`, e o esquema PROIBE `dias_de_uso` fora do eixo de quantidade: dar quantidade a uma versao que difere em escopo convida a conta que nao existe. Esta versao vale para uma entrada, no escopo que o rotulo diz.",
      "faixa_etaria": [
       {
        "rotulo": "menores de 4 anos",
@@ -830,8 +860,13 @@
   "fontes_de_leitura_direta": 0,
   "declaracoes_sem_versao": 4,
   "faixas_etarias": 11,
-  "faixas_declaradas_nao_transcritas": 4
+  "faixas_declaradas_nao_transcritas": 4,
+  "experiencias_com_eixo_por_quantidade": 1,
+  "experiencias_com_eixo_por_escopo": 2,
+  "experiencias_com_eixo_por_momento": 1,
+  "versoes_com_dias_de_uso": 3
  },
  "nota_da_versao_3": "Carga de 15/09/2026, as 11h25Z. Entraram o COLISEU DE ROMA e a TORRE EIFFEL, com Roma e Paris como terceira e quarta cidades, e o banco foi de 2 para 4 experiencias, de 5 para 11 versoes, de 2 para 4 cidades e de 5 para 7 fontes. Os dois sao `ingresso_de_sitio_publico`, que e o tipo que a carga de 14/09 mediu como o unico reproduzivel enquanto o egresso estiver fechado. Tres coisas nasceram com eles: (1) o Coliseu e o primeiro registro que fica `publicavel` por nomear PAGINA DE TARIFA da propria autoridade, e nao um ato — a regra_do_documento_nomeado dizia isso desde que nasceu e so o ato tinha sido exercido; (2) a Torre Eiffel e o primeiro registro de NIVEL 4 deste banco, o degrau do operador lido por busca, que o esquema marcava como `existe_hoje: false`, e ela faz nascer `concessionaria_de_bem_publico` no vocabulario de `tipo_de_operador`; (3) os dois juntos mediram que `faixa_etaria` e da VERSAO e o esquema a poe na EXPERIENCIA. Nada foi ao ar: esta ilha nao tem site, nao tem Sync e nao tem /status, e dizer que verificou no ar seria inventar.",
- "nota_da_versao_4": "Migração de 22/10/2026, primeiro dia desta ilha em foco. `faixa_etaria` saiu da EXPERIÊNCIA e entrou na VERSÃO, nas 11 versões das 4 experiências, cumprindo ao pé da letra o próximo passo que o REGISTRO.md de 15/09/2026 deixou escrito. Três coisas que a descida produziu e que o campo na EXPERIÊNCIA não permitia: (1) a Torre Eiffel publica 4 faixas gravadas em vez de 1, com as 4 células não lidas CONTADAS em vez de caladas; (2) a proibição de faixa etária fora de `por_pessoa` — que era prosa no motivo da gôndola desde 14/09 — virou regra do esquema, porque `unidade_de_preco` é campo da VERSÃO; (3) o `se_nao_cumprir` do Angkor cita US$ 37, o passe de UM dia, e estava valendo para os três passes: nomeado em `numero_da_frase_e_de_outra_versao`. NADA foi ao ar: esta ilha não tem site, não tem Sync e não tem /status, e dizer que verificou no ar seria inventar."
+ "nota_da_versao_4": "Migração de 22/10/2026, primeiro dia desta ilha em foco. `faixa_etaria` saiu da EXPERIÊNCIA e entrou na VERSÃO, nas 11 versões das 4 experiências, cumprindo ao pé da letra o próximo passo que o REGISTRO.md de 15/09/2026 deixou escrito. Três coisas que a descida produziu e que o campo na EXPERIÊNCIA não permitia: (1) a Torre Eiffel publica 4 faixas gravadas em vez de 1, com as 4 células não lidas CONTADAS em vez de caladas; (2) a proibição de faixa etária fora de `por_pessoa` — que era prosa no motivo da gôndola desde 14/09 — virou regra do esquema, porque `unidade_de_preco` é campo da VERSÃO; (3) o `se_nao_cumprir` do Angkor cita US$ 37, o passe de UM dia, e estava valendo para os três passes: nomeado em `numero_da_frase_e_de_outra_versao`. NADA foi ao ar: esta ilha não tem site, não tem Sync e não tem /status, e dizer que verificou no ar seria inventar.",
+ "nota_da_versao_5": "Migracao de 22/10/2026, no bloco 4 (a F1 como REGRA). Nasceram `eixo_das_versoes` na EXPERIENCIA e `dias_de_uso` (+ `dias_de_uso_transcrito_de`) na VERSAO, porque a Conta 3 da especificacao — «a partir de qual numero de dias a versao mais cara passa a valer» — NAO era calculavel sobre o banco versao 4: o unico lugar onde a quantidade existia era a PROSA do `rotulo` e do `declarado_como`. E a mesma troca da versao 4, um andar acima: lá a faixa etaria saiu da prosa e virou campo; aqui a quantidade de uso sai da prosa e vira campo, e o eixo em que as versoes se comparam deixa de ser adivinhado pelo texto e passa a ser declarado pela experiencia. Nenhuma leitura nova de fonte: os tres numeros do Angkor (1, 3 e 7) estavam escritos no `declarado_como` desde 14/09/2026, cada um com `dias_de_uso_transcrito_de` dizendo de qual frase saiu. Das 4 experiencias, 1 e `por_quantidade` (Angkor), 2 sao `por_escopo` (Coliseu e Torre Eiffel) e 1 e `por_momento` (gondola) — e o banco segue com 4 experiencias, 11 versoes e 11 faixas etarias, porque esta migracao nao acrescenta nem remove registro."
 }

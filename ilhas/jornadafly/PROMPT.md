@@ -67,6 +67,26 @@ Medido em 13 e 14/09/2026, e **o recorte encolheu em relação ao que o despacho
 
 **O que isso decide, e é a tese desta ilha: o diferencial NÃO é o ângulo "vale a pena" — é o FORMATO.** Nenhum dos 30+ domínios medidos entrega **preço colhido na fonte de quem opera, com data de leitura**. Todos entregam "gastei X na minha viagem em 2023". **A ilha ganha por ser a única que faz a conta para o SEU grupo, com preço datado** — é a mesma disciplina de preço do Clube do Mosaico.
 
+## A BANCADA DESTA ILHA — quatro portões, e cada um é um comando (22/10/2026)
+
+```
+python3 ferramentas/validar-banco.py      # o banco contra o esquema
+python3 ferramentas/mutacoes-banco.py     # quebra o banco e exige que o validador reprove
+python3 ferramentas/teste-f1.py           # a F1: todos os estados, com as bordas
+python3 ferramentas/mutacoes-f1.py        # quebra a F1 e exige que o portão dela veja
+```
+
+**Nenhum deles abre a rede**, e é por isso que esta ilha tem bancada apesar de não ter
+site. Os quatro rodam em menos de três minutos juntos.
+
+**NÃO EXISTE `bancada.py` AQUI, e a ausência é decisão de 22/10/2026 e não esquecimento.**
+As três ilhas irmãs têm um descobridor de portões por convenção de nome, e ele nasceu nelas
+porque uma régua que existia desde dias antes **não tinha falhado: não tinha rodado**.
+Aqui são quatro arquivos e a **31.3** proíbe construir bancada sobre bancada enquanto
+houver item de conteúdo aberto. No dia em que esta lista passar de uma tela, ou no dia em
+que um portão desta pasta deixar de ser rodado por alguém esquecer dele, o descobridor
+nasce — com a data e o defeito nomeados, como a 31.2 manda.
+
 ## Memória a carregar
 `/areas/projeto-jornadafly.md`, `/areas/fabrica-de-sites.md`, `/areas/playbook-nascimento-projeto.md` (fase 4b), `/areas/arquipelago-bussola.md` (rodadas 004 e 005), `/topics/dev-conventions.md`. Sem memória, **não pare**: o estado está no `ESTADO.md`, no `REGISTRO.md` e neste arquivo.
 
@@ -109,6 +129,8 @@ Quando o site responder, siga a seção 11 do passo 9 em diante e a seção 14 (
 **3b. CASCA DO SITE** — depois do WordPress. **Molde GUIA:** a pergunta mais frequente em cima ("Quanto custa, para quantas pessoas?"), experiências como cartões **com preço e data de coleta visíveis no cartão**, ferramentas como cartões na linguagem da pessoa, guias embaixo. Header claro, menu curto (Experiências · Quanto custa · Guias). **Sem manifesto. Foto grande nos cartões, NUNCA atrás de texto** — é o vício visual do nicho e quebra contraste em toda tela.
 
 **4. FERRAMENTAS**, uma por execução, com JSON-LD, tabela pré-renderizada, resposta antes da explicação e procedência na frase. Ordem: **F1, F2, F3**.
+   - **A F1 ESTÁ ENTREGUE COMO REGRA desde 22/10/2026**, e ainda não como página — sem casca não há snippet, e um render de bancada que serve menos que o site é a cicatriz que a seção 8 mais cobra. Mora em `ferramentas/f1-referencia.py` + `dados/f1-respostas.json` (154 respostas, 44 linhas de tabela, `publicar: false`). **O PHP, quando nascer, é tradutor dela, frase a frase** — nunca uma segunda regra. Detalhe em `dados/especificacao-calculadoras.md`, 2.11, e no `REGISTRO.md` daquela data.
+   - **A F2 é a próxima**, e ela começa decidindo **onde moram** hospedagem, alimentação e transporte local: as três não são experiência e não cabem na entidade EXPERIÊNCIA, e sem elas a F2 não soma nada.
 
 **5. ARTIGOS-ÂNCORA** pareados com cada ferramenta, na mesma execução.
 

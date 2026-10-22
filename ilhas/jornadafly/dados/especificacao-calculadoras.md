@@ -234,6 +234,19 @@ que a Robometria aprendeu com o reservatório: valor que está no vocabulário d
 e tem zero itens no banco **não aparece na tela**. A varredura que prova isso é portão
 do bloco 3c, não deste.
 
+> **CORRIGIDO EM 22/10/2026, NO BLOCO 4: `momento_do_dia` NÃO É UMA QUARTA ENTRADA —
+> ele é campo da VERSÃO, e oferecê-lo à parte deixaria a pessoa escolher uma
+> combinação que não existe.** A tabela acima o lista como "seleção dependente,
+> condicional", e no banco a gôndola resolve isso de outro jeito: as duas versões
+> vendidas **são** o diurno e o noturno, cada uma com `momento_do_dia`, duração,
+> janela horária e preço próprios. Ou seja, escolher a versão **já é** escolher o
+> horário, e um seletor de horário separado permitiria pedir "noturno" sobre a versão
+> diurna — um estado que o operador não vende. O estado da F1 é, portanto,
+> **(experiência, versão, pessoas)**, e o horário sai da versão escolhida, para a tela
+> e para o JSON-LD. Se um dia um operador vender a MESMA versão em dois horários com
+> preços diferentes, o campo volta a ser entrada — e aí ele nasce como dimensão do
+> banco antes de nascer como campo de formulário.
+
 ### 2.4 Saídas, na ordem em que aparecem na página
 
 A ordem obedece à 15.2 (voz em cima, prova embaixo), à 14.5 (resposta antes da
@@ -247,6 +260,17 @@ explicação) e à 7 (bloco de compra antes da procedência):
 3. **O que está incluso e o que não está**, as duas listas do banco, nomeadas. Lista
    vazia não some: ela diz "o operador não declara o que está incluso", que é um fato
    sobre o operador e é informação.
+   > **E A FRASE É ESCRITA PELA FERRAMENTA, NUNCA COPIADA DO `motivo_*` DO BANCO
+   > (medido em 22/10/2026, no bloco 4).** Os campos `motivo_sem_*` e
+   > `*_motivo_lista_vazia` são escritos para a **próxima execução**: eles citam nome
+   > de campo entre acentos graves, data de migração e número de seção do contrato. A
+   > primeira versão da F1 os repassava para a tela, e o resultado era a página
+   > dizendo ao visitante que *"o esquema PROÍBE faixa etária onde a unidade não é
+   > `por_pessoa`"* — texto de bastidor da fábrica numa página pública, que a **32.4**
+   > proíbe com todas as letras. É a mesma cicatriz que a ohmetria pagou publicando
+   > `dados/modulos.json` na tela. O motivo continua no banco, onde serve; a tela
+   > recebe a frase que responde ao visitante. Quem achou foi a régua de acento do
+   > portão, e o defeito embaixo era maior que o acento.
 4. **O bloco de saída de compra** (ver 2.9), antes da prova.
 5. **A prestação de contas das versões** (ver 2.7).
 6. **A camada de prova**: operador, URL de origem, unidade de preço declarada, data de
@@ -272,6 +296,51 @@ total, porque é assim que o grupo divide.
 a versão escolhida **e** a linha "a partir de qual número de dias/atrações a versão mais
 cara passa a valer", que é a mesma aritmética da F3 aplicada dentro de um item só.
 Petra e Angkor são os casos medidos.
+
+> **ATUALIZADO EM 22/10/2026, NO BLOCO 4, E A ATUALIZAÇÃO É UMA CONDIÇÃO QUE NÃO
+> ESTAVA ESCRITA: a Conta 3 só existe quando as versões se SUBSTITUEM em quantidade,
+> e isso é declarado, nunca deduzido do rótulo.** Escrever a F1 como regra mostrou que
+> esta conta não era calculável sobre o banco versão 4 — e que calculá-la onde ela não
+> cabe é pior que não a calcular. As duas metades:
+>
+> 1. **A EXPERIÊNCIA declara `eixo_das_versoes`** ∈ `{por_quantidade, por_escopo,
+>    por_momento}`. A conta roda **só** em `por_quantidade`. Nos outros dois a F1 diz,
+>    na tela, por que não há ponto de equilíbrio — e isso é uma resposta, não um
+>    silêncio. **O erro caro, nomeado antes da direção, como a seção 10 manda:**
+>    comprar dois ingressos de 24 horas do Coliseu **não** dá a área restrita da
+>    Experiência Completa, e comprar dois passeios diurnos de gôndola **não** dá um
+>    passeio noturno. Um ponto de equilíbrio entre bilhetes que não se substituem é
+>    aritmética correta sobre uma pergunta sem sentido — a forma mais eficiente de
+>    publicar uma mentira com cara de conta.
+> 2. **A VERSÃO declara `dias_de_uso`**, com `dias_de_uso_transcrito_de` dizendo de qual
+>    frase da fonte o número saiu. O número **tem de aparecer no `declarado_como`** da
+>    própria versão, em dígito ou por extenso, e a régua confere isso — é a terceira
+>    conta da seção 8: sem ela o campo seria um inteiro digitado por quem migrou, com
+>    cara de transcrito. Os três números do Angkor (1, 3 e 7) já estavam escritos na
+>    declaração da fonte desde 14/09/2026, em **prosa**; a migração os transformou em
+>    campo e não leu nada de novo. É a mesma troca que a `faixa_etaria` fez no dia
+>    anterior, um andar acima.
+>
+> **O eixo não se deduz do rótulo**, e essa é a parte que não se adivinha: "1 dia" e
+> "3 dias, usáveis dentro de uma semana" têm a quantidade escrita dentro do texto, e
+> ler o texto como se fosse campo é exatamente o que a migração de 22/10 desfez. Ler o
+> rótulo também acertaria no Angkor e **erraria no Coliseu**, cujos rótulos não falam
+> de quantidade nenhuma — e erro que acerta no caso que se tem na mão é o mais caro de
+> todos, porque ele passa.
+>
+> **O ponto de equilíbrio é uma FUNÇÃO PURA** sobre a relação já calculada
+> (`[(id, rótulo, preço, dias_de_uso)]` + o eixo), e não uma varredura do banco. É a
+> regra da seção 8 nascida no Clube do Mosaico em 08/10/2026: recusa que depende de uma
+> relação entre os dados — empate, ausência, borda — só é testável no dia em que o banco
+> produzir o caso, e é esse o dia em que ela vai estar errada. Com a função pura, a
+> bancada fabrica o empate de preço, a versão única e o preço ausente sem fabricar um
+> banco falso.
+>
+> **A conta, para o Angkor, medida:** a base é o bilhete de menor quantidade (1 dia,
+> US$ 37) e o equilíbrio é o menor número de dias `D` em que `teto(D ÷ dias_da_base) ×
+> preço_da_base ≥ preço_da_versão`. Dá **2 dias** para o passe de 3 (US$ 62: dois de um
+> dia já custam US$ 74) e **2 dias** para o de 7 (US$ 72). Quem fica 1 dia compra o de
+> 1 dia; a partir do segundo, qualquer um dos dois passes já paga.
 
 **Conta 4 — o que o cartão brasileiro acrescenta, e ela funciona HOJE sem taxa de
 câmbio.** Sobre compra internacional com cartão de crédito ou débito de pessoa física
@@ -395,6 +464,38 @@ estrutura muda** — só o gerador que monta a URL.
 **Campo obrigatório no banco (bloco 3), com o nome que o contrato já usa:** todo item
 nasce com `afiliado.url_busca_produto` preenchida (a URL do degrau 2, crua), e
 `afiliado.url` nasce presente e vazia. Item sem piso é defeito da 19.1, sempre.
+
+### 2.11 A F1 COMO REGRA — o que o bloco 4 entregou, e onde ela mora (22/10/2026)
+
+A F1 existe hoje como **regra** e ainda não como **página**, e isso é decisão
+registrada e não atraso. Esta ilha não tem WordPress, não tem Sync e não tem
+`/status`, e `jornadafly.com.br` não está na lista de Domínios permitidos deste
+ambiente (remedido em 22/10/2026: `CONNECT tunnel failed, response 403`, seis
+medições, com as duas ilhas de controle em 200). Sem casca, um snippet PHP só poderia
+ser medido por um render de bancada que serve **menos** do que o site serve — a
+cicatriz que a seção 8 do `ARQUIPELAGO.md` mais cobra. Então a regra nasceu onde pode
+ser conferida hoje, e **o PHP, quando nascer, é tradutor desta referência, frase a
+frase** — o mesmo desenho que a ohmetria usou na F1 dela e que a robometria usa entre
+`cobertura-r1.py` e `robometria-r1.php`.
+
+| Arquivo | O que é |
+|---|---|
+| `ferramentas/f1-referencia.py` | o cérebro: estado → resposta inteira, já em frase acentuada |
+| `ferramentas/gerar-f1.py` | grava o domínio de resposta e a tabela pré-renderizada |
+| `dados/f1-respostas.json` | as **154** respostas (11 versões × 12 tamanhos de grupo + as 2 bordas) e as **44** linhas da tabela. `publicar: false` |
+| `ferramentas/teste-f1.py` | o portão: refaz a aritmética à mão, em `Fraction`, e mede acento e texto de bastidor em toda frase de todo estado |
+| `ferramentas/mutacoes-f1.py` | quebra a referência de propósito e exige que o portão veja |
+
+**As bordas entram no domínio de propósito:** 0 e 13 pessoas são as duas recusas
+duras, e um arquivo que trouxesse só 1 a 12 deixaria a metade que **recusa** sem
+nenhum caso gravado. Grade que não pisa na borda é amostra com nome de grade.
+
+**O que o bloco mediu e vale guardar:** existe **exatamente um** estado neste banco
+em que arredondar meio-para-cima difere de arredondar meio-para-par — a gôndola
+noturna para 2 pessoas, €56,925 por pessoa com IOF, que é €56,93 e não €56,92. Uma
+grade por amostragem teria 1 chance em 154 de o encontrar, e a mutação que troca o
+arredondamento voltaria **verde**. É a seção 8 sobre varrer a entrada inteira, com o
+número do custo de não a varrer.
 
 ### 2.10 JSON-LD
 

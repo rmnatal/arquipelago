@@ -134,6 +134,13 @@ def mundo_por_pessoa(banco):
             "fonte": "operador-petra-teste",
             "data_leitura": "2026-09-14",
             "declarado_como": "US$ %d por pessoa, %d dia(s)" % (preco, dias),
+            # O EIXO e os DIAS DE USO nasceram em 22/10/2026, no bloco 4. Petra e um
+            # eixo `por_quantidade` desde que este mundo foi escrito — a escada de dias
+            # e exatamente o que ele fabrica —, so que a quantidade vivia na PROSA do
+            # rotulo. Agora e campo, e o `declarado_como` acima a declara em digito.
+            "dias_de_uso": dias,
+            "dias_de_uso_transcrito_de": "a frase `declarado_como` deste mundo de mutacao, "
+                                         "que escreve o numero de dias em digito.",
             # A faixa etaria desceu para a VERSAO em 22/10/2026. O mundo acompanhou: as
             # tres versoes declaram a MESMA faixa, com a MESMA frase, porque a fonte foi
             # lida uma vez — e e exatamente isso que a regua das irmas cobra.
@@ -154,6 +161,10 @@ def mundo_por_pessoa(banco):
         "nome": "Ingresso de Petra (mundo de mutação)",
         "cidade": "petra-teste",
         "categoria": "ingresso_de_sitio_publico",
+        "eixo_das_versoes": "por_quantidade",
+        "nota_do_eixo_das_versoes": "As tres versoes sao MAIS DA MESMA COISA: 1, 2 e 3 dias "
+                                    "de entrada no mesmo sitio. E o mundo que exercita a Conta "
+                                    "3 da F1 com tres degraus, que o banco real nao tem.",
         "operador": {"nome": "operador de teste", "tipo": "operador_privado",
                      "url": None, "motivo_sem_url": "mundo de mutacao"},
         "versoes": [versao("um-dia", "1 dia", 70, 1),
@@ -748,6 +759,178 @@ def mundo_faixa_sem_preco_declarado(banco):
     return sincronizar_resumo(banco)
 
 
+
+# ---------------------------------------------------------------------------
+# O EIXO DAS VERSOES E OS DIAS DE USO (nasceram em 22/10/2026, no bloco 4)
+#
+# Tres MUNDOS aqui sao mundos que o esquema PERMITE e o banco nao tem, e os tres
+# existem porque a Conta 3 da F1 e uma recusa que depende de uma RELACAO entre as
+# versoes — quantas sao, se os precos empatam, se ha quantidade. A secao 8 do
+# ARQUIPELAGO.md diz que recusa assim mora numa funcao pura que recebe a relacao
+# ja calculada, justamente para que a bancada possa fabricar o mundo sem fabricar
+# um banco falso. Estes tres fabricam o mundo pelo banco; a bancada da F1
+# (mutacoes-f1.py) chama a funcao pura direto, com empate, com lista vazia e com
+# uma versao so. Sao as duas metades do mesmo cuidado.
+# ---------------------------------------------------------------------------
+
+def mundo_eixo_de_quantidade_com_uma_versao_so(banco):
+    """Eixo `por_quantidade` com UMA versao: nao ha com que comparar.
+
+    O esquema permite, e o banco nunca teve: tem de PASSAR na regua do banco (o
+    campo esta correto) e a F1 e quem diz que nao ha equilibrio a calcular.
+    """
+    banco = mundo_por_pessoa(banco)
+    exp = _achar(banco, "petra-ingresso-teste")
+    exp["versoes"] = exp["versoes"][:1]
+    exp["declaracoes"] = [d for d in exp["declaracoes"] if d.get("versao") == exp["versoes"][0]["id"]]
+    exp["resolucao"]["versao_resolvida"] = exp["versoes"][0]["id"]
+    exp["resolucao"]["valor"] = exp["versoes"][0]["preco"]
+    return sincronizar_resumo(banco)
+
+
+def mundo_eixo_de_quantidade_com_empate_de_preco(banco):
+    """Duas quantidades diferentes pelo MESMO preco: a mais cara nao existe.
+
+    Mesma familia do empate no topo que o Clube do Mosaico pagou em 08/10/2026 —
+    e a regua do banco tem de aprovar, porque empate de preco nao e defeito de
+    dado: e um mundo que o operador pode vender.
+    """
+    banco = mundo_por_pessoa(banco)
+    exp = _achar(banco, "petra-ingresso-teste")
+    for v in exp["versoes"]:
+        v["preco"] = 70
+        v["declarado_como"] = "US$ 70 por pessoa, %d dia(s)" % v["dias_de_uso"]
+    exp["resolucao"]["valor"] = 70
+    return sincronizar_resumo(banco)
+
+
+def mundo_eixo_null_com_uma_versao_so(banco):
+    """Experiencia de UMA versao: sem duas, nao ha eixo a declarar."""
+    banco = mundo_por_pessoa(banco)
+    exp = _achar(banco, "petra-ingresso-teste")
+    exp["versoes"] = exp["versoes"][:1]
+    exp["declaracoes"] = [d for d in exp["declaracoes"] if d.get("versao") == exp["versoes"][0]["id"]]
+    exp["resolucao"]["versao_resolvida"] = exp["versoes"][0]["id"]
+    exp["resolucao"]["valor"] = exp["versoes"][0]["preco"]
+    exp["eixo_das_versoes"] = None
+    del exp["nota_do_eixo_das_versoes"]
+    exp["motivo_sem_eixo_das_versoes"] = ("Uma versao so: nao ha duas coisas para dizer em que "
+                                          "grandeza diferem.")
+    for v in exp["versoes"]:
+        v["dias_de_uso"] = None
+        del v["dias_de_uso_transcrito_de"]
+        v["motivo_sem_dias_de_uso"] = "Sem eixo declarado nao ha quantidade a declarar."
+    return sincronizar_resumo(banco)
+
+
+def q_eixo_sem_o_campo(banco):
+    del banco["experiencias"][0]["eixo_das_versoes"]
+    return banco
+
+
+def q_eixo_null_com_duas_versoes(banco):
+    exp = banco["experiencias"][0]        # a gondola: duas versoes
+    exp["eixo_das_versoes"] = None
+    del exp["nota_do_eixo_das_versoes"]
+    exp["motivo_sem_eixo_das_versoes"] = "mundo de mutacao"
+    for v in exp["versoes"]:
+        v["dias_de_uso"] = None
+        v["motivo_sem_dias_de_uso"] = "mundo de mutacao"
+    return banco
+
+
+def q_eixo_null_sem_motivo(banco):
+    exp = banco["experiencias"][0]
+    exp["eixo_das_versoes"] = None
+    del exp["nota_do_eixo_das_versoes"]
+    return banco
+
+
+def q_eixo_fora_do_vocabulario(banco):
+    banco["experiencias"][0]["eixo_das_versoes"] = "por_gosto"
+    return banco
+
+
+def q_eixo_sem_nota(banco):
+    del banco["experiencias"][0]["nota_do_eixo_das_versoes"]
+    return banco
+
+
+def q_dias_de_uso_sem_o_campo(banco):
+    del _achar(banco, "siem-reap-angkor-pass")["versoes"][0]["dias_de_uso"]
+    return banco
+
+
+def q_dias_de_uso_null_no_eixo_de_quantidade(banco):
+    v = _achar(banco, "siem-reap-angkor-pass")["versoes"][1]
+    v["dias_de_uso"] = None
+    del v["dias_de_uso_transcrito_de"]
+    v["motivo_sem_dias_de_uso"] = "mundo de mutacao"
+    return banco
+
+
+def q_dias_de_uso_em_eixo_de_escopo(banco):
+    """O defeito que esta regra existe para impedir, e ele e o mais caro dos dois.
+
+    Comprar dois ingressos de 24 horas do Coliseu NAO da a area restrita da
+    Experiencia Completa. Com `dias_de_uso` aqui, a F1 publicaria um ponto de
+    equilibrio entre bilhetes que nao se substituem: aritmetica certa sobre uma
+    pergunta sem sentido.
+    """
+    v = _achar(banco, "roma-coliseu-ingresso")["versoes"][0]
+    v["dias_de_uso"] = 1
+    v["dias_de_uso_transcrito_de"] = "mundo de mutacao"
+    del v["motivo_sem_dias_de_uso"]
+    return banco
+
+
+def q_dias_de_uso_null_sem_motivo(banco):
+    del _achar(banco, "roma-coliseu-ingresso")["versoes"][0]["motivo_sem_dias_de_uso"]
+    return banco
+
+
+def q_dias_de_uso_zero(banco):
+    _achar(banco, "siem-reap-angkor-pass")["versoes"][0]["dias_de_uso"] = 0
+    return banco
+
+
+def q_dias_de_uso_sem_transcrito_de(banco):
+    del _achar(banco, "siem-reap-angkor-pass")["versoes"][0]["dias_de_uso_transcrito_de"]
+    return banco
+
+
+def q_dias_de_uso_que_a_fonte_nao_declara(banco):
+    """O numero trocado sem a frase trocar: a terceira conta da secao 8.
+
+    A versao de 3 dias passa a dizer 4, e o `declarado_como` continua escrevendo
+    «US$ 62 para 3 dias». Sem esta trava o campo seria um inteiro digitado por
+    quem migrou, com cara de transcrito.
+    """
+    _achar(banco, "siem-reap-angkor-pass")["versoes"][1]["dias_de_uso"] = 4
+    return banco
+
+
+def _intacto(banco):
+    """Banco inteiro, de proposito: a quebra destas quatro esta no ESQUEMA.
+
+    Se a chave sumir do esquema, a regua do campo novo para de existir e TODO
+    banco passa, inclusive o proximo. E a trava da secao 26.2 aplicada aos dois
+    campos que nasceram em 22/10/2026 — a mesma que a `faixa_etaria` ja tinha.
+    """
+    return banco
+
+
+def q_dias_de_uso_achado_dentro_de_outro_numero(banco):
+    """A armadilha da vizinhanca, que a secao 8 manda nao usar como criterio.
+
+    A versao de 1 dia passa a dizer 3, e o `declarado_como` dela e «US$ 37 para a
+    visitacao de um dia»: o digito 3 ESTA na frase, dentro de «37». Regua que
+    procurasse o numero por substring aprovaria isto.
+    """
+    _achar(banco, "siem-reap-angkor-pass")["versoes"][0]["dias_de_uso"] = 3
+    return banco
+
+
 # nome, funcao, espera, esquema_mutado
 MUTACOES = [
     ("MUNDO preco por pessoa, escada de dias, crianca e temporada", mundo_por_pessoa, "passa", None),
@@ -757,6 +940,9 @@ MUTACOES = [
     ("MUNDO autoridade COM documento nomeado vira publicavel", mundo_autoridade_com_documento_nomeado, "passa", None),
     ("MUNDO degrau novo alcancado, esquema e banco juntos", mundo_degrau_novo_alcancado, "passa", "degrau_5_prometido"),
     ("MUNDO faixa que a fonte NOMEIA sem dizer o preco", mundo_faixa_sem_preco_declarado, "passa", None),
+    ("MUNDO eixo de quantidade com UMA versao so", mundo_eixo_de_quantidade_com_uma_versao_so, "passa", None),
+    ("MUNDO eixo de quantidade com EMPATE de preco", mundo_eixo_de_quantidade_com_empate_de_preco, "passa", None),
+    ("MUNDO eixo null com uma versao so", mundo_eixo_null_com_uma_versao_so, "passa", None),
 
     ("preco sem data de leitura", q_preco_sem_data, "reprova", None),
     ("divergencia sem resolucao", q_divergencia_sem_resolucao, "reprova", None),
@@ -824,6 +1010,27 @@ MUTACOES = [
     ("constante pendente citada no banco", q_constante_pendente_usada, "reprova", None),
     ("experiencia sem nenhuma versao", q_experiencia_sem_versao, "reprova", None),
     ("resolucao com o preco de OUTRA versao", q_resolucao_de_outra_versao, "reprova", None),
+    ("eixo das versoes sem o campo", q_eixo_sem_o_campo, "reprova", None, "eixo_das_versoes"),
+    ("eixo null com DUAS versoes", q_eixo_null_com_duas_versoes, "reprova", None, "null com 2 versoes"),
+    ("eixo null sem motivo", q_eixo_null_sem_motivo, "reprova", None, "motivo_sem_eixo_das_versoes"),
+    ("eixo fora do vocabulario", q_eixo_fora_do_vocabulario, "reprova", None, "fora do vocabulario"),
+    ("eixo sem a nota que o justifica", q_eixo_sem_nota, "reprova", None, "nota_do_eixo_das_versoes"),
+    ("dias de uso sem o campo", q_dias_de_uso_sem_o_campo, "reprova", None, "falta o campo `dias_de_uso`"),
+    ("dias de uso null no eixo de QUANTIDADE", q_dias_de_uso_null_no_eixo_de_quantidade, "reprova", None, "nao diz QUANTO"),
+    ("dias de uso num eixo de ESCOPO", q_dias_de_uso_em_eixo_de_escopo, "reprova", None, "area restrita"),
+    ("dias de uso null sem motivo", q_dias_de_uso_null_sem_motivo, "reprova", None, "motivo_sem_dias_de_uso"),
+    ("dias de uso zero", q_dias_de_uso_zero, "reprova", None, "inteiro maior que zero"),
+    ("dias de uso sem transcrito_de", q_dias_de_uso_sem_transcrito_de, "reprova", None, "dias_de_uso_transcrito_de"),
+    ("dias de uso que a FONTE nao declara", q_dias_de_uso_que_a_fonte_nao_declara, "reprova", None, "terceira"),
+    ("dias de uso achado DENTRO de outro numero", q_dias_de_uso_achado_dentro_de_outro_numero, "reprova", None, "terceira"),
+    ("esquema sem o vocabulario do eixo", _intacto, "reprova", "vocab_sem_eixo",
+     "vocabularios.eixo_das_versoes"),
+    ("esquema sem o campo eixo na EXPERIENCIA", _intacto, "reprova", "exp_sem_eixo",
+     "EXPERIENCIA.campos.eixo_das_versoes"),
+    ("esquema sem o campo dias_de_uso na VERSAO", _intacto, "reprova", "versao_sem_dias",
+     "VERSAO.campos.dias_de_uso"),
+    ("esquema sem o registro da Conta 3", _intacto, "reprova", "sem_registro_conta_3",
+     "conta_3_da_F1_exige_EIXO_DECLARADO"),
 ]
 
 
@@ -865,10 +1072,30 @@ def esquema_para(mutacao):
             "null_exige": "motivo_sem_faixa_etaria"}
     elif mutacao == "sem_entidade_faixa":
         del esquema["entidades"]["FAIXA_ETARIA"]
+    elif mutacao == "vocab_sem_eixo":
+        del esquema["vocabularios"]["eixo_das_versoes"]
+    elif mutacao == "exp_sem_eixo":
+        del esquema["entidades"]["EXPERIENCIA"]["campos"]["eixo_das_versoes"]
+    elif mutacao == "versao_sem_dias":
+        del esquema["entidades"]["VERSAO"]["campos"]["dias_de_uso"]
+    elif mutacao == "sem_registro_conta_3":
+        del esquema["conta_3_da_F1_exige_EIXO_DECLARADO_e_nao_sai_do_rotulo"]
     elif mutacao == "degrau_sem_campo":
         for d in esquema["escada_de_fontes"]["niveis"]:
             if d["nivel"] == 3:
                 del d["existe_hoje"]
+    elif mutacao is not None:
+        # TRAVA DE ALVO EXATO (secao 8 do ARQUIPELAGO.md, corolario de higiene).
+        # Antes desta linha, chave desconhecida caia aqui e voltava um esquema
+        # INTACTO: a mutacao reprovava por outra trava e o relatorio dizia `ok`.
+        # Foi exatamente o que aconteceu em 22/10/2026 com as 13 quebras do eixo,
+        # cuja FRASE foi escrita na quarta posicao da tupla — que e esta chave — e
+        # nao na quinta. Mutacao que nao morde e teste verde com outro nome, e
+        # bateria que nao sabe disso e pior do que bateria que nao existe.
+        raise SystemExit(
+            "mutacao de esquema desconhecida: %r. Ou a chave foi escrita errada, ou "
+            "a FRASE esperada foi posta na QUARTA posicao da tupla (que e o "
+            "esquema_mutado) em vez da QUINTA." % mutacao)
     return esquema
 
 

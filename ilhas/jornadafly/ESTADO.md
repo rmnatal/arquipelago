@@ -5,79 +5,60 @@ prioridade: 1
 piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 0
 primeira_indexacao: null
-ultima_execucao: 2026-10-22T10:33Z
-executando_desde: 2026-10-22T13:29Z   # reservada pela execucao de 22/10 que comecou as 13:29Z (passo 5 da secao 1). A ilha estava com executando_desde null, que pela 1.1 ja significa que nao havia bloco da Fundacao vivo.
-rede: BLOQUEADA em 2026-10-22   # 20.2, TRES passadas remedidas hoje e NAO herdadas: jornadafly.com.br e www.jornadafly.com.br em 000 nas tres, com aquametria.com.br e robometria.com.br em 200 nas mesmas passadas (a robometria caiu uma vez na 3a — intermitencia de tunel, que e justamente o que a 20.2 manda nao confundir com bloqueio). O curl verbose nomeia a causa e ela nao e intermitencia: `CONNECT tunnel failed, response 403` do proxy de egresso, ou seja o dominio NAO esta na lista de Dominios permitidos deste ambiente. ISTO E REGRESSAO: o campo dizia `aberta em 2026-09-18` com HTTP 200 medido as 12h35Z daquele dia. O despacho ALTA de 15/09 em dados/despachos.md, dado como cumprido em 18/09, voltou a valer. O que a rede trava e o 3b em diante, nao o bloco de arquivo — e bloqueada_por segue null de proposito, como nas quatro execucoes anteriores desta ilha.
+ultima_execucao: 2026-10-22T13:55Z
+executando_desde: null   # a execucao de 22/10 13h29Z fechou as 13:55Z. Reserva NAO renovada no meio do caminho e a 1.1 manda dizer por que: o bloco passou de 40 minutos, e o proximo commit que esta execucao fez FOI o de fechamento — renovar e grava-la null na mesma linha seriam a mesma escrita. Nenhuma outra execucao consultou o git nesta janela porque nenhuma outra tocou esta ilha.
+rede: BLOQUEADA em 2026-10-22   # 20.2, REMEDIDA as 13h3xZ e NAO herdada do campo: TRES passadas, jornadafly.com.br e www.jornadafly.com.br em 000 nas tres (6 medicoes), com aquametria.com.br e robometria.com.br em 200 nas tres (6 de controle, nenhuma intermitencia nesta rodada). O curl verbose nomeia a causa e ela nao e tunel: `CONNECT tunnel failed, response 403` do proxy de egresso, ou seja o dominio NAO esta na lista de Dominios permitidos deste ambiente. SEGUE SENDO REGRESSAO: o campo dizia `aberta em 2026-09-18` com HTTP 200 medido as 12h35Z daquele dia, e o despacho ALTA de 15/09 em dados/despachos.md, dado como cumprido em 18/09, continua valendo. O que a rede trava e o 3b em diante, nao o bloco de arquivo — e bloqueada_por segue null de proposito, como nas cinco execucoes anteriores desta ilha.
 bloco_atual: |
-  FAIXA ETARIA DESCEU DE EXPERIENCIA PARA VERSAO, nas 11 versoes das 4 experiencias,
-  e com isso o PROXIMO PASSO que o REGISTRO.md de 15/09/2026 deixou escrito esta
-  CUMPRIDO ao pe da letra — "com a regua e as mutacoes junto, e migrar os registros da
-  gondola e do Angkor na mesma passada". Esquema versao 4, banco versao 4.
+  A F1 EXISTE COMO REGRA — o bloco 4 entregue, no desenho que a ohmetria usou: a
+  referencia em Python (estado -> resposta inteira, em frase acentuada), o dominio de
+  resposta gravado, a tabela pre-renderizada, o portao e as mutacoes. SEM PHP, e isso e
+  decisao registrada: sem casca, um snippet so poderia ser medido por um render de
+  bancada que serve MENOS do que o site serve, que e a cicatriz que a secao 8 mais cobra.
+  O PHP, quando nascer, e TRADUTOR da referencia, frase a frase.
   NADA FOI AO AR, e nao podia ter ido: esta ilha nao tem site, nao tem WordPress, nao
-  tem Sync e nao tem /status. Dizer que verificou no ar seria inventar.
-  O QUE A DESCIDA PRODUZIU, e nenhuma das tres coisas era possivel com o campo na
-  EXPERIENCIA:
-  (1) A TORRE EIFFEL PUBLICA 4 FAIXAS GRAVADAS em vez de 1. A carga de 15/09 so podia
-  gravar a gratuidade dos menores de 4 anos, porque as outras tres mudam de bilhete
-  para bilhete; os numeros ficaram em PROSA dentro da nota do registro. Agora sao
-  campo: 3,80 e 7,40 EUR na escada ate o segundo piso, 9,20 e 18,40 no elevador ate o
-  topo, cada um com `transcrito_de` dizendo que saiu daquela prosa e NAO de leitura
-  nova. Mesma troca que a Aquametria fez em 21/10 com o porte_adulto_cm.
-  (2) A PROIBICAO DE FAIXA EM TARIFA POR VEICULO VIROU REGRA. Era prosa no motivo da
-  gondola desde 14/09 — "a tarifa e pela embarcacao inteira" — e so podia virar regra
-  depois de a faixa descer, porque `unidade_de_preco` e campo da VERSAO. Seis pessoas
-  na gondola sao DUAS gondolas: a crianca nao tem preco, tem assento.
-  (3) O ACHADO QUE A MIGRACAO PAGOU: o `se_nao_cumprir` do Angkor cita US$ 37, que e o
-  passe de UM DIA, e estava guardado num campo que valia para os TRES passes. Nomeado
-  em `numero_da_frase_e_de_outra_versao` nas versoes de 3 e de 7 dias, e a regua cobra
-  o campo em vez de confiar na nota. A ilha NAO troca 37 por 62 nem por 72: ela sabe o
-  que a fonte escreveu, nao o que a bilheteria cobra.
-  AS 4 CELULAS DO MEIO DA GRADE CONTINUAM NAO LIDAS — crianca e jovem nas duas versoes
-  intermediarias da Torre Eiffel — e agora estao CONTADAS, 4 entradas em
-  `faixas_que_a_fonte_declara_e_a_leitura_nao_transcreveu`, com o resumo publicando
-  `faixas_declaradas_nao_transcritas: 4`. Tentei rele-las: `www.toureiffel.paris`
-  responde 403 no CONNECT deste ambiente e a busca devolveu a grade por RESUMO —
-  numero de resumo e pista, nao dado, entao a lacuna fica contada em vez de gravada.
-  BANCADA, 0 falha: validar-banco verde sobre o banco real (11 faixas contadas, 4
-  lacunas contadas) e MUTACOES 73 (eram 53) — 7 mundos que tem de PASSAR e 66 quebras
-  que tem de REPROVAR, 22 delas cobradas pela FRASE que esperam ouvir de volta (eram
-  3). Os tres JSON passam por json.load e o cabecalho por yaml.safe_load.
-  E AS MUTACOES ME CORRIGIRAM DUAS VEZES, as duas antes do commit. A primeira versao da
-  regra proibia faixa etaria em TODA unidade que nao fosse `por_pessoa`, e o MUNDO
-  `por_cabine` a reprovou na hora: o argumento da gondola e sobre VEICULO alugado
-  inteiro, e um cruzeiro vendido por cabine PODE declarar tarifa de crianca na cabine.
-  A proibicao ficou no caso medido e `por_cabine` e `por_grupo` ficaram de fora dela, de
-  proposito. A segunda: o mundo novo escreveu "crianca de 4 a 11 anos" sem cedilha e a
-  regua das irmas reprovou TRES versoes de uma vez, porque e o rotulo que liga a mesma
-  faixa entre bilhetes. Regua que diz nao para um mundo legitimo custa mais caro que
-  regua que falta — e foi a bateria que achou o excesso, nao uma releitura minha.
-  A ESCOLHA DA ILHA: NAO HOUVE ROTACAO. Hoje e 22/10/2026 e a linha
-  `fila_decidida_pelo_raphael` do foco.md mandava, desde 09/10 e ajustada por ele em
-  14/10, que a jornadafly entrasse em foco HOJE como foco principal — e avisava com
-  todas as letras que a linha `ilha:` nao se troca sozinha e que "se ninguem editar, o
-  foco fica preso, como ficou de 10/10 a 14/10". A janela da aquametria vencia em 21/10.
-  Troquei a linha e reservei esta ilha no MESMO push, as 10h20Z, aceito de primeira.
-  Os tres despachos do MOLDE da secao 32 estao FECHADOS nas tres ilhas (aquametria as
-  18h2xZ, clubedomosaico as 19h1xZ e robometria, as nove paginas), entao a excecao que
-  furava o foco pela 32 nao se aplica mais — o foco volta a mandar sozinho.
-  REDE PELA 20.2, REMEDIDA E NAO HERDADA, E E REGRESSAO: tres passadas, jornadafly e
-  www.jornadafly em 000 nas tres, com aquametria e robometria em 200 nas mesmas (a
-  robometria caiu uma vez na terceira, que e a intermitencia de tunel que a 20.2 manda
-  nao confundir com bloqueio). O curl verbose nomeia a causa: `CONNECT tunnel failed,
-  response 403` do proxy de egresso, dominio fora da lista de Dominios permitidos. O
-  campo dizia `aberta em 2026-09-18`, com HTTP 200 medido as 12h35Z daquele dia — entao
-  isto JA ESTEVE RESOLVIDO e voltou, e o despacho ALTA de 15/09 volta a valer.
-  A 31.1 E INALCANCAVEL NESTA ILHA, e esta escrito no PROMPT.md dela para nao ser lido
-  como desobediencia: 7 de cada 10 execucoes entregam algo no ar, e aqui nao existe "no
-  ar". Falta WordPress (passos 2 a 8 da secao 11, navegador do Raphael) e falta o
-  dominio na lista de rede. As duas sao dele.
-  PROXIMO PASSO: a F1 como REGRA (bloco 4), no desenho da F1 da ohmetria — referencia em
-  Python, entrada -> resposta inteira em frase acentuada, tabela pre-renderizada e
-  portoes, SEM PHP enquanto nao houver casca. A especificacao desta ilha ja foi
-  atualizada hoje para o modelo novo: a F1 le a faixa da VERSAO que a pessoa escolheu,
-  nunca da experiencia, e distingue TRES recusas que antes eram uma — faixa que o
-  operador nao declara, faixa que ele declara e ninguem leu, e numero da frase que e de
-  outro bilhete.
+  tem Sync e nao tem /status. Dizer que verifiquei no ar seria inventar.
+  REDE REMEDIDA E NAO HERDADA (20.2): 6 medicoes de bloqueio contra 6 de controle verde,
+  com `CONNECT tunnel failed, response 403` nomeado no verbose. Segue regressao.
+  O QUE SAIU: ferramentas/f1-referencia.py (o cerebro), ferramentas/gerar-f1.py,
+  dados/f1-respostas.json (154 respostas e 44 linhas de tabela, publicar false),
+  ferramentas/teste-f1.py e ferramentas/mutacoes-f1.py. Esquema versao 5, banco versao 5.
+  A CONTA 3 DA ESPECIFICACAO NAO ERA CALCULAVEL, e descobrir isso foi o bloco: ela manda
+  mostrar "a partir de quantos dias a versao mais cara passa a valer", e a quantidade de
+  uso de cada bilhete existia SO NA PROSA do rotulo ("3 dias, usaveis dentro de uma
+  semana"). Nasceram `eixo_das_versoes` na EXPERIENCIA (por_quantidade | por_escopo |
+  por_momento) e `dias_de_uso` na VERSAO, transcrito da frase da fonte — e a regua cobra
+  que o numero APARECA no `declarado_como`, em digito ou por extenso. Mesma troca da
+  versao 4 um andar acima: lá a faixa etaria saiu da prosa, aqui a quantidade.
+  E O EIXO E DECLARADO, NUNCA DEDUZIDO DO ROTULO: ler o rotulo acertaria no Angkor e
+  ERRARIA no Coliseu, cujos bilhetes diferem em ESCOPO e nao em quantidade. Dois
+  ingressos de 24 horas NAO dao a area restrita da Experiencia Completa — ponto de
+  equilibrio ali seria aritmetica certa sobre pergunta sem sentido. Das 4 experiencias:
+  1 por_quantidade (Angkor, 1/3/7 dias), 2 por_escopo (Coliseu, Torre Eiffel) e 1
+  por_momento (gondola).
+  O PORTAO ACHOU DOIS DEFEITOS NA MINHA PROPRIA FERRAMENTA, os dois antes do commit:
+  (1) a F1 publicava portugues SEM ACENTO na frase-resposta ("O preco e por veiculo"),
+  que e a cicatriz da Robometria cometida dentro do arquivo escrito para nao a cometer;
+  (2) e, atras do acento, um defeito maior — a F1 repassava os `motivo_*` do BANCO para a
+  tela, e esses motivos sao escritos para a proxima execucao: citam nome de campo entre
+  acentos graves, data de migracao e numero de secao. A pagina dizia ao visitante que "o
+  esquema PROIBE faixa etaria onde a unidade nao e `por_pessoa`" — texto de bastidor da
+  fabrica, que a 32.4 proibe. Mesma cicatriz que a ohmetria pagou com dados/modulos.json
+  na tela. A F1 passou a ESCREVER a propria frase de tela; o motivo fica no banco.
+  O `momento_do_dia` NAO E A QUARTA ENTRADA que a especificacao listava: ele e campo da
+  VERSAO, e um seletor separado deixaria pedir "noturno" sobre a versao diurna — estado
+  que o operador nao vende. O estado da F1 e (experiencia, versao, pessoas).
+  BANCADA, 0 falha: validar-banco verde (os 5 avisos de vocabulario_sem_lastro onde
+  estavam); mutacoes-banco 93 de 93 (eram 73), 39 cobradas pela frase; teste-f1 139.658
+  afirmacoes sobre os 154 estados, com a aritmetica reescrita a mao em Fraction e a grade
+  pisando na borda do GRUPO e na da CAPACIDADE; mutacoes-f1 28 de 28 — 5 mundos, 15
+  quebras e 8 mortes.
+  O NUMERO QUE JUSTIFICA VARRER A ENTRADA INTEIRA: existe EXATAMENTE UM estado neste
+  banco em que arredondar meio-para-cima difere de meio-para-par (gondola noturna, 2
+  pessoas, 56,925 EUR por pessoa com IOF). Uma grade por amostragem teria 1 chance em 154
+  de o achar, e a mutacao do arredondamento voltaria verde.
+  PROXIMO PASSO: a F2 como REGRA (quanto custa N dias em <cidade>), que nasce com a
+  mesma pergunta aberta do eixo — a F2 soma hospedagem, alimentacao e transporte local, e
+  nenhuma das tres esta no banco. O que ela pode fazer hoje e o que a F1 fez.
 ultima_ronda: null   # escrito pela Sentinela; esta ilha nunca teve ronda
 bloqueada_por: null
 ---

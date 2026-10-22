@@ -90,6 +90,45 @@ def _textos(no):
                 yield t
 
 
+# POR EXTENSO DE 1 A 12, que e a faixa de grupo que a F1 aceita. Esta lista e uma
+# DECISAO desta regua (o que conta como "a fonte declarou o numero") e nao um fato
+# externo, por isso ela mora aqui e nao no esquema — a fronteira da secao 8. A fonte
+# do Angkor escreve "para a visitacao de um dia" por extenso e "para 3 dias" em
+# digito na mesma leitura: quem escolhe a forma e ela, nao a ilha.
+NUMERO_POR_EXTENSO = {
+    1: ("um", "uma"),
+    2: ("dois", "duas"),
+    3: ("tres", "três"),
+    4: ("quatro",),
+    5: ("cinco",),
+    6: ("seis",),
+    7: ("sete",),
+    8: ("oito",),
+    9: ("nove",),
+    10: ("dez",),
+    11: ("onze",),
+    12: ("doze",),
+}
+
+
+def _declara_o_numero(frase, n):
+    """A frase da fonte diz o numero `n`, em digito ou por extenso?
+
+    Confere em PALAVRA INTEIRA: sem isso, "7" acharia o 7 de "US$ 72" e "um"
+    acharia o "um" de "algum", que e exatamente a vizinhanca que a secao 8 manda
+    nao usar como criterio.
+    """
+    if not isinstance(frase, str) or not isinstance(n, int):
+        return False
+    baixo = frase.lower()
+    if re.search(r"(?<![\d,.])%d(?![\d,.])" % n, baixo):
+        return True
+    for palavra in NUMERO_POR_EXTENSO.get(n, ()):
+        if re.search(r"(?<![0-9a-zà-ÿ])%s(?![0-9a-zà-ÿ])" % re.escape(palavra), baixo):
+            return True
+    return False
+
+
 def _maximo(valor):
     """Valor comparavel de uma declaracao: numero, ou o topo da faixa."""
     if isinstance(valor, (int, float)):
@@ -111,6 +150,8 @@ def validar(esquema, banco, constantes=None, hoje=None):
     erros = []
     avisos = []
     hoje = hoje or datetime.date.today()
+    n_eixo = {}
+    n_dias_de_uso = 0
 
     def erro(msg):
         erros.append(msg)
@@ -132,7 +173,8 @@ def validar(esquema, banco, constantes=None, hoje=None):
         vocab = {}
 
     for chave in ("unidade_de_preco", "declarada_por", "categoria", "tipo_de_operador",
-                  "momento_do_dia", "canal_de_leitura", "moeda", "status_do_registro"):
+                  "momento_do_dia", "canal_de_leitura", "moeda", "status_do_registro",
+                  "eixo_das_versoes"):
         if not isinstance(vocab.get(chave), list) or not vocab.get(chave):
             erro("esquema: vocabularios.%s ausente ou vazio." % chave)
 
@@ -211,6 +253,36 @@ def validar(esquema, banco, constantes=None, hoje=None):
              "topo, e um campo por experiencia publica o numero errado para tres das "
              "quatro versoes. Campo que volta para a entidade errada e regressao, nao "
              "escolha.")
+    # O EIXO DAS VERSOES e os DIAS DE USO nasceram em 22/10/2026, no bloco 4, porque a
+    # Conta 3 da F1 nao era calculavel sobre o banco versao 4: a quantidade de uso de
+    # cada bilhete existia so na PROSA do rotulo. As duas regras moram no ESQUEMA e nao
+    # aqui (26.2) — e se a chave sumir, a F1 volta a poder comparar bilhetes que nao se
+    # substituem (dois ingressos de 24h do Coliseu nao dao a area restrita) e a regua
+    # fica verde sem medir nada. Mesma familia da `faixa_etaria` acima.
+    eixo_esquema = campos_exp.get("eixo_das_versoes") if isinstance(campos_exp, dict) else None
+    if not isinstance(eixo_esquema, dict) or not eixo_esquema.get("null_exige"):
+        erro("esquema: `entidades.EXPERIENCIA.campos.eixo_das_versoes` ausente ou sem "
+             "`null_exige`. O eixo e a DECISAO sobre o conjunto de versoes — se as "
+             "versoes sao mais da mesma coisa, coisas diferentes, ou a mesma coisa em "
+             "outro horario — e e dele que a Conta 3 da F1 depende. Sem esta chave a "
+             "regua nao sabe que a lacuna exige motivo.")
+    dias_esquema = campos_versao.get("dias_de_uso") if isinstance(campos_versao, dict) else None
+    dias_exigido_quando = None
+    if not isinstance(dias_esquema, dict) or not dias_esquema.get("null_exige") \
+            or not dias_esquema.get("exigido_quando") or not dias_esquema.get("proibido_quando"):
+        erro("esquema: `entidades.VERSAO.campos.dias_de_uso` ausente ou sem "
+             "`null_exige`/`exigido_quando`/`proibido_quando`. Sem as tres, versao de "
+             "eixo de quantidade pode nascer sem a quantidade (e a Conta 3 cai calada) "
+             "e versao de escopo pode nascer COM quantidade (e a F1 publica um ponto de "
+             "equilibrio entre bilhetes que nao se substituem).")
+    else:
+        dias_exigido_quando = dias_esquema["exigido_quando"]
+    if not isinstance(esquema.get("conta_3_da_F1_exige_EIXO_DECLARADO_e_nao_sai_do_rotulo"), dict):
+        erro("esquema: falta o registro "
+             "`conta_3_da_F1_exige_EIXO_DECLARADO_e_nao_sai_do_rotulo`. Ele guarda POR QUE "
+             "os dois campos existem; sem ele a proxima execucao le dois campos sem causa "
+             "e o primeiro que os achar incomodos os remove.")
+
     if not isinstance(esquema.get("entidades", {}).get("FAIXA_ETARIA"), dict):
         erro("esquema: falta a entidade `FAIXA_ETARIA`. Sem a forma declarada, cada "
              "faixa do banco e um dicionario de forma livre e a regua nao tem o que "
@@ -362,6 +434,30 @@ def validar(esquema, banco, constantes=None, hoje=None):
         if operador.get("url") is None and not operador.get("motivo_sem_url"):
             erro("%s: operador com `url` null sem `motivo_sem_url`." % onde)
 
+        eixo = exp.get("eixo_das_versoes")
+        if "eixo_das_versoes" not in exp:
+            erro("%s: falta o campo `eixo_das_versoes`. Sem ele a F1 nao sabe se as "
+                 "versoes desta experiencia se comparam em quantidade, e a Conta 3 "
+                 "escolheria por conta propria — adivinhando pelo rotulo, que e prosa."
+                 % onde)
+        elif eixo is None:
+            if len(exp.get("versoes") or []) != 1:
+                erro("%s: `eixo_das_versoes` null com %d versoes. O null so vale para a "
+                     "experiencia de UMA versao: com duas ha eixo a declarar, e nao "
+                     "declarar e deixar a F1 escolher."
+                     % (onde, len(exp.get("versoes") or [])))
+            if not exp.get("motivo_sem_eixo_das_versoes"):
+                erro("%s: `eixo_das_versoes` null sem `motivo_sem_eixo_das_versoes`." % onde)
+        elif not em_vocab("eixo_das_versoes", eixo):
+            erro("%s: `eixo_das_versoes` %r fora do vocabulario." % (onde, eixo))
+        elif not exp.get("nota_do_eixo_das_versoes"):
+            erro("%s: `eixo_das_versoes` %r sem `nota_do_eixo_das_versoes`. O eixo e "
+                 "uma decisao sobre o conjunto; decisao sem motivo escrito e a primeira "
+                 "coisa que a proxima execucao troca sem saber o que esta trocando."
+                 % (onde, eixo))
+        if eixo is not None:
+            n_eixo[eixo] = n_eixo.get(eixo, 0) + 1
+
         if "faixa_etaria" in exp:
             erro("%s: `faixa_etaria` gravada na EXPERIENCIA. Desde 22/10/2026 ela e "
                  "campo da VERSAO, porque o preco de uma faixa depende do bilhete: "
@@ -449,6 +545,53 @@ def validar(esquema, banco, constantes=None, hoje=None):
                          "fecha." % (ondev, unidade))
             elif not isinstance(cap, int) or cap < 1:
                 erro("%s: `capacidade_maxima` %r nao e inteiro maior que zero." % (ondev, cap))
+
+            # ---- DIAS DE USO (nasceu em 22/10/2026, com o eixo das versoes)
+            # A terceira conta que a secao 8 pede: o numero nao e aceito porque esta
+            # gravado, e aceito porque a FRASE DA FONTE o diz. Sem isto `dias_de_uso`
+            # seria um inteiro digitado por quem migrou, com cara de transcrito.
+            if "dias_de_uso" not in versao:
+                erro("%s: falta o campo `dias_de_uso`. Ausencia de chave e "
+                     "esquecimento; null com motivo e resposta." % ondev)
+            else:
+                dias = versao.get("dias_de_uso")
+                if eixo == "por_quantidade":
+                    if dias is None:
+                        erro("%s: `dias_de_uso` null numa experiencia de eixo "
+                             "`por_quantidade`. A experiencia declarou que suas versoes "
+                             "sao mais da mesma coisa e esta versao nao diz QUANTO — a "
+                             "Conta 3 da F1 nao tem a grandeza do eixo que a propria "
+                             "experiencia declarou ter." % ondev)
+                    elif not isinstance(dias, int) or isinstance(dias, bool) or dias < 1:
+                        erro("%s: `dias_de_uso` %r nao e inteiro maior que zero."
+                             % (ondev, dias))
+                    else:
+                        de = versao.get("dias_de_uso_transcrito_de")
+                        if not de:
+                            erro("%s: `dias_de_uso` %r sem `dias_de_uso_transcrito_de`. "
+                                 "Numero que vira campo diz de qual frase saiu — a mesma "
+                                 "disciplina do `transcrito_de` das faixas etarias."
+                                 % (ondev, dias))
+                        n_dias_de_uso += 1
+                        declarado = versao.get("declarado_como") or ""
+                        if not _declara_o_numero(declarado, dias):
+                            erro("%s: `dias_de_uso` %r nao aparece em `declarado_como` "
+                                 "(%r), nem em digito nem por extenso. O numero tem de "
+                                 "estar na FRASE DA FONTE: aceita-lo so porque esta no "
+                                 "campo e confiar na transcricao em vez de conferi-la, e "
+                                 "e a conta que a secao 8 chama de terceira."
+                                 % (ondev, dias, declarado[:90]))
+                elif eixo is not None:
+                    if dias is not None:
+                        erro("%s: `dias_de_uso` %r numa experiencia de eixo %r. O "
+                             "esquema proibe: dar quantidade a uma versao que difere em "
+                             "escopo ou em horario convida a conta que nao existe — "
+                             "comprar dois ingressos de 24 horas do Coliseu NAO da a "
+                             "area restrita da Experiencia Completa."
+                             % (ondev, dias, eixo))
+                    elif not versao.get("motivo_sem_dias_de_uso"):
+                        erro("%s: `dias_de_uso` null sem `motivo_sem_dias_de_uso`."
+                             % ondev)
 
             # ---- FAIXA ETARIA (desceu para a VERSAO em 22/10/2026)
             if "faixa_etaria" not in versao:
@@ -924,6 +1067,10 @@ def validar(esquema, banco, constantes=None, hoje=None):
                                         if f.get("leitura") == "leitura_direta"),
         "faixas_etarias": n_faixas_de_idade,
         "faixas_declaradas_nao_transcritas": n_lacunas_de_faixa,
+        "experiencias_com_eixo_por_quantidade": n_eixo.get("por_quantidade", 0),
+        "experiencias_com_eixo_por_escopo": n_eixo.get("por_escopo", 0),
+        "experiencias_com_eixo_por_momento": n_eixo.get("por_momento", 0),
+        "versoes_com_dias_de_uso": n_dias_de_uso,
     }
     gravado = banco.get("resumo") or {}
     for chave, valor in calculado.items():
@@ -963,11 +1110,14 @@ def validar(esquema, banco, constantes=None, hoje=None):
             "tipo_de_operador": set(),
             "momento_do_dia": set(),
             "status_do_registro": set(),
+            "eixo_das_versoes": set(),
         }
         for cidade in banco.get("cidades", []):
             usados["moeda"].add(cidade.get("moeda_local"))
         for exp in banco.get("experiencias", []):
             usados["categoria"].add(exp.get("categoria"))
+            if exp.get("eixo_das_versoes") is not None:
+                usados["eixo_das_versoes"].add(exp.get("eixo_das_versoes"))
             usados["status_do_registro"].add(exp.get("status"))
             usados["tipo_de_operador"].add((exp.get("operador") or {}).get("tipo"))
             for versao in exp.get("versoes", []):
@@ -1001,7 +1151,11 @@ def main():
                   "declaracoes_publicaveis", "declaracoes_sem_versao", "itens_sem_saida_de_compra",
                   "itens_com_piso_nao_rastreavel", "itens_intestaveis",
                   "experiencias_com_preco_em_brl", "fontes_de_leitura_direta",
-                  "faixas_etarias", "faixas_declaradas_nao_transcritas"):
+                  "faixas_etarias", "faixas_declaradas_nao_transcritas",
+                  "experiencias_com_eixo_por_quantidade",
+                  "experiencias_com_eixo_por_escopo",
+                  "experiencias_com_eixo_por_momento",
+                  "versoes_com_dias_de_uso"):
         if chave in calculado:
             print("  %-32s %s" % (chave.replace("_", " ") + " ", calculado[chave]))
     for a in avisos:

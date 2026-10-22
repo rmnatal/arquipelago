@@ -3,6 +3,244 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-10-22 13h29Z — A F1 EXISTE COMO REGRA, e escrevê-la mostrou que a Conta 3 da especificação não era calculável
+
+**O que saiu:** o **bloco 4** — a F1 como **regra**, no desenho que a ohmetria usou na F1
+dela: `ferramentas/f1-referencia.py` (o cérebro: estado → resposta inteira, já em frase
+acentuada), `ferramentas/gerar-f1.py`, `dados/f1-respostas.json` (as **154** respostas e
+as **44** linhas da tabela pré-renderizada, `publicar: false`),
+`ferramentas/teste-f1.py` e `ferramentas/mutacoes-f1.py`. Esquema **versão 5**, banco
+**versão 5**. É o próximo passo que o registro de 10h20Z de hoje deixou escrito,
+cumprido na mesma data. **Nada foi ao ar, e não podia ter ido: esta ilha não tem site,
+não tem WordPress, não tem Sync e não tem `/status`, e dizer que verifiquei no ar seria
+inventar.**
+
+**SEM PHP, e é decisão registrada e não pendência esquecida.** Sem casca (bloco 3b,
+trabalho de navegador do Raphael), um snippet só poderia ser medido por um render de
+bancada que serve **menos** do que o site serve — a cicatriz que a seção 8 do
+`ARQUIPELAGO.md` mais cobra, paga três vezes pela Robometria. A regra nasceu onde pode
+ser conferida hoje, e o PHP, quando nascer, é **tradutor** desta referência, frase a
+frase, como a robometria faz entre `cobertura-r1.py` e `robometria-r1.php`.
+
+**A ESCOLHA DA ILHA: NÃO HOUVE ROTAÇÃO E NÃO HOUVE DECISÃO MINHA.** `foco.md` nomeia a
+**jornadafly** desde hoje, pelo item (3) da fila que o Raphael decidiu em 09/10 e
+ajustou em 14/10, e pela **1.2** não há escolha de ilha a fazer. Conferi a exceção de
+21/10 que fura o foco pelo **molde da seção 32**: os três despachos estão **fechados**
+(aquametria às 18h2xZ, clubedomosaico às 19h1xZ, robometria nas nove páginas), então ela
+não se aplica e o foco manda sozinho. `executando_desde` estava `null`, que pela **1.1**
+já significa que não havia bloco da Fundação vivo — não houve reserva vencida para o git
+desempatar. Reserva aceita de primeira às **13h29Z**, sem recusa de push. Nenhum branch
+`claude/*` com trabalho a mesclar e nenhum PR aberto.
+
+**REDE PELA 20.2, REMEDIDA E NÃO HERDADA.** Três passadas: `jornadafly.com.br` e
+`www.jornadafly.com.br` em `000` nas três (**6 medições de bloqueio**), com
+`aquametria.com.br` e `robometria.com.br` em `200` nas três (**6 de controle**, e nesta
+rodada **nenhuma** intermitência de túnel, diferente da passada de 10h20Z). O `curl`
+verbose nomeia a causa e ela não é túnel: `HTTP/1.1 403 Forbidden` no `CONNECT
+jornadafly.com.br:443`. **Segue sendo regressão** — o campo dizia `aberta em 2026-09-18`
+com HTTP 200 medido às 12h35Z daquele dia — e o despacho ALTA de 15/09 em
+`dados/despachos.md` continua valendo. `bloqueada_por` segue `null` de propósito: o que
+a rede trava é o 3b em diante, não o bloco de arquivo.
+
+### A CONTA 3 DA ESPECIFICAÇÃO NÃO ERA CALCULÁVEL, e achar isso foi o trabalho do bloco
+
+A especificação (2.5) manda a F1 mostrar **"a partir de qual número de dias/atrações a
+versão mais cara passa a valer"**, e nomeia Petra e Angkor como os casos medidos. Sobre
+o banco versão 4 isso **não tinha como ser respondido**: as 11 versões trazem `preco`,
+`rotulo` e `declarado_como`, e **nenhum campo** dizia quantas unidades de uso cada
+bilhete dá nem se as versões são comparáveis entre si. A quantidade existia só na
+**prosa** — "3 dias, usáveis dentro de uma semana" — e prosa não se conta.
+
+**O conserto tem duas metades, e a primeira é a que não se adivinha.**
+
+**(1) A EXPERIÊNCIA declara o EIXO**, `eixo_das_versoes` ∈
+`{por_quantidade, por_escopo, por_momento}`, porque **a comparabilidade é uma decisão
+sobre o conjunto e não um atributo de cada item**. A Conta 3 roda só em
+`por_quantidade`; nos outros dois a F1 diz na tela por que não há ponto de equilíbrio, e
+isso é uma resposta e não um silêncio. **O erro caro, nomeado antes da direção:** dois
+ingressos de 24 horas do Coliseu **não** dão a área restrita da Experiência Completa, e
+dois passeios diurnos de gôndola **não** dão um passeio noturno — um ponto de equilíbrio
+ali seria aritmética correta sobre uma pergunta sem sentido, que é a forma mais eficiente
+de publicar uma mentira com cara de conta.
+
+**E o eixo NÃO se deduz do rótulo**, que era o atalho disponível: ler o rótulo
+**acertaria no Angkor e erraria no Coliseu**, cujos quatro bilhetes não falam de
+quantidade nenhuma. Erro que acerta no caso que se tem na mão é o mais caro de todos,
+porque ele passa.
+
+**(2) A VERSÃO declara `dias_de_uso`**, com `dias_de_uso_transcrito_de` dizendo de qual
+frase da fonte o número saiu, e **a régua cobra que o número apareça no
+`declarado_como`** da própria versão, em dígito ou por extenso. É a **terceira conta** da
+seção 8: sem ela o campo seria um inteiro digitado por quem migrou, com cara de
+transcrito. **Nenhuma leitura nova de fonte** — os três números do Angkor (1, 3 e 7)
+estavam escritos na declaração dela desde 14/09/2026. É a mesma troca que a `faixa_etaria`
+fez três horas antes, um andar acima: lá a prosa virou faixa, aqui a prosa virou
+quantidade.
+
+**O que o banco de hoje tem:** 1 experiência `por_quantidade` (Angkor), 2 `por_escopo`
+(Coliseu e Torre Eiffel) e 1 `por_momento` (gôndola) — os três valores do vocabulário
+com lastro no primeiro dia, e o validador confirma (`vocabulario_sem_lastro` não acusa o
+eixo). **A conta, medida:** a base é o bilhete de menor quantidade (1 dia, US$ 37) e o
+equilíbrio é **2 dias** tanto para o passe de 3 (US$ 62; dois de um dia já custam US$ 74)
+como para o de 7 (US$ 72).
+
+**O ponto de equilíbrio é uma FUNÇÃO PURA** que recebe `[(id, rótulo, preço, dias)]` e o
+eixo, e não varre o banco. É a regra que o Clube do Mosaico pagou em 08/10/2026: recusa
+que depende de uma **relação** entre os dados só é testável no dia em que o banco
+produzir o caso, e é esse o dia em que ela vai estar errada. Com a função pura, a bancada
+fabrica o empate de preço, a versão única e o preço ausente **sem fabricar um banco
+falso** — e as três mutações existem.
+
+### O PORTÃO ACHOU DOIS DEFEITOS NA MINHA PRÓPRIA FERRAMENTA, e o segundo estava atrás do primeiro
+
+**(a) A F1 publicava português SEM ACENTO.** A frase-resposta saía *"O preco e por
+veiculo, nao por pessoa"*: a cicatriz da Robometria cometida dentro do arquivo escrito
+para não a cometer. O rótulo da unidade era montado com `unidade.replace("_", " ")`, que
+é um atalho que parece inofensivo e publica o vocabulário do banco na tela. Virou
+`ROTULO_DA_UNIDADE`, conferido contra o vocabulário do esquema **nas duas direções**.
+
+**(b) E atrás do acento, um defeito maior: a F1 repassava os `motivo_*` do BANCO para a
+tela.** Esses campos são escritos para a **próxima execução** — citam nome de campo entre
+acentos graves, data de migração e número de seção do contrato. O resultado era a página
+dizendo ao visitante que *"o esquema PROÍBE faixa etária onde a unidade não é
+`por_pessoa`"* e nomeando `cambio-eur-brl` dentro da recusa do valor em real. **Texto de
+bastidor da fábrica numa página pública, que a 32.4 proíbe com todas as letras** — a
+mesma cicatriz que a ohmetria pagou publicando `dados/modulos.json` na tela. A F1 passou
+a **escrever a própria frase de tela**; o motivo fica no banco, onde serve.
+
+**A régua de acento foi quem viu, e o defeito embaixo era maior que o acento** — pela
+terceira vez nesta fábrica (a ohmetria registrou a mesma sequência). Por isso a trava que
+nasceu não é uma lista de frases: é uma lista de **FORMAS** de bastidor (acento grave,
+nome em minúsculas com sublinhado, caminho de arquivo do repositório, id com dois ou mais
+hifens, número de seção do contrato), porque o bastidor não chega à página como uma frase
+conhecida — ele chega como nome de campo dentro de um motivo.
+
+### O `momento_do_dia` NÃO é a quarta entrada que a especificação listava
+
+A tabela de entradas (2.3) o lista como seleção dependente condicional. No banco ele é
+**campo da VERSÃO**: as duas versões vendidas da gôndola **são** o diurno e o noturno,
+cada uma com horário, duração e preço próprios. Oferecê-lo à parte deixaria a pessoa
+pedir "noturno" sobre a versão diurna — **um estado que o operador não vende**. O estado
+da F1 é `(experiência, versão, pessoas)`, e o horário sai da versão escolhida. A
+especificação foi corrigida com a condição de volta: se um dia um operador vender a mesma
+versão em dois horários com preços diferentes, o campo volta a ser entrada — e aí nasce
+como dimensão do banco **antes** de nascer como campo de formulário.
+
+### A bateria de mutações me corrigiu seis vezes, e cinco das seis eram sobre a MUTAÇÃO, não sobre o código
+
+Primeira rodada: 6 de 28 decidiram diferente do esperado. **Nenhuma delas era um defeito
+da F1** — e é isso que vale guardar.
+
+- **Duas não tinham como morder, e as duas pelo mesmo motivo.** A quebra "o piso de
+  compra passa a ser lido do registro em vez de derivado do molde" **passou**, porque no
+  banco de hoje a URL derivada e a URL gravada são a mesma letra por letra — o validador
+  obriga. É literalmente o caso que a seção 8 descreve: *"as quatro réguas davam a mesma
+  resposta em todos os registros do banco de hoje… portão que comparasse os vereditos
+  ficaria verde"*. A quebra "a escada passa a ser calculada no eixo de escopo" **passou**
+  porque as versões de escopo têm `dias_de_uso` null e o cálculo caía na recusa de dado
+  faltando. As duas só mordem num mundo que precisa de **código E dado** mexidos juntos,
+  e a bateria ganhou um quarto elemento na tupla para isso.
+- **Uma atacava a forma errada do mesmo defeito.** A quebra do motivo do banco apontava
+  para `inclui_motivo_lista_vazia`, que é prosa sem nome de campo dentro — nenhuma forma
+  de bastidor aparecia. O alvo certo é `motivo_sem_faixa_etaria`, que é exatamente o que a
+  primeira versão da F1 repassava. **Mutação que ataca a forma errada volta verde e parece
+  prova.**
+- **Duas MORRERAM em vez de reprovar, e morrer era a resposta certa.** Data de leitura
+  fora de AAAA-MM-DD e cidade sem `slug_plataforma` levantam na referência em vez de a
+  fazerem publicar errado. As duas desceram para MORTES, onde medem o que de fato fazem.
+- **Uma passou e TEM de passar, e isso é uma fronteira escrita.** "Banco dando
+  QUANTIDADE a bilhetes que diferem em escopo" passa no portão da F1 — porque o portão da
+  F1 confere a **referência** contra o banco, e banco que **mente** é trabalho do
+  `validar-banco.py`, que o reprova. Ficou na bateria como MUNDO, de propósito: é a prova
+  de que o portão da F1 não finge medir o que não mede, e a próxima execução não vai
+  escrever a mesma mutação esperando outra resposta.
+
+**E a bateria do banco tinha o mesmo defeito que a de 22/10 10h20Z achou nela, outra
+vez.** As 13 quebras novas do eixo nasceram com a **FRASE esperada escrita na quarta
+posição** da tupla — que é o `esquema_mutado` — e não na quinta: reprovavam, e nenhuma
+provava reprovar **pelo motivo certo**. O conserto não foi mover 13 vírgulas: o
+`esquema_para()` passou a **matar a bateria** quando recebe uma chave de mutação que não
+reconhece, em vez de devolver um esquema intacto com cara de mutado. É a trava de alvo
+exato aplicada ao lugar onde ela faltava, e ela diz na mensagem qual dos dois erros foi
+cometido.
+
+### A grade pisa em DUAS bordas, e uma delas custa um número
+
+O portão varre **todos os 154 estados** — 11 versões × 12 tamanhos de grupo, mais 0 e 13
+pessoas, que são as recusas duras — e, nas versões com unidade de veículo, também a
+capacidade, a capacidade + 1 e o dobro dela, que é onde `ceil` se separa de `floor + 1`.
+**O número que justifica isso:** existe **exatamente UM** estado neste banco em que
+arredondar meio-para-cima difere de arredondar meio-para-par — a gôndola noturna para 2
+pessoas, €56,925 por pessoa com IOF, que é **€56,93** e não €56,92. Uma grade por
+amostragem teria 1 chance em 154 de o encontrar, e a mutação que troca o arredondamento
+voltaria **verde**.
+
+### Bancada, 0 falha
+
+- `validar-banco.py` **verde** sobre o banco real, com as oito réguas novas do eixo e dos
+  dias de uso. Os **5** avisos de `vocabulario_sem_lastro` continuam onde estavam, e o
+  vocabulário novo (`eixo_das_versoes`) **não** acusa: os três valores têm registro que os
+  use no primeiro dia.
+- `mutacoes-banco.py` **93 de 93** (eram 73): **10** mundos que têm de passar e **83**
+  quebras que têm de reprovar, **39** delas cobradas pela frase que esperam ouvir
+  (eram 22). Os três mundos novos são os que o esquema permite e o banco não tem: eixo de
+  quantidade com uma versão só, eixo de quantidade com empate de preço, e eixo null com
+  uma versão só.
+- `teste-f1.py` **139.658 afirmações, 0 falha**, com a aritmética reescrita à mão em
+  `Fraction` (o `ceil` como divisão inteira e o arredondamento sem `Decimal`, **de
+  propósito**, para que duas escritas da mesma conta possam discordar numa borda).
+- `mutacoes-f1.py` **28 de 28**: 5 mundos, 15 quebras e **8 mortes**. Morte é chave que
+  sai do esquema ou das constantes e tem de **matar** a referência em vez de a fazer cair
+  num literal — molde do piso, vocabulário de unidade, moeda, `rel`, e o IOF nos dois
+  jeitos (pendente e ausente).
+- Os quatro JSON passam por `json.load` e o cabeçalho do `ESTADO.md` por `yaml.safe_load`.
+
+### A seção 31 nesta ilha, dita antes de alguém contar
+
+A **31.1** pede 7 de cada 10 execuções entregando algo **no ar**. Nesta ilha isso é
+**inalcançável**, porque **não existe "no ar"**: faltam os passos 2 a 8 da seção 11
+(WordPress, trabalho de navegador) e falta o domínio na lista de rede. As duas são do
+Raphael, as duas estão no topo do `PROMPT.md` desta ilha e no `foco.md`, e as duas foram
+remedidas hoje.
+
+**E a 31.2 foi obedecida com a conta na mesa, porque ela merece a pergunta.** Ela diz que
+portão novo só nasce quando existe **defeito medido no ar** que ele teria pegado. O
+`teste-f1.py` e o `mutacoes-f1.py` nasceram nesta passada, e **não há "no ar" nesta ilha
+para medir defeito**. O que os sustenta é a **31.5**, que preserva inteiro o portão de
+dado da seção 13.1, e o fato de que os dois **pegaram dois defeitos reais nesta mesma
+execução** — o português sem acento e o texto de bastidor na tela —, nomeados acima com a
+frase exata que iam publicar. Não são ampliação de portão existente (que a **31.3**
+proíbe): são o portão de dado da ferramenta que acabou de nascer. **O que NÃO nasceu, de
+propósito:** um `bancada.py` que descubra os portões por convenção de nome, como as três
+ilhas irmãs têm. Ele seria bancada sobre bancada, a 31.3 o proíbe enquanto houver item de
+conteúdo aberto, e os quatro portões desta pasta ainda cabem em quatro linhas de registro.
+
+### Aberto e nomeado
+
+(a) a **rede** da ilha, despacho ALTO, **remedida e ainda regredida** hoje, que trava 3b
+em diante; (b) o **WordPress e a infraestrutura dos passos 2 a 8**, que nenhuma execução
+da Fundação alcança; (c) as **4 células do meio** da grade da Torre Eiffel, contadas e
+bloqueadas por 403; (d) a **seção pendente do `VOZ.md`** — as 10 a 15 legendas reais do
+@jornadafly, que o `PROMPT.md` exige antes da primeira página; (e) a **identidade
+visual**, que precisa da aprovação do Raphael antes do 3b; (f) **nenhum programa de
+afiliado cadastrado** (e por isso o link do bloco de compra sai **cru**, sem
+`rel="sponsored"`, que é decisão já registrada pelas duas ilhas irmãs); (g) o **câmbio**
+(`api.bcb.gov.br` fora da lista), que é o que impede a F1 de publicar valor em real;
+(h) **não existe `manifest.json`**, e criá-lo vazio seria inventar infraestrutura antes do
+WordPress.
+
+### Próximo passo desbloqueado
+
+**A F2 como REGRA — "quanto custa N dias em `<cidade>`"**, no mesmo desenho. E ela nasce
+com uma pergunta de dado que a F1 não tinha: a F2 soma **hospedagem + alimentação +
+transporte local + experiências marcadas**, e das quatro só a última existe no banco. As
+três primeiras não são experiência e não cabem na entidade EXPERIÊNCIA — então o bloco da
+F2 começa decidindo **onde elas moram**, e a especificação (seção 3) já avisa que a F2 só
+entra "se for melhor" que o `quantocustaviajar.com`, cujo diferencial é justamente preço
+colhido na fonte. **O que a F2 pode fazer hoje é o que a F1 fez:** a regra, a régua e as
+mutações sobre o que o banco tem, com as recusas contadas em vez de escondidas. Não
+depende de site, de domínio, nem da rede bloqueada.
+
 ## 2026-10-22 10h20Z — `faixa_etaria` desce para a VERSÃO, e a descida acha que a frase do Angkor fala de outro bilhete
 
 **O que saiu:** `faixa_etaria` saiu de EXPERIÊNCIA e entrou em VERSÃO, nas **11 versões das 4
