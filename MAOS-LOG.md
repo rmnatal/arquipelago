@@ -6312,3 +6312,87 @@ alterado, nenhum bloco de fila executado, nenhum Sync acionado, nenhuma publica�
 nenhuma conta criada, nenhum contato pessoal de terceiro escrito. O `ARQUIPELAGO.md` não foi aberto: a decisão
 veio pronta no disparo. O conteúdo foi gravado byte a byte como veio, sem reformatar e sem corrigir — inclusive
 `SERPbrasileira`, sem espaço, no segundo parágrafo da LIÇÃO do arquivo novo, que ficou como estava na instrução.
+
+---
+
+## Disparo de 21/10/2026 21:22 (horário de Brasília) — 22/10/2026 00:22 UTC — Bússola rodada 007, gravação 4 (comissão medida no painel)
+
+**Assunto da instrução:** Projeto Arquipélago / Bússola / rodada 007 (nicho jardinagem). Passou na checagem de
+assunto: é do Arquipélago. Nenhuma credencial apareceu no texto da instrução — a trava de segredo não disparou.
+Nenhum contato pessoal de terceiro no conteúdo — nada foi deixado de fora por esse motivo.
+
+**O que a instrução mandou:** num só commit, criar `bussola/medicoes/comissao-shopee-painel-2026-10-22.md` e
+fazer UMA substituição de texto em `bussola/fila.md`.
+
+**Trava de contagem, conferida por script ANTES de gravar:**
+
+```
+ARQUIVO NOVO EXISTE: False
+OCORRENCIAS do TRECHO ANTIGO em bussola/fila.md: 1
+```
+
+Exatamente uma ocorrência, como a instrução exigia. Gravação liberada.
+
+**`git status --porcelain` (com a mudança preparada, antes do commit):**
+
+```
+M  bussola/fila.md
+A  bussola/medicoes/comissao-shopee-painel-2026-10-22.md
+```
+
+**`git diff --stat` (preparado, antes do commit):**
+
+```
+ bussola/fila.md                                    |  35 +++++-
+ .../medicoes/comissao-shopee-painel-2026-10-22.md  | 126 +++++++++++++++++++++
+ 2 files changed, 160 insertions(+), 1 deletion(-)
+```
+
+**`git show --numstat` do commit que foi ao `main`:**
+
+```
+34	1	bussola/fila.md
+126	0	bussola/medicoes/comissao-shopee-painel-2026-10-22.md
+```
+
+**Hash que foi ao `main`:** `7d61d7acb417df1f2cd3d2bae9c997aa0eb894b4`
+
+**Confirmação em `origin/main`** (`git fetch origin main && git log -1 origin/main`):
+
+```
+7d61d7acb417df1f2cd3d2bae9c997aa0eb894b4
+Bússola rodada 007 — comissão real medida no painel de afiliado: o piso é 8%, não 3%
+```
+
+Push aceito na primeira tentativa, sem rebase, sem force, sem PR. `git status --porcelain` depois do commit:
+vazio.
+
+**Contagem do que mudou, conferida relendo os arquivos DEPOIS de gravar (não pelo que eu acho que escrevi):**
+
+```
+bussola/medicoes/comissao-shopee-painel-2026-10-22.md  126 linhas   7641 bytes  (arquivo novo)
+bussola/fila.md                                        333 linhas  45926 bytes  (+34 linhas, -1 linha)
+
+linha nova "**Estado novo (22/10/2026, depois da leitura do painel..." em fila.md .... 1
+TRECHO ANTIGO ("**Estado novo:** `passa no tráfego, travado no M...") restante ....... 0
+```
+
+2 arquivos no commit do trabalho, 160 linhas acrescentadas, 1 removida. A substituição trocou a linha antiga
+pelo bloco novo, como a instrução mandava — a linha antiga era para ser substituída, e não restou nenhuma cópia
+dela no arquivo.
+
+**Nenhum passo falhou.** Nada a registrar de erro nesta seção.
+
+**Nota sobre o `main` encontrado:** o `git fetch origin main` deste disparo veio como *forced update*
+(`+ 06367e9...f9154d4 main -> origin/main`), ou seja, o `main` remoto tinha sido reescrito desde o último
+disparo. A partida foi de `origin/main` real (`f9154d4`), como manda o procedimento, e não da branch da sessão.
+Fica o registro porque histórico reescrito no `main` é coisa que o log tem de mostrar.
+
+**Fronteira:** nenhum arquivo além dos dois nomeados pela instrução foi tocado, mais este `MAOS-LOG.md`, que é a
+exceção obrigatória. Nenhuma ilha reservada, nenhum `executando_desde` escrito, nenhum cabeçalho de estado
+alterado, nenhum bloco de fila executado, nenhum Sync acionado, nenhuma publicação, nenhum `publicar: true`
+(o arquivo novo nasceu com `publicar: false`, como vinha na instrução), nenhuma conta criada, nenhum contato
+pessoal de terceiro escrito. O `ARQUIPELAGO.md` não foi aberto: a decisão veio pronta no disparo. O conteúdo foi
+gravado byte a byte como veio, sem reformatar e sem corrigir — inclusive o travessão fino em
+`Substrato para Zamioculca – Planta da Fortuna`, que ficou como estava na instrução, diferente dos travessões
+longos do resto do arquivo.
