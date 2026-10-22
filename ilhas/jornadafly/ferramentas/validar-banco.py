@@ -174,9 +174,15 @@ def validar(esquema, banco, constantes=None, hoje=None):
 
     for chave in ("unidade_de_preco", "declarada_por", "categoria", "tipo_de_operador",
                   "momento_do_dia", "canal_de_leitura", "moeda", "status_do_registro",
-                  "eixo_das_versoes"):
+                  "eixo_das_versoes", "categoria_de_custo", "padrao_de_viagem",
+                  "base_da_faixa", "o_que_o_numero_e"):
         if not isinstance(vocab.get(chave), list) or not vocab.get(chave):
             erro("esquema: vocabularios.%s ausente ou vazio." % chave)
+
+    if not isinstance((esquema.get("entidades") or {}).get("FAIXA_DIARIA"), dict):
+        erro("esquema: entidade `FAIXA_DIARIA` ausente. Ela e onde moram hospedagem, "
+             "alimentacao e transporte local — as tres linhas da F2 que NAO sao nossas. "
+             "Sem ela a regua nao tem o que cobrar e a F2 some uma linha sem dono.")
 
     exige = esquema.get("campos_que_exigem_declaracao_de_origem")
     campos_declarada_por = None
@@ -1015,6 +1021,123 @@ def validar(esquema, banco, constantes=None, hoje=None):
                 intestaveis += 1
 
     # ------------------------------------------------------------------
+    # 4b. FAIXAS DIARIAS — hospedagem, alimentacao e transporte local
+    #
+    # Estas NAO sao nossas: sao faixa que um terceiro publicou, e e por isso que
+    # elas tem campos que a EXPERIENCIA nao tem (`publicado_por`, `metodo_declarado`,
+    # `o_que_o_numero_e`). A regua existe ANTES do primeiro registro de proposito: o
+    # banco tem zero faixas hoje, e regua escrita no dia da carga e regua que nasce
+    # moldada ao dado que veio.
+    # ------------------------------------------------------------------
+    faixas = {}
+    n_faixas_publicaveis = 0
+    for faixa in banco.get("faixas_diarias", []):
+        fxid = faixa.get("id")
+        onde = "faixas_diarias/%s" % (fxid or "?")
+        if not fxid:
+            erro("%s: sem `id`." % onde)
+            continue
+        if fxid in faixas:
+            erro("%s: `id` repetido." % onde)
+        faixas[fxid] = faixa
+
+        if faixa.get("cidade") not in cidades:
+            erro("%s: `cidade` %r nao esta no banco. Faixa de cidade que a ilha nao "
+                 "conhece nao tem pagina onde ser publicada." % (onde, faixa.get("cidade")))
+        for chave, campo in (("categoria_de_custo", "categoria_de_custo"),
+                             ("padrao_de_viagem", "padrao"),
+                             ("base_da_faixa", "base"),
+                             ("o_que_o_numero_e", "o_que_o_numero_e"),
+                             ("moeda", "moeda"),
+                             ("status_do_registro", "status")):
+            if not em_vocab(chave, faixa.get(campo)):
+                erro("%s: `%s` %r fora do vocabulario `%s`."
+                     % (onde, campo, faixa.get(campo), chave))
+
+        vmin, vmax = faixa.get("valor_min"), faixa.get("valor_max")
+        for nome, valor in (("valor_min", vmin), ("valor_max", vmax)):
+            if not isinstance(valor, (int, float)) or isinstance(valor, bool) or valor <= 0:
+                erro("%s: `%s` %r nao e numero maior que zero. Faixa sem numero nao e "
+                     "faixa." % (onde, nome, valor))
+        if isinstance(vmin, (int, float)) and isinstance(vmax, (int, float)) \
+                and not isinstance(vmin, bool) and not isinstance(vmax, bool) and vmax < vmin:
+            erro("%s: `valor_max` %r menor que `valor_min` %r. Faixa invertida publica um "
+                 "intervalo vazio com cara de intervalo." % (onde, vmax, vmin))
+
+        # A BASE e a licao da `unidade_de_preco` um andar acima, e ela exige a frase
+        # de onde saiu: multiplicar diaria de QUARTO pelo numero de pessoas continua
+        # parecendo dinheiro, e e por isso que ninguem ve o erro.
+        if not (faixa.get("base_transcrita_de") or "").strip():
+            erro("%s: `base` declarada sem `base_transcrita_de`. A base e a grandeza a "
+                 "que o numero se refere, e ela existe SO na prosa de quem publicou: sem "
+                 "a frase copiada, a regua esta confiando que alguem leu certo." % onde)
+
+        # A OCUPACAO DO QUARTO, quando a base e por quarto: sem ela a faixa nao
+        # escala para o grupo, e a F2 recusa a linha. Mesma cobranca de `dias_de_uso`
+        # um andar acima — o numero tem de APARECER na frase da fonte.
+        ppq = faixa.get("pessoas_por_quarto")
+        base = faixa.get("base")
+        transcrita = faixa.get("base_transcrita_de") or ""
+        if base == "por_quarto_por_dia":
+            if ppq is None:
+                if not (faixa.get("motivo_sem_pessoas_por_quarto") or "").strip():
+                    erro("%s: base `por_quarto_por_dia` sem `pessoas_por_quarto` e sem "
+                         "`motivo_sem_pessoas_por_quarto`. Sem a ocupacao a diaria nao "
+                         "escala para o grupo: 6 pessoas numa diaria de quarto duplo sao "
+                         "TRES quartos, e nao a diaria dividida por 6." % onde)
+            elif not isinstance(ppq, int) or isinstance(ppq, bool) or ppq < 1:
+                erro("%s: `pessoas_por_quarto` %r nao e inteiro maior ou igual a 1."
+                     % (onde, ppq))
+            elif not _declara_o_numero(transcrita, ppq):
+                erro("%s: `pessoas_por_quarto` %d nao aparece em `base_transcrita_de` "
+                     "(%r). O numero e TRANSCRITO da frase de quem publicou, nunca "
+                     "suposto pela ilha — quem publica diaria de hotel quase nunca diz a "
+                     "ocupacao no mesmo lugar em que diz o preco." % (onde, ppq, transcrita))
+        elif ppq is not None:
+            erro("%s: `pessoas_por_quarto` gravado com base %r. O esquema PROIBE ocupacao "
+                 "fora da base de quarto: ali nao ha quarto a contar, e dar ocupacao a uma "
+                 "faixa que nao e de quarto convida a conta que nao existe." % (onde, base))
+
+        # O QUE O NUMERO E exige a frase exata. E a troca que esta migracao fez: a
+        # distincao entre uma media e um minimo morava na prosa desde 14/09/2026.
+        metodo = (faixa.get("metodo_declarado") or "").strip()
+        if not metodo:
+            erro("%s: `o_que_o_numero_e` declarado sem `metodo_declarado`. As duas frases "
+                 "que esta ilha mediu na mesma SERP («media de R$ 203,87 nos ultimos 30 "
+                 "dias» e «a diaria mais baixa encontrada foi R$ 396,84») diferem SO na "
+                 "prosa: sem ela o enum e um palpite com cara de campo." % onde)
+
+        if not (faixa.get("publicado_por") or "").strip():
+            erro("%s: sem `publicado_por`. Republicar numero anonimo e exatamente o "
+                 "defeito do concorrente que o bloco 1 mediu em 14/09/2026." % onde)
+        if not faixa.get("url") and not (faixa.get("motivo_sem_url") or "").strip():
+            erro("%s: sem `url` e sem `motivo_sem_url`. Faixa de terceiro sem endereco e "
+                 "sem motivo nao pode ser reconferida por ninguem." % onde)
+        if not _e_data(faixa.get("data_leitura")):
+            erro("%s: `data_leitura` ausente ou nao e data. Preco sem data de leitura nao "
+                 "existe nesta ilha, e faixa de terceiro nao e excecao." % onde)
+        if faixa.get("status") == "publicavel":
+            n_faixas_publicaveis += 1
+
+    # A REGRA QUE A F2 CARREGA, conferida aqui e nao so escrita na descricao: duas
+    # faixas publicaveis da MESMA cidade, categoria e padrao com `o_que_o_numero_e`
+    # diferente nao podem virar um intervalo unico. Isso NAO e erro de banco — as duas
+    # podem ser verdadeiras —, e aviso para a F2 publicar as duas lado a lado.
+    naturezas = {}
+    for faixa in banco.get("faixas_diarias", []):
+        if faixa.get("status") != "publicavel":
+            continue
+        chave = (faixa.get("cidade"), faixa.get("categoria_de_custo"), faixa.get("padrao"))
+        naturezas.setdefault(chave, set()).add(faixa.get("o_que_o_numero_e"))
+    for chave, nats in sorted(naturezas.items()):
+        if len(nats) > 1:
+            aviso("faixas_diarias %s: %d naturezas diferentes de numero (%s) para a mesma "
+                  "cidade, categoria e padrao. A F2 publica as duas com o nome de quem "
+                  "publicou e NAO as soma num intervalo unico — somar media com minimo da "
+                  "um intervalo que ninguem publicou."
+                  % ("/".join(str(c) for c in chave), len(nats), ", ".join(sorted(nats))))
+
+    # ------------------------------------------------------------------
     # 5. AS DUAS DIRECOES (secao 8): dado colhido que a tela nunca usa tambem conta
     # ------------------------------------------------------------------
     for fid in fontes:
@@ -1071,6 +1194,8 @@ def validar(esquema, banco, constantes=None, hoje=None):
         "experiencias_com_eixo_por_escopo": n_eixo.get("por_escopo", 0),
         "experiencias_com_eixo_por_momento": n_eixo.get("por_momento", 0),
         "versoes_com_dias_de_uso": n_dias_de_uso,
+        "faixas_diarias": len(banco.get("faixas_diarias", [])),
+        "faixas_diarias_publicaveis": n_faixas_publicaveis,
     }
     gravado = banco.get("resumo") or {}
     for chave, valor in calculado.items():
@@ -1102,28 +1227,69 @@ def validar(esquema, banco, constantes=None, hoje=None):
     # free tour no banco" —, porque essa frase so tem lastro quando o vocabulario e
     # a cobertura dizem a mesma coisa. Publicada a cada passada para ser contada, que
     # e a diferenca entre uma divida conhecida e uma frase que ninguem confere.
+    # A LISTA DO QUE SE CONFERE SAI DO ESQUEMA, NUNCA DAQUI — e vocabulario sem
+    # extrator e DENUNCIADO (22/10/2026). Ate hoje esta conferencia carregava sete
+    # nomes escritos a mao, e o esquema tinha NOVE: `declarada_por` e
+    # `canal_de_leitura` nunca foram conferidos por ninguem, em silencio, desde
+    # 15/09/2026. E a mesma familia da lista de portoes que a aquametria matou com o
+    # descobridor em 22/09/2026 e da lista de quem vigia que a leva 7 achou um andar
+    # acima: lista escrita a mao nao erra alto, ela erra calada, e o que falta nela e
+    # sempre o que acabou de nascer. Agora a regua varre `vocabularios` do esquema, e
+    # o vocabulario que ela nao souber extrair vira ERRO em vez de ausencia.
     if vocab:
-        usados = {
-            "moeda": set(),
-            "unidade_de_preco": set(),
-            "categoria": set(),
-            "tipo_de_operador": set(),
-            "momento_do_dia": set(),
-            "status_do_registro": set(),
-            "eixo_das_versoes": set(),
-        }
+        usados = {chave: set() for chave in vocab}
+
+        def usar(chave, valor):
+            if chave in usados and valor is not None:
+                usados[chave].add(valor)
+
         for cidade in banco.get("cidades", []):
-            usados["moeda"].add(cidade.get("moeda_local"))
+            usar("moeda", cidade.get("moeda_local"))
+        for fonte in banco.get("fontes", []):
+            usar("canal_de_leitura", fonte.get("leitura"))
         for exp in banco.get("experiencias", []):
-            usados["categoria"].add(exp.get("categoria"))
-            if exp.get("eixo_das_versoes") is not None:
-                usados["eixo_das_versoes"].add(exp.get("eixo_das_versoes"))
-            usados["status_do_registro"].add(exp.get("status"))
-            usados["tipo_de_operador"].add((exp.get("operador") or {}).get("tipo"))
+            usar("categoria", exp.get("categoria"))
+            usar("eixo_das_versoes", exp.get("eixo_das_versoes"))
+            usar("status_do_registro", exp.get("status"))
+            usar("tipo_de_operador", (exp.get("operador") or {}).get("tipo"))
+            for dec in (exp.get("declaracoes") or []):
+                usar("moeda", dec.get("moeda"))
+                usar("unidade_de_preco", dec.get("unidade_de_preco"))
             for versao in exp.get("versoes", []):
-                usados["moeda"].add(versao.get("moeda"))
-                usados["unidade_de_preco"].add(versao.get("unidade_de_preco"))
-                usados["momento_do_dia"].add(versao.get("momento_do_dia"))
+                usar("moeda", versao.get("moeda"))
+                usar("unidade_de_preco", versao.get("unidade_de_preco"))
+                usar("momento_do_dia", versao.get("momento_do_dia"))
+                usar("declarada_por", versao.get("unidade_de_preco_declarada_por"))
+                usar("declarada_por", versao.get("capacidade_maxima_declarada_por"))
+                for acrescimo in (versao.get("acrescimos") or []):
+                    usar("moeda", acrescimo.get("moeda"))
+        for faixa in banco.get("faixas_diarias", []):
+            usar("moeda", faixa.get("moeda"))
+            usar("status_do_registro", faixa.get("status"))
+            usar("categoria_de_custo", faixa.get("categoria_de_custo"))
+            usar("padrao_de_viagem", faixa.get("padrao"))
+            usar("base_da_faixa", faixa.get("base"))
+            usar("o_que_o_numero_e", faixa.get("o_que_o_numero_e"))
+
+        # Os vocabularios que ESTA regua sabe extrair. Lista explicita de proposito:
+        # ela e o contrato entre o esquema e a conferencia, e o `assert` dela mora
+        # logo abaixo. Vocabulario novo no esquema SEM extrator aqui reprova a regua.
+        com_extrator = {
+            "moeda", "unidade_de_preco", "categoria", "tipo_de_operador",
+            "momento_do_dia", "canal_de_leitura", "status_do_registro",
+            "eixo_das_versoes", "declarada_por", "categoria_de_custo",
+            "padrao_de_viagem", "base_da_faixa", "o_que_o_numero_e",
+        }
+        sem_extrator = sorted(c for c in vocab if c not in com_extrator)
+        if sem_extrator:
+            erro("esquema: %d vocabulario(s) sem extrator nesta regua (%s). A regra de "
+                 "crescimento de vocabulario NAO PODE SER CONFERIDA para eles, e uma "
+                 "conferencia que nao acontece fica verde: ate 22/10/2026 esta lista era "
+                 "escrita a mao e `declarada_por` e `canal_de_leitura` passaram 37 dias "
+                 "fora dela sem ninguem notar. Vocabulario novo entra no esquema e no "
+                 "extrator na mesma passada."
+                 % (len(sem_extrator), ", ".join(sem_extrator)))
+
         for chave in sorted(usados):
             sem_lastro = [v for v in vocab.get(chave, []) if v not in usados[chave]]
             if sem_lastro:
