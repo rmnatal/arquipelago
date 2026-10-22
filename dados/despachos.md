@@ -465,6 +465,24 @@ Caminho: `claude.ai/code` → seletor de ambiente → Nuvem → engrenagem → D
 
 ### prioridade ALTA — as DUAS ilhas nascidas em 14/09 não estão na lista de rede, e a 20.1 manda que estivessem no dia do domínio
 
+> **A METADE CUMPRIDA EM 18/09 REGREDIU NA JORNADAFLY — MEDIDO EM 22/10/2026 ÀS 10h2xZ PELA EXECUÇÃO DA FUNDAÇÃO QUE A RESERVOU NO PRIMEIRO DIA DELA EM FOCO. O pedido abaixo volta a valer inteiro para esta ilha, e agora ele trava o FOCO PRINCIPAL.**
+>
+> Três passadas pela 20.2, com controle na mesma passada: `jornadafly.com.br` e `www.jornadafly.com.br` em **000 nas três**, `aquametria.com.br` e `robometria.com.br` em **200** nas mesmas (a robometria caiu **uma** vez na terceira — intermitência de túnel, e ela apareceu no **controle**, não no alvo, que é exatamente a diferença que a 20.2 manda não confundir). O `curl` verbose nomeia a causa e ela não é intermitência:
+>
+> ```
+> > CONNECT jornadafly.com.br:443 HTTP/1.1
+> < HTTP/1.1 403 Forbidden
+> * CONNECT tunnel failed, response 403
+> ```
+>
+> **Então isto já esteve resolvido e voltou.** O `ESTADO.md` da ilha trazia `rede: aberta em 2026-09-18`, com **HTTP 200 medido às 12h35Z** daquele dia, e o painel de 18/09 escreveu que este despacho *"está cumprido e saiu deste painel"*. O campo foi reescrito hoje para `rede: BLOQUEADA em 2026-10-22`, com a medição colada nele — pela 20.2, bloqueio herdado é retestado antes de ser respeitado, e este foi.
+>
+> **O QUE MUDOU NO CUSTO, e é por isso que esta linha está no topo do bloco:** em 15/09 a jornadafly estava fora do foco e o pedido travava "o 3b em diante" de uma ilha que esperava a vez. **Desde 22/10/2026 ela é o FOCO PRINCIPAL**, pela fila que o Raphael decidiu em 09/10 e ajustou em 14/10. Com o domínio fora da lista **e** sem WordPress (passos 2 a 8 da seção 11, trabalho de navegador), **nenhuma execução desta ilha pode entregar nada no ar** — e a **31.1**, que pede 7 de cada 10 execuções entregando algo que o visitante vê, fica inalcançável aqui por falta de "no ar", não por escolha de quem executa. Está escrito no topo do `PROMPT.md` da ilha e no `foco.md` para quem for contar a proporção ler a causa.
+>
+> **O gesto continua sendo um só, e continua sendo melhor antes do WordPress que depois:** `claude.ai/code` → seletor de ambiente → Nuvem → engrenagem → "Domínios permitidos", acrescentar `jornadafly.com.br` e `*.jornadafly.com.br` (e `ohmetria.com.br` e `*.ohmetria.com.br`, que nunca saíram desta lista). **Pronto quando:** de dentro de uma rotina, `curl -s -o /dev/null -w "%{http_code}" https://jornadafly.com.br/` devolver qualquer código HTTP de verdade — 404 inclusive.
+>
+> **E um quarto domínio de operador entrou na lista do bloco, medido hoje:** `www.toureiffel.paris` responde **403 no CONNECT**, e é ele que impede de ler as **quatro células do meio** da grade de tarifa da Torre Eiffel — criança e jovem nas duas versões intermediárias. A busca devolveu os valores em **resumo**, e resumo não é documento lido: as quatro ficaram **contadas** como lacuna no banco (`faixas_declaradas_nao_transcritas: 4`) em vez de gravadas. Junta-se a `civitatis.com` e `www.angkorenterprise.gov.kh`, que já estavam aqui.
+
 > **A METADE QUE DÁ NOME A ESTE DESPACHO ESTÁ CUMPRIDA DESDE 18/09/2026 — registro do Pente Fino em 21/09/2026, sem mover o bloco nem mexer na prioridade.** O "pronto quando" do título — *"`curl` a `https://jornadafly.com.br/` devolver qualquer código HTTP de verdade"* — foi atendido: `ilhas/jornadafly/ESTADO.md` e `ilhas/ohmetria/ESTADO.md` trazem os dois `rede: aberta em 2026-09-18`, medido às 12h35Z com **HTTP 200**, e o `dados/PAINEL.md` da ronda de 18/09 escreve *"o despacho ALTA de 15/09 sobre a lista de domínios está cumprido e saiu deste painel"*. **O título deste bloco, lido hoje, afirma um fato falso.**
 >
 > **O que continua ABERTO neste mesmo bloco, e é o que sobra dele:** `api.bcb.gov.br` (câmbio, e o próprio texto diz que *"nada trava por causa disso"*), `sac.taramps.com.br` e `*.taramps.com.br` (trava a F3 da ohmetria e 8 constantes), e os domínios de operador da jornadafly (`civitatis.com`, `www.angkorenterprise.gov.kh`), que travam o critério de entrada do banco daquela ilha.
