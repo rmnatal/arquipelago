@@ -6528,3 +6528,58 @@ inclusive as quebras de linha no meio das frases, o `Σ`, os travessões, os int
 **Correção dentro desta mesma seção (o log é append-only, nada acima foi reescrito):** o hash curto do commit
 do trabalho saiu truncado errado acima como `7404e8aacof`; o curto correto é `7404e8a`. O hash completo
 `7404e8aac0ffd83f2fd2d5c25f3a42012f00b3aa` registrado acima está certo e é o que vale.
+
+## Disparo de 22/10/2026 08:36 BRT (11:36 UTC) — Bússola: correção do índice da ferragem + SERP de ferragem e som automotivo
+
+Assunto: Arquipélago / Bússola. Passou na checagem de assunto. Instrução pedia UM arquivo novo e DUAS
+substituições de texto em `bussola/fila.md`, num só commit.
+
+**Trava de contagem, conferida ANTES de gravar:**
+
+```
+ls bussola/medicoes/serp-ferragem-som-chrome-2026-10-22.md -> No such file or directory (não existia, ok)
+TRECHO ANTIGO 1 ("Com 13% medido e ticket real de R$ 57: ... Índice = 3,66.") -> 1 ocorrência
+TRECHO ANTIGO 2 ("**Acima de toda linha desta página** — e as outras ...") -> 1 ocorrência
+```
+
+As duas contagens deram exatamente 1 e o arquivo novo não existia, então a gravação foi liberada.
+
+**`git status --porcelain` depois de aplicar e antes do commit:**
+
+```
+ M bussola/fila.md
+?? bussola/medicoes/serp-ferragem-som-chrome-2026-10-22.md
+```
+
+**`git diff --stat` (commit completo, já com o arquivo novo rastreado):**
+
+```
+ bussola/fila.md                                    | 65 +++++++++++++++-
+ .../serp-ferragem-som-chrome-2026-10-22.md         | 89 ++++++++++++++++++++++
+ 2 files changed, 152 insertions(+), 2 deletions(-)
+```
+
+**Commit que foi ao `main`:**
+
+```
+3428190ce1a018e8971cd967f3bbd5173035c3d5
+Bússola: corrige o índice da ferragem (3,34, não 3,66 — R=2) e mede a SERP real dela e do som automotivo
+```
+
+Push direto em `git push origin HEAD:main`, aceito de primeira (`11e264d..3428190`), sem rebase e sem force.
+Confirmado com `git fetch origin main && git log -1 origin/main`: o hash acima é o topo de `origin/main`.
+
+**Contagem do que mudou, conferida RELENDO os arquivos depois de gravar:**
+
+```
+bussola/fila.md                                            -> 470 linhas
+bussola/medicoes/serp-ferragem-som-chrome-2026-10-22.md    ->  89 linhas (arquivo novo)
+"Índice = 3,34" em fila.md                                 -> 1
+"Índice = 3,66" em fila.md                                 -> 0  (o número errado saiu)
+"3,66" em fila.md                                          -> 2  (as duas citações do erro dentro do texto
+                                                                  novo: "saiu 3,14/3,66" e "não 3,66")
+"Acima de toda linha desta página" em fila.md              -> 1  (agora dentro do ~~tachado~~)
+"4,23" em fila.md                                          -> 2  (índice do som automotivo na tabela nova)
+```
+
+Nenhum passo falhou. Nada foi tocado além dos dois arquivos nomeados pela instrução e deste log.
