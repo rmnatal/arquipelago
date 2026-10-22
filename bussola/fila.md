@@ -83,7 +83,32 @@ medição mudou o resultado. Arquivo: `bussola/medicoes/serp-jardinagem-chrome-2
 | D · R · A | 5 · 5 · 4 | mantidos |
 | S_com · P | não medidos | **seguem não medidos → sem índice (3.1)** |
 
-**Estado novo (22/10/2026, depois da leitura do painel de afiliado):** `passa no tráfego e no M — faltam S_com e P`.
+**Estado final (22/10/2026, pela seção 3.0-d nova):** `REPROVADO — 73 visitas/dia de intenção de compra contra piso de 1.000`.
+
+**Jardinagem tem a audiência e não tem o comprador, e foi ela que fez a lei mudar.** Separado o corpus pelas
+duas metades da 3.0-d.2:
+
+| metade | volume/mês | visitas/dia | termina em produto? |
+|---|---|---|---|
+| "como fazer muda de X" · "como plantar X" · "como cuidar" | 385.000 | 1.196 | **não** |
+| "qual adubo / substrato / vaso para X" | **20.930** | **73** | **sim** |
+
+**Razão de intenção de compra: 5,2%.** E não é acaso do recorte: *"como fazer muda de rosa do deserto"* é
+literalmente a busca de quem quer **não** gastar — já tem a planta e quer multiplicar de graça em vez de comprar
+outra. O nicho inteiro de jardinagem doméstica tem essa cara.
+
+Pelo piso antigo (nicho inteiro) jardinagem dava **1.441 visitas/dia e passava**. Pelo piso da 3.0-d dá **73** e
+**reprova por treze vezes**. As 1.441 existiam; eram a audiência errada.
+
+**O que continua medido e aproveitável se o nicho voltar à mesa:** S_par 4 (SERP vista no Chrome, sem fazenda,
+sem resposta de IA, sem calculadora ranqueando) · D 5 · R 5 · A 5 · M 1,77 (8% medido no painel, cesta de R$ 86)
+· cobertura Shopee 10 de 13 · produto por espécie confirmado (`Substrato para Zamioculca`, 3 mil+ vendas) ·
+desenho da ilha no molde da 32 · naming. Nada disso salva a razão de 5,2%.
+
+**E a conta de receita, corrigida pela mesma lógica, para registro:** a estimativa anterior de R$ 2.974/mês
+assumia 1% de conversão sobre **todo** o tráfego, inclusive sobre quem procura como não comprar nada. Separando
+as metades, com 1% na que compra e 0,2% a 0,5% na informacional, o realista era **R$ 644 a R$ 1.384/mês** — e é
+por isso que a trava nova mede a metade certa.
 
 **A comissão foi medida no painel, produto por produto, e o gargalo caiu.** Arquivo:
 `bussola/medicoes/comissao-shopee-painel-2026-10-22.md`. **O piso real de comissão em jardinagem é 8%, não 3%** —

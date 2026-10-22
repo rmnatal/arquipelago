@@ -84,6 +84,77 @@ Toda a régua acima é **relativa**. `S_par` e `S_com` medem quem ocupa a SERP; 
 
 **3.0-c.5 Sem medição, sem ilha:** se o Planejador não abrir, ou a conta não fechar por falta de dado, o nicho vai para "fora do ranking" com o motivo escrito (seção 3.1). Nunca preencher a soma com palpite.
 
+## 3.0-d O PISO PASSA A SER DA BUSCA QUE COMPRA — 1.000 visitas/dia de intenção de compra (decisão do Raphael, 22/10/2026)
+
+**A frase dele:** *"O mais importante de tudo é ter venda. E para ter venda tem que ter audiência (…) se a gente
+conseguir fazer o cruzamento de ilhas que tem potencial de fazer 1.000 visitas por dia com o público interessado
+em comprar, isso que é o ideal."* E, fechando: **"1.000 visitas por dia de buscas de intenção + maximização da
+comissão."**
+
+**O que esta seção corrige na 3.0-c.** A 3.0-c mandava somar *"as consultas que a ilha vai atender e que levam a
+um produto vendável"* — mas na prática as rodadas somaram o corpus informacional inteiro do nicho, porque a lei
+não definia como separar as duas metades nem obrigava a separá-las antes de medir. **O resultado foi medir
+audiência onde não há comprador.** Em jardinagem, medido em 21–22/10/2026: o nicho tem 405.830 buscas
+informacionais ranqueáveis por mês e **apenas 20.930 delas — 5,2% — terminam em produto.** Os outros 94,8% são
+*"como fazer muda de X"* e *"como plantar X"*, que é **a busca de quem quer justamente NÃO comprar**: a pessoa já
+tem a planta e quer multiplicar de graça em vez de comprar outra. Pelo piso antigo jardinagem dava 1.441
+visitas/dia e passava. Pelo piso desta seção dá **73** e reprova por treze vezes.
+
+**3.0-d.1 A TRAVA, eliminatória, e ela substitui a leitura da 3.0-c.1 sobre o nicho inteiro:** nenhum nicho vira
+ilha se as consultas **com intenção de compra** não somarem, sozinhas, **1.000 visitas orgânicas por dia** com a
+ilha ranqueada no que ela alcança. O corpus informacional que não termina em produto **não entra na soma** — pode
+ser escrito ao lado como volume de apoio, nunca somado ao piso. Como o piso novo é estritamente mais duro que o
+antigo, um nicho que passa nele passa automaticamente na 3.0-c.1; a 3.0-c.2 continua valendo inteira para **como**
+se faz a conta (volume medido no Planejador, posição alcançável pela SERP vista no Chrome, curva de CTR escrita
+no dossiê, desconto de dupla contagem, visitas/dia = Σ volume × CTR ÷ 30).
+
+**3.0-d.2 O QUE É "CONSULTA COM INTENÇÃO DE COMPRA" — o teste, porque a trava inteira depende dele.**
+Uma consulta tem intenção de compra quando **a resposta correta dela nomeia um produto que a ilha pode indicar
+como afiliado**. O teste em uma pergunta: *"para responder certo, eu preciso mandar a pessoa comprar alguma
+coisa?"*
+- **Sim** → entra na soma: `qual adubo para zamioculca` · `substrato para rosa do deserto` ·
+  `qual corrediça para gaveta de 40 cm` · `qual resistência do chuveiro X` · `que bitola de cabo para 5500W`.
+  A resposta é um objeto com especificação, e sem comprá-lo a pessoa não resolve o problema.
+- **Não** → fica fora: `como fazer muda de rosa do deserto` · `como plantar morango` · `como cuidar de suculenta`.
+  **A regra de corte é esta: se a consulta pode ser respondida por inteiro sem nomear nenhum produto, ela não é
+  de intenção de compra** — mesmo que a pessoa, no fim, acabe comprando terra. Intenção que depende de o leitor
+  mudar de ideia não é intenção medida, é esperança.
+- **Caso de borda, e ele decide no lado conservador:** consulta que nomeia o produto mas busca o modo de usar
+  (`como aplicar NPK 10-10-10`) fica **fora**, porque quem pergunta já comprou. Na dúvida entre as duas metades,
+  a consulta vai para fora da soma — errar para menos custa um nicho que não nasceu; errar para mais custa uma
+  ilha inteira num deserto de compradores, que é o erro que esta seção existe para impedir.
+
+**3.0-d.3 A SEPARAÇÃO É FEITA ANTES DO PLANEJADOR, e a razão fica escrita.** A rodada monta **duas listas** —
+a de intenção de compra e a de apoio — e **cola no Planejador só a primeira** para efeito do piso. O dossiê
+registra as duas somas e **a razão entre elas** (em jardinagem: 5,2%), porque é esse número que diz se o nicho
+é de comprador ou de hobby. Razão baixa com volume enorme é o retrato de jardinagem e **não vira ilha**.
+
+**3.0-d.4 MAXIMIZAÇÃO DA COMISSÃO — e a fronteira que não pode ser cruzada.**
+Entre nichos que passam na trava acima, **a Bússola escolhe o de maior comissão medida**, e isso é trabalho dela:
+é para isso que o M existe. Três regras:
+- **A comissão é medida no PAINEL de afiliado, produto por produto, na mediana** (`affiliate.shopee.com.br` →
+  Oferta de produto), nunca herdada de rodada anterior e nunca lida de página institucional. A remedição de
+  22/10/2026 mostrou por quê: a `fila.md` inteira estava ancorada em 3% e **o piso real é 8% em dez nichos de
+  dez**, com ferragem de marcenaria em 13% e peça de robô aspirador em 12%.
+- **O TICKET também é medido no painel, na mediana, nunca suposto.** A mesma remedição mostrou irrigação por
+  gotejamento com ticket real de R$ 55 onde a fila supunha R$ 250 — a comissão subiu de 3% para 8% e **o M caiu
+  mesmo assim**. Comissão remedida sobre ticket suposto conserta metade do erro e piora a outra.
+- **A FRONTEIRA, e ela é absoluta: maximizar comissão vale na escolha do NICHO, nunca na escolha do PRODUTO.**
+  A seção 7 do `ARQUIPELAGO.md` proíbe, com todas as letras, ordenar recomendação por taxa — *"nunca comparar
+  taxa, nunca promover produto pior porque paga mais"* — e a ordem lá é elegibilidade técnica, adequação, e loja
+  só como desempate entre equivalentes. Portanto **o M de um nicho se calcula sobre a comissão MEDIANA da
+  categoria, nunca sobre a fatia de 18–28% que existe nela**: calcular sobre a fatia alta mede uma ilha que o
+  Arquipélago não pode construir. Onde esta seção e a 7 parecerem divergir, **manda a 7**.
+
+**3.0-d.5 O QUE ESTA TRAVA CUSTA, dito agora para ninguém se surpreender depois.** Pela curva de CTR em uso
+(Backlinko, top-3 18,7%), 1.000 visitas/dia de intenção de compra exigem **≈ 214.000 buscas/mês de intenção de
+compra ranqueadas em top-3** — e, se a SERP for mista (4–10, 4,2%), exigem quase um milhão, o que na prática
+significa que **só SERP aberta passa nesta seção**. É um corte duro e deliberado: **é possível que nenhum nicho
+da `fila.md` de hoje passe nele.** O Raphael aceitou esse custo ao fixá-lo, e a leitura correta disso é que a
+Bússola prefere não parir ilha a parir ilha sem comprador. **Nicho que reprova aqui não vira ilha por melhor que
+seja o índice da seção 3** — e nicho que passa aqui ainda tem de passar na seção 3 (fácil de ranquear) e na
+cobertura de afiliado da seção 2. São três portões independentes, e a ilha ideal é o cruzamento dos três.
+
 ## 3.1 Nota que não foi medida não vira índice
 
 Três regras que nasceram da autocrítica da própria rodada 004, e valem da 005 em diante.
