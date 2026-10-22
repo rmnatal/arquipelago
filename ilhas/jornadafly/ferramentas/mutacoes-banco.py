@@ -134,6 +134,19 @@ def mundo_por_pessoa(banco):
             "fonte": "operador-petra-teste",
             "data_leitura": "2026-09-14",
             "declarado_como": "US$ %d por pessoa, %d dia(s)" % (preco, dias),
+            # A faixa etaria desceu para a VERSAO em 22/10/2026. O mundo acompanhou: as
+            # tres versoes declaram a MESMA faixa, com a MESMA frase, porque a fonte foi
+            # lida uma vez — e e exatamente isso que a regua das irmas cobra.
+            "faixa_etaria": [{"rotulo": "crianca de 2 a 7 anos", "idade_min": 2,
+                              "idade_max": 7, "preco": 17, "moeda": "USD",
+                              "condicao": None,
+                              "motivo_sem_condicao": "mundo de mutacao",
+                              "se_nao_cumprir": None,
+                              "motivo_sem_se_nao_cumprir": "mundo de mutacao",
+                              "declarado_como": "US$ 17 por crianca de 2 a 7 anos",
+                              "fonte": "operador-petra-teste",
+                              "data_leitura": "2026-09-14"}],
+            "faixas_que_a_fonte_declara_e_a_leitura_nao_transcreveu": [],
         }
 
     banco["experiencias"].append({
@@ -148,9 +161,6 @@ def mundo_por_pessoa(banco):
                     versao("tres-dias", "3 dias", 80, 3)],
         "temporada": {"alta": "abril a outubro", "baixa": "novembro a março",
                       "fonte": "operador-petra-teste", "data_leitura": "2026-09-14"},
-        "faixa_etaria": [{"rotulo": "criança de 2 a 7 anos", "idade_min": 2,
-                          "idade_max": 7, "preco": 17, "moeda": "USD",
-                          "fonte": "operador-petra-teste", "data_leitura": "2026-09-14"}],
         "imagem": None,
         "motivo_sem_imagem": "mundo de mutacao",
         "declaracoes": [{
@@ -490,7 +500,9 @@ def q_declaracao_sem_publicador_e_sem_motivo(banco):
 
 
 def q_faixa_etaria_sem_motivo(banco):
-    del banco["experiencias"][0]["motivo_sem_faixa_etaria"]
+    # A gondola: faixa null porque a tarifa e pela embarcacao. Sem o motivo, a lacuna
+    # vira muda. Aponta para a VERSAO desde 22/10/2026 — o campo desceu.
+    del banco["experiencias"][0]["versoes"][0]["motivo_sem_faixa_etaria"]
     return banco
 
 
@@ -586,6 +598,156 @@ def q_resolucao_de_outra_versao(banco):
     return banco
 
 
+# ----------------------------------------------------------------------------
+# AS QUEBRAS DA FAIXA ETARIA NA VERSAO (migracao de 22/10/2026)
+# Cada uma ataca uma invariante que SO existe depois de o campo descer: com
+# `faixa_etaria` na EXPERIENCIA nao havia versao irma para comparar, nem
+# `unidade_de_preco` no mesmo objeto para proibir a faixa.
+# ----------------------------------------------------------------------------
+
+def _gondola(banco):
+    return banco["experiencias"][0]
+
+
+def _angkor(banco):
+    return banco["experiencias"][1]
+
+
+def _torre(banco):
+    return banco["experiencias"][3]
+
+
+def q_faixa_em_unidade_por_veiculo(banco):
+    """A prosa da gondola virou regra: 6 pessoas sao DUAS gondolas, a crianca nao tem
+    preco, tem assento. Antes de 22/10 esta quebra nao tinha onde morder."""
+    v = _gondola(banco)["versoes"][0]
+    del v["motivo_sem_faixa_etaria"]
+    v["faixa_etaria"] = [{"rotulo": "crianca de 2 a 7 anos", "preco": 0, "moeda": "EUR",
+                          "condicao": None, "motivo_sem_condicao": "quebra",
+                          "se_nao_cumprir": None, "motivo_sem_se_nao_cumprir": "quebra",
+                          "declarado_como": "crianca nao paga",
+                          "fonte": "comune-venezia-tarifa-gondola",
+                          "data_leitura": "2026-09-14"}]
+    v["faixas_que_a_fonte_declara_e_a_leitura_nao_transcreveu"] = []
+    return banco
+
+
+def q_faixa_em_outra_moeda(banco):
+    _torre(banco)["versoes"][0]["faixa_etaria"][1]["moeda"] = "USD"
+    return banco
+
+
+def q_faixa_mais_cara_que_o_bilhete(banco):
+    """Faixa a 99 EUR num bilhete de 14,80: nao e faixa, e numero no campo errado."""
+    _torre(banco)["versoes"][0]["faixa_etaria"][1]["preco"] = 99
+    return banco
+
+
+def q_faixa_da_irma_desaparece_calada(banco):
+    """A Torre Eiffel perde a contagem da lacuna: as duas colunas do meio voltam a ser
+    ausencia silenciosa, indistinguivel de 'o operador nao cobra faixa neste bilhete'.
+    E o defeito que a migracao existe para tornar visivel."""
+    _torre(banco)["versoes"][1]["faixas_que_a_fonte_declara_e_a_leitura_nao_transcreveu"] = []
+    return banco
+
+
+def q_lacuna_sem_causa(banco):
+    del _torre(banco)["versoes"][1]["faixas_que_a_fonte_declara_e_a_leitura_nao_transcreveu"][0]["por_que"]
+    return banco
+
+
+def q_faixa_sem_a_lista_de_lacuna(banco):
+    del _torre(banco)["versoes"][1]["faixas_que_a_fonte_declara_e_a_leitura_nao_transcreveu"]
+    return banco
+
+
+def q_mesma_faixa_com_duas_frases(banco):
+    """A gratuidade dos menores de 4 anos vale igual nos quatro bilhetes e foi lida uma
+    vez. Transcrita com duas frases, uma delas e da ilha e nao do operador."""
+    _torre(banco)["versoes"][1]["faixa_etaria"][0]["declarado_como"] = \
+        "Menores de 4 anos nao pagam neste bilhete."
+    return banco
+
+
+def q_frase_com_preco_de_outra_versao(banco):
+    """O achado da migracao: a fonte do Angkor escreve US$ 37, que e o passe de UM DIA, e
+    a frase estava guardada num campo que valia para os tres passes."""
+    del _angkor(banco)["versoes"][1]["faixa_etaria"][0]["numero_da_frase_e_de_outra_versao"]
+    return banco
+
+
+def q_faixa_sem_preco_e_sem_motivo(banco):
+    _torre(banco)["versoes"][0]["faixa_etaria"][1]["preco"] = None
+    return banco
+
+
+def q_faixa_sem_declarado_como(banco):
+    del _torre(banco)["versoes"][0]["faixa_etaria"][1]["declarado_como"]
+    return banco
+
+
+def q_faixa_sem_data_de_leitura(banco):
+    del _torre(banco)["versoes"][0]["faixa_etaria"][1]["data_leitura"]
+    return banco
+
+
+def q_faixa_com_fonte_inexistente(banco):
+    _torre(banco)["versoes"][0]["faixa_etaria"][1]["fonte"] = "fonte-que-nao-existe"
+    return banco
+
+
+def q_faixa_volta_para_a_experiencia(banco):
+    """A regressao que a regua existe para impedir: o campo de volta na entidade de onde
+    saiu, publicando um preco so para quatro bilhetes que cobram diferente."""
+    _torre(banco)["faixa_etaria"] = [{"rotulo": "crianca de 4 a 11 anos", "preco": 3.8,
+                                      "moeda": "EUR"}]
+    return banco
+
+
+def q_rotulo_de_faixa_repetido(banco):
+    v = _torre(banco)["versoes"][0]
+    v["faixa_etaria"].append(copy.deepcopy(v["faixa_etaria"][1]))
+    return banco
+
+
+def q_resumo_de_faixa_digitado(banco):
+    banco["resumo"]["faixas_etarias"] = 11 + 1
+    return banco
+
+
+def q_resumo_de_lacuna_digitado(banco):
+    banco["resumo"]["faixas_declaradas_nao_transcritas"] = 0
+    return banco
+
+
+def mundo_faixa_sem_preco_declarado(banco):
+    """O caso que o esquema permite e o banco nao tem: faixa que a fonte NOMEIA sem dizer
+    o preco. Tem de PASSAR com o motivo escrito — nomear a faixa e dado sobre a fonte."""
+    v = _torre(banco)["versoes"][1]
+    v["faixa_etaria"].append({
+        # O rotulo tem de ser o MESMO das versoes irmas, acento incluido: e o rotulo que
+        # liga a mesma faixa entre bilhetes, e a primeira versao deste mundo o escreveu
+        # sem cedilha — a regua das irmas reprovou tres versoes de uma vez e foi assim
+        # que o erro apareceu.
+        "rotulo": "criança de 4 a 11 anos",
+        "preco": None,
+        "motivo_sem_preco": "a grade nomeia a faixa nesta coluna e esta leitura nao "
+                            "transcreveu o valor dela",
+        "moeda": "EUR",
+        "condicao": None,
+        "motivo_sem_condicao": "mundo de mutacao",
+        "se_nao_cumprir": None,
+        "motivo_sem_se_nao_cumprir": "mundo de mutacao",
+        "declarado_como": "Criancas de 4 a 11 anos: tarifa reduzida.",
+        "fonte": "sete-toureiffel-tarifa-via-busca",
+        "data_leitura": "2026-09-15",
+    })
+    v["faixas_que_a_fonte_declara_e_a_leitura_nao_transcreveu"] = [
+        e for e in v["faixas_que_a_fonte_declara_e_a_leitura_nao_transcreveu"]
+        if e["rotulo"] != "criança de 4 a 11 anos"]
+    return sincronizar_resumo(banco)
+
+
 # nome, funcao, espera, esquema_mutado
 MUTACOES = [
     ("MUNDO preco por pessoa, escada de dias, crianca e temporada", mundo_por_pessoa, "passa", None),
@@ -594,6 +756,7 @@ MUTACOES = [
     ("MUNDO experiencia sem divergencia nenhuma", mundo_sem_divergencia, "passa", "degrau_6_negado"),
     ("MUNDO autoridade COM documento nomeado vira publicavel", mundo_autoridade_com_documento_nomeado, "passa", None),
     ("MUNDO degrau novo alcancado, esquema e banco juntos", mundo_degrau_novo_alcancado, "passa", "degrau_5_prometido"),
+    ("MUNDO faixa que a fonte NOMEIA sem dizer o preco", mundo_faixa_sem_preco_declarado, "passa", None),
 
     ("preco sem data de leitura", q_preco_sem_data, "reprova", None),
     ("divergencia sem resolucao", q_divergencia_sem_resolucao, "reprova", None),
@@ -626,7 +789,26 @@ MUTACOES = [
     ("declaracao sem o campo versao", q_declaracao_sem_campo_versao, "reprova", None),
     ("declaracao sem dono marcada como publicavel", q_declaracao_sem_dono_publicavel, "reprova", None),
     ("publicador null sem motivo", q_declaracao_sem_publicador_e_sem_motivo, "reprova", None),
-    ("faixa_etaria null sem motivo", q_faixa_etaria_sem_motivo, "reprova", None),
+    ("faixa_etaria null sem motivo (na VERSAO)", q_faixa_etaria_sem_motivo, "reprova", None),
+    ("faixa etaria onde a tarifa e por VEICULO", q_faixa_em_unidade_por_veiculo, "reprova", None, "tem assento"),
+    ("faixa em moeda diferente da versao", q_faixa_em_outra_moeda, "reprova", None, "cambio"),
+    ("faixa mais cara que o bilhete inteiro", q_faixa_mais_cara_que_o_bilhete, "reprova", None, "campo errado"),
+    ("faixa da versao irma desaparecendo calada", q_faixa_da_irma_desaparece_calada, "reprova", None, "Ausencia silenciosa"),
+    ("lacuna de faixa contada sem causa nomeada", q_lacuna_sem_causa, "reprova", None, "por_que"),
+    ("versao com faixa e sem a lista de lacuna", q_faixa_sem_a_lista_de_lacuna, "reprova", None, "nenhuma falta"),
+    ("a mesma faixa transcrita com duas frases", q_mesma_faixa_com_duas_frases, "reprova", None, "nao e da fonte"),
+    ("frase da fonte com o preco de OUTRA versao", q_frase_com_preco_de_outra_versao, "reprova", None, "nao disse daquele bilhete"),
+    ("faixa com preco null e sem motivo", q_faixa_sem_preco_e_sem_motivo, "reprova", None, "lacuna muda"),
+    ("faixa sem declarado_como", q_faixa_sem_declarado_como, "reprova", None, "parafraseia"),
+    ("faixa sem data de leitura", q_faixa_sem_data_de_leitura, "reprova", None, "preco de crianca"),
+    ("faixa com fonte que nao existe em fontes[]", q_faixa_com_fonte_inexistente, "reprova", None, "nao existe em fontes"),
+    ("faixa VOLTANDO para a EXPERIENCIA", q_faixa_volta_para_a_experiencia, "reprova", None, "campo da VERSAO"),
+    ("rotulo de faixa repetido na mesma versao", q_rotulo_de_faixa_repetido, "reprova", None, "repetido"),
+    ("resumo de faixas digitado a mao", q_resumo_de_faixa_digitado, "reprova", None, "faixas_etarias"),
+    ("resumo de lacunas digitado a mao", q_resumo_de_lacuna_digitado, "reprova", None, "faixas_declaradas"),
+    ("ESQUEMA sem faixa_etaria na VERSAO", lambda b: b, "reprova", "faixa_sem_campo_na_versao", "proibido_quando"),
+    ("ESQUEMA com faixa_etaria de volta na EXPERIENCIA", lambda b: b, "reprova", "faixa_de_volta_na_experiencia", "regressao"),
+    ("ESQUEMA sem a entidade FAIXA_ETARIA", lambda b: b, "reprova", "sem_entidade_faixa", "forma declarada"),
     ("temporada null sem motivo", q_temporada_sem_motivo, "reprova", None),
     ("lista inclui vazia sem motivo", q_lista_vazia_sem_motivo, "reprova", None),
     ("capacidade null com unidade por veiculo", q_capacidade_nula_em_por_veiculo, "reprova", None),
@@ -673,6 +855,16 @@ def esquema_para(mutacao):
         for d in esquema["escada_de_fontes"]["niveis"]:
             if d["nivel"] == 6:
                 d["existe_hoje"] = False
+    elif mutacao == "faixa_sem_campo_na_versao":
+        # A regra mora no esquema (26.2): sem a chave, a gondola volta a poder ter preco
+        # de crianca e a regua fica verde sem medir nada.
+        del esquema["entidades"]["VERSAO"]["campos"]["faixa_etaria"]
+    elif mutacao == "faixa_de_volta_na_experiencia":
+        esquema["entidades"]["EXPERIENCIA"]["campos"]["faixa_etaria"] = {
+            "tipo": "lista|null", "obrigatorio": True,
+            "null_exige": "motivo_sem_faixa_etaria"}
+    elif mutacao == "sem_entidade_faixa":
+        del esquema["entidades"]["FAIXA_ETARIA"]
     elif mutacao == "degrau_sem_campo":
         for d in esquema["escada_de_fontes"]["niveis"]:
             if d["nivel"] == 3:

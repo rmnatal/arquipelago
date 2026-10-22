@@ -3,7 +3,7 @@
  "ilha": "jornadafly",
  "bloco": 3,
  "gerado_em": "2026-09-14",
- "versao_esquema": 3,
+ "versao_esquema": 4,
  "versao_2_mudou": "Nasceu `regra_do_documento_nomeado`, na carga de 14/09/2026 as 23h. Nenhum campo de registro mudou: o que mudou e que autoridade sem documento nomeado deixou de valer o mesmo que autoridade com documento nomeado.",
  "descricao": "Modelo do banco da JornadaFly: entidades CIDADE, EXPERIENCIA (com VERSAO e DECLARACAO dentro dela) e FONTE. Define campo a campo o tipo, a unidade, a obrigatoriedade, o vocabulario controlado e a ORIGEM esperada do dado. Este arquivo e o contrato que dados/experiencias.json cumpre e que ferramentas/validar-banco.py verifica. Nenhum preco entra no banco sem data_leitura e sem uma entrada correspondente em fontes{}.",
  "depende_de": [
@@ -256,12 +256,6 @@
      "null_exige": "motivo_sem_temporada",
      "observacao": "as fontes do bloco 1 dizem que a diaria de carro na Islandia varia ate tres vezes entre inverno e verao. Chutar temporada seria inventar o dado mais caro da pagina."
     },
-    "faixa_etaria": {
-     "tipo": "lista|null",
-     "obrigatorio": true,
-     "null_exige": "motivo_sem_faixa_etaria",
-     "observacao": "o city tour de Buenos Aires foi o unico caso medido no bloco 2 que declara preco de crianca. A regra existe no mundo, entao a ausencia dela no banco e falta de dado DAQUELE operador, e a pagina diz isso."
-    },
     "imagem": {
      "tipo": "url|null",
      "obrigatorio": true,
@@ -327,6 +321,21 @@
      "null_permitido_quando": "unidade_de_preco == por_pessoa",
      "observacao": "quando a unidade nao e por pessoa, e a capacidade que produz o degrau: 6 pessoas na gondola sao DUAS gondolas."
     },
+    "faixa_etaria": {
+     "tipo": "lista:FAIXA_ETARIA|null",
+     "obrigatorio": true,
+     "null_exige": "motivo_sem_faixa_etaria",
+     "proibido_quando": "unidade_de_preco == por_veiculo",
+     "mudou_de_entidade_em": "2026-10-22",
+     "observacao": "Mora na VERSAO desde 22/10/2026, e nao na EXPERIENCIA, porque o preco de uma faixa depende da versao: na Torre Eiffel a crianca de 4 a 11 anos paga 3,80 EUR pela escada ate o segundo piso e 9,20 EUR pelo elevador ate o topo — a mesma faixa, precos diferentes, um por bilhete. Com o campo na EXPERIENCIA, gravar uma das duas publicava o numero errado para a outra, e foi por isso que a carga de 15/09/2026 gravou SO a gratuidade dos menores de 4 anos e deixou tres faixas de fora.",
+     "por_que_proibido_fora_de_por_pessoa": "preco de crianca so existe onde se cobra por cabeca. Na gondola a tarifa e pela embarcacao inteira: 6 pessoas sao DUAS gondolas, e a crianca nao tem preco, tem assento. Isto era prosa no `motivo_sem_faixa_etaria` da gondola desde 14/09/2026 e virou REGRA em 22/10/2026 pelo mesmo movimento — `unidade_de_preco` e campo da VERSAO, entao a prosa so podia virar regra depois de a faixa descer para a VERSAO tambem.",
+     "por_que_so_por_veiculo_e_nao_toda_unidade_que_nao_e_por_pessoa": "A primeira versao desta regra, escrita na mesma passada, proibia faixa etaria em TODA unidade diferente de `por_pessoa` — e o MUNDO `por_cabine` de mutacoes-banco.py a reprovou na hora. O argumento da gondola e sobre VEICULO alugado inteiro, onde a crianca ocupa assento e nao gera cobranca; um cruzeiro vendido por cabine pode perfeitamente declarar tarifa de crianca NA cabine, e `por_grupo` tambem. Entao a proibicao fica no caso medido e `por_cabine` e `por_grupo` ficam de FORA dela, de proposito. A mutacao e que achou o excesso: regua que diz nao para um mundo legitimo custa mais caro que regua que falta."
+    },
+    "faixas_que_a_fonte_declara_e_a_leitura_nao_transcreveu": {
+     "tipo": "lista",
+     "exigido_quando": "faixa_etaria e lista nao vazia",
+     "observacao": "As faixas que ESTA versao nao traz e alguma versao irma traz. Lacuna contada, nao lacuna muda: cada entrada leva `rotulo` e `por_que`. Nasceu com a migracao de 22/10/2026, porque duas das quatro versoes da Torre Eiffel ficam com uma faixa so — a leitura de 15/09 transcreveu o piso e o teto da grade (escada ate o segundo piso e elevador ate o topo) e nao as duas colunas do meio. Sem este campo, a ausencia delas seria indistinguivel de 'a fonte nao declara faixa nesta versao'."
+    },
     "duracao_minutos": {
      "tipo": "inteiro|null",
      "obrigatorio": true,
@@ -368,6 +377,67 @@
      "tipo": "texto",
      "obrigatorio": true,
      "observacao": "a frase da fonte, inteira, do jeito que ela escreveu. E o que permite a tela citar em vez de parafrasear."
+    }
+   }
+  },
+  "FAIXA_ETARIA": {
+   "descricao": "Uma faixa de idade com o preco que o operador cobra dela NAQUELA versao. Pertence a VERSAO (ver `faixa_etaria.mudou_de_entidade_em`). Faixa nao e desconto que a ilha calcula: e numero que a fonte declarou, com a frase dela colada.",
+   "campos": {
+    "rotulo": {
+     "tipo": "texto",
+     "obrigatorio": true,
+     "observacao": "como a FONTE nomeia a faixa, na lingua da pagina. O mesmo rotulo em versoes irmas e o que permite contar a lacuna."
+    },
+    "preco": {
+     "tipo": "numero|null",
+     "obrigatorio": true,
+     "null_exige": "motivo_sem_preco",
+     "observacao": "0 e preco: e a gratuidade declarada. null e falta de dado."
+    },
+    "moeda": {
+     "tipo": "enum:moeda",
+     "obrigatorio": true,
+     "igual_a": "moeda da versao",
+     "observacao": "faixa cobrada em moeda diferente da versao seria conversao feita por esta ilha, e o cambio esta pendente (secao 10)."
+    },
+    "condicao": {
+     "tipo": "texto|null",
+     "obrigatorio": true,
+     "null_exige": "motivo_sem_condicao"
+    },
+    "se_nao_cumprir": {
+     "tipo": "texto|null",
+     "obrigatorio": true,
+     "null_exige": "motivo_sem_se_nao_cumprir",
+     "observacao": "o que o operador cobra de quem nao prova a idade. E a metade da faixa que custa dinheiro na porta."
+    },
+    "declarado_como": {
+     "tipo": "texto",
+     "obrigatorio": true,
+     "observacao": "a frase da fonte, inteira. A tela cita, nunca parafraseia."
+    },
+    "fonte": {
+     "tipo": "ref:FONTE.id",
+     "obrigatorio": true
+    },
+    "data_leitura": {
+     "tipo": "data",
+     "obrigatorio": true
+    },
+    "duas_passadas": {
+     "tipo": "texto",
+     "obrigatorio": false
+    },
+    "transcrito_de": {
+     "tipo": "texto",
+     "obrigatorio": false,
+     "observacao": "preenchido quando o numero JA ESTAVA no banco em prosa e esta passada o transformou em campo, sem leitura nova. Diz de qual prosa saiu. Prosa nao barra pagina e prosa nao e contavel — mas prosa promovida a campo sem dizer de onde veio vira numero com cara de leitura nova."
+    },
+    "numero_da_frase_e_de_outra_versao": {
+     "tipo": "texto|null",
+     "obrigatorio": false,
+     "exigido_quando": "declarado_como ou se_nao_cumprir citam um valor que e o preco de OUTRA versao desta experiencia e nao o desta",
+     "observacao": "achado da migracao de 22/10/2026, no Angkor: a fonte escreve que a crianca sem passaporte paga US$ 37 — e 37 e o passe de UM DIA. A mesma frase copiada na versao de 3 dias (62) e na de 7 dias (72) poe na boca do operador um numero que ele nao disse daquele passe. O campo nomeia a versao de onde o numero e; a tela cita a frase e diz de qual bilhete ela fala."
     }
    }
   },
@@ -562,7 +632,8 @@
   "experiencia com afiliado.url preenchida, que e quando intestavel pode virar verdadeiro",
   "cidade com mais de uma experiencia",
   "fonte de nivel 5 (plataforma lida na propria plataforma) — a busca de 14/09 devolveu a pagina de produto da Civitatis para o safari de Dubai no conjunto de resultados e NAO devolveu o preco dela; sem ler a plataforma, o numero dela chega por terceiro e cai para nivel 6, que e o que ja aconteceu com a GetYourGuide na gondola",
-  "fonte de nivel 1 ou 2, que exige leitura direta — remedida em 15/09/2026 e ainda fora de alcance: curl em 000 e CONNECT recusado por politica em www.coopculture.it, colosseo.it, www.toureiffel.paris e civitatis.com"
+  "fonte de nivel 1 ou 2, que exige leitura direta — remedida em 15/09/2026 e ainda fora de alcance: curl em 000 e CONNECT recusado por politica em www.coopculture.it, colosseo.it, www.toureiffel.paris e civitatis.com",
+  "faixa etaria com `preco` null e motivo — nenhuma das 11 versoes tem: as faixas que o banco traz hoje ou tem numero (3,80 a 18,40 EUR na Torre Eiffel) ou tem zero, que e a gratuidade declarada. Faixa que a fonte NOMEIA sem dizer o preco e o caso que falta, e ele tem mutacao em mutacoes-banco.py"
  ],
  "o_que_saiu_desta_lista_em_14_09_2026_as_23h": "preco por_pessoa, escada de dias como versoes e faixa_etaria preenchida sairam porque o Angkor Pass entrou no banco com os tres — 1, 3 e 7 dias como versoes, preco por pessoa e a gratuidade de menores de 12 anos como faixa_etaria. Eles continuam tendo mutacao em mutacoes-banco.py: mundo produzido que virou banco real nao dispensa a regua, porque o mundo produzido cobre a combinacao inteira e o registro real cobre so a dele.",
  "por_que_essa_lista_existe": "Todo caso que o ESQUEMA permite e o banco ainda nao tem e um caso que a regua precisa tratar HOJE, nao no dia em que aparecer (secao 8 do ARQUIPELAGO.md). ferramentas/mutacoes-banco.py produz cada um destes mundos e verifica que o validador decide certo nos dois lados da fronteira — o mundo valido tem de PASSAR, e e essa metade que prova que a trava nao esta apenas dizendo nao para tudo.",
@@ -575,13 +646,16 @@
   "o_que_ela_vale_para": "todo vocabulario controlado deste esquema, nao so `moeda`. Nesta mesma carga ela foi exercida por `tipo_de_operador`: o valor `concessionaria_de_bem_publico` nasce no commit da Torre Eiffel, que e o primeiro registro que precisa dele.",
   "o_que_ela_nao_faz": "nao impede o esquema de NOMEAR um caso que o banco ainda nao tem — essa e a funcao da lista `o_que_o_esquema_permite_e_o_banco_ainda_nao_tem`, que e prosa e nao vocabulario. Nomear o caso ajuda a regua; oferecer o valor sem registro e que engana."
  },
- "faixa_etaria_e_da_VERSAO_e_o_esquema_a_poe_na_EXPERIENCIA": {
+ "faixa_etaria_e_da_VERSAO_e_o_esquema_a_poe_na_EXPERIENCIA__FECHADO": {
   "achado_de": "2026-09-15, na carga do Coliseu e da Torre Eiffel",
   "o_que_e": "`faixa_etaria` e campo de EXPERIENCIA e guarda um preco por faixa. Isso so funciona enquanto o preco da faixa nao depende da versao — e os dois registros desta carga provam que ele depende. Na Torre Eiffel a crianca de 4 a 11 anos paga 3,80 por escada e 9,20 por elevador ate o topo: a mesma faixa, quatro precos, um por versao. No Coliseu a mesma faixa atravessa o bilhete de 18 e o de 22.",
   "por_que_so_apareceu_agora": "porque os dois registros anteriores nao moviam o mundo. A gondola cobra por embarcacao e nao tem faixa etaria; o Angkor Pass tem faixa etaria e ela vale IGUAL nas tres versoes — a crianca menor de 12 anos entra de graca no passe de 1, de 3 e de 7 dias. Campo que so erra quando o mundo se move parece certo ate o mundo se mover, que e a forma de defeito que esta ilha ja pagou no resumo e no piso.",
   "o_que_esta_carga_fez_com_isso": "nada alem de medir e nomear. A Torre Eiffel grava apenas a faixa que NAO depende da versao (menores de 4 anos, gratuito nas quatro), e o Coliseu grava `faixa_etaria: null` com o motivo escrito. Inventar um preco unico por faixa seria publicar o numero errado para tres das quatro versoes da Torre Eiffel.",
   "consequencia_para_DECLARACAO": "a mesma raiz. DECLARACAO discorda de uma VERSAO, e o esquema nao tem como registrar uma declaracao que discorda de uma FAIXA ETARIA. Foi por isso que a divergencia medida hoje sobre a gratuidade do Coliseu para menores de 18 anos — a mais cara que esta ilha ja mediu para o leitor brasileiro — ficou no motivo do registro e nao em `declaracoes`: gravar la diria que ela discorda do preco do bilhete, e ela nao discorda.",
-  "proximo_passo": "mover `faixa_etaria` de EXPERIENCIA para VERSAO, com a regua e as mutacoes junto, e migrar os registros da gondola e do Angkor na mesma passada."
+  "proximo_passo": "mover `faixa_etaria` de EXPERIENCIA para VERSAO, com a regua e as mutacoes junto, e migrar os registros da gondola e do Angkor na mesma passada.",
+  "FECHADO_EM": "2026-10-22",
+  "como_fechou": "`faixa_etaria` desceu para a VERSAO, as 11 versoes das 4 experiencias foram migradas na mesma passada, e o `proximo_passo` que esta chave escrevia foi cumprido ao pe da letra — com a regua e as mutacoes junto. O que o esquema permitia e o banco nao tinha deixou de ser um buraco nomeado e virou campo contado: `faixas_etarias` e `faixas_declaradas_nao_transcritas` entraram no resumo, que nasce contado (secao 8). A chave fica como registro de que o achado existiu e de que ele levou 37 dias entre ser medido e ser consertado."
  },
- "versao_3_mudou": "Carga de 15/09/2026. Nasceu `regra_de_crescimento_de_vocabulario` (vocabulario cresce com o registro que o usa, nunca antes — e ela responde a pergunta da moeda que a carga de 14/09 deixou aberta). `tipo_de_operador` ganhou `concessionaria_de_bem_publico`, no mesmo commit do registro que precisa dele. O degrau 4 da escada passou a `existe_hoje: true` e `existe_hoje` virou campo DERIVADO, recomputado pelo validador. E ficou escrito o achado de modelo desta carga: `faixa_etaria` e da VERSAO e o esquema a poe na EXPERIENCIA."
+ "versao_3_mudou": "Carga de 15/09/2026. Nasceu `regra_de_crescimento_de_vocabulario` (vocabulario cresce com o registro que o usa, nunca antes — e ela responde a pergunta da moeda que a carga de 14/09 deixou aberta). `tipo_de_operador` ganhou `concessionaria_de_bem_publico`, no mesmo commit do registro que precisa dele. O degrau 4 da escada passou a `existe_hoje: true` e `existe_hoje` virou campo DERIVADO, recomputado pelo validador. E ficou escrito o achado de modelo desta carga: `faixa_etaria` e da VERSAO e o esquema a poe na EXPERIENCIA.",
+ "versao_4_mudou": "Migracao de 22/10/2026, primeiro dia da jornadafly em foco. `faixa_etaria` saiu da EXPERIENCIA e entrou na VERSAO, com a entidade FAIXA_ETARIA nascendo explicita; a proibicao de faixa fora de `por_pessoa` deixou de ser prosa no registro da gondola e virou regra do esquema, porque `unidade_de_preco` e campo da VERSAO; nasceu `faixas_que_a_fonte_declara_e_a_leitura_nao_transcreveu`, que conta a lacuna em vez de a calar; e nasceu `numero_da_frase_e_de_outra_versao`, que e o defeito que a migracao achou no Angkor — a frase da fonte cita US$ 37, o passe de um dia, e ela estava guardada num campo que valia para os tres passes. NADA foi ao ar: esta ilha nao tem site, nao tem Sync e nao tem /status, e dizer que verificou no ar seria inventar."
 }

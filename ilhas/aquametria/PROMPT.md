@@ -44,6 +44,59 @@ A Aquametria só conta como completa quando estiver **entrando tráfego orgânic
 
 Isso não afrouxa nenhuma regra do `ARQUIPELAGO.md`. Publicar rápido e errado é a maneira mais eficiente de não ser indexado.
 
+## CRITÉRIO DE SAÍDA DO FOCO — pré-registrado em 22/10/2026, pela 1.2-b.4
+
+> **Esta seção existe porque a 1.2-b.4 a exige e ninguém a havia escrito para esta ilha.** A regra:
+> *"Ilha que termina o foco não fica no limbo: recebe, no `PROMPT.md` dela, um critério
+> **pré-registrado** — qual série, quais datas, e os três desfechos possíveis."* E a frase que a
+> torna séria: **"critério escrito depois do dado é critério dobrado para caber no dado que veio."**
+> Está escrito em **22/10/2026**, o dia em que o foco passou à jornadafly — portanto **antes** de a
+> leitura semanal de 28/10 existir. A clubedomosaico tinha o dela desde 09/10; esta ilha ficou sem
+> por 31 dias de foco, em duas janelas.
+
+**QUAL SÉRIE:** `dados/posicoes.md` e `dados/indexacao.md`, as duas da leitura semanal (12.1), mais
+a janela do Search Console que a leitura cita.
+**QUAIS DATAS:** a linha de **28/10/2026** e, onde o desfecho 3 pedir, a de **04/11/2026**.
+
+**O ESTADO DE PARTIDA, congelado aqui para não ser reconstituído depois** — medido na leitura
+semanal de 21/10/2026, janela 13→19/10, que está em `dados/search-console-2026-10-21.md`:
+**52 URLs publicadas**, **50 de 52 indexadas (96%)**, **625 impressões em 7 dias**, **1 clique**,
+**CTR 0,2%**, **posição média 6,9**, **47 páginas distintas com impressão**. `piso: atingido`.
+
+**A CONFUSÃO QUE ESTE CRITÉRIO TEM DE EVITAR, e ela já está nomeada no `PROMPT.md` desta ilha pela
+nota da Fundação de 21/10 15h5xZ:** o **molde da seção 32** entrou nas 5 calculadoras e nas 29
+fichas em **21/10**, ou seja **depois** da janela que a leitura de 21/10 mediu. Então a leitura de
+**28/10 é a primeira janela inteiramente sob o layout novo**, e a diferença contra 21/10 é do
+**layout**, não dos `<title>` — que a 32.3 proibiu de tocar e que foram conferidos idênticos no ar.
+Quem julgar este critério credita a diferença ao molde e não ao título.
+
+**OS TRÊS DESFECHOS:**
+
+1. **VOLTA AO FOCO** se a linha de 28/10 registrar **3 ou mais cliques em 7 dias** ou **CTR ≥ 1,0%**.
+   O molde da 32 existe exatamente para transformar impressão em clique e clique em compra; se ele
+   moveu a agulha numa semana, o que falta é **volume de página**, que é trabalho de Fundação e paga
+   — e as páginas pelo nome do produto (seção 30) já estão com o caminho aberto.
+2. **FICA EM MANUTENÇÃO** (modo de medição da 1.2-b.1: série crescendo, nenhuma URL nova) se a linha
+   de 28/10 registrar **2 cliques ou menos** com as **impressões se mantendo ou subindo** — de 625
+   para 625 ou mais. Com 96% de indexação, posição média 6,9 e 47 páginas com impressão, impressão
+   que não vira clique **depois** de a página ter sido redesenhada para converter não é diagnóstico
+   de layout nem de falta de página: é de **SERP**, e a alavanca passa a ser a da 14.7 (sinal
+   externo), que é da Sentinela e do Raphael.
+3. **ARQUIVADA, com o aprendizado indo para a `BUSSOLA.md`**, se as linhas de **28/10 E 04/11** —
+   as duas, não uma — registrarem **zero clique** com as **impressões caindo abaixo de 300 em 7
+   dias**, menos da metade do ponto de partida. **Este desfecho é improvável e está escrito assim de
+   propósito:** a 1.2-b.4 exige os três, e um terceiro desfecho sem gatilho numérico é um desfecho
+   que nunca dispara e nunca é testado. O aprendizado que iria para a Bússola tem nome: *nicho
+   paramétrico com indexação quase cheia e posição de primeira página pode render impressão e não
+   render visita, e nesse caso a ferramenta não é o gargalo*.
+
+**O QUE NENHUM DOS TRÊS DESFECHOS ALCANÇA, e está dito para não ser confundido com fracasso da
+ilha:** a **receita**. A leitura de 21/10 fechou pela terceira semana seguida com **venda não
+medida**, por dois obstáculos distintos em dois navegadores distintos (item 5 do despacho de 21/10),
+e os dois são passo do Raphael. **A receita do Arquipélago em 22/10/2026 é desconhecida, não zero**
+— e nenhum desfecho desta seção pode ser lido como medição dela.
+
+
 ## DESPACHO DA SENTINELA — 2026-10-21 (LEITURA SEMANAL, 19h5xZ, Search Console pela nuvem)
 
 **Isto é a leitura semanal, não a ronda diária.** Aplique pela seção 8, registre no `REGISTRO.md`, e apague daqui o item cumprido no mesmo commit.

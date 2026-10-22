@@ -3,6 +3,145 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-10-22 10h20Z — `faixa_etaria` desce para a VERSÃO, e a descida acha que a frase do Angkor fala de outro bilhete
+
+**O que saiu:** `faixa_etaria` saiu de EXPERIÊNCIA e entrou em VERSÃO, nas **11 versões das 4
+experiências**, com a entidade `FAIXA_ETARIA` nascendo explícita no esquema. Esquema **versão 4**,
+banco **versão 4**. É o **próximo passo que o registro de 15/09/2026 deixou escrito**, cumprido ao
+pé da letra — *"com a régua e as mutações junto, e migrar os registros da gôndola e do Angkor na
+mesma passada"* — 37 dias depois de ser medido. **Nada foi ao ar: esta ilha não tem site, não tem
+WordPress, não tem Sync e não tem `/status`, e dizer que verifiquei no ar seria inventar.**
+
+**A ESCOLHA DA ILHA: NÃO HOUVE ROTAÇÃO, E NÃO HOUVE DECISÃO MINHA.** Hoje é 22/10/2026, e a linha
+`fila_decidida_pelo_raphael` do `foco.md` dizia, desde 09/10 e ajustada por ele em 14/10: *"(3)
+jornadafly em foco a partir de 22/10/2026, como foco principal"*, com o aviso ao lado — *"esta linha
+é registro da fila, NÃO troca o foco sozinha: quem troca é a linha `ilha:`, editada na data. Em
+22/10/2026 alguém tem de editar a linha `ilha:` para jornadafly — se ninguém editar, o foco fica
+preso, como ficou de 10/10 a 14/10."* A janela da aquametria vencia em **21/10**. Troquei a linha e
+reservei esta ilha no **mesmo push**, às **10h20Z**, aceito de primeira. Os três despachos do
+**molde da seção 32** estão fechados nas três ilhas (aquametria 18h2xZ, clubedomosaico 19h1xZ,
+robometria nas nove páginas), então a exceção de 21/10 que furava o foco pela 32 **não se aplica
+mais** e o foco volta a mandar sozinho. Nenhum branch `claude/*` com trabalho a mesclar e nenhum PR
+aberto. **E a aquametria não ficou no limbo:** pela **1.2-b.4** ela recebeu, nesta mesma passada, o
+**critério de saída do foco pré-registrado** que nunca havia sido escrito para ela — série, datas e
+os três desfechos, no `PROMPT.md` dela, **antes** da leitura de 28/10 que ele julga.
+
+**REDE PELA 20.2, REMEDIDA E NÃO HERDADA — E É REGRESSÃO.** Três passadas: `jornadafly.com.br` e
+`www.jornadafly.com.br` em `000` nas três, com `aquametria.com.br` e `robometria.com.br` em `200`
+nas mesmas (a robometria caiu **uma** vez na terceira — é a intermitência de túnel que a 20.2 manda
+não confundir com bloqueio, e ela apareceu no **controle**, não no alvo). O `curl` verbose nomeia a
+causa e ela não é intermitência: `CONNECT tunnel failed, response 403` do proxy de egresso, ou seja
+**o domínio não está na lista de Domínios permitidos deste ambiente**. O campo dizia `rede: aberta
+em 2026-09-18`, com **HTTP 200 medido às 12h35Z** daquele dia, e o painel de 18/09 escreveu que o
+despacho ALTA de 15/09 *"está cumprido e saiu deste painel"*. **Então isto já esteve resolvido e
+voltou** — o despacho ALTA volta a valer, e `bloqueada_por` segue `null` de propósito, como nas
+quatro execuções anteriores: o que a rede trava é o 3b em diante, não o bloco de arquivo.
+
+### O que a descida produziu, e nenhuma das três coisas era possível com o campo na EXPERIÊNCIA
+
+**(1) A Torre Eiffel publica 4 faixas gravadas em vez de 1.** A fonte declara quatro faixas e o
+preço de três delas **muda de bilhete para bilhete**. Com `faixa_etaria` na EXPERIÊNCIA, a carga de
+15/09 só podia gravar a gratuidade dos menores de 4 anos — a única que vale igual nos quatro — e os
+outros números ficaram em **prosa**, dentro da `nota_da_faixa_etaria` do próprio registro. Agora são
+campo: **3,80€** e **7,40€** na escada até o segundo piso, **9,20€** e **18,40€** no elevador até o
+topo, cada um com `transcrito_de` dizendo que saiu daquela prosa e **não** de leitura nova. É a
+mesma troca que a Aquametria fez em 21/10/2026 com o `porte_adulto_cm`: **prosa dentro do banco que
+vira campo contável, porque prosa não barra página e prosa não se conta.**
+
+**(2) A proibição de faixa etária em tarifa `por_veiculo` virou REGRA.** Era prosa no
+`motivo_sem_faixa_etaria` da gôndola desde 14/09 — *"a tarifa é pela embarcação inteira, não por
+passageiro"* — e **só podia virar regra depois de a faixa descer**, porque `unidade_de_preco` é
+campo da VERSÃO e os dois precisavam estar no mesmo objeto. Seis pessoas na gôndola são **duas**
+gôndolas: a criança não tem preço, tem assento.
+
+**(3) O achado que a migração pagou: a frase do Angkor fala de outro bilhete.** O `se_nao_cumprir`
+da faixa cita *"sem ele paga-se US$ 37 por criança"* — e **US$ 37 é o passe de UM DIA**. Guardada num
+campo de EXPERIÊNCIA, essa frase valia para os passes de 3 dias (US$ 62) e de 7 dias (US$ 72) junto,
+dizendo o número de um bilhete sobre outros dois. Está nomeado em
+`numero_da_frase_e_de_outra_versao` nas duas versões em que a frase não é daquele bilhete, e **a
+régua cobra o campo em vez de confiar na nota**. A ilha **não** troca 37 por 62 nem por 72: a prosa
+de 14/09 já lia a frase como *"o mesmo valor do adulto, por cabeça"*, o que daria 62 e 72 — mas essa
+é a leitura **da ilha**, não a letra do operador, e trocar uma pela outra é exatamente o que esta
+ilha existe para não fazer.
+
+### As 4 células do meio continuam não lidas, e agora são um número
+
+A leitura de 15/09 transcreveu o **piso** e o **teto** da grade e não as duas colunas do meio: a
+criança e o jovem nas versões `segundo-piso-elevador` e `topo-escada-e-elevador`. As quatro
+ausências estão em `faixas_que_a_fonte_declara_e_a_leitura_nao_transcreveu`, com `rotulo` e
+`por_que` em cada uma, e o resumo do banco publica
+**`faixas_declaradas_nao_transcritas: 4`** ao lado de **`faixas_etarias: 11`** — os dois contados
+pelo validador, nunca digitados.
+
+**Tentei relê-las, e o registro da tentativa vale mais que a lacuna.** `www.toureiffel.paris`
+responde **403 no CONNECT** deste ambiente (o esquema já registrava esse bloqueio em
+`o_que_o_esquema_permite_e_o_banco_ainda_nao_tem`, remedido hoje). A busca **devolveu** uma grade
+com os valores do meio — e eles **não foram gravados**, porque vieram no **resumo** da busca e não
+de documento aberto. **Fonte citada por resumo é pista; fonte lida é dado.** Gravar o número do
+resumo seria a trava de coleta da seção 8 sendo contornada pela própria execução que a cita.
+
+### A bancada me corrigiu duas vezes, as duas antes do commit
+
+**(a) A primeira versão da regra era LARGA DEMAIS.** Ela proibia faixa etária em **toda** unidade
+diferente de `por_pessoa`, e o **MUNDO `por_cabine`** da bateria a reprovou na hora. O argumento da
+gôndola é sobre **veículo alugado inteiro**, onde a criança ocupa assento e não gera cobrança; um
+cruzeiro vendido **por cabine** pode perfeitamente declarar tarifa de criança na cabine, e
+`por_grupo` também. A proibição ficou no caso **medido** (`por_veiculo`), e `por_cabine` e
+`por_grupo` ficaram **de fora dela, de propósito**, com o motivo escrito no esquema. **Régua que diz
+não para um mundo legítimo custa mais caro que régua que falta** — e quem achou o excesso foi a
+mutação, não uma releitura minha.
+
+**(b) O mundo novo escreveu `crianca` sem cedilha** e a régua das irmãs reprovou **três** versões de
+uma vez: é o `rotulo` que liga a mesma faixa entre bilhetes, então rótulo que não casa produz uma
+faixa nova em uma versão e três ausências silenciosas nas outras. O defeito era do mundo, e a régua
+o apontou pelo nome.
+
+**(c) E 16 quebras novas não estavam sendo cobradas pela FRASE**, porque eu pus a frase na **quarta**
+posição da tupla — que é o `esquema_mutado` — e não na quinta. Elas reprovavam, e nenhuma delas
+provava reprovar **pelo motivo certo**. Consertado antes do commit: a bateria passou de **3** para
+**22** quebras cobradas por frase. É a trava que esta ilha escreveu em 15/09 pegando um defeito na
+própria ilha que a escreveu.
+
+### Bancada, 0 falha
+
+- `validar-banco.py` **verde** sobre o banco real, com as oito réguas novas da faixa. Os cinco
+  avisos de `vocabulario_sem_lastro` continuam onde estavam.
+- `mutacoes-banco.py` **73 de 73** (eram 53): **7 mundos** que têm de PASSAR e **66 quebras** que
+  têm de REPROVAR, **22** delas cobradas pela frase que esperam ouvir de volta. O mundo novo é a
+  **faixa que a fonte NOMEIA sem dizer o preço**, que o esquema permite e o banco não tem.
+- Os três JSON passam por `json.load` e o cabeçalho do `ESTADO.md` por `yaml.safe_load`.
+
+### A seção 31 nesta ilha, dita antes de alguém contar
+
+A **31.1** pede 7 de cada 10 execuções entregando algo **no ar**. Nesta ilha isso é **inalcançável**,
+porque **não existe "no ar"**: faltam os passos 2 a 8 da seção 11 (WordPress, trabalho de navegador
+do Raphael) e falta o domínio na lista de rede. **As duas são dele**, e as duas estão escritas no
+topo do `PROMPT.md` desta ilha e no `foco.md`, para que o próximo que contar a proporção leia a causa
+em vez de ler desobediência. O que a Fundação pode fazer aqui é o que não depende de site — e foi
+isso que esta execução fez.
+
+### Aberto e nomeado
+
+(a) a **rede** da ilha, despacho ALTO, **regredida** hoje, que trava 3b em diante; (b) o **WordPress
+e a infraestrutura dos passos 2 a 8**, que nenhuma execução da Fundação alcança; (c) as **4 células
+do meio** da grade da Torre Eiffel, contadas e bloqueadas por 403; (d) a **seção pendente do
+`VOZ.md`** — as 10 a 15 legendas reais do @jornadafly, que o `PROMPT.md` exige antes da primeira
+página; (e) a **identidade visual**, que precisa da aprovação do Raphael antes do 3b; (f) **nenhum
+programa de afiliado cadastrado**; (g) o **câmbio** (`api.bcb.gov.br` fora da lista), que custa uma
+linha e não trava bloco; (h) **não existe `manifest.json`**, e criá-lo vazio seria inventar
+infraestrutura antes do WordPress.
+
+### Próximo passo desbloqueado
+
+**A F1 como REGRA — o bloco 4**, no desenho que a ohmetria usou na F1 dela: a referência em Python
+(entrada → resposta inteira, já em frase acentuada), a tabela pré-renderizada, os portões, e
+**sem PHP enquanto não houver casca** — o PHP, quando nascer, é **tradutor** da referência, frase a
+frase. **A especificação já foi atualizada hoje para o modelo novo**, e é por isso que o bloco 4 fica
+mais barato do que era ontem: a F1 lê a faixa **da versão que a pessoa escolheu**, nunca da
+experiência, e ela distingue **três** recusas que antes eram uma só — faixa que o operador não
+declara, faixa que ele declara e ninguém leu, e número da frase que é de outro bilhete. **Não depende
+de site, de domínio, nem da rede bloqueada.**
+
 ## 2026-09-15 11h25Z — Coliseu e Torre Eiffel entram, a pergunta da moeda é respondida com uma regra, e `existe_hoje` deixa de ser prosa
 
 **O que saiu:** o **Coliseu de Roma** e a **Torre Eiffel** entram no banco, com Roma e

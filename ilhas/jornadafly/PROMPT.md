@@ -3,24 +3,41 @@
 Leia o `ARQUIPELAGO.md` da raiz antes deste arquivo. Ele carrega todas as regras comuns; aqui fica só o que é desta ilha. **Nunca copie regra do `ARQUIPELAGO.md` para cá.**
 O dossiê que aprovou esta ilha é `bussola/dossies/viagem-experiencia-icone/DOSSIE.md`, e o despacho que a trouxe para a Bússola é `bussola/despacho-viagem.md`. Leia os dois na primeira execução.
 
-> **ESTA ILHA NÃO ESTÁ EM FOCO — 16/09/2026; A ILHA EM FOCO MUDOU DUAS VEZES DESDE ENTÃO.** *(Ponteiro do Pente
-> Fino em 28/09/2026: `foco.md` nomeia a **clubedomosaico** desde 24/09/2026 — nomeou a aquametria de 21/09 a
-> 24/09 e a robometria antes disso. A conclusão deste aviso continua certa; a ilha que ele nomeia, não. Quem ler
-> este arquivo confere `foco.md`, que é a fonte, nunca este parágrafo.)*
-> *(**SEGUNDO PONTEIRO, PENTE FINO EM 05/10/2026 — O DE 28/09 RATIFICOU A METADE QUE A DECISÃO DAQUELE MESMO DIA
-> REVOGOU.** O aviso abaixo diz que "nenhuma outra ilha é rondada". Isso **deixou de ser verdade em 28/09/2026**:
-> pela decisão do Raphael registrada no ponteiro da §1.2 do `ARQUIPELAGO.md`, a **ronda diária técnica roda em toda
-> ilha que está no ar, em foco ou fora** — a causa foi o Clube do Mosaico ter passado nove dias fora do ar sem
-> ninguém medir. O que continua valendo deste aviso é só a metade da CONSTRUÇÃO: ilha fora do foco não recebe
-> bloco da Fundação, e nada deste arquivo é executado. Hoje o efeito prático é nulo porque esta ilha ainda não
-> está no ar e "ilha que ainda não está no ar não tem o que rondar" — mas a frase é falsa a partir do dia em que
-> ela subir, e era exatamente essa frase que custou os nove dias.)* `foco.md` na raiz nomeava a **robometria**
-> quando este aviso foi escrito, e pela seção **1.2** do
-> `ARQUIPELAGO.md` nenhuma outra ilha recebe bloco da Fundação e nenhuma outra ilha é rondada. **Nada deste arquivo
-> é executado enquanto isso valer**, por mais antigo ou prioritário que um despacho daqui pareça: só fura o foco
-> despacho **ALTO** em ilha que esteja **no ar e quebrada**. Quando `foco.md` disser `ilha: nenhuma`, apague este
-> aviso e este arquivo volta a valer inteiro. *(Inserido pelo Pente Fino em 16/09/2026: a 1.2 nasceu hoje e nenhum
-> `PROMPT.md` de ilha fora do foco a mencionava.)*
+> **ESTA ILHA ESTÁ EM FOCO DESDE 22/10/2026, E ELA É O FOCO PRINCIPAL.** `foco.md` na raiz
+> nomeia a **jornadafly** desde hoje, pelo item (3) da fila que o Raphael decidiu em 09/10/2026 e
+> ajustou em 14/10/2026. Pela seção **1.2** do `ARQUIPELAGO.md`, a Fundação trabalha **só nela** e
+> este arquivo vale inteiro. *(O aviso que estava aqui era de 16/09/2026, dizia que a ilha NÃO
+> estava em foco, e carregava dois ponteiros do Pente Fino — de 28/09 e de 05/10 — corrigindo qual
+> ilha ele nomeava e revogando a metade dele sobre ronda. Os três saíram juntos em 22/10/2026,
+> porque o mundo que eles descreviam acabou: `foco.md` continua sendo a fonte, nunca este
+> parágrafo.)*
+>
+> **E O QUE ESTA ILHA PRECISA, A FUNDAÇÃO NÃO PODE FAZER — leia isto antes de escolher bloco.**
+> Faltam duas coisas, as duas de navegador e as duas do Raphael, e sem elas **nenhuma execução
+> desta ilha entrega nada no ar**:
+>
+> 1. **Os passos 2 a 8 da seção 11** — domínio adicional no cPanel, nameservers, Search Console,
+>    WordPress, SSL, plugins. Sem WordPress não há casca (3b), não há Sync, não há `/status` e não
+>    há URL para indexar. Os endpoints desta pasta seguem com `<preencher quando o WordPress
+>    existir>`.
+> 2. **`jornadafly.com.br` e `*.jornadafly.com.br` na lista de Domínios permitidos** do ambiente da
+>    Fundação. **Medido em 22/10/2026 e é REGRESSÃO:** o proxy de egresso devolve `CONNECT tunnel
+>    failed, response 403`, em seis medições, com `aquametria.com.br` e `robometria.com.br` em 200
+>    nas mesmas passadas. O `ESTADO.md` desta ilha dizia `rede: aberta em 2026-09-18`, com HTTP 200
+>    medido às 12h35Z daquele dia — então isto já esteve resolvido e voltou. O despacho ALTA de
+>    15/09 em `dados/despachos.md` volta a valer.
+>
+> **A CONSEQUÊNCIA PARA A SEÇÃO 31, dita aqui para ninguém ler o `REGISTRO.md` desta ilha como
+> desobediência:** a 31.1 pede que 7 de cada 10 execuções entreguem algo no ar que o visitante vê.
+> Nesta ilha isso é **inalcançável** enquanto as duas coisas acima não existirem — não há "no ar".
+> O que a Fundação pode fazer aqui é o que não depende de site: corpus, especificação, banco,
+> esquema, régua, e a F1 como REGRA (bloco 4) no desenho que a ohmetria usou. **Toda execução desta
+> ilha escreve no `REGISTRO.md`, com estas palavras, que nada foi ao ar e por quê** — dizer que
+> verificou no ar seria inventar.
+>
+> **E quando o site nascer, ele nasce no MOLDE DA SEÇÃO 32**, sem retrofit: a 32.6 nomeia a
+> jornadafly com todas as letras. Casca que nasce fora do molde paga o mutirão duas vezes.
+
 
 ## Identidade
 - Nicho: **"vale a pena?" sobre experiência icônica**, sustentado por **preço colhido na fonte de quem opera, com data de leitura**. O eixo paramétrico é **dias × pessoas × padrão**. Não é "viagem" e não é destino.

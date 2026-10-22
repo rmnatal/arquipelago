@@ -1,7 +1,7 @@
 {
  "ilha": "jornadafly",
  "bloco": 3,
- "versao": 3,
+ "versao": 4,
  "publicar": false,
  "cumpre": "dados/esquema-banco.json",
  "nota_da_versao_2": "Carga de 14/09/2026, as 23h. Entrou o Angkor Pass, com Siem Reap como segunda cidade e a escada de dias (1, 3 e 7) como versoes. E entrou o que a coleta MEDIU sobre o canal: das seis experiencias que o bloco 2 nomeou, tres foram tentadas por busca (balao da Capadocia, cruzeiro de Ha Long e quadriciclo de Dubai, em cinco passadas somadas) e as tres devolveram FAIXA sem dono, sem data e as vezes sem unidade — as duas passadas de Ha Long discordam entre por cabine e por pessoa, e entre dolar e dongue. A busca devolve numero onde ha tabela publica e devolve faixa onde o preco e de operador privado, que e justamente o tipo que o criterio de entrada PREFERE. As tres ficam como coleta em aberto com a causa medida, nunca como silencio.",
@@ -152,6 +152,8 @@
      "unidade_de_preco_declarada_por": "no_ato_oficial",
      "capacidade_maxima": 5,
      "capacidade_maxima_declarada_por": "no_ato_oficial",
+     "faixa_etaria": null,
+     "motivo_sem_faixa_etaria": "Não há preço de criança a declarar, e a causa é o próprio desenho da unidade: a tarifa é pela embarcação inteira, não por passageiro. Desde 22/10/2026 isto não é mais só uma frase: `faixa_etaria` mora na VERSÃO, `unidade_de_preco` também, e o esquema PROÍBE faixa etária onde a unidade não é `por_pessoa` — então a régua reprova quem tentar gravá-la aqui, em vez de depender de alguém ler este motivo. Seis pessoas na gôndola são DUAS gôndolas: a criança não tem preço, tem assento.",
      "duracao_minutos": 30,
      "momento_do_dia": "diurno",
      "janela_horaria": "das 9h às 19h",
@@ -181,6 +183,8 @@
      "unidade_de_preco_declarada_por": "no_ato_oficial",
      "capacidade_maxima": 5,
      "capacidade_maxima_declarada_por": "no_ato_oficial",
+     "faixa_etaria": null,
+     "motivo_sem_faixa_etaria": "Não há preço de criança a declarar, e a causa é o próprio desenho da unidade: a tarifa é pela embarcação inteira, não por passageiro. Desde 22/10/2026 isto não é mais só uma frase: `faixa_etaria` mora na VERSÃO, `unidade_de_preco` também, e o esquema PROÍBE faixa etária onde a unidade não é `por_pessoa` — então a régua reprova quem tentar gravá-la aqui, em vez de depender de alguém ler este motivo. Seis pessoas na gôndola são DUAS gôndolas: a criança não tem preço, tem assento.",
      "duracao_minutos": 35,
      "momento_do_dia": "noturno",
      "janela_horaria": "das 19h às 4h",
@@ -204,8 +208,6 @@
    ],
    "temporada": null,
    "motivo_sem_temporada": "O ato não declara variação por temporada, e a leitura de 14/09/2026 não alcançou nenhuma declaração de alta e baixa. Inventar temporada aqui seria inventar o dado mais caro da página — as fontes do bloco 1 mostram diária de carro variando até três vezes entre inverno e verão, e é esse tipo de número que não se chuta.",
-   "faixa_etaria": null,
-   "motivo_sem_faixa_etaria": "Não há preço de criança a declarar, e a causa é o próprio desenho da unidade: a tarifa é pela embarcação inteira, não por passageiro. Este é o único caso em que o campo vazio não é falta de dado do operador — é consequência da unidade, e a página pode dizer isso.",
    "imagem": null,
    "motivo_sem_imagem": "A ilha não tem imagem própria e não usa foto de terceiro sem licença. A vitrine reserva o espaço e destaca o nome (seção 6 do ARQUIPELAGO.md).",
    "declaracoes": [
@@ -316,6 +318,21 @@
      "unidade_de_preco_declarada_por": "no_contraste_da_propria_fonte",
      "capacidade_maxima": null,
      "capacidade_maxima_declarada_por": null,
+     "faixa_etaria": [
+      {
+       "rotulo": "menores de 12 anos",
+       "preco": 0,
+       "moeda": "USD",
+       "condicao": "gratuito, com o passaporte da criança apresentado na bilheteria como prova de idade",
+       "se_nao_cumprir": "sem passaporte, cobra-se a tarifa cheia de US$ 37 pela criança, inclusive de bebê",
+       "declarado_como": "Crianças menores de 12 anos entram sem pagar; o passaporte é exigido como prova de idade, e sem ele paga-se US$ 37 por criança.",
+       "fonte": "angkor-enterprise-tarifa-via-busca",
+       "data_leitura": "2026-09-14",
+       "duas_passadas": "Sim: uma em português e uma em inglês, com perguntas independentes, ambas devolvendo a mesma regra e a mesma consequência de não cumpri-la.",
+       "transcrito_de": "o campo `faixa_etaria` da EXPERIÊNCIA, gravado na carga de 14/09/2026 pela mesma leitura. Nenhuma leitura nova: a migração de 22/10/2026 desceu a mesma faixa para as três versões, porque a gratuidade que a fonte declara não distingue o passe."
+      }
+     ],
+     "faixas_que_a_fonte_declara_e_a_leitura_nao_transcreveu": [],
      "motivo_sem_capacidade": "Ingresso individual não tem lotação: a unidade já é a pessoa, e não existe o degrau que a gôndola tem, onde 6 pessoas viram duas embarcações.",
      "duracao_minutos": null,
      "motivo_sem_duracao": "A duração deste produto se mede em DIAS de validade, não em minutos de passeio — e a validade é o que separa as três versões. Preencher minutos aqui seria inventar o horário de visitação, que nenhuma das duas passadas declarou.",
@@ -337,6 +354,22 @@
      "unidade_de_preco_declarada_por": "no_contraste_da_propria_fonte",
      "capacidade_maxima": null,
      "capacidade_maxima_declarada_por": null,
+     "faixa_etaria": [
+      {
+       "rotulo": "menores de 12 anos",
+       "preco": 0,
+       "moeda": "USD",
+       "condicao": "gratuito, com o passaporte da criança apresentado na bilheteria como prova de idade",
+       "se_nao_cumprir": "sem passaporte, cobra-se a tarifa cheia de US$ 37 pela criança, inclusive de bebê",
+       "declarado_como": "Crianças menores de 12 anos entram sem pagar; o passaporte é exigido como prova de idade, e sem ele paga-se US$ 37 por criança.",
+       "fonte": "angkor-enterprise-tarifa-via-busca",
+       "data_leitura": "2026-09-14",
+       "duas_passadas": "Sim: uma em português e uma em inglês, com perguntas independentes, ambas devolvendo a mesma regra e a mesma consequência de não cumpri-la.",
+       "transcrito_de": "o campo `faixa_etaria` da EXPERIÊNCIA, gravado na carga de 14/09/2026 pela mesma leitura. Nenhuma leitura nova: a migração de 22/10/2026 desceu a mesma faixa para as três versões, porque a gratuidade que a fonte declara não distingue o passe.",
+       "numero_da_frase_e_de_outra_versao": "1-dia. A fonte escreve que a criança sem passaporte paga US$ 37 — e US$ 37 é o passe de UM DIA, não este, que custa US$ 62. A ilha NÃO sabe o que a bilheteria cobra de uma criança sem passaporte num passe de 3 dias: ela sabe o que a fonte escreveu, e a fonte escreveu 37. A prosa de 14/09 já lia a frase como «o mesmo valor do adulto, por cabeça», o que daria US$ 62 aqui — mas essa é a leitura da ilha, não a letra do operador, e trocar uma pela outra é exatamente o que esta ilha existe para não fazer. A tela cita a frase e diz de qual bilhete ela fala. Enquanto a releitura não acontecer, este é o campo que impede a conta do grupo de usar 37 como se fosse deste passe."
+      }
+     ],
+     "faixas_que_a_fonte_declara_e_a_leitura_nao_transcreveu": [],
      "motivo_sem_capacidade": "Mesma razão da versão de 1 dia.",
      "duracao_minutos": null,
      "motivo_sem_duracao": "Mesma razão da versão de 1 dia.",
@@ -358,6 +391,22 @@
      "unidade_de_preco_declarada_por": "no_contraste_da_propria_fonte",
      "capacidade_maxima": null,
      "capacidade_maxima_declarada_por": null,
+     "faixa_etaria": [
+      {
+       "rotulo": "menores de 12 anos",
+       "preco": 0,
+       "moeda": "USD",
+       "condicao": "gratuito, com o passaporte da criança apresentado na bilheteria como prova de idade",
+       "se_nao_cumprir": "sem passaporte, cobra-se a tarifa cheia de US$ 37 pela criança, inclusive de bebê",
+       "declarado_como": "Crianças menores de 12 anos entram sem pagar; o passaporte é exigido como prova de idade, e sem ele paga-se US$ 37 por criança.",
+       "fonte": "angkor-enterprise-tarifa-via-busca",
+       "data_leitura": "2026-09-14",
+       "duas_passadas": "Sim: uma em português e uma em inglês, com perguntas independentes, ambas devolvendo a mesma regra e a mesma consequência de não cumpri-la.",
+       "transcrito_de": "o campo `faixa_etaria` da EXPERIÊNCIA, gravado na carga de 14/09/2026 pela mesma leitura. Nenhuma leitura nova: a migração de 22/10/2026 desceu a mesma faixa para as três versões, porque a gratuidade que a fonte declara não distingue o passe.",
+       "numero_da_frase_e_de_outra_versao": "1-dia. A fonte escreve que a criança sem passaporte paga US$ 37 — e US$ 37 é o passe de UM DIA, não este, que custa US$ 72. A ilha NÃO sabe o que a bilheteria cobra de uma criança sem passaporte num passe de 7 dias: ela sabe o que a fonte escreveu, e a fonte escreveu 37. A prosa de 14/09 já lia a frase como «o mesmo valor do adulto, por cabeça», o que daria US$ 72 aqui — mas essa é a leitura da ilha, não a letra do operador, e trocar uma pela outra é exatamente o que esta ilha existe para não fazer. A tela cita a frase e diz de qual bilhete ela fala. Enquanto a releitura não acontecer, este é o campo que impede a conta do grupo de usar 37 como se fosse deste passe."
+      }
+     ],
+     "faixas_que_a_fonte_declara_e_a_leitura_nao_transcreveu": [],
      "motivo_sem_capacidade": "Mesma razão da versão de 1 dia.",
      "duracao_minutos": null,
      "motivo_sem_duracao": "Mesma razão da versão de 1 dia.",
@@ -373,20 +422,6 @@
    ],
    "temporada": null,
    "motivo_sem_temporada": "Nenhuma das duas passadas declarou variação de preço por temporada, e ausência de declaração não é declaração de ausência. Escrever que o preço é igual o ano inteiro seria afirmar sobre o que não foi lido — e temporada é, pelo próprio esquema, o dado mais caro de chutar desta ilha.",
-   "faixa_etaria": [
-    {
-     "rotulo": "menores de 12 anos",
-     "preco": 0,
-     "moeda": "USD",
-     "condicao": "gratuito, com o passaporte da criança apresentado na bilheteria como prova de idade",
-     "se_nao_cumprir": "sem passaporte, cobra-se a tarifa cheia de US$ 37 pela criança, inclusive de bebê",
-     "declarado_como": "Crianças menores de 12 anos entram sem pagar; o passaporte é exigido como prova de idade, e sem ele paga-se US$ 37 por criança.",
-     "fonte": "angkor-enterprise-tarifa-via-busca",
-     "data_leitura": "2026-09-14",
-     "duas_passadas": "Sim: uma em português e uma em inglês, com perguntas independentes, ambas devolvendo a mesma regra e a mesma consequência de não cumpri-la."
-    }
-   ],
-   "nota_da_faixa_etaria": "É esta regra que DECLARA a unidade do preço, e ela é o exemplo mais limpo de `no_contraste_da_propria_fonte` que a ilha tem até hoje: a fonte nunca escreve 'por pessoa'. Ela escreve que a criança sem passaporte paga US$ 37 — o mesmo valor do adulto, por cabeça. Um preço que se cobra de cada criança é preço por pessoa, e quem classificou foi a ilha, não o operador. A frase da tela tem de dizer isso (seção 26.3 do ARQUIPELAGO.md).",
    "imagem": null,
    "motivo_sem_imagem": "A ilha não tem imagem própria e não usa foto de terceiro sem licença. A vitrine reserva o espaço e destaca o nome (seção 6 do ARQUIPELAGO.md).",
    "declaracoes": [],
@@ -404,7 +439,8 @@
    },
    "status": "pendente_de_releitura",
    "entra_por": "Entra pela mesma porta da gôndola e por uma razão a mais, que foi MEDIDA nesta coleta. Pela porta velha: é tarifa tabelada, o tipo que o critério de entrada NÃO prefere, e traz a escada de dias — 1, 3 e 7 — que o esquema listava como caso que ele permite e o banco não tinha. Pela razão nova: das seis experiências que o bloco 2 mediu, esta foi a ÚNICA em que a busca devolveu um preço reproduzível e atribuível. Capadócia, Ha Long e Dubai foram tentadas hoje, em cinco passadas, e todas devolveram FAIXA sem dono e sem data. Enquanto o egresso estiver fechado, o banco só consegue crescer pelo tipo que o critério de entrada não prefere — e este registro é a prova disso, não a exceção a isso.",
-   "status_por_que": "`pendente_de_releitura` e não `publicavel`: a fonte é de autoridade e não nomeia documento, e a `regra_do_documento_nomeado` do esquema, nascida nesta carga, cobra exatamente isso. Sai deste estado no dia em que a busca devolver o ato ou a tabela de tarifa, ou no dia em que o egresso deixar ler angkorenterprise.gov.kh."
+   "status_por_que": "`pendente_de_releitura` e não `publicavel`: a fonte é de autoridade e não nomeia documento, e a `regra_do_documento_nomeado` do esquema, nascida nesta carga, cobra exatamente isso. Sai deste estado no dia em que a busca devolver o ato ou a tabela de tarifa, ou no dia em que o egresso deixar ler angkorenterprise.gov.kh.",
+   "nota_da_faixa_etaria": "É esta regra que DECLARA a unidade do preço, e ela é o exemplo mais limpo de `no_contraste_da_propria_fonte` que a ilha tem até hoje: a fonte nunca escreve 'por pessoa'. Ela escreve que a criança sem passaporte paga US$ 37 — o mesmo valor do adulto, por cabeça. Um preço que se cobra de cada criança é preço por pessoa, e quem classificou foi a ilha, não o operador. A frase da tela tem de dizer isso (seção 26.3 do ARQUIPELAGO.md). MIGRADO EM 22/10/2026: a faixa desceu para as TRÊS versões e a descida achou um defeito que o campo na EXPERIÊNCIA guardava calado — o `se_nao_cumprir` cita US$ 37, que é o passe de um dia, e estava valendo para os de 3 e de 7 dias junto. Está nomeado em `numero_da_frase_e_de_outra_versao` nas duas versões em que a frase não é a daquele bilhete, e a régua cobra o campo em vez de confiar nesta nota."
   },
   {
    "id": "roma-coliseu-ingresso",
@@ -427,6 +463,8 @@
      "unidade_de_preco_declarada_por": "no_texto_da_fonte",
      "capacidade_maxima": null,
      "capacidade_maxima_declarada_por": null,
+     "faixa_etaria": null,
+     "motivo_sem_faixa_etaria": "E este vazio é o achado mais caro desta carga, porque as duas passadas DISCORDAM exatamente onde o leitor brasileiro tem mais a perder. A passada em português diz que a gratuidade para menores de 18 anos é de cidadão de Estado-membro da União Europeia, e que a gratuidade universal é só para menores de 6 anos. A passada em inglês diz o contrário com todas as letras: «tickets for 18 and under are free to citizens of EU and non-EU countries», e acrescenta que o visitante de 18 a 25 anos de fora da UE paga a tarifa cheia. As duas ainda divergem no valor da tarifa reduzida da faixa de 18 a 25 anos da UE: €4 na primeira, cerca de €2 na segunda. Nenhuma das duas é autoridade — as duas são publicador editorial, nível 6 —, e a regra de divergência sem autoridade desta ilha resolve para o valor MAIOR, porque o erro caro é subestimar. Resolvido pelo maior, o adolescente brasileiro paga os €18 do adulto. E é isso que a página vai dizer: que a gratuidade está em disputa entre as fontes, com o nome de quem publicou cada versão, e que a conta do grupo é feita pelo cheio até a autoridade declarar. Não entra em `faixa_etaria` porque `faixa_etaria` guarda PREÇO, e aqui o que existe é uma divergência sobre quem tem direito — e não entra em `declaracoes` porque declaração, neste esquema, discorda de uma VERSÃO, e faixa etária não é versão. O buraco está nomeado no esquema, em `faixa_etaria_e_da_VERSAO_e_o_esquema_a_poe_na_EXPERIENCIA`. MIGRADO EM 22/10/2026 sem mudar de conteúdo: o motivo desceu da EXPERIÊNCIA para as duas versões porque o campo desceu, e a divergência que ele descreve atravessa os dois bilhetes do mesmo jeito — a passada em português e a em inglês discordam sobre QUEM tem direito à gratuidade, não sobre qual bilhete. O que a descida muda é que agora a ausência é afirmada bilhete por bilhete, e não uma vez para os dois.",
      "motivo_sem_capacidade": "Ingresso individual não tem lotação: a unidade já é a pessoa. O degrau que a gôndola tem, onde 6 pessoas viram duas embarcações, não existe aqui.",
      "duracao_minutos": null,
      "motivo_sem_duracao": "A fonte não declara duração de visita: ela declara VALIDADE, e a validade está na janela horária. A passada em inglês devolveu ainda um limite de permanência de 75 minutos dentro do anfiteatro, que voltou em UMA passada só — e limite de permanência não é duração de passeio. Gravar 75 aqui seria transformar um teto em programação.",
@@ -457,6 +495,8 @@
      "unidade_de_preco_declarada_por": "no_texto_da_fonte",
      "capacidade_maxima": null,
      "capacidade_maxima_declarada_por": null,
+     "faixa_etaria": null,
+     "motivo_sem_faixa_etaria": "E este vazio é o achado mais caro desta carga, porque as duas passadas DISCORDAM exatamente onde o leitor brasileiro tem mais a perder. A passada em português diz que a gratuidade para menores de 18 anos é de cidadão de Estado-membro da União Europeia, e que a gratuidade universal é só para menores de 6 anos. A passada em inglês diz o contrário com todas as letras: «tickets for 18 and under are free to citizens of EU and non-EU countries», e acrescenta que o visitante de 18 a 25 anos de fora da UE paga a tarifa cheia. As duas ainda divergem no valor da tarifa reduzida da faixa de 18 a 25 anos da UE: €4 na primeira, cerca de €2 na segunda. Nenhuma das duas é autoridade — as duas são publicador editorial, nível 6 —, e a regra de divergência sem autoridade desta ilha resolve para o valor MAIOR, porque o erro caro é subestimar. Resolvido pelo maior, o adolescente brasileiro paga os €18 do adulto. E é isso que a página vai dizer: que a gratuidade está em disputa entre as fontes, com o nome de quem publicou cada versão, e que a conta do grupo é feita pelo cheio até a autoridade declarar. Não entra em `faixa_etaria` porque `faixa_etaria` guarda PREÇO, e aqui o que existe é uma divergência sobre quem tem direito — e não entra em `declaracoes` porque declaração, neste esquema, discorda de uma VERSÃO, e faixa etária não é versão. O buraco está nomeado no esquema, em `faixa_etaria_e_da_VERSAO_e_o_esquema_a_poe_na_EXPERIENCIA`. MIGRADO EM 22/10/2026 sem mudar de conteúdo: o motivo desceu da EXPERIÊNCIA para as duas versões porque o campo desceu, e a divergência que ele descreve atravessa os dois bilhetes do mesmo jeito — a passada em português e a em inglês discordam sobre QUEM tem direito à gratuidade, não sobre qual bilhete. O que a descida muda é que agora a ausência é afirmada bilhete por bilhete, e não uma vez para os dois.",
      "motivo_sem_capacidade": "Ingresso individual não tem lotação: a unidade já é a pessoa. O degrau que a gôndola tem, onde 6 pessoas viram duas embarcações, não existe aqui.",
      "duracao_minutos": null,
      "motivo_sem_duracao": "A fonte não declara duração de visita: ela declara VALIDADE, e a validade está na janela horária. A passada em inglês devolveu ainda um limite de permanência de 75 minutos dentro do anfiteatro, que voltou em UMA passada só — e limite de permanência não é duração de passeio. Gravar 75 aqui seria transformar um teto em programação.",
@@ -479,8 +519,6 @@
    ],
    "temporada": null,
    "motivo_sem_temporada": "Nenhuma das duas passadas declarou variação de preço por temporada. Ausência de declaração não é declaração de ausência, e temporada é, pelo próprio esquema, o dado mais caro de chutar desta ilha.",
-   "faixa_etaria": null,
-   "motivo_sem_faixa_etaria": "E este vazio é o achado mais caro desta carga, porque as duas passadas DISCORDAM exatamente onde o leitor brasileiro tem mais a perder. A passada em português diz que a gratuidade para menores de 18 anos é de cidadão de Estado-membro da União Europeia, e que a gratuidade universal é só para menores de 6 anos. A passada em inglês diz o contrário com todas as letras: «tickets for 18 and under are free to citizens of EU and non-EU countries», e acrescenta que o visitante de 18 a 25 anos de fora da UE paga a tarifa cheia. As duas ainda divergem no valor da tarifa reduzida da faixa de 18 a 25 anos da UE: €4 na primeira, cerca de €2 na segunda. Nenhuma das duas é autoridade — as duas são publicador editorial, nível 6 —, e a regra de divergência sem autoridade desta ilha resolve para o valor MAIOR, porque o erro caro é subestimar. Resolvido pelo maior, o adolescente brasileiro paga os €18 do adulto. E é isso que a página vai dizer: que a gratuidade está em disputa entre as fontes, com o nome de quem publicou cada versão, e que a conta do grupo é feita pelo cheio até a autoridade declarar. Não entra em `faixa_etaria` porque `faixa_etaria` guarda PREÇO, e aqui o que existe é uma divergência sobre quem tem direito — e não entra em `declaracoes` porque declaração, neste esquema, discorda de uma VERSÃO, e faixa etária não é versão. O buraco está nomeado no esquema, em `faixa_etaria_e_da_VERSAO_e_o_esquema_a_poe_na_EXPERIENCIA`.",
    "imagem": null,
    "motivo_sem_imagem": "A ilha não tem imagem própria e não usa foto de terceiro sem licença. A vitrine reserva o espaço e destaca o nome (seção 6 do ARQUIPELAGO.md).",
    "declaracoes": [],
@@ -521,6 +559,47 @@
      "unidade_de_preco_declarada_por": "no_texto_da_fonte",
      "capacidade_maxima": null,
      "capacidade_maxima_declarada_por": null,
+     "faixa_etaria": [
+      {
+       "rotulo": "menores de 4 anos",
+       "preco": 0,
+       "moeda": "EUR",
+       "condicao": "gratuito em qualquer um dos quatro bilhetes",
+       "se_nao_cumprir": "a partir dos 4 anos passa a valer o preço de criança daquele bilhete, que muda de bilhete para bilhete",
+       "declarado_como": "Crianças com menos de 4 anos: gratuito, nas quatro linhas da tabela.",
+       "fonte": "sete-toureiffel-tarifa-via-busca",
+       "data_leitura": "2026-09-15",
+       "duas_passadas": "Sim: a passada em inglês devolve a grade inteira com «Children under 4: Free» repetido nos quatro bilhetes, e a passada em português declara a faixa de crianças e jovens entre 3,80€ e 18,40€, que são exatamente o piso e o teto dessa grade — as duas leituras batem nas pontas.",
+       "transcrito_de": "o campo `faixa_etaria` da EXPERIÊNCIA, gravado na carga de 15/09/2026. Era a única das quatro faixas que cabia no campo como ele era, exatamente porque vale igual nos quatro bilhetes — e é por isso que ela desce para as quatro versões sem ressalva nenhuma."
+      },
+      {
+       "rotulo": "criança de 4 a 11 anos",
+       "preco": 3.8,
+       "moeda": "EUR",
+       "condicao": null,
+       "se_nao_cumprir": null,
+       "declarado_como": "A criança de 4 a 11 anos paga 3,80€ pela escada até o segundo piso.",
+       "fonte": "sete-toureiffel-tarifa-via-busca",
+       "data_leitura": "2026-09-15",
+       "motivo_sem_condicao": "A fonte publica a grade como tabela de preços por faixa e bilhete, sem condição escrita além da idade. Inventar «mediante comprovação» seria pôr na boca do operador uma exigência que ele não declarou nesta leitura.",
+       "motivo_sem_se_nao_cumprir": "A leitura de 15/09/2026 não transcreveu o que a bilheteria cobra de quem não prova a idade nesta faixa. Diferente do Angkor, onde a fonte declara a consequência, aqui ela não foi lida — e ausência de leitura não é declaração de ausência.",
+       "transcrito_de": "a `nota_da_faixa_etaria` da EXPERIÊNCIA, escrita na carga de 15/09/2026 a partir desta mesma leitura (`sete-toureiffel-tarifa-via-busca`). O número já estava no banco, em prosa, e a prosa dizia com todas as letras por que ele não podia ser gravado: `faixa_etaria` era campo de EXPERIÊNCIA e guardava UM preço por faixa. Esta passada não leu nada de novo — ela desceu o campo e transcreveu o que já havia sido lido."
+      },
+      {
+       "rotulo": "jovem de 12 a 24 anos",
+       "preco": 7.4,
+       "moeda": "EUR",
+       "condicao": null,
+       "se_nao_cumprir": null,
+       "declarado_como": "O jovem de 12 a 24 anos paga 7,40€ pela escada até o segundo piso — é o piso da coluna dele na grade.",
+       "fonte": "sete-toureiffel-tarifa-via-busca",
+       "data_leitura": "2026-09-15",
+       "motivo_sem_condicao": "A fonte publica a grade como tabela de preços por faixa e bilhete, sem condição escrita além da idade. Inventar «mediante comprovação» seria pôr na boca do operador uma exigência que ele não declarou nesta leitura.",
+       "motivo_sem_se_nao_cumprir": "A leitura de 15/09/2026 não transcreveu o que a bilheteria cobra de quem não prova a idade nesta faixa. Diferente do Angkor, onde a fonte declara a consequência, aqui ela não foi lida — e ausência de leitura não é declaração de ausência.",
+       "transcrito_de": "a `nota_da_faixa_etaria` da EXPERIÊNCIA, escrita na carga de 15/09/2026 a partir desta mesma leitura (`sete-toureiffel-tarifa-via-busca`). O número já estava no banco, em prosa, e a prosa dizia com todas as letras por que ele não podia ser gravado: `faixa_etaria` era campo de EXPERIÊNCIA e guardava UM preço por faixa. Esta passada não leu nada de novo — ela desceu o campo e transcreveu o que já havia sido lido."
+      }
+     ],
+     "faixas_que_a_fonte_declara_e_a_leitura_nao_transcreveu": [],
      "motivo_sem_capacidade": "Bilhete individual não tem lotação: a unidade já é a pessoa.",
      "duracao_minutos": null,
      "motivo_sem_duracao": "A fonte declara, com todas as letras, que o bilhete marca HORA DE ENTRADA e que a saída é livre — «o seu ingresso só tem horário para entrar, a saída é livre». Gravar minutos aqui inventaria um limite que o operador diz não ter. É o contrário do Coliseu, que declara validade de 24 horas, e das duas formas quem declara é a fonte.",
@@ -548,6 +627,30 @@
      "unidade_de_preco_declarada_por": "no_texto_da_fonte",
      "capacidade_maxima": null,
      "capacidade_maxima_declarada_por": null,
+     "faixa_etaria": [
+      {
+       "rotulo": "menores de 4 anos",
+       "preco": 0,
+       "moeda": "EUR",
+       "condicao": "gratuito em qualquer um dos quatro bilhetes",
+       "se_nao_cumprir": "a partir dos 4 anos passa a valer o preço de criança daquele bilhete, que muda de bilhete para bilhete",
+       "declarado_como": "Crianças com menos de 4 anos: gratuito, nas quatro linhas da tabela.",
+       "fonte": "sete-toureiffel-tarifa-via-busca",
+       "data_leitura": "2026-09-15",
+       "duas_passadas": "Sim: a passada em inglês devolve a grade inteira com «Children under 4: Free» repetido nos quatro bilhetes, e a passada em português declara a faixa de crianças e jovens entre 3,80€ e 18,40€, que são exatamente o piso e o teto dessa grade — as duas leituras batem nas pontas.",
+       "transcrito_de": "o campo `faixa_etaria` da EXPERIÊNCIA, gravado na carga de 15/09/2026. Era a única das quatro faixas que cabia no campo como ele era, exatamente porque vale igual nos quatro bilhetes — e é por isso que ela desce para as quatro versões sem ressalva nenhuma."
+      }
+     ],
+     "faixas_que_a_fonte_declara_e_a_leitura_nao_transcreveu": [
+      {
+       "rotulo": "criança de 4 a 11 anos",
+       "por_que": "A leitura de 15/09/2026 transcreveu o PISO e o TETO da grade — a escada até o segundo piso e o elevador até o topo — e não as duas colunas do meio. O número desta faixa neste bilhete existe na fonte e NÃO foi lido. Releitura bloqueada: medido em 22/10/2026, `www.toureiffel.paris` responde `CONNECT tunnel failed, response 403` no proxy de egresso deste ambiente, o mesmo bloqueio que o esquema já registra em `o_que_o_esquema_permite_e_o_banco_ainda_nao_tem`. Número de resumo de busca é pista, não dado — e por isso a faixa fica contada como lacuna em vez de gravada."
+      },
+      {
+       "rotulo": "jovem de 12 a 24 anos",
+       "por_que": "A leitura de 15/09/2026 transcreveu o PISO e o TETO da grade — a escada até o segundo piso e o elevador até o topo — e não as duas colunas do meio. O número desta faixa neste bilhete existe na fonte e NÃO foi lido. Releitura bloqueada: medido em 22/10/2026, `www.toureiffel.paris` responde `CONNECT tunnel failed, response 403` no proxy de egresso deste ambiente, o mesmo bloqueio que o esquema já registra em `o_que_o_esquema_permite_e_o_banco_ainda_nao_tem`. Número de resumo de busca é pista, não dado — e por isso a faixa fica contada como lacuna em vez de gravada."
+      }
+     ],
      "motivo_sem_capacidade": "Bilhete individual não tem lotação: a unidade já é a pessoa.",
      "duracao_minutos": null,
      "motivo_sem_duracao": "A fonte declara, com todas as letras, que o bilhete marca HORA DE ENTRADA e que a saída é livre — «o seu ingresso só tem horário para entrar, a saída é livre». Gravar minutos aqui inventaria um limite que o operador diz não ter. É o contrário do Coliseu, que declara validade de 24 horas, e das duas formas quem declara é a fonte.",
@@ -575,6 +678,30 @@
      "unidade_de_preco_declarada_por": "no_texto_da_fonte",
      "capacidade_maxima": null,
      "capacidade_maxima_declarada_por": null,
+     "faixa_etaria": [
+      {
+       "rotulo": "menores de 4 anos",
+       "preco": 0,
+       "moeda": "EUR",
+       "condicao": "gratuito em qualquer um dos quatro bilhetes",
+       "se_nao_cumprir": "a partir dos 4 anos passa a valer o preço de criança daquele bilhete, que muda de bilhete para bilhete",
+       "declarado_como": "Crianças com menos de 4 anos: gratuito, nas quatro linhas da tabela.",
+       "fonte": "sete-toureiffel-tarifa-via-busca",
+       "data_leitura": "2026-09-15",
+       "duas_passadas": "Sim: a passada em inglês devolve a grade inteira com «Children under 4: Free» repetido nos quatro bilhetes, e a passada em português declara a faixa de crianças e jovens entre 3,80€ e 18,40€, que são exatamente o piso e o teto dessa grade — as duas leituras batem nas pontas.",
+       "transcrito_de": "o campo `faixa_etaria` da EXPERIÊNCIA, gravado na carga de 15/09/2026. Era a única das quatro faixas que cabia no campo como ele era, exatamente porque vale igual nos quatro bilhetes — e é por isso que ela desce para as quatro versões sem ressalva nenhuma."
+      }
+     ],
+     "faixas_que_a_fonte_declara_e_a_leitura_nao_transcreveu": [
+      {
+       "rotulo": "criança de 4 a 11 anos",
+       "por_que": "A leitura de 15/09/2026 transcreveu o PISO e o TETO da grade — a escada até o segundo piso e o elevador até o topo — e não as duas colunas do meio. O número desta faixa neste bilhete existe na fonte e NÃO foi lido. Releitura bloqueada: medido em 22/10/2026, `www.toureiffel.paris` responde `CONNECT tunnel failed, response 403` no proxy de egresso deste ambiente, o mesmo bloqueio que o esquema já registra em `o_que_o_esquema_permite_e_o_banco_ainda_nao_tem`. Número de resumo de busca é pista, não dado — e por isso a faixa fica contada como lacuna em vez de gravada."
+      },
+      {
+       "rotulo": "jovem de 12 a 24 anos",
+       "por_que": "A leitura de 15/09/2026 transcreveu o PISO e o TETO da grade — a escada até o segundo piso e o elevador até o topo — e não as duas colunas do meio. O número desta faixa neste bilhete existe na fonte e NÃO foi lido. Releitura bloqueada: medido em 22/10/2026, `www.toureiffel.paris` responde `CONNECT tunnel failed, response 403` no proxy de egresso deste ambiente, o mesmo bloqueio que o esquema já registra em `o_que_o_esquema_permite_e_o_banco_ainda_nao_tem`. Número de resumo de busca é pista, não dado — e por isso a faixa fica contada como lacuna em vez de gravada."
+      }
+     ],
      "motivo_sem_capacidade": "Bilhete individual não tem lotação: a unidade já é a pessoa.",
      "duracao_minutos": null,
      "motivo_sem_duracao": "A fonte declara, com todas as letras, que o bilhete marca HORA DE ENTRADA e que a saída é livre — «o seu ingresso só tem horário para entrar, a saída é livre». Gravar minutos aqui inventaria um limite que o operador diz não ter. É o contrário do Coliseu, que declara validade de 24 horas, e das duas formas quem declara é a fonte.",
@@ -605,6 +732,47 @@
      "unidade_de_preco_declarada_por": "no_texto_da_fonte",
      "capacidade_maxima": null,
      "capacidade_maxima_declarada_por": null,
+     "faixa_etaria": [
+      {
+       "rotulo": "menores de 4 anos",
+       "preco": 0,
+       "moeda": "EUR",
+       "condicao": "gratuito em qualquer um dos quatro bilhetes",
+       "se_nao_cumprir": "a partir dos 4 anos passa a valer o preço de criança daquele bilhete, que muda de bilhete para bilhete",
+       "declarado_como": "Crianças com menos de 4 anos: gratuito, nas quatro linhas da tabela.",
+       "fonte": "sete-toureiffel-tarifa-via-busca",
+       "data_leitura": "2026-09-15",
+       "duas_passadas": "Sim: a passada em inglês devolve a grade inteira com «Children under 4: Free» repetido nos quatro bilhetes, e a passada em português declara a faixa de crianças e jovens entre 3,80€ e 18,40€, que são exatamente o piso e o teto dessa grade — as duas leituras batem nas pontas.",
+       "transcrito_de": "o campo `faixa_etaria` da EXPERIÊNCIA, gravado na carga de 15/09/2026. Era a única das quatro faixas que cabia no campo como ele era, exatamente porque vale igual nos quatro bilhetes — e é por isso que ela desce para as quatro versões sem ressalva nenhuma."
+      },
+      {
+       "rotulo": "criança de 4 a 11 anos",
+       "preco": 9.2,
+       "moeda": "EUR",
+       "condicao": null,
+       "se_nao_cumprir": null,
+       "declarado_como": "A criança de 4 a 11 anos paga 9,20€ pelo elevador até o topo.",
+       "fonte": "sete-toureiffel-tarifa-via-busca",
+       "data_leitura": "2026-09-15",
+       "motivo_sem_condicao": "A fonte publica a grade como tabela de preços por faixa e bilhete, sem condição escrita além da idade. Inventar «mediante comprovação» seria pôr na boca do operador uma exigência que ele não declarou nesta leitura.",
+       "motivo_sem_se_nao_cumprir": "A leitura de 15/09/2026 não transcreveu o que a bilheteria cobra de quem não prova a idade nesta faixa. Diferente do Angkor, onde a fonte declara a consequência, aqui ela não foi lida — e ausência de leitura não é declaração de ausência.",
+       "transcrito_de": "a `nota_da_faixa_etaria` da EXPERIÊNCIA, escrita na carga de 15/09/2026 a partir desta mesma leitura (`sete-toureiffel-tarifa-via-busca`). O número já estava no banco, em prosa, e a prosa dizia com todas as letras por que ele não podia ser gravado: `faixa_etaria` era campo de EXPERIÊNCIA e guardava UM preço por faixa. Esta passada não leu nada de novo — ela desceu o campo e transcreveu o que já havia sido lido."
+      },
+      {
+       "rotulo": "jovem de 12 a 24 anos",
+       "preco": 18.4,
+       "moeda": "EUR",
+       "condicao": null,
+       "se_nao_cumprir": null,
+       "declarado_como": "O jovem de 12 a 24 anos paga 18,40€ pelo elevador até o topo — é o teto da grade de crianças e jovens, e as duas passadas batem nesta ponta.",
+       "fonte": "sete-toureiffel-tarifa-via-busca",
+       "data_leitura": "2026-09-15",
+       "motivo_sem_condicao": "A fonte publica a grade como tabela de preços por faixa e bilhete, sem condição escrita além da idade. Inventar «mediante comprovação» seria pôr na boca do operador uma exigência que ele não declarou nesta leitura.",
+       "motivo_sem_se_nao_cumprir": "A leitura de 15/09/2026 não transcreveu o que a bilheteria cobra de quem não prova a idade nesta faixa. Diferente do Angkor, onde a fonte declara a consequência, aqui ela não foi lida — e ausência de leitura não é declaração de ausência.",
+       "transcrito_de": "a `nota_da_faixa_etaria` da EXPERIÊNCIA, escrita na carga de 15/09/2026 a partir desta mesma leitura (`sete-toureiffel-tarifa-via-busca`). O número já estava no banco, em prosa, e a prosa dizia com todas as letras por que ele não podia ser gravado: `faixa_etaria` era campo de EXPERIÊNCIA e guardava UM preço por faixa. Esta passada não leu nada de novo — ela desceu o campo e transcreveu o que já havia sido lido."
+      }
+     ],
+     "faixas_que_a_fonte_declara_e_a_leitura_nao_transcreveu": [],
      "motivo_sem_capacidade": "Bilhete individual não tem lotação: a unidade já é a pessoa.",
      "duracao_minutos": null,
      "motivo_sem_duracao": "A fonte declara, com todas as letras, que o bilhete marca HORA DE ENTRADA e que a saída é livre — «o seu ingresso só tem horário para entrar, a saída é livre». Gravar minutos aqui inventaria um limite que o operador diz não ter. É o contrário do Coliseu, que declara validade de 24 horas, e das duas formas quem declara é a fonte.",
@@ -627,20 +795,6 @@
    ],
    "temporada": null,
    "motivo_sem_temporada": "Nenhuma das duas passadas declarou variação de preço por temporada. A passada em português menciona um terraço sazonal no primeiro piso — sazonalidade de SERVIÇO, não de preço —, e transformar isso em temporada de tarifa seria inventar.",
-   "faixa_etaria": [
-    {
-     "rotulo": "menores de 4 anos",
-     "preco": 0,
-     "moeda": "EUR",
-     "condicao": "gratuito em qualquer um dos quatro bilhetes",
-     "se_nao_cumprir": "a partir dos 4 anos passa a valer o preço de criança daquele bilhete, que muda de bilhete para bilhete",
-     "declarado_como": "Crianças com menos de 4 anos: gratuito, nas quatro linhas da tabela.",
-     "fonte": "sete-toureiffel-tarifa-via-busca",
-     "data_leitura": "2026-09-15",
-     "duas_passadas": "Sim: a passada em inglês devolve a grade inteira com «Children under 4: Free» repetido nos quatro bilhetes, e a passada em português declara a faixa de crianças e jovens entre 3,80€ e 18,40€, que são exatamente o piso e o teto dessa grade — as duas leituras batem nas pontas."
-    }
-   ],
-   "nota_da_faixa_etaria": "Só UMA faixa está gravada, e a ausência das outras é o achado de modelo desta carga. A fonte declara quatro faixas — adulto, jovem de 12 a 24 anos, criança de 4 a 11 anos e menor de 4 —, e o preço de três delas MUDA de versão para versão: a criança de 4 a 11 anos paga 3,80€ pela escada até o segundo piso e 9,20€ pelo elevador até o topo; o jovem paga de 7,40€ a 18,40€ pelo mesmo caminho. `faixa_etaria` é campo de EXPERIÊNCIA e guarda UM preço por faixa, então gravar essas três aqui publicaria o número errado para três das quatro versões. A única que cabe no campo como ele é hoje é a gratuidade dos menores de 4 anos, que vale igual nos quatro bilhetes. O buraco está nomeado no esquema, em `faixa_etaria_e_da_VERSAO_e_o_esquema_a_poe_na_EXPERIENCIA`, com os dois registros desta carga como prova — e ele não tinha como aparecer antes: a gôndola não tem faixa etária e o Angkor tem uma que vale igual nas três versões.",
    "imagem": null,
    "motivo_sem_imagem": "A ilha não tem imagem própria e não usa foto de terceiro sem licença. A vitrine reserva o espaço e destaca o nome (seção 6 do ARQUIPELAGO.md).",
    "declaracoes": [],
@@ -658,7 +812,8 @@
    },
    "status": "publicavel",
    "entra_por": "Entra pelo mesmo motivo do Coliseu — ingresso de sítio público, o tipo que a carga de 14/09 mediu como o único reproduzível pelo canal aberto — e traz o degrau que este banco nunca tinha alcançado: a fonte é de NÍVEL 4, operador lido por busca. Até hoje o banco só tinha nível 3 (autoridade por busca) e nível 6 (publicador editorial); o degrau do operador estava marcado no esquema como `existe_hoje: false`. A diferença não é de grau: o que a busca devolveu aqui não é alguém falando da tarifa, são as páginas de tarifa do próprio operador, uma por bilhete, com o preço no título de cada uma. E é também o registro que faz nascer `concessionaria_de_bem_publico` no vocabulário de `tipo_de_operador` — a SETE não é o poder público declarando tarifa, nem uma empresa privada qualquer: é a concessionária de um bem público, e chamar de qualquer um dos dois seria pôr o número na boca de quem não o publicou.",
-   "status_por_que": "`publicavel`: a regra_do_documento_nomeado cobra documento dos níveis de AUTORIDADE, que são o 1 e o 3, e este é nível 4 — mas ele nomeia documento assim mesmo, quatro deles, um por versão. A ressalva do nível 4 é obrigatória na tela: site do operador, lido por busca, a reconferir na fonte."
+   "status_por_que": "`publicavel`: a regra_do_documento_nomeado cobra documento dos níveis de AUTORIDADE, que são o 1 e o 3, e este é nível 4 — mas ele nomeia documento assim mesmo, quatro deles, um por versão. A ressalva do nível 4 é obrigatória na tela: site do operador, lido por busca, a reconferir na fonte.",
+   "nota_da_faixa_etaria": "MIGRADO EM 22/10/2026, e esta experiência é a PROVA que obrigou a migração. A fonte declara quatro faixas — adulto, jovem de 12 a 24 anos, criança de 4 a 11 anos e menor de 4 — e o preço de três delas MUDA de bilhete para bilhete. Com `faixa_etaria` na EXPERIÊNCIA, a carga de 15/09/2026 só podia gravar a gratuidade dos menores de 4 anos, que vale igual nos quatro; as outras três ficaram em PROSA, nesta nota, com os números dentro dela. Agora o campo mora na VERSÃO e os números que já tinham sido lidos viraram campo: 3,80€ e 7,40€ na escada até o segundo piso, 9,20€ e 18,40€ no elevador até o topo, cada um com `transcrito_de` dizendo que saiu desta prosa e não de leitura nova. AS QUATRO CÉLULAS DO MEIO CONTINUAM NÃO LIDAS — criança e jovem nas duas versões intermediárias — e estão contadas em `faixas_que_a_fonte_declara_e_a_leitura_nao_transcreveu`, quatro entradas, em vez de escondidas numa frase. É a mesma troca que a Aquametria fez em 21/10/2026 com o `porte_adulto_cm`: prosa dentro do banco que vira campo contável, porque prosa não barra página e prosa não se conta."
   }
  ],
  "resumo": {
@@ -673,7 +828,10 @@
   "itens_intestaveis": 0,
   "experiencias_com_preco_em_brl": 0,
   "fontes_de_leitura_direta": 0,
-  "declaracoes_sem_versao": 4
+  "declaracoes_sem_versao": 4,
+  "faixas_etarias": 11,
+  "faixas_declaradas_nao_transcritas": 4
  },
- "nota_da_versao_3": "Carga de 15/09/2026, as 11h25Z. Entraram o COLISEU DE ROMA e a TORRE EIFFEL, com Roma e Paris como terceira e quarta cidades, e o banco foi de 2 para 4 experiencias, de 5 para 11 versoes, de 2 para 4 cidades e de 5 para 7 fontes. Os dois sao `ingresso_de_sitio_publico`, que e o tipo que a carga de 14/09 mediu como o unico reproduzivel enquanto o egresso estiver fechado. Tres coisas nasceram com eles: (1) o Coliseu e o primeiro registro que fica `publicavel` por nomear PAGINA DE TARIFA da propria autoridade, e nao um ato — a regra_do_documento_nomeado dizia isso desde que nasceu e so o ato tinha sido exercido; (2) a Torre Eiffel e o primeiro registro de NIVEL 4 deste banco, o degrau do operador lido por busca, que o esquema marcava como `existe_hoje: false`, e ela faz nascer `concessionaria_de_bem_publico` no vocabulario de `tipo_de_operador`; (3) os dois juntos mediram que `faixa_etaria` e da VERSAO e o esquema a poe na EXPERIENCIA. Nada foi ao ar: esta ilha nao tem site, nao tem Sync e nao tem /status, e dizer que verificou no ar seria inventar."
+ "nota_da_versao_3": "Carga de 15/09/2026, as 11h25Z. Entraram o COLISEU DE ROMA e a TORRE EIFFEL, com Roma e Paris como terceira e quarta cidades, e o banco foi de 2 para 4 experiencias, de 5 para 11 versoes, de 2 para 4 cidades e de 5 para 7 fontes. Os dois sao `ingresso_de_sitio_publico`, que e o tipo que a carga de 14/09 mediu como o unico reproduzivel enquanto o egresso estiver fechado. Tres coisas nasceram com eles: (1) o Coliseu e o primeiro registro que fica `publicavel` por nomear PAGINA DE TARIFA da propria autoridade, e nao um ato — a regra_do_documento_nomeado dizia isso desde que nasceu e so o ato tinha sido exercido; (2) a Torre Eiffel e o primeiro registro de NIVEL 4 deste banco, o degrau do operador lido por busca, que o esquema marcava como `existe_hoje: false`, e ela faz nascer `concessionaria_de_bem_publico` no vocabulario de `tipo_de_operador`; (3) os dois juntos mediram que `faixa_etaria` e da VERSAO e o esquema a poe na EXPERIENCIA. Nada foi ao ar: esta ilha nao tem site, nao tem Sync e nao tem /status, e dizer que verificou no ar seria inventar.",
+ "nota_da_versao_4": "Migração de 22/10/2026, primeiro dia desta ilha em foco. `faixa_etaria` saiu da EXPERIÊNCIA e entrou na VERSÃO, nas 11 versões das 4 experiências, cumprindo ao pé da letra o próximo passo que o REGISTRO.md de 15/09/2026 deixou escrito. Três coisas que a descida produziu e que o campo na EXPERIÊNCIA não permitia: (1) a Torre Eiffel publica 4 faixas gravadas em vez de 1, com as 4 células não lidas CONTADAS em vez de caladas; (2) a proibição de faixa etária fora de `por_pessoa` — que era prosa no motivo da gôndola desde 14/09 — virou regra do esquema, porque `unidade_de_preco` é campo da VERSÃO; (3) o `se_nao_cumprir` do Angkor cita US$ 37, o passe de UM dia, e estava valendo para os três passes: nomeado em `numero_da_frase_e_de_outra_versao`. NADA foi ao ar: esta ilha não tem site, não tem Sync e não tem /status, e dizer que verificou no ar seria inventar."
 }

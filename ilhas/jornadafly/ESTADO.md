@@ -5,24 +5,79 @@ prioridade: 1
 piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 0
 primeira_indexacao: null
-ultima_execucao: 2026-09-15T12:05Z
-executando_desde: 2026-10-22T10:20Z   # reserva da execucao de 22/10/2026 — PRIMEIRO DIA DA ILHA EM FOCO (foco.md trocado nesta mesma passada, pela fila do Raphael). A HORA SAI DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
+ultima_execucao: 2026-10-22T10:33Z
+executando_desde: null   # a execucao de 22/10 10h20Z fechou as 10:33Z. Reserva NAO renovada pela 1.1: o bloco ficou abaixo dos 40 minutos, e o commit da reserva saiu no mesmo push da troca do foco.
 rede: BLOQUEADA em 2026-10-22   # 20.2, TRES passadas remedidas hoje e NAO herdadas: jornadafly.com.br e www.jornadafly.com.br em 000 nas tres, com aquametria.com.br e robometria.com.br em 200 nas mesmas passadas (a robometria caiu uma vez na 3a — intermitencia de tunel, que e justamente o que a 20.2 manda nao confundir com bloqueio). O curl verbose nomeia a causa e ela nao e intermitencia: `CONNECT tunnel failed, response 403` do proxy de egresso, ou seja o dominio NAO esta na lista de Dominios permitidos deste ambiente. ISTO E REGRESSAO: o campo dizia `aberta em 2026-09-18` com HTTP 200 medido as 12h35Z daquele dia. O despacho ALTA de 15/09 em dados/despachos.md, dado como cumprido em 18/09, voltou a valer. O que a rede trava e o 3b em diante, nao o bloco de arquivo — e bloqueada_por segue null de proposito, como nas quatro execucoes anteriores desta ilha.
 bloco_atual: |
-  CARGA DO BANCO, SEGUNDA PASSADA — entram o COLISEU DE ROMA e a TORRE EIFFEL, e o banco vai de 2 para 4 experiencias, de 5 para 11 versoes, de 2 para 4 cidades e de 5 para 7 fontes (esquema versao 3, banco versao 3). Os dois sao ingresso_de_sitio_publico, que e o tipo que a carga de 14/09 mediu como o unico reproduzivel enquanto o egresso estiver fechado — e era exatamente a lista curta que aquele registro deixou nomeada. NADA foi ao ar: esta ilha nao tem site, nao tem Sync e nao tem /status, e dizer que verificou no ar seria inventar.
-  A ESCOLHA DA ILHA: SEGUNDA TENTADA, UMA PERDIDA NA CORRIDA DO PUSH. Os cinco ESTADO.md do main real parseiam em yaml.safe_load e os cinco estavam com executando_desde null, que pela 1.1 ja significa que nenhum bloco da Fundacao esta vivo — nao houve reserva vencida para o git desempatar. Pela 18.1 li o topo dos cinco PROMPT.md antes da rotacao e NENHUMA ilha tem despacho com item acionavel pela Fundacao: o da robometria, da Sentinela de 14/09, tem os itens 1, 2 e 3 CUMPRIDOS, o 4 dependendo da sessao logada da Shopee e o 5 sendo achado de metodo endereçado ao Raphael; os da ohmetria e da jornadafly sao de NASCIMENTO, que carregam a fila inteira e nao cabem na 18.2; os da aquametria e da clubedomosaico estao fechados. Sobrou a rotacao da secao 1. Pedi a OHMETRIA, que era a mais antiga (21h20Z), e o push foi RECUSADO: outras duas execucoes tinham reservado a aquametria as 11h16Z e a ohmetria as 11h17Z. Voltei ao passo 2 sem force push; sobraram tres, com jornadafly e robometria empatadas em 23h35Z e prioridade 1, e o desempate alfabetico da a jornadafly. Reserva aceita as 11h25Z. Nenhum PR aberto; as branches claude/* do repositorio estao todas mescladas ou sao anteriores a uma reescrita de historia do main.
-  REDE PELA 20.2, RETESTADA E NAO HERDADA: TRES passadas, jornadafly.com.br e www.jornadafly.com.br em 000 nas tres, com aquametria.com.br e robometria.com.br em 200 nas mesmas tres. Seis medicoes de bloqueio contra seis de controle verde, igual as tres execucoes anteriores. Segue bloqueada, e bloqueada_por segue null de proposito: o que a rede trava e o 3b em diante, nao o bloco de arquivo.
-  A PERGUNTA DA MOEDA FOI RESPONDIDA, E A RESPOSTA NAO ERA NENHUMA DAS DUAS QUE ESTAVAM POSTAS. A carga de 14/09 deixou escrito que quem gravasse a proxima cidade decidiria se o vocabulario de moeda cresce ou se o banco fica restrito a tres. Nasceu no esquema a regra_de_crescimento_de_vocabulario: valor de vocabulario controlado nasce JUNTO com o primeiro registro que o usa, nunca antes. Entao JOD, AED, ARS e VND NAO entram hoje, e o motivo esta escrito — nenhum registro cobra nelas. Vocabulario que cresce por previsao vira promessa vazia, que e a cicatriz que a ohmetria pagou.
-  E A REGRA FOI EXERCIDA NO MESMO COMMIT, por outro vocabulario: tipo_de_operador ganhou concessionaria_de_bem_publico porque a Torre Eiffel precisa dele. A SETE opera o monumento sob concessao da cidade de Paris; nao e o poder publico declarando tarifa nem uma empresa privada qualquer, e chamar de um dos dois seria por o numero na boca de quem nao o publicou.
-  O COLISEU E O PRIMEIRO REGISTRO QUE FICA PUBLICAVEL POR NOMEAR PAGINA DE TARIFA, e nao um ato. A regra_do_documento_nomeado dizia desde que nasceu que o ato, a tabela OU a pagina de tarifa servem; ate hoje so o ato tinha sido exercido, pela gondola. A busca devolveu a pagina de horarios e bilhetes do proprio orgao e a pagina de categorias do sistema oficial de venda — que e a diferenca exata para o Angkor, cuja autoridade so devolveu perguntas frequentes e por isso segue pendente_de_releitura.
-  A TORRE EIFFEL E O PRIMEIRO REGISTRO DE NIVEL 4 DESTE BANCO. O degrau do operador lido por busca estava marcado no esquema como existe_hoje false. A busca nao devolveu alguem falando da tarifa: devolveu as paginas de tarifa do proprio operador, UMA POR BILHETE, com o preco no titulo de cada uma — 14,80, 23,50, 28,00 e 36,70 euros, confirmados por uma segunda passada em outra lingua que trouxe a grade inteira por faixa etaria.
-  O ACHADO DE MODELO, E OS DOIS REGISTROS SAO A PROVA: faixa_etaria e da VERSAO e o esquema a poe na EXPERIENCIA. Na Torre Eiffel a crianca de 4 a 11 anos paga 3,80 por escada e 9,20 por elevador ate o topo — a mesma faixa, quatro precos. So a gratuidade dos menores de 4 anos, que vale igual nos quatro bilhetes, cabe no campo como ele e hoje. Nao apareceu antes porque o mundo nao se movia: a gondola nao tem faixa etaria e a do Angkor vale igual nas tres versoes. Campo que so erra quando o mundo se move parece certo ate o mundo se mover.
-  A DIVERGENCIA MAIS CARA QUE ESTA ILHA JA MEDIU PARA O LEITOR BRASILEIRO, e ela ficou FORA de declaracoes de proposito. As duas passadas do Coliseu discordam sobre a gratuidade para menores de 18 anos: a portuguesa diz que e so para cidadao da Uniao Europeia, a inglesa diz com todas as letras que vale para UE e nao-UE, e as duas ainda divergem entre 4 e cerca de 2 euros na reduzida de 18 a 25. Nenhuma e autoridade, entao a regra sem autoridade resolve pelo MAIOR e o adolescente brasileiro paga os 18 euros do adulto. Nao entrou em declaracoes porque declaracao, neste esquema, discorda de uma VERSAO — e faixa etaria nao e versao. Mesma raiz do achado acima, nomeada no esquema.
-  EXISTE_HOJE VIROU CAMPO DERIVADO, E ERA A PROSA MAIS SILENCIOSA DO ESQUEMA. O validador passou a recomputar existe_hoje de cada degrau a partir das fontes do banco e a reprovar o gravado que discordar, nas DUAS direcoes. A direcao perigosa e o false velho: ele faz a ilha negar um degrau que ja alcancou, e nada no banco contradiz a frase. E a regua nova achou uma interacao no mesmo dia em que nasceu — reprovou um MUNDO que passava havia uma carga, o mundo sem divergencia, que apaga as fontes editoriais e por isso tem de apagar o degrau 6 junto. Regua que so mede o banco real e regua com metade do mundo desligada.
-  A BANCADA PASSOU A COBRAR A FRASE, e nao so o veredito. Mutacao ganhou quinto elemento opcional: a frase que a quebra tem de ouvir de volta. Reprovar nao e a mesma coisa que reprovar PELO MOTIVO CERTO, e sem isso uma mutacao pode disparar outra trava, voltar verde e nunca ter medido a sua. Provado que morde: trocando a frase esperada de uma quebra por outra trava real, a bancada acusa e sai com codigo 1.
-  BANCADA, 0 falha: validar-banco verde sobre o banco real, com as duas reguas novas. MUTACOES 53 (eram 49): 6 mundos que tem de PASSAR e 47 quebras que tem de REPROVAR, todas decidindo certo nos dois lados da fronteira, 3 delas cobradas pela frase. Cada mutacao nova foi provada nao inerte uma a uma: o mundo do degrau novo REPROVA se o esquema nao acompanhar o banco, e a cobranca por frase acusa quando a frase e trocada. As cinco contagens do resumo ficaram para tras quando os registros entraram e o validador reprovou as cinco antes do commit — numero que a ilha publica sobre si mesma nasce contado. Os tres JSON passam por json.load e o cabecalho por yaml.safe_load.
-  O VALIDADOR PUBLICA VOCABULARIO_SEM_LASTRO A CADA PASSADA, que e a outra metade da regra de crescimento: hoje 4 de 6 em categoria, 3 de 5 em tipo_de_operador, 2 de 4 em unidade_de_preco, 1 de 3 em moeda e 1 de 3 em status_do_registro. Momento_do_dia e o unico com lastro inteiro. E AVISO e nao erro de proposito — os valores que o bloco 3 ja trazia sao anteriores a regra e nao viram defeito retroativo; o que fica proibido enquanto a lista nao for vazia e a ilha publicar frase de inexistencia.
-  ACHADO DE HIGIENE QUE NAO E DESTA CARGA: os commits de 00h20Z, 00h32Z e 00h45Z de 15/09 fizeram o simbolo, a fonte e os quatro lockups desta ilha e NAO fecharam a execucao — nao ha entrada no REGISTRO.md, o cabecalho nunca foi tocado e nenhuma reserva foi escrita. Os arquivos estao no main e o DESIGN.md os documenta; o que falta e o rastro. Fica dito aqui para a proxima execucao nao procurar o registro que nao existe.
+  FAIXA ETARIA DESCEU DE EXPERIENCIA PARA VERSAO, nas 11 versoes das 4 experiencias,
+  e com isso o PROXIMO PASSO que o REGISTRO.md de 15/09/2026 deixou escrito esta
+  CUMPRIDO ao pe da letra — "com a regua e as mutacoes junto, e migrar os registros da
+  gondola e do Angkor na mesma passada". Esquema versao 4, banco versao 4.
+  NADA FOI AO AR, e nao podia ter ido: esta ilha nao tem site, nao tem WordPress, nao
+  tem Sync e nao tem /status. Dizer que verificou no ar seria inventar.
+  O QUE A DESCIDA PRODUZIU, e nenhuma das tres coisas era possivel com o campo na
+  EXPERIENCIA:
+  (1) A TORRE EIFFEL PUBLICA 4 FAIXAS GRAVADAS em vez de 1. A carga de 15/09 so podia
+  gravar a gratuidade dos menores de 4 anos, porque as outras tres mudam de bilhete
+  para bilhete; os numeros ficaram em PROSA dentro da nota do registro. Agora sao
+  campo: 3,80 e 7,40 EUR na escada ate o segundo piso, 9,20 e 18,40 no elevador ate o
+  topo, cada um com `transcrito_de` dizendo que saiu daquela prosa e NAO de leitura
+  nova. Mesma troca que a Aquametria fez em 21/10 com o porte_adulto_cm.
+  (2) A PROIBICAO DE FAIXA EM TARIFA POR VEICULO VIROU REGRA. Era prosa no motivo da
+  gondola desde 14/09 — "a tarifa e pela embarcacao inteira" — e so podia virar regra
+  depois de a faixa descer, porque `unidade_de_preco` e campo da VERSAO. Seis pessoas
+  na gondola sao DUAS gondolas: a crianca nao tem preco, tem assento.
+  (3) O ACHADO QUE A MIGRACAO PAGOU: o `se_nao_cumprir` do Angkor cita US$ 37, que e o
+  passe de UM DIA, e estava guardado num campo que valia para os TRES passes. Nomeado
+  em `numero_da_frase_e_de_outra_versao` nas versoes de 3 e de 7 dias, e a regua cobra
+  o campo em vez de confiar na nota. A ilha NAO troca 37 por 62 nem por 72: ela sabe o
+  que a fonte escreveu, nao o que a bilheteria cobra.
+  AS 4 CELULAS DO MEIO DA GRADE CONTINUAM NAO LIDAS — crianca e jovem nas duas versoes
+  intermediarias da Torre Eiffel — e agora estao CONTADAS, 4 entradas em
+  `faixas_que_a_fonte_declara_e_a_leitura_nao_transcreveu`, com o resumo publicando
+  `faixas_declaradas_nao_transcritas: 4`. Tentei rele-las: `www.toureiffel.paris`
+  responde 403 no CONNECT deste ambiente e a busca devolveu a grade por RESUMO —
+  numero de resumo e pista, nao dado, entao a lacuna fica contada em vez de gravada.
+  BANCADA, 0 falha: validar-banco verde sobre o banco real (11 faixas contadas, 4
+  lacunas contadas) e MUTACOES 73 (eram 53) — 7 mundos que tem de PASSAR e 66 quebras
+  que tem de REPROVAR, 22 delas cobradas pela FRASE que esperam ouvir de volta (eram
+  3). Os tres JSON passam por json.load e o cabecalho por yaml.safe_load.
+  E AS MUTACOES ME CORRIGIRAM DUAS VEZES, as duas antes do commit. A primeira versao da
+  regra proibia faixa etaria em TODA unidade que nao fosse `por_pessoa`, e o MUNDO
+  `por_cabine` a reprovou na hora: o argumento da gondola e sobre VEICULO alugado
+  inteiro, e um cruzeiro vendido por cabine PODE declarar tarifa de crianca na cabine.
+  A proibicao ficou no caso medido e `por_cabine` e `por_grupo` ficaram de fora dela, de
+  proposito. A segunda: o mundo novo escreveu "crianca de 4 a 11 anos" sem cedilha e a
+  regua das irmas reprovou TRES versoes de uma vez, porque e o rotulo que liga a mesma
+  faixa entre bilhetes. Regua que diz nao para um mundo legitimo custa mais caro que
+  regua que falta — e foi a bateria que achou o excesso, nao uma releitura minha.
+  A ESCOLHA DA ILHA: NAO HOUVE ROTACAO. Hoje e 22/10/2026 e a linha
+  `fila_decidida_pelo_raphael` do foco.md mandava, desde 09/10 e ajustada por ele em
+  14/10, que a jornadafly entrasse em foco HOJE como foco principal — e avisava com
+  todas as letras que a linha `ilha:` nao se troca sozinha e que "se ninguem editar, o
+  foco fica preso, como ficou de 10/10 a 14/10". A janela da aquametria vencia em 21/10.
+  Troquei a linha e reservei esta ilha no MESMO push, as 10h20Z, aceito de primeira.
+  Os tres despachos do MOLDE da secao 32 estao FECHADOS nas tres ilhas (aquametria as
+  18h2xZ, clubedomosaico as 19h1xZ e robometria, as nove paginas), entao a excecao que
+  furava o foco pela 32 nao se aplica mais — o foco volta a mandar sozinho.
+  REDE PELA 20.2, REMEDIDA E NAO HERDADA, E E REGRESSAO: tres passadas, jornadafly e
+  www.jornadafly em 000 nas tres, com aquametria e robometria em 200 nas mesmas (a
+  robometria caiu uma vez na terceira, que e a intermitencia de tunel que a 20.2 manda
+  nao confundir com bloqueio). O curl verbose nomeia a causa: `CONNECT tunnel failed,
+  response 403` do proxy de egresso, dominio fora da lista de Dominios permitidos. O
+  campo dizia `aberta em 2026-09-18`, com HTTP 200 medido as 12h35Z daquele dia — entao
+  isto JA ESTEVE RESOLVIDO e voltou, e o despacho ALTA de 15/09 volta a valer.
+  A 31.1 E INALCANCAVEL NESTA ILHA, e esta escrito no PROMPT.md dela para nao ser lido
+  como desobediencia: 7 de cada 10 execucoes entregam algo no ar, e aqui nao existe "no
+  ar". Falta WordPress (passos 2 a 8 da secao 11, navegador do Raphael) e falta o
+  dominio na lista de rede. As duas sao dele.
+  PROXIMO PASSO: a F1 como REGRA (bloco 4), no desenho da F1 da ohmetria — referencia em
+  Python, entrada -> resposta inteira em frase acentuada, tabela pre-renderizada e
+  portoes, SEM PHP enquanto nao houver casca. A especificacao desta ilha ja foi
+  atualizada hoje para o modelo novo: a F1 le a faixa da VERSAO que a pessoa escolheu,
+  nunca da experiencia, e distingue TRES recusas que antes eram uma — faixa que o
+  operador nao declara, faixa que ele declara e ninguem leu, e numero da frase que e de
+  outro bilhete.
 ultima_ronda: null   # escrito pela Sentinela; esta ilha nunca teve ronda
 bloqueada_por: null
 ---

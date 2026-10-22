@@ -301,10 +301,28 @@ Recusa que nomeia a causa medida, nunca hipótese (seção 7):
 
 - **Preço em real como número atual.** Sem câmbio datado, não há número. Ver 2.5.
 - **Desconto de criança**, enquanto o banco não tiver `faixa_etaria` preenchida para
-  aquela experiência. O city tour de Buenos Aires foi o único caso medido hoje que
-  declara a regra (US$ 33 adulto / US$ 17 criança de 2 a 7 anos) — então a regra existe
-  no mundo e a ausência dela no banco é falta de dado, que a página declara como falta
-  de dado daquele operador.
+  **aquela VERSÃO**. *(Atualizado em 22/10/2026: `faixa_etaria` desceu de EXPERIÊNCIA
+  para VERSÃO, porque o preço de uma faixa depende do bilhete — na Torre Eiffel a
+  criança de 4 a 11 anos paga 3,80€ pela escada até o segundo piso e 9,20€ pelo
+  elevador até o topo. **A F1 lê a faixa da versão que a pessoa escolheu, nunca da
+  experiência**, e essa é a diferença entre responder o preço do grupo e responder o
+  preço de um grupo que compra outro bilhete.)* O city tour de Buenos Aires foi o único
+  caso medido no bloco 2 que declara a regra (US$ 33 adulto / US$ 17 criança de 2 a 7
+  anos) — então a regra existe no mundo e a ausência dela no banco é falta de dado, que
+  a página declara como falta de dado daquele operador.
+- **Faixa que a fonte declara e a leitura não transcreveu.** Caso novo de 22/10/2026, e
+  ele NÃO é o mesmo que o de cima: duas das quatro versões da Torre Eiffel não trazem a
+  criança nem o jovem porque a leitura de 15/09 transcreveu só o piso e o teto da grade.
+  A ausência está **contada** em
+  `faixas_que_a_fonte_declara_e_a_leitura_nao_transcreveu`, com quatro entradas, e a F1
+  diz *"o operador cobra uma tarifa de criança neste bilhete e nós ainda não a lemos"* —
+  que é uma frase diferente de *"o operador não declara tarifa de criança"*. Confundir
+  as duas é cobrar do leitor o preço cheio de quem tinha desconto.
+- **O número que a frase da fonte cita, quando ele é de outra versão.** No Angkor a
+  fonte escreve que a criança sem passaporte paga US$ 37, e US$ 37 é o passe de **um
+  dia**: nos passes de 3 e de 7 dias a faixa traz
+  `numero_da_frase_e_de_outra_versao`, e a F1 **cita a frase dizendo de qual bilhete ela
+  fala**, em vez de usar 37 como se fosse daquele passe.
 - **Alta e baixa temporada**, sem o campo `temporada`. As fontes do bloco 1 dizem que a
   diária de carro na Islândia varia **até três vezes** entre inverno e verão; chutar
   isso seria inventar o dado mais caro da página.
@@ -470,7 +488,15 @@ número no banco, uma vez.**
 | **Nenhum programa de afiliado cadastrado** | a comissão, **não a página**: o piso da 2.9 é link cru e não espera ninguém | o Raphael, e só **depois** de conteúdo no ar |
 | **Rede da ilha bloqueada** | 3b em diante | o Raphael (despacho ALTO, bloco 1) |
 
-**Próximo bloco desbloqueado: o 3 — modelo do banco**, que este arquivo já obriga a ter
-`unidade_de_preco`, `capacidade_maxima`, `versoes[]`, `temporada`, `faixa_etaria`,
-`data_leitura` e `afiliado.url_busca_produto`. Não depende de site, de domínio, nem da
-rede bloqueada.
+**O bloco 3 ESTÁ FEITO** — banco carregado em 14 e 15/09/2026 e migrado em 22/10/2026 —
+e este arquivo é quem obrigou o esquema a ter `unidade_de_preco`, `capacidade_maxima`,
+`versoes[]`, `temporada`, `faixa_etaria`, `data_leitura` e
+`afiliado.url_busca_produto`. *(A linha anterior dizia "próximo bloco desbloqueado: o 3"
+e estava velha desde 14/09/2026; corrigida em 22/10/2026 pela execução que migrou a
+faixa etária. `faixa_etaria` agora é campo da **VERSÃO** — ver 2.6.)*
+
+**Próximo bloco desbloqueado: o 4 — a F1 como REGRA**, no desenho que a ohmetria usou na
+F1 dela: a referência em Python (entrada → resposta inteira, já em frase acentuada),
+a tabela pré-renderizada e os portões, sem PHP enquanto não houver casca. Não depende de
+site, de domínio, nem da rede bloqueada — e o PHP, quando nascer, é **tradutor** da
+referência, frase a frase.

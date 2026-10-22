@@ -186,6 +186,36 @@ def validar(esquema, banco, constantes=None, hoje=None):
         niveis_de_autoridade = regra_doc["niveis_de_autoridade"]
         status_sem_documento = regra_doc["status_quando_falta_documento"]
 
+    # A faixa etaria desceu da EXPERIENCIA para a VERSAO em 22/10/2026, e a regra que
+    # a proibe fora de `por_pessoa` mora no ESQUEMA e nao aqui (26.2). Se a chave sumir,
+    # a gondola volta a poder ter preco de crianca — numa tarifa cobrada pela
+    # embarcacao inteira — e a regua fica verde sem medir nada. Mesma familia da
+    # `regra_do_documento_nomeado` acima.
+    campos_versao = esquema.get("entidades", {}).get("VERSAO", {}).get("campos", {})
+    campos_exp = esquema.get("entidades", {}).get("EXPERIENCIA", {}).get("campos", {})
+    faixa_esquema = campos_versao.get("faixa_etaria") if isinstance(campos_versao, dict) else None
+    faixa_proibida_quando = None
+    if not isinstance(faixa_esquema, dict) or not faixa_esquema.get("null_exige") \
+            or not faixa_esquema.get("proibido_quando"):
+        erro("esquema: `entidades.VERSAO.campos.faixa_etaria` ausente ou sem "
+             "`null_exige`/`proibido_quando`. A faixa etaria desceu para a VERSAO em "
+             "22/10/2026 justamente porque o preco dela depende da versao; sem esta "
+             "chave a regua nao sabe que a lacuna exige motivo nem que faixa fora de "
+             "`por_pessoa` e proibida.")
+    else:
+        faixa_proibida_quando = faixa_esquema["proibido_quando"]
+    if isinstance(campos_exp, dict) and "faixa_etaria" in campos_exp:
+        erro("esquema: `faixa_etaria` voltou para `entidades.EXPERIENCIA.campos`. Ela "
+             "saiu de la em 22/10/2026 e o motivo esta medido: na Torre Eiffel a crianca "
+             "de 4 a 11 anos paga 3,80 EUR pela escada e 9,20 EUR pelo elevador ate o "
+             "topo, e um campo por experiencia publica o numero errado para tres das "
+             "quatro versoes. Campo que volta para a entidade errada e regressao, nao "
+             "escolha.")
+    if not isinstance(esquema.get("entidades", {}).get("FAIXA_ETARIA"), dict):
+        erro("esquema: falta a entidade `FAIXA_ETARIA`. Sem a forma declarada, cada "
+             "faixa do banco e um dicionario de forma livre e a regua nao tem o que "
+             "cobrar.")
+
     validade = esquema.get("validade_do_preco", {})
 
     if erros and campos_declarada_por is None:
@@ -287,6 +317,8 @@ def validar(esquema, banco, constantes=None, hoje=None):
     # ------------------------------------------------------------------
     ids = set()
     n_versoes = 0
+    n_faixas_de_idade = 0
+    n_lacunas_de_faixa = 0
     n_declaracoes = 0
     n_publicaveis = 0
     sem_saida = 0
@@ -330,8 +362,13 @@ def validar(esquema, banco, constantes=None, hoje=None):
         if operador.get("url") is None and not operador.get("motivo_sem_url"):
             erro("%s: operador com `url` null sem `motivo_sem_url`." % onde)
 
+        if "faixa_etaria" in exp:
+            erro("%s: `faixa_etaria` gravada na EXPERIENCIA. Desde 22/10/2026 ela e "
+                 "campo da VERSAO, porque o preco de uma faixa depende do bilhete: "
+                 "gravada aqui, ela publica um numero so para versoes que cobram "
+                 "diferente." % onde)
+
         for campo, motivo in (("temporada", "motivo_sem_temporada"),
-                              ("faixa_etaria", "motivo_sem_faixa_etaria"),
                               ("imagem", "motivo_sem_imagem")):
             if campo not in exp:
                 erro("%s: falta o campo `%s`. Ausencia de chave e esquecimento; null "
@@ -347,6 +384,8 @@ def validar(esquema, banco, constantes=None, hoje=None):
                  "experiencia sem versao nao tem o que oferecer." % onde)
         vistos = set()
         precos_por_id = {}
+        faixas_por_versao = {}
+        lacunas_por_versao = {}
         for versao in versoes:
             n_versoes += 1
             vid = versao.get("id")
@@ -411,6 +450,105 @@ def validar(esquema, banco, constantes=None, hoje=None):
             elif not isinstance(cap, int) or cap < 1:
                 erro("%s: `capacidade_maxima` %r nao e inteiro maior que zero." % (ondev, cap))
 
+            # ---- FAIXA ETARIA (desceu para a VERSAO em 22/10/2026)
+            if "faixa_etaria" not in versao:
+                erro("%s: falta o campo `faixa_etaria`. Ausencia de chave e "
+                     "esquecimento; null com motivo e resposta." % ondev)
+            else:
+                faixas = versao.get("faixa_etaria")
+                if faixas is None:
+                    if not versao.get("motivo_sem_faixa_etaria"):
+                        erro("%s: `faixa_etaria` null sem `motivo_sem_faixa_etaria`."
+                             % ondev)
+                elif not isinstance(faixas, list) or not faixas:
+                    erro("%s: `faixa_etaria` tem de ser lista NAO vazia ou null com "
+                         "motivo. Lista vazia nao diz se o operador nao declara faixa "
+                         "ou se ninguem leu." % ondev)
+                else:
+                    if faixa_proibida_quando and unidade == "por_veiculo":
+                        erro("%s: faixa etaria gravada com unidade %r. O esquema proibe "
+                             "(%s), e o motivo e o da gondola: onde o VEICULO e alugado "
+                             "inteiro, 6 pessoas sao DUAS gondolas e a crianca nao tem "
+                             "preco, tem assento. `por_cabine` e `por_grupo` ficam de "
+                             "FORA desta proibicao de proposito — ver o esquema."
+                             % (ondev, unidade, faixa_proibida_quando))
+                    if versao.get("faixas_que_a_fonte_declara_e_a_leitura_nao_transcreveu") is None:
+                        erro("%s: faixa etaria gravada e falta "
+                             "`faixas_que_a_fonte_declara_e_a_leitura_nao_transcreveu`. "
+                             "Versao que declara ALGUMA faixa tem de responder pelas que "
+                             "nao declara — lista vazia e a resposta 'nenhuma falta'."
+                             % ondev)
+                    rotulos_vistos = set()
+                    for faixa in faixas:
+                        ondef = "%s/faixa_etaria/%s" % (ondev, faixa.get("rotulo") or "?")
+                        if not faixa.get("rotulo"):
+                            erro("%s: faixa sem `rotulo`. O rotulo e o que permite "
+                                 "contar a mesma faixa entre versoes irmas." % ondev)
+                            continue
+                        if faixa["rotulo"] in rotulos_vistos:
+                            erro("%s: `rotulo` de faixa repetido dentro da versao."
+                                 % ondef)
+                        rotulos_vistos.add(faixa["rotulo"])
+                        faixas_por_versao.setdefault(vid, {})[faixa["rotulo"]] = faixa
+
+                        fpreco = faixa.get("preco")
+                        if "preco" not in faixa:
+                            erro("%s: faixa sem o campo `preco`." % ondef)
+                        elif fpreco is None:
+                            if not faixa.get("motivo_sem_preco"):
+                                erro("%s: faixa com `preco` null sem `motivo_sem_preco`. "
+                                     "Faixa que a fonte NOMEIA sem dizer o preco e dado "
+                                     "sobre a fonte; faixa sem numero e sem motivo e "
+                                     "lacuna muda." % ondef)
+                        elif not isinstance(fpreco, (int, float)) or fpreco < 0:
+                            erro("%s: faixa com `preco` %r, que nao e numero maior ou "
+                                 "igual a zero. Zero e preco — e a gratuidade declarada."
+                                 % (ondef, fpreco))
+                        elif isinstance(preco, (int, float)) and fpreco > preco:
+                            erro("%s: faixa custando %r onde o bilhete inteiro custa %r. "
+                                 "Faixa etaria e o que o operador cobra de QUEM TEM "
+                                 "AQUELA IDADE: mais caro que a tarifa cheia nao e faixa, "
+                                 "e numero no campo errado." % (ondef, fpreco, preco))
+
+                        if faixa.get("moeda") != versao.get("moeda"):
+                            erro("%s: faixa em %r e a versao cobra em %r. Faixa em outra "
+                                 "moeda seria conversao feita por esta ilha, e as "
+                                 "constantes de cambio estao PENDENTES (secao 10)."
+                                 % (ondef, faixa.get("moeda"), versao.get("moeda")))
+
+                        for campo_f, motivo_f in (("condicao", "motivo_sem_condicao"),
+                                                  ("se_nao_cumprir", "motivo_sem_se_nao_cumprir")):
+                            if campo_f not in faixa:
+                                erro("%s: faixa sem o campo `%s`." % (ondef, campo_f))
+                            elif faixa.get(campo_f) is None and not faixa.get(motivo_f):
+                                erro("%s: faixa com `%s` null sem `%s`."
+                                     % (ondef, campo_f, motivo_f))
+
+                        if not faixa.get("declarado_como"):
+                            erro("%s: faixa sem `declarado_como`. Sem a frase da fonte a "
+                                 "tela parafraseia a regra de idade — que e a frase que "
+                                 "custa dinheiro na bilheteria." % ondef)
+                        ffonte = faixa.get("fonte")
+                        if ffonte not in fontes:
+                            erro("%s: faixa com `fonte` %r que nao existe em fontes[]."
+                                 % (ondef, ffonte))
+                        else:
+                            fontes_usadas.add(ffonte)
+                        if not _e_data(faixa.get("data_leitura")):
+                            erro("%s: faixa sem `data_leitura` valida. Preco sem data de "
+                                 "leitura nao existe nesta ilha, e preco de crianca "
+                                 "tambem e preco." % ondef)
+
+                for lacuna in versao.get("faixas_que_a_fonte_declara_e_a_leitura_nao_transcreveu") or []:
+                    if not lacuna.get("rotulo") or not lacuna.get("por_que"):
+                        erro("%s: entrada de "
+                             "`faixas_que_a_fonte_declara_e_a_leitura_nao_transcreveu` "
+                             "sem `rotulo` ou sem `por_que`. Lacuna contada sem causa "
+                             "nomeada e a lacuna muda com outro nome." % ondev)
+                    else:
+                        lacunas_por_versao.setdefault(vid, set()).add(lacuna["rotulo"])
+                        n_lacunas_de_faixa += 1
+
             if "duracao_minutos" not in versao:
                 erro("%s: falta `duracao_minutos`." % ondev)
             elif versao.get("duracao_minutos") is None and not versao.get("motivo_sem_duracao"):
@@ -466,6 +604,72 @@ def validar(esquema, banco, constantes=None, hoje=None):
             if not versao.get("declarado_como"):
                 erro("%s: sem `declarado_como`. Sem a frase da fonte, a tela parafraseia "
                      "em vez de citar." % ondev)
+
+        # ---------------- FAIXA ETARIA ENTRE VERSOES IRMAS
+        # Esta e a regua que so pode existir depois de 22/10/2026, e e a razao inteira
+        # de a faixa ter descido para a VERSAO: com o campo na EXPERIENCIA nao havia
+        # irmas para comparar. Tres coisas se medem aqui, e as tres sao sobre a mesma
+        # fonte lida uma vez e transcrita N vezes.
+        todos_os_rotulos = set()
+        for mapa in faixas_por_versao.values():
+            todos_os_rotulos.update(mapa)
+        for vid_f, mapa in sorted(faixas_por_versao.items()):
+            ondev = "%s/versoes/%s" % (onde, vid_f)
+            n_faixas_de_idade += len(mapa)
+            faltando = todos_os_rotulos - set(mapa) - lacunas_por_versao.get(vid_f, set())
+            for rotulo in sorted(faltando):
+                erro("%s: a faixa %r existe em outra versao desta experiencia e aqui ela "
+                     "nao e declarada NEM contada em "
+                     "`faixas_que_a_fonte_declara_e_a_leitura_nao_transcreveu`. Ausencia "
+                     "silenciosa de faixa e indistinguivel de 'o operador nao cobra faixa "
+                     "neste bilhete', e as duas coisas custam dinheiro diferente na porta."
+                     % (ondev, rotulo))
+
+        # A mesma faixa, no mesmo preco e na mesma moeda, transcrita com DUAS frases
+        # diferentes: a fonte foi lida uma vez, entao uma das duas frases foi escrita
+        # pela ilha e nao pelo operador.
+        for rotulo in sorted(todos_os_rotulos):
+            frases = {}
+            for vid_f, mapa in faixas_por_versao.items():
+                faixa = mapa.get(rotulo)
+                if not faixa:
+                    continue
+                chave = (faixa.get("preco"), faixa.get("moeda"))
+                frases.setdefault(chave, {})[vid_f] = faixa.get("declarado_como")
+            for chave, por_versao_ in sorted(frases.items(), key=lambda kv: repr(kv[0])):
+                if len(por_versao_) > 1 and len(set(por_versao_.values())) > 1:
+                    erro("%s: a faixa %r custa %r %s em %s e cada uma transcreve a fonte "
+                         "com uma frase diferente. Mesmo numero, mesma moeda e mesma "
+                         "leitura: uma das frases nao e da fonte."
+                         % (onde, rotulo, chave[0], chave[1],
+                            ", ".join(sorted(por_versao_))))
+
+        # O NUMERO DA FRASE E DE OUTRA VERSAO — achado da migracao, no Angkor: a fonte
+        # escreve que a crianca sem passaporte paga US$ 37, e 37 e o passe de UM DIA. A
+        # mesma frase guardada num campo de EXPERIENCIA valia para os tres passes.
+        for vid_f, mapa in sorted(faixas_por_versao.items()):
+            ondev = "%s/versoes/%s" % (onde, vid_f)
+            meu_preco = precos_por_id.get(vid_f)
+            outros = {p for v2, p in precos_por_id.items()
+                      if v2 != vid_f and isinstance(p, (int, float))}
+            for rotulo, faixa in sorted(mapa.items()):
+                frase = " ".join(str(faixa.get(k) or "")
+                                 for k in ("declarado_como", "se_nao_cumprir"))
+                numeros = set()
+                for bruto in re.findall(r"\d+(?:[.,]\d+)?", frase):
+                    try:
+                        numeros.add(float(bruto.replace(",", ".")))
+                    except ValueError:
+                        pass
+                de_outra = {p for p in outros if p in numeros and p != meu_preco}
+                if de_outra and not faixa.get("numero_da_frase_e_de_outra_versao"):
+                    erro("%s: a frase da faixa %r cita %s, que e o preco de OUTRA versao "
+                         "desta experiencia e nao desta (%r), e a faixa nao traz "
+                         "`numero_da_frase_e_de_outra_versao`. Frase da fonte colada numa "
+                         "versao que ela nao descreve poe na boca do operador um numero "
+                         "que ele nao disse daquele bilhete."
+                         % (ondev, rotulo,
+                            ", ".join(repr(p) for p in sorted(de_outra)), meu_preco))
 
         # ---------------- a regra do documento nomeado (esquema, 26.2)
         # O que sustenta o PRECO de um registro sao as fontes das versoes dele. Se
@@ -718,6 +922,8 @@ def validar(esquema, banco, constantes=None, hoje=None):
         "experiencias_com_preco_em_brl": com_brl_convertido,
         "fontes_de_leitura_direta": sum(1 for f in banco.get("fontes", [])
                                         if f.get("leitura") == "leitura_direta"),
+        "faixas_etarias": n_faixas_de_idade,
+        "faixas_declaradas_nao_transcritas": n_lacunas_de_faixa,
     }
     gravado = banco.get("resumo") or {}
     for chave, valor in calculado.items():
@@ -794,7 +1000,8 @@ def main():
     for chave in ("cidades", "experiencias", "versoes", "fontes", "declaracoes",
                   "declaracoes_publicaveis", "declaracoes_sem_versao", "itens_sem_saida_de_compra",
                   "itens_com_piso_nao_rastreavel", "itens_intestaveis",
-                  "experiencias_com_preco_em_brl", "fontes_de_leitura_direta"):
+                  "experiencias_com_preco_em_brl", "fontes_de_leitura_direta",
+                  "faixas_etarias", "faixas_declaradas_nao_transcritas"):
         if chave in calculado:
             print("  %-32s %s" % (chave.replace("_", " ") + " ", calculado[chave]))
     for a in avisos:
