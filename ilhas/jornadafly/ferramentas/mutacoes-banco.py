@@ -1117,6 +1117,386 @@ def q_resumo_de_faixas_digitado(banco):
     return banco
 
 
+# ---------------------------------------------------------------------------
+# O PASSE DE CIDADE E A COBERTURA — a entidade que nasceu em 22/10/2026 para a F3
+#
+# O banco tem ZERO passes e ZERO coberturas, e por isso as ~130 linhas que o validador
+# ganhou hoje NUNCA SERIAM EXECUTADAS por ninguem: e a mesma situacao da FAIXA_DIARIA
+# ha um bloco, com a diferenca de que agora ela e conhecida. Uma delas estourava na
+# PRIMEIRA cobertura gravada e em nenhum momento antes — a secao usava um indice de
+# experiencias que nao existia —, e so um mundo com cobertura dentro a enxerga.
+#
+# O passe de bancada mora em ROMA de proposito: e a unica cidade do banco com uma
+# atracao cuja cobertura faz sentido (o ingresso do Coliseu), e cobertura precisa dos
+# DOIS lados para existir.
+# ---------------------------------------------------------------------------
+
+def _versao_de_passe(vid, rotulo, preco, dias):
+    return {
+        "id": vid,
+        "rotulo": rotulo,
+        "preco": preco,
+        "moeda": "EUR",
+        "unidade_de_preco": "por_pessoa",
+        "unidade_de_preco_declarada_por": "no_texto_da_fonte",
+        "capacidade_maxima": None,
+        "capacidade_maxima_declarada_por": None,
+        "duracao_minutos": None,
+        "motivo_sem_duracao": "passe de cidade nao tem duracao de passeio: tem validade.",
+        "momento_do_dia": "qualquer",
+        "acrescimos": [],
+        "inclui": ["entrada nas atracoes cobertas"],
+        "nao_inclui": [],
+        "nao_inclui_motivo_lista_vazia": "mundo de mutacao",
+        "fonte": "roma-pass-operador-teste",
+        "data_leitura": "2026-09-14",
+        "declarado_como": "%d euros por pessoa, validade de %d dias" % (preco, dias),
+        "dias_de_uso": dias,
+        "dias_de_uso_transcrito_de": "a frase `declarado_como` deste mundo de mutacao, "
+                                     "que escreve a validade em digito.",
+        "faixa_etaria": None,
+        "motivo_sem_faixa_etaria": "mundo de mutacao: a fonte de bancada nao declara faixa.",
+        "faixas_que_a_fonte_declara_e_a_leitura_nao_transcreveu": [],
+    }
+
+
+def _passe_em_roma(banco, declaradas=2, transcrito=None, versoes=None):
+    banco["fontes"].append({
+        "id": "roma-pass-operador-teste",
+        "nivel": 4,
+        "origem": "operador-via-busca",
+        "leitura": "busca_web",
+        "autor": "operador de passe de teste",
+        "documento": "pagina de tarifas do passe de bancada",
+        "url": None,
+        "motivo_sem_url": "mundo de mutacao",
+        "data_leitura": "2026-09-14",
+    })
+    exp = {
+        "id": "roma-passe-teste",
+        "nome": "Passe de Roma (mundo de mutação)",
+        "cidade": "roma",
+        "categoria": "passe_de_cidade",
+        "eixo_das_versoes": "por_quantidade",
+        "nota_do_eixo_das_versoes": "As duas versoes sao MAIS DA MESMA COISA: 2 e 3 dias de "
+                                    "validade do mesmo passe. E o eixo que a Conta 3 da F1 "
+                                    "usa, e aqui ele tambem diz se o passe cobre a estadia.",
+        "operador": {"nome": "operador de passe de teste", "tipo": "concessionaria_de_bem_publico",
+                     "url": None, "motivo_sem_url": "mundo de mutacao"},
+        "versoes": versoes if versoes is not None else [
+            _versao_de_passe("48h", "2 dias", 32, 2),
+            _versao_de_passe("72h", "3 dias", 52, 3)],
+        "temporada": None,
+        "motivo_sem_temporada": "mundo de mutacao",
+        "imagem": None,
+        "motivo_sem_imagem": "mundo de mutacao",
+        "declaracoes": [],
+        "motivo_sem_declaracoes": "mundo de mutacao: ninguem mais publicou numero diferente.",
+        "resolucao": None,
+        "motivo_sem_resolucao": "mundo de mutacao: sem divergencia nao ha o que resolver.",
+        "afiliado": {
+            "programa": None,
+            "url": "",
+            "url_produto": None,
+            "motivo_sem_url_produto": "mundo de mutacao",
+            "url_busca_produto": "https://civitatis.com/br/roma/",
+            "rel": "nofollow noopener",
+            "intestavel": False,
+        },
+        "status": "publicavel",
+        "entra_por": "mundo de mutacao: o passe de cidade que o vocabulario permite e o "
+                     "banco nao tem.",
+        "atracoes_declaradas_pelo_passe": declaradas,
+        "atracoes_declaradas_transcrito_de": transcrito if transcrito is not None else (
+            "o passe da entrada em %d atracoes de Roma" % declaradas),
+    }
+    banco["experiencias"].append(exp)
+    return exp
+
+
+def _cobertura(**campos):
+    base = {
+        "id": "bancada-cobertura-coliseu",
+        "passe": "roma-passe-teste",
+        "experiencia": "roma-coliseu-ingresso",
+        "versao_coberta": "padrao-24h",
+        "como": "entrada_incluida",
+        "reserva_obrigatoria": True,
+        "reserva_transcrita_de": "a reserva de horario e obrigatoria e feita a parte",
+        "desconto_percentual": None,
+        "desconto_e_no_maximo": None,
+        "desconto_transcrito_de": None,
+        "declarada_por": "no_texto_da_fonte",
+        "fonte": "roma-pass-operador-teste",
+        "data_leitura": "2026-09-14",
+        "status": "publicavel",
+    }
+    base.update(campos)
+    return base
+
+
+def _com_coberturas(banco, coberturas):
+    banco["coberturas_de_passe"] = coberturas
+    return sincronizar_resumo(banco)
+
+
+def mundo_passe_sem_cobertura_lida(banco):
+    """Passe no banco e NENHUMA cobertura lida. E o estado em que todo passe nasce.
+
+    Tem de PASSAR com aviso: o banco guarda o que foi lido, e a F3 e quem se nega a
+    publicar ponto de equilibrio sem cobertura. Supor cobertura aqui seria inventar o
+    produto do passe.
+    """
+    _passe_em_roma(banco)
+    return sincronizar_resumo(banco)
+
+
+def mundo_passe_com_cobertura(banco):
+    """O mundo inteiro: passe, cobertura lida, versao coberta nomeada e reserva."""
+    _passe_em_roma(banco)
+    return _com_coberturas(banco, [_cobertura()])
+
+
+def mundo_cobertura_sem_versao_declarada(banco):
+    """A fonte do passe diz «o ingresso do Coliseu» e NAO diz qual bilhete.
+
+    E o caso COMUM, e e ele que faz a F3 publicar faixa em vez de numero.
+    """
+    _passe_em_roma(banco)
+    return _com_coberturas(banco, [_cobertura(
+        versao_coberta=None,
+        motivo_sem_versao_coberta="A fonte escreve «entrada no Coliseu» e o Coliseu tem "
+                                  "dois bilhetes: ela nao diz qual.")])
+
+
+def mundo_cobertura_com_desconto(banco):
+    """Desconto percentual CHEIO, com o numero dentro da frase da fonte."""
+    _passe_em_roma(banco)
+    return _com_coberturas(banco, [_cobertura(
+        como="desconto_declarado", desconto_percentual=50, desconto_e_no_maximo=False,
+        desconto_transcrito_de="50% de desconto na entrada para quem tem o passe")])
+
+
+def mundo_cobertura_com_desconto_que_e_teto(banco):
+    """«Ate 50%» — a hedge virada FAIXA, que e a troca que esta entidade faz."""
+    _passe_em_roma(banco)
+    return _com_coberturas(banco, [_cobertura(
+        como="desconto_declarado", desconto_percentual=50, desconto_e_no_maximo=True,
+        desconto_transcrito_de="até 50% de desconto na entrada")])
+
+
+def mundo_cobertura_sem_efeito_no_preco(banco):
+    """O passe da fila preferencial e NAO abate nada. Zero entra como zero declarado."""
+    _passe_em_roma(banco)
+    return _com_coberturas(banco, [_cobertura(
+        id="bancada-cobertura-fila", como="sem_efeito_no_preco",
+        reserva_obrigatoria=False, reserva_transcrita_de=None)])
+
+
+def mundo_passe_de_uma_validade_so(banco):
+    """Passe de UMA versao: eixo null COM `dias_de_uso` preenchido.
+
+    E o mundo que o esquema sempre permitiu e a regua NAO CONFERIA — as duas direcoes
+    do `dias_de_uso` cobravam `por_quantidade` e proibiam os outros eixos, e o null nao
+    caia em nenhuma. Fechado em 22/10/2026 pelo bloco da F3, que precisou da validade
+    do passe neste mundo exato.
+    """
+    exp = _passe_em_roma(banco, versoes=[_versao_de_passe("72h", "3 dias", 52, 3)])
+    exp["eixo_das_versoes"] = None
+    del exp["nota_do_eixo_das_versoes"]
+    exp["motivo_sem_eixo_das_versoes"] = ("Uma validade so: nao ha duas coisas para dizer "
+                                          "em que grandeza diferem.")
+    return sincronizar_resumo(banco)
+
+
+def q_passe_sem_atracoes_declaradas(banco):
+    exp = _passe_em_roma(banco)
+    del exp["atracoes_declaradas_pelo_passe"]
+    return sincronizar_resumo(banco)
+
+
+def q_passe_com_atracoes_que_a_frase_nao_declara(banco):
+    _passe_em_roma(banco, declaradas=45,
+                   transcrito="o passe da entrada nas atracoes de Roma")
+    return sincronizar_resumo(banco)
+
+
+def q_atracoes_declaradas_num_ingresso_avulso(banco):
+    _achar(banco, "roma-coliseu-ingresso")["atracoes_declaradas_pelo_passe"] = 3
+    return sincronizar_resumo(banco)
+
+
+def q_cobertura_de_passe_que_nao_e_passe(banco):
+    _passe_em_roma(banco)
+    return _com_coberturas(banco, [_cobertura(passe="roma-coliseu-ingresso",
+                                              experiencia="roma-passe-teste")])
+
+
+def q_cobertura_de_atracao_que_nao_existe(banco):
+    _passe_em_roma(banco)
+    return _com_coberturas(banco, [_cobertura(experiencia="atracao-que-nao-existe",
+                                              versao_coberta=None,
+                                              motivo_sem_versao_coberta="mundo de mutacao")])
+
+
+def q_cobertura_cruzando_cidade(banco):
+    _passe_em_roma(banco)
+    return _com_coberturas(banco, [_cobertura(
+        experiencia="paris-torre-eiffel", versao_coberta="topo-elevador")])
+
+
+def q_cobertura_de_passe_sobre_passe(banco):
+    _passe_em_roma(banco)
+    segundo = _achar(banco, "roma-passe-teste")
+    copia = copy.deepcopy(segundo)
+    copia["id"] = "roma-passe-teste-2"
+    copia["nome"] = "Segundo passe de Roma (mundo de mutação)"
+    banco["experiencias"].append(copia)
+    return _com_coberturas(banco, [_cobertura(experiencia="roma-passe-teste-2",
+                                              versao_coberta="48h")])
+
+
+def q_duas_coberturas_do_mesmo_par(banco):
+    _passe_em_roma(banco)
+    return _com_coberturas(banco, [_cobertura(),
+                                   _cobertura(id="bancada-cobertura-coliseu-2")])
+
+
+def q_cobertura_com_versao_que_nao_e_da_atracao(banco):
+    _passe_em_roma(banco)
+    return _com_coberturas(banco, [_cobertura(versao_coberta="topo-elevador")])
+
+
+def q_cobertura_sem_o_campo_versao(banco):
+    _passe_em_roma(banco)
+    cob = _cobertura()
+    del cob["versao_coberta"]
+    return _com_coberturas(banco, [cob])
+
+
+def q_cobertura_sem_versao_e_sem_motivo(banco):
+    _passe_em_roma(banco)
+    return _com_coberturas(banco, [_cobertura(versao_coberta=None)])
+
+
+def q_cobertura_com_reserva_null(banco):
+    _passe_em_roma(banco)
+    return _com_coberturas(banco, [_cobertura(reserva_obrigatoria=None,
+                                              reserva_transcrita_de=None)])
+
+
+def q_cobertura_com_reserva_sem_a_frase(banco):
+    _passe_em_roma(banco)
+    return _com_coberturas(banco, [_cobertura(reserva_transcrita_de=None)])
+
+
+def q_desconto_sem_percentual(banco):
+    _passe_em_roma(banco)
+    return _com_coberturas(banco, [_cobertura(
+        como="desconto_declarado", desconto_percentual=None, desconto_e_no_maximo=False,
+        desconto_transcrito_de="desconto na entrada para quem tem o passe")])
+
+
+def q_desconto_de_cem_por_cento(banco):
+    _passe_em_roma(banco)
+    return _com_coberturas(banco, [_cobertura(
+        como="desconto_declarado", desconto_percentual=100, desconto_e_no_maximo=False,
+        desconto_transcrito_de="100% de desconto na entrada")])
+
+
+def q_desconto_que_a_frase_nao_declara(banco):
+    _passe_em_roma(banco)
+    return _com_coberturas(banco, [_cobertura(
+        como="desconto_declarado", desconto_percentual=50, desconto_e_no_maximo=False,
+        desconto_transcrito_de="desconto de 30% na entrada")])
+
+
+def q_desconto_sem_dizer_se_e_teto(banco):
+    _passe_em_roma(banco)
+    return _com_coberturas(banco, [_cobertura(
+        como="desconto_declarado", desconto_percentual=50, desconto_e_no_maximo=None,
+        desconto_transcrito_de="50% de desconto na entrada")])
+
+
+def q_hedge_lida_como_numero_cheio(banco):
+    """O DEFEITO QUE O PAR DE CAMPOS EXISTE PARA IMPEDIR: «ate 50%» gravado como 50%.
+
+    A frase traz a hedge e o campo diz que o desconto e o valor. O resultado continua
+    parecendo dinheiro, que e por que ninguem ve.
+    """
+    _passe_em_roma(banco)
+    return _com_coberturas(banco, [_cobertura(
+        como="desconto_declarado", desconto_percentual=50, desconto_e_no_maximo=False,
+        desconto_transcrito_de="até 50% de desconto na entrada")])
+
+
+def q_desconto_fora_da_forma_que_o_usa(banco):
+    _passe_em_roma(banco)
+    return _com_coberturas(banco, [_cobertura(desconto_percentual=50)])
+
+
+def q_cobertura_com_forma_fora_do_vocabulario(banco):
+    _passe_em_roma(banco)
+    return _com_coberturas(banco, [_cobertura(como="meia_entrada")])
+
+
+def q_cobertura_sem_data_de_leitura(banco):
+    _passe_em_roma(banco)
+    return _com_coberturas(banco, [_cobertura(data_leitura=None)])
+
+
+def q_cobertura_com_fonte_inexistente(banco):
+    _passe_em_roma(banco)
+    return _com_coberturas(banco, [_cobertura(fonte="fonte-que-nao-existe")])
+
+
+def q_cobertura_com_id_repetido(banco):
+    _passe_em_roma(banco)
+    return _com_coberturas(banco, [_cobertura(),
+                                   _cobertura(experiencia="roma-coliseu-ingresso",
+                                              versao_coberta="experiencia-completa")])
+
+
+def q_resumo_de_coberturas_digitado(banco):
+    banco = mundo_passe_com_cobertura(banco)
+    banco["resumo"]["coberturas_de_passe"] = 9
+    return banco
+
+
+def q_dias_de_uso_sem_transcrito_em_eixo_null(banco):
+    """A METADE QUE ESTAVA SEM REGUA ATE HOJE: eixo null, `dias_de_uso` preenchido e
+    SEM a frase de onde o numero saiu. Antes de 22/10/2026 isto PASSAVA."""
+    versao = _versao_de_passe("72h", "3 dias", 52, 3)
+    del versao["dias_de_uso_transcrito_de"]
+    exp = _passe_em_roma(banco, versoes=[versao])
+    exp["eixo_das_versoes"] = None
+    del exp["nota_do_eixo_das_versoes"]
+    exp["motivo_sem_eixo_das_versoes"] = "Uma validade so."
+    return sincronizar_resumo(banco)
+
+
+def q_dias_de_uso_que_a_fonte_nao_declara_em_eixo_null(banco):
+    """Eixo null, validade 7 e a frase da fonte dizendo 3. A outra metade do mesmo."""
+    versao = _versao_de_passe("72h", "3 dias", 52, 3)
+    versao["dias_de_uso"] = 7
+    exp = _passe_em_roma(banco, versoes=[versao])
+    exp["eixo_das_versoes"] = None
+    del exp["nota_do_eixo_das_versoes"]
+    exp["motivo_sem_eixo_das_versoes"] = "Uma validade so."
+    return sincronizar_resumo(banco)
+
+
+def q_dias_de_uso_null_sem_motivo_em_eixo_null(banco):
+    versao = _versao_de_passe("72h", "3 dias", 52, 3)
+    versao["dias_de_uso"] = None
+    del versao["dias_de_uso_transcrito_de"]
+    exp = _passe_em_roma(banco, versoes=[versao])
+    exp["eixo_das_versoes"] = None
+    del exp["nota_do_eixo_das_versoes"]
+    exp["motivo_sem_eixo_das_versoes"] = "Uma validade so."
+    return sincronizar_resumo(banco)
+
+
 MUTACOES = [
     ("MUNDO preco por pessoa, escada de dias, crianca e temporada", mundo_por_pessoa, "passa", None),
     ("MUNDO preco por cabine", mundo_por_cabine, "passa", None),
@@ -1244,6 +1624,48 @@ MUTACOES = [
 
     ("esquema sem o registro da Conta 3", _intacto, "reprova", "sem_registro_conta_3",
      "conta_3_da_F1_exige_EIXO_DECLARADO"),
+
+    # --- O PASSE DE CIDADE E A COBERTURA (22/10/2026, bloco da F3)
+    ("MUNDO passe de cidade SEM cobertura lida", mundo_passe_sem_cobertura_lida, "passa", None),
+    ("MUNDO passe com cobertura lida e versao nomeada", mundo_passe_com_cobertura, "passa", None),
+    ("MUNDO cobertura que NAO diz qual bilhete cobre", mundo_cobertura_sem_versao_declarada, "passa", None),
+    ("MUNDO cobertura com desconto percentual cheio", mundo_cobertura_com_desconto, "passa", None),
+    ("MUNDO cobertura com desconto que e TETO («ate 50%»)", mundo_cobertura_com_desconto_que_e_teto, "passa", None),
+    ("MUNDO cobertura sem efeito no preco (fila preferencial)", mundo_cobertura_sem_efeito_no_preco, "passa", None),
+    ("MUNDO passe de UMA validade: eixo null com dias_de_uso", mundo_passe_de_uma_validade_so, "passa", None),
+
+    ("passe sem o campo atracoes_declaradas_pelo_passe", q_passe_sem_atracoes_declaradas, "reprova", None, "atracoes_declaradas_pelo_passe"),
+    ("passe com numero de atracoes que a frase NAO declara", q_passe_com_atracoes_que_a_frase_nao_declara, "reprova", None, "TRANSCRITO"),
+    ("atracoes declaradas num ingresso avulso", q_atracoes_declaradas_num_ingresso_avulso, "reprova", None, "PROIBE"),
+    ("cobertura cujo passe nao e passe", q_cobertura_de_passe_que_nao_e_passe, "reprova", None, "nao e"),
+    ("cobertura de atracao que nao esta no banco", q_cobertura_de_atracao_que_nao_existe, "reprova", None, "nao esta no banco"),
+    ("cobertura cruzando cidade", q_cobertura_cruzando_cidade, "reprova", None, "cruzando cidade"),
+    ("passe que cobre outro passe", q_cobertura_de_passe_sobre_passe, "reprova", None, "duas vezes"),
+    ("duas coberturas do MESMO par passe x atracao", q_duas_coberturas_do_mesmo_par, "reprova", None, "segunda cobertura"),
+    ("cobertura com versao que nao e da atracao", q_cobertura_com_versao_que_nao_e_da_atracao, "reprova", None, "nao e uma versao"),
+    ("cobertura sem o campo versao_coberta", q_cobertura_sem_o_campo_versao, "reprova", None, "falta o campo"),
+    ("cobertura sem versao e sem motivo", q_cobertura_sem_versao_e_sem_motivo, "reprova", None, "motivo_sem_versao_coberta"),
+    ("cobertura com reserva_obrigatoria null", q_cobertura_com_reserva_null, "reprova", None, "nao e booleano"),
+    ("cobertura com reserva obrigatoria e sem a frase", q_cobertura_com_reserva_sem_a_frase, "reprova", None, "reserva_transcrita_de"),
+    ("desconto declarado sem percentual", q_desconto_sem_percentual, "reprova", None, "desconto_percentual"),
+    ("desconto de 100 por cento", q_desconto_de_cem_por_cento, "reprova", None, "entrada incluida"),
+    ("desconto que a frase da fonte NAO declara", q_desconto_que_a_frase_nao_declara, "reprova", None, "transcrito"),
+    ("desconto sem dizer se e teto", q_desconto_sem_dizer_se_e_teto, "reprova", None, "desconto_e_no_maximo"),
+    ("HEDGE lida como numero cheio: «ate 50%» gravado como 50%", q_hedge_lida_como_numero_cheio, "reprova", None, "hedge virando numero cheio"),
+    ("desconto gravado fora da forma que o usa", q_desconto_fora_da_forma_que_o_usa, "reprova", None, "PROIBE desconto"),
+    ("cobertura com forma fora do vocabulario", q_cobertura_com_forma_fora_do_vocabulario, "reprova", None, "fora do vocabulario"),
+    ("cobertura sem data de leitura", q_cobertura_sem_data_de_leitura, "reprova", None, "data_leitura"),
+    ("cobertura com fonte inexistente", q_cobertura_com_fonte_inexistente, "reprova", None, "fontes[]"),
+    ("cobertura com id repetido", q_cobertura_com_id_repetido, "reprova", None, "repetido"),
+    ("resumo de coberturas digitado em vez de contado", q_resumo_de_coberturas_digitado, "reprova", None, "coberturas_de_passe"),
+    ("esquema sem a entidade COBERTURA_DO_PASSE", _intacto, "reprova", "sem_entidade_cobertura", "COBERTURA_DO_PASSE"),
+    ("esquema sem as tres regras da cobertura", _intacto, "reprova", "sem_as_tres_regras", "as_tres_regras"),
+    ("esquema sem o vocabulario forma_de_cobertura", _intacto, "reprova", "vocab_sem_forma_de_cobertura", "forma_de_cobertura"),
+
+    # --- A METADE DO `dias_de_uso` QUE O EIXO NULL ESCONDIA (22/10/2026)
+    ("eixo null com dias_de_uso e SEM a frase de onde saiu", q_dias_de_uso_sem_transcrito_em_eixo_null, "reprova", None, "dias_de_uso_transcrito_de"),
+    ("eixo null com dias_de_uso que a fonte NAO declara", q_dias_de_uso_que_a_fonte_nao_declara_em_eixo_null, "reprova", None, "declarado_como"),
+    ("eixo null com dias_de_uso null e sem motivo", q_dias_de_uso_null_sem_motivo_em_eixo_null, "reprova", None, "motivo_sem_dias_de_uso"),
 ]
 
 
@@ -1285,6 +1707,12 @@ def esquema_para(mutacao):
             "null_exige": "motivo_sem_faixa_etaria"}
     elif mutacao == "sem_entidade_faixa":
         del esquema["entidades"]["FAIXA_ETARIA"]
+    elif mutacao == "sem_entidade_cobertura":
+        del esquema["entidades"]["COBERTURA_DO_PASSE"]
+    elif mutacao == "sem_as_tres_regras":
+        del esquema["regra_da_cobertura_do_passe"]["as_tres_regras"]
+    elif mutacao == "vocab_sem_forma_de_cobertura":
+        del esquema["vocabularios"]["forma_de_cobertura"]
     elif mutacao == "vocab_sem_eixo":
         del esquema["vocabularios"]["eixo_das_versoes"]
     elif mutacao == "exp_sem_eixo":

@@ -186,6 +186,11 @@
       "menor_encontrado",
       "faixa_publicada",
       "estimativa_do_autor"
+    ],
+    "forma_de_cobertura": [
+      "entrada_incluida",
+      "desconto_declarado",
+      "sem_efeito_no_preco"
     ]
   },
   "campos_que_exigem_declaracao_de_origem": {
@@ -317,6 +322,20 @@
           "null_permitido_quando": "a experiencia tem UMA versao so: sem duas, nao ha eixo a declarar.",
           "o_que_e": "Em que grandeza as versoes vendidas daquela experiencia diferem entre si. `por_quantidade` = as versoes sao MAIS DA MESMA COISA (o Angkor Pass de 1, 3 e 7 dias). `por_escopo` = as versoes dao COISAS DIFERENTES (o ingresso do Coliseu com ou sem a area restrita; os quatro bilhetes da Torre Eiffel). `por_momento` = as versoes sao a mesma coisa em HORARIO diferente (a gondola de dia e de noite).",
           "por_que_e_declarado_e_nao_deduzido": "A Conta 3 da F1 (especificacao, 2.5) pergunta a partir de qual quantidade a versao mais cara passa a valer. Essa conta SO tem sentido quando as versoes sao substituiveis em quantidade: comprar dois ingressos de 24 horas do Coliseu NAO da a area restrita da Experiencia Completa, entao o ponto de equilibrio entre elas seria um numero certo sobre uma pergunta sem sentido — o jeito mais eficiente de publicar aritmetica correta dizendo uma mentira. E o eixo nao se deduz do rotulo: deduzir pelo texto de `rotulo` seria ler prosa como se fosse campo, que e exatamente o que a migracao de 22/10/2026 desfez com a `faixa_etaria`."
+        },
+        "atracoes_declaradas_pelo_passe": {
+          "tipo": "inteiro >= 1 | null",
+          "obrigatorio": true,
+          "so_quando": "categoria == passe_de_cidade",
+          "proibido_quando": "categoria != passe_de_cidade",
+          "exige_tambem_quando_null": "motivo_sem_atracoes_declaradas",
+          "o_que_e": "QUANTAS atracoes o proprio passe diz cobrir. Nao e a contagem das COBERTURA_DO_PASSE: e o numero da fonte, e a distancia entre os dois e o que a F3 publica em vez de esconder. Passe que declara 50 atracoes com 3 coberturas lidas nao tem ponto de equilibrio calculado — tem um ponto de equilibrio SOBRE TRES, e a tela diz isso."
+        },
+        "atracoes_declaradas_transcrito_de": {
+          "tipo": "texto | null",
+          "obrigatorio": true,
+          "so_quando": "categoria == passe_de_cidade",
+          "observacao": "a frase da fonte, com o numero dentro dela — a mesma disciplina de `dias_de_uso_transcrito_de`."
         }
       }
     },
@@ -723,6 +742,81 @@
         "por_que_isto_e_computavel_e_nao_editorial": "Porque `o_que_o_numero_e` e enum. A regua compara valores de enum, o que uma regra escrita em prosa dentro de uma descricao nao faz — e a prosa foi onde esta distincao morou do bloco 1 (14/09/2026) ate hoje.",
         "nascida_de": "as duas frases medidas na mesma SERP no bloco 1, registradas em dados/corpus-buscas.md"
       }
+    },
+    "COBERTURA_DO_PASSE": {
+      "descricao": "A RELACAO entre um passe de cidade e UMA atracao que ele cobre, lida na fonte do passe e datada. Nasceu em 22/10/2026 para a F3, e nasceu como entidade PROPRIA pelo mesmo motivo da FAIXA_DIARIA um bloco antes: ela nao e um campo de nenhum dos dois lados. Campo no PASSE forcaria uma lista de atracoes dentro do registro do passe, cada item sem data e sem fonte propria; campo na ATRACAO forcaria uma lista de passes dentro de cada ingresso. A cobertura tem data de leitura e fonte PROPRIAS porque e ela que envelhece: o bloco 1 mediu, em 14/09/2026, que a fonte de topo do Roma Pass avisa que as regras de reserva mudaram em 2026 — o preco do passe pode estar certo e a cobertura errada no mesmo dia.",
+      "por_que_ela_e_o_produto_da_F3": "Porque a F3 nao soma o que o passe DIZ cobrir: ela soma o que esta ilha LEU que ele cobre. As duas coisas sao diferentes e a diferenca tem numero — `atracoes_declaradas_pelo_passe` contra a contagem destes registros —, e e por isso que o ponto de equilibrio da F3 nunca e apresentado como o ponto de equilibrio DO PASSE.",
+      "campos": {
+        "id": {
+          "tipo": "slug",
+          "obrigatorio": true,
+          "unico": true
+        },
+        "passe": {
+          "tipo": "ref:EXPERIENCIA.id",
+          "obrigatorio": true,
+          "observacao": "tem de apontar para uma EXPERIENCIA de `categoria: passe_de_cidade`. Cobertura cujo passe nao e passe e uma relacao entre dois ingressos, que nao existe."
+        },
+        "experiencia": {
+          "tipo": "ref:EXPERIENCIA.id",
+          "obrigatorio": true,
+          "observacao": "a atracao coberta, NA MESMA CIDADE do passe e que NAO e passe. Passe que cobre passe seria a conta contada duas vezes."
+        },
+        "versao_coberta": {
+          "tipo": "ref:VERSAO.id | null",
+          "obrigatorio": true,
+          "exige_tambem_quando_null": "motivo_sem_versao_coberta",
+          "o_que_e": "QUAL bilhete da atracao o passe cobre. O Coliseu tem o ingresso comum e a Experiencia Completa, e um passe que cobre «o ingresso do Coliseu» quase nunca diz qual. Quando a fonte nao diz, este campo e null com motivo e a F3 publica o valor entregue como FAIXA entre a versao mais barata e a mais cara — nunca escolhendo uma, que seria decisao editorial com cara de conta."
+        },
+        "como": {
+          "tipo": "enum:forma_de_cobertura",
+          "obrigatorio": true,
+          "o_que_e": "O efeito NO PRECO, e so nele. `entrada_incluida`: o passe paga a entrada. `desconto_declarado`: abate um percentual. `sem_efeito_no_preco`: o passe da fila preferencial, transporte ou outro beneficio e NAO abate nada — e esta ultima existe porque contar beneficio de fila como dinheiro e o jeito mais facil de fazer um passe parecer que paga."
+        },
+        "reserva_obrigatoria": {
+          "tipo": "booleano",
+          "obrigatorio": true,
+          "exige_tambem_quando_true": "reserva_transcrita_de",
+          "o_que_e": "Campo SEPARADO de `como` de proposito: reserva obrigatoria nao muda o preco, muda se a cobertura e usavel. Misturar os dois num enum so faria um campo com dois eixos, e seria o primeiro a ganhar um valor que significa duas coisas."
+        },
+        "desconto_percentual": {
+          "tipo": "numero > 0 e < 100 | null",
+          "obrigatorio": true,
+          "so_quando": "como == desconto_declarado",
+          "proibido_quando": "como != desconto_declarado",
+          "observacao": "o numero tem de APARECER em `desconto_transcrito_de`, em digito ou por extenso, como `dias_de_uso` e `pessoas_por_quarto`."
+        },
+        "desconto_e_no_maximo": {
+          "tipo": "booleano | null",
+          "obrigatorio": true,
+          "so_quando": "como == desconto_declarado",
+          "o_que_e": "A TROCA QUE ESTA ENTIDADE FAZ, e e a mesma de `o_que_o_numero_e` um bloco antes: «ate 50% de desconto» NAO e 50% de desconto. Com `true`, o valor que o passe entrega naquela atracao e uma FAIXA de zero ao teto declarado; com `false`, e o percentual cheio. Sem este campo a hedge da fonte viraria numero cheio dentro da conta, e o resultado continuaria parecendo dinheiro."
+        },
+        "desconto_transcrito_de": {
+          "tipo": "texto | null",
+          "obrigatorio": true,
+          "so_quando": "como == desconto_declarado",
+          "o_que_e": "A frase de quem publicou, copiada. A regua le a HEDGE dela ('ate', 'no maximo', 'a partir de', 'cerca de'): frase com hedge e `desconto_e_no_maximo: false` e erro duro, porque e a hedge virando numero cheio."
+        },
+        "declarada_por": {
+          "tipo": "enum:declarada_por",
+          "obrigatorio": true,
+          "observacao": "de onde a cobertura foi lida: do ato oficial, do texto da fonte, ou do contraste da propria fonte. A mesma escada de todo campo declarado desta ilha."
+        },
+        "fonte": {
+          "tipo": "ref:FONTE.id",
+          "obrigatorio": true
+        },
+        "data_leitura": {
+          "tipo": "data AAAA-MM-DD",
+          "obrigatorio": true,
+          "observacao": "a data da COBERTURA, nunca herdada da data do preco do passe. Sao duas leituras e elas envelhecem em velocidades diferentes."
+        },
+        "status": {
+          "tipo": "enum:status_do_registro",
+          "obrigatorio": true
+        }
+      }
     }
   },
   "piso_de_compra": {
@@ -783,7 +877,11 @@
     "faixa etaria com `preco` null e motivo — nenhuma das 11 versoes tem: as faixas que o banco traz hoje ou tem numero (3,80 a 18,40 EUR na Torre Eiffel) ou tem zero, que e a gratuidade declarada. Faixa que a fonte NOMEIA sem dizer o preco e o caso que falta, e ele tem mutacao em mutacoes-banco.py",
     "EIXO `por_quantidade` COM UMA VERSAO SO. O esquema permite, e nesse mundo nao existe ponto de equilibrio nenhum — ha uma quantidade e nada com que compara-la. A F1 nao pode cair em lista vazia fingindo que a conta foi feita: ela diz que a experiencia declara eixo de quantidade e tem uma versao so. Produzido pela bancada de mutacoes do bloco 4 em 22/10/2026, porque o banco nao o tem.",
     "EIXO `por_quantidade` COM EMPATE DE PRECO entre duas versoes de quantidades diferentes. O esquema permite, e nesse mundo a versao mais cara nao existe: a de maior quantidade e a de menor custam o mesmo, e o equilibrio e 1. Mundo fabricado pela bancada em 22/10/2026 — a mesma familia do empate no topo que o Clube do Mosaico pagou em 08/10/2026.",
-    "FAIXA_DIARIA: ZERO registros. O esquema versao 6 a permite nas tres categorias e nos tres padroes, e o banco nao tem nenhuma — por isso a F2 de hoje publica uma linha de quatro. E a falta NAO E DESCUIDO: as duas unicas frases de diaria que esta ilha mediu (bloco 1, 14/09/2026) foram registradas SEM O NOME DE QUEM AS PUBLICOU, sem URL e sem data de leitura, e os tres campos sao obrigatorios aqui. Carregar hoje exigiria inventar o dono do numero. Esta linha e o registro de que os casos sao tratados pela regua HOJE e nao no dia em que a coleta acontecer."
+    "FAIXA_DIARIA: ZERO registros. O esquema versao 6 a permite nas tres categorias e nos tres padroes, e o banco nao tem nenhuma — por isso a F2 de hoje publica uma linha de quatro. E a falta NAO E DESCUIDO: as duas unicas frases de diaria que esta ilha mediu (bloco 1, 14/09/2026) foram registradas SEM O NOME DE QUEM AS PUBLICOU, sem URL e sem data de leitura, e os tres campos sao obrigatorios aqui. Carregar hoje exigiria inventar o dono do numero. Esta linha e o registro de que os casos sao tratados pela regua HOJE e nao no dia em que a coleta acontecer.",
+    "EXPERIENCIA com `categoria: passe_de_cidade`: ZERO registros. O valor esta no vocabulario desde a carga de 14/09/2026 e nenhum registro o usa — o aviso `vocabulario_sem_lastro` o conta em toda passada. O Roma Pass e o Lisboa Card que o corpus mediu (bloco 1) nao estao carregados porque carregar exige LER o preco na fonte do passe, e o egresso desta nuvem recusa romapass.it, turismoroma.it, lisboacard.org, visitlisboa.com e civitatis.com.br — medido em 22/10/2026, cinco dominios em 000 com raw.githubusercontent.com em 301 na mesma passada.",
+    "COBERTURA_DO_PASSE: ZERO registros, e a falta e a MESMA da linha acima e nao outra: sem passe no banco nao ha o que cobrir. A regua da entidade existe antes do primeiro registro de proposito, e a bateria de mutacoes carrega passe e cobertura EM MEMORIA para executa-la — e a licao da FAIXA_DIARIA, cujas ~80 linhas de regua quase nasceram sem bateria.",
+    "COBERTURA com `desconto_e_no_maximo: true` — a hedge da fonte («ate 50%») virada faixa de zero ao teto. Mundo de bancada em 22/10/2026.",
+    "EXPERIENCIA com `eixo_das_versoes: null` E `dias_de_uso` preenchido. O esquema permite as duas coisas juntas — eixo null e a experiencia de UMA versao, e um passe de validade unica e exatamente isso — e ATE 22/10/2026 a regua nao conferia a transcricao nesse caso: as duas direcoes de `dias_de_uso` cobravam `por_quantidade` e proibiam os outros eixos, e o null nao caia em nenhuma das duas. Fechado no bloco da F3, no dia em que a F3 precisou da validade do passe de uma versao so."
   ],
   "o_que_saiu_desta_lista_em_14_09_2026_as_23h": "preco por_pessoa, escada de dias como versoes e faixa_etaria preenchida sairam porque o Angkor Pass entrou no banco com os tres — 1, 3 e 7 dias como versoes, preco por pessoa e a gratuidade de menores de 12 anos como faixa_etaria. Eles continuam tendo mutacao em mutacoes-banco.py: mundo produzido que virou banco real nao dispensa a regua, porque o mundo produzido cobre a combinacao inteira e o registro real cobre so a dele.",
   "por_que_essa_lista_existe": "Todo caso que o ESQUEMA permite e o banco ainda nao tem e um caso que a regua precisa tratar HOJE, nao no dia em que aparecer (secao 8 do ARQUIPELAGO.md). ferramentas/mutacoes-banco.py produz cada um destes mundos e verifica que o validador decide certo nos dois lados da fronteira — o mundo valido tem de PASSAR, e e essa metade que prova que a trava nao esta apenas dizendo nao para tudo.",
@@ -808,7 +906,7 @@
   },
   "versao_3_mudou": "Carga de 15/09/2026. Nasceu `regra_de_crescimento_de_vocabulario` (vocabulario cresce com o registro que o usa, nunca antes — e ela responde a pergunta da moeda que a carga de 14/09 deixou aberta). `tipo_de_operador` ganhou `concessionaria_de_bem_publico`, no mesmo commit do registro que precisa dele. O degrau 4 da escada passou a `existe_hoje: true` e `existe_hoje` virou campo DERIVADO, recomputado pelo validador. E ficou escrito o achado de modelo desta carga: `faixa_etaria` e da VERSAO e o esquema a poe na EXPERIENCIA.",
   "versao_4_mudou": "Migracao de 22/10/2026, primeiro dia da jornadafly em foco. `faixa_etaria` saiu da EXPERIENCIA e entrou na VERSAO, com a entidade FAIXA_ETARIA nascendo explicita; a proibicao de faixa fora de `por_pessoa` deixou de ser prosa no registro da gondola e virou regra do esquema, porque `unidade_de_preco` e campo da VERSAO; nasceu `faixas_que_a_fonte_declara_e_a_leitura_nao_transcreveu`, que conta a lacuna em vez de a calar; e nasceu `numero_da_frase_e_de_outra_versao`, que e o defeito que a migracao achou no Angkor — a frase da fonte cita US$ 37, o passe de um dia, e ela estava guardada num campo que valia para os tres passes. NADA foi ao ar: esta ilha nao tem site, nao tem Sync e nao tem /status, e dizer que verificou no ar seria inventar.",
-  "versao": 6,
+  "versao": 7,
   "conta_3_da_F1_exige_EIXO_DECLARADO_e_nao_sai_do_rotulo": {
     "nascida_em": "2026-10-22",
     "medida_em": "o bloco 4 desta ilha, escrevendo a F1 como regra sobre o banco versao 4",
@@ -817,5 +915,17 @@
     "por_que_a_funcao_e_PURA": "A regra da secao 8 do ARQUIPELAGO.md, aprendida no Clube do Mosaico em 08/10/2026: recusa que depende de uma relacao entre os dados mora numa funcao pura que recebe a relacao JA calculada. O ponto de equilibrio da F1 recebe `[(id, preco, dias_de_uso)]` e o eixo, e devolve as linhas — nunca varre o banco por dentro. Assim a bancada fabrica o mundo (eixo por_quantidade com uma versao so, com empate de preco, com preco null, com dias_de_uso igual em duas versoes) sem precisar fabricar um banco falso.",
     "o_que_o_banco_de_hoje_tem": "UMA experiencia com eixo `por_quantidade` (o Angkor Pass, 1/3/7 dias), duas `por_escopo` (Coliseu e Torre Eiffel) e uma `por_momento` (a gondola). Ou seja: tres dos quatro valores de eixo existem no banco e o quarto caso — eixo por_quantidade com UMA versao — nao existe, e e mundo que o esquema permite. Esta linha e o registro de que ele foi tratado hoje e nao no dia em que aparecer."
   },
-  "versao_5_mudou": "Migracao de 22/10/2026, segundo bloco do dia na jornadafly. Nasceu a entidade FAIXA_DIARIA com quatro vocabularios novos (`categoria_de_custo`, `padrao_de_viagem`, `base_da_faixa`, `o_que_o_numero_e`), porque a F2 soma hospedagem, alimentacao e transporte local e NENHUMA das tres e experiencia: elas nao sao colhidas por nos, sao faixa que terceiro publicou. A migracao e a MESMA troca da versao 5 um andar acima — lá a quantidade de uso de cada bilhete saiu da prosa do `rotulo` para `dias_de_uso`; aqui o que sai da prosa e O QUE O NUMERO SIGNIFICA, que o bloco 1 mediu em duas frases da mesma SERP («media de R$ 203,87 nos ultimos 30 dias» e «a diaria mais baixa encontrada foi R$ 396,84») e que ficou escrito como ressalva de leitura humana por 38 dias. Agora e `o_que_o_numero_e`, que e enum, e a regra «faixa de natureza diferente nao se soma» passou a ser computavel. E SAIU UM CAMPO: `versao_esquema` foi apagado. Ele dizia 4 enquanto `versao` dizia 5 — dois nomes para o mesmo fato, com um deles ja errado, que e a familia de defeito que este contrato mais paga. Nada no repositorio o lia (conferido com grep em 22/10/2026); quem quiser a versao do esquema le `versao`."
+  "regra_da_cobertura_do_passe": {
+    "nascida_em": "2026-10-22",
+    "nasceu_de": "o bloco 5 da jornadafly, a F3 como REGRA. A especificacao (secao 4) ja dizia que a F3 soma avulsos contra o preco do passe e publica o ponto de equilibrio; escrever a regra mostrou que a conta do ponto de equilibrio NAO E A PARTE DIFICIL. A parte dificil e sobre O QUE ela e calculada.",
+    "as_tres_regras": [
+      "NAO LIDA NAO E NAO COBERTA. Atracao pretendida para a qual nao existe COBERTURA_DO_PASSE fica fora do valor que o passe entrega E e nomeada na tela como nao lida. Trata-la como nao coberta publicaria um veredito de «nao paga» que a ilha nao mediu; trata-la como coberta publicaria o contrario. As duas leituras sao erradas e a unica honesta e dizer que ninguem leu.",
+      "O PONTO DE EQUILIBRIO E SOBRE O QUE A ILHA LEU, NUNCA SOBRE O PASSE. A F3 publica, lado a lado, quantas atracoes o passe DECLARA cobrir e quantas esta ilha LEU, e a frase do equilibrio diz sobre quantas ele foi calculado. Um passe que declara 50 atracoes e tem 3 lidas nao tem equilibrio publicavel como equilibrio DELE — e e exatamente a conta que o 1o colocado da consulta publica sem dizer de quantas atracoes ela sai.",
+      "DESCONTO COM TETO E FAIXA, NAO NUMERO. «Ate 50%» entrega de zero a metade do avulso, e a F3 publica as duas pontas. E a mesma troca do `o_que_o_numero_e` da FAIXA_DIARIA: o que sai da prosa para o campo nao e o numero, e O QUE O NUMERO E."
+    ],
+    "o_que_ela_nao_faz": "Nao decide se o passe vale a pena quando a faixa do valor entregue ATRAVESSA o preco do passe. Nesse caso existe versao de atracao em que ele paga e versao em que nao paga, e a F3 publica os dois numeros e diz que o veredito depende de qual bilhete a pessoa compraria. Veredito unico ali seria a ilha escolhendo a versao no lugar de quem viaja."
+  },
+  "versao_5_mudou_e_O_NUMERO_DELE_ESTAVA_ERRADO": "RENOMEADO EM 22/10/2026, no bloco da F3: esta chave se chamava `versao_5_mudou` e descrevia a migracao que levou o esquema a versao SEIS (a entidade FAIXA_DIARIA). A versao 5 foi outra coisa — `eixo_das_versoes` e `dias_de_uso`, documentados na chave `conta_3_da_F1_exige_EIXO_DECLARADO_e_nao_sai_do_rotulo`. Quem procurasse «o que mudou na versao 6» nao achava, e quem lesse `versao_5_mudou` lia a versao errada. E a mesma familia do `versao_esquema` que a propria migracao da versao 6 apagou: dois nomes para o mesmo fato, com um deles ja errado. O texto esta inteiro em `versao_6_mudou`.",
+  "versao_6_mudou": "Migracao de 22/10/2026, segundo bloco do dia na jornadafly. Nasceu a entidade FAIXA_DIARIA com quatro vocabularios novos (`categoria_de_custo`, `padrao_de_viagem`, `base_da_faixa`, `o_que_o_numero_e`), porque a F2 soma hospedagem, alimentacao e transporte local e NENHUMA das tres e experiencia: elas nao sao colhidas por nos, sao faixa que terceiro publicou. A migracao e a MESMA troca da versao 5 um andar acima — lá a quantidade de uso de cada bilhete saiu da prosa do `rotulo` para `dias_de_uso`; aqui o que sai da prosa e O QUE O NUMERO SIGNIFICA, que o bloco 1 mediu em duas frases da mesma SERP («media de R$ 203,87 nos ultimos 30 dias» e «a diaria mais baixa encontrada foi R$ 396,84») e que ficou escrito como ressalva de leitura humana por 38 dias. Agora e `o_que_o_numero_e`, que e enum, e a regra «faixa de natureza diferente nao se soma» passou a ser computavel. E SAIU UM CAMPO: `versao_esquema` foi apagado. Ele dizia 4 enquanto `versao` dizia 5 — dois nomes para o mesmo fato, com um deles ja errado, que e a familia de defeito que este contrato mais paga. Nada no repositorio o lia (conferido com grep em 22/10/2026); quem quiser a versao do esquema le `versao`.",
+  "versao_7_mudou": "Bloco da F3, 22/10/2026. Nasceu a entidade COBERTURA_DO_PASSE, com o vocabulario `forma_de_cobertura`, mais dois campos na EXPERIENCIA que SO existem em passe (`atracoes_declaradas_pelo_passe` e a frase de onde o numero saiu) e a `regra_da_cobertura_do_passe` com as tres regras de honestidade da F3. A entidade nasce VAZIA, como a FAIXA_DIARIA nasceu na versao 6, e pelo mesmo tipo de motivo: carregar exige ler o preco e a cobertura na fonte do passe, e os cinco dominios de passe que o corpus mediu estao recusados no egresso desta nuvem. O vocabulario novo nasce SEM LASTRO, igual aos quatro da versao 6 — e a consequencia que a `regra_de_crescimento_de_vocabulario` impoe esta obedecida e agora CONFERIDA: a F3 nunca publica frase de inexistencia sobre cobertura, ela publica «esta ilha nao leu», e o portao da F3 cobra isso em cada estado."
 }

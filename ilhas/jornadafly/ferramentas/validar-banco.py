@@ -160,6 +160,33 @@ def validar(esquema, banco, constantes=None, hoje=None):
         if msg not in avisos:
             avisos.append(msg)
 
+    def conferir_dias_transcrito(ondev, versao, dias):
+        """`dias_de_uso` preenchido: inteiro, com a frase, e o numero DENTRO da frase.
+
+        Virou funcao em 22/10/2026, no bloco da F3, porque a conferencia valia para DOIS
+        eixos e estava escrita dentro de um: `por_quantidade` a fazia e `eixo null` — a
+        experiencia de UMA versao, que e exatamente o que um passe de validade unica e —
+        nao caia em nenhuma das duas direcoes e passava calado. Duas copias da mesma
+        conferencia seriam a familia de defeito que esta pasta mais paga; uma funcao
+        chamada de dois lugares nao.
+        """
+        nonlocal n_dias_de_uso
+        if not isinstance(dias, int) or isinstance(dias, bool) or dias < 1:
+            erro("%s: `dias_de_uso` %r nao e inteiro maior que zero." % (ondev, dias))
+            return
+        if not versao.get("dias_de_uso_transcrito_de"):
+            erro("%s: `dias_de_uso` %r sem `dias_de_uso_transcrito_de`. Numero que vira "
+                 "campo diz de qual frase saiu — a mesma disciplina do `transcrito_de` "
+                 "das faixas etarias." % (ondev, dias))
+        n_dias_de_uso += 1
+        declarado = versao.get("declarado_como") or ""
+        if not _declara_o_numero(declarado, dias):
+            erro("%s: `dias_de_uso` %r nao aparece em `declarado_como` (%r), nem em "
+                 "digito nem por extenso. O numero tem de estar na FRASE DA FONTE: "
+                 "aceita-lo so porque esta no campo e confiar na transcricao em vez de "
+                 "conferi-la, e e a conta que a secao 8 chama de terceira."
+                 % (ondev, dias, declarado[:90]))
+
     # ------------------------------------------------------------------
     # 1. O ESQUEMA ESTA INTEIRO?
     # A regua le a lista DELE (26.2). Se a chave sumir, tudo passa em silencio —
@@ -175,7 +202,7 @@ def validar(esquema, banco, constantes=None, hoje=None):
     for chave in ("unidade_de_preco", "declarada_por", "categoria", "tipo_de_operador",
                   "momento_do_dia", "canal_de_leitura", "moeda", "status_do_registro",
                   "eixo_das_versoes", "categoria_de_custo", "padrao_de_viagem",
-                  "base_da_faixa", "o_que_o_numero_e"):
+                  "base_da_faixa", "o_que_o_numero_e", "forma_de_cobertura"):
         if not isinstance(vocab.get(chave), list) or not vocab.get(chave):
             erro("esquema: vocabularios.%s ausente ou vazio." % chave)
 
@@ -183,6 +210,21 @@ def validar(esquema, banco, constantes=None, hoje=None):
         erro("esquema: entidade `FAIXA_DIARIA` ausente. Ela e onde moram hospedagem, "
              "alimentacao e transporte local — as tres linhas da F2 que NAO sao nossas. "
              "Sem ela a regua nao tem o que cobrar e a F2 some uma linha sem dono.")
+
+    if not isinstance((esquema.get("entidades") or {}).get("COBERTURA_DO_PASSE"), dict):
+        erro("esquema: entidade `COBERTURA_DO_PASSE` ausente. Ela e a relacao entre um "
+             "passe e UMA atracao que ele cobre, e e sobre ela que a F3 calcula o ponto "
+             "de equilibrio. Sem ela a regua nao tem o que cobrar e a F3 somaria o que o "
+             "passe DIZ cobrir em vez do que esta ilha LEU que ele cobre.")
+
+    regra_cobertura = esquema.get("regra_da_cobertura_do_passe")
+    if not isinstance(regra_cobertura, dict) or \
+            not isinstance(regra_cobertura.get("as_tres_regras"), list) or \
+            len(regra_cobertura.get("as_tres_regras") or []) != 3:
+        erro("esquema: `regra_da_cobertura_do_passe.as_tres_regras` ausente ou sem as "
+             "tres. A regua le a lista DELE (26.2), e as tres sao o que a F3 publica: "
+             "nao lida nao e nao coberta, o equilibrio e sobre o que a ilha leu, e "
+             "desconto com teto e faixa.")
 
     exige = esquema.get("campos_que_exigem_declaracao_de_origem")
     campos_declarada_por = None
@@ -404,6 +446,7 @@ def validar(esquema, banco, constantes=None, hoje=None):
     intestaveis = 0
     com_brl_convertido = 0
     sem_versao = 0
+    n_passes = 0
     vencidos = []
 
     for exp in banco.get("experiencias", []):
@@ -469,6 +512,54 @@ def validar(esquema, banco, constantes=None, hoje=None):
                  "campo da VERSAO, porque o preco de uma faixa depende do bilhete: "
                  "gravada aqui, ela publica um numero so para versoes que cobram "
                  "diferente." % onde)
+
+        # ---------------- PASSE DE CIDADE: os dois campos que so existem aqui
+        #
+        # Nasceram em 22/10/2026 com a entidade COBERTURA_DO_PASSE. `atracoes_declaradas_
+        # pelo_passe` NAO e a contagem das coberturas lidas: e o numero que a fonte do
+        # passe publica, e a distancia entre os dois e o que a F3 leva para a tela. Os dois
+        # sao PROIBIDOS fora de `passe_de_cidade` pela mesma razao que `pessoas_por_quarto`
+        # e proibido fora da base de quarto: dar o campo a quem nao tem o fato convida a
+        # conta que nao existe.
+        e_passe = exp.get("categoria") == "passe_de_cidade"
+        if e_passe:
+            n_passes += 1
+            if "atracoes_declaradas_pelo_passe" not in exp:
+                erro("%s: passe de cidade sem o campo `atracoes_declaradas_pelo_passe`. "
+                     "Ausencia de chave e esquecimento; null com motivo e resposta — e "
+                     "sem este numero a F3 nao tem com que comparar as coberturas que a "
+                     "ilha leu." % onde)
+            else:
+                quantas = exp.get("atracoes_declaradas_pelo_passe")
+                transcrito = exp.get("atracoes_declaradas_transcrito_de")
+                if quantas is None:
+                    if not exp.get("motivo_sem_atracoes_declaradas"):
+                        erro("%s: `atracoes_declaradas_pelo_passe` null sem "
+                             "`motivo_sem_atracoes_declaradas`. Passe que nao diz quantas "
+                             "atracoes cobre existe; passe que nao diz nem isso nem por "
+                             "que nao diz e lacuna muda." % onde)
+                elif not isinstance(quantas, int) or isinstance(quantas, bool) or quantas < 1:
+                    erro("%s: `atracoes_declaradas_pelo_passe` %r nao e inteiro maior que "
+                         "zero." % (onde, quantas))
+                elif not transcrito:
+                    erro("%s: `atracoes_declaradas_pelo_passe` %r sem "
+                         "`atracoes_declaradas_transcrito_de`. Numero que vira campo diz "
+                         "de qual frase saiu." % (onde, quantas))
+                elif not _declara_o_numero(transcrito, quantas):
+                    erro("%s: `atracoes_declaradas_pelo_passe` %r nao aparece em "
+                         "`atracoes_declaradas_transcrito_de` (%r), nem em digito nem por "
+                         "extenso. O numero do passe e TRANSCRITO da frase de quem o "
+                         "vende: e justamente o numero que os artigos do nicho publicam "
+                         "sem dizer de onde saiu." % (onde, quantas, transcrito[:90]))
+        else:
+            for campo in ("atracoes_declaradas_pelo_passe",
+                          "atracoes_declaradas_transcrito_de",
+                          "motivo_sem_atracoes_declaradas"):
+                if campo in exp:
+                    erro("%s: `%s` gravado numa experiencia de categoria %r. O esquema "
+                         "PROIBE: so passe de cidade declara quantas atracoes cobre, e "
+                         "dar o campo a um ingresso avulso faria a F3 procurar cobertura "
+                         "onde nao ha passe." % (onde, campo, exp.get("categoria")))
 
         for campo, motivo in (("temporada", "motivo_sem_temporada"),
                               ("imagem", "motivo_sem_imagem")):
@@ -568,25 +659,8 @@ def validar(esquema, banco, constantes=None, hoje=None):
                              "sao mais da mesma coisa e esta versao nao diz QUANTO — a "
                              "Conta 3 da F1 nao tem a grandeza do eixo que a propria "
                              "experiencia declarou ter." % ondev)
-                    elif not isinstance(dias, int) or isinstance(dias, bool) or dias < 1:
-                        erro("%s: `dias_de_uso` %r nao e inteiro maior que zero."
-                             % (ondev, dias))
                     else:
-                        de = versao.get("dias_de_uso_transcrito_de")
-                        if not de:
-                            erro("%s: `dias_de_uso` %r sem `dias_de_uso_transcrito_de`. "
-                                 "Numero que vira campo diz de qual frase saiu — a mesma "
-                                 "disciplina do `transcrito_de` das faixas etarias."
-                                 % (ondev, dias))
-                        n_dias_de_uso += 1
-                        declarado = versao.get("declarado_como") or ""
-                        if not _declara_o_numero(declarado, dias):
-                            erro("%s: `dias_de_uso` %r nao aparece em `declarado_como` "
-                                 "(%r), nem em digito nem por extenso. O numero tem de "
-                                 "estar na FRASE DA FONTE: aceita-lo so porque esta no "
-                                 "campo e confiar na transcricao em vez de conferi-la, e "
-                                 "e a conta que a secao 8 chama de terceira."
-                                 % (ondev, dias, declarado[:90]))
+                        conferir_dias_transcrito(ondev, versao, dias)
                 elif eixo is not None:
                     if dias is not None:
                         erro("%s: `dias_de_uso` %r numa experiencia de eixo %r. O "
@@ -598,6 +672,21 @@ def validar(esquema, banco, constantes=None, hoje=None):
                     elif not versao.get("motivo_sem_dias_de_uso"):
                         erro("%s: `dias_de_uso` null sem `motivo_sem_dias_de_uso`."
                              % ondev)
+                else:
+                    # EIXO NULL — a experiencia de UMA versao. Aqui `dias_de_uso` E
+                    # PERMITIDO e ate hoje nao era conferido por ninguem: um passe de
+                    # cidade de validade unica (72 horas e so) cai exatamente aqui, e e
+                    # a validade dele que a F3 compara com os dias da estadia. Achado em
+                    # 22/10/2026 pelo bloco da F3, que precisou do campo neste mundo.
+                    if dias is None:
+                        if not versao.get("motivo_sem_dias_de_uso"):
+                            erro("%s: `dias_de_uso` null sem `motivo_sem_dias_de_uso` "
+                                 "numa experiencia de eixo null. A F3 compara a validade "
+                                 "do passe com os dias da estadia: sem o campo e sem o "
+                                 "motivo ela nao sabe se nao ha validade ou se ninguem a "
+                                 "leu, e as duas dao telas diferentes." % ondev)
+                    else:
+                        conferir_dias_transcrito(ondev, versao, dias)
 
             # ---- FAIXA ETARIA (desceu para a VERSAO em 22/10/2026)
             if "faixa_etaria" not in versao:
@@ -1138,6 +1227,179 @@ def validar(esquema, banco, constantes=None, hoje=None):
                   % ("/".join(str(c) for c in chave), len(nats), ", ".join(sorted(nats))))
 
     # ------------------------------------------------------------------
+    # 4c. COBERTURAS DE PASSE — a relacao entre um passe e UMA atracao
+    #
+    # A regua existe ANTES do primeiro registro, como a da FAIXA_DIARIA: o banco tem
+    # ZERO coberturas hoje porque carregar exige ler a fonte do passe, e os cinco
+    # dominios de passe que o corpus mediu estao recusados no egresso desta nuvem. O
+    # que a torna executavel sao os mundos de ferramentas/mutacoes-banco.py, que
+    # carregam passe e cobertura EM MEMORIA — a licao da FAIXA_DIARIA, cujas ~80 linhas
+    # de regua quase nasceram sem ninguem para roda-las.
+    # ------------------------------------------------------------------
+    coberturas = {}
+    n_coberturas_publicaveis = 0
+    por_par = {}
+    # O indice das experiencias POR ID, montado aqui e nao reaproveitado do laco acima:
+    # la existe `ids`, que e um CONJUNTO e nao da acesso ao registro. Esta linha nasceu de
+    # um defeito que ia estourar na primeira cobertura gravada e nunca antes dela — a
+    # secao usava um `por_id` que nao existia, e com zero coberturas o laco nao roda e o
+    # NameError nao acontece. E a familia exata da regra da secao 8 que esta pasta mais
+    # repete: codigo que o banco de hoje nao alcanca so e medido por mundo de bancada.
+    por_id = {e.get("id"): e for e in banco.get("experiencias", [])}
+    for cob in banco.get("coberturas_de_passe", []):
+        cid_cob = cob.get("id")
+        onde = "coberturas_de_passe/%s" % (cid_cob or "?")
+        if not cid_cob:
+            erro("%s: sem `id`." % onde)
+            continue
+        if cid_cob in coberturas:
+            erro("%s: `id` repetido." % onde)
+        coberturas[cid_cob] = cob
+
+        passe = por_id.get(cob.get("passe"))
+        atracao = por_id.get(cob.get("experiencia"))
+        if passe is None:
+            erro("%s: `passe` %r nao esta no banco." % (onde, cob.get("passe")))
+        elif passe.get("categoria") != "passe_de_cidade":
+            erro("%s: `passe` %r tem categoria %r. Cobertura cujo passe nao e "
+                 "`passe_de_cidade` e uma relacao entre dois ingressos, e essa relacao "
+                 "nao existe." % (onde, cob.get("passe"), passe.get("categoria")))
+        if atracao is None:
+            erro("%s: `experiencia` %r nao esta no banco. Cobertura de atracao que a ilha "
+                 "nao conhece nao tem avulso com que ser comparada — e e o avulso que faz "
+                 "a conta da F3." % (onde, cob.get("experiencia")))
+        elif atracao.get("categoria") == "passe_de_cidade":
+            erro("%s: `experiencia` %r tambem e passe de cidade. Passe que cobre passe "
+                 "faria a F3 somar a mesma conta duas vezes."
+                 % (onde, cob.get("experiencia")))
+        if passe is not None and atracao is not None \
+                and passe.get("cidade") != atracao.get("cidade"):
+            erro("%s: o passe e de %r e a atracao e de %r. Passe de cidade cobre atracao "
+                 "DAQUELA cidade: cobertura cruzando cidade publicaria, na pagina de uma, "
+                 "o valor entregue na outra." % (onde, passe.get("cidade"),
+                                                 atracao.get("cidade")))
+
+        par = (cob.get("passe"), cob.get("experiencia"))
+        if par in por_par:
+            erro("%s: segunda cobertura do par passe %r x atracao %r (a outra e %s). Duas "
+                 "leituras do mesmo par fariam a F3 contar o valor entregue duas vezes; "
+                 "leitura nova SUBSTITUI a antiga, com a data nova."
+                 % (onde, par[0], par[1], por_par[par]))
+        else:
+            por_par[par] = cid_cob
+
+        for chave, campo in (("forma_de_cobertura", "como"),
+                             ("declarada_por", "declarada_por"),
+                             ("status_do_registro", "status")):
+            if not em_vocab(chave, cob.get(campo)):
+                erro("%s: `%s` %r fora do vocabulario `%s`."
+                     % (onde, campo, cob.get(campo), chave))
+
+        # ---- A VERSAO COBERTA: null e resposta, ausencia e esquecimento.
+        if "versao_coberta" not in cob:
+            erro("%s: falta o campo `versao_coberta`. Ausencia de chave e esquecimento; "
+                 "null com motivo e resposta — e a diferenca decide se a F3 publica UM "
+                 "numero ou uma FAIXA." % onde)
+        else:
+            vc = cob.get("versao_coberta")
+            if vc is None:
+                if not cob.get("motivo_sem_versao_coberta"):
+                    erro("%s: `versao_coberta` null sem `motivo_sem_versao_coberta`. Fonte "
+                         "de passe quase nunca diz QUAL bilhete ela cobre, e esse e o caso "
+                         "comum: ele vai para a tela como faixa, com o motivo." % onde)
+            elif atracao is not None:
+                nomes = [v.get("id") for v in (atracao.get("versoes") or [])]
+                if vc not in nomes:
+                    erro("%s: `versao_coberta` %r nao e uma versao de %r (as versoes sao "
+                         "%s)." % (onde, vc, cob.get("experiencia"),
+                                   ", ".join(repr(n) for n in nomes) or "nenhuma"))
+
+        # ---- A RESERVA OBRIGATORIA: campo separado do `como` de proposito.
+        if not isinstance(cob.get("reserva_obrigatoria"), bool):
+            erro("%s: `reserva_obrigatoria` %r nao e booleano. O bloco 1 mediu, em "
+                 "14/09/2026, que a fonte de topo do Roma Pass avisa que as regras de "
+                 "reserva mudaram em 2026: e o dado que envelhece primeiro nesta "
+                 "ferramenta, e ele nao pode ser null." % (onde, cob.get("reserva_obrigatoria")))
+        elif cob.get("reserva_obrigatoria") and not (cob.get("reserva_transcrita_de") or "").strip():
+            erro("%s: `reserva_obrigatoria` true sem `reserva_transcrita_de`. A regra de "
+                 "reserva vai para a tela com a frase de quem a publicou, ao lado do "
+                 "preco — sem a frase, ela e uma afirmacao desta ilha sobre o passe de "
+                 "outro." % onde)
+
+        # ---- O DESCONTO: o campo existe so na forma que o usa, e a HEDGE e lida.
+        como = cob.get("como")
+        pct = cob.get("desconto_percentual")
+        teto = cob.get("desconto_e_no_maximo")
+        transcrito = cob.get("desconto_transcrito_de") or ""
+        if como == "desconto_declarado":
+            if not isinstance(pct, (int, float)) or isinstance(pct, bool) \
+                    or pct <= 0 or pct >= 100:
+                erro("%s: `desconto_percentual` %r nao e numero entre 0 e 100 (exclusive). "
+                     "Desconto de 100%% e entrada incluida e tem forma propria; desconto de "
+                     "zero e `sem_efeito_no_preco`." % (onde, pct))
+            elif not transcrito.strip():
+                erro("%s: `desconto_percentual` %r sem `desconto_transcrito_de`." % (onde, pct))
+            elif isinstance(pct, int) and not _declara_o_numero(transcrito, pct):
+                erro("%s: `desconto_percentual` %r nao aparece em "
+                     "`desconto_transcrito_de` (%r). O numero e transcrito da frase de "
+                     "quem vende o passe." % (onde, pct, transcrito[:90]))
+            if not isinstance(teto, bool):
+                erro("%s: `desconto_e_no_maximo` %r nao e booleano. E ele que diz se «50%%» "
+                     "e 50%% ou «ate 50%%» — e sem ele a hedge da fonte entra na conta como "
+                     "numero cheio, com o resultado continuando a parecer dinheiro."
+                     % (onde, teto))
+            else:
+                hedge = next((h for h in HEDGES + ("ate ", "até ", "no maximo",
+                                                   "no máximo") if h in transcrito.lower()),
+                             None)
+                if hedge and not teto:
+                    erro("%s: `desconto_transcrito_de` traz a hedge %r e "
+                         "`desconto_e_no_maximo` e false. A frase diz que o desconto e um "
+                         "TETO e o campo diz que e o valor: e a hedge virando numero "
+                         "cheio, que e o defeito que este par de campos existe para "
+                         "impedir." % (onde, hedge))
+        else:
+            for campo in ("desconto_percentual", "desconto_e_no_maximo",
+                          "desconto_transcrito_de"):
+                if cob.get(campo) is not None:
+                    erro("%s: `%s` gravado com `como` %r. O esquema PROIBE desconto fora "
+                         "de `desconto_declarado`: ali nao ha percentual a abater, e dar "
+                         "o campo convida a conta que nao existe." % (onde, campo, como))
+
+        if cob.get("fonte") not in fontes:
+            erro("%s: `fonte` %r nao esta em fontes[]." % (onde, cob.get("fonte")))
+        else:
+            fontes_usadas.add(cob.get("fonte"))
+        if not _e_data(cob.get("data_leitura")):
+            erro("%s: `data_leitura` ausente ou nao e data. A data da COBERTURA nao e "
+                 "herdada da data do preco do passe: sao duas leituras e elas envelhecem "
+                 "em velocidades diferentes." % onde)
+        if cob.get("status") == "publicavel":
+            n_coberturas_publicaveis += 1
+
+    # A OUTRA DIRECAO (secao 8): passe publicavel sem NENHUMA cobertura lida nao e erro
+    # de banco — e o estado em que todo passe nasce —, e e AVISO porque a F3 publica o
+    # passe assim mesmo, dizendo que a cobertura nao foi lida. O que seria defeito e a
+    # F3 calar sobre isso, e quem cobra essa metade e o portao dela.
+    for exp in banco.get("experiencias", []):
+        if exp.get("categoria") != "passe_de_cidade" or exp.get("status") == "excluido_do_banco":
+            continue
+        quantas = sum(1 for c in banco.get("coberturas_de_passe", [])
+                      if c.get("passe") == exp.get("id") and c.get("status") == "publicavel")
+        declaradas = exp.get("atracoes_declaradas_pelo_passe")
+        if quantas == 0:
+            aviso("experiencias/%s: passe de cidade com ZERO coberturas publicaveis "
+                  "lidas. A F3 publica o preco dele e NAO publica ponto de equilibrio: "
+                  "nao ha valor entregue a somar, e supor cobertura seria inventar o "
+                  "produto do passe." % exp.get("id"))
+        elif isinstance(declaradas, int) and quantas < declaradas:
+            aviso("experiencias/%s: o passe declara cobrir %d atracoes e esta ilha leu "
+                  "%d. O ponto de equilibrio da F3 e sobre as %d lidas e a tela diz isso "
+                  "— equilibrio sobre parte da cobertura apresentado como equilibrio do "
+                  "passe e o defeito que o 1o colocado da consulta comete."
+                  % (exp.get("id"), declaradas, quantas, quantas))
+
+    # ------------------------------------------------------------------
     # 5. AS DUAS DIRECOES (secao 8): dado colhido que a tela nunca usa tambem conta
     # ------------------------------------------------------------------
     for fid in fontes:
@@ -1196,6 +1458,9 @@ def validar(esquema, banco, constantes=None, hoje=None):
         "versoes_com_dias_de_uso": n_dias_de_uso,
         "faixas_diarias": len(banco.get("faixas_diarias", [])),
         "faixas_diarias_publicaveis": n_faixas_publicaveis,
+        "coberturas_de_passe": len(banco.get("coberturas_de_passe", [])),
+        "coberturas_de_passe_publicaveis": n_coberturas_publicaveis,
+        "experiencias_que_sao_passe_de_cidade": n_passes,
     }
     gravado = banco.get("resumo") or {}
     for chave, valor in calculado.items():
@@ -1263,6 +1528,10 @@ def validar(esquema, banco, constantes=None, hoje=None):
                 usar("declarada_por", versao.get("capacidade_maxima_declarada_por"))
                 for acrescimo in (versao.get("acrescimos") or []):
                     usar("moeda", acrescimo.get("moeda"))
+        for cob in banco.get("coberturas_de_passe", []):
+            usar("forma_de_cobertura", cob.get("como"))
+            usar("declarada_por", cob.get("declarada_por"))
+            usar("status_do_registro", cob.get("status"))
         for faixa in banco.get("faixas_diarias", []):
             usar("moeda", faixa.get("moeda"))
             usar("status_do_registro", faixa.get("status"))
@@ -1279,6 +1548,7 @@ def validar(esquema, banco, constantes=None, hoje=None):
             "momento_do_dia", "canal_de_leitura", "status_do_registro",
             "eixo_das_versoes", "declarada_por", "categoria_de_custo",
             "padrao_de_viagem", "base_da_faixa", "o_que_o_numero_e",
+            "forma_de_cobertura",
         }
         sem_extrator = sorted(c for c in vocab if c not in com_extrator)
         if sem_extrator:
@@ -1313,17 +1583,15 @@ def main():
     erros, avisos, calculado = validar(esquema, banco, constantes)
 
     print("Banco da JornadaFly — verificacao do esquema do bloco 3")
-    for chave in ("cidades", "experiencias", "versoes", "fontes", "declaracoes",
-                  "declaracoes_publicaveis", "declaracoes_sem_versao", "itens_sem_saida_de_compra",
-                  "itens_com_piso_nao_rastreavel", "itens_intestaveis",
-                  "experiencias_com_preco_em_brl", "fontes_de_leitura_direta",
-                  "faixas_etarias", "faixas_declaradas_nao_transcritas",
-                  "experiencias_com_eixo_por_quantidade",
-                  "experiencias_com_eixo_por_escopo",
-                  "experiencias_com_eixo_por_momento",
-                  "versoes_com_dias_de_uso"):
-        if chave in calculado:
-            print("  %-32s %s" % (chave.replace("_", " ") + " ", calculado[chave]))
+    # A LISTA DE CHAVES SAI DO `calculado`, nunca escrita a mao. Ate 22/10/2026 ela era
+    # uma tupla literal aqui, e `faixas_diarias` e `faixas_diarias_publicaveis` — nascidas
+    # na migracao do dia anterior — NAO ESTAVAM NELA: a regua contava os dois e o
+    # relatorio nao os mostrava, de modo que a unica entidade com zero registros era
+    # tambem a unica invisivel na tela de quem roda o portao. E a mesma familia da lista
+    # de sete nomes de vocabulario que esta regua acabou de matar um andar acima, e do
+    # descobridor de portoes da aquametria: lista escrita a mao nao erra alto, erra calada.
+    for chave, valor in calculado.items():
+        print("  %-38s %s" % (chave.replace("_", " ") + " ", valor))
     for a in avisos:
         print("  AVISO: %s" % a)
     if erros:
