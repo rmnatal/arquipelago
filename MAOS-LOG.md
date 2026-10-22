@@ -6396,3 +6396,70 @@ pessoal de terceiro escrito. O `ARQUIPELAGO.md` não foi aberto: a decisão veio
 gravado byte a byte como veio, sem reformatar e sem corrigir — inclusive o travessão fino em
 `Substrato para Zamioculca – Planta da Fortuna`, que ficou como estava na instrução, diferente dos travessões
 longos do resto do arquivo.
+
+---
+
+## Disparo de 21/10/2026 21:33 BRT (22/10/2026 00:33 UTC) — Bússola, remedição do M da fila inteira
+
+Assunto: Projeto Arquipélago / Bússola / remedição de comissão no painel de afiliado. Passou na checagem de
+assunto. Nenhuma credencial, chave, senha ou AppID apareceu no texto da instrução; nenhum contato pessoal de
+terceiro foi escrito.
+
+Partida: `git fetch origin main && git checkout -B trabalho origin/main` — base `621ea59`.
+
+Travas de contagem, conferidas ANTES de gravar:
+
+```
+--- arquivo novo nao pode existir ---
+test -e bussola/medicoes/comissao-painel-10-nichos-2026-10-22.md  ->  NAO EXISTE (ok)
+
+--- trecho antigo tem de aparecer exatamente 1 vez em bussola/fila.md ---
+grep -F -c '## Registro de medição — notas componentes preservadas (NÃO é ranking, não ordene por aqui)'
+1
+```
+
+`git status --porcelain` (antes do commit):
+
+```
+ M bussola/fila.md
+?? bussola/medicoes/comissao-painel-10-nichos-2026-10-22.md
+```
+
+`git diff --stat` (do arquivo já versionado; o novo entrou como untracked e aparece no `--stat` do commit):
+
+```
+ bussola/fila.md | 51 +++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 51 insertions(+)
+```
+
+`git log -1 --stat` do commit que foi ao `main`:
+
+```
+df7ad29 Bússola — comissão remedida no painel em 10 nichos: nenhum paga 3%, e a ferragem ressuscita
+ bussola/fila.md                                    |  51 +++++++++
+ .../comissao-painel-10-nichos-2026-10-22.md        | 120 +++++++++++++++++++++
+ 2 files changed, 171 insertions(+)
+```
+
+Push: `git push origin HEAD:main` aceito de primeira, `621ea59..df7ad29`. Nenhum rebase, nenhum force push,
+nenhum PR necessário. Verificação `git fetch origin main && git log -1 origin/main` mostrou `df7ad29` — o commit
+está no `main` real.
+
+Contagem conferida RELENDO os arquivos depois de gravar:
+
+```
+bussola/medicoes/comissao-painel-10-nichos-2026-10-22.md : 120 linhas, 8114 bytes
+bussola/fila.md                                          : 384 linhas, 49573 bytes
+bloco novo "## ⚠️ TODO M DA TABELA ABAIXO ESTÁ ERRADO ..."  : 1 ocorrencia
+linha antiga "## Registro de medição — notas componentes ..." : 1 ocorrencia (preservada no fim do bloco novo)
+```
+
+A substituição foi puramente aditiva: 51 linhas inseridas, 0 removidas, porque o TRECHO NOVO terminava com a
+própria linha antiga. A tabela de medição que vinha depois dela não foi tocada.
+
+Nenhum passo falhou. Nada além dos dois arquivos nomeados na instrução e deste log foi alterado: nenhuma ilha
+reservada, nenhum `executando_desde` escrito, nenhum bloco de fila executado, nenhum `publicar: true` (o arquivo
+novo nasceu com `publicar: false`, como vinha na instrução), nenhum Sync acionado, nenhuma conta criada. O
+`ARQUIPELAGO.md` não foi aberto: a decisão veio pronta no disparo. O conteúdo foi gravado byte a byte como veio,
+sem reformatar e sem corrigir — inclusive o sinal de menos unicode em `−0,02`, as quebras de linha no meio das
+frases e o emoji `⚠️` no título do bloco, todos como estavam na instrução.
