@@ -228,8 +228,69 @@ A aritmética prova: som automotivo R$ 202 × 3% = R$ 6,06 · ferragem R$ 35 × 
 
 A linha 17 tem **S_par 4 · S_com 4 · S 4,00 · P 5 · A 5 · V 5 · cobertura FECHADA 10 de 10** — **a melhor
 facilidade da página inteira**. O que a enterrava em 17º lugar era `M = −0,02`, calculado sobre R$ 35 × 3%.
-Com 13% medido e ticket real de R$ 57: **M = 1,84 · Retorno = 3,14 · Facilidade = 4,40 · Índice = 3,66.**
-**Acima de toda linha desta página** — e as outras precisam ser remedidas antes de qualquer comparação valer.
+Com 13% medido e ticket real de R$ 57: **M = 1,84 · Retorno = 2,69 · Facilidade = 4,40 · Índice = 3,34.**
+*(**Corrigido em 22/10/2026, erro da própria Bússola na gravação `df7ad29`:** o Retorno foi calculado com `R = 5`
+quando a linha 17 diz `R = 2`, e saiu 3,14/3,66. Com o R correto, 2,69/3,34. Ver a nota logo abaixo.)*
+~~**Acima de toda linha desta página**~~ — **ERRADO, e por dois motivos. Corrigido em 22/10/2026.**
+
+**Erro 1 — o Retorno saiu com o R trocado.** A gravação `df7ad29` calculou o Retorno da ferragem com `R = 5`,
+mas a linha 17 desta página diz `R = 2`, e diz também por quê: *"quem clica no afiliado é o DIY que monta um
+armário e some — o marceneiro tem fornecedor local."* Recorrência fraca é um argumento real contra o nicho e
+foi simplesmente ignorado. **Retorno correto = 2,69. Índice correto = 3,34**, não 3,66.
+
+**Erro 2 — "a melhor facilidade da página" é falso, e já tinha sido corrigido duas vezes.** A facilidade da
+ferragem é **4,40**, a **segunda** melhor; a melhor é a do som automotivo, **4,64**. A própria linha 17 carrega
+a correção do Pente Fino de 12/10/2026 dizendo exatamente isso — *"Dizia 'a melhor Facilidade da fila inteira'
+(…) corrigido (…) Registrado em 14/09 e em 05/10 e não consertado nas duas vezes"* — e a Bússola repetiu o erro
+pela **terceira** vez em 22/10, com a correção escrita na mesma linha que estava lendo.
+
+**E a consequência de corrigir os dois: quem lidera a fila com o M remedido é o SOM AUTOMOTIVO, não a ferragem.**
+
+| nicho | Facilidade | Retorno (M remedido) | **Índice** |
+|---|---|---|---|
+| **Som automotivo** (S 4,40 · P 5 · D 5 · R 4 · A 5 · **M 2,59**) | **4,64** | **3,89** | **4,23** |
+| Ferragem de marcenaria (S 4,00 · P 5 · D 3 · **R 2** · A 5 · **M 1,84**) | 4,40 | 2,69 | 3,34 |
+
+As duas linhas continuam **fora do ranking** até passarem na 3.0-d, e a tabela acima é comparação entre duas
+linhas remedidas, não ranking da página.
+
+### A SERP REAL das duas, vista no Chrome do Raphael em 22/10/2026 — e ela muda a leitura de novo
+
+Arquivo: `bussola/medicoes/serp-ferragem-som-chrome-2026-10-22.md`.
+
+**Ferragem: a SERP da intenção de compra é CARROSSEL DE COMPRAS E VAREJO, não fazenda.** Em
+`qual corrediça para gaveta de 40 cm` o orgânico é Mercado Livre, Leroy Merlin, Mad Mais, Desicon, Ipê Ferragens
+e Shopee — **página de categoria de varejo grande, que a 30.5 define como `tomada`** — com um carrossel de ~20
+cartões de produto empurrando tudo para baixo da dobra. Em `qual pistão a gás para porta de 8kg`, a consulta que
+a rodada 005 registrou como aberta (*"só PDF da FGVTN, YouTube e Blogspot de 2016"*), a SERP real tem **dois
+carrosséis de compras** e **`completa.com.br/blog` com a tabela paramétrica inteira publicada** (60N até 6 kg,
+80N até 8 kg, 100N até 10 kg, 120N até 12 kg, 140N até 14 kg). **A leitura de 005 era da nuvem e está
+desatualizada: a resposta já está escrita e o varejo já ocupa.**
+
+**Som automotivo: a SERP tem vaga editorial e ninguém tem máquina.** Em `qual módulo para 2 alto falantes de
+200w`, o 1º orgânico é **`magnumfalantes.com.br/blog` — o FABRICANTE publicando a regra paramétrica**
+(*"módulo mais forte que os alto falantes, até o dobro de potência"*, *"módulos com até 30% menos"*). Abaixo,
+`blog.mundomax.com.br` **de 2010** com a regra numérica (*"Subwoofer de 4 Ohms que suporta 200W RMS: o módulo
+ideal fornece 150 a 250W RMS a 4 Ohms"*), `lojadesomautomotivo.com.br` (*"basta somar os valores em rms"*),
+`blog-vinisound.com.br` de 2021 e TikTok. **Nenhuma calculadora. Nenhuma resposta de IA. Nenhuma fazenda.**
+E as buscas relacionadas mostram a família inteira: *2 alto falante de 8 ohms qual módulo usar · 4 alto falante
+de 8 ohms · qual módulo usar para subwoofer 350w rms · 600w rms · 800w rms*. **É o molde da Aquametria: uma
+pergunta com dois números, muitas variantes, respondida hoje por post de blog de 2010 e por vídeo.**
+
+### O ACHADO ESTRUTURAL, e ele é um aviso sobre a 3.0-d recém-escrita
+
+**As duas SERPs de maior intenção de compra trazem carrossel de compras.** Faz sentido e é esperado: quanto mais
+transacional a consulta, mais o Google serve unidade de shopping em vez de resultado orgânico. **Isso é uma
+tensão real dentro da 3.0-d:** a seção manda medir só as consultas que terminam em produto, e são exatamente
+essas que perdem clique orgânico para o carrossel. A curva Backlinko (top-3 = 18,7%) **não desconta carrossel de
+compras**, e nas duas consultas de ferragem o primeiro orgânico aparece abaixo de ~20 cartões.
+
+**Registrado, não aplicado — só o Raphael transforma em régua:** a conta da 3.0-d.1 precisa de um desconto por
+unidade de shopping, do mesmo tipo que o desconto por bloco de vídeo que ficou aberto em jardinagem. **São o
+mesmo problema**: a curva de CTR em uso é de SERP de dez links azuis, e nenhuma das nove SERPs brasileiras que
+esta Bússola já abriu com os olhos tem essa forma. **Enquanto a curva não for medida no Search Console das ilhas
+no ar, toda conta de visitas/dia desta página é teto, não previsão** — e isso vale igual para jardinagem,
+ferragem e som automotivo.
 
 ### E A SEGUNDA METADE DA DÍVIDA, que a irrigação revelou: O TICKET TAMBÉM NUNCA FOI MEDIDO
 
