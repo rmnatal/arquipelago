@@ -6463,3 +6463,64 @@ novo nasceu com `publicar: false`, como vinha na instrução), nenhum Sync acion
 `ARQUIPELAGO.md` não foi aberto: a decisão veio pronta no disparo. O conteúdo foi gravado byte a byte como veio,
 sem reformatar e sem corrigir — inclusive o sinal de menos unicode em `−0,02`, as quebras de linha no meio das
 frases e o emoji `⚠️` no título do bloco, todos como estavam na instrução.
+
+---
+
+## Disparo de 21/10/2026, 23:33 BRT (22/10/2026 02:33 UTC) — Bússola 3.0-d: o piso passa a ser da busca que compra
+
+Assunto conferido antes do `git fetch`: Projeto Arquipélago / Bússola / lei nova na `BUSSOLA.md`. É do
+Arquipélago — executado.
+
+Instrução: duas substituições de texto em dois arquivos existentes, num só commit. Nenhum arquivo novo.
+
+Trava de contagem conferida por script ANTES de gravar, com os dois trechos antigos em 1 ocorrência cada:
+
+```
+BUSSOLA.md trecho1 count: 1
+fila.md trecho2 count: 1
+```
+
+`git status --porcelain` depois de aplicar as duas substituições:
+
+```
+ M bussola/BUSSOLA.md
+ M bussola/fila.md
+```
+
+`git diff --stat`:
+
+```
+ bussola/BUSSOLA.md | 71 ++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ bussola/fila.md    | 27 ++++++++++++++++++++-
+ 2 files changed, 97 insertions(+), 1 deletion(-)
+```
+
+Commit que foi ao `main`: `7404e8aacof` — hash completo
+`7404e8aac0ffd83f2fd2d5c25f3a42012f00b3aa`. Confirmado com `git fetch origin main && git log -1 origin/main`,
+que devolveu esse mesmo hash: `693c9a2..7404e8a  HEAD -> main`.
+
+Contagem do que mudou, conferida relendo os arquivos DEPOIS de gravar (não pelo que eu achava que havia escrito):
+
+```
+BUSSOLA.md total de linhas: 296
+3.0-d inicia na linha 87 e 3.1 na linha 158 -> bloco novo de 71 linhas
+fila.md total de linhas: 409
+subsecoes 3.0-d.N: 5
+```
+
+A substituição 1 foi puramente aditiva — 71 linhas inseridas, 0 removidas — porque o TRECHO NOVO terminava com
+a própria linha `## 3.1 Nota que não foi medida não vira índice`, preservada no fim do bloco. Conferido na
+releitura: `## 3.0-d O PISO PASSA A SER DA BUSCA QUE COMPRA` em 1 ocorrência, `## 3.1 Nota que não foi medida
+não vira índice` em 1 ocorrência, as cinco subseções `3.0-d.1` a `3.0-d.5` presentes. A substituição 2 trocou
+uma linha por 26 (27 inseridas, 1 removida): a linha `**Estado novo (22/10/2026, depois da leitura do painel de
+afiliado):**` saiu — 0 ocorrências na releitura — e entrou `**Estado final (22/10/2026, pela seção 3.0-d
+nova):** REPROVADO — 73 visitas/dia`, em 1 ocorrência, com a tabela das duas metades do corpus.
+
+Nenhum passo falhou. O push foi aceito de primeira, sem rebase e sem force. Nada além dos dois arquivos
+nomeados na instrução e deste log foi alterado: nenhuma ilha reservada, nenhum `executando_desde` escrito,
+nenhum bloco de fila executado, nenhum `publicar: true`, nenhum Sync acionado, nenhuma conta criada. O
+`ARQUIPELAGO.md` não foi aberto — a decisão veio pronta no disparo, e o que a instrução diz sobre a seção 7 dele
+entrou como texto, não como leitura minha. Nenhum contato pessoal de terceiros apareceu na instrução, então não
+houve nada a deixar de fora. O conteúdo foi gravado byte a byte como veio, sem reformatar e sem corrigir —
+inclusive as quebras de linha no meio das frases, o `Σ`, os travessões, os intervalos `21–22/10/2026` e
+`18–28%` com en dash, e as reticências unicode em `(…)`.
