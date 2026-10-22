@@ -6634,3 +6634,54 @@ frontmatter: publicar                                    -> false (como veio)
 ```
 
 Nenhum passo falhou. Nada foi tocado além do arquivo nomeado pela instrução e deste log.
+
+## 22/10/2026, 11h04 BRT (14h04 UTC) — Bússola: medição de volume do som automotivo no Planejador
+
+Instrução: criar UM arquivo novo, `bussola/medicoes/volume-som-automotivo-2026-10-22.md`, num commit só, sem
+substituição. Trava checada antes de escrever: o arquivo NÃO existia (`ls` retornou
+"No such file or directory"), então a trava não disparou e a criação seguiu.
+
+Assunto: Arquipélago / Bússola — passou a checagem de assunto.
+
+`git status --porcelain` (antes do commit):
+
+```
+?? bussola/medicoes/volume-som-automotivo-2026-10-22.md
+```
+
+`git diff --stat HEAD~1 HEAD`:
+
+```
+ .../medicoes/volume-som-automotivo-2026-10-22.md   | 112 +++++++++++++++++++++
+ 1 file changed, 112 insertions(+)
+```
+
+Commit que foi ao `main`: `20c0b9dcd04bd8f552432ba429c61e046a3572a8`
+Push: `840a157..20c0b9d  HEAD -> main` (primeira tentativa, sem rebase, sem force).
+Confirmação `git fetch origin main && git log -1 origin/main`:
+
+```
+20c0b9dcd04bd8f552432ba429c61e046a3572a8 Bússola: som automotivo medido no Planejador — a lista exata deu 230/mês e a descoberta deu 11.086 ideias
+```
+
+Contagem conferida relendo o arquivo DEPOIS de gravar:
+
+```
+arquivos criados                                        -> 1
+arquivos substituídos                                   -> 0
+linhas do arquivo novo                                   -> 112
+bytes do arquivo novo                                    -> 6526
+títulos de nível 1 (`# `)                                -> 2
+títulos de nível 2 (`## `)                               -> 6
+linhas de tabela (começando com `|`)                     -> 21
+tabelas                                                  -> 3 (73 consultas, topo por volume, jardinagem × som)
+frontmatter: medido_em                                   -> 2026-10-22
+frontmatter: publicar                                    -> false (como veio)
+```
+
+Nenhum passo falhou. Nada foi tocado além do arquivo nomeado pela instrução e deste log.
+O conteúdo foi gravado byte a byte como veio entre `<<<INICIO DE ARQUIVO>>>` e `<<<FIM DE ARQUIVO>>>`:
+nada reformatado, nada acrescentado, nada corrigido. A identificação da conta de anúncios
+(`conta Raphael 683-124-3211`) veio na instrução e já tem precedente no repositório
+(`bussola/medicoes/varredura-nichos-2026-10-21.md`, linha 3); é um ID de conta do próprio Raphael,
+não contato pessoal de terceiro, então entrou como veio.
