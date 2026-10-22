@@ -5,60 +5,94 @@ prioridade: 1
 piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 0
 primeira_indexacao: null
-ultima_execucao: 2026-10-22T13:55Z
-executando_desde: 2026-10-22T16:44Z   # reserva RENOVADA pela 1.1 as 16:44Z: o bloco passou de 40 minutos (a bancada sem rede desta ilha ja passa de 40 minutos sozinha, e a bateria de mutacoes da F2 roda o portao 45 vezes). Reservada as 16:20Z (passo 5 da secao 1), escrita antes de qualquer trabalho. A anterior: a execucao de 22/10 13h29Z fechou as 13:55Z. Reserva NAO renovada no meio do caminho e a 1.1 manda dizer por que: o bloco passou de 40 minutos, e o proximo commit que esta execucao fez FOI o de fechamento — renovar e grava-la null na mesma linha seriam a mesma escrita. Nenhuma outra execucao consultou o git nesta janela porque nenhuma outra tocou esta ilha.
-rede: BLOQUEADA em 2026-10-22   # 20.2, REMEDIDA as 13h3xZ e NAO herdada do campo: TRES passadas, jornadafly.com.br e www.jornadafly.com.br em 000 nas tres (6 medicoes), com aquametria.com.br e robometria.com.br em 200 nas tres (6 de controle, nenhuma intermitencia nesta rodada). O curl verbose nomeia a causa e ela nao e tunel: `CONNECT tunnel failed, response 403` do proxy de egresso, ou seja o dominio NAO esta na lista de Dominios permitidos deste ambiente. SEGUE SENDO REGRESSAO: o campo dizia `aberta em 2026-09-18` com HTTP 200 medido as 12h35Z daquele dia, e o despacho ALTA de 15/09 em dados/despachos.md, dado como cumprido em 18/09, continua valendo. O que a rede trava e o 3b em diante, nao o bloco de arquivo — e bloqueada_por segue null de proposito, como nas cinco execucoes anteriores desta ilha.
+ultima_execucao: 2026-10-22T16:59Z
+executando_desde: null   # a execucao de 22/10 16h20Z fechou as 16:59Z. Reserva RENOVADA UMA vez pela 1.1 as 16:44Z, porque a bateria de mutacoes da F2 roda o portao 44 vezes e o bloco passa de 40 minutos sozinho. A HORA DO `ultima_execucao` SAI DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
+rede: BLOQUEADA em 2026-10-22   # 20.2, REMEDIDA as 16h2xZ e NAO herdada do campo: TRES passadas, jornadafly.com.br e www.jornadafly.com.br em 000 nas tres (6 medicoes), com aquametria.com.br e robometria.com.br em 200 nas tres (6 de controle, nenhuma intermitencia). O curl verbose nomeia a causa e ela nao e tunel: `CONNECT tunnel failed, response 403` do proxy de egresso, ou seja o dominio NAO esta na lista de Dominios permitidos deste ambiente. SEGUE SENDO REGRESSAO (o campo dizia `aberta em 2026-09-18` com HTTP 200 medido as 12h35Z daquele dia), e o despacho ALTA de 15/09 em dados/despachos.md continua valendo. E DUAS FONTES NOVAS ENTRARAM NO BLOQUEIO, medidas hoje pela 20.3 porque a entidade FAIXA_DIARIA as exige: numbeo.com e www.booking.com em 000, com www.civitatis.com.br (ja listado) tambem em 000 e raw.githubusercontent.com em 301 ao lado. O que a rede trava e o 3b em diante e a COLETA das faixas, nao o bloco de arquivo — e bloqueada_por segue null de proposito, como nas seis execucoes anteriores.
 bloco_atual: |
-  A F1 EXISTE COMO REGRA — o bloco 4 entregue, no desenho que a ohmetria usou: a
-  referencia em Python (estado -> resposta inteira, em frase acentuada), o dominio de
-  resposta gravado, a tabela pre-renderizada, o portao e as mutacoes. SEM PHP, e isso e
-  decisao registrada: sem casca, um snippet so poderia ser medido por um render de
-  bancada que serve MENOS do que o site serve, que e a cicatriz que a secao 8 mais cobra.
-  O PHP, quando nascer, e TRADUTOR da referencia, frase a frase.
+  A F2 EXISTE COMO REGRA, e a pergunta aberta que ela trazia virou uma ENTIDADE. O
+  registro anterior deixou escrito "a F2 soma hospedagem, alimentacao e transporte
+  local, e nenhuma das tres esta no banco". A resposta nao era campo novo na
+  EXPERIENCIA: e que as tres NAO SAO DA MESMA NATUREZA que uma experiencia.
+  Experiencia tem preco colhido no site de quem opera, com data de leitura; diaria de
+  hotel e FAIXA QUE UM TERCEIRO PUBLICOU. Dai a entidade propria FAIXA_DIARIA, e nao
+  um campo da CIDADE: campo na CIDADE forcaria escolher UM publicador por cidade na
+  carga, que e decisao editorial disfarcada de modelagem.
   NADA FOI AO AR, e nao podia ter ido: esta ilha nao tem site, nao tem WordPress, nao
   tem Sync e nao tem /status. Dizer que verifiquei no ar seria inventar.
-  REDE REMEDIDA E NAO HERDADA (20.2): 6 medicoes de bloqueio contra 6 de controle verde,
-  com `CONNECT tunnel failed, response 403` nomeado no verbose. Segue regressao.
-  O QUE SAIU: ferramentas/f1-referencia.py (o cerebro), ferramentas/gerar-f1.py,
-  dados/f1-respostas.json (154 respostas e 44 linhas de tabela, publicar false),
-  ferramentas/teste-f1.py e ferramentas/mutacoes-f1.py. Esquema versao 5, banco versao 5.
-  A CONTA 3 DA ESPECIFICACAO NAO ERA CALCULAVEL, e descobrir isso foi o bloco: ela manda
-  mostrar "a partir de quantos dias a versao mais cara passa a valer", e a quantidade de
-  uso de cada bilhete existia SO NA PROSA do rotulo ("3 dias, usaveis dentro de uma
-  semana"). Nasceram `eixo_das_versoes` na EXPERIENCIA (por_quantidade | por_escopo |
-  por_momento) e `dias_de_uso` na VERSAO, transcrito da frase da fonte — e a regua cobra
-  que o numero APARECA no `declarado_como`, em digito ou por extenso. Mesma troca da
-  versao 4 um andar acima: lá a faixa etaria saiu da prosa, aqui a quantidade.
-  E O EIXO E DECLARADO, NUNCA DEDUZIDO DO ROTULO: ler o rotulo acertaria no Angkor e
-  ERRARIA no Coliseu, cujos bilhetes diferem em ESCOPO e nao em quantidade. Dois
-  ingressos de 24 horas NAO dao a area restrita da Experiencia Completa — ponto de
-  equilibrio ali seria aritmetica certa sobre pergunta sem sentido. Das 4 experiencias:
-  1 por_quantidade (Angkor, 1/3/7 dias), 2 por_escopo (Coliseu, Torre Eiffel) e 1
-  por_momento (gondola).
-  O PORTAO ACHOU DOIS DEFEITOS NA MINHA PROPRIA FERRAMENTA, os dois antes do commit:
-  (1) a F1 publicava portugues SEM ACENTO na frase-resposta ("O preco e por veiculo"),
-  que e a cicatriz da Robometria cometida dentro do arquivo escrito para nao a cometer;
-  (2) e, atras do acento, um defeito maior — a F1 repassava os `motivo_*` do BANCO para a
-  tela, e esses motivos sao escritos para a proxima execucao: citam nome de campo entre
-  acentos graves, data de migracao e numero de secao. A pagina dizia ao visitante que "o
-  esquema PROIBE faixa etaria onde a unidade nao e `por_pessoa`" — texto de bastidor da
-  fabrica, que a 32.4 proibe. Mesma cicatriz que a ohmetria pagou com dados/modulos.json
-  na tela. A F1 passou a ESCREVER a propria frase de tela; o motivo fica no banco.
-  O `momento_do_dia` NAO E A QUARTA ENTRADA que a especificacao listava: ele e campo da
-  VERSAO, e um seletor separado deixaria pedir "noturno" sobre a versao diurna — estado
-  que o operador nao vende. O estado da F1 e (experiencia, versao, pessoas).
-  BANCADA, 0 falha: validar-banco verde (os 5 avisos de vocabulario_sem_lastro onde
-  estavam); mutacoes-banco 93 de 93 (eram 73), 39 cobradas pela frase; teste-f1 139.658
-  afirmacoes sobre os 154 estados, com a aritmetica reescrita a mao em Fraction e a grade
-  pisando na borda do GRUPO e na da CAPACIDADE; mutacoes-f1 28 de 28 — 5 mundos, 15
-  quebras e 8 mortes.
-  O NUMERO QUE JUSTIFICA VARRER A ENTRADA INTEIRA: existe EXATAMENTE UM estado neste
-  banco em que arredondar meio-para-cima difere de meio-para-par (gondola noturna, 2
-  pessoas, 56,925 EUR por pessoa com IOF). Uma grade por amostragem teria 1 chance em 154
-  de o achar, e a mutacao do arredondamento voltaria verde.
-  PROXIMO PASSO: a F2 como REGRA (quanto custa N dias em <cidade>), que nasce com a
-  mesma pergunta aberta do eixo — a F2 soma hospedagem, alimentacao e transporte local, e
-  nenhuma das tres esta no banco. O que ela pode fazer hoje e o que a F1 fez.
+  REDE REMEDIDA E NAO HERDADA (20.2): 6 medicoes de bloqueio contra 6 de controle
+  verde, com `CONNECT tunnel failed, response 403` nomeado no verbose. Segue regressao.
+  O QUE SAIU: ferramentas/f2-referencia.py (o cerebro), ferramentas/gerar-f2.py,
+  dados/f2-respostas.json (3.077 estados servidos, 197 gravados, publicar false),
+  ferramentas/teste-f2.py e ferramentas/mutacoes-f2.py. Esquema versao 6, banco 6.
+  A TROCA E A MESMA DA VERSAO 5 UM ANDAR ACIMA: la a quantidade de uso de cada bilhete
+  saiu da prosa do `rotulo` para `dias_de_uso`; aqui o que sai da prosa e O QUE O
+  NUMERO SIGNIFICA. O bloco 1 mediu duas frases na MESMA pagina de resultados — "media
+  de R$ 203,87 nos ultimos 30 dias" e "a diaria mais baixa encontrada foi R$ 396,84" —
+  e a distincao entre elas morou em ressalva de leitura humana por 38 dias. Agora e
+  `o_que_o_numero_e`, que e enum, e a regra "faixa de natureza diferente nao se soma"
+  passou a ser COMPUTAVEL: somar uma media com um minimo da um intervalo que NINGUEM
+  publicou.
+  E A BASE E DECLARADA, NUNCA DEDUZIDA. `base` diz se o numero e por pessoa, por QUARTO
+  ou pelo grupo; base de quarto exige `pessoas_por_quarto` e o numero tem de APARECER na
+  frase da fonte. Quarto e unidade de capacidade como gondola: 6 pessoas numa diaria de
+  quarto duplo sao TRES quartos, e a F2 CHAMA `unidades_necessarias` da F1 em vez de
+  reescrever a conta. Faixa de quarto sem ocupacao NAO escala e a linha e recusada.
+  A F2 PUBLICA UMA LINHA DE QUATRO HOJE, por falta de DADO e nao de regra: zero faixas
+  no banco, e as duas unicas frases de diaria que esta ilha mediu foram guardadas SEM o
+  nome de quem as publicou, sem URL e sem data. Carregar hoje exigiria inventar o dono
+  do numero. A coleta nao e desta nuvem: numbeo.com, booking.com e civitatis.com.br em
+  000, com raw.githubusercontent.com em 301 na mesma passada.
+  OS PORTOES ACHARAM SETE DEFEITOS NA MINHA PROPRIA FERRAMENTA, todos antes do commit:
+  (1) faixa de LARGURA ZERO — duas versoes de preco igual davam pontas de versoes
+  DIFERENTES, e a tela publicava "de A a B" para um intervalo que nao e intervalo;
+  (2) A FRASE QUE MENTIA SOBRE SIEM REAP, a pior das cinco — a F2 descartava quem nao
+  fosse `publicavel` e a pagina dizia "esta ilha ainda nao leu o preco de nenhuma
+  experiencia em Siem Reap", sendo que o passe de Angkor esta lido e gravado, so nao
+  reconferido; e o mesmo item aparece na F1 COM RESSALVA e DESAPARECIA aqui, de modo que
+  quem viesse de uma pagina para a outra veria a experiencia sumir. Quem achou foi o
+  GERADOR, pela contagem: 2.268 estados com a linha nossa onde a grade pedia 3.024;
+  (3) a concordancia — "as 1 experiencias que esta ilha leu custam";
+  (4) O TETO DE DIAS QUE O PORTAO NAO TINHA COMO VER: a mutacao que trocou 21 por 60
+  PASSOU, porque grade, bordas e a conta do que esta "fora" saiam todas de
+  `f2.DIAS_MAXIMO`. Regua que toma o limite da coisa que ela mede nao mede o limite;
+  (5) A MOEDA QUE A F1 CONFERE E A F2 NAO CONFERIA: tirar EUR do vocabulario PASSOU,
+  porque `dinheiro()` olha o proprio dicionario de simbolos e nunca o vocabulario.
+  (6) A CONTAGEM QUE SO UM MUNDO DE BANCADA PODIA MOSTRAR: o gerador contava os
+  estados com total sobre o DOMINIO e o portao comparava com o arquivo RECORTADO. Com
+  zero faixas os dois valem 0 e era invisivel — o mundo com as tres faixas carregadas
+  mostrou, 252 contra 12. Sao dois numeros agora;
+  (7) UMA FUNCAO MINHA SOBRESCREVEU UMA FUNCAO DA BATERIA DO BANCO, em silencio:
+  `q_faixa_sem_data_de_leitura` ja existia para a faixa ETARIA, e a mutacao antiga passou
+  a rodar a minha funcao. "Faixa" nesta pasta significava faixa etaria antes de hoje; a
+  entidade nova e faixa DIARIA e os nomes dizem isso. Quem pegou foi a exigencia da
+  FRASE: a mutacao antiga continuava `reprova`, e um relatorio que se contentasse com
+  "reprovou" teria dito ok.
+  AS REGRAS NOVAS DO VALIDADOR NAO FICARAM SEM BATERIA, e isso quase aconteceu: ~80
+  linhas de regua para uma entidade com ZERO registros no banco nao seriam executadas por
+  ninguem — o mesmo defeito que eu consertei um andar abaixo neste bloco. mutacoes-banco
+  passou de 93 para 117 (16 mundos, 101 quebras, 57 cobradas pela frase), com as 24 novas
+  carregando faixa EM MEMORIA e quebrando cada regra, inclusive a ocupacao achada DENTRO
+  de outro numero (o 2 de 2400, a armadilha que o dias_de_uso pagou). Nenhuma faixa foi
+  gravada no banco.
+  E UM DEFEITO QUE NAO E DESTE BLOCO E JA ESTAVA NA PASTA: validar-banco.py conferia o
+  crescimento de vocabulario contra SETE nomes digitados e o esquema tinha NOVE —
+  `declarada_por` e `canal_de_leitura` nunca foram conferidos por ninguem, em silencio,
+  desde 15/09/2026. Mesma familia da lista de portoes que a aquametria matou com o
+  descobridor. So acrescentar os quatro novos a lista teria RENOVADO o defeito: a regua
+  agora varre `vocabularios` do esquema e vocabulario sem extrator vira ERRO. Na
+  primeira passada ela achou o que a lista escondia: `leitura_direta` sem lastro. E saiu
+  `versao_esquema`, que dizia 4 enquanto `versao` dizia 5.
+  O ARQUIVO GRAVADO NAO TRAZ OS 3.077 ESTADOS: gravalos deu 13 MB contra 858 KB do
+  arquivo da F1. Ele leva o que a pagina le — a tabela e TODAS as bordas, 679 KB — e a
+  prova da grade mora no portao, que a varre em cada passada.
+  BANCADA, 0 falha: validar-banco verde; mutacoes-banco 117 de 117; teste-f1 139.658
+  afirmacoes; mutacoes-f1 28 de 28; teste-f2 213.586 afirmacoes sobre os
+  3.077 estados; mutacoes-f2 44 de 44 — 9 mundos, 25 quebras e 10 mortes, com 28 cobradas pela frase.
+  PROXIMO PASSO: a F3 como REGRA (o passe da cidade vale a pena), e ela comeca pelo
+  BANCO e nao pela ferramenta — nenhuma das quatro experiencias e `passe_de_cidade`, o
+  vocabulario tem o valor e nenhum registro o usa, e o Roma Pass e o Lisboa Card que o
+  corpus mediu nao estao carregados. O item mais caro desta ilha continua sendo a casca
+  (3b): passos 2 a 8 da secao 11 e a liberacao do dominio no egresso, as duas do Raphael.
 ultima_ronda: null   # escrito pela Sentinela; esta ilha nunca teve ronda
 bloqueada_por: null
 ---

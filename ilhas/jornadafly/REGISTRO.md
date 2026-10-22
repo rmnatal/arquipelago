@@ -3,6 +3,212 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-10-22 16h20Z — A F2 EXISTE COMO REGRA, e a pergunta que ela trazia aberta virou uma ENTIDADE: o que o número SIGNIFICA saiu da prosa
+
+**O que saiu:** a **F2 como regra** — `ferramentas/f2-referencia.py` (o cérebro: cidade,
+dias, pessoas e padrão → resposta inteira, já em frase acentuada), `ferramentas/gerar-f2.py`,
+`dados/f2-respostas.json` (**3.077** estados servidos, **197** gravados, `publicar: false`),
+`ferramentas/teste-f2.py` e `ferramentas/mutacoes-f2.py`. Esquema **versão 6**, banco
+**versão 6**, com a entidade **`FAIXA_DIARIA`** e quatro vocabulários novos. É o próximo
+passo que o registro de 13h29Z de hoje deixou escrito, cumprido na mesma data.
+**Nada foi ao ar, e não podia ter ido: esta ilha não tem site, não tem WordPress, não tem
+Sync e não tem `/status`. Dizer que verifiquei no ar seria inventar.**
+
+**SEM PHP, pela mesma decisão de 13h29Z e não por pendência esquecida:** sem casca, um
+snippet só poderia ser medido por um render de bancada que serve **menos** do que o site
+serve. O PHP, quando nascer, é **tradutor** desta referência, frase a frase.
+
+**A ESCOLHA DA ILHA: NÃO HOUVE ROTAÇÃO E NÃO HOUVE DECISÃO MINHA.** `foco.md` nomeia a
+**jornadafly** e pela **1.2** não há escolha a fazer. Conferi a exceção de 21/10 que fura o
+foco pelo **molde da seção 32**: os três despachos estão **fechados** (aquametria às 18h2xZ,
+clubedomosaico às 19h1xZ, robometria às 16h1xZ), então ela não se aplica. `executando_desde`
+estava `null`, que pela **1.1** já significa que não havia bloco da Fundação vivo — não houve
+reserva vencida para o git desempatar. Reserva aceita de primeira às **16h20Z**, sem recusa
+de push, e **RENOVADA às 16h44Z** pela 1.1, porque a bateria de mutações da F2 roda o portão
+44 vezes e o bloco passa de 40 minutos sozinho. Nenhum branch `claude/*` com trabalho a
+mesclar e nenhum PR aberto — `main` tinha recebido *force update* no fetch, e eu trabalhei do
+estado real dele.
+
+**REDE PELA 20.2, REMEDIDA E NÃO HERDADA.** Três passadas: `jornadafly.com.br` e
+`www.jornadafly.com.br` em `000` nas três (**6 medições de bloqueio**), com
+`aquametria.com.br` e `robometria.com.br` em `200` nas três (**6 de controle**, nenhuma
+intermitência). O `curl` verbose nomeia a causa e ela não é túnel: `CONNECT tunnel failed,
+response 403`. **Segue sendo regressão**, e o despacho ALTA de 15/09 em `dados/despachos.md`
+continua valendo. `bloqueada_por` segue `null` de propósito, como nas seis execuções
+anteriores: preenchê-lo congelaria também os blocos que não precisam de rede.
+
+### A PERGUNTA ABERTA DA F2 TINHA RESPOSTA DE MODELAGEM, E ELA É DE PROCEDÊNCIA
+
+O registro anterior deixou a F2 com uma pergunta: *"a F2 soma hospedagem, alimentação e
+transporte local, e nenhuma das três está no banco"*. A resposta não é um campo novo na
+EXPERIÊNCIA — é que **as três não são da mesma natureza que uma experiência**. Experiência
+tem preço **colhido no site de quem opera**, com data de leitura; diária de hotel é **faixa
+que um terceiro publicou**. Daí a entidade própria, e não um campo da CIDADE: uma cidade tem
+três categorias × três padrões × quantos publicadores existirem, e campo na CIDADE forçaria
+escolher **um** publicador por cidade no momento da carga — decisão editorial disfarçada de
+modelagem, que é exatamente o que o concorrente medido no bloco 1 faz ao publicar "a diária
+em Veneza é R$ X" sem dizer de quem é o X.
+
+**E A TROCA É A MESMA DA VERSÃO 5, UM ANDAR ACIMA.** Lá a quantidade de uso de cada bilhete
+saiu da prosa do `rotulo` para `dias_de_uso`. Aqui o que saiu da prosa é **o que o número
+significa**. O bloco 1 mediu, em 14/09/2026, duas frases na **mesma página de resultados** —
+*"média de R$ 203,87 nos últimos 30 dias"* e *"a diária mais baixa encontrada foi R$ 396,84"*
+—, que não podem ser as duas verdadeiras do jeito que estão escritas. **Essa distinção morou
+numa ressalva de leitura humana por 38 dias.** Agora é `o_que_o_numero_e`, que é enum, e a
+regra passou a ser **computável**: a F2 nunca soma faixas de naturezas diferentes, porque
+somar uma média com um mínimo dá um intervalo que **ninguém publicou**. As duas vão para a
+tela lado a lado, com dono e com a frase de quem as escreveu.
+
+**A BASE TAMBÉM É DECLARADA, NUNCA DEDUZIDA**, e aqui a lição vem da própria F1: `base` diz
+se o número é por pessoa, por **quarto** ou pelo grupo, e `base_transcrita_de` guarda a frase
+de onde isso saiu. Base de quarto exige `pessoas_por_quarto`, e o número tem de **aparecer**
+na frase da fonte — mesma cobrança de `dias_de_uso`. **Quarto é unidade de capacidade como
+gôndola:** 6 pessoas numa diária de quarto duplo são **TRÊS** quartos, do mesmo jeito que 6
+pessoas numa gôndola de 5 lugares são DUAS gôndolas. `quartos_necessarios()` **chama**
+`unidades_necessarias()` da F1 em vez de reescrever a conta. E faixa de quarto **sem**
+ocupação não escala: a linha é recusada pelo nome, porque dividir a diária pelo tamanho do
+grupo seria escolher a ocupação no lugar de quem publicou o preço — e o resultado continuaria
+parecendo dinheiro, que é por que esse erro não se vê.
+
+### A F2 PUBLICA UMA LINHA DE QUATRO HOJE, E A FALTA TEM CAUSA NOMEADA
+
+`faixas_diarias` tem **zero** registros, então em todos os 3.024 estados válidos a F2
+publica a linha de experiências e **recusa** hospedagem, alimentação e transporte local pelo
+nome, sem total. É a recusa declarada da especificação — *"a F2 publica faixa com quem
+publicou, ou não publica"* — aplicada **categoria por categoria** em vez de à ferramenta
+inteira. **E a falta não é descuido:** carregar exige `publicado_por`, `url` e `data_leitura`,
+e as duas únicas frases de diária que esta ilha mediu foram guardadas **sem nenhum dos três**
+— o corpus guardou os números e não guardou de quem eram. Carregar hoje exigiria **inventar o
+dono do número**, e o dono do número é o produto desta ilha. **A coleta também não é trabalho
+desta nuvem:** medi hoje, e o egresso recusa `numbeo.com`, `booking.com` e
+`civitatis.com.br` (`000` nos três, com `raw.githubusercontent.com` em `301` na mesma
+passada).
+
+**O total também é recusado, e por regra e não por falta:** ele só existe com as quatro
+linhas. Um total somado só com o que a ilha tem seria um número **menor que a viagem**
+apresentado como se fosse ela inteira.
+
+**E A LINHA DE EXPERIÊNCIAS NÃO CRESCE COM OS DIAS, declarado em vez de suposto.** Quantas
+experiências cabem em N dias **não está no banco** — é a mesma família da Conta 3 da F1, onde
+o eixo é declarado e nunca lido do rótulo. A linha é o custo de fazer **uma vez** cada
+experiência que a ilha leu na cidade, e o portão mede isso: ele responde o mesmo estado com
+1 dia e com 21 e exige que os dois números sejam iguais. A F2 também **não escolhe a versão**
+da experiência — escolher entre os quatro bilhetes da Torre Eiffel seria decisão editorial
+com cara de conta —, então a linha é uma **faixa**: piso na versão mais barata de cada
+experiência, teto na mais cara, e a tela diz quais são.
+
+### O QUE OS PORTÕES ACHARAM NA MINHA PRÓPRIA FERRAMENTA, OS SETE ANTES DO COMMIT
+
+1. **A FAIXA DE LARGURA ZERO.** Com as duas versões da gôndola pelo mesmo preço, as duas
+   pontas vinham de versões **diferentes** com o mesmo número, e a tela publicava *"de «De
+   dia, 30 minutos» a «À noite, 35 minutos»"* para um intervalo que não é intervalo. As duas
+   pontas passaram a desempatar para o mesmo lado, e a tela diz que as versões custam o mesmo.
+2. **A FRASE QUE MENTIA SOBRE SIEM REAP, e esta é a pior das cinco.** A primeira versão
+   descartava a experiência que não fosse `publicavel`, e a página dizia *"esta ilha ainda
+   não leu o preço de nenhuma experiência em Siem Reap"* — **falso**: o preço do passe de
+   Angkor está lido e gravado, só não reconferido. Pior que a frase: **o mesmo item aparece
+   na F1 com ressalva e desaparecia aqui**, de modo que quem viesse da página do passe para
+   a da estadia veria a experiência sumir sem explicação. Agora `pendente_de_releitura`
+   **entra na conta com a ressalva**, como na F1; só `excluido_do_banco` fica fora. Quem achou
+   foi o **gerador**, pela contagem: 2.268 estados com a linha nossa onde a grade pedia 3.024,
+   e os 756 que faltavam eram exatamente uma cidade.
+3. **A CONCORDÂNCIA.** A tela publicava *"as 1 experiências que esta ilha leu custam"*. É a
+   mesma família do acento que a F1 pagou no dia em que nasceu, e nenhuma das duas se vê
+   lendo o código — as duas se veem lendo a **frase**, que é por que o portão lê a frase.
+4. **O TETO DE DIAS QUE O PORTÃO NÃO TINHA COMO VER.** A mutação que trocou 21 por 60
+   **PASSOU**: grade, bordas e a conta do que está "fora" saíam todas de `f2.DIAS_MAXIMO`,
+   então o portão e a ferramenta concordavam sempre. **Régua que toma o limite da coisa que
+   ela mede não mede o limite.** Os dois limites agora estão escritos no portão, com a
+   especificação citada como fonte.
+5. **A MOEDA QUE A F1 CONFERE E A F2 NÃO CONFERIA.** A mutação que tirou `EUR` do
+   vocabulário do esquema **PASSOU**: a F2 chamava `dinheiro()`, que olha o próprio
+   dicionário de símbolos, e nunca o vocabulário. A F2 passou a chamar as duas conferências
+   da F1, nas duas direções.
+
+6. **A CONTAGEM QUE SÓ UM MUNDO DE BANCADA PODIA MOSTRAR.** O gerador contava
+   `estados_com_total` sobre o **domínio inteiro** e o portão comparava esse número com o
+   conteúdo do **arquivo recortado**. **Com zero faixas no banco os dois valem 0, e o
+   defeito era invisível** — foi o mundo de bancada com as três faixas carregadas que o
+   fez aparecer, 252 contra 12. São dois números agora, e cada um responde a uma pergunta:
+   o gravado bate com o conteúdo do arquivo, o do domínio bate com a varredura do portão.
+   É a melhor prova que este bloco produziu de por que a bateria de mutações carrega
+   mundos que o banco não tem.
+7. **UMA FUNÇÃO MINHA SOBRESCREVEU UMA FUNÇÃO DA BATERIA DO BANCO, em silêncio.**
+   `q_faixa_sem_data_de_leitura` **já existia** em `mutacoes-banco.py`, para a faixa
+   **etária**, e a minha definição — escrita mais abaixo no arquivo — passou a valer para
+   as duas: **a mutação antiga começou a rodar a minha função** e a reprovar pelo motivo
+   errado. Nesta pasta "faixa" significava faixa etária antes de hoje, e a entidade nova é
+   faixa **diária**; os 23 nomes novos dizem isso agora. **E quem pegou foi a exigência da
+   FRASE:** a mutação antiga continuava `reprova`, e o relatório diria `ok` se a bateria se
+   contentasse com "reprovou". *"Reprovar não é a mesma coisa que reprovar pelo motivo
+   certo"* deixou de ser uma frase bonita no cabeçalho e passou a ter um caso.
+
+### E UM DEFEITO QUE NÃO É DESTE BLOCO E JÁ ESTAVA NO AR DA PASTA: A LISTA ESCRITA À MÃO
+
+`validar-banco.py` conferia o crescimento de vocabulário contra **sete** nomes digitados, e
+o esquema tinha **nove**: **`declarada_por` e `canal_de_leitura` nunca foram conferidos por
+ninguém, em silêncio, desde 15/09/2026** — 37 dias. É a mesma família da lista de portões que
+a aquametria matou com o descobridor em 22/09 e da lista de quem vigia que a leva 7 achou um
+andar acima: **lista escrita à mão não erra alto, erra calada, e o que falta nela é sempre o
+que acabou de nascer.** Se eu tivesse só acrescentado os quatro vocabulários novos à lista, o
+defeito teria sido renovado em vez de consertado.
+
+A régua agora **varre `vocabularios` do esquema** e vocabulário sem extrator vira **erro**,
+não ausência. Na primeira passada ela achou o que a lista escondia: `canal_de_leitura` tem
+`leitura_direta` **sem lastro** nenhum. E saiu um campo na mesma limpeza: `versao_esquema`
+dizia **4** enquanto `versao` dizia **5** — dois nomes para o mesmo fato, com um deles já
+errado, e nada no repositório o lia.
+
+**A lista de PORTÕES do `PROMPT.md`, porém, continua escrita à mão, e ela cresceu de quatro
+para seis nesta passada.** Não construí o descobridor: a **31.3** proíbe bancada sobre
+bancada enquanto houver item de conteúdo aberto, e há — as faixas. Mas deixei a pressão
+registrada no `PROMPT.md`, para a próxima execução não precisar redescobrir que o mesmo
+defeito já foi pago um andar abaixo nesta mesma pasta.
+
+### O ARQUIVO GRAVADO NÃO TRAZ OS 3.077 ESTADOS, e é decisão com o número na mesa
+
+Gravá-los deu **13 MB**, contra 858 KB do arquivo da F1, e ele seria regravado inteiro a cada
+mudança de regra ou de banco. O arquivo leva o que a página de fato lê — a tabela
+pré-renderizada e **todas** as bordas, **679 KB** —, e a prova da grade inteira mora no
+portão, que a varre em cada passada. **Prova em arquivo que ninguém recomputa é peso; prova
+em portão é prova.** O portão cobra que a grade da tabela caiba no gravado e que **nenhuma**
+borda tenha ficado de fora, porque arquivo sem borda fica sem um caso gravado da metade que
+recusa — e é essa metade que esta ilha tem de diferente.
+
+### AS REGRAS NOVAS DO VALIDADOR NÃO FICARAM SEM BATERIA, e isso quase aconteceu
+
+Escrevi ~80 linhas de régua para a `FAIXA_DIARIA` e o banco tem **zero** faixas: nenhuma
+delas seria executada por ninguém. É literalmente *"régua que não falhou porque não
+rodou"*, o defeito que fez nascer o descobridor de portões na aquametria, e eu o teria
+cometido dentro do mesmo bloco em que o consertei um andar abaixo. `mutacoes-banco.py`
+passou de **93 para 117** mutações — **16** mundos e **101** quebras, **57** cobradas pela
+frase —, com as 24 novas carregando faixa em memória e quebrando cada regra: sem dono, sem
+a frase do método, sem a frase da base, teto menor que piso, valor zero, quarto sem
+ocupação, ocupação que a frase não declara, **ocupação achada dentro de outro número**
+(`2` dentro de `2400`, a mesma armadilha que o `dias_de_uso` pagou), ocupação fora da base
+de quarto, sem data, cidade inexistente, categoria e base fora do vocabulário, sem URL e
+sem motivo, id repetido, resumo digitado, o esquema sem a entidade, e **vocabulário novo
+que a régua não sabe extrair**. Nenhuma faixa foi gravada no banco: todas são mundos de
+bancada.
+
+**BANCADA, 0 falha:** `validar-banco` verde (os avisos de `vocabulario_sem_lastro` onde
+estavam, mais os quatro vocabulários novos e o `leitura_direta` que a lista à mão escondia);
+`mutacoes-banco` **117 de 117**; `teste-f1` 139.658 afirmações; `mutacoes-f1` 28 de 28;
+`teste-f2` **213.586** afirmações sobre os 3.077 estados, com a aritmética
+refeita à mão em `Fraction` e as funções puras chamadas com os mundos que o banco não tem;
+`mutacoes-f2` **44 de 44 — 9 mundos, 25 quebras e 10 mortes, com 28 cobradas pela frase**.
+
+**PRÓXIMO PASSO:** a **F3 como regra** (o passe da cidade vale a pena para você), que é a
+última das três âncoras e a única cujas duas pontas da conta são **nossas** — soma dos
+avulsos do banco contra o preço do passe. Ela herda pronta da F2 a régua de declarar o que o
+número é, e não precisa da entidade nova, a menos que a fonte do passe publique faixa em vez
+de preço. **O que ela precisa e o banco não tem:** nenhuma das quatro experiências é
+`passe_de_cidade` — o vocabulário tem o valor e nenhum registro o usa, e o Roma Pass e o
+Lisboa Card, que o corpus mediu, não estão carregados. Então a F3 começa pelo banco, não pela
+ferramenta. **E o item de conteúdo que continua sendo o mais caro desta ilha não é ferramenta
+nenhuma: é a casca (3b), que depende dos passos 2 a 8 da seção 11 e da liberação de
+`jornadafly.com.br` no egresso — as duas do Raphael, as duas de navegador.**
+
 ## 2026-10-22 13h29Z — A F1 EXISTE COMO REGRA, e escrevê-la mostrou que a Conta 3 da especificação não era calculável
 
 **O que saiu:** o **bloco 4** — a F1 como **regra**, no desenho que a ohmetria usou na F1
