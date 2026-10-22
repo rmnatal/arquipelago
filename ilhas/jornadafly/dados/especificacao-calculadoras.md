@@ -535,6 +535,99 @@ colhido por nós. O corpus mediu duas frases na mesma SERP — "média de R$ 203
 as duas verdadeiras do jeito que estão escritas**. A F2 publica faixa com quem
 publicou, ou não publica.
 
+### 3.1 A F2 COMO REGRA — o que este bloco entregou, e as duas procedências (22/10/2026)
+
+Mesma decisão da 2.11, e pelo mesmo motivo: a F2 existe como **regra** e ainda não como
+**página**. O que mudou de ferramenta para ferramenta não é o desenho, é **de onde vêm os
+números**.
+
+| Arquivo | O que é |
+|---|---|
+| `ferramentas/f2-referencia.py` | o cérebro: (cidade, dias, pessoas, padrão) → resposta inteira, já em frase acentuada |
+| `ferramentas/gerar-f2.py` | grava a grade da tabela mais as bordas, e conta o domínio inteiro |
+| `dados/f2-respostas.json` | os **144** casos da tabela e as **53** bordas, com o domínio de **3.077** estados contado no cabeçalho. `publicar: false` |
+| `ferramentas/teste-f2.py` | o portão: varre os 3.077 estados, refaz a aritmética à mão em `Fraction`, e chama as funções puras com os mundos que o banco não tem |
+| `ferramentas/mutacoes-f2.py` | quebra a referência de propósito e exige que o portão veja |
+
+**A F2 importa a F1 em vez de reescrever as contas dela.** A normalização de unidade, o
+degrau de capacidade, a escrita do dinheiro e a data em português são as mesmas regras, e
+**quarto é unidade de capacidade como gôndola**: seis pessoas numa diária de quarto duplo
+são TRÊS quartos, exatamente como seis pessoas numa gôndola de cinco lugares são DUAS
+gôndolas. `quartos_necessarios()` chama `unidades_necessarias()` da F1 — duas funções para
+o mesmo fato é como as duas metades de um repositório param de se falar.
+
+**AS QUATRO LINHAS NÃO TÊM A MESMA PROCEDÊNCIA, e é isso que a entidade nova garante.**
+A linha de **experiências** é nossa: preço colhido no site de quem opera, com data de
+leitura. **Hospedagem, alimentação e transporte local são de terceiros**, e desde hoje
+moram na entidade `FAIXA_DIARIA` do esquema (versão 6), separada da `EXPERIENCIA`. A
+separação é **estrutural e não editorial**: a referência nunca tem como juntar as duas
+numa linha, e o portão reprova a resposta em que uma linha carregue as duas formas.
+
+**A troca que esta migração fez, e ela é a mesma da versão 5 um andar acima.** Lá a
+quantidade de uso de cada bilhete saiu da prosa do `rotulo` para `dias_de_uso`; aqui o que
+saiu da prosa é **o que o número significa**. O bloco 1 mediu, em 14/09/2026, duas frases
+na **mesma página de resultados** — *"média de R$ 203,87 nos últimos 30 dias"* e *"a
+diária mais baixa encontrada foi R$ 396,84"* —, que não podem ser as duas verdadeiras do
+jeito que estão escritas. A distinção entre elas morou numa ressalva de leitura humana por
+38 dias. Agora é `o_que_o_numero_e`, que é enum, e a regra passou a ser **computável**:
+
+> **A F2 nunca soma faixas cujo `o_que_o_numero_e` difere.** Somar uma média com um
+> mínimo produz um intervalo que **ninguém publicou**. Quando a categoria tem naturezas
+> diferentes, as duas vão para a tela lado a lado, com o nome de quem publicou e a frase
+> com que ele disse o que o número é, e a F2 **recusa o intervalo único**.
+
+**E a base também é declarada, nunca deduzida.** `base` diz se o número é por pessoa, por
+quarto ou pelo grupo, e `base_transcrita_de` guarda a frase de onde isso saiu. Quando a
+base é de quarto, `pessoas_por_quarto` é obrigatório e o número tem de **aparecer** na
+frase da fonte — a régua cobra isso como cobra `dias_de_uso`. Faixa de quarto sem ocupação
+**não escala**, e a linha é recusada pelo nome: dividir a diária pelo tamanho do grupo
+seria escolher a ocupação no lugar de quem publicou o preço, e o resultado continuaria
+parecendo dinheiro, que é por que esse erro não se vê.
+
+**AS QUATRO RECUSAS DECLARADAS DA F2, e três delas estão ativas hoje:**
+
+1. **Sem faixa publicada, sem linha.** É a recusa declarada desta seção, aplicada
+   **categoria por categoria** em vez de à ferramenta inteira: a F2 publica a linha que
+   tem e nomeia as que faltam.
+2. **Sem as quatro linhas, sem total.** Um total somado só com o que a ilha tem seria um
+   número **menor que a viagem** apresentado como se fosse ela inteira.
+3. **A linha de experiências não cresce com os dias.** Quantas experiências cabem em N
+   dias **não está no banco**, e a F2 declara isso em vez de supor. A linha é o custo de
+   fazer uma vez cada experiência que a ilha leu na cidade.
+4. **A F2 não escolhe a versão da experiência.** Escolher entre os quatro bilhetes da
+   Torre Eiffel seria decisão editorial com cara de conta, então a linha é uma **faixa**:
+   o piso é a versão mais barata de cada experiência, o teto é a mais cara, e a tela diz
+   quais são.
+
+**O QUE O BANCO AINDA NÃO TEM, e por que a falta não é descuido.** `faixas_diarias` tem
+**zero** registros, então hoje a F2 publica **uma linha de quatro** em todo estado. Carregar
+exige `publicado_por`, `url` e `data_leitura`, e as duas únicas frases de diária que esta
+ilha mediu foram registradas **sem nenhum dos três**: o corpus guardou os números e não
+guardou de quem eram. Carregar hoje exigiria **inventar o dono do número**, e o dono do
+número é o produto desta ilha. A coleta também não é trabalho desta nuvem — o egresso
+recusa `numbeo.com`, `booking.com` e `civitatis.com.br`, medido em 22/10/2026.
+
+**O que o portão achou na própria ferramenta, antes do commit, e os dois são de
+honestidade e não de aritmética:**
+
+- **A faixa de largura zero.** Com as duas versões da gôndola pelo mesmo preço, as duas
+  pontas vinham de versões **diferentes** com o mesmo número, e a tela publicava *"de «De
+  dia» a «À noite»"* para um intervalo que não é intervalo. As duas pontas passaram a
+  desempatar para o mesmo lado, e a tela diz que as versões custam o mesmo.
+- **A frase que mentia sobre Siem Reap.** A primeira versão descartava a experiência que
+  não fosse `publicavel`, e a página dizia *"esta ilha ainda não leu o preço de nenhuma
+  experiência em Siem Reap"* — falso: o preço do passe de Angkor está lido e gravado,
+  apenas não reconferido. Pior que a frase: **o mesmo item aparece na F1 com ressalva e
+  desaparecia aqui**, de modo que quem viesse de uma página para a outra veria a
+  experiência sumir. Agora `pendente_de_releitura` **entra na conta com a ressalva**, como
+  na F1; só `excluido_do_banco` fica fora.
+
+**E o arquivo gravado não traz os 3.077 estados, e isso é decisão com o número na mesa:**
+gravá-los deu **13 MB**, contra 858 KB do arquivo da F1, e seria regravado inteiro a cada
+mudança de regra ou de banco. O arquivo leva o que a página lê — a tabela pré-renderizada
+e as bordas, **679 KB** —, e a prova da grade inteira mora no portão, que a varre em cada
+passada. Prova em arquivo que ninguém recomputa é peso; prova em portão é prova.
+
 ---
 
 ## 4. FERRAMENTA F3 — O passe da cidade vale a pena para você

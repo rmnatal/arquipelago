@@ -932,6 +932,191 @@ def q_dias_de_uso_achado_dentro_de_outro_numero(banco):
 
 
 # nome, funcao, espera, esquema_mutado
+# ---------------------------------------------------------------------------
+# A FAIXA_DIARIA — a entidade que nasceu em 22/10/2026 para a F2
+#
+# O banco tem ZERO faixas, entao sem estas mutacoes as regras que o validador ganhou
+# hoje NUNCA SERIAM EXECUTADAS por ninguem: regua que nao falhou porque nao rodou e o
+# defeito que fez nascer o descobridor de portoes na aquametria. Os numeros 203.87 e
+# 396.84 sao os dois que o bloco 1 mediu na mesma pagina de resultados, em 14/09/2026,
+# e estao aqui porque sao o caso que a regra existe para tratar.
+# ---------------------------------------------------------------------------
+
+def _faixa_de_bancada(**campos):
+    base = {
+        "id": "bancada-hospedagem",
+        "cidade": "veneza",
+        "categoria_de_custo": "hospedagem",
+        "padrao": "economico",
+        "valor_min": 100,
+        "valor_max": 150,
+        "moeda": "EUR",
+        "base": "por_pessoa_por_dia",
+        "base_transcrita_de": "valor por pessoa, por dia",
+        "pessoas_por_quarto": None,
+        "o_que_o_numero_e": "faixa_publicada",
+        "metodo_declarado": "de 100 a 150 euros por pessoa por dia",
+        "publicado_por": "Publicador de bancada",
+        "url": "https://exemplo.invalido/bancada",
+        "data_leitura": "2026-09-14",
+        "status": "publicavel",
+    }
+    base.update(campos)
+    return base
+
+
+def _com_faixas(banco, faixas):
+    banco["faixas_diarias"] = faixas
+    banco["resumo"]["faixas_diarias"] = len(faixas)
+    banco["resumo"]["faixas_diarias_publicaveis"] = sum(
+        1 for f in faixas if f.get("status") == "publicavel")
+    return banco
+
+
+def mundo_faixa_por_pessoa(banco):
+    """Uma faixa publicavel completa. O banco de hoje nao tem nenhuma."""
+    return _com_faixas(banco, [_faixa_de_bancada()])
+
+
+def mundo_faixa_de_quarto_com_ocupacao(banco):
+    """Diaria de quarto duplo com a ocupacao TRANSCRITA da frase da fonte."""
+    return _com_faixas(banco, [_faixa_de_bancada(
+        id="bancada-quarto", base="por_quarto_por_dia", pessoas_por_quarto=2,
+        base_transcrita_de="diaria de quarto duplo, para 2 pessoas",
+        metodo_declarado="diaria de quarto duplo entre 100 e 150 euros")])
+
+
+def mundo_faixa_de_quarto_com_ocupacao_por_extenso(banco):
+    """A ocupacao declarada POR EXTENSO na frase: «quarto para duas pessoas».
+
+    O validador confere em palavra inteira e aceita digito ou extenso, igual ao
+    `dias_de_uso`. Este mundo e o lado do extenso, que o banco nao tem como produzir.
+    """
+    return _com_faixas(banco, [_faixa_de_bancada(
+        id="bancada-quarto-extenso", base="por_quarto_por_dia", pessoas_por_quarto=2,
+        base_transcrita_de="diaria de quarto para duas pessoas",
+        metodo_declarado="diaria de quarto duplo entre 100 e 150 euros")])
+
+
+def mundo_faixa_de_quarto_sem_ocupacao_COM_motivo(banco):
+    """Sem ocupacao mas COM o motivo escrito: o banco aceita, e a F2 recusa a linha.
+
+    Sao as duas metades da mesma honestidade: o banco guarda o que foi lido, a
+    ferramenta e quem se nega a escalar o numero.
+    """
+    return _com_faixas(banco, [_faixa_de_bancada(
+        id="bancada-quarto-cego", base="por_quarto_por_dia", pessoas_por_quarto=None,
+        base_transcrita_de="diaria de quarto",
+        motivo_sem_pessoas_por_quarto=(
+            "A fonte publica a diaria do quarto e nao diz quantas pessoas ele cobre. "
+            "Supor dois seria escolher a ocupacao no lugar de quem publicou o preco."),
+        metodo_declarado="diaria de quarto entre 100 e 150 euros")])
+
+
+def mundo_duas_naturezas_de_numero(banco):
+    """O CASO MEDIDO: uma media e um minimo na mesma cidade, categoria e padrao.
+
+    Isto NAO e erro de banco — as duas podem ser verdadeiras —, e por isso o validador
+    responde com AVISO. Quem se nega a somar e a F2.
+    """
+    return _com_faixas(banco, [
+        _faixa_de_bancada(id="bancada-media", valor_min=203.87, valor_max=203.87,
+                          o_que_o_numero_e="media_de_periodo",
+                          publicado_por="Publicador da media",
+                          metodo_declarado="media de 203,87 nos ultimos 30 dias"),
+        _faixa_de_bancada(id="bancada-minimo", valor_min=396.84, valor_max=396.84,
+                          o_que_o_numero_e="menor_encontrado",
+                          publicado_por="Publicador do minimo",
+                          metodo_declarado="a diaria mais baixa encontrada foi 396,84"),
+    ])
+
+
+def mundo_faixa_sem_url_COM_motivo(banco):
+    """Sem endereco mas com o motivo, como a tarifa da gondola fez com a FONTE."""
+    return _com_faixas(banco, [_faixa_de_bancada(
+        url=None,
+        motivo_sem_url=("A pagina foi lida por busca e o endereco exato nao ficou "
+                        "registrado. O publicador esta nomeado e a data esta gravada."))])
+
+
+def q_faixa_sem_publicado_por(banco):
+    return _com_faixas(banco, [_faixa_de_bancada(publicado_por="")])
+
+
+def q_faixa_sem_metodo_declarado(banco):
+    return _com_faixas(banco, [_faixa_de_bancada(metodo_declarado="")])
+
+
+def q_faixa_sem_base_transcrita(banco):
+    return _com_faixas(banco, [_faixa_de_bancada(base_transcrita_de="   ")])
+
+
+def q_faixa_invertida(banco):
+    return _com_faixas(banco, [_faixa_de_bancada(valor_min=200, valor_max=100)])
+
+
+def q_faixa_com_valor_zero(banco):
+    return _com_faixas(banco, [_faixa_de_bancada(valor_min=0)])
+
+
+def q_faixa_de_quarto_sem_ocupacao_e_sem_motivo(banco):
+    return _com_faixas(banco, [_faixa_de_bancada(
+        base="por_quarto_por_dia", pessoas_por_quarto=None,
+        base_transcrita_de="diaria de quarto")])
+
+
+def q_ocupacao_que_a_frase_nao_declara(banco):
+    """A ocupacao gravada e TRES e a frase da fonte diz «quarto duplo»."""
+    return _com_faixas(banco, [_faixa_de_bancada(
+        base="por_quarto_por_dia", pessoas_por_quarto=3,
+        base_transcrita_de="diaria de quarto duplo")])
+
+
+def q_ocupacao_achada_dentro_de_outro_numero(banco):
+    """A frase diz «R$ 2.400 por quarto» e a ocupacao gravada e 2.
+
+    Mesma armadilha que o `dias_de_uso` pagou: procurar por vizinhanca acha o 2 de
+    2.400 e aprova uma ocupacao que a fonte nunca declarou.
+    """
+    return _com_faixas(banco, [_faixa_de_bancada(
+        base="por_quarto_por_dia", pessoas_por_quarto=2,
+        base_transcrita_de="diaria de 2400 reais por quarto")])
+
+
+def q_ocupacao_fora_da_base_de_quarto(banco):
+    return _com_faixas(banco, [_faixa_de_bancada(pessoas_por_quarto=2)])
+
+
+def q_faixa_diaria_sem_data_de_leitura(banco):
+    return _com_faixas(banco, [_faixa_de_bancada(data_leitura=None)])
+
+
+def q_faixa_de_cidade_que_nao_existe(banco):
+    return _com_faixas(banco, [_faixa_de_bancada(cidade="cidade-que-nao-existe")])
+
+
+def q_faixa_com_categoria_fora_do_vocabulario(banco):
+    return _com_faixas(banco, [_faixa_de_bancada(categoria_de_custo="lavanderia")])
+
+
+def q_faixa_com_base_fora_do_vocabulario(banco):
+    return _com_faixas(banco, [_faixa_de_bancada(base="por_semana")])
+
+
+def q_faixa_sem_url_e_sem_motivo(banco):
+    return _com_faixas(banco, [_faixa_de_bancada(url=None)])
+
+
+def q_faixa_com_id_repetido(banco):
+    return _com_faixas(banco, [_faixa_de_bancada(), _faixa_de_bancada(valor_min=90)])
+
+
+def q_resumo_de_faixas_digitado(banco):
+    banco = _com_faixas(banco, [_faixa_de_bancada()])
+    banco["resumo"]["faixas_diarias"] = 7
+    return banco
+
+
 MUTACOES = [
     ("MUNDO preco por pessoa, escada de dias, crianca e temporada", mundo_por_pessoa, "passa", None),
     ("MUNDO preco por cabine", mundo_por_cabine, "passa", None),
@@ -1029,6 +1214,34 @@ MUTACOES = [
      "EXPERIENCIA.campos.eixo_das_versoes"),
     ("esquema sem o campo dias_de_uso na VERSAO", _intacto, "reprova", "versao_sem_dias",
      "VERSAO.campos.dias_de_uso"),
+    ("MUNDO faixa diaria por pessoa", mundo_faixa_por_pessoa, "passa", None),
+    ("MUNDO faixa diaria de QUARTO com a ocupacao declarada", mundo_faixa_de_quarto_com_ocupacao, "passa", None),
+    ("MUNDO ocupacao do quarto declarada POR EXTENSO", mundo_faixa_de_quarto_com_ocupacao_por_extenso, "passa", None),
+    ("MUNDO faixa diaria de quarto sem ocupacao, COM o motivo escrito", mundo_faixa_de_quarto_sem_ocupacao_COM_motivo, "passa", None),
+    ("MUNDO media e minimo na mesma cidade: AVISO e nao erro", mundo_duas_naturezas_de_numero, "passa", None),
+    ("MUNDO faixa diaria sem url, COM o motivo escrito", mundo_faixa_sem_url_COM_motivo, "passa", None),
+
+    ("faixa diaria sem o nome de quem publicou", q_faixa_sem_publicado_por, "reprova", None, "publicado_por"),
+    ("faixa diaria sem a frase do metodo", q_faixa_sem_metodo_declarado, "reprova", None, "metodo_declarado"),
+    ("faixa diaria com base sem a frase de onde ela saiu", q_faixa_sem_base_transcrita, "reprova", None, "base_transcrita_de"),
+    ("faixa diaria com o teto menor que o piso", q_faixa_invertida, "reprova", None, "intervalo vazio"),
+    ("faixa diaria com valor zero", q_faixa_com_valor_zero, "reprova", None, "maior que zero"),
+    ("faixa diaria de quarto sem ocupacao e sem motivo", q_faixa_de_quarto_sem_ocupacao_e_sem_motivo, "reprova", None, "TRES quartos"),
+    ("ocupacao que a frase da fonte NAO declara", q_ocupacao_que_a_frase_nao_declara, "reprova", None, "TRANSCRITO"),
+    ("ocupacao achada DENTRO de outro numero", q_ocupacao_achada_dentro_de_outro_numero, "reprova", None, "TRANSCRITO"),
+    ("ocupacao gravada fora da base de quarto", q_ocupacao_fora_da_base_de_quarto, "reprova", None, "PROIBE ocupacao"),
+    ("faixa diaria sem data de leitura", q_faixa_diaria_sem_data_de_leitura, "reprova", None, "data_leitura"),
+    ("faixa diaria de cidade que nao esta no banco", q_faixa_de_cidade_que_nao_existe, "reprova", None, "nao esta no banco"),
+    ("faixa diaria com categoria fora do vocabulario", q_faixa_com_categoria_fora_do_vocabulario, "reprova", None, "fora do vocabulario"),
+    ("faixa diaria com base fora do vocabulario", q_faixa_com_base_fora_do_vocabulario, "reprova", None, "fora do vocabulario"),
+    ("faixa diaria sem url e sem motivo", q_faixa_sem_url_e_sem_motivo, "reprova", None, "motivo_sem_url"),
+    ("faixa diaria com id repetido", q_faixa_com_id_repetido, "reprova", None, "repetido"),
+    ("resumo de faixas digitado em vez de contado", q_resumo_de_faixas_digitado, "reprova", None, "faixas_diarias"),
+    ("esquema sem a entidade FAIXA_DIARIA", _intacto, "reprova", "sem_entidade_faixa_diaria",
+     "FAIXA_DIARIA"),
+    ("esquema com vocabulario novo que a regua nao sabe extrair", _intacto, "reprova",
+     "vocab_novo_sem_extrator", "sem extrator"),
+
     ("esquema sem o registro da Conta 3", _intacto, "reprova", "sem_registro_conta_3",
      "conta_3_da_F1_exige_EIXO_DECLARADO"),
 ]
@@ -1080,6 +1293,13 @@ def esquema_para(mutacao):
         del esquema["entidades"]["VERSAO"]["campos"]["dias_de_uso"]
     elif mutacao == "sem_registro_conta_3":
         del esquema["conta_3_da_F1_exige_EIXO_DECLARADO_e_nao_sai_do_rotulo"]
+    elif mutacao == "sem_entidade_faixa_diaria":
+        del esquema["entidades"]["FAIXA_DIARIA"]
+    elif mutacao == "vocab_novo_sem_extrator":
+        # Vocabulario novo no esquema que a regua nao sabe extrair. Antes de
+        # 22/10/2026 isto PASSAVA em silencio, e foi assim que `declarada_por` e
+        # `canal_de_leitura` ficaram 37 dias sem ser conferidos por ninguem.
+        esquema["vocabularios"]["tipo_de_quarto"] = ["duplo", "triplo"]
     elif mutacao == "degrau_sem_campo":
         for d in esquema["escada_de_fontes"]["niveis"]:
             if d["nivel"] == 3:

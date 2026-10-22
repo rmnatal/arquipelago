@@ -67,25 +67,40 @@ Medido em 13 e 14/09/2026, e **o recorte encolheu em relação ao que o despacho
 
 **O que isso decide, e é a tese desta ilha: o diferencial NÃO é o ângulo "vale a pena" — é o FORMATO.** Nenhum dos 30+ domínios medidos entrega **preço colhido na fonte de quem opera, com data de leitura**. Todos entregam "gastei X na minha viagem em 2023". **A ilha ganha por ser a única que faz a conta para o SEU grupo, com preço datado** — é a mesma disciplina de preço do Clube do Mosaico.
 
-## A BANCADA DESTA ILHA — quatro portões, e cada um é um comando (22/10/2026)
+## A BANCADA DESTA ILHA — seis portões, e cada um é um comando (22/10/2026)
 
 ```
 python3 ferramentas/validar-banco.py      # o banco contra o esquema
 python3 ferramentas/mutacoes-banco.py     # quebra o banco e exige que o validador reprove
 python3 ferramentas/teste-f1.py           # a F1: todos os estados, com as bordas
 python3 ferramentas/mutacoes-f1.py        # quebra a F1 e exige que o portão dela veja
+python3 ferramentas/teste-f2.py           # a F2: os 3.077 estados, mais as funções puras
+python3 ferramentas/mutacoes-f2.py        # quebra a F2 e exige que o portão dela veja
 ```
 
 **Nenhum deles abre a rede**, e é por isso que esta ilha tem bancada apesar de não ter
-site. Os quatro rodam em menos de três minutos juntos.
+site. Os quatro primeiros rodam em menos de três minutos juntos; as duas baterias de
+mutação rodam o portão da ferramenta dezenas de vezes e passam disso — a da F2 roda
+`teste-f2.py` **44 vezes**, e quem a dispara renova a reserva pela **1.1** antes.
 
-**NÃO EXISTE `bancada.py` AQUI, e a ausência é decisão de 22/10/2026 e não esquecimento.**
+**NÃO EXISTE `bancada.py` AQUI, e a ausência continua sendo decisão e não esquecimento.**
 As três ilhas irmãs têm um descobridor de portões por convenção de nome, e ele nasceu nelas
 porque uma régua que existia desde dias antes **não tinha falhado: não tinha rodado**.
-Aqui são quatro arquivos e a **31.3** proíbe construir bancada sobre bancada enquanto
-houver item de conteúdo aberto. No dia em que esta lista passar de uma tela, ou no dia em
-que um portão desta pasta deixar de ser rodado por alguém esquecer dele, o descobridor
-nasce — com a data e o defeito nomeados, como a 31.2 manda.
+Aqui são seis arquivos e a **31.3** proíbe construir bancada sobre bancada enquanto houver
+item de conteúdo aberto. No dia em que esta lista passar de uma tela, ou no dia em que um
+portão desta pasta deixar de ser rodado por alguém esquecer dele, o descobridor nasce —
+com a data e o defeito nomeados, como a 31.2 manda.
+
+> **A PRESSÃO SOBRE ESTA DECISÃO AUMENTOU HOJE, e fica registrado para a próxima execução
+> não precisar redescobrir.** O bloco de 22/10 encontrou o defeito da **lista escrita à
+> mão** dentro desta própria pasta, num lugar onde ninguém procurava: `validar-banco.py`
+> conferia o crescimento de vocabulário contra **sete** nomes digitados, e o esquema tinha
+> **nove** — `declarada_por` e `canal_de_leitura` nunca foram conferidos por ninguém, em
+> silêncio, desde 15/09/2026. É a mesma família que fez nascer o descobridor na aquametria.
+> A régua agora varre `vocabularios` do esquema e **denuncia** vocabulário sem extrator, em
+> vez de o ignorar. Mas a lista de **portões** acima continua escrita à mão, e ela cresceu
+> de quatro para seis na mesma passada: **quem acrescentar o sétimo e não o escrever aqui
+> cria exatamente o defeito que esta ilha acabou de pagar num andar abaixo.**
 
 ## Memória a carregar
 `/areas/projeto-jornadafly.md`, `/areas/fabrica-de-sites.md`, `/areas/playbook-nascimento-projeto.md` (fase 4b), `/areas/arquipelago-bussola.md` (rodadas 004 e 005), `/topics/dev-conventions.md`. Sem memória, **não pare**: o estado está no `ESTADO.md`, no `REGISTRO.md` e neste arquivo.
@@ -130,7 +145,9 @@ Quando o site responder, siga a seção 11 do passo 9 em diante e a seção 14 (
 
 **4. FERRAMENTAS**, uma por execução, com JSON-LD, tabela pré-renderizada, resposta antes da explicação e procedência na frase. Ordem: **F1, F2, F3**.
    - **A F1 ESTÁ ENTREGUE COMO REGRA desde 22/10/2026**, e ainda não como página — sem casca não há snippet, e um render de bancada que serve menos que o site é a cicatriz que a seção 8 mais cobra. Mora em `ferramentas/f1-referencia.py` + `dados/f1-respostas.json` (154 respostas, 44 linhas de tabela, `publicar: false`). **O PHP, quando nascer, é tradutor dela, frase a frase** — nunca uma segunda regra. Detalhe em `dados/especificacao-calculadoras.md`, 2.11, e no `REGISTRO.md` daquela data.
-   - **A F2 é a próxima**, e ela começa decidindo **onde moram** hospedagem, alimentação e transporte local: as três não são experiência e não cabem na entidade EXPERIÊNCIA, e sem elas a F2 não soma nada.
+   - **A F2 ESTÁ ENTREGUE COMO REGRA desde 22/10/2026**, e também ainda não como página. A pergunta aberta com que ela nasceu está **respondida**: hospedagem, alimentação e transporte local moram na entidade **`FAIXA_DIARIA`** do esquema (versão 6), separada da EXPERIÊNCIA — porque as três **não são colhidas por nós**, são faixa que terceiro publicou. Mora em `ferramentas/f2-referencia.py` + `dados/f2-respostas.json` (3.077 estados servidos, 197 gravados, `publicar: false`). Detalhe em `dados/especificacao-calculadoras.md`, 3.1, e no `REGISTRO.md` daquela data.
+   - **E A F2 PUBLICA UMA LINHA DE QUATRO HOJE, por falta de DADO e não de regra.** `faixas_diarias` tem zero registros: as duas únicas frases de diária que esta ilha mediu foram guardadas **sem o nome de quem as publicou**, sem URL e sem data de leitura, e os três são obrigatórios. Carregar hoje exigiria inventar o dono do número. **Isto é o próximo item de conteúdo da ilha, e ele depende de rede que esta nuvem não tem** — `numbeo.com`, `booking.com` e `civitatis.com.br` recusados no egresso em 22/10/2026.
+   - **A F3 é a próxima ferramenta**, e ela herda pronto da F2 o que a F1 não tinha: a régua de procedência de número de terceiro. A F3 soma avulsos do banco contra o preço do passe — os dois são **nossos** —, então a entidade nova não a atravessa; o que a atravessa é a regra de **declarar o que o número é** quando a fonte do passe publicar faixa em vez de preço.
 
 **5. ARTIGOS-ÂNCORA** pareados com cada ferramenta, na mesma execução.
 

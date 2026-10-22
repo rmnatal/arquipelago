@@ -481,6 +481,19 @@ Caminho: `claude.ai/code` → seletor de ambiente → Nuvem → engrenagem → D
 >
 > **O gesto continua sendo um só, e continua sendo melhor antes do WordPress que depois:** `claude.ai/code` → seletor de ambiente → Nuvem → engrenagem → "Domínios permitidos", acrescentar `jornadafly.com.br` e `*.jornadafly.com.br` (e `ohmetria.com.br` e `*.ohmetria.com.br`, que nunca saíram desta lista). **Pronto quando:** de dentro de uma rotina, `curl -s -o /dev/null -w "%{http_code}" https://jornadafly.com.br/` devolver qualquer código HTTP de verdade — 404 inclusive.
 >
+> **E DOIS DOMÍNIOS DE FONTE DE DIÁRIA ENTRARAM NA LISTA ÀS 16h4xZ DE 22/10/2026, pela
+> 20.3 — quem escreve a regra que exige a fonte é quem confere se a fonte está liberada.**
+> O bloco da F2 criou a entidade `FAIXA_DIARIA`, que é onde moram hospedagem, alimentação e
+> transporte local, e ela exige `publicado_por`, `url` e `data_leitura` em todo registro.
+> Medido na mesma passada: `numbeo.com` **000**, `www.booking.com` **000**,
+> `www.civitatis.com.br` **000**, com `raw.githubusercontent.com` em **301** ao lado.
+> **O que isto trava, em número:** a F2 publica **uma linha de quatro** em todos os 3.024
+> estados que ela serve, e as outras três são recusa nomeada. Não é lacuna de regra — a
+> régua da entidade está escrita e tem 24 mutações cobrando-a —, é lacuna de **coleta**, e
+> a coleta precisa de rede. *(As duas únicas frases de diária que esta ilha já mediu foram
+> guardadas no bloco 1 **sem o nome de quem as publicou**, então nem elas são carregáveis:
+> carregar exigiria inventar o dono do número, e o dono do número é o produto da ilha.)*
+
 > **E um quarto domínio de operador entrou na lista do bloco, medido hoje:** `www.toureiffel.paris` responde **403 no CONNECT**, e é ele que impede de ler as **quatro células do meio** da grade de tarifa da Torre Eiffel — criança e jovem nas duas versões intermediárias. A busca devolveu os valores em **resumo**, e resumo não é documento lido: as quatro ficaram **contadas** como lacuna no banco (`faixas_declaradas_nao_transcritas: 4`) em vez de gravadas. Junta-se a `civitatis.com` e `www.angkorenterprise.gov.kh`, que já estavam aqui.
 
 > **A METADE QUE DÁ NOME A ESTE DESPACHO ESTÁ CUMPRIDA DESDE 18/09/2026 — registro do Pente Fino em 21/09/2026, sem mover o bloco nem mexer na prioridade.** O "pronto quando" do título — *"`curl` a `https://jornadafly.com.br/` devolver qualquer código HTTP de verdade"* — foi atendido: `ilhas/jornadafly/ESTADO.md` e `ilhas/ohmetria/ESTADO.md` trazem os dois `rede: aberta em 2026-09-18`, medido às 12h35Z com **HTTP 200**, e o `dados/PAINEL.md` da ronda de 18/09 escreve *"o despacho ALTA de 15/09 sobre a lista de domínios está cumprido e saiu deste painel"*. **O título deste bloco, lido hoje, afirma um fato falso.**
