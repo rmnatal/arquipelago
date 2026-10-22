@@ -179,6 +179,57 @@ precisariam ser refeitos.
 DNS nenhum (`dig` não existe; `socket.gethostbyname` falha até para `google.com`). Não houve nem filtro negativo.
 **A Bússola recomenda não registrar nenhum domínio de jardinagem.**
 
+## ⚠️ TODO M DA TABELA ABAIXO ESTÁ ERRADO — remedido em 22/10/2026 no painel de afiliado
+
+**A coluna M desta página inteira foi ancorada em 3%**, lido da página institucional da Shopee em 14/09/2026.
+A aritmética prova: som automotivo R$ 202 × 3% = R$ 6,06 · ferragem R$ 35 × 3% = R$ 1,05 · irrigação R$ 250 × 3%
+= R$ 7,50. **Medido no painel, produto por produto, o piso real é 8% — em dez nichos de dez.** Arquivo:
+`bussola/medicoes/comissao-painel-10-nichos-2026-10-22.md` (200 produtos).
+
+| nicho | M antigo | **M remedido** | comissão medida | ticket medido |
+|---|---|---|---|---|
+| **Ferragem de marcenaria** | **−0,02** | **1,84** | **13%** | R$ 57 |
+| Som automotivo | 1,65 | **2,59** | 8% | R$ 202 |
+| Robometria (peça de robô) | — | **2,29** | **12%** | R$ 99 |
+| Jardinagem (cesta) | 0,77 | **1,77** | 8% | R$ 86 |
+| Enxoval de cama | — | **1,73** | 8% | R$ 82 |
+| Aquametria (filtro) | — | **1,43** | 8% | R$ 60 |
+| **Irrigação por gotejamento** | 1,86 | **1,35** | 8% | **R$ 55** (a fila supunha R$ 250) |
+| Resistência de chuveiro | — | **0,83** | 8% | R$ 32 |
+| Solda elétrica | 0,52 | **0,63** | 8% | R$ 26 |
+| Clubedomosaico (rejunte) | — | **0,55** | 8% | R$ 24 |
+
+### A FERRAGEM DE MARCENARIA É A MAIOR DESCOBERTA, e estava nesta página desde 14/09
+
+A linha 17 tem **S_par 4 · S_com 4 · S 4,00 · P 5 · A 5 · V 5 · cobertura FECHADA 10 de 10** — **a melhor
+facilidade da página inteira**. O que a enterrava em 17º lugar era `M = −0,02`, calculado sobre R$ 35 × 3%.
+Com 13% medido e ticket real de R$ 57: **M = 1,84 · Retorno = 3,14 · Facilidade = 4,40 · Índice = 3,66.**
+**Acima de toda linha desta página** — e as outras precisam ser remedidas antes de qualquer comparação valer.
+
+### E A SEGUNDA METADE DA DÍVIDA, que a irrigação revelou: O TICKET TAMBÉM NUNCA FOI MEDIDO
+
+Irrigação teve a comissão subindo de 3% para 8% e **o M caindo mesmo assim**, porque a fila supunha ticket de
+**R$ 250** e a mediana real na Shopee é **R$ 55**. A coluna "Ticket" desta página — R$ 1.200 em coifa, R$ 1.100
+em nobreak, R$ 3.000 em bicicleta elétrica, R$ 1.000 em compressor, R$ 800 em portão — **são preços de categoria,
+não o que a recomendação converte**, e a seção 3 manda explicitamente usar o segundo, *"nunca o topo da
+categoria"*. **Remedir comissão sem remedir ticket conserta metade do erro e pode piorar a outra metade.**
+
+### Duas leituras sobre as ilhas vivas, que não são da fila mas saíram da mesma medição
+
+- **Clubedomosaico está no pior nicho de dinheiro dos dez medidos.** Rejunte a 8% sobre R$ 24 = **R$ 1,92 por
+  venda · M = 0,55**. Para R$ 1.000/mês seriam ~17 vendas/dia. **A saída não é abandonar a ilha e sim parar de
+  recomendar só rejunte**: argamassa, pastilha, desempenadeira, espaçador, impermeabilizante e cortador entram na
+  mesma compra, e a atribuição de 7 dias da Shopee paga pela cesta inteira (seção 7).
+- **Robometria tem o melhor dinheiro por venda do arquipélago** — peça de robô a **12%** sobre R$ 99 =
+  **R$ 11,88/venda · M = 2,29** — e **não recebe foco desde 21/09/2026**.
+
+### O que falta remedir (oito buscas de minutos, no mesmo painel)
+
+Comissão **e ticket** de: coifa · nobreak · compressor · portão automático · bicicleta elétrica · bomba d'água ·
+fechadura eletrônica · fita LED · airsoft · ciclismo · drone · airfryer. **Nenhum índice desta página é
+comparável com outro até que isso esteja feito** — a remedição mexeu em uns para cima e em outro para baixo, e
+uma tabela meio remedida ordena pior que uma tabela inteira errada do mesmo jeito.
+
 ## Registro de medição — notas componentes preservadas (NÃO é ranking, não ordene por aqui)
 
 Todas as linhas estão **fora do ranking** pelos dois motivos do quadro acima. A coluna **Índice (14/09)** é histórica.
