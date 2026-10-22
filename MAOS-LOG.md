@@ -6583,3 +6583,54 @@ bussola/medicoes/serp-ferragem-som-chrome-2026-10-22.md    ->  89 linhas (arquiv
 ```
 
 Nenhum passo falhou. Nada foi tocado além dos dois arquivos nomeados pela instrução e deste log.
+
+## 2026-10-22, 10:35 BRT (13:35 UTC) — Bússola: corpus de intenção de compra do som automotivo (3.0-d)
+
+Instrução: criar UM arquivo novo, `bussola/medicoes/para-medir-2026-10-22-som-automotivo.md`, em um commit só.
+Trava de sobrescrita conferida antes de escrever: o arquivo NÃO existia em `origin/main`.
+
+Partida: `git fetch origin main && git checkout -B trabalho origin/main` — base `628ace5`.
+
+`git status --porcelain` antes do commit:
+
+```
+?? bussola/medicoes/para-medir-2026-10-22-som-automotivo.md
+```
+
+`git diff --stat HEAD~1 HEAD`:
+
+```
+ .../para-medir-2026-10-22-som-automotivo.md        | 120 +++++++++++++++++++++
+ 1 file changed, 120 insertions(+)
+```
+
+Commit que foi ao `main`: `311c051d1cfb4013bce736b157345cced0f9a252`
+Push: `628ace5..311c051  HEAD -> main` (primeira tentativa, sem rebase, sem force).
+Confirmação `git fetch origin main && git log -1 origin/main`:
+
+```
+311c051d1cfb4013bce736b157345cced0f9a252 Bússola: corpus de intenção de compra do som automotivo, para o piso da 3.0-d
+```
+
+Contagem conferida relendo o arquivo DEPOIS de gravar:
+
+```
+arquivos criados                                        -> 1
+arquivos substituídos                                   -> 0
+linhas do arquivo novo                                   -> 120
+LISTA 1 (intenção de compra), total                      -> 73
+  Módulo × alto-falante (quantidade e impedância)         -> 12
+  Módulo × potência RMS                                   -> 16
+  Bitola de cabo × potência                               -> 12
+  Fusível                                                 -> 5
+  Caixa e falante por polegada                            -> 10
+  Energia (bateria, capacitor, alternador)                -> 8
+  Cabeças e marca                                         -> 10
+LISTA 2 (apoio, fora da soma do piso)                    -> 10
+maior consulta da LISTA 1, em palavras                   -> 10 (dentro do limite do Planejador)
+maior consulta da LISTA 2, em palavras                   -> 8
+frontmatter: consultas_de_compra                         -> 73 (bate com a contagem)
+frontmatter: publicar                                    -> false (como veio)
+```
+
+Nenhum passo falhou. Nada foi tocado além do arquivo nomeado pela instrução e deste log.
