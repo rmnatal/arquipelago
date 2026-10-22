@@ -6,7 +6,7 @@ piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 0
 primeira_indexacao: null
 ultima_execucao: 2026-10-22T16:59Z
-executando_desde: null   # a execucao de 22/10 16h20Z fechou as 16:59Z. Reserva RENOVADA UMA vez pela 1.1 as 16:44Z, porque a bateria de mutacoes da F2 roda o portao 44 vezes e o bloco passa de 40 minutos sozinho. A HORA DO `ultima_execucao` SAI DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
+executando_desde: 2026-10-22T19:16Z   # reserva da execucao de 22/10 19:16Z (passo 5 da secao 1, via 1.2 passo 2). A hora sai do `date -u` na mesma linha de comando que a grava.
 rede: BLOQUEADA em 2026-10-22   # 20.2, REMEDIDA as 16h2xZ e NAO herdada do campo: TRES passadas, jornadafly.com.br e www.jornadafly.com.br em 000 nas tres (6 medicoes), com aquametria.com.br e robometria.com.br em 200 nas tres (6 de controle, nenhuma intermitencia). O curl verbose nomeia a causa e ela nao e tunel: `CONNECT tunnel failed, response 403` do proxy de egresso, ou seja o dominio NAO esta na lista de Dominios permitidos deste ambiente. SEGUE SENDO REGRESSAO (o campo dizia `aberta em 2026-09-18` com HTTP 200 medido as 12h35Z daquele dia), e o despacho ALTA de 15/09 em dados/despachos.md continua valendo. E DUAS FONTES NOVAS ENTRARAM NO BLOQUEIO, medidas hoje pela 20.3 porque a entidade FAIXA_DIARIA as exige: numbeo.com e www.booking.com em 000, com www.civitatis.com.br (ja listado) tambem em 000 e raw.githubusercontent.com em 301 ao lado. O que a rede trava e o 3b em diante e a COLETA das faixas, nao o bloco de arquivo — e bloqueada_por segue null de proposito, como nas seis execucoes anteriores.
 bloco_atual: |
   A F2 EXISTE COMO REGRA, e a pergunta aberta que ela trazia virou uma ENTIDADE. O
