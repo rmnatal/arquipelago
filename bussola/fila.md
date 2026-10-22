@@ -83,7 +83,40 @@ medição mudou o resultado. Arquivo: `bussola/medicoes/serp-jardinagem-chrome-2
 | D · R · A | 5 · 5 · 4 | mantidos |
 | S_com · P | não medidos | **seguem não medidos → sem índice (3.1)** |
 
-**Estado novo:** `passa no tráfego, travado no M — aguardando a comissão extra do vendedor`.
+**Estado novo (22/10/2026, depois da leitura do painel de afiliado):** `passa no tráfego e no M — faltam S_com e P`.
+
+**A comissão foi medida no painel, produto por produto, e o gargalo caiu.** Arquivo:
+`bussola/medicoes/comissao-shopee-painel-2026-10-22.md`. **O piso real de comissão em jardinagem é 8%, não 3%** —
+mediana de 8% em 60 produtos (adubo, substrato, vaso), com uma fatia entre 18% e 23%. Os 3% da Central de Ajuda
+são a comissão padrão; o painel mostra o total que o afiliado recebe.
+
+| componente | antes | **agora, medido no painel** |
+|---|---|---|
+| comissão | 3% (página institucional) | **8% mediana** (60 produtos, 22/10/2026) |
+| R$ por venda | R$ 2,40 | **R$ 6,88** (cesta de R$ 86: adubo R$ 25 + substrato R$ 19 + vaso R$ 42) |
+| **M** | 0,77 | **1,77** |
+| **A** | 4 (inferido pelo formato da URL) | **5** (botão "Obter link" em todo produto da amostra) |
+| **Retorno** | 3,16 | **3,71** |
+| receita/mês | R$ 623 a R$ 1.038 | **R$ 1.785 a R$ 2.974** |
+
+**M se calcula na mediana de 8% e não na fatia de 18–23% porque a seção 7 proíbe ordenar por comissão.** Uma
+ilha que perseguisse as taxas altas é uma ilha que o Arquipélago não pode construir.
+
+**Achado que vale tanto quanto o número:** existe **produto por espécie** na Shopee — `Substrato para Zamioculca`
+com **3 mil+ vendas**, `Terra Adubada para Costela de Adão`, `Adubo para Orquídeas com Bokashi` com 785 vendas.
+A ferramenta "qual substrato para esta planta" tem produto nomeado para recomendar no fim da resposta, que é o
+que a seção 7 exige. Demanda de compra paramétrica comprovada, não hipótese.
+
+**DÍVIDA NOVA E GRANDE, para toda a fila:** todo M desta página foi ancorado em **3%** lido da página
+institucional em 14/09/2026. **Nenhum foi medido no painel.** Se o piso real for 8% nos outros nichos como é em
+jardinagem, **todos os M da fila estão subestimados por um fator de ~2,7** — e nichos que reprovaram por ticket
+baixo (resistência de chuveiro, irrigação, ferragem) podem ter reprovado por um número errado. A remedição é a
+mesma leitura de minutos, no mesmo painel, trocando o termo de busca.
+
+**Ressalva que segue aberta:** o artigo 124095 diz que para *"sites e apps especializados em tecnologia, cupons,
+ofertas, cashback, parceiros financeiros e semelhantes, a taxa de comissão é sob consulta"*. Ilha é site de
+ferramenta, não de oferta — mas *"e semelhantes"* é texto aberto, e isso vale uma pergunta ao suporte da Shopee
+antes de a receita de uma ilha depender destas taxas.
 
 **O gargalo trocou de lado.** Jardinagem não é mais um nicho difícil de ranquear: é um nicho **fácil de ranquear e
 quase sem dinheiro por venda**. A R$ 80 de cesta e 3%, a ilha faz **R$ 1.038/mês** a 1.441 visitas/dia. Com 10% de
