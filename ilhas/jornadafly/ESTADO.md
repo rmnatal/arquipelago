@@ -6,7 +6,7 @@ piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 0
 primeira_indexacao: null
 ultima_execucao: 2026-10-22T10:33Z
-executando_desde: null   # a execucao de 22/10 10h20Z fechou as 10:33Z. Reserva NAO renovada pela 1.1: o bloco ficou abaixo dos 40 minutos, e o commit da reserva saiu no mesmo push da troca do foco.
+executando_desde: 2026-10-22T13:29Z   # reservada pela execucao de 22/10 que comecou as 13:29Z (passo 5 da secao 1). A ilha estava com executando_desde null, que pela 1.1 ja significa que nao havia bloco da Fundacao vivo.
 rede: BLOQUEADA em 2026-10-22   # 20.2, TRES passadas remedidas hoje e NAO herdadas: jornadafly.com.br e www.jornadafly.com.br em 000 nas tres, com aquametria.com.br e robometria.com.br em 200 nas mesmas passadas (a robometria caiu uma vez na 3a — intermitencia de tunel, que e justamente o que a 20.2 manda nao confundir com bloqueio). O curl verbose nomeia a causa e ela nao e intermitencia: `CONNECT tunnel failed, response 403` do proxy de egresso, ou seja o dominio NAO esta na lista de Dominios permitidos deste ambiente. ISTO E REGRESSAO: o campo dizia `aberta em 2026-09-18` com HTTP 200 medido as 12h35Z daquele dia. O despacho ALTA de 15/09 em dados/despachos.md, dado como cumprido em 18/09, voltou a valer. O que a rede trava e o 3b em diante, nao o bloco de arquivo — e bloqueada_por segue null de proposito, como nas quatro execucoes anteriores desta ilha.
 bloco_atual: |
   FAIXA ETARIA DESCEU DE EXPERIENCIA PARA VERSAO, nas 11 versoes das 4 experiencias,
