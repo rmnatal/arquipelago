@@ -6524,3 +6524,7 @@ entrou como texto, não como leitura minha. Nenhum contato pessoal de terceiros 
 houve nada a deixar de fora. O conteúdo foi gravado byte a byte como veio, sem reformatar e sem corrigir —
 inclusive as quebras de linha no meio das frases, o `Σ`, os travessões, os intervalos `21–22/10/2026` e
 `18–28%` com en dash, e as reticências unicode em `(…)`.
+
+**Correção dentro desta mesma seção (o log é append-only, nada acima foi reescrito):** o hash curto do commit
+do trabalho saiu truncado errado acima como `7404e8aacof`; o curto correto é `7404e8a`. O hash completo
+`7404e8aac0ffd83f2fd2d5c25f3a42012f00b3aa` registrado acima está certo e é o que vale.
