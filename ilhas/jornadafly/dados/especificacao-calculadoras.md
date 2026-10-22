@@ -653,6 +653,129 @@ equilíbrio em número de atrações**, e a frase de veredito na voz da ilha ("p
 data de leitura registrada. Ela diz a data e diz que a regra pode ter mudado — que é o
 defeito exato que ela existe para não repetir.
 
+### 4.1 A F3 COMO REGRA — o que este bloco entregou, e o que a conta **é sobre** (22/10/2026)
+
+Mesma decisão da 2.11 e da 3.1, e pelo mesmo motivo: a F3 existe como **regra** e ainda
+não como **página**. O que mudou de ferramenta para ferramenta não é o desenho — é a
+pergunta que a régua tem de responder antes da aritmética.
+
+| Arquivo | O que é |
+|---|---|
+| `ferramentas/f3-referencia.py` | o cérebro: (cidade, atrações, dias, pessoas) → resposta inteira, já em frase acentuada |
+| `ferramentas/gerar-f3.py` | grava a tabela mais as bordas, e conta o domínio inteiro |
+| `dados/f3-respostas.json` | as **48** linhas da tabela e as **30** bordas, com o domínio de **1.038** estados contado no cabeçalho. `publicar: false` |
+| `ferramentas/teste-f3.py` | o portão: varre os 1.038 estados, refaz a aritmética à mão em `Fraction`, e chama as funções puras com os mundos que o banco não tem |
+| `ferramentas/mutacoes-f3.py` | quebra a referência de propósito e exige que o portão veja |
+
+**A F3 IMPORTA A F2, QUE IMPORTA A F1**, e a cadeia é deliberada. A faixa de preço de
+uma atração entre as versões dela — com o desempate das duas pontas para o mesmo lado,
+que é conserto medido na F2 — mora em `f2.faixa_de_experiencias`; a normalização de
+unidade e o degrau de capacidade moram na F1. **Três cópias da mesma conta seriam três
+regras que divergem no dia em que uma delas mudar.** O portão prova a cadeia por um
+caminho que a referência não usa: ele exige que **a soma das faixas por atração seja a
+faixa do conjunto** (aditividade), o que é o que permite à tela publicar o detalhe por
+atração ao lado do total sem que os dois discordem.
+
+**A CONTA NÃO ERA A PARTE DIFÍCIL, e descobrir isso é o achado do bloco.** O 1º colocado
+de «Roma Pass vale a pena» já publica «soma dos avulsos × preço do passe, com ponto de
+equilíbrio» — a seção 4 acima diz, desde 14/09/2026, que **não há vaga de formato**. O
+que ninguém publica é **sobre o que** aquele ponto de equilíbrio foi calculado. Daí as
+três regras que agora moram no esquema (`regra_da_cobertura_do_passe`) e que a
+ferramenta publica:
+
+1. **NÃO LIDA NÃO É NÃO COBERTA.** Atração pretendida sem `COBERTURA_DO_PASSE` fica fora
+   do valor entregue **e é nomeada na tela**. Tratá-la como não coberta publica um «não
+   paga» que a ilha não mediu; tratá-la como coberta publica o contrário. As duas são
+   erradas, e a única frase honesta é que ninguém leu.
+2. **O EQUILÍBRIO É SOBRE O QUE A ILHA LEU, NUNCA SOBRE O PASSE.** `atracoes_declaradas_pelo_passe`
+   (o número da fonte) e a contagem das coberturas lidas vão para a tela **lado a lado**,
+   e a frase do equilíbrio diz sobre quantas atrações ele saiu. Passe que declara 50
+   atrações com 3 lidas **não tem equilíbrio publicável como equilíbrio dele**.
+3. **DESCONTO COM TETO É FAIXA.** «Até 50%» entrega de **zero** à metade do avulso, e as
+   duas pontas vão para a tela. É a mesma troca do `o_que_o_numero_e` da `FAIXA_DIARIA`
+   um bloco atrás: o que sai da prosa para o campo não é o número, é **o que o número é**.
+
+**O VEREDITO TEM TRÊS DESFECHOS, NÃO DOIS**, e o terceiro é o que esta ferramenta tem de
+diferente. `paga` quando o passe se paga **até na ponta de baixo** da faixa; `nao_paga`
+quando não se paga **nem na de cima**; e `depende_da_versao` quando a faixa **atravessa**
+o preço do passe — ali existe bilhete em que ele paga e bilhete em que não paga, e as
+duas coisas são verdade. Escolher uma seria a ilha escolhendo a versão no lugar de quem
+viaja, que é a mesma recusa da 3.1 item 4. É também a lição que a ohmetria pagou no mesmo
+dia um andar acima: **quem separa as duas causas no código separa as duas no texto.**
+
+**O PONTO DE EQUILÍBRIO SAI DAS MAIS CARAS PARA AS MAIS BARATAS, e a ordem é declarada.**
+É a ordem em que o passe rende mais, portanto a que dá o **menor** número de atrações — e
+dizer «a partir de 3 atrações o passe paga» sem dizer **quais 3** seria um número sem
+dono. A função devolve a ordem que usou e a tela nomeia as atrações. Ele é calculado nas
+**duas pontas** da faixa: na de baixo o passe precisa de mais atrações, na de cima de
+menos, e a diferença entre os dois números é exatamente «qual bilhete você compraria».
+
+**AS SETE RECUSAS DURAS**, e três delas são novas nesta ferramenta porque a entrada é
+nova: dias fora de 1–21, grupo fora de 1–12, cidade desconhecida, **escolha vazia** (sem
+atração não há o primeiro lado da comparação), **atração repetida** (somaria o ingresso
+duas vezes e o passe pareceria valer mais do que vale), **atração desconhecida** e
+**o passe escolhido como atração** (ele é o outro lado da conta, não um item dela).
+
+**O TETO DE 8 ATRAÇÕES NÃO É LIMITE DE BANCO, É LIMITE DE ESCOLHA**, e ele existe por
+aritmética: o domínio desta ferramenta cresce em **2^n − 1** com o número de atrações
+lidas numa cidade. Hoje são 4 cidades com 1 atração cada e **1.038** estados; com 8
+atrações numa cidade só seriam 255 subconjuntos × 252 combinações de dias e pessoas,
+nela sozinha. O número está escrito no portão **a partir desta seção**, não lido da
+ferramenta — régua que toma o limite da coisa que ela mede não mede o limite.
+
+**O QUE O BANCO AINDA NÃO TEM, e por que a falta não é descuido.** `coberturas_de_passe`
+tem **zero** registros e **nenhuma** das quatro experiências é `passe_de_cidade` — o
+valor está no vocabulário desde 14/09/2026 sem um registro que o use, e o aviso
+`vocabulario_sem_lastro` o conta em toda passada. Carregar exige **ler o preço e a
+cobertura na fonte de quem vende o passe**, e o egresso desta nuvem recusa os cinco
+domínios que o corpus mediu: `romapass.it`, `turismoroma.it`, `lisboacard.org`,
+`visitlisboa.com` e `civitatis.com.br`, todos em `000` em 22/10/2026, com
+`raw.githubusercontent.com` em 301 na mesma passada. Carregar de cabeça exigiria inventar
+**três** coisas — o preço do passe, a lista de atrações que ele cobre e a regra de reserva
+de cada uma — e a terceira é justamente a que o bloco 1 mediu como a que envelhece
+primeiro. **O Angkor Pass não foi recategorizado:** ele é `ingresso_de_sitio_publico`
+desde 14/09/2026, cobre **um sítio** e não uma cidade, e trocar a categoria dele para dar
+lastro ao vocabulário seria mover o dado para caber na ferramenta.
+
+**O QUE ISSO FAZ A F3 PUBLICAR HOJE:** em todos os **1.008** estados válidos ela publica a
+soma dos avulsos — que é **metade** da pergunta — e fecha com `sem_passe_lido`, dizendo
+que a outra metade não foi lida. A recusa nunca diz que a cidade **não tem** passe: o
+vocabulário da cobertura nasceu sem lastro, e a `regra_de_crescimento_de_vocabulario` do
+esquema proíbe frase de inexistência enquanto for assim. **O portão cobra essa distinção
+em cada estado** — é a primeira vez nesta ilha que aquela regra do esquema é conferida por
+código em vez de obedecida de boa vontade.
+
+**O QUE O PORTÃO ACHOU, antes do commit, e os quatro são de honestidade e não de
+aritmética:**
+
+- **A F2 SOMAVA O PASSE COM O INGRESSO QUE O PASSE INCLUI.** Medido no mundo de bancada do
+  passe: a linha de experiências de Roma publicava **«€100 a €148»** para 2 pessoas — o
+  ingresso (€36 a €44) **mais** o passe que inclui o ingresso (€64 a €104) —, e a tela
+  nomeava os dois lado a lado como se fossem dois programas. **Pagar a mesma visita duas
+  vezes.** A F2 passou a descartar `passe_de_cidade` da linha e a **nomear** a recusa,
+  mandando quem pergunta para a F3 — e a metade mais traiçoeira era a segunda: a **fonte**
+  do passe continuava na prestação de contas de um número que a página não publica.
+- **AS RECUSAS DURAS PUBLICAVAM ID DE REGISTRO NA TELA.** Duas delas ecoavam o id da
+  atração entre aspas, que é texto de bastidor da fábrica pela 32.4 — a mesma cicatriz do
+  `unidade_de_preco` da F1 e do caminho de arquivo da ohmetria. **A causa de ninguém ver
+  era estrutural:** a varredura do portão dava `continue` na borda, então as sete frases de
+  recusa dura nunca passavam pela régua de acento, de frase proibida nem de bastidor.
+  Agora passam.
+- **O EIXO `null` NÃO CONFERIA `dias_de_uso`.** As duas direções da regra no validador
+  cobravam `por_quantidade` e proibiam os outros eixos, e o `null` — a experiência de
+  **uma** versão, que é exatamente o que um passe de validade única é — não caía em
+  nenhuma das duas e passava calado. A conferência virou função chamada dos dois lugares.
+- **A CONCORDÂNCIA, pela terceira vez nesta pasta.** A primeira versão publicou «1 atração
+  em Veneza **custam** €90» e «dentro **das 1** atração». Não se vê lendo o código; se vê
+  lendo a frase, e é por isso que o portão lê a frase.
+
+**E uma régua que nasceu porque as duas metades não se falavam:** a validade do preço
+(`validade_do_preco` do esquema) era **aviso de bancada** dentro do validador, e a F3 é a
+primeira ferramenta que a leva para a **tela** — «este preço foi lido há 38 dias e esta
+ilha considera 60 o prazo». Em vez de uma segunda cópia da regra, ela virou
+`f1.preco_vencido`, e o portão da F3 **compara os dois vereditos versão por versão do
+banco**: eles discordarem quer dizer que uma das duas está errada e nenhuma das duas sabe.
+
 ---
 
 ## 5. A FRONTEIRA ENTRE `constantes.json` E O BANCO — e por que ela importa aqui mais que nas outras ilhas
@@ -689,8 +812,26 @@ e este arquivo é quem obrigou o esquema a ter `unidade_de_preco`, `capacidade_m
 e estava velha desde 14/09/2026; corrigida em 22/10/2026 pela execução que migrou a
 faixa etária. `faixa_etaria` agora é campo da **VERSÃO** — ver 2.6.)*
 
-**Próximo bloco desbloqueado: o 4 — a F1 como REGRA**, no desenho que a ohmetria usou na
-F1 dela: a referência em Python (entrada → resposta inteira, já em frase acentuada),
-a tabela pré-renderizada e os portões, sem PHP enquanto não houver casca. Não depende de
-site, de domínio, nem da rede bloqueada — e o PHP, quando nascer, é **tradutor** da
-referência, frase a frase.
+**AS TRÊS FERRAMENTAS ESTÃO ENTREGUES COMO REGRA** — F1 e F2 em 22/10/2026 (2.11 e 3.1)
+e a F3 no mesmo dia (4.1) —, e **nenhuma** delas é página: sem casca não há snippet, e um
+render de bancada que serve menos do que o site serve é a cicatriz que a seção 8 do
+`ARQUIPELAGO.md` mais cobra. O PHP das três, quando nascer, é **tradutor** da referência,
+frase a frase. *(A linha anterior dizia "próximo bloco desbloqueado: o 4 — a F1 como
+REGRA" e estava velha desde 22/10/2026 de manhã; corrigida no fim do mesmo dia pela
+execução que entregou a F3.)*
+
+**Próximo bloco desbloqueado: o que o Raphael destravar.** As três ferramentas que esta
+ilha podia escrever sem site estão escritas, e **as três publicam menos do que sabem
+calcular, por falta de DADO que esta nuvem não alcança**:
+
+| Ferramenta | O que falta | Quem destrava |
+|---|---|---|
+| **F1** | nada de regra. Falta a **página** | o Raphael: passos 2 a 8 da seção 11 |
+| **F2** | `faixas_diarias` com zero registros — hospedagem, alimentação e transporte local | abertura de `numbeo.com`, `booking.com` e `civitatis.com.br` no egresso |
+| **F3** | `coberturas_de_passe` e os passes com zero registros | abertura de `romapass.it`, `turismoroma.it`, `lisboacard.org`, `visitlisboa.com` e `civitatis.com.br` |
+
+**Os dois itens de trabalho de arquivo que sobram, e os dois são pequenos:** o **bloco 5**
+(artigos-âncora pareados com cada ferramenta) e o **bloco 6** (lista de prospecção do
+widget, `publicar: false`). O **5b** (malha) e o **5c** (cluster free tour) dependem da
+casca. Depois deles, esta ilha não tem mais bloco que não precise do Raphael — e isso
+está escrito aqui para a próxima execução não gastar a vez descobrindo.

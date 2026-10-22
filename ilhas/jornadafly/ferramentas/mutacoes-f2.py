@@ -254,11 +254,77 @@ def mundo_cidade_sem_experiencia_lida(banco, esquema, constantes):
     return banco, esquema, constantes
 
 
+def mundo_cidade_com_passe(banco, esquema, constantes):
+    """ROMA com um PASSE DE CIDADE no banco, ao lado do ingresso do Coliseu.
+
+    O banco de hoje tem zero passes, entao sem este mundo a regra que a F2 ganhou em
+    22/10/2026 — passe nao entra na linha de experiencias — nunca seria executada. O
+    defeito que ela consertou foi MEDIDO neste mundo exato: a linha de Roma publicava
+    «€100 a €148» para 2 pessoas, que e o ingresso (€36 a €44) mais o passe que inclui
+    o ingresso (€64 a €104). O passe e um jeito alternativo de pagar a MESMA visita.
+    """
+    banco["experiencias"].append({
+        "id": "roma-passe-de-bancada",
+        "nome": "Passe de Roma (mundo de bancada)",
+        "cidade": "roma",
+        "categoria": "passe_de_cidade",
+        "eixo_das_versoes": "por_quantidade",
+        "status": "publicavel",
+        "versoes": [
+            {"id": "48h", "rotulo": "2 dias", "preco": 32, "moeda": "EUR",
+             "unidade_de_preco": "por_pessoa", "capacidade_maxima": None,
+             "dias_de_uso": 2, "fonte": "parco-colosseo-tarifa-via-busca",
+             "data_leitura": "2026-09-14"},
+            {"id": "72h", "rotulo": "3 dias", "preco": 52, "moeda": "EUR",
+             "unidade_de_preco": "por_pessoa", "capacidade_maxima": None,
+             "dias_de_uso": 3, "fonte": "parco-colosseo-tarifa-via-busca",
+             "data_leitura": "2026-09-14"},
+        ],
+    })
+    banco["resumo"]["experiencias"] = len(banco["experiencias"])
+    banco["resumo"]["versoes"] = sum(len(e.get("versoes") or [])
+                                     for e in banco["experiencias"])
+    return banco, esquema, constantes
+
+
+def mundo_passe_excluido_do_banco(banco, esquema, constantes):
+    """O mesmo passe com `excluido_do_banco`: ele nao entra na conta E nao e nomeado.
+
+    Sao duas regras diferentes passando pelo mesmo registro, e so este mundo as separa:
+    a recusa do passe existe para o passe que a ilha PUBLICA, nao para o que ela
+    descartou — nomear o descartado seria contar ao visitante de um produto que esta
+    pagina nao oferece.
+    """
+    banco, esquema, constantes = mundo_cidade_com_passe(banco, esquema, constantes)
+    banco["experiencias"][-1]["status"] = "excluido_do_banco"
+    return banco, esquema, constantes
+
+
 # ---------------------------------------------------------------------------
 # AS QUEBRAS DE REFERENCIA — (nome, trocas, frase esperada, mundo)
 # ---------------------------------------------------------------------------
 
 QUEBRAS_DE_REFERENCIA = [
+    ("o passe volta para dentro da linha de experiencias (a visita paga duas vezes)",
+     [('        if exp.get("categoria") == CATEGORIA_DE_PASSE:\n            continue\n        versoes = []',
+       '        versoes = []')],
+     "aparece no detalhe da linha de experiencias", mundo_cidade_com_passe),
+
+    ("o passe sai da conta mas a recusa fica SEM NOME",
+     [('    passes = passes_da_cidade(banco, cidade_id)\n    if passes:',
+       '    passes = passes_da_cidade(banco, cidade_id)\n    if False:')],
+     "nao NOMEOU a recusa", mundo_cidade_com_passe),
+
+    ("a fonte do passe volta a prestar contas de um numero que a tela nao publica",
+     [('        if exp.get("categoria") == CATEGORIA_DE_PASSE:\n            continue\n        for versao in (exp.get("versoes") or []):',
+       '        for versao in (exp.get("versoes") or []):')],
+     "presta contas da fonte do passe", mundo_cidade_com_passe),
+
+    ("o passe DESCARTADO do banco volta a ser nomeado na recusa",
+     [('            and exp.get("status") != "excluido_do_banco"]',
+       '            ]')],
+     "numa cidade que nao tem passe", mundo_passe_excluido_do_banco),
+
     ("diaria de quarto multiplicada por PESSOA em vez de por quarto",
      [('        return v * quartos * dias, "%d %s por %s" % (',
        '        return v * pessoas * dias, "%d %s por %s" % (')],
@@ -413,6 +479,11 @@ QUEBRAS_QUE_MATAM = [
      [('CATEGORIAS_DE_TERCEIRO = ("hospedagem", "alimentacao", "transporte_local")',
        'CATEGORIAS_DE_TERCEIRO = ("hospedagem", "alimentacao")')],
      "nao cobre o vocabulario", None),
+
+    ("a categoria do passe sai do vocabulario do esquema e o descarte fica cego",
+     [('CATEGORIA_DE_PASSE = "passe_de_cidade"',
+       'CATEGORIA_DE_PASSE = "passe_que_nao_esta_no_vocabulario"')],
+     "nao esta no vocabulario", None),
 ]
 
 
@@ -483,6 +554,10 @@ MORTES = [
 ]
 
 MUNDOS = [
+    ("cidade com PASSE no banco: ele nao entra na conta e e nomeado",
+     mundo_cidade_com_passe),
+    ("passe excluido do banco: fora da conta e sem ser nomeado",
+     mundo_passe_excluido_do_banco),
     ("as tres faixas carregadas: a F2 tem TOTAL", mundo_com_as_tres_faixas_e_total),
     ("diaria de quarto COM ocupacao declarada", mundo_faixa_de_quarto_com_ocupacao),
     ("diaria de quarto SEM ocupacao: linha recusada", mundo_faixa_de_quarto_sem_ocupacao),

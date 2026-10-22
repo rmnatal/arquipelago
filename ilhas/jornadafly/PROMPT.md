@@ -67,7 +67,7 @@ Medido em 13 e 14/09/2026, e **o recorte encolheu em relação ao que o despacho
 
 **O que isso decide, e é a tese desta ilha: o diferencial NÃO é o ângulo "vale a pena" — é o FORMATO.** Nenhum dos 30+ domínios medidos entrega **preço colhido na fonte de quem opera, com data de leitura**. Todos entregam "gastei X na minha viagem em 2023". **A ilha ganha por ser a única que faz a conta para o SEU grupo, com preço datado** — é a mesma disciplina de preço do Clube do Mosaico.
 
-## A BANCADA DESTA ILHA — seis portões, e cada um é um comando (22/10/2026)
+## A BANCADA DESTA ILHA — oito portões, e cada um é um comando (22/10/2026)
 
 ```
 python3 ferramentas/validar-banco.py      # o banco contra o esquema
@@ -76,12 +76,15 @@ python3 ferramentas/teste-f1.py           # a F1: todos os estados, com as borda
 python3 ferramentas/mutacoes-f1.py        # quebra a F1 e exige que o portão dela veja
 python3 ferramentas/teste-f2.py           # a F2: os 3.077 estados, mais as funções puras
 python3 ferramentas/mutacoes-f2.py        # quebra a F2 e exige que o portão dela veja
+python3 ferramentas/teste-f3.py           # a F3: os 1.038 estados, mais os mundos com passe
+python3 ferramentas/mutacoes-f3.py        # quebra a F3 e exige que o portão dela veja
 ```
 
 **Nenhum deles abre a rede**, e é por isso que esta ilha tem bancada apesar de não ter
-site. Os quatro primeiros rodam em menos de três minutos juntos; as duas baterias de
-mutação rodam o portão da ferramenta dezenas de vezes e passam disso — a da F2 roda
-`teste-f2.py` **44 vezes**, e quem a dispara renova a reserva pela **1.1** antes.
+site. Os cinco primeiros rodam em poucos minutos juntos; as três baterias de mutação
+rodam o portão da ferramenta dezenas de vezes e passam disso — a da F2 roda `teste-f2.py`
+**44 vezes** e a da F3 roda `teste-f3.py` **45 vezes**, e quem as dispara renova a reserva
+pela **1.1** antes.
 
 **NÃO EXISTE `bancada.py` AQUI, e a ausência continua sendo decisão e não esquecimento.**
 As três ilhas irmãs têm um descobridor de portões por convenção de nome, e ele nasceu nelas
@@ -101,6 +104,14 @@ com a data e o defeito nomeados, como a 31.2 manda.
 > vez de o ignorar. Mas a lista de **portões** acima continua escrita à mão, e ela cresceu
 > de quatro para seis na mesma passada: **quem acrescentar o sétimo e não o escrever aqui
 > cria exatamente o defeito que esta ilha acabou de pagar num andar abaixo.**
+>
+> **A LISTA FOI DE SEIS PARA OITO NO MESMO DIA, 22/10/2026, e os dois portões novos foram
+> escritos aqui na mesma passada** — o aviso acima funcionou na primeira vez em que foi
+> cobrado. **A decisão de não ter descobridor continua, e agora com um número:** oito
+> linhas ainda cabem numa tela, e a **31.3** continua proibindo construir bancada sobre
+> bancada enquanto houver item de conteúdo aberto. **O gatilho está escrito e não mudou:**
+> no dia em que esta lista passar de uma tela, ou no dia em que um portão desta pasta
+> deixar de ser rodado por alguém esquecer dele, o descobridor nasce.
 
 ## Memória a carregar
 `/areas/projeto-jornadafly.md`, `/areas/fabrica-de-sites.md`, `/areas/playbook-nascimento-projeto.md` (fase 4b), `/areas/arquipelago-bussola.md` (rodadas 004 e 005), `/topics/dev-conventions.md`. Sem memória, **não pare**: o estado está no `ESTADO.md`, no `REGISTRO.md` e neste arquivo.
@@ -147,7 +158,8 @@ Quando o site responder, siga a seção 11 do passo 9 em diante e a seção 14 (
    - **A F1 ESTÁ ENTREGUE COMO REGRA desde 22/10/2026**, e ainda não como página — sem casca não há snippet, e um render de bancada que serve menos que o site é a cicatriz que a seção 8 mais cobra. Mora em `ferramentas/f1-referencia.py` + `dados/f1-respostas.json` (154 respostas, 44 linhas de tabela, `publicar: false`). **O PHP, quando nascer, é tradutor dela, frase a frase** — nunca uma segunda regra. Detalhe em `dados/especificacao-calculadoras.md`, 2.11, e no `REGISTRO.md` daquela data.
    - **A F2 ESTÁ ENTREGUE COMO REGRA desde 22/10/2026**, e também ainda não como página. A pergunta aberta com que ela nasceu está **respondida**: hospedagem, alimentação e transporte local moram na entidade **`FAIXA_DIARIA`** do esquema (versão 6), separada da EXPERIÊNCIA — porque as três **não são colhidas por nós**, são faixa que terceiro publicou. Mora em `ferramentas/f2-referencia.py` + `dados/f2-respostas.json` (3.077 estados servidos, 197 gravados, `publicar: false`). Detalhe em `dados/especificacao-calculadoras.md`, 3.1, e no `REGISTRO.md` daquela data.
    - **E A F2 PUBLICA UMA LINHA DE QUATRO HOJE, por falta de DADO e não de regra.** `faixas_diarias` tem zero registros: as duas únicas frases de diária que esta ilha mediu foram guardadas **sem o nome de quem as publicou**, sem URL e sem data de leitura, e os três são obrigatórios. Carregar hoje exigiria inventar o dono do número. **Isto é o próximo item de conteúdo da ilha, e ele depende de rede que esta nuvem não tem** — `numbeo.com`, `booking.com` e `civitatis.com.br` recusados no egresso em 22/10/2026.
-   - **A F3 é a próxima ferramenta**, e ela herda pronto da F2 o que a F1 não tinha: a régua de procedência de número de terceiro. A F3 soma avulsos do banco contra o preço do passe — os dois são **nossos** —, então a entidade nova não a atravessa; o que a atravessa é a regra de **declarar o que o número é** quando a fonte do passe publicar faixa em vez de preço.
+   - **A F3 ESTÁ ENTREGUE COMO REGRA desde 22/10/2026**, e também ainda não como página. A previsão que esta linha trazia estava **meio certa**: a F3 não é atravessada pela procedência de terceiro (avulso e passe são os dois nossos), e o que a atravessa não é "declarar o que o número é" — é **sobre o que a conta é feita**. Nasceu a entidade **`COBERTURA_DO_PASSE`** (esquema versão 7), que é a relação entre um passe e UMA atração que ele cobre, com fonte e data de leitura **próprias**: o preço do passe pode estar certo e a cobertura errada no mesmo dia. Mora em `ferramentas/f3-referencia.py` + `dados/f3-respostas.json` (1.038 estados contados, 48 linhas de tabela, `publicar: false`). As três regras de honestidade dela moram no esquema e o portão as cobra uma por uma. Detalhe em `dados/especificacao-calculadoras.md`, 4.1, e no `REGISTRO.md` daquela data.
+   - **E A F3 PUBLICA SÓ METADE DA PERGUNTA HOJE, por falta de DADO e não de regra.** Zero passes e zero coberturas no banco: `passe_de_cidade` está no vocabulário desde 14/09/2026 sem um registro que o use. Carregar exige ler o preço e a cobertura na fonte de quem vende o passe, e o egresso recusou os CINCO domínios que o corpus mediu em 22/10/2026 — `romapass.it`, `turismoroma.it`, `lisboacard.org`, `visitlisboa.com` e `civitatis.com.br`. **Isto e a coleta da F2 são os dois itens de conteúdo que dependem de rede que esta nuvem não tem.**
 
 **5. ARTIGOS-ÂNCORA** pareados com cada ferramenta, na mesma execução.
 

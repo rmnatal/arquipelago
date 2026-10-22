@@ -3,6 +3,235 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-10-22 19h16Z — A F3 EXISTE COMO REGRA, e escrevê-la mostrou que a conta não era a parte difícil: a parte difícil é **sobre o que** ela é feita
+
+**O que saiu:** a **F3 como regra** — `ferramentas/f3-referencia.py` (o cérebro: cidade,
+atrações pretendidas, dias e pessoas → resposta inteira, já em frase acentuada),
+`ferramentas/gerar-f3.py`, `dados/f3-respostas.json` (**1.038** estados contados, **78**
+gravados, 48 linhas de tabela, `publicar: false`), `ferramentas/teste-f3.py` e
+`ferramentas/mutacoes-f3.py`. Esquema **versão 7**, banco **versão 7**, com a entidade
+**`COBERTURA_DO_PASSE`** e o vocabulário `forma_de_cobertura`. É o próximo passo que o
+registro de 16h20Z de hoje deixou escrito, cumprido na mesma data — e **com ele as três
+âncoras desta ilha existem como regra**.
+**Nada foi ao ar, e não podia ter ido: esta ilha não tem site, não tem WordPress, não tem
+Sync e não tem `/status`. Dizer que verifiquei no ar seria inventar.**
+
+**SEM PHP, pela mesma decisão das duas execuções anteriores e não por pendência
+esquecida:** sem casca, um snippet só poderia ser medido por um render de bancada que serve
+**menos** do que o site serve — a cicatriz que a seção 8 mais cobra. O PHP, quando nascer, é
+**tradutor** desta referência, frase a frase.
+
+**A ESCOLHA DA ILHA: NÃO HOUVE ROTAÇÃO E NÃO HOUVE DECISÃO MINHA.** `foco.md` nomeia a
+**jornadafly** e pela **1.2** não há escolha a fazer. Conferi a exceção de 21/10 que fura o
+foco pelo **molde da seção 32**: os três despachos estão **fechados** (aquametria às 18h2xZ,
+clubedomosaico às 19h1xZ, robometria às 16h1xZ), então ela não se aplica. `executando_desde`
+estava `null`, que pela **1.1** já significa que não havia bloco da Fundação vivo. Reserva
+aceita de primeira às **19h16Z**, sem recusa de push, e **RENOVADA duas vezes** pela 1.1
+(19h29Z e 19h49Z): a bateria do banco roda o validador 154 vezes e a da F3 roda o portão 45
+vezes sobre 616 mil afirmações, e o bloco passa de 40 minutos com folga. Nenhum branch
+`claude/*` com trabalho a mesclar e nenhum PR aberto.
+
+**REDE PELA 20.2, REMEDIDA E NÃO HERDADA.** Três passadas: `jornadafly.com.br` e
+`www.jornadafly.com.br` em `000` nas três (**6 medições de bloqueio**), com
+`aquametria.com.br` e `robometria.com.br` em `200` nas três (**6 de controle**, nenhuma
+intermitência). O `curl` verbose nomeia a causa e ela não é túnel: `CONNECT tunnel failed,
+response 403`. **Segue sendo regressão**, e o despacho ALTA de 15/09 em `dados/despachos.md`
+continua valendo. `bloqueada_por` segue `null` de propósito, como nas sete execuções
+anteriores.
+
+**E PELA 20.3, AS CINCO FONTES QUE ESTA FERRAMENTA PRECISARIA — medidas antes de escrever a
+regra que as exige, que é o que a 20.3 manda.** `www.romapass.it`, `romapass.it`,
+`www.lisboacard.org`, `www.visitlisboa.com`, `www.turismoroma.it` e `www.civitatis.com.br`
+**todos em `000`**, com `raw.githubusercontent.com` em **301** na mesma passada. Quem escreve
+a regra que exige a fonte é quem confere se a fonte está liberada — e ela não está.
+
+### A PERGUNTA QUE A F3 TRAZIA ABERTA ESTAVA MEIO CERTA, E A METADE ERRADA É A QUE IMPORTA
+
+O registro anterior previu que a F3 seria atravessada pela régua de *"declarar o que o número
+é"* quando a fonte do passe publicasse faixa em vez de preço. **A primeira metade está
+certa** — avulso e passe são os dois **nossos**, então a entidade `FAIXA_DIARIA` não a
+atravessa. **A segunda está errada, e descobri isso escrevendo:** o que atravessa a F3 não é
+o que o número é. É **sobre o que a conta é feita**.
+
+Porque a conta da F3 — soma dos avulsos contra o preço do passe, com o ponto de equilíbrio —
+**já está entregue por quem ocupa o topo da consulta.** A especificação diz isso desde
+14/09/2026, com o 1º colocado prometendo *"fiz as contas pra você"* no próprio título: **não
+há vaga de formato.** O que ninguém publica é de **quantas** atrações aquele ponto de
+equilíbrio saiu. E aí está a vaga.
+
+### A ENTIDADE NOVA, E POR QUE ELA NÃO É CAMPO DE NENHUM DOS DOIS LADOS
+
+O passe de cidade **é uma experiência** (`categoria: passe_de_cidade`, que está no
+vocabulário desde 14/09/2026 e nenhum registro usava). O que não tinha onde morar é a
+**relação** entre um passe e cada atração que ele cobre. Campo no PASSE forçaria uma lista de
+atrações dentro do registro dele, cada item sem data e sem fonte próprias; campo na ATRAÇÃO
+forçaria uma lista de passes dentro de cada ingresso. **A cobertura tem fonte e data de
+leitura próprias porque é ela que envelhece:** o preço do passe pode estar certo e a cobertura
+errada no mesmo dia, e o bloco 1 mediu exatamente isso em 14/09/2026 — a fonte de topo do Roma
+Pass avisa que as regras de reserva mudaram em 2026. É a mesma razão de modelagem da
+`FAIXA_DIARIA` um bloco atrás, aplicada a outro fato.
+
+### AS TRÊS REGRAS DE HONESTIDADE, e as três moram no esquema e são cobradas por código
+
+1. **NÃO LIDA NÃO É NÃO COBERTA.** Atração pretendida sem cobertura lida fica fora do valor
+   entregue **e é nomeada na tela**. Tratá-la como não coberta publica um "não paga" que a
+   ilha não mediu; tratá-la como coberta publica o contrário. **As duas são erradas**, e a
+   única frase honesta é que ninguém leu.
+2. **O EQUILÍBRIO É SOBRE O QUE A ILHA LEU, NUNCA SOBRE O PASSE.**
+   `atracoes_declaradas_pelo_passe` (o número transcrito da fonte) e a contagem das coberturas
+   lidas vão para a tela **lado a lado**, e a frase do equilíbrio diz sobre quantas atrações
+   ele saiu. Passe que declara 50 atrações com 3 lidas **não tem equilíbrio publicável como
+   equilíbrio dele**.
+3. **DESCONTO COM TETO É FAIXA.** *"Até 50%"* entrega de **zero** à metade do avulso, e as
+   duas pontas vão para a tela. Sem `desconto_e_no_maximo`, a hedge da fonte entraria na conta
+   como número cheio — e o resultado continuaria **parecendo dinheiro**, que é por que esse
+   erro não se vê. A régua do banco lê a hedge da frase transcrita e reprova a combinação
+   "frase com *até*" + "campo dizendo que é o valor".
+
+### O VEREDITO TEM TRÊS DESFECHOS, NÃO DOIS, e o terceiro é o que esta ferramenta tem de seu
+
+`paga` quando o passe se paga **até na ponta de baixo** da faixa; `nao_paga` quando não se
+paga **nem na de cima**; e **`depende_da_versao`** quando a faixa **atravessa** o preço do
+passe. Ali existe bilhete em que ele paga e bilhete em que não paga, e **as duas coisas são
+verdade** — escolher uma seria a ilha escolhendo a versão no lugar de quem viaja. É a mesma
+recusa da F2 (que não escolhe a versão da experiência) e a mesma lição que a ohmetria pagou
+hoje um andar acima: **quem separa as duas causas no código separa as duas no texto.**
+
+**E o ponto de equilíbrio sai das mais caras para as mais baratas, com a ordem DECLARADA.** É
+a ordem em que o passe rende mais, portanto a que dá o **menor** número de atrações — e dizer
+"a partir de 3 atrações o passe paga" sem dizer **quais 3** seria um número sem dono. A função
+devolve a ordem que usou e a tela nomeia as atrações. Ele é calculado nas **duas pontas**: na
+de baixo o passe precisa de mais atrações, na de cima de menos, e a diferença entre os dois
+números é exatamente "qual bilhete você compraria".
+
+### O DEFEITO QUE O PASSE CRIOU NA F2, E ELE PAGAVA A MESMA VISITA DUAS VEZES
+
+Medido no mundo de bancada do passe, antes de qualquer commit: com um passe de Roma no banco,
+a linha de experiências da **F2** publicava **"€100 a €148"** para 2 pessoas — o ingresso do
+Coliseu (€36 a €44) **mais** o passe que inclui o ingresso do Coliseu (€64 a €104) — e a tela
+nomeava os dois lado a lado como se fossem dois programas. **Um passe não é um custo a mais:
+é outro jeito de pagar as mesmas atrações.** A F2 passou a descartar `passe_de_cidade` da
+linha e a **nomear** a recusa, mandando quem pergunta para a F3, que é a ferramenta cuja
+pergunta é exatamente essa.
+
+**E a metade mais traiçoeira era a segunda:** a **fonte** do passe continuava aparecendo no
+"como sabemos", prestando contas de um número que a página não publica. **Fonte citada sem
+número na tela é o inverso do número sem fonte**, e as duas são a mesma falta de
+correspondência. O portão da F2 ganhou a afirmação que casa as duas listas, e a bateria dela
+ganhou dois mundos e quatro quebras (uma delas para o passe `excluido_do_banco`, que não entra
+na conta **e** não é nomeado — são duas regras passando pelo mesmo registro).
+
+**Os arquivos gerados não mudaram um byte** (`f1-respostas.json` e `f2-respostas.json`
+regerados e idênticos), e isso é a prova de que a correção é um **no-op no banco de hoje**: o
+caminho só existe onde existe passe, e não existe passe. O defeito estava esperando a primeira
+carga.
+
+### E TRÊS DEFEITOS MEUS, achados antes do commit, cada um por um motivo diferente
+
+**(a) AS RECUSAS DURAS PUBLICAVAM ID DE REGISTRO NA TELA.** Duas das sete ecoavam o id da
+atração entre aspas — bastidor da fábrica pela **32.4**, a mesma cicatriz do
+`unidade_de_preco` da F1 e do caminho de arquivo da ohmetria. **A causa de ninguém ver era
+estrutural e vale para as irmãs:** a varredura do portão dava `continue` na borda, então as
+frases de recusa dura **nunca passavam** pela régua de acento, de frase proibida nem de
+bastidor. Recusa é texto de tela como qualquer outro; a única coisa que a borda tem de
+diferente é não ter número.
+
+**(b) O PORTÃO MORRIA EM VEZ DE RELATAR, em cinco pontos.** A bateria de mutações mediu:
+cinco quebras vinham classificadas `morre` em vez de `reprova`, porque o portão **pegava** o
+defeito na afirmação anterior e depois estourava um `IndexError` ao indexar a lista que a
+afirmação acabara de dizer estar vazia. **Portão que morre perde a mensagem que ele existe
+para escrever**, e quem lê o relatório vê um traceback onde devia ver a frase. A regra, e ela
+vale para toda régua desta pasta: **afirmar primeiro, e só então ler o que a afirmação
+garantiu.**
+
+**(c) A CONCORDÂNCIA, pela terceira vez nesta pasta.** A primeira versão publicou *"1 atração
+em Veneza **custam** €90"* e *"dentro **das 1** atração"*. É a mesma família do *"as 1
+experiências"* da F2 e do *"por veiculo"* sem acento da F1. **Não se vê lendo o código; se vê
+lendo a frase**, e é por isso que o portão lê a frase.
+
+### E DOIS DEFEITOS QUE JÁ ESTAVAM NA PASTA, os dois achados por precisar deles
+
+**O EIXO `null` NÃO CONFERIA `dias_de_uso`, em silêncio desde hoje de manhã.** As duas
+direções da regra no validador cobravam `por_quantidade` e **proibiam** os outros eixos — e o
+`null`, que é a experiência de **uma** versão e é exatamente o que um passe de validade única
+é, não caía em nenhuma das duas. A F3 precisa dessa validade para dizer se o passe cobre a
+estadia, e foi precisar dela que mostrou o buraco. A conferência virou **função chamada dos
+dois lugares** em vez de uma segunda cópia.
+
+**E O RELATÓRIO DO VALIDADOR ESCONDIA O QUE ELE CONTAVA.** A lista de chaves que o `main()`
+imprime era uma tupla literal, e `faixas_diarias` — nascida na migração de hoje de manhã —
+**não estava nela**: a régua contava os dois números e a tela de quem roda o portão não os
+mostrava, de modo que a única entidade com zero registros era também a única invisível. É a
+mesma família da lista de sete nomes de vocabulário que esta régua matou hoje um andar acima.
+A lista agora **sai do próprio `calculado`**: contador novo não tem como nascer invisível.
+
+**Mais um que ia estourar na primeira cobertura gravada e em nenhum momento antes dela:** a
+seção nova do validador usava um índice de experiências por id que **não existia**. Com zero
+coberturas o laço não roda e o `NameError` não acontece. Achado por leitura, e é a razão
+inteira pela qual os mundos de bancada existem.
+
+### A RÉGUA DO VENCIMENTO SAIU DO VALIDADOR E VIROU REGRA COMPARTILHADA
+
+A validade do preço (`validade_do_preco` do esquema) era **aviso de bancada** dentro do
+validador, e **a F3 é a primeira ferramenta que a leva para a TELA** — *"este preço foi lido
+há 38 dias e esta ilha considera 60 o prazo para reler uma fonte dessas"*. Em vez de uma
+segunda cópia, ela virou `f1.dias_de_validade` e `f1.preco_vencido`, com `hoje` sempre
+**recebido** e nunca lido do relógio lá dentro (régua que pega a data do sistema não pode ser
+testada na borda, e a borda é o único lugar onde ela erra). **E o portão da F3 compara os dois
+vereditos versão por versão do banco:** eles discordarem quer dizer que uma das duas está
+errada e nenhuma das duas sabe. As duas quebras da bateria mexem na F1 e são pegas por ali.
+
+### O QUE A F3 PUBLICA HOJE, e é metade da pergunta
+
+Em todos os **1.008** estados válidos ela publica a **soma dos avulsos** — que é metade da
+pergunta — e fecha com `sem_passe_lido`, dizendo que a outra metade não foi lida. **A recusa
+nunca diz que a cidade NÃO TEM passe:** o vocabulário da cobertura nasceu sem lastro, e a
+`regra_de_crescimento_de_vocabulario` do esquema proíbe frase de inexistência enquanto for
+assim. **O portão cobra essa distinção em cada estado** — é a primeira vez nesta ilha que
+aquela regra do esquema é conferida por código em vez de obedecida de boa vontade.
+
+**O ANGKOR PASS NÃO FOI RECATEGORIZADO**, e isso é decisão e não omissão: ele é
+`ingresso_de_sitio_publico` desde 14/09/2026, cobre **um sítio** e não uma cidade, e trocar a
+categoria dele para dar lastro ao vocabulário seria **mover o dado para caber na ferramenta**.
+
+**O TETO DE 8 ATRAÇÕES NÃO É LIMITE DE BANCO, É LIMITE DE ESCOLHA**, e ele existe por
+aritmética: o domínio desta ferramenta cresce em **2^n − 1** com o número de atrações lidas
+numa cidade. Hoje são 4 cidades com 1 atração cada e 1.038 estados; com 8 atrações numa cidade
+só seriam 255 subconjuntos × 252 combinações, nela sozinha. O número está escrito **no portão
+a partir da especificação**, não lido da ferramenta — régua que toma o limite da coisa que ela
+mede não mede o limite, e foi a bateria da F2 que provou isso hoje de manhã.
+
+### A LISTA DE PORTÕES FOI DE SEIS PARA OITO, e o aviso que previa isso funcionou
+
+O `PROMPT.md` desta ilha avisava, escrito hoje de manhã, que *"quem acrescentar o sétimo e não
+o escrever aqui cria exatamente o defeito que esta ilha acabou de pagar num andar abaixo"*.
+**Os dois novos foram escritos lá na mesma passada** — primeira vez que aquele aviso foi
+cobrado. A decisão de **não** ter descobridor de portões continua, e agora com um número: oito
+linhas ainda cabem numa tela, e a **31.3** proíbe construir bancada sobre bancada enquanto
+houver item de conteúdo aberto. O gatilho está escrito e não mudou.
+
+**BANCADA, 0 falha:** `validar-banco` verde (com os avisos de `vocabulario_sem_lastro`, agora
+somando `forma_de_cobertura`, as três formas sem um registro que as use);
+`mutacoes-banco` **154 de 154** (23 mundos, 131 quebras, 87 cobradas pela frase — **37 novas**,
+com passe e cobertura carregados em memória e nenhuma linha gravada); `teste-f1` 139.658
+afirmações; `mutacoes-f1` 28 de 28; `teste-f2` **216.614** afirmações; `mutacoes-f2`
+**51 de 51** (11 mundos, 29 quebras, 11 mortes, **7 novas**); `teste-f3` **616.462** afirmações sobre os
+1.038 estados, com a aritmética refeita à mão em `Fraction` e as funções puras chamadas com os
+mundos que o banco não tem; `mutacoes-f3` **45 de 45 — 13 mundos, 25 quebras e 7 mortes, com
+25 cobradas pela frase**.
+
+**PRÓXIMO PASSO: não há mais ferramenta a escrever, e isso é informação e não fim de linha.**
+As três âncoras existem como regra e **as três publicam menos do que sabem calcular, por falta
+de DADO que esta nuvem não alcança** — a F2 precisa de `numbeo.com`, `booking.com` e
+`civitatis.com.br`; a F3 precisa de `romapass.it`, `turismoroma.it`, `lisboacard.org`,
+`visitlisboa.com` e `civitatis.com.br`. Os dois itens de arquivo que sobram são pequenos: o
+**bloco 5** (artigos-âncora pareados com cada ferramenta) e o **bloco 6** (lista de prospecção
+do widget, `publicar: false`). O **5b** (malha) e o **5c** (cluster free tour) dependem da
+casca. **Depois deles esta ilha não tem bloco que não precise do Raphael, e o item mais caro
+continua sendo o mesmo das sete execuções anteriores: a casca (3b), que depende dos passos 2 a
+8 da seção 11 e da liberação de `jornadafly.com.br` no egresso — as duas de navegador, as duas
+dele.**
+
 ## 2026-10-22 16h20Z — A F2 EXISTE COMO REGRA, e a pergunta que ela trazia aberta virou uma ENTIDADE: o que o número SIGNIFICA saiu da prosa
 
 **O que saiu:** a **F2 como regra** — `ferramentas/f2-referencia.py` (o cérebro: cidade,

@@ -61,6 +61,10 @@ O QUE ESTE ARQUIVO NAO FAZ, de proposito:
     degrau de capacidade sao importados da F1: quarto e unidade de capacidade como
     a gondola, e duas funcoes para o mesmo fato e como as duas metades deste
     repositorio param de se falar.
+  - NAO SOMA O PASSE DE CIDADE NA LINHA DE EXPERIENCIAS. O passe paga as MESMAS
+    atracoes, por outro caminho: soma-lo com os ingressos paga a visita duas vezes. A
+    F2 o descarta e NOMEIA a recusa, mandando quem pergunta para a F3 — que e a
+    ferramenta cuja pergunta e exatamente essa.
   - NAO PUBLICA VALOR EM REAL, pelo mesmo motivo da F1: as duas constantes de
     cambio estao pendentes, e constante pendente e proibida dentro de formula
     publicada.
@@ -106,6 +110,16 @@ DIAS_MAXIMO = 21
 # dentro, e tabela que nao mostra a borda esconde o degrau que esta ali.
 DIAS_DA_TABELA = (1, 3, 7, 21)
 PESSOAS_DA_TABELA = (1, 2, 4)
+
+# A CATEGORIA QUE NAO ENTRA NA LINHA DE EXPERIENCIAS, e ela nao e uma delas por
+# ausencia: um passe de cidade e um jeito ALTERNATIVO de pagar as atracoes que a cidade
+# tem, nao um custo a mais. Somar o passe de Roma com o ingresso do Coliseu paga a mesma
+# visita duas vezes. Medido em 22/10/2026, no bloco da F3: com o mundo de bancada do
+# passe carregado, a linha de experiencias de Roma publicava «€100 a €148» para 2
+# pessoas — o ingresso (€36 a €44) mais o passe (€64 a €104) —, e a tela nomeava os dois
+# lado a lado como se fossem dois programas. Qual dos dois sai mais barato e justamente
+# a pergunta da F3, e responde-la somando os dois e responder ao contrario.
+CATEGORIA_DE_PASSE = "passe_de_cidade"
 
 # As tres categorias que NAO sao nossas, na ordem em que a tela as lista. A ordem e
 # de peso no bolso: hospedagem e a maior linha de toda estadia, transporte local a
@@ -193,6 +207,17 @@ def conferir_vocabularios(esquema):
     # porque `dinheiro()` olha o proprio dicionario de simbolos e nao o vocabulario.
     faltas += f1.conferir_moedas_do_vocabulario(esquema)
     faltas += f1.conferir_unidades_do_vocabulario(esquema)
+
+    # A CATEGORIA DO PASSE contra o vocabulario `categoria`: se ela sair do esquema, a
+    # F2 esta descartando uma categoria que nao existe mais — e nesse dia o passe
+    # voltaria calado para dentro da linha de experiencias, somando duas vezes a mesma
+    # visita. Regra que exclui por nome responde pelo nome que exclui.
+    if CATEGORIA_DE_PASSE not in f1.vocabulario(esquema, "categoria"):
+        faltas.append(
+            "a F2 descarta a categoria `%s` da linha de experiencias e ela nao esta no "
+            "vocabulario `categoria` do esquema. Sem o valor no esquema o descarte nao "
+            "descarta nada, e o passe volta a ser somado junto com as atracoes que ele "
+            "cobre." % CATEGORIA_DE_PASSE)
 
     # E a ORDEM da tela contra o vocabulario: categoria nova no esquema que a F2 nao
     # lista some da tela em silencio, que e pior que um erro.
@@ -403,6 +428,11 @@ def faixas_da_cidade(banco, cidade_id, categoria, padrao):
 def experiencias_da_cidade(banco, cidade_id):
     """As experiencias daquela cidade que entram na conta, e o status de cada uma.
 
+    O PASSE DE CIDADE NAO ENTRA, e esta e a segunda cicatriz desta funcao: ele e um jeito
+    alternativo de pagar as atracoes da cidade, nao um custo a mais. Quem o quiser na
+    conta esta fazendo a pergunta da F3, e a F2 diz isso numa recusa nomeada em vez de
+    somar. Achado em 22/10/2026 pelo mundo de bancada do passe, que o banco nao tem.
+
     `pendente_de_releitura` ENTRA, com ressalva — e isto e conserto de 22/10/2026,
     achado pelo gerador antes do commit. A primeira versao desta ferramenta
     descartava quem nao fosse `publicavel`, e a consequencia era uma FRASE QUE MENTE:
@@ -418,12 +448,26 @@ def experiencias_da_cidade(banco, cidade_id):
             continue
         if exp.get("status") == "excluido_do_banco":
             continue
+        if exp.get("categoria") == CATEGORIA_DE_PASSE:
+            continue
         versoes = []
         for versao in (exp.get("versoes") or []):
             versoes.append((versao.get("id"), versao.get("rotulo"), versao.get("preco"),
                             versao.get("unidade_de_preco"), versao.get("capacidade_maxima")))
         itens.append((exp.get("id"), exp.get("nome"), versoes, exp.get("status")))
     return itens
+
+
+def passes_da_cidade(banco, cidade_id):
+    """Os passes daquela cidade, pelo nome. So leitura.
+
+    Existe para a RECUSA ter nome: dizer «o passe nao entra na conta» sem dizer qual
+    passe deixaria o visitante procurando na tela um item que a propria tela esconde.
+    """
+    return [exp.get("nome") for exp in (banco.get("experiencias") or [])
+            if exp.get("cidade") == cidade_id
+            and exp.get("categoria") == CATEGORIA_DE_PASSE
+            and exp.get("status") != "excluido_do_banco"]
 
 
 def responder(cidade_id, dias, pessoas, padrao, banco=None, esquema=None, constantes=None):
@@ -559,6 +603,19 @@ def responder(cidade_id, dias, pessoas, padrao, banco=None, esquema=None, consta
                    % (experiencias_em_palavra(nossa["quantas_sem_preco"]),
                       "está" if nossa["quantas_sem_preco"] == 1 else "estão",
                       "ficou" if nossa["quantas_sem_preco"] == 1 else "ficaram"))
+
+    passes = passes_da_cidade(banco, cidade_id)
+    if passes:
+        recusa("passe_fora_da_linha_de_experiencias",
+               "%s %s de %s e não %s na conta acima: um passe de cidade é um jeito "
+               "alternativo de pagar as atrações, não um custo a mais, e somá-lo com os "
+               "ingressos pagaria a mesma visita duas vezes. Se a sua dúvida é entre o "
+               "passe e os ingressos avulsos, a conta é a da outra ferramenta — "
+               "«o passe da cidade vale a pena para você?»."
+               % (", ".join("«%s»" % p for p in passes),
+                  "é o passe" if len(passes) == 1 else "são os passes",
+                  cidade.get("nome"),
+                  "entra" if len(passes) == 1 else "entram"))
 
     # ---- LINHAS 2 A 4: AS DE TERCEIRO.
     faltando = []
@@ -715,6 +772,13 @@ def responder(cidade_id, dias, pessoas, padrao, banco=None, esquema=None, consta
     nossas_fontes = []
     for exp in (banco.get("experiencias") or []):
         if exp.get("cidade") != cidade_id or exp.get("status") != "publicavel":
+            continue
+        # O PASSE SAI DAQUI TAMBEM, e esquecer esta metade era a parte mais traicoeira
+        # do mesmo defeito: a linha dele nao aparece na tabela e a FONTE dele aparecia na
+        # prestacao de contas, de modo que o «como sabemos» prestava contas de um numero
+        # que a pagina nao publica. Fonte citada sem numero na tela e o inverso do numero
+        # sem fonte, e as duas sao a mesma falta de correspondencia.
+        if exp.get("categoria") == CATEGORIA_DE_PASSE:
             continue
         for versao in (exp.get("versoes") or []):
             fonte = fontes.get(versao.get("fonte")) or {}

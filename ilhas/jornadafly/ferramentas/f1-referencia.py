@@ -56,6 +56,7 @@ AS QUATRO CONTAS, e a quarta e o diferencial (especificacao 2.5):
      do operador.
 """
 
+import datetime
 import io
 import json
 import math
@@ -275,6 +276,52 @@ def dinheiro(valor, moeda):
         corpo = "{:,.2f}".format(d)
         corpo = corpo.replace(",", "\x00").replace(".", ",").replace("\x00", ".")
     return simbolo + corpo
+
+
+def dias_de_validade(esquema, fonte):
+    """Quantos dias um preco daquela fonte vale antes de precisar ser relido.
+
+    A regra mora no esquema (`validade_do_preco`) e o que a escolhe e a ORIGEM da
+    fonte: tarifa de poder publico envelhece devagar, preco de operador privado
+    rapido. Esta funcao nasceu em 22/10/2026, no bloco da F3, porque a F3 e a primeira
+    ferramenta que leva o vencimento para a TELA — ate aqui ele era so aviso de
+    bancada, escrito dentro de ferramentas/validar-banco.py. Quem quiser as duas
+    metades conferidas uma contra a outra: o portao da F3 compara o veredito desta
+    funcao com a lista `vencidos` do validador, versao por versao do banco.
+    """
+    validade = esquema.get("validade_do_preco") or {}
+    if not validade:
+        raise BancoIncompleto(
+            "esquema: `validade_do_preco` ausente. Sem ela a ilha nao sabe quando um "
+            "preco lido deixa de poder ser republicado sem releitura, e a data de "
+            "leitura na tela viraria enfeite.")
+    origem = (fonte or {}).get("origem") or ""
+    if "poder-publico" in origem:
+        dias = validade.get("tarifa_de_poder_publico_dias")
+    else:
+        dias = validade.get("operador_privado_dias")
+    if not isinstance(dias, int) or isinstance(dias, bool) or dias < 1:
+        raise BancoIncompleto(
+            "esquema: validade_do_preco para a origem %r deu %r, que nao e inteiro "
+            "positivo." % (origem, dias))
+    return dias
+
+
+def preco_vencido(esquema, fonte, data_leitura, hoje):
+    """(vencido, dias_desde_a_leitura, dias_de_validade). Funcao pura sobre datas.
+
+    `hoje` e sempre RECEBIDO, nunca lido do relogio aqui dentro: regua que pega a data
+    do sistema nao pode ser testada na borda, e a borda — o dia exato em que o preco
+    vence — e o unico lugar em que ela pode errar.
+    """
+    dias = dias_de_validade(esquema, fonte)
+    if not isinstance(data_leitura, str):
+        raise BancoIncompleto(
+            "data de leitura %r nao e texto: nao ha vencimento a calcular."
+            % (data_leitura,))
+    lido = datetime.date.fromisoformat(data_leitura)
+    passados = (hoje - lido).days
+    return passados > dias, passados, dias
 
 
 def _plural(n, singular, plural):

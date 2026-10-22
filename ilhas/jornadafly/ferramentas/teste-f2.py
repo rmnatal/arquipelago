@@ -193,6 +193,30 @@ def conferir(f2=None, banco=None, esquema=None, constantes=None, doc_respostas=N
             "a F2 e o vocabulario do esquema discordam: %s"
             % "; ".join(f2.conferir_vocabularios(esquema)))
 
+    # ---- 1a. A CATEGORIA DO PASSE, escrita aqui e nao lida da ferramenta
+    afirmar(f2.CATEGORIA_DE_PASSE == "passe_de_cidade",
+            "a F2 descarta a categoria %r da linha de experiencias e a regra e sobre "
+            "`passe_de_cidade`. Trocar a categoria descartada e decisao de produto: ela "
+            "muda na especificacao primeiro, e aqui depois" % (f2.CATEGORIA_DE_PASSE,))
+    afirmar("passe_de_cidade" in ((esquema.get("vocabularios") or {}).get("categoria") or []),
+            "`passe_de_cidade` nao esta no vocabulario `categoria` do esquema: sem o "
+            "valor no esquema o descarte da F2 nao descarta nada")
+    sem_passe = f2.passes_da_cidade({"experiencias": [
+        {"id": "a", "nome": "A", "cidade": "roma", "categoria": "ingresso_de_sitio_publico",
+         "status": "publicavel"}]}, "roma")
+    afirmar(sem_passe == [],
+            "passes_da_cidade achou passe onde ha ingresso avulso: %r" % (sem_passe,))
+    com_passe = f2.passes_da_cidade({"experiencias": [
+        {"id": "p", "nome": "P", "cidade": "roma", "categoria": "passe_de_cidade",
+         "status": "publicavel"},
+        {"id": "x", "nome": "X", "cidade": "roma", "categoria": "passe_de_cidade",
+         "status": "excluido_do_banco"},
+        {"id": "q", "nome": "Q", "cidade": "paris", "categoria": "passe_de_cidade",
+         "status": "publicavel"}]}, "roma")
+    afirmar(com_passe == ["P"],
+            "passes_da_cidade tem de trazer SO o passe publicavel daquela cidade: %r"
+            % (com_passe,))
+
     # ---- 1b. OS LIMITES DE ENTRADA, CONTRA A ESPECIFICACAO E NAO CONTRA A FERRAMENTA
     #
     # Achado pela bateria de mutacoes em 22/10/2026: a mutacao que trocou o teto de
@@ -376,10 +400,48 @@ def conferir(f2=None, banco=None, esquema=None, constantes=None, doc_respostas=N
         # fica fora. A primeira versao desta ferramenta so aceitava `publicavel`, e a
         # consequencia era a pagina de Siem Reap dizendo que esta ilha nao leu um preco
         # que ela leu — o gerador achou isso antes do commit.
+        # E O PASSE DE CIDADE FICA FORA, desde 22/10/2026: ele paga as MESMAS atracoes
+        # por outro caminho, e soma-lo com os ingressos paga a visita duas vezes.
+        # Medido com o mundo de bancada do passe: a linha de Roma publicava «€100 a
+        # €148» para 2 pessoas, que e o ingresso mais o passe que inclui o ingresso. A
+        # lista desta regua e montada do BANCO e nao da ferramenta, entao o literal
+        # abaixo esta escrito aqui de proposito — se ele saisse de `f2.CATEGORIA_DE_PASSE`
+        # os dois concordariam sempre, e a regua pararia de medir a regra.
         esperadas = [e for e in (banco.get("experiencias") or [])
                      if e.get("cidade") == cidade_id
                      and e.get("status") != "excluido_do_banco"
+                     and e.get("categoria") != "passe_de_cidade"
                      and any(v.get("preco") is not None for v in (e.get("versoes") or []))]
+        passes_na_cidade = [e.get("nome") for e in (banco.get("experiencias") or [])
+                            if e.get("cidade") == cidade_id
+                            and e.get("status") != "excluido_do_banco"
+                            and e.get("categoria") == "passe_de_cidade"]
+        codigos = {rec["codigo"] for rec in r["recusas"]}
+        if passes_na_cidade:
+            afirmar("passe_fora_da_linha_de_experiencias" in codigos,
+                    "%s: a cidade tem passe no banco e a F2 nao NOMEOU a recusa. "
+                    "Descartar em silencio e pior que somar: o visitante procura na tela "
+                    "um item que a tela esconde." % onde)
+            frase = [rec["frase"] for rec in r["recusas"]
+                     if rec["codigo"] == "passe_fora_da_linha_de_experiencias"]
+            for nome_do_passe in passes_na_cidade:
+                afirmar(frase and nome_do_passe in frase[0],
+                        "%s: a recusa do passe nao nomeia %r" % (onde, nome_do_passe))
+            for linha_nossa in nossas:
+                for detalhe in linha_nossa.get("detalhe", []):
+                    for nome_do_passe in passes_na_cidade:
+                        afirmar(nome_do_passe not in detalhe,
+                                "%s: o passe %r aparece no detalhe da linha de "
+                                "experiencias" % (onde, nome_do_passe))
+            for citada in r["como_sabemos"]["colhido_por_nos"]:
+                afirmar(citada["experiencia"] not in passes_na_cidade,
+                        "%s: o «como sabemos» presta contas da fonte do passe %r, e o "
+                        "numero dele nao esta na tabela. Fonte citada sem numero na tela "
+                        "e o inverso do numero sem fonte."
+                        % (onde, citada["experiencia"]))
+        else:
+            afirmar("passe_fora_da_linha_de_experiencias" not in codigos,
+                    "%s: a F2 recusou um passe numa cidade que nao tem passe" % onde)
         if esperadas:
             afirmar(len(nossas) == 1, "%s: cidade com experiencia lida e sem a linha" % onde)
             linha = nossas[0]
