@@ -835,3 +835,143 @@ calcular, por falta de DADO que esta nuvem não alcança**:
 widget, `publicar: false`). O **5b** (malha) e o **5c** (cluster free tour) dependem da
 casca. Depois deles, esta ilha não tem mais bloco que não precise do Raphael — e isso
 está escrito aqui para a próxima execução não gastar a vez descobrindo.
+
+---
+
+## 7. OS ARTIGOS-ÂNCORA — o bloco 5, e por que eles não são texto digitado (23/10/2026)
+
+A fila desta ilha pede, no bloco 5, **artigos-âncora pareados com cada ferramenta, na
+mesma execução**. Este bloco entregou **quatro escritos** e **dois pré-registrados**, e a
+decisão que mais importa aqui é de **forma**, não de conteúdo.
+
+### 7.1 O artigo é MONTADO do banco, nunca redigido
+
+Artigo escrito à mão carrega número digitado, e **número digitado envelhece calado**: no
+dia em que o banco for recarregado, a ferramenta publica o preço novo e o artigo continua
+publicando o velho, com a mesma cara de verdade. Nesta ilha isso não é um detalhe de
+manutenção — **o preço datado É o produto**, e preço cravado como atual sem a data da
+coleta é o defeito que o `VOZ.md` chama de "o mais grave possível nesta ilha".
+
+Então a regra mora em `ferramentas/artigos-referencia.py`, o arquivo sai de
+`ferramentas/gerar-artigos.py` para `dados/artigos-ancora.json`, e **toda frase de preço é
+devolvida pela `f1-referencia.py`** — a mesma regra que a bancada mede. O que o arquivo da
+referência guarda é o que **nenhuma ferramenta sabe**: qual consulta o artigo ataca, quem
+ocupava a SERP dela no dia da medição, qual é a mãe na árvore, quais são as irmãs e para
+onde vai o link de compra.
+
+É o mesmo desenho das três ferramentas: a regra em Python, o PHP como **tradutor** dela
+quando a casca nascer, nunca uma segunda regra.
+
+### 7.2 A árvore, e por que os quatro moram na mesma mãe
+
+Nível 1 `/guias/` · nível 2 **`/guias/quanto-custa/`** · nível 3 a pergunta, com as
+palavras que a pessoa digita. "Quanto custa" é, literalmente, um dos três itens do menu que
+o `VOZ.md` define, e é a palavra da pessoa.
+
+**Agrupar por cidade teria sido o erro barato:** cada cidade do banco tem **uma**
+experiência hoje, e categoria nasce com no mínimo três filhas — uma filha por categoria é
+cluster ralo, que não passa autoridade nenhuma. Com os quatro na mesma mãe, a categoria
+nasce com quatro filhas e **cada página recebe três irmãs apontando para ela**.
+
+**A janela de irmãs ROTACIONA:** cada página leva as até-quatro irmãs que vêm **depois**
+dela na ordem do mapa, dando a volta no fim. O grafo que sai é circulante, então o grau de
+**entrada** de toda filha é igual ao de **saída**, hoje com quatro e no dia em que a
+categoria tiver dez. Janela fixa é trava que depende de a categoria ser pequena, e o portão
+mede a conta **na direção de quem aponta** — contar só o que sai fica verde nos dois
+mundos.
+
+### 7.3 Dois campos para a mesma pergunta, e a diferença é uma regra
+
+| Campo | O que é | Vai para a tela? |
+|---|---|---|
+| `consulta_alvo` | a consulta como foi **medida**, do jeito que a pessoa digita — e gente digita sem acento | **não** |
+| `titulo_na_tela` | a mesma pergunta em português correto | **sim**: `<title>`, H1, trilha e âncora das irmãs |
+
+Publicar a consulta crua na tela seria publicar português sem acento, que é a cicatriz da
+Robometria. Esconder a consulta crua seria perder a correspondência exata que faz a página
+ser achada. O portão cobra que o título **não perca nenhuma palavra** da consulta e que só
+possa **ganhar palavra de ligação** (artigo e preposição): ele acentua e capitaliza a
+pergunta da pessoa, não a reescreve.
+
+### 7.4 A fronteira com a calculadora, para a ilha não disputar consigo
+
+**A consulta paramétrica é da ferramenta; a consulta crua é do guia.** O guia responde
+"quanto custa X" e a ferramenta responde "quanto custa X **para N pessoas**" — e o portão
+reprova título de guia que traga "para N pessoas" ou "para o seu grupo". Cada guia linka a
+calculadora no corpo e no botão **Calcular**, com o parâmetro da própria página já na URL;
+a calculadora linka o guia que a explica. Duas páginas na mesma consulta é a ilha
+competindo contra si mesma, e o portão também reprova duas páginas com a mesma
+`consulta_alvo`.
+
+### 7.5 O molde: caixa de resposta, compra, tabela, dobras
+
+Na ordem, de cima para baixo: **caixa de resposta** (o número e a condição em uma frase,
+com a data da leitura dentro dela) → **"Monte / Compre o que esta resposta pede"**, de 2 a
+4 itens, cada um com os dois botões (**Calcular**, que leva à ferramenta com o parâmetro, e
+**Ver na plataforma**, que leva à saída de compra) → **tabela de casos resolvidos**,
+visível e nunca recolhida, cobrindo 1, 2, 4 e 6 pessoas por versão → o resto em dobras:
+como chegamos no número, o que está incluso e o que não está, a escada de versões, crianças
+e jovens, cada versão vendida pelo operador uma por uma, o que a página não responde, e
+"Como sabemos".
+
+**Nenhuma palavra sai da página**: o que vai para a dobra continua no HTML servido. E
+**nenhum item vivo tem link de compra** — nenhuma das quatro experiências desta pasta é um
+ser vivo, e isso fica dito em vez de suposto.
+
+### 7.6 O valor de terceiro tem dono, e é o diferencial medido
+
+O número com que a ilha **discorda** também vai para a tela. Na gôndola, quatro dos sete
+ocupantes da SERP publicam valores que se contradizem sobre uma tarifa de ato oficial e
+**nenhum diz em que dia leu** — dizer quem publicou o quê, com a data, é a única coisa que
+nenhum deles faz. Então o portão deixa passar um valor que o banco **não** autoriza
+**somente** dentro de uma frase que nomeia quem o publicou e quando foi lido. Sem o nome, é
+número sem dono, e reprova. *(Foi a primeira coisa que este portão pegou, e ele pegou contra
+mim: a regra escrita sem essa exceção reprovava a prestação de contas da gôndola, que é
+justamente o diferencial da ilha.)*
+
+### 7.7 O que o portão mede, e a régua que foi tentada três vezes e NÃO existe
+
+`python3 ferramentas/artigos-referencia.py` monta e confere; `mutacoes-artigos.py` quebra e
+exige que ele veja — **41 quebras, 41 reprovadas, zero morte e zero inerte** em
+23/10/2026, 37 por artigo e 4 pelo conjunto.
+
+**E uma régua não existe, por medição e não por esquecimento.** A acentuação correta foi
+tentada em três formas no mesmo dia, e as três reprovaram texto impecável:
+
+1. *"todo título tem de ter um acento"* — reprovou três páginas certas; "quanto custa subir
+   na torre eiffel" não tem uma letra acentuada e está escrito corretamente;
+2. *"palavra acentuada num lugar não aparece crua noutro"* — **25 reprovações** em texto
+   impecável, porque em português o par sem acento costuma ser **outra palavra**: "e" e "é",
+   "esta" e "está", "da" e "dá";
+3. *"parágrafo com 12 palavras ou mais tem de ter um acento"* — reprovou "A partir de
+   quantos dias de visita o Angkor Pass de 3 dias paga?" e a frase de divergência da
+   GetYourGuide. Catorze palavras, nenhum acento, as duas corretas. Subir o corte reduz o
+   falso positivo e não o elimina.
+
+**O que isso decide:** acentuação correta **não é verificável localmente** — é julgamento
+sobre cada palavra, e **portão que reprova texto certo é pior que portão nenhum, porque
+ensina a ignorar o vermelho**. O que sobra e é verificável está no portão: mojibake, que é
+mecânico e inequívoco, e a procedência de todo valor da tela. A acentuação das frases é
+garantida **na fonte**, pelas três referências, que nascem com a regra.
+
+### 7.8 Os dois artigos que NÃO foram escritos, e o que destrava cada um
+
+A fila pede um artigo por ferramenta. **Dois não foram escritos, e não por falta de tempo:
+a ferramenta pareada não tem resposta para publicar.** Artigo cujo título promete um número
+que a página não entrega é exatamente o defeito que o bloco 1 mediu nos concorrentes.
+
+| Pareado com | Consulta | Por que não foi escrito | Destrava quando |
+|---|---|---|---|
+| **F2** | `quanto custa um dia em veneza para 2 pessoas` | a F2 soma quatro linhas e hoje publica **uma**: `faixas_diarias` tem **zero** registros. O artigo prometeria o dia inteiro e entregaria o passeio | houver faixa de diária para Veneza nas três naturezas, cada uma com publicador nomeado, URL e data de leitura |
+| **F3** | `roma pass vale a pena` | **zero** passes e **zero** coberturas no banco: o veredito que o título promete não existe. E Roma tem **uma** experiência — julgamento de passe sobre uma atração só não é julgamento de passe | houver o Roma Pass com preço e data próprios **mais** a cobertura par por par com cada atração de Roma, cada par com fonte e data próprias |
+
+Os dois esperam **coleta de navegador**, e as fontes estão recusadas no egresso desta
+nuvem. A regra dos dois está inteira: no dia em que o dado entrar, o artigo é **montagem**,
+não pesquisa.
+
+### 7.9 Nada foi ao ar, e não podia
+
+Esta ilha não tem WordPress, não tem Sync e não tem `/status`, e `jornadafly.com.br` não
+está na lista de Domínios permitidos deste ambiente — remedido em 23/10/2026 às 10h16Z:
+**000 em quatro medições**, com `aquametria.com.br` e `robometria.com.br` em **200 nas
+quatro de controle**. `publicar` sai `false` em todo artigo, com o motivo dentro dele.

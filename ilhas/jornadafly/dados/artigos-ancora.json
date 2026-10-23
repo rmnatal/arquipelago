@@ -1,0 +1,1530 @@
+{
+ "ilha": "jornadafly",
+ "bloco": 5,
+ "versao": 1,
+ "publicar": false,
+ "motivo_publicar_false": "Esta ilha não tem WordPress, não tem Sync e não tem /status, e o domínio não está na lista de Domínios permitidos deste ambiente (remedido em 23/10/2026: 000 em quatro medições, com aquametria e robometria em 200 nas quatro de controle). Não existe «no ar» para onde publicar, e dizer que publiquei seria inventar.",
+ "cumpre": "dados/especificacao-calculadoras.md, secao 7 (artigos-ancora)",
+ "gerado_por": "ferramentas/gerar-artigos.py, a partir de ferramentas/artigos-referencia.py",
+ "le_de": [
+  "dados/experiencias.json",
+  "dados/esquema-banco.json",
+  "dados/constantes.json",
+  "VOZ.md"
+ ],
+ "nenhum_numero_e_digitado": "Toda frase de preco destes artigos sai de ferramentas/f1-referencia.py, a mesma regra que a bancada mede. O artigo e MONTAGEM, nao redacao: artigo escrito a mao carrega numero digitado, e numero digitado envelhece calado -- no dia da recarga do banco a ferramenta publica o preco novo e o artigo continua publicando o velho, com a mesma cara de verdade. O portao do arquivo confere valor por valor contra o conjunto que o banco autoriza.",
+ "o_valor_de_terceiro_tem_dono": "O numero com que a ilha DISCORDA tambem vai para a tela, e e o diferencial medido: quatro dos sete ocupantes da consulta da gondola publicam valores que se contradizem sobre uma tarifa de ato oficial e nenhum diz em que dia leu. Esse valor passa so dentro da frase que nomeia quem o publicou e quando foi lido; sem o nome, e numero sem dono e o portao reprova.",
+ "acentuacao": "Toda frase destes artigos e destinada a TELA e por isso sai ACENTUADA. E a cicatriz da Robometria, que publicou portugues sem acento no ar. O que o portao mede e mojibake e a procedencia do valor; a regua de acentuacao foi TENTADA em tres formas em 23/10/2026 e as tres reprovaram texto correto -- o registro das tres esta na afirmacao (8) de artigos-referencia.py, para a proxima execucao nao gastar a mesma hora.",
+ "resumo": {
+  "artigos_escritos": 4,
+  "artigos_pre_registrados": 2,
+  "ferramentas_pareadas": [
+   "F1"
+  ],
+  "nivel_1": {
+   "nome": "Guias",
+   "url": "/guias/"
+  },
+  "nivel_2": {
+   "nome": "Quanto custa",
+   "url": "/guias/quanto-custa/"
+  },
+  "linhas_de_tabela": 44,
+  "paragrafos_de_dobra": 70,
+  "perguntas_de_faq": 7,
+  "valores_de_terceiro_com_publicador": 2,
+  "irmas_por_pagina": 3
+ },
+ "artigos": [
+  {
+   "id": "gondola-veneza",
+   "publicar": false,
+   "motivo_publicar_false": "Esta ilha não tem WordPress, não tem Sync e não tem /status, e o domínio não está na lista de Domínios permitidos deste ambiente (remedido em 23/10/2026: 000 em quatro medições, com aquametria e robometria em 200 nas quatro de controle). Não existe «no ar» para onde publicar, e dizer que publiquei seria inventar.",
+   "ferramenta_pareada": "F1",
+   "experiencia": "veneza-passeio-de-gondola",
+   "cidade": "Veneza",
+   "pais": "Itália",
+   "consulta_alvo": "quanto custa passeio de gôndola em veneza",
+   "consultas_irmas": [
+    "passeio de gôndola veneza preço",
+    "vale a pena o passeio de gôndola em veneza",
+    "o preço da gôndola é por pessoa"
+   ],
+   "serp_medida": {
+    "data": "2026-09-14",
+    "ocupantes": [
+     "turismo.eurodicas.com.br",
+     "maladeaventuras.com",
+     "viajandoparaitalia.com.br",
+     "queroviajarmais.com",
+     "dicasdaitalia.com.br",
+     "viveromundo.org",
+     "lavidaesmara.com"
+    ],
+    "o_que_falta_no_ar": "quatro dos sete publicam números que se contradizem sobre uma tarifa fixada por deliberação da prefeitura, e nenhum dos sete diz em que dia leu o preço"
+   },
+   "momento": "fim",
+   "link_do_momento": "experiência",
+   "titulo": "Quanto custa o passeio de gôndola em Veneza — preço com a data da leitura",
+   "h1": "Quanto custa o passeio de gôndola em Veneza",
+   "description": "Passeio de gôndola em Veneza para 1 pessoa, De dia, 30 minutos: €90 no total, €90 por pessoa. O preço é por veículo, não por pessoa, e cabem 5 pessoas. Para 1 pessoa, é 1 unidade. Tarifa oficial. Leitura de 14/09/2026. O que você coloca: quantas pessoas vão na gôndola. O que sai: o preço do passeio para o grupo inteiro, com a data em que lemos a tarifa.",
+   "url_planejada": "/guias/quanto-custa/passeio-de-gondola-em-veneza/",
+   "mae_planejada": "/guias/quanto-custa/",
+   "nivel": 3,
+   "trilha": [
+    {
+     "nome": "Início",
+     "url": "/"
+    },
+    {
+     "nome": "Guias",
+     "url": "/guias/"
+    },
+    {
+     "nome": "Quanto custa",
+     "url": "/guias/quanto-custa/"
+    },
+    {
+     "nome": "Quanto custa o passeio de gôndola em Veneza",
+     "url": null
+    }
+   ],
+   "caixa_de_resposta": {
+    "frase": "Passeio de gôndola em Veneza para 1 pessoa, De dia, 30 minutos: €90 no total, €90 por pessoa. O preço é por veículo, não por pessoa, e cabem 5 pessoas. Para 1 pessoa, é 1 unidade. Tarifa oficial. Leitura de 14/09/2026.",
+    "cartao_brasileiro": "No cartão brasileiro, o IOF de 3,5% entra por cima: €93,15 no total, ou €93,15 por pessoa.",
+    "promessa": "O que você coloca: quantas pessoas vão na gôndola. O que sai: o preço do passeio para o grupo inteiro, com a data em que lemos a tarifa."
+   },
+   "monte_o_que_a_resposta_pede": [
+    {
+     "rotulo": "De dia, 30 minutos",
+     "o_que_e": "Passeio de gôndola em Veneza para 1 pessoa, De dia, 30 minutos: €90 no total, €90 por pessoa. O preço é por veículo, não por pessoa, e cabem 5 pessoas. Para 1 pessoa, é 1 unidade. Tarifa oficial. Leitura de 14/09/2026.",
+     "calcular": {
+      "texto": "Calcular para o meu grupo",
+      "url": "/calculadoras/quanto-custa-a-experiencia/?experiencia=veneza-passeio-de-gondola&versao=diurno",
+      "o_que_leva": "experiência e versão desta página, já preenchidas"
+     },
+     "ver_produtos": {
+      "texto": "Ver na plataforma",
+      "url": "https://civitatis.com/br/veneza/passeio-gondola-veneza/",
+      "rel": "nofollow noopener",
+      "o_que_e": "a página desta experiência na plataforma, em português",
+      "aviso": "Este link NÃO rende comissão: a JornadaFly ainda não tem programa de afiliado cadastrado, e por isso ele sai sem a marcação de link patrocinado."
+     }
+    },
+    {
+     "rotulo": "À noite, 35 minutos",
+     "o_que_e": "Passeio de gôndola em Veneza para 1 pessoa, À noite, 35 minutos: €110 no total, €110 por pessoa. O preço é por veículo, não por pessoa, e cabem 5 pessoas. Para 1 pessoa, é 1 unidade. Tarifa oficial. Leitura de 14/09/2026.",
+     "calcular": {
+      "texto": "Calcular para o meu grupo",
+      "url": "/calculadoras/quanto-custa-a-experiencia/?experiencia=veneza-passeio-de-gondola&versao=noturno",
+      "o_que_leva": "experiência e versão desta página, já preenchidas"
+     },
+     "ver_produtos": {
+      "texto": "Ver na plataforma",
+      "url": "https://civitatis.com/br/veneza/passeio-gondola-veneza/",
+      "rel": "nofollow noopener",
+      "o_que_e": "a página desta experiência na plataforma, em português",
+      "aviso": "Este link NÃO rende comissão: a JornadaFly ainda não tem programa de afiliado cadastrado, e por isso ele sai sem a marcação de link patrocinado."
+     }
+    }
+   ],
+   "tabela_resumo": [
+    {
+     "versao": "diurno",
+     "rotulo": "De dia, 30 minutos",
+     "pessoas": 1,
+     "total": "€90",
+     "por_pessoa": "€90",
+     "unidade_de_preco": "por_veiculo",
+     "unidades_necessarias": 1,
+     "com_iof": "€93,15",
+     "lido_em": "14/09/2026"
+    },
+    {
+     "versao": "diurno",
+     "rotulo": "De dia, 30 minutos",
+     "pessoas": 2,
+     "total": "€90",
+     "por_pessoa": "€45",
+     "unidade_de_preco": "por_veiculo",
+     "unidades_necessarias": 1,
+     "com_iof": "€93,15",
+     "lido_em": "14/09/2026"
+    },
+    {
+     "versao": "diurno",
+     "rotulo": "De dia, 30 minutos",
+     "pessoas": 4,
+     "total": "€90",
+     "por_pessoa": "€22,50",
+     "unidade_de_preco": "por_veiculo",
+     "unidades_necessarias": 1,
+     "com_iof": "€93,15",
+     "lido_em": "14/09/2026"
+    },
+    {
+     "versao": "diurno",
+     "rotulo": "De dia, 30 minutos",
+     "pessoas": 6,
+     "total": "€180",
+     "por_pessoa": "€30",
+     "unidade_de_preco": "por_veiculo",
+     "unidades_necessarias": 2,
+     "com_iof": "€186,30",
+     "lido_em": "14/09/2026"
+    },
+    {
+     "versao": "noturno",
+     "rotulo": "À noite, 35 minutos",
+     "pessoas": 1,
+     "total": "€110",
+     "por_pessoa": "€110",
+     "unidade_de_preco": "por_veiculo",
+     "unidades_necessarias": 1,
+     "com_iof": "€113,85",
+     "lido_em": "14/09/2026"
+    },
+    {
+     "versao": "noturno",
+     "rotulo": "À noite, 35 minutos",
+     "pessoas": 2,
+     "total": "€110",
+     "por_pessoa": "€55",
+     "unidade_de_preco": "por_veiculo",
+     "unidades_necessarias": 1,
+     "com_iof": "€113,85",
+     "lido_em": "14/09/2026"
+    },
+    {
+     "versao": "noturno",
+     "rotulo": "À noite, 35 minutos",
+     "pessoas": 4,
+     "total": "€110",
+     "por_pessoa": "€27,50",
+     "unidade_de_preco": "por_veiculo",
+     "unidades_necessarias": 1,
+     "com_iof": "€113,85",
+     "lido_em": "14/09/2026"
+    },
+    {
+     "versao": "noturno",
+     "rotulo": "À noite, 35 minutos",
+     "pessoas": 6,
+     "total": "€220",
+     "por_pessoa": "€36,67",
+     "unidade_de_preco": "por_veiculo",
+     "unidades_necessarias": 2,
+     "com_iof": "€227,70",
+     "lido_em": "14/09/2026"
+    }
+   ],
+   "tabela_recolhida": false,
+   "dobras": [
+    {
+     "titulo": "Como chegamos nesse número",
+     "paragrafos": [
+      "Passeio de gôndola em Veneza para 1 pessoa, De dia, 30 minutos: €90 no total, €90 por pessoa. O preço é por veículo, não por pessoa, e cabem 5 pessoas. Para 1 pessoa, é 1 unidade. Tarifa oficial. Leitura de 14/09/2026.",
+      "No cartão brasileiro, o IOF de 3,5% entra por cima: €93,15 no total, ou €93,15 por pessoa.",
+      "Esta página é uma das respostas de preço da JornadaFly: todas elas estão em /guias/quanto-custa/, e cada uma traz a data em que lemos o preço.",
+      "Para outro tamanho de grupo, a conta fechada está na calculadora: /calculadoras/quanto-custa-a-experiencia/"
+     ]
+    },
+    {
+     "titulo": "Por que as versões não se comparam por quantidade",
+     "paragrafos": [
+      "As versões desta experiência não se comparam em quantidade: elas diferem em horário — a mesma coisa em outra hora do dia. Não existe «a partir de quantos dias a mais cara vale», porque comprar duas vezes a mais barata não dá o que a mais cara dá."
+     ]
+    },
+    {
+     "titulo": "Cada versão vendida pelo operador, uma por uma",
+     "paragrafos": [
+      "De dia, 30 minutos: €90, a versão que você escolheu.",
+      "À noite, 35 minutos: €110, outra versão vendida pelo operador."
+     ]
+    },
+    {
+     "titulo": "O que esta página não responde",
+     "paragrafos": [
+      "Desconto por idade: não há nenhum a declarar, porque o preço é por veículo e não por pessoa. A criança não tem bilhete: ela ocupa lugar.",
+      "O valor em real depende do câmbio do dia do seu cartão, e a JornadaFly ainda não tem uma fonte de câmbio com data para publicar. A conta acima está na moeda que o operador cobra, que é a que não muda.",
+      "Alta e baixa temporada: o operador não declara preço diferente entre uma e outra, e a JornadaFly não inventa a diferença. Se o seu mês for de alta, confirme o valor com ele antes de fechar.",
+      "cada 20 minutos adicionais: o operador declara «cerca de €40 a cada 20 minutos adicionais». A JornadaFly não soma número aproximado no total."
+     ]
+    },
+    {
+     "titulo": "Como sabemos",
+     "paragrafos": [
+      "Operador: gondoleiros de Veneza, com tarifa fixada pelo Comune di Venezia.",
+      "Documento: Delibera della Giunta Comunale n. 89, de 20/04/2023.",
+      "Preço lido em 14/09/2026, por leitura na fonte de quem opera.",
+      "O que a fonte diz, na palavra dela: €90 por 30 minutos, das 9h às 19h, máximo de 5 passageiros por gôndola. A fonte diz a unidade com todas as letras: não se paga por pessoa, e sim pelo aluguel da embarcação inteira.",
+      "turismo.eurodicas.com.br publicou €80 (€80 por gôndola, para até 4 pessoas), lido em 14/09/2026.",
+      "GetYourGuide, citada por terceiros publicou €34 (a partir de €34 por pessoa), lido em 14/09/2026."
+     ]
+    }
+   ],
+   "ferramenta_no_corpo": "/calculadoras/quanto-custa-a-experiencia/",
+   "mae_no_corpo": "Esta página é uma das respostas de preço da JornadaFly: todas elas estão em /guias/quanto-custa/, e cada uma traz a data em que lemos o preço.",
+   "veja_tambem": [
+    {
+     "ancora": "Quanto custa subir na Torre Eiffel",
+     "url": "/guias/quanto-custa/subir-na-torre-eiffel/"
+    },
+    {
+     "ancora": "Quanto custa o ingresso do Coliseu de Roma",
+     "url": "/guias/quanto-custa/ingresso-do-coliseu-de-roma/"
+    },
+    {
+     "ancora": "Angkor Pass: quantos dias valem a pena",
+     "url": "/guias/quanto-custa/angkor-pass-de-1-3-ou-7-dias/"
+    }
+   ],
+   "faq": [
+    {
+     "pergunta": "O preço da gôndola é por pessoa ou pela gôndola?",
+     "resposta": "Passeio de gôndola em Veneza para 1 pessoa, De dia, 30 minutos: €90 no total, €90 por pessoa. O preço é por veículo, não por pessoa, e cabem 5 pessoas. Para 1 pessoa, é 1 unidade. Tarifa oficial. Leitura de 14/09/2026."
+    }
+   ],
+   "bloco_de_compra": {
+    "degrau": 1,
+    "o_que_e": "a página desta experiência na plataforma, em português",
+    "url": "https://civitatis.com/br/veneza/passeio-gondola-veneza/",
+    "rel": "nofollow noopener",
+    "programa": null,
+    "aviso": "Este link NÃO rende comissão: a JornadaFly ainda não tem programa de afiliado cadastrado, e por isso ele sai sem a marcação de link patrocinado.",
+    "motivo_sem_degrau_1": null
+   },
+   "status_do_registro": "publicavel",
+   "divergencias": [
+    {
+     "publicador": "turismo.eurodicas.com.br",
+     "frase": "turismo.eurodicas.com.br publicou €80 (€80 por gôndola, para até 4 pessoas), lido em 14/09/2026."
+    },
+    {
+     "publicador": "GetYourGuide, citada por terceiros",
+     "frase": "GetYourGuide, citada por terceiros publicou €34 (a partir de €34 por pessoa), lido em 14/09/2026."
+    }
+   ],
+   "json_ld": [
+    {
+     "@context": "https://schema.org",
+     "@type": "Article",
+     "headline": "Quanto custa o passeio de gôndola em Veneza",
+     "description": "Passeio de gôndola em Veneza para 1 pessoa, De dia, 30 minutos: €90 no total, €90 por pessoa. O preço é por veículo, não por pessoa, e cabem 5 pessoas. Para 1 pessoa, é 1 unidade. Tarifa oficial. Leitura de 14/09/2026. O que você coloca: quantas pessoas vão na gôndola. O que sai: o preço do passeio para o grupo inteiro, com a data em que lemos a tarifa.",
+     "about": "quanto custa passeio de gôndola em veneza",
+     "isPartOf": "/guias/quanto-custa/"
+    },
+    {
+     "@context": "https://schema.org",
+     "@type": "BreadcrumbList",
+     "itemListElement": [
+      {
+       "@type": "ListItem",
+       "position": 1,
+       "name": "Início",
+       "item": "/"
+      },
+      {
+       "@type": "ListItem",
+       "position": 2,
+       "name": "Guias",
+       "item": "/guias/"
+      },
+      {
+       "@type": "ListItem",
+       "position": 3,
+       "name": "Quanto custa",
+       "item": "/guias/quanto-custa/"
+      }
+     ]
+    },
+    {
+     "@context": "https://schema.org",
+     "@type": "FAQPage",
+     "mainEntity": [
+      {
+       "@type": "Question",
+       "name": "O preço da gôndola é por pessoa ou pela gôndola?",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Passeio de gôndola em Veneza para 1 pessoa, De dia, 30 minutos: €90 no total, €90 por pessoa. O preço é por veículo, não por pessoa, e cabem 5 pessoas. Para 1 pessoa, é 1 unidade. Tarifa oficial. Leitura de 14/09/2026."
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "torre-eiffel",
+   "publicar": false,
+   "motivo_publicar_false": "Esta ilha não tem WordPress, não tem Sync e não tem /status, e o domínio não está na lista de Domínios permitidos deste ambiente (remedido em 23/10/2026: 000 em quatro medições, com aquametria e robometria em 200 nas quatro de controle). Não existe «no ar» para onde publicar, e dizer que publiquei seria inventar.",
+   "ferramenta_pareada": "F1",
+   "experiencia": "paris-torre-eiffel",
+   "cidade": "Paris",
+   "pais": "França",
+   "consulta_alvo": "quanto custa subir na torre eiffel",
+   "consultas_irmas": [
+    "quanto custa entrada torre eiffel",
+    "ingresso torre eiffel preço",
+    "vale a pena subir na torre eiffel"
+   ],
+   "serp_medida": {
+    "data": "2026-09-14",
+    "ocupantes": [
+     "toureiffel.paris",
+     "maladeaventuras.com",
+     "queroviajarmais.com",
+     "dicaparis.com",
+     "encantosdeparis.com.br"
+    ],
+    "o_que_falta_no_ar": "o operador do monumento publica a tabela dos quatro bilhetes e não fecha a conta do grupo; os outros quatro fecham a conta de um bilhete só e não dizem em que dia leram o preço"
+   },
+   "momento": "fim",
+   "link_do_momento": "experiência",
+   "titulo": "Quanto custa subir na Torre Eiffel — preço com a data da leitura",
+   "h1": "Quanto custa subir na Torre Eiffel",
+   "description": "Torre Eiffel — o bilhete de subida para 1 pessoa, Até o segundo piso, a pé: €14,80 no total, €14,80 por pessoa. O preço é por pessoa. Preço publicado pelo operador. Leitura de 15/09/2026. O que você coloca: qual dos quatro bilhetes e quantas pessoas. O que sai: o total do grupo, o valor por pessoa e o que cada bilhete dá, com a data da leitura.",
+   "url_planejada": "/guias/quanto-custa/subir-na-torre-eiffel/",
+   "mae_planejada": "/guias/quanto-custa/",
+   "nivel": 3,
+   "trilha": [
+    {
+     "nome": "Início",
+     "url": "/"
+    },
+    {
+     "nome": "Guias",
+     "url": "/guias/"
+    },
+    {
+     "nome": "Quanto custa",
+     "url": "/guias/quanto-custa/"
+    },
+    {
+     "nome": "Quanto custa subir na Torre Eiffel",
+     "url": null
+    }
+   ],
+   "caixa_de_resposta": {
+    "frase": "Torre Eiffel — o bilhete de subida para 1 pessoa, Até o segundo piso, a pé: €14,80 no total, €14,80 por pessoa. O preço é por pessoa. Preço publicado pelo operador. Leitura de 15/09/2026.",
+    "cartao_brasileiro": "No cartão brasileiro, o IOF de 3,5% entra por cima: €15,32 no total, ou €15,32 por pessoa.",
+    "promessa": "O que você coloca: qual dos quatro bilhetes e quantas pessoas. O que sai: o total do grupo, o valor por pessoa e o que cada bilhete dá, com a data da leitura."
+   },
+   "monte_o_que_a_resposta_pede": [
+    {
+     "rotulo": "Até o segundo piso, a pé",
+     "o_que_e": "Torre Eiffel — o bilhete de subida para 1 pessoa, Até o segundo piso, a pé: €14,80 no total, €14,80 por pessoa. O preço é por pessoa. Preço publicado pelo operador. Leitura de 15/09/2026.",
+     "calcular": {
+      "texto": "Calcular para o meu grupo",
+      "url": "/calculadoras/quanto-custa-a-experiencia/?experiencia=paris-torre-eiffel&versao=segundo-piso-escada",
+      "o_que_leva": "experiência e versão desta página, já preenchidas"
+     },
+     "ver_produtos": {
+      "texto": "Ver na plataforma",
+      "url": "https://civitatis.com/br/paris/",
+      "rel": "nofollow noopener",
+      "o_que_e": "a página de Paris na plataforma",
+      "aviso": "Este link NÃO rende comissão: a JornadaFly ainda não tem programa de afiliado cadastrado, e por isso ele sai sem a marcação de link patrocinado."
+     }
+    },
+    {
+     "rotulo": "Até o segundo piso, de elevador",
+     "o_que_e": "Torre Eiffel — o bilhete de subida para 1 pessoa, Até o segundo piso, de elevador: €23,50 no total, €23,50 por pessoa. O preço é por pessoa. Preço publicado pelo operador. Leitura de 15/09/2026.",
+     "calcular": {
+      "texto": "Calcular para o meu grupo",
+      "url": "/calculadoras/quanto-custa-a-experiencia/?experiencia=paris-torre-eiffel&versao=segundo-piso-elevador",
+      "o_que_leva": "experiência e versão desta página, já preenchidas"
+     },
+     "ver_produtos": {
+      "texto": "Ver na plataforma",
+      "url": "https://civitatis.com/br/paris/",
+      "rel": "nofollow noopener",
+      "o_que_e": "a página de Paris na plataforma",
+      "aviso": "Este link NÃO rende comissão: a JornadaFly ainda não tem programa de afiliado cadastrado, e por isso ele sai sem a marcação de link patrocinado."
+     }
+    },
+    {
+     "rotulo": "Até o topo, subindo a pé até o segundo piso",
+     "o_que_e": "Torre Eiffel — o bilhete de subida para 1 pessoa, Até o topo, subindo a pé até o segundo piso: €28 no total, €28 por pessoa. O preço é por pessoa. Preço publicado pelo operador. Leitura de 15/09/2026.",
+     "calcular": {
+      "texto": "Calcular para o meu grupo",
+      "url": "/calculadoras/quanto-custa-a-experiencia/?experiencia=paris-torre-eiffel&versao=topo-escada-e-elevador",
+      "o_que_leva": "experiência e versão desta página, já preenchidas"
+     },
+     "ver_produtos": {
+      "texto": "Ver na plataforma",
+      "url": "https://civitatis.com/br/paris/",
+      "rel": "nofollow noopener",
+      "o_que_e": "a página de Paris na plataforma",
+      "aviso": "Este link NÃO rende comissão: a JornadaFly ainda não tem programa de afiliado cadastrado, e por isso ele sai sem a marcação de link patrocinado."
+     }
+    },
+    {
+     "rotulo": "Até o topo, de elevador",
+     "o_que_e": "Torre Eiffel — o bilhete de subida para 1 pessoa, Até o topo, de elevador: €36,70 no total, €36,70 por pessoa. O preço é por pessoa. Preço publicado pelo operador. Leitura de 15/09/2026.",
+     "calcular": {
+      "texto": "Calcular para o meu grupo",
+      "url": "/calculadoras/quanto-custa-a-experiencia/?experiencia=paris-torre-eiffel&versao=topo-elevador",
+      "o_que_leva": "experiência e versão desta página, já preenchidas"
+     },
+     "ver_produtos": {
+      "texto": "Ver na plataforma",
+      "url": "https://civitatis.com/br/paris/",
+      "rel": "nofollow noopener",
+      "o_que_e": "a página de Paris na plataforma",
+      "aviso": "Este link NÃO rende comissão: a JornadaFly ainda não tem programa de afiliado cadastrado, e por isso ele sai sem a marcação de link patrocinado."
+     }
+    }
+   ],
+   "tabela_resumo": [
+    {
+     "versao": "segundo-piso-escada",
+     "rotulo": "Até o segundo piso, a pé",
+     "pessoas": 1,
+     "total": "€14,80",
+     "por_pessoa": "€14,80",
+     "unidade_de_preco": "por_pessoa",
+     "unidades_necessarias": 1,
+     "com_iof": "€15,32",
+     "lido_em": "15/09/2026"
+    },
+    {
+     "versao": "segundo-piso-escada",
+     "rotulo": "Até o segundo piso, a pé",
+     "pessoas": 2,
+     "total": "€29,60",
+     "por_pessoa": "€14,80",
+     "unidade_de_preco": "por_pessoa",
+     "unidades_necessarias": 1,
+     "com_iof": "€30,64",
+     "lido_em": "15/09/2026"
+    },
+    {
+     "versao": "segundo-piso-escada",
+     "rotulo": "Até o segundo piso, a pé",
+     "pessoas": 4,
+     "total": "€59,20",
+     "por_pessoa": "€14,80",
+     "unidade_de_preco": "por_pessoa",
+     "unidades_necessarias": 1,
+     "com_iof": "€61,27",
+     "lido_em": "15/09/2026"
+    },
+    {
+     "versao": "segundo-piso-escada",
+     "rotulo": "Até o segundo piso, a pé",
+     "pessoas": 6,
+     "total": "€88,80",
+     "por_pessoa": "€14,80",
+     "unidade_de_preco": "por_pessoa",
+     "unidades_necessarias": 1,
+     "com_iof": "€91,91",
+     "lido_em": "15/09/2026"
+    },
+    {
+     "versao": "segundo-piso-elevador",
+     "rotulo": "Até o segundo piso, de elevador",
+     "pessoas": 1,
+     "total": "€23,50",
+     "por_pessoa": "€23,50",
+     "unidade_de_preco": "por_pessoa",
+     "unidades_necessarias": 1,
+     "com_iof": "€24,32",
+     "lido_em": "15/09/2026"
+    },
+    {
+     "versao": "segundo-piso-elevador",
+     "rotulo": "Até o segundo piso, de elevador",
+     "pessoas": 2,
+     "total": "€47",
+     "por_pessoa": "€23,50",
+     "unidade_de_preco": "por_pessoa",
+     "unidades_necessarias": 1,
+     "com_iof": "€48,65",
+     "lido_em": "15/09/2026"
+    },
+    {
+     "versao": "segundo-piso-elevador",
+     "rotulo": "Até o segundo piso, de elevador",
+     "pessoas": 4,
+     "total": "€94",
+     "por_pessoa": "€23,50",
+     "unidade_de_preco": "por_pessoa",
+     "unidades_necessarias": 1,
+     "com_iof": "€97,29",
+     "lido_em": "15/09/2026"
+    },
+    {
+     "versao": "segundo-piso-elevador",
+     "rotulo": "Até o segundo piso, de elevador",
+     "pessoas": 6,
+     "total": "€141",
+     "por_pessoa": "€23,50",
+     "unidade_de_preco": "por_pessoa",
+     "unidades_necessarias": 1,
+     "com_iof": "€145,94",
+     "lido_em": "15/09/2026"
+    },
+    {
+     "versao": "topo-escada-e-elevador",
+     "rotulo": "Até o topo, subindo a pé até o segundo piso",
+     "pessoas": 1,
+     "total": "€28",
+     "por_pessoa": "€28",
+     "unidade_de_preco": "por_pessoa",
+     "unidades_necessarias": 1,
+     "com_iof": "€28,98",
+     "lido_em": "15/09/2026"
+    },
+    {
+     "versao": "topo-escada-e-elevador",
+     "rotulo": "Até o topo, subindo a pé até o segundo piso",
+     "pessoas": 2,
+     "total": "€56",
+     "por_pessoa": "€28",
+     "unidade_de_preco": "por_pessoa",
+     "unidades_necessarias": 1,
+     "com_iof": "€57,96",
+     "lido_em": "15/09/2026"
+    },
+    {
+     "versao": "topo-escada-e-elevador",
+     "rotulo": "Até o topo, subindo a pé até o segundo piso",
+     "pessoas": 4,
+     "total": "€112",
+     "por_pessoa": "€28",
+     "unidade_de_preco": "por_pessoa",
+     "unidades_necessarias": 1,
+     "com_iof": "€115,92",
+     "lido_em": "15/09/2026"
+    },
+    {
+     "versao": "topo-escada-e-elevador",
+     "rotulo": "Até o topo, subindo a pé até o segundo piso",
+     "pessoas": 6,
+     "total": "€168",
+     "por_pessoa": "€28",
+     "unidade_de_preco": "por_pessoa",
+     "unidades_necessarias": 1,
+     "com_iof": "€173,88",
+     "lido_em": "15/09/2026"
+    },
+    {
+     "versao": "topo-elevador",
+     "rotulo": "Até o topo, de elevador",
+     "pessoas": 1,
+     "total": "€36,70",
+     "por_pessoa": "€36,70",
+     "unidade_de_preco": "por_pessoa",
+     "unidades_necessarias": 1,
+     "com_iof": "€37,98",
+     "lido_em": "15/09/2026"
+    },
+    {
+     "versao": "topo-elevador",
+     "rotulo": "Até o topo, de elevador",
+     "pessoas": 2,
+     "total": "€73,40",
+     "por_pessoa": "€36,70",
+     "unidade_de_preco": "por_pessoa",
+     "unidades_necessarias": 1,
+     "com_iof": "€75,97",
+     "lido_em": "15/09/2026"
+    },
+    {
+     "versao": "topo-elevador",
+     "rotulo": "Até o topo, de elevador",
+     "pessoas": 4,
+     "total": "€146,80",
+     "por_pessoa": "€36,70",
+     "unidade_de_preco": "por_pessoa",
+     "unidades_necessarias": 1,
+     "com_iof": "€151,94",
+     "lido_em": "15/09/2026"
+    },
+    {
+     "versao": "topo-elevador",
+     "rotulo": "Até o topo, de elevador",
+     "pessoas": 6,
+     "total": "€220,20",
+     "por_pessoa": "€36,70",
+     "unidade_de_preco": "por_pessoa",
+     "unidades_necessarias": 1,
+     "com_iof": "€227,91",
+     "lido_em": "15/09/2026"
+    }
+   ],
+   "tabela_recolhida": false,
+   "dobras": [
+    {
+     "titulo": "Como chegamos nesse número",
+     "paragrafos": [
+      "Torre Eiffel — o bilhete de subida para 1 pessoa, Até o segundo piso, a pé: €14,80 no total, €14,80 por pessoa. O preço é por pessoa. Preço publicado pelo operador. Leitura de 15/09/2026.",
+      "No cartão brasileiro, o IOF de 3,5% entra por cima: €15,32 no total, ou €15,32 por pessoa.",
+      "Esta página é uma das respostas de preço da JornadaFly: todas elas estão em /guias/quanto-custa/, e cada uma traz a data em que lemos o preço.",
+      "Para outro tamanho de grupo, a conta fechada está na calculadora: /calculadoras/quanto-custa-a-experiencia/"
+     ]
+    },
+    {
+     "titulo": "O que está incluso e o que não está",
+     "paragrafos": [
+      "O que está incluso: subida pela escada até o segundo piso, primeiro e segundo pisos.",
+      "O que está fora: o topo, restaurante, bar de champanhe e loja, que são cobrados à parte."
+     ]
+    },
+    {
+     "titulo": "Por que as versões não se comparam por quantidade",
+     "paragrafos": [
+      "As versões desta experiência não se comparam em quantidade: elas diferem em escopo — o que cada bilhete dá. Não existe «a partir de quantos dias a mais cara vale», porque comprar duas vezes a mais barata não dá o que a mais cara dá."
+     ]
+    },
+    {
+     "titulo": "Crianças e jovens",
+     "paragrafos": [
+      "menores de 4 anos: não paga. gratuito em qualquer um dos quatro bilhetes",
+      "criança de 4 a 11 anos: €3,80 neste bilhete.",
+      "jovem de 12 a 24 anos: €7,40 neste bilhete."
+     ]
+    },
+    {
+     "titulo": "Cada versão vendida pelo operador, uma por uma",
+     "paragrafos": [
+      "Até o segundo piso, a pé: €14,80, a versão que você escolheu.",
+      "Até o segundo piso, de elevador: €23,50, outra versão vendida pelo operador.",
+      "Até o topo, subindo a pé até o segundo piso: €28, outra versão vendida pelo operador.",
+      "Até o topo, de elevador: €36,70, outra versão vendida pelo operador."
+     ]
+    },
+    {
+     "titulo": "O que esta página não responde",
+     "paragrafos": [
+      "O valor em real depende do câmbio do dia do seu cartão, e a JornadaFly ainda não tem uma fonte de câmbio com data para publicar. A conta acima está na moeda que o operador cobra, que é a que não muda.",
+      "Alta e baixa temporada: o operador não declara preço diferente entre uma e outra, e a JornadaFly não inventa a diferença. Se o seu mês for de alta, confirme o valor com ele antes de fechar."
+     ]
+    },
+    {
+     "titulo": "Como sabemos",
+     "paragrafos": [
+      "Operador: SETE — Société d'Exploitation de la Tour Eiffel, a empresa que opera o monumento sob concessão da cidade de Paris.",
+      "Documento: A tabela de tarifas do próprio operador, «Preços e horários dos ingressos» em toureiffel.paris/pt/tarifas-horarios, mais uma página de tarifa por bilhete, cada uma com o preço no próprio título: /pt/tarifas-ofertas/bilhete-ate-ao-topo-por-elevador (36,70€), /pt/tarifas-ofertas/bilhete-para-o-segundo-piso-por-escada (14,80€), /pt/tarifas-ofertas/bilhete-ate-ao-topo-por-escada-elevador (28,00€) e, na passada em inglês, /en/rates-offers/ticket-second-floor-lift (23,50€). Quatro documentos nomeados, um por versão..",
+      "Preço lido em 15/09/2026, por leitura na fonte de quem opera.",
+      "O que a fonte diz, na palavra dela: 14,80€ por adulto no bilhete até ao segundo piso por escada. É o bilhete mais barato da tabela e o único em que a subida não usa elevador."
+     ]
+    }
+   ],
+   "ferramenta_no_corpo": "/calculadoras/quanto-custa-a-experiencia/",
+   "mae_no_corpo": "Esta página é uma das respostas de preço da JornadaFly: todas elas estão em /guias/quanto-custa/, e cada uma traz a data em que lemos o preço.",
+   "veja_tambem": [
+    {
+     "ancora": "Quanto custa o ingresso do Coliseu de Roma",
+     "url": "/guias/quanto-custa/ingresso-do-coliseu-de-roma/"
+    },
+    {
+     "ancora": "Angkor Pass: quantos dias valem a pena",
+     "url": "/guias/quanto-custa/angkor-pass-de-1-3-ou-7-dias/"
+    },
+    {
+     "ancora": "Quanto custa o passeio de gôndola em Veneza",
+     "url": "/guias/quanto-custa/passeio-de-gondola-em-veneza/"
+    }
+   ],
+   "faq": [
+    {
+     "pergunta": "Qual dos quatro bilhetes da Torre Eiffel dá o quê, e quanto cada um custa para o seu grupo?",
+     "resposta": "Torre Eiffel — o bilhete de subida para 1 pessoa, Até o segundo piso, a pé: €14,80 no total, €14,80 por pessoa. O preço é por pessoa. Preço publicado pelo operador. Leitura de 15/09/2026."
+    },
+    {
+     "pergunta": "O que está incluso?",
+     "resposta": "O que está incluso: subida pela escada até o segundo piso, primeiro e segundo pisos."
+    }
+   ],
+   "bloco_de_compra": {
+    "degrau": 2,
+    "o_que_e": "a página de Paris na plataforma",
+    "url": "https://civitatis.com/br/paris/",
+    "rel": "nofollow noopener",
+    "programa": null,
+    "aviso": "Este link NÃO rende comissão: a JornadaFly ainda não tem programa de afiliado cadastrado, e por isso ele sai sem a marcação de link patrocinado.",
+    "motivo_sem_degrau_1": "Nenhuma página de produto foi lida. A busca restrita à plataforma devolveu páginas de passeio em Paris e um free tour, e nenhuma delas é o bilhete de subida vendido pelo operador do monumento. Apontar um passeio como se fosse o bilhete seria vender uma coisa no lugar de outra."
+   },
+   "status_do_registro": "publicavel",
+   "divergencias": [],
+   "json_ld": [
+    {
+     "@context": "https://schema.org",
+     "@type": "Article",
+     "headline": "Quanto custa subir na Torre Eiffel",
+     "description": "Torre Eiffel — o bilhete de subida para 1 pessoa, Até o segundo piso, a pé: €14,80 no total, €14,80 por pessoa. O preço é por pessoa. Preço publicado pelo operador. Leitura de 15/09/2026. O que você coloca: qual dos quatro bilhetes e quantas pessoas. O que sai: o total do grupo, o valor por pessoa e o que cada bilhete dá, com a data da leitura.",
+     "about": "quanto custa subir na torre eiffel",
+     "isPartOf": "/guias/quanto-custa/"
+    },
+    {
+     "@context": "https://schema.org",
+     "@type": "BreadcrumbList",
+     "itemListElement": [
+      {
+       "@type": "ListItem",
+       "position": 1,
+       "name": "Início",
+       "item": "/"
+      },
+      {
+       "@type": "ListItem",
+       "position": 2,
+       "name": "Guias",
+       "item": "/guias/"
+      },
+      {
+       "@type": "ListItem",
+       "position": 3,
+       "name": "Quanto custa",
+       "item": "/guias/quanto-custa/"
+      }
+     ]
+    },
+    {
+     "@context": "https://schema.org",
+     "@type": "FAQPage",
+     "mainEntity": [
+      {
+       "@type": "Question",
+       "name": "Qual dos quatro bilhetes da Torre Eiffel dá o quê, e quanto cada um custa para o seu grupo?",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Torre Eiffel — o bilhete de subida para 1 pessoa, Até o segundo piso, a pé: €14,80 no total, €14,80 por pessoa. O preço é por pessoa. Preço publicado pelo operador. Leitura de 15/09/2026."
+       }
+      },
+      {
+       "@type": "Question",
+       "name": "O que está incluso?",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "O que está incluso: subida pela escada até o segundo piso, primeiro e segundo pisos."
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "coliseu-roma",
+   "publicar": false,
+   "motivo_publicar_false": "Esta ilha não tem WordPress, não tem Sync e não tem /status, e o domínio não está na lista de Domínios permitidos deste ambiente (remedido em 23/10/2026: 000 em quatro medições, com aquametria e robometria em 200 nas quatro de controle). Não existe «no ar» para onde publicar, e dizer que publiquei seria inventar.",
+   "ferramenta_pareada": "F1",
+   "experiencia": "roma-coliseu-ingresso",
+   "cidade": "Roma",
+   "pais": "Itália",
+   "consulta_alvo": "quanto custa ingresso coliseu roma",
+   "consultas_irmas": [
+    "ingresso coliseu preço",
+    "quanto custa entrar no coliseu",
+    "vale a pena a experiência completa do coliseu"
+   ],
+   "serp_medida": {
+    "data": "2026-09-14",
+    "ocupantes": [
+     "eurodicas.com.br",
+     "maladeaventuras.com",
+     "viajaquepassa.com.br",
+     "grupodicas.com",
+     "thebettervacation.com"
+    ],
+    "o_que_falta_no_ar": "os cinco publicam o preço do ingresso comum e nenhum separa, com os dois números lado a lado, o que a versão mais cara dá a mais — nem diz em que dia leu cada um"
+   },
+   "momento": "fim",
+   "link_do_momento": "experiência",
+   "titulo": "Quanto custa o ingresso do Coliseu de Roma — preço com a data da leitura",
+   "h1": "Quanto custa o ingresso do Coliseu de Roma",
+   "description": "Coliseu de Roma — o ingresso do Parco archeologico del Colosseo para 1 pessoa, O ingresso comum, válido por 24 horas: €18 no total, €18 por pessoa. O preço é por pessoa. Preço publicado pelo operador. Leitura de 15/09/2026. O que você coloca: qual ingresso e quantas pessoas. O que sai: o total do grupo e o que a versão mais cara dá a mais, com a data da leitura.",
+   "url_planejada": "/guias/quanto-custa/ingresso-do-coliseu-de-roma/",
+   "mae_planejada": "/guias/quanto-custa/",
+   "nivel": 3,
+   "trilha": [
+    {
+     "nome": "Início",
+     "url": "/"
+    },
+    {
+     "nome": "Guias",
+     "url": "/guias/"
+    },
+    {
+     "nome": "Quanto custa",
+     "url": "/guias/quanto-custa/"
+    },
+    {
+     "nome": "Quanto custa o ingresso do Coliseu de Roma",
+     "url": null
+    }
+   ],
+   "caixa_de_resposta": {
+    "frase": "Coliseu de Roma — o ingresso do Parco archeologico del Colosseo para 1 pessoa, O ingresso comum, válido por 24 horas: €18 no total, €18 por pessoa. O preço é por pessoa. Preço publicado pelo operador. Leitura de 15/09/2026.",
+    "cartao_brasileiro": "No cartão brasileiro, o IOF de 3,5% entra por cima: €18,63 no total, ou €18,63 por pessoa.",
+    "promessa": "O que você coloca: qual ingresso e quantas pessoas. O que sai: o total do grupo e o que a versão mais cara dá a mais, com a data da leitura."
+   },
+   "monte_o_que_a_resposta_pede": [
+    {
+     "rotulo": "O ingresso comum, válido por 24 horas",
+     "o_que_e": "Coliseu de Roma — o ingresso do Parco archeologico del Colosseo para 1 pessoa, O ingresso comum, válido por 24 horas: €18 no total, €18 por pessoa. O preço é por pessoa. Preço publicado pelo operador. Leitura de 15/09/2026.",
+     "calcular": {
+      "texto": "Calcular para o meu grupo",
+      "url": "/calculadoras/quanto-custa-a-experiencia/?experiencia=roma-coliseu-ingresso&versao=padrao-24h",
+      "o_que_leva": "experiência e versão desta página, já preenchidas"
+     },
+     "ver_produtos": {
+      "texto": "Ver na plataforma",
+      "url": "https://civitatis.com/br/roma/",
+      "rel": "nofollow noopener",
+      "o_que_e": "a página de Roma na plataforma",
+      "aviso": "Este link NÃO rende comissão: a JornadaFly ainda não tem programa de afiliado cadastrado, e por isso ele sai sem a marcação de link patrocinado."
+     }
+    },
+    {
+     "rotulo": "A Experiência Completa, com uma área restrita a mais",
+     "o_que_e": "Coliseu de Roma — o ingresso do Parco archeologico del Colosseo para 1 pessoa, A Experiência Completa, com uma área restrita a mais: €22 no total, €22 por pessoa. O preço é por pessoa. Preço publicado pelo operador. Leitura de 15/09/2026.",
+     "calcular": {
+      "texto": "Calcular para o meu grupo",
+      "url": "/calculadoras/quanto-custa-a-experiencia/?experiencia=roma-coliseu-ingresso&versao=experiencia-completa",
+      "o_que_leva": "experiência e versão desta página, já preenchidas"
+     },
+     "ver_produtos": {
+      "texto": "Ver na plataforma",
+      "url": "https://civitatis.com/br/roma/",
+      "rel": "nofollow noopener",
+      "o_que_e": "a página de Roma na plataforma",
+      "aviso": "Este link NÃO rende comissão: a JornadaFly ainda não tem programa de afiliado cadastrado, e por isso ele sai sem a marcação de link patrocinado."
+     }
+    }
+   ],
+   "tabela_resumo": [
+    {
+     "versao": "padrao-24h",
+     "rotulo": "O ingresso comum, válido por 24 horas",
+     "pessoas": 1,
+     "total": "€18",
+     "por_pessoa": "€18",
+     "unidade_de_preco": "por_pessoa",
+     "unidades_necessarias": 1,
+     "com_iof": "€18,63",
+     "lido_em": "15/09/2026"
+    },
+    {
+     "versao": "padrao-24h",
+     "rotulo": "O ingresso comum, válido por 24 horas",
+     "pessoas": 2,
+     "total": "€36",
+     "por_pessoa": "€18",
+     "unidade_de_preco": "por_pessoa",
+     "unidades_necessarias": 1,
+     "com_iof": "€37,26",
+     "lido_em": "15/09/2026"
+    },
+    {
+     "versao": "padrao-24h",
+     "rotulo": "O ingresso comum, válido por 24 horas",
+     "pessoas": 4,
+     "total": "€72",
+     "por_pessoa": "€18",
+     "unidade_de_preco": "por_pessoa",
+     "unidades_necessarias": 1,
+     "com_iof": "€74,52",
+     "lido_em": "15/09/2026"
+    },
+    {
+     "versao": "padrao-24h",
+     "rotulo": "O ingresso comum, válido por 24 horas",
+     "pessoas": 6,
+     "total": "€108",
+     "por_pessoa": "€18",
+     "unidade_de_preco": "por_pessoa",
+     "unidades_necessarias": 1,
+     "com_iof": "€111,78",
+     "lido_em": "15/09/2026"
+    },
+    {
+     "versao": "experiencia-completa",
+     "rotulo": "A Experiência Completa, com uma área restrita a mais",
+     "pessoas": 1,
+     "total": "€22",
+     "por_pessoa": "€22",
+     "unidade_de_preco": "por_pessoa",
+     "unidades_necessarias": 1,
+     "com_iof": "€22,77",
+     "lido_em": "15/09/2026"
+    },
+    {
+     "versao": "experiencia-completa",
+     "rotulo": "A Experiência Completa, com uma área restrita a mais",
+     "pessoas": 2,
+     "total": "€44",
+     "por_pessoa": "€22",
+     "unidade_de_preco": "por_pessoa",
+     "unidades_necessarias": 1,
+     "com_iof": "€45,54",
+     "lido_em": "15/09/2026"
+    },
+    {
+     "versao": "experiencia-completa",
+     "rotulo": "A Experiência Completa, com uma área restrita a mais",
+     "pessoas": 4,
+     "total": "€88",
+     "por_pessoa": "€22",
+     "unidade_de_preco": "por_pessoa",
+     "unidades_necessarias": 1,
+     "com_iof": "€91,08",
+     "lido_em": "15/09/2026"
+    },
+    {
+     "versao": "experiencia-completa",
+     "rotulo": "A Experiência Completa, com uma área restrita a mais",
+     "pessoas": 6,
+     "total": "€132",
+     "por_pessoa": "€22",
+     "unidade_de_preco": "por_pessoa",
+     "unidades_necessarias": 1,
+     "com_iof": "€136,62",
+     "lido_em": "15/09/2026"
+    }
+   ],
+   "tabela_recolhida": false,
+   "dobras": [
+    {
+     "titulo": "Como chegamos nesse número",
+     "paragrafos": [
+      "Coliseu de Roma — o ingresso do Parco archeologico del Colosseo para 1 pessoa, O ingresso comum, válido por 24 horas: €18 no total, €18 por pessoa. O preço é por pessoa. Preço publicado pelo operador. Leitura de 15/09/2026.",
+      "No cartão brasileiro, o IOF de 3,5% entra por cima: €18,63 no total, ou €18,63 por pessoa.",
+      "Esta página é uma das respostas de preço da JornadaFly: todas elas estão em /guias/quanto-custa/, e cada uma traz a data em que lemos o preço.",
+      "Para outro tamanho de grupo, a conta fechada está na calculadora: /calculadoras/quanto-custa-a-experiencia/"
+     ]
+    },
+    {
+     "titulo": "O que está incluso e o que não está",
+     "paragrafos": [
+      "O que está incluso: entrada com horário marcado no Coliseu, nos níveis 1 e 2, que são os abertos ao público, uma entrada no Fórum Romano e no Monte Palatino.",
+      "O que está fora: o piso da arena, os subterrâneos, o ático, audioguia, visita guiada."
+     ]
+    },
+    {
+     "titulo": "Por que as versões não se comparam por quantidade",
+     "paragrafos": [
+      "As versões desta experiência não se comparam em quantidade: elas diferem em escopo — o que cada bilhete dá. Não existe «a partir de quantos dias a mais cara vale», porque comprar duas vezes a mais barata não dá o que a mais cara dá."
+     ]
+    },
+    {
+     "titulo": "Cada versão vendida pelo operador, uma por uma",
+     "paragrafos": [
+      "O ingresso comum, válido por 24 horas: €18, a versão que você escolheu.",
+      "A Experiência Completa, com uma área restrita a mais: €22, outra versão vendida pelo operador."
+     ]
+    },
+    {
+     "titulo": "O que esta página não responde",
+     "paragrafos": [
+      "Desconto por idade: o operador não declara tarifa diferente por idade neste bilhete.",
+      "O valor em real depende do câmbio do dia do seu cartão, e a JornadaFly ainda não tem uma fonte de câmbio com data para publicar. A conta acima está na moeda que o operador cobra, que é a que não muda.",
+      "Alta e baixa temporada: o operador não declara preço diferente entre uma e outra, e a JornadaFly não inventa a diferença. Se o seu mês for de alta, confirme o valor com ele antes de fechar."
+     ]
+    },
+    {
+     "titulo": "Como sabemos",
+     "paragrafos": [
+      "Operador: Parco archeologico del Colosseo, o órgão público que administra o sítio e vende o ingresso.",
+      "Documento: A página de horários e bilhetes da própria autoridade — «Opening Times and tickets», em colosseo.it/en/opening-times-and-tickets/ — e a página de categorias de bilhete do sistema oficial de venda, «Individuals», em ticketing.colosseo.it/en/categorie/singoli-1-8-persone/. As duas voltaram por endereço na passada em inglês, e a passada em português já tinha devolvido ticketing.colosseo.it por nome como o canal oficial. É página de TARIFA da própria autoridade, que é o que a regra_do_documento_nomeado pede — e é a diferença exata para o Angkor Pass, cuja autoridade só devolveu uma página de perguntas frequentes..",
+      "Preço lido em 15/09/2026, por leitura na fonte de quem opera.",
+      "O que a fonte diz, na palavra dela: €18 por adulto, entrada com horário marcado no Coliseu mais uma entrada no Fórum Romano e no Palatino, válido por 24 horas a partir da primeira entrada. Não dá acesso ao piso da arena, aos subterrâneos nem ao ático, e não inclui audioguia nem guia."
+     ]
+    }
+   ],
+   "ferramenta_no_corpo": "/calculadoras/quanto-custa-a-experiencia/",
+   "mae_no_corpo": "Esta página é uma das respostas de preço da JornadaFly: todas elas estão em /guias/quanto-custa/, e cada uma traz a data em que lemos o preço.",
+   "veja_tambem": [
+    {
+     "ancora": "Angkor Pass: quantos dias valem a pena",
+     "url": "/guias/quanto-custa/angkor-pass-de-1-3-ou-7-dias/"
+    },
+    {
+     "ancora": "Quanto custa o passeio de gôndola em Veneza",
+     "url": "/guias/quanto-custa/passeio-de-gondola-em-veneza/"
+    },
+    {
+     "ancora": "Quanto custa subir na Torre Eiffel",
+     "url": "/guias/quanto-custa/subir-na-torre-eiffel/"
+    }
+   ],
+   "faq": [
+    {
+     "pergunta": "A Experiência Completa do Coliseu custa quanto a mais, e o que ela dá a mais?",
+     "resposta": "Coliseu de Roma — o ingresso do Parco archeologico del Colosseo para 1 pessoa, O ingresso comum, válido por 24 horas: €18 no total, €18 por pessoa. O preço é por pessoa. Preço publicado pelo operador. Leitura de 15/09/2026."
+    },
+    {
+     "pergunta": "O que está incluso?",
+     "resposta": "O que está incluso: entrada com horário marcado no Coliseu, nos níveis 1 e 2, que são os abertos ao público, uma entrada no Fórum Romano e no Monte Palatino."
+    }
+   ],
+   "bloco_de_compra": {
+    "degrau": 2,
+    "o_que_e": "a página de Roma na plataforma",
+    "url": "https://civitatis.com/br/roma/",
+    "rel": "nofollow noopener",
+    "programa": null,
+    "aviso": "Este link NÃO rende comissão: a JornadaFly ainda não tem programa de afiliado cadastrado, e por isso ele sai sem a marcação de link patrocinado.",
+    "motivo_sem_degrau_1": "Nenhuma página de produto foi lida. A busca restrita à plataforma devolveu páginas de passeio guiado em Roma e uma página de free tours, e nenhuma delas é o ingresso do Parco archeologico del Colosseo — apontar um passeio guiado como se fosse o ingresso seria vender uma coisa no lugar de outra, que é pior do que não ter link. Mesma decisão do Angkor Pass, e pela mesma razão."
+   },
+   "status_do_registro": "publicavel",
+   "divergencias": [],
+   "json_ld": [
+    {
+     "@context": "https://schema.org",
+     "@type": "Article",
+     "headline": "Quanto custa o ingresso do Coliseu de Roma",
+     "description": "Coliseu de Roma — o ingresso do Parco archeologico del Colosseo para 1 pessoa, O ingresso comum, válido por 24 horas: €18 no total, €18 por pessoa. O preço é por pessoa. Preço publicado pelo operador. Leitura de 15/09/2026. O que você coloca: qual ingresso e quantas pessoas. O que sai: o total do grupo e o que a versão mais cara dá a mais, com a data da leitura.",
+     "about": "quanto custa ingresso coliseu roma",
+     "isPartOf": "/guias/quanto-custa/"
+    },
+    {
+     "@context": "https://schema.org",
+     "@type": "BreadcrumbList",
+     "itemListElement": [
+      {
+       "@type": "ListItem",
+       "position": 1,
+       "name": "Início",
+       "item": "/"
+      },
+      {
+       "@type": "ListItem",
+       "position": 2,
+       "name": "Guias",
+       "item": "/guias/"
+      },
+      {
+       "@type": "ListItem",
+       "position": 3,
+       "name": "Quanto custa",
+       "item": "/guias/quanto-custa/"
+      }
+     ]
+    },
+    {
+     "@context": "https://schema.org",
+     "@type": "FAQPage",
+     "mainEntity": [
+      {
+       "@type": "Question",
+       "name": "A Experiência Completa do Coliseu custa quanto a mais, e o que ela dá a mais?",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Coliseu de Roma — o ingresso do Parco archeologico del Colosseo para 1 pessoa, O ingresso comum, válido por 24 horas: €18 no total, €18 por pessoa. O preço é por pessoa. Preço publicado pelo operador. Leitura de 15/09/2026."
+       }
+      },
+      {
+       "@type": "Question",
+       "name": "O que está incluso?",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "O que está incluso: entrada com horário marcado no Coliseu, nos níveis 1 e 2, que são os abertos ao público, uma entrada no Fórum Romano e no Monte Palatino."
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "angkor-pass",
+   "publicar": false,
+   "motivo_publicar_false": "Esta ilha não tem WordPress, não tem Sync e não tem /status, e o domínio não está na lista de Domínios permitidos deste ambiente (remedido em 23/10/2026: 000 em quatro medições, com aquametria e robometria em 200 nas quatro de controle). Não existe «no ar» para onde publicar, e dizer que publiquei seria inventar.",
+   "ferramenta_pareada": "F1",
+   "experiencia": "siem-reap-angkor-pass",
+   "cidade": "Siem Reap",
+   "pais": "Camboja",
+   "consulta_alvo": "angkor pass quantos dias valem a pena",
+   "consultas_irmas": [
+    "quanto custa o angkor pass",
+    "angkor pass 1 dia ou 3 dias",
+    "ingresso angkor wat preço"
+   ],
+   "serp_medida": {
+    "data": "2026-09-14",
+    "ocupantes": [],
+    "o_que_falta_no_ar": "esta consulta não foi medida no levantamento de 14/09/2026 — o corpus mediu o julgamento de passe em Roma e em Lisboa, não em Angkor. A página nasce, então, sem a leitura de quem ocupa as dez primeiras: é o que há, e inventar a leitura seria pior"
+   },
+   "momento": "fim",
+   "link_do_momento": "experiência",
+   "titulo": "Angkor Pass: quantos dias valem a pena — preço com a data da leitura",
+   "h1": "Angkor Pass: quantos dias valem a pena",
+   "description": "O que você coloca: quantos dias você vai visitar o parque e quantas pessoas vão. O que sai: a partir de quantos dias o ingresso mais longo passa a custar menos que comprar o de um dia de novo. Trazemos o preço de cada versão vendida pelo operador, a data em que lemos cada um e a conta fechada para o tamanho do seu grupo.",
+   "url_planejada": "/guias/quanto-custa/angkor-pass-de-1-3-ou-7-dias/",
+   "mae_planejada": "/guias/quanto-custa/",
+   "nivel": 3,
+   "trilha": [
+    {
+     "nome": "Início",
+     "url": "/"
+    },
+    {
+     "nome": "Guias",
+     "url": "/guias/"
+    },
+    {
+     "nome": "Quanto custa",
+     "url": "/guias/quanto-custa/"
+    },
+    {
+     "nome": "Angkor Pass: quantos dias valem a pena",
+     "url": null
+    }
+   ],
+   "caixa_de_resposta": {
+    "frase": "Angkor Pass — o ingresso do Parque Arqueológico de Angkor para 1 pessoa, 1 dia: US$ 37 no total, US$ 37 por pessoa. O preço é por pessoa. Preço publicado pelo operador. Leitura de 14/09/2026.",
+    "cartao_brasileiro": "No cartão brasileiro, o IOF de 3,5% entra por cima: US$ 38,30 no total, ou US$ 38,30 por pessoa.",
+    "promessa": "O que você coloca: quantos dias você vai visitar o parque e quantas pessoas vão. O que sai: a partir de quantos dias o ingresso mais longo passa a custar menos que comprar o de um dia de novo.",
+    "reconferir": "Este preço veio de uma leitura que a JornadaFly ainda não conferiu na fonte da própria autoridade, e por isso ela não o chama de confirmado. Ele está aqui com a data em que foi lido, para você decidir sabendo disso."
+   },
+   "monte_o_que_a_resposta_pede": [
+    {
+     "rotulo": "1 dia",
+     "o_que_e": "Angkor Pass — o ingresso do Parque Arqueológico de Angkor para 1 pessoa, 1 dia: US$ 37 no total, US$ 37 por pessoa. O preço é por pessoa. Preço publicado pelo operador. Leitura de 14/09/2026.",
+     "calcular": {
+      "texto": "Calcular para o meu grupo",
+      "url": "/calculadoras/quanto-custa-a-experiencia/?experiencia=siem-reap-angkor-pass&versao=1-dia",
+      "o_que_leva": "experiência e versão desta página, já preenchidas"
+     },
+     "ver_produtos": {
+      "texto": "Ver na plataforma",
+      "url": "https://civitatis.com/br/siem-reap/",
+      "rel": "nofollow noopener",
+      "o_que_e": "a página de Siem Reap na plataforma",
+      "aviso": "Este link NÃO rende comissão: a JornadaFly ainda não tem programa de afiliado cadastrado, e por isso ele sai sem a marcação de link patrocinado."
+     }
+    },
+    {
+     "rotulo": "3 dias, usáveis dentro de uma semana",
+     "o_que_e": "Angkor Pass — o ingresso do Parque Arqueológico de Angkor para 1 pessoa, 3 dias, usáveis dentro de uma semana: US$ 62 no total, US$ 62 por pessoa. O preço é por pessoa. Preço publicado pelo operador. Leitura de 14/09/2026.",
+     "calcular": {
+      "texto": "Calcular para o meu grupo",
+      "url": "/calculadoras/quanto-custa-a-experiencia/?experiencia=siem-reap-angkor-pass&versao=3-dias",
+      "o_que_leva": "experiência e versão desta página, já preenchidas"
+     },
+     "ver_produtos": {
+      "texto": "Ver na plataforma",
+      "url": "https://civitatis.com/br/siem-reap/",
+      "rel": "nofollow noopener",
+      "o_que_e": "a página de Siem Reap na plataforma",
+      "aviso": "Este link NÃO rende comissão: a JornadaFly ainda não tem programa de afiliado cadastrado, e por isso ele sai sem a marcação de link patrocinado."
+     }
+    },
+    {
+     "rotulo": "7 dias, usáveis dentro de um mês",
+     "o_que_e": "Angkor Pass — o ingresso do Parque Arqueológico de Angkor para 1 pessoa, 7 dias, usáveis dentro de um mês: US$ 72 no total, US$ 72 por pessoa. O preço é por pessoa. Preço publicado pelo operador. Leitura de 14/09/2026.",
+     "calcular": {
+      "texto": "Calcular para o meu grupo",
+      "url": "/calculadoras/quanto-custa-a-experiencia/?experiencia=siem-reap-angkor-pass&versao=7-dias",
+      "o_que_leva": "experiência e versão desta página, já preenchidas"
+     },
+     "ver_produtos": {
+      "texto": "Ver na plataforma",
+      "url": "https://civitatis.com/br/siem-reap/",
+      "rel": "nofollow noopener",
+      "o_que_e": "a página de Siem Reap na plataforma",
+      "aviso": "Este link NÃO rende comissão: a JornadaFly ainda não tem programa de afiliado cadastrado, e por isso ele sai sem a marcação de link patrocinado."
+     }
+    }
+   ],
+   "tabela_resumo": [
+    {
+     "versao": "1-dia",
+     "rotulo": "1 dia",
+     "pessoas": 1,
+     "total": "US$ 37",
+     "por_pessoa": "US$ 37",
+     "unidade_de_preco": "por_pessoa",
+     "unidades_necessarias": 1,
+     "com_iof": "US$ 38,30",
+     "lido_em": "14/09/2026"
+    },
+    {
+     "versao": "1-dia",
+     "rotulo": "1 dia",
+     "pessoas": 2,
+     "total": "US$ 74",
+     "por_pessoa": "US$ 37",
+     "unidade_de_preco": "por_pessoa",
+     "unidades_necessarias": 1,
+     "com_iof": "US$ 76,59",
+     "lido_em": "14/09/2026"
+    },
+    {
+     "versao": "1-dia",
+     "rotulo": "1 dia",
+     "pessoas": 4,
+     "total": "US$ 148",
+     "por_pessoa": "US$ 37",
+     "unidade_de_preco": "por_pessoa",
+     "unidades_necessarias": 1,
+     "com_iof": "US$ 153,18",
+     "lido_em": "14/09/2026"
+    },
+    {
+     "versao": "1-dia",
+     "rotulo": "1 dia",
+     "pessoas": 6,
+     "total": "US$ 222",
+     "por_pessoa": "US$ 37",
+     "unidade_de_preco": "por_pessoa",
+     "unidades_necessarias": 1,
+     "com_iof": "US$ 229,77",
+     "lido_em": "14/09/2026"
+    },
+    {
+     "versao": "3-dias",
+     "rotulo": "3 dias, usáveis dentro de uma semana",
+     "pessoas": 1,
+     "total": "US$ 62",
+     "por_pessoa": "US$ 62",
+     "unidade_de_preco": "por_pessoa",
+     "unidades_necessarias": 1,
+     "com_iof": "US$ 64,17",
+     "lido_em": "14/09/2026"
+    },
+    {
+     "versao": "3-dias",
+     "rotulo": "3 dias, usáveis dentro de uma semana",
+     "pessoas": 2,
+     "total": "US$ 124",
+     "por_pessoa": "US$ 62",
+     "unidade_de_preco": "por_pessoa",
+     "unidades_necessarias": 1,
+     "com_iof": "US$ 128,34",
+     "lido_em": "14/09/2026"
+    },
+    {
+     "versao": "3-dias",
+     "rotulo": "3 dias, usáveis dentro de uma semana",
+     "pessoas": 4,
+     "total": "US$ 248",
+     "por_pessoa": "US$ 62",
+     "unidade_de_preco": "por_pessoa",
+     "unidades_necessarias": 1,
+     "com_iof": "US$ 256,68",
+     "lido_em": "14/09/2026"
+    },
+    {
+     "versao": "3-dias",
+     "rotulo": "3 dias, usáveis dentro de uma semana",
+     "pessoas": 6,
+     "total": "US$ 372",
+     "por_pessoa": "US$ 62",
+     "unidade_de_preco": "por_pessoa",
+     "unidades_necessarias": 1,
+     "com_iof": "US$ 385,02",
+     "lido_em": "14/09/2026"
+    },
+    {
+     "versao": "7-dias",
+     "rotulo": "7 dias, usáveis dentro de um mês",
+     "pessoas": 1,
+     "total": "US$ 72",
+     "por_pessoa": "US$ 72",
+     "unidade_de_preco": "por_pessoa",
+     "unidades_necessarias": 1,
+     "com_iof": "US$ 74,52",
+     "lido_em": "14/09/2026"
+    },
+    {
+     "versao": "7-dias",
+     "rotulo": "7 dias, usáveis dentro de um mês",
+     "pessoas": 2,
+     "total": "US$ 144",
+     "por_pessoa": "US$ 72",
+     "unidade_de_preco": "por_pessoa",
+     "unidades_necessarias": 1,
+     "com_iof": "US$ 149,04",
+     "lido_em": "14/09/2026"
+    },
+    {
+     "versao": "7-dias",
+     "rotulo": "7 dias, usáveis dentro de um mês",
+     "pessoas": 4,
+     "total": "US$ 288",
+     "por_pessoa": "US$ 72",
+     "unidade_de_preco": "por_pessoa",
+     "unidades_necessarias": 1,
+     "com_iof": "US$ 298,08",
+     "lido_em": "14/09/2026"
+    },
+    {
+     "versao": "7-dias",
+     "rotulo": "7 dias, usáveis dentro de um mês",
+     "pessoas": 6,
+     "total": "US$ 432",
+     "por_pessoa": "US$ 72",
+     "unidade_de_preco": "por_pessoa",
+     "unidades_necessarias": 1,
+     "com_iof": "US$ 447,12",
+     "lido_em": "14/09/2026"
+    }
+   ],
+   "tabela_recolhida": false,
+   "dobras": [
+    {
+     "titulo": "Como chegamos nesse número",
+     "paragrafos": [
+      "Angkor Pass — o ingresso do Parque Arqueológico de Angkor para 1 pessoa, 1 dia: US$ 37 no total, US$ 37 por pessoa. O preço é por pessoa. Preço publicado pelo operador. Leitura de 14/09/2026.",
+      "No cartão brasileiro, o IOF de 3,5% entra por cima: US$ 38,30 no total, ou US$ 38,30 por pessoa.",
+      "Esta página é uma das respostas de preço da JornadaFly: todas elas estão em /guias/quanto-custa/, e cada uma traz a data em que lemos o preço.",
+      "Para outro tamanho de grupo, a conta fechada está na calculadora: /calculadoras/quanto-custa-a-experiencia/"
+     ]
+    },
+    {
+     "titulo": "A partir de quando a versão mais longa paga",
+     "paragrafos": [
+      "A partir de 2 dias de visita, «3 dias, usáveis dentro de uma semana» passa a valer mais a pena que comprar «1 dia» de novo.",
+      "A partir de 2 dias de visita, «7 dias, usáveis dentro de um mês» passa a valer mais a pena que comprar «1 dia» de novo."
+     ]
+    },
+    {
+     "titulo": "Crianças e jovens",
+     "paragrafos": [
+      "menores de 12 anos: não paga. gratuito, com o passaporte da criança apresentado na bilheteria como prova de idade"
+     ]
+    },
+    {
+     "titulo": "Cada versão vendida pelo operador, uma por uma",
+     "paragrafos": [
+      "1 dia: US$ 37, a versão que você escolheu.",
+      "3 dias, usáveis dentro de uma semana: US$ 62, outra versão vendida pelo operador.",
+      "7 dias, usáveis dentro de um mês: US$ 72, outra versão vendida pelo operador."
+     ]
+    },
+    {
+     "titulo": "O que esta página não responde",
+     "paragrafos": [
+      "O valor em real depende do câmbio do dia do seu cartão, e a JornadaFly ainda não tem uma fonte de câmbio com data para publicar. A conta acima está na moeda que o operador cobra, que é a que não muda.",
+      "Alta e baixa temporada: o operador não declara preço diferente entre uma e outra, e a JornadaFly não inventa a diferença. Se o seu mês for de alta, confirme o valor com ele antes de fechar.",
+      "Este preço veio de uma leitura que a JornadaFly ainda não conferiu na fonte da própria autoridade, e por isso ela não o chama de confirmado. Ele está aqui com a data em que foi lido, para você decidir sabendo disso."
+     ]
+    },
+    {
+     "titulo": "Como sabemos",
+     "paragrafos": [
+      "Operador: Angkor Enterprise, a empresa pública que vende o Angkor Pass.",
+      "Endereço do operador: https://www.angkorenterprise.gov.kh/",
+      "Preço lido em 14/09/2026, por leitura na fonte de quem opera.",
+      "O que a fonte diz, na palavra dela: US$ 37 para a visitação de um dia. O passe de um dia vale na data impressa nele."
+     ]
+    }
+   ],
+   "ferramenta_no_corpo": "/calculadoras/quanto-custa-a-experiencia/",
+   "mae_no_corpo": "Esta página é uma das respostas de preço da JornadaFly: todas elas estão em /guias/quanto-custa/, e cada uma traz a data em que lemos o preço.",
+   "veja_tambem": [
+    {
+     "ancora": "Quanto custa o passeio de gôndola em Veneza",
+     "url": "/guias/quanto-custa/passeio-de-gondola-em-veneza/"
+    },
+    {
+     "ancora": "Quanto custa subir na Torre Eiffel",
+     "url": "/guias/quanto-custa/subir-na-torre-eiffel/"
+    },
+    {
+     "ancora": "Quanto custa o ingresso do Coliseu de Roma",
+     "url": "/guias/quanto-custa/ingresso-do-coliseu-de-roma/"
+    }
+   ],
+   "faq": [
+    {
+     "pergunta": "A partir de quantos dias de visita o Angkor Pass de 3 dias paga?",
+     "resposta": "Angkor Pass — o ingresso do Parque Arqueológico de Angkor para 1 pessoa, 1 dia: US$ 37 no total, US$ 37 por pessoa. O preço é por pessoa. Preço publicado pelo operador. Leitura de 14/09/2026."
+    },
+    {
+     "pergunta": "A versão mais longa compensa?",
+     "resposta": "A partir de 2 dias de visita, «3 dias, usáveis dentro de uma semana» passa a valer mais a pena que comprar «1 dia» de novo."
+    }
+   ],
+   "bloco_de_compra": {
+    "degrau": 2,
+    "o_que_e": "a página de Siem Reap na plataforma",
+    "url": "https://civitatis.com/br/siem-reap/",
+    "rel": "nofollow noopener",
+    "programa": null,
+    "aviso": "Este link NÃO rende comissão: a JornadaFly ainda não tem programa de afiliado cadastrado, e por isso ele sai sem a marcação de link patrocinado.",
+    "motivo_sem_degrau_1": "Não existe página de produto para ESTE item em plataforma nenhuma, e a causa não é falta de coleta: o Angkor Pass é vendido pela própria Angkor Enterprise, e o que a Civitatis vende em Siem Reap são passeios guiados — as duas páginas vistas na busca de hoje, /br/siem-reap/excursao-koh-ker/ e /br/siem-reap/tour-tres-dias-angkor/, são produto diferente do ingresso. Apontar uma delas como se fosse o passe seria vender uma coisa no lugar de outra, que é pior do que não ter link."
+   },
+   "status_do_registro": "pendente_de_releitura",
+   "divergencias": [],
+   "json_ld": [
+    {
+     "@context": "https://schema.org",
+     "@type": "Article",
+     "headline": "Angkor Pass: quantos dias valem a pena",
+     "description": "O que você coloca: quantos dias você vai visitar o parque e quantas pessoas vão. O que sai: a partir de quantos dias o ingresso mais longo passa a custar menos que comprar o de um dia de novo. Trazemos o preço de cada versão vendida pelo operador, a data em que lemos cada um e a conta fechada para o tamanho do seu grupo.",
+     "about": "angkor pass quantos dias valem a pena",
+     "isPartOf": "/guias/quanto-custa/"
+    },
+    {
+     "@context": "https://schema.org",
+     "@type": "BreadcrumbList",
+     "itemListElement": [
+      {
+       "@type": "ListItem",
+       "position": 1,
+       "name": "Início",
+       "item": "/"
+      },
+      {
+       "@type": "ListItem",
+       "position": 2,
+       "name": "Guias",
+       "item": "/guias/"
+      },
+      {
+       "@type": "ListItem",
+       "position": 3,
+       "name": "Quanto custa",
+       "item": "/guias/quanto-custa/"
+      }
+     ]
+    },
+    {
+     "@context": "https://schema.org",
+     "@type": "FAQPage",
+     "mainEntity": [
+      {
+       "@type": "Question",
+       "name": "A partir de quantos dias de visita o Angkor Pass de 3 dias paga?",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Angkor Pass — o ingresso do Parque Arqueológico de Angkor para 1 pessoa, 1 dia: US$ 37 no total, US$ 37 por pessoa. O preço é por pessoa. Preço publicado pelo operador. Leitura de 14/09/2026."
+       }
+      },
+      {
+       "@type": "Question",
+       "name": "A versão mais longa compensa?",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A partir de 2 dias de visita, «3 dias, usáveis dentro de uma semana» passa a valer mais a pena que comprar «1 dia» de novo."
+       }
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "nao_escritos": [
+  {
+   "ferramenta_pareada": "F2",
+   "consulta_alvo": "quanto custa um dia em veneza para 2 pessoas",
+   "por_que_a_SERP_vale": "medida em 14/09/2026: oito ocupantes e NENHUM responde «para 2 pessoas». Todos respondem «viajar para Veneza» genérico.",
+   "nao_foi_escrito_porque": "a F2 soma quatro linhas — experiências, hospedagem, alimentação e transporte local — e hoje publica UMA. As faixas de diária contadas no banco são 0: a entidade existe desde 22/10/2026 e o dado não. Um artigo com este título e só a linha de experiências prometeria o dia inteiro e entregaria o passeio, que é o defeito medido nos oito ocupantes.",
+   "destrava_quando": "houver ao menos uma faixa de diária para Veneza em cada uma das três naturezas (hospedagem, alimentação e transporte local), cada uma com quem publicou nomeado, URL e data de leitura — os três obrigatórios do esquema. A coleta é de navegador: numbeo.com, booking.com e civitatis.com.br foram recusados no egresso deste ambiente em 22/10/2026 e remedidos em 000 em 23/10/2026.",
+   "o_que_ja_esta_pronto": "a regra inteira. A F2 serve 3.077 estados e a tabela pré-renderizada tem 144 linhas; o artigo é montagem, não pesquisa, no dia em que o dado entrar."
+  },
+  {
+   "ferramenta_pareada": "F3",
+   "consulta_alvo": "roma pass vale a pena",
+   "por_que_a_SERP_vale": "medida em 14/09/2026: o primeiro colocado promete «fiz as contas pra você» no próprio título, e o terceiro é um blog que virou operador e vende o próprio tour. O que nenhum publica é DE QUANTAS atrações aquele número saiu.",
+   "nao_foi_escrito_porque": "passes contados no banco: 0. Coberturas de passe contadas: 0. A F3 responde «a soma dos avulsos» e fecha com «sem passe lido» em todos os estados válidos, então o veredito que o título promete não existe. E falta a outra metade: Roma tem 1 experiência no banco, e um julgamento de passe sobre uma atração só não é um julgamento de passe.",
+   "destrava_quando": "houver o Roma Pass no banco, com preço e data de leitura próprios, MAIS a cobertura par por par entre ele e cada atração de Roma, cada par com fonte e data de leitura próprias — porque o preço do passe pode estar certo e a cobertura errada no mesmo dia. A coleta é de navegador: romapass.it, turismoroma.it, lisboacard.org, visitlisboa.com e civitatis.com.br foram recusados no egresso em 22/10/2026 e jornadafly.com.br segue recusado em 23/10/2026.",
+   "o_que_ja_esta_pronto": "a regra inteira, com as três honestidades que o julgamento exige: não lida não é coberta, o equilíbrio é sobre o que foi lido, e «até 50%» não é 50%."
+  }
+ ]
+}
