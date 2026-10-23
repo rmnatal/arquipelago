@@ -6685,3 +6685,98 @@ nada reformatado, nada acrescentado, nada corrigido. A identificação da conta 
 (`conta Raphael 683-124-3211`) veio na instrução e já tem precedente no repositório
 (`bussola/medicoes/varredura-nichos-2026-10-21.md`, linha 3); é um ID de conta do próprio Raphael,
 não contato pessoal de terceiro, então entrou como veio.
+
+## 23/10/2026, 12h25 BRT (15h25 UTC) — Ronda 23/10: despachos na robometria e na clubedomosaico, consertos, `ultima_ronda` das três ilhas, painel reescrito
+
+Assunto conferido antes do `git fetch`: **é do Arquipélago** (ronda da Sentinela, ilhas robometria,
+clubedomosaico e aquametria, `dados/PAINEL.md`). Seis blocos de escrita, um commit só, como a
+instrução pediu. Parti de `origin/main` (`8504f56`), não da branch da sessão.
+
+`git status --porcelain` antes do commit:
+
+```
+ M dados/PAINEL.md
+ M ilhas/aquametria/ESTADO.md
+ M ilhas/clubedomosaico/ESTADO.md
+ M ilhas/clubedomosaico/PROMPT.md
+ M ilhas/clubedomosaico/dados/consertos.md
+ M ilhas/robometria/ESTADO.md
+ M ilhas/robometria/PROMPT.md
+ M ilhas/robometria/dados/consertos.md
+```
+
+`git status --porcelain` depois do push (limpo):
+
+```
+```
+
+`git diff --stat HEAD~1 HEAD`:
+
+```
+ dados/PAINEL.md                         | 103 ++++++++++++++++----------------
+ ilhas/aquametria/ESTADO.md              |   2 +-
+ ilhas/clubedomosaico/ESTADO.md          |   2 +-
+ ilhas/clubedomosaico/PROMPT.md          |  26 ++++++++
+ ilhas/clubedomosaico/dados/consertos.md |   1 +
+ ilhas/robometria/ESTADO.md              |   2 +-
+ ilhas/robometria/PROMPT.md              |  34 +++++++++++
+ ilhas/robometria/dados/consertos.md     |   2 +
+ 8 files changed, 117 insertions(+), 55 deletions(-)
+```
+
+Commit que foi ao `main`: `adc28ed22c60a27a43c0b4c7d644ab01d921051d`
+Push: `8504f56..adc28ed  HEAD -> main` (primeira tentativa, sem rebase, sem force, sem PR).
+Confirmação `git fetch origin main && git log -1 origin/main`:
+
+```
+adc28ed22c60a27a43c0b4c7d644ab01d921051d ronda 23/10: despacho em robometria e clubedomosaico, consertos, ultima_ronda das tres ilhas, painel reescrito
+2026-10-23 15:23:00 +0000
+```
+
+Contagem conferida relendo os arquivos DEPOIS de gravar, nunca pelo que eu achava que tinha escrito:
+
+```
+BLOCO A  ilhas/robometria/PROMPT.md               -> +34 linhas (33 de texto + 1 em branco)
+         inseridas imediatamente antes da linha 48, que era o
+         "## DESPACHO DA SENTINELA — 2026-10-21"; nada apagado
+         ocorrencias de "## DESPACHO DA SENTINELA — 2026-10-23"  -> 1
+         arquivo agora: 1.585 linhas, 242.369 bytes
+
+BLOCO B  ilhas/clubedomosaico/PROMPT.md           -> +26 linhas (25 de texto + 1 em branco)
+         inseridas imediatamente antes da linha 218, que era o
+         "## DESPACHO DA SENTINELA — 2026-10-21"; nada apagado
+         ocorrencias de "## DESPACHO DA SENTINELA — 2026-10-23"  -> 1
+         arquivo agora: 3.285 linhas, 326.112 bytes
+
+BLOCO C  ilhas/robometria/dados/consertos.md      -> +2 linhas (1 de tabela + 1 em branco)
+         inseridas imediatamente antes do "## 14/09/2026 — primeira ronda
+         desta ilha a registrar aqui"; a linha de tabela ficou em UMA linha
+         linhas "| 2026-10-23 |"                                 -> 1
+         arquivo agora: 18 linhas, 14.869 bytes
+
+BLOCO D  ilhas/clubedomosaico/dados/consertos.md  -> +1 linha
+         acrescentada logo depois da ultima linha "| 2026-" (a de 2026-10-12,
+         o conserto da Fundacao) e antes da prosa que segue a tabela
+         linhas "| 2026-10-23 |"                                 -> 1
+         arquivo agora: 253 linhas, 47.493 bytes
+
+BLOCO E  tres linhas ultima_ronda substituidas, uma por arquivo, uma linha cada
+         ilhas/robometria/ESTADO.md       linha 74   -> 1 ocorrencia de
+                                                       "ultima_ronda: 2026-10-23T15:05Z"
+         ilhas/clubedomosaico/ESTADO.md   linha 127  -> 1 ocorrencia
+         ilhas/aquametria/ESTADO.md       linha 81   -> 1 ocorrencia
+         os tres blocos YAML do topo continuam carregando no yaml.safe_load,
+         com ultima_ronda lida de volta como 2026-10-23T15:05Z nos tres
+
+BLOCO F  dados/PAINEL.md                          -> arquivo inteiro substituido
+         antes: 14.765 bytes;  depois: 81 linhas, 15.694 bytes
+         titulos de nivel 2 ("## ")                              -> 4
+         linhas de tabela (comecando com "|")                    -> 27
+         itens de lista ("- ")                                   -> 16
+```
+
+Nenhum passo falhou: o push foi aceito na primeira tentativa e `origin/main` mostra o commit.
+Nada foi tocado além dos oito arquivos nomeados pela instrução e deste log. Nada foi reformatado,
+nada acrescentado, nada corrigido — o texto dos seis blocos entrou byte a byte como veio, inclusive
+as linhas longas de tabela em uma linha só e a mensagem de commit sem crase, sem `$` e sem `!`.
+Nenhum contato pessoal de terceiro apareceu na instrução, então não houve nada a deixar de fora.
