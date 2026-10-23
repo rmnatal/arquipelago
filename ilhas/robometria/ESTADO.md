@@ -6,7 +6,7 @@ piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 14
 primeira_indexacao: 2026-09-11
 ultima_execucao: 2026-10-21T16:15Z
-executando_desde: null   # limpo as 16h1xZ de 21/10/2026 pela propria execucao que reservou as 15:07Z. A reserva foi RENOVADA duas vezes pela 1.1 (15:43Z e 15:57Z), porque o bloco passou de 40 minutos — e renovar e o que faz a proxima execucao nao precisar do git para saber.
+executando_desde: 2026-10-23T16:18Z   # reservada pela execucao da Fundacao de 23/10 16:18Z para o DESPACHO DA SENTINELA de 23/10 (dois itens). A ilha esta FORA DO FOCO (jornadafly desde 22/10) e este despacho FURA O FOCO pela 1.2: o item 1 e pagina no ar servindo rotulo que promete `>= 4.000` com contagem feita em `> 4.000` — ferramenta devolvendo numero errado em ilha que esta no ar. A hora saiu do `date -u` na mesma linha de comando que a gravou.
 bloco_atual: |
   O MOLDE DE CONVERSAO DA SECAO 32 ESTA NO AR NAS NOVE PAGINAS DESTA ILHA, e o
   despacho do Raphael de 21/10 esta FECHADO INTEIRO pela 18.2 — os dois itens,
