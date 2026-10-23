@@ -1,0 +1,1200 @@
+{
+  "ilha": "jornadafly",
+  "bloco": 6,
+  "versao": 1,
+  "publicar": false,
+  "gerado_em": "2026-10-23",
+  "cumpre": "ferramentas/validar-prospeccao.py",
+  "o_que_este_arquivo_e": "A lista de prospecção do widget desta ilha (bloco 6 da fila, seção 14.7 do ARQUIPELAGO.md: a prospecção do widget em lojas é a ÚNICA alavanca de link do projeto). Cada linha é um domínio candidato a HOSPEDAR uma ferramenta desta ilha, com a evidência que o mediu. A prioridade e as ferramentas ofertáveis NÃO são campos deste arquivo: são DERIVADAS por `ferramentas/prospeccao-referencia.py` a partir dos fatos abaixo, e o portão reprova se alguém as gravar aqui.",
+  "acentuacao": "Todo texto que a referência renderiza para o arquivo de leitura é gravado ACENTUADO, e o portão cobre isso com uma régua de palavras: nome, motivos, diz, por_que, e os blocos de prosa deste cabeçalho. Chave, domínio, id, slug e valor de vocabulário são sem acento. É a cicatriz da Robometria, que publicou português sem acento vindo do banco e precisou de uma ferramenta só para restaurar.",
+  "o_que_mediu_isto_e_o_que_ele_nao_alcanca": "NINGUÉM ABRIU NENHUM SITE, e isto foi medido nesta execução e não herdado: às 13h28:28Z de 23/10/2026, bondinho.com.br, www.toureiffel.paris, viagemitalia.com, www.panrotas.com.br e www.civitatis.com devolveram 000, com aquametria.com.br em 200 na mesma passada. O egresso desta nuvem responde só à lista de domínios permitidos, e nenhum candidato está nela. É a disciplina da 20.3 do contrato exercida ANTES de escrever a regra que exige a fonte — quem escreve a regra que exige a fonte é quem confere se a fonte está liberada. O próximo passo desta lista NÃO é da Fundação: é abrir cada domínio num navegador, confirmar canal de contato e plataforma, e só então escrever a abordagem. Por isso contato e plataforma_do_site estão null em TODAS as linhas.",
+  "presenca_nunca_ausencia": "Os campos de fato aceitam `true` (com evidência que o nomeia) ou `null` (= não medido). O portão RECUSA `false`, de propósito. É a regra que o próprio ARQUIPELAGO.md já carrega: «Busca sabe afirmar presença, nunca ausência — é a regra 1 da `regua-prospeccao.py` da aquametria, de 24/09/2026, e vale igual aqui». Um domínio não aparecer numa busca não prova que ele não tem blog; prova que a busca não o mostrou.",
+  "a_regra_que_ordena_esta_lista": {
+    "resumo": "A ilha declarou, no bloco 1, UM cluster que ela NÃO disputa — e é só nele que pode haver candidato. Quem ocupa consulta que a ilha disputa não hospeda a ferramenta que a disputa: é BARRADO por regra, com a consulta nomeada.",
+    "de_onde_ela_sai": "`dados/corpus-buscas.md`, bloco 1, 14/09/2026 — decisão 1 («não 'quanto custa a experiência', que o operador responde melhor; e sim quanto custa para o SEU grupo») e o achado do cluster A2 («disputar 'quanto custa o ingresso X' contra o operador é perder, e não é preciso»).",
+    "clusters_disputados": [
+      "A1",
+      "A3",
+      "B",
+      "C",
+      "FREE_TOUR"
+    ],
+    "clusters_nao_disputados": [
+      "A2"
+    ],
+    "por_que_so_o_A2": "A1 é o julgamento, que é o recorte da ilha. A3 é a paramétrica, que é a vaga da F1. B é onde a F2 mora. C é onde a F3 mora. FREE_TOUR é o bloco 5c. A2 é o único cluster em que a ilha escreveu, com todas as letras, que NÃO vai disputar — e é exatamente o cluster em que o OPERADOR aparece em primeiro (toureiffel.paris e bondinho.com.br, medidos em 14/09/2026). O mesmo achado que tirou a ilha da consulta é o que lhe entrega os candidatos."
+  },
+  "a_escada_da_prioridade": {
+    "ordem_de_aplicacao": [
+      "barrado",
+      "3",
+      "2",
+      "1"
+    ],
+    "barrado": "ocupa, no corpus do bloco 1, pelo menos uma consulta de cluster disputado",
+    "3": "plataforma, revendedor, portal de conteúdo ou imprensa de trade (não hospeda ferramenta de terceiro, ou é concorrente do elo que paga) — OU tipo/site próprio não medido — OU estrangeiro sem página em pt-BR medida",
+    "2": "operador, receptivo, concessionária ou guia com site próprio e um dos dois lados medido pela metade: brasileiro sem mais de uma versão vendida medida, ou estrangeiro com página em pt-BR medida",
+    "1": "brasileiro, operador/receptivo/concessionária/guia, site próprio, vende experiência E mais de uma versão vendida medida — e não ocupa consulta disputada"
+  },
+  "a_regra_da_oferta": {
+    "resumo": "A lista não oferece ferramenta que esta ilha não sabe servir, e quem decide isso é o BANCO, nunca este arquivo. `prospeccao-referencia.py` lê `dados/experiencias.json` e conta.",
+    "F1": "ofertável só a candidato que (a) não está barrado nem na prioridade 3, (b) atende ao menos uma experiência QUE O BANCO TEM, e (c) vende A MESMA versão que o banco preça. Quem vende versão que INCLUI a do banco (tour guiado com ingresso dentro) recebe da F1 um número que compete com o próprio preço — e ferramenta que mina o anfitrião não se oferece ao anfitrião.",
+    "F2": "ofertável só se `dados/experiencias.json` tiver ao menos uma FAIXA_DIARIA. Tem zero desde 22/10/2026, e a F2 publica UMA linha de quatro enquanto tiver.",
+    "F3": "ofertável só se o banco tiver ao menos um passe de cidade E uma COBERTURA_DO_PASSE. Tem zero dos dois desde 22/10/2026. E NUNCA é ofertável a quem vende passe de cidade: o veredito dela pode ser «não vale», e esse é o produto do anfitrião."
+  },
+  "consultas_do_corpus_por_cluster": {
+    "A1": [
+      "vale a pena voo de balão na capadócia",
+      "vale a pena subir na torre eiffel",
+      "vale a pena o passeio de gôndola em veneza",
+      "vale a pena alugar carro na islândia",
+      "blue lagoon vale a pena",
+      "vale a pena free walking tour",
+      "free tour lisboa vale a pena"
+    ],
+    "A2": [
+      "quanto custa ingresso coliseu roma",
+      "quanto custa subir na torre eiffel",
+      "ingresso pão de açúcar quanto custa",
+      "quanto custa ingresso machu picchu",
+      "quanto custa passeio de gôndola em veneza",
+      "quanto custa voo de balão na capadócia",
+      "taxa de preservação ambiental fernando de noronha valor"
+    ],
+    "A3": [
+      "quanto custa um dia em veneza para 2 pessoas",
+      "quanto custa machu picchu para 2 pessoas",
+      "quanto custa fernando de noronha para 2 pessoas"
+    ],
+    "B": [
+      "quanto custa 7 dias na islândia",
+      "quanto custa viajar para veneza",
+      "alugar carro na islândia quanto custa a diária"
+    ],
+    "C": [
+      "roma pass vale a pena",
+      "lisboa card vale a pena"
+    ],
+    "FREE_TOUR": [
+      "free walking tour vale a pena",
+      "free tour roma com guia brasileiro",
+      "free tour lisboa vale a pena",
+      "free tour madrid",
+      "quanto dar de gorjeta free tour"
+    ]
+  },
+  "candidatos": [
+    {
+      "dominio": "bondinho.com.br",
+      "nome": "Parque Bondinho Pão de Açúcar",
+      "tipo": "concessionaria_de_bem_publico",
+      "pais": "brasil",
+      "brasileiro": true,
+      "fala_pt_br": true,
+      "site_proprio": true,
+      "vende_experiencia": true,
+      "mais_de_uma_versao_vendida": true,
+      "publica_conteudo_proprio": null,
+      "vende_passe_de_cidade": null,
+      "contato": null,
+      "plataforma_do_site": null,
+      "origem": "corpus-bloco-1",
+      "consultas_do_corpus": [
+        "ingresso pão de açúcar quanto custa"
+      ],
+      "experiencias_do_banco_atendidas": [],
+      "relacao_com_a_versao_do_banco": "nao_se_aplica",
+      "evidencias": [
+        {
+          "afirma": [
+            "tipo",
+            "site_proprio",
+            "vende_experiencia",
+            "fala_pt_br"
+          ],
+          "como": "corpus",
+          "onde": "`dados/corpus-buscas.md`, cluster A2",
+          "data_leitura": "2026-09-14",
+          "diz": "bondinho.com.br (operador, e três URLs dele)"
+        },
+        {
+          "afirma": [
+            "site_proprio",
+            "vende_experiencia"
+          ],
+          "como": "busca",
+          "onde": "mercadoeeventos.com.br",
+          "data_leitura": "2026-10-23",
+          "diz": "o Parque dará 15% de desconto aos visitantes que comprarem o bilhete pelo site https://bondinho.com.br/"
+        },
+        {
+          "afirma": [
+            "mais_de_uma_versao_vendida"
+          ],
+          "como": "busca",
+          "onde": "melhoresdestinos.com.br/novas-experiencias-bondinho-rj.html",
+          "data_leitura": "2026-10-23",
+          "diz": "o Parque Bondinho Pão de Açúcar tem ainda outras experiências especiais, como o bonde exclusivo, o Tour Ecológico com Fast Pass + Café da Manhã ou o Bonde Exclusivo + Aula de Caipirinha + Feijoada"
+        },
+        {
+          "afirma": [
+            "brasileiro"
+          ],
+          "como": "corpus",
+          "onde": "`dados/corpus-buscas.md`, cluster A2 — a consulta é «ingresso pão de açúcar quanto custa», de um bem público no Rio de Janeiro, e o domínio é `.com.br`",
+          "data_leitura": "2026-09-14",
+          "diz": "ingresso pão de açúcar quanto custa"
+        }
+      ],
+      "motivos": [
+        "É o melhor candidato desta lista e o único que fecha as cinco condições da prioridade 1: brasileiro, operador do bem público mais icônico do Rio, site próprio que vende direto, e mais de uma versão da mesma experiência à venda — que é o eixo exato da F1 (dias × pessoas × padrão).",
+        "E ele foi medido no cluster que a ilha DECLAROU não disputar: apareceu com TRÊS URLs próprias em «ingresso pão de açúcar quanto custa», e é justamente esse achado — «em experiência com operador único e site oficial em pt, o operador ganha a consulta de preço» — que tira a ilha da consulta e o entrega como anfitrião.",
+        "O que o operador NÃO responde é o que a ferramenta responde: qual das versões sai melhor para 2 adultos e 2 crianças, com o que está incluso em cada uma. As versões apareceram na busca publicadas por TERCEIRO (melhoresdestinos), não pela página do próprio operador — a página dele não foi aberta, e o egresso desta nuvem a recusa.",
+        "E a ferramenta não existe para lhe oferecer: o Pão de Açúcar NÃO está em `dados/experiencias.json`. É a linha desta lista que mede o custo da composição do banco — ver `o_achado_desta_passada`."
+      ]
+    },
+    {
+      "dominio": "viagemitalia.com",
+      "nome": "Viagem Itália — tours em português em Roma",
+      "tipo": "guia_autorizado",
+      "pais": "italia",
+      "brasileiro": true,
+      "fala_pt_br": true,
+      "site_proprio": true,
+      "vende_experiencia": true,
+      "mais_de_uma_versao_vendida": true,
+      "publica_conteudo_proprio": null,
+      "vende_passe_de_cidade": null,
+      "contato": null,
+      "plataforma_do_site": null,
+      "origem": "busca-2026-10-23",
+      "consultas_do_corpus": [],
+      "experiencias_do_banco_atendidas": [
+        "roma-coliseu-ingresso"
+      ],
+      "relacao_com_a_versao_do_banco": "vende_versao_que_inclui_a_do_banco",
+      "evidencias": [
+        {
+          "afirma": [
+            "tipo",
+            "brasileiro",
+            "fala_pt_br",
+            "site_proprio",
+            "vende_experiencia"
+          ],
+          "como": "busca",
+          "onde": "viagemitalia.com/tours-portugues-coliseu-palatino-forum-romano/",
+          "data_leitura": "2026-10-23",
+          "diz": "tour de Coliseu, Fórum e Palatino com guia brasileira autorizada em Roma"
+        },
+        {
+          "afirma": [
+            "mais_de_uma_versao_vendida"
+          ],
+          "como": "busca",
+          "onde": "viagemitalia.com/tours-portugues-coliseu-palatino-forum-romano/",
+          "data_leitura": "2026-10-23",
+          "diz": "€75 por pessoa, com pacotes familiares de €160 e €170, e os ingressos incluídos são nominais e não reembolsáveis"
+        },
+        {
+          "afirma": [
+            "presenca_medida_uma_vez_so"
+          ],
+          "como": "busca",
+          "onde": "a segunda busca, dirigida ao próprio domínio entre aspas",
+          "data_leitura": "2026-10-23",
+          "diz": "The search didn't return viagemitalia.com or any page from that site"
+        }
+      ],
+      "motivos": [
+        "O único candidato brasileiro desta lista que atende uma experiência QUE O BANCO TEM (o ingresso do Coliseu) — e a ferramenta ainda assim não lhe é ofertável, por uma razão que não é falta de dado.",
+        "Ele vende o tour guiado a €75 por pessoa COM o ingresso dentro; o banco preça o ingresso avulso do Parco del Colosseo. A F1 instalada ali serviria, ao visitante dele, o preço da versão barata que o produto dele embute: ferramenta que mina o anfitrião não se oferece ao anfitrião. É a mesma família da ATENÇÃO DE ESCOPO que a lista da aquametria escreveu para a loja de marinho, um andar acima — lá o número ficava fora do escopo, aqui ele compete com quem hospeda.",
+        "O que pode ser oferecido a ele é a F1 de uma experiência que ele NÃO vende na mesma página, ou a conta do grupo sobre a versão que ele vende. As duas exigem dado que o banco não tem e leitura da página dele, que esta nuvem não alcança.",
+        "PRESENÇA MEDIDA UMA VEZ, NÃO DUAS: a busca dirigida ao próprio domínio não o devolveu. A linha fica, porque a primeira medição nomeia a URL e cita o preço; mas quem for abordá-lo confirma que o site está de pé antes de escrever e-mail."
+      ]
+    },
+    {
+      "dominio": "peruexperience.com.br",
+      "nome": "Peru Experience",
+      "tipo": null,
+      "pais": "brasil",
+      "brasileiro": true,
+      "fala_pt_br": true,
+      "site_proprio": true,
+      "vende_experiencia": null,
+      "mais_de_uma_versao_vendida": null,
+      "publica_conteudo_proprio": null,
+      "vende_passe_de_cidade": null,
+      "contato": null,
+      "plataforma_do_site": null,
+      "origem": "corpus-bloco-1",
+      "consultas_do_corpus": [
+        "quanto custa ingresso machu picchu"
+      ],
+      "experiencias_do_banco_atendidas": [],
+      "relacao_com_a_versao_do_banco": "nao_se_aplica",
+      "evidencias": [
+        {
+          "afirma": [
+            "site_proprio",
+            "fala_pt_br"
+          ],
+          "como": "corpus",
+          "onde": "`dados/corpus-buscas.md`, cluster A2",
+          "data_leitura": "2026-09-14",
+          "diz": "peruexperience.com.br"
+        },
+        {
+          "afirma": [
+            "brasileiro"
+          ],
+          "como": "corpus",
+          "onde": "o próprio domínio, devolvido na SERP brasileira em pt-BR",
+          "data_leitura": "2026-09-14",
+          "diz": "peruexperience.com.br"
+        },
+        {
+          "afirma": [
+            "brasileiro"
+          ],
+          "como": "corpus",
+          "onde": "`dados/corpus-buscas.md`, cluster A2 — o domínio é `.com.br` e respondeu à SERP brasileira em pt-BR",
+          "data_leitura": "2026-09-14",
+          "diz": "peruexperience.com.br"
+        }
+      ],
+      "motivos": [
+        "Domínio `.com.br` que respondeu à consulta de preço do ingresso de Machu Picchu — cluster A2, o que a ilha não disputa. Candidato pelo endereço e pelo cluster, e nada além: o corpus NÃO o rotulou como operador, então o tipo fica não medido e ele não sobe da prioridade 3 por regra.",
+        "Machu Picchu não está no banco, então não há ferramenta para lhe oferecer nem se o tipo fosse medido."
+      ]
+    },
+    {
+      "dominio": "toureiffel.paris",
+      "nome": "SETE — Société d'Exploitation de la Tour Eiffel",
+      "tipo": "concessionaria_de_bem_publico",
+      "pais": "franca",
+      "brasileiro": null,
+      "fala_pt_br": null,
+      "site_proprio": true,
+      "vende_experiencia": true,
+      "mais_de_uma_versao_vendida": true,
+      "publica_conteudo_proprio": null,
+      "vende_passe_de_cidade": null,
+      "contato": null,
+      "plataforma_do_site": null,
+      "origem": "corpus-bloco-1",
+      "consultas_do_corpus": [
+        "quanto custa subir na torre eiffel"
+      ],
+      "experiencias_do_banco_atendidas": [
+        "paris-torre-eiffel"
+      ],
+      "relacao_com_a_versao_do_banco": "vende_a_mesma_versao",
+      "evidencias": [
+        {
+          "afirma": [
+            "tipo",
+            "site_proprio",
+            "vende_experiencia"
+          ],
+          "como": "corpus",
+          "onde": "`dados/corpus-buscas.md`, cluster A2",
+          "data_leitura": "2026-09-14",
+          "diz": "toureiffel.paris (site oficial do operador, 1º)"
+        },
+        {
+          "afirma": [
+            "mais_de_uma_versao_vendida"
+          ],
+          "como": "banco",
+          "onde": "`dados/experiencias.json`, paris-torre-eiffel",
+          "data_leitura": "2026-09-15",
+          "diz": "4 versões gravadas, com as 4 páginas de tarifa dele nomeadas uma a uma"
+        }
+      ],
+      "motivos": [
+        "O caso mais nítido de encaixe entre ferramenta e anfitrião desta lista inteira, e ele cai na prioridade 3 por um campo NÃO MEDIDO: o banco transcreveu as QUATRO versões de tarifa dele, então a F1 responderia, na página dele, exatamente a pergunta que ele não responde — qual das quatro sai melhor para este grupo, com esta faixa etária.",
+        "Mas a fila do bloco 6 diz «operadores e receptivos BRASILEIROS», e página em pt-BR deste domínio não foi medida. Afirmar que ele tem uma seria adivinhar; afirmar que não tem seria pior, porque busca não sabe afirmar ausência. Fica em 3 com o campo em null, e UMA medição o move.",
+        "Medir essa página daqui não é possível: www.toureiffel.paris devolveu 000 às 13h28:28Z de hoje, com aquametria.com.br em 200 na mesma passada."
+      ]
+    },
+    {
+      "dominio": "perurail.com",
+      "nome": "PeruRail",
+      "tipo": "operador_da_experiencia",
+      "pais": "peru",
+      "brasileiro": null,
+      "fala_pt_br": true,
+      "site_proprio": true,
+      "vende_experiencia": true,
+      "mais_de_uma_versao_vendida": null,
+      "publica_conteudo_proprio": null,
+      "vende_passe_de_cidade": null,
+      "contato": null,
+      "plataforma_do_site": null,
+      "origem": "corpus-bloco-1",
+      "consultas_do_corpus": [
+        "quanto custa ingresso machu picchu"
+      ],
+      "experiencias_do_banco_atendidas": [],
+      "relacao_com_a_versao_do_banco": "nao_se_aplica",
+      "evidencias": [
+        {
+          "afirma": [
+            "tipo",
+            "site_proprio",
+            "vende_experiencia"
+          ],
+          "como": "corpus",
+          "onde": "`dados/corpus-buscas.md`, cluster A2",
+          "data_leitura": "2026-09-14",
+          "diz": "perurail.com/pt-br (operador de trem)"
+        },
+        {
+          "afirma": [
+            "fala_pt_br"
+          ],
+          "como": "corpus",
+          "onde": "`dados/corpus-buscas.md`, cluster A2",
+          "data_leitura": "2026-09-14",
+          "diz": "o caminho /pt-br no endereço que respondeu à consulta"
+        }
+      ],
+      "motivos": [
+        "Operador estrangeiro com caminho `/pt-br` medido no próprio endereço — é o que o sobe para a prioridade 2 apesar de não ser brasileiro: quem mantém árvore em pt-BR atende o público desta ilha.",
+        "Machu Picchu não está no banco: sem experiência gravada não há ferramenta a oferecer, e o trem não é a experiência ícone — é o acesso a ela."
+      ]
+    },
+    {
+      "dominio": "unacapadocia.com",
+      "nome": "Una Capadócia",
+      "tipo": "operador_da_experiencia",
+      "pais": "turquia",
+      "brasileiro": null,
+      "fala_pt_br": true,
+      "site_proprio": true,
+      "vende_experiencia": true,
+      "mais_de_uma_versao_vendida": null,
+      "publica_conteudo_proprio": null,
+      "vende_passe_de_cidade": null,
+      "contato": null,
+      "plataforma_do_site": null,
+      "origem": "corpus-bloco-1",
+      "consultas_do_corpus": [
+        "quanto custa voo de balão na capadócia"
+      ],
+      "experiencias_do_banco_atendidas": [],
+      "relacao_com_a_versao_do_banco": "nao_se_aplica",
+      "evidencias": [
+        {
+          "afirma": [
+            "tipo",
+            "site_proprio",
+            "vende_experiencia",
+            "fala_pt_br"
+          ],
+          "como": "corpus",
+          "onde": "`dados/corpus-buscas.md`, cluster A2",
+          "data_leitura": "2026-09-14",
+          "diz": "dailytoursincappadocia.com e unacapadocia.com (dois operadores turcos com página em pt)"
+        }
+      ],
+      "motivos": [
+        "Operador turco com página em pt medida pelo corpus. O voo de balão é a experiência que o bloco 2 tentou TRÊS vezes e não conseguiu gravar — as buscas devolveram faixa sem dono, sem data e às vezes sem unidade.",
+        "É por isso que ele interessa duas vezes: é candidato a anfitrião do widget E é fonte para o banco. A segunda metade vale mais hoje que a primeira."
+      ]
+    },
+    {
+      "dominio": "dailytoursincappadocia.com",
+      "nome": "Daily Tours in Cappadocia",
+      "tipo": "operador_da_experiencia",
+      "pais": "turquia",
+      "brasileiro": null,
+      "fala_pt_br": true,
+      "site_proprio": true,
+      "vende_experiencia": true,
+      "mais_de_uma_versao_vendida": null,
+      "publica_conteudo_proprio": null,
+      "vende_passe_de_cidade": null,
+      "contato": null,
+      "plataforma_do_site": null,
+      "origem": "corpus-bloco-1",
+      "consultas_do_corpus": [
+        "quanto custa voo de balão na capadócia"
+      ],
+      "experiencias_do_banco_atendidas": [],
+      "relacao_com_a_versao_do_banco": "nao_se_aplica",
+      "evidencias": [
+        {
+          "afirma": [
+            "tipo",
+            "site_proprio",
+            "vende_experiencia",
+            "fala_pt_br"
+          ],
+          "como": "corpus",
+          "onde": "`dados/corpus-buscas.md`, cluster A2",
+          "data_leitura": "2026-09-14",
+          "diz": "dailytoursincappadocia.com e unacapadocia.com (dois operadores turcos com página em pt)"
+        }
+      ],
+      "motivos": [
+        "O par do anterior, medido na mesma linha do corpus e pela mesma razão. Vale também como fonte da experiência que o banco não conseguiu gravar."
+      ]
+    },
+    {
+      "dominio": "cometoparis.com",
+      "nome": "Come to Paris",
+      "tipo": null,
+      "pais": "franca",
+      "brasileiro": null,
+      "fala_pt_br": true,
+      "site_proprio": true,
+      "vende_experiencia": true,
+      "mais_de_uma_versao_vendida": true,
+      "publica_conteudo_proprio": null,
+      "vende_passe_de_cidade": null,
+      "contato": null,
+      "plataforma_do_site": null,
+      "origem": "busca-2026-10-23",
+      "consultas_do_corpus": [],
+      "experiencias_do_banco_atendidas": [],
+      "relacao_com_a_versao_do_banco": "nao_medido",
+      "evidencias": [
+        {
+          "afirma": [
+            "fala_pt_br",
+            "site_proprio"
+          ],
+          "como": "busca",
+          "onde": "cometoparis.com/por/sobre-nos-s971",
+          "data_leitura": "2026-10-23",
+          "diz": "tem uma seção em português no site, em /por/"
+        },
+        {
+          "afirma": [
+            "mais_de_uma_versao_vendida",
+            "vende_experiencia"
+          ],
+          "como": "busca",
+          "onde": "cometoparis.com/por/sobre-nos-s971",
+          "data_leitura": "2026-10-23",
+          "diz": "oferece dezenas de atividades, excursões ou shows, incluindo cruzeiros com jantar, city tours e passeios guiados"
+        }
+      ],
+      "motivos": [
+        "Vende atividade em Paris com árvore própria em português — e Paris é cidade do banco.",
+        "TIPO NÃO MEDIDO, de propósito: «oferece dezenas de atividades, excursões ou shows» cabe tanto num operador quanto numa revendedora, e as duas recebem ofertas diferentes. Enquanto a diferença não for medida ele não sobe da prioridade 3.",
+        "E a experiência do banco em Paris é a Torre Eiffel: não foi medido se ele a vende nem em que versão. Sem isso, a régua da oferta não deixa a F1 passar."
+      ]
+    },
+    {
+      "dominio": "holatour.fr",
+      "nome": "Hola Tour",
+      "tipo": "receptivo",
+      "pais": "franca",
+      "brasileiro": null,
+      "fala_pt_br": null,
+      "site_proprio": null,
+      "vende_experiencia": true,
+      "mais_de_uma_versao_vendida": null,
+      "publica_conteudo_proprio": null,
+      "vende_passe_de_cidade": null,
+      "contato": null,
+      "plataforma_do_site": null,
+      "origem": "busca-2026-10-23",
+      "consultas_do_corpus": [],
+      "experiencias_do_banco_atendidas": [],
+      "relacao_com_a_versao_do_banco": "nao_medido",
+      "evidencias": [
+        {
+          "afirma": [
+            "tipo",
+            "vende_experiencia"
+          ],
+          "como": "busca",
+          "onde": "panrotas.com.br, matéria de 2012 e matéria de 2019",
+          "data_leitura": "2026-10-23",
+          "diz": "recebe clientes da CVC em Paris desde 2008, com o site www.holatour.fr; especializada em vender experiências e transfers na França, com destaque para o atendimento de turistas brasileiros"
+        }
+      ],
+      "motivos": [
+        "Receptivo em Paris que atende brasileiros — o perfil exato que a fila do bloco 6 pede, e o único desta lista que chegou pela imprensa de trade em vez da SERP.",
+        "A EVIDÊNCIA É VELHA e isto está dito porque muda o que fazer com a linha: as duas matérias são de 2012 e 2019. Presença HOJE não foi medida, o site não foi aberto, e sete anos é tempo de sobra para um receptivo fechar. Confirmar que o site está de pé é o primeiro passo de quem o abordar."
+      ]
+    },
+    {
+      "dominio": "tayratourscusco.com",
+      "nome": "Tayra Tours Cusco",
+      "tipo": null,
+      "pais": "peru",
+      "brasileiro": null,
+      "fala_pt_br": null,
+      "site_proprio": true,
+      "vende_experiencia": null,
+      "mais_de_uma_versao_vendida": null,
+      "publica_conteudo_proprio": null,
+      "vende_passe_de_cidade": null,
+      "contato": null,
+      "plataforma_do_site": null,
+      "origem": "corpus-bloco-1",
+      "consultas_do_corpus": [
+        "quanto custa ingresso machu picchu"
+      ],
+      "experiencias_do_banco_atendidas": [],
+      "relacao_com_a_versao_do_banco": "nao_se_aplica",
+      "evidencias": [
+        {
+          "afirma": [
+            "site_proprio"
+          ],
+          "como": "corpus",
+          "onde": "`dados/corpus-buscas.md`, cluster A2",
+          "data_leitura": "2026-09-14",
+          "diz": "tayratourscusco.com"
+        }
+      ],
+      "motivos": [
+        "Respondeu à consulta de preço do ingresso de Machu Picchu na SERP brasileira. O corpus NÃO o rotulou, e o nome do domínio não é evidência de tipo — fica em 3 com tipo null.",
+        "Aparecer numa SERP em pt-BR não prova página em pt: prova que o buscador o devolveu para uma consulta em português. A diferença está escrita aqui para ninguém a transformar em afirmação depois."
+      ]
+    },
+    {
+      "dominio": "ingressomachupicchu.com",
+      "nome": "Ingresso Machu Picchu",
+      "tipo": null,
+      "pais": null,
+      "brasileiro": null,
+      "fala_pt_br": null,
+      "site_proprio": true,
+      "vende_experiencia": null,
+      "mais_de_uma_versao_vendida": null,
+      "publica_conteudo_proprio": null,
+      "vende_passe_de_cidade": null,
+      "contato": null,
+      "plataforma_do_site": null,
+      "origem": "corpus-bloco-1",
+      "consultas_do_corpus": [
+        "quanto custa ingresso machu picchu"
+      ],
+      "experiencias_do_banco_atendidas": [],
+      "relacao_com_a_versao_do_banco": "nao_se_aplica",
+      "evidencias": [
+        {
+          "afirma": [
+            "site_proprio"
+          ],
+          "como": "corpus",
+          "onde": "`dados/corpus-buscas.md`, cluster A2",
+          "data_leitura": "2026-09-14",
+          "diz": "ingressomachupicchu.com, ao lado de perurail.com/pt-br e peruexperience.com.br na consulta de preço do ingresso"
+        }
+      ],
+      "motivos": [
+        "Respondeu à consulta de preço do ingresso de Machu Picchu — cluster A2, o que a ilha não disputa.",
+        "O NOME DO DOMÍNIO DIZ «ingresso», E ISSO NÃO É EVIDÊNCIA DE TIPO. Esta é a linha em que a disciplina deste arquivo fica visível: seria barato escrever `revendedor_de_ingresso` aqui, e o portão recusa, porque nenhuma medição disse isso. Fica com tipo null, na prioridade 3.",
+        "Machu Picchu não está no banco: não há ferramenta para lhe oferecer de qualquer modo."
+      ]
+    },
+    {
+      "dominio": "coliseu.it",
+      "nome": "Coliseu.it — ingressos do Coliseu",
+      "tipo": null,
+      "pais": "italia",
+      "brasileiro": null,
+      "fala_pt_br": true,
+      "site_proprio": true,
+      "vende_experiencia": null,
+      "mais_de_uma_versao_vendida": null,
+      "publica_conteudo_proprio": null,
+      "vende_passe_de_cidade": null,
+      "contato": null,
+      "plataforma_do_site": null,
+      "origem": "busca-2026-10-23",
+      "consultas_do_corpus": [],
+      "experiencias_do_banco_atendidas": [
+        "roma-coliseu-ingresso"
+      ],
+      "relacao_com_a_versao_do_banco": "nao_medido",
+      "evidencias": [
+        {
+          "afirma": [
+            "site_proprio",
+            "fala_pt_br"
+          ],
+          "como": "busca",
+          "onde": "coliseu.it",
+          "data_leitura": "2026-10-23",
+          "diz": "Ingressos Coliseu 2026 — título em português no domínio .it"
+        }
+      ],
+      "motivos": [
+        "Domínio `.it` com título em português sobre o ingresso que o banco preça — chegou pela busca de hoje, não pelo corpus.",
+        "Tipo não medido pela mesma razão do anterior, e aqui a tentação era maior: um `.it` chamado `coliseu` em português parece revendedor, e parecer não é medir. Se a próxima passada abrir a página e vir a tarifa oficial mais taxa, o tipo nasce com evidência."
+      ]
+    },
+    {
+      "dominio": "civitatis.com",
+      "nome": "Civitatis",
+      "tipo": "plataforma",
+      "pais": "espanha",
+      "brasileiro": null,
+      "fala_pt_br": true,
+      "site_proprio": true,
+      "vende_experiencia": true,
+      "mais_de_uma_versao_vendida": null,
+      "publica_conteudo_proprio": true,
+      "vende_passe_de_cidade": null,
+      "contato": null,
+      "plataforma_do_site": null,
+      "origem": "corpus-bloco-1",
+      "consultas_do_corpus": [
+        "ingresso pão de açúcar quanto custa"
+      ],
+      "experiencias_do_banco_atendidas": [
+        "roma-coliseu-ingresso"
+      ],
+      "relacao_com_a_versao_do_banco": "vende_versao_que_inclui_a_do_banco",
+      "evidencias": [
+        {
+          "afirma": [
+            "publica_conteudo_proprio",
+            "fala_pt_br",
+            "site_proprio"
+          ],
+          "como": "corpus",
+          "onde": "`dados/corpus-buscas.md`, cluster A2",
+          "data_leitura": "2026-09-14",
+          "diz": "civitatis.com/blog (a Civitatis com blog em pt-BR dentro da SERP)"
+        },
+        {
+          "afirma": [
+            "vende_experiencia"
+          ],
+          "como": "busca",
+          "onde": "civitatis.com/br/roma/tour-privado-roma/",
+          "data_leitura": "2026-10-23",
+          "diz": "tour privado do centro histórico de Roma, cerca de 2 horas, com guia que fala português, a partir de US$ 343,74 por grupo"
+        },
+        {
+          "afirma": [
+            "tipo"
+          ],
+          "como": "arquivo da ilha",
+          "onde": "`PROMPT.md`, tabela «A monetização é organizada por MOMENTO»",
+          "data_leitura": "2026-09-14",
+          "diz": "Civitatis — o motor | 8% a 10% por faixa de volume mensal, + €1 fixo por pessoa em free tour | 30 dias"
+        }
+      ],
+      "motivos": [
+        "É O ELO QUE PAGA, e por isso nunca é anfitrião: a Civitatis é o motor de monetização desta ilha (8% a 10% mais €1 fixo por pessoa em free tour, verificado em 14/09/2026). Plataforma não instala ferramenta de afiliado — ela é o destino do link, não a casa dele.",
+        "Fica na lista como linha de prioridade 3 escrita de propósito, porque a confusão entre «parceiro» e «anfitrião» é fácil de cometer e caríssima: quem a cometer vai gastar prospecção pedindo à Civitatis para hospedar a ferramenta que manda gente para a Civitatis.",
+        "Quantas versões ela vende não foi medido — a busca de hoje devolveu UM tour privado, e um não é mais de um."
+      ]
+    },
+    {
+      "dominio": "viator.com",
+      "nome": "Viator",
+      "tipo": "plataforma",
+      "pais": null,
+      "brasileiro": null,
+      "fala_pt_br": null,
+      "site_proprio": true,
+      "vende_experiencia": true,
+      "mais_de_uma_versao_vendida": null,
+      "publica_conteudo_proprio": null,
+      "vende_passe_de_cidade": null,
+      "contato": null,
+      "plataforma_do_site": null,
+      "origem": "corpus-bloco-1",
+      "consultas_do_corpus": [
+        "ingresso pão de açúcar quanto custa"
+      ],
+      "experiencias_do_banco_atendidas": [],
+      "relacao_com_a_versao_do_banco": "nao_medido",
+      "evidencias": [
+        {
+          "afirma": [
+            "site_proprio"
+          ],
+          "como": "corpus",
+          "onde": "`dados/corpus-buscas.md`, cluster A2",
+          "data_leitura": "2026-09-14",
+          "diz": "viator.com, dentro da SERP de «ingresso pão de açúcar quanto custa»"
+        },
+        {
+          "afirma": [
+            "tipo",
+            "vende_experiencia"
+          ],
+          "como": "arquivo da ilha",
+          "onde": "`PROMPT.md`, tabela «A monetização é organizada por MOMENTO»",
+          "data_leitura": "2026-09-14",
+          "diz": "GetYourGuide · Viator · Klook · Tiqets · Holafly | % não publicado (atrás de login ou de formulário)"
+        }
+      ],
+      "motivos": [
+        "Plataforma, pela mesma regra da Civitatis. Entra na lista para a contagem do que foi classificado ficar honesta, não como alvo."
+      ]
+    },
+    {
+      "dominio": "tiqets.com",
+      "nome": "Tiqets",
+      "tipo": "plataforma",
+      "pais": null,
+      "brasileiro": null,
+      "fala_pt_br": true,
+      "site_proprio": true,
+      "vende_experiencia": true,
+      "mais_de_uma_versao_vendida": null,
+      "publica_conteudo_proprio": null,
+      "vende_passe_de_cidade": null,
+      "contato": null,
+      "plataforma_do_site": null,
+      "origem": "busca-2026-10-23",
+      "consultas_do_corpus": [],
+      "experiencias_do_banco_atendidas": [
+        "veneza-passeio-de-gondola"
+      ],
+      "relacao_com_a_versao_do_banco": "nao_medido",
+      "evidencias": [
+        {
+          "afirma": [
+            "fala_pt_br",
+            "site_proprio"
+          ],
+          "como": "busca",
+          "onde": "tiqets.com/pt/, página do passeio de gôndola no Grande Canal",
+          "data_leitura": "2026-10-23",
+          "diz": "página em português para um passeio de gôndola com guia ao vivo, com preço exibido em dólares americanos (US$ 44,62)"
+        },
+        {
+          "afirma": [
+            "tipo",
+            "vende_experiencia"
+          ],
+          "como": "arquivo da ilha",
+          "onde": "`PROMPT.md`, tabela «A monetização é organizada por MOMENTO»",
+          "data_leitura": "2026-09-14",
+          "diz": "GetYourGuide · Viator · Klook · Tiqets · Holafly | % não publicado (atrás de login ou de formulário)"
+        }
+      ],
+      "motivos": [
+        "Plataforma, prioridade 3 por regra. Vale registrado por um detalhe que é produto desta ilha: a página em PORTUGUÊS dela serve a gôndola em DÓLAR, numa experiência cuja tarifa é fixada em euro pela prefeitura de Veneza — exatamente o tipo de número sem moeda nem data que o bloco 1 mediu como a vaga da ilha."
+      ]
+    },
+    {
+      "dominio": "headout.com",
+      "nome": "Headout",
+      "tipo": "plataforma",
+      "pais": null,
+      "brasileiro": null,
+      "fala_pt_br": true,
+      "site_proprio": true,
+      "vende_experiencia": true,
+      "mais_de_uma_versao_vendida": true,
+      "publica_conteudo_proprio": null,
+      "vende_passe_de_cidade": null,
+      "contato": null,
+      "plataforma_do_site": null,
+      "origem": "busca-2026-10-23",
+      "consultas_do_corpus": [],
+      "experiencias_do_banco_atendidas": [],
+      "relacao_com_a_versao_do_banco": "nao_medido",
+      "evidencias": [
+        {
+          "afirma": [
+            "tipo",
+            "vende_experiencia",
+            "mais_de_uma_versao_vendida",
+            "fala_pt_br",
+            "site_proprio"
+          ],
+          "como": "busca",
+          "onde": "headout.com/pt/combos-rio_de_janeiro-sc-1080~23931/",
+          "data_leitura": "2026-10-23",
+          "diz": "vende combos que incluem o bondinho, como o Cristo Redentor com trem e o Bondinho do Pão de Açúcar"
+        }
+      ],
+      "motivos": [
+        "Plataforma com árvore em português, revendendo em combo a experiência do melhor candidato desta lista. Prioridade 3 por regra.",
+        "E ela mede uma coisa sobre o Bondinho: a versão combinada que o visitante compara existe FORA do site do operador. É argumento de abordagem, não de prospecção."
+      ]
+    },
+    {
+      "dominio": "northbound.is",
+      "nome": "Northbound",
+      "tipo": "operador_da_experiencia",
+      "pais": "islandia",
+      "brasileiro": null,
+      "fala_pt_br": null,
+      "site_proprio": true,
+      "vende_experiencia": true,
+      "mais_de_uma_versao_vendida": null,
+      "publica_conteudo_proprio": null,
+      "vende_passe_de_cidade": null,
+      "contato": null,
+      "plataforma_do_site": null,
+      "origem": "corpus-bloco-1",
+      "consultas_do_corpus": [
+        "vale a pena alugar carro na islândia",
+        "alugar carro na islândia quanto custa a diária"
+      ],
+      "experiencias_do_banco_atendidas": [],
+      "relacao_com_a_versao_do_banco": "nao_se_aplica",
+      "evidencias": [
+        {
+          "afirma": [
+            "tipo",
+            "site_proprio",
+            "vende_experiencia"
+          ],
+          "como": "corpus",
+          "onde": "`dados/corpus-buscas.md`, clusters A1 e B",
+          "data_leitura": "2026-09-14",
+          "diz": "northbound.is (operador)"
+        }
+      ],
+      "motivos": [
+        "BARRADO, e é o barramento que mais ensina: ele ocupa «vale a pena alugar carro na islândia», que o MAPA MOMENTO → LINK do bloco 1 chama de «o melhor encaixe entre recorte e monetização que este levantamento encontrou».",
+        "Ou seja: o operador que hospedaria a ferramenta é o mesmo que ocupa a consulta que a ilha mais quer escrever. Pedir a ele que hospede é pedir que ajude a ser desbancado, e a seção 14.7 do contrato já proíbe o atalho inverso (troca de link). Barrado por regra, com a consulta nomeada."
+      ]
+    },
+    {
+      "dominio": "romapravoce.com",
+      "nome": "Roma pra Você",
+      "tipo": "operador_da_experiencia",
+      "pais": "italia",
+      "brasileiro": null,
+      "fala_pt_br": true,
+      "site_proprio": true,
+      "vende_experiencia": true,
+      "mais_de_uma_versao_vendida": null,
+      "publica_conteudo_proprio": true,
+      "vende_passe_de_cidade": null,
+      "contato": null,
+      "plataforma_do_site": null,
+      "origem": "corpus-bloco-1",
+      "consultas_do_corpus": [
+        "roma pass vale a pena"
+      ],
+      "experiencias_do_banco_atendidas": [
+        "roma-coliseu-ingresso"
+      ],
+      "relacao_com_a_versao_do_banco": "vende_versao_que_inclui_a_do_banco",
+      "evidencias": [
+        {
+          "afirma": [
+            "tipo",
+            "site_proprio",
+            "vende_experiencia"
+          ],
+          "como": "corpus",
+          "onde": "`dados/corpus-buscas.md`, eixo C",
+          "data_leitura": "2026-09-14",
+          "diz": "romapravoce.com (o blog-que-virou-operador que o PROMPT.md nomeia)"
+        },
+        {
+          "afirma": [
+            "publica_conteudo_proprio",
+            "fala_pt_br"
+          ],
+          "como": "busca",
+          "onde": "romapravoce.com/ingresso-do-coliseu-sem-filas/",
+          "data_leitura": "2026-10-23",
+          "diz": "Ingresso do Coliseu Sem Filas — página própria sobre o ingresso que o banco preça"
+        }
+      ],
+      "motivos": [
+        "BARRADO: ocupa «roma pass vale a pena», que é o eixo C e onde a F3 mora. O PROMPT.md desta ilha já o registra ocupando duas posições do top 3 do Coliseu vendendo o próprio tour.",
+        "É o retrato do que esta lista não pode confundir: blog que virou operador é concorrente E vendedor ao mesmo tempo. O lado vendedor o qualificaria; o lado concorrente o barra, e a ordem da escada manda o barramento ganhar."
+      ]
+    },
+    {
+      "dominio": "barraqueirotour.com",
+      "nome": "Barraqueiro Tour",
+      "tipo": null,
+      "pais": "portugal",
+      "brasileiro": null,
+      "fala_pt_br": null,
+      "site_proprio": true,
+      "vende_experiencia": null,
+      "mais_de_uma_versao_vendida": null,
+      "publica_conteudo_proprio": null,
+      "vende_passe_de_cidade": null,
+      "contato": null,
+      "plataforma_do_site": null,
+      "origem": "corpus-bloco-1",
+      "consultas_do_corpus": [
+        "roma pass vale a pena"
+      ],
+      "experiencias_do_banco_atendidas": [],
+      "relacao_com_a_versao_do_banco": "nao_se_aplica",
+      "evidencias": [
+        {
+          "afirma": [
+            "site_proprio"
+          ],
+          "como": "corpus",
+          "onde": "`dados/corpus-buscas.md`, eixo C",
+          "data_leitura": "2026-09-14",
+          "diz": "barraqueirotour.com, na SERP de «roma pass vale a pena»"
+        }
+      ],
+      "motivos": [
+        "BARRADO pelo eixo C, como os demais daquela SERP.",
+        "Tipo e página em pt-BR não medidos: ser um domínio português numa SERP em português não prova nenhum dos dois."
+      ]
+    },
+    {
+      "dominio": "lisboa-card.com",
+      "nome": "Lisboa Card (revendedor com anúncio pago)",
+      "tipo": null,
+      "pais": "portugal",
+      "brasileiro": null,
+      "fala_pt_br": null,
+      "site_proprio": true,
+      "vende_experiencia": null,
+      "mais_de_uma_versao_vendida": null,
+      "publica_conteudo_proprio": null,
+      "vende_passe_de_cidade": null,
+      "contato": null,
+      "plataforma_do_site": null,
+      "origem": "corpus-bloco-1",
+      "consultas_do_corpus": [
+        "lisboa card vale a pena"
+      ],
+      "experiencias_do_banco_atendidas": [],
+      "relacao_com_a_versao_do_banco": "nao_se_aplica",
+      "evidencias": [
+        {
+          "afirma": [
+            "site_proprio"
+          ],
+          "como": "corpus",
+          "onde": "`dados/corpus-buscas.md`, eixo C",
+          "data_leitura": "2026-09-14",
+          "diz": "lisboa-card.com (com anúncio pago — gad_campaignid na URL)"
+        }
+      ],
+      "motivos": [
+        "BARRADO pelo eixo C, que é onde a F3 mora e que esta ilha disputa. O barramento NÃO depende de saber o que ele vende: basta ocupar a consulta.",
+        "E é só isso que se pode afirmar dele: o corpus mediu o domínio na SERP com anúncio pago (`gad_campaignid` na URL), o que diz intenção comercial e custo do cluster — não diz que ele revende o passe. Tipo e venda de passe ficam null.",
+        "O anúncio pago registra uma coisa útil: este cluster é disputado com dinheiro, e esta ilha não faz tráfego pago (seção 10)."
+      ]
+    },
+    {
+      "dominio": "lisbon-citypass.com",
+      "nome": "Lisbon City Pass",
+      "tipo": null,
+      "pais": "portugal",
+      "brasileiro": null,
+      "fala_pt_br": null,
+      "site_proprio": true,
+      "vende_experiencia": null,
+      "mais_de_uma_versao_vendida": null,
+      "publica_conteudo_proprio": null,
+      "vende_passe_de_cidade": null,
+      "contato": null,
+      "plataforma_do_site": null,
+      "origem": "corpus-bloco-1",
+      "consultas_do_corpus": [
+        "lisboa card vale a pena"
+      ],
+      "experiencias_do_banco_atendidas": [],
+      "relacao_com_a_versao_do_banco": "nao_se_aplica",
+      "evidencias": [
+        {
+          "afirma": [
+            "site_proprio"
+          ],
+          "como": "corpus",
+          "onde": "`dados/corpus-buscas.md`, eixo C",
+          "data_leitura": "2026-09-14",
+          "diz": "lisbon-citypass.com, na SERP de «lisboa card vale a pena»"
+        }
+      ],
+      "motivos": [
+        "BARRADO pelo eixo C, como o anterior, e pela mesma regra que não precisa saber o que ele vende.",
+        "Tipo e venda de passe null: o corpus só o nomeia dentro da SERP de «lisboa card vale a pena»."
+      ]
+    },
+    {
+      "dominio": "passturistici.com",
+      "nome": "Pass Turistici",
+      "tipo": null,
+      "pais": "italia",
+      "brasileiro": null,
+      "fala_pt_br": null,
+      "site_proprio": true,
+      "vende_experiencia": null,
+      "mais_de_uma_versao_vendida": null,
+      "publica_conteudo_proprio": null,
+      "vende_passe_de_cidade": null,
+      "contato": null,
+      "plataforma_do_site": null,
+      "origem": "corpus-bloco-1",
+      "consultas_do_corpus": [
+        "lisboa card vale a pena"
+      ],
+      "experiencias_do_banco_atendidas": [],
+      "relacao_com_a_versao_do_banco": "nao_se_aplica",
+      "evidencias": [
+        {
+          "afirma": [
+            "site_proprio"
+          ],
+          "como": "corpus",
+          "onde": "`dados/corpus-buscas.md`, eixo C",
+          "data_leitura": "2026-09-14",
+          "diz": "passturistici.com, na SERP de «lisboa card vale a pena»"
+        }
+      ],
+      "motivos": [
+        "BARRADO pelo eixo C. Tipo e venda de passe null, pela mesma razão dos dois acima.",
+        "OS TRÊS JUNTOS DIZEM UMA COISA SOBRE A RÉGUA DA OFERTA: a regra «a F3 nunca vai a quem vende passe de cidade» não tem NENHUM caso neste banco hoje, porque a venda de passe não foi medida em ninguém. A regra existe, está escrita, e é a bateria de mutações que prova que ela morde — não uma linha desta lista."
+      ]
+    },
+    {
+      "dominio": "guruwalk.com",
+      "nome": "GuruWalk",
+      "tipo": "plataforma",
+      "pais": "espanha",
+      "brasileiro": null,
+      "fala_pt_br": true,
+      "site_proprio": true,
+      "vende_experiencia": true,
+      "mais_de_uma_versao_vendida": null,
+      "publica_conteudo_proprio": null,
+      "vende_passe_de_cidade": null,
+      "contato": null,
+      "plataforma_do_site": null,
+      "origem": "corpus-bloco-1",
+      "consultas_do_corpus": [
+        "free tour lisboa vale a pena",
+        "free walking tour vale a pena"
+      ],
+      "experiencias_do_banco_atendidas": [],
+      "relacao_com_a_versao_do_banco": "nao_se_aplica",
+      "evidencias": [
+        {
+          "afirma": [
+            "tipo",
+            "site_proprio",
+            "vende_experiencia"
+          ],
+          "como": "corpus",
+          "onde": "`dados/corpus-buscas.md`, cluster A1 e CLUSTER FREE TOUR",
+          "data_leitura": "2026-09-14",
+          "diz": "guruwalk.com (plataforma)"
+        },
+        {
+          "afirma": [
+            "fala_pt_br"
+          ],
+          "como": "busca",
+          "onde": "guruwalk.com/gurus/yxqm1kr8j3092mwsp3ur",
+          "data_leitura": "2026-10-23",
+          "diz": "perfil de guia brasileira em Roma, com licença 482/2025 declarada no perfil, em página da plataforma e não em site próprio"
+        }
+      ],
+      "motivos": [
+        "BARRADO pelo cluster FREE TOUR, que é o bloco 5c desta ilha. E é também o «pedágio» que o bloco 1 achou: o GuruWalk é concorrente direto do elo que paga — o €1 fixo por pessoa só existe se a reserva sair pela Civitatis.",
+        "A medição de hoje acrescenta uma coisa de método, não de prospecção: guia brasileiro autorizado em Roma existe e é achável, mas mora DENTRO da plataforma. Guia sem site próprio não hospeda widget, e a plataforma que o hospeda é concorrente. Esse é o fundo do poço desta lista, e é informação."
+      ]
+    },
+    {
+      "dominio": "panrotas.com.br",
+      "nome": "PANROTAS",
+      "tipo": "imprensa_de_trade",
+      "pais": "brasil",
+      "brasileiro": true,
+      "fala_pt_br": true,
+      "site_proprio": true,
+      "vende_experiencia": null,
+      "mais_de_uma_versao_vendida": null,
+      "publica_conteudo_proprio": true,
+      "vende_passe_de_cidade": null,
+      "contato": null,
+      "plataforma_do_site": null,
+      "origem": "busca-2026-10-23",
+      "consultas_do_corpus": [],
+      "experiencias_do_banco_atendidas": [],
+      "relacao_com_a_versao_do_banco": "nao_se_aplica",
+      "evidencias": [
+        {
+          "afirma": [
+            "tipo",
+            "site_proprio",
+            "publica_conteudo_proprio",
+            "brasileiro",
+            "fala_pt_br"
+          ],
+          "como": "busca",
+          "onde": "panrotas.com.br",
+          "data_leitura": "2026-10-23",
+          "diz": "matérias nomeando operadores e receptivos por nome: Hola Tour em Paris, a representação própria da Carrani Tours para o mercado brasileiro, famtour da Visual/Carrani em Roma"
+        }
+      ],
+      "motivos": [
+        "NÃO É ALVO DE WIDGET, e está na lista por outra razão: é o instrumento que acha o que a SERP esconde. As três buscas desta execução dirigidas a «receptivo brasileiro com site próprio» devolveram portal de conteúdo e plataforma; os únicos receptivos que apareceram por NOME vieram da imprensa de trade.",
+        "Isso é método para a próxima passada, não tarefa: operador e receptivo não disputam a SERP de «quanto custa» — logo não são achados por ela. Quem continuar esta lista busca em trade, não em SERP de consumidor."
+      ]
+    },
+    {
+      "dominio": "mercadoeeventos.com.br",
+      "nome": "Mercado & Eventos",
+      "tipo": "imprensa_de_trade",
+      "pais": "brasil",
+      "brasileiro": true,
+      "fala_pt_br": true,
+      "site_proprio": true,
+      "vende_experiencia": null,
+      "mais_de_uma_versao_vendida": null,
+      "publica_conteudo_proprio": true,
+      "vende_passe_de_cidade": null,
+      "contato": null,
+      "plataforma_do_site": null,
+      "origem": "busca-2026-10-23",
+      "consultas_do_corpus": [],
+      "experiencias_do_banco_atendidas": [],
+      "relacao_com_a_versao_do_banco": "nao_se_aplica",
+      "evidencias": [
+        {
+          "afirma": [
+            "tipo",
+            "site_proprio",
+            "publica_conteudo_proprio",
+            "brasileiro",
+            "fala_pt_br"
+          ],
+          "como": "busca",
+          "onde": "mercadoeeventos.com.br",
+          "data_leitura": "2026-10-23",
+          "diz": "matéria nomeando o site oficial do Parque Bondinho e a ação de desconto por ele, e matérias de receptivo em Paris"
+        }
+      ],
+      "motivos": [
+        "O par do anterior, e foi ele que entregou a evidência de que bondinho.com.br é o canal de venda do próprio operador. Mesmo papel: instrumento de busca de candidato, não candidato."
+      ]
+    }
+  ],
+  "dominios_do_corpus_nao_classificados": {
+    "por_que_existem": "O corpus do bloco 1 mediu 69 domínios — contados pela mesma expressão que a bancada usa, e `guia.melhoresdestinos.com.br` conta separado da raiz dele. ESSE NÚMERO FOI ESCRITO ERRADO PRIMEIRO: a passada de hoje escreveu «64», porque a contagem de cabeça usou uma lista de terminações que deixava `.is`, `.fr`, `.pt`, `.paris`, `.kh` e `.cz` de fora — e quem achou foi `ferramentas/teste-prospeccao.py`, que lê esta frase e a confere contra o arquivo. O conserto não foi trocar o número: foi a bancada passar a conferi-lo. Esta passada classificou só os domínios com tipo defensável — rótulo escrito pelo próprio corpus, ou medição desta execução. Os outros NÃO foram classificados de propósito: afirmar que um domínio é operador porque o nome dele parece de operador é a invenção que esta lista existe para não cometer.",
+    "o_que_a_maioria_deles_e": "portal de conteúdo e blog de viagem — que, pela escada, cairia em 3 ou em barrado. Os barrados por consulta disputada já estão nomeados nas linhas acima quando o corpus lhes deu tipo.",
+    "nao_e_lista_de_descarte": "Domínio não classificado não é domínio recusado. Quem abrir os sites num navegador classifica em minutos o que a busca não decide."
+  },
+  "o_achado_desta_passada": {
+    "titulo": "A lista existe, a régua existe, e NENHUM candidato tem ferramenta ofertável hoje — e a causa é UMA, já registrada três vezes nesta ilha sem nunca ter sido ligada à alavanca de link.",
+    "a_cadeia": [
+      "O egresso desta nuvem recusa o domínio da ilha e as fontes de preço (medido em 15/09, 18/09, 22/10 e hoje).",
+      "Com a rede fechada, o bloco 3 registrou que `ingresso_de_sitio_publico` era «o único tipo reproduzível enquanto o egresso estiver fechado» — e o banco nasceu com QUATRO experiências de tarifa pública.",
+      "Três dos quatro operadores do banco são PODER PÚBLICO (gondoleiros com tarifa da prefeitura de Veneza, Angkor Enterprise, Parco archeologico del Colosseo) e o quarto é concessionária francesa. Poder público não instala widget de afiliado.",
+      "Logo a F1 — a única das três ferramentas com dado para servir — não tem a quem ser oferecida: o candidato brasileiro que atende experiência do banco vende versão que INCLUI a do banco, e o operador que vende a mesma versão não tem página em pt-BR medida.",
+      "E o critério de entrada do bloco 1 dizia justamente o contrário do que o banco carregou: «prefira experiência de operador privado, com versões vendidas diferentes entre si e sem tabela pública»."
+    ],
+    "o_que_isso_custa": "A seção 14.7 do contrato diz que a prospecção do widget é a ÚNICA alavanca de link do projeto, e acrescenta que ela «vale mais no começo do que no fim: backlink é o que faz o robô voltar». Nesta ilha ela está parada pela mesma causa que para a coleta da F2 e da F3 — e esse custo nunca esteve escrito num lugar só.",
+    "o_que_destrava_e_e_barato": "UMA experiência de operador privado brasileiro no banco destrava a linha de prioridade 1 desta lista. O candidato está nomeado e medido: o Parque Bondinho Pão de Açúcar vende direto, pelo próprio site, mais de uma versão da mesma experiência. Carregá-lo exige ler a página de tarifa dele na fonte — e bondinho.com.br devolveu 000 às 13h28:28Z de hoje.",
+    "o_que_isso_nao_e": "Não é pedido de decisão nova e não é bloqueio novo: `bloqueada_por` segue null, como nas nove execuções anteriores desta ilha. É a quarta consequência de um bloqueio que já tem despacho ALTA aberto em `dados/despachos.md` desde 15/09/2026."
+  }
+}

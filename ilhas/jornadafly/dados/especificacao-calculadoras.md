@@ -981,3 +981,146 @@ Esta ilha não tem WordPress, não tem Sync e não tem `/status`, e `jornadafly.
 está na lista de Domínios permitidos deste ambiente — remedido em 23/10/2026 às 10h16Z:
 **000 em quatro medições**, com `aquametria.com.br` e `robometria.com.br` em **200 nas
 quatro de controle**. `publicar` sai `false` em todo artigo, com o motivo dentro dele.
+
+---
+
+## 8. A LISTA DE PROSPECÇÃO DO WIDGET — o bloco 6, e a régua que o banco escreve (23/10/2026)
+
+A seção **14.7** do `ARQUIPELAGO.md` diz, com todas as letras, que a prospecção do widget em
+lojas é a **única alavanca de link do projeto**, e que ela **vale mais no começo do que no
+fim: backlink é o que faz o robô voltar**. Este bloco é essa lista nesta ilha. Mora em
+`dados/prospeccao-widget.json` (o banco, `publicar: false`), com o arquivo de leitura
+`dados/prospeccao-widget.md` **gerado** e quatro portões: `prospeccao-referencia.py` (a
+régua), `gerar-prospeccao.py`, `validar-prospeccao.py` e `mutacoes-prospeccao.py`.
+
+### 8.1 A lista não começou do zero — ela já estava medida e ninguém a tinha lido assim
+
+O bloco 1 mediu **69 domínios** de SERP em pt-BR e os registrou como **procedência**, isto é,
+como *concorrência*. Entre eles há operador com site próprio, concessionária de bem público e
+plataforma, cada um **rotulado pelo próprio corpus**. Ler a mesma medição na outra direção é
+o que este bloco faz: `bondinho.com.br` não entrou nesta lista por busca nova, entrou porque
+o corpus já o tinha escrito como *«operador, e três URLs dele»* em 14/09/2026.
+
+**É a mesma família de defeito que esta ilha e a ohmetria já pagaram: duas metades contando a
+mesma coisa sem nunca se falarem.** Aqui as duas metades são o corpus de buscas e a lista de
+prospecção, e o portão as faz conversar por regra — toda consulta citada no banco tem de
+existir em `dados/corpus-buscas.md`, e todo domínio que diz vir do corpus tem de aparecer lá.
+
+### 8.2 O BARRAMENTO, e ele sai de uma decisão que a ilha já tinha tomado
+
+Dos seis clusters que o bloco 1 mediu, a ilha declarou que **não disputa um**: o **A2**,
+*«quanto custa <experiência>»*, porque *«disputar 'quanto custa o ingresso X' contra o
+operador é perder, e não é preciso»*. Daí a régua, e ela é curta:
+
+> **Quem ocupa consulta de cluster que esta ilha DISPUTA não hospeda a ferramenta que a
+> disputa.** É BARRADO, com a consulta nomeada.
+
+O caso que prova o valor disso é o `northbound.is`: operador islandês com site próprio, que
+ocupa *«vale a pena alugar carro na islândia»* — a consulta que o próprio bloco 1 chama de
+**«o melhor encaixe entre recorte e monetização que este levantamento encontrou»**. O
+operador que hospedaria a ferramenta é o mesmo que ocupa a página que a ilha mais quer
+escrever. E o `romapravoce.com` mostra por que a régua é **escada** e não soma de pontos: ele
+é operador **e** concorrente ao mesmo tempo, e tratar os dois lados como pesos somáveis o
+deixaria passar. O barramento vem primeiro.
+
+### 8.3 A RÉGUA DA OFERTA LÊ O BANCO, NÃO A LISTA
+
+Nenhuma ferramenta é oferecida a ninguém se a ilha não souber servi-la **hoje**, e quem
+decide isso é `dados/experiencias.json`, contado em toda passada:
+
+| Ferramenta | Só é ofertável se | Nunca é ofertável a |
+|---|---|---|
+| **F1** | o candidato atende experiência **que o banco tem** e vende **a mesma versão** que o banco preça | quem vende versão que **inclui** a do banco — a F1 serviria, ao visitante dele, o preço da versão barata que o produto dele embute |
+| **F2** | o banco tiver ao menos uma `FAIXA_DIARIA` | — |
+| **F3** | o banco tiver passe **e** cobertura | **quem vende passe de cidade**: o veredito dela pode ser «não vale», e esse é o produto do anfitrião |
+
+**A linha da F1 é a decisão deste bloco.** Nas outras ilhas o widget *ajuda* o anfitrião a
+vender: a calculadora dimensiona o equipamento que a loja tem no catálogo. Aqui a ferramenta
+responde *«vale a pena?»* e *«quanto custa para o seu grupo»* — e pode servir um número que
+**mina** quem a hospeda. É o que acontece com o `viagemitalia.com`, único candidato
+brasileiro que atende experiência do banco: ele vende o tour guiado do Coliseu a €75 por
+pessoa **com o ingresso dentro**, e o banco preça o ingresso avulso. Ferramenta que mina o
+anfitrião não se oferece ao anfitrião. É a mesma família da **ATENÇÃO DE ESCOPO** que a lista
+da aquametria escreveu para a loja de marinho, um andar acima: lá o número ficava fora do
+escopo declarado, aqui ele **compete com quem hospeda**.
+
+### 8.4 O que este bloco achou, e é uma cadeia de cinco elos com uma causa só
+
+**A lista existe, a régua existe, e NENHUM dos 25 candidatos tem ferramenta ofertável hoje.**
+A causa é **uma**, já registrada três vezes nesta ilha sem nunca ter sido ligada à alavanca de
+link:
+
+1. o egresso desta nuvem recusa o domínio da ilha e as fontes de preço (15/09, 18/09, 22/10 e
+   hoje);
+2. com a rede fechada, o bloco 3 registrou que `ingresso_de_sitio_publico` era *«o único tipo
+   reproduzível enquanto o egresso estiver fechado»* — e o banco nasceu com **quatro**
+   experiências de tarifa pública;
+3. **três dos quatro operadores do banco são poder público** (gondoleiros com tarifa da
+   prefeitura de Veneza, Angkor Enterprise, Parco archeologico del Colosseo) e o quarto é
+   concessionária francesa. Poder público não instala widget de afiliado;
+4. logo a F1 — a única das três com dado para servir — não tem a quem ser oferecida;
+5. e o **critério de entrada do bloco 1** dizia justamente o contrário do que o banco
+   carregou: *«prefira experiência de operador privado, com versões vendidas diferentes entre
+   si e sem tabela pública»*.
+
+**O que isso muda na leitura do bloqueio de rede:** ele não atrasa só coleta de preço. Ele
+**decidiu a composição do banco**, e a composição do banco **parou a única alavanca de link do
+projeto** nesta ilha. Esse custo nunca esteve escrito num lugar só.
+
+**E o que destrava é barato e está nomeado:** UMA experiência de operador privado brasileiro
+no banco abre a linha de prioridade 1 desta lista. O candidato está medido — o **Parque
+Bondinho Pão de Açúcar** vende direto, pelo próprio site, mais de uma versão da mesma
+experiência (bonde exclusivo, tour ecológico com café, bonde + aula de caipirinha). Carregá-lo
+exige ler a página de tarifa dele na fonte, e `bondinho.com.br` devolveu **000** às 13h28:28Z
+de hoje.
+
+### 8.5 O que os portões cobram, e o que eles acharam no próprio texto
+
+- **Presença, nunca ausência.** Campo de fato aceita `true` ou `null`; `false` é **recusado**.
+  É a regra que o `ARQUIPELAGO.md` já carrega, vinda da `regua-prospeccao.py` da aquametria.
+- **Toda afirmação tem evidência que a NOMEIA.** `afirma` é uma **lista** de campos: uma
+  medição sustenta vários fatos de uma vez, e dizer **quais** é o que separa evidência de
+  impressão. A primeira versão deste banco afirmava 68 fatos sem evidência nomeada, e **foi o
+  portão que os achou** — o conserto não foi afrouxar a regra, foi afirmar menos: oito campos
+  viraram `null` (entre eles `tipo` do `ingressomachupicchu.com`, que o nome do domínio
+  *parecia* provar, e a venda de passe dos três revendedores de Lisboa e Roma).
+- **Nada de derivado gravado.** `prioridade` e `ferramentas_ofertaveis` não existem no banco:
+  prioridade escrita à mão é opinião com cara de dado, e envelhece calada.
+- **A régua de acento retira o que está entre craseadas antes de olhar.** A primeira versão
+  dela reprovou `dados/experiencias.json` e `prospeccao-referencia.py`, que são **texto
+  legítimo**. A saída não foi uma heurística melhor, foi estrutura — a quarta trava da mesma
+  família que o `ARQUIPELAGO.md` já ensina: *quando o texto legítimo e o proibido são a mesma
+  palavra, quem decide é a estrutura, nunca a vizinhança*.
+- **A BANCADA LÊ A PROSA DESTA SEÇÃO E DO ACHADO, e conferiu contra o dado.** É a terceira
+  conta que a seção 8 do contrato pede, e ela **pegou um erro meu**: o texto dizia que o
+  corpus mediu **64** domínios. São **69** — a contagem de cabeça usou uma lista de
+  terminações que deixava `.is`, `.fr`, `.pt`, `.paris`, `.kh` e `.cz` de fora. O conserto não
+  foi trocar o número: foi a bancada passar a conferi-lo em toda passada.
+- **A regra da F3 sobre vendedor de passe não tem nenhum caso neste banco hoje**, porque a
+  venda de passe não foi medida em ninguém. A regra existe e é a **bateria de mutações** que
+  prova que ela morde, não uma linha da lista. Portão que nunca reprovou nada é decoração.
+
+### 8.6 O próximo passo desta lista não é da Fundação
+
+Nenhum dos 25 candidatos é alcançável desta nuvem — medido nesta execução e não herdado: às
+13h28:28Z de 23/10/2026, `bondinho.com.br`, `www.toureiffel.paris`, `viagemitalia.com`,
+`www.panrotas.com.br` e `www.civitatis.com` devolveram **000**, com `aquametria.com.br` em
+**200** na mesma passada. É a 20.3 exercida antes de escrever a regra que exige a fonte. Por
+isso `contato` e `plataforma_do_site` estão `null` em todas as linhas, e a bancada **proíbe**
+que sejam preenchidos. Abrir cada domínio, confirmar canal de contato e plataforma, e só então
+escrever a abordagem é trabalho de navegador.
+
+### 8.7 E há um achado de método, que vale para quem continuar esta lista
+
+Três buscas desta execução foram dirigidas a *«receptivo/agência brasileiro com site
+próprio»* em Roma, Paris e Veneza. **As três devolveram portal de conteúdo e plataforma** —
+`eurodicas`, `maladeaventuras`, `grupodicas`, `dicasdaitalia`, `tiqets`, `civitatis` —, isto
+é, devolveram **a concorrência**, não os candidatos. Os únicos receptivos que apareceram **por
+nome** vieram da **imprensa de trade** (`panrotas.com.br`, `mercadoeeventos.com.br`): Hola
+Tour em Paris, a representação da Carrani para o mercado brasileiro, e a confirmação de que
+`bondinho.com.br` é o canal de venda do próprio operador.
+
+**A razão é estrutural e não é azar de consulta: operador e receptivo não disputam a SERP de
+«quanto custa» — logo não são achados por ela.** Quem continuar esta lista busca em trade, e
+não em SERP de consumidor. É por isso que os dois veículos estão no banco como
+`imprensa_de_trade`, prioridade 3: não são alvo de widget, são o instrumento que acha o alvo.
