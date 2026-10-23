@@ -1,6 +1,18 @@
 /**
  * Clube do Mosaico Casca — identidade e estrutura do site
  *
+ * Versão 1.25.0 (23/10/2026) — O CARTÃO DO GUIA ENTRA NA COMPACTAÇÃO DE TELEFONE
+ *   DO MOLDE, que até aqui só alcançava o cartão das ferramentas. As regras de
+ *   celular do bloco de compra nasceram em 21/10 escritas para `.cdm-f2-cartao`;
+ *   as sete páginas do Guia entraram no molde no mesmo mutirão com
+ *   `.cdm-guia-cartao` e ficaram com o recheio e o corpo de texto do desktop
+ *   dentro do bloco de compra do telefone. Custo medido: item 1 do despacho da
+ *   Sentinela de 23/10/2026 — `peca-de-mosaico-esbranquicada` servindo o primeiro
+ *   link de loja a 1.495 px contra o teto de 1.400 px da 32.5. Valem 71 px de
+ *   primeira tela em toda página do Guia e não mudam uma palavra servida.
+ *   (O cabeçalho deste arquivo estava em 1.22.0 com a constante em 1.24.0: as
+ *   1.23.0 e 1.24.0 não deixaram entrada aqui, e esta execução não as inventa.)
+ *
  * Versão 1.22.0 (09/10/2026) — O APELIDO DE ENDEREÇO APRENDE NÍVEL, E A CAUSA É
  *   O ITEM 2 DO DESPACHO DO RAPHAEL DE 09/10: servir 301 para endereço que o
  *   Google aprendeu e que hoje morre em 404.
@@ -309,7 +321,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'CDM_CASCA_VERSAO' ) ) {
-	define( 'CDM_CASCA_VERSAO', '1.24.0' );
+	define( 'CDM_CASCA_VERSAO', '1.25.0' );
 	/* O nome do site e a linha que o WordPress serve no <title> da home. A
 	   Aquametria descobriu em 11/09/2026 que a tagline nunca tocada desde o
 	   nascimento da ilha continuava sendo a linha mais lida do site — a do
@@ -1323,6 +1335,25 @@ body:has(.cdm-rodape) .wp-site-blocks > footer.wp-block-template-part:not(:has(.
 .cdm-molde-compra .cdm-f2-cartao{padding:.75rem;}
 .cdm-molde-compra .cdm-f2-cartao .cdm-f2-motivo{font-size:.88rem;line-height:1.3;}
 .cdm-molde-compra .cdm-f1-vitrine,.cdm-molde-compra .cdm-f2-vitrine{margin-top:.35rem;}
+/* O CARTAO DO GUIA RECEBE A MESMA COMPACTACAO DE TELEFONE QUE O DA F2, e ele
+   ficou de fora dela por tres dias. As seis linhas acima nasceram em 21/10/2026
+   para o cartao das FERRAMENTAS (`.cdm-f2-cartao`); as paginas do Guia entraram
+   no molde no mesmo mutirao, com `.cdm-guia-cartao`, e nenhuma delas as
+   alcancava — o cartao do Guia continuou com o recheio e o corpo de texto do
+   desktop dentro do bloco de compra do telefone. O custo esta medido: item 1 do
+   despacho da Sentinela de 23/10/2026, com o primeiro link de loja da filha
+   `peca-de-mosaico-esbranquicada` a 1.495 px contra o teto de 1.400 px da 32.5.
+   Estas quatro linhas valem 71 px de primeira tela em TODA pagina do Guia, e
+   nao mudam uma palavra servida: sao recheio, corpo de texto e largura de foto.
+   O MOLDE E DA CASCA de proposito (32.6-b): regra de telefone escrita na folha
+   de cada snippet e a mesma regra escrita tres vezes, e a terceira e a que
+   esquece. */
+.cdm-molde-compra .cdm-guia-cartao{padding:.75rem;}
+.cdm-molde-compra .cdm-guia-cartao h3{font-size:.95rem;line-height:1.25;margin:.2rem 0 .35rem;}
+.cdm-molde-compra .cdm-guia-nomeia{font-size:.88rem;line-height:1.3;margin:.25rem 0;}
+.cdm-molde-compra .cdm-guia-foto{width:4.5rem;}
+.cdm-molde-compra .cdm-guia-cartoes{margin:.6rem 0;}
+.cdm-molde-compra > h2{font-size:1.1rem;line-height:1.25;}
 /* A FRASE DE PROMESSA (32.1, item 2) e a primeira coisa que a pessoa le depois
    do H1, e no telefone ela tem de caber na primeira tela JUNTO com o comeco do
    formulario. A 1,15rem da casca ela ocupava 149 px em quatro linhas. */

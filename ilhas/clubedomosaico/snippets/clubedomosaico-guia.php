@@ -2,6 +2,30 @@
  * CLUBE DO MOSAICO — O GUIA DE MATERIAIS, CATEGORIA POR CATEGORIA (bloco 4c)
  * Snippet "Clube do Mosaico Guia", registrado pelo Sync.
  *
+ * Versão 1.7.0 (23/10/2026) — A PRIMEIRA TELA DESTA FAMÍLIA DEIXA DE DEPENDER DO
+ * TAMANHO DA RESPOSTA. Item 1 do despacho da Sentinela de 23/10: a filha
+ * `peca-de-mosaico-esbranquicada` servia o primeiro link de loja a 1.495 px
+ * contra o teto de 1.400 px da 32.5 — a única das 20 páginas do mutirão de 21/10
+ * fora da régua —, e a causa estava medida: a caixa de resposta dela tem 304 px
+ * de texto a mais que a da irmã `impermeabilizar-peca-de-mosaico`, que servia a
+ * 1.149 px. A 1.6.0 pôs o bloco de compra logo abaixo da resposta e com isso
+ * passou a herdar o tamanho dela: resposta mais longa, botão mais fundo, e a
+ * folga de cada página passou a ser sorte.
+ * O QUE MUDOU, e as duas coisas valem para as SETE páginas da família:
+ *   (a) a conta de produto × superfície — "Das N combinações desta página" — saiu
+ *       da CAIXA e foi para a seção "O que nenhum destes fabricantes diz", onde a
+ *       página já publicava a outra metade da mesma contagem. Nenhuma palavra
+ *       saiu da página (32.3); a caixa ficou com a RESPOSTA, que é o que a 32.2
+ *       pede dela. Custava 138 px de primeira tela em todas as sete;
+ *   (b) a folha do Guia parou de redecorar a caixa do molde, pelo mesmo
+ *       `:not(.cdm-molde-resultado)` que a F2 já usava desde 21/10.
+ * A régua que mede isso virou portão e varre TODAS as páginas do molde:
+ * `ferramentas/conferir-32-5-no-navegador.mjs`. A lição é do despacho, em uma
+ * frase: régua que não varre todas certifica a página que o autor abriu.
+ * E A VERSÃO DESTE ARQUIVO VOLTOU A SER A DO CABEÇALHO: a 1.6.0 subiu o número
+ * aqui em cima e deixou `CDM_GUIA_VERSAO` em 1.5.0, então a bancada imprimia a
+ * versão de antes do molde.
+ *
  * Versão 1.6.0 (21/10/2026) — O MOLDE DA 32.2 NAS SETE PÁGINAS DESTA FAMÍLIA, e
  * a mudança é de ORDEM, não de texto: nenhuma frase foi reescrita, nenhuma seção
  * saiu e nenhum <h2> foi digitado duas vezes. Medido no ar em 21/10, celular de
@@ -177,7 +201,7 @@
  */
 
 if ( ! defined( 'CDM_GUIA_VERSAO' ) ) {
-	define( 'CDM_GUIA_VERSAO', '1.5.0' );
+	define( 'CDM_GUIA_VERSAO', '1.7.0' );
 }
 
 /* ---------------------------------------------------------------------------
@@ -1449,11 +1473,28 @@ function cdm_guia_resposta_do_acabamento( $c, $forma ) {
 		$html .= 'São <strong>' . (int) $c['n_itens'] . ' produtos</strong> deste tipo no nosso banco, '
 			. 'e o que cada um atende sai da frase do próprio fabricante, não da nossa opinião. ';
 	}
-	$html .= 'Das <strong>' . (int) $c['celulas'] . '</strong> combinações de produto e superfície desta página — '
-		. (int) $c['n_itens'] . ' produtos vezes as ' . (int) $c['superficies'] . ' superfícies que a gente nomeia —, '
-		. '<strong>' . (int) $c['nomeadas'] . '</strong> estão escritas na frase de algum fabricante.';
+	/* A CONTA DAS CÉLULAS SAIU DAQUI EM 23/10/2026, e ela não saiu da página:
+	   saiu da CAIXA DE RESPOSTA e foi para `cdm_guia_achado_do_acabamento()`,
+	   onde a página já publica a outra metade da mesma contagem — quantas
+	   superfícies as frases alcançam e quantas deixam de fora. A caixa fica com
+	   a RESPOSTA, que é o que a 32.2 pede dela ("o número e a condição em uma
+	   frase"); a contabilidade de cobertura fica com a seção da cobertura.
+	   POR QUE, e o motivo é medido: item 1 do despacho da Sentinela de 23/10 —
+	   `/materiais/acabamento/peca-de-mosaico-esbranquicada/` servia o primeiro
+	   link de loja a 1.495 px contra o teto de 1.400 px da 32.5. Esta frase
+	   custava 138 px DENTRO da primeira tela, nas SETE páginas desta família, e
+	   custava-os em todas elas mesmo onde a sobra escondia o problema. */
 
 	return $html;
+}
+}
+
+if ( ! function_exists( 'cdm_guia_cobertura_do_acabamento' ) ) {
+/** A conta de produto × superfície desta página, na frase que ela sempre teve. */
+function cdm_guia_cobertura_do_acabamento( $c ) {
+	return 'Das <strong>' . (int) $c['celulas'] . '</strong> combinações de produto e superfície desta página — '
+		. (int) $c['n_itens'] . ' produtos vezes as ' . (int) $c['superficies'] . ' superfícies que a gente nomeia —, '
+		. '<strong>' . (int) $c['nomeadas'] . '</strong> estão escritas na frase de algum fabricante.';
 }
 }
 
@@ -1516,6 +1557,11 @@ function cdm_guia_achado_do_acabamento( $id, $c, $forma ) {
 		. 'As frases destes ' . (int) $c['n_itens'] . ' produtos'
 		. ' alcançam <strong>' . ( (int) $c['superficies'] - $faltam ) . '</strong> delas, e deixam <strong>'
 		. (int) $faltam . '</strong> de fora. ' . esc_html( cdm_guia_frase_da_lacuna_do_acabamento( $id ) ) . '</p>';
+	/* A CONTA DAS CÉLULAS, que até 23/10/2026 morava na caixa de resposta. Ela
+	   está em casa aqui: o parágrafo acima conta a cobertura por SUPERFÍCIE e
+	   este a conta por CÉLULA (produto × superfície), que é a mesma lacuna com
+	   um denominador mais fino. Nenhuma palavra saiu da página (32.3). */
+	$html .= '<p class="cdm-guia-celulas">' . cdm_guia_cobertura_do_acabamento( $c ) . '</p>';
 	$html .= '<p class="cdm-nao-fazemos">Não vamos escolher por semelhança o que o fabricante não escreveu. '
 		. 'Enquanto a frase dele não nomear a superfície da sua peça, esta página diz que não sabe — '
 		. 'e isso vale inclusive quando a química parece óbvia.</p>';
@@ -2175,7 +2221,14 @@ add_action( 'wp_footer', function () {
 	}
 	echo <<<'HTML'
 <style id="cdm-guia-css">
-.cdm-guia-resposta{margin:1.6rem 0;padding:1.2rem;border:1px solid var(--cdm-traco);border-left:3px solid var(--cdm-coral);border-radius:2px;}
+/* A CAIXA DE RESPOSTA SO SE DECORA QUANDO NAO E A DO MOLDE, e e o mesmo
+   `:not(.cdm-molde-resultado)` que a F2 escreveu em 21/10/2026 e que esta
+   folha nao copiou: com as duas classes no mesmo elemento, estas 1,2rem de
+   recheio e 1,6rem de margem venciam as do molde por ordem de carga, e a
+   caixa do Guia saia 20 px mais alta que a das ferramentas sem ninguem ter
+   pedido. Medido em 23/10/2026, no item 1 do despacho da Sentinela. */
+.cdm-guia-resposta:not(.cdm-molde-resultado){margin:1.6rem 0;padding:1.2rem;border:1px solid var(--cdm-traco);border-left:3px solid var(--cdm-coral);border-radius:2px;}
+.cdm-guia-celulas{margin:.6rem 0 0;}
 .cdm-guia-frase{font-size:1.15rem;line-height:1.5;margin:0;}
 .cdm-guia-prova{margin:1rem 0 0;}
 .cdm-guia-filhas{list-style:none;margin:1rem 0;padding:0;display:grid;gap:1rem;}

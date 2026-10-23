@@ -98,6 +98,23 @@ function gui_texto( $html ) {
 	return trim( preg_replace( '/\s+/u', ' ', html_entity_decode( strip_tags( $html ), ENT_QUOTES, 'UTF-8' ) ) );
 }
 
+/* A CAIXA DE RESPOSTA SE RECORTA PELA CLASSE, NAO PELO TEXTO (23/10/2026).
+   A fronteira da frase de resposta era adivinhada pela primeira ocorrencia de
+   `Das ` no texto da pagina, porque ate 23/10 a frase da resposta terminava
+   nela. A 1.7.0 do Guia mudou essa frase de lugar — ela foi para a secao da
+   cobertura —, e com a fronteira antiga a afirmacao do solvente passaria a ler
+   quase a PAGINA INTEIRA no lugar da resposta: vermelha por achar a palavra
+   numa tabela onde ela e certa, ou verde por nada, dependendo do dia. Portao
+   que mede uma coisa e afirma sobre outra e pior que portao ausente, porque
+   ninguem desconfia dele. */
+function gui_caixa_de_resposta( $html ) {
+	if ( ! preg_match( '#<div class="cdm-molde-resultado[^"]*"[^>]*>(.*?)</div>#su', $html, $m ) ) {
+		return '';
+	}
+
+	return gui_texto( $m[1] );
+}
+
 function gui_render( $raiz, $tag ) {
 	$saida  = array();
 	$codigo = 0;
@@ -668,7 +685,7 @@ foreach ( cdm_guia_registro() as $id => $ficha ) {
 			   resposta nao nomeia solvente. Quem nomeia e a tabela, item por
 			   item, com a fonte — e e por isso que a palavra pode existir no
 			   corpo e nao pode existir na resposta. */
-			$resp = mb_substr( $texto, 0, false !== mb_strpos( $texto, 'Das ' ) ? mb_strpos( $texto, 'Das ' ) : 400 );
+			$resp = gui_caixa_de_resposta( $corpo );
 			gui_ok( false === mb_stripos( $resp, 'thinner' ) && false === mb_stripos( $resp, 'base de água' ),
 				'a frase de resposta NAO classifica o solvente — quem nomeia e a tabela, com fonte (26.3)', 'limpa' );
 
@@ -724,6 +741,20 @@ foreach ( cdm_guia_registro() as $id => $ficha ) {
 		'a tela publica as combinacoes (produtos x superficies)', ( $regua['n'] * $N_SUP ) . ' celulas' );
 	gui_ok( false !== mb_strpos( $texto, $regua['nomeadas'] . ' estão escritas na frase de algum fabricante' ),
 		'a cobertura declarada na tela bate com a regua independente', $regua['nomeadas'] . ' de ' . ( $regua['n'] * $N_SUP ) );
+
+	/* A CAIXA DE RESPOSTA FICA COM A RESPOSTA, E A CONTABILIDADE FICA FORA DELA
+	   (23/10/2026, item 1 do despacho da Sentinela). As duas afirmacoes abaixo
+	   sao as duas metades da mesma regra, e a segunda sem a primeira seria uma
+	   licenca para esvaziar a caixa: a conta das celulas continua NA PAGINA (a
+	   afirmacao acima, sobre `$texto`) e nao pode voltar para DENTRO da caixa,
+	   que e onde ela custava 138 px de primeira tela nas sete paginas. */
+	$caixa = gui_caixa_de_resposta( $corpo );
+	gui_ok( '' !== $caixa && false !== mb_strpos( $caixa, 'produtos medidos nesta página' ),
+		'a caixa de resposta do molde existe e carrega o numero do recorte',
+		'' === $caixa ? 'AUSENTE' : mb_strlen( $caixa ) . ' caracteres' );
+	gui_ok( false === mb_strpos( $caixa, 'combinações de produto e superfície' ),
+		'a conta das celulas NAO esta na caixa de resposta — ela mora na secao da cobertura (32.2)',
+		'fora da caixa' );
 	gui_ok( false !== mb_strpos( $texto, 'alcançam ' . $regua['cobertas'] . ' delas' ),
 		'as superficies alcancadas na tela batem com a regua', $regua['cobertas'] . ' de ' . $N_SUP );
 	gui_ok( false !== mb_strpos( $texto, 'deixam ' . ( $N_SUP - $regua['cobertas'] ) . ' de fora' ),
