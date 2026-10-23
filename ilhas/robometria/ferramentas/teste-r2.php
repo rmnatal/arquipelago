@@ -463,6 +463,180 @@ rbm_ok( empty( $descobertas ), 'toda situacao passa no portao de 3 itens da seca
 	empty( $descobertas ) ? count( $dados['classificacao'] ) . ' situacoes' : implode( ' ', $descobertas ) );
 
 /* ---------------------------------------------------------------------------
+ * 8-b. O ROTULO DA CAIXA DE RESULTADO PROMETE UM OPERADOR, E A LISTA USA OUTRO.
+ *
+ * Portao NOVO em 23/10/2026, item 1 do despacho da Sentinela do mesmo dia. O que
+ * ele existe para impedir esta medido no ar: a caixa da 32.1 publicava, na
+ * PRIMEIRA TELA e em Mono, `4.000` `Pa ou mais` — e "ou mais" e inclusivo —,
+ * enquanto a vitrine logo abaixo era montada em `pa > 4.000`. O banco tem 7
+ * publicaveis com canal brasileiro em Pa maior ou igual a 4.000 e a pagina
+ * listava 5. Os dois que faltavam estavam na MESMA pagina, num bloco rotulado
+ * que diz por que nao estao na lista.
+ *
+ * E ESTE ARQUIVO JA TINHA O PORTAO DA METADE DE BAIXO: a secao 8 acima confere a
+ * classificacao inteira contra o operador que a FONTE declara, com conta escrita
+ * aqui. Ele estava verde no dia do defeito e continua certo — porque ninguem
+ * nunca havia perguntado o que a CAIXA promete. Regra conferida de um lado so
+ * e meia regra: a frase mais lida da pagina ficou fora do alcance de tudo.
+ *
+ * ENTAO A CONTA DESTE PORTAO NAO PARTE DO DADO, PARTE DO ROTULO SERVIDO. Ele le
+ * o rotulo no HTML, extrai dele o OPERADOR QUE A CAIXA PROMETE AO LEITOR (nunca
+ * o do banco), conta os modelos de `dados/modelos-robo.json` com esse operador —
+ * aplicando os dois filtros da recomendacao, `status publicavel` e canal
+ * brasileiro, escritos aqui de novo e nao importados — e cobra que o numero bata
+ * com o que a propria pagina escreve em "Sao N modelos que passam no limiar".
+ * Trocar o operador do rotulo sem trocar a lista reprova; trocar a lista sem
+ * trocar o rotulo reprova. As duas metades passaram a se falar.
+ * ------------------------------------------------------------------------- */
+
+echo "\n8-b. O operador que a caixa de resultado PROMETE (item 1 do despacho de 23/10)\n";
+
+/** O operador que o rotulo servido promete, lido das palavras dele. */
+function rbm_r2_operador_do_rotulo( $rotulo, $unidade ) {
+	$t = rbm_normalizar( $rotulo . ' ' . $unidade );
+	$tem_acima  = false !== strpos( $t, 'acima de' );
+	$tem_apartir = false !== strpos( $t, 'a partir de' );
+	/* "ou mais" e "ou acima" sao inclusivos e ficam aqui nomeados de proposito:
+	   foi um deles que esteve no ar, e portao que nao nomeia o defeito que o fez
+	   nascer nao prova nada quando ele voltar. */
+	$tem_ou_mais = false !== strpos( $t, 'ou mais' ) || false !== strpos( $t, 'ou acima' );
+	if ( $tem_acima && ! $tem_apartir && ! $tem_ou_mais ) {
+		return 'exclusivo';
+	}
+	if ( ( $tem_apartir || $tem_ou_mais ) && ! $tem_acima ) {
+		return 'inclusivo';
+	}
+	return 'ambiguo';
+}
+
+/** Os modelos que a R2 pode RECOMENDAR, contados do banco cru. */
+function rbm_r2_recomendaveis_do_banco( $modelos_b ) {
+	$fora = array();
+	foreach ( $modelos_b['registros'] as $r ) {
+		if ( 'publicavel' !== $r['status'] ) {
+			continue;
+		}
+		$canal = isset( $r['canal_brasileiro'] ) ? $r['canal_brasileiro'] : null;
+		$canal = is_array( $canal ) ? ( isset( $canal['valor'] ) ? $canal['valor'] : null ) : $canal;
+		if ( null === $canal ) {
+			continue;
+		}
+		$pa = isset( $r['pa_declarado'] ) ? $r['pa_declarado'] : null;
+		$pa = is_array( $pa ) ? ( isset( $pa['valor'] ) ? $pa['valor'] : null ) : $pa;
+		if ( null === $pa ) {
+			continue;
+		}
+		$fora[ $r['id'] ] = (int) $pa;
+	}
+	return $fora;
+}
+
+$recomendaveis_crus = rbm_r2_recomendaveis_do_banco( $modelos_b );
+rbm_ok( count( $recomendaveis_crus ) > 0,
+	'o banco cru devolve modelos recomendaveis com Pa declarado',
+	count( $recomendaveis_crus ) . ' de ' . count( $modelos_b['registros'] ) );
+
+$rotulos_ambiguos   = array();
+$rotulos_mentirosos = array();
+$contagens_erradas  = array();
+$medidas_do_rotulo  = array();
+
+foreach ( $dados['situacoes'] as $chave => $s_cfg ) {
+	$partes = rbm_r2_partes( $chave );
+	$html   = rbm_r2_pagina( $dados['ancora']['area'], $partes[0], $partes[1], null );
+	$s      = robometria_r2_situacao( $chave );
+	$l      = $s['limiar_seguro'];
+
+	/* O rotulo, o numero e a unidade como o leitor os recebe. */
+	if ( ! preg_match( '~<span class="rbm-caixa-rotulo">(.*?)</span>\s*<span class="rbm-caixa-numero">(.*?)(?:<span class="rbm-caixa-unidade">(.*?)</span>)?\s*</span>~s', $html, $m ) ) {
+		$rotulos_ambiguos[] = $chave . ' (caixa nao encontrada no HTML)';
+		continue;
+	}
+	$rotulo   = html_entity_decode( trim( strip_tags( $m[1] ) ), ENT_QUOTES, 'UTF-8' );
+	$numero   = html_entity_decode( trim( strip_tags( $m[2] ) ), ENT_QUOTES, 'UTF-8' );
+	$unidade  = isset( $m[3] ) ? html_entity_decode( trim( strip_tags( $m[3] ) ), ENT_QUOTES, 'UTF-8' ) : '';
+	$prometido = rbm_r2_operador_do_rotulo( $rotulo, $unidade );
+	$medidas_do_rotulo[ $chave ] = $rotulo . ' | ' . $numero . ' ' . $unidade . ' -> ' . $prometido;
+
+	if ( 'ambiguo' === $prometido ) {
+		$rotulos_ambiguos[] = $chave . ' ("' . $rotulo . ' / ' . $numero . ' ' . $unidade . '")';
+		continue;
+	}
+
+	/* 1. O operador do rotulo tem de ser o da FONTE daquele limiar. */
+	$da_fonte = 'acima_de' === $l['comparacao'] ? 'exclusivo' : 'inclusivo';
+	if ( $prometido !== $da_fonte ) {
+		$rotulos_mentirosos[] = $chave . ' (fonte ' . $l['comparacao'] . ' = ' . $da_fonte
+			. ', rotulo "' . $rotulo . ' ' . $unidade . '" = ' . $prometido . ')';
+	}
+
+	/* 2. O NUMERO que a caixa publica e o do limiar seguro, sem arredondar. */
+	$sem_ponto = str_replace( array( '.', "\xc2\xa0", ' ' ), '', $numero );
+	if ( (string) $l['valor'] !== $sem_ponto ) {
+		$contagens_erradas[] = $chave . ' (numero da caixa ' . $numero . ' != limiar ' . $l['valor'] . ')';
+		continue;
+	}
+
+	/* 3. A CONTA DA PROMESSA: quantos modelos do banco cru cabem no operador que
+	      o rotulo prometeu — e e esse numero que a pagina tem de escrever. */
+	$cabem = 0;
+	foreach ( $recomendaveis_crus as $pa ) {
+		if ( 'exclusivo' === $prometido ? $pa > $l['valor'] : $pa >= $l['valor'] ) {
+			$cabem++;
+		}
+	}
+	if ( ! preg_match( '~Sao <span class="rbm-num">([\d\.]+)</span> modelos que passam no limiar~',
+			rbm_normalizar( $html ), $mc ) ) {
+		/* Situacao sem elegivel nao escreve a frase, e ai nao ha contagem a
+		   conferir — mas o portao de 3 itens acima ja proibe isso nesta ilha. */
+		if ( ! empty( $dados['classificacao'][ $chave ]['elegiveis'] ) ) {
+			$contagens_erradas[] = $chave . ' (a frase da contagem nao esta no HTML)';
+		}
+		continue;
+	}
+	$na_tela = (int) str_replace( '.', '', $mc[1] );
+	if ( $na_tela !== $cabem ) {
+		$contagens_erradas[] = sprintf( '%s (a tela conta %d, a promessa "%s" da %d)',
+			$chave, $na_tela, $rotulo . ' ' . $numero . ' ' . $unidade, $cabem );
+	}
+}
+
+rbm_ok( empty( $rotulos_ambiguos ),
+	'o rotulo da caixa diz, em palavras, se o limiar entra ou nao entra',
+	empty( $rotulos_ambiguos ) ? count( $medidas_do_rotulo ) . ' situacoes'
+		: implode( ' | ', array_slice( $rotulos_ambiguos, 0, 3 ) ) );
+rbm_ok( empty( $rotulos_mentirosos ),
+	'o operador do rotulo e o que a fonte daquele limiar declara',
+	empty( $rotulos_mentirosos ) ? count( $medidas_do_rotulo ) . ' situacoes'
+		: implode( ' | ', array_slice( $rotulos_mentirosos, 0, 3 ) ) );
+rbm_ok( empty( $contagens_erradas ),
+	'a contagem na tela e reproduzivel pelo banco cru COM O OPERADOR QUE O ROTULO PROMETE',
+	empty( $contagens_erradas ) ? count( $medidas_do_rotulo ) . ' situacoes x '
+		. count( $recomendaveis_crus ) . ' modelos recomendaveis'
+		: implode( ' | ', array_slice( $contagens_erradas, 0, 3 ) ) );
+
+/* E A REGUA DO PROPRIO LEITOR DE ROTULO, porque ela decide os tres vereditos
+   acima e uma regua que nao morde aprova tudo em silencio. */
+$casos_do_leitor = array(
+	array( 'Succao a procurar — acima de', 'Pa',          'exclusivo' ),
+	array( 'Succao a procurar — a partir de', 'Pa',       'inclusivo' ),
+	array( 'Succao a procurar', 'Pa ou mais',             'inclusivo' ),
+	array( 'Succao a procurar', 'Pa ou acima',            'inclusivo' ),
+	array( 'Succao a procurar — acima de', 'Pa ou mais',  'ambiguo'   ),
+	array( 'Succao a procurar', 'Pa',                     'ambiguo'   ),
+);
+$leitor_errado = array();
+foreach ( $casos_do_leitor as $c ) {
+	$dito = rbm_r2_operador_do_rotulo( $c[0], $c[1] );
+	if ( $dito !== $c[2] ) {
+		$leitor_errado[] = '"' . $c[0] . ' / ' . $c[1] . '" deu ' . $dito . ' e nao ' . $c[2];
+	}
+}
+rbm_ok( empty( $leitor_errado ),
+	'o leitor de rotulo acerta os 6 casos conhecidos, inclusive o que esteve no ar',
+	empty( $leitor_errado ) ? count( $casos_do_leitor ) . ' casos' : implode( ' | ', $leitor_errado ) );
+
+/* ---------------------------------------------------------------------------
  * 9. O HTML SERVIDO: o que o robo e o modelo de linguagem leem.
  * ------------------------------------------------------------------------- */
 

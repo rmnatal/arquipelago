@@ -1,5 +1,15 @@
 /**
  * Robometria R2 — Quantos Pa o seu robô aspirador precisa
+ * Versão: 1.11.0 (23/10/2026) — O RÓTULO DA CAIXA DE RESULTADO SAI DO OPERADOR DA
+ * FONTE, item 1 do despacho da Sentinela de 23/10/2026. A caixa da 32.1 nasceu na
+ * 1.10.0 com o literal `'Pa ou mais'`, e "ou mais" é inclusivo: em 8 das 9
+ * situações o limiar seguro é `acima_de` e a lista é montada em `pa > valor`. A
+ * primeira tela prometia 7 modelos e a vitrine entregava 5 — com os 2 que
+ * faltavam na mesma página, num bloco que explica por que não estão na lista.
+ * Agora o rótulo vem de `robometria_r2_rotulo_da_caixa()`, e o portão novo da
+ * seção 11 do `teste-r2.php` lê o operador DO RÓTULO SERVIDO e conta o banco
+ * com ele, nas 9 situações.
+ *
  * Versão: 1.10.0 (21/10/2026) — O MOLDE DE CONVERSAO DA SECAO 32, como na R1. Medido no ar em 21/10/2026, no
  * celular de 390 px: o formulario comecava a 876 px e o primeiro botao de loja a
  * 4.347 px. O formulario perdeu um campo para uma dobra e ganhou um par de
@@ -153,7 +163,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ROBOMETRIA_R2_VERSAO' ) ) {
-	define( 'ROBOMETRIA_R2_VERSAO', '1.10.0' );
+	define( 'ROBOMETRIA_R2_VERSAO', '1.11.0' );
 	define( 'ROBOMETRIA_R2_SLUG', 'quantos-pa-o-robo-aspirador-precisa' );
 	/* O NOME DA PÁGINA É A CONSULTA QUE A PESSOA DIGITA (seção 14.5), e ela está
 	   literalmente no endereço: "quantos pa o robô aspirador precisa". O nome
@@ -330,6 +340,45 @@ function robometria_r2_escrever_limiar( $l ) {
 		return 'até ' . robometria_r2_n( $l['valor'] ) . ' Pa já basta';
 	}
 	return robometria_r2_n( $l['valor'] ) . ' Pa';
+}
+}
+
+/**
+ * O RÓTULO DA CAIXA DE RESULTADO, E ELE SAI DO OPERADOR DA FONTE — item 1 do
+ * despacho da Sentinela de 23/10/2026.
+ *
+ * Até a 1.10.0 o rótulo era o literal `'Pa ou mais'`, digitado na chamada de
+ * `robometria_casca_caixa()`. E **"ou mais" é inclusivo**: em 8 das 9 situações
+ * desta ferramenta o limiar seguro é `acima_de` — a Canaltech escreve "acima de
+ * 4.000 Pa" — e `atende()` compara `pa > valor` nesses casos. Então a primeira
+ * tela prometia `>= 4.000` enquanto a vitrine logo abaixo listava `> 4.000`.
+ *
+ * Medido no ar em 23/10/2026 com `area=110&piso=tapete fino&pelo=curto`: a caixa
+ * publicava `4.000 Pa ou mais`, a vitrine listava 5 modelos, e o banco tem 7
+ * publicáveis com canal brasileiro cujo Pa é maior ou igual a 4.000. Os dois que
+ * faltavam — `xiaomi-e10` e `xiaomi-s10`, 4.000 Pa cada — estavam na mesma
+ * página, no bloco `no_limiar`, que diz com todas as letras que *"estar no
+ * número não é estar acima dele"*. **A página se contradizia a si mesma em duas
+ * telas de distância, e quem estava certo era o bloco de baixo.**
+ *
+ * Então o conserto é o RÓTULO e nunca a lista: quem classifica é a implementação
+ * de referência, e ela está certa desde 10/09 (veja o comentário logo acima, o
+ * da função que foi deliberadamente removida deste arquivo). A frase de leitura
+ * da mesma caixa já pegava o operador por função — `robometria_r2_escrever_limiar()`
+ * — e era só o rótulo que estava digitado à mão. **Literal digitado ao lado de
+ * função que lê o dado é a mesma família de defeito que esta ilha já pagou três
+ * vezes: lista digitada ao lado de lista contada.**
+ *
+ * O operador vira preposição e a caixa inteira passa a se ler como uma oração:
+ * "SUCÇÃO A PROCURAR — ACIMA DE / 4.000 Pa" no exclusivo, "— A PARTIR DE" no
+ * inclusivo (`recomendado` e `suficiente`, que `atende()` compara com `>=`).
+ * Nenhuma das duas formas mente sobre o empate, e a de baixo deixou de ser a
+ * única parte honesta da página.
+ */
+if ( ! function_exists( 'robometria_r2_rotulo_da_caixa' ) ) {
+function robometria_r2_rotulo_da_caixa( $l ) {
+	return 'Sucção a procurar — '
+		. ( 'acima_de' === $l['comparacao'] ? 'acima de' : 'a partir de' );
 }
 }
 
@@ -1180,11 +1229,13 @@ function robometria_r2_resposta( $c ) {
 	   limiar de Pa em Mono e, embaixo dele, a frase de leitura que já existia —
 	   a mesma frase autossuficiente da seção 5.2, com número, autor e data, que
 	   sobrevive a ser citada fora de contexto. O número NÃO é digitado aqui:
-	   sai do mesmo `limiar_seguro` que classifica os modelos abaixo. */
+	   sai do mesmo `limiar_seguro` que classifica os modelos abaixo — e desde a
+	   1.11.0 o RÓTULO também não é, por `robometria_r2_rotulo_da_caixa()`: era
+	   o literal 'Pa ou mais' prometendo `>=` sobre uma lista montada em `>`. */
 	$html .= robometria_casca_caixa(
-		'Sucção a procurar',
+		robometria_r2_rotulo_da_caixa( $s['limiar_seguro'] ),
 		robometria_r2_n( $s['limiar_seguro']['valor'] ),
-		'Pa ou mais',
+		'Pa',
 		array( sprintf(
 			'Para %s %s.',
 			robometria_r2_rotulo_do_piso( $s['piso'] ),

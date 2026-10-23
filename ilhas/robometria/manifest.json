@@ -4,8 +4,8 @@
   "nicho": "robo aspirador — compatibilidade de pecas e consumiveis, e dimensionamento de succao e autonomia",
   "dominio": "https://robometria.com.br",
   "versao_manifest": 1,
-  "revisao": 88,
-  "atualizado_em": "2026-10-21",
+  "revisao": 89,
+  "atualizado_em": "2026-10-23",
   "estado": "nascendo",
   "desembarque": {
     "aprovado": true,
@@ -53,8 +53,8 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "4ef546ca3217da3eaf25e948db657f059c0a4bbeb01c845934182cc22ec7df08",
-      "versao": "1.10.0",
+      "sha256": "37bddf78d854b0cbcd0a1c86d840724b664191d1dae9ff49e5ca25a65429ef27",
+      "versao": "1.11.0",
       "descricao": "A R2 NA 1.6.0 — A FRASE PROMETIA DESACORDO E APRESENTAVA UMA FONTE SO (item 3 do despacho da Sentinela de 14/09/2026), e sairam QUATRO defeitos, todos no ar desde 09/09 e todos na situacao-ANCORA ou perto dela — a que a pagina serve a quem chega sem preencher nada, e portanto a que o Google indexa e um modelo de linguagem le (secao 5). (1) DIVERGENCIA E ENTRE FONTES, NAO ENTRE NUMEROS: ha_divergencia comparava os dois limiares e nunca perguntava quem os publicava, entao liso|nao servia 'as fontes brasileiras divergem: o Mundo Conectado recomenda 3.000 Pa e o Mundo Conectado ...'. (2) A ORACAO ESTAVA QUEBRADA: o molde do limiar de baixo era um so e recebia a saida de escrever_limiar(), que para a comparacao 'suficiente' devolve 'ate 1.500 Pa ja basta' — encaixado dava 'trata ate 1.500 Pa ja basta como o piso do consenso'. Nasceu escrever_piso(), que escolhe o verbo pela comparacao. (3) NASCEU O QUARTO MOLDE, dois numeros de um publicador so: tirar liso|nao do molde da divergencia o jogaria no da 'UNICA recomendacao', onde ha duas, e trocar uma afirmacao falsa por outra nao e conserto. (4) A CONTRACAO, que a ronda nao viu e a leitura das nove frases achou: carpete|nao servia 'a unica recomendacao brasileira deste banco e a de a Canaltech'. A regra de contracao nasceu nesta ilha na manha do mesmo dia e este molde nao a usava — meia regra aplicada parece regra aplicada, que e a licao que a propria R2 tinha dado sobre o pronome. E a LINHA DE PROCEDENCIA passou a ter uma entrada por DOCUMENTO e nao por limiar: em liso|nao os tres limiares saem do mesmo artigo, e a linha repetia 'Mundo Conectado · 09/09/2026 fonte' tres vezes, passando ao leitor a impressao de tres apuracoes onde houve uma. A chave da deduplicacao e o ENDERECO com a data, nunca o nome do veiculo: o mesmo veiculo pode publicar dois artigos, e ai sao duas fontes de verdade. A secao 12 do teste-r2.php le a FRASE SERVIDA (nunca a bandeira que a produziu, que era onde estava o defeito) e a bateria ferramentas/mutacoes-divergencia-r2.py produz o mundo de ontem e ve as quatro travas reprovarem. || A R2 NA 1.5.0 — o cartao da vitrine ganha saida de compra que CLICA. O lugar do botao era reservado com 'Link de loja em breve' (proibida pela secao 7 em 14/09/2026); agora o modelo sem ficha de produto sai pelo piso da 25.2, que nao espera a sessao de ninguem. || A R2 NA 1.1.0 — o nome virou a consulta que a pessoa digita, e ela esta no proprio endereco: 'Quantos Pa o seu robo aspirador precisa'. O nome anterior prometia duas coisas no mesmo folego e nao batia com o og:title, que dizia outra; a segunda metade (o tempo) continua inteira na promessa acima do formulario e na resposta. A abertura passou a falar com quem entrou e a ressalva de que os limiares de Pa sao recomendacao editorial desceu para a camada de prova. Como na R1: o catalogo recebe o titulo da constante, e garantir_pagina() reespelha o post_title."
     },
     {
@@ -302,7 +302,7 @@
       "verificado_em": "2026-09-16",
       "registros": 2,
       "publicar": true,
-      "sha256": "9ea7934f38fbfbf86bb53600110fe3ddd59a0a6f609d80dd6607c99b29be3e20",
+      "sha256": "26993bbf300208a49bbd023d6d264be77dbc892517d919b2421f035ad3ea2fea",
       "descricao": "AS DUAS DATAS DO JSON-LD DOS ARTIGOS, com uma fonte so. O Sync o grava na option robometria_dados_datas-das-paginas e robometria_casca_datas_da_pagina() na casca o le — uma funcao, chamada pelas duas paginas, pelo mesmo motivo que o painel da foto virou uma so em 16/09 (25.7). Ate este arquivo existir, `datePublished` era digitado dentro do snippet do A1 e ausente no A2, e `dateModified` saia de `gerado_em` dos fatos, que mede a geracao dos FATOS e nao a mudanca da PAGINA: em 16/09 as duas paginas mudaram na revisao 52 sem regerar fato nenhum, e o JSON-LD servido continuou dizendo 13/09. A revisao do manifest tambem nao serve: ela e da ilha inteira e faria a data do artigo do filtro andar porque a R2 ganhou uma linha."
     },
     {

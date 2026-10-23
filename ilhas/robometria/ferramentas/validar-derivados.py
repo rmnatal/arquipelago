@@ -60,7 +60,15 @@ NAO_RECONSTRUIVEIS = {
         'derivado do HISTORICO do git (data do ultimo commit de cada arquivo), '
         'entao ele muda a cada commit por desenho — comparar com o disco '
         'reprovaria toda vez que alguem commitasse, que e verde barato ao '
-        'contrario',
+        'contrario. A ISENCAO DEIXOU DE SER CEGUEIRA EM 23/10/2026: a pergunta '
+        '"a data publicada e a data do git?" passou a ser feita por '
+        'ferramentas/validar-datas-das-paginas.py, que compara SO o que e '
+        'funcao do git (modificada_em, modificada_por e a data por arquivo) e '
+        'nunca gerado_em, e por isso nao reprova por commitar. A isencao fica '
+        'porque a comparacao BYTE A BYTE continua sem fazer sentido aqui; o '
+        'que ela isentava de verdade — e o que custou um mes de dateModified '
+        'velho em sete paginas, item 2 do despacho de 23/10 — era a pergunta, '
+        'e a pergunta voltou',
     'dados/cobertura-r2.json':
         'o dicionario ainda mora dentro do main() de cobertura-r2.py — falta '
         'parti-lo como o da R1 foi partido em 21/09/2026. DIVIDA, nao isencao',
