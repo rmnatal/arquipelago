@@ -215,6 +215,32 @@ Medido em 10/09/2026 (Planejador de palavras-chave, conta do Raphael, faixas; SE
 
 ---
 
+## DESPACHO DA SENTINELA — 2026-10-23 (RONDA DIÁRIA TÉCNICA, 15h0xZ) — UM ITEM, E ELE É A PÁGINA QUE NÃO PASSOU NA 32.5
+
+**A ilha está FORA DO FOCO, em modo de medição pela 1.2-b.1.** O item abaixo é correção, não bloco novo. **Zero consertos nesta ronda: o item cai na lista fechada 19.2.**
+
+**Item 1 — `/materiais/acabamento/peca-de-mosaico-esbranquicada/` SERVE O PRIMEIRO BOTÃO DE COMPRA A 1.495 px, CONTRA O TETO DE 1.400 px DA 32.5 — e é a única das 20 páginas do mutirão de 21/10 que não passa.** Medido a 390 px de largura real, com quebra de cache, em duas passadas idênticas e com as fontes carregadas:
+
+- a caixa de resposta começa a **25 px** e o bloco `cdm-molde-compra` a **1.239 px**; o primeiro `<a>` de loja fica a **1.495 px**; altura da página 5.062 px; rolagem horizontal 0;
+- a irmã `/materiais/acabamento/impermeabilizar-peca-de-mosaico/`, do mesmo molde e da mesma mãe, serve o primeiro botão a **1.149 px**;
+- **a causa é medida, não suposta:** a caixa de resposta (`cdm-molde-resultado cdm-guia-resposta`) desta página tem **857 px** de altura contra **553 px** da irmã. São 304 px de texto de resposta a mais, e são eles que empurram o botão por cima do teto. Nada no molde está quebrado: a página é mais longa na parte que a 32.5 mede.
+- as outras 19 passam, com folga: `/materiais/acabamento/` 1.242 px, `verniz-para-peca-de-mosaico` 1.121, `diluir-o-verniz-do-mosaico` 1.304, `camadas-de-verniz-depois-do-rejunte` 1.304, `impermeabilizar` 1.149, `selar-a-base` 1.121, as oito de consulta de produto entre **781 e 1.238 px**, e as cinco peças de `/loja/` sem botão de loja por desenho (peça da artesã não tem link de afiliado).
+
+**Por que não consertei:** encurtar a resposta é escolher **o que** sai de uma resposta que está certa, ou mexer no componente de molde da casca que serve 20 páginas — as duas coisas são "escolher entre duas opções defensáveis" e a segunda mexe em mais de uma página de uma vez (19.2 e 22.7). A terceira saída possível — subir o bloco de compra para dentro da caixa de resposta — é desenho de molde, e desenho de molde é da Fundação.
+
+**Pronto quando:** no ar, a 390 px e com quebra de cache, `/materiais/acabamento/peca-de-mosaico-esbranquicada/` servir o primeiro `<a>` de loja **antes de 1.400 px**, com a caixa de resposta ainda começando antes de 700 px, sem rolagem horizontal, e com o texto inteiro ainda no HTML servido com JavaScript desligado (22.8). **E a régua que mede isso passa a varrer as 20 páginas**, não uma: o `ESTADO.md` de 21/10 registrou "20 de 20 passam a 32.5 no ar", e a medição independente de hoje achou 19 — régua que não varre todas certifica a página que o autor abriu.
+
+**O QUE ESTA RONDA RECONFERIU (19.4c), abrindo o `dados/consertos.md` antes de tudo:**
+
+- **O conserto de 24/09 (o `.htaccess` da raiz sem o bloco `# BEGIN WordPress`) está DE PÉ**, e com ele o reparo de 08/10 da terceira queda: `/wp-sitemap.xml` 200 em `application/xml` com XML de sitemap de verdade, `/robots.txt` 200 em `text/plain`, `/wp-json/` 200 em `application/json`, e caminho virgem em 404 **na página da própria ilha**. As 32 URLs do sitemap em HTTP 200.
+- **O conserto de 25/09 (DUAS `<meta name="robots">` em toda página que sai do índice) está DE PÉ:** `/atelie/`, `/?s=verniz`, `/author/mosaico_gestor/` e `/materiais/como-sabemos/` servem **exatamente uma** `<meta name='robots' content='noindex, follow' />` cada.
+- **O conserto de 25/09 (`sub_id` deslocado uma casa) NÃO foi reconferido, e não por esquecimento: por regra.** A 25.8 proíbe conferir o link de uma ilha pelo encurtador, porque o salto do `s.shopee.com.br` é onde a plataforma **conta o clique** — e a primeira coisa que a leitura semanal procura nesta ilha é o primeiro clique orgânico. O despacho de 07/10 sobre isso continua aberto e o fechamento dele é por construção, com a função que gera o link, nunca por conferência de link da ilha.
+- **O soft 404 na borda (item 2 do despacho de 30/09) CONTINUA:** sonda virgem em **404 · 200 · 200 · 200**. É do Raphael.
+
+**O QUE PASSOU:** 32 de 32 URLs em 200; `/status` em 92 igual ao manifest; zero `&#038;` dentro de `<script>`; zero `noindex` indevido nas 32; JSON-LD em todas e `BreadcrumbList` em todas as que não são a home; `description` única nas 32 e nenhuma acima de 160; zero `<img>` sem `alt` ou sem `width`/`height`; `aria-expanded`/`aria-controls` e favicon nas 32; **zero página órfã** contada pela 16.9 na direção de quem aponta, com a menor contagem de entrada em **2** — a rotação de irmãs da 16.9(a) está segurando as onze filhas de `/materiais/`; zero palavra da lista "Proibidas" do `VOZ.md` em título, `<h1>` ou primeiro parágrafo; zero frase de bastidor da 32.4; zero link cru de loja nas 20 páginas do molde. **Teste de vida: 24 de 24 testáveis vivos** — 20 da Shopee em `item_status: normal` e os 4 de catálogo do Mercado Livre conferidos na página renderizada (`MLB38691363` R$ 59, `MLB27315078` R$ 81, `MLB27690478` R$ 19, `MLB25541512` R$ 76), zero morto, zero esgotado, **zero clique de afiliado gasto**. **Piso da 25.2: 43 de 43 materiais com `url_busca` e `url_busca_produto`, zero intestável; dos 43, 24 têm ficha e os 24 são testáveis.**
+
+**Nota de método, para a próxima ronda não repetir o erro:** no Mercado Livre o corpo que um `fetch` devolve é **casca de JavaScript**, e procurar "Sem estoque" nele dá **falso positivo** — foi o que aconteceu hoje com `quartzolit-rejunte-epoxi`, que a casca acusou de esgotado e a página renderizada mostrou vivo, com preço e botão de compra. O teste de vida de link de catálogo do Mercado Livre se faz na página **renderizada**, lendo `h1`, preço e botão — do mesmo jeito que a 25.4 já diz que o `<title>` da Shopee não serve.
+
 ## DESPACHO DA SENTINELA — 2026-10-21 (LEITURA SEMANAL, 19h5xZ, Search Console pela nuvem) — ILHA EM MODO DE MEDIÇÃO (1.2-b.1)
 
 **Isto é a leitura semanal, não a ronda diária. A ilha está FORA DO FOCO.** Pela 1.2-b.1 ela está em modo de medição e **nenhum item abaixo autoriza construção** — mas o item 1 vale no dia em que ela voltar ao foco, e o item 2 é uma correção do que o despacho anterior escreveu.

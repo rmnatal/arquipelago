@@ -45,6 +45,40 @@ python3 ferramentas/bancada.py --lista    # só imprime o que rodaria
 
 ---
 
+## DESPACHO DA SENTINELA — 2026-10-23 (RONDA DIÁRIA TÉCNICA, 15h0xZ) — DOIS ITENS NOVOS, OS DOIS NASCIDOS COM O BLOCO DO MOLDE DE 21/10
+
+**A ilha está FORA DO FOCO (a jornadafly entrou em 22/10), em modo de medição pela 1.2-b.1.** Nenhum item abaixo autoriza bloco de construção nesta ilha; os dois são correção, e correção fura a fila pela 18. **Zero consertos nesta ronda: os dois itens caem na lista fechada 19.2, que vale mais que a 19.1.**
+
+**Item 1 — A CAIXA DE RESULTADO DA `/quantos-pa-o-robo-aspirador-precisa/` PROMETE "OU MAIS" E A PÁGINA EXCLUI EXATAMENTE QUEM DECLARA O NÚMERO.** Medido no ar hoje, com entrada inédita `area=110&piso=tapete fino&pelo=curto`:
+
+- a caixa do topo (a da 32.1 item 4, nascida no bloco de 21/10) publica, em Mono e na primeira tela, **`4.000` `Pa ou mais`**;
+- a vitrine logo abaixo lista **5** modelos e o resumo escreve "São **5** modelos que passam no limiar de 4.000 Pa";
+- o banco tem **7** publicáveis com canal brasileiro cujo `pa_declarado` é **maior ou igual** a 4.000: `xiaomi-s20` (5.000), `xiaomi-s40c` (5.000), `xiaomi-s40` (10.000), `xiaomi-h40` (10.000), `roborock-saros-z70` (22.000) — e **`xiaomi-s10` (4.000)** e **`xiaomi-e10` (4.000)**, que a página **omite** da vitrine e da contagem;
+- os dois omitidos **aparecem** na mesma página quando o limiar é 3.000 (medido em `area=35&piso=liso&pelo=nao`), o que mostra que a exclusão é do limiar e não do registro.
+
+**A regra está CERTA e o dado está CERTO — e isso é o que torna o item barato de fechar.** A fonte citada na própria página é a Canaltech, que escreve **"acima de 4.000 Pa"**, e a ilha já trata o empate como ele deve ser tratado: `dados/r2-referencia.json` tem, em cada situação de limiar 4.000, um bloco **`no_limiar`** com a frase servida no ar — *"Xiaomi E10: 4.000 Pa declarados pelo fabricante, e a Canaltech escreve «acima de 4.000 Pa». Fica nesta seção separada porque estar no número não é estar acima dele"* — e o mesmo para o `xiaomi-s10`. **O que está errado é UMA string, e ela é a linha mais lida da página:** `'Pa ou mais'`, literal fixo em `snippets/robometria-r2.php` **linha 1187**, na chamada de `robometria_casca_caixa()`. Logo abaixo, a frase de leitura da mesma caixa já pega o operador da fonte por função — `robometria_r2_escrever_limiar()`, no mesmo arquivo —, e é por isso que a frase está certa e o rótulo não.
+
+**Por que não consertei:** é literal dentro de snippet PHP (19.2, primeira linha da lista fechada) **e** o conserto exige escolher entre duas saídas defensáveis — fazer o rótulo sair do operador da fonte, como a frase já faz, ou passar a incluir o empate na vitrine e aposentar o bloco `no_limiar`. A 19.2 proíbe as duas coisas à ronda.
+
+**Pronto quando:** no ar, a 390 px, em `?area=110&piso=tapete+fino&pelo=curto`, o rótulo da caixa do topo **não** disser "ou mais" quando a fonte daquele limiar escrever "acima de"; **e** o número da contagem ("São N modelos que passam no limiar") for reproduzível, no mesmo dia, por uma conta sobre `dados/modelos-robo.json` que use **o mesmo operador** que o rótulo promete. Hoje a conta que reproduz a tela é `pa_declarado > 4000`, e o rótulo promete `>= 4000`.
+
+**Item 2 — `dateModified` DE 2026-09-21 EM SETE PÁGINAS QUE O BLOCO DE 21/10 REESCREVEU, e é a cicatriz de 16/09 repetida um mês depois com o gerador já pronto.** Medido no JSON-LD servido hoje: `/filtro-universal-de-robo-aspirador/` e `/quantos-m2-o-robo-aspirador-limpa-por-carga/` servem `dateModified: 2026-09-21`. A origem não é palpite: `robometria_casca_datas_da_pagina()` lê a option `robometria_dados_datas-das-paginas`, e `dados/datas-das-paginas.json` está com **`gerado_em: 2026-09-21`** e `modificada_em: 2026-09-21` nos **sete** registros que tem (`filtro-universal-de-robo-aspirador`, `quantos-m2-o-robo-aspirador-limpa-por-carga`, `pecas`, `pecas-filtros`, `pecas-filtros-xiaomi`, `pecas-filtros-wap`, `pecas-filtros-electrolux`).
+
+**O desembarque está em dia e não é ele:** o log do Sync de hoje, 14h58Z, traz `dados/datas-das-paginas: ok (option robometria_dados_datas-das-paginas)`. **O que está velho é o arquivo no repositório** — o bloco do molde de 21/10 reescreveu as nove páginas (casca 1.13.0, R1 1.12.0, R2 1.10.0, A1 1.6.0, A2 1.6.0, malha 1.1.0) e **não rodou `ferramentas/gerar-datas-das-paginas.py`**. O cabeçalho do próprio `robometria-casca.php` já diz por que isto importa: *"ausente o Google infere, errada ele acredita — e o campo existe justamente para ele decidir se vale reindexar"*. Uma ilha que acabou de mudar de molde em nove páginas é exatamente a que precisa do contrário.
+
+**Por que não consertei:** o arquivo é **gerado** e derivado do git, então data trocada à mão volta na próxima passada do gerador — a lição escrita no `consertos.md` desta ilha em 02/10 — e esta ronda não tem repositório para rodar o gerador. Além disso mexe em **sete páginas de uma vez**, que a 22.7 manda despachar.
+
+**Pronto quando:** `dados/datas-das-paginas.json` tiver `gerado_em` e `modificada_em` da data em que o molde entrou (ou mais recente) para as sete, gravado **pela saída de `ferramentas/gerar-datas-das-paginas.py`** e não à mão; e o JSON-LD servido das duas páginas de artigo trouxer esse `dateModified`, medido com quebra de cache.
+
+**O QUE ESTA RONDA RECONFERIU DOS DESPACHOS ABERTOS (18.4 e 19.4c), e nenhum pode ser apagado:**
+
+- **Item 1 do despacho de 16/10 (`Article` sem `author`) — CONTINUA**, e agora com a linha exata: `/quantos-m2-o-robo-aspirador-limpa-por-carga/` serve `Article` **sem** `author`; `/filtro-universal-de-robo-aspirador/` serve `author: {"@id": ".../#organizacao"}`. No repositório, o array `$artigo` de `snippets/robometria-a2.php` traz `publisher` e **não** traz `author`; o de `snippets/robometria-a1.php` traz, na **linha 744**. É uma linha de array, no arquivo nomeado.
+- **Item 1 do despacho de 02/10 (dois números para a mesma frase) — CONTINUA**, remedido no ar hoje, página por página: **91** pares peça × modelo em `/pecas/`, `/qual-peca-serve-no-meu-robo-aspirador/` e `/sobre/`; **92** em `/filtro-universal-de-robo-aspirador/`. A conta do banco não mudou: 92 pares declarados pelo lado da peça, 91 com os dois lados publicáveis, e o par que os separa continua sendo `multi-pr10124` × `multi-ho401`.
+- **Item 1 do despacho de 30/09 (soft 404 na borda) — CONTINUA**, e é do Raphael: sonda virgem `/sonda-virgem-ronda-2310/` em **404 · 200 · 200 · 200**, sem quebra de cache.
+- **`dados/consertos.md` desta ilha registra ZERO conserto em todas as suas linhas**, então não havia conserto anterior a reabrir.
+
+**O QUE PASSOU, para a Fundação não gastar bloco procurando:** 14 de 14 URLs em HTTP 200; porta de entrada da 29.2 inteira mais o 404 que tem de ser 404; `/status` em 88 igual ao manifest; zero `&#038;` dentro de `<script>`; zero `noindex`; JSON-LD nas 14 e `BreadcrumbList` nas 13 que não são a home; `description` única nas 14 e nenhuma acima de 160; zero `<img>` sem `alt` ou sem `width`/`height`; `aria-expanded`/`aria-controls` e favicon nas 14; zero órfã pela 16.9 na direção de entrada (menor contagem: 4); zero palavra proibida do `VOZ.md` e zero frase de bastidor da 32.4; console sem uma mensagem no Chrome do Raphael. **A 32.5 passa nas nove páginas do molde, a 390 px reais, e passa TAMBÉM depois do cálculo** (R1 1.203 px, R2 1.318 px, uma caixa de resposta só) — o defeito que a aquametria teve em 21/10 **não se reproduz aqui**, porque R1 e R2 são formulário GET renderizado no servidor.
+
 ## DESPACHO DA SENTINELA — 2026-10-21 (LEITURA SEMANAL, 19h5xZ, Search Console pela nuvem) — ILHA EM MODO DE MEDIÇÃO (1.2-b.1)
 
 **Isto é a leitura semanal, não a ronda diária. A ilha está FORA DO FOCO** — pela 1.2-b.1 ela está em **modo de medição**, e nenhum item abaixo autoriza construção. **Nenhum item desta leitura é bloco.**
