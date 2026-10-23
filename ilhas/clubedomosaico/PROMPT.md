@@ -215,7 +215,55 @@ Medido em 10/09/2026 (Planejador de palavras-chave, conta do Raphael, faixas; SE
 
 ---
 
-## DESPACHO DA SENTINELA — 2026-10-23 (RONDA DIÁRIA TÉCNICA, 15h0xZ) — UM ITEM, E ELE É A PÁGINA QUE NÃO PASSOU NA 32.5
+## ~~DESPACHO DA SENTINELA — 2026-10-23 (RONDA DIÁRIA TÉCNICA, 15h0xZ) — UM ITEM, E ELE É A PÁGINA QUE NÃO PASSOU NA 32.5~~ — **FECHADO EM 23/10/2026 às 19h4xZ, CONFERIDO NO AR PELA 18.4**
+
+> **O ITEM 1 ESTÁ CUMPRIDO, e o critério de pronto que ele mesmo declara foi medido no ar, a 390 px
+> de largura real e com quebra de cache:** `/materiais/acabamento/peca-de-mosaico-esbranquicada/`
+> serve o primeiro `<a>` de loja a **1.137 px**, contra o teto de 1.400 px da 32.5; a caixa de
+> resposta começa a **347 px**, contra o teto de 700; rolagem horizontal **0**; **zero** erro de
+> JavaScript. Revisão **93**, `/status` em 93, portão da 20.4 aprovado lendo o log linha por linha.
+>
+> **A ESCOLHA FOI A TERCEIRA SAÍDA DAS TRÊS QUE O DESPACHO DEIXOU ABERTAS — desenho de molde —, e
+> nenhuma palavra saiu da página.** Não encurtei a resposta (seria escolher o que sai de uma resposta
+> certa) e não mexi no componente do molde para esconder texto. O que mudou é ONDE a contabilidade
+> mora: a frase "Das N combinações de produto e superfície desta página" saiu da CAIXA DE RESPOSTA e
+> foi para a seção "O que nenhum destes fabricantes diz", onde a página já publicava a outra metade
+> da mesma contagem — quantas superfícies as frases alcançam e quantas deixam de fora. A caixa ficou
+> com a RESPOSTA, que é o que a 32.2 pede dela ("o número e a condição em uma frase"). **Medido, e é a
+> prova de que nada foi perdido: 6.765 caracteres de texto servido antes e 6.765 depois, zero palavra
+> perdida e zero palavra nova** (contagem palavra por palavra do HTML no ar, antes e depois).
+>
+> **E A CAUSA NÃO ERA SÓ A RESPOSTA MAIS LONGA: ERA O CARTÃO DO GUIA FORA DA COMPACTAÇÃO DO MOLDE.**
+> As regras de celular do bloco de compra nasceram em 21/10 escritas para `.cdm-f2-cartao`, o cartão
+> das ferramentas; as sete páginas do Guia entraram no molde no mesmo mutirão com `.cdm-guia-cartao`
+> e **nenhuma delas as alcançava** — o cartão do Guia ficou com o recheio e o corpo de texto do
+> desktop dentro do bloco de compra do telefone. Mais uma: a folha do Guia redecorava a caixa do
+> molde (1,2rem de recheio e 1,6rem de margem vencendo as do molde por ordem de carga), o que a F2 já
+> tinha consertado em 21/10 com `:not(.cdm-molde-resultado)` e esta folha não copiou. Somadas, as três
+> valem **223 px** de primeira tela na filha do pigmentado, **213** na mãe e **195** na irmã do
+> impermeabilizante — então a folga das outras seis páginas da família também deixou de ser sorte.
+>
+> **A SEGUNDA METADE DO "PRONTO QUANDO" — a régua passar a varrer todas — ESTÁ CUMPRIDA, e ela
+> descobre as páginas em vez de as listar:** `ferramentas/conferir-32-5-no-navegador.mjs` lê o
+> `wp-sitemap.xml` no ar, abre cada URL num Chromium de verdade a 390 px e julga a que SERVE o molde,
+> listando como fora do molde a que não serve. **Ele acha 22 páginas de molde, não 20**: as duas
+> ferramentas (`qual-cola-usar-no-mosaico` e `quantas-pastilhas-para-mosaico`) saíram no mutirão de
+> 21/10 numa execução anterior, às 16h2xZ, e por isso não estavam na lista de 20 que a ronda mediu.
+> **As 22 passam.** A lista nunca mais decide o que é medido — a lição do despacho, na frase dele:
+> régua que não varre todas certifica a página que o autor abriu.
+>
+> **E O PORTÃO NOVO QUASE REPROVOU DUAS PÁGINAS CERTAS, o que fica escrito porque é lição de método.**
+> Na primeira passada ele mediu, nas duas ferramentas, a CAIXA DE RESULTADO (777 px e 884 px) e
+> chamou as duas de fora da 32.5. A régua certa ali é o FORMULÁRIO, que a ordem da 32.1 põe antes da
+> caixa: **439 px e 462 px**, as duas com folga. Corrigido antes de qualquer commit de veredito —
+> portão que reprova página certa é o caminho mais curto para alguém passar a ignorá-lo, que é o
+> perigo que a 20.5 já nomeou.
+>
+> **O que este despacho NÃO alcançou, e não é dele:** o soft 404 na borda continua, é do Raphael e
+> está no `dados/PAINEL.md`; o `sub_id` deslocado segue proibido de ser conferido pelo encurtador
+> (25.8) e fecha por construção.
+>
+> **O texto original do despacho fica abaixo, preservado.**
 
 **A ilha está FORA DO FOCO, em modo de medição pela 1.2-b.1.** O item abaixo é correção, não bloco novo. **Zero consertos nesta ronda: o item cai na lista fechada 19.2.**
 

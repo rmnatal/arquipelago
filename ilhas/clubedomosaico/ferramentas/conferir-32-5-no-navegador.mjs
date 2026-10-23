@@ -32,8 +32,10 @@
  * O QUE ELE MEDE, por pagina do molde, a 390 px de largura real e com quebra de
  * cache, e os tres primeiros sao o "pronto quando" da 32.5:
  *
- *   1. onde a PRIMEIRA CAIXA comeca  — caixa de resposta (`.cdm-molde-resultado`)
- *      ou formulario da ferramenta. Teto: 700 px.
+ *   1. onde a PRIMEIRA CAIXA comeca. Teto: 700 px. Em pagina de FERRAMENTA e o
+ *      FORMULARIO (`form.cdm-f1-form`/`form.cdm-f2-form`), porque a ordem da
+ *      32.1 o poe antes da caixa de resultado; em ficha e pagina do Guia, que
+ *      nao tem formulario, e a caixa de resposta (`.cdm-molde-resultado`).
  *   2. onde o PRIMEIRO BOTAO DE COMPRA aparece. Teto: 1.400 px. Em pagina com
  *      link de afiliado e o primeiro `a[rel~=sponsored]`; nas pecas de `/loja/`,
  *      que nao tem link de loja por desenho (peca da artesa nao e afiliado), e
@@ -129,7 +131,23 @@ for (const url of lista) {
 		const primeiro = (sel) => [...document.querySelectorAll(sel)].find(visivel) || null;
 
 		const bloco = document.querySelector('.cdm-molde-compra');
-		const caixa = primeiro('.cdm-molde-resultado') || primeiro('form.cdm-f1-form, form.cdm-f2-form, main form');
+
+		/* QUEM E A "PRIMEIRA CAIXA" DEPENDE DO TIPO DE PAGINA, e trocar os dois
+		   e reprovar pagina certa. A 32.5 diz: "o formulario (ou a caixa de
+		   resposta, em ficha) comeca antes de 700 px". Em pagina de FERRAMENTA a
+		   ordem da 32.1 poe o FORMULARIO antes da caixa de resultado, entao
+		   medir a caixa ali e medir o degrau de baixo: medido em 23/10/2026,
+		   `/materiais/qual-cola-usar-no-mosaico/` tem formulario a 439 px e
+		   caixa a 777 px, e `/materiais/quantas-pastilhas-para-mosaico/` tem
+		   462 px e 884 px — as duas PASSAM pela regua certa e as duas seriam
+		   REPROVADAS pela caixa. Portao que reprova pagina certa nao e rigor: e
+		   o caminho mais curto para alguem passar a ignora-lo (a licao da 20.5).
+		   O formulario se nomeia por CLASSE DE FERRAMENTA (`cdm-f1-form`,
+		   `cdm-f2-form`) e nunca por `main form`, porque as cinco pecas de
+		   `/loja/` tem o formulario de recado dentro de um `<details>` fechado,
+		   que nao e formulario de ferramenta e nem esta visivel. */
+		const formulario = primeiro('form.cdm-f1-form, form.cdm-f2-form');
+		const caixa = formulario || primeiro('.cdm-molde-resultado');
 		const patrocinado = primeiro('a[rel~="sponsored"]');
 		const controle = bloco
 			? [...bloco.querySelectorAll('a[rel~="sponsored"], a.cdm-botao, summary.cdm-botao, a.cdm-f2-botao, a.cdm-f1-botao, button.cdm-botao')].find(visivel) || null
@@ -139,7 +157,9 @@ for (const url of lista) {
 		return {
 			tem_molde: !!(bloco || document.querySelector('.cdm-molde-resultado')),
 			caixa: topo(caixa),
+			caixa_que: formulario ? 'formulario' : 'resposta',
 			caixa_alt: caixa ? Math.round(caixa.getBoundingClientRect().height) : null,
+			resposta: topo(primeiro('.cdm-molde-resultado')),
 			compra: topo(compra),
 			compra_rotulo: compra ? (compra.textContent || '').trim().slice(0, 32) : null,
 			compra_patrocinada: !!patrocinado,
@@ -157,7 +177,7 @@ for (const url of lista) {
 	molde.push(m);
 
 	const problemas = [];
-	if (m.caixa === null || m.caixa >= TETO_CAIXA) problemas.push(`caixa a ${m.caixa} px (teto ${TETO_CAIXA})`);
+	if (m.caixa === null || m.caixa >= TETO_CAIXA) problemas.push(`${m.caixa_que} a ${m.caixa} px (teto ${TETO_CAIXA})`);
 	if (m.compra === null || m.compra >= TETO_COMPRA) problemas.push(`compra a ${m.compra} px (teto ${TETO_COMPRA})`);
 	if (m.rolagem_h > 0) problemas.push(`rolagem horizontal ${m.rolagem_h} px`);
 	if (m.erros > 0) problemas.push(`${m.erros} erro(s) de JavaScript`);
@@ -166,7 +186,7 @@ for (const url of lista) {
 
 	const marca = problemas.length ? 'FALHA' : 'ok   ';
 	console.log(
-		`  ${marca} ${m.url.padEnd(56)} caixa ${String(m.caixa).padStart(5)} px  compra ${String(m.compra).padStart(5)} px  altura ${String(m.altura).padStart(5)} px` +
+		`  ${marca} ${m.url.padEnd(56)} ${m.caixa_que.padEnd(11)} ${String(m.caixa).padStart(5)} px  compra ${String(m.compra).padStart(5)} px  altura ${String(m.altura).padStart(5)} px` +
 			(problemas.length ? `\n         ${problemas.join('; ')}` : '')
 	);
 }

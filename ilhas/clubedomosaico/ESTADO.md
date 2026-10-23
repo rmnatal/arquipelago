@@ -31,7 +31,8 @@ urls_publicadas: 32        # 31 -> 32 em 12/10/2026 17h5xZ: a SEXTA filha de /ma
                            # primeira vez que esta ilha serve a arvore inteira de TRES segmentos.
                            # contado no wp-sitemap.xml no ar em 24/09/2026 19h33Z: 12 em posts-page e 5 em posts-peca. O 13 anterior era de 14/09 e era a secao 4 em acao.
 primeira_indexacao: desconhecida
-ultima_execucao: 2026-10-21T19:12Z   # molde da 32.2 nos TRES grupos que faltavam: 7 paginas de /materiais/acabamento/, 8 de consulta de produto e as 5 pecas de /loja/. 20 de 20 passam a 32.5 no ar.
+ultima_execucao: 2026-10-23T19:43Z   # o item 1 do despacho da ronda de 23/10 FECHADO e conferido no ar (18.4): a filha do pigmentado serve o primeiro link de loja a 1.137 px contra o teto de 1.400 da 32.5, e a regua nova diz 22 de 22 paginas do molde dentro da 32.5. Revisao 93. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
+                                     # (a linha anterior dizia 20 de 20 passam a 32.5 no ar, de 21/10 19h12Z; a medicao independente da ronda de 23/10 achou 19 de 20, e e por isso que a regua desta ilha deixou de ser uma lista.)
                                      # QUE O CRITERIO DELE PERMITIA, e o que o mantinha fechado NAO era
                                      # o que estava escrito nele. Nenhuma URL nova (a ilha segue em 32),
                                      # nenhum byte no ar, nenhum Sync: a leva 3 de 3 da semana da 21.4
@@ -114,7 +115,7 @@ ultima_execucao: 2026-10-21T19:12Z   # molde da 32.2 nos TRES grupos que faltava
                                      # 06/10 envelhecida sete dias: com DOIS produtos saindo pela regra
                                      # 7 na mesma celula, o teste-f2.php media a saida de cada um contra
                                      # o texto do bloco INTEIRO. Passa a medir por PARAGRAFO do produto.
-executando_desde: 2026-10-23T19:33Z   # RESERVA RENOVADA pela 1.1 as 2026-10-23T19:33Z, a primeira desta execucao (reservada as 19:17Z): o bloco mexeu em dois snippets, num portao, no manifest e num portao novo de navegador, e as tres baterias de mutacao desta ilha sozinhas passam de 40 minutos. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
+executando_desde: null   # limpo as 2026-10-23T19:43Z pela propria execucao que reservou as 19:17Z de 23/10. Reserva RENOVADA uma vez pela 1.1 (19:33Z): o bloco mexeu em dois snippets, num portao, no manifest e num portao novo de navegador, e as tres baterias de mutacao desta ilha mais o conferir-no-ar passam de 40 minutos juntos.
                          # execucao de 21/10 18:10Z-19:12Z FECHADA: o despacho do molde da 32.2 saiu INTEIRO — os tres grupos, 20 paginas, revisoes 90, 91 e 92, conferidas no ar uma a uma pela 18.4. Reserva RENOVADA tres vezes pela 1.1 (18:24Z, 18:39Z e 19:04Z), uma por grupo, porque o mutirao da 32.6-b nesta ilha passa de uma hora.
                          # limpo as 20h2xZ de 13/10/2026 pela propria execucao que reservou as 19h17Z. Ele foi reescrito as 19h51Z, e o motivo que eu escrevi naquele commit estava errado: dizia que o bloco tinha passado de 40 minutos e ele tinha 34. Renovar antes nao fere nada (o campo so fica mais novo), mas o motivo escrito tinha de ser verdade — e e o mesmo deslize que o comentario da execucao de 13h18Z, mais abaixo, registra.
                          # UMA CORRECAO DE HONESTIDADE, porque ela foi para o `main` num commit: no commit
@@ -131,69 +132,57 @@ bloqueada_por: null   # ACRESCENTADO em 30/09/2026: o campo FALTAVA neste cabeca
                       # para decidir a ilha da execucao — entao a leitora dele vinha usando o valor
                       # ausente como se fosse null por sorte do idioma, nao por o campo estar escrito.
 bloco_atual: |
-  O DESPACHO DO MOLDE DE CONVERSAO DA SECAO 32 ESTA FECHADO INTEIRO NESTA ILHA, e
-  com ele as 22 paginas da ilha que respondem alguma coisa estao no molde: as DUAS
-  ferramentas sairam em 21/10 as 16h2xZ (revisao 89) e os TRES GRUPOS que faltavam
-  sairam nesta execucao, pela 18.2 e pela 32.6-b, conferidos no ar um por um pela
-  18.4. Revisoes 90, 91 e 92; o portao da 20.4 aprovou as tres lendo o log do
-  /status linha por linha.
-  MEDIDO NO AR, celular de 390 px com quebra de cache. Os tetos da 32.5 sao 700 px
-  para a caixa de resposta e 1.400 px para o primeiro botao de compra:
-  /materiais/acabamento/ e as 6 filhas (7) . resposta 314 a 357 . botao 963 a 1.385
-      (antes: sem caixa de molde, e botao entre 2.099 e 3.808 px)
-  paginas de produto pelo nome (8) ....... resposta 272 a 314 . botao 712 a 1.162
-      (antes: botao entre 1.081 e 1.471 px — a do rejunte JA estourava o teto)
-  pecas da artesa em /loja/ (5) .......... resposta 300 a 342 . botao 441 a 484
-      (antes: preco a 1.138 px e nenhum botao na primeira tela)
-  VINTE DE VINTE PASSAM. Rolagem horizontal 0 e pageerror 0 nas vinte. Altura caiu
-  perto da metade nas de produto (de 4.666-6.473 para 2.892-4.592 px).
-  O QUE NAO MUDOU, comparado pagina por pagina: title, H1, description e os nos de
-  JSON-LD IDENTICOS nas vinte, e ZERO palavra perdida em cada uma, contado forma
-  por forma sobre o corpo servido com script, style e comentario fora. A unica
-  forma que perdeu ocorrencia em todo o trabalho foi "acima", de "a tabela acima",
-  que virou "a tabela desta pagina" porque o bloco de produto agora fica ANTES da
-  tabela.
-  O ITEM 2 (a 32.4) ESTA EM ZERO nos tres grupos. A varredura achou "bancada" e
-  "regua" numa pagina so, e as duas sao do PRODUTO e nao da fabrica: "a cortadora
-  de piso de bancada, aquela de obra com regua e alavanca".
-  TRES COISAS QUE SO SUBIR A SECAO NAO RESOLVIA, e as tres estao medidas:
-  (1) o cartao de produto do Guia virou o da 32.1 item 5 — foto, marca, modelo, a
-  especificacao que fez o produto entrar, e ENTAO o botao de loja; com a secao no
-  alto mas o cartao antigo, o botao ainda caia entre 1.591 e 2.190 px;
-  (2) a linha de procedencia desceu para o fim do bloco de produto, que e de quem
-  ela fala, e aquilo valia 106 px — na pagina do pigmentado foi a diferenca entre
-  1.486 e 1.364 px;
-  (3) na peca sairam DUAS coisas do TEMA, e so na peca: a foto de destaque (220 px,
-  a MESMA imagem que abre a galeria 60 px abaixo) e a assinatura "Escrito por
-  Artesa em <data>" (75 px), que e cabecalho de post de blog numa pagina de
-  produto. Juntas valiam 295 px.
-  PORTOES, todos verdes depois do trabalho: teste-guia 232, teste-produto 306,
-  teste-loja 208 (72 estados da ficha), teste-leads 211, teste-casca 1.041,
-  teste-atelie aprovado, teste-f1 230, teste-f2 174, conferir-no-ar 530 afirmacoes
-  no HTML servido com 0 falha, mutacoes-guia 31 de 31, mutacoes-acabamento 14 de
-  14, mutacoes-produto 25 de 25, mutacoes-loja 36 de 36, mutacoes-leads 48 de 48.
-  E UM PORTAO ACHOU DEFEITO NO MEU PROPRIO TEXTO, pela segunda vez que a mesma
-  mutacao fura a mesma trava: a afirmacao "a procedencia NOMEIA a Shopee" lia dali
-  ate o FIM do corpo (`(.*?)$`), e a barra do rodape nova diz "ofertas conferidas
-  na Shopee" — a mutacao 20 voltou a PASSAR com a procedencia muda. A fronteira
-  agora fecha na dobra que embrulha a secao. Regua com uma ponta solta mede o
-  vizinho, e o vizinho muda sem avisar.
-  E CINCO MUTACOES FICARAM INERTES (3 do produto, 2 da loja) porque o codigo que
-  elas editavam mudou de forma. Foram reapontadas: mutacao inerte e trava NAO
-  MEDIDA com cara de trava verde.
-  A ESCOLHA DA ILHA: SEGUNDA TENTADA, E A CORRIDA DA PRIMEIRA SE PERDEU SEM AVISO.
-  A ilha em foco e a aquametria, mas o despacho do molde fura o foco pela excecao
-  que o Raphael acrescentou a 1.2 em 21/10, na ordem aquametria -> clubedomosaico
-  -> robometria. Pedi a aquametria e o meu commit de reserva (1c7d970) reescreveu
-  o campo que outra execucao ja tinha escrito no mesmo minuto (84eaf10, 17:45Z): o
-  rebase replicou a minha linha por cima e o push NAO foi recusado, entao a corrida
-  se perdeu em silencio. Aquela execucao fechou o item 2 do despacho da aquametria
-  em 1e6a9e0; o trabalho duplicado que eu tinha em arvore foi DESCARTADO, sem force
-  push e sem tocar no que ela entregou. O da robometria fechou as 16h1xZ, o desta
-  ilha estava ABERTO, e aqui executando_desde estava null com o ultimo commit na
-  pasta sendo o de FECHO da execucao anterior. Reserva aceita as 18:10Z.
-  REDE PELA 20.2, RETESTADA E NAO HERDADA: clubedomosaico.com.br e o /status em 200
-  nas tres passadas.
+  O ITEM 1 DO DESPACHO DA RONDA DE 23/10 ESTA FECHADO E CONFERIDO NO AR PELA 18.4,
+  e com ele o molde da secao 32 desta ilha esta no ar E CONFERIDO nas 22 paginas —
+  o que, pela excecao da 1.2 de 21/10, faz esta ilha DEIXAR DE FURAR O FOCO: com a
+  aquametria e a robometria ja fechadas, as tres estao com o molde no ar e o foco
+  volta a mandar sozinho. Revisao 93, /status em 93, as 14 linhas de item do log
+  dizendo ok, lidas uma por uma pela 20.4.
+  O CONSERTO FOI DE DESENHO DE MOLDE, que e a terceira das tres saidas que o
+  despacho deixou na mesa e a que ele mesmo diz ser da Fundacao: a conta de produto
+  por superficie ('Das N combinacoes desta pagina') saiu da CAIXA DE RESPOSTA e foi
+  para a secao 'O que nenhum destes fabricantes diz', onde a pagina ja publicava a
+  outra metade exata da mesma contagem. NENHUMA PALAVRA SAIU DA PAGINA, e isso e
+  contado e nao prometido: 6.765 caracteres de texto servido antes e 6.765 depois,
+  zero palavra perdida e zero nova, comparando palavra por palavra o HTML no ar dos
+  dois lados.
+  E A CAUSA NAO ERA SO A RESPOSTA MAIS LONGA — ERAM DUAS REGRAS DO MOLDE QUE NAO
+  ALCANCAVAM O GUIA, e este e o achado que vale mais que o conserto de uma pagina:
+  (a) as regras de celular do bloco de compra nasceram em 21/10 escritas para
+  cdm-f2-cartao, o cartao das FERRAMENTAS, e as sete paginas do Guia entraram no
+  molde no mesmo mutirao com cdm-guia-cartao sem alcancar uma linha delas — o
+  cartao do Guia ficou com o recheio e o corpo de texto do desktop dentro do bloco
+  de compra do telefone; agora as regras sao da CASCA, como a 32.6-b manda;
+  (b) a folha do Guia redecorava a caixa do molde (1,2rem de recheio e 1,6rem de
+  margem vencendo as do molde por ordem de carga), que a F2 consertou em 21/10 com
+  o seletor de negacao da classe do molde e esta folha nao copiou. Somadas as tres:
+  -223 px de primeira tela na filha do pigmentado, -213 na mae e -195 na irma — a
+  folga das outras seis paginas da familia tambem deixou de ser sorte.
+  A REGUA PASSOU A VARRER TODAS E NAO TEM LISTA: ferramentas/conferir-32-5-no-navegador.mjs
+  le o wp-sitemap.xml no ar, abre cada URL num Chromium a 390 px e julga a que SERVE
+  o molde, listando como fora do molde a que nao serve. 22 de 22 dentro da 32.5,
+  pior caixa em 462 px (teto 700) e pior botao de compra em 1.304 px (teto 1.400).
+  Sao 22 e nao 20 porque as duas ferramentas sairam na execucao das 16h2xZ de 21/10
+  (revisao 89) e o mutirao das 18h10Z foram os tres grupos seguintes: a lista de 20
+  estava certa para aquele dia e envelheceu em duas horas.
+  O PORTAO NOVO QUASE REPROVOU DUAS PAGINAS CERTAS, e fica escrito como licao de
+  metodo: na primeira passada ele mediu a CAIXA DE RESULTADO das duas ferramentas
+  (777 px e 884 px) quando a regua certa ali e o FORMULARIO, que a ordem da 32.1
+  poe antes da caixa — 439 px e 462 px, as duas com folga. Corrigido antes de
+  qualquer commit de veredito. Portao que reprova pagina certa e o caminho mais
+  curto para alguem passar a ignora-lo, o perigo que a 20.5 nomeou.
+  E UM PORTAO QUE A MUDANCA TORNARIA MENTIROSO FOI CONSERTADO NA MESMA PASSADA: o
+  teste-guia.php media a fronteira da frase de resposta pela primeira ocorrencia de
+  'Das ' no texto da pagina, verdade so enquanto a resposta terminava nela. Agora a
+  caixa se recorta PELA CLASSE, e duas afirmacoes novas trancam a regra pelos dois
+  lados — a caixa existe com o numero do recorte, e a conta das celulas NAO esta
+  dentro dela. Snippets: casca 1.24.0 -> 1.25.0, guia 1.6.0 -> 1.7.0 (e a constante
+  CDM_GUIA_VERSAO, que a 1.6.0 deixou parada em 1.5.0, voltou a ser a do cabecalho).
+  Bancada sem rede inteira verde, zero falha; no ar, o conferir-no-ar com 530
+  afirmacoes e 0 falha.
+  A ILHA SEGUE FORA DO FOCO E EM MODO DE MEDICAO (1.2-b.1): isto foi CORRECAO, nao
+  bloco de construcao, e nenhum item do despacho da leitura semanal de 21/10 foi
+  aberto.
 ---
 
 ## O QUE FALTA PARA ESTA ILHA ESTAR COMPLETA — 09/10/2026, 19h4xZ

@@ -3,6 +3,150 @@
 Log append-only da Fundacao. Cada execucao escreve aqui o bloco entregue e o
 proximo passo desbloqueado.
 
+23/10/2026 19h17Z–19h5xZ — O ITEM 1 DO DESPACHO DE 23/10 FECHADO NO AR: A PRIMEIRA TELA DO GUIA DEIXA DE DEPENDER DO TAMANHO DA RESPOSTA, E A RÉGUA PASSA A VARRER AS 22 PÁGINAS DO MOLDE
+
+**A ESCOLHA DA ILHA, e ela fura o foco por uma porta escrita.** `foco.md` nomeia a **jornadafly**, e a
+própria linha `fila_de_arquivo_da_ilha_em_foco` daquele arquivo, escrita hoje às 13h20Z, diz com todas
+as letras que **a fila de arquivo daquela ilha está ESGOTADA** e que *"a execução seguinte que
+encontrar esta ilha em foco, com `rede: BLOQUEADA` e sem WordPress, não tem bloco para abrir — e isso
+está escrito para que ela não invente um"*. **Remedi a rede pela 20.2, sem herdar o campo:**
+`jornadafly.com.br` em **000** nas duas passadas, com `clubedomosaico.com.br`,
+`www.clubedomosaico.com.br` e `aquametria.com.br` em **200** nas mesmas duas (8 medições, 4 de
+controle). Sem site e sem fonte, lá não há bloco. **Então vale a exceção que o Raphael acrescentou à
+1.2 em 21/10/2026:** o despacho do molde da seção 32 fura o foco, na ordem aquametria →
+clubedomosaico → robometria, *"enquanto uma dessas três ilhas tiver o despacho do molde aberto"*, e o
+foco só volta a mandar sozinho *"quando as três estiverem com o molde no ar e conferido"*. O da
+**aquametria** fechou em 21/10 (as 5 calculadoras e as 29 fichas), o da **robometria** fechou hoje às
+16h4xZ — e **o desta ilha não estava conferido**: a ronda das 15h0xZ achou **19 de 20** páginas
+passando a 32.5 e escreveu o item 1 justamente sobre isso. Esta ilha é a segunda da ordem e a única
+com o molde em aberto. **Reserva** aceita às **19:17Z** e **renovada uma vez** pela 1.1 (19:33Z), com a
+hora saindo do `date -u` na mesma linha de comando que grava o campo. **Passo 1:** `git fetch origin
+main`, nenhum PR aberto, e a branch `claude/dreamy-mccarthy-a4sfqp` idêntica ao `main` (0 à frente, 0
+atrás) — nada para mergear. Os cinco `ESTADO.md` parseiam em `yaml.safe_load` com os oito campos da
+seção 2 presentes.
+
+## 1. O ITEM FOI CONSERTADO PELA TERCEIRA SAÍDA DAS TRÊS, E NENHUMA PALAVRA SAIU DA PÁGINA
+
+O despacho deixou três saídas na mesa e disse qual era de quem: encurtar a resposta e mexer no
+componente da casca são *"escolher entre duas opções defensáveis"*, e a terceira — **subir o bloco de
+compra para dentro da caixa de resposta** — *"é desenho de molde, e desenho de molde é da Fundação"*.
+Peguei a terceira pelo que ela é no fundo: **decidir o que a caixa de resposta carrega**. A 32.2 pede
+dela *"o número e a condição em uma frase"*, e a caixa desta família carregava, além disso, a
+**contabilidade de cobertura** da página — a frase *"Das N combinações de produto e superfície desta
+página — N produtos vezes as N superfícies que a gente nomeia —, N estão escritas na frase de algum
+fabricante"*, que é a cauda fixa da régua de resposta e saía nas **sete** páginas.
+
+Ela **não saiu da página**: foi para a seção *"O que nenhum destes fabricantes diz"*, que é onde a
+página já publicava a outra metade exata da mesma contagem — quantas superfícies as frases alcançam e
+quantas deixam de fora. As duas contam a mesma lacuna, uma por superfície e a outra por célula
+(produto × superfície), e agora estão no mesmo parágrafo de vizinhança. **A prova de que nada foi
+perdido é contada, não prometida: 6.765 caracteres de texto servido antes e 6.765 depois, zero palavra
+perdida e zero palavra nova**, comparando palavra por palavra o HTML no ar de antes com o de depois (e
+o mesmo na bancada, nas três páginas renderizadas: 6.737, 6.406 e 13.234 caracteres idênticos dos dois
+lados).
+
+## 2. E A CAUSA NÃO ERA SÓ A RESPOSTA MAIS LONGA — ERAM DUAS REGRAS DO MOLDE QUE NÃO ALCANÇAVAM O GUIA
+
+Isto é o achado da execução, e vale mais que o conserto de uma página:
+
+- **O CARTÃO DO GUIA ESTAVA FORA DA COMPACTAÇÃO DE TELEFONE DO MOLDE.** As regras de celular do bloco
+  de compra nasceram em 21/10 escritas para `.cdm-f2-cartao` — o cartão das **ferramentas**. As sete
+  páginas do Guia entraram no molde **no mesmo mutirão**, com `.cdm-guia-cartao`, e **nenhuma delas
+  alcançava uma linha daquelas**: o cartão do Guia ficou com o recheio de 1rem e o corpo de texto do
+  desktop dentro do bloco de compra do telefone. Agora as regras são da **casca**, como a 32.6-b manda
+  (*"o que se repete entre páginas vira componente da casca"*), e valem para toda página do Guia.
+- **A FOLHA DO GUIA REDECORAVA A CAIXA DO MOLDE.** `.cdm-guia-resposta` punha 1,2rem de recheio e
+  1,6rem de margem num elemento que já carrega `.cdm-molde-resultado`, e vencia por ordem de carga —
+  a caixa do Guia saía ~20 px mais alta que a das ferramentas sem ninguém ter pedido. **A F2 já havia
+  consertado isso em 21/10**, com `:not(.cdm-molde-resultado)`, e esta folha não copiou o `:not()`.
+
+Somadas às três, no render de bancada a 390 px: **−223 px** de primeira tela na filha do pigmentado,
+**−213** na mãe e **−195** na irmã do impermeabilizante. **A folga das outras seis páginas da família
+também deixou de ser sorte** — era disso que o despacho reclamava quando disse que nada no molde
+estava quebrado e a página era só mais longa.
+
+## 3. O NÚMERO QUE FECHA O DESPACHO, MEDIDO NO AR PELA 18.4
+
+Revisão **93**, `/status` em 93, Sync acionado **duas vezes** por desenho (20.4) e o log lido **linha
+por linha**: as 14 linhas de item da revisão 93 dizem `ok`. O portão da 20.4
+(`conferir-desembarque.py`) aprovou e **registrou** que a janela do log cortou 4 dos 18 aplicados — e
+o `snippets/casca` era um dos cortados, então **conferi a casca no ar pelo que ela serve**:
+`.cdm-molde-compra .cdm-guia-cartao{padding:.75rem;}` e `:not(.cdm-molde-resultado)` estão na folha
+servida.
+
+A 390 px de largura real, com quebra de cache, fontes carregadas e num Chromium de verdade:
+
+| página | antes (ronda das 15h0xZ) | agora | teto |
+|---|---|---|---|
+| `/materiais/acabamento/peca-de-mosaico-esbranquicada/` | **1.495 px** | **1.137 px** | 1.400 |
+| caixa de resposta da mesma página | 25 px | **347 px** | 700 |
+| rolagem horizontal / erro de JavaScript | 0 / — | **0 / 0** | 0 |
+
+*(A medição da ronda e a minha não coincidem na casa do pixel — a minha leu **1.385 px** na mesma
+página antes do conserto, contra os 1.495 dela, e 1.072 contra 1.149 na irmã. Não sei dizer qual
+motor está certo e **não vou inventar a causa**; o que importa é que **as duas** régua dão a página
+dentro do teto agora, porque o conserto vale 223 px e a divergência entre elas é de 110. Fica escrito
+para a próxima ronda não ler a diferença como regressão.)*
+
+## 4. A SEGUNDA METADE DO "PRONTO QUANDO": A RÉGUA VARRE TODAS, E ELA NÃO TEM LISTA
+
+`ferramentas/conferir-32-5-no-navegador.mjs` nasceu nesta execução, e o despacho autoriza o portão
+novo na própria frase que explica por que ele faltava — *"régua que não varre todas certifica a página
+que o autor abriu"* (e a 31.2 pede defeito medido no ar com URL e data para um portão nascer: é o item
+1 deste despacho). Ele **não tem lista de página**: lê o `wp-sitemap.xml` no ar com quebra de cache,
+abre cada URL a 390 px e julga a que **serve** o molde, listando como fora do molde a que não serve —
+nunca aprovando em silêncio. **Resultado: 22 páginas de molde, 22 dentro da 32.5**, pior caixa em 462
+px (teto 700) e pior botão de compra em 1.304 px (teto 1.400).
+
+**São 22 e não 20, e a diferença não é erro da ronda:** as duas ferramentas
+(`qual-cola-usar-no-mosaico` e `quantas-pastilhas-para-mosaico`) entraram no molde na execução das
+16h2xZ de 21/10, revisão 89, e o mutirão das 18h10Z — o que a ronda mediu — foram os três grupos
+seguintes, 20 páginas. A lista de 20 estava certa para aquele dia e **envelheceu em duas horas**. É
+exatamente o que o portão existe para impedir.
+
+**E O PORTÃO QUASE REPROVOU DUAS PÁGINAS CERTAS — fica escrito porque é lição de método.** Na primeira
+passada ele mediu, nas duas ferramentas, a **caixa de resultado** (777 px e 884 px) e chamou as duas
+de fora da 32.5. A régua certa ali é o **formulário**, que a ordem da 32.1 põe **antes** da caixa:
+**439 px e 462 px**, as duas com folga. Corrigi antes de qualquer commit de veredito, e o formulário se
+nomeia por classe de ferramenta (`cdm-f1-form`, `cdm-f2-form`) e nunca por `main form`, porque as cinco
+peças de `/loja/` têm formulário de recado dentro de um `<details>` fechado. **Portão que reprova
+página certa é o caminho mais curto para alguém passar a ignorá-lo** — o perigo que a 20.5 nomeou
+quando o "REPROVADO" era cache.
+
+## 5. O PORTÃO QUE A MUDANÇA TORNOU MENTIROSO, CONSERTADO NA MESMA PASSADA
+
+`teste-guia.php` media a fronteira da frase de resposta pela **primeira ocorrência da palavra "Das "**
+no texto da página — o que era verdade só porque, até hoje, a frase da resposta terminava nela. Com a
+cauda mudando de lugar, aquela fronteira passaria a recortar quase a **página inteira** no lugar da
+resposta, e a afirmação que proíbe a resposta de classificar solvente (26.3) ficaria vermelha por achar
+a palavra numa tabela onde ela é certa — ou verde por acidente. Agora a caixa se recorta **pela
+classe** (`gui_caixa_de_resposta()`), e duas afirmações novas trancam a regra pelos dois lados: a caixa
+**existe e carrega o número do recorte**, e a conta das células **não está dentro dela**. Bancada
+inteira sem rede: **teste-casca 1.041**, **teste-guia 246**, **teste-produto 306**, **teste-f2 174**,
+teste-f1 (24 estados), teste-loja, teste-tecnicas 139, teste-atelie, teste-leads, teste-prestacao
+(5), **mutacoes-guia 31 de 31 decididas certo**, **mutacoes-acabamento 14 de 14 reprovadas**,
+`validar-banco` verde. Zero falha.
+
+## 6. O QUE ESTA EXECUÇÃO NÃO TOCOU, E POR QUE
+
+- **O soft 404 na borda** continua (sonda virgem em 404 · 200 · 200 · 200): é a camada da frente do
+  hospedeiro, é do Raphael, e nenhuma linha de código de ilha o alcança.
+- **O `sub_id` deslocado** segue sem reconferência, por proibição da 25.8 — fecha por construção, na
+  função que gera o link, nunca por conferência de link da ilha.
+- **O item 1 do despacho da leitura semanal de 21/10** (título que promete o número) **não foi
+  aberto**: a ilha está **fora do foco**, em modo de medição pela 1.2-b.1, e o que fura o foco é a
+  correção do molde — não bloco de construção. A 18.2 manda o despacho sair inteiro, e o de 23/10
+  tinha **um** item: saiu inteiro.
+
+**O QUE FICA DESBLOQUEADO PARA A PRÓXIMA EXECUÇÃO.** O molde desta ilha está **no ar e conferido nas
+22 páginas**, então, pela exceção da 1.2, **esta ilha deixa de furar o foco** — e com aquametria e
+robometria já fechadas, as três estão com o molde no ar: **o foco volta a mandar sozinho**. Como a
+jornadafly segue sem WordPress e sem egresso, a próxima execução que encontrar esse mundo não tem
+bloco de arquivo para abrir nela (está escrito em `foco.md`) — o que destrava o arquipélago é trabalho
+de navegador do Raphael, não de execução. Nesta ilha, quando ela voltar ao foco, o primeiro item é o
+do despacho de 21/10, e o portão novo passa a rodar junto com os outros dois comandos de ar do
+`PROMPT.md` em toda passada que mexer em página de molde.
+
 21/10/2026 18h10Z–19h1xZ — O DESPACHO DO MOLDE SAI INTEIRO: OS TRÊS GRUPOS QUE FALTAVAM, 20 PÁGINAS, E O QUE SÓ SUBIR A SEÇÃO NÃO RESOLVIA
 
 **A ESCOLHA DA ILHA: SEGUNDA TENTADA, E A CORRIDA DA PRIMEIRA SE PERDEU SEM AVISO — vale contar
