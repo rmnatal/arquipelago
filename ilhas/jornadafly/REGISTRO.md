@@ -3,6 +3,165 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-10-23 13h20Z — O BLOCO 6 SAIU, e a lista de prospecção **já estava medida desde 14/09**: o corpus do bloco 1 a tinha escrito como concorrência
+
+**O que saiu:** a **lista de prospecção do widget** — `dados/prospeccao-widget.json`
+(**25 candidatos**, `publicar: false`), `dados/prospeccao-widget.md` **gerado**, e as
+ferramentas `prospeccao-referencia.py` (a régua), `gerar-prospeccao.py`,
+`validar-prospeccao.py` (com `--autoteste`, **15 casos**), `teste-prospeccao.py`
+(**285 afirmações**) e `mutacoes-prospeccao.py` (**39 casos**). Mais a **seção 8** da
+`especificacao-calculadoras.md`. É o último item de arquivo da fila desta ilha, e é o
+próximo passo que o registro de 23/10 às 10h17Z deixou escrito.
+**Nada foi ao ar, e não podia ter ido: esta ilha não tem site, não tem WordPress, não tem
+Sync e não tem `/status`. Dizer que verifiquei no ar seria inventar.**
+
+**A ESCOLHA DA ILHA: NÃO HOUVE ROTAÇÃO E NÃO HOUVE DECISÃO MINHA.** `foco.md` nomeia a
+**jornadafly** e pela **1.2** não há escolha a fazer. Conferi a exceção de 21/10 que fura o
+foco pelo **molde da seção 32** e ela não se aplica: os três despachos do molde estão
+fechados (aquametria com a 32.5 de pé nas 29 fichas, clubedomosaico «fechado inteiro» na
+linha 133 do `ESTADO.md` dela, robometria com o molde no ar nas nove páginas). `foco.md`
+estava com `executando_desde: null` nesta ilha, e pela **1.1** campo null já significa que
+não há bloco da Fundação vivo — não houve reserva vencida para o git desempatar. Nenhum
+branch `claude/*` com commit a mergear e nenhum PR aberto: a branch desta execução estava
+idêntica ao `main`. Reserva escrita às **13h20Z** e **renovada às 13h44Z** pela 1.1, porque
+a bancada desta ilha passa de 40 minutos sozinha.
+
+**REDE REMEDIDA E NÃO HERDADA (20.2):** duas passadas às 13h20Z, `jornadafly.com.br` e
+`www.jornadafly.com.br` em **000 nas duas** (4 medições), com `aquametria.com.br` e
+`robometria.com.br` em **200 nas duas** (4 de controle, nenhuma intermitência) e
+`raw.githubusercontent.com` em 301 ao lado. **Segue sendo regressão** — o campo dizia
+`aberta em 2026-09-18` com HTTP 200 medido —, e o despacho ALTA de 15/09 em
+`dados/despachos.md` continua valendo. `bloqueada_por` segue `null` de propósito, como nas
+nove execuções anteriores: o que a rede trava é a coleta, não o bloco de arquivo.
+
+**E A 20.3 FOI EXERCIDA ANTES DE A REGRA EXIGIR A FONTE, não depois.** Medi o egresso para
+os próprios candidatos desta lista, às **13h28:28Z**: `bondinho.com.br`,
+`www.toureiffel.paris`, `viagemitalia.com`, `www.panrotas.com.br` e `www.civitatis.com`
+todos em **000**, com `aquametria.com.br` em **200** na mesma passada. É por isso que
+`contato` e `plataforma_do_site` estão `null` nas 25 linhas — e a bancada **proíbe** que
+sejam preenchidos, porque abordagem escrita sobre site não lido é invenção com cara de
+trabalho.
+
+### O ACHADO DO BLOCO, e ele não precisou de nenhuma busca nova para existir
+
+**A lista de prospecção desta ilha já estava medida desde 14/09/2026, e ninguém a tinha
+lido assim.** O corpus do bloco 1 mediu **69 domínios** de SERP em pt-BR e os registrou
+como **procedência** — isto é, como *concorrência*. Entre eles há operador com site
+próprio, concessionária de bem público e plataforma, cada um **rotulado pelo próprio
+corpus**: `bondinho.com.br` não entrou nesta lista por busca de hoje, entrou porque o corpus
+já o escrevia como *«operador, e três URLs dele»*. **É a mesma família de defeito que esta
+ilha e a ohmetria já pagaram — duas metades contando a mesma coisa sem nunca se falarem —**
+e agora o portão as faz conversar por regra: toda consulta citada no banco tem de existir em
+`dados/corpus-buscas.md`, e todo domínio que diz vir do corpus tem de aparecer lá.
+
+**O BARRAMENTO SAI DE UMA DECISÃO QUE A ILHA JÁ TINHA TOMADO, e é o que ordena a lista.**
+Dos seis clusters do bloco 1, a ilha declarou que **não disputa um** — o A2, «quanto custa
+<experiência>», porque *«disputar 'quanto custa o ingresso X' contra o operador é perder, e
+não é preciso»*. Daí a régua: **quem ocupa consulta de cluster disputado não hospeda a
+ferramenta que a disputa**. O caso que prova o valor dela é o `northbound.is`: operador com
+site próprio que ocupa *«vale a pena alugar carro na islândia»* — a consulta que o próprio
+bloco 1 chama de «o melhor encaixe entre recorte e monetização que este levantamento
+encontrou». O operador que hospedaria a ferramenta é o mesmo que ocupa a página que a ilha
+mais quer escrever. E o `romapravoce.com` mostra por que a régua é **escada** e não soma de
+pontos: ele é operador **e** concorrente ao mesmo tempo, e pesos somáveis o deixariam passar.
+
+### A DECISÃO DO BLOCO: nesta ilha a ferramenta pode MINAR quem a hospeda
+
+Nas outras três ilhas o widget ajuda o anfitrião a vender — a calculadora dimensiona o
+equipamento que a loja tem no catálogo. **Aqui a ferramenta responde «vale a pena?» e pode
+servir um número contra quem a hospeda.** Então a régua da oferta nasceu com isso dentro:
+
+- a **F1** só vai a quem vende **a mesma versão** que o banco preça. O caso medido é o
+  `viagemitalia.com`, único candidato brasileiro que atende experiência do banco: ele vende o
+  tour guiado do Coliseu a **€75 por pessoa com o ingresso dentro**, e o banco preça o
+  ingresso avulso. A F1 ali serviria, ao visitante dele, o preço da versão barata que o
+  produto dele embute. **Ferramenta que mina o anfitrião não se oferece ao anfitrião** — é a
+  mesma família da ATENÇÃO DE ESCOPO da lista da aquametria, um andar acima: lá o número
+  ficava fora do escopo, aqui ele **compete com quem hospeda**;
+- a **F2** exige `FAIXA_DIARIA` e a **F3** exige passe e cobertura — **contados do banco em
+  toda passada**, nunca afirmados nesta lista;
+- a **F3 nunca** vai a quem vende passe de cidade.
+
+### A CADEIA DE CINCO ELOS, e ela tem uma causa só
+
+**NENHUM dos 25 candidatos tem ferramenta ofertável hoje**, e a causa não é esta lista:
+
+1. o egresso recusa o domínio da ilha e as fontes de preço (15/09, 18/09, 22/10 e hoje);
+2. com a rede fechada, o bloco 3 registrou que `ingresso_de_sitio_publico` era «o único tipo
+   reproduzível enquanto o egresso estiver fechado» — e o banco nasceu com **quatro**
+   experiências de tarifa pública;
+3. **três dos quatro operadores do banco são poder público** e o quarto é concessionária
+   francesa. Poder público não instala widget de afiliado;
+4. logo a F1 — a única com dado para servir — não tem a quem ser oferecida;
+5. e o critério de entrada do bloco 1 dizia o contrário do que o banco carregou: «prefira
+   experiência de operador privado, com versões vendidas diferentes entre si e sem tabela
+   pública».
+
+**O que isso muda na leitura do bloqueio de rede, e é a parte que vale subir:** ele não
+atrasa só coleta de preço. Ele **decidiu a composição do banco**, e a composição do banco
+**parou a única alavanca de link do projeto** (seção 14.7) nesta ilha. É a quarta
+consequência do mesmo bloqueio, e as três primeiras estavam escritas em lugares separados.
+**E o que destrava é barato:** UMA experiência de operador privado brasileiro no banco abre a
+linha de prioridade 1. O candidato está medido — o **Parque Bondinho Pão de Açúcar** vende
+direto, pelo próprio site, mais de uma versão da mesma experiência.
+
+### AS TRÊS COISAS QUE OS PORTÕES ACHARAM, as três no meu próprio trabalho
+
+1. **68 fatos afirmados sem evidência que os nomeasse.** A primeira versão do banco escrevia
+   `true` em campo nenhuma medição sustentava — e o portão os listou um por um. **O conserto
+   não foi afrouxar a regra, foi afirmar menos:** oito campos viraram `null`, entre eles o
+   `tipo` do `ingressomachupicchu.com`, que o **nome do domínio** parecia provar, e a venda de
+   passe dos três revendedores de Lisboa e Roma. E `afirma` virou **lista**: uma medição
+   sustenta vários fatos, e dizer **quais** é o que separa evidência de impressão.
+2. **A régua de acento reprovou texto legítimo** — `dados/experiencias.json` e
+   `prospeccao-referencia.py`, que são corretamente sem acento. A saída não foi heurística
+   melhor, foi **estrutura**: ela retira o que está entre craseadas antes de olhar. É a quarta
+   trava da família que o `ARQUIPELAGO.md` já ensina — *quando o texto legítimo e o proibido
+   são a mesma palavra, quem decide é a estrutura, nunca a vizinhança*.
+3. **A CONTA QUE EU IA PUBLICAR ESTAVA ERRADA, e foi a bancada que a pegou.** O texto dizia
+   que o corpus mediu **64** domínios. São **69** — a contagem de cabeça usou uma lista de
+   terminações que deixava `.is`, `.fr`, `.pt`, `.paris`, `.kh` e `.cz` de fora. O conserto não
+   foi trocar o número: `teste-prospeccao.py` passou a **ler a prosa** do achado e conferi-la
+   contra `dados/experiencias.json` e `dados/corpus-buscas.md` em toda passada — os «quatro
+   experiências», os «três de poder público» e os «69 domínios». É a terceira conta que a
+   seção 8 do contrato pede, e é a quarta vez que ela pega algo nesta fábrica.
+
+**E uma regra deste banco não tem nenhum caso hoje, dito como é:** a F3 nunca ir a vendedor
+de passe não se aplica a ninguém, porque a venda de passe não foi medida em nenhum candidato.
+A regra existe e é a **bateria de mutações** que prova que ela morde, não uma linha da lista.
+
+### UM ACHADO DE MÉTODO para quem continuar esta lista
+
+Três buscas desta execução foram dirigidas a «receptivo/agência brasileiro com site próprio»
+em Roma, Paris e Veneza. **As três devolveram portal de conteúdo e plataforma** — isto é,
+devolveram a concorrência, não os candidatos. Os únicos receptivos que apareceram **por
+nome** vieram da **imprensa de trade** (`panrotas.com.br`, `mercadoeeventos.com.br`).
+**A razão é estrutural: operador e receptivo não disputam a SERP de «quanto custa», logo não
+são achados por ela.** Quem continuar esta lista busca em trade, não em SERP de consumidor —
+e os dois veículos estão no banco como `imprensa_de_trade`, prioridade 3, exatamente por
+isso: não são alvo de widget, são o instrumento que acha o alvo.
+
+**BANCADA, 0 falha:** `validar-prospeccao` aprovado com o `.md` idêntico ao que a referência
+gera, `--autoteste` 15 de 15, `teste-prospeccao` 285 afirmações, `mutacoes-prospeccao` 39 de
+39 (4 mundos que têm de passar — inclusive o banco de experiências **carregado** —, 21
+quebras cada uma declarando a frase que espera ouvir, 10 sobre a régua da oferta e 4 mortes).
+E **os dez portões anteriores da ilha rodados na mesma passada, todos verdes**:
+`validar-banco`, `mutacoes-banco`, `teste-f1`, `mutacoes-f1`, `teste-f2`, `mutacoes-f2`,
+`teste-f3`, `mutacoes-f3`, `artigos-referencia` (0 falhas) e `mutacoes-artigos` (43 de 43
+reprovadas, 0 mortes, 0 inertes). A bancada desta ilha é de **treze** portões agora — e o
+título dela no `PROMPT.md` dizia «oito» com dez comandos na lista abaixo, corrigido nesta
+passada: número escrito à mão em título que a própria lista contradiz.
+
+**PRÓXIMO PASSO: não sobrou bloco de arquivo nesta ilha.** A fila está cumprida até onde a
+Fundação alcança: 1, 2, 3, 4 (F1, F2, F3), 5 (quatro artigos) e 6. O que falta é **todo do
+Raphael e todo de navegador**: os passos 2 a 8 da seção 11 (domínio adicional no cPanel,
+nameservers, Search Console, WordPress, SSL, plugins), a liberação de `jornadafly.com.br` e
+`*.jornadafly.com.br` no egresso deste ambiente, e a coleta das fontes de diária e de passe.
+O **3b** (casca), o **5b** (malha) e o **5c** (free tour) dependem da casca; os dois artigos
+pré-registrados e os dois destravamentos de ferramenta dependem de coleta. **A execução
+seguinte que encontrar esta ilha em foco e sem nenhuma dessas duas coisas não tem bloco para
+abrir** — e isso está escrito aqui para que ela não invente um.
+
 ## 2026-10-23 10h17Z — O BLOCO 5 SAIU, e a decisão que mais importa nele é de FORMA: o artigo é **montado do banco**, nunca redigido
 
 **O que saiu:** os **artigos-âncora como regra** — `ferramentas/artigos-referencia.py` (o

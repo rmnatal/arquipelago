@@ -5,78 +5,79 @@ prioridade: 1
 piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 0
 primeira_indexacao: null
-ultima_execucao: 2026-10-23T10:40Z
-executando_desde: 2026-10-23T13:44Z   # reserva RENOVADA pela 1.1 (reservada as 13:20Z): o bloco 6 passou de 40 minutos porque a bancada desta ilha sem rede roda doze portoes e as cinco baterias de mutacao sozinhas passam disso. A hora sai do `date -u` na mesma linha de comando que a grava, nunca digitada.
-rede: BLOQUEADA em 2026-10-23   # 20.2, REMEDIDA as 10h16Z e NAO herdada do campo: DUAS passadas, jornadafly.com.br e www.jornadafly.com.br em 000 nas duas (4 medicoes), com aquametria.com.br e robometria.com.br em 200 nas duas (4 de controle, nenhuma intermitencia) e raw.githubusercontent.com em 301 ao lado. SEGUE SENDO REGRESSAO (o campo dizia `aberta em 2026-09-18` com HTTP 200 medido as 12h35Z daquele dia), e o despacho ALTA de 15/09 em dados/despachos.md continua valendo. As fontes de diaria (numbeo, booking, civitatis) e as CINCO de passe (romapass.it, turismoroma.it, lisboacard.org, visitlisboa.com, civitatis.com.br) seguem recusadas pela 20.3, medidas em 22/10: o que a rede trava e a COLETA da F2 e da F3, nao o bloco de arquivo — e bloqueada_por segue null de proposito, como nas oito execucoes anteriores.
+ultima_execucao: 2026-10-23T13:20Z
+executando_desde: null   # a execucao de 23/10 13h20Z fechou as 13:5xZ. Reserva RENOVADA uma vez pela 1.1 (13:44Z): a bancada desta ilha sem rede roda TREZE portoes, e as cinco baterias de mutacao sozinhas passam de 40 minutos (a da F3 roda teste-f3 45 vezes). A HORA DO `ultima_execucao` SAI DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
+rede: BLOQUEADA em 2026-10-23   # 20.2, REMEDIDA as 13h20Z e NAO herdada do campo: DUAS passadas, jornadafly.com.br e www.jornadafly.com.br em 000 nas duas (4 medicoes), com aquametria.com.br e robometria.com.br em 200 nas duas (4 de controle, nenhuma intermitencia) e raw.githubusercontent.com em 301 ao lado. SEGUE SENDO REGRESSAO (o campo dizia `aberta em 2026-09-18` com HTTP 200 medido as 12h35Z daquele dia), e o despacho ALTA de 15/09 em dados/despachos.md continua valendo. E A 20.3 FOI EXERCIDA NO BLOCO 6, as 13h28:28Z: os CANDIDATOS da lista de prospeccao tambem estao fora do egresso — bondinho.com.br, www.toureiffel.paris, viagemitalia.com, www.panrotas.com.br e www.civitatis.com em 000, com aquametria.com.br em 200 na mesma passada. As fontes de diaria (numbeo, booking, civitatis) e as CINCO de passe (romapass.it, turismoroma.it, lisboacard.org, visitlisboa.com, civitatis.com.br) seguem recusadas pela 20.3, medidas em 22/10: o que a rede trava e a COLETA e agora tambem a VERIFICACAO DE CANDIDATO, nao o bloco de arquivo — e bloqueada_por segue null de proposito, como nas nove execucoes anteriores.
 bloco_atual: |
-  O BLOCO 5 SAIU: os ARTIGOS-ANCORA existem como REGRA, e a decisao que mais
-  importa neles e de FORMA. O caminho obvio era escrever quatro textos em
-  Markdown, e ele teria destruido o produto desta ilha em silencio: artigo
-  escrito a mao carrega numero digitado, e numero digitado envelhece calado — no
-  dia da proxima carga do banco a calculadora publica o preco novo e o artigo
-  continua publicando o velho, com a mesma cara de verdade. O VOZ.md chama preco
-  cravado sem a data da coleta de «o defeito mais grave possivel nesta ilha».
+  O BLOCO 6 SAIU — a LISTA DE PROSPECCAO DO WIDGET existe, com 25 candidatos e
+  publicar false. E o ULTIMO item de arquivo da fila desta ilha: 1, 2, 3, 4 (F1,
+  F2, F3), 5 (quatro artigos) e 6 estao cumpridos ate onde a Fundacao alcanca.
   NADA FOI AO AR, e nao podia: esta ilha nao tem site, nao tem WordPress, nao tem
   Sync e nao tem /status. Dizer que verifiquei no ar seria inventar.
-  REDE REMEDIDA E NAO HERDADA (20.2): 4 medicoes de bloqueio contra 4 de controle
-  verde as 10h16Z. Segue regressao.
-  O QUE SAIU: ferramentas/artigos-referencia.py (o cerebro: o mapa das consultas,
-  a arvore, a rotacao das irmas, a montagem e o portao que confere),
-  ferramentas/gerar-artigos.py, dados/artigos-ancora.json (4 artigos escritos, 44
-  linhas de tabela, 74 paragrafos de dobra, 14 perguntas de FAQ, publicar false),
-  ferramentas/mutacoes-artigos.py, e a secao 7 da especificacao. O banco e o
-  esquema NAO foram tocados: o bloco 5 le, nao escreve.
-  TODA FRASE DE PRECO SAI DA f1-referencia.py, a mesma regra que a bancada mede. O
-  que a referencia do artigo guarda e o que NENHUMA ferramenta sabe: qual consulta
-  ele ataca, quem ocupava a SERP dela no dia da medicao, qual e a mae na arvore,
-  quais sao as irmas e para onde vai o link de compra.
-  A MAE NAO E A CIDADE, e esse foi o erro barato que quase saiu: cada uma das
-  quatro cidades do banco tem UMA experiencia, e quatro categorias com uma filha
-  cada e cluster ralo que nao passa autoridade. Os quatro nasceram em
-  /guias/quanto-custa/ — que e um dos tres itens do menu do VOZ.md — e assim cada
-  pagina recebe TRES irmas apontando para ela. A janela de irmas ROTACIONA, e a
-  afirmacao que mede isso e do CONJUNTO, na direcao de quem aponta.
-  DOIS CAMPOS PARA A MESMA PERGUNTA: consulta_alvo e a consulta como a pessoa
-  digita (e gente digita sem acento) e nunca vai para a tela; titulo_na_tela e a
-  mesma pergunta em portugues correto. O portao cobra que o titulo nao perca
-  palavra da consulta e so ganhe palavra de ligacao.
-  E A FRONTEIRA COM A CALCULADORA FICOU ESCRITA: a consulta parametrica («para N
-  pessoas») e da FERRAMENTA, a crua e do GUIA. O portao reprova titulo de guia que
-  traga a parametrica, e reprova duas paginas na mesma consulta-alvo.
-  QUATRO DEFEITOS, e o primeiro foi contra mim: (a) a regra «todo valor da tela
-  esta no conjunto que o banco autoriza» REPROVAVA a prestacao de contas da
-  gondola, que e o diferencial da ilha — os EUR 80 da Eurodicas e os EUR 34 da
-  GetYourGuide sao os numeros com que ela DISCORDA; agora o valor de terceiro
-  passa so dentro da frase que nomeia o publicador e traz a data. (b) Registro
-  pendente_de_releitura publica na tela com a ressalva e NAO na description, que e
-  lida sozinha no resultado de busca. (c) A REGUA DE ACENTUACAO FOI TENTADA TRES
-  VEZES E NAO EXISTE: as tres reprovaram texto impecavel, e portao que reprova
-  texto certo e pior que portao nenhum porque ensina a ignorar o vermelho — as
-  tres estao escritas na afirmacao (8) do arquivo, com o que cada uma reprovou.
-  (d) O FAQ RESPONDIA A OUTRA PERGUNTA em tres dos quatro artigos, e ia para o
-  FAQPage do JSON-LD; cada pergunta passou a declarar DE ONDE sai a resposta dela,
-  e o portao reprova duas perguntas respondidas pela mesma frase.
-  DOIS ARTIGOS NAO FORAM ESCRITOS, e a causa e DADO e nao tempo: a F2 e a F3 nao
-  tem resposta para publicar (zero faixas de diaria, zero passes, zero coberturas,
-  e Roma com uma atracao so). Artigo cujo titulo promete um numero que a pagina nao
-  entrega e EXATAMENTE o defeito que o bloco 1 mediu nos oito ocupantes. Os dois
-  ficam PRE-REGISTRADOS no arquivo, com o criterio de destravamento escrito ANTES
-  de o dado chegar.
-  A LISTA DE PORTOES FOI DE OITO PARA DEZ, e a 31.3 foi lida ANTES: ela proibe
-  testar portao que JA EXISTE, e o portao conferido pela bateria nasceu na mesma
-  passada que o conteudo que ele guarda — o desenho que a F1, a F2 e a F3 tiveram
-  em 22/10. Dez linhas ainda cabem numa tela e a margem agora e de duas ou tres.
-  BANCADA, 0 falha: validar-banco verde; mutacoes-banco 154 de 154; teste-f1
-  139.658 afirmacoes; mutacoes-f1 28 de 28; teste-f2 216.614; mutacoes-f2 51 de 51;
-  teste-f3 616.462; mutacoes-f3 45 de 45; artigos-referencia 4 artigos conferidos;
-  mutacoes-artigos 43 de 43 — 39 por artigo e 4 pelo conjunto, zero morte e zero
-  inerte.
-  PROXIMO PASSO: o BLOCO 6 — lista de prospeccao do widget (operadores e receptivos
-  brasileiros com site proprio, publicar false). E o ULTIMO item de arquivo desta
-  ilha. Depois dele nao sobra bloco que nao precise do Raphael: a casca (3b), os
-  passos 2 a 8 da secao 11, a liberacao do dominio no egresso e as fontes de diaria
-  e de passe — todas de navegador, todas dele. O 5b (malha) e o 5c (free tour)
-  dependem da casca; os dois artigos pre-registrados dependem de coleta.
+  O ACHADO, e ele nao precisou de busca nova: A LISTA JA ESTAVA MEDIDA DESDE
+  14/09. O corpus do bloco 1 mediu 69 dominios e rotulou operador,
+  concessionaria e plataforma entre eles — como PROCEDENCIA, isto e, como
+  concorrencia. bondinho.com.br entrou nesta lista porque o corpus ja o escrevia
+  como «operador, e tres URLs dele». Duas metades contando a mesma coisa sem
+  nunca se falarem, e agora o portao as faz conversar por regra.
+  O QUE SAIU: dados/prospeccao-widget.json (o banco), dados/prospeccao-widget.md
+  GERADO, ferramentas/prospeccao-referencia.py (a regua), gerar-prospeccao.py,
+  validar-prospeccao.py (--autoteste, 15 casos), teste-prospeccao.py (285
+  afirmacoes) e mutacoes-prospeccao.py (39 casos), mais a secao 8 da
+  especificacao. A bancada da ilha foi de dez para treze portoes.
+  A PRIORIDADE NAO E CAMPO DO BANCO: e DERIVADA, e o portao reprova se alguem a
+  gravar. O barramento vem primeiro e sai de decisao que a ilha ja tinha tomado:
+  dos seis clusters do bloco 1 a ilha declarou que NAO disputa um, o A2 —
+  «disputar 'quanto custa o ingresso X' contra o operador e perder, e nao e
+  preciso». Quem ocupa consulta de cluster disputado nao hospeda a ferramenta
+  que a disputa. 7 dos 25 estao BARRADOS, e o caso que prova a regra e o
+  northbound.is: operador com site proprio que ocupa a consulta que o proprio
+  bloco 1 chama de «o melhor encaixe entre recorte e monetizacao».
+  A DECISAO DO BLOCO: NESTA ILHA A FERRAMENTA PODE MINAR QUEM A HOSPEDA. Nas
+  outras tres o widget ajuda o anfitriao a vender; aqui ela responde «vale a
+  pena?». Entao a F1 so vai a quem vende A MESMA versao que o banco preca — o
+  viagemitalia.com vende o tour do Coliseu a EUR 75 por pessoa COM o ingresso
+  dentro, e o banco preca o avulso. A F2 exige FAIXA_DIARIA e a F3 exige passe e
+  cobertura, CONTADOS DO BANCO em toda passada; a F3 nunca vai a vendedor de
+  passe.
+  NENHUM DOS 25 TEM FERRAMENTA OFERTAVEL HOJE, e a causa e UMA: a rede fechada
+  decidiu a composicao do banco (quatro experiencias de tarifa publica, TRES dos
+  quatro operadores sao PODER PUBLICO), e poder publico nao instala widget de
+  afiliado. E a QUARTA consequencia do mesmo bloqueio, e a primeira vez que ela
+  chega na secao 14.7 — a UNICA alavanca de link do projeto, parada nesta ilha.
+  O QUE DESTRAVA ESTA NOMEADO E MEDIDO: uma experiencia de operador privado
+  brasileiro no banco. O Parque Bondinho Pao de Acucar vende direto, pelo
+  proprio site, mais de uma versao da mesma experiencia.
+  AS TRES COISAS QUE OS PORTOES ACHARAM, as tres no meu proprio trabalho: (1) 68
+  fatos afirmados sem evidencia que os nomeasse — o conserto foi AFIRMAR MENOS,
+  oito campos viraram null, entre eles o tipo do ingressomachupicchu.com, que o
+  NOME DO DOMINIO parecia provar; (2) a regua de acento reprovou texto legitimo
+  (dados/experiencias.json, prospeccao-referencia.py) e a saida foi ESTRUTURA,
+  nao heuristica: ela retira o que esta entre craseadas antes de olhar; (3) A
+  CONTA QUE EU IA PUBLICAR ESTAVA ERRADA — o texto dizia 64 dominios no corpus e
+  sao 69, porque a contagem de cabeca deixou .is, .fr, .pt, .paris, .kh e .cz de
+  fora. O conserto nao foi trocar o numero: a bancada passou a LER a prosa do
+  achado e conferi-la contra o banco e o corpus em toda passada.
+  UMA REGRA DESTE BANCO NAO TEM NENHUM CASO HOJE, dito como e: a F3 nunca ir a
+  vendedor de passe nao se aplica a ninguem, porque a venda de passe nao foi
+  medida em nenhum candidato. Quem prova que ela morde e a bateria de mutacoes.
+  ACHADO DE METODO: as TRES buscas dirigidas a «receptivo brasileiro com site
+  proprio» devolveram portal de conteudo e plataforma — a concorrencia, nao os
+  candidatos. Os unicos receptivos que apareceram POR NOME vieram da imprensa de
+  trade. Operador e receptivo nao disputam a SERP de «quanto custa», logo nao
+  sao achados por ela: quem continuar esta lista busca em trade.
+  BANCADA, 0 falha: validar-prospeccao aprovado com o .md identico ao que a
+  referencia gera, --autoteste 15 de 15, teste-prospeccao 285 afirmacoes,
+  mutacoes-prospeccao 39 de 39 (4 mundos que tem de passar, inclusive o banco de
+  experiencias CARREGADO, 21 quebras, 10 sobre a regua da oferta e 4 mortes).
+  PROXIMO PASSO: NAO SOBROU BLOCO DE ARQUIVO NESTA ILHA. O que falta e todo do
+  Raphael e todo de navegador — os passos 2 a 8 da secao 11, a liberacao de
+  jornadafly.com.br no egresso, e a coleta das fontes de diaria e de passe. O 3b
+  (casca), o 5b (malha) e o 5c (free tour) dependem da casca; os dois artigos
+  pre-registrados e os dois destravamentos de ferramenta dependem de coleta. A
+  execucao seguinte que encontrar esta ilha em foco e sem nenhuma dessas duas
+  coisas NAO TEM BLOCO PARA ABRIR, e isso esta escrito para que ela nao invente
+  um.
 ultima_ronda: null   # escrito pela Sentinela; esta ilha nunca teve ronda
 bloqueada_por: null
 ---

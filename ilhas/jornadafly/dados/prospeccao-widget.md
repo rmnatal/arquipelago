@@ -57,33 +57,33 @@ público**, **0 faixa(s) diária(s)**, **0 passe(s) de cidade** e **0 cobertura(
 25 candidatos: 2 em prioridade 1, 3 em prioridade 2, 13 em prioridade 3, 7 em barrado.
 Com ferramenta ofertável hoje: **F1 0 · F2 0 · F3 0**.
 
-| domínio | tipo | país | prioridade | F1 | F2 | F3 |
-|---|---|---|---|---|---|---|
-| `bondinho.com.br` | concessionaria_de_bem_publico | brasil | 1 | não | não | não |
-| `viagemitalia.com` | guia_autorizado | italia | 1 | não | não | não |
-| `peruexperience.com.br` | não medido | brasil | 3 | não | não | não |
-| `toureiffel.paris` | concessionaria_de_bem_publico | franca | 3 | não | não | não |
-| `perurail.com` | operador_da_experiencia | peru | 2 | não | não | não |
-| `unacapadocia.com` | operador_da_experiencia | turquia | 2 | não | não | não |
-| `dailytoursincappadocia.com` | operador_da_experiencia | turquia | 2 | não | não | não |
-| `cometoparis.com` | não medido | franca | 3 | não | não | não |
-| `holatour.fr` | receptivo | franca | 3 | não | não | não |
-| `tayratourscusco.com` | não medido | peru | 3 | não | não | não |
-| `ingressomachupicchu.com` | não medido | não medido | 3 | não | não | não |
-| `coliseu.it` | não medido | italia | 3 | não | não | não |
-| `civitatis.com` | plataforma | espanha | 3 | não | não | não |
-| `viator.com` | plataforma | não medido | 3 | não | não | não |
-| `tiqets.com` | plataforma | não medido | 3 | não | não | não |
-| `headout.com` | plataforma | não medido | 3 | não | não | não |
-| `northbound.is` | operador_da_experiencia | islandia | barrado | não | não | não |
-| `romapravoce.com` | operador_da_experiencia | italia | barrado | não | não | não |
-| `barraqueirotour.com` | não medido | portugal | barrado | não | não | não |
-| `lisboa-card.com` | não medido | portugal | barrado | não | não | não |
-| `lisbon-citypass.com` | não medido | portugal | barrado | não | não | não |
-| `passturistici.com` | não medido | italia | barrado | não | não | não |
-| `guruwalk.com` | plataforma | espanha | barrado | não | não | não |
-| `panrotas.com.br` | imprensa_de_trade | brasil | 3 | não | não | não |
-| `mercadoeeventos.com.br` | imprensa_de_trade | brasil | 3 | não | não | não |
+| domínio | tipo | país | brasileiro | prioridade | F1 | F2 | F3 |
+|---|---|---|---|---|---|---|---|
+| `bondinho.com.br` | concessionaria_de_bem_publico | brasil | sim | 1 | não | não | não |
+| `viagemitalia.com` | guia_autorizado | italia | sim | 1 | não | não | não |
+| `peruexperience.com.br` | não medido | brasil | sim | 3 | não | não | não |
+| `toureiffel.paris` | concessionaria_de_bem_publico | franca | não medido | 3 | não | não | não |
+| `perurail.com` | operador_da_experiencia | peru | não medido | 2 | não | não | não |
+| `unacapadocia.com` | operador_da_experiencia | turquia | não medido | 2 | não | não | não |
+| `dailytoursincappadocia.com` | operador_da_experiencia | turquia | não medido | 2 | não | não | não |
+| `cometoparis.com` | não medido | franca | não medido | 3 | não | não | não |
+| `holatour.fr` | receptivo | franca | não medido | 3 | não | não | não |
+| `tayratourscusco.com` | não medido | peru | não medido | 3 | não | não | não |
+| `ingressomachupicchu.com` | não medido | não medido | não medido | 3 | não | não | não |
+| `coliseu.it` | não medido | italia | não medido | 3 | não | não | não |
+| `civitatis.com` | plataforma | espanha | não medido | 3 | não | não | não |
+| `viator.com` | plataforma | não medido | não medido | 3 | não | não | não |
+| `tiqets.com` | plataforma | não medido | não medido | 3 | não | não | não |
+| `headout.com` | plataforma | não medido | não medido | 3 | não | não | não |
+| `northbound.is` | operador_da_experiencia | islandia | não medido | barrado | não | não | não |
+| `romapravoce.com` | operador_da_experiencia | italia | não medido | barrado | não | não | não |
+| `barraqueirotour.com` | não medido | portugal | não medido | barrado | não | não | não |
+| `lisboa-card.com` | não medido | portugal | não medido | barrado | não | não | não |
+| `lisbon-citypass.com` | não medido | portugal | não medido | barrado | não | não | não |
+| `passturistici.com` | não medido | italia | não medido | barrado | não | não | não |
+| `guruwalk.com` | plataforma | espanha | não medido | barrado | não | não | não |
+| `panrotas.com.br` | imprensa_de_trade | brasil | sim | 3 | não | não | não |
+| `mercadoeeventos.com.br` | imprensa_de_trade | brasil | sim | 3 | não | não | não |
 
 ## PRIORIDADE 1 — as cinco condições medidas
 
@@ -94,7 +94,7 @@ Com ferramenta ofertável hoje: **F1 0 · F2 0 · F3 0**.
 - É o melhor candidato desta lista e o único que fecha as cinco condições da prioridade 1: brasileiro, operador do bem público mais icônico do Rio, site próprio que vende direto, e mais de uma versão da mesma experiência à venda — que é o eixo exato da F1 (dias × pessoas × padrão).
 - E ele foi medido no cluster que a ilha DECLAROU não disputar: apareceu com TRÊS URLs próprias em «ingresso pão de açúcar quanto custa», e é justamente esse achado — «em experiência com operador único e site oficial em pt, o operador ganha a consulta de preço» — que tira a ilha da consulta e o entrega como anfitrião.
 - O que o operador NÃO responde é o que a ferramenta responde: qual das versões sai melhor para 2 adultos e 2 crianças, com o que está incluso em cada uma. As versões apareceram na busca publicadas por TERCEIRO (melhoresdestinos), não pela página do próprio operador — a página dele não foi aberta, e o egresso desta nuvem a recusa.
-- E a ferramenta não existe para lhe oferecer: o Pão de Açúcar NÃO está em `dados/experiencias.json`. É a linha desta lista que mede o custo da composição do banco — ver `o_achado_desta_passada`.
+- E a ferramenta não existe para lhe oferecer: o Pão de Açúcar NÃO está em `dados/experiencias.json`. É a linha desta lista que mede o custo da composição do banco — ver «O ACHADO DESTA PASSADA», acima.
 
 **Ferramenta ofertável hoje:**
 - **F1 — não.** Atende experiência que O BANCO NÃO TEM — sem registro no banco a F1 não responde nada na página dele.

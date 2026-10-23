@@ -67,7 +67,14 @@ Medido em 13 e 14/09/2026, e **o recorte encolheu em relação ao que o despacho
 
 **O que isso decide, e é a tese desta ilha: o diferencial NÃO é o ângulo "vale a pena" — é o FORMATO.** Nenhum dos 30+ domínios medidos entrega **preço colhido na fonte de quem opera, com data de leitura**. Todos entregam "gastei X na minha viagem em 2023". **A ilha ganha por ser a única que faz a conta para o SEU grupo, com preço datado** — é a mesma disciplina de preço do Clube do Mosaico.
 
-## A BANCADA DESTA ILHA — oito portões, e cada um é um comando (22/10/2026)
+## A BANCADA DESTA ILHA — treze portões, e cada um é um comando (22/10/2026)
+
+> **O título dizia «oito» e a lista abaixo já trazia dez comandos** — os dois dos
+> artigos-âncora entraram em 23/10/2026 sem que o número no título fosse tocado. Corrigido
+> na mesma data, com os três do bloco 6 acrescentados: são **treze**. Número escrito à mão
+> em título que a lista abaixo contradiz é a mesma família de defeito que a seção 8 da
+> especificação registra nesta ilha — e aqui ele custou nada, porque a lista é a fonte e o
+> título é o resumo.
 
 ```
 python3 ferramentas/validar-banco.py      # o banco contra o esquema
@@ -80,6 +87,9 @@ python3 ferramentas/teste-f3.py           # a F3: os 1.038 estados, mais os mund
 python3 ferramentas/mutacoes-f3.py        # quebra a F3 e exige que o portão dela veja
 python3 ferramentas/artigos-referencia.py # monta os artigos-âncora e confere cada um
 python3 ferramentas/mutacoes-artigos.py   # quebra os artigos e exige que o portão deles veja
+python3 ferramentas/validar-prospeccao.py # a lista de prospecção do widget contra as suas regras
+python3 ferramentas/teste-prospeccao.py   # a escada e a régua da oferta reescritas à mão, e a prosa contra o dado
+python3 ferramentas/mutacoes-prospeccao.py # quebra a lista e exige que os portões dela vejam
 ```
 
 **Nenhum deles abre a rede**, e é por isso que esta ilha tem bancada apesar de não ter
@@ -201,6 +211,30 @@ Quando o site responder, siga a seção 11 do passo 9 em diante e a seção 14 (
 **5c. CLUSTER FREE TOUR** — ver "Específico desta ilha". É conteúdo próprio, não subproduto da malha.
 
 **6. LISTA DE PROSPECÇÃO DO WIDGET** — operadores e receptivos brasileiros com site próprio, `publicar: false`.
+   - **ENTREGUE em 23/10/2026**, com **25 candidatos** e `publicar: false`. Mora em
+     `dados/prospeccao-widget.json`, com `dados/prospeccao-widget.md` **gerado** e quatro
+     ferramentas: `prospeccao-referencia.py` (a régua), `gerar-prospeccao.py`,
+     `validar-prospeccao.py` e `mutacoes-prospeccao.py`, mais `teste-prospeccao.py`.
+     Detalhe em `dados/especificacao-calculadoras.md`, seção 8.
+   - **A lista não começou do zero, e isso é o achado de método:** o corpus do bloco 1 já
+     tinha medido **69 domínios** e rotulado operador, concessionária e plataforma entre
+     eles — como *procedência*, isto é, como concorrência. `bondinho.com.br` entrou nesta
+     lista porque o corpus já o escrevia como «operador, e três URLs dele» em 14/09/2026.
+   - **A PRIORIDADE NÃO É CAMPO DO BANCO: é derivada**, e o portão reprova se alguém a
+     gravar. O barramento vem primeiro e sai de decisão que a ilha já tinha tomado: dos
+     seis clusters do bloco 1 a ilha declarou que **não disputa um**, o A2, e **quem ocupa
+     consulta de cluster disputado não hospeda a ferramenta que a disputa**.
+   - **E A OFERTA DE FERRAMENTA SAI DO BANCO DE EXPERIÊNCIAS, contado em toda passada.** A
+     F1 só vai a quem vende **a mesma versão** que o banco preça — quem vende versão que a
+     **inclui** receberia um número que compete com o próprio preço, e ferramenta que mina
+     o anfitrião não se oferece ao anfitrião. A F2 exige `FAIXA_DIARIA`, a F3 exige passe e
+     cobertura, e a F3 **nunca** vai a quem vende passe de cidade.
+   - **NENHUM dos 25 tem ferramenta ofertável hoje, e a causa é UMA** — a mesma que trava a
+     coleta da F2 e da F3. Com a rede fechada, o banco nasceu com quatro experiências de
+     tarifa pública e **três dos quatro operadores são poder público**, que não instala
+     widget de afiliado. **O que destrava está nomeado e medido:** uma experiência de
+     operador privado brasileiro no banco — o Parque Bondinho Pão de Açúcar, que vende
+     direto, pelo próprio site, mais de uma versão da mesma experiência.
 
 ---
 

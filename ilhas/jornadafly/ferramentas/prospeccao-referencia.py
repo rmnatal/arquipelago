@@ -305,15 +305,21 @@ def contagens(banco, estado):
 # ------------------------------------------------------------------- o texto
 
 def _tabela(linhas):
-    cab = "| domínio | tipo | país | prioridade | F1 | F2 | F3 |\n|---|---|---|---|---|---|---|\n"
+    # A coluna `brasileiro` esta separada do `pais` de proposito: a fila do bloco 6
+    # pede «operadores e receptivos BRASILEIROS», e ha candidato brasileiro operando
+    # fora do Brasil -- o guia brasileiro autorizado em Roma. Juntar as duas colunas
+    # faria a lista parecer desobedecer a propria fila.
+    cab = ("| domínio | tipo | país | brasileiro | prioridade | F1 | F2 | F3 |\n"
+           "|---|---|---|---|---|---|---|---|\n")
     corpo = ""
     for l in linhas:
-        marca = {True: "sim", False: "não"}
+        marca = {True: "sim", False: "não", None: "não medido"}
         f = {x["ferramenta"]: marca[x["ofertavel"]] for x in l["ferramentas"]}
-        corpo += "| `%s` | %s | %s | %s | %s | %s | %s |\n" % (
+        corpo += "| `%s` | %s | %s | %s | %s | %s | %s | %s |\n" % (
             l["dominio"],
             l["tipo"] or "não medido",
             l["pais"] or "não medido",
+            marca[l["fatos"]["brasileiro"]],
             l["prioridade"],
             f["F1"], f["F2"], f["F3"],
         )
