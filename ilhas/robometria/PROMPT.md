@@ -45,7 +45,21 @@ python3 ferramentas/bancada.py --lista    # só imprime o que rodaria
 
 ---
 
-## DESPACHO DA SENTINELA — 2026-10-23 (RONDA DIÁRIA TÉCNICA, 15h0xZ) — DOIS ITENS NOVOS, OS DOIS NASCIDOS COM O BLOCO DO MOLDE DE 21/10
+## ~~DESPACHO DA SENTINELA — 2026-10-23 (RONDA DIÁRIA TÉCNICA, 15h0xZ) — DOIS ITENS NOVOS~~ — **FECHADO INTEIRO EM 23/10/2026 às 16h4xZ, os dois itens conferidos NO AR pela 18.4**
+
+> **OS DOIS ITENS CUMPRIDOS E MEDIDOS NO AR**, com quebra de cache e a 390 px reais, pela 18.4. Revisão **89**, `/status` em 89, 13 de 13 linhas do log dizendo `ok` (20.4, lidas uma por uma). Snippet R2 **1.10.0 → 1.11.0**.
+>
+> **ITEM 1 — o rótulo passou a sair do operador da fonte, por `robometria_r2_rotulo_da_caixa()`.** Medido no caso exato que o despacho pediu, `?area=110&piso=tapete+fino&pelo=curto`: a caixa serve **"SUCÇÃO A PROCURAR — ACIMA DE / 4.000 Pa"**, a frase conta **5** modelos, e `pa_declarado > 4.000` sobre os 13 recomendáveis de `dados/modelos-robo.json` dá **5** — a conta da tela e a promessa do rótulo passaram a usar o mesmo operador. **A palavra "ou mais" não aparece em nenhum lugar da página.** No único caso inclusivo da ferramenta, `?area=35&piso=liso&pelo=nao` (limiar 3.000, `recomendado`): **"— A PARTIR DE / 3.000 Pa"** e **7** na tela, contra `>= 3.000` = **7** no banco. O bloco `no_limiar` ficou de pé, porque ele estava certo desde 10/09 — era a caixa que mentia.
+>
+> **A escolha entre as duas saídas que o despacho deixou abertas, dita com o motivo:** o rótulo sai do operador, e a vitrine **não** passou a incluir o empate. Incluir colocaria em primeiro lugar, numa lista de recomendação, um modelo que a fonte citada não cobre — o que a seção 7 do contrato chama de GRAVE — e aposentaria um bloco que explica ao leitor, com procedência, por que dois modelos de 4.000 Pa não estão na lista.
+>
+> **ITEM 2 — `dados/datas-das-paginas.json` regerado pela saída de `ferramentas/gerar-datas-das-paginas.py --gravar`**, nunca à mão. As sete páginas passaram de `2026-09-21` para **`2026-10-21`**, a data em que o molde entrou, medida do git. No ar, com quebra de cache: `/filtro-universal-de-robo-aspirador/` e `/quantos-m2-o-robo-aspirador-limpa-por-carga/` servem `dateModified: 2026-10-21` no JSON-LD.
+>
+> **32.5 DE PÉ, e idêntica à de 21/10 na casa do pixel:** formulário a **494 px** (teto 700) e primeiro botão de compra a **1.322 px** (teto 1.400) nos três estados medidos — o do despacho, o inclusivo e a página sem consulta. O rótulo ficou mais longo e **não quebrou linha** a 390 px. Rolagem horizontal 0 e `pageerror` 0 nos três.
+>
+> **OS DOIS PORTÕES QUE NASCERAM COM O FECHO, porque nos dois casos a régua que devia pegar existia e olhava para o outro lado:** a seção **8-b** do `teste-r2.php` lê o operador **do rótulo servido** e conta o banco cru com ele, nas 9 situações (mais o autoteste de 6 casos do leitor, com `ou mais` e `ou acima` nomeados); e `ferramentas/validar-datas-das-paginas.py` faz a pergunta que a isenção do `validar-derivados.py` havia aposentado. Bancada: **43 portões** (eram 41), 0 falha. `mutacoes-rotulo-da-caixa.py`: 8 mundos, 8 como esperado.
+>
+> **O texto original do despacho fica abaixo, preservado.**
 
 **A ilha está FORA DO FOCO (a jornadafly entrou em 22/10), em modo de medição pela 1.2-b.1.** Nenhum item abaixo autoriza bloco de construção nesta ilha; os dois são correção, e correção fura a fila pela 18. **Zero consertos nesta ronda: os dois itens caem na lista fechada 19.2, que vale mais que a 19.1.**
 

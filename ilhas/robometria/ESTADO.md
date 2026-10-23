@@ -5,72 +5,70 @@ prioridade: 1
 piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 14
 primeira_indexacao: 2026-09-11
-ultima_execucao: 2026-10-21T16:15Z
-executando_desde: 2026-10-23T16:18Z   # reservada pela execucao da Fundacao de 23/10 16:18Z para o DESPACHO DA SENTINELA de 23/10 (dois itens). A ilha esta FORA DO FOCO (jornadafly desde 22/10) e este despacho FURA O FOCO pela 1.2: o item 1 e pagina no ar servindo rotulo que promete `>= 4.000` com contagem feita em `> 4.000` — ferramenta devolvendo numero errado em ilha que esta no ar. A hora saiu do `date -u` na mesma linha de comando que a gravou.
+ultima_execucao: 2026-10-23T16:42Z   # o despacho da Sentinela de 23/10 fechado INTEIRO (18.2), os dois itens conferidos no ar (18.4), revisao 89 no /status. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
+executando_desde: null   # limpo as 16:42Z pela propria execucao que reservou as 16:18Z de 23/10. A reserva nao precisou de renovacao pela 1.1: o bloco inteiro — os dois itens, dois portoes novos, uma bateria de 8 mutacoes, a bancada completa, o Sync em duas passadas e a conferencia no ar a 390 px — cabe na janela de 40 minutos, e por isso nenhum commit do meio dela reescreveu este campo.
 bloco_atual: |
-  O MOLDE DE CONVERSAO DA SECAO 32 ESTA NO AR NAS NOVE PAGINAS DESTA ILHA, e o
-  despacho do Raphael de 21/10 esta FECHADO INTEIRO pela 18.2 — os dois itens,
-  conferidos no ar uma pagina por vez pela 18.4. Revisao 88, /status em 88.
-  Snippets: casca 1.13.0, R1 1.12.0, R2 1.10.0, A1 1.6.0, A2 1.6.0, malha 1.1.0.
-  MEDIDO NO AR, celular de 390 px com quebra de cache, formulario-ou-caixa e
-  primeiro botao de compra (a 32.5 pede antes de 700 e antes de 1.400):
-  R1 452/1.280 (era 808/3.330) · R2 494/1.322 (era 876/4.347) · A1 352/860 (o
-  botao era 4.256) · A2 352/914 (era 3.686) · /pecas/ 445 · /pecas/filtros/ 514 ·
-  xiaomi 418/1.022 · wap 418/989 · electrolux 418/1.191. NOVE DE NOVE PASSAM.
-  As duas paginas de /pecas/ sem botao sao as de NAVEGACAO da arvore: o produto
-  mora na filha de marca, e listar produto nelas seria a terceira copia da
-  vitrine da filha. Rolagem horizontal 0 e pageerror 0 nas nove.
-  ALTURA: R1 15.467 -> 13.140 px. R2 19.790 -> 15.684. A1 6.770 -> 5.118.
-  A2 5.161 -> 3.551.
-  O QUE NAO MUDOU, comparado no HTML servido antes contra depois, pagina por
-  pagina: title, h1, canonical, meta description e os TRES nos de JSON-LD
-  identicos nas nove; trilha e BreadcrumbList servidos nas nove.
-  TEXTO: ninguem perdeu palavra (32.3). R1 2.854 -> 2.910 no HTML servido, A1
-  1.271 -> 1.308, A2 1.305 -> 1.325, /pecas/ 517 -> 551, /pecas/filtros/ 666 ->
-  704, xiaomi 542 -> 577. A R2 caiu de 4.013 para 3.791 e a diferenca tem nome:
-  a frase longa do cartao estava DUAS vezes na pagina, no cartao e na lista de
-  modelos. Medido por conjunto de tokens, nenhum token unico saiu de nenhuma das
-  nove — menos os 22 da frase de bastidor da 32.4.
-  32.4: a frase de bastidor vivia em TRES snippets (R1, R2 e A2). Varredura final
-  nas 14 URLs do sitemap: TODAS LIMPAS.
-  O QUE VIROU COMPONENTE DA CASCA, pela 32.6-b: robometria_casca_caixa(),
-  robometria_casca_dobra(), o cartao deitado no celular e o par de campos do
-  formulario. E o componente pagou na hora, sem uma linha da pagina mudar: o
-  cartao deitado trouxe o primeiro botao de /pecas/filtros/xiaomi/ de 1.093 para
-  833 px, medido no ar antes de a malha ser tocada.
-  QUATRO DEFEITOS DE VERDADE, fechados na mesma execucao e com a causa escrita no
-  REGISTRO: (1) o paragrafo de procedencia da R1 CITA a frase de recusa e, posto
-  entre a resposta e a tabela, caiu dentro da fronteira do
-  conferir-reservatorio-no-ar.py, fazendo quatro afirmacoes lerem uma resposta
-  que recusa onde a resposta entrega a peca; (2) a caixa da A2 creditava o
-  FABRICANTE pelo que a LOJA OFICIAL declarou, no primeiro rotulo da pagina;
-  (3) a abertura da A1 parou de falar com quem entrou; (4) o numero da caixa da
-  A1 saia com a marcacao impressa na tela.
-  PORTOES: 41 de 41 verdes sem rede. SETE aprenderam o molde e nenhum foi
-  afrouxado — entre eles duas reguas que ficariam CEGAS em silencio: o padrao do
-  bloco de compra no teste-r1 e no conferir-frase-de-compra-no-ar lia a <div>
-  pela classe EXATA, e o bloco ganhou id.
-  A ESCOLHA DA ILHA: TERCEIRA TENTADA. O foco.md nomeia a aquametria, mas a
-  excecao do Raphael de 21/10 poe o despacho do molde acima do foco e a 32.6-b
-  manda as tres ilhas em paralelo. A aquametria estava reservada as 15:04Z; pedi
-  a clubedomosaico e o push foi RECUSADO (reservada as 15:06Z); rebase sem force
-  push e a robometria entrou as 15:07Z.
-  REDE PELA 20.2, RETESTADA E NAO HERDADA: tres passadas, robometria.com.br e
-  www em 200 nas tres.
-  O QUE ESTA EXECUCAO NAO FEZ: a 32.1 pede preco com data da coleta no cartao e
-  o banco desta ilha NAO guarda preco — lacuna de DADO, nao de molde, e nao foi
-  inventado. A 32.2 pede o par "Calcular" + "Ver produtos" por item do bloco
-  Monte/Compre, e as paginas servem o botao de loja. Esta ilha nao tem o portao
-  conferir-desembarque.py da 20.4: o log do /status foi lido LINHA A LINHA nas
-  tres revisoes (84, 86 e 88), 15 linhas e 13 itens aplicados, todas dizendo ok
-  e nenhuma cortada pela janela, e o portao fica como divida (a 31.3 proibe
-  construir portao novo com item de conteudo aberto na fila).
-  PROXIMO PASSO: a leva 2 da malha — /pecas/escovas-laterais/ (13 itens, 5
-  marcas) e /pecas/mops/ (19, 5), que o bloco 5b ja mediu como aprovadas no
-  portao de dado, com RECONTAGEM e classificacao de SERP proprias antes de
-  escrever pagina. E ela NASCE no molde da secao 32 de fabrica, porque os
-  componentes da casca 1.13.0 ja servem a arvore inteira — nao ha retrofit.
-  Antes dela, conferir se a leitura semanal liberou o teto da 21.4.
+  O DESPACHO DA SENTINELA DE 23/10 ESTA FECHADO INTEIRO pela 18.2, e os DOIS
+  itens foram conferidos NO AR pela 18.4. Revisao 89, /status em 89, as 13 linhas
+  do log dizendo `ok`, lidas uma por uma pela 20.4. Snippet R2 1.10.0 -> 1.11.0.
+  Correcao, nao bloco: a ilha segue FORA DO FOCO e em modo de medicao (1.2-b.1).
+  POR QUE ELA FUROU O FOCO: a jornadafly, que e a ilha em foco, esta com a fila
+  de arquivo ESGOTADA desde 23/10 13h20Z — sem WordPress e sem egresso nao sobrou
+  bloco que a Fundacao alcance, e isso esta escrito no foco.md por quem mediu.
+  O item 1 era pagina no ar servindo numero errado em ilha viva, que e o unico
+  caso que a 1.2 deixa furar o foco.
+  ITEM 1 — A CAIXA DA R2 PROMETIA `>=` SOBRE UMA LISTA MONTADA EM `>`. O literal
+  'Pa ou mais' nasceu com a caixa da 32.1 na 1.10.0, e "ou mais" e INCLUSIVO; em
+  8 das 9 situacoes o limiar seguro e `acima_de` (a Canaltech escreve "acima de
+  4.000 Pa") e a lista sai de `pa > valor`. A primeira tela prometia 7 modelos e
+  a vitrine entregava 5 — com os dois que faltavam na MESMA pagina, no bloco
+  `no_limiar`, que diz por que nao estao na lista.
+  MEDIDO NO AR com quebra de cache, no caso exato do despacho
+  (?area=110&piso=tapete+fino&pelo=curto): "SUCCAO A PROCURAR — ACIMA DE /
+  4.000 Pa", 5 na tela, e `> 4.000` sobre os 13 recomendaveis do banco = 5. No
+  unico caso inclusivo (?area=35&piso=liso&pelo=nao, limiar 3.000): "— A PARTIR
+  DE / 3.000 Pa", 7 na tela, `>= 3.000` = 7. A palavra "ou mais" nao aparece em
+  lugar nenhum da pagina.
+  A ESCOLHA ENTRE AS DUAS SAIDAS QUE O DESPACHO DEIXOU ABERTAS: o rotulo sai do
+  operador, e a vitrine NAO passou a incluir o empate. Incluir poria em primeiro
+  lugar, numa lista de recomendacao, um modelo que a fonte citada nao cobre — o
+  que a secao 7 chama de GRAVE — e aposentaria um bloco que explica ao leitor,
+  com procedencia, por que dois modelos de 4.000 Pa ficam de fora.
+  ITEM 2 — dados/datas-das-paginas.json REGERADO pela saida do gerador, nunca a
+  mao: as 7 paginas passaram de 2026-09-21 para 2026-10-21, a data em que o molde
+  entrou, medida do git. No ar: /filtro-universal-de-robo-aspirador/ e
+  /quantos-m2-o-robo-aspirador-limpa-por-carga/ servem dateModified 2026-10-21.
+  OS DOIS PORTOES QUE NASCERAM COM O FECHO, e nos dois casos a regua que devia
+  pegar EXISTIA e olhava para o outro lado. (1) Secao 8-b do teste-r2.php: le o
+  operador DO ROTULO SERVIDO, nas 9 situacoes, e conta o banco cru com ele — a
+  secao 8, de 10/09, ja conferia a classificacao inteira contra o operador da
+  fonte e estava VERDE no dia do defeito, porque estava certa; ninguem nunca
+  havia perguntado o que a CAIXA promete. (2) validar-datas-das-paginas.py faz a
+  pergunta que a isencao do validar-derivados.py havia aposentado: a isencao foi
+  escrita para um ARQUIVO (byte a byte nao faz sentido ali, `gerado_em` muda a
+  cada passada) e virou isencao para a PERGUNTA, e desde 16/09 ninguem perguntava
+  se a data publicada e a do git. Isencao de regua e divida escrita, e esta
+  venceu em 21/10. Ele compara so o que e funcao do git, importa PAGINAS e
+  data_do_arquivo() do proprio gerador, e roda o autoteste como PORTAO ZERO.
+  32.5 DE PE E IDENTICA A DE 21/10 NA CASA DO PIXEL: formulario a 494 px (teto
+  700) e primeiro botao de compra a 1.322 px (teto 1.400) nos tres estados
+  medidos a 390 px reais — o do despacho, o inclusivo e a pagina sem consulta. O
+  rotulo ficou mais longo e NAO quebrou linha. Rolagem horizontal 0 e pageerror 0
+  nos tres.
+  BANCADA: 43 portoes sem rede (eram 41), 0 falha. conferir-no-ar.py APROVADO com
+  389 afirmacoes, 0 falha. mutacoes-rotulo-da-caixa.py: 8 mundos, 8 como
+  esperado — e a que importa e a (3), que troca SO a palavra do rotulo, sem tocar
+  no dado: ela e invisivel para os outros 42 portoes por construcao.
+  DIVIDA MEDIDA E NAO CONSERTADA, porque nao e deste despacho: esta ilha NAO tem
+  o `conferir-desembarque.py` que a 20.4 manda toda ilha com Sync copiar da
+  clubedomosaico. O log do /status desta passada foi lido a mao, linha por linha,
+  e deu 13 de 13 `ok` — mas a mao e quem esquece. Fica para quem abrir bloco aqui.
+  PROXIMO PASSO DESBLOQUEADO: a ilha segue em modo de medicao e sem bloco de
+  construcao autorizado (1.2-b.1). Os tres despachos abertos continuam, e os tres
+  foram remedidos pela ronda de hoje: Article sem author na A2 (uma linha de array
+  em snippets/robometria-a2.php, o A1 a tem na 744), dois numeros para a mesma
+  frase (91 contra 92 pares peca x modelo) e o soft 404 na borda, que e do Raphael.
+  Os dois primeiros sao correcao e furam a fila quando a Fundacao voltar aqui.
 ultima_ronda: 2026-10-23T15:05Z   # RONDA DIARIA TECNICA FUNDA. 14 de 14 URLs em 200, porta de entrada da 29.2 inteira mais o 404 que tem de ser 404, /status em 88 igual ao manifest, console sem uma mensagem no Chrome do Raphael. ZERO CONSERTO: os dois defeitos novos sao da lista fechada 19.2 e foram para o DESPACHO DA SENTINELA de 2026-10-23. (1) a caixa de resultado da R2 publica o rotulo 'Pa ou mais' (literal em snippets/robometria-r2.php linha 1187) enquanto a fonte escreve 'acima de 4.000 Pa' e a propria pagina separa xiaomi-e10 e xiaomi-s10 num bloco no_limiar: o banco tem 7 publicaveis com Pa maior ou igual a 4.000 e a pagina lista e conta 5. (2) dateModified de 2026-09-21 em 7 paginas que o bloco de 21/10 reescreveu, porque dados/datas-das-paginas.json esta em gerado_em 2026-09-21 e o gerador nao foi rodado. A 32.5 foi conferida por quem nao construiu, a 390 px reais: 9 de 9 passam, e passam TAMBEM depois do calculo (R1 1.203 px, R2 1.318 px, uma caixa de resposta so) — o defeito da aquametria de 21/10 nao se reproduz aqui porque R1 e R2 sao formulario GET renderizado no servidor. Teste de vida: 29 de 29 testaveis VIVOS, zero clique de afiliado gasto, com o instrumento da api de ficha da Shopee de volta depois de 0 de 29 em 16/10. Piso da 25.2: 99 de 99 com url_busca e url_busca_produto, zero intestavel. Os tres despachos abertos foram remedidos e os tres CONTINUAM. E o acionamento do Sync por curl FUNCIONA deste ambiente: HTTP 200 em 9,9 s as 14h58Z, 13 aplicados, /status em 88.
 bloqueada_por: null
 ---

@@ -6756,3 +6756,63 @@ de resposta dela subiu o botao para 1.022 — ainda 71 px abaixo de onde estava.
   escrever pagina. **E ela nasce no molde da secao 32 de fabrica**, porque os
   componentes da casca 1.13.0 ja servem a arvore inteira — nao ha retrofit a
   fazer. Antes dela, conferir se a leitura semanal liberou o teto da 21.4.
+
+---
+
+## 2026-10-23 (16h18Z → 16h4xZ) — O DESPACHO DA SENTINELA DE 23/10, INTEIRO: o rótulo da caixa sai do operador da fonte, e o `dateModified` volta a ser o do git
+
+**Correção, não bloco.** A ilha segue **fora do foco** e em **modo de medição** (1.2-b.1); nada aqui autorizou construção. Os **dois** itens do despacho da ronda de hoje, fechados na mesma execução pela **18.2**, conferidos **no ar** pela **18.4**. Revisão **89**, `/status` em 89. Snippet **R2 1.10.0 → 1.11.0**.
+
+### A ESCOLHA DA ILHA, E ELA FUROU O FOCO — com o motivo escrito antes do trabalho
+
+`foco.md` nomeia a **jornadafly** desde 22/10, e a seção **1.2** manda a Fundação trabalhar só nela. **A fila de arquivo da jornadafly está ESGOTADA** desde 23/10 às 13h20Z — sem WordPress (passos 2 a 8 da seção 11, trabalho de navegador do Raphael) e com o egresso recusando o domínio e as fontes, não sobrou bloco que a Fundação alcance, e a própria execução que mediu isso escreveu no `foco.md`: *"a execução seguinte que encontrar esta ilha em foco, com `rede: BLOQUEADA` e sem WordPress, não tem bloco para abrir — e isso está escrito para que ela não invente um."*
+
+**O que fura o foco pela 1.2 é "despacho ALTO em ilha que está no ar e quebrada — página servindo erro, ferramenta devolvendo número errado, site fora do ar."** O item 1 deste despacho é, letra por letra, o caso do meio: a `/quantos-pa-o-robo-aspirador-precisa/` servia, na primeira tela, um rótulo que promete `>= 4.000` sobre uma lista montada em `> 4.000`. A ilha está `viva`, com 14 URLs no ar. A clubedomosaico também tem despacho de hoje, com **um** item, e ele é de **altura de botão** (1.495 px contra o teto de 1.400 da 32.5) — defeito de molde, não número errado: **NORMAL**, e por isso esperou. Escolhida a robometria, e a reserva por commit entrou de primeira às **16h18Z** (`13d7406`), sem corrida perdida. **Rede conferida pela 20.2 ANTES de reservar**, três passadas: `robometria.com.br` 200/200/200, `www` 301/200/200, `/status` 200.
+
+### ITEM 1 — A CAIXA PROMETIA `>=` SOBRE UMA LISTA MONTADA EM `>`
+
+A caixa de resultado nasceu na **1.10.0**, com o molde de conversão da seção 32, e o rótulo dela era o literal **`'Pa ou mais'`** digitado na chamada de `robometria_casca_caixa()`. **"Ou mais" é inclusivo.** Em **8 das 9** situações desta ferramenta o limiar seguro é `acima_de` — a Canaltech escreve *"acima de 4.000 Pa"* — e `atende()` compara `pa > valor`, porque um modelo de exatamente 4.000 Pa não está acima de 4.000.
+
+O resultado no ar: a primeira tela prometia **7** modelos e a vitrine entregava **5**, com os dois que faltavam (`xiaomi-e10` e `xiaomi-s10`, 4.000 Pa cada) **na mesma página**, no bloco `no_limiar`, que diz ao leitor, com procedência, que *"estar no número não é estar acima dele"*. **A página se contradizia a duas telas de distância, e quem estava certo era o bloco de baixo.**
+
+**A SAÍDA ESCOLHIDA, entre as duas que o despacho deixou abertas, e o motivo:** o rótulo passa a sair do operador por `robometria_r2_rotulo_da_caixa()`, e a vitrine **não** passou a incluir o empate. Incluir poria em primeiro lugar, numa lista de recomendação, um modelo que a fonte citada **não cobre** — o que a seção 7 do contrato chama de GRAVE — e aposentaria um bloco que explica por que dois modelos de 4.000 Pa ficam de fora. O operador virou **preposição**, e a caixa inteira passou a se ler como uma oração.
+
+**MEDIDO NO AR, com quebra de cache, no caso exato que o despacho pediu:**
+
+| caso | rótulo + número servidos | na tela | conta sobre `modelos-robo.json` |
+|---|---|---|---|
+| `?area=110&piso=tapete+fino&pelo=curto` | **SUCÇÃO A PROCURAR — ACIMA DE / 4.000 Pa** | 5 modelos | `> 4.000` = **5** |
+| `?area=35&piso=liso&pelo=nao` (o único inclusivo) | **— A PARTIR DE / 3.000 Pa** | 7 modelos | `>= 3.000` = **7** |
+
+A conta foi feita sobre os **13 recomendáveis** do banco cru (45 publicáveis, 13 com canal brasileiro e Pa declarado). **A palavra "ou mais" não aparece em nenhum lugar da página.**
+
+### ITEM 2 — SETE PÁGINAS COM `dateModified` DE UM MÊS ATRÁS
+
+O desembarque estava em dia; o que estava velho era o arquivo no repositório. O bloco do molde de 21/10 reescreveu **nove** páginas e **não rodou** `ferramentas/gerar-datas-das-paginas.py`. `dados/datas-das-paginas.json` foi regerado **pela saída do gerador**, nunca à mão: as sete passaram de `2026-09-21` para **`2026-10-21`**, a data em que o molde entrou, medida do git. No ar, com quebra de cache: `/filtro-universal-de-robo-aspirador/` e `/quantos-m2-o-robo-aspirador-limpa-por-carga/` servem **`dateModified: 2026-10-21`** no JSON-LD.
+
+### OS DOIS PORTÕES QUE NASCERAM COM O FECHO — e o achado desta execução está neles
+
+**Nos dois itens a régua que devia pegar EXISTIA e olhava para o outro lado.** É o mesmo achado duas vezes, em camadas diferentes, e é o que esta execução tem de registro e não de conserto.
+
+**(1) `teste-r2.php`, seção 8-b.** A seção 8 daquele arquivo, escrita em 10/09, confere a classificação **inteira** contra o operador que a fonte declara, com conta própria e independente — **e estava verde no dia do defeito, porque estava certa.** Ninguém nunca havia perguntado o que a **CAIXA** promete. O portão novo não parte do dado: ele lê o rótulo no HTML servido, **extrai dele o operador que a caixa promete ao leitor**, conta o banco cru com esse operador (os dois filtros da recomendação reescritos ali, não importados) e cobra que bata com o *"São N modelos que passam no limiar"* da própria página, nas **9** situações. Trocar o rótulo sem trocar a lista reprova; trocar a lista sem trocar o rótulo reprova. Mais o autoteste de **6** casos do leitor de rótulo, com `ou mais` **e** `ou acima` nomeados: portão que decora uma string só aprova o defeito que troca de palavra. **O literal estava a uma linha da função que lê o dado, no mesmo arquivo** — `robometria_r2_escrever_limiar()`, que a frase de leitura da mesma caixa já usava.
+
+**(2) `ferramentas/validar-datas-das-paginas.py`.** O motivo de ninguém ter pegado o item 2 estava escrito **dentro do portão que devia pegar**: `validar-derivados.py` **isenta** `dados/datas-das-paginas.json`, com a justificativa de que ele *"muda a cada commit por desenho — comparar com o disco reprovaria toda vez que alguém commitasse"*. **A análise está certa para a comparação byte a byte que aquele portão faz** (`gerado_em` é a data em que o gerador rodou). Só que **a isenção foi escrita para um ARQUIVO e virou isenção para a PERGUNTA**: desde 16/09 ninguém mais perguntava se a data publicada é a data do git. **Isenção de régua é dívida escrita, e esta venceu em 21/10.** O portão novo faz a pergunta certa: compara **só o que é função do git** (`modificada_em`, `modificada_por` e a data por arquivo) e **nunca** `gerado_em`, então não reprova por commitar; **importa `PAGINAS` e `data_do_arquivo()` do próprio gerador** em vez de reescrever o mapa de página para arquivo — duas listas à mão da mesma coisa é a família de defeito que esta ilha já pagou quatro vezes; e roda o autoteste de **6** mundos como **PORTÃO ZERO** em toda passada, porque régua conferida só quando alguém lembra de passar `--autoteste` não é conferida. **A linha da isenção ficou** no `validar-derivados.py`, agora com o novo dono nomeado nela.
+
+**A 31.2 foi obedecida nos dois:** cada portão nasceu de **defeito medido no ar hoje**, com URL e data no commit. Nenhum portão existente foi ampliado, refatorado ou deduplicado — a 31.3 não foi tocada.
+
+### VERIFICAÇÃO
+
+- **32.5 DE PÉ, e idêntica à de 21/10 na casa do pixel:** formulário a **494 px** (teto 700) e primeiro botão de compra a **1.322 px** (teto 1.400) nos **três** estados medidos a 390 px reais — o do despacho, o inclusivo e a página sem consulta. O rótulo ficou mais longo e **não quebrou linha**. Rolagem horizontal **0** e `pageerror` **0** nos três.
+- **20.4 cumprida à mão:** Sync acionado **duas** vezes com `forcar=1` (HTTP 200 em 9,4 s e 7,7 s), e as **15** linhas do log da revisão corrente lidas uma por uma — **13 itens aplicados, todos dizendo `ok`**, `snippets/robometria-r2: ok (snippet #9 atualizado)` entre eles; as duas linhas sem `ok` são os cabeçalhos de resumo das duas passadas. `raw.githubusercontent.com` já servia a 89 antes do primeiro acionamento, então a 20.5 não foi exercida.
+- **BANCADA:** **43 portões** sem rede (eram 41), **0 falha**. `conferir-no-ar.py` **APROVADO: 389 afirmações, 0 falha**.
+- **`mutacoes-rotulo-da-caixa.py`: 8 mundos, 8 como esperado.** A que importa é a **(3)**, que troca **só a palavra do rótulo**, sem tocar no dado, na lista nem na contagem: ela é **invisível para os outros 42 portões por construção**, porque todos eles conferem o dado contra o dado. Se ela passasse, o portão novo não serviria para nada. As outras: o mundo de 23/10 letra por letra, a mentira por sinônimo (`Pa ou acima`), o rótulo que **cala** o operador, o número da caixa digitado (que acerta 8 das 9 situações — é por isso que esse tipo de defeito sobrevive), a lista passando a incluir o empate pela referência, e a que **mata a régua** tirando `ou mais` do leitor de rótulo.
+
+### O QUE NÃO FOI FEITO, e por quê
+
+- **Os três despachos abertos continuam, e os três foram remedidos pela ronda de hoje.** `Article` sem `author` na A2 (uma linha de array em `snippets/robometria-a2.php`; o A1 a tem na 744), dois números para a mesma frase (91 contra 92 pares peça × modelo) e o soft 404 na borda, que é do Raphael. **Os dois primeiros são correção e furam a fila quando a Fundação voltar aqui.** Não foram tocados nesta execução porque o despacho de hoje é o mais novo e a 18.2 manda fechar **um** despacho inteiro, não varrer a pilha.
+- **Esta ilha continua sem o `conferir-desembarque.py` da 20.4**, que a clubedomosaico tem. O log do `/status` foi lido à mão, linha por linha, e deu 13 de 13 `ok` — **mas a mão é quem esquece**, e foi exatamente isso que custou o item 2. A dívida já estava registrada na entrada de 21/10 e continua: ela é de **bancada**, e a 31.3 a mantém proibida enquanto houver item de conteúdo aberto na fila.
+- **A memória da ilha não foi atualizada:** este ambiente não tem a ferramenta de memória, e o `PROMPT.md` manda não parar por isso. O próximo passo está aqui e no cabeçalho do `ESTADO.md`.
+
+**PROPORÇÃO DA 31.1:** esta execução entregou **correção de defeito medido no ar**, que a 31.1 conta como entrega no ar com todas as letras. Duas páginas de artigo e a ferramenta R2 mudaram o que o visitante e o Google recebem.
+
+- **Próximo passo:** a ilha segue em **modo de medição** e **sem bloco de construção autorizado** (1.2-b.1) — o foco é da jornadafly. Quando a Fundação voltar aqui, o que fura a fila são os dois itens de correção dos despachos de 16/10 e 02/10, nesta ordem (a 18.1 manda o mais antigo primeiro entre iguais, e os dois são da Sentinela). Construção, quando vier, é a **leva 2 da malha** — `/pecas/escovas-laterais/` e `/pecas/mops/` —, que nasce no molde da seção 32 de fábrica e depende de a leitura semanal liberar o teto da 21.4.
