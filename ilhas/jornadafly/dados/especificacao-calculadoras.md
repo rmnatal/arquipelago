@@ -836,6 +836,12 @@ widget, `publicar: false`). O **5b** (malha) e o **5c** (cluster free tour) depe
 casca. Depois deles, esta ilha não tem mais bloco que não precise do Raphael — e isso
 está escrito aqui para a próxima execução não gastar a vez descobrindo.
 
+> **O BLOCO 5 SAIU EM 23/10/2026 — ver a seção 7 acima.** Quatro artigos escritos como
+> regra e dois pré-registrados, estes esperando dado de coleta e não trabalho de escrita.
+> **Sobra o bloco 6, e ele é o último item de arquivo desta ilha.** Depois dele não há
+> bloco que não precise do Raphael: a casca (3b), os passos 2 a 8 da seção 11, a liberação
+> do domínio no egresso e as fontes de diária e de passe — todas de navegador, todas dele.
+
 ---
 
 ## 7. OS ARTIGOS-ÂNCORA — o bloco 5, e por que eles não são texto digitado (23/10/2026)
@@ -932,8 +938,8 @@ justamente o diferencial da ilha.)*
 ### 7.7 O que o portão mede, e a régua que foi tentada três vezes e NÃO existe
 
 `python3 ferramentas/artigos-referencia.py` monta e confere; `mutacoes-artigos.py` quebra e
-exige que ele veja — **41 quebras, 41 reprovadas, zero morte e zero inerte** em
-23/10/2026, 37 por artigo e 4 pelo conjunto.
+exige que ele veja — **43 quebras, 43 reprovadas, zero morte e zero inerte** em
+23/10/2026, 39 por artigo e 4 pelo conjunto.
 
 **E uma régua não existe, por medição e não por esquecimento.** A acentuação correta foi
 tentada em três formas no mesmo dia, e as três reprovaram texto impecável:

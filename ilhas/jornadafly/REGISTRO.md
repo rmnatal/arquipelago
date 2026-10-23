@@ -3,6 +3,225 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-10-23 10h17Z — O BLOCO 5 SAIU, e a decisão que mais importa nele é de FORMA: o artigo é **montado do banco**, nunca redigido
+
+**O que saiu:** os **artigos-âncora como regra** — `ferramentas/artigos-referencia.py` (o
+cérebro: o mapa das consultas, a árvore, a rotação das irmãs, a montagem do documento e o
+portão que o confere), `ferramentas/gerar-artigos.py`, `dados/artigos-ancora.json`
+(**4 artigos escritos**, **44** linhas de tabela, **74** parágrafos de dobra, **14**
+perguntas de FAQ, `publicar: false`) e `ferramentas/mutacoes-artigos.py`. Mais a **seção 7**
+da `especificacao-calculadoras.md`. É o próximo passo que o registro de 22/10 deixou
+escrito, cumprido na execução seguinte.
+**Nada foi ao ar, e não podia ter ido: esta ilha não tem site, não tem WordPress, não tem
+Sync e não tem `/status`. Dizer que verifiquei no ar seria inventar.**
+
+**A ESCOLHA DA ILHA: NÃO HOUVE ROTAÇÃO E NÃO HOUVE DECISÃO MINHA.** `foco.md` nomeia a
+**jornadafly** e pela **1.2** não há escolha a fazer. Conferi a exceção de 21/10 que fura o
+foco pelo **molde da seção 32**, e ela não se aplica: os três despachos do molde estão
+**fechados** (aquametria às 18h2xZ, clubedomosaico às 19h1xZ, robometria às 16h1xZ de
+21/10). `executando_desde` estava `null`, que pela **1.1** já significa que não havia bloco
+da Fundação vivo. Reserva aceita de primeira às **10h17Z**, sem recusa de push, e
+**RENOVADA** às 10h31Z pela 1.1. Nenhum branch `claude/*` com trabalho a mesclar — o
+`claude/dreamy-mccarthy-6qjpdw` estava idêntico ao `main` — e nenhum PR aberto.
+
+**REDE PELA 20.2, REMEDIDA E NÃO HERDADA.** Duas passadas às 10h16Z: `jornadafly.com.br` e
+`www.jornadafly.com.br` em `000` nas duas (**4 medições de bloqueio**), com
+`aquametria.com.br` e `robometria.com.br` em `200` nas duas (**4 de controle**, nenhuma
+intermitência) e `raw.githubusercontent.com` em `301` ao lado. **Segue sendo regressão**, e
+o despacho ALTA de 15/09 em `dados/despachos.md` continua valendo. `bloqueada_por` segue
+`null` de propósito, como nas oito execuções anteriores.
+
+### 1. O ARTIGO É MONTAGEM, E ISSO NÃO É ECONOMIA DE ESFORÇO — É O PRODUTO
+
+A fila pedia "artigos-âncora pareados com cada ferramenta". O caminho óbvio era escrever
+quatro textos bonitos em Markdown. **Ele teria destruído o produto desta ilha em silêncio,
+e a conta é simples:** artigo escrito à mão carrega número digitado, e número digitado
+envelhece calado. No dia da próxima carga do banco, a calculadora publica o preço novo e o
+artigo continua publicando o velho, **com a mesma cara de verdade**. Nesta ilha isso não é
+um detalhe de manutenção — o `VOZ.md` chama preço cravado sem a data da coleta de "o defeito
+mais grave possível nesta ilha", porque **o preço datado É o produto**.
+
+Então o artigo saiu no mesmo desenho das três ferramentas: a regra em Python, o arquivo
+gerado, e o PHP como **tradutor** dela quando a casca nascer. **Toda frase de preço dos
+quatro artigos é devolvida pela `f1-referencia.py`** — a mesma regra que a bancada mede. O
+que a referência do artigo guarda é só o que nenhuma ferramenta sabe: qual consulta ele
+ataca, quem ocupava a SERP dela no dia da medição, qual é a mãe na árvore, quais são as
+irmãs e para onde vai o link de compra.
+
+**Os quatro, com a mãe e a ferramenta:**
+
+| Artigo | URL planejada | Consulta-alvo | Tabela | Dobras | FAQ | Itens de compra |
+|---|---|---|---|---|---|---|
+| gôndola de Veneza | `/guias/quanto-custa/passeio-de-gondola-em-veneza/` | `quanto custa passeio de gôndola em veneza` | 8 | 6 | 3 | 2 |
+| Torre Eiffel | `/guias/quanto-custa/subir-na-torre-eiffel/` | `quanto custa subir na torre eiffel` | 16 | 7 | 4 | 4 |
+| Coliseu de Roma | `/guias/quanto-custa/ingresso-do-coliseu-de-roma/` | `quanto custa ingresso coliseu roma` | 8 | 6 | 3 | 2 |
+| Angkor Pass | `/guias/quanto-custa/angkor-pass-de-1-3-ou-7-dias/` | `angkor pass quantos dias valem a pena` | 12 | 7 | 4 | 3 |
+
+Os quatro com `Article` + `BreadcrumbList` + `FAQPage`, trilha de três níveis, mãe linkada
+na trilha **e** numa frase do corpo, bloco "Monte / Compre o que esta resposta pede" com os
+dois botões por item, e tabela de casos resolvidos visível e nunca recolhida.
+
+### 2. A MÃE NÃO É A CIDADE, E ESSE FOI O ERRO BARATO QUE QUASE SAIU
+
+A malha desta ilha é experiência → cidade → país, então agrupar os guias por cidade parecia
+o natural. **A conta no banco desfez isso em uma linha:** cada uma das quatro cidades tem
+**uma** experiência hoje. Quatro categorias com uma filha cada é cluster ralo, que não passa
+autoridade nenhuma — e categoria só nasce com três filhas.
+
+Os quatro nasceram então na mesma mãe, **`/guias/quanto-custa/`**, que é literalmente um dos
+três itens do menu que o `VOZ.md` define e é a palavra da pessoa. Com quatro filhas na mesma
+mãe, **cada página recebe três irmãs apontando para ela**, e não uma.
+
+**E a janela de irmãs ROTACIONA, por desenho e não por sorte:** cada página leva as
+até-quatro irmãs que vêm **depois** dela na ordem do mapa, dando a volta no fim. O grafo que
+sai é circulante, então o grau de **entrada** de toda filha é igual ao de **saída** — hoje
+com quatro, e no dia em que a categoria tiver dez. A afirmação que mede isso é do
+**conjunto**, refeita na direção de quem aponta: contar só o que sai fica verde nos dois
+mundos, e é exatamente assim que uma página nasce no ar com um link de entrada só.
+
+### 3. DOIS CAMPOS PARA A MESMA PERGUNTA, E A DIFERENÇA ENTRE ELES É UMA REGRA
+
+A consulta medida é como a pessoa digita — e **gente digita sem acento**. O título na tela é
+a mesma pergunta em português correto. Publicar a consulta crua na tela seria publicar
+português sem acento, que é a cicatriz da Robometria; esconder a consulta crua seria perder
+a correspondência exata que faz a página ser achada. Os dois existem, `consulta_alvo` nunca
+vai para a tela, e o portão cobra que o título **não perca palavra nenhuma** da consulta e
+só possa **ganhar palavra de ligação** — ele acentua e capitaliza a pergunta, não a
+reescreve.
+
+**E a fronteira com a calculadora ficou escrita, para a ilha não disputar consigo:** a
+consulta paramétrica ("para N pessoas", "para o seu grupo") é da **ferramenta**; a crua é do
+**guia**. O portão reprova título de guia que traga qualquer uma das duas, e reprova duas
+páginas com a mesma consulta-alvo.
+
+### 4. O PORTÃO PEGOU TRÊS COISAS, E A PRIMEIRA FOI CONTRA MIM
+
+**(a) O valor de terceiro não cabia na regra, e a regra estava errada.** A primeira versão
+exigia que todo valor da tela estivesse no conjunto que o banco autoriza — e **reprovou a
+prestação de contas da gôndola**, que é justamente o diferencial desta ilha: os €80 da
+Eurodicas e os €34 da GetYourGuide são os números com que a ilha **discorda**, e dizer quem
+publicou o quê, com a data, é a única coisa que nenhum dos sete ocupantes da SERP faz. A
+regra passou a deixar esse valor entrar **somente** dentro da frase que nomeia o publicador
+e traz a data da leitura. Sem o nome, é número sem dono, e reprova.
+
+**(b) Registro `pendente_de_releitura` publica na tela e NÃO na description.** O Angkor Pass
+é o único dos quatro com esse status. O preço dele vai para a tela com a ressalva ao lado,
+porque a tela tem espaço para a ressalva; a **description não tem** — ela é lida sozinha no
+resultado de busca, e ali o número apareceria cravado como atual. O portão reprova preço de
+registro pendente dentro da description, e reprova a caixa de resposta que perca a ressalva.
+
+**(c) A RÉGUA DE ACENTUAÇÃO FOI TENTADA TRÊS VEZES E NÃO EXISTE — e isto é a lição de
+método do dia.** As três estão escritas na afirmação (8) de `artigos-referencia.py` para a
+próxima execução não gastar a mesma hora:
+
+1. *"todo título tem de ter um acento"* → reprovou **três páginas certas**; "quanto custa
+   subir na torre eiffel" não tem uma letra acentuada e está escrito corretamente;
+2. *"palavra acentuada num lugar não aparece crua noutro"* → **25 reprovações** em texto
+   impecável, porque em português o par sem acento costuma ser **outra palavra**: `e` e `é`,
+   `esta` e `está`, `da` e `dá`. Régua que confunde conjunção com verbo não mede acentuação;
+3. *"parágrafo com 12 palavras ou mais tem de ter um acento"* → reprovou "A partir de
+   quantos dias de visita o Angkor Pass de 3 dias paga?" e a frase de divergência da
+   GetYourGuide. **Catorze palavras, nenhum acento, as duas corretas.** Subir o corte reduz
+   o falso positivo e não o elimina.
+
+**O que isso decide:** acentuação correta **não é verificável localmente** — é julgamento
+sobre cada palavra. E **portão que reprova texto certo é pior que portão nenhum, porque
+ensina a ignorar o vermelho**. O que sobrou no portão é o que é mecânico e inequívoco:
+mojibake, e a procedência de todo valor da tela. A acentuação das frases é garantida **na
+fonte**, pelas três referências, que nascem com a regra. *(Não afirmo que não exista régua
+possível: afirmo as três que tentei e o que cada uma reprovou.)*
+
+**(d) O FAQ ESTAVA RESPONDENDO A OUTRA PERGUNTA, e nenhuma afirmação via.** Achado na
+leitura do arquivo gerado, não por portão: a primeira versão emparelhava **toda** pergunta
+declarada do artigo com a frase da caixa de resposta, qualquer que fosse a pergunta. Em
+**três dos quatro** artigos isso publicava um par que não se fecha — *"A partir de quantos
+dias de visita o Angkor Pass de 3 dias paga?"* respondido por *"o de 1 dia custa US$ 37"* —
+e ia para o `FAQPage` do JSON-LD, que é justamente a parte que as IAs citam fora de
+contexto. **Conserto em duas metades:** cada pergunta passou a declarar **de onde** sai a
+resposta dela (`caixa`, `inclui`, `escada`, `prestacao`, `faixa_etaria`), e o portão reprova
+**duas perguntas respondidas pela mesma frase**, que é a assinatura exata do defeito. As
+duas quebras entraram na bateria, que foi de 41 para **43**. *(E o portão reprova pergunta
+cuja fonte não existe naquela experiência, em vez de deixá-la cair fora em silêncio: mapa
+errado que some é mapa errado que fica.)*
+
+**(e) A DOBRA DO «INCLUSO» PASSOU A NASCER SEMPRE, e isso saiu de (d).** A gôndola e o
+Angkor Pass não têm lista de inclusos, e a F1 devolve, para esse caso, a frase *"o operador
+não declara o que está incluso neste bilhete"* — **que é resposta**, e é a resposta que
+nenhum dos ocupantes da SERP dá. A versão anterior omitia a seção inteira quando a lista
+estava vazia, e página que omite deixa quem pergunta sem saber se ninguém perguntou ou se a
+resposta não existe.
+
+### 5. DOIS ARTIGOS NÃO FORAM ESCRITOS, e a causa é DADO e não tempo
+
+A fila pede um artigo por ferramenta. **A F2 e a F3 não têm resposta para publicar**, e
+artigo cujo título promete um número que a página não entrega é **exatamente** o defeito que
+o bloco 1 mediu nos oito ocupantes de `quanto custa um dia em veneza para 2 pessoas` —
+nenhum deles responde "para 2 pessoas". Copiar o defeito do concorrente para ocupar a vaga
+dele é o pior negócio desta fábrica.
+
+Os dois ficam **pré-registrados** em `dados/artigos-ancora.json`, com o critério de
+destravamento escrito **antes** de o dado chegar — critério escrito depois do dado é
+critério dobrado para caber no dado que veio:
+
+- **F2, `quanto custa um dia em veneza para 2 pessoas`:** a F2 soma quatro linhas e hoje
+  publica **uma**. `faixas_diarias` tem **zero** registros. Destrava com faixa de diária
+  para Veneza nas três naturezas (hospedagem, alimentação, transporte local), cada uma com
+  publicador nomeado, URL e data de leitura.
+- **F3, `roma pass vale a pena`:** **zero** passes e **zero** coberturas no banco, então o
+  veredito que o título promete não existe. E falta a outra metade: **Roma tem uma**
+  experiência no banco, e julgamento de passe sobre uma atração só não é julgamento de
+  passe. Destrava com o Roma Pass (preço e data próprios) **mais** a cobertura par por par
+  com cada atração de Roma, cada par com fonte e data próprias.
+
+Os dois esperam coleta de navegador, e as fontes estão recusadas no egresso: `numbeo.com`,
+`booking.com` e `civitatis.com.br` para a F2; `romapass.it`, `turismoroma.it`,
+`lisboacard.org`, `visitlisboa.com` e `civitatis.com.br` para a F3. **A regra dos dois está
+inteira: no dia em que o dado entrar, o artigo é montagem, não pesquisa.**
+
+### 6. A LISTA DE PORTÕES FOI DE OITO PARA DEZ, e a 31.3 foi lida ANTES e não depois
+
+Os dois novos são do artigo: a referência, que **monta e confere**, e a bateria que a
+quebra. A **31.3** proíbe "ampliar, refatorar, deduplicar ou **testar portão que JÁ
+EXISTE**" enquanto houver item de conteúdo aberto — e o portão que a bateria confere
+**nasceu na mesma passada que o conteúdo que ele guarda**, que é o desenho que a F1, a F2 e
+a F3 tiveram em 22/10, cada uma com teste e mutação na própria passada. Bancada sobre
+bancada continua proibida; esta é a bancada **do** artigo.
+
+**Dez linhas ainda cabem numa tela, e os dois novos foram escritos no `PROMPT.md` na mesma
+passada** — segunda vez que aquele aviso foi cobrado e segunda vez que funcionou. A margem
+agora é de duas ou três linhas, e isso está dito lá.
+
+### 7. BANCADA — os dez portões, 0 falha
+
+| Portão | Resultado |
+|---|---|
+| `validar-banco` | verde (o aviso de `vocabulario_sem_lastro` em `por_cabine` e `por_grupo` é o de sempre e não é falha) |
+| `mutacoes-banco` | **154 de 154** — 23 mundos que têm de passar e 131 quebras que têm de reprovar |
+| `teste-f1` | **139.658** afirmações, 0 falha |
+| `mutacoes-f1` | **28 de 28** |
+| `teste-f2` | **216.614** afirmações, 0 falha |
+| `mutacoes-f2` | **51 de 51** |
+| `teste-f3` | **616.462** afirmações, 0 falha |
+| `mutacoes-f3` | **45 de 45** |
+| `artigos-referencia` (novo) | **4 artigos montados e conferidos, 0 falha**, mais as 4 afirmações do conjunto |
+| `mutacoes-artigos` (novo) | **43 de 43** — 39 por artigo e 4 pelo conjunto, **zero morte e zero inerte** |
+
+O banco e o esquema **não foram tocados** nesta passada: o bloco 5 lê, não escreve. As oito
+baterias que já existiam rodaram para provar isso, e as oito ficaram como estavam.
+
+### 7b. A SEÇÃO 31, dita como é
+
+A **31.1** pede que 7 de cada 10 execuções entreguem algo no ar que o visitante vê. **Nesta
+ilha isso continua inalcançável**, e não por escolha de quem executa: não há "no ar". Faltam
+as duas coisas que só o Raphael faz — os passos 2 a 8 da seção 11 e o domínio na lista de
+Domínios permitidos. O `PROMPT.md` e o `foco.md` já dizem isso com todas as letras, e esta
+linha existe para ninguém ler este registro como desobediência.
+
+**O que esta execução fez do lado certo da 31:** nenhum portão novo nasceu **sobre** portão
+existente, nenhuma régua existente foi ampliada ou refatorada, e o trabalho foi o item de
+**conteúdo** que estava aberto na fila. Os quatro artigos são as quatro páginas que vão ao
+ar na primeira execução depois da casca, prontas e conferidas.
+
 ## 2026-10-22 19h16Z — A F3 EXISTE COMO REGRA, e escrevê-la mostrou que a conta não era a parte difícil: a parte difícil é **sobre o que** ela é feita
 
 **O que saiu:** a **F3 como regra** — `ferramentas/f3-referencia.py` (o cérebro: cidade,

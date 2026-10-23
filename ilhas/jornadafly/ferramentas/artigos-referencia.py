@@ -185,8 +185,11 @@ MAPA = [
             "O que você coloca: quantas pessoas vão na gôndola. O que sai: o "
             "preço do passeio para o grupo inteiro, com a data em que lemos a "
             "tarifa."),
-        "a_pergunta_que_a_pagina_fecha": (
-            "O preço da gôndola é por pessoa ou pela gôndola?"),
+        "perguntas": [
+            ("O preço do passeio de gôndola é por pessoa ou pela gôndola?", "caixa"),
+            ("O que está incluso no passeio?", "inclui"),
+            ("Quanto custa cada versão vendida pelo operador?", "prestacao"),
+        ],
     },
     {
         "id": "torre-eiffel",
@@ -215,9 +218,12 @@ MAPA = [
             "O que você coloca: qual dos quatro bilhetes e quantas pessoas. O "
             "que sai: o total do grupo, o valor por pessoa e o que cada bilhete "
             "dá, com a data da leitura."),
-        "a_pergunta_que_a_pagina_fecha": (
-            "Qual dos quatro bilhetes da Torre Eiffel dá o quê, e quanto cada um "
-            "custa para o seu grupo?"),
+        "perguntas": [
+            ("Quanto custa o bilhete mais barato para subir na Torre Eiffel?", "caixa"),
+            ("Quanto custa cada um dos quatro bilhetes?", "prestacao"),
+            ("O que está incluso no bilhete?", "inclui"),
+            ("Criança paga para subir na Torre Eiffel?", "faixa_etaria"),
+        ],
     },
     {
         "id": "coliseu-roma",
@@ -246,9 +252,11 @@ MAPA = [
             "O que você coloca: qual ingresso e quantas pessoas. O que sai: o "
             "total do grupo e o que a versão mais cara dá a mais, com a data da "
             "leitura."),
-        "a_pergunta_que_a_pagina_fecha": (
-            "A Experiência Completa do Coliseu custa quanto a mais, e o que ela "
-            "dá a mais?"),
+        "perguntas": [
+            ("Quanto custa o ingresso comum do Coliseu?", "caixa"),
+            ("Quanto custa cada versão do ingresso, uma por uma?", "prestacao"),
+            ("O que está incluso no ingresso?", "inclui"),
+        ],
     },
     {
         "id": "angkor-pass",
@@ -275,8 +283,12 @@ MAPA = [
             "O que você coloca: quantos dias você vai visitar o parque e quantas "
             "pessoas vão. O que sai: a partir de quantos dias o ingresso mais "
             "longo passa a custar menos que comprar o de um dia de novo."),
-        "a_pergunta_que_a_pagina_fecha": (
-            "A partir de quantos dias de visita o Angkor Pass de 3 dias paga?"),
+        "perguntas": [
+            ("Quanto custa o Angkor Pass de 1 dia?", "caixa"),
+            ("A partir de quantos dias de visita o passe mais longo paga?", "escada"),
+            ("Quanto custa cada passe vendido pelo operador?", "prestacao"),
+            ("Criança paga o Angkor Pass?", "faixa_etaria"),
+        ],
     },
 ]
 
@@ -526,12 +538,17 @@ def artigo(artigo_id, banco=None, esquema=None, constantes=None, f1=None):
         ],
     })
 
-    if r_base["inclui"]["itens"] or r_base["nao_inclui"]["itens"]:
-        dobras.append({
-            "titulo": "O que está incluso e o que não está",
-            "paragrafos": [p for p in (r_base["inclui"]["frase"],
-                                       r_base["nao_inclui"]["frase"]) if p],
-        })
+    # A DOBRA DO «INCLUSO» NASCE SEMPRE, inclusive quando o operador nao declara
+    # nada -- e nesse caso ela diz isso, com essas palavras. A F1 devolve a frase
+    # da recusa junto com a da lista, e foi deliberado: «o operador nao declara o
+    # que esta incluso» e resposta, e e a resposta que os ocupantes da SERP nao
+    # dao. Pagina que simplesmente OMITE a secao deixa quem pergunta sem saber se
+    # ninguem perguntou ou se a resposta nao existe.
+    dobras.append({
+        "titulo": "O que está incluso e o que não está",
+        "paragrafos": [p for p in (r_base["inclui"]["frase"],
+                                   r_base["nao_inclui"]["frase"]) if p],
+    })
 
     escada = r_base["escada"]
     if escada["aplicavel"]:
@@ -590,15 +607,42 @@ def artigo(artigo_id, banco=None, esquema=None, constantes=None, f1=None):
         prova.append(d["frase"])
     dobras.append({"titulo": "Como sabemos", "paragrafos": prova})
 
-    # FAQ: so entra pergunta que a propria pagina responde.
-    faq = [{"pergunta": mapa["a_pergunta_que_a_pagina_fecha"],
-            "resposta": caixa["frase"]}]
-    if escada["aplicavel"] and escada["linhas"]:
-        faq.append({"pergunta": "A versão mais longa compensa?",
-                    "resposta": escada["linhas"][0]["frase"]})
-    if r_base["inclui"]["itens"]:
-        faq.append({"pergunta": "O que está incluso?",
-                    "resposta": r_base["inclui"]["frase"]})
+    # FAQ: so entra pergunta que a propria pagina responde, E a resposta e a
+    # frase que responde AQUELA pergunta.
+    #
+    # A primeira versao disto emparelhava a pergunta declarada do artigo com a
+    # frase da caixa de resposta, qualquer que fosse a pergunta -- e publicava,
+    # em tres dos quatro artigos, um par que nao se fecha: «A partir de quantos
+    # dias de visita o Angkor Pass de 3 dias paga?» respondido por «o de 1 dia
+    # custa US$ 37». Cada pergunta diz agora DE ONDE sai a resposta dela, e o
+    # portao reprova pergunta cuja fonte nao existe nesta experiencia em vez de
+    # deixa-la cair fora em silencio.
+    fontes_de_resposta = {
+        "caixa": caixa["frase"],
+        "inclui": r_base["inclui"]["frase"],
+        "nao_inclui": r_base["nao_inclui"]["frase"],
+        "escada": (" ".join(l["frase"] for l in escada["linhas"])
+                   if escada["aplicavel"] and escada["linhas"] else None),
+        "prestacao": " ".join(l["frase"]
+                              for l in r_base["prestacao_de_contas"]["linhas"]),
+        "faixa_etaria": (" ".join(faixa["frases"])
+                         if faixa["tem_faixa"] and faixa["frases"] else None),
+    }
+    faq = []
+    for pergunta, de_onde in mapa["perguntas"]:
+        if de_onde not in fontes_de_resposta:
+            raise ArtigoReprovado(
+                "%s: a pergunta «%s» diz sair de %r, que não é fonte de resposta."
+                % (artigo_id, pergunta, de_onde))
+        resposta = fontes_de_resposta[de_onde]
+        if not resposta:
+            raise ArtigoReprovado(
+                "%s: a pergunta «%s» sai de %r e esta experiência não tem essa "
+                "frase. Pergunta sem resposta não entra no FAQ, e deixá-la cair "
+                "fora em silêncio esconde um mapa errado."
+                % (artigo_id, pergunta, de_onde))
+        faq.append({"pergunta": pergunta, "resposta": resposta,
+                    "resposta_sai_de": de_onde})
 
     titulo = "%s — preço com a data da leitura" % _titulo_da_consulta(mapa)
     url = NIVEL_2["url"] + mapa["slug"] + "/"
@@ -1046,9 +1090,26 @@ def conferir(doc, f1=None, banco=None, esquema=None, constantes=None):
             reprova("JSON-LD sem %s" % obrigatorio, "tipos=%r" % (tipos,))
     if "FAQPage" in tipos and not doc["faq"]:
         reprova("FAQPage sem pergunta respondida", "faq vazio")
+    # DUAS PERGUNTAS RESPONDIDAS PELA MESMA FRASE e o rastro de um FAQ montado
+    # por preguica, e foi o defeito desta propria passada: a primeira versao
+    # emparelhava TODA pergunta declarada com a frase da caixa de resposta, e
+    # publicava em tres dos quatro artigos um par que nao se fecha — «a partir de
+    # quantos dias o passe mais longo paga?» respondido por «o de 1 dia custa
+    # US$ 37». Se a pergunta e outra, a frase que a responde tem de ser outra.
+    de_onde_vistas = {}
     for q in doc["faq"]:
         if not q["resposta"].strip():
             reprova("pergunta no FAQ sem resposta", q["pergunta"])
+        de_onde = q.get("resposta_sai_de")
+        if not de_onde:
+            reprova("pergunta no FAQ sem dizer de onde sai a resposta",
+                    q["pergunta"])
+            continue
+        if de_onde in de_onde_vistas:
+            reprova("duas perguntas do FAQ respondidas pela mesma frase",
+                    "«%s» e «%s» saem as duas de %r"
+                    % (de_onde_vistas[de_onde], q["pergunta"], de_onde))
+        de_onde_vistas[de_onde] = q["pergunta"]
 
     # (16) NADA NO AR.
     if doc["publicar"] is not False:

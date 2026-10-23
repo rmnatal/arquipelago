@@ -30,8 +30,8 @@
    "url": "/guias/quanto-custa/"
   },
   "linhas_de_tabela": 44,
-  "paragrafos_de_dobra": 70,
-  "perguntas_de_faq": 7,
+  "paragrafos_de_dobra": 74,
+  "perguntas_de_faq": 14,
   "valores_de_terceiro_com_publicador": 2,
   "irmas_por_pagina": 3
  },
@@ -230,6 +230,13 @@
      ]
     },
     {
+     "titulo": "O que está incluso e o que não está",
+     "paragrafos": [
+      "O operador não declara o que está incluso neste bilhete.",
+      "O operador não declara o que está fora neste bilhete."
+     ]
+    },
+    {
      "titulo": "Por que as versões não se comparam por quantidade",
      "paragrafos": [
       "As versões desta experiência não se comparam em quantidade: elas diferem em horário — a mesma coisa em outra hora do dia. Não existe «a partir de quantos dias a mais cara vale», porque comprar duas vezes a mais barata não dá o que a mais cara dá."
@@ -281,8 +288,19 @@
    ],
    "faq": [
     {
-     "pergunta": "O preço da gôndola é por pessoa ou pela gôndola?",
-     "resposta": "Passeio de gôndola em Veneza para 1 pessoa, De dia, 30 minutos: €90 no total, €90 por pessoa. O preço é por veículo, não por pessoa, e cabem 5 pessoas. Para 1 pessoa, é 1 unidade. Tarifa oficial. Leitura de 14/09/2026."
+     "pergunta": "O preço do passeio de gôndola é por pessoa ou pela gôndola?",
+     "resposta": "Passeio de gôndola em Veneza para 1 pessoa, De dia, 30 minutos: €90 no total, €90 por pessoa. O preço é por veículo, não por pessoa, e cabem 5 pessoas. Para 1 pessoa, é 1 unidade. Tarifa oficial. Leitura de 14/09/2026.",
+     "resposta_sai_de": "caixa"
+    },
+    {
+     "pergunta": "O que está incluso no passeio?",
+     "resposta": "O operador não declara o que está incluso neste bilhete.",
+     "resposta_sai_de": "inclui"
+    },
+    {
+     "pergunta": "Quanto custa cada versão vendida pelo operador?",
+     "resposta": "De dia, 30 minutos: €90, a versão que você escolheu. À noite, 35 minutos: €110, outra versão vendida pelo operador.",
+     "resposta_sai_de": "prestacao"
     }
    ],
    "bloco_de_compra": {
@@ -344,10 +362,26 @@
      "mainEntity": [
       {
        "@type": "Question",
-       "name": "O preço da gôndola é por pessoa ou pela gôndola?",
+       "name": "O preço do passeio de gôndola é por pessoa ou pela gôndola?",
        "acceptedAnswer": {
         "@type": "Answer",
         "text": "Passeio de gôndola em Veneza para 1 pessoa, De dia, 30 minutos: €90 no total, €90 por pessoa. O preço é por veículo, não por pessoa, e cabem 5 pessoas. Para 1 pessoa, é 1 unidade. Tarifa oficial. Leitura de 14/09/2026."
+       }
+      },
+      {
+       "@type": "Question",
+       "name": "O que está incluso no passeio?",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "O operador não declara o que está incluso neste bilhete."
+       }
+      },
+      {
+       "@type": "Question",
+       "name": "Quanto custa cada versão vendida pelo operador?",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "De dia, 30 minutos: €90, a versão que você escolheu. À noite, 35 minutos: €110, outra versão vendida pelo operador."
        }
       }
      ]
@@ -730,12 +764,24 @@
    ],
    "faq": [
     {
-     "pergunta": "Qual dos quatro bilhetes da Torre Eiffel dá o quê, e quanto cada um custa para o seu grupo?",
-     "resposta": "Torre Eiffel — o bilhete de subida para 1 pessoa, Até o segundo piso, a pé: €14,80 no total, €14,80 por pessoa. O preço é por pessoa. Preço publicado pelo operador. Leitura de 15/09/2026."
+     "pergunta": "Quanto custa o bilhete mais barato para subir na Torre Eiffel?",
+     "resposta": "Torre Eiffel — o bilhete de subida para 1 pessoa, Até o segundo piso, a pé: €14,80 no total, €14,80 por pessoa. O preço é por pessoa. Preço publicado pelo operador. Leitura de 15/09/2026.",
+     "resposta_sai_de": "caixa"
     },
     {
-     "pergunta": "O que está incluso?",
-     "resposta": "O que está incluso: subida pela escada até o segundo piso, primeiro e segundo pisos."
+     "pergunta": "Quanto custa cada um dos quatro bilhetes?",
+     "resposta": "Até o segundo piso, a pé: €14,80, a versão que você escolheu. Até o segundo piso, de elevador: €23,50, outra versão vendida pelo operador. Até o topo, subindo a pé até o segundo piso: €28, outra versão vendida pelo operador. Até o topo, de elevador: €36,70, outra versão vendida pelo operador.",
+     "resposta_sai_de": "prestacao"
+    },
+    {
+     "pergunta": "O que está incluso no bilhete?",
+     "resposta": "O que está incluso: subida pela escada até o segundo piso, primeiro e segundo pisos.",
+     "resposta_sai_de": "inclui"
+    },
+    {
+     "pergunta": "Criança paga para subir na Torre Eiffel?",
+     "resposta": "menores de 4 anos: não paga. gratuito em qualquer um dos quatro bilhetes criança de 4 a 11 anos: €3,80 neste bilhete. jovem de 12 a 24 anos: €7,40 neste bilhete.",
+     "resposta_sai_de": "faixa_etaria"
     }
    ],
    "bloco_de_compra": {
@@ -788,7 +834,7 @@
      "mainEntity": [
       {
        "@type": "Question",
-       "name": "Qual dos quatro bilhetes da Torre Eiffel dá o quê, e quanto cada um custa para o seu grupo?",
+       "name": "Quanto custa o bilhete mais barato para subir na Torre Eiffel?",
        "acceptedAnswer": {
         "@type": "Answer",
         "text": "Torre Eiffel — o bilhete de subida para 1 pessoa, Até o segundo piso, a pé: €14,80 no total, €14,80 por pessoa. O preço é por pessoa. Preço publicado pelo operador. Leitura de 15/09/2026."
@@ -796,10 +842,26 @@
       },
       {
        "@type": "Question",
-       "name": "O que está incluso?",
+       "name": "Quanto custa cada um dos quatro bilhetes?",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Até o segundo piso, a pé: €14,80, a versão que você escolheu. Até o segundo piso, de elevador: €23,50, outra versão vendida pelo operador. Até o topo, subindo a pé até o segundo piso: €28, outra versão vendida pelo operador. Até o topo, de elevador: €36,70, outra versão vendida pelo operador."
+       }
+      },
+      {
+       "@type": "Question",
+       "name": "O que está incluso no bilhete?",
        "acceptedAnswer": {
         "@type": "Answer",
         "text": "O que está incluso: subida pela escada até o segundo piso, primeiro e segundo pisos."
+       }
+      },
+      {
+       "@type": "Question",
+       "name": "Criança paga para subir na Torre Eiffel?",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "menores de 4 anos: não paga. gratuito em qualquer um dos quatro bilhetes criança de 4 a 11 anos: €3,80 neste bilhete. jovem de 12 a 24 anos: €7,40 neste bilhete."
        }
       }
      ]
@@ -1053,12 +1115,19 @@
    ],
    "faq": [
     {
-     "pergunta": "A Experiência Completa do Coliseu custa quanto a mais, e o que ela dá a mais?",
-     "resposta": "Coliseu de Roma — o ingresso do Parco archeologico del Colosseo para 1 pessoa, O ingresso comum, válido por 24 horas: €18 no total, €18 por pessoa. O preço é por pessoa. Preço publicado pelo operador. Leitura de 15/09/2026."
+     "pergunta": "Quanto custa o ingresso comum do Coliseu?",
+     "resposta": "Coliseu de Roma — o ingresso do Parco archeologico del Colosseo para 1 pessoa, O ingresso comum, válido por 24 horas: €18 no total, €18 por pessoa. O preço é por pessoa. Preço publicado pelo operador. Leitura de 15/09/2026.",
+     "resposta_sai_de": "caixa"
     },
     {
-     "pergunta": "O que está incluso?",
-     "resposta": "O que está incluso: entrada com horário marcado no Coliseu, nos níveis 1 e 2, que são os abertos ao público, uma entrada no Fórum Romano e no Monte Palatino."
+     "pergunta": "Quanto custa cada versão do ingresso, uma por uma?",
+     "resposta": "O ingresso comum, válido por 24 horas: €18, a versão que você escolheu. A Experiência Completa, com uma área restrita a mais: €22, outra versão vendida pelo operador.",
+     "resposta_sai_de": "prestacao"
+    },
+    {
+     "pergunta": "O que está incluso no ingresso?",
+     "resposta": "O que está incluso: entrada com horário marcado no Coliseu, nos níveis 1 e 2, que são os abertos ao público, uma entrada no Fórum Romano e no Monte Palatino.",
+     "resposta_sai_de": "inclui"
     }
    ],
    "bloco_de_compra": {
@@ -1111,7 +1180,7 @@
      "mainEntity": [
       {
        "@type": "Question",
-       "name": "A Experiência Completa do Coliseu custa quanto a mais, e o que ela dá a mais?",
+       "name": "Quanto custa o ingresso comum do Coliseu?",
        "acceptedAnswer": {
         "@type": "Answer",
         "text": "Coliseu de Roma — o ingresso do Parco archeologico del Colosseo para 1 pessoa, O ingresso comum, válido por 24 horas: €18 no total, €18 por pessoa. O preço é por pessoa. Preço publicado pelo operador. Leitura de 15/09/2026."
@@ -1119,7 +1188,15 @@
       },
       {
        "@type": "Question",
-       "name": "O que está incluso?",
+       "name": "Quanto custa cada versão do ingresso, uma por uma?",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "O ingresso comum, válido por 24 horas: €18, a versão que você escolheu. A Experiência Completa, com uma área restrita a mais: €22, outra versão vendida pelo operador."
+       }
+      },
+      {
+       "@type": "Question",
+       "name": "O que está incluso no ingresso?",
        "acceptedAnswer": {
         "@type": "Answer",
         "text": "O que está incluso: entrada com horário marcado no Coliseu, nos níveis 1 e 2, que são os abertos ao público, uma entrada no Fórum Romano e no Monte Palatino."
@@ -1376,6 +1453,13 @@
      ]
     },
     {
+     "titulo": "O que está incluso e o que não está",
+     "paragrafos": [
+      "O operador não declara o que está incluso neste bilhete.",
+      "O operador não declara o que está fora neste bilhete."
+     ]
+    },
+    {
      "titulo": "A partir de quando a versão mais longa paga",
      "paragrafos": [
       "A partir de 2 dias de visita, «3 dias, usáveis dentro de uma semana» passa a valer mais a pena que comprar «1 dia» de novo.",
@@ -1432,12 +1516,24 @@
    ],
    "faq": [
     {
-     "pergunta": "A partir de quantos dias de visita o Angkor Pass de 3 dias paga?",
-     "resposta": "Angkor Pass — o ingresso do Parque Arqueológico de Angkor para 1 pessoa, 1 dia: US$ 37 no total, US$ 37 por pessoa. O preço é por pessoa. Preço publicado pelo operador. Leitura de 14/09/2026."
+     "pergunta": "Quanto custa o Angkor Pass de 1 dia?",
+     "resposta": "Angkor Pass — o ingresso do Parque Arqueológico de Angkor para 1 pessoa, 1 dia: US$ 37 no total, US$ 37 por pessoa. O preço é por pessoa. Preço publicado pelo operador. Leitura de 14/09/2026.",
+     "resposta_sai_de": "caixa"
     },
     {
-     "pergunta": "A versão mais longa compensa?",
-     "resposta": "A partir de 2 dias de visita, «3 dias, usáveis dentro de uma semana» passa a valer mais a pena que comprar «1 dia» de novo."
+     "pergunta": "A partir de quantos dias de visita o passe mais longo paga?",
+     "resposta": "A partir de 2 dias de visita, «3 dias, usáveis dentro de uma semana» passa a valer mais a pena que comprar «1 dia» de novo. A partir de 2 dias de visita, «7 dias, usáveis dentro de um mês» passa a valer mais a pena que comprar «1 dia» de novo.",
+     "resposta_sai_de": "escada"
+    },
+    {
+     "pergunta": "Quanto custa cada passe vendido pelo operador?",
+     "resposta": "1 dia: US$ 37, a versão que você escolheu. 3 dias, usáveis dentro de uma semana: US$ 62, outra versão vendida pelo operador. 7 dias, usáveis dentro de um mês: US$ 72, outra versão vendida pelo operador.",
+     "resposta_sai_de": "prestacao"
+    },
+    {
+     "pergunta": "Criança paga o Angkor Pass?",
+     "resposta": "menores de 12 anos: não paga. gratuito, com o passaporte da criança apresentado na bilheteria como prova de idade",
+     "resposta_sai_de": "faixa_etaria"
     }
    ],
    "bloco_de_compra": {
@@ -1490,7 +1586,7 @@
      "mainEntity": [
       {
        "@type": "Question",
-       "name": "A partir de quantos dias de visita o Angkor Pass de 3 dias paga?",
+       "name": "Quanto custa o Angkor Pass de 1 dia?",
        "acceptedAnswer": {
         "@type": "Answer",
         "text": "Angkor Pass — o ingresso do Parque Arqueológico de Angkor para 1 pessoa, 1 dia: US$ 37 no total, US$ 37 por pessoa. O preço é por pessoa. Preço publicado pelo operador. Leitura de 14/09/2026."
@@ -1498,10 +1594,26 @@
       },
       {
        "@type": "Question",
-       "name": "A versão mais longa compensa?",
+       "name": "A partir de quantos dias de visita o passe mais longo paga?",
        "acceptedAnswer": {
         "@type": "Answer",
-        "text": "A partir de 2 dias de visita, «3 dias, usáveis dentro de uma semana» passa a valer mais a pena que comprar «1 dia» de novo."
+        "text": "A partir de 2 dias de visita, «3 dias, usáveis dentro de uma semana» passa a valer mais a pena que comprar «1 dia» de novo. A partir de 2 dias de visita, «7 dias, usáveis dentro de um mês» passa a valer mais a pena que comprar «1 dia» de novo."
+       }
+      },
+      {
+       "@type": "Question",
+       "name": "Quanto custa cada passe vendido pelo operador?",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "1 dia: US$ 37, a versão que você escolheu. 3 dias, usáveis dentro de uma semana: US$ 62, outra versão vendida pelo operador. 7 dias, usáveis dentro de um mês: US$ 72, outra versão vendida pelo operador."
+       }
+      },
+      {
+       "@type": "Question",
+       "name": "Criança paga o Angkor Pass?",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "menores de 12 anos: não paga. gratuito, com o passaporte da criança apresentado na bilheteria como prova de idade"
        }
       }
      ]

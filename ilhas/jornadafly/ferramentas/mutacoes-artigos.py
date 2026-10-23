@@ -154,6 +154,23 @@ def faq_sem_resposta(d):
     d["faq"][0]["resposta"] = "   "
 
 
+def faq_todo_da_mesma_frase(d):
+    """O defeito desta passada, virado quebra.
+
+    A primeira versao do FAQ emparelhava toda pergunta declarada com a frase da
+    caixa de resposta. Em tres dos quatro artigos isso publicava um par que nao
+    se fecha, e nenhuma afirmacao via.
+    """
+    for q in d["faq"]:
+        q["resposta"] = d["caixa_de_resposta"]["frase"]
+        q["resposta_sai_de"] = "caixa"
+
+
+def faq_sem_dizer_de_onde(d):
+    for q in d["faq"]:
+        q.pop("resposta_sai_de", None)
+
+
 def publicar_sem_site(d):
     d["publicar"] = True
 
@@ -242,6 +259,10 @@ QUEBRAS = [
     ("JSON-LD sem BreadcrumbList", "gondola-veneza", json_ld_sem_trilha),
     ("JSON-LD sem Article", "gondola-veneza", json_ld_sem_article),
     ("pergunta do FAQ sem resposta", "gondola-veneza", faq_sem_resposta),
+    ("FAQ todo respondido pela mesma frase", "gondola-veneza",
+     faq_todo_da_mesma_frase),
+    ("FAQ sem dizer de onde sai a resposta", "gondola-veneza",
+     faq_sem_dizer_de_onde),
     ("publicar marcado sem site para publicar", "gondola-veneza",
      publicar_sem_site),
     ("data no slug", "gondola-veneza", data_no_slug),

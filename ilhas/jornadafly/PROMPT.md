@@ -78,6 +78,8 @@ python3 ferramentas/teste-f2.py           # a F2: os 3.077 estados, mais as fun�
 python3 ferramentas/mutacoes-f2.py        # quebra a F2 e exige que o portão dela veja
 python3 ferramentas/teste-f3.py           # a F3: os 1.038 estados, mais os mundos com passe
 python3 ferramentas/mutacoes-f3.py        # quebra a F3 e exige que o portão dela veja
+python3 ferramentas/artigos-referencia.py # monta os artigos-âncora e confere cada um
+python3 ferramentas/mutacoes-artigos.py   # quebra os artigos e exige que o portão deles veja
 ```
 
 **Nenhum deles abre a rede**, e é por isso que esta ilha tem bancada apesar de não ter
@@ -112,6 +114,16 @@ com a data e o defeito nomeados, como a 31.2 manda.
 > bancada enquanto houver item de conteúdo aberto. **O gatilho está escrito e não mudou:**
 > no dia em que esta lista passar de uma tela, ou no dia em que um portão desta pasta
 > deixar de ser rodado por alguém esquecer dele, o descobridor nasce.
+>
+> **DE OITO PARA DEZ EM 23/10/2026, com o bloco 5, e os dois foram escritos aqui na mesma
+> passada — segunda vez que o aviso foi cobrado e segunda vez que funcionou.** Os dois
+> novos são do artigo-âncora: a referência, que **monta e confere**, e a bateria que a
+> quebra. **E a 31.3 foi lida antes de eles nascerem, não depois:** ela proíbe "testar
+> portão que JÁ EXISTE", e o portão conferido pela bateria nasceu na mesma passada que o
+> conteúdo que ele guarda — é o desenho que a F1, a F2 e a F3 tiveram em 22/10, cada uma
+> com teste e mutação na própria passada. Bancada sobre bancada continua proibida; esta é
+> a bancada **do** artigo. **Dez linhas ainda cabem numa tela, e a margem agora é de duas
+> ou três — quem acrescentar o décimo primeiro portão olhe o gatilho antes.**
 
 ## Memória a carregar
 `/areas/projeto-jornadafly.md`, `/areas/fabrica-de-sites.md`, `/areas/playbook-nascimento-projeto.md` (fase 4b), `/areas/arquipelago-bussola.md` (rodadas 004 e 005), `/topics/dev-conventions.md`. Sem memória, **não pare**: o estado está no `ESTADO.md`, no `REGISTRO.md` e neste arquivo.
@@ -162,6 +174,27 @@ Quando o site responder, siga a seção 11 do passo 9 em diante e a seção 14 (
    - **E A F3 PUBLICA SÓ METADE DA PERGUNTA HOJE, por falta de DADO e não de regra.** Zero passes e zero coberturas no banco: `passe_de_cidade` está no vocabulário desde 14/09/2026 sem um registro que o use. Carregar exige ler o preço e a cobertura na fonte de quem vende o passe, e o egresso recusou os CINCO domínios que o corpus mediu em 22/10/2026 — `romapass.it`, `turismoroma.it`, `lisboacard.org`, `visitlisboa.com` e `civitatis.com.br`. **Isto e a coleta da F2 são os dois itens de conteúdo que dependem de rede que esta nuvem não tem.**
 
 **5. ARTIGOS-ÂNCORA** pareados com cada ferramenta, na mesma execução.
+   - **QUATRO ESTÃO ENTREGUES COMO REGRA desde 23/10/2026**, e ainda não como página — sem
+     casca não há snippet. Moram em `ferramentas/artigos-referencia.py` +
+     `dados/artigos-ancora.json` (4 artigos, 44 linhas de tabela, 74 parágrafos de dobra,
+     14 perguntas de FAQ, `publicar: false`), com `gerar-artigos.py` e
+     `mutacoes-artigos.py`. **O artigo é MONTADO do banco, nunca redigido:** toda frase de
+     preço é devolvida pela `f1-referencia.py`, e o portão confere valor por valor contra o
+     que o banco autoriza — artigo escrito à mão carrega número digitado, e nesta ilha o
+     preço datado É o produto. Detalhe em `dados/especificacao-calculadoras.md`, seção 7, e
+     no `REGISTRO.md` daquela data.
+   - **Os quatro nascem na mesma mãe, `/guias/quanto-custa/`**, e não uma por cidade: cada
+     cidade do banco tem UMA experiência, e categoria com uma filha é cluster ralo que não
+     passa autoridade. Com quatro na mesma mãe, cada página recebe **três irmãs apontando
+     para ela**, e a janela de irmãs **rotaciona** — o grau de entrada é igual ao de saída
+     hoje com quatro e no dia em que a categoria tiver dez.
+   - **E DOIS NÃO FORAM ESCRITOS, por falta de DADO e não de regra** — a ferramenta pareada
+     não tem resposta para publicar, e artigo cujo título promete um número que a página
+     não entrega é o defeito que o bloco 1 mediu nos concorrentes. O da **F2**
+     (`quanto custa um dia em veneza para 2 pessoas`) espera as faixas de diária; o da
+     **F3** (`roma pass vale a pena`) espera o passe, as coberturas e mais de uma atração
+     em Roma. Os dois estão **pré-registrados** em `dados/artigos-ancora.json`, com o
+     critério que destrava cada um escrito ANTES de o dado chegar.
 
 **5b. MALHA DE PÁGINAS — silo de tópico (seção 16):** **experiência → cidade → país**, com breadcrumb. Camadas: (1) ficha de experiência; (2) página de cidade; (3) página de país; (4) cruzamentos (experiência × número de pessoas, cidade × dias).
 
