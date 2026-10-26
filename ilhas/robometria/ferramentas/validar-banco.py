@@ -1060,6 +1060,61 @@ esperando = ([r["id"] for r in modelos["registros"]
              [p["id"] for p in pecas["registros"]
               if p["status"] == "publicavel" and not p["afiliado"]["url"]])
 
+# ---------------------------------------------------------------------------
+# O PISO DA 25.2 TEM PORTAO, E O STATUS E PARTE DELE (26/10/2026)
+# ---------------------------------------------------------------------------
+# Metade (b) do item 2 do despacho da Sentinela de 16/10/2026 — a unica metade
+# que sobreviveu, porque a propria Sentinela ANULOU a outra por medicao. O item 1
+# da leitura semanal de 14/10 afirmava que `multi-pr684`, `multi-pr550` e
+# `xiaomi-s20-acessorios` estavam "sem o piso da 25.2" e chamava isso de o
+# defeito mais grave da secao 25; os tres estao `excluido_do_banco`, com motivo
+# escrito, e a 25.2 cobra piso de item PUBLICAVEL. Cumprir aquele item ao pe da
+# letra gravaria link de compra para peca de aspirador VERTICAL — o erro que os
+# tres `motivo_do_status` existem para impedir — e faria a divida cair a zero
+# com a ilha pior.
+#
+# ENTAO O PORTAO NASCE OLHANDO O `status`, e a errata diz isso com todas as
+# letras: "E ELE TEM DE OLHAR O `status`, senao vai reprovar os tres excluidos e
+# a Fundacao seguinte vai 'consertar' o que esta errata acabou de anular".
+#
+# POR QUE ESCREVER UM PORTAO QUE HOJE FICA VERDE, e a frase do despacho e a
+# melhor resposta: "hoje ele ficaria verde, e e justamente por isso que e a hora
+# de escreve-lo". A causa esta medida nesta ilha: em 16/09 o banco tinha 73
+# publicaveis e ZERO sem piso rastreavel; em 18/09 tinha 95 e 22 SEM. Ninguem
+# quebrou nada — a ilha cresceu mais rapido que os proprios acabamentos, e cada
+# leva nova entrou pela porta de tras. A 25.2-b nomeia isso: "nao e defeito de
+# codigo, e defeito de portao, e portao que nao existe deixa passar sempre".
+#
+# E A EXCECAO LEGITIMA CONTINUA LEGITIMA, porque a 25.2-b a nomeia e e UMA: a
+# API nao devolve anuncio para aquele item. Nesse caso `url_busca` fica vazia, o
+# motivo e ESCRITO e o piso desce para a busca crua — "ausente e diferente de
+# tentado-e-falhou, e essa distincao e a regra inteira". Entao o portao reprova
+# a vazia SEM motivo, e reprova tambem a que tem motivo e ficou sem porta de
+# compra nenhuma, que e o que a 25.2 proibe com todas as letras ("item nenhum
+# fica sem porta de compra").
+for _doc, _arq in ((pecas, "pecas.json"), (modelos, "modelos-robo.json")):
+    for _r in _doc["registros"]:
+        if _r.get("status") != "publicavel":
+            continue
+        _a = _r.get("afiliado") or {}
+        _busca = (_a.get("url_busca") or "").strip()
+        _motivo = (_a.get("motivo_sem_url_busca") or "").strip()
+        _crua = (_a.get("url_busca_produto") or "").strip()
+        _onde = "%s/%s" % (_arq, _r["id"])
+        if _busca:
+            continue
+        if not _motivo:
+            erro("%s: registro PUBLICAVEL com `url_busca` vazia ou ausente e sem "
+                 "`motivo_sem_url_busca`. A 25.2 nao admite item publicavel sem piso, "
+                 "e a 25.2-b distingue AUSENTE de tentado-e-falhou: a unica saida "
+                 "legitima e a API nao devolver anuncio, e ela se declara por escrito"
+                 % _onde)
+        elif not _crua:
+            erro("%s: `url_busca` vazia com motivo escrito (%r) e SEM `url_busca_produto`. "
+                 "O motivo explica por que nao ha link encurtado; ele nao cria porta de "
+                 "compra, e a 25.2 diz que item nenhum fica sem uma"
+                 % (_onde, _motivo[:60]))
+
 checar_escada_na_tela()
 
 # ------------------------------------------------------------------ SAIDA

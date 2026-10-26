@@ -6,7 +6,7 @@ piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 14
 primeira_indexacao: 2026-09-11
 ultima_execucao: 2026-10-23T16:42Z   # o despacho da Sentinela de 23/10 fechado INTEIRO (18.2), os dois itens conferidos no ar (18.4), revisao 89 no /status. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
-executando_desde: 2026-10-26T10:35Z   # RESERVA RENOVADA pela 1.1: a reserva saiu as 10h19Z e o bloco passou de 40 minutos. A bancada sem rede desta ilha roda 45 portoes, e a bateria nova sozinha faz dez copias da pasta da ilha. Renovar e uma linha, e e o que faz a proxima execucao nao precisar do git para saber que ha bloco vivo aqui.
+executando_desde: 2026-10-26T10:55Z   # RESERVA RENOVADA pela 1.1, SEGUNDA vez. A reserva saiu as 10h19Z e esta execucao fechou DOIS despachos (02/10 e 16/10): a bancada sem rede foi de 42 para 47 portoes e as duas baterias novas fazem 17 copias da pasta da ilha, sem contar a passada com rede (53 portoes). Renovar e uma linha.
 bloco_atual: |
   O DESPACHO DA SENTINELA DE 23/10 ESTA FECHADO INTEIRO pela 18.2, e os DOIS
   itens foram conferidos NO AR pela 18.4. Revisao 89, /status em 89, as 13 linhas

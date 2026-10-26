@@ -1,5 +1,15 @@
 /**
  * Robometria A2 — Quantos m² um robô aspirador limpa por carga
+ * Versão: 1.7.0 (26/10/2026) — O NO `Article` PASSA A DECLARAR `author`, e com
+ * isso fecha o item 1 do despacho da Sentinela de 16/10/2026, reconferido no ar
+ * em 23/10 e aberto 10 dias. Esta pagina servia `publisher` e NAO `author`,
+ * enquanto `/filtro-universal-de-robo-aspirador/` — mesmo emissor, mesma ilha —
+ * servia os dois. O autor e a organizacao, como no A1: esta ilha nao tem pessoa
+ * em cena por decisao escrita, entao nao havia autor a escolher, so a declarar.
+ * Nasceu junto o portao que impede a volta: teste-artigo-com-autor.php, que
+ * DESCOBRE as paginas da ilha em vez de ter lista, e cobra `author` de todo no
+ * `Article` que achar.
+ *
  * Versão: 1.6.0 (21/10/2026) — O MOLDE DE CONVERSAO DA SECAO 32, no formato de FICHA da 32.2, como na A1.
  * Medido no ar em 21/10/2026, celular de 390 px: o primeiro botao de loja caia a
  * 3.686 px, com duas secoes e duas tabelas acima dele. Junto saiu a frase de
@@ -85,7 +95,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ROBOMETRIA_A2_VERSAO' ) ) {
-	define( 'ROBOMETRIA_A2_VERSAO', '1.6.0' );
+	define( 'ROBOMETRIA_A2_VERSAO', '1.7.0' );
 	define( 'ROBOMETRIA_A2_SLUG', 'quantos-m2-o-robo-aspirador-limpa-por-carga' );
 	define( 'ROBOMETRIA_A2_TITULO', 'Quantos m² um robô aspirador limpa por carga' );
 	define( 'ROBOMETRIA_A2_DADOS', 'robometria_dados_a2-fatos' );
@@ -728,6 +738,22 @@ add_action( 'wp_head', function () {
 		   git. Sem a option, NENHUMA data e publicada: ausente o Google infere,
 		   errada ele acredita. */
 		'publisher'        => array( '@id' => home_url( '/#organizacao' ) ),
+		/* O `author` FALTAVA AQUI, e o irmao sempre o teve — item 1 do despacho
+		   da Sentinela de 16/10/2026, reconferido no ar em 23/10 e fechado em
+		   26/10. Duas paginas de artigo da MESMA ilha, servidas pelo mesmo
+		   emissor, e so uma declarava autor: o array de `robometria-a1.php`
+		   trazia as duas linhas e este trazia uma. E a mesma familia do defeito
+		   que a ronda de 13/09 achou na aquametria ("`Article` sem
+		   data/autor/publicador nas 11 fichas de peixe"), com uma diferenca que
+		   pesa: aqui o certo e o errado conviviam no mesmo repositorio, a uma
+		   linha de distancia, e nenhum portao punha os dois frente a frente.
+		   Agora poe: `ferramentas/teste-artigo-com-autor.php` DESCOBRE as
+		   paginas da ilha e cobra `author` de todo no `Article` que achar — o
+		   que a propria exigencia do despacho pedia ("em qualquer URL que tenha
+		   `Article`"). Quem e o autor nao e escolha nova: a ilha nao tem pessoa
+		   em cena (o `VOZ.md` e o `/sobre/` dizem isso com todas as letras),
+		   entao o autor e a organizacao, igual ao publicador, igual ao A1. */
+		'author'           => array( '@id' => home_url( '/#organizacao' ) ),
 		'isBasedOn'        => array(
 			'@type'       => 'Dataset',
 			'name'        => 'Banco de modelos de robô aspirador da Robometria',

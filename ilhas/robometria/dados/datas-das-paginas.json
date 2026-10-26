@@ -21,15 +21,15 @@
    "arquivos": {
     "snippets/robometria-a1.php": {
      "data": "2026-10-26",
-     "como": "nao commitado"
+     "como": "commit"
     },
     "dados/a1-fatos.json": {
      "data": "2026-10-26",
-     "como": "nao commitado"
+     "como": "commit"
     },
     "snippets/robometria-casca.php": {
      "data": "2026-10-26",
-     "como": "nao commitado"
+     "como": "commit"
     }
    }
   },
@@ -40,12 +40,13 @@
    "fonte_da_publicacao": "REGISTRO.md, entrada \"2026-09-11 (00h07Z) — Bloco 5: o ARTIGO-ANCORA da R2, e o acento que faltava no A1\" — snippet robometria-a2.php v1.0.0, manifest revisao 13 conferida no /status",
    "modificada_em": "2026-10-26",
    "modificada_por": [
+    "snippets/robometria-a2.php",
     "snippets/robometria-casca.php"
    ],
    "arquivos": {
     "snippets/robometria-a2.php": {
-     "data": "2026-10-21",
-     "como": "commit"
+     "data": "2026-10-26",
+     "como": "nao commitado"
     },
     "dados/a2-fatos.json": {
      "data": "2026-10-21",
@@ -53,7 +54,7 @@
     },
     "snippets/robometria-casca.php": {
      "data": "2026-10-26",
-     "como": "nao commitado"
+     "como": "commit"
     }
    }
   },
@@ -71,15 +72,15 @@
    "arquivos": {
     "snippets/robometria-malha.php": {
      "data": "2026-10-26",
-     "como": "nao commitado"
+     "como": "commit"
     },
     "dados/malha-pecas.json": {
      "data": "2026-10-26",
-     "como": "nao commitado"
+     "como": "commit"
     },
     "snippets/robometria-casca.php": {
      "data": "2026-10-26",
-     "como": "nao commitado"
+     "como": "commit"
     }
    }
   },
@@ -97,15 +98,15 @@
    "arquivos": {
     "snippets/robometria-malha.php": {
      "data": "2026-10-26",
-     "como": "nao commitado"
+     "como": "commit"
     },
     "dados/malha-pecas.json": {
      "data": "2026-10-26",
-     "como": "nao commitado"
+     "como": "commit"
     },
     "snippets/robometria-casca.php": {
      "data": "2026-10-26",
-     "como": "nao commitado"
+     "como": "commit"
     }
    }
   },
@@ -123,15 +124,15 @@
    "arquivos": {
     "snippets/robometria-malha.php": {
      "data": "2026-10-26",
-     "como": "nao commitado"
+     "como": "commit"
     },
     "dados/malha-pecas.json": {
      "data": "2026-10-26",
-     "como": "nao commitado"
+     "como": "commit"
     },
     "snippets/robometria-casca.php": {
      "data": "2026-10-26",
-     "como": "nao commitado"
+     "como": "commit"
     }
    }
   },
@@ -149,15 +150,15 @@
    "arquivos": {
     "snippets/robometria-malha.php": {
      "data": "2026-10-26",
-     "como": "nao commitado"
+     "como": "commit"
     },
     "dados/malha-pecas.json": {
      "data": "2026-10-26",
-     "como": "nao commitado"
+     "como": "commit"
     },
     "snippets/robometria-casca.php": {
      "data": "2026-10-26",
-     "como": "nao commitado"
+     "como": "commit"
     }
    }
   },
@@ -175,15 +176,15 @@
    "arquivos": {
     "snippets/robometria-malha.php": {
      "data": "2026-10-26",
-     "como": "nao commitado"
+     "como": "commit"
     },
     "dados/malha-pecas.json": {
      "data": "2026-10-26",
-     "como": "nao commitado"
+     "como": "commit"
     },
     "snippets/robometria-casca.php": {
      "data": "2026-10-26",
-     "como": "nao commitado"
+     "como": "commit"
     }
    }
   }
