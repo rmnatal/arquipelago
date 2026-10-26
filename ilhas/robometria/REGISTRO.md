@@ -6982,3 +6982,132 @@ O desembarque estava em dia; o que estava velho era o arquivo no repositório. O
   defeito desta ilha que a Fundacao alcanca; a ilha segue **fora do foco** e em
   **modo de medicao** (1.2-b.1), e so esta aqui porque a jornadafly nao tem
   bloco.
+
+## 2026-10-26 (11h0xZ, na MESMA execucao) — O DESPACHO DE 16/10: `author` no `Article` do A2, e o piso da 25.2 ganha portao que olha o `status`
+
+- **ESTE E O SEGUNDO DESPACHO DA MESMA EXECUCAO, e a 18.2 o autoriza com todas as
+  letras:** *"correcao nao e bloco de construcao e nao consome a vez de um: se
+  sobrar folego na execucao depois de fechar o despacho, ela segue para o
+  proximo bloco da fila normalmente"*. O de 02/10 fechou as 10h4xZ; o de 16/10
+  era o que restava de defeito desta ilha que a Fundacao alcanca, e fechou as
+  11hxxZ. A reserva foi RENOVADA duas vezes pela 1.1 (10h35Z e 10h55Z).
+
+- **ITEM 1 — O `author` DO `Article` DO A2.** O defeito, medido em 16/10 as
+  14h4xZ e reconferido no ar em 23/10: `/quantos-m2-o-robo-aspirador-limpa-por-carga/`
+  servia no `Article` com `publisher` e **sem** `author`, enquanto
+  `/filtro-universal-de-robo-aspirador/` — mesma ilha, mesmo emissor — servia os
+  dois. No repositorio a diferenca era **uma linha de array**. Nao havia autor a
+  escolher, so a declarar: esta ilha **nao tem pessoa em cena** por decisao
+  escrita no `VOZ.md` e no `/sobre/`, entao o autor e a organizacao, igual ao
+  publicador, igual ao A1.
+  **MEDIDO NO AR**, com quebra de cache e `Accept-Encoding: identity`, nas duas:
+  `author: {"@id": "https://robometria.com.br/#organizacao"}` nos dois nos,
+  identico ao `publisher`. Revisao **91**, `/status` em 91, as **13** linhas do
+  log da revisao corrente dizendo `ok`, lidas uma por uma pela 20.4, Sync
+  acionado duas vezes.
+
+- **POR QUE NENHUM PORTAO VIA, e e a licao que sobrevive ao defeito:** a ilha tem
+  `teste-a1.php` e `teste-a2.php`, cada um medindo a SUA pagina, e nenhum dos
+  dois afirmava nada sobre `author`. **Regua por pagina nao enxerga o que duas
+  paginas deviam ter em comum** — o certo e o errado conviviam a uma linha de
+  distancia, no mesmo repositorio, e nada punha os dois frente a frente. E a
+  mesma familia do `pares_declarados` que esta execucao consertou duas horas
+  antes: duas metades contando a mesma coisa sem nunca se falarem.
+  Nasceu `ferramentas/teste-artigo-com-autor.php`, e ele **DESCOBRE** em vez de
+  ter lista — `robometria_teste_alvos_do_site()` deriva os 14 alvos da definicao
+  da casca, das constantes de slug dos snippets e do registro da malha, entao
+  pagina nova entra na regua no dia em que nasce. Ele desce o grafo INTEIRO de
+  todo bloco de JSON-LD (o no de artigo pode estar aninhado) e cobra, de cada no
+  `Article`: `author` presente, `author` apontando para a organizacao da ilha, e
+  a simetria dita ao contrario (no com `publisher` e sem `author` e o defeito de
+  16/10 tal e qual).
+
+- **O PORTAO NOVO ERROU DUAS VEZES ANTES DE FICAR DE PE, e as duas estao escritas
+  dentro dele, porque as duas sao armadilhas de medicao e nao de codigo.**
+  **(1) Nasceu achando ZERO no `Article` em 14 alvos.** Na bancada nao existe
+  `is_page()`, cada snippet de pagina pergunta "estou na minha pagina?" antes de
+  imprimir no `wp_head`, a resposta era nao, e o HTML saia sem o JSON-LD — o
+  shortcode e chamado direto e aparece, entao a pagina **parece** inteira. O
+  aviso esta dentro do `render-para-teste.php` desde 10/09/2026 e este portao o
+  cometeu exatamente como ele descreve. **Quem o pegou foi a afirmacao de que a
+  varredura precisa ACHAR o que julga** — sem ela, o portao teria nascido
+  **verde e vazio**, que e a pior coisa que um portao pode ser.
+  **(2) Corrigido isso, achou 13 nos em 7 paginas, quando a verdade do site e 2
+  em 2** — exatamente como a ronda de 16/10 media no ar (*"as outras 12 URLs nao
+  tem no `Article`"*). `robometria_teste_rebobinar()` repoe as ACOES e nao os
+  FILTROS, e nenhuma bancada desta ilha montava quatorze paginas no mesmo
+  processo: o filtro de cada alvo ficava ligado para os seguintes, e o `Article`
+  do A1 era creditado a `/pecas/`, a `/pecas/filtros/` e as tres filhas de marca.
+  **O portao nao reprovava nada: ele AFIRMAVA SOBRE PAGINA ERRADA**, que e pior,
+  porque um `Article` sadio emprestado pelo vizinho esconde o defeito da pagina
+  que nao serve nenhum. Agora ha retrato dos filtros reposto por alvo, e uma
+  afirmacao que reprova pagina servindo mais de um `Article`.
+
+- **ITEM 2, METADE (b) — O PISO DA 25.2 GANHOU PORTAO, E ELE OLHA O `status`.** A
+  outra metade do item 2 foi **anulada pela propria Sentinela por medicao** em
+  16/10, e esta execucao nao a executou: cumprir aquele "pronto quando" ao pe da
+  letra gravaria link de compra para peca de aspirador **vertical**, que e o erro
+  que os tres `motivo_do_status` existem para impedir. O que sobreviveu e o
+  portao, e a errata e explicita: *"ele tem de olhar o `status`, senao vai
+  reprovar os tres excluidos e a Fundacao seguinte vai 'consertar' o que esta
+  errata acabou de anular"*. Em `ferramentas/validar-banco.py`: registro
+  **publicavel** com `url_busca` vazia ou ausente **e sem**
+  `motivo_sem_url_busca` reprova; e registro com motivo escrito mas **sem porta
+  de compra nenhuma** tambem reprova, porque o motivo explica a falta do link
+  encurtado e nao cria porta de compra — a 25.2 diz que item nenhum fica sem uma.
+  A excecao legitima da 25.2-b (a API nao devolver anuncio) continua legitima,
+  declarada por escrito: *"ausente e diferente de tentado-e-falhou, e essa
+  distincao e a regra inteira"*.
+  **Hoje ele fica VERDE** — 54 de 54 pecas e 45 de 45 modelos publicaveis com
+  `url_busca` —, **e e justamente por isso que era a hora de escreve-lo**, na
+  frase do proprio despacho. A causa esta medida nesta ilha: em 16/09 o banco
+  tinha 73 publicaveis e **zero** sem piso rastreavel; em 18/09 tinha 95 e **22
+  sem**. Ninguem quebrou nada — a ilha cresceu mais rapido que os proprios
+  acabamentos e cada leva nova entrou pela porta de tras. A 25.2-b nomeia: *"nao
+  e defeito de codigo, e defeito de portao, e portao que nao existe deixa passar
+  sempre"*.
+
+- **`ferramentas/mutacoes-autor-e-piso.py`: 7 de 7 decididas certo**, e a setima e
+  a que o despacho exige por escrito — **a direcao CONTRARIA**: registro
+  `excluido_do_banco` sem `url_busca` tem de **APROVAR**, e aprova. As outras
+  seis: o `author` saindo do A2 (o defeito original), saindo do A1 (prova que o
+  portao julga as duas e nao uma lista de uma), virando uma pessoa que esta ilha
+  nao tem, o retrato dos filtros deixando de ser reposto (o defeito que o proprio
+  portao cometeu ao nascer), um publicavel perdendo a `url_busca`, e motivo
+  escrito com nenhuma porta de compra.
+  **A bateria tambem corrigiu a si mesma:** o veredito vermelho nao tem a mesma
+  palavra nos dois portoes, e contar `FALHA` nos dois imprimia "0 falha(s)" ao
+  lado de um portao que **reprovou** — numero errado ao lado de veredito certo e
+  a forma mais barata de alguem deixar de confiar na saida.
+
+- **32.5 RECONFERIDA depois do desembarque**, porque o A2 e pagina do molde:
+  **9 de 9 dentro da 32.5**, pior caixa 500 px (teto 700) e pior compra 1.322 px
+  (teto 1.400), rolagem horizontal 0 e `pageerror` 0 nas nove — numeros
+  identicos aos da passada das 10h4xZ, como era esperado de uma mudanca que vive
+  so no `<head>`.
+
+- **MEMORIA: NAO FOI POSSIVEL ATUALIZAR, e nao e esquecimento.** O `PROMPT.md`
+  desta ilha manda carregar `/areas/projeto-robometria.md` e outros quatro
+  arquivos, e **nenhum diretorio de memoria existe neste ambiente** (procurado em
+  `/areas`, `/memories` e `~/.claude/memory`: nao ha). O proprio `PROMPT.md`
+  prevê isto com todas as letras — *"Sem memoria, nao pare: o estado esta em
+  `ESTADO.md`, `REGISTRO.md` e `README.md` desta pasta"* —, entao o proximo passo
+  foi escrito nos tres lugares que a Fundacao seguinte le de verdade: o
+  `bloco_atual` do `ESTADO.md`, esta entrada, e a linha nova
+  `defeito_aberto_em_ilha_no_ar` do `foco.md` da raiz.
+
+- **E O `foco.md` RECEBEU A MEDICAO, pelo mesmo motivo das duas linhas que ja
+  estavam la:** ele e o primeiro arquivo que a proxima execucao le. A excecao da
+  1.2 ("ilha no ar e quebrada") era a **unica** porta aberta depois que o molde
+  da 32 parou de furar o foco, e era por ela que esta ilha vinha recebendo
+  execucao em 23/10 e hoje. **Ela se fechou.** O que sobrou de defeito em ilha no
+  ar e o soft 404 na borda do hospedeiro, que e do Raphael e portanto **nao e
+  porta** para a Fundacao furar o foco. A proxima execucao que achar a jornadafly
+  em foco, sem WordPress e com a rede recusada, nao tem bloco em ilha nenhuma, e
+  o resultado correto dela e **"nada elegivel"** — que a secao 1 chama de
+  informacao util e nao de fracasso.
+
+- **Proximo passo:** nenhum, do lado da Fundacao, nesta ilha. Ela segue **fora do
+  foco** e em **modo de medicao** (1.2-b.1), com zero defeito aberto que a
+  Fundacao alcance. O que destrava construcao e **decisao nova do Raphael** — a
+  fila dele acaba no item (3) e nao tem item (4).

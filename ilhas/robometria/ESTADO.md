@@ -5,72 +5,83 @@ prioridade: 1
 piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 14
 primeira_indexacao: 2026-09-11
-ultima_execucao: 2026-10-23T16:42Z   # o despacho da Sentinela de 23/10 fechado INTEIRO (18.2), os dois itens conferidos no ar (18.4), revisao 89 no /status. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
-executando_desde: 2026-10-26T10:55Z   # RESERVA RENOVADA pela 1.1, SEGUNDA vez. A reserva saiu as 10h19Z e esta execucao fechou DOIS despachos (02/10 e 16/10): a bancada sem rede foi de 42 para 47 portoes e as duas baterias novas fazem 17 copias da pasta da ilha, sem contar a passada com rede (53 portoes). Renovar e uma linha.
+ultima_execucao: 2026-10-26T11:00Z   # DOIS despachos fechados na mesma execucao pela 18.2 (02/10 e 16/10), os quatro itens conferidos NO AR pela 18.4, revisao 91 no /status. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
+executando_desde: null   # limpo as 11:00Z pela propria execucao que reservou as 10h19Z de 26/10. Reserva RENOVADA DUAS vezes pela 1.1 (10h35Z e 10h55Z): a execucao fechou dois despachos, a bancada sem rede foi de 42 para 47 portoes e as duas baterias novas fazem 17 copias da pasta da ilha, sem contar a passada com rede.
 bloco_atual: |
-  O DESPACHO DA SENTINELA DE 23/10 ESTA FECHADO INTEIRO pela 18.2, e os DOIS
-  itens foram conferidos NO AR pela 18.4. Revisao 89, /status em 89, as 13 linhas
-  do log dizendo `ok`, lidas uma por uma pela 20.4. Snippet R2 1.10.0 -> 1.11.0.
-  Correcao, nao bloco: a ilha segue FORA DO FOCO e em modo de medicao (1.2-b.1).
-  POR QUE ELA FUROU O FOCO: a jornadafly, que e a ilha em foco, esta com a fila
-  de arquivo ESGOTADA desde 23/10 13h20Z — sem WordPress e sem egresso nao sobrou
-  bloco que a Fundacao alcance, e isso esta escrito no foco.md por quem mediu.
-  O item 1 era pagina no ar servindo numero errado em ilha viva, que e o unico
-  caso que a 1.2 deixa furar o foco.
-  ITEM 1 — A CAIXA DA R2 PROMETIA `>=` SOBRE UMA LISTA MONTADA EM `>`. O literal
-  'Pa ou mais' nasceu com a caixa da 32.1 na 1.10.0, e "ou mais" e INCLUSIVO; em
-  8 das 9 situacoes o limiar seguro e `acima_de` (a Canaltech escreve "acima de
-  4.000 Pa") e a lista sai de `pa > valor`. A primeira tela prometia 7 modelos e
-  a vitrine entregava 5 — com os dois que faltavam na MESMA pagina, no bloco
-  `no_limiar`, que diz por que nao estao na lista.
-  MEDIDO NO AR com quebra de cache, no caso exato do despacho
-  (?area=110&piso=tapete+fino&pelo=curto): "SUCCAO A PROCURAR — ACIMA DE /
-  4.000 Pa", 5 na tela, e `> 4.000` sobre os 13 recomendaveis do banco = 5. No
-  unico caso inclusivo (?area=35&piso=liso&pelo=nao, limiar 3.000): "— A PARTIR
-  DE / 3.000 Pa", 7 na tela, `>= 3.000` = 7. A palavra "ou mais" nao aparece em
-  lugar nenhum da pagina.
-  A ESCOLHA ENTRE AS DUAS SAIDAS QUE O DESPACHO DEIXOU ABERTAS: o rotulo sai do
-  operador, e a vitrine NAO passou a incluir o empate. Incluir poria em primeiro
-  lugar, numa lista de recomendacao, um modelo que a fonte citada nao cobre — o
-  que a secao 7 chama de GRAVE — e aposentaria um bloco que explica ao leitor,
-  com procedencia, por que dois modelos de 4.000 Pa ficam de fora.
-  ITEM 2 — dados/datas-das-paginas.json REGERADO pela saida do gerador, nunca a
-  mao: as 7 paginas passaram de 2026-09-21 para 2026-10-21, a data em que o molde
-  entrou, medida do git. No ar: /filtro-universal-de-robo-aspirador/ e
-  /quantos-m2-o-robo-aspirador-limpa-por-carga/ servem dateModified 2026-10-21.
-  OS DOIS PORTOES QUE NASCERAM COM O FECHO, e nos dois casos a regua que devia
-  pegar EXISTIA e olhava para o outro lado. (1) Secao 8-b do teste-r2.php: le o
-  operador DO ROTULO SERVIDO, nas 9 situacoes, e conta o banco cru com ele — a
-  secao 8, de 10/09, ja conferia a classificacao inteira contra o operador da
-  fonte e estava VERDE no dia do defeito, porque estava certa; ninguem nunca
-  havia perguntado o que a CAIXA promete. (2) validar-datas-das-paginas.py faz a
-  pergunta que a isencao do validar-derivados.py havia aposentado: a isencao foi
-  escrita para um ARQUIVO (byte a byte nao faz sentido ali, `gerado_em` muda a
-  cada passada) e virou isencao para a PERGUNTA, e desde 16/09 ninguem perguntava
-  se a data publicada e a do git. Isencao de regua e divida escrita, e esta
-  venceu em 21/10. Ele compara so o que e funcao do git, importa PAGINAS e
-  data_do_arquivo() do proprio gerador, e roda o autoteste como PORTAO ZERO.
-  32.5 DE PE E IDENTICA A DE 21/10 NA CASA DO PIXEL: formulario a 494 px (teto
-  700) e primeiro botao de compra a 1.322 px (teto 1.400) nos tres estados
-  medidos a 390 px reais — o do despacho, o inclusivo e a pagina sem consulta. O
-  rotulo ficou mais longo e NAO quebrou linha. Rolagem horizontal 0 e pageerror 0
-  nos tres.
-  BANCADA: 43 portoes sem rede (eram 41), 0 falha. conferir-no-ar.py APROVADO com
-  389 afirmacoes, 0 falha. mutacoes-rotulo-da-caixa.py: 8 mundos, 8 como
-  esperado — e a que importa e a (3), que troca SO a palavra do rotulo, sem tocar
-  no dado: ela e invisivel para os outros 42 portoes por construcao.
-  DIVIDA MEDIDA E NAO CONSERTADA, porque nao e deste despacho: esta ilha NAO tem
-  o `conferir-desembarque.py` que a 20.4 manda toda ilha com Sync copiar da
-  clubedomosaico. O log do /status desta passada foi lido a mao, linha por linha,
-  e deu 13 de 13 `ok` — mas a mao e quem esquece. Fica para quem abrir bloco aqui.
-  PROXIMO PASSO DESBLOQUEADO: a ilha segue em modo de medicao e sem bloco de
-  construcao autorizado (1.2-b.1). Os tres despachos abertos continuam, e os tres
-  foram remedidos pela ronda de hoje: Article sem author na A2 (uma linha de array
-  em snippets/robometria-a2.php, o A1 a tem na 744), dois numeros para a mesma
-  frase (91 contra 92 pares peca x modelo) e o soft 404 na borda, que e do Raphael.
-  Os dois primeiros sao correcao e furam a fila quando a Fundacao voltar aqui.
-ultima_ronda: 2026-10-23T15:05Z   # RONDA DIARIA TECNICA FUNDA. 14 de 14 URLs em 200, porta de entrada da 29.2 inteira mais o 404 que tem de ser 404, /status em 88 igual ao manifest, console sem uma mensagem no Chrome do Raphael. ZERO CONSERTO: os dois defeitos novos sao da lista fechada 19.2 e foram para o DESPACHO DA SENTINELA de 2026-10-23. (1) a caixa de resultado da R2 publica o rotulo 'Pa ou mais' (literal em snippets/robometria-r2.php linha 1187) enquanto a fonte escreve 'acima de 4.000 Pa' e a propria pagina separa xiaomi-e10 e xiaomi-s10 num bloco no_limiar: o banco tem 7 publicaveis com Pa maior ou igual a 4.000 e a pagina lista e conta 5. (2) dateModified de 2026-09-21 em 7 paginas que o bloco de 21/10 reescreveu, porque dados/datas-das-paginas.json esta em gerado_em 2026-09-21 e o gerador nao foi rodado. A 32.5 foi conferida por quem nao construiu, a 390 px reais: 9 de 9 passam, e passam TAMBEM depois do calculo (R1 1.203 px, R2 1.318 px, uma caixa de resposta so) — o defeito da aquametria de 21/10 nao se reproduz aqui porque R1 e R2 sao formulario GET renderizado no servidor. Teste de vida: 29 de 29 testaveis VIVOS, zero clique de afiliado gasto, com o instrumento da api de ficha da Shopee de volta depois de 0 de 29 em 16/10. Piso da 25.2: 99 de 99 com url_busca e url_busca_produto, zero intestavel. Os tres despachos abertos foram remedidos e os tres CONTINUAM. E o acionamento do Sync por curl FUNCIONA deste ambiente: HTTP 200 em 9,9 s as 14h58Z, 13 aplicados, /status em 88.
-bloqueada_por: null
+  DOIS DESPACHOS FECHADOS NA MESMA EXECUCAO, os dois conferidos NO AR pela 18.4,
+  e os dois eram DEFEITO e nao construcao — a 18.2 autoriza o segundo com todas
+  as letras ("se sobrar folego depois de fechar o despacho, ela segue"). Revisao
+  91, /status em 91, as 13 linhas do log dizendo `ok` (20.4, Sync duas vezes).
+  A ilha segue FORA DO FOCO e em modo de medicao (1.2-b.1): ela so recebeu
+  execucao porque a jornadafly, que e a ilha em foco, esta com a fila de arquivo
+  ESGOTADA e com a rede REMEDIDA E RECUSADA hoje as 10h18Z (000 em duas passadas,
+  com robometria e aquametria em 200 nas duas).
+  DESPACHO DE 02/10, ITEM 1 — 24 DIAS ABERTO: a ilha publicava DOIS numeros de
+  par peca x modelo, 91 em tres paginas e 92 na quarta, os dois certos sob
+  definicoes diferentes e nenhuma das quatro dizendo qual. Passou a publicar o
+  par com as DUAS pontas publicaveis, 91, com a definicao DENTRO da frase —
+  "contando so os pares em que a peca e o modelo estao os dois publicados aqui" —
+  numa CONSTANTE SO da casca que as quatro paginas leem. MEDIDO NO AR nas quatro,
+  com quebra de cache e Accept-Encoding: identity: o mesmo numero nas quatro, a
+  oracao em todas, e ZERO ocorrencia de 92 no corpo visivel. O par sem destino
+  ganhou NOME no banco (multi-pr10124 x multi-ho401) e a pagina que servia 92
+  nomeia em paragrafo proprio o par que ela nao conta.
+  A LETRA DO "PRONTO QUANDO" FOI CONTRARIADA DE PROPOSITO num ponto, com o
+  motivo: as copias NAO passaram a tirar o numero de uma derivacao unica, porque
+  o gerar-r1.py decidiu o contrario por escrito em 16/09 ("se as duas lessem a
+  mesma fonte, errariam juntas e todo portao ficaria verde"). Derivacao unica nao
+  e menos copia: e copia sem testemunha. O que faltava era um PORTAO, e ele
+  nasceu: validar-pares.py, quarta contagem independente, 22 afirmacoes, e ele
+  VARRE dados/*.json atras de chave de par e denuncia a que nenhuma lista
+  conhece. Achou tres na primeira passada, entre elas pares_na_tabela, que da 91
+  hoje POR ACIDENTE DO BANCO e nao por definicao.
+  DESPACHO DE 16/10, ITEM 1 — o `Article` de /quantos-m2-o-robo-aspirador-limpa-
+  por-carga/ passou a declarar `author` apontando para #organizacao, igual ao do
+  irmao. Medido no ar nos dois nos. Nao havia autor a escolher, so a declarar:
+  esta ilha nao tem pessoa em cena por decisao escrita. O que nenhum portao via:
+  teste-a1 e teste-a2 medem cada um a SUA pagina, e REGUA POR PAGINA NAO ENXERGA
+  O QUE DUAS PAGINAS DEVIAM TER EM COMUM — o certo e o errado conviviam a uma
+  linha de distancia. Nasceu teste-artigo-com-autor.php, que DESCOBRE os 14 alvos
+  da ilha e cobra author de todo no Article que achar.
+  ELE ERROU DUAS VEZES ANTES DE FICAR DE PE, e as duas sao armadilha de MEDICAO:
+  (1) nasceu achando ZERO no Article em 14 alvos, porque na bancada nao existe
+  is_page() e o JSON-LD nao sai — quem o pegou foi a afirmacao de que a varredura
+  precisa ACHAR o que julga, sem a qual ele teria nascido VERDE E VAZIO; (2)
+  depois achou 13 nos em 7 paginas contra 2 em 2 da verdade do site, porque
+  rebobinar() repoe as acoes e nao os FILTROS e o filtro de cada alvo ficava
+  ligado para os seguintes. Ele nao reprovava nada: AFIRMAVA SOBRE PAGINA ERRADA.
+  DESPACHO DE 16/10, ITEM 2 (b) — o piso da 25.2 ganhou portao em validar-banco.py,
+  E ELE OLHA O `status`, como a errata da propria Sentinela manda: sem isso
+  reprovaria os tres excluidos do banco e a execucao seguinte "consertaria" o que
+  a errata anulou, gravando link de compra de peca de aspirador VERTICAL. Hoje
+  fica verde (54 de 54 e 45 de 45 com url_busca), e era justamente por isso a
+  hora: em 16/09 eram 73 publicaveis e zero sem piso, em 18/09 eram 95 e 22 sem.
+  E O PORTAO DA 32.5-b NAO EXISTIA NESTA ILHA. O bloco mexeu em cinco snippets de
+  pagina do molde, e a 32.5-b manda conferir com um portao que le o
+  wp-sitemap.xml no ar. O porte saiu na propria passada
+  (conferir-32-5-no-navegador.mjs): 9 DE 9 PAGINAS DO MOLDE DENTRO DA 32.5, pior
+  caixa 500 px (teto 700) e pior compra 1.322 px (teto 1.400), rolagem horizontal
+  0 e pageerror 0 nas nove, com as cinco institucionais nomeadas como fora do
+  molde em vez de aprovadas em silencio. O porte achou que o `import` de ESM do
+  playwright NAO resolve nesta nuvem — DIVIDA DA CLUBEDOMOSAICO TAMBEM — e que
+  esta ilha tem uma TERCEIRA familia de pagina, a de malha de navegacao, que o
+  portao reprovava sendo certa.
+  BANCADA: 47 portoes sem rede e 53 com rede, 0 falha (eram 42 em 12/10).
+  Entraram validar-pares.py, mutacoes-pares-de-tela.py (10 de 10),
+  teste-artigo-com-autor.php, mutacoes-autor-e-piso.py (7 de 7, inclusive a
+  direcao CONTRARIA que o despacho exige) e o .mjs da 32.5, que fica fora da
+  bancada por desenho. Snippets: casca 1.14.0, r1 1.13.0, a1 1.7.0, a2 1.7.0,
+  malha 1.2.0.
+  O QUE SOBROU E NAO E DA FUNDACAO: o item 1 do despacho de 30/09, o soft 404 na
+  borda do hospedeiro, que nenhuma linha de codigo de ilha alcanca e cujo
+  fechamento e do Raphael.
+  PROXIMO PASSO: NAO HA DEFEITO ABERTO DESTA ILHA QUE A FUNDACAO ALCANCE. Os
+  tres despachos que a ronda de 23/10 remediu estao fechados, menos o soft 404,
+  que e do Raphael. A ilha volta a esperar: ela esta fora do foco e em modo de
+  medicao, e construcao nela depende de decisao nova do Raphael (nao ha item (4)
+  na fila dele). A proxima execucao que achar a jornadafly em foco, sem WordPress
+  e com a rede recusada, tambem nao tem bloco AQUI — e isso esta escrito para que
+  ela nao invente um.
 ---
 
 
