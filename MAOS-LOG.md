@@ -6863,3 +6863,68 @@ pedida, sem crase, sem `$` e sem `!`.
 Os disparos 2, 3 e 4 trazem as 30 correções nos arquivos, em três grupos sem arquivo em comum
 (2: `ARQUIPELAGO.md` e `bussola/`; 3: `ilhas/aquametria/`; 4: `ilhas/clubedomosaico/` e
 `ilhas/robometria/`). Este disparo não tocou nenhum deles, então o rebase dos três fecha sozinho.
+
+---
+
+## 26/10/2026 10h25 BRT (13h25 UTC) — Bússola rodada 008, disparo 1 de 3
+
+Disparo manual. Assunto conferido antes do `git fetch`: **Bússola / Arquipélago** — passa a trava. Nenhum
+dado pessoal de terceiro no conteúdo (as menções ao Raphael são ao dono do repositório, não contato).
+
+Instrução: gravar dois arquivos verbatim, criando o diretório se não existisse, em UM commit com a
+mensagem exata `Bússola rodada 008 — 26/10/2026`, sem esperar os disparos 2 e 3.
+
+`git status --porcelain` antes do commit:
+
+```
+?? bussola/medicoes/serp-brasileira-browser-2026-10-26.md
+?? bussola/rodadas/008.md
+```
+
+`git diff --stat` do commit:
+
+```
+ .../medicoes/serp-brasileira-browser-2026-10-26.md | 261 +++++++++++++++++++++
+ bussola/rodadas/008.md                             | 194 +++++++++++++++
+ 2 files changed, 455 insertions(+)
+```
+
+Commit que foi ao `main`:
+
+```
+9c993864a09d9d6468147dee8d950fa98a94223c  Bússola rodada 008 — 26/10/2026
+push: 1252b4f..9c99386  HEAD -> main
+conferido: git fetch origin main && git log -1 origin/main mostra 9c99386
+```
+
+Contagem do que mudou, conferida relendo os dois arquivos DEPOIS de gravar:
+
+```
+bussola/rodadas/008.md  (criado; a instrução dizia SOBRESCREVER/CRIAR e ele não existia)
+  linhas                                    -> 194
+  bytes                                     -> 16559
+  linhas de tabela (comecando com "|")      -> 31
+  secoes "## "                              -> 8   (1 a 8, como na instrucao)
+  subsecoes "### "                          -> 0
+  itens de lista "- "                       -> 12
+  primeira linha -> "# Rodada 008 da Bússola — 26/10/2026 (segunda, 12h37 UTC) — a rodada que achou um instrumento"
+  ultima linha   -> "   onze nichos em `remedir` e o motor de popa."
+
+bussola/medicoes/serp-brasileira-browser-2026-10-26.md  (criado)
+  linhas                                    -> 261
+  bytes                                     -> 17797
+  linhas de tabela (comecando com "|")      -> 51
+  secoes "## "                              -> 6   (1 a 6, como na instrucao)
+  subsecoes "### "                          -> 12  (3.1 a 3.10, mais Pneumatica e Enxoval da secao 4)
+  itens de lista "- "                       -> 9
+  primeira linha -> "# Medição — SERP BRASILEIRA vista por instrumento novo, 26/10/2026 (rodada 008)"
+  ultima linha   -> "aprova nicho. **A Bússola não decide isso e não assumiu que decidiu.**"
+```
+
+Nenhum passo falhou. Nada foi tocado além dos dois arquivos nomeados pela instrução e deste log. O
+conteúdo entrou byte a byte como veio entre os marcadores: sem reformatar, sem "melhorar", sem corrigir
+nada, sem acrescentar linha — inclusive as quebras longas de parágrafo, a indentação das continuações de
+lista e as três alternativas (a)/(b)/(c) da seção 4.
+
+Nada da instrução foi deixado de fora. Os disparos 2 e 3 (dossiês e edições da `bussola/fila.md`) não
+tocam nenhum destes dois arquivos, então o rebase deles fecha sozinho.
