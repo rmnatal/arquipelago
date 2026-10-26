@@ -11,6 +11,20 @@ Prioridade: `alta` fura a fila da próxima execução do destinatário.
 
 ## ABERTOS
 
+### prioridade NORMAL — DUAS das cinco ilhas têm cabeçalho de estado SEM os campos que a seção 1 lê para decidir a ilha da execução, e uma delas entrou nessa lista sem ninguém ver
+
+26/10/2026 — FUNDAÇÃO (quem reservar a ilha) — **Acrescentar `ultima_ronda` e `bloqueada_por` ao cabeçalho de `ilhas/robometria/ESTADO.md` e de `ilhas/ohmetria/ESTADO.md`.** Não é código e não é decisão: são duas linhas por arquivo, `null` nas duas, e o conserto sai no mesmo commit que fechar o bloco daquela ilha.
+
+**Medido às 13h3xZ de 26/10/2026**, pela régua de presença da seção 2 do `ARQUIPELAGO.md`, rodada nos seis `ESTADO.md` (o `_modelo` incluído): **os seis parseiam em `yaml.safe_load` e dois estão incompletos** — `robometria` sem `ultima_ronda` e sem `bloqueada_por`, `ohmetria` com a mesma dupla faltando. `aquametria`, `clubedomosaico`, `jornadafly` e `_modelo` estão completos.
+
+**O que é NOVO aqui:** a nota de **30/09/2026** na seção 2 nomeou a `ohmetria` e mandou que a próxima execução a reservar a consertasse. A `robometria` **não estava naquela lista** — e está nesta, depois de quatro semanas em que ela foi a ilha mais trabalhada do arquipélago (dois despachos fechados em 26/10, um deles com 24 dias de idade). **Ninguém viu porque a régua da seção 2 é rodada pela execução na ilha que ela reservou, e nunca nas outras quatro.** É a cicatriz da própria seção 2 um andar acima: o portão existe, está certo, e só olha para onde quem o roda já estava olhando.
+
+**Por que isto não foi consertado pela execução que o mediu:** ela fechou em **"nada elegível"** e portanto **não reservou ilha nenhuma** — e a seção 2 diz, com todas as letras, que quem fecha bloco conserta o cabeçalho *"da ilha que reservou, e só dela"*, porque consertar cabeçalho de ilha alheia é a colisão que a reserva por commit existe para impedir. A execução de 30/09 tomou exatamente a mesma decisão com a `ohmetria`.
+
+**O que isto custa hoje: nada, e é isso que o torna paciente.** As três leituras possíveis concordam enquanto o valor certo é `null`: quem lê com `grep` conclui "não está preenchido" e acerta por acidente, quem usa `d.get()` trata ausência como `null` sem dizer que o campo não existe, e só `d["bloqueada_por"]` morre. **Elas discordam no primeiro dia em que uma dessas duas ilhas for bloqueada de verdade** — e o passo 3 da seção 1, que manda descartar ilha com `bloqueada_por` preenchido, é quem lê o campo.
+
+**Pronto quando:** a linha de presença da seção 2 devolver `YAML ok` nos seis `ESTADO.md` na mesma passada.
+
 ### prioridade NORMAL — a clubedomosaico tem 22 consultas de produto SEM veredito, e desde hoje existe régua e portão para classificá-las
 
 **2026-10-14 — FUNDAÇÃO, na execução que reservar a clubedomosaico — copiar a máquina de classificação de SERP da aquametria, como a 20.4 manda copiar o portão do desembarque.** `ilhas/clubedomosaico/dados/consultas-de-produto.json` tem **22** consultas (`torquês para mosaico`, `alicate para mosaico`, `cortador de vidro para mosaico`, …) e **nenhuma delas tem veredito**: contado em 14/10/2026, `veredito: None` nas 22, sem uma linha de evidência de SERP. Então não há veredito antigo a remedir — há 22 a emitir, e isso é bom: nada precisa ser desfeito.
@@ -464,6 +478,15 @@ Caminho: `claude.ai/code` → seletor de ambiente → Nuvem → engrenagem → D
 **Pronto quando:** o `BUSSOLA.md` trouxer a regra das duas linguagens na seção que mede concorrência, e o próximo dossiê fechado a aplicar. **O dossiê da rodada 004 não precisa ser reaberto:** a correção já está escrita no `ilhas/ohmetria/dados/corpus-buscas.md` e no `REGISTRO.md` da ilha, com os sete domínios nomeados, e a conclusão dele sobre o nicho **continua de pé** — mudou a razão, não o veredito.
 
 ### prioridade ALTA — as DUAS ilhas nascidas em 14/09 não estão na lista de rede, e a 20.1 manda que estivessem no dia do domínio
+
+> **REMEDIDO EM 26/10/2026 ÀS 13h3xZ, E AGORA ELE NÃO TRAVA MAIS "O 3b EM DIANTE": TRAVA A FÁBRICA INTEIRA. A CAPACIDADE DE CONSTRUÇÃO DO ARQUIPÉLAGO ESTÁ EM ZERO, E AS DUAS COISAS QUE A DESTRAVAM SÃO SUAS.**
+>
+> Medição desta execução, duas passadas com controle na mesma linha de comando: `jornadafly.com.br` e `www.jornadafly.com.br` em **000 nas duas** (4 medições), com `aquametria.com.br`, `robometria.com.br` e `clubedomosaico.com.br` em **200** e `raw.githubusercontent.com` em **301** ao lado. Quinto dia seguido de recusa, e o proxy nomeia a causa: `connect_rejected`, política da organização. **As seis fontes de coleta seguem fora também** — `www.numbeo.com`, `www.booking.com`, `www.civitatis.com.br`, `www.romapass.it`, `www.turismoroma.it`, `www.lisboacard.org` e `www.visitlisboa.com`, todas **000**, mais `bondinho.com.br` (o operador privado que o bloco 6 nomeou como o que destrava a oferta de ferramenta aos 25 candidatos).
+>
+> **O QUE MUDOU DESDE 22/10, e é só isto, mas muda o custo de lugar:** em 22/10 a ilha em foco ainda tinha fila de arquivo. Ela **esgotou em 23/10** (`foco.md`, linha `fila_de_arquivo_da_ilha_em_foco`, e o `REGISTRO.md` da ilha): os blocos 1, 2, 3, 4 (F1, F2, F3), 5 e 6 estão cumpridos até onde a Fundação alcança, e **o que sobrou depende de uma das duas coisas que só você faz** — os passos 2 a 8 da seção 11 (navegador: domínio adicional no cPanel, nameservers, Search Console, WordPress, SSL, plugins) ou o egresso acima. As outras três portas que davam execução à Fundação se fecharam por terem sido **cumpridas**: o molde da seção 32 está no ar e conferido nas três ilhas desde 23/10, e os dois despachos de defeito da robometria fecharam em 26/10 às 11h00Z. **Então esta execução, que acordou às 13h33Z de 26/10, fechou em "nada elegível" sem nada quebrado no ar e sem nenhuma ilha ocupada** — não por colisão de reserva, como o despacho de 12/09 mais acima, mas porque não existe bloco que a Fundação alcance em ilha nenhuma. **Toda execução da Fundação daqui para frente fecha igual, até você agir.**
+>
+> **Pronto quando** (sem mudança): `curl -s -o /dev/null -w "%{http_code}" https://jornadafly.com.br/` devolver de dentro de uma rotina qualquer código HTTP de verdade, 404 inclusive. **E a outra metade, que não é rede:** sem WordPress a ilha não recebe casca, logo não recebe snippet, logo não publica página — então o egresso sozinho destrava a **coleta** (F2, F3, prospecção) e não destrava o **ar**. As duas são independentes e as duas são suas; qualquer uma delas, isolada, já tira a Fundação do zero.
+
 
 > **A METADE CUMPRIDA EM 18/09 REGREDIU NA JORNADAFLY — MEDIDO EM 22/10/2026 ÀS 10h2xZ PELA EXECUÇÃO DA FUNDAÇÃO QUE A RESERVOU NO PRIMEIRO DIA DELA EM FOCO. O pedido abaixo volta a valer inteiro para esta ilha, e agora ele trava o FOCO PRINCIPAL.**
 >

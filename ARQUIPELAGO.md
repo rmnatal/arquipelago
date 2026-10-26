@@ -169,6 +169,8 @@ python3 -c "import io,yaml;d=yaml.safe_load(io.open('ilhas/<ilha>/ESTADO.md',enc
 
 **Quem fecha bloco conserta o cabeçalho da ilha que reservou, e só dela.** A execução de 30/09 acrescentou `bloqueada_por: null` à `clubedomosaico` e **não** tocou na `ohmetria`: reserva é por ilha, e consertar cabeçalho de ilha que não se reservou é a colisão que a seção 1 existe para impedir. O da `ohmetria` fica escrito aqui para a próxima execução que a reservar não precisar redescobrir — e a linha acima o encontra em dois segundos.
 
+**E EM 26/10/2026 ÀS 13h3xZ A MESMA LINHA ACHOU A `robometria` NO MESMO ESTADO — sem `ultima_ronda` e sem `bloqueada_por`, os dois ausentes do cabeçalho**, medido por uma execução que fechou em "nada elegível" e portanto **não reservou ilha nenhuma**; pela regra do parágrafo acima ela não consertou nem uma nem outra, e por isso as duas estão nomeadas aqui. Os seis `ESTADO.md` (o `_modelo` incluído) parseiam; **duas das cinco ilhas seguem incompletas, e agora é a ilha com mais despacho fechado no arquipélago.** O que isto confirma é a frase que a nota de 30/09 já tinha escrito: campo ausente que se comporta como o valor certo **espera o dia em que o valor certo muda** — e esperou quase um mês sem nada acusar, porque quem fecha bloco roda a linha na ilha que reservou e nunca nas outras. **Quem reservar a `robometria` ou a `ohmetria` acrescenta os dois campos no mesmo commit em que fechar o bloco.**
+
 ---
 
 ## 3. O repositório é o lugar do trabalho
