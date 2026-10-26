@@ -6928,3 +6928,57 @@ lista e as três alternativas (a)/(b)/(c) da seção 4.
 
 Nada da instrução foi deixado de fora. Os disparos 2 e 3 (dossiês e edições da `bussola/fila.md`) não
 tocam nenhum destes dois arquivos, então o rebase deles fecha sozinho.
+
+---
+
+## Disparo — 26/10/2026 10:30 BRT (13:30 UTC) — Bússola rodada 008, disparo 2 de 3: dossiês Pneumetria e Camametria
+
+Instrução: criar os diretórios `bussola/dossies/pneumetria/` e `bussola/dossies/camametria/` e gravar quatro
+arquivos novos com conteúdo verbatim, em UM commit com a mensagem exata `Bússola rodada 008 — 26/10/2026`.
+
+Checagem de assunto: **do Arquipélago** — Bússola, dossiês de nicho candidato, naming no padrão `-metria` das
+ilhas vivas, referências ao `ARQUIPELAGO.md`. Nenhum dado pessoal de terceiro nos quatro arquivos; nada foi
+deixado de fora.
+
+Partiu de `origin/main` em `6b5b947` (`git checkout -B trabalho origin/main`), não da branch da sessão.
+
+`git status --porcelain` antes do add:
+
+```
+?? bussola/dossies/camametria/
+?? bussola/dossies/pneumetria/
+```
+
+`git status --porcelain` depois do commit: vazio.
+
+`git diff --stat 6b5b947 1f1338e`:
+
+```
+ bussola/dossies/camametria/DOSSIE.md | 207 ++++++++++++++++++++++++++++++++
+ bussola/dossies/camametria/VOZ.md    |  38 ++++++
+ bussola/dossies/pneumetria/DOSSIE.md | 222 +++++++++++++++++++++++++++++++++++
+ bussola/dossies/pneumetria/VOZ.md    |  35 ++++++
+ 4 files changed, 502 insertions(+)
+```
+
+Commit que foi ao `main`: **`1f1338e`** — `Bússola rodada 008 — 26/10/2026`
+
+Push: `git push origin HEAD:main` aceito de primeira, `6b5b947..1f1338e  HEAD -> main`. Sem rebase, sem force,
+sem PR. Confirmado com `git fetch origin main && git log -1 origin/main`, que mostra `1f1338e`.
+
+Contagem conferida relendo os arquivos DEPOIS de gravar (`wc -l -c`):
+
+```
+  222 17576 bussola/dossies/pneumetria/DOSSIE.md
+   35  4566 bussola/dossies/pneumetria/VOZ.md
+  207 15985 bussola/dossies/camametria/DOSSIE.md
+   38  4485 bussola/dossies/camametria/VOZ.md
+  502 42612 total
+```
+
+Quatro arquivos criados, zero modificados, zero apagados. Títulos relidos: `# DOSSIÊ — PNEUMETRIA · compressor
+de ar e ferramenta pneumática`, `# VOZ — Pneumetria`, `# DOSSIÊ — CAMAMETRIA · enxoval de cama por medida de
+cama e altura de colchão`, `# VOZ — Camametria`.
+
+Nenhum passo falhou. Nada além dos quatro arquivos e deste log foi tocado — nem `fila.md`, nem `foco.md`, nem
+cabeçalho de estado de ilha. As edições da `bussola/fila.md` vêm no disparo 3.
