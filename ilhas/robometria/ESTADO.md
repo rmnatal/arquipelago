@@ -8,7 +8,7 @@ primeira_indexacao: 2026-09-11
 ultima_ronda: 2026-10-26T15:02Z   # escrito pela Sentinela (secao 2). Este campo e o `bloqueada_por` abaixo estavam os DOIS AUSENTES deste cabecalho — a divida que a secao 2 nomeou em 26/10/2026 as 13h3xZ. Acrescentados pela ronda que reservou a ilha, como a propria secao 2 manda.
 bloqueada_por: null
 ultima_execucao: 2026-10-26T11:00Z   # DOIS despachos fechados na mesma execucao pela 18.2 (02/10 e 16/10), os quatro itens conferidos NO AR pela 18.4, revisao 91 no /status. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
-executando_desde: null   # limpo as 11:00Z pela propria execucao que reservou as 10h19Z de 26/10. Reserva RENOVADA DUAS vezes pela 1.1 (10h35Z e 10h55Z): a execucao fechou dois despachos, a bancada sem rede foi de 42 para 47 portoes e as duas baterias novas fazem 17 copias da pasta da ilha, sem contar a passada com rede.
+executando_desde: 2026-10-26T16:20Z   # reserva desta execucao da Fundacao, hora saida do `date -u` na mesma linha de comando que a grava. A ilha esta FORA DO FOCO (jornadafly) e recebeu execucao pela excecao da 1.2: despacho da Sentinela de hoje 15h0xZ, ilha NO AR com o PRIMEIRO botao de compra de uma pagina servindo ficha ESGOTADA.
 bloco_atual: |
   DOIS DESPACHOS FECHADOS NA MESMA EXECUCAO, os dois conferidos NO AR pela 18.4,
   e os dois eram DEFEITO e nao construcao — a 18.2 autoriza o segundo com todas
