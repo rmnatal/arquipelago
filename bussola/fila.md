@@ -1,10 +1,60 @@
 # Fila da Bússola — registro de medição
 
-Última rodada que mexeu aqui: **007 (21/10/2026, noite)** — a rodada que mediu JARDINAGEM inteira, volume e SERP na
-mesma semana, e a reprovou por POSIÇÃO. Antes dela, a 006 (21/10/2026) foi a primeira rodada com o piso de tráfego
-da seção 3.0-c.
+Última rodada que mexeu aqui: **008 (26/10/2026)** — a rodada que achou um INSTRUMENTO: a Bússola passou a ver a
+SERP brasileira, o `registro.br` e a PDP da Shopee com preço de dentro de uma rotina agendada. Três candidatos
+desta página morreram na primeira passada com ele. Antes dela, a 007 (21/10/2026) mediu jardinagem inteira e a
+reprovou por POSIÇÃO; a 006 (21/10/2026) foi a primeira rodada com o piso de tráfego da seção 3.0-c.
 Scorecard v3 (`BUSSOLA.md`, seção 3): S = S_par×0,85 + S_com×0,15 · Facilidade = S×0,60 + P×0,40 ·
 Retorno = M×0,40 + D×0,30 + R×0,15 + A×0,15 · Índice = média harmônica.
+
+> # 🔭 RODADA 008 (26/10/2026) — O INSTRUMENTO ABRIU, E O QUE TRAVA A FILA ENCOLHEU PARA DUAS SESSÕES LOGADAS
+>
+> As rodadas 006 e 007 escreveram que o ranking estava vazio *"por bloqueio de proxy, não por falta de nicho"*.
+> Em 26/10/2026 a Bússola mediu a SERP brasileira, o `registro.br` e a PDP da Shopee **com preço**, sozinha, de
+> dentro da rotina agendada, por um painel de navegador que roda na máquina do Raphael. Evidência:
+> `bussola/medicoes/serp-brasileira-browser-2026-10-26.md`. Ficha da rodada: `bussola/rodadas/008.md`.
+>
+> **O que destravou:** SERP brasileira · `registro.br` (65 domínios conferidos) · PDP da Shopee com preço ·
+> `help.shopee.com.br` (lido pela primeira vez em 4 rodadas: **3% padrão, sem tabela por categoria**, extra de
+> vendedor até 30%, atribuição de 7 dias, sem teto por pedido).
+>
+> **O que CONTINUA travado, e agora é só isto:**
+> **(1) o PAINEL de afiliado da Shopee** — `affiliate.shopee.com.br` redireciona para `shopee.com.br`, perfil não
+> logado, e a Bússola não entra com senha. A 3.0-d.4 manda medir comissão **e ticket** no painel, na mediana,
+> *"nunca lida de página institucional"* → **M segue não calculado**.
+> **(2) o PLANEJADOR de palavras-chave** — redireciona para `accounts.google.com`, perfil não logado →
+> **volume segue não medido, e o portão eliminatório da 3.0-d.1 segue fechado para todo nicho desta página.**
+>
+> **Portanto o ranking continua vazio, e nenhuma linha desta página autoriza o nascimento de uma ilha.** Mas a
+> causa mudou de tamanho: era "o egresso recusa tudo", agora é "duas sessões logadas de minutos".
+>
+> **E uma ressalva de lei que é do Raphael, não da Bússola.** A 30.8 diz que `alvo` *"exige a SERP aberta com os
+> olhos, no Chrome do Raphael"*. O instrumento novo não é o Chrome dele e não teve olhos humanos. Por isso a 008
+> aplicou a assimetria da própria 30.8 sem esticá-la: **todo `tomada` desta rodada está afirmado e fechado**
+> (presença se mede com qualquer busca), e **os dois `alvo` ficaram `provisório`** — são duas consultas para ele
+> conferir, não vinte e uma: `quantos pcm de compressor para pistola de pintura` e
+> `qual bucha para parede de gesso drywall`.
+
+> ## ⚖️ A CONTRADIÇÃO QUE A RODADA 008 MEDIU E NÃO RESOLVEU — 3.0-d × 30.5
+>
+> Nas dez SERPs brasileiras lidas em 26/10/2026 o padrão não teve exceção:
+>
+> **Consulta cuja resposta é UM PRODUTO NOMEADO está tomada por carrossel de compras e PDP de marketplace**
+> (resistência Lorenzetti · motor de portão 400 kg · cápsula para Inissia · bico para Karcher K3 — S_par 1 nas
+> quatro). **Consulta cuja resposta é UM NÚMERO ainda tem vaga editorial** (PCM de pistola 4 · PCM de chave de
+> impacto 3 · lençol queen 3 · vazão de coifa 2) — **e atrai calculadora de fabricante** (nobreak: 0).
+>
+> A 3.0-d.2 define consulta com intenção de compra como aquela em que *"a resposta correta nomeia um produto que
+> a ilha pode indicar como afiliado"*, e manda contar **só** essas no piso de 1.000 visitas/dia. A 30.5 define
+> `tomada` como *"o top 10 dominado por varejo grande, fabricante forte ou fazenda"*. **São a mesma consulta
+> vista de dois lados: a 3.0-d manda somar exatamente o que a 30.5 manda descartar.**
+>
+> A 3.0-d.5 já avisara, em 22/10, que *"é possível que nenhum nicho da fila de hoje passe nele"*. A 008 mediu o
+> mecanismo por trás daquela frase. **Três saídas, e nenhuma é da Bússola:** (a) a conta da 3.0-d ganha desconto
+> por carrossel de compras; (b) a 3.0-d.2 passa a aceitar a **consulta-ponte** — a respondida por um número que
+> termina em produto, que é a forma da Aquametria e da Ohmetria; (c) o piso fica como está e a fábrica aceita
+> que o próximo nicho pode demorar muitas rodadas. **Nada foi aplicado: as contas desta página seguem a letra em
+> vigor.**
 
 > # ⛔ O RANKING ESTÁ VAZIO, E NENHUMA LINHA DESTA PÁGINA AUTORIZA O NASCIMENTO DE UMA ILHA.
 >
@@ -324,10 +374,10 @@ Todas as linhas estão **fora do ranking** pelos dois motivos do quadro acima. A
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | 1 | **Som automotivo** (módulo, falante, caixa, bitola) | **4,00** | 5 | 1 | 4,40 | 5 | 5 | 1,65 (R$ 6,06) | 4 | 5 | 5 | R$ 202 | fora do ranking | 004: três paramétricas com **zero fazendas** e **três fóruns no top 10**; blogspots de 2009 e 2010 ainda ranqueando em litragem de caixa; as quatro fazendas ocupam só a comercial. Cobertura 10/10 ML+Shopee. 005: **`ohmetria.com.br` confirmado LIVRE** no registro.br (`status:0`) e **6 de 7 fabricantes publicam Thiele-Small** — a F2 é construível. Ressalva: absorve "áudio residencial", que não pode virar ilha separada (canibalizaria a fronteira de cabo e impedância) · aprovado pelo Raphael em 14/09/2026 · ohmetria.com.br pago · nasce como ilha nº4 |
 | 2 | **Viagem — "vale a pena?" sobre experiência icônica** | **3,92** (3,77–4,10) | 3,25 | 2,25 | 3,10 | 5 | 4 | 3,77 (R$ 55,37) | 4 | 4,5 | 4 | US$ 61–298 / 2 pax | fora do ranking | **jornadafly.com.br JÁ PAGO (13/09)** — o relógio corre. 005 fechou o portão: **Civitatis 8–10% + €1/pessoa em free tour, cookie 30 dias, e EXIGE site — não aceita quem só tem rede social**; **Discover Cars ≈US$20/reserva com cookie de 365 dias**; Saily 15%; Airalo 10%; RentCars até 50%. M sobre preço colhido na Civitatis (Blue Lagoon US$149,09/pax; safári Dubai US$30,60/pax) a US$1=R$5,1231. **Seguro fora**: a comissão incide sobre a margem, não sobre a apólice · aprovado pelo Raphael em 14/09/2026 · jornadafly.com.br pago · nasce como ilha nº5 |
-| 4 | **Portão automático e cerca elétrica** | ~~3,88~~ → 3,36 | 2 | 1 | 1,85 | 5 | 4 | 2,97 (R$ 24,00) | 4 | 4,5 | 5 | R$ 800 | fora do ranking | 004: `forum.intelbras.com.br` em #2 e `instalador.weebly.com` na consulta de cerca; **nenhum fabricante (PPA, Garen, Rossi, Peccinin) e nenhum varejista tem calculadora de motor por peso**. Cobertura 10/10, **sete** com preço *(dizia "cinco"; corrigido pelo Pente Fino em 12/10/2026 junto com a origem em `rodadas/004.md`, onde o parêntese lista sete)*. Recompra: bateria 12V 7Ah, controle, placa **006 (21/10/2026): S_par 4 → 2.** `garen.com.br/blog/qual-potencia-indicada-para-motor-do-portao` em **#1** — o fabricante que a 004 registrou como ausente entrou, e `forum.intelbras.com.br` e `instalador.weebly.com` saíram do top 10. **AVISO BLOQUEANTE: a página da Garen não foi aberta.** Se for seletor peso → modelo, é S_par 0 e o nicho está desqualificado — verificar no Chrome |
-| 5 | **Compressor de ar e ferramenta pneumática** | **3,78** | 4 | 3 | 3,85 | 5 | 3 | 3,18 (R$ 30,00) | 4 | 4 | 5 | R$ 1.000 | fora do ranking | 004: YouTube em #1 do CFM de pistola, **site polonês e Vevor traduzidos ranqueando em pt-BR**, blogs de 2013 e 2017 no top 5. Atenção: `blog.meucompressor.com.br` já tem calculadora mas não ranqueia nas paramétricas — vigiar **006: `nao-medida`** — 9 a 10 ocupantes estrangeiros por consulta (`quincycompressor.com`, EUA, em duas de três); único brasileiro um fórum de 2013. Pela 30.8 o S_par de 004 não é confirmado nem rebaixado. `blog.meucompressor.com.br` **não ranqueou** em nenhuma das três — a vigilância de 004 segue aberta |
-| 6 | Nobreak e estabilizador | 3,63 | 3 | 1 | 2,70 | 5 | 4 | 3,27 (R$ 33,00) | 3 | 4,5 | 5 | R$ 1.100 | fora do ranking | 004: **tsshara.com.br ocupa 3 de 9** em "quantos VA para 500W", com ragtech e Schneider/APC. Comercial fechada por `analisamelhor` **006: `nao-medida`** — nenhuma consulta rodada, orçamento de busca da sessão esgotado. Segue o teste pendente de 004: se a calculadora de VA da `tsshara.com.br` (fabricante) ranquear, é nota 0 |
-| 7 | Coifa e exaustor | 3,61 | 3 | 1 | 2,70 | 5 | 3,5 | 3,35 (R$ 36,00) | 4,5 | 3,5 | 5 | R$ 1.200 | fora do ranking | 004: **`qualeamelhor` casou página com "coifa de parede para cooktop 5 bocas"**. Comercial fechada (br.my-best #1, analisamelhor ×2, guiarecomenda) **006: `nao-medida`** — nenhuma consulta rodada, orçamento de busca da sessão esgotado |
+| ~~4~~ | ~~**Portão automático e cerca elétrica**~~ **→ DESQUALIFICADO na 008** | ~~3,36~~ | **1** | 1 | 1,85 | 5 | 4 | 2,97 (R$ 24,00) | 4 | 4,5 | 5 | R$ 800 | fora do ranking | 004: `forum.intelbras.com.br` em #2 e `instalador.weebly.com` na consulta de cerca; **nenhum fabricante (PPA, Garen, Rossi, Peccinin) e nenhum varejista tem calculadora de motor por peso**. Cobertura 10/10, **sete** com preço *(dizia "cinco"; corrigido pelo Pente Fino em 12/10/2026 junto com a origem em `rodadas/004.md`, onde o parêntese lista sete)*. Recompra: bateria 12V 7Ah, controle, placa **006 (21/10/2026): S_par 4 → 2.** `garen.com.br/blog/qual-potencia-indicada-para-motor-do-portao` em **#1** — o fabricante que a 004 registrou como ausente entrou, e `forum.intelbras.com.br` e `instalador.weebly.com` saíram do top 10. **AVISO BLOQUEANTE: a página da Garen não foi aberta.** Se for seletor peso → modelo, é S_par 0 e o nicho está desqualificado — verificar no Chrome **008 (26/10/2026): S_par 2 → 1, DESQUALIFICADO, e o aviso bloqueante se resolve CONTRA o nicho.** Medido na SERP brasileira: a `garen.com.br` **não aparece no top 20** — a leitura da 006 era da nuvem e estava errada. Quem ocupa `qual potência de motor para portão de 400kg` é carrossel de compras + `magazineluiza` (3 posições), `automatizador-ppa.com.br` (3), Mercado Livre, Shopee (R$ 329,80) e `igtechgrupo`. **Vaga editorial: zero.** Único resultado não comercial no topo é um post de Instagram de 5 anos |
+| 5 | **Compressor de ar e ferramenta pneumática** | **3,78** | 4 | 3 | 3,85 | 5 | 3 | 3,18 (R$ 30,00) | 4 | 4 | 5 | R$ 1.000 | fora do ranking | 004: YouTube em #1 do CFM de pistola, **site polonês e Vevor traduzidos ranqueando em pt-BR**, blogs de 2013 e 2017 no top 5. Atenção: `blog.meucompressor.com.br` já tem calculadora mas não ranqueia nas paramétricas — vigiar **006: `nao-medida`** — 9 a 10 ocupantes estrangeiros por consulta (`quincycompressor.com`, EUA, em duas de três); único brasileiro um fórum de 2013. Pela 30.8 o S_par de 004 não é confirmado nem rebaixado. `blog.meucompressor.com.br` **não ranqueou** em nenhuma das três — a vigilância de 004 segue aberta **008 (26/10/2026): MEDIDO na SERP brasileira — S_par 3,5, `provisório`.** Mediana de 2 consultas: `quantos pcm de compressor para pistola de pintura` = **4** (bloco de vídeo no topo, `steula` PDF, `lbgarage`, `blog.meucompressor`, `galpaodasmaquinas`, **blogspot `rodrigogsi` de 2013**, `testedebancada`, Atlas Copco — **zero fazenda, zero calculadora, zero carrossel acima da dobra**) e `quantos pcm para chave de impacto 1/2` = **3** (Atlas Copco e Tecnoar publicam a tabela de PCM por ferramenta). **A vigilância de 004 se fecha a favor: `blog.meucompressor.com.br` ranqueia, e com prosa, não com calculadora.** `provisório` pela 30.8 — falta **uma** conferida com os olhos. Cobertura Shopee **10/10 por PDP indexada**, 3 com preço, mediana **R$ 165**. **DOSSIÊ PRONTO: `bussola/dossies/pneumetria/`** — `pneumetria.com.br` livre, não registrado |
+| ~~6~~ | ~~Nobreak e estabilizador~~ **→ DESQUALIFICADO na 008** | ~~3,63~~ | **0** | 1 | 2,70 | 5 | 4 | 3,27 (R$ 33,00) | 3 | 4,5 | 5 | R$ 1.100 | fora do ranking | 004: **tsshara.com.br ocupa 3 de 9** em "quantos VA para 500W", com ragtech e Schneider/APC. Comercial fechada por `analisamelhor` **006: `nao-medida`** — nenhuma consulta rodada, orçamento de busca da sessão esgotado. Segue o teste pendente de 004: se a calculadora de VA da `tsshara.com.br` (fabricante) ranquear, é nota 0 **008 (26/10/2026): o teste de 004 FOI RODADO e a resposta é sim — S_par 0, DESQUALIFICADO.** Em `quantos va de nobreak para 500w`, o **1º lugar** é `calculadora-nobreaks.intelbras.com.br` — **calculadora de FABRICANTE em subdomínio dedicado**. Mais três: `tsshara.com.br/blog/.../calculadora`, `aquarino.com.br/calculadora-nobreak` e `monitecnobreak.com.br/calculo`. As buscas relacionadas mostram o vocabulário inteiro ocupado (*calculadora nobreak intelbras · sms · ts shara · mcm*). **Pendência aberta desde 14/09/2026, fechada** |
+| 7 | Coifa e exaustor | 3,61 | **2** | 1 | 2,70 | 5 | 3,5 | 3,35 (R$ 36,00) | 4,5 | 3,5 | 5 | R$ 1.200 | fora do ranking | 004: **`qualeamelhor` casou página com "coifa de parede para cooktop 5 bocas"**. Comercial fechada (br.my-best #1, analisamelhor ×2, guiarecomenda) **006: `nao-medida`** — nenhuma consulta rodada, orçamento de busca da sessão esgotado **008 (26/10/2026): MEDIDO — S_par 3 → 2.** Em `qual vazão de coifa para cooktop 5 bocas`, **Fischer e Tramontina já publicam a fórmula ×12** nos próprios blogs, mais `crissair.com.br` com guia técnico de vazão e ruído (set/2026) — e **`casadoseletrodomesticos.com.br`**, fazenda nomeada na lista da 006, com o título exato da consulta. Não é calculadora: é a conta já escrita pelo fabricante |
 | 8 | Bicicleta e patinete elétrico | 3,57 | 3 | 1 | 2,70 | 4 | 4 | 4,23 (R$ 90,00) | 3,5 | 4 | 4 | R$ 3.000 | fora do ranking | **005: MEDIDO** (a 004 tinha convertido). `guiaomelhor` com título casando "subir morro" na paramétrica; `br.my-best` em #1 na comercial; **metade da consulta de autonomia voltou em espanhol** — SERP rasa. S_com caiu 3→1 |
 | 9 | Bomba d'água e pressurizador | 3,36 | 3 | 1 | 2,70 | 5 | 4 | 2,59 (R$ 16,20) | 2 | 4 | 5 | R$ 540 | fora do ranking | 004: **`leroymerlin.com.br/assistente/pressurizador` em #2** de "pressurizador para 2 banheiros"; afiliado de nicho já instalado (`melhoresbombasdeagua`). Schneider publica tabela de seleção em PDF. **R = 2 derruba o Retorno** |
 | 10 | Irrigação por gotejamento | 3,31 | 4 | 3 | 3,85 | 5 | 3 | 1,86 (R$ 7,50) | 3,5 | 3,5 | 3,5 | R$ 250 | fora do ranking | **005: MEDIDO.** **Zero fazendas nas duas paramétricas**, **YouTube em #1** na consulta de vazão, e a de espaçamento é tão mal servida que dois resultados são ruído de porcelanato. Fazendas só em 6º e 7º da comercial. **Boa SERP, ticket que não sobrevive a 3%** |
@@ -374,8 +424,8 @@ falta M (P4b) e falta volume. Entram com estado `pendente — aguardando volume 
 
 | Candidato | S_par | Cobertura Shopee | Calculadora instalada | Consultas | Estado | O que decide |
 |---|---|---|---|---|---|---|
-| **Resistência e peça de chuveiro elétrico por modelo e voltagem** | **4** | 8/10 (presença provável) | **nenhuma**, procurada 2× | 50 | `pendente — aguardando volume (3.0-c)` | A melhor SERP da rodada: 4 de 5 consultas ocupadas só por ficha de varejo (Telhanorte com 9 posições numa, 7 em outra) e ruído não-comercial (PDF de física da USP, questão de vestibular). *"Tabela de resistências Lorenzetti por modelo"* devolve **nove fichas e nenhuma tabela**. **Risco: o TICKET.** Resistência é peça de poucas dezenas de reais; a 3% é a faixa que matou irrigação e ferragem. Só fecha se o visitante levar o chuveiro inteiro, ou se a P4b mostrar comissão extra alta |
-| **Enxoval de cama por tamanho de cama** | **4** | 7/10 (10/10 somando ML) | **nenhuma**, procurada nas 2 direções | 54 | `pendente — aguardando volume (3.0-c)` | 4 de 5 consultas abertas, top 10 inteiramente brasileiro e inteiramente comercial, **nenhuma página escreveu a resposta**; em "protetor de colchão" **2 dos 10 slots já são espelhos de oferta da Shopee**. Único competidor real é blog de loja sem calculadora. Eixo inédito sem nenhum ocupante: **altura da aba do lençol × altura do colchão box (30/35/40 cm)**. **Melhor ticket dos candidatos de medida** — mas a faixa em reais **não foi verificada** |
+| ~~**Resistência e peça de chuveiro elétrico**~~ **→ DESQUALIFICADO na 008** | ~~4~~ → **1** | 8/10 (presença provável) | **nenhuma**, procurada 2× | 50 | **`desqualificado — S_par 1 (SERP brasileira, 26/10/2026)`** | A melhor SERP da rodada: 4 de 5 consultas ocupadas só por ficha de varejo (Telhanorte com 9 posições numa, 7 em outra) e ruído não-comercial (PDF de física da USP, questão de vestibular). *"Tabela de resistências Lorenzetti por modelo"* devolve **nove fichas e nenhuma tabela**. **Risco: o TICKET.** Resistência é peça de poucas dezenas de reais; a 3% é a faixa que matou irrigação e ferragem. Só fecha se o visitante levar o chuveiro inteiro, ou se a P4b mostrar comissão extra alta — **008 (26/10/2026): MORREU, e a leitura de 006 era da nuvem.** Em `qual resistência para chuveiro lorenzetti 220v` há **mais de 30 cartões de compras antes do primeiro orgânico**, e o orgânico é PDP ou categoria de varejo em 7 de 7 (`lojamerc`, `eletricaarea`, `eletroluz`, `sodimac`, `grupodisagua` ×2, `dunard`, `batsolucoes`). **Nenhuma página responde a pergunta; todas vendem a peça.** E o risco de ticket que a própria linha escreveu está confirmado: mediana do carrossel **R$ 38** |
+| **Enxoval de cama por tamanho de cama e ALTURA DE COLCHÃO** | ~~4~~ → **3** (medido na SERP brasileira) | **10/10 na Shopee, 7 com preço, mediana R$ 90** | **nenhuma** (confirmado em 26/10) | 54 | `pendente — aguardando volume (3.0-d)` · **DOSSIÊ PRONTO** | 4 de 5 consultas abertas, top 10 inteiramente brasileiro e inteiramente comercial, **nenhuma página escreveu a resposta**; em "protetor de colchão" **2 dos 10 slots já são espelhos de oferta da Shopee**. Único competidor real é blog de loja sem calculadora. Eixo inédito sem nenhum ocupante: **altura da aba do lençol × altura do colchão box (30/35/40 cm)**. **Melhor ticket dos candidatos de medida** — mas a faixa em reais **não foi verificada** — **008 (26/10/2026): ticket VERIFICADO (mediana R$ 90, 7 PDPs da Shopee com preço) e S_par rebaixado de 4 para 3.** Não há fazenda e não há calculadora, confirmado na SERP brasileira — **mas seis lojas já publicam a tabela de medidas** (`basefatto` com a tabela completa, `bordadoingles`, `casasfranklin`, `renatadecoracoes`, `lojamodacasa`, PDF de lavanderia de 2012), e o eixo "inédito" da aba **já está dentro da tabela da Base Fatto**. **O que salva o nicho é outra coisa, e é um achado: a aba de 40 cm é ATRIBUTO DE PRODUTO na Shopee, escrita no título de 5 dos 10 anúncios** (*"Lençol Queen 40cm c/ Elástico"*, *"com 40cm Altura — Colchão Alto"*). É o mesmo tipo de achado que o `Substrato para Zamioculca` foi em jardinagem. **DOSSIÊ: `bussola/dossies/camametria/`** — `camametria.com.br` livre, não registrado |
 | **Hidráulica de reforma — caixa d'água, registro e conexão** | **3** | 4/10 (10/10 somando) | **`nao-medida`** | 50 | `pendente — ressalva BLOQUEANTE` | 3 consultas abertas (bitola de tubo, registro, conexão de 25 mm) com **zero fazenda** e ninguém respondendo. **Mas a consulta que carrega o volume está tomada** ("quantos litros por pessoa": 8 de 9 programáticas). **BLOQUEIO: não foi possível ver se `leroymerlin.com.br/assistente/*` ranqueia** — o egresso só devolve `leroymerlin.pt`. Se ranquear, é S_par 0 e **a lista não deve ser colada** |
 | **Suporte de TV e cabeamento por polegada** | **2** | 5/10 | nenhuma | 55 | `pendente — correção de método` | **Correção escrita contra o próprio coletor:** ele marcou 3 clusters como `top 3` justificando com *"9 de 9 ocupantes fora do Brasil"* — é a inferência que a 30.8 proíbe. Os 3 passaram a `nao-medida` (VESA por modelo, peso da TV por polegada, versão de HDMI por uso). **Sobra um cluster `4-10`**, que não chega a 1.000/dia. Ressalvas: recompra fraca e **nenhum suporte de TV confirmado na Shopee** em 2 buscas |
 
@@ -388,6 +438,16 @@ anúncio. Espelho prova que o anúncio existiu; não prova preço, nem que exist
 
 | Nicho | Por quê |
 |---|---|
+| **Nobreak e estabilizador** | **008 (26/10/2026): S_par 0.** `calculadora-nobreaks.intelbras.com.br` em **1º lugar** — calculadora de FABRICANTE em subdomínio dedicado —, mais `tsshara.com.br/blog/.../calculadora`, `aquarino.com.br/calculadora-nobreak` e `monitecnobreak.com.br/calculo`. **Fecha o teste que a rodada 004 deixou escrito** e que a 006 e a 007 não conseguiram rodar. *(notas de 004, preservadas: índice 3,63 · S_com 1 · S 2,70 · P 5 · D 4 · M 3,27 (R$ 33,00) · R 3 · A 4,5 · V 5 · ticket R$ 1.100)* |
+| **Portão automático e cerca elétrica** | **008 (26/10/2026): S_par 1.** Carrossel de compras + `magazineluiza` (3 posições), `automatizador-ppa.com.br` (3), Mercado Livre, Shopee e `igtechgrupo`. **Vaga editorial: zero.** E o **AVISO BLOQUEANTE** da 006 sobre a Garen se resolve contra o nicho: na SERP brasileira a `garen.com.br` **não está no top 20** — a leitura da 006 era da nuvem. *(notas preservadas: S_com 1 · P 5 · D 4 · M 2,97 · R 4 · A 4,5 · V 5 · ticket R$ 800 · cobertura 10/10 com sete preços)* |
+| **Resistência e peça de chuveiro elétrico** | **008 (26/10/2026): S_par 1**, e era *"a melhor SERP da rodada"* pela leitura de nuvem da 006. Em `qual resistência para chuveiro lorenzetti 220v` há **mais de 30 cartões de compras antes do primeiro orgânico**, e o orgânico é 7 de 7 PDP ou categoria de varejo. Mediana do carrossel: **R$ 38** — o risco de ticket que a própria linha previa |
+| **Cortina, persiana e varão por medida de janela** | **008: calculadora instalada em português no parâmetro central, por DOIS operadores da lista** — `omnicalculator.com/pt/dia-a-dia/calculadora-tamanho-de-cortina` e `miniwebtool.com/br/calculadora-de-tamanho-de-cortina/`, em 3 das 4 consultas, mais `calculover.com/pt-br` e `vocepergunta` ×2. Recompra de compra única (mudança ou reforma) |
+| **Costura — agulha, linha e bobina por tecido** | **008: 4 de 5 consultas tomadas, por SEIS domínios** — buscamelhores ×2, qualmelhorcomprar ×2, melhoresparacomprar, mundodosreviews e **catracalivre ×3**. E a tabela agulha × tecido **não existe em português** em Schmetz, Singer, Brother nem Groz-Beckert (Schmetz e Groz-Beckert publicam em espanhol, fora do site oficial). Ticket de cartela de 5 agulhas |
+| **Consumível de corte e perfuração** (broca, disco, serra-copo, lixa) | **008: 4 de 5 consultas tomadas.** `qual grão de lixa para massa corrida` tem **7 de 10 em fazenda** (`lojadomecanico/blog` ×2, `br.my-best`, `qualeamelhor`, `qualmelhorcomprar`, `buscamelhores`, `setorenergetico`); em porcelanato a **própria Bosch tem a página com o título exato** e a Telhanorte ocupa 7 de 10. Recompra era o melhor do conjunto (consumível puro) e não salvou |
+| **Cápsula e acessório por modelo de cafeteira** | **008: morre duas vezes, e é o caso mais instrutivo da rodada.** Era **o melhor candidato do coletor de nuvem** (*"0 de 5 tomadas, o único que sobreviveu a tudo"*). Na SERP brasileira: carrossel de 20+ cartões, ML em 1º, Shopee e a própria Nespresso. **E o parâmetro tem UM VALOR SÓ** — a `cafezale.com.br` já responde no snippet que a cápsula compatível serve em *"todos os modelos: Inissia, Pixie, U, Essenza DeLonghi, Essenza Mini, Essenza Plus, Prodigio, Citz"*. Decisão com um valor não é decisão paramétrica (seção 2), e ferramenta que sempre devolve a mesma resposta não é ferramenta |
+| **Lavadora de alta pressão — bico, engate, mangueira** | **008: S_par 1.** Carrossel + Mercado Livre (3 anúncios) + Shopee (3, com preço) + **`loja.karcher.com.br`, o fabricante vendendo direto** (2 páginas) + `karcher-center-altex` com a compatibilidade escrita no texto. Editorial: zero. **Achado aproveitável, guardado:** `mais.wap.ind.br/manual/<modelo>-manual.pdf` é manual por modelo, em português, com URL previsível — a melhor fonte de verificabilidade achada na rodada |
+| **Peça de reposição de linha branca por modelo** (correia, válvula, bomba) | **008: 3 de 6 tomadas e V fraco.** O próprio fabricante opera a loja de peças indexada (`brastemp.com.br/pecas-de-reposicao/`, `loja.electrolux.com.br`), e **só 1 das 3 ferramentas tem fonte**: a Electrolux publica compatibilidade apenas no título do SKU; Whirlpool/Brastemp, LG e Atlas não publicam nada tabulado. Ocupante novo: `guide.washerhouse.com/pt/` (tradução automática russo→PT, em 3 das 6 consultas). Recompra sem retorno do mesmo visitante |
+| **Fixação — bucha e parafuso por parede e carga** | **008: reprovado por ECONOMIA, com a SERP mais aberta da rodada.** S_par 4 `provisório`: topo é vídeo curto (Instagram ×3, Facebook da **Ciser**, que é fabricante, TikTok), e **ninguém escreveu a resposta em texto — não há fazenda, não há calculadora, não há tabela de carga por substrato em nenhuma página do top 20**. Mas o carrossel vai de **R$ 0,46 a R$ 29,90, mediana ≈ R$ 12**, e a recompra é por projeto, não por desgaste. É a armadilha da ferragem (R$ 57) e da irrigação (R$ 55), pior. **Fica registrado como o melhor nicho de FACILIDADE já medido por esta Bússola — e serve de evidência da contradição 3.0-d × 30.5 do topo desta página: a SERP só está aberta porque o produto é barato demais para o carrossel pagar** |
 | **Energia solar off-grid / estação portátil** | **006 (21/10/2026): S_par 4 → 1, DESQUALIFICADO em 37 dias.** Era o nº 3 e estava escrito nesta página como *"próximo dossiê"*. `clickpetroleoegas.com.br` (+ espelho `en.`) pôs **uma página de título exato por aparelho** e ocupa **3 de 9** na consulta do ar-condicionado; o YouTube e o TikTok que a 004 viu no topo **saíram do top 10**. É a seção 4 funcionando: sem reavaliar, a Bússola teria pago domínio para um nicho fechado. *(notas de 004, preservadas: índice 3,94 · S_par 4 · S_com 3 · S 3,85 · P 5 · D 4 · M 3,84 (R$ 60,00) · R 2 · A 4 · V 5 · ticket R$ 2.000)* |
 | **Cartucho e toner por modelo de impressora** | **006: DQ duplo.** S_par **0** — a HP mantém página de suprimento por modelo ranqueando (`hp.com/br-pt/shop/cartuchos-tinta-para-impressora-multifuncional-hp-deskjet-ink-advantage-3775`), a categoria `hp.com/br-pt/shop/cartucho-e-toner.html` ocupou **6 de 10 slots**, o localizador HP SureSupply existe, e Brother (`support.brother.com/.../Suprimentos` por modelo) e Lexmark (`supplies-guide` por modelo) fazem o mesmo. E cobertura **1/10 na Shopee**: cartucho no Brasil é categoria de Magalu, KaBuM e loja HP |
 | **Numeração e tabela de medidas de roupa e calçado** | **006: S_par 1 e três calculadoras instaladas em português** — `size.ly/pt-BR/descubra-sua-numeracao` e `size.ly/pt-BR/numeracao-de-calcados` (em duas consultas distintas), `omnicalculator.com/pt/dia-a-dia/tamanho-de-sutia` em **2º lugar**, reforço de `kiwisizing.com` e `miniwebtool.com/br`. Agravante: "como medir o pé" tem Centauro + **duas páginas do blog da Shopee**, e a infantil é blog da Shopee em 1º e 2º. Ticket estruturalmente o mais baixo da rodada (kits de meia e sapatinho) |
@@ -468,3 +528,65 @@ publicada. Agora a página conta cinco nos dois lugares.)*
    Thiele-Small do nº 1.
 7. **Terminar a reavaliação do topo**: nobreak e coifa não receberam nenhuma consulta na 006.
 8. Os onze nichos em `remedir` e o motor de popa seguem sem nota comparável, **de propósito**.
+
+## Dossiês prontos (rodada 008) — e o que eles NÃO autorizam
+
+| dossiê | nicho | domínio | estado |
+|---|---|---|---|
+| `bussola/dossies/pneumetria/` | Compressor de ar e ferramenta pneumática | **`pneumetria.com.br` LIVRE** (registro.br, 26/10/2026), **não registrado** | `pendente — portão 3.0-d aberto` |
+| `bussola/dossies/camametria/` | Enxoval de cama por medida e altura de colchão | **`camametria.com.br` LIVRE** (registro.br, 26/10/2026), **não registrado** | `pendente — portão 3.0-d aberto` |
+
+Os dois trazem no topo o mesmo carimbo e pelo mesmo motivo: **volume não medido (Planejador) e M não calculado
+(painel)**. Pela 3.0-c.5, nicho sem a medição vai para fora do ranking com o motivo escrito — e é o que está
+feito. Os dois têm pronto tudo o que não depende de login: SERP medida na SERP brasileira, cobertura Shopee com
+preço e data, naming conferido no `registro.br` (53 e 49 candidatos), identidade com contraste WCAG calculado,
+V ferramenta por ferramenta e o plano das três primeiras ferramentas — com a terceira de cada um **fora do
+plano**, pela 3.1, por não ter fonte de fabricante.
+
+**A recomendação da Bússola é explícita: não registrar nenhum dos dois domínios hoje.** Os dois estão livres e
+o risco de alguém levar é baixo; o risco de pagar domínio para um nicho que reprova no portão de tráfego é o
+erro que custou a JornadaFly, com `jornadafly.com.br` pago desde 13/09/2026 e reprovado em 21/10.
+
+## Dívida desta fila — REESCRITA NA RODADA 008
+
+> As dívidas **1-B** e a primeira das três leituras de navegador do item **3** estão **fechadas**, e o item **7**
+> também. O que sobrou de bloqueante são **duas sessões logadas**, e elas vêm primeiro porque juntas destravam o
+> ranking inteiro. Os itens 1 a 8 da lista acima continuam valendo como estão escritos, com estas anotações.
+
+0-A. **🔑 ABRIR O PAINEL DE AFILIADO DA SHOPEE** (`affiliate.shopee.com.br` → Oferta de produto) e medir, na
+   mediana, **comissão E ticket**, produto por produto, nos nichos vivos: **pneumática** (pistola HVLP, filtro
+   regulador, lixadeira, chave de impacto) e **enxoval de cama** (lençol queen e king com aba de 30 e 40 cm,
+   protetor de colchão). **Sem isto não há M, e sem M não há índice — quarta rodada seguida.** A Bússola alcança
+   o portal, mas o perfil não está logado e ela não entra com senha. São minutos.
+
+0-B. **🔑 ABRIR O PLANEJADOR DE PALAVRAS-CHAVE** (Brasil, português, últimos 12 meses, volume exato, sem agrupar
+   por ideia) e colar **as listas de intenção de compra**, não o corpus inteiro — a lição da 3.0-d.3, que
+   reprovou jardinagem por treze vezes. **Sem volume, o portão eliminatório da 3.0-d.1 fica fechado para todo
+   nicho desta página, por melhor que seja a SERP.**
+
+0-C. **DECIDIR DUAS COISAS DE LEI**, as duas registradas e não aplicadas pela 008: **(i)** se o instrumento novo
+   homologa `alvo` (seção 30.8) — se sim, a Bússola volta a medir SERP sozinha toda semana; **(ii)** a
+   contradição **3.0-d × 30.5** do quadro no topo desta página, que é a razão medida de nenhum nicho passar
+   desde 22/10.
+
+0-D. **DUAS CONSULTAS PARA OS OLHOS DELE**, que convertem dois `provisório` em nota:
+   `quantos pcm de compressor para pistola de pintura` e `qual bucha para parede de gesso drywall`.
+
+**Anotação no item 1-B (fechada em parte):** `help.shopee.com.br/portal/10/article/124095` foi **lido em
+26/10/2026** pelo instrumento novo — **3% padrão, NÃO existe tabela por categoria**, comissão extra do vendedor
+até 30% acumulável, atribuição de 7 dias, sem limite por pedido, e a ressalva do *"e semelhantes"* continua
+escrita palavra por palavra. **O que isso NÃO resolve:** a 3.0-d.4 manda medir no PAINEL, não em página
+institucional — por isso a dívida virou a **0-A** acima, que é de login e não de proxy.
+
+**Anotação no item 3:** a primeira das três leituras está **fechada** — a SERP brasileira de `qual potência de
+motor para portão de 400kg` **não traz a Garen em lugar nenhum do top 20**, e o portão morreu por carrossel de
+compras, não por seletor. Seguem abertas as outras duas (`leroymerlin.com.br/assistente/*` e as três SERPs
+`nao-medida` do suporte de TV), e agora a Bússola consegue fazê-las sozinha na próxima rodada.
+
+**Anotação no item 7:** **fechada.** Nobreak e coifa foram medidas na SERP brasileira em 26/10/2026 — nobreak
+morreu (S_par 0, calculadora da Intelbras em 1º) e coifa caiu para 2.
+
+**Anotação que vale para toda a página, e vem da 008:** a curva de CTR em uso continua sendo de SERP de dez
+links azuis, e **nenhuma das dezenove SERPs brasileiras que esta Bússola já abriu tem essa forma** — todas têm
+carrossel de compras, bloco de vídeo, ou os dois. Segue valendo o que a fila escreveu em 22/10: **toda conta de
+visitas/dia desta página é teto, não previsão.**
