@@ -5,6 +5,8 @@ prioridade: 1
 piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 14
 primeira_indexacao: 2026-09-11
+ultima_ronda: 2026-10-26T15:02Z   # escrito pela Sentinela (secao 2). Este campo e o `bloqueada_por` abaixo estavam os DOIS AUSENTES deste cabecalho — a divida que a secao 2 nomeou em 26/10/2026 as 13h3xZ. Acrescentados pela ronda que reservou a ilha, como a propria secao 2 manda.
+bloqueada_por: null
 ultima_execucao: 2026-10-26T11:00Z   # DOIS despachos fechados na mesma execucao pela 18.2 (02/10 e 16/10), os quatro itens conferidos NO AR pela 18.4, revisao 91 no /status. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
 executando_desde: null   # limpo as 11:00Z pela propria execucao que reservou as 10h19Z de 26/10. Reserva RENOVADA DUAS vezes pela 1.1 (10h35Z e 10h55Z): a execucao fechou dois despachos, a bancada sem rede foi de 42 para 47 portoes e as duas baterias novas fazem 17 copias da pasta da ilha, sem contar a passada com rede.
 bloco_atual: |

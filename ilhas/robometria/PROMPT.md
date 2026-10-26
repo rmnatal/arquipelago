@@ -45,6 +45,51 @@ python3 ferramentas/bancada.py --lista    # só imprime o que rodaria
 
 ---
 
+## DESPACHO DA SENTINELA — 2026-10-26 (RONDA DIÁRIA TÉCNICA, 15h0xZ) — UM ITEM NOVO, E ELE É DADO DO BANCO
+
+> **ESTA RONDA FEZ A RONDA FUNDA NESTA ILHA** porque ela publicou desde a última ronda (revisão 91, hoje às 11h00Z, dois despachos fechados), e **reconferiu NO AR os CINCO itens fechados desde 23/10 — os cinco passaram e os cinco foram apagados da lista de despachos abertos do `dados/PAINEL.md`**: o rótulo "Pa ou mais" da R2 agora serve "acima de 4.000 Pa" com o bloco "Exatamente no limiar" separado logo abaixo; o `dateModified` serve **2026-10-26** nas sete páginas que o têm; o `Article` serve `author` nas **duas** páginas de artigo; e o par peça × modelo serve **91** nas cinco páginas que o publicam, com **zero** ocorrência de 92 no corpo visível. **Nada no texto abaixo revoga nenhum desses fechamentos.**
+>
+> **O RESTO DA ILHA PASSOU INTEIRO.** 14 de 14 URLs em HTTP 200 com quebra de cache; porta de entrada da 29.2 inteira mais o 404 que tem de ser 404; `/status` em **91** igual ao `manifest.json`; zero `&#038;` dentro de `<script>`; zero `noindex` indevido; JSON-LD nas 14 e `BreadcrumbList` nas 13; `description` única nas 14 e nenhuma acima de 160; zero `<img>` sem `alt` ou sem `width`/`height`; `aria-expanded`, `aria-controls` e favicon nas 14; **zero página órfã pela 16.9 na direção de quem aponta** (menor contagem de entrada: 4); zero palavra da lista "Proibidas" do `VOZ.md` em `<title>`, `<h1>` ou primeiro parágrafo; zero frase de bastidor da 32.4; **console sem uma mensagem** no Chrome do Raphael, em duas páginas com navegação de verdade. **32.5: 9 de 9 páginas de molde passam**, medidas a 390 px por quem não construiu, com o portão descobrindo as páginas pelo `wp-sitemap.xml` — R1 451 / 1.298 px · R2 493 / 1.318 · A1 337 / 878 · A2 337 / 937 · `/pecas/` 429 / sem botão · `/pecas/filtros/` 526 / sem botão · xiaomi 402 / 1.041 · wap 402 / 1.007 · electrolux 445 / 1.252; rolagem horizontal **0** nas nove. **Piso da 25.2: 99 de 99 publicáveis** (54 peças + 45 modelos) com `url_busca` e `url_busca_produto`, zero intestável. **As duas ferramentas com entrada inédita e a conta refeita na mão: coerência da recomendação passa nas duas, e zero link cru nos 7 botões.**
+
+### 1. DADO DO BANCO — `electrolux-erb60` ESTÁ **ESGOTADO** NA SHOPEE, E ELE É O **PRIMEIRO** BOTÃO DE COMPRA DE `/quantos-m2-o-robo-aspirador-limpa-por-carga/`
+
+**Medido hoje, 26/10/2026, abrindo a `url_produto` crua no navegador — nunca o link de afiliado, nunca o encurtador (25.4).** O que a página serve, lido no corpo e não no `<title>`:
+
+- `url_produto`: `https://shopee.com.br/product/854082976/22398993000`
+- `h1` na loja: `Aspirador Robô Electrolux 4 em 1 Wi-Fi Experience com 0,47 Litros - ERB60` — é o produto certo, o anúncio existe e o casamento está correto
+- **logo depois do título, o rótulo `Esgotado`** — e a página não traz preço, traz `0 Vendidos` e não traz quantidade disponível
+
+Pela 25.4 isto é exatamente o segundo sinal da lista: **"existe e não vende"**. Não é link morto de "o produto não existe"; é pior no lugar onde está, porque a página abre, parece viva e termina em beco sem saída.
+
+**ONDE ISSO APARECE NO AR, e é o pior lugar possível:** o link encurtado deste registro é `https://s.shopee.com.br/7ptINupGy6`, e ele aparece em **uma** das 14 URLs da ilha — `/quantos-m2-o-robo-aspirador-limpa-por-carga/` —, como o **PRIMEIRO dos cinco** botões do bloco "Os modelos cuja área por carga é declarada pela loja oficial da marca", medido a **937 px** a 390 px de largura. É o topo do bloco de compra da página, e a regra de RECEITA da seção 12 diz com todas as letras que o topo é o espaço mais caro da página. Os outros quatro cartões da mesma lista (ERB61, ERB62, ERB80, ERB44) foram testados hoje e **estão vivos**.
+
+**ESTADO ATUAL DO REGISTRO, em `ilhas/robometria/dados/modelos-robo.json`, registro `electrolux-erb60`, campo `afiliado`:**
+
+- `degrau`: **3** (anúncio de vendedor comum na Shopee — pela 25.1 é o último recurso, e é o degrau que quebrou quatro links em doze horas em 13/09/2026)
+- `url`: `https://s.shopee.com.br/7ptINupGy6` (a ficha esgotada, que é o que o leitor recebe hoje)
+- `url_produto`: `https://shopee.com.br/product/854082976/22398993000`
+- `url_busca`: `https://s.shopee.com.br/AAHCqjJaR9` — **o piso da 25.2 existe, está encurtado, é rastreável e está pronto para subir**
+- `url_busca_produto`: `https://shopee.com.br/search?keyword=Electrolux%20ERB60%20robo%20aspirador`
+- `conferido_em`: `2026-09-16` — quarenta dias atrás
+
+**POR QUE EU NÃO CONSERTEI, e a regra é nominal.** Link de afiliado morto ou esgotado é **dado do banco**, e dado do banco é da lista fechada **19.2**, que vale mais que a 19.1. Além disso, a seção 12 proíbe à ronda diária **gerar link de afiliado novo**, que é o que a troca de degrau exigiria se a escolha fosse subir a escada em vez de descer para o piso. A escolha entre **(a)** descer para o degrau 4 e deixar a busca virar o botão, **(b)** procurar outro anúncio vivo do mesmo ERB60 e ficar no degrau 3, e **(c)** subir para o degrau 2 no catálogo `/p/MLB...` do Mercado Livre, é escolha entre opções defensáveis — 19.2 outra vez, e é por isso que ela é da Fundação e não minha.
+
+**O QUE A 25.2 JÁ DECIDE SEM PRECISAR DE NINGUÉM, e é o caminho mais curto:** *"Quando não existir, ou quando a ronda marcar como morta, a busca sobe e vira o botão — sem esperar decisão humana, sem página ficar com 'link de loja em breve'."* A busca deste registro já está encurtada e rastreável. **Nada aqui fica esperando o Raphael.**
+
+**PRONTO QUANDO (critério objetivo, definido ANTES do conserto, por quem achou o defeito):**
+
+1. A `url_produto` do registro `electrolux-erb60` aberta crua no navegador **não** serve o rótulo `Esgotado` junto ao título **e** serve preço e quantidade disponível — **ou**, se o anúncio seguir esgotado, o registro deixa de servir essa ficha: `afiliado.url` passa a ser o link de busca encurtado e `afiliado.degrau` passa a **4**, com `motivo_sem_url_produto` (ou campo equivalente do esquema) escrevendo a causa **e** a data da medição, separadas pelo marcador da **25.4-b.3** — a causa ("o anúncio de degrau 3 ficou esgotado") não muda nunca, a última tentativa muda a cada passada.
+2. Se a escolha for trocar de anúncio ou subir de degrau, **os dois campos vêm da mesma oferta, na mesma chamada** (25.4-b.1): `url` e `url_produto` nunca são grampeados de fontes diferentes, e o par ou entra inteiro ou não entra.
+3. `/quantos-m2-o-robo-aspirador-limpa-por-carga/`, reaberta **no ar** com quebra de cache depois do Sync, serve um primeiro botão de compra cuja `url_produto` correspondente foi medida **viva na mesma passada**; e a frase do rodapé do bloco que conta quantos cartões abrem a busca em vez da ficha é recontada do banco, nunca digitada.
+4. O `contagem` de `dados/modelos-robo.json` é regerado, e `itens_com_ficha` deixa de contar o ERB60 se a ficha sair. Nenhum número do bloco de compra fica digitado à mão.
+5. **O que NÃO é para fazer:** não remova o ERB60 do banco nem da página. Ele é o modelo de referência dos ciclos da R2 e um dos cinco únicos modelos do banco com área por carga declarada — tirar o produto por causa do link faria a ferramenta mentir, e a 25.2-b é explícita: publique, com o piso. O que sai é o link esgotado, nunca o produto.
+
+### 2. ACHADO DE INSTRUMENTO, NÃO DE ILHA — UM DOS 29 TESTÁVEIS FICOU **NÃO MEDIDO**
+
+`xiaomi-b112-ch` (`https://shopee.com.br/product/1623315278/58212272304`) foi aberto **três** vezes e caiu nas três no anti-robô da Shopee (`/verify/traffic` e `/verify/captcha`), uma delas depois de renavegar por um produto vivo da mesma loja. **"Não medido" não é "vivo"**, e está escrito assim. O registro **tem** `url_produto` e **não** é intestável: não há dívida de 25.4-b aqui, e não há nada para a Fundação fazer neste item. A Sentinela é proibida de resolver CAPTCHA e não resolveu nenhum. A decisão de método que isto levanta é do Raphael e está na lista dele no `dados/PAINEL.md`.
+
+---
+
 ## ~~DESPACHO DA SENTINELA — 2026-10-23 (RONDA DIÁRIA TÉCNICA, 15h0xZ) — DOIS ITENS NOVOS~~ — **FECHADO INTEIRO EM 23/10/2026 às 16h4xZ, os dois itens conferidos NO AR pela 18.4**
 
 > **OS DOIS ITENS CUMPRIDOS E MEDIDOS NO AR**, com quebra de cache e a 390 px reais, pela 18.4. Revisão **89**, `/status` em 89, 13 de 13 linhas do log dizendo `ok` (20.4, lidas uma por uma). Snippet R2 **1.10.0 → 1.11.0**.
