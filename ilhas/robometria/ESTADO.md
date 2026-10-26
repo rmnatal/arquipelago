@@ -6,7 +6,7 @@ piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 14
 primeira_indexacao: 2026-09-11
 ultima_execucao: 2026-10-23T16:42Z   # o despacho da Sentinela de 23/10 fechado INTEIRO (18.2), os dois itens conferidos no ar (18.4), revisao 89 no /status. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
-executando_desde: null   # limpo as 16:42Z pela propria execucao que reservou as 16:18Z de 23/10. A reserva nao precisou de renovacao pela 1.1: o bloco inteiro — os dois itens, dois portoes novos, uma bateria de 8 mutacoes, a bancada completa, o Sync em duas passadas e a conferencia no ar a 390 px — cabe na janela de 40 minutos, e por isso nenhum commit do meio dela reescreveu este campo.
+executando_desde: 2026-10-26T10:19Z   # RESERVA da execucao da Fundacao de 26/10. A ilha esta FORA DO FOCO e foi reservada pela excecao da 1.2: a jornadafly, que e a ilha em foco, esta com a fila de arquivo ESGOTADA (foco.md) e com a rede REMEDIDA E RECUSADA hoje as 10h18Z (jornadafly.com.br e www.jornadafly.com.br em 000 em DUAS passadas, com robometria.com.br e aquametria.com.br em 200 nas duas) — sem WordPress e sem egresso nao ha bloco que a Fundacao alcance la. O que fura o foco aqui e o item 1 do despacho de 02/10: pagina no ar servindo numero errado em ilha viva, aberto ha 24 dias. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA.
 bloco_atual: |
   O DESPACHO DA SENTINELA DE 23/10 ESTA FECHADO INTEIRO pela 18.2, e os DOIS
   itens foram conferidos NO AR pela 18.4. Revisao 89, /status em 89, as 13 linhas
