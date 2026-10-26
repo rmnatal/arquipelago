@@ -6816,3 +6816,169 @@ O desembarque estava em dia; o que estava velho era o arquivo no repositório. O
 **PROPORÇÃO DA 31.1:** esta execução entregou **correção de defeito medido no ar**, que a 31.1 conta como entrega no ar com todas as letras. Duas páginas de artigo e a ferramenta R2 mudaram o que o visitante e o Google recebem.
 
 - **Próximo passo:** a ilha segue em **modo de medição** e **sem bloco de construção autorizado** (1.2-b.1) — o foco é da jornadafly. Quando a Fundação voltar aqui, o que fura a fila são os dois itens de correção dos despachos de 16/10 e 02/10, nesta ordem (a 18.1 manda o mais antigo primeiro entre iguais, e os dois são da Sentinela). Construção, quando vier, é a **leva 2 da malha** — `/pecas/escovas-laterais/` e `/pecas/mops/` —, que nasce no molde da seção 32 de fábrica e depende de a leitura semanal liberar o teto da 21.4.
+
+## 2026-10-26 (10h19Z → 10h4xZ) — O ITEM 1 DO DESPACHO DE 02/10, FECHADO DEPOIS DE 24 DIAS: a ilha volta a publicar UM número de par peça × modelo, com a definição na própria frase
+
+- **A ESCOLHA DA ILHA, e ela fura o foco pela excecao da 1.2.** A ilha em foco e
+  a **jornadafly** e ela nao tem bloco: a fila de arquivo esta ESGOTADA desde
+  23/10 — escrito no `foco.md` por quem mediu — e a rede foi **REMEDIDA hoje as
+  10h18Z pela 20.2, nao herdada do campo**: `jornadafly.com.br` e
+  `www.jornadafly.com.br` em **000** em duas passadas, com `robometria.com.br` e
+  `aquametria.com.br` em **200** nas duas (4 medicoes de bloqueio contra 4 de
+  controle verde). Sem WordPress e sem egresso, nada ali e alcancavel pela
+  Fundacao. O molde da 32 nao fura mais o foco em ilha nenhuma (as tres estao
+  com ele no ar e conferido desde 23/10), entao sobrou a unica porta que a 1.2
+  deixa aberta: **ilha no ar e quebrada**. O item 1 do despacho de 02/10 desta
+  ilha estava aberto ha **24 dias** e e pagina no ar servindo numero errado.
+  Os cinco `ESTADO.md` tinham `executando_desde: null`, que pela 1.1 ja
+  significa que nao ha bloco da Fundacao vivo — nao houve reserva vencida para o
+  git desempatar. Reserva as 10h19Z, aceita de primeira, e **RENOVADA as 10h35Z
+  pela 1.1** porque a bancada sem rede desta ilha roda 45 portoes e a bateria
+  nova sozinha faz dez copias da pasta.
+
+- **O DEFEITO, remedido pela Sentinela em 16/10 e em 23/10 e nunca consertado.**
+  As quatro URLs que publicam o numero de pares peca x modelo serviam DOIS
+  numeros: `/sobre/`, `/pecas/` e `/qual-peca-serve-no-meu-robo-aspirador/`
+  diziam **91** e `/filtro-universal-de-robo-aspirador/` dizia **92**. Os dois
+  estao certos sob definicoes diferentes — 91 e o par com as DUAS pontas
+  publicaveis, 92 e o par declarado contado do lado da peca — e **nenhuma das
+  quatro dizia qual delas estava dizendo**. A diferenca e de UM par,
+  `multi-pr10124` x `multi-ho401`, que e o tamanho em que ninguem olha.
+
+- **(1) A ILHA PUBLICA O PAR COM AS DUAS PONTAS PUBLICAVEIS, 91**, e a definicao
+  vai DENTRO da frase, em palavras de leitor: *"contando so os pares em que a
+  peca e o modelo estao os dois publicados aqui"*. A escolha nao e nova aqui: e
+  a jurisprudencia de **16/09/2026**, quando a R1 separou os dois 71 pelo mesmo
+  motivo e pela mesma razao — par para modelo nao publicavel nao esta no
+  seletor, nao tem celula na tabela e nenhum leitor chega nele, entao conta-lo na
+  frase prometeria cobertura que a ferramenta nao entrega.
+  **A DEFINICAO MORA NUMA CONSTANTE SO**, `ROBOMETRIA_PARES_DEFINICAO` na casca,
+  e as quatro paginas a leem de la. Frase igual digitada em quatro arquivos volta
+  a divergir — foi assim que os dois numeros nasceram.
+
+- **(2) AS COPIAS NAO PASSARAM A TIRAR O NUMERO DE UMA DERIVACAO UNICA, e isto
+  contraria a letra do "pronto quando" de proposito, com o motivo.** O
+  `gerar-r1.py` decidiu o contrario por escrito em 16/09, e a frase esta no
+  arquivo: *"se as duas lessem a mesma fonte, errariam juntas e todo portao
+  ficaria verde"*. **Derivacao unica nao e menos copia: e copia sem
+  testemunha.** O que faltava em 02/10 nao era uma derivacao — era um PORTAO.
+  Nasceu `ferramentas/validar-pares.py`: **quarta** contagem independente do
+  mesmo fato, 22 afirmacoes, e o unico lugar onde as copias se encontram. Ele
+  tambem **VARRE `dados/*.json`** atras de chave de par e reprova a que nao
+  esteja na lista de cobertas nem na de dispensadas, com o motivo ao lado —
+  chave calada e exatamente como o 92 viveu 24 dias. A varredura **ja achou
+  tres** na primeira passada e as tres estao classificadas, entre elas
+  `pares_na_tabela`, que da **91 hoje por acidente do banco e nao por
+  definicao**: cobri-la como se fosse a mesma conta colaria duas grandezas
+  diferentes, que e o que a jurisprudencia dos dois 63 de 14/09 proibe com todas
+  as letras.
+
+- **(3) O PAR SEM DESTINO GANHOU NOME, que era a metade invisivel.**
+  `dados/pecas.json` passou a contar
+  `pares_peca_x_modelo_publicaveis_nas_duas_pontas` (91),
+  `pares_para_modelo_nao_publicavel` (1) e a lista
+  `pares_para_modelo_nao_publicavel_quais`, que **nomeia** `multi-pr10124 x
+  multi-ho401` — as tres contadas por `validar-banco.py`, nunca digitadas, com a
+  linha que exige que a conta feche. **O modelo segue nao publicavel, e isso e
+  decisao e nao pendencia:** o HO401 so aparece dentro da lista de
+  compatibilidade da peca, sem pagina de produto propria, entao a categoria nao
+  esta confirmada pelo fabricante — e categoria e portao. Faze-lo publicavel
+  para igualar dois numeros seria **quebrar o portao pelo numero**. E a pagina
+  que servia 92 **nao emudece sobre a diferenca**: ela nomeia em paragrafo
+  proprio o par que o banco declara e ela nao conta, com dois moldes, porque
+  "0 par a mais" nao e portugues.
+
+- **MEDIDO NO AR, com quebra de cache e `Accept-Encoding: identity`, as quatro
+  uma por uma** — e as quatro dizem o mesmo numero com a definicao ao lado:
+  - `/sobre/`: "6 marcas, 45 modelos de robo e **91** pares peca x modelo
+    declarados pelo fabricante, contando so os pares em que a peca e o modelo
+    estao os dois publicados aqui. Nenhum par inferido."
+  - `/qual-peca-serve-no-meu-robo-aspirador/`: "Hoje sao **91** pares peca x
+    modelo declarados, contando so os pares (...), em 6 marcas, cobrindo 38 dos
+    45 modelos do banco."
+  - `/pecas/`: "O banco tem 54 pecas publicaveis de 6 marcas e **91** pares peca
+    x modelo declarados pelo fabricante, contando so os pares (...)."
+  - `/filtro-universal-de-robo-aspirador/`: "Sao **91** pares peca x modelo
+    declarados pelo fabricante, contando so os pares (...)" **mais** o paragrafo
+    novo: "O catalogo dos fabricantes declara **1 par a mais**, para um modelo
+    que esta ilha ainda nao publica."
+  - **ZERO ocorrencia de 92** no corpo visivel das quatro.
+  Revisao **90**, `/status` em 90, as **13** linhas do log da revisao corrente
+  dizendo `ok`, lidas uma por uma pela 20.4 (janela de 15 linhas para 13 itens:
+  nenhum rolou para fora). Sync acionado **duas** vezes, como a 20.4 manda.
+
+- **A BATERIA PROVA QUE A TRAVA MORDE, E ACHOU UM DEFEITO NO PORTAO NOVO.**
+  `ferramentas/mutacoes-pares-de-tela.py`, **10 de 10** reprovadas: o derivado e
+  o GERADOR do A1 voltando ao lado da peca, a casca discordando em um par, o
+  banco mentindo na contagem, a lista dos sem destino esvaziada, a R1 jurando
+  que nenhum fica de fora, a constante saindo da casca, uma pagina parando de
+  ler a constante, uma copia nova nascendo calada, e o conserto pela metade em
+  que o numero cai de 92 para 91 sem a pagina dizer por que.
+  **A mutacao 8 PASSOU na primeira rodada:** o portao procurava a constante no
+  arquivo INTEIRO e encontrava o nome dela no cabecalho de versao, que e
+  comentario. **Portao que le comentario aprova a intencao escrita no lugar do
+  codigo que roda** — e intencao escrita e o que esta ilha tem de sobra. Passou a
+  ler o PHP sem comentarios, e a mutacao morde.
+
+- **O PORTAO DA 32.5-b NAO EXISTIA NESTA ILHA, e a divida virou trabalho da
+  propria passada.** A 32.5-b manda, com todas as letras, que *em toda ilha com
+  molde* quem mexe em pagina do molde confira a 32.5 com um portao que **le o
+  `wp-sitemap.xml` no ar** e julga **toda** pagina que serve o molde, e nomeia o
+  modelo da clubedomosaico dizendo que quem copiar troca o dominio e as classes.
+  Esta ilha media "a 390 px" **a mao**, pagina por pagina das que o autor abria —
+  que e o que a frase do despacho de 23/10 proibe (*"regua que nao varre todas
+  certifica a pagina que o autor abriu"*). O bloco de hoje mexeu em QUATRO
+  snippets de pagina do molde, entao o porte saiu agora:
+  `ferramentas/conferir-32-5-no-navegador.mjs`. **Medido: 9 de 9 paginas do
+  molde dentro da 32.5** (pior caixa 500 px contra o teto de 700; pior compra
+  **1.322 px** contra o teto de 1.400), rolagem horizontal 0 e `pageerror` 0 nas
+  nove. Cinco paginas ficaram **fora do molde** e sao nomeadas em vez de
+  aprovadas em silencio (`/`, `/divulgacao-de-afiliados/`, `/ferramentas/`,
+  `/metodologia/`, `/sobre/`): sao as institucionais da casca, e a lista do molde
+  desta ilha pela 32.6 e R1, R2 e as paginas de peca — as mesmas nove que o
+  despacho do Raphael de 21/10 fechou.
+  **O PORTE ACHOU DUAS COISAS, e as duas estao no arquivo:**
+  (a) `import { chromium } from 'playwright'` **nao resolve nesta nuvem** — o
+  pacote mora em `/opt/node-tools/node_modules`, que o `require()` de CommonJS
+  encontra de qualquer pasta e o `import` de ESM **nao**, e `NODE_PATH` nao vale
+  para ESM; o require foi trazido para dentro do modulo com `createRequire`.
+  **Isto e divida da clubedomosaico tambem**, cujo original tem a mesma linha e
+  vai morrer do mesmo jeito: fica escrito aqui para a proxima execucao que tocar
+  aquela ilha.
+  (b) Esta ilha tem uma **TERCEIRA familia de pagina** que a clubedomosaico nao
+  tem: a de **malha de navegacao** (`/pecas/` e `/pecas/filtros/`), que serve
+  caixa de resposta e aponta para as filhas, sem item para comprar. O portao as
+  reprovava por "compra a null px" — e **portao que reprova pagina certa e o
+  caminho mais curto para alguem passar a ignora-lo** (a licao da 20.5, repetida
+  na 32.5-b). A saida NAO foi uma lista de excecao, que envelheceria no dia da
+  proxima filha: a pagina so e de navegacao se **nao tiver bloco de compra E nao
+  tiver nenhum link de afiliado em lugar nenhum**. Pagina com `rel=sponsored`
+  solto e sem bloco de compra continua reprovando, e com a contagem na mensagem.
+
+- **BANCADA:** 45 portoes sem rede, 0 falha (eram 42 em 12/10 — entraram
+  `validar-pares.py` e `mutacoes-pares-de-tela.py`). `validar-datas-das-paginas`
+  pediu o comando dele e foi atendido: as 7 paginas publicam a data que o git
+  mede. Snippets: casca **1.13.0 -> 1.14.0**, r1 **1.12.0 -> 1.13.0**, a1
+  **1.6.0 -> 1.7.0**, malha **1.1.0 -> 1.2.0**. Manifest na revisao **90**.
+  **Com os portoes do ar: 51 portoes, 0 falha** — os seis `conferir-*` abriram o
+  site depois do Sync e passaram.
+
+- **O QUE ESTA EXECUCAO NAO FECHOU, e nao e dela:** o **item 1 do despacho de
+  30/09** (soft 404 na borda do hospedeiro) segue sendo do Raphael, e nenhuma
+  linha de codigo de ilha o alcanca. O **item 1 do despacho de 16/10** (`Article`
+  sem `author` em `/quantos-m2-o-robo-aspirador-limpa-por-carga/`) e a metade (b)
+  do item 2 daquele mesmo despacho (o portao de `url_busca` que olha o `status`)
+  continuam abertos e sao de outro despacho: a 18.2 manda despacho sair inteiro,
+  e o despacho que esta execucao tomou e o de 02/10.
+
+- **PROPORCAO DA 31.1:** esta execucao entregou **correcao de defeito medido no
+  ar**, com as quatro URLs reconferidas uma a uma, que a 31.1 conta como entrega
+  no ar com todas as letras.
+
+- **Proximo passo desbloqueado:** o **item 1 do despacho de 16/10** — `author` no
+  no `Article` da A2, mais a afirmacao de bancada que reprova `Article` sem
+  `author` em QUALQUER URL que tenha `Article` (descobrindo as paginas, nunca por
+  lista), com mutacao provando que ela nao e inerte. Ele e o que sobrou de
+  defeito desta ilha que a Fundacao alcanca; a ilha segue **fora do foco** e em
+  **modo de medicao** (1.2-b.1), e so esta aqui porque a jornadafly nao tem
+  bloco.
