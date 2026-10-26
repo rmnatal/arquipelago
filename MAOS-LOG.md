@@ -6780,3 +6780,86 @@ Nada foi tocado além dos oito arquivos nomeados pela instrução e deste log. N
 nada acrescentado, nada corrigido — o texto dos seis blocos entrou byte a byte como veio, inclusive
 as linhas longas de tabela em uma linha só e a mensagem de commit sem crase, sem `$` e sem `!`.
 Nenhum contato pessoal de terceiro apareceu na instrução, então não houve nada a deixar de fora.
+
+---
+
+## 26/10/2026, 06h08 BRT (09h08 UTC) — Pente Fino 26/10, disparo 1 de 4: cria o arquivo do relatório na raiz
+
+Assunto conferido antes do `git fetch`: **é do Arquipélago** (auditoria de coerência do contrato
+`ARQUIPELAGO.md`, da Bússola e das cinco ilhas). A instrução chegou por aqui porque o proxy de git da
+sessão que a escreveu não injeta credencial de escrita para `rmnatal/arquipelago` — HTTP 403,
+`not in this session's authorized repository set`, três tentativas com a mesma mensagem determinística.
+Daqui a escrita passou na primeira tentativa.
+
+Um arquivo criado, nenhum outro tocado, como o disparo mandou. Parti de `origin/main` (`dde0242`),
+não da branch da sessão.
+
+`git status --porcelain` antes do commit:
+
+```
+?? AUDITORIA-PENTE-FINO-2026-10-26.md
+```
+
+`git diff --stat` do commit (`dde0242..a56f98e`):
+
+```
+ AUDITORIA-PENTE-FINO-2026-10-26.md | 541 +++++++++++++++++++++++++++++++++++++
+ 1 file changed, 541 insertions(+)
+```
+
+Commit que foi ao `main`: `a56f98e34adedee1e0bed122df1081ba91eb2538`
+Push: `dde0242..a56f98e  HEAD -> main` (primeira tentativa, sem rebase, sem force, sem PR).
+Confirmação `git fetch origin main && git log -1 origin/main`:
+
+```
+a56f98e34adedee1e0bed122df1081ba91eb2538 pente fino: auditoria de coerencia do contrato
+2026-10-26 09:07:56 +0000
+```
+
+E o arquivo conferido dentro da árvore do `origin/main`, não só na cópia local:
+
+```
+git ls-tree origin/main --name-only -- AUDITORIA-PENTE-FINO-2026-10-26.md
+  -> AUDITORIA-PENTE-FINO-2026-10-26.md
+git cat-file -s origin/main:AUDITORIA-PENTE-FINO-2026-10-26.md
+  -> 45944
+```
+
+Contagem conferida relendo o arquivo DEPOIS de gravar, nunca pelo que eu achava que tinha escrito:
+
+```
+AUDITORIA-PENTE-FINO-2026-10-26.md   -> arquivo novo na raiz, 541 linhas, 45.944 bytes
+  titulo de nivel 1 ("# ")                                      -> 1
+  titulos de nivel 2 ("## ")                                    -> 7
+  titulos de nivel 3 ("### ")                                   -> 5
+  regras horizontais (linha so com "---")                       -> 7
+  linhas de tabela (comecando com "|")                          -> 24
+  itens de lista ("- ")                                         -> 8
+  linhas de citacao (comecando com ">")                         -> 13
+  blocos de achado que abrem com numero                         -> 49
+  numeros de achado presentes, lidos de volta um a um:
+    1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23
+    24 25 26 27 28 29 30 31 32–33 34 35 36 37 38 39 40 41 42 43
+    44 45 46 47 48 49 50
+  ou seja: os 50 achados estao todos no arquivo, em 49 blocos, porque
+  o 32 e o 33 vem num bloco unico ("32–33"), como veio na instrucao.
+  Nenhum numero falta e nenhum se repete.
+  primeira linha  -> "# AUDITORIA PENTE FINO — 26/10/2026"
+  ultima linha    -> "Não inserido: regra nova de política é decisão do Raphael."
+```
+
+Varredura de segredo no arquivo gravado, antes do commit, porque o disparo mandou parar e reportar se
+alguma linha carregasse credencial: oito famílias de padrão (cadeia de 32+ caracteres, `sk-`, `ghp_`,
+`AKIA`, `secret=`, `token=`, `senha=`, `password=`, e-mail). **Um único acerto, e não é segredo:**
+`por_que_a_escada_da_25_1_nao_serve`, que é nome de chave de JSON do esquema da jornadafly. Os achados
+45 e 46 do relatório falam de token do Sync e de e-mail pessoal, mas falam de **caminho, linha e
+contagem** — nenhum valor, nenhum endereço. Nada a reportar, nada a deixar de fora, commit seguiu.
+
+Nenhum passo falhou. Nada foi tocado além do arquivo nomeado pela instrução e deste log. O conteúdo
+entrou byte a byte como veio entre os marcadores, sem reformatar, sem "melhorar" e sem acrescentar
+linha — inclusive as quebras de linha longas dos parágrafos e a mensagem de commit na linha exata
+pedida, sem crase, sem `$` e sem `!`.
+
+Os disparos 2, 3 e 4 trazem as 30 correções nos arquivos, em três grupos sem arquivo em comum
+(2: `ARQUIPELAGO.md` e `bussola/`; 3: `ilhas/aquametria/`; 4: `ilhas/clubedomosaico/` e
+`ilhas/robometria/`). Este disparo não tocou nenhum deles, então o rebase dos três fecha sozinho.
