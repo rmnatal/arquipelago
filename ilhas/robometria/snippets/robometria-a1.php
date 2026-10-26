@@ -1,5 +1,16 @@
 /**
  * Robometria A1 — Existe filtro universal de robô aspirador?
+ * Versão: 1.8.0 (26/10/2026) — A PÁGINA NEGAVA, EM PALAVRAS, OS QUATRO BOTÕES
+ * QUE ELA MESMA SERVIA. Medido no ar hoje às 16h5xZ: quatro botões escritos
+ * "Ver ofertas na Shopee" e, três linhas abaixo, "Nenhuma destas 4 peças tem
+ * link de loja ainda". É literalmente o defeito do item 3 do despacho da
+ * Sentinela de 18/09/2026, e ele sobreviveu NESTA página por mais de um mês
+ * porque o portão que o mede — conferir-frase-de-compra-no-ar.py — tinha LISTA
+ * de duas URLs e esta não estava nela. O portão passou a descobrir as páginas
+ * no wp-sitemap.xml na mesma execução, e a primeira passada achou isto. A
+ * contagem conhecia dois estados; agora quem decide é
+ * robometria_casca_degrau_da_porta(), a mesma função que escolhe o botão.
+ *
  * Versão: 1.7.0 (26/10/2026) — O UNIVERSO DO PAR, e esta pagina era a que estava
  * no universo errado: ela servia 92 pares peca x modelo enquanto /sobre/,
  * /pecas/ e /qual-peca-serve-no-meu-robo-aspirador/ serviam 91, os dois certos
@@ -92,7 +103,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ROBOMETRIA_A1_VERSAO' ) ) {
-	define( 'ROBOMETRIA_A1_VERSAO', '1.7.0' );
+	define( 'ROBOMETRIA_A1_VERSAO', '1.8.0' );
 	define( 'ROBOMETRIA_A1_SLUG', 'filtro-universal-de-robo-aspirador' );
 	/* O TÍTULO DEIXOU DE AFIRMAR A TESE, e este é o terceiro lugar da mesma
 	   família. A tese deste artigo é uma contagem do banco, e por isso a frase de
@@ -373,10 +384,38 @@ function robometria_a1_vitrine( $f ) {
 		return '';
 	}
 
-	$sem_link = 0;
+	/* TRÊS ESTADOS, NÃO DOIS — e esta página estava SERVINDO a frase errada no
+	   ar, não a um defeito por vir. Medido em 26/10/2026 às 16h5xZ: ela servia
+	   QUATRO botões escritos "Ver ofertas na Shopee" e, três linhas abaixo,
+	   "Nenhuma destas 4 peças tem link de loja ainda". A página negando, em
+	   palavras, os quatro botões que ela mesma mostra.
+
+	   É literalmente o defeito do item 3 do despacho da Sentinela de 18/09/2026
+	   — "a página negando um botão que ela mesma mostra" —, e ele sobreviveu
+	   nesta página porque o portão que o mede,
+	   `ferramentas/conferir-frase-de-compra-no-ar.py`, tinha LISTA de duas URLs
+	   e esta não estava nela. O portão passou a descobrir as páginas no
+	   `wp-sitemap.xml` na mesma execução, e a primeira passada o achou.
+
+	   Quem decide o estado é `robometria_casca_degrau_da_porta()`, a mesma
+	   função que escolhe o botão: enquanto esta contagem relia os campos por
+	   conta própria, as duas metades contavam a mesma coisa sem nunca se
+	   falarem. */
+	$sabe_a_porta = function_exists( 'robometria_casca_degrau_da_porta' );
+	$sem_link     = 0;
+	$so_busca     = 0;
 	foreach ( $itens as $i ) {
-		if ( empty( $i['afiliado']['url'] ) ) {
+		if ( ! $sabe_a_porta ) {
+			if ( empty( $i['afiliado']['url'] ) ) {
+				$sem_link++;
+			}
+			continue;
+		}
+		$degrau = robometria_casca_degrau_da_porta( $i );
+		if ( 'sem_saida' === $degrau ) {
 			$sem_link++;
+		} elseif ( 'ficha' !== $degrau ) {
+			$so_busca++;
 		}
 	}
 	$total = count( $itens );
@@ -408,6 +447,35 @@ function robometria_a1_vitrine( $f ) {
 		}
 		$depois .= '<p class="rbm-nota">' . esc_html( $quantas )
 			. esc_html( ', e o cartão diz isso em vez de fazer o bloco sumir. Enquanto o link não existe, o endereço da declaração do fabricante continua aqui — embaixo de cada cartão, como "fonte", para você conferir.' )
+			. '</p>';
+	}
+
+	/* A FRASE VERDADEIRA NO LUGAR DA FALSA: o botão existe e abre a BUSCA da
+	   loja, não a ficha daquela peça. É a frase que estava faltando aqui, e é a
+	   mesma da R1, da R2 e do A2 — a peça é o sujeito, porque esta vitrine é de
+	   peças. O motivo de ela ser o piso está escrito no próprio esquema: a peça
+	   NÃO leva o código do fabricante na chave de busca, porque código de peça é
+	   SKU interno e o vendedor anuncia "escova lateral para robô aspirador". */
+	if ( $so_busca > 0 ) {
+		if ( $so_busca === $total ) {
+			$busca_frase = ( 1 === $total )
+				? 'O botão desta peça abre a busca da loja, já filtrada, e não a ficha de um produto'
+				: 'Os botões destas peças abrem a busca da loja, já filtrada, e não a ficha de um produto';
+		} else {
+			/* O NUMERO VAI PURO, e nao por `robometria_a1_num()`: aquela
+			   funcao devolve MARCACAO (`<span class="rbm-num">`), e esta frase
+			   inteira passa por `esc_html()` logo abaixo — a tag sairia
+			   escapada, visivel na tela como texto. O vizinho de cima, a frase
+			   do `$sem_link`, resolve do mesmo jeito e por isso serve de regra:
+			   frase que vai por esc_html leva numero, nunca HTML. */
+			$busca_frase = sprintf(
+				( 1 === $so_busca ) ? 'Uma destas peças abre a busca da loja, já filtrada, em vez da ficha de um produto'
+					: '%d destas peças abrem a busca da loja, já filtrada, em vez da ficha de um produto',
+				$so_busca
+			);
+		}
+		$depois .= '<p class="rbm-nota">' . esc_html( $busca_frase )
+			. esc_html( '. A busca não esgota e não sai do ar, e é por isso que ela é o piso: preferimos a vitrine certa a um link de produto que morre em doze horas.' )
 			. '</p>';
 	}
 

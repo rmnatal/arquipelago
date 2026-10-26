@@ -401,6 +401,59 @@ rbm_ok( $sem_link_na_tela === $sem_link_nos_fatos,
 	'uma saida pela busca por item sem ficha, nem a mais nem a menos',
 	$sem_link_na_tela . ' de ' . count( $fatos['vitrine'] ) );
 
+/* E A PROSA DO RODAPE TEM DE CONCORDAR COM ESSES BOTOES — a regua que faltava,
+   e a falta dela custou mais de um mes de ar. Medido em 26/10/2026 as 16h5xZ:
+   esta pagina servia QUATRO botoes "Ver ofertas na Shopee" e escrevia, tres
+   linhas abaixo, "Nenhuma destas 4 pecas tem link de loja ainda". Todas as
+   afirmacoes acima estavam VERDES, e com razao: elas medem que cada cartao tem
+   SAIDA, e a saida estava la. O que nenhuma media era a pagina DIZER qual saida
+   e aquela — e dizer o contrario e pior que calar, porque o leitor que le a
+   frase para de procurar o botao.
+
+   A afirmacao e escrita ao contrario das de cima de proposito: ela nao procura
+   classe de degrau nenhuma, ela cobra ACORDO entre a prosa e a conta dos
+   cartoes. E e por isso que ela sobrevive a subida E a descida da escada. */
+$porta_a1 = array( 'ficha' => 0, 'busca' => 0, 'sem_saida' => 0 );
+foreach ( $fatos['vitrine'] as $v ) {
+	$af = isset( $v['afiliado'] ) ? $v['afiliado'] : array();
+	if ( '' !== trim( (string) ( isset( $af['url'] ) ? $af['url'] : '' ) ) ) {
+		$porta_a1['ficha']++;
+	} elseif ( '' !== trim( (string) ( isset( $af['url_busca'] ) ? $af['url_busca'] : '' ) )
+		|| '' !== trim( (string) ( isset( $af['url_busca_cru'] ) ? $af['url_busca_cru'] : '' ) ) ) {
+		$porta_a1['busca']++;
+	} else {
+		$porta_a1['sem_saida']++;
+	}
+}
+$a1_diz_busca    = ( false !== strpos( $texto_visivel, 'abre a busca da loja' )
+	|| false !== strpos( $texto_visivel, 'abrem a busca da loja' ) );
+$a1_diz_sem_link = ( false !== strpos( $texto_visivel, 'tem link de loja' )
+	|| false !== strpos( $texto_visivel, 'têm link de loja' ) );
+rbm_ok( ( $porta_a1['busca'] > 0 ) === $a1_diz_busca,
+	'peca que para na busca obriga a pagina a dizer que o botao abre a busca',
+	$porta_a1['busca'] . ' na busca, ' . $porta_a1['ficha'] . ' com ficha, '
+		. $porta_a1['sem_saida'] . ' sem porta | a pagina '
+		. ( $a1_diz_busca ? 'diz' : 'NAO diz' ) );
+rbm_ok( ( $porta_a1['sem_saida'] > 0 ) === $a1_diz_sem_link,
+	'a frase sobre falta de link de loja fala do estado SEM PORTA, e so dele',
+	$porta_a1['sem_saida'] . ' sem porta | a pagina '
+		. ( $a1_diz_sem_link ? 'diz que falta link' : 'NAO diz que falta link' ) );
+/* E A CONTA DA FRASE E A DOS CARTOES, nunca um numero digitado. */
+if ( $porta_a1['busca'] === count( $fatos['vitrine'] ) && count( $fatos['vitrine'] ) > 1 ) {
+	rbm_ok( false !== strpos( $texto_visivel, 'Os botões destas peças abrem a busca' )
+		&& false === strpos( $texto_visivel, 'destas ' . count( $fatos['vitrine'] ) . ' peças abrem' ),
+		'com todas na busca a frase usa o molde sem numero',
+		'molde de todas' );
+} elseif ( $porta_a1['busca'] > 1 ) {
+	rbm_ok( false !== strpos( $texto_visivel, (string) $porta_a1['busca'] . ' destas peças abrem a busca' ),
+		'a contagem da frase da busca e a dos cartoes, recontada e nao digitada',
+		$porta_a1['busca'] . ' esperado na frase' );
+} elseif ( 1 === $porta_a1['busca'] ) {
+	rbm_ok( false !== strpos( $texto_visivel, 'Uma destas peças abre a busca' ),
+		'com uma peca na busca a frase usa o molde singular, nao "1 destas"',
+		'molde de uma' );
+}
+
 /* A procedencia e discreta por regra: texto "fonte", nunca rotulo de botao. */
 if ( false !== $pos_fonte ) {
 	preg_match( '#<a class="rbm-fonte"[^>]*>(.*?)</a>#s', $retorno, $mf );

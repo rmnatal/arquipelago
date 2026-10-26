@@ -4,7 +4,7 @@
   "nicho": "robo aspirador — compatibilidade de pecas e consumiveis, e dimensionamento de succao e autonomia",
   "dominio": "https://robometria.com.br",
   "versao_manifest": 1,
-  "revisao": 93,
+  "revisao": 95,
   "atualizado_em": "2026-10-26",
   "estado": "nascendo",
   "desembarque": {
@@ -42,8 +42,8 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "1dc7cb8a578fd73ff285dfb3dce85a31f3c77377927fe4d4ebb32fe956b16a8b",
-      "versao": "1.7.0",
+      "sha256": "b1def50ae2b52fbd762b05f7dd589590b363472a46967c2fb02e597f0c13aae2",
+      "versao": "1.8.0",
       "descricao": "O A1 NA 1.3.0 — a vitrine do artigo passa a servir o piso da 25.2 em vez da frase proibida pela secao 7. Um item sem ficha de produto vira uma saida pela busca, e a regua do teste conta as saidas em vez dos lugares reservados. || O A1 NA 1.1.0 — o TITULO deixou de afirmar a tese. A tese deste artigo e uma contagem do banco, e por isso a frase de abertura, a description do JSON-LD e a resposta do FAQPage tem DUAS formas, escolhidas pela contagem do dia. O titulo tinha uma so, digitada ('Por que nao existe filtro universal de robo aspirador'), e ia junto para o headline do JSON-LD: no dia em que uma peca do banco atravessar marca, ele seria a unica metade da pagina a continuar afirmando o que deixou de valer. Virou a pergunta, que sobrevive as duas formas e e o que a pessoa digita — e teste-a1.php cobra isso por estrutura. A abertura ganhou segunda pessoa nas duas formas, o par com a ferramenta passou a ser declarado por slug (nao por nome), e garantir_pagina() reespelha o post_title."
     },
     {
@@ -302,7 +302,7 @@
       "verificado_em": "2026-09-16",
       "registros": 2,
       "publicar": true,
-      "sha256": "f334dfc4b13fcae0cc40899000e8e6a15a37c2cfe900d797dae66c3d707eafbd",
+      "sha256": "b92a1de7c34748a859be3094dc1c0baa21b389a63835d9cd8d092e46852f47ca",
       "descricao": "AS DUAS DATAS DO JSON-LD DOS ARTIGOS, com uma fonte so. O Sync o grava na option robometria_dados_datas-das-paginas e robometria_casca_datas_da_pagina() na casca o le — uma funcao, chamada pelas duas paginas, pelo mesmo motivo que o painel da foto virou uma so em 16/09 (25.7). Ate este arquivo existir, `datePublished` era digitado dentro do snippet do A1 e ausente no A2, e `dateModified` saia de `gerado_em` dos fatos, que mede a geracao dos FATOS e nao a mudanca da PAGINA: em 16/09 as duas paginas mudaram na revisao 52 sem regerar fato nenhum, e o JSON-LD servido continuou dizendo 13/09. A revisao do manifest tambem nao serve: ela e da ilha inteira e faria a data do artigo do filtro andar porque a R2 ganhou uma linha."
     },
     {

@@ -62,6 +62,14 @@ PORTAO = 'ferramentas/teste-a2.php'
 SNIPPET = 'snippets/robometria-a2.php'
 GERADOR = 'ferramentas/gerar-a2.py'
 
+# O A1 ENTROU NESTA BATERIA NA MESMA EXECUCAO, porque o defeito dele NAO era por
+# vir: ele estava NO AR. O portao `conferir-frase-de-compra-no-ar.py`, no minuto
+# em que deixou de ter lista, achou `/filtro-universal-de-robo-aspirador/`
+# servindo QUATRO botoes "Ver ofertas na Shopee" e escrevendo "Nenhuma destas 4
+# pecas tem link de loja ainda". Duas paginas, o mesmo defeito, uma trava so.
+PORTAO_A1 = 'ferramentas/teste-a1.php'
+SNIPPET_A1 = 'snippets/robometria-a1.php'
+
 # Os dois outros itens da vitrine que ainda estao no degrau da ficha. Escritos a
 # mao, porque regua que deriva o alvo do banco erra junto com o banco — e
 # conferidos contra ele em `_exigir_o_mundo_de_hoje()`, que PARA se o mundo mudar.
@@ -213,6 +221,23 @@ def m6_piso_e_arrancado_e_o_cartao_fica_sem_porta(base):
     _regerar(base)
 
 
+def m7_a1_volta_a_dois_estados(base):
+    _trocar(base, SNIPPET_A1,
+            "\t\t$degrau = robometria_casca_degrau_da_porta( $i );\n"
+            "\t\tif ( 'sem_saida' === $degrau ) {\n"
+            "\t\t\t$sem_link++;\n"
+            "\t\t} elseif ( 'ficha' !== $degrau ) {\n"
+            "\t\t\t$so_busca++;\n"
+            "\t\t}",
+            "\t\tif ( empty( $i['afiliado']['url'] ) ) {\n"
+            "\t\t\t$sem_link++;\n"
+            "\t\t}")
+
+
+def m8_a1_frase_da_busca_emudece(base):
+    _trocar(base, SNIPPET_A1, "\tif ( $so_busca > 0 ) {", "\tif ( false ) {")
+
+
 MUTACOES = [
     ('o snippet volta a conhecer dois estados',
      'o defeito tal e qual ele seria: "nao tem link de loja" tres linhas abaixo do botao',
@@ -232,6 +257,12 @@ MUTACOES = [
     ('o piso da 25.2 e arrancado e o cartao fica sem porta',
      'contra a regua de 16/09: o bloco de compra nunca fica vazio',
      m6_piso_e_arrancado_e_o_cartao_fica_sem_porta),
+    ('o A1 volta a conhecer dois estados',
+     'o defeito que ESTAVA NO AR: quatro botoes e a pagina negando os quatro',
+     m7_a1_volta_a_dois_estados, PORTAO_A1),
+    ('a frase da busca do A1 e emudecida',
+     'quatro botoes de busca e a pagina calada sobre onde eles caem',
+     m8_a1_frase_da_busca_emudece, PORTAO_A1),
 ]
 
 
@@ -239,7 +270,9 @@ def main():
     _exigir_o_mundo_de_hoje()
     print('Robometria — a porta de compra da vitrine do A2 (despacho de 26/10, item 1)\n')
     reprovadas = 0
-    for titulo, porque, mutar in MUTACOES:
+    for linha in MUTACOES:
+        titulo, porque, mutar = linha[0], linha[1], linha[2]
+        portao = linha[3] if len(linha) > 3 else PORTAO
         base = tempfile.mkdtemp(prefix='rbm-porta-')
         alvo = os.path.join(base, 'ilha')
         shutil.copytree(RAIZ, alvo)
@@ -249,12 +282,12 @@ def main():
             print('  INERTE %-58s %s' % (titulo[:58], e))
             shutil.rmtree(base, ignore_errors=True)
             continue
-        saida = subprocess.run(['php', os.path.join(alvo, PORTAO), alvo],
+        saida = subprocess.run(['php', os.path.join(alvo, portao), alvo],
                                capture_output=True, text=True, cwd=alvo)
         falhou = saida.returncode != 0
         quantas = saida.stdout.count('  FALHA')
         print('  %s %-58s %s' % ('ok    ' if falhou else 'PASSOU', titulo[:58],
-                                 ('%d falha(s) em teste-a2.php' % quantas)
+                                 ('%d falha(s) em %s' % (quantas, os.path.basename(portao)))
                                  if falhou else 'a trava NAO pegou'))
         if not falhou:
             print('         %s' % porque)
