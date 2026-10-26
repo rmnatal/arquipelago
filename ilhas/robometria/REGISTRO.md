@@ -7111,3 +7111,132 @@ O desembarque estava em dia; o que estava velho era o arquivo no repositório. O
   foco** e em **modo de medicao** (1.2-b.1), com zero defeito aberto que a
   Fundacao alcance. O que destrava construcao e **decisao nova do Raphael** — a
   fila dele acaba no item (3) e nao tem item (4).
+
+## 2026-10-26 (16h20Z → 17h0xZ) — O DESPACHO DAS 15h0xZ FECHADO INTEIRO, e no caminho um defeito que ESTAVA NO AR há mais de um mês: duas páginas negando em palavras os botões de compra que serviam
+
+- **A ESCOLHA DA ILHA, e ela é a terceira do dia nesta mesma ilha.** A ilha em
+  foco é a **jornadafly** e ela não tem bloco: rede **REMEDIDA às 16h20Z** e
+  recusada — `jornadafly.com.br` e `www.jornadafly.com.br` em **000 nas duas
+  passadas** (4 medições), com robometria, aquametria e clubedomosaico em
+  **200** nas duas (6 de controle, nenhuma intermitência) — e a fila de arquivo
+  dela está **esgotada** desde 23/10, o que o `foco.md` diz em três linhas
+  medidas. A execução das 13h33Z fechou em "nada elegível" por isso, e estava
+  certa. **O que mudou entre 13h33Z e agora:** às 15h0xZ a ronda diária técnica
+  escreveu um **despacho novo** na robometria — `electrolux-erb60` **esgotado**
+  na Shopee, sendo o **PRIMEIRO** dos cinco botões de compra de
+  `/quantos-m2-o-robo-aspirador-limpa-por-carga/`. Ilha **no ar** servindo um
+  botão de compra que termina em beco sem saída é a porta que a exceção da 1.2
+  abre, e é a mesma porta pela qual esta ilha recebeu execução em 23/10 e às
+  10h19Z de hoje. A linha `defeito_aberto_em_ilha_no_ar` do `foco.md` dizia
+  "NENHUM que a Fundação alcance" às 11h0xZ, e deixou de ser verdade quatro
+  horas depois — foi remedida nesta execução.
+- **A RESERVA.** `executando_desde` null nos cinco `ESTADO.md`, o que pela 1.1
+  já significa que não há bloco da Fundação vivo; o último commit nesta pasta
+  era da **ronda** das 15h13Z, e commit de ronda não reserva nada (1.1). Reserva
+  às **16h20Z**, commit só do `ESTADO.md`, push aceito de primeira — nenhuma
+  corrida perdida. **RENOVADA às 16h43Z** pela 1.1, porque o bloco passou de 40
+  minutos: a bancada sem rede desta ilha roda 48 portões, a bateria nova faz 8
+  cópias da pasta, e ainda houve dois desembarques e duas varreduras da 32.5 em
+  9 páginas no navegador.
+- **O ITEM 1, FECHADO E CONFERIDO NO AR (18.4).** O registro desceu do degrau 3
+  para o **degrau 4**: `url` vazia, `url_produto` null, `conferido_em` hoje, e a
+  causa em `motivo_sem_url_produto` com a identidade do anúncio aposentado
+  (loja 854082976, item 22398993000, título e a chave `ERB60` que casou) e a
+  última medição **separadas pelo marcador da 25.4-b.3**. As cinco chaves do
+  casamento saíram dos campos vivos: campo vivo apontando para anúncio
+  aposentado **afirma** que a ficha do registro é aquela, e não é mais.
+- **ONDE DIVERGI DA LETRA DO DESPACHO, com a razão.** Ele pedia que
+  `afiliado.url` passasse a ser o link de busca encurtado. O `validar-banco.py`
+  **reprova** isso, com a mensagem escrita: *"tem ficha de produto e degrau 4.
+  Ficha para em 1, 2 ou 3"* — no esquema desta ilha `url` **é a ficha**, e
+  `intestavel` é derivado de "tem `url` e não tem `url_produto`", então a busca
+  em `url` marcaria como intestável um item que se confere pela
+  `url_busca_produto`. O que a 25.2 manda é que **a busca suba e vire o botão**,
+  e isso é da TELA: com `url` vazia a escada da casca cai no ramo da busca e
+  serve "Ver ofertas na Shopee". **O registro ficou igual aos outros 30 do
+  degrau 4 deste banco** — nenhuma forma nova foi inventada.
+- **A ESCOLHA ENTRE AS TRÊS SAÍDAS.** Desceu para o degrau 4. Trocar de anúncio
+  ou subir para o catálogo do Mercado Livre exigem `url` e `url_produto` da
+  **mesma oferta na mesma chamada** (25.4-b.1), e nenhuma é alcançável desta
+  nuvem: o teste de vida da Shopee exige **sessão de navegador** (25.4, medido
+  em 17/09 — a chamada da nuvem devolve 403 do próprio servidor da Shopee, e a
+  política desta nuvem barra tentativa de se passar por navegador), e o gerador
+  do Mercado Livre tem reCAPTCHA (25.5). **O piso não espera por isso, e é
+  exatamente para isso que ele existe.**
+- **MEDIDO NO AR**, com quebra de cache, depois do Sync: o encurtado da ficha
+  esgotada tem **ZERO** ocorrência na página; o primeiro dos cinco botões é a
+  busca, com `rel="sponsored nofollow noopener"`; e a `url_busca_produto` dele
+  foi medida **viva na mesma passada** (200, encurtado em 301). Cinco cartões,
+  cinco blocos, **zero** degradado. A ordem não mudou e não podia (área
+  declarada, desempate por id — seção 7), e o botão **rende comissão**, então a
+  25.2-b não é tocada. O ERB60 continua na página como **produto**: 4 menções e
+  os 166 m² servidos. **O que saiu foi o link, nunca o produto** (item 5).
+- **O DEFEITO QUE A DESCIDA IA DESTAPAR, pego no caminho.** A contagem do
+  rodapé do bloco de compra do A2 conhecia **dois** estados e diria que um
+  modelo **com** botão de compra não tem link de loja. Verdade por coincidência
+  do banco: enquanto nenhum item da vitrine tinha descido para o degrau 4, "sem
+  ficha" e "sem porta" eram o mesmo conjunto. A R1 e a R2 separavam os três
+  desde 18/09/2026 — o A2 ficou para trás **em silêncio**, porque o terceiro
+  estado ainda não existia. A2 **1.7.0 → 1.8.0**.
+- **E A MESMA FRASE ESTAVA FALSA NO AR NO A1.** Não estava no despacho:
+  `/filtro-universal-de-robo-aspirador/` servia **quatro** botões "Ver ofertas
+  na Shopee" e escrevia **"Nenhuma destas 4 peças tem link de loja ainda"** — a
+  página negando em palavras os quatro botões que mostra, que é **literalmente**
+  o defeito do item 3 do despacho de 18/09/2026. A1 **1.7.0 → 1.8.0**.
+- **POR QUE ELE SOBREVIVEU MAIS DE UM MÊS COM TUDO VERDE, e esta é a parte que
+  vale mais que o conserto:** o portão que mede exatamente isto no ar —
+  `conferir-frase-de-compra-no-ar.py` — tinha **LISTA** de duas URLs, "as duas
+  que o despacho citou nominalmente", e esta não estava nela. A passada completa
+  com rede desta execução, antes do conserto, fechou em **54 portões, 0 falha**,
+  **com o defeito no ar**. É a cicatriz que o despacho de 23/10 desta ilha já
+  tinha escrito numa frase — *"régua que não varre todas certifica a página que
+  o autor abriu"* — e que a lição 2 do `teste-escada-compra.py` chama pelo nome:
+  **lista dentro da régua envelhece calada.** O portão passou a **descobrir** as
+  páginas no `wp-sitemap.xml` no ar, como o da 32.5 desta ilha já fazia, e a
+  **primeira** passada sem lista achou o defeito. Ele agora abre 16 URLs, julga
+  as 9 que servem bloco de compra, **lista** as 7 que não servem em vez de
+  aprová-las em silêncio, quebra o cache na URL e **reprova** se achar menos de
+  3 páginas com bloco — verde sobre zero medição é o verde mais caro que existe.
+- **OS PORTÕES QUE NASCERAM COM O FECHO.** A régua que devia pegar isto olhava
+  para o outro lado: ela media que todo cartão tem **saída**, e a saída estava
+  lá; faltava a página **dizer qual saída é aquela**. `teste-a2.php` e
+  `teste-a1.php` ganharam afirmações escritas **ao contrário** das cinco
+  anteriores da família — não procuram classe de degrau nenhuma, cobram
+  **acordo** entre a prosa e a conta dos cartões, e por isso sobrevivem à subida
+  **e** à descida da escada. `mutacoes-porta-da-vitrine.py` nasceu com **8
+  mundos, 8 reprovados**.
+- **A ARITMÉTICA DO PRÓPRIO PORTÃO ESTAVA ERRADA, e ela acertava por
+  coincidência.** O rótulo informativo do `teste-a2.php` contava a busca **duas
+  vezes** e descontava uma: com 5 fichas e 0 buscas dava 5, e no primeiro dia em
+  que um cartão desceu passou a imprimir "1 busca, 5 ficha" numa vitrine de 5.
+  **Número errado impresso por um portão é o pior lugar para um número errado
+  morar: quem lê confia.** Nasceu com o conserto a soma dos degraus contra o
+  número de cartões, que é a linha que torna a aritmética visível.
+- **E A BANCADA PEGOU UM DEFEITO MEU ANTES DO AR.** A primeira versão da frase
+  nova do A1 passava `robometria_a1_num()` por `esc_html()`, e aquela função
+  devolve **marcação** — a tag sairia escapada, visível na tela como texto. Quem
+  viu foi o mundo **sadio** da `mutacoes-par-sem-modelo.py`, a mutação que tem
+  de PASSAR: ela planta um par null, isso muda a vitrine para 3 na busca de 4
+  cartões, e **só nesse mundo** a frase usa o molde com número. O molde de hoje
+  estava certo hoje.
+- **DESEMBARQUE.** Duas passadas de Sync (revisões **93** e **95**), as 13
+  linhas de cada log dizendo `ok`, lidas uma por uma pela 20.4. `/status` em
+  **95**, igual ao `manifest.json`. A segunda passada da revisão 93 foi barrada
+  pelo classificador do ambiente e **não havia nada esperando por ela**: nenhuma
+  linha do log deixou de dizer `ok`, e a segunda passada existe para ativar o
+  que a primeira grava inativo.
+- **32.5:** **9 de 9** páginas do molde dentro da régua, a 390 px reais, pelo
+  portão que descobre as páginas no sitemap. O primeiro botão de compra desta
+  página **melhorou**, de 937 px (medição da ronda) para **914 px**. Pior caixa
+  500 px (teto 700), pior compra 1.322 px (teto 1.400).
+- **Contagem do banco recontada por `recontar()` do `coletar-shopee.py`**, nunca
+  digitada: `itens_com_ficha` 15 → **14**, `itens_com_link_de_afiliado` 15 →
+  **14**, `esperando_link_de_afiliado` 30 → **31**.
+- **Próximo passo desbloqueado:** **nenhum bloco de construção nesta ilha** —
+  ela segue **fora do foco** e em **modo de medição** (1.2-b.1), e agora com
+  **zero defeito aberto que a Fundação alcance**: o soft 404 na borda do
+  hospedeiro (item 1 de 30/09) é da camada da frente, nenhuma linha de código de
+  ilha o alcança, e o fechamento é do Raphael. O que destrava construção
+  continua sendo **decisão nova dele**, e são dois gestos independentes: o
+  egresso de `jornadafly.com.br` (destrava **coleta**) e os passos 2 a 8 da
+  seção 11 (destrava **o ar**). A fila dele acaba no item (3) e não tem item (4).

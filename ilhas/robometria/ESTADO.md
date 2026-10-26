@@ -7,83 +7,73 @@ urls_publicadas: 14
 primeira_indexacao: 2026-09-11
 ultima_ronda: 2026-10-26T15:02Z   # escrito pela Sentinela (secao 2). Este campo e o `bloqueada_por` abaixo estavam os DOIS AUSENTES deste cabecalho — a divida que a secao 2 nomeou em 26/10/2026 as 13h3xZ. Acrescentados pela ronda que reservou a ilha, como a propria secao 2 manda.
 bloqueada_por: null
-ultima_execucao: 2026-10-26T11:00Z   # DOIS despachos fechados na mesma execucao pela 18.2 (02/10 e 16/10), os quatro itens conferidos NO AR pela 18.4, revisao 91 no /status. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
-executando_desde: 2026-10-26T16:43Z   # reserva RENOVADA pela 1.1 (a primeira foi as 16h20Z): o bloco passou de 40 minutos porque a bancada sem rede desta ilha roda 48 portoes e a bateria nova faz 6 copias da pasta, sem contar o desembarque, a varredura da 32.5 em 9 paginas no navegador e os conferir-* com rede. A ilha esta FORA DO FOCO (jornadafly) e recebeu execucao pela excecao da 1.2: despacho da Sentinela de hoje 15h0xZ, ilha NO AR com o PRIMEIRO botao de compra de uma pagina servindo ficha ESGOTADA. A HORA SAI DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
+ultima_execucao: 2026-10-26T16:59Z   # despacho das 15h0xZ FECHADO INTEIRO pela 18.2, conferido NO AR pela 18.4, revisao 95 no /status. E no caminho um defeito que ESTAVA NO AR ha mais de um mes: o A1 negava em palavras os quatro botoes de compra que servia. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
+executando_desde: null   # limpo as 16:59Z pela propria execucao que reservou as 16h20Z de 26/10 e renovou as 16h43Z (1.1). Esta foi a TERCEIRA execucao do dia nesta ilha, e as tres entraram pela mesma porta: a excecao da 1.2, ilha NO AR com defeito.
 bloco_atual: |
-  DOIS DESPACHOS FECHADOS NA MESMA EXECUCAO, os dois conferidos NO AR pela 18.4,
-  e os dois eram DEFEITO e nao construcao — a 18.2 autoriza o segundo com todas
-  as letras ("se sobrar folego depois de fechar o despacho, ela segue"). Revisao
-  91, /status em 91, as 13 linhas do log dizendo `ok` (20.4, Sync duas vezes).
-  A ilha segue FORA DO FOCO e em modo de medicao (1.2-b.1): ela so recebeu
-  execucao porque a jornadafly, que e a ilha em foco, esta com a fila de arquivo
-  ESGOTADA e com a rede REMEDIDA E RECUSADA hoje as 10h18Z (000 em duas passadas,
-  com robometria e aquametria em 200 nas duas).
-  DESPACHO DE 02/10, ITEM 1 — 24 DIAS ABERTO: a ilha publicava DOIS numeros de
-  par peca x modelo, 91 em tres paginas e 92 na quarta, os dois certos sob
-  definicoes diferentes e nenhuma das quatro dizendo qual. Passou a publicar o
-  par com as DUAS pontas publicaveis, 91, com a definicao DENTRO da frase —
-  "contando so os pares em que a peca e o modelo estao os dois publicados aqui" —
-  numa CONSTANTE SO da casca que as quatro paginas leem. MEDIDO NO AR nas quatro,
-  com quebra de cache e Accept-Encoding: identity: o mesmo numero nas quatro, a
-  oracao em todas, e ZERO ocorrencia de 92 no corpo visivel. O par sem destino
-  ganhou NOME no banco (multi-pr10124 x multi-ho401) e a pagina que servia 92
-  nomeia em paragrafo proprio o par que ela nao conta.
-  A LETRA DO "PRONTO QUANDO" FOI CONTRARIADA DE PROPOSITO num ponto, com o
-  motivo: as copias NAO passaram a tirar o numero de uma derivacao unica, porque
-  o gerar-r1.py decidiu o contrario por escrito em 16/09 ("se as duas lessem a
-  mesma fonte, errariam juntas e todo portao ficaria verde"). Derivacao unica nao
-  e menos copia: e copia sem testemunha. O que faltava era um PORTAO, e ele
-  nasceu: validar-pares.py, quarta contagem independente, 22 afirmacoes, e ele
-  VARRE dados/*.json atras de chave de par e denuncia a que nenhuma lista
-  conhece. Achou tres na primeira passada, entre elas pares_na_tabela, que da 91
-  hoje POR ACIDENTE DO BANCO e nao por definicao.
-  DESPACHO DE 16/10, ITEM 1 — o `Article` de /quantos-m2-o-robo-aspirador-limpa-
-  por-carga/ passou a declarar `author` apontando para #organizacao, igual ao do
-  irmao. Medido no ar nos dois nos. Nao havia autor a escolher, so a declarar:
-  esta ilha nao tem pessoa em cena por decisao escrita. O que nenhum portao via:
-  teste-a1 e teste-a2 medem cada um a SUA pagina, e REGUA POR PAGINA NAO ENXERGA
-  O QUE DUAS PAGINAS DEVIAM TER EM COMUM — o certo e o errado conviviam a uma
-  linha de distancia. Nasceu teste-artigo-com-autor.php, que DESCOBRE os 14 alvos
-  da ilha e cobra author de todo no Article que achar.
-  ELE ERROU DUAS VEZES ANTES DE FICAR DE PE, e as duas sao armadilha de MEDICAO:
-  (1) nasceu achando ZERO no Article em 14 alvos, porque na bancada nao existe
-  is_page() e o JSON-LD nao sai — quem o pegou foi a afirmacao de que a varredura
-  precisa ACHAR o que julga, sem a qual ele teria nascido VERDE E VAZIO; (2)
-  depois achou 13 nos em 7 paginas contra 2 em 2 da verdade do site, porque
-  rebobinar() repoe as acoes e nao os FILTROS e o filtro de cada alvo ficava
-  ligado para os seguintes. Ele nao reprovava nada: AFIRMAVA SOBRE PAGINA ERRADA.
-  DESPACHO DE 16/10, ITEM 2 (b) — o piso da 25.2 ganhou portao em validar-banco.py,
-  E ELE OLHA O `status`, como a errata da propria Sentinela manda: sem isso
-  reprovaria os tres excluidos do banco e a execucao seguinte "consertaria" o que
-  a errata anulou, gravando link de compra de peca de aspirador VERTICAL. Hoje
-  fica verde (54 de 54 e 45 de 45 com url_busca), e era justamente por isso a
-  hora: em 16/09 eram 73 publicaveis e zero sem piso, em 18/09 eram 95 e 22 sem.
-  E O PORTAO DA 32.5-b NAO EXISTIA NESTA ILHA. O bloco mexeu em cinco snippets de
-  pagina do molde, e a 32.5-b manda conferir com um portao que le o
-  wp-sitemap.xml no ar. O porte saiu na propria passada
-  (conferir-32-5-no-navegador.mjs): 9 DE 9 PAGINAS DO MOLDE DENTRO DA 32.5, pior
-  caixa 500 px (teto 700) e pior compra 1.322 px (teto 1.400), rolagem horizontal
-  0 e pageerror 0 nas nove, com as cinco institucionais nomeadas como fora do
-  molde em vez de aprovadas em silencio. O porte achou que o `import` de ESM do
-  playwright NAO resolve nesta nuvem — DIVIDA DA CLUBEDOMOSAICO TAMBEM — e que
-  esta ilha tem uma TERCEIRA familia de pagina, a de malha de navegacao, que o
-  portao reprovava sendo certa.
-  BANCADA: 47 portoes sem rede e 53 com rede, 0 falha (eram 42 em 12/10).
-  Entraram validar-pares.py, mutacoes-pares-de-tela.py (10 de 10),
-  teste-artigo-com-autor.php, mutacoes-autor-e-piso.py (7 de 7, inclusive a
-  direcao CONTRARIA que o despacho exige) e o .mjs da 32.5, que fica fora da
-  bancada por desenho. Snippets: casca 1.14.0, r1 1.13.0, a1 1.7.0, a2 1.7.0,
-  malha 1.2.0.
-  O QUE SOBROU E NAO E DA FUNDACAO: o item 1 do despacho de 30/09, o soft 404 na
-  borda do hospedeiro, que nenhuma linha de codigo de ilha alcanca e cujo
-  fechamento e do Raphael.
-  PROXIMO PASSO: NAO HA DEFEITO ABERTO DESTA ILHA QUE A FUNDACAO ALCANCE. Os
-  tres despachos que a ronda de 23/10 remediu estao fechados, menos o soft 404,
-  que e do Raphael. A ilha volta a esperar: ela esta fora do foco e em modo de
-  medicao, e construcao nela depende de decisao nova do Raphael (nao ha item (4)
-  na fila dele). A proxima execucao que achar a jornadafly em foco, sem WordPress
-  e com a rede recusada, tambem nao tem bloco AQUI — e isso esta escrito para que
-  ela nao invente um.
+  O DESPACHO DAS 15h0xZ SAIU INTEIRO (18.2) E FOI CONFERIDO NO AR (18.4):
+  revisao 95, /status em 95, as 13 linhas de cada um dos DOIS desembarques
+  dizendo `ok` (20.4, lidas uma por uma). O `electrolux-erb60` ficou ESGOTADO na
+  Shopee e era o PRIMEIRO dos cinco botoes de compra de
+  /quantos-m2-o-robo-aspirador-limpa-por-carga/ — o topo do bloco de compra, que
+  a secao 12 chama de espaco mais caro da pagina. Desceu para o degrau 4 e a
+  busca, que ja estava encurtada e rastreavel, subiu e virou o botao, como a
+  25.2 decide sem precisar de ninguem. No ar: ZERO ocorrencia do encurtado morto
+  na pagina, o primeiro botao com rotulo 'Ver ofertas na Shopee' e a busca crua
+  medida VIVA na mesma passada. O ERB60 continua na pagina como PRODUTO — o que
+  saiu foi o link, nunca o produto (item 5 do despacho).
+  ONDE EU DIVERGI DA LETRA DO DESPACHO, e a razao e o esquema desta ilha: ele
+  pedia a busca encurtada DENTRO de `afiliado.url`, e o validar-banco.py reprova
+  isso com a mensagem escrita — 'tem ficha de produto e degrau 4. Ficha para em
+  1, 2 ou 3'. Aqui `url` E a ficha, e `intestavel` e derivado de 'tem url e nao
+  tem url_produto': a busca em `url` marcaria como intestavel um item que se
+  confere pela url_busca_produto. O que a 25.2 manda e que a busca suba e vire o
+  BOTAO, e isso e da tela — com `url` vazia a escada da casca cai no ramo da
+  busca. O registro ficou IGUAL aos outros 30 do degrau 4 deste banco.
+  E ESTA EXECUCAO ACHOU UM DEFEITO QUE JA ESTAVA NO AR HA MAIS DE UM MES, e ele
+  nao estava em despacho nenhum: /filtro-universal-de-robo-aspirador/ servia
+  QUATRO botoes 'Ver ofertas na Shopee' e escrevia, tres linhas abaixo, 'Nenhuma
+  destas 4 pecas tem link de loja ainda'. A pagina negando em PALAVRAS os quatro
+  botoes que ela mesma mostra — literalmente o defeito do item 3 do despacho de
+  18/09/2026, que esta ilha fechou naquele dia na R1 e na R2.
+  POR QUE ELE SOBREVIVEU COM A BANCADA VERDE, e isto vale mais que o conserto: o
+  portao que mede exatamente isto no ar tinha LISTA de duas URLs e esta nao
+  estava nela. A passada completa com rede desta execucao, ANTES do conserto,
+  fechou em 54 portoes e 0 falha COM O DEFEITO NO AR. Lista dentro da regua
+  envelhece calada — a frase do despacho de 23/10 desta ilha, 'regua que nao
+  varre todas certifica a pagina que o autor abriu'. O portao passou a DESCOBRIR
+  as paginas no wp-sitemap.xml, como o da 32.5 desta ilha ja fazia, e a PRIMEIRA
+  passada sem lista o achou. Agora ele abre 16 URLs, julga as 9 com bloco de
+  compra, LISTA as 7 sem, quebra o cache na URL e reprova se achar menos de 3.
+  A CAUSA ERA A MESMA NAS DUAS PAGINAS: a contagem do rodape conhecia DOIS
+  estados — 'tem ficha' e 'sem link de loja' — e o terceiro, 'tem botao e ele
+  abre a BUSCA', existia na escada da casca desde 14/09 e nao existia nos
+  artigos. Verdade por coincidencia do banco. Quem decide passou a ser
+  robometria_casca_degrau_da_porta(), a mesma funcao que escolhe o botao. A1 e
+  A2 os dois de 1.7.0 para 1.8.0; a R1 e a R2 ja separavam os tres desde 18/09.
+  OS PORTOES QUE NASCERAM COM O FECHO: teste-a1.php e teste-a2.php ganharam
+  afirmacoes escritas AO CONTRARIO das cinco anteriores da familia — elas nao
+  procuram classe de degrau nenhuma, cobram ACORDO entre a prosa do rodape e a
+  conta dos cartoes, e por isso sobrevivem a subida E a descida da escada. Mais
+  a soma dos degraus contra o numero de cartoes, que pegou a aritmetica do
+  proprio rotulo do portao contando a busca DUAS vezes (com 5 fichas e 0 buscas
+  dava 5, e no primeiro dia de busca passou a imprimir '1 busca, 5 ficha' numa
+  vitrine de 5). E mutacoes-porta-da-vitrine.py, 8 mundos e 8 reprovados.
+  A BANCADA PEGOU UM DEFEITO MEU ANTES DO AR: a primeira versao da frase nova do
+  A1 passava robometria_a1_num() por esc_html(), e aquela funcao devolve
+  MARCACAO — a tag sairia escapada, visivel na tela como texto. Quem viu foi o
+  mundo SADIO da mutacoes-par-sem-modelo.py, a mutacao que tem de PASSAR: ela
+  planta um par null, a vitrine vira 3 na busca de 4 cartoes, e so nesse mundo a
+  frase usa o molde com numero. O molde de hoje estava certo hoje.
+  32.5: 9 de 9 paginas do molde dentro da regua, a 390 px reais. O primeiro
+  botao desta pagina MELHOROU, de 937 px para 914 px (teto 1.400).
+  Bancada sem rede: 48 portoes, 0 falha (eram 47).
+  A ILHA SEGUE FORA DO FOCO e em modo de medicao (1.2-b.1). Recebeu execucao
+  pela excecao da 1.2 — ilha no ar e quebrada — e foi a TERCEIRA do dia por essa
+  porta. Agora NAO HA MAIS defeito aberto que a Fundacao alcance: o que sobra e
+  o soft 404 na borda do hospedeiro (item 1 de 30/09), camada que roda antes do
+  PHP e cujo fechamento e do Raphael. A jornadafly, que e a ilha em foco, segue
+  com a rede RECUSADA (remedida as 16h20Z, 000 em duas passadas contra 200 nas
+  tres ilhas no ar) e com a fila de arquivo esgotada desde 23/10.
 ---
 
 
