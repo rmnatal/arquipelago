@@ -6982,3 +6982,68 @@ cama e altura de colchão`, `# VOZ — Camametria`.
 
 Nenhum passo falhou. Nada além dos quatro arquivos e deste log foi tocado — nem `fila.md`, nem `foco.md`, nem
 cabeçalho de estado de ilha. As edições da `bussola/fila.md` vêm no disparo 3.
+
+---
+
+## 26/10/2026, 10:31 BRT (13:31 UTC) — Bússola rodada 008, disparo 3 de 3: as nove edições ancoradas da `bussola/fila.md`
+
+Assunto conferido antes do `git fetch`: a instrução mexe em `bussola/fila.md`, a fila de medição da Bússola, com
+os nichos, as notas S_par, a cobertura Shopee e o naming das ilhas. É Arquipélago. Executada.
+
+Um arquivo só, como a instrução mandou: `bussola/fila.md`. Nove edições ancoradas, que na prática são treze
+substituições (1, 2, 3, 4, 5, 6, 7, 8-A, 8-B, 9-A, 9-B, 9-C, 9-D, 9-E) mais o bloco acrescentado no fim do
+arquivo. **As treze âncoras bateram, todas, com uma ocorrência cada — nenhuma falhou, nada foi adaptado nem
+adivinhado.** A conferência de unicidade foi feita por contagem exata antes de cada troca: âncora com contagem
+diferente de 1 teria sido reportada aqui com o trecho procurado, e nenhuma foi.
+
+`git status --porcelain` depois de aplicar e antes do commit:
+
+```
+ M bussola/fila.md
+```
+
+`git diff --stat` do commit do trabalho:
+
+```
+ bussola/fila.md | 140 ++++++++++++++++++++++++++++++++++++++++++++++++++++----
+ 1 file changed, 131 insertions(+), 9 deletions(-)
+```
+
+Commit que foi ao `main`, com a mensagem exata que a instrução deu (`Bússola rodada 008 — 26/10/2026`):
+
+```
+1bf7a8565cdefe194d5d3fead2e4f4ca350c6960
+```
+
+Push: `git push origin HEAD:main` foi **recusado na primeira tentativa** (o `main` tinha avançado para `019c114`
+enquanto a sessão trabalhava, do disparo 2). Mensagem completa, como veio:
+
+```
+hint: Updates were rejected because the remote contains work that you do not
+hint: have locally. This is usually caused by another repository pushing to
+hint: the same ref. If you want to integrate the remote changes, use
+hint: 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+```
+
+Resolvido pelo procedimento: `git fetch origin main && git rebase origin/main` (`Successfully rebased and updated
+refs/heads/trabalho`, 1 commit) e push de novo, aceito na segunda: `019c114..1bf7a85  HEAD -> main`. **Sem force
+push, sem PR.** Confirmado com `git fetch origin main && git log -1 origin/main`, que mostra
+`1bf7a8565cdefe194d5d3fead2e4f4ca350c6960` / `Bússola rodada 008 — 26/10/2026`, e `git show --stat` do
+`origin/main` confirma o único arquivo e os mesmos 131/9.
+
+Contagem conferida relendo o arquivo DEPOIS de gravar (`wc -l -c`), nunca pelo que a sessão achava que escreveu:
+
+```
+  592 74430 bussola/fila.md
+```
+
+Era 470 linhas e 56.253 bytes antes; ficou **592 linhas e 74.430 bytes** (+122 linhas, +18.177 bytes). Relido do
+arquivo gravado: **11 ocorrências** de `008 (26/10/2026)`; os **2 blocos de citação** novos no topo presentes
+(`> # 🔭 RODADA 008 …` e `> ## ⚖️ A CONTRADIÇÃO …`); a tabela `## Desqualificados` passou de 16 para **26 linhas
+de dados** (as 10 novas); e as duas seções novas do fim existem, nas linhas 532 (`## Dossiês prontos (rodada
+008) — e o que eles NÃO autorizam`) e 550 (`## Dívida desta fila — REESCRITA NA RODADA 008`).
+
+Nenhum outro passo falhou. Nada além de `bussola/fila.md` e deste log foi tocado — nem `foco.md`, nem
+`ARQUIPELAGO.md`, nem cabeçalho de estado de ilha, nem reserva, nem `executando_desde`. Nenhum dado pessoal de
+terceiro entrou. Fim da gravação da rodada 008: os três disparos estão no `main`.
