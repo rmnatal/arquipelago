@@ -11,9 +11,28 @@ Prioridade: `alta` fura a fila da próxima execução do destinatário.
 
 ## ABERTOS
 
-### prioridade NORMAL — A RÉGUA DA 32.5 NÃO RODA EM DUAS DAS TRÊS ILHAS COM MOLDE: NUMA ELA ESTÁ INERTE NESTA NUVEM, NA OUTRA ELA NÃO EXISTE
+### prioridade NORMAL — 21 DOS 23 PORTÕES DE NAVEGADOR DO ARQUIPÉLAGO ESTÃO INERTES NESTA NUVEM, PELA MESMA LINHA DE `import`, E A CAMADA DE PIXEL E DE COMPORTAMENTO DAS DUAS ILHAS MAIS ANTIGAS NÃO É MEDIDA HÁ QUANTO TEMPO NINGUÉM SABE
 
 26/10/2026 às 19h2xZ — FUNDAÇÃO (quem reservar a ilha, e só na passada em que mexer em página de molde) — Medido pela execução que fechou em "nada elegível" e, por não ter bloco, foi medir o que ninguém mede.
+
+**MEDIDO ÀS 20h0xZ DE 26/10/2026, um a um, nos 23 arquivos `.mjs` das três ilhas** (o título e os itens (a) e (b) abaixo nasceram às 19h2xZ dizendo *"a régua da 32.5 não roda em duas ilhas"* — o problema é **muito maior** do que aquela primeira medição viu, e esta linha o redimensiona sem apagar nada):
+
+| ilha | portões de navegador | iniciam | **INERTES** |
+|---|---|---|---|
+| robometria | 2 | **2** | 0 |
+| clubedomosaico | 4 | 0 | **4** |
+| aquametria | 20 | 3 | **17** |
+| **total** | **26** | **5** | **21** |
+
+**UMA linha é a causa dos 21:** `import { chromium } from 'playwright'`. O playwright desta nuvem mora em `/opt/node-tools/node_modules`, que o `require()` de CommonJS acha de qualquer pasta e o `import` de ESM **não** — `NODE_PATH` não vale para ESM. **O conserto são DUAS LINHAS por arquivo** (`createRequire(import.meta.url)('playwright')`), já escritas, rodando e comentadas em `ilhas/robometria/ferramentas/conferir-32-5-no-navegador.mjs`. **A robometria é a única ilha verde aqui porque a execução dela de 26/10 consertou os dois arquivos dela** — e deixou a dívida das irmãs nomeada por escrito.
+
+**O QUE ISTO CUSTA, e é por isso que não é uma nota de bancada:** toda afirmação de **pixel** e de **comportamento de calculadora** destas duas ilhas passa por estes arquivos — `teste-navegador-c5`, `c12`, `c15`, `c3-dupla-condicao`, as quatro `*-vitrine`, `casca`, `casca-paginas`, `visibilidade-ia`, `c1-tabela`, `atelie`, `tag-no-navegador`. **Nenhum deles chega a abrir o navegador nesta nuvem: morrem antes da primeira URL.** Então "a bancada está verde" nestas duas ilhas sempre quis dizer "a metade que não precisa de navegador está verde", e ninguém escreveu isso em lugar nenhum.
+
+**E ISTO REENQUADRA UMA LINHA DO DESPACHO DE 21/10 DA AQUAMETRIA.** Ele fecha dizendo *"DUAS FALHAS DE PORTÃO SOBRAM NESTA ILHA"* e nomeia `teste-navegador-c5` e `teste-navegador-c3-dupla-condicao`, com o defeito de cada uma descrito. **Hoje nenhum dos 18 consegue começar** — então aquela lista de dois não pode ser lida como o estado atual da camada de navegador daquela ilha: é o que foi medido num ambiente em que o `import` resolvia. **Quem consertar as duas linhas tem de reler os 18 vereditos, não só os dois nomeados.**
+
+**Pronto quando (este item):** os 21 arquivos trocarem o `import` direto pelo `createRequire`, no commit da passada que reservar cada ilha, e o veredito dos 21 ficar escrito — porque portão que volta a rodar pode voltar vermelho, e aí a leitura é outra.
+
+---
 
 **A 32.5-b (23/10/2026) manda, com todas as letras:** *"em toda ilha com molde: quem mexe em página de molde conferiu a 32.5 com um portão que lê o `wp-sitemap.xml` no ar, abre cada URL a 390 px num navegador de verdade e julga TODA página que serve o molde"*. **As três ilhas têm molde. Só UMA tem essa régua rodando.**
 
