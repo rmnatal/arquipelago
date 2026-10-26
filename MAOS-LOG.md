@@ -7047,3 +7047,73 @@ de dados** (as 10 novas); e as duas seções novas do fim existem, nas linhas 53
 Nenhum outro passo falhou. Nada além de `bussola/fila.md` e deste log foi tocado — nem `foco.md`, nem
 `ARQUIPELAGO.md`, nem cabeçalho de estado de ilha, nem reserva, nem `executando_desde`. Nenhum dado pessoal de
 terceiro entrou. Fim da gravação da rodada 008: os três disparos estão no `main`.
+
+---
+
+## 26/10/2026 — 12h14 (horário de Brasília) — 15h14Z — Sentinela, ronda diária técnica de 26/10: QUATRO escritas num commit só
+
+Disparo com instrução literal e completa da Sentinela. Assunto conferido ANTES do `git fetch`: é do Arquipélago
+(ilha robometria, `ESTADO.md`, `PROMPT.md`, `dados/consertos.md` da ilha e `dados/PAINEL.md` da raiz). As quatro
+âncoras nomeadas pela instrução EXISTIAM e eram ÚNICAS nos arquivos — nenhuma adivinhada, nenhuma parada por
+âncora ausente. Partida de `origin/main` (`e9a0d13`), destino `main`, um único commit com as quatro escritas.
+
+Nada foi reformatado, "melhorado" nem acrescentado: os textos foram colados byte a byte como vieram. Nenhum
+cabeçalho de estado foi tocado além das DUAS linhas que a escrita 1 manda inserir — `ultima_execucao`,
+`executando_desde` e `bloco_atual` ficaram intactos. Nenhuma ilha foi reservada, nenhum bloco de fila executado,
+nenhum Sync acionado, nada publicado. Nenhum dado pessoal de terceiro entrou (o repositório é público).
+
+```
+$ git status --porcelain
+ M dados/PAINEL.md
+ M ilhas/robometria/ESTADO.md
+ M ilhas/robometria/PROMPT.md
+ M ilhas/robometria/dados/consertos.md
+```
+
+```
+$ git diff --stat
+ dados/PAINEL.md                     | 98 ++++++++++++++++++-------------------
+ ilhas/robometria/ESTADO.md          |  2 +
+ ilhas/robometria/PROMPT.md          | 45 +++++++++++++++++
+ ilhas/robometria/dados/consertos.md |  2 +
+ 4 files changed, 98 insertions(+), 49 deletions(-)
+```
+
+```
+Commit que foi ao main: e22b409083aba8069e57ebadf7e059562006d01e
+Mensagem: Sentinela 26/10: despacho robometria (erb60 esgotado), ultima_ronda + bloqueada_por, consertos.md, PAINEL.md
+Push: git push origin HEAD:main  ->  e9a0d13..e22b409  HEAD -> main   (aceito de primeira, sem rebase, sem force)
+Confirmação: git fetch origin main && git log -1 origin/main  ->  e22b409083aba8069e57ebadf7e059562006d01e
+```
+
+Contagem do que mudou, CONFERIDA RELENDO OS ARQUIVOS DEPOIS DE GRAVAR (nunca pelo que eu achava ter escrito):
+
+```
+ESCRITA 1 — ilhas/robometria/ESTADO.md
+  grep -c -E "^(ultima_ronda|bloqueada_por):"            -> 2   (as duas linhas novas, logo após `primeira_indexacao: 2026-09-11`)
+  linha de conferência do YAML pedida pela instrução     -> YAML ok
+  (os oito campos presentes: ilha, estado, prioridade, ultima_execucao,
+   executando_desde, bloco_atual, ultima_ronda, bloqueada_por)
+
+ESCRITA 2 — ilhas/robometria/PROMPT.md
+  grep -c "DESPACHO DA SENTINELA — 2026-10-26"           -> 1   (cabeçalho novo, agora na linha 48)
+  wc -l                                                  -> 1678 linhas  (+45 pelo diff)
+  inserido IMEDIATAMENTE ANTES do cabeçalho de 23/10, com uma linha em branco,
+  uma linha de três hífens e outra linha em branco separando os dois despachos.
+  Nenhum despacho anterior apagado — o de 23/10 segue intacto logo abaixo.
+
+ESCRITA 3 — ilhas/robometria/dados/consertos.md
+  grep -c "^| 2026-10-26 |"                              -> 1   (a linha única e longa, colada)
+  grep -c "^| 20"                                        -> 7   (total de linhas de data na tabela)
+  inserida IMEDIATAMENTE ANTES de `## 14/09/2026 — primeira ronda desta ilha a
+  registrar aqui`, seguida de uma linha em branco. Nenhuma linha existente apagada.
+
+ESCRITA 4 — dados/PAINEL.md  (reescrita COMPLETA do arquivo, como mandado)
+  wc -l                                                  -> 81 linhas
+  wc -w                                                  -> 2550 palavras
+  primeira linha                                         -> "# PAINEL DO ARQUIPÉLAGO"
+  última linha                                           -> "**A ÚNICA ESCRITA DESTA RONDA NO CABEÇALHO DE UMA ILHA, ..."
+```
+
+Nenhum passo falhou: as quatro âncoras existiam, as quatro escritas aplicaram, o commit foi aceito no `main` de
+primeira e `origin/main` mostra o hash acima. O log vai num commit seguinte, por ser o último passo do disparo.
