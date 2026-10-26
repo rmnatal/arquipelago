@@ -8,7 +8,7 @@ primeira_indexacao: 2026-09-11
 ultima_ronda: 2026-10-26T15:02Z   # escrito pela Sentinela (secao 2). Este campo e o `bloqueada_por` abaixo estavam os DOIS AUSENTES deste cabecalho — a divida que a secao 2 nomeou em 26/10/2026 as 13h3xZ. Acrescentados pela ronda que reservou a ilha, como a propria secao 2 manda.
 bloqueada_por: null
 ultima_execucao: 2026-10-26T11:00Z   # DOIS despachos fechados na mesma execucao pela 18.2 (02/10 e 16/10), os quatro itens conferidos NO AR pela 18.4, revisao 91 no /status. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
-executando_desde: 2026-10-26T16:20Z   # reserva desta execucao da Fundacao, hora saida do `date -u` na mesma linha de comando que a grava. A ilha esta FORA DO FOCO (jornadafly) e recebeu execucao pela excecao da 1.2: despacho da Sentinela de hoje 15h0xZ, ilha NO AR com o PRIMEIRO botao de compra de uma pagina servindo ficha ESGOTADA.
+executando_desde: 2026-10-26T16:43Z   # reserva RENOVADA pela 1.1 (a primeira foi as 16h20Z): o bloco passou de 40 minutos porque a bancada sem rede desta ilha roda 48 portoes e a bateria nova faz 6 copias da pasta, sem contar o desembarque, a varredura da 32.5 em 9 paginas no navegador e os conferir-* com rede. A ilha esta FORA DO FOCO (jornadafly) e recebeu execucao pela excecao da 1.2: despacho da Sentinela de hoje 15h0xZ, ilha NO AR com o PRIMEIRO botao de compra de uma pagina servindo ficha ESGOTADA. A HORA SAI DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
 bloco_atual: |
   DOIS DESPACHOS FECHADOS NA MESMA EXECUCAO, os dois conferidos NO AR pela 18.4,
   e os dois eram DEFEITO e nao construcao — a 18.2 autoriza o segundo com todas
