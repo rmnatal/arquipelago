@@ -10,7 +10,7 @@
   "publicavel": 45,
   "nao_publicavel": 1,
   "excluido_do_banco": 4,
-  "esperando_link_de_afiliado": 30,
+  "esperando_link_de_afiliado": 31,
   "com_pa_declarado": 22,
   "com_canal_brasileiro": 33,
   "recomendaveis_pela_r2": 13,
@@ -26,11 +26,11 @@
    "electrolux",
    "multi"
   ],
-  "itens_com_ficha": 15,
+  "itens_com_ficha": 14,
   "itens_sem_saida_de_compra": 0,
   "itens_com_piso_nao_rastreavel": 0,
   "links_sem_degrau": 0,
-  "itens_com_link_de_afiliado": 15,
+  "itens_com_link_de_afiliado": 14,
   "itens_com_foto": 30
  },
  "cobertura_de_faixa_r2": {
@@ -2102,23 +2102,18 @@
     "motivo_do_null": null
    },
    "afiliado": {
-    "url": "https://s.shopee.com.br/7ptINupGy6",
-    "url_produto": "https://shopee.com.br/product/854082976/22398993000",
-    "motivo_sem_url_produto": null,
+    "url": "",
+    "url_produto": null,
+    "motivo_sem_url_produto": "sem ficha (o anuncio de degrau 3 ficou ESGOTADO): a ficha que este registro servia era o anuncio 854082976/22398993000 na Shopee (\"Aspirador Robô Electrolux 4 em 1 Wi-Fi Experience com 0,47 Litros - ERB60\", casado pela chave 'ERB60' no degrau 1 da escada de palavra-chave, escolhido em 2026-09-16 e conferido pela ultima vez naquele dia). Em 26/10/2026 a ronda diaria tecnica abriu a url_produto crua no navegador — nunca o link de afiliado (25.4) — e leu o rotulo \"Esgotado\" junto ao titulo, com \"0 Vendidos\" e sem preco: o segundo sinal da lista da 25.4, \"existe e nao vende\". O registro desceu para o degrau 4 e a busca subiu e virou o botao, como a 25.2 manda, sem esperar decisao de ninguem. A url_produto de entao era https://shopee.com.br/product/854082976/22398993000 e o link encurtado era https://s.shopee.com.br/7ptINupGy6 — os dois ficam escritos aqui e fora dos campos vivos, porque campo vivo apontando para anuncio aposentado afirma que a ficha deste registro e aquela, e nao e mais. || ULTIMA MEDICAO DO ANUNCIO em 2026-10-26: o anuncio aposentado seguia ESGOTADO na ultima leitura da ronda, as 15h0xZ. Esta execucao NAO o remediu e nao podia: o teste de vida da Shopee exige sessao de navegador (25.4, medido em 17/09/2026 — a chamada da nuvem devolve 403 do proprio servidor da Shopee, e a politica desta nuvem barra a tentativa de se passar por navegador). Quem reabrir este registro no degrau 3 tem de trazer `url` e `url_produto` da MESMA oferta, na mesma chamada (25.4-b.1).",
     "intestavel": false,
-    "degrau": 3,
-    "conferido_em": "2026-09-16",
+    "degrau": 4,
+    "conferido_em": "2026-10-26",
     "url_busca": "https://s.shopee.com.br/AAHCqjJaR9",
     "url_busca_produto": "https://shopee.com.br/search?keyword=Electrolux%20ERB60%20robo%20aspirador",
     "motivo_sem_url_busca": null,
     "plataforma": "shopee",
     "coletado_em": "2026-09-16",
-    "sub_id_1": "robometria",
-    "item_id_shopee": 22398993000,
-    "shop_id_shopee": 854082976,
-    "degrau_da_palavra_chave": 1,
-    "palavra_chave_que_casou": "ERB60",
-    "titulo_na_loja": "Aspirador Robô Electrolux 4 em 1 Wi-Fi Experience com 0,47 Litros - ERB60"
+    "sub_id_1": "robometria"
    },
    "fontes": {
     "f-loja": {

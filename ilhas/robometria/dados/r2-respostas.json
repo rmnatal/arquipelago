@@ -993,9 +993,9 @@
         "altura": 1000,
         "alt": "Aspirador Robô Electrolux 4 em 1 Wi-Fi Experience com 0,47 Litros - ERB60"
       },
-      "esperando_link": false,
+      "esperando_link": true,
       "afiliado": {
-        "url": "https://s.shopee.com.br/7ptINupGy6",
+        "url": "",
         "url_busca": "https://s.shopee.com.br/AAHCqjJaR9",
         "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20ERB60%20robo%20aspirador",
         "programa": "shopee",
@@ -1935,8 +1935,8 @@
   "resumo": {
     "modelos_publicaveis": 45,
     "modelos_na_tela": 12,
-    "modelos_esperando_link": 4,
-    "modelos_com_link": 8,
+    "modelos_esperando_link": 5,
+    "modelos_com_link": 7,
     "modelos_de_referencia": 5,
     "situacoes": 9,
     "situacoes_por_ponte": 1,

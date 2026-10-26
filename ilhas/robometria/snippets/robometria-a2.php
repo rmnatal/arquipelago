@@ -1,5 +1,16 @@
 /**
  * Robometria A2 — Quantos m² um robô aspirador limpa por carga
+ * Versão: 1.8.0 (26/10/2026) — A CONTAGEM DO RODAPÉ DO BLOCO DE COMPRA PASSA A
+ * CONHECER TRÊS ESTADOS, e com isso fecha o item 1 do despacho da Sentinela de
+ * 26/10/2026: o `electrolux-erb60` desceu para o degrau 4 (anúncio esgotado), e
+ * esta página contava só "com ficha" contra "sem link de loja". O terceiro
+ * estado — tem botão, e o botão abre a BUSCA — existia na escada da casca desde
+ * 14/09 e nesta página não existia, porque nenhum item da vitrine havia descido
+ * ainda. Verdade por coincidência do banco, que é a cicatriz que esta ilha mais
+ * paga: a frase diria que um modelo COM botão de compra não tem link de loja.
+ * Quem decide o estado passou a ser `robometria_casca_degrau_da_porta()`, a
+ * mesma função que escolhe o botão. A R1 e a R2 separavam os três desde 18/09.
+ *
  * Versão: 1.7.0 (26/10/2026) — O NO `Article` PASSA A DECLARAR `author`, e com
  * isso fecha o item 1 do despacho da Sentinela de 16/10/2026, reconferido no ar
  * em 23/10 e aberto 10 dias. Esta pagina servia `publisher` e NAO `author`,
@@ -95,7 +106,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ROBOMETRIA_A2_VERSAO' ) ) {
-	define( 'ROBOMETRIA_A2_VERSAO', '1.7.0' );
+	define( 'ROBOMETRIA_A2_VERSAO', '1.8.0' );
 	define( 'ROBOMETRIA_A2_SLUG', 'quantos-m2-o-robo-aspirador-limpa-por-carga' );
 	define( 'ROBOMETRIA_A2_TITULO', 'Quantos m² um robô aspirador limpa por carga' );
 	define( 'ROBOMETRIA_A2_DADOS', 'robometria_dados_a2-fatos' );
@@ -397,12 +408,39 @@ function robometria_a2_vitrine() {
 		return '<div class="rbm-secao"><h2>Onde comprar</h2><p>Nenhum modelo deste banco tem área por carga declarada hoje, então não há o que listar aqui — e listar assim mesmo seria recomendar pelo que não sabemos.</p></div>';
 	}
 
-	$itens    = $d['vitrine'];
-	$total    = count( $itens );
-	$sem_link = 0;
+	$itens = $d['vitrine'];
+	$total = count( $itens );
+
+	/* TRÊS ESTADOS, NÃO DOIS — e até 26/10/2026 esta contagem só conhecia dois.
+	   Ela contava `empty(afiliado.url)` e chamava o resultado de "ainda não tem
+	   link de loja". Isso era VERDADE por coincidência do banco: enquanto nenhum
+	   item desta vitrine tinha descido para o degrau 4, "sem ficha" e "sem porta
+	   de compra" eram o mesmo conjunto. No dia em que o primeiro desceu — o
+	   `electrolux-erb60`, pelo anúncio esgotado do despacho de hoje — a frase
+	   passaria a dizer que um modelo COM botão de compra não tem link de loja,
+	   que é o contrário do que a página serve três linhas acima.
+
+	   Quem decide o estado é `robometria_casca_degrau_da_porta()`, a mesma
+	   função que escolhe o botão, e não uma releitura dos campos aqui: duas
+	   metades contando a mesma coisa sem se falarem é a causa que esta ilha
+	   mais paga (item 3 do despacho de 18/09/2026). A R1 e a R2 já separavam os
+	   três desde aquele dia; este arquivo é o que ficou para trás, e ficou em
+	   silêncio porque o terceiro estado ainda não existia no banco. */
+	$sabe_a_porta = function_exists( 'robometria_casca_degrau_da_porta' );
+	$sem_link     = 0;
+	$so_busca     = 0;
 	foreach ( $itens as $i ) {
-		if ( empty( $i['afiliado']['url'] ) ) {
+		if ( ! $sabe_a_porta ) {
+			if ( empty( $i['afiliado']['url'] ) ) {
+				$sem_link++;
+			}
+			continue;
+		}
+		$degrau = robometria_casca_degrau_da_porta( $i );
+		if ( 'sem_saida' === $degrau ) {
 			$sem_link++;
+		} elseif ( 'ficha' !== $degrau ) {
+			$so_busca++;
 		}
 	}
 
@@ -446,6 +484,26 @@ function robometria_a2_vitrine() {
 		}
 		$depois .= '<p class="rbm-nota">' . esc_html( $quantas )
 			. '. O lugar fica reservado assim mesmo: esconder o bloco enquanto o link não chega devolveria ao link de procedência o papel de única porta clicável da página.</p>';
+	}
+
+	/* A FRASE VERDADEIRA NO LUGAR DO SILÊNCIO: o botão existe e abre a BUSCA da
+	   loja, não a ficha daquele robô. Quem vai clicar sabe onde cai — e é essa a
+	   diferença entre o piso da 25.2 e um beco sem saída. O molde é o da R2,
+	   palavra por palavra, porque é a mesma frase sobre a mesma escada. */
+	if ( $so_busca > 0 ) {
+		if ( $so_busca === $total ) {
+			$busca_frase = ( 1 === $total )
+				? 'O botão deste modelo abre a busca da loja, já filtrada, e não a ficha de um produto'
+				: 'Os botões destes modelos abrem a busca da loja, já filtrada, e não a ficha de um produto';
+		} else {
+			$busca_frase = sprintf(
+				( 1 === $so_busca ) ? 'Um destes modelos abre a busca da loja, já filtrada, em vez da ficha de um produto'
+					: '%s destes modelos abrem a busca da loja, já filtrada, em vez da ficha de um produto',
+				robometria_a2_n( $so_busca )
+			);
+		}
+		$depois .= '<p class="rbm-nota">' . esc_html( $busca_frase )
+			. '. A busca não esgota e não sai do ar, e é por isso que ela é o piso: preferimos a vitrine certa a um link de produto que morre em doze horas.</p>';
 	}
 
 	$html .= '<ul class="rbm-vitrine">';

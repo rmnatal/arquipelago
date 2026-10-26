@@ -4,7 +4,7 @@
   "nicho": "robo aspirador — compatibilidade de pecas e consumiveis, e dimensionamento de succao e autonomia",
   "dominio": "https://robometria.com.br",
   "versao_manifest": 1,
-  "revisao": 91,
+  "revisao": 92,
   "atualizado_em": "2026-10-26",
   "estado": "nascendo",
   "desembarque": {
@@ -64,8 +64,8 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "70f642c2f1114424779e911177b04c597ada812466735a9d922ceed66bee64fd",
-      "versao": "1.7.0",
+      "sha256": "b91475fb9199ee3c7146c8c4088e92875a34e640b0037b1e9d96967fd386e41d",
+      "versao": "1.8.0",
       "descricao": "O A2 NA 1.3.0 — a vitrine do artigo passa a servir o piso da 25.2 em vez da frase proibida pela secao 7. Mesma mudanca do A1, no outro artigo-ancora. || O A2 NA 1.1.0 — a tese passou a falar com quem entrou, e o NOME DA MARCA saiu da abertura. A forma antiga comecava 'Uma marca so declara... e os 5 sao da Electrolux': o numero e a resposta e fica, mas nome de fabricante e procedencia, e a secao 15.2 manda procedencia morar na camada de prova. Ele desceu um paragrafo, para robometria_a2_quem_declara(), dentro da mesma caixa — e continua derivado, como tudo nesta pagina. As duas mutacoes do proprio teste passaram a medir o PARAGRAFO certo em vez da pagina inteira: uma delas estava aprovando porque a frase procurada existia em outra secao do artigo. Par com a ferramenta por slug, e post_title reespelhado."
     },
     {
@@ -163,7 +163,7 @@
       "verificado_em": "2026-09-09",
       "registros": 33,
       "publicar": false,
-      "sha256": "11c71166591c6ba9ed039917bed1e488b6e0adc93b9b67602989d819c09ba102",
+      "sha256": "87a836bfde6dae9abd72b7704a88688612886f32ad18e2c90a146b593108ab26",
       "descricao": "33 modelos: 28 publicaveis, 1 nao publicavel (HO401, categoria a confirmar) e 4 excluidos por NAO serem robo. A segunda leva do Bloco 3c acrescentou seis Xiaomi (S10, E10, S40, S40C, H40 e Mop 2) e tres WAP (W400, W1000, W310), e preencheu a ficha de PRA500 e PRA2000. O campo pa_declarado saiu de 2 para 11 modelos publicaveis, em 3 marcas, cobrindo de 1.400 a 10.000 Pa — a R2 deixa de sair com lista vazia. Traz a varredura cobertura_de_faixa_r2 exigida pela secao 14.3: cinco das seis faixas passam no portao de 3 itens, acima de 6.000 Pa a faixa esta DESCOBERTA, e toda faixa acima de 3.000 Pa e 100% Xiaomi."
     },
     {
@@ -269,7 +269,7 @@
       "verificado_em": "2026-09-10",
       "registros": 9,
       "publicar": true,
-      "sha256": "8daf842a86e9cb13c6392524708f60b8c0ad578d6bb559db259b483c86586c02"
+      "sha256": "123bb7bf47200217236cac2628ff6f7d975f633ab453e255b4cf3e9e00a47916"
     },
     {
       "id": "r2-referencia",
@@ -291,7 +291,7 @@
       "verificado_em": "2026-09-10",
       "registros": 5,
       "publicar": true,
-      "sha256": "7889e7c8eb7fbf4f0582a87f19b25afa6d36c9eebaafb150ae5bf882dfe95cb1"
+      "sha256": "f75ada74c87e5426b94005682d40bee0238c72504507ec0c5a663c96cbe0ef11"
     },
     {
       "id": "datas-das-paginas",
@@ -315,7 +315,7 @@
       "verificado_em": "2026-09-11",
       "registros": 7,
       "descricao": "Fatos que a casca publica sobre o proprio banco, derivados por ferramentas/gerar-casca-fatos.py. Desde 11/09/2026 traz duas coisas: a coluna 'Temos hoje' da escada de fontes, e a MEDICAO da secao 4 da metodologia — os onze numeros que a ilha afirma sobre si mesma, com a regua de cada um escrita no proprio arquivo, em reguas_da_medicao. Contagem so de registro publicavel: a coluna fala do que a ilha PUBLICA, nao do que ela guarda, e e por isso que 'pares peca x modelo' conta 32 (as duas pontas publicaveis) onde o cabecalho de pecas.json conta 33 (tudo que o arquivo declara). O gerador RECUSA gravar quando cobertura-r1.json nao bate com o banco de hoje, para a ilha nunca publicar medicao de ontem com data de hoje.",
-      "sha256": "e7bb3922928ca32b6e1da2290f7517dc2e12027449867250e77f82fe8d0725c8"
+      "sha256": "efb8a641b5ccea0b47093c7876a24fa227a06bd7863a0129d91b8cf9cf76c837"
     },
     {
       "id": "acentuacao-restaurada",

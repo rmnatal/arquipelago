@@ -20,7 +20,8 @@
     "com_recarga": 2,
     "com_os_tres": 0,
     "pares_declarados": 5,
-    "modelos_esperando_link": 0
+    "modelos_esperando_link": 0,
+    "modelos_so_com_busca": 1
   },
   "marcas_que_declaram": [
     "Electrolux"
@@ -136,7 +137,7 @@
       },
       "esperando_link": false,
       "afiliado": {
-        "url": "https://s.shopee.com.br/7ptINupGy6",
+        "url": "",
         "url_busca": "https://s.shopee.com.br/AAHCqjJaR9",
         "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20ERB60%20robo%20aspirador",
         "programa": "shopee",

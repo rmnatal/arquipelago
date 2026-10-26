@@ -169,6 +169,24 @@ def medir():
 
 
 # -------------------------------------------------------------------- VITRINE
+def _porta(m):
+    """EM QUE DEGRAU DA ESCADA DA 25.1 A PORTA DE COMPRA DESTE ITEM PARA.
+
+    E a mesma pergunta que `robometria_casca_degrau_da_porta()` responde na tela,
+    e os tres valores sao os mesmos — de proposito, porque quem conta aqui e quem
+    desenha o botao la tem de concordar. Mora no nivel do modulo, e nao dentro de
+    `montar()`, porque `vitrine()` tambem precisa dela: o campo por item e o
+    agregado do relatorio sao a MESMA conta, e foi a divergencia entre os dois que
+    apareceu em 26/10/2026 no primeiro item a descer para o degrau 4.
+    """
+    a = m.get("afiliado") or {}
+    if (a.get("url") or "").strip():
+        return "ficha"
+    if (a.get("url_busca") or "").strip() or (a.get("url_busca_produto") or "").strip():
+        return "busca"
+    return "sem_saida"
+
+
 def vitrine(med):
     """Os modelos que DECLARAM area por carga — e o cartao diz que e por isso.
 
@@ -226,7 +244,15 @@ def vitrine(med):
             # banco poria `motivo_do_null` e `fonte` no HTML servido sem ninguem
             # precisar deles.
             "imagem": foto_de(imagem),
-            "esperando_link": not a.get("url"),
+            # A PERGUNTA DESTE CAMPO E "HA PORTA?", NAO "HA FICHA?" — e ele usa
+            # a MESMA conta do agregado `modelos_esperando_link`, de proposito.
+            # Ate 26/10/2026 ele era `not url`, e no dia em que o primeiro item
+            # desceu para o degrau 4 o arquivo passou a trazer, nele mesmo,
+            # `esperando_link: true` no item e `modelos_esperando_link: 0` no
+            # agregado. Dois numeros certos contando universos diferentes com o
+            # mesmo nome, dentro do mesmo arquivo publicado: a forma mais barata
+            # de a proxima execucao acreditar no que ler primeiro.
+            "esperando_link": _porta(m) == "sem_saida",
             "afiliado": {
                 "url": a.get("url") or "",
                 # O PISO DA 25.2 VIAJA JUNTO DESDE 14/09/2026 (item 4 do despacho do
@@ -386,8 +412,19 @@ def perguntas(f):
 def montar():
     med = medir()
 
-    esperando = len([m for m in med["com_cobertura"]
-                     if not (m.get("afiliado") or {}).get("url")])
+    # TRES ESTADOS DE PORTA DE COMPRA, NAO DOIS — a mesma escada da 25.1 que a
+    # casca desce na tela, contada aqui para o relatorio nao mentir. Ate
+    # 26/10/2026 esta linha contava so `sem url` e o relatorio chamava o
+    # resultado de "esperando link de loja / trabalho pendente". Era verdade por
+    # coincidencia do banco: enquanto nenhum item da vitrine tinha descido para o
+    # degrau 4, "sem ficha" e "sem porta de compra" eram o mesmo conjunto. O
+    # `electrolux-erb60` desceu hoje (anuncio esgotado, despacho da Sentinela) e
+    # a linha passaria a chamar de pendencia um item que esta no PISO da 25.2, de
+    # proposito e por decisao do contrato. Quem espera algo e quem nao tem porta
+    # NENHUMA; quem para na busca nao espera ninguem.
+    portas = [_porta(m) for m in med["com_cobertura"]]
+    esperando = portas.count("sem_saida")
+    so_busca = portas.count("busca")
 
     f = {
         "id": "a2-fatos",
@@ -437,6 +474,10 @@ def montar():
             "com_os_tres": len(med["com_os_tres"]),
             "pares_declarados": len(med["pares"]),
             "modelos_esperando_link": esperando,
+            # O TERCEIRO ESTADO GANHOU NOME EM 26/10/2026. Sem ele a unica
+            # pergunta que o relatorio sabia fazer era "tem ou nao tem link", e
+            # o piso da 25.2 nao tem como aparecer numa pergunta de sim ou nao.
+            "modelos_so_com_busca": so_busca,
         },
         "marcas_que_declaram": [ref.marcas[b]["nome"] for b in med["marcas_com"]],
         "marcas_que_nao_declaram": [ref.marcas[b]["nome"] for b in med["marcas_sem"]],
@@ -481,8 +522,10 @@ def relatorio(f):
               % (dec(d["taxa_minima"]), dec(d["taxa_maxima"]), d["pct"],
                  "mesma marca" if d["mesma_marca"] else "marcas diferentes"))
     print("  itens na vitrine ................ %d" % len(f["vitrine"]))
-    print("  destes, esperando link de loja .. %d  <- trabalho pendente (secao 7)"
+    print("  destes, SEM porta de compra ..... %d  <- trabalho pendente (secao 7)"
           % r["modelos_esperando_link"])
+    print("  destes, no PISO da 25.2 (busca) . %d  <- tem botao, e ele abre a busca"
+          % r["modelos_so_com_busca"])
     print("")
     print("  PERGUNTAS DO FAQPage")
     for p in f["perguntas"]:

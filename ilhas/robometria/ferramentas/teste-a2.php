@@ -462,21 +462,101 @@ rbm_ok( false === strpos( $pagina, 'em breve' ),
    unica forma de medir isso que sobrevive a qualquer degrau e contar CARTAO
    contra SAIDA, em vez de procurar uma classe. O degrau sai impresso ao lado,
    como informacao e nao como criterio. */
-$cartoes_a2 = substr_count( $retorno, 'class="rbm-vitrine-item"' );
-$saidas_a2  = substr_count( $retorno, 'class="rbm-comprar"' )
-	+ substr_count( $retorno, 'class="rbm-comprar rbm-comprar-busca"' )
-	+ substr_count( $retorno, 'rbm-comprar-busca' )
-	+ substr_count( $retorno, 'rbm-comprar-cru' );
+/* OS TRES CONTADORES SAEM DO CORPO SERVIDO, cada degrau contado UMA vez — e
+   ate 26/10/2026 esta aritmetica contava a busca DUAS vezes e descontava do
+   total so uma, entao o rotulo de "ficha" saia com um a mais. Ela acertava por
+   coincidencia enquanto nenhum cartao desta vitrine caia na busca: com 5 fichas
+   e 0 buscas, 5 + 0 + 0 + 0 − 0 − 0 dava 5. No primeiro dia em que um cartao
+   desceu para o degrau 4 — o `electrolux-erb60`, hoje — o rotulo passou a dizer
+   "1 busca, 5 ficha" numa vitrine de 5 cartoes. E numero IMPRESSO POR UM
+   PORTAO, que e o pior lugar para um numero errado morar: quem le confia.
+   A conta certa e a subtracao, e ela e feita no CORPO e nunca na pagina, porque
+   a folha da casca tambem cita as classes (o mesmo engano de contar `&#038;` na
+   pagina inteira em vez de dentro do <script>). */
+$cartoes_a2  = substr_count( $retorno, 'class="rbm-vitrine-item"' );
+$busca_a2    = substr_count( $retorno, 'rbm-comprar-busca' );
+$crua_a2     = substr_count( $retorno, 'rbm-comprar-cru' );
+$botoes_a2   = substr_count( $retorno, 'class="rbm-comprar' );
+$ficha_a2    = $botoes_a2 - $busca_a2;
+$saidas_a2   = $botoes_a2;
 $sem_saida_a2 = substr_count( $retorno, 'rbm-sem-saida' );
 rbm_ok( $cartoes_a2 > 0 && 0 === $sem_saida_a2
 	&& substr_count( $retorno, 'class="rbm-vitrine-acao"' ) === $cartoes_a2,
 	'o bloco de compra nunca fica vazio: um por cartao, nenhum degradado',
 	$cartoes_a2 . ' cartao(oes), ' . substr_count( $retorno, 'class="rbm-vitrine-acao"' )
-		. ' bloco(s) de compra, ' . $sem_saida_a2 . ' degradado(s) | degraus na pagina: '
-		. substr_count( $pagina, 'rbm-comprar-busca' ) . ' busca, '
-		. substr_count( $pagina, 'rbm-comprar-cru' ) . ' crua, '
-		. ( $saidas_a2 - substr_count( $pagina, 'rbm-comprar-busca' )
-			- substr_count( $pagina, 'rbm-comprar-cru' ) ) . ' ficha' );
+		. ' bloco(s) de compra, ' . $sem_saida_a2 . ' degradado(s) | degraus no corpo: '
+		. $busca_a2 . ' busca (' . $crua_a2 . ' delas crua), '
+		. $ficha_a2 . ' ficha' );
+/* E A SOMA DOS DEGRAUS E O NUMERO DE CARTOES. Sem esta linha a aritmetica de
+   cima pode voltar a errar em silencio: ela so e visivel quando alguem SOMA. */
+rbm_ok( $busca_a2 + $ficha_a2 === $cartoes_a2,
+	'a soma dos degraus do corpo fecha com o numero de cartoes',
+	$busca_a2 . ' + ' . $ficha_a2 . ' = ' . ( $busca_a2 + $ficha_a2 )
+		. ' contra ' . $cartoes_a2 . ' cartao(oes)' );
+/* A FRASE DO RODAPE CONTA TRES ESTADOS, E ELA E CONTADA CONTRA O BANCO.
+   Nasceu em 26/10/2026, com o item 1 do despacho da Sentinela do mesmo dia: o
+   `electrolux-erb60` desceu para o degrau 4 (anuncio esgotado) e a contagem
+   desta pagina conhecia DOIS estados — "com ficha" e "sem link de loja" —,
+   entao ela diria que um modelo COM botao de compra nao tem link de loja.
+
+   POR QUE NENHUMA DAS REGUAS ACIMA PEGAVA ISSO, e e a sexta regua da familia
+   que o comentario de 16/09 descreve: elas medem que todo cartao tem SAIDA, e
+   a saida estava la. O que faltava era a pagina DIZER qual saida e aquela. A
+   afirmacao de baixo e deliberadamente escrita ao contrario das cinco: ela nao
+   procura classe de degrau nenhuma, ela cobra ACORDO entre a prosa do rodape e
+   a conta dos cartoes — e por isso ela sobrevive a subida e a descida.
+
+   AS DUAS METADES, e a segunda e a que o defeito de hoje atravessaria:
+   (a) cartao que para na busca obriga a pagina a dizer isso;
+   (b) com todo cartao servindo saida, a pagina NAO pode dizer que algum nao tem
+       link de loja — essa frase e sobre o estado SEM PORTA, e so sobre ele. */
+$porta_dos_fatos = array( 'ficha' => 0, 'busca' => 0, 'sem_saida' => 0 );
+foreach ( $fatos['vitrine'] as $i ) {
+	$af = isset( $i['afiliado'] ) ? $i['afiliado'] : array();
+	if ( '' !== trim( (string) ( isset( $af['url'] ) ? $af['url'] : '' ) ) ) {
+		$porta_dos_fatos['ficha']++;
+	} elseif ( '' !== trim( (string) ( isset( $af['url_busca'] ) ? $af['url_busca'] : '' ) )
+		|| '' !== trim( (string) ( isset( $af['url_busca_cru'] ) ? $af['url_busca_cru'] : '' ) ) ) {
+		$porta_dos_fatos['busca']++;
+	} else {
+		$porta_dos_fatos['sem_saida']++;
+	}
+}
+$diz_busca     = ( false !== strpos( $texto, 'abre a busca da loja' )
+	|| false !== strpos( $texto, 'abrem a busca da loja' ) );
+$diz_sem_link  = ( false !== strpos( $texto, 'não tem link de loja' )
+	|| false !== strpos( $texto, 'não têm link de loja' ) );
+rbm_ok( ( $porta_dos_fatos['busca'] > 0 ) === $diz_busca,
+	'cartao que para na busca obriga a pagina a dizer que o botao abre a busca',
+	$porta_dos_fatos['busca'] . ' na busca, ' . $porta_dos_fatos['ficha'] . ' com ficha, '
+		. $porta_dos_fatos['sem_saida'] . ' sem porta | a pagina '
+		. ( $diz_busca ? 'diz' : 'NAO diz' ) );
+rbm_ok( ( $porta_dos_fatos['sem_saida'] > 0 ) === $diz_sem_link,
+	'a frase "nao tem link de loja" fala do estado SEM PORTA, e so dele',
+	$porta_dos_fatos['sem_saida'] . ' sem porta | a pagina '
+		. ( $diz_sem_link ? 'diz que falta link' : 'NAO diz que falta link' ) );
+/* E A CONTA DO RODAPE E O NUMERO DOS CARTOES, nunca um numero digitado: com
+   mais de um na busca, a frase tem de trazer a contagem; com um so, ela usa o
+   molde "Um destes modelos", que e a forma portuguesa da mesma conta. */
+if ( $porta_dos_fatos['busca'] > 1 && $porta_dos_fatos['busca'] < count( $fatos['vitrine'] ) ) {
+	rbm_ok( false !== strpos( $texto, (string) $porta_dos_fatos['busca'] . ' destes modelos abrem a busca' ),
+		'a contagem da frase da busca e a dos cartoes, recontada e nao digitada',
+		$porta_dos_fatos['busca'] . ' esperado na frase' );
+} elseif ( 1 === $porta_dos_fatos['busca'] && count( $fatos['vitrine'] ) > 1 ) {
+	rbm_ok( false !== strpos( $texto, 'Um destes modelos abre a busca' ),
+		'com um cartao na busca a frase usa o molde singular, nao "1 destes"',
+		'molde de um' );
+} elseif ( $porta_dos_fatos['busca'] === count( $fatos['vitrine'] )
+	&& count( $fatos['vitrine'] ) > 1 ) {
+	/* COM TODOS NA BUSCA A FRASE NAO TRAZ NUMERO, e isso nao e capricho de
+	   estilo: "5 destes 5 modelos" e o tipo de frase que so nasce de contador
+	   solto e denuncia texto montado por maquina (o molde e o da R2). */
+	rbm_ok( false !== strpos( $texto, 'Os botões destes modelos abrem a busca' )
+		&& false === strpos( $texto, 'destes ' . count( $fatos['vitrine'] ) . ' modelos' ),
+		'com todos na busca a frase usa o molde sem numero',
+		'molde de todos' );
+}
+
 rbm_ok( false !== strpos( $texto, 'links de afiliado' ),
 	'o aviso de comissao aparece dentro do bloco de compra' );
 rbm_ok( false !== stripos( $texto, 'não é um ranking' ),
