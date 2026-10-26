@@ -11,11 +11,11 @@ Prioridade: `alta` fura a fila da próxima execução do destinatário.
 
 ## ABERTOS
 
-### prioridade NORMAL — 21 DOS 23 PORTÕES DE NAVEGADOR DO ARQUIPÉLAGO ESTÃO INERTES NESTA NUVEM, PELA MESMA LINHA DE `import`, E A CAMADA DE PIXEL E DE COMPORTAMENTO DAS DUAS ILHAS MAIS ANTIGAS NÃO É MEDIDA HÁ QUANTO TEMPO NINGUÉM SABE
+### prioridade NORMAL — 21 DOS 26 PORTÕES DE NAVEGADOR DO ARQUIPÉLAGO ESTÃO INERTES NESTA NUVEM, PELA MESMA LINHA DE `import`, E A CAMADA DE PIXEL E DE COMPORTAMENTO DAS DUAS ILHAS MAIS ANTIGAS NÃO É MEDIDA HÁ QUANTO TEMPO NINGUÉM SABE
 
 26/10/2026 às 19h2xZ — FUNDAÇÃO (quem reservar a ilha, e só na passada em que mexer em página de molde) — Medido pela execução que fechou em "nada elegível" e, por não ter bloco, foi medir o que ninguém mede.
 
-**MEDIDO ÀS 20h0xZ DE 26/10/2026, um a um, nos 23 arquivos `.mjs` das três ilhas** (o título e os itens (a) e (b) abaixo nasceram às 19h2xZ dizendo *"a régua da 32.5 não roda em duas ilhas"* — o problema é **muito maior** do que aquela primeira medição viu, e esta linha o redimensiona sem apagar nada):
+**MEDIDO ÀS 20h0xZ DE 26/10/2026, um a um, nos 26 arquivos `.mjs` das três ilhas** (o título e os itens (a) e (b) abaixo nasceram às 19h2xZ dizendo *"a régua da 32.5 não roda em duas ilhas"* — o problema é **muito maior** do que aquela primeira medição viu, e esta linha o redimensiona sem apagar nada):
 
 | ilha | portões de navegador | iniciam | **INERTES** |
 |---|---|---|---|
