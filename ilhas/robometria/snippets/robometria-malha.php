@@ -1,6 +1,13 @@
 /**
  * Robometria — MALHA DE PEÇAS (bloco 5b, primeira leva)
  *
+ * Versão: 1.2.0 (26/10/2026) — A FRASE DE /pecas/ PASSA A DIZER A DEFINICAO do
+ * numero de pares peca x modelo, lida de ROBOMETRIA_PARES_DEFINICAO, a mesma
+ * constante da casca que /sobre/, o A1 e a R1 leem. Item 1 do despacho da
+ * Sentinela de 02/10/2026: tres paginas serviam 91 e uma servia 92, e nenhuma
+ * das quatro dizia qual numero estava dizendo. O numero desta pagina nao mudou
+ * (ele sempre foi o da casca, 91); o que faltava era a definicao ao lado dele.
+ *
  * Versão: 1.1.0 (21/10/2026) — O MOLDE DE CONVERSAO DA SECAO 32, no formato de
  * FICHA da 32.2, nas cinco paginas. A caixa de resposta nasce no topo das tres
  * camadas da arvore (secao, categoria e filha de marca), com o numero contado da
@@ -53,7 +60,7 @@
  */
 
 if ( ! defined( 'ROBOMETRIA_MALHA_VERSAO' ) ) {
-	define( 'ROBOMETRIA_MALHA_VERSAO', '1.1.0' );
+	define( 'ROBOMETRIA_MALHA_VERSAO', '1.2.0' );
 }
 
 /* ---------------------------------------------------------------------------
@@ -643,8 +650,8 @@ function robometria_malha_pagina_secao() {
 	   ar com dois valores. Sem os três, a frase não sai pela metade: cai no
 	   aviso honesto. */
 	$resposta = robometria_casca_preencher_molde(
-		'O banco tem %1$s peças publicáveis de %2$s marcas e %3$s pares peça × modelo, '
-			. 'todos declarados pelo fabricante.',
+		'O banco tem %1$s peças publicáveis de %2$s marcas e %3$s pares peça × modelo '
+			. 'declarados pelo fabricante, ' . ROBOMETRIA_PARES_DEFINICAO . '.',
 		array( 'pecas_publicaveis', 'marcas', 'pares_declarados' )
 	);
 	if ( '' === $resposta ) {

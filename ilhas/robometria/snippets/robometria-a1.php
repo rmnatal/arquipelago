@@ -1,5 +1,14 @@
 /**
  * Robometria A1 — Existe filtro universal de robô aspirador?
+ * Versão: 1.7.0 (26/10/2026) — O UNIVERSO DO PAR, e esta pagina era a que estava
+ * no universo errado: ela servia 92 pares peca x modelo enquanto /sobre/,
+ * /pecas/ e /qual-peca-serve-no-meu-robo-aspirador/ serviam 91, os dois certos
+ * sob definicoes diferentes e nenhuma das quatro dizendo qual. Passa a servir o
+ * par com as DUAS pontas publicaveis, com a definicao DENTRO da frase, e nomeia
+ * em paragrafo proprio o par que fica no banco sem destino. Item 1 do despacho
+ * da Sentinela de 02/10/2026, aberto 24 dias. E a mesma correcao que a R1
+ * recebeu em 16/09 (os dois 71), um artigo adiante.
+ *
  * Versão: 1.6.0 (21/10/2026) — O MOLDE DE CONVERSAO DA SECAO 32, no formato de FICHA da 32.2: a caixa de
  * resposta no topo (o numero e a condicao numa frase), o bloco de compra
  * imediatamente abaixo dela, a tabela de alcance aberta, e o resto do texto em
@@ -83,7 +92,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ROBOMETRIA_A1_VERSAO' ) ) {
-	define( 'ROBOMETRIA_A1_VERSAO', '1.6.0' );
+	define( 'ROBOMETRIA_A1_VERSAO', '1.7.0' );
 	define( 'ROBOMETRIA_A1_SLUG', 'filtro-universal-de-robo-aspirador' );
 	/* O TÍTULO DEIXOU DE AFIRMAR A TESE, e este é o terceiro lugar da mesma
 	   família. A tese deste artigo é uma contagem do banco, e por isso a frase de
@@ -579,10 +588,26 @@ add_shortcode( 'robometria_a1', function () {
 			. ' é declarada para modelos de mais de uma marca, e a lista mais longa do banco nomeia '
 			. robometria_a1_num( $maior['codigos_declarados'] ) . ' códigos de modelo.</p>';
 	}
-	$html .= '<p>São ' . robometria_a1_num( $r['pares_declarados'] ) . ' pares peça × modelo, em '
+	/* A DEFINICAO VAI DENTRO DA FRASE — item 1 do despacho da Sentinela de
+	   02/10/2026, fechado em 26/10. Esta pagina servia 92 enquanto /sobre/,
+	   /pecas/ e a R1 serviam 91: os dois certos, contando coisas diferentes
+	   com as mesmas palavras, e nenhuma das quatro dizendo qual. Numero sem
+	   definicao e o que permitiu os dois conviverem. */
+	$html .= '<p>São ' . robometria_a1_num( $r['pares_declarados'] ) . ' pares peça × modelo declarados pelo fabricante, '
+		. esc_html( ROBOMETRIA_PARES_DEFINICAO ) . ', em '
 		. robometria_a1_num( $r['marcas'] ) . ' marcas, colhidos do catálogo dos próprios fabricantes e verificados em '
 		. esc_html( robometria_a1_data( $f['gerado_em'] ) )
 		. '. Nenhum foi inferido: quando o fabricante não declara, o banco não completa por analogia.</p>';
+	/* E O PAR QUE FICA FORA DA CONTA DIZ QUE FICA. Dois moldes, e o segundo
+	   existe para o dia em que o banco nao tiver nenhum: "0 par a mais" nao e
+	   portugues, e a pagina nao pode emudecer quando o banco mudar — e a mesma
+	   jurisprudencia dos dois moldes de "atravessa marca", logo acima. */
+	$fora = isset( $r['pares_para_modelo_nao_publicavel'] ) ? (int) $r['pares_para_modelo_nao_publicavel'] : 0;
+	if ( $fora > 0 ) {
+		$html .= '<p>O catálogo dos fabricantes declara ' . robometria_a1_num( $fora )
+			. ( 1 === $fora ? ' par a mais, para um modelo' : ' pares a mais, para modelos' )
+			. ' que esta ilha ainda não publica. Ele continua no banco, com o endereço da declaração, e <strong>não entra na conta acima</strong>: ninguém chega a ele pela ferramenta, então contá-lo prometeria uma cobertura que a ferramenta não entrega.</p>';
+	}
 	$html .= '<p>Isso não quer dizer que a peça anunciada como universal não caiba fisicamente em nada. Quer dizer que <strong>ninguém declarou que ela cabe no seu modelo</strong> — e num item que gira encostado no piso, o que decide não é caber, é o encaixe e a vedação que o fabricante especificou.</p>';
 	$html .= '</div>';
 
@@ -726,14 +751,14 @@ add_action( 'wp_head', function () {
 		   ilha existe para ocupar. */
 		'description'      => 0 === (int) $f['resumo']['pecas_que_atravessam_marca']
 			? sprintf(
-				'Nas %d peças de reposição de robô aspirador com compatibilidade declarada pelo fabricante que a Robometria transcreveu, nenhuma é declarada para modelos de mais de uma marca, e a lista mais longa nomeia %d códigos de modelo. São %d pares peça × modelo em %d marcas.',
+				'Nas %d peças de reposição de robô aspirador com compatibilidade declarada pelo fabricante que a Robometria transcreveu, nenhuma é declarada para modelos de mais de uma marca, e a lista mais longa nomeia %d códigos de modelo. São %d pares peça × modelo com a peça e o modelo os dois publicados aqui, em %d marcas.',
 				$f['resumo']['pecas_publicaveis'],
 				$f['maior_alcance']['codigos_declarados'],
 				$f['resumo']['pares_declarados'],
 				$f['resumo']['marcas']
 			)
 			: sprintf(
-				'Das %d peças de reposição de robô aspirador com compatibilidade declarada pelo fabricante que a Robometria transcreveu, apenas %d é declarada para modelos de mais de uma marca, e a lista mais longa nomeia %d códigos de modelo. São %d pares peça × modelo em %d marcas.',
+				'Das %d peças de reposição de robô aspirador com compatibilidade declarada pelo fabricante que a Robometria transcreveu, apenas %d é declarada para modelos de mais de uma marca, e a lista mais longa nomeia %d códigos de modelo. São %d pares peça × modelo com a peça e o modelo os dois publicados aqui, em %d marcas.',
 				$f['resumo']['pecas_publicaveis'],
 				$f['resumo']['pecas_que_atravessam_marca'],
 				$f['maior_alcance']['codigos_declarados'],

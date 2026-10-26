@@ -1,5 +1,12 @@
 /**
  * Robometria Casca — identidade e estrutura do site
+ * Versão: 1.14.0 (26/10/2026) — A DEFINICAO DO PAR PASSA A MORAR NUMA CONSTANTE
+ * desta casca (ROBOMETRIA_PARES_DEFINICAO) e as QUATRO paginas que publicam o
+ * numero de pares peca x modelo a leem de la. Item 1 do despacho da Sentinela
+ * de 02/10/2026: tres paginas serviam 91 e uma servia 92, os dois certos sob
+ * definicoes diferentes, e nenhuma dizia qual. Frase igual digitada em quatro
+ * arquivos volta a divergir; numero sem definicao foi o que permitiu os dois
+ * conviverem por 24 dias.
  * NOTA DE VERSÃO (14/09/2026): a constante ROBOMETRIA_CASCA_VERSAO ficou em
  * 1.5.0 enquanto este cabeçalho já dizia 1.5.1 — a execução de 13/09 moveu o
  * texto e não a constante, e a R1 tinha exatamente a mesma drenagem no mesmo
@@ -255,7 +262,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ROBOMETRIA_CASCA_VERSAO' ) ) {
-	define( 'ROBOMETRIA_CASCA_VERSAO', '1.13.0' );
+	define( 'ROBOMETRIA_CASCA_VERSAO', '1.14.0' );
+	/* A DEFINICAO DO PAR MORA AQUI, UMA VEZ, e as quatro paginas que publicam o
+	   numero a leem desta constante. Item 1 do despacho da Sentinela de
+	   02/10/2026: a ilha servia 91 em tres paginas e 92 na quarta, os dois
+	   certos sob definicoes diferentes, e o que permitiu os dois conviverem foi
+	   NENHUMA das quatro dizer qual delas estava dizendo. Frase igual escrita
+	   quatro vezes volta a divergir — foi assim que os dois numeros nasceram. */
+	define( 'ROBOMETRIA_PARES_DEFINICAO', 'contando só os pares em que a peça e o modelo estão os dois publicados aqui' );
 	define( 'ROBOMETRIA_CASCA_TAGLINE', 'Qual peça o fabricante declarou para o seu robô aspirador — com código, endereço e data' );
 
 	/* GA4 DESTA ILHA — robometria, propriedade 553889920 da conta Arquipélago.
@@ -3193,7 +3207,7 @@ add_shortcode( 'robometria_sobre', function () {
 	$html .= '<div class="rbm-secao"><h2>Como é feita</h2>';
 	$html .= '<p>Sem pessoa em cena: sem rosto, sem vídeo, sem canal, sem presença em fórum. O que sustenta uma resposta aqui é o método e a procedência do dado, e os dois ficam abertos para conferência em cada página. Ferramentas e conteúdo são versionados em repositório público antes de chegarem ao site, e o banco tem um verificador que reprova registro sem fonte, sem data ou com divergência não resolvida — o que está no ar passou por ele.</p>';
 	$html .= robometria_casca_tem_numeros()
-		? '<p>Estado de hoje, sem arredondar para cima: ' . robometria_casca_num( $n['marcas'] ) . ' marcas, ' . robometria_casca_num( $n['modelos_publicaveis'] ) . ' modelos de robô e ' . robometria_casca_num( $n['pares_declarados'] ) . ' pares peça × modelo declarados pelo fabricante. Nenhum par inferido.</p>'
+		? '<p>Estado de hoje, sem arredondar para cima: ' . robometria_casca_num( $n['marcas'] ) . ' marcas, ' . robometria_casca_num( $n['modelos_publicaveis'] ) . ' modelos de robô e ' . robometria_casca_num( $n['pares_declarados'] ) . ' pares peça × modelo declarados pelo fabricante, ' . esc_html( ROBOMETRIA_PARES_DEFINICAO ) . '. Nenhum par inferido.</p>'
 		: robometria_casca_sem_medicao_html();
 	$html .= '</div>';
 

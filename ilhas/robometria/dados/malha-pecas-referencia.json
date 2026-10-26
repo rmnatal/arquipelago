@@ -2,7 +2,7 @@
  "secao": {
   "slug": "pecas",
   "frases": {
-   "resposta": "O banco tem 54 pecas publicaveis de 6 marcas e 91 pares peca x modelo, todos declarados pelo fabricante.",
+   "resposta": "O banco tem 54 pecas publicaveis de 6 marcas e 91 pares peca x modelo declarados pelo fabricante, contando so os pares em que a peca e o modelo estao os dois publicados aqui.",
    "tipos": "Sao 5 tipos de peca no banco: filtro, escova lateral, escova principal, mop e bateria."
   }
  },

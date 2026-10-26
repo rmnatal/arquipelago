@@ -399,13 +399,61 @@ def perguntas(fatos):
         "resposta": (
             "Procurando o modelo na lista de compatibilidade publicada pelo "
             "próprio fabricante. A Robometria reúne essas listas: são %d pares "
-            "peça × modelo em %d marcas, todos declarados pelo fabricante e "
-            "nenhum inferido, cada um com o endereço da declaração e a data em "
-            "que ela foi verificada."
+            "peça × modelo em que a peça e o modelo estão os dois publicados "
+            "aqui, em %d marcas, todos declarados pelo fabricante e nenhum "
+            "inferido, cada um com o endereço da declaração e a data em que ela "
+            "foi verificada."
             % (r["pares_declarados"], r["marcas"])
         ),
     })
     return lista
+
+
+def _pares_entre_publicaveis():
+    """Par peca x modelo com selo do fabricante e as DUAS pontas publicaveis.
+
+    OS DOIS UNIVERSOS DO MESMO NUMERO, SEPARADOS AQUI EM 26/10/2026 (item 1 do
+    despacho da Sentinela de 02/10). Ate hoje `pares_declarados` deste arquivo
+    era `sum(codigos_declarados)` — o par contado do LADO DA PECA, 92 — e
+    /filtro-universal-de-robo-aspirador/ servia 92 enquanto /sobre/,
+    /pecas/ e /qual-peca-serve-no-meu-robo-aspirador/ serviam 91. Os dois
+    estavam certos sob definicoes diferentes e nenhuma das quatro paginas dizia
+    qual delas estava dizendo.
+
+    E A MESMA CORRECAO QUE A R1 RECEBEU EM 16/09/2026, palavra por palavra: a
+    promessa passa a servir o par com as DUAS pontas publicaveis, e os outros
+    dois numeros ganham NOME proprio em vez de serem igualados. Par que aponta
+    para modelo nao publicavel nao esta no seletor, nao tem celula na tabela e
+    nenhum leitor chega nele — hoje e exatamente UM, `multi-pr10124` x
+    `multi-ho401`, e ele esta nomeado no `contagem` do pecas.json.
+
+    A CONTA E FEITA AQUI, a mao, e nao lida de `contagem` nem importada do
+    `gerar-casca-fatos.py` nem do `gerar-r1.py`, que contam a mesma coisa por
+    conta propria. Se as tres lessem a mesma fonte, errariam juntas e todo
+    portao ficaria verde — a cicatriz que a frase da R1 ja pagou uma vez. Quem
+    as faz conversar e `ferramentas/validar-pares.py`, e ele e o unico lugar
+    onde as copias se encontram.
+    """
+    ids_publicaveis = {m["id"] for m in ref.doc_modelos["registros"]
+                       if m.get("status") == "publicavel"}
+    return sum(1
+               for p in ref.doc_pecas["registros"] if p.get("status") == "publicavel"
+               for c in (p.get("compatibilidade") or [])
+               if c.get("selo") == "declarada_fabricante"
+               and c.get("modelo") in ids_publicaveis)
+
+
+def _pares_do_lado_da_peca():
+    """Par declarado pelo fabricante, contado do lado da PECA publicavel.
+
+    E o numero que o `contagem` do pecas.json chama de
+    `pares_peca_x_modelo_declarados`. Ele e verdadeiro e NAO vai para a tela:
+    conta par para modelo que esta ilha nao publica, e a frase da tela promete
+    cobertura que a ferramenta entrega."""
+    return sum(1
+               for p in ref.doc_pecas["registros"] if p.get("status") == "publicavel"
+               for c in (p.get("compatibilidade") or [])
+               if c.get("selo") == "declarada_fabricante")
 
 
 def montar():
@@ -413,7 +461,8 @@ def montar():
     alcance = alcance_das_pecas()
     dispersao = dispersao_por_marca(alcance)
 
-    pares = sum(l["codigos_declarados"] for l in alcance)
+    pares = _pares_entre_publicaveis()
+    pares_no_banco = _pares_do_lado_da_peca()
     # So PECAS, e o nome do campo diz isso. ferramentas/validar-banco.py conta 44
     # "esperando link" somando modelos e pecas; publicar os dois numeros com o
     # mesmo rotulo em paginas diferentes seria a ilha se contradizendo sozinha.
@@ -439,6 +488,8 @@ def montar():
             "modelos_publicaveis": len(varredura["publicaveis"]),
             "pecas_publicaveis": len(publicaveis_de(ref.pecas)),
             "pares_declarados": pares,
+            "pares_declarados_no_banco": pares_no_banco,
+            "pares_para_modelo_nao_publicavel": pares_no_banco - pares,
             "pecas_que_atravessam_marca": len([l for l in alcance if l["atravessa_marca"]]),
             "celulas_total": sum(varredura["celulas"].values()),
             "celulas_sem_resposta": varredura["celulas"][ref.VAZIA],
@@ -460,7 +511,12 @@ def relatorio(f):
     print("  marcas ....................... %d" % r["marcas"])
     print("  modelos publicaveis .......... %d" % r["modelos_publicaveis"])
     print("  pecas publicaveis ............ %d" % r["pecas_publicaveis"])
-    print("  pares peca x modelo .......... %d" % r["pares_declarados"])
+    print("  pares peca x modelo .......... %d  (as duas pontas publicaveis)"
+          % r["pares_declarados"])
+    print("    declarados no banco ........ %d  (contados do lado da peca)"
+          % r["pares_declarados_no_banco"])
+    print("    para modelo nao publicavel . %d  (no banco, fora da tela)"
+          % r["pares_para_modelo_nao_publicavel"])
     print("  pecas que ATRAVESSAM marca ... %d" % r["pecas_que_atravessam_marca"])
     print("  PECAS esperando link de afiliado  %d" % r["pecas_esperando_link"])
 

@@ -125,12 +125,25 @@ rbm_ok( 0 === substr_count( $scripts, '&#038;' ),
 echo "\n3. A tese do artigo, recalculada do banco por uma segunda implementacao\n";
 
 $marca_do_modelo = array();
+$modelo_publicavel = array();
 foreach ( $modelos_b['registros'] as $m ) {
 	$marca_do_modelo[ $m['id'] ] = $m['marca'];
+	if ( 'publicavel' === $m['status'] ) {
+		$modelo_publicavel[ $m['id'] ] = true;
+	}
 }
 
 $pecas_pub      = 0;
 $pares          = 0;
+/* OS DOIS UNIVERSOS DO PAR, RECONTADOS AQUI EM 26/10/2026 (item 1 do despacho
+   da Sentinela de 02/10). Ate hoje esta regua contava UM numero — toda
+   compatibilidade de peca publicavel, 92 — e aprovava a pagina que servia 92
+   enquanto /sobre/, /pecas/ e a R1 serviam 91. A regua nao estava errada no
+   que media: ela nunca perguntou DE QUE UNIVERSO o numero da frase sai, que e
+   palavra por palavra a causa que o item 2 do despacho de 14/09/2026 nomeou.
+   Agora as duas contas existem aqui, separadas, e a que a pagina publica e a
+   das DUAS pontas. */
+$pares_duas_pontas = 0;
 $atravessam     = 0;
 $maior          = 0;
 $maior_id       = '';
@@ -147,6 +160,9 @@ foreach ( $pecas_b['registros'] as $p ) {
 	$conjunto = array();
 	foreach ( $p['compatibilidade'] as $c ) {
 		$pares++;
+		if ( isset( $modelo_publicavel[ $c['modelo'] ] ) ) {
+			$pares_duas_pontas++;
+		}
 		/* O conjunto que a dispersao conta e o de CODIGOS DECLARADOS pelo
 		   fabricante, nunca o de ids de modelo: o codigo existe em todo par
 		   (o esquema o exige) e o `modelo` e null quando aquele codigo ainda
@@ -180,9 +196,16 @@ $r = $fatos['resumo'];
 rbm_ok( (int) $r['pecas_publicaveis'] === $pecas_pub,
 	'pecas publicaveis: os fatos batem com o banco',
 	$r['pecas_publicaveis'] . ' / ' . $pecas_pub );
-rbm_ok( (int) $r['pares_declarados'] === $pares,
-	'pares peca x modelo: os fatos batem com o banco',
-	$r['pares_declarados'] . ' / ' . $pares );
+rbm_ok( (int) $r['pares_declarados'] === $pares_duas_pontas,
+	'pares peca x modelo da TELA: as duas pontas publicaveis, contadas aqui',
+	$r['pares_declarados'] . ' / ' . $pares_duas_pontas );
+rbm_ok( (int) $r['pares_declarados_no_banco'] === $pares,
+	'pares peca x modelo do BANCO: contados do lado da peca',
+	$r['pares_declarados_no_banco'] . ' / ' . $pares );
+rbm_ok( (int) $r['pares_para_modelo_nao_publicavel'] === $pares - $pares_duas_pontas,
+	'os pares sem destino sao a diferenca entre os dois universos',
+	$r['pares_para_modelo_nao_publicavel'] . ' / ' . ( $pares - $pares_duas_pontas ) );
+
 rbm_ok( (int) $r['pecas_que_atravessam_marca'] === $atravessam,
 	'pecas que atravessam marca: os fatos batem com o banco',
 	$r['pecas_que_atravessam_marca'] . ' / ' . $atravessam );
@@ -679,6 +702,26 @@ foreach ( (array) $fatos['vitrine'] as $v ) {
 }
 rbm_ok( empty( $sem_artigo_na_tela ), 'todo cartao escreve "<artigo declarado> <publicador> declara"',
 	empty( $sem_artigo_na_tela ) ? count( $fatos['vitrine'] ) . ' cartao(oes)' : implode( ', ', $sem_artigo_na_tela ) );
+
+/* A FRASE DA PAGINA TEM DE DIZER QUAL DOS DOIS UNIVERSOS ELA ESTA DIZENDO
+   (26/10/2026, item 1 do despacho da Sentinela de 02/10). Numero sem definicao
+   foi o que permitiu 91 e 92 conviverem 24 dias nesta ilha: as quatro paginas
+   publicavam "pares peca x modelo" e nenhuma dizia qual conta era. Medido no
+   corpo VISIVEL, sem acento, como o resto desta secao. */
+rbm_ok( false !== strpos( $corpo_a1,
+		'contando so os pares em que a peca e o modelo estao os dois publicados aqui' ),
+	'a frase do artigo diz a definicao do numero, em palavras de leitor' );
+/* E O PAR QUE FICA DE FORA DIZ QUE FICA: a pagina que servia 92 nao pode passar
+   a servir 91 e emudecer sobre a diferenca, senao o numero cai e o leitor nao
+   sabe por que. */
+if ( (int) $r['pares_para_modelo_nao_publicavel'] > 0 ) {
+	rbm_ok( false !== strpos( $corpo_a1, 'declara ' . number_format_i18n( $r['pares_para_modelo_nao_publicavel'] ) . ' par' ),
+		'a pagina NOMEIA o par que o banco declara e ela nao conta' );
+} else {
+	rbm_ok( false === strpos( $corpo_a1, 'par a mais' )
+			&& false === strpos( $corpo_a1, 'pares a mais' ),
+		'sem par sem destino no banco, a pagina nao fala de par a mais' );
+}
 
 $maior_pub = $fatos['maior_alcance']['publicador'];
 rbm_ok( false !== strpos( $corpo_a1,

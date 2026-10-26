@@ -1016,6 +1016,45 @@ for _doc, _arq in ((modelos, "modelos-robo.json"), (pecas, "pecas.json")):
                           and r["afiliado"]["degrau"] is None))
 conferir_contagem(pecas, "pecas.json", "pares_peca_x_modelo_declarados", pares)
 
+# OS DOIS UNIVERSOS DO PAR, CONTADOS AQUI (26/10/2026, item 1 do despacho da
+# Sentinela de 02/10). O numero acima conta o par do LADO DA PECA; o de baixo
+# conta so o par cujas DUAS pontas estao publicadas, e e esse que vai para a
+# tela. Enquanto a diferenca era zero os dois nomes eram o mesmo numero e
+# ninguem percebia que eram duas contas — foi assim que /filtro-universal/
+# publicou 92 por 24 dias contra os 91 das outras tres paginas.
+#
+# E A DIFERENCA E NOMEADA, nao so contada: par para modelo nao publicavel fica
+# no banco de proposito (o modelo existe para a peca poder apontar para um
+# registro em vez de apontar para o vazio), e sem a lista ele fica invisivel nas
+# DUAS pontas. Numero cuja diferenca ninguem nomeia e numero que volta a
+# divergir.
+_pub_modelo = {r["id"] for r in modelos["registros"] if r["status"] == "publicavel"}
+_duas_pontas, _sem_destino = 0, []
+for _p in pecas["registros"]:
+    if _p["status"] != "publicavel":
+        continue
+    for _c in (_p.get("compatibilidade") or []):
+        if _c.get("selo") != "declarada_fabricante":
+            continue
+        if _c.get("modelo") in _pub_modelo:
+            _duas_pontas += 1
+        else:
+            _sem_destino.append("%s x %s" % (_p["id"], _c.get("modelo")))
+_sem_destino.sort()
+conferir_contagem(pecas, "pecas.json",
+                  "pares_peca_x_modelo_publicaveis_nas_duas_pontas", _duas_pontas)
+conferir_contagem(pecas, "pecas.json", "pares_para_modelo_nao_publicavel",
+                  len(_sem_destino))
+conferir_contagem(pecas, "pecas.json", "pares_para_modelo_nao_publicavel_quais",
+                  _sem_destino)
+# E A CONTA FECHA, OU A DIVERGENCIA TEM NOME: os dois universos sao o mesmo
+# conjunto menos os pares sem destino. Sem esta linha, as tres contagens podiam
+# estar certas uma por uma e incoerentes entre si.
+if _duas_pontas + len(_sem_destino) != pares:
+    erro("pecas.json: %d pares com as duas pontas + %d sem destino dao %d, e o "
+         "banco declara %d pares do lado da peca"
+         % (_duas_pontas, len(_sem_destino), _duas_pontas + len(_sem_destino), pares))
+
 esperando = ([r["id"] for r in modelos["registros"]
               if r["status"] == "publicavel" and not r["afiliado"]["url"]] +
              [p["id"] for p in pecas["registros"]

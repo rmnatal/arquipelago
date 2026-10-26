@@ -8,7 +8,9 @@
     "marcas": 6,
     "modelos_publicaveis": 45,
     "pecas_publicaveis": 54,
-    "pares_declarados": 92,
+    "pares_declarados": 91,
+    "pares_declarados_no_banco": 92,
+    "pares_para_modelo_nao_publicavel": 1,
     "pecas_que_atravessam_marca": 0,
     "celulas_total": 270,
     "celulas_sem_resposta": 173,
@@ -1672,7 +1674,7 @@
     },
     {
       "pergunta": "Como descobrir o código da peça certa para o meu robô aspirador?",
-      "resposta": "Procurando o modelo na lista de compatibilidade publicada pelo próprio fabricante. A Robometria reúne essas listas: são 92 pares peça × modelo em 6 marcas, todos declarados pelo fabricante e nenhum inferido, cada um com o endereço da declaração e a data em que ela foi verificada."
+      "resposta": "Procurando o modelo na lista de compatibilidade publicada pelo próprio fabricante. A Robometria reúne essas listas: são 91 pares peça × modelo em que a peça e o modelo estão os dois publicados aqui, em 6 marcas, todos declarados pelo fabricante e nenhum inferido, cada um com o endereço da declaração e a data em que ela foi verificada."
     }
   ]
 }

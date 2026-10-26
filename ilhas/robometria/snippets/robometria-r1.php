@@ -1,5 +1,12 @@
 /**
  * Robometria R1 — Qual peça serve no meu robô aspirador
+ * Versão: 1.13.0 (26/10/2026) — A FRASE DO ALTO PASSA A DIZER A DEFINICAO do
+ * numero de pares peca x modelo, lida de ROBOMETRIA_PARES_DEFINICAO. O numero
+ * desta pagina ja era o certo desde 16/09/2026, quando os dois 71 foram
+ * separados aqui; o que faltava era a palavra de leitor ao lado dele, e e ela
+ * que impede o proximo numero certo de outro universo de voltar com as mesmas
+ * palavras. Item 1 do despacho da Sentinela de 02/10/2026.
+ *
  * Versão: 1.12.0 (21/10/2026) — O MOLDE DE CONVERSAO DA SECAO 32. A ordem da pagina passou a ser a da 32.1 —
  * uma promessa, o formulario preenchido com o caso de exemplo, a caixa de
  * resultado pre-renderizada, o bloco de compra imediatamente abaixo dela, a
@@ -188,7 +195,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ROBOMETRIA_R1_VERSAO' ) ) {
-	define( 'ROBOMETRIA_R1_VERSAO', '1.12.0' );
+	define( 'ROBOMETRIA_R1_VERSAO', '1.13.0' );
 	define( 'ROBOMETRIA_R1_SLUG', 'qual-peca-serve-no-meu-robo-aspirador' );
 	define( 'ROBOMETRIA_R1_TITULO', 'Qual peça serve no meu robô aspirador' );
 	define( 'ROBOMETRIA_R1_DADOS', 'robometria_dados_r1-respostas' );
@@ -1674,7 +1681,7 @@ add_shortcode( 'robometria_r1', function () {
 	   era texto de outra seção dentro da fronteira de uma. */
 	$html .= '<div class="rbm-secao">';
 	$html .= '<p class="rbm-prova">Aqui só está escrito que uma peça serve quando o fabricante declarou que serve, com o código, o endereço da declaração e a data. Hoje são <span class="rbm-num">' . esc_html( number_format_i18n( isset( $r['pares_declarados'] ) ? $r['pares_declarados'] : 0 ) )
-		. '</span> pares peça × modelo declarados, em <span class="rbm-num">' . esc_html( number_format_i18n( isset( $r['marcas'] ) ? $r['marcas'] : 0 ) )
+		. '</span> pares peça × modelo declarados, ' . esc_html( ROBOMETRIA_PARES_DEFINICAO ) . ', em <span class="rbm-num">' . esc_html( number_format_i18n( isset( $r['marcas'] ) ? $r['marcas'] : 0 ) )
 		. '</span> marcas, cobrindo <span class="rbm-num">' . esc_html( number_format_i18n( isset( $r['modelos_que_respondem'] ) ? $r['modelos_que_respondem'] : 0 ) )
 		. '</span> dos <span class="rbm-num">' . esc_html( number_format_i18n( isset( $r['modelos_publicaveis'] ) ? $r['modelos_publicaveis'] : 0 ) )
 		. '</span> modelos do banco. Nos outros, a resposta é "não localizamos declaração do fabricante" — e ela aparece com essas palavras, porque supor qual peça encaixa é o erro que custa caro para quem compra.</p>';

@@ -408,8 +408,17 @@ def frases_da_secao(s, numeros):
     pares" duas telas abaixo, os dois certos, contando coisas diferentes com o
     mesmo nome). Quem mudar a regua muda um lugar so.
     """
+    # A DEFINICAO VAI DENTRO DA FRASE (26/10/2026, item 1 do despacho da
+    # Sentinela de 02/10). O numero desta pagina sempre foi o da casca, 91, e
+    # continua; o que faltava era dizer QUAL conta ele e. Enquanto tres paginas
+    # serviam 91 e uma servia 92, sem definicao em nenhuma, nao havia como o
+    # leitor — nem a ronda seguinte — saber que eram duas contas e nao um erro.
+    # A frase e a MESMA da constante ROBOMETRIA_PARES_DEFINICAO da casca, que o
+    # molde do snippet le; ferramentas/teste-malha.php poe as duas frente a
+    # frente, sem acento, e reprova se discordarem numa palavra.
     resposta = ("O banco tem %d pecas publicaveis de %d marcas e %d pares peca x "
-                "modelo, todos declarados pelo fabricante." %
+                "modelo declarados pelo fabricante, contando so os pares em que a "
+                "peca e o modelo estao os dois publicados aqui." %
                 (numeros["pecas_publicaveis"], numeros["marcas"],
                  numeros["pares_declarados"]))
     tipos = ("Sao %d tipos de peca no banco: %s." %
