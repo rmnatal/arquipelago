@@ -33,18 +33,19 @@ prioridade dele muda e ninguém reescreve à mão. O portão reprova se achar
 A1 é o julgamento, que é o recorte da ilha. A3 é a paramétrica, que é a vaga da F1. B é onde a F2 mora. C é onde a F3 mora. FREE_TOUR é o bloco 5c. A2 é o único cluster em que a ilha escreveu, com todas as letras, que NÃO vai disputar — e é exatamente o cluster em que o OPERADOR aparece em primeiro (toureiffel.paris e bondinho.com.br, medidos em 14/09/2026). O mesmo achado que tirou a ilha da consulta é o que lhe entrega os candidatos.
 
 **A régua da oferta lê o BANCO, não esta lista.** A lista não oferece ferramenta que esta ilha não sabe servir, e quem decide isso é o BANCO, nunca este arquivo. `prospeccao-referencia.py` lê `dados/experiencias.json` e conta.
-Hoje o banco tem **4 experiências** e **11 versões**, com **3 operador(es) de poder
+Hoje o banco tem **5 experiências** e **16 versões**, com **3 operador(es) de poder
 público**, **0 faixa(s) diária(s)**, **0 passe(s) de cidade** e **0 cobertura(s) de passe**.
 
 ## O ACHADO DESTA PASSADA
 
-**A lista existe, a régua existe, e NENHUM candidato tem ferramenta ofertável hoje — e a causa é UMA, já registrada três vezes nesta ilha sem nunca ter sido ligada à alavanca de link.**
+**A lista tem o PRIMEIRO candidato com ferramenta ofertável, e ele entrou pela porta que a própria lista havia nomeado: a causa de «nenhum» era a composição do banco, e a carga de 27/10/2026 a mudou.**
 
-1. O egresso desta nuvem recusa o domínio da ilha e as fontes de preço (medido em 15/09, 18/09, 22/10 e hoje).
-2. Com a rede fechada, o bloco 3 registrou que `ingresso_de_sitio_publico` era «o único tipo reproduzível enquanto o egresso estiver fechado» — e o banco nasceu com QUATRO experiências de tarifa pública.
-3. Três dos quatro operadores do banco são PODER PÚBLICO (gondoleiros com tarifa da prefeitura de Veneza, Angkor Enterprise, Parco archeologico del Colosseo) e o quarto é concessionária francesa. Poder público não instala widget de afiliado.
-4. Logo a F1 — a única das três ferramentas com dado para servir — não tem a quem ser oferecida: o candidato brasileiro que atende experiência do banco vende versão que INCLUI a do banco, e o operador que vende a mesma versão não tem página em pt-BR medida.
-5. E o critério de entrada do bloco 1 dizia justamente o contrário do que o banco carregou: «prefira experiência de operador privado, com versões vendidas diferentes entre si e sem tabela pública».
+1. O egresso desta nuvem recusa o domínio da ilha e as fontes de preço (medido em 15/09, 18/09, 22/10, 23/10 e hoje, 27/10 — hoje pelas DUAS portas: curl com 403 de política e WebFetch com `getaddrinfo ENOTFOUND`).
+2. Com a rede fechada, o bloco 3 registrou que `ingresso_de_sitio_publico` era «o único tipo reproduzível enquanto o egresso estiver fechado» — e o banco nasceu com QUATRO experiências de tarifa pública. Hoje são CINCO experiências, e a quinta não é de tarifa pública: é o bilhete que uma concessionária brasileira vende pelo próprio site.
+3. Três dos cinco operadores do banco são PODER PÚBLICO (gondoleiros com tarifa da prefeitura de Veneza, Angkor Enterprise, Parco archeologico del Colosseo) e os outros dois são concessionárias de bem público — a francesa da Torre Eiffel e a brasileira do Pão de Açúcar. Poder público não instala widget de afiliado; concessionária que vende direto, pelo próprio site, pode.
+4. A F1 — a única das três ferramentas com dado para servir — PASSOU A TER a quem ser oferecida: `bondinho.com.br`, que vende a MESMA versão que o banco preça. Era o que faltava, e é exatamente o que a linha dele dizia faltar.
+5. O que destravou NÃO foi a rede, e isso é o achado: o egresso continua fechado hoje como estava em 22/10. O que mudou foi a COLETA POR BUSCA alcançar o degrau 4 da escada — as páginas de tarifa do próprio operador, nomeadas uma por uma —, que é o mesmo degrau pelo qual a Torre Eiffel entrou em 15/09. A alavanca de link não esperava a rede; esperava um registro do tipo certo.
+6. E o critério de entrada do bloco 1 continua apontando para onde o banco ainda não chegou: «prefira experiência de operador privado, com versões vendidas diferentes entre si e sem tabela pública». `operador_privado` segue SEM LASTRO no banco, e o Bondinho — que o `PROMPT.md` nomeava como «operador privado brasileiro» — é concessionária. O destravamento valeu pelas condições, não pelo rótulo.
 
 **O que isso custa:** A seção 14.7 do contrato diz que a prospecção do widget é a ÚNICA alavanca de link do projeto, e acrescenta que ela «vale mais no começo do que no fim: backlink é o que faz o robô voltar». Nesta ilha ela está parada pela mesma causa que para a coleta da F2 e da F3 — e esse custo nunca esteve escrito num lugar só.
 
@@ -55,11 +56,11 @@ público**, **0 faixa(s) diária(s)**, **0 passe(s) de cidade** e **0 cobertura(
 ## A LISTA INTEIRA, EM UMA TABELA
 
 25 candidatos: 2 em prioridade 1, 3 em prioridade 2, 13 em prioridade 3, 7 em barrado.
-Com ferramenta ofertável hoje: **F1 0 · F2 0 · F3 0**.
+Com ferramenta ofertável hoje: **F1 1 · F2 0 · F3 0**.
 
 | domínio | tipo | país | brasileiro | prioridade | F1 | F2 | F3 |
 |---|---|---|---|---|---|---|---|
-| `bondinho.com.br` | concessionaria_de_bem_publico | brasil | sim | 1 | não | não | não |
+| `bondinho.com.br` | concessionaria_de_bem_publico | brasil | sim | 1 | sim | não | não |
 | `viagemitalia.com` | guia_autorizado | italia | sim | 1 | não | não | não |
 | `peruexperience.com.br` | não medido | brasil | sim | 3 | não | não | não |
 | `toureiffel.paris` | concessionaria_de_bem_publico | franca | não medido | 3 | não | não | não |
@@ -94,10 +95,11 @@ Com ferramenta ofertável hoje: **F1 0 · F2 0 · F3 0**.
 - É o melhor candidato desta lista e o único que fecha as cinco condições da prioridade 1: brasileiro, operador do bem público mais icônico do Rio, site próprio que vende direto, e mais de uma versão da mesma experiência à venda — que é o eixo exato da F1 (dias × pessoas × padrão).
 - E ele foi medido no cluster que a ilha DECLAROU não disputar: apareceu com TRÊS URLs próprias em «ingresso pão de açúcar quanto custa», e é justamente esse achado — «em experiência com operador único e site oficial em pt, o operador ganha a consulta de preço» — que tira a ilha da consulta e o entrega como anfitrião.
 - O que o operador NÃO responde é o que a ferramenta responde: qual das versões sai melhor para 2 adultos e 2 crianças, com o que está incluso em cada uma. As versões apareceram na busca publicadas por TERCEIRO (melhoresdestinos), não pela página do próprio operador — a página dele não foi aberta, e o egresso desta nuvem a recusa.
-- E a ferramenta não existe para lhe oferecer: o Pão de Açúcar NÃO está em `dados/experiencias.json`. É a linha desta lista que mede o custo da composição do banco — ver «O ACHADO DESTA PASSADA», acima.
+- A FERRAMENTA PASSOU A EXISTIR PARA LHE SER OFERECIDA, em 27/10/2026. Esta linha dizia «a ferramenta não existe para lhe oferecer: o Pão de Açúcar NÃO está em `dados/experiencias.json`» — e isso deixou de ser verdade na carga de hoje, que entrou com o Parque Bondinho como quinta experiência do banco, cinco versões lidas nas páginas do próprio operador. Com `experiencias_do_banco_atendidas` apontando para ela e a relação medida como `vende_a_mesma_versao`, a F1 vira ofertável a este candidato — o PRIMEIRO desta lista de 25. O destravamento era PRÉ-REGISTRADO no `PROMPT.md` desta ilha, com este domínio escrito pelo nome, e disparou pelo caminho que ele previu. O que ele previu ERRADO foi o rótulo: o critério dizia «operador privado brasileiro», e o Bondinho é `concessionaria_de_bem_publico` — mesmo tipo da SETE, que opera a Torre Eiffel. `operador_privado` segue SEM LASTRO no banco. As três condições que o critério cobra de fato (brasileiro, vende direto pelo próprio site, mais de uma versão da mesma experiência) estão as três cumpridas, e é por elas que a linha destrava.
+- E O QUE ELE AINDA NÃO TEM É CONTATO, e isso não mudou hoje: nenhum site foi aberto, porque o egresso desta nuvem recusa `bondinho.com.br` pelas duas portas — `curl` em 000 com 403 de política em quatro hosts do domínio, e WebFetch em `getaddrinfo ENOTFOUND`, as duas medidas em 27/10/2026. Oferta de widget é conversa com pessoa, e conversa com pessoa é do Raphael (seção 7).
 
 **Ferramenta ofertável hoje:**
-- **F1 — não.** Atende experiência que O BANCO NÃO TEM — sem registro no banco a F1 não responde nada na página dele.
+- **F1 — SIM.** Vende a mesma versão que o banco preça (rio-de-janeiro-bondinho-pao-de-acucar), e a F1 responde o que ele não responde: qual versão sai melhor para este grupo.
 - **F2 — não.** O banco tem ZERO FAIXA_DIARIA: a F2 publica uma linha de quatro e recusa as outras três pelo nome.
 - **F3 — não.** O banco tem 0 passe(s) e 0 cobertura(s): a F3 não tem o que somar.
 
@@ -106,6 +108,7 @@ Com ferramenta ofertável hoje: **F1 0 · F2 0 · F3 0**.
 - sustenta `site_proprio`, `vende_experiencia` — busca, em mercadoeeventos.com.br, lido em 2026-10-23: «o Parque dará 15% de desconto aos visitantes que comprarem o bilhete pelo site https://bondinho.com.br/»
 - sustenta `mais_de_uma_versao_vendida` — busca, em melhoresdestinos.com.br/novas-experiencias-bondinho-rj.html, lido em 2026-10-23: «o Parque Bondinho Pão de Açúcar tem ainda outras experiências especiais, como o bonde exclusivo, o Tour Ecológico com Fast Pass + Café da Manhã ou o Bonde Exclusivo + Aula de Caipirinha + Feijoada»
 - sustenta `brasileiro` — corpus, em `dados/corpus-buscas.md`, cluster A2 — a consulta é «ingresso pão de açúcar quanto custa», de um bem público no Rio de Janeiro, e o domínio é `.com.br`, lido em 2026-09-14: «ingresso pão de açúcar quanto custa»
+- sustenta `mais_de_uma_versao_vendida`, `vende_experiencia` — busca, em sac.bondinho.com.br/hc/pt-br/articles/24239141433883 («Tipos de bilhetes») e bondinho.com.br/pt/ingresso-bondinho — paginas do proprio operador, nomeadas na busca restrita ao dominio, lido em 2026-10-27: «Valor: R$ 205, com valor maior às sextas e sábados nos horários das 15h, 16h e 17h (R$ 230); mais o Acesso Rápido, o Amanhecer e os dois bilhetes de Trilheiros, cada um com escopo diferente»
 
 ### Viagem Itália — tours em português em Roma — `viagemitalia.com`
 

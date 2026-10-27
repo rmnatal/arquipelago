@@ -228,6 +228,10 @@ def _frases_de(resposta):
         frases.append(l["frase"])
     frases.append(resposta["bloco_de_compra"]["aviso"])
     frases.append(resposta["bloco_de_compra"]["o_que_e"])
+    for f in resposta["elegibilidade"]["frases"]:
+        frases.append(f)
+    for n in resposta["elegibilidade"]["nao_acumulam_com_faixa_etaria"]:
+        frases.append(n["frase"])
     for l in resposta["prestacao_de_contas"]["linhas"]:
         frases.append(l["frase"])
     frases.extend(resposta["faixa_etaria"]["frases"])
@@ -313,6 +317,23 @@ def conferir(f1=None, banco=None, esquema=None, constantes=None, doc_respostas=N
                            "%s: deveria recusar por grupo fora da faixa e nao recusou" % onde)
                     afirma(r["contas"] is None,
                            "%s: recusou e mesmo assim publicou conta" % onde)
+                elif versao.get("preco") is None:
+                    # VERSAO SEM PRECO LIDO (27/10/2026, o Acesso Rapido do Bondinho).
+                    # A F1 ja tinha o codigo `preco_nao_lido` e ele disparou certo na
+                    # primeira versao de preco null deste banco — o que faltava era este
+                    # portao saber que existe versao sem preco. Ela nao e defeito: e o
+                    # operador publicando DOIS valores para o mesmo bilhete em duas
+                    # paginas dele, e a ilha dizendo isso em vez de escolher um.
+                    afirma(r["recusa_dura"] is not None
+                           and r["recusa_dura"]["codigo"] == "preco_nao_lido",
+                           "%s: versao com `preco` null e a F1 nao recusou por "
+                           "`preco_nao_lido`: %r" % (onde, r["recusa_dura"]))
+                    afirma(r["contas"] is None,
+                           "%s: recusou por preco nao lido e mesmo assim publicou conta."
+                           % onde)
+                    afirma(bool(versao.get("motivo_sem_preco")),
+                           "%s: versao sem preco e sem `motivo_sem_preco` no banco."
+                           % onde)
                 else:
                     afirma(r["recusa_dura"] is None,
                            "%s: recusou dentro da faixa que tem de responder (%r)"
@@ -353,9 +374,65 @@ def conferir(f1=None, banco=None, esquema=None, constantes=None, doc_respostas=N
                 afirma(c["unidades_necessarias"] == unidades,
                        "%s: %r unidades e a conta a mao da %r"
                        % (onde, c["unidades_necessarias"], unidades))
-                afirma(Fraction(c["total_com_iof"]) == _centavo_a_mao(total_iof),
-                       "%s: total com IOF %s e a conta a mao da %s"
-                       % (onde, c["total_com_iof"], _centavo_a_mao(total_iof)))
+                # O IOF SO EXISTE EM COMPRA INTERNACIONAL (27/10/2026). Esta
+                # afirmacao conferia a conta do IOF em TODA versao, e estava certa por
+                # acidente: o banco nao tinha preco em real. O Bondinho cobra R$ 205 de
+                # um brasileiro no caixa dele, e o IOF de compra internacional somado
+                # ali e dinheiro inventado — R$ 144,90 num bilhete de R$ 140. A
+                # fronteira se confere nos DOIS lados: em moeda estrangeira a conta tem
+                # de bater, em real o campo tem de ser null E o motivo tem de estar
+                # escrito.
+                internacional = moeda != "BRL_do_operador"
+                afirma(c.get("compra_internacional") is internacional,
+                       "%s: `compra_internacional` %r e a moeda da versao e %r"
+                       % (onde, c.get("compra_internacional"), moeda))
+                if internacional:
+                    afirma(Fraction(c["total_com_iof"]) == _centavo_a_mao(total_iof),
+                           "%s: total com IOF %s e a conta a mao da %s"
+                           % (onde, c["total_com_iof"], _centavo_a_mao(total_iof)))
+                    afirma(c.get("motivo_sem_iof") is None,
+                           "%s: compra internacional com `motivo_sem_iof` escrito."
+                           % onde)
+                else:
+                    afirma(c["total_com_iof"] is None
+                           and c["total_com_iof_escrito"] is None
+                           and c["por_pessoa_com_iof_escrito"] is None
+                           and c["iof_percentual"] is None,
+                           "%s: o operador cobra em real e a conta publica IOF: %r"
+                           % (onde, c["total_com_iof_escrito"]))
+                    afirma(bool(c.get("motivo_sem_iof")),
+                           "%s: sem IOF e sem `motivo_sem_iof`. Linha que nao se aplica "
+                           "nao some calada da tela." % onde)
+
+                # --- 2b-bis. A CONTA NUNCA USA PRECO DE ELEGIBILIDADE (27/10/2026)
+                # E a afirmacao que impede o defeito mais caro desta carga: o total
+                # sai da tarifa CHEIA, porque sem autoridade a regra resolve para o
+                # maior e porque quem chega sem o comprovante paga o cheio. Se um
+                # preco de elegibilidade entrasse na conta, a pagina diria a um
+                # estrangeiro que o bilhete custa R$ 89.
+                el = r["elegibilidade"]
+                afirma(el["tem_elegibilidade"] == bool(versao.get("elegibilidade")),
+                       "%s: `tem_elegibilidade` %r e o banco traz %r"
+                       % (onde, el["tem_elegibilidade"],
+                          bool(versao.get("elegibilidade"))))
+                for _p in el["precos_que_a_conta_NAO_usa"]:
+                    _unit = Fraction(str(_p))
+                    afirma(Fraction(c["total"]) != _unit * pessoas,
+                           "%s: o total %s e o preco de elegibilidade %s vezes %d "
+                           "pessoas. A conta tem de sair da tarifa CHEIA."
+                           % (onde, c["total"], _p, pessoas))
+                    afirma(Fraction(c["preco_unitario"]) != _unit,
+                           "%s: o preco unitario da conta e o de uma elegibilidade (%s), "
+                           "e nao a tarifa cheia." % (onde, _p))
+                # E a soma nunca se presume: elegibilidade com `acumula` false tem de
+                # dizer isso na tela, porque o leitor que ve os dois descontos juntos
+                # presume que se somam.
+                for _e in (versao.get("elegibilidade") or []):
+                    if _e.get("acumula_com_faixa_etaria") is False:
+                        afirma(any(_e.get("rotulo") in n["frase"]
+                                   for n in el["nao_acumulam_com_faixa_etaria"]),
+                               "%s: `%s` nao acumula com a faixa etaria e a tela nao "
+                               "diz isso." % (onde, _e.get("rotulo")))
 
                 # --- 2c. O NUMERO DA CONTA E O NUMERO DA FRASE sao o mesmo
                 # (secao 8: afirmacao sobre o que a pagina diz se mede no corpo).
@@ -367,12 +444,27 @@ def conferir(f1=None, banco=None, esquema=None, constantes=None, doc_respostas=N
                 afirma(esperado_pessoa in r["frase_resposta"],
                        "%s: a frase-resposta nao publica o por pessoa %s: %s"
                        % (onde, esperado_pessoa, r["frase_resposta"][:130]))
-                afirma(_numero_na_frase(total_iof, moeda) in r["cartao_brasileiro"],
-                       "%s: a linha do cartao nao publica %s: %s"
-                       % (onde, _numero_na_frase(total_iof, moeda), r["cartao_brasileiro"]))
-                afirma(_numero_na_frase(por_pessoa_iof, moeda) in r["cartao_brasileiro"],
-                       "%s: a linha do cartao nao publica o por pessoa com IOF %s"
-                       % (onde, _numero_na_frase(por_pessoa_iof, moeda)))
+                if internacional:
+                    afirma(_numero_na_frase(total_iof, moeda) in r["cartao_brasileiro"],
+                           "%s: a linha do cartao nao publica %s: %s"
+                           % (onde, _numero_na_frase(total_iof, moeda),
+                              r["cartao_brasileiro"]))
+                else:
+                    afirma("IOF" in r["cartao_brasileiro"]
+                           and "Sem IOF" in r["cartao_brasileiro"],
+                           "%s: compra em real e a linha do cartao nao diz que NAO ha "
+                           "IOF: %s" % (onde, r["cartao_brasileiro"]))
+                    afirma(_numero_na_frase(total_iof, moeda) not in r["cartao_brasileiro"],
+                           "%s: compra em real e a linha do cartao publica o total com "
+                           "IOF: %s" % (onde, r["cartao_brasileiro"]))
+                if internacional:
+                    afirma(_numero_na_frase(por_pessoa_iof, moeda) in r["cartao_brasileiro"],
+                           "%s: a linha do cartao nao publica o por pessoa com IOF %s"
+                           % (onde, _numero_na_frase(por_pessoa_iof, moeda)))
+                else:
+                    afirma(_numero_na_frase(por_pessoa_iof, moeda) not in r["cartao_brasileiro"],
+                           "%s: compra em real e a linha do cartao publica o por pessoa "
+                           "com IOF %s" % (onde, _numero_na_frase(por_pessoa_iof, moeda)))
 
                 # --- 2d. A DATA DE LEITURA e obrigatoria na tela. Preco cravado como
                 # atual sem a data e, pelo VOZ.md, o defeito mais grave desta ilha.
@@ -436,16 +528,70 @@ def conferir(f1=None, banco=None, esquema=None, constantes=None, doc_respostas=N
                            "%s: link CRU saindo com rel %r. `sponsored` declara relacao "
                            "paga e ninguem esta pagando por este clique." % (onde, b["rel"]))
 
-                # --- 2h. NENHUM VALOR EM REAL, em nenhuma frase. As constantes de
-                # cambio estao pendentes, e constante pendente nao entra em formula
-                # publicada (secao 10).
+                # --- 2h. VALOR EM REAL SO QUANDO O OPERADOR COBRA EM REAL.
+                #
+                # Esta afirmacao dizia «R$ nunca aparece», e ela estava CERTA POR
+                # ACIDENTE: as quatro experiencias deste banco cobravam em EUR e USD,
+                # e todo R$ na tela so poderia ser conversao feita por esta ilha com o
+                # cambio PENDENTE, que a secao 10 proibe. Em 27/10/2026 entrou o
+                # Bondinho, que cobra R$ 205 no caixa dele, e a afirmacao passou a
+                # reprovar 597 frases legitimas — o preco do operador, lido na fonte
+                # dele, na moeda dele.
+                #
+                # E ela e GEMEA de um defeito achado na mesma passada, um andar abaixo:
+                # o contador `experiencias_com_preco_em_brl` do validar-banco.py vivia
+                # dentro de um ramo de ERRO e publicava 0, que tambem era a verdade por
+                # acidente. Duas reguas escritas no mundo sem real, as duas corretas
+                # enquanto o mundo nao mudou, as duas erradas no dia em que mudou — e
+                # NENHUMA das duas erra alto: uma reprova o certo, a outra aprova o
+                # errado.
+                #
+                # A regra, agora: o que a secao 10 proibe e CONVERSAO, nunca o simbolo.
+                # Se a versao cobra em `BRL_do_operador`, R$ e a moeda da fonte e pode
+                # ir a tela; se cobra em EUR ou USD, R$ na frase so pode ter vindo de
+                # uma conta de cambio, e continua proibido.
+                # A primeira tentativa do conserto trocou um falso positivo por
+                # outro: proibir €/US$ numa versao em real reprovou a declaracao da
+                # PLATAFORMA, que publica em dolar. Citar a moeda de quem declarou nao
+                # e conversao — e citacao, e a tela leva o nome dele ao lado. O que a
+                # secao 10 proibe e a ilha PRODUZIR um numero numa moeda que nenhuma
+                # fonte daquele item declarou, porque esse numero so pode ter saido de
+                # uma conta de cambio com constante pendente.
+                #
+                # A regra, agora por CONTENCAO: o conjunto de simbolos de dinheiro na
+                # tela tem de caber no conjunto de moedas que os registros DESTA
+                # experiencia declaram — versao, faixa etaria, elegibilidade, acrescimo
+                # e declaracao. Simbolo fora desse conjunto e cambio.
+                _declaradas = {versao.get("moeda")}
+                for _lista in ("faixa_etaria", "elegibilidade", "acrescimos"):
+                    for _item in (versao.get(_lista) or []):
+                        _declaradas.add(_item.get("moeda"))
+                for _dec in (exp.get("declaracoes") or []):
+                    if _dec.get("publicavel_na_tela"):
+                        _declaradas.add(_dec.get("moeda"))
+                # TODO NENHUM: os nomes deste bloco levam `_` de proposito. A primeira
+                # versao dele usou `moeda` e `simbolo` como variaveis de laco e
+                # SOBRESCREVEU a `moeda` do escopo de fora, que este portao usa para
+                # montar a frase esperada de cada afirmacao — 482 afirmacoes passaram a
+                # esperar «R$ 18» da gondola, que cobra em euro. O teste que confere o
+                # cambio quebrou a conferencia do cambio, e e a mesma familia das duas
+                # metades que nunca se falam.
+                _simbolos = {"EUR": "€", "USD": "US$", "BRL_do_operador": "R$"}
+                _permitidos = {_simbolos[m] for m in _declaradas if m in _simbolos}
                 for frase in _frases_de(r):
-                    afirma("R$" not in frase,
-                           "%s: a tela publica valor em real com o cambio pendente: %s"
-                           % (onde, frase[:110]))
+                    for _m, _simbolo in _simbolos.items():
+                        # «R$» nao e subcadeia de «US$», mas «$» sozinho seria: a
+                        # conferencia e por simbolo inteiro, nunca por caractere.
+                        if _simbolo in frase and _simbolo not in _permitidos:
+                            afirma(False,
+                                   "%s: a tela publica valor em %s e NENHUM registro "
+                                   "desta experiencia declara essa moeda — numero assim "
+                                   "so sai de conversao, e o cambio esta PENDENTE: %s"
+                                   % (onde, _simbolo, frase[:110]))
 
                 # --- 2i. recusa de resposta UNICA aparece no maximo uma vez
                 unicas = ("sem_valor_em_real", "sem_temporada", "sem_faixa_etaria",
+                          "sem_elegibilidade",
                           "registro_pendente_de_releitura", "grupo_fora_da_faixa")
                 for codigo in unicas:
                     quantas = sum(1 for x in r["recusas"] if x["codigo"] == codigo)
@@ -483,20 +629,41 @@ def conferir(f1=None, banco=None, esquema=None, constantes=None, doc_respostas=N
 
     # ------------------------------------------------- 4. A TABELA PRE-RENDERIZADA
     tabela = f1.tabela_pre_renderizada(banco, esquema, constantes)
+    # DUAS CONTAGENS, E ELAS DEIXARAM DE SER A MESMA EM 27/10/2026. `versoes_no_banco`
+    # e quantas versoes o operador vende — e e esse o numero que o arquivo de respostas
+    # publica. `versoes_com_preco` e quantas tem numero para pre-renderizar: o Acesso
+    # Rapido do Bondinho esta no banco e NAO tem preco, porque o proprio operador
+    # publica dois valores para ele em duas paginas dele. Enquanto nenhuma versao tinha
+    # `preco` null as duas contas coincidiam POR ACIDENTE, e usar uma no lugar da outra
+    # passava. Separa-las e o conserto; junta-las de novo e o defeito.
     versoes_no_banco = sum(len(e["versoes"]) for e in banco["experiencias"])
-    afirma(len(tabela) == versoes_no_banco * len(PESSOAS_DA_TABELA),
-           "a tabela tem %d linhas e as %d versoes contadas no banco x %d numeros de "
-           "pessoas dao %d" % (len(tabela), versoes_no_banco, len(PESSOAS_DA_TABELA),
-                               versoes_no_banco * len(PESSOAS_DA_TABELA)))
-    afirma(sum(1 for l in tabela if l["pessoas"] == 6) == versoes_no_banco,
-           "a tabela nao traz a linha de 6 pessoas para todas as %d versoes. O 6 e "
-           "obrigatorio: e onde o degrau de capacidade aparece, e tabela que para em 4 "
-           "esconde exatamente o que esta ferramenta tem de diferente." % versoes_no_banco)
+    versoes_com_preco = sum(1 for e in banco["experiencias"] for v in e["versoes"]
+                            if v.get("preco") is not None)
+    afirma(len(tabela) == versoes_com_preco * len(PESSOAS_DA_TABELA),
+           "a tabela tem %d linhas e as %d versoes COM PRECO contadas no banco x %d "
+           "numeros de pessoas dao %d"
+           % (len(tabela), versoes_com_preco, len(PESSOAS_DA_TABELA),
+              versoes_com_preco * len(PESSOAS_DA_TABELA)))
+    afirma(sum(1 for l in tabela if l["pessoas"] == 6) == versoes_com_preco,
+           "a tabela nao traz a linha de 6 pessoas para todas as %d versoes com preco. "
+           "O 6 e obrigatorio: e onde o degrau de capacidade aparece, e tabela que para "
+           "em 4 esconde exatamente o que esta ferramenta tem de diferente."
+           % versoes_com_preco)
     for linha in tabela:
         afirma(bool(linha["lido_em"]),
                "linha da tabela sem data de leitura: %r" % (linha,))
-        afirma("R$" not in linha["total"] and "R$" not in linha["com_iof"],
-               "linha da tabela com valor em real: %r" % (linha,))
+        # Mesma correcao do portao do cambio, agora na tabela pre-renderizada: o que
+        # se proibe e CONVERSAO, nao o simbolo. Linha cuja experiencia cobra em real
+        # tem de trazer R$ e NAO pode trazer linha de IOF.
+        em_real = linha["total"].startswith("R$")
+        if em_real:
+            afirma(linha["com_iof"] is None,
+                   "linha da tabela em real COM coluna de IOF — imposto de compra "
+                   "internacional numa compra que nao sai do pais: %r" % (linha,))
+        else:
+            afirma("R$" not in linha["total"] and "R$" not in (linha["com_iof"] or ""),
+                   "linha da tabela com valor em real e preco em outra moeda, o que "
+                   "so sai de conversao com o cambio pendente: %r" % (linha,))
 
     # A tabela e refeita a mao, linha por linha, a partir do banco.
     por_rotulo = {}

@@ -154,6 +154,8 @@ def mundo_por_pessoa(banco):
                               "fonte": "operador-petra-teste",
                               "data_leitura": "2026-09-14"}],
             "faixas_que_a_fonte_declara_e_a_leitura_nao_transcreveu": [],
+            "elegibilidade": None,
+            "motivo_sem_elegibilidade": "mundo de mutacao: a fonte de bancada nao declara tarifa por residencia nem nacionalidade.",
         }
 
     banco["experiencias"].append({
@@ -254,7 +256,28 @@ def mundo_sem_divergencia(banco):
     # As tres fontes editoriais so existiam para sustentar as declaracoes. Sem elas
     # viram fonte orfa, e fonte orfa e erro duro — de proposito: dado colhido que a
     # tela nunca usa e a outra direcao do numero digitado (secao 8).
-    usadas = {v["fonte"] for e in banco["experiencias"] for v in e["versoes"]}
+    # QUAIS FONTES CONTINUAM USADAS — e esta conta estava INCOMPLETA, o que so deu
+    # para ver em 27/10/2026, com a carga do Bondinho. Ela olhava apenas `versao.fonte`,
+    # e por isso podava fonte que uma DECLARACAO, uma FAIXA ETARIA, uma ELEGIBILIDADE
+    # ou a RESOLUCAO de outra experiencia ainda referencia — derrubando este mundo por
+    # fonte orfa que nao era orfa. O Bondinho e a primeira experiencia deste banco cujas
+    # declaracoes se apoiam numa fonte que NENHUMA versao usa (o blog do proprio
+    # operador, que discorda da pagina de bilhete dele), e foi ela que expos a conta
+    # pela metade. Agora a conta varre todo lugar do banco que aponta para uma fonte.
+    usadas = set()
+    for e in banco["experiencias"]:
+        for v in e["versoes"]:
+            usadas.add(v.get("fonte"))
+            for lista in ("faixa_etaria", "elegibilidade"):
+                for item in (v.get(lista) or []):
+                    usadas.add(item.get("fonte"))
+        for dec in (e.get("declaracoes") or []):
+            usadas.add(dec.get("fonte"))
+        if isinstance(e.get("resolucao"), dict):
+            usadas.add(e["resolucao"].get("fonte"))
+    for lista in ("faixas_diarias", "coberturas_de_passe"):
+        for item in (banco.get(lista) or []):
+            usadas.add(item.get("fonte"))
     banco["fontes"] = [f for f in banco["fontes"] if f["id"] in usadas]
     return sincronizar_resumo(banco)
 
@@ -1157,6 +1180,8 @@ def _versao_de_passe(vid, rotulo, preco, dias):
         "faixa_etaria": None,
         "motivo_sem_faixa_etaria": "mundo de mutacao: a fonte de bancada nao declara faixa.",
         "faixas_que_a_fonte_declara_e_a_leitura_nao_transcreveu": [],
+            "elegibilidade": None,
+            "motivo_sem_elegibilidade": "mundo de mutacao: a fonte de bancada nao declara tarifa por residencia nem nacionalidade.",
     }
 
 
@@ -1497,11 +1522,154 @@ def q_dias_de_uso_null_sem_motivo_em_eixo_null(banco):
     return sincronizar_resumo(banco)
 
 
+# ======================================================================
+# A ELEGIBILIDADE (27/10/2026, carga do Bondinho Pao de Acucar)
+#
+# A troca entre faixa etaria e elegibilidade e o defeito que estas quebras existem
+# para pegar, e ela e SILENCIOSA: os dois campos guardam um preco menor com uma
+# condicao escrita ao lado, e lidos de longe parecem a mesma coisa. O que os separa
+# e O QUE SE PROVA na porta — idade de um lado, residencia do outro.
+# As duas primeiras medem os DOIS SENTIDOS da troca, e o sentido que a ilha ia errar
+# e o segundo: na carga de hoje os cinco precos do mesmo bilhete vieram na mesma
+# leitura, e a saida barata era chamar os cinco de faixa.
+def _bondinho(banco):
+    return _achar(banco, "rio-de-janeiro-bondinho-pao-de-acucar")
+
+
+def _bilhete(banco):
+    return _bondinho(banco)["versoes"][0]
+
+
+def q_idade_gravada_como_elegibilidade(banco):
+    """Primeiro sentido: a condicao da elegibilidade passa a declarar idade."""
+    _bilhete(banco)["elegibilidade"][0]["condicao"] = "crianca de 3 a 12 anos"
+    return banco
+
+
+def q_residencia_gravada_como_faixa_etaria(banco):
+    """Segundo sentido, e o que a ilha ia errar: a promocional de brasileiro desce
+    para `faixa_etaria`, que e o campo da idade. R$ 160 nao e preco de uma idade."""
+    v = _bilhete(banco)
+    v["faixa_etaria"].append({
+        "rotulo": "Promocional para Brasileiros", "preco": 160,
+        "moeda": "BRL_do_operador",
+        "condicao": "ter nascido no Brasil E morar no Brasil",
+        "se_nao_cumprir": "paga R$ 205",
+        "declarado_como": "todas as pessoas nascidas e moradoras do Brasil pagam R$ 160",
+        "fonte": "parque-bondinho-tarifa-via-busca", "data_leitura": "2026-10-27"})
+    return sincronizar_resumo(banco)
+
+
+def q_elegibilidade_null_sem_motivo(banco):
+    del _bondinho(banco)["versoes"][1]["motivo_sem_elegibilidade"]
+    return banco
+
+
+def q_elegibilidade_sem_o_campo(banco):
+    del _bondinho(banco)["versoes"][1]["elegibilidade"]
+    return banco
+
+
+def q_elegibilidade_lista_vazia(banco):
+    _bondinho(banco)["versoes"][1]["elegibilidade"] = []
+    return banco
+
+
+def q_elegibilidade_fora_do_vocabulario(banco):
+    _bilhete(banco)["elegibilidade"][0]["o_que_se_prova"] = "idade"
+    return banco
+
+
+def q_elegibilidade_mais_cara_que_o_bilhete(banco):
+    """R$ 300 num bilhete de R$ 205: desconto que custa mais que a tarifa cheia nao
+    e desconto de ninguem."""
+    _bilhete(banco)["elegibilidade"][1]["preco"] = 300
+    return banco
+
+
+def q_elegibilidade_em_outra_moeda(banco):
+    _bilhete(banco)["elegibilidade"][0]["moeda"] = "EUR"
+    return banco
+
+
+def q_elegibilidade_sem_declarado_como(banco):
+    del _bilhete(banco)["elegibilidade"][0]["declarado_como"]
+    return banco
+
+
+def q_elegibilidade_sem_data_de_leitura(banco):
+    del _bilhete(banco)["elegibilidade"][1]["data_leitura"]
+    return banco
+
+
+def q_elegibilidade_sem_se_nao_cumprir(banco):
+    """A metade que custa dinheiro na porta: sem ela a tela diz que ha um preco de
+    R$ 89 e nao diz o que paga quem nao prova que e do Rio."""
+    _bilhete(banco)["elegibilidade"][1]["se_nao_cumprir"] = None
+    return banco
+
+
+def q_elegibilidade_com_fonte_inexistente(banco):
+    _bilhete(banco)["elegibilidade"][0]["fonte"] = "fonte-que-nao-existe"
+    return banco
+
+
+def q_rotulo_de_elegibilidade_repetido(banco):
+    v = _bilhete(banco)
+    v["elegibilidade"][1]["rotulo"] = v["elegibilidade"][0]["rotulo"]
+    return banco
+
+
+def q_soma_presumida_com_campo_null(banco):
+    """O campo que impede a F1 de multiplicar: null numa versao que TEM faixa etaria
+    e exatamente o caso em que a regua precisa saber se pode somar. Medido: metade de
+    R$ 89 e R$ 44,50 e o operador cobra R$ 44 — cinquenta centavos inventados."""
+    _bilhete(banco)["elegibilidade"][0]["acumula_com_faixa_etaria"] = None
+    return banco
+
+
+def q_soma_autorizada_sem_frase_da_fonte(banco):
+    """`acumula` true sem a frase da fonte que autoriza somar. Ressalva inventada e
+    invencao, e autorizacao inventada e pior."""
+    _bilhete(banco)["elegibilidade"][0]["acumula_com_faixa_etaria"] = True
+    return banco
+
+
+def q_elegibilidade_sem_o_campo_acumula(banco):
+    del _bilhete(banco)["elegibilidade"][1]["acumula_com_faixa_etaria"]
+    return banco
+
+
+def q_resumo_de_elegibilidade_digitado(banco):
+    banco["resumo"]["elegibilidades"] = 9
+    return banco
+
+
+def q_elegibilidade_na_experiencia(banco):
+    _bondinho(banco)["elegibilidade"] = [{"rotulo": "Promocional para Brasileiros"}]
+    return banco
+
+
+def q_brl_contado_a_mao(banco):
+    """O contador que contava a coisa errada ate 27/10/2026: ele vivia dentro do ramo
+    de ERRO da conferencia de moeda e publicava sob um nome que dizia o contrario.
+    Com o banco todo em EUR e USD saia 0, e 0 era a verdade por acidente."""
+    banco["resumo"]["experiencias_com_preco_em_brl"] = 0
+    return banco
+
+
 MUTACOES = [
     ("MUNDO preco por pessoa, escada de dias, crianca e temporada", mundo_por_pessoa, "passa", None),
     ("MUNDO preco por cabine", mundo_por_cabine, "passa", None),
     ("MUNDO item com link rastreado e intestavel", mundo_com_link_rastreado, "passa", None),
-    ("MUNDO experiencia sem divergencia nenhuma", mundo_sem_divergencia, "passa", "degrau_6_negado"),
+    # O PAR `degrau_6_negado` SAIU EM 27/10/2026, e a saida e a propria regra
+    # funcionando. Este mundo esvazia as declaracoes da GONDOLA, e ate ontem isso
+    # apagava do banco todas as fontes de nivel 6 — logo o esquema tinha de negar
+    # o degrau 6 junto, porque `existe_hoje` e DERIVADO das fontes. Com a carga do
+    # Bondinho ha fontes de nivel 6 em OUTRA experiencia (a imprensa dos 114 anos e
+    # o blog da Civitatis), que este mundo nao toca: o degrau 6 continua existindo,
+    # e negar-lho no esquema e que viraria o erro. Mundo passa com o esquema INTACTO.
+    ("MUNDO experiencia sem divergencia nenhuma", mundo_sem_divergencia, "passa", None),
     ("MUNDO autoridade COM documento nomeado vira publicavel", mundo_autoridade_com_documento_nomeado, "passa", None),
     ("MUNDO degrau novo alcancado, esquema e banco juntos", mundo_degrau_novo_alcancado, "passa", "degrau_5_prometido"),
     ("MUNDO faixa que a fonte NOMEIA sem dizer o preco", mundo_faixa_sem_preco_declarado, "passa", None),
@@ -1666,6 +1834,32 @@ MUTACOES = [
     ("eixo null com dias_de_uso e SEM a frase de onde saiu", q_dias_de_uso_sem_transcrito_em_eixo_null, "reprova", None, "dias_de_uso_transcrito_de"),
     ("eixo null com dias_de_uso que a fonte NAO declara", q_dias_de_uso_que_a_fonte_nao_declara_em_eixo_null, "reprova", None, "declarado_como"),
     ("eixo null com dias_de_uso null e sem motivo", q_dias_de_uso_null_sem_motivo_em_eixo_null, "reprova", None, "motivo_sem_dias_de_uso"),
+
+    # --- A ELEGIBILIDADE (27/10/2026, carga do Bondinho)
+    ("IDADE gravada como elegibilidade", q_idade_gravada_como_elegibilidade, "reprova", None, "e de FAIXA_ETARIA"),
+    ("RESIDENCIA gravada como faixa etaria", q_residencia_gravada_como_faixa_etaria, "reprova", None, "e de ELEGIBILIDADE"),
+    ("elegibilidade null sem motivo", q_elegibilidade_null_sem_motivo, "reprova", None, "motivo_sem_elegibilidade"),
+    ("versao sem o campo elegibilidade", q_elegibilidade_sem_o_campo, "reprova", None, "Ausencia de chave"),
+    ("elegibilidade como lista vazia", q_elegibilidade_lista_vazia, "reprova", None, "lista NAO vazia"),
+    ("o_que_se_prova fora do vocabulario (idade)", q_elegibilidade_fora_do_vocabulario, "reprova", None, "fora do vocabulario"),
+    ("elegibilidade mais cara que o bilhete inteiro", q_elegibilidade_mais_cara_que_o_bilhete, "reprova", None, "campo errado"),
+    ("elegibilidade em moeda diferente da versao", q_elegibilidade_em_outra_moeda, "reprova", None, "cambio"),
+    ("elegibilidade sem declarado_como", q_elegibilidade_sem_declarado_como, "reprova", None, "parafraseia"),
+    ("elegibilidade sem data de leitura", q_elegibilidade_sem_data_de_leitura, "reprova", None, "preco de brasileiro"),
+    ("elegibilidade sem se_nao_cumprir", q_elegibilidade_sem_se_nao_cumprir, "reprova", None, "motivo_sem_se_nao_cumprir"),
+    ("elegibilidade com fonte que nao existe", q_elegibilidade_com_fonte_inexistente, "reprova", None, "nao existe em fontes"),
+    ("rotulo de elegibilidade repetido na versao", q_rotulo_de_elegibilidade_repetido, "reprova", None, "repetido"),
+    ("A SOMA PRESUMIDA: acumula null com faixa etaria na versao", q_soma_presumida_com_campo_null, "reprova", None, "nao sabe"),
+    ("soma autorizada sem a frase da fonte", q_soma_autorizada_sem_frase_da_fonte, "reprova", None, "AUTORIZA somar"),
+    ("elegibilidade sem o campo acumula_com_faixa_etaria", q_elegibilidade_sem_o_campo_acumula, "reprova", None, "a_soma_nao_se_presume"),
+    ("resumo de elegibilidades digitado a mao", q_resumo_de_elegibilidade_digitado, "reprova", None, "elegibilidades"),
+    ("elegibilidade gravada na EXPERIENCIA", q_elegibilidade_na_experiencia, "reprova", "eleg_na_experiencia", "da VERSAO"),
+    ("o contador de BRL digitado a mao (0 era verdade por acidente)", q_brl_contado_a_mao, "reprova", None, "experiencias_com_preco_em_brl"),
+    ("esquema sem a entidade ELEGIBILIDADE", _intacto, "reprova", "sem_entidade_elegibilidade", "ELEGIBILIDADE"),
+    ("esquema sem o campo elegibilidade na VERSAO", _intacto, "reprova", "eleg_sem_campo_na_versao", "null_exige"),
+    ("esquema sem a regra_da_elegibilidade", _intacto, "reprova", "sem_regra_da_elegibilidade", "regra_da_elegibilidade"),
+    ("esquema sem a regra dos dois sentidos da troca", _intacto, "reprova", "sem_os_dois_sentidos", "idade_nunca_entra_em_elegibilidade"),
+    ("esquema sem o vocabulario o_que_se_prova", _intacto, "reprova", "vocab_sem_o_que_se_prova", "fora do vocabulario"),
 ]
 
 
@@ -1728,6 +1922,23 @@ def esquema_para(mutacao):
         # 22/10/2026 isto PASSAVA em silencio, e foi assim que `declarada_por` e
         # `canal_de_leitura` ficaram 37 dias sem ser conferidos por ninguem.
         esquema["vocabularios"]["tipo_de_quarto"] = ["duplo", "triplo"]
+    elif mutacao == "sem_entidade_elegibilidade":
+        del esquema["entidades"]["ELEGIBILIDADE"]
+    elif mutacao == "eleg_sem_campo_na_versao":
+        del esquema["entidades"]["VERSAO"]["campos"]["elegibilidade"]
+    elif mutacao == "eleg_na_experiencia":
+        esquema["entidades"]["EXPERIENCIA"]["campos"]["elegibilidade"] = {
+            "tipo": "lista|null", "obrigatorio": True,
+            "null_exige": "motivo_sem_elegibilidade"}
+    elif mutacao == "sem_regra_da_elegibilidade":
+        del esquema["regra_da_elegibilidade"]
+    elif mutacao == "sem_os_dois_sentidos":
+        del esquema["regra_da_elegibilidade"]["idade_nunca_entra_em_elegibilidade"]
+    elif mutacao == "vocab_sem_o_que_se_prova":
+        # A regua varre `vocabularios` do esquema: tirar a chave faz o extrator de
+        # `o_que_se_prova` conferir vocabulario que nao existe, e a trava de
+        # 22/10/2026 e quem ve.
+        del esquema["vocabularios"]["o_que_se_prova"]
     elif mutacao == "degrau_sem_campo":
         for d in esquema["escada_de_fontes"]["niveis"]:
             if d["nivel"] == 3:

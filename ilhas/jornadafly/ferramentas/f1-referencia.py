@@ -278,6 +278,31 @@ def dinheiro(valor, moeda):
     return simbolo + corpo
 
 
+def dinheiro_ou_faixa(valor, moeda):
+    """Escreve `valor` de uma DECLARACAO, que pelo esquema pode ser numero OU faixa.
+
+    O campo `valor` da DECLARACAO e, no esquema, `numero|objeto|null`, com a
+    observacao «objeto {minimo, maximo} quando a fonte publica faixa» — e isso esta
+    escrito lá desde 14/09/2026. A F1 chamava `dinheiro()` direto nele e QUEBRAVA com
+    `decimal.InvalidOperation` numa faixa: nenhuma das quatro experiencias anteriores
+    tinha declaracao em faixa, entao o caminho nunca foi pisado. Achado em 27/10/2026,
+    na carga do Bondinho, pela primeira declaracao de faixa deste banco (a Civitatis
+    publica «de cerca de R$ 85 a R$ 295»). E a familia do mundo que o esquema permite
+    e o banco ainda nao tem — a mesma que a mutacao da ohmetria nomeou: so a carga que
+    PRODUZ o mundo o enxerga.
+    """
+    if isinstance(valor, dict):
+        minimo, maximo = valor.get("minimo"), valor.get("maximo")
+        if minimo is None or maximo is None:
+            raise BancoIncompleto(
+                "declaracao com valor em faixa sem `minimo` ou sem `maximo`: %r. Faixa "
+                "sem uma das duas pontas nao e faixa." % (valor,))
+        return "de %s a %s" % (dinheiro(minimo, moeda), dinheiro(maximo, moeda))
+    if valor is None:
+        return None
+    return dinheiro(valor, moeda)
+
+
 def dias_de_validade(esquema, fonte):
     """Quantos dias um preco daquela fonte vale antes de precisar ser relido.
 
@@ -669,6 +694,72 @@ def faixa_etaria_da_versao(versao):
 
 
 # ---------------------------------------------------------------------------
+# A ELEGIBILIDADE — O PRECO DE QUEM PROVA O QUE NAO E IDADE (27/10/2026)
+#
+# Esta e a metade da resposta que esta ilha nao tinha e que mais importa para o
+# leitor DELA. O eixo declarado da F1 e `dias x pessoas x padrao`, e no Bondinho o
+# que mais move o preco nao e nenhum dos tres: e quem compra. O mesmo Bilhete
+# Bondinho custa R$ 205 no balcao, R$ 160 de quem nasceu e mora no Brasil e R$ 89
+# de quem e do estado do Rio — 2,3 vezes entre a ponta cheia e a ponta barata,
+# maior que qualquer diferenca de versao deste banco. Uma ilha escrita em portugues
+# do Brasil que servisse os R$ 205 calada cobraria do proprio leitor 28% a mais do
+# que o operador cobra dele.
+#
+# A CONTA NAO MUDA, E ISSO E REGRA E NAO PREGUICA. O total continua saindo da
+# tarifa cheia, porque a regra de divergencia desta ilha resolve para o MAIOR
+# quando nao ha autoridade e porque o erro caro e subestimar: quem chega a
+# bilheteria sem o comprovante de residencia paga o cheio. O que a tela ganha e a
+# escada de quem compra, com a condicao, a frase da fonte e o que se paga sem
+# provar. E a F1 NUNCA multiplica elegibilidade por faixa etaria — medido na mesma
+# carga: metade de R$ 89 e R$ 44,50 e o operador cobra R$ 44 por crianca moradora
+# do Rio. Cinquenta centavos inventados numa conta que pareceria certa.
+# ---------------------------------------------------------------------------
+
+def elegibilidade_da_versao(versao):
+    """Le a elegibilidade DA VERSAO escolhida, nunca da experiencia.
+
+    Mesma razao da faixa etaria: no Bondinho a promocional de brasileiro existe no
+    Bilhete Bondinho e nao existe nas tarifas que ja sao promocionais.
+    """
+    elegs = versao.get("elegibilidade")
+    frases = []
+    nao_acumulam = []
+    if elegs:
+        for e in elegs:
+            if e.get("preco") is None:
+                frases.append(
+                    "%s: o operador declara esta tarifa e NÃO publica o preço dela. %s"
+                    % (e.get("rotulo"), e.get("declarado_como") or ""))
+            elif Decimal(str(e["preco"])) == 0:
+                frases.append("%s: não paga. %s"
+                              % (e.get("rotulo"), e.get("condicao") or ""))
+            else:
+                frases.append(
+                    "%s: %s neste bilhete, para quem prova %s. Sem provar, %s."
+                    % (e.get("rotulo"), dinheiro(e["preco"], e.get("moeda")),
+                       e.get("condicao") or "a condição",
+                       e.get("se_nao_cumprir") or "paga a tarifa cheia"))
+            if e.get("acumula_com_faixa_etaria") is False:
+                nao_acumulam.append({
+                    "elegibilidade": e.get("rotulo"),
+                    "frase": ("%s não se soma ao desconto por idade: o operador vende as "
+                              "duas coisas separadas, e a JornadaFly não multiplica uma "
+                              "pela outra para inventar um terceiro preço."
+                              % e.get("rotulo")),
+                })
+    return {
+        "tem_elegibilidade": bool(elegs),
+        "frases": frases,
+        "motivo_sem_elegibilidade": None if elegs else versao.get("motivo_sem_elegibilidade"),
+        "nao_acumulam_com_faixa_etaria": nao_acumulam,
+        # A conta NUNCA usa estes numeros. O campo existe para o portao poder afirmar
+        # isso: ele confere que nenhum preco de elegibilidade aparece no total.
+        "precos_que_a_conta_NAO_usa": [e.get("preco") for e in (elegs or [])
+                                       if e.get("preco") is not None],
+    }
+
+
+# ---------------------------------------------------------------------------
 # A RESPOSTA INTEIRA
 # ---------------------------------------------------------------------------
 
@@ -752,10 +843,38 @@ def responder(experiencia_id, versao_id, pessoas, banco=None, esquema=None,
         versao["preco"], versao.get("unidade_de_preco"),
         versao.get("capacidade_maxima"), pessoas)
 
-    # ---- CONTA 4
-    iof = iof_publicavel(constantes)
-    total_iof = com_iof(total, iof["valor"])
-    por_pessoa_iof = _centavo(total_iof / Decimal(pessoas))
+    # ---- CONTA 4: O IOF, E ELE NAO EXISTE EM COMPRA EM REAL (27/10/2026)
+    #
+    # O IOF de 3,5% e imposto sobre COMPRA INTERNACIONAL no cartao — o id da
+    # constante diz isso com todas as letras:
+    # `iof-compra-internacional-cartao-pessoa-fisica`. Ate 27/10/2026 esta conta
+    # rodava em TODA versao, e estava certa POR ACIDENTE: as quatro experiencias
+    # deste banco cobravam em euro e em dolar, e para elas a linha do cartao
+    # brasileiro e o diferencial mais barato da ilha. Entrou o Bondinho, que cobra
+    # R$ 205 de um brasileiro no caixa dele, e a mesma conta passou a publicar
+    # «R$ 144,90» num bilhete de R$ 140 — imposto de compra no exterior somado a uma
+    # compra que nao sai do pais. Dinheiro INVENTADO na pagina do dinheiro, e a
+    # pagina pareceria certa, porque a aritmetica esta certa: so a pergunta e que
+    # nao existia.
+    #
+    # E e o TERCEIRO defeito desta mesma familia achado na mesma carga, com o
+    # contador `experiencias_com_preco_em_brl` do validar-banco.py e o portao do
+    # cambio do teste-f1.py. Os tres foram escritos num mundo sem real, os tres
+    # estavam corretos enquanto o mundo nao mudou, e os tres erram calados.
+    compra_internacional = moeda != "BRL_do_operador"
+    if compra_internacional:
+        iof = iof_publicavel(constantes)
+        total_iof = com_iof(total, iof["valor"])
+        por_pessoa_iof = _centavo(total_iof / Decimal(pessoas))
+    else:
+        # A constante continua sendo LIDA, e de proposito: se ela deixar de ser
+        # `publicavel`, a ilha tem de saber disso mesmo nas paginas em real, porque e
+        # a mesma constante que as outras quatro experiencias usam. O que nao se faz
+        # e aplica-la.
+        iof_publicavel(constantes)
+        iof = None
+        total_iof = None
+        por_pessoa_iof = None
 
     data = data_em_portugues(versao.get("data_leitura"))
     unidade = versao.get("unidade_de_preco")
@@ -770,10 +889,16 @@ def responder(experiencia_id, versao_id, pessoas, banco=None, esquema=None,
         "total_escrito": dinheiro(total, moeda),
         "por_pessoa": str(por_pessoa),
         "por_pessoa_escrito": dinheiro(por_pessoa, moeda),
-        "iof_percentual": iof["valor"],
-        "total_com_iof": str(_centavo(total_iof)),
-        "total_com_iof_escrito": dinheiro(total_iof, moeda),
-        "por_pessoa_com_iof_escrito": dinheiro(por_pessoa_iof, moeda),
+        "iof_percentual": iof["valor"] if iof else None,
+        "compra_internacional": compra_internacional,
+        "motivo_sem_iof": None if compra_internacional else (
+            "O operador cobra em real e a compra nao e internacional: o IOF de 3,5%% "
+            "incide sobre compra internacional no cartao, e somar aqui seria cobrar do "
+            "leitor um imposto que ele nao paga. Esta e a primeira experiencia deste "
+            "banco em real, e e por ela que a conta passou a perguntar a moeda."),
+        "total_com_iof": str(_centavo(total_iof)) if total_iof is not None else None,
+        "total_com_iof_escrito": dinheiro(total_iof, moeda) if total_iof is not None else None,
+        "por_pessoa_com_iof_escrito": dinheiro(por_pessoa_iof, moeda) if por_pessoa_iof is not None else None,
         "data_leitura": versao.get("data_leitura"),
     }
 
@@ -804,10 +929,21 @@ def responder(experiencia_id, versao_id, pessoas, banco=None, esquema=None,
            dinheiro(total, moeda), dinheiro(por_pessoa, moeda), frase_unidade,
            quem_declara, data))
 
-    resposta["cartao_brasileiro"] = (
-        "No cartão brasileiro, o IOF de %s%% entra por cima: %s no total, ou %s por "
-        "pessoa." % (("%g" % iof["valor"]).replace(".", ","),
-                     dinheiro(total_iof, moeda), dinheiro(por_pessoa_iof, moeda)))
+    # A LINHA DO CARTAO SO EXISTE EM COMPRA INTERNACIONAL. Em compra em real ela nao
+    # some calada: a tela diz POR QUE nao ha IOF, porque o leitor que veio de uma
+    # pagina de euro desta mesma ilha aprendeu a esperar essa linha, e a ausencia dela
+    # sem explicacao parece esquecimento. Lista vazia nao some da tela, e linha que
+    # nao se aplica tambem nao.
+    if compra_internacional:
+        resposta["cartao_brasileiro"] = (
+            "No cartão brasileiro, o IOF de %s%% entra por cima: %s no total, ou %s por "
+            "pessoa." % (("%g" % iof["valor"]).replace(".", ","),
+                         dinheiro(total_iof, moeda), dinheiro(por_pessoa_iof, moeda)))
+    else:
+        resposta["cartao_brasileiro"] = (
+            "Sem IOF: o operador cobra em real, e o IOF de %s%% incide sobre compra "
+            "internacional no cartão. O que está acima é o que você paga."
+            % ("%g" % iof_publicavel(constantes)["valor"]).replace(".", ","))
 
     # ---- CONTA 3
     resposta["escada"] = ponto_de_equilibrio(
@@ -838,6 +974,16 @@ def responder(experiencia_id, versao_id, pessoas, banco=None, esquema=None,
     # ---- FAIXA ETARIA, e as tres recusas que antes eram uma
     faixa = faixa_etaria_da_versao(versao)
     resposta["faixa_etaria"] = faixa
+
+    # ---- A ELEGIBILIDADE, ao lado da faixa e nunca dentro dela
+    eleg = elegibilidade_da_versao(versao)
+    resposta["elegibilidade"] = eleg
+    if not eleg["tem_elegibilidade"]:
+        recusa("sem_elegibilidade",
+               "Preço por residência ou nacionalidade: o operador não declara tarifa "
+               "diferente por onde você mora ou de onde você é neste bilhete.")
+    for n in eleg["nao_acumulam_com_faixa_etaria"]:
+        recusa("elegibilidade_nao_acumula", n["frase"])
     if not faixa["tem_faixa"]:
         if unidade == UNIDADE_POR_PESSOA:
             recusa("sem_faixa_etaria",
@@ -897,11 +1043,15 @@ def responder(experiencia_id, versao_id, pessoas, banco=None, esquema=None,
     for d in (experiencia.get("declaracoes") or []):
         if not d.get("publicavel_na_tela"):
             continue
+        escrito = dinheiro_ou_faixa(d.get("valor"), d.get("moeda"))
         divergentes.append({
             "publicador": d.get("publicador"),
             "frase": "%s publicou %s (%s), lido em %s."
-                     % (d.get("publicador"), dinheiro(d.get("valor"), d.get("moeda")),
+                     % (d.get("publicador"), escrito,
                         d.get("diz"), data_em_portugues(d.get("data_leitura"))),
+            # Fonte com interesse comercial se declara AO LADO do numero, nunca depois
+            # dele: a regra vem de constantes.json e vale para toda declaracao.
+            "interesse_comercial": d.get("interesse_comercial"),
         })
 
     resposta["como_sabemos"] = {

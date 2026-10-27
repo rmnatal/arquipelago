@@ -98,6 +98,14 @@ rodam o portão da ferramenta dezenas de vezes e passam disso — a da F2 roda `
 **44 vezes** e a da F3 roda `teste-f3.py` **45 vezes**, e quem as dispara renova a reserva
 pela **1.1** antes.
 
+> **E AS DUAS FICARAM MAIS LENTAS EM 27/10/2026, com a quinta cidade.** A grade da F2
+> passou de **3.077 para 3.846 estados** e o `teste-f2.py` sozinho leva **~12 segundos**
+> — então a bateria dele passa de **oito minutos**, e a da F3 vem atrás. Juntas elas
+> estouram qualquer janela de 40 minutos compartilhada com o resto do bloco: **dispare
+> as duas em segundo plano e renove a reserva pela 1.1 antes**, não depois. Cidade nova
+> multiplica a grade da F2, então esta linha envelhece a cada carga — quem a ler recompute
+> em vez de confiar no número.
+
 **NÃO EXISTE `bancada.py` AQUI, e a ausência continua sendo decisão e não esquecimento.**
 As três ilhas irmãs têm um descobridor de portões por convenção de nome, e ele nasceu nelas
 porque uma régua que existia desde dias antes **não tinha falhado: não tinha rodado**.
@@ -170,14 +178,21 @@ Quando o site responder, siga a seção 11 do passo 9 em diante e a seção 14 (
 - **F2 — quanto custa N dias em `<cidade>`.** Entrada: dias, pessoas, padrão. Saída: hospedagem + alimentação + transporte local + experiências marcadas, cada linha com fonte e data. **Entra depois da F1**, porque é onde o `quantocustaviajar.com` já está — e só entra se for melhor: o diferencial é preço de experiência **colhido na fonte**, não média de blog.
 - **F3 — vale a pena o passe da cidade?** Entrada: as atrações pretendidas. Saída: soma dos avulsos × preço do passe, com o ponto de equilíbrio. Última, porque dois blogs já entregam a conta comparada.
 
-**3. MODELO DO BANCO.** Entidade **EXPERIÊNCIA**: `experiencia`, `cidade`, `pais`, `operador`, `url_operador`, `preco`, `moeda`, **`data_leitura`** (obrigatória **e visível na página**), `duracao`, `inclui[]`, `nao_inclui[]`, `temporada`, `faixa_etaria`, `imagem`, `afiliado.url` + `afiliado.programa`. `afiliado.url` **nasce presente e vazio** e a ilha reporta em todo bloco quantos itens esperam link.
+**3. MODELO DO BANCO.** *(Esquema e banco na **versão 8** desde 27/10/2026: **5
+experiências, 5 cidades, 16 versões, 11 fontes, 13 faixas etárias e 2 elegibilidades**.
+A quinta é o Parque Bondinho Pão de Açúcar — primeira experiência BRASILEIRA, primeiro
+preço em `BRL_do_operador`, primeiro `afiliado.url_produto` que é o mesmo produto do
+registro, e a que fez nascer a entidade ELEGIBILIDADE. Ver a seção 9 da
+`especificacao-calculadoras.md`.)*
+Entidade **EXPERIÊNCIA**: `experiencia`, `cidade`, `pais`, `operador`, `url_operador`, `preco`, `moeda`, **`data_leitura`** (obrigatória **e visível na página**), `duracao`, `inclui[]`, `nao_inclui[]`, `temporada`, `faixa_etaria`, `imagem`, `afiliado.url` + `afiliado.programa`. `afiliado.url` **nasce presente e vazio** e a ilha reporta em todo bloco quantos itens esperam link.
 **A regra de preço é a do Clube do Mosaico: preço nunca cravado como atual — ou sem preço, ou com a data da coleta.** O link de afiliado nunca substitui a URL de origem do dado.
 **Cópia obrigatória (seção 24):** dado que só existe no site nasce com cópia no repositório. **Aqui isso importa mais que em qualquer outra ilha, porque o preço coletado É o produto.**
 
 **3b. CASCA DO SITE** — depois do WordPress. **Molde GUIA:** a pergunta mais frequente em cima ("Quanto custa, para quantas pessoas?"), experiências como cartões **com preço e data de coleta visíveis no cartão**, ferramentas como cartões na linguagem da pessoa, guias embaixo. Header claro, menu curto (Experiências · Quanto custa · Guias). **Sem manifesto. Foto grande nos cartões, NUNCA atrás de texto** — é o vício visual do nicho e quebra contraste em toda tela.
 
 **4. FERRAMENTAS**, uma por execução, com JSON-LD, tabela pré-renderizada, resposta antes da explicação e procedência na frase. Ordem: **F1, F2, F3**.
-   - **A F1 ESTÁ ENTREGUE COMO REGRA desde 22/10/2026**, e ainda não como página — sem casca não há snippet, e um render de bancada que serve menos que o site é a cicatriz que a seção 8 mais cobra. Mora em `ferramentas/f1-referencia.py` + `dados/f1-respostas.json` (154 respostas, 44 linhas de tabela, `publicar: false`). **O PHP, quando nascer, é tradutor dela, frase a frase** — nunca uma segunda regra. Detalhe em `dados/especificacao-calculadoras.md`, 2.11, e no `REGISTRO.md` daquela data.
+   - **A F1 ESTÁ ENTREGUE COMO REGRA desde 22/10/2026**, e ainda não como página — sem casca não há snippet, e um render de bancada que serve menos que o site é a cicatriz que a seção 8 mais cobra. Mora em `ferramentas/f1-referencia.py` + `dados/f1-respostas.json` (**224 estados, 180 com conta, 60 linhas de tabela** depois da carga de 27/10/2026, `publicar: false`).
+   - **E A F1 GANHOU UMA RESPOSTA QUE ELA NÃO TINHA, em 27/10/2026: o preço de QUEM COMPRA.** O eixo declarado dela é `dias × pessoas × padrão`, e no Bondinho o que mais move o preço não é nenhum dos três — o mesmo bilhete custa R$ 205, R$ 160 (nascido e morador do Brasil) e R$ 89 (estado do Rio), 2,3 vezes entre as pontas. Nasceu a entidade **ELEGIBILIDADE** (esquema versão 8) e a F1 a serve ao lado da faixa etária, **sem multiplicar uma pela outra**: metade de R$ 89 é R$ 44,50 e o operador cobra R$ 44. A conta continua saindo da tarifa CHEIA, porque sem autoridade a regra resolve para o maior e quem chega sem comprovante paga o cheio. Detalhe na seção 9 da `especificacao-calculadoras.md`. **O PHP, quando nascer, é tradutor dela, frase a frase** — nunca uma segunda regra. Detalhe em `dados/especificacao-calculadoras.md`, 2.11, e no `REGISTRO.md` daquela data.
    - **A F2 ESTÁ ENTREGUE COMO REGRA desde 22/10/2026**, e também ainda não como página. A pergunta aberta com que ela nasceu está **respondida**: hospedagem, alimentação e transporte local moram na entidade **`FAIXA_DIARIA`** do esquema (versão 6), separada da EXPERIÊNCIA — porque as três **não são colhidas por nós**, são faixa que terceiro publicou. Mora em `ferramentas/f2-referencia.py` + `dados/f2-respostas.json` (3.077 estados servidos, 197 gravados, `publicar: false`). Detalhe em `dados/especificacao-calculadoras.md`, 3.1, e no `REGISTRO.md` daquela data.
    - **E A F2 PUBLICA UMA LINHA DE QUATRO HOJE, por falta de DADO e não de regra.** `faixas_diarias` tem zero registros: as duas únicas frases de diária que esta ilha mediu foram guardadas **sem o nome de quem as publicou**, sem URL e sem data de leitura, e os três são obrigatórios. Carregar hoje exigiria inventar o dono do número. **Isto é o próximo item de conteúdo da ilha, e ele depende de rede que esta nuvem não tem** — `numbeo.com`, `booking.com` e `civitatis.com.br` recusados no egresso em 22/10/2026.
    - **A F3 ESTÁ ENTREGUE COMO REGRA desde 22/10/2026**, e também ainda não como página. A previsão que esta linha trazia estava **meio certa**: a F3 não é atravessada pela procedência de terceiro (avulso e passe são os dois nossos), e o que a atravessa não é "declarar o que o número é" — é **sobre o que a conta é feita**. Nasceu a entidade **`COBERTURA_DO_PASSE`** (esquema versão 7), que é a relação entre um passe e UMA atração que ele cobre, com fonte e data de leitura **próprias**: o preço do passe pode estar certo e a cobertura errada no mesmo dia. Mora em `ferramentas/f3-referencia.py` + `dados/f3-respostas.json` (1.038 estados contados, 48 linhas de tabela, `publicar: false`). As três regras de honestidade dela moram no esquema e o portão as cobra uma por uma. Detalhe em `dados/especificacao-calculadoras.md`, 4.1, e no `REGISTRO.md` daquela data.
@@ -236,12 +251,31 @@ Quando o site responder, siga a seção 11 do passo 9 em diante e a seção 14 (
      **inclui** receberia um número que compete com o próprio preço, e ferramenta que mina
      o anfitrião não se oferece ao anfitrião. A F2 exige `FAIXA_DIARIA`, a F3 exige passe e
      cobertura, e a F3 **nunca** vai a quem vende passe de cidade.
-   - **NENHUM dos 25 tem ferramenta ofertável hoje, e a causa é UMA** — a mesma que trava a
-     coleta da F2 e da F3. Com a rede fechada, o banco nasceu com quatro experiências de
-     tarifa pública e **três dos quatro operadores são poder público**, que não instala
-     widget de afiliado. **O que destrava está nomeado e medido:** uma experiência de
-     operador privado brasileiro no banco — o Parque Bondinho Pão de Açúcar, que vende
-     direto, pelo próprio site, mais de uma versão da mesma experiência.
+   - **O PRIMEIRO CANDIDATO COM FERRAMENTA OFERTÁVEL EXISTE DESDE 27/10/2026, e é o
+     `bondinho.com.br`** — o destravamento que esta linha pré-registrou, disparado pelo
+     caminho que ela previu. A carga daquele dia entrou com o Parque Bondinho como QUINTA
+     experiência do banco, cinco versões lidas nas páginas do próprio operador, e com
+     `relacao_com_a_versao_do_banco: vende_a_mesma_versao` a **F1 virou ofertável a ele**.
+     A F2 e a F3 seguem em zero, pela mesma causa de sempre: zero `FAIXA_DIARIA`, zero
+     passe e zero cobertura.
+   - **O QUE O CRITÉRIO PREVIU ERRADO FOI O RÓTULO, e fica escrito para ninguém
+     redescobrir.** Ele dizia «uma experiência de **operador privado** brasileiro», e o
+     Bondinho é `concessionaria_de_bem_publico` — o mesmo tipo da SETE, que opera a Torre
+     Eiffel e está no banco desde 15/09/2026. **`operador_privado` segue SEM LASTRO** no
+     banco, e o aviso `vocabulario_sem_lastro` continua contando-o. As três condições que
+     o critério cobra de fato — brasileiro, vende direto pelo próprio site, mais de uma
+     versão da mesma experiência — estão as três cumpridas, e é por elas que a linha
+     destravou. Quem decidir sobre rótulo faça isso com o critério na mão, não de cabeça.
+   - **E O QUE NÃO DESTRAVOU FOI A REDE, que é o achado de método.** O egresso recusa
+     `bondinho.com.br` pelas DUAS portas, medido em 27/10/2026: `curl` em 000 com «gateway
+     answered 403 to CONNECT» em quatro hosts do domínio, e **WebFetch** em
+     `getaddrinfo ENOTFOUND`. O que alcançou o dado foi a **coleta por busca no degrau 4**
+     da escada — as páginas de tarifa do próprio operador, nomeadas uma por uma —, o mesmo
+     degrau pelo qual a Torre Eiffel entrou. **A alavanca de link não esperava a rede;
+     esperava um registro do tipo certo.** Três execuções fecharam em «nada elegível»
+     antes disto, e o que faltava não era rede: era abrir o banco.
+   - **O que ele ainda não tem é CONTATO**, e nenhum site foi aberto. Oferta de widget é
+     conversa com pessoa, e conversa com pessoa é do Raphael (seção 7).
 
 ---
 

@@ -30,7 +30,7 @@
    "url": "/guias/quanto-custa/"
   },
   "linhas_de_tabela": 44,
-  "paragrafos_de_dobra": 74,
+  "paragrafos_de_dobra": 78,
   "perguntas_de_faq": 14,
   "valores_de_terceiro_com_publicador": 2,
   "irmas_por_pagina": 3
@@ -252,6 +252,7 @@
     {
      "titulo": "O que esta página não responde",
      "paragrafos": [
+      "Preço por residência ou nacionalidade: o operador não declara tarifa diferente por onde você mora ou de onde você é neste bilhete.",
       "Desconto por idade: não há nenhum a declarar, porque o preço é por veículo e não por pessoa. A criança não tem bilhete: ela ocupa lugar.",
       "O valor em real depende do câmbio do dia do seu cartão, e a JornadaFly ainda não tem uma fonte de câmbio com data para publicar. A conta acima está na moeda que o operador cobra, que é a que não muda.",
       "Alta e baixa temporada: o operador não declara preço diferente entre uma e outra, e a JornadaFly não inventa a diferença. Se o seu mês for de alta, confirme o valor com ele antes de fechar.",
@@ -316,11 +317,13 @@
    "divergencias": [
     {
      "publicador": "turismo.eurodicas.com.br",
-     "frase": "turismo.eurodicas.com.br publicou €80 (€80 por gôndola, para até 4 pessoas), lido em 14/09/2026."
+     "frase": "turismo.eurodicas.com.br publicou €80 (€80 por gôndola, para até 4 pessoas), lido em 14/09/2026.",
+     "interesse_comercial": null
     },
     {
      "publicador": "GetYourGuide, citada por terceiros",
-     "frase": "GetYourGuide, citada por terceiros publicou €34 (a partir de €34 por pessoa), lido em 14/09/2026."
+     "frase": "GetYourGuide, citada por terceiros publicou €34 (a partir de €34 por pessoa), lido em 14/09/2026.",
+     "interesse_comercial": "SIM — é plataforma de reserva e ganha se o clique virar reserva. Não a desqualifica; vai escrito ao lado do número."
     }
    ],
    "json_ld": [
@@ -732,6 +735,7 @@
     {
      "titulo": "O que esta página não responde",
      "paragrafos": [
+      "Preço por residência ou nacionalidade: o operador não declara tarifa diferente por onde você mora ou de onde você é neste bilhete.",
       "O valor em real depende do câmbio do dia do seu cartão, e a JornadaFly ainda não tem uma fonte de câmbio com data para publicar. A conta acima está na moeda que o operador cobra, que é a que não muda.",
       "Alta e baixa temporada: o operador não declara preço diferente entre uma e outra, e a JornadaFly não inventa a diferença. Se o seu mês for de alta, confirme o valor com ele antes de fechar."
      ]
@@ -1082,6 +1086,7 @@
     {
      "titulo": "O que esta página não responde",
      "paragrafos": [
+      "Preço por residência ou nacionalidade: o operador não declara tarifa diferente por onde você mora ou de onde você é neste bilhete.",
       "Desconto por idade: o operador não declara tarifa diferente por idade neste bilhete.",
       "O valor em real depende do câmbio do dia do seu cartão, e a JornadaFly ainda não tem uma fonte de câmbio com data para publicar. A conta acima está na moeda que o operador cobra, que é a que não muda.",
       "Alta e baixa temporada: o operador não declara preço diferente entre uma e outra, e a JornadaFly não inventa a diferença. Se o seu mês for de alta, confirme o valor com ele antes de fechar."
@@ -1483,6 +1488,7 @@
     {
      "titulo": "O que esta página não responde",
      "paragrafos": [
+      "Preço por residência ou nacionalidade: o operador não declara tarifa diferente por onde você mora ou de onde você é neste bilhete.",
       "O valor em real depende do câmbio do dia do seu cartão, e a JornadaFly ainda não tem uma fonte de câmbio com data para publicar. A conta acima está na moeda que o operador cobra, que é a que não muda.",
       "Alta e baixa temporada: o operador não declara preço diferente entre uma e outra, e a JornadaFly não inventa a diferença. Se o seu mês for de alta, confirme o valor com ele antes de fechar.",
       "Este preço veio de uma leitura que a JornadaFly ainda não conferiu na fonte da própria autoridade, e por isso ela não o chama de confirmado. Ele está aqui com a data em que foi lido, para você decidir sabendo disso."

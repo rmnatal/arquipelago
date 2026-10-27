@@ -278,7 +278,13 @@ QUEBRAS_DE_REFERENCIA = [
     ("a tela passou a publicar um valor em real",
      [('        "pessoa." % (("%g" % iof["valor"]).replace(".", ","),',
        '        "pessoa. Em real, R$ 0,00." % (("%g" % iof["valor"]).replace(".", ","),')],
-     "valor em real", None),
+     # A FRASE DO PORTAO MUDOU EM 27/10/2026, e a regra com ela: ele dizia «valor
+     # em real» porque proibia o SIMBOLO, o que estava certo por acidente num
+     # banco todo em euro e dolar. Agora proibe CONVERSAO — valor numa moeda que
+     # nenhum registro daquela experiencia declara —, e e por essa frase que esta
+     # quebra e cobrada. A quebra em si nao mudou: ela poe real na tela da gondola,
+     # que cobra em euro, e isso continua sendo cambio com constante pendente.
+     "so sai de conversao", None),
 
     ("a frase proibida do contrato entrou na tela",
      [('                "frase": "O operador não declara o que está %s neste bilhete." % rotulo,',

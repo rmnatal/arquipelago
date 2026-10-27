@@ -724,7 +724,7 @@ nela sozinha. O número está escrito no portão **a partir desta seção**, nã
 ferramenta — régua que toma o limite da coisa que ela mede não mede o limite.
 
 **O QUE O BANCO AINDA NÃO TEM, e por que a falta não é descuido.** `coberturas_de_passe`
-tem **zero** registros e **nenhuma** das quatro experiências é `passe_de_cidade` — o
+tem **zero** registros e **nenhuma** das cinco experiências é `passe_de_cidade` — o
 valor está no vocabulário desde 14/09/2026 sem um registro que o use, e o aviso
 `vocabulario_sem_lastro` o conta em toda passada. Carregar exige **ler o preço e a
 cobertura na fonte de quem vende o passe**, e o egresso desta nuvem recusa os cinco
@@ -921,7 +921,7 @@ e jovens, cada versão vendida pelo operador uma por uma, o que a página não r
 "Como sabemos".
 
 **Nenhuma palavra sai da página**: o que vai para a dobra continua no HTML servido. E
-**nenhum item vivo tem link de compra** — nenhuma das quatro experiências desta pasta é um
+**nenhum item vivo tem link de compra** — nenhuma das cinco experiências desta pasta é um
 ser vivo, e isso fica dito em vez de suposto.
 
 ### 7.6 O valor de terceiro tem dono, e é o diferencial medido
@@ -1124,3 +1124,123 @@ Tour em Paris, a representação da Carrani para o mercado brasileiro, e a confi
 «quanto custa» — logo não são achados por ela.** Quem continuar esta lista busca em trade, e
 não em SERP de consumidor. É por isso que os dois veículos estão no banco como
 `imprensa_de_trade`, prioridade 3: não são alvo de widget, são o instrumento que acha o alvo.
+
+
+## 9. A ELEGIBILIDADE — o preço de quem prova o que não é idade (27/10/2026)
+
+Nasceu na carga do **Parque Bondinho Pão de Açúcar**, a quinta experiência do banco e a
+primeira brasileira. Nasceu de um dado, não de uma previsão, e o dado é este: **o mesmo
+Bilhete Bondinho custa R$ 205, R$ 160 e R$ 89**, e o que muda não é quantidade, nem
+escopo, nem momento — é **quem compra**.
+
+| O que o operador vende | Preço | O que se prova |
+|---|---|---|
+| Bilhete Bondinho | R$ 205 | nada: é a tarifa cheia |
+| Promocional para Brasileiros | R$ 160 | ter nascido **e** morar no Brasil |
+| Promocional Estado RJ | R$ 89 | ter nascido **ou** residir no estado do Rio |
+| Bilhete Criança | R$ 102 | idade de 3 a 12 anos → é `faixa_etaria` |
+| Bilhete maiores de 60 anos | R$ 102 | idade acima de 60 → é `faixa_etaria` |
+
+### 9.1 Por que não cabia em nada que já existia
+
+O esquema tinha **três** eixos de versão — `por_quantidade`, `por_escopo`, `por_momento` —
+e nenhum descreve residência. `faixa_etaria` também não serve: o próprio esquema diz que o
+campo `se_nao_cumprir` dela é *"o que o operador cobra de quem não prova a **IDADE**"*.
+Residência não é idade, e as duas **coexistem na mesma versão** do Bondinho.
+
+Sem a entidade, a carga tinha duas saídas e as duas eram erradas:
+
+1. **Gravar os cinco preços como versões irmãs** — inventando um eixo que o operador não
+   vende, e fazendo o seletor da F1 oferecer "versões" que são a mesma coisa.
+2. **Gravar só o R$ 205** — publicando, numa ilha escrita em português do Brasil, o preço
+   de estrangeiro quando o operador cobra **28% menos** do próprio leitor.
+
+### 9.2 A conta NÃO muda, e isso é regra
+
+O total continua saindo da **tarifa cheia**. Duas razões, as duas já escritas:
+`regra_de_divergencia.sem_autoridade` resolve para o **maior** e `erro_caro` é
+*subestimar* — quem chega à bilheteria sem o comprovante paga o cheio. O que a tela ganha
+é a **escada de quem compra**, com a condição, a frase da fonte e o que se paga sem provar.
+
+### 9.3 A soma não se presume, e isso tem número
+
+`acumula_com_faixa_etaria` é campo **obrigatório**, e nasceu obrigatório por uma medição.
+A leitura devolveu, na página do operador, que a meia-entrada vale para o Bilhete Bondinho,
+o Acesso Rápido e a Visita Guiada e **não vale para as tarifas promocionais**. E a imprensa
+dos 114 anos declarou o preço composto: **R$ 89 para adulto e R$ 44 para criança de 3 a 12
+anos** no bilhete de morador do Rio.
+
+**Metade de R$ 89 é R$ 44,50. O operador cobra R$ 44.** Se a F1 tivesse autorizado somar a
+faixa etária à elegibilidade, ela publicaria cinquenta centavos inventados na página do
+dinheiro, numa conta que pareceria certa — a aritmética estaria correta; só a pergunta é
+que não existia. É por isso que `acumula` nunca é `null` numa versão que tem faixa, e que
+`acumula: true` exige a frase da fonte que **autoriza** somar: silêncio não autoriza soma.
+
+### 9.4 Os dois sentidos da troca, e o que a régua mede
+
+A troca entre faixa etária e elegibilidade é **silenciosa**: os dois campos guardam um
+preço menor com uma condição escrita ao lado, e lidos de longe parecem a mesma coisa. A
+régua reprova nos **dois** sentidos, e a bateria mede os dois:
+
+- **idade em elegibilidade** → `condicao` ou `rotulo` com padrão de faixa de idade reprova;
+- **residência em faixa etária** → `condicao` ou `rotulo` com morador, residente, nascido,
+  brasileiro, estrangeiro ou nacionalidade reprova. **É este o sentido que a ilha ia
+  errar**: os cinco preços vieram na mesma leitura, e a saída barata era chamar os cinco de
+  faixa.
+
+### 9.5 A MEIA-ENTRADA BRASILEIRA NÃO É NENHUM DOS DOIS, e por isso não entrou
+
+Os bilhetes de Trilheiros declaram `Meia-entrada: R$ 70` e `R$ 32` ao lado do adulto, e os
+dois números **não foram gravados**. Não é lacuna por descuido: a meia-entrada brasileira
+**empacota idade, vínculo e deficiência numa só palavra**, e cada uma das três se prova de
+um jeito diferente. Gravá-la em `faixa_etaria` diria que o operador cobra por idade o que
+ele cobra por condição; gravá-la em `elegibilidade` afirmaria uma prova que a fonte não
+fez. A página do próprio operador que a define — «Outras opções de meia-entrada», em
+`sac.bondinho.com.br` — **voltou por nome na busca e não foi lida**, porque o egresso
+recusa o domínio. Está contado como dívida, com o endereço de releitura escrito.
+
+### 9.6 TRÊS DEFEITOS DA MESMA FAMÍLIA, achados na mesma carga
+
+Nenhum deles é da elegibilidade: os três são **réguas escritas num mundo sem real**, as
+três corretas enquanto o mundo não mudou, e as três erradas no dia em que ele mudou. O
+Bondinho é a primeira experiência deste banco que cobra em `BRL_do_operador` — valor que
+estava no vocabulário desde 14/09/2026 **sem um registro que o usasse**.
+
+| Onde | O que fazia | Por que passava |
+|---|---|---|
+| `validar-banco.py` | o contador `experiencias_com_preco_em_brl` era incrementado **dentro do ramo de ERRO** da conferência de moeda: contava versão cuja moeda *discorda* da cidade | publicava `0`, e `0` era a verdade **por acidente** — nenhuma experiência cobrava em real |
+| `teste-f1.py` | afirmava que **`R$` nunca aparece** na tela | todo `R$` só poderia ser conversão com o câmbio pendente. **288 frases de tela** passaram a carregar `R$` legitimamente, e ele reprovava todas — número refeito depois do conserto, varrendo as respostas da F1 de 1 a 12 pessoas |
+| `f1-referencia.py` | somava **IOF de 3,5%** em toda versão | IOF é imposto de **compra internacional**; publicou `R$ 144,90` num bilhete de R$ 140 |
+
+**O terceiro é o pior, e por uma assimetria:** os dois primeiros erram alto — um reprova o
+certo, o outro publica um número redondo que ninguém confere. O da F1 **cobrava do leitor
+um imposto que ele não paga**, na página do dinheiro, com a aritmética certa.
+
+O conserto dos três é o mesmo movimento: **perguntar a moeda**. O contador conta versão em
+real; o portão do câmbio passou a proibir **conversão** e não o símbolo (por *contenção*: o
+símbolo na tela tem de caber no conjunto de moedas que os registros daquela experiência
+declaram, o que permite **citar** a plataforma em dólar e continua proibindo converter); e
+o IOF só entra quando `moeda != BRL_do_operador` — com a linha do cartão dizendo, em compra
+em real, **por que** não há IOF, porque linha que não se aplica não some calada da tela.
+
+### 9.7 O que esta carga achou e NÃO consertou
+
+- **`eixo_das_versoes` é singular e esta experiência tem três eixos ao mesmo tempo**
+  (escopo entre bilhetes, momento na tarifa de sexta e sábado, quem compra nas
+  promocionais). Hoje isso se acomoda: o escopo fica no eixo, o momento mora em
+  `acrescimos`, que já existia, e quem compra é a entidade nova. Nada foi construído para
+  isso, e fica nomeado.
+- **A `resolucao` é de UMA versão por experiência** (`versao_resolvida` é campo único). O
+  Acesso Rápido tem o próprio operador publicando **R$ 285 numa página e R$ 295 no blog**,
+  e não há onde gravar a segunda resolução — então o preço dele ficou `null`, com a causa
+  escrita. Preço errado por R$ 10 na página do dinheiro custa mais que preço ausente com a
+  causa escrita.
+- **A escada de fontes não previu a fonte que discorda DE SI MESMA.** Ela resolve conflito
+  *entre* níveis e diz, sobre o empate, apenas que *"dentro do mesmo nível, ninguém
+  vence"*. O site do operador discorda de si em **quatro** números (205/185, 89/80,
+  160/150, 285/295), e foi preciso quebrá-lo em **duas fontes** para que a divergência
+  pudesse sequer ser gravada: declaração aponta para uma `fonte`, e uma fonte não pode
+  divergir de si.
+- **`declaração` não pode discordar de uma ELEGIBILIDADE**, só de uma VERSÃO. Três das sete
+  declarações desta carga discordam de elegibilidades e ficaram com `versao: null`, o que
+  pelo esquema as tira da resolução e as manda para a tela como conteúdo.

@@ -131,11 +131,38 @@ def main():
 
     # ---- 3. a prosa do achado conferida contra o dado
     cadeia = " ".join(banco["o_achado_desta_passada"]["a_cadeia"])
-    afirma("QUATRO experiências" in cadeia and estado["experiencias"] == 4,
-           "a cadeia do achado afirma QUATRO experiencias e o banco tem %d" % estado["experiencias"])
-    afirma("Três dos quatro operadores" in cadeia and estado["operadores_de_poder_publico"] == 3,
-           "a cadeia afirma TRES operadores de poder publico e o banco tem %d"
-           % estado["operadores_de_poder_publico"])
+    # A PALAVRA ESPERADA SAI DA CONTAGEM, NAO DESTE ARQUIVO (27/10/2026).
+    # Estas duas afirmacoes traziam o numero escrito a mao DENTRO DELAS — «QUATRO
+    # experiências» e `== 4`, «Três dos quatro operadores» e `== 3`. Era a divida que
+    # este proprio portao existe para cobrar, um andar acima: prosa com numero
+    # digitado. Enquanto o banco tinha quatro experiencias as duas passavam; a carga do
+    # Bondinho levou para cinco e a afirmacao virou FALSA DOS DOIS LADOS — ela exigia
+    # que a prosa dissesse «quatro» sobre um banco de cinco. Agora a palavra e derivada
+    # da contagem: crescer o banco obriga a reescrever a prosa, que e o que se queria,
+    # e nunca mais obriga a reescrever este arquivo.
+    POR_EXTENSO = {1: "uma", 2: "duas", 3: "três", 4: "quatro", 5: "cinco",
+                   6: "seis", 7: "sete", 8: "oito", 9: "nove", 10: "dez"}
+    n_exp = estado["experiencias"]
+    palavra_exp = POR_EXTENSO.get(n_exp)
+    afirma(palavra_exp is not None,
+           "o banco tem %d experiencias e esta regua nao sabe escrever esse numero por "
+           "extenso — acrescente a palavra em POR_EXTENSO" % n_exp)
+    if palavra_exp:
+        afirma(palavra_exp.upper() in cadeia.upper(),
+               "a cadeia do achado nao afirma %s experiencias, e o banco tem %d contadas"
+               % (palavra_exp.upper(), n_exp))
+    n_pp = estado["operadores_de_poder_publico"]
+    palavra_pp = POR_EXTENSO.get(n_pp)
+    afirma(palavra_pp is not None,
+           "o banco tem %d operadores de poder publico e esta regua nao sabe escrever "
+           "esse numero por extenso" % n_pp)
+    if palavra_pp and palavra_exp:
+        # A frase e «Tres dos cinco operadores...»: as DUAS palavras, na mesma frase,
+        # porque o que ela afirma e uma proporcao e nao dois numeros soltos.
+        esperada = "%s dos %s operadores" % (palavra_pp, palavra_exp)
+        afirma(esperada.upper() in cadeia.upper(),
+               "a cadeia nao afirma «%s» — o banco tem %d de poder publico em %d "
+               "experiencias" % (esperada, n_pp, n_exp))
 
     titulo = banco["o_achado_desta_passada"]["titulo"]
     c_cont = ref.contagens(banco, estado)

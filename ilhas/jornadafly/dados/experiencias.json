@@ -1,7 +1,7 @@
 {
   "ilha": "jornadafly",
   "bloco": 3,
-  "versao": 7,
+  "versao": 8,
   "publicar": false,
   "cumpre": "dados/esquema-banco.json",
   "nota_da_versao_2": "Carga de 14/09/2026, as 23h. Entrou o Angkor Pass, com Siem Reap como segunda cidade e a escada de dias (1, 3 e 7) como versoes. E entrou o que a coleta MEDIU sobre o canal: das seis experiencias que o bloco 2 nomeou, tres foram tentadas por busca (balao da Capadocia, cruzeiro de Ha Long e quadriciclo de Dubai, em cinco passadas somadas) e as tres devolveram FAIXA sem dono, sem data e as vezes sem unidade — as duas passadas de Ha Long discordam entre por cabine e por pessoa, e entre dolar e dongue. A busca devolve numero onde ha tabela publica e devolve faixa onde o preco e de operador privado, que e justamente o tipo que o criterio de entrada PREFERE. As tres ficam como coleta em aberto com a causa medida, nunca como silencio.",
@@ -45,6 +45,16 @@
       "slug_plataforma_conferido_em": "2026-09-15",
       "nota_da_moeda": "A França cobra em euro e a tabela de tarifas do operador da Torre Eiffel publica os quatro bilhetes em euro, nas duas passadas.",
       "nota_do_slug": "O segmento de cidade foi visto em 15/09/2026 no conjunto de resultados de uma busca por passeios da plataforma, que devolveu varias paginas no caminho brasileiro (/br/paris/2/, /br/paris/5/ e /br/paris/visita-guiada-paris/). O endereco NAO foi aberto: o curl a civitatis.com devolveu 000 nesta mesma execucao, com o proxy declarando CONNECT recusado por politica. E fica registrada uma diferenca que ninguem tinha medido: os resultados de hoje trazem o host com `www.`, e o molde do esquema foi escrito no bloco 2 com o host SEM `www`, do jeito que ele foi visto la. As duas formas apareceram em dias diferentes; o piso continua sendo derivado do molde, porque piso derivado que envelhece junto e melhor que piso digitado que envelhece calado."
+    },
+    {
+      "id": "rio-de-janeiro",
+      "nome": "Rio de Janeiro",
+      "pais": "Brasil",
+      "moeda_local": "BRL_do_operador",
+      "slug_plataforma": "rio-de-janeiro",
+      "slug_plataforma_conferido_em": "2026-10-27",
+      "nota_da_moeda": "PRIMEIRA cidade deste banco cujo operador cobra na moeda do leitor, e isso muda o que a F1 pode prometer: as quatro experiencias anteriores sao em EUR e USD, e a constante de cambio desta ilha esta PENDENTE — entao todo total delas chega ao leitor brasileiro em moeda que ele nao gasta. Aqui nao ha conversao a fazer, e por isso nao ha nada a inventar. `BRL_do_operador` estava no vocabulario desde 14/09/2026 SEM UM REGISTRO QUE O USASSE: era um dos avisos de `vocabulario_sem_lastro`, como `free_tour` e `passe_de_cidade` ainda sao.",
+      "nota_do_slug": "O segmento de cidade foi visto em 27/10/2026 num conjunto de resultados de busca restrita a civitatis.com, que devolveu a pagina de cidade no caminho brasileiro (/br/rio-de-janeiro/) e DUAS paginas de produto nela: /br/rio-de-janeiro/teleferico-pao-acucar/ e /br/rio-de-janeiro/amanhecer-pao-acucar/. O endereco nao foi aberto: o egresso desta nuvem recusou civitatis.com.br em tres passadas de 27/10, com aquametria.com.br, robometria.com.br e clubedomosaico.com.br em 200 nas mesmas tres. Endereco visto nao e pagina lida."
     }
   ],
   "fontes": [
@@ -128,6 +138,51 @@
       "url": null,
       "motivo_sem_url": "Nenhuma das páginas foi lida: às 11h31Z de 15/09/2026 o curl a www.toureiffel.paris devolveu 000, com CONNECT recusado por política. É por isso que esta fonte é nível 4 (operador lido por busca) e não nível 2 (operador lido no endereço dele) — e é a mesma distância que separa o nível 3 do 1.",
       "data_leitura": "2026-09-15"
+    },
+    {
+      "id": "parque-bondinho-tarifa-via-busca",
+      "nivel": 4,
+      "origem": "operador-via-busca",
+      "leitura": "busca_web",
+      "autor": "Parque Bondinho Pão de Açúcar, a empresa que opera o teleférico do Morro da Urca e do Pão de Açúcar e vende o bilhete em bondinho.com.br",
+      "documento": "As páginas de bilhete do próprio operador e a central de ajuda dele, nomeadas uma por uma nas duas passadas restritas ao domínio: «Tipos de bilhetes», em sac.bondinho.com.br/hc/pt-br/articles/24239141433883 (é ela que declara o valor de R$ 205, a tarifa maior de sexta e sábado nos horários de 15h, 16h e 17h, e os bilhetes de Criança, de maiores de 60 e de Estado RJ); «Ingresso Bilhete Bondinho», em bondinho.com.br/pt/ingresso-bondinho; «Promocional Estado RJ», em bondinho.com.br/pt/estado-rj; «Brazilian Ticket Discount», em bondinho.com.br/promocional-para-brasileiros; «Bilhete Geral», em bondinho.com.br/pt/todos-os-ingressos; «Acesso ao Parque Bondinho pela trilha do Morro da Urca», em sac.bondinho.com.br/hc/pt-br/articles/9818455162395 (é ela que declara os dois bilhetes de Trilheiros e que eles só são vendidos no totem do Morro da Urca). Seis documentos nomeados, do próprio operador.",
+      "url": null,
+      "motivo_sem_url": "Nenhuma das páginas foi lida, e aqui as DUAS portas desta nuvem foram medidas na mesma passada de 27/10/2026, o que é mais do que as coletas anteriores fizeram. Pelo curl: bondinho.com.br, www.bondinho.com.br, parquebondinho.com.br e ingressos.bondinho.com.br todos em 000, com CONNECT recusado por política — o `__agentproxy/status` desta nuvem devolve, com todas as letras, «gateway answered 403 to CONNECT (policy denial or upstream failure)». Pelo WebFetch: `getaddrinfo ENOTFOUND` em www.bondinho.com.br e em bondinho.com.br. É por isso que esta fonte é nível 4 (operador lido por busca) e não nível 2 (operador lido no endereço dele) — a mesma distância que separa o nível 3 do 1, e o nível 2 continua sendo o degrau que o critério de entrada desta ilha PREFERE e que ela nunca alcançou.",
+      "data_leitura": "2026-10-27"
+    },
+    {
+      "id": "parque-bondinho-blog-via-busca",
+      "nivel": 4,
+      "origem": "operador-via-busca",
+      "leitura": "busca_web",
+      "autor": "Parque Bondinho Pão de Açúcar, no blog e nas páginas secundárias do próprio domínio — o MESMO operador da fonte acima, e é isso que faz esta fonte existir separada",
+      "documento": "«Qual ingresso comprar para visitar o Parque Bondinho Pão de Açúcar?», em blog.bondinho.com.br/qual-ingresso-comprar-para-visitar-o-parque-bondinho-pao-de-acucar/ (declara o Bilhete Bondinho a R$ 185, o Bilhete Estado RJ a R$ 80 e o Fast Pass a R$ 295), e páginas do mesmo domínio que declaram a promocional de brasileiro a R$ 150 — incluindo o host novosite.bondinho.com.br, que pelo próprio nome é uma versão do site em preparação.",
+      "url": null,
+      "motivo_sem_url": "Mesmo bloqueio de egresso da fonte acima, medido na mesma passada.",
+      "data_leitura": "2026-10-27",
+      "nota_de_por_que_e_fonte_separada": "Ela é o ACHADO desta coleta e não um detalhe de arrumação: as duas fontes são o MESMO operador, no MESMO domínio, no MESMO nível da escada, e DISCORDAM em quatro números — 205 contra 185, 89 contra 80, 160 contra 150, 285 contra 295. A escada desta ilha foi escrita para resolver conflito ENTRE níveis («em conflito, o nível mais alto vence») e diz, sobre o empate, apenas que «dentro do mesmo nível, ninguém vence». Ela não previu a fonte que discorda DE SI MESMA, e foi preciso separá-la em duas para que a divergência pudesse sequer ser gravada: declaração, neste esquema, aponta para uma `fonte`, e uma fonte não pode divergir de si."
+    },
+    {
+      "id": "civitatis-blog-bondinho-via-busca",
+      "nivel": 6,
+      "origem": "publicador-editorial",
+      "leitura": "busca_web",
+      "autor": "Civitatis, no blog dela — a mesma plataforma que revende o bilhete e que seria o programa de afiliado desta ilha",
+      "documento": "«Quanto custa o passeio de bondinho no Rio de Janeiro?», em civitatis.com/blog/pt-br/quanto-custa-bondinho-rio-de-janeiro/, que declara preços de 2026 numa faixa de cerca de R$ 85 a R$ 295 «dependendo de residência, idade e tipo de acesso», com R$ 199 para adulto estrangeiro, R$ 155 para residente no Brasil e R$ 85 para residente no estado do Rio; e as páginas de produto /br/rio-de-janeiro/teleferico-pao-acucar/ (US$ 43,75) e /br/rio-de-janeiro/amanhecer-pao-acucar/ (US$ 105,49).",
+      "url": null,
+      "motivo_sem_url": "civitatis.com.br recusado no egresso em três passadas de 27/10/2026, e civitatis.com já havia sido recusado em 14/09 e em 22/10. É o mesmo domínio que trava o cluster free tour (bloco 5c) e a coleta da F2 e da F3.",
+      "data_leitura": "2026-10-27"
+    },
+    {
+      "id": "imprensa-114-anos-bondinho-via-busca",
+      "nivel": 6,
+      "origem": "publicador-editorial",
+      "leitura": "busca_web",
+      "autor": "Mercado & Eventos e PANROTAS, nas matérias sobre os 114 anos do parque",
+      "documento": "«Bondinho Pão de Açúcar faz 114 anos com festa, música e mate com Biscoito Globo no Rio», em mercadoeeventos.com.br, e «Parque Bondinho Pão de Açúcar completa 114 anos e lança novo posicionamento», em panrotas.com.br. A primeira declara R$ 205 inteira e R$ 102 meia, R$ 160 para brasileiros, e R$ 89 para adulto e R$ 44 para criança de 3 a 12 anos no bilhete de morador do estado do Rio.",
+      "url": null,
+      "motivo_sem_url": "Nenhum dos dois domínios foi aberto: esta nuvem só alcança os domínios das ilhas do Arquipélago.",
+      "data_leitura": "2026-10-27"
     }
   ],
   "experiencias": [
@@ -176,7 +231,9 @@
           "nao_inclui_motivo_lista_vazia": "Mesma razão.",
           "fonte": "comune-venezia-tarifa-gondola",
           "data_leitura": "2026-09-14",
-          "declarado_como": "€90 por 30 minutos, das 9h às 19h, máximo de 5 passageiros por gôndola. A fonte diz a unidade com todas as letras: não se paga por pessoa, e sim pelo aluguel da embarcação inteira."
+          "declarado_como": "€90 por 30 minutos, das 9h às 19h, máximo de 5 passageiros por gôndola. A fonte diz a unidade com todas as letras: não se paga por pessoa, e sim pelo aluguel da embarcação inteira.",
+          "elegibilidade": null,
+          "motivo_sem_elegibilidade": "A tarifa da gôndola é por EMBARCAÇÃO (`unidade_de_preco: por_cabine`) e é tabelada por ato do poder público — a Delibera 89 de 20/04/2023. Nenhuma das quatro leituras desta experiência transcreveu tarifa por residência, nacionalidade ou vínculo, e a Delibera citada não foi lida no endereço do órgão. Ausência de declaração não é declaração de ausência. Campo acrescentado em 27/10/2026, com a entidade ELEGIBILIDADE."
         },
         {
           "id": "noturno",
@@ -209,7 +266,9 @@
           "nao_inclui_motivo_lista_vazia": "Mesma razão do diurno.",
           "fonte": "comune-venezia-tarifa-gondola",
           "data_leitura": "2026-09-14",
-          "declarado_como": "€110 por 35 minutos, das 19h às 4h, máximo de 5 passageiros por gôndola."
+          "declarado_como": "€110 por 35 minutos, das 19h às 4h, máximo de 5 passageiros por gôndola.",
+          "elegibilidade": null,
+          "motivo_sem_elegibilidade": "A tarifa da gôndola é por EMBARCAÇÃO (`unidade_de_preco: por_cabine`) e é tabelada por ato do poder público — a Delibera 89 de 20/04/2023. Nenhuma das quatro leituras desta experiência transcreveu tarifa por residência, nacionalidade ou vínculo, e a Delibera citada não foi lida no endereço do órgão. Ausência de declaração não é declaração de ausência. Campo acrescentado em 27/10/2026, com a entidade ELEGIBILIDADE."
         }
       ],
       "temporada": null,
@@ -353,7 +412,9 @@
           "nao_inclui_motivo_lista_vazia": "Mesma razão. Há templos do Camboja que se sabe terem bilhete próprio, e nenhuma das duas passadas os nomeou — nomeá-los aqui de memória seria inventar a exclusão mais cara da página.",
           "fonte": "angkor-enterprise-tarifa-via-busca",
           "data_leitura": "2026-09-14",
-          "declarado_como": "US$ 37 para a visitação de um dia. O passe de um dia vale na data impressa nele."
+          "declarado_como": "US$ 37 para a visitação de um dia. O passe de um dia vale na data impressa nele.",
+          "elegibilidade": null,
+          "motivo_sem_elegibilidade": "As duas passadas independentes desta coleta não transcreveram tarifa por residência ou nacionalidade, e esta é a experiência deste banco em que a ausência mais pesa: a fonte do Angkor é nível 3 que NÃO nomeia documento (é por ela que a `regra_do_documento_nomeado` nasceu), e o que ela declarou sobre quem paga menos veio em prosa sobre passaporte — que é documento de nacionalidade. O número não entra sem leitura que o declare. Campo acrescentado em 27/10/2026, com a entidade ELEGIBILIDADE."
         },
         {
           "id": "3-dias",
@@ -392,7 +453,9 @@
           "nao_inclui_motivo_lista_vazia": "Mesma razão da versão de 1 dia.",
           "fonte": "angkor-enterprise-tarifa-via-busca",
           "data_leitura": "2026-09-14",
-          "declarado_como": "US$ 62 para 3 dias. Os três dias não precisam ser seguidos: valem em três dias quaisquer dentro de uma janela de sete."
+          "declarado_como": "US$ 62 para 3 dias. Os três dias não precisam ser seguidos: valem em três dias quaisquer dentro de uma janela de sete.",
+          "elegibilidade": null,
+          "motivo_sem_elegibilidade": "As duas passadas independentes desta coleta não transcreveram tarifa por residência ou nacionalidade, e esta é a experiência deste banco em que a ausência mais pesa: a fonte do Angkor é nível 3 que NÃO nomeia documento (é por ela que a `regra_do_documento_nomeado` nasceu), e o que ela declarou sobre quem paga menos veio em prosa sobre passaporte — que é documento de nacionalidade. O número não entra sem leitura que o declare. Campo acrescentado em 27/10/2026, com a entidade ELEGIBILIDADE."
         },
         {
           "id": "7-dias",
@@ -431,7 +494,9 @@
           "nao_inclui_motivo_lista_vazia": "Mesma razão da versão de 1 dia.",
           "fonte": "angkor-enterprise-tarifa-via-busca",
           "data_leitura": "2026-09-14",
-          "declarado_como": "US$ 72 para 7 dias. Os sete dias não precisam ser seguidos: valem em sete dias quaisquer dentro de um mês."
+          "declarado_como": "US$ 72 para 7 dias. Os sete dias não precisam ser seguidos: valem em sete dias quaisquer dentro de um mês.",
+          "elegibilidade": null,
+          "motivo_sem_elegibilidade": "As duas passadas independentes desta coleta não transcreveram tarifa por residência ou nacionalidade, e esta é a experiência deste banco em que a ausência mais pesa: a fonte do Angkor é nível 3 que NÃO nomeia documento (é por ela que a `regra_do_documento_nomeado` nasceu), e o que ela declarou sobre quem paga menos veio em prosa sobre passaporte — que é documento de nacionalidade. O número não entra sem leitura que o declare. Campo acrescentado em 27/10/2026, com a entidade ELEGIBILIDADE."
         }
       ],
       "temporada": null,
@@ -502,7 +567,9 @@
           ],
           "fonte": "parco-colosseo-tarifa-via-busca",
           "data_leitura": "2026-09-15",
-          "declarado_como": "€18 por adulto, entrada com horário marcado no Coliseu mais uma entrada no Fórum Romano e no Palatino, válido por 24 horas a partir da primeira entrada. Não dá acesso ao piso da arena, aos subterrâneos nem ao ático, e não inclui audioguia nem guia."
+          "declarado_como": "€18 por adulto, entrada com horário marcado no Coliseu mais uma entrada no Fórum Romano e no Palatino, válido por 24 horas a partir da primeira entrada. Não dá acesso ao piso da arena, aos subterrâneos nem ao ático, e não inclui audioguia nem guia.",
+          "elegibilidade": null,
+          "motivo_sem_elegibilidade": "E AQUI O CAMPO NASCE JÁ COM DÍVIDA NOMEADA, que é a razão de ele valer mais que o registro que o trouxe. O `motivo_sem_faixa_etaria` desta mesma versão, escrito em 15/09/2026, diz com todas as letras que a divergência medida «não entra em `faixa_etaria` porque `faixa_etaria` guarda PREÇO, e aqui o que existe é uma divergência sobre quem tem direito» — gratuidade de menor de 18 anos para cidadão de Estado-membro da União Europeia contra gratuidade universal, e tarifa cheia para o visitante de 18 a 25 anos de fora da UE. QUEM TEM DIREITO é exatamente o que a ELEGIBILIDADE guarda, e desde 27/10/2026 existe campo para isso. O valor continua `null` por um motivo que não é de forma e sim de escada: as duas fontes que declaram essa divergência são nível 6, publicador editorial, e o próprio esquema diz que o nível 6 «NÃO sustenta NADA sozinho». Então o que mudou hoje não é o dado — é que a dívida saiu de prosa dentro de um motivo e passou a ter campo, nome e endereço de releitura. Campo acrescentado em 27/10/2026."
         },
         {
           "id": "experiencia-completa",
@@ -534,7 +601,9 @@
           ],
           "fonte": "parco-colosseo-tarifa-via-busca",
           "data_leitura": "2026-09-15",
-          "declarado_como": "€22 por adulto para a Experiência Completa, que é o ingresso comum mais o acesso a uma área restrita. A passada em inglês nomeou três áreas vendidas por esse mesmo preço — o piso da arena, os subterrâneos e o ático —, e a passada em português devolveu o preço de €22 sem nomeá-las."
+          "declarado_como": "€22 por adulto para a Experiência Completa, que é o ingresso comum mais o acesso a uma área restrita. A passada em inglês nomeou três áreas vendidas por esse mesmo preço — o piso da arena, os subterrâneos e o ático —, e a passada em português devolveu o preço de €22 sem nomeá-las.",
+          "elegibilidade": null,
+          "motivo_sem_elegibilidade": "E AQUI O CAMPO NASCE JÁ COM DÍVIDA NOMEADA, que é a razão de ele valer mais que o registro que o trouxe. O `motivo_sem_faixa_etaria` desta mesma versão, escrito em 15/09/2026, diz com todas as letras que a divergência medida «não entra em `faixa_etaria` porque `faixa_etaria` guarda PREÇO, e aqui o que existe é uma divergência sobre quem tem direito» — gratuidade de menor de 18 anos para cidadão de Estado-membro da União Europeia contra gratuidade universal, e tarifa cheia para o visitante de 18 a 25 anos de fora da UE. QUEM TEM DIREITO é exatamente o que a ELEGIBILIDADE guarda, e desde 27/10/2026 existe campo para isso. O valor continua `null` por um motivo que não é de forma e sim de escada: as duas fontes que declaram essa divergência são nível 6, publicador editorial, e o próprio esquema diz que o nível 6 «NÃO sustenta NADA sozinho». Então o que mudou hoje não é o dado — é que a dívida saiu de prosa dentro de um motivo e passou a ter campo, nome e endereço de releitura. Campo acrescentado em 27/10/2026."
         }
       ],
       "temporada": null,
@@ -640,7 +709,9 @@
           ],
           "fonte": "sete-toureiffel-tarifa-via-busca",
           "data_leitura": "2026-09-15",
-          "declarado_como": "14,80€ por adulto no bilhete até ao segundo piso por escada. É o bilhete mais barato da tabela e o único em que a subida não usa elevador."
+          "declarado_como": "14,80€ por adulto no bilhete até ao segundo piso por escada. É o bilhete mais barato da tabela e o único em que a subida não usa elevador.",
+          "elegibilidade": null,
+          "motivo_sem_elegibilidade": "A fonte é nível 4, o operador lido por busca, e ela declarou a grade de IDADES (quatro faixas por bilhete) e não declarou tarifa por residência, nacionalidade ou vínculo. Ausência de declaração não é declaração de ausência. Campo acrescentado em 27/10/2026, com a entidade ELEGIBILIDADE."
         },
         {
           "id": "segundo-piso-elevador",
@@ -693,7 +764,9 @@
           ],
           "fonte": "sete-toureiffel-tarifa-via-busca",
           "data_leitura": "2026-09-15",
-          "declarado_como": "23,50€ por adulto no bilhete até ao segundo piso por elevador."
+          "declarado_como": "23,50€ por adulto no bilhete até ao segundo piso por elevador.",
+          "elegibilidade": null,
+          "motivo_sem_elegibilidade": "A fonte é nível 4, o operador lido por busca, e ela declarou a grade de IDADES (quatro faixas por bilhete) e não declarou tarifa por residência, nacionalidade ou vínculo. Ausência de declaração não é declaração de ausência. Campo acrescentado em 27/10/2026, com a entidade ELEGIBILIDADE."
         },
         {
           "id": "topo-escada-e-elevador",
@@ -749,7 +822,9 @@
           ],
           "fonte": "sete-toureiffel-tarifa-via-busca",
           "data_leitura": "2026-09-15",
-          "declarado_como": "28,00€ por adulto no bilhete combinado, que sobe a pé pelas escadas até ao segundo piso e depois vai ao topo por elevador. A passada em inglês acrescenta que já não existe bilhete que suba de escada até o topo, e que este combinado é o caminho mais barato para chegar lá em cima."
+          "declarado_como": "28,00€ por adulto no bilhete combinado, que sobe a pé pelas escadas até ao segundo piso e depois vai ao topo por elevador. A passada em inglês acrescenta que já não existe bilhete que suba de escada até o topo, e que este combinado é o caminho mais barato para chegar lá em cima.",
+          "elegibilidade": null,
+          "motivo_sem_elegibilidade": "A fonte é nível 4, o operador lido por busca, e ela declarou a grade de IDADES (quatro faixas por bilhete) e não declarou tarifa por residência, nacionalidade ou vínculo. Ausência de declaração não é declaração de ausência. Campo acrescentado em 27/10/2026, com a entidade ELEGIBILIDADE."
         },
         {
           "id": "topo-elevador",
@@ -820,7 +895,9 @@
           ],
           "fonte": "sete-toureiffel-tarifa-via-busca",
           "data_leitura": "2026-09-15",
-          "declarado_como": "36,70€ por adulto no bilhete até ao topo por elevador, que a fonte descreve como um primeiro elevador e depois um segundo. É o teto da tabela."
+          "declarado_como": "36,70€ por adulto no bilhete até ao topo por elevador, que a fonte descreve como um primeiro elevador e depois um segundo. É o teto da tabela.",
+          "elegibilidade": null,
+          "motivo_sem_elegibilidade": "A fonte é nível 4, o operador lido por busca, e ela declarou a grade de IDADES (quatro faixas por bilhete) e não declarou tarifa por residência, nacionalidade ou vínculo. Ausência de declaração não é declaração de ausência. Campo acrescentado em 27/10/2026, com a entidade ELEGIBILIDADE."
         }
       ],
       "temporada": null,
@@ -844,32 +921,417 @@
       "entra_por": "Entra pelo mesmo motivo do Coliseu — ingresso de sítio público, o tipo que a carga de 14/09 mediu como o único reproduzível pelo canal aberto — e traz o degrau que este banco nunca tinha alcançado: a fonte é de NÍVEL 4, operador lido por busca. Até hoje o banco só tinha nível 3 (autoridade por busca) e nível 6 (publicador editorial); o degrau do operador estava marcado no esquema como `existe_hoje: false`. A diferença não é de grau: o que a busca devolveu aqui não é alguém falando da tarifa, são as páginas de tarifa do próprio operador, uma por bilhete, com o preço no título de cada uma. E é também o registro que faz nascer `concessionaria_de_bem_publico` no vocabulário de `tipo_de_operador` — a SETE não é o poder público declarando tarifa, nem uma empresa privada qualquer: é a concessionária de um bem público, e chamar de qualquer um dos dois seria pôr o número na boca de quem não o publicou.",
       "status_por_que": "`publicavel`: a regra_do_documento_nomeado cobra documento dos níveis de AUTORIDADE, que são o 1 e o 3, e este é nível 4 — mas ele nomeia documento assim mesmo, quatro deles, um por versão. A ressalva do nível 4 é obrigatória na tela: site do operador, lido por busca, a reconferir na fonte.",
       "nota_da_faixa_etaria": "MIGRADO EM 22/10/2026, e esta experiência é a PROVA que obrigou a migração. A fonte declara quatro faixas — adulto, jovem de 12 a 24 anos, criança de 4 a 11 anos e menor de 4 — e o preço de três delas MUDA de bilhete para bilhete. Com `faixa_etaria` na EXPERIÊNCIA, a carga de 15/09/2026 só podia gravar a gratuidade dos menores de 4 anos, que vale igual nos quatro; as outras três ficaram em PROSA, nesta nota, com os números dentro dela. Agora o campo mora na VERSÃO e os números que já tinham sido lidos viraram campo: 3,80€ e 7,40€ na escada até o segundo piso, 9,20€ e 18,40€ no elevador até o topo, cada um com `transcrito_de` dizendo que saiu desta prosa e não de leitura nova. AS QUATRO CÉLULAS DO MEIO CONTINUAM NÃO LIDAS — criança e jovem nas duas versões intermediárias — e estão contadas em `faixas_que_a_fonte_declara_e_a_leitura_nao_transcreveu`, quatro entradas, em vez de escondidas numa frase. É a mesma troca que a Aquametria fez em 21/10/2026 com o `porte_adulto_cm`: prosa dentro do banco que vira campo contável, porque prosa não barra página e prosa não se conta."
+    },
+    {
+      "id": "rio-de-janeiro-bondinho-pao-de-acucar",
+      "nome": "Parque Bondinho Pão de Açúcar — o bilhete do teleférico",
+      "cidade": "rio-de-janeiro",
+      "categoria": "atividade_de_operador",
+      "eixo_das_versoes": "por_escopo",
+      "nota_do_eixo_das_versoes": "Os cinco bilhetes dão COISAS DIFERENTES, não quantidades diferentes da mesma coisa: o Bilhete Bondinho dá os dois trajetos e o parque; o Acesso Rápido acrescenta fila preferencial e um lounge; o Amanhecer dá o parque fechado às 4h; e os dois de Trilheiros dão MENOS trajeto porque o visitante sobe a pé. Comprar dois Bilhetes Bondinho não dá o lounge nem as 4h, então não há ponto de equilíbrio a calcular. E ESTE REGISTRO É O PRIMEIRO DESTE BANCO EM QUE O EIXO DECLARADO NÃO DÁ CONTA DO QUE O OPERADOR VENDE: dentro do Bilhete Bondinho o mesmo produto tem cinco preços, e o que os separa não é escopo — é QUEM COMPRA (R$ 160 para quem nasceu e mora no Brasil, R$ 89 para quem é do estado do Rio) e QUANDO (R$ 230 na sexta e no sábado às 15h, 16h e 17h). `eixo_das_versoes` é um campo singular, e esta experiência tem três eixos ao mesmo tempo. O de escopo ficou como eixo das VERSÕES porque é o que separa os bilhetes; o de momento mora em `acrescimos`, que já existia; e o de quem compra é a entidade ELEGIBILIDADE, que nasceu nesta carga.",
+      "operador": {
+        "nome": "Parque Bondinho Pão de Açúcar, a empresa que opera o teleférico desde 1912 e vende o bilhete pelo próprio site",
+        "tipo": "concessionaria_de_bem_publico",
+        "url": null,
+        "motivo_sem_url": "O endereço do operador (bondinho.com.br) voltou por nome em todas as três passadas de busca e NENHUMA das duas portas desta nuvem o abriu em 27/10/2026: o curl devolveu 000 em quatro hosts do domínio, com o proxy declarando «gateway answered 403 to CONNECT (policy denial or upstream failure)», e o WebFetch devolveu `getaddrinfo ENOTFOUND`. Endereço visto não é página lida.",
+        "nota_do_tipo": "E ESTE CAMPO CONTRARIA, POR MEDIÇÃO, O QUE O `PROMPT.md` DESTA ILHA ESPERAVA — está dito aqui para a próxima execução não precisar redescobrir. O item 6 da fila (a lista de prospecção do widget) tem o destravamento PRÉ-REGISTRADO nestas palavras: «uma experiência de operador privado brasileiro no banco — o Parque Bondinho Pão de Açúcar». O Bondinho entrou, e ele NÃO é `operador_privado` no vocabulário desta ilha: ele opera um bem público sob concessão, exatamente como a SETE opera a Torre Eiffel, que já está no banco com este mesmo tipo desde 15/09/2026. Então `operador_privado` SEGUE SEM LASTRO, e o critério do item 6, lido ao pé da letra, NÃO foi cumprido pelo próprio exemplo que ele nomeia. As três coisas que o item 6 pede de fato — brasileiro, vende direto pelo próprio site, mais de uma versão da mesma experiência — estão as três cumpridas. Quem for abrir o item 6 decide isso com o critério na mão, e não de cabeça: é o desencontro entre o rótulo e a condição, não um registro faltando."
+      },
+      "versoes": [
+        {
+          "id": "bilhete-bondinho",
+          "rotulo": "O Bilhete Bondinho, o bilhete comum do teleférico",
+          "preco": 205,
+          "moeda": "BRL_do_operador",
+          "unidade_de_preco": "por_pessoa",
+          "unidade_de_preco_declarada_por": "no_texto_da_fonte",
+          "capacidade_maxima": null,
+          "capacidade_maxima_declarada_por": null,
+          "motivo_sem_capacidade": "Bilhete individual não tem lotação: a unidade já é a pessoa. O degrau da gôndola, onde 6 pessoas viram duas embarcações, não existe aqui.",
+          "dias_de_uso": null,
+          "motivo_sem_dias_de_uso": "A experiência declara `eixo_das_versoes: por_escopo`, e o esquema PROÍBE `dias_de_uso` fora do eixo de quantidade. Este bilhete vale para um dia de visita, no escopo que o rótulo diz.",
+          "faixa_etaria": [
+            {
+              "rotulo": "Bilhete Criança",
+              "preco": 102,
+              "moeda": "BRL_do_operador",
+              "condicao": "criança de 3 a 12 anos",
+              "se_nao_cumprir": "quem tem 13 anos ou mais paga o Bilhete Bondinho de R$ 205, salvo se provar outra condição",
+              "declarado_como": "Bilhete Criança (R$ 102, de 3 a 12 anos)",
+              "fonte": "parque-bondinho-tarifa-via-busca",
+              "data_leitura": "2026-10-27",
+              "duas_passadas": "O valor de R$ 102 voltou em DUAS fontes independentes e de níveis diferentes: a central de ajuda do próprio operador (nível 4) e as matérias dos 114 anos (nível 6), que o chamam de «meia-entrada». Os dois números são iguais e é a única convergência limpa desta coleta."
+            },
+            {
+              "rotulo": "Bilhete para maiores de 60 anos",
+              "preco": 102,
+              "moeda": "BRL_do_operador",
+              "condicao": "pessoa com mais de 60 anos",
+              "se_nao_cumprir": "quem não prova a idade paga o Bilhete Bondinho de R$ 205",
+              "declarado_como": "Bilhete para maiores de 60 anos (R$ 102)",
+              "fonte": "parque-bondinho-tarifa-via-busca",
+              "data_leitura": "2026-10-27"
+            }
+          ],
+          "faixas_que_a_fonte_declara_e_a_leitura_nao_transcreveu": [
+            {
+              "rotulo": "Meia-entrada",
+              "por_que": "O operador declara que existe meia-entrada para este bilhete e a leitura de 27/10/2026 NÃO transcreveu nem o valor dela nem a lista inteira de quem a tem: a página do próprio operador que a define — «Outras opções de meia-entrada», em sac.bondinho.com.br — voltou por NOME nos resultados e não foi lida, porque o egresso recusa o domínio. Uma lista de quem tem direito voltou numa fonte de nível 6 (criança de 3 a 12, jovem de 13 a 21, maior de 60, estudante, pessoa com deficiência com acompanhante, professor da rede municipal do Rio) e o nível 6 não sustenta nada sozinho. E há uma razão a mais para não gravar: a meia-entrada brasileira NÃO É UMA FAIXA DE IDADE — ela empacota idade, vínculo e deficiência numa só palavra, e cada uma dessas três se prova de um jeito. Enfiá-la em `faixa_etaria` diria que o operador cobra por idade o que ele cobra por condição, e enfiá-la em `elegibilidade` afirmaria uma prova que a fonte não declarou."
+            }
+          ],
+          "elegibilidade": [
+            {
+              "rotulo": "Promocional para Brasileiros",
+              "o_que_se_prova": "residencia",
+              "preco": 160,
+              "moeda": "BRL_do_operador",
+              "condicao": "ter nascido no Brasil E morar no Brasil — a fonte exige as duas coisas, não uma delas",
+              "se_nao_cumprir": "quem não é nascido e morador do Brasil paga o Bilhete Bondinho de R$ 205, que é 28% mais",
+              "acumula_com_faixa_etaria": false,
+              "declarado_como": "todas as pessoas nascidas e moradoras do Brasil pagam R$ 160",
+              "fonte": "parque-bondinho-tarifa-via-busca",
+              "data_leitura": "2026-10-27"
+            },
+            {
+              "rotulo": "Promocional Estado RJ",
+              "o_que_se_prova": "residencia",
+              "preco": 89,
+              "moeda": "BRL_do_operador",
+              "condicao": "ter nascido OU residir no estado do Rio de Janeiro — aqui a fonte aceita uma das duas, e é a diferença dela com a promocional de brasileiro",
+              "se_nao_cumprir": "quem não é do estado do Rio paga R$ 160 se for brasileiro e R$ 205 se não for",
+              "acumula_com_faixa_etaria": false,
+              "declarado_como": "Bilhete Estado RJ (R$ 89) para nascidos ou residentes no estado",
+              "fonte": "parque-bondinho-tarifa-via-busca",
+              "data_leitura": "2026-10-27"
+            }
+          ],
+          "duracao_minutos": null,
+          "motivo_sem_duracao": "A fonte não declara duração de passeio: ela declara que o bilhete dá livre acesso ao parque e à programação do dia, e o parque opera das 8h às 20h com entrada até 18h30 segundo uma fonte de nível 6. Transformar horário de funcionamento em duração de passeio seria virar um teto em programação.",
+          "momento_do_dia": "qualquer",
+          "janela_horaria": "livre acesso ao parque no dia do bilhete, com tarifa maior nas sextas e sábados às 15h, 16h e 17h",
+          "acrescimos": [
+            {
+              "o_que_e": "tarifa maior na sexta e no sábado, nos horários de 15h, 16h e 17h",
+              "valor": 230,
+              "moeda": "BRL_do_operador",
+              "aproximado": false,
+              "declarado_como": "Valor: R$ 205, com valor maior às sextas e sábados nos horários das 15h, 16h e 17h (R$ 230)",
+              "nota": "NÃO é um adicional somado ao bilhete: é o PREÇO do bilhete naquelas seis janelas da semana. Está em `acrescimos` porque é o único campo que a VERSÃO tem para preço que muda por momento sem virar outra versão — e virar outra versão seria dizer que o operador vende dois produtos, quando ele vende um em dois horários. R$ 230 é o número da fonte, não R$ 205 mais R$ 25."
+            }
+          ],
+          "inclui": [
+            "os trajetos de bondinho entre a Praia Vermelha, o Morro da Urca e o Pão de Açúcar",
+            "livre acesso a todo o parque, para aproveitar toda a programação gratuita"
+          ],
+          "nao_inclui": [
+            "fila preferencial, que é o Acesso Rápido",
+            "o lounge VIP da primeira estação, que é o Acesso Rápido",
+            "a entrada no parque antes da abertura, que é o Amanhecer",
+            "estacionamento"
+          ],
+          "fonte": "parque-bondinho-tarifa-via-busca",
+          "data_leitura": "2026-10-27",
+          "declarado_como": "Valor: R$ 205. Aproveite um dia inteiro de passeio com a melhor vista do Rio de Janeiro por R$ 205, com livre acesso a todo o parque para aproveitar toda a programação gratuita, além dos trajetos de bondinho entre Praia Vermelha, Morro da Urca e Pão de Açúcar."
+        },
+        {
+          "id": "acesso-rapido",
+          "rotulo": "O Acesso Rápido, com fila preferencial e lounge",
+          "preco": null,
+          "motivo_sem_preco": "E ESTE VAZIO É O SEGUNDO ACHADO DA CARGA, porque ele não é falta de leitura: é DUAS PÁGINAS DO MESMO OPERADOR DIZENDO NÚMEROS DIFERENTES PARA O MESMO BILHETE. A central de ajuda e as páginas de bilhete declaram R$ 285; o blog do próprio domínio declara R$ 295, chamando-o de Fast Pass. A escada de fontes desta ilha resolve conflito entre NÍVEIS e diz, sobre o empate, apenas que «dentro do mesmo nível, ninguém vence» — e as duas páginas são o mesmo operador, no mesmo domínio, no mesmo nível 4. A regra de divergência sem autoridade manda resolver para o MAIOR, o que daria R$ 295, e isso poria no bilhete o número do BLOG contra o da página de bilhete. O mecanismo de `resolucao` deste esquema é de UMA versão por experiência (`versao_resolvida` é campo único), e esta experiência resolve no Bilhete Bondinho. Então o preço deste bilhete NÃO VAI À TELA até uma releitura no endereço do operador desempatar: o visitante vê que o bilhete existe, o que ele dá, e que o próprio operador publica dois valores, com as duas páginas nomeadas. Preço errado por R$ 10 na página do dinheiro custa mais que preço ausente com a causa escrita.",
+          "moeda": "BRL_do_operador",
+          "unidade_de_preco": "por_pessoa",
+          "unidade_de_preco_declarada_por": "no_texto_da_fonte",
+          "capacidade_maxima": null,
+          "capacidade_maxima_declarada_por": null,
+          "motivo_sem_capacidade": "Bilhete individual não tem lotação: a unidade já é a pessoa.",
+          "dias_de_uso": null,
+          "motivo_sem_dias_de_uso": "Eixo `por_escopo`: o esquema proíbe `dias_de_uso` fora do eixo de quantidade.",
+          "faixa_etaria": null,
+          "motivo_sem_faixa_etaria": "O operador declara que existe meia-entrada para este bilhete e a leitura de 27/10/2026 NÃO transcreveu nem o valor dela nem a lista inteira de quem a tem: a página do próprio operador que a define — «Outras opções de meia-entrada», em sac.bondinho.com.br — voltou por NOME nos resultados e não foi lida, porque o egresso recusa o domínio. Uma lista de quem tem direito voltou numa fonte de nível 6 (criança de 3 a 12, jovem de 13 a 21, maior de 60, estudante, pessoa com deficiência com acompanhante, professor da rede municipal do Rio) e o nível 6 não sustenta nada sozinho. E há uma razão a mais para não gravar: a meia-entrada brasileira NÃO É UMA FAIXA DE IDADE — ela empacota idade, vínculo e deficiência numa só palavra, e cada uma dessas três se prova de um jeito. Enfiá-la em `faixa_etaria` diria que o operador cobra por idade o que ele cobra por condição, e enfiá-la em `elegibilidade` afirmaria uma prova que a fonte não declarou.",
+          "elegibilidade": null,
+          "motivo_sem_elegibilidade": "A leitura de 27/10/2026 não transcreveu, para este bilhete, tarifa por residência, nacionalidade ou vínculo. O operador declara as promocionais (brasileiro e Estado RJ) no Bilhete Bondinho, e a mesma leitura devolveu que a meia-entrada «não vale para as tarifas promocionais» — então não há aqui desconto a presumir a partir do bilhete irmão. Ausência de declaração não é declaração de ausência.",
+          "duracao_minutos": null,
+          "motivo_sem_duracao": "A fonte não declara duração: ela declara um benefício de fila e de recepção.",
+          "momento_do_dia": "qualquer",
+          "janela_horaria": null,
+          "acrescimos": [],
+          "inclui": [
+            "tudo o que o Bilhete Bondinho dá",
+            "acesso preferencial às filas de todas as estações do teleférico",
+            "recepção em lounge VIP e climatizado, na primeira estação"
+          ],
+          "nao_inclui": [
+            "a entrada no parque antes da abertura, que é o Amanhecer"
+          ],
+          "fonte": "parque-bondinho-tarifa-via-busca",
+          "data_leitura": "2026-10-27",
+          "declarado_como": "O benefício é acesso preferencial às filas de todas as estações do teleférico, além de recepção em lounge VIP e climatizado, na primeira estação."
+        },
+        {
+          "id": "amanhecer",
+          "rotulo": "O Amanhecer, no parque fechado antes da abertura",
+          "preco": 195,
+          "moeda": "BRL_do_operador",
+          "unidade_de_preco": "por_pessoa",
+          "unidade_de_preco_declarada_por": "no_texto_da_fonte",
+          "capacidade_maxima": null,
+          "capacidade_maxima_declarada_por": null,
+          "motivo_sem_capacidade": "A fonte não declara lotação deste bilhete, e horário exclusivo é justamente onde haveria limite. Ausência de declaração não é declaração de ausência.",
+          "dias_de_uso": null,
+          "motivo_sem_dias_de_uso": "Eixo `por_escopo`: o esquema proíbe `dias_de_uso` fora do eixo de quantidade.",
+          "faixa_etaria": null,
+          "motivo_sem_faixa_etaria": "A leitura não transcreveu faixa de idade para este bilhete, e a mesma leitura devolveu que a meia-entrada vale para o Bilhete Bondinho, o Acesso Rápido e a Visita Guiada — o Amanhecer não está entre os três nomeados. Não gravar é o que a fonte autoriza.",
+          "elegibilidade": null,
+          "motivo_sem_elegibilidade": "A leitura de 27/10/2026 não transcreveu, para este bilhete, tarifa por residência, nacionalidade ou vínculo. O operador declara as promocionais (brasileiro e Estado RJ) no Bilhete Bondinho, e a mesma leitura devolveu que a meia-entrada «não vale para as tarifas promocionais» — então não há aqui desconto a presumir a partir do bilhete irmão. Ausência de declaração não é declaração de ausência.",
+          "duracao_minutos": null,
+          "motivo_sem_duracao": "A fonte declara o horário de início (4h) e não a duração.",
+          "momento_do_dia": "madrugada",
+          "janela_horaria": "às 4h00, antes da abertura do parque",
+          "acrescimos": [],
+          "inclui": [
+            "o parque em horário exclusivo, antes da abertura, às 4h00"
+          ],
+          "nao_inclui": [
+            "estacionamento, que a própria fonte avisa que pode não estar funcionando nesse horário e manda confirmar antes"
+          ],
+          "fonte": "parque-bondinho-tarifa-via-busca",
+          "data_leitura": "2026-10-27",
+          "declarado_como": "Uma oportunidade de aproveitar o Parque em horário totalmente exclusivo, antes da sua abertura, às 4h00. R$ 195,00. O estacionamento pode não funcionar nesse horário, e recomendamos confirmar antes se o estacionamento estará funcionando."
+        },
+        {
+          "id": "trilheiros-subida-a-pe-descida-de-bondinho",
+          "rotulo": "Trilheiros: sobe a pé até o Pão de Açúcar e desce de bondinho",
+          "preco": 140,
+          "moeda": "BRL_do_operador",
+          "unidade_de_preco": "por_pessoa",
+          "unidade_de_preco_declarada_por": "no_texto_da_fonte",
+          "capacidade_maxima": null,
+          "capacidade_maxima_declarada_por": null,
+          "motivo_sem_capacidade": "Bilhete individual não tem lotação: a unidade já é a pessoa.",
+          "dias_de_uso": null,
+          "motivo_sem_dias_de_uso": "Eixo `por_escopo`: o esquema proíbe `dias_de_uso` fora do eixo de quantidade.",
+          "faixa_etaria": null,
+          "motivo_sem_faixa_etaria": "A fonte declara «Meia-entrada: R$ 70» ao lado do adulto, e NÃO declara quem tem direito a ela neste bilhete. O número existe e não entra: meia-entrada brasileira empacota idade, vínculo e deficiência, e gravar R$ 70 como faixa de idade afirmaria uma prova que a fonte não fez. O operador declara que existe meia-entrada para este bilhete e a leitura de 27/10/2026 NÃO transcreveu nem o valor dela nem a lista inteira de quem a tem: a página do próprio operador que a define — «Outras opções de meia-entrada», em sac.bondinho.com.br — voltou por NOME nos resultados e não foi lida, porque o egresso recusa o domínio. Uma lista de quem tem direito voltou numa fonte de nível 6 (criança de 3 a 12, jovem de 13 a 21, maior de 60, estudante, pessoa com deficiência com acompanhante, professor da rede municipal do Rio) e o nível 6 não sustenta nada sozinho. E há uma razão a mais para não gravar: a meia-entrada brasileira NÃO É UMA FAIXA DE IDADE — ela empacota idade, vínculo e deficiência numa só palavra, e cada uma dessas três se prova de um jeito. Enfiá-la em `faixa_etaria` diria que o operador cobra por idade o que ele cobra por condição, e enfiá-la em `elegibilidade` afirmaria uma prova que a fonte não declarou.",
+          "elegibilidade": null,
+          "motivo_sem_elegibilidade": "A leitura de 27/10/2026 não transcreveu, para este bilhete, tarifa por residência, nacionalidade ou vínculo. O operador declara as promocionais (brasileiro e Estado RJ) no Bilhete Bondinho, e a mesma leitura devolveu que a meia-entrada «não vale para as tarifas promocionais» — então não há aqui desconto a presumir a partir do bilhete irmão. Ausência de declaração não é declaração de ausência.",
+          "duracao_minutos": null,
+          "motivo_sem_duracao": "A fonte declara cerca de 30 minutos de SUBIDA de trilha, classificada de intensidade leve a moderada — e tempo de trilha não é duração do passeio que o bilhete vende. Gravar 30 aqui poria no bilhete o tempo de uma caminhada que o operador não cronometra.",
+          "momento_do_dia": "qualquer",
+          "janela_horaria": null,
+          "acrescimos": [],
+          "inclui": [
+            "a descida de bondinho do Pão de Açúcar até a Praia Vermelha, com a parada do Morro da Urca"
+          ],
+          "nao_inclui": [
+            "a subida de bondinho, que é justamente o que este bilhete troca pela trilha",
+            "a compra pela internet: a fonte declara que este bilhete é vendido apenas no totem do Morro da Urca"
+          ],
+          "fonte": "parque-bondinho-tarifa-via-busca",
+          "data_leitura": "2026-10-27",
+          "declarado_como": "Subida ao Pão de Açúcar com descida de bondinho — Adulto: R$ 140 | Meia-entrada: R$ 70. Vendidos apenas no totem do Morro da Urca. A trilha tem cerca de 30 minutos de subida e intensidade leve a moderada."
+        },
+        {
+          "id": "trilheiros-so-descida-do-morro-da-urca",
+          "rotulo": "Trilheiros: só a descida do Morro da Urca até a Praia Vermelha",
+          "preco": 65,
+          "moeda": "BRL_do_operador",
+          "unidade_de_preco": "por_pessoa",
+          "unidade_de_preco_declarada_por": "no_texto_da_fonte",
+          "capacidade_maxima": null,
+          "capacidade_maxima_declarada_por": null,
+          "motivo_sem_capacidade": "Bilhete individual não tem lotação: a unidade já é a pessoa.",
+          "dias_de_uso": null,
+          "motivo_sem_dias_de_uso": "Eixo `por_escopo`: o esquema proíbe `dias_de_uso` fora do eixo de quantidade.",
+          "faixa_etaria": null,
+          "motivo_sem_faixa_etaria": "A fonte declara «Meia-entrada: R$ 32» ao lado do adulto e não declara quem tem direito. Mesma razão do bilhete irmão. O operador declara que existe meia-entrada para este bilhete e a leitura de 27/10/2026 NÃO transcreveu nem o valor dela nem a lista inteira de quem a tem: a página do próprio operador que a define — «Outras opções de meia-entrada», em sac.bondinho.com.br — voltou por NOME nos resultados e não foi lida, porque o egresso recusa o domínio. Uma lista de quem tem direito voltou numa fonte de nível 6 (criança de 3 a 12, jovem de 13 a 21, maior de 60, estudante, pessoa com deficiência com acompanhante, professor da rede municipal do Rio) e o nível 6 não sustenta nada sozinho. E há uma razão a mais para não gravar: a meia-entrada brasileira NÃO É UMA FAIXA DE IDADE — ela empacota idade, vínculo e deficiência numa só palavra, e cada uma dessas três se prova de um jeito. Enfiá-la em `faixa_etaria` diria que o operador cobra por idade o que ele cobra por condição, e enfiá-la em `elegibilidade` afirmaria uma prova que a fonte não declarou.",
+          "elegibilidade": null,
+          "motivo_sem_elegibilidade": "A leitura de 27/10/2026 não transcreveu, para este bilhete, tarifa por residência, nacionalidade ou vínculo. O operador declara as promocionais (brasileiro e Estado RJ) no Bilhete Bondinho, e a mesma leitura devolveu que a meia-entrada «não vale para as tarifas promocionais» — então não há aqui desconto a presumir a partir do bilhete irmão. Ausência de declaração não é declaração de ausência.",
+          "duracao_minutos": null,
+          "motivo_sem_duracao": "A fonte não declara duração deste trecho.",
+          "momento_do_dia": "qualquer",
+          "janela_horaria": null,
+          "acrescimos": [],
+          "inclui": [
+            "a descida de bondinho do Morro da Urca até a Praia Vermelha"
+          ],
+          "nao_inclui": [
+            "o trecho entre o Morro da Urca e o Pão de Açúcar",
+            "a compra pela internet: vendido apenas no totem do Morro da Urca"
+          ],
+          "fonte": "parque-bondinho-tarifa-via-busca",
+          "data_leitura": "2026-10-27",
+          "declarado_como": "Só a descida do Morro da Urca até a Praia Vermelha — Adulto: R$ 65 | Meia-entrada: R$ 32. Vendidos apenas no totem do Morro da Urca."
+        }
+      ],
+      "temporada": null,
+      "motivo_sem_temporada": "Nenhuma das três passadas declarou variação de preço por temporada no site do operador. Uma fonte de nível 6 diz que «os preços podem variar conforme canal de venda e temporada», que é uma frase sobre variação e não uma declaração de tarifa — e temporada é, pelo próprio esquema, o dado mais caro de chutar desta ilha.",
+      "imagem": null,
+      "motivo_sem_imagem": "A ilha não tem imagem própria e não usa foto de terceiro sem licença. A vitrine reserva o espaço e destaca o nome (seção 6 do ARQUIPELAGO.md).",
+      "versoes_que_a_fonte_declara_e_a_leitura_nao_transcreveu": [
+        {
+          "rotulo": "Visita Guiada",
+          "por_que": "A leitura devolveu, numa frase do próprio operador sobre meia-entrada, que ela vale «para o Bilhete Bondinho, o Acesso Rápido e a Visita Guiada» — então a Visita Guiada EXISTE e é vendida. A busca restrita ao domínio do operador não devolveu página, preço nem escopo dela: a passada que a procurou respondeu, com todas as letras, que não encontrou nada sobre Visita Guiada. Versão nomeada por uma frase lateral e não lida é lacuna contada, não versão a inventar. Este campo nasceu aqui, em 27/10/2026, pela mesma razão que `faixas_que_a_fonte_declara_e_a_leitura_nao_transcreveu` nasceu em 22/10: sem ele, a ausência de um bilhete que a fonte nomeia é indistinguível de «o operador vende cinco bilhetes»."
+        }
+      ],
+      "declaracoes": [
+        {
+          "versao": "bilhete-bondinho",
+          "publicador": "Parque Bondinho Pão de Açúcar, no blog do próprio domínio",
+          "url": null,
+          "motivo_sem_url": "blog.bondinho.com.br recusado no egresso em 27/10/2026, como todo o domínio.",
+          "valor": 185,
+          "moeda": "BRL_do_operador",
+          "unidade_de_preco": "por_pessoa",
+          "diz": "cita o Bilhete Bondinho a R$185 e o Bilhete Estado RJ a R$80, com 56% de desconto para o passeio completo de bondinho",
+          "data_leitura": "2026-10-27",
+          "fonte": "parque-bondinho-blog-via-busca",
+          "publicavel_na_tela": true,
+          "nota": "É O OPERADOR DISCORDANDO DE SI MESMO, e é a divergência que esta carga existe para registrar: R$ 185 no blog contra R$ 205 na central de ajuda e na página de bilhete, no mesmo domínio e no mesmo dia de leitura."
+        },
+        {
+          "versao": "acesso-rapido",
+          "publicador": "Parque Bondinho Pão de Açúcar, no blog do próprio domínio",
+          "url": null,
+          "motivo_sem_url": "mesmo bloqueio de egresso.",
+          "valor": 295,
+          "moeda": "BRL_do_operador",
+          "unidade_de_preco": "por_pessoa",
+          "diz": "o Fast Pass Ticket aparece a R$ 295, enquanto a fonte oficial cita o Acesso Rápido a R$ 285",
+          "data_leitura": "2026-10-27",
+          "fonte": "parque-bondinho-blog-via-busca",
+          "publicavel_na_tela": true,
+          "nota": "É esta declaração que deixou `preco` null na versão: ver `motivo_sem_preco` dela."
+        },
+        {
+          "versao": null,
+          "motivo_sem_versao": "Discorda da ELEGIBILIDADE «Promocional para Brasileiros» (R$ 160) do Bilhete Bondinho, e não do preço de nenhuma versão. O campo `versao` aponta para VERSAO, e a entidade ELEGIBILIDADE nasceu hoje — então não existe, neste esquema, declaração que discorde de uma elegibilidade. A divergência vai à tela como conteúdo e NÃO participa da resolução, que é o que o esquema manda fazer com declaração sem versão atribuída.",
+          "publicador": "Parque Bondinho Pão de Açúcar, em outra página do próprio site — incluindo o host novosite.bondinho.com.br",
+          "url": null,
+          "motivo_sem_url": "mesmo bloqueio de egresso.",
+          "valor": 150,
+          "moeda": "BRL_do_operador",
+          "unidade_de_preco": "por_pessoa",
+          "diz": "uma página do próprio site fala em R$150 para a promocional de brasileiros, enquanto a página em inglês do mesmo site diz R$ 160",
+          "data_leitura": "2026-10-27",
+          "fonte": "parque-bondinho-blog-via-busca",
+          "publicavel_na_tela": true
+        },
+        {
+          "versao": null,
+          "motivo_sem_versao": "Discorda da ELEGIBILIDADE «Promocional Estado RJ» (R$ 89), e não do preço de uma versão. Mesma razão da declaração acima.",
+          "publicador": "Parque Bondinho Pão de Açúcar, no blog do próprio domínio",
+          "url": null,
+          "motivo_sem_url": "mesmo bloqueio de egresso.",
+          "valor": 80,
+          "moeda": "BRL_do_operador",
+          "unidade_de_preco": "por_pessoa",
+          "diz": "cita o Bilhete Estado RJ a R$80",
+          "data_leitura": "2026-10-27",
+          "fonte": "parque-bondinho-blog-via-busca",
+          "publicavel_na_tela": true
+        },
+        {
+          "versao": null,
+          "motivo_sem_versao": "São TRÊS números, um por elegibilidade (estrangeiro, residente no Brasil, residente no estado do Rio), gravados como faixa porque é assim que a fonte os publica — «de cerca de R$ 85 a R$ 295, dependendo de residência, idade e tipo de acesso». Nenhum deles discorda do preço de uma versão: os três discordam da grade de quem compra.",
+          "publicador": "Civitatis, no blog dela",
+          "url": null,
+          "motivo_sem_url": "civitatis.com.br e civitatis.com recusados no egresso em 27/10/2026.",
+          "valor": {
+            "minimo": 85,
+            "maximo": 199
+          },
+          "moeda": "BRL_do_operador",
+          "unidade_de_preco": "por_pessoa",
+          "diz": "preços de 2026 de cerca de R$ 85 a R$ 295 dependendo de residência, idade e tipo de acesso, com R$ 199 para adulto estrangeiro, R$ 155 para residente no Brasil e R$ 85 para residente no estado do Rio; e que os preços podem variar conforme canal de venda e temporada",
+          "data_leitura": "2026-10-27",
+          "fonte": "civitatis-blog-bondinho-via-busca",
+          "publicavel_na_tela": true,
+          "interesse_comercial": "A Civitatis REVENDE este bilhete e é o programa de afiliado que esta ilha pretende usar (seção «Específico desta ilha» do PROMPT.md). Quem publica ganha se o leitor comprar por ela.",
+          "nota": "OS TRÊS NÚMEROS DELA SÃO MENORES QUE OS TRÊS DO OPERADOR, na mesma ordem: 199 contra 205, 155 contra 160, 85 contra 89. A própria fonte declara ter sido publicada há cerca de sete meses. É um aumento de tarifa pego em flagrante, e é o caso em que a regra desta ilha e a data CONCORDAM — resolver para o MAIOR dá o número mais novo. Fica escrito porque elas não vão concordar sempre, e no dia em que discordarem é a regra que manda, não a data."
+        },
+        {
+          "versao": null,
+          "motivo_sem_versao": "É o preço de CRIANÇA DENTRO da elegibilidade de morador do estado do Rio — uma composição das duas, e não o preço de uma versão.",
+          "publicador": "Mercado & Eventos, na matéria dos 114 anos do parque",
+          "url": null,
+          "motivo_sem_url": "o domínio não é alcançável por esta nuvem.",
+          "valor": 44,
+          "moeda": "BRL_do_operador",
+          "unidade_de_preco": "por_pessoa",
+          "diz": "o bilhete para moradores do estado do Rio fica em R$ 89 para adulto e R$ 44 para criança de 3 a 12 anos",
+          "data_leitura": "2026-10-27",
+          "fonte": "imprensa-114-anos-bondinho-via-busca",
+          "publicavel_na_tela": true,
+          "nota": "ESTE NÚMERO É A PROVA MEDIDA DE QUE COMPOSIÇÃO NÃO É MULTIPLICAÇÃO, e é por ele que `acumula_com_faixa_etaria` nasceu como campo obrigatório em vez de observação. Metade de R$ 89 é R$ 44,50; o declarado é R$ 44. Se a F1 tivesse autorizado somar a faixa etária à elegibilidade, ela publicaria R$ 44,50 onde o operador cobra R$ 44 — cinquenta centavos inventados na página do dinheiro, numa conta que pareceria certa. O número NÃO entra como preço porque a fonte é nível 6, que não sustenta nada sozinho; ele entra como evidência, e vale mais como evidência do que valeria como preço."
+        },
+        {
+          "versao": null,
+          "motivo_sem_versao": "É preço de REVENDA da plataforma, em OUTRA MOEDA, e o esquema diz que o nível 5 «NUNCA sustenta sozinho a tarifa de uma experiência com operador conhecido». Comparar com os R$ 205 do operador exigiria câmbio, e a constante de câmbio desta ilha está PENDENTE — esta ilha não converte.",
+          "publicador": "Civitatis, nas páginas de produto dela",
+          "url": null,
+          "motivo_sem_url": "mesmo bloqueio de egresso.",
+          "valor": {
+            "minimo": 43.75,
+            "maximo": 105.49
+          },
+          "moeda": "USD",
+          "unidade_de_preco": "por_pessoa",
+          "diz": "a página de produto em inglês lista o bilhete básico de teleférico a partir de US$ 43,75 e a experiência de amanhecer a partir de US$ 105,49, com cancelamento grátis até 48 horas antes e reserva até 3 horas antes se houver vaga",
+          "data_leitura": "2026-10-27",
+          "fonte": "civitatis-blog-bondinho-via-busca",
+          "publicavel_na_tela": true,
+          "interesse_comercial": "A Civitatis revende o bilhete e seria o programa de afiliado desta ilha."
+        }
+      ],
+      "resolucao": {
+        "versao_resolvida": "bilhete-bondinho",
+        "valor": 205,
+        "moeda": "BRL_do_operador",
+        "unidade_de_preco": "por_pessoa",
+        "fonte": "parque-bondinho-tarifa-via-busca",
+        "por_autoridade": false,
+        "erro_caro": "subestimar. Quem chega à bilheteria do Pão de Açúcar com R$ 185 na mão por causa desta página não sobe — e são R$ 20 por pessoa, R$ 80 numa família de quatro.",
+        "texto": "O próprio operador publica dois valores para o mesmo bilhete comum: R$ 205 na central de ajuda e na página de bilhete, R$ 185 no blog do mesmo domínio. Não há autoridade neste conflito — as duas páginas são o mesmo operador, no mesmo nível 4 da escada —, e sem autoridade a regra desta ilha resolve para o MAIOR, porque o erro caro é subestimar. Resolvido em R$ 205. O R$ 185 vai à tela com o nome de quem o publicou e a data, porque a divergência é conteúdo: quem lê precisa saber que o site do operador não concorda consigo mesmo antes de ir à bilheteria."
+      },
+      "afiliado": {
+        "programa": null,
+        "url": "",
+        "url_produto": "https://www.civitatis.com/br/rio-de-janeiro/teleferico-pao-acucar/",
+        "url_busca_produto": "https://civitatis.com/br/rio-de-janeiro/",
+        "rel": "nofollow noopener",
+        "intestavel": false,
+        "nota_do_url_produto": "PRIMEIRO `url_produto` DESTE BANCO QUE É O MESMO PRODUTO DO REGISTRO, e são 43 dias de tentativas. O Angkor e o Coliseu ficaram com `url_produto: null` com o mesmo motivo escrito nos dois: a busca restrita à plataforma devolvia passeio guiado, e «apontar um passeio guiado como se fosse o ingresso seria vender uma coisa no lugar de outra, que é pior do que não ter link». Aqui a plataforma vende O BILHETE — «Ingresso para o Pão de Açúcar no Rio de Janeiro» —, e por isso o campo deixa de ser null. Com ele, o teste de vida da 25.4-b passa a ser POSSÍVEL neste registro, o que não quer dizer que já tenha sido feito: o egresso recusa o domínio, e o teste de vida é da ronda.",
+        "nota_do_host": "O `url_busca_produto` é DERIVADO do molde `piso_de_compra.molde` do esquema, que é `https://civitatis.com/br/{slug_plataforma}/`, sem `www` — e a página de produto vista hoje traz `www.civitatis.com`. A divergência de host fica anotada e o molde NÃO foi tocado: o validador refaz a derivação e compara, e mexer no molde reescreveria o piso das quatro experiências que já estão no banco por causa de uma forma de host que ninguém conseguiu abrir para conferir. O próprio esquema já registra isso em `molde_observacao` desde 14/09/2026."
+      },
+      "status": "publicavel",
+      "entra_por": "Entra porque o `PROMPT.md` desta ilha o NOMEIA como o destravamento do item 6 da fila — «uma experiência de operador privado brasileiro no banco — o Parque Bondinho Pão de Açúcar, que vende direto, pelo próprio site, mais de uma versão da mesma experiência» —, e porque ele é a PRIMEIRA experiência brasileira deste banco. Três coisas que nenhum dos quatro registros anteriores tinha: (1) o operador cobra na moeda do leitor, então o total da F1 chega sem câmbio, e a constante de câmbio desta ilha está pendente desde 14/09; (2) a plataforma vende o MESMO produto, então `afiliado.url_produto` deixa de ser null pela primeira vez; (3) o mesmo bilhete tem preço diferente por quem compra, que é o que fez a entidade ELEGIBILIDADE nascer. Ver `operador.nota_do_tipo` para o que ele NÃO cumpriu do critério do item 6.",
+      "status_por_que": "`publicavel`: a fonte é de OPERADOR (nível 4) e nomeia seis documentos do próprio operador, um por bilhete e um por tarifa. A `regra_do_documento_nomeado` só alcança fonte de nível de AUTORIDADE (níveis 1 e 3), e esta não é — mas ela nomeia documento de todo modo, o que é mais do que a regra pede. A ressalva do nível 4 continua obrigatória na tela: site do operador, lido por busca, a reconferir na fonte."
     }
   ],
   "resumo": {
-    "cidades": 4,
-    "experiencias": 4,
-    "versoes": 11,
-    "fontes": 7,
-    "declaracoes": 4,
-    "declaracoes_publicaveis": 2,
+    "cidades": 5,
+    "experiencias": 5,
+    "versoes": 16,
+    "fontes": 11,
+    "declaracoes": 11,
+    "declaracoes_publicaveis": 9,
     "itens_sem_saida_de_compra": 0,
-    "itens_com_piso_nao_rastreavel": 4,
+    "itens_com_piso_nao_rastreavel": 5,
     "itens_intestaveis": 0,
-    "experiencias_com_preco_em_brl": 0,
+    "experiencias_com_preco_em_brl": 1,
     "fontes_de_leitura_direta": 0,
-    "declaracoes_sem_versao": 4,
-    "faixas_etarias": 11,
-    "faixas_declaradas_nao_transcritas": 4,
+    "declaracoes_sem_versao": 9,
+    "faixas_etarias": 13,
+    "faixas_declaradas_nao_transcritas": 5,
     "experiencias_com_eixo_por_quantidade": 1,
-    "experiencias_com_eixo_por_escopo": 2,
+    "experiencias_com_eixo_por_escopo": 3,
     "experiencias_com_eixo_por_momento": 1,
     "versoes_com_dias_de_uso": 3,
     "faixas_diarias": 0,
     "faixas_diarias_publicaveis": 0,
     "coberturas_de_passe": 0,
     "coberturas_de_passe_publicaveis": 0,
-    "experiencias_que_sao_passe_de_cidade": 0
+    "experiencias_que_sao_passe_de_cidade": 0,
+    "elegibilidades": 2
   },
   "nota_da_versao_3": "Carga de 15/09/2026, as 11h25Z. Entraram o COLISEU DE ROMA e a TORRE EIFFEL, com Roma e Paris como terceira e quarta cidades, e o banco foi de 2 para 4 experiencias, de 5 para 11 versoes, de 2 para 4 cidades e de 5 para 7 fontes. Os dois sao `ingresso_de_sitio_publico`, que e o tipo que a carga de 14/09 mediu como o unico reproduzivel enquanto o egresso estiver fechado. Tres coisas nasceram com eles: (1) o Coliseu e o primeiro registro que fica `publicavel` por nomear PAGINA DE TARIFA da propria autoridade, e nao um ato — a regra_do_documento_nomeado dizia isso desde que nasceu e so o ato tinha sido exercido; (2) a Torre Eiffel e o primeiro registro de NIVEL 4 deste banco, o degrau do operador lido por busca, que o esquema marcava como `existe_hoje: false`, e ela faz nascer `concessionaria_de_bem_publico` no vocabulario de `tipo_de_operador`; (3) os dois juntos mediram que `faixa_etaria` e da VERSAO e o esquema a poe na EXPERIENCIA. Nada foi ao ar: esta ilha nao tem site, nao tem Sync e nao tem /status, e dizer que verificou no ar seria inventar.",
   "nota_da_versao_4": "Migração de 22/10/2026, primeiro dia desta ilha em foco. `faixa_etaria` saiu da EXPERIÊNCIA e entrou na VERSÃO, nas 11 versões das 4 experiências, cumprindo ao pé da letra o próximo passo que o REGISTRO.md de 15/09/2026 deixou escrito. Três coisas que a descida produziu e que o campo na EXPERIÊNCIA não permitia: (1) a Torre Eiffel publica 4 faixas gravadas em vez de 1, com as 4 células não lidas CONTADAS em vez de caladas; (2) a proibição de faixa etária fora de `por_pessoa` — que era prosa no motivo da gôndola desde 14/09 — virou regra do esquema, porque `unidade_de_preco` é campo da VERSÃO; (3) o `se_nao_cumprir` do Angkor cita US$ 37, o passe de UM dia, e estava valendo para os três passes: nomeado em `numero_da_frase_e_de_outra_versao`. NADA foi ao ar: esta ilha não tem site, não tem Sync e não tem /status, e dizer que verificou no ar seria inventar.",
@@ -877,5 +1339,6 @@
   "faixas_diarias": [],
   "nota_da_versao_6": "Carga de 22/10/2026, segundo bloco do dia. Nasceu a lista `faixas_diarias` e ela esta VAZIA — e a lista vazia e o registro, nao um esquecimento. A F2 soma quatro linhas: experiencias (nossa, colhida na fonte de quem opera) e hospedagem, alimentacao e transporte local (de terceiros). As tres ultimas exigem `publicado_por`, `url` e `data_leitura`, e as DUAS unicas frases de diaria que esta ilha mediu — no bloco 1, em 14/09/2026 — foram registradas sem nenhum dos tres: «media de R$ 203,87 nos ultimos 30 dias» e «a diaria mais baixa encontrada foi R$ 396,84», sem dizer quem as publicou. Carregar hoje exigiria inventar o dono do numero, e o dono do numero e o produto desta ilha. Enquanto a lista estiver vazia a F2 publica UMA linha de quatro e RECUSA as outras tres pelo nome, o que e a recusa declarada da especificacao 3: «a F2 publica faixa com quem publicou, ou nao publica». A coleta nao e trabalho desta nuvem: o egresso recusa numbeo.com, booking.com e civitatis.com.br, medido hoje.",
   "nota_da_versao_7": "Carga de 22/10/2026, bloco da F3. Nasceu a lista `coberturas_de_passe` e ela esta VAZIA — e a lista vazia e o registro de que a entidade existe e o dado nao, nao de que alguem esqueceu. A F3 soma os ingressos avulsos contra o preco do passe, e NENHUMA das quatro experiencias deste banco e `passe_de_cidade`: o valor esta no vocabulario desde 14/09/2026 sem um registro que o use, e o aviso `vocabulario_sem_lastro` o conta em toda passada da regua. O Roma Pass e o Lisboa Card que o corpus mediu no bloco 1 nao entram hoje porque entrar exige LER o preco e a cobertura na fonte de quem vende o passe, e o egresso desta nuvem recusa os cinco dominios: romapass.it, turismoroma.it, lisboacard.org, visitlisboa.com e civitatis.com.br, todos em 000 em 22/10/2026, com raw.githubusercontent.com em 301 na mesma passada. Carregar de cabeca exigiria inventar o preco do passe, a lista de atracoes que ele cobre e a regra de reserva de cada uma — tres invencoes, e a terceira e justamente a que o bloco 1 mediu como a que envelhece primeiro. O ANGKOR PASS NAO FOI RECATEGORIZADO: ele e `ingresso_de_sitio_publico` desde 14/09/2026, cobre UM sitio e nao uma cidade, e trocar a categoria dele para dar lastro ao vocabulario seria mover o dado para caber na ferramenta.",
-  "coberturas_de_passe": []
+  "coberturas_de_passe": [],
+  "nota_da_versao_8": "Carga de 27/10/2026. Entrou o PARQUE BONDINHO PÃO DE AÇÚCAR, com o Rio de Janeiro como quinta cidade e a PRIMEIRA brasileira, cinco versões no eixo de escopo, e a entidade ELEGIBILIDADE, que nasceu nesta carga porque o operador vende o mesmo bilhete por R$ 205, R$ 160 e R$ 89 e o que muda é QUEM COMPRA — eixo que o esquema não tinha. As 11 versões anteriores receberam `elegibilidade: null` com motivo próprio por experiência, e o do COLISEU é o que importa: a divergência de 15/09/2026 sobre quem tem direito à gratuidade, que vivia em prosa dentro de um `motivo_sem_faixa_etaria` dizendo que não cabia em campo nenhum, passou a ter campo onde morar. Ela continua `null`, porque as fontes dela são nível 6, e isso agora é uma dívida com nome e endereço de releitura."
 }

@@ -214,8 +214,18 @@ quebra("acento perdido no motivo",
 
 # ------------------------------------- C. a regua da oferta le o BANCO
 
-espera_oferta("F1 nao vai a quem o banco nao atende (hoje, bondinho)",
-              None, "bondinho.com.br", "F1", False)
+# O CASO ESTAVA PREGADO AO MUNDO DE ONTEM, e o proprio nome dele dizia: «hoje,
+# bondinho». Ele media a regra «F1 nao vai a quem o banco nao atende» usando o
+# bondinho.com.br como exemplo, porque em 23/10/2026 o banco nao tinha o Pao de
+# Acucar. A carga de 27/10 o colocou lá, a relacao virou `vende_a_mesma_versao` e a
+# F1 passou a ser ofertavel a ele — que e o DESTRAVAMENTO pre-registrado do item 6
+# da fila, nao um defeito. O caso agora mede a REGRA com um candidato que o banco
+# nao atende de fato, e com classe 2 de proposito: classe `barrado` ou `3` reprovaria
+# pelo ramo da escada e o caso ficaria verde sem medir o ramo que ele nomeia.
+espera_oferta("F1 nao vai a quem o banco nao atende (perurail, classe 2)",
+              None, "perurail.com", "F1", False)
+espera_oferta("F1 VAI ao bondinho desde a carga de 27/10 (o destravamento do item 6)",
+              None, "bondinho.com.br", "F1", True)
 espera_oferta("F1 nao vai a quem vende versao que INCLUI a do banco (viagemitalia)",
               None, "viagemitalia.com", "F1", False)
 espera_oferta("F1 VAI quando o banco ganha a experiencia e a mesma versao",

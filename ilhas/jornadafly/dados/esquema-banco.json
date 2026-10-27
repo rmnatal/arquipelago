@@ -145,6 +145,7 @@
     "momento_do_dia": [
       "diurno",
       "noturno",
+      "madrugada",
       "qualquer"
     ],
     "canal_de_leitura": [
@@ -191,6 +192,11 @@
       "entrada_incluida",
       "desconto_declarado",
       "sem_efeito_no_preco"
+    ],
+    "o_que_se_prova": [
+      "residencia",
+      "nacionalidade",
+      "vinculo_declarado"
     ]
   },
   "campos_que_exigem_declaracao_de_origem": {
@@ -340,7 +346,7 @@
       }
     },
     "VERSAO": {
-      "descricao": "Uma versao vendida daquela experiencia. Diurno/noturno, padrao/deluxe, 1 dia/3 dias. NUNCA uma escada inventada pela ilha: o seletor da F1 so oferece o que o banco conhece.",
+      "descricao": "Uma versao vendida daquela experiencia. Diurno/noturno, padrao/deluxe, 1 dia/3 dias. NUNCA uma escada inventada pela ilha: o seletor da F1 so oferece o que o banco conhece. DESDE 27/10/2026 ela carrega tambem `elegibilidade`, que e o preco de quem prova uma condicao que nao e idade — ver a entidade ELEGIBILIDADE e a `regra_da_elegibilidade`.",
       "campos": {
         "id": {
           "tipo": "slug",
@@ -444,6 +450,13 @@
           "obrigatorio": false,
           "exigido_quando": "`dias_de_uso` preenchido",
           "o_que_e": "De qual frase da fonte o numero saiu. Mesma disciplina do `transcrito_de` das faixas etarias, escrita em 22/10/2026: prosa que vira campo diz de onde veio."
+        },
+        "elegibilidade": {
+          "tipo": "lista:ELEGIBILIDADE|null",
+          "obrigatorio": true,
+          "null_exige": "motivo_sem_elegibilidade",
+          "nasceu_em": "2026-10-27",
+          "observacao": "Mora na VERSAO, ao lado de `faixa_etaria`, e pelo mesmo motivo que a fez descer em 22/10/2026: o preco de quem prova uma condicao depende da versao. No Bondinho a promocional de brasileiro existe no Bilhete Bondinho e NAO existe nas tarifas que ja sao promocionais — gravar na EXPERIENCIA publicaria o desconto em bilhete que nao o tem."
         }
       }
     },
@@ -817,6 +830,73 @@
           "obrigatorio": true
         }
       }
+    },
+    "ELEGIBILIDADE": {
+      "descricao": "O preco que o operador cobra de quem PROVA uma condicao que nao e idade: residencia, nacionalidade ou vinculo declarado. Pertence a VERSAO. Tem a mesma forma da FAIXA_ETARIA de proposito — rotulo, preco, condicao, se_nao_cumprir, a frase da fonte, fonte e data —, porque o que muda nao e a forma do dado: e O QUE SE PROVA na porta.",
+      "nasceu_em": "2026-10-27",
+      "nasceu_de": "A carga do Parque Bondinho Pao de Acucar, primeira experiencia brasileira deste banco. Tres precos para o mesmo bilhete, lidos nas paginas do proprio operador por busca: R$ 205 cheio, R$ 160 para nascido e morador do Brasil, R$ 89 para nascido ou residente no estado do Rio de Janeiro.",
+      "por_que_nao_e_FAIXA_ETARIA": "Porque FAIXA_ETARIA prova IDADE, e o esquema ja cobra isso dela: o campo `se_nao_cumprir` dela e 'o que o operador cobra de quem nao prova a IDADE'. Residencia nao e idade, e as duas coexistem na mesma versao do Bondinho: o Bilhete Crianca de 3 a 12 anos custa R$ 102 (faixa etaria) e a promocional de brasileiro custa R$ 160 (elegibilidade). Enfiar as duas na mesma lista faria a tela dizer que o operador tem cinco faixas de idade, duas das quais nao sao idade.",
+      "por_que_ela_nao_pode_somar_com_a_faixa_etaria": "Porque o operador declara que nao soma, e porque somar seria a ilha inventando um numero que ninguem vende. A leitura de 27/10/2026 devolveu, na pagina do proprio operador, que a meia-entrada vale para o Bilhete Bondinho, o Acesso Rapido e a Visita Guiada e NAO vale para as tarifas promocionais. Metade de R$ 160 e R$ 80, e R$ 80 nao e preco de nada: e aritmetica certa sobre produto que nao existe. E o defeito que a secao 8 do ARQUIPELAGO.md manda procurar, e aqui ele tem numero.",
+      "campos": {
+        "rotulo": {
+          "tipo": "texto",
+          "obrigatorio": true,
+          "observacao": "como a FONTE nomeia o bilhete ou a tarifa, na lingua da pagina."
+        },
+        "o_que_se_prova": {
+          "tipo": "enum:o_que_se_prova",
+          "obrigatorio": true,
+          "observacao": "idade NAO esta no vocabulario: idade e FAIXA_ETARIA."
+        },
+        "preco": {
+          "tipo": "numero|null",
+          "obrigatorio": true,
+          "null_exige": "motivo_sem_preco",
+          "observacao": "0 e preco: e a gratuidade declarada. null e falta de dado."
+        },
+        "moeda": {
+          "tipo": "enum:moeda",
+          "obrigatorio": true,
+          "igual_a": "moeda da versao",
+          "observacao": "mesma razao da faixa etaria: moeda diferente seria conversao feita por esta ilha, e o cambio esta PENDENTE."
+        },
+        "condicao": {
+          "tipo": "texto|null",
+          "obrigatorio": true,
+          "null_exige": "motivo_sem_condicao",
+          "observacao": "o que o comprador tem de provar, e COMO, quando a fonte disser."
+        },
+        "se_nao_cumprir": {
+          "tipo": "texto|null",
+          "obrigatorio": true,
+          "null_exige": "motivo_sem_se_nao_cumprir",
+          "observacao": "o que o operador cobra de quem nao prova a condicao. E a metade que custa dinheiro na porta — e no Bondinho e a diferenca entre R$ 89 e R$ 205."
+        },
+        "acumula_com_faixa_etaria": {
+          "tipo": "booleano|null",
+          "obrigatorio": true,
+          "null_exige": "motivo_sem_acumula_com_faixa_etaria",
+          "observacao": "true exige que `declarado_como` ou `condicao` TRAGAM a frase da fonte que autoriza somar. Silencio nunca autoriza soma: ver `por_que_ela_nao_pode_somar_com_a_faixa_etaria`."
+        },
+        "declarado_como": {
+          "tipo": "texto",
+          "obrigatorio": true,
+          "observacao": "a frase da fonte, inteira. A tela cita, nunca parafraseia."
+        },
+        "fonte": {
+          "tipo": "ref:FONTE.id",
+          "obrigatorio": true
+        },
+        "data_leitura": {
+          "tipo": "data",
+          "obrigatorio": true
+        },
+        "transcrito_de": {
+          "tipo": "texto",
+          "obrigatorio": false,
+          "observacao": "preenchido quando o numero JA ESTAVA no banco em prosa e esta passada o transformou em campo, sem leitura nova."
+        }
+      }
     }
   },
   "piso_de_compra": {
@@ -906,7 +986,7 @@
   },
   "versao_3_mudou": "Carga de 15/09/2026. Nasceu `regra_de_crescimento_de_vocabulario` (vocabulario cresce com o registro que o usa, nunca antes — e ela responde a pergunta da moeda que a carga de 14/09 deixou aberta). `tipo_de_operador` ganhou `concessionaria_de_bem_publico`, no mesmo commit do registro que precisa dele. O degrau 4 da escada passou a `existe_hoje: true` e `existe_hoje` virou campo DERIVADO, recomputado pelo validador. E ficou escrito o achado de modelo desta carga: `faixa_etaria` e da VERSAO e o esquema a poe na EXPERIENCIA.",
   "versao_4_mudou": "Migracao de 22/10/2026, primeiro dia da jornadafly em foco. `faixa_etaria` saiu da EXPERIENCIA e entrou na VERSAO, com a entidade FAIXA_ETARIA nascendo explicita; a proibicao de faixa fora de `por_pessoa` deixou de ser prosa no registro da gondola e virou regra do esquema, porque `unidade_de_preco` e campo da VERSAO; nasceu `faixas_que_a_fonte_declara_e_a_leitura_nao_transcreveu`, que conta a lacuna em vez de a calar; e nasceu `numero_da_frase_e_de_outra_versao`, que e o defeito que a migracao achou no Angkor — a frase da fonte cita US$ 37, o passe de um dia, e ela estava guardada num campo que valia para os tres passes. NADA foi ao ar: esta ilha nao tem site, nao tem Sync e nao tem /status, e dizer que verificou no ar seria inventar.",
-  "versao": 7,
+  "versao": 8,
   "conta_3_da_F1_exige_EIXO_DECLARADO_e_nao_sai_do_rotulo": {
     "nascida_em": "2026-10-22",
     "medida_em": "o bloco 4 desta ilha, escrevendo a F1 como regra sobre o banco versao 4",
@@ -927,5 +1007,17 @@
   },
   "versao_5_mudou_e_O_NUMERO_DELE_ESTAVA_ERRADO": "RENOMEADO EM 22/10/2026, no bloco da F3: esta chave se chamava `versao_5_mudou` e descrevia a migracao que levou o esquema a versao SEIS (a entidade FAIXA_DIARIA). A versao 5 foi outra coisa — `eixo_das_versoes` e `dias_de_uso`, documentados na chave `conta_3_da_F1_exige_EIXO_DECLARADO_e_nao_sai_do_rotulo`. Quem procurasse «o que mudou na versao 6» nao achava, e quem lesse `versao_5_mudou` lia a versao errada. E a mesma familia do `versao_esquema` que a propria migracao da versao 6 apagou: dois nomes para o mesmo fato, com um deles ja errado. O texto esta inteiro em `versao_6_mudou`.",
   "versao_6_mudou": "Migracao de 22/10/2026, segundo bloco do dia na jornadafly. Nasceu a entidade FAIXA_DIARIA com quatro vocabularios novos (`categoria_de_custo`, `padrao_de_viagem`, `base_da_faixa`, `o_que_o_numero_e`), porque a F2 soma hospedagem, alimentacao e transporte local e NENHUMA das tres e experiencia: elas nao sao colhidas por nos, sao faixa que terceiro publicou. A migracao e a MESMA troca da versao 5 um andar acima — lá a quantidade de uso de cada bilhete saiu da prosa do `rotulo` para `dias_de_uso`; aqui o que sai da prosa e O QUE O NUMERO SIGNIFICA, que o bloco 1 mediu em duas frases da mesma SERP («media de R$ 203,87 nos ultimos 30 dias» e «a diaria mais baixa encontrada foi R$ 396,84») e que ficou escrito como ressalva de leitura humana por 38 dias. Agora e `o_que_o_numero_e`, que e enum, e a regra «faixa de natureza diferente nao se soma» passou a ser computavel. E SAIU UM CAMPO: `versao_esquema` foi apagado. Ele dizia 4 enquanto `versao` dizia 5 — dois nomes para o mesmo fato, com um deles ja errado, que e a familia de defeito que este contrato mais paga. Nada no repositorio o lia (conferido com grep em 22/10/2026); quem quiser a versao do esquema le `versao`.",
-  "versao_7_mudou": "Bloco da F3, 22/10/2026. Nasceu a entidade COBERTURA_DO_PASSE, com o vocabulario `forma_de_cobertura`, mais dois campos na EXPERIENCIA que SO existem em passe (`atracoes_declaradas_pelo_passe` e a frase de onde o numero saiu) e a `regra_da_cobertura_do_passe` com as tres regras de honestidade da F3. A entidade nasce VAZIA, como a FAIXA_DIARIA nasceu na versao 6, e pelo mesmo tipo de motivo: carregar exige ler o preco e a cobertura na fonte do passe, e os cinco dominios de passe que o corpus mediu estao recusados no egresso desta nuvem. O vocabulario novo nasce SEM LASTRO, igual aos quatro da versao 6 — e a consequencia que a `regra_de_crescimento_de_vocabulario` impoe esta obedecida e agora CONFERIDA: a F3 nunca publica frase de inexistencia sobre cobertura, ela publica «esta ilha nao leu», e o portao da F3 cobra isso em cada estado."
+  "versao_7_mudou": "Bloco da F3, 22/10/2026. Nasceu a entidade COBERTURA_DO_PASSE, com o vocabulario `forma_de_cobertura`, mais dois campos na EXPERIENCIA que SO existem em passe (`atracoes_declaradas_pelo_passe` e a frase de onde o numero saiu) e a `regra_da_cobertura_do_passe` com as tres regras de honestidade da F3. A entidade nasce VAZIA, como a FAIXA_DIARIA nasceu na versao 6, e pelo mesmo tipo de motivo: carregar exige ler o preco e a cobertura na fonte do passe, e os cinco dominios de passe que o corpus mediu estao recusados no egresso desta nuvem. O vocabulario novo nasce SEM LASTRO, igual aos quatro da versao 6 — e a consequencia que a `regra_de_crescimento_de_vocabulario` impoe esta obedecida e agora CONFERIDA: a F3 nunca publica frase de inexistencia sobre cobertura, ela publica «esta ilha nao leu», e o portao da F3 cobra isso em cada estado.",
+  "versao_8_mudou": "Nasceu a entidade ELEGIBILIDADE, na carga do Parque Bondinho Pao de Acucar em 27/10/2026, e ela nasceu de um DADO e nao de uma previsao. O operador do Bondinho vende o MESMO bilhete por R$ 205, R$ 160 e R$ 89 — e o que muda nao e quantidade, nem escopo, nem momento, que sao os tres eixos que este esquema tinha: e QUEM COMPRA. R$ 160 e de quem nasceu e mora no Brasil; R$ 89 e de quem nasceu ou mora no estado do Rio. Nenhum dos tres eixos descreve isso, e `faixa_etaria` tambem nao, porque faixa_etaria prova IDADE e aqui se prova RESIDENCIA. Sem a entidade, a carga teria duas saidas, as duas erradas: gravar os tres numeros como versoes irmas (inventando um eixo que o operador nao vende) ou gravar so o R$ 205 (publicando, para uma ilha em portugues do Brasil, o preco de estrangeiro quando o operador cobra 22% menos do leitor). O eixo da ilha e `dias x pessoas x padrao`, e este registro mostra que para o leitor brasileiro falta uma quarta pergunta.",
+  "versao_8_fecha_uma_divida_de_15_09_2026": "E o buraco do COLISEU, aberto em 15/09/2026 e escrito por extenso em `motivo_sem_faixa_etaria` das duas versoes dele, ganha ENDERECO. Aquele motivo diz, com todas as letras, que a divergencia das fontes 'nao entra em `faixa_etaria` porque `faixa_etaria` guarda PRECO, e aqui o que existe e uma divergencia sobre quem tem direito' — gratuidade de menor de 18 anos para cidadao da UE contra gratuidade universal. QUEM TEM DIREITO e exatamente o que a ELEGIBILIDADE guarda. A divida nao e paga por esta passada (as duas fontes do Coliseu sao nivel 6, publicador editorial, que pelo proprio esquema nao sustenta NADA sozinho), e passar a ser uma divida com nome e com campo onde morar, em vez de prosa dentro de um motivo. Releitura em fonte de autoridade e coleta em aberto, nao dependencia humana.",
+  "vocabularios_nota_o_que_se_prova": "IDADE NAO ESTA NESTA LISTA, e a ausencia e a regra: idade se prova em FAIXA_ETARIA, que existe desde 14/09/2026. Dois campos para o mesmo fato sao duas metades que nunca se falam — a licao que esta ilha ja pagou com `url_busca_bruta` contra `url_busca_produto`. `vinculo_declarado` cobre estudante, professor e servidor, que o Bondinho declara na meia-entrada e que esta coleta NAO transcreveu.",
+  "regra_da_elegibilidade": {
+    "descricao": "Elegibilidade e faixa etaria sao dois campos e duas provas. O validador reprova a troca nos dois sentidos, porque a troca e silenciosa: os dois guardam um preco menor com uma condicao ao lado, e lidos de longe parecem a mesma coisa.",
+    "nascida_em": "2026-10-27",
+    "idade_nunca_entra_em_elegibilidade": "`condicao` ou `rotulo` de elegibilidade que declare uma faixa de idade (o padrao de um numero seguido de 'ano'/'anos', ou 'menor de'/'maior de' com numero) reprova. Aquele preco e de FAIXA_ETARIA.",
+    "residencia_nunca_entra_em_faixa_etaria": "`condicao` ou `rotulo` de faixa etaria que declare residencia ou nacionalidade (morador, residente, nascido em, brasileiro, estrangeiro, nacionalidade) reprova. Aquele preco e de ELEGIBILIDADE. E este e o sentido que a ilha ia errar: em 27/10 o Bondinho tinha os cinco precos na mesma leitura, e a saida barata era chamar os cinco de faixa.",
+    "elegibilidade_nunca_e_mais_cara_que_a_versao": "Mesma regra da faixa etaria, e pelo mesmo motivo: preco maior que a tarifa cheia nao e desconto de ninguem, e numero no campo errado.",
+    "a_soma_nao_se_presume": "Versao que tem elegibilidade E faixa etaria exige `acumula_com_faixa_etaria` declarado (nunca null) em cada elegibilidade. A F1 nao multiplica elegibilidade por faixa, e com o campo null nao havia como a regua saber se podia."
+  },
+  "vocabularios_nota_momento_do_dia": "`madrugada` entrou em 27/10/2026, na carga do Bondinho, e entrou com lastro na mesma passada: o bilhete Amanhecer do Parque Bondinho comeca as 4h00, com o parque fechado ao publico. Nenhum dos tres valores anteriores servia, e o erro barato era `noturno` — que poria este bilhete ao lado de um passeio noturno de cidade iluminada, que e OUTRO produto e outra decisao de compra. Vocabulario que nao distingue dois produtos faz a tela juntar os dois."
 }

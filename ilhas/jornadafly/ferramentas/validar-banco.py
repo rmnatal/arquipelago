@@ -58,6 +58,17 @@ DADOS = os.path.join(BASE, "dados")
 HEDGES = ("cerca de", "aproximadamente", "em torno de", "a partir de", "por volta de")
 FRASE_PROIBIDA = "link de loja em breve"
 
+# Os dois padroes da `regra_da_elegibilidade` (27/10/2026). Eles existem porque a troca
+# entre faixa etaria e elegibilidade e SILENCIOSA: os dois campos guardam um preco menor
+# com uma condicao escrita ao lado, e lidos de longe parecem a mesma coisa. O que os
+# separa e O QUE SE PROVA na porta, e e isso que estes padroes procuram na frase.
+PADRAO_IDADE = re.compile(
+    r"(\d+\s*ano)|(menor(es)?\s+de\s+\d+)|(maior(es)?\s+de\s+\d+)"
+    r"|(acima\s+de\s+\d+\s*ano)|(de\s+\d+\s+a\s+\d+\s*ano)", re.I)
+PADRAO_RESIDENCIA = re.compile(
+    r"(morador)|(residente)|(residencia)|(residência)|(nascid[oa])|(brasileir)"
+    r"|(estrangeir)|(nacionalidade)", re.I)
+
 
 def _carregar(nome):
     caminho = os.path.join(DADOS, nome)
@@ -331,6 +342,37 @@ def validar(esquema, banco, constantes=None, hoje=None):
              "os dois campos existem; sem ele a proxima execucao le dois campos sem causa "
              "e o primeiro que os achar incomodos os remove.")
 
+    # ---- ELEGIBILIDADE (nasceu em 27/10/2026, na carga do Bondinho)
+    if not isinstance((esquema.get("entidades") or {}).get("ELEGIBILIDADE"), dict):
+        erro("esquema: falta a entidade `ELEGIBILIDADE`. Ela e onde mora o preco de quem "
+             "prova uma condicao que NAO E IDADE — residencia, nacionalidade, vinculo. "
+             "Sem a forma declarada, cada carga inventa a sua e o preco de brasileiro vai "
+             "para `faixa_etaria`, que e o campo da idade.")
+    eleg_esquema = campos_versao.get("elegibilidade") if isinstance(campos_versao, dict) else None
+    if not isinstance(eleg_esquema, dict) or not eleg_esquema.get("null_exige"):
+        erro("esquema: `entidades.VERSAO.campos.elegibilidade` ausente ou sem "
+             "`null_exige`. Campo que pode ser null sem motivo exigido deixa a lacuna "
+             "muda, e aqui a lacuna muda custa o preco do leitor brasileiro.")
+    if isinstance(campos_exp, dict) and "elegibilidade" in campos_exp:
+        erro("esquema: `elegibilidade` gravada em `entidades.EXPERIENCIA.campos`. Ela e "
+             "da VERSAO pelo mesmo motivo da faixa etaria: no Bondinho a promocional de "
+             "brasileiro existe no Bilhete Bondinho e NAO existe nas tarifas que ja sao "
+             "promocionais.")
+    regra_eleg = esquema.get("regra_da_elegibilidade")
+    if not isinstance(regra_eleg, dict):
+        erro("esquema: falta `regra_da_elegibilidade`. E dela que esta regua le a "
+             "proibicao dos dois sentidos (idade nunca em elegibilidade, residencia "
+             "nunca em faixa etaria) — a regua le a regra do esquema e nunca de dentro "
+             "de si (secao 26.2).")
+    else:
+        for chave in ("idade_nunca_entra_em_elegibilidade",
+                      "residencia_nunca_entra_em_faixa_etaria",
+                      "elegibilidade_nunca_e_mais_cara_que_a_versao",
+                      "a_soma_nao_se_presume"):
+            if not regra_eleg.get(chave):
+                erro("esquema: `regra_da_elegibilidade.%s` ausente. Regra que a regua "
+                     "aplica e o esquema nao declara e regua decidindo sozinha." % chave)
+
     if not isinstance(esquema.get("entidades", {}).get("FAIXA_ETARIA"), dict):
         erro("esquema: falta a entidade `FAIXA_ETARIA`. Sem a forma declarada, cada "
              "faixa do banco e um dicionario de forma livre e a regua nao tem o que "
@@ -444,7 +486,8 @@ def validar(esquema, banco, constantes=None, hoje=None):
     sem_saida = 0
     piso_nao_rastreavel = 0
     intestaveis = 0
-    com_brl_convertido = 0
+    versoes_em_brl = set()
+    n_elegibilidades = [0]
     sem_versao = 0
     n_passes = 0
     vencidos = []
@@ -608,7 +651,18 @@ def validar(esquema, banco, constantes=None, hoje=None):
                      "esta ilha — as constantes de cambio estao PENDENTES e constante "
                      "pendente e proibida em formula publicada (secao 10)."
                      % (ondev, versao.get("moeda"), cidade.get("moeda_local")))
-                com_brl_convertido += 1
+            # O CONTADOR DE BRL CONTAVA A COISA ERRADA, e so dava para ver com um
+            # registro em real dentro (27/10/2026, carga do Bondinho). Este `+= 1`
+            # morava DENTRO do `elif` acima, que e um ramo de ERRO: ele contava versao
+            # cuja moeda DISCORDA da moeda do operador daquela cidade, e publicava o
+            # numero sob a chave `experiencias_com_preco_em_brl`. Com o banco inteiro
+            # em EUR e USD o ramo nunca rodava, a chave saia 0 e 0 era a verdade por
+            # ACIDENTE: nenhuma experiencia cobrava em real. Hoje uma cobra, e a chave
+            # continuaria dizendo 0 — numero certo que vira errado calado quando o
+            # mundo muda, a mesma familia do `/status` verde da 20.4 e do titulo que
+            # diz «oito» sobre uma lista de dez. Agora conta o que o nome diz.
+            if versao.get("moeda") == "BRL_do_operador":
+                versoes_em_brl.add(eid)
 
             unidade = versao.get("unidade_de_preco")
             if not em_vocab("unidade_de_preco", unidade):
@@ -777,6 +831,20 @@ def validar(esquema, banco, constantes=None, hoje=None):
                                  "leitura nao existe nesta ilha, e preco de crianca "
                                  "tambem e preco." % ondef)
 
+                    # ---- residencia NUNCA entra em faixa etaria (regra de 27/10/2026)
+                    # E este e o sentido que a ilha ia errar: na carga do Bondinho os
+                    # CINCO precos do mesmo bilhete vieram na mesma leitura, e a saida
+                    # barata era chamar os cinco de faixa.
+                    for faixa in faixas:
+                        alvo = "%s %s" % (faixa.get("rotulo") or "", faixa.get("condicao") or "")
+                        if PADRAO_RESIDENCIA.search(alvo):
+                            erro("%s/faixa_etaria/%s: a condicao desta faixa declara "
+                                 "residencia ou nacionalidade (%r). Faixa etaria prova "
+                                 "IDADE; este preco e de ELEGIBILIDADE. Os dois guardam "
+                                 "um preco menor com uma condicao ao lado, e e por isso "
+                                 "que a troca passa calada."
+                                 % (ondev, faixa.get("rotulo") or "?", alvo.strip()))
+
                 for lacuna in versao.get("faixas_que_a_fonte_declara_e_a_leitura_nao_transcreveu") or []:
                     if not lacuna.get("rotulo") or not lacuna.get("por_que"):
                         erro("%s: entrada de "
@@ -786,6 +854,129 @@ def validar(esquema, banco, constantes=None, hoje=None):
                     else:
                         lacunas_por_versao.setdefault(vid, set()).add(lacuna["rotulo"])
                         n_lacunas_de_faixa += 1
+
+            # ---- ELEGIBILIDADE: o preco de quem prova o que NAO e idade (27/10/2026)
+            if "elegibilidade" not in versao:
+                erro("%s: falta o campo `elegibilidade`. Ausencia de chave e "
+                     "esquecimento; null com motivo e resposta." % ondev)
+            else:
+                elegs = versao.get("elegibilidade")
+                if elegs is None:
+                    if not versao.get("motivo_sem_elegibilidade"):
+                        erro("%s: `elegibilidade` null sem `motivo_sem_elegibilidade`. "
+                             "Sem o motivo a tela nao sabe se o operador nao cobra por "
+                             "residencia ou se ninguem leu, e as duas dao telas "
+                             "diferentes." % ondev)
+                elif not isinstance(elegs, list) or not elegs:
+                    erro("%s: `elegibilidade` tem de ser lista NAO vazia ou null com "
+                         "motivo. Lista vazia nao diz qual das duas coisas aconteceu."
+                         % ondev)
+                else:
+                    rotulos_eleg = set()
+                    tem_faixa = isinstance(versao.get("faixa_etaria"), list) \
+                        and bool(versao.get("faixa_etaria"))
+                    for eleg in elegs:
+                        onde_e = "%s/elegibilidade/%s" % (ondev, eleg.get("rotulo") or "?")
+                        if not eleg.get("rotulo"):
+                            erro("%s: elegibilidade sem `rotulo`." % ondev)
+                            continue
+                        if eleg["rotulo"] in rotulos_eleg:
+                            erro("%s: `rotulo` de elegibilidade repetido dentro da versao."
+                                 % onde_e)
+                        rotulos_eleg.add(eleg["rotulo"])
+                        n_elegibilidades[0] += 1
+
+                        prova = eleg.get("o_que_se_prova")
+                        if not em_vocab("o_que_se_prova", prova):
+                            erro("%s: `o_que_se_prova` %r fora do vocabulario. IDADE nao "
+                                 "esta nele de proposito: idade e FAIXA_ETARIA."
+                                 % (onde_e, prova))
+
+                        # ---- idade NUNCA entra em elegibilidade (o outro sentido)
+                        alvo = "%s %s" % (eleg.get("rotulo") or "", eleg.get("condicao") or "")
+                        if PADRAO_IDADE.search(alvo):
+                            erro("%s: a condicao desta elegibilidade declara uma faixa de "
+                                 "idade (%r). Elegibilidade prova residencia, "
+                                 "nacionalidade ou vinculo; este preco e de FAIXA_ETARIA."
+                                 % (onde_e, alvo.strip()))
+
+                        epreco = eleg.get("preco")
+                        if "preco" not in eleg:
+                            erro("%s: elegibilidade sem o campo `preco`." % onde_e)
+                        elif epreco is None:
+                            if not eleg.get("motivo_sem_preco"):
+                                erro("%s: `preco` null sem `motivo_sem_preco`." % onde_e)
+                        elif not isinstance(epreco, (int, float)) or epreco < 0:
+                            erro("%s: `preco` %r nao e numero maior ou igual a zero. Zero "
+                                 "e preco — e a gratuidade declarada." % (onde_e, epreco))
+                        elif isinstance(preco, (int, float)) and epreco > preco:
+                            erro("%s: elegibilidade custando %r onde o bilhete inteiro "
+                                 "custa %r. Elegibilidade e o que o operador cobra de "
+                                 "quem PROVA a condicao: mais caro que a tarifa cheia nao "
+                                 "e desconto de ninguem, e numero no campo errado."
+                                 % (onde_e, epreco, preco))
+
+                        if eleg.get("moeda") != versao.get("moeda"):
+                            erro("%s: elegibilidade em %r e a versao cobra em %r. Moeda "
+                                 "diferente seria conversao feita por esta ilha, e as "
+                                 "constantes de cambio estao PENDENTES."
+                                 % (onde_e, eleg.get("moeda"), versao.get("moeda")))
+
+                        for campo_e, motivo_e in (("condicao", "motivo_sem_condicao"),
+                                                  ("se_nao_cumprir", "motivo_sem_se_nao_cumprir")):
+                            if campo_e not in eleg:
+                                erro("%s: elegibilidade sem o campo `%s`."
+                                     % (onde_e, campo_e))
+                            elif eleg.get(campo_e) is None and not eleg.get(motivo_e):
+                                erro("%s: `%s` null sem `%s`." % (onde_e, campo_e, motivo_e))
+
+                        # ---- a soma nao se presume
+                        if "acumula_com_faixa_etaria" not in eleg:
+                            erro("%s: falta `acumula_com_faixa_etaria`. E o campo que "
+                                 "impede a F1 de multiplicar elegibilidade por faixa "
+                                 "etaria — ver `regra_da_elegibilidade.a_soma_nao_se_presume`."
+                                 % onde_e)
+                        else:
+                            acumula = eleg.get("acumula_com_faixa_etaria")
+                            if acumula is None:
+                                if tem_faixa:
+                                    erro("%s: `acumula_com_faixa_etaria` null numa versao "
+                                         "que TEM faixa etaria. E exatamente o caso em que "
+                                         "a regua precisa saber se pode somar, e com null "
+                                         "ela nao sabe." % onde_e)
+                                elif not eleg.get("motivo_sem_acumula_com_faixa_etaria"):
+                                    erro("%s: `acumula_com_faixa_etaria` null sem "
+                                         "`motivo_sem_acumula_com_faixa_etaria`." % onde_e)
+                            elif not isinstance(acumula, bool):
+                                erro("%s: `acumula_com_faixa_etaria` %r nao e booleano."
+                                     % (onde_e, acumula))
+                            elif acumula is True:
+                                frase = "%s %s" % (eleg.get("declarado_como") or "",
+                                                   eleg.get("condicao") or "")
+                                if not re.search(r"(acumul)|(soma)|(junto com)|(cumulat)",
+                                                 frase, re.I):
+                                    erro("%s: `acumula_com_faixa_etaria` true e nem "
+                                         "`declarado_como` nem `condicao` trazem a frase "
+                                         "da fonte que AUTORIZA somar. Silencio nunca "
+                                         "autoriza soma: no Bondinho, metade de R$ 160 "
+                                         "seria R$ 80, e R$ 80 nao e preco de nada."
+                                         % onde_e)
+
+                        if not eleg.get("declarado_como"):
+                            erro("%s: elegibilidade sem `declarado_como`. Sem a frase da "
+                                 "fonte a tela parafraseia a regra de quem tem direito — "
+                                 "que e a frase que custa dinheiro na bilheteria."
+                                 % onde_e)
+                        efonte = eleg.get("fonte")
+                        if efonte not in fontes:
+                            erro("%s: `fonte` %r nao existe em fontes[]."
+                                 % (onde_e, efonte))
+                        else:
+                            fontes_usadas.add(efonte)
+                        if not _e_data(eleg.get("data_leitura")):
+                            erro("%s: sem `data_leitura` valida. Preco sem data de leitura "
+                                 "nao existe nesta ilha, e preco de brasileiro tambem e "
+                                 "preco." % onde_e)
 
             if "duracao_minutos" not in versao:
                 erro("%s: falta `duracao_minutos`." % ondev)
@@ -1447,10 +1638,11 @@ def validar(esquema, banco, constantes=None, hoje=None):
         "itens_sem_saida_de_compra": sem_saida,
         "itens_com_piso_nao_rastreavel": piso_nao_rastreavel,
         "itens_intestaveis": intestaveis,
-        "experiencias_com_preco_em_brl": com_brl_convertido,
+        "experiencias_com_preco_em_brl": len(versoes_em_brl),
         "fontes_de_leitura_direta": sum(1 for f in banco.get("fontes", [])
                                         if f.get("leitura") == "leitura_direta"),
         "faixas_etarias": n_faixas_de_idade,
+        "elegibilidades": n_elegibilidades[0],
         "faixas_declaradas_nao_transcritas": n_lacunas_de_faixa,
         "experiencias_com_eixo_por_quantidade": n_eixo.get("por_quantidade", 0),
         "experiencias_com_eixo_por_escopo": n_eixo.get("por_escopo", 0),
@@ -1528,6 +1720,9 @@ def validar(esquema, banco, constantes=None, hoje=None):
                 usar("declarada_por", versao.get("capacidade_maxima_declarada_por"))
                 for acrescimo in (versao.get("acrescimos") or []):
                     usar("moeda", acrescimo.get("moeda"))
+                for eleg in (versao.get("elegibilidade") or []):
+                    usar("o_que_se_prova", eleg.get("o_que_se_prova"))
+                    usar("moeda", eleg.get("moeda"))
         for cob in banco.get("coberturas_de_passe", []):
             usar("forma_de_cobertura", cob.get("como"))
             usar("declarada_por", cob.get("declarada_por"))
@@ -1548,7 +1743,7 @@ def validar(esquema, banco, constantes=None, hoje=None):
             "momento_do_dia", "canal_de_leitura", "status_do_registro",
             "eixo_das_versoes", "declarada_por", "categoria_de_custo",
             "padrao_de_viagem", "base_da_faixa", "o_que_o_numero_e",
-            "forma_de_cobertura",
+            "forma_de_cobertura", "o_que_se_prova",
         }
         sem_extrator = sorted(c for c in vocab if c not in com_extrator)
         if sem_extrator:

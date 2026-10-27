@@ -3,6 +3,298 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-10-27 16h25Z — **A COLETA ANDOU COM A REDE FECHADA.** Entrou o **Parque Bondinho Pão de Açúcar**, quinta experiência e PRIMEIRA BRASILEIRA, e com ela nasceu a entidade **ELEGIBILIDADE** — o preço de quem prova o que não é idade. No caminho, **três defeitos da mesma família** em três ferramentas diferentes, os três certos por acidente num banco sem real
+
+**O que saiu:** `dados/esquema-banco.json` e `dados/experiencias.json` na **versão 8**;
+a régua da elegibilidade no `validar-banco.py` com **24 quebras novas** no
+`mutacoes-banco.py`; a elegibilidade na `f1-referencia.py` e no `teste-f1.py`; a seção
+**9** da `especificacao-calculadoras.md`; e o item **6** da fila destravado, com o
+`bondinho.com.br` virando o primeiro dos 25 candidatos com ferramenta ofertável.
+
+**NADA FOI AO AR, E NÃO PODIA.** Esta ilha não tem WordPress, não tem casca, não tem Sync,
+não tem `/status` e não tem URL — faltam os passos 2 a 8 da seção 11, que são trabalho de
+navegador do Raphael. Dizer que verificou no ar seria inventar. A 31.1 vai de 4 em 14 para
+**4 em 15**, e está dito sem maquiagem.
+
+### A REDE, remedida e não herdada (20.2)
+
+**NONO dia de recusa.** `jornadafly.com.br` e `www.jornadafly.com.br` em `000` nas três
+passadas, com `aquametria.com.br`, `robometria.com.br` e `clubedomosaico.com.br` em `200`
+nas mesmas três — nove medições de controle verdes contra seis de bloqueio, zero
+intermitência. O `__agentproxy/status` desta nuvem nomeia a causa com todas as letras:
+*"gateway answered 403 to CONNECT (policy denial or upstream failure)"*.
+
+E as fontes de preço também: `civitatis.com.br`, `numbeo.com`, `booking.com`,
+`romapass.it`, `turismoroma.it`, `lisboacard.org`, `visitlisboa.com`,
+`getyourguide.com.br`, `tiqets.com` e `viator.com` — **todos em 000**.
+
+### O QUE ACHEI, E É O ACHADO DE MÉTODO DESTA PASSADA
+
+Três execuções fecharam em "nada elegível" nos dias anteriores, e o registro de 23/10
+dizia que os itens de conteúdo desta ilha "dependem de rede que esta nuvem não tem". **Isso
+está meio errado, e a metade errada custou três execuções.** A coleta por **busca** alcança
+o **degrau 4** da escada de fontes desta ilha — *operador lido por busca* —, e foi por esse
+degrau que a Torre Eiffel entrou em 15/09/2026. O degrau não fechou; ninguém tentou de novo.
+
+**Medi as DUAS portas desta nuvem na mesma passada**, que é mais do que as coletas
+anteriores fizeram: `curl` em 000 com 403 de política em quatro hosts de `bondinho.com.br`,
+e **WebFetch** em `getaddrinfo ENOTFOUND` nos dois. A leitura direta (degrau 2) continua
+fora de alcance; a busca não. **Três passadas de busca**, duas delas restritas ao domínio do
+operador, devolveram **seis documentos dele nomeados um por um** — a central de ajuda
+«Tipos de bilhetes», as páginas de bilhete, a de Estado RJ, a de promocional para
+brasileiros, a de bilhete geral e a da trilha do Morro da Urca.
+
+### A ELEGIBILIDADE, e ela nasceu de um DADO e não de uma previsão
+
+O operador vende **o mesmo Bilhete Bondinho por R$ 205, R$ 160 e R$ 89**. O que muda não é
+quantidade, nem escopo, nem momento — que eram os **três** eixos que este esquema tinha. É
+**QUEM COMPRA**: R$ 160 para quem nasceu *e* mora no Brasil, R$ 89 para quem nasceu *ou*
+reside no estado do Rio. E `faixa_etaria` também não serve, porque o próprio esquema diz que
+o `se_nao_cumprir` dela é *"o que o operador cobra de quem não prova a **IDADE**"*.
+
+Sem a entidade, a carga tinha duas saídas e as duas eram erradas: gravar os cinco preços
+como versões irmãs, inventando um eixo que o operador não vende; ou gravar só o R$ 205 —
+**publicando, numa ilha em português do Brasil, o preço de estrangeiro quando o operador
+cobra 28% menos do próprio leitor.** São 2,3 vezes entre a ponta cheia e a ponta barata,
+maior que qualquer diferença de versão deste banco.
+
+**E ELA FECHA UMA DÍVIDA DE 15/09/2026.** O `motivo_sem_faixa_etaria` das duas versões do
+Coliseu diz, por extenso, que a divergência medida *"não entra em `faixa_etaria` porque
+`faixa_etaria` guarda PREÇO, e aqui o que existe é uma divergência sobre quem tem
+direito"* — gratuidade de menor de 18 anos para cidadão da UE contra gratuidade universal.
+**QUEM TEM DIREITO é exatamente o que a ELEGIBILIDADE guarda.** O valor continua `null`, e
+por uma razão de escada e não de forma: as duas fontes daquela divergência são nível 6, e o
+esquema diz que o nível 6 *"não sustenta NADA sozinho"*. O que mudou é que a dívida saiu de
+prosa dentro de um motivo e passou a ter **campo, nome e endereço de releitura**.
+
+### A SOMA NÃO SE PRESUME, E ISSO TEM NÚMERO
+
+`acumula_com_faixa_etaria` nasceu **obrigatório**, por medição. O operador declara que a
+meia-entrada vale para o Bilhete Bondinho, o Acesso Rápido e a Visita Guiada e **não vale
+para as tarifas promocionais**. E a imprensa dos 114 anos declarou o preço composto: **R$ 89
+para adulto e R$ 44 para criança de 3 a 12 anos** no bilhete de morador do Rio.
+
+**Metade de R$ 89 é R$ 44,50. O operador cobra R$ 44.** Se a F1 tivesse autorizado somar,
+ela publicaria cinquenta centavos inventados na página do dinheiro, numa conta que
+pareceria certa — a aritmética estaria correta; só a pergunta é que não existia.
+
+### TRÊS DEFEITOS DA MESMA FAMÍLIA, em três ferramentas, achados na mesma carga
+
+Nenhum é da elegibilidade. Os três são **réguas escritas num mundo sem real**: as três
+corretas enquanto o mundo não mudou, as três erradas no dia em que ele mudou. O Bondinho é
+o primeiro registro em `BRL_do_operador` — valor que estava no vocabulário desde
+14/09/2026 **sem um registro que o usasse**.
+
+1. **`validar-banco.py`** — o contador `experiencias_com_preco_em_brl` era incrementado
+   **dentro do ramo de ERRO** da conferência de moeda: ele contava versão cuja moeda
+   *discorda* da cidade, e publicava o número sob um nome que diz o contrário. Com o banco
+   todo em euro e dólar o ramo nunca rodava, a chave saía `0`, e **`0` era a verdade por
+   acidente**. Hoje uma experiência cobra em real e a chave continuaria dizendo `0`.
+2. **`teste-f1.py`** — afirmava que **`R$` nunca aparece** na tela, porque todo real só
+   poderia ser conversão com o câmbio pendente. **288 frases de tela** carregam `R$`
+   legitimamente hoje — o preço do operador, lido na fonte dele, na moeda dele — e ele
+   reprovava todas. *(O 288 foi contado depois do conserto, varrendo as respostas da F1 de
+   1 a 12 pessoas em todas as versões; o número que a passada vermelha imprimiu era outro e
+   não é reproduzível, porque naquele instante a linha do IOF ainda existia nas páginas em
+   real e as frases da elegibilidade ainda não.)*
+3. **`f1-referencia.py`** — somava **IOF de 3,5%** em toda versão. O id da constante diz o
+   que ela é: `iof-compra-internacional-cartao-pessoa-fisica`. A F1 publicou
+   **`R$ 144,90` num bilhete de R$ 140** — imposto de compra no exterior somado a uma
+   compra que não sai do país.
+
+**O terceiro é o pior, por uma assimetria.** Os dois primeiros erram alto: um reprova o
+certo e para a bancada, o outro publica um número redondo. O da F1 **cobrava do leitor um
+imposto que ele não paga**, na página do dinheiro, com a aritmética certa — e ninguém
+procura defeito onde a conta fecha.
+
+O conserto dos três é o mesmo movimento: **perguntar a moeda**. E o do portão do câmbio
+passou por duas versões, o que vale registrar: a primeira trocou um falso positivo por
+outro (proibir €/US$ numa versão em real reprovou a declaração da **plataforma**, que
+publica em dólar). A regra que ficou é de **contenção** — o símbolo na tela tem de caber no
+conjunto de moedas que os registros daquela experiência declaram. Citar quem declarou não é
+converter.
+
+**E eu quebrei a própria conferência do câmbio ao consertá-la:** a primeira versão do bloco
+usou `moeda` e `simbolo` como variáveis de laço e **sobrescreveu a `moeda` do escopo de
+fora**, que o portão usa para montar a frase esperada de cada afirmação — a gôndola, que
+cobra em euro, passou a ser cobrada por «R$ 18». O relatório daquela passada imprimiu
+**482 falhas** (7 mostradas e «e 475 outras»), e esse número é o que o instrumento disse
+naquele instante, não uma contagem reproduzível. Os nomes daquele bloco levam `_` hoje, com
+o motivo escrito ao lado.
+
+### O QUE O OPERADOR DISCORDA DE SI MESMO, e a escada não previu isso
+
+Quatro números, no mesmo domínio e no mesmo dia de leitura: **R$ 205 contra R$ 185**
+(central de ajuda contra blog), **R$ 89 contra R$ 80**, **R$ 160 contra R$ 150** (e uma das
+páginas é `novosite.bondinho.com.br`, que pelo nome é uma versão em preparação), e
+**R$ 285 contra R$ 295** no Acesso Rápido.
+
+A escada desta ilha resolve conflito **entre níveis** e diz, sobre o empate, apenas que
+*"dentro do mesmo nível, ninguém vence"*. **Ela não previu a fonte que discorda DE SI
+MESMA**, e foi preciso quebrá-la em **duas fontes** para que a divergência pudesse sequer
+ser gravada: declaração aponta para uma `fonte`, e uma fonte não pode divergir de si.
+
+**O Acesso Rápido ficou com `preco: null`, e isso é decisão e não lacuna.** A `resolucao`
+deste esquema é de **uma** versão por experiência (`versao_resolvida` é campo único), e esta
+experiência resolve no Bilhete Bondinho — onde a regra do MAIOR dá R$ 205, que é também o
+número da página de bilhete. Para o Acesso Rápido não há onde gravar a segunda resolução, e
+resolver pelo MAIOR poria no bilhete o número do **blog** contra o da página de bilhete.
+**Preço errado por R$ 10 na página do dinheiro custa mais que preço ausente com a causa
+escrita.** A F1 já tinha o código `preco_nao_lido` e ele disparou certo na primeira versão
+sem preço deste banco; o que faltava era o portão saber que existe versão sem preço.
+
+### DUAS PRIMEIRAS QUE NÃO SÃO SOBRE A ELEGIBILIDADE
+
+- **Primeiro preço em `BRL_do_operador`.** As quatro experiências anteriores cobram em euro
+  e dólar, e a constante de câmbio desta ilha está **pendente** desde 14/09 — então todo
+  total delas chega ao leitor brasileiro numa moeda que ele não gasta. Aqui não há conversão
+  a fazer, logo não há nada a inventar.
+- **Primeiro `afiliado.url_produto` que é o MESMO produto do registro**, e são 43 dias de
+  tentativas. O Angkor e o Coliseu ficaram com `null` com a mesma frase escrita nos dois: a
+  busca restrita à plataforma devolvia passeio guiado, e *"apontar um passeio guiado como se
+  fosse o ingresso seria vender uma coisa no lugar de outra, que é pior do que não ter
+  link"*. Aqui a plataforma vende **o bilhete**. Com isso o teste de vida da 25.4-b passa a
+  ser **possível** neste registro — o que não quer dizer feito: o egresso recusa o domínio,
+  e o teste de vida é da ronda.
+
+### A MEIA-ENTRADA BRASILEIRA NÃO ENTROU, e a recusa é deliberada
+
+Os bilhetes de Trilheiros declaram `Meia-entrada: R$ 70` e `R$ 32` ao lado do adulto, e os
+dois números **não foram gravados**. A meia-entrada brasileira **empacota idade, vínculo e
+deficiência numa só palavra**, e cada uma das três se prova de um jeito. Gravá-la em
+`faixa_etaria` diria que o operador cobra por idade o que cobra por condição; gravá-la em
+`elegibilidade` afirmaria uma prova que a fonte não fez. A página do operador que a define
+— «Outras opções de meia-entrada» — **voltou por nome na busca e não foi lida**.
+
+### O ITEM 6 DESTRAVOU, E O CRITÉRIO ERROU O RÓTULO
+
+A lista de prospecção tem agora o **primeiro dos 25 candidatos com ferramenta ofertável**:
+`bondinho.com.br`, com a F1. O destravamento era **pré-registrado** no `PROMPT.md`, com o
+domínio escrito pelo nome, e disparou pelo caminho previsto. A última linha dos motivos
+daquele candidato dizia *"a ferramenta não existe para lhe oferecer: o Pão de Açúcar NÃO
+está em `dados/experiencias.json`"* — e **deixou de ser verdade hoje**.
+
+**O que o critério previu errado foi o rótulo:** ele pede «operador **privado** brasileiro»,
+e o Bondinho é `concessionaria_de_bem_publico`, o mesmo tipo da SETE que opera a Torre
+Eiffel. **`operador_privado` segue SEM LASTRO** no banco. As três condições que o critério
+cobra de fato — brasileiro, vende direto pelo próprio site, mais de uma versão da mesma
+experiência — estão as três cumpridas, e é por elas que a linha destravou. Fica escrito
+para quem decidir sobre o rótulo decidir com o critério na mão.
+
+**E o que NÃO destravou foi a rede**, que é a lição: o egresso está hoje como estava em
+22/10. A alavanca de link não esperava a rede — esperava **um registro do tipo certo**.
+
+### DOIS PORTÕES QUE ESTAVAM PREGADOS AO MUNDO DE ONTEM
+
+- O caso `"F1 nao vai a quem o banco nao atende (hoje, bondinho)"` do
+  `mutacoes-prospeccao.py` media a regra usando como exemplo o mundo em que o banco não
+  tinha o Pão de Açúcar — **e o nome dele dizia «hoje»**. Agora mede a regra com um
+  candidato que o banco de fato não atende (`perurail.com`, classe 2 de propósito: classe
+  `barrado` ou `3` reprovaria pelo ramo da escada e o caso ficaria verde sem medir o ramo
+  que nomeia), e ganhou um caso irmão que mede o **destravamento**.
+- O `teste-prospeccao.py` cobrava que a prosa do achado dissesse «QUATRO experiências» com
+  o `4` **escrito à mão dentro da própria afirmação** — a dívida que ele existe para cobrar
+  um andar acima. A palavra esperada agora é **derivada da contagem**: crescer o banco
+  obriga a reescrever a prosa, que é o que se queria, e nunca mais obriga a reescrever o
+  portão.
+
+### A RÉGUA DO `sem_extrator` DE 22/10 FUNCIONOU NO PRIMEIRO TESTE REAL
+
+Ela nasceu há cinco dias, depois de `declarada_por` e `canal_de_leitura` passarem 37 dias
+sem ser conferidos por ninguém. Hoje o vocabulário novo `o_que_se_prova` entrou no esquema
+e **ela reprovou na hora**, com a mensagem escrita: *"vocabulário novo entra no esquema e no
+extrator na mesma passada"*. Primeira vez que foi cobrada por um caso que não era dela.
+
+### NENHUM PORTÃO NOVO NASCEU (31.2), e a bancada segue com TREZE comandos
+
+A régua da elegibilidade mora **dentro** do `validar-banco.py` e as quebras dentro do
+`mutacoes-banco.py`, que já existiam; a elegibilidade da F1 mora dentro do
+`teste-f1.py`. A 31.2 só deixa nascer portão novo com defeito medido no ar, e esta ilha não
+tem "no ar". A **31.3** foi lida antes e não depois: ela proíbe testar portão que **já
+existe**, e o que estas afirmações guardam é o **conteúdo que nasceu na mesma passada** — o
+desenho que a F1, a F2 e a F3 tiveram em 22/10 e o artigo-âncora teve em 23/10.
+
+### BANCADA, 0 FALHA em DOZE dos treze comandos — e o treze está dito, não suposto
+
+| comando | resultado |
+|---|---|
+| `validar-banco` | OK — banco cumpre o esquema, piso derivado e resolução batendo com a escada |
+| `mutacoes-banco` | **178 casos**, 0 falha: 23 mundos que têm de passar e 155 quebras que têm de reprovar, 111 cobradas pela frase que esperam ouvir. Eram **154** antes desta passada |
+| `teste-f1` | **229.768 afirmações**, 0 falha |
+| `mutacoes-f1` | 28 casos, 0 falha nos três lados da fronteira |
+| `teste-f2` | OK |
+| `mutacoes-f2` | **51 casos**, 0 falha nos três lados |
+| `teste-f3` | OK |
+| `mutacoes-f3` | **ainda rodando no momento deste commit** — ver abaixo |
+| `artigos-referencia` | OK |
+| `mutacoes-artigos` | OK |
+| `validar-prospeccao` | APROVADO — 25 candidatos, e o `.md` idêntico ao que a referência gera |
+| `teste-prospeccao` | **287 afirmações**, 0 falha |
+| `mutacoes-prospeccao` | **40 casos**, 0 falha |
+
+**O `mutacoes-f3` não estava fechado quando este commit saiu, e isso fica escrito em vez de
+arredondado.** Ele roda o `teste-f3.py` **45 vezes** e as duas baterias longas ficaram mais
+lentas nesta carga, porque a quinta cidade levou a grade da F2 de **3.077 para 3.846
+estados** — o `teste-f2.py` sozinho leva ~12 segundos, então a bateria dele passa de oito
+minutos e a da F3 vem atrás. **A linha desta tabela é reescrita pela execução que a vir
+fechar**, e enquanto ela disser "ainda rodando" o resultado dela não foi medido por
+ninguém. Dizer "0 falha nos treze" aqui seria exatamente o defeito que esta ilha mais
+registra: afirmação redonda sobre instrumento que não respondeu.
+
+**E os mundos sintéticos tiveram de acompanhar o campo novo**, o que é a bateria fazendo o
+trabalho dela: campo obrigatório que nasce quebra todo mundo de bancada que não o declara.
+No caminho, o `mundo_sem_divergencia` expôs uma **conta pela metade** que ninguém tinha
+visto: ele decidia quais fontes continuam usadas olhando **apenas `versao.fonte`**, e
+podava fonte que uma declaração, uma faixa, uma elegibilidade ou a resolução de outra
+experiência ainda referencia. O Bondinho é a primeira experiência deste banco cujas
+declarações se apoiam numa fonte que **nenhuma versão usa** — o blog do próprio operador,
+que discorda da página de bilhete dele —, e foi ela que expôs a conta.
+
+### ERRATA DE OUTRO ARQUIVO, achada de graça pela régua da seção 2
+
+O cabeçalho deste `ESTADO.md` **nunca teve `ultima_ronda` nem `bloqueada_por`** — os dois
+campos que a seção 2 do contrato declara obrigatórios. Rodei a régua de **presença** dela
+(a de 30/09/2026, que existe porque `yaml.safe_load` aprova cabeçalho que parseia **sem**
+os campos que a seção 1 lê) nos seis `ESTADO.md`, e o resultado é:
+
+| ilha | régua de presença |
+|---|---|
+| `_modelo`, `aquametria`, `clubedomosaico`, `robometria` | YAML ok |
+| **`jornadafly`** | FALTAM: `ultima_ronda`, `bloqueada_por` → **acrescentados hoje** |
+| `ohmetria` | FALTAM: `ultima_ronda`, `bloqueada_por` → segue aberto, ilha fora do foco |
+
+**E isto é uma errata de `dados/despachos.md`.** A entrada de 26/10/2026 às 13h3xZ afirma,
+com todas as letras, que *"`aquametria`, `clubedomosaico`, `jornadafly` e `_modelo` estão
+completos"* e nomeia só `robometria` e `ohmetria`. A `robometria` foi acertada naquele dia
+e hoje passa; a `ohmetria` segue aberta e continua corretamente nomeada; **a `jornadafly`
+estava incompleta e foi relatada como completa.** Um dos dois cabeçalhos que o despacho
+deu por bons estava entre os quebrados — e o custo é o que a própria seção 2 descreve:
+*"campo ausente que se comporta como o valor certo é a forma mais paciente de defeito: ele
+espera o dia em que o valor certo muda"*. Hoje `null` é o valor certo nos dois, e as três
+leituras possíveis (olho, `grep`, parser) concordam por acidente.
+
+Os dois entraram com `null` e com o motivo escrito ao lado: `ultima_ronda` porque a ronda
+técnica só alcança ilha com URL servida (decisão do Raphael de 28/09/2026) e esta ilha não
+tem site; `bloqueada_por` porque a seção 2 reserva o campo para dependência humana que trava
+a **ilha**, e o que falta aqui trava a **fábrica** — isso vai no despacho, pela 12.2.
+
+### PRÓXIMO PASSO
+
+**Da Fundação, e agora existe um:** a coleta por busca no degrau 4 funciona com a rede
+fechada, e o banco tem **uma** experiência brasileira. O critério pré-registrado do **5b**
+pede **3 experiências na mesma cidade** e o Rio de Janeiro tem 1 — mas o Rio é a primeira
+cidade deste banco onde há mais o que colher pelo mesmo degrau, e o **5c (free tour)** pede
+3 free tours com operador nomeado, que é coleta e não casca. `free_tour` e
+`passe_de_cidade` seguem sem lastro no vocabulário.
+
+**Do Raphael, e não mudou:** (1) os passos 2 a 8 da seção 11 destravam o ar, o 3b, o
+tradutor PHP e a primeira leva de malha; (2) `jornadafly.com.br` na lista de Domínios
+permitidos destrava a verificação; (3) uma linha no `foco.md` destrava a rotação. **O que
+saiu da lista dele hoje:** "o egresso destrava a coleta" — destrava a coleta no degrau 2,
+que é o preferido, mas o degrau 4 nunca esteve travado.
+
+---
+
 ## 2026-10-27 13h48Z — **HAVIA BLOCO**, e ele estava escondido atrás de uma frase que três execuções seguidas repetiram sem medir: o **5b e o 5c não dependem da casca, dependem de DADO**. Esta ilha era a única do arquipélago sem `ARVORE.md`, e ela é a ilha EM FOCO cuja malha é o bloco aberto
 
 **O que saiu:** `ilhas/jornadafly/ARVORE.md` — o item **(i) do 16.8**, a árvore de URLs
