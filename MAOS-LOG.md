@@ -7117,3 +7117,51 @@ ESCRITA 4 — dados/PAINEL.md  (reescrita COMPLETA do arquivo, como mandado)
 
 Nenhum passo falhou: as quatro âncoras existiam, as quatro escritas aplicaram, o commit foi aceito no `main` de
 primeira e `origin/main` mostra o hash acima. O log vai num commit seguinte, por ser o último passo do disparo.
+
+---
+
+## 27/10/2026 13h30 (2026-10-27 16h30 UTC) — Bússola caçadora: bussola/cacados.md
+
+Instrução do disparo: gravar UM arquivo, `bussola/cacados.md`, substituindo-o inteiro pelo conteúdo verbatim
+entre `===INICIO===` e `===FIM===` (sem as linhas marcadoras). Mensagem de commit dada: `Bússola caçadora — 27/10/2026`.
+sha256 esperado do arquivo com quebra de linha final: `f7acc00efd31cb70525ffc01e2d36a8a5eb191c67cbc0ef8ac357ef3cfac69f5`.
+Nenhum outro arquivo muda. Checagem de assunto: Bússola e nichos caçados — é do Arquipélago, segue.
+
+Partida: `git fetch origin main && git checkout -B trabalho origin/main` -> `fde8984`.
+O arquivo já existia e foi substituído por inteiro (não houve append): o diff de 20 inserções e 0 remoções
+é porque a versão nova mantém, byte a byte, as 14 linhas de data que já estavam lá e acrescenta 20 novas.
+
+```
+git status --porcelain   (antes do add)
+ M bussola/cacados.md
+```
+
+```
+git diff --stat   (antes do add)
+ bussola/cacados.md | 20 ++++++++++++++++++++
+ 1 file changed, 20 insertions(+)
+```
+
+```
+Commit que foi ao main: cfc0883
+Mensagem: Bússola caçadora — 27/10/2026
+Push: git push origin HEAD:main  ->  fde8984..cfc0883  HEAD -> main   (aceito de primeira, sem rebase, sem force)
+Confirmação: git fetch origin main && git log -1 origin/main  ->  cfc0883 Bússola caçadora — 27/10/2026
+```
+
+Contagem do que mudou, CONFERIDA RELENDO O ARQUIVO DEPOIS DE GRAVAR (nunca pelo que eu achava ter escrito):
+
+```
+ESCRITA ÚNICA — bussola/cacados.md  (substituição completa do arquivo, como mandado)
+  sha256sum                                  -> f7acc00efd31cb70525ffc01e2d36a8a5eb191c67cbc0ef8ac357ef3cfac69f5
+                                                (idêntico ao esperado pela instrução)
+  wc -l                                      -> 40 linhas
+  grep -c "^| 2"   (linhas de data na tabela) -> 34
+  grep -c "^| 27/10/2026 "                    -> 20   (as linhas desta rodada)
+  primeira linha  -> "# Nichos caçados e reprovados (seção 0.3 do BUSSOLA.md)"
+  última linha    -> "| 27/10/2026 | cartão de memória e pen drive | volume | 55 mil/mês → teto ≈ 340 visitas/dia |"
+```
+
+Nenhum passo falhou: o arquivo gravado bate com o sha256 da instrução, o commit foi aceito no `main` de
+primeira e `origin/main` mostra o hash acima. Nenhum outro arquivo do repositório foi tocado — este log vai
+num commit seguinte, por ser o último passo do disparo.
