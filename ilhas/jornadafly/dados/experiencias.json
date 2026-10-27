@@ -1400,11 +1400,11 @@
               "rotulo": "Criança de até 6 anos",
               "preco": 0,
               "moeda": "BRL_do_operador",
-              "condicao": "ter até 6 anos, viajar no colo do responsavel e apresentar documento válido que comprove a idade",
+              "condicao": "ter até 6 anos, viajar no colo do responsável e apresentar documento válido que comprove a idade",
               "se_nao_cumprir": "a partir dos 7 anos paga o bilhete de Criança, R$ 107",
               "provas_adicionais": null,
               "motivo_sem_provas_adicionais": "Campo nascido na versão 9 do esquema, nesta mesma carga. `null` aqui e MEDIDO e não silencio: a mesma frase da fonte que escreve «apenas brasileiros» ao lado da tarifa de idoso e «apenas para brasileiros» ao lado das de estudante e de ID Jovem NÃO escreve nada disso ao lado desta. A fonte distingue; esta leitura copia a distincao.",
-              "declarado_como": "Crianças de até 6 anos não pagam, desde que estejam no colo do responsavel e apresentem documento válido",
+              "declarado_como": "Crianças de até 6 anos não pagam, desde que estejam no colo do responsável e apresentem documento válido",
               "fonte": "trem-corcovado-tarifa-via-busca",
               "data_leitura": "2026-10-27",
               "duas_passadas": "A gratuidade voltou em duas passadas de busca nas páginas do próprio operador e, com o mesmo limite de 6 anos, num publicador editorial (nível 6). E ha uma divergência de FAIXA, não de preço, registrada em declarações[]: um publicador editorial escreve «infantil de 5 a 11 anos» e gratuidade «abaixo de 4 anos», que e outro recorte."
@@ -1519,7 +1519,7 @@
           ],
           "nao_inclui": [
             "o traslado até a estação de Cosme Velho",
-            "a remarcação do bilhete, que o operador cobra a parte: 10% do valor com mais de 24 horas de antecedência e 30% com menos",
+            "a remarcação do bilhete, que o operador cobra à parte: 10% do valor com mais de 24 horas de antecedência e 30% com menos",
             "alimentação e guia"
           ],
           "fonte": "trem-corcovado-tarifa-via-busca",
@@ -1566,7 +1566,7 @@
           "valor": 134,
           "moeda": "BRL_do_operador",
           "unidade_de_preco": "por_pessoa",
-          "diz": "adulto R$ 134,00, infantil de 7 a 11 anos R$ 107,00, idoso acima de 60 anos R$ 70,00, estudante, ID Jovem e PcD R$ 107,00, e gratuidade até 6 anos no colo do responsavel — a tabela inteira do operador, repetida por um terceiro",
+          "diz": "adulto R$ 134,00, infantil de 7 a 11 anos R$ 107,00, idoso acima de 60 anos R$ 70,00, estudante, ID Jovem e PcD R$ 107,00, e gratuidade até 6 anos no colo do responsável — a tabela inteira do operador, repetida por um terceiro",
           "data_leitura": "2026-10-27",
           "fonte": "viajaquepassa-corcovado-via-busca",
           "publicavel_na_tela": true,
