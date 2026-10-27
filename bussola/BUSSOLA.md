@@ -6,6 +6,64 @@ A rotina da Bússola é curta de propósito: o que ela avalia mora aqui. Corrigi
 Vive nesta pasta: `BUSSOLA.md` (regras), `fila.md` (ranking vivo, com as notas componentes de cada nicho),
 `rodadas/<NNN>.md` (o que cada rodada mediu e por quê) e `dossies/<nicho>/` (o pacote de nascimento de um nicho aprovável).
 
+## 0. MODO CAÇADOR — a Bússola procura até achar e só entrega o que passou (decisão do Raphael, 27/10/2026)
+
+**A frase dele:** *"Eu não quero saber o que não passou. Eu quero que ela procure até encontrar algo que passe.
+Eu não quero ficar analisando relatório. Eu quero a ideia pronta e executável."* E a régua, dita de novo: sem
+volume de tráfego com intenção de compra não existe venda — só ~1% de quem entra compra — e o critério é ROI.
+
+**0.1 Esta seção manda sobre as seções 4 e 5 e sobre o formato de toda rodada.** Onde qualquer outra seção
+divergir sobre O QUE a Bússola entrega e QUANDO ela fala com o Raphael, vale esta. Os portões (seções 2, 3,
+3.0-c, 3.0-d, 3.0-e, 3.1) continuam valendo inteiros: o que muda é o comportamento, não a régua.
+
+**0.2 O CICLO DE CAÇA, em toda execução.** A Bússola testa até **20 nichos candidatos** inéditos (os que não
+estão em `bussola/cacados.md`), um por vez, e para cada um corre os portões nesta ordem, parando no primeiro que
+reprovar e passando ao próximo candidato sem escrever análise:
+1. **SERP brasileira** das consultas-ponte e de compra, vista no Chrome do Raphael (seção 3 e seção 30.5 do
+   `ARQUIPELAGO.md`). Tomada → próximo.
+2. **Volume no Planejador** (conta Google Ads do Raphael, "Ver volume de pesquisas e previsões", Brasil, 12
+   meses), colando **termos-cabeça e consultas de 2 a 5 palavras** — nunca frase de 6 ou mais palavras, que volta
+   `—` (lição medida em 21 e 22/10/2026). Use também "Descobrir novas palavras-chave" com 3 a 6 sementes para
+   achar a forma como o brasileiro busca de verdade, e só depois separe a metade de compra pela 3.0-d.2/3.0-e.
+3. **A conta da 3.0-d com a 3.0-e**, no cenário conservador. Menos de 1.000 visitas/dia → próximo.
+4. **Ticket e comissão medianos no painel de afiliado da Shopee** (Oferta de produto), 10 produtos que a
+   ferramenta indicaria. Cobertura da seção 2 reprovada → próximo.
+5. **Passou nos quatro → vira FICHA DE OPORTUNIDADE (0.4).** A execução para quando tiver UMA ficha completa,
+   ou ao fim dos 20 candidatos.
+
+**0.3 O que não passou NÃO vira relatório.** Cada reprovado entra em UMA linha de `bussola/cacados.md`
+(data · nicho · portão que matou · o número que matou), só para nenhuma rodada futura testar de novo. Nada de
+`rodadas/<NNN>.md` de reprovação, nada de seção "mortos", nada de justificativa. A `fila.md` deixa de ser
+reescrita a cada execução; ela só recebe a linha da ficha quando houver ficha.
+
+**0.4 A ÚNICA ENTREGA É A FICHA DE OPORTUNIDADE**, em `bussola/oportunidades/<slug>.md`, junto com o dossiê
+completo da seção 5 em `bussola/dossies/<slug>/`. A ficha cabe numa tela de celular e traz, nesta ordem:
+- o nicho em uma frase e o nome da ilha, com o domínio `.com.br` conferido livre no registro.br;
+- **volume medido de intenção de compra** (soma, data da medição, as 10 consultas que mais pesam);
+- **visitas/dia** em dois números: conservador (com os descontos da 3.0-e) e teto (curva sem desconto);
+- **vendas/dia** = visitas/dia × 1%;
+- **ticket mediano e comissão mediana medidos no painel**;
+- **comissão projetada por mês** (conservador e teto) = vendas/dia × 30 × ticket × comissão;
+- **prazo estimado até o tráfego**, em faixa, marcado como estimativa;
+- as 3 primeiras ferramentas e o custo para o Raphael (domínio);
+- uma pergunta só: **"aprova o nascimento de <nome>?"**
+
+**0.5 QUANDO A BÚSSOLA FALA COM O RAPHAEL — só em dois casos.**
+- **Achou:** push curto com nicho, comissão projetada por mês (conservador e teto) e a pergunta da ficha.
+- **Uma sessão necessária está deslogada** (Google Ads ou painel da Shopee): push de uma linha dizendo qual
+  logar. Ela segue o que der com a SERP e não insiste. Nunca pede senha, nunca faz login, nunca contorna
+  verificação de robô.
+Fora disso, **silêncio**: execução sem achado termina com uma linha ("caça sem achado: N testados") e sem push.
+
+**0.6 O INSTRUMENTO.** A Bússola roda presa ao computador do Raphael, no Claude in Chrome, onde ele mantém
+logados o Google Ads e o painel de afiliado da Shopee. A SERP vista nesse Chrome satisfaz a 30.8 do
+`ARQUIPELAGO.md` para `alvo`; não existe mais `provisório` por falta de olhos. Escrita no repositório continua
+sendo pelas MÃOS (`trig_01Jg2qeDDsWDJdU9khHVswqd`).
+
+**0.7 O que esta seção revoga:** a pausa de 16/09/2026 da seção 5 (a Bússola está ligada); a obrigação de manter
+dois dossiês prontos para nichos que não passaram (dossiê só existe para nicho com ficha); e o relatório de
+rodada como produto da Bússola.
+
 ## 1. Para que a Bússola existe
 
 O Arquipélago ganha dinheiro com comissão de afiliado em páginas que respondem, com número e fonte, uma pergunta
@@ -155,6 +213,31 @@ Bússola prefere não parir ilha a parir ilha sem comprador. **Nicho que reprova
 seja o índice da seção 3** — e nicho que passa aqui ainda tem de passar na seção 3 (fácil de ranquear) e na
 cobertura de afiliado da seção 2. São três portões independentes, e a ilha ideal é o cruzamento dos três.
 
+## 3.0-e A BUSCA-PONTE CONTA, COM DESCONTO DE CARROSSEL (decisão do Raphael, 27/10/2026)
+
+**Por que existe:** a rodada 008 (26/10/2026) mediu que a 3.0-d.2 e a 30.5 se anulavam. A consulta cuja resposta
+é UM PRODUTO NOMEADO é exatamente a que o Google enche de carrossel de compras e PDP de marketplace (`tomada`);
+a consulta cuja resposta é UM NÚMERO ainda tem vaga editorial. Lidas juntas, as duas tornavam vazio o conjunto
+que o piso de 1.000 visitas/dia soma. O Raphael escolheu a saída (b) da rodada 008.
+
+**3.0-e.1 A CONSULTA-PONTE ENTRA NA SOMA DA 3.0-d.1.** Consulta-ponte é a que se responde com um número ou uma
+especificação **e** cuja resposta certa termina em comprar um produto com aquela especificação:
+`quantos PCM para pistola de pintura` (→ compressor de X PCM) · `qual tamanho de lençol para colchão de 30 cm`
+(→ lençol de aba Y) · `quantos watts de aquecedor para aquário de 100 litros` (→ aquecedor de Z W). É o formato
+das ilhas que o Arquipélago já tem. O teste da 3.0-d.2 continua: se dá para responder por inteiro sem mandar a
+pessoa comprar nada, não é ponte, é informacional, e fica fora.
+
+**3.0-e.2 A consulta de compra direta** (o produto pelo nome) só entra na soma se a SERP não estiver `tomada`.
+
+**3.0-e.3 DESCONTOS do cenário conservador, aplicados sobre o CTR da posição alcançável:**
+- carrossel de compras ou bloco de produtos acima do primeiro orgânico: **× 0,5**;
+- resposta de IA (visão geral) no topo: **× 0,7**;
+- a resposta inteira cabe no snippet da SERP (o número aparece no próprio resultado e a pessoa não precisa
+  clicar — lição da Aquametria em 21/10/2026): **× 0,5**.
+Os descontos se multiplicam. São fatores fixados por esta lei, conservadores de propósito, e marcados como
+estimativa na ficha; a Sentinela recalibra com o CTR real do Search Console das ilhas vivas quando houver série.
+**O piso de 1.000 visitas/dia vale sobre o cenário conservador**, nunca sobre o teto.
+
 ## 3.1 Nota que não foi medida não vira índice
 
 Três regras que nasceram da autocrítica da própria rodada 004, e valem da 005 em diante.
@@ -270,7 +353,7 @@ nicho aprovado que fechou tem que ser desmarcado antes de alguém pagar domínio
 
 ## 5. Cadência e o que a rodada entrega
 
-> **BÚSSOLA PAUSADA EM 16/09/2026, por decisão do Raphael.** A rotina semanal está desligada e a meta de duas ilhas por semana **está suspensa**: são cinco ilhas na carteira e a Fundação tem ~20 execuções por semana, então achar nicho novo produz candidato para uma fila que não vaza. A cadência abaixo descreve o regime normal e volta a valer quando a Bússola for religada — o gatilho combinado é **uma ilha terminada e dando dinheiro**. Nada abaixo desta linha deve ser lido como ordem de nascer ilha enquanto esta pausa estiver escrita aqui.
+> **[REVOGADA EM 27/10/2026 pela seção 0 — a Bússola está ligada, em modo caçador.]** ~~BÚSSOLA PAUSADA EM 16/09/2026, por decisão do Raphael.~~ A rotina semanal está desligada e a meta de duas ilhas por semana **está suspensa**: são cinco ilhas na carteira e a Fundação tem ~20 execuções por semana, então achar nicho novo produz candidato para uma fila que não vaza. A cadência abaixo descreve o regime normal e volta a valer quando a Bússola for religada — o gatilho combinado é **uma ilha terminada e dando dinheiro**. Nada abaixo desta linha deve ser lido como ordem de nascer ilha enquanto esta pausa estiver escrita aqui.
 
 - A Bússola roda **uma vez por semana** (segunda de manhã). O Arquipélago nasce **duas ilhas por semana** enquanto a meta
   for ~10 ilhas (decisão do Raphael em 10/09/2026): o relógio do Google é o único recurso que não se compra depois, e cada
