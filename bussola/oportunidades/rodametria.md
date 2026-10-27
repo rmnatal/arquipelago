@@ -78,3 +78,5 @@ scooter, moto e bicicleta elétrica, que a Shopee não vende.
 **Mudança no plano:** a home e a F1 começam pelo patinete ("Esse patinete precisa de CNH?", "Aguenta o meu
 peso?", "Quantos km ele faz?"); scooter, moto e bicicleta entram depois, com link do Mercado Livre.
 Próximo passo, seção 11 do `ARQUIPELAGO.md`: **[RAPHAEL] registrar `rodametria.com.br`**; o resto é da Fundação.
+
+**🎨 Marca aprovada pelo Raphael em 27/10/2026:** símbolo **V9** (patinete de frente com asas curvas e raios) e assinatura horizontal **H1**. Arquivos: `bussola/dossies/rodametria/logo.svg` e `bussola/dossies/rodametria/DESIGN.md`. Paleta, tipografia e home ainda aguardam o "ok" dele.
