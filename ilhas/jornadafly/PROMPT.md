@@ -206,9 +206,16 @@ Quando o site responder, siga a seção 11 do passo 9 em diante e a seção 14 (
      em Roma. Os dois estão **pré-registrados** em `dados/artigos-ancora.json`, com o
      critério que destrava cada um escrito ANTES de o dado chegar.
 
-**5b. MALHA DE PÁGINAS — silo de tópico (seção 16):** **experiência → cidade → país**, com breadcrumb. Camadas: (1) ficha de experiência; (2) página de cidade; (3) página de país; (4) cruzamentos (experiência × número de pessoas, cidade × dias).
+**5b. MALHA DE PÁGINAS — silo de tópico (seção 16): A ÁRVORE DESTA ILHA MORA EM `ARVORE.md`, NESTA PASTA, desde 27/10/2026 — leia-o antes de abrir este bloco.** É o item (i) do 16.8, e ele é o mapa que a malha segue.
+
+> **E ELE CORRIGE A FRASE QUE ESTAVA AQUI, que dizia "experiência → cidade → país, com breadcrumb. Camadas: (1) ficha de experiência; (2) página de cidade; (3) página de país; (4) cruzamentos".** Quatro coisas foram medidas em 27/10/2026 e estão na seção 4 do `ARVORE.md`:
+> - **Agrupar por cidade é o erro barato, e a própria ilha já o havia recusado** na especificação 7.2 em 23/10: cada cidade do banco tem **uma** experiência, e a 16.5 exige três filhas. As quatro páginas de cidade **não nascem**, e a casca não muda isso.
+> - **As camadas (1) e (4) já estão entregues pelo bloco 5**, em `/guias/quanto-custa/`: os quatro artigos são um por experiência, e uma ficha para as mesmas quatro seria a segunda página na mesma `consulta_alvo`, que a 7.4 proíbe.
+> - **A camada (3), país, não entra nesta árvore:** nenhum país tem 3 cidades, e a experiência já gasta os três níveis da 16.1.
+> - **ENTÃO O 5b NÃO ESPERA A CASCA — ELE ESPERA DADO**, e o número que o destrava está pré-registrado (1.2-b.4) na seção 4 do `ARVORE.md`: **3 experiências na mesma cidade.** Quem abrir este bloco reconta o banco antes.
 
 **5c. CLUSTER FREE TOUR** — ver "Específico desta ilha". É conteúdo próprio, não subproduto da malha.
+   - **E ELE TAMBÉM NÃO ESPERA A CASCA: espera COLETA.** Medido em 27/10/2026: `free_tour` está no vocabulário do `esquema-banco.json` e **zero registros do banco o usam** — a mesma assinatura de `passe_de_cidade`, e o `validar-banco.py` avisa os dois como `vocabulario_sem_lastro`. O que falta é `civitatis.com.br`, que o egresso recusa. Critério pré-registrado na seção 5 do `ARVORE.md`.
 
 **6. LISTA DE PROSPECÇÃO DO WIDGET** — operadores e receptivos brasileiros com site próprio, `publicar: false`.
    - **ENTREGUE em 23/10/2026**, com **25 candidatos** e `publicar: false`. Mora em

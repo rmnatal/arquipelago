@@ -3,6 +3,143 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-10-27 13h48Z — **HAVIA BLOCO**, e ele estava escondido atrás de uma frase que três execuções seguidas repetiram sem medir: o **5b e o 5c não dependem da casca, dependem de DADO**. Esta ilha era a única do arquipélago sem `ARVORE.md`, e ela é a ilha EM FOCO cuja malha é o bloco aberto
+
+**O que saiu:** `ilhas/jornadafly/ARVORE.md` — o item **(i) do 16.8**, a árvore de URLs
+desta ilha, com os três níveis, a raiz, a casa de cada página que já existe como regra, e
+o **critério pré-registrado (1.2-b.4)** que diz com número o que destrava o 5b e o 5c.
+Mais a correção dos blocos **5b** e **5c** no `PROMPT.md`, que prescreviam o contrário.
+
+**POR QUE ISTO NÃO É BLOCO INVENTADO, e a pergunta é justa porque o registro de 23/10
+proíbe inventar um.** Aquela entrada diz que *"não sobrou bloco de arquivo nesta ilha"* e
+lista o motivo de cada pendência; três execuções depois — 26/10 às 13h3xZ, 26/10 às
+19h16Z e 27/10 às 10h17Z — fecharam em "nada elegível" apoiadas nela. **A frase em que
+todas as quatro se apoiaram está medida e é falsa em duas das três pendências:** o
+registro de 23/10 escreveu *"o 3b (casca), o 5b (malha) e o 5c (free tour) dependem da
+casca"*, e o `foco.md` a propagou como *"os passos 2 a 8 destravam o ar: casca, snippet e
+sitemap, e com isso o 3b, o 5b, o 5c"*. **Para o 3b está certo. Para o 5b e o 5c está
+errado**, e ninguém havia aberto o banco para conferir. Eu abri.
+
+**O BLOCO 5 DESTA ILHA JÁ HAVIA RECUSADO O 5b, E OS DOIS TEXTOS CONVIVIAM NO MESMO
+REPOSITÓRIO MANDANDO COISAS OPOSTAS.** O 5b do `PROMPT.md` manda agrupar
+**experiência → cidade → país**. A especificação **7.2**, escrita quatro dias depois, diz
+com todas as letras: *"Agrupar por cidade teria sido o erro barato: cada cidade do banco
+tem **uma** experiência hoje, e categoria nasce com no mínimo três filhas — uma filha por
+categoria é cluster ralo, que não passa autoridade nenhuma."* O custo era datado e tinha
+endereço: **a execução que encontrasse a casca pronta abriria a malha do 5b e publicaria
+exatamente o cluster ralo que a própria ilha havia medido e recusado.**
+
+**O QUE EU MEDI EM `dados/experiencias.json`, e é a procedência do número:** **4**
+experiências, **4** cidades (Veneza, Siem Reap, Roma, Paris), **1 experiência por cidade**
+nas quatro, **3** países (Itália com 2 cidades, Camboja 1, França 1), `faixas_diarias` em
+**0** e `coberturas_de_passe` em **0**. Contra a **16.5** (categoria nasce com 3 filhas) e
+a **14.4** (listagem só existe com 3 itens), **nenhuma página de cidade e nenhuma página
+de país nasce hoje** — e nem a casca, nem o Search Console, nem o egresso mudam isso.
+
+**AS QUATRO CAMADAS DO 5b, UMA A UMA — e duas delas já estavam ENTREGUES sem o 5b saber:**
+
+- **(1) ficha de experiência — JÁ ENTREGUE, com outro endereço.** Os quatro
+  artigos-âncora do bloco 5 são **um por experiência**, correspondência 1 para 1. Uma
+  ficha em `/experiencias/<cidade>/<experiencia>/` para as mesmas quatro seria a segunda
+  página na mesma `consulta_alvo`, que a **7.4** proíbe e o portão de
+  `artigos-referencia.py` reprova.
+- **(2) página de cidade — TRAVADA POR DADO**, pelo número acima.
+- **(3) página de país — TRAVADA POR DADO E SEM NÍVEL ONDE MORAR.** `/experiencias/<cidade>/<experiencia>/`
+  já gasta os três níveis da **16.1**, que não admite quarto. O país só caberia promovido
+  a nível 1 (`/italia/`), e daria três seções de 1 a 2 itens, com a palavra que menos vende
+  no topo da árvore de uma ilha cujo recorte é a experiência e não a geografia. **Não entra.**
+- **(4) cruzamentos — JÁ ENTREGUES, e no lugar certo.** Experiência × pessoas é a F1 e
+  cidade × dias é a F2, as duas paramétricas e em `/calculadoras/` pela 7.4; como página, o
+  cruzamento já é o artigo em `/guias/quanto-custa/`.
+
+**O 5c TAMBÉM NÃO É CASCA: É COLETA.** `free_tour` está no **vocabulário** do
+`esquema-banco.json` (linha 135) e **zero registros do banco o usam** — a mesma assinatura
+de `passe_de_cidade`, e o `validar-banco.py` avisa os dois como `vocabulario_sem_lastro`,
+o que eu confirmei rodando-o. O que falta é `civitatis.com.br`, um dos nove domínios que o
+egresso recusa. **O cluster mais rentável que a ilha mediu espera uma linha de rede, não
+um WordPress.**
+
+**O CRITÉRIO PRÉ-REGISTRADO, e a 1.2-b.4 é explícita sobre por que ele sai AGORA:**
+*"critério escrito depois do dado é critério dobrado para caber no dado que veio"*.
+`/experiencias/<cidade>/` nasce com **3 experiências naquela cidade**; `/experiencias/`
+nasce com a primeira cidade que passar; a ficha só nasce para experiência **sem artigo
+próprio**; o país não nasce enquanto a experiência gastar os três níveis; e o free tour
+nasce com **3 free tours de dado real**, com operador nomeado — nunca recomendando "free
+tour" sem escolher o operador, porque esta ilha já mediu que fazer isso **doa a conversão**.
+
+**TRÊS COISAS QUE A ÁRVORE ACHOU SEM PROCURAR, e as três são de casca (3b):**
+
+1. **A home e a F1 servem o mesmo formulário.** O `VOZ.md` manda a home abrir com *"Quanto
+   custa, para quantas pessoas?"* e os campos; `artigos-referencia.py` manda os artigos
+   para `/calculadoras/quanto-custa-a-experiencia/?experiencia=…&versao=…`. Dois endereços
+   com o mesmo formulário é o que a **14.4** proíbe. **A regra ficou escrita antes de a
+   casca existir:** a home serve o formulário **vazio** e nunca lê parâmetro; resposta com
+   parâmetro mora só na calculadora, com `canonical` para a URL sem parâmetro.
+2. **O rótulo do menu colide com o nome de uma categoria, e a calculadora não está no
+   menu.** O `VOZ.md` define **Experiências · Quanto custa · Guias**, e a 7.2 usou o item
+   "Quanto custa" para justificar o slug `/guias/quanto-custa/`: lidos juntos, dois dos
+   três itens caem no mesmo galho e **a página do dinheiro desta ilha fica fora do menu**.
+   **O conserto é no rótulo, nunca no slug** — o slug está entregue e com portão. O menu
+   diz "Quanto custa para o seu grupo", que é o que a 7.4 já separava.
+3. **Os slugs da F2 e da F3 não existiam em lugar nenhum.** Só o da F1 está em código.
+   Nasceram neste arquivo, derivados do rótulo que o `VOZ.md` dá a cada uma na home, e
+   marcados como **proposta** para quem escrever a casca conferir.
+
+**A REGRA DE OURO QUE EU COPIEI DA ROBOMETRIA, e ela está no topo do arquivo:** *documento
+e código mantidos à mão em dois lugares divergem em silêncio.* A árvore desta ilha **já
+existia em código** (`artigos-referencia.py`, linhas 41 e 42) antes deste documento, e o
+documento **não a inventou: ele a leu**. Onde os dois discordarem, o código é o que está
+entregue e a divergência é defeito do arquivo.
+
+**NADA FOI AO AR, E NÃO PODIA.** Sem WordPress não há casca, Sync, `/status` nem URL;
+dizer que verifiquei no ar seria inventar. **E nenhum portão nasceu:** a **31.2** só deixa
+nascer portão novo com defeito medido no ar, e o que esta passada achou é contradição de
+documento. O portão desta árvore nasce com a casca, e nasce **lendo este arquivo**, como o
+`teste-arvore.php` da robometria faz.
+
+**BANCADA, 0 falha**, rodada depois das mudanças: `validar-banco` (o banco cumpre o
+esquema, com os avisos de vocabulário sem lastro que esta entrada cita), `teste-f1`,
+`teste-f2`, `teste-f3`, `teste-prospeccao` (285 afirmações), `gerar-artigos` (o portão dos
+quatro artigos) e `validar-prospeccao` (o `.md` idêntico ao que a referência gera). Mudei
+dois arquivos `.md` e **nenhuma linha de código e nenhum JSON**.
+
+**A ESCOLHA DA ILHA: NÃO HOUVE ROTAÇÃO.** `foco.md` nomeia a **jornadafly** e pela **1.2**
+não há escolha a fazer. Conferi as exceções e nenhuma se aplica: o molde da **32** está
+fechado nas três ilhas, e **ilha no ar e quebrada não existe** — medido e não herdado, em
+vez de confiado à linha de "nada elegível" de ontem, que é a lição que este arquivo já
+pagou. Os cinco `ESTADO.md` com `executando_desde: null`, nenhum branch `claude/*` com
+commit a mergear e nenhum PR aberto. **Reserva escrita às 13h48Z e ganha** (commit
+`aeffd29`), **antes do trabalho**, com o motivo já nela: achei bloco.
+
+**A MEDIÇÃO QUE PRECEDEU A DECISÃO, porque "nada elegível" é verdade sobre um INSTANTE.**
+(a) `jornadafly.com.br` e `www.jornadafly.com.br` em **000**, com as três irmãs em **200**
+na mesma linha de comando — **oitavo dia** de recusa. (b) As **98 URLs** dos três sitemaps
+em **200**, uma a uma, com quebra de cache: aquametria 52, clubedomosaico 32, robometria
+14, **zero fora de 200**. (c) `/status` igual ao `manifest.json` nas três — **135, 95 e
+93** — nenhum desembarque preso. (d) Porta de entrada da **29.2** de pé nas três: home,
+`robots.txt` e `wp-sitemap.xml` em 200, caminho virgem em **404**. (e) **Nenhuma ronda
+rodou** desde as 20h2xZ de 26/10: o `main` não tem commit de Sentinela depois daquele,
+logo não há despacho novo, e eu li os topos dos cinco `PROMPT.md` antes de concluir.
+
+**A 31.1 CONTINUA INALCANÇÁVEL NESTA ILHA, E ESTA PASSADA NÃO A MELHORA:** a proporção vai
+de 4 em 13 para **4 em 14**. Está dito sem maquiagem porque o `foco.md` já autoriza o
+trabalho de arquivo nesta ilha com essas palavras, e porque a 31.1 se mede por entrega no
+ar — que esta ilha não pode ter até o Raphael fazer os passos 2 a 8. **O que mudou não é o
+número: é que o próximo destravamento deixou de carregar um erro.**
+
+**PRÓXIMO PASSO: NÃO É DA FUNDAÇÃO, e os três gestos do Raphael continuam valendo — mas o
+que o gesto (2) compra MUDOU, e isso é material de decisão dele.** (1) **O egresso**
+destrava **coleta**: as faixas de diária da F2, o passe e as coberturas da F3, os dois
+artigos pré-registrados, a verificação dos 25 candidatos do bloco 6 **e agora também o
+5c**. (2) **Os passos 2 a 8 da seção 11** destravam **o ar**: casca, snippet, sitemap, o
+3b e o tradutor PHP das três ferramentas e dos quatro artigos — **e a primeira leva de
+malha, que são 8 URLs e já está desenhada e autorizada pelo dado de hoje** na seção 6 do
+`ARVORE.md`. **O que o gesto (2) NÃO compra mais, e antes se pensava que comprasse: o 5b e
+o 5c.** Os dois esperam dado, e o 5c espera o gesto (1). (3) **Uma linha no `foco.md`**
+destrava a **rotação** e os quatro despachos NORMAIS parados.
+
+---
+
 ## 2026-10-27 10h17Z — SEM BLOCO PARA ABRIR, e o registro de 23/10 havia escrito isto para mim; o que esta passada entrega são **duas coisas: o número (4 em 13) e a régua que quase o fez sair errado** — o `git log` desta nuvem vem RASO e responde curto sem dar erro
 
 **O que saiu:** nenhum bloco, e **isso é o resultado certo, não uma passada perdida.**

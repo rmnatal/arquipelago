@@ -685,6 +685,33 @@ O critério de entrada desta ilha, escrito no esquema e vindo do corpus do bloco
 
 **Pronto quando:** de dentro de uma rotina, um `curl` a `www.angkorenterprise.gov.kh` ou a `civitatis.com` devolver qualquer código HTTP de verdade. Hoje os dois devolvem `000`, e o WebFetch do primeiro devolve `EGRESS_BLOCKED` — medidos às 23h30Z, não herdados.
 
+> **REMEDIDO EM 27/10/2026 ÀS 13h4xZ — OITAVO DIA DE RECUSA, E ESTA EXECUÇÃO CORRIGE, POR MEDIÇÃO, O QUE CADA UM DOS DOIS GESTOS COMPRA. O PEDIDO NÃO MUDA; O QUE ESTÁ EM JOGO EM CADA METADE, SIM.**
+>
+> **O egresso:** `jornadafly.com.br` e `www.jornadafly.com.br` em **000**, com `aquametria.com.br`, `robometria.com.br` e `clubedomosaico.com.br` em **200** na mesma linha de comando. Sem intermitência no controle, sem mudança desde 22/10.
+>
+> **O QUE ESTA EXECUÇÃO ACHOU, E É A PRIMEIRA A ACHAR BLOCO NA ILHA EM FOCO DESDE 23/10.** Os parágrafos de 13h3xZ, 19h1xZ e 10h1xZ acima dizem, cada um com a sua medição, que a capacidade de construção está em zero e que não há bloco em ilha nenhuma. **Sobre o ar e sobre a rede eles estão certos. Sobre o que o gesto da casca compra, estão errados** — e o erro vem de uma frase que nenhuma das três conferiu.
+>
+> **A frase, e ela nasceu no `REGISTRO.md` da jornadafly em 23/10:** *"o 3b (casca), o 5b (malha) e o 5c (free tour) dependem da casca"*. **Três execuções seguidas fecharam em "nada elegível" apoiadas nela sem abrir o banco da ilha.** Abri. **Para o 3b está certo; para o 5b e o 5c está errado: os dois dependem de DADO.**
+>
+> **E o 5b do `PROMPT.md` contradizia a própria ilha.** Ele manda agrupar **experiência → cidade → país**; a especificação **7.2**, escrita quatro dias depois, diz com todas as letras que *"agrupar por cidade teria sido o erro barato: cada cidade do banco tem **uma** experiência hoje, e categoria nasce com no mínimo três filhas"*. **O custo tinha endereço e data:** a execução que encontrasse a casca pronta abriria a malha do 5b e publicaria exatamente o cluster ralo que a ilha já havia medido e recusado.
+>
+> **O número, de `dados/experiencias.json`:** **4** experiências, **4** cidades, **uma experiência por cidade** nas quatro, **3** países (Itália 2 cidades, Camboja 1, França 1), `faixas_diarias` em **0**, `coberturas_de_passe` em **0**. Contra a **16.5** (3 filhas) e a **14.4** (3 itens), **nenhuma página de cidade e nenhuma de país nasce** — e nem a casca nem o Search Console mudam isso. As camadas (1) e (4) do 5b **já estavam entregues** pelo bloco 5, e a (3), país, **não tem nível onde morar**, porque a experiência gasta os três da 16.1.
+>
+> **O 5c não é casca: é COLETA, e isso aumenta o que ESTE pedido compra.** `free_tour` está no vocabulário do `esquema-banco.json` com **zero registros que o usem**, e o que falta é **`civitatis.com.br`**, um dos nove domínios recusados. **O cluster mais rentável que a ilha mediu — €1 fixo por pessoa, fricção de conversão quase zero — espera uma linha de rede, não um WordPress.**
+>
+> **A CONTA RECALCULADA, e é o que este acréscimo entrega:**
+>
+> | gesto | o que ele compra | mudou? |
+> |---|---|---|
+> | **(1) o egresso** (este pedido) | a coleta da F2 e da F3, os dois artigos pré-registrados, os 25 candidatos do bloco 6 — **e agora também o 5c** | **sim, cresceu** |
+> | **(2) os passos 2 a 8 da seção 11** | o ar: casca, snippet, sitemap, o 3b, o tradutor PHP das três ferramentas e dos quatro artigos — **e a primeira leva de malha, 8 URLs, já desenhada e autorizada pelo dado de hoje** | **sim, encolheu: NÃO compra o 5b nem o 5c** |
+> | **(3) uma linha no `foco.md`** | a rotação, e com ela os quatro despachos NORMAIS que a 1.2 proíbe tocar | não |
+>
+> **O bloco que saiu:** `ilhas/jornadafly/ARVORE.md`, o item **(i) do 16.8** — **esta ilha era a única do arquipélago sem ele**, sendo a ilha em foco cuja malha é o bloco aberto. Dentro dele, o critério **pré-registrado** da 1.2-b.4 (3 experiências na mesma cidade), a primeira leva de malha desenhada, e três achados de casca escritos **antes** de a casca existir: a home e a F1 servem o mesmo formulário (14.4), o rótulo do menu colide com o nome de uma categoria e deixa **a calculadora fora do menu**, e os slugs da F2 e da F3 não existiam em arquivo nenhum.
+>
+> **Medi o ar antes de concluir**, pela lição que este arquivo já pagou: **98 de 98** URLs dos três sitemaps em **200** uma a uma, `/status` igual ao `manifest.json` nas três (**135, 95, 93**), porta de entrada da **29.2** de pé nas três, e **nenhuma ronda rodou** desde as 20h2xZ de 26/10 — nenhum despacho novo. **A 31.1 vai de 4 em 13 para 4 em 14**, dito sem maquiagem: o que mudou não é o número, é que o próximo destravamento deixou de carregar um erro.
+
+
 ### prioridade NORMAL — a RÉGUA de `noindex` erra ao atravessar a fronteira entre as ilhas, e já custou um item de despacho inteiro
 
 24/09/2026 — SENTINELA (e FUNDAÇÃO de quem reservar a clubedomosaico) — Achado na aquametria, ao trabalhar o item 1 do despacho da leitura semanal de 23/09. Está aqui, e não no `PROMPT.md` de uma ilha, porque o defeito é do **instrumento de medição** e ele é usado nas quatro ilhas no ar.
