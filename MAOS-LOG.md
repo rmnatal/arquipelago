@@ -7403,3 +7403,62 @@ grep "RODAMETRIA REAPROVADA pelo Raphael" em fila.md             -> 1
 
 Nenhum passo falhou. Nada além dos três arquivos nomeados foi tocado; nenhum cabeçalho de estado, nenhuma reserva
 de ilha, nenhum bloco de fila executado. Este log vai num commit seguinte, por ser o último passo do disparo.
+
+---
+
+## 27/10/2026 — disparo das 15h49 de Brasília (18h49 UTC) — Rodametria: marca V9/H1 aprovada pelo Raphael
+
+Instrução da Bússola. Assunto conferido antes do `git fetch`: identidade visual da ilha nova Rodametria —
+Arquipélago, executa. Três arquivos nomeados na instrução, conteúdo copiado verbatim, nada reformatado e nada
+acrescentado. Partida de `origin/main` em `56d7d62` (`git checkout -B trabalho origin/main`).
+
+`git status --porcelain` antes do commit:
+
+```
+ M bussola/oportunidades/rodametria.md
+?? bussola/dossies/rodametria/DESIGN.md
+?? bussola/dossies/rodametria/logo.svg
+```
+
+`git diff --stat` antes do commit (só o arquivo já rastreado aparece; os dois novos ainda sem `add`):
+
+```
+ bussola/oportunidades/rodametria.md | 2 ++
+ 1 file changed, 2 insertions(+)
+```
+
+`git diff --stat` do commit já formado (`git show --stat`):
+
+```
+ bussola/dossies/rodametria/DESIGN.md | 49 ++++++++++++++++++++++++++++++++++++
+ bussola/dossies/rodametria/logo.svg  | 18 +++++++++++++
+ bussola/oportunidades/rodametria.md  |  2 ++
+ 3 files changed, 69 insertions(+)
+```
+
+Commit que foi ao `main`:
+
+```
+4b8228de90ca1f1303146d3f1b6181c4ca3d4e86
+Rodametria: marca V9/H1 aprovada pelo Raphael — logo.svg e DESIGN.md do dossiê
+```
+
+Confirmação (`git fetch origin main && git log -1 origin/main`): mostra `4b8228d`, com os três arquivos. Push
+aceito de primeira (`56d7d62..4b8228d`), sem rebase e sem force.
+
+Contagem conferida relendo os arquivos DEPOIS de gravar:
+
+```
+69 linhas acrescentadas no total, 0 removidas
+bussola/dossies/rodametria/logo.svg  18 linhas no arquivo (novo)
+bussola/dossies/rodametria/DESIGN.md 49 linhas no arquivo (novo)
+bussola/oportunidades/rodametria.md  82 linhas no arquivo (+2: uma em branco e a linha da marca)
+grep 'aria-label="Rodametria"' em logo.svg                        -> 1
+grep "Assinatura horizontal aprovada: H1" em DESIGN.md            -> 1
+grep "^| \`--" em DESIGN.md (linhas de token da tabela de cor)    -> 10
+grep "Marca aprovada pelo Raphael em 27/10/2026" em rodametria.md -> 1
+```
+
+Nenhum passo falhou. Nada além dos três arquivos nomeados foi tocado: nenhum cabeçalho de estado, nenhuma reserva
+de ilha, nenhum bloco de fila executado, nenhuma publicação e nenhum Sync. Este log vai num commit seguinte, por
+ser o último passo do disparo.
