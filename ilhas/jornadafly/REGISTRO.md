@@ -3,6 +3,298 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-10-27 19h18Z — **O DIA SEGUINTE DA ELEGIBILIDADE, em algumas horas.** Entrou o **Trem do Corcovado** (6ª experiência, 2ª do Rio) e nasceu `provas_adicionais`: a tarifa que exige **MAIS DE UMA PROVA**. E a passada achou, de véspera, que **a tela nunca imprimiu a elegibilidade** que a manhã tinha calculado
+
+**O que saiu:** `dados/esquema-banco.json` e `dados/experiencias.json` na **versão 9**;
+`provas_adicionais` em FAIXA_ETARIA e em ELEGIBILIDADE, com nove réguas novas no
+`validar-banco.py` e **16 quebras novas** no `mutacoes-banco.py` (178 → **194** mutações);
+`condicao_de_deficiencia` no vocabulário de `o_que_se_prova`; a frase da prova a mais e o
+bloco **QUEM COMPRA** na `f1-referencia.py`; duas famílias de afirmação novas no
+`teste-f1.py`; e a seção **10** da `especificacao-calculadoras.md`.
+
+**NADA FOI AO AR, E NÃO PODIA.** Esta ilha não tem WordPress, não tem casca, não tem Sync,
+não tem `/status` e não tem URL — faltam os passos 2 a 8 da seção 11, que são trabalho de
+navegador do Raphael. Dizer que verifiquei no ar seria inventar. A 31.1 vai de 4 em 15 para
+**4 em 16**, e está dito sem maquiagem.
+
+### A REDE, remedida e não herdada (20.2)
+
+**NONO dia de recusa.** `jornadafly.com.br` e `www.jornadafly.com.br` em `000` nas duas
+passadas, com `aquametria.com.br`, `robometria.com.br` e `clubedomosaico.com.br` em `200`
+nas mesmas — seis medições de controle verdes contra quatro de bloqueio, zero
+intermitência. **E a coleta andou de novo pelo degrau 4**, que é o que a entrada de 16h25Z
+de hoje descobriu não estar travado: a busca devolveu as páginas de tarifa do próprio
+operador, nomeadas uma por uma — `/en/institucional/informacoes-uteis`, `/en/tickets`,
+`/institutional/6/informacoes-uteis.html`, `/institutional/9`, `/institutional/10`,
+`/institutional/4`, `/en/app` e `/es/entradas`.
+
+### O ACHADO DE LÍNGUA QUE NINGUÉM PREVIU, e ele muda o que a releitura faz
+
+**As páginas que voltaram nomeadas são as de `/en` e as de `/es`.** A página em **português**
+deste operador brasileiro não voltou em nenhuma das três passadas. Então o preço que esta
+ilha publica em português do Brasil foi lido na versão **em inglês** do site de um operador
+do Rio de Janeiro. Isso não invalida o número — é o mesmo operador, no mesmo domínio, e é
+por isso que a fonte é nível 4 — e **muda o que a releitura precisa fazer**: conferir
+primeiro se a tabela em português diz o mesmo. Está escrito no campo
+`nota_da_lingua` da fonte, porque ninguém redescobriria isso lendo o campo `url`.
+
+### O DADO QUE NÃO CABIA NO ESQUEMA DA MANHÃ
+
+A seção 9 da especificação nasceu hoje de manhã, com o Bondinho: o esquema aprendeu a
+escrever **o que se prova** na porta. **Este registro mostrou que ele supunha que se prova
+UMA coisa.** O operador cobra:
+
+| tarifa | preço | o que se prova |
+|---|---|---|
+| Normal | R$ 134 | nada |
+| Criança de até 6 anos | grátis | idade |
+| Criança de 7 a 11 anos | R$ 107 | idade |
+| **Idoso acima de 60 anos** | **R$ 70** | **idade E nacionalidade** («apenas brasileiros») |
+| **Estudante** | **R$ 107** | **vínculo E nacionalidade** |
+| **ID Jovem** | **R$ 107** | **vínculo E nacionalidade** |
+| PcD | R$ 107 | condição de deficiência |
+
+As três em negrito não tinham onde morar, e as duas saídas disponíveis mentiam. Enfiar a
+nacionalidade na prosa de `condicao` da faixa etária briga com o que o esquema diz dela
+desde 14/09 — `se_nao_cumprir` é *«o que o operador cobra de quem não prova a IDADE»* — e
+faria a tela prometer **R$ 70 ao estrangeiro de 65 anos que paga R$ 134**; e a régua
+`PADRAO_RESIDENCIA`, nascida na véspera, reprovaria a frase **com razão**. Chamar a tarifa
+inteira de elegibilidade perderia a idade, que é metade do preço.
+
+### TRÊS VEZES O PORTÃO DECIDIU, E DUAS VEZES CONTRA MIM
+
+1. **`acumula_com_faixa_etaria: null` foi reprovado**, e a régua estava certa: numa versão
+   que TEM faixa etaria, null é a régua não sabendo se pode somar. Virou `false`, que é o
+   que o esquema manda quando a fonte é silenciosa — e aqui **a pergunta não custa
+   dinheiro**, o que vale registrar: a tarifa de estudante é R$ 107 e a faixa de criança de
+   7 a 11 anos **também** é R$ 107, então o estudante de 11 anos chega ao mesmo número pelas
+   duas portas. Não havia terceiro preço para inventar, ao contrário do Bondinho, onde
+   metade de R$ 89 daria R$ 44,50 e o operador cobra R$ 44.
+2. **A `condicao` do ID Jovem dizia «de 15 a 29 anos» e foi reprovada** pela régua de
+   27/10 que proíbe condição de elegibilidade declarar faixa de idade. **Ela está certa:**
+   a faixa de 15 a 29 não é tarifa que o operador cobra por idade, é a regra com que o
+   **governo** emite a carteira. Quem tem a carteira já cumpriu a idade por construção, e
+   quem tem 20 anos e não está no Cadastro Único paga os R$ 134 cheios. O conserto foi no
+   **lugar do dado**, não na régua, e a frase inteira da fonte continua em `declarado_como`.
+3. **A régua que EU escrevi nesta passada reprovou duas tarifas certas**, e o conserto foi
+   nela: a primeira versão varria `condicao` **e** `declarado_como` procurando idade, e
+   `declarado_como` é **citação** — a fonte diz «idosos acima de 60 anos, apenas
+   brasileiros» porque é a fonte falando. **Censurar a citação para agradar ao portão é pior
+   que o defeito que o portão procura**, e as réguas irmãs já varriam só rótulo e condição.
+
+### O DEFEITO DE VÉSPERA, E ELE É O MAIS CARO DESTA PASSADA
+
+`elegibilidade_da_versao` nasceu hoje de manhã, calcula as frases e as grava na resposta.
+**`imprimir()` nunca as imprimiu.** O leitor do Bondinho via *«a promocional de brasileiro
+não se soma ao desconto por idade»* — a recusa chegava à tela — **sem nunca ver que a
+promocional existe e custa R$ 160 contra R$ 205.** A metade mais importante desta ilha para
+o leitor **dela** ficou calculada e muda por um dia, na mesma passada que a escreveu com
+todas as letras no comentário: *«uma ilha escrita em português do Brasil que servisse os
+R$ 205 calada cobraria do próprio leitor 28% a mais»*.
+
+**Por que nada pegou: `imprimir()` não era conferido por NENHUM portão.** A afirmação que
+nasceu aqui é geral de propósito — **toda frase que a resposta manda para a tela tem de
+estar na tela** — e teria pegado este defeito no dia em que ele nasceu. É a mesma família
+da lista de vocabulários escrita à mão que esta ilha matou em 22/10 e da lista de portões
+que a aquametria matou com o descobridor: **ela não erra alto, erra calada.**
+
+### E A MESMA ASSINATURA, UM ANDAR ABAIXO, NO EXTRATOR DE VOCABULÁRIO
+
+A régua do `sem_extrator`, de 22/10, guarda **vocabulário novo** sem extrator. Ela **não
+alcança CAMPO novo que carrega vocabulário velho** — e foi exatamente o que aconteceu:
+`provas_adicionais` nasceu usando `nacionalidade` em três tarifas e o aviso de lastro
+continuou dizendo que `nacionalidade` não tinha registro que o usasse. Consertado na mesma
+passada, com o motivo escrito ao lado do laço.
+
+### `condicao_de_deficiencia`, E O QUE ELA FECHA DA MANHÃ
+
+Quarto valor de `o_que_se_prova`, nascido no commit do primeiro registro que o usa. **Não é
+`vinculo_declarado`:** vínculo é relação com instituição que pode acabar — matrícula, cargo,
+cadastro —, e deficiência é condição da pessoa, provada por laudo ou cartão próprio. Chamar
+as duas pelo mesmo nome faria a tela **pedir carteirinha de quem precisa de laudo**.
+
+E ela fecha a metade que o Bondinho recusou gravar nesta mesma manhã: aquela fonte
+empacotava idade, vínculo e deficiência na palavra «meia-entrada», sem preço por categoria.
+**Este operador desempacota** — nomeia categoria, preço e documentos de cada uma. O que era
+ingravável lá é gravável aqui, e **o que mudou foi a fonte, não a regra**.
+
+### O PRIMEIRO REGISTRO SEM EIXO DE VERSÃO
+
+O operador vende **um** produto. As seis linhas que o site chama de «tipos de bilhete» dão o
+**mesmo** trem de ida e volta com o **mesmo** acesso ao monumento. `eixo_das_versoes` é
+`null` — mundo que o esquema já previa desde 22/10 — e é por isso que **este** registro, e
+não o Bondinho, mostrou a lacuna: a seção 9 nasceu onde o preço mudava por quem compra
+ALÉM de mudar por escopo; aqui ele muda **só** por quem compra.
+
+### A DIVERGÊNCIA, E A PERGUNTA QUE ESTE REGISTRO NÃO DESEMPATA
+
+`travel.com.br` publica **R$ 122,50** de adulto em «alta temporada», sem data da tabela, e
+**R$ 67** de infantil «de 5 a 11 anos» — divergência **dupla**, de preço e de recorte de
+faixa. `viajaquepassa.com.br` repete a tabela inteira do operador. As três estão em
+`declaracoes[]`, com nome, data e o interesse comercial de quem vende experiência declarado
+ao lado do número.
+
+**E fica escrito o que ele NÃO resolve:** a `regra_de_divergencia` desta ilha dá autoridade
+só aos níveis 1 e 3 (ato de poder público), e a descrição da escada diz que «o nível mais
+alto vence» — duas leituras possíveis para **nível 4 contra nível 6**. Aqui as duas dão o
+**mesmo** número, porque R$ 134 é tanto o do nível mais alto quanto o MAIOR das declarações.
+A pergunta está na nota da versão 9 do esquema, **para o dia em que um publicador editorial
+publicar o número MAIOR** — que é quando a resposta custa dinheiro.
+
+### O `url_produto` VOLTOU A SER `null`, E NÃO É REGRA NOVA
+
+A busca restrita à plataforma devolveu `/br/rio-de-janeiro/tour-cristo-redentor-trem/`, e o
+slug diz **tour**. Esta ilha já decidiu isto duas vezes, no Angkor e no Coliseu, com a mesma
+frase: *«apontar um passeio guiado como se fosse o ingresso seria vender uma coisa no lugar
+de outra, que é pior do que não ter link»*. **É a mesma regra dando outra resposta porque o
+produto da plataforma é outro** — no Bondinho a página se chamava «Ingresso para o Pão de
+Açúcar» e o campo deixou de ser null por isso. O piso (`url_busca_produto`) é derivado do
+molde a partir do campo `cidade`, e é o mesmo do Bondinho porque a cidade é a mesma.
+
+### A ÁRVORE FOI RECONTADA, E O CRITÉRIO DO 5b NÃO FOI MEXIDO
+
+O Rio passou a ser **a primeira cidade deste banco com DUAS experiências**. O critério
+pré-registrado pede **3**, então `/experiencias/rio-de-janeiro/` **continua não nascendo**.
+
+**E fica escrita uma pergunta que o critério não previu**, antes de ela custar uma página: a
+terceira experiência mais fácil de colher pelo mesmo degrau 4 são as **vans da Paineiras**, e
+elas são a terceira porta do **mesmo monumento** que o trem. Pela LETRA do critério, três
+operadores com preço datado fazem a categoria nascer; pela INTENÇÃO, uma página que lista
+«Bondinho, trem do Cristo, van do Cristo» lista dois monumentos, e a **7.4** já proíbe duas
+páginas na mesma `consulta_alvo` — que é exatamente onde trem e van se encontram («quanto
+custa subir no Cristo Redentor»). **O critério não foi tocado de propósito:** critério
+escrito depois do dado é critério dobrado para caber no dado. A decisão provável, escrita no
+`ARVORE.md` para quem chegar lá, é que trem e van sejam **uma** experiência com duas versões
+por ponto de embarque.
+
+### O QUE JÁ ESTÁ MEDIDO DA PRÓXIMA CARGA, para ninguém gastar passada repetindo
+
+As vans da **Paineiras Corcovado** voltaram pelo mesmo degrau 4, e o que foi lido hoje:
+**R$ 85 de adulto e R$ 59** para idoso 60+, ID Jovem, PcD com acompanhante, estudante e
+infantil de 7 a 11, no **blog do próprio operador** (`blog.paineirascorcovado.com.br`,
+publicado em **julho de 2025** — a data da publicação é velha e a da leitura é hoje, e os
+dois precisam ir ao registro); **R$ 87** saindo das Paineiras e **R$ 132** saindo de
+Copacabana ou do Largo do Machado, em publicador editorial; gratuidade até 6 anos com
+retirada na bilheteria. **E o operador discorda de si mesmo, como o Bondinho:** a página de
+dúvidas dele diz que a visita *«não se enquadra em meia-entrada»* e a tabela de categorias
+lista **PcD com acompanhante**. Nada disso foi gravado — carregar exige decidir qual página
+é a corrente e se os dois pontos de embarque são duas versões por escopo.
+
+### `tremdocorcovado.rio` NÃO ENTROU NA LISTA DE PROSPECÇÃO, e isso é escolha
+
+O domínio **não está** entre os 25 candidatos do bloco 6, e ele cumpre as três condições que
+o item 6 cobra de fato: brasileiro, vende direto pelo próprio site (e por aplicativo
+próprio), mais de uma linha de preço da mesma experiência. **A metade derivada já se mexeu
+sozinha**, como o desenho manda: `prospeccao-widget.md` passou a dizer «6 experiências e 17
+versões» porque a régua lê o BANCO e não a lista. A metade editorial — o candidato com
+evidências e motivos — é bloco do item 6 e fica **nomeada aqui**, não meio feita.
+
+### NENHUM PORTÃO NOVO NASCEU (31.2), e a bancada segue com TREZE comandos
+
+As nove réguas de `provas_adicionais` moram **dentro** do `validar-banco.py`, as 16 quebras
+dentro do `mutacoes-banco.py`, e as duas famílias de afirmação dentro do `teste-f1.py` — os
+três já existiam. A **31.3** foi lida antes: ela proíbe testar portão que **já existe**, e o
+que estas afirmações guardam é o campo que nasceu na mesma passada. **A exceção é a
+afirmação do `imprimir()`**, e ela guarda um defeito **medido**, não previsto: a tela calada
+da elegibilidade, que estava servida — na bancada, porque esta ilha não tem ar — desde a
+manhã.
+
+### A LISTA DE FRASES DE INEXISTÊNCIA DO ESQUEMA ESTAVA ERRADA EM TRÊS LINHAS
+
+`o_que_o_esquema_permite_e_o_banco_ainda_nao_tem` é um conjunto de afirmações do tipo «o
+banco não tem X». **Três delas eram falsas quando esta carga as leu**, e duas já estavam
+falsas desde a carga da manhã:
+
+- *«cidade com mais de uma experiência»* — o Rio tem duas desde hoje às 19h18Z.
+- *«divergência SEM autoridade, que resolve pelo valor maior»* — o Bondinho já o tinha às
+  16h25Z, com o operador discordando de si mesmo.
+- *«declaração ATRIBUÍDA a uma versão»* — as três declarações deste registro apontam para
+  `bilhete-normal`, porque este operador vende uma versão só. Antes disto o banco tinha
+  divergências e **zero votos na conta**.
+
+As três foram corrigidas com data e ponteiro, em vez de apagadas. **E a dívida que elas
+expõem está nomeada no próprio esquema:** nenhum portão lê esta lista —
+`mutacoes-banco.py` a cita no cabeçalho e não a confere —, e ela é exatamente o tipo de
+frase que o aviso `vocabulario_sem_lastro` proíbe um andar acima. **Mesma assinatura de
+tudo o mais desta passada: não erra alto, erra calada.** Fica como o próximo portão barato
+desta ilha, e não nasceu aqui porque a 31.2 pede defeito medido no ar e esta ilha não tem ar.
+
+### O PORTÃO DE ONTEM COBROU A PROSA DE HOJE — segunda vez em um dia
+
+`teste-prospeccao.py` **reprovou com duas falhas**, e as duas são contagem: a prosa do
+`o_achado_desta_passada` dizia *«CINCO experiências»* e *«três dos cinco operadores»*, e o
+banco tem **seis** e **três de seis**. **Isso é o portão funcionando exatamente como foi
+endurecido às 16h25Z de hoje:** até aquela passada o `4` estava escrito **à mão dentro da
+própria afirmação do portão**, e a prosa podia envelhecer calada. Agora a palavra esperada é
+**derivada da contagem** — e em um único dia ela obrigou a reescrever esta prosa **duas
+vezes**, que é o que se queria.
+
+A frase `o_que_destrava_e_e_barato` também foi reescrita, e ela **estava errada sobre o
+caminho**: pedia «uma experiência de operador privado brasileiro» e dizia que carregá-la
+exigia ler a página de tarifa **na fonte** — o que a rede recusa. A leitura direta (degrau 2)
+continua recusada; a coleta por **busca** (degrau 4) nunca esteve travada, e por ela entraram
+os dois operadores brasileiros do banco. A frase ficou com a data em vez de sair.
+
+### BANCADA, 0 FALHA nos TREZE comandos
+
+| comando | resultado |
+|---|---|
+| `validar-banco` | OK — banco cumpre o esquema versão 9, piso derivado e resolução batendo com a escada |
+| `mutacoes-banco` | **194 casos**, 0 falha: 24 mundos que têm de passar e 170 quebras que têm de reprovar, 126 cobradas pela frase que esperam ouvir. Eram **178** antes desta passada |
+| `teste-f1` | **259.482 afirmações**, 0 falha |
+| `mutacoes-f1` | 28 casos, 0 falha nos três lados da fronteira |
+| `teste-f2` | **276.453 afirmações**, 0 falha |
+| `mutacoes-f2` | 51 casos, 0 falha nos três lados |
+| `teste-f3` | **1.067.463 afirmações**, 0 falha |
+| `mutacoes-f3` | 45 casos, 0 falha nos três lados |
+| `artigos-referencia` | OK — 0 falha, e os dois artigos pré-registrados seguem **não escritos** por falta de dado |
+| `mutacoes-artigos` | 43 de 43 reprovadas, 0 mortes, 0 inertes |
+| `validar-prospeccao` | APROVADO — 25 candidatos, e o `.md` idêntico ao que a referência gera |
+| `teste-prospeccao` | **287 afirmações**, 0 falha — **depois** de a prosa ser reescrita; a primeira passada deu 2 falhas, e estão descritas acima |
+| `mutacoes-prospeccao` | 40 casos, 0 falha |
+
+**A PROCEDÊNCIA DESTES NÚMEROS, porque afirmação redonda sobre instrumento que não respondeu
+é o defeito que esta ilha mais paga:** `validar-banco`, `mutacoes-banco` e `teste-f1` foram
+**re-rodados na árvore final**, depois do conserto de acentos e da correção das frases de
+inexistência do esquema. Os três portões de prospecção foram rodados **depois** da reescrita
+da prosa. Os seis restantes — `teste-f2`, `mutacoes-f2`, `teste-f3`, `mutacoes-f3`,
+`artigos-referencia` e `mutacoes-artigos` — rodaram antes daquelas duas escritas, e **o
+veredito vale para a árvore final por medição e não por suposição**: `f2-respostas.json`,
+`f3-respostas.json`, `artigos-ancora.json` e `prospeccao-widget.md` foram **regerados depois**
+e saíram **byte a byte idênticos**, o que prova que nenhum texto tocado chega à saída deles.
+
+**E uma lição de método, que vale mais que a tabela:** `mutacoes-f2` leva ~8 minutos e
+`mutacoes-f3` ~10, porque cada uma roda o portão da ferramenta dezenas de vezes. Elas rodaram
+em segundo plano **com a reserva renovada antes, não depois** (1.1), três vezes nesta
+execução. E **um `pkill` largo nesta passada matou o próprio processo que esperava a bancada**
+— a bateria sobreviveu porque já havia impresso o veredito, e isso foi sorte, não desenho.
+
+### PRÓXIMO PASSO
+
+**Da Fundação, e há três, todos pelo degrau 4 que já entregou duas experiências em duas
+passadas:**
+
+1. **As vans da Paineiras Corcovado**, já medidas e não gravadas (números acima). Carregar
+   exige decidir duas coisas que o dado não resolve sozinho: qual página do operador é a
+   corrente — o blog dele é de **julho de 2025** — e se os dois pontos de embarque
+   (Paineiras a R$ 87, Copacabana/Largo do Machado a R$ 132) são **duas versões por
+   escopo** da mesma experiência. **E a decisão maior vem antes dessa:** se o trem e a van
+   são uma experiência com duas versões ou duas experiências, porque disso depende o Rio
+   fechar ou não as **3** que o critério do 5b pede. Está no `ARVORE.md`.
+2. **`tremdocorcovado.rio` na lista de prospecção do bloco 6**, com evidências e motivos. A
+   metade derivada já se mexeu sozinha; falta a editorial.
+3. **O portão que confere a lista de frases de inexistência do esquema** — três linhas dela
+   estavam falsas hoje e nenhum portão a lê.
+
+**Do Raphael, e os três gestos não mudaram — mas o (1) perdeu peso de propriedade:**
+(1) `jornadafly.com.br` na lista de Domínios permitidos destrava o **degrau 2** da escada,
+a leitura direta, que é o **preferido** pelo critério de entrada — e **não** a coleta
+inteira, que o degrau 4 já faz; (2) os passos 2 a 8 da seção 11 destravam **o ar**, o 3b, o
+tradutor PHP e a primeira leva de malha; (3) uma linha no `foco.md` destrava a **rotação** e
+os quatro despachos NORMAIS parados em ilha que a 1.2 proíbe tocar.
+
+---
+
 ## 2026-10-27 16h25Z — **A COLETA ANDOU COM A REDE FECHADA.** Entrou o **Parque Bondinho Pão de Açúcar**, quinta experiência e PRIMEIRA BRASILEIRA, e com ela nasceu a entidade **ELEGIBILIDADE** — o preço de quem prova o que não é idade. No caminho, **três defeitos da mesma família** em três ferramentas diferentes, os três certos por acidente num banco sem real
 
 **O que saiu:** `dados/esquema-banco.json` e `dados/experiencias.json` na **versão 8**;

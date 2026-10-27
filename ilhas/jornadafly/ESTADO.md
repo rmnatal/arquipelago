@@ -5,8 +5,8 @@ prioridade: 1
 piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 0
 primeira_indexacao: null
-ultima_execucao: 2026-10-27T17:09Z   # BLOCO ENTREGUE: a carga do Parque Bondinho Pao de Acucar (5a experiencia, 1a brasileira) e a entidade ELEGIBILIDADE, esquema e banco na versao 8. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
-executando_desde: 2026-10-27T19:49Z   # reserva RENOVADA pela 1.1 (terceira renovacao): a bancada desta ilha passa de quarenta minutos sozinha, e a bateria de mutacoes da F3 roda o teste-f3 45 vezes. Reserva original as 19h18Z. A hora saiu do `date -u` na mesma linha de comando que a grava.
+ultima_execucao: 2026-10-27T19:53Z   # BLOCO ENTREGUE: a carga do TREM DO CORCOVADO (6a experiencia, 2a do Rio de Janeiro) e o campo `provas_adicionais` — a tarifa que exige MAIS DE UMA PROVA —, com o esquema e o banco na versao 9. No caminho, DOIS defeitos de vespera: a tela da F1 nunca imprimiu as frases de ELEGIBILIDADE nascidas na manha, e o extrator de vocabulario nao alcanca campo novo. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
+executando_desde: null   # limpo as 2026-10-27T19:53Z pela propria execucao que reservou as 19h18Z e renovou TRES vezes pela 1.1 (19h32Z, 19h49Z e no fecho): o bloco mexeu em esquema, banco, validador, mutacoes, F1, portao da F1, prospeccao e especificacao, e a bancada desta ilha passa de 40 minutos sozinha — as baterias de mutacao da F2 e da F3 rodam o portao da ferramenta dezenas de vezes cada.
 rede: BLOQUEADA em 2026-10-27   # 20.2, REMEDIDA as 16h2xZ e NAO herdada do campo: NONO dia de recusa. jornadafly.com.br e www.jornadafly.com.br em 000 nas TRES passadas, com aquametria.com.br, robometria.com.br e clubedomosaico.com.br em 200 nas MESMAS tres — nove controles verdes contra seis bloqueios, zero intermitencia. O `__agentproxy/status` nomeia a causa: "gateway answered 403 to CONNECT (policy denial or upstream failure)". SEGUE SENDO REGRESSAO. bloqueada_por SEGUE null de proposito (a secao 2 reserva o campo para o que trava a ILHA; isto trava a FABRICA, e vai no despacho pela 12.2). NOVO HOJE, E E O ACHADO: o egresso NAO trava a coleta inteira. O degrau 4 da escada — operador lido por BUSCA — nunca esteve travado, e foi por ele que o Bondinho entrou. O que o egresso trava e o degrau 2, a leitura direta, que e o PREFERIDO pelo criterio de entrada. As DUAS portas medidas hoje: curl em 000 com 403 de politica, WebFetch em `getaddrinfo ENOTFOUND`.
 ultima_ronda: null       # escrito pela Sentinela, nunca pela Fundacao (secao 2). `null` e a resposta certa e nao uma lacuna: pela decisao do Raphael de 28/09/2026, a ronda tecnica so alcanca ilha com URL servida, e esta ilha nao tem site. ACRESCENTADO EM 27/10/2026 pela carga do Bondinho: este cabecalho NUNCA teve este campo nem o `bloqueada_por` abaixo, e a regua de PRESENCA da secao 2 (a de 30/09/2026) os acusou nos dois. O despacho de 26/10 em `dados/despachos.md` afirma que a jornadafly estava COMPLETA — esta errado, e a errata esta no REGISTRO.md desta data.
 bloqueada_por: null      # obrigatorio pela secao 2. `null` DE PROPOSITO: a secao reserva o campo para dependencia humana que trava a ILHA, e o que falta aqui (egresso e passos 2 a 8) trava a FABRICA — isso se escreve no despacho, que e o canal da 12.2. Preenche-lo tiraria a ilha da rotacao da secao 1 e congelaria tambem os blocos que nao precisam de rede, que foram justamente os desta execucao.
@@ -83,6 +83,25 @@ bloco_atual: |
   a 7.4 proibe duas paginas na mesma consulta_alvo. Criterio escrito depois do dado e
   criterio dobrado — a decisao provavel, escrita no ARVORE.md, e que trem e van sejam
   UMA experiencia com duas versoes por ponto de embarque.
+  O PORTAO DE ONTEM COBROU A PROSA DE HOJE, segunda vez em um dia: o
+  `teste-prospeccao.py` reprovou com DUAS falhas porque o `o_achado_desta_passada`
+  dizia "CINCO experiencias" e "tres dos cinco operadores" e o banco tem SEIS e tres
+  de seis. E o portao funcionando como foi endurecido as 16h25Z de hoje — a palavra
+  esperada e DERIVADA da contagem, e antes daquela mudanca o `4` estava escrito a mao
+  dentro da propria afirmacao. A frase `o_que_destrava_e_e_barato` tambem foi
+  reescrita, e ela estava ERRADA sobre o caminho: pedia um operador privado brasileiro
+  e dizia que carrega-lo exigia ler a pagina de tarifa NA FONTE, que a rede recusa —
+  o degrau 4 nunca esteve travado e foi por ele que os dois entraram.
+  A LISTA DE FRASES DE INEXISTENCIA DO ESQUEMA estava errada em TRES linhas, duas
+  delas falsas desde a manha: cidade com mais de uma experiencia, divergencia sem
+  autoridade e declaracao atribuida a uma versao. As tres ficaram com data e ponteiro
+  em vez de apagadas, e NENHUM portao le essa lista — e o proximo portao barato desta
+  ilha, nomeado no proprio esquema.
+  BANCADA: 0 falha nos TREZE comandos, com a procedencia escrita no REGISTRO.md —
+  validar-banco, mutacoes-banco (194 casos, eram 178), teste-f1 (259.482 afirmacoes) e
+  os tres de prospeccao rodaram na ARVORE FINAL; os outros seis rodaram antes das duas
+  ultimas escritas, e o veredito vale por MEDICAO e nao por suposicao, porque f2, f3,
+  artigos e prospeccao foram regerados depois e sairam byte a byte iguais.
   NADA FOI AO AR E NAO PODIA: sem WordPress nao ha casca, Sync, /status nem URL. A
   31.1 vai de 4 em 15 para 4 em 16, dito sem maquiagem.
 ---
