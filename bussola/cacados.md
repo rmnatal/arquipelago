@@ -55,3 +55,21 @@ Uma linha por nicho, só para não testar de novo. Não é relatório.
 | 27/10/2026 | carregador de celular por watts | volume | 10,9 mil/mês |
 | 27/10/2026 | cabo HDMI por versão | volume | 5.400 buscas/mês |
 | 27/10/2026 | café em casa (moedor, cafeteira italiana, prensa) | 3.0-d (SERP mista com IA) | universo ≈ 260 mil/mês → conservador ≈ 255 visitas/dia |
+| 27/10/2026 | tráfego geral para a Shopee (cupom, achadinhos, datas promocionais) | volume | 132 mil/mês somados → teto ≈ 820 visitas/dia |
+| 27/10/2026 | papel de parede | 3.0-d (SERP mista com carrossel) | universo ≈ 716 mil/mês → conservador ≈ 500 visitas/dia |
+| 27/10/2026 | garrafa e copo térmico | 3.0-d (SERP mista; buscas de marca Stanley fora) | conservador ≈ 530 visitas/dia |
+| 27/10/2026 | aliança de namoro | 3.0-d (joalherias + carrossel + IA) | 301 mil/mês → conservador ≈ 150 visitas/dia |
+| 27/10/2026 | smartwatch | SERP tomada (ML, Amazon, Xiaomi, Technos, Casas Bahia, Ponto) | 246 mil tomada |
+| 27/10/2026 | umidificador de ar | SERP tomada (ML, Drogasil, Casas Bahia, Amazon, Ponto) | 201 mil tomada |
+| 27/10/2026 | carregador portátil (power bank) | SERP tomada (ML, Americanas, Amazon, Vivo, WB) | 165 mil tomada |
+| 27/10/2026 | cadeira gamer | SERP tomada (Kabum, Pichau, ML, Casas Bahia) | 246 mil tomada |
+| 27/10/2026 | periféricos gamer (teclado, mouse, headset, controle) | 3.0-d | 302 mil/mês → conservador ≈ 300 visitas/dia mesmo se mista |
+| 27/10/2026 | extensões de beleza (unha postiça, cílios, mega hair, peruca) | volume | 150 mil/mês → teto ≈ 940 visitas/dia |
+| 27/10/2026 | iluminação decorativa (abajur, luminária) | volume | 142 mil/mês → teto ≈ 885 visitas/dia |
+| 27/10/2026 | ring light e tripé de celular | volume | 114 mil/mês → teto ≈ 715 visitas/dia |
+| 27/10/2026 | festa infantil (kit festa, decoração, fantasia) | volume | 64 mil/mês → teto ≈ 400 visitas/dia |
+| 27/10/2026 | acessório pet (caminha, arranhador, roupa) | volume | 42 mil/mês → teto ≈ 260 visitas/dia |
+| 27/10/2026 | tapete de sala | volume | 90,5 mil/mês → teto ≈ 565 visitas/dia |
+| 27/10/2026 | fone e caixa de som bluetooth | volume | 151 mil/mês → teto ≈ 940 visitas/dia |
+| 27/10/2026 | bolsa e mochila feminina | seção 2 (decisão não paramétrica) | — |
+| 27/10/2026 | aquário (cabeça de produto) | já é ilha (Aquametria) | — |
