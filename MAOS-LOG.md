@@ -7462,3 +7462,73 @@ grep "Marca aprovada pelo Raphael em 27/10/2026" em rodametria.md -> 1
 Nenhum passo falhou. Nada além dos três arquivos nomeados foi tocado: nenhum cabeçalho de estado, nenhuma reserva
 de ilha, nenhum bloco de fila executado, nenhuma publicação e nenhum Sync. Este log vai num commit seguinte, por
 ser o último passo do disparo.
+
+---
+
+## 27/10/2026, 16h45 de Brasília (19h45Z) — NASCE A ILHA RODAMETRIA (ilha nº 6)
+
+Pedido da Bússola, assunto Arquipélago (nova ilha). Checagem de assunto: **passou** — ilha do Arquipélago,
+aprovada pelo Raphael, domínio `rodametria.com.br` registrado e pago por ele em 27/10/2026. Nenhum dado pessoal
+de terceiro na instrução, nada a deixar de fora.
+
+Partida do `main` real: `git fetch origin main && git checkout -B trabalho origin/main` (partiu de `922709e`).
+
+Cinco arquivos novos em `ilhas/rodametria/`, e nada mais. Três copiados byte a byte de
+`bussola/dossies/rodametria/` (`DESIGN.md`, `VOZ.md`, `logo.svg`), dois escritos verbatim da instrução
+(`ESTADO.md`, `PROMPT.md`). `foco.md` não foi tocado: a pasta nasce fora do foco, que segue na jornadafly.
+
+`git status --porcelain` depois do commit:
+
+```
+(vazio — árvore limpa)
+```
+
+`git diff --stat`:
+
+```
+ ilhas/rodametria/DESIGN.md | 49 +++++++++++++++++++++++++++++++++++++
+ ilhas/rodametria/ESTADO.md | 33 +++++++++++++++++++++++++
+ ilhas/rodametria/PROMPT.md | 60 ++++++++++++++++++++++++++++++++++++++++++++++
+ ilhas/rodametria/VOZ.md    | 35 +++++++++++++++++++++++++++
+ ilhas/rodametria/logo.svg  | 18 ++++++++++++++
+ 5 files changed, 195 insertions(+)
+```
+
+Hash que foi ao `main`: **`9be8066d6c1b0eb324fadc2e9ea37d3938229a9f`** (`9be8066`), mensagem
+"NASCE A RODAMETRIA — mobilidade elétrica, ilha nº 6, aprovada pelo Raphael em 27/10/2026".
+
+O primeiro `git push origin HEAD:main` foi **recusado** (non-fast-forward: o `main` andou de `922709e` para
+`a4679eb` entre o checkout e o push). Mensagem recebida:
+
+```
+hint: Updates were rejected because the remote contains work that you do not
+hint: have locally. This is usually caused by another repository pushing to
+hint: the same ref.
+```
+
+Resolvido com `git fetch origin main && git rebase origin/main` (1/1, sem conflito) e novo push, aceito:
+`a4679eb..9be8066  HEAD -> main`. Uma tentativa de rebase, de três permitidas. Nenhum force push.
+
+Confirmação (`git fetch origin main && git log -1 origin/main`): mostra `9be8066`, com os cinco arquivos
+presentes em `git ls-tree origin/main ilhas/rodametria/`.
+
+Contagem conferida relendo os arquivos DEPOIS de gravar:
+
+```
+195 linhas acrescentadas no total, 0 removidas, 5 arquivos novos, 0 arquivos alterados
+ilhas/rodametria/ESTADO.md  33 linhas no arquivo (novo, verbatim da instrução)
+ilhas/rodametria/PROMPT.md  60 linhas no arquivo (novo, verbatim da instrução)
+ilhas/rodametria/DESIGN.md  49 linhas no arquivo (copia, md5 db91ae02808deddaaf4abd9a915b4988 = origem)
+ilhas/rodametria/VOZ.md     35 linhas no arquivo (copia, md5 56e614fb3b118b380d687a5e107d17ca = origem)
+ilhas/rodametria/logo.svg   18 linhas no arquivo (copia, md5 52e9a20f8c24186bb2a63939b0a05331 = origem)
+grep "^estado: nascendo" em ESTADO.md            -> 1
+grep "^executando_desde: null" em ESTADO.md      -> 1
+grep "rodametria.com.br" em PROMPT.md            -> 1
+grep -E "^\*\*[0-9]+[ab]?\." em PROMPT.md        -> 8 (blocos 1, 2, 3, 3b, 4, 5, 5b, 6)
+grep -E "\*\*F[123] —" em PROMPT.md              -> 3 (F1, F2, F3)
+```
+
+Nenhum passo falhou além da recusa de push já descrita, que foi resolvida. Nada além dos cinco arquivos
+nomeados foi tocado: `foco.md` intacto, nenhum cabeçalho de estado de outra ilha, nenhuma reserva de ilha,
+nenhum `executando_desde` escrito, nenhum bloco de fila executado, nenhuma publicação, nenhum Sync, nenhuma
+conta criada. Este log vai num commit seguinte, por ser o último passo do disparo e por precisar do hash.
