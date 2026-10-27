@@ -7532,3 +7532,75 @@ Nenhum passo falhou além da recusa de push já descrita, que foi resolvida. Nad
 nomeados foi tocado: `foco.md` intacto, nenhum cabeçalho de estado de outra ilha, nenhuma reserva de ilha,
 nenhum `executando_desde` escrito, nenhum bloco de fila executado, nenhuma publicação, nenhum Sync, nenhuma
 conta criada. Este log vai num commit seguinte, por ser o último passo do disparo e por precisar do hash.
+
+## 27/10/2026, 17h21 (Brasília) — 20h21 UTC — troca de foco para a RODAMETRIA
+
+Instrução recebida no disparo: trocar o foco em `foco.md` para a rodametria, arquivar as doze linhas de
+medição da jornadafly no `REGISTRO.md` dela, subir a `prioridade` da rodametria para 1 e trocar o parágrafo
+`**FOCO:**` do `PROMPT.md` dela. Um commit só, como pedido.
+
+Checagem de assunto ANTES do `git fetch`: APROVADA. A rodametria é a ilha nº 6 do Arquipélago, nascida neste
+repositório hoje pelo commit `9be8066`, com `ilhas/rodametria/` (cinco arquivos), dossiê em
+`bussola/dossies/rodametria/` e ficha em `bussola/oportunidades/rodametria.md`. Nenhum dado pessoal de
+terceiro na instrução, nada deixado de fora.
+
+Partida: `git fetch origin main && git checkout -B trabalho origin/main`, de `be92c3f`.
+
+`git status --porcelain` (antes do commit):
+
+```
+M  foco.md
+M  ilhas/jornadafly/REGISTRO.md
+M  ilhas/rodametria/ESTADO.md
+M  ilhas/rodametria/PROMPT.md
+```
+
+`git diff --stat`:
+
+```
+ foco.md                      | 26 +++++++-------------------
+ ilhas/jornadafly/REGISTRO.md | 15 +++++++++++++++
+ ilhas/rodametria/ESTADO.md   |  2 +-
+ ilhas/rodametria/PROMPT.md   |  2 +-
+ 4 files changed, 24 insertions(+), 21 deletions(-)
+```
+
+Commit que foi ao `main`: **`6fc0434444123a67598ce9bd4bc1f27431062e7d`**, mensagem
+`Foco total e absoluto na RODAMETRIA — decisão do Raphael, 27/10/2026 17h18`.
+Push: `git push origin HEAD:main` aceito de primeira — `be92c3f..6fc0434  HEAD -> main`. Zero rebase, zero
+force push, nenhum PR. Confirmação por `git fetch origin main && git log -1 origin/main`: mostra `6fc0434`.
+
+Contagem conferida relendo os arquivos DEPOIS de gravar, nunca pelo que eu achava que havia escrito:
+
+```
+foco.md               11 linhas no arquivo (eram 23): 12 linhas apagadas, 7 linhas trocadas/editadas
+ilhas/jornadafly/REGISTRO.md   2.874 linhas (eram 2.859): +1 vazia, +1 título, +1 vazia, +12 do bloco
+ilhas/rodametria/ESTADO.md     1 linha trocada (prioridade: 3 -> 1)
+ilhas/rodametria/PROMPT.md     1 linha trocada (parágrafo **FOCO:**, casou letra a letra)
+
+md5 do bloco de 12 linhas em be92c3f:foco.md linhas 8-19   -> 56395e8df5dcb31740879fe8b0afef91
+md5 das 12 linhas gravadas em REGISTRO.md linhas 2863-2874 -> 56395e8df5dcb31740879fe8b0afef91
+                                                              IGUAIS: arquivado sem alterar uma letra
+
+grep -c "^ilha: rodametria" foco.md                 -> 1
+grep -c "^desde: 2026-10-27" foco.md                -> 1
+grep -c "jornadafly" foco.md                        -> 2 (em motivo: e em historico:, como a instrução pede)
+grep -c "^prioridade: 1" ilhas/rodametria/ESTADO.md -> 1
+grep -c "nomeia a RODAMETRIA" .../PROMPT.md         -> 1
+grep -c "nomeia a jornadafly" .../PROMPT.md         -> 0
+grep -c "^## " ilhas/jornadafly/REGISTRO.md         -> 16 seções (append-only, nenhuma anterior tocada)
+```
+
+As doze linhas apagadas de `foco.md`, na ordem em que estavam: `fila_de_arquivo_da_ilha_em_foco:`,
+`molde_da_secao_32:`, `defeito_aberto_em_ilha_no_ar:`, `nada_elegivel:`,
+`defeito_no_ar_apareceu_DEPOIS_do_nada_elegivel:`, `E ELA ACHOU UM SEGUNDO DEFEITO...`,
+`medicao_funda_das_tres_ilhas_no_ar:`, `a_camada_de_NAVEGADOR_DO_ARQUIPELAGO_ESTA_CEGA_NESTA_NUVEM:`,
+`o_que_a_medicao_ACHOU_e_nao_e_defeito_no_ar:`, `a_PROPORCAO_DA_31_1_DESDE_A_TROCA_DE_FOCO_ESTA_EM_4_DE_13:`,
+`o_que_o_gesto_2_COMPRA_mudou_e_o_5b_NAO_dependia_da_casca:` e
+`o_degrau_4_VIROU_FILA_e_a_ilha_em_foco_tem_bloco:`. Eram contíguas (linhas 8 a 19), e cada uma foi conferida
+contra o prefixo esperado antes de sair.
+
+Nenhum passo falhou. Nada além dos quatro arquivos nomeados foi tocado: nenhuma reserva de ilha, nenhum
+`executando_desde` escrito, nenhum bloco de fila executado, nenhuma publicação, nenhum Sync, nenhuma conta
+criada, `ARQUIPELAGO.md` não lido para decidir nada. Este log vai num commit seguinte, por ser o último passo
+do disparo e por precisar do hash.
