@@ -7225,3 +7225,46 @@ f1dee6719c3fb3306fbfa5f2ab18589fab4e863d9ade2fe9f4c62f9cb49b5efd  bussola/cacado
 
 Nenhum passo falhou: push aceito no `main` de primeira, sem rebase e sem force. Nenhum outro arquivo foi
 tocado — este log vai num commit seguinte, por ser o último passo do disparo.
+
+## 27/10/2026, 13h58 de Brasília (16h58 UTC) — Bússola: registro da aprovação da Rodametria
+
+Disparo da Bússola, assunto Arquipélago (ilha nova aprovada). Partiu de `origin/main` em `a5cb86c` via
+`git fetch origin main && git checkout -B trabalho origin/main`. Dois arquivos, só APPEND no fim, nada mais
+tocado nos dois.
+
+`git status --porcelain` depois do commit do trabalho (vazio = árvore limpa):
+
+```
+```
+
+`git diff --stat` do commit que foi ao `main`:
+
+```
+ bussola/fila.md                     | 2 ++
+ bussola/oportunidades/rodametria.md | 6 ++++++
+ 2 files changed, 8 insertions(+)
+```
+
+Hash do commit confirmado em `origin/main`:
+
+```
+84e9cd96ceaf92484b1612edc67fbaad975475b3  Rodametria aprovada pelo Raphael — 27/10/2026
+origin/main confirmado por `git fetch origin main && git log -1 origin/main`
+```
+
+Contagem conferida relendo os arquivos do disco DEPOIS de gravar:
+
+```
+bussola/oportunidades/rodametria.md    51 linhas (era 45; 1 linha em branco + 5 linhas da aprovação)
+bussola/fila.md                       596 linhas (era 594; 1 linha em branco + 1 linha da nota)
+```
+
+sha256 relidos do disco depois de gravar:
+
+```
+c69758d26cd4bee0f9ce3dfcd3b9b059bb6f02ce110b10b34ebd9f5eec4e5b95  bussola/oportunidades/rodametria.md
+d1431db4eae3edd8f71efd2bc716388cbca88140d6fe0617f6f135cea2e963bf  bussola/fila.md
+```
+
+Nenhum passo falhou: push aceito no `main` de primeira, sem rebase e sem force. Este log vai num commit
+seguinte, por ser o último passo do disparo.
