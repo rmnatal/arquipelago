@@ -38,3 +38,20 @@ Uma linha por nicho, só para não testar de novo. Não é relatório.
 | 27/10/2026 | impressão 3D (impressora, filamento, resina) | 3.0-d (SERP mista com carrossel e IA) | conservador ≈ 200 visitas/dia |
 | 27/10/2026 | hardware de PC (SSD, RAM, fonte, placa de vídeo) | SERP tomada (Kabum, Pichau, Terabyte, ML, Amazon) | `ssd 1tb` 165 mil tomada |
 | 27/10/2026 | cartão de memória e pen drive | volume | 55 mil/mês → teto ≈ 340 visitas/dia |
+| 27/10/2026 | geladeira por litragem e pessoas | SERP tomada (Casas Bahia, Electrolux, Magalu, Ponto, Americanas, ML) | `geladeira frost free` 450 mil tomada; ponte 30/mês |
+| 27/10/2026 | colchão por tamanho e densidade | SERP tomada (Ortobom, Magalu, Casas Bahia, Probel, Emma) | `colchão casal` 246 mil tomada |
+| 27/10/2026 | cadeira de escritório e ergonômica | SERP tomada (Flexform, ML, Leroy, Herman Miller) | `cadeira de escritorio` 246 mil tomada |
+| 27/10/2026 | purificador de água e bebedouro | SERP tomada (IBBL, Electrolux, Midea, Consul, ML) | `purificador de água` 201 mil tomada |
+| 27/10/2026 | travesseiro por posição de dormir | SERP tomada (ML, Ortobom, Zelo, Altenburg, Karsten) | `travesseiro` 135 mil tomada; ponte 4.400 |
+| 27/10/2026 | tênis de corrida por pisada | SERP tomada (Netshoes, Asics, Nike, Adidas, Olympikus) | `tenis de corrida` 110 mil tomada; ponte 2.400 |
+| 27/10/2026 | piscina e cloro por litragem | SERP tomada (ML, Cobasi, Leroy, Sodimac, Amazon) | ponte `quanto cloro por litro piscina` — |
+| 27/10/2026 | mesa digitalizadora | SERP tomada (ML, Wacom, XP-Pen, Amazon, Kabum) | 60,5 mil tomada |
+| 27/10/2026 | roteador e repetidor wi-fi | SERP tomada (ML, Intelbras, TP-Link, Claro, Vivo) | ponte `roteador para casa grande` 70/mês |
+| 27/10/2026 | monitor por Hz e uso | SERP tomada (ML, Kabum, Terabyte, Pichau, LG, Amazon) | `monitor 144hz` 49,5 mil tomada |
+| 27/10/2026 | numeração de anel | volume | 16,5 mil/mês → teto ≈ 100 visitas/dia |
+| 27/10/2026 | fita LED | volume | 27,5 mil/mês → teto ≈ 170 visitas/dia |
+| 27/10/2026 | cooktop e panela de indução | SERP tomada (Electrolux, Midea, Dako, Magalu, Brastemp) | `cooktop indução` 60,5 mil tomada |
+| 27/10/2026 | câmera de segurança e HD de DVR | SERP tomada (ML, Intelbras, TP-Link, Amazon, Magalu) | 40,5 mil tomada |
+| 27/10/2026 | carregador de celular por watts | volume | 10,9 mil/mês |
+| 27/10/2026 | cabo HDMI por versão | volume | 5.400 buscas/mês |
+| 27/10/2026 | café em casa (moedor, cafeteira italiana, prensa) | 3.0-d (SERP mista com IA) | universo ≈ 260 mil/mês → conservador ≈ 255 visitas/dia |

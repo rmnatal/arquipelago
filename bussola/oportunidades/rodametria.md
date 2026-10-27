@@ -1,0 +1,45 @@
+# FICHA — RODAMETRIA · mobilidade elétrica (patinete, bicicleta, scooter e moto elétrica)
+
+**Nicho:** quem vai comprar patinete, bicicleta, scooter ou moto elétrica e precisa acertar três números antes:
+a potência que dispensa CNH e placa, a autonomia real em km e o peso que o veículo aguenta.
+**Ilha:** Rodametria — `rodametria.com.br` **livre** (registro.br, status 0, conferido em 27/10/2026, 13h–14h de Brasília).
+
+**Volume medido de intenção de compra:** **2.445.000 buscas/mês** em 6 consultas de compra com SERP vista no
+Chrome (Planejador, conta Raphael, Brasil, out/2025–set/2026, medido em 27/10/2026). As que mais pesam:
+`moto eletrica` 823 mil · `bicicleta eletrica` 673 mil · `scooter eletrica` 301 mil · `patinete eletrico` 246 mil ·
+`bike eletrica` 201 mil · `motos eletricas para adultos` 201 mil · (fora da soma, SERP ainda não vista:
+`patinete eletrico adulto` 49,5 mil · `moto eletrica scooter` 40,5 mil · `scooter eletrica 1000w` 33,1 mil ·
+`bicicleta eletrica preço` 27,1 mil).
+As seis SERPs estão **mistas**, não tomadas: só o Mercado Livre como varejo grande fixo, o resto são lojas pequenas
+de marca, YouTube, Instagram, OLX e Reddit; **sem carrossel de compras**; **com visão geral de IA**.
+
+**Visitas/dia:** conservador **≈ 2.400** (posição 4–10, CTR 4,2% × 0,7 de IA) · teto **≈ 15.200** (top-3, 18,7%, sem desconto).
+**Vendas/dia a 1%:** conservador **≈ 24** · teto **≈ 152**.
+
+**Ticket mediano medido:** **R$ 6.530** · **comissão mediana medida:** **16%** → **≈ R$ 1.045 por venda**
+(10 produtos, painel de afiliado Shopee e Central de Afiliados do Mercado Livre, 27/10/2026 — 2 Shopee, 8 Mercado Livre).
+
+**Comissão projetada por mês:** conservador **≈ R$ 751 mil** · teto **≈ R$ 4,8 milhões**.
+> ⚠ **Leia este número com a ressalva:** o 1% de conversão é a constante da lei, medida em ticket de dezenas de reais.
+> Para um veículo de R$ 6,5 mil a conversão real tende a ser bem menor. Régua honesta: **cada 0,1% de conversão
+> vale ≈ R$ 75 mil/mês no cenário conservador.** Mesmo a 0,1%, é a maior comissão já medida nesta fábrica.
+
+**Prazo até o tráfego (estimativa):** 6 a 18 meses — são cabeças de 200 a 800 mil buscas/mês com domínio novo.
+Os primeiros cliques vêm antes, pela cauda (`scooter eletrica 1000w`, `patinete eletrico adulto`, `autonomia`).
+
+**As 3 primeiras ferramentas:**
+1. **"Precisa de CNH e placa?"** — potência (W) + velocidade máxima + acelerador ou pedal assistido → categoria pela
+   Resolução Contran 996/2023 (bicicleta elétrica · autopropelido · ciclomotor) → os modelos que cabem sem CNH.
+2. **"Quantos km ele faz de verdade?"** — bateria (V × Ah = Wh) + peso de quem pilota + relevo → autonomia real × a declarada.
+3. **"Aguenta o meu peso?"** — carga máxima declarada × peso + mochila/garupa → elegíveis e não elegíveis, com o motivo.
+
+**Custo para você:** o domínio `rodametria.com.br` (~R$ 40/ano). O resto é da fábrica (seção 11).
+
+**O que pesa contra, sem esconder:** (1) **8 dos 10 produtos são do Mercado Livre** — a Shopee vende bem patinete,
+mas quase não vende scooter e moto elétrica de verdade; a ilha seria Mercado Livre-primeiro, com a Shopee no
+patinete e nas peças (câmara, capacete, cadeado, carregador). (2) A ferramenta 1 toca regra de trânsito: ela classifica
+por número publicado no Contran, como a Ohmetria classifica por norma — mas o texto tem de citar a resolução e a data,
+e nunca dizer "pode andar sem CNH" fora do que a resolução diz. (3) Comissões de 22% e 26% são "ganhos extras" de
+campanha e podem cair; a mediana sem elas fica em 16%.
+
+## Aprova o nascimento da Rodametria?

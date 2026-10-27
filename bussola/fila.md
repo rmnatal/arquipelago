@@ -590,3 +590,5 @@ morreu (S_par 0, calculadora da Intelbras em 1º) e coifa caiu para 2.
 links azuis, e **nenhuma das dezenove SERPs brasileiras que esta Bússola já abriu tem essa forma** — todas têm
 carrossel de compras, bloco de vídeo, ou os dois. Segue valendo o que a fila escreveu em 22/10: **toda conta de
 visitas/dia desta página é teto, não previsão.**
+
+> **27/10/2026 — FICHA DA BÚSSOLA CAÇADORA:** **Rodametria** (mobilidade elétrica: patinete, bicicleta, scooter e moto elétrica) · `rodametria.com.br` livre · 2.445.000 buscas/mês de compra em SERP mista · ≈ 2.400 visitas/dia conservador · ticket mediano R$ 6.530 · comissão mediana 16% · ficha em `bussola/oportunidades/rodametria.md`, dossiê em `bussola/dossies/rodametria/`. Aguarda o "sim" do Raphael.
