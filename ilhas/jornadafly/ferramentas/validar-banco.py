@@ -389,6 +389,99 @@ def validar(esquema, banco, constantes=None, hoje=None):
         return valor in vocab.get(chave, [])
 
     # ------------------------------------------------------------------
+    # A TARIFA QUE EXIGE MAIS DE UMA PROVA (`provas_adicionais`, versao 9 do
+    # esquema, 27/10/2026)
+    #
+    # Nasceu com a carga do Trem do Corcovado. O esquema versao 8 aprendeu O QUE
+    # se prova na porta — residencia, nacionalidade, vinculo — e continuou supondo
+    # que se prova UMA coisa. Este operador cobra R$ 70 de «idosos acima de 60
+    # anos, APENAS BRASILEIROS» e R$ 107 de estudante e de ID Jovem «apenas para
+    # brasileiros»: tres tarifas, duas provas cada.
+    #
+    # Sem o campo havia duas saidas e as duas mentiam. Enfiar a nacionalidade na
+    # prosa de `condicao` de uma FAIXA_ETARIA briga com o que o esquema diz dela
+    # desde 14/09 — `se_nao_cumprir` e «o que o operador cobra de quem nao prova a
+    # IDADE» — e faria a tela prometer R$ 70 ao estrangeiro de 65 anos que paga
+    # R$ 134; e a regua PADRAO_RESIDENCIA, que nasceu ontem, reprovaria a frase com
+    # razao. Chamar a tarifa de ELEGIBILIDADE perderia a idade, que e metade do
+    # preco. O campo e o terceiro lugar, e esta funcao e o que impede que ele vire
+    # um deposito de prosa.
+    # ------------------------------------------------------------------
+    def conferir_provas_adicionais(onde, item, prova_do_dono=None):
+        """Confere `provas_adicionais` de uma FAIXA_ETARIA ou de uma ELEGIBILIDADE.
+
+        `prova_do_dono` e o `o_que_se_prova` da elegibilidade que a hospeda, ou None
+        numa faixa etaria (onde a prova do dono e a idade, que nao esta no
+        vocabulario de proposito).
+        """
+        if "provas_adicionais" not in item:
+            erro("%s: falta o campo `provas_adicionais` (esquema versao 9). Ausencia "
+                 "de chave e esquecimento; null com motivo e resposta — e aqui a "
+                 "diferenca custa dinheiro na porta: o esquema nao sabe se o operador "
+                 "nao exige nada a mais ou se ninguem leu." % onde)
+            return 0
+        provas = item.get("provas_adicionais")
+        if provas is None:
+            if not item.get("motivo_sem_provas_adicionais"):
+                erro("%s: `provas_adicionais` null sem `motivo_sem_provas_adicionais`. "
+                     "O motivo e o que separa «a frase da fonte nao exige mais nada» de "
+                     "«esta leitura nao procurou», e as duas dao telas diferentes."
+                     % onde)
+            return 0
+        if not isinstance(provas, list) or not provas:
+            erro("%s: `provas_adicionais` tem de ser lista NAO vazia ou null com "
+                 "motivo. Lista vazia nao diz qual das duas coisas aconteceu." % onde)
+            return 0
+        if not item.get("se_nao_cumprir") and not item.get("motivo_sem_se_nao_cumprir"):
+            erro("%s: tarifa com `provas_adicionais` e sem `se_nao_cumprir`. A prova a "
+                 "mais e exatamente o que barra o comprador no balcao: quem le precisa "
+                 "saber o que paga sem ela." % onde)
+        vistas = set()
+        for i, prova in enumerate(provas):
+            ondep = "%s/provas_adicionais/%d" % (onde, i)
+            if not isinstance(prova, dict):
+                erro("%s: entrada de `provas_adicionais` nao e objeto." % ondep)
+                continue
+            qual = prova.get("o_que_se_prova")
+            if not em_vocab("o_que_se_prova", qual):
+                erro("%s: `o_que_se_prova` %r fora do vocabulario. IDADE nao esta nele "
+                     "de proposito: idade e FAIXA_ETARIA." % (ondep, qual))
+            if qual in vistas:
+                erro("%s: `o_que_se_prova` %r repetido na mesma tarifa. Duas entradas "
+                     "para a mesma prova sao a mesma exigencia escrita duas vezes, e a "
+                     "tela a pediria duas vezes ao leitor." % (ondep, qual))
+            vistas.add(qual)
+            if prova_do_dono is not None and qual == prova_do_dono:
+                erro("%s: `o_que_se_prova` %r igual ao da propria elegibilidade que a "
+                     "hospeda. Isso nao e prova adicional: e a mesma prova escrita duas "
+                     "vezes." % (ondep, qual))
+            if not prova.get("condicao"):
+                erro("%s: entrada de `provas_adicionais` sem `condicao`. Prova a mais "
+                     "sem dizer o que se prova e exigencia muda." % ondep)
+            if not prova.get("declarado_como"):
+                erro("%s: entrada de `provas_adicionais` sem `declarado_como`. A tela "
+                     "cita a frase que exige a prova a mais, nunca a parafraseia — e e "
+                     "essa frase que o leitor confere no balcao." % ondep)
+            # SO `condicao` E VARRIDA, e `declarado_como` NAO — medido na propria
+            # passada que escreveu esta funcao, em 27/10/2026. A primeira versao varria
+            # as duas e reprovou DUAS tarifas certas: a frase da fonte diz «idosos
+            # acima de 60 anos, apenas brasileiros» e «jovens brasileiros de 15 a 29
+            # anos», porque e a fonte falando. `declarado_como` e CITACAO, e censurar a
+            # citacao para agradar ao portao e pior que o defeito que o portao procura —
+            # a tela cita, nunca parafraseia. Mesma escolha das reguas irmas de
+            # PADRAO_IDADE e PADRAO_RESIDENCIA, que varrem rotulo e condicao e nunca a
+            # frase da fonte. O que esta regua guarda e o que A ILHA declara ter de ser
+            # provado.
+            alvo = prova.get("condicao") or ""
+            if PADRAO_IDADE.search(alvo):
+                erro("%s: a prova adicional declara uma faixa de idade (%r). Idade "
+                     "NUNCA entra aqui, pela mesma razao que nao esta em "
+                     "`o_que_se_prova`: idade se prova em FAIXA_ETARIA, e dois campos "
+                     "para o mesmo fato sao duas metades que nunca se falam."
+                     % (ondep, alvo.strip()))
+        return len(provas)
+
+    # ------------------------------------------------------------------
     # 2. CIDADES
     # ------------------------------------------------------------------
     cidades = {}
@@ -488,6 +581,8 @@ def validar(esquema, banco, constantes=None, hoje=None):
     intestaveis = 0
     versoes_em_brl = set()
     n_elegibilidades = [0]
+    n_tarifas_com_prova_adicional = [0]
+    n_provas_adicionais = [0]
     sem_versao = 0
     n_passes = 0
     vencidos = []
@@ -831,6 +926,11 @@ def validar(esquema, banco, constantes=None, hoje=None):
                                  "leitura nao existe nesta ilha, e preco de crianca "
                                  "tambem e preco." % ondef)
 
+                        quantas_p = conferir_provas_adicionais(ondef, faixa)
+                        if quantas_p:
+                            n_tarifas_com_prova_adicional[0] += 1
+                            n_provas_adicionais[0] += quantas_p
+
                     # ---- residencia NUNCA entra em faixa etaria (regra de 27/10/2026)
                     # E este e o sentido que a ilha ia errar: na carga do Bondinho os
                     # CINCO precos do mesmo bilhete vieram na mesma leitura, e a saida
@@ -929,6 +1029,12 @@ def validar(esquema, banco, constantes=None, hoje=None):
                                      % (onde_e, campo_e))
                             elif eleg.get(campo_e) is None and not eleg.get(motivo_e):
                                 erro("%s: `%s` null sem `%s`." % (onde_e, campo_e, motivo_e))
+
+                        quantas_p = conferir_provas_adicionais(
+                            onde_e, eleg, eleg.get("o_que_se_prova"))
+                        if quantas_p:
+                            n_tarifas_com_prova_adicional[0] += 1
+                            n_provas_adicionais[0] += quantas_p
 
                         # ---- a soma nao se presume
                         if "acumula_com_faixa_etaria" not in eleg:
@@ -1643,6 +1749,8 @@ def validar(esquema, banco, constantes=None, hoje=None):
                                         if f.get("leitura") == "leitura_direta"),
         "faixas_etarias": n_faixas_de_idade,
         "elegibilidades": n_elegibilidades[0],
+        "tarifas_com_prova_adicional": n_tarifas_com_prova_adicional[0],
+        "provas_adicionais": n_provas_adicionais[0],
         "faixas_declaradas_nao_transcritas": n_lacunas_de_faixa,
         "experiencias_com_eixo_por_quantidade": n_eixo.get("por_quantidade", 0),
         "experiencias_com_eixo_por_escopo": n_eixo.get("por_escopo", 0),
@@ -1720,9 +1828,22 @@ def validar(esquema, banco, constantes=None, hoje=None):
                 usar("declarada_por", versao.get("capacidade_maxima_declarada_por"))
                 for acrescimo in (versao.get("acrescimos") or []):
                     usar("moeda", acrescimo.get("moeda"))
+                # E O CAMPO NOVO ENTRA AQUI NA MESMA PASSADA (27/10/2026). A regua
+                # do `sem_extrator` guarda vocabulario NOVO sem extrator; ela nao
+                # alcanca CAMPO novo que carrega vocabulario velho — e foi
+                # exatamente o que aconteceu: `provas_adicionais` nasceu usando
+                # `nacionalidade` em tres tarifas e o aviso de lastro continuou
+                # dizendo que `nacionalidade` nao tinha registro que o usasse. Um
+                # andar abaixo da divida que a regua de 22/10 fechou, e com a mesma
+                # assinatura: a conferencia nao erra alto, ela erra calada.
+                for faixa_v in (versao.get("faixa_etaria") or []):
+                    for prova in (faixa_v.get("provas_adicionais") or []):
+                        usar("o_que_se_prova", prova.get("o_que_se_prova"))
                 for eleg in (versao.get("elegibilidade") or []):
                     usar("o_que_se_prova", eleg.get("o_que_se_prova"))
                     usar("moeda", eleg.get("moeda"))
+                    for prova in (eleg.get("provas_adicionais") or []):
+                        usar("o_que_se_prova", prova.get("o_que_se_prova"))
         for cob in banco.get("coberturas_de_passe", []):
             usar("forma_de_cobertura", cob.get("como"))
             usar("declarada_por", cob.get("declarada_por"))
