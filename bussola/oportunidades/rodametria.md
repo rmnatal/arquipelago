@@ -55,3 +55,26 @@ Motivo: 8 dos 10 produtos são do Mercado Livre, cuja janela de atribuição é 
 1.6, lido em 27/10/2026), contra 7 dias da Shopee. Só com o que a Shopee cobre (patinete elétrico: 246.000 +
 49.500 buscas/mês) a conta dá ≈ 290 visitas/dia no conservador e reprova no piso. **Não registrar o domínio.**
 Volta à mesa se a caça não achar nicho só-Shopee, ou se o Mercado Livre mudar a janela (BUSSOLA.md, 0.8).
+
+**✅ REAPROVADA pelo Raphael em 27/10/2026, 14h29 de Brasília** — substitui o stand-by das 14h04. Pela regra nova
+(BUSSOLA.md, 0.9), a ilha nasce pelo **patinete elétrico só-Shopee**, e o Mercado Livre entra como bônus para
+scooter, moto e bicicleta elétrica, que a Shopee não vende.
+
+**A conta que aprova (só Shopee):**
+- Volume: `patinete eletrico` 246.000 + `patinete eletrico adulto` 49.500 = **295.500 buscas/mês** (Planejador,
+  27/10/2026). SERP de `patinete eletrico`: mista, a mais fechada das seis (ML, Casas Bahia, Ponto Frio, lojas
+  pequenas, YouTube, PDP da Shopee; com IA, sem carrossel).
+- Visitas/dia: conservador **≈ 290** (4–10, 4,2% × 0,7) · teto **≈ 1.840** (top-3, 18,7%).
+- Ticket e comissão medianos, painel da Shopee, 27/10/2026, 10 patinetes adultos: Honeywhale M2 MAX R$ 2.299 (10%,
+  193 vendas) · patinete com banco R$ 2.699,90 (5%, 147 vendas) · patinete adulto 120 kg R$ 2.699,90 (5%, 52
+  vendas) · patinete 500 W até 140 kg R$ 2.699 (15%) · Trailforge-T1 800 W R$ 2.399 (10%) · Trailforge-T1 R$ 2.359
+  (10%) · Trailforge-X8 500 W R$ 1.959 (10%) · patinete 500 W R$ 1.949 (9%) · Honeywhale S2 R$ 1.549 (10%) ·
+  patinete 550 W 36 V R$ 1.499 (13%). **Mediana: ticket R$ 2.329 · comissão 10% → ≈ R$ 233 por venda.**
+  Cobertura só-Shopee: 10 de 10.
+- **Comissão projetada/mês: conservador ≈ R$ 20 mil · teto ≈ R$ 129 mil.** A 0,5% de conversão, o conservador
+  fica em ≈ R$ 10 mil — no piso.
+- Bônus fora da conta (Mercado Livre, teto): scooter, moto e bicicleta elétrica, ver o dossiê.
+
+**Mudança no plano:** a home e a F1 começam pelo patinete ("Esse patinete precisa de CNH?", "Aguenta o meu
+peso?", "Quantos km ele faz?"); scooter, moto e bicicleta entram depois, com link do Mercado Livre.
+Próximo passo, seção 11 do `ARQUIPELAGO.md`: **[RAPHAEL] registrar `rodametria.com.br`**; o resto é da Fundação.

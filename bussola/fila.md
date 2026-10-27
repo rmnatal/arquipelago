@@ -596,3 +596,5 @@ visitas/dia desta página é teto, não previsão.**
 > **27/10/2026, 13h56 — RODAMETRIA APROVADA pelo Raphael.** Aguarda o registro de `rodametria.com.br` (passo 1 da seção 11, só ele faz); o resto é da Fundação a partir de `bussola/dossies/rodametria/`.
 
 > **27/10/2026, 14h04 — RODAMETRIA EM STAND-BY** (decisão do Raphael; substitui a aprovação das 13h56). Não registrar `rodametria.com.br`. Motivo: depende do Mercado Livre (janela de 24 h) e a parte só-Shopee reprova no piso (≈ 290 visitas/dia). Regra nova de cobertura só-Shopee em `BUSSOLA.md`, item 0.8.
+
+> **27/10/2026, 14h29 — RODAMETRIA REAPROVADA pelo Raphael**, pela regra nova da 0.9 (piso de comissão R$ 10 mil/mês só-Shopee; Mercado Livre como bônus). Núcleo: patinete elétrico só-Shopee, ≈ 290 visitas/dia e ≈ R$ 20 mil/mês no conservador. Aguarda o registro de `rodametria.com.br`.

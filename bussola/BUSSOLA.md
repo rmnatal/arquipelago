@@ -74,6 +74,21 @@ produtos que a ferramenta indicaria precisam estar na Shopee, com venda e link r
 medianos se calculam só sobre eles. Nicho que só passa contando Mercado Livre reprova no portão 4. Exceção única: o
 Raphael muda esta regra se o Mercado Livre passar a ter janela de atribuição comparável à da Shopee.
 
+**0.9 PISO DE COMISSÃO NO LUGAR DO PISO DE VISITAS, E O MERCADO LIVRE COMO BÔNUS (decisão do Raphael, 27/10/2026).**
+- **O portão 3 da 0.2 muda.** Em vez de "menos de 1.000 visitas/dia no conservador → próximo", vale: **comissão
+  projetada no cenário conservador, só com produtos da Shopee, de pelo menos R$ 10.000/mês**, calculada como
+  visitas/dia conservador (3.0-d com os descontos da 3.0-e) × 1% × 30 × ticket mediano × comissão mediana, os dois
+  medidos no painel da Shopee (portão 4). O motivo: o piso de 1.000 visitas foi pensado para ticket baixo; com
+  ticket alto, menos visitas bastam (R$ 213 por venda pede ≈ 160 visitas/dia; R$ 5 por venda pede ≈ 6.700). Como o
+  ticket só é medido no portão 4, a conta do portão 3 se fecha depois dele; a ordem de corte barato continua: SERP,
+  volume, painel, conta.
+- A 3.0-c.1 e a 3.0-d.1 (1.000 visitas/dia) deixam de ser eliminatórias; o resto da 3.0-c, da 3.0-d e da 3.0-e
+  continua valendo para **como** se faz a conta de visitas.
+- **Mercado Livre entra como bônus, nunca como sustentação.** Pode receber link na ilha só o produto que a Shopee
+  não vende; quando o mesmo produto existe nos dois, o link é da Shopee (seção 7 do `ARQUIPELAGO.md`). O que vem do
+  Mercado Livre entra na ficha só como teto, separado, e **nunca conta para aprovar** um nicho (a 0.8 continua
+  valendo para a cobertura). Os links do Mercado Livre exigem clique humano no Gerador (seção 7): trabalho do Raphael.
+
 ## 1. Para que a Bússola existe
 
 O Arquipélago ganha dinheiro com comissão de afiliado em páginas que respondem, com número e fonte, uma pergunta
