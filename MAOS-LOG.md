@@ -7165,3 +7165,63 @@ ESCRITA ÚNICA — bussola/cacados.md  (substituição completa do arquivo, como
 Nenhum passo falhou: o arquivo gravado bate com o sha256 da instrução, o commit foi aceito no `main` de
 primeira e `origin/main` mostra o hash acima. Nenhum outro arquivo do repositório foi tocado — este log vai
 num commit seguinte, por ser o último passo do disparo.
+
+## 27/10/2026, 13h55 de Brasília (16h55 UTC) — Bússola caçadora, ficha da Rodametria
+
+Instrução recebida: pedido da Bússola caçadora (execução manual de 27/10/2026, 13h17 de Brasília).
+Assunto do Arquipélago (Bússola, fila, oportunidades, dossiês, medições) — checagem de assunto passou.
+Um commit, seis arquivos: dois com append no fim, quatro novos com conteúdo verbatim.
+
+`git status --porcelain` antes do commit:
+
+```
+ M bussola/cacados.md
+ M bussola/fila.md
+?? bussola/dossies/rodametria/
+?? bussola/medicoes/volume-mobilidade-eletrica-2026-10-27.md
+?? bussola/oportunidades/rodametria.md
+```
+
+`git diff --stat` do commit:
+
+```
+ bussola/cacados.md                                 |  17 +++
+ bussola/dossies/rodametria/DOSSIE.md               | 151 +++++++++++++++++++++
+ bussola/dossies/rodametria/VOZ.md                  |  35 +++++
+ bussola/fila.md                                    |   2 +
+ .../volume-mobilidade-eletrica-2026-10-27.md       |  46 +++++++
+ bussola/oportunidades/rodametria.md                |  45 ++++++
+ 6 files changed, 296 insertions(+)
+```
+
+Hash que foi ao `main`:
+
+```
+afbe35e90b31257681e744aa9fb47ae048430ce2  Bússola caçadora — 27/10/2026
+origin/main confirmado por `git fetch origin main && git log -1 origin/main`
+```
+
+Contagem conferida relendo os arquivos do disco DEPOIS de gravar:
+
+```
+bussola/cacados.md                                    57 linhas (17 novas, todas "| 27/10/2026 |")
+bussola/fila.md                                      594 linhas (1 linha em branco + 1 linha da ficha)
+bussola/oportunidades/rodametria.md                   45 linhas (novo)
+bussola/dossies/rodametria/DOSSIE.md                 151 linhas (novo)
+bussola/dossies/rodametria/VOZ.md                     35 linhas (novo)
+bussola/medicoes/volume-mobilidade-eletrica-...md     46 linhas (novo)
+```
+
+sha256 relidos do disco, conferidos contra os esperados da instrução — os seis batem:
+
+```
+f1dee6719c3fb3306fbfa5f2ab18589fab4e863d9ade2fe9f4c62f9cb49b5efd  bussola/cacados.md
+73c12b6e4e654fe866df55418023568c70491399a31cb7f0a3f8e4c0593c5c4a  bussola/fila.md
+1bf6f11e4d36211d1c5f6502c50349b1eb5515584cf6b76172f38707aec8487e  bussola/oportunidades/rodametria.md
+763b3caa8176e84bb8f5b76c656fccd3f96569886a15e064fc95b01a1e6f861f  bussola/dossies/rodametria/DOSSIE.md
+18da1aaaf73f9a2067990e30c26a4c99fc165df60dacf852feed257672b2f73b  bussola/dossies/rodametria/VOZ.md
+9b74415aeac40f0f26dae725fd6dfaa82f3ebcbe7d74616d7e68d994a96b8241  bussola/medicoes/volume-mobilidade-eletrica-2026-10-27.md
+```
+
+Nenhum passo falhou: push aceito no `main` de primeira, sem rebase e sem force. Nenhum outro arquivo foi
+tocado — este log vai num commit seguinte, por ser o último passo do disparo.
