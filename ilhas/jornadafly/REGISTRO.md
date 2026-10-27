@@ -3,6 +3,157 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-10-27 10h17Z — SEM BLOCO PARA ABRIR, e o registro de 23/10 havia escrito isto para mim; o que esta passada entrega são **duas coisas: o número (4 em 13) e a régua que quase o fez sair errado** — o `git log` desta nuvem vem RASO e responde curto sem dar erro
+
+**O que saiu:** nenhum bloco, e **isso é o resultado certo, não uma passada perdida.**
+A entrada de 23/10 às 13h20Z fecha dizendo, com estas palavras, que *"a execução
+seguinte que encontrar esta ilha em foco e sem nenhuma dessas duas coisas não tem bloco
+para abrir — e isso está escrito aqui para que ela não invente um"*. Encontrei
+exatamente esse mundo, nas duas metades, e não inventei um bloco. **O que saiu desta
+passada é medição e escalada, nos três arquivos que a próxima execução lê primeiro:**
+`foco.md`, `dados/despachos.md` (o despacho ALTA de 15/09) e este `REGISTRO.md`.
+
+**A ESCOLHA DA ILHA: NÃO HOUVE ROTAÇÃO E NÃO HOUVE DECISÃO MINHA.** `foco.md` nomeia a
+**jornadafly** e pela **1.2** não há escolha a fazer. Conferi as duas exceções que furam
+o foco e **nenhuma se aplica:** (a) o **molde da seção 32** está fechado nas três ilhas —
+os três cabeçalhos de despacho dizem "FECHADO INTEIRO" nos `PROMPT.md` da aquametria
+(linha 206), da clubedomosaico (336) e da robometria (194); (b) **ilha no ar e quebrada**
+não existe, e isto eu medi em vez de herdar (abaixo). Os cinco `ESTADO.md` estavam com
+`executando_desde: null`, então pela **1.1** não havia bloco da Fundação vivo e não houve
+reserva vencida para o git desempatar. Nenhum branch `claude/*` com commit a mergear e
+nenhum PR aberto: a branch desta execução estava idêntica ao `main`. **Reserva escrita às
+10h17Z e ganha** (commit `c9793c5`).
+
+**REDE REMEDIDA E NÃO HERDADA (20.2 e 20.3) — SÉTIMO DIA DE RECUSA.** Duas passadas,
+`jornadafly.com.br` e `www.jornadafly.com.br` em **000 nas duas** (5 medições ao todo),
+com `aquametria.com.br`, `robometria.com.br` e `clubedomosaico.com.br` em **200** e
+`raw.githubusercontent.com` em **301** na mesma linha de comando — **zero intermitência
+no controle**, que é a diferença que a 20.2 manda não confundir. E a 20.3 exercida de
+novo nas fontes de coleta: **nove em 000** — `numbeo`, `booking`, `civitatis.com.br`,
+`romapass.it`, `turismoroma.it`, `lisboacard.org`, `visitlisboa.com`, `bondinho.com.br` e
+`parquebondinho.com.br`. Então **não há item de conteúdo carregável por nenhuma porta**:
+nem a do ar, nem a da coleta.
+
+### MEDI FUNDO ANTES DE CONCLUIR, e por que isso não é zelo: a lição de 26/10 em vigor
+
+O `foco.md` carrega, escrita por uma execução que errou, a lição de que **"nada elegível"
+é verdade sobre um INSTANTE, não sobre o dia**: às 13h3xZ de 26/10 uma passada fechou
+vazia afirmando que *"toda execução da Fundação daqui para frente fecha igual"*, e **duas
+horas depois** a ronda escreveu despacho novo na robometria e a execução das 16h20Z achou
+defeito no ar — um deles servido havia mais de um mês. Então eu fui fundo:
+
+- **as 98 URLs dos três sitemaps em HTTP 200**, uma por uma — robometria **14**,
+  aquametria **52**, clubedomosaico **32**, **zero fora de 200**;
+- **porta de entrada da 29.2 de pé nas três** — home, `robots.txt` e `wp-sitemap.xml` em
+  200, e caminho virgem em **404** nas três;
+- **`/status` igual ao `manifest.json` nas três** — robometria **95**, clubedomosaico
+  **93**, aquametria **135**. Nenhum desembarque preso.
+
+**E ACRESCENTEI UMA RÉGUA QUE A LIÇÃO DE 26/10 NÃO TINHA: LI O RELÓGIO DA RONDA, não só o
+topo dos `PROMPT.md`.** Aquela lição manda ler os cinco topos antes de concluir, e está
+certa; mas **despacho só chega ao `PROMPT.md` por commit**, então `git log` no `main`
+responde a mesma pergunta mais barato e mais forte — um `grep` de topo pode passar por
+cima de um despacho cujo título não casa com o padrão procurado, e o relógio não. **O
+`main` não tem commit de Sentinela depois das 20h2xZ de 26/10**, logo não existe despacho
+novo que a exceção da 1.2 pudesse abrir, e eu não precisei confiar na forma de nenhum
+título para afirmar isso. **Conclusão: não há ilha no ar e quebrada.**
+
+### O NÚMERO, e ele é o que esta passada tem de próprio
+
+O despacho ALTA de 15/09 vinha recebendo a medição de rede a cada passada e **não tinha
+a conta de quanto isto está custando**. Contei no `main` as execuções da Fundação desde
+**22/10**, o dia em que a jornadafly entrou em foco, e quantas entregaram algo **no ar**
+pela régua da **31.1**:
+
+| | |
+|---|---|
+| Execuções da Fundação desde 22/10 (22, 23, 26 e 27/10 — 24 e 25 foram fim de semana) | **13** |
+| Entregaram algo no ar que o visitante vê | **4** |
+| Proporção da 31.1 | **4 em 13 (31%)**, contra o piso de **7 em 10** |
+| Entregas no ar **na ilha em foco** | **ZERO**, em seis blocos |
+
+**A PROCEDÊNCIA DAS 13, e ela quase não existiu — é o terceiro achado desta passada, e é no
+meu próprio trabalho.** As 13 são **11 commits de reserva** (a reserva do passo 5 é escrita
+uma vez por execução, antes do trabalho, então ela conta execuções melhor que qualquer
+outra marca) **mais as 2 execuções que fecharam em "nada elegível"** sem reservar nada
+(26/10, 13h3xZ e 19h1xZ). Renovação de reserva pela 1.1 **não** conta como execução nova e
+saiu da contagem.
+
+**E A PRIMEIRA CONTAGEM ESTAVA SOBRE LOG RASO.** O clone desta sessão trazia **51 commits**,
+com o mais antigo em **22/10 às 16h57** — então as execuções de 22/10 às **10h20Z, 13h29Z e
+16h20Z** simplesmente **não estavam no log**, e `git log` devolveu código de saída **0** e as
+linhas que tinha. Recontei depois de `git fetch --unshallow origin main`, sobre os **1.191
+commits** reais desde 06/09: **as duas contagens deram 13 — por acidente, não por método**,
+porque a primeira veio de commits do log somados a execuções que eu li no `foco.md` e no
+`REGISTRO.md`, e a segunda de uma marca só. **Se eu tivesse contado só o log, teria publicado
+10 e chamado de medição.**
+
+**É a mesma família do «64 domínios que eram 69» que o bloco 6 desta ilha registrou em
+23/10**, um andar acima: lá a contagem de cabeça esqueceu seis sufixos; aqui o **instrumento**
+respondeu curto e não avisou. **A régua nova está no `ARQUIPELAGO.md`, na seção 1 junto da
+1.1**, porque vale para toda execução desta nuvem e não só para esta ilha — e ela diz também
+o que **não** quebrar: a régua da 1.1 continua certa em clone raso, porque o que ela procura é
+commit nos últimos 40 minutos, e isso cabe em qualquer janela rasa. O que quebra é
+**contagem**.
+
+**As quatro foram TODAS em ilha FORA do foco**, alcançadas só pela exceção da 1.2: duas de
+molde em 23/10 (robometria 16h18Z, clubedomosaico 19h17Z) e duas de defeito no ar da
+robometria em 26/10 (10h19Z e 16h20Z). **As duas portas que deram essas quatro estão
+fechadas agora — e fechadas por terem sido CUMPRIDAS, não por terem falhado:** o molde
+está no ar e conferido nas três, e nenhuma ilha no ar está quebrada. Sobrou a porta do
+foco, e ela não dá no ar **por desenho**: esta ilha não tem site.
+
+**E A 31.6 NÃO RESOLVE ISTO, o que é o achado de método desta passada.** Ela manda a
+leitura semanal contar a proporção na ilha em foco e, abaixo de 7 em 10, abrir item de
+prioridade **alta**. Aqui esse item **não tem o que mandar fazer**: a causa não é escolha
+de quem executa — é **ausência de "no ar"**. A régua está certa, morde, e **aponta para
+fora da fábrica**. É a mesma família do portão vermelho da 31.4 um andar acima: o
+instrumento funciona e o defeito não é da camada que ele mede. Está escrito no topo do
+`PROMPT.md` desta ilha e no `foco.md` desde 22/10 justamente para ninguém ler o REGISTRO
+daqui como desobediência à seção 31 — esta passada põe o número naquela frase.
+
+### O QUE EU NÃO FIZ, e as duas razões são regra escrita
+
+**(1) Não troquei a linha `ilha:` do `foco.md`.** Ela destravaria a rotação da seção 1 na
+hora, e com ela trabalho real e já medido — mas a linha `fila_decidida_pelo_raphael` diz
+que a fila **não tem item (4)** e que *"a próxima troca de foco precisa de decisão nova
+dele"*, e a **1.2-b.4** exige decisão escrita para sair do foco. A execução de 22/10 só
+editou aquela linha porque **a data era dele**, pré-registrada na fila. Trocar por conta
+própria seria tomar a decisão do Raphael com a desculpa de ter medido o custo dela.
+
+**(2) Não consertei nada em ilha fora do foco**, e há bastante para consertar: os **21
+portões de navegador inertes** (conserto de duas linhas por arquivo, já escrito e rodando
+na robometria), a **régua da 32.5 que a aquametria não tem**, as **22 consultas de produto
+sem veredito** da clubedomosaico e os **dois cabeçalhos de estado incompletos**
+(robometria e ohmetria). São **quatro despachos NORMAIS abertos** em `dados/despachos.md`,
+todos em ilha que a **1.2** proíbe tocar — e a execução de 26/10 que os escreveu tomou
+essa mesma decisão por escrito. Não reabri o raciocínio dela.
+
+**O cabeçalho desta ilha, sim, é meu, e por isso foi conferido e fechado:** a seção 2 diz
+que quem fecha bloco conserta o cabeçalho *"da ilha que reservou, e só dela"*. A execução
+de 26/10 fechou em "nada elegível" **sem reservar nada** e por isso não podia tocar
+cabeçalho de ninguém — eu reservei, e a régua de presença da seção 2 aprova este.
+Os dois incompletos (`robometria` e `ohmetria`) continuam esperando quem os reservar.
+
+**Memória:** esta nuvem não tem diretório de memória — `/areas/projeto-jornadafly.md` e os
+outros quatro que o `PROMPT.md` manda carregar não existem aqui. O próprio `PROMPT.md`
+prevê isso (*"Sem memória, não pare: o estado está no `ESTADO.md`, no `REGISTRO.md` e
+neste arquivo"*), então o próximo passo desbloqueado foi escrito **no repositório**, que é
+a memória que sobrevive: no `bloco_atual` deste `ESTADO.md`, na linha nova do `foco.md` e
+no despacho ALTA.
+
+**PRÓXIMO PASSO: NÃO É DA FUNDAÇÃO, e são três gestos independentes — qualquer um,
+isolado, tira a fábrica do zero.** (1) **O egresso** de `jornadafly.com.br` destrava
+**coleta**: as faixas de diária da F2, o passe e as coberturas da F3, os dois artigos
+pré-registrados e a verificação dos 25 candidatos do bloco 6. (2) **Os passos 2 a 8 da
+seção 11** destravam **o ar**: casca, snippet e sitemap, e com isso o 3b, o 5b, o 5c e o
+tradutor PHP das três ferramentas e dos quatro artigos que já existem **como regra**.
+(3) **Uma linha no `foco.md`** destrava a **rotação**, e com ela os quatro despachos
+NORMAIS parados. **O Raphael foi sinalizado por notificação nesta passada**, com os três
+gestos e o número — é o segundo canal da 12.2, e a escolha entre os três é dele.
+
+---
+
 ## 2026-10-23 13h20Z — O BLOCO 6 SAIU, e a lista de prospecção **já estava medida desde 14/09**: o corpus do bloco 1 a tinha escrito como concorrência
 
 **O que saiu:** a **lista de prospecção do widget** — `dados/prospeccao-widget.json`

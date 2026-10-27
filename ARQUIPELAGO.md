@@ -119,6 +119,18 @@ git log -1 --format=%cd --date=format-local:%H:%MZ -- ilhas/<ilha>
 
 **A regra, e ela cabe numa frase:** o que a 1.1 mede é **execução da Fundação viva**, então o commit que torna a ilha VIVA é **commit de bloco da Fundação**. Commit de ronda da Sentinela, de correção da 19, ou qualquer commit que não seja de um bloco em andamento, **não reserva nada** — e a prova de que nenhuma execução da Fundação está viva é mais forte do que qualquer relógio: **a reserva é escrita ANTES do trabalho (passo 5), então `executando_desde: null` já significa que não há bloco em andamento.** O git só é consultado quando há reserva VENCIDA para decidir se ela foi abandonada; com `executando_desde: null` não há o que desempatar, e a ilha está livre.
 
+**O `git log` DESTA NUVEM VEM RASO, E ELE RESPONDE CURTO SEM DAR ERRO (27/10/2026).** Medido às 10h3xZ de 27/10/2026 por uma execução que ia publicar uma contagem de história. O repositório é clonado a cada sessão, e o clone **vem raso** (`.git/shallow` existe): nesta passada o `main` tinha **51 commits** com o mais antigo em **22/10 às 16h57** — cinco dias de história contra os **1.191 commits** que o `origin` tem desde 06/09. **E `git log` não reclama:** ele devolve código de saída 0 e as linhas que tem, então toda contagem feita sobre ele sai **menor que a verdade, com cara de completa**. É a família do número de tela digitado e do `grep` que atravessa YAML quebrado: o instrumento responde, e a resposta é curta.
+
+**O que isto NÃO quebra, e está medido para ninguém consertar o que não está errado:** a régua da 1.1 acima (`git log -1 ... -- ilhas/<ilha>`) continua certa em clone raso. Ela só é consultada quando há reserva **vencida**, e o que ela procura é commit nos últimos **40 minutos** — que cabe em qualquer janela rasa. Clone raso pode devolver vazio para ilha tocada há semanas, e vazio lá significa "reserva abandonada", que é a leitura certa.
+
+**O que isto quebra é toda CONTAGEM de história**, e a conta da proporção da **31.1** é a primeira — ela se faz contando execuções no `main`. Com o clone raso desta passada, as execuções de 22/10 às 10h20Z, 13h29Z e 16h20Z **não existiam no log**.
+
+**A régua, e ela cabe em duas linhas:** quem for contar qualquer coisa na história do `main` roda `git fetch --unshallow origin main` antes (ou `git rev-list --count` contra o número que espera), e **diz no relatório sobre quantos commits contou**. Contagem de história sem essa linha é número sem procedência, e a **23.4** já proíbe número sem procedência no painel.
+
+```
+test -f .git/shallow && git fetch --unshallow origin main   # antes de contar história
+```
+
 **Por que o git e não o relógio:** a reserva é uma promessa escrita uma vez; o commit é trabalho acontecendo. O passo 3 mede **intenção** e isto mede **atividade** — e as duas discordam exatamente no caso que importa, o bloco longo. É a mesma família do "o site fica para trás em silêncio" da seção 4: o cabeçalho é o resumo, e resumo velho lido como fato é o defeito que este contrato mais paga.
 
 **E a outra metade do mesmo acontecimento, que não é regra e sim aritmética:** o arquipélago tem **três** ilhas e havia **quatro** execuções da Fundação vivas na mesma janela de três minutos (reservas de 22h25Z, 23h18Z e 23h19Z, mais a que escreveu isto). "Quem perde a corrida do push pega a próxima da ordem" só vale enquanto **sobrar** ilha. Não sobrou: esta execução perdeu a robometria por cerca de um minuto, voltou ao passo 2, achou as três ocupadas e fechou em "nada elegível" sem construir nada. Isso não tem conserto do lado da Fundação — é decisão do Raphael, e está escrito como despacho em `dados/despachos.md`.

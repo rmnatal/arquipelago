@@ -554,6 +554,35 @@ Caminho: `claude.ai/code` → seletor de ambiente → Nuvem → engrenagem → D
 >
 > **Conclusão da passada, e ela é a mesma de 13h3xZ por um caminho mais caro: não há ilha no ar e quebrada**, logo a exceção da 1.2 não abre, logo não há bloco. Nenhuma ilha foi reservada e nenhum `ESTADO.md` foi tocado.
 
+> **REMEDIDO EM 27/10/2026 ÀS 10h1xZ–10h3xZ — SÉTIMO DIA DE RECUSA, E ESTA EXECUÇÃO TRAZ O NÚMERO QUE FALTAVA NESTE BLOCO: A PROPORÇÃO DA 31.1 DESDE QUE O FOCO MUDOU.**
+>
+> **O egresso, sem mudança nenhuma:** `jornadafly.com.br` e `www.jornadafly.com.br` em **000 em duas passadas** (5 medições ao todo nesta execução), com `aquametria.com.br`, `robometria.com.br` e `clubedomosaico.com.br` em **200** e `raw.githubusercontent.com` em **301** na mesma linha de comando. Zero intermitência no controle. **E as nove fontes de coleta todas em 000** — `www.numbeo.com`, `www.booking.com`, `www.civitatis.com.br`, `www.romapass.it`, `www.turismoroma.it`, `www.lisboacard.org`, `www.visitlisboa.com`, `bondinho.com.br` e `parquebondinho.com.br`. Então não há item de conteúdo carregável por nenhuma porta: nem o do ar, nem o da coleta.
+>
+> **AS TRÊS ILHAS NO AR ESTÃO ÍNTEGRAS, medido antes de concluir** (a lição da linha de 19h1xZ: "nada elegível" é verdade sobre um instante): **98 de 98 URLs dos três sitemaps em HTTP 200**, uma por uma; **porta de entrada da 29.2 de pé nas três** (home, `robots.txt` e `wp-sitemap.xml` em 200, caminho virgem em 404); **`/status` igual ao `manifest.json` nas três** — robometria **95**, clubedomosaico **93**, aquametria **135**, nenhum desembarque preso. E **nenhuma ronda rodou desde as 20h2xZ de 26/10**: o `main` não tem commit de Sentinela depois daquele, então não há despacho novo que a exceção da 1.2 pudesse abrir. Os cinco `ESTADO.md` estavam com `executando_desde: null` — não houve corrida de reserva perdida.
+>
+> **O NÚMERO NOVO, E É ELE QUE DIMENSIONA O PEDIDO.** Contei no `main` as execuções da Fundação desde **22/10**, o dia em que a jornadafly entrou em foco, e quantas delas entregaram algo **no ar** pela régua da **31.1**:
+>
+> | | |
+> |---|---|
+> | Execuções da Fundação desde 22/10 (22, 23, 26 e 27/10 — 24 e 25 foram fim de semana) | **13** |
+> | Entregaram algo no ar que o visitante vê | **4** |
+> | Proporção da 31.1 | **4 em 13 (31%)**, contra o piso de **7 em 10** |
+> | Entregas no ar feitas **na ilha em foco** | **ZERO**, em 6 blocos |
+>
+> **A PROCEDÊNCIA DESTE NÚMERO, porque ele quase saiu sem ela.** As **13** são **11 commits de reserva** (a reserva do passo 5 é escrita uma vez por execução, antes do trabalho) **mais 2 execuções que fecharam em "nada elegível"** sem reservar nada, em 26/10 às 13h3xZ e 19h1xZ. Renovação de reserva pela 1.1 **não** conta como execução nova e foi descartada da contagem. **E a primeira contagem estava sobre log RASO:** o clone desta sessão trazia **51 commits** com o mais antigo em 22/10 às 16h57, então as execuções de 22/10 às 10h20Z, 13h29Z e 16h20Z **não estavam no log** — recontei depois de `git fetch --unshallow`, sobre os **1.191 commits** reais, e as duas contagens coincidiram em 13 por acidente, não por método. **A régua nova está escrita na seção 1 do `ARQUIPELAGO.md`**, junto da 1.1, porque vale para toda execução desta nuvem que contar história.
+>
+> **As quatro entregas no ar foram TODAS em ilha FORA do foco**, alcançadas só pela exceção da 1.2 — duas de molde da seção 32 em 23/10 (robometria 16h18Z, clubedomosaico 19h17Z) e duas de defeito no ar da robometria em 26/10 (10h19Z e 16h20Z). **As duas portas que davam essas quatro estão fechadas agora**, e fechadas por terem sido *cumpridas*: o molde está no ar e conferido nas três ilhas, e não há ilha no ar e quebrada. Sobrou a porta do foco, e ela não dá no ar por desenho — a jornadafly **não tem site**.
+>
+> **Por que a 31.6 não resolve isto sozinha:** ela manda a leitura semanal contar a proporção na ilha em foco e, abaixo de 7 em 10, abrir item de prioridade alta. Na jornadafly esse item **não tem o que mandar fazer**: a causa não é escolha de quem executa, é ausência de "no ar". **A régua está certa e aponta para fora da fábrica.**
+>
+> **E ESTE BLOCO NÃO PEDE DECISÃO DE FOCO A NINGUÉM, de propósito.** O `foco.md` diz, na linha `fila_decidida_pelo_raphael`, que a sua fila **não tem item (4)** e que "a próxima troca de foco precisa de decisão nova dele"; a **1.2-b.4** exige decisão escrita para sair do foco. Nenhuma execução trocou nem vai trocar a linha `ilha:` por conta própria — a de 22/10 só a editou porque **a data era sua**, pré-registrada na fila. Então o que está na sua mesa são **três gestos independentes**, e **qualquer um** deles tira a Fundação do zero:
+>
+> 1. **O egresso** (`claude.ai/code` → seletor de ambiente → Nuvem → engrenagem → "Domínios permitidos": `jornadafly.com.br`, `*.jornadafly.com.br`, e `ohmetria.com.br` e `*.ohmetria.com.br` junto). Destrava **coleta** — as faixas de diária da F2, o passe e as coberturas da F3, os dois artigos-âncora pré-registrados, e a verificação dos 25 candidatos do bloco 6. **Não** destrava o ar.
+> 2. **Os passos 2 a 8 da seção 11** (navegador: domínio adicional no cPanel, nameservers, Search Console, WordPress, SSL, plugins). Destrava **o ar** — casca, snippet, sitemap, e com isso o 3b, o 5b e o 5c, mais as três ferramentas e os quatro artigos que já existem **como regra** esperando tradutor.
+> 3. **Uma linha no `foco.md`** — `ilha: nenhuma`, ou o nome da próxima ilha da sua fila. Isso não destrava a jornadafly: destrava a **rotação da seção 1**, e com ela o trabalho já medido, nomeado e escrito que está parado em ilha fora do foco — os **21 portões de navegador inertes** das duas ilhas mais antigas (conserto de duas linhas por arquivo, já escrito e rodando na robometria), a **régua da 32.5 que a aquametria não tem** com 52 URLs no ar, as **22 consultas de produto sem veredito** da clubedomosaico, e os **dois cabeçalhos de estado incompletos** (robometria e ohmetria). **São quatro despachos NORMAIS abertos neste arquivo, todos em ilha que a 1.2 proíbe tocar.**
+>
+> **A escolha entre os três é sua e não é da fábrica.** O que esta execução pode afirmar com número é só isto: **9 das 13 execuções desde 22/10 não puseram nada no ar, e as 4 que puseram usaram uma porta que hoje está fechada.**
+
 > **Pronto quando** (sem mudança): `curl -s -o /dev/null -w "%{http_code}" https://jornadafly.com.br/` devolver de dentro de uma rotina qualquer código HTTP de verdade, 404 inclusive. **E a outra metade, que não é rede:** sem WordPress a ilha não recebe casca, logo não recebe snippet, logo não publica página — então o egresso sozinho destrava a **coleta** (F2, F3, prospecção) e não destrava o **ar**. As duas são independentes e as duas são suas; qualquer uma delas, isolada, já tira a Fundação do zero.
 
 
