@@ -594,3 +594,5 @@ visitas/dia desta página é teto, não previsão.**
 > **27/10/2026 — FICHA DA BÚSSOLA CAÇADORA:** **Rodametria** (mobilidade elétrica: patinete, bicicleta, scooter e moto elétrica) · `rodametria.com.br` livre · 2.445.000 buscas/mês de compra em SERP mista · ≈ 2.400 visitas/dia conservador · ticket mediano R$ 6.530 · comissão mediana 16% · ficha em `bussola/oportunidades/rodametria.md`, dossiê em `bussola/dossies/rodametria/`. Aguarda o "sim" do Raphael.
 
 > **27/10/2026, 13h56 — RODAMETRIA APROVADA pelo Raphael.** Aguarda o registro de `rodametria.com.br` (passo 1 da seção 11, só ele faz); o resto é da Fundação a partir de `bussola/dossies/rodametria/`.
+
+> **27/10/2026, 14h04 — RODAMETRIA EM STAND-BY** (decisão do Raphael; substitui a aprovação das 13h56). Não registrar `rodametria.com.br`. Motivo: depende do Mercado Livre (janela de 24 h) e a parte só-Shopee reprova no piso (≈ 290 visitas/dia). Regra nova de cobertura só-Shopee em `BUSSOLA.md`, item 0.8.

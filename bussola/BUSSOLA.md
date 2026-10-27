@@ -64,6 +64,16 @@ sendo pelas MÃOS (`trig_01Jg2qeDDsWDJdU9khHVswqd`).
 dois dossiês prontos para nichos que não passaram (dossiê só existe para nicho com ficha); e o relatório de
 rodada como produto da Bússola.
 
+**0.8 COBERTURA SÓ-SHOPEE (decisão do Raphael, 27/10/2026).** A frase dele: *"a minha prioridade é Shopee (…) eu nem
+gostaria de usar Mercado Livre"*, porque no Mercado Livre *"a pessoa pode comprar as coisas ali depois e não ir para a
+minha comissão"*. Medido no mesmo dia, nos Termos e Condições do Programa de afiliados e criadores do Mercado Livre
+(`mercadolivre.com.br/ajuda/30228`, item 1.6, lido em 27/10/2026): **a compra só vale se concluída em até 24 horas
+corridas** depois do clique no link. Na Shopee a janela é de **7 dias** e vale para qualquer compra na plataforma
+(seção 7 do `ARQUIPELAGO.md`). Portanto, **no portão 4 da 0.2 a cobertura da seção 2 se mede SÓ na Shopee**: 7 de 10
+produtos que a ferramenta indicaria precisam estar na Shopee, com venda e link rastreável, e o ticket e a comissão
+medianos se calculam só sobre eles. Nicho que só passa contando Mercado Livre reprova no portão 4. Exceção única: o
+Raphael muda esta regra se o Mercado Livre passar a ter janela de atribuição comparável à da Shopee.
+
 ## 1. Para que a Bússola existe
 
 O Arquipélago ganha dinheiro com comissão de afiliado em páginas que respondem, com número e fonte, uma pergunta

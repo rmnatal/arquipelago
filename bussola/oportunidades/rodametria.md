@@ -49,3 +49,9 @@ Próximo passo é a seção 11 do `ARQUIPELAGO.md`, na ordem: (1) **[RAPHAEL]** 
 registro.br; (2) daí em diante é da Fundação, a partir do dossiê em `bussola/dossies/rodametria/`. Primeira tarefa
 de pesquisa do nascimento, deixada pelo dossiê: abrir no Chrome a SERP das consultas-ponte (`bicicleta eletrica precisa
 de cnh`, `autonomia patinete eletrico`) e ler o texto oficial da Resolução Contran nº 996/2023 no gov.br, com data.
+
+**⏸ EM STAND-BY por decisão do Raphael, 27/10/2026, 14h04 de Brasília** — substitui a aprovação das 13h56.
+Motivo: 8 dos 10 produtos são do Mercado Livre, cuja janela de atribuição é de 24 horas (Termos do programa, item
+1.6, lido em 27/10/2026), contra 7 dias da Shopee. Só com o que a Shopee cobre (patinete elétrico: 246.000 +
+49.500 buscas/mês) a conta dá ≈ 290 visitas/dia no conservador e reprova no piso. **Não registrar o domínio.**
+Volta à mesa se a caça não achar nicho só-Shopee, ou se o Mercado Livre mudar a janela (BUSSOLA.md, 0.8).
