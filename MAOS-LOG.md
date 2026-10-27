@@ -7309,3 +7309,41 @@ total de linhas acrescentadas: 18 (10 + 6 + 2)
 
 Nenhum passo falhou: push aceito no `main` de primeira, sem rebase e sem force. Nada além dos três arquivos
 nomeados foi tocado. Este log vai num commit seguinte, por ser o último passo do disparo.
+
+---
+
+## 27/10/2026, 14h16 de Brasília (17h16 UTC) — Bússola caçadora, primeira caça só-Shopee
+
+Pedido da Bússola, assunto do Arquipélago (Bússola caçadora / caçados das ilhas): checagem de assunto passou.
+Um arquivo nomeado na instrução (`bussola/cacados.md`), um commit, destino `main`. APPEND de 18 linhas ao fim do
+arquivo, byte a byte como vieram; nada reformatado, nada acrescentado.
+
+`git status --porcelain` antes do commit:
+
+```
+ M bussola/cacados.md
+```
+
+`git diff --stat` antes do commit:
+
+```
+ bussola/cacados.md | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
+```
+
+Commit que foi ao `main` (confirmado por `git fetch origin main && git log -1 origin/main`):
+
+```
+7312e61cf39d1bd7ce78424cb53a8eac18ec9560 Bússola caçadora só-Shopee — 27/10/2026
+11b39aa..7312e61  HEAD -> main
+```
+
+Contagem do que mudou, conferida relendo o arquivo DEPOIS de gravar:
+
+```
+bussola/cacados.md    75 linhas (era 57); 55 linhas começando com "| 27/10/2026 |"
+total de linhas acrescentadas: 18
+```
+
+Nenhum passo falhou: push aceito no `main` de primeira, sem rebase e sem force. Nada além do arquivo nomeado
+foi tocado. Este log vai num commit seguinte, por ser o último passo do disparo.
