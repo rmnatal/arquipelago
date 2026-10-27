@@ -214,7 +214,7 @@ tem "no ar". A **31.3** foi lida antes e não depois: ela proíbe testar portão
 existe**, e o que estas afirmações guardam é o **conteúdo que nasceu na mesma passada** — o
 desenho que a F1, a F2 e a F3 tiveram em 22/10 e o artigo-âncora teve em 23/10.
 
-### BANCADA, 0 FALHA em DOZE dos treze comandos — e o treze está dito, não suposto
+### BANCADA, 0 FALHA nos TREZE comandos
 
 | comando | resultado |
 |---|---|
@@ -225,21 +225,28 @@ desenho que a F1, a F2 e a F3 tiveram em 22/10 e o artigo-âncora teve em 23/10.
 | `teste-f2` | OK |
 | `mutacoes-f2` | **51 casos**, 0 falha nos três lados |
 | `teste-f3` | OK |
-| `mutacoes-f3` | **ainda rodando no momento deste commit** — ver abaixo |
+| `mutacoes-f3` | **45 casos**, 0 falha nos três lados — *medido às 17h10Z, depois do commit; ver abaixo* |
 | `artigos-referencia` | OK |
 | `mutacoes-artigos` | OK |
 | `validar-prospeccao` | APROVADO — 25 candidatos, e o `.md` idêntico ao que a referência gera |
 | `teste-prospeccao` | **287 afirmações**, 0 falha |
 | `mutacoes-prospeccao` | **40 casos**, 0 falha |
 
-**O `mutacoes-f3` não estava fechado quando este commit saiu, e isso fica escrito em vez de
-arredondado.** Ele roda o `teste-f3.py` **45 vezes** e as duas baterias longas ficaram mais
-lentas nesta carga, porque a quinta cidade levou a grade da F2 de **3.077 para 3.846
-estados** — o `teste-f2.py` sozinho leva ~12 segundos, então a bateria dele passa de oito
-minutos e a da F3 vem atrás. **A linha desta tabela é reescrita pela execução que a vir
-fechar**, e enquanto ela disser "ainda rodando" o resultado dela não foi medido por
-ninguém. Dizer "0 falha nos treze" aqui seria exatamente o defeito que esta ilha mais
-registra: afirmação redonda sobre instrumento que não respondeu.
+**O `mutacoes-f3` NÃO estava fechado quando o commit `1facb42` saiu, e a tabela dizia isso
+com essas palavras** — "ainda rodando", não "0 falha nos treze". Fechou às **17h10Z**, um
+minuto depois do commit, com **45 casos e 0 falha**, e esta linha foi reescrita pela mesma
+execução, que é o que a frase anterior dela prometia. Fica registrado porque o método
+importa mais que o resultado aqui: **afirmação redonda sobre instrumento que não respondeu
+é o defeito que esta ilha mais paga**, e nesta passada ele apareceu três vezes num andar
+abaixo (o contador de BRL, o portão do câmbio e o IOF). Escrever "0 falha nos treze" às
+17h09Z teria sido o mesmo erro, cometido pela mão que acabara de consertá-lo três vezes.
+
+**E por que as duas baterias longas quase não couberam:** a quinta cidade levou a grade da
+F2 de **3.077 para 3.846 estados**; o `teste-f2.py` sozinho leva **~12 segundos**, a
+bateria dele o roda **44 vezes** e a da F3 roda o `teste-f3.py` **45 vezes**. São mais de
+quinze minutos somados, e elas rodaram em segundo plano com a reserva renovada pela **1.1**
+antes, não depois. O aviso está escrito no `PROMPT.md`, na seção da bancada, com a nota de
+que o número envelhece a cada cidade nova — **quem o ler recompute em vez de confiar nele**.
 
 **E os mundos sintéticos tiveram de acompanhar o campo novo**, o que é a bateria fazendo o
 trabalho dela: campo obrigatório que nasce quebra todo mundo de bancada que não o declara.

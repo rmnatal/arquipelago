@@ -62,13 +62,17 @@ bloco_atual: |
   tentativas.
   NENHUM PORTAO NOVO NASCEU (31.2) e a bancada segue com TREZE comandos: a regua da
   elegibilidade mora dentro do validar-banco.py, as quebras dentro do mutacoes-banco.py
-  e a da F1 dentro do teste-f1.py. BANCADA 0 FALHA em DOZE dos treze: mutacoes-banco de
-  154 para 178 casos, teste-f1 229.768 afirmacoes, mutacoes-f1 28, mutacoes-f2 51,
-  teste-prospeccao 287, mutacoes-prospeccao 40. O DECIMO TERCEIRO, `mutacoes-f3`, ainda
-  rodava quando o commit saiu e esta dito assim na tabela do REGISTRO em vez de
-  arredondado — ele roda o teste-f3 45 vezes, e a quinta cidade levou a grade da F2 de
-  3.077 para 3.846 estados, o que tornou as duas baterias longas bem mais lentas. A
-  proxima execucao que o vir fechar reescreve aquela linha.
+  e a da F1 dentro do teste-f1.py. BANCADA 0 FALHA NOS TREZE: mutacoes-banco de 154 para
+  178 casos, teste-f1 229.768 afirmacoes, mutacoes-f1 28, mutacoes-f2 51, mutacoes-f3 45,
+  teste-prospeccao 287, mutacoes-prospeccao 40.
+  O TREZE FOI MEDIDO DEPOIS DO COMMIT, E A TABELA DO REGISTRO DISSE ISSO ANTES DE DIZER
+  O RESULTADO: no commit 1facb42, as 17h09Z, o mutacoes-f3 ainda rodava e a linha dele
+  dizia "ainda rodando", nao "0 falha nos treze". Fechou as 17h10Z com 45 casos e 0
+  falha, e a linha foi reescrita pela mesma execucao. Escrever o numero redondo um minuto
+  antes seria o MESMO defeito que esta passada consertou tres vezes um andar abaixo.
+  As duas baterias longas quase nao couberam: a quinta cidade levou a grade da F2 de
+  3.077 para 3.846 estados, e elas somam mais de quinze minutos — rodaram em segundo
+  plano, com a reserva renovada pela 1.1 ANTES.
   E a regua do `sem_extrator`, que nasceu em 22/10, REPROVOU na hora o vocabulario novo
   sem extrator — primeira vez cobrada por um caso que nao era dela.
   NADA FOI AO AR, E NAO PODIA: sem WordPress nao ha casca, Sync, /status nem URL.
