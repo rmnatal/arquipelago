@@ -6,7 +6,7 @@ piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 0
 primeira_indexacao: null
 ultima_execucao: 2026-10-27T13:56Z   # BLOCO ENTREGUE: `ARVORE.md`, o item (i) do 16.8 — esta ilha era a unica do arquipelago sem ele. A HORA SAIU DO datetime.now(utc) NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
-executando_desde: 2026-10-27T16:25Z   # reserva desta execucao (passo 5 da secao 1), ilha EM FOCO pela 1.2. A hora saiu do `date -u` na MESMA linha de comando que a grava, nunca digitada. A anterior fechou as 13h56Z de 27/10.
+executando_desde: 2026-10-27T16:30Z   # reserva RENOVADA pela 1.1 (a primeira foi as 16h25Z): o bloco passa de 40 minutos — coleta por busca em tres passadas e carga de registro novo no banco. A hora saiu do `date -u` na MESMA linha de comando que a grava.
 rede: BLOQUEADA em 2026-10-27   # 20.2, REMEDIDA as 13h4xZ e NAO herdada do campo: OITAVO dia de recusa. jornadafly.com.br e www.jornadafly.com.br em 000, com aquametria.com.br, robometria.com.br e clubedomosaico.com.br em 200 na MESMA linha de comando — zero intermitencia no controle. SEGUE SENDO REGRESSAO (o campo dizia `aberta em 2026-09-18`, com HTTP 200 medido naquele dia). bloqueada_por SEGUE null de proposito: a secao 2 reserva o campo para dependencia humana que trava a ILHA, e o que falta aqui trava a FABRICA — isso se escreve no despacho, que e o canal da 12.2. NOVO HOJE: o egresso passou a travar tambem o 5c, porque `civitatis.com.br` esta entre os nove recusados e o cluster free tour espera COLETA, nao casca.
 bloco_atual: |
   BLOCO ENTREGUE: `ARVORE.md` — o item (i) do 16.8 do ARQUIPELAGO.md. Esta ilha era a
