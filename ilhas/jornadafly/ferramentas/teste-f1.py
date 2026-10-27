@@ -230,6 +230,10 @@ def _frases_de(resposta):
     frases.append(resposta["bloco_de_compra"]["o_que_e"])
     for f in resposta["elegibilidade"]["frases"]:
         frases.append(f)
+    for pa in resposta["elegibilidade"].get("provas_a_mais") or []:
+        frases.append(pa["frase"])
+    for pa in resposta["faixa_etaria"].get("provas_a_mais") or []:
+        frases.append(pa["frase"])
     for n in resposta["elegibilidade"]["nao_acumulam_com_faixa_etaria"]:
         frases.append(n["frase"])
     for l in resposta["prestacao_de_contas"]["linhas"]:
@@ -424,6 +428,60 @@ def conferir(f1=None, banco=None, esquema=None, constantes=None, doc_respostas=N
                     afirma(Fraction(c["preco_unitario"]) != _unit,
                            "%s: o preco unitario da conta e o de uma elegibilidade (%s), "
                            "e nao a tarifa cheia." % (onde, _p))
+                # --- 2b-ter. A TARIFA QUE EXIGE MAIS DE UMA PROVA (27/10/2026)
+                # O campo `provas_adicionais` nasceu nesta data com o Trem do
+                # Corcovado, e ele guarda a frase que mais barra gente no balcao: a
+                # tarifa de idoso daquele operador e R$ 70 e so de quem TAMBEM for
+                # brasileiro. Campo que o banco guarda e a tela nao diz e pior que
+                # campo que nao existe, porque ele da a impressao de estar resolvido.
+                for _lista_t, _bloco in (("faixa_etaria", r["faixa_etaria"]),
+                                         ("elegibilidade", el)):
+                    _itens = versao.get(_lista_t) or []
+                    _com_prova = [i for i in _itens if i.get("provas_adicionais")]
+                    _frases_pa = _bloco.get("provas_a_mais") or []
+                    afirma(len(_frases_pa) == len(_com_prova),
+                           "%s: %d tarifa(s) de `%s` exigem prova a mais no banco e a "
+                           "tela traz %d frase(s)."
+                           % (onde, len(_com_prova), _lista_t, len(_frases_pa)))
+                    for _item in _com_prova:
+                        _achadas = [x for x in _frases_pa
+                                    if x["tarifa"] == _item.get("rotulo")]
+                        afirma(len(_achadas) == 1,
+                               "%s: a tarifa `%s` exige prova a mais e a tela nao a "
+                               "nomeia." % (onde, _item.get("rotulo")))
+                        for _prova in _item["provas_adicionais"]:
+                            afirma(all(_prova["condicao"] in x["frase"] for x in _achadas),
+                                   "%s: a tela nao diz a condicao da prova a mais de "
+                                   "`%s`." % (onde, _item.get("rotulo")))
+                            # E O `se_nao_cumprir` DA PROVA, NUNCA O DA TARIFA. Esta
+                            # afirmacao existe por um defeito medido em 27/10/2026, na
+                            # mesma passada que escreveu o campo: a primeira versao da
+                            # frase emprestava o `se_nao_cumprir` da tarifa e imprimiu
+                            # «sem isso, quem nao prova a IDADE paga R$ 134» para quem
+                            # nao provou a NACIONALIDADE. Aritmetica certa, pessoa
+                            # errada — a familia do IOF somado a compra que nao sai do
+                            # pais.
+                            afirma(all(_prova["se_nao_cumprir"] in x["frase"]
+                                       for x in _achadas),
+                                   "%s: a tela nao diz o que se paga sem a prova a mais "
+                                   "de `%s`, ou diz o `se_nao_cumprir` da tarifa no "
+                                   "lugar do da prova." % (onde, _item.get("rotulo")))
+
+                # --- 2b-quater. A TELA IMPRIME O QUE A RESPOSTA CALCULA (27/10/2026)
+                # `imprimir()` nao era conferido por NINGUEM, e o custo apareceu nesta
+                # passada: a `elegibilidade_da_versao` nasceu em 26/10, gravava as
+                # frases na resposta, e `imprimir` nunca as imprimia — o leitor do
+                # Bondinho via «a promocional de brasileiro nao se soma ao desconto por
+                # idade» sem nunca ver que ela existe e custa R$ 160 contra R$ 205. A
+                # metade mais importante desta ilha para o leitor DELA ficou calculada e
+                # muda por um dia. A afirmacao e geral de proposito: toda frase que a
+                # resposta manda para a tela tem de estar na tela.
+                _tela = f1.imprimir(r)
+                for _frase in _frases_de(r):
+                    afirma(_frase in _tela,
+                           "%s: a resposta calcula uma frase que `imprimir` nao imprime: "
+                           "%s" % (onde, _frase[:110]))
+
                 # E a soma nunca se presume: elegibilidade com `acumula` false tem de
                 # dizer isso na tela, porque o leitor que ve os dois descontos juntos
                 # presume que se somam.

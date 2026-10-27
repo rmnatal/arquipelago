@@ -150,6 +150,8 @@ def mundo_por_pessoa(banco):
                               "motivo_sem_condicao": "mundo de mutacao",
                               "se_nao_cumprir": None,
                               "motivo_sem_se_nao_cumprir": "mundo de mutacao",
+                              "provas_adicionais": None,
+                              "motivo_sem_provas_adicionais": "mundo de mutacao: a fonte de bancada nao exige prova alem da idade",
                               "declarado_como": "US$ 17 por crianca de 2 a 7 anos",
                               "fonte": "operador-petra-teste",
                               "data_leitura": "2026-09-14"}],
@@ -659,6 +661,8 @@ def q_faixa_em_unidade_por_veiculo(banco):
     v["faixa_etaria"] = [{"rotulo": "crianca de 2 a 7 anos", "preco": 0, "moeda": "EUR",
                           "condicao": None, "motivo_sem_condicao": "quebra",
                           "se_nao_cumprir": None, "motivo_sem_se_nao_cumprir": "quebra",
+                          "provas_adicionais": None,
+                          "motivo_sem_provas_adicionais": "mundo de mutacao: a fonte de bancada nao exige prova alem da idade",
                           "declarado_como": "crianca nao paga",
                           "fonte": "comune-venezia-tarifa-gondola",
                           "data_leitura": "2026-09-14"}]
@@ -772,6 +776,8 @@ def mundo_faixa_sem_preco_declarado(banco):
         "motivo_sem_condicao": "mundo de mutacao",
         "se_nao_cumprir": None,
         "motivo_sem_se_nao_cumprir": "mundo de mutacao",
+        "provas_adicionais": None,
+        "motivo_sem_provas_adicionais": "mundo de mutacao: a fonte de bancada nao exige prova alem da idade",
         "declarado_como": "Criancas de 4 a 11 anos: tarifa reduzida.",
         "fonte": "sete-toureiffel-tarifa-via-busca",
         "data_leitura": "2026-09-15",
@@ -1658,6 +1664,134 @@ def q_brl_contado_a_mao(banco):
     return banco
 
 
+# ----------------------------------------------------------------------------
+# A TARIFA QUE EXIGE MAIS DE UMA PROVA (`provas_adicionais`, 27/10/2026)
+#
+# O campo nasceu com a carga do Trem do Corcovado, e o que ele guarda e a frase
+# que custa mais caro na porta: R$ 70 e a tarifa de idoso DESTE operador, e so de
+# quem tambem for brasileiro. Sem estas quebras o campo seria um deposito de prosa
+# — e deposito de prosa com cara de dado e o defeito que esta ilha ja pagou tres
+# vezes num andar abaixo nesta mesma semana.
+# ----------------------------------------------------------------------------
+
+def _corcovado(banco):
+    return _achar(banco, "rio-de-janeiro-trem-do-corcovado")
+
+
+def _normal(banco):
+    return _corcovado(banco)["versoes"][0]
+
+
+def _idoso(banco):
+    """A faixa de idoso: a unica FAIXA_ETARIA do banco com prova a mais."""
+    return [f for f in _normal(banco)["faixa_etaria"]
+            if f["rotulo"] == "Idoso acima de 60 anos"][0]
+
+
+def _estudante(banco):
+    return [e for e in _normal(banco)["elegibilidade"] if e["rotulo"] == "Estudante"][0]
+
+
+def mundo_duas_provas_a_mais(banco):
+    """MUNDO que tem de PASSAR: a tarifa com DUAS provas adicionais diferentes.
+
+    O banco de hoje tem tres tarifas com UMA prova a mais cada, e o campo e lista
+    de proposito. Mundo de uma entrada so nunca mede a lista."""
+    f = _idoso(banco)
+    f["provas_adicionais"].append({
+        "o_que_se_prova": "vinculo_declarado",
+        "condicao": "ser aposentado pelo INSS, com o extrato de beneficio",
+        "se_nao_cumprir": "quem nao comprova o beneficio paga a tarifa Normal, R$ 134",
+        "declarado_como": "mundo de mutacao: tarifa de idoso aposentado, apenas brasileiros",
+    })
+    return sincronizar_resumo(banco)
+
+
+def q_provas_adicionais_sem_o_campo(banco):
+    del _idoso(banco)["provas_adicionais"]
+    return banco
+
+
+def q_provas_adicionais_null_sem_motivo(banco):
+    f = _idoso(banco)
+    f["provas_adicionais"] = None
+    f.pop("motivo_sem_provas_adicionais", None)
+    return sincronizar_resumo(banco)
+
+
+def q_provas_adicionais_lista_vazia(banco):
+    _idoso(banco)["provas_adicionais"] = []
+    return sincronizar_resumo(banco)
+
+
+def q_prova_adicional_fora_do_vocabulario(banco):
+    """`idade` nao esta no vocabulario de proposito, e e o valor que quem migrar
+    vai tentar escrever aqui primeiro."""
+    _idoso(banco)["provas_adicionais"][0]["o_que_se_prova"] = "idade"
+    return banco
+
+
+def q_prova_adicional_repetida(banco):
+    f = _idoso(banco)
+    f["provas_adicionais"].append(dict(f["provas_adicionais"][0]))
+    return sincronizar_resumo(banco)
+
+
+def q_prova_adicional_igual_a_do_dono(banco):
+    """A elegibilidade de estudante prova vinculo; uma prova a mais de vinculo e a
+    mesma prova escrita duas vezes, e a tela a pediria duas vezes ao leitor."""
+    e = _estudante(banco)
+    e["provas_adicionais"].append({
+        "o_que_se_prova": "vinculo_declarado",
+        "condicao": "apresentar a carteirinha de estudante",
+        "se_nao_cumprir": "paga a tarifa Normal",
+        "declarado_como": "mundo de mutacao",
+    })
+    return sincronizar_resumo(banco)
+
+
+def q_prova_adicional_com_faixa_de_idade(banco):
+    """Idade NUNCA entra aqui. E o sentido que a carga de hoje ia errar: a frase da
+    fonte do ID Jovem diz «jovens brasileiros de 15 a 29 anos», e a saida barata era
+    copiar a frase inteira para dentro da `condicao` da prova."""
+    _idoso(banco)["provas_adicionais"][0]["condicao"] = \
+        "ser brasileiro com mais de 60 anos de idade"
+    return banco
+
+
+def q_prova_adicional_sem_se_nao_cumprir(banco):
+    del _idoso(banco)["provas_adicionais"][0]["se_nao_cumprir"]
+    return banco
+
+
+def q_prova_adicional_sem_condicao(banco):
+    del _idoso(banco)["provas_adicionais"][0]["condicao"]
+    return banco
+
+
+def q_prova_adicional_sem_declarado_como(banco):
+    del _idoso(banco)["provas_adicionais"][0]["declarado_como"]
+    return banco
+
+
+def q_tarifa_com_prova_e_sem_se_nao_cumprir(banco):
+    """Aqui o motivo NAO substitui o campo, e esta quebra e a unica que mede isso:
+    ela deixa o `motivo_sem_se_nao_cumprir` no lugar, que e o que faria a trava
+    generica do esquema passar."""
+    f = _idoso(banco)
+    f["se_nao_cumprir"] = None
+    f["motivo_sem_se_nao_cumprir"] = "mundo de mutacao: a fonte nao diria."
+    return banco
+
+
+def q_resumo_de_provas_digitado(banco):
+    """O contador novo entra na mesma trava dos outros: numero que a ilha publica
+    sobre si mesma nasce contado."""
+    banco = sincronizar_resumo(banco)
+    banco["resumo"]["tarifas_com_prova_adicional"] = 99
+    return banco
+
+
 MUTACOES = [
     ("MUNDO preco por pessoa, escada de dias, crianca e temporada", mundo_por_pessoa, "passa", None),
     ("MUNDO preco por cabine", mundo_por_cabine, "passa", None),
@@ -1849,6 +1983,20 @@ MUTACOES = [
     ("elegibilidade sem se_nao_cumprir", q_elegibilidade_sem_se_nao_cumprir, "reprova", None, "motivo_sem_se_nao_cumprir"),
     ("elegibilidade com fonte que nao existe", q_elegibilidade_com_fonte_inexistente, "reprova", None, "nao existe em fontes"),
     ("rotulo de elegibilidade repetido na versao", q_rotulo_de_elegibilidade_repetido, "reprova", None, "repetido"),
+    # ---- provas_adicionais (esquema versao 9, 27/10/2026)
+    ("MUNDO tarifa com DUAS provas adicionais", mundo_duas_provas_a_mais, "passa", None),
+    ("provas_adicionais sem o campo", q_provas_adicionais_sem_o_campo, "reprova", None, "falta o campo `provas_adicionais`"),
+    ("provas_adicionais null sem motivo", q_provas_adicionais_null_sem_motivo, "reprova", None, "motivo_sem_provas_adicionais"),
+    ("provas_adicionais lista vazia", q_provas_adicionais_lista_vazia, "reprova", None, "lista NAO vazia"),
+    ("prova adicional fora do vocabulario", q_prova_adicional_fora_do_vocabulario, "reprova", None, "fora do vocabulario"),
+    ("prova adicional repetida na mesma tarifa", q_prova_adicional_repetida, "reprova", None, "repetido na mesma tarifa"),
+    ("prova adicional igual a prova do dono", q_prova_adicional_igual_a_do_dono, "reprova", None, "igual ao da propria elegibilidade"),
+    ("prova adicional declarando faixa de idade", q_prova_adicional_com_faixa_de_idade, "reprova", None, "declara uma faixa de idade"),
+    ("prova adicional sem se_nao_cumprir", q_prova_adicional_sem_se_nao_cumprir, "reprova", None, "sem `se_nao_cumprir`"),
+    ("prova adicional sem condicao", q_prova_adicional_sem_condicao, "reprova", None, "sem `condicao`"),
+    ("prova adicional sem declarado_como", q_prova_adicional_sem_declarado_como, "reprova", None, "sem `declarado_como`"),
+    ("tarifa com prova a mais e se_nao_cumprir vazio", q_tarifa_com_prova_e_sem_se_nao_cumprir, "reprova", None, "o motivo NAO substitui o campo"),
+    ("resumo de provas adicionais digitado", q_resumo_de_provas_digitado, "reprova", None, "tarifas_com_prova_adicional"),
     ("A SOMA PRESUMIDA: acumula null com faixa etaria na versao", q_soma_presumida_com_campo_null, "reprova", None, "nao sabe"),
     ("soma autorizada sem a frase da fonte", q_soma_autorizada_sem_frase_da_fonte, "reprova", None, "AUTORIZA somar"),
     ("elegibilidade sem o campo acumula_com_faixa_etaria", q_elegibilidade_sem_o_campo_acumula, "reprova", None, "a_soma_nao_se_presume"),
@@ -1860,6 +2008,9 @@ MUTACOES = [
     ("esquema sem a regra_da_elegibilidade", _intacto, "reprova", "sem_regra_da_elegibilidade", "regra_da_elegibilidade"),
     ("esquema sem a regra dos dois sentidos da troca", _intacto, "reprova", "sem_os_dois_sentidos", "idade_nunca_entra_em_elegibilidade"),
     ("esquema sem o vocabulario o_que_se_prova", _intacto, "reprova", "vocab_sem_o_que_se_prova", "fora do vocabulario"),
+    ("esquema sem o campo provas_adicionais na FAIXA_ETARIA", _intacto, "reprova", "sem_provas_na_faixa", "FAIXA_ETARIA.campos.provas_adicionais"),
+    ("esquema sem o campo provas_adicionais na ELEGIBILIDADE", _intacto, "reprova", "sem_provas_na_eleg", "ELEGIBILIDADE.campos.provas_adicionais"),
+    ("esquema sem a proibicao de idade em provas_adicionais", _intacto, "reprova", "provas_sem_proibicao_de_idade", "idade_nunca_entra_aqui"),
 ]
 
 
@@ -1924,6 +2075,12 @@ def esquema_para(mutacao):
         esquema["vocabularios"]["tipo_de_quarto"] = ["duplo", "triplo"]
     elif mutacao == "sem_entidade_elegibilidade":
         del esquema["entidades"]["ELEGIBILIDADE"]
+    elif mutacao == "sem_provas_na_faixa":
+        del esquema["entidades"]["FAIXA_ETARIA"]["campos"]["provas_adicionais"]
+    elif mutacao == "sem_provas_na_eleg":
+        del esquema["entidades"]["ELEGIBILIDADE"]["campos"]["provas_adicionais"]
+    elif mutacao == "provas_sem_proibicao_de_idade":
+        del esquema["entidades"]["FAIXA_ETARIA"]["campos"]["provas_adicionais"]["idade_nunca_entra_aqui"]
     elif mutacao == "eleg_sem_campo_na_versao":
         del esquema["entidades"]["VERSAO"]["campos"]["elegibilidade"]
     elif mutacao == "eleg_na_experiencia":

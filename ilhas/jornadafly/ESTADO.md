@@ -11,77 +11,80 @@ rede: BLOQUEADA em 2026-10-27   # 20.2, REMEDIDA as 16h2xZ e NAO herdada do camp
 ultima_ronda: null       # escrito pela Sentinela, nunca pela Fundacao (secao 2). `null` e a resposta certa e nao uma lacuna: pela decisao do Raphael de 28/09/2026, a ronda tecnica so alcanca ilha com URL servida, e esta ilha nao tem site. ACRESCENTADO EM 27/10/2026 pela carga do Bondinho: este cabecalho NUNCA teve este campo nem o `bloqueada_por` abaixo, e a regua de PRESENCA da secao 2 (a de 30/09/2026) os acusou nos dois. O despacho de 26/10 em `dados/despachos.md` afirma que a jornadafly estava COMPLETA — esta errado, e a errata esta no REGISTRO.md desta data.
 bloqueada_por: null      # obrigatorio pela secao 2. `null` DE PROPOSITO: a secao reserva o campo para dependencia humana que trava a ILHA, e o que falta aqui (egresso e passos 2 a 8) trava a FABRICA — isso se escreve no despacho, que e o canal da 12.2. Preenche-lo tiraria a ilha da rotacao da secao 1 e congelaria tambem os blocos que nao precisam de rede, que foram justamente os desta execucao.
 bloco_atual: |
-  A COLETA ANDOU COM A REDE FECHADA, e isso e o achado. Entrou o PARQUE BONDINHO PAO
-  DE ACUCAR — quinta experiencia, quinta cidade e a PRIMEIRA BRASILEIRA do banco —, e
-  com ela nasceu a entidade ELEGIBILIDADE: o preco de quem prova o que NAO e idade.
-  Esquema e banco na versao 8. 5 experiencias, 5 cidades, 16 versoes, 11 fontes, 13
-  faixas etarias, 2 elegibilidades, 11 declaracoes.
-  POR QUE A ELEGIBILIDADE NASCEU, e nasceu de DADO e nao de previsao: o operador vende
-  o MESMO Bilhete Bondinho por R$ 205, R$ 160 e R$ 89. O que muda nao e quantidade,
-  nem escopo, nem momento — os tres eixos que este esquema tinha. E QUEM COMPRA: R$ 160
-  de quem nasceu E mora no Brasil, R$ 89 de quem nasceu OU reside no estado do Rio.
-  `faixa_etaria` tambem nao servia, porque o esquema diz que o `se_nao_cumprir` dela e
-  "o que o operador cobra de quem nao prova a IDADE". Sem a entidade havia duas saidas
-  e as duas erradas: inventar um eixo que o operador nao vende, ou publicar os R$ 205
-  numa ilha em portugues do Brasil quando o operador cobra 28% MENOS do proprio leitor.
-  E ELA FECHA UMA DIVIDA DE 15/09/2026: o `motivo_sem_faixa_etaria` do Coliseu diz por
-  extenso que a divergencia sobre a gratuidade "nao entra em faixa_etaria porque
-  faixa_etaria guarda PRECO, e aqui o que existe e uma divergencia sobre quem tem
-  direito". QUEM TEM DIREITO e o que a ELEGIBILIDADE guarda. Segue null, porque as duas
-  fontes dela sao nivel 6 e o nivel 6 nao sustenta nada sozinho — mas a divida saiu de
-  prosa dentro de um motivo e passou a ter campo, nome e endereco de releitura.
-  A SOMA NAO SE PRESUME, E TEM NUMERO: `acumula_com_faixa_etaria` nasceu obrigatorio
-  porque metade de R$ 89 e R$ 44,50 e o operador cobra R$ 44 por crianca moradora do
-  Rio. Somar publicaria cinquenta centavos inventados numa conta que pareceria certa.
-  TRES DEFEITOS DA MESMA FAMILIA, em tres ferramentas, nenhum deles da elegibilidade:
-  (1) o contador `experiencias_com_preco_em_brl` do validar-banco.py vivia DENTRO do
-  ramo de ERRO da conferencia de moeda e publicava 0, que era a verdade por ACIDENTE;
-  (2) o teste-f1.py afirmava que "R$ nunca aparece": 288 frases de tela carregam R$
-  legitimamente hoje (contadas depois do conserto, varrendo a F1 de 1 a 12 pessoas) e ele
-  reprovava todas; (3) a f1-referencia.py somava IOF de 3,5% em TODA versao e publicou
-  R$ 144,90 num bilhete de R$ 140 — imposto de compra internacional numa compra que nao
-  sai do pais. O TERCEIRO E O PIOR: os dois primeiros erram alto, e esse cobrava do
-  leitor um imposto que ele nao paga, com a aritmetica certa. Os tres sao reguas
-  escritas num mundo sem real, as tres certas enquanto o mundo nao mudou.
-  O OPERADOR DISCORDA DE SI MESMO em QUATRO numeros (205/185, 89/80, 160/150, 285/295),
-  no mesmo dominio e no mesmo dia. A escada desta ilha resolve conflito ENTRE niveis e
-  nao previu a fonte que discorda DE SI: foi preciso quebra-la em duas fontes para a
-  divergencia poder ser gravada. O Acesso Rapido ficou com `preco: null` de proposito —
-  a `resolucao` e de UMA versao por experiencia, e preco errado por R$ 10 na pagina do
-  dinheiro custa mais que preco ausente com a causa escrita.
-  O ITEM 6 DA FILA DESTRAVOU: `bondinho.com.br` e o PRIMEIRO dos 25 candidatos com
-  ferramenta ofertavel (a F1). Era pre-registrado, com o dominio escrito pelo nome. O
-  criterio errou o ROTULO — ele pede "operador privado" e o Bondinho e
-  `concessionaria_de_bem_publico`, o mesmo tipo da SETE da Torre Eiffel, entao
-  `operador_privado` SEGUE SEM LASTRO. As tres condicoes que ele cobra de fato estao
-  cumpridas. E o que NAO destravou foi a rede: o degrau 4 da escada (operador lido por
-  BUSCA) nunca esteve travado, e tres execucoes fecharam em "nada elegivel" antes disto.
-  DUAS PRIMEIRAS a mais: primeiro preco em `BRL_do_operador` (vocabulario sem lastro
-  desde 14/09) — logo o primeiro total que chega ao leitor sem cambio, que esta pendente
-  — e primeiro `afiliado.url_produto` que e o MESMO produto do registro, em 43 dias de
-  tentativas.
-  NENHUM PORTAO NOVO NASCEU (31.2) e a bancada segue com TREZE comandos: a regua da
-  elegibilidade mora dentro do validar-banco.py, as quebras dentro do mutacoes-banco.py
-  e a da F1 dentro do teste-f1.py. BANCADA 0 FALHA NOS TREZE: mutacoes-banco de 154 para
-  178 casos, teste-f1 229.768 afirmacoes, mutacoes-f1 28, mutacoes-f2 51, mutacoes-f3 45,
-  teste-prospeccao 287, mutacoes-prospeccao 40.
-  O TREZE FOI MEDIDO DEPOIS DO COMMIT, E A TABELA DO REGISTRO DISSE ISSO ANTES DE DIZER
-  O RESULTADO: no commit 1facb42, as 17h09Z, o mutacoes-f3 ainda rodava e a linha dele
-  dizia "ainda rodando", nao "0 falha nos treze". Fechou as 17h10Z com 45 casos e 0
-  falha, e a linha foi reescrita pela mesma execucao. Escrever o numero redondo um minuto
-  antes seria o MESMO defeito que esta passada consertou tres vezes um andar abaixo.
-  As duas baterias longas quase nao couberam: a quinta cidade levou a grade da F2 de
-  3.077 para 3.846 estados, e elas somam mais de quinze minutos — rodaram em segundo
-  plano, com a reserva renovada pela 1.1 ANTES.
-  E a regua do `sem_extrator`, que nasceu em 22/10, REPROVOU na hora o vocabulario novo
-  sem extrator — primeira vez cobrada por um caso que nao era dela.
-  NADA FOI AO AR, E NAO PODIA: sem WordPress nao ha casca, Sync, /status nem URL.
-  A 31.1 vai de 4 em 14 para 4 em 15, dito sem maquiagem.
-  PROXIMO PASSO, E AGORA EXISTE UM DA FUNDACAO: a coleta por busca no degrau 4 funciona
-  com a rede fechada. O 5b pede 3 experiencias na mesma cidade e o Rio tem 1; o 5c pede
-  3 free tours com operador nomeado, e `free_tour` segue sem lastro. Do Raphael nao
-  mudou nada — e saiu da lista dele "o egresso destrava a coleta": ele destrava o
-  degrau 2, que e o preferido, mas o degrau 4 nunca esteve travado.
+  O DIA SEGUINTE DA ELEGIBILIDADE, em algumas horas. Entrou o TREM DO CORCOVADO —
+  sexta experiencia, SEGUNDA do Rio de Janeiro — e nasceu `provas_adicionais`: a
+  tarifa que exige MAIS DE UMA PROVA na porta. Esquema e banco na versao 9.
+  6 experiencias, 5 cidades, 17 versoes, 14 fontes, 16 faixas etarias, 5
+  elegibilidades, 14 declaracoes e 3 tarifas com prova adicional.
+  O DADO QUE NAO CABIA: o operador cobra R$ 70 de "idosos acima de 60 anos, APENAS
+  BRASILEIROS" e R$ 107 de estudante e de ID Jovem "apenas para brasileiros". A
+  versao 8 aprendeu O QUE se prova e supunha que se prova UMA coisa. As duas saidas
+  disponiveis mentiam: enfiar a nacionalidade na prosa de `condicao` da FAIXA_ETARIA
+  briga com o que o esquema diz dela desde 14/09 (o `se_nao_cumprir` dela e "o que o
+  operador cobra de quem nao prova a IDADE") e prometeria R$ 70 ao estrangeiro de 65
+  anos que paga R$ 134; chamar a tarifa inteira de ELEGIBILIDADE perderia a idade,
+  que e metade do preco.
+  CADA PROVA DIZ O QUE SE PAGA SEM ELA, e isso nasceu de um defeito desta passada: a
+  primeira versao da frase da F1 emprestava o `se_nao_cumprir` DA TARIFA e imprimiu
+  "sem isso, quem nao prova a IDADE paga R$ 134" para quem nao provou a
+  NACIONALIDADE. Aritmetica certa, pessoa errada — a familia do IOF somado a compra
+  que nao sai do pais, consertado nesta ilha poucas horas antes.
+  `condicao_de_deficiencia` e o quarto valor de `o_que_se_prova`, nascido no commit do
+  primeiro registro que o usa. NAO e `vinculo_declarado`: vinculo e relacao com
+  instituicao que pode acabar; deficiencia e condicao da pessoa, provada por laudo ou
+  cartao proprio — e chamar as duas pelo mesmo nome faria a tela PEDIR CARTEIRINHA DE
+  QUEM PRECISA DE LAUDO. Ela fecha a metade que o Bondinho recusou gravar na mesma
+  manha: aquela fonte empacotava idade, vinculo e deficiencia em "meia-entrada" sem
+  preco por categoria; ESTE operador desempacota. O que era ingravavel la e gravavel
+  aqui, e o que mudou foi a FONTE, nao a regra.
+  O DEFEITO DE VESPERA, E E O MAIS CARO DESTA PASSADA: `elegibilidade_da_versao`
+  nasceu hoje de manha, calcula as frases e as grava na resposta, e `imprimir()`
+  NUNCA AS IMPRIMIU. O leitor do Bondinho via "a promocional de brasileiro nao se
+  soma ao desconto por idade" — a recusa chegava a tela — SEM NUNCA VER QUE A
+  PROMOCIONAL EXISTE E CUSTA R$ 160 CONTRA R$ 205. Causa: `imprimir()` nao era
+  conferido por NENHUM portao. A afirmacao que nasceu e geral de proposito — toda
+  frase que a resposta manda para a tela tem de estar na tela.
+  A MESMA ASSINATURA UM ANDAR ABAIXO: a regua do `sem_extrator` (22/10) guarda
+  VOCABULARIO novo sem extrator e nao alcanca CAMPO novo que carrega vocabulario
+  velho. `provas_adicionais` nasceu usando `nacionalidade` em tres tarifas e o aviso
+  de lastro continuou dizendo que `nacionalidade` nao tinha registro que o usasse.
+  Consertado na mesma passada.
+  TRES VEZES O PORTAO DECIDIU, DUAS CONTRA MIM: (1) `acumula_com_faixa_etaria: null`
+  reprovado numa versao que TEM faixa etaria — virou `false`, e aqui a pergunta nao
+  custa dinheiro, porque estudante e R$ 107 e a faixa de 7 a 11 anos tambem; (2) a
+  `condicao` do ID Jovem dizia "de 15 a 29 anos" e foi reprovada pela regua de 27/10
+  — ela esta CERTA, porque aquela faixa e a regra com que o GOVERNO emite a carteira,
+  nao tarifa que o operador cobra por idade; o conserto foi no LUGAR DO DADO; (3) a
+  regua que EU escrevi varria `declarado_como` e reprovou duas tarifas certas —
+  `declarado_como` e CITACAO, e censurar a citacao para agradar ao portao e pior que
+  o defeito que ele procura.
+  PRIMEIRO REGISTRO SEM EIXO DE VERSAO: o operador vende UM produto e as seis linhas
+  que o site chama de "tipos de bilhete" dao o MESMO trem com o MESMO acesso. Por
+  isso ele, e nao o Bondinho, mostrou a lacuna — aqui o preco muda SO por quem compra.
+  A PERGUNTA DA LINGUA, que ninguem previu: as paginas do operador que a busca
+  devolveu nomeadas sao as de /en e /es. A pagina em PORTUGUES deste operador
+  brasileiro nao voltou em nenhuma das tres passadas. O numero vale (mesmo operador,
+  mesmo dominio, nivel 4) e a releitura tem de conferir primeiro a tabela em
+  portugues. Esta em `nota_da_lingua` da fonte.
+  A DIVERGENCIA QUE ESTE REGISTRO NAO DESEMPATA: travel.com.br diz R$ 122,50 de
+  adulto em "alta temporada" sem data de tabela, e R$ 67 de infantil "de 5 a 11
+  anos" (divergencia DUPLA: preco e recorte de faixa). A `regra_de_divergencia` da
+  autoridade so aos niveis 1 e 3 e a escada diz que "o nivel mais alto vence" — duas
+  leituras para nivel 4 contra nivel 6. Aqui as duas dao R$ 134, entao a pergunta
+  fica escrita na nota da versao 9 PARA O DIA EM QUE O NIVEL 6 PUBLICAR O MAIOR.
+  `url_produto` VOLTOU A SER null, e nao e regra nova: a plataforma devolveu
+  /br/rio-de-janeiro/tour-cristo-redentor-trem/ e o slug diz TOUR — a mesma decisao
+  do Angkor e do Coliseu. No Bondinho a pagina se chamava "Ingresso para o Pao de
+  Acucar" e por isso o campo deixou de ser null la. Mesma regra, outro produto.
+  A ARVORE FOI RECONTADA e o criterio do 5b NAO foi mexido: o Rio e a primeira cidade
+  deste banco com DUAS experiencias, e o criterio pre-registrado pede TRES. Fica
+  escrita uma pergunta que ele nao previu: a terceira mais facil de colher pelo mesmo
+  degrau 4 (as vans da Paineiras) e a terceira porta do MESMO monumento que o trem, e
+  a 7.4 proibe duas paginas na mesma consulta_alvo. Criterio escrito depois do dado e
+  criterio dobrado — a decisao provavel, escrita no ARVORE.md, e que trem e van sejam
+  UMA experiencia com duas versoes por ponto de embarque.
+  NADA FOI AO AR E NAO PODIA: sem WordPress nao ha casca, Sync, /status nem URL. A
+  31.1 vai de 4 em 15 para 4 em 16, dito sem maquiagem.
 ---
 
 # Estado da ilha JORNADAFLY
@@ -113,6 +116,13 @@ Espelho legível do estado do projeto. **Nunca guarde credencial aqui.**
   no mundo** e por isso é entrada do leitor.
 
 - **Blocos 3 e 4 — o banco e as três ferramentas como REGRA** (22/10/2026).
+  *(Esquema e banco na **versão 9** desde 27/10/2026, por duas cargas no mesmo dia: a
+  do **Parque Bondinho Pão de Açúcar** às 16h25Z, que fez nascer a entidade
+  `ELEGIBILIDADE` — o preço de quem prova o que não é idade —, e a do **Trem do
+  Corcovado** às 19h18Z, que fez nascer `provas_adicionais` — a tarifa que exige mais
+  de uma prova — e o valor `condicao_de_deficiencia`. São **6 experiências em 5
+  cidades**, e o Rio é a primeira cidade com duas. Ver as seções **9** e **10** da
+  `especificacao-calculadoras.md`.)*
   `dados/esquema-banco.json` e `dados/experiencias.json` na **versão 7**, com as
   entidades `EXPERIÊNCIA`, `FAIXA_DIÁRIA` e `COBERTURA_DO_PASSE`; e as três
   âncoras em `ferramentas/f1-referencia.py`, `f2-referencia.py` e

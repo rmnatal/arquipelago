@@ -33,7 +33,7 @@ prioridade dele muda e ninguém reescreve à mão. O portão reprova se achar
 A1 é o julgamento, que é o recorte da ilha. A3 é a paramétrica, que é a vaga da F1. B é onde a F2 mora. C é onde a F3 mora. FREE_TOUR é o bloco 5c. A2 é o único cluster em que a ilha escreveu, com todas as letras, que NÃO vai disputar — e é exatamente o cluster em que o OPERADOR aparece em primeiro (toureiffel.paris e bondinho.com.br, medidos em 14/09/2026). O mesmo achado que tirou a ilha da consulta é o que lhe entrega os candidatos.
 
 **A régua da oferta lê o BANCO, não esta lista.** A lista não oferece ferramenta que esta ilha não sabe servir, e quem decide isso é o BANCO, nunca este arquivo. `prospeccao-referencia.py` lê `dados/experiencias.json` e conta.
-Hoje o banco tem **5 experiências** e **16 versões**, com **3 operador(es) de poder
+Hoje o banco tem **6 experiências** e **17 versões**, com **3 operador(es) de poder
 público**, **0 faixa(s) diária(s)**, **0 passe(s) de cidade** e **0 cobertura(s) de passe**.
 
 ## O ACHADO DESTA PASSADA

@@ -642,6 +642,33 @@ def prestacao_de_contas(experiencia, versao_escolhida):
 # A FAIXA ETARIA, E AS TRES RECUSAS QUE ANTES ERAM UMA (especificacao 2.6)
 # ---------------------------------------------------------------------------
 
+def frase_das_provas_adicionais(item):
+    """A frase da tarifa que exige MAIS DE UMA PROVA (esquema versao 9, 27/10/2026).
+
+    Sem ela o campo existiria no banco e nao chegaria ao leitor, que e o defeito
+    que esta ilha mais paga: o Trem do Corcovado cobra R$ 70 de «idosos acima de 60
+    anos, APENAS BRASILEIROS», e uma tela que dissesse so «Idoso: R$ 70» prometeria
+    a tarifa brasileira ao estrangeiro de 65 anos, que paga R$ 134 no balcao. A
+    frase cita `declarado_como`, nunca parafraseia.
+    """
+    provas = item.get("provas_adicionais") or []
+    if not provas:
+        return None
+    pedacos = []
+    for prova in provas:
+        pedacos.append("%s (o operador escreve: «%s»). Sem essa prova, %s"
+                       % (prova.get("condicao") or "uma condição a mais",
+                          prova.get("declarado_como") or "",
+                          prova.get("se_nao_cumprir") or "esta tarifa não se aplica"))
+    # O `se_nao_cumprir` E DA PROVA, nunca o da tarifa. A primeira versao desta funcao,
+    # escrita horas antes nesta mesma passada, emprestava o da tarifa e imprimiu na tela
+    # «sem isso, quem nao prova a IDADE paga a tarifa Normal» para quem nao provou a
+    # NACIONALIDADE. A aritmetica estava certa e a pessoa era outra — a mesma familia do
+    # IOF somado a uma compra que nao sai do pais, consertado nesta ilha em 27/10/2026.
+    return "E não basta a condição desta tarifa: o operador exige também %s." % \
+        " E também: ".join(pedacos)
+
+
 def faixa_etaria_da_versao(versao):
     """Le a faixa DA VERSAO escolhida, nunca da experiencia.
 
@@ -654,6 +681,7 @@ def faixa_etaria_da_versao(versao):
 
     frases = []
     de_outro_bilhete = []
+    provas_a_mais = []
     if faixas:
         for f in faixas:
             if f.get("preco") is None:
@@ -666,6 +694,10 @@ def faixa_etaria_da_versao(versao):
             else:
                 frases.append("%s: %s neste bilhete."
                               % (f.get("rotulo"), dinheiro(f["preco"], f.get("moeda"))))
+            extra = frase_das_provas_adicionais(f)
+            if extra:
+                frases.append("%s — %s" % (f.get("rotulo"), extra))
+                provas_a_mais.append({"tarifa": f.get("rotulo"), "frase": extra})
             if f.get("numero_da_frase_e_de_outra_versao"):
                 de_outro_bilhete.append({
                     "faixa": f.get("rotulo"),
@@ -690,6 +722,7 @@ def faixa_etaria_da_versao(versao):
         "motivo_sem_faixa": versao.get("motivo_sem_faixa_etaria") if not faixas else None,
         "declaradas_e_nao_lidas": nao_lidas,
         "numero_de_outro_bilhete": de_outro_bilhete,
+        "provas_a_mais": provas_a_mais,
     }
 
 
@@ -724,6 +757,7 @@ def elegibilidade_da_versao(versao):
     elegs = versao.get("elegibilidade")
     frases = []
     nao_acumulam = []
+    provas_a_mais = []
     if elegs:
         for e in elegs:
             if e.get("preco") is None:
@@ -739,6 +773,10 @@ def elegibilidade_da_versao(versao):
                     % (e.get("rotulo"), dinheiro(e["preco"], e.get("moeda")),
                        e.get("condicao") or "a condição",
                        e.get("se_nao_cumprir") or "paga a tarifa cheia"))
+            extra = frase_das_provas_adicionais(e)
+            if extra:
+                frases.append("%s — %s" % (e.get("rotulo"), extra))
+                provas_a_mais.append({"tarifa": e.get("rotulo"), "frase": extra})
             if e.get("acumula_com_faixa_etaria") is False:
                 nao_acumulam.append({
                     "elegibilidade": e.get("rotulo"),
@@ -752,6 +790,7 @@ def elegibilidade_da_versao(versao):
         "frases": frases,
         "motivo_sem_elegibilidade": None if elegs else versao.get("motivo_sem_elegibilidade"),
         "nao_acumulam_com_faixa_etaria": nao_acumulam,
+        "provas_a_mais": provas_a_mais,
         # A conta NUNCA usa estes numeros. O campo existe para o portao poder afirmar
         # isso: ele confere que nenhum preco de elegibilidade aparece no total.
         "precos_que_a_conta_NAO_usa": [e.get("preco") for e in (elegs or [])
@@ -1165,6 +1204,18 @@ def imprimir(r):
         out.append("")
         out.append("IDADE:")
         for f in r["faixa_etaria"]["frases"]:
+            out.append("  - %s" % f)
+    # QUEM COMPRA — O BLOCO QUE A ENTIDADE ELEGIBILIDADE NAO TINHA (27/10/2026).
+    # Defeito medido nesta passada: a `elegibilidade_da_versao` nasceu ontem, grava as
+    # frases na resposta, e `imprimir` NUNCA as imprimia. O leitor do Bondinho via «a
+    # promocional de brasileiro nao se soma ao desconto por idade» sem nunca ver que a
+    # promocional existe e custa R$ 160 contra R$ 205 — a recusa chegava a tela e o
+    # dado que ela recusa somar nao. A metade mais importante da ilha para o leitor
+    # DELA estava calculada e muda.
+    if r["elegibilidade"]["frases"]:
+        out.append("")
+        out.append("QUEM COMPRA (o preço de quem prova o que não é idade):")
+        for f in r["elegibilidade"]["frases"]:
             out.append("  - %s" % f)
     out.append("")
     out.append("O QUE NÃO RESPONDEMOS (%d):" % len(r["recusas"]))

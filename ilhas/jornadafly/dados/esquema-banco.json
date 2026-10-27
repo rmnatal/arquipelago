@@ -509,6 +509,11 @@
               "tipo": "texto",
               "obrigatorio": true,
               "observacao": "a frase da fonte que exige a prova a mais, inteira."
+            },
+            "se_nao_cumprir": {
+              "tipo": "texto",
+              "obrigatorio": true,
+              "observacao": "o que o operador cobra de quem NAO prova esta prova a mais. Nasceu junto com o campo, em 27/10/2026, por um defeito medido na mesma passada: a primeira versao da frase da F1 emprestava o `se_nao_cumprir` da TARIFA, e saiu na tela «sem isso, quem nao prova a IDADE paga R$ 134» para quem nao provou a NACIONALIDADE. As duas provas tem consequencias diferentes e cada uma diz a sua."
             }
           },
           "observacao": "A tarifa que exige MAIS DE UMA PROVA na porta. No Trem do Corcovado a faixa de maior de 60 anos custa R$ 70 e o operador a declara «apenas para brasileiros»: a idade sozinha nao compra o bilhete. Sem este campo, a unica saida honesta seria enfiar a nacionalidade na prosa de `condicao` — e `se_nao_cumprir` desta entidade diz, desde 14/09/2026, que ela e «o que o operador cobra de quem nao prova a IDADE», o que faria a tela prometer R$ 70 ao estrangeiro de 65 anos que o operador cobra R$ 134. Lista vazia e proibida: ou ha prova a mais e ela esta aqui, ou o campo e null com o motivo escrito.",
@@ -913,6 +918,11 @@
               "tipo": "texto",
               "obrigatorio": true,
               "observacao": "a frase da fonte que exige a prova a mais, inteira."
+            },
+            "se_nao_cumprir": {
+              "tipo": "texto",
+              "obrigatorio": true,
+              "observacao": "o que o operador cobra de quem NAO prova esta prova a mais. Nasceu junto com o campo, em 27/10/2026, por um defeito medido na mesma passada: a primeira versao da frase da F1 emprestava o `se_nao_cumprir` da TARIFA, e saiu na tela «sem isso, quem nao prova a IDADE paga R$ 134» para quem nao provou a NACIONALIDADE. As duas provas tem consequencias diferentes e cada uma diz a sua."
             }
           },
           "observacao": "A tarifa que exige MAIS DE UMA PROVA na porta. No Trem do Corcovado a tarifa de estudante e a de ID Jovem custam R$ 107 e as duas exigem, por cima do vinculo, ser brasileiro — duas provas para um preco. Lista vazia e proibida: ou ha prova a mais e ela esta aqui, ou o campo e null com o motivo escrito.",
@@ -1071,7 +1081,7 @@
     "data": "2026-10-27",
     "nasceu_de": "A carga do Trem do Corcovado, segunda experiencia brasileira e segunda do Rio de Janeiro, lida por busca nas paginas do proprio operador (nivel 4). Ela trouxe DOIS fatos que o esquema versao 8 nao sabia escrever, e os dois sao sobre a porta: uma tarifa que exige MAIS DE UMA PROVA, e uma prova que o vocabulario nao tinha.",
     "o_que_entrou": [
-      "`provas_adicionais`, em FAIXA_ETARIA e em ELEGIBILIDADE: a lista das provas que o operador exige POR CIMA da propria faixa ou da propria condicao. Obrigatoria, com `motivo_sem_provas_adicionais` quando null.",
+      "`provas_adicionais`, em FAIXA_ETARIA e em ELEGIBILIDADE: a lista das provas que o operador exige POR CIMA da propria faixa ou da propria condicao, cada uma com o que se paga sem ela. Obrigatoria, com `motivo_sem_provas_adicionais` quando null.",
       "`condicao_de_deficiencia` no vocabulario de `o_que_se_prova`, nascida no commit do primeiro registro que a usa."
     ],
     "por_que_ela_e_a_irma_da_versao_8": "A versao 8 nasceu porque o preco mudava por QUEM COMPRA e o esquema so sabia escrever quantidade, escopo e momento. A versao 9 nasce um andar abaixo, na mesma pergunta: o esquema passou a saber QUE se prova e continuava supondo que se prova UMA coisa. O Bondinho cabia nessa suposicao — nascido e morador do Brasil e uma condicao com duas metades, e as duas se provam com o mesmo documento. O Trem do Corcovado nao cabe: idade e nacionalidade sao dois documentos, e o operador exige os dois para um preco.",

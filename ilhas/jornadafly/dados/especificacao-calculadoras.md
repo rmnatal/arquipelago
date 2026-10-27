@@ -1244,3 +1244,104 @@ em real, **por que** não há IOF, porque linha que não se aplica não some cal
 - **`declaração` não pode discordar de uma ELEGIBILIDADE**, só de uma VERSÃO. Três das sete
   declarações desta carga discordam de elegibilidades e ficaram com `versao: null`, o que
   pelo esquema as tira da resolução e as manda para a tela como conteúdo.
+
+---
+
+## 10. A TARIFA QUE EXIGE MAIS DE UMA PROVA — `provas_adicionais`, e o dia seguinte da seção 9 (27/10/2026)
+
+A seção 9 nasceu de manhã, com o Bondinho: o esquema aprendeu a escrever **o que se prova**
+na porta — residência, nacionalidade, vínculo — porque o mesmo bilhete custava R$ 205, R$ 160
+e R$ 89 conforme quem compra. **Esta seção é de algumas horas depois, e nasceu da carga
+seguinte**: o Trem do Corcovado mostrou que o esquema sabia escrever *o que* se prova e
+continuava supondo que se prova **uma coisa**.
+
+### 10.1 O dado que não cabia
+
+O operador cobra, nas páginas do próprio site lidas por busca em 27/10/2026:
+
+| tarifa | preço | o que se prova |
+|---|---|---|
+| Normal | R$ 134 | nada |
+| Criança de até 6 anos | grátis | idade (e documento da idade) |
+| Criança de 7 a 11 anos | R$ 107 | idade |
+| **Idoso acima de 60 anos** | **R$ 70** | **idade E nacionalidade** — a fonte escreve «apenas brasileiros» |
+| **Estudante** | **R$ 107** | **vínculo E nacionalidade** |
+| **ID Jovem** | **R$ 107** | **vínculo E nacionalidade** |
+| Pessoa com Deficiência (PcD) | R$ 107 | condição de deficiência |
+
+As três linhas em negrito **não tinham onde morar**, e as duas saídas disponíveis mentiam:
+
+- **Enfiar a nacionalidade na prosa de `condicao` da FAIXA_ETARIA** briga com o que o esquema
+  diz dela desde 14/09/2026 — `se_nao_cumprir` é *«o que o operador cobra de quem não prova a
+  IDADE»* — e faria a tela prometer **R$ 70 ao estrangeiro de 65 anos que paga R$ 134**. E a
+  régua `PADRAO_RESIDENCIA`, nascida na véspera, reprovaria a frase **com razão**.
+- **Chamar a tarifa inteira de ELEGIBILIDADE** perderia a idade, que é metade do preço.
+
+### 10.2 O campo, e o que ele cobra
+
+`provas_adicionais` é lista (ou `null` com motivo) em **FAIXA_ETARIA e em ELEGIBILIDADE**, e
+cada entrada traz quatro coisas: `o_que_se_prova`, `condicao`, **`se_nao_cumprir`** e
+`declarado_como`. O validador cobra, uma por uma: o campo presente; `null` com motivo; lista
+nunca vazia; vocabulário; nenhuma prova repetida na mesma tarifa; nenhuma prova **igual à da
+elegibilidade que a hospeda**; e **idade nunca entra aqui** — pela mesma razão que ela não
+está em `o_que_se_prova`.
+
+**E `se_nao_cumprir` nasceu junto com o campo por um defeito medido na mesma passada.** A
+primeira versão da frase da F1 emprestava o `se_nao_cumprir` **da tarifa**, e imprimiu na
+tela *«sem isso, quem não prova a IDADE paga R$ 134»* para quem não provou a
+**NACIONALIDADE**. A aritmética estava certa e a pessoa era outra — a mesma família do IOF
+somado a uma compra que não sai do país, consertado nesta ilha poucas horas antes. Cada prova
+diz o que se paga sem **ela**, e `teste-f1.py` afirma isso frase por frase.
+
+**E o `se_nao_cumprir` da TARIFA deixou de aceitar motivo quando há prova a mais.** No resto
+deste esquema «null com motivo é resposta»; aqui não: a tarifa que o operador cerca de duas
+provas é justamente a que mais barra gente no balcão, e publicar as duas exigências sem dizer
+o que se paga sem elas é a metade cara da frase faltando.
+
+### 10.3 `condicao_de_deficiencia`, e o que ela fecha
+
+O vocabulário de `o_que_se_prova` ganhou um quarto valor, no commit do primeiro registro que
+o usa. Ele **não** é `vinculo_declarado`, e a diferença não é de palavra: vínculo é relação
+com uma instituição que pode acabar — matrícula, cargo, cadastro —, e deficiência é condição
+da pessoa, provada por laudo ou por cartão próprio. **Chamar as duas pelo mesmo nome faria a
+tela pedir carteirinha de quem precisa de laudo.**
+
+E ele fecha, por cima, **a metade que o Bondinho recusou gravar na mesma manhã**: aquela fonte
+empacotava idade, vínculo e deficiência na palavra «meia-entrada», sem preço por categoria, e
+a leitura recusou gravar. Este operador **desempacota** — nomeia a categoria, o preço e os
+documentos de cada uma. **O que era ingravável lá é gravável aqui, e o que mudou foi a fonte,
+não a regra.**
+
+### 10.4 A faixa do PROGRAMA não é faixa de idade, e quem decidiu isso foi o portão
+
+A primeira versão desta carga escreveu, na `condicao` do ID Jovem, *«ser jovem brasileiro de
+15 a 29 anos inscrito no Cadastro Único»*. **O validador reprovou**, pela régua de 27/10 que
+proíbe condição de elegibilidade declarar faixa de idade — e ela está **certa**: a faixa de
+15 a 29 anos não é tarifa que o operador cobra por idade, é a regra com que o **governo**
+emite a carteira. Quem tem a carteira já cumpriu a idade por construção, e quem tem 20 anos e
+não está no Cadastro Único paga os R$ 134 cheios. A frase inteira da fonte continua em
+`declarado_como`, que é onde a tela cita. **O conserto foi no lugar do dado, não na régua.**
+
+### 10.5 O primeiro registro sem EIXO DE VERSÃO, e por que ele é o caso limpo da seção 9
+
+O operador vende **um** produto. As seis linhas que o site chama de «tipos de bilhete» dão o
+**mesmo** trem de ida e volta com o **mesmo** acesso ao monumento, por preço diferente
+conforme o que o comprador prova na porta. Então `eixo_das_versoes` é `null` — e o esquema já
+previa esse mundo desde 22/10, com `motivo_sem_eixo_das_versoes` obrigatório.
+
+**A seção 9 nasceu de um registro onde o preço mudava por quem compra ALÉM de mudar por
+escopo; esta é a mesma pergunta sem o ruído.** É por isso que ela, e não o Bondinho, foi quem
+mostrou a lacuna do esquema.
+
+### 10.6 O defeito que esta carga achou na F1, e ele é de VÉSPERA
+
+`elegibilidade_da_versao` nasceu em 27/10 de manhã, calcula as frases e as grava na resposta.
+**`imprimir()` nunca as imprimia.** O leitor do Bondinho via *«a promocional de brasileiro não
+se soma ao desconto por idade»* — a recusa chegava à tela — **sem nunca ver que a promocional
+existe e custa R$ 160 contra R$ 205**. A metade mais importante desta ilha para o leitor
+**dela** ficou calculada e muda.
+
+**Por que nada pegou:** `imprimir()` não era conferido por **nenhum** portão. A afirmação que
+nasceu aqui é geral de propósito — *toda frase que a resposta manda para a tela tem de estar
+na tela* — e é a mesma família da lista escrita à mão que esta ilha já matou duas vezes:
+**ela não erra alto, erra calada.**

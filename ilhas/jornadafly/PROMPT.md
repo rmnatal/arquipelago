@@ -178,12 +178,17 @@ Quando o site responder, siga a seção 11 do passo 9 em diante e a seção 14 (
 - **F2 — quanto custa N dias em `<cidade>`.** Entrada: dias, pessoas, padrão. Saída: hospedagem + alimentação + transporte local + experiências marcadas, cada linha com fonte e data. **Entra depois da F1**, porque é onde o `quantocustaviajar.com` já está — e só entra se for melhor: o diferencial é preço de experiência **colhido na fonte**, não média de blog.
 - **F3 — vale a pena o passe da cidade?** Entrada: as atrações pretendidas. Saída: soma dos avulsos × preço do passe, com o ponto de equilíbrio. Última, porque dois blogs já entregam a conta comparada.
 
-**3. MODELO DO BANCO.** *(Esquema e banco na **versão 8** desde 27/10/2026: **5
-experiências, 5 cidades, 16 versões, 11 fontes, 13 faixas etárias e 2 elegibilidades**.
-A quinta é o Parque Bondinho Pão de Açúcar — primeira experiência BRASILEIRA, primeiro
-preço em `BRL_do_operador`, primeiro `afiliado.url_produto` que é o mesmo produto do
-registro, e a que fez nascer a entidade ELEGIBILIDADE. Ver a seção 9 da
-`especificacao-calculadoras.md`.)*
+**3. MODELO DO BANCO.** *(Esquema e banco na **versão 9** desde 27/10/2026: **6
+experiências, 5 cidades, 17 versões, 14 fontes, 16 faixas etárias, 5 elegibilidades e 3
+tarifas que exigem MAIS DE UMA PROVA**. A quinta é o Parque Bondinho Pão de Açúcar —
+primeira experiência BRASILEIRA, primeiro preço em `BRL_do_operador`, primeiro
+`afiliado.url_produto` que é o mesmo produto do registro, e a que fez nascer a entidade
+ELEGIBILIDADE (seção 9 da `especificacao-calculadoras.md`). A sexta é o **Trem do
+Corcovado**, segunda do Rio de Janeiro e **a primeira sem eixo de versão nenhum**: o
+operador vende UM produto e a tabela inteira de preços é sobre quem compra. Ela fez
+nascer `provas_adicionais` — a tarifa que exige duas provas, como o «idoso acima de 60
+anos, APENAS BRASILEIROS» de R$ 70 — e o valor `condicao_de_deficiencia` no vocabulário
+de `o_que_se_prova`. Ver a seção **10**.)*
 Entidade **EXPERIÊNCIA**: `experiencia`, `cidade`, `pais`, `operador`, `url_operador`, `preco`, `moeda`, **`data_leitura`** (obrigatória **e visível na página**), `duracao`, `inclui[]`, `nao_inclui[]`, `temporada`, `faixa_etaria`, `imagem`, `afiliado.url` + `afiliado.programa`. `afiliado.url` **nasce presente e vazio** e a ilha reporta em todo bloco quantos itens esperam link.
 **A regra de preço é a do Clube do Mosaico: preço nunca cravado como atual — ou sem preço, ou com a data da coleta.** O link de afiliado nunca substitui a URL de origem do dado.
 **Cópia obrigatória (seção 24):** dado que só existe no site nasce com cópia no repositório. **Aqui isso importa mais que em qualquer outra ilha, porque o preço coletado É o produto.**

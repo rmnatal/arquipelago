@@ -348,6 +348,9 @@ def validar(esquema, banco, constantes=None, hoje=None):
              "prova uma condicao que NAO E IDADE — residencia, nacionalidade, vinculo. "
              "Sem a forma declarada, cada carga inventa a sua e o preco de brasileiro vai "
              "para `faixa_etaria`, que e o campo da idade.")
+    _ents = esquema.get("entidades") or {}
+    campos_faixa = (_ents.get("FAIXA_ETARIA") or {}).get("campos") or {}
+    campos_eleg_ent = (_ents.get("ELEGIBILIDADE") or {}).get("campos") or {}
     eleg_esquema = campos_versao.get("elegibilidade") if isinstance(campos_versao, dict) else None
     if not isinstance(eleg_esquema, dict) or not eleg_esquema.get("null_exige"):
         erro("esquema: `entidades.VERSAO.campos.elegibilidade` ausente ou sem "
@@ -358,6 +361,22 @@ def validar(esquema, banco, constantes=None, hoje=None):
              "da VERSAO pelo mesmo motivo da faixa etaria: no Bondinho a promocional de "
              "brasileiro existe no Bilhete Bondinho e NAO existe nas tarifas que ja sao "
              "promocionais.")
+    # ---- `provas_adicionais` (esquema versao 9, 27/10/2026): a tarifa de duas provas
+    for _ent, _campos in (("FAIXA_ETARIA", campos_faixa), ("ELEGIBILIDADE", campos_eleg_ent)):
+        _p = _campos.get("provas_adicionais") if isinstance(_campos, dict) else None
+        if not isinstance(_p, dict) or not _p.get("null_exige"):
+            erro("esquema: `entidades.%s.campos.provas_adicionais` ausente ou sem "
+                 "`null_exige`. E o campo da tarifa que exige MAIS DE UMA PROVA — o Trem "
+                 "do Corcovado cobra R$ 70 de «idosos acima de 60 anos, apenas "
+                 "brasileiros» —, e sem `null_exige` a ausencia de prova a mais fica muda, "
+                 "que e a forma de lacuna que esta ilha mais paga: ela se comporta como o "
+                 "valor certo e espera o dia em que o valor certo muda." % _ent)
+        elif not _p.get("idade_nunca_entra_aqui"):
+            erro("esquema: `entidades.%s.campos.provas_adicionais` sem "
+                 "`idade_nunca_entra_aqui`. A regua reprova prova adicional que declare "
+                 "faixa de idade e le essa proibicao do esquema, nunca de dentro de si "
+                 "(secao 26.2)." % _ent)
+
     regra_eleg = esquema.get("regra_da_elegibilidade")
     if not isinstance(regra_eleg, dict):
         erro("esquema: falta `regra_da_elegibilidade`. E dela que esta regua le a "
@@ -432,10 +451,16 @@ def validar(esquema, banco, constantes=None, hoje=None):
             erro("%s: `provas_adicionais` tem de ser lista NAO vazia ou null com "
                  "motivo. Lista vazia nao diz qual das duas coisas aconteceu." % onde)
             return 0
-        if not item.get("se_nao_cumprir") and not item.get("motivo_sem_se_nao_cumprir"):
-            erro("%s: tarifa com `provas_adicionais` e sem `se_nao_cumprir`. A prova a "
-                 "mais e exatamente o que barra o comprador no balcao: quem le precisa "
-                 "saber o que paga sem ela." % onde)
+        if not item.get("se_nao_cumprir"):
+            # E O MOTIVO NAO SERVE AQUI, ao contrario do resto do esquema. `null com
+            # motivo e resposta` vale para o que a fonte pode nao declarar; uma tarifa
+            # que o operador cerca de DUAS provas e justamente a que mais barra gente no
+            # balcao, e publicar as duas exigencias sem dizer o que se paga sem elas e a
+            # metade cara da frase faltando.
+            erro("%s: tarifa com `provas_adicionais` e com `se_nao_cumprir` vazio. Aqui "
+                 "o motivo NAO substitui o campo: a tarifa que exige duas provas e a que "
+                 "mais barra no balcao, e quem le precisa saber o que paga sem elas."
+                 % onde)
         vistas = set()
         for i, prova in enumerate(provas):
             ondep = "%s/provas_adicionais/%d" % (onde, i)
@@ -458,6 +483,11 @@ def validar(esquema, banco, constantes=None, hoje=None):
             if not prova.get("condicao"):
                 erro("%s: entrada de `provas_adicionais` sem `condicao`. Prova a mais "
                      "sem dizer o que se prova e exigencia muda." % ondep)
+            if not prova.get("se_nao_cumprir"):
+                erro("%s: entrada de `provas_adicionais` sem `se_nao_cumprir`. Cada prova "
+                     "diz o que se paga sem ELA: emprestar o `se_nao_cumprir` da tarifa "
+                     "faz a tela dizer «quem nao prova a idade paga R$ 134» a quem nao "
+                     "provou a nacionalidade, que e outra pessoa e outro numero." % ondep)
             if not prova.get("declarado_como"):
                 erro("%s: entrada de `provas_adicionais` sem `declarado_como`. A tela "
                      "cita a frase que exige a prova a mais, nunca a parafraseia — e e "

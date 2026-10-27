@@ -19,23 +19,23 @@
   "DESCONTO COM TETO E FAIXA, NAO NUMERO. «Ate 50%» entrega de zero a metade do avulso, e a F3 publica as duas pontas. E a mesma troca do `o_que_o_numero_e` da FAIXA_DIARIA: o que sai da prosa para o campo nao e o numero, e O QUE O NUMERO E."
  ],
  "acentuacao": "Toda frase deste arquivo e destinada a TELA e por isso sai ACENTUADA, e a concordancia tambem: a primeira versao desta ferramenta publicou «1 atracao em Veneza CUSTAM» e «dentro das 1 atracao», e foi a leitura da frase que viu — a terceira vez que esta pasta paga a concordancia.",
- "por_que_o_arquivo_nao_traz_todos_os_estados": "A F3 serve 1297 estados e este arquivo grava 97: a grade da tabela pre-renderizada mais TODAS as bordas. Os 1297 estados sao varridos em cada passada do portao (ferramentas/teste-f3.py), com a aritmetica refeita a mao em Fraction, e e la que a grade inteira e provada — nao aqui. O dominio desta ferramenta cresce em 2^n - 1 com o numero de atracoes lidas numa cidade, entao gravar tudo seria pagar peso de repositorio por uma prova que nao esta no arquivo.",
+ "por_que_o_arquivo_nao_traz_todos_os_estados": "A F3 serve 1801 estados e este arquivo grava 121: a grade da tabela pre-renderizada mais TODAS as bordas. Os 1801 estados sao varridos em cada passada do portao (ferramentas/teste-f3.py), com a aritmetica refeita a mao em Fraction, e e la que a grade inteira e provada — nao aqui. O dominio desta ferramenta cresce em 2^n - 1 com o numero de atracoes lidas numa cidade, entao gravar tudo seria pagar peso de repositorio por uma prova que nao esta no arquivo.",
  "resumo": {
   "cidades": 5,
   "passes_no_banco": 0,
   "coberturas_no_banco": 0,
-  "estados": 1297,
-  "estados_gravados": 97,
-  "estados_com_conta": 1260,
+  "estados": 1801,
+  "estados_gravados": 121,
+  "estados_com_conta": 1764,
   "estados_recusados_na_borda": 37,
-  "estados_com_soma_de_avulsos": 1260,
+  "estados_com_soma_de_avulsos": 1764,
   "estados_com_passe_lido": 0,
   "estados_com_veredito": 0,
-  "linhas_da_tabela": 60,
+  "linhas_da_tabela": 84,
   "vereditos_por_codigo": {},
   "recusas_por_codigo": {
-   "sem_passe_lido": 1260,
-   "sem_valor_em_real": 1260,
+   "sem_passe_lido": 1764,
+   "sem_valor_em_real": 1764,
    "preco_lido_e_nao_reconferido": 252
   },
   "recusas_duras_por_codigo": {
@@ -1013,6 +1013,402 @@
    "dias": 21,
    "pessoas": 4,
    "avulsos": "R$ 260 a R$ 820",
+   "passes_lidos": 0,
+   "vereditos": [],
+   "recusas": [
+    "sem_passe_lido",
+    "sem_valor_em_real"
+   ]
+  },
+  {
+   "cidade": "Rio de Janeiro",
+   "atracoes": [
+    "rio-de-janeiro-trem-do-corcovado"
+   ],
+   "quantas_atracoes": 1,
+   "dias": 1,
+   "pessoas": 1,
+   "avulsos": "R$ 134",
+   "passes_lidos": 0,
+   "vereditos": [],
+   "recusas": [
+    "sem_passe_lido",
+    "sem_valor_em_real"
+   ]
+  },
+  {
+   "cidade": "Rio de Janeiro",
+   "atracoes": [
+    "rio-de-janeiro-trem-do-corcovado"
+   ],
+   "quantas_atracoes": 1,
+   "dias": 1,
+   "pessoas": 2,
+   "avulsos": "R$ 268",
+   "passes_lidos": 0,
+   "vereditos": [],
+   "recusas": [
+    "sem_passe_lido",
+    "sem_valor_em_real"
+   ]
+  },
+  {
+   "cidade": "Rio de Janeiro",
+   "atracoes": [
+    "rio-de-janeiro-trem-do-corcovado"
+   ],
+   "quantas_atracoes": 1,
+   "dias": 1,
+   "pessoas": 4,
+   "avulsos": "R$ 536",
+   "passes_lidos": 0,
+   "vereditos": [],
+   "recusas": [
+    "sem_passe_lido",
+    "sem_valor_em_real"
+   ]
+  },
+  {
+   "cidade": "Rio de Janeiro",
+   "atracoes": [
+    "rio-de-janeiro-trem-do-corcovado"
+   ],
+   "quantas_atracoes": 1,
+   "dias": 3,
+   "pessoas": 1,
+   "avulsos": "R$ 134",
+   "passes_lidos": 0,
+   "vereditos": [],
+   "recusas": [
+    "sem_passe_lido",
+    "sem_valor_em_real"
+   ]
+  },
+  {
+   "cidade": "Rio de Janeiro",
+   "atracoes": [
+    "rio-de-janeiro-trem-do-corcovado"
+   ],
+   "quantas_atracoes": 1,
+   "dias": 3,
+   "pessoas": 2,
+   "avulsos": "R$ 268",
+   "passes_lidos": 0,
+   "vereditos": [],
+   "recusas": [
+    "sem_passe_lido",
+    "sem_valor_em_real"
+   ]
+  },
+  {
+   "cidade": "Rio de Janeiro",
+   "atracoes": [
+    "rio-de-janeiro-trem-do-corcovado"
+   ],
+   "quantas_atracoes": 1,
+   "dias": 3,
+   "pessoas": 4,
+   "avulsos": "R$ 536",
+   "passes_lidos": 0,
+   "vereditos": [],
+   "recusas": [
+    "sem_passe_lido",
+    "sem_valor_em_real"
+   ]
+  },
+  {
+   "cidade": "Rio de Janeiro",
+   "atracoes": [
+    "rio-de-janeiro-trem-do-corcovado"
+   ],
+   "quantas_atracoes": 1,
+   "dias": 7,
+   "pessoas": 1,
+   "avulsos": "R$ 134",
+   "passes_lidos": 0,
+   "vereditos": [],
+   "recusas": [
+    "sem_passe_lido",
+    "sem_valor_em_real"
+   ]
+  },
+  {
+   "cidade": "Rio de Janeiro",
+   "atracoes": [
+    "rio-de-janeiro-trem-do-corcovado"
+   ],
+   "quantas_atracoes": 1,
+   "dias": 7,
+   "pessoas": 2,
+   "avulsos": "R$ 268",
+   "passes_lidos": 0,
+   "vereditos": [],
+   "recusas": [
+    "sem_passe_lido",
+    "sem_valor_em_real"
+   ]
+  },
+  {
+   "cidade": "Rio de Janeiro",
+   "atracoes": [
+    "rio-de-janeiro-trem-do-corcovado"
+   ],
+   "quantas_atracoes": 1,
+   "dias": 7,
+   "pessoas": 4,
+   "avulsos": "R$ 536",
+   "passes_lidos": 0,
+   "vereditos": [],
+   "recusas": [
+    "sem_passe_lido",
+    "sem_valor_em_real"
+   ]
+  },
+  {
+   "cidade": "Rio de Janeiro",
+   "atracoes": [
+    "rio-de-janeiro-trem-do-corcovado"
+   ],
+   "quantas_atracoes": 1,
+   "dias": 21,
+   "pessoas": 1,
+   "avulsos": "R$ 134",
+   "passes_lidos": 0,
+   "vereditos": [],
+   "recusas": [
+    "sem_passe_lido",
+    "sem_valor_em_real"
+   ]
+  },
+  {
+   "cidade": "Rio de Janeiro",
+   "atracoes": [
+    "rio-de-janeiro-trem-do-corcovado"
+   ],
+   "quantas_atracoes": 1,
+   "dias": 21,
+   "pessoas": 2,
+   "avulsos": "R$ 268",
+   "passes_lidos": 0,
+   "vereditos": [],
+   "recusas": [
+    "sem_passe_lido",
+    "sem_valor_em_real"
+   ]
+  },
+  {
+   "cidade": "Rio de Janeiro",
+   "atracoes": [
+    "rio-de-janeiro-trem-do-corcovado"
+   ],
+   "quantas_atracoes": 1,
+   "dias": 21,
+   "pessoas": 4,
+   "avulsos": "R$ 536",
+   "passes_lidos": 0,
+   "vereditos": [],
+   "recusas": [
+    "sem_passe_lido",
+    "sem_valor_em_real"
+   ]
+  },
+  {
+   "cidade": "Rio de Janeiro",
+   "atracoes": [
+    "rio-de-janeiro-bondinho-pao-de-acucar",
+    "rio-de-janeiro-trem-do-corcovado"
+   ],
+   "quantas_atracoes": 2,
+   "dias": 1,
+   "pessoas": 1,
+   "avulsos": "R$ 199 a R$ 339",
+   "passes_lidos": 0,
+   "vereditos": [],
+   "recusas": [
+    "sem_passe_lido",
+    "sem_valor_em_real"
+   ]
+  },
+  {
+   "cidade": "Rio de Janeiro",
+   "atracoes": [
+    "rio-de-janeiro-bondinho-pao-de-acucar",
+    "rio-de-janeiro-trem-do-corcovado"
+   ],
+   "quantas_atracoes": 2,
+   "dias": 1,
+   "pessoas": 2,
+   "avulsos": "R$ 398 a R$ 678",
+   "passes_lidos": 0,
+   "vereditos": [],
+   "recusas": [
+    "sem_passe_lido",
+    "sem_valor_em_real"
+   ]
+  },
+  {
+   "cidade": "Rio de Janeiro",
+   "atracoes": [
+    "rio-de-janeiro-bondinho-pao-de-acucar",
+    "rio-de-janeiro-trem-do-corcovado"
+   ],
+   "quantas_atracoes": 2,
+   "dias": 1,
+   "pessoas": 4,
+   "avulsos": "R$ 796 a R$ 1.356",
+   "passes_lidos": 0,
+   "vereditos": [],
+   "recusas": [
+    "sem_passe_lido",
+    "sem_valor_em_real"
+   ]
+  },
+  {
+   "cidade": "Rio de Janeiro",
+   "atracoes": [
+    "rio-de-janeiro-bondinho-pao-de-acucar",
+    "rio-de-janeiro-trem-do-corcovado"
+   ],
+   "quantas_atracoes": 2,
+   "dias": 3,
+   "pessoas": 1,
+   "avulsos": "R$ 199 a R$ 339",
+   "passes_lidos": 0,
+   "vereditos": [],
+   "recusas": [
+    "sem_passe_lido",
+    "sem_valor_em_real"
+   ]
+  },
+  {
+   "cidade": "Rio de Janeiro",
+   "atracoes": [
+    "rio-de-janeiro-bondinho-pao-de-acucar",
+    "rio-de-janeiro-trem-do-corcovado"
+   ],
+   "quantas_atracoes": 2,
+   "dias": 3,
+   "pessoas": 2,
+   "avulsos": "R$ 398 a R$ 678",
+   "passes_lidos": 0,
+   "vereditos": [],
+   "recusas": [
+    "sem_passe_lido",
+    "sem_valor_em_real"
+   ]
+  },
+  {
+   "cidade": "Rio de Janeiro",
+   "atracoes": [
+    "rio-de-janeiro-bondinho-pao-de-acucar",
+    "rio-de-janeiro-trem-do-corcovado"
+   ],
+   "quantas_atracoes": 2,
+   "dias": 3,
+   "pessoas": 4,
+   "avulsos": "R$ 796 a R$ 1.356",
+   "passes_lidos": 0,
+   "vereditos": [],
+   "recusas": [
+    "sem_passe_lido",
+    "sem_valor_em_real"
+   ]
+  },
+  {
+   "cidade": "Rio de Janeiro",
+   "atracoes": [
+    "rio-de-janeiro-bondinho-pao-de-acucar",
+    "rio-de-janeiro-trem-do-corcovado"
+   ],
+   "quantas_atracoes": 2,
+   "dias": 7,
+   "pessoas": 1,
+   "avulsos": "R$ 199 a R$ 339",
+   "passes_lidos": 0,
+   "vereditos": [],
+   "recusas": [
+    "sem_passe_lido",
+    "sem_valor_em_real"
+   ]
+  },
+  {
+   "cidade": "Rio de Janeiro",
+   "atracoes": [
+    "rio-de-janeiro-bondinho-pao-de-acucar",
+    "rio-de-janeiro-trem-do-corcovado"
+   ],
+   "quantas_atracoes": 2,
+   "dias": 7,
+   "pessoas": 2,
+   "avulsos": "R$ 398 a R$ 678",
+   "passes_lidos": 0,
+   "vereditos": [],
+   "recusas": [
+    "sem_passe_lido",
+    "sem_valor_em_real"
+   ]
+  },
+  {
+   "cidade": "Rio de Janeiro",
+   "atracoes": [
+    "rio-de-janeiro-bondinho-pao-de-acucar",
+    "rio-de-janeiro-trem-do-corcovado"
+   ],
+   "quantas_atracoes": 2,
+   "dias": 7,
+   "pessoas": 4,
+   "avulsos": "R$ 796 a R$ 1.356",
+   "passes_lidos": 0,
+   "vereditos": [],
+   "recusas": [
+    "sem_passe_lido",
+    "sem_valor_em_real"
+   ]
+  },
+  {
+   "cidade": "Rio de Janeiro",
+   "atracoes": [
+    "rio-de-janeiro-bondinho-pao-de-acucar",
+    "rio-de-janeiro-trem-do-corcovado"
+   ],
+   "quantas_atracoes": 2,
+   "dias": 21,
+   "pessoas": 1,
+   "avulsos": "R$ 199 a R$ 339",
+   "passes_lidos": 0,
+   "vereditos": [],
+   "recusas": [
+    "sem_passe_lido",
+    "sem_valor_em_real"
+   ]
+  },
+  {
+   "cidade": "Rio de Janeiro",
+   "atracoes": [
+    "rio-de-janeiro-bondinho-pao-de-acucar",
+    "rio-de-janeiro-trem-do-corcovado"
+   ],
+   "quantas_atracoes": 2,
+   "dias": 21,
+   "pessoas": 2,
+   "avulsos": "R$ 398 a R$ 678",
+   "passes_lidos": 0,
+   "vereditos": [],
+   "recusas": [
+    "sem_passe_lido",
+    "sem_valor_em_real"
+   ]
+  },
+  {
+   "cidade": "Rio de Janeiro",
+   "atracoes": [
+    "rio-de-janeiro-bondinho-pao-de-acucar",
+    "rio-de-janeiro-trem-do-corcovado"
+   ],
+   "quantas_atracoes": 2,
+   "dias": 21,
+   "pessoas": 4,
+   "avulsos": "R$ 796 a R$ 1.356",
    "passes_lidos": 0,
    "vereditos": [],
    "recusas": [
@@ -4891,6 +5287,1458 @@
       "motivo_sem_url": "Nenhuma das páginas foi lida, e aqui as DUAS portas desta nuvem foram medidas na mesma passada de 27/10/2026, o que é mais do que as coletas anteriores fizeram. Pelo curl: bondinho.com.br, www.bondinho.com.br, parquebondinho.com.br e ingressos.bondinho.com.br todos em 000, com CONNECT recusado por política — o `__agentproxy/status` desta nuvem devolve, com todas as letras, «gateway answered 403 to CONNECT (policy denial or upstream failure)». Pelo WebFetch: `getaddrinfo ENOTFOUND` em www.bondinho.com.br e em bondinho.com.br. É por isso que esta fonte é nível 4 (operador lido por busca) e não nível 2 (operador lido no endereço dele) — a mesma distância que separa o nível 3 do 1, e o nível 2 continua sendo o degrau que o critério de entrada desta ilha PREFERE e que ela nunca alcançou.",
       "data_leitura": "2026-10-27",
       "frase": "Parque Bondinho Pão de Açúcar — o bilhete do teleférico — Parque Bondinho Pão de Açúcar, a empresa que opera o teleférico do Morro da Urca e do Pão de Açúcar e vende o bilhete em bondinho.com.br, em 27/10/2026."
+     }
+    ],
+    "preco_dos_passes": [],
+    "cobertura_dos_passes": [],
+    "frase": "Nada nesta página é faixa de terceiro: o preço de cada atração, o preço de cada passe e a cobertura de cada passe foram lidos na fonte de quem opera ou de quem fixa a tarifa, e cada um traz a data da sua leitura. São três leituras diferentes, e a cobertura é a que envelhece primeiro — é ela que muda quando um passe troca a regra de reserva."
+   }
+  },
+  {
+   "estado": {
+    "cidade": "rio-de-janeiro",
+    "atracoes": [
+     "rio-de-janeiro-trem-do-corcovado"
+    ],
+    "dias": 1,
+    "pessoas": 1
+   },
+   "recusa_dura": null,
+   "frase_resposta": "1 atração em Rio de Janeiro custa R$ 134 para 1 pessoa, pelos ingressos avulsos. Esta ilha ainda não leu nenhum passe desta cidade, então ela não diz se um passe sairia mais barato — ela diz quanto custa o caminho que ela leu.",
+   "avulsos": {
+    "minimo": "134",
+    "maximo": "134",
+    "moeda": "BRL_do_operador",
+    "escrito": "R$ 134",
+    "quantas": 1,
+    "multiplicador": "1 pessoa, uma vez cada atração",
+    "detalhe": [
+     "Trem do Corcovado — o bilhete de trem com acesso ao Cristo Redentor: R$ 134, «O bilhete Normal, a tarifa inteira: trem de ida e volta com o acesso ao Cristo Redentor incluído», a única versão que esta ilha leu."
+    ],
+    "procedencia": "nossa",
+    "frase_de_procedencia": "Todo preço desta página foi lido no site de quem opera ou de quem fixa a tarifa, com a data da leitura ao lado. Nenhum número aqui é faixa de terceiro."
+   },
+   "passes": [],
+   "recusas": [
+    {
+     "codigo": "sem_passe_lido",
+     "frase": "Esta ilha ainda não leu nenhum passe de Rio de Janeiro. Isso não quer dizer que Rio de Janeiro não tenha passe: quer dizer que esta ilha não leu o preço de nenhum na fonte de quem o vende, e ela não publica passe que não leu. A conta acima é a dos ingressos avulsos, e ela já responde à metade da sua pergunta."
+    },
+    {
+     "codigo": "sem_valor_em_real",
+     "frase": "Os valores desta página estão em BRL_do_operador, que é a moeda cobrada em Rio de Janeiro. Esta ilha ainda não tem uma cotação datada para converter, e preço convertido sem dizer a data do câmbio envelhece sem avisar."
+    }
+   ],
+   "como_sabemos": {
+    "cidade": "Rio de Janeiro",
+    "pais": "Brasil",
+    "moeda": "BRL_do_operador",
+    "preco_das_atracoes": [
+     {
+      "atracao": "Trem do Corcovado — o bilhete de trem com acesso ao Cristo Redentor",
+      "autor": "Concessionária Trem do Corcovado, a empresa que opera o trem desde a estação de Cosme Velho e vende o bilhete pelo próprio site",
+      "documento": "as páginas «Informações Úteis», «Ingressos», «Política de Compra» e «Política de Remarcação de Bilhetes» do site do operador, nomeadas uma por uma em três passadas de busca",
+      "url": "https://www.tremdocorcovado.rio/en/institucional/informacoes-uteis",
+      "motivo_sem_url": null,
+      "data_leitura": "2026-10-27",
+      "frase": "Trem do Corcovado — o bilhete de trem com acesso ao Cristo Redentor — Concessionária Trem do Corcovado, a empresa que opera o trem desde a estação de Cosme Velho e vende o bilhete pelo próprio site, em 27/10/2026."
+     }
+    ],
+    "preco_dos_passes": [],
+    "cobertura_dos_passes": [],
+    "frase": "Nada nesta página é faixa de terceiro: o preço de cada atração, o preço de cada passe e a cobertura de cada passe foram lidos na fonte de quem opera ou de quem fixa a tarifa, e cada um traz a data da sua leitura. São três leituras diferentes, e a cobertura é a que envelhece primeiro — é ela que muda quando um passe troca a regra de reserva."
+   }
+  },
+  {
+   "estado": {
+    "cidade": "rio-de-janeiro",
+    "atracoes": [
+     "rio-de-janeiro-trem-do-corcovado"
+    ],
+    "dias": 1,
+    "pessoas": 2
+   },
+   "recusa_dura": null,
+   "frase_resposta": "1 atração em Rio de Janeiro custa R$ 268 para 2 pessoas, pelos ingressos avulsos. Esta ilha ainda não leu nenhum passe desta cidade, então ela não diz se um passe sairia mais barato — ela diz quanto custa o caminho que ela leu.",
+   "avulsos": {
+    "minimo": "268",
+    "maximo": "268",
+    "moeda": "BRL_do_operador",
+    "escrito": "R$ 268",
+    "quantas": 1,
+    "multiplicador": "2 pessoas, uma vez cada atração",
+    "detalhe": [
+     "Trem do Corcovado — o bilhete de trem com acesso ao Cristo Redentor: R$ 268, «O bilhete Normal, a tarifa inteira: trem de ida e volta com o acesso ao Cristo Redentor incluído», a única versão que esta ilha leu."
+    ],
+    "procedencia": "nossa",
+    "frase_de_procedencia": "Todo preço desta página foi lido no site de quem opera ou de quem fixa a tarifa, com a data da leitura ao lado. Nenhum número aqui é faixa de terceiro."
+   },
+   "passes": [],
+   "recusas": [
+    {
+     "codigo": "sem_passe_lido",
+     "frase": "Esta ilha ainda não leu nenhum passe de Rio de Janeiro. Isso não quer dizer que Rio de Janeiro não tenha passe: quer dizer que esta ilha não leu o preço de nenhum na fonte de quem o vende, e ela não publica passe que não leu. A conta acima é a dos ingressos avulsos, e ela já responde à metade da sua pergunta."
+    },
+    {
+     "codigo": "sem_valor_em_real",
+     "frase": "Os valores desta página estão em BRL_do_operador, que é a moeda cobrada em Rio de Janeiro. Esta ilha ainda não tem uma cotação datada para converter, e preço convertido sem dizer a data do câmbio envelhece sem avisar."
+    }
+   ],
+   "como_sabemos": {
+    "cidade": "Rio de Janeiro",
+    "pais": "Brasil",
+    "moeda": "BRL_do_operador",
+    "preco_das_atracoes": [
+     {
+      "atracao": "Trem do Corcovado — o bilhete de trem com acesso ao Cristo Redentor",
+      "autor": "Concessionária Trem do Corcovado, a empresa que opera o trem desde a estação de Cosme Velho e vende o bilhete pelo próprio site",
+      "documento": "as páginas «Informações Úteis», «Ingressos», «Política de Compra» e «Política de Remarcação de Bilhetes» do site do operador, nomeadas uma por uma em três passadas de busca",
+      "url": "https://www.tremdocorcovado.rio/en/institucional/informacoes-uteis",
+      "motivo_sem_url": null,
+      "data_leitura": "2026-10-27",
+      "frase": "Trem do Corcovado — o bilhete de trem com acesso ao Cristo Redentor — Concessionária Trem do Corcovado, a empresa que opera o trem desde a estação de Cosme Velho e vende o bilhete pelo próprio site, em 27/10/2026."
+     }
+    ],
+    "preco_dos_passes": [],
+    "cobertura_dos_passes": [],
+    "frase": "Nada nesta página é faixa de terceiro: o preço de cada atração, o preço de cada passe e a cobertura de cada passe foram lidos na fonte de quem opera ou de quem fixa a tarifa, e cada um traz a data da sua leitura. São três leituras diferentes, e a cobertura é a que envelhece primeiro — é ela que muda quando um passe troca a regra de reserva."
+   }
+  },
+  {
+   "estado": {
+    "cidade": "rio-de-janeiro",
+    "atracoes": [
+     "rio-de-janeiro-trem-do-corcovado"
+    ],
+    "dias": 1,
+    "pessoas": 4
+   },
+   "recusa_dura": null,
+   "frase_resposta": "1 atração em Rio de Janeiro custa R$ 536 para 4 pessoas, pelos ingressos avulsos. Esta ilha ainda não leu nenhum passe desta cidade, então ela não diz se um passe sairia mais barato — ela diz quanto custa o caminho que ela leu.",
+   "avulsos": {
+    "minimo": "536",
+    "maximo": "536",
+    "moeda": "BRL_do_operador",
+    "escrito": "R$ 536",
+    "quantas": 1,
+    "multiplicador": "4 pessoas, uma vez cada atração",
+    "detalhe": [
+     "Trem do Corcovado — o bilhete de trem com acesso ao Cristo Redentor: R$ 536, «O bilhete Normal, a tarifa inteira: trem de ida e volta com o acesso ao Cristo Redentor incluído», a única versão que esta ilha leu."
+    ],
+    "procedencia": "nossa",
+    "frase_de_procedencia": "Todo preço desta página foi lido no site de quem opera ou de quem fixa a tarifa, com a data da leitura ao lado. Nenhum número aqui é faixa de terceiro."
+   },
+   "passes": [],
+   "recusas": [
+    {
+     "codigo": "sem_passe_lido",
+     "frase": "Esta ilha ainda não leu nenhum passe de Rio de Janeiro. Isso não quer dizer que Rio de Janeiro não tenha passe: quer dizer que esta ilha não leu o preço de nenhum na fonte de quem o vende, e ela não publica passe que não leu. A conta acima é a dos ingressos avulsos, e ela já responde à metade da sua pergunta."
+    },
+    {
+     "codigo": "sem_valor_em_real",
+     "frase": "Os valores desta página estão em BRL_do_operador, que é a moeda cobrada em Rio de Janeiro. Esta ilha ainda não tem uma cotação datada para converter, e preço convertido sem dizer a data do câmbio envelhece sem avisar."
+    }
+   ],
+   "como_sabemos": {
+    "cidade": "Rio de Janeiro",
+    "pais": "Brasil",
+    "moeda": "BRL_do_operador",
+    "preco_das_atracoes": [
+     {
+      "atracao": "Trem do Corcovado — o bilhete de trem com acesso ao Cristo Redentor",
+      "autor": "Concessionária Trem do Corcovado, a empresa que opera o trem desde a estação de Cosme Velho e vende o bilhete pelo próprio site",
+      "documento": "as páginas «Informações Úteis», «Ingressos», «Política de Compra» e «Política de Remarcação de Bilhetes» do site do operador, nomeadas uma por uma em três passadas de busca",
+      "url": "https://www.tremdocorcovado.rio/en/institucional/informacoes-uteis",
+      "motivo_sem_url": null,
+      "data_leitura": "2026-10-27",
+      "frase": "Trem do Corcovado — o bilhete de trem com acesso ao Cristo Redentor — Concessionária Trem do Corcovado, a empresa que opera o trem desde a estação de Cosme Velho e vende o bilhete pelo próprio site, em 27/10/2026."
+     }
+    ],
+    "preco_dos_passes": [],
+    "cobertura_dos_passes": [],
+    "frase": "Nada nesta página é faixa de terceiro: o preço de cada atração, o preço de cada passe e a cobertura de cada passe foram lidos na fonte de quem opera ou de quem fixa a tarifa, e cada um traz a data da sua leitura. São três leituras diferentes, e a cobertura é a que envelhece primeiro — é ela que muda quando um passe troca a regra de reserva."
+   }
+  },
+  {
+   "estado": {
+    "cidade": "rio-de-janeiro",
+    "atracoes": [
+     "rio-de-janeiro-trem-do-corcovado"
+    ],
+    "dias": 3,
+    "pessoas": 1
+   },
+   "recusa_dura": null,
+   "frase_resposta": "1 atração em Rio de Janeiro custa R$ 134 para 1 pessoa, pelos ingressos avulsos. Esta ilha ainda não leu nenhum passe desta cidade, então ela não diz se um passe sairia mais barato — ela diz quanto custa o caminho que ela leu.",
+   "avulsos": {
+    "minimo": "134",
+    "maximo": "134",
+    "moeda": "BRL_do_operador",
+    "escrito": "R$ 134",
+    "quantas": 1,
+    "multiplicador": "1 pessoa, uma vez cada atração",
+    "detalhe": [
+     "Trem do Corcovado — o bilhete de trem com acesso ao Cristo Redentor: R$ 134, «O bilhete Normal, a tarifa inteira: trem de ida e volta com o acesso ao Cristo Redentor incluído», a única versão que esta ilha leu."
+    ],
+    "procedencia": "nossa",
+    "frase_de_procedencia": "Todo preço desta página foi lido no site de quem opera ou de quem fixa a tarifa, com a data da leitura ao lado. Nenhum número aqui é faixa de terceiro."
+   },
+   "passes": [],
+   "recusas": [
+    {
+     "codigo": "sem_passe_lido",
+     "frase": "Esta ilha ainda não leu nenhum passe de Rio de Janeiro. Isso não quer dizer que Rio de Janeiro não tenha passe: quer dizer que esta ilha não leu o preço de nenhum na fonte de quem o vende, e ela não publica passe que não leu. A conta acima é a dos ingressos avulsos, e ela já responde à metade da sua pergunta."
+    },
+    {
+     "codigo": "sem_valor_em_real",
+     "frase": "Os valores desta página estão em BRL_do_operador, que é a moeda cobrada em Rio de Janeiro. Esta ilha ainda não tem uma cotação datada para converter, e preço convertido sem dizer a data do câmbio envelhece sem avisar."
+    }
+   ],
+   "como_sabemos": {
+    "cidade": "Rio de Janeiro",
+    "pais": "Brasil",
+    "moeda": "BRL_do_operador",
+    "preco_das_atracoes": [
+     {
+      "atracao": "Trem do Corcovado — o bilhete de trem com acesso ao Cristo Redentor",
+      "autor": "Concessionária Trem do Corcovado, a empresa que opera o trem desde a estação de Cosme Velho e vende o bilhete pelo próprio site",
+      "documento": "as páginas «Informações Úteis», «Ingressos», «Política de Compra» e «Política de Remarcação de Bilhetes» do site do operador, nomeadas uma por uma em três passadas de busca",
+      "url": "https://www.tremdocorcovado.rio/en/institucional/informacoes-uteis",
+      "motivo_sem_url": null,
+      "data_leitura": "2026-10-27",
+      "frase": "Trem do Corcovado — o bilhete de trem com acesso ao Cristo Redentor — Concessionária Trem do Corcovado, a empresa que opera o trem desde a estação de Cosme Velho e vende o bilhete pelo próprio site, em 27/10/2026."
+     }
+    ],
+    "preco_dos_passes": [],
+    "cobertura_dos_passes": [],
+    "frase": "Nada nesta página é faixa de terceiro: o preço de cada atração, o preço de cada passe e a cobertura de cada passe foram lidos na fonte de quem opera ou de quem fixa a tarifa, e cada um traz a data da sua leitura. São três leituras diferentes, e a cobertura é a que envelhece primeiro — é ela que muda quando um passe troca a regra de reserva."
+   }
+  },
+  {
+   "estado": {
+    "cidade": "rio-de-janeiro",
+    "atracoes": [
+     "rio-de-janeiro-trem-do-corcovado"
+    ],
+    "dias": 3,
+    "pessoas": 2
+   },
+   "recusa_dura": null,
+   "frase_resposta": "1 atração em Rio de Janeiro custa R$ 268 para 2 pessoas, pelos ingressos avulsos. Esta ilha ainda não leu nenhum passe desta cidade, então ela não diz se um passe sairia mais barato — ela diz quanto custa o caminho que ela leu.",
+   "avulsos": {
+    "minimo": "268",
+    "maximo": "268",
+    "moeda": "BRL_do_operador",
+    "escrito": "R$ 268",
+    "quantas": 1,
+    "multiplicador": "2 pessoas, uma vez cada atração",
+    "detalhe": [
+     "Trem do Corcovado — o bilhete de trem com acesso ao Cristo Redentor: R$ 268, «O bilhete Normal, a tarifa inteira: trem de ida e volta com o acesso ao Cristo Redentor incluído», a única versão que esta ilha leu."
+    ],
+    "procedencia": "nossa",
+    "frase_de_procedencia": "Todo preço desta página foi lido no site de quem opera ou de quem fixa a tarifa, com a data da leitura ao lado. Nenhum número aqui é faixa de terceiro."
+   },
+   "passes": [],
+   "recusas": [
+    {
+     "codigo": "sem_passe_lido",
+     "frase": "Esta ilha ainda não leu nenhum passe de Rio de Janeiro. Isso não quer dizer que Rio de Janeiro não tenha passe: quer dizer que esta ilha não leu o preço de nenhum na fonte de quem o vende, e ela não publica passe que não leu. A conta acima é a dos ingressos avulsos, e ela já responde à metade da sua pergunta."
+    },
+    {
+     "codigo": "sem_valor_em_real",
+     "frase": "Os valores desta página estão em BRL_do_operador, que é a moeda cobrada em Rio de Janeiro. Esta ilha ainda não tem uma cotação datada para converter, e preço convertido sem dizer a data do câmbio envelhece sem avisar."
+    }
+   ],
+   "como_sabemos": {
+    "cidade": "Rio de Janeiro",
+    "pais": "Brasil",
+    "moeda": "BRL_do_operador",
+    "preco_das_atracoes": [
+     {
+      "atracao": "Trem do Corcovado — o bilhete de trem com acesso ao Cristo Redentor",
+      "autor": "Concessionária Trem do Corcovado, a empresa que opera o trem desde a estação de Cosme Velho e vende o bilhete pelo próprio site",
+      "documento": "as páginas «Informações Úteis», «Ingressos», «Política de Compra» e «Política de Remarcação de Bilhetes» do site do operador, nomeadas uma por uma em três passadas de busca",
+      "url": "https://www.tremdocorcovado.rio/en/institucional/informacoes-uteis",
+      "motivo_sem_url": null,
+      "data_leitura": "2026-10-27",
+      "frase": "Trem do Corcovado — o bilhete de trem com acesso ao Cristo Redentor — Concessionária Trem do Corcovado, a empresa que opera o trem desde a estação de Cosme Velho e vende o bilhete pelo próprio site, em 27/10/2026."
+     }
+    ],
+    "preco_dos_passes": [],
+    "cobertura_dos_passes": [],
+    "frase": "Nada nesta página é faixa de terceiro: o preço de cada atração, o preço de cada passe e a cobertura de cada passe foram lidos na fonte de quem opera ou de quem fixa a tarifa, e cada um traz a data da sua leitura. São três leituras diferentes, e a cobertura é a que envelhece primeiro — é ela que muda quando um passe troca a regra de reserva."
+   }
+  },
+  {
+   "estado": {
+    "cidade": "rio-de-janeiro",
+    "atracoes": [
+     "rio-de-janeiro-trem-do-corcovado"
+    ],
+    "dias": 3,
+    "pessoas": 4
+   },
+   "recusa_dura": null,
+   "frase_resposta": "1 atração em Rio de Janeiro custa R$ 536 para 4 pessoas, pelos ingressos avulsos. Esta ilha ainda não leu nenhum passe desta cidade, então ela não diz se um passe sairia mais barato — ela diz quanto custa o caminho que ela leu.",
+   "avulsos": {
+    "minimo": "536",
+    "maximo": "536",
+    "moeda": "BRL_do_operador",
+    "escrito": "R$ 536",
+    "quantas": 1,
+    "multiplicador": "4 pessoas, uma vez cada atração",
+    "detalhe": [
+     "Trem do Corcovado — o bilhete de trem com acesso ao Cristo Redentor: R$ 536, «O bilhete Normal, a tarifa inteira: trem de ida e volta com o acesso ao Cristo Redentor incluído», a única versão que esta ilha leu."
+    ],
+    "procedencia": "nossa",
+    "frase_de_procedencia": "Todo preço desta página foi lido no site de quem opera ou de quem fixa a tarifa, com a data da leitura ao lado. Nenhum número aqui é faixa de terceiro."
+   },
+   "passes": [],
+   "recusas": [
+    {
+     "codigo": "sem_passe_lido",
+     "frase": "Esta ilha ainda não leu nenhum passe de Rio de Janeiro. Isso não quer dizer que Rio de Janeiro não tenha passe: quer dizer que esta ilha não leu o preço de nenhum na fonte de quem o vende, e ela não publica passe que não leu. A conta acima é a dos ingressos avulsos, e ela já responde à metade da sua pergunta."
+    },
+    {
+     "codigo": "sem_valor_em_real",
+     "frase": "Os valores desta página estão em BRL_do_operador, que é a moeda cobrada em Rio de Janeiro. Esta ilha ainda não tem uma cotação datada para converter, e preço convertido sem dizer a data do câmbio envelhece sem avisar."
+    }
+   ],
+   "como_sabemos": {
+    "cidade": "Rio de Janeiro",
+    "pais": "Brasil",
+    "moeda": "BRL_do_operador",
+    "preco_das_atracoes": [
+     {
+      "atracao": "Trem do Corcovado — o bilhete de trem com acesso ao Cristo Redentor",
+      "autor": "Concessionária Trem do Corcovado, a empresa que opera o trem desde a estação de Cosme Velho e vende o bilhete pelo próprio site",
+      "documento": "as páginas «Informações Úteis», «Ingressos», «Política de Compra» e «Política de Remarcação de Bilhetes» do site do operador, nomeadas uma por uma em três passadas de busca",
+      "url": "https://www.tremdocorcovado.rio/en/institucional/informacoes-uteis",
+      "motivo_sem_url": null,
+      "data_leitura": "2026-10-27",
+      "frase": "Trem do Corcovado — o bilhete de trem com acesso ao Cristo Redentor — Concessionária Trem do Corcovado, a empresa que opera o trem desde a estação de Cosme Velho e vende o bilhete pelo próprio site, em 27/10/2026."
+     }
+    ],
+    "preco_dos_passes": [],
+    "cobertura_dos_passes": [],
+    "frase": "Nada nesta página é faixa de terceiro: o preço de cada atração, o preço de cada passe e a cobertura de cada passe foram lidos na fonte de quem opera ou de quem fixa a tarifa, e cada um traz a data da sua leitura. São três leituras diferentes, e a cobertura é a que envelhece primeiro — é ela que muda quando um passe troca a regra de reserva."
+   }
+  },
+  {
+   "estado": {
+    "cidade": "rio-de-janeiro",
+    "atracoes": [
+     "rio-de-janeiro-trem-do-corcovado"
+    ],
+    "dias": 7,
+    "pessoas": 1
+   },
+   "recusa_dura": null,
+   "frase_resposta": "1 atração em Rio de Janeiro custa R$ 134 para 1 pessoa, pelos ingressos avulsos. Esta ilha ainda não leu nenhum passe desta cidade, então ela não diz se um passe sairia mais barato — ela diz quanto custa o caminho que ela leu.",
+   "avulsos": {
+    "minimo": "134",
+    "maximo": "134",
+    "moeda": "BRL_do_operador",
+    "escrito": "R$ 134",
+    "quantas": 1,
+    "multiplicador": "1 pessoa, uma vez cada atração",
+    "detalhe": [
+     "Trem do Corcovado — o bilhete de trem com acesso ao Cristo Redentor: R$ 134, «O bilhete Normal, a tarifa inteira: trem de ida e volta com o acesso ao Cristo Redentor incluído», a única versão que esta ilha leu."
+    ],
+    "procedencia": "nossa",
+    "frase_de_procedencia": "Todo preço desta página foi lido no site de quem opera ou de quem fixa a tarifa, com a data da leitura ao lado. Nenhum número aqui é faixa de terceiro."
+   },
+   "passes": [],
+   "recusas": [
+    {
+     "codigo": "sem_passe_lido",
+     "frase": "Esta ilha ainda não leu nenhum passe de Rio de Janeiro. Isso não quer dizer que Rio de Janeiro não tenha passe: quer dizer que esta ilha não leu o preço de nenhum na fonte de quem o vende, e ela não publica passe que não leu. A conta acima é a dos ingressos avulsos, e ela já responde à metade da sua pergunta."
+    },
+    {
+     "codigo": "sem_valor_em_real",
+     "frase": "Os valores desta página estão em BRL_do_operador, que é a moeda cobrada em Rio de Janeiro. Esta ilha ainda não tem uma cotação datada para converter, e preço convertido sem dizer a data do câmbio envelhece sem avisar."
+    }
+   ],
+   "como_sabemos": {
+    "cidade": "Rio de Janeiro",
+    "pais": "Brasil",
+    "moeda": "BRL_do_operador",
+    "preco_das_atracoes": [
+     {
+      "atracao": "Trem do Corcovado — o bilhete de trem com acesso ao Cristo Redentor",
+      "autor": "Concessionária Trem do Corcovado, a empresa que opera o trem desde a estação de Cosme Velho e vende o bilhete pelo próprio site",
+      "documento": "as páginas «Informações Úteis», «Ingressos», «Política de Compra» e «Política de Remarcação de Bilhetes» do site do operador, nomeadas uma por uma em três passadas de busca",
+      "url": "https://www.tremdocorcovado.rio/en/institucional/informacoes-uteis",
+      "motivo_sem_url": null,
+      "data_leitura": "2026-10-27",
+      "frase": "Trem do Corcovado — o bilhete de trem com acesso ao Cristo Redentor — Concessionária Trem do Corcovado, a empresa que opera o trem desde a estação de Cosme Velho e vende o bilhete pelo próprio site, em 27/10/2026."
+     }
+    ],
+    "preco_dos_passes": [],
+    "cobertura_dos_passes": [],
+    "frase": "Nada nesta página é faixa de terceiro: o preço de cada atração, o preço de cada passe e a cobertura de cada passe foram lidos na fonte de quem opera ou de quem fixa a tarifa, e cada um traz a data da sua leitura. São três leituras diferentes, e a cobertura é a que envelhece primeiro — é ela que muda quando um passe troca a regra de reserva."
+   }
+  },
+  {
+   "estado": {
+    "cidade": "rio-de-janeiro",
+    "atracoes": [
+     "rio-de-janeiro-trem-do-corcovado"
+    ],
+    "dias": 7,
+    "pessoas": 2
+   },
+   "recusa_dura": null,
+   "frase_resposta": "1 atração em Rio de Janeiro custa R$ 268 para 2 pessoas, pelos ingressos avulsos. Esta ilha ainda não leu nenhum passe desta cidade, então ela não diz se um passe sairia mais barato — ela diz quanto custa o caminho que ela leu.",
+   "avulsos": {
+    "minimo": "268",
+    "maximo": "268",
+    "moeda": "BRL_do_operador",
+    "escrito": "R$ 268",
+    "quantas": 1,
+    "multiplicador": "2 pessoas, uma vez cada atração",
+    "detalhe": [
+     "Trem do Corcovado — o bilhete de trem com acesso ao Cristo Redentor: R$ 268, «O bilhete Normal, a tarifa inteira: trem de ida e volta com o acesso ao Cristo Redentor incluído», a única versão que esta ilha leu."
+    ],
+    "procedencia": "nossa",
+    "frase_de_procedencia": "Todo preço desta página foi lido no site de quem opera ou de quem fixa a tarifa, com a data da leitura ao lado. Nenhum número aqui é faixa de terceiro."
+   },
+   "passes": [],
+   "recusas": [
+    {
+     "codigo": "sem_passe_lido",
+     "frase": "Esta ilha ainda não leu nenhum passe de Rio de Janeiro. Isso não quer dizer que Rio de Janeiro não tenha passe: quer dizer que esta ilha não leu o preço de nenhum na fonte de quem o vende, e ela não publica passe que não leu. A conta acima é a dos ingressos avulsos, e ela já responde à metade da sua pergunta."
+    },
+    {
+     "codigo": "sem_valor_em_real",
+     "frase": "Os valores desta página estão em BRL_do_operador, que é a moeda cobrada em Rio de Janeiro. Esta ilha ainda não tem uma cotação datada para converter, e preço convertido sem dizer a data do câmbio envelhece sem avisar."
+    }
+   ],
+   "como_sabemos": {
+    "cidade": "Rio de Janeiro",
+    "pais": "Brasil",
+    "moeda": "BRL_do_operador",
+    "preco_das_atracoes": [
+     {
+      "atracao": "Trem do Corcovado — o bilhete de trem com acesso ao Cristo Redentor",
+      "autor": "Concessionária Trem do Corcovado, a empresa que opera o trem desde a estação de Cosme Velho e vende o bilhete pelo próprio site",
+      "documento": "as páginas «Informações Úteis», «Ingressos», «Política de Compra» e «Política de Remarcação de Bilhetes» do site do operador, nomeadas uma por uma em três passadas de busca",
+      "url": "https://www.tremdocorcovado.rio/en/institucional/informacoes-uteis",
+      "motivo_sem_url": null,
+      "data_leitura": "2026-10-27",
+      "frase": "Trem do Corcovado — o bilhete de trem com acesso ao Cristo Redentor — Concessionária Trem do Corcovado, a empresa que opera o trem desde a estação de Cosme Velho e vende o bilhete pelo próprio site, em 27/10/2026."
+     }
+    ],
+    "preco_dos_passes": [],
+    "cobertura_dos_passes": [],
+    "frase": "Nada nesta página é faixa de terceiro: o preço de cada atração, o preço de cada passe e a cobertura de cada passe foram lidos na fonte de quem opera ou de quem fixa a tarifa, e cada um traz a data da sua leitura. São três leituras diferentes, e a cobertura é a que envelhece primeiro — é ela que muda quando um passe troca a regra de reserva."
+   }
+  },
+  {
+   "estado": {
+    "cidade": "rio-de-janeiro",
+    "atracoes": [
+     "rio-de-janeiro-trem-do-corcovado"
+    ],
+    "dias": 7,
+    "pessoas": 4
+   },
+   "recusa_dura": null,
+   "frase_resposta": "1 atração em Rio de Janeiro custa R$ 536 para 4 pessoas, pelos ingressos avulsos. Esta ilha ainda não leu nenhum passe desta cidade, então ela não diz se um passe sairia mais barato — ela diz quanto custa o caminho que ela leu.",
+   "avulsos": {
+    "minimo": "536",
+    "maximo": "536",
+    "moeda": "BRL_do_operador",
+    "escrito": "R$ 536",
+    "quantas": 1,
+    "multiplicador": "4 pessoas, uma vez cada atração",
+    "detalhe": [
+     "Trem do Corcovado — o bilhete de trem com acesso ao Cristo Redentor: R$ 536, «O bilhete Normal, a tarifa inteira: trem de ida e volta com o acesso ao Cristo Redentor incluído», a única versão que esta ilha leu."
+    ],
+    "procedencia": "nossa",
+    "frase_de_procedencia": "Todo preço desta página foi lido no site de quem opera ou de quem fixa a tarifa, com a data da leitura ao lado. Nenhum número aqui é faixa de terceiro."
+   },
+   "passes": [],
+   "recusas": [
+    {
+     "codigo": "sem_passe_lido",
+     "frase": "Esta ilha ainda não leu nenhum passe de Rio de Janeiro. Isso não quer dizer que Rio de Janeiro não tenha passe: quer dizer que esta ilha não leu o preço de nenhum na fonte de quem o vende, e ela não publica passe que não leu. A conta acima é a dos ingressos avulsos, e ela já responde à metade da sua pergunta."
+    },
+    {
+     "codigo": "sem_valor_em_real",
+     "frase": "Os valores desta página estão em BRL_do_operador, que é a moeda cobrada em Rio de Janeiro. Esta ilha ainda não tem uma cotação datada para converter, e preço convertido sem dizer a data do câmbio envelhece sem avisar."
+    }
+   ],
+   "como_sabemos": {
+    "cidade": "Rio de Janeiro",
+    "pais": "Brasil",
+    "moeda": "BRL_do_operador",
+    "preco_das_atracoes": [
+     {
+      "atracao": "Trem do Corcovado — o bilhete de trem com acesso ao Cristo Redentor",
+      "autor": "Concessionária Trem do Corcovado, a empresa que opera o trem desde a estação de Cosme Velho e vende o bilhete pelo próprio site",
+      "documento": "as páginas «Informações Úteis», «Ingressos», «Política de Compra» e «Política de Remarcação de Bilhetes» do site do operador, nomeadas uma por uma em três passadas de busca",
+      "url": "https://www.tremdocorcovado.rio/en/institucional/informacoes-uteis",
+      "motivo_sem_url": null,
+      "data_leitura": "2026-10-27",
+      "frase": "Trem do Corcovado — o bilhete de trem com acesso ao Cristo Redentor — Concessionária Trem do Corcovado, a empresa que opera o trem desde a estação de Cosme Velho e vende o bilhete pelo próprio site, em 27/10/2026."
+     }
+    ],
+    "preco_dos_passes": [],
+    "cobertura_dos_passes": [],
+    "frase": "Nada nesta página é faixa de terceiro: o preço de cada atração, o preço de cada passe e a cobertura de cada passe foram lidos na fonte de quem opera ou de quem fixa a tarifa, e cada um traz a data da sua leitura. São três leituras diferentes, e a cobertura é a que envelhece primeiro — é ela que muda quando um passe troca a regra de reserva."
+   }
+  },
+  {
+   "estado": {
+    "cidade": "rio-de-janeiro",
+    "atracoes": [
+     "rio-de-janeiro-trem-do-corcovado"
+    ],
+    "dias": 21,
+    "pessoas": 1
+   },
+   "recusa_dura": null,
+   "frase_resposta": "1 atração em Rio de Janeiro custa R$ 134 para 1 pessoa, pelos ingressos avulsos. Esta ilha ainda não leu nenhum passe desta cidade, então ela não diz se um passe sairia mais barato — ela diz quanto custa o caminho que ela leu.",
+   "avulsos": {
+    "minimo": "134",
+    "maximo": "134",
+    "moeda": "BRL_do_operador",
+    "escrito": "R$ 134",
+    "quantas": 1,
+    "multiplicador": "1 pessoa, uma vez cada atração",
+    "detalhe": [
+     "Trem do Corcovado — o bilhete de trem com acesso ao Cristo Redentor: R$ 134, «O bilhete Normal, a tarifa inteira: trem de ida e volta com o acesso ao Cristo Redentor incluído», a única versão que esta ilha leu."
+    ],
+    "procedencia": "nossa",
+    "frase_de_procedencia": "Todo preço desta página foi lido no site de quem opera ou de quem fixa a tarifa, com a data da leitura ao lado. Nenhum número aqui é faixa de terceiro."
+   },
+   "passes": [],
+   "recusas": [
+    {
+     "codigo": "sem_passe_lido",
+     "frase": "Esta ilha ainda não leu nenhum passe de Rio de Janeiro. Isso não quer dizer que Rio de Janeiro não tenha passe: quer dizer que esta ilha não leu o preço de nenhum na fonte de quem o vende, e ela não publica passe que não leu. A conta acima é a dos ingressos avulsos, e ela já responde à metade da sua pergunta."
+    },
+    {
+     "codigo": "sem_valor_em_real",
+     "frase": "Os valores desta página estão em BRL_do_operador, que é a moeda cobrada em Rio de Janeiro. Esta ilha ainda não tem uma cotação datada para converter, e preço convertido sem dizer a data do câmbio envelhece sem avisar."
+    }
+   ],
+   "como_sabemos": {
+    "cidade": "Rio de Janeiro",
+    "pais": "Brasil",
+    "moeda": "BRL_do_operador",
+    "preco_das_atracoes": [
+     {
+      "atracao": "Trem do Corcovado — o bilhete de trem com acesso ao Cristo Redentor",
+      "autor": "Concessionária Trem do Corcovado, a empresa que opera o trem desde a estação de Cosme Velho e vende o bilhete pelo próprio site",
+      "documento": "as páginas «Informações Úteis», «Ingressos», «Política de Compra» e «Política de Remarcação de Bilhetes» do site do operador, nomeadas uma por uma em três passadas de busca",
+      "url": "https://www.tremdocorcovado.rio/en/institucional/informacoes-uteis",
+      "motivo_sem_url": null,
+      "data_leitura": "2026-10-27",
+      "frase": "Trem do Corcovado — o bilhete de trem com acesso ao Cristo Redentor — Concessionária Trem do Corcovado, a empresa que opera o trem desde a estação de Cosme Velho e vende o bilhete pelo próprio site, em 27/10/2026."
+     }
+    ],
+    "preco_dos_passes": [],
+    "cobertura_dos_passes": [],
+    "frase": "Nada nesta página é faixa de terceiro: o preço de cada atração, o preço de cada passe e a cobertura de cada passe foram lidos na fonte de quem opera ou de quem fixa a tarifa, e cada um traz a data da sua leitura. São três leituras diferentes, e a cobertura é a que envelhece primeiro — é ela que muda quando um passe troca a regra de reserva."
+   }
+  },
+  {
+   "estado": {
+    "cidade": "rio-de-janeiro",
+    "atracoes": [
+     "rio-de-janeiro-trem-do-corcovado"
+    ],
+    "dias": 21,
+    "pessoas": 2
+   },
+   "recusa_dura": null,
+   "frase_resposta": "1 atração em Rio de Janeiro custa R$ 268 para 2 pessoas, pelos ingressos avulsos. Esta ilha ainda não leu nenhum passe desta cidade, então ela não diz se um passe sairia mais barato — ela diz quanto custa o caminho que ela leu.",
+   "avulsos": {
+    "minimo": "268",
+    "maximo": "268",
+    "moeda": "BRL_do_operador",
+    "escrito": "R$ 268",
+    "quantas": 1,
+    "multiplicador": "2 pessoas, uma vez cada atração",
+    "detalhe": [
+     "Trem do Corcovado — o bilhete de trem com acesso ao Cristo Redentor: R$ 268, «O bilhete Normal, a tarifa inteira: trem de ida e volta com o acesso ao Cristo Redentor incluído», a única versão que esta ilha leu."
+    ],
+    "procedencia": "nossa",
+    "frase_de_procedencia": "Todo preço desta página foi lido no site de quem opera ou de quem fixa a tarifa, com a data da leitura ao lado. Nenhum número aqui é faixa de terceiro."
+   },
+   "passes": [],
+   "recusas": [
+    {
+     "codigo": "sem_passe_lido",
+     "frase": "Esta ilha ainda não leu nenhum passe de Rio de Janeiro. Isso não quer dizer que Rio de Janeiro não tenha passe: quer dizer que esta ilha não leu o preço de nenhum na fonte de quem o vende, e ela não publica passe que não leu. A conta acima é a dos ingressos avulsos, e ela já responde à metade da sua pergunta."
+    },
+    {
+     "codigo": "sem_valor_em_real",
+     "frase": "Os valores desta página estão em BRL_do_operador, que é a moeda cobrada em Rio de Janeiro. Esta ilha ainda não tem uma cotação datada para converter, e preço convertido sem dizer a data do câmbio envelhece sem avisar."
+    }
+   ],
+   "como_sabemos": {
+    "cidade": "Rio de Janeiro",
+    "pais": "Brasil",
+    "moeda": "BRL_do_operador",
+    "preco_das_atracoes": [
+     {
+      "atracao": "Trem do Corcovado — o bilhete de trem com acesso ao Cristo Redentor",
+      "autor": "Concessionária Trem do Corcovado, a empresa que opera o trem desde a estação de Cosme Velho e vende o bilhete pelo próprio site",
+      "documento": "as páginas «Informações Úteis», «Ingressos», «Política de Compra» e «Política de Remarcação de Bilhetes» do site do operador, nomeadas uma por uma em três passadas de busca",
+      "url": "https://www.tremdocorcovado.rio/en/institucional/informacoes-uteis",
+      "motivo_sem_url": null,
+      "data_leitura": "2026-10-27",
+      "frase": "Trem do Corcovado — o bilhete de trem com acesso ao Cristo Redentor — Concessionária Trem do Corcovado, a empresa que opera o trem desde a estação de Cosme Velho e vende o bilhete pelo próprio site, em 27/10/2026."
+     }
+    ],
+    "preco_dos_passes": [],
+    "cobertura_dos_passes": [],
+    "frase": "Nada nesta página é faixa de terceiro: o preço de cada atração, o preço de cada passe e a cobertura de cada passe foram lidos na fonte de quem opera ou de quem fixa a tarifa, e cada um traz a data da sua leitura. São três leituras diferentes, e a cobertura é a que envelhece primeiro — é ela que muda quando um passe troca a regra de reserva."
+   }
+  },
+  {
+   "estado": {
+    "cidade": "rio-de-janeiro",
+    "atracoes": [
+     "rio-de-janeiro-trem-do-corcovado"
+    ],
+    "dias": 21,
+    "pessoas": 4
+   },
+   "recusa_dura": null,
+   "frase_resposta": "1 atração em Rio de Janeiro custa R$ 536 para 4 pessoas, pelos ingressos avulsos. Esta ilha ainda não leu nenhum passe desta cidade, então ela não diz se um passe sairia mais barato — ela diz quanto custa o caminho que ela leu.",
+   "avulsos": {
+    "minimo": "536",
+    "maximo": "536",
+    "moeda": "BRL_do_operador",
+    "escrito": "R$ 536",
+    "quantas": 1,
+    "multiplicador": "4 pessoas, uma vez cada atração",
+    "detalhe": [
+     "Trem do Corcovado — o bilhete de trem com acesso ao Cristo Redentor: R$ 536, «O bilhete Normal, a tarifa inteira: trem de ida e volta com o acesso ao Cristo Redentor incluído», a única versão que esta ilha leu."
+    ],
+    "procedencia": "nossa",
+    "frase_de_procedencia": "Todo preço desta página foi lido no site de quem opera ou de quem fixa a tarifa, com a data da leitura ao lado. Nenhum número aqui é faixa de terceiro."
+   },
+   "passes": [],
+   "recusas": [
+    {
+     "codigo": "sem_passe_lido",
+     "frase": "Esta ilha ainda não leu nenhum passe de Rio de Janeiro. Isso não quer dizer que Rio de Janeiro não tenha passe: quer dizer que esta ilha não leu o preço de nenhum na fonte de quem o vende, e ela não publica passe que não leu. A conta acima é a dos ingressos avulsos, e ela já responde à metade da sua pergunta."
+    },
+    {
+     "codigo": "sem_valor_em_real",
+     "frase": "Os valores desta página estão em BRL_do_operador, que é a moeda cobrada em Rio de Janeiro. Esta ilha ainda não tem uma cotação datada para converter, e preço convertido sem dizer a data do câmbio envelhece sem avisar."
+    }
+   ],
+   "como_sabemos": {
+    "cidade": "Rio de Janeiro",
+    "pais": "Brasil",
+    "moeda": "BRL_do_operador",
+    "preco_das_atracoes": [
+     {
+      "atracao": "Trem do Corcovado — o bilhete de trem com acesso ao Cristo Redentor",
+      "autor": "Concessionária Trem do Corcovado, a empresa que opera o trem desde a estação de Cosme Velho e vende o bilhete pelo próprio site",
+      "documento": "as páginas «Informações Úteis», «Ingressos», «Política de Compra» e «Política de Remarcação de Bilhetes» do site do operador, nomeadas uma por uma em três passadas de busca",
+      "url": "https://www.tremdocorcovado.rio/en/institucional/informacoes-uteis",
+      "motivo_sem_url": null,
+      "data_leitura": "2026-10-27",
+      "frase": "Trem do Corcovado — o bilhete de trem com acesso ao Cristo Redentor — Concessionária Trem do Corcovado, a empresa que opera o trem desde a estação de Cosme Velho e vende o bilhete pelo próprio site, em 27/10/2026."
+     }
+    ],
+    "preco_dos_passes": [],
+    "cobertura_dos_passes": [],
+    "frase": "Nada nesta página é faixa de terceiro: o preço de cada atração, o preço de cada passe e a cobertura de cada passe foram lidos na fonte de quem opera ou de quem fixa a tarifa, e cada um traz a data da sua leitura. São três leituras diferentes, e a cobertura é a que envelhece primeiro — é ela que muda quando um passe troca a regra de reserva."
+   }
+  },
+  {
+   "estado": {
+    "cidade": "rio-de-janeiro",
+    "atracoes": [
+     "rio-de-janeiro-bondinho-pao-de-acucar",
+     "rio-de-janeiro-trem-do-corcovado"
+    ],
+    "dias": 1,
+    "pessoas": 1
+   },
+   "recusa_dura": null,
+   "frase_resposta": "2 atrações em Rio de Janeiro custam R$ 199 a R$ 339 para 1 pessoa, pelos ingressos avulsos. Esta ilha ainda não leu nenhum passe desta cidade, então ela não diz se um passe sairia mais barato — ela diz quanto custa o caminho que ela leu.",
+   "avulsos": {
+    "minimo": "199",
+    "maximo": "339",
+    "moeda": "BRL_do_operador",
+    "escrito": "R$ 199 a R$ 339",
+    "quantas": 2,
+    "multiplicador": "1 pessoa, uma vez cada atração",
+    "detalhe": [
+     "Parque Bondinho Pão de Açúcar — o bilhete do teleférico: de R$ 65 («Trilheiros: só a descida do Morro da Urca até a Praia Vermelha») a R$ 205 («O Bilhete Bondinho, o bilhete comum do teleférico»).",
+     "Trem do Corcovado — o bilhete de trem com acesso ao Cristo Redentor: R$ 134, «O bilhete Normal, a tarifa inteira: trem de ida e volta com o acesso ao Cristo Redentor incluído», a única versão que esta ilha leu."
+    ],
+    "procedencia": "nossa",
+    "frase_de_procedencia": "Todo preço desta página foi lido no site de quem opera ou de quem fixa a tarifa, com a data da leitura ao lado. Nenhum número aqui é faixa de terceiro."
+   },
+   "passes": [],
+   "recusas": [
+    {
+     "codigo": "sem_passe_lido",
+     "frase": "Esta ilha ainda não leu nenhum passe de Rio de Janeiro. Isso não quer dizer que Rio de Janeiro não tenha passe: quer dizer que esta ilha não leu o preço de nenhum na fonte de quem o vende, e ela não publica passe que não leu. A conta acima é a dos ingressos avulsos, e ela já responde à metade da sua pergunta."
+    },
+    {
+     "codigo": "sem_valor_em_real",
+     "frase": "Os valores desta página estão em BRL_do_operador, que é a moeda cobrada em Rio de Janeiro. Esta ilha ainda não tem uma cotação datada para converter, e preço convertido sem dizer a data do câmbio envelhece sem avisar."
+    }
+   ],
+   "como_sabemos": {
+    "cidade": "Rio de Janeiro",
+    "pais": "Brasil",
+    "moeda": "BRL_do_operador",
+    "preco_das_atracoes": [
+     {
+      "atracao": "Parque Bondinho Pão de Açúcar — o bilhete do teleférico",
+      "autor": "Parque Bondinho Pão de Açúcar, a empresa que opera o teleférico do Morro da Urca e do Pão de Açúcar e vende o bilhete em bondinho.com.br",
+      "documento": "As páginas de bilhete do próprio operador e a central de ajuda dele, nomeadas uma por uma nas duas passadas restritas ao domínio: «Tipos de bilhetes», em sac.bondinho.com.br/hc/pt-br/articles/24239141433883 (é ela que declara o valor de R$ 205, a tarifa maior de sexta e sábado nos horários de 15h, 16h e 17h, e os bilhetes de Criança, de maiores de 60 e de Estado RJ); «Ingresso Bilhete Bondinho», em bondinho.com.br/pt/ingresso-bondinho; «Promocional Estado RJ», em bondinho.com.br/pt/estado-rj; «Brazilian Ticket Discount», em bondinho.com.br/promocional-para-brasileiros; «Bilhete Geral», em bondinho.com.br/pt/todos-os-ingressos; «Acesso ao Parque Bondinho pela trilha do Morro da Urca», em sac.bondinho.com.br/hc/pt-br/articles/9818455162395 (é ela que declara os dois bilhetes de Trilheiros e que eles só são vendidos no totem do Morro da Urca). Seis documentos nomeados, do próprio operador.",
+      "url": null,
+      "motivo_sem_url": "Nenhuma das páginas foi lida, e aqui as DUAS portas desta nuvem foram medidas na mesma passada de 27/10/2026, o que é mais do que as coletas anteriores fizeram. Pelo curl: bondinho.com.br, www.bondinho.com.br, parquebondinho.com.br e ingressos.bondinho.com.br todos em 000, com CONNECT recusado por política — o `__agentproxy/status` desta nuvem devolve, com todas as letras, «gateway answered 403 to CONNECT (policy denial or upstream failure)». Pelo WebFetch: `getaddrinfo ENOTFOUND` em www.bondinho.com.br e em bondinho.com.br. É por isso que esta fonte é nível 4 (operador lido por busca) e não nível 2 (operador lido no endereço dele) — a mesma distância que separa o nível 3 do 1, e o nível 2 continua sendo o degrau que o critério de entrada desta ilha PREFERE e que ela nunca alcançou.",
+      "data_leitura": "2026-10-27",
+      "frase": "Parque Bondinho Pão de Açúcar — o bilhete do teleférico — Parque Bondinho Pão de Açúcar, a empresa que opera o teleférico do Morro da Urca e do Pão de Açúcar e vende o bilhete em bondinho.com.br, em 27/10/2026."
+     },
+     {
+      "atracao": "Trem do Corcovado — o bilhete de trem com acesso ao Cristo Redentor",
+      "autor": "Concessionária Trem do Corcovado, a empresa que opera o trem desde a estação de Cosme Velho e vende o bilhete pelo próprio site",
+      "documento": "as páginas «Informações Úteis», «Ingressos», «Política de Compra» e «Política de Remarcação de Bilhetes» do site do operador, nomeadas uma por uma em três passadas de busca",
+      "url": "https://www.tremdocorcovado.rio/en/institucional/informacoes-uteis",
+      "motivo_sem_url": null,
+      "data_leitura": "2026-10-27",
+      "frase": "Trem do Corcovado — o bilhete de trem com acesso ao Cristo Redentor — Concessionária Trem do Corcovado, a empresa que opera o trem desde a estação de Cosme Velho e vende o bilhete pelo próprio site, em 27/10/2026."
+     }
+    ],
+    "preco_dos_passes": [],
+    "cobertura_dos_passes": [],
+    "frase": "Nada nesta página é faixa de terceiro: o preço de cada atração, o preço de cada passe e a cobertura de cada passe foram lidos na fonte de quem opera ou de quem fixa a tarifa, e cada um traz a data da sua leitura. São três leituras diferentes, e a cobertura é a que envelhece primeiro — é ela que muda quando um passe troca a regra de reserva."
+   }
+  },
+  {
+   "estado": {
+    "cidade": "rio-de-janeiro",
+    "atracoes": [
+     "rio-de-janeiro-bondinho-pao-de-acucar",
+     "rio-de-janeiro-trem-do-corcovado"
+    ],
+    "dias": 1,
+    "pessoas": 2
+   },
+   "recusa_dura": null,
+   "frase_resposta": "2 atrações em Rio de Janeiro custam R$ 398 a R$ 678 para 2 pessoas, pelos ingressos avulsos. Esta ilha ainda não leu nenhum passe desta cidade, então ela não diz se um passe sairia mais barato — ela diz quanto custa o caminho que ela leu.",
+   "avulsos": {
+    "minimo": "398",
+    "maximo": "678",
+    "moeda": "BRL_do_operador",
+    "escrito": "R$ 398 a R$ 678",
+    "quantas": 2,
+    "multiplicador": "2 pessoas, uma vez cada atração",
+    "detalhe": [
+     "Parque Bondinho Pão de Açúcar — o bilhete do teleférico: de R$ 130 («Trilheiros: só a descida do Morro da Urca até a Praia Vermelha») a R$ 410 («O Bilhete Bondinho, o bilhete comum do teleférico»).",
+     "Trem do Corcovado — o bilhete de trem com acesso ao Cristo Redentor: R$ 268, «O bilhete Normal, a tarifa inteira: trem de ida e volta com o acesso ao Cristo Redentor incluído», a única versão que esta ilha leu."
+    ],
+    "procedencia": "nossa",
+    "frase_de_procedencia": "Todo preço desta página foi lido no site de quem opera ou de quem fixa a tarifa, com a data da leitura ao lado. Nenhum número aqui é faixa de terceiro."
+   },
+   "passes": [],
+   "recusas": [
+    {
+     "codigo": "sem_passe_lido",
+     "frase": "Esta ilha ainda não leu nenhum passe de Rio de Janeiro. Isso não quer dizer que Rio de Janeiro não tenha passe: quer dizer que esta ilha não leu o preço de nenhum na fonte de quem o vende, e ela não publica passe que não leu. A conta acima é a dos ingressos avulsos, e ela já responde à metade da sua pergunta."
+    },
+    {
+     "codigo": "sem_valor_em_real",
+     "frase": "Os valores desta página estão em BRL_do_operador, que é a moeda cobrada em Rio de Janeiro. Esta ilha ainda não tem uma cotação datada para converter, e preço convertido sem dizer a data do câmbio envelhece sem avisar."
+    }
+   ],
+   "como_sabemos": {
+    "cidade": "Rio de Janeiro",
+    "pais": "Brasil",
+    "moeda": "BRL_do_operador",
+    "preco_das_atracoes": [
+     {
+      "atracao": "Parque Bondinho Pão de Açúcar — o bilhete do teleférico",
+      "autor": "Parque Bondinho Pão de Açúcar, a empresa que opera o teleférico do Morro da Urca e do Pão de Açúcar e vende o bilhete em bondinho.com.br",
+      "documento": "As páginas de bilhete do próprio operador e a central de ajuda dele, nomeadas uma por uma nas duas passadas restritas ao domínio: «Tipos de bilhetes», em sac.bondinho.com.br/hc/pt-br/articles/24239141433883 (é ela que declara o valor de R$ 205, a tarifa maior de sexta e sábado nos horários de 15h, 16h e 17h, e os bilhetes de Criança, de maiores de 60 e de Estado RJ); «Ingresso Bilhete Bondinho», em bondinho.com.br/pt/ingresso-bondinho; «Promocional Estado RJ», em bondinho.com.br/pt/estado-rj; «Brazilian Ticket Discount», em bondinho.com.br/promocional-para-brasileiros; «Bilhete Geral», em bondinho.com.br/pt/todos-os-ingressos; «Acesso ao Parque Bondinho pela trilha do Morro da Urca», em sac.bondinho.com.br/hc/pt-br/articles/9818455162395 (é ela que declara os dois bilhetes de Trilheiros e que eles só são vendidos no totem do Morro da Urca). Seis documentos nomeados, do próprio operador.",
+      "url": null,
+      "motivo_sem_url": "Nenhuma das páginas foi lida, e aqui as DUAS portas desta nuvem foram medidas na mesma passada de 27/10/2026, o que é mais do que as coletas anteriores fizeram. Pelo curl: bondinho.com.br, www.bondinho.com.br, parquebondinho.com.br e ingressos.bondinho.com.br todos em 000, com CONNECT recusado por política — o `__agentproxy/status` desta nuvem devolve, com todas as letras, «gateway answered 403 to CONNECT (policy denial or upstream failure)». Pelo WebFetch: `getaddrinfo ENOTFOUND` em www.bondinho.com.br e em bondinho.com.br. É por isso que esta fonte é nível 4 (operador lido por busca) e não nível 2 (operador lido no endereço dele) — a mesma distância que separa o nível 3 do 1, e o nível 2 continua sendo o degrau que o critério de entrada desta ilha PREFERE e que ela nunca alcançou.",
+      "data_leitura": "2026-10-27",
+      "frase": "Parque Bondinho Pão de Açúcar — o bilhete do teleférico — Parque Bondinho Pão de Açúcar, a empresa que opera o teleférico do Morro da Urca e do Pão de Açúcar e vende o bilhete em bondinho.com.br, em 27/10/2026."
+     },
+     {
+      "atracao": "Trem do Corcovado — o bilhete de trem com acesso ao Cristo Redentor",
+      "autor": "Concessionária Trem do Corcovado, a empresa que opera o trem desde a estação de Cosme Velho e vende o bilhete pelo próprio site",
+      "documento": "as páginas «Informações Úteis», «Ingressos», «Política de Compra» e «Política de Remarcação de Bilhetes» do site do operador, nomeadas uma por uma em três passadas de busca",
+      "url": "https://www.tremdocorcovado.rio/en/institucional/informacoes-uteis",
+      "motivo_sem_url": null,
+      "data_leitura": "2026-10-27",
+      "frase": "Trem do Corcovado — o bilhete de trem com acesso ao Cristo Redentor — Concessionária Trem do Corcovado, a empresa que opera o trem desde a estação de Cosme Velho e vende o bilhete pelo próprio site, em 27/10/2026."
+     }
+    ],
+    "preco_dos_passes": [],
+    "cobertura_dos_passes": [],
+    "frase": "Nada nesta página é faixa de terceiro: o preço de cada atração, o preço de cada passe e a cobertura de cada passe foram lidos na fonte de quem opera ou de quem fixa a tarifa, e cada um traz a data da sua leitura. São três leituras diferentes, e a cobertura é a que envelhece primeiro — é ela que muda quando um passe troca a regra de reserva."
+   }
+  },
+  {
+   "estado": {
+    "cidade": "rio-de-janeiro",
+    "atracoes": [
+     "rio-de-janeiro-bondinho-pao-de-acucar",
+     "rio-de-janeiro-trem-do-corcovado"
+    ],
+    "dias": 1,
+    "pessoas": 4
+   },
+   "recusa_dura": null,
+   "frase_resposta": "2 atrações em Rio de Janeiro custam R$ 796 a R$ 1.356 para 4 pessoas, pelos ingressos avulsos. Esta ilha ainda não leu nenhum passe desta cidade, então ela não diz se um passe sairia mais barato — ela diz quanto custa o caminho que ela leu.",
+   "avulsos": {
+    "minimo": "796",
+    "maximo": "1356",
+    "moeda": "BRL_do_operador",
+    "escrito": "R$ 796 a R$ 1.356",
+    "quantas": 2,
+    "multiplicador": "4 pessoas, uma vez cada atração",
+    "detalhe": [
+     "Parque Bondinho Pão de Açúcar — o bilhete do teleférico: de R$ 260 («Trilheiros: só a descida do Morro da Urca até a Praia Vermelha») a R$ 820 («O Bilhete Bondinho, o bilhete comum do teleférico»).",
+     "Trem do Corcovado — o bilhete de trem com acesso ao Cristo Redentor: R$ 536, «O bilhete Normal, a tarifa inteira: trem de ida e volta com o acesso ao Cristo Redentor incluído», a única versão que esta ilha leu."
+    ],
+    "procedencia": "nossa",
+    "frase_de_procedencia": "Todo preço desta página foi lido no site de quem opera ou de quem fixa a tarifa, com a data da leitura ao lado. Nenhum número aqui é faixa de terceiro."
+   },
+   "passes": [],
+   "recusas": [
+    {
+     "codigo": "sem_passe_lido",
+     "frase": "Esta ilha ainda não leu nenhum passe de Rio de Janeiro. Isso não quer dizer que Rio de Janeiro não tenha passe: quer dizer que esta ilha não leu o preço de nenhum na fonte de quem o vende, e ela não publica passe que não leu. A conta acima é a dos ingressos avulsos, e ela já responde à metade da sua pergunta."
+    },
+    {
+     "codigo": "sem_valor_em_real",
+     "frase": "Os valores desta página estão em BRL_do_operador, que é a moeda cobrada em Rio de Janeiro. Esta ilha ainda não tem uma cotação datada para converter, e preço convertido sem dizer a data do câmbio envelhece sem avisar."
+    }
+   ],
+   "como_sabemos": {
+    "cidade": "Rio de Janeiro",
+    "pais": "Brasil",
+    "moeda": "BRL_do_operador",
+    "preco_das_atracoes": [
+     {
+      "atracao": "Parque Bondinho Pão de Açúcar — o bilhete do teleférico",
+      "autor": "Parque Bondinho Pão de Açúcar, a empresa que opera o teleférico do Morro da Urca e do Pão de Açúcar e vende o bilhete em bondinho.com.br",
+      "documento": "As páginas de bilhete do próprio operador e a central de ajuda dele, nomeadas uma por uma nas duas passadas restritas ao domínio: «Tipos de bilhetes», em sac.bondinho.com.br/hc/pt-br/articles/24239141433883 (é ela que declara o valor de R$ 205, a tarifa maior de sexta e sábado nos horários de 15h, 16h e 17h, e os bilhetes de Criança, de maiores de 60 e de Estado RJ); «Ingresso Bilhete Bondinho», em bondinho.com.br/pt/ingresso-bondinho; «Promocional Estado RJ», em bondinho.com.br/pt/estado-rj; «Brazilian Ticket Discount», em bondinho.com.br/promocional-para-brasileiros; «Bilhete Geral», em bondinho.com.br/pt/todos-os-ingressos; «Acesso ao Parque Bondinho pela trilha do Morro da Urca», em sac.bondinho.com.br/hc/pt-br/articles/9818455162395 (é ela que declara os dois bilhetes de Trilheiros e que eles só são vendidos no totem do Morro da Urca). Seis documentos nomeados, do próprio operador.",
+      "url": null,
+      "motivo_sem_url": "Nenhuma das páginas foi lida, e aqui as DUAS portas desta nuvem foram medidas na mesma passada de 27/10/2026, o que é mais do que as coletas anteriores fizeram. Pelo curl: bondinho.com.br, www.bondinho.com.br, parquebondinho.com.br e ingressos.bondinho.com.br todos em 000, com CONNECT recusado por política — o `__agentproxy/status` desta nuvem devolve, com todas as letras, «gateway answered 403 to CONNECT (policy denial or upstream failure)». Pelo WebFetch: `getaddrinfo ENOTFOUND` em www.bondinho.com.br e em bondinho.com.br. É por isso que esta fonte é nível 4 (operador lido por busca) e não nível 2 (operador lido no endereço dele) — a mesma distância que separa o nível 3 do 1, e o nível 2 continua sendo o degrau que o critério de entrada desta ilha PREFERE e que ela nunca alcançou.",
+      "data_leitura": "2026-10-27",
+      "frase": "Parque Bondinho Pão de Açúcar — o bilhete do teleférico — Parque Bondinho Pão de Açúcar, a empresa que opera o teleférico do Morro da Urca e do Pão de Açúcar e vende o bilhete em bondinho.com.br, em 27/10/2026."
+     },
+     {
+      "atracao": "Trem do Corcovado — o bilhete de trem com acesso ao Cristo Redentor",
+      "autor": "Concessionária Trem do Corcovado, a empresa que opera o trem desde a estação de Cosme Velho e vende o bilhete pelo próprio site",
+      "documento": "as páginas «Informações Úteis», «Ingressos», «Política de Compra» e «Política de Remarcação de Bilhetes» do site do operador, nomeadas uma por uma em três passadas de busca",
+      "url": "https://www.tremdocorcovado.rio/en/institucional/informacoes-uteis",
+      "motivo_sem_url": null,
+      "data_leitura": "2026-10-27",
+      "frase": "Trem do Corcovado — o bilhete de trem com acesso ao Cristo Redentor — Concessionária Trem do Corcovado, a empresa que opera o trem desde a estação de Cosme Velho e vende o bilhete pelo próprio site, em 27/10/2026."
+     }
+    ],
+    "preco_dos_passes": [],
+    "cobertura_dos_passes": [],
+    "frase": "Nada nesta página é faixa de terceiro: o preço de cada atração, o preço de cada passe e a cobertura de cada passe foram lidos na fonte de quem opera ou de quem fixa a tarifa, e cada um traz a data da sua leitura. São três leituras diferentes, e a cobertura é a que envelhece primeiro — é ela que muda quando um passe troca a regra de reserva."
+   }
+  },
+  {
+   "estado": {
+    "cidade": "rio-de-janeiro",
+    "atracoes": [
+     "rio-de-janeiro-bondinho-pao-de-acucar",
+     "rio-de-janeiro-trem-do-corcovado"
+    ],
+    "dias": 3,
+    "pessoas": 1
+   },
+   "recusa_dura": null,
+   "frase_resposta": "2 atrações em Rio de Janeiro custam R$ 199 a R$ 339 para 1 pessoa, pelos ingressos avulsos. Esta ilha ainda não leu nenhum passe desta cidade, então ela não diz se um passe sairia mais barato — ela diz quanto custa o caminho que ela leu.",
+   "avulsos": {
+    "minimo": "199",
+    "maximo": "339",
+    "moeda": "BRL_do_operador",
+    "escrito": "R$ 199 a R$ 339",
+    "quantas": 2,
+    "multiplicador": "1 pessoa, uma vez cada atração",
+    "detalhe": [
+     "Parque Bondinho Pão de Açúcar — o bilhete do teleférico: de R$ 65 («Trilheiros: só a descida do Morro da Urca até a Praia Vermelha») a R$ 205 («O Bilhete Bondinho, o bilhete comum do teleférico»).",
+     "Trem do Corcovado — o bilhete de trem com acesso ao Cristo Redentor: R$ 134, «O bilhete Normal, a tarifa inteira: trem de ida e volta com o acesso ao Cristo Redentor incluído», a única versão que esta ilha leu."
+    ],
+    "procedencia": "nossa",
+    "frase_de_procedencia": "Todo preço desta página foi lido no site de quem opera ou de quem fixa a tarifa, com a data da leitura ao lado. Nenhum número aqui é faixa de terceiro."
+   },
+   "passes": [],
+   "recusas": [
+    {
+     "codigo": "sem_passe_lido",
+     "frase": "Esta ilha ainda não leu nenhum passe de Rio de Janeiro. Isso não quer dizer que Rio de Janeiro não tenha passe: quer dizer que esta ilha não leu o preço de nenhum na fonte de quem o vende, e ela não publica passe que não leu. A conta acima é a dos ingressos avulsos, e ela já responde à metade da sua pergunta."
+    },
+    {
+     "codigo": "sem_valor_em_real",
+     "frase": "Os valores desta página estão em BRL_do_operador, que é a moeda cobrada em Rio de Janeiro. Esta ilha ainda não tem uma cotação datada para converter, e preço convertido sem dizer a data do câmbio envelhece sem avisar."
+    }
+   ],
+   "como_sabemos": {
+    "cidade": "Rio de Janeiro",
+    "pais": "Brasil",
+    "moeda": "BRL_do_operador",
+    "preco_das_atracoes": [
+     {
+      "atracao": "Parque Bondinho Pão de Açúcar — o bilhete do teleférico",
+      "autor": "Parque Bondinho Pão de Açúcar, a empresa que opera o teleférico do Morro da Urca e do Pão de Açúcar e vende o bilhete em bondinho.com.br",
+      "documento": "As páginas de bilhete do próprio operador e a central de ajuda dele, nomeadas uma por uma nas duas passadas restritas ao domínio: «Tipos de bilhetes», em sac.bondinho.com.br/hc/pt-br/articles/24239141433883 (é ela que declara o valor de R$ 205, a tarifa maior de sexta e sábado nos horários de 15h, 16h e 17h, e os bilhetes de Criança, de maiores de 60 e de Estado RJ); «Ingresso Bilhete Bondinho», em bondinho.com.br/pt/ingresso-bondinho; «Promocional Estado RJ», em bondinho.com.br/pt/estado-rj; «Brazilian Ticket Discount», em bondinho.com.br/promocional-para-brasileiros; «Bilhete Geral», em bondinho.com.br/pt/todos-os-ingressos; «Acesso ao Parque Bondinho pela trilha do Morro da Urca», em sac.bondinho.com.br/hc/pt-br/articles/9818455162395 (é ela que declara os dois bilhetes de Trilheiros e que eles só são vendidos no totem do Morro da Urca). Seis documentos nomeados, do próprio operador.",
+      "url": null,
+      "motivo_sem_url": "Nenhuma das páginas foi lida, e aqui as DUAS portas desta nuvem foram medidas na mesma passada de 27/10/2026, o que é mais do que as coletas anteriores fizeram. Pelo curl: bondinho.com.br, www.bondinho.com.br, parquebondinho.com.br e ingressos.bondinho.com.br todos em 000, com CONNECT recusado por política — o `__agentproxy/status` desta nuvem devolve, com todas as letras, «gateway answered 403 to CONNECT (policy denial or upstream failure)». Pelo WebFetch: `getaddrinfo ENOTFOUND` em www.bondinho.com.br e em bondinho.com.br. É por isso que esta fonte é nível 4 (operador lido por busca) e não nível 2 (operador lido no endereço dele) — a mesma distância que separa o nível 3 do 1, e o nível 2 continua sendo o degrau que o critério de entrada desta ilha PREFERE e que ela nunca alcançou.",
+      "data_leitura": "2026-10-27",
+      "frase": "Parque Bondinho Pão de Açúcar — o bilhete do teleférico — Parque Bondinho Pão de Açúcar, a empresa que opera o teleférico do Morro da Urca e do Pão de Açúcar e vende o bilhete em bondinho.com.br, em 27/10/2026."
+     },
+     {
+      "atracao": "Trem do Corcovado — o bilhete de trem com acesso ao Cristo Redentor",
+      "autor": "Concessionária Trem do Corcovado, a empresa que opera o trem desde a estação de Cosme Velho e vende o bilhete pelo próprio site",
+      "documento": "as páginas «Informações Úteis», «Ingressos», «Política de Compra» e «Política de Remarcação de Bilhetes» do site do operador, nomeadas uma por uma em três passadas de busca",
+      "url": "https://www.tremdocorcovado.rio/en/institucional/informacoes-uteis",
+      "motivo_sem_url": null,
+      "data_leitura": "2026-10-27",
+      "frase": "Trem do Corcovado — o bilhete de trem com acesso ao Cristo Redentor — Concessionária Trem do Corcovado, a empresa que opera o trem desde a estação de Cosme Velho e vende o bilhete pelo próprio site, em 27/10/2026."
+     }
+    ],
+    "preco_dos_passes": [],
+    "cobertura_dos_passes": [],
+    "frase": "Nada nesta página é faixa de terceiro: o preço de cada atração, o preço de cada passe e a cobertura de cada passe foram lidos na fonte de quem opera ou de quem fixa a tarifa, e cada um traz a data da sua leitura. São três leituras diferentes, e a cobertura é a que envelhece primeiro — é ela que muda quando um passe troca a regra de reserva."
+   }
+  },
+  {
+   "estado": {
+    "cidade": "rio-de-janeiro",
+    "atracoes": [
+     "rio-de-janeiro-bondinho-pao-de-acucar",
+     "rio-de-janeiro-trem-do-corcovado"
+    ],
+    "dias": 3,
+    "pessoas": 2
+   },
+   "recusa_dura": null,
+   "frase_resposta": "2 atrações em Rio de Janeiro custam R$ 398 a R$ 678 para 2 pessoas, pelos ingressos avulsos. Esta ilha ainda não leu nenhum passe desta cidade, então ela não diz se um passe sairia mais barato — ela diz quanto custa o caminho que ela leu.",
+   "avulsos": {
+    "minimo": "398",
+    "maximo": "678",
+    "moeda": "BRL_do_operador",
+    "escrito": "R$ 398 a R$ 678",
+    "quantas": 2,
+    "multiplicador": "2 pessoas, uma vez cada atração",
+    "detalhe": [
+     "Parque Bondinho Pão de Açúcar — o bilhete do teleférico: de R$ 130 («Trilheiros: só a descida do Morro da Urca até a Praia Vermelha») a R$ 410 («O Bilhete Bondinho, o bilhete comum do teleférico»).",
+     "Trem do Corcovado — o bilhete de trem com acesso ao Cristo Redentor: R$ 268, «O bilhete Normal, a tarifa inteira: trem de ida e volta com o acesso ao Cristo Redentor incluído», a única versão que esta ilha leu."
+    ],
+    "procedencia": "nossa",
+    "frase_de_procedencia": "Todo preço desta página foi lido no site de quem opera ou de quem fixa a tarifa, com a data da leitura ao lado. Nenhum número aqui é faixa de terceiro."
+   },
+   "passes": [],
+   "recusas": [
+    {
+     "codigo": "sem_passe_lido",
+     "frase": "Esta ilha ainda não leu nenhum passe de Rio de Janeiro. Isso não quer dizer que Rio de Janeiro não tenha passe: quer dizer que esta ilha não leu o preço de nenhum na fonte de quem o vende, e ela não publica passe que não leu. A conta acima é a dos ingressos avulsos, e ela já responde à metade da sua pergunta."
+    },
+    {
+     "codigo": "sem_valor_em_real",
+     "frase": "Os valores desta página estão em BRL_do_operador, que é a moeda cobrada em Rio de Janeiro. Esta ilha ainda não tem uma cotação datada para converter, e preço convertido sem dizer a data do câmbio envelhece sem avisar."
+    }
+   ],
+   "como_sabemos": {
+    "cidade": "Rio de Janeiro",
+    "pais": "Brasil",
+    "moeda": "BRL_do_operador",
+    "preco_das_atracoes": [
+     {
+      "atracao": "Parque Bondinho Pão de Açúcar — o bilhete do teleférico",
+      "autor": "Parque Bondinho Pão de Açúcar, a empresa que opera o teleférico do Morro da Urca e do Pão de Açúcar e vende o bilhete em bondinho.com.br",
+      "documento": "As páginas de bilhete do próprio operador e a central de ajuda dele, nomeadas uma por uma nas duas passadas restritas ao domínio: «Tipos de bilhetes», em sac.bondinho.com.br/hc/pt-br/articles/24239141433883 (é ela que declara o valor de R$ 205, a tarifa maior de sexta e sábado nos horários de 15h, 16h e 17h, e os bilhetes de Criança, de maiores de 60 e de Estado RJ); «Ingresso Bilhete Bondinho», em bondinho.com.br/pt/ingresso-bondinho; «Promocional Estado RJ», em bondinho.com.br/pt/estado-rj; «Brazilian Ticket Discount», em bondinho.com.br/promocional-para-brasileiros; «Bilhete Geral», em bondinho.com.br/pt/todos-os-ingressos; «Acesso ao Parque Bondinho pela trilha do Morro da Urca», em sac.bondinho.com.br/hc/pt-br/articles/9818455162395 (é ela que declara os dois bilhetes de Trilheiros e que eles só são vendidos no totem do Morro da Urca). Seis documentos nomeados, do próprio operador.",
+      "url": null,
+      "motivo_sem_url": "Nenhuma das páginas foi lida, e aqui as DUAS portas desta nuvem foram medidas na mesma passada de 27/10/2026, o que é mais do que as coletas anteriores fizeram. Pelo curl: bondinho.com.br, www.bondinho.com.br, parquebondinho.com.br e ingressos.bondinho.com.br todos em 000, com CONNECT recusado por política — o `__agentproxy/status` desta nuvem devolve, com todas as letras, «gateway answered 403 to CONNECT (policy denial or upstream failure)». Pelo WebFetch: `getaddrinfo ENOTFOUND` em www.bondinho.com.br e em bondinho.com.br. É por isso que esta fonte é nível 4 (operador lido por busca) e não nível 2 (operador lido no endereço dele) — a mesma distância que separa o nível 3 do 1, e o nível 2 continua sendo o degrau que o critério de entrada desta ilha PREFERE e que ela nunca alcançou.",
+      "data_leitura": "2026-10-27",
+      "frase": "Parque Bondinho Pão de Açúcar — o bilhete do teleférico — Parque Bondinho Pão de Açúcar, a empresa que opera o teleférico do Morro da Urca e do Pão de Açúcar e vende o bilhete em bondinho.com.br, em 27/10/2026."
+     },
+     {
+      "atracao": "Trem do Corcovado — o bilhete de trem com acesso ao Cristo Redentor",
+      "autor": "Concessionária Trem do Corcovado, a empresa que opera o trem desde a estação de Cosme Velho e vende o bilhete pelo próprio site",
+      "documento": "as páginas «Informações Úteis», «Ingressos», «Política de Compra» e «Política de Remarcação de Bilhetes» do site do operador, nomeadas uma por uma em três passadas de busca",
+      "url": "https://www.tremdocorcovado.rio/en/institucional/informacoes-uteis",
+      "motivo_sem_url": null,
+      "data_leitura": "2026-10-27",
+      "frase": "Trem do Corcovado — o bilhete de trem com acesso ao Cristo Redentor — Concessionária Trem do Corcovado, a empresa que opera o trem desde a estação de Cosme Velho e vende o bilhete pelo próprio site, em 27/10/2026."
+     }
+    ],
+    "preco_dos_passes": [],
+    "cobertura_dos_passes": [],
+    "frase": "Nada nesta página é faixa de terceiro: o preço de cada atração, o preço de cada passe e a cobertura de cada passe foram lidos na fonte de quem opera ou de quem fixa a tarifa, e cada um traz a data da sua leitura. São três leituras diferentes, e a cobertura é a que envelhece primeiro — é ela que muda quando um passe troca a regra de reserva."
+   }
+  },
+  {
+   "estado": {
+    "cidade": "rio-de-janeiro",
+    "atracoes": [
+     "rio-de-janeiro-bondinho-pao-de-acucar",
+     "rio-de-janeiro-trem-do-corcovado"
+    ],
+    "dias": 3,
+    "pessoas": 4
+   },
+   "recusa_dura": null,
+   "frase_resposta": "2 atrações em Rio de Janeiro custam R$ 796 a R$ 1.356 para 4 pessoas, pelos ingressos avulsos. Esta ilha ainda não leu nenhum passe desta cidade, então ela não diz se um passe sairia mais barato — ela diz quanto custa o caminho que ela leu.",
+   "avulsos": {
+    "minimo": "796",
+    "maximo": "1356",
+    "moeda": "BRL_do_operador",
+    "escrito": "R$ 796 a R$ 1.356",
+    "quantas": 2,
+    "multiplicador": "4 pessoas, uma vez cada atração",
+    "detalhe": [
+     "Parque Bondinho Pão de Açúcar — o bilhete do teleférico: de R$ 260 («Trilheiros: só a descida do Morro da Urca até a Praia Vermelha») a R$ 820 («O Bilhete Bondinho, o bilhete comum do teleférico»).",
+     "Trem do Corcovado — o bilhete de trem com acesso ao Cristo Redentor: R$ 536, «O bilhete Normal, a tarifa inteira: trem de ida e volta com o acesso ao Cristo Redentor incluído», a única versão que esta ilha leu."
+    ],
+    "procedencia": "nossa",
+    "frase_de_procedencia": "Todo preço desta página foi lido no site de quem opera ou de quem fixa a tarifa, com a data da leitura ao lado. Nenhum número aqui é faixa de terceiro."
+   },
+   "passes": [],
+   "recusas": [
+    {
+     "codigo": "sem_passe_lido",
+     "frase": "Esta ilha ainda não leu nenhum passe de Rio de Janeiro. Isso não quer dizer que Rio de Janeiro não tenha passe: quer dizer que esta ilha não leu o preço de nenhum na fonte de quem o vende, e ela não publica passe que não leu. A conta acima é a dos ingressos avulsos, e ela já responde à metade da sua pergunta."
+    },
+    {
+     "codigo": "sem_valor_em_real",
+     "frase": "Os valores desta página estão em BRL_do_operador, que é a moeda cobrada em Rio de Janeiro. Esta ilha ainda não tem uma cotação datada para converter, e preço convertido sem dizer a data do câmbio envelhece sem avisar."
+    }
+   ],
+   "como_sabemos": {
+    "cidade": "Rio de Janeiro",
+    "pais": "Brasil",
+    "moeda": "BRL_do_operador",
+    "preco_das_atracoes": [
+     {
+      "atracao": "Parque Bondinho Pão de Açúcar — o bilhete do teleférico",
+      "autor": "Parque Bondinho Pão de Açúcar, a empresa que opera o teleférico do Morro da Urca e do Pão de Açúcar e vende o bilhete em bondinho.com.br",
+      "documento": "As páginas de bilhete do próprio operador e a central de ajuda dele, nomeadas uma por uma nas duas passadas restritas ao domínio: «Tipos de bilhetes», em sac.bondinho.com.br/hc/pt-br/articles/24239141433883 (é ela que declara o valor de R$ 205, a tarifa maior de sexta e sábado nos horários de 15h, 16h e 17h, e os bilhetes de Criança, de maiores de 60 e de Estado RJ); «Ingresso Bilhete Bondinho», em bondinho.com.br/pt/ingresso-bondinho; «Promocional Estado RJ», em bondinho.com.br/pt/estado-rj; «Brazilian Ticket Discount», em bondinho.com.br/promocional-para-brasileiros; «Bilhete Geral», em bondinho.com.br/pt/todos-os-ingressos; «Acesso ao Parque Bondinho pela trilha do Morro da Urca», em sac.bondinho.com.br/hc/pt-br/articles/9818455162395 (é ela que declara os dois bilhetes de Trilheiros e que eles só são vendidos no totem do Morro da Urca). Seis documentos nomeados, do próprio operador.",
+      "url": null,
+      "motivo_sem_url": "Nenhuma das páginas foi lida, e aqui as DUAS portas desta nuvem foram medidas na mesma passada de 27/10/2026, o que é mais do que as coletas anteriores fizeram. Pelo curl: bondinho.com.br, www.bondinho.com.br, parquebondinho.com.br e ingressos.bondinho.com.br todos em 000, com CONNECT recusado por política — o `__agentproxy/status` desta nuvem devolve, com todas as letras, «gateway answered 403 to CONNECT (policy denial or upstream failure)». Pelo WebFetch: `getaddrinfo ENOTFOUND` em www.bondinho.com.br e em bondinho.com.br. É por isso que esta fonte é nível 4 (operador lido por busca) e não nível 2 (operador lido no endereço dele) — a mesma distância que separa o nível 3 do 1, e o nível 2 continua sendo o degrau que o critério de entrada desta ilha PREFERE e que ela nunca alcançou.",
+      "data_leitura": "2026-10-27",
+      "frase": "Parque Bondinho Pão de Açúcar — o bilhete do teleférico — Parque Bondinho Pão de Açúcar, a empresa que opera o teleférico do Morro da Urca e do Pão de Açúcar e vende o bilhete em bondinho.com.br, em 27/10/2026."
+     },
+     {
+      "atracao": "Trem do Corcovado — o bilhete de trem com acesso ao Cristo Redentor",
+      "autor": "Concessionária Trem do Corcovado, a empresa que opera o trem desde a estação de Cosme Velho e vende o bilhete pelo próprio site",
+      "documento": "as páginas «Informações Úteis», «Ingressos», «Política de Compra» e «Política de Remarcação de Bilhetes» do site do operador, nomeadas uma por uma em três passadas de busca",
+      "url": "https://www.tremdocorcovado.rio/en/institucional/informacoes-uteis",
+      "motivo_sem_url": null,
+      "data_leitura": "2026-10-27",
+      "frase": "Trem do Corcovado — o bilhete de trem com acesso ao Cristo Redentor — Concessionária Trem do Corcovado, a empresa que opera o trem desde a estação de Cosme Velho e vende o bilhete pelo próprio site, em 27/10/2026."
+     }
+    ],
+    "preco_dos_passes": [],
+    "cobertura_dos_passes": [],
+    "frase": "Nada nesta página é faixa de terceiro: o preço de cada atração, o preço de cada passe e a cobertura de cada passe foram lidos na fonte de quem opera ou de quem fixa a tarifa, e cada um traz a data da sua leitura. São três leituras diferentes, e a cobertura é a que envelhece primeiro — é ela que muda quando um passe troca a regra de reserva."
+   }
+  },
+  {
+   "estado": {
+    "cidade": "rio-de-janeiro",
+    "atracoes": [
+     "rio-de-janeiro-bondinho-pao-de-acucar",
+     "rio-de-janeiro-trem-do-corcovado"
+    ],
+    "dias": 7,
+    "pessoas": 1
+   },
+   "recusa_dura": null,
+   "frase_resposta": "2 atrações em Rio de Janeiro custam R$ 199 a R$ 339 para 1 pessoa, pelos ingressos avulsos. Esta ilha ainda não leu nenhum passe desta cidade, então ela não diz se um passe sairia mais barato — ela diz quanto custa o caminho que ela leu.",
+   "avulsos": {
+    "minimo": "199",
+    "maximo": "339",
+    "moeda": "BRL_do_operador",
+    "escrito": "R$ 199 a R$ 339",
+    "quantas": 2,
+    "multiplicador": "1 pessoa, uma vez cada atração",
+    "detalhe": [
+     "Parque Bondinho Pão de Açúcar — o bilhete do teleférico: de R$ 65 («Trilheiros: só a descida do Morro da Urca até a Praia Vermelha») a R$ 205 («O Bilhete Bondinho, o bilhete comum do teleférico»).",
+     "Trem do Corcovado — o bilhete de trem com acesso ao Cristo Redentor: R$ 134, «O bilhete Normal, a tarifa inteira: trem de ida e volta com o acesso ao Cristo Redentor incluído», a única versão que esta ilha leu."
+    ],
+    "procedencia": "nossa",
+    "frase_de_procedencia": "Todo preço desta página foi lido no site de quem opera ou de quem fixa a tarifa, com a data da leitura ao lado. Nenhum número aqui é faixa de terceiro."
+   },
+   "passes": [],
+   "recusas": [
+    {
+     "codigo": "sem_passe_lido",
+     "frase": "Esta ilha ainda não leu nenhum passe de Rio de Janeiro. Isso não quer dizer que Rio de Janeiro não tenha passe: quer dizer que esta ilha não leu o preço de nenhum na fonte de quem o vende, e ela não publica passe que não leu. A conta acima é a dos ingressos avulsos, e ela já responde à metade da sua pergunta."
+    },
+    {
+     "codigo": "sem_valor_em_real",
+     "frase": "Os valores desta página estão em BRL_do_operador, que é a moeda cobrada em Rio de Janeiro. Esta ilha ainda não tem uma cotação datada para converter, e preço convertido sem dizer a data do câmbio envelhece sem avisar."
+    }
+   ],
+   "como_sabemos": {
+    "cidade": "Rio de Janeiro",
+    "pais": "Brasil",
+    "moeda": "BRL_do_operador",
+    "preco_das_atracoes": [
+     {
+      "atracao": "Parque Bondinho Pão de Açúcar — o bilhete do teleférico",
+      "autor": "Parque Bondinho Pão de Açúcar, a empresa que opera o teleférico do Morro da Urca e do Pão de Açúcar e vende o bilhete em bondinho.com.br",
+      "documento": "As páginas de bilhete do próprio operador e a central de ajuda dele, nomeadas uma por uma nas duas passadas restritas ao domínio: «Tipos de bilhetes», em sac.bondinho.com.br/hc/pt-br/articles/24239141433883 (é ela que declara o valor de R$ 205, a tarifa maior de sexta e sábado nos horários de 15h, 16h e 17h, e os bilhetes de Criança, de maiores de 60 e de Estado RJ); «Ingresso Bilhete Bondinho», em bondinho.com.br/pt/ingresso-bondinho; «Promocional Estado RJ», em bondinho.com.br/pt/estado-rj; «Brazilian Ticket Discount», em bondinho.com.br/promocional-para-brasileiros; «Bilhete Geral», em bondinho.com.br/pt/todos-os-ingressos; «Acesso ao Parque Bondinho pela trilha do Morro da Urca», em sac.bondinho.com.br/hc/pt-br/articles/9818455162395 (é ela que declara os dois bilhetes de Trilheiros e que eles só são vendidos no totem do Morro da Urca). Seis documentos nomeados, do próprio operador.",
+      "url": null,
+      "motivo_sem_url": "Nenhuma das páginas foi lida, e aqui as DUAS portas desta nuvem foram medidas na mesma passada de 27/10/2026, o que é mais do que as coletas anteriores fizeram. Pelo curl: bondinho.com.br, www.bondinho.com.br, parquebondinho.com.br e ingressos.bondinho.com.br todos em 000, com CONNECT recusado por política — o `__agentproxy/status` desta nuvem devolve, com todas as letras, «gateway answered 403 to CONNECT (policy denial or upstream failure)». Pelo WebFetch: `getaddrinfo ENOTFOUND` em www.bondinho.com.br e em bondinho.com.br. É por isso que esta fonte é nível 4 (operador lido por busca) e não nível 2 (operador lido no endereço dele) — a mesma distância que separa o nível 3 do 1, e o nível 2 continua sendo o degrau que o critério de entrada desta ilha PREFERE e que ela nunca alcançou.",
+      "data_leitura": "2026-10-27",
+      "frase": "Parque Bondinho Pão de Açúcar — o bilhete do teleférico — Parque Bondinho Pão de Açúcar, a empresa que opera o teleférico do Morro da Urca e do Pão de Açúcar e vende o bilhete em bondinho.com.br, em 27/10/2026."
+     },
+     {
+      "atracao": "Trem do Corcovado — o bilhete de trem com acesso ao Cristo Redentor",
+      "autor": "Concessionária Trem do Corcovado, a empresa que opera o trem desde a estação de Cosme Velho e vende o bilhete pelo próprio site",
+      "documento": "as páginas «Informações Úteis», «Ingressos», «Política de Compra» e «Política de Remarcação de Bilhetes» do site do operador, nomeadas uma por uma em três passadas de busca",
+      "url": "https://www.tremdocorcovado.rio/en/institucional/informacoes-uteis",
+      "motivo_sem_url": null,
+      "data_leitura": "2026-10-27",
+      "frase": "Trem do Corcovado — o bilhete de trem com acesso ao Cristo Redentor — Concessionária Trem do Corcovado, a empresa que opera o trem desde a estação de Cosme Velho e vende o bilhete pelo próprio site, em 27/10/2026."
+     }
+    ],
+    "preco_dos_passes": [],
+    "cobertura_dos_passes": [],
+    "frase": "Nada nesta página é faixa de terceiro: o preço de cada atração, o preço de cada passe e a cobertura de cada passe foram lidos na fonte de quem opera ou de quem fixa a tarifa, e cada um traz a data da sua leitura. São três leituras diferentes, e a cobertura é a que envelhece primeiro — é ela que muda quando um passe troca a regra de reserva."
+   }
+  },
+  {
+   "estado": {
+    "cidade": "rio-de-janeiro",
+    "atracoes": [
+     "rio-de-janeiro-bondinho-pao-de-acucar",
+     "rio-de-janeiro-trem-do-corcovado"
+    ],
+    "dias": 7,
+    "pessoas": 2
+   },
+   "recusa_dura": null,
+   "frase_resposta": "2 atrações em Rio de Janeiro custam R$ 398 a R$ 678 para 2 pessoas, pelos ingressos avulsos. Esta ilha ainda não leu nenhum passe desta cidade, então ela não diz se um passe sairia mais barato — ela diz quanto custa o caminho que ela leu.",
+   "avulsos": {
+    "minimo": "398",
+    "maximo": "678",
+    "moeda": "BRL_do_operador",
+    "escrito": "R$ 398 a R$ 678",
+    "quantas": 2,
+    "multiplicador": "2 pessoas, uma vez cada atração",
+    "detalhe": [
+     "Parque Bondinho Pão de Açúcar — o bilhete do teleférico: de R$ 130 («Trilheiros: só a descida do Morro da Urca até a Praia Vermelha») a R$ 410 («O Bilhete Bondinho, o bilhete comum do teleférico»).",
+     "Trem do Corcovado — o bilhete de trem com acesso ao Cristo Redentor: R$ 268, «O bilhete Normal, a tarifa inteira: trem de ida e volta com o acesso ao Cristo Redentor incluído», a única versão que esta ilha leu."
+    ],
+    "procedencia": "nossa",
+    "frase_de_procedencia": "Todo preço desta página foi lido no site de quem opera ou de quem fixa a tarifa, com a data da leitura ao lado. Nenhum número aqui é faixa de terceiro."
+   },
+   "passes": [],
+   "recusas": [
+    {
+     "codigo": "sem_passe_lido",
+     "frase": "Esta ilha ainda não leu nenhum passe de Rio de Janeiro. Isso não quer dizer que Rio de Janeiro não tenha passe: quer dizer que esta ilha não leu o preço de nenhum na fonte de quem o vende, e ela não publica passe que não leu. A conta acima é a dos ingressos avulsos, e ela já responde à metade da sua pergunta."
+    },
+    {
+     "codigo": "sem_valor_em_real",
+     "frase": "Os valores desta página estão em BRL_do_operador, que é a moeda cobrada em Rio de Janeiro. Esta ilha ainda não tem uma cotação datada para converter, e preço convertido sem dizer a data do câmbio envelhece sem avisar."
+    }
+   ],
+   "como_sabemos": {
+    "cidade": "Rio de Janeiro",
+    "pais": "Brasil",
+    "moeda": "BRL_do_operador",
+    "preco_das_atracoes": [
+     {
+      "atracao": "Parque Bondinho Pão de Açúcar — o bilhete do teleférico",
+      "autor": "Parque Bondinho Pão de Açúcar, a empresa que opera o teleférico do Morro da Urca e do Pão de Açúcar e vende o bilhete em bondinho.com.br",
+      "documento": "As páginas de bilhete do próprio operador e a central de ajuda dele, nomeadas uma por uma nas duas passadas restritas ao domínio: «Tipos de bilhetes», em sac.bondinho.com.br/hc/pt-br/articles/24239141433883 (é ela que declara o valor de R$ 205, a tarifa maior de sexta e sábado nos horários de 15h, 16h e 17h, e os bilhetes de Criança, de maiores de 60 e de Estado RJ); «Ingresso Bilhete Bondinho», em bondinho.com.br/pt/ingresso-bondinho; «Promocional Estado RJ», em bondinho.com.br/pt/estado-rj; «Brazilian Ticket Discount», em bondinho.com.br/promocional-para-brasileiros; «Bilhete Geral», em bondinho.com.br/pt/todos-os-ingressos; «Acesso ao Parque Bondinho pela trilha do Morro da Urca», em sac.bondinho.com.br/hc/pt-br/articles/9818455162395 (é ela que declara os dois bilhetes de Trilheiros e que eles só são vendidos no totem do Morro da Urca). Seis documentos nomeados, do próprio operador.",
+      "url": null,
+      "motivo_sem_url": "Nenhuma das páginas foi lida, e aqui as DUAS portas desta nuvem foram medidas na mesma passada de 27/10/2026, o que é mais do que as coletas anteriores fizeram. Pelo curl: bondinho.com.br, www.bondinho.com.br, parquebondinho.com.br e ingressos.bondinho.com.br todos em 000, com CONNECT recusado por política — o `__agentproxy/status` desta nuvem devolve, com todas as letras, «gateway answered 403 to CONNECT (policy denial or upstream failure)». Pelo WebFetch: `getaddrinfo ENOTFOUND` em www.bondinho.com.br e em bondinho.com.br. É por isso que esta fonte é nível 4 (operador lido por busca) e não nível 2 (operador lido no endereço dele) — a mesma distância que separa o nível 3 do 1, e o nível 2 continua sendo o degrau que o critério de entrada desta ilha PREFERE e que ela nunca alcançou.",
+      "data_leitura": "2026-10-27",
+      "frase": "Parque Bondinho Pão de Açúcar — o bilhete do teleférico — Parque Bondinho Pão de Açúcar, a empresa que opera o teleférico do Morro da Urca e do Pão de Açúcar e vende o bilhete em bondinho.com.br, em 27/10/2026."
+     },
+     {
+      "atracao": "Trem do Corcovado — o bilhete de trem com acesso ao Cristo Redentor",
+      "autor": "Concessionária Trem do Corcovado, a empresa que opera o trem desde a estação de Cosme Velho e vende o bilhete pelo próprio site",
+      "documento": "as páginas «Informações Úteis», «Ingressos», «Política de Compra» e «Política de Remarcação de Bilhetes» do site do operador, nomeadas uma por uma em três passadas de busca",
+      "url": "https://www.tremdocorcovado.rio/en/institucional/informacoes-uteis",
+      "motivo_sem_url": null,
+      "data_leitura": "2026-10-27",
+      "frase": "Trem do Corcovado — o bilhete de trem com acesso ao Cristo Redentor — Concessionária Trem do Corcovado, a empresa que opera o trem desde a estação de Cosme Velho e vende o bilhete pelo próprio site, em 27/10/2026."
+     }
+    ],
+    "preco_dos_passes": [],
+    "cobertura_dos_passes": [],
+    "frase": "Nada nesta página é faixa de terceiro: o preço de cada atração, o preço de cada passe e a cobertura de cada passe foram lidos na fonte de quem opera ou de quem fixa a tarifa, e cada um traz a data da sua leitura. São três leituras diferentes, e a cobertura é a que envelhece primeiro — é ela que muda quando um passe troca a regra de reserva."
+   }
+  },
+  {
+   "estado": {
+    "cidade": "rio-de-janeiro",
+    "atracoes": [
+     "rio-de-janeiro-bondinho-pao-de-acucar",
+     "rio-de-janeiro-trem-do-corcovado"
+    ],
+    "dias": 7,
+    "pessoas": 4
+   },
+   "recusa_dura": null,
+   "frase_resposta": "2 atrações em Rio de Janeiro custam R$ 796 a R$ 1.356 para 4 pessoas, pelos ingressos avulsos. Esta ilha ainda não leu nenhum passe desta cidade, então ela não diz se um passe sairia mais barato — ela diz quanto custa o caminho que ela leu.",
+   "avulsos": {
+    "minimo": "796",
+    "maximo": "1356",
+    "moeda": "BRL_do_operador",
+    "escrito": "R$ 796 a R$ 1.356",
+    "quantas": 2,
+    "multiplicador": "4 pessoas, uma vez cada atração",
+    "detalhe": [
+     "Parque Bondinho Pão de Açúcar — o bilhete do teleférico: de R$ 260 («Trilheiros: só a descida do Morro da Urca até a Praia Vermelha») a R$ 820 («O Bilhete Bondinho, o bilhete comum do teleférico»).",
+     "Trem do Corcovado — o bilhete de trem com acesso ao Cristo Redentor: R$ 536, «O bilhete Normal, a tarifa inteira: trem de ida e volta com o acesso ao Cristo Redentor incluído», a única versão que esta ilha leu."
+    ],
+    "procedencia": "nossa",
+    "frase_de_procedencia": "Todo preço desta página foi lido no site de quem opera ou de quem fixa a tarifa, com a data da leitura ao lado. Nenhum número aqui é faixa de terceiro."
+   },
+   "passes": [],
+   "recusas": [
+    {
+     "codigo": "sem_passe_lido",
+     "frase": "Esta ilha ainda não leu nenhum passe de Rio de Janeiro. Isso não quer dizer que Rio de Janeiro não tenha passe: quer dizer que esta ilha não leu o preço de nenhum na fonte de quem o vende, e ela não publica passe que não leu. A conta acima é a dos ingressos avulsos, e ela já responde à metade da sua pergunta."
+    },
+    {
+     "codigo": "sem_valor_em_real",
+     "frase": "Os valores desta página estão em BRL_do_operador, que é a moeda cobrada em Rio de Janeiro. Esta ilha ainda não tem uma cotação datada para converter, e preço convertido sem dizer a data do câmbio envelhece sem avisar."
+    }
+   ],
+   "como_sabemos": {
+    "cidade": "Rio de Janeiro",
+    "pais": "Brasil",
+    "moeda": "BRL_do_operador",
+    "preco_das_atracoes": [
+     {
+      "atracao": "Parque Bondinho Pão de Açúcar — o bilhete do teleférico",
+      "autor": "Parque Bondinho Pão de Açúcar, a empresa que opera o teleférico do Morro da Urca e do Pão de Açúcar e vende o bilhete em bondinho.com.br",
+      "documento": "As páginas de bilhete do próprio operador e a central de ajuda dele, nomeadas uma por uma nas duas passadas restritas ao domínio: «Tipos de bilhetes», em sac.bondinho.com.br/hc/pt-br/articles/24239141433883 (é ela que declara o valor de R$ 205, a tarifa maior de sexta e sábado nos horários de 15h, 16h e 17h, e os bilhetes de Criança, de maiores de 60 e de Estado RJ); «Ingresso Bilhete Bondinho», em bondinho.com.br/pt/ingresso-bondinho; «Promocional Estado RJ», em bondinho.com.br/pt/estado-rj; «Brazilian Ticket Discount», em bondinho.com.br/promocional-para-brasileiros; «Bilhete Geral», em bondinho.com.br/pt/todos-os-ingressos; «Acesso ao Parque Bondinho pela trilha do Morro da Urca», em sac.bondinho.com.br/hc/pt-br/articles/9818455162395 (é ela que declara os dois bilhetes de Trilheiros e que eles só são vendidos no totem do Morro da Urca). Seis documentos nomeados, do próprio operador.",
+      "url": null,
+      "motivo_sem_url": "Nenhuma das páginas foi lida, e aqui as DUAS portas desta nuvem foram medidas na mesma passada de 27/10/2026, o que é mais do que as coletas anteriores fizeram. Pelo curl: bondinho.com.br, www.bondinho.com.br, parquebondinho.com.br e ingressos.bondinho.com.br todos em 000, com CONNECT recusado por política — o `__agentproxy/status` desta nuvem devolve, com todas as letras, «gateway answered 403 to CONNECT (policy denial or upstream failure)». Pelo WebFetch: `getaddrinfo ENOTFOUND` em www.bondinho.com.br e em bondinho.com.br. É por isso que esta fonte é nível 4 (operador lido por busca) e não nível 2 (operador lido no endereço dele) — a mesma distância que separa o nível 3 do 1, e o nível 2 continua sendo o degrau que o critério de entrada desta ilha PREFERE e que ela nunca alcançou.",
+      "data_leitura": "2026-10-27",
+      "frase": "Parque Bondinho Pão de Açúcar — o bilhete do teleférico — Parque Bondinho Pão de Açúcar, a empresa que opera o teleférico do Morro da Urca e do Pão de Açúcar e vende o bilhete em bondinho.com.br, em 27/10/2026."
+     },
+     {
+      "atracao": "Trem do Corcovado — o bilhete de trem com acesso ao Cristo Redentor",
+      "autor": "Concessionária Trem do Corcovado, a empresa que opera o trem desde a estação de Cosme Velho e vende o bilhete pelo próprio site",
+      "documento": "as páginas «Informações Úteis», «Ingressos», «Política de Compra» e «Política de Remarcação de Bilhetes» do site do operador, nomeadas uma por uma em três passadas de busca",
+      "url": "https://www.tremdocorcovado.rio/en/institucional/informacoes-uteis",
+      "motivo_sem_url": null,
+      "data_leitura": "2026-10-27",
+      "frase": "Trem do Corcovado — o bilhete de trem com acesso ao Cristo Redentor — Concessionária Trem do Corcovado, a empresa que opera o trem desde a estação de Cosme Velho e vende o bilhete pelo próprio site, em 27/10/2026."
+     }
+    ],
+    "preco_dos_passes": [],
+    "cobertura_dos_passes": [],
+    "frase": "Nada nesta página é faixa de terceiro: o preço de cada atração, o preço de cada passe e a cobertura de cada passe foram lidos na fonte de quem opera ou de quem fixa a tarifa, e cada um traz a data da sua leitura. São três leituras diferentes, e a cobertura é a que envelhece primeiro — é ela que muda quando um passe troca a regra de reserva."
+   }
+  },
+  {
+   "estado": {
+    "cidade": "rio-de-janeiro",
+    "atracoes": [
+     "rio-de-janeiro-bondinho-pao-de-acucar",
+     "rio-de-janeiro-trem-do-corcovado"
+    ],
+    "dias": 21,
+    "pessoas": 1
+   },
+   "recusa_dura": null,
+   "frase_resposta": "2 atrações em Rio de Janeiro custam R$ 199 a R$ 339 para 1 pessoa, pelos ingressos avulsos. Esta ilha ainda não leu nenhum passe desta cidade, então ela não diz se um passe sairia mais barato — ela diz quanto custa o caminho que ela leu.",
+   "avulsos": {
+    "minimo": "199",
+    "maximo": "339",
+    "moeda": "BRL_do_operador",
+    "escrito": "R$ 199 a R$ 339",
+    "quantas": 2,
+    "multiplicador": "1 pessoa, uma vez cada atração",
+    "detalhe": [
+     "Parque Bondinho Pão de Açúcar — o bilhete do teleférico: de R$ 65 («Trilheiros: só a descida do Morro da Urca até a Praia Vermelha») a R$ 205 («O Bilhete Bondinho, o bilhete comum do teleférico»).",
+     "Trem do Corcovado — o bilhete de trem com acesso ao Cristo Redentor: R$ 134, «O bilhete Normal, a tarifa inteira: trem de ida e volta com o acesso ao Cristo Redentor incluído», a única versão que esta ilha leu."
+    ],
+    "procedencia": "nossa",
+    "frase_de_procedencia": "Todo preço desta página foi lido no site de quem opera ou de quem fixa a tarifa, com a data da leitura ao lado. Nenhum número aqui é faixa de terceiro."
+   },
+   "passes": [],
+   "recusas": [
+    {
+     "codigo": "sem_passe_lido",
+     "frase": "Esta ilha ainda não leu nenhum passe de Rio de Janeiro. Isso não quer dizer que Rio de Janeiro não tenha passe: quer dizer que esta ilha não leu o preço de nenhum na fonte de quem o vende, e ela não publica passe que não leu. A conta acima é a dos ingressos avulsos, e ela já responde à metade da sua pergunta."
+    },
+    {
+     "codigo": "sem_valor_em_real",
+     "frase": "Os valores desta página estão em BRL_do_operador, que é a moeda cobrada em Rio de Janeiro. Esta ilha ainda não tem uma cotação datada para converter, e preço convertido sem dizer a data do câmbio envelhece sem avisar."
+    }
+   ],
+   "como_sabemos": {
+    "cidade": "Rio de Janeiro",
+    "pais": "Brasil",
+    "moeda": "BRL_do_operador",
+    "preco_das_atracoes": [
+     {
+      "atracao": "Parque Bondinho Pão de Açúcar — o bilhete do teleférico",
+      "autor": "Parque Bondinho Pão de Açúcar, a empresa que opera o teleférico do Morro da Urca e do Pão de Açúcar e vende o bilhete em bondinho.com.br",
+      "documento": "As páginas de bilhete do próprio operador e a central de ajuda dele, nomeadas uma por uma nas duas passadas restritas ao domínio: «Tipos de bilhetes», em sac.bondinho.com.br/hc/pt-br/articles/24239141433883 (é ela que declara o valor de R$ 205, a tarifa maior de sexta e sábado nos horários de 15h, 16h e 17h, e os bilhetes de Criança, de maiores de 60 e de Estado RJ); «Ingresso Bilhete Bondinho», em bondinho.com.br/pt/ingresso-bondinho; «Promocional Estado RJ», em bondinho.com.br/pt/estado-rj; «Brazilian Ticket Discount», em bondinho.com.br/promocional-para-brasileiros; «Bilhete Geral», em bondinho.com.br/pt/todos-os-ingressos; «Acesso ao Parque Bondinho pela trilha do Morro da Urca», em sac.bondinho.com.br/hc/pt-br/articles/9818455162395 (é ela que declara os dois bilhetes de Trilheiros e que eles só são vendidos no totem do Morro da Urca). Seis documentos nomeados, do próprio operador.",
+      "url": null,
+      "motivo_sem_url": "Nenhuma das páginas foi lida, e aqui as DUAS portas desta nuvem foram medidas na mesma passada de 27/10/2026, o que é mais do que as coletas anteriores fizeram. Pelo curl: bondinho.com.br, www.bondinho.com.br, parquebondinho.com.br e ingressos.bondinho.com.br todos em 000, com CONNECT recusado por política — o `__agentproxy/status` desta nuvem devolve, com todas as letras, «gateway answered 403 to CONNECT (policy denial or upstream failure)». Pelo WebFetch: `getaddrinfo ENOTFOUND` em www.bondinho.com.br e em bondinho.com.br. É por isso que esta fonte é nível 4 (operador lido por busca) e não nível 2 (operador lido no endereço dele) — a mesma distância que separa o nível 3 do 1, e o nível 2 continua sendo o degrau que o critério de entrada desta ilha PREFERE e que ela nunca alcançou.",
+      "data_leitura": "2026-10-27",
+      "frase": "Parque Bondinho Pão de Açúcar — o bilhete do teleférico — Parque Bondinho Pão de Açúcar, a empresa que opera o teleférico do Morro da Urca e do Pão de Açúcar e vende o bilhete em bondinho.com.br, em 27/10/2026."
+     },
+     {
+      "atracao": "Trem do Corcovado — o bilhete de trem com acesso ao Cristo Redentor",
+      "autor": "Concessionária Trem do Corcovado, a empresa que opera o trem desde a estação de Cosme Velho e vende o bilhete pelo próprio site",
+      "documento": "as páginas «Informações Úteis», «Ingressos», «Política de Compra» e «Política de Remarcação de Bilhetes» do site do operador, nomeadas uma por uma em três passadas de busca",
+      "url": "https://www.tremdocorcovado.rio/en/institucional/informacoes-uteis",
+      "motivo_sem_url": null,
+      "data_leitura": "2026-10-27",
+      "frase": "Trem do Corcovado — o bilhete de trem com acesso ao Cristo Redentor — Concessionária Trem do Corcovado, a empresa que opera o trem desde a estação de Cosme Velho e vende o bilhete pelo próprio site, em 27/10/2026."
+     }
+    ],
+    "preco_dos_passes": [],
+    "cobertura_dos_passes": [],
+    "frase": "Nada nesta página é faixa de terceiro: o preço de cada atração, o preço de cada passe e a cobertura de cada passe foram lidos na fonte de quem opera ou de quem fixa a tarifa, e cada um traz a data da sua leitura. São três leituras diferentes, e a cobertura é a que envelhece primeiro — é ela que muda quando um passe troca a regra de reserva."
+   }
+  },
+  {
+   "estado": {
+    "cidade": "rio-de-janeiro",
+    "atracoes": [
+     "rio-de-janeiro-bondinho-pao-de-acucar",
+     "rio-de-janeiro-trem-do-corcovado"
+    ],
+    "dias": 21,
+    "pessoas": 2
+   },
+   "recusa_dura": null,
+   "frase_resposta": "2 atrações em Rio de Janeiro custam R$ 398 a R$ 678 para 2 pessoas, pelos ingressos avulsos. Esta ilha ainda não leu nenhum passe desta cidade, então ela não diz se um passe sairia mais barato — ela diz quanto custa o caminho que ela leu.",
+   "avulsos": {
+    "minimo": "398",
+    "maximo": "678",
+    "moeda": "BRL_do_operador",
+    "escrito": "R$ 398 a R$ 678",
+    "quantas": 2,
+    "multiplicador": "2 pessoas, uma vez cada atração",
+    "detalhe": [
+     "Parque Bondinho Pão de Açúcar — o bilhete do teleférico: de R$ 130 («Trilheiros: só a descida do Morro da Urca até a Praia Vermelha») a R$ 410 («O Bilhete Bondinho, o bilhete comum do teleférico»).",
+     "Trem do Corcovado — o bilhete de trem com acesso ao Cristo Redentor: R$ 268, «O bilhete Normal, a tarifa inteira: trem de ida e volta com o acesso ao Cristo Redentor incluído», a única versão que esta ilha leu."
+    ],
+    "procedencia": "nossa",
+    "frase_de_procedencia": "Todo preço desta página foi lido no site de quem opera ou de quem fixa a tarifa, com a data da leitura ao lado. Nenhum número aqui é faixa de terceiro."
+   },
+   "passes": [],
+   "recusas": [
+    {
+     "codigo": "sem_passe_lido",
+     "frase": "Esta ilha ainda não leu nenhum passe de Rio de Janeiro. Isso não quer dizer que Rio de Janeiro não tenha passe: quer dizer que esta ilha não leu o preço de nenhum na fonte de quem o vende, e ela não publica passe que não leu. A conta acima é a dos ingressos avulsos, e ela já responde à metade da sua pergunta."
+    },
+    {
+     "codigo": "sem_valor_em_real",
+     "frase": "Os valores desta página estão em BRL_do_operador, que é a moeda cobrada em Rio de Janeiro. Esta ilha ainda não tem uma cotação datada para converter, e preço convertido sem dizer a data do câmbio envelhece sem avisar."
+    }
+   ],
+   "como_sabemos": {
+    "cidade": "Rio de Janeiro",
+    "pais": "Brasil",
+    "moeda": "BRL_do_operador",
+    "preco_das_atracoes": [
+     {
+      "atracao": "Parque Bondinho Pão de Açúcar — o bilhete do teleférico",
+      "autor": "Parque Bondinho Pão de Açúcar, a empresa que opera o teleférico do Morro da Urca e do Pão de Açúcar e vende o bilhete em bondinho.com.br",
+      "documento": "As páginas de bilhete do próprio operador e a central de ajuda dele, nomeadas uma por uma nas duas passadas restritas ao domínio: «Tipos de bilhetes», em sac.bondinho.com.br/hc/pt-br/articles/24239141433883 (é ela que declara o valor de R$ 205, a tarifa maior de sexta e sábado nos horários de 15h, 16h e 17h, e os bilhetes de Criança, de maiores de 60 e de Estado RJ); «Ingresso Bilhete Bondinho», em bondinho.com.br/pt/ingresso-bondinho; «Promocional Estado RJ», em bondinho.com.br/pt/estado-rj; «Brazilian Ticket Discount», em bondinho.com.br/promocional-para-brasileiros; «Bilhete Geral», em bondinho.com.br/pt/todos-os-ingressos; «Acesso ao Parque Bondinho pela trilha do Morro da Urca», em sac.bondinho.com.br/hc/pt-br/articles/9818455162395 (é ela que declara os dois bilhetes de Trilheiros e que eles só são vendidos no totem do Morro da Urca). Seis documentos nomeados, do próprio operador.",
+      "url": null,
+      "motivo_sem_url": "Nenhuma das páginas foi lida, e aqui as DUAS portas desta nuvem foram medidas na mesma passada de 27/10/2026, o que é mais do que as coletas anteriores fizeram. Pelo curl: bondinho.com.br, www.bondinho.com.br, parquebondinho.com.br e ingressos.bondinho.com.br todos em 000, com CONNECT recusado por política — o `__agentproxy/status` desta nuvem devolve, com todas as letras, «gateway answered 403 to CONNECT (policy denial or upstream failure)». Pelo WebFetch: `getaddrinfo ENOTFOUND` em www.bondinho.com.br e em bondinho.com.br. É por isso que esta fonte é nível 4 (operador lido por busca) e não nível 2 (operador lido no endereço dele) — a mesma distância que separa o nível 3 do 1, e o nível 2 continua sendo o degrau que o critério de entrada desta ilha PREFERE e que ela nunca alcançou.",
+      "data_leitura": "2026-10-27",
+      "frase": "Parque Bondinho Pão de Açúcar — o bilhete do teleférico — Parque Bondinho Pão de Açúcar, a empresa que opera o teleférico do Morro da Urca e do Pão de Açúcar e vende o bilhete em bondinho.com.br, em 27/10/2026."
+     },
+     {
+      "atracao": "Trem do Corcovado — o bilhete de trem com acesso ao Cristo Redentor",
+      "autor": "Concessionária Trem do Corcovado, a empresa que opera o trem desde a estação de Cosme Velho e vende o bilhete pelo próprio site",
+      "documento": "as páginas «Informações Úteis», «Ingressos», «Política de Compra» e «Política de Remarcação de Bilhetes» do site do operador, nomeadas uma por uma em três passadas de busca",
+      "url": "https://www.tremdocorcovado.rio/en/institucional/informacoes-uteis",
+      "motivo_sem_url": null,
+      "data_leitura": "2026-10-27",
+      "frase": "Trem do Corcovado — o bilhete de trem com acesso ao Cristo Redentor — Concessionária Trem do Corcovado, a empresa que opera o trem desde a estação de Cosme Velho e vende o bilhete pelo próprio site, em 27/10/2026."
+     }
+    ],
+    "preco_dos_passes": [],
+    "cobertura_dos_passes": [],
+    "frase": "Nada nesta página é faixa de terceiro: o preço de cada atração, o preço de cada passe e a cobertura de cada passe foram lidos na fonte de quem opera ou de quem fixa a tarifa, e cada um traz a data da sua leitura. São três leituras diferentes, e a cobertura é a que envelhece primeiro — é ela que muda quando um passe troca a regra de reserva."
+   }
+  },
+  {
+   "estado": {
+    "cidade": "rio-de-janeiro",
+    "atracoes": [
+     "rio-de-janeiro-bondinho-pao-de-acucar",
+     "rio-de-janeiro-trem-do-corcovado"
+    ],
+    "dias": 21,
+    "pessoas": 4
+   },
+   "recusa_dura": null,
+   "frase_resposta": "2 atrações em Rio de Janeiro custam R$ 796 a R$ 1.356 para 4 pessoas, pelos ingressos avulsos. Esta ilha ainda não leu nenhum passe desta cidade, então ela não diz se um passe sairia mais barato — ela diz quanto custa o caminho que ela leu.",
+   "avulsos": {
+    "minimo": "796",
+    "maximo": "1356",
+    "moeda": "BRL_do_operador",
+    "escrito": "R$ 796 a R$ 1.356",
+    "quantas": 2,
+    "multiplicador": "4 pessoas, uma vez cada atração",
+    "detalhe": [
+     "Parque Bondinho Pão de Açúcar — o bilhete do teleférico: de R$ 260 («Trilheiros: só a descida do Morro da Urca até a Praia Vermelha») a R$ 820 («O Bilhete Bondinho, o bilhete comum do teleférico»).",
+     "Trem do Corcovado — o bilhete de trem com acesso ao Cristo Redentor: R$ 536, «O bilhete Normal, a tarifa inteira: trem de ida e volta com o acesso ao Cristo Redentor incluído», a única versão que esta ilha leu."
+    ],
+    "procedencia": "nossa",
+    "frase_de_procedencia": "Todo preço desta página foi lido no site de quem opera ou de quem fixa a tarifa, com a data da leitura ao lado. Nenhum número aqui é faixa de terceiro."
+   },
+   "passes": [],
+   "recusas": [
+    {
+     "codigo": "sem_passe_lido",
+     "frase": "Esta ilha ainda não leu nenhum passe de Rio de Janeiro. Isso não quer dizer que Rio de Janeiro não tenha passe: quer dizer que esta ilha não leu o preço de nenhum na fonte de quem o vende, e ela não publica passe que não leu. A conta acima é a dos ingressos avulsos, e ela já responde à metade da sua pergunta."
+    },
+    {
+     "codigo": "sem_valor_em_real",
+     "frase": "Os valores desta página estão em BRL_do_operador, que é a moeda cobrada em Rio de Janeiro. Esta ilha ainda não tem uma cotação datada para converter, e preço convertido sem dizer a data do câmbio envelhece sem avisar."
+    }
+   ],
+   "como_sabemos": {
+    "cidade": "Rio de Janeiro",
+    "pais": "Brasil",
+    "moeda": "BRL_do_operador",
+    "preco_das_atracoes": [
+     {
+      "atracao": "Parque Bondinho Pão de Açúcar — o bilhete do teleférico",
+      "autor": "Parque Bondinho Pão de Açúcar, a empresa que opera o teleférico do Morro da Urca e do Pão de Açúcar e vende o bilhete em bondinho.com.br",
+      "documento": "As páginas de bilhete do próprio operador e a central de ajuda dele, nomeadas uma por uma nas duas passadas restritas ao domínio: «Tipos de bilhetes», em sac.bondinho.com.br/hc/pt-br/articles/24239141433883 (é ela que declara o valor de R$ 205, a tarifa maior de sexta e sábado nos horários de 15h, 16h e 17h, e os bilhetes de Criança, de maiores de 60 e de Estado RJ); «Ingresso Bilhete Bondinho», em bondinho.com.br/pt/ingresso-bondinho; «Promocional Estado RJ», em bondinho.com.br/pt/estado-rj; «Brazilian Ticket Discount», em bondinho.com.br/promocional-para-brasileiros; «Bilhete Geral», em bondinho.com.br/pt/todos-os-ingressos; «Acesso ao Parque Bondinho pela trilha do Morro da Urca», em sac.bondinho.com.br/hc/pt-br/articles/9818455162395 (é ela que declara os dois bilhetes de Trilheiros e que eles só são vendidos no totem do Morro da Urca). Seis documentos nomeados, do próprio operador.",
+      "url": null,
+      "motivo_sem_url": "Nenhuma das páginas foi lida, e aqui as DUAS portas desta nuvem foram medidas na mesma passada de 27/10/2026, o que é mais do que as coletas anteriores fizeram. Pelo curl: bondinho.com.br, www.bondinho.com.br, parquebondinho.com.br e ingressos.bondinho.com.br todos em 000, com CONNECT recusado por política — o `__agentproxy/status` desta nuvem devolve, com todas as letras, «gateway answered 403 to CONNECT (policy denial or upstream failure)». Pelo WebFetch: `getaddrinfo ENOTFOUND` em www.bondinho.com.br e em bondinho.com.br. É por isso que esta fonte é nível 4 (operador lido por busca) e não nível 2 (operador lido no endereço dele) — a mesma distância que separa o nível 3 do 1, e o nível 2 continua sendo o degrau que o critério de entrada desta ilha PREFERE e que ela nunca alcançou.",
+      "data_leitura": "2026-10-27",
+      "frase": "Parque Bondinho Pão de Açúcar — o bilhete do teleférico — Parque Bondinho Pão de Açúcar, a empresa que opera o teleférico do Morro da Urca e do Pão de Açúcar e vende o bilhete em bondinho.com.br, em 27/10/2026."
+     },
+     {
+      "atracao": "Trem do Corcovado — o bilhete de trem com acesso ao Cristo Redentor",
+      "autor": "Concessionária Trem do Corcovado, a empresa que opera o trem desde a estação de Cosme Velho e vende o bilhete pelo próprio site",
+      "documento": "as páginas «Informações Úteis», «Ingressos», «Política de Compra» e «Política de Remarcação de Bilhetes» do site do operador, nomeadas uma por uma em três passadas de busca",
+      "url": "https://www.tremdocorcovado.rio/en/institucional/informacoes-uteis",
+      "motivo_sem_url": null,
+      "data_leitura": "2026-10-27",
+      "frase": "Trem do Corcovado — o bilhete de trem com acesso ao Cristo Redentor — Concessionária Trem do Corcovado, a empresa que opera o trem desde a estação de Cosme Velho e vende o bilhete pelo próprio site, em 27/10/2026."
      }
     ],
     "preco_dos_passes": [],
