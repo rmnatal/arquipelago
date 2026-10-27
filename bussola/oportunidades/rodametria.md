@@ -43,3 +43,9 @@ e nunca dizer "pode andar sem CNH" fora do que a resolução diz. (3) Comissões
 campanha e podem cair; a mediana sem elas fica em 16%.
 
 ## Aprova o nascimento da Rodametria?
+
+**✅ APROVADO pelo Raphael em 27/10/2026, 13h56 de Brasília** ("vamos em frente, aprovado").
+Próximo passo é a seção 11 do `ARQUIPELAGO.md`, na ordem: (1) **[RAPHAEL]** registrar e pagar `rodametria.com.br` no
+registro.br; (2) daí em diante é da Fundação, a partir do dossiê em `bussola/dossies/rodametria/`. Primeira tarefa
+de pesquisa do nascimento, deixada pelo dossiê: abrir no Chrome a SERP das consultas-ponte (`bicicleta eletrica precisa
+de cnh`, `autonomia patinete eletrico`) e ler o texto oficial da Resolução Contran nº 996/2023 no gov.br, com data.
