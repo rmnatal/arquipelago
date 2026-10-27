@@ -7347,3 +7347,59 @@ total de linhas acrescentadas: 18
 
 Nenhum passo falhou: push aceito no `main` de primeira, sem rebase e sem force. Nada além do arquivo nomeado
 foi tocado. Este log vai num commit seguinte, por ser o último passo do disparo.
+
+---
+
+## Disparo de 27/10/2026, 14h29 de Brasília (17:29 UTC) — Bússola 0.9, Rodametria reaprovada e fila
+
+Instrução recebida: pedido da Bússola, assunto do Arquipélago (piso de comissão no lugar do piso de visitas,
+Mercado Livre como bônus, Rodametria reaprovada — decisões do Raphael). Checagem de assunto: PASSOU. Três arquivos
+nomeados, um commit, destino `main`.
+
+- `bussola/BUSSOLA.md` — bloco **0.9** inserido imediatamente depois do fim do item 0.8 (linha que termina em
+  "janela de atribuição comparável à da Shopee.") e antes da linha em branco que precede "## 1. Para que a Bússola
+  existe".
+- `bussola/oportunidades/rodametria.md` — append no fim do arquivo (reaprovação de 14h29, conta só-Shopee).
+- `bussola/fila.md` — append no fim do arquivo (uma linha de citação).
+
+`git status --porcelain` antes do commit:
+
+```
+ M bussola/BUSSOLA.md
+ M bussola/fila.md
+ M bussola/oportunidades/rodametria.md
+```
+
+`git diff --stat` antes do commit:
+
+```
+ bussola/BUSSOLA.md                  | 15 +++++++++++++++
+ bussola/fila.md                     |  2 ++
+ bussola/oportunidades/rodametria.md | 23 +++++++++++++++++++++++
+ 3 files changed, 40 insertions(+)
+```
+
+Commit que foi ao `main`:
+
+```
+cd106d9e3295123ca5266bee73f1ee873816748f
+Piso de comissão R$ 10 mil/mês, Mercado Livre como bônus e Rodametria reaprovada — decisão do Raphael, 27/10/2026
+```
+
+Confirmação (`git fetch origin main && git log -1 origin/main`): mostra `cd106d9`. Push aceito de primeira, sem
+rebase e sem force.
+
+Contagem conferida relendo os arquivos DEPOIS de gravar:
+
+```
+40 linhas acrescentadas no total, 0 removidas
+bussola/BUSSOLA.md                  404 linhas no arquivo (+15)
+bussola/fila.md                     600 linhas no arquivo (+2)
+bussola/oportunidades/rodametria.md  80 linhas no arquivo (+23)
+grep "0.9 PISO DE COMISSÃO" em BUSSOLA.md                        -> 1
+grep "REAPROVADA pelo Raphael em 27/10/2026" em rodametria.md    -> 1
+grep "RODAMETRIA REAPROVADA pelo Raphael" em fila.md             -> 1
+```
+
+Nenhum passo falhou. Nada além dos três arquivos nomeados foi tocado; nenhum cabeçalho de estado, nenhuma reserva
+de ilha, nenhum bloco de fila executado. Este log vai num commit seguinte, por ser o último passo do disparo.
