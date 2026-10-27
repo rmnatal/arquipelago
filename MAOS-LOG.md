@@ -7268,3 +7268,44 @@ d1431db4eae3edd8f71efd2bc716388cbca88140d6fe0617f6f135cea2e963bf  bussola/fila.m
 
 Nenhum passo falhou: push aceito no `main` de primeira, sem rebase e sem force. Este log vai num commit
 seguinte, por ser o último passo do disparo.
+
+## 27/10/2026, 14h06 de Brasília (17h06 UTC) — Rodametria em stand-by + regra de cobertura só-Shopee
+
+Pedido da Bússola, assunto do Arquipélago (Bússola / cobertura de afiliado das ilhas): checagem de assunto passou.
+Três arquivos nomeados na instrução, um commit, destino `main`.
+
+`git status --porcelain` antes do commit:
+
+```
+ M bussola/BUSSOLA.md
+ M bussola/fila.md
+ M bussola/oportunidades/rodametria.md
+```
+
+`git diff --stat` antes do commit:
+
+```
+ bussola/BUSSOLA.md                  | 10 ++++++++++
+ bussola/fila.md                     |  2 ++
+ bussola/oportunidades/rodametria.md |  6 ++++++
+ 3 files changed, 18 insertions(+)
+```
+
+Commit que foi ao `main` (confirmado por `git fetch origin main && git log -1 origin/main`):
+
+```
+fd549135e44b7c38cd302d73ff7b9f1bc0683435 Rodametria em stand-by; cobertura de afiliado passa a ser só-Shopee — decisão do Raphael, 27/10/2026
+8841db9..fd54913  HEAD -> main
+```
+
+Contagem do que mudou, conferida relendo os arquivos DEPOIS de gravar:
+
+```
+bussola/BUSSOLA.md                    389 linhas; 1 ocorrência de "**0.8 COBERTURA SÓ-SHOPEE"
+bussola/oportunidades/rodametria.md    57 linhas; 1 ocorrência de "EM STAND-BY por decisão do Raphael, 27/10/2026, 14h04"
+bussola/fila.md                       598 linhas; 1 ocorrência de "14h04 — RODAMETRIA EM STAND-BY"
+total de linhas acrescentadas: 18 (10 + 6 + 2)
+```
+
+Nenhum passo falhou: push aceito no `main` de primeira, sem rebase e sem force. Nada além dos três arquivos
+nomeados foi tocado. Este log vai num commit seguinte, por ser o último passo do disparo.
