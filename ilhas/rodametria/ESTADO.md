@@ -1,7 +1,7 @@
 ---
 ilha: rodametria
 estado: nascendo
-prioridade: 3
+prioridade: 1
 piso: abaixo
 primeira_indexacao: null
 ultima_execucao: null
