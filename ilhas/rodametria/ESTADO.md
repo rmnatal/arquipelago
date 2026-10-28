@@ -5,7 +5,7 @@ prioridade: 1
 piso: abaixo
 primeira_indexacao: null
 ultima_execucao: 2026-10-28T10:25Z   # BLOCO 1 ENTREGUE: `dados/corpus-buscas.md`, o corpus de buscas com procedencia consulta a consulta, e a S_par que o dossie deixou sem medir. No caminho, DUAS medicoes que nao eram do bloco: o WordPress JA esta no ar (a secao 4 em acao) e a fonte oficial da F1 e NEGADA pelo egresso. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
-executando_desde: null   # limpo as 2026-10-28T10:25Z pela propria execucao que reservou as 10h17Z de 28/10 e renovou pela 1.1 no commit do corpus
+executando_desde: 2026-10-28T13:19Z   # reserva desta execucao (passo 5 da secao 1), ilha em foco pela 1.2. Rede reconferida pela 20.2 antes de reservar: raiz e wp-sitemap.xml em 200 nas TRES tentativas. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
 bloco_atual: "2"   # o 1 fechou em 28/10. O 2 (especificacao F1/F2/F3 + constantes.json) pode ser ESCRITO inteiro daqui, mas a constante central da F1 nasce `publicavel: false`: ver a secao 4 do corpus e o despacho ALTA de 28/10 em dados/despachos.md
 ultima_ronda: null
 bloqueada_por: null
