@@ -7604,3 +7604,76 @@ Nenhum passo falhou. Nada além dos quatro arquivos nomeados foi tocado: nenhuma
 `executando_desde` escrito, nenhum bloco de fila executado, nenhuma publicação, nenhum Sync, nenhuma conta
 criada, `ARQUIPELAGO.md` não lido para decidir nada. Este log vai num commit seguinte, por ser o último passo
 do disparo e por precisar do hash.
+
+---
+
+## 28/10/2026 12h07 de Brasília (15h07 UTC) — escrita da Sentinela na clubedomosaico: quatro arquivos, um commit
+
+Assunto conferido antes do `git fetch`: ilha **clubedomosaico**, `ARQUIPELAGO.md`, Sentinela, `dados/PAINEL.md`.
+É do Arquipélago. Nenhum contato pessoal de terceiros apareceu nos quatro textos, então nada foi deixado de
+fora por causa da trava do repositório público.
+
+Partiu de `origin/main` em `7cc6538` (`git checkout -B trabalho origin/main`). As quatro escritas foram
+aplicadas byte a byte como vieram, sem reformatar, sem acrescentar linha e sem resumir nenhum dos textos.
+
+```
+$ git status --porcelain
+ M dados/PAINEL.md
+ M ilhas/clubedomosaico/ESTADO.md
+ M ilhas/clubedomosaico/PROMPT.md
+ M ilhas/clubedomosaico/dados/consertos.md
+```
+
+```
+$ git diff --stat
+ dados/PAINEL.md                         | 104 +++++++++++++++-----------------
+ ilhas/clubedomosaico/ESTADO.md          |   2 +-
+ ilhas/clubedomosaico/PROMPT.md          |  42 +++++++++++++
+ ilhas/clubedomosaico/dados/consertos.md |  29 +++++++++
+ 4 files changed, 120 insertions(+), 57 deletions(-)
+```
+
+```
+Commit no main: d510bbef035ca3e4cb10e53618ef27cfd657d110
+Mensagem: sentinela 28/10 clubedomosaico: despacho de dois itens, consertos.md, ultima_ronda e painel
+Push: git push origin HEAD:main  ->  7cc6538..d510bbe  HEAD -> main   (primeira tentativa, sem rebase, sem force)
+Confirmado: git fetch origin main && git log -1 origin/main  ->  d510bbe
+```
+
+Contagem do que mudou, **conferida relendo os arquivos DEPOIS de gravar**, nunca pelo que eu achava ter escrito:
+
+```
+ilhas/clubedomosaico/PROMPT.md
+  3375 linhas no total
+  1    seção "## DESPACHO DA SENTINELA — 2026-10-28" (a inserida, 42 linhas)
+  12   linhas "## ...DESPACHO DA SENTINELA" no arquivo (11 antes + 1 nova; nenhuma apagada)
+  o despacho de 2026-10-23 continua existindo, agora na linha 260, com o til duplo e o
+  "FECHADO EM 23/10/2026 às 19h4xZ" intactos; o bloco novo entra antes dele e é seguido de
+  linha em branco, três hifens e linha em branco
+
+ilhas/clubedomosaico/dados/consertos.md
+  282 linhas no total
+  9   seções "## " (8 antes + 1 nova); append-only respeitado, nenhuma seção anterior
+      apagada, reescrita ou resumida
+  a seção nova "## 28/10/2026 — RONDA SEM CONSERTO..." começa na linha 257, precedida de
+  linha em branco, três hifens e linha em branco, logo após a seção de 09/10/2026
+
+ilhas/clubedomosaico/ESTADO.md
+  1 linha substituída: a única que começava com "ultima_ronda: 2026-10-23T15:05Z"
+  0 linhas "ultima_ronda: 2026-10-23" restantes
+  1 linha "ultima_ronda: 2026-10-28T14:57Z" presente
+  Validação YAML pedida na instrução, rodada ANTES do commit:  YAML ok
+
+dados/PAINEL.md
+  arquivo substituído inteiro: 73 linhas, 12840 bytes
+  6  ilhas na tabela de ilhas (clubedomosaico, aquametria, robometria, rodametria,
+     jornadafly, ohmetria)
+  16 linhas na tabela "Despachos abertos"
+  5  marcadores em "Precisa do Raphael"
+```
+
+Nenhum passo falhou. Nada além dos quatro arquivos nomeados foi tocado — e deste `MAOS-LOG.md`, que é a
+exceção obrigatória: nenhuma reserva de ilha, nenhum `executando_desde` escrito, nenhum cabeçalho de estado
+além da linha nomeada, nenhum bloco de fila executado, nenhuma publicação, nenhum `publicar: true`, nenhum
+Sync acionado, nenhuma verificação de site, nenhuma conta criada, `ARQUIPELAGO.md` não lido para decidir
+nada. Este log vai num commit seguinte, por ser o último passo do disparo e por precisar do hash.
