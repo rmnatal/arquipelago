@@ -3,7 +3,7 @@
  "ilha": "rodametria",
  "bloco": "3",
  "esquema": "dados/esquema-banco.json",
- "versao_esquema": 1,
+ "versao_esquema": 2,
  "gerado_em": "2026-10-28",
  "publicar": false,
  "nota": "PRIMEIRA LEVA, montada SO do que ja estava colhido no repositorio em 28/10/2026: dados/corpus-buscas.md (bloco 1), a tabela 1.6 de dados/especificacao-calculadoras.md (bloco 2) e a secao (c) de bussola/dossies/rodametria/DOSSIE.md (Bussola, 27/10/2026). Nenhuma rede foi tocada para montar este arquivo e nenhum numero foi digitado de cabeca. NENHUM registro e `publicavel`, e a causa e uma so: nenhum tem saida de compra, e a 25.2 nao admite item publicavel sem piso.",
@@ -68,8 +68,8 @@
    },
    "categoria": null,
    "motivo_categoria_null": "DERIVADA da F1 e obrigatoriamente null: a constante `limiares-categoria-contran-996-2023` esta `pendente` em dados/constantes.json, e a 1.3 da especificacao proibe a F1 de ir ao ar com numero de portal. O validador le o STATUS DA CONSTANTE, nao uma lista escrita dentro dele.",
-   "status": "rascunho",
-   "motivo_do_status": "`rascunho`, e a causa e UMA SO: nenhum registro deste banco tem saida de compra ainda, e a 25.2 nao admite item publicavel sem piso. Nada aqui e servido em pagina nenhuma enquanto for rascunho. O que destrava e o bloco de coleta de link, nao um acerto de campo.",
+   "status": "publicavel",
+   "motivo_do_status": "`publicavel` pelo PISO da 25.2: a busca `Honeywhale M2 MAX patinete eletrico` foi medida na Open API em 2026-10-28 e devolveu 10 oferta(s) no degrau `marca_modelo_termo`, e o encurtamento com `sub_id_1` foi feito na mesma passada (25.2-b). O que este registro ainda NAO tem e ficha de produto (degrau 4), e o que ele publica e o que o banco declara dele — nada alem.",
    "divergencias": [],
    "afirmacao_do_vendedor": [],
    "alteracao_pos_compra": [],
@@ -85,18 +85,22 @@
     }
    ],
    "afiliado": {
-    "programa": null,
-    "degrau": null,
-    "url": null,
+    "programa": "shopee",
+    "degrau": 4,
+    "url": "",
     "url_produto": null,
     "par_colhido_em": null,
-    "url_busca": null,
-    "url_busca_produto": null,
-    "encurtamento_tentado_em": null,
-    "sub_id_1": null,
+    "url_busca": "https://s.shopee.com.br/1BNTcrnmhl",
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Honeywhale%20M2%20MAX%20patinete%20eletrico",
+    "encurtamento_tentado_em": "2026-10-28",
+    "sub_id_1": "rodametria",
     "sub_id_2": null,
-    "motivo_sem_url_produto": "CAUSA: a coleta de link e bloco proprio e nao e este; nenhuma chamada de API e nenhum gerador de link foi acionado por esta execucao, que entrega o MODELO do banco. || ULTIMA TENTATIVA: nenhuma em 28/10/2026 — e de proposito, nao por falha.",
-    "motivo_sem_url_busca": "CAUSA: idem. O piso da 25.2 e o primeiro item do bloco de coleta, e e ele que torna qualquer destes registros `publicavel`. || ULTIMA TENTATIVA: nenhuma em 28/10/2026."
+    "motivo_sem_url_produto": "CAUSA: a escada da 25.1 parou no degrau 4 de proposito — escolher ficha de produto e casar oferta com registro, que e o casamento das cinco armadilhas da 25.7 e e bloco proprio. || ULTIMA TENTATIVA: nenhuma em 2026-10-28; nenhuma ficha foi escolhida por esta execucao.",
+    "motivo_sem_url_busca": null,
+    "palavra_chave": "Honeywhale M2 MAX patinete eletrico",
+    "degrau_da_palavra_chave": "marca_modelo_termo",
+    "ofertas_na_medicao": 10,
+    "medido_em": "2026-10-28"
    },
    "imagem": null,
    "fontes": {
@@ -283,7 +287,7 @@
    "categoria": null,
    "motivo_categoria_null": "DERIVADA da F1 e obrigatoriamente null: a constante `limiares-categoria-contran-996-2023` esta `pendente` em dados/constantes.json, e a 1.3 da especificacao proibe a F1 de ir ao ar com numero de portal. O validador le o STATUS DA CONSTANTE, nao uma lista escrita dentro dele.",
    "status": "rascunho",
-   "motivo_do_status": "`rascunho`, e a causa e UMA SO: nenhum registro deste banco tem saida de compra ainda, e a 25.2 nao admite item publicavel sem piso. Nada aqui e servido em pagina nenhuma enquanto for rascunho. O que destrava e o bloco de coleta de link, nao um acerto de campo.",
+   "motivo_do_status": "`rascunho` por falta de PISO (25.2), e a causa esta em `afiliado.motivo_sem_url_busca`, medida em 2026-10-28 e nao suposta.",
    "divergencias": [],
    "afirmacao_do_vendedor": [],
    "alteracao_pos_compra": [],
@@ -300,7 +304,7 @@
     "sub_id_1": null,
     "sub_id_2": null,
     "motivo_sem_url_produto": "CAUSA: a coleta de link e bloco proprio e nao e este; nenhuma chamada de API e nenhum gerador de link foi acionado por esta execucao, que entrega o MODELO do banco. || ULTIMA TENTATIVA: nenhuma em 28/10/2026 — e de proposito, nao por falha.",
-    "motivo_sem_url_busca": "CAUSA: idem. O piso da 25.2 e o primeiro item do bloco de coleta, e e ele que torna qualquer destes registros `publicavel`. || ULTIMA TENTATIVA: nenhuma em 28/10/2026."
+    "motivo_sem_url_busca": "CAUSA: a escada inteira foi percorrida e NENHUM degrau devolveu oferta na loja — busca com zero resultado e o beco sem saida que o piso existe para impedir. Degraus medidos: marca_modelo_termo=MAXSHOT V1 patinete eletrico (0 oferta(s)); marca_modelo=MAXSHOT V1 (0 oferta(s)); modelo_termo=V1 patinete eletrico (0 oferta(s)); marca_termo=MAXSHOT patinete eletrico (0 oferta(s)). || ULTIMA TENTATIVA: 2026-10-28."
    },
    "imagem": null,
    "fontes": {
@@ -380,7 +384,7 @@
    "categoria": null,
    "motivo_categoria_null": "DERIVADA da F1 e obrigatoriamente null: a constante `limiares-categoria-contran-996-2023` esta `pendente` em dados/constantes.json, e a 1.3 da especificacao proibe a F1 de ir ao ar com numero de portal. O validador le o STATUS DA CONSTANTE, nao uma lista escrita dentro dele.",
    "status": "rascunho",
-   "motivo_do_status": "`rascunho`, e a causa e UMA SO: nenhum registro deste banco tem saida de compra ainda, e a 25.2 nao admite item publicavel sem piso. Nada aqui e servido em pagina nenhuma enquanto for rascunho. O que destrava e o bloco de coleta de link, nao um acerto de campo.",
+   "motivo_do_status": "`rascunho` por falta de PISO (25.2), e a causa esta em `afiliado.motivo_sem_url_busca`, medida em 2026-10-28 e nao suposta.",
    "divergencias": [],
    "afirmacao_do_vendedor": [],
    "alteracao_pos_compra": [],
@@ -397,7 +401,7 @@
     "sub_id_1": null,
     "sub_id_2": null,
     "motivo_sem_url_produto": "CAUSA: a coleta de link e bloco proprio e nao e este; nenhuma chamada de API e nenhum gerador de link foi acionado por esta execucao, que entrega o MODELO do banco. || ULTIMA TENTATIVA: nenhuma em 28/10/2026 — e de proposito, nao por falha.",
-    "motivo_sem_url_busca": "CAUSA: idem. O piso da 25.2 e o primeiro item do bloco de coleta, e e ele que torna qualquer destes registros `publicavel`. || ULTIMA TENTATIVA: nenhuma em 28/10/2026."
+    "motivo_sem_url_busca": "CAUSA: a escada inteira foi percorrida e NENHUM degrau devolveu oferta na loja — busca com zero resultado e o beco sem saida que o piso existe para impedir. Degraus medidos: marca_modelo_termo=MAXSHOT V1SPRO patinete eletrico (0 oferta(s)); marca_modelo=MAXSHOT V1SPRO (0 oferta(s)); modelo_termo=V1SPRO patinete eletrico (0 oferta(s)); marca_termo=MAXSHOT patinete eletrico (0 oferta(s)). || ULTIMA TENTATIVA: 2026-10-28."
    },
    "imagem": null,
    "fontes": {
@@ -477,25 +481,29 @@
    },
    "categoria": null,
    "motivo_categoria_null": "DERIVADA da F1 e obrigatoriamente null: a constante `limiares-categoria-contran-996-2023` esta `pendente` em dados/constantes.json, e a 1.3 da especificacao proibe a F1 de ir ao ar com numero de portal. O validador le o STATUS DA CONSTANTE, nao uma lista escrita dentro dele.",
-   "status": "rascunho",
-   "motivo_do_status": "`rascunho`, e a causa e UMA SO: nenhum registro deste banco tem saida de compra ainda, e a 25.2 nao admite item publicavel sem piso. Nada aqui e servido em pagina nenhuma enquanto for rascunho. O que destrava e o bloco de coleta de link, nao um acerto de campo.",
+   "status": "publicavel",
+   "motivo_do_status": "`publicavel` pelo PISO da 25.2: a busca `Sousa Bike bicicleta eletrica` foi medida na Open API em 2026-10-28 e devolveu 10 oferta(s) no degrau `marca_termo`, e o encurtamento com `sub_id_1` foi feito na mesma passada (25.2-b). O que este registro ainda NAO tem e ficha de produto (degrau 4), e o que ele publica e o que o banco declara dele — nada alem.",
    "divergencias": [],
    "afirmacao_do_vendedor": [],
    "alteracao_pos_compra": [],
    "cotacoes": [],
    "afiliado": {
-    "programa": null,
-    "degrau": null,
-    "url": null,
+    "programa": "shopee",
+    "degrau": 4,
+    "url": "",
     "url_produto": null,
     "par_colhido_em": null,
-    "url_busca": null,
-    "url_busca_produto": null,
-    "encurtamento_tentado_em": null,
-    "sub_id_1": null,
+    "url_busca": "https://s.shopee.com.br/8AXDxjjLCo",
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Sousa%20Bike%20bicicleta%20eletrica",
+    "encurtamento_tentado_em": "2026-10-28",
+    "sub_id_1": "rodametria",
     "sub_id_2": null,
-    "motivo_sem_url_produto": "CAUSA: a coleta de link e bloco proprio e nao e este; nenhuma chamada de API e nenhum gerador de link foi acionado por esta execucao, que entrega o MODELO do banco. || ULTIMA TENTATIVA: nenhuma em 28/10/2026 — e de proposito, nao por falha.",
-    "motivo_sem_url_busca": "CAUSA: idem. O piso da 25.2 e o primeiro item do bloco de coleta, e e ele que torna qualquer destes registros `publicavel`. || ULTIMA TENTATIVA: nenhuma em 28/10/2026."
+    "motivo_sem_url_produto": "CAUSA: a escada da 25.1 parou no degrau 4 de proposito — escolher ficha de produto e casar oferta com registro, que e o casamento das cinco armadilhas da 25.7 e e bloco proprio. || ULTIMA TENTATIVA: nenhuma em 2026-10-28; nenhuma ficha foi escolhida por esta execucao.",
+    "motivo_sem_url_busca": null,
+    "palavra_chave": "Sousa Bike bicicleta eletrica",
+    "degrau_da_palavra_chave": "marca_termo",
+    "ofertas_na_medicao": 10,
+    "medido_em": "2026-10-28"
    },
    "imagem": null,
    "fontes": {
@@ -575,7 +583,7 @@
    "categoria": null,
    "motivo_categoria_null": "DERIVADA da F1 e obrigatoriamente null: a constante `limiares-categoria-contran-996-2023` esta `pendente` em dados/constantes.json, e a 1.3 da especificacao proibe a F1 de ir ao ar com numero de portal. O validador le o STATUS DA CONSTANTE, nao uma lista escrita dentro dele.",
    "status": "rascunho",
-   "motivo_do_status": "`rascunho`, e a causa e UMA SO: nenhum registro deste banco tem saida de compra ainda, e a 25.2 nao admite item publicavel sem piso. Nada aqui e servido em pagina nenhuma enquanto for rascunho. O que destrava e o bloco de coleta de link, nao um acerto de campo.",
+   "motivo_do_status": "`rascunho` por falta de PISO (25.2), e a causa esta em `afiliado.motivo_sem_url_busca`, medida em 2026-10-28 e nao suposta.",
    "divergencias": [],
    "afirmacao_do_vendedor": [
     {
@@ -600,7 +608,7 @@
     "sub_id_1": null,
     "sub_id_2": null,
     "motivo_sem_url_produto": "CAUSA: a coleta de link e bloco proprio e nao e este; nenhuma chamada de API e nenhum gerador de link foi acionado por esta execucao, que entrega o MODELO do banco. || ULTIMA TENTATIVA: nenhuma em 28/10/2026 — e de proposito, nao por falha.",
-    "motivo_sem_url_busca": "CAUSA: idem. O piso da 25.2 e o primeiro item do bloco de coleta, e e ele que torna qualquer destes registros `publicavel`. || ULTIMA TENTATIVA: nenhuma em 28/10/2026."
+    "motivo_sem_url_busca": "CAUSA: o banco nao tem com o que compor chave nenhuma para este registro — faltam os dois identificadores que a escada combina, e compor so pelo termo daria a varios registros a MESMA busca. Nao e lacuna de regua: e o que a fonte declarou. || ULTIMA TENTATIVA: 2026-10-28."
    },
    "imagem": null,
    "fontes": {
@@ -679,7 +687,7 @@
    "categoria": null,
    "motivo_categoria_null": "DERIVADA da F1 e obrigatoriamente null: a constante `limiares-categoria-contran-996-2023` esta `pendente` em dados/constantes.json, e a 1.3 da especificacao proibe a F1 de ir ao ar com numero de portal. O validador le o STATUS DA CONSTANTE, nao uma lista escrita dentro dele.",
    "status": "rascunho",
-   "motivo_do_status": "`rascunho`, e a causa e UMA SO: nenhum registro deste banco tem saida de compra ainda, e a 25.2 nao admite item publicavel sem piso. Nada aqui e servido em pagina nenhuma enquanto for rascunho. O que destrava e o bloco de coleta de link, nao um acerto de campo.",
+   "motivo_do_status": "`rascunho` por falta de PISO (25.2), e a causa esta em `afiliado.motivo_sem_url_busca`, medida em 2026-10-28 e nao suposta.",
    "divergencias": [],
    "afirmacao_do_vendedor": [],
    "alteracao_pos_compra": [],
@@ -696,7 +704,7 @@
     "sub_id_1": null,
     "sub_id_2": null,
     "motivo_sem_url_produto": "CAUSA: a coleta de link e bloco proprio e nao e este; nenhuma chamada de API e nenhum gerador de link foi acionado por esta execucao, que entrega o MODELO do banco. || ULTIMA TENTATIVA: nenhuma em 28/10/2026 — e de proposito, nao por falha.",
-    "motivo_sem_url_busca": "CAUSA: idem. O piso da 25.2 e o primeiro item do bloco de coleta, e e ele que torna qualquer destes registros `publicavel`. || ULTIMA TENTATIVA: nenhuma em 28/10/2026."
+    "motivo_sem_url_busca": "CAUSA: a escada inteira foi percorrida e NENHUM degrau devolveu oferta na loja — busca com zero resultado e o beco sem saida que o piso existe para impedir. Degraus medidos: marca_termo=PLAYBIK patinete eletrico (0 oferta(s)). || ULTIMA TENTATIVA: 2026-10-28."
    },
    "imagem": null,
    "fontes": {
@@ -775,7 +783,7 @@
    "categoria": null,
    "motivo_categoria_null": "DERIVADA da F1 e obrigatoriamente null: a constante `limiares-categoria-contran-996-2023` esta `pendente` em dados/constantes.json, e a 1.3 da especificacao proibe a F1 de ir ao ar com numero de portal. O validador le o STATUS DA CONSTANTE, nao uma lista escrita dentro dele.",
    "status": "rascunho",
-   "motivo_do_status": "`rascunho`, e a causa e UMA SO: nenhum registro deste banco tem saida de compra ainda, e a 25.2 nao admite item publicavel sem piso. Nada aqui e servido em pagina nenhuma enquanto for rascunho. O que destrava e o bloco de coleta de link, nao um acerto de campo.",
+   "motivo_do_status": "`rascunho` por falta de PISO (25.2), e a causa esta em `afiliado.motivo_sem_url_busca`, medida em 2026-10-28 e nao suposta.",
    "divergencias": [],
    "afirmacao_do_vendedor": [],
    "alteracao_pos_compra": [],
@@ -792,7 +800,7 @@
     "sub_id_1": null,
     "sub_id_2": null,
     "motivo_sem_url_produto": "CAUSA: a coleta de link e bloco proprio e nao e este; nenhuma chamada de API e nenhum gerador de link foi acionado por esta execucao, que entrega o MODELO do banco. || ULTIMA TENTATIVA: nenhuma em 28/10/2026 — e de proposito, nao por falha.",
-    "motivo_sem_url_busca": "CAUSA: idem. O piso da 25.2 e o primeiro item do bloco de coleta, e e ele que torna qualquer destes registros `publicavel`. || ULTIMA TENTATIVA: nenhuma em 28/10/2026."
+    "motivo_sem_url_busca": "CAUSA: a escada inteira foi percorrida e NENHUM degrau devolveu oferta na loja — busca com zero resultado e o beco sem saida que o piso existe para impedir. Degraus medidos: marca_modelo=Honeywhale H3 (0 oferta(s)). || ULTIMA TENTATIVA: 2026-10-28."
    },
    "imagem": null,
    "fontes": {
@@ -882,7 +890,7 @@
    "categoria": null,
    "motivo_categoria_null": "DERIVADA da F1 e obrigatoriamente null: a constante `limiares-categoria-contran-996-2023` esta `pendente` em dados/constantes.json, e a 1.3 da especificacao proibe a F1 de ir ao ar com numero de portal. O validador le o STATUS DA CONSTANTE, nao uma lista escrita dentro dele.",
    "status": "rascunho",
-   "motivo_do_status": "`rascunho`, e a causa e UMA SO: nenhum registro deste banco tem saida de compra ainda, e a 25.2 nao admite item publicavel sem piso. Nada aqui e servido em pagina nenhuma enquanto for rascunho. O que destrava e o bloco de coleta de link, nao um acerto de campo.",
+   "motivo_do_status": "`rascunho` por falta de PISO (25.2), e a causa esta em `afiliado.motivo_sem_url_busca`, medida em 2026-10-28 e nao suposta.",
    "divergencias": [],
    "afirmacao_do_vendedor": [],
    "alteracao_pos_compra": [],
@@ -909,7 +917,7 @@
     "sub_id_1": null,
     "sub_id_2": null,
     "motivo_sem_url_produto": "CAUSA: a coleta de link e bloco proprio e nao e este; nenhuma chamada de API e nenhum gerador de link foi acionado por esta execucao, que entrega o MODELO do banco. || ULTIMA TENTATIVA: nenhuma em 28/10/2026 — e de proposito, nao por falha.",
-    "motivo_sem_url_busca": "CAUSA: idem. O piso da 25.2 e o primeiro item do bloco de coleta, e e ele que torna qualquer destes registros `publicavel`. || ULTIMA TENTATIVA: nenhuma em 28/10/2026."
+    "motivo_sem_url_busca": "CAUSA: o banco nao tem com o que compor chave nenhuma para este registro — faltam os dois identificadores que a escada combina, e compor so pelo termo daria a varios registros a MESMA busca. Nao e lacuna de regua: e o que a fonte declarou. || ULTIMA TENTATIVA: 2026-10-28."
    },
    "imagem": null,
    "fontes": {
@@ -1100,7 +1108,7 @@
    "categoria": null,
    "motivo_categoria_null": "DERIVADA da F1 e obrigatoriamente null: a constante `limiares-categoria-contran-996-2023` esta `pendente` em dados/constantes.json, e a 1.3 da especificacao proibe a F1 de ir ao ar com numero de portal. O validador le o STATUS DA CONSTANTE, nao uma lista escrita dentro dele.",
    "status": "rascunho",
-   "motivo_do_status": "`rascunho`, e a causa e UMA SO: nenhum registro deste banco tem saida de compra ainda, e a 25.2 nao admite item publicavel sem piso. Nada aqui e servido em pagina nenhuma enquanto for rascunho. O que destrava e o bloco de coleta de link, nao um acerto de campo.",
+   "motivo_do_status": "`rascunho` por falta de PISO (25.2), e a causa esta em `afiliado.motivo_sem_url_busca`, medida em 2026-10-28 e nao suposta.",
    "divergencias": [],
    "afirmacao_do_vendedor": [],
    "alteracao_pos_compra": [],
@@ -1127,7 +1135,7 @@
     "sub_id_1": null,
     "sub_id_2": null,
     "motivo_sem_url_produto": "CAUSA: a coleta de link e bloco proprio e nao e este; nenhuma chamada de API e nenhum gerador de link foi acionado por esta execucao, que entrega o MODELO do banco. || ULTIMA TENTATIVA: nenhuma em 28/10/2026 — e de proposito, nao por falha.",
-    "motivo_sem_url_busca": "CAUSA: idem. O piso da 25.2 e o primeiro item do bloco de coleta, e e ele que torna qualquer destes registros `publicavel`. || ULTIMA TENTATIVA: nenhuma em 28/10/2026."
+    "motivo_sem_url_busca": "CAUSA: o banco nao tem com o que compor chave nenhuma para este registro — faltam os dois identificadores que a escada combina, e compor so pelo termo daria a varios registros a MESMA busca. Nao e lacuna de regua: e o que a fonte declarou. || ULTIMA TENTATIVA: 2026-10-28."
    },
    "imagem": null,
    "fontes": {
@@ -1207,7 +1215,7 @@
    "categoria": null,
    "motivo_categoria_null": "DERIVADA da F1 e obrigatoriamente null: a constante `limiares-categoria-contran-996-2023` esta `pendente` em dados/constantes.json, e a 1.3 da especificacao proibe a F1 de ir ao ar com numero de portal. O validador le o STATUS DA CONSTANTE, nao uma lista escrita dentro dele.",
    "status": "rascunho",
-   "motivo_do_status": "`rascunho`, e a causa e UMA SO: nenhum registro deste banco tem saida de compra ainda, e a 25.2 nao admite item publicavel sem piso. Nada aqui e servido em pagina nenhuma enquanto for rascunho. O que destrava e o bloco de coleta de link, nao um acerto de campo.",
+   "motivo_do_status": "`rascunho` por falta de PISO (25.2), e a causa esta em `afiliado.motivo_sem_url_busca`, medida em 2026-10-28 e nao suposta.",
    "divergencias": [],
    "afirmacao_do_vendedor": [
     {
@@ -1242,7 +1250,7 @@
     "sub_id_1": null,
     "sub_id_2": null,
     "motivo_sem_url_produto": "CAUSA: a coleta de link e bloco proprio e nao e este; nenhuma chamada de API e nenhum gerador de link foi acionado por esta execucao, que entrega o MODELO do banco. || ULTIMA TENTATIVA: nenhuma em 28/10/2026 — e de proposito, nao por falha.",
-    "motivo_sem_url_busca": "CAUSA: idem. O piso da 25.2 e o primeiro item do bloco de coleta, e e ele que torna qualquer destes registros `publicavel`. || ULTIMA TENTATIVA: nenhuma em 28/10/2026."
+    "motivo_sem_url_busca": "CAUSA: o banco nao tem com o que compor chave nenhuma para este registro — faltam os dois identificadores que a escada combina, e compor so pelo termo daria a varios registros a MESMA busca. Nao e lacuna de regua: e o que a fonte declarou. || ULTIMA TENTATIVA: 2026-10-28."
    },
    "imagem": null,
    "fontes": {
@@ -1333,7 +1341,7 @@
    "categoria": null,
    "motivo_categoria_null": "DERIVADA da F1 e obrigatoriamente null: a constante `limiares-categoria-contran-996-2023` esta `pendente` em dados/constantes.json, e a 1.3 da especificacao proibe a F1 de ir ao ar com numero de portal. O validador le o STATUS DA CONSTANTE, nao uma lista escrita dentro dele.",
    "status": "rascunho",
-   "motivo_do_status": "`rascunho`, e a causa e UMA SO: nenhum registro deste banco tem saida de compra ainda, e a 25.2 nao admite item publicavel sem piso. Nada aqui e servido em pagina nenhuma enquanto for rascunho. O que destrava e o bloco de coleta de link, nao um acerto de campo.",
+   "motivo_do_status": "`rascunho` por falta de PISO (25.2), e a causa esta em `afiliado.motivo_sem_url_busca`, medida em 2026-10-28 e nao suposta.",
    "divergencias": [],
    "afirmacao_do_vendedor": [],
    "alteracao_pos_compra": [],
@@ -1360,7 +1368,7 @@
     "sub_id_1": null,
     "sub_id_2": null,
     "motivo_sem_url_produto": "CAUSA: a coleta de link e bloco proprio e nao e este; nenhuma chamada de API e nenhum gerador de link foi acionado por esta execucao, que entrega o MODELO do banco. || ULTIMA TENTATIVA: nenhuma em 28/10/2026 — e de proposito, nao por falha.",
-    "motivo_sem_url_busca": "CAUSA: idem. O piso da 25.2 e o primeiro item do bloco de coleta, e e ele que torna qualquer destes registros `publicavel`. || ULTIMA TENTATIVA: nenhuma em 28/10/2026."
+    "motivo_sem_url_busca": "CAUSA: a escada inteira foi percorrida e NENHUM degrau devolveu oferta na loja — busca com zero resultado e o beco sem saida que o piso existe para impedir. Degraus medidos: marca_termo=Haixia scooter eletrica (0 oferta(s)). || ULTIMA TENTATIVA: 2026-10-28."
    },
    "imagem": null,
    "fontes": {
@@ -1442,7 +1450,7 @@
    "categoria": null,
    "motivo_categoria_null": "DERIVADA da F1 e obrigatoriamente null: a constante `limiares-categoria-contran-996-2023` esta `pendente` em dados/constantes.json, e a 1.3 da especificacao proibe a F1 de ir ao ar com numero de portal. O validador le o STATUS DA CONSTANTE, nao uma lista escrita dentro dele.",
    "status": "rascunho",
-   "motivo_do_status": "`rascunho`, e a causa e UMA SO: nenhum registro deste banco tem saida de compra ainda, e a 25.2 nao admite item publicavel sem piso. Nada aqui e servido em pagina nenhuma enquanto for rascunho. O que destrava e o bloco de coleta de link, nao um acerto de campo.",
+   "motivo_do_status": "`rascunho` por falta de PISO (25.2), e a causa esta em `afiliado.motivo_sem_url_busca`, medida em 2026-10-28 e nao suposta.",
    "divergencias": [],
    "afirmacao_do_vendedor": [],
    "alteracao_pos_compra": [],
@@ -1469,7 +1477,7 @@
     "sub_id_1": null,
     "sub_id_2": null,
     "motivo_sem_url_produto": "CAUSA: a coleta de link e bloco proprio e nao e este; nenhuma chamada de API e nenhum gerador de link foi acionado por esta execucao, que entrega o MODELO do banco. || ULTIMA TENTATIVA: nenhuma em 28/10/2026 — e de proposito, nao por falha.",
-    "motivo_sem_url_busca": "CAUSA: idem. O piso da 25.2 e o primeiro item do bloco de coleta, e e ele que torna qualquer destes registros `publicavel`. || ULTIMA TENTATIVA: nenhuma em 28/10/2026."
+    "motivo_sem_url_busca": "CAUSA: o banco nao tem com o que compor chave nenhuma para este registro — faltam os dois identificadores que a escada combina, e compor so pelo termo daria a varios registros a MESMA busca. Nao e lacuna de regua: e o que a fonte declarou. || ULTIMA TENTATIVA: 2026-10-28."
    },
    "imagem": null,
    "fontes": {
@@ -1547,8 +1555,8 @@
    },
    "categoria": null,
    "motivo_categoria_null": "DERIVADA da F1 e obrigatoriamente null: a constante `limiares-categoria-contran-996-2023` esta `pendente` em dados/constantes.json, e a 1.3 da especificacao proibe a F1 de ir ao ar com numero de portal. O validador le o STATUS DA CONSTANTE, nao uma lista escrita dentro dele.",
-   "status": "rascunho",
-   "motivo_do_status": "`rascunho`, e a causa e UMA SO: nenhum registro deste banco tem saida de compra ainda, e a 25.2 nao admite item publicavel sem piso. Nada aqui e servido em pagina nenhuma enquanto for rascunho. O que destrava e o bloco de coleta de link, nao um acerto de campo.",
+   "status": "publicavel",
+   "motivo_do_status": "`publicavel` pelo PISO da 25.2: a busca `X13 scooter eletrica` foi medida na Open API em 2026-10-28 e devolveu 10 oferta(s) no degrau `modelo_termo`, e o encurtamento com `sub_id_1` foi feito na mesma passada (25.2-b). O que este registro ainda NAO tem e ficha de produto (degrau 4), e o que ele publica e o que o banco declara dele — nada alem.",
    "divergencias": [],
    "afirmacao_do_vendedor": [
     {
@@ -1572,18 +1580,22 @@
     }
    ],
    "afiliado": {
-    "programa": null,
-    "degrau": null,
-    "url": null,
+    "programa": "shopee",
+    "degrau": 4,
+    "url": "",
     "url_produto": null,
     "par_colhido_em": null,
-    "url_busca": null,
-    "url_busca_produto": null,
-    "encurtamento_tentado_em": null,
-    "sub_id_1": null,
+    "url_busca": "https://s.shopee.com.br/3B8Y0YBAvV",
+    "url_busca_produto": "https://shopee.com.br/search?keyword=X13%20scooter%20eletrica",
+    "encurtamento_tentado_em": "2026-10-28",
+    "sub_id_1": "rodametria",
     "sub_id_2": null,
-    "motivo_sem_url_produto": "CAUSA: a coleta de link e bloco proprio e nao e este; nenhuma chamada de API e nenhum gerador de link foi acionado por esta execucao, que entrega o MODELO do banco. || ULTIMA TENTATIVA: nenhuma em 28/10/2026 — e de proposito, nao por falha.",
-    "motivo_sem_url_busca": "CAUSA: idem. O piso da 25.2 e o primeiro item do bloco de coleta, e e ele que torna qualquer destes registros `publicavel`. || ULTIMA TENTATIVA: nenhuma em 28/10/2026."
+    "motivo_sem_url_produto": "CAUSA: a escada da 25.1 parou no degrau 4 de proposito — escolher ficha de produto e casar oferta com registro, que e o casamento das cinco armadilhas da 25.7 e e bloco proprio. || ULTIMA TENTATIVA: nenhuma em 2026-10-28; nenhuma ficha foi escolhida por esta execucao.",
+    "motivo_sem_url_busca": null,
+    "palavra_chave": "X13 scooter eletrica",
+    "degrau_da_palavra_chave": "modelo_termo",
+    "ofertas_na_medicao": 10,
+    "medido_em": "2026-10-28"
    },
    "imagem": null,
    "fontes": {
@@ -1661,8 +1673,8 @@
    },
    "categoria": null,
    "motivo_categoria_null": "DERIVADA da F1 e obrigatoriamente null: a constante `limiares-categoria-contran-996-2023` esta `pendente` em dados/constantes.json, e a 1.3 da especificacao proibe a F1 de ir ao ar com numero de portal. O validador le o STATUS DA CONSTANTE, nao uma lista escrita dentro dele.",
-   "status": "rascunho",
-   "motivo_do_status": "`rascunho`, e a causa e UMA SO: nenhum registro deste banco tem saida de compra ainda, e a 25.2 nao admite item publicavel sem piso. Nada aqui e servido em pagina nenhuma enquanto for rascunho. O que destrava e o bloco de coleta de link, nao um acerto de campo.",
+   "status": "publicavel",
+   "motivo_do_status": "`publicavel` pelo PISO da 25.2: a busca `LS Sport scooter eletrica` foi medida na Open API em 2026-10-28 e devolveu 2 oferta(s) no degrau `marca_termo`, e o encurtamento com `sub_id_1` foi feito na mesma passada (25.2-b). O que este registro ainda NAO tem e ficha de produto (degrau 4), e o que ele publica e o que o banco declara dele — nada alem.",
    "divergencias": [],
    "afirmacao_do_vendedor": [],
    "alteracao_pos_compra": [],
@@ -1678,18 +1690,22 @@
     }
    ],
    "afiliado": {
-    "programa": null,
-    "degrau": null,
-    "url": null,
+    "programa": "shopee",
+    "degrau": 4,
+    "url": "",
     "url_produto": null,
     "par_colhido_em": null,
-    "url_busca": null,
-    "url_busca_produto": null,
-    "encurtamento_tentado_em": null,
-    "sub_id_1": null,
+    "url_busca": "https://s.shopee.com.br/AUv8k1nNmv",
+    "url_busca_produto": "https://shopee.com.br/search?keyword=LS%20Sport%20scooter%20eletrica",
+    "encurtamento_tentado_em": "2026-10-28",
+    "sub_id_1": "rodametria",
     "sub_id_2": null,
-    "motivo_sem_url_produto": "CAUSA: a coleta de link e bloco proprio e nao e este; nenhuma chamada de API e nenhum gerador de link foi acionado por esta execucao, que entrega o MODELO do banco. || ULTIMA TENTATIVA: nenhuma em 28/10/2026 — e de proposito, nao por falha.",
-    "motivo_sem_url_busca": "CAUSA: idem. O piso da 25.2 e o primeiro item do bloco de coleta, e e ele que torna qualquer destes registros `publicavel`. || ULTIMA TENTATIVA: nenhuma em 28/10/2026."
+    "motivo_sem_url_produto": "CAUSA: a escada da 25.1 parou no degrau 4 de proposito — escolher ficha de produto e casar oferta com registro, que e o casamento das cinco armadilhas da 25.7 e e bloco proprio. || ULTIMA TENTATIVA: nenhuma em 2026-10-28; nenhuma ficha foi escolhida por esta execucao.",
+    "motivo_sem_url_busca": null,
+    "palavra_chave": "LS Sport scooter eletrica",
+    "degrau_da_palavra_chave": "marca_termo",
+    "ofertas_na_medicao": 2,
+    "medido_em": "2026-10-28"
    },
    "imagem": null,
    "fontes": {
@@ -1802,5 +1818,6 @@
     }
    }
   }
- ]
+ ],
+ "piso_de_compra_colhido_em": "2026-10-28"
 }

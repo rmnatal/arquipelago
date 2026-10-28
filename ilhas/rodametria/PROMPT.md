@@ -117,6 +117,34 @@ fabricante (nível 4 da escada, hoje vazio), não de ferramenta.
 
 **3-ORIGINAL (guardado).** VEÍCULO (`categoria`, `potencia_nominal_w`, `potencia_pico_w`, `velocidade_max_kmh`, `acelerador`, `tensao_v`, `amperagem_ah`, `energia_wh`, `autonomia_declarada_km`, `carga_max_kg`, `aro`, `peso_kg`, preço com data, `afiliado.programa`, `afiliado.url_busca_produto`, `afiliado.url_produto`, `imagem`) · PEÇA (câmara, pneu, carregador por tensão, bateria por V/Ah, capacete, cadeado). Todo campo com `fonte_url`, `fonte_tipo`, `data_leitura`. **Potência nominal e pico são campos diferentes**: anúncio que só diz "1000W" no título não alimenta a F1 sem a ficha dizer qual dos dois é.
 
+**3c. ~~O PISO DE COMPRA~~ — ENTREGUE EM 28/10/2026 às 19h3xZ, e com ele o banco tem os primeiros
+`publicavel` da história desta ilha: 5 de 17** (4 veículos + a câmara Kenda), de **zero**.
+`dados/esquema-banco.json` subiu para a **versão 2** com a seção `escada_de_compra` — o termo de contexto
+por `tipo_comercial` e por `tipo`, a escada de palavra-chave de quatro degraus (três na peça), o que nunca
+compõe chave e o porquê de `sub_id_2` nascer `null` no piso de registro. `ferramentas/coletar-piso-de-compra.py`
+(mede na Open API, encurta e grava; `--conferir` roda sem rede) e `ferramentas/mutacoes-piso.py` (18 casos,
+4 deles mortes do esquema, mais 10 afirmações sobre a forma da chave e o autoteste da bateria).
+**A chave é MEDIDA e nunca suposta:** cada degrau é consultado em `productOfferV2` antes de virar piso, e
+chave com zero oferta não vira piso — a escada desce, e os degraus medidos ficam gravados.
+
+**O ACHADO, e ele muda a ordem do que vem depois: O PISO E O DADO TÉCNICO CAÍRAM EM REGISTROS DIFERENTES, E
+A INTERSEÇÃO É VAZIA.** Dos 4 veículos publicáveis, **zero** declara tensão+amperagem (entrada da F2) e
+**zero** declara carga máxima (entrada da F3); os 2 com Wh derivado e os 3 com carga máxima estão todos
+entre os 12 **sem** saída de compra. São duas populações de anúncio: o que nomeia marca e modelo é achável
+na loja e não publica ficha; o que publica `60 V 20 Ah` empacota três nomes no título e não é achável por
+nome nenhum. **Consequência direta para o 3b:** o bloco de compra da 32.1 pede o produto *que a ferramenta
+escolheu*, e hoje nenhuma das três escolhe um publicável. Isto está como **aviso do validador**, para quem
+abrir o banco ler antes de desenhar a casca.
+
+**3d. O CASAMENTO DO REGISTRO COM A OFERTA (degraus 1 a 3 da 25.1) — é o próximo bloco, e ele vem ANTES do
+3b.** Leia a **25.7** (as cinco armadilhas de casamento) e a **25.9** antes de escrever uma linha. Ele
+resolve três coisas de uma vez: `url_produto` (e com ela o teste de vida da 25.4-b passa a existir nesta
+ilha), a **foto** que o cartão da 32.1 pede, e o caminho para a ficha onde o campo técnico mora. Alvo
+apertado, saindo da medição de 28/10: os **7** registros que não compõem chave nenhuma e os **5** que a loja
+não respondeu em nenhum degrau. **A coleta em ficha de FABRICANTE (nível 4 da escada, hoje vazio) continua
+necessária e ficou mais urgente**, e o primeiro passo dela é a 20.3 outra vez — medir o egresso contra os
+domínios dos fabricantes antes de escrever regra que os exija.
+
 **3b. CASCA** — depois do WordPress. Molde FERRAMENTA da seção 32, a F1 é a home ("Esse patinete precisa de CNH?"). A home desenhada e aprovada no canvas de identidade está descrita no `DESIGN.md`.
 
 **4. FERRAMENTAS**, uma por execução, com JSON-LD, tabela pré-renderizada, resposta antes da explicação, bloco de compra antes da procedência.

@@ -2,7 +2,7 @@
  "id": "esquema-banco",
  "ilha": "rodametria",
  "bloco": "3",
- "versao_esquema": 1,
+ "versao_esquema": 2,
  "gerado_em": "2026-10-28",
  "publicar": false,
  "descricao": "Modelo do banco da Rodametria: entidades VEICULO, PECA e MUNICIPIO. Define campo a campo o tipo, a unidade, a obrigatoriedade, o vocabulario controlado, o que e DERIVADO e a ORIGEM esperada do dado. E o contrato que dados/veiculos.json, dados/pecas.json e dados/municipios.json cumprem e que ferramentas/validar-banco.py verifica. Nasce da secao 5 de dados/especificacao-calculadoras.md, que e a lista de campos que as tres ferramentas LEEM.",
@@ -179,6 +179,65 @@
    "nivel_8_nao_sustenta_nada": "Fazenda e catalogo comercial nao sustentam campo nenhum, em nenhum nivel de custo. Registro cuja unica fonte e nivel 8 nasce `excluido_do_banco` com o motivo escrito, para a proxima coleta nao o recolher de novo.",
    "medida_no_proprio_titulo_e_excecao_declarada": "Compatibilidade de PECA por medida (aro x largura, tensao, V+Ah) aceita nivel 6 QUANDO `declarada_por` for `titulo_ou_ficha_declara_literalmente` — porque ali a medida E o nome do produto ('Camara Kenda 16x3.0'), e nao uma afirmacao de desempenho do vendedor. Medida deduzida da foto, do preco ou da frase 'serve em patinete adulto' continua fora, em qualquer nivel."
   }
+ },
+ "escada_de_compra": {
+  "o_piso": "25.2 do ARQUIPELAGO.md, com a palavra do dono dentro dela ('deve ser 100% automatico sem eu tocar'): o PISO de todo item publicavel e o link de BUSCA, porque e o unico elo da corrente que a maquina fabrica sozinha. Ficha de produto e BONUS (degrau 1 a 3); busca nao apodrece e nao espera. Nenhum registro deste banco e `publicavel` sem `url_busca` e `url_busca_produto`, e o validador reprova.",
+  "quem_escreve": "ferramentas/coletar-piso-de-compra.py. A regra mora AQUI e a regua la, pelo mesmo motivo que a lista de niveis mora no esquema: lista dentro da regua envelhece calada, e tipo novo entraria sem termo nenhum com o banco verde.",
+  "termo_de_contexto": {
+   "por_que": "A palavra que diz O QUE o produto e, na lingua do vendedor de marketplace. Ela nao e `categoria` (que e legal e DERIVADA da F1) nem substitui `tipo_comercial`: e o termo que entra na BUSCA. Valor sem termo declarado aqui faz a regua PARAR.",
+   "VEICULO": {
+    "por": "tipo_comercial",
+    "valores": {
+     "patinete": "patinete eletrico",
+     "bicicleta": "bicicleta eletrica",
+     "scooter": "scooter eletrica",
+     "moto": "moto eletrica",
+     "ciclomotor_comercial": "ciclomotor eletrico",
+     "nao_declarado": null
+    },
+    "por_que_nao_declarado_e_null": "`nao_declarado` quer dizer que o ANUNCIO nao se comprometeu com uma palavra — o caso medido no bloco 1 e o titulo que empacota tres ('Bike/Scooter/Moto eletrica'). Escolher uma delas aqui seria a ilha inventando o nome do produto, que e exatamente o que a secao 26 proibe. Sem termo, o registro so compoe chave se tiver marca E modelo — e quando nao tiver, fica sem piso COM o motivo escrito."
+   },
+   "PECA": {
+    "por": "tipo",
+    "valores": {
+     "camara": "camara de ar",
+     "pneu": "pneu",
+     "carregador": "carregador",
+     "bateria": "bateria",
+     "capacete": "capacete",
+     "cadeado": "cadeado",
+     "chicote": "chicote"
+    }
+   }
+  },
+  "escada_de_palavra_chave": {
+   "regra": "Do degrau mais especifico ao menos especifico. Para no PRIMEIRO que a loja responder, e o degrau usado fica GRAVADO em `afiliado.degrau_da_palavra_chave`. Degrau que o banco nao consegue compor e pulado, nunca preenchido com placeholder.",
+   "VEICULO": [
+    "marca_modelo_termo",
+    "marca_modelo",
+    "modelo_termo",
+    "marca_termo"
+   ],
+   "PECA": [
+    "marca_termo_medida",
+    "marca_termo",
+    "termo_medida"
+   ],
+   "por_que_a_peca_nao_leva_o_codigo_do_modelo": "Licao da Robometria, herdada pronta: codigo de peca e SKU interno de fabricante e o vendedor de marketplace nao o digita no titulo. O que a peca leva e a MEDIDA DE ENCAIXE (`compatibilidade.valor`), que e como ela e vendida — 'camara de ar 16x3.0'. Peca cuja compatibilidade e `nenhuma` nao tem medida, e so compoe chave se tiver marca.",
+   "o_que_nunca_compoe": [
+    "o TERMO sozinho — daria a varios registros a MESMA busca, e busca de categoria nao e a busca deste produto",
+    "a MARCA sozinha — a armadilha que a 25.3 nomeia",
+    "o MODELO sozinho — codigo curto ('X13', 'V1') sem o que ele e devolve qualquer coisa",
+    "o `titulo_colhido` inteiro — a 25.6(a) mediu que palavra-chave longa devolve ZERO"
+   ]
+  },
+  "regra_de_zero": "A chave e MEDIDA na Open API (`productOfferV2`) antes de virar piso, e o numero fica gravado em `ofertas_na_medicao` com `medido_em`. Chave com ZERO oferta nao vira piso e a escada desce: um botao que leva a uma pagina de busca vazia e o beco sem saida que o piso existe para impedir. Percorrida a escada inteira sem nenhuma oferta, o registro fica SEM piso e `motivo_sem_url_busca` grava os degraus medidos — CAUSA || ULTIMA TENTATIVA, pela 25.4-b.3. Zero nao e erro: e medicao.",
+  "sub_id": {
+   "sub_id_1": "sempre `rodametria`, e e ele que o 301 devolve (25.8).",
+   "sub_id_2_no_piso_de_REGISTRO": null,
+   "por_que_sub_id_2_e_null_aqui": "O `sub_id_2` desta ilha e o codigo da FERRAMENTA (f1, f2 ou f3), e um registro do banco aparece em mais de uma: o mesmo patinete responde a F2 (quantos km faz) e a F3 (aguenta meu peso). Um link carrega UM sub_id_2, entao quem o decide e a PAGINA, nao o registro — gravar um aqui atribuiria a uma ferramenta o clique que veio de outra, que e pior que nao atribuir. O piso de registro nasce com `sub_id_1` so, como o da Robometria, e o link por ferramenta e refinamento da casca, nao deste bloco."
+  },
+  "onde_a_escada_para_de_proposito": "No degrau 4 da 25.1. Escolher ficha de produto exige casar oferta da API com registro do banco, que e o casamento das cinco armadilhas da 25.7, e e bloco proprio. Enquanto nao houver ficha, `url` fica VAZIA e a busca sobe e vira o botao pela escada da casca — sem esperar decisao de ninguem."
  },
  "campos_que_exigem_procedencia_de_leitura": {
   "por_que_esta_lista_mora_aqui_e_nao_no_validador": "Secao 26.2 do ARQUIPELAGO.md: lista digitada dentro da regua envelhece calada. O dia em que um campo novo sofrer do mesmo mal, ele entra numa linha deste arquivo e a trava passa a cobra-lo sem uma linha de codigo. E a trava reprova quando esta chave SOME — regua que le a propria lista de um arquivo de dados aprova tudo, em silencio, no dia em que o arquivo perder a chave.",

@@ -435,6 +435,11 @@ def validar(dados):
     cont["veiculos_com_carga_max"] = sum(
         1 for v in regs if (v.get("carga_max_kg") or {}).get("valor") is not None)
     cont["veiculos_com_categoria"] = sum(1 for v in regs if v.get("categoria") is not None)
+    cont["veiculos_publicaveis_com_tensao_e_amperagem"] = sum(
+        1 for v in pub if (v.get("tensao_v") or {}).get("valor") is not None
+        and (v.get("amperagem_ah") or {}).get("valor") is not None)
+    cont["veiculos_publicaveis_com_carga_max"] = sum(
+        1 for v in pub if (v.get("carga_max_kg") or {}).get("valor") is not None)
     cont["pecas"] = len(dados["pecas"].get("registros", []))
     cont["municipios"] = len(dados["municipios"].get("registros", []))
     cont["municipios_publicaveis"] = sum(
@@ -446,6 +451,21 @@ def validar(dados):
                       "VERDADEIRA POR VACUIDADE. Isto e REGISTRO e nao aprovacao: a regra da secao 7 so "
                       "sera exercitada quando o primeiro registro ganhar piso de compra. A causa do zero "
                       "esta em cada `motivo_do_status`, e e uma so: ninguem tem saida de compra ainda.")
+    if cont["veiculos_publicaveis"] and not (cont["veiculos_publicaveis_com_tensao_e_amperagem"]
+                                             or cont["veiculos_publicaveis_com_carga_max"]):
+        avisos.append(
+            "O PISO E O DADO TECNICO CAIRAM EM REGISTROS DIFERENTES, E A INTERSECAO E VAZIA: dos %d "
+            "veiculos publicaveis, ZERO declara tensao+amperagem (entrada da F2) e ZERO declara carga "
+            "maxima (entrada da F3), enquanto %d registro(s) com Wh derivado e %d com carga maxima estao "
+            "entre os que NAO tem saida de compra. Nao e coincidencia e nao se conserta com mais link: o "
+            "anuncio que nomeia MARCA e MODELO e achavel na loja e nao publica ficha; o que publica 60 V "
+            "20 Ah ou 120 kg empacota tres nomes no titulo e nao e achavel por nome nenhum. CONSEQUENCIA "
+            "PARA QUEM FOR CONSTRUIR A CASCA: o bloco de compra da 32.1 pede o produto QUE A FERRAMENTA "
+            "ESCOLHEU, e hoje nenhuma das tres escolhe um publicavel. O que destrava nao e piso: e o "
+            "casamento do registro com a oferta (degraus 1 a 3 da 25.1), que traz a ficha e, com ela, o "
+            "campo tecnico."
+            % (cont["veiculos_publicaveis"], cont["veiculos_com_wh_derivado"],
+               cont["veiculos_com_carga_max"]))
     if cont["veiculos_com_nominal_declarado"] == 0:
         avisos.append("ZERO veiculo com `potencia_nominal_w` declarada, contra %d com um watt SEM ROTULO. "
                       "Nao e lacuna de coleta: e a medicao da tese da ilha. Enquanto for zero, a F1 nao "

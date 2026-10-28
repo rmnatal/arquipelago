@@ -11,6 +11,22 @@ Prioridade: `alta` fura a fila da próxima execução do destinatário.
 
 ## ABERTOS
 
+### prioridade NORMAL — as TRÊS ETIQUETAS do Mercado Livre da rodametria, para os 5 produtos que a Shopee mediu em ZERO
+
+28/10/2026 às 19h3xZ — RAPHAEL (um gesto no painel de afiliado do Mercado Livre) — Medido pela execução da Fundação que entregou o piso de compra da rodametria.
+
+**O QUE FAZER:** criar no painel de Afiliados do Mercado Livre as três etiquetas que o `PROMPT.md` da rodametria já nomeia e que ainda não existem — `rodametriaf1`, `rodametriaf2`, `rodametriaf3`.
+
+**POR QUE ISTO NASCEU AGORA, e o número é o motivo.** O bloco do piso mediu os 17 registros não excluídos do banco na Open API da Shopee, degrau por degrau da escada de palavra-chave. **Cinco produtos percorreram a escada inteira e a loja devolveu ZERO em todos os degraus** — `MAXSHOT V1`, `MAXSHOT V1SPRO`, `PLAYBIK`, `Honeywhale H3` e `Haixia` (scooter 1.000 W 60 V 20 Ah). Não é chave mal escrita: é a Shopee **não ter** esses produtos. A ficha desta ilha (`bussola/oportunidades/rodametria.md`) e o `PROMPT.md` já decidiram o que fazer nesse caso — *"scooter, moto e bicicleta elétrica entram com link do Mercado Livre como bônus, **só para o que a Shopee não vende**"* —, e essa porta hoje está fechada porque a etiqueta não existe.
+
+**O QUE ISTO DESTRAVA, dito sem aumentar:** a possibilidade de esses cinco registros terem porta de compra um dia. **Não destrava a geração dos links**, e isso é importante para ninguém se enganar: pela **25.6**, o gerador do Mercado Livre tem reCAPTCHA e não responde a clique de script — link novo de ML continua sendo **clique do Raphael**, um por um. Por isso isto é **NORMAL e não ALTA**, e por isso **nada nesta ilha fica esperando este despacho**: a **25.2** é explícita em que nenhum degrau que exige clique humano vira plano, e os cinco registros seguem `rascunho` com a causa medida escrita em `afiliado.motivo_sem_url_busca`.
+
+**O QUE NÃO É PEDIDO AQUI:** nenhum link. Só as três etiquetas, que são o pré-requisito de qualquer link futuro e custam um gesto só, uma vez, para a ilha inteira.
+
+**PRONTO QUANDO:** as três etiquetas existirem no painel e o nome exato de cada uma estiver escrito no `PROMPT.md` da rodametria (ou aqui, embaixo deste despacho) — a execução seguinte que precisar delas lê o nome do repositório, nunca o adivinha.
+
+---
+
 ### prioridade NORMAL — a CAMADA MUNICIPAL da F1 é dado de banco, e os quatro domínios de prefeitura que a sustentariam estão recusados pelo egresso
 
 28/10/2026 às 16h3xZ — RAPHAEL (duas linhas na lista de rede, ou quatro leituras no Chrome) — Medido pela execução da Fundação que entregou o bloco 3 da rodametria (modelo do banco).

@@ -3,6 +3,196 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-10-28 19h1xZ–19h3xZ — **O PISO DE COMPRA EXISTE: 5 REGISTROS PUBLICÁVEIS, DE ZERO.** E o bloco mediu a coisa que ninguém tinha medido: **o piso e o dado técnico caíram em registros DIFERENTES, e a interseção é VAZIA** — o que destrava a casca não é link, é casamento
+
+**A ESCOLHA DA ILHA.** `foco.md` nomeia a **rodametria** (foco total e absoluto, decisão do Raphael de
+27/10), e pela 1.2 não há escolha a fazer. A exceção do molde de conversão (32.6) segue **fechada nas três
+ilhas**, e nenhuma ilha no ar está quebrada. `executando_desde` da rodametria estava `null` — que pela 1.1
+já significa que não havia bloco da Fundação vivo, sem reserva vencida para o git desempatar; o último
+commit na pasta da ilha era de **16h41Z**, 2h35 antes. Reserva escrita às **19h16Z**, commit `e34d578`,
+push aceito de primeira. Nenhum branch `claude/*` e nenhum PR com commit fora do `main` (o
+`claude/dreamy-mccarthy-c0c92n` estava idêntico ao `origin/main`, 0 à frente e 0 atrás).
+
+**REDE PELA 20.2, REMEDIDA E NÃO HERDADA:** `rodametria.com.br` e `www.rodametria.com.br` em **200**, com
+`aquametria.com.br` e `robometria.com.br` em 200 na mesma passada. Pela **20.3**, porque este bloco escreve
+a regra que exige a fonte: `open-api.affiliate.shopee.com.br` em **200**, `shopee.com.br` em **200**,
+`s.shopee.com.br` em **307**. **O egresso da Shopee está aberto para esta ilha** — e isso não estava medido
+em execução nenhuma dela.
+
+**CANAL DE DESEMBARQUE SÃO (20.5), embora nada tenha ido ao ar:** `/status` em **revisão 1**, igual ao
+`manifest.json`, `ultimo` às **18:40:29** (o cron de 30 minutos está vivo) e **zero linha de FALHA depois
+das 13h40**.
+
+---
+
+### POR QUE ESTE BLOCO E NÃO A CASCA — a divergência está escrita porque ela é uma decisão, não um esquecimento
+
+O `bloco_atual` que o bloco 3 deixou dizia *"PRÓXIMO PASSO: a coleta em ficha de FABRICANTE, antes da
+casca"*, e a fila do `PROMPT.md` tem o **3b (casca)** como próximo. **Peguei o piso de compra, e a razão é
+de contrato, em três passos que se encadeiam:**
+
+1. A **25.2** manda, com todas as letras: *"Todo item ganha `url_busca` ANTES de qualquer outra coisa. Item
+   sem `url_busca` é defeito da 19.1, sempre, em qualquer degrau. Não existe item publicável sem piso."*
+   Os 24 registros do banco tinham a **mesma** frase em `motivo_do_status`, e ela nomeia esta causa única.
+2. A **32.1**, item 5, põe o **BLOCO DE COMPRA imediatamente abaixo do resultado** na página de ferramenta,
+   e a **32.5** reprova a página cujo primeiro botão de compra não aparece antes de 1.400 px. Ilha nova
+   **nasce** no molde (32.6). Com zero registro publicável, a casca não teria o que pôr ali — o bloco 3b
+   não estava apenas em segundo lugar, estava **impossível**.
+3. A **18.5** desempata na mesma direção: *"na dúvida entre fechar um despacho e começar um bloco novo,
+   fecha o despacho"*, e a 14 põe a indexação como prioridade máxima da ilha nova — o que vale dizer que o
+   caminho mais curto para a primeira página no ar passava por aqui.
+
+A coleta em ficha de fabricante **continua sendo o passo caro e necessário**, e este bloco mediu por que
+ela ficou ainda mais necessária. Está escrita abaixo, com o alvo apertado.
+
+---
+
+### O QUE ENTROU
+
+**`dados/esquema-banco.json` — versão 2, com a `escada_de_compra`.** A regra da palavra-chave mora no
+**esquema**, nunca dentro da régua, pelo mesmo motivo que a lista de níveis mora lá: lista dentro da régua
+envelhece calada, e tipo novo entraria sem termo nenhum com o banco verde. O que a seção declara:
+
+- **`termo_de_contexto`** — a palavra que diz *o que o produto é*, na língua do vendedor de marketplace,
+  por `tipo_comercial` (VEÍCULO) e por `tipo` (PEÇA). Valor que não está lá **mata a régua**, e há quatro
+  mutações que provam isso.
+- **A escada de palavra-chave**, do degrau mais específico ao menos: VEÍCULO `marca_modelo_termo` →
+  `marca_modelo` → `modelo_termo` → `marca_termo`; PEÇA `marca_termo_medida` → `marca_termo` →
+  `termo_medida`. **A peça não leva código de modelo** — lição da Robometria herdada pronta: código de peça
+  é SKU interno e o vendedor não o digita no título; o que a peça leva é a **medida de encaixe**, que é como
+  ela é vendida.
+- **O que nunca compõe:** o termo sozinho (daria a vários registros a MESMA URL), a marca sozinha (a
+  armadilha da 25.3), o modelo sozinho, e o `titulo_colhido` inteiro (a 25.6(a) mediu que chave longa
+  devolve zero).
+- **`sub_id_2` é `null` no piso de REGISTRO, e está escrito por quê:** um registro aparece em mais de uma
+  ferramenta — o mesmo patinete responde à F2 e à F3 — e um link carrega **um** `sub_id_2`. Quem o decide é
+  a **página**, não o registro; gravar um aqui atribuiria a uma ferramenta o clique que veio de outra, que é
+  pior que não atribuir. O piso nasce com `sub_id_1` só, **como o da Robometria**, e o link por ferramenta é
+  refinamento da casca.
+
+**`ferramentas/coletar-piso-de-compra.py`** — mede, encurta e grava, com `--gravar` e `--conferir`.
+**`ferramentas/mutacoes-piso.py`** — 18 casos (3 mundos que passam, 11 quebras, **4 mortes do esquema**),
+mais 10 afirmações sobre a forma da chave e o autoteste da própria bateria. **`ferramentas/validar-banco.py`**
+ganhou duas contagens e um aviso novo (o do parágrafo abaixo); ele **já cobrava** a 25.2 e a 25.2-b e não
+precisou de uma linha para isso — o portão do bloco 3 estava certo e esperando dado.
+
+---
+
+### A CHAVE É MEDIDA, NUNCA SUPOSTA — e é isso que separa esta régua de um gerador de texto
+
+A 25.6(a) mediu em 16/09 que palavra-chave longa devolve zero e que **zero não é erro**. A busca permite
+uma coisa que a ficha não permite: o degrau útil não é o que casa com o registro, é o **em que a loja tem o
+que vender**. Então cada degrau desta escada é consultado na Open API (`productOfferV2`) antes de virar
+piso, e o número volta gravado em `ofertas_na_medicao` com `medido_em`. **Chave com zero oferta não vira
+piso e a escada desce** — um botão que leva a uma página de busca vazia é o beco sem saída que o piso
+existe para impedir.
+
+**RESULTADO, 17 registros não excluídos medidos um por um:** **5 com piso** (4 veículos + 1 peça), **12
+sem**. E os 12 se separam em duas causas, nenhuma delas "falta coletar":
+
+- **7 não compõem chave nenhuma**, porque o banco não tem os dois identificadores que a escada combina. O
+  caso é o do anúncio que empacota três nomes no título (`Bike/Scooter/Moto elétrica`): `tipo_comercial`
+  ficou honestamente em `nao_declarado` e com isso **o termo é `null`** — e sem marca **e** modelo não há o
+  que compor. **É a 25.9 outra vez, num campo novo:** campo que empacota dois identificadores recusa o
+  anúncio certo para sempre. Aqui o anúncio que empacota dois nomes **não dá nem o nome pelo qual ele se
+  busca.**
+- **5 percorreram a escada inteira e a loja devolveu ZERO em todos os degraus** — `MAXSHOT V1`, `MAXSHOT
+  V1SPRO`, `PLAYBIK patinete eletrico`, `Honeywhale H3`, `Haixia scooter eletrica`. Os degraus medidos
+  ficaram gravados um por um no `motivo_sem_url_busca`, no formato CAUSA || ÚLTIMA TENTATIVA da 25.4-b.3,
+  para a próxima execução não repetir a mesma pergunta às cegas.
+
+**O `sub_id` saiu certo POR CONSTRUÇÃO, e a prova não gastou um clique desta ilha.** A 25.8 é explícita: o
+salto do encurtador é onde a Shopee conta o clique, e conferir os links de uma ilha por esse caminho grava
+um clique com a etiqueta dela justo na semana em que a leitura semanal procura o **primeiro clique
+orgânico**. Então os cinco links desta ilha **não foram abertos**. O mecanismo foi provado uma vez, com
+`ferramentas/conferir-sub-id.py` e sub-id de **bancada**: 301, `utm_content` = `bancada-t0---`, campo 1 na
+primeira casa. Os links da ilha saem da **mesma** função `encurtar()`.
+
+---
+
+### O ACHADO DO BLOCO, E ELE VALE MAIS QUE OS CINCO LINKS
+
+**O PISO E O DADO TÉCNICO CAÍRAM EM REGISTROS DIFERENTES, E A INTERSEÇÃO É VAZIA.** Dos **4** veículos
+publicáveis, **zero** declara tensão + amperagem (a entrada da F2) e **zero** declara carga máxima (a
+entrada da F3) — enquanto os **2** registros com Wh derivado e os **3** com carga máxima estão, todos,
+entre os 12 **sem** saída de compra.
+
+Não é coincidência, e é por isso que virou **aviso do validador** em vez de frase de registro: o anúncio
+que nomeia **marca e modelo** é achável na loja e não publica ficha técnica; o que publica **60 V 20 Ah** ou
+**120 kg** empacota três nomes no título e não é achável por nome nenhum. **São duas populações de anúncio,
+e o banco herdou as duas.**
+
+**A consequência, escrita para quem for construir a casca:** o bloco de compra da 32.1 pede o produto **que
+a ferramenta escolheu**, e hoje **nenhuma das três escolhe um publicável**. Mais piso não conserta isso.
+**O que destrava é o CASAMENTO do registro com a oferta** — os degraus 1 a 3 da 25.1 —, porque é ele que
+traz a ficha e, com a ficha, o campo técnico. E ele é justamente o casamento das cinco armadilhas da 25.7,
+que esta execução **não** fez de propósito: é bloco próprio.
+
+---
+
+### OS DOIS DEFEITOS QUE ESTA PASSADA ACHOU EM SI MESMA, e os dois foram pegos por portão e não por leitura
+
+**(1) O DEGRAU COM NOME MENTIROSO.** A primeira versão de `_juntar()` filtrava as partes vazias e devolvia
+o que sobrasse. Com isso o degrau `marca_modelo_termo` de um registro **sem modelo** compunha, na verdade,
+`marca_termo` — e era **gravado com o nome errado**. A primeira passada medida imprimiu `playbik` e
+`honeywhale-h3` com `marca_modelo_termo`, os dois sem modelo um deles sem termo. **Procedência que mente é
+pior que procedência ausente**, porque `degrau_da_palavra_chave` existe exatamente para a execução seguinte
+saber por que aquela chave é aquela. Agora o degrau só nasce quando **todas** as partes que o nomeiam
+existem, e três afirmações da bateria mordem isso.
+
+**(2) A COLETA PULAVA O REGISTRO EXCLUÍDO E A CONFERÊNCIA NÃO.** `coletar-piso-de-compra.py --conferir`
+reprovou o banco em três registros `excluido_do_banco`, cobrando deles o motivo de hoje. Os dois lados
+estavam defensáveis e **discordavam**: a coleta os pula porque registro recusado fica gravado para a
+próxima execução não o recolher, e a conferência os varria como qualquer outro. O portão reprovou **banco
+certo** — que a 32.5-b já nomeou como o caminho mais curto para alguém passar a ignorar um portão. A
+conferência passou a pular pela mesma regra, e há um **mundo que tem de passar** na bateria guardando isso.
+
+---
+
+### BANCADA, 0 FALHA — 5 portões, e dois deles nasceram hoje
+
+`validar-banco.py` **APROVADO** com 0 falha e 4 avisos; `mutacoes-banco.py` **APROVADO** com os 66 casos de
+ontem intactos (o esquema subiu para a versão 2 e nenhuma morte do esquema mudou de comportamento);
+`mutacoes-piso.py` **APROVADO** com 18 casos + composição + autoteste; `coletar-piso-de-compra.py
+--conferir` **APROVADO** sem rede; `derivar-banco.py --conferir` **APROVADO**. A bancada **descobriu** os
+dois portões novos pela convenção de nome, sem ninguém os listar — que é a razão pela qual esta ilha nasceu
+com ela.
+
+---
+
+### A SEÇÃO 31 LIDA EM VOZ ALTA, porque ela desaprova parte do que entrou aqui e isso não se esconde
+
+A **31.1** pede que 7 de cada 10 execuções de uma ilha entreguem algo **no ar que o visitante vê**, e a
+**31.2** diz que portão, régua ou mutação nova *"só nasce quando existe defeito medido no ar que ela teria
+pegado"*. **Esta execução não entregou nada no ar e escreveu uma bateria nova.** Os dois fatos ficam
+registrados, e com eles o que penso deles:
+
+- **Nenhuma execução desta ilha pode satisfazer a 31.1 hoje**, porque a ilha tem **zero** URL. A 31 nasceu
+  em 21/10 de um problema oposto e nomeado: a aquametria, **com 52 URLs no ar e 586 impressões na semana**,
+  gastando execução em bancada. A proporção da 31.1 passa a ser mensurável nesta ilha no dia em que a casca
+  subir — e a 31.6 manda a leitura semanal contá-la, com o `REGISTRO.md` na mão.
+- **A bateria nova não é trabalho de bancada sobre portão existente** (o que a 31.3 proíbe): é a bateria de
+  uma régua que nasceu nesta mesma execução, e o `PROMPT.md` desta ilha já declarava a prática, com a causa
+  — *"Esta ilha nasceu com a bancada, em vez de ganhá-la depois de perder uma régua"*. **E ela mordeu na
+  própria passada:** os dois defeitos da seção acima foram achados por portão, não por leitura, e um deles
+  (o degrau com nome mentiroso) teria ido para o `main` gravado em cinco registros.
+
+---
+
+### NADA FOI AO AR, E NADA PODIA
+
+O `manifest.json` segue na **revisão 1** com os três grupos vazios: esta ilha não tem página nenhuma, e a
+primeira revisão que publica algo continua sendo a da **casca (bloco 3b)**. `publicar` segue `false` nos
+arquivos de dados — eles alimentam ferramenta, não são página.
+
+**PRÓXIMO PASSO DESBLOQUEADO: o CASAMENTO do registro com a oferta da Shopee (degraus 1 a 3 da 25.1).** É
+ele que resolve as duas pontas de uma vez — dá `url_produto` (e com ela o teste de vida da 25.4-b passa a
+existir nesta ilha), dá a foto que a 32.1 pede no cartão, e dá o caminho para a ficha onde o campo técnico
+mora. **E ele é o casamento das cinco armadilhas da 25.7**, que precisam ser lidas antes de uma linha ser
+escrita. O alvo apertado, saindo da medição de hoje e não de impressão: os **7** registros que não compõem
+chave e os **5** que a loja não respondeu — e os **12** sem saída de compra que incluem todo o dado técnico
+que o banco tem.
+
 ## 2026-10-28 16h4xZ — **BLOCO 3 ENTREGUE: O MODELO DO BANCO.** O esquema, 24 registros, três portões e a bancada — e o número que o bloco mediu vale mais que o esquema: **zero veículo com potência nominal declarada, contra 14 com um watt sem rótulo**
 
 **A ESCOLHA DA ILHA, dita antes de qualquer coisa.** `foco.md` nomeia a **rodametria** (foco total e

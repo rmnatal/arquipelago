@@ -3,7 +3,7 @@
  "ilha": "rodametria",
  "bloco": "3",
  "esquema": "dados/esquema-banco.json",
- "versao_esquema": 1,
+ "versao_esquema": 2,
  "gerado_em": "2026-10-28",
  "publicar": false,
  "nota": "A CAMADA 2 DA F1 COMO DADO, E NAO COMO PROSA DE RODAPE. Esta entidade nao esta na lista do bloco 3 do PROMPT.md: ela e exigida pela 1.1 da especificacao do bloco 2, que define TRES estados para o campo `municipio` e faz o do meio ('conhecido pelo banco') depender de um banco que ninguem tinha mandado existir. OS QUATRO REGISTROS SAO `pendente`, e a consequencia esta escrita sem maquiar: HOJE a camada 2 da F1 tem DOIS estados de saida em vez de tres, e os dois imprimem a mesma ressalva generica. A diferenca entre isto e um buraco e que isto esta contado, com a causa e com o nome dos quatro dominios que ninguem tentou. REMEDIDO AS 16h3xZ: os quatro dominios municipais estao RECUSADOS pelo egresso, nas tres passadas da 20.2, com dois controles verdes em cada uma. Entao a frase 'os quatro dominios que ninguem tentou' ficou velha na mesma execucao que a escreveu, e a nova e pior: nao e que ninguem tentou — e que nao da. O caminho desta pendencia e o mesmo do limiar legal, e e o navegador do Raphael.",
