@@ -7756,3 +7756,80 @@ exceção obrigatória: nenhuma reserva de ilha, nenhum `executando_desde` escri
 estado tocado, nenhum bloco de fila executado, nenhuma publicação, nenhum `publicar: true`, nenhum Sync
 acionado, nenhuma verificação de site, nenhuma conta criada, `ARQUIPELAGO.md` não lido para decidir nada.
 Este log vai num commit seguinte, por ser o último passo do disparo e por precisar do hash.
+
+---
+
+## Disparo de 28/10/2026 17h04 BRT (20h04 UTC) — SEGUNDO disparo da mesma leitura: nada reescrito, o primeiro já havia gravado
+
+A instrução deste disparo veio dizendo que o primeiro, de 19h41Z, "não produziu commit em origin/main em
+10 minutos". Isso estava errado no momento em que eu li: o primeiro disparo **funcionou**. Ele gravou os
+três arquivos no `main` no commit `14cacfc`, e o próprio log dele em `826f7b5`. O que aconteceu é que o
+commit dele entrou DEPOIS de eu checar, e antes de eu tentar o push — a corrida entre os dois disparos.
+
+Sequência exata, para quem ler depois:
+
+```
+20h04Z-ish  git fetch origin main      -> main em 0bd36cc
+            checagem dos três destinos -> AUSENTE nos três (o 1o disparo ainda não havia empurrado)
+            rodei o script nas três ilhas, gravei os três arquivos, grep -c PRIVATE = 0 nos três
+            commit local 9b2e4317e9ef519b1998365714f95c0f7fe8ecc0
+            git push origin HEAD:main  -> RECUSADO (remote contém trabalho que eu não tenho)
+            git fetch + git rebase origin/main -> main agora em 826f7b5, CONFLITO:
+                AA ilhas/clubedomosaico/dados/search-console-2026-10-28.md
+                AA ilhas/robometria/dados/search-console-2026-10-28.md
+            git rebase --abort
+```
+
+A instrução deste disparo manda, na primeira linha: "Se o arquivo de destino já existir com conteúdo, não
+reescreva: responda dizendo que já existia e pare." É exatamente o caso. Os três existiam com conteúdo no
+`main` quando o rebase mostrou o conflito, então **nenhum dos três arquivos de dados foi reescrito**. Meu
+commit `9b2e431` ficou só no clone desta sessão e não foi ao `main`.
+
+`git status --porcelain` depois de abortar o rebase e voltar para `origin/main` (limpo, nada pendente):
+
+```
+```
+
+`git diff --stat` contra `origin/main` (nenhuma diferença nos arquivos de dados):
+
+```
+```
+
+Hash do commit que foi ao `main` neste disparo: **só este log**. Os dados vieram do primeiro disparo
+(`14cacfc`); este disparo não empurrou dado nenhum, de propósito.
+
+Comparação entre a minha leitura e a que já estava no `main`, relida dos dois lados DEPOIS, nunca de
+memória — os números batem, e é o que importa:
+
+```
+aquametria      5060 bytes vs 5060 bytes  -> IDENTICO byte a byte
+robometria      2021 bytes vs 2031 bytes  -> difere em 1 linha
+clubedomosaico  3429 bytes vs 3449 bytes  -> difere em 8 linhas
+```
+
+Em todos os casos os TOTAIS e a CONTAGEM de indexação são iguais nas duas leituras (aquametria 50/2/0 em
+52; robometria 10/4/0 em 14; clubedomosaico 24/13/0 em 37). O que diverge é apenas o VEREDITO por URL na
+seção de não indexadas, que trocou de lado entre as duas chamadas, feitas a ~20 minutos de distância:
+
+```
+robometria      /pecas/filtros/                                      "Discovered - currently not indexed" <-> "URL is unknown to Google"
+clubedomosaico  /materiais/acabamento/impermeabilizar-peca-de-mosaico/   idem, trocado
+clubedomosaico  /materiais/acabamento/verniz-para-peca-de-mosaico/       idem, trocado
+clubedomosaico  /materiais/cortador-de-vidro-para-mosaico/               idem, trocado
+clubedomosaico  /materiais/espelho-para-mosaico/                         idem, trocado
+clubedomosaico  /materiais/pastilhas-para-mosaico/                       idem, trocado
+clubedomosaico  /materiais/torques-para-mosaico/                         idem, trocado
+```
+
+Isso é instabilidade da própria URL Inspection do Google entre duas chamadas próximas, não defeito do
+script nem do site: as duas leituras contam a mesma URL como não indexada, só discordam do rótulo do
+motivo. Fica registrado porque é a primeira vez que o Arquipélago tem duas leituras da mesma janela no
+mesmo dia para comparar, e a lição é que o rótulo por URL não serve de série temporal; a contagem serve.
+
+Nenhum valor de `GOOGLE_SA_B64` foi impresso, gravado ou commitado em momento nenhum. `grep -c PRIVATE`
+deu 0 nos três arquivos que eu gerei, antes de eu descobrir que não iria gravá-los.
+
+Nada além deste `MAOS-LOG.md` foi tocado no `main` por este disparo: nenhuma reserva de ilha, nenhum
+`executando_desde`, nenhum cabeçalho de estado, nenhum bloco de fila, nenhuma publicação, nenhum
+`publicar: true`, nenhum Sync, nenhuma verificação de site, nenhuma conta criada, `ARQUIPELAGO.md` não
+lido para decidir nada.
