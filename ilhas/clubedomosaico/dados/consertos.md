@@ -251,3 +251,32 @@ da ficha renderiza o quebra-cabeça *"Arraste para completar"* — e a 25.4 pro�
 do Mercado Livre; (3) se o caminho do teste de vida da Shopee voltou, e se não voltou, **não tentar de novo pelos
 mesmos dois endpoints** — a medição de hoje é a terceira igual e a decisão de qual passa a ser o método é do
 Raphael.
+
+---
+
+## 28/10/2026 — RONDA SEM CONSERTO, E A RECONFERÊNCIA QUE ACHOU UM TERCEIRO BANCO DE LINKS
+
+**Nenhum conserto nesta ronda, e nenhum tentado.** Os dois defeitos achados são da lista fechada **19.2** — dado de banco mais código de ferramenta no item 1, snippet no item 2 — e os dois foram despachados. O teto de 5 da 19.5 não foi tocado. *(O item 2 parece ser "item de Veja também faltando", que é 19.1; não é conserto meu porque esta ilha não tem `conteudo/` e aquelas páginas nascem do snippet `tecnicas` — a 19.2 vale mais, e a trava 3 da seção 12 é textual.)*
+
+**RECONFERÊNCIA DA 19.4(c) — as dez entradas deste arquivo foram abertas antes de qualquer outra coisa.** Medido no ar às 14h4xZ–14h5xZ de 28/10/2026, com quebra de cache e `Accept-Encoding: identity`:
+
+- **A entrada de 08/10 (terceira queda do `.htaccess`) PASSOU pela oitava ronda seguida.** 32 de 32 URLs do `wp-sitemap.xml` em 200; `/wp-sitemap.xml` em 200 com `application/xml`; `/robots.txt` em 200 e `text/plain`; `/wp-json/` em 200 e `application/json`; caminho inexistente em 404 na página desta ilha. **A quarta linha da série não precisou ser escrita.**
+- **A mesma porta medida nas outras duas ilhas no ar e inteira nas duas:** aquametria **52 de 52** e robometria **14 de 14**, com `/status` igual ao manifest nas três (93, 135 e 95).
+- **24/09 e 05/10 (as duas quedas anteriores): PASSARAM** — é a mesma medição acima.
+- **25/09 (links regerados): PASSOU.** Zero link cru de ficha de Shopee ou de Mercado Livre servido nas 32 URLs; as saídas de compra são encurtador de afiliado.
+- **25/09 (etiqueta de robô): PASSOU.** Zero `noindex` indevido nas 32.
+- **28/09 (os cinco itens): CONTINUAM fechados.** `description` nas 32 e nenhuma acima de 160; zero `<img>` sem `alt` e zero sem `width`/`height`.
+- **29/09 (soft 404 na borda): CONTINUA**, e segue sendo do Raphael. Sonda virgem hoje: **404 · 200 · 200 · 200**.
+- **30/09 (item 1, degrau 4): CONTINUA cumprido.**
+
+**O QUE A RONDA ANTERIOR MANDOU RECONFERIR, item por item, e as três respostas:**
+
+1. **A porta de entrada:** inteira, acima.
+2. **Os 4 links de catálogo `/p/MLB...` do Mercado Livre: os 4 VIVOS**, abertos no navegador do Raphael porque `www.mercadolivre.com.br` segue em 000 da nuvem. Tekbond Silicone Neutro **R$ 59** (+50 vendidos), Argamassa Quartzolit AC-II **R$ 51** (+100 vendidos), Durepoxi Loctite **R$ 20** (+1.000 vendidos), Rejunte Epóxi Quartzolit **R$ 99** (+10 mil vendidos). *(Preço de hoje, para a série: em 09/10 os quatro foram lidos em 59, 81, 19 e 76. O banco desta ilha não guarda preço, então não há nada vencido a corrigir — o número existe só como leitura datada.)*
+3. **O caminho do teste de vida da Shopee VOLTOU, e a ronda anterior tinha razão em não o declarar morto.** A `api/v4/pdp/get_pc` chamada de dentro de uma aba no domínio devolveu **200 com `item_status` em 20 de 20 itens**. A condição que faltava está medida: **intervalo entre chamadas**. Com 700 ms, a 7ª chamada caiu em `/verify/traffic/error` com `error: 90309999`; recomeçando de uma ficha de produto e esperando **4 a 5 segundos**, 14 chamadas seguidas passaram sem uma recusa. O que 07/10, 09/10 e 12/10 leram como "o anti-robô fechou o caminho" tem o ritmo como causa provável — e isto não é afirmação sobre aqueles dias, é o que hoje mediu.
+
+**TESTE DE VIDA DOS LINKS (25.4 e 25.4-b), do navegador, sem gastar um clique de afiliado: 24 de 24 itens testáveis VIVOS, 0 morto, 0 esgotado** — 20 da Shopee e 4 do Mercado Livre. É a ilha inteira do banco que o portão lê, pela primeira vez em quatro rondas.
+
+**E O NÚMERO QUE DEVE SER RECONFERIDO NA PRÓXIMA: 58.** São as ofertas de `dados/vitrine-de-produto.json` servidas nas 8 páginas de consulta de produto (58 de 58 conferidas no HTML servido), todas com **só** `url_afiliado` encurtada — **sem `url_produto`, sem `shop_id`, sem `url_busca`**. Intestáveis pela 25.4-b e sem piso pela 25.2, e invisíveis a todo painel desde 25/09 porque `contar-piso-de-compra.py` lê, nas palavras dele, *"cinco arquivos `dados/materiais-*.json` e de mais nada"*. Item 1 do despacho de hoje.
+
+**O que a próxima ronda reconfere:** (1) a porta de entrada, pelos dois comandos da 29; (2) o item 1 do despacho de hoje pelo critério de pronto dele — a contagem imprimindo **101** itens com saída de compra e 0 intestável fora do degrau 4; (3) o item 2, com os dois links de irmã no ar; (4) o teste de vida das 58 ofertas, pelo par `shop_id` + `item_id`, **com 4 a 5 segundos entre chamadas** — e se a recusa voltar mesmo nesse ritmo, registrar e não insistir.
