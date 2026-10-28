@@ -11,6 +11,41 @@ Prioridade: `alta` fura a fila da próxima execução do destinatário.
 
 ## ABERTOS
 
+### prioridade NORMAL — a F2 da ilha em foco vai ao ar sem o número que a tornaria completa, e as DUAS fontes que o publicam não resolvem nesta nuvem
+
+28/10/2026 às 13h3xZ — RAPHAEL (uma leitura no Chrome, ou duas linhas na lista de rede) — Medido pela execução da Fundação que entregou o bloco 2 da rodametria.
+
+**O PEDIDO, nas duas formas que servem.** Qualquer uma destrava; a segunda vale a passada do mesmo jeito se a primeira demorar.
+
+(a) Acrescentar à lista "Domínios permitidos" dos ambientes de nuvem (`claude.ai/code` → seletor de ambiente → Nuvem → engrenagem):
+
+```
+stdjet.scienceandtechnology.com.vn
+et.vnuhcmjournal.com.vn
+dspace.ups.edu.ec
+```
+
+(b) Ou abrir no Chrome o artigo em `https://stdjet.scienceandtechnology.com.vn/index.php/stdjet/article/view/1065` e colar em `ilhas/rodametria/dados/` o **consumo medido em Wh/km** do patinete elétrico com **autoria, instituição, ano, método de medição, peso do condutor e tipo de percurso**, mais a URL e a data da leitura.
+
+**O QUE ISTO DESTRAVA, e ele é pequeno de propósito — não é a F1.** A constante `consumo-absoluto-wh-por-km-patinete` em `ilhas/rodametria/dados/constantes.json`, hoje `pendente`. Com ela, a F2 passa a devolver **km absoluto a partir de V e Ah**, sem depender de a pessoa informar a autonomia declarada no anúncio. **Sem ela a F2 vai ao ar de qualquer jeito** — pela conta reduzida da seção 2.2 de `dados/especificacao-calculadoras.md`: `Wh = V × Ah` é identidade e não precisa de fonte, e a faixa sai degradando a autonomia **declarada** pelo fator de relevo, que já é constante publicável. **Por isso é NORMAL e não ALTA:** ela melhora a ferramenta, não a libera.
+
+**MEDIDO ÀS 13h2xZ–13h3xZ DE 28/10/2026:**
+
+```
+stdjet.scienceandtechnology.com.vn  → getaddrinfo ENOTFOUND
+dspace.ups.edu.ec                   → getaddrinfo ENOTFOUND
+```
+
+Com `rodametria.com.br` em **200** na mesma janela, o que separa recusa de host de queda de túnel.
+
+**POR QUE OS TRÊS DOMÍNIOS E NÃO UM.** Os dois primeiros publicam a **única** medição de consumo de **patinete** achada (≈ 20 Wh/km, faixa de 18,1 a 20,1, em mais de 4.000 km rodados e 70 ciclos de carga) — e a busca **não** confirmou autoria nem equipamento, que é justamente o que falta para ela ser publicável. O terceiro, `dspace.ups.edu.ec`, publica a tese da UPS Quito de 2025 que **já virou duas constantes publicáveis** desta ilha (o fator de relevo de 2,37 e a calibração de 49,7%), lidas **por busca** e não na fonte: liberá-lo sobe o nível das duas do elo fraco para leitura direta, e é o mais barato dos três.
+
+**E ELE NASCE DE UMA ERRATA, que é o motivo de o pedido existir.** O bloco 1 entregou à F2 os números de **41,29 e 97,74 Wh/km** como "a régua do relevo", e calculou com eles sobre uma bateria de 1.200 Wh. A coleta limpa do bloco 2 achou o registro do estudo: é uma **moto elétrica** de **60 V e 30 Ah (1.800 Wh)**, não bicicleta nem patinete. Wh/km absoluto não atravessa classe de veículo; só a **razão** atravessa. **A ilha ficou sem número absoluto de consumo porque o que ela tinha era de outro veículo** — e é esse buraco que este despacho fecha.
+
+**Pronto quando:** a constante `consumo-absoluto-wh-por-km-patinete` sair de `pendente`, com `valor`, `url`, `verificado_em` e o método de medição escritos, **ou** os três domínios devolverem 200 desta nuvem.
+
+---
+
 ### prioridade ALTA — a ilha EM FOCO tem como produto a CATEGORIA LEGAL, e o único texto que a decide é negado pelo egresso: o bloco 2 pode ser especificado inteiro, mas não pode ser FECHADO desta nuvem
 
 28/10/2026 às 10h4xZ — RAPHAEL (dois gestos de navegador, nenhum deles é bloco) — Medido pela execução da Fundação que entregou o bloco 1 da rodametria.

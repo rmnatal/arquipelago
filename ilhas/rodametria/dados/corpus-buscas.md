@@ -155,7 +155,20 @@ publicável sem releitura na fonte, com data**):
 - **41,29 Wh/km em plano contra 97,74 Wh/km com inclinação média de 12%** — estudo em
   `dspace.ups.edu.ec` (Universidad Politécnica Salesiana, Equador). **É o número mais
   valioso do eixo**: ele quantifica o relevo, que é justamente a entrada que a F2 tem e
-  o anúncio não. Com 1.200 Wh, os dois extremos dão ≈ 29 km e ≈ 12 km.
+  o anúncio não. ~~Com 1.200 Wh, os dois extremos dão ≈ 29 km e ≈ 12 km.~~
+  > **ERRATA DO BLOCO 2, 28/10/2026 às 13h3xZ — O VEÍCULO MEDIDO É UMA MOTO, E A FRASE
+  > RISCADA ACIMA APLICOU O NÚMERO DELE A UMA BATERIA DE PATINETE.** Esta coleta não disse
+  > a classe do veículo, e ela muda a leitura. A coleta limpa do bloco 2 achou o registro:
+  > *"Análisis de la eficiencia energética de la batería de ion litio en una **moto
+  > eléctrica** para el uso de micro movilidad"*, Rodrigo David Limaico Quinteros,
+  > Maestría en Ingeniería Automotriz, UPS sede Quito, **2025** — bateria de **60 V e 30 Ah
+  > (1.800 Wh)** em rota de **25,8 km**. Wh/km **absoluto** de uma moto de 1.800 Wh não é o
+  > de um patinete de 500 Wh. O que atravessa a classe é a **razão** medida na mesma rota:
+  > **97,74 ÷ 41,29 = 2,37**, e é ela que virou constante
+  > (`fator-relevo-ladeira-contra-plano` em `dados/constantes.json`). O bloco 2 também
+  > colheu da mesma tese o que faltava aqui: **29,8 km medidos em condição mista contra 60
+  > km declarados na ficha — 49,7%**, que cai **abaixo** do piso da faixa agregada de
+  > 60-80% registrada logo abaixo nesta mesma lista.
 - **Perda de ~30% de autonomia com pneu subinflado** — `decathlon.pt`.
 - **Faixa de 60% a 80% do valor anunciado em uso urbano** — leitura agregada, **sem
   fonte única**; não serve como constante.
@@ -312,6 +325,11 @@ assimetria da 30.8, nada disso autoriza `alvo` — nem no eixo A.
 3. **A F2 tem a régua do relevo com número**: 41,29 Wh/km em plano × 97,74 Wh/km a
    12% de inclinação (`dspace.ups.edu.ec`). **A reler na fonte e datar** antes de virar
    constante. O piso de 10 Wh/km da `ozo-electric.com` é de bicicleta, não de patinete.
+   **CORRIGIDO PELO BLOCO 2 em 28/10/2026:** o estudo é de **moto elétrica** de 1.800 Wh,
+   não de bicicleta nem de patinete — ver a errata no eixo B acima. O que entrou como
+   constante foi a **razão 2,37**, não os absolutos; e o consumo absoluto por km de
+   patinete ficou **`pendente`**, porque as duas fontes que o publicam não resolvem nesta
+   nuvem (despacho novo de 28/10).
 4. **A F3 tem o teto de mercado medido em 120 kg** e a régua de margem de 10%, que
    decide quem o mercado brasileiro não atende. Este é o eixo com a maior chance de
    devolver "nenhum modelo serve" — e a seção 7 do contrato manda dizer isso com o

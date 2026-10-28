@@ -4,12 +4,12 @@ estado: nascendo
 prioridade: 1
 piso: abaixo
 primeira_indexacao: null
-ultima_execucao: 2026-10-28T10:25Z   # BLOCO 1 ENTREGUE: `dados/corpus-buscas.md`, o corpus de buscas com procedencia consulta a consulta, e a S_par que o dossie deixou sem medir. No caminho, DUAS medicoes que nao eram do bloco: o WordPress JA esta no ar (a secao 4 em acao) e a fonte oficial da F1 e NEGADA pelo egresso. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
-executando_desde: 2026-10-28T13:19Z   # reserva desta execucao (passo 5 da secao 1), ilha em foco pela 1.2. Rede reconferida pela 20.2 antes de reservar: raiz e wp-sitemap.xml em 200 nas TRES tentativas. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
-bloco_atual: "2"   # o 1 fechou em 28/10. O 2 (especificacao F1/F2/F3 + constantes.json) pode ser ESCRITO inteiro daqui, mas a constante central da F1 nasce `publicavel: false`: ver a secao 4 do corpus e o despacho ALTA de 28/10 em dados/despachos.md
+ultima_execucao: 2026-10-28T13:28Z   # BLOCO 2 ENTREGUE: `dados/especificacao-calculadoras.md` e `dados/constantes.json` — as tres ferramentas especificadas inteiras, 9 constantes (6 publicaveis, 2 pendentes com consequencia declarada, 1 observacao de mercado). A decisao do bloco: limiar legal mora em UMA constante, referenciado por nome, literal numerico PROIBIDO no codigo — a F1 destrava editando um objeto JSON. No caminho, uma ERRATA do bloco 1 (o numero do relevo era de MOTO, nao de bicicleta) e a margem da F3 rebaixada de fonte de terceiro para decisao_da_ilha. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
+executando_desde: null   # limpo as 2026-10-28T13:28Z pela propria execucao que reservou as 13h19Z de 28/10
+bloco_atual: "3"   # o 1 e o 2 fecharam em 28/10. O 3 (modelo do banco) nao depende de site NEM de fonte bloqueada: a secao 5 da especificacao entrega os campos, os quatro grupos de recusa por ferramenta, o enum de tres valores do acelerador (`nao_declarado` nunca cai em "so pedal assistido" por omissao) e `energia_wh` DERIVADO de V x Ah. `categoria` e campo DERIVADO da F1, nunca de entrada do catalogo
 ultima_ronda: null
 bloqueada_por: null
-rede: ok em 2026-10-28   # `https://rodametria.com.br/` devolveu 200 em TRES tentativas as 10h17Z. O passo 20.1 esta cumprido de fato: o dominio passa pelo egresso desta nuvem. O que NAO passa e o gov.br (despacho ALTA de 28/10)
+rede: ok em 2026-10-28   # 20.2 REMEDIDA as 13h18Z, nao herdada do campo: `https://rodametria.com.br/` e `/wp-sitemap.xml` os dois em 200 nas TRES tentativas. O que NAO passa, remedido as 13h2xZ em duas passadas: gov.br, in.gov.br, planalto.gov.br, contran.gov.br e lex.com.br em 403 do egresso (despacho ALTA de 28/10), e dspace.ups.edu.ec e stdjet.scienceandtechnology.com.vn em ENOTFOUND (despacho NORMAL novo de 28/10)
 ---
 
 # Estado da ilha RODAMETRIA

@@ -3,6 +3,93 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-10-28 13h19Z–13h4xZ — **O BLOCO 2, E A DECISÃO DE ENGENHARIA QUE TIRA A ILHA DA ESPERA.** As três ferramentas especificadas inteiras, 9 constantes com procedência — e o limiar legal que a F1 não tem **isolado num objeto JSON**, para a chegada da fonte ser a edição de um arquivo e não um bloco
+
+**O que saiu:** `dados/especificacao-calculadoras.md` (470 linhas) e
+`dados/constantes.json` (**9 constantes**: 6 publicáveis, 2 `pendente` com a consequência
+declarada, 1 observação de mercado). Para cada uma das três ferramentas: entradas com tipo
+e exemplo pré-preenchido, saída, fórmula degrau por degrau, **o que ela se recusa a
+responder**, tabela pré-renderizada, bloco de compra com o critério de entrada do produto,
+e a prestação de contas da seção 7 com os grupos de recusa separados por causa.
+`publicar: false` nos dois, como todo bloco de dado.
+
+**A DECISÃO DO BLOCO, e ela é o que fica depois de hoje.** A ilha estava numa armadilha
+simples: a F1 **é** a home, o produto dela **é** a categoria legal, e o texto que decide a
+categoria é negado pelo egresso há duas execuções. A saída não foi esperar nem improvisar
+um número — foi **separar o que depende da fonte do que não depende**. Os quatro limiares
+(`LIMIAR_BIKE_W`, `LIMIAR_BIKE_KMH`, `LIMIAR_AUTOPROP_W`, `LIMIAR_AUTOPROP_KMH`) viraram
+**uma constante só**, referenciada **por nome** na árvore de decisão, com **literal
+numérico proibido** no código da F1. A árvore inteira, as duas ressalvas obrigatórias, a
+camada municipal, o bloco de compra e o esquema do banco estão escritos e podem ser
+construídos. **Quando o texto oficial chegar, a F1 destrava editando um objeto JSON** —
+preencher `valor`, trocar `status`, gravar `url` e `verificado_em`. Nenhuma linha de lógica
+muda. *É por isso que este bloco não esperou a fonte: o que a fonte decide é um objeto, e o
+que ela não decide é tudo o mais.*
+
+**O QUE CONTINUA TRAVADO, remedido e não herdado do campo.** Às 13h2xZ, em duas passadas:
+`gov.br`, `in.gov.br`, `planalto.gov.br`, `contran.gov.br` e `lex.com.br` — **os cinco** em
+`CONNECT tunnel failed, response 403`, com `rodametria.com.br` em **200** na mesma janela.
+Três horas e meia depois do despacho ALTA do bloco 1, o pedido segue aberto. **A F1 não vai
+ao ar**, e não vai com número de portal, não vai com o número que mais apareceu e não vai
+"com ressalva" — a seção 10 proíbe constante `pendente` dentro de fórmula publicada, e aqui
+a fórmula publicada é o produto da ilha. **A F2 e a F3 podem ir ao ar.**
+
+**A ERRATA DO BLOCO 1, e ela é a razão de um despacho novo existir.** O corpus entregou à F2
+*"a régua do relevo com número: 41,29 Wh/km em plano × 97,74 Wh/km a 12%"* e calculou com
+ela sobre **1.200 Wh**, uma bateria de patinete. A coleta limpa de hoje achou o registro do
+estudo: *"Análisis de la eficiencia energética de la batería de ion litio en una **moto
+eléctrica** para el uso de micro movilidad"* — Rodrigo David Limaico Quinteros, Maestría en
+Ingeniería Automotriz, UPS sede Quito, **2025**, bateria de **60 V e 30 Ah (1.800 Wh)**,
+rota de **25,8 km**. **Wh/km absoluto de uma moto de 1.800 Wh não é o de um patinete de 500
+Wh.** O que virou constante foi a **razão** — `97,74 ÷ 41,29 = 2,37` —, medida na mesma
+rota, com o mesmo veículo e a mesma bateria, que é a única forma de um número atravessar
+classe de veículo. A errata está escrita **nos dois lugares do corpus** que carregavam a
+frase, com o original riscado e preservado.
+
+**E a mesma tese deu de graça o número que faltava:** **29,8 km medidos em condição mista
+contra 60 km declarados na ficha — 49,7%**. O corpus registrava *"60% a 80% do valor
+anunciado"* como leitura agregada sem fonte única, e dizia ele mesmo que não servia de
+constante. **A medição nomeada cai abaixo do piso daquela faixa**, e é a direção que
+importa: a faixa agregada era otimista. Entra como **linha de calibração** da tabela da F2,
+com autor e instituição dentro da frase, e **não** multiplica nada.
+
+**A TERCEIRA COISA QUE A COLETA LIMPA FEZ FOI REBAIXAR UM NÚMERO DA PRÓPRIA ILHA.** O bloco
+1 anotou que *"uma fonte estrangeira colhida sugere margem de pelo menos 10% acima do peso
+do condutor"*, e a F3 ia nascer com essa margem atribuída a terceiro. A busca limpa — sem o
+número dentro da pergunta — percorreu 13 publicadores e **não achou percentual publicado em
+nenhum**. O que existe publicado é **qualitativo e convergente** em três deles, um
+brasileiro: perto do teto declarado, a velocidade e a aceleração máximas não são
+alcançadas. **Então a margem de 10% virou `decisao_da_ilha`, com o motivo escrito** — a
+direção do erro caro aponta para a folga —, e a página nunca a atribui a ninguém. *Atribuir
+a terceiro uma régua que terceiro não publicou é pior que não ter régua.* E o número não é
+cosmético: 10% sobre o teto de mercado de 120 kg exclui quem passa de **109 kg**, que é
+exatamente a pessoa do `VOZ.md`.
+
+**O que a F2 deixou de poder fazer, e fica dito em vez de disfarçado:** sem régua de consumo
+por km de **patinete**, ela não devolve km absoluto a partir de V e Ah. Devolve `Wh = V × Ah`
+(identidade, não precisa de fonte nenhuma), a faixa degradando a autonomia **declarada** pelo
+fator de relevo, e — quando a pessoa não informa a declarada — **diz que não estima km,
+nomeando o que falta**. A única medição de patinete que existe (≈ 20 Wh/km, 4.000 km rodados,
+70 ciclos) está em dois hosts que não resolvem nesta nuvem. Os outros três candidatos foram
+reprovados **com o motivo escrito um por um** em `constantes.json`: um é de bicicleta e de
+fabricante de kit, um é circular (divide a autonomia declarada pela energia, assumindo
+justamente o número que a F2 existe para não assumir), e um é de moto.
+
+**Despacho novo, prioridade NORMAL** (`dados/despachos.md`): três domínios —
+`stdjet.scienceandtechnology.com.vn`, `et.vnuhcmjournal.com.vn` e `dspace.ups.edu.ec` — ou a
+leitura no Chrome. **É NORMAL e não ALTA de propósito: ele melhora a F2, não a libera.** O
+terceiro domínio é o mais barato dos três: ele sobe de "leitura por busca" para leitura
+direta as **duas constantes publicáveis** que esta execução já gravou.
+
+**Próximo passo desbloqueado — bloco 3, modelo do banco, e ele não depende de site NEM de
+fonte bloqueada.** A seção 5 da especificação já entrega o contrato: os campos que as três
+ferramentas leem, `potencia_nominal_w` e `potencia_pico_w` **separados** (a F1 só lê o
+nominal), **`acelerador` como enum de TRÊS valores** — `nao_declarado` é o terceiro, com
+frase própria, e **nunca** cai em "só pedal assistido" por omissão, porque é o pivô da
+classificação —, `energia_wh` **derivado** de V × Ah e nunca copiado de anúncio, e
+**`categoria` como campo DERIVADO da F1, nunca de entrada do catálogo**: gravar categoria à
+mão é deixar o anúncio escrever a regra.
+
 ## 2026-10-28 10h17Z–10h25Z — **O BLOCO 1, E AS DUAS COISAS QUE ELE ACHOU SEM PROCURAR.** Primeira execução da Fundação nesta ilha. O corpus de buscas saiu inteiro, a **S_par deixou de ser "não medida"** — e no caminho a passada descobriu que **o site já está no ar** e que **a fonte que decide a F1 é negada pelo egresso**
 
 **O que saiu:** `dados/corpus-buscas.md` — quatro eixos (CNH e placa · autonomia ·

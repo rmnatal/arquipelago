@@ -54,7 +54,28 @@ egresso, e é despacho aberto em `dados/despachos.md` (prioridade ALTA, 28/10).
 
 **1-ORIGINAL (guardado).** `dados/corpus-buscas.md`, com procedência consulta a consulta. Três eixos que não se misturam: (a) **CNH e placa** — potência, velocidade, acelerador × pedal assistido, a regra; (b) **autonomia** — tensão, amperagem, Wh, peso, relevo; (c) **carga e tamanho** — peso máximo, altura do guidão, aro. Mais o eixo de **produto pelo nome** (seção 30): as seis cabeças da tabela acima e as caudas medidas (`patinete eletrico adulto` 49,5 mil, `scooter eletrica 1000w` 33,1 mil, `moto eletrica 1000w` 14,8 mil). **Primeira tarefa de leitura:** abrir no Chrome a SERP das consultas-ponte (`bicicleta eletrica precisa de cnh`, `autonomia patinete eletrico`) — o dossiê deixou S_par não medida.
 
-**2. ESPECIFICAÇÃO DAS FERRAMENTAS.** `dados/especificacao-calculadoras.md` + `dados/constantes.json`. Ordem obrigatória **F1, F2, F3**:
+**2. ~~ESPECIFICAÇÃO DAS FERRAMENTAS~~ — ENTREGUE EM 28/10/2026 às 13h4xZ**, em
+`dados/especificacao-calculadoras.md` (470 linhas) e `dados/constantes.json` (**9 constantes**:
+6 publicáveis, 2 pendentes com a consequência declarada, 1 observação de mercado). As três
+ferramentas estão especificadas inteiras — entradas, saídas, fórmula, recusas, tabela
+pré-renderizada, bloco de compra e prestação de contas da seção 7.
+**A decisão de engenharia do bloco, e ela é o que a execução entrega de mais durável:**
+os quatro limiares legais da F1 moram numa **constante só**, referenciados **por nome** na
+árvore de decisão, com literal numérico **proibido** no código — então o dia em que o texto
+oficial chegar, a F1 inteira destrava editando **um objeto JSON**, sem tocar em uma linha de
+lógica. **A F1 segue sem poder ir ao ar** (o limiar é `pendente`; despacho ALTA de 28/10,
+remedido às 13h2xZ: `gov.br`, `in.gov.br`, `planalto.gov.br`, `contran.gov.br` e `lex.com.br`
+os cinco em 403 do egresso). **A F2 e a F3 podem ir ao ar.**
+**E o bloco achou uma ERRATA do bloco 1:** os 41,29 / 97,74 Wh/km do relevo são de uma
+**moto elétrica** de 1.800 Wh (tese da UPS Quito, 2025, autor nomeado), não de bicicleta —
+o corpus tinha aplicado o absoluto a uma bateria de patinete. O que virou constante foi a
+**razão 2,37**; o consumo absoluto de patinete ficou `pendente`, e é despacho novo. Da mesma
+tese veio o número que faltava: **29,8 km medidos contra 60 km declarados — 49,7%**, abaixo
+do piso da faixa agregada de 60-80%. **E a margem de 10% da F3 foi rebaixada de "fonte
+estrangeira" para `decisao_da_ilha`**: a coleta limpa procurou o percentual em 13
+publicadores e não o achou publicado em nenhum.
+
+**2-ORIGINAL (guardado).** `dados/especificacao-calculadoras.md` + `dados/constantes.json`. Ordem obrigatória **F1, F2, F3**:
 - **F1 — "Esse elétrico precisa de CNH?"** Entrada: potência nominal (W), velocidade máxima (km/h), acelerador ou só pedal assistido. Saída: categoria (bicicleta elétrica · autopropelido · ciclomotor) pela **Resolução Contran nº 996/2023** e os modelos do banco que cabem na categoria. **A constante central (1.000 W, 32 km/h e as dimensões do autopropelido) só vira `publicavel` depois de lida no texto oficial do gov.br, com data** — a resolução ganhou fase nova de vigência em 2026, e o dossiê a citou pelo noticiário.
 - **F2 — "Quantos km ele faz de verdade?"** Entrada: V, Ah, peso de quem pilota, relevo. Saída: Wh e faixa de autonomia, ao lado da autonomia declarada. A fórmula de consumo por km fica aberta, com fonte.
 - **F3 — "Aguenta o meu peso?"** Entrada: peso + carga. Saída: elegíveis pela carga máxima declarada, e os de fora com o motivo (seção 7).
