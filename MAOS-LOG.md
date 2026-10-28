@@ -7833,3 +7833,101 @@ Nada além deste `MAOS-LOG.md` foi tocado no `main` por este disparo: nenhuma re
 `executando_desde`, nenhum cabeçalho de estado, nenhum bloco de fila, nenhuma publicação, nenhum
 `publicar: true`, nenhum Sync, nenhuma verificação de site, nenhuma conta criada, `ARQUIPELAGO.md` não
 lido para decidir nada.
+
+---
+
+## Disparo de 28/10/2026 17h12 BRT (2026-10-28 20h12Z) — leitura semanal da Sentinela de 2026-10-28, 11 edições
+
+Instrução literal da Sentinela: leitura semanal de 2026-10-28, assunto Arquipélago (ilhas aquametria,
+robometria, clubedomosaico e rodametria). 11 edições, todas num commit só, mensagem
+`Leitura semanal da Sentinela — 2026-10-28`. Checagem de assunto: **do Arquipélago**, executado.
+
+Parti do `main` real: `git fetch origin main && git checkout -B trabalho origin/main`, que estava em
+`e58c442`. Nenhuma das 11 edições já existia no `main` antes deste disparo (conferido por `grep` em
+cada arquivo-alvo antes de escrever: zero ocorrência de `| 2026-10-28 |`, de
+`Leitura semanal de 2026-10-28` e de `2026-10-28 (LEITURA SEMANAL`).
+
+`git status --porcelain` depois do commit e do push (árvore limpa):
+
+```
+```
+
+`git diff --stat` do commit de trabalho (`git diff --stat HEAD~1 HEAD`):
+
+```
+ ilhas/aquametria/ESTADO.md              |  2 +-
+ ilhas/aquametria/PROMPT.md              | 20 ++++++++++++++
+ ilhas/aquametria/dados/indexacao.md     |  1 +
+ ilhas/aquametria/dados/posicoes.md      | 42 +++++++++++++++++++++++++++++
+ ilhas/clubedomosaico/ESTADO.md          |  2 +-
+ ilhas/clubedomosaico/PROMPT.md          | 16 +++++++++++
+ ilhas/clubedomosaico/dados/indexacao.md |  1 +
+ ilhas/clubedomosaico/dados/posicoes.md  | 48 +++++++++++++++++++++++++++++++++
+ ilhas/robometria/ESTADO.md              |  2 +-
+ ilhas/robometria/PROMPT.md              | 17 ++++++++++++
+ ilhas/robometria/dados/indexacao.md     |  1 +
+ ilhas/robometria/dados/posicoes.md      | 26 ++++++++++++++++++
+ ilhas/rodametria/ESTADO.md              |  1 +
+ ilhas/rodametria/PROMPT.md              | 10 +++++++
+ 14 files changed, 186 insertions(+), 3 deletions(-)
+```
+
+Hash do commit que foi ao `main`:
+
+```
+05c24b879af301d4c70cef6d3db49386d46fc264  Leitura semanal da Sentinela — 2026-10-28
+```
+
+Confirmado na nuvem, não no local: `git fetch origin main && git log -1 origin/main` devolveu
+`05c24b879af301d4c70cef6d3db49386d46fc264`. O push foi `git push origin HEAD:main`, aceito de primeira
+(`e58c442..05c24b8  HEAD -> main`), sem rebase e sem force.
+
+Contagem do que mudou, conferida relendo os arquivos DEPOIS de gravar (`grep -c` em cada um), nunca
+pelo que eu achava que tinha escrito:
+
+```
+indexacao.md — linhas '| 2026-10-28 |'
+aquametria      1
+robometria      1
+clubedomosaico  1
+
+posicoes.md — títulos '## Leitura semanal de 2026-10-28'
+aquametria      1
+robometria      1
+clubedomosaico  1
+
+PROMPT.md — títulos '## DESPACHO DA SENTINELA — 2026-10-28 (LEITURA SEMANAL'
+aquametria      1
+robometria      1
+clubedomosaico  1
+rodametria      1
+
+ESTADO.md — linhas 'ultima_ronda: 2026-10-28T20:00Z'   (total de linhas 'ultima_ronda:' no arquivo)
+aquametria      1   (1)
+robometria      1   (1)
+clubedomosaico  1   (1)
+rodametria      1   (2)
+```
+
+Duas coisas que a instrução pediu de um jeito e o repositório devolveu de outro, registradas aqui sem
+eu ter mudado nada por conta própria:
+
+1. **A instrução diz "11 edições em 10 arquivos" e o commit mexeu em 14 arquivos.** As edições 1 a 10
+   são um arquivo cada, dez no total; a edição 11 tem quatro alíneas e cada alínea é um `ESTADO.md`
+   diferente (aquametria, robometria, clubedomosaico e rodametria). Dez mais quatro é catorze. A conta
+   de "10 arquivos" da instrução deixou os quatro `ESTADO.md` de fora; eu apliquei as quatro alíneas
+   como estavam escritas.
+2. **A rodametria ficou com DOIS campos `ultima_ronda`.** A alínea (d) manda inserir
+   `ultima_ronda: 2026-10-28T20:00Z …` imediatamente depois da linha `piso: abaixo`, e o comentário
+   dessa própria linha diz "Primeiro campo ultima_ronda desta ilha". Só que o
+   `ilhas/rodametria/ESTADO.md` do `main` já tinha um `ultima_ronda: null` mais abaixo, na linha 68 do
+   arquivo antes da edição. Inseri onde a instrução mandou e **não apaguei nem mexi no `ultima_ronda:
+   null`**, porque isso não foi pedido. O arquivo está no `main` com os dois campos; quem for arrumar
+   decide qual fica.
+
+Nada foi reformatado, nenhuma linha foi acrescentada além das que a instrução trouxe, e nenhum arquivo
+fora os 14 nomeados pelas 11 edições foi tocado — este `MAOS-LOG.md` é a exceção obrigatória e vai num
+commit separado. Nenhuma reserva de ilha, nenhum `executando_desde`, nenhum cabeçalho de estado que a
+instrução não tenha nomeado, nenhum bloco de fila executado, nenhuma publicação, nenhum
+`publicar: true`, nenhum Sync, nenhuma verificação de site, nenhuma conta criada. `ARQUIPELAGO.md` não
+foi lido para decidir coisa alguma. Nenhum dado pessoal de terceiro entrou no repositório.
