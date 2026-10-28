@@ -5,7 +5,7 @@ prioridade: 1
 piso: abaixo
 primeira_indexacao: null
 ultima_execucao: null
-executando_desde: 2026-10-28T10:17Z   # reserva desta execucao da Fundacao (1.2 passo 2 + secao 1 passo 5). Hora do `date -u` na mesma linha de comando que grava.
+executando_desde: 2026-10-28T10:23Z   # reserva RENOVADA pela 1.1 (bloco passou de 40 min: a coleta do bloco 1 sao 7 consultas de busca mais o teste de egresso). Hora do `date -u` na mesma linha que grava.
 bloco_atual: "1"
 ultima_ronda: null
 bloqueada_por: null
