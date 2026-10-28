@@ -3,6 +3,57 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-10-28 13h5xZ — **ADENDO À MESMA EXECUÇÃO: O SYNC DA ILHA NASCEU HOJE E ESTAVA FALHANDO EM SILÊNCIO.** A seção 4 **ao contrário** — não foi o site que ficou para trás, foi o repositório
+
+**Achado fora do bloco, na conferência de fecho.** Às 10h17Z desta mesma manhã a execução
+do bloco 1 mediu `/wp-json/rodametria/v1/status` em **404** e escreveu no `PROMPT.md` que *"o
+snippet de Sync não existe ainda"*. Às **13h2xZ** o mesmo endereço devolve **200**, com
+`versao_sync: 1.1.5`. **O passo 8 da seção 11 foi feito pelo Raphael entre as duas
+medições**, e nem o `ESTADO.md`, nem o `PROMPT.md`, nem o despacho sabiam.
+
+**E o canal não estava só desconhecido: estava FALHANDO, de 30 em 30 minutos.** O que o
+`/status` trazia:
+
+```
+revisao: -1
+2026-10-28 13:10 FALHA manifest: HTTP 404 em manifest.json
+2026-10-28 12:48 FALHA manifest: HTTP 404 em manifest.json
+2026-10-28 12:30 FALHA manifest: HTTP 404 em manifest.json
+2026-10-28 11:48 FALHA manifest: HTTP 404 em manifest.json
+```
+
+O cron próprio da ilha (`rodametria_30min`) vinha pedindo
+`raw.githubusercontent.com/rmnatal/arquipelago/main/ilhas/rodametria/manifest.json` **desde
+as 11h48Z**, e o arquivo não existia no repositório. **É a seção 4 virada do avesso:** o
+contrato existe para o caso de o site andar e o cabeçalho ficar para trás; aqui o **canal de
+desembarque** estava de pé, batendo na porta, e o lado do repositório estava mudo.
+
+**O QUE FOI FEITO, e por que não publica nada.** Nasceu
+`ilhas/rodametria/manifest.json` na **revisão 1**, com os **três grupos vazios**
+(`snippets`, `conteudo`, `dados`). **Verificado contra o código do Sync** antes de escrever —
+`ilhas/robometria/snippets/robometria-sync.php`, que é o mesmo código nas ilhas: o Sync exige
+`revisao` e um array, pula grupo vazio sem erro, e o portão de publicação é o `publicar:
+true` de **cada item** (`desembarque.aprovado` ele **não lê** — é documentação para gente).
+Com zero item, ele aplica zero, pula zero e grava a revisão.
+
+**As duas coisas que isso compra, as duas baratas:**
+1. **O log do `/status` para de encher de FALHA** — e ele é uma **janela de 15 linhas** (20.4).
+   No dia do primeiro desembarque de verdade, a janela estaria cheia de ruído, e *"item que
+   rolou para fora da janela não foi conferido"*.
+2. **O caminho fica provado ponta a ponta com NADA em jogo:** `raw.githubusercontent.com` →
+   `wp_remote_get` do Sync → `json_decode` → revisão gravada → `/status` público. Se a
+   constante `RODAMETRIA_SYNC_BASE`, o caminho ou o cron estiverem errados, **descobre-se
+   hoje, com zero página no ar**, e não no dia em que a F1 for ao ar. É a mesma família do
+   passo 20.1: *"casca no ar que não pode ser verificada é pior que casca inexistente"*.
+
+**E os endpoints do `PROMPT.md` deixaram de ser placeholder.** Eles estavam em
+`<preencher quando o snippet Rodametria Sync existir>` **com o snippet no ar**, e o passo 8
+da seção 11 diz, com todas as letras, que **sem eles a seção 4 não é executável**. Agora
+trazem o `/status`, o `/sync`, o gatilho por query, a base do `raw` e a ressalva da **20.5**
+(revisão atrasada logo depois do push é cache do GitHub, não defeito). **O token não está no
+repositório e não deve estar** — e a Fundação não precisa dele: o cron de 30 minutos é o que
+desembarca.
+
 ## 2026-10-28 13h19Z–13h4xZ — **O BLOCO 2, E A DECISÃO DE ENGENHARIA QUE TIRA A ILHA DA ESPERA.** As três ferramentas especificadas inteiras, 9 constantes com procedência — e o limiar legal que a F1 não tem **isolado num objeto JSON**, para a chegada da fonte ser a edição de um arquivo e não um bloco
 
 **O que saiu:** `dados/especificacao-calculadoras.md` (470 linhas) e
