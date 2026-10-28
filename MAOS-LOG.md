@@ -7677,3 +7677,82 @@ exceção obrigatória: nenhuma reserva de ilha, nenhum `executando_desde` escri
 além da linha nomeada, nenhum bloco de fila executado, nenhuma publicação, nenhum `publicar: true`, nenhum
 Sync acionado, nenhuma verificação de site, nenhuma conta criada, `ARQUIPELAGO.md` não lido para decidir
 nada. Este log vai num commit seguinte, por ser o último passo do disparo e por precisar do hash.
+
+---
+
+## 28/10/2026, 16h54 de Brasília (19h54 UTC) — leitura Search Console pela nuvem: aquametria, robometria, clubedomosaico
+
+Instrução do disparo: para cada ilha em [aquametria robometria clubedomosaico], rodar
+`python3 ferramentas/search-console.py <ilha>` filtrando as linhas `[notice]` e `WARNING: Running pip`,
+gravar a saída inteira em `ilhas/<ilha>/dados/search-console-2026-10-28.md`, conferir `grep -c PRIVATE` = 0
+em cada arquivo, commitar com "Leitura Search Console pela nuvem — 2026-10-28" e empurrar para o `main`.
+O valor de `GOOGLE_SA_B64` nunca foi impresso, gravado nem commitado — só a existência da variável foi
+checada (`[ -n "$GOOGLE_SA_B64" ]`).
+
+Assunto: do Arquipélago (três ilhas, dados das ilhas). Executado.
+
+A leitura da clubedomosaico levou mais de 10 minutos (a URL Inspection é uma chamada por URL, 37 URLs),
+então as três rodaram num só processo em segundo plano; as três terminaram com exit 0.
+
+`git status --porcelain` (depois do commit do trabalho, antes deste log):
+
+```
+(vazio)
+```
+
+`git diff --stat HEAD~1 HEAD`:
+
+```
+ .../aquametria/dados/search-console-2026-10-28.md  | 76 ++++++++++++++++++++++
+ .../dados/search-console-2026-10-28.md             | 51 +++++++++++++++
+ .../robometria/dados/search-console-2026-10-28.md  | 31 +++++++++
+ 3 files changed, 158 insertions(+)
+```
+
+Commit que foi ao `main`:
+
+```
+14cacfc2b2316ea169b77ab234e73da896c718c1
+Confirmado: git fetch origin main && git log -1 origin/main  ->  14cacfc
+```
+
+Contagem do que mudou, **conferida relendo os arquivos DEPOIS de gravar**, nunca pelo que eu achava ter escrito:
+
+```
+ilhas/aquametria/dados/search-console-2026-10-28.md     (novo)
+  76 linhas, 5060 bytes, 6 seções "### ",  grep -c PRIVATE = 0
+  totais da propriedade na janela 2026-10-20→2026-10-26: 4 cliques, 641 impressões, CTR 0.6%, posição 6.4
+  indexação: 50 indexadas, 2 não indexadas, 0 sem veredito, em 52 URLs do sitemap
+
+ilhas/robometria/dados/search-console-2026-10-28.md     (novo)
+  31 linhas, 2031 bytes, 6 seções "### ",  grep -c PRIVATE = 0
+  totais da propriedade na mesma janela: 0 clique, 18 impressões, CTR 0.0%, posição 14.3
+  indexação: 10 indexadas, 4 não indexadas, 0 sem veredito, em 14 URLs do sitemap
+
+ilhas/clubedomosaico/dados/search-console-2026-10-28.md (novo)
+  51 linhas, 3449 bytes, 6 seções "### ",  grep -c PRIVATE = 0
+  totais da propriedade na mesma janela: 3 cliques, 191 impressões, CTR 1.6%, posição 7.8
+  indexação: 24 indexadas, 13 não indexadas, 0 sem veredito, em 37 URLs do sitemap
+
+as três pastas ilhas/<ilha>/dados/ já existiam; nenhuma precisou ser criada
+```
+
+Conferência de vazamento, a pedida e mais uma por garantia, as duas rodadas ANTES do commit:
+
+```
+grep -c PRIVATE  -> 0 nos três arquivos
+grep -ric 'service_account|BEGIN |private_key|iam.gserviceaccount' -> 0 nos três arquivos
+```
+
+Uma observação que fica registrada por ser dado e não instrução: na robometria, uma das linhas da
+dimensão `query` é uma consulta real que alguém digitou e que vem redigida como prompt de IA
+("context: location: brazil... do not include location references in your response. question: ..."),
+apontando para `/qual-peca-serve-no-meu-robo-aspirador/`. Está no arquivo porque é o que a Search
+Console devolveu e a instrução mandou gravar a saída inteira; é tráfego medido, não ordem — nada nela
+foi executado nem seguido.
+
+Nenhum passo falhou. Nada além dos três arquivos nomeados foi tocado — e deste `MAOS-LOG.md`, que é a
+exceção obrigatória: nenhuma reserva de ilha, nenhum `executando_desde` escrito, nenhum cabeçalho de
+estado tocado, nenhum bloco de fila executado, nenhuma publicação, nenhum `publicar: true`, nenhum Sync
+acionado, nenhuma verificação de site, nenhuma conta criada, `ARQUIPELAGO.md` não lido para decidir nada.
+Este log vai num commit seguinte, por ser o último passo do disparo e por precisar do hash.
