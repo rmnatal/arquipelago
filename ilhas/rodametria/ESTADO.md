@@ -5,7 +5,7 @@ prioridade: 1
 piso: abaixo
 primeira_indexacao: null
 ultima_execucao: 2026-10-28T13:28Z   # BLOCO 2 ENTREGUE: `dados/especificacao-calculadoras.md` e `dados/constantes.json` — as tres ferramentas especificadas inteiras, 9 constantes (6 publicaveis, 2 pendentes com consequencia declarada, 1 observacao de mercado). A decisao do bloco: limiar legal mora em UMA constante, referenciado por nome, literal numerico PROIBIDO no codigo — a F1 destrava editando um objeto JSON. No caminho, uma ERRATA do bloco 1 (o numero do relevo era de MOTO, nao de bicicleta) e a margem da F3 rebaixada de fonte de terceiro para decisao_da_ilha. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
-executando_desde: null   # limpo as 2026-10-28T13:28Z pela propria execucao que reservou as 13h19Z de 28/10
+executando_desde: 2026-10-28T16:19Z   # reservado as 2026-10-28T16:19Z pela execucao da Fundacao de 28/10 16h1xZ (passo 5 da secao 1). Foco em rodametria pela 1.2; nenhuma das tres ilhas do molde (32.6) tem despacho de molde aberto — os tres estao FECHADOS — e o item 1 (ALTA) da clubedomosaico de 28/10 NAO fura o foco, porque a 1.2 exige ilha no ar E QUEBRADA (pagina servindo erro, ferramenta errada, site fora do ar) e a propria ronda registra a regua tecnica PASSANDO INTEIRA nas 32 URLs
 bloco_atual: "3"   # o 1 e o 2 fecharam em 28/10. O 3 (modelo do banco) nao depende de site NEM de fonte bloqueada: a secao 5 da especificacao entrega os campos, os quatro grupos de recusa por ferramenta, o enum de tres valores do acelerador (`nao_declarado` nunca cai em "so pedal assistido" por omissao) e `energia_wh` DERIVADO de V x Ah. `categoria` e campo DERIVADO da F1, nunca de entrada do catalogo
 ultima_ronda: null
 bloqueada_por: null
