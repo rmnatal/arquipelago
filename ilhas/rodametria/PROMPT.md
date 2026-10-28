@@ -34,6 +34,16 @@ Medido em 27/10/2026 no Chrome do Raphael (`bussola/dossies/rodametria/DOSSIE.md
 
 ---
 
+## DESPACHO DA SENTINELA — 2026-10-28 (LEITURA SEMANAL, 19h4xZ–20hxxZ) — A CONTA DA 31.6 NA ILHA EM FOCO, E ELA É ZERO
+
+1. **A PROPORÇÃO DA 31.1 NESTA ILHA, CONTADA PELO `REGISTRO.md` COMO A 31.6 MANDA: 0 DE 5.** As cinco execuções registradas (10h17Z, 13h19Z, 13h5xZ, 16h4xZ e 19h1xZ, todas de 28/10) entregaram esquema de banco, portões, bancada, Sync e os primeiros 5 registros publicáveis — **e nenhuma entregou um byte que um visitante veja.** A própria entrada das 19h1xZ escreve "NADA FOI AO AR, E NADA PODIA". A 31.1 pede 7 em 10. **Pela 31.6 isto é item de despacho com prioridade alta.**
+
+2. **E A CAUSA NÃO É DA FUNDAÇÃO — É O EGRESSO, E É O PASSO 20.1, QUE SÓ O RAPHAEL PODE DAR.** Medido duas vezes nesta leitura, às 19h5xZ: `rodametria.com.br` e `www.rodametria.com.br` devolvem **000** da nuvem, com o proxy dizendo `CONNECT tunnel failed, response 403` nas duas, enquanto `clubedomosaico.com.br`, `aquametria.com.br` e `robometria.com.br` respondem 200 na mesma passada. A 20.1 é textual: *"Enquanto isso não estiver feito, a ilha não recebe bloco: casca no ar que não pode ser verificada é pior que casca inexistente"* — **e esta ilha já recebeu cinco.** O caminho é `claude.ai/code` → seletor de ambiente → Nuvem → engrenagem → Domínios permitidos, acrescentando `rodametria.com.br` e `*.rodametria.com.br`.
+
+3. **O QUE ISSO SIGNIFICA PARA A EXECUÇÃO SEGUINTE, dito sem rodeio:** enquanto o egresso estiver recusado, todo bloco desta ilha é bancada por construção, porque nada pode ser conferido no ar — e a 31.3 proíbe bancada enquanto houver item de conteúdo aberto. **A saída não é escrever melhor: é o item 2.** **Pronto quando:** uma passada de `curl` da nuvem devolver 200 em `https://rodametria.com.br/` e em `https://rodametria.com.br/wp-json/rodametria/v1/status`.
+
+4. **O TETO SEMANAL DE GERAÇÃO DE LINK DE AFILIADO (1.2) É DESTA ILHA E ESTÁ SENDO GASTO PELO CAMINHO CERTO.** A leitura semanal **não gerou nenhum link nesta execução**, e os três motivos estão medidos: (a) pela 1.2 o teto vai inteiro para a ilha em foco, que é esta; (b) pela **25.8** link de afiliado **não se gera à mão** no painel `offer/custom_link`, e o caminho legítimo é a Open API na coleta da Fundação (25.6) — que é exatamente o que o bloco das 19h1xZ desta ilha fez, com 5 registros publicáveis de 17; (c) o painel da Shopee foi aberto nesta leitura e **redirecionou para `shopee.com.br/verify/captcha?…&scene=crawler_item`**, e a Sentinela é proibida de resolver CAPTCHA. **Nada a consertar: está escrito para ninguém procurar links que a Sentinela deveria ter gerado.**
+
 ## DESPACHO DO RAPHAEL — 27/10/2026 — ESTA ILHA NASCE AGORA
 
 Aprovada por ele na conversa em 27/10/2026 ("vamos em frente", e "Já pode então executar, vai ser a próxima ilha"). **Domínio já registrado e pago** — o passo 1 da seção 11 está cumprido.

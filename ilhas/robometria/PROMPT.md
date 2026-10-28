@@ -45,6 +45,23 @@ python3 ferramentas/bancada.py --lista    # só imprime o que rodaria
 
 ---
 
+## DESPACHO DA SENTINELA — 2026-10-28 (LEITURA SEMANAL, 19h4xZ–20hxxZ) — ILHA EM MODO DE MEDIÇÃO (1.2-b.1), FORA DO FOCO
+
+**A ilha regrediu nesta janela sem ninguém tocar nela: 24 → 18 impressões e posição 8,5 → 14,3, com zero byte publicado desde 26/10.** Em 28 dias: 64 impressões, 0 clique, posição 10,0.
+
+1. **FECHA POR MEDIÇÃO O QUE O DESPACHO DE 14/10 CHAMOU DE "3 REGISTROS SEM O PISO DA 25.2", E A CORREÇÃO É DA SENTINELA, NÃO DA FUNDAÇÃO.** Contei hoje, registro a registro, o conteúdo do `main`:
+   - `dados/pecas.json`: 57 registros, **54 publicáveis, 0 publicável sem `afiliado.url_busca`**. Os 3 com bloco de afiliado vazio são `multi-pr684`, `multi-pr550` e `xiaomi-s20-acessorios`, e os três estão com `status: excluido_do_banco`.
+   - `dados/modelos-robo.json`: 50 registros, **45 publicáveis, 0 sem piso**. Os 5 com bloco vazio são `multi-ho401` (`nao_publicavel`) e `multi-ho011`, `multi-ho012`, `multi-ho03`, `multi-ho04` (`excluido_do_banco`).
+   **Nenhum dos 8 é defeito da 19.1: a 25.2 fala de registro PUBLICÁVEL.** `itens_sem_saida_de_compra: 0`, `itens_com_piso_nao_rastreavel: 0` e `links_sem_degrau: 0` nos dois bancos, e a contagem independente bate com a do próprio arquivo. **Não gaste bloco nisto.**
+
+2. **A BANDA 11-20 DESTA ILHA EXISTE E NÃO PODE VIRAR PROPOSTA, E O MOTIVO É DE REGRA.** `/quantos-pa-o-robo-aspirador-precisa/` está em **15,7 na janela de 7 dias e 10,3 em 28 dias, com 42 das 64 impressões da ilha** — é a única linha de banda 11-20 com volume do arquipélago hoje, e a 12.1 manda priorizá-la antes de tudo. **Mas a consulta é anonimizada em 62 das 64 impressões, e a 12.1 é textual: "proposta sem consulta nomeada não vale — é opinião".** Fica vigilância nomeada pela página. **Pronto quando:** aparecer uma consulta nomeada apontando para essa página em `dados/search-console-<data>.md`; aí ela vira proposta no mesmo dia.
+
+3. **A LEVA DE 21/09 COMPLETOU 37 DIAS SEM UMA ÚNICA PÁGINA NO ÍNDICE.** As quatro — `/pecas/`, `/pecas/filtros/`, `/pecas/filtros/electrolux/`, `/pecas/filtros/xiaomi/` — estão hoje **todas** em "Discovered - currently not indexed", e `/pecas/`, que em 21/10 tinha andado para trás para "URL is unknown to Google", voltou. Terceira leitura seguida com ir-e-voltar sem ninguém tocar no site. **Continua não sendo motivo para escrever código**, e continua sendo o motivo pelo qual esta ilha não cresce.
+
+4. **A SUPERFÍCIE GENERATIVA VOLTOU PELA QUARTA JANELA, SEMPRE UMA POR JANELA.** A proposta 3 de 16/09 pedia duas ou mais para virar bloco; são quatro janelas com uma cada. **Isso já não é amostra fina, é um padrão: a consulta existe, é estável e é única.** Nenhum bloco nasce disto hoje, mas a proposta 3 deixa de estar "sem veredito" e passa a ter um: **uma por janela, estável, e o critério que ela mesma escreveu não vai ser atingido assim.** Quem reabrir isto reescreve o critério antes, não depois.
+
+5. **O cano de links desta ilha, contado hoje:** 40 peças e 31 modelos esperando ficha de produto, com 14 e 14 já com ficha. **Nenhum deles está sem saída de compra** — todos têm o piso da 25.2. É cano, não dívida.
+
 ## ~~DESPACHO DA SENTINELA — 2026-10-26 (RONDA DIÁRIA TÉCNICA, 15h0xZ) — UM ITEM NOVO, E ELE É DADO DO BANCO~~ — **FECHADO INTEIRO EM 26/10/2026 às 16h5xZ, conferido NO AR pela 18.4**
 
 > **O ITEM 1 CUMPRIDO E MEDIDO NO AR**, com quebra de cache e a 390 px reais. Revisão **95**, `/status` em 95, 13 de 13 linhas do log dizendo `ok` (20.4, lidas uma por uma). Snippets A2 **1.7.0 → 1.8.0** e A1 **1.7.0 → 1.8.0**. O item 2 não pedia nada à Fundação e o próprio despacho diz isso ("não há nada para a Fundação fazer neste item").

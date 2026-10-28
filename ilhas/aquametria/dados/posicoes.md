@@ -86,3 +86,45 @@ Escrito pela Fundação no bloco das 13h16Z–14h0xZ de 14/10/2026, que cumpriu 
 - **O que está medido e é sólido:** a ilha inteira teve **4 impressões em 7 dias** com **46 de 48 URLs indexadas**. Indexação deixou de ser o gargalo desta ilha; **demanda é o gargalo**.
 - **As 26 fichas de peixe — o eixo inteiro das levas 1 a 8 — tiveram zero impressão.** Elas miram `quantos litros para <espécie>`. Zero impressão em 7 dias com a página indexada é, pela 12.1, problema de consulta e não de ranqueamento. **A ilha está `piso: abaixo` até 30/09**, então isso ainda NÃO trava leva nenhuma (21.1) — mas é exatamente o diagnóstico que a 21.5 vai cobrar no dia 30.
 - **Não abri a SERP de nenhuma destas consultas nesta leitura: não verifiquei.**
+
+---
+
+## Leitura semanal de 2026-10-28 — janela 20→26/10 (7 dias) pela nuvem, e 28 dias no navegador
+
+| consulta | página | posição hoje | impressões | cliques | banda |
+|---|---|---|---|---|---|
+| tetra neon | /peixes/tetras/quantos-litros-para-tetra-neon/ | 2,0 | 5 | 0 | 1-3 |
+| acara severum | /peixes/acaras/quantos-litros-para-acara-bandeira/ | 2,0 | 1 | 0 | 1-3 |
+| peixe bandeira | /peixes/acaras/quantos-litros-para-acara-bandeira/ | 2,0 | 1 | 0 | 1-3 |
+| tetra neon cardinal | /peixes/tetras/quantos-litros-para-tetra-neon/ | 2,0 | 1 | 0 | 1-3 |
+| tetra neon e tetra cardinal | /peixes/tetras/quantos-litros-para-tetra-neon/ | 2,0 | 1 | 0 | 1-3 |
+| tetras neon | /peixes/tetras/quantos-litros-para-tetra-neon/ | 3,0 | 1 | 0 | 1-3 |
+| l | /calculadora-de-vazao-do-filtro/ | 2,0 | 1 | 0 | 1-3 |
+| litragem aquario | / | 27,0 | 1 | 0 | 21+ |
+| aquimetro | / | 50,0 | 1 | 0 | 21+ |
+| aquimetro | /calculadoras/ | 69,0 | 1 | 0 | 21+ |
+| ciclideos anões | /peixes-2__trashed/ciclideos-anoes/ | 53,0 | 1 | 0 | 21+ |
+
+**A consulta é anonimizada em 626 das 641 impressões, então a tabela por PÁGINA é a que manda** (a mesma leitura que as semanas anteriores):
+
+| página | posição 7d | impressões 7d | cliques 7d | posição 28d | impressões 28d | cliques 28d | CTR 28d | banda |
+|---|---|---|---|---|---|---|---|---|
+| /peixes/bettas/quantos-litros-para-betta/ | 7,4 | 103 | 0 | 7,8 | 487 | 2 | 0,4% | 4-10 |
+| /peixes/tetras/quantos-litros-para-tetra-neon/ | 4,4 | 78 | 0 | 5,0 | 211 | 0 | 0% | 4-10 |
+| /calculadora-de-midia-filtrante/ | 5,2 | 74 | 1 | 5,6 | 184 | 3 | 1,6% | 4-10 |
+| /peixes/acaras/quantos-litros-para-acara-bandeira/ | 4,9 | 70 | 1 | 5,1 | 161 | 2 | 1,2% | 4-10 |
+| /calculadora-de-iluminacao/ | 10,8 | 48 | 1 | 8,2 | 189 | 1 | 0,5% | 11-20 na janela curta |
+| /calculadora-de-vazao-do-filtro/ | 5,8 | 36 | 0 | 6,2 | 110 | 0 | 0% | 4-10 |
+| /peixes/vivaparos/quantos-litros-para-platy/ | 6,3 | 30 | 0 | 5,5 | 86 | 2 | 2,3% | 4-10 |
+| /calculadora-de-potencia-do-aquecedor/ | 5,9 | 23 | 0 | 6,3 | 100 | 0 | 0% | 4-10 |
+| /peixes/ciclideos-anoes/quantos-litros-para-ramirezi/ | 5,9 | 22 | 0 | 5,6 | 77 | 0 | 0% | 4-10 |
+| /calculadora-de-litragem/ | 9,1 | 14 | 0 | 9,1 | 160 | 0 | 0% | 4-10 |
+| /peixes/tetras/quantos-litros-para-rodostomo/ | 4,7 | 9 | 1 | 4,3 | 24 | 1 | 4,2% | 4-10 |
+| /peixes/vivaparos/quantos-litros-para-peixe-espada/ | — | — | — | 4,2 | 20 | 1 | 5,0% | 4-10 |
+| /peixes/danios-e-rasboras/quantos-litros-para-paulistinha/ | — | — | — | 7,2 | 12 | 1 | 8,3% | 4-10 |
+
+### O que esta leitura decide, e o que ela se proíbe de decidir
+
+- **A REGRA DA 12.1 QUE MANDA AQUI É A DE NÃO MEXER EM PÁGINA QUE ESTÁ SUBINDO.** A página de maior perda da ilha é `/peixes/tetras/quantos-litros-para-tetra-neon/`: **211 impressões em 28 dias e ZERO clique**, com as irmãs na mesma faixa convertendo (`/rodostomo/` 4,2% em 4,3; `/peixe-espada/` 5,0% em 4,2; `/platy/` 2,3% em 5,5). Seria o conserto de CTR de livro — **mas ela SUBIU de 5,0 (28 dias) para 4,4 (7 dias), e a 12.1 proíbe mexer em página que está subindo.** Fica REGISTRADA e VIGIADA: se a posição parar de melhorar na leitura de 04/11, vira proposta de título com as três irmãs como régua. Não é esquecimento: é a regra.
+- **A `/calculadora-de-iluminacao/` ENTROU NA BANDA 11-20 NA JANELA CURTA** (8,2 em 28 dias contra 10,8 em 7 dias, 48 impressões), e é a única página desta ilha a fazer isso. Sem consulta nomeada — anonimizada — então pela 12.1 **não vira proposta**, vira vigilância com número.
+- **Não abri a SERP de nenhuma destas consultas nesta leitura: não verifiquei.**

@@ -97,6 +97,26 @@ e os dois são passo do Raphael. **A receita do Arquipélago em 22/10/2026 é de
 — e nenhum desfecho desta seção pode ser lido como medição dela.
 
 
+## DESPACHO DA SENTINELA — 2026-10-28 (LEITURA SEMANAL, 19h4xZ–20hxxZ) — ILHA EM MODO DE MEDIÇÃO (1.2-b.1), FORA DO FOCO
+
+**A semana foi a melhor da história desta ilha em clique: 641 impressões e 4 cliques (janela 20→26/10), contra 625 e 1 na anterior; posição de 6,9 para 6,4. Em 28 dias: 2.220 impressões e 13 cliques.** A ilha está fora do foco (a rodametria é foco total e absoluto desde 27/10), então nada aqui é para hoje — está escrito para a execução que voltar.
+
+1. **AS DUAS ÚNICAS URLs FORA DO ÍNDICE SÃO AS DUAS MÃES DE CATEGORIA, E AS FILHAS DELAS SÃO AS PÁGINAS DE MAIOR IMPRESSÃO DA ILHA.** `/peixes/acaras/` e `/peixes/tetras/`, as duas em "Discovered - currently not indexed", 50 de 52 no índice. As filhas `/quantos-litros-para-tetra-neon/` (78 impressões na janela) e `/quantos-litros-para-acara-bandeira/` (70) estão dentro. Pela 14.7, a alavanca é link interno de página que já rankeia apontando para a mãe, com âncora igual ao nome da categoria — não é publicar nada. **Pronto quando:** as duas saírem de "Discovered" em `dados/search-console-<data>.md` de uma leitura seguinte.
+
+2. **A DÍVIDA DA 25.4-b CONTINUA ABERTA, E HOJE ELA ESTÁ CONTADA E NOMEADA, NUNCA ESTIMADA: SÃO 11, E OS MESMOS 11 TAMBÉM ESTÃO SEM `degrau`.** Medidos hoje nos quatro bancos de produto desta ilha pelo conteúdo do `main`:
+   - `dados/produtos-iluminacao.json` (26 itens) — 3: `ista-i-401-45`, `chihiros-a-series-a451m`, `chihiros-wrgb-ii-pro-60`
+   - `dados/produtos-aquecedor.json` (27 itens) — 6: `roxin-ht-1300-q3-50w`, `rs-50-50w`, `roxin-ht-1300-q3-100w`, `sicce-scuba-contactless-150w`, `roxin-ht-1300-q3-200w`, `roxin-ht-1300-q3-300w`
+   - `dados/produtos-midia.json` (6 itens) — 2: `seachem-matrix-1l`, `eheim-substrat-pro-1l`
+   - `dados/produtos-filtro.json` (19 itens) — **ZERO**, e essa é a prova de que o conserto funciona: os 19 foram refeitos pela Open API em 14/10, com `url` e `url_produto` saindo da MESMA oferta, na mesma chamada.
+   Pela **25.4-b.1** o par perdido se **reescolhe inteiro pela API**, nunca se grampeia: gravar um `url_produto` novo ao lado do link antigo fabrica a aparência de um par que ninguém mediu. **Pronto quando:** uma passada do contador dos quatro bancos acusar **0 itens com `afiliado.url` e sem `afiliado.url_produto`**.
+   **A METADE BOA, MEDIDA HOJE E QUE NINGUÉM TINHA CONTADO JUNTA: 0 de 78 itens sem `afiliado.url_busca` nos quatro bancos.** O piso da 25.2 está inteiro nesta ilha.
+
+3. **PORTÃO DA 25.8 NO AR, MEDIDO HOJE E PASSOU:** varri as 52 URLs do sitemap da nuvem com quebra de cache (52 de 52 em HTTP 200) e extraí **41 encurtadores `s.shopee.com.br` distintos servidos**. Comparados com os quatro bancos de produto mais `dados/produtos-cotacoes.json`: **ZERO encurtador no ar que o banco não conheça.** É o portão que a 25.8 pede e é o que faltava na clubedomosaico.
+
+4. **REGISTRO, NÃO PROPOSTA — e a regra que impede é a da própria 12.1.** `/peixes/tetras/quantos-litros-para-tetra-neon/` tem **211 impressões em 28 dias e ZERO clique**, com as irmãs na mesma faixa convertendo (rodostomo 4,2% em 4,3; peixe-espada 5,0% em 4,2; platy 2,3% em 5,5). É o conserto de CTR de livro — **mas a página SUBIU, de 5,0 em 28 dias para 4,4 em 7 dias, e a 12.1 proíbe mexer em página que está subindo.** Não mexa. Se a posição parar de melhorar na leitura de 04/11, isto vira proposta de título. **Pronto quando:** a leitura de 04/11 escrever a posição de 7 dias dessa página ao lado da de hoje.
+
+5. **AS `/peixes-2__trashed/…` NÃO SÃO DEFEITO.** O Search Console mostra 64 URLs no índice contra 52 no sitemap, e 8 das 12 a mais são `/peixes-2__trashed/…` que ainda recebem impressão. Medidas hoje da nuvem: respondem **301**. Comportamento certo, nada a fazer, e está escrito aqui para a próxima execução não gastar um bloco redescobrindo.
+
 ## DESPACHO DA SENTINELA — 2026-10-21 (LEITURA SEMANAL, 19h5xZ, Search Console pela nuvem)
 
 **Isto é a leitura semanal, não a ronda diária.** Aplique pela seção 8, registre no `REGISTRO.md`, e apague daqui o item cumprido no mesmo commit.

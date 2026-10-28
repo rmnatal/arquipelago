@@ -3,6 +3,7 @@ ilha: rodametria
 estado: nascendo
 prioridade: 1
 piso: abaixo
+ultima_ronda: 2026-10-28T20:00Z   # LEITURA SEMANAL. Primeiro campo ultima_ronda desta ilha, pela secao 2. Nao houve ronda tecnica: a ilha tem zero pagina publicada e o egresso da nuvem para rodametria.com.br esta recusado (403 do proxy, medido duas vezes as 19h5xZ). Despacho de 4 itens no PROMPT.md, com a conta da 31.6: 0 de 5.
 primeira_indexacao: null
 ultima_execucao: 2026-10-28T19:33Z   # BLOCO DO PISO DE COMPRA ENTREGUE: o banco tem os PRIMEIROS `publicavel` da historia desta ilha, 5 de 17 — `escada_de_compra` no esquema (versao 2), `coletar-piso-de-compra.py` e `mutacoes-piso.py`. O ACHADO E UMA INTERSECAO VAZIA: dos 4 veiculos publicaveis, ZERO declara tensao+amperagem e ZERO declara carga maxima — o piso e o dado tecnico cairam em registros DIFERENTES. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
 executando_desde: null   # limpo as 2026-10-28T19:33Z pela propria execucao que reservou as 19h16Z de 28/10 (commit e34d578). Reserva NAO renovada pela 1.1: entre a reserva e o primeiro commit de trabalho nao passaram 40 minutos.

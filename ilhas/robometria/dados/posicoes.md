@@ -76,3 +76,29 @@ variação vira ruído.
 - **O que É sinal, e é o único desta janela:** a R1 entrou no índice e a consulta de superfície generativa voltou pela segunda semana seguida, agora atribuída à página certa e na posição 9,0. **A proposta 1 de 16/09 fechou pelo critério que ela mesma escreveu** na metade da indexação; a metade "7 ou mais indexadas de 9" ficou para trás porque o sitemap passou a 14.
 - **A proposta 3 pedia duas ou mais consultas no formato de superfície generativa para virar bloco. Apareceu UMA, a mesma.** Duas semanas, uma consulta por semana. Continua em registro e vigilância; **nenhum bloco nasce disto hoje.**
 - **Não abri a SERP nesta leitura: não verifiquei.**
+
+---
+
+## Leitura semanal de 2026-10-28 — janela 20→26/10 (7 dias) pela nuvem, e 28 dias no navegador
+
+| consulta | página | posição hoje | impressões | cliques | banda |
+|---|---|---|---|---|---|
+| context: location: brazil … question: estou pronto para comprar um aspirador robô, mas preciso que tenha peças de reposição fáceis (escovas e filtros). como verificar isso antes de fechar a compra? | /qual-peca-serve-no-meu-robo-aspirador/ | 5,0 | 1 | 0 | 4-10 |
+| altura robot aspirador | /quantos-pa-o-robo-aspirador-precisa/ | 99,0 | 1 | 0 | 21+ |
+
+**62 das 64 impressões de 28 dias têm consulta anonimizada.** A tabela por página:
+
+| página | posição 7d | impressões 7d | posição 28d | impressões 28d | cliques 28d | banda |
+|---|---|---|---|---|---|---|
+| /quantos-pa-o-robo-aspirador-precisa/ | 15,7 | 10 | 10,3 | 42 | 0 | **11-20 na janela curta** |
+| /qual-peca-serve-no-meu-robo-aspirador/ | 6,8 | 4 | 7,6 | 10 | 0 | 4-10 |
+| /filtro-universal-de-robo-aspirador/ | 3,5 | 2 | 7,7 | 6 | 0 | 1-3 na janela curta |
+| /quantos-m2-o-robo-aspirador-limpa-por-carga/ | 7,0 | 1 | 8,3 | 6 | 0 | 4-10 |
+| /ferramentas/ | 59,0 | 1 | 59,0 | 1 | 0 | 21+ |
+
+### O que esta leitura decide
+
+- **A ÚNICA LINHA DE BANDA 11-20 COM VOLUME DO ARQUIPÉLAGO HOJE É `/quantos-pa-o-robo-aspirador-precisa/`** — 15,7 na janela de 7 dias, 10,3 em 28 dias, 42 das 64 impressões da ilha. Pela 12.1 é a banda que deveria vir antes de qualquer outra. **E ela NÃO vira proposta, porque a consulta é anonimizada e "proposta sem consulta nomeada não vale — é opinião".** Fica como vigilância nomeada pela página.
+- **A superfície generativa voltou pela quarta janela, sempre UMA por janela.** A proposta 3 de 16/09 pedia duas ou mais para virar bloco. Continua UMA. **Nenhum bloco nasce disto hoje**, pela quarta vez, e isso já é resposta: quatro janelas com uma consulta cada é um padrão, não ruído.
+- **A ilha regrediu nesta janela** (24 → 18 impressões, 8,5 → 14,3) com **zero byte publicado desde 26/10**. Movimento sem causa no site é o Google, não a ilha. Não escreva bloco em cima disto.
+- **Não abri a SERP nesta leitura: não verifiquei.**

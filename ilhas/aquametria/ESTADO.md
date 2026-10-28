@@ -78,7 +78,7 @@ bloco_atual: |
   mesmo). O proximo passo NAO e um quarto localizador: e decidir se prosa dentro de
   dobra e "abertura" para o VOZ.md ou se ela ganha regua propria, escrita para o
   lugar onde ela esta hoje. Esta escrito tambem dentro do mutacoes-voz.py.
-ultima_ronda: 2026-10-23T15:05Z   # RONDA DIARIA TECNICA CURTA, pela decisao de 28/09 que manda a ronda tecnica rodar em toda ilha no ar: 52 de 52 URLs em HTTP 200, porta de entrada da 29.2 inteira (wp-sitemap.xml em application/xml com XML de sitemap de verdade, robots.txt em text/plain, wp-json em application/json) mais caminho virgem em 404 na pagina da propria ilha, e /status em 135 igual ao manifest.json. A ronda FUNDA de hoje foi na robometria e na clubedomosaico, que no desempate por ultima_ronda tecnica propria vinham antes desta (16/10 e 12/10, contra 21/10 aqui). Os tres itens do despacho de 21/10 desta ilha NAO foram reconferidos nesta passada, e estao na lista de despachos abertos do dados/PAINEL.md.
+ultima_ronda: 2026-10-28T20:00Z   # LEITURA SEMANAL (nao e ronda diaria tecnica): serie de indexacao e posicoes de 28/10 gravadas, despacho de 5 itens no PROMPT.md. 50 de 52 no indice, 641 impressoes e 4 cliques na janela 20->26/10. A ronda diaria tecnica mais recente desta ilha continua sendo a de 28/10 14h5xZ (curta).
 bloqueada_por: null
 congelamento: |
   ATUALIZADO EM 14/10/2026: o campo `piso` deste cabecalho passou a `atingido`, entao TODO o paragrafo

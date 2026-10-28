@@ -186,3 +186,51 @@ pagou por isso na tabela de declaração desta mesma página.
 **O VEREDITO É DE 14/10**, pelo critério que a própria leitura de 07/10 escreveu: 1 ou mais cliques em 7 dias nestas
 páginas, **ou** zero nas duas trocadas E zero na parada — o que também é resultado, e manda procurar a causa na SERP
 e não no título. **Não conclua nada antes dessa linha, em nenhuma direção.**
+
+---
+
+## Leitura semanal de 2026-10-28 — janela 20→26/10 (7 dias) pela nuvem, e 28 dias no navegador
+
+| consulta | página | posição 28d | impressões 28d | cliques 28d | CTR 28d | banda |
+|---|---|---|---|---|---|---|
+| picassiete | /como-fazer/o-que-e-mosaico-picassiete/ | 4,7 | 12 | 3 | 25% | 4-10 |
+| cola para mosaico | /materiais/qual-cola-usar-no-mosaico/ | 9,5 | 13 | 0 | 0% | 4-10 |
+| rejunte para mosaico | /materiais/rejunte-para-mosaico/ | 6,2 | 4 | 0 | 0% | 4-10 |
+| quadros espirito santo | /loja/quadro-divino-espirito-santo/ | 48,2 | 4 | 0 | 0% | 21+ |
+| cola para rejunte | /materiais/qual-cola-usar-no-mosaico/ | 9,5 | 2 | 0 | 0% | 4-10 |
+| picassiette | /como-fazer/o-que-e-mosaico-picassiete/ | 9,5 | 2 | 0 | 0% | 4-10 |
+| rejuntou | — | 37,0 | 2 | 0 | 0% | 21+ |
+| mosaico gaudi imagenes | /como-fazer/o-que-e-trencadis/ | 2,0 | 1 | 0 | 0% | 1-3 |
+| cola mosaico | /materiais/qual-cola-usar-no-mosaico/ | 10,0 | 1 | 0 | 0% | 4-10 |
+| o verniz tem que diluir | /materiais/acabamento/diluir-o-verniz-do-mosaico/ | 10,0 | 1 | 0 | 0% | 4-10 |
+| base para mosaico | /materiais/base-de-mdf-para-mosaico/ | 13,0 | 1 | 0 | 0% | **11-20** |
+| quadro divino espirito santo | /loja/quadro-divino-espirito-santo/ | 22,0 | 1 | 0 | 0% | 21+ |
+| espírito santo quadro | /loja/quadro-divino-espirito-santo/ | 24,0 | 1 | 0 | 0% | 21+ |
+| quadros do espirito santo | /loja/quadro-divino-espirito-santo/ | 34,0 | 1 | 0 | 0% | 21+ |
+
+**As 14 consultas nomeadas somam 46 impressões de 547 — 92% é anonimizado.** A tabela por página:
+
+| página | posição 7d | impressões 7d | cliques 7d | posição 28d | impressões 28d | cliques 28d | CTR 28d | banda |
+|---|---|---|---|---|---|---|---|---|
+| /materiais/qual-cola-usar-no-mosaico/ | 10,5 | 80 | 1 | 7,4 | 242 | 3 | 1,2% | **caindo para 11-20** |
+| /materiais/quantas-pastilhas-para-mosaico/ | 7,6 | 34 | 0 | 6,6 | 124 | 0 | 0% | 4-10 |
+| /como-fazer/o-que-e-mosaico-picassiete/ | 6,2 | 18 | 2 | 5,1 | 49 | 4 | 8,2% | 4-10 |
+| /materiais/acabamento/ | 6,5 | 18 | 0 | 6,1 | 43 | 0 | 0% | 4-10 |
+| /como-fazer/o-que-e-trencadis/ | 6,4 | 17 | 0 | 6,2 | 33 | 0 | 0% | 4-10 |
+| /materiais/acabamento/camadas-de-verniz-depois-do-rejunte/ | 9,1 | 11 | 0 | 12,5 | 16 | 0 | 0% | **SUBINDO de 11-20 para 4-10** |
+| /materiais/rejunte-para-mosaico/ | 5,3 | 6 | 0 | 7,2 | 13 | 0 | 0% | 4-10 |
+| /materiais/acabamento/diluir-o-verniz-do-mosaico/ | 24,2 | 5 | 0 | 16,2 | 10 | 0 | 0% | **11-20 caindo para 21+** |
+| /loja/quadro-divino-espirito-santo/ | 21,5 | 2 | 0 | 36,5 | 8 | 0 | 0% | 21+ |
+| /materiais/base-de-mdf-para-mosaico/ | 8,0 | 1 | 0 | 11,0 | 4 | 0 | 0% | **11-20** |
+| /materiais/ | — | — | — | 8,3 | 3 | 0 | 0% | 4-10 |
+| /loja/ | — | — | — | 54,5 | 2 | 0 | 0% | 21+ |
+| /loja/quadro-flores-do-campo/ | 9,0 | 1 | 0 | 9,0 | 1 | 0 | 0% | 4-10 |
+| /materiais/acabamento/selar-a-base-antes-de-fazer-mosaico/ | — | — | — | 7,0 | 1 | 0 | 0% | 4-10 |
+| /sobre/ | — | — | — | 65,0 | 1 | 0 | 0% | 21+ |
+| / | — | — | — | 1,0 | 1 | 1 | 100% | 1-3 |
+
+### O que esta leitura decide
+
+- **`/materiais/acabamento/camadas-de-verniz-depois-do-rejunte/` ESTÁ SUBINDO** (12,5 em 28 dias contra 9,1 em 7 dias) e pela 12.1 **não se toca nela por mais uma semana**, por mais tentadora que seja a banda.
+- **A ilha tem UMA consulta que converte e ela é `picassiete`:** 25% de CTR em 4,7, 3 dos 8 cliques de 28 dias. A grafia catalã `picassiette` da MESMA página está em 9,5 — cinco posições abaixo — e a palavra aparece 2 vezes no HTML servido contra 9 da grafia com um T, e não aparece nem no `<title>` nem no `<h1>`. Registrado; com 2 impressões ainda é fino demais para virar proposta.
+- **Não abri a SERP de nenhuma destas consultas nesta leitura: não verifiquei.**

@@ -5,7 +5,7 @@ prioridade: 1
 piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 14
 primeira_indexacao: 2026-09-11
-ultima_ronda: 2026-10-26T15:02Z   # escrito pela Sentinela (secao 2). Este campo e o `bloqueada_por` abaixo estavam os DOIS AUSENTES deste cabecalho — a divida que a secao 2 nomeou em 26/10/2026 as 13h3xZ. Acrescentados pela ronda que reservou a ilha, como a propria secao 2 manda.
+ultima_ronda: 2026-10-28T20:00Z   # LEITURA SEMANAL (nao e ronda diaria tecnica): serie de indexacao e posicoes de 28/10 gravadas, despacho de 5 itens no PROMPT.md. 10 de 14 no indice pela quinta leitura seguida, 18 impressoes e posicao 14,3. A ronda diaria tecnica mais recente desta ilha continua sendo a de 28/10 14h5xZ (curta).
 bloqueada_por: null
 ultima_execucao: 2026-10-26T16:59Z   # despacho das 15h0xZ FECHADO INTEIRO pela 18.2, conferido NO AR pela 18.4, revisao 95 no /status. E no caminho um defeito que ESTAVA NO AR ha mais de um mes: o A1 negava em palavras os quatro botoes de compra que servia. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
 executando_desde: null   # limpo as 16:59Z pela propria execucao que reservou as 16h20Z de 26/10 e renovou as 16h43Z (1.1). Esta foi a TERCEIRA execucao do dia nesta ilha, e as tres entraram pela mesma porta: a excecao da 1.2, ilha NO AR com defeito.
