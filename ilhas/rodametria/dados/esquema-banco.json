@@ -1,0 +1,701 @@
+{
+ "id": "esquema-banco",
+ "ilha": "rodametria",
+ "bloco": "3",
+ "versao_esquema": 1,
+ "gerado_em": "2026-10-28",
+ "publicar": false,
+ "descricao": "Modelo do banco da Rodametria: entidades VEICULO, PECA e MUNICIPIO. Define campo a campo o tipo, a unidade, a obrigatoriedade, o vocabulario controlado, o que e DERIVADO e a ORIGEM esperada do dado. E o contrato que dados/veiculos.json, dados/pecas.json e dados/municipios.json cumprem e que ferramentas/validar-banco.py verifica. Nasce da secao 5 de dados/especificacao-calculadoras.md, que e a lista de campos que as tres ferramentas LEEM.",
+ "depende_de": [
+  "dados/especificacao-calculadoras.md",
+  "dados/constantes.json",
+  "dados/corpus-buscas.md"
+ ],
+ "o_que_este_bloco_acrescentou_a_lista_do_PROMPT": [
+  "A ENTIDADE MUNICIPIO, QUE A LISTA DO PROMPT.md NAO TEM. O PROMPT.md manda o bloco 3 modelar VEICULO e PECA, e a lista dele e anterior a especificacao do bloco 2 — que decidiu, na 1.1 e na 1.2, que a F1 tem QUATRO entradas (a quarta e `municipio`) e DUAS camadas de saida, e que municipio preenchido e CONHECIDO PELO BANCO imprime o limite daquele municipio. Sem entidade, a terceira das tres frases da 1.1 nao tem de onde sair, e a F1 cairia na ressalva genérica fingindo que essa e a unica resposta possivel. A camada 2 da F1 e dado de banco, nao prosa de rodape.",
+  "`cotacoes[]` COMO SERIE, E NAO `preco` COMO CAMPO. O PROMPT.md diz 'preco com data' dentro de VEICULO. Preco com data e uma LEITURA, e leitura nova nao substitui leitura velha: substituir apaga a serie, que e a unica coisa capaz de mostrar que o anuncio de R$ 2.299 de 27/10 virou outro numero. E a licao da Robometria escrita no esquema dela ('PRECO NAO E CAMPO DE PRODUTO. E serie temporal'), aqui como array dentro do registro em vez de entidade separada, porque com tres ilhas de distancia o custo de um arquivo a mais nao se paga ainda.",
+  "`tipo_comercial` SEPARADO DE `categoria`, pela secao 26. O fabricante e o varejo batizam pelo marketing ('scooter', 'moto eletrica', 'bike'), e nenhuma dessas palavras e categoria da Resolucao Contran 996/2023. `tipo_comercial` guarda o nome do anuncio porque ele e PROVA — a tese da ilha e que o nome do anuncio nao e o que a regra le — e `categoria` e DERIVADA da F1. Os dois enums nao tem um valor em comum, de proposito: nao existe como gravar 'scooter' em `categoria`."
+ ],
+ "principios": [
+  "PROCEDENCIA POR CAMPO, NAO POR REGISTRO. Um patinete costuma ter a potencia no titulo do varejo e a carga maxima na ficha tecnica da mesma pagina, ou em outra. Cada campo tecnico e um objeto {valor, fonte, declarado_como} e aponta para a SUA fonte em fontes{}.",
+  "DECLARADO NAO E MEDIDO. Todo numero deste banco e declaracao de fabricante ou de anuncio. Esta ilha nao mede veiculo nenhum e nao tem nivel 1 na escada. A F2 nao contesta o numero do fabricante: poe o Wh ao lado dele.",
+  "NULL E RESPOSTA, NAO LACUNA. Ficha que nao declara carga maxima grava null COM motivo, e o veiculo vai para o grupo nomeado 'nao declara carga maxima' da F3 (3.5 da especificacao). Estimar carga por aro, por potencia ou por 'parece reforcado' e inventar dado.",
+  "O NUMERO GRANDE DO ANUNCIO NAO E O NUMERO QUE A REGRA LE, E ISSO E CAMPO. `potencia_nominal_w` e `potencia_pico_w` sao campos DIFERENTES e so o nominal classifica. Anuncio que diz '1000W' no titulo sem a ficha dizer qual dos dois e NAO alimenta a F1: grava nominal null com motivo_sem_nominal e cai no grupo 3 da 1.7. E a ressalva 1.4(a) com produto na mao.",
+  "O ACELERADOR NAO ACEITA NULO SILENCIOSO. E o pivo da F1 (conclusao A2 do bloco 1: acelerador manual tira o veiculo da definicao de bicicleta eletrica mesmo abaixo do limite de potencia). Enum de TRES valores, e `nao_declarado` e um valor com frase propria que NUNCA cai no lado 'so pedal assistido' por omissao.",
+  "CATEGORIA E DERIVADA DA F1, NUNCA CAMPO DE ENTRADA DO CATALOGO. Gravar categoria a mao e o anuncio escrevendo a regra — e a frase de vendedor 'nao exige CNH nem emplacamento, conforme legislacao vigente', colhida num anuncio em 28/10/2026, e exatamente isso. Enquanto `limiares-categoria-contran-996-2023` estiver `pendente` em constantes.json, `categoria` e null em TODO registro, e o validador reprova qualquer outro valor.",
+  "ENERGIA E DERIVADA DE V x Ah, NUNCA COPIADA DE ANUNCIO. Anuncio que declara Wh em desacordo com V x Ah e DIVERGENCIA a registrar, nunca media (secao 10 do ARQUIPELAGO.md). O campo guarda o derivado e a divergencia guarda o declarado, com a data de cada um.",
+  "CATEGORIA LEGAL E O PRODUTO DA ILHA, ENTAO ERRAR PARA O LADO PERMISSIVO E O ERRO CARO. Errar 'dispensa CNH' num veiculo que e ciclomotor manda a pessoa para a rua sem habilitacao; errar para o lado restritivo faz alguem tirar CNH que talvez nao precisasse. A assimetria da secao 10 aponta para o lado restritivo: na divergencia de especificacao de um MESMO veiculo vale a declaracao que o joga na categoria MAIS exigente, e as duas declaracoes vao para a tela com data. E o oposto do banco de especies da Aquametria (que resolve pelo maior) e a mesma direcao da compatibilidade de peca da Robometria (que resolve pelo mais estreito).",
+  "A CATEGORIA SAI DA FICHA DE FABRICA, NAO DO VELOCIMETRO. Caso medido em 28/10/2026: scooter adulterada flagrada a 73 km/h com velocidade de fabrica declarada de 32 km/h (folhavitoria.com.br). O campo `velocidade_max_kmh` e sempre a declarada de fabrica, e o registro carrega `alteracao_pos_compra` quando a fonte noticia alteracao — nunca o numero flagrado.",
+  "COMPATIBILIDADE DE PECA NAO SE HERDA: ELA E DECLARADA POR MEDIDA. Camara e pneu por aro e largura (16x3.0), carregador pela tensao, bateria por V e Ah. 'Serve em patinete adulto' nao e compatibilidade — e titulo de anuncio. Peca sem medida declarada nasce `rascunho` com o motivo, nunca com compatibilidade deduzida da foto.",
+  "PRECO NUNCA SEM A DATA DA LEITURA, E A SERIE NUNCA E SOBRESCRITA. Cada leitura e uma entrada nova em cotacoes[], e a tela cita a mais recente com a data dela (secao 4 da especificacao).",
+  "ITEM PUBLICAVEL TEM PISO DE COMPRA, SEM EXCECAO (25.2). O piso e o link de busca, e ele nunca depende de ninguem. Registro sem `url_busca` e `url_busca_produto` nao e publicavel — e `encurtamento_tentado_em` AUSENTE e diferente de tentado-e-falhou (25.2-b), que e a regra inteira.",
+  "PAR DE LINK NAO SE REMENDA (25.4-b.1). `url` e `url_produto` ou vem da MESMA oferta na MESMA chamada, com `par_colhido_em` gravado, ou nenhum dos dois entra. Grampear um `url_produto` ao lado de um link antigo fabrica a aparencia de um par conferido, e e pior que o buraco, porque o buraco esta escrito.",
+  "MOTIVO GUARDA DUAS COISAS COM VIDAS DIFERENTES (25.4-b.3). A CAUSA nao muda; a ULTIMA TENTATIVA muda a cada passada. Todo campo de motivo separa as duas pelo marcador `||` e reescreve so a segunda. Sem isso, ou a prosa cresce sem fim, ou a causa e apagada pela tentativa de hoje.",
+  "ILHA QUE NASCE DEPOIS HERDA OS PORTOES DAS ANTERIORES. Este esquema nasce com validador e bateria de mutacao no mesmo bloco, porque a licao mais cara da Robometria nao foi uma regua errada: foi uma regua certa que nao rodou ('a regua existia desde 14/09 e nao tinha falhado: nao tinha rodado'). Portao escrito sem bateria que prove que ele MORDE e portao que ninguem sabe se funciona."
+ ],
+ "regra_de_divergencia": {
+  "especificacao_do_mesmo_veiculo": "Vale a declaracao que joga o veiculo na categoria MAIS exigente, e a outra fica em divergencias[] com a data. O erro caro e o permissivo: dizer 'dispensa CNH' de um ciclomotor. EMPATE DE NIVEL na escada: mesma regra, o lado restritivo. Escolher pela media e proibido.",
+  "energia_declarada_contra_v_vezes_ah": "O campo `energia_wh` fica com o DERIVADO (V x Ah, identidade matematica, constante `energia-wh-tensao-vezes-amperagem`). O Wh declarado pelo anuncio entra em divergencias[] com a data. Nunca a media, e nunca o declarado no campo: a identidade nao e fonte, e por definicao de unidade.",
+  "carga_maxima": "Vale a MENOR declaracao, e a outra fica registrada. O erro caro e o do lado largo: quem compra um patinete que nao aguenta o peso perde o veiculo e pode se machucar (mesma direcao da margem da F3 em constantes.json).",
+  "autonomia_declarada": "NUNCA resolve, e nem precisa: a F2 publica as DUAS pontas por desenho (o Wh derivado ao lado do km declarado). Duas fichas com km diferentes para o mesmo veiculo vao as duas para a tela com a data de cada uma.",
+  "recomendacao_editorial": "Nunca resolve. Publica o desacordo com o nome de quem recomenda cada numero."
+ },
+ "escada_de_fontes": {
+  "descricao": "Nivel de confianca de uma origem. Em conflito, o nivel mais alto vence e o outro fica registrado. Dentro do mesmo nivel ninguem vence: a regra_de_divergencia decide pela assimetria de custo. O NIVEL E O DO ELO MAIS FRACO entre autoria, custodia e leitura (secao 10 do ARQUIPELAGO.md), e e por isso que cada fonte declara os tres.",
+  "niveis": [
+   {
+    "nivel": 1,
+    "origem": "medicao-propria",
+    "na_tela": {
+     "rotulo": "medicao da Rodametria",
+     "ressalva": null,
+     "quem_declara": "pela Rodametria"
+    },
+    "o_que_pode_sustentar": "desempenho real. Seria a unica origem que poderia publicar desempenho medido.",
+    "existe_hoje": false,
+    "observacao": "Esta ilha nao mede veiculo e nao pretende medir. O nivel existe na escada para que a ausencia dele seja visivel, nao para ser preenchido."
+   },
+   {
+    "nivel": 2,
+    "origem": "norma-lida-no-orgao",
+    "na_tela": {
+     "rotulo": "Resolucao Contran no 996/2023",
+     "ressalva": null,
+     "quem_declara": "pela norma"
+    },
+    "o_que_pode_sustentar": "os limiares de categoria da 1.3 da especificacao, e so eles. Exige o texto LIDO em www.gov.br, www.in.gov.br, www.planalto.gov.br ou www.contran.gov.br, com data.",
+    "existe_hoje": false,
+    "observacao": "BLOQUEADO HOJE: os cinco hosts oficiais devolveram 000 com 'CONNECT tunnel failed, response 403' em 28/10/2026, remedidos as 13h2xZ, com rodametria.com.br em 200 na mesma janela (recusa de politica do egresso, nao queda). Despacho ALTA de 28/10 em dados/despachos.md. E por isso que `limiares-categoria-contran-996-2023` e `pendente` e a F1 nao vai ao ar."
+   },
+   {
+    "nivel": 3,
+    "origem": "ato-municipal-lido-no-municipio",
+    "na_tela": {
+     "rotulo": "ato do municipio",
+     "ressalva": null,
+     "quem_declara": "pelo municipio"
+    },
+    "o_que_pode_sustentar": "o limite de circulacao da camada 2 da F1 para aquele municipio. Exige o decreto, a lei ou o folheto LIDO no dominio .gov.br do municipio, com data.",
+    "existe_hoje": false,
+    "observacao": "Os quatro municipios do corpus (Campinas, Rio de Janeiro, Joinville, Sao Jose dos Campos) foram colhidos por BUSCA e por materia, nao lidos no ato. Entram em dados/municipios.json no nivel 5 e com status `pendente` — e e por isso que a TERCEIRA frase da 1.1 ('municipio conhecido pelo banco') ainda nao tem de onde sair. Esta pendencia e desta execucao e e despacho novo. E A CAUSA DELA ESTA MEDIDA, nao suposta: os quatro dominios (campinas.sp.gov.br, rio.rj.gov.br, joinville.sc.gov.br, sjc.sp.gov.br) foram tentados as 16h3xZ de 28/10/2026 e os quatro devolveram 000 nas TRES passadas da 20.2, com dois controles em 200 nas mesmas tres. O egresso responde `connect_rejected`. O nivel 3 desta escada esta, portanto, inalcancavel desta nuvem pelo mesmo motivo que o nivel 2 — e e por isso que ele nasceu com `existe_hoje: false` e vai continuar assim ate alguem abrir o .gov.br para esta conta ou ler o ato no navegador do Raphael."
+   },
+   {
+    "nivel": 4,
+    "origem": "ficha-do-fabricante-lida",
+    "na_tela": {
+     "rotulo": "ficha do fabricante",
+     "ressalva": null,
+     "quem_declara": "pelo fabricante"
+    },
+    "o_que_pode_sustentar": "qualquer campo tecnico do veiculo ou da peca, atribuido ao fabricante. Exige pagina ou manual LIDO no endereco do fabricante.",
+    "existe_hoje": false,
+    "observacao": "Nenhum dominio de fabricante desta ilha foi tentado ainda. Quem tentar mede o egresso na mesma passada (20.3: quem escreve a regra que exige a fonte e quem confere se a fonte esta liberada)."
+   },
+   {
+    "nivel": 5,
+    "origem": "ficha-de-varejo-grande",
+    "na_tela": {
+     "rotulo": "ficha de varejo",
+     "ressalva": "declarado na ficha da loja, a confirmar na do fabricante",
+     "quem_declara": "pela loja"
+    },
+    "o_que_pode_sustentar": "campo tecnico atribuido a LOJA, nunca ao fabricante. E o nivel de quase tudo que este banco tem hoje: extra.com.br, casasbahia.com.br, magazineluiza.com.br e as fichas dos marketplaces.",
+    "existe_hoje": true,
+    "observacao": "A ficha de varejo e a origem que mais erra na direcao que importa nesta ilha: e nela que '1000W' aparece sem dizer se e nominal ou pico, e e dela que saiu o titulo 'Bicicleta eletrica Siena 1000W adulto sem CNH scooter' — quatro termos que a regra separa, num anuncio so."
+   },
+   {
+    "nivel": 6,
+    "origem": "anuncio-de-marketplace",
+    "na_tela": {
+     "rotulo": "anuncio",
+     "ressalva": "declarado pelo vendedor",
+     "quem_declara": "pelo vendedor"
+    },
+    "o_que_pode_sustentar": "preco, disponibilidade e o nome comercial do anuncio. NAO sustenta campo tecnico que a F1 leia: o vendedor nao e o fabricante.",
+    "existe_hoje": true,
+    "observacao": "O anuncio tambem produz a afirmacao que esta ilha existe para contradizer ('nao exige CNH nem emplacamento, conforme legislacao vigente'). Ela entra no banco como `afirmacao_do_vendedor`, que e conteudo, e nunca como campo tecnico."
+   },
+   {
+    "nivel": 7,
+    "origem": "publicador-editorial",
+    "na_tela": {
+     "rotulo": "publicacao",
+     "ressalva": "leitura de terceiro",
+     "quem_declara": "pelo publicador"
+    },
+    "o_que_pode_sustentar": "contexto e ressalva qualitativa, com o nome do publicador na frase. NUNCA limiar legal, NUNCA campo tecnico de produto.",
+    "existe_hoje": true,
+    "observacao": "E o nivel de portaldotransito.com.br, olhardigital.com.br, consultadeplaca.net, tupi.fm e folhavitoria.com.br. O bloco 1 mediu que o eixo da CNH esta TOMADO por este nivel — e e exatamente por isso que o limiar lido aqui nao publica: a 1.3 proibe a F1 de ir ao ar 'com numero de portal'."
+   },
+   {
+    "nivel": 8,
+    "origem": "fazenda-ou-catalogo-comercial",
+    "na_tela": {
+     "rotulo": null,
+     "ressalva": null,
+     "quem_declara": null
+    },
+    "o_que_pode_sustentar": "NADA. Existe na escada para ser recusado por nome, nao para ser citado.",
+    "existe_hoje": true,
+    "observacao": "guiadosperifericos.com.br, cupomonline, guiarecomenda e as lojas estrangeiras de catalogo (race.es, milar.es, backmarket.es, cecotec.ua). Fonte deste nivel pode entrar em `afirmacao_de_terceiro` para ser CONTRADITA na tela, nunca em campo tecnico. A linha 'uma loja espanhola sugere capacidade de 100 a 120 kg' e o exemplo: recomendacao comercial de catalogo de outro mercado, e foi recusada como regua na 3.3 da especificacao."
+   }
+  ],
+  "origens_validas": [
+   "medicao-propria",
+   "norma-lida-no-orgao",
+   "ato-municipal-lido-no-municipio",
+   "ficha-do-fabricante-lida",
+   "ficha-de-varejo-grande",
+   "anuncio-de-marketplace",
+   "publicador-editorial",
+   "fazenda-ou-catalogo-comercial"
+  ],
+  "niveis_que_exigem_leitura_declarada": [
+   1,
+   2,
+   3,
+   4
+  ],
+  "niveis_proibidos_em_campo_tecnico": "SUPERADO NESTA VERSAO por `niveis_minimos_por_campo` — ver abaixo. A regra global dizia que nivel 6, 7 e 8 nao sustentam campo tecnico NENHUM, e a montagem dos primeiros registros mostrou que ela reprova campo certo: o Wh da F2 e identidade matematica sobre V e Ah, e errar nele custa uma faixa de km mais larga, nao uma pessoa na rua sem habilitacao. Severidade de fonte segue a ASSIMETRIA DE CUSTO do campo (secao 10), nao uma linha unica para o registro inteiro.",
+  "niveis_proibidos_em_qualquer_campo": [
+   8
+  ],
+  "niveis_minimos_por_campo": {
+   "por_que": "A escada diz quanto uma origem vale; este mapa diz quanto cada CAMPO exige, e os dois nao sao a mesma pergunta. O erro caro da F1 e mandar alguem para a rua sem habilitacao, entao os campos que ela le nao aceitam declaracao de vendedor. O erro caro da F2 e uma faixa de km larga, e Wh = V x Ah e identidade: o anuncio que declara '60 V 20 Ah' no titulo esta declarando a bateria, nao prometendo desempenho. Uma regra so para o registro inteiro reprovaria campo certo, e portao que reprova campo certo e o caminho mais curto para alguem passar a ignora-lo (a licao que a 20.5 nomeou quando o REPROVADO era cache).",
+   "pior_nivel_aceito": {
+    "potencia_nominal_w": 5,
+    "velocidade_max_kmh": 5,
+    "acelerador": 5,
+    "carga_max_kg": 5,
+    "tensao_v": 6,
+    "amperagem_ah": 6,
+    "autonomia_declarada_km": 6,
+    "potencia_pico_w": 6,
+    "potencia_declarada_sem_rotulo_w": 6,
+    "aro": 6,
+    "peso_kg": 6
+   },
+   "os_quatro_do_nivel_5_e_por_que_sao_esses_quatro": "Os tres primeiros sao as ENTRADAS da F1 — a categoria legal sai deles, e a categoria legal e o produto da ilha. O quarto e a carga maxima, pela 3.5 da especificacao: 'nao estima carga maxima de veiculo que nao a declara', e quem compra um patinete que nao aguenta o peso perde o veiculo e pode se machucar. Nos quatro, declaracao de vendedor nao basta: exige-se ficha de varejo grande (nivel 5) ou melhor.",
+   "nivel_8_nao_sustenta_nada": "Fazenda e catalogo comercial nao sustentam campo nenhum, em nenhum nivel de custo. Registro cuja unica fonte e nivel 8 nasce `excluido_do_banco` com o motivo escrito, para a proxima coleta nao o recolher de novo.",
+   "medida_no_proprio_titulo_e_excecao_declarada": "Compatibilidade de PECA por medida (aro x largura, tensao, V+Ah) aceita nivel 6 QUANDO `declarada_por` for `titulo_ou_ficha_declara_literalmente` — porque ali a medida E o nome do produto ('Camara Kenda 16x3.0'), e nao uma afirmacao de desempenho do vendedor. Medida deduzida da foto, do preco ou da frase 'serve em patinete adulto' continua fora, em qualquer nivel."
+  }
+ },
+ "campos_que_exigem_procedencia_de_leitura": {
+  "por_que_esta_lista_mora_aqui_e_nao_no_validador": "Secao 26.2 do ARQUIPELAGO.md: lista digitada dentro da regua envelhece calada. O dia em que um campo novo sofrer do mesmo mal, ele entra numa linha deste arquivo e a trava passa a cobra-lo sem uma linha de codigo. E a trava reprova quando esta chave SOME — regua que le a propria lista de um arquivo de dados aprova tudo, em silencio, no dia em que o arquivo perder a chave.",
+  "campos": [
+   "potencia_nominal_w",
+   "acelerador"
+  ],
+  "por_que_estes_dois": "Sao os dois campos que o titulo da fonte NAO declara pela funcao. O varejo escreve '1000W' sem dizer se e nominal ou pico — mesma familia da escova que a WAP batiza pela posicao e a Robometria classifica pela funcao (secao 26) — e escreve 'sem CNH' sem dizer se tem acelerador. Os outros campos (tensao, amperagem, carga maxima, aro, peso) o titulo ou a ficha nomeiam pelo que o numero E, e por isso ficam de fora: a lista existe para os campos em que ler a funcao do nome e chute.",
+  "origens_legitimas_de_leitura": {
+   "titulo_ou_ficha_declara_literalmente": "A palavra do eixo esta publicada: 'potencia nominal 500 W', 'acelerador manual', 'somente pedal assistido'. Caso barato e o mais comum quando existe.",
+   "contraste_na_mesma_ficha": "O rotulo nao esta, mas a MESMA ficha publica os dois numeros ('500 W / pico 800 W'), e aí quem separou nominal de pico foi a fonte, nao a ilha. Vale DENTRO da ficha daquele modelo — contraste emprestado de outro modelo e heranca, e especificacao nao se herda.",
+   "canal_do_fabricante": "O manual ou a pagina de suporte daquele modelo nomeia o campo."
+  },
+  "sem_nenhuma_das_tres": "O campo nasce null com motivo, e o registro NAO e candidato da ferramenta que o le: o veiculo vai para o grupo nomeado da prestacao de contas ('nao declaram potencia nominal' na F1). Lacuna com causa nomeada e dado; lacuna preenchida por semelhanca e defeito que ninguem ve ate alguem comprar errado — ou, aqui, ate alguem andar sem habilitacao.",
+  "a_outra_metade_que_e_da_tela_e_ainda_e_divida": "Quando a procedencia veio do CONTRASTE e nao do rotulo, a pagina NAO pode dizer que o fabricante declarou qual e o nominal: ele declarou dois numeros, e a classificacao do rotulo e da ilha. A frase da tela que le `declarada_por` e escolhe a atribuicao e divida nomeada deste bloco (26.3), e vive na casca (bloco 3b), nao aqui."
+ },
+ "entidades": {
+  "VEICULO": {
+   "arquivo": "dados/veiculos.json",
+   "descricao": "Um veiculo eletrico identificado por marca e modelo. E o registro que as TRES ferramentas leem.",
+   "campos_de_identidade": {
+    "id": {
+     "tipo": "slug",
+     "obrigatorio": true,
+     "regra": "minusculas, hifens, sem acento; unico no arquivo"
+    },
+    "marca": {
+     "tipo": "texto",
+     "obrigatorio": true,
+     "regra": "A marca como a fonte a escreve. Aceita null COM `motivo_sem_marca`, pela mesma simetria do `modelo`: o painel de afiliado serve titulo de anuncio, e titulo de anuncio as vezes nao tem marca nenhuma ('Patinete eletrico adulto com banco'). Inventar a marca a partir da foto ou do preco e a heuristica por vizinhanca que a secao 8 proibe."
+    },
+    "modelo": {
+     "tipo": "texto",
+     "obrigatorio": true,
+     "regra": "o codigo do modelo como o fabricante o escreve. Quando a fonte so traz o titulo do anuncio, `modelo` recebe null e `motivo_sem_modelo` diz isso — a 25.9 do ARQUIPELAGO.md ja ensinou que campo que empacota dois identificadores recusa o anuncio certo para sempre."
+    },
+    "motivo_sem_modelo": {
+     "tipo": "texto",
+     "obrigatorio": "quando modelo for null"
+    },
+    "titulo_colhido": {
+     "tipo": "texto",
+     "obrigatorio": true,
+     "regra": "o titulo do anuncio ou da ficha, LITERAL, com a fonte. E prova: a tese da ilha e que o nome do anuncio nao e o que a regra le, e sem o literal a tese nao se demonstra."
+    },
+    "tipo_comercial": {
+     "tipo": "enum",
+     "obrigatorio": true,
+     "valores": [
+      "patinete",
+      "bicicleta",
+      "scooter",
+      "moto",
+      "ciclomotor_comercial",
+      "nao_declarado"
+     ],
+     "regra": "O que o ANUNCIO chama. NUNCA e categoria legal, e os dois enums nao compartilham nenhum valor de proposito: nao existe como gravar 'scooter' em `categoria`. 'Scooter' nao e categoria da Resolucao Contran 996/2023, e o bloco 1 mediu isso em titulo de varejo."
+    },
+    "motivo_sem_marca": {
+     "tipo": "texto",
+     "obrigatorio": "quando marca for null"
+    }
+   },
+   "campos_tecnicos": {
+    "forma_do_campo": "Todo campo tecnico e um objeto {valor, unidade, fonte, declarado_como} — `fonte` e uma chave de fontes{} do proprio registro, e `declarado_como` e o texto LITERAL da fonte. Campo ausente no mundo e {valor: null, motivo: \"...\"}, nunca chave faltando.",
+    "potencia_nominal_w": {
+     "unidade": "W",
+     "tipo": "inteiro",
+     "exige_procedencia_de_leitura": true,
+     "le_quem": "F1",
+     "nulo_quando": "a fonte diz um watt so e nao diz se e nominal ou pico",
+     "motivo_quando_nulo": "motivo_sem_nominal"
+    },
+    "potencia_pico_w": {
+     "unidade": "W",
+     "tipo": "inteiro",
+     "le_quem": "ninguem classifica por este campo",
+     "regra": "existe para a pagina poder dizer que o numero grande do anuncio e este, e nao o que a regra le (ressalva 1.4a)"
+    },
+    "potencia_declarada_sem_rotulo_w": {
+     "unidade": "W",
+     "tipo": "inteiro",
+     "le_quem": "ninguem classifica por este campo",
+     "por_que_este_campo_existe": "ESTE CAMPO E A TESE DA ILHA VIRADA EM ESTRUTURA, e ele nasceu na montagem dos primeiros 17 registros. Ate aqui o esquema tinha `potencia_nominal_w` e `potencia_pico_w` e supunha que todo watt colhido e um dos dois. NAO E: o caso esmagadoramente mais comum do varejo e UM WATT SO, SEM ROTULO — 'Siena 1000W adulto sem CNH scooter', 'Honeywhale M2 MAX 500 W', 'scooter chopper 1.000 W'. Sem este campo, as duas saidas disponiveis mentiriam: jogar o numero em `potencia_nominal_w` classificaria pelo numero do anuncio, que e exatamente o que esta ilha existe para nao fazer; descartar o numero apagaria o UNICO watt que a fonte declarou, que e o que a pagina precisa mostrar para explicar por que nao classifica.",
+     "regra": "Guarda o watt que a fonte declarou SEM dizer se e nominal ou pico. NUNCA alimenta a F1 e NUNCA vira `potencia_nominal_w` por conveniencia. E o numero que a tela mostra na ressalva 1.4(a), com a frase que diz o que ele e e onde olhar o que a regra le."
+    },
+    "velocidade_max_kmh": {
+     "unidade": "km/h",
+     "tipo": "inteiro",
+     "le_quem": "F1",
+     "regra": "sempre a declarada DE FABRICA. Numero flagrado por fiscalizacao em veiculo adulterado vai para `alteracao_pos_compra`, nunca aqui."
+    },
+    "acelerador": {
+     "tipo": "enum",
+     "valores": [
+      "manual",
+      "so_pedal_assistido",
+      "nao_declarado"
+     ],
+     "obrigatorio": true,
+     "exige_procedencia_de_leitura": true,
+     "le_quem": "F1",
+     "regra": "PIVO. Nao aceita nulo nem chave ausente. `nao_declarado` e um terceiro valor com frase propria e nunca cai no lado 'so pedal assistido' por omissao. A sentinela e `nao_declarado`, declarada em `valor_sentinela_de_ausencia`, e ela exige `fonte` e `motivo` em vez de `declarado_como` e `declarada_por`.",
+     "valor_sentinela_de_ausencia": "nao_declarado",
+     "o_que_a_sentinela_exige_e_o_que_ela_dispensa": "ACHADO DA PRIMEIRA PASSADA DO VALIDADOR, 28/10/2026. O enum de tres valores quebra a invariante 'valor presente => procedencia presente' que vale para todo outro campo deste banco, e quebra por um motivo que nao e defeito: o CONTEUDO do terceiro valor e justamente a AUSENCIA de declaracao. Cobrar `declarado_como` (o texto literal da fonte) de um campo cuja resposta e 'a fonte nao disse' e cobrar o literal de uma frase que nao existe — e portao que reprova registro certo, que e o caminho mais curto para alguem passar a ignora-lo (a licao que a 20.5 nomeou quando o REPROVADO era cache). Portanto a sentinela EXIGE `fonte` (onde se olhou) e `motivo` (por que nao se achou), e DISPENSA `declarado_como` e `declarada_por`. O nome da sentinela mora neste campo do esquema e nao dentro do validador, pela 26.2: o dia em que outro campo ganhar sentinela, ele a declara aqui e a trava passa a trata-la sem uma linha de codigo novo. E a sentinela NUNCA dispensa o registro de nada mais: ela e um valor, ele conta nos grupos de prestacao de contas, e nunca cai no lado 'so pedal assistido' por omissao."
+    },
+    "tensao_v": {
+     "unidade": "V",
+     "tipo": "inteiro",
+     "le_quem": "F2"
+    },
+    "amperagem_ah": {
+     "unidade": "Ah",
+     "tipo": "decimal",
+     "le_quem": "F2"
+    },
+    "energia_wh": {
+     "unidade": "Wh",
+     "tipo": "inteiro",
+     "derivado": true,
+     "derivado_de": "tensao_v x amperagem_ah",
+     "constante": "energia-wh-tensao-vezes-amperagem",
+     "le_quem": "F2",
+     "regra": "NUNCA digitado e NUNCA copiado de anuncio. null obrigatorio quando tensao_v ou amperagem_ah for null. Wh declarado em desacordo vai para divergencias[]."
+    },
+    "autonomia_declarada_km": {
+     "unidade": "km",
+     "tipo": "inteiro",
+     "le_quem": "F2",
+     "regra": "a declarada, sem juizo. A F2 degrada este numero pelo fator de relevo e mostra as duas pontas."
+    },
+    "carga_max_kg": {
+     "unidade": "kg",
+     "tipo": "inteiro",
+     "le_quem": "F3",
+     "nulo_quando": "a ficha nao declara",
+     "motivo_quando_nulo": "motivo_sem_carga_max",
+     "regra": "null manda o veiculo para o grupo nomeado 'nao declara carga maxima' e FORA da vitrine da F3 (3.5)."
+    },
+    "aro": {
+     "unidade": "polegada",
+     "tipo": "decimal",
+     "le_quem": "a malha de pecas"
+    },
+    "peso_kg": {
+     "unidade": "kg",
+     "tipo": "decimal",
+     "le_quem": "ninguem ainda",
+     "regra": "peso do veiculo, nunca do piloto. Guardado porque e o que separa patinete de scooter na pratica e porque a ficha o declara de graca."
+    }
+   },
+   "campos_derivados": {
+    "energia_wh": "ver acima",
+    "categoria": {
+     "tipo": "enum",
+     "valores": [
+      "bicicleta_eletrica",
+      "autopropelido",
+      "ciclomotor",
+      null
+     ],
+     "derivado_de": "a arvore da 1.3 da especificacao, sobre potencia_nominal_w, velocidade_max_kmh e acelerador",
+     "regra": "NUNCA campo de entrada do catalogo. Obrigatoriamente null enquanto `limiares-categoria-contran-996-2023` for `pendente` em constantes.json — e o validador le o STATUS DA CONSTANTE, nao uma lista sua.",
+     "por_que_null_e_a_resposta_certa_hoje": "A logica da arvore esta escrita e nao depende do texto oficial; os NUMEROS dependem. Preencher categoria agora exigiria plantar 1.000 e 32, que a 1.3 proibe com todas as letras ('nao vai ao ar com numero de portal, nao vai ao ar com o numero que mais apareceu, e nao vai ao ar com ressalva')."
+    },
+    "intestavel": {
+     "tipo": "booleano",
+     "derivado_de": "tem afiliado.url e nao tem afiliado.url_produto",
+     "regra": "25.4-b: link cuja saude e desconhecida e permanecera desconhecida. Item publicavel intestavel so e aceito no degrau 4, onde nao existe ficha para conferir."
+    },
+    "tem_piso_de_compra": {
+     "tipo": "booleano",
+     "derivado_de": "tem afiliado.url_busca e afiliado.url_busca_produto"
+    }
+   },
+   "campos_de_estado": {
+    "status": {
+     "tipo": "enum",
+     "valores": [
+      "rascunho",
+      "publicavel",
+      "excluido_do_banco"
+     ],
+     "obrigatorio": true
+    },
+    "motivo_do_status": {
+     "tipo": "texto",
+     "obrigatorio": true,
+     "regra": "sempre escrito, inclusive em `publicavel` — e onde se le por que este registro pode ir a tela."
+    },
+    "excluido_do_banco_por_que": {
+     "tipo": "texto",
+     "obrigatorio": "quando status for excluido_do_banco",
+     "regra": "registro recusado FICA GRAVADO para a proxima execucao nao o recolher de novo. E a licao do `excluido_do_banco` da Robometria."
+    }
+   },
+   "campos_de_conteudo": {
+    "divergencias": {
+     "tipo": "lista",
+     "obrigatorio": true,
+     "regra": "lista vazia e AFIRMACAO ('nenhuma fonte discorda do que esta gravado'), nao silencio. Divergencia sem `resolucao` escrita e a ilha empurrando a duvida para o visitante.",
+     "forma_do_item": {
+      "campo": "nome do campo",
+      "declaracoes": [
+       {
+        "valor": "",
+        "fonte": "",
+        "data_leitura": ""
+       }
+      ],
+      "resolucao": "qual venceu e qual e o erro caro"
+     }
+    },
+    "afirmacao_do_vendedor": {
+     "tipo": "lista",
+     "regra": "frase do anuncio que a pagina CONTRADIZ, com a fonte e a data. 'Nao exige CNH nem emplacamento, conforme legislacao vigente' e o caso colhido em 28/10/2026. Entra como conteudo, nunca como campo tecnico — a F1 nunca a repete."
+    },
+    "alteracao_pos_compra": {
+     "tipo": "lista",
+     "regra": "noticia de veiculo adulterado daquele modelo, com fonte e data. Caso colhido: scooter flagrada a 73 km/h com fabrica declarada de 32 km/h (folhavitoria.com.br, 28/10/2026). Serve a ressalva 1.4(b) e NUNCA troca velocidade_max_kmh."
+    }
+   },
+   "cotacoes": {
+    "tipo": "lista",
+    "regra": "SERIE, nunca sobrescrita. Preco sem `data_leitura` e proibido pela secao 4 da especificacao.",
+    "forma_do_item": {
+     "valor_brl": "decimal",
+     "loja": "texto",
+     "programa": "enum shopee|mercado_livre",
+     "comissao_declarada_pct": "decimal ou null",
+     "vendas_declaradas": "texto literal do painel ou null",
+     "data_leitura": "AAAA-MM-DD",
+     "fonte": "chave de fontes{}"
+    }
+   },
+   "afiliado": {
+    "programa": {
+     "tipo": "enum",
+     "valores": [
+      "shopee",
+      "mercado_livre",
+      null
+     ],
+     "regra": "Shopee primeiro quando o produto existe nos dois (secao 7). Mercado Livre so onde a Shopee nao tem. Amazon fora de tudo."
+    },
+    "degrau": {
+     "tipo": "enum",
+     "valores": [
+      1,
+      2,
+      3,
+      4,
+      null
+     ],
+     "regra": "25.1. Para no primeiro degrau que servir, e o degrau usado fica gravado."
+    },
+    "url": {
+     "tipo": "url",
+     "regra": "o link que vai para o leitor. Degrau 4 tem `url` VAZIA: a busca sobe e vira o botao pela escada da casca, nao pela ficha."
+    },
+    "url_produto": {
+     "tipo": "url",
+     "regra": "a URL crua da ficha, exatamente como foi escolhida. Nao vai para o leitor: existe para a ronda abrir a pagina sem gastar clique de afiliado (25.4-b)."
+    },
+    "par_colhido_em": {
+     "tipo": "data",
+     "obrigatorio": "quando url e url_produto existirem os dois",
+     "regra": "25.4-b.1: os dois vem da MESMA oferta na MESMA chamada, ou nenhum entra. Este campo e a prova de que ninguem grampeou."
+    },
+    "url_busca": {
+     "tipo": "url",
+     "regra": "o PISO (25.2). Link de busca encurtado e rastreavel."
+    },
+    "url_busca_produto": {
+     "tipo": "url",
+     "regra": "a URL crua da busca. Busca nao esgota, mas muda de nome — palavra-chave que deixou de trazer resultado e defeito silencioso."
+    },
+    "encurtamento_tentado_em": {
+     "tipo": "data",
+     "obrigatorio": "em todo registro publicavel",
+     "regra": "25.2-b. AUSENTE e diferente de tentado-e-falhou, e essa distincao e a regra inteira."
+    },
+    "sub_id_1": {
+     "tipo": "texto",
+     "regra": "sempre `rodametria`"
+    },
+    "sub_id_2": {
+     "tipo": "texto",
+     "regra": "o codigo da ferramenta: f1, f2 ou f3"
+    },
+    "motivo_sem_url_produto": {
+     "tipo": "texto",
+     "regra": "CAUSA || ULTIMA TENTATIVA (25.4-b.3)"
+    },
+    "motivo_sem_url_busca": {
+     "tipo": "texto",
+     "regra": "CAUSA || ULTIMA TENTATIVA (25.4-b.3)"
+    }
+   },
+   "imagem": {
+    "tipo": "objeto ou null",
+    "regra": "Imagem ausente NAO elimina o registro: o produto aparece na vitrine com espaco reservado neutro e o nome em destaque. Perder a recomendacao tecnica certa por falta de foto e trocar o certo pelo bonito."
+   },
+   "fontes": {
+    "tipo": "mapa",
+    "obrigatorio": true,
+    "forma_do_item": {
+     "url": "url",
+     "tipo": "enum do dominio da fonte",
+     "nivel": "inteiro da escada",
+     "origem": "a origem que a escada da aquele nivel",
+     "autoria": "quem escreveu",
+     "custodia": "quem guarda",
+     "leitura": "como nos lemos — obrigatorio nos niveis 1 a 4",
+     "data_leitura": "AAAA-MM-DD"
+    },
+    "regra": "Nenhum numero entra no banco sem uma entrada correspondente aqui. O validador confere que `origem` bate com a `origem` que a escada da aquele `nivel` — era exatamente por aí que o defeito da Robometria entrava, porque so o numero era conferido."
+   }
+  },
+  "PECA": {
+   "arquivo": "dados/pecas.json",
+   "descricao": "Consumivel e acessorio de veiculo eletrico. A compatibilidade e por MEDIDA declarada, nunca por nome de veiculo.",
+   "campos_de_identidade": {
+    "id": {
+     "tipo": "slug",
+     "obrigatorio": true
+    },
+    "tipo": {
+     "tipo": "enum",
+     "obrigatorio": true,
+     "valores": [
+      "camara",
+      "pneu",
+      "carregador",
+      "bateria",
+      "capacete",
+      "cadeado",
+      "chicote"
+     ],
+     "regra": "vocabulario da ILHA, pela funcao. Tipo novo entra numa linha deste esquema, nunca dentro do validador."
+    },
+    "titulo_colhido": {
+     "tipo": "texto",
+     "obrigatorio": true
+    },
+    "marca": {
+     "tipo": "texto"
+    }
+   },
+   "compatibilidade": {
+    "regra": "NAO SE HERDA E NAO SE DEDUZ. Cada tipo tem a sua chave de encaixe, e e ela que a ferramenta casa:",
+    "por_tipo": {
+     "camara": "aro + largura (ex.: 16 x 3.0)",
+     "pneu": "aro + largura",
+     "carregador": "tensao_v (e o conector, quando a fonte o declara)",
+     "bateria": "tensao_v + amperagem_ah",
+     "capacete": "nenhuma — serve a pessoa, nao o veiculo; casa por nada e entra por consulta",
+     "cadeado": "nenhuma",
+     "chicote": "nao resolvida: o anuncio colhido nao declara modelo nem medida. Nasce `rascunho` com o motivo."
+    },
+    "forma": {
+     "chave": "aro_largura | tensao_v | tensao_ah | nenhuma",
+     "valor": "o literal declarado",
+     "fonte": "chave de fontes{}",
+     "declarada_por": "titulo_ou_ficha_declara_literalmente | contraste_na_mesma_ficha | canal_do_fabricante"
+    },
+    "sem_medida_declarada": "status `rascunho`, com `motivo_do_status` dizendo que falta a medida. 'Serve em patinete adulto' e titulo de anuncio, nao compatibilidade.",
+    "nivel_de_fonte": "Ver `escada_de_fontes.niveis_minimos_por_campo.medida_no_proprio_titulo_e_excecao_declarada`: a medida aceita nivel 6 quando ela esta no proprio titulo, porque ali ela e o nome do produto."
+   },
+   "herda_de_veiculo": [
+    "campos_de_estado",
+    "campos_de_conteudo",
+    "cotacoes",
+    "afiliado",
+    "imagem",
+    "fontes"
+   ]
+  },
+  "MUNICIPIO": {
+   "arquivo": "dados/municipios.json",
+   "descricao": "A CAMADA 2 DA F1, E ELA E DADO DE BANCO. Entidade que a lista do bloco 3 no PROMPT.md nao tem e a especificacao do bloco 2 exige: a 1.1 define TRES estados para o campo `municipio` da F1 (vazio, conhecido pelo banco, desconhecido), e o estado do meio so existe se houver um banco de municipios.",
+   "campos": {
+    "id": {
+     "tipo": "slug",
+     "obrigatorio": true
+    },
+    "nome": {
+     "tipo": "texto",
+     "obrigatorio": true
+    },
+    "uf": {
+     "tipo": "texto",
+     "obrigatorio": true
+    },
+    "limite_velocidade_kmh": {
+     "tipo": "inteiro ou null",
+     "unidade": "km/h"
+    },
+    "limite_potencia_w": {
+     "tipo": "inteiro ou null",
+     "unidade": "W"
+    },
+    "instrumento": {
+     "tipo": "texto",
+     "regra": "decreto, lei, portaria ou folheto — e o NOME do ato, nao a materia que falou dele"
+    },
+    "status": {
+     "tipo": "enum",
+     "valores": [
+      "publicavel",
+      "pendente"
+     ],
+     "obrigatorio": true,
+     "regra": "`publicavel` exige fonte de nivel 3 (ato lido no dominio .gov.br do municipio). Nivel 5 ou pior e `pendente`, e municipio `pendente` NAO alimenta a camada 2: a F1 imprime a ressalva generica, dizendo que aquele municipio nao esta no banco."
+    },
+    "motivo_do_status": {
+     "tipo": "texto",
+     "obrigatorio": true
+    },
+    "fontes": {
+     "tipo": "mapa",
+     "obrigatorio": true
+    }
+   },
+   "a_consequencia_de_hoje_escrita_para_ninguem_se_enganar": "Os quatro municipios deste banco sao `pendente`, entao HOJE a F1 tem DOIS estados de saida na camada 2, nao tres — e os dois que ela tem sao a mesma frase generica. Isto nao e um buraco escondido no codigo: esta escrito aqui, esta em pendencias_do_bloco e e despacho novo de 28/10/2026."
+  }
+ },
+ "grupos_de_prestacao_de_contas": {
+  "por_que": "Secao 7 do ARQUIPELAGO.md: todo item do banco e nomeado EXATAMENTE UMA VEZ em cada resposta — na frase que o recomenda, e aí esta na vitrine, ou numa linha que diz POR QUE nao esta. A soma dos nomeados fecha o banco, CONTADO, nunca digitado. Os grupos vivem aqui, com nome proprio, para que a causa que o codigo separa o texto separe — e para que o validador possa conferir que eles sao EXAUSTIVOS e MUTUAMENTE EXCLUSIVOS sobre o banco inteiro.",
+  "F1": {
+   "universo": "todo VEICULO com status publicavel",
+   "grupos": [
+    {
+     "nome": "cabe_na_categoria",
+     "criterio": "categoria == a categoria consultada",
+     "na_tela": "vitrine"
+    },
+    {
+     "nome": "de_outra_categoria",
+     "criterio": "categoria != null e != a consultada",
+     "na_tela": "nomeado, com a categoria dele"
+    },
+    {
+     "nome": "sem_potencia_nominal_declarada",
+     "criterio": "potencia_nominal_w.valor == null",
+     "na_tela": "nomeado, e e a ressalva 1.4(a) com produto na mao"
+    },
+    {
+     "nome": "sem_saida_de_compra",
+     "criterio": "tem_piso_de_compra == false",
+     "na_tela": "nomeado. Nenhum fica sem saida: o piso e o link de busca da 25.2, e a frase 'link de loja em breve' e proibida"
+    }
+   ],
+   "ordem_na_tela": "A vitrine primeiro; os outros tres em blocos separados, abaixo, com titulo proprio. Grupo de recusa NUNCA em primeiro lugar."
+  },
+  "F2": {
+   "universo": "todo VEICULO com status publicavel",
+   "grupos": [
+    {
+     "nome": "cabe_no_wh_pedido",
+     "criterio": "energia_wh na faixa consultada",
+     "na_tela": "vitrine"
+    },
+    {
+     "nome": "de_outro_wh",
+     "criterio": "energia_wh != null e fora da faixa",
+     "na_tela": "nomeado, com o Wh dele"
+    },
+    {
+     "nome": "nao_declara_tensao_ou_amperagem",
+     "criterio": "tensao_v.valor == null ou amperagem_ah.valor == null",
+     "na_tela": "nomeado. E a classe de defeito mais comum nas fichas colhidas"
+    },
+    {
+     "nome": "sem_saida_de_compra",
+     "criterio": "tem_piso_de_compra == false",
+     "na_tela": "nomeado"
+    }
+   ]
+  },
+  "F3": {
+   "universo": "todo VEICULO com status publicavel",
+   "grupos": [
+    {
+     "nome": "aguenta_com_folga",
+     "criterio": "carga_max_kg >= peso_total * (1 + MARGEM)",
+     "constante": "margem-de-carga-f3",
+     "na_tela": "vitrine, em primeiro lugar"
+    },
+    {
+     "nome": "passa_no_limite",
+     "criterio": "peso_total <= carga_max_kg e abaixo da margem",
+     "na_tela": "nomeado, com a ressalva da 3.4, e NUNCA em primeiro lugar"
+    },
+    {
+     "nome": "nao_aguenta",
+     "criterio": "peso_total > carga_max_kg",
+     "na_tela": "nomeado, com os kg que faltam"
+    },
+    {
+     "nome": "nao_declara_carga_maxima",
+     "criterio": "carga_max_kg.valor == null",
+     "na_tela": "nomeado, e FORA da vitrine (3.5)"
+    }
+   ],
+   "lista_vazia": "Imprime a CAUSA que a pagina mediu — 'o maior teto do nosso banco e X kg, e voce pediu Y' —, com o X contado no banco, nunca uma hipotese sobre por que ninguem serve."
+  }
+ },
+ "pendencias_do_bloco": {
+  "bloqueiam_a_f1": [
+   "limiares-categoria-contran-996-2023 (`pendente`) — trava `categoria` em TODO registro, e `categoria` e o produto da ilha. Despacho ALTA de 28/10/2026 em dados/despachos.md, aberto pelo bloco 1 e remedido pelo bloco 2.",
+   "NOVO NESTE BLOCO: nenhum dos quatro municipios de dados/municipios.json e `publicavel`, porque os quatro foram colhidos por materia e por busca, e o nivel 3 da escada exige o ato lido no dominio .gov.br do municipio. Enquanto isso a camada 2 da F1 tem DUAS saidas iguais em vez de tres (1.1). OS QUATRO DOMINIOS FORAM TENTADOS NESTA EXECUCAO, pela 20.3, e os quatro estao RECUSADOS: campinas.sp.gov.br, rio.rj.gov.br, joinville.sc.gov.br e sjc.sp.gov.br em 000 nas tres passadas, com dois controles em 200 nas mesmas tres. Nao e 'falta coletar': e a mesma parede do gov.br. Despacho novo de 28/10/2026."
+  ],
+  "nao_bloqueiam_nada": [
+   "consumo-absoluto-wh-por-km-patinete (`pendente`) — a F2 vai ao ar sem ele, pela conta reduzida da 2.2.",
+   "Nenhum dominio de FABRICANTE foi tentado: o nivel 4 da escada esta vazio e o banco inteiro vive do nivel 5 para baixo. Nao e defeito, e o estado da coleta, e e o que a frase 'declarado na ficha da loja, a confirmar na do fabricante' diz na tela.",
+   "A frase da tela que le `declarada_por` e escolhe a atribuicao (26.3) — divida nomeada, e ela e da casca (bloco 3b)."
+  ]
+ }
+}

@@ -1,0 +1,104 @@
+{
+ "id": "municipios",
+ "ilha": "rodametria",
+ "bloco": "3",
+ "esquema": "dados/esquema-banco.json",
+ "versao_esquema": 1,
+ "gerado_em": "2026-10-28",
+ "publicar": false,
+ "nota": "A CAMADA 2 DA F1 COMO DADO, E NAO COMO PROSA DE RODAPE. Esta entidade nao esta na lista do bloco 3 do PROMPT.md: ela e exigida pela 1.1 da especificacao do bloco 2, que define TRES estados para o campo `municipio` e faz o do meio ('conhecido pelo banco') depender de um banco que ninguem tinha mandado existir. OS QUATRO REGISTROS SAO `pendente`, e a consequencia esta escrita sem maquiar: HOJE a camada 2 da F1 tem DOIS estados de saida em vez de tres, e os dois imprimem a mesma ressalva generica. A diferenca entre isto e um buraco e que isto esta contado, com a causa e com o nome dos quatro dominios que ninguem tentou. REMEDIDO AS 16h3xZ: os quatro dominios municipais estao RECUSADOS pelo egresso, nas tres passadas da 20.2, com dois controles verdes em cada uma. Entao a frase 'os quatro dominios que ninguem tentou' ficou velha na mesma execucao que a escreveu, e a nova e pior: nao e que ninguem tentou — e que nao da. O caminho desta pendencia e o mesmo do limiar legal, e e o navegador do Raphael.",
+ "registros": [
+  {
+   "id": "campinas",
+   "nome": "Campinas",
+   "uf": "SP",
+   "limite_velocidade_kmh": 20,
+   "limite_potencia_w": null,
+   "instrumento": null,
+   "status": "pendente",
+   "motivo_do_status": "`pendente`: o numero foi colhido por BUSCA e por materia, e o nivel 3 da escada (`ato-municipal-lido-no-municipio`) exige o decreto, a lei ou o folheto LIDO no dominio .gov.br do municipio, com data. Municipio `pendente` NAO alimenta a camada 2 da F1: a ferramenta imprime a ressalva generica dizendo que aquele municipio nao esta no banco (1.1 da especificacao).",
+   "fontes": {
+    "corpus-bloco-1": {
+     "url": "https://www.campinas.sp.gov.br/",
+     "tipo": "materia-ou-folheto-colhido-por-busca",
+     "nivel": 5,
+     "origem": "ficha-de-varejo-grande",
+     "autoria": "Prefeitura de Campinas (nao lido)",
+     "custodia": "www.campinas.sp.gov.br",
+     "leitura": null,
+     "data_leitura": "2026-10-28",
+     "observacao": "O achado A1 do bloco 1 registra que 'Campinas aparece com limite de 20 km/h regulamentado'. O ato nao foi nomeado nem lido, e o dominio do municipio FOI TENTADO e esta RECUSADO. MEDIDO PELA EXECUCAO DO BLOCO 3 EM 28/10/2026 as 16h3xZ, pela 20.3 (quem escreve a regra que exige a fonte e quem confere se a fonte esta liberada): os QUATRO dominios municipais devolvem 000 nas TRES passadas, com rodametria.com.br e aquametria.com.br em 200 nas MESMAS tres — 12 medicoes de bloqueio contra 6 de controle verde, zero intermitencia. O egresso responde `connect_rejected`, que e recusa de politica e nao queda de host. MESMA FAMILIA do bloqueio de gov.br, in.gov.br, planalto.gov.br, contran.gov.br e lex.com.br do despacho ALTA de 28/10: o que esta ilha nao alcanca nao e um site, e o dominio .gov.br."
+    }
+   }
+  },
+  {
+   "id": "rio-de-janeiro",
+   "nome": "Rio de Janeiro",
+   "uf": "RJ",
+   "limite_velocidade_kmh": 25,
+   "limite_potencia_w": 350,
+   "instrumento": null,
+   "status": "pendente",
+   "motivo_do_status": "`pendente`: o numero foi colhido por BUSCA e por materia, e o nivel 3 da escada (`ato-municipal-lido-no-municipio`) exige o decreto, a lei ou o folheto LIDO no dominio .gov.br do municipio, com data. Municipio `pendente` NAO alimenta a camada 2 da F1: a ferramenta imprime a ressalva generica dizendo que aquele municipio nao esta no banco (1.1 da especificacao). E aqui ha um agravante: a atribuicao ao Rio e de um publicador de nivel 7, o mais fraco dos que este banco aceita em qualquer campo.",
+   "fontes": {
+    "tupi-fm": {
+     "url": "https://tupi.fm/",
+     "tipo": "publicador-editorial",
+     "nivel": 7,
+     "origem": "publicador-editorial",
+     "autoria": "Tupi FM",
+     "custodia": "o proprio site",
+     "leitura": null,
+     "data_leitura": "2026-10-28",
+     "observacao": "O achado A1 do bloco 1: os 350 W / 25 km/h aparecem em REGRA LOCAL (a do Rio) e as materias os apresentam como regra geral — e e justamente essa confusao que a camada 2 da F1 existe para desfazer. A atribuicao ao Rio e de tupi.fm, nivel 7. MEDIDO PELA EXECUCAO DO BLOCO 3 EM 28/10/2026 as 16h3xZ, pela 20.3 (quem escreve a regra que exige a fonte e quem confere se a fonte esta liberada): os QUATRO dominios municipais devolvem 000 nas TRES passadas, com rodametria.com.br e aquametria.com.br em 200 nas MESMAS tres — 12 medicoes de bloqueio contra 6 de controle verde, zero intermitencia. O egresso responde `connect_rejected`, que e recusa de politica e nao queda de host. MESMA FAMILIA do bloqueio de gov.br, in.gov.br, planalto.gov.br, contran.gov.br e lex.com.br do despacho ALTA de 28/10: o que esta ilha nao alcanca nao e um site, e o dominio .gov.br."
+    }
+   }
+  },
+  {
+   "id": "joinville",
+   "nome": "Joinville",
+   "uf": "SC",
+   "limite_velocidade_kmh": null,
+   "limite_potencia_w": null,
+   "instrumento": "folheto municipal",
+   "status": "pendente",
+   "motivo_do_status": "`pendente`: o numero foi colhido por BUSCA e por materia, e o nivel 3 da escada (`ato-municipal-lido-no-municipio`) exige o decreto, a lei ou o folheto LIDO no dominio .gov.br do municipio, com data. Municipio `pendente` NAO alimenta a camada 2 da F1: a ferramenta imprime a ressalva generica dizendo que aquele municipio nao esta no banco (1.1 da especificacao). Os dois limites sao null porque nao foram colhidos, e null aqui e resposta: o folheto que o bloco 1 viu cita o limite nacional, nao um limite proprio.",
+   "fontes": {
+    "corpus-bloco-1": {
+     "url": "https://www.joinville.sc.gov.br/",
+     "tipo": "materia-ou-folheto-colhido-por-busca",
+     "nivel": 5,
+     "origem": "ficha-de-varejo-grande",
+     "autoria": "Prefeitura de Joinville (nao lido)",
+     "custodia": "www.joinville.sc.gov.br",
+     "leitura": null,
+     "data_leitura": "2026-10-28",
+     "observacao": "O bloco 1 registra que joinville.sc.gov.br publica folheto proprio, e que o folheto cita 1.000 W e 32 km/h — que e o limite NACIONAL, nao um limite local. Os limites locais deste municipio, se existirem, NAO foram colhidos: por isso os dois campos sao null e nao zero. MEDIDO PELA EXECUCAO DO BLOCO 3 EM 28/10/2026 as 16h3xZ, pela 20.3 (quem escreve a regra que exige a fonte e quem confere se a fonte esta liberada): os QUATRO dominios municipais devolvem 000 nas TRES passadas, com rodametria.com.br e aquametria.com.br em 200 nas MESMAS tres — 12 medicoes de bloqueio contra 6 de controle verde, zero intermitencia. O egresso responde `connect_rejected`, que e recusa de politica e nao queda de host. MESMA FAMILIA do bloqueio de gov.br, in.gov.br, planalto.gov.br, contran.gov.br e lex.com.br do despacho ALTA de 28/10: o que esta ilha nao alcanca nao e um site, e o dominio .gov.br."
+    }
+   }
+  },
+  {
+   "id": "sao-jose-dos-campos",
+   "nome": "Sao Jose dos Campos",
+   "uf": "SP",
+   "limite_velocidade_kmh": null,
+   "limite_potencia_w": null,
+   "instrumento": "folheto municipal",
+   "status": "pendente",
+   "motivo_do_status": "`pendente`: o numero foi colhido por BUSCA e por materia, e o nivel 3 da escada (`ato-municipal-lido-no-municipio`) exige o decreto, a lei ou o folheto LIDO no dominio .gov.br do municipio, com data. Municipio `pendente` NAO alimenta a camada 2 da F1: a ferramenta imprime a ressalva generica dizendo que aquele municipio nao esta no banco (1.1 da especificacao). Mesma situacao de Joinville: existe folheto, nao existe numero local colhido.",
+   "fontes": {
+    "corpus-bloco-1": {
+     "url": "https://www.sjc.sp.gov.br/",
+     "tipo": "materia-ou-folheto-colhido-por-busca",
+     "nivel": 5,
+     "origem": "ficha-de-varejo-grande",
+     "autoria": "Prefeitura de Sao Jose dos Campos (nao lido)",
+     "custodia": "www.sjc.sp.gov.br",
+     "leitura": null,
+     "data_leitura": "2026-10-28",
+     "observacao": "O bloco 1 registra que sjc.sp.gov.br publica folheto proprio. Nenhum numero local foi colhido. MEDIDO PELA EXECUCAO DO BLOCO 3 EM 28/10/2026 as 16h3xZ, pela 20.3 (quem escreve a regra que exige a fonte e quem confere se a fonte esta liberada): os QUATRO dominios municipais devolvem 000 nas TRES passadas, com rodametria.com.br e aquametria.com.br em 200 nas MESMAS tres — 12 medicoes de bloqueio contra 6 de controle verde, zero intermitencia. O egresso responde `connect_rejected`, que e recusa de politica e nao queda de host. MESMA FAMILIA do bloqueio de gov.br, in.gov.br, planalto.gov.br, contran.gov.br e lex.com.br do despacho ALTA de 28/10: o que esta ilha nao alcanca nao e um site, e o dominio .gov.br."
+    }
+   }
+  }
+ ]
+}

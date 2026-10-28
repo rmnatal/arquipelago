@@ -1,0 +1,183 @@
+{
+ "id": "pecas",
+ "ilha": "rodametria",
+ "bloco": "3",
+ "esquema": "dados/esquema-banco.json",
+ "versao_esquema": 1,
+ "gerado_em": "2026-10-28",
+ "publicar": false,
+ "nota": "As TRES pecas que a Bussola mediu COM VENDA no painel da Shopee em 27/10/2026. Nenhuma rede foi tocada para montar este arquivo. As outras pecas da lista do bloco 3 do PROMPT.md (pneu, carregador por tensao, bateria por V/Ah, cadeado) nao tem registro porque nao tem coleta — arquivo com tipo vazio e diferente de tipo que nao existe, e o esquema ja declara a chave de encaixe de cada um deles, esperando dado.",
+ "registros": [
+  {
+   "id": "camara-kenda-16x3-0",
+   "tipo": "camara",
+   "titulo_colhido": "Camara Kenda 16x3.0",
+   "marca": "Kenda",
+   "compatibilidade": {
+    "chave": "aro_largura",
+    "valor": "16 x 3.0",
+    "fonte": "painel-shopee",
+    "declarado_como": "16x3.0",
+    "declarada_por": "titulo_ou_ficha_declara_literalmente",
+    "observacao": "A medida E o nome do produto, e e por isso que ela entra de fonte nivel 6: a excecao declarada em `niveis_minimos_por_campo.medida_no_proprio_titulo_e_excecao_declarada`. O que continua fora, em qualquer nivel, e medida deduzida da foto ou da frase 'serve em patinete adulto'."
+   },
+   "status": "rascunho",
+   "motivo_do_status": "`rascunho`: nenhum registro deste banco tem saida de compra ainda, e a 25.2 nao admite item publicavel sem piso.",
+   "divergencias": [],
+   "afirmacao_do_vendedor": [],
+   "cotacoes": [
+    {
+     "valor_brl": 59.99,
+     "loja": "Shopee",
+     "programa": "shopee",
+     "comissao_declarada_pct": 15.0,
+     "vendas_declaradas": null,
+     "data_leitura": "2026-10-27",
+     "fonte": "painel-shopee"
+    }
+   ],
+   "afiliado": {
+    "programa": null,
+    "degrau": null,
+    "url": null,
+    "url_produto": null,
+    "par_colhido_em": null,
+    "url_busca": null,
+    "url_busca_produto": null,
+    "encurtamento_tentado_em": null,
+    "sub_id_1": null,
+    "sub_id_2": null,
+    "motivo_sem_url_produto": "CAUSA: a coleta de link e bloco proprio e nao e este. || ULTIMA TENTATIVA: nenhuma em 28/10/2026, de proposito.",
+    "motivo_sem_url_busca": "CAUSA: idem. || ULTIMA TENTATIVA: nenhuma em 28/10/2026."
+   },
+   "imagem": null,
+   "fontes": {
+    "painel-shopee": {
+     "url": "https://affiliate.shopee.com.br/ (painel de afiliado, logado)",
+     "tipo": "painel-de-afiliado",
+     "nivel": 6,
+     "origem": "anuncio-de-marketplace",
+     "autoria": "o vendedor do anuncio",
+     "custodia": "Shopee",
+     "leitura": null,
+     "data_leitura": "2026-10-27",
+     "observacao": "Lido pela Bussola em 27/10/2026, na secao (c) de bussola/dossies/rodametria/DOSSIE.md, na linha 'Pecas na Shopee com venda'."
+    }
+   }
+  },
+  {
+   "id": "chicote-shopee",
+   "tipo": "chicote",
+   "titulo_colhido": "Chicote (anuncio Shopee, sem modelo nem medida)",
+   "marca": null,
+   "compatibilidade": {
+    "chave": null,
+    "valor": null,
+    "fonte": "painel-shopee",
+    "declarado_como": null,
+    "declarada_por": null,
+    "motivo": "O anuncio colhido nao declara modelo de veiculo nem medida nenhuma, e chicote eletrico e peca cuja compatibilidade e justamente o conector e o modelo. Sem a medida, nenhuma ferramenta pode casa-lo com veiculo nenhum — e deduzir por semelhanca e o que a secao 26 proibe. Fica gravado para a coleta seguinte procurar a medida, nao para ser servido."
+   },
+   "status": "rascunho",
+   "motivo_do_status": "`rascunho` por DUAS causas, nao uma: nao tem saida de compra (25.2) E nao tem medida de compatibilidade declarada. A segunda nao se resolve no bloco de coleta de link.",
+   "divergencias": [],
+   "afirmacao_do_vendedor": [],
+   "cotacoes": [
+    {
+     "valor_brl": 107.99,
+     "loja": "Shopee",
+     "programa": "shopee",
+     "comissao_declarada_pct": 17.0,
+     "vendas_declaradas": null,
+     "data_leitura": "2026-10-27",
+     "fonte": "painel-shopee"
+    }
+   ],
+   "afiliado": {
+    "programa": null,
+    "degrau": null,
+    "url": null,
+    "url_produto": null,
+    "par_colhido_em": null,
+    "url_busca": null,
+    "url_busca_produto": null,
+    "encurtamento_tentado_em": null,
+    "sub_id_1": null,
+    "sub_id_2": null,
+    "motivo_sem_url_produto": "CAUSA: a coleta de link e bloco proprio e nao e este. || ULTIMA TENTATIVA: nenhuma em 28/10/2026, de proposito.",
+    "motivo_sem_url_busca": "CAUSA: idem. || ULTIMA TENTATIVA: nenhuma em 28/10/2026."
+   },
+   "imagem": null,
+   "fontes": {
+    "painel-shopee": {
+     "url": "https://affiliate.shopee.com.br/ (painel de afiliado, logado)",
+     "tipo": "painel-de-afiliado",
+     "nivel": 6,
+     "origem": "anuncio-de-marketplace",
+     "autoria": "o vendedor do anuncio",
+     "custodia": "Shopee",
+     "leitura": null,
+     "data_leitura": "2026-10-27",
+     "observacao": "Lido pela Bussola em 27/10/2026, na secao (c) de bussola/dossies/rodametria/DOSSIE.md, na linha 'Pecas na Shopee com venda'."
+    }
+   }
+  },
+  {
+   "id": "capacete-coquinho",
+   "tipo": "capacete",
+   "titulo_colhido": "Capacete coquinho (240 vendas)",
+   "marca": null,
+   "compatibilidade": {
+    "chave": "nenhuma",
+    "valor": null,
+    "fonte": "painel-shopee",
+    "declarado_como": null,
+    "declarada_por": null,
+    "observacao": "Capacete nao casa com veiculo: serve a PESSOA. `chave: nenhuma` e a resposta certa e nao uma lacuna — e o que o esquema declara em `compatibilidade.por_tipo`. Ele entra por consulta, nunca por encaixe."
+   },
+   "status": "rascunho",
+   "motivo_do_status": "`rascunho`: nenhum registro deste banco tem saida de compra ainda, e a 25.2 nao admite item publicavel sem piso.",
+   "divergencias": [],
+   "afirmacao_do_vendedor": [],
+   "cotacoes": [
+    {
+     "valor_brl": 79.72,
+     "loja": "Shopee",
+     "programa": "shopee",
+     "comissao_declarada_pct": 5.0,
+     "vendas_declaradas": "240 vendas",
+     "data_leitura": "2026-10-27",
+     "fonte": "painel-shopee"
+    }
+   ],
+   "afiliado": {
+    "programa": null,
+    "degrau": null,
+    "url": null,
+    "url_produto": null,
+    "par_colhido_em": null,
+    "url_busca": null,
+    "url_busca_produto": null,
+    "encurtamento_tentado_em": null,
+    "sub_id_1": null,
+    "sub_id_2": null,
+    "motivo_sem_url_produto": "CAUSA: a coleta de link e bloco proprio e nao e este. || ULTIMA TENTATIVA: nenhuma em 28/10/2026, de proposito.",
+    "motivo_sem_url_busca": "CAUSA: idem. || ULTIMA TENTATIVA: nenhuma em 28/10/2026."
+   },
+   "imagem": null,
+   "fontes": {
+    "painel-shopee": {
+     "url": "https://affiliate.shopee.com.br/ (painel de afiliado, logado)",
+     "tipo": "painel-de-afiliado",
+     "nivel": 6,
+     "origem": "anuncio-de-marketplace",
+     "autoria": "o vendedor do anuncio",
+     "custodia": "Shopee",
+     "leitura": null,
+     "data_leitura": "2026-10-27",
+     "observacao": "Lido pela Bussola em 27/10/2026, na secao (c) de bussola/dossies/rodametria/DOSSIE.md, na linha 'Pecas na Shopee com venda'."
+    }
+   }
+  }
+ ]
+}

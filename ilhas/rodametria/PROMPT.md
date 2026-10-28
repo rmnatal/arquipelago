@@ -83,7 +83,34 @@ publicadores e não o achou publicado em nenhum.
 - **F3 — "Aguenta o meu peso?"** Entrada: peso + carga. Saída: elegíveis pela carga máxima declarada, e os de fora com o motivo (seção 7).
 Saída sempre faixa com critério e fonte.
 
-**3. MODELO DO BANCO.** VEÍCULO (`categoria`, `potencia_nominal_w`, `potencia_pico_w`, `velocidade_max_kmh`, `acelerador`, `tensao_v`, `amperagem_ah`, `energia_wh`, `autonomia_declarada_km`, `carga_max_kg`, `aro`, `peso_kg`, preço com data, `afiliado.programa`, `afiliado.url_busca_produto`, `afiliado.url_produto`, `imagem`) · PEÇA (câmara, pneu, carregador por tensão, bateria por V/Ah, capacete, cadeado). Todo campo com `fonte_url`, `fonte_tipo`, `data_leitura`. **Potência nominal e pico são campos diferentes**: anúncio que só diz "1000W" no título não alimenta a F1 sem a ficha dizer qual dos dois é.
+**3. ~~MODELO DO BANCO~~ — ENTREGUE EM 28/10/2026 às 16h4xZ.** `dados/esquema-banco.json` (o contrato,
+versão 1), `dados/veiculos.json` (**17** registros), `dados/pecas.json` (3), `dados/municipios.json` (4),
+`ferramentas/validar-banco.py` (o portão), `ferramentas/derivar-banco.py` (quem escreve `energia_wh`),
+`ferramentas/mutacoes-banco.py` (**66 casos**, 4 mundos que passam e 62 quebras, mais o autoteste da
+bateria) e `ferramentas/bancada.py` (um comando, e ele **descobre** os portões em vez de os listar).
+**Nenhum registro é `publicavel`**, e a causa é uma só e está em cada `motivo_do_status`: ninguém tem
+saída de compra ainda, e a 25.2 não admite item publicável sem piso. **Nada foi ao ar e nada podia:**
+o `manifest.json` segue na revisão 1 com os três grupos vazios, e a primeira revisão que publica algo
+continua sendo a da casca (bloco 3b).
+
+**AS TRÊS COISAS QUE O BLOCO ACRESCENTOU À LISTA ABAIXO, e as três nasceram de aplicar a lista a dado real:**
+1. **A entidade `MUNICIPIO`**, que esta lista não tem. A 1.1 da especificação dá **três** estados ao campo
+   `municipio` da F1, e o do meio ("conhecido pelo banco") precisa de um banco que ninguém havia mandado
+   existir. Os quatro municípios são `pendente` e a consequência está escrita sem maquiar: **hoje a camada
+   2 da F1 tem duas saídas iguais em vez de três.** Despacho NORMAL novo de 28/10.
+2. **`potencia_declarada_sem_rotulo_w`.** Esta lista supõe que todo watt colhido é nominal **ou** pico. Não
+   é: o caso esmagadoramente mais comum do varejo é **um watt só, sem rótulo** — e o banco mediu **14 de 17**
+   assim, contra **zero** com nominal declarado. Sem o campo, as duas saídas disponíveis mentiriam (jogar o
+   número no nominal classifica pelo anúncio; descartá-lo apaga o único watt que a fonte declarou).
+3. **`cotacoes[]` como série**, no lugar de "preço com data" como campo: leitura nova não substitui leitura
+   velha, porque substituir apaga a série.
+
+**E O NÚMERO QUE O BLOCO MEDIU E QUE VALE MAIS QUE O ESQUEMA: `veiculos_com_nominal_declarado` = 0.** A
+F1 não tem candidato nenhum na vitrine **nem no dia em que os limiares chegarem** — o que falta não é só a
+resolução, é a ficha que diz qual dos dois watts é o nominal. Isso é trabalho de coleta em ficha de
+fabricante (nível 4 da escada, hoje vazio), não de ferramenta.
+
+**3-ORIGINAL (guardado).** VEÍCULO (`categoria`, `potencia_nominal_w`, `potencia_pico_w`, `velocidade_max_kmh`, `acelerador`, `tensao_v`, `amperagem_ah`, `energia_wh`, `autonomia_declarada_km`, `carga_max_kg`, `aro`, `peso_kg`, preço com data, `afiliado.programa`, `afiliado.url_busca_produto`, `afiliado.url_produto`, `imagem`) · PEÇA (câmara, pneu, carregador por tensão, bateria por V/Ah, capacete, cadeado). Todo campo com `fonte_url`, `fonte_tipo`, `data_leitura`. **Potência nominal e pico são campos diferentes**: anúncio que só diz "1000W" no título não alimenta a F1 sem a ficha dizer qual dos dois é.
 
 **3b. CASCA** — depois do WordPress. Molde FERRAMENTA da seção 32, a F1 é a home ("Esse patinete precisa de CNH?"). A home desenhada e aprovada no canvas de identidade está descrita no `DESIGN.md`.
 
@@ -94,6 +121,26 @@ Saída sempre faixa com critério e fonte.
 **5b. PÁGINAS PELO NOME DO PRODUTO** (seção 30) para as seis cabeças, e depois a malha.
 
 **6. LISTA DE PROSPECÇÃO DO WIDGET** — lojas brasileiras de mobilidade elétrica com site próprio, `publicar: false`.
+
+## A BANCADA DESTA ILHA É UM COMANDO SÓ, E ELA DESCOBRE OS PORTÕES (28/10/2026)
+
+```
+python3 ferramentas/bancada.py            # os portões que rodam sem rede
+python3 ferramentas/bancada.py --no-ar    # mais os que abrem o site
+python3 ferramentas/bancada.py --lista    # só imprime o que rodaria
+```
+
+**Não enumere bancada de cabeça neste arquivo nem no `REGISTRO.md`.** `bancada.py` **não tem lista**: varre
+`ferramentas/` e classifica pela convenção de nome (`validar-*`, `mutacoes-*`, `teste-*`, `testar-*` sem
+rede; `conferir-*` e `medir-*` só com `--no-ar`; `derivar-*`, `gerar-*`, `coletar-*`, `aplicar-*` e
+`atualizar-*` escrevem e rodam com `--conferir`). Portão novo entra no dia em que é escrito; arquivo que
+não casa com convenção nenhuma é **denunciado**; e portão cujo texto discorda do código de saída é chamado
+de **INERTE**. As duas metades do veredito — a palavra impressa e o código de saída — são cobradas sempre.
+
+Esta ilha **nasceu** com a bancada, em vez de ganhá-la depois de perder uma régua. A causa é da Robometria
+e está escrita lá: *"a régua existia desde 14/09 e não tinha falhado: não tinha rodado"*. As duas travas da
+própria bancada foram medidas no dia em que ela nasceu, com um portão inerte de mentira e um arquivo sem
+convenção — ela denunciou os dois.
 
 ## Específico desta ilha
 - **O dado que é o produto da ilha é a categoria legal.** Errar "dispensa CNH" num veículo que é ciclomotor manda a pessoa para a rua sem habilitação. A F1 nunca afirma além do que a resolução diz, sempre cita a resolução e a data, e trata potência de pico como insuficiente para classificar.

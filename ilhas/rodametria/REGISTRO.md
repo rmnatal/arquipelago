@@ -3,6 +3,201 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-10-28 16h4xZ — **BLOCO 3 ENTREGUE: O MODELO DO BANCO.** O esquema, 24 registros, três portões e a bancada — e o número que o bloco mediu vale mais que o esquema: **zero veículo com potência nominal declarada, contra 14 com um watt sem rótulo**
+
+**A ESCOLHA DA ILHA, dita antes de qualquer coisa.** `foco.md` nomeia a **rodametria** (foco total e
+absoluto, decisão do Raphael de 27/10), e pela 1.2 não há escolha a fazer. Conferi as duas exceções que
+furariam o foco: o **despacho do molde de conversão** (32.6) está **FECHADO nas três ilhas** — aquametria
+em 21/10 às 18h2xZ, clubedomosaico em 21/10 às 19h1xZ, robometria em 21/10 às 16h1xZ —, e o **item 1
+(ALTA) do despacho da Sentinela de 28/10 na clubedomosaico** não fura: a 1.2 exige ilha no ar **E
+QUEBRADA** (página servindo erro, ferramenta devolvendo número errado, site fora do ar), e a própria ronda
+registra, com todas as letras, *"A RÉGUA TÉCNICA PASSOU INTEIRA"* — 32 de 32 em 200, as duas ferramentas
+conferidas com entrada inédita e a conta refeita na mão. O que o item 1 descreve é dívida de receita, não
+ilha quebrada. **`executando_desde` da rodametria estava `null`, que pela 1.1 já significa que não havia
+bloco da Fundação vivo** — não houve reserva vencida para o git desempatar. Reserva escrita às **16h19Z**,
+commit `4a14f00`, push aceito de primeira. Nenhum branch `claude/*` e nenhum PR aberto (`list_pull_requests`
+em aberto devolveu vazio), e o `main` local estava idêntico ao `origin/main`.
+
+**REDE PELA 20.2, REMEDIDA E NÃO HERDADA:** `https://rodametria.com.br/` e `/wp-sitemap.xml` os dois em
+**200 nas três passadas**.
+
+---
+
+### O QUE ENTROU
+
+`dados/esquema-banco.json` — o contrato, **versão 1**, com três entidades, a escada de fontes de oito
+níveis, a regra de divergência por campo, a lista de campos que exigem procedência de leitura e os grupos
+de prestação de contas das três ferramentas. `dados/veiculos.json` (**17** registros), `dados/pecas.json`
+(**3**), `dados/municipios.json` (**4**). Os portões: `ferramentas/validar-banco.py`,
+`ferramentas/derivar-banco.py` (quem **escreve** `energia_wh`, separado de quem o **confere**, de propósito
+— a segunda metade existe para discordar da primeira) e `ferramentas/mutacoes-banco.py`. Mais
+`ferramentas/bancada.py`, que descobre os portões em vez de os listar.
+
+**OS 24 REGISTROS SAÍRAM SÓ DO QUE JÁ ESTAVA COLHIDO NO REPOSITÓRIO** — `dados/corpus-buscas.md` (bloco 1),
+a tabela 1.6 de `dados/especificacao-calculadoras.md` (bloco 2) e a seção (c) de
+`bussola/dossies/rodametria/DOSSIE.md` (Bússola, 27/10). **Nenhuma rede foi tocada para montá-los e nenhum
+número foi digitado de cabeça.** Modelo de banco sem registro nenhum é hipótese: o que prova um esquema é
+ele aplicado a dado real, e foi a aplicação que achou tudo o que está abaixo.
+
+**NENHUM REGISTRO É `publicavel`, e a causa é UMA SÓ:** ninguém tem saída de compra, e a 25.2 não admite
+item publicável sem piso. Está em cada `motivo_do_status`, com a mesma frase. **Nada foi ao ar e nada
+podia:** o `manifest.json` segue na **revisão 1** com os três grupos vazios. Conferi o canal de qualquer
+jeito, porque ele nasceu hoje e vinha falhando: `/status` em **revisão 1**, igual ao `manifest.json`,
+`ultimo` em **16:13:31** e **zero linha de FALHA** depois das 13h40 — o cron de 30 minutos está vivo e o
+canal está são. Pela 20.5, revisão igual com log de agora é o estado certo, não cache.
+
+### BANCADA, 0 FALHA
+
+`bancada.py` rodou os três portões sem rede: `validar-banco.py` **APROVADO**,
+`derivar-banco.py --conferir` **APROVADO** (todo `energia_wh` do banco bate com V × Ah),
+`mutacoes-banco.py` **APROVADO** com **66 casos** — **4 mundos que têm de passar** (o banco de hoje, o
+banco **vazio**, um registro publicável completo no degrau 3 com par colhido, e um no degrau 4 com `url`
+vazia) e **62 quebras**, cada uma declarando no próprio caso o **pedaço da frase** que espera ouvir de
+volta. Mutação que aceita qualquer reprovação passa quando o portão reprova pelo motivo errado, e duas
+delas reprovaram assim na primeira rodada — as duas eram expectativa minha escrita com desleixo, e a
+bateria as pegou. **Mais o autoteste da bateria:** um validador de mentira, que aprova tudo, tem de fazer
+a bateria reprovar. Sem isso, bateria quebrada diz `0 falha(s)` e ninguém sabe.
+
+**Sete das 62 são MORTES DO ESQUEMA (26.2), e elas não estragam registro nenhum:** apagam uma chave **do
+esquema** e exigem que o portão **MORRA**, nunca que aprove em silêncio. Régua que lê a própria lista de um
+arquivo de dados aprova tudo, calada, no dia em que o arquivo perder a chave. A mais instrutiva é a da
+sentinela: apagando `valor_sentinela_de_ausencia` do esquema, **o banco de HOJE passa a reprovar** — o que
+prova que aquela linha do esquema sustenta peso, e não é decoração.
+
+**E a bancada tem régua própria, medida no dia em que nasceu:** com um portão inerte de mentira (imprime
+`REPROVADO` e sai 0) e um arquivo sem convenção de nome, ela denunciou os dois e fechou **REPROVADO**.
+Removidos depois.
+
+---
+
+### O ACHADO DO BLOCO, E ELE É UM NÚMERO: **`veiculos_com_nominal_declarado` = 0, CONTRA 14 COM UM WATT SEM RÓTULO**
+
+O `PROMPT.md` desta ilha já dizia a regra: *"anúncio que só diz '1000W' no título não alimenta a F1 sem a
+ficha dizer qual dos dois é"*. Era uma regra. **Aplicada aos 17 registros, virou uma medição**, e a medição
+é mais dura do que a regra soava: **das 17 fontes colhidas, nenhuma declara se o watt é nominal ou de pico.**
+Nem a ficha do Extra, nem a das Casas Bahia, nem o painel da Shopee, nem o do Mercado Livre.
+
+**O que isso muda no plano, e muda de verdade:** a F1 **não tem candidato nenhum na vitrine nem no dia em
+que os limiares da Contran chegarem**. O despacho ALTA de 28/10 destrava a *fórmula*; ele não destrava a
+*entrada*. O que falta além da resolução é a **ficha que diz qual dos dois watts é o nominal** — nível 4 da
+escada (`ficha-do-fabricante-lida`), hoje **vazio**, porque nenhum domínio de fabricante desta ilha foi
+tentado por execução nenhuma. **Isto é trabalho de coleta, não de ferramenta**, e é o próximo passo
+desbloqueado mais caro da ilha.
+
+**E A TABELA 1.6 DA ESPECIFICAÇÃO TEM UMA COLUNA QUE PROMETE MAIS DO QUE AS FONTES DERAM — ERRATA.** Ela
+tabula sete veículos sob o cabeçalho **"W nominal"**. Nenhuma das sete fontes usa a palavra *nominal*: o que
+cada uma publica é um watt só, sem rótulo. A coluna não está errada nos números; está errada no **nome**, e
+o nome é justamente a distinção que esta ilha vende. No banco, os mesmos números moram em
+`potencia_declarada_sem_rotulo_w`, e `potencia_nominal_w` está null com motivo nos 17. **A errata fica aqui
+e não reescreve a especificação:** a tabela é registro do que o bloco 2 leu, e o banco é o contrato do que
+a ferramenta pode usar — quem construir a F1 lê o banco.
+
+### AS TRÊS COISAS QUE O ESQUEMA ACRESCENTOU À LISTA DO `PROMPT.md`, e as três nasceram de aplicar a lista a dado real
+
+**(1) A ENTIDADE `MUNICIPIO`.** A lista do bloco 3 pede VEÍCULO e PEÇA, e é **anterior** à especificação do
+bloco 2 — que deu à F1 **quatro** entradas e fez a quarta ter **três** estados de saída, sendo o do meio
+*"município preenchido e conhecido pelo banco"*. Esse estado precisa de um banco de municípios que ninguém
+havia mandado existir; sem ele, a F1 cairia na ressalva genérica fingindo que essa é a única resposta
+possível. A camada 2 da F1 é **dado**, não prosa de rodapé.
+
+**(2) `potencia_declarada_sem_rotulo_w`.** Ver o achado acima. O esquema nasceu com dois campos de potência
+e a montagem dos registros mostrou que o mundo tem **três** estados, não dois.
+
+**(3) `cotacoes[]` como SÉRIE**, no lugar de "preço com data" como campo. Leitura nova não substitui leitura
+velha: substituir apaga a série, que é a única coisa capaz de mostrar que o anúncio de R$ 2.299 de 27/10
+virou outro número. É a lição que a Robometria escreveu no esquema dela, aqui como array dentro do registro
+em vez de entidade separada — com 24 registros, o custo de um arquivo a mais não se paga ainda.
+
+### A DECISÃO DE ENGENHARIA DO BLOCO: **SEVERIDADE DE FONTE É POR CAMPO, PELA ASSIMETRIA DE CUSTO — NÃO UMA LINHA SÓ PARA O REGISTRO INTEIRO**
+
+A primeira versão da escada dizia, como a da Robometria, que os níveis 6, 7 e 8 **não sustentam campo
+técnico nenhum**. Aplicada ao banco, ela **reprovava campo certo**: o Wh da F2 é `V × Ah`, identidade
+matemática, e o anúncio que escreve *"60 V 20 Ah"* no título está **declarando a bateria**, não prometendo
+desempenho. Errar ali custa uma faixa de km mais larga; errar na categoria legal manda alguém para a rua
+sem habilitação. **São erros de preço diferente, e a seção 10 manda a direção sair da assimetria de custo.**
+
+Então o esquema ganhou `niveis_minimos_por_campo`: **nível 5 ou melhor** (ficha de varejo grande) em
+`potencia_nominal_w`, `velocidade_max_kmh`, `acelerador` e `carga_max_kg` — os três primeiros são as
+entradas da F1, e o quarto é a 3.5 da especificação (*"não estima carga máxima de veículo que não a
+declara"*); **nível 6 aceito** em `tensao_v`, `amperagem_ah`, `autonomia_declarada_km`, `aro`, `peso_kg` e
+nos dois campos de potência que não classificam; **nível 8 não sustenta nada**, em nenhum campo.
+
+**O resultado prático:** a F2 e a F3 têm candidato real no dia um (2 veículos com Wh derivado de V e Ah
+declarados, 3 com carga máxima de ficha), e a F1 tem zero — **cada um pelo seu motivo, escrito.** Portão
+que reprova campo certo é o caminho mais curto para alguém passar a ignorá-lo, e é a mesma lição que a
+20.5 nomeou quando o "REPROVADO" era cache.
+
+### O SEGUNDO ACHADO, E ELE VEIO DA PRIMEIRA RODADA DO PRÓPRIO VALIDADOR: **O PIVÔ DA F1 QUEBRA A INVARIANTE DE PROCEDÊNCIA, E QUEBRA COM RAZÃO**
+
+Todo campo deste banco obedece a "valor presente ⇒ procedência presente": com valor, exige-se `fonte`,
+`declarado_como` (o texto **literal** da fonte) e, nos dois campos da 26.1, `declarada_por`. O `acelerador`
+é um enum de **três** valores em que o terceiro, `nao_declarado`, **tem como conteúdo a própria ausência de
+declaração** — cobrar dele o texto literal é cobrar o literal de uma frase que não existe. A primeira
+rodada reprovou **40 vezes** por isso, em registro certo.
+
+**A regra que nasceu:** o esquema declara `valor_sentinela_de_ausencia` no campo, e a sentinela **exige
+`fonte`** (onde se olhou) e **`motivo`** (por que não se achou) e **dispensa** `declarado_como` e
+`declarada_por`. O nome da sentinela mora **no esquema**, não dentro do validador: o dia em que outro campo
+ganhar sentinela, ele a declara numa linha e a trava passa a tratá-la sem código novo (26.2). E a sentinela
+nunca dispensa o registro de nada mais — ela é um valor, conta nos grupos de prestação de contas, e **nunca
+cai no lado "só pedal assistido" por omissão**.
+
+**E a mesma rodada achou um defeito de verdade no dado**, não na régua: **dois registros nasceram com o
+pivô da F1 em `null`** (`patinete-adulto-com-banco-shopee` e `playbik`), porque o construtor caiu no padrão
+de "campo não colhido" num campo que **não aceita nulo**. Os dois foram consertados para a sentinela, com
+`fonte` e `motivo`. Foi o portão pegando o autor do portão na mesma passada — que é exatamente para isso
+que ele existe.
+
+### A MEDIÇÃO DA 20.3, QUE É DEVER DE QUEM ESCREVE A REGRA: **OS QUATRO DOMÍNIOS DE PREFEITURA ESTÃO RECUSADOS**
+
+Escrevi no esquema que o nível 3 exige **o ato lido no domínio `.gov.br` do município** — então pela 20.3 a
+medição é minha. Às 16h3xZ, nas três passadas da 20.2: `www.campinas.sp.gov.br`, `www.rio.rj.gov.br`,
+`www.joinville.sc.gov.br` e `www.sjc.sp.gov.br` em **000 nas três**, com `rodametria.com.br` e
+`aquametria.com.br` em **200 nas mesmas três**. **12 medições de bloqueio contra 6 de controle verde, zero
+intermitência**, com o egresso respondendo `connect_rejected` — recusa de política, não queda de host. **É
+a mesma parede do despacho ALTA de hoje:** o que esta ilha não alcança não é um site, é o domínio
+`.gov.br`.
+
+Os quatro municípios são `pendente`, e a consequência está escrita sem maquiar no próprio arquivo: **hoje a
+camada 2 da F1 tem DUAS saídas em vez de três, e as duas imprimem a mesma frase genérica.** A diferença
+entre isso e um buraco é que isso está contado, com a causa e com o nome dos quatro domínios. **Despacho
+NORMAL novo** em `dados/despachos.md`, com o pedido nas duas formas — e a forma (a) dele é uma linha só,
+`*.gov.br`, que fecha **os dois despachos de hoje** de uma vez.
+
+E a nota de método, porque ela se repetiu dentro da mesma execução: a primeira versão do `municipios.json`
+dizia *"os quatro domínios que ninguém tentou"*. **Essa frase ficou velha na execução que a escreveu**, e a
+nova é pior: não é que ninguém tentou — é que não dá. É a família do bloqueio herdado do `ESTADO.md` lido
+como fato (20.2), com três horas de vida em vez de três dias.
+
+### O QUE MAIS O ESQUEMA DECIDIU, em uma linha cada
+
+- **`tipo_comercial` e `categoria` são enums DISJUNTOS**, e o validador reprova se passarem a compartilhar
+  um valor. "Scooter" não é categoria da resolução, e o esquema faz com que não exista **como** gravá-la.
+- **`categoria` é null nos 17, por força da constante**, e o validador lê o **status da constante** em
+  `constantes.json` — não uma lista escrita dentro dele. Com o limiar `pendente`, categoria preenchida é
+  reprovação com a frase *"o anúncio escrevendo a regra"*.
+- **A divergência resolve para o lado RESTRITIVO** nesta ilha — oposto da Aquametria (que resolve pelo
+  maior) e mesma direção da Robometria (que resolve pelo mais estreito). O erro caro aqui é o permissivo.
+- **Três registros nasceram `excluido_do_banco` com a causa escrita** — dois títulos de anúncio sem marca e
+  sem modelo, e um item cuja única fonte é nível 8. Recusa que não se escreve é recusa que a próxima coleta
+  repete.
+- **A prestação de contas da seção 7 é conferida como invariante**, não como intenção: o validador avalia
+  os grupos das três ferramentas sobre **todo** registro e reprova se algum cair em zero ou em dois grupos.
+  Com zero publicáveis ela é **verdadeira por vacuidade**, e o validador diz isso como **AVISO** — registro,
+  nunca aprovação, na mesma família da janela de 15 linhas da 20.4.
+
+### PRÓXIMO PASSO DESBLOQUEADO
+
+**O bloco 3b (casca) depende do WordPress e ele está no ar**; o que o bloco 3 deixa pronto para ele é o
+banco de onde a vitrine sai e a dívida da 26.3 nomeada (a frase da tela que lê `declarada_por` e escolhe a
+atribuição — ela é da casca, não do banco). **Mas o passo que vale mais não é a casca: é a COLETA EM FICHA
+DE FABRICANTE**, pelos dois números que este bloco mediu — 0 de 17 com potência nominal declarada e nível 4
+da escada vazio. Sem ele a F1 fica sem entrada mesmo com a resolução na mão, e a F1 é a home desta ilha. O
+primeiro passo dessa coleta é de um comando e é a 20.3 outra vez: **medir o egresso contra os domínios dos
+fabricantes antes de escrever regra que os exija.**
+
+---
+
 ## 2026-10-28 13h5xZ — **ADENDO À MESMA EXECUÇÃO: O SYNC DA ILHA NASCEU HOJE E ESTAVA FALHANDO EM SILÊNCIO.** A seção 4 **ao contrário** — não foi o site que ficou para trás, foi o repositório
 
 **Achado fora do bloco, na conferência de fecho.** Às 10h17Z desta mesma manhã a execução

@@ -11,6 +11,41 @@ Prioridade: `alta` fura a fila da próxima execução do destinatário.
 
 ## ABERTOS
 
+### prioridade NORMAL — a CAMADA MUNICIPAL da F1 é dado de banco, e os quatro domínios de prefeitura que a sustentariam estão recusados pelo egresso
+
+28/10/2026 às 16h3xZ — RAPHAEL (duas linhas na lista de rede, ou quatro leituras no Chrome) — Medido pela execução da Fundação que entregou o bloco 3 da rodametria (modelo do banco).
+
+**POR QUE ISTO NASCEU NESTE BLOCO.** A especificação do bloco 2 decidiu, na seção 1.1, que a F1 tem **quatro** entradas e que a quarta (`municipio`) tem **três** estados de saída: vazio → ressalva genérica; preenchido e **conhecido pelo banco** → o limite daquele município; preenchido e desconhecido → ressalva genérica dizendo que ele não está no banco. O estado do meio exige um **banco de municípios**, que a lista do bloco 3 no `PROMPT.md` não pedia — ela é anterior à especificação. A entidade `MUNICIPIO` nasceu agora, em `ilhas/rodametria/dados/municipios.json`, com os quatro municípios que o bloco 1 colheu.
+
+**OS QUATRO SÃO `pendente`, E A CAUSA ESTÁ MEDIDA.** O nível 3 da escada de fontes do esquema (`ato-municipal-lido-no-municipio`) exige o decreto, a lei ou o folheto **lido no domínio .gov.br do município**, porque matéria sobre o ato não é o ato — e aqui isso não é purismo: o achado A1 do bloco 1 é justamente que os **350 W / 25 km/h do Rio** aparecem em matéria **como se fossem regra nacional**, e a camada 2 existe para desfazer essa confusão. Repetir a confusão com a fonte da confusão seria a ilha publicando o defeito que ela diagnosticou.
+
+Pela **20.3** (quem escreve a regra que exige a fonte é quem confere se a fonte está liberada), esta execução mediu os quatro domínios, às 16h3xZ, nas três passadas que a **20.2** manda:
+
+```
+www.campinas.sp.gov.br      000  000  000
+www.rio.rj.gov.br           000  000  000
+www.joinville.sc.gov.br     000  000  000
+www.sjc.sp.gov.br           000  000  000
+rodametria.com.br           200  200  200   (controle)
+aquametria.com.br           200  200  200   (controle)
+```
+
+**12 medições de bloqueio contra 6 de controle verde, zero intermitência**, com o egresso respondendo `connect_rejected` — recusa de política, não queda de host. **É a mesma parede do despacho ALTA de 28/10:** `gov.br`, `in.gov.br`, `planalto.gov.br`, `contran.gov.br` e `lex.com.br`. O que esta ilha não alcança não é um site: é o domínio `.gov.br`.
+
+**O PEDIDO, nas duas formas que servem.** Qualquer uma destrava; a segunda vale a passada do mesmo jeito se a primeira demorar.
+
+(a) Acrescentar à lista "Domínios permitidos" dos ambientes de nuvem (`claude.ai/code` → seletor de ambiente → Nuvem → engrenagem) — e note que isto cobre **os dois despachos de hoje** de uma vez:
+
+```
+*.gov.br
+```
+
+(b) Ou abrir no Chrome o ato de cada município e colar em `ilhas/rodametria/dados/municipios.json`, por município: o **nome do ato** (decreto, lei ou portaria, com número e ano), o **limite de velocidade** e/ou de **potência** que ele fixa para patinete e bicicleta elétrica, a **URL** e a **data da leitura**. Os quatro: Campinas (o bloco 1 registra 20 km/h regulamentado, sem nomear o ato), Rio de Janeiro (350 W / 25 km/h, hoje atribuídos por `tupi.fm`, nível 7), Joinville e São José dos Campos (os dois publicam folheto próprio, e o que o bloco 1 viu no de Joinville cita o limite **nacional**, não um limite local).
+
+**O QUE ISTO DESTRAVA, e é menor que a F1 e não é cosmético.** Com um município `publicavel`, a camada 2 da F1 passa a ter as três saídas que a especificação prevê. **Hoje ela tem duas, e as duas imprimem a mesma frase genérica** — a ferramenta fica certa e incompleta exatamente onde o bloco 1 mediu que o mercado erra. Não trava o desembarque da F2 nem da F3, e não é o que trava a F1 (isso é o limiar legal, no despacho ALTA). **É por isso que é NORMAL:** ela completa a resposta, não a libera.
+
+**PRONTO QUANDO:** `ilhas/rodametria/dados/municipios.json` tiver pelo menos um registro com `status: publicavel`, com fonte de nível 3, e `python3 ferramentas/validar-banco.py` continuar aprovando — ele já cobra que `publicavel` exija nível 3 ou melhor e que município publicável declare pelo menos um dos dois limites. A bateria `ferramentas/mutacoes-banco.py` tem os dois casos que provam essas duas travas.
+
 ### prioridade NORMAL — a F2 da ilha em foco vai ao ar sem o número que a tornaria completa, e as DUAS fontes que o publicam não resolvem nesta nuvem
 
 28/10/2026 às 13h3xZ — RAPHAEL (uma leitura no Chrome, ou duas linhas na lista de rede) — Medido pela execução da Fundação que entregou o bloco 2 da rodametria.

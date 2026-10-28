@@ -1,0 +1,1806 @@
+{
+ "id": "veiculos",
+ "ilha": "rodametria",
+ "bloco": "3",
+ "esquema": "dados/esquema-banco.json",
+ "versao_esquema": 1,
+ "gerado_em": "2026-10-28",
+ "publicar": false,
+ "nota": "PRIMEIRA LEVA, montada SO do que ja estava colhido no repositorio em 28/10/2026: dados/corpus-buscas.md (bloco 1), a tabela 1.6 de dados/especificacao-calculadoras.md (bloco 2) e a secao (c) de bussola/dossies/rodametria/DOSSIE.md (Bussola, 27/10/2026). Nenhuma rede foi tocada para montar este arquivo e nenhum numero foi digitado de cabeca. NENHUM registro e `publicavel`, e a causa e uma so: nenhum tem saida de compra, e a 25.2 nao admite item publicavel sem piso.",
+ "registros": [
+  {
+   "id": "honeywhale-m2-max",
+   "marca": "Honeywhale",
+   "modelo": "M2 MAX",
+   "titulo_colhido": "Honeywhale M2 MAX patinete eletrico adulto 500 W, 32 km/h (193 vendas)",
+   "tipo_comercial": "patinete",
+   "potencia_nominal_w": {
+    "valor": null,
+    "motivo": "a fonte declara UM watt so e nao diz se e nominal ou pico, e nao ha contraste na mesma ficha de onde ler o rotulo. Pela regra de campos_que_exigem_procedencia_de_leitura do esquema, o campo nasce null e o numero vai para potencia_declarada_sem_rotulo_w. O registro cai no grupo `sem_potencia_nominal_declarada` da F1, que e a ressalva 1.4(a) com produto na mao."
+   },
+   "potencia_pico_w": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "potencia_declarada_sem_rotulo_w": {
+    "valor": 500,
+    "unidade": "W",
+    "fonte": "painel-shopee",
+    "declarado_como": "500 W"
+   },
+   "velocidade_max_kmh": {
+    "valor": null,
+    "motivo": "a unica fonte deste campo e de nivel 6 (declaracao de vendedor), e `niveis_minimos_por_campo` exige nivel 5 ou melhor em `velocidade_max_kmh` — a categoria legal e o produto da ilha e o erro caro e o permissivo. Colher este campo em ficha de varejo ou do fabricante e trabalho de coleta, nao lacuna de modelo."
+   },
+   "acelerador": {
+    "valor": "nao_declarado",
+    "fonte": "painel-shopee",
+    "motivo": "a unica fonte deste campo e de nivel 6 (declaracao de vendedor), e `niveis_minimos_por_campo` exige nivel 5 ou melhor em `acelerador` — a categoria legal e o produto da ilha e o erro caro e o permissivo. Colher este campo em ficha de varejo ou do fabricante e trabalho de coleta, nao lacuna de modelo. O titulo do painel nao diz acelerador nem pedal assistido, e `nao_declarado` e o terceiro valor do enum, com frase propria: ele NUNCA cai no lado 'so pedal assistido' por omissao.",
+    "declarada_por": null
+   },
+   "tensao_v": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "amperagem_ah": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "energia_wh": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "autonomia_declarada_km": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "carga_max_kg": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "aro": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "peso_kg": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "categoria": null,
+   "motivo_categoria_null": "DERIVADA da F1 e obrigatoriamente null: a constante `limiares-categoria-contran-996-2023` esta `pendente` em dados/constantes.json, e a 1.3 da especificacao proibe a F1 de ir ao ar com numero de portal. O validador le o STATUS DA CONSTANTE, nao uma lista escrita dentro dele.",
+   "status": "rascunho",
+   "motivo_do_status": "`rascunho`, e a causa e UMA SO: nenhum registro deste banco tem saida de compra ainda, e a 25.2 nao admite item publicavel sem piso. Nada aqui e servido em pagina nenhuma enquanto for rascunho. O que destrava e o bloco de coleta de link, nao um acerto de campo.",
+   "divergencias": [],
+   "afirmacao_do_vendedor": [],
+   "alteracao_pos_compra": [],
+   "cotacoes": [
+    {
+     "valor_brl": 2299.0,
+     "loja": "Shopee",
+     "programa": "shopee",
+     "comissao_declarada_pct": 10.0,
+     "vendas_declaradas": "193 vendas",
+     "data_leitura": "2026-10-27",
+     "fonte": "painel-shopee"
+    }
+   ],
+   "afiliado": {
+    "programa": null,
+    "degrau": null,
+    "url": null,
+    "url_produto": null,
+    "par_colhido_em": null,
+    "url_busca": null,
+    "url_busca_produto": null,
+    "encurtamento_tentado_em": null,
+    "sub_id_1": null,
+    "sub_id_2": null,
+    "motivo_sem_url_produto": "CAUSA: a coleta de link e bloco proprio e nao e este; nenhuma chamada de API e nenhum gerador de link foi acionado por esta execucao, que entrega o MODELO do banco. || ULTIMA TENTATIVA: nenhuma em 28/10/2026 — e de proposito, nao por falha.",
+    "motivo_sem_url_busca": "CAUSA: idem. O piso da 25.2 e o primeiro item do bloco de coleta, e e ele que torna qualquer destes registros `publicavel`. || ULTIMA TENTATIVA: nenhuma em 28/10/2026."
+   },
+   "imagem": null,
+   "fontes": {
+    "painel-shopee": {
+     "url": "https://affiliate.shopee.com.br/ (painel de afiliado, logado)",
+     "tipo": "painel-de-afiliado",
+     "nivel": 6,
+     "origem": "anuncio-de-marketplace",
+     "autoria": "o vendedor do anuncio",
+     "custodia": "Shopee",
+     "leitura": null,
+     "data_leitura": "2026-10-27",
+     "observacao": "Lido pela Bussola em 27/10/2026, na secao (c) de bussola/dossies/rodametria/DOSSIE.md. Esta execucao NAO reabriu o painel: a leitura e de terceiro dentro da propria fabrica, e o nivel 6 ja a trata como declaracao de vendedor."
+    }
+   }
+  },
+  {
+   "id": "patinete-adulto-com-banco-shopee",
+   "marca": null,
+   "motivo_sem_marca": "o titulo do painel nao nomeia marca nenhuma.",
+   "modelo": null,
+   "motivo_sem_modelo": "o titulo do painel nao nomeia modelo nenhum.",
+   "titulo_colhido": "Patinete eletrico adulto com banco (147 vendas)",
+   "tipo_comercial": "patinete",
+   "potencia_nominal_w": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "potencia_pico_w": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "potencia_declarada_sem_rotulo_w": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "velocidade_max_kmh": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "acelerador": {
+    "valor": "nao_declarado",
+    "fonte": "painel-shopee",
+    "motivo": "a fonte deste registro nao declara acelerador nem pedal assistido. `nao_declarado` e a sentinela de ausencia do esquema: ela diz que se olhou e nao se achou, e NUNCA cai no lado 'so pedal assistido' por omissao.",
+    "declarada_por": null
+   },
+   "tensao_v": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "amperagem_ah": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "energia_wh": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "autonomia_declarada_km": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "carga_max_kg": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "aro": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "peso_kg": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "categoria": null,
+   "motivo_categoria_null": "DERIVADA da F1 e obrigatoriamente null: a constante `limiares-categoria-contran-996-2023` esta `pendente` em dados/constantes.json, e a 1.3 da especificacao proibe a F1 de ir ao ar com numero de portal. O validador le o STATUS DA CONSTANTE, nao uma lista escrita dentro dele.",
+   "status": "excluido_do_banco",
+   "motivo_do_status": "`excluido_do_banco`: sem marca E sem modelo nao existe veiculo a identificar, so um titulo de anuncio.",
+   "excluido_do_banco_por_que": "Nao e registro de veiculo: e um titulo. Sem marca e sem modelo, nenhuma ferramenta pode casa-lo com peca, com ficha de fabricante nem com outra oferta do mesmo produto, e a 25.9 do ARQUIPELAGO.md ja ensinou o que acontece com campo que empacota dois identificadores. FICA GRAVADO de proposito, com a cotacao, para a proxima coleta nao o recolher de novo — e a licao do `excluido_do_banco` da Robometria. Se uma ficha de varejo o identificar um dia, ele volta como registro novo, nao como remendo deste.",
+   "divergencias": [],
+   "afirmacao_do_vendedor": [],
+   "alteracao_pos_compra": [],
+   "cotacoes": [
+    {
+     "valor_brl": 2699.9,
+     "loja": "Shopee",
+     "programa": "shopee",
+     "comissao_declarada_pct": 5.0,
+     "vendas_declaradas": "147 vendas",
+     "data_leitura": "2026-10-27",
+     "fonte": "painel-shopee"
+    }
+   ],
+   "afiliado": {
+    "programa": null,
+    "degrau": null,
+    "url": null,
+    "url_produto": null,
+    "par_colhido_em": null,
+    "url_busca": null,
+    "url_busca_produto": null,
+    "encurtamento_tentado_em": null,
+    "sub_id_1": null,
+    "sub_id_2": null,
+    "motivo_sem_url_produto": "CAUSA: a coleta de link e bloco proprio e nao e este; nenhuma chamada de API e nenhum gerador de link foi acionado por esta execucao, que entrega o MODELO do banco. || ULTIMA TENTATIVA: nenhuma em 28/10/2026 — e de proposito, nao por falha.",
+    "motivo_sem_url_busca": "CAUSA: idem. O piso da 25.2 e o primeiro item do bloco de coleta, e e ele que torna qualquer destes registros `publicavel`. || ULTIMA TENTATIVA: nenhuma em 28/10/2026."
+   },
+   "imagem": null,
+   "fontes": {
+    "painel-shopee": {
+     "url": "https://affiliate.shopee.com.br/ (painel de afiliado, logado)",
+     "tipo": "painel-de-afiliado",
+     "nivel": 6,
+     "origem": "anuncio-de-marketplace",
+     "autoria": "o vendedor do anuncio",
+     "custodia": "Shopee",
+     "leitura": null,
+     "data_leitura": "2026-10-27",
+     "observacao": "Lido pela Bussola em 27/10/2026, na secao (c) de bussola/dossies/rodametria/DOSSIE.md. Esta execucao NAO reabriu o painel: a leitura e de terceiro dentro da propria fabrica, e o nivel 6 ja a trata como declaracao de vendedor."
+    }
+   }
+  },
+  {
+   "id": "maxshot-v1",
+   "marca": "MAXSHOT",
+   "modelo": "V1",
+   "titulo_colhido": "MAXSHOT V1 (ficha de patinete eletrico, 350 W)",
+   "tipo_comercial": "patinete",
+   "potencia_nominal_w": {
+    "valor": null,
+    "motivo": "a fonte declara UM watt so e nao diz se e nominal ou pico, e nao ha contraste na mesma ficha de onde ler o rotulo. Pela regra de campos_que_exigem_procedencia_de_leitura do esquema, o campo nasce null e o numero vai para potencia_declarada_sem_rotulo_w. O registro cai no grupo `sem_potencia_nominal_declarada` da F1, que e a ressalva 1.4(a) com produto na mao."
+   },
+   "potencia_pico_w": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "potencia_declarada_sem_rotulo_w": {
+    "valor": 350,
+    "unidade": "W",
+    "fonte": "ficha-extra",
+    "declarado_como": "350 W"
+   },
+   "velocidade_max_kmh": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "acelerador": {
+    "valor": "manual",
+    "fonte": "ficha-extra",
+    "declarado_como": "manual",
+    "declarada_por": "titulo_ou_ficha_declara_literalmente"
+   },
+   "tensao_v": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "amperagem_ah": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "energia_wh": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "autonomia_declarada_km": {
+    "valor": null,
+    "motivo": "O eixo B do corpus registra o par '350 W -> 20 km' entre as fichas colhidas e NAO nomeia qual ficha. Atribuir os 20 km a este registro seria inferir por vizinhanca, que a secao 8 proibe. Divida de coleta nomeada, nao lacuna de modelo."
+   },
+   "carga_max_kg": {
+    "valor": 120,
+    "unidade": "kg",
+    "fonte": "ficha-extra",
+    "declarado_como": "120 kg",
+    "observacao": "O eixo C de dados/corpus-buscas.md registra 120 kg como o valor declarado REPETIDO nas fichas brasileiras, nomeando este modelo entre os tres."
+   },
+   "aro": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "peso_kg": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "categoria": null,
+   "motivo_categoria_null": "DERIVADA da F1 e obrigatoriamente null: a constante `limiares-categoria-contran-996-2023` esta `pendente` em dados/constantes.json, e a 1.3 da especificacao proibe a F1 de ir ao ar com numero de portal. O validador le o STATUS DA CONSTANTE, nao uma lista escrita dentro dele.",
+   "status": "rascunho",
+   "motivo_do_status": "`rascunho`, e a causa e UMA SO: nenhum registro deste banco tem saida de compra ainda, e a 25.2 nao admite item publicavel sem piso. Nada aqui e servido em pagina nenhuma enquanto for rascunho. O que destrava e o bloco de coleta de link, nao um acerto de campo.",
+   "divergencias": [],
+   "afirmacao_do_vendedor": [],
+   "alteracao_pos_compra": [],
+   "cotacoes": [],
+   "afiliado": {
+    "programa": null,
+    "degrau": null,
+    "url": null,
+    "url_produto": null,
+    "par_colhido_em": null,
+    "url_busca": null,
+    "url_busca_produto": null,
+    "encurtamento_tentado_em": null,
+    "sub_id_1": null,
+    "sub_id_2": null,
+    "motivo_sem_url_produto": "CAUSA: a coleta de link e bloco proprio e nao e este; nenhuma chamada de API e nenhum gerador de link foi acionado por esta execucao, que entrega o MODELO do banco. || ULTIMA TENTATIVA: nenhuma em 28/10/2026 — e de proposito, nao por falha.",
+    "motivo_sem_url_busca": "CAUSA: idem. O piso da 25.2 e o primeiro item do bloco de coleta, e e ele que torna qualquer destes registros `publicavel`. || ULTIMA TENTATIVA: nenhuma em 28/10/2026."
+   },
+   "imagem": null,
+   "fontes": {
+    "ficha-extra": {
+     "url": "https://www.extra.com.br/ (fichas de patinete e bicicleta eletrica)",
+     "tipo": "ficha-de-varejo",
+     "nivel": 5,
+     "origem": "ficha-de-varejo-grande",
+     "autoria": "Extra (varejo), reproduzindo a ficha do fabricante",
+     "custodia": "Extra",
+     "leitura": null,
+     "data_leitura": "2026-10-28",
+     "observacao": "Colhida por BUSCA pelo bloco 1 em 28/10/2026 e tabulada pelo bloco 2 na secao 1.6 de dados/especificacao-calculadoras.md. A ficha NAO foi reaberta por esta execucao, e e por isso que `leitura` e null: o elo da leitura e o mais fraco e e ele que da o nivel (secao 10 do ARQUIPELAGO.md). O que cada campo guarda em `declarado_como` e o fragmento LITERAL registrado por aqueles dois blocos, nunca uma parafrase desta execucao."
+    }
+   }
+  },
+  {
+   "id": "maxshot-v1spro",
+   "marca": "MAXSHOT",
+   "modelo": "V1SPRO",
+   "titulo_colhido": "MAXSHOT V1SPRO (ficha de patinete eletrico, 500 W)",
+   "tipo_comercial": "patinete",
+   "potencia_nominal_w": {
+    "valor": null,
+    "motivo": "a fonte declara UM watt so e nao diz se e nominal ou pico, e nao ha contraste na mesma ficha de onde ler o rotulo. Pela regra de campos_que_exigem_procedencia_de_leitura do esquema, o campo nasce null e o numero vai para potencia_declarada_sem_rotulo_w. O registro cai no grupo `sem_potencia_nominal_declarada` da F1, que e a ressalva 1.4(a) com produto na mao."
+   },
+   "potencia_pico_w": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "potencia_declarada_sem_rotulo_w": {
+    "valor": 500,
+    "unidade": "W",
+    "fonte": "ficha-extra",
+    "declarado_como": "500 W"
+   },
+   "velocidade_max_kmh": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "acelerador": {
+    "valor": "manual",
+    "fonte": "ficha-extra",
+    "declarado_como": "manual",
+    "declarada_por": "titulo_ou_ficha_declara_literalmente"
+   },
+   "tensao_v": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "amperagem_ah": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "energia_wh": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "autonomia_declarada_km": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "carga_max_kg": {
+    "valor": 120,
+    "unidade": "kg",
+    "fonte": "ficha-extra",
+    "declarado_como": "120 kg"
+   },
+   "aro": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "peso_kg": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "categoria": null,
+   "motivo_categoria_null": "DERIVADA da F1 e obrigatoriamente null: a constante `limiares-categoria-contran-996-2023` esta `pendente` em dados/constantes.json, e a 1.3 da especificacao proibe a F1 de ir ao ar com numero de portal. O validador le o STATUS DA CONSTANTE, nao uma lista escrita dentro dele.",
+   "status": "rascunho",
+   "motivo_do_status": "`rascunho`, e a causa e UMA SO: nenhum registro deste banco tem saida de compra ainda, e a 25.2 nao admite item publicavel sem piso. Nada aqui e servido em pagina nenhuma enquanto for rascunho. O que destrava e o bloco de coleta de link, nao um acerto de campo.",
+   "divergencias": [],
+   "afirmacao_do_vendedor": [],
+   "alteracao_pos_compra": [],
+   "cotacoes": [],
+   "afiliado": {
+    "programa": null,
+    "degrau": null,
+    "url": null,
+    "url_produto": null,
+    "par_colhido_em": null,
+    "url_busca": null,
+    "url_busca_produto": null,
+    "encurtamento_tentado_em": null,
+    "sub_id_1": null,
+    "sub_id_2": null,
+    "motivo_sem_url_produto": "CAUSA: a coleta de link e bloco proprio e nao e este; nenhuma chamada de API e nenhum gerador de link foi acionado por esta execucao, que entrega o MODELO do banco. || ULTIMA TENTATIVA: nenhuma em 28/10/2026 — e de proposito, nao por falha.",
+    "motivo_sem_url_busca": "CAUSA: idem. O piso da 25.2 e o primeiro item do bloco de coleta, e e ele que torna qualquer destes registros `publicavel`. || ULTIMA TENTATIVA: nenhuma em 28/10/2026."
+   },
+   "imagem": null,
+   "fontes": {
+    "ficha-extra": {
+     "url": "https://www.extra.com.br/ (fichas de patinete e bicicleta eletrica)",
+     "tipo": "ficha-de-varejo",
+     "nivel": 5,
+     "origem": "ficha-de-varejo-grande",
+     "autoria": "Extra (varejo), reproduzindo a ficha do fabricante",
+     "custodia": "Extra",
+     "leitura": null,
+     "data_leitura": "2026-10-28",
+     "observacao": "Colhida por BUSCA pelo bloco 1 em 28/10/2026 e tabulada pelo bloco 2 na secao 1.6 de dados/especificacao-calculadoras.md. A ficha NAO foi reaberta por esta execucao, e e por isso que `leitura` e null: o elo da leitura e o mais fraco e e ele que da o nivel (secao 10 do ARQUIPELAGO.md). O que cada campo guarda em `declarado_como` e o fragmento LITERAL registrado por aqueles dois blocos, nunca uma parafrase desta execucao."
+    }
+   }
+  },
+  {
+   "id": "sousa-bike-aro-24",
+   "marca": "Sousa Bike",
+   "modelo": null,
+   "motivo_sem_modelo": "a ficha identifica o produto pela marca e pelo aro, sem codigo de modelo.",
+   "titulo_colhido": "Sousa Bike aro 24 (bicicleta eletrica, 350 W, acelerador no titulo)",
+   "tipo_comercial": "bicicleta",
+   "potencia_nominal_w": {
+    "valor": null,
+    "motivo": "a fonte declara UM watt so e nao diz se e nominal ou pico, e nao ha contraste na mesma ficha de onde ler o rotulo. Pela regra de campos_que_exigem_procedencia_de_leitura do esquema, o campo nasce null e o numero vai para potencia_declarada_sem_rotulo_w. O registro cai no grupo `sem_potencia_nominal_declarada` da F1, que e a ressalva 1.4(a) com produto na mao."
+   },
+   "potencia_pico_w": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "potencia_declarada_sem_rotulo_w": {
+    "valor": 350,
+    "unidade": "W",
+    "fonte": "ficha-extra",
+    "declarado_como": "350 W"
+   },
+   "velocidade_max_kmh": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "acelerador": {
+    "valor": "manual",
+    "fonte": "ficha-extra",
+    "declarado_como": "manual (diz no titulo)",
+    "declarada_por": "titulo_ou_ficha_declara_literalmente"
+   },
+   "tensao_v": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "amperagem_ah": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "energia_wh": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "autonomia_declarada_km": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "carga_max_kg": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "aro": {
+    "valor": 24,
+    "unidade": "polegada",
+    "fonte": "ficha-extra",
+    "declarado_como": "aro 24"
+   },
+   "peso_kg": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "categoria": null,
+   "motivo_categoria_null": "DERIVADA da F1 e obrigatoriamente null: a constante `limiares-categoria-contran-996-2023` esta `pendente` em dados/constantes.json, e a 1.3 da especificacao proibe a F1 de ir ao ar com numero de portal. O validador le o STATUS DA CONSTANTE, nao uma lista escrita dentro dele.",
+   "status": "rascunho",
+   "motivo_do_status": "`rascunho`, e a causa e UMA SO: nenhum registro deste banco tem saida de compra ainda, e a 25.2 nao admite item publicavel sem piso. Nada aqui e servido em pagina nenhuma enquanto for rascunho. O que destrava e o bloco de coleta de link, nao um acerto de campo.",
+   "divergencias": [],
+   "afirmacao_do_vendedor": [],
+   "alteracao_pos_compra": [],
+   "cotacoes": [],
+   "afiliado": {
+    "programa": null,
+    "degrau": null,
+    "url": null,
+    "url_produto": null,
+    "par_colhido_em": null,
+    "url_busca": null,
+    "url_busca_produto": null,
+    "encurtamento_tentado_em": null,
+    "sub_id_1": null,
+    "sub_id_2": null,
+    "motivo_sem_url_produto": "CAUSA: a coleta de link e bloco proprio e nao e este; nenhuma chamada de API e nenhum gerador de link foi acionado por esta execucao, que entrega o MODELO do banco. || ULTIMA TENTATIVA: nenhuma em 28/10/2026 — e de proposito, nao por falha.",
+    "motivo_sem_url_busca": "CAUSA: idem. O piso da 25.2 e o primeiro item do bloco de coleta, e e ele que torna qualquer destes registros `publicavel`. || ULTIMA TENTATIVA: nenhuma em 28/10/2026."
+   },
+   "imagem": null,
+   "fontes": {
+    "ficha-extra": {
+     "url": "https://www.extra.com.br/ (fichas de patinete e bicicleta eletrica)",
+     "tipo": "ficha-de-varejo",
+     "nivel": 5,
+     "origem": "ficha-de-varejo-grande",
+     "autoria": "Extra (varejo), reproduzindo a ficha do fabricante",
+     "custodia": "Extra",
+     "leitura": null,
+     "data_leitura": "2026-10-28",
+     "observacao": "Colhida por BUSCA pelo bloco 1 em 28/10/2026 e tabulada pelo bloco 2 na secao 1.6 de dados/especificacao-calculadoras.md. A ficha NAO foi reaberta por esta execucao, e e por isso que `leitura` e null: o elo da leitura e o mais fraco e e ele que da o nivel (secao 10 do ARQUIPELAGO.md). O que cada campo guarda em `declarado_como` e o fragmento LITERAL registrado por aqueles dois blocos, nunca uma parafrase desta execucao."
+    }
+   }
+  },
+  {
+   "id": "siena-1000w-sem-cnh",
+   "marca": "Siena",
+   "modelo": null,
+   "motivo_sem_modelo": "o titulo traz so a marca.",
+   "titulo_colhido": "Bicicleta eletrica Siena 1000W adulto sem CNH scooter",
+   "tipo_comercial": "nao_declarado",
+   "motivo_tipo_comercial": "O PROPRIO TITULO chama o veiculo de 'bicicleta eletrica' E de 'scooter', que sao dois tipos comerciais diferentes, e ainda afirma 'sem CNH', que e categoria legal. Sao QUATRO termos que a regra separa num anuncio so — o caso que o bloco 1 colheu e que a especificacao usa como exemplo da ressalva 1.4(a). Escolher um dos dois tipos seria a ilha desempatando o anuncio por conta propria; `nao_declarado` e a leitura certa e e conteudo.",
+   "potencia_nominal_w": {
+    "valor": null,
+    "motivo": "a fonte declara UM watt so e nao diz se e nominal ou pico, e nao ha contraste na mesma ficha de onde ler o rotulo. Pela regra de campos_que_exigem_procedencia_de_leitura do esquema, o campo nasce null e o numero vai para potencia_declarada_sem_rotulo_w. O registro cai no grupo `sem_potencia_nominal_declarada` da F1, que e a ressalva 1.4(a) com produto na mao."
+   },
+   "potencia_pico_w": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "potencia_declarada_sem_rotulo_w": {
+    "valor": 1000,
+    "unidade": "W",
+    "fonte": "ficha-extra",
+    "declarado_como": "1000W"
+   },
+   "velocidade_max_kmh": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "acelerador": {
+    "valor": "nao_declarado",
+    "fonte": "ficha-extra",
+    "motivo": "a ficha nao declara acelerador nem pedal assistido. A especificacao registra este modelo com acelerador 'nao declarado' na tabela 1.6.",
+    "declarada_por": null
+   },
+   "tensao_v": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "amperagem_ah": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "energia_wh": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "autonomia_declarada_km": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "carga_max_kg": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "aro": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "peso_kg": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "categoria": null,
+   "motivo_categoria_null": "DERIVADA da F1 e obrigatoriamente null: a constante `limiares-categoria-contran-996-2023` esta `pendente` em dados/constantes.json, e a 1.3 da especificacao proibe a F1 de ir ao ar com numero de portal. O validador le o STATUS DA CONSTANTE, nao uma lista escrita dentro dele.",
+   "status": "rascunho",
+   "motivo_do_status": "`rascunho`, e a causa e UMA SO: nenhum registro deste banco tem saida de compra ainda, e a 25.2 nao admite item publicavel sem piso. Nada aqui e servido em pagina nenhuma enquanto for rascunho. O que destrava e o bloco de coleta de link, nao um acerto de campo.",
+   "divergencias": [],
+   "afirmacao_do_vendedor": [
+    {
+     "frase": "sem CNH",
+     "onde": "no proprio titulo do anuncio",
+     "fonte": "ficha-extra",
+     "data_leitura": "2026-10-28",
+     "por_que_esta_aqui": "E afirmacao de QUEM VENDE sobre categoria legal, e e o oposto do que este registro sustenta: sem saber se os 1000 W sao nominais ou de pico, NINGUEM pode dizer a categoria deste veiculo — nem para dispensar CNH, nem para exigir. A F1 nunca repete esta frase; a pagina a cita como o que ela contradiz."
+    }
+   ],
+   "alteracao_pos_compra": [],
+   "cotacoes": [],
+   "afiliado": {
+    "programa": null,
+    "degrau": null,
+    "url": null,
+    "url_produto": null,
+    "par_colhido_em": null,
+    "url_busca": null,
+    "url_busca_produto": null,
+    "encurtamento_tentado_em": null,
+    "sub_id_1": null,
+    "sub_id_2": null,
+    "motivo_sem_url_produto": "CAUSA: a coleta de link e bloco proprio e nao e este; nenhuma chamada de API e nenhum gerador de link foi acionado por esta execucao, que entrega o MODELO do banco. || ULTIMA TENTATIVA: nenhuma em 28/10/2026 — e de proposito, nao por falha.",
+    "motivo_sem_url_busca": "CAUSA: idem. O piso da 25.2 e o primeiro item do bloco de coleta, e e ele que torna qualquer destes registros `publicavel`. || ULTIMA TENTATIVA: nenhuma em 28/10/2026."
+   },
+   "imagem": null,
+   "fontes": {
+    "ficha-extra": {
+     "url": "https://www.extra.com.br/ (fichas de patinete e bicicleta eletrica)",
+     "tipo": "ficha-de-varejo",
+     "nivel": 5,
+     "origem": "ficha-de-varejo-grande",
+     "autoria": "Extra (varejo), reproduzindo a ficha do fabricante",
+     "custodia": "Extra",
+     "leitura": null,
+     "data_leitura": "2026-10-28",
+     "observacao": "Colhida por BUSCA pelo bloco 1 em 28/10/2026 e tabulada pelo bloco 2 na secao 1.6 de dados/especificacao-calculadoras.md. A ficha NAO foi reaberta por esta execucao, e e por isso que `leitura` e null: o elo da leitura e o mais fraco e e ele que da o nivel (secao 10 do ARQUIPELAGO.md). O que cada campo guarda em `declarado_como` e o fragmento LITERAL registrado por aqueles dois blocos, nunca uma parafrase desta execucao."
+    }
+   }
+  },
+  {
+   "id": "playbik",
+   "marca": "PLAYBIK",
+   "modelo": null,
+   "motivo_sem_modelo": "a ficha colhida identifica so pela marca.",
+   "titulo_colhido": "PLAYBIK (ficha de patinete eletrico)",
+   "tipo_comercial": "patinete",
+   "potencia_nominal_w": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "potencia_pico_w": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "potencia_declarada_sem_rotulo_w": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "velocidade_max_kmh": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "acelerador": {
+    "valor": "nao_declarado",
+    "fonte": "ficha-casasbahia",
+    "motivo": "a fonte deste registro nao declara acelerador nem pedal assistido. `nao_declarado` e a sentinela de ausencia do esquema: ela diz que se olhou e nao se achou, e NUNCA cai no lado 'so pedal assistido' por omissao.",
+    "declarada_por": null
+   },
+   "tensao_v": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "amperagem_ah": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "energia_wh": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "autonomia_declarada_km": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "carga_max_kg": {
+    "valor": 120,
+    "unidade": "kg",
+    "fonte": "ficha-casasbahia",
+    "declarado_como": "120 kg"
+   },
+   "aro": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "peso_kg": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "categoria": null,
+   "motivo_categoria_null": "DERIVADA da F1 e obrigatoriamente null: a constante `limiares-categoria-contran-996-2023` esta `pendente` em dados/constantes.json, e a 1.3 da especificacao proibe a F1 de ir ao ar com numero de portal. O validador le o STATUS DA CONSTANTE, nao uma lista escrita dentro dele.",
+   "status": "rascunho",
+   "motivo_do_status": "`rascunho`, e a causa e UMA SO: nenhum registro deste banco tem saida de compra ainda, e a 25.2 nao admite item publicavel sem piso. Nada aqui e servido em pagina nenhuma enquanto for rascunho. O que destrava e o bloco de coleta de link, nao um acerto de campo.",
+   "divergencias": [],
+   "afirmacao_do_vendedor": [],
+   "alteracao_pos_compra": [],
+   "cotacoes": [],
+   "afiliado": {
+    "programa": null,
+    "degrau": null,
+    "url": null,
+    "url_produto": null,
+    "par_colhido_em": null,
+    "url_busca": null,
+    "url_busca_produto": null,
+    "encurtamento_tentado_em": null,
+    "sub_id_1": null,
+    "sub_id_2": null,
+    "motivo_sem_url_produto": "CAUSA: a coleta de link e bloco proprio e nao e este; nenhuma chamada de API e nenhum gerador de link foi acionado por esta execucao, que entrega o MODELO do banco. || ULTIMA TENTATIVA: nenhuma em 28/10/2026 — e de proposito, nao por falha.",
+    "motivo_sem_url_busca": "CAUSA: idem. O piso da 25.2 e o primeiro item do bloco de coleta, e e ele que torna qualquer destes registros `publicavel`. || ULTIMA TENTATIVA: nenhuma em 28/10/2026."
+   },
+   "imagem": null,
+   "fontes": {
+    "ficha-casasbahia": {
+     "url": "https://www.casasbahia.com.br/ (duas fichas, uma PLAYBIK)",
+     "tipo": "ficha-de-varejo",
+     "nivel": 5,
+     "origem": "ficha-de-varejo-grande",
+     "autoria": "Casas Bahia (varejo), reproduzindo a ficha do fabricante",
+     "custodia": "Casas Bahia",
+     "leitura": null,
+     "data_leitura": "2026-10-28",
+     "observacao": "Mesma procedencia do Extra: colhida por busca pelo bloco 1, no eixo C de dados/corpus-buscas.md."
+    }
+   }
+  },
+  {
+   "id": "honeywhale-h3",
+   "marca": "Honeywhale",
+   "modelo": "H3",
+   "titulo_colhido": "Honeywhale H3 (anuncio Mercado Livre, 1.000 W, 55 km/h)",
+   "tipo_comercial": "nao_declarado",
+   "motivo_tipo_comercial": "o anuncio colhido nao nomeia o tipo; a especificacao o registra so pelos numeros.",
+   "potencia_nominal_w": {
+    "valor": null,
+    "motivo": "a fonte declara UM watt so e nao diz se e nominal ou pico, e nao ha contraste na mesma ficha de onde ler o rotulo. Pela regra de campos_que_exigem_procedencia_de_leitura do esquema, o campo nasce null e o numero vai para potencia_declarada_sem_rotulo_w. O registro cai no grupo `sem_potencia_nominal_declarada` da F1, que e a ressalva 1.4(a) com produto na mao."
+   },
+   "potencia_pico_w": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "potencia_declarada_sem_rotulo_w": {
+    "valor": 1000,
+    "unidade": "W",
+    "fonte": "painel-ml",
+    "declarado_como": "1.000 W"
+   },
+   "velocidade_max_kmh": {
+    "valor": null,
+    "motivo": "a unica fonte deste campo e de nivel 6 (declaracao de vendedor), e `niveis_minimos_por_campo` exige nivel 5 ou melhor em `velocidade_max_kmh` — a categoria legal e o produto da ilha e o erro caro e o permissivo. Colher este campo em ficha de varejo ou do fabricante e trabalho de coleta, nao lacuna de modelo. A especificacao registra 55 km/h neste anuncio, e 55 km/h e justamente o numero que decidiria a categoria deste veiculo — motivo de mais para nao o aceitar de declaracao de vendedor."
+   },
+   "acelerador": {
+    "valor": "nao_declarado",
+    "fonte": "painel-ml",
+    "motivo": "a unica fonte deste campo e de nivel 6 (declaracao de vendedor), e `niveis_minimos_por_campo` exige nivel 5 ou melhor em `acelerador` — a categoria legal e o produto da ilha e o erro caro e o permissivo. Colher este campo em ficha de varejo ou do fabricante e trabalho de coleta, nao lacuna de modelo.",
+    "declarada_por": null
+   },
+   "tensao_v": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "amperagem_ah": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "energia_wh": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "autonomia_declarada_km": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "carga_max_kg": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "aro": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "peso_kg": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "categoria": null,
+   "motivo_categoria_null": "DERIVADA da F1 e obrigatoriamente null: a constante `limiares-categoria-contran-996-2023` esta `pendente` em dados/constantes.json, e a 1.3 da especificacao proibe a F1 de ir ao ar com numero de portal. O validador le o STATUS DA CONSTANTE, nao uma lista escrita dentro dele.",
+   "status": "rascunho",
+   "motivo_do_status": "`rascunho`, e a causa e UMA SO: nenhum registro deste banco tem saida de compra ainda, e a 25.2 nao admite item publicavel sem piso. Nada aqui e servido em pagina nenhuma enquanto for rascunho. O que destrava e o bloco de coleta de link, nao um acerto de campo.",
+   "divergencias": [],
+   "afirmacao_do_vendedor": [],
+   "alteracao_pos_compra": [],
+   "cotacoes": [],
+   "afiliado": {
+    "programa": null,
+    "degrau": null,
+    "url": null,
+    "url_produto": null,
+    "par_colhido_em": null,
+    "url_busca": null,
+    "url_busca_produto": null,
+    "encurtamento_tentado_em": null,
+    "sub_id_1": null,
+    "sub_id_2": null,
+    "motivo_sem_url_produto": "CAUSA: a coleta de link e bloco proprio e nao e este; nenhuma chamada de API e nenhum gerador de link foi acionado por esta execucao, que entrega o MODELO do banco. || ULTIMA TENTATIVA: nenhuma em 28/10/2026 — e de proposito, nao por falha.",
+    "motivo_sem_url_busca": "CAUSA: idem. O piso da 25.2 e o primeiro item do bloco de coleta, e e ele que torna qualquer destes registros `publicavel`. || ULTIMA TENTATIVA: nenhuma em 28/10/2026."
+   },
+   "imagem": null,
+   "fontes": {
+    "painel-ml": {
+     "url": "https://www.mercadolivre.com.br/afiliados/ (painel de afiliado, logado)",
+     "tipo": "painel-de-afiliado",
+     "nivel": 6,
+     "origem": "anuncio-de-marketplace",
+     "autoria": "o vendedor do anuncio",
+     "custodia": "Mercado Livre",
+     "leitura": null,
+     "data_leitura": "2026-10-27",
+     "observacao": "Mesma leitura da Bussola de 27/10/2026, secao (c) do dossie."
+    }
+   }
+  },
+  {
+   "id": "verdevento-750w-60v-20ah",
+   "marca": "Verdevento",
+   "modelo": null,
+   "motivo_sem_modelo": "o titulo do painel nao nomeia codigo de modelo.",
+   "titulo_colhido": "Verdevento bicicleta/moto eletrica 750 W 60 V 20 Ah (+100 vendidos)",
+   "tipo_comercial": "nao_declarado",
+   "motivo_tipo_comercial": "o titulo chama o mesmo produto de 'bicicleta' E de 'moto eletrica'.",
+   "potencia_nominal_w": {
+    "valor": null,
+    "motivo": "a fonte declara UM watt so e nao diz se e nominal ou pico, e nao ha contraste na mesma ficha de onde ler o rotulo. Pela regra de campos_que_exigem_procedencia_de_leitura do esquema, o campo nasce null e o numero vai para potencia_declarada_sem_rotulo_w. O registro cai no grupo `sem_potencia_nominal_declarada` da F1, que e a ressalva 1.4(a) com produto na mao."
+   },
+   "potencia_pico_w": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "potencia_declarada_sem_rotulo_w": {
+    "valor": 750,
+    "unidade": "W",
+    "fonte": "painel-ml",
+    "declarado_como": "750 W"
+   },
+   "velocidade_max_kmh": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "acelerador": {
+    "valor": "nao_declarado",
+    "fonte": "painel-ml",
+    "motivo": "a unica fonte deste campo e de nivel 6 (declaracao de vendedor), e `niveis_minimos_por_campo` exige nivel 5 ou melhor em `acelerador` — a categoria legal e o produto da ilha e o erro caro e o permissivo. Colher este campo em ficha de varejo ou do fabricante e trabalho de coleta, nao lacuna de modelo.",
+    "declarada_por": null
+   },
+   "tensao_v": {
+    "valor": 60,
+    "unidade": "V",
+    "fonte": "painel-ml",
+    "declarado_como": "60 V"
+   },
+   "amperagem_ah": {
+    "valor": 20.0,
+    "unidade": "Ah",
+    "fonte": "painel-ml",
+    "declarado_como": "20 Ah"
+   },
+   "energia_wh": {
+    "valor": 1200,
+    "unidade": "Wh",
+    "derivado": true,
+    "derivado_de": "tensao_v x amperagem_ah",
+    "constante": "energia-wh-tensao-vezes-amperagem",
+    "conta": "60 V x 20.0 Ah = 1200 Wh",
+    "fonte": null,
+    "motivo_sem_fonte": "identidade matematica: vale por definicao de unidade e nao depende de fonte. As fontes sao as dos dois lados da conta (tensao_v e amperagem_ah), cada uma com a sua."
+   },
+   "autonomia_declarada_km": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "carga_max_kg": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "aro": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "peso_kg": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "categoria": null,
+   "motivo_categoria_null": "DERIVADA da F1 e obrigatoriamente null: a constante `limiares-categoria-contran-996-2023` esta `pendente` em dados/constantes.json, e a 1.3 da especificacao proibe a F1 de ir ao ar com numero de portal. O validador le o STATUS DA CONSTANTE, nao uma lista escrita dentro dele.",
+   "status": "rascunho",
+   "motivo_do_status": "`rascunho`, e a causa e UMA SO: nenhum registro deste banco tem saida de compra ainda, e a 25.2 nao admite item publicavel sem piso. Nada aqui e servido em pagina nenhuma enquanto for rascunho. O que destrava e o bloco de coleta de link, nao um acerto de campo.",
+   "divergencias": [],
+   "afirmacao_do_vendedor": [],
+   "alteracao_pos_compra": [],
+   "cotacoes": [
+    {
+     "valor_brl": 3589.0,
+     "loja": "Mercado Livre",
+     "programa": "mercado_livre",
+     "comissao_declarada_pct": 26.0,
+     "vendas_declaradas": "+100 vendidos",
+     "data_leitura": "2026-10-27",
+     "fonte": "painel-ml"
+    }
+   ],
+   "afiliado": {
+    "programa": null,
+    "degrau": null,
+    "url": null,
+    "url_produto": null,
+    "par_colhido_em": null,
+    "url_busca": null,
+    "url_busca_produto": null,
+    "encurtamento_tentado_em": null,
+    "sub_id_1": null,
+    "sub_id_2": null,
+    "motivo_sem_url_produto": "CAUSA: a coleta de link e bloco proprio e nao e este; nenhuma chamada de API e nenhum gerador de link foi acionado por esta execucao, que entrega o MODELO do banco. || ULTIMA TENTATIVA: nenhuma em 28/10/2026 — e de proposito, nao por falha.",
+    "motivo_sem_url_busca": "CAUSA: idem. O piso da 25.2 e o primeiro item do bloco de coleta, e e ele que torna qualquer destes registros `publicavel`. || ULTIMA TENTATIVA: nenhuma em 28/10/2026."
+   },
+   "imagem": null,
+   "fontes": {
+    "painel-ml": {
+     "url": "https://www.mercadolivre.com.br/afiliados/ (painel de afiliado, logado)",
+     "tipo": "painel-de-afiliado",
+     "nivel": 6,
+     "origem": "anuncio-de-marketplace",
+     "autoria": "o vendedor do anuncio",
+     "custodia": "Mercado Livre",
+     "leitura": null,
+     "data_leitura": "2026-10-27",
+     "observacao": "Mesma leitura da Bussola de 27/10/2026, secao (c) do dossie."
+    }
+   }
+  },
+  {
+   "id": "bike-scooter-moto-1000w-litio",
+   "marca": null,
+   "motivo_sem_marca": "o titulo do painel nao nomeia marca.",
+   "modelo": null,
+   "motivo_sem_modelo": "o titulo do painel nao nomeia codigo de modelo.",
+   "titulo_colhido": "Bike/Scooter/Moto eletrica bateria litio 1.000 W (+25 vendidos)",
+   "tipo_comercial": "nao_declarado",
+   "motivo_tipo_comercial": "o titulo chama o mesmo produto de 'bike', 'scooter' E 'moto eletrica'.",
+   "potencia_nominal_w": {
+    "valor": null,
+    "motivo": "a fonte declara UM watt so e nao diz se e nominal ou pico, e nao ha contraste na mesma ficha de onde ler o rotulo. Pela regra de campos_que_exigem_procedencia_de_leitura do esquema, o campo nasce null e o numero vai para potencia_declarada_sem_rotulo_w. O registro cai no grupo `sem_potencia_nominal_declarada` da F1, que e a ressalva 1.4(a) com produto na mao."
+   },
+   "potencia_pico_w": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "potencia_declarada_sem_rotulo_w": {
+    "valor": 1000,
+    "unidade": "W",
+    "fonte": "painel-ml",
+    "declarado_como": "1.000 W"
+   },
+   "velocidade_max_kmh": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "acelerador": {
+    "valor": "nao_declarado",
+    "fonte": "painel-ml",
+    "motivo": "a unica fonte deste campo e de nivel 6 (declaracao de vendedor), e `niveis_minimos_por_campo` exige nivel 5 ou melhor em `acelerador` — a categoria legal e o produto da ilha e o erro caro e o permissivo. Colher este campo em ficha de varejo ou do fabricante e trabalho de coleta, nao lacuna de modelo.",
+    "declarada_por": null
+   },
+   "tensao_v": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "amperagem_ah": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "energia_wh": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "autonomia_declarada_km": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "carga_max_kg": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "aro": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "peso_kg": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "categoria": null,
+   "motivo_categoria_null": "DERIVADA da F1 e obrigatoriamente null: a constante `limiares-categoria-contran-996-2023` esta `pendente` em dados/constantes.json, e a 1.3 da especificacao proibe a F1 de ir ao ar com numero de portal. O validador le o STATUS DA CONSTANTE, nao uma lista escrita dentro dele.",
+   "status": "excluido_do_banco",
+   "motivo_do_status": "`excluido_do_banco`: sem marca e sem modelo, igual ao patinete com banco da Shopee.",
+   "excluido_do_banco_por_que": "Mesma causa do `patinete-adulto-com-banco-shopee`: titulo sem marca e sem modelo nao identifica veiculo. Fica gravado com a cotacao para a proxima coleta nao o recolher de novo.",
+   "divergencias": [],
+   "afirmacao_do_vendedor": [],
+   "alteracao_pos_compra": [],
+   "cotacoes": [
+    {
+     "valor_brl": 5819.0,
+     "loja": "Mercado Livre",
+     "programa": "mercado_livre",
+     "comissao_declarada_pct": 16.0,
+     "vendas_declaradas": "+25 vendidos",
+     "data_leitura": "2026-10-27",
+     "fonte": "painel-ml"
+    }
+   ],
+   "afiliado": {
+    "programa": null,
+    "degrau": null,
+    "url": null,
+    "url_produto": null,
+    "par_colhido_em": null,
+    "url_busca": null,
+    "url_busca_produto": null,
+    "encurtamento_tentado_em": null,
+    "sub_id_1": null,
+    "sub_id_2": null,
+    "motivo_sem_url_produto": "CAUSA: a coleta de link e bloco proprio e nao e este; nenhuma chamada de API e nenhum gerador de link foi acionado por esta execucao, que entrega o MODELO do banco. || ULTIMA TENTATIVA: nenhuma em 28/10/2026 — e de proposito, nao por falha.",
+    "motivo_sem_url_busca": "CAUSA: idem. O piso da 25.2 e o primeiro item do bloco de coleta, e e ele que torna qualquer destes registros `publicavel`. || ULTIMA TENTATIVA: nenhuma em 28/10/2026."
+   },
+   "imagem": null,
+   "fontes": {
+    "painel-ml": {
+     "url": "https://www.mercadolivre.com.br/afiliados/ (painel de afiliado, logado)",
+     "tipo": "painel-de-afiliado",
+     "nivel": 6,
+     "origem": "anuncio-de-marketplace",
+     "autoria": "o vendedor do anuncio",
+     "custodia": "Mercado Livre",
+     "leitura": null,
+     "data_leitura": "2026-10-27",
+     "observacao": "Mesma leitura da Bussola de 27/10/2026, secao (c) do dossie."
+    }
+   }
+  },
+  {
+   "id": "l40-plus",
+   "marca": null,
+   "motivo_sem_marca": "o titulo do painel nao nomeia marca.",
+   "modelo": "L40 Plus",
+   "titulo_colhido": "L40 Plus 1.000 W 48 km autopropelido (+100 vendidos)",
+   "tipo_comercial": "nao_declarado",
+   "motivo_tipo_comercial": "o titulo usa a palavra 'autopropelido', que e CATEGORIA DA RESOLUCAO e nao tipo comercial — e e o vendedor afirmando a categoria, nao declarando o tipo.",
+   "potencia_nominal_w": {
+    "valor": null,
+    "motivo": "a fonte declara UM watt so e nao diz se e nominal ou pico, e nao ha contraste na mesma ficha de onde ler o rotulo. Pela regra de campos_que_exigem_procedencia_de_leitura do esquema, o campo nasce null e o numero vai para potencia_declarada_sem_rotulo_w. O registro cai no grupo `sem_potencia_nominal_declarada` da F1, que e a ressalva 1.4(a) com produto na mao."
+   },
+   "potencia_pico_w": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "potencia_declarada_sem_rotulo_w": {
+    "valor": 1000,
+    "unidade": "W",
+    "fonte": "painel-ml",
+    "declarado_como": "1.000 W"
+   },
+   "velocidade_max_kmh": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "acelerador": {
+    "valor": "nao_declarado",
+    "fonte": "painel-ml",
+    "motivo": "a unica fonte deste campo e de nivel 6 (declaracao de vendedor), e `niveis_minimos_por_campo` exige nivel 5 ou melhor em `acelerador` — a categoria legal e o produto da ilha e o erro caro e o permissivo. Colher este campo em ficha de varejo ou do fabricante e trabalho de coleta, nao lacuna de modelo.",
+    "declarada_por": null
+   },
+   "tensao_v": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "amperagem_ah": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "energia_wh": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "autonomia_declarada_km": {
+    "valor": 48,
+    "unidade": "km",
+    "fonte": "painel-ml",
+    "declarado_como": "48 km"
+   },
+   "carga_max_kg": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "aro": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "peso_kg": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "categoria": null,
+   "motivo_categoria_null": "DERIVADA da F1 e obrigatoriamente null: a constante `limiares-categoria-contran-996-2023` esta `pendente` em dados/constantes.json, e a 1.3 da especificacao proibe a F1 de ir ao ar com numero de portal. O validador le o STATUS DA CONSTANTE, nao uma lista escrita dentro dele.",
+   "status": "rascunho",
+   "motivo_do_status": "`rascunho`, e a causa e UMA SO: nenhum registro deste banco tem saida de compra ainda, e a 25.2 nao admite item publicavel sem piso. Nada aqui e servido em pagina nenhuma enquanto for rascunho. O que destrava e o bloco de coleta de link, nao um acerto de campo.",
+   "divergencias": [],
+   "afirmacao_do_vendedor": [],
+   "alteracao_pos_compra": [],
+   "cotacoes": [
+    {
+     "valor_brl": 6374.0,
+     "loja": "Mercado Livre",
+     "programa": "mercado_livre",
+     "comissao_declarada_pct": 16.0,
+     "vendas_declaradas": "+100 vendidos",
+     "data_leitura": "2026-10-27",
+     "fonte": "painel-ml"
+    }
+   ],
+   "afiliado": {
+    "programa": null,
+    "degrau": null,
+    "url": null,
+    "url_produto": null,
+    "par_colhido_em": null,
+    "url_busca": null,
+    "url_busca_produto": null,
+    "encurtamento_tentado_em": null,
+    "sub_id_1": null,
+    "sub_id_2": null,
+    "motivo_sem_url_produto": "CAUSA: a coleta de link e bloco proprio e nao e este; nenhuma chamada de API e nenhum gerador de link foi acionado por esta execucao, que entrega o MODELO do banco. || ULTIMA TENTATIVA: nenhuma em 28/10/2026 — e de proposito, nao por falha.",
+    "motivo_sem_url_busca": "CAUSA: idem. O piso da 25.2 e o primeiro item do bloco de coleta, e e ele que torna qualquer destes registros `publicavel`. || ULTIMA TENTATIVA: nenhuma em 28/10/2026."
+   },
+   "imagem": null,
+   "fontes": {
+    "painel-ml": {
+     "url": "https://www.mercadolivre.com.br/afiliados/ (painel de afiliado, logado)",
+     "tipo": "painel-de-afiliado",
+     "nivel": 6,
+     "origem": "anuncio-de-marketplace",
+     "autoria": "o vendedor do anuncio",
+     "custodia": "Mercado Livre",
+     "leitura": null,
+     "data_leitura": "2026-10-27",
+     "observacao": "Mesma leitura da Bussola de 27/10/2026, secao (c) do dossie."
+    }
+   }
+  },
+  {
+   "id": "evoo-scooter-1000w",
+   "marca": "Evoo",
+   "modelo": null,
+   "motivo_sem_modelo": "o titulo do painel nao nomeia codigo de modelo.",
+   "titulo_colhido": "Evoo scooter/moto eletrica 1.000 W litio, sem CNH",
+   "tipo_comercial": "nao_declarado",
+   "motivo_tipo_comercial": "o titulo chama o mesmo produto de 'scooter' E de 'moto eletrica'.",
+   "potencia_nominal_w": {
+    "valor": null,
+    "motivo": "a fonte declara UM watt so e nao diz se e nominal ou pico, e nao ha contraste na mesma ficha de onde ler o rotulo. Pela regra de campos_que_exigem_procedencia_de_leitura do esquema, o campo nasce null e o numero vai para potencia_declarada_sem_rotulo_w. O registro cai no grupo `sem_potencia_nominal_declarada` da F1, que e a ressalva 1.4(a) com produto na mao."
+   },
+   "potencia_pico_w": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "potencia_declarada_sem_rotulo_w": {
+    "valor": 1000,
+    "unidade": "W",
+    "fonte": "painel-ml",
+    "declarado_como": "1.000 W"
+   },
+   "velocidade_max_kmh": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "acelerador": {
+    "valor": "nao_declarado",
+    "fonte": "painel-ml",
+    "motivo": "a unica fonte deste campo e de nivel 6 (declaracao de vendedor), e `niveis_minimos_por_campo` exige nivel 5 ou melhor em `acelerador` — a categoria legal e o produto da ilha e o erro caro e o permissivo. Colher este campo em ficha de varejo ou do fabricante e trabalho de coleta, nao lacuna de modelo.",
+    "declarada_por": null
+   },
+   "tensao_v": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "amperagem_ah": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "energia_wh": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "autonomia_declarada_km": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "carga_max_kg": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "aro": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "peso_kg": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "categoria": null,
+   "motivo_categoria_null": "DERIVADA da F1 e obrigatoriamente null: a constante `limiares-categoria-contran-996-2023` esta `pendente` em dados/constantes.json, e a 1.3 da especificacao proibe a F1 de ir ao ar com numero de portal. O validador le o STATUS DA CONSTANTE, nao uma lista escrita dentro dele.",
+   "status": "rascunho",
+   "motivo_do_status": "`rascunho`, e a causa e UMA SO: nenhum registro deste banco tem saida de compra ainda, e a 25.2 nao admite item publicavel sem piso. Nada aqui e servido em pagina nenhuma enquanto for rascunho. O que destrava e o bloco de coleta de link, nao um acerto de campo.",
+   "divergencias": [],
+   "afirmacao_do_vendedor": [
+    {
+     "frase": "sem CNH",
+     "onde": "no proprio titulo do anuncio",
+     "fonte": "painel-ml",
+     "data_leitura": "2026-10-27",
+     "por_que_esta_aqui": "Afirmacao de categoria legal feita por quem vende. Com o watt sem rotulo e sem velocidade de fabrica declarada em ficha, este registro NAO tem como sustentar nem confirmar nem negar a frase — e e isso que a pagina diz."
+    }
+   ],
+   "alteracao_pos_compra": [],
+   "cotacoes": [
+    {
+     "valor_brl": 6687.0,
+     "loja": "Mercado Livre",
+     "programa": "mercado_livre",
+     "comissao_declarada_pct": 16.0,
+     "vendas_declaradas": null,
+     "data_leitura": "2026-10-27",
+     "fonte": "painel-ml"
+    }
+   ],
+   "afiliado": {
+    "programa": null,
+    "degrau": null,
+    "url": null,
+    "url_produto": null,
+    "par_colhido_em": null,
+    "url_busca": null,
+    "url_busca_produto": null,
+    "encurtamento_tentado_em": null,
+    "sub_id_1": null,
+    "sub_id_2": null,
+    "motivo_sem_url_produto": "CAUSA: a coleta de link e bloco proprio e nao e este; nenhuma chamada de API e nenhum gerador de link foi acionado por esta execucao, que entrega o MODELO do banco. || ULTIMA TENTATIVA: nenhuma em 28/10/2026 — e de proposito, nao por falha.",
+    "motivo_sem_url_busca": "CAUSA: idem. O piso da 25.2 e o primeiro item do bloco de coleta, e e ele que torna qualquer destes registros `publicavel`. || ULTIMA TENTATIVA: nenhuma em 28/10/2026."
+   },
+   "imagem": null,
+   "fontes": {
+    "painel-ml": {
+     "url": "https://www.mercadolivre.com.br/afiliados/ (painel de afiliado, logado)",
+     "tipo": "painel-de-afiliado",
+     "nivel": 6,
+     "origem": "anuncio-de-marketplace",
+     "autoria": "o vendedor do anuncio",
+     "custodia": "Mercado Livre",
+     "leitura": null,
+     "data_leitura": "2026-10-27",
+     "observacao": "Mesma leitura da Bussola de 27/10/2026, secao (c) do dossie."
+    }
+   }
+  },
+  {
+   "id": "haixia-scooter-1000w-60v-20ah",
+   "marca": "Haixia",
+   "modelo": null,
+   "motivo_sem_modelo": "o titulo do painel nao nomeia codigo de modelo.",
+   "titulo_colhido": "Haixia scooter eletrica 1.000 W 60 V 20 Ah, 45 km (+25 vendidos)",
+   "tipo_comercial": "scooter",
+   "potencia_nominal_w": {
+    "valor": null,
+    "motivo": "a fonte declara UM watt so e nao diz se e nominal ou pico, e nao ha contraste na mesma ficha de onde ler o rotulo. Pela regra de campos_que_exigem_procedencia_de_leitura do esquema, o campo nasce null e o numero vai para potencia_declarada_sem_rotulo_w. O registro cai no grupo `sem_potencia_nominal_declarada` da F1, que e a ressalva 1.4(a) com produto na mao."
+   },
+   "potencia_pico_w": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "potencia_declarada_sem_rotulo_w": {
+    "valor": 1000,
+    "unidade": "W",
+    "fonte": "painel-ml",
+    "declarado_como": "1.000 W"
+   },
+   "velocidade_max_kmh": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "acelerador": {
+    "valor": "nao_declarado",
+    "fonte": "painel-ml",
+    "motivo": "a unica fonte deste campo e de nivel 6 (declaracao de vendedor), e `niveis_minimos_por_campo` exige nivel 5 ou melhor em `acelerador` — a categoria legal e o produto da ilha e o erro caro e o permissivo. Colher este campo em ficha de varejo ou do fabricante e trabalho de coleta, nao lacuna de modelo.",
+    "declarada_por": null
+   },
+   "tensao_v": {
+    "valor": 60,
+    "unidade": "V",
+    "fonte": "painel-ml",
+    "declarado_como": "60 V"
+   },
+   "amperagem_ah": {
+    "valor": 20.0,
+    "unidade": "Ah",
+    "fonte": "painel-ml",
+    "declarado_como": "20 Ah"
+   },
+   "energia_wh": {
+    "valor": 1200,
+    "unidade": "Wh",
+    "derivado": true,
+    "derivado_de": "tensao_v x amperagem_ah",
+    "constante": "energia-wh-tensao-vezes-amperagem",
+    "conta": "60 V x 20.0 Ah = 1200 Wh",
+    "fonte": null,
+    "motivo_sem_fonte": "identidade matematica: vale por definicao de unidade e nao depende de fonte. As fontes sao as dos dois lados da conta (tensao_v e amperagem_ah), cada uma com a sua."
+   },
+   "autonomia_declarada_km": {
+    "valor": 45,
+    "unidade": "km",
+    "fonte": "painel-ml",
+    "declarado_como": "45 km"
+   },
+   "carga_max_kg": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "aro": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "peso_kg": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "categoria": null,
+   "motivo_categoria_null": "DERIVADA da F1 e obrigatoriamente null: a constante `limiares-categoria-contran-996-2023` esta `pendente` em dados/constantes.json, e a 1.3 da especificacao proibe a F1 de ir ao ar com numero de portal. O validador le o STATUS DA CONSTANTE, nao uma lista escrita dentro dele.",
+   "status": "rascunho",
+   "motivo_do_status": "`rascunho`, e a causa e UMA SO: nenhum registro deste banco tem saida de compra ainda, e a 25.2 nao admite item publicavel sem piso. Nada aqui e servido em pagina nenhuma enquanto for rascunho. O que destrava e o bloco de coleta de link, nao um acerto de campo.",
+   "divergencias": [],
+   "afirmacao_do_vendedor": [],
+   "alteracao_pos_compra": [],
+   "cotacoes": [
+    {
+     "valor_brl": 7670.0,
+     "loja": "Mercado Livre",
+     "programa": "mercado_livre",
+     "comissao_declarada_pct": 22.0,
+     "vendas_declaradas": "+25 vendidos",
+     "data_leitura": "2026-10-27",
+     "fonte": "painel-ml"
+    }
+   ],
+   "afiliado": {
+    "programa": null,
+    "degrau": null,
+    "url": null,
+    "url_produto": null,
+    "par_colhido_em": null,
+    "url_busca": null,
+    "url_busca_produto": null,
+    "encurtamento_tentado_em": null,
+    "sub_id_1": null,
+    "sub_id_2": null,
+    "motivo_sem_url_produto": "CAUSA: a coleta de link e bloco proprio e nao e este; nenhuma chamada de API e nenhum gerador de link foi acionado por esta execucao, que entrega o MODELO do banco. || ULTIMA TENTATIVA: nenhuma em 28/10/2026 — e de proposito, nao por falha.",
+    "motivo_sem_url_busca": "CAUSA: idem. O piso da 25.2 e o primeiro item do bloco de coleta, e e ele que torna qualquer destes registros `publicavel`. || ULTIMA TENTATIVA: nenhuma em 28/10/2026."
+   },
+   "imagem": null,
+   "fontes": {
+    "painel-ml": {
+     "url": "https://www.mercadolivre.com.br/afiliados/ (painel de afiliado, logado)",
+     "tipo": "painel-de-afiliado",
+     "nivel": 6,
+     "origem": "anuncio-de-marketplace",
+     "autoria": "o vendedor do anuncio",
+     "custodia": "Mercado Livre",
+     "leitura": null,
+     "data_leitura": "2026-10-27",
+     "observacao": "Mesma leitura da Bussola de 27/10/2026, secao (c) do dossie."
+    }
+   }
+  },
+  {
+   "id": "scooter-chopper-1000w-48v",
+   "marca": null,
+   "motivo_sem_marca": "o titulo do painel nao nomeia marca.",
+   "modelo": null,
+   "motivo_sem_modelo": "o titulo do painel nao nomeia codigo de modelo.",
+   "titulo_colhido": "Scooter eletrica chopper 1.000 W 48 V adulto, 32 km/h",
+   "tipo_comercial": "scooter",
+   "potencia_nominal_w": {
+    "valor": null,
+    "motivo": "a fonte declara UM watt so e nao diz se e nominal ou pico, e nao ha contraste na mesma ficha de onde ler o rotulo. Pela regra de campos_que_exigem_procedencia_de_leitura do esquema, o campo nasce null e o numero vai para potencia_declarada_sem_rotulo_w. O registro cai no grupo `sem_potencia_nominal_declarada` da F1, que e a ressalva 1.4(a) com produto na mao."
+   },
+   "potencia_pico_w": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "potencia_declarada_sem_rotulo_w": {
+    "valor": 1000,
+    "unidade": "W",
+    "fonte": "painel-ml",
+    "declarado_como": "1.000 W"
+   },
+   "velocidade_max_kmh": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "acelerador": {
+    "valor": "nao_declarado",
+    "fonte": "painel-ml",
+    "motivo": "a unica fonte deste campo e de nivel 6 (declaracao de vendedor), e `niveis_minimos_por_campo` exige nivel 5 ou melhor em `acelerador` — a categoria legal e o produto da ilha e o erro caro e o permissivo. Colher este campo em ficha de varejo ou do fabricante e trabalho de coleta, nao lacuna de modelo.",
+    "declarada_por": null
+   },
+   "tensao_v": {
+    "valor": 48,
+    "unidade": "V",
+    "fonte": "painel-ml",
+    "declarado_como": "48 V"
+   },
+   "amperagem_ah": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "energia_wh": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "autonomia_declarada_km": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "carga_max_kg": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "aro": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "peso_kg": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "categoria": null,
+   "motivo_categoria_null": "DERIVADA da F1 e obrigatoriamente null: a constante `limiares-categoria-contran-996-2023` esta `pendente` em dados/constantes.json, e a 1.3 da especificacao proibe a F1 de ir ao ar com numero de portal. O validador le o STATUS DA CONSTANTE, nao uma lista escrita dentro dele.",
+   "status": "rascunho",
+   "motivo_do_status": "`rascunho`, e a causa e UMA SO: nenhum registro deste banco tem saida de compra ainda, e a 25.2 nao admite item publicavel sem piso. Nada aqui e servido em pagina nenhuma enquanto for rascunho. O que destrava e o bloco de coleta de link, nao um acerto de campo.",
+   "divergencias": [],
+   "afirmacao_do_vendedor": [],
+   "alteracao_pos_compra": [],
+   "cotacoes": [
+    {
+     "valor_brl": 8149.0,
+     "loja": "Mercado Livre",
+     "programa": "mercado_livre",
+     "comissao_declarada_pct": 16.0,
+     "vendas_declaradas": null,
+     "data_leitura": "2026-10-27",
+     "fonte": "painel-ml"
+    }
+   ],
+   "afiliado": {
+    "programa": null,
+    "degrau": null,
+    "url": null,
+    "url_produto": null,
+    "par_colhido_em": null,
+    "url_busca": null,
+    "url_busca_produto": null,
+    "encurtamento_tentado_em": null,
+    "sub_id_1": null,
+    "sub_id_2": null,
+    "motivo_sem_url_produto": "CAUSA: a coleta de link e bloco proprio e nao e este; nenhuma chamada de API e nenhum gerador de link foi acionado por esta execucao, que entrega o MODELO do banco. || ULTIMA TENTATIVA: nenhuma em 28/10/2026 — e de proposito, nao por falha.",
+    "motivo_sem_url_busca": "CAUSA: idem. O piso da 25.2 e o primeiro item do bloco de coleta, e e ele que torna qualquer destes registros `publicavel`. || ULTIMA TENTATIVA: nenhuma em 28/10/2026."
+   },
+   "imagem": null,
+   "fontes": {
+    "painel-ml": {
+     "url": "https://www.mercadolivre.com.br/afiliados/ (painel de afiliado, logado)",
+     "tipo": "painel-de-afiliado",
+     "nivel": 6,
+     "origem": "anuncio-de-marketplace",
+     "autoria": "o vendedor do anuncio",
+     "custodia": "Mercado Livre",
+     "leitura": null,
+     "data_leitura": "2026-10-27",
+     "observacao": "Mesma leitura da Bussola de 27/10/2026, secao (c) do dossie."
+    }
+   }
+  },
+  {
+   "id": "x13-chopper-1000w",
+   "marca": null,
+   "motivo_sem_marca": "o titulo do painel nao nomeia marca.",
+   "modelo": "X13",
+   "titulo_colhido": "X13 chopper 1.000 W, sem CNH",
+   "tipo_comercial": "scooter",
+   "potencia_nominal_w": {
+    "valor": null,
+    "motivo": "a fonte declara UM watt so e nao diz se e nominal ou pico, e nao ha contraste na mesma ficha de onde ler o rotulo. Pela regra de campos_que_exigem_procedencia_de_leitura do esquema, o campo nasce null e o numero vai para potencia_declarada_sem_rotulo_w. O registro cai no grupo `sem_potencia_nominal_declarada` da F1, que e a ressalva 1.4(a) com produto na mao."
+   },
+   "potencia_pico_w": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "potencia_declarada_sem_rotulo_w": {
+    "valor": 1000,
+    "unidade": "W",
+    "fonte": "painel-ml",
+    "declarado_como": "1.000 W"
+   },
+   "velocidade_max_kmh": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "acelerador": {
+    "valor": "nao_declarado",
+    "fonte": "painel-ml",
+    "motivo": "a unica fonte deste campo e de nivel 6 (declaracao de vendedor), e `niveis_minimos_por_campo` exige nivel 5 ou melhor em `acelerador` — a categoria legal e o produto da ilha e o erro caro e o permissivo. Colher este campo em ficha de varejo ou do fabricante e trabalho de coleta, nao lacuna de modelo.",
+    "declarada_por": null
+   },
+   "tensao_v": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "amperagem_ah": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "energia_wh": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "autonomia_declarada_km": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "carga_max_kg": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "aro": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "peso_kg": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "categoria": null,
+   "motivo_categoria_null": "DERIVADA da F1 e obrigatoriamente null: a constante `limiares-categoria-contran-996-2023` esta `pendente` em dados/constantes.json, e a 1.3 da especificacao proibe a F1 de ir ao ar com numero de portal. O validador le o STATUS DA CONSTANTE, nao uma lista escrita dentro dele.",
+   "status": "rascunho",
+   "motivo_do_status": "`rascunho`, e a causa e UMA SO: nenhum registro deste banco tem saida de compra ainda, e a 25.2 nao admite item publicavel sem piso. Nada aqui e servido em pagina nenhuma enquanto for rascunho. O que destrava e o bloco de coleta de link, nao um acerto de campo.",
+   "divergencias": [],
+   "afirmacao_do_vendedor": [
+    {
+     "frase": "sem CNH",
+     "onde": "no proprio titulo do anuncio",
+     "fonte": "painel-ml",
+     "data_leitura": "2026-10-27",
+     "por_que_esta_aqui": "Afirmacao de categoria legal feita por quem vende. Com o watt sem rotulo e sem velocidade de fabrica declarada em ficha, este registro NAO tem como sustentar nem confirmar nem negar a frase — e e isso que a pagina diz."
+    }
+   ],
+   "alteracao_pos_compra": [],
+   "cotacoes": [
+    {
+     "valor_brl": 8244.0,
+     "loja": "Mercado Livre",
+     "programa": "mercado_livre",
+     "comissao_declarada_pct": 12.0,
+     "vendas_declaradas": null,
+     "data_leitura": "2026-10-27",
+     "fonte": "painel-ml"
+    }
+   ],
+   "afiliado": {
+    "programa": null,
+    "degrau": null,
+    "url": null,
+    "url_produto": null,
+    "par_colhido_em": null,
+    "url_busca": null,
+    "url_busca_produto": null,
+    "encurtamento_tentado_em": null,
+    "sub_id_1": null,
+    "sub_id_2": null,
+    "motivo_sem_url_produto": "CAUSA: a coleta de link e bloco proprio e nao e este; nenhuma chamada de API e nenhum gerador de link foi acionado por esta execucao, que entrega o MODELO do banco. || ULTIMA TENTATIVA: nenhuma em 28/10/2026 — e de proposito, nao por falha.",
+    "motivo_sem_url_busca": "CAUSA: idem. O piso da 25.2 e o primeiro item do bloco de coleta, e e ele que torna qualquer destes registros `publicavel`. || ULTIMA TENTATIVA: nenhuma em 28/10/2026."
+   },
+   "imagem": null,
+   "fontes": {
+    "painel-ml": {
+     "url": "https://www.mercadolivre.com.br/afiliados/ (painel de afiliado, logado)",
+     "tipo": "painel-de-afiliado",
+     "nivel": 6,
+     "origem": "anuncio-de-marketplace",
+     "autoria": "o vendedor do anuncio",
+     "custodia": "Mercado Livre",
+     "leitura": null,
+     "data_leitura": "2026-10-27",
+     "observacao": "Mesma leitura da Bussola de 27/10/2026, secao (c) do dossie."
+    }
+   }
+  },
+  {
+   "id": "ls-sport-scooter-1000w",
+   "marca": "LS Sport",
+   "modelo": null,
+   "motivo_sem_modelo": "o titulo do painel nao nomeia codigo de modelo.",
+   "titulo_colhido": "LS Sport scooter 1.000 W bluetooth",
+   "tipo_comercial": "scooter",
+   "potencia_nominal_w": {
+    "valor": null,
+    "motivo": "a fonte declara UM watt so e nao diz se e nominal ou pico, e nao ha contraste na mesma ficha de onde ler o rotulo. Pela regra de campos_que_exigem_procedencia_de_leitura do esquema, o campo nasce null e o numero vai para potencia_declarada_sem_rotulo_w. O registro cai no grupo `sem_potencia_nominal_declarada` da F1, que e a ressalva 1.4(a) com produto na mao."
+   },
+   "potencia_pico_w": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "potencia_declarada_sem_rotulo_w": {
+    "valor": 1000,
+    "unidade": "W",
+    "fonte": "painel-ml",
+    "declarado_como": "1.000 W"
+   },
+   "velocidade_max_kmh": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "acelerador": {
+    "valor": "nao_declarado",
+    "fonte": "painel-ml",
+    "motivo": "a unica fonte deste campo e de nivel 6 (declaracao de vendedor), e `niveis_minimos_por_campo` exige nivel 5 ou melhor em `acelerador` — a categoria legal e o produto da ilha e o erro caro e o permissivo. Colher este campo em ficha de varejo ou do fabricante e trabalho de coleta, nao lacuna de modelo.",
+    "declarada_por": null
+   },
+   "tensao_v": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "amperagem_ah": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "energia_wh": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "autonomia_declarada_km": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "carga_max_kg": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "aro": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "peso_kg": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "categoria": null,
+   "motivo_categoria_null": "DERIVADA da F1 e obrigatoriamente null: a constante `limiares-categoria-contran-996-2023` esta `pendente` em dados/constantes.json, e a 1.3 da especificacao proibe a F1 de ir ao ar com numero de portal. O validador le o STATUS DA CONSTANTE, nao uma lista escrita dentro dele.",
+   "status": "rascunho",
+   "motivo_do_status": "`rascunho`, e a causa e UMA SO: nenhum registro deste banco tem saida de compra ainda, e a 25.2 nao admite item publicavel sem piso. Nada aqui e servido em pagina nenhuma enquanto for rascunho. O que destrava e o bloco de coleta de link, nao um acerto de campo.",
+   "divergencias": [],
+   "afirmacao_do_vendedor": [],
+   "alteracao_pos_compra": [],
+   "cotacoes": [
+    {
+     "valor_brl": 8856.0,
+     "loja": "Mercado Livre",
+     "programa": "mercado_livre",
+     "comissao_declarada_pct": 12.0,
+     "vendas_declaradas": null,
+     "data_leitura": "2026-10-27",
+     "fonte": "painel-ml"
+    }
+   ],
+   "afiliado": {
+    "programa": null,
+    "degrau": null,
+    "url": null,
+    "url_produto": null,
+    "par_colhido_em": null,
+    "url_busca": null,
+    "url_busca_produto": null,
+    "encurtamento_tentado_em": null,
+    "sub_id_1": null,
+    "sub_id_2": null,
+    "motivo_sem_url_produto": "CAUSA: a coleta de link e bloco proprio e nao e este; nenhuma chamada de API e nenhum gerador de link foi acionado por esta execucao, que entrega o MODELO do banco. || ULTIMA TENTATIVA: nenhuma em 28/10/2026 — e de proposito, nao por falha.",
+    "motivo_sem_url_busca": "CAUSA: idem. O piso da 25.2 e o primeiro item do bloco de coleta, e e ele que torna qualquer destes registros `publicavel`. || ULTIMA TENTATIVA: nenhuma em 28/10/2026."
+   },
+   "imagem": null,
+   "fontes": {
+    "painel-ml": {
+     "url": "https://www.mercadolivre.com.br/afiliados/ (painel de afiliado, logado)",
+     "tipo": "painel-de-afiliado",
+     "nivel": 6,
+     "origem": "anuncio-de-marketplace",
+     "autoria": "o vendedor do anuncio",
+     "custodia": "Mercado Livre",
+     "leitura": null,
+     "data_leitura": "2026-10-27",
+     "observacao": "Mesma leitura da Bussola de 27/10/2026, secao (c) do dossie."
+    }
+   }
+  },
+  {
+   "id": "guia-melhor-de-2026",
+   "marca": null,
+   "motivo_sem_marca": "a fonte e uma lista comercial e esta execucao nao a reabriu; a especificacao registra o item so pelos numeros.",
+   "modelo": null,
+   "motivo_sem_modelo": "idem.",
+   "titulo_colhido": "o modelo 'melhor de 2026' de uma lista comercial (2 x 1.000 W, 72 km/h)",
+   "tipo_comercial": "nao_declarado",
+   "potencia_nominal_w": {
+    "valor": null,
+    "motivo": "fonte de nivel 8 nao sustenta campo nenhum."
+   },
+   "potencia_pico_w": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "potencia_declarada_sem_rotulo_w": {
+    "valor": null,
+    "motivo": "fonte de nivel 8 nao sustenta campo nenhum. Os '2 x 1.000 W' e os '72 km/h' que a tabela 1.6 da especificacao registra ficam na tabela, como PROVA do que a familia 'melhor de 2026' publica, e fora deste banco."
+   },
+   "velocidade_max_kmh": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "acelerador": {
+    "valor": "nao_declarado",
+    "fonte": "guia-dos-perifericos",
+    "motivo": "fonte de nivel 8 nao sustenta campo nenhum.",
+    "declarada_por": null
+   },
+   "tensao_v": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "amperagem_ah": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "energia_wh": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "autonomia_declarada_km": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "carga_max_kg": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "aro": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "peso_kg": {
+    "valor": null,
+    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+   },
+   "categoria": null,
+   "motivo_categoria_null": "DERIVADA da F1 e obrigatoriamente null: a constante `limiares-categoria-contran-996-2023` esta `pendente` em dados/constantes.json, e a 1.3 da especificacao proibe a F1 de ir ao ar com numero de portal. O validador le o STATUS DA CONSTANTE, nao uma lista escrita dentro dele.",
+   "status": "excluido_do_banco",
+   "motivo_do_status": "`excluido_do_banco`: a unica fonte e de nivel 8.",
+   "excluido_do_banco_por_que": "Nivel 8 (fazenda ou catalogo comercial) nao sustenta campo nenhum, em nenhum nivel de custo — e este dominio e um dos que o bloco 1 mediu ocupando a familia 'melhor patinete', que o VOZ.md desta ilha proibe por nome. O registro FICA GRAVADO com a causa para a proxima coleta nao o recolher de novo, e porque ele e util como prova: a tabela pre-renderizada da F1 cita este item como exemplo do que o mercado publica, sem nunca o recomendar.",
+   "divergencias": [],
+   "afirmacao_do_vendedor": [],
+   "alteracao_pos_compra": [],
+   "cotacoes": [],
+   "afiliado": {
+    "programa": null,
+    "degrau": null,
+    "url": null,
+    "url_produto": null,
+    "par_colhido_em": null,
+    "url_busca": null,
+    "url_busca_produto": null,
+    "encurtamento_tentado_em": null,
+    "sub_id_1": null,
+    "sub_id_2": null,
+    "motivo_sem_url_produto": "CAUSA: a coleta de link e bloco proprio e nao e este; nenhuma chamada de API e nenhum gerador de link foi acionado por esta execucao, que entrega o MODELO do banco. || ULTIMA TENTATIVA: nenhuma em 28/10/2026 — e de proposito, nao por falha.",
+    "motivo_sem_url_busca": "CAUSA: idem. O piso da 25.2 e o primeiro item do bloco de coleta, e e ele que torna qualquer destes registros `publicavel`. || ULTIMA TENTATIVA: nenhuma em 28/10/2026."
+   },
+   "imagem": null,
+   "fontes": {
+    "guia-dos-perifericos": {
+     "url": "https://www.guiadosperifericos.com.br/",
+     "tipo": "fazenda-de-conteudo",
+     "nivel": 8,
+     "origem": "fazenda-ou-catalogo-comercial",
+     "autoria": "publicador de lista comercial",
+     "custodia": "o proprio site",
+     "leitura": null,
+     "data_leitura": "2026-10-28",
+     "observacao": "O bloco 1 mediu este dominio como ocupante da familia 'melhor patinete', que o VOZ.md desta ilha proibe por nome. Nivel 8 NAO sustenta campo nenhum."
+    }
+   }
+  }
+ ]
+}
