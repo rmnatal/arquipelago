@@ -1,0 +1,18 @@
+{
+  "ilha": "rodametria",
+  "nome": "Rodametria",
+  "nicho": "mobilidade eletrica — acertar os tres numeros antes de comprar um veiculo eletrico: categoria legal (CNH e placa), autonomia real e carga maxima",
+  "dominio": "https://rodametria.com.br",
+  "versao_manifest": 1,
+  "revisao": 1,
+  "atualizado_em": "2026-10-28",
+  "estado": "nascendo",
+  "desembarque": {
+    "aprovado": false,
+    "decidido_em": null,
+    "observacao": "A REVISAO 1 NAO PUBLICA NADA, E E DE PROPOSITO: ela existe para PROVAR O CANAL antes de haver conteudo em risco. O manifest tem revisao e os tres grupos (snippets, conteudo, dados) VAZIOS, entao o Sync aplica zero itens, pula zero e grava revisao 1. Por que agora: o snippet Rodametria Sync (versao 1.1.5) nasceu entre 10h17Z e 11h48Z de 28/10/2026 — as 10h17Z o /wp-json/rodametria/v1/status devolvia 404 e as 13h2xZ devolvia 200 — e desde as 11h48Z ele vinha falhando a cada 30 minutos (o cron da ilha) com 'FALHA manifest: HTTP 404 em manifest.json', revisao -1, porque este arquivo nao existia no repositorio. E a secao 4 do ARQUIPELAGO.md ao contrario: nao foi o site que ficou para tras, foi o REPOSITORIO. Duas coisas se ganham aqui, as duas baratas: o log do /status para de encher de FALHA (e ele e uma JANELA de 15 linhas, pela 20.4 — item que rola para fora dela nao foi conferido, e no dia do primeiro desembarque de verdade a janela estaria cheia de ruido), e o caminho inteiro fica provado ponta a ponta com NADA em jogo: raw.githubusercontent.com/rmnatal/arquipelago/main/ilhas/rodametria/manifest.json -> wp_remote_get do Sync -> json_decode -> revisao gravada -> /status publico. Se o caminho, a constante RODAMETRIA_SYNC_BASE ou o cron estiverem errados, isto descobre hoje, com zero pagina no ar, em vez de no dia em que a F1 for ao ar. A primeira revisao que PUBLICA algo e a da casca (bloco 3b da fila), e ela passa pelo portao da secao 8 e pela 20.4 como qualquer outra."
+  },
+  "snippets": [],
+  "conteudo": [],
+  "dados": []
+}
