@@ -5,7 +5,7 @@ prioridade: 1
 piso: abaixo
 primeira_indexacao: null
 ultima_execucao: 2026-10-28T16:40Z   # BLOCO 3 ENTREGUE: o MODELO DO BANCO — `dados/esquema-banco.json` (versao 1, tres entidades, escada de oito niveis), 24 registros (17 veiculos, 3 pecas, 4 municipios), `validar-banco.py`, `derivar-banco.py`, `mutacoes-banco.py` (66 casos, 0 falha) e `bancada.py`. O ACHADO E UM NUMERO: ZERO veiculo com potencia nominal declarada contra 14 com um watt SEM ROTULO — a F1 fica sem entrada mesmo com os limiares na mao. No caminho, DOIS defeitos: a tabela 1.6 da especificacao chama de "W nominal" uma coluna que nenhuma fonte rotulou (errata), e o PIVO da F1 nasceu `null` em dois registros, pego pela primeira rodada do proprio validador. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
-executando_desde: null   # limpo as 2026-10-28T16:40Z pela propria execucao que reservou as 16h19Z de 28/10 (commit 4a14f00). Reserva NAO renovada pela 1.1 porque o bloco nao passou de 40 minutos entre a reserva e o primeiro commit de trabalho.
+executando_desde: 2026-10-28T19:16Z   # reserva desta execucao (passo 5 da secao 1); foco.md nomeia a rodametria desde 27/10
 bloco_atual: |
   BLOCO 3 ENTREGUE — O MODELO DO BANCO, com portao e bateria no mesmo bloco. `esquema-banco.json`
   versao 1: entidades VEICULO, PECA e MUNICIPIO, escada de fontes de OITO niveis, divergencia que
