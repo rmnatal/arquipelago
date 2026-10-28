@@ -11,6 +11,67 @@ Prioridade: `alta` fura a fila da próxima execução do destinatário.
 
 ## ABERTOS
 
+### prioridade ALTA — a ilha EM FOCO tem como produto a CATEGORIA LEGAL, e o único texto que a decide é negado pelo egresso: o bloco 2 pode ser especificado inteiro, mas não pode ser FECHADO desta nuvem
+
+28/10/2026 às 10h4xZ — RAPHAEL (dois gestos de navegador, nenhum deles é bloco) — Medido pela execução da Fundação que entregou o bloco 1 da rodametria.
+
+**O PEDIDO, primeiro, porque ele é de duas linhas.** Acrescentar à lista "Domínios permitidos" dos ambientes de nuvem (`claude.ai/code` → seletor de ambiente → Nuvem → engrenagem):
+
+```
+www.gov.br
+gov.br
+```
+
+**POR QUE ISTO É ALTA E NÃO NORMAL, dito na cara:** o `PROMPT.md` da rodametria escreve, sobre a constante central da F1 — os 1.000 W, os 32 km/h e as dimensões do autopropelido —, que ela *"só vira `publicavel` depois de lida no texto oficial do gov.br, com data"*. A ferramenta F1 **é** a home desta ilha e **é** a razão pela qual ela nasceu (o dossiê: *"a ilha entra pela ferramenta que ninguém tem"*). E o "Específico desta ilha" diz por que o rigor é outro aqui: *"errar 'dispensa CNH' num veículo que é ciclomotor manda a pessoa para a rua sem habilitação."* **O produto desta ilha é a categoria legal; sem a fonte primária, o produto não existe.**
+
+**MEDIDO ÀS 10h4xZ DE 28/10/2026, e não é intermitência de túnel:**
+
+```
+https://www.gov.br/transportes/pt-br                                   → 000
+https://www.gov.br/transportes/.../conteudo-Senatran/resolucoes-contran → 000
+https://www.lex.com.br/resolucao-contran-no-996-de-15-de-junho-de-2023  → 000
+```
+
+As três com **`connect_rejected` do egresso** (host fora da lista de permitidos), e a busca de página do gov.br falha na própria resolução de nome: `ENOTFOUND www.gov.br`. A seção 20.2 manda repetir antes de chamar de bloqueio — aqui a repetição não muda nada, porque o erro nomeado pelo egresso é recusa, não queda. É a 20.3 em estado puro: *"quem escreve a regra que exige a fonte é quem confere se a fonte está liberada"* — a regra foi escrita em 27/10 e a fonte nunca foi conferida.
+
+**O SEGUNDO GESTO, e ele vale a passada do mesmo jeito se o primeiro demorar:** abrir no Chrome o texto oficial da **Resolução Contran nº 996, de 15/06/2023** e colar no `PROMPT.md` da rodametria, ou num arquivo em `ilhas/rodametria/dados/`, as **definições literais** de `ciclomotor`, `bicicleta elétrica` e `equipamento de mobilidade individual autopropelido`, com **potência em W, velocidade em km/h, largura e distância entre eixos**, mais **a URL e a data da leitura**. Com isso a constante nasce `publicavel: true` sem ninguém depender do egresso.
+
+**E ELE É URGENTE POR UM MOTIVO QUE A COLETA DE HOJE MEDIU: A PROSA DISPONÍVEL SE CONTRADIZ NO NÚMERO.** O corpus do bloco 1 (`ilhas/rodametria/dados/corpus-buscas.md`, eixo A) colheu **três** limites diferentes para a mesma pergunta, todos em fontes que se apresentam como quem sabe — **350 W / 25 km/h** (que é regra **do Rio**, apresentada como nacional), **1.000 W / 32 km/h** (nacional) e **4 kW / 50 km/h** (ciclomotor, sem citar o de 1.000 W) — e ainda uma fonte de primeira página afirmando **CNH categoria A** para bicicleta elétrica, o contrário de todas as outras. **Nenhum desses números é constante publicável, nem o que mais apareceu.** A ilha cujo produto é a categoria legal não publica categoria legal com fonte de segunda mão.
+
+**Pronto quando:** `curl` ao gov.br devolver 200 desta nuvem **ou** as três definições literais estiverem escritas no repositório com URL e data de leitura. Qualquer um dos dois destrava o fecho do bloco 2; os dois juntos destravam também a releitura, que a F1 vai precisar porque a resolução **ganhou fase nova de vigência em 1º/01/2026** (colhido em `canalve.com.br` e `paraibabusiness.com.br`, 28/10/2026 — e isto também é segunda mão).
+
+**O que NÃO está bloqueado por isto, para ninguém parar a ilha errada:** o bloco 2 pode ser escrito inteiro, e `dados/constantes.json` pode nascer com a constante da F1 marcada `publicavel: false` e a dívida nomeada. O que não pode é a F1 **ir ao ar** classificando veículo com número de portal de notícia. E a ilha **não** recebe `bloqueada_por` por causa disto (seção 11, passo 4): o que travou é uma fonte, não a ilha.
+
+---
+
+### prioridade NORMAL — a SERP de DOIS dos quatro eixos da ilha em foco não é mensurável desta nuvem, e a 30.8 agora tem a contagem que mostra onde ela vaza e onde não
+
+28/10/2026 às 10h4xZ — RAPHAEL (uma sessão de Chrome, não é bloco) — Medido pela mesma execução, no bloco 1 da rodametria.
+
+**O PEDIDO:** abrir no Chrome, e escrever na linha quem viu e quando (30.8), a SERP brasileira destas consultas, que são as que decidem páginas das ferramentas F2 e F3 e das peças:
+
+```
+autonomia patinete eletrico          quantos km faz bicicleta eletrica
+patinete eletrico peso maximo        patinete eletrico para pessoa acima de 120 kg
+camara de ar patinete eletrico aro 10
+```
+
+**POR QUE, com o número na mesa.** O bloco 1 contou o vazamento da busca da nuvem **por eixo**, e ele **não é parelho** — é a 30.8 confirmada e refinada numa ilha nova:
+
+| eixo | vazamento para fora do Brasil |
+|---|---|
+| **CNH e placa** (regra brasileira) | **zero** em 7 consultas |
+| produto pelo nome | baixo: 3 de ~18 |
+| carga e tamanho | alto: 6 de ~17 |
+| **autonomia** | **quase total**: ~40 de ~50, uma consulta com ZERO ocupante brasileiro |
+| **peças** (câmara, pneu, carregador) | **quase total**: 18 de 20 em `pccomponentes.pt` |
+
+**A leitura, e ela é útil para as outras cinco ilhas:** pergunta de **regra brasileira** não tem equivalente em Portugal ou na Espanha, então a busca não tem para onde vazar e a procedência é confiável. Pergunta de **produto e consumível** tem catálogo europeu idêntico, e aí a busca entrega Portugal e Espanha. **O vazamento é mínimo exatamente onde esta ilha nasce** — o que é sorte, não desenho, e vale escrito para a próxima Bússola saber que o eixo de regra é o mais barato de medir da nuvem.
+
+**Pronto quando:** as cinco linhas tiverem veredito `tomada` ou `alvo` com quem viu e quando. Pela assimetria da 30.8, nada disso sai daqui: `alvo` exige a SERP aberta com os olhos.
+
+---
+
 ### prioridade NORMAL — 21 DOS 26 PORTÕES DE NAVEGADOR DO ARQUIPÉLAGO ESTÃO INERTES NESTA NUVEM, PELA MESMA LINHA DE `import`, E A CAMADA DE PIXEL E DE COMPORTAMENTO DAS DUAS ILHAS MAIS ANTIGAS NÃO É MEDIDA HÁ QUANTO TEMPO NINGUÉM SABE
 
 26/10/2026 às 19h2xZ — FUNDAÇÃO (quem reservar a ilha, e só na passada em que mexer em página de molde) — Medido pela execução que fechou em "nada elegível" e, por não ter bloco, foi medir o que ninguém mede.
