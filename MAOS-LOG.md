@@ -7931,3 +7931,72 @@ commit separado. Nenhuma reserva de ilha, nenhum `executando_desde`, nenhum cabe
 instrução não tenha nomeado, nenhum bloco de fila executado, nenhuma publicação, nenhum
 `publicar: true`, nenhum Sync, nenhuma verificação de site, nenhuma conta criada. `ARQUIPELAGO.md` não
 foi lido para decidir coisa alguma. Nenhum dado pessoal de terceiro entrou no repositório.
+
+---
+
+## Disparo de 28/10/2026, 17h16 BRT (20h16Z) — adendo e errata da leitura semanal de 2026-10-28
+
+**Assunto:** Arquipélago, ilha aquametria (leitura semanal da Sentinela). Passou na checagem de
+assunto: errata em `ilhas/aquametria/dados/indexacao.md` e adendo em `ilhas/aquametria/PROMPT.md`,
+ambos dentro da ilha.
+
+**Instrução:** 2 edições em 2 arquivos, num commit só, mensagem
+`Errata e adendo da leitura semanal — 2026-10-28`, depois `git push origin HEAD:main` e confirmação
+por `git log -1 origin/main`.
+
+Partida: `git fetch origin main && git checkout -B trabalho origin/main`, a partir de `9ad7fb5`.
+
+- **Edição 1 (errata)** — `ilhas/aquametria/dados/indexacao.md`: na linha que começa com
+  `| 2026-10-28 | 52 | 50 | 96% |`, o trecho sobre "a leitura pela nuvem precisou de DOIS disparos"
+  foi substituído pelo texto novo da errata da própria Sentinela. O trecho a substituir ocorria
+  exatamente 1 vez e estava na linha certa (conferido antes de gravar).
+- **Edição 2 (adendo)** — `ilhas/aquametria/PROMPT.md`: bloco com os itens `1-b` e `1-c` inserido
+  imediatamente ANTES da linha que começa com
+  `2. **A DÍVIDA DA 25.4-b CONTINUA ABERTA, E HOJE ELA ESTÁ CONTADA E NOMEADA`, seguido de uma linha
+  em branco. A âncora ocorria exatamente 1 vez.
+
+Nada mais foi tocado: nenhum reformate, nenhuma "melhoria", nenhuma linha extra.
+
+### `git status --porcelain` (antes do commit)
+
+```
+ M ilhas/aquametria/PROMPT.md
+ M ilhas/aquametria/dados/indexacao.md
+```
+
+### `git diff --stat`
+
+```
+ ilhas/aquametria/PROMPT.md          | 7 +++++++
+ ilhas/aquametria/dados/indexacao.md | 2 +-
+ 2 files changed, 8 insertions(+), 1 deletion(-)
+```
+
+### Commit que foi ao `main`
+
+```
+ef1d5ad9d682aeef21422521e8433156185b4b17  Errata e adendo da leitura semanal — 2026-10-28
+```
+
+`git push origin HEAD:main` aceito de primeira (`9ad7fb5..ef1d5ad  HEAD -> main`), sem recusa, sem
+rebase, sem force push, sem PR. Confirmado com `git fetch origin main && git log -1 origin/main`:
+`ef1d5ad9d682aeef21422521e8433156185b4b17 Errata e adendo da leitura semanal — 2026-10-28`.
+
+### Contagem do que mudou — conferida RELENDO os arquivos depois de gravar
+
+```
+errata nova em indexacao.md   : 1  (esperado 1)
+texto antigo em indexacao.md  : 0  (esperado 0 — foi substituído)
+item 1-b em PROMPT.md         : 1  (esperado 1)
+item 1-c em PROMPT.md         : 1  (esperado 1)
+wc -l ilhas/aquametria/PROMPT.md          : 772
+wc -l ilhas/aquametria/dados/indexacao.md : 266
+```
+
+2 arquivos alterados, 8 linhas inseridas, 1 removida. Nenhum passo falhou.
+
+**O que NÃO foi feito:** nenhuma ilha reservada, nenhum `executando_desde`, nenhum cabeçalho de
+estado tocado, nenhum bloco de fila executado, nenhum arquivo além dos dois nomeados (mais este
+`MAOS-LOG.md`, que é a exceção obrigatória), nenhuma publicação, nenhum `publicar: true`, nenhum
+Sync, nenhuma verificação de site, nenhuma conta criada. `ARQUIPELAGO.md` não foi lido para decidir
+coisa alguma. Nenhum dado pessoal de terceiro entrou no repositório.
