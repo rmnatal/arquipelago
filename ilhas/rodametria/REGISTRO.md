@@ -46,6 +46,27 @@ Com zero item, ele aplica zero, pula zero e grava a revisão.
    hoje, com zero página no ar**, e não no dia em que a F1 for ao ar. É a mesma família do
    passo 20.1: *"casca no ar que não pode ser verificada é pior que casca inexistente"*.
 
+**VERIFICADO NO AR PELA 18.4 E PELA 20.4, e o critério de pronto era declarado antes.** O
+cron da ilha rodou às **13h40:03Z** e o `/status` virou:
+
+```
+revisao: 1   ultimo: 2026-10-28 13:40:03
+2026-10-28 13:40 revisão 1: 0 aplicado(s), 0 aguardando desembarque
+2026-10-28 13:10 FALHA manifest: HTTP 404 em manifest.json     <- a última falha
+```
+
+**É exatamente o previsto, item por item:** zero aplicado (não havia o que publicar), zero
+aguardando desembarque (não havia item com `publicar: false`), e a linha da revisão corrente
+**não é FALHA** — que é o que a 20.4 manda conferir. As quatro falhas pararam. **O canal de
+desembarque da rodametria está provado ponta a ponta**, e a primeira revisão que publicar
+algo vai encontrar um log limpo em vez de uma janela cheia de ruído.
+
+Entre o push e o `/status` subir passaram **~4 minutos**, com `raw.githubusercontent.com` já
+servindo a revisão 1 desde o primeiro minuto — a **20.5** em estado puro, e aqui ela não era
+cache e sim o cron esperando a hora dele (o evento de 30 minutos venceu às 13h40, depois do
+de 13h10). Quem vier depois: `wp-cron.php` chamado à mão **não antecipa** evento que ainda
+não venceu, e devolve **409** quando o cron já está travado.
+
 **E os endpoints do `PROMPT.md` deixaram de ser placeholder.** Eles estavam em
 `<preencher quando o snippet Rodametria Sync existir>` **com o snippet no ar**, e o passo 8
 da seção 11 diz, com todas as letras, que **sem eles a seção 4 não é executável**. Agora
