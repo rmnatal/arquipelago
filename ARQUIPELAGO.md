@@ -698,6 +698,22 @@ Escrito em 11/09/2026 depois de três execuções seguidas travadas em silêncio
 
 **A régua, e ela cabe em duas frases:** `/status` com revisão **menor** que a do manifest, **log com timestamp de agora** e `raw.githubusercontent.com` já servindo a revisão nova = **cache, reacione**. Revisão menor **com log antigo** = o Sync não rodou, e aí sim é entrega que não aconteceu. Reacionar de dois em dois (a 20.4 manda duas por desenho), com alguns minutos entre as rodadas; se depois de ~10 minutos o `/status` não subir, pare de reacionar e trate como defeito de verdade, porque aí não é mais cache.
 
+20.6 **O CRON DO SYNC NÃO RODA POR RELÓGIO: RODA POR VISITA — E ILHA SEM TOKEN NÃO "EMPURRA E ESPERA", ELA ABRE A PRÓPRIA PÁGINA (29/10/2026).**
+
+Medido na Rodametria às 16h3xZ de 29/10/2026. Esta seção está no contrato pelo motivo que a **20.4** já escreveu com todas as letras — *"o Sync é o mesmo código nas três"*, e *"três dias depois o mesmo desembarque quebrou as mesmas páginas, porque o que ficou escrito foi o CONSERTO e não a REGRA"*.
+
+O Sync tem um cron próprio (`<ilha>_30min`), e por isso a Fundação pode desembarcar numa ilha **sem** o token: empurra para o `main` e o cron aplica. Foi assim que a Rodametria foi ao ar. **O que ninguém havia medido é o que ACIONA esse cron.** O log do `/status` daquela ilha trazia disparos às 11h39, 12h09, 13h56 e 14h09Z e depois **nada por 2h29** — e **14h12Z é o minuto em que a execução anterior fechou e parou de abrir o site.** É WP-Cron: ele é acionado por **requisição ao site**, não por um relógio no servidor. Ilha sem visitante não desembarca, por mais que a agenda diga 30 minutos.
+
+**O custo já foi pago uma vez:** a execução da manhã de 29/10 registrou **nove esperas de cron** entre 10h44Z e 12h10Z, e o `ESTADO.md` da ilha escreveu que a Fundação *"não aciona o Sync aqui — ela empurra e espera"*. A frase está **certa sobre o token e errada sobre o relógio**: as nove esperas foram curtas justamente porque aquela execução estava abrindo o site a toda hora para conferir, e o que ela leu como "o cron é de 25 a 30 minutos" era **ela mesma acionando o cron sem saber**.
+
+**A régua, e ela cabe em duas linhas.** Em ilha onde a Fundação **não tem** o token do Sync, depois de empurrar ela **abre a própria página** — dois ou três GET na home bastam — e só então confere o `/status`:
+
+```
+curl -s -o /dev/null "https://<ilha>.com.br/?v=$(date +%s)"   # acorda o cron; repita 2 ou 3 vezes
+```
+
+A revisão 12 da Rodametria entrou em **um minuto** por esse caminho, com o `wp-cron.php` respondendo **409** (prova de que o cron já estava rodando) na mesma passada. **Esperar sem visitar não é paciência: é uma espera que nunca termina sozinha.** E isto não substitui nada: a **20.4** continua valendo inteira — depois do cron, as linhas da revisão corrente no log são lidas uma por uma, e nenhuma pode deixar de dizer `ok`. Em ilha onde a Fundação **tem** o token, nada muda: ela aciona o Sync duas vezes, como a 20.4 manda por desenho.
+
 20.3 **A mesma armadilha vale para toda fonte nova** que uma ilha precise alcançar (domínio de fabricante, API, marketplace): quem escreve a regra que exige a fonte é quem confere se a fonte está liberada.
 
 ## 21. O PISO DA RAMPA — antes de 40 páginas e 21 dias, zero impressão não é sinal (11/09/2026)
