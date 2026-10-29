@@ -200,7 +200,15 @@ def montar(bloco, editorial_da_pagina):
             'especificacao': o_que_o_anuncio_declara(a),
             'url': a['url_afiliado'],
             'programa': 'shopee',
-            'degrau': a['degrau_da_escada'],
+            # DOIS "DEGRAUS" DIFERENTES, E JUNTA-LOS SERIA DEFEITO SILENCIOSO.
+            # `degrau_da_escada` do anuncio e o degrau da escada de CHAVES (que
+            # palavra achou o produto na loja). O `degrau` que o cartao da casca
+            # le e o da escada de COMPRA da 25.1, e e ele que decide o rotulo do
+            # botao: ficha de produto diz "Ver na Shopee", busca diz "Ver ofertas
+            # na Shopee". Estes links sao `url_produto` encurtado, ou seja FICHA,
+            # entao o degrau de compra e 1 — e vai declarado, nao herdado.
+            'degrau': 1,
+            'degrau_da_escada_de_chaves': a['degrau_da_escada'],
             'imagem': a.get('imagem'),
             'loja': a['loja'],
         }

@@ -4,7 +4,7 @@
   "nicho": "mobilidade eletrica — acertar os tres numeros antes de comprar um veiculo eletrico: categoria legal (CNH e placa), autonomia real e carga maxima",
   "dominio": "https://rodametria.com.br",
   "versao_manifest": 1,
-  "revisao": 14,
+  "revisao": 15,
   "atualizado_em": "2026-10-29",
   "estado": "nascendo",
   "desembarque": {
@@ -40,7 +40,7 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "66a83eb435fa782a980e2d138f57e9dc9e44558d61dd9dad0accc28f70152355",
+      "sha256": "1eacdcca026097afe30e8f9c890b59338a496364a0dfa75e356fdaf4a40c502d",
       "descricao": "O MOTOR DA SECAO 30 nesta ilha, versao 1.0.0: a secao de nivel 1 `/veiculos/` e as paginas de consulta de produto que nascem filhas diretas dela, com o slug igual a consulta. Ordem da 32.2 de cima para baixo: trilha e H1, caixa de resposta com o preco mediano em Mono, bloco de compra com id=comprar logo abaixo, tabela-resumo VISIVEL com TODOS os anuncios (a secao 7 manda nomear todo item uma vez), a prestacao de contas de quem nao entrou com a causa contada, a malha da 16.4 tambem visivel porque e alvo de link, e o resto nas dobras da casca. NENHUM numero e digitado neste arquivo: a prosa vem de dados/paginas-de-produto.json com moldes e o numero vem de dados/vitrine-de-produto.json, recontado por ferramentas/gerar-vitrine-de-produto.py. A tabela NAO tem coluna de potencia nominal, velocidade maxima, acelerador nem carga maxima: o esquema desta ilha exige nivel 5 ou melhor nesses quatro e titulo de anuncio e nivel 6, entao a coluna diz o que o anuncio DECLARA em vez de preencher coluna tecnica com palavra tirada do titulo. JSON-LD de ItemList e FAQPage no wp_head; folha no wp_footer; nada dentro do retorno do shortcode."
     }
   ],
@@ -99,7 +99,7 @@
       "arquivo": "dados/vitrine-de-produto.json",
       "formato": "json",
       "publicar": true,
-      "sha256": "5c254915c53999bfec5d8f0bc09f130ca98380776757ce0f238f08cde2095512",
+      "sha256": "4aa74dbba3a8ad981cbf9b2e3512c4fec81e15d9bccdc040400e9fa4b99d779b",
       "descricao": "A camada GERADA: cartoes do carrossel (teto de cinco, 32.1), linhas da tabela (todas) e os numeros, RECONTADOS de dados/anuncios-por-consulta.json."
     },
     {

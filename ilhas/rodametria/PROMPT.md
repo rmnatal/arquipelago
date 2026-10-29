@@ -284,7 +284,46 @@ no lugar onde quem for mexer a lê.
 
 **5. ARTIGOS-ÂNCORA** pareados com cada ferramenta.
 
-**5b. PÁGINAS PELO NOME DO PRODUTO** (seção 30) para as seis cabeças, e depois a malha. **← É O PRÓXIMO BLOCO, decidido em 29/10/2026 por ELIMINAÇÃO MEDIDA e não por ordem de lista.** O 3e provou que coleta não destrava mais nenhuma ferramenta desta ilha (o que destrava é o despacho do egresso, que não é trabalho da Fundação); o **4** pede ferramenta nova e as duas que faltam, F1 e F3, estão travadas por dado que não se colhe daqui; o **5** pede artigo-âncora *pareado* com ferramenta, e só há uma no ar. O 5b não depende de nenhum dos três: as seis cabeças estão medidas, a SERP delas está medida e **não tomada**, e o banco tem 4 registros publicáveis com piso e 1 com ficha. A ilha tem **2 URLs** contra as 40 do piso da 21.1 — é a única fila que anda sem esperar ninguém. **Primeiro passo:** ler a **seção 30** inteira e a **21.4** (teto de leva por semana) ANTES de escolher quantas páginas, e escolher a primeira cabeça pela intersecção entre volume e o que o banco sustenta — hoje `patinete eletrico`, a única das seis com registro de ficha aberta nesta ilha.
+**5b. ~~PÁGINAS PELO NOME DO PRODUTO~~ — PRIMEIRA LEVA ENTREGUE EM 29/10/2026 às 19h1xZ–20hxxZ, e o
+bloco mediu que SÓ DUAS DAS SEIS CABEÇAS abrem o portão da 30.2.** No ar: `/veiculos/` (a seção de
+nível 1 da 16.1), `/veiculos/patinete-eletrico/` e `/veiculos/bicicleta-eletrica/`, no molde da 32.2.
+`snippets/rodametria-produto.php` (o motor), `dados/consultas-de-produto.json` (a declaração das seis
+com a SERP vista pelo Raphael em 27/10 e a escada de chaves), `dados/paginas-de-produto.json` (a voz,
+com MOLDES e zero dígito), `dados/anuncios-por-consulta.json` (os anúncios colhidos),
+`dados/vitrine-de-produto.json` (o gerado), `ferramentas/teste-relevancia-do-anuncio.py`,
+`ferramentas/coletar-por-consulta.py`, `ferramentas/gerar-vitrine-de-produto.py` e
+`ferramentas/mutacoes-produto.py`.
+
+**O ACHADO QUE REORDENA O QUE SOBRA DA FILA, e ele é de PALAVRA e não de produto:** a chave
+`patinete eletrico` devolve **ZERO** patinete de adulto nas 20 primeiras ofertas da loja — serve
+`Patinete Elétrico Infantil 150W UNITOYS` e `Moto Elétrica Infantil 6V`. Com o qualificador `adulto`
+a mesma família devolve **16** patinetes de adulto (R$ 1.297,13 a R$ 3.399,00) e **5** e-bikes, três
+delas com 74, 28 e 25 vendas. **A consulta é a palavra da PESSOA; a chave é a palavra da LOJA**, e
+cada consulta declara uma escada de chaves com o degrau gravado, pela 25.6(a).
+
+**O QUE NÃO NASCEU, COM A CAUSA MEDIDA.** `moto eletrica` e `scooter eletrica`: a SERP autoriza e o
+que falta é produto — três anúncios de adulto, zero venda nos três, preços variando R$ 6.500 para a
+mesma classe. O caminho delas é o **Mercado Livre**, e lá a geração de link exige clique humano
+(25.6): **é despacho, nunca bloco.** `bike eletrica` e `motos eletricas para adultos` não nascem pela
+30.4, por serem a mesma intenção de outras duas.
+
+**5b-ORIGINAL (guardado).** PÁGINAS PELO NOME DO PRODUTO (seção 30) para as seis cabeças, e depois a
+malha. Escolher a primeira cabeça pela intersecção entre volume e o que o banco sustenta.
+
+**5c. A PRÓXIMA LEVA DA MALHA — É O PRÓXIMO BLOCO, e ele não espera ninguém.** A ilha tem **5 URLs**
+contra as 40 do piso da 21.1, `piso: abaixo`, e o teto da 21.4 (10 URLs por leva, 3 levas por semana)
+tem folga: esta semana saiu **uma** leva, de 3 URLs. O caminho mais curto é a **cauda medida** do
+corpus — `patinete eletrico adulto` (49,5 mil), `scooter eletrica 1000w` (33,1 mil),
+`moto eletrica 1000w` (14,8 mil) e o resto de `dados/corpus-buscas.md` —, e a máquina do 5b faz essas
+páginas **sem uma linha de código nova**: basta declarar a consulta em `dados/consultas-de-produto.json`
+com a escada de chaves e escrever a voz em `dados/paginas-de-produto.json`.
+**MAS A 30.8 TRAVA O PRIMEIRO PASSO, e ela é o único trabalho desta leva que não é da nuvem:** `alvo`
+não se afirma daqui, nunca, e nenhuma consulta de cauda teve a SERP brasileira aberta com os olhos. As
+seis cabeças têm (Raphael, 27/10, Chrome dele). **Então a leva seguinte se divide em duas:** a parte
+desta nuvem é montar a lista das caudas com os `tomada` fechados e os `nao-medida` nomeados, e a parte
+que não é é uma sessão de Chrome do Raphael — "um despacho de uma sessão, não um bloco", como a própria
+30.8 escreve. Quem pegar este bloco monta a lista, abre o despacho, e **publica na execução seguinte
+sem remedir nada**.
 
 **6. LISTA DE PROSPECÇÃO DO WIDGET** — lojas brasileiras de mobilidade elétrica com site próprio, `publicar: false`.
 

@@ -3,6 +3,160 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-10-29 19h1xZ–20hxxZ — **BLOCO 5b: A CONSULTA DO GOOGLE E A CHAVE DA LOJA NÃO SÃO A MESMA PALAVRA** — das seis cabeças do dossiê só **duas** abrem o portão da 30.2, e a causa das outras quatro está medida
+
+**A ESCOLHA DA ILHA.** `foco.md` nomeia a **rodametria** (foco total e absoluto, decisão do Raphael de
+27/10) e pela **1.2** não há escolha a fazer. Conferi as duas exceções que furam o foco antes de aceitar:
+(a) o **despacho do molde da 32.6** segue `FECHADO` nas três ilhas, lido no topo dos três `PROMPT.md`;
+(b) nenhum despacho **ALTA** aberto é de ilha *"no ar e quebrada"* — os ALTA de `dados/despachos.md` são
+o egresso do `gov.br` (endereçado ao Raphael, não é trabalho da Fundação), o chamado da HostGator da
+clubedomosaico (pela **19.4(b)** o próximo passo é chamado, não reparo) e o portão de desembarque que
+falta nas outras duas ilhas, que é risco guardado e não página servindo erro. `executando_desde` estava
+`null`, que pela **1.1** já significa que não havia bloco da Fundação vivo — reserva escrita às **19h18Z**
+(commit `642ac19`), push aceito de primeira, **renovada às 19h37Z e às 19h48Z**. Nenhum branch `claude/*`
+à frente do `main` e nenhum PR aberto.
+
+**A REDE, MEDIDA E NÃO HERDADA (20.2).** `rodametria.com.br` e o `/status` em **200 nas três passadas**,
+com `aquametria.com.br` em 200 nas mesmas três.
+
+---
+
+### O ACHADO, E ELE REORDENA O QUE SOBRA DA FILA
+
+O bloco pedia *"páginas pelo nome do produto (seção 30) para as seis cabeças"*. Antes de escrever uma
+linha de página, medi na loja o que cada cabeça devolve — **20 ofertas por chave, nas seis, pela Open
+API**. O resultado:
+
+| chave | o que ela devolve nas 20 primeiras |
+|---|---|
+| `patinete eletrico` | **ZERO** patinete de adulto. Serve `Patinete Elétrico Infantil 150W Rodas 6 Polegadas UNITOYS` e `Moto Elétrica Infantil 6V` |
+| `moto eletrica` | **20 de 20** entre brinquedo infantil e peça de caminhão (soquete de painel, relé de pisca) |
+| `scooter eletrica` | brinquedo infantil e acessório |
+| `bicicleta eletrica` / `bike eletrica` | câmara de ar, pneu, compressor, moto infantil |
+| `motos eletricas para adultos` | 18 de capacete e capa de chuva, 2 veículos de adulto com zero venda |
+
+**Com o qualificador `adulto`, a MESMA família devolve produto de verdade:** `patinete eletrico adulto`
+→ **16** patinetes de adulto entre **R$ 1.297,13 e R$ 3.399,00**; `bicicleta eletrica adulto` → **5**
+e-bikes, três delas com **74, 28 e 25 vendas**.
+
+**A palavra que a pessoa digita no Google e a palavra que acha o produto na loja não são a mesma, e
+neste nicho elas divergem por um qualificador.** Por isso cada consulta passou a declarar uma **escada
+de chaves**, do degrau mais específico para o mais largo, a escada **para no primeiro degrau que alcança
+o piso de três**, e o degrau que casou fica **gravado em cada anúncio** — o mesmo desenho que a
+`coletar-piso-de-compra.py` desta ilha já usa pela **25.6(a)**, agora um andar acima. E a exigência da
+família é **POSITIVA** (`adulto` declarado no título), nunca negativa.
+
+**DUAS DAS SEIS NASCERAM. AS OUTRAS QUATRO NÃO, COM A CAUSA MEDIDA:**
+
+- `moto eletrica` e `scooter eletrica`: a SERP **autoriza** (alvo, vista com os olhos do Raphael em
+  27/10), e o que falta é **produto**. Três anúncios de adulto, **zero venda** nos três, preços variando
+  **R$ 6.500** para a mesma classe. O `PROMPT.md` desta ilha já escrevia a regra antes desta medição e
+  ela vale: *"na Shopee, scooter e moto elétrica aparecem com 0 vendas e preços incoerentes — não entram
+  como recomendação"*. Página que nasce **no piso** com três anúncios sem uma venda sai do ar na primeira
+  coleta que perder um. O caminho delas é o Mercado Livre, onde o dossiê mediu 8 de 10 com link
+  rastreável — e lá a geração exige clique humano (25.6), o que faz disso **despacho, nunca bloco**.
+- `bike eletrica` e `motos eletricas para adultos`: pela **30.4**, mesma intenção de outras duas. O
+  sinônimo vive no corpo da página irmã, com a âncora apontando para ela.
+
+As quatro causas estão escritas em `dados/consultas-de-produto.json` e, **em voz de leitor**, no cartão
+mudo da mãe — que não é link, pela **16.5**.
+
+### O QUE FOI AO AR
+
+`/veiculos/` (seção de nível 1 da **16.1**, com o nome que o `VOZ.md` já declarava no menu),
+`/veiculos/patinete-eletrico/` e `/veiculos/bicicleta-eletrica/`, filhas diretas dela pela **30.1**.
+Ordem da **32.2** de cima para baixo: trilha e H1 · caixa de resposta com o preço mediano em Mono ·
+bloco de compra com `id="comprar"` logo abaixo · a tabela-resumo **visível** com **todos** os anúncios
+(a **seção 7** manda nomear todo item uma vez) · a prestação de contas de quem não entrou, com a causa
+contada · a malha da **16.4** também visível, porque é alvo de link e nem todo navegador abre um
+`<details>` fechado ao pular para dentro dele · o resto nas dobras da casca · a barra fixa do telefone.
+
+**NENHUM DADO TÉCNICO FOI PUBLICADO, E ISSO É O PRODUTO DA PÁGINA.** Potência nominal, velocidade
+máxima, acelerador e carga máxima têm piso de **nível 5** no `niveis_minimos_por_campo` do esquema desta
+ilha, e título de anúncio é **nível 6**. Então a coluna diz o que o anúncio **declara** — e a frase que
+conta isso é **contada no gerador, em cinco formas**, nunca escrita na prosa: de **16** anúncios do
+patinete, **15 declaram um watt** e **1** diz qual watt é aquele. É a tese do `VOZ.md` virando coluna.
+
+### AS TRÊS COISAS QUE QUEBRARAM, E AS TRÊS SÃO DO MESMO TIPO
+
+**1. A RÉGUA RECUSOU QUATRO PRODUTOS CERTOS NA PRIMEIRA PASSADA COM REDE.** O grupo `acessorio`
+barrou `Patinete Elétrico 800W Pico 1000W ... Pneu 10" Off-Road` por **`pneu`**, `Patinete Elétrico
+Dobrável Adulto com Assento` por **`assento`** e `VYRON Patinete Elétrico Adulto ... Amortecedor` por
+**`amortecedor`**. **O título de um veículo nomeia as peças DELE.** E o absurdo que fechou a conta:
+`Bicicleta Elétrica Dobrável Adulto com Pneus A Vácuo` **passou**, porque `pneus` no plural não casa com
+`pneu` entre bordas — duas páginas certas, uma recusada e uma aprovada **pela letra `s`**. O conserto é a
+**regra da posição**: `acessorio` só recusa quando a palavra vem **antes** do substantivo do produto, e o
+substantivo é um **campo declarado**, não a primeira posição de uma lista — regra que depende da ordem de
+uma lista se desliga em silêncio no dia em que alguém a reordena por estética.
+
+**2. A RECUSA POR PEDAÇO DE PALAVRA.** A primeira versão recusou `Patinete Elétrico Adulto 350W **36V**`
+com a causa `infantil`, porque a lista do brinquedo tem `6v` (a bateria do brinquedo) e **`36V` termina
+em `6v`**. Mesma família do `grep` que atravessa YAML quebrado: o instrumento responde, e a resposta é
+errada. Hoje a busca é por palavra inteira, com os prefixos **declarados um por um** (`eletric`,
+`adulto`, `bicicleta`, `patinete`) — e `moto` **não** é prefixo, porque casaria com `motocicleta`,
+`motorizado` e `motoca`, três palavras que aparecem em título de acessório e de brinquedo desta coleta.
+
+**3. A MUTAÇÃO `São 2 famílias com página hoje` SOBREVIVEU.** A trava que proíbe número digitado na prosa
+declarada cobrava **dois dígitos ou mais**, e a contagem que esta ilha de fato tem é de **um** dígito.
+Ela passou a cobrar **qualquer** dígito, com a lista de permitidos nomeando o que escapa (o número da
+Resolução Contran é nome próprio de documento, não número de tela) e o resto escrito por extenso. Na
+mesma rodada, a trava do número digitado só lia string e lista de string, e as **perguntas frequentes
+são lista de dicionário** — ela passava por cima de toda pergunta e resposta sem dizer que não as leu,
+que é a cara do portão que aprova em silêncio o que não mediu (**32.5-b**).
+
+### E A BANCADA DENUNCIOU A RÉGUA NOVA NA PRIMEIRA PASSADA, COM RAZÃO
+
+Ela nasceu `relevancia-do-anuncio.py`, que não casa com convenção de nome nenhuma, e a `bancada.py`
+escreveu a frase certa: *"ou ele é portão e precisa do prefixo, ou não é e precisa estar fora de
+`ferramentas/` — silêncio aqui é portão que nunca roda"*. Virou `teste-relevancia-do-anuncio.py` e roda
+a bateria quando chamada sem argumento. **A ilha nasceu com a bancada e foi ela que pegou isto**, não
+alguém se lembrando.
+
+### OS PORTÕES
+
+- `bancada.py`: **13 portões** sem rede, **0 falha** (eram 9 antes deste bloco).
+- `teste-relevancia-do-anuncio.py`: **25 casos**, 0 falha, todos com título **real** desta coleta, mais
+  um **kit fabricado** para a trava `kit_multiplo` poder falhar — nenhuma das 180 ofertas medidas era um
+  kit de dois veículos da mesma família, e trava que nunca viu o mundo dela nasce errada sem poder falhar.
+- `coletar-por-consulta.py --conferir`: **190 afirmações**, 0 falha, sem rede. Ele reaplica a régua sobre
+  os títulos gravados, refaz o número próprio e a contagem de rótulo, e cobra que a chave gravada esteja
+  **na escada declarada** e que todo anúncio tenha sido achado por ela.
+- `gerar-vitrine-de-produto.py --conferir`: **150 afirmações**, 0 falha.
+- `mutacoes-produto.py`: **26 mutações, 26 reprovadas, 0 sobrevivente, 0 inerte**, com trava de alvo
+  exato em todas e **três mundos fabricados** que o banco de hoje não produz (foto sem dimensão, página
+  abaixo do piso de três, carrossel acima do teto de cinco). Ela roda o mundo **limpo** primeiro: portão
+  que reprova tudo não mede nada.
+- As **21 fotos** têm largura e altura **lidas no cabeçalho do arquivo na CDN** (1024 × 1024), nunca
+  digitadas, e a leitura vem de `coletar-oferta.py` — fato externo se lê de **um lugar só** (seção 8).
+
+### O DEFEITO QUE A ENTREGA ACHOU NO AR, E ELE É A SEÇÃO 4 EM FORMA DE INSTALADOR
+
+A **revisão 13** subiu os arquivos e **não criou as três páginas**. A instalação da casca rodava uma vez
+por **versão da casca**, e a revisão 13 subiu casca nova **e** o snippet da página nova na **mesma
+passada do Sync**: quando o `init` chamou a instalação, o snippet novo ainda **não estava carregado**
+naquela requisição — então o filtro `rodametria_instalar` dele não existia, as três páginas não nasceram,
+e a casca gravou `instalado: 1.3.0`. **Com a versão já marcada, a instalação nunca mais rodaria.**
+
+**E o sintoma era verde em todo lugar:** `/status` em **13**, as **cinco** linhas do log da revisão
+dizendo `ok`, e `/wp-json/rodametria/v1/casca` já listando `veiculos`, `patinete-eletrico` e
+`bicicleta-eletrica` no mapa de páginas — **com `url` vazia nos três** — e `wp-sitemap.xml` com **duas**
+URLs. O relato gravado tinha duas linhas, `home` e `f2`, e **nenhuma vermelha**. Quem lesse o log do
+desembarque pela 20.4 e parasse ali teria escrito "entregue".
+
+A casca subiu para **1.4.0**: a instalação roda de novo quando a **assinatura do mapa** muda — os slugs
+do mapa, em ordem, num texto só — e não só quando a versão da casca muda. Com isso **página nova nasce
+no dia em que o snippet dela entra, sem ninguém tocar na versão da casca**, que é o que o comentário do
+mapa promete desde a revisão 3: *"a casca não é editada quando a ilha cresce"*.
+
+A casca também subiu de 1.2.1 para 1.3.0 por **duas razões de árvore**, as duas da **16**:
+`garantir_pagina()` passou a aceitar **pai** (16.2: página sem pai é defeito e não publica), e
+`url_do_slug()` passou a achar a página pela meta `_rodametria_id` **em vez de por caminho** —
+`get_page_by_path()` casa o caminho **inteiro**, e no dia em que a árvore ganhou um nível ele devolveria
+nulo para a filha, com `casca_link()` transformando link vazio em texto **sem reclamar**: página no ar,
+órfã, com a mãe apontando para texto morto e nenhum portão vermelho.
+
+---
+
 ## 2026-10-29 16h2xZ–16h4xZ — **BLOCO 3e: A PREMISSA DELE ESTAVA ERRADA**, e a coleta que não deu em campo técnico nenhum achou um defeito **no ar** — o bloco de compra dizia a mesma coisa **três vezes** e a página de autonomia estava **calada sobre autonomia**
 
 **A ESCOLHA DA ILHA.** `foco.md` nomeia a **rodametria** (foco total e absoluto, decisão do Raphael de

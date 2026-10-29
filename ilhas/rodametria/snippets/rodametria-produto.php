@@ -275,8 +275,13 @@ function rdm_produto_tabela_html( $pagina ) {
 		$html .= '<td class="rdm-num">' . esc_html( $item['preco'] ) . '</td>';
 		$html .= '<td>' . esc_html( $item['especificacao'] ) . '</td>';
 		$html .= '<td>' . esc_html( $item['loja'] ) . '</td>';
+		/* O ROTULO SAI DA CASCA, nunca digitado aqui: ela guarda numa funcao so
+		   o rotulo por degrau da escada da 25.1, e a secao 8 registra sete
+		   reguas que quebraram por procurar o rotulo de UM degrau. */
 		$html .= '<td><a href="' . esc_url( $item['url'] ) . '"'
-			. ' rel="sponsored noopener" target="_blank">Ver na Shopee</a></td>';
+			. ' rel="sponsored noopener" target="_blank">'
+			. esc_html( rodametria_casca_rotulo_da_loja(
+				$item['programa'], $item['degrau'] ) ) . '</a></td>';
 		$html .= '</tr>';
 	}
 
