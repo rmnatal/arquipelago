@@ -1016,6 +1016,27 @@ Medido na Aquametria em 14/10/2026, e está aqui e não no registro dela porque 
 
 **E PROVE QUE NÃO AFROUXOU, em vez de afirmar.** A medição que fecha este bloco não é "os testes passaram": é rodar a régua **antiga** sobre o banco **antigo** e a **nova** sobre o **novo**, registro por registro, e contar quantos códigos base e quantos vereditos mudaram. Na Aquametria: **3 de 78** códigos base (exatamente os que declaram código) e **1 de 47** vereditos (exatamente o que estava errado). Régua afrouxada apareceria aqui como verdadeiro novo em registro que não tinha nada a ganhar.
 
+### 25.10 O CAMPO QUE A PLATAFORMA CHAMA DE "TIPO DE LOJA" NÃO DIZ "LOJA OFICIAL DO FABRICANTE" — E O DEGRAU 1 DA 25.1 FICOU SEM RÉGUA QUANDO O FEED MORREU (29/10/2026)
+
+Medido na Rodametria em 29/10/2026 e escrito **aqui** e não no registro dela, pelo mesmo motivo que fez a 25.9 e a 20.4 nascerem no contrato: **as três ilhas rodam a mesma `ferramentas/shopee-api.py`**, e conserto escrito em registro de ilha conserta aquele dia.
+
+**O buraco, e ele é antigo e ninguém tinha batido nele.** A 25.1 define o degrau 1 como *"Loja oficial do fabricante na Shopee. **Achada no feed de afiliado** (ver 25.3)"* — e a **25.6 aposentou o feed** em 16/09/2026. Desde esse dia o degrau mais durável da escada **não tem como ser achado**: a regra diz onde procurar, e o lugar não existe mais. Ninguém notou porque nenhuma ilha havia escolhido ficha pela API até agora; a Rodametria foi a primeira a precisar do degrau e a primeira a procurar a régua dele.
+
+**A tentação óbvia, e ela está errada.** A `productOfferV2` devolve um campo `shopType`, que esta conta **consegue ler** (medido antes de usar: ele não é um dos campos que a conta não alcança). O nome convida a usá-lo como "é loja oficial?". **Não é isso que ele responde.** Medição de 29/10/2026, **44 ofertas em cinco consultas**:
+
+- `shopType: [1]` saiu em **`RM BIKES`**, **`RTM BIKES LTDA`** e **`Auto Home Shop`** — nenhuma delas é fabricante de nada do que vendia;
+- e a loja **`HONEYWHALE-Scooter`**, que carrega a marca do produto no próprio nome, saiu **`[]`**.
+
+Ele é o **programa de vendedor da Shopee** (`[1]`, `[2]`, `[]` — preferido, mall, comum), que é uma informação sobre o *vendedor perante a plataforma*, não sobre a *relação do vendedor com o fabricante*. É a família do número de tela digitado com um agravante: **aqui o campo responde, e a resposta não é sobre o que se perguntou.** Quem o usar como régua do degrau 1 vai gravar `degrau: 1` em anúncio de revendedor e perder a única coisa que o degrau 1 promete — que *"fabricante não fecha loja nem fica sem o próprio produto"*.
+
+**A régua, e ela é mais pobre do que o feed era, e é honesta:** o degrau 1 se mede pelo **nome da loja carregar a marca do registro** (`HONEYWHALE BRASIL`, `HONEYWHALE-MAF`). É um sinal fraco — um revendedor pode se batizar com a marca — e por isso **toda ilha grava, junto do degrau, COMO ele foi medido**, em palavras, no próprio registro. Degrau sem essa frase é degrau que ninguém consegue reauditar, e a 25.8 já ensinou o que custa: *"o banco é o resumo e o link é o fato"*.
+
+**E `shopType` continua sendo gravado** — como **procedência**, nunca como decisor. Campo medido e guardado com o nome certo custa nada e paga no dia em que alguém for refazer a conta.
+
+**O outro campo da mesma medição, e este é útil: `sales`.** Ele é o **único desempate honesto** entre duas ofertas que passaram as travas da 25.7, e a prova apareceu na mesma passada: a oferta de **maior venda** da resposta (12 vendas, nota 4,9) era de **outro modelo** e foi barrada pela armadilha 4, e a escolhida tinha **3**. **A comissão (`commissionRate`) volta na mesma chamada e NUNCA ordena** — ordenar por ela põe o que paga mais acima do que serve melhor, que é o contrário da seção 7. Ela é procedência, como o `shopType`.
+
+---
+
 ---
 
 ## 26. O VOCABULÁRIO DA ILHA CLASSIFICA PELA FUNÇÃO; O FABRICANTE BATIZA PELA POSIÇÃO (13/09/2026)
@@ -1201,6 +1222,20 @@ Medido na clubedomosaico. Em 21/10 o mutirão fechou e o `ESTADO.md` registrou *
 **E a régua não é a mesma nas duas famílias de página, porque a ordem da 32.1 não é a mesma.** Em página de **FERRAMENTA** o teto de 700 px é do **FORMULÁRIO**, que vem antes da caixa de resultado; em **ficha, resposta ou guia**, que não têm formulário, é da **caixa de resposta**. Trocar os dois reprova página certa: medido em 23/10, as duas calculadoras daquela ilha têm formulário a **439** e **462 px** (passam com folga) e caixa de resultado a **777** e **884 px** (reprovariam). **Portão que reprova página certa é o caminho mais curto para alguém passar a ignorá-lo** — o mesmo perigo que a 20.5 nomeou quando o "REPROVADO" era cache. E o formulário se nomeia pela classe da ferramenta, nunca por `main form`: página de loja tem formulário de recado dentro de `<details>` fechado, que não é formulário de ferramenta.
 
 **32.5-c O MOLDE É COMPONENTE DA CASCA, E REGRA DE CELULAR ESCRITA PARA UMA FAMÍLIA DE CARTÃO NÃO ALCANÇA A OUTRA (23/10/2026).** A 32.6-b já manda o que se repete entre páginas virar componente da casca; esta linha diz o que acontece quando metade vira. Na clubedomosaico as regras de telefone do bloco de compra nasceram em 21/10 escritas para o cartão das **ferramentas** (`.cdm-f2-cartao`), e as sete páginas do Guia entraram no molde **no mesmo mutirão** com outra classe de cartão: nenhuma delas alcançava uma linha daquelas, e o cartão do Guia ficou com o recheio e o corpo de texto do **desktop** dentro do bloco de compra do telefone. Valiam **71 px** de primeira tela por página. Na mesma passada, a folha do Guia ainda **redecorava** a caixa do molde, vencendo-a por ordem de carga — defeito que a outra ferramenta da mesma ilha já havia consertado três dias antes, com um `:not()`, sem que a terceira folha copiasse. **A regra: quem acrescenta família de página ao molde confere, na própria passada, que as regras de telefone do molde a alcançam — por seletor, não por intenção —, e quem conserta a folha de um snippet procura o mesmo defeito nas irmãs antes de fechar.**
+
+**32.5-d A REGRA DO MOLDE QUE NUNCA RODOU CONTRA O DADO DE VERDADE ESTÁ QUEBRADA E PARECE SÃ — E O ESPAÇO RESERVADO É QUEM A ESCONDE (29/10/2026).** Irmã da 32.5-c: lá a regra de telefone não **alcançava** a segunda família de cartão; aqui ela alcançava e **perdia a disputa**, e ninguém podia ver.
+
+Medido na Rodametria. A 32.1 pede foto no cartão de compra e a seção 6 manda que produto **sem** foto apareça com **espaço reservado neutro**, da mesma altura — o reservado existe exatamente para a página **não pular** quando a imagem carrega. A ilha passou a vida inteira sem um único registro com foto, então a casca serviu reservado em 100% dos cartões, e a 32.5 foi medida e **aprovada** nesse mundo: primeiro botão de compra a **1.385 px**, contra o teto de 1.400.
+
+**No dia em que a primeira foto entrou, o botão foi para 1.471 px — 71 acima do teto —, e a causa não era a foto ser grande: era de ESPECIFICIDADE.** `body.rdm img{max-width:100%;height:auto}` vale **(0,1,2)** e vence `.rdm-molde-cartao-foto`, que vale **(0,1,0)**; o `height:auto` daquela linha mandava na foto e a altura declarada pelo molde era simplesmente ignorada. Reservado **96 px**, foto **182 px**, medidos no navegador a 390 px.
+
+**E o reservado é quem escondeu o defeito, por um motivo que vale guardar: ele não é um `<img>`.** A regra genérica de imagem não o alcançava, então ele obedecia ao molde e media certo. **O portão de pixel da 32.5 aprovava a página de verdade, com o número de verdade, sobre um cartão que nenhum visitante com foto jamais veria.** Nada mentiu: a medição estava certa para o mundo que existia.
+
+**A regra, em duas partes:**
+1. **Quem acrescenta a uma ilha o PRIMEIRO dado de uma espécie que o molde já declarava suportar — a primeira foto, o primeiro preço, o primeiro badge — confere a 32.5 NO NAVEGADOR na mesma passada**, e não confia na medição anterior, porque a medição anterior foi feita sobre o **espaço vazio** daquele dado. Reservado e conteúdo são **CSS diferente**, e só o segundo disputa com as regras genéricas da casca.
+2. **Resolva por especificidade, nunca com `!important`.** `!important` apaga a disputa em vez de resolvê-la, e a próxima regra genérica a reabre em outro lugar. Na Rodametria o conserto foi pôr `body.rdm` no seletor do molde, para ele vencer com (0,2,1).
+
+**E a cauda do mesmo acontecimento, que é a seção 4 outra vez em forma de CSS:** a mesma passada achou, no mesmo bloco de telefone, uma linha `height:44px` **morta** — vencida por uma `height:96px` escrita depois com a mesma especificidade — cujo comentário afirmava, em prosa, que estava economizando *"52 px do espaço mais caro da página"*. **Nunca economizou um.** O comentário tinha três horas de idade e a medição que ele justificava havia sido feita com 96. **Afirmação em comentário não é medição, e comentário que declara número é da família do número de tela digitado: parece conferido.** Quem escreve número em comentário de CSS escreve de onde ele foi medido, ou não escreve o número.
 
 **32.6 Ordem de aplicação:** aquametria (as 5 calculadoras primeiro, depois as fichas de peixe) → clubedomosaico (F1, F2, as páginas de material e as de loja — molde LOJA, com o mesmo princípio: produto e ação na primeira tela) → robometria (R1, R2 e as páginas de peça). Ilha nova (jornadafly, ohmetria e qualquer outra) **nasce neste molde** — a casca já sai com ele, sem retrofit. Sem esperar medição de CTR entre uma ilha e outra.
 
