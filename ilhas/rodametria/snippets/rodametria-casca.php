@@ -29,7 +29,7 @@
  */
 
 if ( ! defined( 'RODAMETRIA_CASCA_VERSAO' ) ) {
-	define( 'RODAMETRIA_CASCA_VERSAO', '1.1.0' );
+	define( 'RODAMETRIA_CASCA_VERSAO', '1.1.1' );
 }
 
 /**
@@ -328,6 +328,15 @@ add_filter( 'render_block', function ( $conteudo, $bloco ) {
 	}
 	/* A tagline padrao do WordPress e residuo do tema. */
 	if ( 'core/site-tagline' === $nome ) {
+		return '';
+	}
+	/* DOIS <h1> POR PAGINA, medido no ar as 10h5xZ de 29/10/2026 na primeira
+	   passada do portao: o tema de blocos imprime o post_title como <h1> e o
+	   shortcode da pagina imprime o H1 dela. Quem sai e o do TEMA, porque o da
+	   pagina e o que a 32.1 poe na ordem certa (depois da trilha, antes da
+	   promessa) e o que a 32.3 protege como SEO que nao muda. H1 duplicado nao
+	   da erro em lugar nenhum: so uma afirmacao que CONTA o ve. */
+	if ( 'core/post-title' === $nome ) {
 		return '';
 	}
 	if ( 'core/template-part' === $nome ) {
