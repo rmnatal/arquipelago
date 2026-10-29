@@ -29,7 +29,7 @@
  */
 
 if ( ! defined( 'RODAMETRIA_CASCA_VERSAO' ) ) {
-	define( 'RODAMETRIA_CASCA_VERSAO', '1.1.1' );
+	define( 'RODAMETRIA_CASCA_VERSAO', '1.2.0' );
 }
 
 /**
@@ -856,8 +856,55 @@ body.rdm select:focus-visible,body.rdm input:focus-visible{outline:2px solid var
 .rdm-rodape a{color:var(--rdm-verde-claro)}
 .rdm-rodape-aviso,.rdm-rodape-creditos{color:rgba(255,255,255,.82);font-size:.8125rem;max-width:68ch}
 
+/* ---------------------------------------------------------------------------
+   AS REGRAS DE TELEFONE DO MOLDE, E CADA NUMERO AQUI SAI DE UMA MEDICAO A 390 px
+   NUM NAVEGADOR DE VERDADE, NUNCA DE PALPITE.
+
+   Medido as 11h2xZ de 29/10/2026 pelo conferir-32-5-no-navegador.mjs: o primeiro
+   botao de compra da F2 estava a 1.730 px contra o teto de 1.400 da 32.5. A
+   medicao dos blocos, um por um, disse onde estavam os pixels — e nao estavam
+   onde a intuicao punha:
+
+     84 px   de respiro do TEMA entre o cabecalho e a trilha, que nao e nosso
+    144 px   a frase de promessa, em QUATRO linhas
+    521 px   o formulario, com cinco campos de 100 px cada
+    144 px   a frase de escopo do bloco de compra, em QUATRO linhas
+     96 px   o espaco reservado da foto, por cartao, ANTES do botao
+     77 px   a especificacao do cartao, em TRES linhas
+
+   O corte foi feito nesses seis lugares e em nenhum outro: nenhuma palavra saiu
+   da pagina (32.3), nenhum bloco mudou de ordem (32.1) e nenhuma afirmacao da
+   bancada mudou. O que mudou foi densidade no telefone.
+   --------------------------------------------------------------------------- */
 @media (max-width:719px){
   body.rdm{font-size:1.0625rem}
+  /* o respiro do tema acima da trilha: 84 px de espaco que nao e nosso */
+  body.rdm .wp-site-blocks>*:first-child,
+  body.rdm .wp-block-group.has-global-padding,
+  body.rdm main{padding-top:0;margin-top:0}
+  .rdm-pagina{padding-top:0}
+  .rdm-trilha{margin-top:var(--rdm-e3)}
+  /* o formulario: label, campo e dica mais juntos, e a dica menor */
+  .rdm-f-formulario{padding:var(--rdm-e3)}
+  .rdm-f-campos{gap:var(--rdm-e2) var(--rdm-e3)}
+  .rdm-f-campo{gap:1px}
+  .rdm-f-campo label{font-size:.8125rem;line-height:1.25}
+  .rdm-f-campo select,.rdm-f-campo input{padding:7px 8px;font-size:.9375rem}
+  .rdm-f-campo .rdm-f-dica{font-size:.6875rem;line-height:1.25}
+  .rdm-f-acao{margin-top:var(--rdm-e2)}
+  .rdm-f-botao{padding:10px 16px;width:100%}
+  /* a promessa e a frase de escopo: mesmo texto, linha mais densa */
+  .rdm-promessa{font-size:1rem;line-height:1.45;margin-bottom:var(--rdm-e4)}
+  .rdm-molde-compra-escopo{font-size:.875rem;line-height:1.4;margin-bottom:var(--rdm-e2)}
+  /* o cartao: a 32.5 mede o BOTAO, e o espaco reservado da foto vinha antes
+     dele. A secao 6 manda que produto sem foto apareca com espaco reservado
+     neutro, e ele continua existindo — com 44 px em vez de 96, porque no
+     telefone esses 52 px sao do espaco mais caro da pagina. */
+  .rdm-molde-cartao{padding:var(--rdm-e2);gap:var(--rdm-e1)}
+  .rdm-molde-cartao-sem-foto{height:44px}
+  .rdm-molde-cartao-spec{font-size:.6875rem;line-height:1.3}
+  .rdm-molde-cartao-preco{font-size:.9375rem}
+  .rdm-molde-cartao-botao{padding:9px 10px}
   body.rdm h1{font-size:1.75rem}
   body.rdm h2{font-size:1.375rem;margin-top:var(--rdm-e5)}
   .rdm-cabecalho .rdm-faixa{min-height:60px;flex-wrap:wrap}

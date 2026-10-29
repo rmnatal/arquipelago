@@ -49,9 +49,34 @@
  * JavaScript desligado, do `title`, do `h1`, da trilha e do JSON-LD — isso e do
  * `conferir-no-ar.py`, que le o servido. Este arquivo mede pixel.
  */
-import { chromium } from 'playwright';
+/* ---------------------------------------------------------------------------
+ * POR QUE `createRequire` E NAO `import { chromium } from 'playwright'`.
+ *
+ * E o defeito do despacho aberto de `dados/despachos.md` — "21 DOS 26 PORTOES DE
+ * NAVEGADOR DO ARQUIPELAGO ESTAO INERTES NESTA NUVEM, PELA MESMA LINHA DE
+ * `import`" —, medido aqui as 11h2xZ de 29/10/2026 no dia em que este portao
+ * nasceu: `node ferramentas/conferir-32-5-no-navegador.mjs` morre em
+ * `ERR_MODULE_NOT_FOUND: Cannot find package 'playwright'`, enquanto
+ * `node -e "require('playwright')"` resolve em
+ * `/opt/node-tools/node_modules/playwright/index.js`.
+ *
+ * A CAUSA, e ela cabe numa frase: nesta nuvem o playwright e alcancado por
+ * `NODE_PATH`, e o resolvedor de ESM NAO LE `NODE_PATH` — so o de CommonJS le.
+ * Entao `import` de pacote nao resolve de dentro de `ferramentas/`, e nenhum
+ * `--loader` conserta isso. `createRequire` usa o resolvedor de CommonJS, que
+ * le `NODE_PATH`, e continua funcionando numa maquina que tenha o pacote em
+ * `node_modules` local.
+ *
+ * ISTO NAO E GAMBIARRA DESTE ARQUIVO: e o conserto que o despacho pede, e o
+ * portao que nao roda nao e trava, e arquivo. Quem copiar este portao para
+ * outra ilha copia estas tres linhas junto.
+ * ------------------------------------------------------------------------- */
+import { createRequire } from 'node:module';
 import { existsSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
+
+const exigir = createRequire(import.meta.url);
+const { chromium } = exigir('playwright');
 
 const SITE = process.env.RDM_SITE || 'https://rodametria.com.br';
 

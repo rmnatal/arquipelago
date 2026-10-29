@@ -29,7 +29,7 @@
  */
 
 if ( ! defined( 'RODAMETRIA_F2_VERSAO' ) ) {
-	define( 'RODAMETRIA_F2_VERSAO', '1.1.0' );
+	define( 'RODAMETRIA_F2_VERSAO', '1.2.0' );
 }
 if ( ! defined( 'RODAMETRIA_F2_SLUG' ) ) {
 	define( 'RODAMETRIA_F2_SLUG', 'autonomia-patinete-eletrico' );
@@ -580,9 +580,8 @@ function rodametria_f2_pagina_html() {
 	$html  = '<div class="rdm-faixa rdm-pagina">';
 	$html .= rodametria_casca_trilha_html();
 	$html .= '<h1>Quantos km o patinete elétrico faz de verdade</h1>';
-	$html .= '<p class="rdm-promessa">Você diz a tensão e a amperagem da bateria; a gente devolve '
-		. 'os watt-hora e a faixa de km que dá para esperar no seu trajeto — ao lado do número que '
-		. 'o anúncio promete.</p>';
+	$html .= '<p class="rdm-promessa">Diga a tensão e a amperagem da bateria: saem os watt-hora e '
+		. 'a faixa de km do seu trajeto, ao lado do número que o anúncio promete.</p>';
 
 	$html .= rodametria_f2_formulario_html( $d );
 	$html .= rodametria_f2_resultado_html( $d );
@@ -590,9 +589,9 @@ function rodametria_f2_pagina_html() {
 	$html .= rodametria_casca_bloco_de_compra(
 		'À venda agora, e o que cada um é',
 		$itens,
-		'Nenhum destes entrou pela conta de Wh, e é importante dizer por quê: a ficha deles não '
-			. 'declara tensão nem amperagem. São os veículos com oferta aberta e rastreável que a '
-			. 'gente tem hoje, com o watt que o anúncio declara e o preço com a data da leitura.',
+		'Nenhum destes entrou pela conta de Wh: a ficha deles não declara tensão nem '
+			. 'amperagem. São os que têm oferta aberta hoje, com o watt do anúncio e o preço '
+			. 'com a data da leitura.',
 		'Nenhum veículo do nosso banco tem oferta aberta neste momento.' );
 
 	$html .= rodametria_f2_ressalva_html( $d );
