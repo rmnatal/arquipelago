@@ -547,10 +547,34 @@ function rdm_produto_mae_html() {
 		$html .= '<p>' . esc_html( (string) $mae['o_que_falta_dizer'] ) . '</p>';
 	}
 
+	/* OS TRES NUMEROS. Eles nao sao enchimento de pagina: sao o produto desta
+	   casa, escritos na secao que lista as familias porque e ali que a pessoa
+	   decide qual familia olhar. Entraram depois de a conta do corpo medir
+	   1.253 caracteres contra o piso de 1.500 que a secao 8 cobra de pagina de
+	   dominio novo — e o conserto de pagina fina nunca e texto a mais, e o
+	   texto que faltava. */
+	if ( ! empty( $mae['o_que_decide'] ) ) {
+		$html .= '<h2>' . esc_html( (string) $mae['o_que_decide_rotulo'] ) . '</h2>';
+		$html .= '<dl class="rdm-escolher">';
+		foreach ( (array) $mae['o_que_decide'] as $item ) {
+			$html .= '<dt>' . esc_html( $item['numero'] ) . '</dt>';
+			$html .= '<dd>' . esc_html( $item['porque'] ) . '</dd>';
+		}
+		$html .= '</dl>';
+	}
+
 	$calc = rodametria_casca_link( 'autonomia-patinete-eletrico',
 		'quantos km o elétrico faz de verdade' );
 	if ( '' !== $calc ) {
 		$html .= '<p>Antes de fechar a compra, faça a conta de bateria: ' . $calc . '.</p>';
+	}
+
+	if ( ! empty( $mae['como_sabemos'] ) ) {
+		$corpo = '';
+		foreach ( (array) $mae['como_sabemos'] as $t ) {
+			$corpo .= '<p>' . esc_html( $t ) . '</p>';
+		}
+		$html .= rodametria_casca_dobra( 'Como sabemos', $corpo );
 	}
 
 	$html .= '</div>';

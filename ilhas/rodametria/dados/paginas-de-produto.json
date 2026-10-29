@@ -36,6 +36,26 @@
         "consulta": "bike elétrica",
         "causa": "é a mesma coisa que bicicleta elétrica, e tem a página dela logo acima. Duas páginas para o mesmo produto não ajudam ninguém."
       }
+    ],
+    "o_que_decide_rotulo": "Os três números que decidem a compra",
+    "o_que_decide": [
+      {
+        "numero": "Potência nominal e velocidade máxima",
+        "porque": "é o par que decide se o veículo dispensa habilitação e placa, ou se é ciclomotor e precisa dos dois. O número grande do anúncio costuma ser o pico do motor, que o motor entrega por alguns segundos; o que vale para a regra é a potência nominal, e ela mora na ficha do fabricante — não no título. Errar aqui manda a pessoa para a rua sem habilitação, então esta casa não afirma categoria de nenhum modelo cuja ficha não tenha sido lida."
+      },
+      {
+        "numero": "Watt-hora da bateria",
+        "porque": "a tensão vezes a amperagem dá o watt-hora, e é dele que sai o quilômetro de verdade. O número do anúncio é o de quem pesa menos que você, num trajeto plano: com ladeira e com o seu peso, conte bem menos. É a conta que a nossa calculadora de autonomia faz, com a fonte do fator de relevo citada na própria página."
+      },
+      {
+        "numero": "Carga máxima declarada",
+        "porque": "é o filtro que quase ninguém olha e que quase nunca está no título. Você mais a mochila passam dos cem quilos mais fácil do que parece, e passar da carga máxima não deixa o veículo mais lento: deixa a solda do guidão mais perto de ceder."
+      }
+    ],
+    "como_sabemos": [
+      "Os preços de cada família saem de anúncios lidos na Shopee, com a data da leitura ao lado de cada um. Preço de marketplace muda, então nenhuma página desta casa crava preço como se fosse o de agora.",
+      "Potência, velocidade máxima, acelerador e carga máxima só entram na nossa ficha técnica quando vêm de ficha de fabricante ou de loja grande: título de anúncio não basta para esses quatro, e onde o dado falta a página diz que falta.",
+      "Os botões levam para a loja por link de afiliado: a gente recebe comissão se você comprar, e o preço para você é o mesmo."
     ]
   },
   "paginas": [
