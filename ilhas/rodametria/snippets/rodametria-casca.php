@@ -29,7 +29,7 @@
  */
 
 if ( ! defined( 'RODAMETRIA_CASCA_VERSAO' ) ) {
-	define( 'RODAMETRIA_CASCA_VERSAO', '1.2.0' );
+	define( 'RODAMETRIA_CASCA_VERSAO', '1.2.1' );
 }
 
 /**
@@ -905,6 +905,20 @@ body.rdm select:focus-visible,body.rdm input:focus-visible{outline:2px solid var
   .rdm-molde-cartao-spec{font-size:.6875rem;line-height:1.3}
   .rdm-molde-cartao-preco{font-size:.9375rem}
   .rdm-molde-cartao-botao{padding:9px 10px}
+  /* SEGUNDA PASSADA, 29/10 as 11h4xZ: a primeira levou o botao de 1.730 para
+     1.409 px — NOVE px acima do teto de 1.400. Nove px nao se resolve com
+     palpite, entao a medicao foi refeita e o corte foi nos quatro blocos que
+     ainda tinham folga, com margem para a pagina crescer um pouco sem voltar a
+     reprovar: a caixa de resultado, o titulo e o respiro do bloco de compra, e
+     a linha de preco do cartao, que gastava duas linhas para dizer o preco e a
+     data. Nenhuma palavra saiu da pagina. */
+  .rdm-molde-caixa{padding:var(--rdm-e3);margin-bottom:var(--rdm-e3)}
+  .rdm-molde-caixa-numero{margin-bottom:var(--rdm-e2)}
+  .rdm-molde-compra-titulo{font-size:1.125rem;margin-bottom:var(--rdm-e1)}
+  .rdm-molde-carrossel{gap:var(--rdm-e2);padding-bottom:var(--rdm-e1)}
+  .rdm-molde-cartao-preco{line-height:1.25}
+  .rdm-molde-cartao-nome{font-size:.875rem}
+  .rdm-f-formulario{margin-bottom:var(--rdm-e3)}
   body.rdm h1{font-size:1.75rem}
   body.rdm h2{font-size:1.375rem;margin-top:var(--rdm-e5)}
   .rdm-cabecalho .rdm-faixa{min-height:60px;flex-wrap:wrap}

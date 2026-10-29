@@ -400,9 +400,18 @@ def main():
     # -------------------------------------------------------------------
     # 7. O QUE ESTE PORTAO NAO MEDIU — dito, nunca aprovado em silencio
     # -------------------------------------------------------------------
+    # Esta linha dizia "que esta ilha ainda nao tem", e envelheceu em UMA HORA:
+    # o portao nasceu na mesma execucao. Frase sobre o estado da fabrica dentro
+    # de um portao e a mesma divida do numero de tela digitado — ela nao fala
+    # com o que descreve. Agora ela CONFERE que o arquivo existe.
+    tem_portao_de_pixel = os.path.exists(
+        os.path.join(AQUI, "conferir-32-5-no-navegador.mjs"))
     registro("NAO MEDIDO AQUI: a 32.5 (formulario antes de 700 px, primeiro botao de compra "
-             "antes de 1.400 px) se mede a 390 px num navegador de verdade, e e trabalho do "
-             "conferir-32-5-no-navegador.mjs, que esta ilha ainda nao tem.")
+             "antes de 1.400 px) se mede a 390 px num navegador de verdade. O portao de "
+             "pixel %s — rode `node ferramentas/conferir-32-5-no-navegador.mjs`."
+             % ("EXISTE nesta ilha e NAO foi rodado por este portao"
+                if tem_portao_de_pixel else
+                "NAO EXISTE nesta ilha, e a 32.5 segue sem ser medida em pixel"))
     registro("NAO MEDIDO AQUI: a leitura SEM quebra de cache (como o Google le). Toda URL acima "
              "foi pedida com ?v=<agora>, entao estas afirmacoes sao sobre a ORIGEM.")
 
