@@ -1,0 +1,676 @@
+{
+  "id": "f2-respostas",
+  "ilha": "rodametria",
+  "ferramenta": "F2",
+  "bloco": "3b",
+  "gerado_em": "2026-10-29",
+  "gerado_por": "ferramentas/gerar-f2.py",
+  "referencia": "ferramentas/f2-referencia.py",
+  "especificacao": "dados/especificacao-calculadoras.md, secao 2",
+  "publicar": true,
+  "nota": "Tudo que a F2 serve na tela sai daqui: nenhum numero e nenhuma frase da F2 e digitado dentro do snippet PHP. As linhas do banco sao CONTADAS de dados/veiculos.json; as duas externas estao marcadas `externa: true` com fonte e data dentro da linha.",
+  "campos": {
+    "tensoes_v": [
+      24,
+      36,
+      48,
+      60,
+      72
+    ],
+    "amperagens_ah": [
+      7.8,
+      10.4,
+      12,
+      15,
+      20,
+      26,
+      30
+    ],
+    "relevos": [
+      "plano",
+      "misto",
+      "ladeira"
+    ],
+    "exemplo": {
+      "tensao_v": 48,
+      "amperagem_ah": 20,
+      "peso_piloto_kg": 90,
+      "relevo": "misto",
+      "autonomia_declarada_km": 60
+    }
+  },
+  "constantes_usadas": {
+    "energia-wh-tensao-vezes-amperagem": {
+      "valor": "Wh = V * Ah",
+      "status": "publicavel",
+      "tipo": "identidade_matematica",
+      "fonte": "Identidade de unidades (volt x ampere-hora = watt-hora). Nao depende de fonte nem de egresso.",
+      "url": null,
+      "verificado_em": "2026-10-28"
+    },
+    "fator-relevo-ladeira-contra-plano": {
+      "valor": 2.37,
+      "status": "publicavel",
+      "tipo": "medicao_de_terceiro",
+      "fonte": "Limaico Quinteros, Rodrigo David. 'Analisis de la eficiencia energetica de la bateria de ion litio en una moto electrica para el uso de micro movilidad'. Tutor: Carlos Alberto Carranco Quinonez. Maestria en Ingenieria Automotriz, sede Quito, Universidad Politecnica Salesiana, 2025.",
+      "url": "https://dspace.ups.edu.ec/handle/123456789/30451",
+      "verificado_em": "2026-10-28"
+    },
+    "fator-relevo-misto": {
+      "valor": 1.54,
+      "status": "publicavel",
+      "tipo": "decisao_da_ilha",
+      "fonte": "Decisao desta ilha, nao medicao. O estudo da UPS tambem mediu um valor misto (29,8 km de autonomia na condicao mista da rota dele), mas o 'misto' dele e a rota DELE, com a proporcao de subida DELE — usar aquele numero como multiplicador universal seria emprestar a geografia de Quito ao trajeto de quem le.",
+      "url": null,
+      "verificado_em": "2026-10-28"
+    },
+    "calibracao-autonomia-declarada-contra-medida": {
+      "valor": 49.7,
+      "status": "publicavel",
+      "tipo": "medicao_de_terceiro",
+      "fonte": "Mesma tese da UPS Quito de 2025 (Limaico Quinteros), mesma moto eletrica de 60 V e 30 Ah, mesma rota de 25,8 km.",
+      "url": "https://dspace.ups.edu.ec/handle/123456789/30451",
+      "verificado_em": "2026-10-28"
+    },
+    "consumo-absoluto-wh-por-km-patinete": {
+      "valor": null,
+      "status": "pendente",
+      "tipo": "pendente",
+      "fonte": null,
+      "url": null,
+      "verificado_em": "2026-10-28"
+    },
+    "teto-de-carga-do-mercado-brasileiro": {
+      "valor": 120,
+      "status": "publicavel",
+      "tipo": "observacao_de_mercado",
+      "fonte": "Fichas de varejo colhidas no bloco 1 em 28/10/2026 (extra.com.br, casasbahia.com.br, magazineluiza.com.br) e painel da Shopee do dossie, lido pelo Raphael em 27/10/2026.",
+      "url": null,
+      "verificado_em": "2026-10-28"
+    }
+  },
+  "frases_molde": {
+    "wh": "{v} V × {ah} Ah são {wh} Wh de bateria.",
+    "km_plano": "No plano a régua de relevo não desconta nada — ela é 1,0 por definição, porque o trecho plano é justamente o denominador da medição. Então aqui o número do anúncio fica como TETO, não como promessa: {teto} km é o melhor caso.",
+    "km_degradado": "Com {relevo_frase}, conte com {piso} a {teto} km, e não os {teto} km do anúncio.",
+    "km_absoluto": "Com {wh} Wh e o consumo medido, conte com uns {piso} km.",
+    "km_recusa": "Sem a autonomia que o anúncio declara, não dá para dizer quantos km esta bateria faz — e a gente não inventa o número. Falta a régua de quantos Wh um patinete gasta por km: a única medição de patinete que achamos está em periódico que não abre por aqui, e medição de moto não serve para patinete. Informe os km do anúncio no campo acima e a conta sai.",
+    "peso": "Os seus {peso} kg não entram na conta: não achamos, em fonte que alcance, nenhuma régua de quanto cada quilo de quem pilota custa em Wh por km. Eles entram aqui, no que esperar da faixa.",
+    "peso_ladeira": "Com {peso} kg e ladeira, espere o PISO da faixa, não o meio dela.",
+    "peso_acima_do_teto": "E antes da autonomia tem uma pergunta mais dura: {peso} kg passam do maior limite de carga que a gente viu no varejo brasileiro ({teto_carga} kg). Veja se o modelo aguarda o seu peso antes de olhar km.",
+    "rotulo_km": "O que esperar no seu trajeto",
+    "rotulo_wh": "A energia da bateria",
+    "calibracao": "Para calibrar a expectativa: numa medição de 2025 de Rodrigo David Limaico Quinteros, na Universidade Politécnica Salesiana de Quito, o veículo entregou {pct}% da autonomia que a ficha declarava (29,8 km medidos contra 60 km de ficha). Não multiplicamos nada por esse número — ele é uma medição, de um veículo, numa rota, e de moto, não de patinete."
+  },
+  "relevo_frase": {
+    "misto": "um pouco de subida",
+    "ladeira": "ladeira de verdade"
+  },
+  "fatores_de_relevo": {
+    "plano": "1",
+    "misto": "77/50",
+    "ladeira": "237/100"
+  },
+  "fatores_de_relevo_tela": {
+    "plano": "1,00",
+    "misto": "1,54",
+    "ladeira": "2,37"
+  },
+  "degrau_3_disponivel": false,
+  "resposta_exemplo": {
+    "entrada": {
+      "tensao_v": 48.0,
+      "amperagem_ah": 20.0,
+      "peso_piloto_kg": 90.0,
+      "relevo": "misto",
+      "autonomia_declarada_km": 60.0
+    },
+    "wh_tela": "960",
+    "piso_km_tela": "39",
+    "teto_km_tela": "60",
+    "frase_wh": "48 V × 20,0 Ah são 960 Wh de bateria.",
+    "frases_km": [
+      "Com um pouco de subida, conte com 39 a 60 km, e não os 60 km do anúncio."
+    ],
+    "frases_peso": [
+      "Os seus 90 kg não entram na conta: não achamos, em fonte que alcance, nenhuma régua de quanto cada quilo de quem pilota custa em Wh por km. Eles entram aqui, no que esperar da faixa."
+    ],
+    "frases_calibracao": [
+      "Para calibrar a expectativa: numa medição de 2025 de Rodrigo David Limaico Quinteros, na Universidade Politécnica Salesiana de Quito, o veículo entregou 49,7% da autonomia que a ficha declarava (29,8 km medidos contra 60 km de ficha). Não multiplicamos nada por esse número — ele é uma medição, de um veículo, numa rota, e de moto, não de patinete."
+    ]
+  },
+  "tabela": {
+    "do_banco": [
+      {
+        "rotulo": "Verdevento",
+        "id_registro": "verdevento-750w-60v-20ah",
+        "tensao_v": 60,
+        "amperagem_ah": 20.0,
+        "autonomia_declarada_km": null,
+        "fonte": "painel-de-afiliado",
+        "fonte_nivel": 6,
+        "data_leitura": "2026-10-27",
+        "externa": false,
+        "nota": null,
+        "wh": "1.200",
+        "wh_bruto": 1200,
+        "faixas": {
+          "plano": {
+            "piso_km": null,
+            "teto_km": null,
+            "causa": "sem_autonomia_declarada_e_degrau_3_pendente"
+          },
+          "misto": {
+            "piso_km": null,
+            "teto_km": null,
+            "causa": "sem_autonomia_declarada_e_degrau_3_pendente"
+          },
+          "ladeira": {
+            "piso_km": null,
+            "teto_km": null,
+            "causa": "sem_autonomia_declarada_e_degrau_3_pendente"
+          }
+        }
+      },
+      {
+        "rotulo": "Haixia",
+        "id_registro": "haixia-scooter-1000w-60v-20ah",
+        "tensao_v": 60,
+        "amperagem_ah": 20.0,
+        "autonomia_declarada_km": 45,
+        "fonte": "painel-de-afiliado",
+        "fonte_nivel": 6,
+        "data_leitura": "2026-10-27",
+        "externa": false,
+        "nota": null,
+        "wh": "1.200",
+        "wh_bruto": 1200,
+        "faixas": {
+          "plano": {
+            "piso_km": "45",
+            "teto_km": "45",
+            "degenerada": true
+          },
+          "misto": {
+            "piso_km": "29",
+            "teto_km": "45",
+            "degenerada": false
+          },
+          "ladeira": {
+            "piso_km": "19",
+            "teto_km": "45",
+            "degenerada": false
+          }
+        }
+      }
+    ],
+    "externas": [
+      {
+        "rotulo": "Moto elétrica da medição de Quito",
+        "tensao_v": 60,
+        "amperagem_ah": 30,
+        "autonomia_declarada_km": 60,
+        "fonte": "Limaico Quinteros, R. D. — Universidade Politécnica Salesiana, sede Quito, 2025 (mestrado em Engenharia Automotiva)",
+        "data_leitura": "2026-10-28",
+        "nota": "É MOTO, não patinete. Entra aqui porque é a única medição real de autonomia que a ilha tem com a ficha ao lado: 29,8 km medidos em condição mista contra 60 km de ficha.",
+        "externa": true,
+        "wh": "1.800",
+        "wh_bruto": 1800,
+        "faixas": {
+          "plano": {
+            "piso_km": "60",
+            "teto_km": "60",
+            "degenerada": true
+          },
+          "misto": {
+            "piso_km": "39",
+            "teto_km": "60",
+            "degenerada": false
+          },
+          "ladeira": {
+            "piso_km": "25",
+            "teto_km": "60",
+            "degenerada": false
+          }
+        }
+      },
+      {
+        "rotulo": "Modelo urbano de 36 V",
+        "tensao_v": 36,
+        "amperagem_ah": 10.4,
+        "autonomia_declarada_km": 30,
+        "fonte": "blog do Mercado Livre (mercadolivre.com.br/blog)",
+        "data_leitura": "2026-10-28",
+        "nota": "Declaração de publicador de marketplace, não de fabricante: o texto diz \"até 30 km\" para 36 V e 10,4 Ah.",
+        "externa": true,
+        "wh": "374",
+        "wh_bruto": 374.4,
+        "faixas": {
+          "plano": {
+            "piso_km": "30",
+            "teto_km": "30",
+            "degenerada": true
+          },
+          "misto": {
+            "piso_km": "19",
+            "teto_km": "30",
+            "degenerada": false
+          },
+          "ladeira": {
+            "piso_km": "13",
+            "teto_km": "30",
+            "degenerada": false
+          }
+        }
+      }
+    ],
+    "total_do_banco": 2,
+    "total_externas": 2
+  },
+  "compra": {
+    "vitrine": [
+      {
+        "id": "honeywhale-m2-max",
+        "nome": "Honeywhale M2 MAX",
+        "tipo_comercial": "patinete",
+        "status": "publicavel",
+        "watt_sem_rotulo": 500,
+        "tensao_v": null,
+        "amperagem_ah": null,
+        "carga_max_kg": null,
+        "preco_brl": 2299.0,
+        "preco_loja": "Shopee",
+        "preco_data": "2026-10-27",
+        "url_busca": "https://s.shopee.com.br/1BNTcrnmhl",
+        "programa": "shopee",
+        "degrau": 4,
+        "imagem": null,
+        "rotulo_do_grupo": "a ficha não declara a bateria"
+      },
+      {
+        "id": "x13-chopper-1000w",
+        "nome": "X13",
+        "tipo_comercial": "scooter",
+        "status": "publicavel",
+        "watt_sem_rotulo": 1000,
+        "tensao_v": null,
+        "amperagem_ah": null,
+        "carga_max_kg": null,
+        "preco_brl": 8244.0,
+        "preco_loja": "Mercado Livre",
+        "preco_data": "2026-10-27",
+        "url_busca": "https://s.shopee.com.br/3B8Y0YBAvV",
+        "programa": "shopee",
+        "degrau": 4,
+        "imagem": null,
+        "rotulo_do_grupo": "a ficha não declara a bateria"
+      },
+      {
+        "id": "ls-sport-scooter-1000w",
+        "nome": "LS Sport",
+        "tipo_comercial": "scooter",
+        "status": "publicavel",
+        "watt_sem_rotulo": 1000,
+        "tensao_v": null,
+        "amperagem_ah": null,
+        "carga_max_kg": null,
+        "preco_brl": 8856.0,
+        "preco_loja": "Mercado Livre",
+        "preco_data": "2026-10-27",
+        "url_busca": "https://s.shopee.com.br/AUv8k1nNmv",
+        "programa": "shopee",
+        "degrau": 4,
+        "imagem": null,
+        "rotulo_do_grupo": "a ficha não declara a bateria"
+      },
+      {
+        "id": "sousa-bike-aro-24",
+        "nome": "Sousa Bike",
+        "tipo_comercial": "bicicleta",
+        "status": "publicavel",
+        "watt_sem_rotulo": 350,
+        "tensao_v": null,
+        "amperagem_ah": null,
+        "carga_max_kg": null,
+        "preco_brl": null,
+        "preco_loja": null,
+        "preco_data": null,
+        "url_busca": "https://s.shopee.com.br/8AXDxjjLCo",
+        "programa": "shopee",
+        "degrau": 4,
+        "imagem": null,
+        "rotulo_do_grupo": "a ficha não declara a bateria"
+      }
+    ],
+    "grupos": {
+      "cabem_no_wh": [],
+      "de_outro_wh": [],
+      "nao_declaram_v_ou_ah": [
+        {
+          "id": "honeywhale-m2-max",
+          "nome": "Honeywhale M2 MAX",
+          "tipo_comercial": "patinete",
+          "status": "publicavel",
+          "watt_sem_rotulo": 500,
+          "tensao_v": null,
+          "amperagem_ah": null,
+          "carga_max_kg": null,
+          "preco_brl": 2299.0,
+          "preco_loja": "Shopee",
+          "preco_data": "2026-10-27",
+          "url_busca": "https://s.shopee.com.br/1BNTcrnmhl",
+          "programa": "shopee",
+          "degrau": 4,
+          "imagem": null
+        },
+        {
+          "id": "maxshot-v1",
+          "nome": "MAXSHOT V1",
+          "tipo_comercial": "patinete",
+          "status": "rascunho",
+          "watt_sem_rotulo": 350,
+          "tensao_v": null,
+          "amperagem_ah": null,
+          "carga_max_kg": 120,
+          "preco_brl": null,
+          "preco_loja": null,
+          "preco_data": null,
+          "url_busca": null,
+          "programa": null,
+          "degrau": null,
+          "imagem": null
+        },
+        {
+          "id": "maxshot-v1spro",
+          "nome": "MAXSHOT V1SPRO",
+          "tipo_comercial": "patinete",
+          "status": "rascunho",
+          "watt_sem_rotulo": 500,
+          "tensao_v": null,
+          "amperagem_ah": null,
+          "carga_max_kg": 120,
+          "preco_brl": null,
+          "preco_loja": null,
+          "preco_data": null,
+          "url_busca": null,
+          "programa": null,
+          "degrau": null,
+          "imagem": null
+        },
+        {
+          "id": "sousa-bike-aro-24",
+          "nome": "Sousa Bike",
+          "tipo_comercial": "bicicleta",
+          "status": "publicavel",
+          "watt_sem_rotulo": 350,
+          "tensao_v": null,
+          "amperagem_ah": null,
+          "carga_max_kg": null,
+          "preco_brl": null,
+          "preco_loja": null,
+          "preco_data": null,
+          "url_busca": "https://s.shopee.com.br/8AXDxjjLCo",
+          "programa": "shopee",
+          "degrau": 4,
+          "imagem": null
+        },
+        {
+          "id": "siena-1000w-sem-cnh",
+          "nome": "Siena",
+          "tipo_comercial": "nao_declarado",
+          "status": "rascunho",
+          "watt_sem_rotulo": 1000,
+          "tensao_v": null,
+          "amperagem_ah": null,
+          "carga_max_kg": null,
+          "preco_brl": null,
+          "preco_loja": null,
+          "preco_data": null,
+          "url_busca": null,
+          "programa": null,
+          "degrau": null,
+          "imagem": null
+        },
+        {
+          "id": "playbik",
+          "nome": "PLAYBIK",
+          "tipo_comercial": "patinete",
+          "status": "rascunho",
+          "watt_sem_rotulo": null,
+          "tensao_v": null,
+          "amperagem_ah": null,
+          "carga_max_kg": 120,
+          "preco_brl": null,
+          "preco_loja": null,
+          "preco_data": null,
+          "url_busca": null,
+          "programa": null,
+          "degrau": null,
+          "imagem": null
+        },
+        {
+          "id": "honeywhale-h3",
+          "nome": "Honeywhale H3",
+          "tipo_comercial": "nao_declarado",
+          "status": "rascunho",
+          "watt_sem_rotulo": 1000,
+          "tensao_v": null,
+          "amperagem_ah": null,
+          "carga_max_kg": null,
+          "preco_brl": null,
+          "preco_loja": null,
+          "preco_data": null,
+          "url_busca": null,
+          "programa": null,
+          "degrau": null,
+          "imagem": null
+        },
+        {
+          "id": "l40-plus",
+          "nome": "L40 Plus",
+          "tipo_comercial": "nao_declarado",
+          "status": "rascunho",
+          "watt_sem_rotulo": 1000,
+          "tensao_v": null,
+          "amperagem_ah": null,
+          "carga_max_kg": null,
+          "preco_brl": 6374.0,
+          "preco_loja": "Mercado Livre",
+          "preco_data": "2026-10-27",
+          "url_busca": null,
+          "programa": null,
+          "degrau": null,
+          "imagem": null
+        },
+        {
+          "id": "evoo-scooter-1000w",
+          "nome": "Evoo",
+          "tipo_comercial": "nao_declarado",
+          "status": "rascunho",
+          "watt_sem_rotulo": 1000,
+          "tensao_v": null,
+          "amperagem_ah": null,
+          "carga_max_kg": null,
+          "preco_brl": 6687.0,
+          "preco_loja": "Mercado Livre",
+          "preco_data": "2026-10-27",
+          "url_busca": null,
+          "programa": null,
+          "degrau": null,
+          "imagem": null
+        },
+        {
+          "id": "scooter-chopper-1000w-48v",
+          "nome": "scooter-chopper-1000w-48v",
+          "tipo_comercial": "scooter",
+          "status": "rascunho",
+          "watt_sem_rotulo": 1000,
+          "tensao_v": 48,
+          "amperagem_ah": null,
+          "carga_max_kg": null,
+          "preco_brl": 8149.0,
+          "preco_loja": "Mercado Livre",
+          "preco_data": "2026-10-27",
+          "url_busca": null,
+          "programa": null,
+          "degrau": null,
+          "imagem": null
+        },
+        {
+          "id": "x13-chopper-1000w",
+          "nome": "X13",
+          "tipo_comercial": "scooter",
+          "status": "publicavel",
+          "watt_sem_rotulo": 1000,
+          "tensao_v": null,
+          "amperagem_ah": null,
+          "carga_max_kg": null,
+          "preco_brl": 8244.0,
+          "preco_loja": "Mercado Livre",
+          "preco_data": "2026-10-27",
+          "url_busca": "https://s.shopee.com.br/3B8Y0YBAvV",
+          "programa": "shopee",
+          "degrau": 4,
+          "imagem": null
+        },
+        {
+          "id": "ls-sport-scooter-1000w",
+          "nome": "LS Sport",
+          "tipo_comercial": "scooter",
+          "status": "publicavel",
+          "watt_sem_rotulo": 1000,
+          "tensao_v": null,
+          "amperagem_ah": null,
+          "carga_max_kg": null,
+          "preco_brl": 8856.0,
+          "preco_loja": "Mercado Livre",
+          "preco_data": "2026-10-27",
+          "url_busca": "https://s.shopee.com.br/AUv8k1nNmv",
+          "programa": "shopee",
+          "degrau": 4,
+          "imagem": null
+        }
+      ],
+      "sem_saida_de_compra": [
+        {
+          "id": "verdevento-750w-60v-20ah",
+          "nome": "Verdevento",
+          "tipo_comercial": "nao_declarado",
+          "status": "rascunho",
+          "watt_sem_rotulo": 750,
+          "tensao_v": 60,
+          "amperagem_ah": 20.0,
+          "carga_max_kg": null,
+          "preco_brl": 3589.0,
+          "preco_loja": "Mercado Livre",
+          "preco_data": "2026-10-27",
+          "url_busca": null,
+          "programa": null,
+          "degrau": null,
+          "imagem": null
+        },
+        {
+          "id": "haixia-scooter-1000w-60v-20ah",
+          "nome": "Haixia",
+          "tipo_comercial": "scooter",
+          "status": "rascunho",
+          "watt_sem_rotulo": 1000,
+          "tensao_v": 60,
+          "amperagem_ah": 20.0,
+          "carga_max_kg": null,
+          "preco_brl": 7670.0,
+          "preco_loja": "Mercado Livre",
+          "preco_data": "2026-10-27",
+          "url_busca": null,
+          "programa": null,
+          "degrau": null,
+          "imagem": null
+        }
+      ],
+      "fora_do_banco": [
+        {
+          "id": "patinete-adulto-com-banco-shopee",
+          "nome": "patinete-adulto-com-banco-shopee",
+          "tipo_comercial": "patinete",
+          "status": "excluido_do_banco",
+          "watt_sem_rotulo": null,
+          "tensao_v": null,
+          "amperagem_ah": null,
+          "carga_max_kg": null,
+          "preco_brl": 2699.9,
+          "preco_loja": "Shopee",
+          "preco_data": "2026-10-27",
+          "url_busca": null,
+          "programa": null,
+          "degrau": null,
+          "imagem": null
+        },
+        {
+          "id": "bike-scooter-moto-1000w-litio",
+          "nome": "bike-scooter-moto-1000w-litio",
+          "tipo_comercial": "nao_declarado",
+          "status": "excluido_do_banco",
+          "watt_sem_rotulo": 1000,
+          "tensao_v": null,
+          "amperagem_ah": null,
+          "carga_max_kg": null,
+          "preco_brl": 5819.0,
+          "preco_loja": "Mercado Livre",
+          "preco_data": "2026-10-27",
+          "url_busca": null,
+          "programa": null,
+          "degrau": null,
+          "imagem": null
+        },
+        {
+          "id": "guia-melhor-de-2026",
+          "nome": "guia-melhor-de-2026",
+          "tipo_comercial": "nao_declarado",
+          "status": "excluido_do_banco",
+          "watt_sem_rotulo": null,
+          "tensao_v": null,
+          "amperagem_ah": null,
+          "carga_max_kg": null,
+          "preco_brl": null,
+          "preco_loja": null,
+          "preco_data": null,
+          "url_busca": null,
+          "programa": null,
+          "degrau": null,
+          "imagem": null
+        }
+      ]
+    },
+    "contagem": {
+      "cabem_no_wh": 0,
+      "de_outro_wh": 0,
+      "nao_declaram_v_ou_ah": 12,
+      "sem_saida_de_compra": 2,
+      "fora_do_banco": 3
+    },
+    "total_registros_veiculos": 17,
+    "pecas_publicaveis": [
+      {
+        "id": "camara-kenda-16x3-0",
+        "nome": "Kenda",
+        "tipo_comercial": null,
+        "status": "publicavel",
+        "watt_sem_rotulo": null,
+        "tensao_v": null,
+        "amperagem_ah": null,
+        "carga_max_kg": null,
+        "preco_brl": 59.99,
+        "preco_loja": "Shopee",
+        "preco_data": "2026-10-27",
+        "url_busca": "https://s.shopee.com.br/4fxLnJDzOk",
+        "programa": "shopee",
+        "degrau": 4,
+        "imagem": null
+      }
+    ],
+    "pecas_que_a_resposta_pede": [
+      "bateria por V/Ah",
+      "carregador pela tensão"
+    ]
+  }
+}
