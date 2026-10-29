@@ -179,6 +179,20 @@ def main():
     registro("sitemap: %d URL(s) publicada(s)" % len(todas))
     afirma(len(todas) >= 1, "o sitemap nao publica nenhuma URL")
 
+    # O SITEMAP E CURADORIA, NAO INVENTARIO (14.1). Medido em 29/10/2026: quatro
+    # das seis URLs eram lixo de fabrica do WordPress, num dominio de dois dias.
+    lixo = ("hello-world", "sample-page", "/author/", "/category/", "ola-mundo",
+            "pagina-exemplo", "/tag/", "?p=")
+    for u in todas:
+        for termo in lixo:
+            afirma(termo not in u,
+                   "14.1: o sitemap publica %s, que e URL fraca de dominio novo — sitemap e "
+                   "curadoria, nao inventario" % u)
+    for s in sub:
+        afirma("users" not in s and "taxonomies" not in s,
+               "14.1: o sitemap ainda tem o sub-sitemap %s — arquivo de autor e de "
+               "categoria nao e pagina de verdade nesta ilha" % s)
+
     # -------------------------------------------------------------------
     # 5. CADA PAGINA, UMA POR UMA
     # -------------------------------------------------------------------

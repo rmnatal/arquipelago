@@ -29,7 +29,7 @@
  */
 
 if ( ! defined( 'RODAMETRIA_CASCA_VERSAO' ) ) {
-	define( 'RODAMETRIA_CASCA_VERSAO', '1.0.1' );
+	define( 'RODAMETRIA_CASCA_VERSAO', '1.1.0' );
 }
 
 /**
@@ -955,6 +955,74 @@ add_filter( 'comments_open', function ( $aberto, $id ) {
 }, 10, 2 );
 
 /* ===========================================================================
+ * 9-b. O SITEMAP E CURADORIA, NAO INVENTARIO (14.1)
+ *
+ * Medido no ar as 10h5xZ de 29/10/2026, na primeira passada do portao de ar:
+ * o wp-sitemap.xml desta ilha publicava SEIS URLs e QUATRO delas eram lixo de
+ * fabrica do WordPress — /2026/10/27/hello-world/, /sample-page/,
+ * /category/uncategorized/ e /author/rodametria_gestor/ — contra as duas que a
+ * ilha tem de verdade. A 14.1 e literal: "dominio novo tem orcamento de
+ * rastreamento minusculo. Cada URL fraca gasta orcamento que uma pagina boa
+ * precisaria, e ainda ensina ao Google que este site produz coisa que nao vale
+ * voltar para buscar. O sitemap e curadoria, nao inventario".
+ *
+ * Duas coisas, e as duas sao conservadoras:
+ *   (a) "Hello world!" e "Sample Page" vao para a LIXEIRA, nunca apagados —
+ *       e a mesma decisao da casca da Robometria, e por isso o mesmo metodo:
+ *       casa por slug E por titulo, nas duas linguas, e pula qualquer pagina
+ *       que seja a home ou que a propria casca tenha criado.
+ *   (b) os provedores de sitemap de AUTOR e de TAXONOMIA saem. Arquivo de autor
+ *       e de categoria numa ilha de ferramenta nao e pagina de verdade: lista
+ *       o que ja esta listado e nasce fina, que e o que a 14.4 recusa. Quando
+ *       esta ilha tiver artigo (bloco 5 da fila), quem volta e o provedor de
+ *       POST — nunca o de autor.
+ * ======================================================================== */
+
+if ( ! function_exists( 'rodametria_casca_limpar_padrao' ) ) {
+function rodametria_casca_limpar_padrao() {
+	$relato = array();
+	$slugs   = array( 'hello-world', 'ola-mundo', 'sample-page',
+		'pagina-exemplo', 'pagina-de-exemplo' );
+	$titulos = array( 'Hello world!', 'Olá, mundo!', 'Ola, mundo!', 'Sample Page',
+		'Página de exemplo', 'Pagina de exemplo' );
+
+	$candidatos = get_posts( array(
+		'post_type'        => array( 'post', 'page' ),
+		'post_status'      => array( 'publish', 'draft', 'pending', 'private', 'future' ),
+		'numberposts'      => 40,
+		'orderby'          => 'ID',
+		'order'            => 'ASC',
+		'suppress_filters' => true,
+	) );
+
+	foreach ( $candidatos as $p ) {
+		if ( get_post_meta( $p->ID, '_rodametria_id', true ) ) {
+			continue;
+		}
+		if ( (int) get_option( 'page_on_front' ) === (int) $p->ID ) {
+			continue;
+		}
+		if ( ! in_array( $p->post_name, $slugs, true )
+			&& ! in_array( trim( $p->post_title ), $titulos, true ) ) {
+			continue;
+		}
+		wp_trash_post( $p->ID );
+		$relato[] = 'lixeira: ' . $p->post_type . ' #' . $p->ID . ' (' . $p->post_name . ')';
+	}
+
+	return $relato;
+}
+}
+
+add_filter( 'wp_sitemaps_add_provider', function ( $provedor, $nome ) {
+	if ( in_array( $nome, array( 'users', 'taxonomies' ), true ) ) {
+		return false;
+	}
+
+	return $provedor;
+}, 10, 2 );
+
+/* ===========================================================================
  * 10. A HOME
  *
  * O VOZ.md manda: "Sem manifesto, sem 'bem-vindo', sem parágrafo explicando o
@@ -1160,6 +1228,12 @@ function rodametria_casca_instalar() {
 
 	/* Cada ferramenta instala a propria pagina aqui, pelo mesmo gancho. */
 	$relato = apply_filters( 'rodametria_instalar', $relato );
+
+	/* E so DEPOIS a limpeza, porque ela pula a pagina inicial e precisa que a
+	   home ja exista e ja esteja fixada para nao mandar a home para a lixeira. */
+	foreach ( rodametria_casca_limpar_padrao() as $linha ) {
+		$relato[] = $linha;
+	}
 
 	update_option( 'rodametria_casca_instalado', array(
 		'versao' => RODAMETRIA_CASCA_VERSAO,

@@ -4,7 +4,7 @@
   "nicho": "mobilidade eletrica — acertar os tres numeros antes de comprar um veiculo eletrico: categoria legal (CNH e placa), autonomia real e carga maxima",
   "dominio": "https://rodametria.com.br",
   "versao_manifest": 1,
-  "revisao": 3,
+  "revisao": 4,
   "atualizado_em": "2026-10-29",
   "estado": "nascendo",
   "desembarque": {
@@ -20,7 +20,7 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "1a3640698be6ad0c75dc336068fa7f6c84901186be38cc3e1850449b832a5789",
+      "sha256": "8e6a73791232fcb62fc30f2e75792343bef6771f83b4ebff927083ea3df13dbc",
       "descricao": "A CASCA 1.0.0, primeira versao. Tokens do DESIGN.md (tinta #13212B, verde #0A6B4C, Alfa Slab One so na marca, Barlow Semi Condensed nos titulos, JetBrains Mono em todo numero), simbolo V9 completo no cabecalho e em negativo no rodape, favicon proprio (secao 6: icone padrao do WordPress na aba e bloco reprovado), menu hamburguer com aria-expanded/aria-controls e links <a href> de verdade no HTML servido, trilha + BreadcrumbList, WebSite JSON-LD na home, <title> e description saindo de UM mapa de paginas. E os COMPONENTES DO MOLDE da secao 32, aqui e nao em cada snippet, como a 32.6-b manda: caixa de resultado, dobra <details>, cartao de compra com espaco reservado para quem nao tem foto, carrossel com scroll-snap em CSS puro, barra fixa do telefone e o rotulo do botao de loja por degrau da escada da 25.1. Pagina nova entra pelos filtros `rodametria_paginas` e `rodametria_instalar`, de dentro do proprio snippet dela — a casca nao e editada quando a ilha cresce."
     },
     {
