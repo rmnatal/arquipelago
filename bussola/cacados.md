@@ -73,3 +73,15 @@ Uma linha por nicho, só para não testar de novo. Não é relatório.
 | 27/10/2026 | fone e caixa de som bluetooth | volume | 151 mil/mês → teto ≈ 940 visitas/dia |
 | 27/10/2026 | bolsa e mochila feminina | seção 2 (decisão não paramétrica) | — |
 | 27/10/2026 | aquário (cabeça de produto) | já é ilha (Aquametria) | — |
+| 29/10/2026 | fitness em casa (bicicleta ergométrica, esteira, spinning) | SERP tomada (ML, Athletic, Odin, Kikos, Amazon, Technogym + carrossel) | `bicicleta ergometrica` 450 mil tomada |
+| 29/10/2026 | instrumento musical (violão, guitarra, teclado, ukulele, bateria eletrônica) | 3.0-e (carrossel + IA) | `violão` 201 mil → conservador ≈ 98 visitas/dia, exigiria ≈ R$ 340 por venda |
+| 29/10/2026 | air fryer | SERP tomada (Magalu, Casas Bahia, ML, Walita, WAP, Americanas, Britânia) | 1,22 mi tomada |
+| 29/10/2026 | frigobar e mini geladeira | SERP tomada (Magalu, ML, Midea, Americanas, Electrolux, Leroy, Frigelar) | 301 mil tomada |
+| 29/10/2026 | drone | SERP tomada (Loja DJI, DJI, revendas DJI, ML) | 165 mil tomada |
+| 29/10/2026 | piso vinílico | SERP (Leroy, Durafloor, Tarkett) + 3.0-e | 201 mil → conservador ≈ 197 visitas/dia, exigiria ≈ R$ 170 por venda |
+| 29/10/2026 | carrinho de bebê | SERP tomada (Alô Bebê, Voyage, Maxi-Cosi, Infanti, Safety 1st, ML) | 201 mil tomada |
+| 29/10/2026 | ferramenta elétrica (parafusadeira, furadeira) | SERP tomada (ML, Milwaukee, Leroy, Amazon, Bosch, Americanas) | `parafusadeira` 246 mil tomada |
+| 29/10/2026 | projetor | SERP tomada (ML, Epson, Samsung, Amazon, Vivo, iByte) | 165 mil tomada |
+| 29/10/2026 | máquina de costura | SERP tomada (ML, Singer ×2, Casas Bahia, Elgin, Leroy) | 110 mil tomada |
+| 29/10/2026 | climatizador de ar | SERP tomada (ML, Midea, Casas Bahia, Magalu, Sodimac, Leroy) | 165 mil tomada |
+| 29/10/2026 | bicicleta aro 29 | SERP tomada (ML, Casas Bahia, Ponto, Extra, Netshoes) | 165 mil tomada |
