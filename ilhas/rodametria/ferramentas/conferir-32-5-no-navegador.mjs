@@ -146,7 +146,8 @@ for (const url of lista) {
 		const compra = patrocinado || controle;
 
 		return {
-			tem_molde: !!(bloco || document.querySelector('.rdm-molde-caixa')),
+			tem_molde: !!(bloco || formulario),
+			tem_caixa_sem_molde: !!(!bloco && !formulario && document.querySelector('.rdm-molde-caixa')),
 			caixa: topo(caixa),
 			caixa_que: formulario ? 'formulario' : 'resposta',
 			caixa_alt: caixa ? Math.round(caixa.getBoundingClientRect().height) : null,
@@ -162,7 +163,15 @@ for (const url of lista) {
 	m.erros = erros.length;
 
 	if (!m.tem_molde) {
+		/* Pagina sem o contrato de conversao: sem bloco de compra E sem
+		   formulario de ferramenta. Ela sai da conta do molde, mas NUNCA em
+		   silencio — o motivo vai impresso, com a caixa medida mesmo assim,
+		   para quem ler saber que ela foi aberta e julgada. */
 		fora.push(m);
+		console.log(
+			`  fora  ${m.url.padEnd(56)} ${m.tem_caixa_sem_molde ? 'tem caixa de resposta e NAO tem bloco de compra nem formulario' : 'sem componente de molde'}` +
+				(m.caixa !== null ? `  (caixa a ${m.caixa} px)` : '')
+		);
 		continue;
 	}
 	molde.push(m);

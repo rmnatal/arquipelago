@@ -75,6 +75,111 @@ EXTERNAS = [
 ]
 
 
+# ---------------------------------------------------------------------------
+# A 32.4 SE COBRA ONDE O TEXTO ENTRA NA PAGINA, E NAO ONDE ELE E IMPRESSO.
+#
+# Medido no ar as 11h1xZ de 29/10/2026, pelo conferir-no-ar.py: a palavra
+# "egresso" — que a 32.4 lista por nome entre as proibidas na pagina publica —
+# apareceu no texto servido da F2. NAO VEIO DO PHP: a regua de fonte do
+# teste-f2.py varre o snippet e estava verde. Veio do `fonte` da constante
+# `energia-wh-tensao-vezes-amperagem`, que diz "Nao depende de fonte nem de
+# egresso" — frase CERTA no arquivo de constantes, que e registro interno, e
+# proibida na tela, que e onde a dobra "As reguas que a conta usa" a imprime.
+#
+# E a familia do numero de tela digitado com o sinal invertido: ali o defeito
+# era texto escrito a mao numa metade que nao fala com o banco; aqui e texto do
+# banco indo para a tela sem ninguem o ler como texto de tela.
+#
+# O conserto e estrutural e tem duas metades:
+#   (a) a constante que precisa de frase de leitor ganha uma AQUI, declarada,
+#       com o texto interno preservado no arquivo de constantes;
+#   (b) o gerador RECUSA publicar qualquer frase que carregue palavra de
+#       bastidor. Ele falha em vez de publicar — portao no ponto em que o dado
+#       vira texto, nao no ponto em que o texto e impresso.
+# ---------------------------------------------------------------------------
+
+PALAVRAS_DE_BASTIDOR = (
+    "egresso", "SERP", "snippet", "wp-sitemap", "manifest", "ARQUIPELAGO",
+    "bancada", "dados/", "ferramentas/", "regras/", "publicavel", "sha256",
+    "nuvem", "getaddrinfo", "ENOTFOUND", "repositorio", "commit",
+)
+
+# Frase de leitor para a constante cujo texto interno carrega bastidor. A chave
+# e o id; o valor e o que a tela diz. Constante que nao esta aqui publica o
+# proprio `fonte`, e se ele carregar bastidor o gerador PARA.
+FONTE_NA_TELA = {
+    "energia-wh-tensao-vezes-amperagem":
+        "Identidade de unidades: volt × ampère-hora dá watt-hora. Não é dado de "
+        "ninguém e não tem fonte a citar — é a definição das unidades.",
+    "consumo-absoluto-wh-por-km-patinete":
+        "Não publicamos nenhum valor. A medição mais forte que achamos está em "
+        "periódico que não conseguimos abrir, e as outras três candidatas foram "
+        "recusadas: uma é de bicicleta e de fabricante de kit, uma é conta "
+        "circular (divide a autonomia declarada pela energia, assumindo o número "
+        "do fabricante) e uma é de moto, não de patinete.",
+    "teto-de-carga-do-mercado-brasileiro":
+        "Fichas de varejo lidas em extra.com.br, casasbahia.com.br e "
+        "magazineluiza.com.br, mais o painel de afiliado da Shopee, em 27 e "
+        "28/10/2026. A faixa observada foi de 115 a 140 kg, com 120 kg repetido.",
+    "margem-de-carga-f3":
+        "Decisão da Rodametria, e a página nunca a atribui a ninguém.",
+    "fator-relevo-ladeira-contra-plano":
+        "Limaico Quinteros, Rodrigo David. “Análisis de la eficiencia energética de "
+        "la batería de ion litio en una moto eléctrica para el uso de micro "
+        "movilidad”. Mestrado em Engenharia Automotiva, Universidade Politécnica "
+        "Salesiana, sede Quito, 2025. Bateria de 60 V e 30 Ah numa moto elétrica, em "
+        "rota de 25,8 km: 41,29 Wh/km no plano e 97,74 Wh/km em subida de 12%.",
+    "fator-relevo-misto":
+        "Decisão da Rodametria, não medição. O estudo de Quito também mediu uma "
+        "condição mista, mas a mista dele é a rota dele, com a proporção de subida "
+        "dele — usar aquele número aqui seria emprestar a geografia de Quito ao seu "
+        "trajeto. O nosso é o meio-caminho geométrico entre os dois extremos "
+        "medidos, e a página diz que é nosso.",
+    "calibracao-autonomia-declarada-contra-medida":
+        "Mesma medição de Quito, de 2025: a mesma moto elétrica de 60 V e 30 Ah, na "
+        "mesma rota de 25,8 km, entregou 29,8 km contra os 60 km que a ficha "
+        "declarava.",
+}
+
+# PALAVRA PORTUGUESA SEM ACENTO NA TELA E DEFEITO, E ELA CHEGA DE ARQUIVO.
+#
+# A secao 8 manda: "texto na tela sai acentuado". Os arquivos de dado desta ilha
+# sao escritos em ASCII — e o `fonte` de duas constantes ia para a dobra dizendo
+# "Decisao desta ilha, nao medicao". Nenhuma regua de PHP veria: o texto nao
+# mora no PHP. E a mesma familia do achado da 32.4 acima, no mesmo campo.
+#
+# A regua nao adivinha: ela tem a lista das formas que esta ilha de fato produz,
+# e cresce quando alguem achar outra. Heuristica sobre acento reprova nome
+# proprio estrangeiro (o titulo em espanhol da tese, por exemplo).
+SEM_ACENTO_NA_TELA = (
+    "decisao", "medicao", "proposito", "numero", "nao ", "tambem", "voce",
+    "veiculo", "eletric", "reguas", "procedencia", "amperagem-hora",
+    "pagina", "secao", "ultima", "proximo", "orcamento", "duvida",
+)
+
+
+def conferir_acento_na_tela(textos):
+    """Toda frase que a tela serve tem de estar acentuada (secao 8)."""
+    for onde, texto in textos:
+        baixo = texto.lower()
+        for forma in SEM_ACENTO_NA_TELA:
+            assert forma not in baixo, (
+                "texto de tela sem acento em %s: a forma %r aparece em %r. Texto de "
+                "arquivo ASCII nao vai para a tela cru." % (onde, forma, texto[:120]))
+
+
+def fonte_na_tela(cid, registro):
+    """O que a tela diz sobre a procedencia desta regua — e nada mais."""
+    texto = FONTE_NA_TELA.get(cid) or (registro.get("fonte") or "")
+    for palavra in PALAVRAS_DE_BASTIDOR:
+        assert palavra.lower() not in texto.lower(), (
+            "32.4: a frase de procedencia de %r carrega a palavra de bastidor %r e ela "
+            "iria para a tela: %r. Declare a frase de leitor em FONTE_NA_TELA."
+            % (cid, palavra, texto[:120]))
+
+    return texto
+
+
 def _valor(campo):
     if isinstance(campo, dict):
         return campo.get("valor")
@@ -180,6 +285,20 @@ def conferir_moldes(constantes):
 
 def montar(constantes, veiculos, pecas):
     conferir_moldes(constantes)
+    CONSTANTES_NA_TELA = (
+        "energia-wh-tensao-vezes-amperagem",
+        "fator-relevo-ladeira-contra-plano",
+        "fator-relevo-misto",
+        "calibracao-autonomia-declarada-contra-medida",
+        "consumo-absoluto-wh-por-km-patinete",
+        "teto-de-carga-do-mercado-brasileiro",
+    )
+    conferir_acento_na_tela(
+        [("fonte de " + cid, fonte_na_tela(cid, constantes[cid]))
+         for cid in CONSTANTES_NA_TELA]
+        + [("molde " + k, v) for k, v in f2ref.MOLDES.items()]
+        + [("externa " + e["rotulo"], e["fonte"] + " " + (e.get("nota") or ""))
+           for e in EXTERNAS])
     exemplo = f2ref.responder(constantes=constantes, **EXEMPLO)
 
     linhas = [montar_linha(l, constantes) for l in linhas_do_banco(veiculos)]
@@ -265,7 +384,7 @@ def montar(constantes, veiculos, pecas):
                 "valor": constantes[cid].get("valor"),
                 "status": constantes[cid].get("status"),
                 "tipo": constantes[cid].get("tipo"),
-                "fonte": constantes[cid].get("fonte"),
+                "fonte": fonte_na_tela(cid, constantes[cid]),
                 "url": constantes[cid].get("url"),
                 "verificado_em": constantes[cid].get("verificado_em"),
             }

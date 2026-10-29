@@ -44,7 +44,7 @@
       "valor": "Wh = V * Ah",
       "status": "publicavel",
       "tipo": "identidade_matematica",
-      "fonte": "Identidade de unidades (volt x ampere-hora = watt-hora). Nao depende de fonte nem de egresso.",
+      "fonte": "Identidade de unidades: volt × ampère-hora dá watt-hora. Não é dado de ninguém e não tem fonte a citar — é a definição das unidades.",
       "url": null,
       "verificado_em": "2026-10-28"
     },
@@ -52,7 +52,7 @@
       "valor": 2.37,
       "status": "publicavel",
       "tipo": "medicao_de_terceiro",
-      "fonte": "Limaico Quinteros, Rodrigo David. 'Analisis de la eficiencia energetica de la bateria de ion litio en una moto electrica para el uso de micro movilidad'. Tutor: Carlos Alberto Carranco Quinonez. Maestria en Ingenieria Automotriz, sede Quito, Universidad Politecnica Salesiana, 2025.",
+      "fonte": "Limaico Quinteros, Rodrigo David. “Análisis de la eficiencia energética de la batería de ion litio en una moto eléctrica para el uso de micro movilidad”. Mestrado em Engenharia Automotiva, Universidade Politécnica Salesiana, sede Quito, 2025. Bateria de 60 V e 30 Ah numa moto elétrica, em rota de 25,8 km: 41,29 Wh/km no plano e 97,74 Wh/km em subida de 12%.",
       "url": "https://dspace.ups.edu.ec/handle/123456789/30451",
       "verificado_em": "2026-10-28"
     },
@@ -60,7 +60,7 @@
       "valor": 1.54,
       "status": "publicavel",
       "tipo": "decisao_da_ilha",
-      "fonte": "Decisao desta ilha, nao medicao. O estudo da UPS tambem mediu um valor misto (29,8 km de autonomia na condicao mista da rota dele), mas o 'misto' dele e a rota DELE, com a proporcao de subida DELE — usar aquele numero como multiplicador universal seria emprestar a geografia de Quito ao trajeto de quem le.",
+      "fonte": "Decisão da Rodametria, não medição. O estudo de Quito também mediu uma condição mista, mas a mista dele é a rota dele, com a proporção de subida dele — usar aquele número aqui seria emprestar a geografia de Quito ao seu trajeto. O nosso é o meio-caminho geométrico entre os dois extremos medidos, e a página diz que é nosso.",
       "url": null,
       "verificado_em": "2026-10-28"
     },
@@ -68,7 +68,7 @@
       "valor": 49.7,
       "status": "publicavel",
       "tipo": "medicao_de_terceiro",
-      "fonte": "Mesma tese da UPS Quito de 2025 (Limaico Quinteros), mesma moto eletrica de 60 V e 30 Ah, mesma rota de 25,8 km.",
+      "fonte": "Mesma medição de Quito, de 2025: a mesma moto elétrica de 60 V e 30 Ah, na mesma rota de 25,8 km, entregou 29,8 km contra os 60 km que a ficha declarava.",
       "url": "https://dspace.ups.edu.ec/handle/123456789/30451",
       "verificado_em": "2026-10-28"
     },
@@ -76,7 +76,7 @@
       "valor": null,
       "status": "pendente",
       "tipo": "pendente",
-      "fonte": null,
+      "fonte": "Não publicamos nenhum valor. A medição mais forte que achamos está em periódico que não conseguimos abrir, e as outras três candidatas foram recusadas: uma é de bicicleta e de fabricante de kit, uma é conta circular (divide a autonomia declarada pela energia, assumindo o número do fabricante) e uma é de moto, não de patinete.",
       "url": null,
       "verificado_em": "2026-10-28"
     },
@@ -84,7 +84,7 @@
       "valor": 120,
       "status": "publicavel",
       "tipo": "observacao_de_mercado",
-      "fonte": "Fichas de varejo colhidas no bloco 1 em 28/10/2026 (extra.com.br, casasbahia.com.br, magazineluiza.com.br) e painel da Shopee do dossie, lido pelo Raphael em 27/10/2026.",
+      "fonte": "Fichas de varejo lidas em extra.com.br, casasbahia.com.br e magazineluiza.com.br, mais o painel de afiliado da Shopee, em 27 e 28/10/2026. A faixa observada foi de 115 a 140 kg, com 120 kg repetido.",
       "url": null,
       "verificado_em": "2026-10-28"
     }

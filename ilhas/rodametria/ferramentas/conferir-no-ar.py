@@ -133,13 +133,42 @@ def main():
     afirma(revisao_no_ar == revisao_esperada,
            "o /status esta na revisao %d e o manifest na %d" % (revisao_no_ar, revisao_esperada))
 
-    # O LOG LINHA POR LINHA. Resumo verde nao e entrega (20.4).
-    linhas_da_revisao = [l for l in log if ("revis" in l and str(revisao_no_ar) in l)]
-    falhas_no_log = [l for l in log if "FALHA" in l or "NÃO" in l or "NAO" in l]
+    # O LOG LINHA POR LINHA, E SO AS LINHAS DA REVISAO CORRENTE.
+    #
+    # A 20.4 e literal: "a execucao le as linhas da REVISAO CORRENTE no log do
+    # /status, e nenhuma pode deixar de dizer `ok`". A primeira versao desta
+    # regua lia a JANELA INTEIRA e reprovou a entrega de 29/10 por causa de
+    # quatro linhas `FALHA manifest: HTTP 404` de 28/10 — de antes de o
+    # manifest.json existir no repositorio, ou seja a historia de um defeito ja
+    # consertado. Regua que reprova entrega certa e o caminho mais curto para
+    # alguem passar a ignora-la (20.5), e a janela do log e append-only: ela
+    # SEMPRE vai carregar o passado.
+    #
+    # O corte: o log vem do mais novo para o mais velho, e cada revisao comeca
+    # com a linha "revisao N:". As linhas desta entrega sao as que vao do topo
+    # ate essa linha, inclusive.
+    linhas_da_revisao = []
+    for l in log:
+        linhas_da_revisao.append(l)
+        if re.search(r"revis\w*\s+%d\s*:" % revisao_no_ar, l):
+            break
+    afirma(any(re.search(r"revis\w*\s+%d\s*:" % revisao_no_ar, l) for l in linhas_da_revisao),
+           "20.4: o log do /status nao tem a linha de fecho da revisao %d — a janela pode "
+           "ter rolado, e entrega sem linha de fecho nao foi conferida" % revisao_no_ar)
+    falhas_no_log = [l for l in linhas_da_revisao
+                     if "FALHA" in l or "NÃO" in l or "NAO" in l or "erro" in l.lower()]
     afirma(not falhas_no_log,
-           "20.4: o log do /status tem linha que nao diz ok: %s" % falhas_no_log)
+           "20.4: o log do /status tem linha da revisao %d que nao diz ok: %s"
+           % (revisao_no_ar, falhas_no_log))
+    antigas = [l for l in log if l not in linhas_da_revisao
+               and ("FALHA" in l or "erro" in l.lower())]
+    if antigas:
+        registro("20.4: a janela do log carrega %d linha(s) de FALHA de revisoes "
+                 "ANTERIORES, e elas nao sao desta entrega: %s"
+                 % (len(antigas), antigas[:2]))
     registro("20.4: log lido linha por linha — %d linha(s) na janela, %d da revisao %d, "
-             "0 linha de falha" % (len(log), len(linhas_da_revisao), revisao_no_ar))
+             "0 linha de falha nesta entrega"
+             % (len(log), len(linhas_da_revisao), revisao_no_ar))
     if len(log) >= 15:
         registro("20.4: a janela do log tem %d linhas e esta CHEIA — item que rolou para fora "
                  "dela NAO foi conferido. Registro, nao aprovacao." % len(log))
