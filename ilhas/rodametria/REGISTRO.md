@@ -3,6 +3,181 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-10-29 16h2xZ–16h4xZ — **BLOCO 3e: A PREMISSA DELE ESTAVA ERRADA**, e a coleta que não deu em campo técnico nenhum achou um defeito **no ar** — o bloco de compra dizia a mesma coisa **três vezes** e a página de autonomia estava **calada sobre autonomia**
+
+**A ESCOLHA DA ILHA.** `foco.md` nomeia a **rodametria** (foco total e absoluto, decisão do Raphael de
+27/10) e pela **1.2** não há escolha a fazer. Conferi as duas exceções que furam o foco antes de aceitar:
+(a) o **despacho do molde da 32.6** está `FECHADO` nas três ilhas — aquametria 21/10 18h2xZ,
+clubedomosaico 21/10 19h1xZ, robometria 21/10 16h1xZ, lidos no topo dos três `PROMPT.md`; (b) o único
+despacho marcado **ALTA** aberto no arquipélago é o **ITEM 1 da ronda de 28/10 da clubedomosaico** (58
+links de afiliado sem piso), e ele **não fura o foco**: a 1.2 exige ilha *"no ar e quebrada — página
+servindo erro, ferramenta devolvendo número errado, site fora do ar"*, e a régua técnica daquela ronda
+**passou inteira** (32 de 32 em HTTP 200, console limpo, as duas ferramentas com a conta refeita na mão).
+É defeito grave de banco, não de página servida. `executando_desde` estava `null`, que pela **1.1** já
+significa que não havia bloco da Fundação vivo. Reserva escrita às **16h25Z**, commit `fb97851`, push
+aceito de primeira, e **renovada às 16h37Z**. Nenhum branch `claude/*` à frente do `main` e nenhum PR
+aberto.
+
+**A REDE, MEDIDA E NÃO HERDADA (20.2).** `rodametria.com.br` em **200 nas três passadas**, com
+`aquametria.com.br` e `robometria.com.br` em 200 nas mesmas três.
+
+---
+
+### A PREMISSA DO BLOCO ESTAVA ERRADA, E CORRIGI-LA FOI A ENTREGA MAIOR
+
+A fila pedia *"coleta em ficha de fabricante — o nível 4 da escada, hoje vazio"*. **Ele não está vazio
+por falta de tentativa: pode ser vazio por estrutura.** Remedido pela **20.3** às 16h2xZ, três passadas
+cada, com controle verde e a causa lida no `__agentproxy/status` em vez de suposta (`connect_rejected`,
+403 de política no CONNECT): `honeywhale.com`, `maxshot.com.br`, `kenda.com.br`, `sousabike.com.br` e
+`evoo.com.br` em `000`. **Mas o egresso não é a causa raiz** — e é isso que muda o plano de quem ler
+isto. As duas marcas principais do banco **não têm site de fabricante achável**: a Honeywhale vende por
+vitrine de marketplace e varejo mexicano, a MAXSHOT só aparece em varejista brasileiro. **Abrir os cinco
+domínios não encheria este nível.** São marcas *de* marketplace, não fabricantes com página própria no
+Brasil.
+
+**E O GARGALO TEM NOME, UM SÓ, E ELE NÃO É DESTA ILHA: o nível 5 está atrás do egresso.**
+`www.casasbahia.com.br`, `www.extra.com.br` e `www.magazineluiza.com.br` em `000` nas três passadas;
+`www.mercadolivre.com.br` em `403` do próprio anti-robô, com o CONNECT passando (egresso aberto e caminho
+fechado são coisas diferentes). A leitura por **BUSCA** — a única porta aberta — alcança os níveis **6, 7
+e 8**, que são **exatamente** os que `niveis_minimos_por_campo` recusa nos quatro campos do nível 5.
+**Consequência escrita sem maquiar: `potencia_nominal_w`, `velocidade_max_kmh`, `acelerador` e
+`carga_max_kg` não são colhíveis desta nuvem por caminho nenhum.** A F1 e a F3 não vão ao ar por coleta —
+vão por **abertura**. O despacho ALTA de `dados/despachos.md` deixou de ser "seria bom" e passou a ser o
+único caminho.
+
+**O QUE A BUSCA ACHOU E FOI RECUSADO**, escrito no esquema (versão 4) registro a registro, para a próxima
+execução não gastar a mesma busca — porque o que foi procurado e não achado é dado:
+
+| achado | fonte | nível | por que não entrou |
+|---|---|---|---|
+| variante de **350 W** do M2 MAX | loja estrangeira de catálogo | 8 | nível 8 não sustenta campo **nenhum**. E a informação é boa: existe variante de potência com o MESMO nome de modelo |
+| **36 V** de bateria | publicador editorial | 7 | nunca sustenta campo técnico — e é do **MAX-B**, justamente o aparelho que as travas do casamento barraram por ser outro |
+| **25 km/h** e **120 kg** | guia de compra | 8 | os dois campos exigem nível 5. A oferta casada diz 32 km/h (nível 6): **a divergência é ela mesma a prova de que aceitar uma seria sorteio** |
+| **bico** da câmara Kenda 16x3.0 | — | — | **não publicado em porta nenhuma alcançável**. A busca devolveu Schrader para 16x1.5/2.25 e 16x1.75/2.125, que são linhas de bicicleta: herdar o bico de outra largura é especificação herdada, proibida |
+
+**O ÚNICO CAMPO QUE SOBROU COLHÍVEL FOI COLHIDO:** `autonomia_declarada_km` = **22 km** no
+`honeywhale-m2-max`, lido no título da **própria oferta casada** (20299836765) e não de oferta vizinha.
+A oferta foi **remedida na Open API às 16h3xZ**: viva, R$ 2.299, 3 vendas, título literalmente idêntico ao
+colhido às 13h3xZ. Nível 6, que a escada aceita neste campo com a razão escrita (o erro caro aqui é uma
+faixa de km larga, não uma pessoa na rua sem habilitação). **E a medição tem uma metade negativa que vale
+tanto quanto: dos 10 títulos que a resposta devolveu, ZERO declara tensão ou amperagem.** Não é que a
+leitura falhou — é que a bateria não está publicada nesta porta.
+
+---
+
+### O DEFEITO NO AR QUE A COLETA ACHOU: TRÊS CÓPIAS DE UM FATO, E ZERO DO FATO QUE A PÁGINA RESPONDE
+
+Medido às 16h3xZ em `/autonomia-patinete-eletrico/`, com quebra de cache. O bloco de compra dizia **a
+mesma coisa três vezes na mesma tela**:
+
+1. o parágrafo de abertura: *"Nenhum destes entrou pela conta de Wh: a ficha deles não declara tensão nem
+   amperagem"*;
+2. a linha `bateria não declarada` dentro de cada cartão (4 ocorrências, uma por cartão);
+3. o rótulo do grupo do cartão: `a ficha não declara a bateria`.
+
+**E o cartão da página de AUTONOMIA não dizia uma palavra sobre autonomia** — enquanto a oferta que o
+botão dele abre declara, no próprio título, **22 km**. Três cópias de um fato, e zero do número que a
+página existe para responder, gastando a primeira tela que a 32.5 mede em pixel.
+
+**Consertado nas três pontas:**
+
+- **a autonomia entra no cartão PRIMEIRO**, com a atribuição ao lado — e a atribuição **não é digitada**:
+  `quem_declara()` a alcança pelo caminho que o próprio banco grava (o campo diz qual `fonte` o sustenta,
+  a fonte diz o `nível`, e o nível diz `na_tela.quem_declara` na escada do esquema). O dia em que a escada
+  mudar a palavra, o cartão muda com ela. Número de nível 6 na tela **sem dono** é promessa da ilha;
+- **a linha duplicada saiu.** O cartão serve `V × Ah` quando existe e **cala** quando não existe, porque
+  o rótulo do grupo logo abaixo já é literalmente aquela frase;
+- **a frase de abertura deixou de ser string digitada no PHP** e passou a ser derivada da contagem da
+  vitrine, em `gerar-f2.py`.
+
+**ESSA ÚLTIMA É A 32.5-d OUTRA VEZ, EM OUTRO MATERIAL, E É A LIÇÃO DO DIA.** *"Nenhum destes entrou pela
+conta de Wh"* era uma **afirmação sobre o estado do banco** escrita à mão dentro do snippet, que nenhum
+portão conferia. Ela é verdadeira hoje **por falta de dado que a contradiga**: no dia em que um registro
+declarasse V e Ah com oferta aberta, o cartão entraria em `cabem_no_wh` e o parágrafo acima dele
+continuaria dizendo que nenhum entrou — mentindo calado, com cara de conferido. É a mesma família do
+comentário de CSS que declarava economizar 52 px e nunca economizou um, e do número de tela digitado.
+**Prosa que afirma o estado do banco é número digitado em outro traje.** As **cinco** frases da função
+nova são conferidas sobre mundos **fabricados** dentro do próprio gerador — vitrine de 1 e de 4, com 0
+cabendo no Wh, com todos e com parte —, não só a que o banco de hoje acende. Singular e plural inclusive:
+*"O único com oferta aberta hoje"* contra *"Nenhum dos 4"*.
+
+**NENHUM PORTÃO NOVO NASCEU, e é decisão e não esquecimento:** a **31.3** proíbe ampliar portão enquanto a
+ilha tiver item de conteúdo ou de página pelo nome do produto aberto na fila, e os blocos 4, 5, 5b e 6
+estão abertos. Os mundos fabricados moram dentro do gerador que já existia e não custaram arquivo novo.
+
+---
+
+### CONFERIDO NO AR (18.4), REVISÃO 12
+
+- `/status` em **12**, igual ao `manifest.json`, com as **duas** linhas da revisão 12 dizendo `ok`, lidas
+  uma por uma (**20.4**). Registro, não aprovação: a janela do log tem 15 linhas e está **cheia**, então
+  item que rolou para fora dela não foi conferido.
+- `conferir-no-ar.py`: **138 afirmações, 0 falha**.
+- **32.5 no navegador, a 390 px reais, com o portão descobrindo as páginas no `wp-sitemap.xml`:**
+  formulário **329 px** (teto 700) e primeiro botão de compra **1.380 px** (teto 1.400). A home segue
+  **fora do molde** com o motivo impresso (não tem bloco de compra), caixa de resposta a 331 px.
+- **E o botão SUBIU 5 px com uma linha A MAIS no cartão** (era 1.385). A causa é aritmética de texto: a
+  frase de abertura derivada tem 145 caracteres contra 175 da digitada, e devolveu uma linha acima dos
+  cartões. Tirar a repetição pagou a linha que a autonomia custou, com 5 px de troco.
+- Texto servido, contado com quebra de cache: `22 km declarados pelo vendedor` **1**,
+  `bateria não declarada` **0** (eram 4), `Nenhum destes entrou pela conta de Wh` **0** (era 1),
+  `Nenhum dos 4 com oferta aberta hoje` **1**.
+- **Bancada: 9 portões sem rede, 0 falha.** Snippet F2 **1.2.0 → 1.3.0**.
+
+**E O PIXEL FOI PREVISTO ANTES DE IR AO AR, por um método que vale guardar.** A **32.5-d** manda conferir
+no navegador quem acrescenta dado novo ao cartão, e com 15 px de folga sobre o teto eu não queria descobrir
+isso *depois* do desembarque — nesta ilha cada revisão custa uma espera de Sync. Baixei o HTML servido,
+troquei **as duas frases** num espelho local e medi o espelho a 390 px. **O método se valida contra o
+número que o portão já mediu na origem:** o espelho *antes* deu **1.385 px**, idêntico ao que o portão
+havia medido, e o espelho *depois* previu **1.380 px** — que foi exatamente o que o portão mediu no ar
+depois da revisão 12. Espelho não substitui portão (o portão mede a **origem**, com o CSS e a fonte que o
+site serve); ele diz, de graça, se vale gastar uma revisão.
+
+---
+
+### O ACHADO DE MÉTODO, E ELE MUDA O CUSTO DE TODA EXECUÇÃO NESTA ILHA
+
+**O CRON DO SYNC NÃO RODA POR RELÓGIO: RODA POR VISITA.** O `ESTADO.md` e o `PROMPT.md` desta ilha dizem
+que o Sync tem *"cron próprio de 30 minutos"* e que a Fundação, sem o token, **"empurra e espera"** — a
+execução da manhã registrou que isso custou **nove esperas de cron** entre 10h44Z e 12h10Z.
+
+**Medido às 16h3xZ:** o log do `/status` trazia disparos às 11h39, 12h09, 13h56 e 14h09 — e depois **nada
+por 2h29**. E 14h12Z é exatamente o minuto em que a execução anterior fechou e **parou de abrir o site**.
+É WP-Cron: ele é acionado por **requisição**, não por um relógio no servidor; sem visita, a ilha não
+desembarca, por mais que a agenda diga 30 minutos. Três GETs na home às 16h38Z e o `wp-cron.php`
+respondendo **409** (já havia cron em andamento) — a revisão 12 entrou em **um minuto**.
+
+**A regra, e ela cabe numa frase: a Fundação não espera o cron nesta ilha — ela o aciona, abrindo a
+própria página, e não precisa do token para isso.** Nove esperas de cron eram evitáveis, e a frase
+"empurra e espera" estava certa sobre o token e **errada sobre o relógio**.
+
+---
+
+### O QUE FICA ABERTO
+
+1. **A bateria do M2 MAX não está publicada em porta nenhuma alcançável** (0 de 10 títulos da Open API).
+   Enquanto nenhum registro com oferta aberta declarar V e Ah, `cabem_no_wh` fica vazio e o bloco de
+   compra continua dizendo o que os cartões **são** em vez do que a conta escolheu. Está na tela, com a
+   causa. **Não é defeito.**
+2. **A leitura sem quebra de cache** (como o Google lê) segue não feita — terceira execução seguida.
+   Toda URL desta passada foi pedida com `?v=<agora>`, então as afirmações são sobre a **origem**. O
+   portão que mede a borda existe na clubedomosaico (`leitura-do-visitante.py`) e não aqui, e a **31.3**
+   proíbe abri-lo enquanto houver item de conteúdo e de página pelo nome do produto na fila.
+3. **O despacho ALTA do egresso** (gov.br para a F1; casasbahia, extra e magazineluiza para o nível 5)
+   está remedido hoje e **continua recusado**. Ele é agora o único caminho para a F1 e a F3.
+
+**PRÓXIMO PASSO: o bloco 5b — página pelo nome do produto (seção 30).** Ele é o próximo por **eliminação
+medida**, não por ordem de lista: o 3e provou que coleta não destrava mais nenhuma ferramenta desta ilha;
+o bloco 4 pede ferramenta nova e as duas que faltam estão travadas por dado que não se colhe daqui; o 5
+pede artigo-âncora **pareado** com ferramenta, e só há uma no ar. O 5b não depende de nenhum dos três — as
+seis cabeças estão medidas, a SERP delas está medida e **não tomada**, e a ilha tem 4 registros publicáveis
+com piso e 1 com ficha. A ilha tem **2 URLs** contra as 40 do piso da 21.1. Primeiro passo: ler a seção 30
+inteira e a 21.4 (teto de leva por semana) **antes** de escolher quantas páginas, e escolher a primeira
+cabeça pela intersecção entre volume e o que o banco sustenta — hoje `patinete eletrico`, a única das seis
+com registro de ficha aberta nesta ilha.
+
+---
+
 ## 2026-10-29 13h3xZ–14hxxZ — **BLOCO 3d: A ILHA TEM A PRIMEIRA FICHA DE PRODUTO DA HISTÓRIA DELA**, com foto medida e preço de hoje na tela. E o bloco mediu o que vale mais que a ficha: **13 dos 17 registros não têm com o que pedir uma** — e isso não se conserta com trava mais frouxa
 
 **A ESCOLHA DA ILHA.** `foco.md` nomeia a **rodametria** (foco total e absoluto, decisão do Raphael de

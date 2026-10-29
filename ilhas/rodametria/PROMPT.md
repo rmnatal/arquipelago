@@ -21,6 +21,7 @@ Medido em 27/10/2026 no Chrome do Raphael (`bussola/dossies/rodametria/DOSSIE.md
 ## Endpoints desta ilha
 - **Status (público, GET):** `https://rodametria.com.br/wp-json/rodametria/v1/status` — **medido em 200 às 13h2xZ de 28/10/2026**, devolvendo `versao_sync: 1.1.5`. Às 10h17Z da mesma manhã devolvia **404**: o snippet **Rodametria Sync nasceu entre as duas medições** (passo 8 da seção 11, feito pelo Raphael), e nem o `ESTADO.md` nem este arquivo sabiam.
 - **Sync (POST, exige `manage_options`):** `https://rodametria.com.br/wp-json/rodametria/v1/sync` — e o gatilho por query na raiz, `https://rodametria.com.br/?rodametria_sync=<token>`, com o token lido em `/wp-json/rodametria/v1/token` (também exige `manage_options`). **O token desta ilha não está no repositório e não deve estar** — quem precisa dele o lê logado. A Fundação **não precisa dele** para desembarcar: o Sync tem **cron próprio de 30 minutos** (`rodametria_30min`), e foi ele que rodou às 11h48, 12h30, 12h48 e 13h10Z de 28/10.
+  > **MEDIDO EM 29/10/2026 às 16h3xZ — O CRON NÃO RODA POR RELÓGIO: RODA POR VISITA, E ISSO MUDA O CUSTO DE TODA EXECUÇÃO AQUI.** A frase acima e a do `ESTADO.md` ("ela empurra e espera") estão certas sobre o **token** e erradas sobre o **relógio**. O log do `/status` trazia disparos às 11h39, 12h09, 13h56 e 14h09Z e depois **nada por 2h29** — e 14h12Z é o minuto em que a execução anterior fechou e **parou de abrir o site**. É WP-Cron: ele é acionado por **requisição**, não por um relógio no servidor. Três GETs na home e o `wp-cron.php` respondendo **409** (já havia cron em andamento), e a revisão entrou em **um minuto**. A execução da manhã registrou **nove esperas de cron** entre 10h44Z e 12h10Z: eram evitáveis. **Depois de empurrar, abra a própria página** — não precisa do token para isso.
 - **Base que o Sync lê:** `https://raw.githubusercontent.com/rmnatal/arquipelago/main/ilhas/rodametria/` + o arquivo, com `?v=<timestamp>` contra cache. Vale a **20.5**: revisão atrasada logo depois do push é cache do GitHub, não defeito — reacione de dois em dois e só trate como defeito se não subir em ~10 minutos.
 - **A CASCA E A F2 ESTÃO NO AR DESDE 29/10/2026.** `/` (home, molde da 32.2) e
   `/autonomia-patinete-eletrico/` (F2, molde de FERRAMENTA da 32.1). A casca publica
@@ -68,6 +69,15 @@ está fechada no item 2 acima.**
 **Pronto quando:** a conta da 31.6, refeita na leitura semanal seguinte contando o
 `REGISTRO.md`, der **7 em 10 ou mais**. Com a ilha no ar e o canal provado, cada bloco da
 fila passa a poder terminar em página — então o caminho é a fila andar, não uma correção.
+
+> **ANDOU, e o item fica aberto porque quem o fecha é a leitura semanal e não quem entrega.**
+> A execução de 29/10 às 13h3xZ (bloco 3d) e a de 16h2xZ (bloco 3e) **entregaram as duas NO AR**
+> — a primeira ficha de produto da ilha, e depois o conserto do bloco de compra que dizia a mesma
+> coisa três vezes. Contadas no `REGISTRO.md`, as duas entram na conta da 31.1. **Não escrevo o
+> novo número aqui:** a 23.4 proíbe número sem procedência, a conta é sobre as **10 últimas**
+> execuções e o `git log` desta nuvem vem **raso** (correção de 27/10 no topo da seção 1.1), então
+> contagem de história feita daqui sairia menor que a verdade com cara de completa. Quem contar roda
+> `git fetch --unshallow` antes, como aquela correção manda.
 
 ---
 
@@ -200,7 +210,17 @@ suplemento, e `Honeywhale` devolveu bolsa e pneu de *outros* modelos da marca. *
 em forma nova:** a medida casa com dez ofertas e o mercado as separa pelo **bico**, que o registro não
 declara — ali a BUSCA é literalmente melhor que a ficha, e falta **um campo**.
 
-**3e. COLETA EM FICHA DE FABRICANTE — o nível 4 da escada de fontes, hoje VAZIO, e é o próximo bloco.**
+**3e. ~~COLETA EM FICHA DE FABRICANTE~~ — ENCERRADO EM 29/10/2026 às 16h2xZ–16h4xZ, E A PREMISSA DELE ESTAVA ERRADA.** O bloco fechou corrigindo-a por medição, não executando-a: **o nível 4 pode ser estruturalmente VAZIO neste nicho** — as duas marcas principais do banco não têm site de fabricante achável (Honeywhale vende por vitrine de marketplace e varejo mexicano; MAXSHOT só aparece em varejista brasileiro), então abrir o egresso dos cinco domínios **não encheria o nível**. São marcas *de* marketplace, não fabricantes com página própria no Brasil.
+
+> **E O GARGALO TEM NOME, UM SÓ, E NÃO É DESTA ILHA: o nível 5 está atrás do egresso.** `casasbahia`, `extra` e `magazineluiza` em `000` nas três passadas às 16h2xZ, `connect_rejected` lido no status do proxy, com controle verde; `mercadolivre` em 403 do próprio anti-robô, com o CONNECT passando. A leitura por **BUSCA** — a única porta aberta — alcança os níveis **6, 7 e 8**, que são **exatamente** os que a escada recusa nos quatro campos do nível 5. **Logo `potencia_nominal_w`, `velocidade_max_kmh`, `acelerador` e `carga_max_kg` não são colhíveis desta nuvem por caminho nenhum: a F1 e a F3 não vão ao ar por coleta, vão por ABERTURA.** O despacho ALTA de `dados/despachos.md` deixou de ser "seria bom" e é o único caminho.
+>
+> **O QUE SOBROU COLHÍVEL FOI COLHIDO, e foi um campo:** `autonomia_declarada_km` = **22 km** no `honeywhale-m2-max`, lido no título da **própria oferta casada** (remedida na Open API, viva, título idêntico). Nível 6, que a escada aceita neste campo. **Dos 10 títulos da resposta, ZERO declara tensão ou amperagem** — a bateria não está publicada nesta porta, e isso é dado.
+>
+> **E A COLETA ACHOU UM DEFEITO NO AR**, que é o que de fato foi ao ar nesta passada: o bloco de compra de `/autonomia-patinete-eletrico/` dizia **a mesma coisa três vezes** (o parágrafo de abertura, a linha `bateria não declarada` de cada cartão e o rótulo do grupo) enquanto o cartão da página de **autonomia** estava **calado sobre autonomia**. Revisão 12, 32.5 em **1.380 px** — 5 px MELHOR que antes, com uma linha a mais no cartão. Detalhe no `REGISTRO.md`, na entrada de 29/10 16h2xZ, inclusive a lição: **prosa que afirma o estado do banco é número digitado em outro traje**, e as cinco frases da função que a substituiu são conferidas sobre mundos fabricados.
+>
+> **O que o bloco NÃO alcançou, e não é dele:** o `bico` da câmara Kenda não está publicado em porta nenhuma alcançável (a busca devolveu Schrader para outras larguras de 16", que são linha de bicicleta — herdar o bico de outra largura é especificação herdada, proibida). O registro fica no degrau 4 de propósito. **O texto original do bloco fica abaixo, preservado.**
+
+**3e-ORIGINAL (guardado).** COLETA EM FICHA DE FABRICANTE — o nível 4 da escada de fontes, hoje VAZIO.
 Os dois eixos do banco convergiram aqui: o **3c** mediu pelo PISO que *"o que nomeia marca e modelo é
 achável na loja e não publica ficha; o que publica `60 V 20 Ah` empacota três nomes no título e não é
 achável por nome nenhum"*, e o **3d** mediu pela FICHA que 13 dos 17 registros não têm identidade mínima
@@ -264,7 +284,7 @@ no lugar onde quem for mexer a lê.
 
 **5. ARTIGOS-ÂNCORA** pareados com cada ferramenta.
 
-**5b. PÁGINAS PELO NOME DO PRODUTO** (seção 30) para as seis cabeças, e depois a malha.
+**5b. PÁGINAS PELO NOME DO PRODUTO** (seção 30) para as seis cabeças, e depois a malha. **← É O PRÓXIMO BLOCO, decidido em 29/10/2026 por ELIMINAÇÃO MEDIDA e não por ordem de lista.** O 3e provou que coleta não destrava mais nenhuma ferramenta desta ilha (o que destrava é o despacho do egresso, que não é trabalho da Fundação); o **4** pede ferramenta nova e as duas que faltam, F1 e F3, estão travadas por dado que não se colhe daqui; o **5** pede artigo-âncora *pareado* com ferramenta, e só há uma no ar. O 5b não depende de nenhum dos três: as seis cabeças estão medidas, a SERP delas está medida e **não tomada**, e o banco tem 4 registros publicáveis com piso e 1 com ficha. A ilha tem **2 URLs** contra as 40 do piso da 21.1 — é a única fila que anda sem esperar ninguém. **Primeiro passo:** ler a **seção 30** inteira e a **21.4** (teto de leva por semana) ANTES de escolher quantas páginas, e escolher a primeira cabeça pela intersecção entre volume e o que o banco sustenta — hoje `patinete eletrico`, a única das seis com registro de ficha aberta nesta ilha.
 
 **6. LISTA DE PROSPECÇÃO DO WIDGET** — lojas brasileiras de mobilidade elétrica com site próprio, `publicar: false`.
 
