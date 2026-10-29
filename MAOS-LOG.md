@@ -8000,3 +8000,61 @@ estado tocado, nenhum bloco de fila executado, nenhum arquivo além dos dois nom
 `MAOS-LOG.md`, que é a exceção obrigatória), nenhuma publicação, nenhum `publicar: true`, nenhum
 Sync, nenhuma verificação de site, nenhuma conta criada. `ARQUIPELAGO.md` não foi lido para decidir
 coisa alguma. Nenhum dado pessoal de terceiro entrou no repositório.
+
+---
+
+## 29/10/2026 14:28 BRT (17:28 UTC) — Bússola caçadora, rodada de 29/10/2026
+
+**Instrução:** gravar VERBATIM (substituindo o conteúdo inteiro) `bussola/cacados.md` e
+`bussola/medicoes/volume-cacada-2026-10-29.md`, conferir o sha256 de cada um antes do commit,
+commitar com a mensagem "Bússola caçadora — 29/10/2026" e dar push na `main`.
+
+**Checagem de assunto:** Arquipélago (Bússola — nichos caçados e medição de volume/SERP). Executado.
+
+`git status --porcelain` (depois do `git add`, antes do commit):
+
+```
+M  bussola/cacados.md
+A  bussola/medicoes/volume-cacada-2026-10-29.md
+```
+
+`git diff --cached --stat`:
+
+```
+ bussola/cacados.md                           | 12 ++++++++++++
+ bussola/medicoes/volume-cacada-2026-10-29.md | 17 +++++++++++++++++
+ 2 files changed, 29 insertions(+)
+```
+
+**sha256 conferido antes do commit — os dois bateram com o da instrução:**
+
+```
+ae757ea1cda10e4a782468ae61f1d91d2fefc72e1eede45f9d2dddc1ec7c5822  bussola/cacados.md
+363be5a51f91c552b208312a53be1ce4b39098729354fb374fcca236d179f204  bussola/medicoes/volume-cacada-2026-10-29.md
+```
+
+**Commit que foi ao `main`:** `d687a75696ce9da9a49e906a2ecf39a7b5d9b617`
+Confirmado com `git fetch origin main && git log -1 origin/main`:
+`d687a75 Bússola caçadora — 29/10/2026`. Push direto em `HEAD:main`, aceito de primeira
+(`7aac947..d687a75`), sem rebase e sem force.
+
+**Contagem, conferida relendo os arquivos DEPOIS de gravar:**
+
+```
+bussola/cacados.md                           — 87 linhas; 81 linhas de nicho, 12 delas de 29/10/2026
+bussola/medicoes/volume-cacada-2026-10-29.md — 17 linhas; 2 candidatos na tabela
+```
+
+Os 12 nichos novos de 29/10/2026 em `cacados.md`: fitness em casa, instrumento musical, air fryer,
+frigobar e mini geladeira, drone, piso vinílico, carrinho de bebê, ferramenta elétrica, projetor,
+máquina de costura, climatizador de ar, bicicleta aro 29. A medição registra os dois candidatos que
+passaram SERP e volume e esperam só o portão 4 (veículo elétrico infantil e cama montessoriana), e
+anota que o painel da Shopee estava bloqueado por verificação de robô nesta execução.
+
+**Nenhum passo falhou.**
+
+**O que NÃO foi feito:** nenhuma ilha reservada, nenhum `executando_desde`, nenhum cabeçalho de
+estado tocado, nenhum bloco de fila executado, nenhum arquivo além dos dois nomeados (mais este
+`MAOS-LOG.md`, que é a exceção obrigatória), nenhuma publicação, nenhum `publicar: true`, nenhum
+Sync, nenhuma verificação de site, nenhuma conta criada. `ARQUIPELAGO.md` não foi lido para decidir
+coisa alguma. Nenhum dado pessoal de terceiro entrou no repositório.
