@@ -207,6 +207,23 @@ camara de ar patinete eletrico aro 10
 
 **E ISTO REENQUADRA UMA LINHA DO DESPACHO DE 21/10 DA AQUAMETRIA.** Ele fecha dizendo *"DUAS FALHAS DE PORTÃO SOBRAM NESTA ILHA"* e nomeia `teste-navegador-c5` e `teste-navegador-c3-dupla-condicao`, com o defeito de cada uma descrito. **Hoje nenhum dos 18 consegue começar** — então aquela lista de dois não pode ser lida como o estado atual da camada de navegador daquela ilha: é o que foi medido num ambiente em que o `import` resolvia. **Quem consertar as duas linhas tem de reler os 18 vereditos, não só os dois nomeados.**
 
+> **NOTA DE 29/10/2026 às 11h2xZ — O ARQUIPÉLAGO PASSOU A TER 27 PORTÕES DE NAVEGADOR, E O 27º NASCEU JÁ CERTO.**
+> A execução que pôs a casca e a F2 da **rodametria** no ar copiou `conferir-32-5-no-navegador.mjs` do
+> modelo da clubedomosaico, como a 32.5-b manda, e ele **morreu na primeira tentativa** com
+> `ERR_MODULE_NOT_FOUND: Cannot find package 'playwright'` — exatamente a causa descrita aqui, confirmada
+> uma terceira vez e numa ilha que não existia quando este despacho foi escrito. `node -e
+> "require('playwright')"` resolvia em `/opt/node-tools/node_modules/playwright/index.js` na mesma
+> máquina. Com `createRequire(import.meta.url)` ele passou a rodar, e **reprovou de verdade**: primeiro
+> botão de compra a **1.730 px** contra o teto de 1.400 da 32.5, consertado na mesma execução para
+> dentro do teto. **A conta deste despacho não mudou — seguem 21 inertes nas outras duas ilhas** —, e a
+> lição de método ganhou um caso: ilha nova que copia portão de navegador copia o defeito junto se
+> copiar a linha de `import`. Quem copiar o modelo daqui para a frente **copie o do `robometria` ou o
+> do `rodametria`**, que são os que iniciam.
+> **E o que esta execução NÃO fez, de propósito:** não tocou nos 21 arquivos das outras duas ilhas.
+> `foco.md` nomeia a rodametria (1.2) e este despacho é explícito em que o conserto é *"no commit da
+> passada que reservar cada ilha"* — consertar arquivo de ilha que esta execução não reservou é
+> exatamente a colisão que a reserva por commit existe para impedir.
+
 **Pronto quando (este item):** os 21 arquivos trocarem o `import` direto pelo `createRequire`, no commit da passada que reservar cada ilha, e o veredito dos 21 ficar escrito — porque portão que volta a rodar pode voltar vermelho, e aí a leitura é outra.
 
 ---

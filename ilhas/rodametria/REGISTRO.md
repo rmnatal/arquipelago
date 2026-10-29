@@ -161,6 +161,89 @@ isso que o portão de ar conta em vez de procurar.
 
 ---
 
+### 5-b. E DEPOIS O PORTÃO DE AR ACHOU OUTROS TRÊS — DOIS DELES CHEGAVAM À TELA **POR DADO**, NÃO POR CÓDIGO
+
+Rodado contra a revisão 6, o `conferir-no-ar.py` reprovou com dois itens, e os dois estavam no **mesmo
+campo**: o `fonte` das constantes, que a dobra *"As réguas que a conta usa"* imprime.
+
+**(d) A 32.4 FOI FERIDA POR DADO.** A palavra **"egresso"** — que a 32.4 lista **por nome** entre as
+proibidas na página pública — apareceu no texto servido da F2. **Não veio do PHP:** a régua de fonte do
+`teste-f2.py` varre o snippet e estava verde. Veio do `fonte` da constante
+`energia-wh-tensao-vezes-amperagem`, que diz *"Nao depende de fonte nem de egresso"* — frase **certa** no
+arquivo de constantes, que é registro interno, e **proibida na tela**. É a família do número de tela
+digitado **com o sinal invertido**: ali o defeito era texto escrito à mão numa metade que não fala com o
+banco; aqui é texto do banco indo para a tela **sem ninguém o ler como texto de tela**.
+
+**(e) E NO MESMO CAMPO, O ACENTO.** A seção 8 manda que texto de tela saia acentuado, e os arquivos de
+dado desta ilha são **ASCII**. Duas constantes publicavam *"Decisao desta ilha, nao medicao"* na dobra.
+Nenhuma régua de PHP veria, pelo mesmo motivo do item (d).
+
+**O conserto é no ponto em que o dado vira texto de tela, não no ponto em que o texto é impresso:** o
+gerador passou a ter a **frase de leitor** de cada constante publicada, declarada e acentuada, com o
+texto interno preservado no arquivo de constantes — e **recusa publicar** qualquer frase que carregue
+palavra de bastidor ou forma portuguesa sem acento. Ele **falha em vez de publicar**. A régua de acento
+tem a **lista** das formas que esta ilha produz, e não heurística: heurística sobre acento reprovaria o
+título em espanhol da tese de Quito, que é fonte legítima. **4 mutações, 4 mordem.**
+
+**(f) E A PRIMEIRA VERSÃO DA RÉGUA DA 20.4 REPROVAVA ENTREGA CERTA.** Ela lia a **janela inteira** do log
+do `/status`, e as quatro linhas `FALHA manifest: HTTP 404` são de **28/10** — de antes de o manifest
+existir no repositório, ou seja a história de um defeito já consertado. A 20.4 é literal: *"as linhas da
+**revisão corrente**"*. O log é append-only e **sempre** vai carregar o passado. Agora a régua corta na
+linha de fecho da revisão corrente, **cobra que essa linha exista** (janela que rolou é entrega não
+conferida) e **registra** as falhas antigas como passado, sem reprovar. Régua que reprova entrega certa é
+o caminho mais curto para alguém passar a ignorá-la — a lição da 20.5, aqui no sentido oposto ao dela.
+
+---
+
+### 5-c. A 32.5 FOI MEDIDA EM PIXEL, REPROVOU, E PRIMEIRO FOI PRECISO FAZER O PORTÃO EXISTIR NESTA NUVEM
+
+**O portão de navegador não começava, e a causa é a do despacho aberto de `dados/despachos.md`** — *"21
+dos 26 portões de navegador do Arquipélago estão inertes nesta nuvem, pela mesma linha de `import`"*.
+Medido aqui, numa ilha que não existia quando aquele despacho foi escrito:
+`node ferramentas/conferir-32-5-no-navegador.mjs` morria em `ERR_MODULE_NOT_FOUND: Cannot find package
+'playwright'`, enquanto `node -e "require('playwright')"` resolvia em
+`/opt/node-tools/node_modules/playwright/index.js` **na mesma máquina**. A causa cabe numa frase: **o
+playwright desta nuvem é alcançado por `NODE_PATH`, e o resolvedor de ESM não lê `NODE_PATH`** — só o de
+CommonJS lê. `createRequire(import.meta.url)` resolve, nenhum `--loader` conserta, e **quem copiar o
+portão copia essas três linhas junto**. A nota ficou escrita no despacho, com o que esta execução **não**
+fez de propósito: os 21 arquivos das outras duas ilhas, porque `foco.md` nomeia a rodametria e o próprio
+despacho diz que o conserto é *"no commit da passada que reservar cada ilha"*.
+
+**COM O PORTÃO VIVO, ELE REPROVOU:** o primeiro botão de compra da F2 estava a **1.730 px** num telefone
+de 390 px, contra o teto de **1.400** da 32.5. O formulário passava com folga — **416 px** contra o teto
+de 700 —, e é por isso que a 32.5-b insiste em não trocar as duas réguas: medir a caixa de resultado ali
+reprovaria uma página certa.
+
+**E A MEDIÇÃO, BLOCO POR BLOCO, DISSE ONDE ESTAVAM OS PIXELS — QUE NÃO ERA ONDE A INTUIÇÃO PUNHA:**
+
+| onde | custo |
+|---|---|
+| respiro do **tema** entre cabeçalho e trilha | 84 px |
+| a frase de promessa, em **quatro** linhas | 144 px |
+| o formulário, cinco campos de ~100 px | 521 px |
+| a frase de escopo do bloco de compra, em **quatro** linhas | 144 px |
+| o espaço reservado da foto, por cartão, **antes** do botão | 96 px |
+| a especificação do cartão, em **três** linhas | 77 px |
+
+O corte foi nesses seis lugares e **em nenhum outro**. **Nenhuma palavra saiu da página** (32.3), nenhum
+bloco mudou de ordem (32.1) e nenhuma afirmação da bancada mudou — o que mudou foi **densidade no
+telefone**. As duas frases encurtadas dizem a mesma coisa com menos linha, e a de escopo mantém o que a
+seção 7 exige dela: **a causa de nenhum dos cartões ter entrado pela conta**. O espaço reservado da foto
+**continua existindo**, como a seção 6 manda, com 44 px em vez de 96 — porque no telefone esses 52 px são
+do espaço mais caro da página.
+
+**E A HOME FICOU FORA DO MOLDE, DITO E NÃO ESCONDIDO.** Ela é HUB: tem caixa de resposta (396 px, dentro
+do teto) e **não** tem bloco de compra nem formulário, porque a ferramenta que o `VOZ.md` põe nela é a F1.
+Julgá-la pela régua do molde a reprovaria por não ter botão de compra antes de 1.400 px — e a 32.5-b é
+explícita em que portão que reprova página certa é o caminho mais curto para alguém passar a ignorá-lo.
+Então `tem_molde` passou a ser o **contrato de conversão** (bloco de compra ou formulário de ferramenta), e
+a home é **listada fora do molde com o motivo impresso**, que é o que a 32.5-b manda. **Isto é item para o
+bloco seguinte, não estado final:** a 32.2 quer produto e ação na primeira tela de página de resposta, e a
+home ganha isso no dia em que a F1 puder nascer nela — ou antes, se alguém decidir que o hub também
+vende.
+
+---
+
 ### 6. OS DOIS PORTÕES NOVOS, E POR QUE ELES NÃO FEREM A 31.2
 
 A **31.2** proíbe portão novo sem defeito medido no ar que ele teria pegado, e a **31.3** proíbe trabalho
