@@ -1,8 +1,8 @@
 {
  "id": "esquema-banco",
  "ilha": "rodametria",
- "bloco": "3d",
- "versao_esquema": 3,
+ "bloco": "3e",
+ "versao_esquema": 4,
  "gerado_em": "2026-10-29",
  "publicar": false,
  "descricao": "Modelo do banco da Rodametria: entidades VEICULO, PECA e MUNICIPIO. Define campo a campo o tipo, a unidade, a obrigatoriedade, o vocabulario controlado, o que e DERIVADO e a ORIGEM esperada do dado. E o contrato que dados/veiculos.json, dados/pecas.json e dados/municipios.json cumprem e que ferramentas/validar-banco.py verifica. Nasce da secao 5 de dados/especificacao-calculadoras.md, que e a lista de campos que as tres ferramentas LEEM.",
@@ -89,7 +89,7 @@
     },
     "o_que_pode_sustentar": "qualquer campo tecnico do veiculo ou da peca, atribuido ao fabricante. Exige pagina ou manual LIDO no endereco do fabricante.",
     "existe_hoje": false,
-    "observacao": "Nenhum dominio de fabricante desta ilha foi tentado ainda. Quem tentar mede o egresso na mesma passada (20.3: quem escreve a regra que exige a fonte e quem confere se a fonte esta liberada)."
+    "observacao": "MEDIDO EM 29/10/2026, DUAS VEZES NO MESMO DIA (as 14h0xZ pelo bloco 3d e as 16h2xZ pelo 3e), e a resposta nao e \"bloqueado\": e VAZIO POR ESTRUTURA. `honeywhale.com`, `maxshot.com.br`, `kenda.com.br`, `sousabike.com.br` e `evoo.com.br` devolveram 000 nas TRES passadas da 20.2, com `rodametria.com.br` em 200 nas mesmas tres e a causa lida no status do proxy (`connect_rejected`, 403 de politica no CONNECT) em vez de suposta. MAS O EGRESSO NAO E A CAUSA RAIZ, e e isso que muda o plano de quem ler isto: as duas marcas principais do banco NAO TEM site de fabricante achavel. A \"loja oficial\" da Honeywhale e uma vitrine de marketplace e o resto do que a busca acha dela e varejo mexicano; a MAXSHOT aparece so em varejista brasileiro. Para este nicho — marcas DE marketplace, nao fabricantes com pagina propria no Brasil — este nivel pode nunca ter conteudo, e abrir o egresso dos cinco dominios nao o encheria. O nivel continua na escada para que a ausencia dele seja VISIVEL, como o nivel 1."
    },
    {
     "nivel": 5,
@@ -101,7 +101,7 @@
     },
     "o_que_pode_sustentar": "campo tecnico atribuido a LOJA, nunca ao fabricante. E o nivel de quase tudo que este banco tem hoje: extra.com.br, casasbahia.com.br, magazineluiza.com.br e as fichas dos marketplaces.",
     "existe_hoje": true,
-    "observacao": "A ficha de varejo e a origem que mais erra na direcao que importa nesta ilha: e nela que '1000W' aparece sem dizer se e nominal ou pico, e e dela que saiu o titulo 'Bicicleta eletrica Siena 1000W adulto sem CNH scooter' — quatro termos que a regra separa, num anuncio so."
+    "observacao": "A ficha de varejo e a origem que mais erra na direcao que importa nesta ilha: e nela que '1000W' aparece sem dizer se e nominal ou pico, e e dela que saiu o titulo 'Bicicleta eletrica Siena 1000W adulto sem CNH scooter' — quatro termos que a regra separa, num anuncio so. E O ACESSO A ELE ESTA FECHADO DESTA NUVEM, medido em 29/10/2026 as 16h2xZ pela 20.3 e remedido igual ao de 14h0xZ: `www.casasbahia.com.br`, `www.extra.com.br` e `www.magazineluiza.com.br` em 000 nas TRES passadas, `connect_rejected` lido no status do proxy, com controle verde na mesma janela; `www.mercadolivre.com.br` em 403 do proprio anti-robo, com o CONNECT passando (egresso aberto e caminho fechado sao coisas diferentes). CONSEQUENCIA ESCRITA SEM MAQUIAR, porque ela decide o que a fabrica pode e nao pode prometer: a LEITURA DIRETA de nivel 5 nao existe aqui hoje, e a leitura por BUSCA — a unica porta aberta — alcanca os niveis 6, 7 e 8, que sao exatamente os que `niveis_minimos_por_campo` recusa nos QUATRO campos do nivel 5. Logo `potencia_nominal_w`, `velocidade_max_kmh`, `acelerador` e `carga_max_kg` NAO SAO COLHIVEIS desta nuvem por caminho nenhum enquanto o despacho dos tres dominios estiver aberto. Isso nao e lacuna de regua nem de banco: e um gargalo de egresso com nome, e por isso a F1 e a F3 nao vao ao ar por coleta, so por abertura."
    },
    {
     "nivel": 6,
@@ -178,6 +178,14 @@
    "os_quatro_do_nivel_5_e_por_que_sao_esses_quatro": "Os tres primeiros sao as ENTRADAS da F1 — a categoria legal sai deles, e a categoria legal e o produto da ilha. O quarto e a carga maxima, pela 3.5 da especificacao: 'nao estima carga maxima de veiculo que nao a declara', e quem compra um patinete que nao aguenta o peso perde o veiculo e pode se machucar. Nos quatro, declaracao de vendedor nao basta: exige-se ficha de varejo grande (nivel 5) ou melhor.",
    "nivel_8_nao_sustenta_nada": "Fazenda e catalogo comercial nao sustentam campo nenhum, em nenhum nivel de custo. Registro cuja unica fonte e nivel 8 nasce `excluido_do_banco` com o motivo escrito, para a proxima coleta nao o recolher de novo.",
    "medida_no_proprio_titulo_e_excecao_declarada": "Compatibilidade de PECA por medida (aro x largura, tensao, V+Ah) aceita nivel 6 QUANDO `declarada_por` for `titulo_ou_ficha_declara_literalmente` — porque ali a medida E o nome do produto ('Camara Kenda 16x3.0'), e nao uma afirmacao de desempenho do vendedor. Medida deduzida da foto, do preco ou da frase 'serve em patinete adulto' continua fora, em qualquer nivel."
+  },
+  "o_que_a_leitura_por_busca_mediu_e_RECUSOU_em_2026-10-29": {
+   "por_que_esta_aqui": "Secao 8 do ARQUIPELAGO.md: o que foi procurado e NAO achado e dado, e vale tanto quanto o que foi achado — sem isto a proxima execucao gasta a mesma busca. Cada linha abaixo foi lida por BUSCA (a porta aberta), tinha numero na mao, e foi RECUSADA pelo nivel. Nenhum destes numeros entrou em campo tecnico de nenhum registro.",
+   "bateria_do_honeywhale_m2_max": "PROCURADA e NAO PUBLICADA em fonte alcancavel. Nem tensao nem amperagem aparecem em nenhum dos 10 titulos que a Open API devolveu para a chave do casamento, nem no que a busca aberta achou. O que a busca trouxe foi de OUTRO modelo: 36 V atribuidos ao M2 MAX-B por arevista.com.br — nivel 7, que nunca sustenta campo tecnico, e ainda por cima o MAX-B e o aparelho que as seis travas do casamento BARRARAM justamente por ser outro.",
+   "variante_de_350_w_do_m2_max": "ACHADA e RECUSADA. cyberpuerta.mx anuncia \"Honey Whale Scooter M2 MAX 350W\" ao lado de um \"500W\" da mesma linha — logo existe variante de potencia com o MESMO nome de modelo, o que e informacao boa. Mas e loja estrangeira de catalogo, nivel 8, e o nivel 8 nao sustenta campo NENHUM (`niveis_proibidos_em_qualquer_campo`). O registro fica com o watt sem rotulo que a propria oferta casada declara, 500 W.",
+   "velocidade_de_25_kmh_e_carga_de_120_kg": "ACHADAS e RECUSADAS, e sao o caso mais caro da lista porque os dois campos sao do nivel 5. Guia de compra (nivel 8) publica 25 km/h e \"max 120kg\" para o M2 MAX; a oferta casada publica 32 km/h (nivel 6). Os dois ficam de fora: `velocidade_max_kmh` e `carga_max_kg` exigem nivel 5 ou melhor, e a divergencia entre as duas leituras e ela mesma a prova de que aceitar qualquer uma seria sorteio. A F3 continua sem candidato com oferta aberta.",
+   "bico_da_camara_kenda_16x3_0": "PROCURADO e NAO PUBLICADO. A busca por bico/valvula da Kenda 16x3.0 devolveu valvula Schrader para outras larguras de 16\" (1.5/2.25 e 1.75/2.125, linhas de bicicleta) e nenhuma ficha da 16x3.0. Pela `identidade_minima` da PECA o atributo que o mercado distingue continua nao declarado, e herdar o bico de outra largura seria especificacao herdada, que esta proibida em `origens_legitimas_de_leitura`. O registro fica no degrau 4 de proposito: ALI A BUSCA E MELHOR QUE A FICHA, e o que falta e um campo, nao um link.",
+   "o_que_isto_decide_para_a_fila": "O bloco 3e nasceu chamado \"coleta em ficha de fabricante\" e a premissa dele esta CORRIGIDA por medicao: nao ha ficha de fabricante para colher neste nicho, e o nivel 5 esta atras do egresso. O que sobrou colhivel por BUSCA sao os campos que aceitam nivel 6 — e deles o unico que faltava num registro com oferta aberta era `autonomia_declarada_km`, colhido nesta passada no honeywhale-m2-max. Depois dele, coleta por busca nao destrava mais nenhuma ferramenta: o que destrava e o despacho."
   }
  },
  "escada_de_compra": {

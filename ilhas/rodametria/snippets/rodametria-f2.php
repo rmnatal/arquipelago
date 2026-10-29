@@ -29,7 +29,7 @@
  */
 
 if ( ! defined( 'RODAMETRIA_F2_VERSAO' ) ) {
-	define( 'RODAMETRIA_F2_VERSAO', '1.2.0' );
+	define( 'RODAMETRIA_F2_VERSAO', '1.3.0' );
 }
 if ( ! defined( 'RODAMETRIA_F2_SLUG' ) ) {
 	define( 'RODAMETRIA_F2_SLUG', 'autonomia-patinete-eletrico' );
@@ -223,17 +223,33 @@ function rodametria_f2_itens_da_vitrine( $d ) {
 	$itens = array();
 	foreach ( (array) $d['compra']['vitrine'] as $f ) {
 		$spec = array();
+		/* ESTA PAGINA RESPONDE AUTONOMIA, ENTAO A AUTONOMIA VEM PRIMEIRO. Ate
+		   29/10/2026 as 16h3xZ o cartao do Honeywhale M2 MAX era medido no ar
+		   servindo `500 W no anúncio · bateria não declarada · a ficha não
+		   declara a bateria` — e a oferta que o botao dele abre declara, no
+		   proprio titulo, 22 km de autonomia, que e exatamente o numero desta
+		   pagina. O cartao da pagina de autonomia estava calado sobre
+		   autonomia. O numero vem com a atribuicao do nivel dele ao lado, que
+		   o gerador le da escada do esquema: nivel 6 e declaracao de vendedor,
+		   e numero de vendedor na tela sem dono vira promessa da ilha. */
+		if ( ! empty( $f['autonomia_declarada_km'] ) ) {
+			$spec[] = rodametria_f2_numero( $f['autonomia_declarada_km'] ) . ' km'
+				. ( empty( $f['autonomia_quem_declara'] ) ? ''
+					: ' declarados ' . $f['autonomia_quem_declara'] );
+		}
 		if ( ! empty( $f['watt_sem_rotulo'] ) ) {
 			$spec[] = rodametria_f2_numero( $f['watt_sem_rotulo'] ) . ' W no anúncio';
 		}
-		/* A especificacao que fez o produto entrar (32.1) — e quando ele NAO
-		   entrou pela conta, o cartao diz isso, porque a secao 7 proibe
-		   recomendar em primeiro lugar o que a pagina diz nao servir. */
+		/* A especificacao que fez o produto entrar (32.1). Quando ela EXISTE,
+		   o cartao a serve; quando nao existe, o cartao NAO diz isso aqui —
+		   `rotulo_do_grupo` logo abaixo ja e literalmente `a ficha não declara
+		   a bateria`, e as duas linhas juntas eram a MESMA frase duas vezes no
+		   mesmo cartao, medida no ar em 29/10/2026 (e uma terceira vez no
+		   paragrafo de abertura do bloco). Dizer tres vezes nao informa mais:
+		   gasta a primeira tela, que a 32.5 mede em pixel. */
 		if ( ! empty( $f['tensao_v'] ) && ! empty( $f['amperagem_ah'] ) ) {
 			$spec[] = rodametria_f2_numero( $f['tensao_v'] ) . ' V × '
 				. rodametria_f2_numero( $f['amperagem_ah'] ) . ' Ah';
-		} else {
-			$spec[] = 'bateria não declarada';
 		}
 		if ( ! empty( $f['rotulo_do_grupo'] ) ) {
 			$spec[] = $f['rotulo_do_grupo'];
@@ -593,12 +609,15 @@ function rodametria_f2_pagina_html() {
 	$html .= rodametria_f2_formulario_html( $d );
 	$html .= rodametria_f2_resultado_html( $d );
 
+	/* A frase de abertura NAO E DIGITADA AQUI. Ate 29/10/2026 ela era, e dizia
+	   "Nenhum destes entrou pela conta de Wh" — afirmacao sobre o estado do
+	   banco, escrita a mao, que nenhum portao conferia e que viraria mentira
+	   calada no dia em que um registro declarasse V e Ah com oferta aberta.
+	   Agora ela sai contada da propria vitrine, em gerar-f2.py. */
 	$html .= rodametria_casca_bloco_de_compra(
 		'À venda agora, e o que cada um é',
 		$itens,
-		'Nenhum destes entrou pela conta de Wh: a ficha deles não declara tensão nem '
-			. 'amperagem. São os que têm oferta aberta hoje, com o watt do anúncio e o preço '
-			. 'com a data da leitura.',
+		(string) $d['compra']['frase_de_abertura'],
 		'Nenhum veículo do nosso banco tem oferta aberta neste momento.' );
 
 	$html .= rodametria_f2_ressalva_html( $d );

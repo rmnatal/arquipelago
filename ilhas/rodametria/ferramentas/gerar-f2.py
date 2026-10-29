@@ -186,6 +186,66 @@ def _valor(campo):
     return campo
 
 
+def frase_do_bloco_de_compra(quantos, cabem_no_wh):
+    """A frase de abertura do bloco de compra, DERIVADA da contagem da vitrine.
+
+    POR QUE ELA NASCEU AQUI EM 29/10/2026: ela era uma string digitada dentro do
+    PHP — "Nenhum destes entrou pela conta de Wh: a ficha deles não declara
+    tensão nem amperagem" — e portanto uma afirmacao sobre o ESTADO DO BANCO que
+    nenhum portao conferia. Hoje ela e verdadeira; no dia em que um registro
+    declarar V e Ah com oferta aberta, o cartao entra em `cabem_no_wh` e o
+    paragrafo acima dele continua dizendo que nenhum entrou. E a mesma familia
+    da 32.5-d: regra escrita para o mundo que existia, sa por falta de dado que
+    a contradiga. Agora o numero e contado e a frase sai dele.
+
+    E ela DEIXOU DE NOMEAR A CAUSA de proposito. Nomeando, o bloco dizia a mesma
+    coisa tres vezes na mesma tela: o paragrafo, a linha `bateria não declarada`
+    do cartao e o rotulo do grupo do cartao. A causa e por cartao — cada um pode
+    estar aqui por motivo diferente — e e o cartao que a diz.
+    """
+    if quantos <= 0:
+        return ""
+    if cabem_no_wh == 0:
+        if quantos == 1:
+            return ("O único com oferta aberta hoje não entrou pela conta de Wh, e o "
+                    "cartão dele diz por quê. Vem com o watt do anúncio e o preço com "
+                    "a data da leitura.")
+        return ("Nenhum dos %d com oferta aberta hoje entrou pela conta de Wh, e cada "
+                "cartão diz por quê. Vêm com o watt do anúncio e o preço com a data "
+                "da leitura." % quantos)
+    if cabem_no_wh == quantos:
+        if quantos == 1:
+            return ("O único com oferta aberta hoje cabe no Wh que você pediu. Vem com "
+                    "o watt do anúncio e o preço com a data da leitura.")
+        return ("Os %d com oferta aberta hoje cabem no Wh que você pediu. Vêm com o "
+                "watt do anúncio e o preço com a data da leitura." % quantos)
+    return ("%d dos %d com oferta aberta hoje cabem no Wh que você pediu e vêm "
+            "primeiro; o que cada um dos outros é está escrito no cartão dele."
+            % (cabem_no_wh, quantos))
+
+
+def quem_declara(registro, campo, escada):
+    """A atribuicao que a tela imprime ao lado de um numero colhido.
+
+    A frase NUNCA e digitada aqui: ela sai de `escada_de_fontes.niveis[].na_tela
+    .quem_declara` do esquema, alcancada pelo caminho que o proprio banco grava
+    — o campo diz qual `fonte` o sustenta, a fonte do registro diz o `nivel`, e
+    o nivel diz como se atribui na tela. Entao o dia em que a escada mudar a
+    palavra, o cartao muda com ela, e nao ha segunda copia para envelhecer.
+
+    Devolve None quando o campo nao foi colhido: ai nao ha o que atribuir.
+    """
+    c = registro.get(campo)
+    if not isinstance(c, dict) or c.get("valor") is None:
+        return None
+    fonte = (registro.get("fontes") or {}).get(c.get("fonte")) or {}
+    nivel = fonte.get("nivel")
+    for n in escada["niveis"]:
+        if n["nivel"] == nivel:
+            return (n.get("na_tela") or {}).get("quem_declara")
+    return None
+
+
 def linhas_do_banco(veiculos):
     """Uma linha por registro do banco que declara V E Ah. Contado, nunca digitado."""
     linhas = []
@@ -283,7 +343,7 @@ def conferir_moldes(constantes):
         wh="960", piso=f2ref._n(f3["piso_km"])).startswith("Com 960 Wh")
 
 
-def montar(constantes, veiculos, pecas):
+def montar(constantes, veiculos, pecas, escada):
     conferir_moldes(constantes)
     CONSTANTES_NA_TELA = (
         "energia-wh-tensao-vezes-amperagem",
@@ -321,6 +381,13 @@ def montar(constantes, veiculos, pecas):
             "tensao_v": _valor(r.get("tensao_v")),
             "amperagem_ah": _valor(r.get("amperagem_ah")),
             "carga_max_kg": _valor(r.get("carga_max_kg")),
+            # A AUTONOMIA DECLARADA NO CARTAO, e ela nao e enfeite: esta pagina
+            # RESPONDE autonomia, e o cartao dela vinha calado sobre o unico
+            # numero de autonomia que a oferta linkada publica. A atribuicao vem
+            # junta e sai da escada (nivel 6 = "pelo vendedor"), porque numero de
+            # nivel 6 na tela sem dizer de quem e promessa da ilha.
+            "autonomia_declarada_km": _valor(r.get("autonomia_declarada_km")),
+            "autonomia_quem_declara": quem_declara(r, "autonomia_declarada_km", escada),
             "preco_brl": cot.get("valor_brl"),
             "preco_loja": cot.get("loja"),
             "preco_data": cot.get("data_leitura"),
@@ -355,12 +422,25 @@ def montar(constantes, veiculos, pecas):
         ("nao_declaram_v_ou_ah", "a ficha não declara a bateria"),
     )
     vitrine = []
+    quantos_por_grupo = {}
     for chave, rotulo in ORDEM_DOS_GRUPOS:
         parte = [dict(f, rotulo_do_grupo=rotulo) for f in grupos_tela[chave]
                  if f["status"] == "publicavel" and f["url_busca"]]
         parte.sort(key=lambda f: (f["tipo_comercial"] != "patinete",
                                   -(f["watt_sem_rotulo"] or 0)))
+        quantos_por_grupo[chave] = len(parte)
         vitrine.extend(parte)
+
+    frase_de_abertura = frase_do_bloco_de_compra(len(vitrine),
+                                                 quantos_por_grupo["cabem_no_wh"])
+    # AS CINCO FRASES SAO CONFERIDAS, NAO SO A QUE O BANCO DE HOJE ACENDE. E o
+    # proprio defeito que esta funcao veio consertar: texto que so e lido no
+    # mundo que existe envelhece sao. Os mundos sao fabricados aqui — vitrine
+    # de 1 e de 4, com 0, com todos e com parte cabendo no Wh.
+    conferir_acento_na_tela(
+        [("frase do bloco de compra %r" % (c,), frase_do_bloco_de_compra(*c))
+         for c in ((1, 0), (4, 0), (1, 1), (4, 4), (4, 1))]
+        + [("frase do bloco de compra, vitrine vazia", frase_do_bloco_de_compra(0, 0))])
 
     pecas_pub = [ficha(r) for r in pecas["registros"]
                  if r.get("status") == "publicavel" and (r.get("afiliado") or {}).get("url_busca")]
@@ -435,6 +515,7 @@ def montar(constantes, veiculos, pecas):
         },
         "compra": {
             "vitrine": vitrine,
+            "frase_de_abertura": frase_de_abertura,
             "grupos": grupos_tela,
             "contagem": {k: len(v) for k, v in grupos_tela.items()},
             "total_registros_veiculos": len(veiculos["registros"]),
@@ -451,8 +532,10 @@ def main():
         veiculos = json.load(f)
     with open(os.path.join(ILHA, "dados", "pecas.json"), encoding="utf-8") as f:
         pecas = json.load(f)
+    with open(os.path.join(ILHA, "dados", "esquema-banco.json"), encoding="utf-8") as f:
+        escada = json.load(f)["escada_de_fontes"]
 
-    novo = montar(constantes, veiculos, pecas)
+    novo = montar(constantes, veiculos, pecas, escada)
     texto = json.dumps(novo, ensure_ascii=False, indent=2) + "\n"
 
     if conferir:

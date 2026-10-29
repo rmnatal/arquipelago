@@ -4,7 +4,7 @@
   "nicho": "mobilidade eletrica — acertar os tres numeros antes de comprar um veiculo eletrico: categoria legal (CNH e placa), autonomia real e carga maxima",
   "dominio": "https://rodametria.com.br",
   "versao_manifest": 1,
-  "revisao": 11,
+  "revisao": 12,
   "atualizado_em": "2026-10-29",
   "estado": "nascendo",
   "desembarque": {
@@ -30,7 +30,7 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "90683966433eba22cd83419ef64a51ad2dca3835dad26facf2d8d948346c3263",
+      "sha256": "93183c27e923752cce73d6e796cf2dd097555f4ee071ecbee25d5da9914dc1a1",
       "descricao": "A F2 1.0.0, a PRIMEIRA pagina desta ilha no ar, em /autonomia-patinete-eletrico/. Ordem da 32.1 de cima para baixo, conferida por afirmacao no fonte: trilha e H1, promessa, formulario ja preenchido com o caso de exemplo, caixa de resultado JA PRE-RENDERIZADA no HTML (a metade que a IA le sem preencher formulario, e o que a 22.8 exige de quem desliga o JavaScript), bloco de compra, prestacao de contas da secao 7 com os cinco grupos por causa e a soma fechando o banco contado, tabela pre-renderizada visivel, e o resto em <details>. NENHUM numero e NENHUMA frase de resposta e digitado neste arquivo: tudo vem da option que o Sync grava de dados/f2-respostas.json, escrito por ferramentas/gerar-f2.py a partir de ferramentas/f2-referencia.py e de dados/constantes.json. O JS do rodape preenche MOLDE, nunca escreve frase — a bateria de mutacoes de 29/10 reprovou as duas versoes em que ele escrevia."
     }
   ],
@@ -41,7 +41,7 @@
       "arquivo": "dados/f2-respostas.json",
       "formato": "json",
       "publicar": true,
-      "sha256": "1b2b4ebd4aaa7a0e25081144b365f7a450b3b320af632f9a1adb5910d821db1f",
+      "sha256": "fd32b576a31a0de8b4f07536e227927472f29c56766860b001d261aad342e029",
       "descricao": "O que a F2 serve: campos, moldes de frase, fatores de relevo, resposta de exemplo pre-renderizada, tabela e prestacao de contas."
     },
     {
@@ -57,7 +57,7 @@
       "arquivo": "dados/veiculos.json",
       "formato": "json",
       "publicar": false,
-      "sha256": "4fd7d423018df91d7bff3512dd17b0c531ed0df1eed84d573aadfbd6b49c61bd",
+      "sha256": "03c5989feff1ef2600eedde697943b5c63d9b269040b1829df72ae722cdf5bdb",
       "descricao": "Banco de veiculos. A F2 conta a prestacao de contas dele."
     },
     {
@@ -73,7 +73,7 @@
       "arquivo": "dados/esquema-banco.json",
       "formato": "json",
       "publicar": false,
-      "sha256": "11d65c7dd7ed51e8b311787cf34012d563db096939ed28cd37d7000a7614666c",
+      "sha256": "7f673c310cf089a8c0564c3571602b5bac96ccbbb24eb6712ac803647950ef73",
       "descricao": "O contrato do banco, versao 2."
     }
   ]

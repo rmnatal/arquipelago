@@ -3,7 +3,7 @@
  "ilha": "rodametria",
  "bloco": "3",
  "esquema": "dados/esquema-banco.json",
- "versao_esquema": 3,
+ "versao_esquema": 4,
  "gerado_em": "2026-10-28",
  "publicar": false,
  "nota": "PRIMEIRA LEVA, montada SO do que ja estava colhido no repositorio em 28/10/2026: dados/corpus-buscas.md (bloco 1), a tabela 1.6 de dados/especificacao-calculadoras.md (bloco 2) e a secao (c) de bussola/dossies/rodametria/DOSSIE.md (Bussola, 27/10/2026). Nenhuma rede foi tocada para montar este arquivo e nenhum numero foi digitado de cabeca. NENHUM registro e `publicavel`, e a causa e uma so: nenhum tem saida de compra, e a 25.2 nao admite item publicavel sem piso.",
@@ -51,8 +51,11 @@
     "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
    },
    "autonomia_declarada_km": {
-    "valor": null,
-    "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
+    "valor": 22,
+    "unidade": "km",
+    "fonte": "open-api-afiliados",
+    "declarado_como": "22KM Autonomia",
+    "observacao": "LIDO NO TITULO DA PROPRIA OFERTA CASADA (20299836765), nao de oferta vizinha: `HONEYWHALE M2 MAX Patinete Eletrico Adulto, 500W Scooter Eletrica, 32KM/H Velocidade, 22KM Autonomia`. Nivel 6, e `niveis_minimos_por_campo` aceita 6 neste campo — o anuncio que declara km de autonomia esta declarando o que o fabricante lhe disse da bateria, e o erro caro aqui e uma faixa de km larga, nao uma pessoa na rua sem habilitacao. A F2 publica este numero DEGRADADO pelo fator de relevo e ao lado do Wh, nunca sozinho. Os dois anuncios que ENUMERAM a serie declaram `22-32KM` e os quatro do MAX-B declaram `32KM`: os seis foram BARRADOS no casamento de 29/10 e nenhum deles encostou neste campo."
    },
    "carga_max_kg": {
     "valor": null,
@@ -181,7 +184,7 @@
      "custodia": "Shopee",
      "leitura": "mecanica, pela Open API de Afiliados — sem transcricao a mao",
      "data_leitura": "2026-10-29",
-     "observacao": "Lida pelo bloco 3d em 2026-10-29, no casamento da 25.1. O nivel e 6 pelo elo mais fraco: a leitura e mecanica, e a autoria continua sendo o vendedor. Oferta 20299836765 na loja 'HONEYWHALE BRASIL'."
+     "observacao": "Lida pelo bloco 3d em 2026-10-29, no casamento da 25.1. O nivel e 6 pelo elo mais fraco: a leitura e mecanica, e a autoria continua sendo o vendedor. Oferta 20299836765 na loja 'HONEYWHALE BRASIL'. REMEDIDA EM 2026-10-29 as 16h3xZ pelo bloco 3e, com a chave do casamento inteira: a oferta 20299836765 segue viva (R$ 2.299, 3 vendas) e o titulo dela segue literalmente igual ao colhido em 29/10 as 13h3xZ. E a medicao tem uma metade NEGATIVA que vale registrar: dos 10 titulos que a resposta devolveu, ZERO declara tensao ou amperagem — nao e que a leitura falhou, e que a bateria nao esta publicada nesta porta."
     }
    }
   },
