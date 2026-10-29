@@ -29,7 +29,7 @@
  */
 
 if ( ! defined( 'RODAMETRIA_F2_VERSAO' ) ) {
-	define( 'RODAMETRIA_F2_VERSAO', '1.0.0' );
+	define( 'RODAMETRIA_F2_VERSAO', '1.1.0' );
 }
 if ( ! defined( 'RODAMETRIA_F2_SLUG' ) ) {
 	define( 'RODAMETRIA_F2_SLUG', 'autonomia-patinete-eletrico' );
@@ -162,9 +162,6 @@ function rodametria_f2_resultado_html( $d ) {
 	foreach ( (array) $r['frases_km'] as $f ) {
 		$frases[] = $f;
 	}
-	foreach ( (array) $r['frases_peso'] as $f ) {
-		$frases[] = $f;
-	}
 
 	$tem_km = ( null !== $r['piso_km_tela'] );
 	$numero = $tem_km
@@ -184,6 +181,23 @@ function rodametria_f2_resultado_html( $d ) {
 	return rodametria_casca_caixa( $rotulo, $numero, $unidade, $frases, 'verde',
 		' data-rdm-f2-caixa' )
 		. rodametria_casca_barra_fixa( $rotulo, $numero, $unidade );
+}
+}
+
+/**
+ * A RESSALVA DO PESO, abaixo do bloco de compra (ver o comentario acima).
+ * O contêiner existe no HTML mesmo quando vazio, porque e nele que o navegador
+ * reescreve a ressalva quando a pessoa troca o peso ou o relevo.
+ */
+if ( ! function_exists( 'rodametria_f2_ressalva_html' ) ) {
+function rodametria_f2_ressalva_html( $d ) {
+	$html = '<div class="rdm-f2-ressalva" data-rdm-f2-ressalva>';
+	foreach ( (array) $d['resposta_exemplo']['frases_peso'] as $f ) {
+		$html .= '<p>' . esc_html( $f ) . '</p>';
+	}
+	$html .= '</div>';
+
+	return $html;
 }
 }
 
@@ -581,6 +595,8 @@ function rodametria_f2_pagina_html() {
 			. 'gente tem hoje, com o watt que o anúncio declara e o preço com a data da leitura.',
 		'Nenhum veículo do nosso banco tem oferta aberta neste momento.' );
 
+	$html .= rodametria_f2_ressalva_html( $d );
+
 	$html .= '<h2>Quem entrou, quem não entrou, e por quê</h2>';
 	$html .= rodametria_f2_contas_html( $d );
 
@@ -748,12 +764,12 @@ add_action( 'wp_footer', function () {
       unidade = 'Wh';
     }
 
-    frases.push(preencher(D.moldes.peso, {peso: num(peso)}));
+    var ressalvas = [preencher(D.moldes.peso, {peso: num(peso)})];
     if (relevo === 'ladeira') {
-      frases.push(preencher(D.moldes.peso_ladeira, {peso: num(peso)}));
+      ressalvas.push(preencher(D.moldes.peso_ladeira, {peso: num(peso)}));
     }
     if (D.tetoCarga !== null && peso > D.tetoCarga) {
-      frases.push(preencher(D.moldes.peso_acima_do_teto, {
+      ressalvas.push(preencher(D.moldes.peso_acima_do_teto, {
         peso: num(peso), teto_carga: num(D.tetoCarga)
       }));
     }
@@ -772,6 +788,16 @@ add_action( 'wp_footer', function () {
       p.textContent = f;
       caixa.appendChild(p);
     });
+
+    var alvoRessalva = document.querySelector('[data-rdm-f2-ressalva]');
+    if (alvoRessalva) {
+      alvoRessalva.textContent = '';
+      ressalvas.forEach(function(f){
+        var p = document.createElement('p');
+        p.textContent = f;
+        alvoRessalva.appendChild(p);
+      });
+    }
 
     var barra = document.querySelector('[data-rdm-barra]');
     if (barra) {

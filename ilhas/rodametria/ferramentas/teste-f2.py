@@ -420,9 +420,15 @@ def main():
 
     # A ordem da 32.1 na funcao que monta a pagina: formulario, caixa, compra,
     # tabela, dobras — nessa ordem e sem excecao.
+    # A ORDEM DA 32.1, e a ressalva do peso vem DEPOIS do bloco de compra: a
+    # 32.5 mede o primeiro botao de compra antes de 1.400 px a 390 px, e a caixa
+    # com as cinco frases longas o empurrava para baixo do teto. A 32.1 pede
+    # "numero em Mono, frase de leitura embaixo" na caixa e o bloco de compra
+    # IMEDIATAMENTE abaixo dela — ressalva nao e resposta.
     ordem = ["rodametria_f2_formulario_html( $d )",
              "rodametria_f2_resultado_html( $d )",
              "rodametria_casca_bloco_de_compra(",
+             "rodametria_f2_ressalva_html( $d )",
              "rodametria_f2_tabela_html( $d )",
              "rodametria_f2_dobras_html( $d )"]
     corpo = php_f2.split("function rodametria_f2_pagina_html()")[-1]

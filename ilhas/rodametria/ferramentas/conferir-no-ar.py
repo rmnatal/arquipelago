@@ -312,6 +312,15 @@ def main():
             afirma(limpo[:60] in texto,
                    "a F2 nao serve a frase do banco: %r" % limpo[:70])
 
+        # A RESSALVA DO PESO ESTA DEPOIS DO BLOCO DE COMPRA, e nao dentro da
+        # caixa: e o que mantem o primeiro botao de compra acima do teto de
+        # 1.400 px da 32.5 no telefone de 390 px.
+        pos_compra = corpo.find("rdm-molde-compra")
+        pos_ressalva = corpo.find("rdm-f2-ressalva")
+        afirma(0 < pos_compra < pos_ressalva,
+               "a ressalva do peso nao esta depois do bloco de compra (compra em %d, "
+               "ressalva em %d)" % (pos_compra, pos_ressalva))
+
         # TODA linha da tabela do banco esta no ar, com o Wh que o banco diz.
         for l in d["tabela"]["do_banco"] + d["tabela"]["externas"]:
             afirma(l["rotulo"] in corpo,
