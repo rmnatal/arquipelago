@@ -29,7 +29,7 @@
  */
 
 if ( ! defined( 'RODAMETRIA_CASCA_VERSAO' ) ) {
-	define( 'RODAMETRIA_CASCA_VERSAO', '1.3.0' );
+	define( 'RODAMETRIA_CASCA_VERSAO', '1.4.0' );
 }
 
 /**
@@ -1378,9 +1378,10 @@ function rodametria_casca_instalar() {
 	}
 
 	update_option( 'rodametria_casca_instalado', array(
-		'versao' => RODAMETRIA_CASCA_VERSAO,
-		'em'     => current_time( 'mysql', true ),
-		'relato' => $relato,
+		'versao'    => RODAMETRIA_CASCA_VERSAO,
+		'assinatura' => rodametria_casca_assinatura_do_mapa(),
+		'em'        => current_time( 'mysql', true ),
+		'relato'    => $relato,
 	), 'no' );
 
 	return $relato;
@@ -1388,13 +1389,47 @@ function rodametria_casca_instalar() {
 }
 
 /**
- * A instalacao roda uma vez por versao da casca, no `init`, e nao em toda
- * requisicao: wp_insert_post em toda visita e caro e sujo. Trocar
- * RODAMETRIA_CASCA_VERSAO reinstala.
+ * A ASSINATURA DO MAPA: os slugs que o mapa tem, em ordem, num texto so.
+ *
+ * Ela existe por um defeito medido em 29/10/2026 as 19h48Z, e ele e da familia
+ * do "commit sem Sync nao e entrega". A instalacao rodava uma vez por VERSAO DA
+ * CASCA, e a revisao 13 subiu casca nova e snippet de pagina nova na MESMA
+ * passada do Sync: quando o `init` chamou a instalacao, o snippet novo ainda
+ * nao estava carregado naquela requisicao — entao o filtro `rodametria_instalar`
+ * dele nao existia, as tres paginas nao foram criadas, e a casca gravou
+ * "instalado: 1.3.0". Com a versao ja marcada, a instalacao nunca mais rodaria.
+ *
+ * O sintoma era exatamente o que a secao 4 do contrato descreve: o `/status` em
+ * 13, as cinco linhas do log dizendo `ok`, o mapa de paginas JA mostrando as
+ * tres novas — e `wp-sitemap.xml` com duas URLs. **Verde em todo lugar e a
+ * pagina nao existia.**
+ *
+ * Com a assinatura, pagina nova instala no dia em que o snippet dela entra, sem
+ * ninguem tocar na versao da casca — que e o que o comentario do mapa, no topo
+ * deste arquivo, promete desde a revisao 3: "a casca nao e editada quando a ilha
+ * cresce".
+ */
+if ( ! function_exists( 'rodametria_casca_assinatura_do_mapa' ) ) {
+function rodametria_casca_assinatura_do_mapa() {
+	$slugs = array_keys( rodametria_casca_paginas() );
+	sort( $slugs );
+
+	return implode( ',', $slugs );
+}
+}
+
+/**
+ * A instalacao roda no `init`, e nao em toda requisicao: wp_insert_post em toda
+ * visita e caro e sujo. Ela roda de novo quando a VERSAO DA CASCA muda OU
+ * quando a ASSINATURA DO MAPA muda — e a segunda metade e a que faz pagina nova
+ * nascer sem a casca ser editada. Ver a nota da assinatura acima.
  */
 add_action( 'init', function () {
 	$feito = get_option( 'rodametria_casca_instalado' );
-	if ( is_array( $feito ) && isset( $feito['versao'] ) && RODAMETRIA_CASCA_VERSAO === $feito['versao'] ) {
+	if ( is_array( $feito )
+		&& isset( $feito['versao'] ) && RODAMETRIA_CASCA_VERSAO === $feito['versao']
+		&& isset( $feito['assinatura'] )
+		&& rodametria_casca_assinatura_do_mapa() === $feito['assinatura'] ) {
 		return;
 	}
 	rodametria_casca_instalar();
