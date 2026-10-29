@@ -3,6 +3,214 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-10-29 13h3xZ–14hxxZ — **BLOCO 3d: A ILHA TEM A PRIMEIRA FICHA DE PRODUTO DA HISTÓRIA DELA**, com foto medida e preço de hoje na tela. E o bloco mediu o que vale mais que a ficha: **13 dos 17 registros não têm com o que pedir uma** — e isso não se conserta com trava mais frouxa
+
+**A ESCOLHA DA ILHA.** `foco.md` nomeia a **rodametria** (foco total e absoluto, decisão do Raphael de
+27/10) e pela **1.2** não há escolha a fazer. Conferi as duas exceções que furam o foco antes de aceitar:
+(a) o **despacho do molde da 32.6** está `FECHADO` nas três ilhas — li o topo dos três `PROMPT.md`
+(aquametria 21/10 18h2xZ, clubedomosaico 21/10 19h1xZ, robometria 21/10 16h1xZ); (b) **nenhum despacho
+marcado ALTO** existe em ilha no ar e quebrada — procurei o rótulo nos três arquivos e não há. O despacho
+da Sentinela de 28/10 nesta ilha foi **reescrito pela 18.3** na execução da manhã e o único item que
+sobrou é a **conta da 31.1**, cujo `pronto quando` é a leitura semanal recontar — ele diz, com todas as
+letras, que *"o caminho é a fila andar, não uma correção"*. `executando_desde` estava `null`, que pela
+**1.1** já significa que não havia bloco da Fundação vivo; o último commit da ilha era de **12h13Z**, 82
+minutos antes. Reserva escrita às **13h36Z**, commit `f9e138d`, push aceito de primeira, e **renovada às
+13h59Z** pela 1.1. Nenhum branch `claude/*` à frente do `main` e nenhum PR aberto.
+
+**A REDE, MEDIDA E NÃO HERDADA (20.2).** `rodametria.com.br` e `www.rodametria.com.br` em **200 nas três
+passadas**, com `aquametria.com.br` em 200 nas mesmas três. E a fonte que este bloco precisava foi medida
+antes de qualquer regra exigi-la, pela **20.3**: `open-api.affiliate.shopee.com.br` em **200 nas três**, e
+`cf.shopee.com.br` — a CDN de onde a dimensão da foto sai — em 200.
+
+**A CREDENCIAL.** `SHOPEE_APP_ID` e `SHOPEE_SECRET` conferidos **por presença e nunca por valor**, e os
+dois **estavam no ambiente do processo** desta execução. Não foi preciso passar valor nenhum em linha de
+comando, e não se deve: linha de comando fica visível na lista de processos da máquina. `git grep` pelo
+NOME dos dois campos antes de empurrar: zero ocorrência no que foi commitado.
+
+---
+
+### 1. O QUE FOI AO AR, E É A METADE VISÍVEL DO BLOCO
+
+`honeywhale-m2-max` **casou no DEGRAU 1 da 25.1** e o primeiro cartão do bloco de compra da F2 passou a
+servir, em `/autonomia-patinete-eletrico/`:
+
+- a **foto de verdade** (`cf.shopee.com.br/...`, 1024×1024), no lugar do espaço reservado;
+- o **link da ficha** como botão, com o rótulo mudando de *"Ver ofertas na Shopee"* (degrau 4) para
+  *"Ver na Shopee"* — a casca já fazia essa distinção e nunca tinha tido um registro para exercê-la;
+- a linha discreta **"Veja todos disponíveis aqui"** logo abaixo do botão, que é a 25.2 ao pé da letra:
+  *"quando existir e estiver viva, ela vira o botão e a busca desce para a linha discreta"*. A busca
+  **não sai** — ficha apodrece e busca não;
+- o **preço de hoje**: R$ 2.299, lido pela Open API em 29/10, com a data ao lado. Era de 27/10, do painel.
+
+O componente da linha discreta mora na **CASCA** e não no snippet, pela **32.6-b**. O `conferir-no-ar.py`
+passou a ler `bloco de compra: 4 cartão(ões), degrau(s) [1, 4]` — antes era só `[4]`.
+
+---
+
+### 2. AS TRAVAS DA 25.7 TRABALHARAM, E O NÚMERO ESTÁ GRAVADO NO BANCO
+
+**10 ofertas julgadas, 6 barradas.** Quatro eram **`M2 MAX-B`**, que é outro patinete (armadilha 4 — *"o
+sufixo faz outro aparelho"*), e duas enumeravam **`M2 Pro,M2 MAX,M2 MAX-B modelos da série`** (armadilha
+5 — *"no máximo um está certo, e não há como dizer qual, então os dois caem"*). Os seis motivos estão em
+`afiliado.candidatos_barrados`, em português, dentro do registro.
+
+**E AQUI ESTÁ A PROVA DE QUE A RÉGUA NÃO ESCOLHE PELO NÚMERO BONITO:** a oferta de **maior venda** da
+resposta inteira — 12 vendas, nota 4,9, na `HONEYWHALE BRASIL` — **foi barrada**, porque é o MAX-B. A
+escolhida tem **3 vendas**. Dar o primeiro lugar da vitrine ao anúncio mais vendido teria sido recomendar
+um produto que a página não descreve, e é o que a 25.4-b.1 chama de pior que casamento nenhum: *"parece
+dado"*.
+
+**O casamento foi conferido COM OS OLHOS antes de gravar**, como a 25.3 manda: oferta `20299836765`,
+título *"HONEYWHALE M2 MAX Patinete Elétrico Adulto, 500W Scooter Eletrica, 32KM/H Velocidade, 22KM
+Autonomia"*, loja `HONEYWHALE BRASIL`, preço **único** (2299/2299). O registro declara Honeywhale M2 MAX,
+500 W, 32 km/h. Bate campo a campo.
+
+**A FOTO É MEDIDA, NUNCA SUPOSTA (25.7):** 1024×1024 lidos do **cabeçalho do arquivo** na CDN, nos
+primeiros 32.768 bytes, e o registro grava `como_a_dimensao_foi_medida`. Dimensão digitada é da família do
+número de tela digitado — parece conferida.
+
+---
+
+### 3. O ACHADO QUE VALE MAIS QUE A FICHA: **13 DOS 17 REGISTROS NÃO TÊM IDENTIDADE PARA PEDIR UMA**
+
+As três causas de "não casou" saem **separadas**, pela **25.4-b.4**, e a **25.9** mediu o que custa
+contá-las juntas: na Aquametria o número `12` foi lido como mercado **quatro vezes seguidas**, e a quinta
+medição — item por item, degrau por degrau — achou `9 de mercado + 2 barrados com razão + 1 defeito nosso`.
+
+| causa | quantos | o que a resolve |
+|---|---|---|
+| **casou** | 1 | — |
+| **mercado_nao_anuncia** | 3 | só o mercado mudar |
+| **candidato_barrado** | 0 | dado melhor no registro, nunca trava mais frouxa |
+| **sem_identidade_minima** | 13 | **colher o campo que falta** |
+
+**`mercado_nao_anuncia` foi medido até o fim, e não presumido.** `MAXSHOT V1`, `MAXSHOT V1SPRO` e
+`Honeywhale H3` devolveram **zero em todos os degraus da escada**, e — porque a 25.9 exige que a recusa
+seja separada da ausência — medi também as **variantes do nome**: `MAXSHOT V1S`, `MAXSHOT V1S Pro`,
+`MAXSHOT patinete eletrico`, `Honeywhale H3 patinete`. Zero em todas. E a chave **`MAXSHOT` sozinha**
+devolveu película de Zenfone Max Shot e suplemento Action Max; **`Honeywhale` sozinha** devolveu bolsa
+frontal e pneus de *outros* modelos da marca (M2 Pro, M1 Lite). É a armadilha 3 da 25.7 remedida nesta
+ilha: *"código de modelo é curto e o mundo é grande"*. **O H3 tem casa, e ela está fora do alcance desta
+máquina:** o `titulo_colhido` dele diz *"anúncio Mercado Livre"*, e o degrau 2 — a página `/p/MLB...` —
+depende do gerador do ML, que tem reCAPTCHA (25.5). Pela 25.2 isso nunca trava página: é oportunidade.
+
+**E os 13 sem identidade são o retrato do mercado desta ilha.** Dez veículos não declaram `modelo` (ou
+`marca`): `Sousa Bike`, `Siena`, `PLAYBIK`, `Verdevento`, `Evoo`, `Haixia`, `LS Sport` têm marca e nenhum
+modelo; `L40 Plus` e `X13` têm modelo e nenhuma marca; `scooter-chopper-1000w-48v` não tem nenhum dos
+dois. **É a mesma medição do bloco 3c por outro ângulo:** *"o que nomeia marca e modelo é achável na loja
+e não publica ficha; o que publica `60 V 20 Ah` empacota três nomes no título e não é achável por nome
+nenhum"*. O 3c viu isso no eixo do PISO; o 3d vê no eixo da FICHA, e a conclusão é a mesma — **o que falta
+nesta ilha é coleta em ficha de fabricante (nível 4 da escada, hoje vazio)**, não link.
+
+**A CÂMARA KENDA É A 25.9 EM FORMA NOVA, e é o achado mais fino do bloco.** A medida `16 x 3.0` casa com
+**dez ofertas**, e o mercado as separa pelo **BICO** — `bico torto curvo`, `bico curvo`, `bico grosso
+33mm`. São produtos que **não se substituem na roda de ninguém**, e o registro **não declara bico**.
+Escolher uma ficha ali afirmaria uma válvula que o banco nunca leu, e mandaria a pessoa comprar a peça
+errada. **Aqui a BUSCA é literalmente melhor que a ficha**: ela mostra as três e deixa a pessoa escolher,
+que é para isso que o piso existe. O registro fica no degrau 4 com o motivo escrito, e a dívida tem nome e
+é de DADO: `bico`. A 25.9(1) já diz a regra — *"o conserto é do DADO, nunca da trava"*. O esquema passou a
+declarar, por tipo de peça, **qual atributo o mercado usa para distinguir** (`camara` e `pneu` → `bico`;
+os outros `null`, e `null` ali é declaração e não ausência).
+
+---
+
+### 4. O QUE A BANCADA PEGOU DE MIM, ANTES DO AR
+
+**`validar-banco.py` reprovou a primeira versão deste bloco**, com a frase exata: *"veiculo
+honeywhale-m2-max: cotacao aponta a fonte 'open-api-afiliados', que nao esta em fontes{}"*. Eu gravei uma
+cotação citando uma fonte que não declarei. **A regra que o bloco 3 escreveu pegou um defeito do bloco
+3d** — e é exatamente o que um portão de dado existe para fazer. A régua passou a **declarar a própria
+fonte** antes de qualquer campo citá-la, no **nível 6**, e a escada do esquema diz por que: *"o nível é o
+do ELO MAIS FRACO entre autoria, custódia e leitura"*. A leitura aqui é **melhor** que a do
+`painel-shopee` — é mecânica, sem ninguém transcrevendo número à mão —, mas a **autoria continua sendo o
+vendedor do anúncio**. Logo 6: sustenta preço, disponibilidade e o nome comercial, e **não** sustenta
+campo técnico que a F1 leia.
+
+**E um veredito certo com a frase errada, que eu só vi porque leio o que a régua escreve.** O anúncio que
+enumera a série era barrado pela trava do sufixo, dizendo *"o modelo vem seguido de `m2`, que é sufixo de
+modelo"* — e `m2` ali **não é sufixo**: é o começo do modelo **seguinte** da lista. A recusa estava certa e
+a explicação estava errada, e a explicação é o que a execução seguinte lê **dentro do banco**: ela mandava
+consertar a coisa errada. A enumeração ganhou **trava própria** (`trava_enumeracao_da_serie`), que recusa
+pelo motivo verdadeiro — o modelo aparecendo mais de uma vez no título. É a mesma família do motivo que
+envelhece calado da 25.4-b.3.
+
+---
+
+### 5. E O DEFEITO QUE SÓ A PRIMEIRA FOTO DA ILHA PODIA REVELAR — 32.5-c, POR ESPECIFICIDADE
+
+**A revisão 10 subiu e o portão de pixel REPROVOU:** o primeiro botão de compra foi de **1.385 para 1.471
+px**, 71 acima do teto de 1.400 da 32.5. Medi no navegador a 390 px em vez de deduzir, e os números são:
+**espaço reservado 96 px, foto 182 px**.
+
+**A causa não era a foto ser grande: era de SELETOR.** `body.rdm img{max-width:100%;height:auto}` vale
+**(0,1,2)** e vence `.rdm-molde-cartao-foto`, que vale **(0,1,0)** — então o `height:auto` daquela linha
+mandava na foto e a altura do molde era simplesmente ignorada. **É a família que a 32.5-c nomeou** (*"a
+folha do snippet redecorava a caixa do molde, vencendo-a por ordem de carga"*), aqui por especificidade. E
+foi invisível por um motivo que vale guardar: **enquanto nenhum registro da ilha tinha foto, a regra da
+foto nunca rodou contra uma foto de verdade.** O espaço reservado escondeu o defeito justamente porque
+**não é um `<img>`** — a regra que o vencia não o alcançava. Conserto por especificidade (`body.rdm` no
+seletor da foto), **sem `!important`**: `!important` esconderia a disputa em vez de resolvê-la.
+
+**E no caminho, um número que o arquivo afirmava e a página não servia.** A linha
+`.rdm-molde-cartao-sem-foto{height:44px}` estava **MORTA**: a regra de 96 px vem depois dela no mesmo bloco
+de telefone, com a mesma especificidade, e vencia. O comentário dela — escrito há **três horas**, na
+execução da manhã — dizia *"44 px em vez de 96, porque no telefone esses 52 px são do espaço mais caro da
+página"*. **Os 52 px nunca foram economizados, e a medição de 1.385 px daquela manhã foi feita com 96.**
+Afirmação em comentário não é medição: é da família do número de tela digitado, e parece conferida. A
+linha saiu e a medição ficou escrita no lugar dela.
+
+---
+
+### 6. OS PORTÕES, E O QUE ELES NÃO PROMETEM
+
+- **Bancada sem rede: 9 portões, 0 falha** (`mutacoes-banco`, `mutacoes-piso`, `teste-f2`,
+  `validar-banco`, `atualizar-manifest --conferir`, `coletar-oferta --conferir`,
+  `coletar-piso-de-compra --conferir`, `derivar-banco --conferir`, `gerar-f2 --conferir`).
+  `coletar-oferta.py --conferir` nasceu com **82 afirmações sobre o que está escrito** e entrou na bancada
+  pela convenção de nome, sem ninguém o listar.
+- **`conferir-no-ar.py`: 138 afirmações, 0 falha** (eram 134), medido na **revisão 10**.
+- **O portão de pixel da 32.5 na revisão 11 AINDA NÃO RODOU quando esta linha foi escrita**, e
+  está escrito assim de propósito: o Sync desta ilha tem cron de 30 minutos, a revisão 10 entrou às
+  13h56Z e a 11 só entra na janela seguinte. A 18.4 manda que o despacho morra quando é
+  **verificado**, não quando é escrito, e a mesma régua vale para um conserto: o número da 32.5 na
+  revisão 11 entra abaixo, medido, ou esta entrada fica dizendo que ele falta.
+- **20.4, o log lido linha por linha:** as três linhas da revisão corrente dizem `ok`. Os **4 aguardando
+  desembarque** são os itens de `publicar: false` (constantes, veículos, peças, esquema) — estado de
+  propósito, conferido no `manifest.json`, não entrega que falhou. E a janela do log tem **15 linhas e está
+  CHEIA**: item que rolou para fora dela **não foi conferido**, e isso é registro, não aprovação.
+- **O que NÃO foi medido, e segue não sendo:** a leitura **sem quebra de cache** (como o Google lê). Toda
+  URL desta execução foi pedida com `?v=<agora>`, então as afirmações são sobre a **origem**. A
+  clubedomosaico tem o portão que mede a borda (`leitura-do-visitante.py`); esta ilha não.
+- **A HOME continua FORA DO MOLDE**, pelo mesmo motivo de ontem e com o motivo impresso pelo portão: não
+  tem bloco de compra (a caixa de resposta dela está a 331 px, dentro do teto). Ela ganha isso no dia em
+  que a F1 puder nascer nela.
+
+---
+
+### 7. O PRÓXIMO PASSO DESBLOQUEADO
+
+**Não é mais o 3d, e não é mais link: é COLETA DE FICHA DE FABRICANTE — o nível 4 da escada, hoje vazio.**
+Os dois eixos do banco (3c pelo piso, 3d pela ficha) convergiram no mesmo lugar: o que falta aos 13
+registros é **`marca` + `modelo` lidos numa ficha**, e isso não sai de anúncio de marketplace, que é o
+nível 6 de onde o banco inteiro vive. **E o primeiro passo dele é a 20.3 outra vez** — medir o egresso
+contra os domínios dos fabricantes **antes** de escrever regra que os exija. Nenhum domínio de fabricante
+foi tentado nesta ilha até hoje.
+
+**O alvo apertado, com nome:** `MAXSHOT` (V1 e V1SPRO) e `Honeywhale` (H3) têm marca e modelo e o mercado
+da Shopee não os anuncia — ficha de fabricante resolveria o campo técnico mesmo sem oferta. E os dez sem
+`modelo`/`marca` precisam do nome antes de qualquer outra coisa.
+
+**E duas dívidas pequenas, ditas para ninguém as descobrir de novo:**
+1. **A `camara-kenda-16x3-0` espera UM campo: `bico`.** Com ele declarado, ela passa a ter identidade
+   mínima e o casamento dela roda sem mudar uma linha de régua — o esquema já a espera.
+2. **A bateria de mutações do casamento não virou arquivo.** Pela **31.2** eu não abri `mutacoes-*.py`
+   novo sem defeito no ar que o justificasse, e as travas foram exercidas por dado real (10 ofertas, 6
+   barradas, os motivos conferidos um a um). **O defeito que justificaria o arquivo já está escrito acima**
+   — a trava da enumeração que recusava pelo motivo errado — e quando o casamento ganhar o próximo bloco, a
+   bateria vira arquivo.
+
+---
+
 ## 2026-10-29 10h1xZ–11hxxZ — **A ILHA ESTÁ NO AR.** A casca e a F2 desembarcaram, e a revisão do manifest saiu de 1 (que não publicava nada de propósito) para 5 — **a primeira execução desta ilha que entrega um byte que um visitante vê**
 
 **A ESCOLHA DA ILHA.** `foco.md` nomeia a **rodametria** (foco total e absoluto, decisão do Raphael de
