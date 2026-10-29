@@ -173,14 +173,49 @@ nome nenhum. **Consequência direta para o 3b:** o bloco de compra da 32.1 pede 
 escolheu*, e hoje nenhuma das três escolhe um publicável. Isto está como **aviso do validador**, para quem
 abrir o banco ler antes de desenhar a casca.
 
-**3d. O CASAMENTO DO REGISTRO COM A OFERTA (degraus 1 a 3 da 25.1) — é o próximo bloco, e ele vem ANTES do
-3b.** Leia a **25.7** (as cinco armadilhas de casamento) e a **25.9** antes de escrever uma linha. Ele
-resolve três coisas de uma vez: `url_produto` (e com ela o teste de vida da 25.4-b passa a existir nesta
-ilha), a **foto** que o cartão da 32.1 pede, e o caminho para a ficha onde o campo técnico mora. Alvo
-apertado, saindo da medição de 28/10: os **7** registros que não compõem chave nenhuma e os **5** que a loja
-não respondeu em nenhum degrau. **A coleta em ficha de FABRICANTE (nível 4 da escada, hoje vazio) continua
-necessária e ficou mais urgente**, e o primeiro passo dela é a 20.3 outra vez — medir o egresso contra os
-domínios dos fabricantes antes de escrever regra que os exija.
+**3d. ~~O CASAMENTO DO REGISTRO COM A OFERTA~~ — ENTREGUE EM 29/10/2026 às 13h3xZ–14hxxZ, e com ele a ilha
+tem a PRIMEIRA FICHA DE PRODUTO da história dela.** `dados/esquema-banco.json` subiu para a **versão 3**
+com a seção `casamento_de_oferta` — identidade mínima, as seis travas da 25.7/25.9, a ordem de escolha,
+como se mede o degrau e as três causas separadas de "não casou". `ferramentas/coletar-oferta.py` (mede,
+grava, e `--conferir` roda sem rede com 82 afirmações). `ferramentas/shopee-api.py` ganhou `sales` e
+`shopType`, **medidos legíveis por esta conta** antes de entrar (as três ilhas rodam a mesma).
+
+**No ar:** o primeiro cartão de `/autonomia-patinete-eletrico/` serve a **foto de verdade** (dimensão lida
+no cabeçalho do arquivo na CDN, nunca digitada), o **link da ficha** como botão com o rótulo de degrau 1, a
+linha discreta **"Veja todos disponíveis aqui"** logo abaixo — a 25.2 ao pé da letra, a ficha vira o botão
+e a busca **desce**, nunca sai — e o **preço de hoje** com a data ao lado.
+
+**AS TRAVAS TRABALHARAM, E O NÚMERO ESTÁ GRAVADO:** 10 ofertas julgadas, **6 barradas** — quatro
+`M2 MAX-B`, que é outro aparelho (armadilha 4), e duas que enumeram `M2 Pro,M2 MAX,M2 MAX-B` (armadilha 5).
+**A oferta de MAIOR venda da resposta (12 vendas) foi barrada por ser o MAX-B; a escolhida tem 3** — que é
+a prova de que a régua não escolhe pelo número bonito.
+
+**E O ACHADO MUDA A FILA, porque a dívida não é mais de link: `casou 1 · mercado_nao_anuncia 3 ·
+candidato_barrado 0 · sem_identidade_minima 13`.** O alvo que este item pré-registrava — *"os 7 que não
+compõem chave e os 5 que a loja não respondeu"* — estava **mal recortado**, e a medição de hoje o mostra:
+o que separa os 13 não é a loja, é o **banco**. Dez veículos não declaram `modelo` (ou `marca`), e isso
+**não se conserta com trava mais frouxa** — marca sozinha é a armadilha da 25.3 e modelo curto sozinho é a
+armadilha 3 da 25.7, as duas **remedidas nesta ilha**: a chave `MAXSHOT` devolveu película de Zenfone e
+suplemento, e `Honeywhale` devolveu bolsa e pneu de *outros* modelos da marca. **A câmara Kenda é a 25.9
+em forma nova:** a medida casa com dez ofertas e o mercado as separa pelo **bico**, que o registro não
+declara — ali a BUSCA é literalmente melhor que a ficha, e falta **um campo**.
+
+**3e. COLETA EM FICHA DE FABRICANTE — o nível 4 da escada de fontes, hoje VAZIO, e é o próximo bloco.**
+Os dois eixos do banco convergiram aqui: o **3c** mediu pelo PISO que *"o que nomeia marca e modelo é
+achável na loja e não publica ficha; o que publica `60 V 20 Ah` empacota três nomes no título e não é
+achável por nome nenhum"*, e o **3d** mediu pela FICHA que 13 dos 17 registros não têm identidade mínima
+para pedir uma. O banco inteiro vive do nível 5 para baixo, e é por isso que
+`veiculos_com_nominal_declarado` continua **0** — o que falta à F1 não é só a resolução, é a ficha que diz
+qual dos dois watts é o nominal.
+**O PRIMEIRO PASSO É A 20.3, ANTES DE ESCREVER UMA LINHA DE REGRA:** medir o egresso contra os domínios
+dos fabricantes. **Nenhum foi tentado nesta ilha até hoje**, e quem escreve a regra que exige a fonte é
+quem confere se a fonte está liberada — os cinco domínios oficiais da Contran e os quatro de prefeitura
+já ensinaram o custo de descobrir isso depois.
+**Alvo com nome:** `MAXSHOT` (V1 e V1SPRO) e `Honeywhale` (H3) têm marca e modelo e a Shopee não os
+anuncia — ficha de fabricante resolve o campo técnico deles mesmo sem oferta. Os dez sem `modelo`/`marca`
+precisam do **nome** antes de qualquer outra coisa. E a `camara-kenda-16x3-0` espera **um campo só**,
+`bico`: com ele declarado, `coletar-oferta.py` a casa sem mudar uma linha de régua, porque o esquema já a
+espera.
 
 **3b. ~~CASCA~~ — ENTREGUE EM 29/10/2026 às 10h1xZ–11hxxZ, E COM ELA A ILHA ESTÁ NO AR.**
 `snippets/rodametria-casca.php` (identidade, menu, trilha, JSON-LD, favicon, limpeza do lixo
