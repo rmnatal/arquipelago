@@ -4,13 +4,13 @@
   "nicho": "mobilidade eletrica — acertar os tres numeros antes de comprar um veiculo eletrico: categoria legal (CNH e placa), autonomia real e carga maxima",
   "dominio": "https://rodametria.com.br",
   "versao_manifest": 1,
-  "revisao": 12,
+  "revisao": 13,
   "atualizado_em": "2026-10-29",
   "estado": "nascendo",
   "desembarque": {
     "aprovado": true,
     "decidido_em": "2026-10-29",
-    "observacao": "DESEMBARQUE ABERTO EM 29/10/2026, E ESTA E A PRIMEIRA REVISAO DESTA ILHA QUE PUBLICA ALGO. A revisao 1 nao publicava nada de proposito, para provar o canal com zero pagina em risco, e o canal esta provado: o /status devolveu `revisao: 1` com `0 aplicado(s)` e o log parou de acusar FALHA manifest. O QUE DESTRAVOU HOJE foi o EGRESSO: `rodametria.com.br` e `www.rodametria.com.br` responderam 200 em TRES passadas as 10h2xZ de 29/10, com aquametria e robometria em 200 nas mesmas tres — contra 000 com `403 CONNECT` em todas as medicoes de 27 e 28/10. O passo 20.1 da secao 20 foi dado pelo Raphael, e com ele cai o item 3 do despacho da leitura semanal de 28/10, cujo `pronto quando` era literalmente este curl. VAO AO AR: a casca (identidade, menu, trilha, JSON-LD, favicon e os componentes do molde da secao 32) e a F2, a calculadora de autonomia. A F1 NAO vai: o limiar legal dela continua `pendente` porque os cinco dominios oficiais seguem recusados pelo egresso, remedidos nesta mesma execucao, e a secao 10 proibe publicar numero que a ilha nao leu na fonte. A F3 nao vai: so tres registros do banco declaram carga maxima e nenhum deles tem oferta aberta. A home nasce HUB por causa disso, e a divergencia com o VOZ.md (que manda a F1 ser a home) esta escrita dentro da propria casca, no lugar onde quem for mexer a le. REVISAO 3, no mesmo dia: a casca 1.0.0 digitava `f2_respostas` com SUBLINHADO e o Sync grava a option com o id literal do manifest, `f2-respostas`, com HIFEN (sanitize_key preserva hifen). O desembarque da revisao 2 ACONTECEU — tres linhas `ok` no log — e a leitura dele falhou: a pagina caiu no estado degradado honesto, sem erro de PHP e sem linha vermelha em lugar nenhum. Quem pegou foi o conferir-no-ar.py, que nasceu nesta mesma execucao. O nome da option passou a sair de uma constante que a bancada confere contra os ids do manifest."
+    "observacao": "REVISAO 13 — O BLOCO 5b: A SECAO /veiculos/ E AS DUAS PRIMEIRAS PAGINAS PELO NOME DO PRODUTO (secao 30). Vao ao ar `/veiculos/`, `/veiculos/patinete-eletrico/` e `/veiculos/bicicleta-eletrica/`, com o snippet `rodametria-produto` 1.0.0 e a casca em 1.3.0. A casca subiu de 1.2.1 por DUAS razoes de arvore, e as duas sao da 16: `garantir_pagina()` passou a aceitar PAI (16.2: pagina sem pai e defeito e nao publica), e `url_do_slug()` passou a achar a pagina pela meta `_rodametria_id` em vez de por caminho — `get_page_by_path()` casa o caminho INTEIRO, e no dia em que a arvore ganhou um nivel ele devolveria nulo para a filha, com `casca_link()` transformando link vazio em texto sem reclamar: pagina no ar, orfa, e nenhum portao vermelho. O ACHADO QUE ESTE BLOCO MEDIU, e ele reordena o resto da fila: das SEIS cabecas do dossie, so DUAS abrem o portao da 30.2. A chave `patinete eletrico` devolve ZERO patinete de adulto nas 20 primeiras ofertas da loja (serve brinquedo infantil de 150 W); com o qualificador `adulto` a mesma familia devolve 16 patinetes entre R$ 1.297,13 e R$ 3.399,00, e a bicicleta devolve 5 e-bikes. `moto eletrica` e `scooter eletrica` NAO nascem, com a causa medida e escrita: tres anuncios de adulto, zero venda, precos variando milhares para a mesma classe. `bike eletrica` e `motos eletricas para adultos` nao nascem pela 30.4, por serem a mesma intencao de outras duas. NENHUM DADO TECNICO FOI PUBLICADO: potencia nominal, velocidade maxima, acelerador e carga maxima tem piso de nivel 5 no esquema e titulo de anuncio e nivel 6, entao a tabela diz o que o anuncio DECLARA — de 16 anuncios, 15 declaram um watt e 1 diz qual watt e. O desembarque anterior (revisoes 1 a 12) esta no REGISTRO.md desta ilha."
   },
   "snippets": [
     {
@@ -20,7 +20,7 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "7c6ee28d0d429b19fd9790bbedb67c592c0e2e7fbda7d18e5e68b55fb307c359",
+      "sha256": "7c1b8d27b6b056297ac94be925641217fae32d2f42c713fc97638b1ffa51cbba",
       "descricao": "A CASCA 1.0.0, primeira versao. Tokens do DESIGN.md (tinta #13212B, verde #0A6B4C, Alfa Slab One so na marca, Barlow Semi Condensed nos titulos, JetBrains Mono em todo numero), simbolo V9 completo no cabecalho e em negativo no rodape, favicon proprio (secao 6: icone padrao do WordPress na aba e bloco reprovado), menu hamburguer com aria-expanded/aria-controls e links <a href> de verdade no HTML servido, trilha + BreadcrumbList, WebSite JSON-LD na home, <title> e description saindo de UM mapa de paginas. E os COMPONENTES DO MOLDE da secao 32, aqui e nao em cada snippet, como a 32.6-b manda: caixa de resultado, dobra <details>, cartao de compra com espaco reservado para quem nao tem foto, carrossel com scroll-snap em CSS puro, barra fixa do telefone e o rotulo do botao de loja por degrau da escada da 25.1. Pagina nova entra pelos filtros `rodametria_paginas` e `rodametria_instalar`, de dentro do proprio snippet dela — a casca nao e editada quando a ilha cresce."
     },
     {
@@ -32,6 +32,16 @@
       "publicar": true,
       "sha256": "93183c27e923752cce73d6e796cf2dd097555f4ee071ecbee25d5da9914dc1a1",
       "descricao": "A F2 1.0.0, a PRIMEIRA pagina desta ilha no ar, em /autonomia-patinete-eletrico/. Ordem da 32.1 de cima para baixo, conferida por afirmacao no fonte: trilha e H1, promessa, formulario ja preenchido com o caso de exemplo, caixa de resultado JA PRE-RENDERIZADA no HTML (a metade que a IA le sem preencher formulario, e o que a 22.8 exige de quem desliga o JavaScript), bloco de compra, prestacao de contas da secao 7 com os cinco grupos por causa e a soma fechando o banco contado, tabela pre-renderizada visivel, e o resto em <details>. NENHUM numero e NENHUMA frase de resposta e digitado neste arquivo: tudo vem da option que o Sync grava de dados/f2-respostas.json, escrito por ferramentas/gerar-f2.py a partir de ferramentas/f2-referencia.py e de dados/constantes.json. O JS do rodape preenche MOLDE, nunca escreve frase — a bateria de mutacoes de 29/10 reprovou as duas versoes em que ele escrevia."
+    },
+    {
+      "id": "rodametria-produto",
+      "nome": "Rodametria Produto — a secao /veiculos/ e as paginas pelo nome do produto",
+      "arquivo": "snippets/rodametria-produto.php",
+      "escopo": "global",
+      "ativo": true,
+      "publicar": true,
+      "sha256": "66a83eb435fa782a980e2d138f57e9dc9e44558d61dd9dad0accc28f70152355",
+      "descricao": "O MOTOR DA SECAO 30 nesta ilha, versao 1.0.0: a secao de nivel 1 `/veiculos/` e as paginas de consulta de produto que nascem filhas diretas dela, com o slug igual a consulta. Ordem da 32.2 de cima para baixo: trilha e H1, caixa de resposta com o preco mediano em Mono, bloco de compra com id=comprar logo abaixo, tabela-resumo VISIVEL com TODOS os anuncios (a secao 7 manda nomear todo item uma vez), a prestacao de contas de quem nao entrou com a causa contada, a malha da 16.4 tambem visivel porque e alvo de link, e o resto nas dobras da casca. NENHUM numero e digitado neste arquivo: a prosa vem de dados/paginas-de-produto.json com moldes e o numero vem de dados/vitrine-de-produto.json, recontado por ferramentas/gerar-vitrine-de-produto.py. A tabela NAO tem coluna de potencia nominal, velocidade maxima, acelerador nem carga maxima: o esquema desta ilha exige nivel 5 ou melhor nesses quatro e titulo de anuncio e nivel 6, entao a coluna diz o que o anuncio DECLARA em vez de preencher coluna tecnica com palavra tirada do titulo. JSON-LD de ItemList e FAQPage no wp_head; folha no wp_footer; nada dentro do retorno do shortcode."
     }
   ],
   "conteudo": [],
@@ -75,6 +85,38 @@
       "publicar": false,
       "sha256": "7f673c310cf089a8c0564c3571602b5bac96ccbbb24eb6712ac803647950ef73",
       "descricao": "O contrato do banco, versao 2."
+    },
+    {
+      "id": "paginas-de-produto",
+      "arquivo": "dados/paginas-de-produto.json",
+      "formato": "json",
+      "publicar": true,
+      "sha256": "d7a175308be2b6d16bd7fcfed4e9cbbb92de25b837cea32d1fd1e77d6bbbb564",
+      "descricao": "A camada DECLARADA das paginas da secao 30: a voz do VOZ.md com MOLDES no lugar de todo numero. `gerar-vitrine-de-produto.py --conferir` REPROVA qualquer digito escrito nesta prosa fora da lista de permitidos."
+    },
+    {
+      "id": "vitrine-de-produto",
+      "arquivo": "dados/vitrine-de-produto.json",
+      "formato": "json",
+      "publicar": true,
+      "sha256": "5c254915c53999bfec5d8f0bc09f130ca98380776757ce0f238f08cde2095512",
+      "descricao": "A camada GERADA: cartoes do carrossel (teto de cinco, 32.1), linhas da tabela (todas) e os numeros, RECONTADOS de dados/anuncios-por-consulta.json."
+    },
+    {
+      "id": "consultas-de-produto",
+      "arquivo": "dados/consultas-de-produto.json",
+      "formato": "json",
+      "publicar": false,
+      "sha256": "6a53e3e041d8d010171726e67ceab11e77b6d20231f0b51305e00c7c4d071737",
+      "descricao": "A declaracao das consultas de compra: volume, classificacao de SERP com quem viu e quando, escada de chaves da loja, e a decisao de nascer ou nao com a causa. NAO vai para o site: e cheio do vocabulario de bastidor que a 32.4 proibe na pagina publica."
+    },
+    {
+      "id": "anuncios-por-consulta",
+      "arquivo": "dados/anuncios-por-consulta.json",
+      "formato": "json",
+      "publicar": false,
+      "sha256": "a32a08556596c6e88ea395e5f163ff0f4501a9bc6b2ccdeeec0d682769dd60ce",
+      "descricao": "Os anuncios lidos na Shopee, com o veredito da regua de relevancia por anuncio, a escada medida e as fotos com largura e altura lidas no cabecalho do arquivo na CDN."
     }
   ]
 }

@@ -2,7 +2,16 @@
 # -*- coding: utf-8 -*-
 """A REGUA QUE DECIDE SE UM ANUNCIO SERVE A UMA CONSULTA DE PRODUTO (secao 30.2).
 
-    python3 ferramentas/relevancia-do-anuncio.py --autoteste
+    python3 ferramentas/teste-relevancia-do-anuncio.py
+
+O NOME COMECA COM `teste-` E ISSO NAO E ENFEITE: `bancada.py` desta ilha varre
+`ferramentas/` e classifica pela convencao do nome, e arquivo que nao casa com
+nenhuma e DENUNCIADO. Esta regua nasceu chamada `relevancia-do-anuncio.py` e a
+bancada a denunciou na primeira passada, com a frase certa: "ou ele e portao e
+precisa do prefixo, ou nao e e precisa estar fora de ferramentas/ — silencio
+aqui e portao que nunca roda". Ela e as duas coisas — biblioteca que o coletor
+importa e bateria que se mede sozinha —, entao ela entra na bancada pelo nome e
+roda a bateria quando chamada sem argumento.
 
 POR QUE ELA EXISTE SEPARADA DO CASAMENTO DE OFERTA
 --------------------------------------------------
@@ -400,8 +409,7 @@ def autoteste():
 
 if __name__ == '__main__':
     p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument('--autoteste', action='store_true')
-    a = p.parse_args()
-    if not a.autoteste:
-        p.error('esta regua e uma biblioteca: rode --autoteste')
+    p.add_argument('--autoteste', action='store_true',
+                   help='o padrao; fica por compatibilidade com quem o chamava assim')
+    p.parse_args()
     sys.exit(autoteste())

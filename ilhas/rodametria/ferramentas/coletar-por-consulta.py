@@ -84,7 +84,7 @@ def _modulo(nome, caminho):
     return mod
 
 
-rel = _modulo('relevancia', os.path.join(FERRAMENTAS, 'relevancia-do-anuncio.py'))
+rel = _modulo('relevancia', os.path.join(FERRAMENTAS, 'teste-relevancia-do-anuncio.py'))
 
 # A DIMENSAO DA FOTO E LIDA DE UM LUGAR SO, e o lugar e `coletar-oferta.py`.
 # A secao 8 do contrato separa as duas metades com todas as letras: DECISAO se
@@ -371,6 +371,22 @@ def conferir():
                 falhas.append('%s / %s: rotulo de potencia gravado discorda do calculado'
                               % (bloco['id'], a['item_id']))
 
+        # A CHAVE GRAVADA TEM DE SER UMA DAS DECLARADAS, e todo anuncio tem de
+        # ter sido achado por ELA. Sem isto o degrau viaja como enfeite: a
+        # 25.6(a) manda registrar em qual degrau a escada parou porque e
+        # procedencia, e procedencia que ninguem confere e prosa.
+        declaradas = [p['chave'] for p in (c.get('escada_de_chaves') or [])]
+        afirmacoes += 1
+        if bloco['chave_escolhida'] not in declaradas:
+            falhas.append('%s: chave escolhida %r nao esta na escada declarada %r'
+                          % (bloco['id'], bloco['chave_escolhida'], declaradas))
+        for a in bloco['anuncios']:
+            afirmacoes += 1
+            if a['chave_que_achou'] != bloco['chave_escolhida']:
+                falhas.append('%s / %s: achado por %r e a chave do bloco e %r'
+                              % (bloco['id'], a['item_id'], a['chave_que_achou'],
+                                 bloco['chave_escolhida']))
+
         r = bloco['resumo']
         num, motivo = numero_proprio(r.get('numero_proprio_pedido'), bloco['anuncios'])
         afirmacoes += 1
@@ -521,7 +537,7 @@ def main():
             '`abre_o_portao_da_30_2` diz que a consulta tem tres anuncios que servem COM link '
             'de afiliado e um numero proprio contado. Quem decide se a pagina nasce e a '
             'declaracao (`publicar_declarado`) mais este portao, os dois.'),
-        'o_que_decide_o_veredito': 'ferramentas/relevancia-do-anuncio.py',
+        'o_que_decide_o_veredito': 'ferramentas/teste-relevancia-do-anuncio.py',
         'consultas': [antigo[k] for k in sorted(antigo)],
     }
     with open(BANCO, 'w', encoding='utf-8') as f:

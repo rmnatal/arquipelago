@@ -1,0 +1,699 @@
+{
+ "id": "vitrine-de-produto",
+ "ilha": "rodametria",
+ "bloco": "5b",
+ "gerado_em": "2026-10-29",
+ "gerado_por": "ferramentas/gerar-vitrine-de-produto.py",
+ "o_que_este_arquivo_e": "O que a TELA das paginas da secao 30 serve: cartoes do carrossel, linhas da tabela e os numeros, todos RECONTADOS de dados/anuncios-por-consulta.json. Nenhum numero desta ilha e digitado em prosa: a camada declarada traz moldes e quem os preenche e o PHP com o numero daqui.",
+ "vendas_ordenam_e_nao_vao_para_a_tela": "A ordem e o desempate entre equivalentes da secao 7, e `vendas` e o unico desempate honesto porque comissao nunca ordena. Mas a contagem de vendas NAO e publicada: a secao 7 proibe selo de mais vendido, e prova social nao e o que esta pagina vende.",
+ "piso_da_30_2": 3,
+ "teto_do_carrossel": 5,
+ "paginas": [
+  {
+   "id": "bicicleta-eletrica",
+   "consulta": "bicicleta elétrica",
+   "slug": "veiculos/bicicleta-eletrica",
+   "chave_da_loja": "bicicleta eletrica adulto",
+   "degrau_da_escada": 1,
+   "colhido_em": "2026-10-29",
+   "colhido_em_br": "29/10/2026",
+   "numeros": {
+    "n": 5,
+    "de": "R$ 2.299,99",
+    "ate": "R$ 6.199,90",
+    "mediana": "R$ 2.399,99",
+    "de_numero": 2299.99,
+    "ate_numero": 6199.9,
+    "declaram_watt": 1,
+    "dizem_qual_watt": 0,
+    "sem_watt": 4,
+    "frase_do_rotulo": "1 dos 5 declaram um watt, e nenhum diz se aquele número é o nominal ou o de pico — e é o nominal que decide a categoria.",
+    "lidas": 20,
+    "recusadas": 15,
+    "recusas_por_causa": {
+     "fora_da_familia": 4,
+     "acessorio": 11
+    }
+   },
+   "cartoes": [
+    {
+     "nome": "Bicicleta elétrica dobrável NIUDA para adultos, ideal para viagens e deslocamentos diários.",
+     "preco": "R$ 2.299,99",
+     "preco_numero": 2299.99,
+     "preco_nota": "(preço de 29/10/2026)",
+     "especificacao": "o anúncio não declara potência",
+     "url": "https://s.shopee.com.br/1BXptlbJY",
+     "programa": "shopee",
+     "degrau": 1,
+     "imagem": {
+      "url": "https://cf.shopee.com.br/file/sg-11134201-82582-mrfxhcjpv3eodc",
+      "largura": 800,
+      "altura": 800,
+      "alt": "Bicicleta elétrica dobrável NIUDA para adultos, ideal para viagens e deslocamentos diários.",
+      "fonte": "anuncio-shopee",
+      "coletado_em": "2026-10-29",
+      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
+     },
+     "loja": "3B LOJA"
+    },
+    {
+     "nome": "Bicicleta elétrica dobrável para adultos NUDA, pedal tripulado, compras ao ar livre, viagem",
+     "preco": "R$ 2.399,99",
+     "preco_numero": 2399.99,
+     "preco_nota": "(preço de 29/10/2026)",
+     "especificacao": "o anúncio não declara potência",
+     "url": "https://s.shopee.com.br/6L5bNXJ5gp",
+     "programa": "shopee",
+     "degrau": 1,
+     "imagem": {
+      "url": "https://cf.shopee.com.br/file/sg-11134201-820nu-mnlf9y7dqolh14",
+      "largura": 1024,
+      "altura": 1024,
+      "alt": "Bicicleta elétrica dobrável para adultos NUDA, pedal tripulado, compras ao ar livre, viagem",
+      "fonte": "anuncio-shopee",
+      "coletado_em": "2026-10-29",
+      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
+     },
+     "loja": "3CMAX16888"
+    },
+    {
+     "nome": "Bicicleta elétrica dobrável para adultos, pedal tripulado, compras ao ar livre, viagem",
+     "preco": "R$ 2.299,99",
+     "preco_numero": 2299.99,
+     "preco_nota": "(preço de 29/10/2026)",
+     "especificacao": "o anúncio não declara potência",
+     "url": "https://s.shopee.com.br/4B16nYa8eD",
+     "programa": "shopee",
+     "degrau": 1,
+     "imagem": {
+      "url": "https://cf.shopee.com.br/file/sg-11134201-8258h-mrfyd64d9blyae",
+      "largura": 727,
+      "altura": 727,
+      "alt": "Bicicleta elétrica dobrável para adultos, pedal tripulado, compras ao ar livre, viagem",
+      "fonte": "anuncio-shopee",
+      "coletado_em": "2026-10-29",
+      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
+     },
+     "loja": "Boa sorte vem"
+    },
+    {
+     "nome": "Bicicleta Elétrica Dobrável Adulto com Pneus A Vácuo e Bateria de Lítio",
+     "preco": "R$ 2.499,99",
+     "preco_numero": 2499.99,
+     "preco_nota": "(preço de 29/10/2026)",
+     "especificacao": "o anúncio não declara potência",
+     "url": "https://s.shopee.com.br/W7oQoxeUK",
+     "programa": "shopee",
+     "degrau": 1,
+     "imagem": {
+      "url": "https://cf.shopee.com.br/file/br-11134207-820mg-muvogbczj56p98",
+      "largura": 1024,
+      "altura": 1024,
+      "alt": "Bicicleta Elétrica Dobrável Adulto com Pneus A Vácuo e Bateria de Lítio",
+      "fonte": "anuncio-shopee",
+      "coletado_em": "2026-10-29",
+      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
+     },
+     "loja": "3FMAXLTDA"
+    },
+    {
+     "nome": "Bicicleta Elétrica Ebike M2 800w Litio 48v 43kmh Scooter eletrica Trabalho adulto bike eletrica  E",
+     "preco": "R$ 6.199,90",
+     "preco_numero": 6199.9,
+     "preco_nota": "(preço de 29/10/2026)",
+     "especificacao": "declara watt, sem dizer se é nominal ou de pico",
+     "url": "https://s.shopee.com.br/qkepQr1O6",
+     "programa": "shopee",
+     "degrau": 1,
+     "imagem": {
+      "url": "https://cf.shopee.com.br/file/sg-11134201-825al-mu3ms9o7xa16e7",
+      "largura": 1024,
+      "altura": 1024,
+      "alt": "Bicicleta Elétrica Ebike M2 800w Litio 48v 43kmh Scooter eletrica Trabalho adulto bike eletrica  E",
+      "fonte": "anuncio-shopee",
+      "coletado_em": "2026-10-29",
+      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
+     },
+     "loja": "NEGOCIO VELOZ"
+    }
+   ],
+   "linhas": [
+    {
+     "nome": "Bicicleta elétrica dobrável NIUDA para adultos, ideal para viagens e deslocamentos diários.",
+     "preco": "R$ 2.299,99",
+     "preco_numero": 2299.99,
+     "preco_nota": "(preço de 29/10/2026)",
+     "especificacao": "o anúncio não declara potência",
+     "url": "https://s.shopee.com.br/1BXptlbJY",
+     "programa": "shopee",
+     "degrau": 1,
+     "imagem": {
+      "url": "https://cf.shopee.com.br/file/sg-11134201-82582-mrfxhcjpv3eodc",
+      "largura": 800,
+      "altura": 800,
+      "alt": "Bicicleta elétrica dobrável NIUDA para adultos, ideal para viagens e deslocamentos diários.",
+      "fonte": "anuncio-shopee",
+      "coletado_em": "2026-10-29",
+      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
+     },
+     "loja": "3B LOJA"
+    },
+    {
+     "nome": "Bicicleta elétrica dobrável para adultos NUDA, pedal tripulado, compras ao ar livre, viagem",
+     "preco": "R$ 2.399,99",
+     "preco_numero": 2399.99,
+     "preco_nota": "(preço de 29/10/2026)",
+     "especificacao": "o anúncio não declara potência",
+     "url": "https://s.shopee.com.br/6L5bNXJ5gp",
+     "programa": "shopee",
+     "degrau": 1,
+     "imagem": {
+      "url": "https://cf.shopee.com.br/file/sg-11134201-820nu-mnlf9y7dqolh14",
+      "largura": 1024,
+      "altura": 1024,
+      "alt": "Bicicleta elétrica dobrável para adultos NUDA, pedal tripulado, compras ao ar livre, viagem",
+      "fonte": "anuncio-shopee",
+      "coletado_em": "2026-10-29",
+      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
+     },
+     "loja": "3CMAX16888"
+    },
+    {
+     "nome": "Bicicleta elétrica dobrável para adultos, pedal tripulado, compras ao ar livre, viagem",
+     "preco": "R$ 2.299,99",
+     "preco_numero": 2299.99,
+     "preco_nota": "(preço de 29/10/2026)",
+     "especificacao": "o anúncio não declara potência",
+     "url": "https://s.shopee.com.br/4B16nYa8eD",
+     "programa": "shopee",
+     "degrau": 1,
+     "imagem": {
+      "url": "https://cf.shopee.com.br/file/sg-11134201-8258h-mrfyd64d9blyae",
+      "largura": 727,
+      "altura": 727,
+      "alt": "Bicicleta elétrica dobrável para adultos, pedal tripulado, compras ao ar livre, viagem",
+      "fonte": "anuncio-shopee",
+      "coletado_em": "2026-10-29",
+      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
+     },
+     "loja": "Boa sorte vem"
+    },
+    {
+     "nome": "Bicicleta Elétrica Dobrável Adulto com Pneus A Vácuo e Bateria de Lítio",
+     "preco": "R$ 2.499,99",
+     "preco_numero": 2499.99,
+     "preco_nota": "(preço de 29/10/2026)",
+     "especificacao": "o anúncio não declara potência",
+     "url": "https://s.shopee.com.br/W7oQoxeUK",
+     "programa": "shopee",
+     "degrau": 1,
+     "imagem": {
+      "url": "https://cf.shopee.com.br/file/br-11134207-820mg-muvogbczj56p98",
+      "largura": 1024,
+      "altura": 1024,
+      "alt": "Bicicleta Elétrica Dobrável Adulto com Pneus A Vácuo e Bateria de Lítio",
+      "fonte": "anuncio-shopee",
+      "coletado_em": "2026-10-29",
+      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
+     },
+     "loja": "3FMAXLTDA"
+    },
+    {
+     "nome": "Bicicleta Elétrica Ebike M2 800w Litio 48v 43kmh Scooter eletrica Trabalho adulto bike eletrica  E",
+     "preco": "R$ 6.199,90",
+     "preco_numero": 6199.9,
+     "preco_nota": "(preço de 29/10/2026)",
+     "especificacao": "declara watt, sem dizer se é nominal ou de pico",
+     "url": "https://s.shopee.com.br/qkepQr1O6",
+     "programa": "shopee",
+     "degrau": 1,
+     "imagem": {
+      "url": "https://cf.shopee.com.br/file/sg-11134201-825al-mu3ms9o7xa16e7",
+      "largura": 1024,
+      "altura": 1024,
+      "alt": "Bicicleta Elétrica Ebike M2 800w Litio 48v 43kmh Scooter eletrica Trabalho adulto bike eletrica  E",
+      "fonte": "anuncio-shopee",
+      "coletado_em": "2026-10-29",
+      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
+     },
+     "loja": "NEGOCIO VELOZ"
+    }
+   ],
+   "ordem": "vendas medidas na API (decrescente), depois preço crescente — o desempate entre equivalentes da seção 7"
+  },
+  {
+   "id": "patinete-eletrico",
+   "consulta": "patinete elétrico",
+   "slug": "veiculos/patinete-eletrico",
+   "chave_da_loja": "patinete eletrico adulto",
+   "degrau_da_escada": 1,
+   "colhido_em": "2026-10-29",
+   "colhido_em_br": "29/10/2026",
+   "numeros": {
+    "n": 16,
+    "de": "R$ 1.297,13",
+    "ate": "R$ 3.399,00",
+    "mediana": "R$ 1.590,53",
+    "de_numero": 1297.13,
+    "ate_numero": 3399.0,
+    "declaram_watt": 15,
+    "dizem_qual_watt": 1,
+    "sem_watt": 1,
+    "frase_do_rotulo": "15 dos 16 declaram um watt e só 1 dizem qual watt é aquele — e é o nominal que decide a categoria.",
+    "lidas": 20,
+    "recusadas": 4,
+    "recusas_por_causa": {
+     "fora_da_familia": 2,
+     "outro_veiculo": 1,
+     "sem_qualificador": 1
+    }
+   },
+   "cartoes": [
+    {
+     "nome": "Patinete Elétrico Adulto Dobrável Turbo 550W - 40km/h, 40km Autonomia Portátil",
+     "preco": "R$ 1.499,00",
+     "preco_numero": 1499.0,
+     "preco_nota": "(preço de 29/10/2026)",
+     "especificacao": "declara watt, sem dizer se é nominal ou de pico",
+     "url": "https://s.shopee.com.br/5q9KmaD0CA",
+     "programa": "shopee",
+     "degrau": 1,
+     "imagem": {
+      "url": "https://cf.shopee.com.br/file/br-11134207-7r98o-maknx810aq33a8",
+      "largura": 800,
+      "altura": 800,
+      "alt": "Patinete Elétrico Adulto Dobrável Turbo 550W - 40km/h, 40km Autonomia Portátil",
+      "fonte": "anuncio-shopee",
+      "coletado_em": "2026-10-29",
+      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
+     },
+     "loja": "AUXOM-Ferramenta"
+    },
+    {
+     "nome": "Patinete Elétrico Scooter 350W Adulto Alta Velocidade Bateria Longa Suporta 150kg",
+     "preco": "R$ 1.304,33",
+     "preco_numero": 1304.33,
+     "preco_nota": "(preço de 29/10/2026)",
+     "especificacao": "declara watt, sem dizer se é nominal ou de pico",
+     "url": "https://s.shopee.com.br/gREd5F4Xs",
+     "programa": "shopee",
+     "degrau": 1,
+     "imagem": {
+      "url": "https://cf.shopee.com.br/file/br-11134207-820lf-mmpf3sxolgqu74",
+      "largura": 1000,
+      "altura": 1000,
+      "alt": "Patinete Elétrico Scooter 350W Adulto Alta Velocidade Bateria Longa Suporta 150kg",
+      "fonte": "anuncio-shopee",
+      "coletado_em": "2026-10-29",
+      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
+     },
+     "loja": "LOMIXA"
+    },
+    {
+     "nome": "Patinete Elétrico Dobrável Para Adultos Portátil Bluethooth 350W Motorizado Até 30Km/h Até 100Kl Nakassaki",
+     "preco": "R$ 1.297,13",
+     "preco_numero": 1297.13,
+     "preco_nota": "(preço de 29/10/2026)",
+     "especificacao": "declara watt, sem dizer se é nominal ou de pico",
+     "url": "https://s.shopee.com.br/9V2d9Jylgf",
+     "programa": "shopee",
+     "degrau": 1,
+     "imagem": {
+      "url": "https://cf.shopee.com.br/file/sg-11134201-825am-mraj984k76dg85",
+      "largura": 1024,
+      "altura": 1024,
+      "alt": "Patinete Elétrico Dobrável Para Adultos Portátil Bluethooth 350W Motorizado Até 30Km/h Até 100Kl Nakassaki",
+      "fonte": "anuncio-shopee",
+      "coletado_em": "2026-10-29",
+      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
+     },
+     "loja": "masterferramenta"
+    },
+    {
+     "nome": "Patinete Elétrico Adulto 350W 36V | Dobrável 30km/h com Bluetooth, LED Alta Potência",
+     "preco": "R$ 1.399,90",
+     "preco_numero": 1399.9,
+     "preco_nota": "(preço de 29/10/2026)",
+     "especificacao": "declara watt, sem dizer se é nominal ou de pico",
+     "url": "https://s.shopee.com.br/2VssoRltAV",
+     "programa": "shopee",
+     "degrau": 1,
+     "imagem": {
+      "url": "https://cf.shopee.com.br/file/br-11134207-820lz-mrrloox0n01z61",
+      "largura": 1024,
+      "altura": 1024,
+      "alt": "Patinete Elétrico Adulto 350W 36V | Dobrável 30km/h com Bluetooth, LED Alta Potência",
+      "fonte": "anuncio-shopee",
+      "coletado_em": "2026-10-29",
+      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
+     },
+     "loja": "Rabane Ecom"
+    },
+    {
+     "nome": "Patinete Elétrico Com App 350W Adulto 8.5 Pol Dobrável Para Cidade",
+     "preco": "R$ 1.399,99",
+     "preco_numero": 1399.99,
+     "preco_nota": "(preço de 29/10/2026)",
+     "especificacao": "declara watt, sem dizer se é nominal ou de pico",
+     "url": "https://s.shopee.com.br/7Ky8ZKyUZQ",
+     "programa": "shopee",
+     "degrau": 1,
+     "imagem": {
+      "url": "https://cf.shopee.com.br/file/sg-11134201-8257t-mqezlfi5xwjyf4",
+      "largura": 1024,
+      "altura": 1024,
+      "alt": "Patinete Elétrico Com App 350W Adulto 8.5 Pol Dobrável Para Cidade",
+      "fonte": "anuncio-shopee",
+      "coletado_em": "2026-10-29",
+      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
+     },
+     "loja": "ANJGG Brazil"
+    }
+   ],
+   "linhas": [
+    {
+     "nome": "Patinete Elétrico Adulto Dobrável Turbo 550W - 40km/h, 40km Autonomia Portátil",
+     "preco": "R$ 1.499,00",
+     "preco_numero": 1499.0,
+     "preco_nota": "(preço de 29/10/2026)",
+     "especificacao": "declara watt, sem dizer se é nominal ou de pico",
+     "url": "https://s.shopee.com.br/5q9KmaD0CA",
+     "programa": "shopee",
+     "degrau": 1,
+     "imagem": {
+      "url": "https://cf.shopee.com.br/file/br-11134207-7r98o-maknx810aq33a8",
+      "largura": 800,
+      "altura": 800,
+      "alt": "Patinete Elétrico Adulto Dobrável Turbo 550W - 40km/h, 40km Autonomia Portátil",
+      "fonte": "anuncio-shopee",
+      "coletado_em": "2026-10-29",
+      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
+     },
+     "loja": "AUXOM-Ferramenta"
+    },
+    {
+     "nome": "Patinete Elétrico Scooter 350W Adulto Alta Velocidade Bateria Longa Suporta 150kg",
+     "preco": "R$ 1.304,33",
+     "preco_numero": 1304.33,
+     "preco_nota": "(preço de 29/10/2026)",
+     "especificacao": "declara watt, sem dizer se é nominal ou de pico",
+     "url": "https://s.shopee.com.br/gREd5F4Xs",
+     "programa": "shopee",
+     "degrau": 1,
+     "imagem": {
+      "url": "https://cf.shopee.com.br/file/br-11134207-820lf-mmpf3sxolgqu74",
+      "largura": 1000,
+      "altura": 1000,
+      "alt": "Patinete Elétrico Scooter 350W Adulto Alta Velocidade Bateria Longa Suporta 150kg",
+      "fonte": "anuncio-shopee",
+      "coletado_em": "2026-10-29",
+      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
+     },
+     "loja": "LOMIXA"
+    },
+    {
+     "nome": "Patinete Elétrico Dobrável Para Adultos Portátil Bluethooth 350W Motorizado Até 30Km/h Até 100Kl Nakassaki",
+     "preco": "R$ 1.297,13",
+     "preco_numero": 1297.13,
+     "preco_nota": "(preço de 29/10/2026)",
+     "especificacao": "declara watt, sem dizer se é nominal ou de pico",
+     "url": "https://s.shopee.com.br/9V2d9Jylgf",
+     "programa": "shopee",
+     "degrau": 1,
+     "imagem": {
+      "url": "https://cf.shopee.com.br/file/sg-11134201-825am-mraj984k76dg85",
+      "largura": 1024,
+      "altura": 1024,
+      "alt": "Patinete Elétrico Dobrável Para Adultos Portátil Bluethooth 350W Motorizado Até 30Km/h Até 100Kl Nakassaki",
+      "fonte": "anuncio-shopee",
+      "coletado_em": "2026-10-29",
+      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
+     },
+     "loja": "masterferramenta"
+    },
+    {
+     "nome": "Patinete Elétrico Adulto 350W 36V | Dobrável 30km/h com Bluetooth, LED Alta Potência",
+     "preco": "R$ 1.399,90",
+     "preco_numero": 1399.9,
+     "preco_nota": "(preço de 29/10/2026)",
+     "especificacao": "declara watt, sem dizer se é nominal ou de pico",
+     "url": "https://s.shopee.com.br/2VssoRltAV",
+     "programa": "shopee",
+     "degrau": 1,
+     "imagem": {
+      "url": "https://cf.shopee.com.br/file/br-11134207-820lz-mrrloox0n01z61",
+      "largura": 1024,
+      "altura": 1024,
+      "alt": "Patinete Elétrico Adulto 350W 36V | Dobrável 30km/h com Bluetooth, LED Alta Potência",
+      "fonte": "anuncio-shopee",
+      "coletado_em": "2026-10-29",
+      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
+     },
+     "loja": "Rabane Ecom"
+    },
+    {
+     "nome": "Patinete Elétrico Com App 350W Adulto 8.5 Pol Dobrável Para Cidade",
+     "preco": "R$ 1.399,99",
+     "preco_numero": 1399.99,
+     "preco_nota": "(preço de 29/10/2026)",
+     "especificacao": "declara watt, sem dizer se é nominal ou de pico",
+     "url": "https://s.shopee.com.br/7Ky8ZKyUZQ",
+     "programa": "shopee",
+     "degrau": 1,
+     "imagem": {
+      "url": "https://cf.shopee.com.br/file/sg-11134201-8257t-mqezlfi5xwjyf4",
+      "largura": 1024,
+      "altura": 1024,
+      "alt": "Patinete Elétrico Com App 350W Adulto 8.5 Pol Dobrável Para Cidade",
+      "fonte": "anuncio-shopee",
+      "coletado_em": "2026-10-29",
+      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
+     },
+     "loja": "ANJGG Brazil"
+    },
+    {
+     "nome": "Patinete Elétrico Dobrável 350W Adulto | infantil Até 30km/h Suspensão Reforçada Suporta 100KG",
+     "preco": "R$ 1.489,00",
+     "preco_numero": 1489.0,
+     "preco_nota": "(preço de 29/10/2026)",
+     "especificacao": "declara watt, sem dizer se é nominal ou de pico",
+     "url": "https://s.shopee.com.br/AUvAL9Uq55",
+     "programa": "shopee",
+     "degrau": 1,
+     "imagem": {
+      "url": "https://cf.shopee.com.br/file/sg-11134201-825bc-mrkfsjm69r7k19",
+      "largura": 1024,
+      "altura": 1024,
+      "alt": "Patinete Elétrico Dobrável 350W Adulto | infantil Até 30km/h Suspensão Reforçada Suporta 100KG",
+      "fonte": "anuncio-shopee",
+      "coletado_em": "2026-10-29",
+      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
+     },
+     "loja": "verennacomerce"
+    },
+    {
+     "nome": "VYRON Patinete Elétrico Adulto Dobrável Pro Premium 36V 350W 3 Velocidades Ajustáveis Amortecedor Duplo",
+     "preco": "R$ 1.499,00",
+     "preco_numero": 1499.0,
+     "preco_nota": "(preço de 29/10/2026)",
+     "especificacao": "declara watt, sem dizer se é nominal ou de pico",
+     "url": "https://s.shopee.com.br/5Atdzc94oX",
+     "programa": "shopee",
+     "degrau": 1,
+     "imagem": {
+      "url": "https://cf.shopee.com.br/file/br-11134207-820lr-mn5equoas26cc4",
+      "largura": 800,
+      "altura": 800,
+      "alt": "VYRON Patinete Elétrico Adulto Dobrável Pro Premium 36V 350W 3 Velocidades Ajustáveis Amortecedor Duplo",
+      "fonte": "anuncio-shopee",
+      "coletado_em": "2026-10-29",
+      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
+     },
+     "loja": "AUXOM-Ferramenta"
+    },
+    {
+     "nome": "Patinete Elétrico Scooter Adulto 150w Dobrável Até 60kg",
+     "preco": "R$ 1.581,06",
+     "preco_numero": 1581.06,
+     "preco_nota": "(preço de 29/10/2026)",
+     "especificacao": "declara watt, sem dizer se é nominal ou de pico",
+     "url": "https://s.shopee.com.br/1W0LcbzSQq",
+     "programa": "shopee",
+     "degrau": 1,
+     "imagem": {
+      "url": "https://cf.shopee.com.br/file/sg-11134201-8226g-mht6tgyq29s3ec",
+      "largura": 500,
+      "altura": 500,
+      "alt": "Patinete Elétrico Scooter Adulto 150w Dobrável Até 60kg",
+      "fonte": "anuncio-shopee",
+      "coletado_em": "2026-10-29",
+      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
+     },
+     "loja": "Auto Home Shop"
+    },
+    {
+     "nome": "Patinete Elétrico Adulto Dobrável 30km/h Original Premium",
+     "preco": "R$ 1.599,99",
+     "preco_numero": 1599.99,
+     "preco_nota": "(preço de 29/10/2026)",
+     "especificacao": "o anúncio não declara potência",
+     "url": "https://s.shopee.com.br/4qGnajiMrh",
+     "programa": "shopee",
+     "degrau": 1,
+     "imagem": {
+      "url": "https://cf.shopee.com.br/file/sg-11134201-824hl-menkaco2tpfpa4",
+      "largura": 500,
+      "altura": 500,
+      "alt": "Patinete Elétrico Adulto Dobrável 30km/h Original Premium",
+      "fonte": "anuncio-shopee",
+      "coletado_em": "2026-10-29",
+      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
+     },
+     "loja": "ZeroOne!"
+    },
+    {
+     "nome": "Patinete Elétrico Scooter 350W 10\" com Amortecedor e App GPS Dobrável Super Autonomia para adultos até 150kg",
+     "preco": "R$ 1.699,00",
+     "preco_numero": 1699.0,
+     "preco_nota": "(preço de 29/10/2026)",
+     "especificacao": "declara watt, sem dizer se é nominal ou de pico",
+     "url": "https://s.shopee.com.br/30p9PcUipL",
+     "programa": "shopee",
+     "degrau": 1,
+     "imagem": {
+      "url": "https://cf.shopee.com.br/file/sg-11134202-8257y-mrfzdzncinm4c3",
+      "largura": 800,
+      "altura": 800,
+      "alt": "Patinete Elétrico Scooter 350W 10\" com Amortecedor e App GPS Dobrável Super Autonomia para adultos até 150kg",
+      "fonte": "anuncio-shopee",
+      "coletado_em": "2026-10-29",
+      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
+     },
+     "loja": "casa.simples"
+    },
+    {
+     "nome": "Patinete Elétrico Importway 150W Dobrável IWPEL150 Até 14km/h Adulto Preto",
+     "preco": "R$ 1.851,90",
+     "preco_numero": 1851.9,
+     "preco_nota": "(preço de 29/10/2026)",
+     "especificacao": "declara watt, sem dizer se é nominal ou de pico",
+     "url": "https://s.shopee.com.br/8pmwM5wuG1",
+     "programa": "shopee",
+     "degrau": 1,
+     "imagem": {
+      "url": "https://cf.shopee.com.br/file/sg-11134201-81zvc-mmj6kp27nj7p8e",
+      "largura": 1024,
+      "altura": 1024,
+      "alt": "Patinete Elétrico Importway 150W Dobrável IWPEL150 Até 14km/h Adulto Preto",
+      "fonte": "anuncio-shopee",
+      "coletado_em": "2026-10-29",
+      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
+     },
+     "loja": "Koala Parts SC"
+    },
+    {
+     "nome": "Patinete Elétrico 800W 40km/h Off-Road Pneu 10\" Bateria 48V 15Ah Scooter Elétrico Dobrável Adulto",
+     "preco": "R$ 2.199,00",
+     "preco_numero": 2199.0,
+     "preco_nota": "(preço de 29/10/2026)",
+     "especificacao": "declara watt, sem dizer se é nominal ou de pico",
+     "url": "https://s.shopee.com.br/3B8ZbwKssD",
+     "programa": "shopee",
+     "degrau": 1,
+     "imagem": {
+      "url": "https://cf.shopee.com.br/file/br-11134207-820lt-mnjojxc1rxms13",
+      "largura": 1024,
+      "altura": 1024,
+      "alt": "Patinete Elétrico 800W 40km/h Off-Road Pneu 10\" Bateria 48V 15Ah Scooter Elétrico Dobrável Adulto",
+      "fonte": "anuncio-shopee",
+      "coletado_em": "2026-10-29",
+      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
+     },
+     "loja": "AUXOM-Ferramenta"
+    },
+    {
+     "nome": "Patinete Elétrico Dobrável Adulto com Assento Controle Bluetooth Suspensão LED 500W",
+     "preco": "R$ 2.399,99",
+     "preco_numero": 2399.99,
+     "preco_nota": "(preço de 29/10/2026)",
+     "especificacao": "declara watt, sem dizer se é nominal ou de pico",
+     "url": "https://s.shopee.com.br/9pfTYBQujN",
+     "programa": "shopee",
+     "degrau": 1,
+     "imagem": {
+      "url": "https://cf.shopee.com.br/file/sg-11134201-824gy-mpzbn5iwa87j4c",
+      "largura": 1024,
+      "altura": 1024,
+      "alt": "Patinete Elétrico Dobrável Adulto com Assento Controle Bluetooth Suspensão LED 500W",
+      "fonte": "anuncio-shopee",
+      "coletado_em": "2026-10-29",
+      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
+     },
+     "loja": "ANJGG Brazil"
+    },
+    {
+     "nome": "Patinete Scooter Elétrico Dobrável 350W Portátil 30km/h Leve Portátil Adulto",
+     "preco": "R$ 2.647,02",
+     "preco_numero": 2647.02,
+     "preco_nota": "(preço de 29/10/2026)",
+     "especificacao": "declara watt, sem dizer se é nominal ou de pico",
+     "url": "https://s.shopee.com.br/6q1ryPvzq3",
+     "programa": "shopee",
+     "degrau": 1,
+     "imagem": {
+      "url": "https://cf.shopee.com.br/file/br-11134207-820l8-mmrhssv00kjrf1",
+      "largura": 1024,
+      "altura": 1024,
+      "alt": "Patinete Scooter Elétrico Dobrável 350W Portátil 30km/h Leve Portátil Adulto",
+      "fonte": "anuncio-shopee",
+      "coletado_em": "2026-10-29",
+      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
+     },
+     "loja": "WS Varejo e Atacado Geral"
+    },
+    {
+     "nome": "Patinete Elétrico Adulto,potência 500w Até 140kg Dobrável E Patinete Eletrico Dobrável Controle Via Aplicativo Bluetooth",
+     "preco": "R$ 2.699,00",
+     "preco_numero": 2699.0,
+     "preco_nota": "(preço de 29/10/2026)",
+     "especificacao": "declara watt, sem dizer se é nominal ou de pico",
+     "url": "https://s.shopee.com.br/W7oQmB6LB",
+     "programa": "shopee",
+     "degrau": 1,
+     "imagem": {
+      "url": "https://cf.shopee.com.br/file/sg-11134201-825zw-mk8z9iae91xh56",
+      "largura": 1024,
+      "altura": 1024,
+      "alt": "Patinete Elétrico Adulto,potência 500w Até 140kg Dobrável E Patinete Eletrico Dobrável Controle Via Aplicativo Bluetooth",
+      "fonte": "anuncio-shopee",
+      "coletado_em": "2026-10-29",
+      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
+     },
+     "loja": "MRVC ALINE ECOMERCE"
+    },
+    {
+     "nome": "Patinete Elétrico 800W Pico 1000W 40km/h Bateria 36V 15Ah Pneu 10” Off-Road LCD Scooter Dobrável Adulto",
+     "preco": "R$ 3.399,00",
+     "preco_numero": 3399.0,
+     "preco_nota": "(preço de 29/10/2026)",
+     "especificacao": "declara o watt de pico — o nominal, que é o que vale para a regra, não aparece",
+     "url": "https://s.shopee.com.br/6L5bNl0zYj",
+     "programa": "shopee",
+     "degrau": 1,
+     "imagem": {
+      "url": "https://cf.shopee.com.br/file/br-11134207-820ls-mnjrtdzqpjb44b",
+      "largura": 800,
+      "altura": 800,
+      "alt": "Patinete Elétrico 800W Pico 1000W 40km/h Bateria 36V 15Ah Pneu 10” Off-Road LCD Scooter Dobrável Adulto",
+      "fonte": "anuncio-shopee",
+      "coletado_em": "2026-10-29",
+      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
+     },
+     "loja": "SETTLE DOWN"
+    }
+   ],
+   "ordem": "vendas medidas na API (decrescente), depois preço crescente — o desempate entre equivalentes da seção 7"
+  }
+ ],
+ "nao_nasceram": []
+}

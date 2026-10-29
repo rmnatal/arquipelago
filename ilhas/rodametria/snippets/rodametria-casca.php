@@ -29,7 +29,7 @@
  */
 
 if ( ! defined( 'RODAMETRIA_CASCA_VERSAO' ) ) {
-	define( 'RODAMETRIA_CASCA_VERSAO', '1.2.1' );
+	define( 'RODAMETRIA_CASCA_VERSAO', '1.3.0' );
 }
 
 /**
@@ -107,11 +107,33 @@ function rodametria_casca_slug_atual() {
 }
 }
 
+/**
+ * A URL de um slug do mapa.
+ *
+ * A BUSCA E PELA META `_rodametria_id`, E NAO POR CAMINHO. `get_page_by_path()`
+ * casa o caminho INTEIRO, entao no dia em que a arvore da 16.1 ganhou um nivel
+ * — `/veiculos/patinete-eletrico/` — ele passou a devolver nulo para o slug da
+ * filha, e `rodametria_casca_link()` faz link vazio virar texto sem reclamar:
+ * a pagina ficaria no ar, orfa, com a mae apontando para texto morto e nenhum
+ * portao vermelho. A meta e gravada por `garantir_pagina()` em toda pagina
+ * desta ilha e nao muda quando a pagina ganha pai.
+ */
 if ( ! function_exists( 'rodametria_casca_url_do_slug' ) ) {
 function rodametria_casca_url_do_slug( $slug ) {
 	if ( 'inicio' === $slug ) {
 		return home_url( '/' );
 	}
+	$achadas = get_posts( array(
+		'post_type'   => 'page',
+		'post_status' => 'publish',
+		'meta_key'    => '_rodametria_id',
+		'meta_value'  => $slug,
+		'numberposts' => 1,
+	) );
+	if ( $achadas ) {
+		return get_permalink( $achadas[0] );
+	}
+	/* Pagina que exista sem a meta (criada a mao) continua achavel pelo caminho. */
 	$p = get_page_by_path( $slug, OBJECT, 'page' );
 	if ( $p && 'publish' === $p->post_status ) {
 		return get_permalink( $p );
@@ -1273,7 +1295,7 @@ add_shortcode( 'rodametria_home', 'rodametria_casca_home_html' );
  * ======================================================================== */
 
 if ( ! function_exists( 'rodametria_casca_garantir_pagina' ) ) {
-function rodametria_casca_garantir_pagina( $slug, $titulo, $conteudo ) {
+function rodametria_casca_garantir_pagina( $slug, $titulo, $conteudo, $pai = 0 ) {
 	$existente = get_posts( array(
 		'post_type'   => 'page',
 		'post_status' => array( 'publish', 'draft', 'pending', 'private' ),
@@ -1289,6 +1311,13 @@ function rodametria_casca_garantir_pagina( $slug, $titulo, $conteudo ) {
 		'post_content' => $conteudo,
 		'post_status'  => 'publish',
 	);
+	/* O PAI, pela 16.2: "toda pagina nova nasce com pai; pagina sem pai e defeito
+	   e nao publica". Ele e opcional porque as cinco paginas da raiz que a 16.1
+	   nomeia (home, sobre, contato, divulgacao de afiliados, privacidade) nao tem
+	   pai — e so elas. */
+	if ( (int) $pai > 0 ) {
+		$dados['post_parent'] = (int) $pai;
+	}
 
 	if ( $existente ) {
 		$dados['ID'] = $existente[0]->ID;
