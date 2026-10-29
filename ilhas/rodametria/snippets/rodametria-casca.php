@@ -809,7 +809,18 @@ body.rdm select:focus-visible,body.rdm input:focus-visible{outline:2px solid var
 .rdm-molde-cartao{flex:0 0 232px;scroll-snap-align:start;background:var(--rdm-superficie);
   border:1px solid var(--rdm-traco);border-radius:var(--rdm-e2);padding:var(--rdm-e3);
   display:flex;flex-direction:column;gap:var(--rdm-e2)}
-.rdm-molde-cartao-foto,.rdm-molde-cartao-sem-foto{display:block;width:100%;height:120px;
+/* A FOTO E O RESERVADO TEM DE TER A MESMA ALTURA, E ISSO E REQUISITO DA 32.5 E
+   NAO estetica: o reservado existe para a pagina nao PULAR quando a foto entra.
+   Enquanto nenhum registro desta ilha tinha foto, esta regra nunca rodou contra
+   uma foto de verdade — e ela estava QUEBRADA. Medido no ar a 390 px em
+   29/10/2026, na primeira foto que a ilha teve: reservado 96 px, foto 182 px, e
+   o primeiro botao de compra foi de 1.385 para 1.471 px, 71 acima do teto da
+   32.5. A causa e de SELETOR, e e a familia da 32.5-c: `body.rdm img` vale
+   (0,1,2) e vence `.rdm-molde-cartao-foto`, que vale (0,1,0), entao o
+   `height:auto` daquela linha mandava na foto e a altura do molde era ignorada.
+   Por isso o seletor da foto carrega `body.rdm` — para VENCER por especificidade,
+   sem `!important`, que esconderia a disputa em vez de resolve-la. */
+body.rdm .rdm-molde-cartao-foto,.rdm-molde-cartao-sem-foto{display:block;width:100%;height:120px;
   object-fit:contain;background:var(--rdm-piso);border-radius:var(--rdm-e1)}
 .rdm-molde-cartao-nome{font-weight:600;font-size:.9375rem;margin:0;line-height:1.3}
 .rdm-molde-cartao-spec{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:.75rem;
@@ -919,10 +930,21 @@ body.rdm select:focus-visible,body.rdm input:focus-visible{outline:2px solid var
   .rdm-molde-compra-escopo{font-size:.875rem;line-height:1.4;margin-bottom:var(--rdm-e2)}
   /* o cartao: a 32.5 mede o BOTAO, e o espaco reservado da foto vinha antes
      dele. A secao 6 manda que produto sem foto apareca com espaco reservado
-     neutro, e ele continua existindo — com 44 px em vez de 96, porque no
-     telefone esses 52 px sao do espaco mais caro da pagina. */
+     neutro, e ele continua existindo.
+
+     A LINHA `.rdm-molde-cartao-sem-foto{height:44px}` MORAVA AQUI E ESTAVA
+     MORTA, e o comentario dela afirmava um numero que a pagina nunca serviu.
+     Ela foi escrita em 29/10/2026 as 11h4xZ dizendo "44 px em vez de 96, porque
+     no telefone esses 52 px sao do espaco mais caro da pagina" — e a regra de 96
+     px, mais abaixo neste mesmo bloco de telefone, vem DEPOIS dela com a mesma
+     especificidade e por isso vencia. MEDIDO no navegador a 390 px as 14h0xZ de
+     29/10: o reservado serve **96 px**. Os 52 px nunca foram economizados, e a
+     medicao de 1.385 px daquela manha foi feita COM 96. Afirmacao em comentario
+     nao e medicao, e esta e da familia do numero de tela digitado: ela parece
+     conferida. A linha saiu em vez de ser consertada porque o teto da 32.5 ja
+     passa com 96, e trocar a altura agora mexeria no numero que o portao acabou
+     de aprovar. */
   .rdm-molde-cartao{padding:var(--rdm-e2);gap:var(--rdm-e1)}
-  .rdm-molde-cartao-sem-foto{height:44px}
   .rdm-molde-cartao-spec{font-size:.6875rem;line-height:1.3}
   .rdm-molde-cartao-preco{font-size:.9375rem}
   .rdm-molde-cartao-botao{padding:9px 10px}
@@ -958,7 +980,7 @@ body.rdm select:focus-visible,body.rdm input:focus-visible{outline:2px solid var
      ferramenta. Cartao de 232 px no telefone de 390 px deixa a borda do
      seguinte visivel, que e o que convida a arrastar. */
   .rdm-molde-cartao{flex-basis:200px}
-  .rdm-molde-cartao-foto,.rdm-molde-cartao-sem-foto{height:96px}
+  body.rdm .rdm-molde-cartao-foto,.rdm-molde-cartao-sem-foto{height:96px}
   .rdm-molde-barra{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:40;
     align-items:center;justify-content:space-between;gap:var(--rdm-e3);
     background:var(--rdm-superficie);border-top:1px solid var(--rdm-traco);
