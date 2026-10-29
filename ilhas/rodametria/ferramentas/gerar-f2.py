@@ -325,6 +325,12 @@ def montar(constantes, veiculos, pecas):
             "preco_loja": cot.get("loja"),
             "preco_data": cot.get("data_leitura"),
             "url_busca": af.get("url_busca"),
+            # A FICHA, quando o casamento do bloco 3d a achou. Pela 25.2 ela
+            # vira o BOTAO e a busca desce para a linha discreta — e e a tela
+            # que faz essa troca, nao o banco: o banco guarda as duas, porque
+            # ficha morre e busca nao.
+            "url_afiliado_da_ficha": af.get("url"),
+            "url_produto": af.get("url_produto"),
             "programa": af.get("programa"),
             "degrau": af.get("degrau"),
             "imagem": r.get("imagem"),

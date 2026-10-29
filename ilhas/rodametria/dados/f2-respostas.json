@@ -280,11 +280,22 @@
         "carga_max_kg": null,
         "preco_brl": 2299.0,
         "preco_loja": "Shopee",
-        "preco_data": "2026-10-27",
+        "preco_data": "2026-10-29",
         "url_busca": "https://s.shopee.com.br/1BNTcrnmhl",
+        "url_afiliado_da_ficha": "https://s.shopee.com.br/3g4ppFGKUA",
+        "url_produto": "https://shopee.com.br/product/1461936230/20299836765",
         "programa": "shopee",
-        "degrau": 4,
-        "imagem": null,
+        "degrau": 1,
+        "imagem": {
+          "url": "https://cf.shopee.com.br/file/br-11134207-7r98o-matq46pbf1mh94",
+          "largura": 1024,
+          "altura": 1024,
+          "alt": "Honeywhale M2 MAX",
+          "fonte": "open-api-afiliados",
+          "de_qual_oferta": 20299836765,
+          "dimensao_medida_em": "2026-10-29",
+          "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, primeiros 32768 bytes"
+        },
         "rotulo_do_grupo": "a ficha não declara a bateria"
       },
       {
@@ -300,6 +311,8 @@
         "preco_loja": "Mercado Livre",
         "preco_data": "2026-10-27",
         "url_busca": "https://s.shopee.com.br/3B8Y0YBAvV",
+        "url_afiliado_da_ficha": "",
+        "url_produto": null,
         "programa": "shopee",
         "degrau": 4,
         "imagem": null,
@@ -318,6 +331,8 @@
         "preco_loja": "Mercado Livre",
         "preco_data": "2026-10-27",
         "url_busca": "https://s.shopee.com.br/AUv8k1nNmv",
+        "url_afiliado_da_ficha": "",
+        "url_produto": null,
         "programa": "shopee",
         "degrau": 4,
         "imagem": null,
@@ -336,6 +351,8 @@
         "preco_loja": null,
         "preco_data": null,
         "url_busca": "https://s.shopee.com.br/8AXDxjjLCo",
+        "url_afiliado_da_ficha": "",
+        "url_produto": null,
         "programa": "shopee",
         "degrau": 4,
         "imagem": null,
@@ -357,11 +374,22 @@
           "carga_max_kg": null,
           "preco_brl": 2299.0,
           "preco_loja": "Shopee",
-          "preco_data": "2026-10-27",
+          "preco_data": "2026-10-29",
           "url_busca": "https://s.shopee.com.br/1BNTcrnmhl",
+          "url_afiliado_da_ficha": "https://s.shopee.com.br/3g4ppFGKUA",
+          "url_produto": "https://shopee.com.br/product/1461936230/20299836765",
           "programa": "shopee",
-          "degrau": 4,
-          "imagem": null
+          "degrau": 1,
+          "imagem": {
+            "url": "https://cf.shopee.com.br/file/br-11134207-7r98o-matq46pbf1mh94",
+            "largura": 1024,
+            "altura": 1024,
+            "alt": "Honeywhale M2 MAX",
+            "fonte": "open-api-afiliados",
+            "de_qual_oferta": 20299836765,
+            "dimensao_medida_em": "2026-10-29",
+            "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, primeiros 32768 bytes"
+          }
         },
         {
           "id": "maxshot-v1",
@@ -376,6 +404,8 @@
           "preco_loja": null,
           "preco_data": null,
           "url_busca": null,
+          "url_afiliado_da_ficha": null,
+          "url_produto": null,
           "programa": null,
           "degrau": null,
           "imagem": null
@@ -393,6 +423,8 @@
           "preco_loja": null,
           "preco_data": null,
           "url_busca": null,
+          "url_afiliado_da_ficha": null,
+          "url_produto": null,
           "programa": null,
           "degrau": null,
           "imagem": null
@@ -410,6 +442,8 @@
           "preco_loja": null,
           "preco_data": null,
           "url_busca": "https://s.shopee.com.br/8AXDxjjLCo",
+          "url_afiliado_da_ficha": "",
+          "url_produto": null,
           "programa": "shopee",
           "degrau": 4,
           "imagem": null
@@ -427,6 +461,8 @@
           "preco_loja": null,
           "preco_data": null,
           "url_busca": null,
+          "url_afiliado_da_ficha": null,
+          "url_produto": null,
           "programa": null,
           "degrau": null,
           "imagem": null
@@ -444,6 +480,8 @@
           "preco_loja": null,
           "preco_data": null,
           "url_busca": null,
+          "url_afiliado_da_ficha": null,
+          "url_produto": null,
           "programa": null,
           "degrau": null,
           "imagem": null
@@ -461,6 +499,8 @@
           "preco_loja": null,
           "preco_data": null,
           "url_busca": null,
+          "url_afiliado_da_ficha": null,
+          "url_produto": null,
           "programa": null,
           "degrau": null,
           "imagem": null
@@ -478,6 +518,8 @@
           "preco_loja": "Mercado Livre",
           "preco_data": "2026-10-27",
           "url_busca": null,
+          "url_afiliado_da_ficha": null,
+          "url_produto": null,
           "programa": null,
           "degrau": null,
           "imagem": null
@@ -495,6 +537,8 @@
           "preco_loja": "Mercado Livre",
           "preco_data": "2026-10-27",
           "url_busca": null,
+          "url_afiliado_da_ficha": null,
+          "url_produto": null,
           "programa": null,
           "degrau": null,
           "imagem": null
@@ -512,6 +556,8 @@
           "preco_loja": "Mercado Livre",
           "preco_data": "2026-10-27",
           "url_busca": null,
+          "url_afiliado_da_ficha": null,
+          "url_produto": null,
           "programa": null,
           "degrau": null,
           "imagem": null
@@ -529,6 +575,8 @@
           "preco_loja": "Mercado Livre",
           "preco_data": "2026-10-27",
           "url_busca": "https://s.shopee.com.br/3B8Y0YBAvV",
+          "url_afiliado_da_ficha": "",
+          "url_produto": null,
           "programa": "shopee",
           "degrau": 4,
           "imagem": null
@@ -546,6 +594,8 @@
           "preco_loja": "Mercado Livre",
           "preco_data": "2026-10-27",
           "url_busca": "https://s.shopee.com.br/AUv8k1nNmv",
+          "url_afiliado_da_ficha": "",
+          "url_produto": null,
           "programa": "shopee",
           "degrau": 4,
           "imagem": null
@@ -565,6 +615,8 @@
           "preco_loja": "Mercado Livre",
           "preco_data": "2026-10-27",
           "url_busca": null,
+          "url_afiliado_da_ficha": null,
+          "url_produto": null,
           "programa": null,
           "degrau": null,
           "imagem": null
@@ -582,6 +634,8 @@
           "preco_loja": "Mercado Livre",
           "preco_data": "2026-10-27",
           "url_busca": null,
+          "url_afiliado_da_ficha": null,
+          "url_produto": null,
           "programa": null,
           "degrau": null,
           "imagem": null
@@ -601,6 +655,8 @@
           "preco_loja": "Shopee",
           "preco_data": "2026-10-27",
           "url_busca": null,
+          "url_afiliado_da_ficha": null,
+          "url_produto": null,
           "programa": null,
           "degrau": null,
           "imagem": null
@@ -618,6 +674,8 @@
           "preco_loja": "Mercado Livre",
           "preco_data": "2026-10-27",
           "url_busca": null,
+          "url_afiliado_da_ficha": null,
+          "url_produto": null,
           "programa": null,
           "degrau": null,
           "imagem": null
@@ -635,6 +693,8 @@
           "preco_loja": null,
           "preco_data": null,
           "url_busca": null,
+          "url_afiliado_da_ficha": null,
+          "url_produto": null,
           "programa": null,
           "degrau": null,
           "imagem": null
@@ -663,6 +723,8 @@
         "preco_loja": "Shopee",
         "preco_data": "2026-10-27",
         "url_busca": "https://s.shopee.com.br/4fxLnJDzOk",
+        "url_afiliado_da_ficha": "",
+        "url_produto": null,
         "programa": "shopee",
         "degrau": 4,
         "imagem": null

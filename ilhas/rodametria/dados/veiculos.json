@@ -3,7 +3,7 @@
  "ilha": "rodametria",
  "bloco": "3",
  "esquema": "dados/esquema-banco.json",
- "versao_esquema": 2,
+ "versao_esquema": 3,
  "gerado_em": "2026-10-28",
  "publicar": false,
  "nota": "PRIMEIRA LEVA, montada SO do que ja estava colhido no repositorio em 28/10/2026: dados/corpus-buscas.md (bloco 1), a tabela 1.6 de dados/especificacao-calculadoras.md (bloco 2) e a secao (c) de bussola/dossies/rodametria/DOSSIE.md (Bussola, 27/10/2026). Nenhuma rede foi tocada para montar este arquivo e nenhum numero foi digitado de cabeca. NENHUM registro e `publicavel`, e a causa e uma so: nenhum tem saida de compra, e a 25.2 nao admite item publicavel sem piso.",
@@ -78,6 +78,16 @@
      "valor_brl": 2299.0,
      "loja": "Shopee",
      "programa": "shopee",
+     "item_id": 20299836765,
+     "comissao_declarada_pct": null,
+     "vendas_declaradas": 3,
+     "data_leitura": "2026-10-29",
+     "fonte": "open-api-afiliados"
+    },
+    {
+     "valor_brl": 2299.0,
+     "loja": "Shopee",
+     "programa": "shopee",
      "comissao_declarada_pct": 10.0,
      "vendas_declaradas": "193 vendas",
      "data_leitura": "2026-10-27",
@@ -86,23 +96,70 @@
    ],
    "afiliado": {
     "programa": "shopee",
-    "degrau": 4,
-    "url": "",
-    "url_produto": null,
-    "par_colhido_em": null,
+    "degrau": 1,
+    "url": "https://s.shopee.com.br/3g4ppFGKUA",
+    "url_produto": "https://shopee.com.br/product/1461936230/20299836765",
+    "par_colhido_em": "2026-10-29",
     "url_busca": "https://s.shopee.com.br/1BNTcrnmhl",
     "url_busca_produto": "https://shopee.com.br/search?keyword=Honeywhale%20M2%20MAX%20patinete%20eletrico",
     "encurtamento_tentado_em": "2026-10-28",
     "sub_id_1": "rodametria",
     "sub_id_2": null,
-    "motivo_sem_url_produto": "CAUSA: a escada da 25.1 parou no degrau 4 de proposito — escolher ficha de produto e casar oferta com registro, que e o casamento das cinco armadilhas da 25.7 e e bloco proprio. || ULTIMA TENTATIVA: nenhuma em 2026-10-28; nenhuma ficha foi escolhida por esta execucao.",
+    "motivo_sem_url_produto": null,
     "motivo_sem_url_busca": null,
     "palavra_chave": "Honeywhale M2 MAX patinete eletrico",
     "degrau_da_palavra_chave": "marca_modelo_termo",
     "ofertas_na_medicao": 10,
-    "medido_em": "2026-10-28"
+    "medido_em": "2026-10-28",
+    "degrau_como_foi_medido": "o nome da loja (`HONEYWHALE BRASIL`) carrega a marca `Honeywhale` do registro. `tipo_de_loja` da API veio [1] e NAO foi usado para decidir isto.",
+    "item_id": 20299836765,
+    "shop_id": 1461936230,
+    "loja": "HONEYWHALE BRASIL",
+    "vendas_na_medicao": 3,
+    "nota_na_medicao": "5",
+    "tipo_de_loja_na_medicao": [
+     1
+    ],
+    "titulo_da_oferta": "HONEYWHALE M2 MAX Patinete Elétrico Adulto, 500W Scooter Eletrica, 32KM/H Velocidade, 22KM Autonomia",
+    "chave_do_casamento": "Honeywhale M2 MAX patinete eletrico",
+    "degrau_da_chave_do_casamento": "marca_modelo_termo",
+    "candidatos_barrados": [
+     {
+      "titulo": "HONEYWHALE M2 MAX-B 500W Patinete Eletrico Scooter, 32KM Autonomia, Velocidade Máxima de 32 KM/H",
+      "motivo": "o modelo vem seguido de `b`, que e sufixo de modelo e faz outro aparelho (25.7(4))"
+     },
+     {
+      "titulo": "HONEYWHALE M2 Pro,M2 MAX,M2 MAX-B modelos da série Patinete Elétrico Scooter, 32KM/H, 22-32KM Autonomia,App Bluetooth",
+      "motivo": "o titulo nomeia `M2 MAX` mais de uma vez: e anuncio que ENUMERA a serie, e no maximo um dos modelos enumerados e este registro — nao ha como dizer qual, entao caem todos (25.7(5))"
+     },
+     {
+      "titulo": "M2 MAX-B HONEYWHALE 500W Patinete Eletrico Scooter, 32KM Autonomia, Velocidade Máxima de 32 KM/H",
+      "motivo": "o modelo vem seguido de `b`, que e sufixo de modelo e faz outro aparelho (25.7(4))"
+     },
+     {
+      "titulo": "HONEYWHALE M2 MAX-B 500W Patinete Eletrico Scooter, 32KM Autonomia, Velocidade Máxima de 32 KM/H",
+      "motivo": "o modelo vem seguido de `b`, que e sufixo de modelo e faz outro aparelho (25.7(4))"
+     },
+     {
+      "titulo": "HONEYWHALE M2 Pro,M2 MAX,M2 MAX-B modelos da série Patinete Elétrico Scooter, 32KM/H, 22-32KM Autonomia,App Bluetooth",
+      "motivo": "o titulo nomeia `M2 MAX` mais de uma vez: e anuncio que ENUMERA a serie, e no maximo um dos modelos enumerados e este registro — nao ha como dizer qual, entao caem todos (25.7(5))"
+     },
+     {
+      "titulo": "HONEYWHALE M2 MAX-B 500W Patinete Eletrico Scooter, 32KM Autonomia, Velocidade Máxima de 32 KM/H",
+      "motivo": "o modelo vem seguido de `b`, que e sufixo de modelo e faz outro aparelho (25.7(4))"
+     }
+    ]
    },
-   "imagem": null,
+   "imagem": {
+    "url": "https://cf.shopee.com.br/file/br-11134207-7r98o-matq46pbf1mh94",
+    "largura": 1024,
+    "altura": 1024,
+    "alt": "Honeywhale M2 MAX",
+    "fonte": "open-api-afiliados",
+    "de_qual_oferta": 20299836765,
+    "dimensao_medida_em": "2026-10-29",
+    "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, primeiros 32768 bytes"
+   },
    "fontes": {
     "painel-shopee": {
      "url": "https://affiliate.shopee.com.br/ (painel de afiliado, logado)",
@@ -114,6 +171,17 @@
      "leitura": null,
      "data_leitura": "2026-10-27",
      "observacao": "Lido pela Bussola em 27/10/2026, na secao (c) de bussola/dossies/rodametria/DOSSIE.md. Esta execucao NAO reabriu o painel: a leitura e de terceiro dentro da propria fabrica, e o nivel 6 ja a trata como declaracao de vendedor."
+    },
+    "open-api-afiliados": {
+     "url": "https://open-api.affiliate.shopee.com.br/graphql (productOfferV2)",
+     "tipo": "api-de-afiliado",
+     "nivel": 6,
+     "origem": "anuncio-de-marketplace",
+     "autoria": "o vendedor do anuncio",
+     "custodia": "Shopee",
+     "leitura": "mecanica, pela Open API de Afiliados — sem transcricao a mao",
+     "data_leitura": "2026-10-29",
+     "observacao": "Lida pelo bloco 3d em 2026-10-29, no casamento da 25.1. O nivel e 6 pelo elo mais fraco: a leitura e mecanica, e a autoria continua sendo o vendedor. Oferta 20299836765 na loja 'HONEYWHALE BRASIL'."
     }
    }
   },
@@ -303,7 +371,7 @@
     "encurtamento_tentado_em": null,
     "sub_id_1": null,
     "sub_id_2": null,
-    "motivo_sem_url_produto": "CAUSA: a coleta de link e bloco proprio e nao e este; nenhuma chamada de API e nenhum gerador de link foi acionado por esta execucao, que entrega o MODELO do banco. || ULTIMA TENTATIVA: nenhuma em 28/10/2026 — e de proposito, nao por falha.",
+    "motivo_sem_url_produto": "CAUSA: a escada inteira devolveu ZERO oferta. Nenhuma trava foi acionada — o produto nao esta anunciado nesta loja, e isso so se resolve quando o mercado mudar. Zero nao e erro: e medicao (25.6(a)). || ULTIMA TENTATIVA: 2026-10-29, degraus medidos: marca_modelo_termo=0 oferta(s); marca_modelo=0 oferta(s); modelo_termo=0 oferta(s); marca_termo=0 oferta(s)",
     "motivo_sem_url_busca": "CAUSA: a escada inteira foi percorrida e NENHUM degrau devolveu oferta na loja — busca com zero resultado e o beco sem saida que o piso existe para impedir. Degraus medidos: marca_modelo_termo=MAXSHOT V1 patinete eletrico (0 oferta(s)); marca_modelo=MAXSHOT V1 (0 oferta(s)); modelo_termo=V1 patinete eletrico (0 oferta(s)); marca_termo=MAXSHOT patinete eletrico (0 oferta(s)). || ULTIMA TENTATIVA: 2026-10-28."
    },
    "imagem": null,
@@ -400,7 +468,7 @@
     "encurtamento_tentado_em": null,
     "sub_id_1": null,
     "sub_id_2": null,
-    "motivo_sem_url_produto": "CAUSA: a coleta de link e bloco proprio e nao e este; nenhuma chamada de API e nenhum gerador de link foi acionado por esta execucao, que entrega o MODELO do banco. || ULTIMA TENTATIVA: nenhuma em 28/10/2026 — e de proposito, nao por falha.",
+    "motivo_sem_url_produto": "CAUSA: a escada inteira devolveu ZERO oferta. Nenhuma trava foi acionada — o produto nao esta anunciado nesta loja, e isso so se resolve quando o mercado mudar. Zero nao e erro: e medicao (25.6(a)). || ULTIMA TENTATIVA: 2026-10-29, degraus medidos: marca_modelo_termo=0 oferta(s); marca_modelo=0 oferta(s); modelo_termo=0 oferta(s); marca_termo=0 oferta(s)",
     "motivo_sem_url_busca": "CAUSA: a escada inteira foi percorrida e NENHUM degrau devolveu oferta na loja — busca com zero resultado e o beco sem saida que o piso existe para impedir. Degraus medidos: marca_modelo_termo=MAXSHOT V1SPRO patinete eletrico (0 oferta(s)); marca_modelo=MAXSHOT V1SPRO (0 oferta(s)); modelo_termo=V1SPRO patinete eletrico (0 oferta(s)); marca_termo=MAXSHOT patinete eletrico (0 oferta(s)). || ULTIMA TENTATIVA: 2026-10-28."
    },
    "imagem": null,
@@ -498,7 +566,7 @@
     "encurtamento_tentado_em": "2026-10-28",
     "sub_id_1": "rodametria",
     "sub_id_2": null,
-    "motivo_sem_url_produto": "CAUSA: a escada da 25.1 parou no degrau 4 de proposito — escolher ficha de produto e casar oferta com registro, que e o casamento das cinco armadilhas da 25.7 e e bloco proprio. || ULTIMA TENTATIVA: nenhuma em 2026-10-28; nenhuma ficha foi escolhida por esta execucao.",
+    "motivo_sem_url_produto": "CAUSA: o registro nao tem identidade minima para pedir ficha — falta `modelo`. Pela `identidade_minima` do esquema, marca sozinha e a armadilha da 25.3 e modelo curto sozinho e a armadilha 3 da 25.7, medida nesta ilha: a chave `MAXSHOT` devolveu pelicula de celular e suplemento. O piso da 25.2 continua no registro e a pagina continua com porta de compra. || ULTIMA TENTATIVA: nenhuma chamada em 2026-10-29 — colher modelo e trabalho de coleta, nao de casamento.",
     "motivo_sem_url_busca": null,
     "palavra_chave": "Sousa Bike bicicleta eletrica",
     "degrau_da_palavra_chave": "marca_termo",
@@ -607,7 +675,7 @@
     "encurtamento_tentado_em": null,
     "sub_id_1": null,
     "sub_id_2": null,
-    "motivo_sem_url_produto": "CAUSA: a coleta de link e bloco proprio e nao e este; nenhuma chamada de API e nenhum gerador de link foi acionado por esta execucao, que entrega o MODELO do banco. || ULTIMA TENTATIVA: nenhuma em 28/10/2026 — e de proposito, nao por falha.",
+    "motivo_sem_url_produto": "CAUSA: o registro nao tem identidade minima para pedir ficha — falta `modelo`. Pela `identidade_minima` do esquema, marca sozinha e a armadilha da 25.3 e modelo curto sozinho e a armadilha 3 da 25.7, medida nesta ilha: a chave `MAXSHOT` devolveu pelicula de celular e suplemento. O piso da 25.2 continua no registro e a pagina continua com porta de compra. || ULTIMA TENTATIVA: nenhuma chamada em 2026-10-29 — colher modelo e trabalho de coleta, nao de casamento.",
     "motivo_sem_url_busca": "CAUSA: o banco nao tem com o que compor chave nenhuma para este registro — faltam os dois identificadores que a escada combina, e compor so pelo termo daria a varios registros a MESMA busca. Nao e lacuna de regua: e o que a fonte declarou. || ULTIMA TENTATIVA: 2026-10-28."
    },
    "imagem": null,
@@ -703,7 +771,7 @@
     "encurtamento_tentado_em": null,
     "sub_id_1": null,
     "sub_id_2": null,
-    "motivo_sem_url_produto": "CAUSA: a coleta de link e bloco proprio e nao e este; nenhuma chamada de API e nenhum gerador de link foi acionado por esta execucao, que entrega o MODELO do banco. || ULTIMA TENTATIVA: nenhuma em 28/10/2026 — e de proposito, nao por falha.",
+    "motivo_sem_url_produto": "CAUSA: o registro nao tem identidade minima para pedir ficha — falta `modelo`. Pela `identidade_minima` do esquema, marca sozinha e a armadilha da 25.3 e modelo curto sozinho e a armadilha 3 da 25.7, medida nesta ilha: a chave `MAXSHOT` devolveu pelicula de celular e suplemento. O piso da 25.2 continua no registro e a pagina continua com porta de compra. || ULTIMA TENTATIVA: nenhuma chamada em 2026-10-29 — colher modelo e trabalho de coleta, nao de casamento.",
     "motivo_sem_url_busca": "CAUSA: a escada inteira foi percorrida e NENHUM degrau devolveu oferta na loja — busca com zero resultado e o beco sem saida que o piso existe para impedir. Degraus medidos: marca_termo=PLAYBIK patinete eletrico (0 oferta(s)). || ULTIMA TENTATIVA: 2026-10-28."
    },
    "imagem": null,
@@ -799,7 +867,7 @@
     "encurtamento_tentado_em": null,
     "sub_id_1": null,
     "sub_id_2": null,
-    "motivo_sem_url_produto": "CAUSA: a coleta de link e bloco proprio e nao e este; nenhuma chamada de API e nenhum gerador de link foi acionado por esta execucao, que entrega o MODELO do banco. || ULTIMA TENTATIVA: nenhuma em 28/10/2026 — e de proposito, nao por falha.",
+    "motivo_sem_url_produto": "CAUSA: a escada inteira devolveu ZERO oferta. Nenhuma trava foi acionada — o produto nao esta anunciado nesta loja, e isso so se resolve quando o mercado mudar. Zero nao e erro: e medicao (25.6(a)). || ULTIMA TENTATIVA: 2026-10-29, degraus medidos: marca_modelo=0 oferta(s)",
     "motivo_sem_url_busca": "CAUSA: a escada inteira foi percorrida e NENHUM degrau devolveu oferta na loja — busca com zero resultado e o beco sem saida que o piso existe para impedir. Degraus medidos: marca_modelo=Honeywhale H3 (0 oferta(s)). || ULTIMA TENTATIVA: 2026-10-28."
    },
    "imagem": null,
@@ -916,7 +984,7 @@
     "encurtamento_tentado_em": null,
     "sub_id_1": null,
     "sub_id_2": null,
-    "motivo_sem_url_produto": "CAUSA: a coleta de link e bloco proprio e nao e este; nenhuma chamada de API e nenhum gerador de link foi acionado por esta execucao, que entrega o MODELO do banco. || ULTIMA TENTATIVA: nenhuma em 28/10/2026 — e de proposito, nao por falha.",
+    "motivo_sem_url_produto": "CAUSA: o registro nao tem identidade minima para pedir ficha — falta `modelo`. Pela `identidade_minima` do esquema, marca sozinha e a armadilha da 25.3 e modelo curto sozinho e a armadilha 3 da 25.7, medida nesta ilha: a chave `MAXSHOT` devolveu pelicula de celular e suplemento. O piso da 25.2 continua no registro e a pagina continua com porta de compra. || ULTIMA TENTATIVA: nenhuma chamada em 2026-10-29 — colher modelo e trabalho de coleta, nao de casamento.",
     "motivo_sem_url_busca": "CAUSA: o banco nao tem com o que compor chave nenhuma para este registro — faltam os dois identificadores que a escada combina, e compor so pelo termo daria a varios registros a MESMA busca. Nao e lacuna de regua: e o que a fonte declarou. || ULTIMA TENTATIVA: 2026-10-28."
    },
    "imagem": null,
@@ -1134,7 +1202,7 @@
     "encurtamento_tentado_em": null,
     "sub_id_1": null,
     "sub_id_2": null,
-    "motivo_sem_url_produto": "CAUSA: a coleta de link e bloco proprio e nao e este; nenhuma chamada de API e nenhum gerador de link foi acionado por esta execucao, que entrega o MODELO do banco. || ULTIMA TENTATIVA: nenhuma em 28/10/2026 — e de proposito, nao por falha.",
+    "motivo_sem_url_produto": "CAUSA: o registro nao tem identidade minima para pedir ficha — falta `marca`. Pela `identidade_minima` do esquema, marca sozinha e a armadilha da 25.3 e modelo curto sozinho e a armadilha 3 da 25.7, medida nesta ilha: a chave `MAXSHOT` devolveu pelicula de celular e suplemento. O piso da 25.2 continua no registro e a pagina continua com porta de compra. || ULTIMA TENTATIVA: nenhuma chamada em 2026-10-29 — colher marca e trabalho de coleta, nao de casamento.",
     "motivo_sem_url_busca": "CAUSA: o banco nao tem com o que compor chave nenhuma para este registro — faltam os dois identificadores que a escada combina, e compor so pelo termo daria a varios registros a MESMA busca. Nao e lacuna de regua: e o que a fonte declarou. || ULTIMA TENTATIVA: 2026-10-28."
    },
    "imagem": null,
@@ -1249,7 +1317,7 @@
     "encurtamento_tentado_em": null,
     "sub_id_1": null,
     "sub_id_2": null,
-    "motivo_sem_url_produto": "CAUSA: a coleta de link e bloco proprio e nao e este; nenhuma chamada de API e nenhum gerador de link foi acionado por esta execucao, que entrega o MODELO do banco. || ULTIMA TENTATIVA: nenhuma em 28/10/2026 — e de proposito, nao por falha.",
+    "motivo_sem_url_produto": "CAUSA: o registro nao tem identidade minima para pedir ficha — falta `modelo`. Pela `identidade_minima` do esquema, marca sozinha e a armadilha da 25.3 e modelo curto sozinho e a armadilha 3 da 25.7, medida nesta ilha: a chave `MAXSHOT` devolveu pelicula de celular e suplemento. O piso da 25.2 continua no registro e a pagina continua com porta de compra. || ULTIMA TENTATIVA: nenhuma chamada em 2026-10-29 — colher modelo e trabalho de coleta, nao de casamento.",
     "motivo_sem_url_busca": "CAUSA: o banco nao tem com o que compor chave nenhuma para este registro — faltam os dois identificadores que a escada combina, e compor so pelo termo daria a varios registros a MESMA busca. Nao e lacuna de regua: e o que a fonte declarou. || ULTIMA TENTATIVA: 2026-10-28."
    },
    "imagem": null,
@@ -1367,7 +1435,7 @@
     "encurtamento_tentado_em": null,
     "sub_id_1": null,
     "sub_id_2": null,
-    "motivo_sem_url_produto": "CAUSA: a coleta de link e bloco proprio e nao e este; nenhuma chamada de API e nenhum gerador de link foi acionado por esta execucao, que entrega o MODELO do banco. || ULTIMA TENTATIVA: nenhuma em 28/10/2026 — e de proposito, nao por falha.",
+    "motivo_sem_url_produto": "CAUSA: o registro nao tem identidade minima para pedir ficha — falta `modelo`. Pela `identidade_minima` do esquema, marca sozinha e a armadilha da 25.3 e modelo curto sozinho e a armadilha 3 da 25.7, medida nesta ilha: a chave `MAXSHOT` devolveu pelicula de celular e suplemento. O piso da 25.2 continua no registro e a pagina continua com porta de compra. || ULTIMA TENTATIVA: nenhuma chamada em 2026-10-29 — colher modelo e trabalho de coleta, nao de casamento.",
     "motivo_sem_url_busca": "CAUSA: a escada inteira foi percorrida e NENHUM degrau devolveu oferta na loja — busca com zero resultado e o beco sem saida que o piso existe para impedir. Degraus medidos: marca_termo=Haixia scooter eletrica (0 oferta(s)). || ULTIMA TENTATIVA: 2026-10-28."
    },
    "imagem": null,
@@ -1476,7 +1544,7 @@
     "encurtamento_tentado_em": null,
     "sub_id_1": null,
     "sub_id_2": null,
-    "motivo_sem_url_produto": "CAUSA: a coleta de link e bloco proprio e nao e este; nenhuma chamada de API e nenhum gerador de link foi acionado por esta execucao, que entrega o MODELO do banco. || ULTIMA TENTATIVA: nenhuma em 28/10/2026 — e de proposito, nao por falha.",
+    "motivo_sem_url_produto": "CAUSA: o registro nao tem identidade minima para pedir ficha — falta `marca` + `modelo`. Pela `identidade_minima` do esquema, marca sozinha e a armadilha da 25.3 e modelo curto sozinho e a armadilha 3 da 25.7, medida nesta ilha: a chave `MAXSHOT` devolveu pelicula de celular e suplemento. O piso da 25.2 continua no registro e a pagina continua com porta de compra. || ULTIMA TENTATIVA: nenhuma chamada em 2026-10-29 — colher marca e modelo e trabalho de coleta, nao de casamento.",
     "motivo_sem_url_busca": "CAUSA: o banco nao tem com o que compor chave nenhuma para este registro — faltam os dois identificadores que a escada combina, e compor so pelo termo daria a varios registros a MESMA busca. Nao e lacuna de regua: e o que a fonte declarou. || ULTIMA TENTATIVA: 2026-10-28."
    },
    "imagem": null,
@@ -1590,7 +1658,7 @@
     "encurtamento_tentado_em": "2026-10-28",
     "sub_id_1": "rodametria",
     "sub_id_2": null,
-    "motivo_sem_url_produto": "CAUSA: a escada da 25.1 parou no degrau 4 de proposito — escolher ficha de produto e casar oferta com registro, que e o casamento das cinco armadilhas da 25.7 e e bloco proprio. || ULTIMA TENTATIVA: nenhuma em 2026-10-28; nenhuma ficha foi escolhida por esta execucao.",
+    "motivo_sem_url_produto": "CAUSA: o registro nao tem identidade minima para pedir ficha — falta `marca`. Pela `identidade_minima` do esquema, marca sozinha e a armadilha da 25.3 e modelo curto sozinho e a armadilha 3 da 25.7, medida nesta ilha: a chave `MAXSHOT` devolveu pelicula de celular e suplemento. O piso da 25.2 continua no registro e a pagina continua com porta de compra. || ULTIMA TENTATIVA: nenhuma chamada em 2026-10-29 — colher marca e trabalho de coleta, nao de casamento.",
     "motivo_sem_url_busca": null,
     "palavra_chave": "X13 scooter eletrica",
     "degrau_da_palavra_chave": "modelo_termo",
@@ -1700,7 +1768,7 @@
     "encurtamento_tentado_em": "2026-10-28",
     "sub_id_1": "rodametria",
     "sub_id_2": null,
-    "motivo_sem_url_produto": "CAUSA: a escada da 25.1 parou no degrau 4 de proposito — escolher ficha de produto e casar oferta com registro, que e o casamento das cinco armadilhas da 25.7 e e bloco proprio. || ULTIMA TENTATIVA: nenhuma em 2026-10-28; nenhuma ficha foi escolhida por esta execucao.",
+    "motivo_sem_url_produto": "CAUSA: o registro nao tem identidade minima para pedir ficha — falta `modelo`. Pela `identidade_minima` do esquema, marca sozinha e a armadilha da 25.3 e modelo curto sozinho e a armadilha 3 da 25.7, medida nesta ilha: a chave `MAXSHOT` devolveu pelicula de celular e suplemento. O piso da 25.2 continua no registro e a pagina continua com porta de compra. || ULTIMA TENTATIVA: nenhuma chamada em 2026-10-29 — colher modelo e trabalho de coleta, nao de casamento.",
     "motivo_sem_url_busca": null,
     "palavra_chave": "LS Sport scooter eletrica",
     "degrau_da_palavra_chave": "marca_termo",
@@ -1819,5 +1887,6 @@
    }
   }
  ],
- "piso_de_compra_colhido_em": "2026-10-28"
+ "piso_de_compra_colhido_em": "2026-10-28",
+ "casamento_de_oferta_colhido_em": "2026-10-29T13:53Z"
 }

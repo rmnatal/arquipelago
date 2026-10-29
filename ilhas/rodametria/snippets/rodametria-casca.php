@@ -623,6 +623,21 @@ function rodametria_casca_cartao_de_compra( $item ) {
 
 	$html .= '<a class="rdm-molde-cartao-botao" href="' . esc_url( $url ) . '"'
 		. ' rel="sponsored noopener" target="_blank">' . esc_html( $rotulo ) . '</a>';
+
+	/* A OUTRA METADE DA 25.2, e ela e literal: "quando existir e estiver viva,
+	   ela vira o botao e a busca desce para a linha discreta `Veja todos
+	   disponiveis aqui` logo abaixo". Ficha de produto apodrece — foi assim que
+	   quatro dos nove links da clubedomosaico morreram em doze horas — e a busca
+	   nao esgota e nao some. Enquanto a ficha vive, ela converte melhor; no dia
+	   em que morrer, esta linha e a saida que a pessoa ja tinha na tela.
+
+	   Ela so sai quando ha ficha: com a busca NO botao, repeti-la aqui seria o
+	   mesmo link duas vezes no mesmo cartao. */
+	if ( ! empty( $item['url_busca'] ) ) {
+		$html .= '<a class="rdm-molde-cartao-todos" href="' . esc_url( $item['url_busca'] ) . '"'
+			. ' rel="sponsored noopener" target="_blank">Veja todos disponíveis aqui</a>';
+	}
+
 	$html .= '</li>';
 
 	return $html;
@@ -804,6 +819,12 @@ body.rdm select:focus-visible,body.rdm input:focus-visible{outline:2px solid var
 .rdm-molde-cartao-botao{margin-top:auto;display:block;text-align:center;background:var(--rdm-tinta);
   color:#FFF;text-decoration:none;border-radius:var(--rdm-e1);padding:10px 12px;
   font-weight:600;font-size:.9375rem}
+/* a linha discreta da 25.2, que so existe quando ha ficha. Ela vem DEPOIS do
+   botao de proposito: a 32.5 mede o primeiro botao de compra, e saida secundaria
+   acima da principal gastaria primeira tela com o elo mais fraco. O `margin-top`
+   e zero porque o botao acima dele ja carrega o `margin-top:auto` do cartao. */
+.rdm-molde-cartao-todos{display:block;text-align:center;font-size:.75rem;
+  color:var(--rdm-legenda);text-decoration:underline;margin:0}
 
 /* MOLDE: tabela pre-renderizada, visivel e nunca recolhida (32.1 item 6) */
 .rdm-tabela-rolagem{overflow-x:auto;margin:0 0 var(--rdm-e4)}

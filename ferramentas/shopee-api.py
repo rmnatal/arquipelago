@@ -10,7 +10,19 @@ Uso:
 
 Saída: JSON normalizado em stdout, uma lista de ofertas, cada uma com
 `item_id`, `shop_id`, `titulo`, `imagem_url`, `url_produto`, `url_afiliado`,
-`preco_min`, `preco_max`, `loja` e `nota`.
+`preco_min`, `preco_max`, `loja`, `nota`, `vendas` e `tipo_de_loja`.
+
+`vendas` (`sales`) e `tipo_de_loja` (`shopType`) entraram em 29/10/2026, pelo
+bloco 3d da rodametria, e os dois foram **medidos como legiveis por esta conta**
+antes de entrar — 44 ofertas em cinco consultas — porque o aviso logo abaixo diz,
+com razao, que campo a mais e uma chance a mais de a consulta inteira ser
+recusada. `vendas` e o unico desempate honesto entre duas ofertas aprovadas (a
+comissao nunca ordena, pela secao 7). E `tipo_de_loja` entrou com o achado que
+desmente o nome dele: **ele NAO diz `loja oficial do fabricante`** — na mesma
+medicao, `[1]` saiu em `RM BIKES`, `RTM BIKES LTDA` e `Auto Home Shop`, e a
+`HONEYWHALE-Scooter`, que carrega a marca no nome, saiu `[]`. E o programa de
+vendedor da Shopee, e serve como procedencia, nunca para decidir o degrau 1 da
+25.1.
 
 CREDENCIAL — A REGRA QUE NÃO SE NEGOCIA (seção 25.6 do ARQUIPELAGO.md)
 ---------------------------------------------------------------------
@@ -90,6 +102,8 @@ query($palavra: String, $pagina: Int, $quantos: Int) {
       priceMax
       shopName
       ratingStar
+      sales
+      shopType
     }
     pageInfo { page limit hasNextPage }
   }
@@ -110,6 +124,8 @@ query($itemId: Int64, $shopId: Int64) {
       priceMax
       shopName
       ratingStar
+      sales
+      shopType
     }
     pageInfo { page limit hasNextPage }
   }
@@ -234,6 +250,8 @@ def _normalizar(no):
         'preco_max': no.get('priceMax'),
         'loja': no.get('shopName'),
         'nota': no.get('ratingStar'),
+        'vendas': no.get('sales'),
+        'tipo_de_loja': no.get('shopType'),
     }
 
 

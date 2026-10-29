@@ -1,9 +1,9 @@
 {
  "id": "esquema-banco",
  "ilha": "rodametria",
- "bloco": "3",
- "versao_esquema": 2,
- "gerado_em": "2026-10-28",
+ "bloco": "3d",
+ "versao_esquema": 3,
+ "gerado_em": "2026-10-29",
  "publicar": false,
  "descricao": "Modelo do banco da Rodametria: entidades VEICULO, PECA e MUNICIPIO. Define campo a campo o tipo, a unidade, a obrigatoriedade, o vocabulario controlado, o que e DERIVADO e a ORIGEM esperada do dado. E o contrato que dados/veiculos.json, dados/pecas.json e dados/municipios.json cumprem e que ferramentas/validar-banco.py verifica. Nasce da secao 5 de dados/especificacao-calculadoras.md, que e a lista de campos que as tres ferramentas LEEM.",
  "depende_de": [
@@ -238,6 +238,157 @@
    "por_que_sub_id_2_e_null_aqui": "O `sub_id_2` desta ilha e o codigo da FERRAMENTA (f1, f2 ou f3), e um registro do banco aparece em mais de uma: o mesmo patinete responde a F2 (quantos km faz) e a F3 (aguenta meu peso). Um link carrega UM sub_id_2, entao quem o decide e a PAGINA, nao o registro — gravar um aqui atribuiria a uma ferramenta o clique que veio de outra, que e pior que nao atribuir. O piso de registro nasce com `sub_id_1` so, como o da Robometria, e o link por ferramenta e refinamento da casca, nao deste bloco."
   },
   "onde_a_escada_para_de_proposito": "No degrau 4 da 25.1. Escolher ficha de produto exige casar oferta da API com registro do banco, que e o casamento das cinco armadilhas da 25.7, e e bloco proprio. Enquanto nao houver ficha, `url` fica VAZIA e a busca sobe e vira o botao pela escada da casca — sem esperar decisao de ninguem."
+ },
+ "casamento_de_oferta": {
+  "o_que_e": "A outra metade da 25.1, e ela comeca onde `escada_de_compra` para de proposito. O piso e a BUSCA (25.2) e nunca depende de ninguem; a FICHA de produto e bonus, e escolher ficha e CASAR oferta de loja com registro do banco. A 25.7 mediu, na Robometria, que a regra ingenua -- 'o titulo tem de conter o codigo da peca ou o nome do modelo' -- aprova CINCO coisas erradas. Casamento errado no banco e pior que casamento nenhum, porque PARECE DADO.",
+  "quem_escreve": "ferramentas/coletar-oferta.py. A regra mora AQUI pelo mesmo motivo que a escada de palavra-chave mora aqui: lista dentro da regua envelhece calada, e caso novo entraria sem trava nenhuma com o banco verde.",
+  "identidade_minima": {
+   "por_que": "A 25.7(3) mediu que codigo de modelo curto sozinho casa com o mundo: `S10`, `E10`, `W100` e `S40` casaram com mangueira de ar-condicionado, mascara capilar, whey protein e fechadura de Volvo. Nesta ilha a MESMA medicao se repetiu em 29/10/2026: a chave `MAXSHOT` sozinha devolveu pelicula de Zenfone Max Shot e suplemento Action Max, e `Honeywhale` sozinha devolveu bolsa e pneu de OUTROS modelos da marca. Registro sem par identificador NAO PEDE FICHA -- e ele nao fica sem porta de compra, porque o piso da 25.2 ja esta la.",
+   "VEICULO": {
+    "exige": [
+     "marca",
+     "modelo"
+    ],
+    "por_que_os_dois": "marca sozinha e a armadilha que a 25.3 nomeia; modelo sozinho e a armadilha 3 da 25.7. A ficha identifica UM produto ou nao identifica nenhum."
+   },
+   "PECA": {
+    "exige": [
+     "marca",
+     "medida_de_encaixe",
+     "atributo_que_o_mercado_distingue"
+    ],
+    "atributo_que_o_mercado_distingue": {
+     "camara": "bico",
+     "pneu": "bico",
+     "carregador": null,
+     "bateria": null,
+     "capacete": null,
+     "cadeado": null,
+     "chicote": null
+    },
+    "por_que_o_atributo": "MEDIDO em 29/10/2026 nesta ilha, na camara Kenda 16x3.0: a medida casa com DEZ ofertas e o mercado as separa pelo BICO -- `bico torto curvo`, `bico curvo`, `bico grosso 33mm` --, que sao produtos que nao se substituem na roda de ninguem. O registro nao declara bico. Escolher uma ficha ali seria afirmar um bico que o banco nao leu, e manda a pessoa comprar a valvula errada; a BUSCA, que mostra as tres e deixa a pessoa escolher, e literalmente melhor que a ficha. Tipo com `null` aqui nao tem atributo separador MEDIDO -- e `null` e declaracao, nao ausencia: quem achar o separador de um tipo troca o null por ele, nunca a trava.",
+    "quando_o_atributo_e_null": "a identidade minima e marca + medida_de_encaixe."
+   }
+  },
+  "travas": {
+   "regra_mae": "25.4-b.1 e 25.7: ou o titulo identifica UM registro so, ou nenhuma ficha entra. Toda trava abaixo BARRA o candidato e grava o motivo em portugues; candidato barrado nunca vira ficha silenciosa.",
+   "1_cobertura_nao_e_o_objeto": {
+    "da": "25.7(1) -- a peca que cobre a peca nao e a peca",
+    "palavras": [
+     "capa",
+     "capinha",
+     "case",
+     "pelicula",
+     "protetor",
+     "protetora",
+     "carcaca",
+     "adesivo",
+     "berco",
+     "suporte",
+     "bolsa",
+     "tampa",
+     "porta",
+     "cobertura",
+     "forro",
+     "bagageiro"
+    ],
+    "regra": "palavra de cobertura na CABECA do titulo barra. Na cauda nao barra: `patinete com bolsa frontal` e o patinete."
+   },
+   "2_kit_nao_e_quantidade": {
+    "da": "25.7(2) -- `KIT` nao e quantidade quando o registro nao e um kit",
+    "palavras": [
+     "kit",
+     "combo",
+     "conjunto",
+     "par de",
+     "pack"
+    ],
+    "multipack": "numeral maior que 1 colado no tipo do produto (`2 Camaras`, `3 Pneus`) tambem barra: o preco do cartao seria o de dois e o registro declara um. `01 Camara` NAO barra -- `01` e um a mais no mesmo produto, nao dois.",
+    "custo_consciente": "perde-se algum multipack legitimo, e a troca e a mesma que a 25.7 declarou."
+   },
+   "3_o_produto_na_cabeca": {
+    "da": "25.7(3) -- loja de reposicao escreve o nome do aparelho no titulo da PECA, e peca e justamente o produto destas ilhas",
+    "regra": "duas metades. (a) o TERMO DE CONTEXTO do registro tem de aparecer no titulo. (b) a CABECA do titulo nao pode comecar com o nome de outro objeto -- e a lista de 'outro objeto' NAO mora aqui: ela e DERIVADA de `escada_de_compra.termo_de_contexto`, cruzando as entidades. Para registro de VEICULO, cabeca que comeca com termo de PECA barra; para registro de PECA, cabeca que comeca com termo de OUTRA peca barra.",
+    "por_que_derivada": "lista de objetos escrita dentro da trava envelhece calada: tipo novo no esquema entraria sem estar na lista e passaria. Derivando, tipo novo protege os outros no dia em que e declarado.",
+    "medido": "29/10/2026: `Pneu Solido 8.5x2 Compativel Patinete Honeywhale M2 Pro` traz a marca, um modelo e a palavra `patinete` -- e e um PNEU. A cabeca comeca com `pneu`, que e termo de PECA no esquema.",
+    "cabeca": "os primeiros caracteres do titulo normalizado; quantos esta em `cabeca_em_caracteres`",
+    "cabeca_em_caracteres": 40
+   },
+   "4_o_sufixo_faz_outro_aparelho": {
+    "da": "25.7(4) -- `S40` casou com `S40 PRO` e `S10` com `S10+`",
+    "regra": "depois do modelo vem token curto (ate 4 caracteres) sem digito = SUFIXO DE MODELO, e barra. A trava olha TODAS as ocorrencias do modelo no titulo, nao a primeira: anuncio que enumera a serie tem uma ocorrencia limpa e uma sufixada, e aprovar pela limpa e aprovar o anuncio inteiro.",
+    "o_que_NAO_e_sufixo": {
+     "numeral_com_unidade": "token que casa `^[0-9]+[a-z]*$` (`500w`, `32km`, `48v`) -- e especificacao, nao modelo.",
+     "token_longo": "mais de 4 caracteres (`patinete`, `dobravel`, `eletrico`) -- a lingua do anuncio, nao sufixo.",
+     "termo_de_contexto": "qualquer token dos termos declarados em `escada_de_compra.termo_de_contexto`, DERIVADO e nao escrito aqui.",
+     "palavras_de_frase_curtas": [
+      "com",
+      "sem",
+      "para",
+      "e",
+      "de",
+      "da",
+      "do",
+      "ou",
+      "em",
+      "no",
+      "na",
+      "ate",
+      "novo",
+      "nova",
+      "uso",
+      "pro-rata"
+     ]
+    },
+    "o_mais": "`+` conta como sufixo: ele e normalizado para o token `plus` ANTES de a trava olhar, porque `S10+` e outro aparelho e a normalizacao ingenua o apagaria.",
+    "medido": "29/10/2026: a chave do `honeywhale-m2-max` devolveu QUATRO ofertas de `M2 MAX-B` e DUAS que enumeram `M2 Pro,M2 MAX,M2 MAX-B`. As seis foram barradas por esta trava, e as quatro que passaram dizem `M2 MAX Patinete Eletrico Adulto` -- modelo seguido do termo."
+   },
+   "5_dois_registros_no_mesmo_anuncio": {
+    "da": "25.7(5) -- no maximo um esta certo, e nao ha como dizer qual, entao os dois caem",
+    "regra": "titulo que traz o modelo de OUTRO registro do mesmo banco barra sempre. A lista de modelos sai do BANCO, nunca de lista na regua (25.9(3)). MEDIDO nesta ilha em 29/10: `HONEYWHALE M2 Pro,M2 MAX,M2 MAX-B modelos da serie` -- duas ofertas, e o preco delas vinha em FAIXA (R$ 1.899 a R$ 2.599), que e a assinatura do anuncio de multipla variante.",
+    "faixa_de_preco": "`priceMin` diferente de `priceMax` e sinal de anuncio de variante e barra por si: o cartao publica UM preco, e preco de faixa publicado como preco do produto e numero que a pagina nao mediu.",
+    "e_a_enumeracao_da_serie": "o modelo aparecendo MAIS DE UMA VEZ no titulo e a mesma armadilha por outra porta: anuncio que enumera a serie (`M2 Pro,M2 MAX,M2 MAX-B`). Ela tem trava propria porque a trava 4 ja a barrava pelo motivo ERRADO -- dizia que `m2` era sufixo, e `m2` ali e o comeco do modelo SEGUINTE da lista. Veredito certo com frase errada e pior do que parece: a frase e o que a execucao seguinte le dentro do banco, e ela mandava consertar a coisa errada. MEDIDO em 29/10/2026."
+   },
+   "6_o_modelo_vem_CONTIGUO": {
+    "da": "25.9(1) -- o conserto e do DADO, nunca da trava",
+    "regra": "as partes do modelo tem de aparecer CONTIGUAS no titulo. Afrouxar isso afrouxa o portao de TODOS os registros por causa de um. Quando o fabricante publicar o identificador separado do nome, ele ganha CAMPO PROPRIO no esquema (25.9(2)) -- e nao ha caso assim neste banco hoje, MEDIDO registro a registro em 29/10/2026."
+   }
+  },
+  "ordem_de_escolha": {
+   "por_que_existe": "sobrando mais de um candidato aprovado, escolher o primeiro da resposta e deixar a Shopee decidir o que a ilha recomenda.",
+   "criterios_em_ordem": [
+    "`sales` maior -- venda medida e a unica prova de que a oferta funciona, e e numero da propria API",
+    "`ratingStar` maior",
+    "`itemId` menor, so para o desempate ser estavel entre passadas"
+   ],
+   "o_que_NUNCA_ordena": "a comissao. `commissionRate` volta na mesma chamada e ordenar por ela poria o que paga mais acima do que serve melhor -- o contrario da secao 7. Ela e gravada como procedencia e nao entra no desempate."
+  },
+  "degrau_que_se_grava": {
+   "regra": "25.1. Degrau 1 e loja oficial do FABRICANTE; degrau 3 e anuncio de vendedor comum. O degrau fica gravado, e com ele COMO ele foi medido.",
+   "como_se_mede_o_degrau_1": "pelo NOME DA LOJA carregar a marca do registro (`HONEYWHALE BRASIL`, `HONEYWHALE-MAF`). Nunca pelo `shopType` da API.",
+   "por_que_nao_o_shopType": "MEDIDO em 29/10/2026, 44 ofertas em cinco consultas: `shopType` e o programa de vendedor da Shopee (`[1]`, `[2]`, `[]`), nao `loja oficial do fabricante`. `[1]` saiu em `RM BIKES`, `RTM BIKES LTDA` e `Auto Home Shop` -- nenhuma delas e fabricante de nada --, e a `HONEYWHALE-Scooter`, que carrega a marca no nome, saiu `[]`. Ele e gravado como procedencia e NAO decide degrau: e a mesma familia do numero de tela digitado -- o campo responde, e a resposta nao e sobre o que se perguntou.",
+   "degrau_2_esta_fora_do_alcance_desta_maquina": "a pagina de catalogo do Mercado Livre (`/p/MLB...`) e o degrau 2 e e MELHOR que o 3 -- mas o gerador do ML tem reCAPTCHA (25.5 e 25.6) e link novo dali e clique do Raphael. Pela 25.2 isso nunca trava pagina: e oportunidade, nao plano. Registro cuja casa natural e o degrau 2 fica no piso com o motivo escrito."
+  },
+  "a_foto": {
+   "da": "25.7 -- largura e altura sao MEDIDAS, nunca supostas",
+   "regra": "a dimensao sai dos PRIMEIROS BYTES do arquivo na CDN (cabecalho JPEG, PNG ou WebP), e nao de palpite sobre o que a Shopee costuma servir. Sem as duas, a foto NAO entra: salto de layout quando a imagem carrega e pior que nao ter foto.",
+   "por_que_nao_quebra_o_cartao": "a casca ja serve espaco reservado neutro quando nao ha foto (secao 6), e o reservado tem a MESMA altura da foto -- entao foto que entra nao muda a altura do cartao e nao mexe na medicao da 32.5."
+  },
+  "o_par_vem_da_MESMA_oferta": {
+   "da": "25.4-b.1",
+   "regra": "`url` (o link de afiliado) e `url_produto` (a ficha crua) vem da MESMA oferta, na MESMA chamada, ou nenhum dos dois entra. `par_colhido_em` e a prova de que ninguem grampeou um ao lado do outro.",
+   "e_o_piso_nao_sai": "ganhar ficha NAO apaga `url_busca`: pela 25.2 a ficha vira o botao e a busca desce para a linha discreta. Ficha morre; busca nao."
+  },
+  "quando_nao_casa": {
+   "da": "25.4-b.4 -- `nao casou` tem duas causas que parecem uma",
+   "causas": {
+    "mercado_nao_anuncia": "a escada inteira devolveu ZERO. So se resolve quando o mercado mudar.",
+    "candidato_barrado": "houve candidato e as travas o barraram. Pode se resolver com dado melhor no registro, nunca com trava mais frouxa.",
+    "sem_identidade_minima": "o registro nao tem com o que pedir ficha. Resolve-se COLHENDO o campo que falta."
+   },
+   "regra": "as tres sao contadas SEPARADAS. Contadas juntas viram um numero que nao diz o que fazer -- e a 25.9 mediu o que isso custa: `doze` lido como mercado quatro vezes seguidas era `nove de mercado + dois barrados com razao + UM defeito nosso`.",
+   "motivo": "CAUSA || ULTIMA TENTATIVA (25.4-b.3), e a ULTIMA TENTATIVA e reescrita a cada passada: motivo velho manda a execucao seguinte nem tentar."
+  }
  },
  "campos_que_exigem_procedencia_de_leitura": {
   "por_que_esta_lista_mora_aqui_e_nao_no_validador": "Secao 26.2 do ARQUIPELAGO.md: lista digitada dentro da regua envelhece calada. O dia em que um campo novo sofrer do mesmo mal, ele entra numa linha deste arquivo e a trava passa a cobra-lo sem uma linha de codigo. E a trava reprova quando esta chave SOME — regua que le a propria lista de um arquivo de dados aprova tudo, em silencio, no dia em que o arquivo perder a chave.",

@@ -247,7 +247,14 @@ function rodametria_f2_itens_da_vitrine( $d ) {
 			'preco_nota'    => empty( $f['preco_brl'] ) ? ''
 				: 'na ' . $f['preco_loja'] . ', lido em '
 					. rodametria_f2_data( $f['preco_data'] ),
-			'url'           => $f['url_busca'],
+			/* A 25.2 em uma linha: a FICHA vira o botao quando existe, e a
+			   BUSCA desce para a linha discreta — nunca sai. Quando nao ha
+			   ficha, a busca sobe e e o botao, que e o estado em que esta
+			   ilha nasceu. */
+			'url'           => empty( $f['url_afiliado_da_ficha'] )
+				? $f['url_busca'] : $f['url_afiliado_da_ficha'],
+			'url_busca'     => empty( $f['url_afiliado_da_ficha'] )
+				? '' : $f['url_busca'],
 			'programa'      => $f['programa'],
 			'degrau'        => $f['degrau'],
 			'imagem'        => $f['imagem'],

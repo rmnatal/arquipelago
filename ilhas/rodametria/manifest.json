@@ -4,7 +4,7 @@
   "nicho": "mobilidade eletrica — acertar os tres numeros antes de comprar um veiculo eletrico: categoria legal (CNH e placa), autonomia real e carga maxima",
   "dominio": "https://rodametria.com.br",
   "versao_manifest": 1,
-  "revisao": 9,
+  "revisao": 10,
   "atualizado_em": "2026-10-29",
   "estado": "nascendo",
   "desembarque": {
@@ -20,7 +20,7 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "2b5b84d5c72229bfce70b968802a37d5758962c1814fd9a801379e1e8f339e5e",
+      "sha256": "85816f270bd1fcdad9b1aaa34e14cf39e94f4fca209a36587f4722dcd83833ea",
       "descricao": "A CASCA 1.0.0, primeira versao. Tokens do DESIGN.md (tinta #13212B, verde #0A6B4C, Alfa Slab One so na marca, Barlow Semi Condensed nos titulos, JetBrains Mono em todo numero), simbolo V9 completo no cabecalho e em negativo no rodape, favicon proprio (secao 6: icone padrao do WordPress na aba e bloco reprovado), menu hamburguer com aria-expanded/aria-controls e links <a href> de verdade no HTML servido, trilha + BreadcrumbList, WebSite JSON-LD na home, <title> e description saindo de UM mapa de paginas. E os COMPONENTES DO MOLDE da secao 32, aqui e nao em cada snippet, como a 32.6-b manda: caixa de resultado, dobra <details>, cartao de compra com espaco reservado para quem nao tem foto, carrossel com scroll-snap em CSS puro, barra fixa do telefone e o rotulo do botao de loja por degrau da escada da 25.1. Pagina nova entra pelos filtros `rodametria_paginas` e `rodametria_instalar`, de dentro do proprio snippet dela — a casca nao e editada quando a ilha cresce."
     },
     {
@@ -30,7 +30,7 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "c2a7e2ba99d7dbf7ee565abeef5507a4bafe09329e7de57e3e1f37702e897a14",
+      "sha256": "90683966433eba22cd83419ef64a51ad2dca3835dad26facf2d8d948346c3263",
       "descricao": "A F2 1.0.0, a PRIMEIRA pagina desta ilha no ar, em /autonomia-patinete-eletrico/. Ordem da 32.1 de cima para baixo, conferida por afirmacao no fonte: trilha e H1, promessa, formulario ja preenchido com o caso de exemplo, caixa de resultado JA PRE-RENDERIZADA no HTML (a metade que a IA le sem preencher formulario, e o que a 22.8 exige de quem desliga o JavaScript), bloco de compra, prestacao de contas da secao 7 com os cinco grupos por causa e a soma fechando o banco contado, tabela pre-renderizada visivel, e o resto em <details>. NENHUM numero e NENHUMA frase de resposta e digitado neste arquivo: tudo vem da option que o Sync grava de dados/f2-respostas.json, escrito por ferramentas/gerar-f2.py a partir de ferramentas/f2-referencia.py e de dados/constantes.json. O JS do rodape preenche MOLDE, nunca escreve frase — a bateria de mutacoes de 29/10 reprovou as duas versoes em que ele escrevia."
     }
   ],
@@ -41,7 +41,7 @@
       "arquivo": "dados/f2-respostas.json",
       "formato": "json",
       "publicar": true,
-      "sha256": "42c042d1f1aab6d46108b7846b930f880a7b1954813516e48eb6000f4dc796a7",
+      "sha256": "1b2b4ebd4aaa7a0e25081144b365f7a450b3b320af632f9a1adb5910d821db1f",
       "descricao": "O que a F2 serve: campos, moldes de frase, fatores de relevo, resposta de exemplo pre-renderizada, tabela e prestacao de contas."
     },
     {
@@ -57,7 +57,7 @@
       "arquivo": "dados/veiculos.json",
       "formato": "json",
       "publicar": false,
-      "sha256": "964866c002c46c5d8594f22d813f920704a864ce2bec3ff16607126be1411253",
+      "sha256": "4fd7d423018df91d7bff3512dd17b0c531ed0df1eed84d573aadfbd6b49c61bd",
       "descricao": "Banco de veiculos. A F2 conta a prestacao de contas dele."
     },
     {
@@ -65,7 +65,7 @@
       "arquivo": "dados/pecas.json",
       "formato": "json",
       "publicar": false,
-      "sha256": "5cb7a5a9373883912d4d0740f4798bba05e63192642abd5b44f8279a3a96481c",
+      "sha256": "b5a00ac557519eebabcc268a02031e15923d3da1cfc1adbadfd636b54811e19a",
       "descricao": "Banco de pecas."
     },
     {
@@ -73,7 +73,7 @@
       "arquivo": "dados/esquema-banco.json",
       "formato": "json",
       "publicar": false,
-      "sha256": "a8c0f5dc2dcfe8b2c2849be36921ac8379180834f61c284520c1632e7bd74c5e",
+      "sha256": "11d65c7dd7ed51e8b311787cf34012d563db096939ed28cd37d7000a7614666c",
       "descricao": "O contrato do banco, versao 2."
     }
   ]

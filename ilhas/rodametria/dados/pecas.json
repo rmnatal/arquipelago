@@ -3,7 +3,7 @@
  "ilha": "rodametria",
  "bloco": "3",
  "esquema": "dados/esquema-banco.json",
- "versao_esquema": 2,
+ "versao_esquema": 3,
  "gerado_em": "2026-10-28",
  "publicar": false,
  "nota": "As TRES pecas que a Bussola mediu COM VENDA no painel da Shopee em 27/10/2026. Nenhuma rede foi tocada para montar este arquivo. As outras pecas da lista do bloco 3 do PROMPT.md (pneu, carregador por tensao, bateria por V/Ah, cadeado) nao tem registro porque nao tem coleta — arquivo com tipo vazio e diferente de tipo que nao existe, e o esquema ja declara a chave de encaixe de cada um deles, esperando dado.",
@@ -47,7 +47,7 @@
     "encurtamento_tentado_em": "2026-10-28",
     "sub_id_1": "rodametria",
     "sub_id_2": null,
-    "motivo_sem_url_produto": "CAUSA: a escada da 25.1 parou no degrau 4 de proposito — escolher ficha de produto e casar oferta com registro, que e o casamento das cinco armadilhas da 25.7 e e bloco proprio. || ULTIMA TENTATIVA: nenhuma em 2026-10-28; nenhuma ficha foi escolhida por esta execucao.",
+    "motivo_sem_url_produto": "CAUSA: o registro nao tem identidade minima para pedir ficha — falta `bico`. Pela `identidade_minima` do esquema, marca sozinha e a armadilha da 25.3 e modelo curto sozinho e a armadilha 3 da 25.7, medida nesta ilha: a chave `MAXSHOT` devolveu pelicula de celular e suplemento. O piso da 25.2 continua no registro e a pagina continua com porta de compra. || ULTIMA TENTATIVA: nenhuma chamada em 2026-10-29 — colher bico e trabalho de coleta, nao de casamento.",
     "motivo_sem_url_busca": null,
     "palavra_chave": "Kenda camara de ar 16 x 3.0",
     "degrau_da_palavra_chave": "marca_termo_medida",
@@ -108,7 +108,7 @@
     "encurtamento_tentado_em": null,
     "sub_id_1": null,
     "sub_id_2": null,
-    "motivo_sem_url_produto": "CAUSA: a coleta de link e bloco proprio e nao e este. || ULTIMA TENTATIVA: nenhuma em 28/10/2026, de proposito.",
+    "motivo_sem_url_produto": "CAUSA: o registro nao tem identidade minima para pedir ficha — falta `marca` + `medida_de_encaixe`. Pela `identidade_minima` do esquema, marca sozinha e a armadilha da 25.3 e modelo curto sozinho e a armadilha 3 da 25.7, medida nesta ilha: a chave `MAXSHOT` devolveu pelicula de celular e suplemento. O piso da 25.2 continua no registro e a pagina continua com porta de compra. || ULTIMA TENTATIVA: nenhuma chamada em 2026-10-29 — colher marca e medida_de_encaixe e trabalho de coleta, nao de casamento.",
     "motivo_sem_url_busca": "CAUSA: o banco nao tem com o que compor chave nenhuma para este registro — faltam os dois identificadores que a escada combina, e compor so pelo termo daria a varios registros a MESMA busca. Nao e lacuna de regua: e o que a fonte declarou. || ULTIMA TENTATIVA: 2026-10-28."
    },
    "imagem": null,
@@ -165,7 +165,7 @@
     "encurtamento_tentado_em": null,
     "sub_id_1": null,
     "sub_id_2": null,
-    "motivo_sem_url_produto": "CAUSA: a coleta de link e bloco proprio e nao e este. || ULTIMA TENTATIVA: nenhuma em 28/10/2026, de proposito.",
+    "motivo_sem_url_produto": "CAUSA: o registro nao tem identidade minima para pedir ficha — falta `marca` + `medida_de_encaixe`. Pela `identidade_minima` do esquema, marca sozinha e a armadilha da 25.3 e modelo curto sozinho e a armadilha 3 da 25.7, medida nesta ilha: a chave `MAXSHOT` devolveu pelicula de celular e suplemento. O piso da 25.2 continua no registro e a pagina continua com porta de compra. || ULTIMA TENTATIVA: nenhuma chamada em 2026-10-29 — colher marca e medida_de_encaixe e trabalho de coleta, nao de casamento.",
     "motivo_sem_url_busca": "CAUSA: o banco nao tem com o que compor chave nenhuma para este registro — faltam os dois identificadores que a escada combina, e compor so pelo termo daria a varios registros a MESMA busca. Nao e lacuna de regua: e o que a fonte declarou. || ULTIMA TENTATIVA: 2026-10-28."
    },
    "imagem": null,
@@ -184,5 +184,6 @@
    }
   }
  ],
- "piso_de_compra_colhido_em": "2026-10-28"
+ "piso_de_compra_colhido_em": "2026-10-28",
+ "casamento_de_oferta_colhido_em": "2026-10-29T13:53Z"
 }
