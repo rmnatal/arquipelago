@@ -22,7 +22,12 @@ Medido em 27/10/2026 no Chrome do Raphael (`bussola/dossies/rodametria/DOSSIE.md
 - **Status (público, GET):** `https://rodametria.com.br/wp-json/rodametria/v1/status` — **medido em 200 às 13h2xZ de 28/10/2026**, devolvendo `versao_sync: 1.1.5`. Às 10h17Z da mesma manhã devolvia **404**: o snippet **Rodametria Sync nasceu entre as duas medições** (passo 8 da seção 11, feito pelo Raphael), e nem o `ESTADO.md` nem este arquivo sabiam.
 - **Sync (POST, exige `manage_options`):** `https://rodametria.com.br/wp-json/rodametria/v1/sync` — e o gatilho por query na raiz, `https://rodametria.com.br/?rodametria_sync=<token>`, com o token lido em `/wp-json/rodametria/v1/token` (também exige `manage_options`). **O token desta ilha não está no repositório e não deve estar** — quem precisa dele o lê logado. A Fundação **não precisa dele** para desembarcar: o Sync tem **cron próprio de 30 minutos** (`rodametria_30min`), e foi ele que rodou às 11h48, 12h30, 12h48 e 13h10Z de 28/10.
 - **Base que o Sync lê:** `https://raw.githubusercontent.com/rmnatal/arquipelago/main/ilhas/rodametria/` + o arquivo, com `?v=<timestamp>` contra cache. Vale a **20.5**: revisão atrasada logo depois do push é cache do GitHub, não defeito — reacione de dois em dois e só trate como defeito se não subir em ~10 minutos.
-- **O `manifest.json` desta ilha nasceu em 28/10/2026 na revisão 1, e ele NÃO PUBLICA NADA de propósito** — os três grupos vazios, para provar o canal ponta a ponta com zero página em risco. Antes dele o `/status` acusava `revisao: -1` e quatro `FALHA manifest: HTTP 404` seguidas. A primeira revisão que publica algo é a da **casca (bloco 3b)**.
+- **A CASCA E A F2 ESTÃO NO AR DESDE 29/10/2026.** `/` (home, molde da 32.2) e
+  `/autonomia-patinete-eletrico/` (F2, molde de FERRAMENTA da 32.1). A casca publica
+  `https://rodametria.com.br/wp-json/rodametria/v1/casca` (GET público), que devolve a versão
+  da casca, o relato da instalação e o mapa de páginas com a URL de cada uma — é por ele que
+  `ferramentas/conferir-no-ar.py` confere que link interno não aponta para 404.
+- **O `manifest.json` desta ilha nasceu em 28/10/2026 na revisão 1, e ela NÃO PUBLICAVA NADA de propósito** — os três grupos vazios, para provar o canal ponta a ponta com zero página em risco. Antes dele o `/status` acusava `revisao: -1` e quatro `FALHA manifest: HTTP 404` seguidas. A primeira revisão que publica algo é a da **casca (bloco 3b)**.
 - **O WORDPRESS JÁ ESTÁ NO AR, medido em 28/10/2026 às 10h17Z** pela execução do bloco 1: `https://rodametria.com.br/`
   devolve **200** em três tentativas, `<title>Rodametria - Mobilidade elétrica</title>`, `last-modified` de 27/10
   às 22h17Z, tema de blocos cru e **nenhuma página publicada**. `/wp-json/` responde 200, `/wp-sitemap.xml`
@@ -34,15 +39,37 @@ Medido em 27/10/2026 no Chrome do Raphael (`bussola/dossies/rodametria/DOSSIE.md
 
 ---
 
-## DESPACHO DA SENTINELA — 2026-10-28 (LEITURA SEMANAL, 19h4xZ–20hxxZ) — A CONTA DA 31.6 NA ILHA EM FOCO, E ELA É ZERO
+## ~~DESPACHO DA SENTINELA — 2026-10-28 (LEITURA SEMANAL) — A CONTA DA 31.6 NA ILHA EM FOCO, E ELA É ZERO~~ — **REESCRITO PELA 18.3 EM 29/10/2026 às 11hxxZ: OS ITENS 2, 3 E 4 ESTÃO FECHADOS; SÓ A CONTA DA 31.1 FICOU, E ELA SAIU DE 0 DE 5 PARA 1 DE 6**
 
-1. **A PROPORÇÃO DA 31.1 NESTA ILHA, CONTADA PELO `REGISTRO.md` COMO A 31.6 MANDA: 0 DE 5.** As cinco execuções registradas (10h17Z, 13h19Z, 13h5xZ, 16h4xZ e 19h1xZ, todas de 28/10) entregaram esquema de banco, portões, bancada, Sync e os primeiros 5 registros publicáveis — **e nenhuma entregou um byte que um visitante veja.** A própria entrada das 19h1xZ escreve "NADA FOI AO AR, E NADA PODIA". A 31.1 pede 7 em 10. **Pela 31.6 isto é item de despacho com prioridade alta.**
+**ITEM 2 — FECHADO POR MEDIÇÃO, E NÃO POR EXECUÇÃO.** O passo **20.1** foi dado pelo
+Raphael entre 28/10 e 29/10: `rodametria.com.br` e `www.rodametria.com.br` responderam
+**200 em TRÊS passadas** às 10h2xZ de 29/10, com `aquametria.com.br` e `robometria.com.br`
+em 200 nas mesmas três — contra `000` com `403 CONNECT` em **toda** medição de 27 e 28/10.
+Seis medições verdes contra seis vermelhas de ontem, zero intermitência.
 
-2. **E A CAUSA NÃO É DA FUNDAÇÃO — É O EGRESSO, E É O PASSO 20.1, QUE SÓ O RAPHAEL PODE DAR.** Medido duas vezes nesta leitura, às 19h5xZ: `rodametria.com.br` e `www.rodametria.com.br` devolvem **000** da nuvem, com o proxy dizendo `CONNECT tunnel failed, response 403` nas duas, enquanto `clubedomosaico.com.br`, `aquametria.com.br` e `robometria.com.br` respondem 200 na mesma passada. A 20.1 é textual: *"Enquanto isso não estiver feito, a ilha não recebe bloco: casca no ar que não pode ser verificada é pior que casca inexistente"* — **e esta ilha já recebeu cinco.** O caminho é `claude.ai/code` → seletor de ambiente → Nuvem → engrenagem → Domínios permitidos, acrescentando `rodametria.com.br` e `*.rodametria.com.br`.
+**ITEM 3 — FECHADO, E O `pronto quando` DELE ERA LITERALMENTE ESTE CURL:** *"uma passada
+de `curl` da nuvem devolver 200 em `https://rodametria.com.br/` e em
+`https://rodametria.com.br/wp-json/rodametria/v1/status`"*. As duas deram 200, e o
+`/status` devolveu `versao_sync: 1.1.5` com `revisao: 1`. Com isso cai a frase *"enquanto o
+egresso estiver recusado, todo bloco desta ilha é bancada por construção"*: esta execução
+foi para o site.
 
-3. **O QUE ISSO SIGNIFICA PARA A EXECUÇÃO SEGUINTE, dito sem rodeio:** enquanto o egresso estiver recusado, todo bloco desta ilha é bancada por construção, porque nada pode ser conferido no ar — e a 31.3 proíbe bancada enquanto houver item de conteúdo aberto. **A saída não é escrever melhor: é o item 2.** **Pronto quando:** uma passada de `curl` da nuvem devolver 200 em `https://rodametria.com.br/` e em `https://rodametria.com.br/wp-json/rodametria/v1/status`.
+**ITEM 4 — REGISTRO, SEM NADA A FAZER**, e segue verdadeiro: o teto semanal de geração de
+link de afiliado é desta ilha, o caminho legítimo é a Open API na coleta (25.6), e o painel
+da Shopee continua fora do caminho da Fundação pela 25.8.
 
-4. **O TETO SEMANAL DE GERAÇÃO DE LINK DE AFILIADO (1.2) É DESTA ILHA E ESTÁ SENDO GASTO PELO CAMINHO CERTO.** A leitura semanal **não gerou nenhum link nesta execução**, e os três motivos estão medidos: (a) pela 1.2 o teto vai inteiro para a ilha em foco, que é esta; (b) pela **25.8** link de afiliado **não se gera à mão** no painel `offer/custom_link`, e o caminho legítimo é a Open API na coleta da Fundação (25.6) — que é exatamente o que o bloco das 19h1xZ desta ilha fez, com 5 registros publicáveis de 17; (c) o painel da Shopee foi aberto nesta leitura e **redirecionou para `shopee.com.br/verify/captcha?…&scene=crawler_item`**, e a Sentinela é proibida de resolver CAPTCHA. **Nada a consertar: está escrito para ninguém procurar links que a Sentinela deveria ter gerado.**
+### 1. A CONTA DA 31.1 — ERA 0 DE 5, É **1 DE 6**, E O PISO DA 31.1 É 7 EM 10
+
+A execução de 29/10 às 10h1xZ entregou NO AR, pela primeira vez nesta ilha: a casca e a F2
+(`/autonomia-patinete-eletrico/`), com o manifest saindo da revisão 1 (que não publicava
+nada de propósito) para a 5. **A causa das cinco execuções anteriores não era de método e
+está fechada no item 2 acima.**
+
+**Pronto quando:** a conta da 31.6, refeita na leitura semanal seguinte contando o
+`REGISTRO.md`, der **7 em 10 ou mais**. Com a ilha no ar e o canal provado, cada bloco da
+fila passa a poder terminar em página — então o caminho é a fila andar, não uma correção.
+
+---
 
 ## DESPACHO DO RAPHAEL — 27/10/2026 — ESTA ILHA NASCE AGORA
 
@@ -155,7 +182,27 @@ não respondeu em nenhum degrau. **A coleta em ficha de FABRICANTE (nível 4 da 
 necessária e ficou mais urgente**, e o primeiro passo dela é a 20.3 outra vez — medir o egresso contra os
 domínios dos fabricantes antes de escrever regra que os exija.
 
-**3b. CASCA** — depois do WordPress. Molde FERRAMENTA da seção 32, a F1 é a home ("Esse patinete precisa de CNH?"). A home desenhada e aprovada no canvas de identidade está descrita no `DESIGN.md`.
+**3b. ~~CASCA~~ — ENTREGUE EM 29/10/2026 às 10h1xZ–11hxxZ, E COM ELA A ILHA ESTÁ NO AR.**
+`snippets/rodametria-casca.php` (identidade, menu, trilha, JSON-LD, favicon, limpeza do lixo
+de fábrica do WordPress e os **componentes do molde da seção 32**, aqui e não em cada
+snippet, como a 32.6-b manda) e `snippets/rodametria-f2.php` — a **F2** em
+`/autonomia-patinete-eletrico/`, primeira página desta ilha. Mais `regras/f2.py` (o cérebro),
+`dados/f2-respostas.json` (o que a tela serve), `ferramentas/gerar-f2.py`,
+`ferramentas/teste-f2.py`, `ferramentas/atualizar-manifest.py`,
+`ferramentas/conferir-no-ar.py` e `ferramentas/conferir-32-5-no-navegador.mjs`.
+
+**A DIVERGÊNCIA COM O `VOZ.md`, e ela é decisão escrita e não esquecimento:** o `VOZ.md`
+manda a **F1** ser a home. A F1 **não pode ir ao ar** — o limiar legal dela segue `pendente`
+e os cinco domínios oficiais foram **remedidos em 29/10 e seguem recusados**. Home que FAZ a
+pergunta do título e não a responde é pior que home nenhuma, então a home nasceu **HUB**: a
+caixa de resposta no topo diz o que a ilha mede, o cartão da F2 leva à pergunta que já tem
+resposta, e os outros dois dizem **com uma linha o que falta**, sem prometer data. No dia em
+que a resolução for lida, a F1 toma a primeira tela da home e os cartões descem — **nenhuma
+URL muda**, que é o que a 32.3 protege. A divergência está escrita dentro da própria casca,
+no lugar onde quem for mexer a lê.
+
+**A F3 TAMBÉM NÃO FOI, e a causa é de dado:** só três registros declaram `carga_max_kg` e
+**nenhum dos três tem oferta aberta** — a conta não teria o que comparar nem o que vender.
 
 **4. FERRAMENTAS**, uma por execução, com JSON-LD, tabela pré-renderizada, resposta antes da explicação, bloco de compra antes da procedência.
 

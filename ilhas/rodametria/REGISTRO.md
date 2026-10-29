@@ -3,6 +3,219 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-10-29 10h1xZ–11hxxZ — **A ILHA ESTÁ NO AR.** A casca e a F2 desembarcaram, e a revisão do manifest saiu de 1 (que não publicava nada de propósito) para 5 — **a primeira execução desta ilha que entrega um byte que um visitante vê**
+
+**A ESCOLHA DA ILHA.** `foco.md` nomeia a **rodametria** (foco total e absoluto, decisão do Raphael de
+27/10) e pela **1.2** não há escolha a fazer. Conferi as duas exceções que furam o foco antes de aceitar
+isso: (a) o **despacho do molde da 32.6** está `FECHADO` nas três ilhas (aquametria 21/10 18h2xZ,
+clubedomosaico 21/10 19h1xZ, robometria 21/10 16h1xZ) — li o topo dos três `PROMPT.md`; (b) o item
+**ALTA** da ronda da clubedomosaico de 28/10 **não fura o foco**, porque a 1.2 só admite despacho ALTO em
+ilha *"no ar e quebrada"* e a régua técnica daquela ronda passou inteira, **32 de 32 URLs em 200**. O item
+dela é dado de banco, não página servindo erro. `executando_desde` estava `null`, que pela **1.1** já
+significa que não havia bloco da Fundação vivo. Reserva escrita às **10h18Z**, commit `2addfbd`, push
+aceito de primeira, e **renovada às 10h43Z** pela 1.1 — este bloco passou de 40 minutos sozinho. Nenhum
+branch `claude/*` à frente do `main` e nenhum PR aberto.
+
+---
+
+### 1. A REDE ABRIU — E A ATRIBUIÇÃO DISSO É MAIS HONESTA DO QUE EU ESCREVI NO PRIMEIRO COMMIT
+
+**O que está medido, às 10h2xZ, nas três passadas que a 20.2 manda:** `rodametria.com.br` e
+`www.rodametria.com.br` em **200 nas três**, com `aquametria.com.br` e `robometria.com.br` em 200 nas
+**mesmas** três. Seis medições de verde contra seis controles verdes, zero intermitência.
+
+**O que eu escrevi no commit da revisão 2 e está ERRADO como afirmação:** *"o passo 20.1 foi dado pelo
+Raphael"*. Eu não medi gesto nenhum dele — medi um `curl`. E o registro desta própria ilha desmente a
+inferência: **a entrada de 28/10 às 19h1xZ, logo acima desta, escreve que `rodametria.com.br` e
+`www.rodametria.com.br` estavam em 200**, e o cabeçalho do `ESTADO.md` escrito pela leitura semanal
+**às 19h5xZ do mesmo dia** diz `000` com *"403 do proxy, medido duas vezes"*. **Trinta e poucos minutos
+separam as duas, e elas se contradizem.**
+
+**A leitura certa, e ela já está escrita no contrato:** a correção de 11/09/2026 no topo da seção 20 é
+exatamente este caso — *"o mesmo comando, repetido minutos depois, devolveu 200 (…) era intermitência do
+túnel lida como bloqueio, e o diagnóstico se propagou porque cada execução leu o `ESTADO.md` da anterior
+como fato"*. Então o que esta execução pode afirmar é: **o egresso desta ilha responde 200 hoje, em três
+passadas com controle**, e o despacho que dependia disso está cumprido. O que ela **não** pode afirmar é
+quem o abriu, nem que ele estivesse fechado ininterruptamente desde 27/10. O campo `rede:` do `ESTADO.md`
+foi escrito com essa diferença dentro.
+
+**E a mesma passada remediu o que NÃO abriu** (20.3, porque é a execução que escreve a regra que exige a
+fonte): os cinco domínios oficiais da Resolução Contran (`gov.br`, `in.gov.br`, `planalto.gov.br`,
+`contran.gov.br`, `lex.com.br`), os quatro de prefeitura da camada municipal, os dois periódicos que
+publicam o consumo de patinete e o repositório da tese da UPS — **todos em `000`**, com
+`rodametria.com.br` e `aquametria.com.br` em 200 na mesma passada. Os três despachos abertos em
+`dados/despachos.md` ganharam a nota de remedição; nenhum deles ficou mais barato.
+
+---
+
+### 2. O QUE FOI AO AR, E POR QUE A F2 E NÃO A F1
+
+**A casca** (`snippets/rodametria-casca.php`, 1.1.1): tokens do `DESIGN.md`, símbolo **V9 completo** no
+cabeçalho e em negativo no rodapé, favicon próprio em SVG (a seção 6 chama ícone padrão do WordPress na
+aba de **bloco reprovado**), menu hambúrguer com `aria-expanded`/`aria-controls` e links `<a href>` de
+verdade no HTML servido, trilha + `BreadcrumbList`, `WebSite` JSON-LD na home, e `<title>` e
+`description` saindo de **um** mapa de páginas — nunca de dois lugares.
+
+**E os COMPONENTES DO MOLDE da seção 32 moram nela, não em cada snippet**, porque a **32.6-b** manda:
+*"o que se repete entre páginas (…) vira componente da CASCA"*. São seis: a caixa de resultado, a dobra
+`<details>`, o cartão de compra (com **espaço reservado** para quem não tem foto — nenhum registro desta
+ilha tem, e a seção 6 diz que perder a recomendação certa por falta de foto é trocar o certo pelo bonito),
+o carrossel com `scroll-snap` em CSS puro, a barra fixa do telefone, e o rótulo do botão de loja **por
+degrau** da escada da 25.1 — numa função só, porque a seção 8 registra **sete** réguas que quebraram por
+procurar o rótulo de um degrau. A **32.5-c** foi obedecida na origem: as regras de telefone do molde
+miram a classe `rdm-molde-*`, e as **duas** famílias de página desta ilha (ferramenta e hub) já existem
+no primeiro dia, então nenhuma delas nasceu fora do alcance delas.
+
+**A F2** (`snippets/rodametria-f2.php`, 1.0.0), em `/autonomia-patinete-eletrico/`, na ordem da **32.1**
+— e a ordem é **conferida por afirmação no fonte**, não lida de olho.
+
+**A F1 NÃO FOI, e isso é decisão registrada.** O limiar legal dela é `pendente` e os cinco domínios
+oficiais seguem recusados, remedidos nesta execução. A especificação do bloco 2 já dizia, com todas as
+letras: *"A F1 segue sem poder ir ao ar. A F2 e a F3 podem ir ao ar"*. **A F3 também não foi**, e a causa
+é de dado: três registros declaram `carga_max_kg` e **nenhum dos três tem oferta aberta** — a conta não
+teria o que comparar nem o que vender.
+
+**Daí a home nascer HUB, divergindo do `VOZ.md`, que manda a F1 ser a home.** Home que faz a pergunta do
+título e não a responde é pior que home nenhuma. A divergência está escrita **dentro da própria casca**,
+no lugar onde quem for mexer a lê, com a saída: no dia em que a resolução for lida, a F1 toma a primeira
+tela e os cartões descem — **nenhuma URL muda**, que é o que a 32.3 protege.
+
+---
+
+### 3. A DECISÃO DE ENGENHARIA DO BLOCO: NENHUM NÚMERO E NENHUMA FRASE DE RESPOSTA MORA NO PHP OU NO JS
+
+O caminho é `dados/constantes.json` → `regras/f2.py` (o cérebro) → `ferramentas/gerar-f2.py` →
+`dados/f2-respostas.json` → a option que o Sync grava → o PHP → o JS. **O PHP é tradutor e o JS é
+preenchedor de molde.** Isso tem um motivo medido e não é elegância: a página responde em **dois** lugares
+— o HTML pré-renderizado e a recomputação no navegador — e se cada um escrevesse a própria frase, a página
+diria duas coisas diferentes para a mesma entrada **e nenhum portão veria**. É a cicatriz da seção 8 (*"as
+duas metades nunca se falavam"*) com um andar a mais: aqui as duas metades são **a mesma página**.
+
+A fronteira da seção 8 foi aplicada nome por nome: o **molde de frase** é fato externo às duas metades e
+mora num lugar só; a **decisão** de qual molde vale em cada mundo está escrita duas vezes de propósito
+(Python e JS), porque é ali que a divergência ensina algo. E `ferramentas/teste-f2.py` **reescreve a
+aritmética à mão em `Fraction`** e lê as constantes do arquivo de constantes — nunca do arquivo que o
+gerador escreveu, nem do gerador: quem confere escreve a própria régua.
+
+**A terceira conta que a seção 8 pede** está lá: a razão `97,74 ÷ 41,29` é refeita do zero e comparada
+com o fator publicado, e o fator de `misto` é conferido **pelo quadrado** (meio-caminho geométrico), sem
+precisar de ponto flutuante.
+
+---
+
+### 4. A BATERIA DE MUTAÇÕES ACHOU UM DEFEITO REAL E TRÊS TRAVAS INERTES — ANTES DO PUSH
+
+**O defeito real foi achado pela mutação que PRODUZ O MUNDO**, e é a regra da seção 8 em estado puro:
+*"todo caso que o ESQUEMA permite e o banco ainda não tem é um caso que a régua precisa tratar hoje"*. A
+vitrine lia **só** o grupo `nao_declaram_v_ou_ah`, que é o único que o banco de hoje enche. Fabriquei um
+registro declarando V, Ah **e** oferta aberta — o mundo que a interseção vazia de 28/10 torna impossível
+— e o item caiu em `de_outro_wh` e **desapareceu do bloco de compra**: publicável, com piso, fora da
+vitrine. É o **avesso da 25.2**, e ele nunca poderia falhar enquanto o mundo não existisse. A vitrine
+passou a varrer os três grupos na **ordem da seção 7** (quem passa em todas as condições antes de quem
+falha numa), cada cartão carrega o rótulo do grupo dele, e a bancada ganhou a afirmação de ordem.
+
+**As três travas inertes, as três da mesma família — régua que mede prosa por vizinhança:**
+1. A régua da **32.4** (bastidor da fábrica na tela) só olhava linhas com `<p>` literal, e a promessa da
+   F2 é `<p class="rdm-promessa">`. A mutação enfiou *"O egresso da nuvem"* na primeira linha da página e
+   **passou**. Agora a régua olha `<p` e `<h`.
+2. A trava do JS só conferia que os moldes **citados** existiam. Trocar `D.moldes.km_recusa` por um
+   literal passava. Agora ela proíbe **prosa** dentro do bloco `<script>` — e a primeira versão dela
+   reprovou markup legítimo, que é o erro que a 20.5 nomeia (*"portão que reprova página certa é o
+   caminho mais curto para alguém passar a ignorá-lo"*), então ela deixa passar literal com `<` ou `>`.
+3. **E ela achou um defeito meu no caminho:** o JS escrevia `'O que esperar no seu trajeto'` e o PHP
+   escrevia **a mesma frase** — dois lugares para o mesmo rótulo, no arquivo cujo propósito declarado é
+   não ter nenhum. Os dois rótulos viraram molde.
+
+Mais a mutação cujo **alvo exato** não existia: a primeira versão mirava `faixas.plano.degenerada` da
+primeira linha da tabela, que é um registro **sem autonomia declarada** — faixa vazia, campo que não
+existe. Ela passou medindo nada. A segunda versão **procura** a linha com autonomia declarada em vez de
+indexar, e a trava de alvo exato recusa operar se o texto não estiver lá. **8 de 8 mordem.**
+
+---
+
+### 5. OS DOIS DEFEITOS QUE SÓ O AR MOSTROU, E OS DOIS SÃO DA FAMÍLIA DO "VERDE QUE NÃO É ENTREGA"
+
+**(a) A CASCA LIA A OPTION COM O NOME ERRADO.** O Sync grava `rodametria_dados_` +
+`sanitize_key(id do manifest)`, e `sanitize_key` **preserva hífen**: a chave é
+`rodametria_dados_f2-respostas`. A casca pedia `f2_respostas`, com sublinhado. **O desembarque da revisão
+2 ACONTECEU** — três linhas no log do `/status`, as três dizendo `ok`, snippets #6 e #7 criados, option
+gravada — e a página caía no estado degradado honesto. **Não havia linha vermelha em lugar nenhum:** nem
+erro de PHP, nem falha no log, nem nada no console. É a **20.4** um andar abaixo: ali o Sync não aplica e
+diz; aqui ele aplica, diz `ok`, e o que falha é a **leitura** do que foi aplicado. O conserto não foi
+trocar a letra: o nome virou constante declarada e a bancada ganhou a afirmação que a confere contra os
+ids do manifest, **nas duas direções**, mais a trava que proíbe voltar a digitar o nome na chamada.
+
+**(b) O SITEMAP ERA INVENTÁRIO.** Ele publicava **seis** URLs e **quatro** eram lixo de fábrica do
+WordPress — `/2026/10/27/hello-world/`, `/sample-page/`, `/category/uncategorized/` e
+`/author/rodametria_gestor/` — contra as duas páginas de verdade, num domínio de **dois dias**. A 14.1 é
+literal: *"cada URL fraca gasta orçamento que uma página boa precisaria (…) o sitemap é curadoria, não
+inventário"*. A casca 1.1.0 manda as duas páginas de exemplo para a **lixeira** (nunca apaga, casando por
+slug **e** por título nas duas línguas, pulando a home e tudo que ela mesma criou — mesmo método da casca
+da Robometria) e **remove os provedores de sitemap de autor e de taxonomia**. Quando esta ilha tiver
+artigo, quem volta é o provedor de **post**, nunca o de autor.
+
+**(c) E DOIS `<h1>` POR PÁGINA.** O tema de blocos imprime o `post_title` como `<h1>` e o shortcode
+imprime o H1 da página. Saiu o do tema, porque o da página é o que a 32.1 põe na ordem certa e o que a
+32.3 protege. **H1 duplicado não dá erro em lugar nenhum** — só uma afirmação que **conta** o vê, e é por
+isso que o portão de ar conta em vez de procurar.
+
+---
+
+### 6. OS DOIS PORTÕES NOVOS, E POR QUE ELES NÃO FEREM A 31.2
+
+A **31.2** proíbe portão novo sem defeito medido no ar que ele teria pegado, e a **31.3** proíbe trabalho
+de bancada com item de conteúdo aberto. Os dois nasceram aqui **porque a seção 8 os exige por escrito
+para publicar**, e os dois pagaram o próprio custo na mesma execução:
+
+- `ferramentas/conferir-no-ar.py` é a lista literal da seção 8 (*"depois de publicar, busque a URL no ar
+  e confira com número medido"*) mais a porta de entrada da **29.2**, o log do `/status` **linha por
+  linha** da 20.4 com a leitura de cache da **20.5**, e a curadoria do sitemap da 14.1. **Ele achou os
+  três defeitos do item 5 acima**, nenhum dos quais aparecia em lugar nenhum.
+- `ferramentas/conferir-32-5-no-navegador.mjs` é **cópia do modelo da clubedomosaico**, como a **32.5-b**
+  manda com todas as letras (*"quem copiar troca o domínio e os nomes de classe da ilha"*). Trocaram o
+  domínio, o prefixo das classes e o seletor do formulário; o cabeçalho conta a história **desta** ilha,
+  porque cópia que mantém o motivo da origem envelhece contando o defeito de outro site.
+
+**E a referência saiu de `ferramentas/` para `regras/`** porque a `bancada.py` desta ilha a **denunciou no
+dia em que nasceu**: *"ou ele é portão e precisa do prefixo, ou não é e precisa estar fora de
+`ferramentas/`"*. Ela não é portão — portão que confere a própria produção é o teste que mede a si mesmo.
+`regras/LEIA.md` registra a decisão e o que garante que aquele código roda: o gerador o importa, e a
+bancada roda o gerador com `--conferir` em toda passada.
+
+---
+
+### 7. A CONTA DA 31.1 SAIU DE 0 DE 5 PARA 1 DE 6, e o despacho de 28/10 foi reescrito pela 18.3
+
+Os itens **2, 3 e 4** daquele despacho estão fechados — o `pronto quando` do item 3 era **literalmente**
+o `curl` que esta execução rodou. Ficou só a conta da 31.1, com o novo número. O piso é 7 em 10, e agora
+o caminho para ele é a fila andar: com o canal provado e a casca no ar, **cada bloco da fila pode
+terminar em página**, o que não era verdade em nenhuma das cinco execuções anteriores.
+
+---
+
+### O QUE ESTE BLOCO DEIXA PARA O SEGUINTE — e o primeiro item mudou de lugar na fila
+
+**O 3d (o casamento do registro com a oferta) continua sendo o próximo**, e agora com uma razão a mais
+que é visível na tela: a F2 no ar diz, com a prestação de contas da seção 7, que **nenhum** dos 17
+registros entra pela conta de Wh, e que os quatro da vitrine estão lá com o rótulo *"a ficha não declara a
+bateria"*. Isso é honesto e é pouco. O 3d resolve `url_produto` (e com ele o teste de vida da 25.4-b
+passa a existir aqui), a **foto** que o cartão do molde pede — hoje os quatro cartões servem espaço
+reservado — e o caminho para a ficha onde o campo técnico mora. Leia a **25.7** e a **25.9** antes de
+escrever uma linha.
+
+**E duas coisas que esta execução deixou medidas e não fechou, ditas para ninguém as descobrir de novo:**
+1. **A 32.5 não foi medida em pixel nesta passada.** O portão existe e está no repositório, mas a
+   medição a 390 px num navegador de verdade ficou para a passada seguinte ou para a ronda — e o
+   `conferir-no-ar.py` **diz isso como registro** em vez de aprovar em silêncio, que é o que a 32.5-b
+   proíbe. Rodá-lo é um comando.
+2. **A bateria de mutações da F2 não virou arquivo.** As 8 mutações rodaram nesta execução, de dentro de
+   uma passada avulsa, e provaram as travas hoje. Pela 31.2 eu não abri `mutacoes-f2.py` sem defeito no
+   ar que o justificasse — mas a seção 8 é clara em que *"mutação que não roda não é trava"*, e mutação
+   que rodou uma vez não roda amanhã. **Quando a F2 ganhar o próximo bloco, a bateria vira arquivo**, e o
+   defeito medido que a justifica já está escrito no item 4 acima.
+
+---
+
 ## 2026-10-28 19h1xZ–19h3xZ — **O PISO DE COMPRA EXISTE: 5 REGISTROS PUBLICÁVEIS, DE ZERO.** E o bloco mediu a coisa que ninguém tinha medido: **o piso e o dado técnico caíram em registros DIFERENTES, e a interseção é VAZIA** — o que destrava a casca não é link, é casamento
 
 **A ESCOLHA DA ILHA.** `foco.md` nomeia a **rodametria** (foco total e absoluto, decisão do Raphael de

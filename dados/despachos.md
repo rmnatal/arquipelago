@@ -29,6 +29,16 @@ Prioridade: `alta` fura a fila da próxima execução do destinatário.
 
 ### prioridade NORMAL — a CAMADA MUNICIPAL da F1 é dado de banco, e os quatro domínios de prefeitura que a sustentariam estão recusados pelo egresso
 
+> **REMEDIDO EM 29/10/2026 às 11hxxZ pela execução da Fundação que pôs a casca e a F2 da
+> rodametria no ar, e NADA MUDOU AQUI: segue aberto.** As três passadas da 20.2 deram `000`
+> nos quatro domínios de prefeitura, nos dois periódicos que publicam o consumo de patinete
+> (`stdjet.scienceandtechnology.com.vn`, `et.vnuhcmjournal.com.vn`), no repositório da tese
+> (`dspace.ups.edu.ec`) e nos cinco domínios oficiais da Resolução Contran. **O controle é o
+> que torna a medição informação e não palpite:** `rodametria.com.br` e `aquametria.com.br`
+> responderam **200** na mesma passada — e `rodametria.com.br` respondia `000` ontem. Ou
+> seja: o egresso desta ilha abriu, e **nenhum destes domínios entrou junto**. O pedido
+> continua sendo o mesmo, com a mesma forma, e não é mais barato hoje do que era ontem.
+
 28/10/2026 às 16h3xZ — RAPHAEL (duas linhas na lista de rede, ou quatro leituras no Chrome) — Medido pela execução da Fundação que entregou o bloco 3 da rodametria (modelo do banco).
 
 **POR QUE ISTO NASCEU NESTE BLOCO.** A especificação do bloco 2 decidiu, na seção 1.1, que a F1 tem **quatro** entradas e que a quarta (`municipio`) tem **três** estados de saída: vazio → ressalva genérica; preenchido e **conhecido pelo banco** → o limite daquele município; preenchido e desconhecido → ressalva genérica dizendo que ele não está no banco. O estado do meio exige um **banco de municípios**, que a lista do bloco 3 no `PROMPT.md` não pedia — ela é anterior à especificação. A entidade `MUNICIPIO` nasceu agora, em `ilhas/rodametria/dados/municipios.json`, com os quatro municípios que o bloco 1 colheu.
@@ -64,6 +74,16 @@ aquametria.com.br           200  200  200   (controle)
 
 ### prioridade NORMAL — a F2 da ilha em foco vai ao ar sem o número que a tornaria completa, e as DUAS fontes que o publicam não resolvem nesta nuvem
 
+> **REMEDIDO EM 29/10/2026 às 11hxxZ pela execução da Fundação que pôs a casca e a F2 da
+> rodametria no ar, e NADA MUDOU AQUI: segue aberto.** As três passadas da 20.2 deram `000`
+> nos quatro domínios de prefeitura, nos dois periódicos que publicam o consumo de patinete
+> (`stdjet.scienceandtechnology.com.vn`, `et.vnuhcmjournal.com.vn`), no repositório da tese
+> (`dspace.ups.edu.ec`) e nos cinco domínios oficiais da Resolução Contran. **O controle é o
+> que torna a medição informação e não palpite:** `rodametria.com.br` e `aquametria.com.br`
+> responderam **200** na mesma passada — e `rodametria.com.br` respondia `000` ontem. Ou
+> seja: o egresso desta ilha abriu, e **nenhum destes domínios entrou junto**. O pedido
+> continua sendo o mesmo, com a mesma forma, e não é mais barato hoje do que era ontem.
+
 28/10/2026 às 13h3xZ — RAPHAEL (uma leitura no Chrome, ou duas linhas na lista de rede) — Medido pela execução da Fundação que entregou o bloco 2 da rodametria.
 
 **O PEDIDO, nas duas formas que servem.** Qualquer uma destrava; a segunda vale a passada do mesmo jeito se a primeira demorar.
@@ -98,6 +118,16 @@ Com `rodametria.com.br` em **200** na mesma janela, o que separa recusa de host 
 ---
 
 ### prioridade ALTA — a ilha EM FOCO tem como produto a CATEGORIA LEGAL, e o único texto que a decide é negado pelo egresso: o bloco 2 pode ser especificado inteiro, mas não pode ser FECHADO desta nuvem
+
+> **REMEDIDO EM 29/10/2026 às 11hxxZ pela execução da Fundação que pôs a casca e a F2 da
+> rodametria no ar, e NADA MUDOU AQUI: segue aberto.** As três passadas da 20.2 deram `000`
+> nos quatro domínios de prefeitura, nos dois periódicos que publicam o consumo de patinete
+> (`stdjet.scienceandtechnology.com.vn`, `et.vnuhcmjournal.com.vn`), no repositório da tese
+> (`dspace.ups.edu.ec`) e nos cinco domínios oficiais da Resolução Contran. **O controle é o
+> que torna a medição informação e não palpite:** `rodametria.com.br` e `aquametria.com.br`
+> responderam **200** na mesma passada — e `rodametria.com.br` respondia `000` ontem. Ou
+> seja: o egresso desta ilha abriu, e **nenhum destes domínios entrou junto**. O pedido
+> continua sendo o mesmo, com a mesma forma, e não é mais barato hoje do que era ontem.
 
 28/10/2026 às 10h4xZ — RAPHAEL (dois gestos de navegador, nenhum deles é bloco) — Medido pela execução da Fundação que entregou o bloco 1 da rodametria.
 
