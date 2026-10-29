@@ -2,110 +2,80 @@
 ilha: rodametria
 estado: viva              # `nascendo` -> `viva` em 29/10/2026 as 12h1xZ: a ilha SERVE PAGINA. Duas URLs no wp-sitemap.xml, as duas em 200, com a casca e a F2 desembarcadas na revisao 9 e os dois portoes de ar APROVADOS. Antes deste dia a ilha tinha banco e nenhum byte que um visitante visse.
 prioridade: 1
-piso: abaixo              # 2 URLs publicadas contra as 40 da 21.1, e primeira_indexacao null. Quem decide este campo e a leitura semanal (21.6), nunca a Fundacao de cabeca.
-urls_publicadas: 2        # CONTADO no wp-sitemap.xml no ar com quebra de cache, as 12h1xZ de 29/10/2026: `/` e `/autonomia-patinete-eletrico/`. Eram SEIS antes desta execucao e QUATRO eram lixo de fabrica do WordPress (hello-world, sample-page, /category/uncategorized/, /author/rodametria_gestor/) — a 14.1 manda que o sitemap seja curadoria, e as duas paginas de exemplo foram para a LIXEIRA e os provedores de autor e de taxonomia sairam.
+piso: abaixo              # 5 URLs publicadas contra as 40 da 21.1, e primeira_indexacao null. Quem decide este campo e a leitura semanal (21.6), nunca a Fundacao de cabeca. O teto da 21.4 tem folga: esta semana saiu UMA leva, de 3 URLs, contra o teto de 3 levas por semana.
+urls_publicadas: 5        # CONTADO no wp-sitemap.xml no ar com quebra de cache, as 20h1xZ de 29/10/2026: `/`, `/autonomia-patinete-eletrico/`, `/veiculos/`, `/veiculos/patinete-eletrico/` e `/veiculos/bicicleta-eletrica/`. Eram 2 antes desta execucao. Corpo medido pelo portao: 2.586 · 11.246 · 3.488 · 9.408 · 6.377 caracteres, todos acima do piso de 1.500 da secao 8 — e a mae `/veiculos/` so passou porque a conta foi feita ANTES de medir no ar: ela daria 1.253.
 ultima_ronda: 2026-10-28T20:00Z   # escrito pela Sentinela, nunca pela Fundacao (secao 2). SEGUE SENDO O DA LEITURA SEMANAL DE 28/10, e o contexto dele mudou: ele diz "nao houve ronda tecnica: a ilha tem zero pagina publicada e o egresso esta recusado". As duas metades cairam hoje — a ilha tem pagina e o egresso responde 200. Pela decisao do Raphael de 28/09/2026 a ronda tecnica alcanca toda ilha com URL servida, logo esta ilha ENTRA na ronda a partir de agora.
 primeira_indexacao: null  # as duas primeiras URLs foram ao ar hoje; indexacao e trabalho de dias. Quem grava este campo e a leitura semanal, lendo o Search Console.
-ultima_execucao: 2026-10-29T16:42Z   # BLOCO 3e ENTREGUE: a premissa dele (coleta em ficha de fabricante) estava ERRADA e esta corrigida por medicao, e a coleta achou um defeito NO AR — o bloco de compra dizia a mesma coisa TRES vezes e a pagina de autonomia estava calada sobre autonomia. Revisao 12, os dois portoes de ar APROVADOS. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
-executando_desde: 2026-10-29T19:48Z   # RESERVA RENOVADA pela 1.1 (segunda renovacao; reservada as 19h18Z). A hora sai do `date -u` na mesma linha de comando que a grava.
-rede: aberta em 2026-10-29   # 20.2, MEDIDA e nao herdada: rodametria.com.br e www.rodametria.com.br em 200 nas TRES passadas as 10h2xZ, com aquametria.com.br e robometria.com.br em 200 nas MESMAS tres. E A ATRIBUICAO DISSO E MAIS HONESTA DO QUE PARECE: o REGISTRO.md desta ilha de 28/10 as 19h1xZ ja escrevia 200, e este cabecalho, escrito as 19h5xZ do MESMO dia, dizia 000 com "403 do proxy, medido duas vezes". As duas se contradizem por trinta e poucos minutos, e a correcao de 11/09/2026 no topo da secao 20 e exatamente este caso — intermitencia lida como bloqueio, propagada porque cada execucao le o ESTADO.md da anterior como fato. O que esta medido: responde 200 hoje, tres vezes, com controle. O que NAO esta: quem abriu, nem se esteve fechado sem interrupcao. **E O QUE NAO ABRIU, remedido nesta passada pela 20.3: os cinco dominios oficiais da Resolucao Contran, os quatro de prefeitura, os dois periodicos do consumo de patinete e o repositorio da tese — todos em 000.**
+ultima_execucao: 2026-10-29T20:16Z   # BLOCO 5b ENTREGUE: a secao /veiculos/ e as duas primeiras paginas pelo nome do produto, no ar e conferidas. Das SEIS cabecas do dossie so DUAS abrem o portao da 30.2, e a causa das outras quatro esta medida e escrita. Revisao 16. A HORA SAI DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
+executando_desde: null   # limpo as 2026-10-29T20:16Z pela propria execucao que reservou as 19h18Z e RENOVOU as 19h37Z e 19h48Z pela 1.1. O bloco levou cerca de uma hora, e a espera NAO foi de trabalho: foi do cron do Sync, que roda a cada 30 minutos POR VISITA (20.6). A revisao 16 entrou as 20h09Z, 21 minutos depois do push, porque a passada anterior do cron havia sido as 19h48Z e o relogio dele nao se adianta por GET — os 409 do wp-cron.php sao o lock, nao prova de que a tarefa da ilha estava vencida.
+rede: aberta em 2026-10-29   # 20.2, MEDIDA e nao herdada: rodametria.com.br e o /status em 200 nas TRES passadas as 19h1xZ, com aquametria.com.br em 200 nas mesmas tres. E A LEITURA SEM QUEBRA DE CACHE (como o Google le) tambem foi feita: as tres URLs novas em 200 nas duas leituras. O QUE REPROVOU FOI A BORDA DO HOSPEDEIRO, e nao e desta ilha: sonda VIRGEM em `/nao-existe-<relogio>-xyz/` devolveu 404 · 200 · 200 · 200, com o corpo do 404 servido em HTTP 200 e o title 'Pagina nao encontrada'. E o mesmo soft 404 que a clubedomosaico registra ha oito medicoes, agora medido numa SEGUNDA conta do mesmo hospedeiro — linha acrescentada ao despacho ALTA de dados/despachos.md. Nao se conserta daqui.
 bloqueada_por: null      # obrigatorio pela secao 2. `null` DE PROPOSITO: o que falta (gov.br para a F1, as prefeituras para a camada municipal, as tres etiquetas do Mercado Livre) trava a FABRICA e nao a ILHA, e isso se escreve no despacho, que e o canal da 12.2. Preenche-lo congelaria tambem os blocos que ja podem andar — e o proximo da fila, o 3d, nao depende de nenhum deles.
 bloco_atual: |
-  A PREMISSA DO BLOCO 3e ESTAVA ERRADA, E O QUE A COLETA ACHOU FOI UM DEFEITO NO AR.
-  O bloco fechou pelos dois lados: a premissa esta corrigida POR MEDICAO, e a pagina
-  de autonomia deixou de dizer a mesma coisa tres vezes e passou a dizer a autonomia.
+  BLOCO 5b ENTREGUE, E O ACHADO DELE E DE PALAVRA E NAO DE PRODUTO.
 
-  ESTE ARQUIVO E A MEMORIA DESTA ILHA — `/areas/projeto-rodametria.md` NAO EXISTE nesta
-  nuvem (procurado nesta passada, nao encontrado), como o PROMPT.md previa. O proximo
-  passo esta escrito aqui embaixo, por extenso.
+  NO AR: `/veiculos/` (a secao de nivel 1 da 16.1, com o nome que o VOZ.md ja declarava no menu),
+  `/veiculos/patinete-eletrico/` e `/veiculos/bicicleta-eletrica/`, filhas diretas dela pela 30.1, no
+  molde da 32.2. Revisao 16, casca 1.2.1 -> 1.4.0, snippet `rodametria-produto` 1.0.0.
 
-  O QUE ESTA NO AR (revisao 12, CONFERIDA: `/status` em 12 igual ao manifest, as DUAS
-  linhas da revisao 12 do log dizendo `ok` lidas uma por uma pela 20.4,
-  `conferir-no-ar.py` em 138 afirmacoes e 0 falha, e o portao de pixel da 32.5 no
-  navegador a 390 px APROVADO):
-  - O primeiro cartao de `/autonomia-patinete-eletrico/` serve
-    `22 km declarados pelo vendedor · 500 W no anúncio · a ficha não declara a bateria`.
-    A pagina que RESPONDE autonomia estava calada sobre o unico numero de autonomia
-    que a oferta do botao dela declara.
-  - `bateria não declarada` tem ZERO ocorrencia na pagina (eram 4, uma por cartao) e a
-    frase digitada `Nenhum destes entrou pela conta de Wh` tem ZERO (era 1).
-  - A frase de abertura do bloco de compra e DERIVADA: `Nenhum dos 4 com oferta aberta
-    hoje entrou pela conta de Wh, e cada cartão diz por quê.` O `4` e contado da vitrine.
-  - 32.5: formulario 329 px (teto 700) e primeiro botao de compra 1.380 px (teto 1.400).
-    O botao SUBIU 5 px com uma linha A MAIS no cartao, porque a frase de abertura
-    derivada e mais curta que a digitada e devolveu uma linha acima dos cartoes.
-  - A F1 e a F3 seguem fora do ar, e agora com a causa MEDIDA em vez de suposta — leia
-    o paragrafo do gargalo mais abaixo.
+  ESTE ARQUIVO CONTINUA SENDO A MEMORIA DESTA ILHA — `/areas/projeto-rodametria.md` nao existe nesta
+  nuvem, e e por isso que este campo e longo.
 
-  O QUE A MEDICAO DO 3e DECIDE, e e a parte que vale mais que o campo colhido:
-  O NIVEL 4 DA ESCADA (ficha de fabricante) PODE SER ESTRUTURALMENTE VAZIO NESTE NICHO.
-  Nao e bloqueio a remover: as duas marcas principais do banco nao tem site de
-  fabricante achavel — a Honeywhale vende por vitrine de marketplace e varejo mexicano,
-  a MAXSHOT so aparece em varejista brasileiro. Abrir o egresso dos cinco dominios de
-  fabricante nao encheria este nivel.
-  E O GARGALO TEM NOME, UM SO: O NIVEL 5 (varejo grande) ESTA ATRAS DO EGRESSO.
-  casasbahia, extra e magazineluiza em 000 nas TRES passadas as 16h2xZ, com controle
-  verde e `connect_rejected` lido no status do proxy. A leitura por BUSCA — a unica
-  porta aberta — alcanca os niveis 6, 7 e 8, que sao EXATAMENTE os que a escada recusa
-  nos quatro campos do nivel 5. Logo `potencia_nominal_w`, `velocidade_max_kmh`,
-  `acelerador` e `carga_max_kg` NAO SAO COLHIVEIS desta nuvem por caminho nenhum.
-  A F1 e a F3 nao vao ao ar por coleta: vao por ABERTURA. Despacho ALTA em
-  `dados/despachos.md`, e ele deixou de ser "seria bom" e passou a ser o unico caminho.
+  O ACHADO: a chave `patinete eletrico` devolve ZERO patinete de adulto nas 20 primeiras ofertas da
+  loja; serve `Patinete Eletrico Infantil 150W UNITOYS` e `Moto Eletrica Infantil 6V`. Com o
+  qualificador `adulto` a MESMA familia devolve 16 patinetes de adulto, de R$ 1.297,13 a R$ 3.399,00, e
+  5 e-bikes, tres delas com 74, 28 e 25 vendas. A consulta e a palavra da PESSOA; a chave e a palavra
+  da LOJA, e neste nicho elas divergem por um qualificador. Cada consulta passou a declarar uma ESCADA
+  DE CHAVES com o degrau gravado, pela 25.6(a).
 
-  O QUE A BUSCA ACHOU E FOI RECUSADO, escrito no esquema registro a registro para a
-  proxima execucao nao gastar a mesma busca: a variante de 350 W do M2 MAX (loja
-  estrangeira, nivel 8, nao sustenta campo nenhum), os 36 V que sao do MAX-B (nivel 7,
-  e outro aparelho — justamente o que as travas do casamento barraram), os 25 km/h de
-  guia de compra contra os 32 km/h da oferta (os dois campos exigem nivel 5, e a
-  divergencia entre as leituras e ela mesma a prova de que aceitar uma seria sorteio),
-  e o `bico` da camara Kenda, que nao esta publicado em lugar nenhum alcancavel.
+  DAS SEIS CABECAS SO DUAS NASCERAM, e a causa das outras quatro esta medida em
+  `dados/consultas-de-produto.json`: `moto eletrica` e `scooter eletrica` tem tres anuncios de adulto,
+  ZERO venda nos tres e precos variando R$ 6.500 para a mesma classe — o caminho delas e o Mercado
+  Livre, onde a geracao de link exige clique humano (25.6), logo e DESPACHO e nao bloco. `bike
+  eletrica` e `motos eletricas para adultos` nao nascem pela 30.4, por serem a mesma intencao de outras
+  duas.
 
-  O ACHADO DE METODO DESTA PASSADA, E ELE MUDA O CUSTO DE TODA EXECUCAO NESTA ILHA:
-  O CRON DO SYNC NAO RODA POR RELOGIO — ELE RODA POR VISITA. O log do `/status` tinha
-  disparos as 11h39, 12h09, 13h56 e 14h09 e depois NADA por 2h29, e as 14h12Z e
-  exatamente quando a execucao anterior parou de abrir o site. E WP-Cron: ele e
-  acionado por requisicao, nao por um relogio no servidor. Tres GETs na home as 16h38Z
-  e o `wp-cron.php` respondeu 409 (ja havia cron em andamento); a revisao 12 entrou em
-  UM minuto. O `ESTADO.md` anterior registrou "nove esperas de cron" entre 10h44Z e
-  12h10Z numa unica execucao: aquele custo era evitavel. A FUNDACAO NAO ESPERA O CRON
-  NESTA ILHA — ELA O ACIONA, abrindo a propria pagina. Nao precisa do token para isso.
+  NENHUM DADO TECNICO FOI PUBLICADO, e isso e o produto da pagina: potencia nominal, velocidade maxima,
+  acelerador e carga maxima tem piso de nivel 5 no esquema e titulo de anuncio e nivel 6. A coluna diz
+  o que o anuncio DECLARA, e a frase que conta isso e CONTADA no gerador em cinco formas: de 16
+  anuncios do patinete, 15 declaram um watt e 1 diz qual watt e.
 
-  E DUAS COISAS MEDIDAS E NAO FECHADAS, ditas para ninguem as descobrir de novo:
-  1. A BATERIA DO HONEYWHALE M2 MAX NAO ESTA PUBLICADA EM PORTA NENHUMA ALCANCAVEL.
-     Dos 10 titulos que a Open API devolveu para a chave do casamento, ZERO declara
-     tensao ou amperagem. Enquanto nenhum registro com oferta aberta declarar V e Ah,
-     o grupo `cabem_no_wh` fica vazio e o bloco de compra desta pagina continua
-     dizendo o que os cartoes SAO em vez do que a conta escolheu. Isso e honesto e
-     esta na tela; nao e defeito.
-  2. A LEITURA SEM QUEBRA DE CACHE (como o Google le) segue nao feita, terceira
-     execucao seguida. Toda URL desta passada foi pedida com `?v=<agora>`, entao as
-     afirmacoes sao sobre a ORIGEM. A clubedomosaico tem o portao que mede a borda
-     (`leitura-do-visitante.py`); esta ilha nao, e a 31.3 proibe abri-lo enquanto
-     houver item de conteudo e de pagina pelo nome do produto aberto na fila.
+  OS NUMEROS NO AR: `conferir-no-ar.py` APROVADO com 281 afirmacoes e 0 falha;
+  `conferir-32-5-no-navegador.mjs` APROVADO em 3 de 3 paginas do molde, com a caixa de resposta a 211
+  px (teto 700) e o primeiro botao de compra a 1.129 e 1.084 px (teto 1.400); 21 links `sponsored`,
+  ItemList com 16 itens, FAQPage com 4 perguntas e BreadcrumbList de tres niveis na pagina do patinete.
+  Bancada: 13 portoes sem rede, 0 falha, contra 9 antes deste bloco. `mutacoes-produto.py`: 26
+  mutacoes, 26 reprovadas, 0 sobrevivente e 0 inerte.
 
-  POR QUE NENHUM PORTAO NOVO NASCEU NESTA PASSADA, e e decisao e nao esquecimento: a
-  31.3 proibe ampliar portao enquanto a ilha tiver item de conteudo ou de pagina pelo
-  nome do produto aberto na fila, e os blocos 4, 5, 5b e 6 estao abertos. As cinco
-  frases da funcao nova de abertura sao conferidas sobre mundos FABRICADOS dentro do
-  proprio gerador (vitrine de 1 e de 4, com 0, com todos e com parte cabendo no Wh),
-  que e o que a 32.5-d manda e nao custa arquivo novo.
+  O DEFEITO QUE A ENTREGA ACHOU NO AR, e ele e a secao 4 em forma de instalador: a revisao 13 subiu os
+  arquivos e NAO criou as tres paginas. A instalacao da casca rodava uma vez por VERSAO, e a 13 subiu
+  casca nova e o snippet da pagina nova na MESMA passada do Sync — quando o `init` chamou a instalacao,
+  o snippet novo ainda nao estava carregado naquela requisicao, entao o filtro `rodametria_instalar`
+  dele nao existia. O sintoma era VERDE EM TODO LUGAR: /status em 13, as cinco linhas do log dizendo
+  `ok`, a rota `/casca` ja listando as tres paginas no mapa com `url` VAZIA nos tres, e o
+  wp-sitemap.xml com duas URLs. A casca 1.4.0 passou a reinstalar tambem quando a ASSINATURA DO MAPA
+  muda, e nao so quando a versao dela muda.
 
-  O PROXIMO PASSO DESBLOQUEADO E O BLOCO 5b — PAGINA PELO NOME DO PRODUTO (secao 30).
-  E ele e o proximo por eliminacao MEDIDA, nao por ordem de lista: o 3e fechou e
-  provou que coleta nao destrava mais nenhuma ferramenta desta ilha (o que destrava e
-  o despacho do egresso, que nao e trabalho da Fundacao); o bloco 4 pede ferramenta
-  nova e as duas que faltam, F1 e F3, estao travadas por dado que nao se colhe daqui;
-  o 5 pede artigo-ancora PAREADO com ferramenta, e so ha uma ferramenta no ar. O 5b
-  nao depende de nenhum dos tres: as seis cabecas de compra estao medidas no dossie
-  (`moto eletrica` 823 mil, `bicicleta eletrica` 673 mil, `scooter eletrica` 301 mil,
-  `patinete eletrico` 246 mil, `bike eletrica` 201 mil, `motos eletricas para adultos`
-  201 mil), a SERP delas esta medida e NAO TOMADA, e a ilha tem 4 registros publicaveis
-  com piso de compra e 1 com ficha para sustentar pagina de produto. A ilha tem 2 URLs
-  contra as 40 do piso da 21.1, e e a unica fila que anda sem esperar ninguem.
-  PRIMEIRO PASSO DELE: ler a secao 30 do ARQUIPELAGO.md inteira e a 21.4 (teto de leva
-  por semana) ANTES de escolher quantas paginas, e escolher a PRIMEIRA cabeca pela
-  interseccao entre volume e o que o banco sustenta — hoje `patinete eletrico`, que e
-  a unica das seis com registro de ficha aberta nesta ilha.
+  E A CASCA JA TINHA SUBIDO PARA 1.3.0 POR DUAS RAZOES DE ARVORE, as duas da 16:
+  `garantir_pagina()` passou a aceitar PAI (16.2), e `url_do_slug()` passou a achar a pagina pela meta
+  `_rodametria_id` em vez de por caminho — `get_page_by_path()` casa o caminho INTEIRO e devolveria
+  nulo para a filha, com `casca_link()` transformando link vazio em texto sem reclamar.
+
+  O QUE FICOU FORA DO MOLDE, dito sem maquiar: `/veiculos/` e a home sao as duas paginas desta ilha sem
+  componente da 32 (sem formulario e sem bloco de compra), e o portao de pixel as lista como FORA DO
+  MOLDE em vez de aprova-las em silencio. Para a home isso e decisao registrada, ela nasceu HUB; para a
+  mae e porque a 32 nao nomeia familia de pagina de LISTAGEM — ela tem FERRAMENTA (32.1) e
+  FICHA/RESPOSTA (32.2) e mais nada. Duas ilhas ja tem pagina de listagem, `/materiais/` da
+  clubedomosaico e esta. Fica anotado para a leitura semanal; nao inventei regra de cabeca.
+
+  O PROXIMO PASSO DESBLOQUEADO E O 5c, E ELE SE DIVIDE EM DOIS. A maquina do 5b faz pagina nova SEM UMA
+  LINHA DE CODIGO: declarar a consulta em `dados/consultas-de-produto.json` com a escada de chaves e
+  escrever a voz em `dados/paginas-de-produto.json`. O que TRAVA o primeiro passo e a 30.8: `alvo` nao
+  se afirma desta nuvem, nunca, e nenhuma consulta de CAUDA teve a SERP brasileira aberta com os olhos
+  — as seis cabecas tem (Raphael, 27/10, Chrome dele). Entao a parte desta nuvem e montar a lista das
+  caudas de `dados/corpus-buscas.md` (`patinete eletrico adulto` 49,5 mil, `scooter eletrica 1000w`
+  33,1 mil, `moto eletrica 1000w` 14,8 mil) com os `tomada` FECHADOS e os `nao-medida` NOMEADOS com as
+  URLs; a outra parte e uma sessao de Chrome dele, que a propria 30.8 chama de "um despacho de uma
+  sessao, nao um bloco". Publicar na execucao seguinte, sem remedir nada.
 ---
 
 # Estado da ilha RODAMETRIA

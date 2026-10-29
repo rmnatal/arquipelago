@@ -3,7 +3,7 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
-## 2026-10-29 19h1xZ–20hxxZ — **BLOCO 5b: A CONSULTA DO GOOGLE E A CHAVE DA LOJA NÃO SÃO A MESMA PALAVRA** — das seis cabeças do dossiê só **duas** abrem o portão da 30.2, e a causa das outras quatro está medida
+## 2026-10-29 19h1xZ–20h1xZ — **BLOCO 5b: A CONSULTA DO GOOGLE E A CHAVE DA LOJA NÃO SÃO A MESMA PALAVRA** — das seis cabeças do dossiê só **duas** abrem o portão da 30.2, e a causa das outras quatro está medida
 
 **A ESCOLHA DA ILHA.** `foco.md` nomeia a **rodametria** (foco total e absoluto, decisão do Raphael de
 27/10) e pela **1.2** não há escolha a fazer. Conferi as duas exceções que furam o foco antes de aceitar:
@@ -104,6 +104,22 @@ mesma rodada, a trava do número digitado só lia string e lista de string, e as
 são lista de dicionário** — ela passava por cima de toda pergunta e resposta sem dizer que não as leu,
 que é a cara do portão que aprova em silêncio o que não mediu (**32.5-b**).
 
+**4. DOIS "DEGRAUS" DIFERENTES MORAVAM NO MESMO CAMPO.** Achado relendo o próprio diff, antes de medir
+no ar. `degrau_da_escada` do anúncio é o degrau da escada de **chaves** (que palavra achou o produto na
+loja); o `degrau` que o cartão da casca lê é o da escada de **compra** da 25.1, e é ele que decide o
+rótulo do botão — ficha diz "Ver na Shopee", busca diz "Ver ofertas na Shopee". A vitrine passava o
+primeiro no lugar do segundo: **dava o rótulo certo por coincidência** (1 e 1), e daria o errado no dia
+em que uma consulta descesse para o degrau 2 da escada de chaves. Agora o degrau de compra vai
+**declarado**, e a tabela parou de digitar o rótulo: ele sai de
+`rodametria_casca_rotulo_da_loja()`, que é onde ele mora.
+
+**5. A MÃE `/veiculos/` NASCERIA PÁGINA FINA.** Contado antes de medir no ar, com a mesma régua do
+`conferir-no-ar.py`: **1.253 caracteres** de corpo contra o piso de **1.500** da seção 8. E o conserto
+não foi texto a mais — foram **os três números** que decidem a compra de um elétrico (potência nominal
+mais velocidade máxima, watt-hora da bateria, carga máxima declarada), que são o produto desta casa e
+estavam faltando justamente na página onde a pessoa escolhe qual família olhar, mais a dobra "Como
+sabemos". Corpo em **2.923** caracteres.
+
 ### E A BANCADA DENUNCIOU A RÉGUA NOVA NA PRIMEIRA PASSADA, COM RAZÃO
 
 Ela nasceu `relevancia-do-anuncio.py`, que não casa com convenção de nome nenhuma, e a `bancada.py`
@@ -128,6 +144,35 @@ alguém se lembrando.
   que reprova tudo não mede nada.
 - As **21 fotos** têm largura e altura **lidas no cabeçalho do arquivo na CDN** (1024 × 1024), nunca
   digitadas, e a leitura vem de `coletar-oferta.py` — fato externo se lê de **um lugar só** (seção 8).
+
+### OS NÚMEROS NO AR, MEDIDOS DEPOIS DA REVISÃO 16
+
+- `conferir-no-ar.py`: **APROVADO, 281 afirmações, 0 falha.** Corpo das cinco URLs: **2.586 · 11.246 ·
+  3.488 · 9.408 · 6.377** caracteres, todas acima do piso de 1.500.
+- `conferir-32-5-no-navegador.mjs` (390 px, Chromium de verdade, quebra de cache): **APROVADO, 3 de 3
+  páginas do molde.** Caixa de resposta a **211 px** nas duas páginas novas (teto 700); primeiro botão
+  de compra a **1.129 px** no patinete e **1.084 px** na bicicleta (teto 1.400); a F2 segue em 329 e
+  1.380 px. Rolagem horizontal **0** e **0** erro de JavaScript nas três.
+- Na página do patinete: **21** links `sponsored`, **ItemList com 16 itens**, **FAQPage com 4
+  perguntas**, **BreadcrumbList de três níveis** (`Início › Veículos › Patinete elétrico`), 4
+  `<details>` e 5 imagens com `width`/`height`.
+- **O portão de pixel lista `/veiculos/` e a home como FORA DO MOLDE**, e isso é registro e não
+  aprovação em silêncio: as duas não têm formulário nem bloco de compra. Para a home é decisão
+  registrada (nasceu HUB); para a mãe é porque a **32 não nomeia uma família de página de LISTAGEM** —
+  ela tem FERRAMENTA (32.1) e FICHA/RESPOSTA (32.2) e mais nada. Duas ilhas já têm página de listagem
+  (`/materiais/` da clubedomosaico e esta). **Fica anotado para a leitura semanal; não inventei regra.**
+
+### A LEITURA SEM QUEBRA DE CACHE, E O QUE ELA ACHOU NÃO É DESTA ILHA
+
+As três URLs novas em **200 nas duas leituras**. E a sonda **virgem** — caminho carimbado com o relógio,
+que nunca existiu — devolveu **404 · 200 · 200 · 200**, com o corpo do 404 servido em HTTP **200** e o
+`<title>Página não encontrada – Rodametria</title>`. **É o mesmo soft 404 na borda que a clubedomosaico
+registra há oito medições**, agora medido numa **segunda conta do mesmo hospedeiro** — e isso é o dado
+que faltava ao chamado: até hoje ele só havia sido medido num domínio, o que deixava aberta a leitura de
+que fosse configuração daquela conta. Esta ilha tem **dois dias de vida** e nunca recebeu uma linha de
+configuração de cache. Linha acrescentada ao despacho **ALTA** de `dados/despachos.md`, afirmando **só
+sobre a ilha que esta execução reservou**, como a lição de 14/09 daquele arquivo manda. **Não se
+conserta daqui.**
 
 ### O DEFEITO QUE A ENTREGA ACHOU NO AR, E ELE É A SEÇÃO 4 EM FORMA DE INSTALADOR
 

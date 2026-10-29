@@ -390,6 +390,21 @@ respondem 404.** Só a home responde.
 > intervalo de 23 horas, além das duas datas que o item 4 já nomeia; é a primeira vez que a pergunta cabe num
 > dia e não num intervalo de dias.
 
+> **E O SOFT 404 NA BORDA ACABA DE SER MEDIDO NUMA SEGUNDA CONTA DO MESMO HOSPEDEIRO — 29/10/2026 às
+> 20h1xZ, na `rodametria`.** Isto não é a queda do `.htaccess` e não é desta ilha: é o outro defeito do
+> hospedeiro que a `clubedomosaico` registra há oito medições — **URL inexistente responde 404 na 1ª
+> leitura e 200 nas seguintes, com o corpo do 404**. Medido com sonda **virgem** (caminho que nunca
+> existiu, carimbado com o relógio) em `rodametria.com.br`: **404 · 200 · 200 · 200**, e o corpo da
+> segunda leitura serve `<title>Página não encontrada – Rodametria</title>` com HTTP **200**.
+>
+> **O que isto acrescenta ao chamado, e é a parte que não se tinha:** até hoje o defeito só havia sido
+> medido num domínio, o que deixava aberta a leitura de que fosse configuração daquela conta. **São duas
+> contas, dois domínios, a mesma assinatura** — e a `rodametria` tem dois dias de vida e nunca recebeu
+> uma linha de configuração de cache. É cache de borda do hospedeiro, não ajuste de site. **Nada aqui
+> é da Fundação consertar**, e a razão é a de sempre: o reparo é do lado do fornecedor. Medido pela
+> execução que tinha a `rodametria` reservada, e só sobre ela — o estado da `clubedomosaico` nesta linha
+> não foi reaberto.
+
 **O QUE DIZER NO CHAMADO, já medido de dentro do servidor — eles não vão precisar investigar nada disso:**
 
 1. O caminho exato: `/home3/rapha921/clubedomosaico.com.br/.htaccess`.
