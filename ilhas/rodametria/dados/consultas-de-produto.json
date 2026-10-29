@@ -1,0 +1,198 @@
+{
+  "id": "consultas-de-produto",
+  "ilha": "rodametria",
+  "bloco": "5b",
+  "gerado_em": "2026-10-29",
+  "publicar": false,
+  "o_que_este_arquivo_e": "A DECLARACAO das paginas por nome do produto da secao 30 desta ilha: uma linha por consulta de compra, com o volume, a classificacao de SERP (quem a viu e quando), a escada de palavra-chave com que a loja e consultada, o numero proprio que a pagina deve, e a decisao de nascer ou nao com a causa escrita. Ele e DECLARADO e escrito a mao. Quem colhe o anuncio e `ferramentas/coletar-por-consulta.py`, que escreve `dados/anuncios-por-consulta.json`; quem conta o numero proprio e `ferramentas/gerar-vitrine-de-produto.py`.",
+  "a_assimetria_da_30_8_vale_inteira": "`tomada` se afirma desta nuvem, porque e presenca e presenca se mede com busca. `alvo` NAO se afirma daqui nunca: ele exige a SERP brasileira aberta com os olhos, e a linha registra QUEM viu e QUANDO. O terceiro valor e `nao-medida`, e ele nao autoriza pagina nenhuma. As seis cabecas abaixo tem `visto_por` e `visto_em` porque o Raphael abriu as seis no Chrome dele em 27/10/2026, e o top 10 de cada uma esta na secao (b) de bussola/dossies/rodametria/DOSSIE.md, com os dominios na ordem.",
+  "a_consulta_do_google_e_a_chave_da_loja_nao_sao_a_mesma_coisa": "Medido em 29/10/2026 na Open API, 20 ofertas por chave, nas seis cabecas: a chave `patinete eletrico` devolve ZERO patinete de adulto nas 20 primeiras (serve `Patinete Eletrico Infantil 150W UNITOYS` e `Moto Eletrica Infantil 6V`); `moto eletrica` devolve 20 de 20 entre brinquedo infantil e peca de caminhao; `bicicleta eletrica` e `bike eletrica` devolvem camara de ar, pneu, compressor e moto infantil. Com o qualificador `adulto`, a MESMA familia devolve produto de verdade. Por isso cada consulta carrega uma ESCADA de chaves, do degrau mais especifico para o mais largo, e o degrau que casou fica GRAVADO no anuncio — e o mesmo desenho que `coletar-piso-de-compra.py` ja usa nesta ilha, pela 25.6(a): pare no primeiro degrau util e registre em qual degrau parou, que e procedencia.",
+  "o_piso_da_30_2": "Pagina nasce com TRES ou mais anuncios que servem, mais UM numero proprio. Consulta que nao alcanca o piso NAO recebe endereco, NAO entra na arvore e NAO aparece na mae — e a causa fica escrita aqui, medida, em vez de a pagina nascer com dois anuncios.",
+  "secao_mae": {
+    "slug": "veiculos",
+    "nome": "Veículos",
+    "nivel": 1,
+    "o_que_ela_e": "A secao de nivel 1 da arvore da 16.1, com o nome que o VOZ.md ja declara no menu (Ferramentas · Veiculos · Pecas · Guias). As paginas de consulta de produto nascem filhas diretas dela, pela 30.1, e a 16.5 nao se aplica a elas."
+  },
+  "consultas": [
+    {
+      "id": "patinete-eletrico",
+      "consulta": "patinete elétrico",
+      "slug": "veiculos/patinete-eletrico",
+      "buscas_mes": 246000,
+      "fonte_do_volume": "Planejador de palavras-chave, 27/10/2026, bussola/dossies/rodametria/DOSSIE.md secao (b)",
+      "serp": {
+        "veredito": "alvo",
+        "classe_declarada": "mista (a mais fechada das seis)",
+        "visto_por": "Raphael",
+        "visto_em": "2026-10-27",
+        "instrumento": "Chrome do Raphael, SERP brasileira",
+        "ocupantes": ["mercadolivre (lista)", "eletricz", "loja.azullight", "casasbahia", "pontofrio", "youtube", "shopee (PDP)"],
+        "carrossel_de_compras": false,
+        "visao_geral_de_ia": true,
+        "nenhuma_calculadora_na_primeira_pagina": true,
+        "observacao_da_30_5": "Varejo grande aparece (Mercado Livre em lista, Casas Bahia, Ponto Frio) e por isso o dossie a chamou de `a mais fechada das seis`; ainda assim a classe que o olho registrou e MISTA, com loja pequena de marca, YouTube e PDP de marketplace no meio, e a 30.5 e explicita em que anuncio solto de marketplace e lojinha pequena nao tornam a busca tomada, sozinhos nem somados. Nenhuma fazenda da lista apareceu e nenhuma calculadora de CNH, autonomia ou carga esta na primeira pagina."
+      },
+      "escada_de_chaves": [
+        {"degrau": 1, "chave": "patinete eletrico adulto", "porque": "o qualificador que separa o veiculo do brinquedo nesta loja, medido em 29/10/2026"},
+        {"degrau": 2, "chave": "patinete eletrico", "porque": "a consulta crua, que e a palavra da pessoa no Google; fica como degrau de baixo e so e consultada se o de cima nao alcancar o piso"}
+      ],
+      "familia": {
+        "exige_todas": ["patinete", "eletric"],
+        "exige_alguma": ["adulto", "adultos"],
+        "recusas_desligadas": [],
+        "porque": "`patinete` separa a familia; `eletric` separa o patinete eletrico do patinete de empurrar (o titulo real `Patinete Scooter Dobravel Capacidade 70kg Jovens Adultos` e de empurrar e cai aqui); `adulto` e a exigencia POSITIVA que a medicao de 29/10 tornou obrigatoria."
+      },
+      "numero_proprio_pedido": "faixa_de_preco",
+      "sinonimos_no_corpo": ["scooter elétrico", "patinete elétrico dobrável"],
+      "publicar_declarado": true
+    },
+    {
+      "id": "bicicleta-eletrica",
+      "consulta": "bicicleta elétrica",
+      "slug": "veiculos/bicicleta-eletrica",
+      "buscas_mes": 673000,
+      "fonte_do_volume": "Planejador de palavras-chave, 27/10/2026, bussola/dossies/rodametria/DOSSIE.md secao (b)",
+      "serp": {
+        "veredito": "alvo",
+        "classe_declarada": "mista",
+        "visto_por": "Raphael",
+        "visto_em": "2026-10-27",
+        "instrumento": "Chrome do Raphael, SERP brasileira",
+        "ocupantes": ["mercadolivre", "lojagtsm1", "golev", "casasbahia", "fernandobicicletas", "havan", "facebook", "olx"],
+        "carrossel_de_compras": false,
+        "visao_geral_de_ia": true,
+        "nenhuma_calculadora_na_primeira_pagina": true,
+        "observacao_da_30_5": "Mercado Livre, Casas Bahia e Havan sao varejo grande; o resto e loja de marca (golev, lojagtsm1, fernandobicicletas), Facebook e OLX, que a 30.5 nomeia como nao-tomada. Classe MISTA com os olhos."
+      },
+      "escada_de_chaves": [
+        {"degrau": 1, "chave": "bicicleta eletrica adulto", "porque": "mesma licao do patinete: sem o qualificador a chave devolve camara de ar, pneu e moto infantil"},
+        {"degrau": 2, "chave": "bicicleta eletrica", "porque": "a consulta crua"}
+      ],
+      "familia": {
+        "exige_todas": ["bicicleta", "eletric"],
+        "exige_alguma": ["adulto", "adultos"],
+        "recusas_desligadas": [],
+        "porque": "`bicicleta` separa a familia. A chave `bike` NAO entra em `exige_todas`: ela e sinonimo de busca e nao de titulo, e titulo que diz `bike` sem dizer `bicicleta` quase sempre e acessorio (`Camara De Ar Fat Bike`, `Pneu Bike`, `Quadro p/ Bike Eletrica`), medido em 29/10/2026."
+      },
+      "numero_proprio_pedido": "faixa_de_preco",
+      "sinonimos_no_corpo": ["bike elétrica", "e-bike"],
+      "publicar_declarado": true,
+      "porque_bike_eletrica_nao_tem_pagina_propria": "A cabeca `bike eletrica` (201.000 buscas/mes, SERP mista vista pelo Raphael em 27/10) e a MESMA intencao de compra desta, com o mesmo produto e a mesma loja. Pela 30.4 ela nao recebe segunda URL: o sinonimo vive no corpo desta pagina, e a ancora `bike eletrica` aponta para ca. Duas URLs para o mesmo produto num dominio de dois dias e exatamente o gasto de rastreamento que a 14.1 chama de escasso."
+    },
+    {
+      "id": "moto-eletrica",
+      "consulta": "moto elétrica",
+      "slug": "veiculos/moto-eletrica",
+      "buscas_mes": 823000,
+      "fonte_do_volume": "Planejador de palavras-chave, 27/10/2026, bussola/dossies/rodametria/DOSSIE.md secao (b)",
+      "serp": {
+        "veredito": "alvo",
+        "classe_declarada": "mista",
+        "visto_por": "Raphael",
+        "visto_em": "2026-10-27",
+        "instrumento": "Chrome do Raphael, SERP brasileira",
+        "ocupantes": ["mercadolivre (lista)", "wattsmobilidade", "instagram/motochefebrasil", "vammo", "motochefebrasil", "motochefemaringa", "youtube"],
+        "carrossel_de_compras": false,
+        "visao_geral_de_ia": true,
+        "nenhuma_calculadora_na_primeira_pagina": true,
+        "observacao_da_30_5": "A mais aberta das seis pelo olho: um varejo grande e o resto loja de marca, Instagram e YouTube."
+      },
+      "escada_de_chaves": [
+        {"degrau": 1, "chave": "moto eletrica adulto", "porque": "o qualificador"},
+        {"degrau": 2, "chave": "moto eletrica", "porque": "a consulta crua"}
+      ],
+      "familia": {
+        "exige_todas": ["moto", "eletric"],
+        "exige_alguma": ["adulto", "adultos"],
+        "recusas_desligadas": [],
+        "porque": "`moto` separa a familia."
+      },
+      "numero_proprio_pedido": "faixa_de_preco",
+      "sinonimos_no_corpo": ["scooter elétrica", "motos elétricas para adultos"],
+      "publicar_declarado": false,
+      "motivo_para_nao_publicar_agora": "A SERP autoriza (alvo, vista com os olhos), e o que falta e o PRODUTO. Medido em 29/10/2026 na Open API, 40 ofertas em duas chaves: a chave crua devolve 20 de 20 entre brinquedo infantil e peca de caminhao, e a chave com qualificador devolve TRES veiculos de adulto — VYRON Cross GT600 7500W a R$ 13.999, Foston X15 Max 1000w a R$ 8.500 e Scooter Moto Eletrica 1000w Sem Cnh a R$ 15.000 — os TRES com ZERO vendas e com precos que variam por R$ 6.500 para a mesma classe de produto. O `PROMPT.md` desta ilha ja escrevia a regra antes desta medicao, e ela vale: `na Shopee, scooter e moto eletrica aparecem com 0 vendas e precos incoerentes — nao entram como recomendacao`. Tres anuncios e exatamente o piso da 30.2, e pagina que nasce no piso com os tres sem uma venda sai do ar na primeira coleta que perder um. O caminho desta consulta e o Mercado Livre, onde o dossie mediu 8 de 10 produtos com link rastreavel — e lá a geracao de link exige clique humano (secao 7 e 25.6), o que faz dela despacho, nunca bloco."
+    },
+    {
+      "id": "scooter-eletrica",
+      "consulta": "scooter elétrica",
+      "slug": "veiculos/scooter-eletrica",
+      "buscas_mes": 301000,
+      "fonte_do_volume": "Planejador de palavras-chave, 27/10/2026, bussola/dossies/rodametria/DOSSIE.md secao (b)",
+      "serp": {
+        "veredito": "alvo",
+        "classe_declarada": "mista",
+        "visto_por": "Raphael",
+        "visto_em": "2026-10-27",
+        "instrumento": "Chrome do Raphael, SERP brasileira",
+        "ocupantes": ["loja.shineray", "casasbahia", "mercadolivre", "motochefebrasil", "ecomotorsbrasil", "youtube", "wattsmobilidade", "olx"],
+        "carrossel_de_compras": false,
+        "visao_geral_de_ia": true,
+        "nenhuma_calculadora_na_primeira_pagina": true,
+        "observacao_da_30_5": "Classe MISTA com os olhos."
+      },
+      "escada_de_chaves": [
+        {"degrau": 1, "chave": "scooter eletrica adulto", "porque": "o qualificador"},
+        {"degrau": 2, "chave": "scooter eletrica", "porque": "a consulta crua"}
+      ],
+      "familia": {
+        "exige_todas": ["scooter", "eletric"],
+        "exige_alguma": ["adulto", "adultos"],
+        "recusas_desligadas": [],
+        "porque": "`scooter` separa a familia."
+      },
+      "numero_proprio_pedido": "faixa_de_preco",
+      "sinonimos_no_corpo": ["moto elétrica", "scooter elétrico"],
+      "publicar_declarado": false,
+      "motivo_para_nao_publicar_agora": "Medido em 29/10/2026, 40 ofertas em duas chaves: a chave crua devolve brinquedo infantil e acessorio, e a chave com qualificador devolve PATINETE — `Patinete Eletrico Adulto 350W`, `Patinete Eletrico Scooter 350W` — mais capa de chuva e capacete. Nesta loja a palavra `scooter` E o patinete, e o produto que a consulta brasileira quer (a moto-scooter de 1.000 W, sem CNH) e o mesmo caso da `moto eletrica`: zero venda e preco incoerente. Publicar esta consulta com os patinetes do degrau 1 seria servir, numa pagina cujo H1 promete scooter, o produto que a pagina do patinete ja serve — canibalizacao da 30.4 construida de proposito. Ela espera o Mercado Livre, junto com a `moto eletrica`."
+    },
+    {
+      "id": "bike-eletrica",
+      "consulta": "bike elétrica",
+      "slug": null,
+      "buscas_mes": 201000,
+      "fonte_do_volume": "Planejador de palavras-chave, 27/10/2026, bussola/dossies/rodametria/DOSSIE.md secao (b)",
+      "serp": {
+        "veredito": "alvo",
+        "classe_declarada": "mista",
+        "visto_por": "Raphael",
+        "visto_em": "2026-10-27",
+        "instrumento": "Chrome do Raphael, SERP brasileira",
+        "ocupantes": ["lojagtsm1", "eletricz", "mercadolivre", "golev", "havan", "mobilidade.estadao (lista)", "reddit", "facebook", "bee-brasil"],
+        "carrossel_de_compras": false,
+        "visao_geral_de_ia": true,
+        "nenhuma_calculadora_na_primeira_pagina": true,
+        "observacao_da_30_5": "Classe MISTA com os olhos."
+      },
+      "escada_de_chaves": [],
+      "familia": null,
+      "numero_proprio_pedido": null,
+      "publicar_declarado": false,
+      "motivo_para_nao_publicar_agora": "NAO e falta de produto nem de SERP: e a 30.4. Esta consulta e sinonimo de `bicicleta eletrica`, com o mesmo produto, a mesma loja e a mesma intencao de compra. A pagina dela e `veiculos/bicicleta-eletrica`, que carrega `bike eletrica` no corpo e na ancora. Nenhuma coleta foi feita para esta linha, de proposito."
+    },
+    {
+      "id": "motos-eletricas-para-adultos",
+      "consulta": "motos elétricas para adultos",
+      "slug": null,
+      "buscas_mes": 201000,
+      "fonte_do_volume": "Planejador de palavras-chave, 27/10/2026, bussola/dossies/rodametria/DOSSIE.md secao (b)",
+      "serp": {
+        "veredito": "alvo",
+        "classe_declarada": "mista",
+        "visto_por": "Raphael",
+        "visto_em": "2026-10-27",
+        "instrumento": "Chrome do Raphael, SERP brasileira",
+        "ocupantes": ["mercadolivre", "megaeletronbrava", "wattsmobilidade", "electrictrend", "quatrorodas", "ecomotorsbrasil", "lojagtsm1", "bee-brasil", "motochefebrasil"],
+        "carrossel_de_compras": false,
+        "visao_geral_de_ia": true,
+        "nenhuma_calculadora_na_primeira_pagina": true,
+        "observacao_da_30_5": "Classe MISTA com os olhos."
+      },
+      "escada_de_chaves": [],
+      "familia": null,
+      "numero_proprio_pedido": null,
+      "publicar_declarado": false,
+      "motivo_para_nao_publicar_agora": "Mesma familia e mesma intencao de `moto eletrica`, com o qualificador que a loja exige ja dentro da propria consulta. Pela 30.4 ela nao recebe segunda URL: quando a `moto eletrica` nascer, esta sera o sinonimo no corpo dela. E a medicao de 29/10 na chave crua desta consulta confirma o que a `moto eletrica` ja mediu: 20 ofertas, 18 de capacete e capa de chuva, 2 veiculos de adulto com zero venda."
+    }
+  ]
+}
