@@ -207,10 +207,31 @@ achável por nome nenhum"*, e o **3d** mediu pela FICHA que 13 dos 17 registros 
 para pedir uma. O banco inteiro vive do nível 5 para baixo, e é por isso que
 `veiculos_com_nominal_declarado` continua **0** — o que falta à F1 não é só a resolução, é a ficha que diz
 qual dos dois watts é o nominal.
-**O PRIMEIRO PASSO É A 20.3, ANTES DE ESCREVER UMA LINHA DE REGRA:** medir o egresso contra os domínios
-dos fabricantes. **Nenhum foi tentado nesta ilha até hoje**, e quem escreve a regra que exige a fonte é
-quem confere se a fonte está liberada — os cinco domínios oficiais da Contran e os quatro de prefeitura
-já ensinaram o custo de descobrir isso depois.
+**O PRIMEIRO PASSO DA 20.3 JÁ FOI DADO, em 29/10/2026 às 14h0xZ–14h1xZ, e ELE INVERTEU O PLANO DESTE
+BLOCO — leia antes de abrir a fila.** Não procure ficha de fabricante: **nenhuma das duas marcas principais
+tem site de fabricante achável.** A Honeywhale é vendida por loja de marketplace (a própria "loja oficial"
+dela é uma vitrine do Mercado Livre) e por varejo mexicano; a MAXSHOT aparece **só** em varejista
+brasileiro. **Para este nicho o nível 4 da escada pode ser estruturalmente VAZIO** — são marcas de
+marketplace, não fabricantes com página própria no Brasil. Isso não é bloqueio a remover: é **premissa a
+corrigir**, e corrigi-la muda o bloco.
+
+**O QUE ESTÁ MEDIDO** (três passadas cada, controle verde, classificação lida no status do proxy e não
+suposta): `honeywhale.com`, `maxshot.com.br`, `kenda.com.br`, `sousabike.com.br`, `evoo.com.br` →
+`connect_rejected`. `www.casasbahia.com.br`, `www.extra.com.br`, `www.magazineluiza.com.br` →
+`connect_rejected`, **e são estes três que valem o pedido**, porque são textualmente o **nível 5** da
+escada desta ilha e o nível 5 *"sustenta campo técnico atribuído à LOJA"*. `www.mercadolivre.com.br` → 403
+**do anti-robô do ML**, com o CONNECT passando: egresso aberto e caminho fechado são coisas diferentes.
+**Despacho aberto** em `dados/despachos.md` com os três domínios, a causa e a prova de que o pedido
+funciona (os cinco de fabricante que o despacho de 17/09 pediu para a robometria **estão abertos hoje**:
+`mais.conteudo.wap.ind.br` em 200 e `www.electrolux.com.br` em 301).
+
+**E O BLOCO PODE ANDAR SEM ESPERAR ELE:** a leitura por **BUSCA** funciona e foi por ela que tudo acima
+foi medido — o degrau que a jornadafly nomeou em 27/10 (*"o egresso não trava a coleta inteira; o que ele
+trava é a leitura direta, que é a PREFERIDA"*). O que os três domínios destravam é a leitura **direta** da
+ficha. **Não marque `bloqueada_por`:** isso trava a FÁBRICA e não a ILHA, e o canal é o despacho (12.2).
+A ficha da Casas Bahia já declara, para o `V1SPRO`, **500 W, carga máxima de 120 kg e UL 2272** — e
+`carga_max_kg` é a entrada da **F3**, que hoje não vai ao ar por falta exatamente desse campo em registro
+com oferta aberta.
 **Alvo com nome:** `MAXSHOT` (V1 e V1SPRO) e `Honeywhale` (H3) têm marca e modelo e a Shopee não os
 anuncia — ficha de fabricante resolve o campo técnico deles mesmo sem oferta. Os dez sem `modelo`/`marca`
 precisam do **nome** antes de qualquer outra coisa. E a `camara-kenda-16x3-0` espera **um campo só**,

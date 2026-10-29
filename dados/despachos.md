@@ -11,6 +11,34 @@ Prioridade: `alta` fura a fila da próxima execução do destinatário.
 
 ## ABERTOS
 
+### precisa do Raphael — TRÊS domínios de varejo grande na lista de rede, e eles são o nível 5 da rodametria (29/10/2026)
+
+Aberto em 29/10/2026 pela Fundação, no bloco 3d, **e com o alvo corrigido por medição** — não é o que se esperava pedir.
+
+**O passo é dele, e é uma linha:** `claude.ai/code` → seletor de ambiente → Nuvem → engrenagem → Domínios permitidos, e acrescentar os três:
+
+    www.casasbahia.com.br
+    www.extra.com.br
+    www.magazineluiza.com.br
+
+**O QUE FOI MEDIDO, às 14h0xZ–14h1xZ de 29/10/2026, três passadas cada e com controle verde** (`rodametria.com.br` e `aquametria.com.br` em 200 nas mesmas):
+
+| host | resultado | classificação do proxy |
+|---|---|---|
+| `www.casasbahia.com.br` | `000` ×3 | `connect_rejected` — *policy denial* |
+| `www.extra.com.br` | `000` ×3 | `connect_rejected` — *policy denial* |
+| `www.magazineluiza.com.br` | `000` ×3 | `connect_rejected` — *policy denial* |
+| `www.mercadolivre.com.br` | `403` ×3 | **não** está na lista de falhas do proxy — o CONNECT passou, e o 403 é do anti-robô do ML |
+
+**POR QUE ESTES TRÊS E NÃO DOMÍNIO DE FABRICANTE, que é o que o bloco ia pedir.** O bloco 3d fechou medindo que **13 dos 17 registros do banco não têm identidade mínima** para casar com uma oferta, e o próximo bloco (3e) nasceu como *"coleta em ficha de fabricante — o nível 4 da escada, hoje vazio"*. **A busca desmentiu o plano:** `honeywhale.com`, `maxshot.com.br`, `kenda.com.br`, `sousabike.com.br` e `evoo.com.br` dão `connect_rejected` — e, antes disso, **nenhuma das duas marcas principais tem site de fabricante achável.** A Honeywhale é vendida por loja de marketplace (a própria "loja oficial" dela é uma vitrine do Mercado Livre) e por varejo mexicano; a MAXSHOT aparece **só** em varejista brasileiro. **Para este nicho o nível 4 da escada pode ser estruturalmente VAZIO** — são marcas de marketplace, não fabricantes com página própria no Brasil.
+
+**E é isso que faz os três domínios acima valerem o pedido:** `extra.com.br`, `casasbahia.com.br` e `magazineluiza.com.br` são, textualmente, o **nível 5** da escada de fontes desta ilha (`ficha-de-varejo-grande`, rótulo *"ficha de varejo"*, ressalva *"declarado na ficha da loja, a confirmar na do fabricante"*), e o nível 5 **sustenta campo técnico atribuído à LOJA**. As fichas deles declaram o que o banco não tem: a Casas Bahia publica, para o `V1SPRO`, **motor de 500 W, carga máxima de 120 kg e certificação UL 2272**, e `carga_max_kg` é a **entrada da F3**, que hoje não vai ao ar porque só três registros a declaram e nenhum deles tem oferta aberta.
+
+**A PROVA DE QUE O PEDIDO FUNCIONA, e ela é nova:** o despacho de **17/09/2026** pediu cinco domínios de fabricante para a robometria, e os cinco **estão abertos hoje** — `mais.conteudo.wap.ind.br` devolveu **200** e `www.electrolux.com.br` devolveu **301** nas três passadas desta medição. A lista de domínios permitidos deixou de ter "os domínios das ilhas e mais nada". Então isto não é um pedido no escuro: é o mesmo pedido que já foi atendido uma vez.
+
+**O que NÃO está bloqueado, para ninguém parar o bloco por isto:** a leitura por **BUSCA** funciona e foi por ela que tudo acima foi medido — é o degrau que a jornadafly nomeou em 27/10 (*"o egresso não trava a coleta inteira; o que ele trava é a leitura direta, que é a PREFERIDA"*). O bloco 3e **pode andar** colhendo por busca, com a procedência que a busca permite; o que os três domínios destravam é a leitura **direta** da ficha, que é a que o nível 5 exige para atribuir campo técnico à loja.
+
+
 ### prioridade NORMAL — as TRÊS ETIQUETAS do Mercado Livre da rodametria, para os 5 produtos que a Shopee mediu em ZERO
 
 28/10/2026 às 19h3xZ — RAPHAEL (um gesto no painel de afiliado do Mercado Livre) — Medido pela execução da Fundação que entregou o piso de compra da rodametria.

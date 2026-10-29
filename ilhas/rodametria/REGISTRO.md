@@ -169,11 +169,16 @@ linha saiu e a medição ficou escrita no lugar dela.
   `coletar-oferta.py --conferir` nasceu com **82 afirmações sobre o que está escrito** e entrou na bancada
   pela convenção de nome, sem ninguém o listar.
 - **`conferir-no-ar.py`: 138 afirmações, 0 falha** (eram 134), medido na **revisão 10**.
-- **O portão de pixel da 32.5 na revisão 11 AINDA NÃO RODOU quando esta linha foi escrita**, e
-  está escrito assim de propósito: o Sync desta ilha tem cron de 30 minutos, a revisão 10 entrou às
-  13h56Z e a 11 só entra na janela seguinte. A 18.4 manda que o despacho morra quando é
-  **verificado**, não quando é escrito, e a mesma régua vale para um conserto: o número da 32.5 na
-  revisão 11 entra abaixo, medido, ou esta entrada fica dizendo que ele falta.
+- **O portão de pixel da 32.5 na revisão 11: APROVADO, medido às 14h1xZ depois do cron.** Formulário a
+  **329 px** (teto 700) e primeiro botão de compra a **1.385 px** (teto 1.400) — **exatamente o número de
+  antes da foto existir, agora COM a foto na tela**. E a prova do conserto é a altura medida no navegador:
+  **foto 96 px, reservado 96, 96 e 96** — os quatro cartões com 343 px cada. A afirmação que o esquema faz
+  (*"o reservado tem a MESMA altura da foto, então foto que entra não muda a altura do cartão"*) era falsa
+  quando eu a escrevi e passou a ser verdadeira por construção. Rolagem horizontal 0, zero erro de JS.
+- **E `conferir-no-ar.py` rodou de novo na revisão 11: 138 afirmações, 0 falha**, com a linha do log da
+  revisão corrente dizendo `ok` (20.4).
+- A **home** segue `fora do molde` com o motivo impresso, como no parágrafo acima: é o estado dela, não
+  uma reprovação desta entrega.
 - **20.4, o log lido linha por linha:** as três linhas da revisão corrente dizem `ok`. Os **4 aguardando
   desembarque** são os itens de `publicar: false` (constantes, veículos, peças, esquema) — estado de
   propósito, conferido no `manifest.json`, não entrega que falhou. E a janela do log tem **15 linhas e está
@@ -199,6 +204,34 @@ foi tentado nesta ilha até hoje.
 **O alvo apertado, com nome:** `MAXSHOT` (V1 e V1SPRO) e `Honeywhale` (H3) têm marca e modelo e o mercado
 da Shopee não os anuncia — ficha de fabricante resolveria o campo técnico mesmo sem oferta. E os dez sem
 `modelo`/`marca` precisam do nome antes de qualquer outra coisa.
+
+**E O PRIMEIRO PASSO DO 3e FOI DADO NESTA EXECUÇÃO, porque é um comando — e ele INVERTEU o plano do
+bloco.** A 20.3 manda medir o egresso antes de escrever regra que exija a fonte, e a medição desmentiu a
+suposição de que o que falta é ficha de **fabricante**:
+
+- **Nenhuma das duas marcas principais tem site de fabricante achável.** A Honeywhale é vendida por loja
+  de marketplace — a própria *"loja oficial"* dela é uma vitrine do Mercado Livre — e por varejo mexicano;
+  a MAXSHOT aparece **só** em varejista brasileiro. **Para este nicho o nível 4 da escada pode ser
+  estruturalmente VAZIO:** são marcas de marketplace, não fabricantes com página própria no Brasil. Isso
+  não é um bloqueio a remover, é uma **premissa a corrigir**.
+- `honeywhale.com`, `maxshot.com.br`, `kenda.com.br`, `sousabike.com.br` e `evoo.com.br`: **`000` nas três
+  passadas**, `connect_rejected` — *policy denial* lido no status do proxy, não suposto.
+- **O que vale pedir são TRÊS domínios de VAREJO GRANDE**, porque eles são textualmente o **nível 5** da
+  escada desta ilha e o nível 5 *"sustenta campo técnico atribuído à LOJA"*: `www.casasbahia.com.br`,
+  `www.extra.com.br` e `www.magazineluiza.com.br`, os três `connect_rejected`. A ficha da Casas Bahia
+  declara, para o `V1SPRO`, **500 W, carga máxima de 120 kg e certificação UL 2272** — e `carga_max_kg` é
+  a **entrada da F3**, que hoje não vai ao ar por falta exatamente desse campo em registro com oferta.
+- `www.mercadolivre.com.br` devolveu **403**, e ele **não** está na lista de falhas do proxy: o CONNECT
+  passou e o 403 é do **anti-robô do ML**. Egresso aberto, caminho fechado — são coisas diferentes e só o
+  status do proxy as separa.
+- **E a prova de que o pedido funciona é nova:** os cinco domínios de fabricante que o despacho de
+  **17/09/2026** pediu para a robometria **estão abertos hoje** — `mais.conteudo.wap.ind.br` em **200** e
+  `www.electrolux.com.br` em **301**, nas mesmas três passadas. A lista deixou de ter *"os domínios das
+  ilhas e mais nada"*. Despacho aberto em `dados/despachos.md` com os três domínios, a causa e esta prova.
+- **O que NÃO está bloqueado:** a leitura por **BUSCA** funciona, e foi por ela que tudo acima foi medido —
+  o degrau que a jornadafly nomeou em 27/10 (*"o egresso não trava a coleta inteira; o que ele trava é a
+  leitura direta, que é a PREFERIDA"*). O 3e **pode andar** por busca; os três domínios destravam a leitura
+  **direta**, que é a que o nível 5 exige para atribuir campo técnico à loja.
 
 **E duas dívidas pequenas, ditas para ninguém as descobrir de novo:**
 1. **A `camara-kenda-16x3-0` espera UM campo: `bico`.** Com ele declarado, ela passa a ter identidade
