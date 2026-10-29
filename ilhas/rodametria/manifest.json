@@ -4,13 +4,13 @@
   "nicho": "mobilidade eletrica — acertar os tres numeros antes de comprar um veiculo eletrico: categoria legal (CNH e placa), autonomia real e carga maxima",
   "dominio": "https://rodametria.com.br",
   "versao_manifest": 1,
-  "revisao": 2,
+  "revisao": 3,
   "atualizado_em": "2026-10-29",
   "estado": "nascendo",
   "desembarque": {
     "aprovado": true,
     "decidido_em": "2026-10-29",
-    "observacao": "DESEMBARQUE ABERTO EM 29/10/2026, E ESTA E A PRIMEIRA REVISAO DESTA ILHA QUE PUBLICA ALGO. A revisao 1 nao publicava nada de proposito, para provar o canal com zero pagina em risco, e o canal esta provado: o /status devolveu `revisao: 1` com `0 aplicado(s)` e o log parou de acusar FALHA manifest. O QUE DESTRAVOU HOJE foi o EGRESSO: `rodametria.com.br` e `www.rodametria.com.br` responderam 200 em TRES passadas as 10h2xZ de 29/10, com aquametria e robometria em 200 nas mesmas tres — contra 000 com `403 CONNECT` em todas as medicoes de 27 e 28/10. O passo 20.1 da secao 20 foi dado pelo Raphael, e com ele cai o item 3 do despacho da leitura semanal de 28/10, cujo `pronto quando` era literalmente este curl. VAO AO AR: a casca (identidade, menu, trilha, JSON-LD, favicon e os componentes do molde da secao 32) e a F2, a calculadora de autonomia. A F1 NAO vai: o limiar legal dela continua `pendente` porque os cinco dominios oficiais seguem recusados pelo egresso, remedidos nesta mesma execucao, e a secao 10 proibe publicar numero que a ilha nao leu na fonte. A F3 nao vai: so tres registros do banco declaram carga maxima e nenhum deles tem oferta aberta. A home nasce HUB por causa disso, e a divergencia com o VOZ.md (que manda a F1 ser a home) esta escrita dentro da propria casca, no lugar onde quem for mexer a le."
+    "observacao": "DESEMBARQUE ABERTO EM 29/10/2026, E ESTA E A PRIMEIRA REVISAO DESTA ILHA QUE PUBLICA ALGO. A revisao 1 nao publicava nada de proposito, para provar o canal com zero pagina em risco, e o canal esta provado: o /status devolveu `revisao: 1` com `0 aplicado(s)` e o log parou de acusar FALHA manifest. O QUE DESTRAVOU HOJE foi o EGRESSO: `rodametria.com.br` e `www.rodametria.com.br` responderam 200 em TRES passadas as 10h2xZ de 29/10, com aquametria e robometria em 200 nas mesmas tres — contra 000 com `403 CONNECT` em todas as medicoes de 27 e 28/10. O passo 20.1 da secao 20 foi dado pelo Raphael, e com ele cai o item 3 do despacho da leitura semanal de 28/10, cujo `pronto quando` era literalmente este curl. VAO AO AR: a casca (identidade, menu, trilha, JSON-LD, favicon e os componentes do molde da secao 32) e a F2, a calculadora de autonomia. A F1 NAO vai: o limiar legal dela continua `pendente` porque os cinco dominios oficiais seguem recusados pelo egresso, remedidos nesta mesma execucao, e a secao 10 proibe publicar numero que a ilha nao leu na fonte. A F3 nao vai: so tres registros do banco declaram carga maxima e nenhum deles tem oferta aberta. A home nasce HUB por causa disso, e a divergencia com o VOZ.md (que manda a F1 ser a home) esta escrita dentro da propria casca, no lugar onde quem for mexer a le. REVISAO 3, no mesmo dia: a casca 1.0.0 digitava `f2_respostas` com SUBLINHADO e o Sync grava a option com o id literal do manifest, `f2-respostas`, com HIFEN (sanitize_key preserva hifen). O desembarque da revisao 2 ACONTECEU — tres linhas `ok` no log — e a leitura dele falhou: a pagina caiu no estado degradado honesto, sem erro de PHP e sem linha vermelha em lugar nenhum. Quem pegou foi o conferir-no-ar.py, que nasceu nesta mesma execucao. O nome da option passou a sair de uma constante que a bancada confere contra os ids do manifest."
   },
   "snippets": [
     {
@@ -20,7 +20,7 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "12bebbe6c551cea279cdf09f20f0ce366e5526a2ae741d66ec50e0105b68353e",
+      "sha256": "1a3640698be6ad0c75dc336068fa7f6c84901186be38cc3e1850449b832a5789",
       "descricao": "A CASCA 1.0.0, primeira versao. Tokens do DESIGN.md (tinta #13212B, verde #0A6B4C, Alfa Slab One so na marca, Barlow Semi Condensed nos titulos, JetBrains Mono em todo numero), simbolo V9 completo no cabecalho e em negativo no rodape, favicon proprio (secao 6: icone padrao do WordPress na aba e bloco reprovado), menu hamburguer com aria-expanded/aria-controls e links <a href> de verdade no HTML servido, trilha + BreadcrumbList, WebSite JSON-LD na home, <title> e description saindo de UM mapa de paginas. E os COMPONENTES DO MOLDE da secao 32, aqui e nao em cada snippet, como a 32.6-b manda: caixa de resultado, dobra <details>, cartao de compra com espaco reservado para quem nao tem foto, carrossel com scroll-snap em CSS puro, barra fixa do telefone e o rotulo do botao de loja por degrau da escada da 25.1. Pagina nova entra pelos filtros `rodametria_paginas` e `rodametria_instalar`, de dentro do proprio snippet dela — a casca nao e editada quando a ilha cresce."
     },
     {
@@ -30,7 +30,7 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "6847726c5f68ab6c1cddf511ab649226d62e4149057c1d91890c2d40e7f11b53",
+      "sha256": "2b4f3ce5231148f934955e429eccb24bf32e4097116eeb26a2403b0e5d873ea6",
       "descricao": "A F2 1.0.0, a PRIMEIRA pagina desta ilha no ar, em /autonomia-patinete-eletrico/. Ordem da 32.1 de cima para baixo, conferida por afirmacao no fonte: trilha e H1, promessa, formulario ja preenchido com o caso de exemplo, caixa de resultado JA PRE-RENDERIZADA no HTML (a metade que a IA le sem preencher formulario, e o que a 22.8 exige de quem desliga o JavaScript), bloco de compra, prestacao de contas da secao 7 com os cinco grupos por causa e a soma fechando o banco contado, tabela pre-renderizada visivel, e o resto em <details>. NENHUM numero e NENHUMA frase de resposta e digitado neste arquivo: tudo vem da option que o Sync grava de dados/f2-respostas.json, escrito por ferramentas/gerar-f2.py a partir de ferramentas/f2-referencia.py e de dados/constantes.json. O JS do rodape preenche MOLDE, nunca escreve frase — a bateria de mutacoes de 29/10 reprovou as duas versoes em que ele escrevia."
     }
   ],

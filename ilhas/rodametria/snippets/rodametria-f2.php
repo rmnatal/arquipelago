@@ -548,7 +548,7 @@ function rodametria_f2_nome_do_tipo( $tipo ) {
 
 if ( ! function_exists( 'rodametria_f2_pagina_html' ) ) {
 function rodametria_f2_pagina_html() {
-	$d = rodametria_casca_banco( 'f2_respostas' );
+	$d = rodametria_casca_banco( RODAMETRIA_ID_DADOS_F2 );
 
 	if ( ! $d || empty( $d['campos'] ) || empty( $d['resposta_exemplo'] ) ) {
 		/* Pagina DEGRADADA e honesta. Nunca molde cru, nunca numero inventado. */
@@ -610,7 +610,7 @@ add_action( 'wp_head', function () {
 	if ( ! rodametria_f2_na_pagina() ) {
 		return;
 	}
-	$d = rodametria_casca_banco( 'f2_respostas' );
+	$d = rodametria_casca_banco( RODAMETRIA_ID_DADOS_F2 );
 	if ( ! $d ) {
 		return;
 	}
@@ -665,7 +665,7 @@ add_action( 'wp_footer', function () {
 	if ( ! rodametria_f2_na_pagina() ) {
 		return;
 	}
-	$d = rodametria_casca_banco( 'f2_respostas' );
+	$d = rodametria_casca_banco( RODAMETRIA_ID_DADOS_F2 );
 	if ( ! $d ) {
 		return;
 	}

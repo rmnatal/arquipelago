@@ -29,7 +29,28 @@
  */
 
 if ( ! defined( 'RODAMETRIA_CASCA_VERSAO' ) ) {
-	define( 'RODAMETRIA_CASCA_VERSAO', '1.0.0' );
+	define( 'RODAMETRIA_CASCA_VERSAO', '1.0.1' );
+}
+
+/**
+ * O ID DO ITEM DE DADOS, EXATAMENTE COMO ELE ESTA NO manifest.json.
+ *
+ * Quem grava a option e o Sync, e a chave dele e `rodametria_dados_` mais
+ * `sanitize_key( $item['id'] )` — e sanitize_key PRESERVA hifen. Entao o nome
+ * da option e FATO EXTERNO a este arquivo: ele sai do id do manifest, nunca de
+ * um nome digitado aqui.
+ *
+ * A PRIMEIRA VERSAO DESTA CASCA DIGITOU `f2_respostas`, com sublinhado, e o
+ * conferir-no-ar.py a pegou na primeira passada, as 10h4xZ de 29/10/2026: o
+ * Sync gravou `rodametria_dados_f2-respostas`, a casca pediu
+ * `rodametria_dados_f2_respostas`, get_option devolveu false e a pagina caiu no
+ * estado degradado honesto — sem erro de PHP, sem linha vermelha no log do Sync
+ * e com as tres linhas da revisao 2 dizendo `ok`. E a familia do "resumo verde
+ * nao e entrega" da 20.4, num andar abaixo: aqui o desembarque ACONTECEU e o
+ * que falhou foi a leitura dele.
+ */
+if ( ! defined( 'RODAMETRIA_ID_DADOS_F2' ) ) {
+	define( 'RODAMETRIA_ID_DADOS_F2', 'f2-respostas' );
 }
 
 /* ===========================================================================
@@ -964,7 +985,7 @@ function rodametria_casca_home_html() {
 
 	/* Caixa de resposta no topo (32.2), e o numero dela e CONTADO do banco,
 	   nunca digitado — a regra do numero de tela da secao 8. */
-	$dados = rodametria_casca_banco( 'f2_respostas' );
+	$dados = rodametria_casca_banco( RODAMETRIA_ID_DADOS_F2 );
 	$n_tabela = 0;
 	$n_vitrine = 0;
 	if ( $dados ) {

@@ -335,6 +335,37 @@ def main():
             afirma(False, "numero %r digitado em prosa da F2: %s" % (n, linha.strip()[:110]))
 
     # ---------------------------------------------------------------
+    # 6-b. O NOME DA OPTION QUE O SITE LE TEM DE SAIR DO ID DO MANIFEST.
+    #
+    # A secao 8: "uma afirmacao cobra que as duas fontes digam a mesma coisa".
+    # Quem grava a option e o Sync, com `rodametria_dados_` +
+    # sanitize_key(id do manifest) — e sanitize_key PRESERVA hifen. Em 29/10/2026
+    # a casca digitou `f2_respostas` com sublinhado e a pagina inteira caiu no
+    # estado degradado, com as tres linhas da revisao 2 dizendo `ok` no log do
+    # Sync. Desembarque que acontece e leitura que falha nao tem linha vermelha
+    # em lugar nenhum: so esta afirmacao o ve.
+    # ---------------------------------------------------------------
+    manifest = json.load(open(os.path.join(ILHA, "manifest.json"), encoding="utf-8"))
+    ids_de_dados = {i["id"] for i in manifest.get("dados", [])}
+    casca_bruta = open(SNIPPET_CASCA, encoding="utf-8").read()
+    m = re.search(r"define\(\s*'RODAMETRIA_ID_DADOS_F2'\s*,\s*'([^']+)'", casca_bruta)
+    afirma(bool(m), "a casca nao declara RODAMETRIA_ID_DADOS_F2")
+    if m:
+        afirma(m.group(1) in ids_de_dados,
+               "a casca le a option de %r e o manifest nao tem item de dados com esse id "
+               "(tem %s) — o site ia cair no estado degradado em silencio"
+               % (m.group(1), sorted(ids_de_dados)))
+    # E ninguem pode voltar a digitar o nome: a chamada tem de usar a constante.
+    for nome, fonte in (("casca", casca_bruta), ("f2", php_f2)):
+        for chamada in re.findall(r"rodametria_casca_banco\(\s*([^)]*)\)", fonte):
+            chamada = chamada.strip()
+            if chamada.startswith("$"):
+                continue
+            afirma("RODAMETRIA_ID_DADOS_F2" in chamada or chamada == "$id",
+                   "%s: rodametria_casca_banco(%s) com nome digitado — o id do item de dados "
+                   "e fato externo e mora no manifest" % (nome, chamada))
+
+    # ---------------------------------------------------------------
     # 7. AS TRAVAS DE MECANISMO DA SECAO 8 QUE SE MEDEM NO FONTE.
     # ---------------------------------------------------------------
     casca = open(SNIPPET_CASCA, encoding="utf-8").read()
