@@ -546,6 +546,55 @@ afiliado da Shopee desde 29/10. As três razões de ele ser o próximo, todas in
 depende de despacho nenhum; (b) pela **21.7** essas páginas ficam fora do teto de 10 URLs por leva e 3
 levas por semana; (c) é dívida de confiança no ar, e a 21.7 nasceu deste caso na aquametria.
 
+**5e. ~~A ESCADA DA 25.2 NA TELA, NAS DUAS PONTAS~~ — ENTREGUE EM 30/10/2026 às 19h17Z–19h4xZ, E O RAMO
+QUE ELA CONSERTA NÃO EXISTE NO DADO PUBLICADO — É POR ISSO QUE NINGUÉM O VIA.** A 25.2 manda a BUSCA
+SUBIR E VIRAR O BOTÃO quando a ficha não existe ou morre; só a primeira ponta estava na tela.
+`rodametria_casca_cartao_de_compra()` devolvia **string vazia** com `url` vazia, e a segunda ponta vivia
+no **CHAMADOR** da F2. A F2 nunca sofreu; a **VITRINE** de produto, que passa `url` crua do dado, tinha
+**TRÊS** lugares lendo-a crua, e os três quebravam juntos: o **CARTÃO** sumia da página, a célula
+"Comprar" da tabela servia `href=""` (que não é botão morto — é um botão que **recarrega a própria
+página**, com "Ver na Shopee" do lado, **pior** que o cartão que ao menos sumia) e a **`Offer`** do
+JSON-LD saía com `"url": ""`. **Causa de ninguém ver: 21 de 21 anúncios da vitrine têm ficha.** O ramo
+não existe no dado publicado, e é a **32.5-d** inteira.
+
+**O CONSERTO É MECANISMO:** `rodametria_casca_escada_de_compra()`, uma função só na casca, e todo chamador
+entrega os **dois** links crus — a F2 **parou de escolher**, então a regra deixou de morar em dois lugares
+onde podia divergir (a 32.5-c nasceu da metade que não viajou). **E o DEGRAU sobe com a busca**, senão o
+rótulo promete ficha morta; medido no ar, o bloco de compra da F2 serve **degraus [1, 4]**. A **tabela
+ganhou a linha discreta do piso**, UMA vez embaixo dela e não por linha, porque o piso é da **CONSULTA** e
+não do anúncio (uma `url_busca` distinta por página) — repeti-la seria o mesmo link dezesseis vezes; com
+duas distintas a linha **não sai**. No JSON-LD, `availability` sai de cena quando o piso sobe: estoque de
+resultado de busca é afirmação sem medição.
+
+**DOIS PORTÕES NOVOS.** `ferramentas/teste-escada-de-compra.php` (PHP porque a escolha é decidida em PHP,
+então **chama** a função): 138 afirmações, **fabrica** os seis mundos que o dado não tem, prova que morde
+reproduzindo a escada velha, e **cobra** a promessa de que a F2 não mudou um byte comparando item a item
+com a regra velha (10 itens, 4 já no mundo B, idênticos). Três mutações no código reprovadas: 13, 6 e 2
+falhas. `ferramentas/conferir-produto-no-ar.py` (191 afirmações) nasceu porque **as páginas de vitrine não
+tinham portão de ar nenhum** desde 29/10 — havia o de **pixel** da 32.5 e o `mutacoes-produto.py` sem
+rede, e entre os dois **faltava quem lesse a página**; rodado contra a revisão 23 **antes** do
+desembarque, reprovou com 2 falhas, as duas a linha do piso que estava subindo.
+
+**AS TRÊS COISAS QUE O PORTÃO NOVO ACHOU, as três do lado da RÉGUA:** (1) a linha do piso se conta pela
+**CLASSE** e nunca pela frase — a mesma frase é a linha discreta de cada cartão do carrossel, 5× numa
+página sã; (2) `&quot;`, porque um título tem `10"`; (3) **o WordPress TEXTURIZA o hífen** — o
+`wptexturize` do `the_content` troca hífen cercado de espaços por **EN DASH** no retorno do shortcode (o
+dado diz `550W - 40km/h`, o corpo serve `550W &#8211; 40km/h`) e o **JSON-LD sai no `wp_head` sem passar
+pelo filtro**, servindo o hífen cru: **o mesmo nome em duas formas na mesma página.** Não é defeito — é
+tipografia do WordPress, e é a cicatriz do `&&`/`&#038;&#038;` desta casca num traje novo.
+
+**NO AR (18.4):** revisão **27**, as 7 linhas da revisão corrente dizendo `ok` (20.4, lidas uma por uma),
+**32.5 em 8 de 8** com o primeiro botão de compra **IDÊNTICO** ao de antes (1084 · 1129 · 1380 px) e a
+altura da F2 **sem mudar um pixel**, e bancada com rede em **21 portões, 0 falha**.
+
+**O QUE FICA, e é BLOCO e não conserto: `/veiculos/` ESTÁ FORA DO MOLDE** — o portão de pixel o diz com
+essas palavras ("sem componente de molde nenhum"). A mãe serve `<p class="rdm-promessa">` onde o molde pede
+a **caixa de resposta**, então os **700 px da 32.5 nunca a julgaram**: é a mesma lacuna que o 5d fechou na
+home, uma página depois. E o **campo `versao` no `manifest.json`**, que faria a constante de cada snippet
+ser espelhada e impressa como o `sha256` já é — hoje `RODAMETRIA_PRODUTO_VERSAO` e `RODAMETRIA_F2_VERSAO`
+são **lidas por ninguém**, e o comentário que afirmava o contrário foi corrigido nesta passada. Esse mexe
+no **contrato do Sync**, o único canal desta ilha, então é bloco com desembarque próprio, nunca carona.
+
 **6. LISTA DE PROSPECÇÃO DO WIDGET** — lojas brasileiras de mobilidade elétrica com site próprio, `publicar: false`.
 
 ## A BANCADA DESTA ILHA É UM COMANDO SÓ, E ELA DESCOBRE OS PORTÕES (28/10/2026)

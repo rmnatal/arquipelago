@@ -3,6 +3,167 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-10-30 19h17Z–19:44Z — **A ESCADA DA 25.2 CHEGA À TELA NAS DUAS PONTAS**, e o ramo que ela conserta não existe no dado publicado — é por isso que ninguém o via
+
+**A ESCOLHA DA ILHA.** `foco.md` nomeia a **rodametria** e pela **1.2** não há escolha a fazer. **As duas
+exceções que furam o foco foram conferidas e NENHUMA furou.** (a) A **robometria** segue *"no ar e
+quebrada"* com despacho **ALTA**, o que pela 1.2 e pela 18.1 teria precedência — mas o conserto **não é
+do repositório**, e remedi antes de respeitar o herdado (seção 4): `robometria.com.br/` em **200** e
+`/robots.txt`, `/wp-sitemap.xml` e `/wp-json/robometria/v1/status` os três em **404**, com
+`rodametria.com.br` e `aquametria.com.br` em 200 na mesma passada. O gesto é de cPanel e é do Raphael.
+(b) Os **três despachos do molde** da 32.6 (aquametria, clubedomosaico, robometria) estão **FECHADOS** —
+conferido no topo dos três `PROMPT.md`. `executando_desde` estava `null`, que pela **1.1** já significa
+que não há bloco da Fundação vivo. Reserva às **19h17Z**, push aceito **de primeira**, campo **reescrito
+às 19h29Z** pela mesma execução. Nenhum PR aberto.
+
+**A REDE, MEDIDA E NÃO HERDADA (20.2).** `rodametria.com.br/`, `/wp-sitemap.xml` e
+`/wp-json/rodametria/v1/status` os três em **200**, com `aquametria.com.br` em 200 na mesma passada.
+
+**O BRANCH `claude/*` E O `main` SÃO O MESMO COMMIT, e o `git log` desta nuvem veio RASO** — `.git/shallow`
+existe, 50 commits. Pela correção de 27/10 no topo da seção 1.1 **não contei nada de história** nesta
+execução, e por isso nenhum número daqui é de contagem de `main`.
+
+**POR QUE ESTE BLOCO: ele estava PRÉ-REGISTRADO pelo fecho das 18h13Z**, textual — *"na vitrine, a escada
+da casca ESCONDE o cartão quando `url` está vazia, em vez de cair na busca como a F2 faz (…) A tabela de
+16 linhas também serve só a ficha, sem a linha discreta da busca. Os dois são BLOCO, não conserto."*
+
+### O DEFEITO, E ELE NUNCA APARECEU NUMA PÁGINA
+
+A **25.2** é literal nas duas pontas: a ficha de produto é **bônus**, e *"quando não existir, ou quando a
+ronda marcar como morta, **a busca sobe e vira o botão** — sem esperar decisão humana, sem página ficar
+com 'link de loja em breve'"*. **Só a primeira ponta estava na tela.**
+`rodametria_casca_cartao_de_compra()` devolvia **string vazia** quando a `url` chegava vazia, e a segunda
+ponta vivia no **CHAMADOR** da F2, que resolvia a escada antes de montar o item.
+
+**A F2 nunca teve o defeito. A VITRINE de produto tinha TRÊS lugares lendo a `url` crua**, e os três
+quebravam juntos no dia em que uma ficha morresse:
+
+1. o **CARTÃO** sumia da página — com o piso gravado no mesmo registro, ao lado, sem ninguém para o promover;
+2. a célula **"Comprar"** da tabela servia `href=""` — e `href=""` **não é botão morto**: é um botão que
+   **recarrega a própria página**, com o rótulo "Ver na Shopee" do lado. **Pior que o cartão**, que ao
+   menos sumia;
+3. a **`Offer` do JSON-LD** saía com `"url": ""` — dado estruturado inválido que olho humano não vê.
+
+**POR QUE NADA VIU, e é a 32.5-d inteira:** os 21 anúncios da vitrine têm ficha, **21 de 21**. O ramo
+**não existe** no dado publicado, e régua que lê o dado publicado aprova o mundo que existe. A saída é a
+que a ohmetria escreveu: **só a mutação que PRODUZ o mundo o enxerga.**
+
+### O CONSERTO É MECANISMO, NÃO INTENÇÃO
+
+A escada virou **uma função da casca** — `rodametria_casca_escada_de_compra()` — e **todo chamador entrega
+os dois links crus**. A F2 **parou de escolher**, então a regra deixou de existir em dois lugares onde
+podia divergir: a **32.5-c** desta fábrica nasceu exatamente da metade que não viajou.
+
+**E O DEGRAU SOBE COM A BUSCA**, que é a metade que mente se ficar para trás: o rótulo sai de
+`rodametria_casca_rotulo_da_loja()`, e botão que abre **página de busca** dizendo "Ver na Shopee" promete
+uma ficha que não existe mais. Medido no ar depois do desembarque: o bloco de compra da F2 serve
+**degraus [1, 4]** — os itens do mundo B passam pela escada nova **em produção**.
+
+**A TABELA GANHOU A LINHA DISCRETA DO PISO** que devia desde que nasceu, e ela sai **UMA VEZ** embaixo da
+tabela, **não por linha**: o piso é da **CONSULTA** e não do anúncio — medido, **uma `url_busca` distinta
+por página** nas duas —, e repeti-la seria o mesmo link **dezesseis vezes**. Com duas buscas distintas a
+linha **não sai**, porque "a primeira" é arbitrária, e o portão reprova esse caso em vez de o maquiar.
+
+**NO JSON-LD, `availability: InStock` deixa de sair quando o piso sobe:** afirmar estoque sobre um
+**resultado de busca** é afirmar o que ninguém mediu.
+
+### O PORTÃO, E ELE É PHP PORQUE A ESCOLHA É DECIDIDA EM PHP
+
+`ferramentas/teste-escada-de-compra.php`, **138 afirmações e 0 falha**. Ele **CHAMA** a função em vez de
+ler o arquivo — régua em Python sobre o texto do PHP conferiria a FORMA. Ele **FABRICA** os mundos que o
+dado não tem (ficha morta com piso, ficha sem piso, nenhum dos dois, chave **ausente**, `url` **nula**,
+ficha **só de espaço**), e **prova que morde** reproduzindo a escada velha dentro da própria bateria.
+
+**E ELE COBRA A PROMESSA QUE EU ESCREVI NO COMENTÁRIO DA F2**, porque afirmação em comentário é número
+digitado em outro traje (32.5-d): a regra velha do chamador é reproduzida e comparada item a item com a
+escada, no dado publicado — **10 itens da F2, 4 deles já no mundo B, idênticos**. A F2 é o único lugar
+desta ilha onde o mundo B **já existe**.
+
+**TRÊS MUTAÇÕES NO CÓDIGO DE VERDADE, as três reprovadas:** a busca que não sobe (**13 falhas**), o degrau
+que fica para trás (**6**), a linha do piso por linha (**2**).
+
+### E AS PÁGINAS DE VITRINE NÃO TINHAM PORTÃO DE AR NENHUM — E É NELAS QUE EU MEXI
+
+`conferir-no-ar.py` confere a casca e a F2; `conferir-institucional-no-ar.py` confere as quatro do 5d.
+`/veiculos/` e as filhas **não tinham ninguém lendo o HTML servido** desde que nasceram em 29/10: o que as
+media era o portão de **pixel** da 32.5 e o `mutacoes-produto.py`, que roda **sem rede** sobre o gerador.
+**Entre os dois faltava quem lesse a página.**
+
+`ferramentas/conferir-produto-no-ar.py`, **191 afirmações**, descobrindo as URLs no `wp-sitemap.xml` lido
+no ar (32.5-b: *"régua que não varre todas certifica a página que o autor abriu"*). **Rodado contra a
+revisão 23, a que estava no ar: 2 falhas, e as duas eram exatamente a linha do piso que estava subindo.**
+O portão **reprovou o mundo de antes do desembarque** — e é o que o faz valer depois.
+
+**E ELE ACHOU TRÊS COISAS, as três do lado da RÉGUA, as três pagas antes de aprovar nada:**
+
+1. **A linha do piso se conta pela CLASSE, nunca pela frase.** A **mesma** frase é a linha discreta de cada
+   cartão do carrossel (25.2), **5× numa página sã**. Contar a frase é medir duas coisas com a mesma régua.
+2. **`&quot;`** — um título tem `10"`, e sem `unescape` a régua reprova a página **certa**. Mesma pedra em
+   que o portão institucional bateu.
+3. **O WORDPRESS TEXTURIZA O HÍFEN, e isto vale registro.** O `wptexturize` do `the_content` troca hífen
+   **cercado de espaços** por **EN DASH** no retorno do shortcode: o dado diz `550W - 40km/h` e o corpo
+   serve `550W &#8211; 40km/h`. O **JSON-LD sai no `wp_head`**, não passa por aquele filtro, e serve o
+   hífen cru — **o mesmo nome em duas formas na mesma página**. Não é defeito a consertar: é tipografia do
+   WordPress, e brigar com ela custa mais do que vale. É a cicatriz que esta ilha já tem escrita no topo da
+   casca (*"o WordPress troca `&&` por `&#038;&#038;` no retorno do shortcode"*) **num traje novo** — e
+   quem não a souber escreve uma régua que reprova a página certa. Agora está na régua, com a medição.
+   (Espaço duplo também: dois títulos da vitrine o trazem da loja, e normalizar **um lado só** reprova a
+   página certa. As três normalizações moram numa função, com a cicatriz de cada uma ao lado.)
+
+### O ACHADO FORA DO ESCOPO, CORRIGIDO COMO PROSA E NÃO COMO MECANISMO
+
+O comentário da vitrine afirmava que *"`atualizar-manifest.py` casa esta constante com o campo `versao` do
+manifest"*. **Não casa, e nunca casou:** a palavra `versao` **não aparece uma vez** naquela ferramenta
+(ela espelha `sha256` e sobe a revisão, e só) e os itens de `snippets` do `manifest.json` **não têm o
+campo** — conferido nos quatro. **`RODAMETRIA_PRODUTO_VERSAO` e `RODAMETRIA_F2_VERSAO` são lidas por
+NINGUÉM**; só a da casca é viva, porque é o gatilho de reinstalação dela.
+
+É a família do `height:44px` morto que a 32.5-d registra: **comentário que declara um mecanismo parece
+conferido e não mede nada.** O que saiu foi a frase que prometia um portão inexistente. **Não mexi no
+esquema do `manifest.json` na mesma passada que desembarca**, e a razão é de risco e não de preguiça:
+aquele arquivo é o contrato do Sync, e o Sync é o **único** canal de desembarque desta ilha. Fazer o campo
+existir é bloco, e está pré-registrado abaixo.
+
+### O DESEMBARQUE, E A 20.6 OUTRA VEZ
+
+Push às 19h29Z, **revisão 27**. O `/status` respondeu **23** com `ultimo: 19:17:02` — **recente e anterior
+ao push**, que pela régua de leitura escrita ontem na 20.6 é **turno de cron**, nem defeito nem cache.
+`raw.githubusercontent.com` já servia 27 na mesma passada. Mantive as visitas de pé (o cron desta ilha roda
+por **visita**) e a revisão entrou às **19h41:02Z**, no turno seguinte. **As 7 linhas da revisão 27 no log
+dizem `ok`, lidas uma por uma** (20.4): os quatro itens de dados e os três snippets.
+
+### MEDIDO NO AR (18.4)
+
+- **`conferir-produto-no-ar.py`: 191 afirmações, 0 falha.** De `piso da tabela 0x` (revisão 23) para
+  **`1x`** nas duas páginas, `0 href vazio`, 21 de 21 anúncios nomeados e com saída, 21 `Offer`s com url e
+  `availability` em 21 — que é o número certo, porque **21 de 21 têm ficha hoje**.
+- **`conferir-no-ar.py` (casca + F2): APROVADO.** Bloco de compra da F2 com **degraus [1, 4]**.
+- **`conferir-institucional-no-ar.py`: 210 afirmações, 0 falha.**
+- **32.5 a 390 px num navegador de verdade: 8 de 8 APROVADAS, e o primeiro botão de compra é IDÊNTICO ao de
+  antes** — `/veiculos/bicicleta-eletrica/` **1084 px**, `/veiculos/patinete-eletrico/` **1129 px**,
+  `/autonomia-patinete-eletrico/` **1380 px**. A altura das duas vitrines subiu **39 px** (3774→3813 e
+  6383→6422): é a linha do piso, embaixo da tabela, longe da primeira tela. **A altura da F2 não mudou um
+  pixel** (5196 px), que é a prova independente de que ela não mudou um byte.
+- **Bancada: 21 portões com rede, 0 falha** (eram 20 — ela **descobriu** o portão novo sozinha).
+
+### O PRÓXIMO PASSO DESBLOQUEADO, e são três, em ordem de valor
+
+1. **`/veiculos/` ESTÁ FORA DO MOLDE, e o portão de pixel o diz com essas palavras** — *"sem componente de
+   molde nenhum"*, nas duas passadas de hoje. A mãe serve `<p class="rdm-promessa">` onde o molde pede a
+   **caixa de resposta**, então os **700 px da 32.5 nunca a julgaram**. É **exatamente** a lacuna que o
+   bloco 5d fechou na home (a home era HUB e caía em "fora do molde"), uma página depois — a **32.5-c** em
+   estado puro: família nova entra no molde **pelo seletor**, nunca pela intenção. É bloco, não conserto:
+   a página não está quebrada, ela é **não medida**.
+2. **O CAMPO `versao` NO `manifest.json`**, que faria a constante de versão de cada snippet ser **espelhada
+   e impressa** como o `sha256` já é — fechando o buraco de duas constantes que ninguém lê. Mexe no
+   contrato do Sync, então é bloco com desembarque próprio, nunca carona.
+3. **A FILA NORMAL** segue no bloco **4** (ferramentas) com a **F1 e a F3 travadas por ABERTURA e não por
+   coleta** — o `gov.br` para o limiar legal da F1 e o nível 5 (`casasbahia`, `extra`, `magazineluiza`)
+   para `carga_max_kg` da F3, os dois despacho **ALTA** em `dados/despachos.md`, remedidos em 29/10.
+
+**E A ROBOMETRIA SEGUE FORA DO AR**, remedida nesta passada: home em 200, os três endpoints em 404. Não é
+consertável do repositório.
+
 ## 2026-10-30 16h38Z–18h1xZ — **O DESPACHO DA RONDA SAIU INTEIRO (18.2): OS CINCO ITENS ACIONÁVEIS**, e os dois defeitos que apareceram no caminho são da mesma família do item 1 — a página se desdizendo
 
 **A ESCOLHA DA ILHA.** `foco.md` nomeia a **rodametria** (foco total e absoluto, decisão do Raphael de
