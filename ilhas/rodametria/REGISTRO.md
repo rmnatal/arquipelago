@@ -120,7 +120,23 @@ em três linhas e o lugar é a família da 20.5.**
 `atualizar-manifest.py --conferir` reprovou — corretamente — porque `dados/consultas-de-produto.json`
 mudou nesta passada; rodei o atualizador e o sha e a revisão acompanharam. **Nada no site muda por
 isso:** aquele arquivo é `publicar: false`, e os cinco itens publicáveis seguem com o conteúdo de
-29/10. O Sync vai aplicar a revisão 17 com a mesma tela da 16.
+29/10. O Sync aplicou a revisão 17 com a mesma tela da 16.
+
+**CONFERIDO NO AR PELA 20.4:** revisão **17** no `/status` às **10h39:48Z**, com as **quatro** linhas
+da revisão corrente dizendo `ok`, e `ferramentas/bancada.py --no-ar` aprovando **15 de 15** depois
+dela — `conferir-no-ar.py` incluído, que havia reprovado **corretamente** enquanto o manifest local
+estava à frente do `/status`.
+
+**E UMA MEDIÇÃO QUE CORRIGE A MINHA PRÓPRIA PREVISÃO, e ela é sobre o cron da 20.6.** Eu escrevi, às
+10h39Z, que a tarefa desta ilha venceria *"~10h47"*, somando 30 minutos sobre a passada anterior
+(10h17:15). **Ela rodou às 10h39:48 — 22 minutos e 33 segundos depois**, logo após os três GET na
+home. Então a leitura de 29/10 (*"o relógio dele não se adianta por GET"*) **não é a história
+inteira**: os GET daquela passada não adiantaram nada porque a tarefa ainda não estava vencida; os
+desta, sim. **O que está medido, e é só isto:** o intervalo entre duas passadas consecutivas desta
+ilha foi de **22,5 minutos**, não 30 — então "30 minutos" é o **nome** do cron (`rodametria_30min`),
+não o período medido dele. Quem for prever a hora de um desembarque aqui **visita e confere**, em vez
+de somar 30 sobre a última linha do log; a régua da **20.5** continua sendo a certa para decidir se
+revisão atrasada é cache ou defeito.
 
 **E ACHEI UM CAMPO MORTO NO CAMINHO, que fica registrado em vez de consertado.** O `manifest.json`
 desta ilha traz `atualizado_em: 2026-10-29` e agora diz `revisao: 17` — ou seja, o campo ficou para
