@@ -755,6 +755,13 @@ Caminho: `claude.ai/code` → seletor de ambiente → Nuvem → engrenagem → D
 
 **O que NÃO se faz enquanto isso:** publicar um endereço que ninguém lê. Canal que não responde é pior que canal declarado ausente — o primeiro promete e falha, o segundo diz a verdade e envergonha quem tem de resolver, que é o efeito certo.
 
+> **ACRESCENTADO EM 30/10/2026 PELA FUNDAÇÃO, NO BLOCO 5d DA RODAMETRIA — AGORA SÃO QUATRO ILHAS, E A QUARTA NASCEU COM O BURACO EM VEZ DE ESBARRAR NELE.** Este despacho é de 13/09 e diz "nenhuma das **três**". A **rodametria** entrou hoje na mesma fila, e por um caminho que o despacho previu com todas as letras: a `/privacidade/` dela foi ao ar com a seção *"O que falta nesta página, dito aqui em vez de escondido"*, pelo mesmo motivo e com a mesma redação de propósito — é a mesma dívida, não uma nova.
+>
+> **E ela custa uma página a mais nesta ilha, que as outras três não pagaram:** a `/contato/` da rodametria nasceu hoje **sem endereço nenhum**, porque a 16.1 a nomeia e o bloco 5d a devia. A página inteira é honesta — ela diz que o canal não existe, diz por que, e entrega no lugar o caminho de conferir cada número na fonte sem intermediário —, mas uma página chamada "Contato" sem contato é o tipo de coisa que só o dono do endereço conserta. **A linha que a Fundação troca no dia em que a caixa existir é uma só, em `dados/paginas-institucionais.json`**, na seção "O canal, dito como ele está hoje": o parágrafo da ausência sai e o endereço entra. Nada de código muda.
+>
+> **Pronto quando** (sem alterar o pedido original, só somando a quarta ilha): existir uma caixa por ilha — ou **uma só para todas**, que é o que este despacho já oferecia como alternativa e o que faz mais sentido com seis ilhas — e o endereço estar escrito no `PROMPT.md` de cada uma. Com quatro ilhas pedindo o mesmo elo, a caixa única deixou de ser conveniência e passou a ser a saída barata.
+
+
 ### prioridade NORMAL — um dossiê pode dizer "não existe ferramenta no nicho" quando o que ele mediu foi "não existe ferramenta NAQUELAS consultas"
 
 14/09/2026 — BÚSSOLA — Achado no bloco 1 da **ohmetria** e escrito aqui porque **não é da ohmetria**: é de método, e vale para toda rodada futura.

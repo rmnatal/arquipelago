@@ -265,7 +265,7 @@
           "titulo": "O que este site não coleta",
           "paragrafos": [
             "Não há cadastro, não há login, não há lista de e-mail e não há comentário. Nenhuma página desta ilha tem um campo pedindo um dado seu sobre você.",
-            "Não há medidor de audiência: nem o do buscador, nem pixel de rede social, nem gravador de tela ou de clique. Nenhum deles carrega aqui, e o portão que confere estas páginas no ar reprova no dia em que um deles aparecer sem esta página ser atualizada antes.",
+            "Não há medidor de audiência: nem o do buscador, nem pixel de rede social, nem gravador de tela ou de clique. Nenhum deles carrega aqui, e uma conferência automática lê estas páginas no ar e falha no dia em que um deles aparecer sem esta página ser atualizada antes.",
             "Este site não escreve cookie nenhum. As páginas no ar foram abertas e nenhuma devolveu pedido de gravar cookie no seu navegador."
           ]
         },
