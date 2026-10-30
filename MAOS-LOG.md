@@ -8058,3 +8058,111 @@ estado tocado, nenhum bloco de fila executado, nenhum arquivo além dos dois nom
 `MAOS-LOG.md`, que é a exceção obrigatória), nenhuma publicação, nenhum `publicar: true`, nenhum
 Sync, nenhuma verificação de site, nenhuma conta criada. `ARQUIPELAGO.md` não foi lido para decidir
 coisa alguma. Nenhum dado pessoal de terceiro entrou no repositório.
+
+---
+
+## Disparo de 30/10/2026, 12h11 (horário de Brasília) — 15h11Z — RONDA DIÁRIA TÉCNICA DA SENTINELA: SEIS ESCRITAS, UM COMMIT
+
+**Assunto conferido ANTES do `git fetch`:** Arquipélago. Instrução da Sentinela sobre as ilhas
+`rodametria` e `robometria`, mais o `dados/PAINEL.md` da raiz. Executada.
+
+**Aviso de colisão da instrução:** a `rodametria` podia estar reservada pela Fundação
+(`executando_desde: 2026-10-30T14:11Z`). Na leitura do `main` o campo já estava `null`, limpo às
+14h47Z pela própria execução que o abriu. **Nenhum campo de cabeçalho além dos dois `ultima_ronda`
+nomeados foi tocado** — `executando_desde`, `ultima_execucao`, `bloco_atual`, `urls_publicadas` e
+`rede` ficaram byte a byte como estavam. O `git rebase origin/main` antes do push não teve o que
+aplicar ("Current branch trabalho is up to date") e o push foi aceito de primeira, sem recusa e sem
+force.
+
+**As seis escritas, e as seis entraram:**
+
+1. `ilhas/rodametria/PROMPT.md` — despacho de 30/10 (ronda diária técnica, a primeira desta ilha)
+   INSERIDO imediatamente antes da linha 103, a do despacho de 28/10, que continua aberta e no
+   lugar. Nada apagado.
+2. `ilhas/robometria/PROMPT.md` — despacho ALTA de 30/10 (ilha fora do ar menos a home) INSERIDO
+   imediatamente antes da linha 48, a primeira linha `## DESPACHO` do arquivo (o despacho de 28/10).
+   Nada apagado.
+3. `ilhas/rodametria/dados/consertos.md` — CRIADO. Não existia.
+4. `ilhas/rodametria/ESTADO.md` — linha `ultima_ronda:` trocada (de `2026-10-28T20:00Z` para
+   `2026-10-30T15:10Z`).
+5. `ilhas/robometria/ESTADO.md` — linha `ultima_ronda:` trocada (de `2026-10-28T20:00Z` para
+   `2026-10-30T14:55Z`).
+6. `dados/PAINEL.md` (raiz) — REESCRITO inteiro.
+
+**Verificação de YAML pedida pela instrução nas escritas 4 e 5 (seção 2), rodada depois de gravar:**
+
+```
+rodametria: YAML ok
+robometria: YAML ok
+```
+
+**`git status --porcelain` (antes do commit do trabalho):**
+
+```
+ M dados/PAINEL.md
+ M ilhas/robometria/ESTADO.md
+ M ilhas/robometria/PROMPT.md
+ M ilhas/rodametria/ESTADO.md
+ M ilhas/rodametria/PROMPT.md
+?? ilhas/rodametria/dados/consertos.md
+```
+
+**`git diff --stat` (rastreados; o `consertos.md` é novo e entra no stat do commit abaixo):**
+
+```
+ dados/PAINEL.md            | 92 +++++++++++++++++++++++++---------------------
+ ilhas/robometria/ESTADO.md |  2 +-
+ ilhas/robometria/PROMPT.md | 22 +++++++++++
+ ilhas/rodametria/ESTADO.md |  2 +-
+ ilhas/rodametria/PROMPT.md | 66 +++++++++++++++++++++++++++++++++
+ 5 files changed, 140 insertions(+), 44 deletions(-)
+```
+
+**HASH DO COMMIT QUE FOI AO `main`: `b46a733f22491edf729c0a8b491dcfcfd53b63b2`** (`b46a733`), e
+ele foi CONFERIDO em `origin/main` depois do push, com `git fetch origin main && git log -1
+origin/main`:
+
+```
+commit b46a733f22491edf729c0a8b491dcfcfd53b63b2
+Date:   Fri Oct 30 15:10:42 2026 +0000
+    ronda da Sentinela 30/10: despacho ALTA da robometria fora do ar, despacho de 5 itens da rodametria, consertos.md, ultima_ronda e PAINEL
+
+ dados/PAINEL.md                     | 92 ++++++++++++++++++++-----------------
+ ilhas/robometria/ESTADO.md          |  2 +-
+ ilhas/robometria/PROMPT.md          | 22 +++++++++
+ ilhas/rodametria/ESTADO.md          |  2 +-
+ ilhas/rodametria/PROMPT.md          | 66 ++++++++++++++++++++++++++
+ ilhas/rodametria/dados/consertos.md |  7 +++
+ 6 files changed, 147 insertions(+), 44 deletions(-)
+```
+
+**CONTAGEM DO QUE MUDOU, CONFERIDA RELENDO CADA ARQUIVO DEPOIS DE GRAVAR (não pelo que eu achava
+que havia escrito):**
+
+```
+ilhas/rodametria/PROMPT.md          572 linhas; 1 ocorrência do título "## DESPACHO DA SENTINELA
+                                    — 2026-10-30 (RONDA DIÁRIA TÉCNICA"; 6 subitens "### 1." a
+                                    "### 6." DENTRO do bloco novo (contados com awk entre o
+                                    título novo e o "## " seguinte)
+ilhas/robometria/PROMPT.md          1742 linhas; 1 ocorrência do título "## DESPACHO DA SENTINELA
+                                    — 2026-10-30 — ALTA"
+ilhas/rodametria/dados/consertos.md 7 linhas, 1046 bytes; 1 linha de dados na tabela (a de
+                                    2026-10-30, "NADA")
+ilhas/rodametria/ESTADO.md          1 linha "ultima_ronda:" no arquivo, e ela é a de
+                                    2026-10-30T15:10Z (zero sobra da antiga)
+ilhas/robometria/ESTADO.md          1 linha "ultima_ronda:" no arquivo, e ela é a de
+                                    2026-10-30T14:55Z (zero sobra da antiga)
+dados/PAINEL.md                     81 linhas, 16249 bytes; 6 ilhas na tabela de ilhas; 23 linhas
+                                    de dados na tabela "Despachos abertos"; 6 itens em "Precisa
+                                    do Raphael"
+```
+
+**Nenhum passo falhou.** Zero erro, zero recusa de push, zero rebase necessário, zero force push.
+
+**O que NÃO foi feito:** nenhuma ilha reservada, nenhum `executando_desde` escrito ou limpo, nenhum
+campo de cabeçalho além dos dois `ultima_ronda` nomeados, nenhum bloco de fila executado, nenhum
+arquivo além dos seis nomeados (mais este `MAOS-LOG.md`, que é a exceção obrigatória), nenhuma
+publicação, nenhum `publicar: true`, nenhum Sync, nenhuma verificação de site, nenhuma conta criada,
+nenhuma reformatação ou "melhoria" do texto recebido — ele entrou byte a byte como veio.
+`ARQUIPELAGO.md` não foi lido para decidir coisa alguma. Nenhum dado pessoal de terceiro entrou no
+repositório.
