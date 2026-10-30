@@ -4,7 +4,7 @@
   "nicho": "mobilidade eletrica — acertar os tres numeros antes de comprar um veiculo eletrico: categoria legal (CNH e placa), autonomia real e carga maxima",
   "dominio": "https://rodametria.com.br",
   "versao_manifest": 1,
-  "revisao": 22,
+  "revisao": 23,
   "atualizado_em": "2026-10-30",
   "estado": "nascendo",
   "desembarque": {
@@ -61,7 +61,7 @@
       "arquivo": "dados/f2-respostas.json",
       "formato": "json",
       "publicar": true,
-      "sha256": "53d9528e516e6da188bfe4a9991673b5636e5a8814514498db47d74810637471",
+      "sha256": "f8c918f27f5936f050afb19c0ab3fd04484dddb8123ef5a4937060c20b12a32f",
       "descricao": "O que a F2 serve: campos, moldes de frase, fatores de relevo, resposta de exemplo pre-renderizada, tabela e prestacao de contas."
     },
     {

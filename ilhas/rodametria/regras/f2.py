@@ -83,9 +83,17 @@ MOLDES = {
     # seria a secao 10 ao contrario. Agora o molde diz o MESMO que o `km_plano`
     # ja dizia do numero do anuncio — que ele e TETO, o melhor caso — e aponta a
     # ponta da faixa que a pessoa deve esperar.
+    #
+    # E O TAMANHO DELA E MEDIDO, NAO ESCOLHIDO. A primeira versao deste conserto
+    # tinha "e valem no plano" no fim, foi ao ar na revisao 22 e o portao da 32.5
+    # REPROVOU: a frase virou 3 linhas e empurrou o primeiro botao de compra de
+    # 1.380 px para 1.407, contra o teto de 1.400. Eu havia INFERIDO que ela
+    # custava zero, subtraindo medicoes de outras variantes em vez de medir esta
+    # — e a inferencia errou por uma linha. Esta versao foi MEDIDA na pagina
+    # viva, a 390 px: 2 linhas, botao de volta a 1.380 px. A folga desta pagina
+    # e de 20 px; frase que nasce aqui se mede antes de ser empurrada.
     "km_degradado": (
-        "Com {relevo_frase}, conte com {piso} a {teto} km \u2014 os {teto} do an\u00fancio s\u00e3o o "
-        "teto, e valem no plano."
+        "Com {relevo_frase}, conte com {piso} a {teto} km \u2014 os {teto} do an\u00fancio s\u00e3o o teto."
     ),
     "km_absoluto": "Com {wh} Wh e o consumo medido, conte com uns {piso} km.",
     "km_recusa": (
