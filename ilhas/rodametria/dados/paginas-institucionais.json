@@ -1,0 +1,335 @@
+{
+  "id": "paginas-institucionais",
+  "ilha": "rodametria",
+  "bloco": "5d",
+  "gerado_em": "2026-10-30",
+  "publicar": true,
+  "o_que_este_arquivo_e": "A camada DECLARADA das quatro paginas que a 16.1 nomeia por nome e que esta ilha devia a quem le: /sobre/, /contato/, /divulgacao-de-afiliados/ e /privacidade/. E a voz do VOZ.md, e toda a prosa daqui traz MOLDES no lugar de numero: nenhum digito e escrito nesta prosa fora de `digitos_permitidos`, e quem preenche os moldes e `rdm_inst_preencher()`, contando no banco e no mapa de paginas. O portao `teste-institucional.py` reprova digito solto, molde que o preenchedor nao conhece e bloco de recusa cujo item nao abre negando.",
+
+  "por_que_sem_bloco_de_compra": "Pela 32.2 estas quatro sao paginas de RESPOSTA e nao de ferramenta, entao o teto de 700 px da 32.5 e da CAIXA DE RESPOSTA. E nao ha produto nenhum a vender nelas: a 32.2 diz que item vivo nunca tem link de compra, e aqui nem item ha. Elas nascem SEM bloco de compra, e isso e o molde certo e nao uma excecao a ele.",
+
+  "digitos_permitidos": [
+    "996/2023",
+    "13.709/2018"
+  ],
+
+  "terceiros_que_carregam": [
+    {
+      "quem": "Google",
+      "o_que": "as fontes da letra desta pagina",
+      "endereco": "fonts.googleapis.com",
+      "endereco_irmao": "fonts.gstatic.com",
+      "onde": "em toda pagina",
+      "medido_em": "2026-10-30"
+    },
+    {
+      "quem": "Shopee",
+      "o_que": "a foto do produto, quando a pagina tem uma",
+      "endereco": "cf.shopee.com.br",
+      "endereco_irmao": "",
+      "onde": "nas paginas com foto de produto",
+      "medido_em": "2026-10-30"
+    }
+  ],
+
+  "paginas": [
+    {
+      "slug": "sobre",
+      "nome": "Sobre",
+      "titulo": "Quem publica a Rodametria — método, fontes e o que ainda falta",
+      "h1": "Quem publica a Rodametria",
+      "description": "Três perguntas sobre veículo elétrico e só elas: precisa de CNH, quantos km faz com o seu peso e se aguenta você. Todo número com fonte e data.",
+      "caixa": {
+        "rotulo": "No banco hoje",
+        "numero": "{VEICULOS_NO_BANCO}",
+        "unidade": "veículos",
+        "tom": "neutro",
+        "frases": [
+          "{VEICULOS_COM_LINK} deles têm link de loja e {VEICULOS_SEM_LINK} ainda não — e cada página diz qual é qual, em vez de esconder a diferença.",
+          "Mais {PECAS_COM_LINK} peça com link, de {ANUNCIOS_LIDOS} anúncios lidos um por um."
+        ]
+      },
+      "linha_mestra": "Três perguntas sobre o seu elétrico, e só elas: precisa de CNH e placa, quantos km ele faz de verdade com o seu peso, e se ele aguenta você.",
+      "secoes": [
+        {
+          "titulo": "Por que este site existe",
+          "paragrafos": [
+            "Quem abre três anúncios de patinete, scooter ou bike elétrica lê a mesma coisa nos três: um número grande de watt, uma autonomia redonda e nenhuma resposta. O anúncio não diz se aquele watt é o que vale para a regra de trânsito, não diz quantos km sobram quando quem pilota pesa noventa quilos, e quase nunca diz quanto peso o quadro aguenta.",
+            "Essas três perguntas têm resposta, e ela é uma conta — não uma opinião. É isso que a Rodametria faz: recebe os números que estão no anúncio e devolve o que eles significam para você, com a fonte e a data de cada um ao lado."
+          ]
+        },
+        {
+          "titulo": "Como as páginas são feitas",
+          "paragrafos": [
+            "Sem pessoa em cena: sem rosto, sem vídeo, sem canal. O que sustenta uma resposta aqui é a conta e a procedência do número, e as duas ficam abertas no fim de cada página.",
+            "Todo número que aparece na tela é contado no banco na hora de servir a página, nunca digitado à mão. Isso não é preciosismo: número cravado no texto era verdade no dia em que alguém o escreveu e passa a mentir calado no dia seguinte, quando o banco cresce ou um anúncio sai do ar.",
+            "O código e os dados desta ilha são versionados fora do site antes de qualquer página mudar, e o banco tem um verificador que recusa registro sem fonte, sem data ou com divergência não resolvida. O que está no ar passou por ele."
+          ]
+        },
+        {
+          "titulo": "O que ainda não dá para responder aqui, dito aqui e não escondido",
+          "paragrafos": [
+            "A pergunta da CNH é a mais procurada do assunto e é a que este site ainda não responde. O motivo é de fonte: a conta depende dos limites escritos na Resolução Contran nº 996/2023, e o texto oficial dela não é alcançável de onde estas páginas são construídas. Publicar o limite por notícia de segunda mão seria o pior erro possível aqui — errar para baixo manda alguém para a rua sem habilitação.",
+            "A pergunta do peso também não está no ar, e por outro motivo: pouquíssimos anúncios declaram a carga máxima do veículo. Sem o número do fabricante não há o que comparar, e inventar uma margem seria chutar com cara de cálculo.",
+            "A conta que está no ar é a da autonomia, porque os dois números que ela pede — tensão e amper-hora — aparecem na etiqueta da bateria e no anúncio. As outras duas entram no dia em que a fonte entrar, e não antes."
+          ]
+        }
+      ],
+      "recusa": {
+        "titulo": "O que a Rodametria não faz",
+        "itens": [
+          "Não vende veículo nem peça, não tem estoque e não intermedia venda nenhuma.",
+          "Não aceita link pago, texto patrocinado nem posição paga em lista.",
+          "Não publica \"melhor patinete\" nem \"top dez\": quem ordena uma lista aqui é o que o anúncio declara e o preço, nunca a comissão.",
+          "Não publica contagem regressiva, \"últimas unidades\", selo de mais vendido nem nota de avaliação que este site não tenha medido.",
+          "Não diz que você pode andar sem CNH. Quem diz é a resolução, citada pelo nome e pela data na própria página."
+        ]
+      },
+      "dobras": [
+        {
+          "titulo": "De onde vem cada número",
+          "paragrafos": [
+            "Preço, nome do modelo e foto saem do anúncio da loja, lidos pela porta de afiliados dela, com a data da leitura gravada ao lado. Preço nunca aparece como o preço de agora: ou não sai, ou sai com a data da coleta.",
+            "Watt, tensão, amper-hora e autonomia declarada saem do que o anúncio escreve. Quando o anúncio diz um watt e não diz se é o nominal ou o de pico, a página escreve isso com essas palavras, em vez de preencher a coluna técnica com um palpite.",
+            "O fator de relevo e o desconto de peso da conta de autonomia saem de medição publicada, com autor e ano nomeados no fim da página da calculadora."
+          ]
+        }
+      ],
+      "veja_tambem": [
+        "divulgacao-de-afiliados",
+        "privacidade",
+        "contato"
+      ]
+    },
+
+    {
+      "slug": "contato",
+      "nome": "Contato",
+      "titulo": "Achou um número errado aqui? — correção, fontes e o que não respondemos",
+      "h1": "Achou um número errado aqui?",
+      "description": "Como uma correção chega a este site, como conferir qualquer número na fonte sem depender de nós, e o que a Rodametria não responde.",
+      "caixa": {
+        "rotulo": "Anúncios lidos um por um",
+        "numero": "{ANUNCIOS_LIDOS}",
+        "unidade": "anúncios",
+        "tom": "neutro",
+        "frases": [
+          "{ANUNCIOS_RECUSADOS} foram recusados e {ANUNCIOS_PUBLICADOS} entraram nas páginas.",
+          "Todo número daqui pode ser contestado: a ficha do fabricante vale mais que a nossa primeira versão, e entra."
+        ]
+      },
+      "linha_mestra": "Se um número desta ilha está errado, ele vale menos que a fonte que o contradiz — e trocar o número é trabalho normal aqui, não vergonha.",
+      "secoes": [
+        {
+          "titulo": "O canal, dito como ele está hoje",
+          "paragrafos": [
+            "Esta ilha ainda não tem uma caixa de e-mail própria, e por isso esta página não traz endereço nenhum. Publicar um endereço que ninguém lê seria pior do que dizer isto: o primeiro promete e falha, o segundo diz a verdade.",
+            "Enquanto o canal não existir, a página não te deixa sem saída — ela te deixa sem intermediário. Toda afirmação daqui carrega a fonte e a data da leitura, e a seção do fim de cada página nomeia a loja, o anúncio e o dia em que ele foi lido. Dá para conferir na fonte sem passar por nós, e é isso que uma procedência serve para permitir."
+          ]
+        },
+        {
+          "titulo": "O que vale a pena contestar",
+          "paragrafos": [
+            "Ficha de fabricante que contradiz um número publicado aqui. Ela vale mais que a nossa leitura de anúncio, sempre, porque anúncio é texto de vendedor e ficha é declaração de quem fabricou.",
+            "Botão de compra que leva a uma página que não existe mais, ou que leva a outro produto. Anúncio apodrece: o modelo sai do ar, a loja troca o item por um parecido, e o link continua ali parecendo são.",
+            "Autonomia, watt ou carga máxima que a loja declara diferente do que está na nossa tabela. Esses três são os números que decidem compra, e são justamente os que mais aparecem errados nos títulos."
+          ]
+        },
+        {
+          "titulo": "O que acontece quando um número está errado",
+          "paragrafos": [
+            "O campo é substituído pela fonte melhor e a data de leitura da página muda junto — é para isso que a data serve. Nada é corrigido em silêncio com a data antiga no lugar, porque data velha em cima de número novo é a pior das duas coisas.",
+            "Quando um item perde o link, ele não desaparece da página: continua lá como produto, com o motivo escrito de por que não tem mais para onde clicar. Tirar o produto junto com o link apagaria a comparação que fez você entrar."
+          ]
+        }
+      ],
+      "recusa": {
+        "titulo": "O que a Rodametria não responde",
+        "itens": [
+          "Não damos parecer jurídico sobre o seu caso: a categoria do veículo sai da resolução citada na página, e exigência de cidade e fiscalização mudam de lugar para lugar.",
+          "Não indicamos loja, oficina nem despachante, e não temos parceiro em nenhuma das três coisas.",
+          "Não avaliamos o seu usado e não damos preço de revenda.",
+          "Não respondemos por garantia, entrega, troca ou defeito: isso é da loja onde a compra foi feita, e o nome dela está no botão."
+        ]
+      },
+      "dobras": [
+        {
+          "titulo": "Por que não existe formulário nesta página",
+          "paragrafos": [
+            "Formulário pede um dado seu e promete resposta. Sem uma caixa que alguém leia do outro lado, as duas coisas seriam falsas ao mesmo tempo — e a segunda é a que magoa.",
+            "Então esta página não tem campo nenhum para preencher, e nenhuma outra página desta ilha pede cadastro, login ou e-mail. O que o site vê de quem entra está escrito na página de privacidade, medido e não prometido."
+          ]
+        }
+      ],
+      "veja_tambem": [
+        "sobre",
+        "privacidade",
+        "divulgacao-de-afiliados"
+      ]
+    },
+
+    {
+      "slug": "divulgacao-de-afiliados",
+      "nome": "Divulgação de afiliados",
+      "titulo": "Como a Rodametria ganha dinheiro — e o que a comissão nunca muda",
+      "h1": "Como a Rodametria ganha dinheiro",
+      "description": "Os botões de compra deste site são links de afiliado: se você comprar, a loja nos paga comissão e o preço para você é o mesmo. O que isso nunca muda.",
+      "caixa": {
+        "rotulo": "Itens com link de loja",
+        "numero": "{ITENS_COM_LINK}",
+        "unidade": "itens",
+        "tom": "neutro",
+        "frases": [
+          "Todos são link de afiliado da {NOME_DAS_LOJAS}, e todos estão marcados como patrocinados no próprio código da página.",
+          "{ITENS_COM_FICHA} abre a página de um produto e {ITENS_COM_BUSCA} abrem a busca da loja já filtrada."
+        ]
+      },
+      "linha_mestra": "Quando você compra por um botão desta ilha, a loja nos paga uma comissão e o preço para você é exatamente o mesmo. É assim que este site se paga, e é a única maneira pela qual ele ganha dinheiro.",
+      "secoes": [
+        {
+          "titulo": "O que a comissão nunca muda",
+          "paragrafos": [
+            "A ordem da lista. Primeiro vem quem a loja mostra como mais vendido na busca medida, e o desempate é o preço — nunca a taxa que um programa paga. Comparar comissão entre lojas para decidir o que aparece primeiro seria trocar a sua compra pela nossa receita.",
+            "Quem aparece. Produto que não serve para a conta da página não sobe de posição por ter link: ele vai para o grupo de baixo, com a causa escrita de por que não entrou.",
+            "O número técnico. A fonte de um watt, de uma tensão ou de uma carga máxima é a declaração de quem fabricou ou o texto do próprio anúncio, com data. Um link de loja nunca substitui a origem do número."
+          ]
+        },
+        {
+          "titulo": "Quais links rendem, e por que hoje todos rendem",
+          "paragrafos": [
+            "Hoje todos os botões de compra desta ilha são endereços de afiliado da {NOME_DAS_LOJAS}, e todos levam a marcação de patrocinado que o buscador pede. Não há aqui o caso do botão que não rende nada: se houver um dia, ele vai aparecer nesta página com esse nome.",
+            "O que varia é para onde o botão leva. {ITENS_COM_FICHA} abre direto a página do produto, que é o melhor dos dois mundos enquanto o anúncio estiver vivo. {ITENS_COM_BUSCA} abrem a busca da loja já filtrada, porque o modelo exato não tem anúncio que a gente consiga conferir — e busca não esgota e não sai do ar.",
+            "Onde existe a página do produto, a busca não desaparece: ela fica logo abaixo do botão, numa linha discreta. Anúncio morre; busca continua respondendo. Mandar você para um beco sem saída seria pior do que não ganhar nada."
+          ]
+        },
+        {
+          "titulo": "Preço",
+          "paragrafos": [
+            "Nenhum preço aqui é apresentado como o preço de agora. Ou a página não traz preço, ou traz o preço com a data em que ele foi lido, ao lado. Preço de marketplace muda mais rápido do que qualquer página consegue acompanhar, e fingir o contrário seria enganar.",
+            "Quando o preço que você encontrar na loja estiver diferente do que está aqui, o da loja é o verdadeiro — e a data ao lado do nosso diz há quanto tempo ele foi visto."
+          ]
+        },
+        {
+          "titulo": "Por que uma loja só, por enquanto",
+          "paragrafos": [
+            "A conta que sustenta este site é de patinete e peça, e é nessa família que a {NOME_DAS_LOJAS} tem catálogo de verdade. Scooter e moto elétrica praticamente não existem lá, e nas páginas delas este site prefere não ter bloco de compra a ter um bloco com três anúncios incoerentes dentro.",
+            "O outro grande marketplace do país vende essas duas famílias, e o link de afiliado dele exige um passo que este site ainda não tem. Até esse passo existir, a página diz que não tem o que recomendar, em vez de recomendar o que ela não conferiu."
+          ]
+        }
+      ],
+      "recusa": {
+        "titulo": "O que você nunca vai ver aqui",
+        "itens": [
+          "Não compramos pelos nossos próprios links.",
+          "Não comparamos a taxa de comissão de uma loja com a de outra para decidir nada — nem a ordem, nem quem entra.",
+          "Não publicamos selo de mais vendido nem nota de estrela: este site não mede a venda de ninguém.",
+          "Não publicamos relógio de contagem regressiva nem aviso de últimas unidades."
+        ]
+      },
+      "dobras": [
+        {
+          "titulo": "Como um botão de compra nasce",
+          "paragrafos": [
+            "A palavra que vai para a busca da loja é medida antes de virar botão: ela é consultada, e se não devolver oferta nenhuma ela não vira link. Palavra escolhida no escritório e nunca testada é o jeito mais rápido de mandar alguém para uma tela vazia.",
+            "A palavra da pessoa e a palavra da loja não são a mesma coisa, e isso foi medido aqui: \"patinete elétrico\" devolve brinquedo infantil nas primeiras ofertas; com a palavra \"adulto\" ao lado, a mesma busca devolve a família certa. É a segunda que vai para o botão, e a primeira que vai para o endereço da página.",
+            "Anúncio que enumera vários modelos no mesmo título é barrado, e anúncio de um modelo vizinho com nome parecido também. Os dois casos foram medidos nesta ilha, e os dois são a maneira mais comum de prometer um aparelho e entregar outro."
+          ]
+        }
+      ],
+      "veja_tambem": [
+        "sobre",
+        "privacidade",
+        "contato"
+      ]
+    },
+
+    {
+      "slug": "privacidade",
+      "nome": "Privacidade",
+      "titulo": "O que a Rodametria sabe de você — medido, não prometido",
+      "h1": "O que a Rodametria sabe de você",
+      "description": "Nenhum cadastro, nenhum login, nenhum medidor de audiência e nenhum cookie deste site. O que carrega de fora e o que sai quando você clica num botão.",
+      "caixa": {
+        "rotulo": "Páginas no ar",
+        "numero": "{PAGINAS_NO_AR}",
+        "unidade": "páginas",
+        "tom": "neutro",
+        "frases": [
+          "Nenhuma delas pede um dado seu: não há cadastro, não há login e não há campo para o seu e-mail.",
+          "Este site não escreve cookie nenhum no seu navegador, e isso foi medido nas páginas no ar, não prometido."
+        ]
+      },
+      "linha_mestra": "Este site não te pede nada e não te segue. Abaixo está o que ele vê de quem entra, o que carrega de fora junto com a página e o que sai daqui quando você clica num botão de compra — cada coisa medida na página servida.",
+      "secoes": [
+        {
+          "titulo": "O que este site não coleta",
+          "paragrafos": [
+            "Não há cadastro, não há login, não há lista de e-mail e não há comentário. Nenhuma página desta ilha tem um campo pedindo um dado seu sobre você.",
+            "Não há medidor de audiência: nem o do buscador, nem pixel de rede social, nem gravador de tela ou de clique. Nenhum deles carrega aqui, e o portão que confere estas páginas no ar reprova no dia em que um deles aparecer sem esta página ser atualizada antes.",
+            "Este site não escreve cookie nenhum. As páginas no ar foram abertas e nenhuma devolveu pedido de gravar cookie no seu navegador."
+          ]
+        },
+        {
+          "titulo": "O que você digita nas calculadoras",
+          "paragrafos": [
+            "A conta é feita no seu próprio navegador, na hora, sem mandar nada para lugar nenhum: mexer nos campos e ler o resultado não envia um byte.",
+            "Há um caso em que os números saem, e ele está dito aqui porque é fácil de esconder: se você apertar o botão de calcular, os valores vão para o endereço da página, visíveis na barra do navegador. Isso é de propósito — é o que faz um resultado poder ser guardado nos favoritos ou mandado para alguém —, e significa que esses números passam pelo servidor junto com o pedido da página, como qualquer endereço.",
+            "O que vai ali são tensão, amper-hora, peso e relevo. Nenhum deles diz quem você é, nenhum fica guardado numa ficha sua, e não existe ficha sua aqui para guardar coisa nenhuma."
+          ]
+        },
+        {
+          "titulo": "O que o servidor registra por conta própria",
+          "paragrafos": [
+            "Como todo servidor da internet, o serviço que hospeda estas páginas mantém um registro de acesso: endereço de rede, data e hora, a página pedida e o navegador usado. Ele existe para segurança e para achar defeito, fica com a empresa de hospedagem e não é usado aqui para montar perfil de ninguém.",
+            "Esse registro não é cruzado com nada, porque não há nada para cruzar: sem cadastro e sem medidor de audiência, não existe deste lado uma identidade a que ligar uma visita."
+          ]
+        },
+        {
+          "titulo": "O que carrega de fora junto com a página",
+          "paragrafos": [
+            "Quando um endereço de fora carrega junto com uma página, o seu navegador fala com ele sem você clicar em nada — e quem está do outro lado vê o seu endereço de rede. São {TERCEIROS} aqui, e os dois estão nomeados abaixo com o que cada um serve.",
+            "{NOMES_DOS_TERCEIROS}",
+            "Nenhum dos dois está aqui para medir você: um entrega a letra da página e o outro entrega a foto do produto. Nada mais de fora carrega sozinho — o endereço da loja e o endereço das fontes citadas são links, e link não faz nada até você clicar."
+          ]
+        },
+        {
+          "titulo": "O que sai daqui quando você clica num botão de compra",
+          "paragrafos": [
+            "O botão passa pelo endereço de afiliado da loja, e é ele que marca que o clique veio deste site — é assim que a comissão é atribuída e é por isso que o botão existe. A partir do clique, quem manda é a política de privacidade da loja, e o nome dela está escrito no botão antes de você clicar.",
+            "O que volta para cá é um relatório somado: quantos cliques, quantas vendas e quanto de comissão. A loja não nos diz quem você é, não nos passa o seu nome nem o seu e-mail, e o que você colocou no carrinho não chega aqui."
+          ]
+        },
+        {
+          "titulo": "Seus direitos, e o que falta nesta página, dito aqui em vez de escondido",
+          "paragrafos": [
+            "A Lei Geral de Proteção de Dados, a Lei nº 13.709/2018, te dá o direito de saber o que é guardado sobre você, de corrigir e de pedir para apagar. Para exercer isso é preciso um canal formal, e esta ilha ainda não tem uma caixa de e-mail própria — então o canal não existe hoje, e está escrito aqui em vez de omitido.",
+            "Na prática não há um caso seu parado esperando: não há dado seu aqui para consultar, corrigir ou apagar, porque nada é pedido, nada é gravado e nenhum cookie é escrito. O que falta é o endereço, e ele é a próxima coisa que esta página ganha."
+          ]
+        }
+      ],
+      "recusa": {
+        "titulo": "O que a Rodametria não faz com dado de quem entra",
+        "itens": [
+          "Não vendemos, não alugamos e não trocamos dado de quem entra aqui, porque não há dado para isso.",
+          "Não usamos pixel de rede social nem lista de público para anúncio.",
+          "Não pedimos o seu e-mail para liberar resultado, tabela ou conta nenhuma: tudo aqui está aberto na página.",
+          "Não escrevemos cookie para te reconhecer depois, aqui ou em outro site."
+        ]
+      },
+      "dobras": [
+        {
+          "titulo": "Como estas afirmações são conferidas",
+          "paragrafos": [
+            "Nada nesta página é promessa de intenção: cada frase acima corresponde a uma medição feita na página servida, do lado de fora, como o seu navegador a recebe.",
+            "O que é conferido, página por página e em todas elas: que nenhuma devolve pedido de gravar cookie; que nenhuma carrega medidor de audiência ou pixel; e que os únicos endereços de fora que carregam junto são os nomeados aqui. Endereço novo de fora numa página faz essa conferência falhar, e a página que você está lendo tem de mudar antes."
+          ]
+        }
+      ],
+      "veja_tambem": [
+        "divulgacao-de-afiliados",
+        "sobre",
+        "contato"
+      ]
+    }
+  ]
+}
