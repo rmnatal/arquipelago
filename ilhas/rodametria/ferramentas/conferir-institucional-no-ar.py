@@ -24,6 +24,7 @@ caminho diferente do que o PHP usa — e comparados com o que foi ao ar. Duas
 metades que contam a mesma coisa ficam verdes quando erram juntas; a terceira
 conta e o que separa "o numero bate" de "as duas copias concordam".
 """
+import html as html_lib
 import json
 import os
 import re
@@ -92,8 +93,17 @@ def corpo_da_pagina(html):
 
 
 def texto_do_corpo(html):
+    """O texto que a PESSOA le, com as entidades ja desfeitas.
+
+    O `unescape` nao e detalhe: `esc_html()` do WordPress transforma a aspa reta
+    em `&quot;`, e sem desfazer isso a comparacao com o texto declarado REPROVA
+    a pagina certa — foi o que a primeira passada desta regua fez, em dois itens
+    do bloco de recusa de `/sobre/` que estavam no ar, corretos, escritos com
+    aspas. Portao que reprova pagina certa e o caminho mais curto para alguem
+    passar a ignora-lo (20.5 e 32.5-b).
+    """
     t = re.sub(r"<[^>]+>", " ", corpo_da_pagina(html))
-    return re.sub(r"\s+", " ", t).strip()
+    return re.sub(r"\s+", " ", html_lib.unescape(t)).strip()
 
 
 def hosts_que_carregam(html):
@@ -121,7 +131,7 @@ def hosts_que_carregam(html):
 # A TERCEIRA CONTA — recontada em Python, dos arquivos, por outro caminho
 # ---------------------------------------------------------------------------
 
-def recontar():
+def recontar(urls_do_sitemap=None):
     """Os numeros que estas paginas publicam sobre si mesmas.
 
     Deliberadamente escrito SEM olhar o PHP: a conta sai dos mesmos arquivos de
@@ -153,7 +163,7 @@ def recontar():
         recusadas += int(n.get("recusadas") or 0)
         publicados += int(n.get("n") or 0)
 
-    return {
+    contas = {
         "VEICULOS_NO_BANCO": veiculos_total,
         "VEICULOS_COM_LINK": veiculos_link,
         "VEICULOS_SEM_LINK": max(0, veiculos_total - veiculos_link),
@@ -166,6 +176,17 @@ def recontar():
         "ANUNCIOS_PUBLICADOS": publicados,
         "PAGINAS_DE_PRODUTO": len(vit.get("paginas", [])),
     }
+
+    # PAGINAS NO AR, POR UM CAMINHO QUE NAO E O DO PHP. O PHP conta o MAPA de
+    # paginas da casca (entrada com URL nao vazia); aqui a conta sai do
+    # `wp-sitemap.xml` servido. Quando as duas divergirem, a divergencia e
+    # INFORMACAO e nao ruido: URL no sitemap que o mapa nao conhece e pagina
+    # orfa da arvore da 16, e pagina no mapa que o sitemap nao lista nao esta
+    # indexavel. E por isso que esta conta mora aqui e nao e lida do PHP.
+    if urls_do_sitemap is not None:
+        contas["PAGINAS_NO_AR"] = len(urls_do_sitemap)
+
+    return contas
 
 
 def main():
@@ -245,7 +266,7 @@ def main():
     # -------------------------------------------------------------------
     # 3. AS QUATRO PAGINAS, UMA POR UMA
     # -------------------------------------------------------------------
-    contas = recontar()
+    contas = recontar(caminhos)
     registro("terceira conta: " + ", ".join("%s=%s" % (k, v) for k, v in sorted(contas.items())))
 
     por_slug = {p["slug"]: p for p in declarado["paginas"]}
