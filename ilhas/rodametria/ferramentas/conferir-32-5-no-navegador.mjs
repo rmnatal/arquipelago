@@ -24,8 +24,16 @@
  * a 32.5 nomeia.
  *
  * ELE DESCOBRE AS PAGINAS: le o `wp-sitemap.xml` no ar, abre cada URL e julga a
- * que SERVE o molde — a que tem `.rdm-molde-compra` ou `.rdm-molde-caixa`.
- * Pagina sem molde e listada como FORA DO MOLDE, nunca aprovada em silencio.
+ * que SERVE o molde — a que tem bloco de compra, formulario de ferramenta OU
+ * caixa de resposta. Pagina sem nenhum dos tres e listada como FORA DO MOLDE,
+ * nunca aprovada em silencio.
+ *
+ * CORRIGIDO EM 30/10/2026, E A CAUSA E A 32.5-c: ate aquele dia "estar no molde"
+ * exigia bloco de compra OU formulario, entao pagina com caixa de resposta e sem
+ * nada para vender caia em FORA DO MOLDE — a caixa dela era medida, impressa e
+ * NUNCA julgada contra os 700 px. No dia em que as quatro paginas da 16.1
+ * nasceram (bloco 5d), eram quatro paginas de molde que este portao abria e
+ * deixava passar. A 32.5 e literal: ter caixa de resposta ja e estar no molde.
  *
  * O QUE ELE MEDE, por pagina do molde, a 390 px e com quebra de cache:
  *
@@ -38,7 +46,12 @@
  *      ignora-lo (a licao que a 20.5 nomeou quando o REPROVADO era cache). O
  *      formulario se nomeia pela CLASSE DA FERRAMENTA e nunca por `main form`.
  *   2. onde o PRIMEIRO BOTAO DE COMPRA aparece. Teto: 1.400 px. E o primeiro
- *      `a[rel~=sponsored]`, ou um controle de compra de dentro do bloco.
+ *      `a[rel~=sponsored]`, ou um controle de compra de dentro do bloco. ESTE
+ *      TETO SO VALE ONDE HA O QUE COMPRAR: pagina que nao vende nada — as
+ *      quatro da 16.1, pela 32.2 — recebe "nao se aplica" impresso, nunca um
+ *      pulo calado. E a outra metade e cobrada: pagina que serve link
+ *      patrocinado FORA de um bloco de compra e REPROVADA, porque sem o
+ *      componente o teto nao teria o que medir.
  *   3. ROLAGEM HORIZONTAL, que tem de ser zero.
  *
  * E mais duas que custam o mesmo e dizem se a medicao vale: a ALTURA da pagina e
@@ -171,8 +184,20 @@ for (const url of lista) {
 		const compra = patrocinado || controle;
 
 		return {
-			tem_molde: !!(bloco || formulario),
-			tem_caixa_sem_molde: !!(!bloco && !formulario && document.querySelector('.rdm-molde-caixa')),
+			/* FAMILIA NOVA ENTRA NO MOLDE PELO SELETOR, NUNCA PELA INTENCAO (32.5-c).
+			   Ate 30/10/2026 esta linha dizia `tem_molde: !!(bloco || formulario)`, e
+			   com isso TODA pagina que tem caixa de resposta e NAO vende nada caia em
+			   "fora do molde": a caixa dela era medida, impressa — e nunca JULGADA
+			   contra o teto de 700 px. No dia em que as quatro paginas da 16.1
+											nasceram (bloco 5d), eram quatro paginas de molde que o portao
+			   abria e nao julgava. A 32.5 e explicita: "o formulario (ou a caixa de
+			   resposta, em ficha) comeca antes de 700 px" — ter caixa JA e estar no
+			   molde. O teto de COMPRA e que passa a ser julgado so onde ha o que
+			   comprar, e onde nao ha o portao DIZ que nao se aplica, em vez de pular
+			   calado. */
+			tem_molde: !!(bloco || formulario || primeiro('.rdm-molde-caixa')),
+			tem_compra: !!bloco,
+			tem_patrocinado: !!patrocinado,
 			caixa: topo(caixa),
 			caixa_que: formulario ? 'formulario' : 'resposta',
 			caixa_alt: caixa ? Math.round(caixa.getBoundingClientRect().height) : null,
@@ -188,30 +213,37 @@ for (const url of lista) {
 	m.erros = erros.length;
 
 	if (!m.tem_molde) {
-		/* Pagina sem o contrato de conversao: sem bloco de compra E sem
-		   formulario de ferramenta. Ela sai da conta do molde, mas NUNCA em
-		   silencio — o motivo vai impresso, com a caixa medida mesmo assim,
-		   para quem ler saber que ela foi aberta e julgada. */
+		/* Pagina sem componente de molde nenhum: sem bloco de compra, sem
+		   formulario de ferramenta E sem caixa de resposta. Ela sai da conta,
+		   mas NUNCA em silencio — o motivo vai impresso para quem ler saber
+		   que ela foi aberta. */
 		fora.push(m);
-		console.log(
-			`  fora  ${m.url.padEnd(56)} ${m.tem_caixa_sem_molde ? 'tem caixa de resposta e NAO tem bloco de compra nem formulario' : 'sem componente de molde'}` +
-				(m.caixa !== null ? `  (caixa a ${m.caixa} px)` : '')
-		);
+		console.log(`  fora  ${m.url.padEnd(56)} sem componente de molde nenhum`);
 		continue;
 	}
 	molde.push(m);
 
 	const problemas = [];
 	if (m.caixa === null || m.caixa >= TETO_CAIXA) problemas.push(`${m.caixa_que} a ${m.caixa} px (teto ${TETO_CAIXA})`);
-	if (m.compra === null || m.compra >= TETO_COMPRA) problemas.push(`compra a ${m.compra} px (teto ${TETO_COMPRA})`);
+	if (m.tem_compra) {
+		if (m.compra === null || m.compra >= TETO_COMPRA) problemas.push(`compra a ${m.compra} px (teto ${TETO_COMPRA})`);
+	} else if (m.tem_patrocinado) {
+		/* A outra metade da mesma trava: pagina que serve link patrocinado FORA
+		   de um bloco de compra escapa do teto de 1.400 px por nao ter o
+		   componente que o portao mede. Isso e defeito, nao isencao. */
+		problemas.push('serve link patrocinado e NAO tem bloco de compra — o teto de compra nao tem o que medir');
+	}
 	if (m.rolagem_h > 0) problemas.push(`rolagem horizontal ${m.rolagem_h} px`);
 	if (m.erros > 0) problemas.push(`${m.erros} erro(s) de JavaScript`);
 	m.problemas = problemas;
 	if (problemas.length) falhas++;
 
+	const compraTexto = m.tem_compra
+		? `compra ${String(m.compra).padStart(5)} px`
+		: 'compra  nao se aplica (a pagina nao vende nada)';
 	const marca = problemas.length ? 'FALHA' : 'ok   ';
 	console.log(
-		`  ${marca} ${m.url.padEnd(56)} ${m.caixa_que.padEnd(11)} ${String(m.caixa).padStart(5)} px  compra ${String(m.compra).padStart(5)} px  altura ${String(m.altura).padStart(5)} px` +
+		`  ${marca} ${m.url.padEnd(56)} ${m.caixa_que.padEnd(11)} ${String(m.caixa).padStart(5)} px  ${compraTexto}  altura ${String(m.altura).padStart(5)} px` +
 			(problemas.length ? `\n         ${problemas.join('; ')}` : '')
 	);
 }
@@ -222,7 +254,8 @@ console.log('');
 console.log(`  paginas com molde: ${molde.length}   fora do molde: ${fora.length}   (sitemap: ${lista.length})`);
 if (fora.length) console.log(`  fora do molde: ${fora.map((f) => f.url).join(' ')}`);
 const piorCaixa = molde.reduce((a, b) => (a === null || (b.caixa ?? 1e9) > a ? b.caixa ?? 1e9 : a), null);
-const piorCompra = molde.reduce((a, b) => (a === null || (b.compra ?? 1e9) > a ? b.compra ?? 1e9 : a), null);
-console.log(`  pior caixa: ${piorCaixa} px (teto ${TETO_CAIXA})   pior compra: ${piorCompra} px (teto ${TETO_COMPRA})`);
+const comCompra = molde.filter((m) => m.tem_compra);
+const piorCompra = comCompra.reduce((a, b) => (a === null || (b.compra ?? 1e9) > a ? b.compra ?? 1e9 : a), null);
+console.log(`  pior caixa: ${piorCaixa} px (teto ${TETO_CAIXA}) em ${molde.length} pagina(s)   pior compra: ${piorCompra} px (teto ${TETO_COMPRA}) em ${comCompra.length} pagina(s) que vendem algo`);
 console.log(falhas ? `  REPROVADO — ${falhas} pagina(s) do molde fora da 32.5` : `  APROVADO — ${molde.length} de ${molde.length} paginas do molde dentro da 32.5`);
 process.exit(falhas ? 1 : 0);
