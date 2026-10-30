@@ -45,6 +45,28 @@ python3 ferramentas/bancada.py --lista    # só imprime o que rodaria
 
 ---
 
+## DESPACHO DA SENTINELA — 2026-10-30 — ALTA: A ILHA ESTÁ FORA DO AR, MENOS A HOME
+
+Medido às 14h5xZ de 30/10/2026 pela ronda diária técnica, que hoje é da **rodametria** — esta ilha entra pela exceção da 1.2 (ilha no ar e quebrada, despacho ALTA), e não por rotação.
+
+**O QUE RESPONDE:** `https://robometria.com.br/` em **200**, com o `<title>` certo ("Seu robô aspirador: qual peça serve, quanta sucção – Robometria"), 101.518 bytes.
+
+**O QUE NÃO RESPONDE — 13 de 13, cada uma em 404 nas DUAS leituras, com quebra de cache:** `/qual-peca-serve-no-meu-robo-aspirador/`, `/quantos-pa-o-robo-aspirador-precisa/`, `/quantos-m2-o-robo-aspirador-limpa-por-carga/`, `/filtro-universal-de-robo-aspirador/`, `/pecas/`, `/ferramentas/`, `/sobre/`, `/metodologia/`, `/divulgacao-de-afiliados/`, `/feed/`, `/comments/feed/`, `/wp-json/`, `/wp-json/wp/v2/pages/6`. Mais `/robots.txt` e `/wp-sitemap.xml`, os dois em **404**, e o endpoint do Sync `/wp-json/robometria/v1/status` em **404**. A lista das 13 não foi escolhida: é **toda** URL interna que a própria home linka.
+
+**A CAUSA TEM ASSINATURA, E ELA NÃO É DO WORDPRESS.** A página servida nas 404 é a da **HostGator** — `<title>Hospedagem de Site com Domínio Grátis - HostGator`, corpo "Erro 404 | Ops, Não encontramos essa página!" — lida no Chrome do Raphael navegando de verdade em `/qual-peca-serve-no-meu-robo-aspirador/`. Não é o 404 do tema. **O Apache não está entregando o pedido ao WordPress**, e a home sobrevive porque a raiz serve o `index.php` direto. É a **queda do `.htaccess` da raiz** — o mesmo defeito que derrubou a clubedomosaico três vezes, a última em 08/10/2026.
+
+**NÃO É REDE NEM TÚNEL, e isso foi medido no mesmo minuto:** `clubedomosaico.com.br` e `aquametria.com.br` com `/`, `/robots.txt`, `/wp-sitemap.xml` e `/wp-json/` em **200 nas duas leituras cada**. A varredura completa das duas na mesma janela deu **39 de 39** e **52 de 52** em 200. Só esta ilha caiu.
+
+**O QUE CUSTA:** 10 das 14 URLs estavam no índice do Google na leitura semanal de 28/10, com 18 impressões e posição média 14,3 — e a banda 11–20 é, pela 12.1, a única em que trabalho pequeno vira primeira página. O `/divulgacao-de-afiliados/`, que é a página que os programas de afiliado exigem, está entre as caídas **enquanto a home continua servindo a ilha**. E, porque o `/wp-json/` caiu junto, **o Sync não alcança esta ilha**: conserto por commit não desembarca aqui até a raiz voltar.
+
+**POR QUE NÃO CONSERTEI:** não está na lista 19.1 e não é consertável pelo repositório — a reescrita do `.htaccess` da raiz é painel do WordPress ou Gerenciador de Arquivos do cPanel, e nenhuma rotina toca nisso. **O gesto está na lista do Raphael** (ver `dados/PAINEL.md` na raiz): WordPress → Configurações → Links permanentes → Salvar; se não voltar, recriar o arquivo no cPanel com as sete linhas padrão do WordPress.
+
+**Pronto quando:** `/robots.txt`, `/wp-sitemap.xml`, `/wp-json/robometria/v1/status` e as 13 URLs internas da home devolverem 200 em duas leituras com quebra de cache, e o `/status` voltar a dizer `revisao: 95` — que é a revisão do `manifest.json` na entrega de 26/10.
+
+**E QUANDO VOLTAR, A PRIMEIRA COISA É A DÍVIDA DE VERIFICAÇÃO QUE ESTÁ ABERTA DESDE 26/10:** o `electrolux-erb60` esgotado, que a Fundação diz ter fechado às 16h59Z daquele dia e que **nenhuma ronda reconferiu no ar** — a de 28/10 fez a curta nesta ilha e a de hoje encontrou a ilha fora do ar. Pela 19.4(c) a reconferência é da ronda seguinte, e ela continua devendo.
+
+---
+
 ## DESPACHO DA SENTINELA — 2026-10-28 (LEITURA SEMANAL, 19h4xZ–20hxxZ) — ILHA EM MODO DE MEDIÇÃO (1.2-b.1), FORA DO FOCO
 
 **A ilha regrediu nesta janela sem ninguém tocar nela: 24 → 18 impressões e posição 8,5 → 14,3, com zero byte publicado desde 26/10.** Em 28 dias: 64 impressões, 0 clique, posição 10,0.

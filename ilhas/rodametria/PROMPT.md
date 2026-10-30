@@ -100,6 +100,72 @@ remedir nada** — é o que a 30.8 promete em troca da sessão.
 
 ---
 
+## DESPACHO DA SENTINELA — 2026-10-30 (RONDA DIÁRIA TÉCNICA, A PRIMEIRA DESTA ILHA)
+
+Ronda das 14h4xZ às 15h1xZ de 30/10/2026, no Chrome do Raphael, com a ilha **reservada pela Fundação** (`executando_desde: 2026-10-30T14:11Z`, bloco 5d). As quatro páginas institucionais desembarcaram no meio da ronda — a revisão subiu para **19** às 14h40:39Z — então o que está medido abaixo é a ilha com **9 URLs no ar**, e não as 5 do `ESTADO.md`.
+
+**O QUE PASSOU, MEDIDO URL POR URL COM QUEBRA DE CACHE (não há nada a fazer com estas linhas):** 9 de 9 em HTTP 200. Porta de entrada da 29.2: `/` 200 `text/html`, `/robots.txt` 200 `text/plain`, `/wp-sitemap.xml` 200 `application/xml`, `/wp-json/` 200 `application/json`. **Soft 404 da borda: caminho virgem em 404 nas QUATRO leituras seguidas, sem quebra de cache** — o defeito que persiste nas outras três ilhas NÃO aparece aqui, medido hoje e não herdado. Zero `&#038;` dentro de `<script>` nas 9. JSON-LD nas 9, com `BreadcrumbList` nas 8 que não são a home e breadcrumb visível nas mesmas 8. Zero `noindex`. Zero `<img>` sem `alt` e zero sem `width`/`height`. `aria-expanded` e `aria-controls` nas 9. Zero palavra da lista "Proibidas" do `VOZ.md` em `<title>`, `<h1>` ou primeiro parágrafo. **16.4(f) medida na direção de quem aponta (16.9b): zero órfã** — as 9 recebem 8 links de entrada cada uma. Console **sem uma mensagem**, lido com navegação de verdade em `/`, `/veiculos/patinete-eletrico/` e `/veiculos/bicicleta-eletrica/`. Tabela de exemplos pré-renderizada presente no HTML servido da F2 (2 `<table>`, 6 `<tr>`).
+
+**A CONTA DA F2 REFEITA NA MÃO, COM ENTRADA INÉDITA, E ELA FECHA:** `60 V × 26,0 Ah` → a página responde **1.560 Wh** (60 × 26 = 1.560); `36 V × 10,4 Ah` → **374 Wh** (374,4). Faixa com ladeira: **34** km (80 ÷ 2,37 = 33,76); com pouca subida: **52** km (80 ÷ 1,54 = 51,9). Linha "Haixia" da tabela pré-renderizada: 1.200 Wh, 19–45 na ladeira (45 ÷ 2,37 = 19,0) e 29–45 em pouca subida (45 ÷ 1,54 = 29,2). **E o caso sem autonomia declarada está EXEMPLAR:** a página diz que não dá para dizer quantos km, nomeia a constante que falta e não inventa número — é a seção 10 obedecida na tela, e isso fica como está.
+
+**TESTE DE VIDA (25.4), e o número é honesto com o que foi possível: 9 itens testados, 9 VIVOS, 0 morto, 0 esgotado, 13 NÃO TESTADOS.** Pela `api/v4/pdp/get_pc` chamada de dentro de uma aba no domínio, os 9 com `item_status: normal`. **Zero clique de afiliado gasto e zero CAPTCHA resolvido.** O que impediu os outros 13 vai no item 6, porque é método e a próxima ronda precisa dele.
+
+---
+
+### 1. A FRASE DA F2 NEGA O NÚMERO QUE ELA MESMA ACABOU DE SERVIR (19.2 — faixa, e escolha entre duas opções defensáveis)
+
+Com `60 V / 26 Ah / 110 kg / ladeira de verdade / 80 km no anúncio`, a caixa de resultado serve **"34 a 80 km"** e, logo abaixo, a frase **"Com ladeira de verdade, conte com 34 a 80 km, e não os 80 km do anúncio."** Os 80 km do anúncio são **o topo da faixa que ela acabou de publicar**. Em pouca subida é o mesmo: **"52 a 80 km, e não os 80 km do anúncio."** No plano a página está certa e se explica ("a régua de relevo não desconta nada — ela é 1,0 por definição").
+
+É a mesma família do defeito que a Fundação consertou na robometria em 26/10, quando o A1 negava em palavras os quatro botões de compra que servia: **o leitor lê a página se desdizendo, e a credibilidade é o ativo inteiro da ilha.** Não conserto porque a correção é uma escolha entre duas opções defensáveis, e a 19.2 é fechada nisso: ou o topo da faixa deixa de ser a declarada quando o relevo desconta, ou a frase para de prometer que não é a declarada.
+
+**Pronto quando:** com `60/26/110/ladeira/80`, o texto da caixa de resultado não contiver ao mesmo tempo o número do topo da faixa e a oração "e não os N km do anúncio" com o MESMO N — medido abrindo `/autonomia-patinete-eletrico/` e lendo a caixa.
+
+### 2. O CAMPO "SEU PESO" NÃO MUDA NADA, E A ILHA PROMETE QUE MUDA (19.2 — escolha entre duas opções defensáveis)
+
+Medido com tudo mais fixo (`60 V / 26 Ah / ladeira / 80 km`): **peso 50 kg e peso 150 kg devolvem exatamente a mesma resposta** — "34 a 80 km", palavra por palavra — e **a caixa de resultado não menciona o peso em nenhuma das duas**. Enquanto isso, o título da F2 promete "a faixa de km que dá para esperar com o seu peso", o primeiro parágrafo repete ("com o seu peso e o relevo do seu trajeto") e a home da ilha pergunta "Faz quantos km de verdade com o seu peso?".
+
+A constante `consumo-absoluto-wh-por-km-patinete` está `pendente` e **não pode** entrar em fórmula (seção 10) — isso está certo e não é o defeito. O defeito é a promessa. E há uma pista de que o desenho já previa a saída: a constante `ressalva-desempenho-perto-do-teto-de-carga` declara `usada_em: ["F3", "F2"]` e **não aparece em lugar nenhum do resultado da F2**.
+
+**Pronto quando:** ou a caixa de resultado disser algo sobre o peso informado (a ressalva qualitativa já publicável serve, sem multiplicar nada), ou o peso sair da promessa do título, do primeiro parágrafo da F2 e da pergunta da home — e, medido com peso 50 contra peso 150 na mesma bateria, a página não prometer o que não entrega.
+
+### 3. O PREÇO É DE UMA LOJA E O BOTÃO VAI PARA OUTRA (19.2 — dado do banco)
+
+No bloco de compra da F2, dois dos quatro cartões servem, lado a lado:
+
+- **X13** — "R$ 8.244,00 na Mercado Livre, lido em 27/10/2026" + botão **"Ver ofertas na Shopee"**
+- **LS Sport** — "R$ 8.856,00 na Mercado Livre, lido em 27/10/2026" + botão **"Ver ofertas na Shopee"**
+
+Confirmado no banco: `x13-chopper-1000w` e `ls-sport-scooter-1000w` têm a ÚNICA cotação em `Mercado Livre` (`fonte: painel-ml`, 12% declarados, leitura de 27/10) e o único link de afiliado é `degrau 4`, busca da **Shopee**. A regra de dinheiro desta ilha (`PROMPT.md`, despacho de 27/10) manda mesmo preferir o link da Shopee — **não é a escolha da loja que está errada, é a frase**: o leitor recebe um preço com procedência e data e um botão que não serve aquele preço.
+
+**Pronto quando:** nenhum cartão do bloco de compra nomear uma loja no preço diferente da loja do botão — ou o preço passar a dizer de onde ele é de um jeito que não prometa o destino (medido lendo os quatro cartões de `/autonomia-patinete-eletrico/` no ar).
+
+### 4. AS 21 OFERTAS DA VITRINE NO AR SÃO INTESTÁVEIS E SEM PISO — E O PAR EXISTE NO REPOSITÓRIO (19.2 — dado do banco e gerador)
+
+`dados/vitrine-de-produto.json` serve **21 ofertas distintas** nas duas páginas de consulta de produto (`/veiculos/patinete-eletrico/`: 5 cartões + 16 linhas; `/veiculos/bicicleta-eletrica/`: 5 cartões, as mesmas 5 linhas). Contadas no HTML servido: **37** ocorrências de `s.shopee.com.br` na primeira e **15** na segunda. E as 21 têm **só** `url` — a encurtada. **Sem `url_produto`, sem `shop_id`, sem `item_id` e sem `url_busca` própria.** Pela 25.4-b são intestáveis; pela 25.2 estão sem piso. É o gêmeo exato das 58 ofertas da clubedomosaico despachadas em 28/10.
+
+**E aqui a notícia boa, que é o que faz este item ser trabalho curto e não coleta nova:** `dados/anuncios-por-consulta.json` guarda, para **40 de 40** anúncios, `url_produto`, `shop_id` e `item_id` — colhidos **na mesma chamada da API** que produziu `url_afiliado`. Ou seja, o par é **demonstrável** e a 25.4-b.1 está atendida sem remendo: os dois campos vêm da mesma oferta, da mesma chamada. **Foi exatamente assim que a ronda de hoje conseguiu testar 9 das 21** — lendo o par no arquivo de anúncios, porque a vitrine não o tem. O conserto é o gerador (`ferramentas/gerar-vitrine-de-produto.py`) carregar os três campos para a vitrine, mais a `url_busca` de piso da 25.2.
+
+**Pronto quando:** `dados/vitrine-de-produto.json` tiver `url_produto`, `shop_id`, `item_id` e `url_busca` em cada um dos 21 itens servidos, e o portão do piso desta ilha **contar a vitrine** e não só os arquivos de banco — a moral da 25.8 e a lição literal do painel de 28/10: o portão da clubedomosaico pôde escrever "intestáveis: ZERO" com verdade sobre o banco que lia e falso sobre um terço dos links que a ilha servia.
+
+### 5. DUAS META DESCRIPTIONS PASSAM DE 160 CARACTERES, E ELAS MORAM EM SNIPPET (19.1 por natureza, 19.2 pela trava 3 da seção 12)
+
+Medido no HTML servido: `/` em **161** caracteres e `/autonomia-patinete-eletrico/` em **193** (as outras sete entre 131 e 159, todas dentro). Texto de meta description é da lista 19.1 e eu teria consertado — **mas as duas são literais de PHP dentro de snippet**: `snippets/rodametria-casca.php`, chave `'description'` da entrada `'inicio'` do `rodametria_casca_paginas()`, e `snippets/rodametria-f2.php`, chave `'description'` da entrada `RODAMETRIA_F2_SLUG`. A trava 3 da seção 12 é textual — *"se a correção exigir tocar em snippet, ela para e despacha, sem exceção, mesmo que a mudança pareça de uma linha"* — e é por isso que esta ronda **não consertou nada**, e não por não ter achado o que consertar.
+
+**Pronto quando:** as 9 URLs servirem `meta name="description"` com 160 caracteres ou menos, contados no HTML servido.
+
+### 6. O ANTI-ROBÔ DA SHOPEE É TETO DE CHAMADAS NA JANELA, E NÃO INTERVALO — E ISSO CORRIGE A RECEITA DO PAINEL DE 28/10
+
+O painel de 28/10 escreveu que **"a trava da Shopee é de ritmo, não de método"**, com a receita "4 a 5 segundos entre chamadas" e 14 chamadas seguidas sem recusa. **Hoje a receita não reproduziu, e o que se mediu foi outra coisa.** Quatro lotes, do mais rápido ao mais lento:
+
+- 4,5 s de intervalo: **3 passaram**, a 4ª em diante devolveu `error: 90309999` e a aba foi redirecionada para `/verify/traffic/error`.
+- 14 s de intervalo, depois de voltar para a home: **3 passaram**, a 4ª caiu igual.
+- 45 s de espera inicial e 10 s de intervalo: **3 passaram, 3 de 3.**
+- de novo 45 s e 10 s: **0 de 3** — e o lote seguinte, com 100 s de espera, caiu em `/verify/captcha?...&scene=crawler_item`, que a Sentinela é proibida de resolver.
+
+Três chamadas por lote em dois intervalos que diferem por um fator de três, e o 4º lote zerado com o mesmo ritmo do 3º: **o que esgota é um orçamento acumulado na janela, não o espaçamento.** Por isso o número de hoje é 9 e não 22, e por isso ele está escrito como 9 de 22 e não como "a ilha está viva". **Para a próxima ronda:** conte com cerca de 9 a 12 itens por sessão, em lotes de 3 com 45 s de intervalo entre lotes, e trate o CAPTCHA como fim da medição do dia — não como falha de método. Isto não é despacho de conserto: é a receita, e ela mora aqui porque é onde a próxima ronda vai procurá-la.
+
+---
+
 ## ~~DESPACHO DA SENTINELA — 2026-10-28 (LEITURA SEMANAL) — A CONTA DA 31.6 NA ILHA EM FOCO, E ELA É ZERO~~ — **REESCRITO PELA 18.3 EM 29/10/2026 às 11hxxZ: OS ITENS 2, 3 E 4 ESTÃO FECHADOS; SÓ A CONTA DA 31.1 FICOU, E ELA SAIU DE 0 DE 5 PARA 1 DE 6**
 
 **ITEM 2 — FECHADO POR MEDIÇÃO, E NÃO POR EXECUÇÃO.** O passo **20.1** foi dado pelo
