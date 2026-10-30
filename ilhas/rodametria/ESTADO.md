@@ -6,96 +6,75 @@ piso: abaixo              # 5 URLs publicadas contra as 40 da 21.1, e primeira_i
 urls_publicadas: 9        # 5 -> 9 em 30/10/2026 as 14h4xZ: as QUATRO paginas que a 16.1 nomeia (`/sobre/`, `/contato/`, `/divulgacao-de-afiliados/`, `/privacidade/`), pelo bloco 5d. CONTADO no wp-sitemap.xml no ar com quebra de cache, nao na conta de antes do desembarque. ELAS NAO MEXEM NO PISO DA 21.1 NEM GASTAM LEVA: a 21.7 tira as cinco paginas nomeadas da 16.1 do teto de 10 URLs por leva e 3 levas por semana, porque sao familia fechada e nenhuma responde a uma busca — o piso de malha segue pedindo 40 e as paginas de malha seguem 5. A DIVIDA QUE ELAS PAGAM estava medida na contagem de 30/10 as 10h3xZ: a ilha serve link de afiliado da Shopee desde 29/10 e nao tinha pagina de divulgacao de afiliados nem de privacidade.
 ultima_ronda: 2026-10-30T15:10Z   # RONDA DIARIA TECNICA, a PRIMEIRA desta ilha, e ela foi FUNDA. Escrito pela Sentinela, nunca pela Fundacao (secao 2). A ilha tinha 9 URLs no ar no momento da ronda (nao 5): as quatro institucionais do bloco 5d desembarcaram no meio dela, revisao 19 as 14h40:39Z. 9 de 9 em HTTP 200, porta da 29.2 verde nas quatro, soft 404 da borda AUSENTE nesta ilha (caminho virgem em 404 nas quatro leituras), regua tecnica inteira verde, console sem uma mensagem, conta da F2 refeita na mao em cinco casos e fechando. SEIS defeitos achados e ZERO consertados, de proposito: ver dados/consertos.md e o despacho de 30/10 em PROMPT.md. Teste de vida: 9 itens testados, 9 vivos, 0 morto, 13 nao testados por orcamento do anti-robo da Shopee.
 primeira_indexacao: null  # as duas primeiras URLs foram ao ar hoje; indexacao e trabalho de dias. Quem grava este campo e a leitura semanal, lendo o Search Console.
-ultima_execucao: 2026-10-30T14:47Z   # BLOCO 5d ENTREGUE E CONFERIDO NO AR: as quatro paginas da 16.1, pelo snippet `rodametria-institucional` 1.0.0 (#9), SEM UMA LINHA DE CASCA — elas entram pelos filtros, e a instalacao rodou porque a ASSINATURA DO MAPA mudou (casca 1.4.0). Revisao 19 no ar as 14h40:39Z com as CINCO linhas da revisao corrente dizendo `ok` (20.4, lidas uma por uma). A pagina de privacidade nao promete: zero Set-Cookie medido, zero medidor de audiencia, e os DOIS enderecos de fora que carregam estao NOMEADOS nela. Bancada com rede: 17 portoes, 0 falha. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
-executando_desde: 2026-10-30T17:43Z   # RESERVA RENOVADA pela 1.1 (3a vez: 16h38Z, 16h58Z, agora). O bloco passou de 40 minutos por uma causa que vale registrar: TRES TURNOS DE CRON. O Sync desta ilha roda por VISITA (20.6) mas nao antecipa evento que ainda nao venceu, e cada revisao esperou o seu turno de 30 minutos — 20, 22 e 23. Hora do `date -u` NA MESMA LINHA DE COMANDO que a grava.
+ultima_execucao: 2026-10-30T18:13Z   # DESPACHO DA RONDA DE 30/10 FECHADO INTEIRO (18.2) nos cinco itens acionaveis, CONFERIDO NO AR (18.4): revisao 23, as linhas da revisao corrente do log dizendo `ok` (20.4, lidas uma por uma), 32.5 APROVADA em 1.380 px (8 de 8 paginas) e bancada com rede em 19 portoes, 0 falha. O item 6 nao e conserto e ficou. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
+executando_desde: null   # LIMPO as 2026-10-30T18:13Z pela propria execucao que reservou as 16h38Z e renovou TRES vezes pela 1.1 (16h58Z, 17h43Z e no fecho). O bloco passou de 40 minutos por uma causa que NAO e de trabalho e vale registrar: TRES TURNOS DE CRON, um por revisao (20, 22 e 23). O Sync desta ilha roda por VISITA (20.6) mas nao antecipa evento que ainda nao venceu, e cada conferencia da 18.4 precisa da revisao POUSADA.
 rede: aberta em 2026-10-30   # 20.2, MEDIDA e nao herdada: rodametria.com.br em 200 nas TRES passadas as 13h5xZ, com aquametria.com.br em 200 nas MESMAS tres, e o /wp-json/rodametria/v1/status em 200 — na revisao 17 no inicio e na 19 no fecho, as duas com TODAS as linhas da revisao corrente dizendo `ok` (20.4). O soft 404 da borda do hospedeiro, registrado em 29/10, NAO foi remedido nesta passada: ele e despacho ALTA de dados/despachos.md e nao se conserta daqui.
 bloqueada_por: null      # obrigatorio pela secao 2. `null` DE PROPOSITO: o que falta (gov.br para a F1, as prefeituras para a camada municipal, as tres etiquetas do Mercado Livre) trava a FABRICA e nao a ILHA, e isso se escreve no despacho, que e o canal da 12.2. Preenche-lo congelaria tambem os blocos que ja podem andar — e o proximo da fila, o 3d, nao depende de nenhum deles.
 bloco_atual: |
-  BLOCO 5d ENTREGUE — AS QUATRO PAGINAS QUE O SITE DEVIA A QUEM LE, E A DE PRIVACIDADE
-  NAO PROMETE NADA: TUDO O QUE ELA AFIRMA FOI MEDIDO NA PAGINA SERVIDA.
+  O DESPACHO DA RONDA SAIU INTEIRO (18.2): OS CINCO ITENS ACIONAVEIS, CONFERIDOS
+  NO AR PELA 18.4. O item 6 nao e conserto — e a receita do anti-robo da Shopee —
+  e fica onde esta, reproduzido inteiro no PROMPT.md.
 
-  ESTE ARQUIVO CONTINUA SENDO A MEMORIA DESTA ILHA — `/areas/projeto-rodametria.md` nao existe nesta
-  nuvem, e e por isso que este campo e longo.
+  ESTE ARQUIVO CONTINUA SENDO A MEMORIA DESTA ILHA — `/areas/projeto-rodametria.md` nao existe
+  nesta nuvem, e e por isso que este campo e longo.
 
-  NO AR, 9 URLs (eram 5): `/sobre/`, `/contato/`, `/divulgacao-de-afiliados/` e `/privacidade/`,
-  pelo snippet `rodametria-institucional` 1.0.0 (#9 no Code Snippets), revisao 19 as 14h40:39Z com
-  as CINCO linhas da revisao corrente dizendo `ok` (20.4, lidas uma por uma).
+  O QUE DECIDIU O ITEM 2 FOI UM NUMERO, E ELE DESMENTIU A MINHA PRIMEIRA ESCOLHA.
+  A ronda deu duas saidas; comecei pela primeira (a caixa de resultado passar a
+  dizer algo sobre o peso informado) e ela FOI AO AR na revisao 20. Nao cabe: o
+  primeiro botao de compra da F2 saiu de 1.380 px para 1.504 px, contra o teto de
+  1.400 da 32.5 — medido pelo portao desta ilha, no navegador, a 390 px. O custo e
+  de BLOCO e nao de linha (a frase de 46 caracteres e a de 81 deram o mesmo
+  acrescimo de 97 px), e NENHUMA combinacao coube: a melhor, com a promessa
+  encurtada e a frase dentro do paragrafo do km, deu 1.411 px. A pagina ja estava
+  a 98,6% do teto antes de o despacho existir.
+  ENTAO O PESO SAIU DA PROMESSA, que e a segunda saida e a mais honesta das duas:
+  a F2 deriva o piso de `declarada / fator` e `fator` e RELEVO — nenhum quilo de
+  quem pilota entra em formula, porque `consumo-absoluto-wh-por-km-patinete` esta
+  `pendente` e a secao 10 proibe. Mudaram a pergunta da home, o titulo do cartao
+  da F2 na home, as duas meta descriptions, tres textos das paginas de produto que
+  diziam que a calculadora "faz essa conta" com o peso, e o VOZ.md, com a data e o
+  motivo ao lado da pergunta trocada.
+  O PESO CONTINUA ONDE E LEGITIMO: na terceira pergunta da home, que e a F3 e
+  compara carga maxima contra a ficha de cada veiculo, e na RESSALVA abaixo do
+  bloco de compra, que nomeia o peso informado e DIFERENCIA 50 de 150 — e ela que
+  faz o campo "Seu peso" nao ser enfeite, e o portao novo cobra exatamente isso.
 
-  A CASCA NAO FOI TOCADA, e isso e o mecanismo dela funcionando: as quatro entram pelos filtros
-  `rodametria_paginas` e `rodametria_instalar`, de dentro do proprio snippet delas, e a instalacao
-  rodou porque a ASSINATURA DO MAPA mudou — exatamente o que a casca 1.4.0 nasceu para fazer em
-  29/10. O log diz `snippet #9 criado` as 14h40 e o relato de instalacao e de 14h41:38: as paginas
-  nasceram na requisicao SEGUINTE, porque na do Sync o snippet ainda nao estava carregado. Era o
-  defeito que custou as tres paginas do 5b, e com a assinatura ele se conserta sozinho.
+  OS OUTROS QUATRO, em uma linha cada:
+  (1) a frase da F2 parou de negar o topo da faixa que ela mesma serve, pela
+      segunda saida — mexer no topo exigiria um numero que ninguem mediu.
+  (3) o preco de uma loja com botao de outra: nao mudou a loja (a cotacao do
+      Mercado Livre e a unica com procedencia que o X13 e o LS Sport tem, e a
+      regra de dinheiro manda preferir o link da Shopee), mudou a FRASE.
+  (4) as 21 ofertas da vitrine ganharam url_produto, shop_id, item_id e url_busca
+      — 21 de 21 —, e o PORTAO DO PISO passa a CONTAR A VITRINE, que era o buraco
+      que o despacho nomeia: antes ele podia dizer "intestaveis: ZERO" com verdade
+      sobre o banco que lia e falso sobre um terco dos links que a ilha servia.
+  (5) as duas meta descriptions entraram no teto, e o DEFEITO DE FUNDO era o
+      portao, que tolerava 200 — agora 160, com as entidades HTML desfeitas ANTES
+      de contar.
 
-  O QUE A PAGINA DE PRIVACIDADE AFIRMA, E CADA COISA MEDIDA DO LADO DE FORA:
-  zero `Set-Cookie` nas URLs no ar; zero medidor de audiencia e zero pixel (doze familias
-  procuradas, esta ilha nao tem GA4); e os UNICOS dois enderecos de fora que CARREGAM junto com a
-  pagina estao NOMEADOS nela — Google (`fonts.googleapis.com` e `fonts.gstatic.com`, em toda pagina)
-  e Shopee (`cf.shopee.com.br`, onde ha foto). `s.shopee.com.br` e `dspace.ups.edu.ec` sao so LINK,
-  e link nao faz nada ate o clique — a diferenca entre carregar e linkar e a afirmacao inteira.
+  E DOIS DEFEITOS FORA DO DESPACHO, achados ao escrever os de cima: `peso_ladeira`
+  mandava esperar o PISO DA FAIXA tambem quando a caixa havia RECUSADO o km (mesma
+  familia do item 1, um andar abaixo), e a frase de peso acima do teto dizia "veja
+  se o modelo AGUARDA o seu peso" — a palavra desta ilha e "aguenta".
 
-  E A MEDICAO ACHOU O QUE ERA MAIS FACIL DE ESCONDER. A primeira versao da pagina dizia, como toda
-  politica de privacidade de calculadora diz, que "o que voce digita nao sai do navegador". O
-  formulario da F2 e `method="get"`: apertar o botao manda os quatro numeros para o ENDERECO da
-  pagina, que passa pelo servidor e fica no registro de acesso do hospedeiro. A frase bonita era
-  falsa na metade que importa. O que foi ao ar separa as duas coisas e nomeia os quatro campos.
+  PORTOES: 16 na bancada sem rede (eram 14), 0 falha. Dois novos, e os dois mordem
+  por mutacao e nao por leitura: `teste-nota-de-preco.php`, que e PHP porque a
+  frase e decidida em PHP e por isso CHAMA a funcao em vez de ler o arquivo; e a
+  vitrine dentro do `validar-banco.py`. O portao do item 2 NASCEU COM UM DEFEITO
+  QUE A PROPRIA BATERIA ACHOU: ele reprovava tres textos do FAQ, inclusive a
+  resposta que diz "a Rodametria nao converte peso em km" — explicacao nao e
+  promessa, e regua que reprova o texto certo e o caminho mais curto para alguem a
+  ignorar. E ele pegou, sozinho, o JS citando um molde que eu havia removido do
+  arquivo publicado: a pagina teria impresso `{piso}` na cara de quem le.
 
-  A /contato/ NAO INVENTOU UM CANAL: esta ilha nao tem caixa de e-mail, o despacho de 13/09 em
-  dados/despachos.md proibe "publicar um endereco que ninguem le", e a pagina diz isso com todas as
-  letras. O despacho foi reescrito hoje — eram TRES ilhas, agora sao QUATRO — e a linha que a
-  Fundacao troca no dia em que a caixa existir e UMA, no JSON declarado, sem tocar em codigo.
-
-  NENHUM NUMERO E DIGITADO: 16 moldes CONTADOS na hora de servir, das options do Sync e do mapa de
-  paginas da casca. As quatro caixas, cada uma conferida por uma TERCEIRA CONTA recontada em Python
-  por caminho diferente do PHP: /sobre/ 17 veiculos, /contato/ 40 anuncios lidos, /divulgacao/ 5
-  itens com link, /privacidade/ 9 paginas no ar. A ultima e a melhor das quatro, porque as duas
-  metades leem fontes DIFERENTES — o PHP conta o mapa da casca, o portao conta o wp-sitemap servido.
-
-  TRES PORTOES REPROVARAM A PAGINA CERTA EM DOIS DIAS, e a terceira foi hoje:
-  (1) 5c, `gerar-f2.py --conferir`, pelo selo de data; (2) `teste-institucional.py`, que procurava a
-  palavra `h1` no texto da folha e achou o COMENTARIO que explica por que ela nao mexe em h1 —
-  consertado para medir SELETOR, com as duas metades provadas no autoteste; (3)
-  `conferir-institucional-no-ar.py`, que disse que dois itens do bloco de recusa de /sobre/ "nao
-  estao no ar" quando estavam: `esc_html()` vira `&quot;` e a comparacao era contra a aspa reta.
-  Nas tres a tentacao era mexer na pagina; nas tres o defeito era da regua.
-
-  E UM PORTAO NAO REPROVAVA O QUE DEVIA: A HOME ESTAVA FORA DA 32.5 DESDE QUE NASCEU.
-  32.5-c outra vez. `conferir-32-5-no-navegador.mjs` decidia "esta no molde" por
-  `!!(bloco_de_compra || formulario)`, e pagina com CAIXA DE RESPOSTA e sem nada para vender caia em
-  "fora do molde": a caixa era medida, impressa e NUNCA julgada contra os 700 px. A home desta ilha
-  e HUB, sem bloco de compra e sem formulario — estava fora do veredito desde 29/10, e as quatro de
-  hoje entrariam pela mesma porta. Paginas do molde: 3 -> 8. O teto de COMPRA passou a valer so onde
-  ha o que comprar, com "nao se aplica" IMPRESSO, e pagina que serve link patrocinado FORA de um
-  bloco de compra passou a ser REPROVADA — senao a isencao seria a porta dos fundos dos 1.400 px.
-
-  MEDIDO NO AR, 390 px, Chromium de verdade, com quebra de cache: caixa de resposta a 211 px
-  (/sobre/) e 244 px (as outras tres), contra o teto de 700. 8 de 8 paginas do molde aprovadas.
-  PISO DE CORPO DA SECAO 8, MEDIDO NO AR e nao pela conta de antes do desembarque (o erro que a mae
-  /veiculos/ quase pagou, quando a conta de antes dava 1.253): /sobre/ 4.449, /contato/ 3.674,
-  /divulgacao-de-afiliados/ 4.786, /privacidade/ 5.899 caracteres.
-  16.4(f) com folga: cada uma das quatro recebe link de 9 das 9 paginas no ar, contra as 2 da regra —
-  elas estao no RODAPE, que a casca monta do mapa inteiro, e fora do menu de cima por ordem do VOZ.md.
-
-  BANCADA: 17 portoes com rede, 0 falha (conferir-no-ar 445 afirmacoes nas 9 URLs;
-  conferir-institucional-no-ar 210; 32-5-no-navegador 8 de 8). Sem rede: 14 portoes, 0 falha, com os
-  19 casos de autoteste do portao novo, que FABRICAM o mundo de cada regra — digito plantado na
-  prosa, molde orfao, promessa escondida dentro do bloco de recusa, negacao no meio da frase, numero
-  literal na caixa, pagina fina.
-
-  A 20.6 GANHOU UMA REGUA DE LEITURA, e ela nao e conserto: o campo `ultimo` do /status separa os
-  TRES mundos que a 20.5 junta em dois. `ultimo` ANTIGO = o Sync nao rodou (defeito). `ultimo` DE
-  AGORA com revisao atrasada = cache do GitHub (reacione). `ultimo` RECENTE MAS ANTERIOR AO PUSH =
-  nem defeito nem cache: e TURNO DE CRON, e o que resolve e esperar o proximo mantendo as visitas de
-  pe. Medido hoje: Sync as 14h10:04, push as 14h11, revisao entrando as 14h40:39. Gastei uma rodada
-  de reacao achando que era cache, ate ler o `ultimo` e ver que ele era mais velho que meu push.
-
-  PROXIMO PASSO DESBLOQUEADO: o BLOCO 4 — a F3 como REGRA, sem pagina. Nao depende de ninguem,
-  diferente de tudo o mais que sobrou na fila: a F1 depende do gov.br (despacho ALTA), as duas
-  consultas da cauda dependem de uma sessao de Chrome (despacho de 30/10 no topo do PROMPT.md), e
-  scooter/moto eletrica dependem das etiquetas do Mercado Livre. O desenho e o que a ohmetria usou
-  para a F1 dela com banco vazio e que esta ilha ja usou na F2: a regra nasce medindo quantos
-  registros declaram `carga_max_kg` e dizendo na propria tela o que falta, em vez de esperar o dado.
+  O QUE FICA PARA O PROXIMO, e nao e deste despacho: na vitrine, a escada da casca
+  ESCONDE o cartao quando `url` esta vazia, em vez de cair na busca como a F2 faz —
+  hoje os 21 tem ficha, entao o ramo nao existe, mas no dia em que uma morrer o
+  piso esta no dado e a tela nao o promove sozinha. A tabela de 16 linhas tambem
+  serve so a ficha, sem a linha discreta da busca. Os dois sao BLOCO, nao conserto.
+  E a robometria segue FORA DO AR com despacho ALTA, remedida nesta passada em tres
+  leituras: nao e consertavel do repositorio, o gesto e de cPanel e e do Raphael.
 ---
 
 # Estado da ilha RODAMETRIA

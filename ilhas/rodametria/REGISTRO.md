@@ -3,6 +3,215 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-10-30 16h38Z–18h1xZ — **O DESPACHO DA RONDA SAIU INTEIRO (18.2): OS CINCO ITENS ACIONÁVEIS**, e os dois defeitos que apareceram no caminho são da mesma família do item 1 — a página se desdizendo
+
+**A ESCOLHA DA ILHA.** `foco.md` nomeia a **rodametria** (foco total e absoluto, decisão do Raphael de
+27/10) e pela **1.2** não há escolha a fazer. **A exceção que fura o foco foi conferida e NÃO furou:** a
+**robometria** está com despacho **ALTA** e está *"no ar e quebrada"*, o que pela 1.2 e pela 18.1 teria
+precedência — mas o próprio despacho dela diz, com todas as letras, que o conserto **não é do
+repositório**: a reescrita do `.htaccess` da raiz é painel do WordPress ou Gerenciador de Arquivos do
+cPanel, e o gesto está na lista do Raphael. **Remedi antes de respeitar o herdado (seção 4):** três
+passadas com quebra de cache, `robometria.com.br/` em **200** nas três e `/robots.txt`,
+`/wp-sitemap.xml` e `/qual-peca-serve-no-meu-robo-aspirador/` em **404** nas três, com
+`rodametria.com.br` e `aquametria.com.br` em 200 nas **mesmas** três. Segue caída, segue não
+consertável daqui. `executando_desde` estava `null`, que pela **1.1** já significa que não havia bloco
+da Fundação vivo — o último commit na pasta era da **ronda** das 15h10Z, e commit de ronda **não
+reserva nada** (1.1). Reserva escrita às **16h38Z**, push aceito **de primeira**, campo **reescrito às
+16h58Z** pela mesma execução. Branch `claude/*` e `main` idênticos nos dois sentidos, nenhum PR aberto.
+
+**A REDE, MEDIDA E NÃO HERDADA (20.2).** `rodametria.com.br` em **200 nas três passadas**, com
+`aquametria.com.br` em 200 nas mesmas três.
+
+**POR QUE O DESPACHO E NÃO UM BLOCO: a 18.5 é textual** — *"na dúvida entre fechar um despacho e começar
+um bloco novo, fecha o despacho. Ilha com defeito no ar não recebe página nova."*
+
+### ITEM 1 — A FRASE DA F2 NEGAVA O NÚMERO QUE ELA MESMA ACABAVA DE SERVIR
+
+O molde `km_degradado` dizia *"conte com {piso} a {teto} km, e não os {teto} km do anúncio"* — e `{teto}`
+**é** a autonomia declarada. Com `60/26/110/ladeira/80` a caixa servia "34 a 80 km" e, logo abaixo, "não
+os 80 km do anúncio": o topo da faixa que ela mesma publicou.
+
+**A RONDA OFERECEU DUAS SAÍDAS DEFENSÁVEIS E A ESCOLHIDA FOI A SEGUNDA**, com o motivo: mexer no **topo
+da faixa** exigiria um número que **ninguém mediu**. A `faixa_de_km()` deriva o piso de `declarada /
+fator` — o fator vem do estudo de Quito, que é fonte — e **não existe fonte para um teto que não seja a
+própria declarada**. Inventar o topo para salvar a frase seria a seção 10 ao contrário. Então a frase
+passou a dizer do número do anúncio **o mesmo que o `km_plano` já dizia dele**: que ele é **teto**, o
+melhor caso. E a frase aponta a ponta da faixa que a pessoa deve esperar, que é o que ela veio saber.
+
+### ITEM 2 — O CAMPO "SEU PESO" NÃO MUDAVA NADA, E A ILHA PROMETIA QUE MUDAVA
+
+**ESTE ITEM FOI FECHADO DUAS VEZES, E A PRIMEIRA ESTAVA ERRADA — a correção dela está nesta mesma
+execução, e o que a desmentiu foi um número.** A ronda deu duas saídas defensáveis; comecei pela
+**primeira** (a caixa de resultado passar a dizer algo sobre o peso informado), e ela foi ao ar na
+**revisão 20**. As frases `peso`, `peso_ladeira` e `peso_acima_do_teto` **já existiam** na regra, já
+eram acentuadas e **já diferenciavam 50 de 150** — o tradutor as servia abaixo do bloco de compra —,
+então subir uma versão curta delas para a caixa parecia o conserto mais barato.
+
+**NÃO CABE. MEDIDO EM NAVEGADOR DE VERDADE, A 390 PX, URL NO AR:**
+
+| o que está na caixa | primeiro botão de compra | teto da 32.5 |
+|---|---|---|
+| revisão 19 (como a ronda encontrou) | **1.380 px** | 1.400 |
+| revisão 20 (a primeira saída, como foi ao ar) | **1.504 px** | 1.400 |
+| idem, com as frases enxutas | 1.477 px | 1.400 |
+| + a frase de promessa encurtada | 1.454 px | 1.400 |
+| + a frase de abertura do bloco de compra encurtada | 1.434 px | 1.400 |
+| a frase do peso **dentro** do parágrafo do km | 1.411 px | 1.400 |
+
+**Nenhuma combinação cabe**, e a causa é que **o custo não é de linha, é de BLOCO**: a frase de 46
+caracteres e a de 81 deram **o mesmo número** (97 px de acréscimo), porque o que pesa é o parágrafo.
+A página já estava a **98,6% do teto** antes de o despacho existir — e o portão da ordem da 32.1, em
+`teste-f2.py`, **já registrava** que "a caixa com as cinco frases longas" empurrava o botão para baixo
+do teto. Uma passada anterior já tinha pagado essa conta; eu paguei de novo, e de novo só o navegador
+disse. **A simulação previu 1.504 px e o portão da 32.5, rodado contra a revisão 20 no ar, leu
+1.504 px** — mesmo número, o que é a prova de que a medição por injeção no DOM serve para decidir
+ANTES de empurrar.
+
+**ENTÃO O ITEM FECHA PELA SEGUNDA SAÍDA: O PESO SAI DA PROMESSA.** E ela não é consolo — é a mais
+honesta das duas. A F2 deriva o piso de `declarada / fator`, e `fator` é **relevo**: nenhum quilo de
+quem pilota entra em fórmula, porque `consumo-absoluto-wh-por-km-patinete` está `pendente` e a seção
+10 proíbe. A ilha prometia o peso em cinco lugares e passou a prometer o **relevo**, que ela desconta
+de verdade, com a fonte do fator citada na própria página:
+
+- a pergunta da home: *"Faz quantos km de verdade com o seu peso?"* → **"na sua ladeira?"**
+- o cartão da F2 na home: o mesmo — e **o corpo dele já dizia a verdade** ("com o relevo do seu
+  trajeto descontando o que tem de descontar"); só o título prometia o peso
+- as duas meta descriptions (que são também o item 5)
+- **três textos das páginas de produto** que diziam que a calculadora *"faz essa conta"* com o peso
+- o `VOZ.md`, com a data e o motivo escritos ao lado da pergunta trocada, porque ele é o documento
+  que descreve a voz aprovada e mudar a tela sem mudá-lo deixaria os dois discordando
+
+**O PESO CONTINUA EM DOIS LUGARES, e nos dois ele é legítimo.** A **terceira** pergunta da home —
+*"Aguenta você e a mochila?"* — é a **F3**, onde peso é **carga** e se compara contra o `carga_max_kg`
+de cada veículo: ali ele entra de verdade. E a **ressalva abaixo do bloco de compra**, que nomeia o
+peso informado e diferencia 50 de 150 — é ela que faz o campo "Seu peso" **não ser enfeite**, e o
+portão novo cobra exatamente isso. O FAQ segue explicando, com todas as letras, que a Rodametria não
+converte peso em km.
+
+### ITEM 3 — O PREÇO ERA DE UMA LOJA E O BOTÃO IA PARA OUTRA
+
+**Não é a escolha da loja que estava errada.** A regra de dinheiro desta ilha manda preferir o link da
+Shopee, e a cotação do Mercado Livre é a **única com procedência e data** que o `x13-chopper-1000w` e o
+`ls-sport-scooter-1000w` têm — confirmado no banco. Era a **frase**: o leitor recebia um preço com
+procedência e um botão que não serve aquele preço.
+
+Agora, quando as duas lojas divergem, a nota diz **onde o preço foi lido** e **para onde o botão vai**;
+quando são a mesma, ela é a de sempre. O nome da loja saiu de dentro do rótulo do botão para
+`rodametria_casca_nome_da_loja()`, porque a partir de hoje **dois** lugares o perguntam — mapeamento
+escrito duas vezes é mapeamento que envelhece pela metade no dia em que entrar o terceiro programa.
+**A nota continua curta de propósito:** ela nasce ACIMA do botão dentro do cartão.
+
+### ITEM 4 — AS 21 OFERTAS DA VITRINE ERAM INTESTÁVEIS E SEM PISO
+
+**Os três campos do par da 25.4-b não foram colhidos nesta passada: eles já estavam no repositório.**
+`dados/anuncios-por-consulta.json` guarda `url_produto`, `shop_id` e `item_id` de **40 de 40** anúncios,
+colhidos **na mesma chamada da API** que devolveu `url_afiliado` — então a 25.4-b.1 está atendida sem
+remendo, porque os dois lados do par são da mesma oferta, da mesma leitura. Eles só não chegavam até a
+tela, e foi por isso que a ronda conseguiu testar 9 das 21 lendo o par no arquivo de anúncios.
+
+**O piso da 25.2 foi a única parte que precisou de rede**, e ele é **um por consulta**, com o motivo
+escrito: a chave que achou **todos** os anúncios de uma página é uma só (`chave_escolhida`), e é ela que
+a 25.2 pode oferecer como saída honesta. Título de marketplace não é marca mais modelo, e busca por
+título inteiro devolve menos que a chave medida. Nasceu `coletar-piso-da-vitrine.py` — **fora** do
+gerador de propósito, porque `gerar-vitrine-de-produto.py` roda na bancada **sem rede** e gerador que
+depende de rede não se reconfere. Os dois encurtados foram medidos **VIVOS** (301 no encurtador).
+
+**21 de 21 itens servidos com os quatro campos**, e o piso já é **servido** nos cartões sem tocar no
+snippet: a escada da casca imprime a linha discreta "Veja todos disponíveis aqui" quando `url_busca`
+existe — o mecanismo da 25.2 funcionando como foi desenhado.
+
+### ITEM 5 — DUAS META DESCRIPTIONS PASSAVAM DE 160, E O PORTÃO TOLERAVA 200
+
+161 → **147** na home e 193 → **155** na F2, contados. **E o defeito de fundo era o portão:** ele
+aprovava até 200, então as duas passaram com ele verde, e a ronda as achou a olho. Teto em **160** nele
+e no espelho offline (`teste-institucional.py`, cujo texto de falha já dizia ser espelho do de ar).
+**E as entidades HTML passam a ser desfeitas ANTES de contar:** o atributo vem escapado do `esc_attr`,
+então um apóstrofo chegaria como `&#039;` e contaria **6** caracteres no lugar de 1 — a família do
+`&#038;` que a própria seção 12 cobra dentro de `<script>`.
+
+### E DOIS DEFEITOS QUE NÃO ESTAVAM NO DESPACHO, achados ao escrever os itens acima
+
+1. **`peso_ladeira` mandava "esperar o PISO da faixa" também quando a caixa havia RECUSADO o km.** Com
+   ladeira e sem autonomia declarada, a caixa dizia *"não dá para dizer quantos km esta bateria faz"* e a
+   ressalva, logo abaixo, mandava esperar o piso **de uma faixa que a página acabara de se recusar a
+   dar**. É a **mesma família do item 1**, um andar abaixo. Agora ela só nasce onde existe faixa com duas
+   pontas, e a guarda está escrita nas duas metades (regra e navegador).
+2. **A frase de peso acima do teto dizia "veja se o modelo AGUARDA o seu peso".** Texto de tela, e a
+   palavra desta ilha — a do `VOZ.md` — é **aguenta**. Ela não está na página de exemplo (o exemplo tem
+   110 kg e o teto é 120), mas viaja no arquivo publicado e o navegador a imprime.
+
+### OS PORTÕES QUE NASCERAM COM O FECHO — e os três MORDEM, provado por mutação
+
+- **`teste-f2.py`** ganhou as réguas dos itens 1 e 2, e **as duas se provam antes de julgar**: o
+  primeiro caso de cada uma exige que ela **REPROVE o texto que estava no ar**, senão é portão
+  **inerte** — a cicatriz que a bancada desta família já nomeia com essa palavra. A do item 2 **mudou
+  de alvo** junto com a decisão: ela cobra a **ausência da promessa**, não a presença da frase, mais a
+  ressalva **nomeando o peso informado**. **E ela nasceu com um defeito que a própria bateria achou:**
+  a primeira versão varria TODO literal dos dois snippets e reprovou **três textos do FAQ** —
+  inclusive a resposta que diz *"a Rodametria não converte peso em km"*, que é exatamente o que a ilha
+  deve ao leitor depois de tirar o peso da promessa. **Explicação não é promessa.** Agora ela julga
+  **21** textos nos slots que prometem (`description`, `titulo`, `<h1>`, a frase de promessa e os
+  títulos dos cartões) e **exige um piso de 8 textos julgados**, para não aprovar por cegueira.
+  Mutações, todas reprovando: a pergunta da home voltando a prometer o peso; a description voltando; a
+  ressalva parando de nomear o peso; o molde do item 1 voltando a negar o topo. **E o portão pegou,
+  sozinho, um erro meu que nenhuma leitura pegaria:** ao desfazer a primeira saída eu removi o molde
+  `peso_caixa` do arquivo publicado e **deixei o JS citando-o** — a página teria impresso `{piso}` na
+  cara de quem lê.
+- **`teste-nota-de-preco.php`** — **PHP porque a frase é decidida em PHP**. Uma régua em Python sobre o
+  texto do arquivo conferiria a FORMA; esta **chama a função** e lê o que o leitor recebe. Julga quatro
+  mundos (loja igual, o defeito, o **espelho** do defeito, e cartão sem botão) **mais os cartões reais do
+  arquivo publicado**. Mutação: a nota voltando à forma antiga → **4 reprovações**, duas delas nomeando
+  o X13 e o LS Sport. E a bateria achou um furo na **minha** régua: cartão sem botão não tem destino para
+  prometer, e ele nem chega à tela — o ramo nasceu com o caso que o provou.
+- **`validar-banco.py` passa a CONTAR A VITRINE**, que é o buraco que o despacho nomeia. A régua não
+  mudou; mudou o que ela alcança. Mutação: a vitrine de volta ao estado de ontem → **21 intestáveis, 0
+  com piso**, com uma falha por item. Era o estado em que o portão podia escrever "intestáveis: ZERO"
+  com verdade sobre o banco que lia e falso sobre um terço dos links que a ilha servia.
+
+**O ITEM 6 NÃO FOI TOCADO, e está certo assim:** ele não é conserto. É a receita do anti-robô da Shopee
+(teto de chamadas na janela, não intervalo) e mora onde a próxima ronda vai procurá-la.
+
+### O QUE FICA PARA QUEM VIER, e nada disto é deste despacho
+
+1. **A ressalva do peso termina apontando para frente, e no caso `misto` não há nada depois dela.** O
+   molde diz *"Eles entram aqui, no que esperar da faixa"* — e com `ladeira` a frase seguinte entrega
+   (*"espere o PISO da faixa, não o meio dela"*), mas com `misto` ou `plano` a ressalva fica sozinha
+   prometendo um "aqui" que não vem. É a mesma família do item 2, uma oitava abaixo, e é **anterior a
+   esta execução**. Não mexi: o item 2 foi fechado e verificado, e alargar despacho é o que a 18.2
+   proíbe. Fica nomeado para a ronda decidir.
+2. **Na vitrine, a escada da casca ESCONDE o cartão quando `url` está vazia**, em vez de cair na busca
+   como a `rodametria_f2_itens_da_vitrine()` faz. Hoje os 21 têm ficha, então o ramo não existe; no dia
+   em que uma morrer, o piso está no dado e a tela não o promove sozinha. **A tabela de 16 linhas
+   também serve só a ficha**, sem a linha discreta da busca. Os dois são **bloco, não conserto**.
+3. **A robometria segue FORA DO AR com despacho ALTA**, remedida nesta passada em três leituras com
+   quebra de cache. Não é consertável do repositório: a reescrita do `.htaccess` da raiz é cPanel, e o
+   gesto é do Raphael.
+
+### O FECHO, CONFERIDO NO AR PELA 18.4
+
+**Revisão 23**, com as linhas da revisão corrente do log dizendo `ok` (20.4, lidas uma por uma).
+
+- **32.5: APROVADO em 1.380 px**, que é exatamente onde a ronda encontrou o botão — 8 de 8 páginas do
+  molde dentro, pior caixa em 331 px contra o teto de 700.
+- **`conferir-no-ar.py`: APROVADO**, e com o teto novo: as **nove** URLs com description entre **131 e
+  159** caracteres, contra as de 161 e 193 que a ronda achou.
+- **`conferir-institucional-no-ar.py`: 210 afirmações, 0 falha.**
+- **Bancada com rede: 19 portões, 0 falha** (eram 17 antes desta execução).
+- **Item 1 no ar:** a caixa serve *"os 60 do anúncio são o teto"*, e a oração proibida tem **zero**
+  ocorrências na página.
+- **Item 2 no ar:** **zero** ocorrências de "com o seu peso" na home e na F2, e a ressalva abaixo do
+  bloco de compra segue nomeando os 90 kg da entrada.
+- **Item 3 no ar:** os cartões do X13 e do LS Sport servem *"lido na Mercado Livre em 27/10/2026 — o
+  botão abre a Shopee"*; os dois de loja igual seguem com a nota de sempre.
+- **Item 4 no ar:** **5 de 5** cartões em cada página de produto servem a linha discreta do piso, e cada
+  página serve a busca da **sua** consulta.
+
+**TRÊS TURNOS DE CRON, e é a causa do bloco longo — não foi trabalho.** O Sync desta ilha roda por
+visita (20.6), mas **visita não antecipa evento que ainda não venceu**: cada revisão esperou o seu turno
+de 30 minutos (20 às 17h10, 22 às 17h39, 23 às 18h10), e cada conferência da 18.4 precisa da revisão
+**pousada**. A reserva foi renovada três vezes pela 1.1.
+
+
 ## 2026-10-30 13h5xZ–14h4xZ — **BLOCO 5d: AS QUATRO PÁGINAS QUE O SITE DEVIA A QUEM LÊ** — e a de privacidade não promete nada: tudo o que ela afirma foi **medido na página servida**, inclusive o que era mais fácil de esconder
 
 **A ESCOLHA DA ILHA.** `foco.md` nomeia a **rodametria** (foco total e absoluto, decisão do Raphael de
