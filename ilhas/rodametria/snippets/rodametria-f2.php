@@ -29,7 +29,7 @@
  */
 
 if ( ! defined( 'RODAMETRIA_F2_VERSAO' ) ) {
-	define( 'RODAMETRIA_F2_VERSAO', '1.3.1' );
+	define( 'RODAMETRIA_F2_VERSAO', '1.3.2' );
 }
 if ( ! defined( 'RODAMETRIA_F2_SLUG' ) ) {
 	define( 'RODAMETRIA_F2_SLUG', 'autonomia-patinete-eletrico' );
@@ -316,14 +316,20 @@ function rodametria_f2_itens_da_vitrine( $d ) {
 			   1.400 px. */
 			'preco_nota'    => empty( $f['preco_brl'] ) ? ''
 				: rodametria_f2_nota_de_preco( $f ),
-			/* A 25.2 em uma linha: a FICHA vira o botao quando existe, e a
-			   BUSCA desce para a linha discreta — nunca sai. Quando nao ha
-			   ficha, a busca sobe e e o botao, que e o estado em que esta
-			   ilha nasceu. */
-			'url'           => empty( $f['url_afiliado_da_ficha'] )
-				? $f['url_busca'] : $f['url_afiliado_da_ficha'],
-			'url_busca'     => empty( $f['url_afiliado_da_ficha'] )
-				? '' : $f['url_busca'],
+			/* OS DOIS LINKS VAO CRUS, E QUEM DECIDE QUAL SOBE E A ESCADA DA
+			   CASCA — `rodametria_casca_escada_de_compra()`.
+			   ATE 30/10/2026 A ESCOLHA ERA FEITA AQUI, e por isso a regra da
+			   25.2 existia em DOIS lugares: resolvida neste chamador e ausente
+			   do componente. A F2 nunca teve o defeito; a VITRINE de produto,
+			   que passa a `url` crua, perdia o cartao inteiro quando a ficha
+			   morria. Regra duplicada so e igual no dia em que se escreve —
+			   e a 32.5-c desta fabrica foi escrita por causa da metade que
+			   nao viajou. A saida nao muda nem um byte (provado caso a caso
+			   em `ferramentas/teste-escada-de-compra.php`): o que muda e o
+			   numero de lugares onde a regra pode divergir, de dois para um. */
+			'url'           => isset( $f['url_afiliado_da_ficha'] )
+				? $f['url_afiliado_da_ficha'] : '',
+			'url_busca'     => isset( $f['url_busca'] ) ? $f['url_busca'] : '',
 			'programa'      => $f['programa'],
 			'degrau'        => $f['degrau'],
 			'imagem'        => $f['imagem'],

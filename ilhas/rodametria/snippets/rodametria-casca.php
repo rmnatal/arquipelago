@@ -29,7 +29,7 @@
  */
 
 if ( ! defined( 'RODAMETRIA_CASCA_VERSAO' ) ) {
-	define( 'RODAMETRIA_CASCA_VERSAO', '1.4.1' );
+	define( 'RODAMETRIA_CASCA_VERSAO', '1.5.0' );
 }
 
 /**
@@ -616,6 +616,92 @@ function rodametria_casca_rotulo_da_loja( $programa, $degrau ) {
 }
 
 /**
+ * O ROTULO DA LINHA DISCRETA DO PISO, numa funcao so pelo mesmo motivo que o
+ * rotulo da loja: a frase aparece no CARTAO e, desde 30/10/2026, tambem embaixo
+ * da TABELA da vitrine. Duas copias de uma frase sao iguais so no dia em que se
+ * escrevem.
+ */
+if ( ! function_exists( 'rodametria_casca_rotulo_do_piso' ) ) {
+function rodametria_casca_rotulo_do_piso() {
+	return 'Veja todos disponíveis aqui';
+}
+}
+
+/**
+ * A ESCADA DA 25.2 NA TELA, E ELA MORA AQUI PORQUE E A MESMA NAS DUAS FAMILIAS
+ * DE PAGINA DESTA ILHA (a ferramenta e a vitrine de produto).
+ *
+ * A 25.2 e literal nas duas pontas: a ficha de produto e BONUS e "quando
+ * existir e estiver viva, ela vira o botao e a busca desce para a linha
+ * discreta"; e "quando nao existir, ou quando a ronda marcar como morta, A
+ * BUSCA SOBE E VIRA O BOTAO — sem esperar decisao humana, sem pagina ficar com
+ * 'link de loja em breve'".
+ *
+ * ATE 30/10/2026 SO A PRIMEIRA PONTA ESTAVA NA TELA, e a segunda vivia no
+ * CHAMADOR: o gerador da F2 resolvia a escada antes de montar o item, e o
+ * cartao desta casca devolvia STRING VAZIA quando a `url` chegava vazia. Para a
+ * F2 nunca houve defeito, porque ela nunca entrega item sem resolver; para a
+ * VITRINE de produto, que passa `url` crua do dado, o cartao SUMIA da pagina no
+ * dia em que a ficha morresse — com o piso da 25.2 gravado no dado, ao lado,
+ * sem ninguem para o promover. E a 32.5-c outra vez, e tambem a 32.5-d: a regra
+ * alcancava a segunda familia e nunca havia rodado contra o dado que a acionaria,
+ * porque os 21 anuncios da vitrine tinham ficha — 21 de 21.
+ *
+ * ENTAO A REGRA PASSA A SER MECANISMO DO MOLDE, nunca intencao de quem chama:
+ * todo chamador entrega os DOIS links crus e esta funcao decide qual sobe.
+ *
+ * E O DEGRAU SOBE COM A BUSCA, que e a metade que mente se ficar para tras: o
+ * rotulo do botao sai de `rodametria_casca_rotulo_da_loja()`, que diz "Ver na
+ * Shopee" para ficha e "Ver ofertas na Shopee" para busca. Botao que abre uma
+ * PAGINA DE BUSCA dizendo "Ver na Shopee" promete uma ficha que nao existe mais.
+ */
+if ( ! function_exists( 'rodametria_casca_escada_de_compra' ) ) {
+function rodametria_casca_escada_de_compra( $item ) {
+	$ficha = isset( $item['url'] ) ? trim( (string) $item['url'] ) : '';
+	$busca = isset( $item['url_busca'] ) ? trim( (string) $item['url_busca'] ) : '';
+
+	if ( '' !== $ficha ) {
+		/* A ficha vive: ela e o botao, e a busca DESCE — nunca sai. */
+		return array(
+			'url'        => $ficha,
+			'url_busca'  => $busca,
+			'degrau'     => isset( $item['degrau'] ) ? (int) $item['degrau'] : 0,
+			'piso_subiu' => false,
+			'tem_saida'  => true,
+		);
+	}
+
+	if ( '' !== $busca ) {
+		/* A ficha nao existe ou morreu: A BUSCA SOBE E VIRA O BOTAO, e o degrau
+		   sobe com ela para 4, que e o degrau do link de busca na 25.1. A linha
+		   discreta sai: com a busca NO botao, repeti-la abaixo seria o mesmo
+		   link duas vezes no mesmo cartao. */
+		return array(
+			'url'        => $busca,
+			'url_busca'  => '',
+			'degrau'     => 4,
+			'piso_subiu' => true,
+			'tem_saida'  => true,
+		);
+	}
+
+	/* NEM FICHA NEM BUSCA. Este e o UNICO mundo em que o cartao nao tem saida de
+	   compra, e ele e defeito da 19.1 pela 25.2 ("item sem `url_busca` e defeito
+	   da 19.1, sempre, em qualquer degrau") — nao um estado que a tela conserta.
+	   Quem decide o que fazer com ele e quem chama: o cartao nao se imprime, e a
+	   tabela nomeia o anuncio com a celula dizendo que falta a saida, porque a
+	   secao 7 manda TODO item do banco ser nomeado uma vez em cada resposta. */
+	return array(
+		'url'        => '',
+		'url_busca'  => '',
+		'degrau'     => 0,
+		'piso_subiu' => false,
+		'tem_saida'  => false,
+	);
+}
+}
+
+/**
  * O CARTAO DE COMPRA (32.1, item 5). Foto, marca e modelo, a especificacao que
  * fez o produto entrar, preco com data da coleta, botao de loja.
  *
@@ -629,13 +715,18 @@ function rodametria_casca_rotulo_da_loja( $programa, $degrau ) {
  */
 if ( ! function_exists( 'rodametria_casca_cartao_de_compra' ) ) {
 function rodametria_casca_cartao_de_compra( $item ) {
-	$url = isset( $item['url'] ) ? $item['url'] : '';
-	if ( '' === $url ) {
+	/* A ESCADA DA 25.2 DECIDE, E ELA ESTA NUMA FUNCAO SO (ver acima). Este
+	   cartao NAO escolhe mais o link: ele recebe os dois crus e pergunta.
+	   So nao se imprime quando NAO HA SAIDA NENHUMA — nem ficha nem busca —,
+	   que pela 25.2 e defeito de banco e nao estado de tela. */
+	$escada = rodametria_casca_escada_de_compra( $item );
+	if ( ! $escada['tem_saida'] ) {
 		return '';
 	}
+	$url    = $escada['url'];
 	$rotulo = rodametria_casca_rotulo_da_loja(
 		isset( $item['programa'] ) ? $item['programa'] : '',
-		isset( $item['degrau'] ) ? $item['degrau'] : 0 );
+		$escada['degrau'] );
 
 	$html = '<li class="rdm-molde-cartao">';
 
@@ -674,10 +765,12 @@ function rodametria_casca_cartao_de_compra( $item ) {
 	   em que morrer, esta linha e a saida que a pessoa ja tinha na tela.
 
 	   Ela so sai quando ha ficha: com a busca NO botao, repeti-la aqui seria o
-	   mesmo link duas vezes no mesmo cartao. */
-	if ( ! empty( $item['url_busca'] ) ) {
-		$html .= '<a class="rdm-molde-cartao-todos" href="' . esc_url( $item['url_busca'] ) . '"'
-			. ' rel="sponsored noopener" target="_blank">Veja todos disponíveis aqui</a>';
+	   mesmo link duas vezes no mesmo cartao — e quem decide isso agora e a
+	   escada, que zera `url_busca` justamente no mundo em que o piso subiu. */
+	if ( '' !== $escada['url_busca'] ) {
+		$html .= '<a class="rdm-molde-cartao-todos" href="' . esc_url( $escada['url_busca'] ) . '"'
+			. ' rel="sponsored noopener" target="_blank">'
+			. esc_html( rodametria_casca_rotulo_do_piso() ) . '</a>';
 	}
 
 	$html .= '</li>';

@@ -58,10 +58,25 @@
  * `<script>` que derrubou cinco calculadoras da Aquametria em 08/09/2026.
  */
 
-/* A VERSAO MORA NUMA CONSTANTE, e nao so no comentario: `atualizar-manifest.py`
-   casa esta constante com o campo `versao` do manifest. */
+/* A VERSAO MORA NUMA CONSTANTE.
+   ESTE COMENTARIO AFIRMAVA, ATE 30/10/2026, que "`atualizar-manifest.py` casa
+   esta constante com o campo `versao` do manifest". NAO CASA, e nunca casou:
+   a palavra `versao` nao aparece uma vez em `atualizar-manifest.py` (que espelha
+   sha256 e sobe a revisao, e so), e os itens de `snippets` do `manifest.json` nao
+   tem campo `versao` — medido nos quatro itens. Esta constante e a do
+   `rodametria-f2` sao LIDAS POR NINGUEM; a da casca e a unica viva, porque e o
+   gatilho de reinstalacao dela.
+   E a familia do `height:44px` morto que a 32.5-d registra: comentario que
+   declara um mecanismo parece conferido e nao mede nada. A constante fica, porque
+   subi-la junto com o snippet e barato e e o rastro que a Robometria pagou para
+   aprender; o que sai e a frase que prometia um portao inexistente. O portao que
+   faltaria esta nomeado no `REGISTRO.md` desta ilha, na entrada de 30/10/2026, com
+   a decisao de NAO mexer no esquema do `manifest.json` na mesma passada que leva a
+   escada da 25.2 ao ar: aquele arquivo e o contrato do Sync, e o Sync e o unico
+   canal de desembarque desta ilha. (`dados/consertos.md` e da Sentinela, nao da
+   Fundacao — por isso este achado nao foi escrito la.) */
 if ( ! defined( 'RODAMETRIA_PRODUTO_VERSAO' ) ) {
-	define( 'RODAMETRIA_PRODUTO_VERSAO', '1.0.0' );
+	define( 'RODAMETRIA_PRODUTO_VERSAO', '1.1.0' );
 }
 if ( ! defined( 'RODAMETRIA_PRODUTO_SECAO' ) ) {
 	define( 'RODAMETRIA_PRODUTO_SECAO', 'veiculos' );
@@ -269,7 +284,30 @@ function rdm_produto_tabela_html( $pagina ) {
 		. '<th scope="col">O que o anúncio declara</th><th scope="col">Loja</th>'
 		. '<th scope="col">Comprar</th></tr></thead><tbody>';
 
+	/* O PISO DA 25.2 E DA CONSULTA, NAO DO ANUNCIO, e e por isso que ele aparece
+	   UMA VEZ embaixo da tabela em vez de uma vez por linha: a chave que achou
+	   todos os anuncios desta pagina e uma so, entao a mesma `url_busca` esta
+	   gravada nas 16 linhas da pagina do patinete e nas 5 da bicicleta — medido
+	   em 30/10/2026, UMA url distinta por pagina nas duas. Repeti-la por linha
+	   seria o mesmo link dezesseis vezes.
+	   Se um dia houver mais de uma, a linha NAO sai: escolher "a primeira" seria
+	   arbitrario, e o portao desta regra reprova o caso em vez de o maquiar. */
+	$buscas = array();
 	foreach ( $pagina['vitrine']['linhas'] as $item ) {
+		$b = isset( $item['url_busca'] ) ? trim( (string) $item['url_busca'] ) : '';
+		if ( '' !== $b ) {
+			$buscas[ $b ] = true;
+		}
+	}
+
+	foreach ( $pagina['vitrine']['linhas'] as $item ) {
+		/* A ESCADA DA 25.2 DECIDE AQUI TAMBEM, e nao so no cartao. Antes de
+		   30/10/2026 esta celula servia `esc_url( $item['url'] )` cru: no dia em
+		   que a ficha morresse, o `href` sairia VAZIO — e `href=""` nao e botao
+		   morto, e um botao que recarrega a propria pagina, com o rotulo "Ver na
+		   Shopee" do lado. Pior que o cartao do carrossel, que ao menos sumia. */
+		$escada = rodametria_casca_escada_de_compra( $item );
+
 		$html .= '<tr>';
 		$html .= '<td>' . esc_html( $item['nome'] ) . '</td>';
 		$html .= '<td class="rdm-num">' . esc_html( $item['preco'] ) . '</td>';
@@ -277,11 +315,20 @@ function rdm_produto_tabela_html( $pagina ) {
 		$html .= '<td>' . esc_html( $item['loja'] ) . '</td>';
 		/* O ROTULO SAI DA CASCA, nunca digitado aqui: ela guarda numa funcao so
 		   o rotulo por degrau da escada da 25.1, e a secao 8 registra sete
-		   reguas que quebraram por procurar o rotulo de UM degrau. */
-		$html .= '<td><a href="' . esc_url( $item['url'] ) . '"'
-			. ' rel="sponsored noopener" target="_blank">'
-			. esc_html( rodametria_casca_rotulo_da_loja(
-				$item['programa'], $item['degrau'] ) ) . '</a></td>';
+		   reguas que quebraram por procurar o rotulo de UM degrau. O degrau que
+		   ela recebe e o RESOLVIDO pela escada, nunca o do dado: quando a busca
+		   sobe, o degrau sobe com ela e o rotulo passa a dizer "Ver ofertas". */
+		if ( $escada['tem_saida'] ) {
+			$html .= '<td><a href="' . esc_url( $escada['url'] ) . '"'
+				. ' rel="sponsored noopener" target="_blank">'
+				. esc_html( rodametria_casca_rotulo_da_loja(
+					$item['programa'], $escada['degrau'] ) ) . '</a></td>';
+		} else {
+			/* NEM FICHA NEM BUSCA. O anuncio continua NOMEADO na tabela, porque
+			   a secao 7 manda todo item ser nomeado uma vez em cada resposta —
+			   o que sai e a promessa de compra, nunca o produto. */
+			$html .= '<td class="rdm-tabela-sem-saida">sem link de compra hoje</td>';
+		}
 		$html .= '</tr>';
 	}
 
@@ -291,6 +338,15 @@ function rdm_produto_tabela_html( $pagina ) {
 			'Preços lidos em {DATA}. Preço de marketplace muda: o que está aqui é o do dia '
 			. 'da leitura, não o de agora.', $pagina ) )
 		. '</p>';
+
+	/* A LINHA DISCRETA DO PISO, que esta tabela devia a quem le desde que nasceu:
+	   ela serve so a ficha de cada anuncio, e anuncio de marketplace esgota. */
+	if ( 1 === count( $buscas ) ) {
+		$busca = key( $buscas );
+		$html .= '<p class="rdm-tabela-piso"><a href="' . esc_url( $busca ) . '"'
+			. ' rel="sponsored noopener" target="_blank">'
+			. esc_html( rodametria_casca_rotulo_do_piso() ) . '</a></p>';
+	}
 
 	return $html;
 }
@@ -617,16 +673,32 @@ add_action( 'wp_head', function () {
 
 	$itens = array();
 	foreach ( $pagina['vitrine']['linhas'] as $i => $item ) {
+		/* O TERCEIRO LUGAR QUE LIA A `url` CRUA, e o mais silencioso dos tres:
+		   com a ficha morta, a `Offer` saia com `"url": ""` — dado estruturado
+		   invalido que nenhum olho humano ve na pagina. */
+		$escada = rodametria_casca_escada_de_compra( $item );
+
+		$oferta = array(
+			'@type'         => 'Offer',
+			'price'         => number_format( (float) $item['preco_numero'], 2, '.', '' ),
+			'priceCurrency' => 'BRL',
+		);
+		if ( $escada['tem_saida'] ) {
+			$oferta['url'] = $escada['url'];
+		}
+		/* `InStock` E UMA AFIRMACAO, E ELA SO VALE SOBRE UMA FICHA. Quando o piso
+		   sobe, a url da oferta e uma PAGINA DE BUSCA: dizer que um resultado de
+		   busca esta em estoque e afirmar o que ninguem mediu, e a secao 7 desta
+		   fabrica nao deixa. Sem o campo, o buscador nao recebe promessa nenhuma
+		   — que e a verdade daquele momento. */
+		if ( ! $escada['piso_subiu'] ) {
+			$oferta['availability'] = 'https://schema.org/InStock';
+		}
+
 		$produto = array(
-			'@type' => 'Product',
-			'name'  => $item['nome'],
-			'offers' => array(
-				'@type'         => 'Offer',
-				'price'         => number_format( (float) $item['preco_numero'], 2, '.', '' ),
-				'priceCurrency' => 'BRL',
-				'url'           => $item['url'],
-				'availability'  => 'https://schema.org/InStock',
-			),
+			'@type'  => 'Product',
+			'name'   => $item['nome'],
+			'offers' => $oferta,
 		);
 		if ( ! empty( $item['imagem']['url'] ) ) {
 			$produto['image'] = $item['imagem']['url'];
@@ -688,6 +760,14 @@ add_action( 'wp_footer', function () {
 <style id="rodametria-produto-css">
 body.rdm .rdm-tabela-rolo{overflow-x:auto;-webkit-overflow-scrolling:touch}
 body.rdm .rdm-tabela-nota,body.rdm .rdm-recusas{font-size:.9rem;color:var(--rdm-legenda)}
+/* A CELULA SEM SAIDA e a LINHA DO PISO, as duas de 30/10/2026. A celula nao e
+   alerta: e ausencia, e cor de alerta aqui gritaria sobre o que o leitor nao
+   pode resolver. A linha do piso copia a `.rdm-molde-cartao-todos` da casca de
+   proposito — e a MESMA frase no mesmo papel, uma vez por pagina em vez de uma
+   por cartao, porque o piso e da consulta e nao do anuncio. */
+body.rdm .rdm-tabela-sem-saida{color:var(--rdm-legenda);font-size:.875rem}
+body.rdm .rdm-tabela-piso{margin:0 0 var(--rdm-e4);font-size:.9rem}
+body.rdm .rdm-tabela-piso a{color:var(--rdm-legenda);text-decoration:underline}
 body.rdm .rdm-escolher{margin:0}
 body.rdm .rdm-escolher dt{font-family:"Barlow Semi Condensed",Barlow,sans-serif;font-weight:700;margin-top:1rem}
 body.rdm .rdm-escolher dd{margin:.25rem 0 0}
