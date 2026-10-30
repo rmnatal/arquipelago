@@ -43,12 +43,17 @@ add_filter( 'rodametria_paginas', function ( $mapa ) {
 		'tipo'        => 'ferramenta',
 		'pai'         => 'inicio',
 		'no_menu'     => false,
-		/* ITEM 5 DO DESPACHO DE 30/10/2026: esta description tinha 193 caracteres
-		   no HTML servido, contra o teto de 160 que o portao de ar passou a
-		   cobrar. 155 agora, contados — e o peso continua na promessa porque o
-		   item 2 fez a caixa de resultado PAGAR a promessa. */
+		/* ITENS 5 E 2 DO DESPACHO DE 30/10/2026, NA MESMA FRASE.
+		   O 5: tinha 193 caracteres no HTML servido, contra o teto de 160 que o
+		   portao de ar passou a cobrar. 151 agora, contados.
+		   O 2: O PESO SAIU DA PROMESSA. Esta frase prometia "a faixa de km que da
+		   para esperar com o seu peso", e o peso NAO entra em conta nenhuma — a
+		   constante de consumo por quilo esta `pendente` e pela secao 10 nao pode
+		   entrar em formula. O relevo, que FICOU na promessa, entra de verdade:
+		   e o fator medido no estudo de Quito. Prometer o relevo e entregar o
+		   relevo; prometer o peso era prometer o que nao se entrega. */
 		'description' => 'Diga a tensão e a amperagem da bateria: a conta devolve os watt-hora '
-			. 'e a faixa de km que dá para esperar com o seu peso e o seu relevo, ao lado do '
+			. 'e a faixa de km que dá para esperar no relevo do seu trajeto, ao lado do '
 			. 'anúncio.',
 	);
 
@@ -196,19 +201,6 @@ function rodametria_f2_resultado_html( $d ) {
 	$frases = array();
 	$frases[] = $r['frase_wh'];
 	foreach ( (array) $r['frases_km'] as $f ) {
-		$frases[] = $f;
-	}
-	/* ITEM 2 DO DESPACHO DE 30/10/2026 — A CAIXA PASSA A DIZER O PESO INFORMADO.
-	   A ilha prometia a faixa "com o seu peso" no titulo, no primeiro paragrafo
-	   e na pergunta da home, e a caixa nao dizia uma palavra sobre ele: peso 50
-	   e peso 150 devolviam a mesma resposta, palavra por palavra.
-	   O QUE SOBE AQUI E SO A LISTA CURTA, e isso e decisao de TAMANHO: o portao
-	   da ordem da 32.1 registra que "a caixa com as cinco frases longas"
-	   empurrava o primeiro botao de compra para baixo do teto de 1.400 px da
-	   32.5. A explicacao de POR QUE o peso nao multiplica continua em
-	   rodametria_f2_ressalva_html(), abaixo do bloco de compra. Quem decide o
-	   que e curto e a regra (regras/f2.py), nunca este arquivo. */
-	foreach ( (array) $r['frases_peso_caixa'] as $f ) {
 		$frases[] = $f;
 	}
 
@@ -850,24 +842,23 @@ add_action( 'wp_footer', function () {
       unidade = 'Wh';
     }
 
-    /* ITEM 2 DO DESPACHO DE 30/10/2026: as CURTAS vao para a caixa e a longa
-       fica abaixo do bloco de compra — a mesma reparticao que regras/f2.py faz.
+    /* A RESSALVA DO PESO, abaixo do bloco de compra. Ela NAO sobe para a caixa:
+       o item 2 do despacho de 30/10/2026 foi fechado pela segunda saida (o peso
+       sai da PROMESSA), porque a primeira foi medida em navegador a 390 px e nao
+       cabe — frase nova na caixa custa 97 px FIXOS e a 32.5 tinha 20 px de folga.
        E `peso_ladeira` so nasce onde existe faixa com DUAS PONTAS: ela fala do
-       PISO DA FAIXA, e com ladeira sem autonomia declarada a caixa recusa o km,
+       PISO DA FAIXA, e com ladeira sem autonomia declarada a caixa RECUSA o km,
        entao a ressalva mandava esperar o piso de uma faixa que nao existe. */
     var faixaComDuasPontas = (aut !== null && aut > 0 && fator !== 1);
-    var curtas = [preencher(D.moldes.peso_caixa, {peso: num(peso)})];
+    var ressalvas = [preencher(D.moldes.peso, {peso: num(peso)})];
     if (relevo === 'ladeira' && faixaComDuasPontas) {
-      curtas.push(preencher(D.moldes.peso_ladeira, {peso: num(peso)}));
+      ressalvas.push(preencher(D.moldes.peso_ladeira, {peso: num(peso)}));
     }
     if (D.tetoCarga !== null && peso > D.tetoCarga) {
-      curtas.push(preencher(D.moldes.peso_acima_do_teto, {
+      ressalvas.push(preencher(D.moldes.peso_acima_do_teto, {
         peso: num(peso), teto_carga: num(D.tetoCarga)
       }));
     }
-    curtas.forEach(function(f){ frases.push(f); });
-
-    var ressalvas = [preencher(D.moldes.peso, {peso: num(peso)})];
 
     caixa.querySelector('.rdm-molde-caixa-rotulo').textContent = rotulo;
     caixa.querySelector('.rdm-molde-caixa-numero').innerHTML =

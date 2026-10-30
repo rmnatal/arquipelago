@@ -92,12 +92,11 @@
   "frases_molde": {
     "wh": "{v} V × {ah} Ah são {wh} Wh de bateria.",
     "km_plano": "No plano a régua de relevo não desconta nada — ela é 1,0 por definição, porque o trecho plano é justamente o denominador da medição. Então aqui o número do anúncio fica como TETO, não como promessa: {teto} km é o melhor caso.",
-    "km_degradado": "Com {relevo_frase}, conte com {piso} a {teto} km — e fique com os {piso} km: o alto da faixa é o número do anúncio, que vale no plano.",
+    "km_degradado": "Com {relevo_frase}, conte com {piso} a {teto} km — os {teto} do anúncio são o teto, e valem no plano.",
     "km_absoluto": "Com {wh} Wh e o consumo medido, conte com uns {piso} km.",
     "km_recusa": "Sem a autonomia que o anúncio declara, não dá para dizer quantos km esta bateria faz — e a gente não inventa o número. Falta a régua de quantos Wh um patinete gasta por km: a única medição de patinete que achamos está em periódico que não abre por aqui, e medição de moto não serve para patinete. Informe os km do anúncio no campo acima e a conta sai.",
     "peso": "Os seus {peso} kg não entram na conta: não achamos, em fonte que alcance, nenhuma régua de quanto cada quilo de quem pilota custa em Wh por km. Eles entram aqui, no que esperar da faixa.",
     "peso_ladeira": "Com {peso} kg e ladeira, espere o PISO da faixa, não o meio dela.",
-    "peso_caixa": "Os seus {peso} kg não multiplicam nada nesta conta — eles entram no que esperar dela.",
     "peso_acima_do_teto": "E antes da autonomia tem uma pergunta mais dura: {peso} kg passam do maior limite de carga que a gente viu no varejo brasileiro ({teto_carga} kg). Veja se o modelo aguenta o seu peso antes de olhar km.",
     "rotulo_km": "O que esperar no seu trajeto",
     "rotulo_wh": "A energia da bateria",
@@ -131,13 +130,10 @@
     "teto_km_tela": "60",
     "frase_wh": "48 V × 20,0 Ah são 960 Wh de bateria.",
     "frases_km": [
-      "Com um pouco de subida, conte com 39 a 60 km — e fique com os 39 km: o alto da faixa é o número do anúncio, que vale no plano."
+      "Com um pouco de subida, conte com 39 a 60 km — os 60 do anúncio são o teto, e valem no plano."
     ],
     "frases_peso": [
       "Os seus 90 kg não entram na conta: não achamos, em fonte que alcance, nenhuma régua de quanto cada quilo de quem pilota custa em Wh por km. Eles entram aqui, no que esperar da faixa."
-    ],
-    "frases_peso_caixa": [
-      "Os seus 90 kg não multiplicam nada nesta conta — eles entram no que esperar dela."
     ],
     "frases_calibracao": [
       "Para calibrar a expectativa: numa medição de 2025 de Rodrigo David Limaico Quinteros, na Universidade Politécnica Salesiana de Quito, o veículo entregou 49,7% da autonomia que a ficha declarava (29,8 km medidos contra 60 km de ficha). Não multiplicamos nada por esse número — ele é uma medição, de um veículo, numa rota, e de moto, não de patinete."

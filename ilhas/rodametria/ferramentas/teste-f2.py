@@ -312,7 +312,7 @@ def main():
                "o molde %r tem chave invalida" % nome)
 
     # ---------------------------------------------------------------
-    # 5-b. A CAIXA NAO SE DESDIZ, E ELA DIZ O PESO INFORMADO.
+    # 5-b. A CAIXA NAO SE DESDIZ, E A ILHA NAO PROMETE O QUE NAO ENTREGA.
     #      Os itens 1 e 2 do despacho de 30/10/2026, medidos aqui com
     #      regua escrita a mao — nao e a do gerador.
     #
@@ -320,25 +320,19 @@ def main():
     #      {teto} km, e nao os {teto} km do anuncio", com {teto} sendo
     #      a propria autonomia declarada: a frase negava o topo da
     #      faixa que ela mesma acabava de publicar.
-    #      O ITEM 2 era a caixa muda sobre o peso: 50 kg e 150 kg
-    #      devolviam a mesma resposta, palavra por palavra, enquanto o
-    #      titulo, o primeiro paragrafo e a home prometiam a faixa
-    #      "com o seu peso".
+    #
+    #      O ITEM 2 era o campo "Seu peso" nao mudar nada com a ilha
+    #      prometendo que mudava. A ronda deu duas saidas; a escolhida
+    #      foi a SEGUNDA — o peso sai da PROMESSA —, porque a primeira
+    #      foi MEDIDA em navegador a 390 px e NAO CABE: o primeiro
+    #      botao de compra estava a 1.380 px dos 1.400 da 32.5, e frase
+    #      nova na caixa custa 97 px FIXOS (custo de bloco, nao de
+    #      linha: a curta e a longa deram o mesmo numero). A melhor
+    #      combinacao, com a promessa encurtada e a frase dentro do
+    #      paragrafo do km, deu 1.411 px. Por isso esta regua cobra a
+    #      AUSENCIA DA PROMESSA, e nao a presenca da frase.
     # ---------------------------------------------------------------
     ex = d["resposta_exemplo"]
-    afirma("frases_peso_caixa" in ex,
-           "o arquivo publicado nao tem frases_peso_caixa: a caixa volta a ficar "
-           "muda sobre o peso (item 2 do despacho de 30/10)")
-    caixa_publicada = [ex["frase_wh"]] + list(ex.get("frases_km") or []) \
-        + list(ex.get("frases_peso_caixa") or [])
-
-    # O PESO INFORMADO APARECE NA CAIXA. O numero sai da propria entrada
-    # publicada e e formatado pela MINHA regua, nunca lido de um campo de tela.
-    peso_ex = Fraction(str(ex["entrada"]["peso_piloto_kg"]))
-    afirma(any(numero_pt(peso_ex) in f for f in caixa_publicada),
-           "a caixa nao nomeia os %s kg da entrada publicada — a ilha promete a "
-           "faixa 'com o seu peso' e a caixa nao diz uma palavra sobre ele"
-           % numero_pt(peso_ex))
 
     # NENHUMA FRASE DA CAIXA NEGA O TOPO QUE A CAIXA SERVE.
     def nega_o_topo(frase, topo):
@@ -348,41 +342,89 @@ def main():
 
     # A REGUA SE PROVA ANTES DE JULGAR: ela TEM de reprovar o texto que estava
     # no ar em 30/10/2026, senao ela e inerte — a cicatriz do portao INERTE que
-    # a bancada desta familia ja nomeou.
+    # a bancada desta familia ja nomeia com essa palavra.
     afirma(nega_o_topo("Com ladeira de verdade, conte com 34 a 80 km, e nao os "
                        "80 km do anuncio.", "80"),
            "a regua do item 1 nao reprova a frase que estava no ar: ela e INERTE")
-    afirma(not nega_o_topo("conte com 34 a 80 km \u2014 e fique com os 34 km", "80"),
+    afirma(not nega_o_topo("conte com 34 a 80 km \u2014 os 80 do anuncio sao o teto", "80"),
            "a regua do item 1 reprova texto sadio")
 
+    caixa_publicada = [ex["frase_wh"]] + list(ex.get("frases_km") or [])
     if ex.get("teto_km_tela"):
         for frase in caixa_publicada:
             afirma(not nega_o_topo(frase, ex["teto_km_tela"]),
                    "a caixa nega o topo de %s km que ela mesma publica: %r"
                    % (ex["teto_km_tela"], frase[:120]))
 
-    # A FRASE LONGA DO PESO NAO SOBE PARA A CAIXA. O portao da ordem da 32.1,
-    # mais abaixo neste arquivo, registra que "a caixa com as cinco frases
-    # longas" empurrava o primeiro botao de compra para baixo do teto de 1.400
-    # px da 32.5 — e e por isso que a repartição entre curta e longa existe.
-    afirma(d["frases_molde"]["peso"] not in [f for f in caixa_publicada],
-           "a frase longa do peso voltou para a caixa — a 32.5 cai com ela")
-    for f in list(ex.get("frases_peso_caixa") or []):
-        afirma(len(f) <= 200,
-               "frase de %d caracteres na caixa: %r — a caixa e acima da dobra e "
-               "a 32.5 mede o primeiro botao de compra a 1.400 px" % (len(f), f[:80]))
+    # A RESSALVA DO PESO CONTINUA DIFERENCIANDO, e e ela que faz o campo "Seu
+    # peso" nao ser enfeite: ela NOMEIA o peso informado. O que mudou no item 2
+    # foi a promessa, nunca a entrega.
+    peso_ex = Fraction(str(ex["entrada"]["peso_piloto_kg"]))
+    afirma(any(numero_pt(peso_ex) in f for f in (ex.get("frases_peso") or [])),
+           "a ressalva nao nomeia os %s kg da entrada publicada: o campo 'Seu peso' "
+           "voltou a ser enfeite" % numero_pt(peso_ex))
 
-    # O TRADUTOR SERVE A LISTA DA CAIXA, e o JS tambem. Sem as duas metades a
-    # pagina diria uma coisa pre-renderizada e outra depois do primeiro clique.
-    afirma("frases_peso_caixa" in php_f2,
-           "o snippet da F2 nao le frases_peso_caixa: a caixa pre-renderizada "
-           "fica muda sobre o peso")
-    afirma(re.search(r"frases_peso_caixa.*?\$frases\[\]", php_f2, re.S)
-           or re.search(r"\$frases\[\]\s*=\s*\$f;", php_f2),
-           "o snippet le frases_peso_caixa e nao as empilha na caixa")
-    afirma("D.moldes.peso_caixa" in php_f2,
-           "o JS da F2 nao usa o molde peso_caixa: a recomputacao no navegador "
-           "volta a emudecer a caixa sobre o peso")
+    # E A PROMESSA DE KM NAO CARREGA O PESO EM LUGAR NENHUM DA ILHA.
+    # A F2 deriva o piso de `declarada / fator`, e `fator` e relevo. Nenhum
+    # quilo de quem pilota entra em conta nenhuma — a constante que faria isso
+    # esta `pendente` e pela secao 10 nao pode entrar em formula. Entao prometer
+    # km "com o seu peso" e prometer o que a ferramenta nao entrega.
+    # O PESO CONTINUA LEGITIMO onde ele e CARGA: "aguenta voce e a mochila" e a
+    # F3, que compara contra o `carga_max_kg` de cada veiculo. Por isso a regua
+    # procura a CONJUNCAO (km + peso), nunca a palavra peso sozinha.
+    def promete_km_com_peso(texto):
+        nu = texto.lower().replace("ã", "a").replace("é", "e").replace("ê", "e")
+        if "peso" not in nu:
+            return False
+        return ("km" in nu) or ("autonomia" in nu) or ("quilometr" in nu)
+
+    afirma(promete_km_com_peso("Quantos km ele faz com o seu peso?"),
+           "a regua do item 2 nao reprova a pergunta que estava na home: ela e INERTE")
+    afirma(promete_km_com_peso("a faixa de km que da para esperar com o seu peso"),
+           "a regua do item 2 nao reprova a description que estava no ar: ela e INERTE")
+    afirma(not promete_km_com_peso("Aguenta voce e a mochila?"),
+           "a regua do item 2 reprova a pergunta da F3, que e de CARGA e esta certa")
+    afirma(not promete_km_com_peso("a faixa de km que da para esperar no relevo do seu trajeto"),
+           "a regua do item 2 reprova texto sadio")
+
+    # A REGUA OLHA OS LUGARES QUE PROMETEM, E SO ELES: `description`, `titulo`,
+    # o `<h1>`, a frase de promessa e os titulos dos cartoes da home. E essa
+    # fronteira NAO e comodidade — ela nasceu de um defeito desta propria regua.
+    # A primeira versao varria TODO literal dos dois snippets e reprovou TRES
+    # textos do FAQ: "O peso de quem pilota muda a autonomia?" e a resposta
+    # dele, que diz com todas as letras "a Rodametria NAO converte peso em km".
+    # Isso e EXPLICACAO, e e justamente o que a ilha deve ao leitor depois de
+    # tirar o peso da promessa. Regua que reprova o texto certo e o caminho mais
+    # curto para alguem a ignorar — a licao que a 20.5 nomeou quando o
+    # "REPROVADO" era cache. Promessa e o que a pagina AFIRMA que entrega;
+    # resposta de FAQ que nega e o contrario de uma promessa.
+    ALVOS = (
+        (r"'description'\s*=>\s*((?:'(?:[^'\\]|\\.)*'\s*\.?\s*)+)", "description"),
+        (r"'titulo'\s*=>\s*((?:'(?:[^'\\]|\\.)*'\s*\.?\s*)+)", "titulo"),
+        (r"<h1>([^<]{10,})</h1>", "h1"),
+        (r"rdm-promessa\">((?:[^<']|'\s*\.\s*'){10,})", "promessa"),
+        (r"<h3>([^<]{10,})</h3>", "cartao da home"),
+    )
+    vistos = 0
+    julgados = 0
+    for fonte, nome in ((php_f2, "rodametria-f2.php"),
+                        (open(SNIPPET_CASCA, encoding="utf-8").read(), "rodametria-casca.php")):
+        fonte_sem_comentario = re.sub(r"/\*.*?\*/", "", fonte, flags=re.S)
+        for padrao, slot in ALVOS:
+            for m in re.finditer(padrao, fonte_sem_comentario, re.S):
+                texto = m.group(1).replace("'", " ").replace(".", ". ")
+                julgados += 1
+                if promete_km_com_peso(texto):
+                    vistos += 1
+                    afirma(False,
+                           "%s: o %s promete km com o peso de quem pilota, e a F2 nao faz essa "
+                           "conta (item 2 do despacho de 30/10): %r"
+                           % (nome, slot, " ".join(texto.split())[:110]))
+    afirma(julgados >= 8,
+           "a regua do item 2 julgou so %d texto(s) de promessa nos dois snippets — ela ficou "
+           "cega para os slots que importam" % julgados)
+    print("  item 2: %d texto(s) de promessa julgado(s), %d prometendo km com o peso"
+          % (julgados, vistos))
 
     # ---------------------------------------------------------------
     # 6. O SNIPPET NAO DIGITA NUMERO DE RESPOSTA.

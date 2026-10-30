@@ -75,12 +75,14 @@ function rodametria_casca_paginas() {
 			'tipo'        => 'website',
 			'no_menu'     => false,
 			'pai'         => null,
-			/* ITEM 5 DO DESPACHO DE 30/10/2026: tinha 161 caracteres no HTML
-			   servido, um acima do teto de 160. 147 agora, contados — e as
-			   tres perguntas da ilha continuam todas na frase. */
+			/* ITENS 5 E 2 DO DESPACHO DE 30/10/2026, NA MESMA FRASE.
+			   O 5: tinha 161 caracteres no HTML servido, um acima do teto de 160.
+			   O 2: o "com o seu peso" saiu da pergunta de KM, porque a F2 nao faz
+			   essa conta. O peso ficou onde ele e de verdade — no "se aguenta
+			   voce", que e a F3 e compara carga maxima. 149 agora, contados. */
 			'description' => 'Antes de comprar patinete, scooter, moto ou bike elétrica: '
-				. 'se precisa de CNH, quantos km a bateria faz de verdade com o seu peso '
-				. 'e se aguenta você.',
+				. 'se precisa de CNH, quantos km a bateria faz na sua ladeira e se '
+				. 'aguenta você.',
 		),
 	);
 
@@ -1200,7 +1202,15 @@ if ( ! function_exists( 'rodametria_casca_home_html' ) ) {
 function rodametria_casca_home_html() {
 	$html  = '<div class="rdm-faixa rdm-pagina">';
 	$html .= '<h1>Os três números antes de comprar um elétrico</h1>';
-	$html .= '<p class="rdm-promessa">Precisa de CNH? Faz quantos km de verdade com o seu peso? '
+	/* ITEM 2 DO DESPACHO DE 30/10/2026 — O PESO SAIU DA PERGUNTA DE KM.
+	   Ela dizia "Faz quantos km de verdade com o seu peso?" e a F2 nao faz essa
+	   conta: a constante de consumo por quilo de quem pilota esta `pendente` e
+	   pela secao 10 nao pode entrar em formula. O RELEVO entra de verdade — e o
+	   fator medido no estudo de Quito —, entao a pergunta passa a prometer o que
+	   a ferramenta entrega. A TERCEIRA pergunta CONTINUA sendo de peso, e esta
+	   certa: "Aguenta voce e a mochila?" e a F3, e carga maxima e peso de
+	   verdade, comparado contra o `carga_max_kg` de cada veiculo. */
+	$html .= '<p class="rdm-promessa">Precisa de CNH? Faz quantos km de verdade na sua ladeira? '
 		. 'Aguenta você e a mochila? O anúncio não responde nenhuma das três direito. Aqui a gente '
 		. 'responde com a conta na mesa e a ficha citada.</p>';
 
@@ -1233,7 +1243,7 @@ function rodametria_casca_home_html() {
 	$html .= '<h2>As três perguntas</h2>';
 	$html .= '<ul class="rdm-cartoes">';
 
-	$html .= '<li><h3>Quantos km ele faz com o seu peso?</h3>'
+	$html .= '<li><h3>Quantos km ele faz no seu relevo?</h3>'
 		. '<p>Tensão e amperagem da bateria entram, watt-hora e a faixa de km saem — com o relevo '
 		. 'do seu trajeto descontando o que tem de descontar.</p>'
 		. ( '' === $f2

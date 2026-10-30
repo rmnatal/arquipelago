@@ -1,179 +1,179 @@
 {
-  "id": "paginas-de-produto",
-  "ilha": "rodametria",
-  "bloco": "5b",
-  "gerado_em": "2026-10-29",
-  "publicar": true,
-  "o_que_este_arquivo_e": "A camada DECLARADA das paginas da secao 30: titulo, description, a resposta em duas frases, o que e e o que nao e, o `qual escolher` por uso e as perguntas. E a voz do VOZ.md, escrita a mao. A camada GERADA — cartao, tabela e numero — e `dados/vitrine-de-produto.json`.",
-  "nenhum_numero_e_digitado_aqui": "A prosa traz MOLDES e quem os preenche e o PHP, com o numero que sai da vitrine: {N} anuncios, {DE} e {ATE} a faixa de preco, {MEDIANA}, {DECLARAM_WATT} e {DIZEM_QUAL_WATT} a contagem do rotulo de potencia, {SEM_WATT}, {LIDAS} e {RECUSADAS} a conta da coleta, {CHAVE} a palavra com que a loja foi consultada, {DATA} a data da coleta. Preco escrito a mao na frase e preco que mente na coleta seguinte, calado — e `gerar-vitrine-de-produto.py --conferir` REPROVA numero digitado neste arquivo.",
-  "numeros_declarados_permitidos": [
-    {
-      "texto": "996/2023",
-      "porque": "o numero da Resolucao Contran, que e nome proprio de documento e nao numero de tela"
-    }
+ "id": "paginas-de-produto",
+ "ilha": "rodametria",
+ "bloco": "5b",
+ "gerado_em": "2026-10-29",
+ "publicar": true,
+ "o_que_este_arquivo_e": "A camada DECLARADA das paginas da secao 30: titulo, description, a resposta em duas frases, o que e e o que nao e, o `qual escolher` por uso e as perguntas. E a voz do VOZ.md, escrita a mao. A camada GERADA — cartao, tabela e numero — e `dados/vitrine-de-produto.json`.",
+ "nenhum_numero_e_digitado_aqui": "A prosa traz MOLDES e quem os preenche e o PHP, com o numero que sai da vitrine: {N} anuncios, {DE} e {ATE} a faixa de preco, {MEDIANA}, {DECLARAM_WATT} e {DIZEM_QUAL_WATT} a contagem do rotulo de potencia, {SEM_WATT}, {LIDAS} e {RECUSADAS} a conta da coleta, {CHAVE} a palavra com que a loja foi consultada, {DATA} a data da coleta. Preco escrito a mao na frase e preco que mente na coleta seguinte, calado — e `gerar-vitrine-de-produto.py --conferir` REPROVA numero digitado neste arquivo.",
+ "numeros_declarados_permitidos": [
+  {
+   "texto": "996/2023",
+   "porque": "o numero da Resolucao Contran, que e nome proprio de documento e nao numero de tela"
+  }
+ ],
+ "mae": {
+  "slug": "veiculos",
+  "nome": "Veículos",
+  "titulo": "Veículos elétricos: patinete, bicicleta, scooter e moto — o que comprar",
+  "h1": "Veículos elétricos",
+  "description": "O que está à venda hoje em cada família de elétrico, com a faixa de preço medida na loja e o que o anúncio declara — e o que ele não declara.",
+  "resposta": [
+   "Cada família de elétrico tem a sua página aqui, com os anúncios que estão no ar hoje, a faixa de preço medida e o que cada anúncio declara.",
+   "Comece pela família que você está olhando: o que separa um patinete de uma bicicleta elétrica não é o preço, é a categoria legal e a conta de bateria."
   ],
-  "mae": {
-    "slug": "veiculos",
-    "nome": "Veículos",
-    "titulo": "Veículos elétricos: patinete, bicicleta, scooter e moto — o que comprar",
-    "h1": "Veículos elétricos",
-    "description": "O que está à venda hoje em cada família de elétrico, com a faixa de preço medida na loja e o que o anúncio declara — e o que ele não declara.",
-    "resposta": [
-      "Cada família de elétrico tem a sua página aqui, com os anúncios que estão no ar hoje, a faixa de preço medida e o que cada anúncio declara.",
-      "Comece pela família que você está olhando: o que separa um patinete de uma bicicleta elétrica não é o preço, é a categoria legal e a conta de bateria."
-    ],
-    "o_que_falta_dizer": "As famílias sem página são as que a loja ainda não serve: o texto de cada cartão diz qual é a causa, medida, em vez de prometer data.",
-    "familias_que_faltam": [
-      {
-        "consulta": "moto elétrica",
-        "causa": "a loja que a gente usa tem três anúncios de moto elétrica de adulto, nenhum deles com uma venda, e com preços que variam em milhares de reais para a mesma classe de produto. Página feita com isso envelheceria em uma semana."
-      },
-      {
-        "consulta": "scooter elétrica",
-        "causa": "nesta loja a palavra scooter devolve patinete, e o scooter de verdade — aquele com assento, de mil watts — cai no mesmo caso da moto elétrica."
-      },
-      {
-        "consulta": "bike elétrica",
-        "causa": "é a mesma coisa que bicicleta elétrica, e tem a página dela logo acima. Duas páginas para o mesmo produto não ajudam ninguém."
-      }
-    ],
-    "o_que_decide_rotulo": "Os três números que decidem a compra",
-    "o_que_decide": [
-      {
-        "numero": "Potência nominal e velocidade máxima",
-        "porque": "é o par que decide se o veículo dispensa habilitação e placa, ou se é ciclomotor e precisa dos dois. O número grande do anúncio costuma ser o pico do motor, que o motor entrega por alguns segundos; o que vale para a regra é a potência nominal, e ela mora na ficha do fabricante — não no título. Errar aqui manda a pessoa para a rua sem habilitação, então esta casa não afirma categoria de nenhum modelo cuja ficha não tenha sido lida."
-      },
-      {
-        "numero": "Watt-hora da bateria",
-        "porque": "a tensão vezes a amperagem dá o watt-hora, e é dele que sai o quilômetro de verdade. O número do anúncio é o de quem pesa menos que você, num trajeto plano: com ladeira e com o seu peso, conte bem menos. É a conta que a nossa calculadora de autonomia faz, com a fonte do fator de relevo citada na própria página."
-      },
-      {
-        "numero": "Carga máxima declarada",
-        "porque": "é o filtro que quase ninguém olha e que quase nunca está no título. Você mais a mochila passam dos cem quilos mais fácil do que parece, e passar da carga máxima não deixa o veículo mais lento: deixa a solda do guidão mais perto de ceder."
-      }
-    ],
-    "como_sabemos": [
-      "Os preços de cada família saem de anúncios lidos na Shopee, com a data da leitura ao lado de cada um. Preço de marketplace muda, então nenhuma página desta casa crava preço como se fosse o de agora.",
-      "Potência, velocidade máxima, acelerador e carga máxima só entram na nossa ficha técnica quando vêm de ficha de fabricante ou de loja grande: título de anúncio não basta para esses quatro, e onde o dado falta a página diz que falta.",
-      "Os botões levam para a loja por link de afiliado: a gente recebe comissão se você comprar, e o preço para você é o mesmo."
-    ]
-  },
-  "paginas": [
+  "o_que_falta_dizer": "As famílias sem página são as que a loja ainda não serve: o texto de cada cartão diz qual é a causa, medida, em vez de prometer data.",
+  "familias_que_faltam": [
+   {
+    "consulta": "moto elétrica",
+    "causa": "a loja que a gente usa tem três anúncios de moto elétrica de adulto, nenhum deles com uma venda, e com preços que variam em milhares de reais para a mesma classe de produto. Página feita com isso envelheceria em uma semana."
+   },
+   {
+    "consulta": "scooter elétrica",
+    "causa": "nesta loja a palavra scooter devolve patinete, e o scooter de verdade — aquele com assento, de mil watts — cai no mesmo caso da moto elétrica."
+   },
+   {
+    "consulta": "bike elétrica",
+    "causa": "é a mesma coisa que bicicleta elétrica, e tem a página dela logo acima. Duas páginas para o mesmo produto não ajudam ninguém."
+   }
+  ],
+  "o_que_decide_rotulo": "Os três números que decidem a compra",
+  "o_que_decide": [
+   {
+    "numero": "Potência nominal e velocidade máxima",
+    "porque": "é o par que decide se o veículo dispensa habilitação e placa, ou se é ciclomotor e precisa dos dois. O número grande do anúncio costuma ser o pico do motor, que o motor entrega por alguns segundos; o que vale para a regra é a potência nominal, e ela mora na ficha do fabricante — não no título. Errar aqui manda a pessoa para a rua sem habilitação, então esta casa não afirma categoria de nenhum modelo cuja ficha não tenha sido lida."
+   },
+   {
+    "numero": "Watt-hora da bateria",
+    "porque": "a tensão vezes a amperagem dá o watt-hora, e é dele que sai o quilômetro de verdade. O número do anúncio é o de quem pesa menos que você, num trajeto plano: com ladeira e com o seu peso, conte bem menos. A nossa calculadora de autonomia desconta o relevo, com a fonte do fator citada na própria página, e diz onde o seu peso põe você dentro da faixa."
+   },
+   {
+    "numero": "Carga máxima declarada",
+    "porque": "é o filtro que quase ninguém olha e que quase nunca está no título. Você mais a mochila passam dos cem quilos mais fácil do que parece, e passar da carga máxima não deixa o veículo mais lento: deixa a solda do guidão mais perto de ceder."
+   }
+  ],
+  "como_sabemos": [
+   "Os preços de cada família saem de anúncios lidos na Shopee, com a data da leitura ao lado de cada um. Preço de marketplace muda, então nenhuma página desta casa crava preço como se fosse o de agora.",
+   "Potência, velocidade máxima, acelerador e carga máxima só entram na nossa ficha técnica quando vêm de ficha de fabricante ou de loja grande: título de anúncio não basta para esses quatro, e onde o dado falta a página diz que falta.",
+   "Os botões levam para a loja por link de afiliado: a gente recebe comissão se você comprar, e o preço para você é o mesmo."
+  ]
+ },
+ "paginas": [
+  {
+   "id": "patinete-eletrico",
+   "titulo": "Patinete elétrico: qual comprar e quanto custa hoje",
+   "h1": "Patinete elétrico",
+   "description": "Os patinetes elétricos de adulto que estão à venda hoje, com a faixa de preço medida na loja, o que cada anúncio declara de potência — e o que ele não declara.",
+   "resposta": [
+    "Para adulto, o patinete elétrico à venda hoje custa de {DE} a {ATE}, com a mediana em {MEDIANA} sobre os {N} anúncios que a gente conferiu em {DATA}.",
+    "Na faixa de baixo você leva um patinete de cidade, dobrável, de trajeto curto; em cima entra pneu maior e bateria que aguenta ladeira — e nenhum deles dispensa a conta de autonomia, porque o km do anúncio é o km de quem pesa menos que você."
+   ],
+   "o_que_e": [
+    "Patinete elétrico de adulto é o que você sobe de pé, com acelerador no guidão, dobrável, para trajeto curto de cidade.",
+    "Se o que você procura é o de criança, não é esta página: eles vivem na mesma busca da loja e a gente os deixou de fora de propósito, porque o que decide a compra de um e de outro não é a mesma coisa."
+   ],
+   "o_que_nao_e": [
+    "Não é lista de \"melhor patinete\": a gente não testou nenhum deles e não vai dizer que testou.",
+    "E não é ficha técnica. {FRASE_DO_ROTULO} O resto da página diz, anúncio por anúncio, o que cada um declarou."
+   ],
+   "qual_escolher": [
     {
-      "id": "patinete-eletrico",
-      "titulo": "Patinete elétrico: qual comprar e quanto custa hoje",
-      "h1": "Patinete elétrico",
-      "description": "Os patinetes elétricos de adulto que estão à venda hoje, com a faixa de preço medida na loja, o que cada anúncio declara de potência — e o que ele não declara.",
-      "resposta": [
-        "Para adulto, o patinete elétrico à venda hoje custa de {DE} a {ATE}, com a mediana em {MEDIANA} sobre os {N} anúncios que a gente conferiu em {DATA}.",
-        "Na faixa de baixo você leva um patinete de cidade, dobrável, de trajeto curto; em cima entra pneu maior e bateria que aguenta ladeira — e nenhum deles dispensa a conta de autonomia, porque o km do anúncio é o km de quem pesa menos que você."
-      ],
-      "o_que_e": [
-        "Patinete elétrico de adulto é o que você sobe de pé, com acelerador no guidão, dobrável, para trajeto curto de cidade.",
-        "Se o que você procura é o de criança, não é esta página: eles vivem na mesma busca da loja e a gente os deixou de fora de propósito, porque o que decide a compra de um e de outro não é a mesma coisa."
-      ],
-      "o_que_nao_e": [
-        "Não é lista de \"melhor patinete\": a gente não testou nenhum deles e não vai dizer que testou.",
-        "E não é ficha técnica. {FRASE_DO_ROTULO} O resto da página diz, anúncio por anúncio, o que cada um declarou."
-      ],
-      "qual_escolher": [
-        {
-          "para": "trajeto curto e plano, até uns oito quilômetros por dia",
-          "o_que_olhar": "o modelo mais barato da faixa resolve. Olhe a carga máxima antes do watt: patinete de entrada costuma parar nos cem quilos, e você mais mochila passa disso mais fácil do que parece."
-        },
-        {
-          "para": "subida no caminho",
-          "o_que_olhar": "aqui a conta de bateria manda, não o watt do título. Pegue a tensão e a amperagem do anúncio e passe na calculadora de autonomia: a ladeira come mais da bateria do que qualquer outra coisa do seu trajeto."
-        },
-        {
-          "para": "quem pesa mais de cem quilos",
-          "o_que_olhar": "a carga máxima declarada é o primeiro filtro, e ela quase nunca está no título. Procure no anúncio antes de olhar preço — passar da carga máxima não deixa o patinete mais lento, deixa a solda do guidão mais perto de ceder."
-        },
-        {
-          "para": "quem quer saber se precisa de habilitação",
-          "o_que_olhar": "o que decide é a potência nominal e a velocidade máxima, e é exatamente o que estes anúncios não declaram. Enquanto a gente não lê o texto oficial da Resolução Contran nº 996/2023, esta página não afirma categoria de nenhum deles — e desconfiar do número grande do título é o começo certo."
-        }
-      ],
-      "perguntas": [
-        {
-          "pergunta": "Patinete elétrico precisa de CNH?",
-          "resposta": "Depende da potência nominal, da velocidade máxima e de ter acelerador — não do preço nem do tamanho. A gente não afirma a categoria de nenhum destes modelos porque eles não declaram a potência nominal. {FRASE_DO_ROTULO}"
-        },
-        {
-          "pergunta": "Por que o anúncio diz um watt e a ficha diz outro?",
-          "resposta": "Porque o número grande do título costuma ser o pico do motor, que o motor entrega por alguns segundos, e não a potência nominal, que é a que ele sustenta. Para a regra de trânsito vale a nominal, e ela mora na ficha do fabricante, não no título."
-        },
-        {
-          "pergunta": "Quantos quilômetros o patinete faz de verdade?",
-          "resposta": "Menos do que o anúncio promete, e o quanto menos depende do seu peso e da ladeira. A nossa calculadora de autonomia faz essa conta a partir da tensão e da amperagem da bateria, e mostra o número do anúncio ao lado para você comparar."
-        },
-        {
-          "pergunta": "De onde saem estes preços?",
-          "resposta": "De anúncios lidos na loja em {DATA}, com a busca por \"{CHAVE}\". Preço de marketplace muda, então cada cartão leva a data da leitura ao lado — e a gente não crava preço como se fosse o de hoje."
-        }
-      ],
-      "como_sabemos": [
-        "Os anúncios saem da busca \"{CHAVE}\" na Shopee, lida em {DATA}. De {LIDAS} ofertas, {N} são patinete elétrico de adulto e {RECUSADAS} não são — capacete, capa de chuva, patinete de criança e patinete de empurrar aparecem na mesma busca.",
-        "A ordem dos cartões é por venda medida e depois por preço; a gente não compara comissão entre lojas e não ordena por ela.",
-        "Potência, velocidade máxima, acelerador e carga máxima só entram na nossa ficha técnica quando vêm de ficha de fabricante ou de ficha de loja grande. Título de anúncio não basta para esses quatro, e é por isso que esta página diz o que o anúncio declarou em vez de preencher uma tabela técnica."
-      ],
-      "aviso_de_afiliado": "Os botões levam para a loja por link de afiliado: a gente recebe comissão se você comprar, e o preço para você é o mesmo."
+     "para": "trajeto curto e plano, até uns oito quilômetros por dia",
+     "o_que_olhar": "o modelo mais barato da faixa resolve. Olhe a carga máxima antes do watt: patinete de entrada costuma parar nos cem quilos, e você mais mochila passa disso mais fácil do que parece."
     },
     {
-      "id": "bicicleta-eletrica",
-      "titulo": "Bicicleta elétrica: qual comprar e quanto custa hoje",
-      "h1": "Bicicleta elétrica",
-      "description": "As bicicletas elétricas de adulto à venda hoje, com a faixa de preço medida na loja e o que cada anúncio declara de potência e bateria.",
-      "resposta": [
-        "A bicicleta elétrica de adulto à venda hoje custa de {DE} a {ATE}, com a mediana em {MEDIANA} sobre os {N} anúncios que a gente conferiu em {DATA}.",
-        "Quase toda a faixa de baixo é dobrável, de pedal assistido, pensada para o trajeto casa–trabalho; o topo da faixa é a que tem acelerador e motor forte — e é justamente ela que pode sair da categoria de bicicleta e entrar na de ciclomotor."
-      ],
-      "o_que_e": [
-        "Bicicleta elétrica é a que você pedala com ajuda de motor. Se ela andar sozinha no acelerador, sem você pedalar, a conversa de categoria legal muda — e muda para pior, porque aí entra habilitação e placa.",
-        "Aqui também chamam de bike elétrica e de e-bike: é o mesmo produto e a mesma página."
-      ],
-      "o_que_nao_e": [
-        "Não é ranking: a gente não andou em nenhuma delas.",
-        "E não é ficha técnica. {FRASE_DO_ROTULO}"
-      ],
-      "qual_escolher": [
-        {
-          "para": "casa–trabalho em cidade plana",
-          "o_que_olhar": "a dobrável de pedal assistido da faixa de baixo é o que o mercado vende mais, e ela resolve. Veja se o quadro dobra para o seu elevador antes de olhar a bateria."
-        },
-        {
-          "para": "subida ou carga no bagageiro",
-          "o_que_olhar": "olhe a tensão e a amperagem, e passe os dois na calculadora de autonomia. Bicicleta elétrica com bateria pequena em cidade de ladeira é a reclamação mais comum de quem compra sem fazer essa conta."
-        },
-        {
-          "para": "quem quer andar sem pedalar",
-          "o_que_olhar": "cuidado: aí não é mais bicicleta no papel. O que define a categoria é potência nominal, velocidade máxima e acelerador, e nenhum destes anúncios declara os três. Enquanto a gente não ler o texto oficial da Resolução Contran nº 996/2023, esta página não diz que nenhuma delas dispensa habilitação."
-        }
-      ],
-      "perguntas": [
-        {
-          "pergunta": "Bicicleta elétrica precisa de CNH?",
-          "resposta": "A de pedal assistido, dentro dos limites da resolução, não. A que anda no acelerador pode ser ciclomotor, e aí precisa. O que decide são a potência nominal, a velocidade máxima e o acelerador — três campos que estes anúncios não declaram, e por isso a gente não afirma a categoria de nenhuma delas."
-        },
-        {
-          "pergunta": "Quantos quilômetros ela faz?",
-          "resposta": "Depende da bateria, do seu peso e do relevo, e muito menos do que o anúncio diz. A nossa calculadora de autonomia faz a conta a partir da tensão e da amperagem e mostra o número do anúncio ao lado."
-        },
-        {
-          "pergunta": "Bike elétrica e bicicleta elétrica são a mesma coisa?",
-          "resposta": "São. A loja usa as duas palavras no mesmo anúncio, e esta página responde pelas duas."
-        },
-        {
-          "pergunta": "De onde saem estes preços?",
-          "resposta": "De anúncios lidos na loja em {DATA}, com a busca por \"{CHAVE}\". Cada cartão leva a data da leitura, porque preço de marketplace muda."
-        }
-      ],
-      "como_sabemos": [
-        "Os anúncios saem da busca \"{CHAVE}\" na Shopee, lida em {DATA}. De {LIDAS} ofertas, {N} são bicicleta elétrica de adulto e {RECUSADAS} não são — capacete e capa de chuva dominam o resto da busca.",
-        "A ordem dos cartões é por venda medida e depois por preço; comissão não ordena nada nesta casa.",
-        "Potência, velocidade máxima, acelerador e carga máxima só entram na nossa ficha técnica vindos de ficha de fabricante ou de loja grande. Título de anúncio não basta para esses quatro."
-      ],
-      "aviso_de_afiliado": "Os botões levam para a loja por link de afiliado: a gente recebe comissão se você comprar, e o preço para você é o mesmo."
+     "para": "subida no caminho",
+     "o_que_olhar": "aqui a conta de bateria manda, não o watt do título. Pegue a tensão e a amperagem do anúncio e passe na calculadora de autonomia: a ladeira come mais da bateria do que qualquer outra coisa do seu trajeto."
+    },
+    {
+     "para": "quem pesa mais de cem quilos",
+     "o_que_olhar": "a carga máxima declarada é o primeiro filtro, e ela quase nunca está no título. Procure no anúncio antes de olhar preço — passar da carga máxima não deixa o patinete mais lento, deixa a solda do guidão mais perto de ceder."
+    },
+    {
+     "para": "quem quer saber se precisa de habilitação",
+     "o_que_olhar": "o que decide é a potência nominal e a velocidade máxima, e é exatamente o que estes anúncios não declaram. Enquanto a gente não lê o texto oficial da Resolução Contran nº 996/2023, esta página não afirma categoria de nenhum deles — e desconfiar do número grande do título é o começo certo."
     }
-  ]
+   ],
+   "perguntas": [
+    {
+     "pergunta": "Patinete elétrico precisa de CNH?",
+     "resposta": "Depende da potência nominal, da velocidade máxima e de ter acelerador — não do preço nem do tamanho. A gente não afirma a categoria de nenhum destes modelos porque eles não declaram a potência nominal. {FRASE_DO_ROTULO}"
+    },
+    {
+     "pergunta": "Por que o anúncio diz um watt e a ficha diz outro?",
+     "resposta": "Porque o número grande do título costuma ser o pico do motor, que o motor entrega por alguns segundos, e não a potência nominal, que é a que ele sustenta. Para a regra de trânsito vale a nominal, e ela mora na ficha do fabricante, não no título."
+    },
+    {
+     "pergunta": "Quantos quilômetros o patinete faz de verdade?",
+     "resposta": "Menos do que o anúncio promete, e o quanto menos depende do seu peso e da ladeira. A nossa calculadora de autonomia desconta a ladeira a partir da tensão e da amperagem da bateria, mostra o número do anúncio ao lado para você comparar, e diz em que ponta da faixa o seu peso deixa você."
+    },
+    {
+     "pergunta": "De onde saem estes preços?",
+     "resposta": "De anúncios lidos na loja em {DATA}, com a busca por \"{CHAVE}\". Preço de marketplace muda, então cada cartão leva a data da leitura ao lado — e a gente não crava preço como se fosse o de hoje."
+    }
+   ],
+   "como_sabemos": [
+    "Os anúncios saem da busca \"{CHAVE}\" na Shopee, lida em {DATA}. De {LIDAS} ofertas, {N} são patinete elétrico de adulto e {RECUSADAS} não são — capacete, capa de chuva, patinete de criança e patinete de empurrar aparecem na mesma busca.",
+    "A ordem dos cartões é por venda medida e depois por preço; a gente não compara comissão entre lojas e não ordena por ela.",
+    "Potência, velocidade máxima, acelerador e carga máxima só entram na nossa ficha técnica quando vêm de ficha de fabricante ou de ficha de loja grande. Título de anúncio não basta para esses quatro, e é por isso que esta página diz o que o anúncio declarou em vez de preencher uma tabela técnica."
+   ],
+   "aviso_de_afiliado": "Os botões levam para a loja por link de afiliado: a gente recebe comissão se você comprar, e o preço para você é o mesmo."
+  },
+  {
+   "id": "bicicleta-eletrica",
+   "titulo": "Bicicleta elétrica: qual comprar e quanto custa hoje",
+   "h1": "Bicicleta elétrica",
+   "description": "As bicicletas elétricas de adulto à venda hoje, com a faixa de preço medida na loja e o que cada anúncio declara de potência e bateria.",
+   "resposta": [
+    "A bicicleta elétrica de adulto à venda hoje custa de {DE} a {ATE}, com a mediana em {MEDIANA} sobre os {N} anúncios que a gente conferiu em {DATA}.",
+    "Quase toda a faixa de baixo é dobrável, de pedal assistido, pensada para o trajeto casa–trabalho; o topo da faixa é a que tem acelerador e motor forte — e é justamente ela que pode sair da categoria de bicicleta e entrar na de ciclomotor."
+   ],
+   "o_que_e": [
+    "Bicicleta elétrica é a que você pedala com ajuda de motor. Se ela andar sozinha no acelerador, sem você pedalar, a conversa de categoria legal muda — e muda para pior, porque aí entra habilitação e placa.",
+    "Aqui também chamam de bike elétrica e de e-bike: é o mesmo produto e a mesma página."
+   ],
+   "o_que_nao_e": [
+    "Não é ranking: a gente não andou em nenhuma delas.",
+    "E não é ficha técnica. {FRASE_DO_ROTULO}"
+   ],
+   "qual_escolher": [
+    {
+     "para": "casa–trabalho em cidade plana",
+     "o_que_olhar": "a dobrável de pedal assistido da faixa de baixo é o que o mercado vende mais, e ela resolve. Veja se o quadro dobra para o seu elevador antes de olhar a bateria."
+    },
+    {
+     "para": "subida ou carga no bagageiro",
+     "o_que_olhar": "olhe a tensão e a amperagem, e passe os dois na calculadora de autonomia. Bicicleta elétrica com bateria pequena em cidade de ladeira é a reclamação mais comum de quem compra sem fazer essa conta."
+    },
+    {
+     "para": "quem quer andar sem pedalar",
+     "o_que_olhar": "cuidado: aí não é mais bicicleta no papel. O que define a categoria é potência nominal, velocidade máxima e acelerador, e nenhum destes anúncios declara os três. Enquanto a gente não ler o texto oficial da Resolução Contran nº 996/2023, esta página não diz que nenhuma delas dispensa habilitação."
+    }
+   ],
+   "perguntas": [
+    {
+     "pergunta": "Bicicleta elétrica precisa de CNH?",
+     "resposta": "A de pedal assistido, dentro dos limites da resolução, não. A que anda no acelerador pode ser ciclomotor, e aí precisa. O que decide são a potência nominal, a velocidade máxima e o acelerador — três campos que estes anúncios não declaram, e por isso a gente não afirma a categoria de nenhuma delas."
+    },
+    {
+     "pergunta": "Quantos quilômetros ela faz?",
+     "resposta": "Depende da bateria, do seu peso e do relevo, e muito menos do que o anúncio diz. A nossa calculadora de autonomia desconta o relevo a partir da tensão e da amperagem, mostra o número do anúncio ao lado, e diz em que ponta da faixa o seu peso deixa você."
+    },
+    {
+     "pergunta": "Bike elétrica e bicicleta elétrica são a mesma coisa?",
+     "resposta": "São. A loja usa as duas palavras no mesmo anúncio, e esta página responde pelas duas."
+    },
+    {
+     "pergunta": "De onde saem estes preços?",
+     "resposta": "De anúncios lidos na loja em {DATA}, com a busca por \"{CHAVE}\". Cada cartão leva a data da leitura, porque preço de marketplace muda."
+    }
+   ],
+   "como_sabemos": [
+    "Os anúncios saem da busca \"{CHAVE}\" na Shopee, lida em {DATA}. De {LIDAS} ofertas, {N} são bicicleta elétrica de adulto e {RECUSADAS} não são — capacete e capa de chuva dominam o resto da busca.",
+    "A ordem dos cartões é por venda medida e depois por preço; comissão não ordena nada nesta casa.",
+    "Potência, velocidade máxima, acelerador e carga máxima só entram na nossa ficha técnica vindos de ficha de fabricante ou de loja grande. Título de anúncio não basta para esses quatro."
+   ],
+   "aviso_de_afiliado": "Os botões levam para a loja por link de afiliado: a gente recebe comissão se você comprar, e o preço para você é o mesmo."
+  }
+ ]
 }
