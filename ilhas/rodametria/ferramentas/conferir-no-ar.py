@@ -27,7 +27,13 @@ TODA URL E PEDIDA COM QUEBRA DE CACHE: as afirmacoes aqui sao sobre a ORIGEM.
 Quem le como o Google le, sem quebra de cache, e outro portao.
 """
 
-import html
+# A FUNCAO VEM COM NOME PROPRIO, E NAO O MODULO: `import html` seria SOMBREADO
+# dentro do laco, porque a variavel que guarda o corpo da pagina tambem se chama
+# `html` (a linha do `cod, ct, html = buscar(...)`) — e a chamada ao modulo
+# morreria com AttributeError na PRIMEIRA description medida. Nenhuma LEITURA
+# pega isso: o nome existe, certinho, nos dois lugares. Quem pegou foi perguntar
+# ao arquivo quem MAIS usa o nome, antes de empurrar.
+from html import unescape as desescapar_entidades
 import json
 import os
 import re
@@ -274,7 +280,7 @@ def main():
             # `&#039;` e contaria 6 caracteres no lugar de 1 — a familia do
             # `&#038;` que a propria 12 cobra dentro de <script>. Desfazer as
             # entidades antes de medir e o que faz o numero ser o do leitor.
-            texto_desc = html.unescape(desc.group(1))
+            texto_desc = desescapar_entidades(desc.group(1))
             afirma(len(texto_desc) <= 160,
                    "%s: description com %d caracteres e o teto e 160"
                    % (caminho, len(texto_desc)))
