@@ -27,6 +27,7 @@ TODA URL E PEDIDA COM QUEBRA DE CACHE: as afirmacoes aqui sao sobre a ORIGEM.
 Quem le como o Google le, sem quebra de cache, e outro portao.
 """
 
+import html
 import json
 import os
 import re
@@ -265,8 +266,19 @@ def main():
         desc = re.search(r'<meta name="description" content="([^"]{20,})"', html)
         afirma(bool(desc), "%s: sem meta description" % caminho)
         if desc:
-            afirma(len(desc.group(1)) <= 200,
-                   "%s: description com %d caracteres" % (caminho, len(desc.group(1))))
+            # ITEM 5 DO DESPACHO DE 30/10/2026. O teto era 200 e por isso ele
+            # APROVOU uma description de 193 e uma de 161: a ronda achou as duas
+            # a olho, com o portao verde. 160 e o numero que o despacho declara.
+            # E O QUE SE CONTA E O TEXTO, NAO A MARCACAO: o atributo vem
+            # escapado do `esc_attr` do WordPress, entao um apostrofo chega como
+            # `&#039;` e contaria 6 caracteres no lugar de 1 — a familia do
+            # `&#038;` que a propria 12 cobra dentro de <script>. Desfazer as
+            # entidades antes de medir e o que faz o numero ser o do leitor.
+            texto_desc = html.unescape(desc.group(1))
+            afirma(len(texto_desc) <= 160,
+                   "%s: description com %d caracteres e o teto e 160"
+                   % (caminho, len(texto_desc)))
+            registro("%s: description com %d caracteres" % (caminho, len(texto_desc)))
         jsonld = re.findall(r'<script type="application/ld\+json">(.*?)</script>', html, re.S)
         afirma(len(jsonld) >= 1, "%s: sem JSON-LD" % caminho)
         for j in jsonld:

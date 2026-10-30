@@ -47,7 +47,9 @@ PHP = ILHA / "snippets" / "rodametria-institucional.php"
 AS_QUATRO = ("sobre", "contato", "divulgacao-de-afiliados", "privacidade")
 
 PISO_DE_CORPO = 1500
-TETO_DE_DESCRIPTION = 200
+# 200 -> 160 pelo item 5 do despacho de 30/10/2026, junto com o portao de ar:
+# este numero e ESPELHO do de la, e o proprio texto da falha diz isso.
+TETO_DE_DESCRIPTION = 160
 
 # Abertura de negacao aceita. Lista curta de proposito: quem precisar de uma
 # sexta forma escreve a frase de outro jeito, porque bloco de recusa que aceita

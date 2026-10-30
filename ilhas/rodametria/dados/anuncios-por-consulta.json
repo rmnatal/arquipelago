@@ -727,7 +727,16 @@
      "rotulo_de_potencia": "sem_watt",
      "url_afiliado_gerada_em": "2026-10-29"
     }
-   ]
+   ],
+   "piso_da_busca": {
+    "chave": "bicicleta eletrica adulto",
+    "url_busca_produto": "https://shopee.com.br/search?keyword=bicicleta%20eletrica%20adulto",
+    "url_busca": "https://s.shopee.com.br/6AmCbQSBuw",
+    "sub_id_1": "rodametria",
+    "encurtamento_tentado_em": "2026-10-30",
+    "medido_em": "2026-10-30",
+    "por_que_existe": "PISO DA 25.2 para os cartoes desta pagina: o link de cada cartao e a ficha de um anuncio, e ficha apodrece. Quando ela morrer, esta busca e a saida que a pessoa ja tinha na tela."
+   }
   },
   {
    "id": "patinete-eletrico",
@@ -1555,7 +1564,16 @@
      "rotulo_de_potencia": "watt_sem_rotulo",
      "url_afiliado_gerada_em": "2026-10-29"
     }
-   ]
+   ],
+   "piso_da_busca": {
+    "chave": "patinete eletrico adulto",
+    "url_busca_produto": "https://shopee.com.br/search?keyword=patinete%20eletrico%20adulto",
+    "url_busca": "https://s.shopee.com.br/6AmCbQS7ge",
+    "sub_id_1": "rodametria",
+    "encurtamento_tentado_em": "2026-10-30",
+    "medido_em": "2026-10-30",
+    "por_que_existe": "PISO DA 25.2 para os cartoes desta pagina: o link de cada cartao e a ficha de um anuncio, e ficha apodrece. Quando ela morrer, esta busca e a saida que a pessoa ja tinha na tela."
+   }
   }
  ]
 }

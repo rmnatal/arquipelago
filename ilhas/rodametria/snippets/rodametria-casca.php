@@ -29,7 +29,7 @@
  */
 
 if ( ! defined( 'RODAMETRIA_CASCA_VERSAO' ) ) {
-	define( 'RODAMETRIA_CASCA_VERSAO', '1.4.0' );
+	define( 'RODAMETRIA_CASCA_VERSAO', '1.4.1' );
 }
 
 /**
@@ -75,9 +75,12 @@ function rodametria_casca_paginas() {
 			'tipo'        => 'website',
 			'no_menu'     => false,
 			'pai'         => null,
+			/* ITEM 5 DO DESPACHO DE 30/10/2026: tinha 161 caracteres no HTML
+			   servido, um acima do teto de 160. 147 agora, contados — e as
+			   tres perguntas da ilha continuam todas na frase. */
 			'description' => 'Antes de comprar patinete, scooter, moto ou bike elétrica: '
-				. 'veja se precisa de CNH, quantos km a bateria faz de verdade com o seu '
-				. 'peso e se o modelo aguenta você.',
+				. 'se precisa de CNH, quantos km a bateria faz de verdade com o seu peso '
+				. 'e se aguenta você.',
 		),
 	);
 
@@ -586,10 +589,25 @@ function rodametria_casca_dobra( $titulo, $corpo, $aberta = false ) {
  * degrau; entao o rotulo mora aqui, numa funcao so, e o degrau viaja ao lado
  * como informacao — nunca como critério de regua.
  */
+if ( ! function_exists( 'rodametria_casca_nome_da_loja' ) ) {
+/**
+ * O NOME DA LOJA DE UM PROGRAMA, E ELE MORA NUMA FUNCAO SO.
+ *
+ * Extraido de rodametria_casca_rotulo_da_loja() pelo item 3 do despacho de
+ * 30/10/2026: a partir dele o nome da loja e perguntado em DOIS lugares — o
+ * rotulo do botao e a nota do preco, que precisa saber se a loja do preco e a
+ * mesma do botao. Mapeamento escrito duas vezes e mapeamento que envelhece pela
+ * metade no dia em que entrar o terceiro programa.
+ */
+function rodametria_casca_nome_da_loja( $programa ) {
+	return ( 'mercado_livre' === $programa || 'mercadolivre' === $programa )
+		? 'Mercado Livre' : 'Shopee';
+}
+}
+
 if ( ! function_exists( 'rodametria_casca_rotulo_da_loja' ) ) {
 function rodametria_casca_rotulo_da_loja( $programa, $degrau ) {
-	$loja = ( 'mercado_livre' === $programa || 'mercadolivre' === $programa )
-		? 'Mercado Livre' : 'Shopee';
+	$loja = rodametria_casca_nome_da_loja( $programa );
 
 	return ( (int) $degrau >= 4 ) ? 'Ver ofertas na ' . $loja : 'Ver na ' . $loja;
 }

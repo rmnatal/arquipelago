@@ -28,6 +28,14 @@ def carregar(raiz):
         "veiculos": ler("dados/veiculos.json"),
         "pecas": ler("dados/pecas.json"),
         "municipios": ler("dados/municipios.json"),
+        # ITEM 4 DO DESPACHO DE 30/10/2026: A VITRINE ENTRA AQUI.
+        # Este portao lia veiculos.json e pecas.json e podia escrever
+        # "intestaveis: ZERO" com VERDADE sobre o banco que lia e FALSO sobre um
+        # terco dos links que a ilha servia — a licao literal do painel de
+        # 28/10/2026 na clubedomosaico. A regua nao muda; o que muda e o que ela
+        # alcanca. Piso e teste de vida se cobram de TODO link que vai a tela,
+        # venha ele de registro de banco ou de anuncio colhido por consulta.
+        "vitrine": ler("dados/vitrine-de-produto.json"),
     }
 
 
@@ -420,6 +428,55 @@ def validar(dados):
            and m.get("status") == "publicavel":
             falha(onde, "`publicavel` sem nenhum dos dois limites. Municipio sem limite nao e camada 2")
 
+    # ---- 6-b. A VITRINE: OS LINKS QUE A ILHA SERVE E QUE NAO MORAM NO BANCO
+    #
+    # As paginas da secao 30 servem oferta colhida por CONSULTA, nao registro de
+    # banco. A 25.2 (piso) e a 25.4-b (par testavel) nao falam de arquivo: falam
+    # de item publicado. Entao a mesma regua desce aqui.
+    vitrine = dados.get("vitrine") or {}
+    itens_da_vitrine = []
+    for pagina in vitrine.get("paginas", []):
+        for item in pagina.get("linhas", []):
+            itens_da_vitrine.append((pagina.get("slug") or pagina.get("id"), item))
+
+    for slug, it in itens_da_vitrine:
+        onde = "vitrine / %s / %s" % (slug, str(it.get("item_id") or it.get("nome"))[:40])
+        tem_url = bool(it.get("url"))
+        # INTESTAVEL e o MESMO derivado do banco: tem link de ficha e nao tem a
+        # ficha crua com que se pergunta a loja se o anuncio vive (25.4-b).
+        intestavel = tem_url and not it.get("url_produto")
+        piso = bool(it.get("url_busca")) and bool(it.get("url_busca_produto"))
+        if intestavel:
+            falha(onde, "serve `url` de ficha e nao tem `url_produto`: link cuja saude e desconhecida "
+                        "e permanecera desconhecida (25.4-b). O par vem da MESMA chamada da API em "
+                        "dados/anuncios-por-consulta.json — se ele nao chegou aqui, quem nao o "
+                        "carregou foi o gerador da vitrine")
+        if tem_url and not piso:
+            falha(onde, "serve link de ficha e nao tem piso de compra (`url_busca` e "
+                        "`url_busca_produto`). Ficha apodrece; quando esta morrer o cartao fica sem "
+                        "saida de compra (25.2)")
+        if it.get("url_produto") and not it.get("par_colhido_em"):
+            falha(onde, "tem `url` e `url_produto` e nao diz QUANDO o par foi colhido. Os dois vem da "
+                        "MESMA oferta na MESMA chamada, ou nenhum entra (25.4-b.1)")
+        if it.get("url_produto"):
+            # A ficha crua se reconfere a partir do par shop_id/item_id: URL de
+            # ficha digitada a mao e o que esta regua existe para impedir.
+            for campo in ("shop_id", "item_id"):
+                if not it.get(campo):
+                    falha(onde, "tem `url_produto` e nao tem `%s`. Sem o par a ficha nao se "
+                                "reconfere e o teste de vida da 25.4 nao tem com o que perguntar"
+                                % campo)
+            if it.get("shop_id") and it.get("item_id"):
+                esperada = "https://shopee.com.br/product/%s/%s" % (it["shop_id"], it["item_id"])
+                if it["url_produto"] != esperada:
+                    falha(onde, "`url_produto` nao e a URL que shop_id/item_id produzem (%s). URL "
+                                "digitada a mao e o que esta regua existe para impedir" % esperada)
+        if it.get("url_busca") and not str(it["url_busca"]).startswith("https://s.shopee.com.br/"):
+            falha(onde, "`url_busca` nao e link encurtado da Shopee: %r. A 25.2-b nao aceita piso "
+                        "sem encurtamento tentado" % it["url_busca"])
+        it["_piso"] = piso
+        it["_intestavel"] = intestavel
+
     # ---- 7. contagem, SAINDO DO BANCO e nunca digitada
     pub = [v for v in regs if v.get("status") == "publicavel"]
     cont["veiculos"] = len(regs)
@@ -440,6 +497,16 @@ def validar(dados):
         and (v.get("amperagem_ah") or {}).get("valor") is not None)
     cont["veiculos_publicaveis_com_carga_max"] = sum(
         1 for v in pub if (v.get("carga_max_kg") or {}).get("valor") is not None)
+    # A VITRINE CONTADA AO LADO DO BANCO, e NUNCA somada dentro dele: as duas
+    # origens respondem a mesma regua e tem causas diferentes quando falham.
+    cont["vitrine_itens_servidos"] = len(itens_da_vitrine)
+    cont["vitrine_com_piso_de_compra"] = sum(1 for _, it in itens_da_vitrine if it.get("_piso"))
+    cont["vitrine_intestaveis"] = sum(1 for _, it in itens_da_vitrine if it.get("_intestavel"))
+    cont["itens_servidos_intestaveis_em_toda_a_ilha"] = (
+        cont["vitrine_intestaveis"]
+        + sum(1 for v in regs if v.get("status") == "publicavel"
+              and (v.get("afiliado") or {}).get("url")
+              and not (v.get("afiliado") or {}).get("url_produto")))
     cont["pecas"] = len(dados["pecas"].get("registros", []))
     cont["municipios"] = len(dados["municipios"].get("registros", []))
     cont["municipios_publicaveis"] = sum(

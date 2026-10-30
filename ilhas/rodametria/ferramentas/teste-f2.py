@@ -312,6 +312,79 @@ def main():
                "o molde %r tem chave invalida" % nome)
 
     # ---------------------------------------------------------------
+    # 5-b. A CAIXA NAO SE DESDIZ, E ELA DIZ O PESO INFORMADO.
+    #      Os itens 1 e 2 do despacho de 30/10/2026, medidos aqui com
+    #      regua escrita a mao — nao e a do gerador.
+    #
+    #      O ITEM 1 era o `km_degradado` dizendo "conte com {piso} a
+    #      {teto} km, e nao os {teto} km do anuncio", com {teto} sendo
+    #      a propria autonomia declarada: a frase negava o topo da
+    #      faixa que ela mesma acabava de publicar.
+    #      O ITEM 2 era a caixa muda sobre o peso: 50 kg e 150 kg
+    #      devolviam a mesma resposta, palavra por palavra, enquanto o
+    #      titulo, o primeiro paragrafo e a home prometiam a faixa
+    #      "com o seu peso".
+    # ---------------------------------------------------------------
+    ex = d["resposta_exemplo"]
+    afirma("frases_peso_caixa" in ex,
+           "o arquivo publicado nao tem frases_peso_caixa: a caixa volta a ficar "
+           "muda sobre o peso (item 2 do despacho de 30/10)")
+    caixa_publicada = [ex["frase_wh"]] + list(ex.get("frases_km") or []) \
+        + list(ex.get("frases_peso_caixa") or [])
+
+    # O PESO INFORMADO APARECE NA CAIXA. O numero sai da propria entrada
+    # publicada e e formatado pela MINHA regua, nunca lido de um campo de tela.
+    peso_ex = Fraction(str(ex["entrada"]["peso_piloto_kg"]))
+    afirma(any(numero_pt(peso_ex) in f for f in caixa_publicada),
+           "a caixa nao nomeia os %s kg da entrada publicada — a ilha promete a "
+           "faixa 'com o seu peso' e a caixa nao diz uma palavra sobre ele"
+           % numero_pt(peso_ex))
+
+    # NENHUMA FRASE DA CAIXA NEGA O TOPO QUE A CAIXA SERVE.
+    def nega_o_topo(frase, topo):
+        """A oracao proibida do item 1, com o acento desfeito para a regua
+        nao depender de como a frase o escreve."""
+        return ("nao os %s km" % topo) in frase.replace("ã", "a").lower()
+
+    # A REGUA SE PROVA ANTES DE JULGAR: ela TEM de reprovar o texto que estava
+    # no ar em 30/10/2026, senao ela e inerte — a cicatriz do portao INERTE que
+    # a bancada desta familia ja nomeou.
+    afirma(nega_o_topo("Com ladeira de verdade, conte com 34 a 80 km, e nao os "
+                       "80 km do anuncio.", "80"),
+           "a regua do item 1 nao reprova a frase que estava no ar: ela e INERTE")
+    afirma(not nega_o_topo("conte com 34 a 80 km \u2014 e fique com os 34 km", "80"),
+           "a regua do item 1 reprova texto sadio")
+
+    if ex.get("teto_km_tela"):
+        for frase in caixa_publicada:
+            afirma(not nega_o_topo(frase, ex["teto_km_tela"]),
+                   "a caixa nega o topo de %s km que ela mesma publica: %r"
+                   % (ex["teto_km_tela"], frase[:120]))
+
+    # A FRASE LONGA DO PESO NAO SOBE PARA A CAIXA. O portao da ordem da 32.1,
+    # mais abaixo neste arquivo, registra que "a caixa com as cinco frases
+    # longas" empurrava o primeiro botao de compra para baixo do teto de 1.400
+    # px da 32.5 — e e por isso que a repartição entre curta e longa existe.
+    afirma(d["frases_molde"]["peso"] not in [f for f in caixa_publicada],
+           "a frase longa do peso voltou para a caixa — a 32.5 cai com ela")
+    for f in list(ex.get("frases_peso_caixa") or []):
+        afirma(len(f) <= 200,
+               "frase de %d caracteres na caixa: %r — a caixa e acima da dobra e "
+               "a 32.5 mede o primeiro botao de compra a 1.400 px" % (len(f), f[:80]))
+
+    # O TRADUTOR SERVE A LISTA DA CAIXA, e o JS tambem. Sem as duas metades a
+    # pagina diria uma coisa pre-renderizada e outra depois do primeiro clique.
+    afirma("frases_peso_caixa" in php_f2,
+           "o snippet da F2 nao le frases_peso_caixa: a caixa pre-renderizada "
+           "fica muda sobre o peso")
+    afirma(re.search(r"frases_peso_caixa.*?\$frases\[\]", php_f2, re.S)
+           or re.search(r"\$frases\[\]\s*=\s*\$f;", php_f2),
+           "o snippet le frases_peso_caixa e nao as empilha na caixa")
+    afirma("D.moldes.peso_caixa" in php_f2,
+           "o JS da F2 nao usa o molde peso_caixa: a recomputacao no navegador "
+           "volta a emudecer a caixa sobre o peso")
+
+    # ---------------------------------------------------------------
     # 6. O SNIPPET NAO DIGITA NUMERO DE RESPOSTA.
     #
     #    A cicatriz da secao 8: "numero de tela nasce contado, nunca

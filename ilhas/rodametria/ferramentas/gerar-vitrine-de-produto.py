@@ -177,6 +177,9 @@ def ordenar(servem):
 
 
 def montar(bloco, editorial_da_pagina):
+    # O piso de compra desta consulta, colhido por coletar-piso-da-vitrine.py.
+    # Este gerador roda na bancada SEM REDE, entao ele LE o piso e nunca o gera.
+    piso = bloco.get('piso_da_busca') or {}
     servem = ordenar([a for a in bloco['anuncios']
                       if a['serve'] and a.get('url_afiliado') and a.get('preco') is not None])
     if len(servem) < PISO_DA_30_2:
@@ -211,6 +214,26 @@ def montar(bloco, editorial_da_pagina):
             'degrau_da_escada_de_chaves': a['degrau_da_escada'],
             'imagem': a.get('imagem'),
             'loja': a['loja'],
+            # ITEM 4 DO DESPACHO DE 30/10/2026 — O PAR DA 25.4-b E O PISO DA 25.2.
+            # As 21 ofertas desta vitrine iam para a tela com SO `url`, o
+            # encurtado da ficha: INTESTAVEIS pela 25.4-b (sem `url_produto` nao
+            # ha como conferir se o anuncio vive) e SEM PISO pela 25.2 (no dia em
+            # que o anuncio esgotar, o cartao fica sem saida de compra).
+            # OS TRES PRIMEIROS NAO FORAM COLHIDOS AGORA: vinham da MESMA chamada
+            # da API que devolveu `url_afiliado`, e e por isso que a 25.4-b.1
+            # esta atendida sem remendo — os dois lados do par sao da mesma
+            # oferta, da mesma leitura. Eles so nao chegavam ate aqui.
+            'url_produto': a.get('url_produto'),
+            'shop_id': a.get('shop_id'),
+            'item_id': a.get('item_id'),
+            'par_colhido_em': a.get('coletado_em'),
+            # O PISO E DA CONSULTA, nao do anuncio, e a causa esta escrita em
+            # coletar-piso-da-vitrine.py: a chave que achou TODOS os anuncios
+            # desta pagina e uma so, e e ela que a 25.2 pode oferecer como saida
+            # honesta. Ele nunca e montado aqui — vem colhido, com data.
+            'url_busca': (piso or {}).get('url_busca'),
+            'url_busca_produto': (piso or {}).get('url_busca_produto'),
+            'piso_medido_em': (piso or {}).get('medido_em'),
         }
         linhas.append(item)
         if i < TETO_DO_CARROSSEL:

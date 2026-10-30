@@ -72,8 +72,20 @@ MOLDES = {
         "medi\u00e7\u00e3o. Ent\u00e3o aqui o n\u00famero do an\u00fancio fica como TETO, n\u00e3o "
         "como promessa: {teto} km \u00e9 o melhor caso."
     ),
+    # ITEM 1 DO DESPACHO DE 30/10/2026. Este molde dizia "conte com {piso} a
+    # {teto} km, e nao os {teto} km do anuncio" — e {teto} E a autonomia
+    # declarada, ou seja a frase negava o topo da faixa que ela mesma acabou de
+    # publicar. A ronda ofereceu duas saidas defensaveis; a escolhida foi a
+    # SEGUNDA (a frase para de prometer que nao e a declarada), porque a
+    # primeira — mexer no topo da faixa — exigiria um numero que NINGUEM mediu:
+    # `faixa_de_km` deriva o piso de `declarada / fator`, e nao ha fonte para um
+    # teto que nao seja a propria declarada. Inventar o topo para salvar a frase
+    # seria a secao 10 ao contrario. Agora o molde diz o MESMO que o `km_plano`
+    # ja dizia do numero do anuncio — que ele e TETO, o melhor caso — e aponta a
+    # ponta da faixa que a pessoa deve esperar.
     "km_degradado": (
-        "Com {relevo_frase}, conte com {piso} a {teto} km, e n\u00e3o os {teto} km do an\u00fancio."
+        "Com {relevo_frase}, conte com {piso} a {teto} km \u2014 e fique com os {piso} km: "
+        "o alto da faixa \u00e9 o n\u00famero do an\u00fancio, que vale no plano."
     ),
     "km_absoluto": "Com {wh} Wh e o consumo medido, conte com uns {piso} km.",
     "km_recusa": (
@@ -90,10 +102,29 @@ MOLDES = {
         "Eles entram aqui, no que esperar da faixa."
     ),
     "peso_ladeira": "Com {peso} kg e ladeira, espere o PISO da faixa, n\u00e3o o meio dela.",
+    # ITEM 2 DO DESPACHO DE 30/10/2026 — A FRASE DE PESO QUE CABE NA CAIXA.
+    # A ilha prometia, no titulo da F2, no primeiro paragrafo e na pergunta da
+    # home, "a faixa de km com o SEU PESO", e a caixa de resultado nao dizia uma
+    # palavra sobre o peso informado: peso 50 e peso 150 devolviam a mesma
+    # resposta, palavra por palavra. As frases longas de `frases_peso` JA
+    # existiam e JA diferenciavam — o que faltava era elas chegarem na caixa.
+    # E ELAS NAO PODEM VOLTAR INTEIRAS PARA LA: o portao da ordem da 32.1, em
+    # teste-f2.py, registra que "a caixa com as cinco frases longas o empurrava
+    # para baixo do teto" de 1.400 px da 32.5. Entao a decisao e de TAMANHO, nao
+    # de conteudo: a caixa recebe a frase curta que CARREGA A DECISAO (o peso
+    # nao multiplica, e diz o que esperar), e a explicacao de POR QUE ele nao
+    # multiplica continua abaixo do bloco de compra, onde ja estava.
+    # Esta frase e verdadeira nos TRES mundos da `faixa_de_km` — faixa
+    # degradada, faixa degenerada do plano e recusa sem autonomia declarada —
+    # porque nao menciona faixa nenhuma.
+    "peso_caixa": (
+        "Os seus {peso} kg n\u00e3o multiplicam nada nesta conta \u2014 eles entram no que "
+        "esperar dela."
+    ),
     "peso_acima_do_teto": (
         "E antes da autonomia tem uma pergunta mais dura: {peso} kg passam do maior "
         "limite de carga que a gente viu no varejo brasileiro ({teto_carga} kg). Veja se o "
-        "modelo aguarda o seu peso antes de olhar km."
+        "modelo aguenta o seu peso antes de olhar km."
     ),
     "rotulo_km": "O que esperar no seu trajeto",
     "rotulo_wh": "A energia da bateria",
@@ -266,12 +297,28 @@ def responder(tensao_v, amperagem_ah, peso_piloto_kg, relevo,
 
     # ---- a ressalva do peso: declarada como ressalva, nunca como conta ----
     peso = Fraction(str(peso_piloto_kg))
-    frases_peso = [MOLDES["peso"].format(peso=_n(peso))]
-    if relevo == "ladeira":
-        frases_peso.append(MOLDES["peso_ladeira"].format(peso=_n(peso)))
+
+    # `peso_ladeira` fala do PISO DA FAIXA, entao ela so pode nascer onde existe
+    # faixa com DUAS PONTAS. Sem esta guarda ela contradizia a recusa: com
+    # ladeira e sem autonomia declarada, a caixa dizia "nao da para dizer
+    # quantos km esta bateria faz" e a ressalva, logo abaixo, mandava "esperar o
+    # PISO da faixa" — o piso de uma faixa que a pagina acabou de se recusar a
+    # dar. E a MESMA FAMILIA do item 1 deste despacho (a pagina se desdizendo),
+    # um andar abaixo, e nao estava no despacho: foi achada ao escrever o item 2.
+    faixa_com_duas_pontas = bool(faixa["tem_km"]) and not faixa.get("faixa_degenerada")
+
+    # AS CURTAS, que carregam DECISAO e por isso vao para a CAIXA; a longa, que
+    # explica POR QUE o peso nao multiplica, fica abaixo do bloco de compra.
+    # Nenhuma das duas listas repete frase da outra: o que subiu, subiu.
+    curtas = []
+    if relevo == "ladeira" and faixa_com_duas_pontas:
+        curtas.append(MOLDES["peso_ladeira"].format(peso=_n(peso)))
     if teto_carga is not None and peso > Fraction(str(teto_carga)):
-        frases_peso.append(MOLDES["peso_acima_do_teto"].format(
+        curtas.append(MOLDES["peso_acima_do_teto"].format(
             peso=_n(peso), teto_carga=_n(Fraction(str(teto_carga)))))
+
+    frases_peso = [MOLDES["peso"].format(peso=_n(peso))]
+    frases_peso_caixa = [MOLDES["peso_caixa"].format(peso=_n(peso))] + curtas
 
     # ---- a calibracao: medicao de terceiro, nomeada, e nunca fator de calculo ----
     frases_calibracao = []
@@ -302,6 +349,7 @@ def responder(tensao_v, amperagem_ah, peso_piloto_kg, relevo,
         "frase_wh": frase_wh,
         "frases_km": frases_km,
         "frases_peso": frases_peso,
+        "frases_peso_caixa": frases_peso_caixa,
         "frases_calibracao": frases_calibracao,
     }
 

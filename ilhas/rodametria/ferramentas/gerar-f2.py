@@ -335,6 +335,24 @@ def conferir_moldes(constantes):
         assert r["frases_peso"][0] == f2ref.MOLDES["peso"].format(
             peso=f2ref._n(F(str(peso))))
 
+        # ITEM 2: a lista da CAIXA abre com a frase curta e NOMEIA O PESO. E a
+        # longa nao pode ter subido com ela — o que sobe e so o que e curto.
+        assert r["frases_peso_caixa"][0] == f2ref.MOLDES["peso_caixa"].format(
+            peso=f2ref._n(F(str(peso)))), r["frases_peso_caixa"][0]
+        assert f2ref._n(F(str(peso))) in r["frases_peso_caixa"][0]
+        assert f2ref.MOLDES["peso"].format(peso=f2ref._n(F(str(peso)))) \
+            not in r["frases_peso_caixa"], "a frase longa do peso subiu para a caixa"
+
+        # ITEM 1: NENHUMA frase da caixa pode negar o numero que a propria
+        # caixa serve. A oracao proibida e "nao os <teto> km", com o teto que
+        # esta publicado na faixa — era exatamente o que o `km_degradado` dizia.
+        if f["tem_km"]:
+            teto_tela = f2ref._n(f["teto_km"])
+            for frase in r["frases_km"] + r["frases_peso_caixa"]:
+                nua = frase.replace("\u00e3", "a")
+                assert ("nao os %s km" % teto_tela) not in nua.lower(), (
+                    "a caixa nega o topo da faixa que ela mesma serve: %r" % frase)
+
     # O mundo que o banco nao tem: o degrau 3 publicavel.
     fator, _ = f2ref.fator_do_relevo(constantes, "misto")
     f3 = f2ref.faixa_de_km(None, fator, consumo_wh_por_km=20, wh=960)
@@ -390,6 +408,14 @@ def montar(constantes, veiculos, pecas, escada):
             "autonomia_quem_declara": quem_declara(r, "autonomia_declarada_km", escada),
             "preco_brl": cot.get("valor_brl"),
             "preco_loja": cot.get("loja"),
+            # ITEM 3 DO DESPACHO DE 30/10/2026: o PROGRAMA da cotacao viaja ao
+            # lado do nome de tela dela. Sem ele a tela nao tinha como saber se
+            # o preco que ela publica e da MESMA loja que o botao abre — e dois
+            # cartoes serviam "R$ 8.244,00 na Mercado Livre" com o botao "Ver
+            # ofertas na Shopee". Comparar nome de tela com nome de tela
+            # funcionaria hoje e quebraria calado no dia em que uma loja mudar
+            # de grafia num dos dois lados.
+            "preco_programa": cot.get("programa"),
             "preco_data": cot.get("data_leitura"),
             "url_busca": af.get("url_busca"),
             # A FICHA, quando o casamento do bloco 3d a achou. Pela 25.2 ela
@@ -505,6 +531,10 @@ def montar(constantes, veiculos, pecas, escada):
             "frase_wh": exemplo["frase_wh"],
             "frases_km": exemplo["frases_km"],
             "frases_peso": exemplo["frases_peso"],
+            # ITEM 2 DO DESPACHO DE 30/10/2026: a lista CURTA, que o tradutor
+            # serve dentro da caixa de resultado. Sem este campo a caixa
+            # continuaria muda sobre o peso informado, que era o defeito.
+            "frases_peso_caixa": exemplo["frases_peso_caixa"],
             "frases_calibracao": exemplo["frases_calibracao"],
         },
         "tabela": {

@@ -4,7 +4,7 @@
   "nicho": "mobilidade eletrica — acertar os tres numeros antes de comprar um veiculo eletrico: categoria legal (CNH e placa), autonomia real e carga maxima",
   "dominio": "https://rodametria.com.br",
   "versao_manifest": 1,
-  "revisao": 19,
+  "revisao": 20,
   "atualizado_em": "2026-10-30",
   "estado": "nascendo",
   "desembarque": {
@@ -20,7 +20,7 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "71bdbe4a5dd454844b428b7761e1d8d2183abb3073bd7c325138f24fe8ac7a49",
+      "sha256": "e7b9185c70ea688d00d596003c3feaf18f305f2577e0c7125cea9fe1eb79e44c",
       "descricao": "A CASCA 1.4.0. Tokens do DESIGN.md (tinta #13212B, verde #0A6B4C, Alfa Slab One so na marca, Barlow Semi Condensed nos titulos, JetBrains Mono em todo numero), simbolo V9 completo no cabecalho e em negativo no rodape, favicon proprio (secao 6: icone padrao do WordPress na aba e bloco reprovado), menu hamburguer com aria-expanded/aria-controls e links <a href> de verdade no HTML servido, trilha + BreadcrumbList, WebSite JSON-LD na home, <title> e description saindo de UM mapa de paginas. E os COMPONENTES DO MOLDE da secao 32, aqui e nao em cada snippet, como a 32.6-b manda: caixa de resultado, dobra <details>, cartao de compra com espaco reservado para quem nao tem foto, carrossel com scroll-snap em CSS puro, barra fixa do telefone e o rotulo do botao de loja por degrau da escada da 25.1. Pagina nova entra pelos filtros `rodametria_paginas` e `rodametria_instalar`, de dentro do proprio snippet dela — a casca nao e editada quando a ilha cresce. 1.3.0 (29/10/2026): `garantir_pagina()` aceita PAI, pela 16.2, e `url_do_slug()` acha a pagina pela meta `_rodametria_id` em vez de por caminho — `get_page_by_path()` casa o caminho INTEIRO e devolveria nulo para filha de arvore de dois niveis, com `casca_link()` transformando link vazio em texto sem reclamar. 1.4.0 (29/10/2026, no mesmo dia e por defeito MEDIDO no ar): a instalacao passou a rodar tambem quando a ASSINATURA DO MAPA muda, e nao so quando a versao da casca muda. A revisao 13 subiu casca nova e snippet de pagina nova na MESMA passada do Sync; quando o `init` chamou a instalacao, o snippet novo ainda nao estava carregado naquela requisicao, as tres paginas nao foram criadas, e a casca gravou `instalado: 1.3.0` — com a versao marcada, a instalacao nunca mais rodaria. O sintoma era o da secao 4: /status em 13, cinco linhas `ok`, o mapa de paginas ja com as tres novas, e o wp-sitemap.xml com duas URLs."
     },
     {
@@ -30,7 +30,7 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "93183c27e923752cce73d6e796cf2dd097555f4ee071ecbee25d5da9914dc1a1",
+      "sha256": "6ecf50541f1f29d40c3471d9252f52d25c63dbc76ab1eceaab152e42e4c32734",
       "descricao": "A F2 1.0.0, a PRIMEIRA pagina desta ilha no ar, em /autonomia-patinete-eletrico/. Ordem da 32.1 de cima para baixo, conferida por afirmacao no fonte: trilha e H1, promessa, formulario ja preenchido com o caso de exemplo, caixa de resultado JA PRE-RENDERIZADA no HTML (a metade que a IA le sem preencher formulario, e o que a 22.8 exige de quem desliga o JavaScript), bloco de compra, prestacao de contas da secao 7 com os cinco grupos por causa e a soma fechando o banco contado, tabela pre-renderizada visivel, e o resto em <details>. NENHUM numero e NENHUMA frase de resposta e digitado neste arquivo: tudo vem da option que o Sync grava de dados/f2-respostas.json, escrito por ferramentas/gerar-f2.py a partir de ferramentas/f2-referencia.py e de dados/constantes.json. O JS do rodape preenche MOLDE, nunca escreve frase — a bateria de mutacoes de 29/10 reprovou as duas versoes em que ele escrevia."
     },
     {
@@ -61,7 +61,7 @@
       "arquivo": "dados/f2-respostas.json",
       "formato": "json",
       "publicar": true,
-      "sha256": "fd32b576a31a0de8b4f07536e227927472f29c56766860b001d261aad342e029",
+      "sha256": "2aa1cedb7d125a7f45b5aa81992192e899588e2a4f72f260cd2c60e7fa0f9e39",
       "descricao": "O que a F2 serve: campos, moldes de frase, fatores de relevo, resposta de exemplo pre-renderizada, tabela e prestacao de contas."
     },
     {
@@ -109,7 +109,7 @@
       "arquivo": "dados/vitrine-de-produto.json",
       "formato": "json",
       "publicar": true,
-      "sha256": "4aa74dbba3a8ad981cbf9b2e3512c4fec81e15d9bccdc040400e9fa4b99d779b",
+      "sha256": "d2c1c0f3ff66892eb18dba2700cdf65155cdb5ecaab1501992892e9fe9f1dd5a",
       "descricao": "A camada GERADA: cartoes do carrossel (teto de cinco, 32.1), linhas da tabela (todas) e os numeros, RECONTADOS de dados/anuncios-por-consulta.json."
     },
     {
@@ -125,7 +125,7 @@
       "arquivo": "dados/anuncios-por-consulta.json",
       "formato": "json",
       "publicar": false,
-      "sha256": "a32a08556596c6e88ea395e5f163ff0f4501a9bc6b2ccdeeec0d682769dd60ce",
+      "sha256": "a3e05950bc5deca7d296039281e3cd5998652d901373db1ee6c5a71555af8264",
       "descricao": "Os anuncios lidos na Shopee, com o veredito da regua de relevancia por anuncio, a escada medida e as fotos com largura e altura lidas no cabecalho do arquivo na CDN."
     },
     {

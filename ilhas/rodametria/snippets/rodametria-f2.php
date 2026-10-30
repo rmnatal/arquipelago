@@ -29,7 +29,7 @@
  */
 
 if ( ! defined( 'RODAMETRIA_F2_VERSAO' ) ) {
-	define( 'RODAMETRIA_F2_VERSAO', '1.3.0' );
+	define( 'RODAMETRIA_F2_VERSAO', '1.3.1' );
 }
 if ( ! defined( 'RODAMETRIA_F2_SLUG' ) ) {
 	define( 'RODAMETRIA_F2_SLUG', 'autonomia-patinete-eletrico' );
@@ -43,9 +43,13 @@ add_filter( 'rodametria_paginas', function ( $mapa ) {
 		'tipo'        => 'ferramenta',
 		'pai'         => 'inicio',
 		'no_menu'     => false,
-		'description' => 'Diga a tensão e a amperagem da bateria: a calculadora devolve os '
-			. 'watt-hora e a faixa de km que dá para esperar com o seu peso e o relevo do seu '
-			. 'trajeto, ao lado do número que o anúncio promete.',
+		/* ITEM 5 DO DESPACHO DE 30/10/2026: esta description tinha 193 caracteres
+		   no HTML servido, contra o teto de 160 que o portao de ar passou a
+		   cobrar. 155 agora, contados — e o peso continua na promessa porque o
+		   item 2 fez a caixa de resultado PAGAR a promessa. */
+		'description' => 'Diga a tensão e a amperagem da bateria: a conta devolve os watt-hora '
+			. 'e a faixa de km que dá para esperar com o seu peso e o seu relevo, ao lado do '
+			. 'anúncio.',
 	);
 
 	return $mapa;
@@ -153,6 +157,38 @@ function rodametria_f2_numero( $v ) {
  * exigencia literal da 22.8 e da 32.5.
  * ------------------------------------------------------------------------- */
 
+if ( ! function_exists( 'rodametria_f2_nota_de_preco' ) ) {
+/**
+ * A NOTA DO PRECO (item 3 do despacho de 30/10/2026).
+ *
+ * Duas frases, e quem decide qual e a comparacao entre o programa da COTACAO e
+ * o programa do LINK. Mesma loja: a nota de sempre. Lojas diferentes: a nota
+ * nomeia as duas, porque preco com procedencia e data ao lado de um botao que
+ * vai para outro lugar e a pagina prometendo o que nao entrega.
+ *
+ * O nome da loja NAO e escrito aqui: vem de rodametria_casca_nome_da_loja(),
+ * que e o unico lugar desta ilha que sabe traduzir programa em nome.
+ */
+function rodametria_f2_nota_de_preco( $f ) {
+	$data = rodametria_f2_data( $f['preco_data'] );
+	$loja_do_preco = ! empty( $f['preco_programa'] )
+		? rodametria_casca_nome_da_loja( $f['preco_programa'] )
+		: (string) $f['preco_loja'];
+
+	$programa_do_botao = empty( $f['url_afiliado_da_ficha'] ) && empty( $f['url_busca'] )
+		? '' : (string) $f['programa'];
+	$loja_do_botao = '' === $programa_do_botao
+		? '' : rodametria_casca_nome_da_loja( $programa_do_botao );
+
+	if ( '' === $loja_do_botao || $loja_do_preco === $loja_do_botao ) {
+		return 'na ' . $loja_do_preco . ', lido em ' . $data;
+	}
+
+	return 'lido na ' . $loja_do_preco . ' em ' . $data
+		. ' — o botão abre a ' . $loja_do_botao;
+}
+}
+
 if ( ! function_exists( 'rodametria_f2_resultado_html' ) ) {
 function rodametria_f2_resultado_html( $d ) {
 	$r = $d['resposta_exemplo'];
@@ -160,6 +196,19 @@ function rodametria_f2_resultado_html( $d ) {
 	$frases = array();
 	$frases[] = $r['frase_wh'];
 	foreach ( (array) $r['frases_km'] as $f ) {
+		$frases[] = $f;
+	}
+	/* ITEM 2 DO DESPACHO DE 30/10/2026 — A CAIXA PASSA A DIZER O PESO INFORMADO.
+	   A ilha prometia a faixa "com o seu peso" no titulo, no primeiro paragrafo
+	   e na pergunta da home, e a caixa nao dizia uma palavra sobre ele: peso 50
+	   e peso 150 devolviam a mesma resposta, palavra por palavra.
+	   O QUE SOBE AQUI E SO A LISTA CURTA, e isso e decisao de TAMANHO: o portao
+	   da ordem da 32.1 registra que "a caixa com as cinco frases longas"
+	   empurrava o primeiro botao de compra para baixo do teto de 1.400 px da
+	   32.5. A explicacao de POR QUE o peso nao multiplica continua em
+	   rodametria_f2_ressalva_html(), abaixo do bloco de compra. Quem decide o
+	   que e curto e a regra (regras/f2.py), nunca este arquivo. */
+	foreach ( (array) $r['frases_peso_caixa'] as $f ) {
 		$frases[] = $f;
 	}
 
@@ -260,9 +309,21 @@ function rodametria_f2_itens_da_vitrine( $d ) {
 			'especificacao' => implode( ' · ', $spec ),
 			'preco'         => empty( $f['preco_brl'] ) ? ''
 				: 'R$ ' . number_format( (float) $f['preco_brl'], 2, ',', '.' ),
+			/* ITEM 3 DO DESPACHO DE 30/10/2026 — O PRECO ERA DE UMA LOJA E O
+			   BOTAO IA PARA OUTRA, e a nota antiga ('na Mercado Livre, lido
+			   em 27/10/2026') prometia o destino: dois cartoes serviam esse
+			   preco com o botao 'Ver ofertas na Shopee' do lado.
+			   NAO E A ESCOLHA DA LOJA QUE MUDA — a regra de dinheiro desta
+			   ilha manda preferir o link da Shopee, e o preco do Mercado
+			   Livre e a unica cotacao com procedencia e data que estes
+			   registros tem. O que muda e a FRASE: quando as duas lojas
+			   divergem, a nota diz onde o preco foi lido E para onde o botao
+			   vai, entao ela deixa de prometer o destino.
+			   A nota continua CURTA de proposito: ela nasce ACIMA do botao
+			   dentro do cartao, e a 32.5 mede o primeiro botao de compra a
+			   1.400 px. */
 			'preco_nota'    => empty( $f['preco_brl'] ) ? ''
-				: 'na ' . $f['preco_loja'] . ', lido em '
-					. rodametria_f2_data( $f['preco_data'] ),
+				: rodametria_f2_nota_de_preco( $f ),
 			/* A 25.2 em uma linha: a FICHA vira o botao quando existe, e a
 			   BUSCA desce para a linha discreta — nunca sai. Quando nao ha
 			   ficha, a busca sobe e e o botao, que e o estado em que esta
@@ -789,15 +850,24 @@ add_action( 'wp_footer', function () {
       unidade = 'Wh';
     }
 
-    var ressalvas = [preencher(D.moldes.peso, {peso: num(peso)})];
-    if (relevo === 'ladeira') {
-      ressalvas.push(preencher(D.moldes.peso_ladeira, {peso: num(peso)}));
+    /* ITEM 2 DO DESPACHO DE 30/10/2026: as CURTAS vao para a caixa e a longa
+       fica abaixo do bloco de compra — a mesma reparticao que regras/f2.py faz.
+       E `peso_ladeira` so nasce onde existe faixa com DUAS PONTAS: ela fala do
+       PISO DA FAIXA, e com ladeira sem autonomia declarada a caixa recusa o km,
+       entao a ressalva mandava esperar o piso de uma faixa que nao existe. */
+    var faixaComDuasPontas = (aut !== null && aut > 0 && fator !== 1);
+    var curtas = [preencher(D.moldes.peso_caixa, {peso: num(peso)})];
+    if (relevo === 'ladeira' && faixaComDuasPontas) {
+      curtas.push(preencher(D.moldes.peso_ladeira, {peso: num(peso)}));
     }
     if (D.tetoCarga !== null && peso > D.tetoCarga) {
-      ressalvas.push(preencher(D.moldes.peso_acima_do_teto, {
+      curtas.push(preencher(D.moldes.peso_acima_do_teto, {
         peso: num(peso), teto_carga: num(D.tetoCarga)
       }));
     }
+    curtas.forEach(function(f){ frases.push(f); });
+
+    var ressalvas = [preencher(D.moldes.peso, {peso: num(peso)})];
 
     caixa.querySelector('.rdm-molde-caixa-rotulo').textContent = rotulo;
     caixa.querySelector('.rdm-molde-caixa-numero').innerHTML =
