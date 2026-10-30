@@ -3,6 +3,161 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-10-30 10h1xZ–10h4xZ — **BLOCO 5c: A CAUDA DESTE NICHO É TERRITÓRIO DE FAZENDA** — três das cinco consultas fecharam sem precisar do Chrome, e no caminho a bancada acusou um portão que reprovava a página CERTA
+
+**A ESCOLHA DA ILHA.** `foco.md` nomeia a **rodametria** (foco total e absoluto, decisão do Raphael de
+27/10) e pela **1.2** não há escolha a fazer. Conferi antes as duas exceções que furam o foco:
+(a) o **despacho do molde da 32.6** está `FECHADO` nas três ilhas — lido no topo dos três `PROMPT.md`,
+com data e hora de fecho em cada um (aquametria 21/10 18h2xZ, clubedomosaico 21/10 19h1xZ, robometria
+21/10 16h1xZ); (b) nenhum despacho **ALTA** é de ilha *"no ar e quebrada"*. `executando_desde` estava
+`null`, que pela **1.1** já significa que não havia bloco da Fundação vivo — reserva escrita às
+**10h17Z** (commit `392bece`), push aceito de primeira, reescrita às **10h25Z**. O `main` vinha de um
+**forced update** (`b793f79` → `3c952f0`); o branch `claude/dreamy-mccarthy-lbibd5` estava **idêntico**
+ao `origin/main` (zero commits de diferença nos dois sentidos) e **nenhum PR aberto** — nada a mergear.
+
+**A REDE, MEDIDA E NÃO HERDADA (20.2).** `rodametria.com.br` em **200 nas três passadas**, com
+`aquametria.com.br` em 200 nas mesmas três, e o `/wp-json/rodametria/v1/status` em 200 na **revisão 16**
+— a mesma que o 5b deixou, com **todas** as linhas da revisão corrente dizendo `ok` no log (20.4).
+
+---
+
+### 1. O QUE O BLOCO MEDIU, E ELE CORRIGE A PREMISSA DO PRÓPRIO BLOCO
+
+O 5c estava escrito dizendo que *"o caminho mais curto é a cauda medida do corpus"*. Medi as **cinco**
+caudas do eixo D com o único instrumento desta nuvem — busca — e colhi **102 ocupantes com URL**.
+O placar, contado do próprio arquivo e não digitado:
+
+| consulta | buscas/mês | veredito | por quê |
+|---|---|---|---|
+| `patinete elétrico adulto` | 49.500 | **tomada** | 6 fazendas com página dedicada (`melhor-patinete-eletrico-adulto`) + categoria dedicada da Casas Bahia |
+| `melhor patinete elétrico` | não medido | **tomada** | **12** fazendas com página dedicada, mais o blog da Shopee. A medição mais limpa das cinco |
+| `moto elétrica 1000w` | 14.800 | **tomada** | 5 páginas brasileiras dedicadas (4 de fazenda + `consultadeplaca.net`), com o MENOR vazamento das três de potência |
+| `patinete elétrico 1000w` | não medido | **nao-medida** | **17 dos 21 ocupantes fora do Brasil**; nenhum dos 4 brasileiros é página dedicada |
+| `scooter elétrica 1000w` | 33.100 | **nao-medida** | 13 de 19 fora do Brasil, e o instrumento **derivou** para `autopropelido` |
+
+**O ACHADO, e é de fila e não de página: a cauda deste nicho é território de FAZENDA.** O dossiê
+registrou, nas seis cabeças vistas no Chrome do Raphael, que *"nenhuma fazenda da lista apareceu"*. Na
+cauda ela aparece em **quatro das cinco**, com **26** páginas dedicadas de fazenda entre os 102
+ocupantes — e no formato *"melhor X"* / *"Top 10"* que o `VOZ.md` desta ilha **proíbe nominalmente**.
+**A proibição da voz e a medição da SERP coincidem**, e isso não é coincidência: a ilha foi desenhada
+para o eixo paramétrico, e a cauda de produto é o campo do concorrente que ela não quer ser. O
+`ACHADO D` do corpus de 28/10 já tinha visto a fazenda nas caudas; o que faltava era tirar dele a
+conclusão de fila. **A cauda não é o caminho curto desta ilha: é onde ela perderia.**
+
+**ZERO PÁGINA NOVA, E É A 30.8 FUNCIONANDO.** `tomada` fecha a consulta — barato e final, e três
+fecharam sem gastar um minuto do Raphael. `nao-medida` não autoriza nada. Vale a frase da seção:
+*"errar para o lado de não publicar é barato; errar para o lado de publicar é a leva inteira"*.
+
+**E A 30.4 ESTAVA CUMPRIDA SEM NINGUÉM PLANEJAR.** `/veiculos/patinete-eletrico/` serve a palavra
+`adulto` **53 vezes** no HTML no ar (contado às 10h2xZ, com quebra de cache), porque `patinete eletrico
+adulto` é o **degrau 1** da escada de chaves daquela página. A intenção da cauda de 49,5 mil já está
+atendida por uma URL que existe — abrir uma segunda seria canibalizar a própria mãe. **Não refiz nada
+por isso**: o reforço que a 30.4 manda já estava no ar.
+
+**O que foi escrito:** `dados/consultas-de-produto.json` (a fonte: 11 consultas, 6 cabeças + 5 caudas,
+com `forma` agora **explícito** em toda linha) e `dados/consultas-de-produto.md` (a vista legível,
+**gerada do JSON na mesma passada** para não haver erro de transcrição). O despacho da 30.8 está no
+topo do `PROMPT.md`: duas SERPs e um volume, numa sessão de Chrome.
+
+**DOIS RÓTULOS MEUS MENTIRAM E FORAM CONSERTADOS ANTES DE FECHAR**, e registro porque é a família do
+número de tela digitado: o placar nasceu com `com_pagina_no_ar: 4`, contando **slug declarado** —
+e `veiculos/moto-eletrica` e `veiculos/scooter-eletrica` têm endereço reservado desde o 5b e **não
+existem no ar**. O número do ar é **2**, e agora o arquivo traz os dois campos separados com a causa
+da diferença escrita. O segundo: `ocupantes_registrados_com_url` somava um total com **duas
+procedências diferentes dentro** (as cabeças vêm do dossiê, por domínio e sem URL por ocupante) —
+virou `ocupantes_com_url_das_CAUDAS_medidos_em_30_10`, que diz de quem a conta é.
+
+---
+
+### 2. O DEFEITO QUE A BANCADA ACUSOU ANTES DE EU CONSTRUIR (18.5), E ELE É UM PORTÃO REPROVANDO A PÁGINA CERTA
+
+Rodei `ferramentas/bancada.py --no-ar` antes de escrever uma linha, como a 18.5 manda. Ela reprovou:
+`gerar-f2.py --conferir` dizia que `dados/f2-respostas.json` estava diferente do que a referência
+produz. **A única diferença, medida campo por campo, era o selo `gerado_em`: `2026-10-29` →
+`2026-10-30`.**
+
+**A causa:** o gerador escrevia esse campo com o **relógio da execução**
+(`datetime.utcnow()`), num arquivo **derivado** cujo conteúdo não depende de data para nada que a F2
+calcula. Logo o portão era **irreprodutível por construção** e passava a reprovar **todo dia seguinte**
+ao que a F2 fosse gerada. É exatamente o perigo que a **20.5** e a **32.5-b** nomeiam: *"portão que
+reprova página certa é o caminho mais curto para alguém passar a ignorá-lo"* — e o perigo maior é
+concluir que o portão mente e passar a ignorá-lo de vez.
+
+**A irmã já fazia certo, e a lição não havia viajado — a 32.5-c outra vez.**
+`gerar-vitrine-de-produto.py` escreve `'gerado_em': anuncios['gerado_em']`, **herdado do dado**, e por
+isso é reprodutível. Os `coletar-*` usam a data de hoje e **estão certos**: ali a data é a da
+**medição**, que é procedência e tem de entrar na comparação.
+
+**O conserto:** o selo saiu da comparação — e **só ele** —, com o motivo, a data e a medição escritos
+no código, ao lado do que o portão continua cobrando. **As duas metades do veredito foram provadas em
+cinco casos**, porque portão que só aprova é inerte:
+
+| caso | esperado | palavra impressa | código de saída |
+|---|---|---|---|
+| mundo real, selo de ontem | aprovar | APROVADO | 0 |
+| só o selo trocado por `1999-01-01` | aprovar | APROVADO | 0 |
+| um **número** da tela mexido (`exemplo.tensao_v`) | reprovar | REPROVADO | 1 |
+| uma **frase** da tela mexida (`nota`) | reprovar | REPROVADO | 1 |
+| arquivo corrompido, não-JSON | reprovar sem explodir | REPROVADO, com o erro nomeado | 1 |
+
+**NÃO REGEREI O ARQUIVO para "consertar" o selo**, e isso é decisão: regerar mudaria `gerado_em` para
+30/10 e empurraria uma **revisão nova do Sync sem uma letra de mudança na tela**. O arquivo no ar e o
+do repositório seguem com `2026-10-29`, que é a data em que a F2 foi de fato gerada, e é o que a página
+diz a quem lê (*"Esta página foi gerada a partir do nosso banco em 29/10/2026"*). Nenhum desembarque
+nesta execução, de propósito.
+
+**POR QUE ISTO NÃO VIROU SEÇÃO DO `ARQUIPELAGO.md`, e conferi antes de decidir.** A 20.4 manda a regra
+subir ao contrato quando *"o Sync é o mesmo código nas três"*. Aqui o código **não** é compartilhado:
+cada ilha tem os geradores dela. Varri as outras cinco e o defeito **não existe lá** — e duas já fazem
+certo por caminhos diferentes: `atualizar-manifest.py` da aquametria e da robometria só grava
+`atualizado_em` **quando algo mudou de verdade** (`if mudados or titulos or alvo is not None`), e
+`medir-palavras-chave.py` da robometria sela a data da **medição**. Pela **31.2** (*"pode acontecer não
+basta"*) não há defeito medido fora desta ilha, e a seção **0** do contrato reclama do crescimento dele.
+O princípio geral já está escrito na **20.5** e na **32.5-b**. **Se o Raphael discordar, a regra cabe
+em três linhas e o lugar é a família da 20.5.**
+
+**O MANIFEST SUBIU PARA A REVISÃO 17, E ISSO NÃO É DESEMBARQUE.** O portão
+`atualizar-manifest.py --conferir` reprovou — corretamente — porque `dados/consultas-de-produto.json`
+mudou nesta passada; rodei o atualizador e o sha e a revisão acompanharam. **Nada no site muda por
+isso:** aquele arquivo é `publicar: false`, e os cinco itens publicáveis seguem com o conteúdo de
+29/10. O Sync vai aplicar a revisão 17 com a mesma tela da 16.
+
+**E ACHEI UM CAMPO MORTO NO CAMINHO, que fica registrado em vez de consertado.** O `manifest.json`
+desta ilha traz `atualizado_em: 2026-10-29` e agora diz `revisao: 17` — ou seja, o campo ficou para
+trás. Conferi: **nesta ilha ninguém escreve e ninguém lê esse campo** (`grep` em `ferramentas/` e nos
+três snippets não acha uma referência); ele veio copiado de ilha irmã no nascimento, e lá ele é escrito
+pelo atualizador. É a seção **4** em miniatura — *resumo velho lido como fato* —, e o risco é alguém o
+ler um dia como a data da última mudança. **Não mexi na ferramenta de propósito:** a **31.3** proíbe
+ampliar portão que já existe enquanto a ilha tiver item de conteúdo aberto na fila, e o 5d está aberto.
+Quem pegar o 5d pode resolver em uma linha: ou o atualizador passa a escrever o campo quando bumpa a
+revisão (como as irmãs), ou o campo sai do manifest. **As duas são certas; o que não é certo é ele
+continuar ali parecendo conferido.**
+
+---
+
+### 3. O PRÓXIMO PASSO DESBLOQUEADO — O BLOCO 5d, E ELE NÃO ESPERA NINGUÉM
+
+Medindo o `wp-sitemap.xml` no ar achei a dívida mais barata e mais atrasada desta ilha: as **5** URLs
+publicadas são `/`, `/autonomia-patinete-eletrico/`, `/veiculos/` e as duas filhas. **Não existe
+`/sobre/`, `/contato/`, `/divulgacao-de-afiliados/` nem `/privacidade/`**, e a **16.1** nomeia essas
+cinco por nome. **A ilha publica link de afiliado da Shopee desde 29/10** — na F2 e nas duas páginas de
+produto — sem a página de divulgação que o programa e o leitor pedem.
+
+Ele é o próximo por três razões independentes: **não depende de despacho nenhum** (nem do `gov.br`, nem
+do Chrome, nem das etiquetas do ML); pela **21.7** essas páginas **ficam fora do teto** da 21.4, então
+não gastam leva de malha; e é **dívida de confiança no ar**. A 21.7 nasceu exatamente deste caso na
+aquametria, com a privacidade parada em "aberto" *"com a etiqueta do GA4 no ar e link de afiliado
+publicado desde 12/09"*. O "pronto quando" está escrito na fila do `PROMPT.md`.
+
+**A conta da 31.1 desta execução, dita sem maquiar:** ela **não** entregou página nova no ar. Entregou
+a lista que fecha três consultas, o despacho que destrava as outras duas, e o conserto de um portão que
+reprovava página certa todo dia. **Zero página no ar era o resultado correto aqui** — a 30.8 proíbe
+`alvo` desta nuvem —, mas isso não a torna uma entrega da 31.1, e quem contar a proporção conta como
+ela é. **O 5d existe para que a execução seguinte não tenha essa conversa:** ele é quatro páginas no
+ar sem depender de ninguém.
+
+---
+
 ## 2026-10-29 19h1xZ–20h1xZ — **BLOCO 5b: A CONSULTA DO GOOGLE E A CHAVE DA LOJA NÃO SÃO A MESMA PALAVRA** — das seis cabeças do dossiê só **duas** abrem o portão da 30.2, e a causa das outras quatro está medida
 
 **A ESCOLHA DA ILHA.** `foco.md` nomeia a **rodametria** (foco total e absoluto, decisão do Raphael de

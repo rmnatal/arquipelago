@@ -1,8 +1,8 @@
 {
   "id": "consultas-de-produto",
   "ilha": "rodametria",
-  "bloco": "5b",
-  "gerado_em": "2026-10-29",
+  "bloco": "5b + 5c (as caudas entraram em 30/10/2026)",
+  "gerado_em": "2026-10-30",
   "publicar": false,
   "o_que_este_arquivo_e": "A DECLARACAO das paginas por nome do produto da secao 30 desta ilha: uma linha por consulta de compra, com o volume, a classificacao de SERP (quem a viu e quando), a escada de palavra-chave com que a loja e consultada, o numero proprio que a pagina deve, e a decisao de nascer ou nao com a causa escrita. Ele e DECLARADO e escrito a mao. Quem colhe o anuncio e `ferramentas/coletar-por-consulta.py`, que escreve `dados/anuncios-por-consulta.json`; quem conta o numero proprio e `ferramentas/gerar-vitrine-de-produto.py`.",
   "a_assimetria_da_30_8_vale_inteira": "`tomada` se afirma desta nuvem, porque e presenca e presenca se mede com busca. `alvo` NAO se afirma daqui nunca: ele exige a SERP brasileira aberta com os olhos, e a linha registra QUEM viu e QUANDO. O terceiro valor e `nao-medida`, e ele nao autoriza pagina nenhuma. As seis cabecas abaixo tem `visto_por` e `visto_em` porque o Raphael abriu as seis no Chrome dele em 27/10/2026, e o top 10 de cada uma esta na secao (b) de bussola/dossies/rodametria/DOSSIE.md, com os dominios na ordem.",
@@ -19,6 +19,7 @@
       "id": "patinete-eletrico",
       "consulta": "patinete elétrico",
       "slug": "veiculos/patinete-eletrico",
+      "forma": "cabeca",
       "buscas_mes": 246000,
       "fonte_do_volume": "Planejador de palavras-chave, 27/10/2026, bussola/dossies/rodametria/DOSSIE.md secao (b)",
       "serp": {
@@ -27,30 +28,56 @@
         "visto_por": "Raphael",
         "visto_em": "2026-10-27",
         "instrumento": "Chrome do Raphael, SERP brasileira",
-        "ocupantes": ["mercadolivre (lista)", "eletricz", "loja.azullight", "casasbahia", "pontofrio", "youtube", "shopee (PDP)"],
+        "ocupantes": [
+          "mercadolivre (lista)",
+          "eletricz",
+          "loja.azullight",
+          "casasbahia",
+          "pontofrio",
+          "youtube",
+          "shopee (PDP)"
+        ],
         "carrossel_de_compras": false,
         "visao_geral_de_ia": true,
         "nenhuma_calculadora_na_primeira_pagina": true,
         "observacao_da_30_5": "Varejo grande aparece (Mercado Livre em lista, Casas Bahia, Ponto Frio) e por isso o dossie a chamou de `a mais fechada das seis`; ainda assim a classe que o olho registrou e MISTA, com loja pequena de marca, YouTube e PDP de marketplace no meio, e a 30.5 e explicita em que anuncio solto de marketplace e lojinha pequena nao tornam a busca tomada, sozinhos nem somados. Nenhuma fazenda da lista apareceu e nenhuma calculadora de CNH, autonomia ou carga esta na primeira pagina."
       },
       "escada_de_chaves": [
-        {"degrau": 1, "chave": "patinete eletrico adulto", "porque": "o qualificador que separa o veiculo do brinquedo nesta loja, medido em 29/10/2026"},
-        {"degrau": 2, "chave": "patinete eletrico", "porque": "a consulta crua, que e a palavra da pessoa no Google; fica como degrau de baixo e so e consultada se o de cima nao alcancar o piso"}
+        {
+          "degrau": 1,
+          "chave": "patinete eletrico adulto",
+          "porque": "o qualificador que separa o veiculo do brinquedo nesta loja, medido em 29/10/2026"
+        },
+        {
+          "degrau": 2,
+          "chave": "patinete eletrico",
+          "porque": "a consulta crua, que e a palavra da pessoa no Google; fica como degrau de baixo e so e consultada se o de cima nao alcancar o piso"
+        }
       ],
       "familia": {
-        "exige_todas": ["patinete", "eletric"],
-        "exige_alguma": ["adulto", "adultos"],
+        "exige_todas": [
+          "patinete",
+          "eletric"
+        ],
+        "exige_alguma": [
+          "adulto",
+          "adultos"
+        ],
         "recusas_desligadas": [],
         "porque": "`patinete` separa a familia; `eletric` separa o patinete eletrico do patinete de empurrar (o titulo real `Patinete Scooter Dobravel Capacidade 70kg Jovens Adultos` e de empurrar e cai aqui); `adulto` e a exigencia POSITIVA que a medicao de 29/10 tornou obrigatoria."
       },
       "numero_proprio_pedido": "faixa_de_preco",
-      "sinonimos_no_corpo": ["scooter elétrico", "patinete elétrico dobrável"],
+      "sinonimos_no_corpo": [
+        "scooter elétrico",
+        "patinete elétrico dobrável"
+      ],
       "publicar_declarado": true
     },
     {
       "id": "bicicleta-eletrica",
       "consulta": "bicicleta elétrica",
       "slug": "veiculos/bicicleta-eletrica",
+      "forma": "cabeca",
       "buscas_mes": 673000,
       "fonte_do_volume": "Planejador de palavras-chave, 27/10/2026, bussola/dossies/rodametria/DOSSIE.md secao (b)",
       "serp": {
@@ -59,24 +86,50 @@
         "visto_por": "Raphael",
         "visto_em": "2026-10-27",
         "instrumento": "Chrome do Raphael, SERP brasileira",
-        "ocupantes": ["mercadolivre", "lojagtsm1", "golev", "casasbahia", "fernandobicicletas", "havan", "facebook", "olx"],
+        "ocupantes": [
+          "mercadolivre",
+          "lojagtsm1",
+          "golev",
+          "casasbahia",
+          "fernandobicicletas",
+          "havan",
+          "facebook",
+          "olx"
+        ],
         "carrossel_de_compras": false,
         "visao_geral_de_ia": true,
         "nenhuma_calculadora_na_primeira_pagina": true,
         "observacao_da_30_5": "Mercado Livre, Casas Bahia e Havan sao varejo grande; o resto e loja de marca (golev, lojagtsm1, fernandobicicletas), Facebook e OLX, que a 30.5 nomeia como nao-tomada. Classe MISTA com os olhos."
       },
       "escada_de_chaves": [
-        {"degrau": 1, "chave": "bicicleta eletrica adulto", "porque": "mesma licao do patinete: sem o qualificador a chave devolve camara de ar, pneu e moto infantil"},
-        {"degrau": 2, "chave": "bicicleta eletrica", "porque": "a consulta crua"}
+        {
+          "degrau": 1,
+          "chave": "bicicleta eletrica adulto",
+          "porque": "mesma licao do patinete: sem o qualificador a chave devolve camara de ar, pneu e moto infantil"
+        },
+        {
+          "degrau": 2,
+          "chave": "bicicleta eletrica",
+          "porque": "a consulta crua"
+        }
       ],
       "familia": {
-        "exige_todas": ["bicicleta", "eletric"],
-        "exige_alguma": ["adulto", "adultos"],
+        "exige_todas": [
+          "bicicleta",
+          "eletric"
+        ],
+        "exige_alguma": [
+          "adulto",
+          "adultos"
+        ],
         "recusas_desligadas": [],
         "porque": "`bicicleta` separa a familia. A chave `bike` NAO entra em `exige_todas`: ela e sinonimo de busca e nao de titulo, e titulo que diz `bike` sem dizer `bicicleta` quase sempre e acessorio (`Camara De Ar Fat Bike`, `Pneu Bike`, `Quadro p/ Bike Eletrica`), medido em 29/10/2026."
       },
       "numero_proprio_pedido": "faixa_de_preco",
-      "sinonimos_no_corpo": ["bike elétrica", "e-bike"],
+      "sinonimos_no_corpo": [
+        "bike elétrica",
+        "e-bike"
+      ],
       "publicar_declarado": true,
       "porque_bike_eletrica_nao_tem_pagina_propria": "A cabeca `bike eletrica` (201.000 buscas/mes, SERP mista vista pelo Raphael em 27/10) e a MESMA intencao de compra desta, com o mesmo produto e a mesma loja. Pela 30.4 ela nao recebe segunda URL: o sinonimo vive no corpo desta pagina, e a ancora `bike eletrica` aponta para ca. Duas URLs para o mesmo produto num dominio de dois dias e exatamente o gasto de rastreamento que a 14.1 chama de escasso."
     },
@@ -84,6 +137,7 @@
       "id": "moto-eletrica",
       "consulta": "moto elétrica",
       "slug": "veiculos/moto-eletrica",
+      "forma": "cabeca",
       "buscas_mes": 823000,
       "fonte_do_volume": "Planejador de palavras-chave, 27/10/2026, bussola/dossies/rodametria/DOSSIE.md secao (b)",
       "serp": {
@@ -92,24 +146,49 @@
         "visto_por": "Raphael",
         "visto_em": "2026-10-27",
         "instrumento": "Chrome do Raphael, SERP brasileira",
-        "ocupantes": ["mercadolivre (lista)", "wattsmobilidade", "instagram/motochefebrasil", "vammo", "motochefebrasil", "motochefemaringa", "youtube"],
+        "ocupantes": [
+          "mercadolivre (lista)",
+          "wattsmobilidade",
+          "instagram/motochefebrasil",
+          "vammo",
+          "motochefebrasil",
+          "motochefemaringa",
+          "youtube"
+        ],
         "carrossel_de_compras": false,
         "visao_geral_de_ia": true,
         "nenhuma_calculadora_na_primeira_pagina": true,
         "observacao_da_30_5": "A mais aberta das seis pelo olho: um varejo grande e o resto loja de marca, Instagram e YouTube."
       },
       "escada_de_chaves": [
-        {"degrau": 1, "chave": "moto eletrica adulto", "porque": "o qualificador"},
-        {"degrau": 2, "chave": "moto eletrica", "porque": "a consulta crua"}
+        {
+          "degrau": 1,
+          "chave": "moto eletrica adulto",
+          "porque": "o qualificador"
+        },
+        {
+          "degrau": 2,
+          "chave": "moto eletrica",
+          "porque": "a consulta crua"
+        }
       ],
       "familia": {
-        "exige_todas": ["moto", "eletric"],
-        "exige_alguma": ["adulto", "adultos"],
+        "exige_todas": [
+          "moto",
+          "eletric"
+        ],
+        "exige_alguma": [
+          "adulto",
+          "adultos"
+        ],
         "recusas_desligadas": [],
         "porque": "`moto` separa a familia."
       },
       "numero_proprio_pedido": "faixa_de_preco",
-      "sinonimos_no_corpo": ["scooter elétrica", "motos elétricas para adultos"],
+      "sinonimos_no_corpo": [
+        "scooter elétrica",
+        "motos elétricas para adultos"
+      ],
       "publicar_declarado": false,
       "motivo_para_nao_publicar_agora": "A SERP autoriza (alvo, vista com os olhos), e o que falta e o PRODUTO. Medido em 29/10/2026 na Open API, 40 ofertas em duas chaves: a chave crua devolve 20 de 20 entre brinquedo infantil e peca de caminhao, e a chave com qualificador devolve TRES veiculos de adulto — VYRON Cross GT600 7500W a R$ 13.999, Foston X15 Max 1000w a R$ 8.500 e Scooter Moto Eletrica 1000w Sem Cnh a R$ 15.000 — os TRES com ZERO vendas e com precos que variam por R$ 6.500 para a mesma classe de produto. O `PROMPT.md` desta ilha ja escrevia a regra antes desta medicao, e ela vale: `na Shopee, scooter e moto eletrica aparecem com 0 vendas e precos incoerentes — nao entram como recomendacao`. Tres anuncios e exatamente o piso da 30.2, e pagina que nasce no piso com os tres sem uma venda sai do ar na primeira coleta que perder um. O caminho desta consulta e o Mercado Livre, onde o dossie mediu 8 de 10 produtos com link rastreavel — e lá a geracao de link exige clique humano (secao 7 e 25.6), o que faz dela despacho, nunca bloco."
     },
@@ -117,6 +196,7 @@
       "id": "scooter-eletrica",
       "consulta": "scooter elétrica",
       "slug": "veiculos/scooter-eletrica",
+      "forma": "cabeca",
       "buscas_mes": 301000,
       "fonte_do_volume": "Planejador de palavras-chave, 27/10/2026, bussola/dossies/rodametria/DOSSIE.md secao (b)",
       "serp": {
@@ -125,24 +205,50 @@
         "visto_por": "Raphael",
         "visto_em": "2026-10-27",
         "instrumento": "Chrome do Raphael, SERP brasileira",
-        "ocupantes": ["loja.shineray", "casasbahia", "mercadolivre", "motochefebrasil", "ecomotorsbrasil", "youtube", "wattsmobilidade", "olx"],
+        "ocupantes": [
+          "loja.shineray",
+          "casasbahia",
+          "mercadolivre",
+          "motochefebrasil",
+          "ecomotorsbrasil",
+          "youtube",
+          "wattsmobilidade",
+          "olx"
+        ],
         "carrossel_de_compras": false,
         "visao_geral_de_ia": true,
         "nenhuma_calculadora_na_primeira_pagina": true,
         "observacao_da_30_5": "Classe MISTA com os olhos."
       },
       "escada_de_chaves": [
-        {"degrau": 1, "chave": "scooter eletrica adulto", "porque": "o qualificador"},
-        {"degrau": 2, "chave": "scooter eletrica", "porque": "a consulta crua"}
+        {
+          "degrau": 1,
+          "chave": "scooter eletrica adulto",
+          "porque": "o qualificador"
+        },
+        {
+          "degrau": 2,
+          "chave": "scooter eletrica",
+          "porque": "a consulta crua"
+        }
       ],
       "familia": {
-        "exige_todas": ["scooter", "eletric"],
-        "exige_alguma": ["adulto", "adultos"],
+        "exige_todas": [
+          "scooter",
+          "eletric"
+        ],
+        "exige_alguma": [
+          "adulto",
+          "adultos"
+        ],
         "recusas_desligadas": [],
         "porque": "`scooter` separa a familia."
       },
       "numero_proprio_pedido": "faixa_de_preco",
-      "sinonimos_no_corpo": ["moto elétrica", "scooter elétrico"],
+      "sinonimos_no_corpo": [
+        "moto elétrica",
+        "scooter elétrico"
+      ],
       "publicar_declarado": false,
       "motivo_para_nao_publicar_agora": "Medido em 29/10/2026, 40 ofertas em duas chaves: a chave crua devolve brinquedo infantil e acessorio, e a chave com qualificador devolve PATINETE — `Patinete Eletrico Adulto 350W`, `Patinete Eletrico Scooter 350W` — mais capa de chuva e capacete. Nesta loja a palavra `scooter` E o patinete, e o produto que a consulta brasileira quer (a moto-scooter de 1.000 W, sem CNH) e o mesmo caso da `moto eletrica`: zero venda e preco incoerente. Publicar esta consulta com os patinetes do degrau 1 seria servir, numa pagina cujo H1 promete scooter, o produto que a pagina do patinete ja serve — canibalizacao da 30.4 construida de proposito. Ela espera o Mercado Livre, junto com a `moto eletrica`."
     },
@@ -150,6 +256,7 @@
       "id": "bike-eletrica",
       "consulta": "bike elétrica",
       "slug": null,
+      "forma": "cabeca",
       "buscas_mes": 201000,
       "fonte_do_volume": "Planejador de palavras-chave, 27/10/2026, bussola/dossies/rodametria/DOSSIE.md secao (b)",
       "serp": {
@@ -158,7 +265,17 @@
         "visto_por": "Raphael",
         "visto_em": "2026-10-27",
         "instrumento": "Chrome do Raphael, SERP brasileira",
-        "ocupantes": ["lojagtsm1", "eletricz", "mercadolivre", "golev", "havan", "mobilidade.estadao (lista)", "reddit", "facebook", "bee-brasil"],
+        "ocupantes": [
+          "lojagtsm1",
+          "eletricz",
+          "mercadolivre",
+          "golev",
+          "havan",
+          "mobilidade.estadao (lista)",
+          "reddit",
+          "facebook",
+          "bee-brasil"
+        ],
         "carrossel_de_compras": false,
         "visao_geral_de_ia": true,
         "nenhuma_calculadora_na_primeira_pagina": true,
@@ -174,6 +291,7 @@
       "id": "motos-eletricas-para-adultos",
       "consulta": "motos elétricas para adultos",
       "slug": null,
+      "forma": "cabeca",
       "buscas_mes": 201000,
       "fonte_do_volume": "Planejador de palavras-chave, 27/10/2026, bussola/dossies/rodametria/DOSSIE.md secao (b)",
       "serp": {
@@ -182,7 +300,17 @@
         "visto_por": "Raphael",
         "visto_em": "2026-10-27",
         "instrumento": "Chrome do Raphael, SERP brasileira",
-        "ocupantes": ["mercadolivre", "megaeletronbrava", "wattsmobilidade", "electrictrend", "quatrorodas", "ecomotorsbrasil", "lojagtsm1", "bee-brasil", "motochefebrasil"],
+        "ocupantes": [
+          "mercadolivre",
+          "megaeletronbrava",
+          "wattsmobilidade",
+          "electrictrend",
+          "quatrorodas",
+          "ecomotorsbrasil",
+          "lojagtsm1",
+          "bee-brasil",
+          "motochefebrasil"
+        ],
         "carrossel_de_compras": false,
         "visao_geral_de_ia": true,
         "nenhuma_calculadora_na_primeira_pagina": true,
@@ -193,6 +321,815 @@
       "numero_proprio_pedido": null,
       "publicar_declarado": false,
       "motivo_para_nao_publicar_agora": "Mesma familia e mesma intencao de `moto eletrica`, com o qualificador que a loja exige ja dentro da propria consulta. Pela 30.4 ela nao recebe segunda URL: quando a `moto eletrica` nascer, esta sera o sinonimo no corpo dela. E a medicao de 29/10 na chave crua desta consulta confirma o que a `moto eletrica` ja mediu: 20 ofertas, 18 de capacete e capa de chuva, 2 veiculos de adulto com zero venda."
+    },
+    {
+      "id": "patinete-eletrico-adulto",
+      "consulta": "patinete elétrico adulto",
+      "forma": "cauda",
+      "slug": null,
+      "buscas_mes": 49500,
+      "fonte_do_volume": "Planejador de palavras-chave, 27/10/2026, via dados/corpus-buscas.md eixo D",
+      "serp": {
+        "veredito": "tomada",
+        "visto_por": null,
+        "visto_em": null,
+        "instrumento": "busca desta nuvem (US-only), 30/10/2026 — NAO e a SERP brasileira",
+        "fecha_a_consulta": true,
+        "porque_fecha": "Presenca POSITIVA, que e o que a busca sabe afirmar (30.8). SEIS fazendas de conteudo com pagina DEDICADA a esta familia aparecem na mesma passada — buscamelhores (duas URLs), melhoresparacomprar, qualmelhorcomprar (duas) e guiaomelhor —, todas com o slug `melhor-patinete-eletrico-adulto` ou `-para-adulto`, mais a categoria dedicada da Casas Bahia (`/patinete-eletrico/b`) e a pagina de busca do Magazine Luiza. Pela 30.5 isso e dominio de fazenda de conteudo com pagina dedicada, que e exatamente um dos tres casos que fecham a consulta. E NAO E MEDICAO DE UM DIA SO: o corpus de 28/10 ja havia colhido guiadosperifericos, cupomonline, guiarecomenda e folhavitoria nesta mesma consulta — duas passadas independentes, dois dias de distancia, a mesma classe de ocupante.",
+        "a_segunda_causa_e_independente_da_primeira": "O ACHADO D do corpus de 28/10 nomeia o custo de disputar esta familia, e ele nao e de ranqueamento: `guiadosperifericos.com.br` elege \"o melhor patinete eletrico de 2026 para adultos\" um modelo que ele mesmo descreve com 72 km/h, que nao e autopropelido em nenhuma leitura dos limites colhidos. O VOZ.md desta ilha lista \"Top 10\" e \"melhor de 2026\" como vocabulario de fazenda e o proibe no titulo. A proibicao da voz e a medicao da SERP coincidem: esta familia nao e vaga desta ilha.",
+        "vazamento_para_fora_do_brasil": "5 de 21 ocupantes (sears.com.mx, decathlon.pt, walmart.com, mercadolibre.cl, pt.accio.com)"
+      },
+      "escada_de_chaves": [],
+      "familia": null,
+      "numero_proprio_pedido": null,
+      "publicar_declarado": false,
+      "motivo_para_nao_publicar_agora": "SERP `tomada`, medida desta nuvem em 30/10/2026 e fechada pela 30.8 — veredito final e barato, nao precisa de olhos no Chrome. E a 30.4 ja estava cumprida sem ninguem planejar: `/veiculos/patinete-eletrico/` serve a palavra `adulto` 53 vezes no HTML no ar (contado as 10h2xZ de 30/10, com quebra de cache), porque `patinete eletrico adulto` e o DEGRAU 1 da escada de chaves daquela pagina. A intencao desta cauda ja esta atendida por uma URL que existe; abrir uma segunda seria canibalizar a propria mae.",
+      "ocupantes": [
+        {
+          "url": "https://buscamelhores.com.br/melhor-patinete-eletrico-adulto",
+          "titulo": "Busca Melhores",
+          "classe": "fazenda-de-conteudo",
+          "dedicada_a_consulta": true
+        },
+        {
+          "url": "https://buscamelhores.com.br/melhor-patinete-eletrico-para-adulto",
+          "titulo": "Melhor Patinete Elétrico para Adulto: Potência e Autonomia",
+          "classe": "fazenda-de-conteudo",
+          "dedicada_a_consulta": true
+        },
+        {
+          "url": "https://melhoresparacomprar.com.br/melhor-patinete-eletrico-adulto",
+          "titulo": "Melhor patinete elétrico adulto: 9 Modelos Potentes",
+          "classe": "fazenda-de-conteudo",
+          "dedicada_a_consulta": true
+        },
+        {
+          "url": "https://qualmelhorcomprar.com.br/melhor-patinete-eletrico-adulto",
+          "titulo": "Melhor Patinete Elétrico Adulto: Guia Definitivo 2024",
+          "classe": "fazenda-de-conteudo",
+          "dedicada_a_consulta": true
+        },
+        {
+          "url": "https://qualmelhorcomprar.com.br/melhor-patinete-eletrico-para-adulto",
+          "titulo": "Melhor Patinete Elétrico para Adulto: Potência e Autonomia",
+          "classe": "fazenda-de-conteudo",
+          "dedicada_a_consulta": true
+        },
+        {
+          "url": "https://guiaomelhor.com.br/melhor-patinete-eletrico-adulto",
+          "titulo": "Guia o Melhor",
+          "classe": "fazenda-de-conteudo",
+          "dedicada_a_consulta": true
+        },
+        {
+          "url": "https://www.casasbahia.com.br/patinete-eletrico/b",
+          "titulo": "Casas Bahia — categoria patinete elétrico",
+          "classe": "varejo-grande",
+          "dedicada_a_consulta": true
+        },
+        {
+          "url": "https://www.tecmundo.com.br/produto/260789-patinete-eletrico-adulto-3-modelos-conhecer.htm",
+          "titulo": "Patinete elétrico adulto: 3 modelos para conhecer (TecMundo, 02/2023)",
+          "classe": "portal-de-conteudo",
+          "dedicada_a_consulta": true
+        },
+        {
+          "url": "https://www.promobit.com.br/oferta/patinete-eletrico-adulto-350w-alta-velocidade-bateria-longa-e-suporta-ate-150kg-3116119/",
+          "titulo": "Promobit — oferta patinete elétrico adulto 350W",
+          "classe": "agregador-de-ofertas",
+          "dedicada_a_consulta": true
+        },
+        {
+          "url": "https://www.buscape.com.br/busca/patinete+eletrico+adulto",
+          "titulo": "Buscapé — busca `patinete eletrico adulto`",
+          "classe": "agregador-de-ofertas",
+          "dedicada_a_consulta": true
+        },
+        {
+          "url": "https://m.magazineluiza.com.br/busca/patinetes+eletricos/",
+          "titulo": "Magazine Luiza — busca `patinetes eletricos`",
+          "classe": "varejo-grande",
+          "dedicada_a_consulta": null
+        },
+        {
+          "url": "https://www.zoom.com.br/busca/patinete+adulto",
+          "titulo": "Zoom — busca `patinete adulto`",
+          "classe": "agregador-de-ofertas",
+          "dedicada_a_consulta": null
+        },
+        {
+          "url": "https://www.buscape.com.br/busca/patinete+adulto",
+          "titulo": "Buscapé — busca `patinete adulto`",
+          "classe": "agregador-de-ofertas",
+          "dedicada_a_consulta": null
+        },
+        {
+          "url": "https://www.zoom.com.br/busca/honeywhale+f6+pro+s",
+          "titulo": "Zoom — busca `honeywhale f6 pro s`",
+          "classe": "agregador-de-ofertas",
+          "dedicada_a_consulta": null
+        },
+        {
+          "url": "https://www.mercadolivre.com.br/loja/honeywhale",
+          "titulo": "Mercado Livre — loja Honeywhale",
+          "classe": "anuncio-marketplace",
+          "dedicada_a_consulta": null
+        },
+        {
+          "url": "https://www.mercadolivre.com.br/pagina/c4z32mpm",
+          "titulo": "Mercado Livre — Mankeel Hub",
+          "classe": "anuncio-marketplace",
+          "dedicada_a_consulta": null
+        },
+        {
+          "url": "https://www.sears.com.mx/c/movilidad/scooter-electrico/patin-electrico-para-adultos/",
+          "titulo": "Sears México — patín eléctrico para adultos",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null
+        },
+        {
+          "url": "https://www.decathlon.pt/p/mp/patinete-eletrico-adulto-g2-pro-vmp-certificacao-dgt-ip54/d8090ea3-f975-4f65-939d-46f6999aa895/c1",
+          "titulo": "Decathlon Portugal — KuKirin G2 Pro VMP",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null
+        },
+        {
+          "url": "https://www.walmart.com/browse/toys/all-electric-scooter/girls/4171_133073_6774653_7994546_8741327/Z2VuZGVyOkdpcmxz",
+          "titulo": "Walmart (EUA) — electric scooter",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null
+        },
+        {
+          "url": "https://www.mercadolibre.cl/blog/tr/conoce-los-mejores-patinetes",
+          "titulo": "Mercado Libre Chile — blog",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null
+        },
+        {
+          "url": "https://pt.accio.com/plp/el%C3%A9trico-patinete-eletrico",
+          "titulo": "Accio — PLP",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null
+        }
+      ],
+      "evidencia": [
+        {
+          "consulta_do_instrumento": "patinete eletrico adulto",
+          "medido_como": "busca",
+          "medido_em": "2026-10-30",
+          "enviesada": false
+        },
+        {
+          "consulta_do_instrumento": "patinete eletrico adulto Casas Bahia Magazine Luiza Mercado Livre categoria",
+          "medido_como": "busca",
+          "medido_em": "2026-10-30",
+          "enviesada": true,
+          "nota": "BUSCA ENVIESADA, marcada como tal pela 30.8: ela nomeia as lojas, entao mede se aquelas lojas tem pagina dedicada e NAO mede a SERP. Ela empurrou o veredito para `tomada` — achou `casasbahia.com.br/patinete-eletrico/b`, categoria dedicada, com a trilha `Esporte e Lazer > Veiculos Motorizados > Scooter e Patinete`. Nao entra na contagem de dominancia dos ocupantes neutros."
+        }
+      ]
+    },
+    {
+      "id": "melhor-patinete-eletrico",
+      "consulta": "melhor patinete elétrico",
+      "forma": "cauda",
+      "slug": null,
+      "buscas_mes": null,
+      "fonte_do_volume": null,
+      "porque_sem_volume": "Cauda que o corpus de 28/10 colheu sem volume do Planejador. NAO foi pedido volume para ela nesta passada porque o veredito de SERP a fecha de qualquer jeito: volume nao reabre consulta tomada, e pedir numero para uma vaga que nao existe e gastar leitura do Raphael.",
+      "serp": {
+        "veredito": "tomada",
+        "visto_por": null,
+        "visto_em": null,
+        "instrumento": "busca desta nuvem (US-only), 30/10/2026 — NAO e a SERP brasileira",
+        "fecha_a_consulta": true,
+        "porque_fecha": "A medicao mais limpa das cinco, e nao e perto: DOZE fazendas de conteudo brasileiras com pagina dedicada a esta consulta exata, na mesma passada — cupomonline (\"Melhor Patinete Eletrico de 2026: Top 10 Modelos\"), guiadosperifericos, buscamelhores (duas), melhoresparacomprar (duas), qualmelhorcomprar (duas), guiaomelhor (duas), melhoresdotech, amoprodutinhos, gdm, guiarecomenda, my-best, mais o BLOG DA SHOPEE (duas URLs) e o Buscape e o Zoom com pagina editorial propria. Nenhum espaco, e a 30.5 fecha a consulta com um destes tres casos sozinho.",
+        "a_segunda_causa_e_a_voz": "Esta e a consulta cujo formato o VOZ.md desta ilha proibe nominalmente — \"Top 10\", \"melhor de 2026\", o vocabulario das fazendas. Mesmo se a vaga existisse, a ilha nao a disputaria com esse titulo. As duas razoes sao independentes e apontam para o mesmo lado."
+      },
+      "escada_de_chaves": [],
+      "familia": null,
+      "numero_proprio_pedido": null,
+      "publicar_declarado": false,
+      "motivo_para_nao_publicar_agora": "SERP `tomada` por doze fazendas com pagina dedicada, medida em 30/10/2026, E o formato proibido pelo VOZ.md. Veredito final: esta consulta nao volta a fila.",
+      "ocupantes": [
+        {
+          "url": "https://www.cupomonline.com.br/melhor-patinete-eletrico/",
+          "titulo": "Melhor Patinete Elétrico de 2026: Top 10 Modelos [Guia Atualizado]",
+          "classe": "fazenda-de-conteudo",
+          "dedicada_a_consulta": true
+        },
+        {
+          "url": "https://www.guiadosperifericos.com.br/melhores-patinetes-eletricos/",
+          "titulo": "Guia dos Periféricos",
+          "classe": "fazenda-de-conteudo",
+          "dedicada_a_consulta": true
+        },
+        {
+          "url": "https://buscamelhores.com.br/melhor-patinete-eletrico",
+          "titulo": "Melhor Patinete Elétrico: Guia Essencial",
+          "classe": "fazenda-de-conteudo",
+          "dedicada_a_consulta": true
+        },
+        {
+          "url": "https://buscamelhores.com.br/melhor-patinete-eletrico-do-mundo",
+          "titulo": "Melhor Patinete Elétrico do Mundo: Guia Definitivo",
+          "classe": "fazenda-de-conteudo",
+          "dedicada_a_consulta": true
+        },
+        {
+          "url": "https://melhoresparacomprar.com.br/qual-a-melhor-marca-de-patinete-eletrico",
+          "titulo": "Qual a Melhor Marca de Patinete Elétrico: Análise Top 9",
+          "classe": "fazenda-de-conteudo",
+          "dedicada_a_consulta": true
+        },
+        {
+          "url": "https://melhoresparacomprar.com.br/melhores-marcas-de-patinete-eletrico",
+          "titulo": "Melhores Marcas de Patinete Elétrico: Ranking Top 10",
+          "classe": "fazenda-de-conteudo",
+          "dedicada_a_consulta": true
+        },
+        {
+          "url": "https://qualmelhorcomprar.com.br/melhor-patinete-eletrico-para-adulto",
+          "titulo": "Melhor Patinete Elétrico para Adulto",
+          "classe": "fazenda-de-conteudo",
+          "dedicada_a_consulta": true
+        },
+        {
+          "url": "https://qualmelhorcomprar.com.br/melhor-patinete-eletrico-do-mundo",
+          "titulo": "Melhor Patinete Elétrico do Mundo",
+          "classe": "fazenda-de-conteudo",
+          "dedicada_a_consulta": true
+        },
+        {
+          "url": "https://guiaomelhor.com.br/melhor-patinete-eletrico",
+          "titulo": "Melhor Patinete Elétrico: Guia Completo de Compra",
+          "classe": "fazenda-de-conteudo",
+          "dedicada_a_consulta": true
+        },
+        {
+          "url": "https://guiaomelhor.com.br/melhor-patinete-eletrico-do-mundo",
+          "titulo": "Melhor Patinete Elétrico do Mundo",
+          "classe": "fazenda-de-conteudo",
+          "dedicada_a_consulta": true
+        },
+        {
+          "url": "https://melhoresdotech.com.br/melhor-patinete-eletrico/",
+          "titulo": "Melhores Patinetes Elétricos e Custo Benefício de 2026",
+          "classe": "fazenda-de-conteudo",
+          "dedicada_a_consulta": true
+        },
+        {
+          "url": "https://amoprodutinhos.com.br/?p=5545",
+          "titulo": "Os 10 Melhores Patinetes Elétricos de 2026",
+          "classe": "fazenda-de-conteudo",
+          "dedicada_a_consulta": true
+        },
+        {
+          "url": "https://gdm.com.br/melhores-patinetes-eletricos/",
+          "titulo": "GDM — melhores patinetes elétricos",
+          "classe": "fazenda-de-conteudo",
+          "dedicada_a_consulta": true
+        },
+        {
+          "url": "https://guiarecomenda.com/melhor-patinete-eletrico",
+          "titulo": "Guia Recomenda",
+          "classe": "fazenda-de-conteudo",
+          "dedicada_a_consulta": true
+        },
+        {
+          "url": "https://br.my-best.com/10091",
+          "titulo": "Patinetes Elétricos — my-best",
+          "classe": "fazenda-de-conteudo",
+          "dedicada_a_consulta": true
+        },
+        {
+          "url": "https://shopee.com.br/blog/qual-a-melhor-marca-de-patinete-eletrico/",
+          "titulo": "Blog da Shopee — qual a melhor marca",
+          "classe": "marketplace-editorial",
+          "dedicada_a_consulta": true
+        },
+        {
+          "url": "https://shopee.com.br/blog/?p=65651",
+          "titulo": "Blog da Shopee",
+          "classe": "marketplace-editorial",
+          "dedicada_a_consulta": null
+        },
+        {
+          "url": "https://www.buscape.com.br/patinete/conteudo/melhor-patinete-eletrico",
+          "titulo": "Buscapé — editorial melhor patinete elétrico",
+          "classe": "agregador-de-ofertas",
+          "dedicada_a_consulta": true
+        },
+        {
+          "url": "https://www.zoom.com.br/patinete/deumzoom/melhor-patinete-eletrico-bkp",
+          "titulo": "Zoom / DeuMZoom — melhor patinete elétrico",
+          "classe": "agregador-de-ofertas",
+          "dedicada_a_consulta": true
+        },
+        {
+          "url": "https://motorshow.com.br/tag/como-escolher-o-melhor-patinete-eletrico",
+          "titulo": "Motorshow — tag",
+          "classe": "portal-de-conteudo",
+          "dedicada_a_consulta": null
+        },
+        {
+          "url": "https://diariodonordeste.verdesmares.com.br/negocios/patinete-eletrica-saiba-como-escolher-e-quais-os-melhores-precos-do-mercado-1.3161310",
+          "titulo": "Diário do Nordeste — como escolher",
+          "classe": "portal-de-conteudo",
+          "dedicada_a_consulta": true
+        },
+        {
+          "url": "https://www.bondfaro.com.br/patinete?page=1",
+          "titulo": "Bondfaro — patinete",
+          "classe": "agregador-de-ofertas",
+          "dedicada_a_consulta": null
+        },
+        {
+          "url": "https://www.buscape.com.br/busca/patinete+100kg",
+          "titulo": "Buscapé — busca `patinete 100kg`",
+          "classe": "agregador-de-ofertas",
+          "dedicada_a_consulta": null
+        },
+        {
+          "url": "https://www.zoom.com.br/busca/patinete+adulto",
+          "titulo": "Zoom — busca `patinete adulto`",
+          "classe": "agregador-de-ofertas",
+          "dedicada_a_consulta": null
+        },
+        {
+          "url": "https://gdm.com.br/?p=2586",
+          "titulo": "GDM",
+          "classe": "fazenda-de-conteudo",
+          "dedicada_a_consulta": null
+        }
+      ],
+      "evidencia": [
+        {
+          "consulta_do_instrumento": "melhor patinete eletrico",
+          "medido_como": "busca",
+          "medido_em": "2026-10-30",
+          "enviesada": false
+        }
+      ]
+    },
+    {
+      "id": "patinete-eletrico-1000w",
+      "consulta": "patinete elétrico 1000w",
+      "forma": "cauda",
+      "slug": null,
+      "buscas_mes": null,
+      "fonte_do_volume": null,
+      "porque_sem_volume": "Cauda nova que o corpus de 28/10 colheu SEM volume do Planejador, e ela SOBREVIVEU ao veredito desta passada — entao o volume dela virou item de despacho. Consulta que segue viva precisa do numero antes de consumir uma vaga da leva (21.4).",
+      "serp": {
+        "veredito": "nao-medida",
+        "visto_por": null,
+        "visto_em": null,
+        "instrumento": "busca desta nuvem (US-only), 30/10/2026 — NAO e a SERP brasileira",
+        "fecha_a_consulta": false,
+        "porque_nao_se_afirma_nada": "A 30.8 inteira em uma linha: 17 dos 21 ocupantes estao FORA DO BRASIL. pccomponentes.pt (duas URLs), backmarket.es, carrefour.es, wellbots.com/es, chollometro (duas), electroprecio, sensorautomotriz, levyelectric, leoguarbikes, reach.dog, wee-bot, ridereview, pt.accio, pt.scribd, ecreee. A busca entregou o catalogo europeu, que e exatamente o que a secao 5 do corpus mediu para os eixos de PRODUTO: \"pergunta de produto e consumivel tem catalogo europeu identico, e ai a busca entrega Portugal\". Dos quatro ocupantes brasileiros, NENHUM e pagina dedicada: duas buscas de agregador (Buscape e Zoom, as duas por `patinete 1000w`) e duas vitrines de loja do Mercado Livre. Nao ha presenca de varejo grande nem de fazenda a afirmar — e ausencia NAO se afirma com busca, pela regra 1 da regua de prospeccao.",
+        "vazamento_para_fora_do_brasil": "17 de 21 ocupantes — o maior vazamento das cinco caudas desta lista",
+        "o_que_falta_para_ter_veredito": "a SERP brasileira aberta no Chrome do Raphael, com quem viu e quando na linha"
+      },
+      "escada_de_chaves": [],
+      "familia": null,
+      "numero_proprio_pedido": null,
+      "publicar_declarado": false,
+      "motivo_para_nao_publicar_agora": "`nao-medida` NAO autoriza pagina (30.8). Espera duas coisas, as duas de uma sessao de Chrome: o veredito de SERP e o volume do Planejador. Despacho aberto nesta mesma execucao.",
+      "atencao_da_30_4": "Se nascer, nasce FILHA de `/veiculos/patinete-eletrico/` e tem de declarar o que ela entrega que a mae NAO entrega. A mae ja serve `1000` sete vezes no HTML no ar (contado em 30/10): o risco de canibalizacao aqui e real e foi medido, nao suposto.",
+      "ocupantes": [
+        {
+          "url": "https://www.buscape.com.br/busca/patinete+1000w",
+          "titulo": "Buscapé — busca `patinete 1000w`",
+          "classe": "agregador-de-ofertas",
+          "dedicada_a_consulta": null
+        },
+        {
+          "url": "https://www.zoom.com.br/busca/patinete+1000w",
+          "titulo": "Zoom — busca `patinete 1000w`",
+          "classe": "agregador-de-ofertas",
+          "dedicada_a_consulta": null
+        },
+        {
+          "url": "https://www.mercadolivre.com.br/loja/honeywhale",
+          "titulo": "Mercado Livre — loja Honeywhale",
+          "classe": "anuncio-marketplace",
+          "dedicada_a_consulta": null
+        },
+        {
+          "url": "https://www.mercadolivre.com.br/pagina/positivopositivo",
+          "titulo": "Mercado Livre — página Positivo",
+          "classe": "anuncio-marketplace",
+          "dedicada_a_consulta": null
+        },
+        {
+          "url": "https://www.pccomponentes.pt/patinete-eletrico-smartgyro-rockway-gts-1000w-autonomia-75km-suspensao-dupla-travoes-triplos",
+          "titulo": "PcComponentes PT — Smartgyro Rockway GTS 1000W",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null
+        },
+        {
+          "url": "https://www.pccomponentes.pt/patinete-eletrico-maxturn-x1-1000w-autonomia-50km-pneus-tubeless-10-aluminio-preto",
+          "titulo": "PcComponentes PT — Maxturn X1 1000W",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null
+        },
+        {
+          "url": "https://www.backmarket.es/es-es/p/smartgyro-rockway-pro-evo-patinete/bc104619-5bbc-48e8-99ea-5bf91cde334a",
+          "titulo": "Back Market ES — Smartgyro Rockway Pro Evo",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null
+        },
+        {
+          "url": "https://www.carrefour.es/-/9345750866386/p",
+          "titulo": "Carrefour ES — Kukirin G2 Max 1000w",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null
+        },
+        {
+          "url": "https://www.wellbots.com/es/products/iscooter-w9-1000w-off-road-e-scooter",
+          "titulo": "Wellbots ES — iScooter W9 1000W",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null
+        },
+        {
+          "url": "https://www.chollometro.com/ofertas/patinete-electrico-navee-n65i-1000w-potencia-max-65km-autonomia-ruedas-tubeless-105-intermitentes-integrados-2022473",
+          "titulo": "Chollometro — Navee N65i 1000W",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null
+        },
+        {
+          "url": "https://www.chollometro.com/ofertas/patinete-electrico-argento-active-sport-autonomia-80km-motor-1000w-doble-suspension-baja-aun-mas-1921502",
+          "titulo": "Chollometro — Argento Active Sport 1000W",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null
+        },
+        {
+          "url": "https://www.electroprecio.com/patinete-electrico-smartgyro-ryder-certificado-motor-1000w-ruedas-10-25km-h-autonomia-75km",
+          "titulo": "Electroprecio — Smartgyro Ryder 1000W",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null
+        },
+        {
+          "url": "https://sensorautomotriz.com/preguntas-frecuentes/cuanto-corre-un-patinete-de-1000w",
+          "titulo": "Sensor Automotriz — ¿Cuánto corre un patinete de 1000W?",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null
+        },
+        {
+          "url": "https://www.levyelectric.com/resources/unleashing-speed-how-fast-does-a-1000w-electric-bike-go",
+          "titulo": "Levy Electric — How fast does a 1000W e-bike go",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null
+        },
+        {
+          "url": "https://leoguarbikes.com/blogs/news/the-power-and-versatility-of-the-1000w-electric-bike",
+          "titulo": "Leoguar Bikes — 1000W electric bike",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null
+        },
+        {
+          "url": "https://reach.dog/collection/electric-bike-1000w",
+          "titulo": "reach.dog — electric bike 1000w",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null
+        },
+        {
+          "url": "https://www.wee-bot.com/collections/trotinette-electrique-1000-w",
+          "titulo": "Wee-Bot FR — trottinette 1000 W",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null
+        },
+        {
+          "url": "https://dev.ridereview.com/questions/how-fast-does-a-1000w-electric-bike-go",
+          "titulo": "Ride Review — question",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null
+        },
+        {
+          "url": "https://pt.accio.com/plp/skate-eletrico-usado",
+          "titulo": "Accio — skate elétrico usado",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null
+        },
+        {
+          "url": "https://pt.scribd.com/document/740191748/Documento-PDF",
+          "titulo": "Scribd — documento PDF",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null
+        },
+        {
+          "url": "https://web.ecreee.org/fresh-field/1000w-motorbike-guide-1771081375",
+          "titulo": "ecreee.org — 1000w motorbike guide",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null
+        }
+      ],
+      "evidencia": [
+        {
+          "consulta_do_instrumento": "patinete eletrico 1000w",
+          "medido_como": "busca",
+          "medido_em": "2026-10-30",
+          "enviesada": false
+        }
+      ]
+    },
+    {
+      "id": "scooter-eletrica-1000w",
+      "consulta": "scooter elétrica 1000w",
+      "forma": "cauda",
+      "slug": null,
+      "buscas_mes": 33100,
+      "fonte_do_volume": "Planejador de palavras-chave, 27/10/2026, via dados/corpus-buscas.md eixo D",
+      "serp": {
+        "veredito": "nao-medida",
+        "visto_por": null,
+        "visto_em": null,
+        "instrumento": "busca desta nuvem (US-only), 30/10/2026 — NAO e a SERP brasileira",
+        "fecha_a_consulta": false,
+        "porque_nao_se_afirma_nada": "Vazamento alto (13 de 19 fora do Brasil: alibaba, mercadolibre.pe duas vezes, ebay.de duas, levyelectric duas, gyroorboard duas, wellbots, wee-bot, accio duas) E — o que e mais grave — O INSTRUMENTO RESPONDEU OUTRA CONSULTA. Buscape e Zoom vieram com a pagina de `autopropelido`, e o Mercado Livre com listas de `moto-eletrica-adulta-3000` e `scooter-eletrica-tui`: nenhuma dessas quatro e a consulta pedida. Sobra UMA pagina dedicada brasileira, de fazenda (buscamelhores/melhor-scooter-eletrica-1000w), e UMA sozinha nao e dominancia pela 30.5. Nao da para afirmar tomada e NUNCA da para afirmar alvo.",
+        "vazamento_para_fora_do_brasil": "13 de 19 ocupantes",
+        "o_instrumento_derivou": "ACHADO DE METODO, e vale para quem for medir cauda com busca nesta fabrica: a busca devolveu `autopropelido` quando foi perguntada por `scooter eletrica 1000w`. Ocupante que responde a OUTRA consulta nao conta para dominancia nenhuma — nem a favor nem contra —, e a linha dele fica aqui com a URL para quem reconferir ver o que o instrumento fez.",
+        "o_que_falta_para_ter_veredito": "a SERP brasileira aberta no Chrome do Raphael"
+      },
+      "escada_de_chaves": [],
+      "familia": null,
+      "numero_proprio_pedido": null,
+      "publicar_declarado": false,
+      "motivo_para_nao_publicar_agora": "`nao-medida` nao autoriza pagina. E tem uma SEGUNDA trava, independente da SERP e que o PROMPT.md desta ilha ja escreveu no fecho do bloco 5b: scooter e moto eletrica nao tem produto na Shopee (cinco registros percorreram a escada inteira e a loja devolveu ZERO em todos os degraus), e o caminho delas e o Mercado Livre, onde a 25.6 exige CLIQUE HUMANO para gerar link. Pela 25.2 nenhum degrau que exige clique humano vira plano. Entao, mesmo com a SERP aberta, esta consulta nasce sem bloco de compra — e a 30.2 pede tres produtos reais. Ela depende do despacho NORMAL das tres etiquetas do ML, nao so do Chrome.",
+      "ocupantes": [
+        {
+          "url": "https://buscamelhores.com.br/melhor-scooter-eletrica-1000w",
+          "titulo": "Busca Melhores — melhor scooter elétrica 1000w",
+          "classe": "fazenda-de-conteudo",
+          "dedicada_a_consulta": true
+        },
+        {
+          "url": "https://melhoraopreco.com.br/ofertas/casasbahia/7610223",
+          "titulo": "Melhor ao Preço — Scooter Bicicleta Elétrica 1000W E-Trek Duos",
+          "classe": "agregador-de-ofertas",
+          "dedicada_a_consulta": null
+        },
+        {
+          "url": "https://lista.mercadolivre.com.br/moto-eletrica-adulta-3000",
+          "titulo": "Mercado Livre — lista `moto eletrica adulta 3000`",
+          "classe": "anuncio-marketplace",
+          "dedicada_a_consulta": null
+        },
+        {
+          "url": "https://lista.mercadolivre.com.br/scooter-eletrica-tui",
+          "titulo": "Mercado Livre — lista `scooter eletrica tui`",
+          "classe": "anuncio-marketplace",
+          "dedicada_a_consulta": null
+        },
+        {
+          "url": "https://www.buscape.com.br/busca/autopropelido",
+          "titulo": "Buscapé — busca `autopropelido` (o instrumento derivou)",
+          "classe": "agregador-de-ofertas",
+          "dedicada_a_consulta": null
+        },
+        {
+          "url": "https://www.zoom.com.br/busca/autopropelido",
+          "titulo": "Zoom — busca `autopropelido` (o instrumento derivou)",
+          "classe": "agregador-de-ofertas",
+          "dedicada_a_consulta": null
+        },
+        {
+          "url": "https://m.alibaba.com/showroom/1000w-electric-scooter.html",
+          "titulo": "Alibaba — 1000w electric scooter",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null
+        },
+        {
+          "url": "https://www.mercadolibre.com.pe/shorts/clips/CGDgrp/scooter-electrico-h4-1000w-doble-suspension-48v",
+          "titulo": "Mercado Libre Perú — H4 1000w",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null
+        },
+        {
+          "url": "https://www.mercadolibre.com.pe/shorts/clips/pUbFXc/scooter-electrico-xiaomi-6-pro-25-km-h-1000w-70-km-autonomia",
+          "titulo": "Mercado Libre Perú — Xiaomi 6 Pro 1000w",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null
+        },
+        {
+          "url": "https://www.levyelectric.com/resources/unleashing-speed-the-pace-of-a-1000w-electric-scooter",
+          "titulo": "Levy Electric — pace of a 1000W scooter",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null
+        },
+        {
+          "url": "https://ride.levyelectric.com/resources/exploring-the-speed-of-a-1000-watt-electric-scooter",
+          "titulo": "Levy Electric — speed of a 1000 watt scooter",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null
+        },
+        {
+          "url": "https://www.wellbots.com/es/products/iscooter-w9-1000w-off-road-e-scooter",
+          "titulo": "Wellbots ES — iScooter W9 1000W",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null
+        },
+        {
+          "url": "https://www.wee-bot.com/en/blogs/guide-dachat-de-la-trottinette-electrique/quelle-est-la-meilleure-trottinette-electrique-1000w",
+          "titulo": "Wee-Bot — meilleure trottinette 1000w",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null
+        },
+        {
+          "url": "https://pt.accio.com/plp/scooter-elétrica-1000w",
+          "titulo": "Accio — scooter elétrica 1000w",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null
+        },
+        {
+          "url": "https://pt.accio.com/plp/escuter-eletrica-1000w-bateria-60a",
+          "titulo": "Accio — escuter elétrica 1000w",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null
+        },
+        {
+          "url": "https://www.ebay.de/itm/406426579500",
+          "titulo": "eBay DE — 1000 W 4-Rad Elektromobil",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null
+        },
+        {
+          "url": "https://www.ebay.de/itm/266566545328",
+          "titulo": "eBay DE — VIRON E-Scooter 1000W",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null
+        },
+        {
+          "url": "https://gyroorboard.com/es/blogs/learn-with-gyroor/1000w-electric-scooter-30mph-the-ultimate-urban-commuter",
+          "titulo": "Gyroor — 1000w electric scooter 30mph",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null
+        },
+        {
+          "url": "https://gyroorboard.com/fr/blogs/learn-with-gyroor/electric-motorcycle-scooter-1000w-the-future-of-urban-commuting",
+          "titulo": "Gyroor — electric motorcycle scooter 1000w",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null
+        }
+      ],
+      "evidencia": [
+        {
+          "consulta_do_instrumento": "scooter eletrica 1000w",
+          "medido_como": "busca",
+          "medido_em": "2026-10-30",
+          "enviesada": false
+        }
+      ]
+    },
+    {
+      "id": "moto-eletrica-1000w",
+      "consulta": "moto elétrica 1000w",
+      "forma": "cauda",
+      "slug": null,
+      "buscas_mes": 14800,
+      "fonte_do_volume": "Planejador de palavras-chave, 27/10/2026, via dados/corpus-buscas.md eixo D",
+      "serp": {
+        "veredito": "tomada",
+        "visto_por": null,
+        "visto_em": null,
+        "instrumento": "busca desta nuvem (US-only), 30/10/2026 — NAO e a SERP brasileira",
+        "fecha_a_consulta": true,
+        "porque_fecha": "E a cauda MENOS vazada das tres de potencia (so 4 de 16 fora do Brasil) e e justamente a mais ocupada: CINCO paginas brasileiras dedicadas a esta consulta exata, quatro de fazenda (buscamelhores, qualmelhorcomprar, melhoresparacomprar, guiaomelhor, todas com o slug `melhor-moto-eletrica-1000w`) e uma de portal com a consulta inteira no titulo (consultadeplaca.net, \"Moto Eletrica 1000W, 3000W ou 5000W: Qual Escolher 2026\"). Pela 30.5 isso e dominio de fazenda com pagina dedicada, e fecha. O vazamento BAIXO reforca o veredito em vez de o enfraquecer: aqui a busca viu o Brasil e o Brasil esta ocupado.",
+        "vazamento_para_fora_do_brasil": "4 de 16 ocupantes (wellbots/es, mercadolibre.pe duas, pt.accio)"
+      },
+      "escada_de_chaves": [],
+      "familia": null,
+      "numero_proprio_pedido": null,
+      "publicar_declarado": false,
+      "motivo_para_nao_publicar_agora": "SERP `tomada`, medida em 30/10/2026 — veredito final e barato. E a segunda trava e a mesma da scooter: sem produto na Shopee, com o caminho no Mercado Livre atras de clique humano (25.6), ela nao alcancaria os tres produtos reais da 30.2 nem se a vaga existisse. Duas causas independentes, o mesmo lado.",
+      "ocupantes": [
+        {
+          "url": "https://buscamelhores.com.br/melhor-moto-eletrica-1000w",
+          "titulo": "Busca Melhores — melhor moto elétrica 1000w",
+          "classe": "fazenda-de-conteudo",
+          "dedicada_a_consulta": true
+        },
+        {
+          "url": "https://qualmelhorcomprar.com.br/melhor-moto-eletrica-1000w",
+          "titulo": "Melhor Moto Elétrica 1000W: Guia Completo de Compra",
+          "classe": "fazenda-de-conteudo",
+          "dedicada_a_consulta": true
+        },
+        {
+          "url": "https://melhoresparacomprar.com.br/melhor-moto-eletrica-1000w",
+          "titulo": "Melhor Moto Elétrica 1000w: Guia de Custo-Benefício",
+          "classe": "fazenda-de-conteudo",
+          "dedicada_a_consulta": true
+        },
+        {
+          "url": "https://guiaomelhor.com.br/melhor-moto-eletrica-1000w",
+          "titulo": "Melhor Moto Elétrica 1000W: Potência e Autonomia",
+          "classe": "fazenda-de-conteudo",
+          "dedicada_a_consulta": true
+        },
+        {
+          "url": "https://consultadeplaca.net/blog/moto-eletrica-potencia-1000w-3000w-5000w-qual-escolher-2026",
+          "titulo": "Moto Elétrica 1000W, 3000W ou 5000W: Qual Escolher 2026",
+          "classe": "portal-de-conteudo",
+          "dedicada_a_consulta": true
+        },
+        {
+          "url": "https://guiaomelhor.com.br/melhor-scooter-eletrica-1000w",
+          "titulo": "Guia o Melhor — melhor scooter elétrica 1000w",
+          "classe": "fazenda-de-conteudo",
+          "dedicada_a_consulta": null
+        },
+        {
+          "url": "https://lista.mercadolivre.com.br/moto-eletrica-adulta-3000w",
+          "titulo": "Mercado Livre — lista `moto eletrica adulta 3000w`",
+          "classe": "anuncio-marketplace",
+          "dedicada_a_consulta": null
+        },
+        {
+          "url": "https://lista.mercadolivre.com.br/moto-eletrica-adulta-5000w",
+          "titulo": "Mercado Livre — lista `moto eletrica adulta 5000w`",
+          "classe": "anuncio-marketplace",
+          "dedicada_a_consulta": null
+        },
+        {
+          "url": "https://www.olx.com.br/autos-e-pecas/motos/moto-chefe/jef/1000w/estado-rj",
+          "titulo": "OLX RJ — moto 1000w",
+          "classe": "anuncio-marketplace",
+          "dedicada_a_consulta": null
+        },
+        {
+          "url": "https://www.olx.com.br/autos-e-pecas/motos/scooter-eletrica/smart-wheel/1000w/estado-go",
+          "titulo": "OLX GO — scooter elétrica 1000w",
+          "classe": "anuncio-marketplace",
+          "dedicada_a_consulta": null
+        },
+        {
+          "url": "https://carrosp.com.br/comprar/scooter/x15/1000w/2026/7585087/",
+          "titulo": "CarrosP — scooter X15 1000w",
+          "classe": "anuncio-marketplace",
+          "dedicada_a_consulta": null
+        },
+        {
+          "url": "https://www.tabelafipebrasil.com/motos/WATTS/W160S-10000W-ELETRICA/2023-Eletrico",
+          "titulo": "Tabela FIPE Brasil — Watts W160S",
+          "classe": "portal-de-conteudo",
+          "dedicada_a_consulta": null
+        },
+        {
+          "url": "https://www.wellbots.com/es/products/mototec-superbike-electric-motor-1000w",
+          "titulo": "Wellbots ES — MotoTec Superbike 1000w",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null
+        },
+        {
+          "url": "https://www.mercadolibre.com.pe/shorts/clips/wFQfUa/moto-electrica-saige-teck-d100-1000w-60v-20ah",
+          "titulo": "Mercado Libre Perú — Saige Teck D100",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null
+        },
+        {
+          "url": "https://www.mercadolibre.com.pe/shorts/clips/Ri5tF7/moto-electrica-moveen-vintage-pro-1000w",
+          "titulo": "Mercado Libre Perú — Moveen Vintage Pro",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null
+        },
+        {
+          "url": "https://pt.accio.com/plp/motos-de-100-dolares",
+          "titulo": "Accio — motos de 100 dólares",
+          "classe": "fora-do-brasil",
+          "dedicada_a_consulta": null
+        }
+      ],
+      "evidencia": [
+        {
+          "consulta_do_instrumento": "moto eletrica 1000w",
+          "medido_como": "busca",
+          "medido_em": "2026-10-30",
+          "enviesada": false
+        }
+      ]
     }
-  ]
+  ],
+  "a_cauda_deste_nicho_e_territorio_de_FAZENDA_e_isso_foi_MEDIDO": "ACHADO DO BLOCO 5c, e ele reordena a fila em vez de a cumprir. O 5b deixou escrito que \"o caminho mais curto e a cauda medida do corpus\". Medidas as cinco caudas com busca em 30/10/2026, 102 ocupantes colhidos com URL: TRES das cinco estao TOMADAS, e as tres pela MESMA classe de ocupante — fazenda de conteudo com pagina dedicada, no formato \"melhor X\" / \"Top 10\" que o VOZ.md desta ilha proibe nominalmente. O contraste com as CABECAS e o dado: o dossie registrou, nas seis cabecas vistas no Chrome, que \"nenhuma fazenda da lista apareceu\"; na cauda ela aparece em quatro das cinco consultas. A cauda NAO e o caminho mais curto desta ilha: e o campo onde ela perderia, e o corpus de 28/10 havia previsto isso no ACHADO D sem que ninguem tirasse a conclusao de fila. O caminho curto desta ilha continua sendo o eixo PARAMETRICO — \"todos falam, ninguem calcula\" —, e o que o trava nao e SERP: e o egresso do gov.br, que ja e despacho ALTA.",
+  "o_que_a_busca_desta_nuvem_NAO_mediu": "As cinco caudas foram medidas com o unico instrumento daqui, e ele e US-only: nenhuma linha desta lista tem `visto_por` ou `visto_em`, e por isso nenhuma diz `alvo`. Os `tomada` acima VALEM — presenca se mede com busca —, e os dois `nao-medida` nao autorizam nada. O vazamento para fora do Brasil foi contado por consulta e esta na linha de cada uma: 17 de 21 na `patinete eletrico 1000w`, 13 de 19 na `scooter eletrica 1000w`, 5 de 21 e 4 de 16 nas duas que fecharam. A secao 5 do corpus de 28/10 previu a assimetria por eixo e ela se confirmou.",
+  "placar": {
+    "o_que_este_placar_e": "CONTADO deste proprio arquivo pela execucao que o escreveu, nunca digitado — e a regra da 23.4 contra numero sem procedencia, aplicada dentro do dado.",
+    "consultas_na_lista": 11,
+    "cabecas": 6,
+    "caudas": 5,
+    "veredito_alvo_SERP_vista_com_os_olhos": 6,
+    "veredito_tomada_fechadas_nao_nascem": 3,
+    "veredito_nao_medida_esperam_o_Chrome": 2,
+    "com_slug_declarado_neste_arquivo": 4,
+    "com_pagina_SERVIDA_no_ar": 2,
+    "quais_estao_servidas": [
+      "veiculos/patinete-eletrico",
+      "veiculos/bicicleta-eletrica"
+    ],
+    "porque_os_dois_numeros_diferem": "`veiculos/moto-eletrica` e `veiculos/scooter-eletrica` tem slug escrito desde o 5b e `publicar_declarado: false`: o endereco esta reservado, a pagina nao existe. Contar slug como pagina no ar e a familia do numero de tela digitado — parece conferido. O numero do ar e CONTADO no wp-sitemap.xml, e esta no `urls_publicadas` do ESTADO.md.",
+    "nascem_agora_nesta_execucao": 0,
+    "porque_zero_nascem_agora": "Das cinco caudas, tres fecharam por SERP tomada e duas ficaram `nao-medida`, que pela 30.8 nao autoriza pagina. Zero pagina nova nao e bloco perdido: e a assimetria da 30.8 funcionando — \"errar para o lado de nao publicar e barato; errar para o lado de publicar e a leva inteira\". O que esta execucao entregou no ar foi outra coisa, e esta no REGISTRO.md.",
+    "paginas_dedicadas_de_fazenda_nas_caudas": 26,
+    "ocupantes_com_url_das_CAUDAS_medidos_em_30_10": 102,
+    "porque_as_cabecas_nao_entram_nessa_conta": "As seis cabecas foram vistas no Chrome do Raphael em 27/10 e o top 10 delas mora na secao (b) de bussola/dossies/rodametria/DOSSIE.md, por DOMINIO e na ordem, sem URL por ocupante. Somar os dois daria um total com duas procedencias diferentes dentro — entao a conta diz de quem ela e."
+  }
 }

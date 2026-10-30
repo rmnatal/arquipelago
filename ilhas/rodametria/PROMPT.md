@@ -40,6 +40,66 @@ Medido em 27/10/2026 no Chrome do Raphael (`bussola/dossies/rodametria/DOSSIE.md
 
 ---
 
+## DESPACHO DA FUNDAÇÃO PARA O RAPHAEL — 30/10/2026 — DUAS SERPs E UM VOLUME, NUMA SESSÃO DE CHROME
+
+30/10/2026 às 10h3xZ — RAPHAEL (uma sessão de Chrome, ~10 minutos) — Escrito pela execução do
+bloco 5c, que mediu as cinco caudas da seção 30 desta ilha e **fechou três delas sem precisar de
+você**. Isto é despacho e não bloco porque a 30.8 é explícita: *"abrir a SERP das que sobraram é
+um despacho de uma sessão de Chrome, não um bloco"*.
+
+**ANTES DE QUALQUER COISA, O QUE NÃO PRECISA DE VOCÊ.** Três das cinco caudas estão **TOMADAS**,
+medidas desta nuvem em 30/10 e fechadas pela 30.8 (presença se afirma com busca): `patinete
+elétrico adulto` (49.500/mês), `melhor patinete elétrico` e `moto elétrica 1000w` (14.800/mês).
+Não abra a SERP delas — veredito de `tomada` é final e barato. A lista inteira, com os 102
+ocupantes e a URL de cada um, está em `dados/consultas-de-produto.md`.
+
+### 1. ABRIR A SERP BRASILEIRA DE DUAS CONSULTAS, E SÓ DESSAS DUAS
+
+| consulta | buscas/mês | por que ficou sem veredito |
+|---|---|---|
+| `patinete eletrico 1000w` | **não medido** (ver item 2) | **17 dos 21 ocupantes estão fora do Brasil** — PcComponentes PT, Back Market ES, Carrefour ES, Chollometro, Wellbots ES. A busca entregou o catálogo europeu. Dos 4 brasileiros, nenhum é página dedicada. |
+| `scooter eletrica 1000w` | 33.100 | 13 de 19 fora do Brasil, **e o instrumento derivou**: Buscapé e Zoom responderam pela página de `autopropelido`, e o Mercado Livre por listas de `moto eletrica adulta 3000` e `scooter eletrica tui` — nenhuma das quatro é a consulta pedida. Sobra **uma** página dedicada brasileira, e uma só não é dominância pela 30.5. |
+
+**O QUE OLHAR, e é a régua da 30.5, não impressão geral:** o top 10 é dominado por **varejo
+grande, fabricante forte ou fazenda de conteúdo com página DEDICADA àquela consulta**? Ficha de
+**um modelo** não conta — a 30.8 é explícita nisso, e foi medido na aquametria: dez ocupantes
+brasileiros, oito de varejo grande, e nenhum disputando a consulta, porque eram PDPs.
+
+**COMO ESCREVER, por consulta** (em `dados/consultas-de-produto.json`, no campo `serp` da linha
+daquela consulta): o `veredito` (`alvo` ou `tomada`), `visto_por: Raphael`, `visto_em` com a
+data, e os **domínios do top 10 na ordem**. **Faltar `visto_por` ou `visto_em` é reprovação, não
+omissão tolerada** (30.8).
+
+**POR QUE SÓ VOCÊ:** esta nuvem tem uma busca **US-only** e ela não vê a SERP brasileira. Ela
+sabe afirmar presença e **não** sabe afirmar ausência — então ela fecha consulta ocupada e nunca
+abre consulta livre. O Chrome é o único instrumento do arquipélago que vê a SERP do Brasil.
+
+**ATENÇÃO DA 30.4, para o caso de `patinete eletrico 1000w` dar `alvo`:** ela nasceria **filha**
+de `/veiculos/patinete-eletrico/`, e aquela página já serve `1000` sete vezes no HTML no ar
+(contado em 30/10 com quebra de cache). Se nascer, tem de declarar o que entrega que a mãe não
+entrega. O risco de canibalização aqui é medido, não suposto.
+
+**E A TRAVA QUE O CHROME NÃO RESOLVE, dita agora para ninguém se enganar depois:** mesmo com
+`alvo`, a `scooter eletrica 1000w` **não nasce**. Scooter e moto elétrica não têm produto na
+Shopee — cinco registros percorreram a escada de chaves inteira e a loja devolveu **zero em
+todos os degraus** — e o caminho delas é o Mercado Livre, onde a 25.6 exige **clique humano**
+para gerar link. A 30.2 pede três produtos reais. Ela depende também do despacho NORMAL das três
+etiquetas do ML, em `dados/despachos.md`.
+
+### 2. UM VOLUME NO PLANEJADOR, E SÓ UM
+
+`patinete eletrico 1000w` é cauda que o corpus de 28/10 colheu **sem volume**, e foi a única das
+três sem volume que **sobreviveu** ao veredito desta passada. As outras duas (`melhor patinete
+eletrico` e as demais) fecharam por SERP, e volume não reabre consulta tomada — por isso não
+peço número para elas. Escreva `buscas_mes` e `fonte_do_volume` na linha dela.
+
+**PRONTO QUANDO:** as duas linhas de `patinete eletrico 1000w` e `scooter eletrica 1000w` em
+`dados/consultas-de-produto.json` tiverem `veredito` diferente de `nao-medida`, com `visto_por` e
+`visto_em` preenchidos, e a primeira tiver `buscas_mes`. A execução seguinte **publica sem
+remedir nada** — é o que a 30.8 promete em troca da sessão.
+
+---
+
 ## ~~DESPACHO DA SENTINELA — 2026-10-28 (LEITURA SEMANAL) — A CONTA DA 31.6 NA ILHA EM FOCO, E ELA É ZERO~~ — **REESCRITO PELA 18.3 EM 29/10/2026 às 11hxxZ: OS ITENS 2, 3 E 4 ESTÃO FECHADOS; SÓ A CONTA DA 31.1 FICOU, E ELA SAIU DE 0 DE 5 PARA 1 DE 6**
 
 **ITEM 2 — FECHADO POR MEDIÇÃO, E NÃO POR EXECUÇÃO.** O passo **20.1** foi dado pelo
@@ -310,20 +370,74 @@ mesma classe. O caminho delas é o **Mercado Livre**, e lá a geração de link 
 **5b-ORIGINAL (guardado).** PÁGINAS PELO NOME DO PRODUTO (seção 30) para as seis cabeças, e depois a
 malha. Escolher a primeira cabeça pela intersecção entre volume e o que o banco sustenta.
 
-**5c. A PRÓXIMA LEVA DA MALHA — É O PRÓXIMO BLOCO, e ele não espera ninguém.** A ilha tem **5 URLs**
-contra as 40 do piso da 21.1, `piso: abaixo`, e o teto da 21.4 (10 URLs por leva, 3 levas por semana)
-tem folga: esta semana saiu **uma** leva, de 3 URLs. O caminho mais curto é a **cauda medida** do
-corpus — `patinete eletrico adulto` (49,5 mil), `scooter eletrica 1000w` (33,1 mil),
-`moto eletrica 1000w` (14,8 mil) e o resto de `dados/corpus-buscas.md` —, e a máquina do 5b faz essas
-páginas **sem uma linha de código nova**: basta declarar a consulta em `dados/consultas-de-produto.json`
-com a escada de chaves e escrever a voz em `dados/paginas-de-produto.json`.
-**MAS A 30.8 TRAVA O PRIMEIRO PASSO, e ela é o único trabalho desta leva que não é da nuvem:** `alvo`
-não se afirma daqui, nunca, e nenhuma consulta de cauda teve a SERP brasileira aberta com os olhos. As
-seis cabeças têm (Raphael, 27/10, Chrome dele). **Então a leva seguinte se divide em duas:** a parte
-desta nuvem é montar a lista das caudas com os `tomada` fechados e os `nao-medida` nomeados, e a parte
-que não é é uma sessão de Chrome do Raphael — "um despacho de uma sessão, não um bloco", como a própria
-30.8 escreve. Quem pegar este bloco monta a lista, abre o despacho, e **publica na execução seguinte
-sem remedir nada**.
+**5c. ~~A PRÓXIMA LEVA DA MALHA~~ — ENCERRADO EM 30/10/2026 às 10h1xZ–10h4xZ, E A PREMISSA DELE
+ESTAVA ERRADA, como a do 3e.** O bloco fechou corrigindo-a por medição: ele dizia que *"o caminho
+mais curto é a cauda medida do corpus"*. **A cauda deste nicho é território de FAZENDA, e agora
+está medido.** As cinco caudas do eixo D foram classificadas com busca, **102 ocupantes colhidos
+com URL**, em `dados/consultas-de-produto.json` (a fonte) e `dados/consultas-de-produto.md` (a
+vista legível, gerada do JSON na mesma passada).
+
+**O PLACAR: três das cinco estão TOMADAS e fecham sem o Chrome; duas ficaram `nao-medida`.**
+`patinete elétrico adulto` (49.500/mês), `melhor patinete elétrico` e `moto elétrica 1000w`
+(14.800/mês) caem pela MESMA classe de ocupante — fazenda de conteúdo com página dedicada, no
+formato "melhor X" e "Top 10" que o `VOZ.md` desta ilha **proíbe nominalmente**. São **26**
+páginas dedicadas de fazenda entre os 102 ocupantes.
+
+**O CONTRASTE COM AS CABEÇAS É O DADO, e ele reordena a fila.** O dossiê registrou, nas seis
+cabeças vistas no Chrome do Raphael, que *"nenhuma fazenda da lista apareceu"*. Na cauda ela
+aparece em **quatro das cinco**. O `ACHADO D` do corpus de 28/10 já havia visto a fazenda nas
+caudas e ninguém tirou dele a conclusão de fila. **A cauda não é o caminho curto desta ilha: é o
+campo onde ela perderia.** O caminho curto continua sendo o eixo **paramétrico** — *"todos falam,
+ninguém calcula"* —, e o que o trava não é SERP: é o egresso do `gov.br`, que já é despacho ALTA.
+
+**ZERO PÁGINA NOVA, E ISSO É A 30.8 FUNCIONANDO, não bloco perdido.** `nao-medida` não autoriza
+página; `tomada` fecha a consulta. Despacho novo aberto no topo deste arquivo: duas SERPs e um
+volume, numa sessão de Chrome. **A execução seguinte publica sem remedir nada** — se e só se o
+veredito voltar `alvo`.
+
+**E O BLOCO ACHOU UM DEFEITO NA BANCADA, pela própria bancada, antes de construir (18.5):**
+`gerar-f2.py --conferir` reprovava **a página certa**. A única diferença entre o arquivo no ar e o
+recém-gerado era o selo `gerado_em` (`2026-10-29` → `2026-10-30`), porque o gerador o escreve com
+o **relógio da execução** — então o portão reprovava todo dia seguinte ao que a F2 foi gerada. É
+o perigo que a 20.5 e a 32.5-b nomeiam: *portão que reprova página certa é o caminho mais curto
+para alguém passar a ignorá-lo*. A irmã `gerar-vitrine-de-produto.py` **já fazia certo** (herda a
+data do dado) e a lição não havia viajado — a 32.5-c outra vez. O selo saiu da comparação, com o
+motivo escrito no código, e as duas metades do veredito foram provadas em cinco casos: aprova o
+mundo real e o selo trocado, reprova número mexido, frase mexida e arquivo não-JSON.
+
+**5c-ORIGINAL (guardado).** A PRÓXIMA LEVA DA MALHA — pela cauda medida do corpus
+(`patinete eletrico adulto` 49,5 mil, `scooter eletrica 1000w` 33,1 mil, `moto eletrica 1000w`
+14,8 mil), com a máquina do 5b fazendo as páginas sem uma linha de código nova: bastaria declarar
+a consulta em `dados/consultas-de-produto.json` com a escada de chaves e escrever a voz em
+`dados/paginas-de-produto.json`. **A 30.8 travava o primeiro passo** — `alvo` não se afirma daqui
+— então a leva se dividia em duas: a lista sai da nuvem, a SERP sai do Chrome do Raphael.
+*(A metade da lista foi entregue; a outra metade virou o despacho de 30/10. O que o bloco não
+previu é que a lista **fecharia três das cinco** e tiraria a cauda do caminho.)*
+
+**5d. AS QUATRO PÁGINAS QUE O SITE DEVE A QUEM LÊ — É O PRÓXIMO BLOCO, E ELE NÃO ESPERA NINGUÉM.**
+O bloco mais desbloqueado da fila, e ele foi achado medindo o sitemap em 30/10: as **5 URLs** no
+ar são `/`, `/autonomia-patinete-eletrico/`, `/veiculos/` e as duas filhas. **Não existe
+`/sobre/`, `/contato/`, `/divulgacao-de-afiliados/` nem `/privacidade/`** — e a 16.1 nomeia essas
+cinco por nome. **A ilha publica link de afiliado da Shopee desde 29/10**, na F2 e nas duas
+páginas de produto, sem a página de divulgação que o programa e o leitor pedem.
+
+**Por que ele é o próximo, e as três razões são independentes:** (a) **não depende de despacho
+nenhum** — não precisa do `gov.br`, nem do Chrome, nem das etiquetas do ML, nem de uma oferta
+nova; (b) pela **21.7** essas cinco páginas **ficam fora do teto** de 10 URLs por leva e 3 levas
+por semana, então ele não gasta leva da malha; (c) é **dívida de confiança no ar**, não página de
+ranqueamento — e a 21.7 nasceu exatamente deste caso na aquametria, com a página de privacidade
+parada em "aberto" *"com a etiqueta do GA4 no ar e link de afiliado publicado desde 12/09"*.
+
+**O que ele NÃO afrouxa** (21.7, última linha): a voz da 15, a árvore e o cluster da 16, a
+verificação no ar da 8 e o molde da 32 continuam inteiros. Pela **32.2** essas páginas são de
+RESPOSTA, não de ferramenta: o teto de 700 px é da **caixa de resposta**, e **item vivo nunca
+tem link de compra** — aqui não há produto nenhum a vender, então elas nascem **sem** bloco de
+compra, e isso é o molde certo e não uma exceção a ele.
+
+**Pronto quando:** as quatro URLs em 200 no `wp-sitemap.xml` lido no ar com quebra de cache, as
+quatro no menu da casca, `python3 ferramentas/bancada.py --no-ar` aprovando, e o corpo de cada
+uma acima do piso de 1.500 caracteres da seção 8 **medido no ar** — nunca pela conta feita antes
+de desembarcar, que é o erro que a mãe `/veiculos/` quase pagou em 29/10 (ela daria 1.253).
 
 **6. LISTA DE PROSPECÇÃO DO WIDGET** — lojas brasileiras de mobilidade elétrica com site próprio, `publicar: false`.
 

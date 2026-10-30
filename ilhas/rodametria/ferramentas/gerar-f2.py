@@ -543,11 +543,40 @@ def main():
             print("REPROVADO: %s nao existe. Rode sem --conferir." % SAIDA)
             return 1
         atual = open(SAIDA, encoding="utf-8").read()
-        if atual != texto:
-            print("REPROVADO: dados/f2-respostas.json esta diferente do que a "
-                  "referencia produz agora. Rode `python3 ferramentas/gerar-f2.py`.")
+        # O SELO `gerado_em` SAI DA COMPARACAO, E ISSO E CONSERTO MEDIDO, NAO
+        # FROUXIDAO (30/10/2026). Ele e o RELOGIO DA EXECUCAO (ver `montar`),
+        # nao um dado derivado das entradas: a F2 nao depende da data para
+        # nada que ela calcula. Comparando-o, este portao reprovava a pagina
+        # CERTA todo dia seguinte ao que ela foi gerada — medido as 10h3xZ de
+        # 30/10/2026, com a bancada acusando `REPROVADO` e a unica diferenca
+        # entre o arquivo no ar e o recem-gerado sendo `2026-10-29` ->
+        # `2026-10-30`. E o perigo que a 20.5 e a 32.5-b nomeiam com todas as
+        # letras: portao que reprova pagina certa e o caminho mais curto para
+        # alguem passar a ignora-lo. A irma `gerar-vitrine-de-produto.py` ja
+        # fazia certo (`'gerado_em': anuncios['gerado_em']`, herdada do dado),
+        # e os `coletar-*` selam a data da MEDICAO, que e procedencia e tem de
+        # entrar. O que o portao continua cobrando e TODO o resto do arquivo.
+        def sem_selo(bruto, rotulo):
+            try:
+                d = json.loads(bruto)
+            except ValueError as e:
+                print("REPROVADO: %s nao e JSON legivel (%s): %s"
+                      % (rotulo, SAIDA, e))
+                return None
+            d["gerado_em"] = "<selo-fora-da-comparacao>"
+            return json.dumps(d, ensure_ascii=False, indent=2, sort_keys=True)
+
+        a, b = sem_selo(atual, "o arquivo gravado"), sem_selo(texto, "a referencia")
+        if a is None:
             return 1
-        print("APROVADO: dados/f2-respostas.json bate com a referencia.")
+        if a != b:
+            print("REPROVADO: dados/f2-respostas.json esta diferente do que a "
+                  "referencia produz agora, FORA do selo `gerado_em`. Rode "
+                  "`python3 ferramentas/gerar-f2.py`.")
+            return 1
+        print("APROVADO: dados/f2-respostas.json bate com a referencia "
+              "(o selo `gerado_em` fica fora da comparacao, de proposito: "
+              "ele e o relogio da execucao e nao entra em nada que a F2 calcula).")
         return 0
 
     with open(SAIDA, "w", encoding="utf-8") as f:

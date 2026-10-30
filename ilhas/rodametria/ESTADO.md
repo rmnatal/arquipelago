@@ -3,79 +3,72 @@ ilha: rodametria
 estado: viva              # `nascendo` -> `viva` em 29/10/2026 as 12h1xZ: a ilha SERVE PAGINA. Duas URLs no wp-sitemap.xml, as duas em 200, com a casca e a F2 desembarcadas na revisao 9 e os dois portoes de ar APROVADOS. Antes deste dia a ilha tinha banco e nenhum byte que um visitante visse.
 prioridade: 1
 piso: abaixo              # 5 URLs publicadas contra as 40 da 21.1, e primeira_indexacao null. Quem decide este campo e a leitura semanal (21.6), nunca a Fundacao de cabeca. O teto da 21.4 tem folga: esta semana saiu UMA leva, de 3 URLs, contra o teto de 3 levas por semana.
-urls_publicadas: 5        # CONTADO no wp-sitemap.xml no ar com quebra de cache, as 20h1xZ de 29/10/2026: `/`, `/autonomia-patinete-eletrico/`, `/veiculos/`, `/veiculos/patinete-eletrico/` e `/veiculos/bicicleta-eletrica/`. Eram 2 antes desta execucao. Corpo medido pelo portao: 2.586 · 11.246 · 3.488 · 9.408 · 6.377 caracteres, todos acima do piso de 1.500 da secao 8 — e a mae `/veiculos/` so passou porque a conta foi feita ANTES de medir no ar: ela daria 1.253.
+urls_publicadas: 5        # CONTADO no wp-sitemap.xml no ar com quebra de cache as 10h3xZ de 30/10/2026, e segue 5: `/`, `/autonomia-patinete-eletrico/`, `/veiculos/`, `/veiculos/patinete-eletrico/` e `/veiculos/bicicleta-eletrica/`. O bloco 5c nao publicou pagina nenhuma e nao podia — a 30.8 proibe `alvo` desta nuvem. ESTA CONTAGEM ACHOU A DIVIDA DO BLOCO 5d: nenhuma das quatro paginas institucionais que a 16.1 nomeia (`/sobre/`, `/contato/`, `/divulgacao-de-afiliados/`, `/privacidade/`) existe, e a ilha serve link de afiliado desde 29/10.
 ultima_ronda: 2026-10-28T20:00Z   # escrito pela Sentinela, nunca pela Fundacao (secao 2). SEGUE SENDO O DA LEITURA SEMANAL DE 28/10, e o contexto dele mudou: ele diz "nao houve ronda tecnica: a ilha tem zero pagina publicada e o egresso esta recusado". As duas metades cairam hoje — a ilha tem pagina e o egresso responde 200. Pela decisao do Raphael de 28/09/2026 a ronda tecnica alcanca toda ilha com URL servida, logo esta ilha ENTRA na ronda a partir de agora.
 primeira_indexacao: null  # as duas primeiras URLs foram ao ar hoje; indexacao e trabalho de dias. Quem grava este campo e a leitura semanal, lendo o Search Console.
-ultima_execucao: 2026-10-29T20:16Z   # BLOCO 5b ENTREGUE: a secao /veiculos/ e as duas primeiras paginas pelo nome do produto, no ar e conferidas. Das SEIS cabecas do dossie so DUAS abrem o portao da 30.2, e a causa das outras quatro esta medida e escrita. Revisao 16. A HORA SAI DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
-executando_desde: 2026-10-30T10:17Z   # RESERVA desta execucao (passo 5 da secao 1), gravada ANTES de qualquer trabalho. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada. Bloco desta passada: 5c, a proxima leva da malha. Renovo pela 1.1 se passar de 40 minutos.
-rede: aberta em 2026-10-29   # 20.2, MEDIDA e nao herdada: rodametria.com.br e o /status em 200 nas TRES passadas as 19h1xZ, com aquametria.com.br em 200 nas mesmas tres. E A LEITURA SEM QUEBRA DE CACHE (como o Google le) tambem foi feita: as tres URLs novas em 200 nas duas leituras. O QUE REPROVOU FOI A BORDA DO HOSPEDEIRO, e nao e desta ilha: sonda VIRGEM em `/nao-existe-<relogio>-xyz/` devolveu 404 · 200 · 200 · 200, com o corpo do 404 servido em HTTP 200 e o title 'Pagina nao encontrada'. E o mesmo soft 404 que a clubedomosaico registra ha oito medicoes, agora medido numa SEGUNDA conta do mesmo hospedeiro — linha acrescentada ao despacho ALTA de dados/despachos.md. Nao se conserta daqui.
+ultima_execucao: 2026-10-30T10:34Z   # BLOCO 5c ENCERRADO, e a premissa dele estava ERRADA: a CAUDA deste nicho e territorio de FAZENDA. Cinco caudas medidas com busca, 102 ocupantes com URL, TRES fechadas como `tomada` sem precisar do Chrome e DUAS em `nao-medida`. Zero pagina nova, e isso e a 30.8 funcionando. No caminho, a bancada acusou `gerar-f2.py --conferir` reprovando a pagina CERTA (selo `gerado_em` escrito com o relogio da execucao) — consertado e provado em cinco casos. Revisao segue 16: NENHUM desembarque nesta passada, de proposito. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
+executando_desde: null   # limpo as 2026-10-30T10:34Z pela propria execucao que reservou as 10h17Z e reescreveu o campo as 10h25Z (1.1). O bloco levou cerca de meia hora e NAO esperou cron: como nada foi desembarcado, nao houve o que esperar.
+rede: aberta em 2026-10-30   # 20.2, MEDIDA e nao herdada: rodametria.com.br em 200 nas TRES passadas as 10h1xZ, com aquametria.com.br em 200 nas MESMAS tres, e o /wp-json/rodametria/v1/status em 200 na revisao 16 com todas as linhas da revisao corrente dizendo `ok` (20.4). O soft 404 da borda do hospedeiro, registrado em 29/10, NAO foi remedido nesta passada: ele e despacho ALTA de dados/despachos.md e nao se conserta daqui.
 bloqueada_por: null      # obrigatorio pela secao 2. `null` DE PROPOSITO: o que falta (gov.br para a F1, as prefeituras para a camada municipal, as tres etiquetas do Mercado Livre) trava a FABRICA e nao a ILHA, e isso se escreve no despacho, que e o canal da 12.2. Preenche-lo congelaria tambem os blocos que ja podem andar — e o proximo da fila, o 3d, nao depende de nenhum deles.
 bloco_atual: |
-  BLOCO 5b ENTREGUE, E O ACHADO DELE E DE PALAVRA E NAO DE PRODUTO.
-
-  NO AR: `/veiculos/` (a secao de nivel 1 da 16.1, com o nome que o VOZ.md ja declarava no menu),
-  `/veiculos/patinete-eletrico/` e `/veiculos/bicicleta-eletrica/`, filhas diretas dela pela 30.1, no
-  molde da 32.2. Revisao 16, casca 1.2.1 -> 1.4.0, snippet `rodametria-produto` 1.0.0.
+  BLOCO 5c ENCERRADO, E A PREMISSA DELE ESTAVA ERRADA — A CAUDA DESTE NICHO E TERRITORIO DE FAZENDA.
 
   ESTE ARQUIVO CONTINUA SENDO A MEMORIA DESTA ILHA — `/areas/projeto-rodametria.md` nao existe nesta
   nuvem, e e por isso que este campo e longo.
 
-  O ACHADO: a chave `patinete eletrico` devolve ZERO patinete de adulto nas 20 primeiras ofertas da
-  loja; serve `Patinete Eletrico Infantil 150W UNITOYS` e `Moto Eletrica Infantil 6V`. Com o
-  qualificador `adulto` a MESMA familia devolve 16 patinetes de adulto, de R$ 1.297,13 a R$ 3.399,00, e
-  5 e-bikes, tres delas com 74, 28 e 25 vendas. A consulta e a palavra da PESSOA; a chave e a palavra
-  da LOJA, e neste nicho elas divergem por um qualificador. Cada consulta passou a declarar uma ESCADA
-  DE CHAVES com o degrau gravado, pela 25.6(a).
+  O QUE FOI MEDIDO. As cinco caudas do eixo D de `dados/corpus-buscas.md`, classificadas com busca
+  (o unico instrumento daqui, e ele e US-only), 102 ocupantes colhidos COM URL. Fonte:
+  `dados/consultas-de-produto.json`; vista legivel: `dados/consultas-de-produto.md`, gerada do JSON
+  na mesma passada. TRES fecharam como `tomada` — `patinete eletrico adulto` (49,5 mil),
+  `melhor patinete eletrico` e `moto eletrica 1000w` (14,8 mil) — e DUAS ficaram `nao-medida`:
+  `patinete eletrico 1000w` (17 dos 21 ocupantes fora do Brasil) e `scooter eletrica 1000w` (13 de 19
+  fora, e o instrumento DERIVOU para `autopropelido`).
 
-  DAS SEIS CABECAS SO DUAS NASCERAM, e a causa das outras quatro esta medida em
-  `dados/consultas-de-produto.json`: `moto eletrica` e `scooter eletrica` tem tres anuncios de adulto,
-  ZERO venda nos tres e precos variando R$ 6.500 para a mesma classe — o caminho delas e o Mercado
-  Livre, onde a geracao de link exige clique humano (25.6), logo e DESPACHO e nao bloco. `bike
-  eletrica` e `motos eletricas para adultos` nao nascem pela 30.4, por serem a mesma intencao de outras
-  duas.
+  O ACHADO, e e de FILA e nao de pagina: as tres que fecharam cairam pela MESMA classe de ocupante —
+  fazenda de conteudo com pagina dedicada, no formato "melhor X" / "Top 10" que o VOZ.md desta ilha
+  proibe nominalmente. Sao 26 paginas dedicadas de fazenda entre os 102 ocupantes. O dossie registrou,
+  nas seis CABECAS vistas no Chrome, que "nenhuma fazenda da lista apareceu"; na CAUDA ela aparece em
+  quatro das cinco. A cauda nao e o caminho curto desta ilha: e onde ela perderia. O caminho curto
+  segue sendo o eixo PARAMETRICO ("todos falam, ninguem calcula"), e o que o trava nao e SERP — e o
+  egresso do gov.br, que ja e despacho ALTA.
 
-  NENHUM DADO TECNICO FOI PUBLICADO, e isso e o produto da pagina: potencia nominal, velocidade maxima,
-  acelerador e carga maxima tem piso de nivel 5 no esquema e titulo de anuncio e nivel 6. A coluna diz
-  o que o anuncio DECLARA, e a frase que conta isso e CONTADA no gerador em cinco formas: de 16
-  anuncios do patinete, 15 declaram um watt e 1 diz qual watt e.
+  ZERO PAGINA NOVA, E ISSO E A 30.8 FUNCIONANDO, nao bloco perdido. Mas NAO conta como entrega da
+  31.1, e quem contar a proporcao conta como ela e.
 
-  OS NUMEROS NO AR: `conferir-no-ar.py` APROVADO com 281 afirmacoes e 0 falha;
-  `conferir-32-5-no-navegador.mjs` APROVADO em 3 de 3 paginas do molde, com a caixa de resposta a 211
-  px (teto 700) e o primeiro botao de compra a 1.129 e 1.084 px (teto 1.400); 21 links `sponsored`,
-  ItemList com 16 itens, FAQPage com 4 perguntas e BreadcrumbList de tres niveis na pagina do patinete.
-  Bancada: 13 portoes sem rede, 0 falha, contra 9 antes deste bloco. `mutacoes-produto.py`: 26
-  mutacoes, 26 reprovadas, 0 sobrevivente e 0 inerte.
+  A 30.4 JA ESTAVA CUMPRIDA SEM NINGUEM PLANEJAR: `/veiculos/patinete-eletrico/` serve a palavra
+  `adulto` 53 vezes no HTML no ar (contado as 10h2xZ com quebra de cache), porque `patinete eletrico
+  adulto` e o DEGRAU 1 da escada de chaves daquela pagina. Nao refiz nada por isso.
 
-  O DEFEITO QUE A ENTREGA ACHOU NO AR, e ele e a secao 4 em forma de instalador: a revisao 13 subiu os
-  arquivos e NAO criou as tres paginas. A instalacao da casca rodava uma vez por VERSAO, e a 13 subiu
-  casca nova e o snippet da pagina nova na MESMA passada do Sync — quando o `init` chamou a instalacao,
-  o snippet novo ainda nao estava carregado naquela requisicao, entao o filtro `rodametria_instalar`
-  dele nao existia. O sintoma era VERDE EM TODO LUGAR: /status em 13, as cinco linhas do log dizendo
-  `ok`, a rota `/casca` ja listando as tres paginas no mapa com `url` VAZIA nos tres, e o
-  wp-sitemap.xml com duas URLs. A casca 1.4.0 passou a reinstalar tambem quando a ASSINATURA DO MAPA
-  muda, e nao so quando a versao dela muda.
+  O DEFEITO QUE A BANCADA ACHOU ANTES DE EU CONSTRUIR (18.5): `gerar-f2.py --conferir` reprovava a
+  pagina CERTA. A unica diferenca era o selo `gerado_em` (29/10 -> 30/10), porque o gerador o escrevia
+  com o RELOGIO DA EXECUCAO num arquivo derivado — portao irreprodutivel por construcao, reprovando
+  todo dia seguinte. E o perigo que a 20.5 e a 32.5-b nomeiam. A irma `gerar-vitrine-de-produto.py` ja
+  fazia certo (herda a data do dado) e a licao nao havia viajado — 32.5-c outra vez. O selo saiu da
+  comparacao, SO ele, e as duas metades do veredito foram provadas em CINCO casos (aprova o mundo real
+  e o selo trocado; reprova numero mexido, frase mexida e arquivo nao-JSON). NAO regerei
+  `f2-respostas.json`: regerar mudaria o selo e empurraria revisao do Sync sem uma letra de mudanca na
+  tela. Revisao segue 16 e nao houve desembarque nesta passada, de proposito.
 
-  E A CASCA JA TINHA SUBIDO PARA 1.3.0 POR DUAS RAZOES DE ARVORE, as duas da 16:
-  `garantir_pagina()` passou a aceitar PAI (16.2), e `url_do_slug()` passou a achar a pagina pela meta
-  `_rodametria_id` em vez de por caminho — `get_page_by_path()` casa o caminho INTEIRO e devolveria
-  nulo para a filha, com `casca_link()` transformando link vazio em texto sem reclamar.
+  POR QUE O CONSERTO NAO VIROU SECAO DO CONTRATO: varri as outras cinco ilhas e o defeito nao existe
+  la — `atualizar-manifest.py` da aquametria e da robometria so grava o selo quando algo mudou de
+  verdade, e `medir-palavras-chave.py` sela a data da MEDICAO, que e procedencia. Pela 31.2 nao ha
+  defeito medido fora desta ilha. Se o Raphael discordar, o lugar e a familia da 20.5.
 
-  O QUE FICOU FORA DO MOLDE, dito sem maquiar: `/veiculos/` e a home sao as duas paginas desta ilha sem
-  componente da 32 (sem formulario e sem bloco de compra), e o portao de pixel as lista como FORA DO
-  MOLDE em vez de aprova-las em silencio. Para a home isso e decisao registrada, ela nasceu HUB; para a
-  mae e porque a 32 nao nomeia familia de pagina de LISTAGEM — ela tem FERRAMENTA (32.1) e
-  FICHA/RESPOSTA (32.2) e mais nada. Duas ilhas ja tem pagina de listagem, `/materiais/` da
-  clubedomosaico e esta. Fica anotado para a leitura semanal; nao inventei regra de cabeca.
+  O PROXIMO PASSO DESBLOQUEADO E O BLOCO 5d, E ELE NAO ESPERA NINGUEM — as QUATRO PAGINAS QUE O SITE
+  DEVE A QUEM LE. Contei o wp-sitemap.xml no ar: as 5 URLs sao `/`, `/autonomia-patinete-eletrico/`,
+  `/veiculos/` e as duas filhas. NAO EXISTE `/sobre/`, `/contato/`, `/divulgacao-de-afiliados/` nem
+  `/privacidade/`, e a 16.1 nomeia essas cinco por nome. A ilha publica link de afiliado da Shopee
+  desde 29/10 — na F2 e nas duas paginas de produto — sem a pagina de divulgacao que o programa e o
+  leitor pedem. Tres razoes independentes para ele ser o proximo: nao depende de despacho nenhum (nem
+  gov.br, nem Chrome, nem etiquetas do ML); pela 21.7 essas paginas ficam FORA DO TETO da 21.4, entao
+  nao gastam leva de malha; e e divida de confianca no ar. A 21.7 nasceu deste caso na aquametria.
+  Pela 32.2 elas sao paginas de RESPOSTA e nascem SEM bloco de compra (nao ha produto a vender nelas) —
+  isso e o molde certo, nao excecao. O "pronto quando" esta na fila do PROMPT.md, no item 5d.
 
-  O PROXIMO PASSO DESBLOQUEADO E O 5c, E ELE SE DIVIDE EM DOIS. A maquina do 5b faz pagina nova SEM UMA
-  LINHA DE CODIGO: declarar a consulta em `dados/consultas-de-produto.json` com a escada de chaves e
-  escrever a voz em `dados/paginas-de-produto.json`. O que TRAVA o primeiro passo e a 30.8: `alvo` nao
-  se afirma desta nuvem, nunca, e nenhuma consulta de CAUDA teve a SERP brasileira aberta com os olhos
-  — as seis cabecas tem (Raphael, 27/10, Chrome dele). Entao a parte desta nuvem e montar a lista das
-  caudas de `dados/corpus-buscas.md` (`patinete eletrico adulto` 49,5 mil, `scooter eletrica 1000w`
-  33,1 mil, `moto eletrica 1000w` 14,8 mil) com os `tomada` FECHADOS e os `nao-medida` NOMEADOS com as
-  URLs; a outra parte e uma sessao de Chrome dele, que a propria 30.8 chama de "um despacho de uma
-  sessao, nao um bloco". Publicar na execucao seguinte, sem remedir nada.
+  O QUE ESPERA O RAPHAEL, e nada da fila depende disso: o despacho novo de 30/10 no topo do PROMPT.md
+  (duas SERPs — `patinete eletrico 1000w` e `scooter eletrica 1000w` — mais o volume da primeira, numa
+  sessao de Chrome). E os de `dados/despachos.md`: o egresso do gov.br (ALTA, trava a F1), os tres
+  dominios de varejo grande (nivel 5), as tres etiquetas do Mercado Livre e o Wh/km do patinete.
 ---
 
 # Estado da ilha RODAMETRIA
