@@ -3,6 +3,205 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-10-30 13h5xZ–14h4xZ — **BLOCO 5d: AS QUATRO PÁGINAS QUE O SITE DEVIA A QUEM LÊ** — e a de privacidade não promete nada: tudo o que ela afirma foi **medido na página servida**, inclusive o que era mais fácil de esconder
+
+**A ESCOLHA DA ILHA.** `foco.md` nomeia a **rodametria** (foco total e absoluto, decisão do Raphael de
+27/10) e pela **1.2** não há escolha a fazer. Conferi antes as duas exceções que furam o foco: (a) o
+**despacho do molde da 32.6** está `FECHADO` nas três ilhas que a 32.6 nomeia — lido no topo dos três
+`PROMPT.md`, com hora de fecho em cada um; (b) nenhum despacho **ALTA** é de ilha *"no ar e quebrada"*.
+`executando_desde` estava `null`, que pela **1.1** já significa que não havia bloco da Fundação vivo —
+reserva escrita às **13h54Z** (commit `a860712`), push aceito **de primeira**, campo **reescrito às
+14h11Z** pela mesma execução. `git log` entre `origin/main` e `origin/claude/dreamy-mccarthy-4smb5m`
+veio **vazio nos dois sentidos** e a listagem de PRs devolveu **zero aberto** — nada a mergear.
+
+**A REDE, MEDIDA E NÃO HERDADA (20.2).** `rodametria.com.br` em **200 nas três passadas**, com
+`aquametria.com.br` em 200 nas mesmas três, e o `/status` em 200 na **revisão 17**, a que o 5c deixou.
+
+**POR QUE O 5d.** O próprio `PROMPT.md` já o declarava *"o próximo bloco, e ele não espera ninguém"*,
+com as três razões escritas: não depende de despacho nenhum, fica fora do teto da 21.4 pela **21.7**, e
+é dívida de confiança no ar. A dívida estava medida desde a contagem de sitemap de 30/10 às 10h3xZ: **a
+ilha serve link de afiliado da Shopee desde 29/10** e não tinha `/divulgacao-de-afiliados/` nem
+`/privacidade/`.
+
+---
+
+### 1. O QUE FOI AO AR
+
+**Quatro URLs, e a casca não foi tocada.** `/sobre/` (#21), `/contato/` (#22),
+`/divulgacao-de-afiliados/` (#23) e `/privacidade/` (#24), pelo snippet `rodametria-institucional`
+**1.0.0** (#9 no Code Snippets). Elas entraram pelos filtros `rodametria_paginas` e
+`rodametria_instalar`, de dentro do próprio snippet delas — que é a promessa que a casca faz desde a
+revisão 3 dela, *"a casca não é editada quando a ilha cresce"* —, e a instalação rodou porque a
+**assinatura do mapa** mudou, que é exatamente o que a casca **1.4.0** nasceu para fazer em 29/10.
+Zero linha de casca neste bloco, e portanto zero risco no arquivo que pinta todas as páginas.
+
+**A instalação aconteceu na requisição SEGUINTE à do Sync, e isso é o mecanismo funcionando.** O log
+diz `snippets/rodametria-institucional: ok (snippet #9 criado)` às 14h40, e o relato de instalação da
+casca é de **14h41:38** — porque quando o `init` chamou a instalação às 14h40 o snippet ainda não
+estava carregado naquela requisição. Era exatamente o defeito de 29/10 que custou as três páginas do
+5b; com a assinatura no lugar da versão, a passada seguinte criou as quatro sem ninguém tocar em nada.
+
+`pai` **nulo** nas quatro, pela **16.1** ao pé da letra (*"sem página solta na raiz além de home,
+sobre, contato, divulgação de afiliados e privacidade"*) — e `garantir_pagina()` aceita pai zero
+exatamente por elas. `no_menu` **true**: o `VOZ.md` manda um menu curto de assunto, e página
+institucional no menu de cima rouba o lugar do que a pessoa veio procurar. Elas aparecem no **rodapé**,
+que a casca monta do mapa inteiro e serve em toda página — e isso fechou a **16.4(f)** com folga:
+medido no ar, cada uma das quatro **recebe link de 9 das 9 páginas no ar**, contra as 2 que a regra pede.
+
+### 2. O DESEMBARQUE, PELA 20.4 E PELA 20.6
+
+Revisão **19** no `/status`, com as **cinco** linhas da revisão corrente lidas **uma por uma** e todas
+dizendo `ok`. O portão de ar também as leu e registrou: *"15 linha(s) na janela, 1 da revisão 19, 0
+linha de falha nesta entrega"*.
+
+**E a 20.6 foi medida de novo, com um achado que ela não tinha.** A 20.6 diz que o cron roda **por
+visita** e não por relógio, e isso continua verdadeiro — mas ela não diz o que acontece quando o evento
+**não está vencido**. Empurrei a revisão 18 às 14h11Z e o `/status` ficou em 17 por meia hora, com
+`ultimo: 14:10:04` — ou seja: o Sync **havia rodado** às 14h10, um minuto antes do meu push, e o
+`rodametria_30min` só vencia às ~14h40. Visitar a home e bater no `wp-cron.php` (que respondeu **409**,
+prova de cron em andamento) **não antecipou nada**, e não devia: o WP-Cron dispara evento **vencido**,
+não evento futuro. A revisão entrou às **14h40:39**, pontualmente no turno.
+
+**A régua que isto acrescenta, e ela é de leitura e não de conserto:** o campo `ultimo` do `/status`
+separa os três mundos que a 20.5 junta em dois. `ultimo` **antigo** = o Sync não rodou (defeito).
+`ultimo` **de agora** com revisão atrasada = cache do GitHub (reacione). `ultimo` **recente mas
+anterior ao push** = nem defeito nem cache: é **turno de cron**, e o que resolve é esperar o próximo
+mantendo as visitas de pé para ele disparar. Gastei uma rodada de reação achando que era cache, até ler
+o `ultimo` e ver que ele era mais velho que o meu próprio push.
+
+### 3. A PÁGINA DE PRIVACIDADE FOI **MEDIDA** ANTES DE ESCRITA, E É ISSO QUE ELA TEM DE DIFERENTE
+
+Não escrevi uma política de privacidade: medi o que o site faz e escrevi o que medi. As quatro
+medições, feitas do lado de fora, como o navegador recebe:
+
+| o que | medido | consequência na página |
+|---|---|---|
+| `Set-Cookie` | **zero**, nas URLs no ar | a página afirma que o site não escreve cookie nenhum |
+| medidor de audiência e pixel | **zero** ocorrência de doze famílias procuradas | a página afirma que não há medidor — e não há GA4 nesta ilha |
+| endereços de fora que **carregam** | **dois**: Google (`fonts.googleapis.com` e `fonts.gstatic.com`, em toda página) e Shopee (`cf.shopee.com.br`, onde há foto) | a página **nomeia os dois**, com o que cada um serve |
+| endereços que são **só link** | `s.shopee.com.br` e `dspace.ups.edu.ec` | a página diz que link não faz nada até o clique |
+
+**E A MEDIÇÃO ACHOU O QUE ERA MAIS FÁCIL DE ESCONDER, que é a parte de que mais me orgulho neste
+bloco.** A primeira versão da página dizia, como toda página de privacidade de calculadora diz, que *"a
+conta é feita no seu navegador e o que você digita não sai dele"*. O formulário da F2 é
+**`method="get"`** com `action` para a própria URL: se a pessoa aperta o botão, **os números vão para o
+endereço da página** e passam pelo servidor junto com o pedido, e ficam no registro de acesso do
+hospedeiro. A frase bonita era **falsa na metade que importa**. O que foi ao ar diz as duas coisas
+separadas — mexer nos campos não envia um byte; apertar o botão põe os valores na barra do navegador,
+de propósito, para o resultado poder ser guardado ou mandado para alguém — e nomeia quais são os
+quatro números. **Dizer "nada sai" seria mentir em quatro palavras.**
+
+**A `/contato/` NÃO INVENTOU UM CANAL.** Esta ilha não tem caixa de e-mail, e o despacho de 13/09 em
+`dados/despachos.md` — *"o que NÃO se faz enquanto isso: publicar um endereço que ninguém lê"* — é
+explícito. A página diz que o canal não existe, diz por que, e entrega no lugar o que de fato serve:
+toda afirmação daqui carrega fonte e data, e a seção do fim de cada página nomeia a loja, o anúncio e o
+dia da leitura, para conferir **sem intermediário**. O despacho foi reescrito hoje: ele dizia "nenhuma
+das **três**" e agora são **quatro**, com o custo novo escrito (uma página chamada "Contato" sem
+contato) e com a linha que a Fundação troca no dia em que a caixa existir — **uma linha**, no JSON
+declarado, sem tocar em código.
+
+### 4. NENHUM NÚMERO É DIGITADO: 16 MOLDES CONTADOS NA HORA DE SERVIR
+
+A prosa mora em `dados/paginas-institucionais.json` e traz molde no lugar de todo número;
+`rdm_inst_numeros()` os conta ao servir, das options que o Sync grava e do mapa de páginas da casca.
+Isto não é preciosismo: esta é a família de página que **fala de si mesma** (*"quantos itens têm link",
+"quantas páginas no ar"*), que é justamente o caso em que a seção 8 diz que o número digitado passa a
+mentir calado.
+
+**As quatro caixas no ar, cada número conferido por uma TERCEIRA CONTA** — recontado em Python, dos
+arquivos de dado, por caminho diferente do que o PHP usa, e comparado com o HTML servido:
+
+| página | caixa | no ar | terceira conta |
+|---|---|---|---|
+| `/sobre/` | veículos no banco | **17** | 17 |
+| `/contato/` | anúncios lidos um por um | **40** | 40 |
+| `/divulgacao-de-afiliados/` | itens com link de loja | **5** | 5 |
+| `/privacidade/` | páginas no ar | **9** | 9 |
+
+A conta de `/privacidade/` é a mais interessante das quatro porque as duas metades leem **fontes
+diferentes de verdade**: o PHP conta o **mapa de páginas da casca** e o portão conta o
+**`wp-sitemap.xml` servido**. Quando elas discordarem, a divergência é informação e não ruído — URL no
+sitemap que o mapa não conhece é página órfã da árvore da 16, e página no mapa que o sitemap não lista
+não é indexável.
+
+### 5. TRÊS PORTÕES REPROVARAM A PÁGINA **CERTA** EM DOIS DIAS, E A TERCEIRA VEZ FOI HOJE
+
+Esta é a lição de método do bloco, e ela tem nome no contrato: *"portão que reprova página certa é o
+caminho mais curto para alguém passar a ignorá-lo"* (20.5 e 32.5-b, com as mesmas palavras).
+
+1. **30/10, bloco 5c:** `gerar-f2.py --conferir` reprovava a F2 por causa do selo `gerado_em`.
+2. **30/10, hoje, `teste-institucional.py`:** a régua que proíbe a folha desta família de redecorar o
+   que é da casca procurava a palavra `h1` no texto da folha — e achou **o comentário que explica por
+   que ela não mexe em h1**. Consertada para medir **seletor**, com as duas metades provadas no
+   autoteste: o comentário que cita `h2` não reprova, e `.rdm-inst-secao h2{}` reprova.
+3. **30/10, hoje, `conferir-institucional-no-ar.py`:** disse que dois itens do bloco de recusa de
+   `/sobre/` *"não estão no ar"*. Estavam, inteiros e corretos: `esc_html()` transforma a aspa reta em
+   `&quot;` e a comparação era contra o texto declarado, com aspa. Consertado com `html.unescape`.
+
+Nas três, a tentação era mexer na página. Nas três, o defeito era da régua.
+
+### 6. E UM PORTÃO NÃO ESTAVA REPROVANDO O QUE DEVIA: A **HOME** ESTAVA FORA DA 32.5 DESDE QUE NASCEU
+
+Achado escrevendo este bloco, e é a **32.5-c** outra vez — *família nova entra no molde pelo seletor,
+nunca pela intenção*. `conferir-32-5-no-navegador.mjs` decidia "está no molde" por
+`!!(bloco_de_compra || formulario)`. Página com **caixa de resposta e sem nada para vender** caía em
+`fora do molde`: a caixa era medida, **impressa** e **nunca julgada** contra os 700 px. A 32.5 diz o
+contrário com todas as letras — *"o formulário (ou a caixa de resposta, em ficha) começa antes de 700
+px"*: ter caixa já é estar no molde.
+
+**E não era hipotético: a HOME desta ilha é HUB, não tem bloco de compra e não tem formulário.** Ela
+estava fora do veredito desde 29/10. Medida agora, passa com folga — mas passar por medição e passar
+por omissão são coisas diferentes, e só a primeira avisa quando mudar. As quatro páginas de hoje
+entrariam pela mesma porta: seriam **quatro** páginas de molde que o portão abria e deixava passar.
+
+O teto de **compra** passou a ser julgado só onde há o que comprar, e onde não há o portão **imprime**
+"não se aplica (a página não vende nada)" em vez de pular calado — com a outra metade cobrada: página
+que serve link patrocinado **fora** de um bloco de compra é **reprovada**, porque sem o componente o
+teto não teria o que medir. Sem isso a isenção viraria a porta dos fundos dos 1.400 px.
+
+### 7. MEDIDO NO AR — os números, e nenhum deles é a conta de antes do desembarque
+
+**32.5, a 390 px num Chromium de verdade, com quebra de cache** (`conferir-32-5-no-navegador.mjs`,
+descobrindo as URLs no sitemap): **8 de 8 páginas do molde aprovadas**, de 3 antes do conserto.
+
+| página | caixa de resposta | compra | altura |
+|---|---|---|---|
+| `/sobre/` | **211 px** | não se aplica | 3.769 px |
+| `/contato/` | **244 px** | não se aplica | 3.372 px |
+| `/divulgacao-de-afiliados/` | **244 px** | não se aplica | 3.946 px |
+| `/privacidade/` | **244 px** | não se aplica | 5.092 px |
+
+Teto da caixa: 700 px. Pior caixa da ilha inteira: 331 px (a home). `/veiculos/` segue **fora do
+molde**, e agora com o motivo exato impresso: não tem componente de molde nenhum.
+
+**O piso de 1.500 caracteres da seção 8, MEDIDO NO AR** e não pela conta feita antes de desembarcar —
+que é o erro que a mãe `/veiculos/` quase pagou em 29/10, quando a conta de antes dava 1.253 e a página
+no ar passou: `/sobre/` **4.449** · `/contato/` **3.674** · `/divulgacao-de-afiliados/` **4.786** ·
+`/privacidade/` **5.899**.
+
+**Bancada com rede: 17 portões, 0 falha, APROVADO.** `conferir-no-ar.py` 445 afirmações / 0 falha nas
+**9** URLs; `conferir-institucional-no-ar.py` **210** afirmações / 0 falha;
+`conferir-32-5-no-navegador.mjs` 8 de 8. Sem rede: 14 portões, 0 falha, com os **19 casos de autoteste**
+do portão novo, que **fabricam** o mundo de cada regra em vez de esperar que o dado o produza — dígito
+plantado na prosa, molde órfão, promessa escondida dentro do bloco de recusa, negação no meio da frase,
+número literal na caixa, página fina.
+
+### 8. O QUE ESTE BLOCO NÃO FEZ, dito em vez de deixar implícito
+
+- **A `/contato/` não tem canal**, e isso é do Raphael. Está no despacho, agora com quatro ilhas.
+- **A ilha segue com `piso: abaixo`:** 9 URLs contra as 40 da 21.1. As quatro de hoje **não contam para
+  o piso de malha** — a 21.7 as tira do teto justamente porque nenhuma responde a uma busca.
+- **O teto de levas da 21.4 não foi gasto:** pela 21.7 estas quatro não são leva.
+- **O soft 404 da borda do hospedeiro** segue sendo despacho ALTA e não se conserta daqui.
+
+**PRÓXIMO PASSO DESBLOQUEADO.** A fila não tem mais nada que seja ao mesmo tempo grande e livre: a
+**F1** depende do `gov.br` (despacho ALTA), a **F3** depende de `carga_max_kg` em registro com oferta,
+as duas consultas que sobraram da cauda dependem de uma sessão de Chrome (despacho de 30/10, no topo do
+`PROMPT.md`), e `scooter`/`moto elétrica` dependem das etiquetas do Mercado Livre. O que **não**
+depende de ninguém é o **bloco 4**: a **F3** como REGRA, sem página — o mesmo desenho que a ohmetria
+usou para a F1 dela com o banco vazio, e que esta ilha já usou na F2. Ela nasce medindo quantos
+registros têm carga máxima declarada e dizendo na própria tela o que falta, em vez de esperar o dado.
+
 ## 2026-10-30 10h1xZ–10h4xZ — **BLOCO 5c: A CAUDA DESTE NICHO É TERRITÓRIO DE FAZENDA** — três das cinco consultas fecharam sem precisar do Chrome, e no caminho a bancada acusou um portão que reprovava a página CERTA
 
 **A ESCOLHA DA ILHA.** `foco.md` nomeia a **rodametria** (foco total e absoluto, decisão do Raphael de

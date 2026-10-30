@@ -414,30 +414,68 @@ a consulta em `dados/consultas-de-produto.json` com a escada de chaves e escreve
 *(A metade da lista foi entregue; a outra metade virou o despacho de 30/10. O que o bloco não
 previu é que a lista **fecharia três das cinco** e tiraria a cauda do caminho.)*
 
-**5d. AS QUATRO PÁGINAS QUE O SITE DEVE A QUEM LÊ — É O PRÓXIMO BLOCO, E ELE NÃO ESPERA NINGUÉM.**
-O bloco mais desbloqueado da fila, e ele foi achado medindo o sitemap em 30/10: as **5 URLs** no
-ar são `/`, `/autonomia-patinete-eletrico/`, `/veiculos/` e as duas filhas. **Não existe
-`/sobre/`, `/contato/`, `/divulgacao-de-afiliados/` nem `/privacidade/`** — e a 16.1 nomeia essas
-cinco por nome. **A ilha publica link de afiliado da Shopee desde 29/10**, na F2 e nas duas
-páginas de produto, sem a página de divulgação que o programa e o leitor pedem.
+**5d. ~~AS QUATRO PÁGINAS QUE O SITE DEVE A QUEM LÊ~~ — ENTREGUE EM 30/10/2026 às 13h5xZ–14h4xZ, E A
+DE PRIVACIDADE NÃO PROMETE NADA: TUDO O QUE ELA AFIRMA FOI MEDIDO NA PÁGINA SERVIDA.** No ar, 9 URLs
+(eram 5): `/sobre/`, `/contato/`, `/divulgacao-de-afiliados/` e `/privacidade/`, pelo snippet
+`snippets/rodametria-institucional.php` (1.0.0, #9), com `dados/paginas-institucionais.json` (a voz,
+com 16 moldes e zero dígito), `ferramentas/teste-institucional.py` (sem rede, 19 casos de autoteste) e
+`ferramentas/conferir-institucional-no-ar.py` (210 afirmações no ar). Revisão **19** às 14h40:39Z, com
+as cinco linhas da revisão corrente dizendo `ok` (20.4).
 
-**Por que ele é o próximo, e as três razões são independentes:** (a) **não depende de despacho
-nenhum** — não precisa do `gov.br`, nem do Chrome, nem das etiquetas do ML, nem de uma oferta
-nova; (b) pela **21.7** essas cinco páginas **ficam fora do teto** de 10 URLs por leva e 3 levas
-por semana, então ele não gasta leva da malha; (c) é **dívida de confiança no ar**, não página de
-ranqueamento — e a 21.7 nasceu exatamente deste caso na aquametria, com a página de privacidade
-parada em "aberto" *"com a etiqueta do GA4 no ar e link de afiliado publicado desde 12/09"*.
+**A CASCA NÃO FOI TOCADA**, e isso é o mecanismo dela funcionando: as quatro entram pelos filtros
+`rodametria_paginas` e `rodametria_instalar`, e a instalação rodou porque a **assinatura do mapa**
+mudou — o que a casca 1.4.0 nasceu para fazer em 29/10. As páginas nasceram na requisição **seguinte**
+à do Sync (snippet criado às 14h40, instalação às 14h41:38), que era exatamente o defeito que custou as
+três páginas do 5b e que a assinatura conserta sozinho.
 
-**O que ele NÃO afrouxa** (21.7, última linha): a voz da 15, a árvore e o cluster da 16, a
-verificação no ar da 8 e o molde da 32 continuam inteiros. Pela **32.2** essas páginas são de
-RESPOSTA, não de ferramenta: o teto de 700 px é da **caixa de resposta**, e **item vivo nunca
-tem link de compra** — aqui não há produto nenhum a vender, então elas nascem **sem** bloco de
-compra, e isso é o molde certo e não uma exceção a ele.
+**O QUE A PÁGINA DE PRIVACIDADE AFIRMA, MEDIDO DO LADO DE FORA:** zero `Set-Cookie`; zero medidor de
+audiência e zero pixel; e os **dois** endereços de fora que *carregam* junto com a página estão
+**nomeados nela** — Google (as fontes da letra, em toda página) e Shopee (`cf.shopee.com.br`, onde há
+foto). **E a medição achou o que era mais fácil de esconder:** o formulário da F2 é `method="get"`,
+então apertar o botão manda os quatro números para o **endereço** da página, que passa pelo servidor —
+a primeira versão do texto dizia "o que você digita não sai do navegador", e era falsa na metade que
+importa.
 
-**Pronto quando:** as quatro URLs em 200 no `wp-sitemap.xml` lido no ar com quebra de cache, as
-quatro no menu da casca, `python3 ferramentas/bancada.py --no-ar` aprovando, e o corpo de cada
-uma acima do piso de 1.500 caracteres da seção 8 **medido no ar** — nunca pela conta feita antes
-de desembarcar, que é o erro que a mãe `/veiculos/` quase pagou em 29/10 (ela daria 1.253).
+**A `/contato/` NÃO INVENTOU UM CANAL.** Esta ilha não tem caixa de e-mail e o despacho de 13/09 em
+`dados/despachos.md` proíbe *"publicar um endereço que ninguém lê"*. A página diz isso, e o despacho
+foi reescrito hoje: eram **três** ilhas, são **quatro**. **A linha que a Fundação troca no dia em que a
+caixa existir é UMA**, em `dados/paginas-institucionais.json`, na seção "O canal, dito como ele está
+hoje" — o parágrafo da ausência sai e o endereço entra. Nada de código muda.
+
+**AS QUATRO CAIXAS, CADA NÚMERO CONFERIDO POR UMA TERCEIRA CONTA** (recontada em Python, dos arquivos,
+por caminho diferente do PHP): `/sobre/` 17 veículos · `/contato/` 40 anúncios lidos ·
+`/divulgacao-de-afiliados/` 5 itens com link · `/privacidade/` 9 páginas no ar. A última é a melhor das
+quatro porque as duas metades leem **fontes diferentes**: o PHP conta o mapa de páginas da casca e o
+portão conta o `wp-sitemap.xml` servido — e quando discordarem, a divergência é informação.
+
+**E O BLOCO ACHOU UM PORTÃO QUE NÃO REPROVAVA O QUE DEVIA: a HOME estava fora da 32.5 desde que
+nasceu.** `conferir-32-5-no-navegador.mjs` decidia "está no molde" por `!!(bloco_de_compra ||
+formulario)`, e página com **caixa de resposta e sem nada para vender** caía em "fora do molde" — a
+caixa era medida, impressa e **nunca julgada** contra os 700 px. A home é HUB, sem bloco de compra e
+sem formulário. Páginas do molde: **3 → 8**. O teto de compra passou a valer só onde há o que comprar,
+com "não se aplica" impresso, e página que serve link patrocinado **fora** de um bloco de compra passou
+a ser **reprovada**. É a 32.5-c outra vez: família nova entra no molde **pelo seletor**, nunca pela
+intenção.
+
+**MEDIDO NO AR.** 32.5 a 390 px: caixa a **211 px** (`/sobre/`) e **244 px** (as outras três), teto
+700, **8 de 8** aprovadas. Piso de corpo da seção 8 **medido no ar** e não pela conta de antes do
+desembarque: **4.449 · 3.674 · 4.786 · 5.899** caracteres. 16.4(f): cada uma recebe link de **9 das 9**
+páginas no ar, contra as 2 da regra — elas estão no rodapé, que a casca monta do mapa inteiro, e fora
+do menu de cima por ordem do `VOZ.md`. Bancada com rede: **17 portões, 0 falha**.
+
+**E A 20.6 GANHOU UMA RÉGUA DE LEITURA**, que não é conserto: o campo `ultimo` do `/status` separa os
+**três** mundos que a 20.5 junta em dois. `ultimo` **antigo** = o Sync não rodou (defeito). `ultimo`
+**de agora** com revisão atrasada = cache do GitHub (reacione). `ultimo` **recente mas anterior ao
+push** = nem defeito nem cache: é **turno de cron**, e o que resolve é esperar o próximo mantendo as
+visitas de pé para ele disparar. Medido hoje: Sync às 14h10:04, push às 14h11, revisão entrando às
+14h40:39 — bater no `wp-cron.php` (409) não antecipa evento que ainda não venceu, e não devia.
+
+**5d-ORIGINAL (guardado).** O bloco mais desbloqueado da fila, achado medindo o sitemap em 30/10: as
+**5 URLs** no ar eram `/`, `/autonomia-patinete-eletrico/`, `/veiculos/` e as duas filhas, e não existia
+`/sobre/`, `/contato/`, `/divulgacao-de-afiliados/` nem `/privacidade/` — com a ilha publicando link de
+afiliado da Shopee desde 29/10. As três razões de ele ser o próximo, todas independentes: (a) não
+depende de despacho nenhum; (b) pela **21.7** essas páginas ficam fora do teto de 10 URLs por leva e 3
+levas por semana; (c) é dívida de confiança no ar, e a 21.7 nasceu deste caso na aquametria.
 
 **6. LISTA DE PROSPECÇÃO DO WIDGET** — lojas brasileiras de mobilidade elétrica com site próprio, `publicar: false`.
 
