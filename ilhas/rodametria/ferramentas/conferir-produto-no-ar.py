@@ -26,6 +26,15 @@ O QUE ELE COBRA, e cada item e uma coisa que o dado de hoje NAO exercita:
   5. O JSON-LD: nenhuma `Offer` com `url` vazia, e `availability` so onde ha
      ficha — afirmar estoque sobre um resultado de busca e afirmar o que ninguem
      mediu.
+  6. A SECAO MAE (`/veiculos/`), ACRESCENTADA EM 02/11/2026 no bloco que a poe no
+     molde. Ela nao aparecia aqui porque este portao descobre as paginas CASANDO o
+     sitemap com os slugs da vitrine — e a mae nao e uma consulta, entao nao tem
+     linha na vitrine e CAIA FORA de todo portao de ar desta ilha. O que ele cobra
+     nela: a CAIXA DE RESPOSTA da 32.2 existe e vem ANTES dos cartoes; o numero
+     dela e a SOMA dos anuncios das filhas publicadas, contada aqui da fonte;
+     nenhum molde `{...}` cru na tela; o botao de cada familia cai no `#comprar` de
+     uma URL que esta no sitemap; e ZERO link patrocinado, porque a mae nao vende
+     nada e link de afiliado fora de bloco de compra e reprovacao da 32.5.
 
 ELE DESCOBRE AS URLs NO `wp-sitemap.xml` LIDO NO AR, nunca de uma lista, pela
 frase da 32.5-b: "regua que nao varre todas certifica a pagina que o autor
@@ -284,9 +293,92 @@ def main():
                  % (caminho, len(linhas), com_ficha, vazios, quantos, nos_cartoes, ofertas,
                     com_disponibilidade))
 
+    conferir_a_mae(urls, fonte)
+
     registro("NAO MEDIDO AQUI: pixel. A 32.5 e trabalho de "
              "conferir-32-5-no-navegador.mjs, que abre a pagina a 390 px num navegador.")
     return encerrar()
+
+
+def conferir_a_mae(urls, fonte):
+    """A SECAO MAE, que nao tinha portao de ar nenhum ate 02/11/2026.
+
+    O numero da caixa dela e AGREGADO das filhas, entao ele se confere de um jeito
+    que nenhuma outra pagina desta ilha permite: somando a fonte do repositorio e
+    comparando com o que a tela diz. Numero de tela contado contra a fonte e a
+    unica forma de a secao 8 ser obedecida numa pagina que fala do estado do banco.
+    """
+    caminho = "/veiculos/"
+    if not afirma(DOMINIO + caminho in urls,
+                  "a secao mae nao esta no wp-sitemap.xml"):
+        return
+
+    cod, html = buscar(caminho)
+    if not afirma(cod == 200, "%s nao respondeu 200 (deu %s)" % (caminho, cod)):
+        return
+    corpo = corpo_da_pagina(html)
+
+    # (a) A CAIXA DE RESPOSTA EXISTE. Ate 02/11 ela NAO existia, e o portao de
+    #     pixel listava esta pagina como "sem componente de molde nenhum" — o que
+    #     significa que os 700 px da 32.5 nunca a julgaram (32.5-c).
+    caixas = len(re.findall(r'class="rdm-molde-caixa', corpo))
+    afirma(caixas == 1,
+           "%s serve %d caixa de resposta do molde (a 32.2 pede uma)" % (caminho, caixas))
+
+    # (b) E ELA VEM ANTES DOS CARTOES. "Caixa no topo" e ordem, nao presenca:
+    #     caixa depois da lista passaria a afirmacao (a) e reprovaria a 32.2.
+    i_caixa = corpo.find("rdm-molde-caixa")
+    i_cartoes = corpo.find('class="rdm-cartoes"')
+    afirma(i_caixa != -1 and i_cartoes != -1 and i_caixa < i_cartoes,
+           "%s nao serve a caixa de resposta ANTES dos cartoes das familias" % caminho)
+
+    # (c) O NUMERO DA CAIXA E A SOMA DAS FILHAS PUBLICADAS, contada da fonte.
+    #     So entram as familias que estao no sitemap: a vitrine pode trazer uma
+    #     familia que ainda nao desembarcou, e somar o que a tela nao mostra seria
+    #     cobrar da pagina um numero que ela nao tem como ter.
+    no_ar = [p for slug, p in fonte.items()
+             if DOMINIO + "/" + slug + "/" in urls]
+    soma = sum(int(p.get("numeros", {}).get("n") or 0) for p in no_ar)
+    m = re.search(r'class="rdm-molde-caixa-numero"[^>]*>\s*<span class="rdm-num">([^<]+)</span>',
+                  corpo)
+    if afirma(m is not None, "%s nao serve o numero da caixa em Mono" % caminho):
+        afirma(normalizar(m.group(1)) == str(soma),
+               "%s diz %r anuncios na caixa e a fonte das %d familia(s) no ar soma %d"
+               % (caminho, normalizar(m.group(1)), len(no_ar), soma))
+
+    # (d) NENHUM MOLDE CRU NA TELA. A prosa da caixa vem da camada declarada com
+    #     moldes, e molde que o preenchedor nao conhece sai literal para quem le —
+    #     a cicatriz que `teste-institucional.py` ja cobra na irma institucional.
+    crus = re.findall(r"\{[A-Z_]{2,}\}", texto_do_corpo(html))
+    afirma(not crus, "%s serve molde cru na tela: %s" % (caminho, ", ".join(sorted(set(crus)))))
+
+    # (e) O BOTAO DE CADA FAMILIA CAI NO BLOCO DE COMPRA DELA, e o alvo existe.
+    #     Link interno para 404 e o defeito que a casca desta ilha publica a rota
+    #     `/casca` para ninguem precisar adivinhar.
+    botoes = re.findall(r'<a class="rdm-molde-cartao-botao" href="([^"]+)"', corpo)
+    afirma(len(botoes) == len(no_ar),
+           "%s serve %d botao de familia para %d familia(s) no ar"
+           % (caminho, len(botoes), len(no_ar)))
+    for u in botoes:
+        afirma(u.endswith("#comprar"),
+               "%s: o botao da familia nao cai no bloco de compra: %s" % (caminho, u))
+        afirma(u.split("#")[0] in urls,
+               "%s: o botao da familia aponta para fora do sitemap: %s" % (caminho, u))
+
+    # (f) ZERO href VAZIO e ZERO LINK PATROCINADO. A mae nao vende nada; link de
+    #     afiliado FORA de um bloco de compra e reprovacao no portao de pixel,
+    #     porque sem o componente o teto de 1.400 px nao teria o que medir.
+    vazios = len(re.findall(r'href=""', html)) + len(re.findall(r"href=''", html))
+    afirma(vazios == 0, "%s serve %d href vazio" % (caminho, vazios))
+    patrocinados = len(re.findall(r'rel="[^"]*sponsored', html))
+    afirma(patrocinados == 0,
+           "%s serve %d link patrocinado e nao tem bloco de compra" % (caminho, patrocinados))
+
+    registro("%s: %d caixa de resposta (numero %s = soma das %d familia(s) no ar), "
+             "%d botao(oes) de familia para o #comprar da filha, %d molde cru, "
+             "%d link patrocinado"
+             % (caminho, caixas, m.group(1) if m else "?", len(no_ar),
+                len(botoes), len(crus), patrocinados))
 
 
 def encerrar():

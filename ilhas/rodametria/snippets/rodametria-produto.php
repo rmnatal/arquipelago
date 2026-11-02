@@ -56,6 +56,16 @@
  * Sem `<script>` e sem `<style>` no retorno do shortcode (secao 8): o JSON-LD
  * sai no `wp_head` e a folha no `wp_footer`. Foi o E-comercial duplo dentro de
  * `<script>` que derrubou cinco calculadoras da Aquametria em 08/09/2026.
+ *
+ * 1.2.0 (02/11/2026) — A MAE ENTROU NO MOLDE, e ela estava FORA dele desde que
+ * nasceu. O portao de pixel desta ilha a listava como "sem componente de molde
+ * nenhum", e o preco disso nao era feio: era que os 700 px da 32.5 NUNCA a
+ * julgaram — regua que nao alcanca a pagina nao a reprova, so a ignora (32.5-c).
+ * Entrou a CAIXA DE RESPOSTA da 32.2, com o numero AGREGADO das filhas prontas
+ * (`rdm_produto_agregado_das_prontas()`) e a prosa escolhida por mundo numa
+ * funcao PURA (`rdm_produto_caixa_frases()`), mais o SEGUNDO BOTAO do cartao de
+ * cada familia, que cai no `id="comprar"` da filha. O titulo do cartao nao
+ * mudou um byte: a 32.3 protege ancora e link interno.
  */
 
 /* A VERSAO MORA NUMA CONSTANTE.
@@ -76,7 +86,7 @@
    canal de desembarque desta ilha. (`dados/consertos.md` e da Sentinela, nao da
    Fundacao — por isso este achado nao foi escrito la.) */
 if ( ! defined( 'RODAMETRIA_PRODUTO_VERSAO' ) ) {
-	define( 'RODAMETRIA_PRODUTO_VERSAO', '1.1.0' );
+	define( 'RODAMETRIA_PRODUTO_VERSAO', '1.2.0' );
 }
 if ( ! defined( 'RODAMETRIA_PRODUTO_SECAO' ) ) {
 	define( 'RODAMETRIA_PRODUTO_SECAO', 'veiculos' );
@@ -552,6 +562,137 @@ add_shortcode( 'rodametria_produto', 'rdm_produto_pagina_html' );
  * 7. A SECAO MAE — 16.4(a): ela lista TODAS as filhas, com a consulta de ancora
  * ------------------------------------------------------------------------- */
 
+/**
+ * O AGREGADO DAS FILHAS PRONTAS, e ele e FUNCAO PURA sobre a lista.
+ *
+ * A mae nao tem consulta propria: o numero dela e a soma das filhas, e a faixa
+ * de preco vai do MENOR `de` de todas ao MAIOR `ate` de todas — comparados pelo
+ * campo numerico da vitrine (`de_numero`/`ate_numero`), nunca pela string com
+ * `R$` e virgula, que ordena por texto e poe `R$ 6.199,90` antes de
+ * `R$ 1.297,13` sem reclamar. A string formatada que sai e a do registro que
+ * ganhou a comparacao, nunca remontada aqui.
+ *
+ * As DATAS saem como lista de distintas, e nao como "a data": duas filhas lidas
+ * em dias diferentes nao tem uma data, e a frase que escolher uma delas mente
+ * sobre a outra. E a mesma pedra da linha do piso na tabela da filha — "com
+ * duas buscas distintas a linha NAO sai, porque a primeira e arbitraria".
+ */
+if ( ! function_exists( 'rdm_produto_agregado_das_prontas' ) ) {
+function rdm_produto_agregado_das_prontas( $prontas ) {
+	$ag = array(
+		'familias' => 0,
+		'anuncios' => 0,
+		'de'       => '',
+		'ate'      => '',
+		'datas'    => array(),
+	);
+	$de_num  = null;
+	$ate_num = null;
+
+	foreach ( (array) $prontas as $p ) {
+		$n = ( isset( $p['vitrine']['numeros'] ) && is_array( $p['vitrine']['numeros'] ) )
+			? $p['vitrine']['numeros'] : array();
+
+		$ag['familias']++;
+		$ag['anuncios'] += isset( $n['n'] ) ? (int) $n['n'] : 0;
+
+		if ( isset( $n['de_numero'], $n['de'] )
+			&& ( null === $de_num || (float) $n['de_numero'] < $de_num ) ) {
+			$de_num   = (float) $n['de_numero'];
+			$ag['de'] = (string) $n['de'];
+		}
+		if ( isset( $n['ate_numero'], $n['ate'] )
+			&& ( null === $ate_num || (float) $n['ate_numero'] > $ate_num ) ) {
+			$ate_num   = (float) $n['ate_numero'];
+			$ag['ate'] = (string) $n['ate'];
+		}
+
+		$data = isset( $p['vitrine']['colhido_em_br'] ) ? (string) $p['vitrine']['colhido_em_br'] : '';
+		if ( '' !== $data && ! in_array( $data, $ag['datas'], true ) ) {
+			$ag['datas'][] = $data;
+		}
+	}
+
+	return $ag;
+}
+}
+
+/**
+ * AS FRASES DA CAIXA DA MAE — UMA FRASE POR MUNDO, escolhida aqui e escrita no
+ * `dados/paginas-de-produto.json`.
+ *
+ * POR QUE FUNCAO PURA, e a secao 8 escreveu o motivo com todas as letras: "toda
+ * recusa que depende de uma relacao entre os dados — empate, ausencia, borda,
+ * limite — mora numa funcao pura que recebe a relacao JA CALCULADA; recusa
+ * escrita dentro do laco que a calcula so e testavel no dia em que o banco
+ * produzir o caso, e e esse o dia em que ela vai estar errada". Hoje esta ilha
+ * tem DUAS familias prontas, as duas lidas no MESMO dia, e TRES que faltam: de
+ * sete mundos possiveis o dado exercita um. `teste-caixa-da-mae.php` fabrica os
+ * outros seis.
+ *
+ * E a frase do que falta SO SAI quando falta algo, pelo mesmo motivo que o
+ * gerador da vitrine ja cobra na frase do rotulo de potencia: "imprime zero no
+ * meio da frase" e falha nomeada naquele portao.
+ */
+if ( ! function_exists( 'rdm_produto_caixa_frases' ) ) {
+function rdm_produto_caixa_frases( $ag, $faltam, $moldes ) {
+	$familias = isset( $ag['familias'] ) ? (int) $ag['familias'] : 0;
+	$datas    = ( isset( $ag['datas'] ) && is_array( $ag['datas'] ) ) ? $ag['datas'] : array();
+	$faltam   = (int) $faltam;
+	$frases   = array();
+
+	$tem_faixa = ( '' !== (string) $ag['de'] && '' !== (string) $ag['ate'] );
+
+	if ( 0 === $familias ) {
+		$frases[] = isset( $moldes['escopo_nenhuma'] ) ? $moldes['escopo_nenhuma'] : '';
+	} elseif ( ! $tem_faixa ) {
+		/* FAMILIA PRONTA SEM FAIXA DE PRECO. Sem este ramo a frase sairia com
+		   "de  a ." na tela — buraco no lugar do numero, que e pior que numero
+		   velho porque nao parece defeito de dado, parece defeito de texto.
+		   E ELE TAMBEM TEM SINGULAR: a primeira versao deste ramo nao tinha, e o
+		   portao o pegou no minuto em que nasceu, servindo "nas 1 familias" —
+		   o MESMO plural que mente que o ramo com faixa ja pagava ao lado. */
+		$chave    = ( 1 === $familias ) ? 'escopo_sem_faixa_uma' : 'escopo_sem_faixa';
+		$frases[] = isset( $moldes[ $chave ] ) ? $moldes[ $chave ] : '';
+	} elseif ( 1 === $familias ) {
+		$frases[] = isset( $moldes['escopo_uma'] ) ? $moldes['escopo_uma'] : '';
+	} else {
+		$frases[] = isset( $moldes['escopo_muitas'] ) ? $moldes['escopo_muitas'] : '';
+	}
+
+	if ( $familias > 0 && 1 === count( $datas ) ) {
+		$frases[] = isset( $moldes['data_igual'] ) ? $moldes['data_igual'] : '';
+	} elseif ( $familias > 0 && count( $datas ) > 1 ) {
+		$frases[] = isset( $moldes['data_divergente'] ) ? $moldes['data_divergente'] : '';
+	}
+
+	if ( $faltam > 0 ) {
+		$frases[] = ( 1 === $faltam && isset( $moldes['falta_uma'] ) )
+			? $moldes['falta_uma']
+			: ( isset( $moldes['faltam'] ) ? $moldes['faltam'] : '' );
+	}
+
+	$troca = array(
+		'{N}'      => (string) ( isset( $ag['anuncios'] ) ? (int) $ag['anuncios'] : 0 ),
+		'{NO_AR}'  => (string) $familias,
+		'{FALTAM}' => (string) $faltam,
+		'{DE}'     => (string) $ag['de'],
+		'{ATE}'    => (string) $ag['ate'],
+		'{DATA}'   => ( 1 === count( $datas ) ) ? (string) $datas[0] : '',
+	);
+
+	$saida = array();
+	foreach ( $frases as $f ) {
+		$f = str_replace( array_keys( $troca ), array_values( $troca ), (string) $f );
+		if ( '' !== trim( $f ) ) {
+			$saida[] = $f;
+		}
+	}
+
+	return $saida;
+}
+}
+
 if ( ! function_exists( 'rdm_produto_mae_html' ) ) {
 function rdm_produto_mae_html() {
 	$ed = rdm_produto_editorial();
@@ -562,12 +703,38 @@ function rdm_produto_mae_html() {
 	}
 	$mae     = $ed['mae'];
 	$prontas = rdm_produto_paginas_prontas();
+	/* 16.5: as familias que a mae nomeia e ainda nao tem pagina. SOBIU para ca
+	   em 02/11/2026 porque a caixa de resposta as CONTA, e a lista continua
+	   servindo os cartoes mudos mais abaixo — uma leitura, dois usos. */
+	$faltam  = rdm_produto_familias_que_faltam();
 
 	$html  = '<div class="rdm-faixa rdm-pagina">';
 	$html .= rodametria_casca_trilha_html();
 	$html .= '<h1>' . esc_html( $mae['h1'] ) . '</h1>';
 	foreach ( (array) $mae['resposta'] as $t ) {
 		$html .= '<p class="rdm-promessa">' . esc_html( $t ) . '</p>';
+	}
+
+	/* (32.2) A CAIXA DE RESPOSTA NO TOPO, E ELA FALTAVA DESDE QUE A SECAO NASCEU.
+	   O portao de pixel desta ilha dizia isso com essas palavras — "sem
+	   componente de molde nenhum" —, e a consequencia nao era feia: era que os
+	   700 px da 32.5 NUNCA JULGARAM esta pagina. Ela servia
+	   `<p class="rdm-promessa">` onde o molde pede a caixa, entao o portao a
+	   listava FORA DO MOLDE e ia embora. E a 32.5-c em estado puro: a familia de
+	   pagina que entra depois nao herda a regra por intencao, so por seletor.
+
+	   O NUMERO E AGREGADO DAS FILHAS, contado na hora de servir, e a prosa sai
+	   da camada declarada com moldes. Pagina que fala do estado do banco e
+	   justamente onde numero digitado passa a mentir calado (secao 8). */
+	$caixa = ( isset( $mae['caixa'] ) && is_array( $mae['caixa'] ) ) ? $mae['caixa'] : array();
+	if ( $caixa ) {
+		$ag = rdm_produto_agregado_das_prontas( $prontas );
+		$html .= rodametria_casca_caixa(
+			isset( $caixa['rotulo'] ) ? (string) $caixa['rotulo'] : '',
+			(string) (int) $ag['anuncios'],
+			isset( $caixa['unidade'] ) ? (string) $caixa['unidade'] : '',
+			rdm_produto_caixa_frases( $ag, count( $faltam ), $caixa ),
+			'neutro' );
 	}
 
 	$html .= '<ul class="rdm-cartoes">';
@@ -581,14 +748,37 @@ function rdm_produto_mae_html() {
 		$html .= '<li class="rdm-cartao"><h2>' . $link . '</h2>'
 			. '<p>' . esc_html( sprintf(
 				'%d anúncios de adulto à venda, de %s a %s.',
-				(int) $n['n'], (string) $n['de'], (string) $n['ate'] ) ) . '</p></li>';
+				(int) $n['n'], (string) $n['de'], (string) $n['ate'] ) ) . '</p>';
+
+		/* (32.2) O SEGUNDO BOTAO DO CARTAO: "Ver produtos" da secao, e ele cai no
+		   BLOCO DE COMPRA da filha (`id="comprar"`), nao no topo dela. O titulo
+		   do cartao continua levando a pagina inteira — o link de cima nao muda
+		   um byte, porque a 32.3 protege ancora e link interno.
+
+		   O SEGUNDO BOTAO DA 32.2 SERIA "Calcular", e ELE NAO SAI AQUI, com o
+		   motivo escrito para a proxima execucao nao o "consertar": a 32.2 pede
+		   a ferramenta "com o parametro da pagina ja passado na URL", e a F2
+		   desta ilha recebe tensao e amperagem de BATERIA — familia de veiculo
+		   nao e parametro dela. Botao por familia seria o MESMO link duas vezes,
+		   a mesma pedra que a linha do piso da tabela ja paga ("repeti-la seria o
+		   mesmo link dezesseis vezes"). A conta de bateria continua linkada UMA
+		   vez, mais abaixo, na frase que ja existia. */
+		$url_filha = rodametria_casca_url_do_slug( $pagina['slug'] );
+		$rotulo    = isset( $mae['rotulo_do_botao_da_filha'] )
+			? (string) $mae['rotulo_do_botao_da_filha'] : '';
+		if ( '' !== $url_filha && '' !== $rotulo ) {
+			$html .= '<p><a class="rdm-molde-cartao-botao" href="'
+				. esc_url( $url_filha . '#comprar' ) . '">'
+				. esc_html( $rotulo ) . '</a></p>';
+		}
+
+		$html .= '</li>';
 	}
 
 	/* 16.5, e a nota dela: o cartao da pagina que ainda nao nasceu NAO e link, e
 	   a frase diz a CAUSA medida em vez de prometer data. "Em breve" de
 	   categoria nao e a frase proibida pela secao 7 — aquela e "link de loja em
 	   breve", dentro do bloco de compra, e nao existe aqui. */
-	$faltam = rdm_produto_familias_que_faltam();
 	if ( $faltam ) {
 		$html .= '<li class="rdm-cartao rdm-cartao-mudo"><h2>Ainda não nasceram</h2><ul>';
 		foreach ( $faltam as $f ) {

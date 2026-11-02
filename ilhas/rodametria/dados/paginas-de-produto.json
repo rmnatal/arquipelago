@@ -5,7 +5,8 @@
  "gerado_em": "2026-10-29",
  "publicar": true,
  "o_que_este_arquivo_e": "A camada DECLARADA das paginas da secao 30: titulo, description, a resposta em duas frases, o que e e o que nao e, o `qual escolher` por uso e as perguntas. E a voz do VOZ.md, escrita a mao. A camada GERADA — cartao, tabela e numero — e `dados/vitrine-de-produto.json`.",
- "nenhum_numero_e_digitado_aqui": "A prosa traz MOLDES e quem os preenche e o PHP, com o numero que sai da vitrine: {N} anuncios, {DE} e {ATE} a faixa de preco, {MEDIANA}, {DECLARAM_WATT} e {DIZEM_QUAL_WATT} a contagem do rotulo de potencia, {SEM_WATT}, {LIDAS} e {RECUSADAS} a conta da coleta, {CHAVE} a palavra com que a loja foi consultada, {DATA} a data da coleta. Preco escrito a mao na frase e preco que mente na coleta seguinte, calado — e `gerar-vitrine-de-produto.py --conferir` REPROVA numero digitado neste arquivo.",
+ "nenhum_numero_e_digitado_aqui": "A prosa traz MOLDES e quem os preenche e o PHP, com o numero que sai da vitrine: {N} anuncios, {DE} e {ATE} a faixa de preco, {MEDIANA}, {DECLARAM_WATT} e {DIZEM_QUAL_WATT} a contagem do rotulo de potencia, {SEM_WATT}, {LIDAS} e {RECUSADAS} a conta da coleta, {CHAVE} a palavra com que a loja foi consultada, {DATA} a data da coleta. A CAIXA DA MAE tem tres moldes que sao dela, porque o numero dela e agregado das filhas e nao de uma consulta: {NO_AR} as familias com pagina, {FALTAM} as que a mae nomeia e ainda nao tem, e {DE}/{ATE} a faixa que vai do menor preco de todas ao maior. Preco escrito a mao na frase e preco que mente na coleta seguinte, calado — e `gerar-vitrine-de-produto.py --conferir` REPROVA numero digitado neste arquivo.",
+ "a_caixa_da_mae": "A CAIXA DE RESPOSTA da 32.2 nesta pagina, e ela e UMA FRASE POR MUNDO em vez de uma frase costurada: o escopo muda com o numero de familias prontas, a frase da data muda quando as filhas foram lidas em dias diferentes, e a frase do que falta so sai quando falta algo. Quem escolhe e `rdm_produto_caixa_frases()`, que e funcao PURA sobre a relacao ja calculada — a secao 8 manda isso com todas as letras, e `teste-caixa-da-mae.php` FABRICA os mundos que o dado de hoje nao tem. ESTE CAMPO MORA NA RAIZ E NAO DENTRO DE `mae` DE PROPOSITO: `gerar-vitrine-de-produto.py --conferir` varre TODO campo da mae contra digito digitado, e prosa de documentacao cita numero de secao. O portao estava certo e o lugar estava errado — medido em 02/11/2026 pelo `teste-caixa-da-mae.php`, que reprovou o campo no minuto em que ele nasceu.",
  "numeros_declarados_permitidos": [
   {
    "texto": "996/2023",
@@ -22,6 +23,20 @@
    "Cada família de elétrico tem a sua página aqui, com os anúncios que estão no ar hoje, a faixa de preço medida e o que cada anúncio declara.",
    "Comece pela família que você está olhando: o que separa um patinete de uma bicicleta elétrica não é o preço, é a categoria legal e a conta de bateria."
   ],
+  "caixa": {
+   "rotulo": "À venda hoje nesta seção",
+   "unidade": "anúncios de adulto",
+   "escopo_muitas": "Estão abertos nas {NO_AR} famílias de elétrico que já têm página aqui, e vão de {DE} a {ATE}.",
+   "escopo_uma": "Estão todos na única família de elétrico que já tem página aqui, e vão de {DE} a {ATE}.",
+   "escopo_sem_faixa": "Estão abertos nas {NO_AR} famílias de elétrico que já têm página aqui, e a faixa de preço de cada uma está na página dela.",
+   "escopo_sem_faixa_uma": "Estão todos na única família de elétrico que já tem página aqui, e a faixa de preço dela está na página dela.",
+   "escopo_nenhuma": "Nenhuma família de elétrico tem página aberta neste momento: esta seção prefere não responder a responder com anúncio que a gente não conferiu.",
+   "data_igual": "Os preços foram lidos na loja em {DATA}, e preço de marketplace muda: o que está aqui é o do dia da leitura, não o de agora.",
+   "data_divergente": "Cada família foi lida num dia diferente, e a página dela diz qual — preço de marketplace muda, então nenhuma data serve para todas.",
+   "faltam": "As outras {FALTAM} famílias que a gente acompanha ainda não têm página, e o cartão de cada uma diz a causa medida em vez de prometer data.",
+   "falta_uma": "A outra família que a gente acompanha ainda não tem página, e o cartão dela diz a causa medida em vez de prometer data."
+  },
+  "rotulo_do_botao_da_filha": "Ver os anúncios",
   "o_que_falta_dizer": "As famílias sem página são as que a loja ainda não serve: o texto de cada cartão diz qual é a causa, medida, em vez de prometer data.",
   "familias_que_faltam": [
    {
