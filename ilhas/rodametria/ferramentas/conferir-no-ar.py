@@ -16,6 +16,12 @@ Mais o que as outras secoes cobram e que esta ilha tinha de herdar pronto:
     nao e entrega;
   - a 20.5: revisao atrasada com log de AGORA e cache do GitHub, nao defeito —
     e o portao diz qual dos dois e, em vez de reprovar os dois igual;
+  - a 20.4 OUTRA VEZ, por outro caminho (02/11/2026): a VERSAO que o WordPress
+    carregou de cada snippet, lida em `/casca` -> `versoes`, contra o campo
+    `versao` do manifest. O sha256 e sobre o byte do repositorio e NAO alcanca
+    snippet `gravado mas NAO ativado`; o `id` que falta no /casca e esse defeito,
+    e o portao diz "nao ativado" e "versao diferente" separados, porque o
+    conserto das duas nao e o mesmo;
   - a 32.4: zero palavra de bastidor da fabrica no texto servido;
   - a 32.5 pede medicao a 390 px num navegador de verdade, e ISSO NAO E AQUI:
     quem faz e `conferir-32-5-no-navegador.mjs` (a copiar do modelo da
@@ -190,6 +196,61 @@ def main():
         c = json.loads(bruto)
         registro("casca %s instalada em %s"
                  % (c.get("versao_casca"), (c.get("instalado") or {}).get("em")))
+
+        # ---------------------------------------------------------------
+        # 3b. A VERSAO QUE O WORDPRESS CARREGOU, E A AUSENCIA E O SINAL
+        #     (02/11/2026)
+        #
+        # O `sha256` do manifest e sobre o BYTE do repositorio. Ele nao
+        # alcanca a cicatriz da 20.4, que custou SETE paginas servindo o
+        # tema cru na clubedomosaico DUAS VEZES em tres dias: o Sync grava
+        # o snippet INATIVO de proposito e ATIVA depois, e quando a
+        # ativacao falha ele escreve `gravado (#13) mas NAO ativado` numa
+        # linha do log, SEGUE EM FRENTE e sobe a revisao. O byte estava
+        # certo no repositorio nas duas vezes.
+        #
+        # A partir da casca 1.6.0 o /casca serve `versoes`, que o coletor
+        # monta por filtro. Snippet que nao esta ATIVO nao roda, nao
+        # pendura o filtro, e o `id` dele NAO APARECE — entao `id` que
+        # falta aqui e snippet que nao carregou, nao snippet com versao
+        # errada. As duas coisas tem conserto diferente, e por isso o
+        # portao as diz separadas em vez de reprovar as duas igual (20.5).
+        #
+        # E a leitura so e honesta porque `teste-versao-dos-snippets.php`
+        # garante, no chao e antes de o ar ser consultado, que todo
+        # snippet `publicar: true` SE REGISTRA com o proprio `id`: sem
+        # isso, `id` ausente poderia ser descuido do repositorio, e o
+        # portao estaria acusando o ar de um defeito da bancada.
+        # ---------------------------------------------------------------
+        esperadas = dict((it["id"], it.get("versao"))
+                         for it in manifest["snippets"] if it.get("publicar"))
+        no_ar = c.get("versoes")
+        afirma(isinstance(no_ar, dict),
+               "o /casca nao serve `versoes` — a casca no ar e anterior a 1.6.0, ou o campo "
+               "sumiu. Sem ele o espelho de versao para no repositorio e o ar segue sem regua")
+        if isinstance(no_ar, dict):
+            faltando = [i for i in esperadas if i not in no_ar]
+            afirma(not faltando,
+                   "20.4: o /casca nao traz a versao de %s. Snippet que nao esta ATIVO nao "
+                   "pendura o filtro, entao `id` ausente aqui significa GRAVADO E NAO ATIVADO "
+                   "— o defeito que a 20.4 nomeia, e o conserto e acionar o Sync outra vez"
+                   % ", ".join(sorted(faltando)))
+            for ident, declarada in sorted(esperadas.items()):
+                if ident in no_ar:
+                    afirma(no_ar[ident] == declarada,
+                           "%s: o manifest declara `versao` %r e o WordPress carregou %r. O "
+                           "sha256 bate com o byte do repositorio e o codigo no ar e OUTRO: "
+                           "e snippet gravado sem ativar, ou ativacao que pegou a passada "
+                           "anterior" % (ident, declarada, no_ar[ident]))
+            sobrando = [i for i in no_ar if i not in esperadas]
+            if sobrando:
+                registro("o /casca traz %d versao(oes) que o manifest nao publica: %s"
+                         % (len(sobrando), ", ".join(sorted(sobrando))))
+            registro("versao no ar conferida contra o manifest em %d de %d snippet(s) "
+                     "publicaveis: %s"
+                     % (len([i for i in esperadas if i in no_ar]), len(esperadas),
+                        ", ".join("%s %s" % (i, no_ar[i])
+                                  for i in sorted(esperadas) if i in no_ar)))
         for linha in ((c.get("instalado") or {}).get("relato") or []):
             afirma("ERRO" not in linha and "ATENCAO" not in linha,
                    "a instalacao da casca relatou: %s" % linha)

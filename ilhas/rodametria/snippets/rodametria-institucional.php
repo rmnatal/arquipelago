@@ -60,8 +60,26 @@
 /* A VERSAO MORA NUMA CONSTANTE, e nao so no comentario: `atualizar-manifest.py`
    casa esta constante com o campo `versao` do manifest. */
 if ( ! defined( 'RODAMETRIA_INST_VERSAO' ) ) {
-	define( 'RODAMETRIA_INST_VERSAO', '1.0.0' );
+	define( 'RODAMETRIA_INST_VERSAO', '1.1.0' );
 }
+
+/* A VERSAO DESTE SNIPPET VAI AO AR, pelo filtro que a casca 1.6.0 abriu
+ * (`rodametria_casca_versoes()`, e o porque esta escrito la por inteiro).
+ *
+ * A CHAVE E O `id` DO manifest.json, nao o nome da constante: o portao de ar
+ * tem o manifest na mao, e casar por nome de constante o obrigaria a saber que
+ * este arquivo abrevia o nome — a derivacao de cabeca que o espelho do manifest
+ * se proibe de fazer.
+ *
+ * E O QUE ESTA LINHA MEDE E A ATIVACAO, nao o byte: se este snippet estiver
+ * gravado e NAO ATIVADO (a 20.4, que custou sete paginas na clubedomosaico duas
+ * vezes em tres dias), ele nao roda, este filtro nao e pendurado, e o `id`
+ * SIMPLESMENTE NAO APARECE no /casca. A ausencia e o sinal. */
+add_filter( 'rodametria_versoes', function ( $v ) {
+	$v['rodametria-institucional'] = RODAMETRIA_INST_VERSAO;
+
+	return $v;
+} );
 /* O id da option que o Sync grava. Ele sai de constante porque a casca 1.0.0
    digitou `f2_respostas` com sublinhado onde o manifest diz `f2-respostas` com
    hifen, e a pagina caiu no estado degradado honesto sem uma linha vermelha em

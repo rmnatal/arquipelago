@@ -29,7 +29,7 @@
  */
 
 if ( ! defined( 'RODAMETRIA_CASCA_VERSAO' ) ) {
-	define( 'RODAMETRIA_CASCA_VERSAO', '1.5.0' );
+	define( 'RODAMETRIA_CASCA_VERSAO', '1.6.0' );
 }
 
 /**
@@ -1556,6 +1556,54 @@ add_action( 'init', function () {
 	rodametria_casca_instalar();
 }, 20 );
 
+/**
+ * AS VERSOES DOS SNIPPETS CARREGADOS, E A AUSENCIA E O SINAL (02/11/2026)
+ * =======================================================================
+ *
+ * Cada snippet desta ilha define a propria constante `*_VERSAO`, e o
+ * `manifest.json` passou a espelhar essa constante no campo `versao` de cada
+ * item (ver o cabecalho de `ferramentas/atualizar-manifest.py`). O espelho do
+ * manifest prova o que esta NO REPOSITORIO. Esta funcao prova o que esta
+ * CARREGADO NO WORDPRESS, que nao e a mesma coisa e e a metade que faltava.
+ *
+ * POR QUE ISSO E PORTAO E NAO ENFEITE — a cicatriz e a da 20.4, e ela custou
+ * SETE PAGINAS na clubedomosaico, DUAS VEZES em tres dias: o Sync grava o
+ * snippet INATIVO de proposito e ATIVA depois, e quando a ativacao falha ele
+ * escreve `gravado (#13) mas NAO ativado` numa linha do log e SEGUE EM FRENTE,
+ * subindo a revisao. O sha256 do manifest nao pega isso, porque ele e sobre o
+ * byte do repositorio, nao sobre o codigo que a requisicao carregou.
+ *
+ * E o mecanismo e a AUSENCIA, nao um valor errado: snippet que nao esta ativo
+ * **nao roda**, logo nao chega a pendurar nada neste filtro, logo o `id` dele
+ * NAO APARECE aqui. Quem confere no ar compara esta lista com os itens
+ * `publicar: true` do manifest, e `id` que falta e snippet que nao carregou.
+ *
+ * AS CHAVES SAO OS `id` DO MANIFEST, nunca o nome da constante: e o manifest
+ * que o portao tem na mao, e casar por nome de constante obrigaria o portao a
+ * saber que `rodametria-institucional` se chama `RODAMETRIA_INST_VERSAO` —
+ * exatamente a derivacao de cabeca que o espelho do manifest se proibe de fazer.
+ */
+if ( ! function_exists( 'rodametria_casca_versoes' ) ) {
+function rodametria_casca_versoes() {
+	$v = apply_filters( 'rodametria_versoes',
+		array( 'rodametria-casca' => RODAMETRIA_CASCA_VERSAO ) );
+
+	if ( ! is_array( $v ) ) {
+		return array( 'rodametria-casca' => RODAMETRIA_CASCA_VERSAO );
+	}
+
+	$limpo = array();
+	foreach ( $v as $id => $versao ) {
+		if ( is_string( $id ) && '' !== $id && is_scalar( $versao ) ) {
+			$limpo[ $id ] = (string) $versao;
+		}
+	}
+	ksort( $limpo );
+
+	return $limpo;
+}
+}
+
 /* O /status da ilha ganha a linha da casca, para a verificacao da secao 8 poder
  * ler o que foi instalado sem ninguem precisar entrar no painel. */
 add_action( 'rest_api_init', function () {
@@ -1574,6 +1622,7 @@ add_action( 'rest_api_init', function () {
 
 			return array(
 				'versao_casca' => RODAMETRIA_CASCA_VERSAO,
+				'versoes'      => rodametria_casca_versoes(),
 				'instalado'    => $feito ? $feito : null,
 				'paginas'      => $mapa,
 			);

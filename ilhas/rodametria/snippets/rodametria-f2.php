@@ -29,8 +29,26 @@
  */
 
 if ( ! defined( 'RODAMETRIA_F2_VERSAO' ) ) {
-	define( 'RODAMETRIA_F2_VERSAO', '1.3.2' );
+	define( 'RODAMETRIA_F2_VERSAO', '1.4.0' );
 }
+
+/* A VERSAO DESTE SNIPPET VAI AO AR, pelo filtro que a casca 1.6.0 abriu
+ * (`rodametria_casca_versoes()`, e o porque esta escrito la por inteiro).
+ *
+ * A CHAVE E O `id` DO manifest.json, nao o nome da constante: o portao de ar
+ * tem o manifest na mao, e casar por nome de constante o obrigaria a saber que
+ * este arquivo abrevia o nome — a derivacao de cabeca que o espelho do manifest
+ * se proibe de fazer.
+ *
+ * E O QUE ESTA LINHA MEDE E A ATIVACAO, nao o byte: se este snippet estiver
+ * gravado e NAO ATIVADO (a 20.4, que custou sete paginas na clubedomosaico duas
+ * vezes em tres dias), ele nao roda, este filtro nao e pendurado, e o `id`
+ * SIMPLESMENTE NAO APARECE no /casca. A ausencia e o sinal. */
+add_filter( 'rodametria_versoes', function ( $v ) {
+	$v['rodametria-f2'] = RODAMETRIA_F2_VERSAO;
+
+	return $v;
+} );
 if ( ! defined( 'RODAMETRIA_F2_SLUG' ) ) {
 	define( 'RODAMETRIA_F2_SLUG', 'autonomia-patinete-eletrico' );
 }

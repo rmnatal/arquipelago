@@ -86,8 +86,26 @@
    canal de desembarque desta ilha. (`dados/consertos.md` e da Sentinela, nao da
    Fundacao — por isso este achado nao foi escrito la.) */
 if ( ! defined( 'RODAMETRIA_PRODUTO_VERSAO' ) ) {
-	define( 'RODAMETRIA_PRODUTO_VERSAO', '1.2.0' );
+	define( 'RODAMETRIA_PRODUTO_VERSAO', '1.3.0' );
 }
+
+/* A VERSAO DESTE SNIPPET VAI AO AR, pelo filtro que a casca 1.6.0 abriu
+ * (`rodametria_casca_versoes()`, e o porque esta escrito la por inteiro).
+ *
+ * A CHAVE E O `id` DO manifest.json, nao o nome da constante: o portao de ar
+ * tem o manifest na mao, e casar por nome de constante o obrigaria a saber que
+ * este arquivo abrevia o nome — a derivacao de cabeca que o espelho do manifest
+ * se proibe de fazer.
+ *
+ * E O QUE ESTA LINHA MEDE E A ATIVACAO, nao o byte: se este snippet estiver
+ * gravado e NAO ATIVADO (a 20.4, que custou sete paginas na clubedomosaico duas
+ * vezes em tres dias), ele nao roda, este filtro nao e pendurado, e o `id`
+ * SIMPLESMENTE NAO APARECE no /casca. A ausencia e o sinal. */
+add_filter( 'rodametria_versoes', function ( $v ) {
+	$v['rodametria-produto'] = RODAMETRIA_PRODUTO_VERSAO;
+
+	return $v;
+} );
 if ( ! defined( 'RODAMETRIA_PRODUTO_SECAO' ) ) {
 	define( 'RODAMETRIA_PRODUTO_SECAO', 'veiculos' );
 }
