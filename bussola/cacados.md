@@ -85,3 +85,23 @@ Uma linha por nicho, só para não testar de novo. Não é relatório.
 | 29/10/2026 | máquina de costura | SERP tomada (ML, Singer ×2, Casas Bahia, Elgin, Leroy) | 110 mil tomada |
 | 29/10/2026 | climatizador de ar | SERP tomada (ML, Midea, Casas Bahia, Magalu, Sodimac, Leroy) | 165 mil tomada |
 | 29/10/2026 | bicicleta aro 29 | SERP tomada (ML, Casas Bahia, Ponto, Extra, Netshoes) | 165 mil tomada |
+| 02/11/2026 | cama elástica | 3.0-e (SERP mista com carrossel + IA) | 33,1 mil/mês → exigiria ≈ R$ 2.055 por venda |
+| 02/11/2026 | ventilador de teto | SERP tomada (ML, Leroy, Amazon, Hunter, Ventisol) | 246 mil tomada |
+| 02/11/2026 | churrasqueira elétrica | SERP tomada (ML, Casas Bahia, Leroy, Ponto) | 201 mil tomada |
+| 02/11/2026 | bicicleta infantil | SERP tomada (Casas Bahia, ML, Ri Happy, Decathlon, Havan, Magalu) | 135 mil tomada |
+| 02/11/2026 | telescópio | 3.0-e (lojas de astronomia + Celestron + ML, carrossel + IA) | 90,5 mil/mês → exigiria ≈ R$ 750 por venda |
+| 02/11/2026 | gerador de energia | SERP tomada (ML, EcoFlow, Loja do Mecânico, Toyama, Leroy, Amazon) | 74 mil tomada |
+| 02/11/2026 | máquina de solda | SERP tomada (ML, Loja ESAB, Obramax, Leroy) | 74 mil tomada |
+| 02/11/2026 | barraca de camping | volume | 74 mil/mês → exigiria ≈ R$ 206 por venda mesmo em top-3 |
+| 02/11/2026 | aquecedor elétrico | volume | 49,5 mil/mês → exigiria ≈ R$ 309 por venda em top-3 |
+| 02/11/2026 | caiaque | volume | 49,5 mil/mês → exigiria ≈ R$ 309 por venda em top-3 |
+| 02/11/2026 | fechadura digital | volume | 33,1 mil/mês → exigiria ≈ R$ 462 por venda em top-3 |
+| 02/11/2026 | bomba d'água | volume | 27,1 mil/mês → exigiria ≈ R$ 564 por venda em top-3 |
+| 02/11/2026 | energia solar (painel, kit, inversor, bateria estacionária) | SERP tomada (Neosolar, Aldo, Minha Casa Solar, Portal Solar, ML) | 52,8 mil/mês somados |
+| 02/11/2026 | adega climatizada | volume | 12,1 mil/mês |
+| 02/11/2026 | aspirador vertical | volume | 18,1 mil/mês |
+| 02/11/2026 | motor de popa | volume | 8,1 mil/mês |
+| 02/11/2026 | carregador de carro elétrico (wallbox) | volume | 6,6 mil/mês |
+| 02/11/2026 | rodas por aro e furação | volume | ≈ 60 mil/mês somados → exigiria ≈ R$ 255 por venda em top-3 |
+| 02/11/2026 | impressora | SERP tomada (ML, Loja Epson, Magalu, HP, Kabum) | 301 mil tomada |
+| 02/11/2026 | cafeteira expresso | volume | 40,5 mil/mês → exigiria ≈ R$ 377 por venda em top-3 |
