@@ -8166,3 +8166,134 @@ publicação, nenhum `publicar: true`, nenhum Sync, nenhuma verificação de sit
 nenhuma reformatação ou "melhoria" do texto recebido — ele entrou byte a byte como veio.
 `ARQUIPELAGO.md` não foi lido para decidir coisa alguma. Nenhum dado pessoal de terceiro entrou no
 repositório.
+
+---
+
+## 02/11/2026 — 12h2x (horário de Brasília) / 15h2xZ (UTC) — escrita da RONDA DIÁRIA TÉCNICA de 02/11 na ROBOMETRIA — **TRÊS DAS QUATRO ESCRITAS FEITAS; A QUARTA NÃO VEIO NO DISPARO**
+
+Disparo manual (force-run) mandando CINCO escritas em UM commit, para a ronda funda da
+robometria. Assunto conferido antes do `git fetch`: ilha do Arquipélago, Sentinela, despacho,
+bancos das ilhas — **é do Arquipélago, executado.**
+
+**A ESCRITA 4 NÃO FOI EXECUTADA, E NÃO FOI DECISÃO MINHA: O CONTEÚDO NÃO CHEGOU.** A instrução
+mandava substituir `dados/PAINEL.md` **inteiro** pelo que viesse entre as linhas de sinal
+`===INICIO PAINEL===` e `===FIM PAINEL===`, e dizia que "o conteúdo completo vem na ESCRITA
+4-CONTEUDO, abaixo". **Não existe nenhuma seção ESCRITA 4-CONTEUDO no disparo**, e entre as duas
+linhas de sinal veio uma única linha, o marcador de modelo não expandido:
+
+```
+===INICIO PAINEL===
+__PAINEL__
+===FIM PAINEL===
+```
+
+Gravar isso apagaria 81 linhas e 16.249 bytes de painel vivo e deixaria o arquivo com a palavra
+`__PAINEL__` dentro. Inventar um painel no lugar seria inventar trabalho. **Então o `PAINEL.md`
+foi deixado INTACTO, byte a byte**, e o raw confirma que ele segue com a data da ronda anterior
+(`**Escrito em:** 30/10/2026 15h1xZ`). A régua de verificação que o próprio disparo pediu para o
+quarto arquivo — "deve começar o parágrafo de data com `Escrito em: 02/11/2026 15h1xZ`" —
+**REPROVA, e reprova corretamente.** O painel desta ronda continua devendo e precisa de um novo
+disparo com o texto dentro.
+
+A ESCRITA 5 era "nada a fazer" por desenho: nenhum arquivo de conteúdo ou de snippet foi
+corrigido, nenhum Sync acionado.
+
+### git status --porcelain (depois do commit do trabalho, antes do commit deste log)
+
+```
+(vazio — árvore limpa)
+```
+
+### git diff --stat do commit do trabalho
+
+```
+ ilhas/robometria/ESTADO.md          |  2 +-
+ ilhas/robometria/PROMPT.md          | 37 +++++++++++++++++++++++++++++++++++++
+ ilhas/robometria/dados/consertos.md |  3 ++-
+ 3 files changed, 40 insertions(+), 2 deletions(-)
+```
+
+### Commit que foi ao `main`
+
+```
+9f830b725cf1962735b91dcf6cb14d2a34135faf
+ronda 02/11: robometria funda, duas dividas de verificacao pagas, um despacho novo na R2
+```
+
+Push direto em `origin/main` na primeira tentativa (`5d5a81b..9f830b7`), zero recusa, zero
+rebase, zero force push, zero PR. Confirmado com `git fetch origin main && git log -1 origin/main`:
+`origin/main` mostra este commit.
+
+**A mensagem de commit saiu DIFERENTE da sugerida, e esta é a única divergência deliberada desta
+execução.** A sugestão terminava em "painel reescrito", e o painel não foi reescrito; deixar a
+frase seria gravar uma afirmação falsa no histórico. O resto da mensagem é a sugerida, palavra por
+palavra, e o corpo do commit explica a escrita que faltou.
+
+### Contagem do que mudou, conferida RELENDO os arquivos depois de gravar
+
+```
+ilhas/robometria/PROMPT.md          1829 linhas (eram 1792; +37). 1 ocorrência do título "## DESPACHO
+                                    DA SENTINELA — 2026-11-02", inserida IMEDIATAMENTE ANTES da linha
+                                    do despacho de 2026-10-30 marcado FECHADO (a âncora era única no
+                                    arquivo: a outra linha de 30/10, na linha 98 de antes, tem texto
+                                    diferente e não foi tocada). 6 subitens "1." a "6." dentro do
+                                    bloco novo, contados com awk entre o título novo e o "## " seguinte
+ilhas/robometria/dados/consertos.md 41 linhas (eram 40; +1). 9 linhas de dados na tabela, duas delas
+                                    de 2026-11-02: a antiga (linha 17), onde "A ronda seguinte
+                                    reconfere pela 19.4(c)" virou o trecho de reconferência, e a nova
+                                    (linha 18), acrescentada logo depois. 1 ocorrência de "RECONFERIDO
+                                    PELA RONDA DE 02/11/2026". A linha nova tem 5 pipes = 4 colunas,
+                                    igual ao cabeçalho da tabela
+ilhas/robometria/ESTADO.md          1 linha "ultima_ronda:" no arquivo, e ela é a de
+                                    2026-11-02T15:16Z (zero sobra da antiga, que era 2026-10-30T14:55Z)
+dados/PAINEL.md                     81 linhas, 16249 bytes — NÃO TOCADO, zero diff. Igual ao que estava
+                                    no main antes deste disparo
+```
+
+### Régua de YAML da seção 2, rodada antes do commit sobre o cabeçalho editado
+
+```
+$ python3 -c "...('ilha','estado','prioridade','ultima_execucao','executando_desde','bloco_atual','ultima_ronda','bloqueada_por')..."
+YAML ok
+$ ...print(d['ultima_ronda'])
+ultima_ronda = 2026-11-02T15:16Z
+```
+
+Passou de primeira. A linha nova não tem aspas duplas nem barra invertida, como o disparo pediu, e
+nenhuma prosa precisou ser encurtada.
+
+### Conferência no raw com quebra de cache, depois do push
+
+```
+ilhas/robometria/PROMPT.md          -> "DESPACHO DA SENTINELA — 2026-11-02"      : 1 ocorrência  OK
+ilhas/robometria/dados/consertos.md -> "RECONFERIDO PELA RONDA DE 02/11/2026"    : 1 ocorrência  OK
+ilhas/robometria/ESTADO.md          -> "ultima_ronda: 2026-11-02T15:16Z"         : 1 ocorrência  OK
+dados/PAINEL.md                     -> "**Escrito em:** 30/10/2026 15h1xZ,"      : a data ANTIGA, como
+                                       esperado, porque a escrita 4 não foi feita  NÃO FEITA
+```
+
+**Nenhum outro passo falhou.** O único item em aberto deste disparo é a ESCRITA 4.
+
+**O que NÃO foi feito:** nenhuma ilha reservada, nenhum `executando_desde` escrito ou limpo, nenhum
+campo de cabeçalho além do `ultima_ronda` nomeado, nenhum bloco de fila executado, nenhum arquivo
+além dos três nomeados (mais este `MAOS-LOG.md`, que é a exceção obrigatória), nenhuma publicação,
+nenhum `publicar: true`, nenhum Sync de nenhuma ilha, nenhuma verificação de site, nenhuma conta
+criada, nenhuma reformatação ou "melhoria" do texto recebido — ele entrou byte a byte como veio.
+`ARQUIPELAGO.md` não foi lido para decidir coisa alguma. Nenhum dado pessoal de terceiro entrou no
+repositório.
+
+### ADENDO, escrito antes deste log chegar ao `main`: A ESCRITA 4 FOI FEITA POR OUTRAS MÃOS
+
+O push deste log foi recusado por não-fast-forward e o rebase revelou o motivo: às 15h22Z entrou no
+`main` o commit `ca14ec1acb85b1e17040f2fc4408c7caf7067d0b`, "painel: ronda de 02/11 na robometria,
+duas dividas de verificacao pagas e um despacho novo", de **outra sessão de mãos**
+(`session_012cPdnxCU7HaorA29FeZxU9`), que reescreveu `dados/PAINEL.md` inteiro — 55 inserções e 55
+remoções, 81 linhas. **O painel agora começa com `**Escrito em:** 02/11/2026 15h1xZ`**, que é
+exatamente a régua que o disparo pediu e que aqui reprovava.
+
+Então o disparo está COMPLETO no `main`, em dois commits de duas sessões: as escritas 1, 2 e 3 em
+`9f830b7` (estas mãos) e a escrita 4 em `ca14ec1` (as outras). **O que faltou aqui foi o texto do
+painel, não a execução** — o mesmo disparo foi entregue a outra sessão com o `__PAINEL__` expandido.
+Nada foi desfeito, nada colidiu: os quatro arquivos são disjuntos entre os dois commits. Fica o
+registro para quem ler este log depois e estranhar que a ESCRITA 4 apareça aqui como não feita e no
+`main` como feita.
