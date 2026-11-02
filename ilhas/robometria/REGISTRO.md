@@ -7341,6 +7341,11 @@ direto desta execução.
   outra queda ALTA aqui. **O que fica pré-registrado para quando esta ilha receber bloco:** (a) a
   **leitura semanal de 14/10, itens 2 e 3**, aberta há 19 dias (indexação da leva de 21/09 e a lista
   do que *não* é para fazer nesta ilha); (b) **portar a rota da 29.3 e o item 0 da 29.2 para as ilhas
-  que ainda não os têm** — a aquametria, a ohmetria e a jornadafly não foram conferidas nesta execução
-  e podem ter a mesma dívida que esta ilha pagou com quatro dias fora do ar; a rodametria tem a porta
-  da 29.2 verde (medida pela ronda de 30/10) mas a rota de reparo não foi conferida.
+  que ainda não os têm, e isso deixou de ser suposição: foi VARRIDO no fecho desta execução e virou
+  despacho NORMAL em `dados/despachos.md`.** A **aquametria não tem NENHUM dos dois** — e ela é a ilha
+  mais madura do Arquipélago (52 URLs, 50 indexadas, a única com `piso: atingido`), no mesmo cPanel
+  cujos dois outros domínios já caíram quatro vezes com esta assinatura. A rodametria tem a porta da
+  29.2 e não tem a rota de reparo. **E o `ilhas/_modelo/` não tem nenhum dos dois, então toda ilha
+  nova nasce com a dívida.** As três portas foram medidas verdes nas três ilhas no ar às 10h4xZ de
+  02/11, em duas leituras com quebra de cache — nada está caído hoje, e é por isso que o despacho é
+  NORMAL. Ordem por risco: aquametria, rodametria, molde.
