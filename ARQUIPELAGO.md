@@ -714,6 +714,44 @@ curl -s -o /dev/null "https://<ilha>.com.br/?v=$(date +%s)"   # acorda o cron; r
 
 A revisão 12 da Rodametria entrou em **um minuto** por esse caminho, com o `wp-cron.php` respondendo **409** (prova de que o cron já estava rodando) na mesma passada. **Esperar sem visitar não é paciência: é uma espera que nunca termina sozinha.** E isto não substitui nada: a **20.4** continua valendo inteira — depois do cron, as linhas da revisão corrente no log são lidas uma por uma, e nenhuma pode deixar de dizer `ok`. Em ilha onde a Fundação **tem** o token, nada muda: ela aciona o Sync duas vezes, como a 20.4 manda por desenho.
 
+20.7 **O `sha256` PROVA O BYTE DO REPOSITORIO E NAO PROVA O CODIGO QUE O WORDPRESS CARREGOU — A VERSAO DO SNIPPET VAI AO AR, E A AUSENCIA DELA E O SINAL (02/11/2026).**
+
+Escrito na Rodametria, e **esta aqui pelo motivo que a 20.4 ja escreveu com todas as letras** — *"o Sync e o mesmo codigo nas tres"*, e *"conserto escrito em registro de ilha conserta aquele dia; regra escrita aqui vale para as tres ilhas, que rodam o mesmo Sync"*.
+
+**O BURACO.** Todo snippet destas ilhas define a propria constante de versao (`<ILHA>_<PARTE>_VERSAO`), e o `manifest.json` espelha o `sha256` de cada arquivo. Medido na Rodametria em 30/10/2026: as constantes eram **lidas por NINGUEM** — so a da casca era viva, porque e o gatilho de reinstalacao dela —, e um comentario no codigo **afirmava** que a ferramenta do manifest casava a constante com um campo `versao` que **nao existia**. Subir uma constante que ninguem le e **rastro, nao mecanismo**, e comentario que declara um mecanismo **parece conferido e nao mede nada** (a familia da 32.5-d).
+
+**E O BURACO QUE IMPORTA E O OUTRO:** o `sha256` e sobre o byte que esta no repositorio. Ele **nao alcanca** a cicatriz da 20.4 — o Sync grava o snippet **inativo de proposito** e ativa depois, e na falha de ativacao escreve `gravado (#13) mas NAO ativado` numa linha do log, **segue em frente e sobe a revisao**. Isso custou **sete paginas** servindo o tema cru na clubedomosaico, **duas vezes em tres dias**, com o byte certo no repositorio nas duas.
+
+**A REGRA, EM TRES LINHAS.** Toda ilha com Sync:
+
+1. **O `manifest.json` tem o campo `versao` em cada item de `snippets`**, e ele e **espelhado** da constante do arquivo pela ferramenta que ja espelha o `sha256` — que **imprime cada troca que faz** (a regra da secao 8, da cicatriz da Aquametria de 11/09). Subir a constante sem reespelhar **REPROVA**.
+2. **A casca publica a versao de cada snippet CARREGADO**, num campo do endpoint publico que ela ja serve, montado por **filtro**: cada snippet se pendura nele com o **`id` do manifest** como chave.
+3. **O portao de ar compara os dois.** `id` ausente no ar = **snippet gravado e NAO ativado**; versao diferente = **outro codigo carregado**. O portao diz as duas **separadas**, porque o conserto de cada uma nao e o mesmo (20.5: portao que reprova a pagina certa e o caminho mais curto para alguem ignora-lo).
+
+**POR QUE O MECANISMO E A AUSENCIA, e isto e o melhor do desenho:** snippet que nao esta ativo **nao roda**, logo nao chega a pendurar nada no filtro, logo o `id` dele **nao aparece**. Nao ha o que o snippet morto possa dizer de errado — ele simplesmente nao fala. E para essa leitura ser honesta, a bancada precisa garantir **no chao**, antes de o ar ser consultado, que todo snippet publicavel **se registra com o proprio `id`**: sem isso, `id` ausente poderia ser descuido do repositorio, e o portao estaria acusando o ar de um defeito da bancada.
+
+**A CONSTANTE SE ACHA NO ARQUIVO E NUNCA SE DERIVA DO `id`.** Derivar e natural e erra **calado**: na Rodametria, `rodametria-institucional` define `RODAMETRIA_INST_VERSAO`, **abreviado**, e a derivacao de cabeca acerta em tres dos quatro snippets e falha no quarto parecendo "snippet sem versao". Zero `define` ou mais de um e **DENUNCIA**, nunca escolha. Espelho que adivinha a fonte nao e espelho.
+
+**E O CAMPO ACUSA O VELHO NO MINUTO EM QUE NASCE:** na Rodametria, a prosa do `descricao` **declarava a versao corrente nos QUATRO snippets e estava velha nos quatro**. **Duas declaracoes do mesmo fato comecam iguais e so uma sobe** — quem tem o campo **tira a versao da prosa**, e deixa so o historico datado, que nao e afirmacao sobre o agora.
+
+20.8 **O LOG DO `/status` VEM DO MAIS NOVO PARA O MAIS VELHO, E A LINHA DE FECHO DA REVISAO ESTA NO TOPO DELA — QUEM CORTA PARA CIMA LE O RESUMO E CHAMA ISSO DE "LINHA POR LINHA" (02/11/2026).**
+
+Medido na Rodametria as 17h4xZ de 02/11/2026, no desembarque da revisao 29, e o defeito estava **no portao que a 20.4 criou**, **verde**.
+
+O portao imprimiu, em verde: *"20.4: log lido linha por linha — 15 linha(s) na janela, **1 da revisao 29**, 0 linha de falha nesta entrega"*. A revisao 29 tinha **1 linha de fecho e 8 de ITEM**, e **as 8 nunca foram lidas por ele** — e linha de item e **justamente onde mora** `gravado (#13) mas NAO ativado`. A causa estava escrita no comentario do proprio portao, **invertida**: *"cada revisao COMECA com a linha `revisao N:`"*. O Sync escreve a linha de fecho **por ultimo**, e o log vem do mais novo para o mais velho — entao o fecho esta **no TOPO** do grupo, e o corte "do topo ate a linha de revisao, inclusive" devolve **uma linha: o resumo**.
+
+**A ironia e exata, e e por isso que esta regra existe:** a 20.4 se chama *"a revisao do `/status` E O RESUMO, E RESUMO VERDE NAO E ENTREGA"*. O portao escrito para cobrar isso estava lendo **so o resumo**.
+
+**E NENHUMA LEITURA PEGAVA**, porque as execucoes escreviam no `REGISTRO.md` *"as 7 linhas"* e *"as 5 linhas da revisao corrente dizendo ok"* — numeros de leitura **a mao**, certos, ao lado de um portao que tinha lido **1**. Numero certo escrito por uma fonte, enquanto o instrumento que deveria produzi-lo responde curto: a familia do `git log` raso da 1.1 e do numero de tela digitado.
+
+**A REGUA, e ela tem tres partes, cada uma mais forte que o corte certo:**
+
+1. **O corte vai do FECHO PARA BAIXO**, ate a proxima linha de revisao. (Ou, para quem le o log na outra ordem: **confira em qual ordem ele vem**, com os horarios das linhas na mao, em vez de supor.)
+2. **A afirmacao e POSITIVA** — a 20.4 e literal, *"nenhuma pode deixar de dizer `ok`"*. Procurar `FALHA`, `erro` ou `NAO` e a leitura **pelo avesso**: ela so pega a falha que alguem **ja imaginou**, e linha de item com redacao nova passa calada. Foi assim que `gravado mas NAO ativado` chegou ao ar duas vezes.
+3. **O portao nao acredita na propria contagem:** a linha de fecho **declara** `N aplicado(s)`, e as linhas lidas **tem de ser esse numero**. A janela do log tem teto (15 linhas na medicao); janela que rolou e levou item deixa a conta **aberta**, e aberta ela e **DITA**, em vez de aprovar sobre o que sobrou com cara de completo — que e o que a propria 20.4 ja mandava registrar.
+
+**E O CONSERTO SE MEDE, nunca se afirma:** o portao ganhou `--autoteste` com mundos **fabricados**, o primeiro deles sendo o **log de verdade** da medicao; um que injeta `NAO ativado` e exige que seja pego; um que rola a janela e exige que a conta abra; e **um que refaz a regua VELHA ao lado da nova e exige que as duas DISCORDEM** — autoteste em que as duas concordam nao mede conserto nenhum. **Portao de rede cujo autoteste nao precisa de rede roda SEMPRE:** a bancada **pergunta ao arquivo** se ele aceita `--autoteste` e roda essa metade no conjunto sem rede, porque portao que depende de alguem lembrar nao roda.
+
 20.3 **A mesma armadilha vale para toda fonte nova** que uma ilha precise alcançar (domínio de fabricante, API, marketplace): quem escreve a regra que exige a fonte é quem confere se a fonte está liberada.
 
 ## 21. O PISO DA RAMPA — antes de 40 páginas e 21 dias, zero impressão não é sinal (11/09/2026)
