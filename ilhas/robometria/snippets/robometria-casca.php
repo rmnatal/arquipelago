@@ -1,5 +1,13 @@
 /**
  * Robometria Casca — identidade e estrutura do site
+ * Versão: 1.15.0 (02/11/2026) — A PORTA DE ENTRADA PASSA A SER MEDIVEL POR
+ * DENTRO: nasce `?rest_route=/robometria/v1/rotas&token=<token do Sync>`, com
+ * `&reparar=1`, que e o que a secao 29.3 do ARQUIPELAGO.md manda TODA casca
+ * servir desde 24/09/2026 e esta nao servia. O custo esta medido: a ilha caiu
+ * em 30/10 (13 de 14 URLs em 404, home em 200, `/status` verde em 95) e o
+ * despacho daquele dia escreveu "nao e consertavel pelo repositorio" — porque
+ * a rota que o consertaria nao existia aqui. Quatro dias fora do ar. E a 29.1
+ * literal: todo portao desta ilha entra pela porta que continuou aberta.
  * Versão: 1.14.0 (26/10/2026) — A DEFINICAO DO PAR PASSA A MORAR NUMA CONSTANTE
  * desta casca (ROBOMETRIA_PARES_DEFINICAO) e as QUATRO paginas que publicam o
  * numero de pares peca x modelo a leem de la. Item 1 do despacho da Sentinela
@@ -262,7 +270,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ROBOMETRIA_CASCA_VERSAO' ) ) {
-	define( 'ROBOMETRIA_CASCA_VERSAO', '1.14.0' );
+	define( 'ROBOMETRIA_CASCA_VERSAO', '1.15.0' );
 	/* A DEFINICAO DO PAR MORA AQUI, UMA VEZ, e as quatro paginas que publicam o
 	   numero a leem desta constante. Item 1 do despacho da Sentinela de
 	   02/10/2026: a ilha servia 91 em tres paginas e 92 na quarta, os dois
@@ -3762,3 +3770,222 @@ add_action( 'added_option', 'robometria_casca_purgar_ao_gravar', 10, 1 );
 if ( did_action( 'init' ) ) {
 	robometria_casca_boot();
 }
+
+/* ---------------------------------------------------------------------------
+ * A PORTA DE ENTRADA DO SITE, MEDIDA POR DENTRO — seção 29.3 do ARQUIPELAGO.md
+ * (02/11/2026)
+ *
+ * ESTA SEÇÃO NASCEU QUATRO DIAS DEPOIS DE A ILHA CAIR, E A DÍVIDA ERA DAQUI.
+ * A 29.3 diz, desde 24/09/2026, que "a casca de TODA ilha serve
+ * ?rest_route=/<ilha>/v1/rotas". Esta casca não servia. O custo foi medido:
+ * em 30/10/2026 a ronda achou 13 de 14 URLs em 404, com a home em 200 e o
+ * `/status` dizendo `revisao: 95` — e o despacho daquele dia escreveu
+ * "não é consertável pelo repositório", porque a rota que o consertaria não
+ * existia nesta ilha. A ilha passou 30/10, 31/10, 01/11 e 02/11 fora do ar.
+ *
+ * É a 29.1 na forma mais caro possível: todo portão desta ilha entra pela
+ * porta que continuou aberta. O Sync é `/?robometria_sync=`, uma query na
+ * raiz. O `/status` é rota REST, alcançável por `?rest_route=`. A bancada roda
+ * sem rede. Os três estavam verdes com o site morto — e os três continuam
+ * certos, e continuam irrelevantes.
+ *
+ *   ?rest_route=/robometria/v1/rotas&token=<token do Sync>
+ *   ?rest_route=/robometria/v1/rotas&token=<token do Sync>&reparar=1
+ *
+ * O reparo é `flush_rewrite_rules( true )` — o mesmo caminho do botão Salvar
+ * de Configurações > Links permanentes, que é o conserto que a documentação do
+ * WordPress manda fazer para este defeito. A diferença é que daqui ele é
+ * MEDIDO: a resposta traz o retrato de antes e o de depois, e quem lê compara
+ * os dois em vez de acreditar.
+ *
+ * O `flush_rewrite_rules( false )` que já existe nesta casca (página criada) e
+ * nos cinco snippets de página NÃO conserta isto e nunca consertou: o `false`
+ * é a purga mole, que regrava a option `rewrite_rules` no banco e não encosta
+ * no `.htaccess`. Era a escolha certa para o que ele faz — remontar a estrutura
+ * de páginas não é motivo para reescrever a porta do site — e é por isso que o
+ * reparo daqui é outra função, com outro portão, e não uma troca de argumento
+ * lá dentro.
+ *
+ * NÃO HÁ GANCHO AUTOMÁTICO, e isso é a 29.4 e não preguiça: porta de entrada
+ * que se conserta calada a cada carregamento é a que ninguém consegue desfazer
+ * no dia em que estiver errada. O reparo é pedido, com token, e devolve o antes
+ * e o depois para quem pediu comparar.
+ *
+ * O QUE ESTA SEÇÃO NÃO ALCANÇA, escrito para ninguém procurar aqui depois: se
+ * o hospedeiro tiver desligado o `AllowOverride`, o `.htaccess` volta a ser
+ * escrito e o Apache continua ignorando. Nesse caso o diagnóstico mostra o
+ * arquivo gravado e correto E as URLs continuam em 404 — e aí é chamado na
+ * HostGator, não é código desta ilha. O diagnóstico existe justamente para
+ * separar os dois mundos com número em vez de palpite.
+ * ------------------------------------------------------------------------- */
+
+if ( ! function_exists( 'robometria_casca_token_esperado' ) ) {
+/**
+ * O token do Sync, lido de onde o Sync o guarda.
+ *
+ * A função do Sync é preferida porque ela CRIA o token quando ele ainda não
+ * existe; a option é o caminho de quem só lê. Um segundo segredo para esta ilha
+ * seria um segredo a mais para perder.
+ */
+function robometria_casca_token_esperado() {
+	if ( function_exists( 'robometria_sync_token' ) ) {
+		$t = robometria_sync_token();
+		if ( is_string( $t ) && '' !== $t ) {
+			return $t;
+		}
+	}
+	$guardado = get_option( 'robometria_sync_token', '' );
+
+	return is_string( $guardado ) ? $guardado : '';
+}
+}
+
+if ( ! function_exists( 'robometria_casca_carregar_ferramentas_de_admin' ) ) {
+/**
+ * Traz `get_home_path()`, `got_mod_rewrite()` e `save_mod_rewrite_rules()`.
+ *
+ * As três moram em `wp-admin/includes/` e não existem numa requisição comum.
+ * Sem elas o `flush_rewrite_rules( true )` vira o `false`: o `flush_rules()` do
+ * WordPress só chama `save_mod_rewrite_rules()` `if ( function_exists(...) )`,
+ * e num carregamento sem admin essa condição é falsa — o reparo pareceria rodar
+ * e não encostaria no arquivo. Seria um verde dizendo que a porta foi
+ * consertada, que é o pior defeito que esta ilha sabe cometer.
+ */
+function robometria_casca_carregar_ferramentas_de_admin() {
+	if ( ! defined( 'ABSPATH' ) ) {
+		return false;
+	}
+	foreach ( array( 'file.php', 'misc.php' ) as $arquivo ) {
+		$caminho = ABSPATH . 'wp-admin/includes/' . $arquivo;
+		if ( is_readable( $caminho ) ) {
+			require_once $caminho;
+		}
+	}
+
+	return function_exists( 'get_home_path' )
+		&& function_exists( 'got_mod_rewrite' )
+		&& function_exists( 'save_mod_rewrite_rules' );
+}
+}
+
+if ( ! function_exists( 'robometria_casca_diagnostico_rotas' ) ) {
+/**
+ * O retrato do roteamento, medido de dentro do servidor.
+ *
+ * Só número e fato: o que o arquivo é, não o que deveria ser. Quem decide se
+ * está certo é quem lê a resposta contra as URLs no ar — este lado não opina.
+ */
+function robometria_casca_diagnostico_rotas() {
+	$tem_admin = robometria_casca_carregar_ferramentas_de_admin();
+	$raiz      = function_exists( 'get_home_path' ) ? get_home_path() : ABSPATH;
+	$arquivo   = rtrim( (string) $raiz, '/\\' ) . DIRECTORY_SEPARATOR . '.htaccess';
+
+	$regras = get_option( 'rewrite_rules' );
+
+	$retrato = array(
+		'versao_casca'         => ROBOMETRIA_CASCA_VERSAO,
+		'permalink_structure'  => (string) get_option( 'permalink_structure', '' ),
+		'regras_no_banco'      => is_array( $regras ) ? count( $regras ) : 0,
+		'ferramentas_de_admin' => $tem_admin,
+		'mod_rewrite'          => function_exists( 'got_mod_rewrite' ) ? (bool) got_mod_rewrite() : null,
+		'home_url'             => home_url( '/' ),
+		'site_url'             => site_url( '/' ),
+		'raiz_gravavel'        => is_writable( (string) $raiz ),
+		'htaccess'             => array(
+			'caminho'  => $arquivo,
+			'existe'   => file_exists( $arquivo ),
+			'legivel'  => is_readable( $arquivo ),
+			'gravavel' => is_writable( $arquivo ),
+			'bytes'    => file_exists( $arquivo ) ? (int) filesize( $arquivo ) : 0,
+			'mtime'    => file_exists( $arquivo ) ? gmdate( 'Y-m-d H:i:s', (int) filemtime( $arquivo ) ) . 'Z' : null,
+		),
+	);
+
+	/* O conteúdo do arquivo entra pelos MARCADORES e pela contagem de linhas de
+	   reescrita, nunca inteiro: `.htaccess` de hospedeiro compartilhado carrega
+	   bloco de segurança de terceiro, e despejar isso numa resposta HTTP é
+	   entregar a configuração do servidor a quem tiver o token (29.3). O que a
+	   Fundação precisa saber é se o bloco do WordPress está lá — e isso são
+	   duas linhas.
+
+	   E O `mtime` ESTÁ AQUI COMO REGISTRO, NÃO COMO SINAL: a 29.5(a) mediu, na
+	   clubedomosaico, três leituras espaçadas por ~20 s devolvendo três mtimes
+	   diferentes — o arquivo é reescrito a cada requisição e acompanha o relógio
+	   de quem lê. Quem for vigiar a porta vigia OS BLOCOS, nunca a data. */
+	if ( $retrato['htaccess']['legivel'] ) {
+		$texto = (string) @file_get_contents( $arquivo );
+		preg_match_all( '/^#\s*BEGIN\s+(.+)$/mi', $texto, $achados );
+		$retrato['htaccess']['blocos']         = array_map( 'trim', $achados[1] );
+		$retrato['htaccess']['tem_wordpress']  = (bool) preg_match( '/^#\s*BEGIN\s+WordPress\s*$/mi', $texto );
+		$retrato['htaccess']['linhas_rewrite'] = preg_match_all( '/^\s*Rewrite(Rule|Cond|Engine|Base)/mi', $texto );
+	}
+
+	return $retrato;
+}
+}
+
+if ( ! function_exists( 'robometria_casca_reparar_rotas' ) ) {
+/**
+ * Reescreve as regras de reescrita, e devolve o antes e o depois.
+ *
+ * `flush_rewrite_rules( true )` é o mesmo caminho do botão Salvar dos Links
+ * permanentes. A purga de cache vai junto porque o defeito que trouxe esta
+ * função foi lido, por dias, através de página servida de cache: sem a purga, a
+ * primeira medição depois do reparo mediria a cópia velha e diria que não
+ * funcionou.
+ */
+function robometria_casca_reparar_rotas() {
+	$antes = robometria_casca_diagnostico_rotas();
+
+	if ( ! $antes['ferramentas_de_admin'] ) {
+		return array(
+			'reparado' => false,
+			'motivo'   => 'as funcoes de wp-admin/includes nao carregaram; sem elas o flush nao escreve o .htaccess',
+			'antes'    => $antes,
+			'depois'   => $antes,
+		);
+	}
+
+	flush_rewrite_rules( true );
+
+	if ( function_exists( 'robometria_casca_purgar_cache' ) ) {
+		robometria_casca_purgar_cache();
+	}
+
+	$depois = robometria_casca_diagnostico_rotas();
+
+	return array(
+		'reparado' => ( $depois['htaccess']['existe'] && ! empty( $depois['htaccess']['tem_wordpress'] ) ),
+		'motivo'   => null,
+		'antes'    => $antes,
+		'depois'   => $depois,
+	);
+}
+}
+
+add_action( 'rest_api_init', function () {
+	if ( ! function_exists( 'register_rest_route' ) ) {
+		return;
+	}
+	register_rest_route( 'robometria/v1', '/rotas', array(
+		'methods'             => 'GET',
+		'callback'            => function ( $pedido ) {
+			if ( '1' === (string) $pedido->get_param( 'reparar' ) ) {
+				return robometria_casca_reparar_rotas();
+			}
+
+			return robometria_casca_diagnostico_rotas();
+		},
+		'permission_callback' => function ( $pedido ) {
+			$esperado = robometria_casca_token_esperado();
+			if ( '' === $esperado ) {
+				return false;
+			}
+			$vindo = (string) $pedido->get_param( 'token' );
+
+			return '' !== $vindo && hash_equals( $esperado, $vindo );
+		},
+	) );
+} );
+
+

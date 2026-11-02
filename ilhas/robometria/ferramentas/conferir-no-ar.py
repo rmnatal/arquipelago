@@ -18,6 +18,13 @@ esquecer deste arquivo ve a conferencia reprovar, que e exatamente o que se quer
 de uma segunda testemunha.
 
 O que ele mede, no HTML que o servidor devolve:
+  0. A PORTA DE ENTRADA (secao 29.2, nasceu em 02/11/2026): /wp-sitemap.xml,
+     /robots.txt e /wp-json/ em 200 e com o content-type certo, mais o 404 que
+     tem de ser 404 na pagina DESTA ilha e nao na do hospedeiro. As tres sao
+     rota virtual do WordPress, nenhuma pagina as linka, e por isso sao as
+     primeiras a morrer quando a reescrita do .htaccess some — foi o que
+     derrubou esta ilha por quatro dias a partir de 30/10/2026 sem nenhum
+     portao acusar;
   1. HTTP 200 nas nove;
   2. o <title> e o nome da pagina mais a cauda, e cabe em 65 caracteres. A
      cauda e " – Robometria" nas seis paginas sem promessa numerica e, nas tres
@@ -459,6 +466,8 @@ def main():
        'a revisao aplicada e a do manifest',
        'ar %s / manifest %s' % (estado.get('revisao'), revisao_esperada))
 
+    conferir_porta_de_entrada(carimbo)
+
     for caminho, nome in PAGINAS:
         url = DOMINIO + caminho + '?v=' + carimbo
         print('\n[%s] %s' % (caminho, nome))
@@ -508,6 +517,89 @@ def main():
     print('APROVADO NO AR: %d afirmacoes, 0 falha(s).' % feitos)
     return 0
 
+
+
+def buscar_com_tipo(url, tentativas=3):
+    """Como buscar(), mas devolve tambem o content-type.
+
+    A 29.2 nao cobra so o 200: ela cobra que /wp-sitemap.xml venha com tipo de
+    XML e /robots.txt com text/plain, porque a pagina do hospedeiro responde
+    text/html para os tres e um portao que so conta 200 aprovaria isso.
+    """
+    for _ in range(tentativas):
+        r = subprocess.run(['curl', '-s', '-H', ACCEPT_ENCODING,
+                            '-w', '\\n%{http_code}\\n%{content_type}',
+                            '--max-time', '40', url],
+                           capture_output=True, text=True)
+        partes = r.stdout.rsplit('\n', 2)
+        if len(partes) == 3:
+            corpo, codigo, tipo = partes
+            if codigo.strip() and codigo.strip() != '000':
+                return corpo, codigo.strip(), tipo.strip().lower()
+        time.sleep(4)
+    return '', '000', ''
+
+
+def conferir_porta_de_entrada(carimbo):
+    """AS TRES URLs QUE O GOOGLE USA E NENHUMA PAGINA LINKA — secao 29.2.
+
+    ESTE PORTAO NASCEU EM 02/11/2026, QUATRO DIAS DEPOIS DE A ILHA CAIR, E A
+    DIVIDA ERA DELE. A 29.2 manda, desde 24/09/2026, que o conferir-no-ar.py de
+    TODA ilha meca /wp-sitemap.xml, /robots.txt e /wp-json/ mais o 404 que tem
+    de ser 404. Esta ferramenta nao media nenhum dos quatro: a lista PAGINAS
+    dela e feita de paginas, e as tres nao sao paginas — sao rota virtual do
+    WordPress, nao existem como arquivo em disco, e por isso sao as PRIMEIRAS a
+    morrer quando a reescrita do .htaccess some.
+
+    O que custou: em 30/10/2026 a ronda achou 13 de 14 URLs desta ilha em 404,
+    servindo a pagina de erro do hospedeiro. Nos quatro dias seguintes o
+    `/status` respondeu 200 com a revisao certa, a bancada fechou verde e esta
+    ferramenta teria fechado verde na parte do /status — porque todo portao
+    desta ilha entra pela raiz, que e a unica porta que continuou aberta (29.1).
+
+    E O 404 QUE TEM DE SER 404 e a metade que quase ninguem escreve: portao que
+    so cobra 200 aprova um servidor que responde 200 para tudo, e "tudo
+    responde" e um jeito conhecido de uma ilha inteira sair do indice sem
+    ninguem ver. O que se mede aqui e de QUEM e a pagina de erro: a do
+    hospedeiro tem assinatura propria e nao e a desta ilha.
+    """
+    print('\n0. A PORTA DE ENTRADA DO SITE (secao 29.2) — as tres URLs que nenhuma pagina linka')
+
+    # (url, rotulo, fragmento obrigatorio do content-type, marca no corpo)
+    PORTAS = [
+        ('/wp-sitemap.xml', 'xml',   ('xml',),            None),
+        ('/robots.txt',     'texto', ('text/plain',),     None),
+        ('/wp-json/',       'json',  ('application/json',), None),
+    ]
+
+    for caminho, rotulo, tipos, _ in PORTAS:
+        corpo, codigo, tipo = buscar_com_tipo(DOMINIO + caminho + '?v=' + carimbo)
+        if not ok('200' == codigo, '%s: HTTP 200' % caminho, codigo):
+            # A assinatura do hospedeiro, escrita aqui porque e ela que separa
+            # "a ilha nao tem a rota" de "o Apache nao entregou ao WordPress".
+            if 'hostgator' in corpo.lower():
+                print('        ^ o corpo e a pagina de erro do HOSPEDEIRO:'
+                      ' assinatura da queda do .htaccess da raiz (29.2/29.3)')
+            continue
+        ok(any(t in tipo for t in tipos),
+           '%s: content-type de %s' % (caminho, rotulo), tipo)
+
+    # O SITEMAP TEM DE TRAZER SITEMAP, nao a pagina do hospedeiro com 200.
+    corpo, codigo, _ = buscar_com_tipo(DOMINIO + '/wp-sitemap.xml?v=' + carimbo)
+    if '200' == codigo:
+        ok(bool(re.search(r'<(sitemap|url)\b', corpo, re.I)),
+           '/wp-sitemap.xml: traz XML de sitemap de verdade',
+           '%d bytes' % len(corpo))
+
+    # O 404 QUE TEM DE SER 404, e tem de ser o DESTA ilha.
+    virgem = '/nao-existe-%s-xyz/' % carimbo
+    corpo, codigo, _ = buscar_com_tipo(DOMINIO + virgem)
+    if ok('404' == codigo, 'um caminho que a ilha nunca teve responde 404', codigo):
+        ok('hostgator' not in corpo.lower(),
+           'o 404 NAO e a pagina de erro do hospedeiro',
+           '%d bytes' % len(corpo))
+        ok('Robometria' in corpo,
+           'o 404 e a pagina da PROPRIA ilha', '%d bytes' % len(corpo))
 
 def conferir_cache_do_host():
     """O ENDERECO CANONICO SERVE O QUE O SITE ACABOU DE PUBLICAR? — 14/09/2026.

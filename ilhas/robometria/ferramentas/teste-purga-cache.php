@@ -61,7 +61,15 @@ if ( false === $ini || false === $fim || $fim < $ini ) {
 $ganchos = array();
 $funcoes = array();
 function do_action( $h ) { global $ganchos; $ganchos[] = $h; }
-function add_action( $h, $f, $p = 10, $a = 1 ) { global $funcoes; $funcoes[] = $h . ':' . $f; }
+/* O `$f` nem sempre e nome de funcao: a casca registra closure (a rota da 29.3
+   usa uma), e concatenar closure com string e Fatal error — o portao MORRERIA
+   em vez de reprovar, que e a pior falha de um instrumento. Closure entra como
+   `(closure)`: este portao mede a PURGA, e o que ele precisa do gancho e que
+   ele exista, nao quem o atende. */
+function add_action( $h, $f, $p = 10, $a = 1 ) {
+	global $funcoes;
+	$funcoes[] = $h . ':' . ( is_string( $f ) ? $f : '(closure)' );
+}
 function wp_cache_clear_cache() {}
 
 eval( substr( $src, $ini, $fim - $ini ) );
