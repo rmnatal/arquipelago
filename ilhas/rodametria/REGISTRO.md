@@ -3,6 +3,167 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-11-02 13h31Z–14h2xZ — **A SEÇÃO MÃE `/veiculos/` ENTRA NO MOLDE**, e o que ela custava não era aparência: os 700 px da 32.5 **nunca a julgaram**
+
+**A ESCOLHA DA ILHA.** `foco.md` nomeia a **rodametria** e pela **1.2** não há escolha a fazer. **As duas
+exceções que furam o foco foram conferidas e NENHUMA furou.** (a) O despacho **ALTA** da **robometria**
+(*"a ilha está fora do ar, menos a home"*) está **FECHADO** desde 02/11 às 10h3xZ, conferido no ar pela
+18.4 pela execução anterior — 16 de 16 URLs em 200. (b) Os **três despachos do molde** da 32.6
+(aquametria, clubedomosaico, robometria) estão **FECHADOS**, conferido no topo dos três `PROMPT.md`. O
+despacho **NORMAL** de 02/11 na aquametria (os dois instrumentos da seção 29 que ela não tem) **espera
+pelo foco**, e a 1.2 é explícita: *"despacho NORMAL de ilha fora do foco espera, por mais antigo que
+seja."* `executando_desde` estava `null`, que pela **1.1** já significa que não há bloco da Fundação
+vivo. Reserva às **13h31Z**, push aceito **de primeira**, campo **reescrito às 13h42Z** pela mesma
+execução. Nenhum branch `claude/*` à frente do `main` e nenhum PR aberto.
+
+**A REDE, MEDIDA E NÃO HERDADA (20.2).** `rodametria.com.br/` e `/wp-json/rodametria/v1/status` os dois
+em **200**, com quebra de cache.
+
+**POR QUE ESTE BLOCO: ele é o item (1) do `bloco_atual`**, escrito pelo fecho de 30/10 às 19h44Z com
+estas palavras — *"`/veiculos/` ESTÁ FORA DO MOLDE, e o portão de pixel o diz com essas palavras ('sem
+componente de molde nenhum') nas duas passadas de hoje. (…) É BLOCO e não conserto: a página não está
+quebrada, ela está NÃO MEDIDA."*
+
+### O QUE ESTAVA ERRADO, E A PALAVRA CERTA NÃO É "FEIO": É **NÃO JULGADO**
+
+A **32.2** manda, para página de resposta ou ficha: *"caixa de resposta no topo (o número e a condição
+em uma frase)"*. A mãe servia **dois `<p class="rdm-promessa">`** e ia direto para a lista de famílias.
+A **32.5** põe o teto de **700 px** na caixa de resposta de quem não tem formulário — e o portão de
+pixel desta ilha, que descobre as páginas no `wp-sitemap.xml` e julga **toda** página que serve o molde,
+dizia nas duas passadas de 30/10: `fora /veiculos/ — sem componente de molde nenhum`.
+
+**Isso é pior do que reprovar**, e a 32.5-c já tinha escrito a família: *"regra de celular escrita para
+uma família de cartão não alcança a outra"*. Aqui a página **não tinha o componente**, então não havia
+o que medir: a régua a listava e seguia. Oito páginas eram julgadas, nove existiam. **A conta de 8 de 8
+estava certa e era sobre o mundo errado.**
+
+### O QUE ENTROU — DUAS COISAS, E A PRIMEIRA É UM NÚMERO QUE NENHUMA OUTRA PÁGINA DESTA ILHA TEM
+
+**(1) A CAIXA DE RESPOSTA, com o número AGREGADO das filhas.** Toda outra página desta ilha tem número
+de **uma** consulta; a mãe não é consulta nenhuma — o número dela é a **soma** das filhas prontas, e a
+faixa de preço **atravessa** as famílias. Duas decisões de mecanismo, as duas com cicatriz ao lado:
+
+- **A faixa se compara pelo campo NUMÉRICO da vitrine (`de_numero`/`ate_numero`), nunca pela string.**
+  `R$ 1.297,13` contra `R$ 2.299,99` ordenado por texto acerta **por sorte do alfabeto**, porque os dois
+  têm quatro dígitos. No dia em que uma bicicleta de `R$ 899,00` entrar, a comparação por texto a põe
+  **depois** de `R$ 1.297,13`, e a página passa a dizer que o mais barato custa quatrocentos reais mais.
+  A string formatada que vai para a tela é a **do registro que ganhou a comparação**, nunca remontada.
+- **As datas saem como lista de DISTINTAS, e não como "a data".** Duas filhas lidas em dias diferentes
+  **não têm** uma data, e a frase que escolher uma delas mente sobre a outra. É a mesma pedra que a
+  linha do piso da tabela da filha já paga — *"com duas buscas distintas a linha NÃO sai, porque 'a
+  primeira' é arbitrária"* —, um andar acima. Com datas iguais sai a frase com a data; com datas
+  diferentes sai outra frase, que **não imprime data nenhuma** e manda a pessoa à página da família.
+
+**A prosa é UMA FRASE POR MUNDO, escolhida por `rdm_produto_caixa_frases()` — função PURA sobre a
+relação já calculada.** A seção 8 manda isso com todas as letras: *"toda recusa que depende de uma
+relação entre os dados — empate, ausência, borda, limite — mora numa função pura que recebe a relação
+já calculada; recusa escrita dentro do laço que a calcula só é testável no dia em que o banco produzir o
+caso, e é esse o dia em que ela vai estar errada."* Nenhuma das frases é digitada no PHP: as **onze**
+moram em `dados/paginas-de-produto.json`, com molde no lugar de todo número, e o conferidor da vitrine
+**reprova dígito digitado** em qualquer campo da mãe.
+
+**(2) O SEGUNDO BOTÃO DO CARTÃO DE CADA FAMÍLIA**, caindo no `id="comprar"` da filha — que é literalmente
+o que a 32.2 pede do *"Ver produtos"*: *"leva ao bloco de compra da ferramenta ou a link de afiliado do
+banco"*. **O título do cartão não mudou um byte**, porque a 32.3 protege âncora e link interno.
+
+**E O BOTÃO "Calcular" DA 32.2 NÃO SAIU, de propósito, com o motivo escrito no código para a próxima
+execução não o "consertar":** a 32.2 o quer *"com o parâmetro da página já passado na URL"*, e a F2
+desta ilha recebe **tensão e amperagem de bateria** — família de veículo não é parâmetro dela. Botão por
+família seria o **mesmo link duas vezes**, a pedra que a linha do piso já paga. A conta de bateria
+continua linkada **uma** vez, na frase que já existia.
+
+### OS PORTÕES — **18 sem rede (eram 17) e 22 com rede (eram 21), 0 falha nas duas.** UM novo, e ele achou TRÊS coisas no minuto em que nasceu
+
+`ferramentas/teste-caixa-da-mae.php` **é PHP** pelo motivo que o `teste-nota-de-preco.php` e o
+`teste-escada-de-compra.php` já escreveram: a escolha da frase é decidida em PHP, então a régua **chama
+a função** em vez de ler o arquivo. Régua em Python sobre o texto do PHP conferiria a **forma** do
+código, nunca a decisão. **78 afirmações, 0 falha.**
+
+**OITO MUNDOS FABRICADOS, E O DADO DE HOJE EXERCITA UM.** O banco tem duas famílias prontas, as duas
+lidas no **mesmo** dia, e três que faltam. Os outros sete não existem — e a **32.5-d** é literal sobre o
+que isso significa: *"a regra do molde que nunca rodou contra o dado de verdade está quebrada e parece
+sã."* Então a bateria os fabrica: duas famílias na mesma data (hoje), duas em **datas diferentes**, uma
+família só, **nenhuma** família pronta, uma família faltando, **nenhuma** faltando, família pronta **sem
+faixa de preço**, e preço de **três dígitos** ao lado de quatro.
+
+**AS TRÊS COISAS QUE O PORTÃO ACHOU, pagas antes de ele aprovar:**
+
+1. **O campo de documentação que eu havia escrito DENTRO de `mae.caixa`.** O conferidor da vitrine varre
+   **todo** campo da mãe contra dígito digitado, e prosa de documentação cita número de seção. **O
+   portão estava certo e o lugar estava errado:** o campo saiu para a raiz do arquivo, com o motivo ao
+   lado. A trava que pegou isso é a mesma que o `REGISTRO.md` desta ilha registra de 29/10 — *"prosa que
+   afirma o estado do banco é número digitado em outro traje"*.
+2. **O ramo da família SEM FAIXA DE PREÇO nasceu sem singular**, e servia `"nas 1 famílias"` — o **mesmo**
+   plural que mente que o ramo com faixa pagava na linha de cima. Dois ramos irmãos, um com a lição e o
+   outro sem: é a 32.5-c em miniatura, dentro de uma função.
+3. **A MUTAÇÃO DA FAIXA POR STRING SOBREVIVEU na primeira rodada**, e esta é a que vale registro. Com
+   **quatro dígitos em todo preço** o alfabeto acerta por sorte, então a mutação *"compare por texto"*
+   passou — e um portão cuja mutação sobrevive é um portão que não vigia a regra que diz vigiar. **O
+   mundo em que ela morde é o do preço de três dígitos** (`R$ 899,00` perdendo de `R$ 1.297,13`), e ele
+   entrou na bateria como **mundo 8**, com a função de verdade acertando-o. As **3 de 3** mutações
+   reprovam.
+
+**E `conferir-produto-no-ar.py` PASSOU A CONFERIR A MÃE, que não tinha portão de ar NENHUM.** A causa é
+estrutural e vale mais que o conserto: aquele portão descobre as páginas **casando o sitemap com os
+slugs da vitrine**, e a mãe **não é consulta** — não tem linha na vitrine, então caía fora dele, fora do
+`conferir-no-ar.py` (casca e F2) e fora do `conferir-institucional-no-ar.py`. **Três portões de ar e a
+página mãe não estava em nenhum.** O que ele cobra nela agora: a caixa existe e vem **antes** dos
+cartões (presença não é ordem); o número dela é a **soma da fonte** das famílias que estão no sitemap,
+contada no portão e comparada com a tela; zero molde `{...}` cru; o botão de cada família cai num
+`#comprar` de URL **que está no sitemap**; e **zero link patrocinado**, porque a mãe não vende nada e
+link de afiliado fora de bloco de compra é reprovação da 32.5.
+
+**RODADO CONTRA A REVISÃO 27 ANTES DO DESEMBARQUE: 4 falhas**, as quatro exatamente o que este bloco
+entrega — sem caixa, sem caixa antes dos cartões, sem número em Mono, e 0 botão de família para 2
+famílias no ar. **Portão que nunca falhou não é portão.**
+
+**E ELE REPROVOU A PÁGINA CERTA depois do desembarque, numa passada só** — o quarto achado, e este é da
+régua e não do código: contava a caixa por `class="rdm-molde-caixa`, que é **prefixo** de `-rotulo`,
+`-numero`, `-unidade` e de cada `-frase`, então uma caixa sã com três frases contava **sete**. Passou a
+contar o **contêiner** com a classe do tom. É a pedra da linha do piso da tabela (*"se conta pela
+classe, nunca pela frase"*) com o **sinal invertido** — aqui a classe é prefixo de outras seis — e a
+lição é a da 20.5: *portão que reprova página certa é o caminho mais curto para alguém passar a
+ignorá-lo.*
+
+**E UM NÚMERO MEU, CORRIGIDO ANTES DE FECHAR:** a observação do manifest e a mensagem do commit
+`ce91604` dizem *"22 na bancada sem rede (eram 21)"*. **22 é a bancada COM rede.** Sem rede são **18**
+(eram 17), contados em `bancada.py --lista` e `--lista --no-ar`, não de cabeça. Número certo na
+etiqueta errada é a família do número de tela digitado, e a observação do manifest já está corrigida;
+a mensagem do commit não dá para reescrever sem reescrever história, então a correção fica aqui.
+
+### O DESEMBARQUE, CONFERIDO NO AR (18.4)
+
+**Revisão 28**, pousada às **14h10Z**. O Sync desta ilha roda por **visita** (20.6) e **não antecipa
+evento que ainda não venceu**: o turno anterior foi às 13h41:56Z, dois minutos **antes** do push das
+13h43Z, então a revisão esperou o turno seguinte — **27 minutos de laço abrindo a home**, não defeito e
+não cache. É o mesmo custo que o fecho de 30/10 mediu e nomeou: *"um turno de cron"*.
+
+**As 5 linhas da revisão corrente do log dizem `ok`, lidas uma por uma (20.4).**
+
+- `conferir-produto-no-ar.py`: **205 afirmações, 0 falha** (eram 200 antes da metade da mãe).
+  `/veiculos/`: **1** caixa de resposta, número **21** = soma da fonte das **2** famílias no sitemap,
+  **2** botões de família caindo no `#comprar` da filha, **0** molde cru, **0** link patrocinado.
+- `conferir-32-5-no-navegador.mjs`, a 390 px num Chromium de verdade: **9 de 9 páginas do molde dentro
+  da 32.5, 0 fora do molde**, contra 8 de 8 com 1 fora de antes. A mãe mede **405 px** de caixa contra
+  o teto de **700**, e `compra` sai como *"não se aplica"* — ela não vende nada, e é por isso que ela
+  **não pode** servir link patrocinado.
+- `bancada.py --no-ar`: **22 portões, 0 falha.**
+
+### O PRÓXIMO PASSO DESBLOQUEADO — e são DOIS, em ordem de valor
+
+1. **O CAMPO `versao` NO `manifest.json`**, para a constante de cada snippet ser espelhada e **impressa**
+   como o `sha256` já é. Está pré-registrado desde 30/10 e continua sendo o primeiro da fila: mexe no
+   **contrato do Sync**, que é o único canal desta ilha, então é bloco com desembarque próprio e nunca
+   carona. Hoje `RODAMETRIA_PRODUTO_VERSAO` subiu para `1.2.0` **e ninguém a lê** — subi-la é rastro,
+   não mecanismo, e o comentário dela já diz isso.
+2. **A FILA NORMAL segue no bloco 4**, com a F1 e a F3 travadas por **abertura** e não por coleta:
+   `gov.br` para o limiar legal da F1 e o nível 5 (`casasbahia`, `extra`, `magazineluiza`) para
+   `carga_max_kg` da F3 — os dois despacho **ALTA** em `dados/despachos.md`, e os dois são gesto do
+   Raphael no navegador dele.
+
+**E O DESPACHO DE 30/10 PARA O RAPHAEL CONTINUA ABERTO**, intocado por esta execução: duas SERPs
+(`patinete eletrico 1000w` e a segunda da lista) e um volume, numa sessão de Chrome de ~10 minutos.
+
 ## 2026-10-30 19h17Z–19:44Z — **A ESCADA DA 25.2 CHEGA À TELA NAS DUAS PONTAS**, e o ramo que ela conserta não existe no dado publicado — é por isso que ninguém o via
 
 **A ESCOLHA DA ILHA.** `foco.md` nomeia a **rodametria** e pela **1.2** não há escolha a fazer. **As duas

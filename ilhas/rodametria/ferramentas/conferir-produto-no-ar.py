@@ -321,7 +321,16 @@ def conferir_a_mae(urls, fonte):
     # (a) A CAIXA DE RESPOSTA EXISTE. Ate 02/11 ela NAO existia, e o portao de
     #     pixel listava esta pagina como "sem componente de molde nenhum" — o que
     #     significa que os 700 px da 32.5 nunca a julgaram (32.5-c).
-    caixas = len(re.findall(r'class="rdm-molde-caixa', corpo))
+    # A CAIXA SE CONTA PELO CONTEINER, NUNCA PELO PREFIXO DA CLASSE, e esta regua
+    # aprendeu isso REPROVANDO A PAGINA CERTA na primeira passada depois do
+    # desembarque: `class="rdm-molde-caixa` casa tambem
+    # `rdm-molde-caixa-rotulo`, `-numero`, `-unidade` e cada `-frase`, entao uma
+    # caixa sa com tres frases contava SETE. E a mesma pedra da linha do piso da
+    # tabela ("se conta pela CLASSE, nunca pela frase") com o sinal invertido —
+    # aqui a classe e prefixo de outras seis. Portao que reprova pagina certa e o
+    # caminho mais curto para alguem passar a ignora-lo (20.5).
+    caixas = len(re.findall(r'class="rdm-molde-caixa rdm-molde-caixa-(?:verde|alerta|neutro)"',
+                            corpo))
     afirma(caixas == 1,
            "%s serve %d caixa de resposta do molde (a 32.2 pede uma)" % (caminho, caixas))
 

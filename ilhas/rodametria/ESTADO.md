@@ -6,101 +6,99 @@ piso: abaixo              # 5 URLs publicadas contra as 40 da 21.1, e primeira_i
 urls_publicadas: 9        # 5 -> 9 em 30/10/2026 as 14h4xZ: as QUATRO paginas que a 16.1 nomeia (`/sobre/`, `/contato/`, `/divulgacao-de-afiliados/`, `/privacidade/`), pelo bloco 5d. CONTADO no wp-sitemap.xml no ar com quebra de cache, nao na conta de antes do desembarque. ELAS NAO MEXEM NO PISO DA 21.1 NEM GASTAM LEVA: a 21.7 tira as cinco paginas nomeadas da 16.1 do teto de 10 URLs por leva e 3 levas por semana, porque sao familia fechada e nenhuma responde a uma busca — o piso de malha segue pedindo 40 e as paginas de malha seguem 5. A DIVIDA QUE ELAS PAGAM estava medida na contagem de 30/10 as 10h3xZ: a ilha serve link de afiliado da Shopee desde 29/10 e nao tinha pagina de divulgacao de afiliados nem de privacidade.
 ultima_ronda: 2026-10-30T15:10Z   # RONDA DIARIA TECNICA, a PRIMEIRA desta ilha, e ela foi FUNDA. Escrito pela Sentinela, nunca pela Fundacao (secao 2). A ilha tinha 9 URLs no ar no momento da ronda (nao 5): as quatro institucionais do bloco 5d desembarcaram no meio dela, revisao 19 as 14h40:39Z. 9 de 9 em HTTP 200, porta da 29.2 verde nas quatro, soft 404 da borda AUSENTE nesta ilha (caminho virgem em 404 nas quatro leituras), regua tecnica inteira verde, console sem uma mensagem, conta da F2 refeita na mao em cinco casos e fechando. SEIS defeitos achados e ZERO consertados, de proposito: ver dados/consertos.md e o despacho de 30/10 em PROMPT.md. Teste de vida: 9 itens testados, 9 vivos, 0 morto, 13 nao testados por orcamento do anti-robo da Shopee.
 primeira_indexacao: null  # as duas primeiras URLs foram ao ar hoje; indexacao e trabalho de dias. Quem grava este campo e a leitura semanal, lendo o Search Console.
-ultima_execucao: 2026-10-30T19:44Z   # A ESCADA DA 25.2 CHEGA A TELA NAS DUAS PONTAS — o bloco PRE-REGISTRADO pelo fecho das 18h13Z. Conferido NO AR (18.4): revisao 27, as 7 linhas da revisao corrente dizendo `ok` (20.4, lidas uma por uma), portao novo da vitrine em 191 afirmacoes / 0 falha, 32.5 em 8 de 8 com o primeiro botao de compra IDENTICO ao de antes, e bancada com rede em 21 portoes / 0 falha. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
-executando_desde: 2026-11-02T13:42Z   # RESERVA RENOVADA pela 1.1 neste commit de desembarque: o bloco passou de 40 minutos porque a bancada sem rede desta ilha tem 22 portoes e o portao novo da caixa fabrica oito mundos. A ilha esta EM FOCO por `foco.md` (1.2), e nenhum despacho ALTA nem do molde da 32 estava aberto nas outras ilhas para furar o foco. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA.
+ultima_execucao: 2026-11-02T14:14Z   # A SECAO MAE `/veiculos/` ENTROU NO MOLDE DA 32.2, e ela estava FORA dele desde que nasceu em 29/10: o portao de pixel a listava como "sem componente de molde nenhum", entao os 700 px da 32.5 NUNCA A JULGARAM — regua que nao alcanca a pagina nao a reprova, so a ignora (32.5-c). Conferido NO AR pela 18.4: revisao 28, as 5 linhas da revisao corrente do log dizendo `ok` (20.4, lidas uma por uma), 9 de 9 paginas do molde dentro da 32.5 e ZERO fora (eram 8 de 8 com 1 fora), caixa da mae a 405 px contra o teto de 700, portao de ar em 205 afirmacoes / 0 falha e bancada com rede em 22 portoes / 0 falha. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
+executando_desde: null   # LIMPO as 2026-11-02T14:14Z pela propria execucao que reservou as 13h31Z de 02/11 e RENOVOU as 13h42Z pela 1.1. O bloco passou de 40 minutos por UM turno de cron, a mesma causa de 30/10: o Sync desta ilha roda por VISITA (20.6) e nao antecipa evento que ainda nao venceu — turno anterior as 13h41:56Z, DOIS MINUTOS antes do push das 13h43Z, revisao 28 pousada as 14h10Z com o laco abrindo a home. Esta execucao entrou por FOCO (`foco.md` nomeia a rodametria), e as duas excecoes da 1.2 foram conferidas e nenhuma furou. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
 rede: aberta em 2026-10-30   # 20.2, MEDIDA e nao herdada nesta execucao: rodametria.com.br/, /wp-sitemap.xml e /wp-json/rodametria/v1/status os TRES em 200, com aquametria.com.br em 200 na mesma passada. O soft 404 da borda do hospedeiro, de 29/10, NAO foi remedido aqui: e despacho ALTA de dados/despachos.md e nao se conserta daqui.
 bloqueada_por: null      # obrigatorio pela secao 2. `null` DE PROPOSITO: o que falta (gov.br para a F1, as prefeituras para a camada municipal, as tres etiquetas do Mercado Livre) trava a FABRICA e nao a ILHA, e isso se escreve no despacho, que e o canal da 12.2. Preenche-lo congelaria tambem os blocos que ja podem andar — e o proximo da fila, o 3d, nao depende de nenhum deles.
 bloco_atual: |
-  A ESCADA DA 25.2 CHEGOU A TELA NAS DUAS PONTAS. Era o bloco PRE-REGISTRADO pelo
-  fecho das 18h13Z, e nao um despacho — nada estava quebrado no ar.
+  A SECAO MAE `/veiculos/` ENTROU NO MOLDE DA 32.2. Era o item (1) do `bloco_atual`
+  de 30/10, pre-registrado com estas palavras: "E BLOCO e nao conserto: a pagina
+  nao esta quebrada, ela esta NAO MEDIDA."
 
   ESTE ARQUIVO CONTINUA SENDO A MEMORIA DESTA ILHA — `/areas/projeto-rodametria.md`
   nao existe nesta nuvem, e e por isso que este campo e longo.
 
-  O DEFEITO NUNCA APARECEU NUMA PAGINA, E ISSO E O ACHADO. A 25.2 manda a BUSCA
-  SUBIR E VIRAR O BOTAO quando a ficha nao existe ou morre. So a primeira ponta
-  estava na tela: o cartao da casca devolvia STRING VAZIA com `url` vazia, e a
-  segunda ponta vivia no CHAMADOR da F2. A F2 nunca sofreu; a VITRINE de produto,
-  que passa `url` crua do dado, tinha TRES lugares lendo-a crua, e os tres
-  quebravam juntos no dia em que uma ficha morresse: o CARTAO sumia da pagina, a
-  celula "Comprar" da tabela servia `href=""` — que nao e botao morto, e um botao
-  que RECARREGA A PROPRIA PAGINA com "Ver na Shopee" do lado, pior que o cartao
-  que ao menos sumia — e a `Offer` do JSON-LD saia com `"url": ""`.
-  POR QUE NADA VIU: 21 de 21 anuncios da vitrine tem ficha. O ramo NAO EXISTE no
-  dado publicado, e regua que le o dado publicado aprova o mundo que existe. E a
-  32.5-d inteira, e a saida e a da ohmetria: so a mutacao que PRODUZ o mundo o
-  enxerga.
+  O QUE ELA CUSTAVA NAO ERA APARENCIA, E A PALAVRA CERTA E "NAO JULGADA". A 32.2
+  pede CAIXA DE RESPOSTA no topo; a mae servia dois `<p class="rdm-promessa">` e ia
+  direto para a lista de familias. O portao de pixel, que descobre as paginas no
+  sitemap e julga toda pagina que serve o molde, dizia nas DUAS passadas de 30/10:
+  `fora /veiculos/ — sem componente de molde nenhum`. Isso e PIOR que reprovar:
+  sem o componente nao havia o que medir, entao a regua a listava e seguia. Oito
+  paginas eram julgadas, NOVE existiam — a conta de "8 de 8" estava certa e era
+  sobre o mundo errado. E a 32.5-c inteira.
 
-  O CONSERTO E MECANISMO E NAO INTENCAO: a escada virou UMA funcao da casca,
-  `rodametria_casca_escada_de_compra()`, e todo chamador entrega os DOIS links
-  crus. A F2 parou de escolher, entao a regra deixou de morar em dois lugares onde
-  podia divergir — a 32.5-c nasceu exatamente da metade que nao viajou. E O DEGRAU
-  SOBE COM A BUSCA, que e a metade que mente se ficar para tras: botao que abre
-  PAGINA DE BUSCA dizendo "Ver na Shopee" promete ficha que nao existe mais.
-  Medido no ar: o bloco de compra da F2 serve degraus [1, 4], entao os itens do
-  mundo B passam pela escada nova EM PRODUCAO.
+  O QUE ENTROU, duas coisas. (1) A CAIXA, com o numero AGREGADO das filhas — toda
+  outra pagina desta ilha tem numero de UMA consulta, e a mae nao e consulta
+  nenhuma. Duas decisoes de mecanismo, as duas com cicatriz: a FAIXA se compara
+  pelo campo NUMERICO da vitrine e nunca pela string, porque `R$ 1.297,13` contra
+  `R$ 2.299,99` por texto acerta POR SORTE DO ALFABETO (os dois tem quatro
+  digitos) e erra no dia em que uma bicicleta de `R$ 899,00` entrar; e as DATAS
+  saem como lista de DISTINTAS, porque duas filhas lidas em dias diferentes NAO
+  TEM uma data, e a frase que escolher uma mente sobre a outra — a pedra da linha
+  do piso da tabela ("com duas buscas distintas a linha NAO sai"), um andar acima.
+  A prosa e UMA FRASE POR MUNDO, escolhida em `rdm_produto_caixa_frases()`, FUNCAO
+  PURA sobre a relacao ja calculada, como a secao 8 manda. As onze frases moram na
+  camada declarada com molde no lugar de todo numero.
+  (2) O SEGUNDO BOTAO do cartao de cada familia, caindo no `id="comprar"` da filha,
+  que e o "Ver produtos" da 32.2 ao pe da letra. O TITULO DO CARTAO NAO MUDOU UM
+  BYTE (32.3). E o botao "Calcular" da 32.2 NAO SAIU DE PROPOSITO, com o motivo
+  escrito no codigo para a proxima execucao nao o "consertar": a 32.2 o quer "com
+  o parametro da pagina ja passado na URL" e a F2 recebe TENSAO E AMPERAGEM DE
+  BATERIA — familia de veiculo nao e parametro dela, e botao por familia seria o
+  mesmo link duas vezes.
 
-  A TABELA GANHOU A LINHA DISCRETA DO PISO, UMA vez embaixo dela e nao por linha:
-  o piso e da CONSULTA e nao do anuncio (uma `url_busca` distinta por pagina,
-  medido nas duas), e repeti-la seria o mesmo link dezesseis vezes. Com duas
-  buscas distintas a linha NAO sai — "a primeira" e arbitraria. No JSON-LD,
-  `availability: InStock` sai de cena quando o piso sobe: estoque de resultado de
-  busca e afirmacao sem medicao.
+  PORTOES: 18 sem rede (eram 17) e 22 com rede (eram 21), 0 falha nas duas,
+  CONTADOS em `bancada.py --lista` e nao de cabeca. UM novo:
+  `teste-caixa-da-mae.php`, PHP porque a escolha da frase e decidida em PHP, entao
+  CHAMA a funcao em vez de ler o arquivo. 78 afirmacoes, OITO MUNDOS FABRICADOS
+  dos quais o dado de hoje exercita UM, 3 de 3 mutacoes reprovadas.
 
-  PORTOES: 21 na bancada com rede (eram 20), 0 falha. DOIS novos.
-  `teste-escada-de-compra.php` e PHP porque a escolha e decidida em PHP, entao
-  CHAMA a funcao em vez de ler o arquivo: 138 afirmacoes, FABRICA os seis mundos
-  que o dado nao tem, prova que morde reproduzindo a escada velha, e COBRA a
-  promessa que eu escrevi no comentario da F2 comparando item a item com a regra
-  velha (10 itens, 4 ja no mundo B, identicos). Tres mutacoes no codigo de verdade
-  reprovadas: 13, 6 e 2 falhas.
-  `conferir-produto-no-ar.py` nasceu porque as paginas de VITRINE nao tinham
-  portao de ar NENHUM desde 29/10 — o portao de PIXEL da 32.5 e o
-  `mutacoes-produto.py` sem rede, e entre os dois faltava quem lesse a pagina. 191
-  afirmacoes, descobrindo as URLs no sitemap no ar. RODADO CONTRA A REVISAO 23
-  ANTES DO DESEMBARQUE: 2 falhas, as duas a linha do piso que estava subindo.
+  AS QUATRO COISAS QUE O PORTAO ACHOU, as quatro pagas antes de ele aprovar:
+  (1) o campo de DOCUMENTACAO que eu havia escrito DENTRO de `mae.caixa` — o
+      conferidor da vitrine varre TODO campo da mae contra digito digitado e prosa
+      de documentacao cita numero de secao: o portao estava certo e o LUGAR estava
+      errado, e o campo saiu para a raiz do arquivo;
+  (2) o ramo da familia SEM FAIXA DE PRECO nasceu SEM SINGULAR e servia "nas 1
+      familias" — o MESMO plural que mente que o ramo com faixa pagava na linha de
+      cima. Dois ramos irmaos, um com a licao e o outro sem;
+  (3) A MUTACAO DA FAIXA POR STRING SOBREVIVEU na primeira rodada, e esta vale
+      registro: com QUATRO DIGITOS em todo preco o alfabeto acerta por sorte, e
+      portao cuja mutacao sobrevive nao vigia a regra que diz vigiar. O mundo em
+      que ela morde e o do preco de TRES DIGITOS, e ele entrou como mundo 8;
+  (4) DEPOIS DO DESEMBARQUE o portao de ar REPROVOU A PAGINA CERTA, numa passada
+      so: contava a caixa por `class="rdm-molde-caixa`, que e PREFIXO de `-rotulo`,
+      `-numero`, `-unidade` e de cada `-frase` — caixa sa com tres frases contava
+      SETE. Passou a contar o CONTEINER com a classe do tom. E a licao da 20.5:
+      portao que reprova pagina certa e o caminho mais curto para alguem o ignorar.
 
-  AS TRES COISAS QUE O PORTAO NOVO ACHOU DO LADO DA REGUA, pagas antes de aprovar:
-  (1) a linha do piso se conta pela CLASSE e nunca pela frase — a MESMA frase e a
-      linha discreta de cada cartao do carrossel, 5x numa pagina sa;
-  (2) `&quot;`, porque um titulo tem `10"` — mesma pedra do portao institucional;
-  (3) O WORDPRESS TEXTURIZA O HIFEN, e isto vale guardar: o `wptexturize` do
-      `the_content` troca hifen CERCADO DE ESPACOS por EN DASH no retorno do
-      shortcode. O dado diz `550W - 40km/h`, o corpo serve `550W &#8211; 40km/h`,
-      e o JSON-LD — que sai no `wp_head` e nao passa pelo filtro — serve o hifen
-      cru: O MESMO NOME EM DUAS FORMAS NA MESMA PAGINA. Nao e defeito a consertar,
-      e tipografia do WordPress. E a cicatriz que esta ilha ja tinha escrita no
-      topo da casca ("troca && por &#038;&#038; no retorno do shortcode") num
-      traje novo, e quem nao a souber escreve regua que reprova a pagina certa.
+  E `conferir-produto-no-ar.py` PASSOU A CONFERIR A MAE, que nao tinha portao de ar
+  NENHUM. A causa e estrutural e vale mais que o conserto: ele descobre as paginas
+  CASANDO o sitemap com os slugs da vitrine, e a mae NAO E CONSULTA — nao tem linha
+  na vitrine, entao caia fora dele, do `conferir-no-ar.py` (casca e F2) e do
+  `conferir-institucional-no-ar.py`. TRES portoes de ar, e a pagina mae em nenhum.
+  RODADO CONTRA A REVISAO 27 ANTES DO DESEMBARQUE: 4 falhas, as quatro exatamente o
+  que este bloco entrega.
 
-  UM ACHADO FORA DO ESCOPO, corrigido como PROSA e nao como mecanismo: o
-  comentario da vitrine afirmava que `atualizar-manifest.py` casa a constante de
-  versao com um campo `versao` do manifest. NAO CASA — a palavra nao aparece uma
-  vez naquela ferramenta e os itens de `snippets` nao tem o campo, conferido nos
-  quatro. `RODAMETRIA_PRODUTO_VERSAO` e `RODAMETRIA_F2_VERSAO` sao LIDAS POR
-  NINGUEM; so a da casca e viva, porque e o gatilho de reinstalacao dela. E a
-  familia do `height:44px` morto da 32.5-d: comentario que declara mecanismo
-  parece conferido e nao mede nada.
+  UM NUMERO MEU, CORRIGIDO ANTES DE FECHAR: a observacao do manifest e a mensagem
+  do commit `ce91604` dizem "22 na bancada sem rede (eram 21)". 22 e a bancada COM
+  rede; sem rede sao 18. Numero certo na ETIQUETA errada e a familia do numero de
+  tela digitado. O manifest ja esta corrigido; a mensagem do commit nao da para
+  reescrever sem reescrever historia, e a correcao mora no REGISTRO.md.
 
-  O PROXIMO PASSO DESBLOQUEADO, e sao TRES em ordem de valor:
-  (1) `/veiculos/` ESTA FORA DO MOLDE, e o portao de pixel o diz com essas
-      palavras ("sem componente de molde nenhum") nas duas passadas de hoje. A mae
-      serve `<p class="rdm-promessa">` onde o molde pede a CAIXA DE RESPOSTA,
-      entao os 700 px da 32.5 NUNCA A JULGARAM. E exatamente a lacuna que o 5d
-      fechou na home, uma pagina depois — a 32.5-c em estado puro. E BLOCO e nao
-      conserto: a pagina nao esta quebrada, ela esta NAO MEDIDA.
-  (2) O CAMPO `versao` NO `manifest.json`, para a constante de cada snippet ser
-      espelhada e IMPRESSA como o `sha256` ja e. Mexe no CONTRATO DO SYNC, que e o
-      unico canal desta ilha — entao e bloco com desembarque proprio, nunca
-      carona. Foi por isso que nao entrou hoje.
-  (3) A FILA NORMAL segue no bloco 4, com a F1 e a F3 travadas por ABERTURA e nao
+  O PROXIMO PASSO DESBLOQUEADO, e sao DOIS em ordem de valor:
+  (1) O CAMPO `versao` NO `manifest.json`, para a constante de cada snippet ser
+      espelhada e IMPRESSA como o `sha256` ja e. Pre-registrado desde 30/10 e
+      continua o primeiro da fila: mexe no CONTRATO DO SYNC, que e o unico canal
+      desta ilha, entao e bloco com desembarque proprio e nunca carona. Hoje
+      `RODAMETRIA_PRODUTO_VERSAO` subiu para 1.2.0 e NINGUEM A LE — subi-la e
+      rastro, nao mecanismo.
+  (2) A FILA NORMAL segue no bloco 4, com a F1 e a F3 travadas por ABERTURA e nao
       por coleta: `gov.br` para o limiar legal da F1 e o nivel 5 (`casasbahia`,
       `extra`, `magazineluiza`) para `carga_max_kg` da F3 — os dois despacho ALTA
-      em dados/despachos.md.
+      em dados/despachos.md, e os dois sao gesto do Raphael no navegador dele.
 
-  E A ROBOMETRIA SEGUE FORA DO AR com despacho ALTA, remedida nesta passada: home
-  em 200 e os tres endpoints em 404. Nao e consertavel do repositorio — o gesto e
-  de cPanel e e do Raphael.
+  E O DESPACHO DE 30/10 PARA O RAPHAEL CONTINUA ABERTO, intocado por esta execucao:
+  duas SERPs e um volume, numa sessao de Chrome de ~10 minutos.
 ---
 
 # Estado da ilha RODAMETRIA
