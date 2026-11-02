@@ -6,96 +6,117 @@ piso: abaixo              # 5 URLs publicadas contra as 40 da 21.1, e primeira_i
 urls_publicadas: 9        # 5 -> 9 em 30/10/2026 as 14h4xZ: as QUATRO paginas que a 16.1 nomeia (`/sobre/`, `/contato/`, `/divulgacao-de-afiliados/`, `/privacidade/`), pelo bloco 5d. CONTADO no wp-sitemap.xml no ar com quebra de cache, nao na conta de antes do desembarque. ELAS NAO MEXEM NO PISO DA 21.1 NEM GASTAM LEVA: a 21.7 tira as cinco paginas nomeadas da 16.1 do teto de 10 URLs por leva e 3 levas por semana, porque sao familia fechada e nenhuma responde a uma busca — o piso de malha segue pedindo 40 e as paginas de malha seguem 5. A DIVIDA QUE ELAS PAGAM estava medida na contagem de 30/10 as 10h3xZ: a ilha serve link de afiliado da Shopee desde 29/10 e nao tinha pagina de divulgacao de afiliados nem de privacidade.
 ultima_ronda: 2026-10-30T15:10Z   # RONDA DIARIA TECNICA, a PRIMEIRA desta ilha, e ela foi FUNDA. Escrito pela Sentinela, nunca pela Fundacao (secao 2). A ilha tinha 9 URLs no ar no momento da ronda (nao 5): as quatro institucionais do bloco 5d desembarcaram no meio dela, revisao 19 as 14h40:39Z. 9 de 9 em HTTP 200, porta da 29.2 verde nas quatro, soft 404 da borda AUSENTE nesta ilha (caminho virgem em 404 nas quatro leituras), regua tecnica inteira verde, console sem uma mensagem, conta da F2 refeita na mao em cinco casos e fechando. SEIS defeitos achados e ZERO consertados, de proposito: ver dados/consertos.md e o despacho de 30/10 em PROMPT.md. Teste de vida: 9 itens testados, 9 vivos, 0 morto, 13 nao testados por orcamento do anti-robo da Shopee.
 primeira_indexacao: null  # as duas primeiras URLs foram ao ar hoje; indexacao e trabalho de dias. Quem grava este campo e a leitura semanal, lendo o Search Console.
-ultima_execucao: 2026-11-02T17:47Z   # O CAMPO `versao` NO `manifest.json`, o item (1) pre-registrado desde 30/10: a constante `*_VERSAO` de cada snippet passou a ser ESPELHADA no manifest e CONFERIDA NO AR. Tres coisas que nao sao a mesma — `sha256` (o byte do repositorio), `versao` (qual versao esse byte se declara ser) e `/casca -> versoes` (qual versao o WordPress CARREGOU), e a terceira e a que o sha256 nao alcanca, que e a cicatriz da 20.4. Conferido NO AR pela 18.4: revisao 29, as 8 linhas da revisao corrente do log dizendo `ok` (20.4, lidas uma por uma E conferidas contra o `8 aplicado(s)` que o fecho declara), 4 de 4 snippets publicaveis com a versao no ar batendo com o manifest, portao de ar em 453 afirmacoes / 0 falha, bancada sem rede 20 portoes e com rede 24 portoes / 0 falha nas duas. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
-executando_desde: 2026-11-02T19:27Z   # RESERVA RENOVADA pela 1.1 (a reserva desta execucao e das 19h18Z). O bloco 6 — a lista de prospecao do widget — passa de 40 minutos porque a coleta e por BUSCA, um candidato por vez, e cada afirmacao da lista precisa de uma URL DO PROPRIO DOMINIO que a sustente. Ilha escolhida por FOCO (foco.md nomeia a rodametria); rede conferida e nao herdada (20.2). A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA.
+ultima_execucao: 2026-11-02T19:36Z   # BLOCO 6 ENTREGUE INTEIRO: a LISTA DE PROSPECAO DO WIDGET, que a 14.7 chama de `a unica alavanca de link do projeto`. 10 candidatos com evidencia do PROPRIO DOMINIO, regua de quatro regras, portao de dado com 13 mundos fabricados e o `.md` GERADO do JSON. Bancada sem rede 22 portoes (eram 20) e com rede 24, 0 falha nas duas, 0 denunciado. NADA FOI AO AR nesta execucao e o REGISTRO.md diz isso: o arquivo tem `publicar: false`. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
+executando_desde: null   # LIMPO as 2026-11-02T19:36Z pela propria execucao que reservou as 19h18Z de 02/11 e RENOVOU as 19h27Z pela 1.1 (a coleta por busca e um candidato por vez, e cada afirmacao precisa de uma URL do proprio dominio). Esta execucao entrou por FOCO (`foco.md` nomeia a rodametria): as duas excecoes da 1.2 foram conferidas e NENHUMA furou — os tres despachos do molde da secao 32 estao FECHADOS, e o despacho novo da robometria de hoje as 15h1xZ e de JULGAMENTO (19.2) e nao ALTA, com a ilha NO AR. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
 rede: aberta em 2026-10-30   # 20.2, MEDIDA e nao herdada nesta execucao: rodametria.com.br/, /wp-sitemap.xml e /wp-json/rodametria/v1/status os TRES em 200, com aquametria.com.br em 200 na mesma passada. O soft 404 da borda do hospedeiro, de 29/10, NAO foi remedido aqui: e despacho ALTA de dados/despachos.md e nao se conserta daqui.
 bloqueada_por: null      # obrigatorio pela secao 2. `null` DE PROPOSITO: o que falta (gov.br para a F1, as prefeituras para a camada municipal, as tres etiquetas do Mercado Livre) trava a FABRICA e nao a ILHA, e isso se escreve no despacho, que e o canal da 12.2. Preenche-lo congelaria tambem os blocos que ja podem andar — e o proximo da fila, o 3d, nao depende de nenhum deles.
 bloco_atual: |
-  O CAMPO `versao` NO `manifest.json` — o item (1) do `bloco_atual` de 30/10 e de
-  hoje as 14h14Z, pre-registrado as duas vezes com a mesma frase: "mexe no
-  CONTRATO DO SYNC, que e o unico canal desta ilha, entao e bloco com
-  desembarque proprio e nunca carona".
+  O BLOCO 6 — A LISTA DE PROSPECAO DO WIDGET — ENTREGUE INTEIRO, e ele foi o
+  UNICO da fila que esta execucao podia executar: a F1 e a F3 travadas por
+  ABERTURA de egresso (despacho ALTA), pagina nova de malha travada pela 30.8
+  (`alvo` nao se afirma desta nuvem), e as duas consultas de maior volume com
+  SERP ja vista no Chrome — `moto eletrica` 823 mil e `scooter eletrica` 301
+  mil — travadas por PRODUTO, medido em 29/10. ZERO defeito aberto no ar: a
+  bancada fechou 24 portoes COM REDE, 0 falha, ANTES de construir (18.5).
 
   ESTE ARQUIVO CONTINUA SENDO A MEMORIA DESTA ILHA — `/areas/projeto-rodametria.md`
   nao existe nesta nuvem, e e por isso que este campo e longo.
 
-  TRES COISAS, E ELAS NAO SAO A MESMA. `sha256` prova o BYTE que esta no
-  repositorio; `versao` prova QUAL VERSAO esse byte se declara ser; e
-  `/casca -> versoes` prova qual versao o WORDPRESS CARREGOU. A terceira e a que
-  o sha256 NAO ALCANCA, e a cicatriz tem preco escrito: a 20.4 custou SETE
-  paginas servindo o tema cru na clubedomosaico, DUAS VEZES em tres dias, porque
-  o Sync grava o snippet INATIVO de proposito, ativa depois, e na falha de
-  ativacao escreve `gravado (#13) mas NAO ativado` numa linha do log, SEGUE EM
-  FRENTE e sobe a revisao. O byte estava certo no repositorio nas duas vezes.
+  POR QUE ESTE BLOCO VALE AGORA, e a 14.7 escreve a razao melhor do que eu:
+  "a prospecao do widget em lojas e a UNICA alavanca de link do projeto e por
+  isso vale mais no comeco do que no fim: backlink e o que faz o robo voltar".
+  A ilha tem SEIS DIAS de ar, 9 URLs e `primeira_indexacao: null`.
 
-  E O MECANISMO E A AUSENCIA, nao um valor errado: snippet que nao esta ativo nao
-  roda, nao pendura o filtro `rodametria_versoes`, e o `id` dele NAO APARECE no
-  /casca. O portao de ar diz "nao ativado" e "versao diferente" SEPARADOS, porque
-  o conserto das duas nao e o mesmo (20.5).
+  O PLACAR, CONTADO PELO PORTAO E NUNCA DIGITADO: 10 candidatos — 1 prioridade
+  1, 5 prioridade 2, 4 prioridade 3, e ZERO abertos no navegador, com o arquivo
+  dizendo isso no topo em vez de deixar a limitacao invisivel. O unico
+  prioridade 1 e `bicieletric.com.br`: e o unico que fecha as DUAS condicoes
+  medidas — vende os dois veiculos que as ferramentas desta ilha classificam E
+  publica conteudo no proprio dominio.
 
-  A CONSTANTE E ACHADA NO ARQUIVO E NUNCA DERIVADA DO `id`, e isto nao e zelo:
-  derivar daria `RODAMETRIA_INSTITUCIONAL_VERSAO`, que NAO EXISTE — o arquivo
-  abrevia para `RODAMETRIA_INST_VERSAO`. A convencao de cabeca acerta em TRES dos
-  quatro snippets desta ilha e erra no quarto, CALADA. Zero ou mais de um
-  `define` e DENUNCIA, nunca escolha.
+  AS QUATRO REGRAS DA REGUA, e as quatro sao sobre NAO AFIRMAR DEMAIS. (1) NAO
+  EXISTE `false` nos campos de fato: busca sabe afirmar PRESENCA, nunca
+  ausencia, que e a assimetria da 30.8 aplicada a outro assunto — `true` com
+  evidencia ou `null` (= nao medido), e `false` e RECUSADO pelo portao. (2) A
+  EVIDENCIA TEM DE SER DO PROPRIO DOMINIO, e a armadilha foi medida NESTA
+  coleta: a Eletricz apareceu primeiro numa materia de `mecanicaonline.com.br`
+  que FALA dela, com nome, cidade e catalogo — e materia de terceiro nao prova
+  nada sobre o site que vai instalar o widget; a linha so entrou quando a busca
+  devolveu `eletricz.com.br/...`. (3) A PRIORIDADE NAO SE ESCREVE, SE CALCULA:
+  o portao recalcula dos campos medidos e fica vermelho se discordar — a mesma
+  doenca do `versao` do manifest de hoje de manha, constante que alguem sobe a
+  mao e ninguem confere. (4) `null` EXIGE MOTIVO ESCRITO, porque campo vazio
+  sem motivo e onde a proxima passada inventa um e-mail.
 
-  O QUE O ESPELHO ACUSOU NO MINUTO EM QUE NASCEU: a prosa do `descricao`
-  declarava a versao corrente nos QUATRO snippets e estava VELHA nos quatro — a
-  casca dizia 1.4.0 servindo 1.5.0, os outros tres diziam 1.0.0. Duas declaracoes
-  do mesmo fato comecam iguais e so uma sobe. A prosa deixou de declarar e o
-  campo passou a ser o dono; o HISTORICO ficou, porque fato datado nao e
-  afirmacao sobre o agora.
+  A REGUA MORA DENTRO DO PORTAO, E ISSO E DECISAO. A Aquametria separa
+  `regua-prospeccao.py` porque la QUATRO arquivos a carregam; aqui sao DOIS, e
+  a `bancada.py` desta ilha classifica POR PREFIXO e DENUNCIA o que nao casa —
+  `regua-*` nasceria denunciado e o conserto seria escrever o nome dele numa
+  lista de excecao a mao, que e a doenca que esta bancada matou. E o AUTOTESTE
+  RODA SEMPRE, antes do arquivo de verdade: a bancada so descobre `--autoteste`
+  nos portoes de REDE (foi para eles que o mecanismo nasceu hoje de manha) e
+  este e dos sem rede, entao o autoteste dele nunca entraria na fila sozinho.
+  Portao que depende de alguem lembrar nao roda.
 
-  PORTOES: 20 sem rede (eram 18) e 24 com rede (eram 22), 0 falha nas duas,
-  CONTADOS em `bancada.py --lista` e nao de cabeca. DOIS novos:
-  `teste-versao-dos-snippets.php` (43 afirmacoes, 6 de 6 mutacoes reprovadas) —
-  PHP porque a coleta e DECIDIDA em PHP, entao ele roda `add_filter` e
-  `apply_filters` DE VERDADE e CHAMA o coletor —, e o `--autoteste` do portao de
-  ar, que a bancada passou a DESCOBRIR.
+  E A 31 FOI LIDA ANTES DE ESCREVER FERRAMENTA, nao depois. A 31.2 proibe
+  portao NOVO sem defeito medido no ar — e este portao nunca vai pegar defeito
+  no ar nenhum, porque o arquivo que ele julga tem `publicar: false`. Quem o
+  autoriza e a 31.5, que preserva "portao de dado" com todas as letras, mais a
+  secao 10. Portao de AR e portao de DADO nao sao a mesma coisa: o primeiro
+  protege a pagina, o segundo protege a afirmacao. Por isso esta execucao
+  escreveu DOIS arquivos de ferramenta e nao cinco — a bateria de mutacao e o
+  teste sintetico da Aquametria seriam, aqui, bancada sobre bancada, que a 31.3
+  fecha. O `--autoteste` faz a metade que importa: 13 mundos fabricados, e o
+  portao foi MUTADO SOBRE O DADO DE VERDADE (a prioridade do `bici-eletric` de
+  1 para 2) e reprovou com a frase certa antes de ser restaurado.
 
-  O DEFEITO QUE ESTE BLOCO ACHOU NO PROPRIO PORTAO DA 20.4, E ELE ESTAVA VERDE:
-  o portao escrito para cobrar "resumo verde nao e entrega" estava lendo SO O
-  RESUMO. Ele imprimiu, em verde, "15 linha(s) na janela, 1 da revisao 29, 0
-  linha de falha nesta entrega" — e a revisao 29 tem 1 linha de fecho e 8 de
-  ITEM. As 8 nunca foram lidas por ele, e linha de item e justamente onde mora
-  `gravado mas NAO ativado`. A causa estava no comentario, invertida: "cada
-  revisao COMECA com a linha revisao N". O log vem do mais novo para o mais
-  velho e o fecho e escrito por ULTIMO, entao ele esta no TOPO do grupo e o corte
-  parava nele. As execucoes de 30/10 e das 14h14Z escreveram "as 7 linhas" e "as
-  5 linhas da revisao corrente dizendo ok" — numeros de leitura A MAO, nao deste
-  portao, que nas duas tinha lido 1.
-  O CONSERTO E MAIS FORTE QUE O CORTE CERTO: a afirmacao virou POSITIVA (a letra
-  da 20.4 e "nenhuma pode deixar de dizer ok", e procurar FALHA/erro/NAO so pega
-  a falha que alguem ja imaginou), e o portao NAO ACREDITA MAIS NA PROPRIA
-  CONTAGEM — o fecho DECLARA `N aplicado(s)` e as linhas lidas tem de ser esse
-  numero, entao janela rolada deixa a conta ABERTA e aberta ela e DITA. Medido em
-  `--autoteste`, 12 de 12, sete mundos: o primeiro e o log de verdade das 17h40Z,
-  o terceiro injeta `NAO ativado` e exige que seja pego, o quarto rola a janela e
-  exige que a conta abra, e o SETIMO refaz a regua VELHA ao lado da nova e exige
-  que as duas DISCORDEM (1 contra 8) — autoteste em que as duas concordam nao
-  mede conserto nenhum.
+  O ACHADO QUE NAO E SOBRE PROSPECAO, e foi para `dados/despachos.md`: DUAS
+  PAGINAS DO MESMO SITE citam a MESMA Resolucao Contran 996/2023 com numeros
+  diferentes — "ate 1000 Watts, com velocidade de ate 32 km/h de fabrica" numa,
+  "potencia maxima de 4.000W para autopropelidos" na outra, as duas em
+  `eletricz.com.br`. A contradicao que o corpus de 28/10 mediu ENTRE tres
+  publicadores existe DENTRO de um so. Isso SOBE o custo do despacho ALTA do
+  `gov.br` em vez de so confirma-lo: enquanto a fonte primaria nao chega, nao
+  existe "a leitura de mercado" para a F1 herdar, e qualquer regua de maioria
+  entre fontes secundarias escolheria um numero sem saber qual.
 
-  A 20.6 PELA TERCEIRA EXECUCAO SEGUIDA, e a causa e sempre a mesma: o push das
-  17h13Z caiu TREZE SEGUNDOS depois do turno de cron das 17h12:47Z, e o cron nao
-  antecipa evento que ainda nao venceu. 35 visitas entre 17h14Z e 17h40Z, revisao
-  pousada as 17h40:55Z. Quem desembarcar aqui conte com um turno inteiro.
+  A LINHA VENCIDA QUE ESTA EXECUCAO ACHOU NA PROPRIA FILA, e ela custou leitura:
+  o paragrafo de fecho do bloco 5e ainda dizia "O QUE FICA, e e BLOCO e nao
+  conserto: /veiculos/ ESTA FORA DO MOLDE". Os DOIS itens dele estavam feitos —
+  a caixa da mae em 02/11 as 13h42Z (commit ce91604) e o campo `versao` as
+  17h4xZ — e so o segundo tinha sido marcado. Marcado agora, com o texto velho
+  preservado embaixo. E a secao 4 do contrato em forma de fila: o trabalho anda
+  e o indice fica para tras em silencio.
+
+  PORTOES: 22 sem rede (eram 20) e 24 com rede, 0 falha nas duas, CONTADOS em
+  `bancada.py --lista` e nao de cabeca. 0 DENUNCIADO — os dois arquivos novos
+  entram pela convencao de nome (`validar-` e `gerar-`), sem lista nenhuma.
+
+  NADA FOI AO AR NESTA EXECUCAO, E ISSO E DITO E NAO ESCONDIDO. A 31.1 pede 7
+  de cada 10 execucoes entregando algo que o visitante ve, e esta e das 3 que
+  nao entregam: o arquivo tem `publicar: false` em cada linha. As anteriores
+  desta ilha entregaram no ar quase sem excecao (a casca, a F2, as tres paginas
+  de produto, as quatro institucionais, a escada da 25.2, a caixa da mae e a
+  versao dos snippets), entao a proporcao segue folgada — mas quem contar que
+  conte esta como nao.
 
   O PROXIMO PASSO DESBLOQUEADO, e sao DOIS em ordem de valor:
-  (1) A FILA NORMAL, no bloco 4 — com a F1 e a F3 travadas por ABERTURA e nao por
-      coleta: `gov.br` para o limiar legal da F1 e o nivel 5 (`casasbahia`,
-      `extra`, `magazineluiza`) para `carga_max_kg` da F3. Os dois sao despacho
-      ALTA em dados/despachos.md e os dois sao gesto do Raphael no navegador
-      dele. O 3d NAO depende de nenhum dos dois.
-  (2) O MESMO ESPELHO NAS OUTRAS ILHAS, e e barato: a aquametria, a robometria e
-      a clubedomosaico rodam o MESMO Sync e tem a mesma constante lida por
-      ninguem. Nao foi feito aqui de proposito — `foco.md` nomeia a rodametria e
-      a 1.2 e explicita, entao isto e DESPACHO para quando o foco mudar, nao
-      bloco a reboque. Fica registrado aqui e nao em dados/despachos.md porque
-      nao e pedido ao Raphael: e trabalho de Fundacao esperando a vez.
+  (1) NENHUM BLOCO DE CONSTRUCAO DESTA ILHA ESTA DESBLOQUEADO HOJE, e isso e
+      informacao e nao fracasso. Os tres caminhos de pagina nova estao travados
+      por coisas que NAO se resolvem desta nuvem: o `gov.br` (F1), o nivel 5 de
+      varejo grande (F3) e o Chrome do Raphael (as duas SERPs do despacho de
+      30/10 e as duas etiquetas do Mercado Livre). A execucao seguinte que
+      encontrar os tres ainda fechados deve DIZER ISSO no relatorio em vez de
+      inventar bloco — e o despacho de 30/10 para o Raphael, uma sessao de
+      Chrome de ~10 minutos, continua sendo o gesto que destrava mais por menos.
+  (2) ABRIR OS DEZ CANDIDATOS DA LISTA no navegador, que e o que transforma
+      `null` em medido: `contato`, `plataforma` e `ja_tem_calculadora` sao os
+      tres campos que a lista nao sabe e diz que nao sabe. Dez dominios, um
+      navegador, e a lista passa de ordenada para acionavel. Isso tambem nao e
+      bloco desta nuvem — e despacho, pela mesma razao da 30.8.
 
   E O DESPACHO DE 30/10 PARA O RAPHAEL CONTINUA ABERTO, intocado por esta
-  execucao: duas SERPs e um volume, numa sessao de Chrome de ~10 minutos.
-
+  execucao: duas SERPs e um volume, numa sessao de Chrome.
 ---
 
 # Estado da ilha RODAMETRIA

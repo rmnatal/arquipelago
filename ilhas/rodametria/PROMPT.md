@@ -587,6 +587,13 @@ tipografia do WordPress, e é a cicatriz do `&&`/`&#038;&#038;` desta casca num 
 **32.5 em 8 de 8** com o primeiro botão de compra **IDÊNTICO** ao de antes (1084 · 1129 · 1380 px) e a
 altura da F2 **sem mudar um pixel**, e bancada com rede em **21 portões, 0 falha**.
 
+**O QUE FICAVA — `/veiculos/` FORA DO MOLDE — ESTÁ FEITO E CONFERIDO NO AR EM 02/11/2026 às 13h42Z**
+(commit `ce91604`, com `ferramentas/teste-caixa-da-mae.php` e os oito mundos da caixa de resposta), e o
+**campo `versao` no `manifest.json`** está feito e conferido às 17h4xZ do mesmo dia (revisão 29). **Os dois
+itens que este parágrafo deixava abertos estão fechados**; o texto fica abaixo como registro do que faltava,
+marcado aqui porque a linha estava vencida e foi lida como pendência pela execução das 19h18Z de 02/11.
+*(O parágrafo original segue, intacto:)*
+
 **O QUE FICA, e é BLOCO e não conserto: `/veiculos/` ESTÁ FORA DO MOLDE** — o portão de pixel o diz com
 essas palavras ("sem componente de molde nenhum"). A mãe serve `<p class="rdm-promessa">` onde o molde pede
 a **caixa de resposta**, então os **700 px da 32.5 nunca a julgaram**: é a mesma lacuna que o 5d fechou na
@@ -599,7 +606,47 @@ ser espelhada e impressa como o `sha256` já é — hoje `RODAMETRIA_PRODUTO_VER
 são **lidas por ninguém**, e o comentário que afirmava o contrário foi corrigido nesta passada. Esse mexe
 no **contrato do Sync**, o único canal desta ilha, então é bloco com desembarque próprio, nunca carona.
 
-**6. LISTA DE PROSPECÇÃO DO WIDGET** — lojas brasileiras de mobilidade elétrica com site próprio, `publicar: false`.
+**6. ~~LISTA DE PROSPECÇÃO DO WIDGET~~ — ENTREGUE EM 02/11/2026 às 19h18Z–19h4xZ, com `dados/prospeccao-widget.json`
+(a fonte, **10 candidatos**), `dados/prospeccao-widget.md` (a vista legível, **gerada** e nunca escrita),
+`ferramentas/validar-prospeccao.py` (a régua E o portão de dado, com `--autoteste` de 13 mundos fabricados) e
+`ferramentas/gerar-prospeccao.py`.** Bancada sem rede: **22 portões, 0 falha** (eram 20).
+
+**POR QUE ESTE BLOCO E NÃO OUTRO, com a conta na mesa:** foi o único da fila que esta execução podia executar
+inteiro. A **F1** e a **F3** estão travadas por ABERTURA de egresso (despacho ALTA); **página nova de malha**
+está travada pela **30.8** (veredito `alvo` não se afirma desta nuvem, e os eixos A e C medidos estão `tomada`
+ou `nao-medida`); e as duas consultas de maior volume com SERP já vista no Chrome — `moto elétrica` 823 mil e
+`scooter elétrica` 301 mil — estão travadas por **PRODUTO**, medido em 29/10. Nenhum defeito aberto no ar:
+a bancada fechou **24 portões com rede, 0 falha**, antes de qualquer construção (18.5). E a **14.7** é literal
+sobre o valor desta lista: *"a prospecção do widget em lojas é a única alavanca de link do projeto e por isso
+vale mais no começo do que no fim: backlink é o que faz o robô voltar"* — a ilha tem seis dias de ar, 9 URLs e
+`primeira_indexacao: null`.
+
+**O PLACAR, contado pelo portão e nunca digitado:** 10 candidatos — **1** prioridade 1 (`bicieletric.com.br`,
+o único que fecha as duas condições medidas: vende os dois veículos que as ferramentas classificam **e** publica
+no próprio domínio), **5** prioridade 2 e **4** prioridade 3. **Zero abertos no navegador**, e o arquivo diz isso
+no topo em vez de deixar a limitação invisível.
+
+**AS QUATRO REGRAS DA RÉGUA, e as quatro são sobre NÃO AFIRMAR DEMAIS:** (1) **não existe `false`** nos campos de
+fato — busca sabe afirmar presença, nunca ausência, que é a assimetria da **30.8** aplicada a outro assunto;
+(2) **a evidência tem de ser do próprio domínio** do candidato (ou subdomínio), e a armadilha foi medida nesta
+coleta: a Eletricz apareceu primeiro numa matéria de `mecanicaonline.com.br` que **fala** dela, e matéria de
+terceiro não prova nada sobre o site que vai instalar o widget; (3) **a prioridade não se escreve, se calcula** —
+o portão recalcula dos campos medidos e fica vermelho se discordar; (4) **`null` exige motivo escrito**.
+
+**A RÉGUA MORA DENTRO DO PORTÃO, e isso é decisão e não preguiça:** a Aquametria tem `regua-prospeccao.py`
+separado porque lá quatro arquivos a carregam; aqui são dois, e a `bancada.py` desta ilha classifica **por prefixo
+de nome** e DENUNCIA o que não casa — `regua-*` nasceria denunciado e o conserto seria uma lista de exceção a mão,
+que é a doença que esta bancada matou. **E o autoteste roda SEMPRE**, antes do arquivo de verdade, porque a
+bancada só descobre `--autoteste` nos portões de **rede** e este é dos sem rede: portão que depende de alguém
+lembrar não roda.
+
+**O ACHADO QUE NÃO É SOBRE PROSPECÇÃO, e ele foi para `dados/despachos.md`:** **duas páginas do MESMO site**
+(`eletricz.com.br`) citam a **mesma** Resolução Contran 996/2023 com números diferentes — *"até 1000 Watts, com
+velocidade de até 32 km/h"* numa, *"potência máxima de 4.000W para autopropelidos"* na outra. A contradição que o
+corpus de 28/10 mediu **entre** três publicadores existe **dentro** de um só. Isso sobe o custo do despacho ALTA
+do `gov.br` em vez de só confirmá-lo: não existe "leitura de mercado" para a F1 herdar.
+
+**6-ORIGINAL (guardado).** LISTA DE PROSPECÇÃO DO WIDGET — lojas brasileiras de mobilidade elétrica com site próprio, `publicar: false`.
 
 ## A BANCADA DESTA ILHA É UM COMANDO SÓ, E ELA DESCOBRE OS PORTÕES (28/10/2026)
 

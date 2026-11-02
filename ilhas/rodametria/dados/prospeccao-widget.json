@@ -1,0 +1,351 @@
+{
+  "esquema": "prospeccao-widget",
+  "versao": 1,
+  "ilha": "rodametria",
+  "atualizado_em": "2026-11-02",
+  "publicar": false,
+  "o_que_este_arquivo_e": "A lista de prospeccao do widget (bloco 6 do PROMPT.md, secao 14.7 do ARQUIPELAGO.md): dominios brasileiros de mobilidade eletrica com SITE PROPRIO que poderiam instalar uma ferramenta da Rodametria e devolver o unico tipo de backlink que este projeto se permite. Nada aqui vai para o ar: `publicar: false` no topo e em cada linha. Quem julga este arquivo e `ferramentas/validar-prospeccao.py`, que tambem carrega a regua; o `.md` ao lado e GERADO por `ferramentas/gerar-prospeccao.py` e nunca escrito a mao.",
+  "por_que_este_bloco_agora": "A 14.7 diz com todas as letras que a prospecao do widget e `a unica alavanca de link do projeto e por isso vale mais no comeco do que no fim: backlink e o que faz o robo voltar`. Esta ilha tem SEIS DIAS de ar (primeira pagina em 29/10/2026), 9 URLs e `primeira_indexacao: null`. E foi o unico bloco da fila que esta execucao podia executar inteiro: a F1 e a F3 estao travadas por ABERTURA de egresso (despacho ALTA), pagina nova de malha esta travada pela 30.8 (veredito `alvo` nao se afirma desta nuvem) e as duas consultas de maior volume com SERP ja vista — `moto eletrica` 823 mil e `scooter eletrica` 301 mil — estao travadas por PRODUTO, medido em 29/10. Nenhum defeito aberto no ar: a bancada fechou 24 portoes, 0 falha, antes deste bloco (18.5).",
+  "instrumentos_desta_passada": ["busca"],
+  "ninguem_abriu_nenhum_site": true,
+  "por_que_ninguem_abriu": "O egresso desta nuvem responde 403 no CONNECT para todo dominio fora da lista de permitidos. Medido NESTA ILHA em 29/10/2026, tres passadas cada, com `rodametria.com.br` e `aquametria.com.br` em 200 nas mesmas: `honeywhale.com`, `maxshot.com.br`, `kenda.com.br`, `sousabike.com.br`, `evoo.com.br`, `www.casasbahia.com.br`, `www.extra.com.br` e `www.magazineluiza.com.br` todos em `connect_rejected`, classificacao lida no `__agentproxy/status` e nao suposta. O WebFetch devolve o mesmo. O unico instrumento que alcanca o mundo daqui e a BUSCA — o mesmo degrau por onde o banco desta ilha foi construido e por onde a jornadafly entrou em 27/10.",
+  "por_que_nao_existe_false": "Esta passada sabe afirmar PRESENCA, nunca ausencia — a mesma assimetria que a 30.8 ja escreveu para o veredito de SERP, aplicada a outro assunto. Um dominio nao aparecer na busca de calculadora nao prova que ele nao tem calculadora: prova que a busca nao o mostrou. Entao `vende_veiculo`, `publica_conteudo` e `ja_tem_calculadora` so aceitam `true` (com evidencia que os nomeia) ou `null` (= nao medido). O portao RECUSA `false`, de proposito, para o arquivo nao virar uma lista de negativas que ninguem mediu.",
+  "a_evidencia_e_do_proprio_dominio_e_isso_e_trava": "O host do `resultado_url` tem de ser o dominio do candidato ou subdominio dele. A armadilha foi medida nesta propria coleta: a Eletricz apareceu primeiro numa materia de `mecanicaonline.com.br` que FALA dela, com nome, cidade e catalogo — e materia de terceiro nao prova nada sobre o site que vai instalar o widget. A linha dela so entrou quando a busca devolveu `eletricz.com.br/...`. E a mesma familia da 25.3 e da 25.7 no casamento de oferta: o que casa e a identidade, nunca a mencao.",
+  "o_que_esta_lista_nao_diz": [
+    "NAO diz que algum destes dominios nao tem calculadora. Nenhum campo `ja_tem_calculadora` e `true` nesta passada, e isso quer dizer `nao medido`, nunca `nao tem`. A busca de `calculadora autonomia bicicleta eletrica patinete km bateria ferramenta online brasil` nao devolveu uma calculadora sequer — nem brasileira nem estrangeira —, o que e consistente com o `todos falam, ninguem calcula` que o corpus de 28/10 mediu no eixo da CNH, e NAO e prova de ausencia.",
+    "NAO diz contato de ninguem. `contato` e `null` em todas as dez linhas, com motivo escrito: o egresso nao abre o site e e no site que mora o canal. Campo vazio sem motivo e onde a proxima passada inventa um e-mail, e a secao 28 do contrato ja pagou uma vez por e-mail de pessoa de verdade escrito em repositorio.",
+    "NAO diz a plataforma de loja de ninguem (Nuvemshop, Tray, Shopify, WooCommerce). Isso se le no HTML, e ninguem abriu o HTML.",
+    "NAO e ordem de abordagem. A prioridade e CALCULADA dos campos medidos e ordena por quem tem interesse e tem onde por a ferramenta — nao por quem responderia. Quem abordar decide.",
+    "NAO esgota o mercado. Sao dez dominios achados em sete consultas, e o proprio instrumento vaza: o corpus de 28/10 mediu que o eixo da autonomia devolve ~40 de ~50 ocupantes fora do Brasil. Lista maior se faz com mais consultas, nao com mais suposicao."
+  ],
+  "o_achado_desta_coleta_que_nao_e_sobre_prospecao": "DUAS PAGINAS DA MESMA LOJA CITAM A RESOLUCAO CONTRAN 996/2023 COM NUMEROS DIFERENTES. Medido em 02/11/2026 na busca restrita a `eletricz.com.br`: uma pagina de produto afirma `potencia maxima permitida de ate 1000 Watts, com velocidade de ate 32 km/h de fabrica` e outra, do mesmo dominio e sob a mesma resolucao, afirma `potencia maxima de 4.000W para autopropelidos`. Nao e divergencia entre fontes: e divergencia DENTRO de uma fonte. Isto nao muda nada na lista de prospecao e muda muito no despacho ALTA do `gov.br`: a regra escrita no bloco 2 desta ilha — o limiar da F1 so vira `publicavel` depois de lido no texto oficial, com data — nao e zelo, e o unico jeito de a F1 nao herdar a contradicao que o varejo publica na pagina onde a pessoa compra. E e a medida do que o egresso fechado custa: a ilha nao pode publicar o numero certo, e o mercado segue publicando dois.",
+  "campos_de_fato": ["vende_veiculo", "publica_conteudo", "ja_tem_calculadora"],
+  "candidatos": [
+    {
+      "id": "bici-eletric",
+      "nome": "Bici Eletric",
+      "dominio": "bicieletric.com.br",
+      "tipo": "loja",
+      "vende_veiculo": true,
+      "publica_conteudo": true,
+      "ja_tem_calculadora": null,
+      "prioridade": 1,
+      "porque": "O UNICO candidato que fecha as duas condicoes com o que a busca alcanca: e loja, vende os DOIS veiculos que as ferramentas desta ilha classificam (bicicleta eletrica e patinete) e publica conteudo editorial NO PROPRIO DOMINIO, num guia com endereco proprio. Quem ja mantem pagina de guia tem onde encaixar uma ferramenta e ja tem o habito de publicar; quem nao tem precisa criar a pagina antes. E A OBSERVACAO HONESTA, escrita para quem abrir o site decidir: o guia dele se chama `Melhor Bicicleta Eletrica 2026`, que e o formato que o `VOZ.md` desta ilha proibe nominalmente e que o bloco 5c contou como assinatura de fazenda nas caudas. A diferenca medida aqui e que esta pagina esta no dominio de uma LOJA e fala dos proprios produtos, que e outra coisa de uma fazenda que vive de ocupar a consulta — mas quem abordar le a pagina antes.",
+      "abriu_no_navegador": false,
+      "contato": null,
+      "contato_motivo": "nao medido — o egresso desta nuvem nao abre o site, e o canal mora no site",
+      "plataforma": null,
+      "plataforma_motivo": "nao medido — depende de abrir o HTML",
+      "publicar": false,
+      "evidencia": [
+        {
+          "campos": ["dominio", "tipo", "vende_veiculo"],
+          "medido_como": "busca",
+          "medido_em": "2026-11-02",
+          "consulta": "marcas brasileiras bicicleta elétrica patinete elétrico fabricante nacional loja própria site",
+          "resultado_titulo": "Bici Eletric, Bicicletas Elétricas Sustentáveis",
+          "resultado_url": "https://bicieletric.com.br/"
+        },
+        {
+          "campos": ["vende_veiculo"],
+          "medido_como": "busca",
+          "medido_em": "2026-11-02",
+          "consulta": "blog dicas autonomia bateria patinete bicicleta elétrica CNH (restrita a bicieletric.com.br e outros cinco)",
+          "resultado_titulo": "Patinete Elétrico Urban Scooter, Dobrável Bici Eletric",
+          "resultado_url": "https://bicieletric.com.br/bike-patinete.html"
+        },
+        {
+          "campos": ["publica_conteudo"],
+          "medido_como": "busca",
+          "medido_em": "2026-11-02",
+          "consulta": "blog dicas autonomia bateria patinete bicicleta elétrica CNH (restrita a bicieletric.com.br e outros cinco)",
+          "resultado_titulo": "Melhor Bicicleta Elétrica 2026: Guia Completo e Comparativo Bici Eletric",
+          "resultado_url": "https://bicieletric.com.br/guia-melhor-bike-eletrica.html"
+        }
+      ]
+    },
+    {
+      "id": "eletricz",
+      "nome": "Eletricz",
+      "dominio": "eletricz.com.br",
+      "tipo": "distribuidora",
+      "vende_veiculo": true,
+      "publica_conteudo": null,
+      "ja_tem_calculadora": null,
+      "prioridade": 2,
+      "porque": "Distribuidora de Sao Paulo com catalogo proprio por MODELO — patinete, monociclo e bicicleta eletrica —, em dois enderecos do mesmo dominio (`www.` e `loja.`). E o candidato cujo catalogo mais se parece com a entrada das ferramentas desta ilha: as fichas dele declaram bateria em V e Ah ao lado da autonomia, que e exatamente o par que a F2 recebe, e uma delas usa a palavra AUTOPROPELIDO no titulo do produto, que e a saida da F1. Nao subiu para 1 por uma razao so, e ela e de medicao: a busca restrita ao dominio nao devolveu pagina editorial nenhuma, so ficha de produto e a pagina de SAC. Conteudo `null` e nao medido.",
+      "abriu_no_navegador": false,
+      "contato": null,
+      "contato_motivo": "nao medido — o egresso desta nuvem nao abre o site, e o canal mora no site",
+      "plataforma": null,
+      "plataforma_motivo": "nao medido — depende de abrir o HTML",
+      "publicar": false,
+      "evidencia": [
+        {
+          "campos": ["dominio", "tipo", "vende_veiculo"],
+          "medido_como": "busca",
+          "medido_em": "2026-11-02",
+          "consulta": "patinete elétrico bicicleta elétrica comprar loja (restrita a eletricz.com.br e outros quatro)",
+          "resultado_titulo": "Especialistas em Bicicletas Elétricas. Escolha a sua Bike elétrica Na Eletricz.",
+          "resultado_url": "https://www.eletricz.com.br/veiculos/bicicleta-eletrica"
+        },
+        {
+          "campos": ["vende_veiculo"],
+          "medido_como": "busca",
+          "medido_em": "2026-11-02",
+          "consulta": "blog dicas guia como escolher autonomia CNH patinete scooter elétrica (restrita a eletricz.com.br e outros quatro)",
+          "resultado_titulo": "Patinete Elétrico autopropelido KingSong KS-N14 + → Patinete elétrico",
+          "resultado_url": "https://www.eletricz.com.br/veiculos/patinete-eletrico/patinete-eletrico-autopropelido-kingsong-n14"
+        }
+      ]
+    },
+    {
+      "id": "fat-bike-floripa",
+      "nome": "Fat Bike Floripa",
+      "dominio": "fatbikefloripa.com.br",
+      "tipo": "loja",
+      "vende_veiculo": true,
+      "publica_conteudo": null,
+      "ja_tem_calculadora": null,
+      "prioridade": 2,
+      "porque": "Loja de Florianopolis com secao propria de eletricos, bicicleta e patinete no mesmo catalogo, novo e seminovo. A ficha que a busca devolveu anuncia um patinete de 2000 W — potencia que, pelo numero que o corpus desta ilha colheu para o limite nacional, cai FORA do autopropelido —, e vender acima do limiar e exatamente o lugar em que a pergunta da F1 aparece na cabeca de quem compra. Conteudo editorial nao foi medido.",
+      "abriu_no_navegador": false,
+      "contato": null,
+      "contato_motivo": "nao medido — o egresso desta nuvem nao abre o site, e o canal mora no site",
+      "plataforma": null,
+      "plataforma_motivo": "nao medido — depende de abrir o HTML",
+      "publicar": false,
+      "evidencia": [
+        {
+          "campos": ["dominio", "tipo", "vende_veiculo"],
+          "medido_como": "busca",
+          "medido_em": "2026-11-02",
+          "consulta": "patinete elétrico bicicleta elétrica comprar loja (restrita a fatbikefloripa.com.br e outros quatro)",
+          "resultado_titulo": "Bike Elétrica - Oferta de Bicicleta e Patinete Elétrico",
+          "resultado_url": "https://www.fatbikefloripa.com.br/eletricas"
+        },
+        {
+          "campos": ["vende_veiculo"],
+          "medido_como": "busca",
+          "medido_em": "2026-11-02",
+          "consulta": "blog dicas autonomia bateria patinete bicicleta elétrica CNH (restrita a fatbikefloripa.com.br e outros cinco)",
+          "resultado_titulo": "Patinete Scooter Elétrico Off-Road TD-Monster 2000W Seminovo - Fat Bike Floripa",
+          "resultado_url": "https://www.fatbikefloripa.com.br/patinete-scooter-eltrico-off-road-td-monster-2000w-seminovo"
+        }
+      ]
+    },
+    {
+      "id": "zelia-store",
+      "nome": "Zélia Store",
+      "dominio": "zeliastore.com.br",
+      "tipo": "loja",
+      "vende_veiculo": true,
+      "publica_conteudo": null,
+      "ja_tem_calculadora": null,
+      "prioridade": 2,
+      "porque": "A loja desta lista que vende exatamente o que as DUAS consultas de maior volume desta ilha pedem e que a Shopee nao entrega: moto eletrica e scooter eletrica de 1000 W, com preco publicado. `veiculos/moto-eletrica` (823 mil buscas/mes) e `veiculos/scooter-eletrica` (301 mil) tem SERP `alvo` vista no Chrome em 27/10 e endereco reservado desde o bloco 5b, e nao nascem por falta de PRODUTO — cinco registros percorreram a escada de chaves inteira e a loja devolveu zero em todos os degraus. E o argumento de prospecao esta no titulo das paginas dela: as duas vendem `sem CNH` e uma cita a Resolucao Contran 996/2023 no corpo. Quem anuncia `sem CNH` e quem mais precisa da pergunta respondida com numero, e e a venda dele que a duvida trava.",
+      "abriu_no_navegador": false,
+      "contato": null,
+      "contato_motivo": "nao medido — o egresso desta nuvem nao abre o site, e o canal mora no site",
+      "plataforma": null,
+      "plataforma_motivo": "nao medido — depende de abrir o HTML",
+      "publicar": false,
+      "evidencia": [
+        {
+          "campos": ["dominio", "tipo", "vende_veiculo"],
+          "medido_como": "busca",
+          "medido_em": "2026-11-02",
+          "consulta": "patinete elétrico scooter elétrica loja brasil autopropelido sem CNH 1000W comprar site oficial marca",
+          "resultado_titulo": "Moto Elétrica JET 1000W Preta sem CNH por R$ 3.889,00",
+          "resultado_url": "https://zeliastore.com.br/jet-preta/"
+        },
+        {
+          "campos": ["vende_veiculo"],
+          "medido_como": "busca",
+          "medido_em": "2026-11-02",
+          "consulta": "patinete elétrico scooter elétrica loja brasil autopropelido sem CNH 1000W comprar site oficial marca",
+          "resultado_titulo": "Scooter Elétrica X12 1000W sem CNH por R$ 6.732,40",
+          "resultado_url": "https://zeliastore.com.br/x12-1000w/"
+        }
+      ]
+    },
+    {
+      "id": "brazil-electric",
+      "nome": "Brazil Electric Bike",
+      "dominio": "brazilelectric.com.br",
+      "tipo": "fabricante",
+      "vende_veiculo": true,
+      "publica_conteudo": null,
+      "ja_tem_calculadora": null,
+      "prioridade": 2,
+      "porque": "Fabricante de Goiania que se apresenta como produtor nacional de bicicleta eletrica, com linha propria. Fabricante vale menos que loja na prospecao de widget — vende pouco direto ao leitor e alcanca revenda em vez de leitor —, mas vale por outro motivo que e desta ilha em particular: o campo que falta ao banco inteiro e `potencia_nominal_w`, e `veiculos_com_nominal_declarado` esta em ZERO desde 28/10. Fabricante e o nivel 4 da escada de fontes, e o bloco 3e mediu que ele pode ser estruturalmente vazio neste nicho porque as duas marcas principais do banco sao marcas de marketplace. Este e um fabricante brasileiro com site proprio: e a contraprova do bloco 3e, e por isso a linha fica aqui mesmo sem conteudo medido.",
+      "abriu_no_navegador": false,
+      "contato": null,
+      "contato_motivo": "nao medido — o egresso desta nuvem nao abre o site, e o canal mora no site",
+      "plataforma": null,
+      "plataforma_motivo": "nao medido — depende de abrir o HTML",
+      "publicar": false,
+      "evidencia": [
+        {
+          "campos": ["dominio", "tipo", "vende_veiculo"],
+          "medido_como": "busca",
+          "medido_em": "2026-11-02",
+          "consulta": "marcas brasileiras bicicleta elétrica patinete elétrico fabricante nacional loja própria site",
+          "resultado_titulo": "Brazil Electric Bike - HOME",
+          "resultado_url": "https://brazilelectric.com.br/"
+        }
+      ]
+    },
+    {
+      "id": "caloi",
+      "nome": "Caloi",
+      "dominio": "caloi.com",
+      "tipo": "fabricante",
+      "vende_veiculo": null,
+      "publica_conteudo": true,
+      "ja_tem_calculadora": null,
+      "prioridade": 2,
+      "porque": "Fabricante com blog proprio e secao dedicada a bicicleta eletrica, que publica exatamente o assunto da F2 (o que olhar na bateria e na potencia antes de comprar). E A RESSALVA ESTA MEDIDA E E DE QUALIDADE DE LINK, nao de produto: a propria busca registrou que a pagina de blog dele carrega comentarios de spam com links de apostas. A 14.7 proibe link pago e PBN porque a penalizacao custa mais que o ganho, e dominio que deixa a secao de comentarios aberta a spam e dominio cujo link vale menos do que o nome sugere. Quem abrir o site confere isso ANTES de qualquer abordagem — esta linha existe para que a conferencia aconteca, nao para desqualificar de longe.",
+      "abriu_no_navegador": false,
+      "contato": null,
+      "contato_motivo": "nao medido — o egresso desta nuvem nao abre o site, e o canal mora no site",
+      "plataforma": null,
+      "plataforma_motivo": "nao medido — depende de abrir o HTML",
+      "publicar": false,
+      "evidencia": [
+        {
+          "campos": ["dominio", "tipo", "publica_conteudo"],
+          "medido_como": "busca",
+          "medido_em": "2026-11-02",
+          "consulta": "\"bicicleta elétrica\" loja oficial brasil blog autonomia bateria dicas comprar",
+          "resultado_titulo": "Vai comprar uma bike elétrica? Tudo o que você precisa saber antes de decidir",
+          "resultado_url": "https://caloi.com/blog/eletrica/vai-comprar-uma-bike-eletrica-tudo-o-que-voce-precisa-saber-antes-de-decidir/"
+        }
+      ]
+    },
+    {
+      "id": "guia-ebike",
+      "nome": "Blog GuiaEbike",
+      "dominio": "guiaebike.com.br",
+      "tipo": "fazenda",
+      "vende_veiculo": null,
+      "publica_conteudo": true,
+      "ja_tem_calculadora": null,
+      "prioridade": 3,
+      "porque": "Blog dedicado a bicicleta eletrica, com volume de publicacao visivel e paginas de uso real (`Como Ligar uma Bicicleta Eletrica`, `Niveis de Assistencia da E-bike`). ENTRA COMO FAZENDA, E A CLASSIFICACAO E MEDIDA E NAO IMPRESSAO: o mesmo dominio publica `As 7 Melhores Marcas de Bicicleta Eletrica que Dominam o Brasil em 2026` e `Melhor Bicicleta Eletrica Nacional`, que e literalmente o formato `melhor X` e `Top 10` que o bloco 5c desta ilha contou como assinatura de fazenda em 26 paginas dedicadas entre os 102 ocupantes das cinco caudas, e que o `VOZ.md` desta ilha proibe nominalmente. Site que vive de ocupar a consulta de compra nao e prospect: e CONCORRENTE, e nao linka para fora de graca. A linha fica na lista para ser reconhecida como tal, e e por isso que o teto do tipo `fazenda` e 3.",
+      "abriu_no_navegador": false,
+      "contato": null,
+      "contato_motivo": "nao medido — o egresso desta nuvem nao abre o site, e o canal mora no site",
+      "plataforma": null,
+      "plataforma_motivo": "nao medido — depende de abrir o HTML",
+      "publicar": false,
+      "evidencia": [
+        {
+          "campos": ["dominio", "tipo"],
+          "medido_como": "busca",
+          "medido_em": "2026-11-02",
+          "consulta": "marcas brasileiras bicicleta elétrica patinete elétrico fabricante nacional loja própria site",
+          "resultado_titulo": "As 7 Melhores Marcas de Bicicleta Elétrica que Dominam o Brasil em 2026 — Blog GuiaEbike",
+          "resultado_url": "https://guiaebike.com.br/blog/as-7-melhores-marcas-de-bicicleta-eletrica-que-dominam-o-brasil-em-2026"
+        },
+        {
+          "campos": ["publica_conteudo"],
+          "medido_como": "busca",
+          "medido_em": "2026-11-02",
+          "consulta": "blog dicas autonomia bateria patinete bicicleta elétrica CNH (restrita a guiaebike.com.br e outros cinco)",
+          "resultado_titulo": "Níveis de Assistência da E-bike: Guia Completo Para Dominar Cada Modo — Blog GuiaEbike",
+          "resultado_url": "https://guiaebike.com.br/blog/niveis-de-assistencia-da-e-bike-guia-completo-para-dominar-cada-modo"
+        }
+      ]
+    },
+    {
+      "id": "techinter",
+      "nome": "Techinter — mobilidade elétrica",
+      "dominio": "techinter.com.br",
+      "tipo": "fazenda",
+      "vende_veiculo": null,
+      "publica_conteudo": true,
+      "ja_tem_calculadora": null,
+      "prioridade": 3,
+      "porque": "Tem secao dedicada de mobilidade eletrica e publica sobre bicicleta eletrica. Mesma classificacao e mesma razao da GuiaEbike, com a assinatura no proprio titulo da pagina de secao: `As 10 melhores bicicletas eletricas de 2026`. Concorrente pela consulta, nao prospect do widget.",
+      "abriu_no_navegador": false,
+      "contato": null,
+      "contato_motivo": "nao medido — o egresso desta nuvem nao abre o site, e o canal mora no site",
+      "plataforma": null,
+      "plataforma_motivo": "nao medido — depende de abrir o HTML",
+      "publicar": false,
+      "evidencia": [
+        {
+          "campos": ["dominio", "tipo", "publica_conteudo"],
+          "medido_como": "busca",
+          "medido_em": "2026-11-02",
+          "consulta": "marcas brasileiras bicicleta elétrica patinete elétrico fabricante nacional loja própria site",
+          "resultado_titulo": "As 10 melhores bicicletas elétricas de 2026 - Techinter",
+          "resultado_url": "https://techinter.com.br/mobilidade-eletrica/bicicletas-eletricas/"
+        }
+      ]
+    },
+    {
+      "id": "melhores-para-comprar",
+      "nome": "Melhores Para Comprar",
+      "dominio": "melhoresparacomprar.com.br",
+      "tipo": "fazenda",
+      "vende_veiculo": null,
+      "publica_conteudo": true,
+      "ja_tem_calculadora": null,
+      "prioridade": 3,
+      "porque": "Publica pagina dedicada a `scooter eletrica sem CNH`, que e a consulta de 301 mil buscas/mes cujo endereco esta reservado nesta ilha. O titulo e a classificacao: `Melhor Scooter Eletrica sem CNH: Top 8 Modelos`. Entra na lista como OCUPANTE a reconhecer e nao como prospect — e o unico destes tres que disputa diretamente uma consulta que esta ilha quer, e por isso vale estar escrito em algum lugar com URL e data.",
+      "abriu_no_navegador": false,
+      "contato": null,
+      "contato_motivo": "nao medido — o egresso desta nuvem nao abre o site, e o canal mora no site",
+      "plataforma": null,
+      "plataforma_motivo": "nao medido — depende de abrir o HTML",
+      "publicar": false,
+      "evidencia": [
+        {
+          "campos": ["dominio", "tipo", "publica_conteudo"],
+          "medido_como": "busca",
+          "medido_em": "2026-11-02",
+          "consulta": "patinete elétrico scooter elétrica loja brasil autopropelido sem CNH 1000W comprar site oficial marca",
+          "resultado_titulo": "Melhor Scooter Elétrica sem CNH: Top 8 Modelos",
+          "resultado_url": "https://melhoresparacomprar.com.br/melhor-scooter-eletrica-sem-cnh"
+        }
+      ]
+    },
+    {
+      "id": "dias-bike",
+      "nome": "Dias Bike",
+      "dominio": "diasbike.com.br",
+      "tipo": "desconhecido",
+      "vende_veiculo": null,
+      "publica_conteudo": true,
+      "ja_tem_calculadora": null,
+      "prioridade": 3,
+      "porque": "Mantem blog com endereco proprio (`blog.diasbike.com.br`, subdominio do dominio dele, que pela regra 2 conta como site proprio) e publica sobre bicicleta — o que o faz ter ONDE por uma ferramenta. O `tipo` fica `desconhecido` de proposito: o nome diz loja de bicicleta e a busca NAO devolveu uma pagina de catalogo dele, muito menos de eletrica. Chutar `loja` subiria a prioridade dele de 3 para 2 sobre uma leitura de nome, e leitura de nome erra — a 30.8 ja escreveu essa licao para leitura de slug. Nao saber e motivo para descer, nunca para chutar.",
+      "abriu_no_navegador": false,
+      "contato": null,
+      "contato_motivo": "nao medido — o egresso desta nuvem nao abre o site, e o canal mora no site",
+      "plataforma": null,
+      "plataforma_motivo": "nao medido — depende de abrir o HTML",
+      "publicar": false,
+      "evidencia": [
+        {
+          "campos": ["dominio", "publica_conteudo"],
+          "medido_como": "busca",
+          "medido_em": "2026-11-02",
+          "consulta": "marcas brasileiras bicicleta elétrica patinete elétrico fabricante nacional loja própria site",
+          "resultado_titulo": "11 Marcas de Bicicletas Brasileiras para Você Conhecer",
+          "resultado_url": "https://blog.diasbike.com.br/tipos-bicicleta/marcas-de-bicicletas-brasileiras-que-voce-precisa-conhecer/"
+        }
+      ]
+    }
+  ],
+  "placar": {
+    "o_que_este_placar_e": "CONTADO pelo portao a partir deste proprio arquivo, nunca digitado — a 23.4 contra numero sem procedencia, aplicada dentro do dado. Numero escrito que discorda da contagem deixa o portao VERMELHO.",
+    "candidatos": 10,
+    "prioridade_1": 1,
+    "prioridade_2": 5,
+    "prioridade_3": 4,
+    "abertos_no_navegador": 0
+  }
+}

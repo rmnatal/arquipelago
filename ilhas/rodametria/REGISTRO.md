@@ -3,6 +3,172 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-11-02 19h18Z–19h3xZ — **BLOCO 6: A LISTA DE PROSPECÇÃO DO WIDGET**, a única alavanca de link desta ilha — e a execução começou medindo que **nenhum bloco de página estava desbloqueado**, o que é informação e não fracasso
+
+**A ESCOLHA DA ILHA.** `foco.md` nomeia a **rodametria** — foco total e absoluto desde 27/10 — e pela
+**1.2** não há escolha a fazer. **As duas exceções que furam o foco foram conferidas e NENHUMA furou.**
+(a) Os **três despachos do molde** da seção 32 (aquametria, clubedomosaico e robometria) estão **FECHADOS**,
+lido no topo dos três `PROMPT.md`. (b) A **robometria** recebeu despacho novo hoje às 15h1xZ, da ronda
+diária, e ele **não é ALTA**: é item de **julgamento da 19.2** (os minutos do ciclo da R2 não dependem da
+metragem), e a ilha está **no ar** — a 1.2 abre a exceção só para despacho ALTO em ilha no ar e **quebrada**.
+`executando_desde` estava `null`, que pela **1.1** já significa que não há bloco da Fundação vivo: não houve
+reserva vencida para o git desempatar. Reserva às **19h18Z**, push aceito **de primeira**, campo **renovado
+às 19h27Z**. Branch `claude/dreamy-mccarthy-zfp25a` existe com **zero** commits fora do `main`; nenhum PR aberto.
+
+**A REDE, MEDIDA E NÃO HERDADA (20.2).** `rodametria.com.br/`, `/wp-sitemap.xml` e
+`/wp-json/rodametria/v1/status` os **três em 200**, com `aquametria.com.br` em **200 na mesma passada**.
+
+### A PRIMEIRA COISA QUE ESTA EXECUÇÃO FEZ FOI PROCURAR DEFEITO, E NÃO ACHOU (18.5)
+
+Bancada **com rede: 24 portões, 0 falha**. E as duas meta descriptions que a ronda de 30/10 listou como
+defeito da 19.1 — 161 caracteres na home e 193 na F2, contra o teto de 160 — foram **remedidas no ar** nesta
+passada, com quebra de cache: **138** (`/`), **153** (`/autonomia-patinete-eletrico/`) e **150**
+(`/veiculos/`). Estão consertadas desde 30/10 e o despacho que as carregava está fechado.
+
+### POR QUE O BLOCO 6 E NÃO OUTRO — a conta inteira, porque ela é o resultado mais útil desta passada
+
+| caminho de página nova | o que o trava | onde está medido |
+|---|---|---|
+| **F1** (a home que o `VOZ.md` quer, categoria legal) | o limiar só vira `publicavel` lido no texto oficial, e o `.gov.br` inteiro é **`connect_rejected`** | despacho **ALTA** de 28/10 em `dados/despachos.md` |
+| **F3** (aguenta o meu peso?) | `carga_max_kg` é campo de **nível 5**, e `casasbahia`/`extra`/`magazineluiza` estão atrás do egresso | despacho **ALTA** de 29/10 |
+| **malha nova** (eixos A, B, C) | **30.8**: `alvo` não se afirma desta nuvem. O eixo A está `tomada`, o C tem um `tomada` e dois `nao-medida`, e o B **vazou** (~40 de ~50 ocupantes fora do Brasil) | `dados/corpus-buscas.md`, seção 5 |
+| **`moto elétrica` (823 mil) e `scooter elétrica` (301 mil)** | SERP **`alvo`** vista no Chrome em 27/10, endereço reservado — travadas por **PRODUTO**: zero oferta útil na Shopee, e o caminho é o ML, que exige clique humano (25.6) | `dados/consultas-de-produto.json` |
+| **cruzamentos / cauda** | **14.6**: cauda só nasce depois da âncora **indexada**, e `primeira_indexacao` é `null` | `ESTADO.md` |
+
+**Sobrou o bloco 6, e ele não sobrou por eliminação: a 14.7 o nomeia.** *"A prospecção do widget em lojas é
+a única alavanca de link do projeto e por isso vale mais no começo do que no fim: backlink é o que faz o robô
+voltar."* A ilha tem **seis dias** de ar, 9 URLs e nenhuma indexada.
+
+### O QUE ENTREGUEI
+
+- `dados/prospeccao-widget.json` — a fonte, **10 candidatos**, `publicar: false` no topo e em cada linha.
+- `dados/prospeccao-widget.md` — a vista legível, **gerada** do JSON e nunca escrita à mão.
+- `ferramentas/validar-prospeccao.py` — a **régua** e o **portão de dado**, com `--autoteste`.
+- `ferramentas/gerar-prospeccao.py` — escreve o `.md`, importando a régua do portão.
+
+**O PLACAR, CONTADO PELO PORTÃO E NUNCA DIGITADO** (a 23.4 aplicada dentro do dado: número escrito que
+discorda da contagem deixa o portão vermelho): **10 candidatos — 1 prioridade 1, 5 prioridade 2, 4
+prioridade 3, 0 abertos no navegador.**
+
+O único **prioridade 1** é `bicieletric.com.br`: é o único que fecha as duas condições **medidas** — vende os
+dois veículos que as ferramentas desta ilha classificam **e** publica conteúdo no próprio domínio. Quem já
+mantém página de guia tem onde encaixar uma ferramenta; quem não tem precisa criar a página antes.
+
+**E a linha mais interessante da lista não é a de prioridade 1, é a `zeliastore.com.br`:** é a loja que vende
+exatamente o que as **duas consultas de maior volume desta ilha** pedem e a Shopee não entrega — moto e
+scooter elétrica de 1.000 W, com preço publicado e com **"sem CNH" no próprio título**. Quem anuncia "sem
+CNH" é quem mais precisa da pergunta respondida com número, e é a venda dele que a dúvida trava.
+
+### AS QUATRO REGRAS DA RÉGUA, e as quatro são sobre NÃO AFIRMAR DEMAIS
+
+1. **NÃO EXISTE `false` nos campos de fato.** Busca sabe afirmar **presença**, nunca ausência — é a mesma
+   assimetria que a **30.8** escreveu para o veredito de SERP, aplicada a outro assunto. `true` com evidência
+   ou `null` (= não medido); `false` é **recusado** pelo portão, de propósito, para o arquivo não virar uma
+   lista de negativas que ninguém mediu.
+2. **A EVIDÊNCIA TEM DE SER DO PRÓPRIO DOMÍNIO**, e **a armadilha foi medida nesta coleta**: a Eletricz
+   apareceu primeiro numa matéria de `mecanicaonline.com.br` que **fala** dela — nome, cidade, catálogo, tudo
+   certo — e matéria de terceiro **não prova nada** sobre o site que vai instalar o widget. A linha dela só
+   entrou quando a busca devolveu `eletricz.com.br/...`. A comparação é por **rótulo** e não por `endswith`
+   cru: `loja.eletricz.com.br` conta, `eletricz.com.br.golpe.com` não.
+3. **A PRIORIDADE NÃO SE ESCREVE, SE CALCULA.** O portão recalcula dos campos medidos e fica vermelho se
+   discordar — a mesma doença que o `versao` do manifest desta ilha consertou hoje de manhã: constante que
+   alguém sobe à mão e ninguém confere é **rastro, não mecanismo**.
+4. **`null` EXIGE MOTIVO ESCRITO.** `contato` e `plataforma` são `null` nas dez linhas, com o motivo em cada
+   uma. Campo vazio sem motivo é onde a próxima passada **inventa um e-mail** — e a seção 28 já pagou uma vez
+   por e-mail de pessoa de verdade escrito em repositório.
+
+**E a porta dos fundos fica fechada junto:** `abriu_no_navegador` **ausente** não vale como `false`. Se o
+campo pudesse faltar, a lista ganharia um estado em que ninguém sabe se alguém abriu o site — e "ninguém
+abriu" é justamente a limitação que o arquivo existe para deixar visível. Ausência é reprovação, não omissão
+tolerada, que é a letra da 30.8 sobre `visto_por`/`visto_em`.
+
+### A RÉGUA MORA DENTRO DO PORTÃO, E ISSO É DECISÃO E NÃO PREGUIÇA
+
+A Aquametria separou `regua-prospeccao.py` em 24/09 e fez **certo para aquela ilha**: lá a régua é carregada
+por quatro arquivos. Aqui ela é carregada por **dois**, e a `bancada.py` desta ilha classifica portão **por
+prefixo de nome** e **DENUNCIA** o que não casa com nenhum. `regua-prospeccao.py` **nasceria denunciado**, e o
+conserto seria escrever o nome dele numa lista de exceção à mão — exatamente a doença que esta bancada matou
+quando deixou de enumerar portão. Então a régua mora no portão, numa fonte só, e o gerador a importa.
+
+**E O AUTOTESTE RODA SEMPRE, ANTES DO ARQUIVO DE VERDADE.** O mecanismo de descoberta de `--autoteste` que
+nasceu hoje de manhã só alcança os portões de **rede** (os `conferir-*`), porque foi para eles que ele foi
+escrito. Este é dos **sem rede**, então o autoteste dele **nunca entraria na fila sozinho** — e portão que
+depende de alguém lembrar não roda. A ordem importa: régua quebrada reprovando o arquivo de verdade **parece
+arquivo errado**, então o portão não julga o arquivo se não passar nos próprios mundos primeiro.
+
+### A 31 FOI LIDA ANTES DE ESCREVER FERRAMENTA, NÃO DEPOIS
+
+A **31.2** proíbe portão **novo** sem defeito medido no ar que ele teria pegado — e este portão **nunca vai
+pegar defeito no ar nenhum**, porque o arquivo que ele julga tem `publicar: false` e não serve um byte a
+visitante nenhum. Quem o autoriza é a **31.5**, que preserva *"portão de dado"* com todas as letras, mais a
+seção 10 (nunca inventar dado). **Portão de AR e portão de DADO não são a mesma coisa:** o primeiro protege a
+página, o segundo protege a **afirmação**.
+
+**E foi por isso que esta execução escreveu DOIS arquivos de ferramenta e não cinco.** A Aquametria tem
+`regua-`, `validar-`, `teste-`, `mutacoes-` e `gerar-`; a bateria de mutação e o teste sintético seriam,
+aqui, bancada sobre bancada, que é o que a **31.3** fecha enquanto houver item de conteúdo aberto na fila.
+O `--autoteste` faz a metade que importa: **13 mundos fabricados, 13 ok** — o candidato são que tem de passar,
+o subdomínio próprio, `false` em campo de fato, evidência de outro domínio, a armadilha do `endswith` cru,
+prioridade divergente, `ja_tem_calculadora` derrubando para 3, `null` sem motivo, `abriu_no_navegador`
+ausente, campo afirmado sem evidência, vitrine de marketplace, instrumento que esta nuvem não tem, e
+`publicar: true`.
+
+**E a régua foi MUTADA SOBRE O DADO DE VERDADE**, não só sobre mundo sintético: a prioridade do
+`bici-eletric` foi trocada de 1 para 2 no arquivo real e o portão reprovou com a frase certa
+(*"prioridade escrita 2, calculada 1 dos campos medidos"*) antes de o arquivo ser restaurado e aprovar de
+novo. Autoteste que só roda contra mundo fabricado prova a régua; mutação sobre o dado real prova que ela
+está **ligada** ao dado.
+
+### O ACHADO QUE NÃO É SOBRE PROSPECÇÃO, E ELE FOI PARA `dados/despachos.md`
+
+**Duas páginas do MESMO site citam a MESMA Resolução Contran 996/2023 com números diferentes.** Medido por
+busca restrita a `eletricz.com.br`: uma página de produto afirma *"potência máxima permitida de até 1000
+Watts, com velocidade de até 32 km/h de fábrica"* e outra, do mesmo domínio e sob a mesma resolução, afirma
+*"potência máxima de 4.000W para autopropelidos"*.
+
+O corpus do bloco 1 já media três limites diferentes **entre** três publicadores. Isto é um andar abaixo: a
+contradição existe **dentro de uma fonte**. **E isso sobe o custo do despacho ALTA do `gov.br` em vez de só
+confirmá-lo** — enquanto a fonte primária não chega, **não existe "a leitura de mercado"** para a F1 herdar, e
+qualquer régua de maioria entre fontes secundárias escolheria um número sem saber qual. A regra escrita no
+bloco 2 desta ilha — *"o limiar só vira `publicavel` depois de lido no texto oficial, com data"* — está medida
+em campo. A evidência entrou no despacho.
+
+### A LINHA VENCIDA QUE ESTA EXECUÇÃO ACHOU NA PRÓPRIA FILA
+
+O parágrafo de fecho do bloco **5e** ainda dizia *"O QUE FICA, e é BLOCO e não conserto: `/veiculos/` ESTÁ
+FORA DO MOLDE"*. Os **dois** itens dele estavam feitos — a caixa da mãe em 02/11 às **13h42Z** (commit
+`ce91604`) e o campo `versao` às **17h4xZ** — e **só o segundo tinha sido marcado**. Esta execução leu a linha
+como pendência e foi conferir. Marcado agora, com o texto velho preservado embaixo. **É a seção 4 em forma de
+fila:** o trabalho anda e o índice fica para trás em silêncio.
+
+### A BANCADA
+
+**22 portões sem rede, 0 falha** (eram 20) e **24 com rede, 0 falha**, os dois contados em `--lista` e não de
+cabeça. **0 denunciado** — os dois arquivos novos entram pela convenção de nome (`validar-` e `gerar-`), sem
+lista nenhuma. E o `gerar-prospeccao.py` nasceu **INERTE** na primeira rodada da bancada, pega por ela: não
+imprimia `APROVADO`/`REPROVADO` no `--conferir`, e portão cujo texto não diz o veredito em português não é
+lido por ninguém. Consertado na mesma passada.
+
+### NADA FOI AO AR NESTA EXECUÇÃO, E ISSO ESTÁ DITO E NÃO ESCONDIDO
+
+A **31.1** pede 7 de cada 10 execuções entregando algo que o visitante vê. **Esta é das 3 que não entregam**:
+o arquivo tem `publicar: false` em cada linha, de propósito. As anteriores desta ilha entregaram no ar quase
+sem exceção — a casca, a F2, as três páginas de produto, as quatro institucionais, a escada da 25.2, a caixa
+da mãe e a versão dos snippets —, então a proporção segue folgada. Quem for contar, conte esta como **não**.
+
+### O PRÓXIMO PASSO DESBLOQUEADO
+
+1. **NENHUM BLOCO DE CONSTRUÇÃO DESTA ILHA ESTÁ DESBLOQUEADO HOJE**, e isso é informação e não fracasso. Os
+   três caminhos de página nova estão travados por coisas que **não se resolvem desta nuvem**: o `gov.br`
+   (F1), o nível 5 de varejo grande (F3) e o **Chrome do Raphael** (as duas SERPs do despacho de 30/10 e as
+   duas etiquetas do Mercado Livre). A execução seguinte que encontrar os três ainda fechados deve **dizer
+   isso** em vez de inventar bloco — e o despacho de 30/10, **uma sessão de Chrome de ~10 minutos**, continua
+   sendo o gesto que destrava mais por menos.
+2. **ABRIR OS DEZ CANDIDATOS NO NAVEGADOR**, que é o que transforma `null` em medido: `contato`, `plataforma`
+   e `ja_tem_calculadora` são os três campos que a lista não sabe e **diz** que não sabe. Dez domínios, um
+   navegador, e a lista passa de ordenada para acionável. Também não é bloco desta nuvem — é despacho, pela
+   mesma razão da 30.8.
+
 ## 2026-11-02 17h03Z–17h47Z — **O CAMPO `versao` NO `manifest.json`**, e a metade que o `sha256` nunca alcançou: qual versão o WordPress **carregou**
 
 **A ESCOLHA DA ILHA.** `foco.md` nomeia a **rodametria** — foco total e absoluto desde 27/10 — e pela
