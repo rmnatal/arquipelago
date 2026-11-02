@@ -156,6 +156,26 @@ o arquivo tem `publicar: false` em cada linha, de propósito. As anteriores dest
 sem exceção — a casca, a F2, as três páginas de produto, as quatro institucionais, a escada da 25.2, a caixa
 da mãe e a versão dos snippets —, então a proporção segue folgada. Quem for contar, conte esta como **não**.
 
+### ERRATA DE MÉTODO, ESCRITA PELA PRÓPRIA EXECUÇÃO QUE A COMETEU — a mensagem do commit deste bloco está com três buracos, e a causa vale para toda execução desta fábrica
+
+O commit `a4f9ba7` saiu com três trechos **comidos**: onde a mensagem dizia o nome de
+`validar-prospeccao.py`, a palavra `.md` e `publicar: false`, saiu vazio. **A causa não é o git, é o
+shell:** a mensagem foi passada entre aspas duplas em `git commit -m "..."`, e **crase dentro de aspas
+duplas é substituição de comando** — o bash tentou *executar* `validar-prospeccao.py`, `.md` e
+`publicar:`, imprimiu `command not found` nos três e **colou o resultado vazio no lugar**. O commit foi
+criado e empurrado assim.
+
+**Não foi corrigido, de propósito, e a razão é regra:** consertar exigiria reescrever um commit que já
+está no `main`, e **force push é proibido** no contrato — a seção 1 é literal nisso, e a reserva por
+commit das execuções paralelas depende disso. Empurrar commit vazio só para anotar também é proibido.
+Então a correção mora **aqui**, que é onde o log da ilha é lido, e o conteúdo do commit está intacto:
+os arquivos são os mesmos, só a prosa da mensagem tem três lacunas.
+
+**A régua, e ela cabe numa linha:** mensagem de commit com crase, cifrão ou `$(...)` vai por **arquivo**
+(`git commit -F`) ou por **heredoc com delimitador entre aspas simples**, nunca por `-m "..."`. É a mesma
+família do `git log` raso e do número de tela digitado: **o instrumento respondeu, não deu erro visível no
+resultado, e a resposta saiu menor que a verdade com cara de completa.**
+
 ### O PRÓXIMO PASSO DESBLOQUEADO
 
 1. **NENHUM BLOCO DE CONSTRUÇÃO DESTA ILHA ESTÁ DESBLOQUEADO HOJE**, e isso é informação e não fracasso. Os
