@@ -8417,3 +8417,69 @@ snippet. Nenhuma publicação, nenhum `publicar: true`, nenhuma verificação de
 conta criada, nenhuma reformatação ou "melhoria" do texto recebido — ele entrou byte a byte como
 veio. `ARQUIPELAGO.md` não foi lido para decidir coisa alguma. Nenhum dado pessoal de terceiro
 entrou no repositório.
+
+---
+
+## Disparo de 02/11/2026 14:55 (17:55 UTC) — Bússola caçadora, 20 linhas em `bussola/cacados.md`
+
+**Checagem de assunto:** Bússola — assunto do Arquipélago. Executado.
+
+**O que o disparo mandou:** acrescentar ao fim de `bussola/cacados.md`, depois da última linha
+existente (`| 29/10/2026 | bicicleta aro 29 | ... |`), exatamente 20 linhas verbatim, sem alterar
+nada acima; arquivo final terminando em quebra de linha, com 11.665 bytes e sha256
+`ed994b64e40603b22b738956d6420c23f0e3e474cbd8c03ff3c2ce363d9c3692`. Mensagem de commit dada:
+`Bússola caçadora — 02/11/2026`. Nenhum outro arquivo muda.
+
+**Estado antes da escrita:** `bussola/cacados.md` com 9.596 bytes, sha256
+`ae757ea1cda10e4a782468ae61f1d91d2fefc72e1eede45f9d2dddc1ec7c5822`, já terminando em `\n`.
+
+`git status --porcelain` depois da escrita, antes do commit:
+
+```
+ M bussola/cacados.md
+```
+
+`git diff --stat` (idem):
+
+```
+ bussola/cacados.md | 20 ++++++++++++++++++++
+ 1 file changed, 20 insertions(+)
+```
+
+**Conferência do arquivo gravado (relido do disco, não de memória):**
+
+```
+$ wc -c bussola/cacados.md
+11665 bussola/cacados.md
+$ sha256sum bussola/cacados.md
+ed994b64e40603b22b738956d6420c23f0e3e474cbd8c03ff3c2ce363d9c3692  bussola/cacados.md
+$ grep -c '02/11/2026' bussola/cacados.md
+20
+$ wc -l bussola/cacados.md
+107
+```
+
+Byte-count e sha256 batem exatamente com o que o disparo exigiu. 20 linhas novas, todas datadas
+02/11/2026; nenhuma linha acima tocada.
+
+**Commit que foi ao `main`:** `57be23325378b2d5fecf0d0e87904c25665140d3` —
+`Bússola caçadora — 02/11/2026`.
+
+**Push:** `git push origin HEAD:main` aceito de primeira, `b7bbd82..57be233  HEAD -> main`. Sem
+rebase, sem retentativa, sem force, sem PR.
+
+**Confirmação em `origin/main`:**
+
+```
+$ git fetch origin main && git log -1 origin/main --format='%H %s'
+57be23325378b2d5fecf0d0e87904c25665140d3 Bússola caçadora — 02/11/2026
+```
+
+**Nenhum passo falhou.**
+
+**O que NÃO foi feito:** nenhum arquivo além de `bussola/cacados.md` (mais este `MAOS-LOG.md`, que é
+a exceção obrigatória). Nenhuma ilha reservada, nenhum `executando_desde` escrito, nenhum cabeçalho
+de estado tocado, nenhum bloco de fila executado. Nenhuma publicação, nenhum `publicar: true`,
+nenhum Sync acionado, nenhuma verificação de site, nenhuma conta criada. As 20 linhas entraram byte
+a byte como vieram — sem reformatar, sem corrigir, sem acrescentar linha alguma. `ARQUIPELAGO.md`
+não foi lido para decidir coisa alguma. Nenhum dado pessoal de terceiro entrou no repositório.
