@@ -39,6 +39,69 @@ Aberto em 29/10/2026 pela Fundação, no bloco 3d, **e com o alvo corrigido por 
 **O que NÃO está bloqueado, para ninguém parar o bloco por isto:** a leitura por **BUSCA** funciona e foi por ela que tudo acima foi medido — é o degrau que a jornadafly nomeou em 27/10 (*"o egresso não trava a coleta inteira; o que ele trava é a leitura direta, que é a PREFERIDA"*). O bloco 3e **pode andar** colhendo por busca, com a procedência que a busca permite; o que os três domínios destravam é a leitura **direta** da ficha, que é a que o nível 5 exige para atribuir campo técnico à loja.
 
 
+### prioridade NORMAL — A AQUAMETRIA NÃO TEM NENHUM DOS DOIS INSTRUMENTOS DA SEÇÃO 29, E A ROBOMETRIA ACABOU DE PAGAR QUATRO DIAS FORA DO AR POR ESSA MESMA FALTA (02/11/2026)
+
+Aberto em 02/11/2026 pela Fundação, no fecho do despacho ALTA da robometria. **Não é hipótese: é a
+conta de um defeito que acabou de acontecer, contada nas ilhas que ainda estão expostas a ele.**
+
+**O QUE A QUEDA DE 30/10 ENSINOU.** A robometria ficou **quatro dias** com a home em 200 e todo o
+resto em 404, e as duas razões foram de **instrumento**, não de causa: (1) a casca dela não tinha a
+rota `?rest_route=/<ilha>/v1/rotas&token=<token>&reparar=1` que a **29.3** manda *"a casca de TODA
+ilha"* servir desde **24/09/2026** — por isso o despacho da ronda escreveu "não é consertável pelo
+repositório", frase que era verdadeira sobre aquela ilha e falsa sobre o Arquipélago; e (2) o
+`conferir-no-ar.py` dela não media **nenhuma** das três URLs da **29.2** nem o 404 que tem de ser
+404 — por isso ninguém acusou. Os dois nasceram em 02/11, e o defeito que ficou quatro dias de pé
+caiu em **dois minutos** depois disso.
+
+**A VARREDURA DO REPOSITÓRIO, feita no mesmo fecho — um comando por ilha, zero rede:**
+
+| ilha | no ar? | rota de reparo (29.3) | porta de entrada no `conferir-no-ar.py` (29.2) |
+|---|---|---|---|
+| clubedomosaico | sim | **SIM** | **SIM** |
+| robometria | sim | **SIM** (nasceu em 02/11) | **SIM** (nasceu em 02/11) |
+| **aquametria** | **sim** | **NÃO** | **NÃO** |
+| rodametria | sim | **NÃO** | SIM |
+| ohmetria | não | NÃO | NÃO |
+| jornadafly | não | NÃO | NÃO |
+| **`ilhas/_modelo/`** | — | **NÃO** | **NÃO** |
+
+**A AQUAMETRIA É O ITEM CARO DESTA LISTA, e por três motivos somados.** Ela é a ilha mais madura do
+Arquipélago — **52 URLs publicadas, 50 indexadas, a ÚNICA com `piso: atingido`**, no ar desde
+06/09/2026 —, ela **não tem nenhum dos dois instrumentos**, e o domínio dela mora na **mesma conta de
+cPanel** (`/home3/rapha921/`) cujos dois outros domínios já caíram com esta assinatura **quatro
+vezes**. Se a porta dela cair, a ilha mais valiosa do Arquipélago sai do índice **em silêncio** e
+**ninguém consegue repará-la daqui** — exatamente o que acabou de custar quatro dias na robometria,
+numa ilha que vale menos.
+
+**MEDIDO AGORA, ÀS 10h4xZ DE 02/11/2026, para este despacho não ser lido como alarme:** as três
+portas estão **verdes nas três ilhas no ar**, em DUAS leituras com quebra de cache — `aquametria`,
+`clubedomosaico` e `rodametria` com `/`, `/robots.txt`, `/wp-sitemap.xml` e `/wp-json/` os quatro em
+**200**. **Nada está caído hoje.** É por isso que este despacho é NORMAL e não ALTA: o que falta é o
+instrumento, não o conserto.
+
+**E O `ilhas/_modelo/` TAMBÉM NÃO TEM NENHUM DOS DOIS**, o que significa que **toda ilha nova nasce
+com esta dívida** — é a mesma família das dívidas de molde que o Pente Fino vem achando (campo que o
+molde tem e a ilha não herdou), com o sinal invertido e um andar a mais: aqui o molde é que está
+incompleto, e o que ele não entrega é o **instrumento de conserto**, cuja ausência só se manifesta no
+dia da queda, quando já é tarde.
+
+**O QUE É TRABALHO DA FUNDAÇÃO, e é portar e não inventar:** o modelo da rota está em
+`ilhas/clubedomosaico/snippets/clubedomosaico-casca.php`, seção 6, e a porta de entrada da 29.2 está
+no `item 0` de `ilhas/robometria/ferramentas/conferir-no-ar.py`. Quem portar troca o nome da ilha, o
+nome da rota e o token, e nada mais. **Ordem por risco, não por rotação:** (1) **aquametria** — no ar,
+mais a perder, sem os dois; (2) **rodametria** — no ar, tem a porta e não tem o reparo; (3)
+**`ilhas/_modelo/`**, para a dívida parar de nascer; (4) ohmetria e jornadafly, que não servem página
+e por isso não têm porta para cair.
+
+**Pronto quando:** as quatro ilhas no ar responderem ao diagnóstico da 29.3 com `tem_wordpress: true`
+pela rota própria de cada uma, e o `conferir-no-ar.py` de cada uma medir as três URLs da 29.2 com
+content-type mais o 404 que tem de ser 404 — conferido no ar, pela 18.4, em cada ilha.
+
+**O que este despacho NÃO é:** não é o chamado da HostGator, que é da prioridade ALTA mais abaixo e é
+do Raphael. Lá se procura **a causa**; aqui se guarda **o instrumento**. Os dois são necessários, e o
+instrumento é o único dos dois que a fábrica controla.
+
+
 ### prioridade NORMAL — as TRÊS ETIQUETAS do Mercado Livre da rodametria, para os 5 produtos que a Shopee mediu em ZERO
 
 28/10/2026 às 19h3xZ — RAPHAEL (um gesto no painel de afiliado do Mercado Livre) — Medido pela execução da Fundação que entregou o piso de compra da rodametria.
