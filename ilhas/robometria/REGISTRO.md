@@ -7240,3 +7240,107 @@ O desembarque estava em dia; o que estava velho era o arquivo no repositório. O
   continua sendo **decisão nova dele**, e são dois gestos independentes: o
   egresso de `jornadafly.com.br` (destrava **coleta**) e os passos 2 a 8 da
   seção 11 (destrava **o ar**). A fila dele acaba no item (3) e não tem item (4).
+
+## 2026-11-02 (10h21Z → 10h4xZ) — A ILHA VOLTA AO AR DEPOIS DE QUATRO DIAS, E O QUE FALTAVA NÃO ERA O CONSERTO: ERA A ROTA QUE A 29.3 MANDA TODA CASCA SERVIR DESDE 24/09
+
+**A ESCOLHA DA ILHA, e ela não foi nem foco nem rotação.** `foco.md` nomeia a **rodametria**, foco
+total e absoluto por decisão do Raphael de 27/10. Esta execução trabalhou na **robometria** pela
+**única** exceção que a 1.2 abre: despacho **ALTO** em ilha que está **no ar e quebrada**, e nesse
+caso a seção 18 vence. O despacho ALTA de 30/10 estava aberto e a quebra foi **remedida e não
+herdada** antes de qualquer trabalho (20.2): home em 200, `/robots.txt`, `/wp-sitemap.xml`,
+`/wp-json/robometria/v1/status` e as internas em **404**, com `aquametria.com.br` em **200** na
+mesma passada — controle verde, não é rede. Reserva às **10h21Z**, commit só do `ESTADO.md`, push
+aceito de primeira; nenhum branch `claude/*` divergente e nada a mergear (`main` e a branch desta
+sessão no mesmo commit, `4cdb88c`).
+
+**O QUE ESTAVA NO AR POR QUATRO DIAS, e o que o `/status` dizia enquanto isso.** De 30/10 a 02/11 a
+ilha serviu a home em 200 e **todo o resto em 404**, com a página de erro da HostGator. No mesmo
+período o `/status` respondeu **200 com `revisao: 95`**, a bancada fechou verde em 48 portões e a
+`versao_sync` era a certa. **Os três estavam corretos e os três eram irrelevantes** — é a 29.1
+literal: todo portão desta ilha entra pela raiz, que é a única porta que continuou aberta (o Sync é
+query na raiz, o `/status` é alcançável por `?rest_route=`, a bancada roda sem rede).
+
+**A CAUSA, medida de dentro do servidor e não por palpite** — e ela é a assinatura da clubedomosaico
+nas seis grandezas: `/home3/rapha921/robometria.com.br/.htaccess` com **1.057 bytes, um bloco só
+(`NFD EPC`), `tem_wordpress: false`, 8 linhas de reescrita**, arquivo existente, legível e gravável,
+raiz gravável, `got_mod_rewrite(): true` e **98 regras de reescrita no banco**. Não é permissão e não
+é `AllowOverride` — a 29.4 separa esse caso e este não é ele. Depois do `flush_rewrite_rules( true )`:
+**1.580 bytes, 2 blocos (`NFD EPC` e `WordPress`), 15 linhas**.
+
+**O ACHADO DA EXECUÇÃO, e ele é sobre a REGRA COMUM e não sobre esta queda.** O despacho de 30/10
+escreveu *"não é consertável pelo repositório"* e mandou o gesto para a lista do Raphael. **Estava
+errado, e a razão é mais útil que o erro:** a **29.3** manda, desde **24/09/2026**, que *"a casca de
+TODA ilha"* sirva `?rest_route=/<ilha>/v1/rotas&token=<token do Sync>`, com `&reparar=1` — e **esta
+casca nunca a ganhou**. A frase do despacho era verdadeira sobre esta ilha e falsa sobre o
+Arquipélago: a clubedomosaico se repara por aí em um comando desde a primeira queda dela, em 24/09. O
+defeito que ficou **quatro dias** de pé caiu em **dois minutos** depois de a rota nascer. **Regra
+comum que uma ilha não herda não é regra comum: é uma ilha com um defeito a mais, e o custo dela só
+aparece no dia da queda.** É a mesma família das dívidas que o Pente Fino acha no molde — campo que o
+molde tem e a ilha não herdou —, com um andar a mais: aqui o que não foi herdado era o INSTRUMENTO DE
+CONSERTO, então a ausência dele só se manifesta quando já é tarde.
+
+**A OUTRA METADE DA DÍVIDA, e é ela que explica os quatro dias de silêncio.** O
+`ferramentas/conferir-no-ar.py` desta ilha não media **nenhuma** das três URLs da **29.2** —
+`/wp-sitemap.xml`, `/robots.txt`, `/wp-json/` — nem o **404 que tem de ser 404**. A lista `PAGINAS`
+dele é feita de páginas, e as três não são páginas: são rota virtual do WordPress, não existem como
+arquivo em disco, nenhuma página do site as linka, e por isso são **as primeiras a morrer** quando a
+reescrita some. Nasceu o **item 0**, que mede as três com **HTTP 200 e content-type** (`application/
+xml`, `text/plain`, `application/json`), exige que o sitemap traga `<sitemap>` de verdade, e cobra que
+um caminho virgem responda **404 na página da PRÓPRIA ilha** — com a assinatura do hospedeiro
+nomeada no ramo de falha, para a próxima queda já sair diagnosticada. **10 afirmações, 0 falha.**
+
+**E UM DEFEITO DE INSTRUMENTO ACHADO NO CAMINHO, que teria escondido o próximo.** O
+`ferramentas/teste-purga-cache.php` tem um `add_action` de bancada que concatenava o callback com
+string: com a closure que a rota da 29.3 registra, ele parou com **Fatal error** em vez de reprovar.
+**Instrumento que MORRE não reprova** — é a família do portão INERTE que a bancada desta ilha já
+denuncia, um grau pior. Closure passa a entrar como `(closure)`: este portão mede a purga, e o que
+ele precisa do gancho é que ele exista, não quem o atende. *(A seção nova também foi movida para
+DEPOIS do boot, no fim do arquivo, para não entrar no recorte que esse teste `eval`.)*
+
+**A DÍVIDA DE VERIFICAÇÃO DE 26/10 ESTÁ PAGA, e foi a primeira coisa medida depois de a ilha voltar**,
+como o próprio despacho de 30/10 mandou. O `electrolux-erb60` esgotado, que a Fundação fechou às
+16h59Z de 26/10 e que **nenhuma ronda reconferiu** (a de 28/10 fez a curta, a de 30/10 achou a ilha
+caída): em `/quantos-m2-o-robo-aspirador-limpa-por-carga/`, **zero** ocorrência do encurtado morto
+(`7ptINupGy6`) e **zero** do anúncio aposentado (`854082976`); o **primeiro** botão de compra da
+página — a 98.571 bytes do topo, antes dos outros quatro — é `s.shopee.com.br/AAHCqjJaR9`, que é a
+`url_busca` do registro, com o rótulo **"Ver ofertas na Shopee"**, e os quatro seguintes dizem "Ver na
+Shopee". É exatamente o que a **25.2** manda e o que o fecho de 26/10 declarou. **O ERB60 continua na
+página como produto** (4 ocorrências no corpo) com os 166 m² por carga servidos.
+
+**O DESEMBARQUE, pelas regras do desembarque.** Casca **1.14.0 → 1.15.0**, manifest **95 → 96**,
+`dados/datas-das-paginas.json` regerado (o validador acusou 7 páginas com a data atrasada no mesmo
+segundo em que a casca mudou — o conserto é um comando e ele está escrito no próprio portão). Sync
+acionado **duas vezes** por desenho (20.4) pela query na raiz, que é a porta que não tinha caído; as
+**13 linhas da revisão corrente lidas uma por uma, e as 13 dizem `ok`**. `raw.githubusercontent.com`
+já servia 96 antes do Sync, então não houve o cache da 20.5.
+
+**MEDIDO NO AR, DEPOIS (18.4):** **16 de 16 URLs em 200 em DUAS leituras** com quebra de cache — a
+home, as 13 internas que a própria home linka, `/feed/` e `/comments/feed/` —, mais `/robots.txt`,
+`/wp-sitemap.xml`, `/wp-json/` e `/wp-json/robometria/v1/status` nos dois passes, e o caminho virgem
+em **404 na página desta ilha**. `conferir-no-ar.py`: **APROVADO NO AR, 399 afirmações, 0 falha.**
+Bancada sem rede: **48 portões, 0 falha**; bancada **com rede**, a passada inteira depois do conserto: **54 portões, 0 falha**.
+
+**O QUE ISTO MUDA NO CHAMADO DA HOSTGATOR, e não é da fábrica consertar.** Esta é a **quarta** queda
+desta assinatura no Arquipélago e a **primeira fora da clubedomosaico**. As três primeiras foram todas
+no mesmo arquivo de um domínio, o que deixava de pé a leitura mais barata — um site, talvez um plugin
+dele. **Agora são dois domínios da MESMA conta de cPanel (`/home3/rapha921/`), com a assinatura
+idêntica byte por byte, e os dois sites não compartilham um plugin.** A pergunta do chamado passou a
+ser *o que reescreve o `.htaccess` da raiz dos domínios DESTA CONTA*, e 30/10 entrou na lista de datas
+a perguntar. O chamado é do Raphael, está aberto em `dados/despachos.md` desde 05/10 **sem resposta**,
+e a tabela de lá ganhou a quarta coluna. É a mesma ampliação que o soft 404 da borda ganhou em 29/10,
+quando a segunda medição matou a leitura de "configuração daquele site".
+
+**O QUE NÃO FOI ESCRITO, DE PROPÓSITO:** o `dados/PAINEL.md` tem o gesto do Raphael no topo da lista
+("WordPress → Configurações → Links permanentes → Salvar") e ele **deixou de ser necessário**. A
+**23.1** diz, com todas as letras, *"Ninguém mais escreve nesse arquivo. A Fundação não escreve"* —
+então ele não foi tocado aqui. Quem o corrige é a ronda seguinte, e o Raphael foi avisado pelo canal
+direto desta execução.
+
+- **Próximo passo desbloqueado:** a ilha está no ar e sem defeito aberto, e o foco da 1.2 volta a
+  mandar sozinho — **a próxima execução é da rodametria**, não desta ilha, a menos que a ronda ache
+  outra queda ALTA aqui. **O que fica pré-registrado para quando esta ilha receber bloco:** (a) a
+  **leitura semanal de 14/10, itens 2 e 3**, aberta há 19 dias (indexação da leva de 21/09 e a lista
+  do que *não* é para fazer nesta ilha); (b) **portar a rota da 29.3 e o item 0 da 29.2 para as ilhas
+  que ainda não os têm** — a aquametria, a ohmetria e a jornadafly não foram conferidas nesta execução
+  e podem ter a mesma dívida que esta ilha pagou com quatro dias fora do ar; a rodametria tem a porta
+  da 29.2 verde (medida pela ronda de 30/10) mas a rota de reparo não foi conferida.

@@ -45,7 +45,57 @@ python3 ferramentas/bancada.py --lista    # só imprime o que rodaria
 
 ---
 
-## DESPACHO DA SENTINELA — 2026-10-30 — ALTA: A ILHA ESTÁ FORA DO AR, MENOS A HOME
+## ~~DESPACHO DA SENTINELA — 2026-10-30 — ALTA: A ILHA ESTÁ FORA DO AR, MENOS A HOME~~ — **FECHADO EM 02/11/2026 às 10h3xZ, CONFERIDO NO AR PELA 18.4. A ILHA ESTÁ DE VOLTA.**
+
+> **O "PRONTO QUANDO" DESTE DESPACHO, item por item, medido às 10h3xZ de 02/11/2026 com quebra de
+> cache e em DUAS leituras cada:** `/robots.txt` **200** (`text/plain`), `/wp-sitemap.xml` **200**
+> (`application/xml`, trazendo `<sitemap>` de verdade), `/wp-json/robometria/v1/status` **200**, e as
+> **13 URLs internas da home 13 de 13 em 200**. Mais `/wp-json/` em 200 e um caminho virgem
+> respondendo **404 na página da própria ilha** — não na do hospedeiro. **16 de 16 em 200, 0 falha.**
+> O despacho pedia `revisao: 95` no `/status`; o `/status` diz **96**, que é a revisão desta execução
+> e contém a 95 inteira — entrega mais nova, não divergência.
+>
+> **E O DESPACHO ESTAVA ERRADO NUM PONTO, QUE É JUSTAMENTE O QUE CUSTOU OS QUATRO DIAS.** Ele escreveu
+> *"não é consertável pelo repositório — a reescrita do `.htaccess` da raiz é painel do WordPress ou
+> Gerenciador de Arquivos do cPanel, e nenhuma rotina toca nisso"*, e mandou o gesto para a lista do
+> Raphael. **A frase era verdadeira sobre esta ilha e falsa sobre o Arquipélago:** a 29.3 manda toda
+> casca servir `?rest_route=/<ilha>/v1/rotas&token=<token>` com `&reparar=1` desde **24/09/2026**, e a
+> clubedomosaico se repara por aí em um comando desde a primeira queda dela. **Esta casca nunca ganhou
+> a rota.** Ela nasceu nesta execução, na casca **1.15.0**, e o defeito que ficou quatro dias de pé caiu
+> em dois minutos depois dela. **Regra comum que uma ilha não herda não é regra comum.** Nada do que a
+> ronda mediu estava errado — o diagnóstico dela estava certo nas seis grandezas, inclusive a causa.
+>
+> **A CAUSA CONFIRMADA DE DENTRO DO SERVIDOR, e ela é a mesma das três quedas da clubedomosaico, byte
+> por byte:** `/home3/rapha921/robometria.com.br/.htaccess` com **1.057 bytes, um bloco só (`NFD EPC`),
+> `tem_wordpress: false`, 8 linhas de reescrita**, com o arquivo **existente, legível e gravável**, a
+> raiz gravável, `got_mod_rewrite(): true` e **98 regras de reescrita no banco**. Não é permissão e não
+> é `AllowOverride` — a 29.4 separa esse caso e ele não é este. Depois do `flush_rewrite_rules( true )`:
+> **1.580 bytes, 2 blocos (`NFD EPC` e `WordPress`), 15 linhas**. **Isto é a QUARTA queda desta
+> assinatura no Arquipélago e a PRIMEIRA fora da clubedomosaico — são dois domínios da MESMA conta de
+> cPanel**, o que mata a leitura de "configuração daquele site" e está escrito no chamado da HostGator
+> em `dados/despachos.md`, que segue aberto desde 05/10 sem resposta. **O gesto do Raphael na lista do
+> `dados/PAINEL.md` deixou de ser necessário**, e o chamado ficou mais forte.
+>
+> **O PORTÃO QUE NÃO VIU, e ele era a outra metade da dívida:** o `conferir-no-ar.py` desta ilha não
+> media **nenhuma** das três URLs da 29.2 (`/wp-sitemap.xml`, `/robots.txt`, `/wp-json/`) nem o 404 que
+> tem de ser 404 — a lista `PAGINAS` dele é feita de páginas, e as três não são páginas. Era a 29.1
+> literal: todo portão desta ilha entra pela raiz, a única porta que continuou aberta, e por quatro dias
+> o `/status` respondeu 200 com a revisão certa e a bancada fechou verde **com o site morto**. O item 0
+> nasceu nesta execução e fecha em **10 afirmações, 0 falha**. `conferir-no-ar.py` inteiro: **APROVADO
+> NO AR, 399 afirmações, 0 falha**, e a bancada com rede inteira em **54 portões, 0 falha**.
+>
+> **A DÍVIDA DE VERIFICAÇÃO QUE O PRÓPRIO DESPACHO MANDOU PAGAR PRIMEIRO ESTÁ PAGA, e é a primeira coisa
+> que foi medida depois de a ilha voltar.** O `electrolux-erb60` esgotado, fechado em 26/10 às 16h59Z e
+> nunca reconferido no ar: em `/quantos-m2-o-robo-aspirador-limpa-por-carga/`, **zero** ocorrência do
+> encurtado morto (`7ptINupGy6`) e **zero** do anúncio aposentado (`854082976`); o **primeiro** botão de
+> compra da página, a 98.571 bytes do topo, é `s.shopee.com.br/AAHCqjJaR9` — que é a `url_busca` do
+> registro — com o rótulo **"Ver ofertas na Shopee"**, e os quatro seguintes dizem "Ver na Shopee". É
+> exatamente o que a 25.2 manda e o que o fecho de 26/10 declarou. **O ERB60 continua na página como
+> produto**, 4 ocorrências no corpo, com os 166 m² por carga servidos.
+>
+> **O texto original do despacho fica abaixo, preservado.**
+
+## ~~DESPACHO DA SENTINELA — 2026-10-30 — ALTA: A ILHA ESTÁ FORA DO AR, MENOS A HOME~~
 
 Medido às 14h5xZ de 30/10/2026 pela ronda diária técnica, que hoje é da **rodametria** — esta ilha entra pela exceção da 1.2 (ilha no ar e quebrada, despacho ALTA), e não por rotação.
 

@@ -5,75 +5,98 @@ prioridade: 1
 piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 14
 primeira_indexacao: 2026-09-11
+rede: aberta em 2026-11-02   # 20.2, MEDIDA e nao herdada: robometria.com.br em 200 na primeira passada, com aquametria.com.br em 200 na MESMA passada. O que estava em 404 nao era rede e nunca foi: era a porta de entrada da raiz no chao (29.2), e esta consertada.
 ultima_ronda: 2026-10-30T14:55Z   # RONDA DIARIA TECNICA CURTA, e ela achou a ilha FORA DO AR menos a home. 1 de 14 URLs em 200: as 13 internas que a home linka, mais /robots.txt, /wp-sitemap.xml e /wp-json/robometria/v1/status, devolvem 404 nas DUAS leituras, servindo a pagina de erro da HostGator e nao a do WordPress. Assinatura da queda do .htaccess da raiz. Controle verde no mesmo minuto: clubedomosaico 39 de 39 e aquametria 52 de 52 em 200. Despacho ALTA de 30/10 em PROMPT.md; o gesto e do Raphael e esta em dados/PAINEL.md na raiz. O Sync nao alcanca esta ilha enquanto /wp-json/ estiver em 404.
 bloqueada_por: null
-ultima_execucao: 2026-10-26T16:59Z   # despacho das 15h0xZ FECHADO INTEIRO pela 18.2, conferido NO AR pela 18.4, revisao 95 no /status. E no caminho um defeito que ESTAVA NO AR ha mais de um mes: o A1 negava em palavras os quatro botoes de compra que servia. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
-executando_desde: 2026-11-02T10:21Z   # reserva da execucao da Fundacao de 02/11/2026 (passo 5 da secao 1). Esta ilha entra pela EXCECAO da 1.2 e nao por rotacao nem por foco: foco.md nomeia a rodametria, e aqui ha despacho ALTA de 30/10 com a ilha NO AR E QUEBRADA — remedido as 10:21Z, QUARTO dia: a home em 200 e /robots.txt, /wp-sitemap.xml, /wp-json/robometria/v1/status e as internas em 404, com aquametria.com.br em 200 na mesma passada.
+ultima_execucao: 2026-11-02T10:35Z   # A ILHA VOLTOU AO AR depois de QUATRO dias: o despacho ALTA de 30/10 FECHADO e conferido NO AR pela 18.4 — 16 de 16 URLs em 200 em DUAS leituras com quebra de cache, as tres portas da 29.2 verdes e o 404 virgem em 404 na pagina desta ilha. Revisao 96, as 13 linhas do log dizendo `ok` (20.4, lidas uma por uma). A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
+executando_desde: null   # LIMPO as 2026-11-02T10:35Z pela propria execucao que reservou as 10h21Z de 02/11. Reserva RENOVADA uma vez pela 1.1 (10h3xZ, neste mesmo commit de fecho): o bloco passou de 40 minutos porque a bancada com rede desta ilha tem 54 portoes e seis deles abrem o site URL por URL. Esta execucao entrou pela EXCECAO da 1.2 (ilha no ar e quebrada, despacho ALTA) e nao por foco nem por rotacao — `foco.md` nomeia a rodametria.
 bloco_atual: |
-  O DESPACHO DAS 15h0xZ SAIU INTEIRO (18.2) E FOI CONFERIDO NO AR (18.4):
-  revisao 95, /status em 95, as 13 linhas de cada um dos DOIS desembarques
-  dizendo `ok` (20.4, lidas uma por uma). O `electrolux-erb60` ficou ESGOTADO na
-  Shopee e era o PRIMEIRO dos cinco botoes de compra de
-  /quantos-m2-o-robo-aspirador-limpa-por-carga/ — o topo do bloco de compra, que
-  a secao 12 chama de espaco mais caro da pagina. Desceu para o degrau 4 e a
-  busca, que ja estava encurtada e rastreavel, subiu e virou o botao, como a
-  25.2 decide sem precisar de ninguem. No ar: ZERO ocorrencia do encurtado morto
-  na pagina, o primeiro botao com rotulo 'Ver ofertas na Shopee' e a busca crua
-  medida VIVA na mesma passada. O ERB60 continua na pagina como PRODUTO — o que
-  saiu foi o link, nunca o produto (item 5 do despacho).
-  ONDE EU DIVERGI DA LETRA DO DESPACHO, e a razao e o esquema desta ilha: ele
-  pedia a busca encurtada DENTRO de `afiliado.url`, e o validar-banco.py reprova
-  isso com a mensagem escrita — 'tem ficha de produto e degrau 4. Ficha para em
-  1, 2 ou 3'. Aqui `url` E a ficha, e `intestavel` e derivado de 'tem url e nao
-  tem url_produto': a busca em `url` marcaria como intestavel um item que se
-  confere pela url_busca_produto. O que a 25.2 manda e que a busca suba e vire o
-  BOTAO, e isso e da tela — com `url` vazia a escada da casca cai no ramo da
-  busca. O registro ficou IGUAL aos outros 30 do degrau 4 deste banco.
-  E ESTA EXECUCAO ACHOU UM DEFEITO QUE JA ESTAVA NO AR HA MAIS DE UM MES, e ele
-  nao estava em despacho nenhum: /filtro-universal-de-robo-aspirador/ servia
-  QUATRO botoes 'Ver ofertas na Shopee' e escrevia, tres linhas abaixo, 'Nenhuma
-  destas 4 pecas tem link de loja ainda'. A pagina negando em PALAVRAS os quatro
-  botoes que ela mesma mostra — literalmente o defeito do item 3 do despacho de
-  18/09/2026, que esta ilha fechou naquele dia na R1 e na R2.
-  POR QUE ELE SOBREVIVEU COM A BANCADA VERDE, e isto vale mais que o conserto: o
-  portao que mede exatamente isto no ar tinha LISTA de duas URLs e esta nao
-  estava nela. A passada completa com rede desta execucao, ANTES do conserto,
-  fechou em 54 portoes e 0 falha COM O DEFEITO NO AR. Lista dentro da regua
-  envelhece calada — a frase do despacho de 23/10 desta ilha, 'regua que nao
-  varre todas certifica a pagina que o autor abriu'. O portao passou a DESCOBRIR
-  as paginas no wp-sitemap.xml, como o da 32.5 desta ilha ja fazia, e a PRIMEIRA
-  passada sem lista o achou. Agora ele abre 16 URLs, julga as 9 com bloco de
-  compra, LISTA as 7 sem, quebra o cache na URL e reprova se achar menos de 3.
-  A CAUSA ERA A MESMA NAS DUAS PAGINAS: a contagem do rodape conhecia DOIS
-  estados — 'tem ficha' e 'sem link de loja' — e o terceiro, 'tem botao e ele
-  abre a BUSCA', existia na escada da casca desde 14/09 e nao existia nos
-  artigos. Verdade por coincidencia do banco. Quem decide passou a ser
-  robometria_casca_degrau_da_porta(), a mesma funcao que escolhe o botao. A1 e
-  A2 os dois de 1.7.0 para 1.8.0; a R1 e a R2 ja separavam os tres desde 18/09.
-  OS PORTOES QUE NASCERAM COM O FECHO: teste-a1.php e teste-a2.php ganharam
-  afirmacoes escritas AO CONTRARIO das cinco anteriores da familia — elas nao
-  procuram classe de degrau nenhuma, cobram ACORDO entre a prosa do rodape e a
-  conta dos cartoes, e por isso sobrevivem a subida E a descida da escada. Mais
-  a soma dos degraus contra o numero de cartoes, que pegou a aritmetica do
-  proprio rotulo do portao contando a busca DUAS vezes (com 5 fichas e 0 buscas
-  dava 5, e no primeiro dia de busca passou a imprimir '1 busca, 5 ficha' numa
-  vitrine de 5). E mutacoes-porta-da-vitrine.py, 8 mundos e 8 reprovados.
-  A BANCADA PEGOU UM DEFEITO MEU ANTES DO AR: a primeira versao da frase nova do
-  A1 passava robometria_a1_num() por esc_html(), e aquela funcao devolve
-  MARCACAO — a tag sairia escapada, visivel na tela como texto. Quem viu foi o
-  mundo SADIO da mutacoes-par-sem-modelo.py, a mutacao que tem de PASSAR: ela
-  planta um par null, a vitrine vira 3 na busca de 4 cartoes, e so nesse mundo a
-  frase usa o molde com numero. O molde de hoje estava certo hoje.
-  32.5: 9 de 9 paginas do molde dentro da regua, a 390 px reais. O primeiro
-  botao desta pagina MELHOROU, de 937 px para 914 px (teto 1.400).
-  Bancada sem rede: 48 portoes, 0 falha (eram 47).
-  A ILHA SEGUE FORA DO FOCO e em modo de medicao (1.2-b.1). Recebeu execucao
-  pela excecao da 1.2 — ilha no ar e quebrada — e foi a TERCEIRA do dia por essa
-  porta. Agora NAO HA MAIS defeito aberto que a Fundacao alcance: o que sobra e
-  o soft 404 na borda do hospedeiro (item 1 de 30/09), camada que roda antes do
-  PHP e cujo fechamento e do Raphael. A jornadafly, que e a ilha em foco, segue
-  com a rede RECUSADA (remedida as 16h20Z, 000 em duas passadas contra 200 nas
-  tres ilhas no ar) e com a fila de arquivo esgotada desde 23/10.
+  A ILHA VOLTOU AO AR DEPOIS DE QUATRO DIAS, e o que faltava nao era o conserto:
+  era a ROTA que a 29.3 manda toda casca servir desde 24/09/2026 e esta nao
+  tinha. O despacho ALTA de 30/10 esta FECHADO e conferido NO AR (18.4).
+
+  POR QUE ESTA ILHA RECEBEU EXECUCAO ESTANDO FORA DO FOCO: a UNICA excecao que a
+  1.2 abre — despacho ALTO em ilha no ar e QUEBRADA. `foco.md` nomeia a
+  rodametria, foco total e absoluto desde 27/10. A quebra foi REMEDIDA e nao
+  herdada antes do trabalho (20.2), com aquametria.com.br em 200 na mesma
+  passada: controle verde, nao era rede.
+
+  O QUE O /status DIZIA ENQUANTO A ILHA ESTAVA MORTA, e e o achado: 200, revisao
+  95, versao_sync certa, e a bancada verde em 48 portoes. Os tres estavam
+  CORRETOS e os tres eram IRRELEVANTES — e a 29.1 literal, porque todo portao
+  desta ilha entra pela raiz, a unica porta que continuou aberta (o Sync e query
+  na raiz, o /status e alcancavel por ?rest_route=, a bancada roda sem rede).
+
+  A CAUSA, medida de dentro do servidor: /home3/rapha921/robometria.com.br/
+  .htaccess com 1.057 bytes, UM bloco so (NFD EPC), tem_wordpress false e 8
+  linhas de reescrita, com o arquivo existente, legivel e gravavel, a raiz
+  gravavel, got_mod_rewrite true e 98 regras no banco. NAO e permissao e NAO e
+  AllowOverride — a 29.4 separa esse caso e este nao e ele. Depois do
+  flush_rewrite_rules(true): 1.580 bytes, 2 blocos, 15 linhas.
+
+  O DESPACHO DE 30/10 ESTAVA ERRADO NUM PONTO, e e o ponto que custou os quatro
+  dias: ele escreveu "nao e consertavel pelo repositorio" e mandou o gesto para a
+  lista do Raphael. A frase era verdadeira sobre ESTA ILHA e falsa sobre o
+  ARQUIPELAGO — a clubedomosaico se repara em um comando desde a primeira queda
+  dela. REGRA COMUM QUE UMA ILHA NAO HERDA NAO E REGRA COMUM: e uma ilha com um
+  defeito a mais, e o custo dela so aparece no dia da queda. A rota nasceu na
+  casca 1.15.0 e o defeito caiu em dois minutos depois dela.
+
+  A OUTRA METADE DA DIVIDA, e e ela que explica o SILENCIO: o conferir-no-ar.py
+  desta ilha nao media nenhuma das tres URLs da 29.2 (/wp-sitemap.xml,
+  /robots.txt, /wp-json/) nem o 404 que tem de ser 404. A lista PAGINAS dele e
+  feita de paginas, e as tres nao sao paginas — sao rota virtual do WordPress,
+  nenhuma pagina as linka, e por isso sao as PRIMEIRAS a morrer. Nasceu o item 0:
+  200 e content-type nas tres, sitemap trazendo <sitemap> de verdade, e caminho
+  virgem em 404 na pagina da PROPRIA ilha, com a assinatura do hospedeiro
+  nomeada no ramo de falha para a proxima queda sair diagnosticada. 10
+  afirmacoes, 0 falha.
+
+  E UM DEFEITO DE INSTRUMENTO NO CAMINHO, que teria escondido o proximo: o
+  add_action de bancada do teste-purga-cache.php concatenava o callback com
+  string e parou com FATAL ERROR na closure que a rota nova registra.
+  INSTRUMENTO QUE MORRE NAO REPROVA — e a familia do portao INERTE que a bancada
+  desta ilha ja denuncia, um grau pior. Closure passa a entrar como (closure).
+
+  A DIVIDA DE VERIFICACAO DE 26/10 ESTA PAGA, e foi o PRIMEIRO que se mediu
+  depois de a ilha voltar, como o proprio despacho mandou: em
+  /quantos-m2-o-robo-aspirador-limpa-por-carga/, ZERO ocorrencia do encurtado
+  morto (7ptINupGy6) e ZERO do anuncio aposentado (854082976); o PRIMEIRO botao
+  de compra da pagina, a 98.571 bytes do topo, e s.shopee.com.br/AAHCqjJaR9 — a
+  url_busca do registro — com o rotulo 'Ver ofertas na Shopee', e os quatro
+  seguintes dizem 'Ver na Shopee'. O ERB60 segue na pagina como PRODUTO, 4
+  ocorrencias, com os 166 m2 por carga servidos.
+
+  DESEMBARQUE: casca 1.14.0 -> 1.15.0, manifest 95 -> 96,
+  dados/datas-das-paginas.json regerado. Sync acionado DUAS vezes por desenho
+  (20.4) pela query na raiz, e as 13 linhas da revisao corrente LIDAS UMA POR UMA
+  dizem `ok`. O raw do GitHub ja servia 96 antes do Sync: nao houve o cache da
+  20.5.
+
+  MEDIDO NO AR: 16 de 16 URLs em 200 em DUAS leituras com quebra de cache, as
+  tres portas da 29.2 verdes com o content-type certo, o caminho virgem em 404 na
+  pagina desta ilha. conferir-no-ar.py APROVADO NO AR, 399 afirmacoes, 0 falha.
+  Bancada sem rede: 48 portoes, 0 falha. Bancada COM rede, a passada inteira
+  depois do conserto: 54 portoes, 0 falha.
+
+  O QUE ISTO MUDA NO CHAMADO DA HOSTGATOR, e nao e da fabrica: esta e a QUARTA
+  queda desta assinatura no Arquipelago e a PRIMEIRA fora da clubedomosaico. As
+  tres primeiras foram no mesmo arquivo de UM dominio; agora sao DOIS dominios da
+  MESMA conta de cPanel (/home3/rapha921/), assinatura identica byte por byte, e
+  os dois sites nao compartilham plugin. A pergunta do chamado virou "o que
+  reescreve o .htaccess da raiz dos dominios DESTA CONTA", e 30/10 entrou nas
+  datas a perguntar. O chamado e do Raphael, aberto em dados/despachos.md desde
+  05/10 sem resposta, e a tabela de la ganhou a quarta coluna.
+
+  O QUE NAO FOI ESCRITO, DE PROPOSITO: o dados/PAINEL.md tem o gesto do Raphael
+  no topo da lista e ele DEIXOU DE SER NECESSARIO — mas a 23.1 diz "Ninguem mais
+  escreve nesse arquivo. A Fundacao nao escreve". Quem o corrige e a ronda
+  seguinte. O Raphael foi avisado pelo canal direto desta execucao.
+
+  NAO HA DEFEITO ABERTO QUE A FUNDACAO ALCANCE NESTA ILHA. O que sobra e do
+  hospedeiro: o soft 404 na borda (item 1 de 30/09) e o chamado do .htaccess. O
+  FOCO DA 1.2 VOLTA A MANDAR SOZINHO — a proxima execucao e da rodametria.
+
 ---
 
 

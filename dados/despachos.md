@@ -351,7 +351,7 @@ o canal está vivo, o arquivo não está lá. A medição inteira está em
 nascer no banco com a declaração lida, não parafraseada.
 
 
-### prioridade ALTA — a porta de entrada da ilha com MAIS TRÁFEGO caiu TRÊS vezes na mesma raiz, e o intervalo entre quedas encurtou de 11 dias para 3; pela 19.4(b) o próximo passo é chamado, não reparo
+### prioridade ALTA — a porta de entrada caiu QUATRO vezes com a MESMA assinatura byte por byte, e a quarta foi em OUTRO DOMÍNIO da mesma conta de cPanel; pela 19.4(b) o próximo passo é chamado, não reparo
 
 **2026-10-05 — Raphael — abrir chamado na HostGator sobre o `.htaccess` da raiz de `/clubedomosaico.com.br`.**
 *(ABERTO E MAIS CARO: a **terceira** queda foi medida e reparada em 08/10/2026 — ver a tabela e o ponteiro abaixo.)* A
@@ -367,14 +367,44 @@ WordPress deixa de receber toda URL que não seja arquivo em disco. Resultado: *
 `/wp-sitemap.xml`, o `/robots.txt`, o `/wp-json/` e as TRÊS páginas que estão na primeira página do Google
 respondem 404.** Só a home responde.
 
-| | 1ª queda | 2ª queda | 3ª queda |
-|---|---|---|---|
-| medida em | 24/09/2026 19h20Z | 05/10/2026 10h17Z | **08/10/2026 19h2xZ** |
-| tempo fora do ar | ao menos 9 dias | até 2 dias e 14 horas | **até 22h49, desde a ronda de 07/10 20h35Z** |
-| `.htaccess` | 1.057 bytes, só `NFD EPC` | 1.057 bytes, só `NFD EPC` | **1.057 bytes, só `NFD EPC`** |
-| linhas de reescrita | 8 | 8 | **8** |
-| reparo | `flush_rewrite_rules(true)` | o mesmo, pela rota da 29.3 | **o mesmo, pela rota da 29.3** |
-| depois do reparo | 1.580 bytes, 2 blocos | 1.580 bytes, 2 blocos | **1.580 bytes, 2 blocos, 15 linhas** |
+| | 1ª queda | 2ª queda | 3ª queda | **4ª queda — OUTRO DOMÍNIO** |
+|---|---|---|---|---|
+| domínio | clubedomosaico.com.br | clubedomosaico.com.br | clubedomosaico.com.br | **robometria.com.br** |
+| medida em | 24/09/2026 19h20Z | 05/10/2026 10h17Z | 08/10/2026 19h2xZ | **30/10/2026 14h5xZ** |
+| tempo fora do ar | ao menos 9 dias | até 2 dias e 14 horas | até 22h49, desde a ronda de 07/10 20h35Z | **4 dias — de 30/10 a 02/11 10h3xZ** |
+| `.htaccess` | 1.057 bytes, só `NFD EPC` | 1.057 bytes, só `NFD EPC` | 1.057 bytes, só `NFD EPC` | **1.057 bytes, só `NFD EPC`** |
+| linhas de reescrita | 8 | 8 | 8 | **8** |
+| reparo | `flush_rewrite_rules(true)` | o mesmo, pela rota da 29.3 | o mesmo, pela rota da 29.3 | **o mesmo — mas a rota da 29.3 teve de NASCER nesta ilha primeiro** |
+| depois do reparo | 1.580 bytes, 2 blocos | 1.580 bytes, 2 blocos | 1.580 bytes, 2 blocos, 15 linhas | **1.580 bytes, 2 blocos, 15 linhas** |
+
+> **QUARTA QUEDA, MEDIDA E REPARADA EM 02/11/2026 ÀS 10h3xZ, E ELA MUDA A PERGUNTA DO CHAMADO: NÃO É
+> O ARQUIVO DE UM DOMÍNIO, É A RAIZ DOS DOMÍNIOS DESTA CONTA.** A `robometria.com.br` caiu com a
+> assinatura **idêntica nas seis grandezas** da tabela acima — 1.057 bytes, bloco único `NFD EPC`,
+> `tem_wordpress: false`, 8 linhas de reescrita, reparo que funciona na hora, 1.580 bytes e 15 linhas
+> depois. Medido de dentro do servidor pela rota da 29.3, pela execução da Fundação de 02/11.
+>
+> **O QUE ISTO ACRESCENTA, e é a parte que o chamado não tinha:** as três primeiras quedas foram todas
+> em `/home3/rapha921/clubedomosaico.com.br/.htaccess`, o que deixava de pé a leitura mais barata — um
+> arquivo, um domínio, talvez um plugin daquele site. **Agora são dois domínios da MESMA conta de
+> cPanel (`/home3/rapha921/`), com a mesma assinatura byte por byte, e os dois sites não compartilham
+> um plugin** (a robometria roda Code Snippets e a casca dela; a clubedomosaico roda a Loja, o Guia e o
+> painel da artesã). **A pergunta do item 3 passa a ser:** *o que, do lado da HostGator, reescreve o
+> `.htaccess` da raiz dos domínios da conta `rapha921` e por que ele é escrito sem o bloco
+> `# BEGIN WordPress`?* É a mesma ampliação que o soft 404 da borda ganhou em 29/10 — lá a segunda
+> medição também matou a leitura de "configuração daquele site".
+>
+> **E a data nova para o item 4:** a janela desta queda está entre a ronda de **28/10** (que fez a
+> curta nesta ilha e passou) e **30/10 14h5xZ**. Vale somar 30/10 às datas a perguntar.
+>
+> **A METADE QUE ERA NOSSA, e ela custou os quatro dias:** o despacho da ronda de 30/10 escreveu
+> *"não é consertável pelo repositório"* e **estava errado — porque a casca da robometria nunca ganhou
+> a rota que a 29.3 manda TODA casca servir desde 24/09/2026.** A frase era verdadeira sobre aquela
+> ilha e falsa sobre o Arquipélago: a clubedomosaico se repara daqui em um comando desde a primeira
+> queda. A rota nasceu na casca **1.15.0** em 02/11, e o mesmo defeito que ficou quatro dias de pé
+> levou dois minutos para cair depois dela. **Regra comum que uma ilha não herda não é regra comum: é
+> uma ilha com um defeito a mais, e o custo dela só aparece no dia da queda.** Na mesma execução o
+> `conferir-no-ar.py` desta ilha ganhou as três URLs da 29.2 e o 404 que tem de ser 404, que ele
+> também não media — **era por isso que nada acusou.**
 
 > **TERCEIRA QUEDA MEDIDA EM 08/10/2026, e ela não é uma repetição: é o que torna este chamado urgente.**
 > Três dias depois da segunda, com **20 das 21 URLs do sitemap em 404** mais as três da 29.2, e com a
@@ -407,7 +437,7 @@ respondem 404.** Só a home responde.
 
 **O QUE DIZER NO CHAMADO, já medido de dentro do servidor — eles não vão precisar investigar nada disso:**
 
-1. O caminho exato: `/home3/rapha921/clubedomosaico.com.br/.htaccess`.
+1. Os caminhos exatos, **dois agora**: `/home3/rapha921/clubedomosaico.com.br/.htaccess` (quedas 1, 2 e 3) e `/home3/rapha921/robometria.com.br/.htaccess` (queda 4, 30/10 a 02/11/2026). **Mesma conta, domínios diferentes, assinatura idêntica.**
 2. O arquivo **existe, é legível e é gravável**, e a raiz também é (`raiz_gravavel: true`). `mod_rewrite` está
    **ligado** (`got_mod_rewrite(): true`) e há **115 regras de reescrita no banco** do WordPress. **Não é
    permissão e não é `AllowOverride`** — a 29.4 separa justamente este caso: se o arquivo estivesse gravado e
