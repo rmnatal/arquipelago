@@ -99,6 +99,61 @@ def corpo_da_pagina(html):
     return corpo
 
 
+REV_RE = re.compile(r"revis\w*\s+(\d+)\s*:")
+
+
+def linhas_da_revisao(log, n):
+    """Devolve (linha de FECHO da revisao n, [linhas de ITEM dela]).
+
+    O LOG VEM DO MAIS NOVO PARA O MAIS VELHO, E A LINHA DE FECHO E ESCRITA POR
+    ULTIMO — entao ela aparece ANTES dos itens que resume. A primeira versao
+    desta regua supunha o contrario, com estas palavras no comentario: "cada
+    revisao COMECA com a linha `revisao N:`. As linhas desta entrega sao as que
+    vao do topo ate essa linha, inclusive." Com o fecho no topo, esse corte
+    devolvia UMA linha — a de fecho — e o portao imprimia "1 da revisao 29, 0
+    linha de falha nesta entrega".
+
+    MEDIDO EM 02/11/2026 as 17h4xZ, no desembarque da revisao 29: o log tinha 15
+    linhas, a revisao 29 tinha 1 linha de fecho e 8 de item, e o portao leu 1.
+    As 8 linhas de item NUNCA foram lidas por ele — e linha de item e justamente
+    onde mora `gravado (#13) mas NAO ativado`, o defeito que a 20.4 existe para
+    pegar e que custou SETE paginas na clubedomosaico duas vezes em tres dias.
+
+    E A IRONIA E EXATA: a 20.4 diz "a revisao do /status E O RESUMO, E RESUMO
+    VERDE NAO E ENTREGA". O portao escrito para cobrar isso estava lendo SO O
+    RESUMO, e dizia "lido linha por linha" ao fazer isso. As execucoes de 30/10
+    e das 14h14Z de hoje escreveram "as 7 linhas" e "as 5 linhas da revisao
+    corrente dizendo ok" — numeros que saiam de leitura A MAO, nao deste portao,
+    que nas duas vezes tinha lido 1.
+    """
+    inicio = None
+    for k, l in enumerate(log):
+        m = REV_RE.search(l)
+        if m and int(m.group(1)) == n:
+            inicio = k
+            break
+    if inicio is None:
+        return None, []
+    itens = []
+    for l in log[inicio + 1:]:
+        if REV_RE.search(l):
+            break
+        itens.append(l)
+    return log[inicio], itens
+
+
+def aplicados_declarados(fecho):
+    """Quantos itens a LINHA DE FECHO diz ter aplicado, ou None.
+
+    E a regua que fecha o buraco de verdade: o fecho declara um numero, e o
+    portao conta as linhas que leu. Se a janela do log rolou e levou itens, a
+    conta nao fecha e o portao DIZ isso, em vez de aprovar com cara de completo
+    sobre as linhas que sobraram.
+    """
+    m = re.search(r"(\d+)\s+aplicado", fecho or "")
+    return int(m.group(1)) if m else None
+
+
 def main():
     manifest = json.load(open(os.path.join(ILHA, "manifest.json"), encoding="utf-8"))
     revisao_esperada = int(manifest["revisao"])
@@ -149,42 +204,64 @@ def main():
     # O LOG LINHA POR LINHA, E SO AS LINHAS DA REVISAO CORRENTE.
     #
     # A 20.4 e literal: "a execucao le as linhas da REVISAO CORRENTE no log do
-    # /status, e nenhuma pode deixar de dizer `ok`". A primeira versao desta
-    # regua lia a JANELA INTEIRA e reprovou a entrega de 29/10 por causa de
-    # quatro linhas `FALHA manifest: HTTP 404` de 28/10 — de antes de o
-    # manifest.json existir no repositorio, ou seja a historia de um defeito ja
-    # consertado. Regua que reprova entrega certa e o caminho mais curto para
-    # alguem passar a ignora-la (20.5), e a janela do log e append-only: ela
-    # SEMPRE vai carregar o passado.
+    # /status, e nenhuma pode deixar de dizer `ok`". Duas versoes anteriores
+    # desta regua erraram, cada uma para um lado, e as duas estao registradas
+    # porque as duas sao licao:
     #
-    # O corte: o log vem do mais novo para o mais velho, e cada revisao comeca
-    # com a linha "revisao N:". As linhas desta entrega sao as que vao do topo
-    # ate essa linha, inclusive.
-    linhas_da_revisao = []
-    for l in log:
-        linhas_da_revisao.append(l)
-        if re.search(r"revis\w*\s+%d\s*:" % revisao_no_ar, l):
-            break
-    afirma(any(re.search(r"revis\w*\s+%d\s*:" % revisao_no_ar, l) for l in linhas_da_revisao),
+    #   (1) a primeira lia a JANELA INTEIRA e reprovou a entrega de 29/10 por
+    #       causa de quatro linhas `FALHA manifest: HTTP 404` de 28/10 — de
+    #       antes de o manifest existir, ou seja a historia de um defeito ja
+    #       consertado. Regua que reprova entrega certa e o caminho mais curto
+    #       para alguem passar a ignora-la (20.5), e a janela e append-only:
+    #       ela SEMPRE vai carregar o passado.
+    #   (2) a segunda cortou do topo ate a linha de fecho, supondo que a
+    #       revisao COMECA por ela. O log vem do mais novo para o mais velho e
+    #       o fecho e escrito por ULTIMO: ele esta no TOPO do grupo. O corte
+    #       devolvia 1 linha — o RESUMO — e o portao chamava isso de "lido
+    #       linha por linha". Medido no desembarque da revisao 29, em 02/11.
+    #
+    # AGORA O PORTAO NAO ACREDITA NA PROPRIA CONTAGEM: a linha de fecho DECLARA
+    # quantos itens foram aplicados, e as linhas lidas tem de ser esse numero.
+    # Janela que rolou e levou item deixa a conta aberta, e aberta ela e dita.
+    fecho, itens_da_revisao = linhas_da_revisao(log, revisao_no_ar)
+    afirma(fecho is not None,
            "20.4: o log do /status nao tem a linha de fecho da revisao %d — a janela pode "
            "ter rolado, e entrega sem linha de fecho nao foi conferida" % revisao_no_ar)
-    falhas_no_log = [l for l in linhas_da_revisao
-                     if "FALHA" in l or "NÃO" in l or "NAO" in l or "erro" in l.lower()]
-    afirma(not falhas_no_log,
-           "20.4: o log do /status tem linha da revisao %d que nao diz ok: %s"
-           % (revisao_no_ar, falhas_no_log))
-    antigas = [l for l in log if l not in linhas_da_revisao
+
+    declarados = aplicados_declarados(fecho)
+    afirma(declarados is not None,
+           "20.4: a linha de fecho da revisao %d nao declara quantos itens aplicou (%r) — sem "
+           "esse numero o portao nao tem contra o que conferir o que leu" % (revisao_no_ar, fecho))
+    afirma(declarados is None or len(itens_da_revisao) == declarados,
+           "20.4: a linha de fecho da revisao %d declara %s item(ns) aplicado(s) e o log traz %d "
+           "linha(s) de item. A janela e append-only e tem teto: item que rolou para fora dela "
+           "NAO foi conferido, e aprovar sobre o que sobrou e aprovar com cara de completo"
+           % (revisao_no_ar, declarados, len(itens_da_revisao)))
+
+    # A AFIRMACAO E POSITIVA DE PROPOSITO: "nenhuma pode deixar de dizer `ok`".
+    # Procurar palavra de falha (FALHA, erro, NAO) e a leitura pelo avesso, e ela
+    # so pega as falhas que alguem ja imaginou. Linha de item com redacao nova
+    # que nao diz `ok` passaria calada — e e exatamente assim que
+    # `gravado (#13) mas NAO ativado` chegou ao ar duas vezes.
+    muda = [l for l in itens_da_revisao if not re.search(r"\bok\b", l)]
+    afirma(not muda,
+           "20.4: a revisao %d tem %d linha(s) de item que NAO dizem `ok`: %s"
+           % (revisao_no_ar, len(muda), muda))
+    registro("20.4: log lido linha por linha — janela de %d linha(s); a revisao %d declara %s "
+             "item(ns) aplicado(s) e as %d linha(s) de item dela foram lidas uma por uma, "
+             "todas dizendo `ok`"
+             % (len(log), revisao_no_ar, declarados, len(itens_da_revisao)))
+
+    antigas = [l for l in log if l not in itens_da_revisao and l != fecho
                and ("FALHA" in l or "erro" in l.lower())]
     if antigas:
-        registro("20.4: a janela do log carrega %d linha(s) de FALHA de revisoes "
-                 "ANTERIORES, e elas nao sao desta entrega: %s"
-                 % (len(antigas), antigas[:2]))
-    registro("20.4: log lido linha por linha — %d linha(s) na janela, %d da revisao %d, "
-             "0 linha de falha nesta entrega"
-             % (len(log), len(linhas_da_revisao), revisao_no_ar))
+        registro("20.4: a janela do log carrega %d linha(s) de FALHA de revisoes ANTERIORES, e "
+                 "elas nao sao desta entrega: %s" % (len(antigas), antigas[:2]))
     if len(log) >= 15:
-        registro("20.4: a janela do log tem %d linhas e esta CHEIA — item que rolou para fora "
-                 "dela NAO foi conferido. Registro, nao aprovacao." % len(log))
+        registro("20.4: a janela do log tem %d linhas e esta CHEIA — item de revisao ANTERIOR "
+                 "que rolou para fora dela nao foi conferido por ninguem. Registro, nao "
+                 "aprovacao. (Os itens DESTA entrega estao conferidos pela conta do fecho.)"
+                 % len(log))
 
     # -------------------------------------------------------------------
     # 3. A CASCA INSTALOU AS PAGINAS QUE DIZ TER INSTALADO
@@ -508,5 +585,99 @@ def encerrar():
     return 1 if falhas else 0
 
 
+def autoteste():
+    """O CORTE DO LOG, MEDIDO SEM REDE — e o primeiro mundo e o mundo de verdade.
+
+        python3 ferramentas/conferir-no-ar.py --autoteste
+
+    Nasceu em 02/11/2026 junto com o conserto do corte, porque a regua que
+    estava errada estava VERDE: ela imprimia "0 linha de falha nesta entrega"
+    sobre uma unica linha, a de resumo. Conserto sem mundo fabricado e conserto
+    que a proxima mudanca desfaz calada — e a 32.5-d e literal sobre isso: "a
+    regra do molde que nunca rodou contra o dado de verdade esta quebrada e
+    parece sa".
+    """
+    ok = []
+    mal = []
+
+    def diz(cond, msg):
+        (ok if cond else mal).append(msg)
+
+    # MUNDO 1 — O LOG DE VERDADE, lido no /status as 17h40Z de 02/11/2026, no
+    # desembarque da revisao 29. E o mundo em que a regua velha devolvia 1.
+    real = [
+        "2026-11-02 17:40 revisão 29: 8 aplicado(s), 6 aguardando desembarque",
+        "2026-11-02 17:40 dados/paginas-institucionais: ok (option rodametria_dados_paginas-institucionais)",
+        "2026-11-02 17:40 dados/vitrine-de-produto: ok (option rodametria_dados_vitrine-de-produto)",
+        "2026-11-02 17:40 dados/paginas-de-produto: ok (option rodametria_dados_paginas-de-produto)",
+        "2026-11-02 17:40 dados/f2-respostas: ok (option rodametria_dados_f2-respostas)",
+        "2026-11-02 17:40 snippets/rodametria-institucional: ok (snippet #9 atualizado)",
+        "2026-11-02 17:40 snippets/rodametria-produto: ok (snippet #8 atualizado)",
+        "2026-11-02 17:40 snippets/rodametria-f2: ok (snippet #7 atualizado)",
+        "2026-11-02 17:40 snippets/rodametria-casca: ok (snippet #6 atualizado)",
+        "2026-11-02 14:10 revisão 28: 5 aplicado(s), 6 aguardando desembarque",
+        "2026-11-02 14:10 dados/paginas-institucionais: ok (option rodametria_dados_paginas-institucionais)",
+        "2026-11-02 14:10 dados/vitrine-de-produto: ok (option rodametria_dados_vitrine-de-produto)",
+        "2026-11-02 14:10 dados/paginas-de-produto: ok (option rodametria_dados_paginas-de-produto)",
+        "2026-11-02 14:10 dados/f2-respostas: ok (option rodametria_dados_f2-respostas)",
+        "2026-11-02 14:10 snippets/rodametria-produto: ok (snippet #8 atualizado)",
+    ]
+    fecho, itens = linhas_da_revisao(real, 29)
+    diz(fecho is not None and "revisão 29" in fecho, "1. acha a linha de fecho da revisao 29")
+    diz(len(itens) == 8, "1. le 8 linhas de item da revisao 29 (a regua velha lia 1)")
+    diz(aplicados_declarados(fecho) == 8, "1. le `8 aplicado(s)` da linha de fecho")
+    diz(all(re.search(r"\bok\b", l) for l in itens), "1. as 8 linhas dizem `ok`")
+
+    # MUNDO 2 — A REVISAO ANTERIOR, no meio da janela: o corte nao pode
+    # atravessar para a de cima nem para a de baixo.
+    fecho28, itens28 = linhas_da_revisao(real, 28)
+    diz(len(itens28) == 5, "2. le 5 linhas de item da revisao 28, sem invadir a 29")
+    diz(aplicados_declarados(fecho28) == 5, "2. a conta da 28 fecha em 5")
+    diz(not any("17:40" in l for l in itens28), "2. nenhuma linha da 29 vazou para a 28")
+
+    # MUNDO 3 — UMA LINHA DE ITEM QUE NAO DIZ `ok`. E a cicatriz com nome: o
+    # Sync grava inativo e ativa depois, e na falha escreve esta linha e SEGUE.
+    quebrado = list(real)
+    quebrado[5] = "2026-11-02 17:40 snippets/rodametria-institucional: gravado (#9) mas NÃO ativado"
+    _, itens_q = linhas_da_revisao(quebrado, 29)
+    muda = [l for l in itens_q if not re.search(r"\bok\b", l)]
+    diz(len(muda) == 1 and "ativado" in muda[0],
+        "3. a linha `gravado mas NAO ativado` e PEGA (a regua velha nao a lia)")
+
+    # MUNDO 4 — A JANELA ROLOU E LEVOU ITEM: o fecho declara 8, sobraram 3. A
+    # conta nao fecha, e e isso que o portao tem de dizer.
+    rolado = real[:4]
+    fecho_r, itens_r = linhas_da_revisao(rolado, 29)
+    diz(aplicados_declarados(fecho_r) == 8 and len(itens_r) == 3,
+        "4. janela rolada: o fecho declara 8 e so 3 itens sobraram — a conta abre")
+
+    # MUNDO 5 — REVISAO QUE NAO ESTA NA JANELA.
+    fecho_x, itens_x = linhas_da_revisao(real, 99)
+    diz(fecho_x is None and itens_x == [],
+        "5. revisao fora da janela devolve nada, em vez de devolver a janela toda")
+
+    # MUNDO 6 — FECHO SEM NUMERO DE APLICADOS.
+    diz(aplicados_declarados("2026-11-02 17:40 revisão 29: nada a fazer") is None,
+        "6. fecho sem `N aplicado(s)` devolve None, e nao um numero inventado")
+
+    # MUNDO 7 — A REGUA VELHA, REFEITA AQUI, TEM DE DISCORDAR DESTA. Se as duas
+    # concordarem, este autoteste nao esta medindo o conserto.
+    velhas = []
+    for l in real:
+        velhas.append(l)
+        if REV_RE.search(l) and int(REV_RE.search(l).group(1)) == 29:
+            break
+    diz(len(velhas) == 1 and len(itens) == 8,
+        "7. a regua VELHA devolve 1 linha e a nova devolve 8 — o conserto move algo")
+
+    print("conferir-no-ar --autoteste: %d de %d afirmacoes, %d falha(s)"
+          % (len(ok), len(ok) + len(mal), len(mal)))
+    for m in mal:
+        print("  REPROVADO: %s" % m)
+    print("APROVADO" if not mal else "REPROVADO")
+
+    return 1 if mal else 0
+
+
 if __name__ == "__main__":
-    sys.exit(main())
+    sys.exit(autoteste() if "--autoteste" in sys.argv else main())

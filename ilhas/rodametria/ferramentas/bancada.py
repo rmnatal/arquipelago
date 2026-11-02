@@ -11,6 +11,7 @@ entra na bancada no DIA em que e escrito, sem ninguem se lembrar dele:
 
     validar-*   mutacoes-*  teste-*  testar-*   -> sem rede
     conferir-*  medir-*                         -> so com --no-ar
+      ... e se o fonte aceitar --autoteste, essa metade roda SEM rede, sempre
     derivar-*  gerar-*  coletar-*  aplicar-*    -> ESCREVEM, nao sao portao; rodam com --conferir
                                                    quando aceitam, e sao DENUNCIADOS quando nao
 
@@ -56,6 +57,28 @@ def classificar():
     return sem, com, escrevem, denunciados
 
 
+def oferece_autoteste(caminho):
+    """O portao sabe se testar a si mesmo? A bancada PERGUNTA AO ARQUIVO.
+
+    Nasceu em 02/11/2026, com o conserto do corte do log em `conferir-no-ar.py`.
+    Aquele portao e de REDE, entao so roda com `--no-ar`; e o autoteste que prova
+    o corte NAO precisa de rede nenhuma. Deixado de fora, ele rodaria so quando
+    alguem se lembrasse dele — e esta ilha ja tem a licao escrita com todas as
+    letras no `PROMPT.md` da clubedomosaico: "portao que mora no caminho do
+    trabalho roda, portao que depende de alguem lembrar nao roda". Pior: o corte
+    que o autoteste vigia estava VERDE e errado, lendo uma linha de resumo e
+    chamando isso de "lido linha por linha".
+
+    Entao a bancada varre o fonte do portao de rede e, se ele aceitar
+    `--autoteste`, roda essa metade no conjunto SEM REDE. Nada a enumerar: o
+    autoteste entra na bancada no dia em que e escrito, como todo portao aqui.
+    """
+    try:
+        return "--autoteste" in caminho.read_text(encoding="utf-8")
+    except (OSError, UnicodeDecodeError):
+        return False
+
+
 def rodar(caminho, args=()):
     if caminho.suffix == ".py":
         cmd = [sys.executable, str(caminho)] + list(args)
@@ -83,6 +106,8 @@ def main():
     no_ar = "--no-ar" in sys.argv
     sem, com, escrevem, denunciados = classificar()
     fila = [(f, ()) for f in sem]
+    # O AUTOTESTE DE PORTAO DE REDE NAO PRECISA DE REDE, entao ele roda SEMPRE.
+    fila += [(f, ("--autoteste",)) for f in com if oferece_autoteste(f)]
     if no_ar:
         fila += [(f, ()) for f in com]
     fila += [(f, ("--conferir",)) for f in escrevem]

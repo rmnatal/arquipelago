@@ -3,6 +3,141 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-11-02 17h03Z–17h47Z — **O CAMPO `versao` NO `manifest.json`**, e a metade que o `sha256` nunca alcançou: qual versão o WordPress **carregou**
+
+**A ESCOLHA DA ILHA.** `foco.md` nomeia a **rodametria** — foco total e absoluto desde 27/10 — e pela
+**1.2** não há escolha a fazer. **As duas exceções que furam o foco foram conferidas e NENHUMA furou.**
+(a) Os **três despachos do molde** da seção 32 (aquametria, clubedomosaico e robometria, os três de
+21/10) estão **FECHADOS** e conferidos no ar, lido no topo dos três `PROMPT.md`. (b) A **robometria**
+recebeu **despacho novo hoje às 15h1xZ**, da ronda diária, e ele **não é ALTA**: é item de **julgamento
+da 19.2** — os minutos do ciclo da R2 não dependem da metragem —, com a própria Sentinela escrevendo que
+a escolha é "entre duas opções defensáveis". A 1.2 abre a exceção só para **despacho ALTO em ilha no ar
+e QUEBRADA**, e a 18.1 é literal sobre o resto: *"despacho NORMAL de ilha fora do foco espera, por mais
+antigo que seja."* `executando_desde` estava `null`, que pela **1.1** já significa que não há bloco da
+Fundação vivo — não houve reserva vencida para o git desempatar. Reserva às **17h03Z**, push aceito **de
+primeira**, campo **renovado às 17h13Z** pela mesma execução. O branch `claude/dreamy-mccarthy-6yptxq`
+existe e tem **zero** commits fora do `main`; **nenhum PR aberto**.
+
+**A REDE, MEDIDA E NÃO HERDADA (20.2).** `rodametria.com.br/`, `/wp-sitemap.xml` e
+`/wp-json/rodametria/v1/status` os **três em 200**, com `aquametria.com.br` em **200 na mesma passada** —
+controle verde, uma passada, zero intermitência.
+
+**POR QUE ESTE BLOCO: é o item (1) do `bloco_atual`**, pré-registrado desde 30/10 e repetido no fecho de
+hoje às 14h14Z com estas palavras — *"mexe no CONTRATO DO SYNC, que é o único canal desta ilha, então é
+bloco com desembarque próprio e nunca carona. Hoje `RODAMETRIA_PRODUTO_VERSAO` subiu para 1.2.0 e
+NINGUÉM A LÊ — subi-la é rastro, não mecanismo."*
+
+### TRÊS COISAS, E ELAS NÃO SÃO A MESMA
+
+| o que | o que prova | existia? |
+|---|---|---|
+| `sha256` do manifest | o **byte** que está no repositório | sim |
+| `versao` do manifest | **qual versão** esse byte se declara ser | **nasceu hoje** |
+| `/casca` → `versoes` | qual versão o **WordPress carregou** | **nasceu hoje** |
+
+A terceira é a que o `sha256` **não alcança**, e a cicatriz tem preço escrito: a **20.4** custou **sete
+páginas** servindo o tema cru na clubedomosaico, **duas vezes em três dias**. O Sync grava o snippet
+**inativo de propósito** e ativa depois; quando a ativação falha ele escreve `gravado (#13) mas NÃO
+ativado` numa linha do log, **segue em frente e sobe a revisão**. O byte estava certo no repositório nas
+duas vezes.
+
+**E O MECANISMO É A AUSÊNCIA, não um valor errado.** Snippet que não está ativo **não roda**, logo não
+pendura o filtro `rodametria_versoes`, logo o `id` dele **não aparece** no `/casca`. O portão de ar diz
+**"não ativado"** e **"versão diferente"** separados, porque o conserto das duas não é o mesmo — e pela
+**20.5** portão que reprova a página certa é o caminho mais curto para alguém ignorá-lo.
+
+### A CONSTANTE É ACHADA NO ARQUIVO E NUNCA DERIVADA DO `id`
+
+Derivar daria `RODAMETRIA_INSTITUCIONAL_VERSAO`, que **não existe**: o arquivo abrevia para
+`RODAMETRIA_INST_VERSAO`. A convenção de cabeça acerta em **três dos quatro** snippets desta ilha e erra
+no quarto, **calada** — "constante ausente" pareceria "snippet sem versão". Então o espelho **pergunta
+ao arquivo** quem ele define, e zero ou mais de um `define` é **denúncia**, nunca escolha. E ele
+**imprime o nome da constante que leu**, pela mesma razão de imprimir a troca: espelho auditável sem
+abrir o PHP.
+
+### O ACHADO QUE O ESPELHO ACUSOU NO MINUTO EM QUE NASCEU
+
+A prosa do `descricao` **declarava a versão corrente nos QUATRO snippets, e estava velha nos quatro**: a
+casca dizia `1.4.0` servindo 1.5.0; o f2, o produto e o institucional diziam `1.0.0` servindo 1.3.2,
+1.2.0 e 1.0.0. **Duas declarações do mesmo fato começam iguais e só uma sobe** — é a família do número
+de tela digitado, a cicatriz que esta ilha mais paga. A prosa **deixou de declarar a versão** e o campo
+passou a ser o dono; as entradas de **histórico** ficaram, porque fato datado ("1.4.0 (29/10/2026): …")
+não é afirmação sobre o agora.
+
+### O PORTÃO NOVO, E ELE É PHP POR DECISÃO E NÃO POR GOSTO
+
+`ferramentas/teste-versao-dos-snippets.php` — **43 afirmações, 6 de 6 mutações reprovadas.** É PHP pelo
+mesmo motivo escrito no `teste-caixa-da-mae.php`: **a coleta é decidida em PHP**, então a régua roda
+`add_filter` e `apply_filters` **de verdade** e **chama** o coletor, em vez de conferir a *forma* do
+código. Régua em Python sobre o texto do PHP conferiria a forma, nunca a decisão.
+
+**A afirmação que torna honesto o portão de ar** é a de número 3 dele: todo snippet `publicar: true`
+**se registra com o próprio `id`**, medido no chão, antes de o ar ser consultado. Sem ela, `id` ausente
+no `/casca` poderia ser descuido do repositório, e o portão de ar estaria acusando o ar de um defeito da
+bancada. **As seis mutações:** a chave do f2 deixando de ser o `id`; o produto escrevendo a versão como
+literal ao lado da constante; o institucional parando de pendurar o filtro; o manifest declarando versão
+diferente da constante; o coletor deixando de semear a própria casca; e o `/casca` parando de servir o
+campo.
+
+### O DESEMBARQUE, E A 20.6 OUTRA VEZ — TRÊS MINUTOS DE ATRASO CUSTARAM UM TURNO INTEIRO
+
+Push às **17h13Z**, revisão **29**. O `/status` respondeu **28** com `ultimo: 17:12:47` — **recente e
+anterior ao push por 13 segundos**, que pela régua da **20.5** é **turno de cron**, nem defeito nem
+cache; `raw.githubusercontent.com` já servia 29 na mesma passada. Laço de visita de pé pela **20.6** (o
+cron desta ilha roda por **visita**, não por relógio): **35 visitas** entre 17h14Z e 17h40Z, e a revisão
+pousou às **17h40:55Z**, no turno seguinte. É a terceira execução seguida desta ilha a pagar um turno de
+cron inteiro, e a causa é sempre a mesma: **o push cai poucos minutos depois de um turno**, e o cron não
+antecipa evento que ainda não venceu.
+
+### MEDIDO NO AR (18.4)
+
+- **ANTES:** `/casca` na revisão 28 devolvia `versao_casca 1.5.0` e **nenhum** campo `versoes` — as
+  chaves eram `['instalado', 'paginas', 'versao_casca']`. Exatamente o que este bloco entrega.
+- **DEPOIS:** `conferir-no-ar.py` em **453 afirmações, 0 falha**, com a linha que é o bloco:
+  *"versão no ar conferida contra o manifest em **4 de 4** snippet(s) publicáveis: rodametria-casca
+  **1.6.0**, rodametria-f2 **1.4.0**, rodametria-institucional **1.1.0**, rodametria-produto
+  **1.3.0**"*.
+- **20.4, as 8 linhas da revisão 29 lidas uma por uma, todas dizendo `ok`** — e agora conferidas contra
+  o número que a própria linha de fecho declara (`8 aplicado(s)`).
+- Bancada **sem rede: 20 portões, 0 falha** (eram 18 no começo da execução) e **com rede: 24 portões, 0 falha** (eram 22 no fecho das 14h14Z de hoje), os dois contados em `--lista` e não de cabeça.
+
+### O DEFEITO QUE ESTE BLOCO ACHOU NO PRÓPRIO PORTÃO DA 20.4 — E ELE ESTAVA VERDE
+
+**O portão escrito para cobrar "resumo verde não é entrega" estava lendo SÓ O RESUMO.** A primeira
+passada de hoje imprimiu, em verde: *"20.4: log lido linha por linha — 15 linha(s) na janela, **1 da
+revisão 29**, 0 linha de falha nesta entrega"*. A revisão 29 tem **1 linha de fecho e 8 de item**. **As
+8 linhas de item nunca foram lidas por ele** — e linha de item é justamente onde mora `gravado mas NÃO
+ativado`.
+
+**A causa, e ela estava escrita no comentário, invertida:** *"cada revisão COMEÇA com a linha `revisão
+N:`. As linhas desta entrega são as que vão do topo até essa linha, inclusive."* O log vem **do mais
+novo para o mais velho** e a linha de fecho é escrita **por último**, então ela está **no topo** do
+grupo: o corte começava nela e parava nela, devolvendo uma linha só. **Nenhuma leitura pegava isso** —
+as execuções de 30/10 e das 14h14Z de hoje escreveram *"as 7 linhas"* e *"as 5 linhas da revisão
+corrente dizendo ok"*, números que saíam de leitura **à mão**, não deste portão, que nas duas vezes
+tinha lido **1**. É a mesma família da seção 29 com um andar a mais, igual à 20.4 original: **a prova do
+defeito já estava impressa pelo próprio portão, e faltava alguém ler o número dela.**
+
+**O CONSERTO, e ele é mais forte do que o corte certo.** (1) O corte passou a ir **do fecho para baixo**
+até a próxima linha de revisão. (2) A afirmação virou **positiva** — *"nenhuma pode deixar de dizer
+`ok`"* é a letra da 20.4 —, no lugar de procurar `FALHA`/`erro`/`NÃO`: procurar palavra de falha é a
+leitura pelo avesso e só pega as falhas que alguém já imaginou. (3) **O portão não acredita mais na
+própria contagem:** a linha de fecho **declara** `N aplicado(s)`, e as linhas lidas têm de ser esse
+número — janela que rolou e levou item deixa a conta aberta, e aberta ela é **dita**, em vez de aprovar
+sobre o que sobrou com cara de completo.
+
+**E O CONSERTO É MEDIDO, não afirmado:** `conferir-no-ar.py --autoteste`, **12 de 12 afirmações, 0
+falha**, sete mundos. O **primeiro é o mundo de verdade** — o log lido no `/status` às 17h40Z, com as 15
+linhas. O terceiro injeta `gravado (#9) mas NÃO ativado` e exige que seja **pego**. O quarto rola a
+janela e exige que a conta **abra**. E o **sétimo refaz a régua velha ao lado da nova** e exige que as
+duas **discordem** (1 contra 8): autoteste em que as duas concordam não está medindo conserto nenhum.
+
+**E ELE NÃO DEPENDE DE NINGUÉM LEMBRAR.** `conferir-no-ar.py` é portão de **rede** e só rodaria com
+`--no-ar`; o autoteste não precisa de rede. A `bancada.py` passou a **perguntar ao arquivo** se ele
+aceita `--autoteste` e a rodar essa metade **sempre**, no conjunto sem rede — nada a enumerar, pela
+mesma convenção de descoberta de toda esta bancada. Foi isso que levou a bancada sem rede de 19 para
+**20 portões**.
+
 ## 2026-11-02 13h31Z–14h2xZ — **A SEÇÃO MÃE `/veiculos/` ENTRA NO MOLDE**, e o que ela custava não era aparência: os 700 px da 32.5 **nunca a julgaram**
 
 **A ESCOLHA DA ILHA.** `foco.md` nomeia a **rodametria** e pela **1.2** não há escolha a fazer. **As duas

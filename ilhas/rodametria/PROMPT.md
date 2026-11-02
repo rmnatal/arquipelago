@@ -590,7 +590,11 @@ altura da F2 **sem mudar um pixel**, e bancada com rede em **21 portões, 0 falh
 **O QUE FICA, e é BLOCO e não conserto: `/veiculos/` ESTÁ FORA DO MOLDE** — o portão de pixel o diz com
 essas palavras ("sem componente de molde nenhum"). A mãe serve `<p class="rdm-promessa">` onde o molde pede
 a **caixa de resposta**, então os **700 px da 32.5 nunca a julgaram**: é a mesma lacuna que o 5d fechou na
-home, uma página depois. E o **campo `versao` no `manifest.json`**, que faria a constante de cada snippet
+home, uma página depois. E o **campo `versao` no `manifest.json`** — **FEITO E CONFERIDO NO AR EM 02/11/2026 às 17h4xZ,
+revisão 29**, com o espelho em `ferramentas/atualizar-manifest.py`, o portão
+`ferramentas/teste-versao-dos-snippets.php` (43 afirmações, 6 de 6 mutações) e a versão **carregada pelo
+WordPress** servida em `/casca` → `versoes`, conferida contra o manifest em 4 de 4 snippets publicáveis;
+o parágrafo abaixo fica como o registro do que faltava —, que faria a constante de cada snippet
 ser espelhada e impressa como o `sha256` já é — hoje `RODAMETRIA_PRODUTO_VERSAO` e `RODAMETRIA_F2_VERSAO`
 são **lidas por ninguém**, e o comentário que afirmava o contrário foi corrigido nesta passada. Esse mexe
 no **contrato do Sync**, o único canal desta ilha, então é bloco com desembarque próprio, nunca carona.
