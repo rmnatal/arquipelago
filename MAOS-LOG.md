@@ -8297,3 +8297,123 @@ painel, não a execução** — o mesmo disparo foi entregue a outra sessão com
 Nada foi desfeito, nada colidiu: os quatro arquivos são disjuntos entre os dois commits. Fica o
 registro para quem ler este log depois e estranhar que a ESCRITA 4 apareça aqui como não feita e no
 `main` como feita.
+
+---
+
+## 02/11/2026 — 12h26 de Brasília (15h26 UTC) — correção da ESCRITA 4 do disparo anterior: `dados/PAINEL.md` da raiz
+
+**Assunto conferido ANTES do `git fetch`:** Arquipélago — o painel da raiz e a ronda diária técnica
+da ilha **robometria**. Passou. Nada de outro projeto entrou neste disparo.
+
+**O que o disparo pediu:** uma escrita única — substituir `dados/PAINEL.md` inteiro pelo conteúdo
+entre `===INICIO===` e `===FIM===`, com as duas linhas de sinal **fora** do arquivo. O disparo
+anterior, da mesma ronda, tinha trazido a ESCRITA 4 com o marcador `__PAINEL__` no lugar do
+conteúdo, e ela não foi executada; esta a traz inteira.
+
+**AS ESCRITAS 1, 2 E 3 DO DISPARO ANTERIOR: ESTÃO NO `main`, MAS NÃO FORAM ESTAS MÃOS QUE AS
+PUSERAM, E NÃO ESTAVAM LÁ QUANDO ESTE DISPARO COMEÇOU.** Checado no início, no `origin/main` em
+`5d5a81b`: `ilhas/robometria/ESTADO.md` ainda trazia `ultima_ronda: 2026-10-30T14:55Z`,
+`ilhas/robometria/PROMPT.md` não tinha nenhum despacho de 2026-11-02 (só o de 30/10 marcado como
+fechado em 02/11 pela execução da Fundação) e `ilhas/robometria/dados/consertos.md` tinha a linha de
+02/11 da Fundação com "a ronda seguinte reconfere pela 19.4(c)" ainda em aberto — as três ausentes.
+Enquanto este disparo preparava a escrita, **o commit `9f830b7` (02/11 15h22:13 UTC) chegou ao
+`main`** com exatamente esses três arquivos (`ESTADO.md` 2 linhas, `PROMPT.md` +37,
+`consertos.md` 3), mensagem *"ronda 02/11: robometria funda, duas dividas de verificacao pagas, um
+despacho novo na R2"*. **Não as repeti e não as alterei**, como o disparo manda: o rebase deste
+trabalho sobre `9f830b7` passou sem conflito porque este commit toca só `dados/PAINEL.md`.
+
+**`git status --porcelain` (antes do commit do trabalho):**
+
+```
+ M dados/PAINEL.md
+```
+
+**`git diff --stat` (antes do commit do trabalho):**
+
+```
+ dados/PAINEL.md | 110 ++++++++++++++++++++++++++++----------------------------
+ 1 file changed, 55 insertions(+), 55 deletions(-)
+```
+
+**HASH DO COMMIT QUE FOI AO `main`: `ca14ec1acb85b1e17040f2fc4408c7caf7067d0b`** (`ca14ec1`),
+mensagem `painel: ronda de 02/11 na robometria, duas dividas de verificacao pagas e um despacho
+novo`, exatamente a que o disparo deu. **CONFERIDO em `origin/main`** com
+`git fetch origin main && git log -1 origin/main`:
+
+```
+commit ca14ec1acb85b1e17040f2fc4408c7caf7067d0b
+Date:   Mon Nov 2 15:22:53 2026 +0000
+    painel: ronda de 02/11 na robometria, duas dividas de verificacao pagas e um despacho novo
+
+ dados/PAINEL.md | 110 ++++++++++++++++++++++++++++----------------------------
+ 1 file changed, 55 insertions(+), 55 deletions(-)
+```
+
+**O PUSH FOI RECUSADO UMA VEZ, E A RECUSA ESTÁ AQUI INTEIRA.** Primeira tentativa de
+`git push origin HEAD:main`, com `HEAD` em `ff2a6bd` sobre `5d5a81b`:
+
+```
+To https://github.com/rmnatal/arquipelago
+ ! [rejected]        HEAD -> main (fetch first)
+error: failed to push some refs to 'https://github.com/rmnatal/arquipelago'
+hint: Updates were rejected because the remote contains work that you do not
+hint: have locally. This is usually caused by another repository pushing to
+hint: the same ref. If you want to integrate the remote changes, use
+hint: 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+```
+
+A causa foi o `9f830b7` acima. Resolvido pelo caminho que o disparo manda —
+`git fetch origin main && git rebase origin/main`, que reportou *"Successfully rebased and updated
+refs/heads/trabalho"* sem conflito — e o push seguinte passou de primeira
+(`9f830b7..ca14ec1  HEAD -> main`). **Uma recusa, um rebase, zero force push, zero PR.**
+
+**CONTAGEM DO QUE MUDOU, CONFERIDA RELENDO O ARQUIVO DEPOIS DE GRAVAR (não pelo que eu achava que
+havia escrito):**
+
+```
+dados/PAINEL.md   81 linhas, 16166 bytes (antes: 81 linhas, 16249 bytes)
+                  0 ocorrência de "===INICIO===" e 0 de "===FIM===" (as linhas de sinal
+                    ficaram FORA do arquivo, como mandado)
+                  linha 5 começa exatamente com "**Escrito em:** 02/11/2026 15h1xZ"
+                  6 ilhas na tabela "## Ilhas"
+                  22 linhas de dados na tabela "## Despachos abertos" (eram 23 em 30/10:
+                    nasceu 1 e saíram 2), e a PRIMEIRA delas é a da robometria de 02/11,
+                    no topo, como o disparo pede
+                  5 itens em "## Precisa do Raphael"
+MAOS-LOG.md       acrescentado ao FIM; nada apagado, nada reescrito, nada resumido de
+                    disparo anterior (append-only)
+```
+
+**A CONFERÊNCIA NO RAW, COM QUEBRA DE CACHE, E O QUE ELA DEU — INCLUINDO A PARTE QUE NÃO FECHOU NA
+PRIMEIRA FORMA.** O disparo pediu para confirmar no raw que o parágrafo de data começa com
+`**Escrito em:** 02/11/2026 15h1xZ` e que a tabela de despachos abertos tem a linha da robometria de
+02/11 no topo. **As duas coisas estão confirmadas**, mas não pela URL de branch:
+
+- `raw.githubusercontent.com/.../main/dados/PAINEL.md`, com `Cache-Control: no-cache`, `Pragma:
+  no-cache` e parâmetro novo a cada chamada, **serviu a versão ANTIGA em 6 tentativas ao longo de
+  ~2 min** — 16249 bytes, com `**Escrito em:** 30/10/2026 15h1xZ` e o despacho ALTA de 30/10 no topo
+  da tabela. É o cache de borda do raw por nome de branch, não o `main`.
+- A conferência que **fecha** veio por dois caminhos independentes do cache de branch, os dois
+  concordando com o arquivo local byte a byte (`diff -q` sem diferença): (1) a API de conteúdo do
+  GitHub em `refs/heads/main`, que devolveu o arquivo já no commit `ca14ec1`; (2) o raw **pregado no
+  SHA**, `raw.githubusercontent.com/.../ca14ec1acb85b1e17040f2fc4408c7caf7067d0b/dados/PAINEL.md`,
+  com 16166 bytes, `**Escrito em:** 02/11/2026 15h1xZ` na linha 5 e
+  `| robometria | \`PROMPT.md\`, despacho de 02/11 item 1 |` como primeira linha de dados de
+  "Despachos abertos".
+
+Ou seja: **o conteúdo no `main` está certo; o que estava velho era a borda do raw por branch.** Fica
+registrado porque é instrumento, e porque o próximo disparo que conferir pelo raw de branch logo
+depois de um push vai ver a mesma coisa — o caminho que não mente é o raw pregado no SHA ou a API.
+
+**Nenhum outro passo falhou.**
+
+**O que NÃO foi feito:** nenhuma ilha reservada, nenhum `executando_desde` escrito ou limpo, nenhum
+cabeçalho de estado tocado, nenhum bloco de fila executado, nenhum arquivo além de `dados/PAINEL.md`
+(mais este `MAOS-LOG.md`, que é a exceção obrigatória). **As escritas 1, 2 e 3 não foram repetidas
+nem alteradas**, conforme o disparo manda. **O Sync não foi acionado em ilha nenhuma** — o disparo
+diz explicitamente para não acionar, porque esta ronda não consertou arquivo de conteúdo nem de
+snippet. Nenhuma publicação, nenhum `publicar: true`, nenhuma verificação de site de ilha, nenhuma
+conta criada, nenhuma reformatação ou "melhoria" do texto recebido — ele entrou byte a byte como
+veio. `ARQUIPELAGO.md` não foi lido para decidir coisa alguma. Nenhum dado pessoal de terceiro
+entrou no repositório.
