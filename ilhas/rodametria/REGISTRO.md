@@ -3,6 +3,129 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-11-03 13h21Z–13h4xZ — **A PURGA DE CACHE DO HOSPEDEIRO, com os dois portões ao lado** — e o "pronto quando" do despacho **não era conferível desta nuvem**, o que é o achado de método da passada
+
+**A ESCOLHA DA ILHA.** `foco.md` nomeia a **rodametria** — foco total e absoluto desde 27/10 — e pela
+**1.2** não há escolha a fazer. **As duas exceções que furam o foco foram conferidas e NENHUMA
+furou.** (a) Os **três despachos do molde** da seção 32 estão **FECHADOS**, lido no topo dos três
+`PROMPT.md` (aquametria 21/10 18h2xZ, clubedomosaico 19h1xZ, robometria 16h1xZ) — com os três
+fechados, a exceção do molde que a 1.2 abre **deixou de existir**. (b) Nenhum despacho **ALTA** é de
+**ilha no ar E quebrada**: o da robometria de 02/11 15h1xZ é de **julgamento (19.2)** e a ilha está no
+ar; os ALTA de `dados/despachos.md` são pedidos de **abertura de egresso**, que são do Raphael.
+`executando_desde` estava `null`, que pela **1.1** já significa que não há bloco da Fundação vivo — e
+o último commit na pasta da ilha era de **10h46Z**, 2h35 antes. Reserva às **13h21Z**, push aceito
+**de primeira**, campo **renovado às 13h37Z**. Zero branch `claude/*` com commit fora do `main`; zero
+PR aberto.
+
+**A REDE, MEDIDA E NÃO HERDADA (20.2).** `rodametria.com.br/` e `/wp-json/rodametria/v1/status` os
+dois em **200 em TRÊS passadas**, com `aquametria.com.br` em **200 nas mesmas três**.
+
+**O BLOCO ESTAVA PRÉ-REGISTRADO, e não foi escolhido hoje.** O `ESTADO.md` da execução anterior
+fechou nomeando o próximo passo: *"(1) A PURGA DE CACHE DESTA ILHA, que é o único bloco de código
+desbloqueado que sobrou e está pré-registrado como despacho de hoje"*. É o despacho NORMAL de 03/11 em
+`dados/despachos.md`, escrito pela execução da manhã sobre a própria ilha que ela tinha reservado — e
+**não consertado de propósito** naquele bloco, o que é a parte que vale ser lida: *"purga que apaga
+arquivo em disco sem o portão da aquametria ao lado é como a armadilha do `realpath('')` entrou no
+Arquipélago"*. **Ela tinha razão, e a prova é que o portão que veio junto se pagou outra vez** — ver
+abaixo.
+
+### O QUE FOI AO AR: a seção 13 da casca, e a divergência (a) da seção 12 fechada
+
+A ilha viveu **sete dias no ar sem purga de cache**, e a falta era **dita em vez de escondida**: a
+seção 12 da casca registrava a divergência (a) com todas as letras e o retrato da rota da 29.3 já
+saía com `tem_purga_de_cache: false`. Agora a função existe, e a alínea (a) foi **reescrita**, não
+apagada — o texto velho fica ao lado, com a janela em que foi verdade (03/11 das 10h4xZ às 13hxxZ).
+
+**ONDE ISSO CUSTA, e é medido nas irmãs e não suposto aqui:** o reparo da 29.3 chama a purga
+**depois** do `flush_rewrite_rules( true )`, porque o defeito que trouxe a função foi lido, por dias,
+através de página servida de cache. Sem ela, a primeira medição depois do reparo mede a cópia velha e
+diz que **não funcionou** — reprovação falsa, que a **20.5** chama de *"o caminho mais curto para
+alguém passar a ignorar um portão"*. E no uso real é pior: quem lê isso numa ilha caída conclui, pela
+própria **29.4**, que o `AllowOverride` está desligado e **abre chamado na HostGator por um defeito
+que o reparo já desfez**.
+
+### OS DOIS PORTÕES VIERAM JUNTO, PORQUE ERA A CONDIÇÃO ESCRITA NO DESPACHO
+
+- **`ferramentas/teste-purga-cache.php` — 21 afirmações, 0 falha.** Ele constrói as armadilhas **em
+  disco de verdade**, numa pasta temporária, e cada uma tem uma **TESTEMUNHA do lado de fora**: um
+  arquivo que não pode desaparecer. *Afirmação sobre o que foi apagado é metade da prova; a que
+  importa é a afirmação sobre o que CONTINUA LÁ.* Os seis casos: o caminho feliz (sem ele as outras
+  seriam satisfeitas por uma função que não faz nada), link simbólico para fora, pasta fora da raiz
+  (irmã, `..`, a pai, e a vizinha cujo nome apenas **começa** pelo da raiz), raiz inexistente, o
+  **caminho vazio** — o acidente de 15/09/2026 virado afirmação — e o gatilho.
+- **`ferramentas/mutacoes-purga-cache.py` — 8 baterias, todas decidindo certo, ZERO inertes.** O
+  mundo intacto **passa**, e as **7** mutações reprovam **pela afirmação declarada**, que é a metade
+  que importa: *reprovar não é a mesma coisa que reprovar pelo motivo certo*.
+
+**OS DOIS ENTRARAM NA BANCADA PELA CONVENÇÃO DE NOME, sem ninguém os listar:** **25 portões sem
+rede** contra os **23** de antes, **0 falha**, contados em `bancada.py --lista` e não de cabeça.
+
+**UMA COISA MUDOU NO PORTE, E ELA É UMA AFIRMAÇÃO NOVA.** Na aquametria o teste corta a seção da
+casca **entre dois marcadores**, porque lá a purga tem vizinha embaixo. Aqui a seção 13 é a **última
+do arquivo**, então o corte vai até o fim — e corte até o fim é honesto **enquanto** for verdade.
+Copiar isso calado seria deixar o portão passar a medir código alheio no dia em que nascer uma seção
+14. O arquivo ganhou a **afirmação de FRONTEIRA**: se aparecer `function_exists(` depois da última
+linha do gatilho, o portão **reprova dizendo que o corte virou mentira**. É a mesma família do que a
+**20.8** acabou de cobrar: instrumento que responde curto sem dar erro.
+
+### NO AR, CONFERIDO PELA 18.4
+
+Casca **1.8.0**, revisão **31**, aplicada às **13:40:42Z**. `conferir-no-ar.py`: **454 afirmações, 0
+falha**. As **5 linhas de item** da revisão 31 lidas **uma por uma**, todas dizendo `ok`, contra o
+`5 aplicado(s)` que a própria linha de fecho declara (20.4 e 20.8). Versão no ar conferida contra o
+manifest em **4 de 4** snippets. A parede da rota da 29.3 continua de pé: **401** sem token e **401**
+com token errado trazendo `rodametria_rotas_token_invalido`.
+
+**E O DESEMBARQUE CUSTOU 19 MINUTOS DE RELÓGIO POR UM MOTIVO QUE VALE GUARDAR, porque é a 20.6
+noutro traje.** O turno do cron rodou às **13:22:08Z** — **quatro minutos ANTES** do push das 13h26Z
+—, leu a revisão 30 e não teve o que aplicar; e o cron desta ilha é de **30 minutos**, então visitar
+a home não adianta enquanto o evento não estiver **devido**. Foram 13 visitas entre 13h27 e 13h40 e
+**nenhuma** adiantou coisa alguma; o `wp-cron.php` devolveu **409** (já havia cron em andamento) e a
+revisão entrou sozinha no turno das 13h40. **A 20.6 diz que o cron roda por VISITA, e isso é
+verdade; o que ela não diz é que a visita só dispara o que já está DEVIDO.** Quem empurrar nos
+primeiros minutos depois de um turno espera o turno seguinte, e a espera **não é defeito**. Dá para
+ler o minuto do último turno sem adivinhar: o campo `ultimo` do `/status` o traz, e foi ele que
+nomeou a causa aqui — a reserva foi renovada pela 1.1 com esse motivo escrito, em vez de "bloco
+longo".
+
+### O ACHADO DE MÉTODO: o "pronto quando" do despacho não era conferível desta nuvem
+
+O despacho pedia `tem_purga_de_cache: true` **no diagnóstico da 29.3**. Aquele retrato exige o
+**token do Sync**, que não está no repositório e não deve estar. **Critério de pronto que só quem tem
+o token pode ler é critério que ninguém mede** — e a **18.4** manda o contrário com todas as letras:
+*"o despacho morre quando é verificado, não quando é escrito"*. Um despacho assim fecharia por
+leitura de código, que é exatamente o que a seção 8 desta fábrica mais cobra.
+
+O conserto foi **uma linha**: a casca passou a servir o **mesmo booleano** no `/casca`, que é
+**público**. Booleano sobre a existência de uma função desta ilha **não é segredo do servidor**, que
+é o que a 29.3 manda não vazar — e `conferir-no-ar.py` ganhou a afirmação correspondente, para a
+pergunta passar a ser feita **em toda passada** e não só hoje. **Medido às 13h4xZ:
+`tem_purga_de_cache: true`, `versao_casca: 1.8.0`.**
+
+**E ELE NÃO É REDUNDANTE COM A VERSÃO DO SNIPPET DA 20.7, que é o que ia me fazer não escrevê-lo:** a
+versão diz **qual byte** o WordPress carregou; este campo diz que a **função existe no processo**. A
+chamada dentro do reparo é guardada por `function_exists`, então é **esta** pergunta — e não a
+versão — que decide se o reparo vai purgar. **É a 20.7 ao contrário:** lá a **ausência** do `id`
+acusa snippet morto; aqui a **presença** do booleano prova a função viva.
+
+### O QUE ESTE BLOCO NÃO PROVA, dito para ninguém procurar aqui depois
+
+Ele **não prova que a purga esvazia o cache do hospedeiro**. Isso só se mede no ar, com um reparo de
+verdade, e o reparo exige o token. O que foi medido aqui é a outra metade — a que o ar nunca
+mostraria: que a função, levada para fora da pasta dela por um link simbólico, por um `..`, por uma
+raiz inexistente ou por um caminho vazio, **para**. E que ela está **carregada** no processo que o
+WordPress serve.
+
+### A FILA, RECONFERIDA E NÃO HERDADA
+
+Os três bloqueios de página continuam fechados, e isso **não foi copiado do registro anterior**: as
+duas consultas do despacho de 30/10 seguem `nao-medida` em `dados/consultas-de-produto.json` (a
+sessão de Chrome do Raphael não aconteceu), e nenhuma consulta dos eixos paramétricos tem veredito
+`alvo`. **Nenhum caminho de PÁGINA nova está desbloqueado**, e dizer isso é o que a execução anterior
+pediu que se dissesse em vez de inventar bloco.
+
+---
+
 ## 2026-11-03 10h17Z–10h4xZ — **A PORTA DE ENTRADA MEDIDA POR DENTRO: a rota da 29.3 que esta ilha nunca teve** — e o portão que nasceu com ela achou um **defeito no próprio modelo**, antes do ar
 
 **A ESCOLHA DA ILHA.** `foco.md` nomeia a **rodametria** — foco total e absoluto desde 27/10 — e pela

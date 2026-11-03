@@ -38,6 +38,11 @@ Medido em 27/10/2026 no Chrome do Raphael (`bussola/dossies/rodametria/DOSSIE.md
   `https://rodametria.com.br/wp-json/rodametria/v1/casca` (GET público), que devolve a versão
   da casca, o relato da instalação e o mapa de páginas com a URL de cada uma — é por ele que
   `ferramentas/conferir-no-ar.py` confere que link interno não aponta para 404.
+  **Desde 03/11/2026 (casca 1.8.0) ele serve também `tem_purga_de_cache`**, o mesmo booleano que o
+  retrato da rota `/rotas` traz — e está aqui porque aquele retrato **exige o token do Sync**, que
+  não está no repositório: o "pronto quando" do despacho da purga não era conferível desta nuvem, e
+  critério de pronto que ninguém mede fecha por leitura de código. Booleano sobre a existência de
+  uma função desta ilha não é segredo do servidor (29.3).
 - **O `manifest.json` desta ilha nasceu em 28/10/2026 na revisão 1, e ela NÃO PUBLICAVA NADA de propósito** — os três grupos vazios, para provar o canal ponta a ponta com zero página em risco. Antes dele o `/status` acusava `revisao: -1` e quatro `FALHA manifest: HTTP 404` seguidas. A primeira revisão que publica algo é a da **casca (bloco 3b)**.
 - **O WORDPRESS JÁ ESTÁ NO AR, medido em 28/10/2026 às 10h17Z** pela execução do bloco 1: `https://rodametria.com.br/`
   devolve **200** em três tentativas, `<title>Rodametria - Mobilidade elétrica</title>`, `last-modified` de 27/10

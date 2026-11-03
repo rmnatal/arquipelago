@@ -178,7 +178,7 @@ guardado, não sangramento — a mesma classificação, pelo mesmo motivo, do de
 cada uma, registrado no `REGISTRO.md` da própria ilha.
 
 
-### prioridade NORMAL — a rodametria é a única ilha no ar SEM função de purga de cache do hospedeiro
+### ~~prioridade NORMAL — a rodametria é a única ilha no ar SEM função de purga de cache do hospedeiro~~ — **FECHADO EM 03/11/2026 às 13h4xZ, CONFERIDO NO AR PELA 18.4**
 
 03/11/2026 — FUNDAÇÃO — Medido na própria ilha reservada, em 03/11/2026, ao portar a rota da 29.3 — e
 **não consertado de propósito**, o que é a parte desta linha que vale ser lida.
@@ -205,6 +205,37 @@ baterias), e isso é bloco, não carona.
 **Pronto quando:** a rodametria tiver `rodametria_casca_purgar_cache()` com a recusa do caminho vazio
 **antes** da comparação de `realpath`, mais os dois portões copiados da aquametria rodando verdes na
 `bancada.py` dela — e o `tem_purga_de_cache` do diagnóstico da 29.3 passando a sair `true` no ar.
+
+> **FECHADO EM 03/11/2026 às 13h4xZ, pela execução da Fundação das 13h21Z, com o "pronto quando"
+> medido item por item (18.4):**
+>
+> - `rodametria_casca_purgar_cache()` e `rodametria_casca_esvaziar_pasta()` existem, na **seção 13**
+>   de `ilhas/rodametria/snippets/rodametria-casca.php`, e a recusa do caminho vazio é a **primeira
+>   linha** da segunda — **antes** de qualquer `realpath`, que é o que o despacho pedia com todas as
+>   letras.
+> - Os dois portões entraram: `ferramentas/teste-purga-cache.php` (**21 afirmações, 0 falha**) e
+>   `ferramentas/mutacoes-purga-cache.py` (**8 baterias, todas decidindo certo, ZERO inertes** — o
+>   mundo intacto passa e as **7** mutações reprovam, cada uma **pela afirmação declarada**). Eles
+>   entraram na `bancada.py` **pela convenção de nome**, sem ninguém os listar: **25 portões sem
+>   rede** contra os 23 de antes, **0 falha**.
+> - **No ar:** casca **1.8.0**, revisão **31**, aplicada às **13:40:42Z**. As **5 linhas de item** da
+>   revisão 31 lidas uma por uma, todas dizendo `ok`, contra o `5 aplicado(s)` que a própria linha de
+>   fecho declara (20.4 e 20.8). `conferir-no-ar.py`: **454 afirmações, 0 falha**.
+>
+> **E O "PRONTO QUANDO" DESTE DESPACHO NÃO ERA CONFERÍVEL DESTA NUVEM, que é o achado de método da
+> passada.** Ele pedia `tem_purga_de_cache: true` no **diagnóstico da 29.3** — e aquele retrato exige
+> o **token do Sync**, que não está no repositório e não deve estar. Critério de pronto que só quem
+> tem o token pode ler é critério que **ninguém mede**, e a 18.4 manda o contrário: o despacho morre
+> quando é **verificado**. O conserto foi uma linha: a casca passou a servir o **mesmo booleano** no
+> `/casca`, que é **público** — booleano sobre a existência de uma função desta ilha não é segredo do
+> servidor, que é o que a 29.3 manda não vazar —, e `conferir-no-ar.py` ganhou a afirmação
+> correspondente. **Medido às 13h4xZ: `tem_purga_de_cache: true`, `versao_casca: 1.8.0`.**
+>
+> **E ele não é redundante com a versão do snippet da 20.7:** a versão diz **qual byte** o WordPress
+> carregou; este campo diz que a **função existe no processo**. A chamada dentro do reparo da 29.3 é
+> guardada por `function_exists`, então é esta pergunta — e não a versão — que decide se o reparo vai
+> purgar. É a 20.7 ao contrário: lá a **ausência** do `id` acusa snippet morto; aqui a **presença** do
+> booleano prova a função viva.
 
 
 ### prioridade NORMAL — as TRÊS ETIQUETAS do Mercado Livre da rodametria, para os 5 produtos que a Shopee mediu em ZERO
