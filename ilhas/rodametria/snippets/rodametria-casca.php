@@ -29,7 +29,7 @@
  */
 
 if ( ! defined( 'RODAMETRIA_CASCA_VERSAO' ) ) {
-	define( 'RODAMETRIA_CASCA_VERSAO', '1.6.0' );
+	define( 'RODAMETRIA_CASCA_VERSAO', '1.7.0' );
 }
 
 /**
@@ -1626,6 +1626,340 @@ add_action( 'rest_api_init', function () {
 				'instalado'    => $feito ? $feito : null,
 				'paginas'      => $mapa,
 			);
+		},
+	) );
+} );
+
+/* =========================================================================
+ * 12. A PORTA DE ENTRADA DO SITE, MEDIDA POR DENTRO — seção 29.3 do
+ *     ARQUIPELAGO.md (03/11/2026)
+ *
+ * ESTA SEÇÃO É UMA DÍVIDA DE NASCIMENTO, E O PREÇO DELA FOI PAGO NA ILHA
+ * IRMÃ. A 29.3 diz, desde 24/09/2026, que "a casca de TODA ilha serve
+ * ?rest_route=/<ilha>/v1/rotas". Esta casca nasceu em 29/10/2026 sem ela, e a
+ * varredura do despacho de 02/11/2026 em `dados/despachos.md` listou esta ilha
+ * com `NÃO` nessa coluna, ao lado da aquametria.
+ *
+ * O CUSTO NÃO É HIPÓTESE — é a conta de uma queda que acabou de acontecer, e
+ * numa ilha do MESMO plano de cPanel que este domínio (`/home3/rapha921/`):
+ * em 30/10/2026 a ronda achou a robometria com 13 de 14 URLs em 404 e a home
+ * em 200, e o despacho daquele dia escreveu "não é consertável pelo
+ * repositório" — porque a rota que o consertaria não existia lá. A ilha passou
+ * 30/10, 31/10, 01/11 e 02/11 fora do ar. A rota nasceu lá em 02/11 e o
+ * defeito que ficou quatro dias de pé caiu em dois minutos depois disso.
+ * A porta desta conta já caiu QUATRO vezes com a mesma assinatura.
+ *
+ * É a 29.1 na forma mais cara: todo portão desta ilha entra pela porta que
+ * continua aberta. O Sync é `/?rodametria_sync=`, uma query na raiz. O
+ * `/status` e o `/casca` são rotas REST, alcançáveis por `?rest_route=`. A
+ * bancada roda sem rede. Os quatro estariam verdes com o site morto — e os
+ * quatro continuariam certos, e continuariam irrelevantes.
+ *
+ *   ?rest_route=/rodametria/v1/rotas&token=<token do Sync>
+ *   ?rest_route=/rodametria/v1/rotas&token=<token do Sync>&reparar=1
+ *
+ * O reparo é `flush_rewrite_rules( true )` — o mesmo caminho do botão Salvar
+ * de Configurações > Links permanentes, que é o conserto que a documentação do
+ * WordPress manda fazer para este defeito. A diferença é que daqui ele é
+ * MEDIDO: a resposta traz o retrato de antes e o de depois, e quem lê compara
+ * os dois em vez de acreditar.
+ *
+ * O `flush_rewrite_rules( false )` que já existe nesta casca (página criada) e
+ * nos três snippets de página NÃO conserta isto e nunca consertou: o `false` é
+ * a purga mole, que regrava a option `rewrite_rules` no banco e não encosta no
+ * `.htaccess`. Era a escolha certa para o que ele faz — remontar a estrutura
+ * de páginas não é motivo para reescrever a porta do site — e é por isso que o
+ * reparo daqui é outra função, com outro portão, e não uma troca de argumento
+ * lá dentro.
+ *
+ * NÃO HÁ GANCHO AUTOMÁTICO, e isso é a 29.4 e não preguiça: porta de entrada
+ * que se conserta calada a cada carregamento é a que ninguém consegue desfazer
+ * no dia em que estiver errada. O reparo é pedido, com token, e devolve o
+ * antes e o depois para quem pediu comparar.
+ *
+ * O QUE ESTA SEÇÃO NÃO ALCANÇA, escrito para ninguém procurar aqui depois: se
+ * o hospedeiro tiver desligado o `AllowOverride`, o `.htaccess` volta a ser
+ * escrito e o Apache continua ignorando. Nesse caso o diagnóstico mostra o
+ * arquivo gravado e correto E as URLs continuam em 404 — e aí é chamado na
+ * HostGator, não é código desta ilha. O diagnóstico existe justamente para
+ * separar os dois mundos com número em vez de palpite.
+ *
+ * AS DUAS COISAS EM QUE ESTA ILHA DIVERGE DO MODELO, ditas aqui porque
+ * divergência calada é a que a próxima execução lê como descuido:
+ *
+ *   (a) ESTA ILHA NÃO TEM FUNÇÃO DE PURGA DE CACHE. A clubedomosaico e a
+ *       robometria chamam `<ilha>_casca_purgar_cache()` depois do flush,
+ *       porque nas duas o defeito foi lido por dias através de HTML servido
+ *       de cache. Aqui a chamada existe guardada por `function_exists` e hoje
+ *       é no-op — e a consequência tem de ser dita: a primeira leitura depois
+ *       de um reparo pode medir a cópia velha do hospedeiro e dizer que não
+ *       funcionou. Quem reparar daqui lê com quebra de cache. A falta da purga
+ *       nesta ilha virou achado para despacho; ela NÃO foi consertada de
+ *       carona neste bloco, porque purga que apaga arquivo em disco sem o
+ *       portão da aquametria ao lado é como a armadilha do `realpath('')`
+ *       entrou no Arquipélago.
+ *
+ *   (b) O SNIPPET DO SYNC DESTA ILHA NÃO ESTÁ NO REPOSITÓRIO — as outras três
+ *       têm o seu. Então o nome da função que guarda o token NÃO pôde ser
+ *       conferido no chão, só herdado do padrão das irmãs
+ *       (`<ilha>_sync_token()` e a option de mesmo nome). Herdar nome sem
+ *       conferir é exatamente a derivação de cabeça que a 20.7 proíbe, e aqui
+ *       ela erraria CALADA: `token_esperado()` devolveria vazio, a permissão
+ *       negaria TODO pedido — inclusive o certo — e a rota seria um portão
+ *       morto com cara de portão. É por isso que a negativa desta rota diz
+ *       QUAL das três coisas faltou, em código de erro distinto, e os três
+ *       códigos são legíveis SEM o token (ver a nota do `permission_callback`).
+ *       A ausência passou a falar: é o mecanismo da 20.7 noutro traje.
+ * ========================================================================= */
+
+if ( ! function_exists( 'rodametria_casca_token_esperado' ) ) {
+/**
+ * O token do Sync, lido de onde o Sync o guarda.
+ *
+ * A função do Sync é preferida porque ela CRIA o token quando ele ainda não
+ * existe; a option é o caminho de quem só lê. Um segundo segredo para esta
+ * ilha seria um segredo a mais para perder.
+ */
+function rodametria_casca_token_esperado() {
+	if ( function_exists( 'rodametria_sync_token' ) ) {
+		$t = rodametria_sync_token();
+		if ( is_string( $t ) && '' !== $t ) {
+			return $t;
+		}
+	}
+	$guardado = get_option( 'rodametria_sync_token', '' );
+
+	return is_string( $guardado ) ? $guardado : '';
+}
+}
+
+if ( ! function_exists( 'rodametria_casca_fonte_do_token' ) ) {
+/**
+ * DE ONDE o token veio, para quem tem o token poder ler.
+ *
+ * Existe por causa da divergência (b) do cabeçalho desta seção: o Sync desta
+ * ilha não está no repositório, então o nome da função é herdado e não
+ * conferido. Este campo é o que transforma "a rota nega tudo" em
+ * "a rota nega tudo PORQUE o nome da fonte está errado".
+ */
+function rodametria_casca_fonte_do_token() {
+	if ( function_exists( 'rodametria_sync_token' ) ) {
+		$t = rodametria_sync_token();
+		if ( is_string( $t ) && '' !== $t ) {
+			return 'funcao:rodametria_sync_token';
+		}
+	}
+	$guardado = get_option( 'rodametria_sync_token', '' );
+	if ( is_string( $guardado ) && '' !== $guardado ) {
+		return 'option:rodametria_sync_token';
+	}
+
+	return null;
+}
+}
+
+if ( ! function_exists( 'rodametria_casca_carregar_ferramentas_de_admin' ) ) {
+/**
+ * Traz `get_home_path()`, `got_mod_rewrite()` e `save_mod_rewrite_rules()`.
+ *
+ * As três moram em `wp-admin/includes/` e não existem numa requisição comum.
+ * Sem elas o `flush_rewrite_rules( true )` vira o `false`: o `flush_rules()`
+ * do WordPress só chama `save_mod_rewrite_rules()`
+ * `if ( function_exists(...) )`, e num carregamento sem admin essa condição é
+ * falsa — o reparo pareceria rodar e não encostaria no arquivo. É a família do
+ * "portão que nunca rodou é função morta", e aqui seria pior: um verde dizendo
+ * que a porta foi consertada.
+ */
+function rodametria_casca_carregar_ferramentas_de_admin() {
+	if ( ! defined( 'ABSPATH' ) ) {
+		return false;
+	}
+	foreach ( array( 'file.php', 'misc.php' ) as $arquivo ) {
+		$caminho = ABSPATH . 'wp-admin/includes/' . $arquivo;
+		if ( is_readable( $caminho ) ) {
+			require_once $caminho;
+		}
+	}
+
+	return function_exists( 'get_home_path' )
+		&& function_exists( 'got_mod_rewrite' )
+		&& function_exists( 'save_mod_rewrite_rules' );
+}
+}
+
+if ( ! function_exists( 'rodametria_casca_diagnostico_rotas' ) ) {
+/**
+ * O retrato do roteamento, medido de dentro do servidor.
+ *
+ * Só número e fato: o que o arquivo é, não o que deveria ser. Quem decide se
+ * está certo é quem lê a resposta contra as URLs no ar — este lado não opina.
+ */
+function rodametria_casca_diagnostico_rotas() {
+	$tem_admin = rodametria_casca_carregar_ferramentas_de_admin();
+	$raiz      = function_exists( 'get_home_path' ) ? get_home_path() : ABSPATH;
+	$arquivo   = rtrim( (string) $raiz, '/\\' ) . DIRECTORY_SEPARATOR . '.htaccess';
+
+	/* AS FUNCOES DE `stat` DO PHP SAO CACHEADAS DENTRO DA REQUISICAO, e sem esta
+	   linha o retrato de DEPOIS do reparo e o retrato de ANTES.
+	   `file_exists()`, `filesize()`, `filemtime()`, `is_readable()` e
+	   `is_writable()` leem o cache de stat; `file_get_contents()` nao. Entao o
+	   reparo que acabou de criar o arquivo sairia com `existe: false` e
+	   `bytes: 0` — e `reparado` e calculado SOBRE `existe`, logo a resposta
+	   diria que a porta NAO foi consertada depois de conserta-la.
+	   REPROVACAO FALSA, que e pior que nenhuma: a 20.5 escreve com todas as
+	   letras que "portao que reprova pagina certa e o caminho mais curto para
+	   alguem ignora-lo".
+	   NAO E TEORIA — foi medido no chao em 03/11/2026, antes de esta rota ir ao
+	   ar, pelo `ferramentas/teste-rotas.php`: a afirmacao que exige
+	   `antes.bytes < depois.bytes` reprovou na primeira passada, com o reparo
+	   tendo escrito o bloco do WordPress de verdade no arquivo fabricado.
+	   O MODELO DA 29.3 NAO TEM ESTA LINHA, e as duas ilhas que servem a rota
+	   (clubedomosaico desde 24/09 e robometria desde 02/11) estao sem ela —
+	   virou despacho em `dados/despachos.md`, porque a secao 3 proibe editar
+	   ilha que esta execucao nao reservou. */
+	clearstatcache( true, $arquivo );
+
+	$regras = get_option( 'rewrite_rules' );
+
+	$retrato = array(
+		'versao_casca'         => RODAMETRIA_CASCA_VERSAO,
+		'permalink_structure'  => (string) get_option( 'permalink_structure', '' ),
+		'regras_no_banco'      => is_array( $regras ) ? count( $regras ) : 0,
+		'ferramentas_de_admin' => $tem_admin,
+		'mod_rewrite'          => function_exists( 'got_mod_rewrite' ) ? (bool) got_mod_rewrite() : null,
+		'home_url'             => home_url( '/' ),
+		'site_url'             => site_url( '/' ),
+		'raiz_gravavel'        => is_writable( (string) $raiz ),
+		'fonte_do_token'       => rodametria_casca_fonte_do_token(),
+		'tem_purga_de_cache'   => function_exists( 'rodametria_casca_purgar_cache' ),
+		'htaccess'             => array(
+			'caminho'  => $arquivo,
+			'existe'   => file_exists( $arquivo ),
+			'legivel'  => is_readable( $arquivo ),
+			'gravavel' => is_writable( $arquivo ),
+			'bytes'    => file_exists( $arquivo ) ? (int) filesize( $arquivo ) : 0,
+			/* O `mtime` entra como FATO e nunca como sinal, e isto está medido:
+			   em 05/10/2026, na segunda queda da clubedomosaico, três leituras
+			   espaçadas por ~20 segundos devolveram 10:23:49, 10:24:10 e
+			   10:24:31 — o arquivo é reescrito A CADA REQUISIÇÃO e acompanha o
+			   relógio de quem lê. Vigiar esta data é o portão que qualquer um
+			   escreveria primeiro e que não mede nada: o arquivo parece
+			   recém-salvo todos os dias, inclusive nos dias em que está errado.
+			   Quem for vigiar a porta vigia `blocos` e `tem_wordpress`. */
+			'mtime'    => file_exists( $arquivo ) ? gmdate( 'Y-m-d H:i:s', (int) filemtime( $arquivo ) ) . 'Z' : null,
+		),
+	);
+
+	/* O conteúdo do arquivo entra pelos MARCADORES e pela contagem de regras de
+	   reescrita, nunca inteiro (29.3): `.htaccess` de hospedeiro compartilhado
+	   carrega bloco de segurança de terceiro, e despejar isso numa resposta
+	   HTTP é entregar a configuração do servidor a quem tiver o token. O que a
+	   Fundação precisa saber é se o bloco do WordPress está lá — e isso são
+	   duas linhas. */
+	if ( $retrato['htaccess']['legivel'] ) {
+		$texto = (string) @file_get_contents( $arquivo );
+		preg_match_all( '/^#\s*BEGIN\s+(.+)$/mi', $texto, $achados );
+		$retrato['htaccess']['blocos']         = array_map( 'trim', $achados[1] );
+		$retrato['htaccess']['tem_wordpress']  = (bool) preg_match( '/^#\s*BEGIN\s+WordPress\s*$/mi', $texto );
+		$retrato['htaccess']['linhas_rewrite'] = preg_match_all( '/^\s*Rewrite(Rule|Cond|Engine|Base)/mi', $texto );
+	}
+
+	return $retrato;
+}
+}
+
+if ( ! function_exists( 'rodametria_casca_reparar_rotas' ) ) {
+/**
+ * Reescreve as regras de reescrita, e devolve o antes e o depois.
+ *
+ * `flush_rewrite_rules( true )` é o mesmo caminho do botão Salvar dos Links
+ * permanentes. A purga de cache iria junto porque o defeito que trouxe esta
+ * função foi lido, por dias, através de página servida de cache — mas esta
+ * ilha não tem purga (divergência (a) do cabeçalho). A chamada fica guardada,
+ * e `tem_purga_de_cache` no retrato diz, em vez de esconder, que a medição
+ * seguinte precisa de quebra de cache.
+ */
+function rodametria_casca_reparar_rotas() {
+	$antes = rodametria_casca_diagnostico_rotas();
+
+	if ( ! $antes['ferramentas_de_admin'] ) {
+		return array(
+			'reparado' => false,
+			'motivo'   => 'as funcoes de wp-admin/includes nao carregaram; sem elas o flush nao escreve o .htaccess',
+			'antes'    => $antes,
+			'depois'   => $antes,
+		);
+	}
+
+	flush_rewrite_rules( true );
+
+	if ( function_exists( 'rodametria_casca_purgar_cache' ) ) {
+		rodametria_casca_purgar_cache();
+	}
+
+	$depois = rodametria_casca_diagnostico_rotas();
+
+	return array(
+		'reparado' => ( $depois['htaccess']['existe'] && ! empty( $depois['htaccess']['tem_wordpress'] ) ),
+		'motivo'   => null,
+		'antes'    => $antes,
+		'depois'   => $depois,
+	);
+}
+}
+
+add_action( 'rest_api_init', function () {
+	if ( ! function_exists( 'register_rest_route' ) ) {
+		return;
+	}
+	register_rest_route( 'rodametria/v1', '/rotas', array(
+		'methods'             => 'GET',
+		'callback'            => function ( $pedido ) {
+			if ( '1' === (string) $pedido->get_param( 'reparar' ) ) {
+				return rodametria_casca_reparar_rotas();
+			}
+
+			return rodametria_casca_diagnostico_rotas();
+		},
+		/* A NEGATIVA DIZ QUAL DAS TRES COISAS FALTOU, e os tres codigos sao
+		   legiveis SEM o token. O modelo das irmas devolve `false`, que o
+		   WordPress traduz num 401 generico — e um 401 generico junta dois
+		   mundos que o conserto separa: "o pedido trouxe o token errado"
+		   (a rota esta viva e a parede funciona) e "esta casca nao achou de
+		   onde ler o token" (a rota esta MORTA e nega tudo, inclusive o
+		   pedido certo). Esta ilha precisa da distincao porque o Sync dela
+		   nao esta no repositorio e o nome da fonte do token e herdado e nao
+		   conferido — ver a divergencia (b) no cabecalho desta secao.
+		   O `status` vai EXPLICITO em cada WP_Error: `WP_REST_Server` usa o
+		   `data['status']` do erro e cai em 500 quando ele falta, e 500 numa
+		   parede de permissao e exatamente o tipo de verde errado que a 20.5
+		   nomeia. */
+		'permission_callback' => function ( $pedido ) {
+			$esperado = rodametria_casca_token_esperado();
+			if ( '' === $esperado ) {
+				return new WP_Error(
+					'rodametria_rotas_sem_fonte_de_token',
+					'esta casca nao achou de onde ler o token do Sync; a rota nega TODO pedido ate isso ser consertado',
+					array( 'status' => 401 )
+				);
+			}
+			$vindo = (string) $pedido->get_param( 'token' );
+			if ( '' === $vindo ) {
+				return new WP_Error(
+					'rodametria_rotas_token_ausente',
+					'falta o parametro token',
+					array( 'status' => 401 )
+				);
+			}
+			if ( ! hash_equals( $esperado, $vindo ) ) {
+				return new WP_Error(
+					'rodametria_rotas_token_invalido',
+					'token invalido',
+					array( 'status' => 401 )
+				);
+			}
+
+			return true;
 		},
 	) );
 } );

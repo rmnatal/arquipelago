@@ -11,6 +11,11 @@ CONFERE A ILHA NO AR — o portao que a secao 8 do ARQUIPELAGO.md exige por escr
 Mais o que as outras secoes cobram e que esta ilha tinha de herdar pronto:
   - a PORTA DE ENTRADA da 29.2 (robots.txt em text/plain, wp-sitemap.xml em
     application/xml, wp-json em application/json, e caminho virgem em 404);
+  - a ROTA QUE MEDE A PORTA POR DENTRO, da 29.3, lida SEM o token: ela existe
+    no indice de rotas, nega quem nao tem token, e o CODIGO da negativa prova
+    que a parede achou a fonte do token e comparou. Nasceu em 03/11/2026, com
+    a rota, e reprovou contra o ar ANTES do desembarque — quatro falhas, as
+    quatro certas;
   - o PORTAO DO DESEMBARQUE da 20.4: o log do /status e lido LINHA POR LINHA e
     nenhuma linha da revisao corrente pode deixar de dizer `ok`. Resumo verde
     nao e entrega;
@@ -154,6 +159,61 @@ def aplicados_declarados(fecho):
     return int(m.group(1)) if m else None
 
 
+ROTA_DA_293 = "/rodametria/v1/rotas"
+
+
+def codigo_do_erro(bruto):
+    """O campo `code` do JSON de erro do WordPress, ou None se nao for um."""
+    try:
+        d = json.loads(bruto)
+    except Exception:
+        return None
+
+    return d.get("code") if isinstance(d, dict) else None
+
+
+def problemas_da_parede(rotas_no_indice, cod_sem_token, cod_token_errado, code_errado):
+    """A rota da 29.3 lida DE FORA, sem nunca ter o token.
+
+    E FUNCAO PURA DE PROPOSITO, e e isso que faz o `--autoteste` poder fabricar
+    os tres mundos que esta nuvem nao consegue produzir de verdade: a rota
+    AUSENTE, a parede ABERTA e o PORTAO MORTO. Portao de rede cujo autoteste
+    precisa de rede nao roda (20.8).
+
+    A AFIRMACAO FORTE E A DO `code`, e ela e POSITIVA. Procurar "nao deu 200" e
+    a leitura pelo avesso que a 20.8 nomeia: ela aprova um 404 e aprova uma
+    casca que nega TODO pedido porque nao acha o token. O que prova que a
+    parede esta VIVA e `rodametria_rotas_token_invalido` — esse codigo so sai
+    depois de a casca achar a fonte do token E rodar o `hash_equals`. Ele e
+    legivel sem o token, e e por isso que esta ilha o tem (ver a divergencia
+    (b) da secao 12 da casca: o Sync dela nao esta no repositorio, entao o nome
+    da fonte do token foi herdado e nao conferido no chao).
+    """
+    p = []
+
+    if ROTA_DA_293 not in rotas_no_indice:
+        p.append("29.3: %s NAO aparece no indice de rotas do WordPress — esta casca nao registra a rota que mede a porta de entrada por dentro"
+                 % ROTA_DA_293)
+
+    if 404 in (cod_sem_token, cod_token_errado):
+        p.append("29.3: a rota respondeu 404 — ela nao existe neste site, e a porta de entrada segue sem instrumento (foi essa falta que custou QUATRO DIAS de ar na robometria)")
+
+    if 200 in (cod_sem_token, cod_token_errado):
+        p.append("29.3: A PAREDE ESTA ABERTA — a rota devolveu 200 SEM o token do Sync, e ela mostra o retrato do roteamento do servidor")
+
+    if code_errado == "rodametria_rotas_sem_fonte_de_token":
+        p.append("29.3: PORTAO MORTO — a casca nao achou de onde ler o token do Sync, entao a rota nega TODO pedido, inclusive o certo. O nome da funcao ou da option do token esta errado nesta ilha")
+    elif code_errado != "rodametria_rotas_token_invalido":
+        p.append("29.3: com token ERRADO a rota devia dizer `rodametria_rotas_token_invalido` e disse %r — sem esse codigo nao existe prova, desta nuvem, de que a parede achou a fonte do token e comparou"
+                 % (code_errado,))
+
+    if cod_token_errado != 401:
+        p.append("29.3: com token errado a rota respondeu %s e tinha de responder 401 — o `status` vai EXPLICITO no WP_Error porque sem ele o WordPress devolve 500"
+                 % (cod_token_errado,))
+
+    return p
+
+
 def main():
     manifest = json.load(open(os.path.join(ILHA, "manifest.json"), encoding="utf-8"))
     revisao_esperada = int(manifest["revisao"])
@@ -175,6 +235,45 @@ def main():
     virgem = "/caminho-que-nunca-existiu-%d/" % int(__import__("time").time())
     cod, _, _ = buscar(virgem, v=False)
     afirma(cod == 404, "29.2: caminho virgem respondeu %s e tinha de ser 404" % cod)
+
+    # -------------------------------------------------------------------
+    # 1-b. A ROTA QUE MEDE A PORTA POR DENTRO (29.3). Ela nasceu nesta ilha
+    #      em 03/11/2026, e a divida era de nascimento: a varredura do
+    #      despacho de 02/11 listou esta ilha com `NAO` nesta coluna, ao lado
+    #      da aquametria. A robometria pagou QUATRO DIAS fora do ar por nao
+    #      te-la — em 30/10 o despacho escreveu "nao e consertavel pelo
+    #      repositorio", e era verdade sobre aquela ilha e falso sobre o
+    #      Arquipelago.
+    #
+    #      O QUE ESTE PORTAO CONSEGUE PROVAR SEM O TOKEN, que nao esta no
+    #      repositorio e nao deve estar: que a rota EXISTE, que a parede
+    #      NEGA, e — pelo codigo de erro — que a parede negou depois de achar
+    #      a fonte do token e comparar. O reparo em si nao e exercitavel
+    #      daqui, e isso esta dito em vez de maquiado.
+    # -------------------------------------------------------------------
+    _, _, indice = buscar("/wp-json/rodametria/v1")
+    try:
+        rotas_no_indice = sorted(json.loads(indice).get("routes", {}).keys())
+    except Exception:
+        rotas_no_indice = []
+
+    cod_sem, _, _ = buscar("?rest_route=/rodametria/v1/rotas")
+    cod_err, _, corpo_err = buscar("?rest_route=/rodametria/v1/rotas&token=token-de-proposito-errado")
+    code_err = codigo_do_erro(corpo_err)
+
+    for problema in problemas_da_parede(rotas_no_indice, cod_sem, cod_err, code_err):
+        afirma(False, problema)
+
+    # A LINHA DE REGISTRO DIZ O QUE FOI MEDIDO, NUNCA O VEREDITO. A primeira
+    # versao dela dizia "a rota esta registrada" — e imprimia isso tambem no
+    # mundo em que a rota devolvia 404 e NAO estava registrada. Registro que
+    # afirma o que nao mediu e a familia do comentario que declara um
+    # mecanismo: parece conferido e nao mede nada (32.5-d). Quem decide aqui
+    # sao as afirmacoes acima.
+    registro("29.3: %s %s no indice; sem token -> %s; token errado -> %s com `%s` (a parede medida de fora, sem o token)"
+             % (ROTA_DA_293,
+                "PRESENTE" if ROTA_DA_293 in rotas_no_indice else "AUSENTE",
+                cod_sem, cod_err, code_err))
 
     # -------------------------------------------------------------------
     # 2. O /status E O PORTAO DO DESEMBARQUE (20.4 e 20.5)
@@ -669,6 +768,42 @@ def autoteste():
             break
     diz(len(velhas) == 1 and len(itens) == 8,
         "7. a regua VELHA devolve 1 linha e a nova devolve 8 — o conserto move algo")
+
+    # MUNDO 8 — A ROTA DA 29.3, OS QUATRO MUNDOS QUE ESTA NUVEM NAO PRODUZ.
+    # O site de verdade (se tudo estiver sao) devolve SEMPRE o mundo sadio, e
+    # portao que so viu o mundo sadio nao mediu nada.
+    indice_com = ["/rodametria/v1", "/rodametria/v1/casca", "/rodametria/v1/rotas",
+                  "/rodametria/v1/status", "/rodametria/v1/sync", "/rodametria/v1/token"]
+    indice_sem = [r for r in indice_com if r != "/rodametria/v1/rotas"]
+
+    diz(problemas_da_parede(indice_com, 401, 401, "rodametria_rotas_token_invalido") == [],
+        "8. o mundo SADIO passa (rota no indice, 401 nas duas, codigo de token invalido)")
+
+    sem_rota = problemas_da_parede(indice_sem, 404, 404, None)
+    diz(len(sem_rota) >= 2 and any("NAO aparece no indice" in m for m in sem_rota)
+        and any("404" in m for m in sem_rota),
+        "8. a rota AUSENTE e pega pelo indice E pelo 404 — foi este o mundo da robometria por quatro dias")
+
+    aberta = problemas_da_parede(indice_com, 200, 200, None)
+    diz(any("PAREDE ESTA ABERTA" in m for m in aberta),
+        "8. a parede ABERTA e pega: 200 sem token entrega o retrato do servidor")
+
+    morto = problemas_da_parede(indice_com, 401, 401, "rodametria_rotas_sem_fonte_de_token")
+    diz(any("PORTAO MORTO" in m for m in morto),
+        "8. o PORTAO MORTO e pego: 401 nas duas, rota no indice, e a casca negando TODO pedido")
+
+    quinhentos = problemas_da_parede(indice_com, 500, 500, None)
+    diz(any("401" in m for m in quinhentos),
+        "8. 500 na parede e pego — e o que sai quando o WP_Error nao traz `status`")
+
+    # MUNDO 9 — A REGUA VELHA DESTA LEITURA, refeita ao lado da nova: a que
+    # so pergunta "nao deu 200?". Ela APROVA o portao morto e APROVA o 404 —
+    # e e por isso que a afirmacao do codigo e positiva (20.8).
+    regua_velha = lambda cod: [] if cod != 200 else ["deu 200"]
+    diz(regua_velha(401) == [] and morto != [],
+        "9. a regua velha APROVA o portao morto e a nova o REPROVA — as duas discordam, senao este autoteste nao mede o conserto")
+    diz(regua_velha(404) == [] and sem_rota != [],
+        "9. a regua velha APROVA a rota AUSENTE e a nova a REPROVA")
 
     print("conferir-no-ar --autoteste: %d de %d afirmacoes, %d falha(s)"
           % (len(ok), len(ok) + len(mal), len(mal)))
