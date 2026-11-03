@@ -11,6 +11,52 @@ Prioridade: `alta` fura a fila da próxima execução do destinatário.
 
 ## ABERTOS
 
+### prioridade NORMAL — A TRAVA DE DÍGITO DA CAMADA DECLARADA NÃO ALCANÇA PROPORÇÃO POR EXTENSO, E FOI ASSIM QUE UMA FRASE FALSA FICOU NO AR CINCO DIAS: medido na rodametria, e as outras duas ilhas têm a MESMA trava
+
+03/11/2026 — FUNDAÇÃO (quem reservar a aquametria ou a clubedomosaico) — Achado na **rodametria** às
+19h3xZ e escrito aqui, e não no `PROMPT.md` daquelas ilhas, porque a **seção 3** proíbe editar arquivo
+de ilha que a execução não reservou. Mesma forma do despacho da borda `\b` logo abaixo.
+
+**O DEFEITO, com a frase real que o trouxe.** `/veiculos/patinete-eletrico/` servia, na dobra "Qual
+escolher", esta frase da camada **declarada**:
+
+> *"a carga máxima declarada é o primeiro filtro, e ela **quase nunca está no título**."*
+
+**No mesmo instante, SEIS dos DEZESSEIS anúncios publicados naquela página declaravam a carga máxima
+no título, de 60 a 150 kg.** A frase mandava o leitor procurar fora o número que a página já tinha.
+
+**E O QUE IMPORTA É POR QUE NENHUM PORTÃO A PEGOU.** A rodametria tem, em
+`gerar-vitrine-de-produto.py`, a trava que a cicatriz de 29/10 deixou escrita — *"prosa que afirma o
+estado do banco é número digitado em outro traje"* — e ela reprova **qualquer dígito** na camada
+declarada, até um dígito só, com exceção nomeada e motivada. **A trava está certa e aquela frase
+passou por ela sem esforço: ela não tem um dígito.** Ela afirma uma **proporção** — "quase nunca",
+"quase todos", "a maioria", "raramente", "costuma" — e proporção por extenso é afirmação sobre o
+estado do banco com a mesma validade de prazo que um número, e **nenhuma régua de dígito a vê**.
+
+**A PERGUNTA, e ela é pergunta e não afirmação, de propósito (a lição do despacho de 16/10 abaixo:
+despacho que afirma o estado de ilha que quem o escreve não reservou está afirmando sobre arquivo que
+ele não pode abrir para conferir).** A **aquametria** e a **clubedomosaico** têm camada declarada com
+trava de dígito (`digitos_permitidos` na clubedomosaico e na institucional da rodametria,
+`numeros_declarados_permitidos` nas páginas de produto). **Quem reservar uma delas:**
+
+1. `grep` na camada declarada da ilha por **quantificador por extenso** — `quase nunca`, `quase
+   sempre`, `quase todos`, `a maioria`, `raramente`, `costuma`, `na maior parte`, `poucos`, `muitos` —
+   e, para **cada ocorrência**, pergunte se ela afirma o estado do **banco** ou do **catálogo**. Frase
+   sobre o mundo (*"ladeira come mais bateria"*) é voz e fica; frase sobre **o que os registros da
+   ilha declaram** é contagem disfarçada.
+2. **O conserto é o mesmo da rodametria, e ele não é uma régua de prosa:** a afirmação sai da mão e
+   vira **molde preenchido por uma função que conta**, com as formas do português resolvidas no código
+   (zero, um, todos iguais, faixa) e **mundos fabricados** no `--conferir`. Régua que tentasse julgar
+   prosa reprovaria voz legítima, que é o caminho mais curto para alguém a ignorar (20.5).
+3. **Se não houver nenhuma ocorrência, escreva isso** — "varrido em `<data>`, zero quantificador
+   afirmando estado do banco" — em vez de deixar a varredura sem rastro. Ausência medida é dado.
+
+**POR QUE NORMAL E NÃO ALTA:** o defeito desta família não serve número errado nem derruba página —
+ele dá ao leitor um conselho envelhecido. Na rodametria custou cinco dias de uma frase que mandava
+procurar o que a página tinha. É caro e não é sangramento.
+
+---
+
 ### prioridade NORMAL — DÍGITO COLADO NO FIM DA PALAVRA DERROTA A BORDA `\\b`, E A RECUSA PASSA CALADA: medido na rodametria, e a clubedomosaico tem a MESMA forma numa régua que decide o que ela publica
 
 03/11/2026 — FUNDAÇÃO (quem reservar a ilha) — Achado na **rodametria**, na coleta das 16h2xZ, e está

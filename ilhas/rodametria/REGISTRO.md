@@ -3,6 +3,154 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-11-03 19h17Z–19h5xZ — **A CARGA MÁXIMA QUE O TÍTULO DECLARA VIRA NÚMERO PRÓPRIO DAS DUAS PÁGINAS DE PRODUTO**, e ela nasceu de uma frase que a própria página servia e que a medição reprovou
+
+**A ESCOLHA DA ILHA.** `foco.md` nomeia a **rodametria** (foco total e absoluto desde 27/10), e pela
+**1.2** não há escolha a fazer. **As duas exceções que furam o foco foram conferidas e NENHUMA
+furou.** (a) Os **três despachos do molde** da seção 32 estão **FECHADOS**, lido no topo dos três
+`PROMPT.md`. (b) Nenhum despacho **ALTA** é de ilha **no ar E quebrada**: o da robometria de 30/10
+fechou em 02/11, e o que ela tem aberto é ronda **NORMAL** de 02/11, que espera pela **18.1**.
+`executando_desde` estava `null`, que pela **1.1** já é prova de que não há bloco da Fundação vivo —
+não houve reserva vencida para o git desempatar. Reserva às **19h17Z**, push aceito **de primeira**,
+campo **renovado às 19h26Z**. Zero branch `claude/*` com commit fora do `main`, zero PR aberto: o
+`claude/dreamy-mccarthy-ljpns1` existe e está **idêntico ao `main`**, conferido com
+`git log origin/main..`, que voltou vazio.
+
+**A REDE, MEDIDA E NÃO HERDADA (20.2).** `rodametria.com.br/` e `/wp-json/rodametria/v1/status` os
+dois em **200 em TRÊS passadas**, com `aquametria.com.br` em **200 nas mesmas três**.
+
+**A PRIMEIRA COISA FOI PROCURAR DEFEITO (18.5), e no chão não havia nenhum:** bancada **com rede, 29
+portões, 0 falha**, antes de uma linha de código. O defeito estava onde portão nenhum olhava.
+
+### O BLOCO NÃO ESTAVA PRÉ-REGISTRADO, E AS DUAS EXECUÇÕES ANTERIORES ESTAVAM CERTAS: não há bloco de PÁGINA NOVA desbloqueado. Eu remedi os dois candidatos em vez de herdar o veredito
+
+**A F1 e a F3 foram remedidas no banco, registro por registro, e as duas seguem travadas:**
+`carga_max_kg` — a entrada da **F3** — está declarado em **três** registros (`maxshot-v1`,
+`maxshot-v1spro`, `playbik`) e os **três são `rascunho`**: a escada de compra inteira devolveu **zero
+oferta** na loja nos três, e o motivo está escrito em `afiliado.motivo_sem_url_busca` com os degraus
+medidos um por um. Sem piso não há publicável (25.2), e uma ferramenta que responde "aguenta o seu
+peso" sem ter o que comparar nem o que vender não é ferramenta. A **F1** segue atrás do `gov.br`
+(despacho ALTA). **Página nova de malha segue travada pela 30.8**, e isso não se afirma daqui.
+
+### O DEFEITO, E ELE ESTAVA NA TELA DESDE 29/10 — UMA FRASE ESCRITA À MÃO AFIRMANDO O ESTADO DO CATÁLOGO
+
+`/veiculos/patinete-eletrico/` servia, na dobra "Qual escolher", a frase **declarada**:
+
+> *"a carga máxima declarada é o primeiro filtro, e ela **quase nunca está no título**."*
+
+**Medido no mesmo instante, nos anúncios que aquela página publica: SEIS DOS DEZESSEIS declaram a
+carga máxima no título, e ela vai de 60 a 150 kg.** A frase não era só imprecisa — ela mandava o
+leitor procurar fora o número que a própria página já tinha na mão.
+
+**É a cicatriz que esta ilha já nomeou, em 29/10 às 16h2xZ, com estas palavras: "prosa que afirma o
+estado do banco é número digitado em outro traje".** Aquele dia consertou o bloco de compra da F2 que
+dizia três vezes a mesma coisa; a lição não viajou para a camada declarada das páginas de produto,
+escrita no mesmo mutirão. **É a 32.5-c outra vez, num andar acima do CSS:** a metade que aprendeu não
+contou à irmã.
+
+**E nenhum portão podia pegá-la,** e isso é o achado de método: a trava de dígito de
+`gerar-vitrine-de-produto.py` reprova **número digitado** na camada declarada, e aquela frase não
+tinha um dígito. Ela afirmava uma **proporção** por extenso. **Prosa sem dígito que afirma contagem
+passa por todas as réguas desta ilha** — e a saída não foi uma régua nova de prosa: foi **tirar a
+afirmação da mão e pôr a contagem no lugar dela**.
+
+### O QUE FOI AO AR, revisão **34** às 19:40:19Z
+
+- **`ferramentas/teste-relevancia-do-anuncio.py`** — `carga_declarada(titulo)` e `faixa_de_carga()`,
+  ao lado do `rotulo_de_potencia` que já media o watt dos títulos. Ela **não atribui `carga_max_kg` a
+  ninguém**: título é nível 6 e o `niveis_minimos_por_campo` exige melhor. O que sai é **contagem e
+  faixa**.
+- **A LIGAÇÃO É OBRIGATÓRIA, E ELA É A REGRA INTEIRA.** `kg` solto é **ambíguo** entre a carga que o
+  veículo aguenta e o peso do **próprio veículo**, e as duas aparecem em título de patinete
+  (`dobrável 12kg` e `até 120kg`). Lê-lo como carga publicaria o peso do aparelho como limite de quem
+  sobe nele, numa página que diz *"passar da carga máxima deixa a solda do guidão mais perto de
+  ceder"*. **O caso real que a regra deixa de fora de propósito estava na coleta de hoje:**
+  `patinete eletrico 350w 10ah 120kg autonomia 30km` — quase certamente carga, e "quase certamente"
+  não é procedência. Ele entra como **não declarado** e continua nomeado na tabela.
+- **AS BORDAS SÃO ASSIMÉTRICAS, cada uma pelo que protege** — a lição de hoje de manhã, nesta mesma
+  régua, onde `\b` depois de LETRA deixou passar `Capacete1`. Esquerda, na palavra que liga: `\b`
+  estrita (`ate` não pode casar dentro de `Matelado`). Direita, depois de `kg`: **`(?![a-z])` e não
+  `(?![a-z0-9])`** — barra `90kgf` (kgf é força) e **deixa passar `150kg1`**, a enumeração do
+  vendedor. **A primeira versão escreveu `(?![a-z0-9])` e o caso do `150kg1` a REPROVOU na primeira
+  passada**: o mesmo buraco do capacete, do outro lado, pego pelo autoteste antes do ar. A diferença
+  com `aro 20`/`aro 200` é que lá o dígito vem **dentro** da medida e a muda; aqui ele vem **depois da
+  unidade** e não pode mudar nada.
+- **`ferramentas/gerar-vitrine-de-produto.py`** — `frase_da_carga()` em **quatro formas**, porque a
+  forma muda com o mundo e não só o número: zero declarando, **um** só (verbo no singular), **todos no
+  mesmo valor** (não pode sair "de 60 a 60 kg") e faixa de verdade. **Cinco mundos fabricados** no
+  `--conferir`, dos quais o banco de hoje produz **dois**. Cada linha da tabela ganhou a célula e o
+  **pedaço do título** que sustenta o número, como procedência (seção 24) — nunca uma frase nossa.
+- **`dados/paginas-de-produto.json`** — a frase falsa **saiu**; `{FRASE_DA_CARGA}` entrou nas duas
+  páginas, na caixa de resposta, na dobra "Qual escolher" e numa **pergunta nova em cada**. Zero
+  dígito na camada declarada, conferido pela trava que já existia.
+- **`snippets/rodametria-produto.php` 1.3.0 → 1.4.0** — a coluna **"Carga máxima no título"** na
+  tabela visível, que é o que a 32.1 chama de *"o que as IAs citam"*. Ela fica **na tabela e não na
+  primeira tela** por razão de pixel: a tabela vive **depois** do bloco de compra, então coluna aqui
+  custa **zero pixel** acima dele.
+- **`ferramentas/conferir-produto-no-ar.py`** — quatro afirmações novas, e a melhor delas é a que
+  nomeia a **frase aposentada inteira**: se `quase nunca está no título` voltar à tela, o portão fica
+  vermelho. Nomeada inteira de propósito — procurar só `carga máxima` acusaria a coluna **certa**, e
+  portão que reprova página certa é o caminho mais curto para alguém o ignorar (20.5).
+
+### OS NÚMEROS, contados e não digitados
+
+| página | anúncios publicados | declaram carga no título | faixa |
+|---|---|---|---|
+| `/veiculos/patinete-eletrico/` | 16 | **6** | **60 a 150 kg** |
+| `/veiculos/bicicleta-eletrica/` | 6 | **0** | — |
+
+**E O NÚMERO QUE VALE A PÁGINA INTEIRA: um dos seis é vendido como ADULTO declarando `Até 60kg`.**
+`Patinete Elétrico Scooter **Adulto** 150w Dobrável **Até 60kg**`, na mesma vitrine de outro que
+declara **150 kg**. O piso da faixa é mais leve que a maior parte dos adultos do país, e está escrito
+no título, onde ninguém compara. É exatamente o buraco que o dossiê diz que esta ilha existe para
+ocupar — *"acertar os três números antes de comprar"* —, e é o **terceiro** número, o que não tinha
+resposta nenhuma no site porque a F3 não pode nascer.
+
+**E A AUSÊNCIA NA BICICLETA É DADO, não lacuna:** nenhum dos seis títulos tem **um** kg. A página diz
+isso com a mesma frase contada, e manda procurar na ficha em vez de supor.
+
+### VERIFICAÇÃO NO AR (18.4)
+
+- **Revisão 34** às 19:40:19Z. A linha de fecho declara **`5 aplicado(s)`** e o grupo dela, lido **do
+  fecho para baixo** (20.8), traz **exatamente 5 linhas de item, todas dizendo `ok`** (20.4).
+- **O cron é turno e não relógio (20.6), e a régua do `ultimo` acertou outra vez:** às 19h36Z o
+  `/status` trazia revisão **33** com `ultimo` em **19:16:15** — recente e **anterior ao push**, que
+  pela régua do `ultimo` desta ilha não é defeito nem cache, é **turno**. Seis visitas à home, uma por
+  minuto, e a revisão entrou às **19h41Z** com o cron disparando às 19:40:19. **Esperar sem visitar
+  não é paciência.**
+- **Bancada com rede: 29 portões, 0 falha.** `conferir-no-ar.py`, `conferir-produto-no-ar.py` e
+  `conferir-institucional-no-ar.py` aprovados.
+- **32.5 medida no navegador a 390 px, 9 de 9 páginas do molde dentro dela**, 0 fora do molde, pior
+  caixa 405 px (teto 700) e pior compra 1.380 px (teto 1.400).
+
+**E A MEDIÇÃO MOSTRA O CUSTO DA ESCOLHA, escrito aqui porque ele é a próxima armadilha desta ilha: o
+primeiro botão de compra DESCEU nas duas páginas** — patinete de **1.084 → 1.281 px** e bicicleta de
+**1.129 → 1.209 px** —, porque a frase contada entrou **na caixa de resposta**, que é a primeira tela.
+As duas passam, e o patinete passa com **119 px de folga**. **Isso é a 32.5-d esperando acontecer:**
+a próxima frase que alguém puser na caixa daquela página, ou a primeira foto num cartão, estoura o
+teto. Quem mexer ali mede no navegador **na mesma passada**, e a folga está escrita aqui em px para
+não ser estimada de cabeça.
+
+### O PRÓXIMO PASSO DESBLOQUEADO
+
+1. **NÃO HÁ BLOCO DE PÁGINA NOVA DESBLOQUEADO, e isto foi RECONFERIDO hoje no banco** (F3) e não
+   herdado. O trabalho recorrente desta ilha é a **recoleta** — faixa de preço e série de cotações
+   vencem sozinhas. A de hoje saiu às 16h2xZ, então ela **não está vencida**; a próxima passada que a
+   fizer roda `coletar-por-consulta.py --gravar` **e depois** `coletar-piso-da-vitrine.py --gravar` (a
+   ordem importa), mais `coletar-oferta.py --gravar`, e só então gera. **E a recoleta agora carrega a
+   carga declarada sem uma linha nova:** a célula e a faixa são **lidas do título** a cada geração, em
+   vez de herdadas de campo gravado — anúncio novo entra já medido.
+2. **O QUE DESTRAVA MAIS POR MENOS CONTINUA SENDO O MESMO GESTO, e é do Raphael:** o despacho de
+   30/10 — duas SERPs e um volume, UMA sessão de Chrome de ~10 minutos. **Aberto há quatro dias.**
+   Sem ele nenhuma página nova nasce aqui, e a ilha tem 9 URLs contra as 40 do piso da 21.1.
+3. **E UM ACHADO QUE É DAS OUTRAS ILHAS, escrito em `dados/despachos.md` e não aqui:** a trava de
+   dígito desta ilha não alcança **proporção por extenso**. A aquametria e a clubedomosaico têm a
+   mesma trava de dígito na camada declarada delas, e a pergunta — não a afirmação, porque não
+   reservei nenhuma das duas (seção 3) — é se a prosa delas também afirma o estado do banco sem um
+   dígito. Despacho **NORMAL** novo de 03/11.
+
+---
+
 ## 2026-11-03 16h18Z–16h5xZ — **A FAIXA DE PREÇO REMEDIDA HOJE**, e a coleta achou a régua deixando passar **um capacete como bicicleta** — R$ 113,34 seria o piso do número próprio da ilha
 
 **A ESCOLHA DA ILHA.** `foco.md` nomeia a **rodametria** — foco total e absoluto desde 27/10 — e pela

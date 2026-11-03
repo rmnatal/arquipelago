@@ -6,126 +6,110 @@ piso: abaixo              # 5 URLs publicadas contra as 40 da 21.1, e primeira_i
 urls_publicadas: 9        # 5 -> 9 em 30/10/2026 as 14h4xZ: as QUATRO paginas que a 16.1 nomeia (`/sobre/`, `/contato/`, `/divulgacao-de-afiliados/`, `/privacidade/`), pelo bloco 5d. CONTADO no wp-sitemap.xml no ar com quebra de cache, nao na conta de antes do desembarque. ELAS NAO MEXEM NO PISO DA 21.1 NEM GASTAM LEVA: a 21.7 tira as cinco paginas nomeadas da 16.1 do teto de 10 URLs por leva e 3 levas por semana, porque sao familia fechada e nenhuma responde a uma busca — o piso de malha segue pedindo 40 e as paginas de malha seguem 5. A DIVIDA QUE ELAS PAGAM estava medida na contagem de 30/10 as 10h3xZ: a ilha serve link de afiliado da Shopee desde 29/10 e nao tinha pagina de divulgacao de afiliados nem de privacidade.
 ultima_ronda: 2026-10-30T15:10Z   # RONDA DIARIA TECNICA, a PRIMEIRA desta ilha, e ela foi FUNDA. Escrito pela Sentinela, nunca pela Fundacao (secao 2). A ilha tinha 9 URLs no ar no momento da ronda (nao 5): as quatro institucionais do bloco 5d desembarcaram no meio dela, revisao 19 as 14h40:39Z. 9 de 9 em HTTP 200, porta da 29.2 verde nas quatro, soft 404 da borda AUSENTE nesta ilha (caminho virgem em 404 nas quatro leituras), regua tecnica inteira verde, console sem uma mensagem, conta da F2 refeita na mao em cinco casos e fechando. SEIS defeitos achados e ZERO consertados, de proposito: ver dados/consertos.md e o despacho de 30/10 em PROMPT.md. Teste de vida: 9 itens testados, 9 vivos, 0 morto, 13 nao testados por orcamento do anti-robo da Shopee.
 primeira_indexacao: null  # as duas primeiras URLs foram ao ar hoje; indexacao e trabalho de dias. Quem grava este campo e a leitura semanal, lendo o Search Console.
-ultima_execucao: 2026-11-03T16:42Z   # A FAIXA DE PRECO REMEDIDA HOJE nas duas paginas de produto, e a coleta achou a REGUA DEIXANDO PASSAR UM CAPACETE COMO BICICLETA a R\$ 113,34 — que seria o PISO do numero proprio da pagina. Revisao 33 as 16:39:42Z, `4 aplicado(s)` contra 4 linhas de item dizendo `ok` (20.4 e 20.8). A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
-executando_desde: 2026-11-03T19:26Z   # RESERVA da execucao de 2026-11-03T19:17Z (passo 5 da secao 1). Entrou por FOCO (`foco.md` nomeia a rodametria desde 27/10, foco total e absoluto): as duas excecoes da 1.2 foram conferidas e NENHUMA furou — os tres despachos do MOLDE (32.6, aquametria/clubedomosaico/robometria) estao FECHADOS e conferidos no ar, e nao ha despacho ALTA em ilha no ar e quebrada (o ALTA de 30/10 da robometria fechou em 02/11; o que ela tem aberto e ronda NORMAL de 02/11, que espera pela 18.1). A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
-rede: aberta em 2026-11-03   # 20.2, MEDIDA e nao herdada na execucao das 13h21Z: rodametria.com.br/ e /wp-json/rodametria/v1/status os dois em 200 em TRES passadas, com aquametria.com.br em 200 nas MESMAS tres. O EGRESSO (gov.br para a F1, os tres varejos grandes para a F3) NAO foi remedido nesta passada — a de 10h17Z o mediu em 14 medicoes de bloqueio contra 2 de controle verde, e este bloco nao dependia dele. Os dois despachos ALTA seguem valendo.
-bloqueada_por: null      # obrigatorio pela secao 2. `null` DE PROPOSITO: o que falta (gov.br para a F1, as prefeituras para a camada municipal, as tres etiquetas do Mercado Livre) trava a FABRICA e nao a ILHA, e isso se escreve no despacho, que e o canal da 12.2. Preenche-lo congelaria tambem os blocos que ja podem andar — e o proximo da fila, o 3d, nao depende de nenhum deles.
+ultima_execucao: 2026-11-03T19:45Z   # A CARGA MAXIMA QUE O TITULO DECLARA virou numero proprio das duas paginas de produto, e ela nasceu de uma frase DECLARADA que a propria pagina servia e que a medicao reprovou: a dobra "Qual escolher" do patinete dizia que a carga "quase nunca esta no titulo" com SEIS dos DEZESSEIS anuncios dela declarando, de 60 a 150 kg. Revisao 34 as 19:40:19Z, `5 aplicado(s)` contra 5 linhas de item dizendo `ok`, lidas DO FECHO PARA BAIXO (20.4 e 20.8). A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
+executando_desde: null   # LIMPO as 2026-11-03T19:45Z pela propria execucao que reservou as 19h17Z de 03/11 e RENOVOU as 19h26Z pela 1.1 (o bloco passou de 40 minutos: a bancada com rede desta ilha tem 29 portoes e um deles abre as 9 URLs num Chromium de verdade). Entrou por FOCO (`foco.md` nomeia a rodametria): as duas excecoes da 1.2 foram conferidas e NENHUMA furou.
+rede: aberta em 2026-11-03   # 20.2, MEDIDA e nao herdada nesta passada das 19h2xZ: rodametria.com.br/ e /wp-json/rodametria/v1/status os dois em 200 em TRES passadas, com aquametria.com.br em 200 nas MESMAS tres. O EGRESSO (gov.br para a F1, os tres varejos grandes para a F3) NAO foi remedido nesta passada — a de 16h2xZ o mediu em 14 medicoes de bloqueio contra 2 de controle verde, e este bloco nao dependia dele. Os dois despachos ALTA seguem valendo.
+bloqueada_por: null      # obrigatorio pela secao 2. `null` DE PROPOSITO: o que falta (gov.br para a F1, as prefeituras para a camada municipal, as tres etiquetas do Mercado Livre) trava a FABRICA e nao a ILHA, e isso se escreve no despacho, que e o canal da 12.2. Preenche-lo congelaria tambem os blocos que ja podem andar.
 bloco_atual: |
-  A FAIXA DE PRECO REMEDIDA HOJE nas duas paginas de produto, e a coleta achou a
-  REGUA DEIXANDO PASSAR UM CAPACETE COMO BICICLETA. Revisao 33 no ar as
-  16:39:42Z.
+  A CARGA MAXIMA QUE O TITULO DECLARA VIROU NUMERO PROPRIO DAS DUAS PAGINAS DE
+  PRODUTO, e ela nasceu de um defeito que estava NA TELA desde 29/10. Revisao 34
+  no ar as 19:40:19Z.
 
   ESTE ARQUIVO CONTINUA SENDO A MEMORIA DESTA ILHA — `/areas/projeto-rodametria.md`
   nao existe nesta nuvem (conferido outra vez nesta passada), e e por isso que
   este campo e longo.
 
-  O BLOCO NAO ESTAVA PRE-REGISTRADO, e a execucao anterior tinha razao ao dizer
-  que nao havia bloco de CODIGO desbloqueado. O que havia era DADO vencido: o
-  `numero_proprio_pedido` das duas paginas de produto — a faixa de preco — estava
-  medido em 29/10 e as paginas serviam "Preco mediano hoje" na primeira tela, com
-  "os 16 anuncios que a gente conferiu em 29/10/2026" no corpo. E a secao 4
-  aplicada ao PRODUTO da ilha: o site nao ficou para tras em silencio, ficou para
-  tras dizendo "hoje". Recolher e o trabalho que o desenho preve — o esquema
-  nasceu com `cotacoes[]` como SERIE (achado 3 do bloco 3) — e nada de portao
-  novo nasceu (31.2 e 31.3 respeitadas).
+  O DEFEITO, E NENHUM PORTAO PODIA PEGA-LO. A dobra "Qual escolher" de
+  /veiculos/patinete-eletrico/ servia, escrito a MAO na camada declarada: "a
+  carga maxima declarada e o primeiro filtro, e ela QUASE NUNCA ESTA NO TITULO".
+  Medido no mesmo instante, nos anuncios que aquela pagina publica: SEIS DOS
+  DEZESSEIS declaram a carga maxima no titulo, de 60 a 150 kg. A frase mandava o
+  leitor procurar fora o numero que a pagina ja tinha na mao.
+  E A LICAO DE METODO E ESTA: a trava de digito desta ilha reprova QUALQUER
+  digito na camada declarada, ate um so — e aquela frase passou por ela sem
+  esforco, porque ela nao tem digito. Ela afirma uma PROPORCAO por extenso.
+  PROSA SEM DIGITO QUE AFIRMA CONTAGEM PASSA POR TODAS AS REGUAS DESTA ILHA, e a
+  saida nao foi regua nova de prosa (ela reprovaria voz legitima): foi tirar a
+  afirmacao da mao e por a CONTAGEM no lugar dela. Despacho NORMAL novo de 03/11
+  em dados/despachos.md, perguntando — nao afirmando — o mesmo das outras duas.
+  E a cicatriz de 29/10 desta ilha outra vez ("prosa que afirma o estado do banco
+  e numero digitado em outro traje"), e a 32.5-c num andar acima do CSS: a metade
+  que aprendeu nao contou a irma escrita no mesmo mutirao.
 
   O QUE MUDOU NO AR, medido com quebra de cache:
-  - /veiculos/patinete-eletrico/: R$ 1.030,00 a R$ 2.699,00, mediana R$ 1.647,95
-    sobre 16 anuncios (era R$ 1.297,13 a R$ 3.399,00, mediana R$ 1.590,53).
-  - /veiculos/bicicleta-eletrica/: R$ 2.299,99 a R$ 6.199,90, mediana R$ 2.299,99
-    sobre 6 anuncios (eram 5).
-  - /autonomia-patinete-eletrico/: o cartao casado com preco de 03/11.
-  - ZERO ocorrencia de `29/10/2026` nas tres paginas.
-  - A serie do honeywhale-m2-max CRESCEU em vez de ser substituida: 03/11 R$
-    2.299 com 5 VENDAS, ao lado de 29/10 (3) e 27/10. O preco nao mexeu; as
-    vendas sim, e o dado so existe porque a leitura velha ficou.
+  - /veiculos/patinete-eletrico/: 6 de 16 anuncios declaram carga no titulo,
+    faixa de 60 a 150 kg, na caixa de resposta, na dobra, numa pergunta nova e
+    numa COLUNA nova da tabela visivel.
+  - /veiculos/bicicleta-eletrica/: 0 de 6, e a AUSENCIA e dado — nenhum dos seis
+    titulos tem UM kg. A pagina diz isso com a mesma frase contada.
+  - A frase aposentada tem portao com nome: conferir-produto-no-ar.py fica
+    VERMELHO se "quase nunca esta no titulo" voltar a tela.
 
-  O ACHADO, UM TITULO REAL COM DOIS BURACOS SOMADOS. A coleta devolveu, em
-  `bicicleta eletrica adulto`, com `serve: True` e R$ 113,34:
-    "1 Peca Certificado 3C Masculino E Feminino Adulto Desenho Animado
-     Bicicleta Eletrica Motocicleta Meio Capacete1"
-  R$ 113,34 seria o PISO da faixa daquela pagina — um CAPACETE publicado como
-  BICICLETA, na primeira tela, sob "Preco mediano hoje", com botao de afiliado ao
-  lado. A regua recusou DEZ capacetes na mesma passada e deixou passar o DECIMO
-  PRIMEIRO.
-  (1) BORDA DA DIREITA: `capacete` nao casou porque o vendedor escreveu
-      `Capacete1`, digito COLADO — `\b` nao e borda entre `e` e `1`. Familia do
-      `git log` raso da 1.1: o instrumento responde e a resposta sai curta com
-      cara de completa. A correcao NAO podia ser casar por pedaco de palavra (foi
-      o que recusou `36V` por `6v` em 29/10), entao as bordas ficaram
-      ASSIMETRICAS, cada uma pelo que PROTEGE: esquerda `\b` estrita (e ela que
-      barra o `36V`); direita, termo terminado em LETRA, `(?![a-z])` (digito
-      colado nao faz outra palavra, letra colada faz — `moto` segue nao casando
-      `motocicleta`); direita, termo terminado em DIGITO, `\b` (`aro 20` nao pode
-      casar `aro 200`, onde o digito MUDA a medida).
-  (2) REGRA DE POSICAO, buraco INDEPENDENTE: consertada a borda o titulo AINDA
-      passava, porque `capacete1` esta no FIM, depois de `bicicleta`, e
-      POR_POSICAO le isso como "peca DO veiculo". A regra esta certa para o
-      titulo que nasceu medindo (o veiculo que nomeia as pecas dele) e cega para
-      a forma INVERSA, que e a forma mais comum de titulo de acessorio: listar os
-      veiculos COMPATIVEIS e nomear o produto por ultimo. Fecha `1 peca`, na
-      posicao 0, sobre uma afirmacao do nicho facil de conferir: ninguem vende
-      bicicleta eletrica como "1 Peca".
-  AS DUAS MORDEM, cada uma pela afirmacao declarada, e a borda precisou de um
-  mundo FABRICADO para poder falhar sozinha — o titulo real e barrado por
-  `1 peca`, entao com a borda quebrada ele continuaria barrado e a correcao
-  passaria POR CONFERIDA SEM NUNCA TER SIDO MEDIDA (secao 8). 28 casos, 0 falha.
+  O NUMERO QUE VALE A PAGINA INTEIRA: um dos seis e vendido como ADULTO
+  declarando "Ate 60kg", na mesma vitrine de outro que declara 150 kg. O piso da
+  faixa e mais leve que a maior parte dos adultos do pais e esta escrito no
+  titulo, onde ninguem compara. E o TERCEIRO numero do dossie — "acertar os tres
+  numeros antes de comprar" —, o que nao tinha resposta nenhuma no site porque a
+  F3 nao pode nascer.
 
-  E O PORTAO QUE ACUSOU ESCONDIA O CAMPO: `--conferir` compara serve,
-  recusado_por E exigencia_que_faltou, e imprimia DOIS — a linha saia
-  "gravado (False/acessorio) discorda do calculado (False/acessorio)", os dois
-  lados identicos. Passou a imprimir os tres. Portao que nao imprime o campo que
-  compara faz quem o le duvidar do PORTAO em vez do DADO (20.5).
+  A REGRA, E A LIGACAO E ELA INTEIRA: `kg` solto no titulo e AMBIGUO entre a
+  carga que o veiculo aguenta e o peso do PROPRIO veiculo, e as duas aparecem em
+  titulo de patinete ("dobravel 12kg" e "ate 120kg"). So e lido o kg que uma
+  palavra de capacidade LIGA. O caso real deixado de fora de proposito estava na
+  coleta de hoje: `patinete eletrico 350w 10ah 120kg autonomia 30km` — quase
+  certamente carga, e "quase certamente" nao e procedencia (secao 8).
+  AS BORDAS SAO ASSIMETRICAS, cada uma pelo que protege, e e a licao da manha
+  nesta mesma regua (onde `\b` depois de LETRA deixou passar `Capacete1`):
+  esquerda `\b` estrita (`ate` nao casa dentro de `Matelado`); direita depois de
+  `kg` e `(?![a-z])` e NAO `(?![a-z0-9])` — barra `90kgf` e deixa passar
+  `150kg1`. A PRIMEIRA VERSAO ESCREVEU `(?![a-z0-9])` E O AUTOTESTE A REPROVOU
+  NA PRIMEIRA PASSADA: o mesmo buraco do capacete, do outro lado, pego antes do
+  ar. 41 casos, 0 falha.
 
-  E OS PORTOES PEGARAM UMA FALTA MINHA ANTES DO AR: a recoleta substituiu
-  `anuncios-por-consulta.json` e derrubou o `piso_da_busca` da 25.2;
-  validar-banco (22 falhas) e coletar-piso-da-vitrine --conferir (2) acusaram que
-  a pagina serviria ficha sem saida de compra para o dia em que ela esgotar.
-  Piso recolhido nas duas consultas. Erro de ORDEM DE PASSOS, nao de regua.
+  A F1 E A F3 FORAM REMEDIDAS NO BANCO, registro por registro, e as duas seguem
+  travadas: `carga_max_kg` esta em TRES registros (maxshot-v1, maxshot-v1spro,
+  playbik) e os TRES sao `rascunho` — a escada de compra inteira devolveu ZERO
+  oferta na loja nos tres, com os degraus medidos um por um em
+  afiliado.motivo_sem_url_busca. Sem piso nao ha publicavel (25.2). A F1 segue
+  atras do gov.br (despacho ALTA).
 
-  NO AR (18.4): revisao 33 as 16:39:42Z, `conferir-no-ar.py` APROVADO, bancada
-  com rede em 29 portoes / 0 falha. A linha de fecho da revisao 33 declara
-  `4 aplicado(s)` e o grupo dela traz EXATAMENTE 4 linhas de item, lidas uma por
-  uma, TODAS dizendo `ok` (20.4 e 20.8).
+  NO AR (18.4): revisao 34, `5 aplicado(s)` contra EXATAMENTE 5 linhas de item
+  dizendo `ok`, lidas do fecho para baixo (20.8). Bancada com rede em 29 portoes
+  / 0 falha. 32.5 no navegador a 390 px: 9 de 9 paginas do molde dentro dela, 0
+  fora do molde.
 
-  OS TRES BLOQUEIOS REMEDIDOS E NAO HERDADOS, antes de construir: F1 (gov.br,
-  in.gov.br, planalto, contran) 000 em 8 medicoes; F3 (casasbahia, extra,
-  magazineluiza) 000 em 6; as duas consultas do despacho de 30/10 seguem
-  `nao-medida` sem `visto_por` nem `visto_em` — a sessao de Chrome do Raphael NAO
-  aconteceu. 14 medicoes de bloqueio contra 2 de controle verde.
+  E O CUSTO DA ESCOLHA, EM PIXEL, ESCRITO AQUI PORQUE E A PROXIMA ARMADILHA: a
+  frase contada entrou NA CAIXA DE RESPOSTA, que e primeira tela, e o primeiro
+  botao de compra DESCEU nas duas paginas — patinete de 1.084 para 1.281 px e
+  bicicleta de 1.129 para 1.209 px, teto 1.400. As duas passam, e o patinete
+  passa com 119 PX DE FOLGA. Isso e a 32.5-d esperando acontecer: a proxima
+  frase na caixa daquela pagina, ou a primeira foto num cartao, estoura o teto.
+  Quem mexer ali mede no navegador NA MESMA PASSADA, e a folga esta em px aqui
+  para nao ser estimada de cabeca.
 
-  E O QUARTO BLOQUEIO, O DE PRODUTO, FOI REMEDIDO NA OPEN API E REPRODUZIU EXATO
-  cinco dias depois — as duas maiores cabecas sem pagina do nicho:
-  - `moto eletrica` (823 mil/mes): 3 de 20 servem, o piso da 30.2 RASPANDO, os
-    TRES com ZERO vendas, a R$ 8.500 / 13.999 / 15.000. Os MESMOS tres produtos
-    de 29/10, com a mesma variacao de R$ 6.500 para a mesma classe.
-  - `scooter eletrica` (301 mil/mes): 6 de 20 servem e CINCO SAO PATINETE (o
-    sexto e bicicleta). Nesta loja a palavra `scooter` E o patinete, e publicar
-    serviria sob um H1 que promete scooter o produto que a pagina do patinete ja
-    serve — canibalizacao da 30.4 de proposito.
-  O veredito nao mudou, e agora e uma SERIE DE DUAS MEDICOES em vez de leitura
-  herdada. O caminho das duas segue sendo o Mercado Livre, onde gerar link exige
-  clique humano (25.6): despacho, nunca bloco.
+  O CRON E TURNO E NAO RELOGIO (20.6), e a regua do `ultimo` acertou outra vez:
+  as 19h36Z o /status trazia revisao 33 com `ultimo` em 19:16:15 — recente e
+  ANTERIOR ao push, que nao e defeito nem cache, e TURNO. Seis visitas a home,
+  uma por minuto, e a revisao entrou as 19h41Z.
 
   O PROXIMO PASSO DESBLOQUEADO, em ordem de valor:
-  (1) NAO HA BLOCO DE PAGINA NOVA DESBLOQUEADO, e isto foi RECONFERIDO hoje e nao
-      herdado. O que esta ilha tem de trabalho recorrente e a RECOLETA: a faixa
-      de preco e a serie de cotacoes vencem sozinhas, e a passada de hoje mostra
-      que elas valem bloco — o numero mudou nas duas paginas e a coleta achou um
-      defeito de regua que nenhuma bancada acharia, porque so o CATALOGO DE HOJE
-      o produz. Quem recolher: `coletar-por-consulta.py --gravar` E DEPOIS
-      `coletar-piso-da-vitrine.py --gravar` (a ordem importa, foi o que os
-      portoes pegaram), mais `coletar-oferta.py --gravar`, e so entao gerar.
+  (1) NAO HA BLOCO DE PAGINA NOVA DESBLOQUEADO, e isto foi RECONFERIDO no banco
+      hoje (a F3) e nao herdado. O trabalho recorrente e a RECOLETA: a de hoje
+      saiu as 16h2xZ e NAO esta vencida. Quem recolher: `coletar-por-consulta.py
+      --gravar` E DEPOIS `coletar-piso-da-vitrine.py --gravar` (a ordem importa),
+      mais `coletar-oferta.py --gravar`, e so entao gerar. E A RECOLETA JA
+      CARREGA A CARGA DECLARADA SEM UMA LINHA NOVA: a celula e a faixa sao LIDAS
+      DO TITULO a cada geracao, nunca herdadas de campo gravado, entao anuncio
+      novo entra ja medido.
   (2) O QUE DESTRAVA MAIS POR MENOS CONTINUA SENDO O MESMO GESTO, e e do Raphael:
       o despacho de 30/10 — duas SERPs e um volume, UMA sessao de Chrome de ~10
       minutos. Aberto ha QUATRO dias. Sem ele nenhuma pagina nova nasce aqui, e a
       ilha tem 9 URLs contra as 40 do piso da 21.1.
-  (3) FORA DESTA ILHA, e so para quem a reservar: o despacho novo da BORDA DA
-      DIREITA (03/11, em `dados/despachos.md`) aponta a clubedomosaico, cujos
-      padroes de quantidade tem a mesma forma `\b` depois de letra. Esta escrito
-      como SUSPEITA NAO MEDIDA de proposito (31.2), e la o que a regua decide e o
-      TAMANHO DO KIT. E o despacho do `clearstatcache` da 29.3 segue aberto na
-      clubedomosaico e na robometria.
+  (3) FORA DESTA ILHA, e so para quem a reservar: o despacho novo de 03/11 em
+      `dados/despachos.md` sobre QUANTIFICADOR POR EXTENSO na camada declarada da
+      aquametria e da clubedomosaico. Esta escrito como PERGUNTA e nao afirmacao,
+      de proposito (secao 3). E seguem abertos ali o da borda `\b` da manha, o do
+      `clearstatcache` da 29.3 e os dois ALTA de egresso desta ilha.
 ---
 
 # Estado da ilha RODAMETRIA
