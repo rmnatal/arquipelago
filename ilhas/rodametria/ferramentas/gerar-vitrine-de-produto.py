@@ -46,6 +46,7 @@ numero (ele rola na horizontal) — mas a secao 7 manda nomear TODO item uma vez
 em cada resposta, e e a tabela que faz isso.
 """
 import argparse
+import importlib.util
 import json
 import os
 import re as _re
@@ -59,6 +60,23 @@ VITRINE = os.path.join(RAIZ, 'dados', 'vitrine-de-produto.json')
 
 PISO_DA_30_2 = 3
 TETO_DO_CARROSSEL = 5
+
+FERRAMENTAS = os.path.dirname(os.path.abspath(__file__))
+
+
+def _modulo(nome, caminho):
+    spec = importlib.util.spec_from_file_location(nome, caminho)
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
+
+
+# A REGUA MORA NUM LUGAR SO. O coletor a carrega do mesmo jeito, e e por isso
+# que este gerador LE a carga do titulo em vez de a herdar de um campo gravado:
+# os anuncios colhidos antes de 03/11/2026 nao tem o campo, e campo ausente lido
+# como "nao declara" seria o portao aprovando o que nao mediu. O titulo esta
+# gravado; a leitura dele e refeita aqui e refeita no `--conferir`.
+rel = _modulo('relevancia', os.path.join(FERRAMENTAS, 'teste-relevancia-do-anuncio.py'))
 
 
 def _textos(valor):
@@ -171,6 +189,60 @@ MUNDOS_DO_ROTULO = (
 )
 
 
+# ---------------------------------------------------------------------------
+# A FRASE DA CARGA DECLARADA — contada, nunca digitada, pela MESMA cicatriz
+#
+# Esta funcao nasceu de um defeito MEDIDO NO AR em 03/11/2026: a dobra "Qual
+# escolher" de `/veiculos/patinete-eletrico/` servia, escrito a mao,
+# *"a carga maxima declarada e o primeiro filtro, e ela QUASE NUNCA ESTA NO
+# TITULO"* — e naquele instante SEIS dos DEZESSEIS anuncios publicados naquela
+# pagina a declaravam no titulo. A prosa afirmava o estado do catalogo e estava
+# errada; a contagem nao pode estar.
+#
+# E A FORMA MUDA, nao so o numero — por isso a camada declarada nao pode
+# escrever esta frase. Com zero declarando (o mundo da pagina da bicicleta
+# eletrica, medido no mesmo dia: 0 de 6), com um so, com todos declarando o
+# MESMO valor e com uma faixa de verdade, as quatro pedem portugues diferente, e
+# um molde `{CARGA_DE}`/`{CARGA_ATE}` solto produziria "de 60 a 60 kg".
+def frase_da_carga(n, declaram, menor, maior):
+    if declaram == 0:
+        return ('Nenhum dos %d anúncios declara no título a carga máxima que aguenta '
+                '— e é ela que decide se o veículo aguenta você.' % n)
+    if menor == maior:
+        if declaram == 1:
+            return ('Um dos %d anúncios declara no título a carga máxima: %d kg. '
+                    'Nos outros, o limite não está no título.' % (n, menor))
+        return ('%d dos %d anúncios declaram no título a carga máxima, e os %d dizem '
+                'o mesmo número: %d kg.' % (declaram, n, declaram, menor))
+    if declaram == n:
+        return ('Todos os %d declaram no título a carga máxima, e ela vai de %d a %d kg '
+                '— a diferença entre os dois extremos é maior que o peso de uma pessoa.'
+                % (n, menor, maior))
+
+    return ('%d dos %d anúncios declaram no título a carga máxima, e entre eles ela vai '
+            'de %d a %d kg. Nos outros, o limite não está no título.'
+            % (declaram, n, menor, maior))
+
+
+MUNDOS_DA_CARGA = (
+    # (n, declaram, menor, maior, pedaco que a frase tem de conter)
+    (6, 0, None, None, 'Nenhum dos 6'),
+    (16, 1, 150, 150, 'Um dos 16'),
+    (16, 3, 100, 100, 'dizem o mesmo número: 100 kg'),
+    (16, 16, 60, 150, 'Todos os 16'),
+    (16, 6, 60, 150, 'de 60 a 150 kg'),
+)
+
+
+def o_que_o_anuncio_declara_de_carga(a):
+    """A celula da coluna de carga. Diz o numero, ou diz que o titulo se cala."""
+    valor, porque = rel.carga_declarada(a['titulo'])
+    if valor is None:
+        return ('o título não declara', porque)
+
+    return ('até %d kg' % valor, porque)
+
+
 def ordenar(servem):
     """Secao 7, passo 3: desempate entre equivalentes. Ver o cabecalho."""
     return sorted(servem, key=lambda a: (-(a.get('vendas') or 0), a.get('preco') or 0))
@@ -192,6 +264,7 @@ def montar(bloco, editorial_da_pagina):
         rotulos[a['rotulo_de_potencia']] = rotulos.get(a['rotulo_de_potencia'], 0) + 1
     declaram_watt = sum(v for k, v in rotulos.items() if k != 'sem_watt')
     dizem_qual = sum(v for k, v in rotulos.items() if k in ('nominal', 'pico', 'os_dois'))
+    declaram_carga, carga_menor, carga_maior = rel.faixa_de_carga(servem)
 
     cartoes, linhas = [], []
     for i, a in enumerate(servem):
@@ -201,6 +274,11 @@ def montar(bloco, editorial_da_pagina):
             'preco_numero': a['preco'],
             'preco_nota': '(preço de %s)' % data_br(a['coletado_em']),
             'especificacao': o_que_o_anuncio_declara(a),
+            # A CARGA QUE O TITULO DECLARA, e `carga_porque` e o PEDACO DO
+            # TITULO que a sustenta — procedencia que se confere abrindo o
+            # anuncio, nunca uma frase nossa (secao 24).
+            'carga': o_que_o_anuncio_declara_de_carga(a)[0],
+            'carga_porque': o_que_o_anuncio_declara_de_carga(a)[1],
             'url': a['url_afiliado'],
             'programa': 'shopee',
             # DOIS "DEGRAUS" DIFERENTES, E JUNTA-LOS SERIA DEFEITO SILENCIOSO.
@@ -266,6 +344,11 @@ def montar(bloco, editorial_da_pagina):
             'dizem_qual_watt': dizem_qual,
             'sem_watt': rotulos.get('sem_watt', 0),
             'frase_do_rotulo': frase_do_rotulo(len(servem), declaram_watt, dizem_qual),
+            'declaram_carga': declaram_carga,
+            'carga_de': carga_menor,
+            'carga_ate': carga_maior,
+            'frase_da_carga': frase_da_carga(len(servem), declaram_carga,
+                                             carga_menor, carga_maior),
             'lidas': bloco['resumo']['ofertas_lidas'],
             'recusadas': bloco['resumo']['ofertas_recusadas'],
             'recusas_por_causa': recusas,
@@ -374,6 +457,46 @@ def conferir():
             falhas.append('frase_do_rotulo(%d,%d,%d) imprime zero no meio da frase: %r'
                           % (n, decl_w, dizem, frase))
 
+    # OS CINCO MUNDOS DA FRASE DA CARGA, e o banco de hoje produz DOIS deles (o
+    # vazio na bicicleta e a faixa no patinete). Os outros tres sao fabricados
+    # pelo mesmo motivo dos do rotulo.
+    for n, decl_c, menor, maior, pedaco in MUNDOS_DA_CARGA:
+        afirmacoes += 1
+        frase = frase_da_carga(n, decl_c, menor, maior)
+        if pedaco not in frase:
+            falhas.append('frase_da_carga(%s,%s,%s,%s) nao traz %r: %r'
+                          % (n, decl_c, menor, maior, pedaco, frase))
+        afirmacoes += 1
+        # O PORTUGUES QUE SO APARECE NO MUNDO QUE O BANCO NAO TEM: faixa de um
+        # valor so nao pode sair como "de X a X", e um anuncio so nao pode sair
+        # com verbo no plural.
+        if menor is not None and menor == maior and ' a %d kg' % maior in frase:
+            falhas.append('frase_da_carga(%s,%s,%s,%s) imprime faixa de valor unico: %r'
+                          % (n, decl_c, menor, maior, frase))
+        afirmacoes += 1
+        if decl_c == 1 and 'declaram' in frase:
+            falhas.append('frase_da_carga com UM anuncio usa verbo no plural: %r' % frase)
+
+    # TODA LINHA TEM A CELULA DA CARGA, E ELA TEM PROCEDENCIA. A celula pode
+    # dizer que o titulo se cala — o que ela nao pode e nascer vazia, porque
+    # coluna vazia na tabela e a pagina deixando o leitor sem saber se ninguem
+    # declarou ou se ninguem leu.
+    for g in calculado['paginas']:
+        for item in g['linhas']:
+            afirmacoes += 1
+            if not (item.get('carga') or '').strip():
+                falhas.append('%s: linha sem a celula de carga' % g['id'])
+            afirmacoes += 1
+            if not (item.get('carga_porque') or '').strip():
+                falhas.append('%s: celula de carga sem procedencia' % g['id'])
+            afirmacoes += 1
+            # A CELULA TEM DE REFAZER DA REGUA, nunca de campo herdado.
+            valor = rel.carga_declarada(item['nome'])[0]
+            esperado = 'o título não declara' if valor is None else 'até %d kg' % valor
+            if item['carga'] != esperado:
+                falhas.append('%s: celula de carga %r nao refaz da regua: %r'
+                              % (g['id'], item['carga'], esperado))
+
     # A CAMADA DECLARADA NAO PODE TRAZER NUMERO DIGITADO. Esta e a trava que a
     # cicatriz do `REGISTRO.md` desta ilha de 29/10 (16h2xZ) deixou escrita:
     # "prosa que afirma o estado do banco e numero digitado em outro traje".
@@ -428,6 +551,9 @@ def main():
         print('%s: %d anuncios · %s a %s (mediana %s) · declaram watt %d, dizem qual %d'
               % (pg['id'], n['n'], n['de'], n['ate'], n['mediana'],
                  n['declaram_watt'], n['dizem_qual_watt']))
+        print('   carga declarada em %d de %d · faixa %s a %s kg'
+              % (n['declaram_carga'], n['n'], n['carga_de'], n['carga_ate']))
+        print('   %s' % n['frase_da_carga'])
         print('   carrossel %d cartao(oes) · recusadas %d %s'
               % (len(pg['cartoes']), n['recusadas'], n['recusas_por_causa']))
     for r in saida['nao_nasceram']:

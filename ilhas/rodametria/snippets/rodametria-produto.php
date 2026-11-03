@@ -23,7 +23,8 @@
  *     resposta em duas frases, o "qual escolher" e as perguntas. E a voz do
  *     `VOZ.md`, e a prosa dela traz MOLDES — {N}, {DE}, {ATE}, {MEDIANA},
  *     {DECLARAM_WATT}, {DIZEM_QUAL_WATT}, {SEM_WATT}, {LIDAS}, {RECUSADAS},
- *     {FRASE_DO_ROTULO}, {CHAVE}, {DATA}.
+ *     {FRASE_DO_ROTULO}, {FRASE_DA_CARGA}, {DECLARAM_CARGA}, {CARGA_DE},
+ *     {CARGA_ATE}, {CHAVE}, {DATA}.
  *   - `dados/vitrine-de-produto.json` e GERADO por
  *     `ferramentas/gerar-vitrine-de-produto.py`, que RECONTA tudo de
  *     `dados/anuncios-por-consulta.json` e sai com codigo 1 se discordar.
@@ -86,7 +87,7 @@
    canal de desembarque desta ilha. (`dados/consertos.md` e da Sentinela, nao da
    Fundacao — por isso este achado nao foi escrito la.) */
 if ( ! defined( 'RODAMETRIA_PRODUTO_VERSAO' ) ) {
-	define( 'RODAMETRIA_PRODUTO_VERSAO', '1.3.0' );
+	define( 'RODAMETRIA_PRODUTO_VERSAO', '1.4.0' );
 }
 
 /* A VERSAO DESTE SNIPPET VAI AO AR, pelo filtro que a casca 1.6.0 abriu
@@ -231,6 +232,18 @@ function rdm_produto_preencher( $texto, $pagina ) {
 		'{LIDAS}'            => (string) $n['lidas'],
 		'{RECUSADAS}'        => (string) $n['recusadas'],
 		'{FRASE_DO_ROTULO}'  => (string) $n['frase_do_rotulo'],
+		/* A CARGA MAXIMA DECLARADA NO TITULO — 03/11/2026. A frase e CONTADA no
+		   gerador, nunca digitada na camada declarada, e a forma dela muda com o
+		   mundo (zero declarando, um so, todos no mesmo numero, faixa de
+		   verdade). Ela entrou porque a prosa que estava aqui afirmava o estado
+		   do catalogo e a medicao a reprovou: a pagina do patinete dizia que a
+		   carga "quase nunca esta no titulo" com SEIS dos DEZESSEIS anuncios
+		   dela declarando. Os tres moldes de numero existem para quem quiser
+		   escrever a frase de outro jeito; a frase inteira e o molde seguro. */
+		'{FRASE_DA_CARGA}'   => (string) $n['frase_da_carga'],
+		'{DECLARAM_CARGA}'   => (string) $n['declaram_carga'],
+		'{CARGA_DE}'         => ( null === $n['carga_de'] ) ? '' : (string) $n['carga_de'],
+		'{CARGA_ATE}'        => ( null === $n['carga_ate'] ) ? '' : (string) $n['carga_ate'],
 		'{CHAVE}'            => (string) $pagina['vitrine']['chave_da_loja'],
 		'{DATA}'             => (string) $pagina['vitrine']['colhido_em_br'],
 	);
@@ -308,8 +321,15 @@ function rdm_produto_tabela_html( $pagina ) {
 	$html  = '<div class="rdm-tabela-rolo"><table class="rdm-tabela">';
 	$html .= '<caption>Todos os anúncios que entraram, com o preço do dia da leitura'
 		. ' e o que cada um declara</caption>';
+	/* A COLUNA DA CARGA ENTROU EM 03/11/2026, e ela fica NA TABELA e nao na
+	   primeira tela por uma razao de pixel: a 32.5 poe teto de 1.400 px no
+	   primeiro botao de compra, a tabela vive DEPOIS do bloco de compra, e
+	   coluna aqui custa ZERO pixel acima dele. A tabela e tambem o que a 32.1
+	   chama de "o que as IAs citam", que e onde este numero vale mais. */
 	$html .= '<thead><tr><th scope="col">Anúncio</th><th scope="col">Preço</th>'
-		. '<th scope="col">O que o anúncio declara</th><th scope="col">Loja</th>'
+		. '<th scope="col">O que o anúncio declara</th>'
+		. '<th scope="col">Carga máxima no título</th>'
+		. '<th scope="col">Loja</th>'
 		. '<th scope="col">Comprar</th></tr></thead><tbody>';
 
 	/* O PISO DA 25.2 E DA CONSULTA, NAO DO ANUNCIO, e e por isso que ele aparece
@@ -340,6 +360,15 @@ function rdm_produto_tabela_html( $pagina ) {
 		$html .= '<td>' . esc_html( $item['nome'] ) . '</td>';
 		$html .= '<td class="rdm-num">' . esc_html( $item['preco'] ) . '</td>';
 		$html .= '<td>' . esc_html( $item['especificacao'] ) . '</td>';
+		/* A CELULA NUNCA NASCE VAZIA: ou traz o numero que o titulo declara, ou
+		   diz que o titulo nao declara. Coluna vazia deixaria o leitor sem saber
+		   se ninguem declarou ou se ninguem leu — e o `title` leva o PEDACO DO
+		   TITULO que sustenta o numero, que e procedencia conferivel abrindo o
+		   anuncio (secao 24), nunca uma frase nossa. */
+		$carga = isset( $item['carga'] ) ? (string) $item['carga'] : '';
+		$porque = isset( $item['carga_porque'] ) ? (string) $item['carga_porque'] : '';
+		$html .= '<td class="rdm-tabela-carga" title="' . esc_attr( $porque ) . '">'
+			. esc_html( '' === $carga ? 'o título não declara' : $carga ) . '</td>';
 		$html .= '<td>' . esc_html( $item['loja'] ) . '</td>';
 		/* O ROTULO SAI DA CASCA, nunca digitado aqui: ela guarda numa funcao so
 		   o rotulo por degrau da escada da 25.1, e a secao 8 registra sete

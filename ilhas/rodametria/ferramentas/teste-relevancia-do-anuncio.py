@@ -357,6 +357,101 @@ def rotulo_de_potencia(titulo):
 
 
 # ---------------------------------------------------------------------------
+# A CARGA QUE O ANUNCIO DECLARA — o terceiro numero da ilha, lido do titulo
+#
+# O `PROMPT.md` desta ilha diz que o nicho e "acertar os TRES numeros antes de
+# comprar": potencia e velocidade (a F1), bateria (a F2) e CARGA MAXIMA (a F3).
+# A F3 nao vai ao ar: `carga_max_kg` esta declarado em TRES registros do banco e
+# os tres sao `rascunho` — a escada de compra inteira devolveu zero oferta nos
+# tres, remedido em 03/11/2026. Entao a pergunta "aguenta o meu peso?" nao tinha
+# NENHUMA resposta no site, e tinha dado para responder: o titulo do anuncio.
+#
+# O DEFEITO MEDIDO QUE FEZ ESTA FUNCAO NASCER (03/11/2026, no ar):
+# `/veiculos/patinete-eletrico/` servia, na dobra "Qual escolher", a frase
+# declarada *"a carga maxima declarada e o primeiro filtro, e ela QUASE NUNCA
+# ESTA NO TITULO"* — e naquele instante SEIS dos DEZESSEIS anuncios publicados
+# naquela pagina a declaravam no titulo, de 60 a 150 kg. Prosa escrita a mao
+# afirmando o estado do catalogo: a cicatriz que o `REGISTRO.md` de 29/10 ja
+# tinha nomeado nesta ilha com estas palavras — **prosa que afirma o estado do
+# banco e numero digitado em outro traje**. A frase saiu e virou contagem.
+#
+# ELA NAO ATRIBUI `carga_max_kg` A NINGUEM, pelo mesmo motivo que
+# `rotulo_de_potencia` nao atribui watt: titulo de anuncio e nivel 6 e o
+# `niveis_minimos_por_campo` do esquema exige melhor nesse campo. O que sai daqui
+# e uma CONTAGEM sobre titulos e uma FAIXA do que os vendedores declaram.
+#
+# A LIGACAO E OBRIGATORIA, E ISSO E A REGRA INTEIRA. `kg` solto no titulo e
+# AMBIGUO entre a carga que o veiculo aguenta e o peso do PROPRIO veiculo — e as
+# duas aparecem em titulo de patinete ("dobravel 12kg" e "ate 120kg"). Ler kg
+# solto como carga maxima publicaria o peso do aparelho como se fosse o limite
+# de quem sobe nele, numa pagina que diz "passar da carga maxima deixa a solda do
+# guidao mais perto de ceder". Entao o numero so e lido quando uma palavra de
+# CAPACIDADE o liga: `capacidade`, `suporta`, `suporte`, `aguenta`, `carga`,
+# `peso maximo`, `maximo`, `max`, `ate`.
+# O CASO REAL QUE A REGRA DEIXA DE FORA DE PROPOSITO, e ele estava na coleta de
+# hoje: `patinete eletrico 350w 10ah 120kg autonomia 30km dobravel` — `120kg`
+# solto, entre a amperagem e a autonomia. Quase certamente e carga, e "quase
+# certamente" nao e procedencia (secao 8). Ele entra na contagem como NAO
+# DECLARADO, e a pagina nao perde nada: ele continua nomeado na tabela.
+#
+# AS BORDAS SAO ASSIMETRICAS, CADA UMA PELO QUE PROTEGE — a licao de 03/11 desta
+# mesma regua, onde `\b` depois de LETRA deixou passar `Capacete1`:
+#   - a da ESQUERDA, na palavra que liga, e `\b` estrita: `ate` nao pode casar
+#     dentro de outra palavra.
+#   - a da DIREITA, depois de `kg`, e `(?![a-z])`, e NAO `(?![a-z0-9])`: ela
+#     barra `90kgf` (kgf e forca, nao massa) e DEIXA PASSAR `150kg1`, a
+#     enumeracao do vendedor. A primeira versao desta linha escreveu
+#     `(?![a-z0-9])` e o caso do `150kg1` do autoteste a REPROVOU na primeira
+#     passada — o mesmo buraco que o `Capacete1` abriu hoje nesta regua, do
+#     outro lado. A diferenca com `aro 20`/`aro 200` da regua de recusa e que
+#     la o digito vem DENTRO da medida e a MUDA; aqui ele vem depois da UNIDADE
+#     e nao pode mudar nada.
+# ---------------------------------------------------------------------------
+PALAVRAS_DE_CAPACIDADE = ('capacidade', 'suporta', 'suporte', 'aguenta',
+                          'carga', 'peso maximo', 'maximo', 'max', 'ate')
+
+# Entre a palavra que liga e o numero cabe pouco: `suporta ate 150kg` tem 4
+# caracteres no meio, `capacidade de carga 120kg` tem 10. O teto de 14 e o que
+# separa a ligacao de uma coincidencia a meia frase de distancia, e ele esta
+# medido contra os titulos reais da coleta nos casos do autoteste.
+PADRAO_CARGA = re.compile(
+    r'\b(?:' + '|'.join(p.replace(' ', r'\s+') for p in PALAVRAS_DE_CAPACIDADE)
+    + r')[^0-9]{0,14}(\d{2,3})\s*(?:kg|quilos?)(?![a-z])')
+
+PADRAO_KG_SOLTO = re.compile(r'(\d{2,3})\s*(?:kg|quilos?)(?![a-z])')
+
+
+def carga_declarada(titulo):
+    """(valor_kg, declarado_como) ou (None, motivo). Nunca atribui campo tecnico.
+
+    `declarado_como` e o PEDACO DO TITULO que sustenta o numero, nao uma frase
+    nossa: procedencia que se confere abrindo o anuncio.
+    """
+    t = normalizar(titulo)
+    m = PADRAO_CARGA.search(t)
+    if m:
+        return (int(m.group(1)), m.group(0).strip())
+    solto = PADRAO_KG_SOLTO.search(t)
+    if solto:
+        return (None, 'tem %r no titulo e nenhuma palavra de capacidade o liga: '
+                      'kg solto e ambiguo entre a carga que o veiculo aguenta e o '
+                      'peso do proprio veiculo' % solto.group(0).strip())
+
+    return (None, 'o titulo nao declara nenhum kg')
+
+
+def faixa_de_carga(anuncios_que_servem):
+    """(quantos_declaram, menor, maior) sobre os titulos que a pagina publica."""
+    valores = sorted(v for v in (carga_declarada(a['titulo'])[0]
+                                 for a in anuncios_que_servem)
+                     if v is not None)
+    if not valores:
+        return (0, None, None)
+
+    return (len(valores), valores[0], valores[-1])
+
+
+# ---------------------------------------------------------------------------
 # AUTOTESTE — e os casos sao titulos REAIS da medicao de 29/10/2026
 # ---------------------------------------------------------------------------
 PATINETE = dict(exige_todas=('patinete', 'eletric'), exige_alguma=QUALIFICADOR_ADULTO,
@@ -470,6 +565,33 @@ CASOS_DE_ROTULO = (
 )
 
 
+# OS CASOS DA CARGA SAO TITULOS REAIS DA COLETA DE 03/11/2026, e os tres que
+# NAO declaram estao aqui pelo mesmo motivo que os que declaram: a regra que
+# nunca viu o mundo em que ela tem de se calar nasce errada sem poder falhar.
+CASOS_DE_CARGA = (
+    ('Patinete Elétrico Scooter 350W 10" com Amortecedor e App GPS Dobrável Super '
+     'Autonomia Para Adultos Até 150kg', 150),
+    ('Patinete Elétrico Scooter Adulto 150w Dobrável Até 60kg Preto', 60),
+    ('Patinete Scooter Dobrável Capacidade 70kg Jovens Adultos', 70),
+    ('Patinete Elétrico Dobrável 350W Adulto | infantil Até 30km/h Suspensão '
+     'Reforçada Suporta 100kg', 100),
+    ('Patinete Elétrico Adulto,potência 500w Até 140kg Dobrável E Patinete', 140),
+    # KG SOLTO: a carga quase certamente e esta, e "quase certamente" nao e
+    # procedencia. Este titulo e real e esta na coleta de hoje.
+    ('Patinete Elétrico 350w 10ah 120kg Autonomia 30km Dobravel Preto', None),
+    # O PESO DO PROPRIO APARELHO, que e a razao de a ligacao ser obrigatoria.
+    ('Patinete Elétrico Adulto Dobrável Leve 12kg Para Levar no Ônibus', None),
+    ('Bicicleta Elétrica Dobrável Adulto com Pneus A Vácuo e Bateria de Lítio', None),
+    # A BORDA DA DIREITA, pela licao do `Capacete1` desta mesma regua: digito
+    # colado no fim nao pode derrotar a leitura, e `kgf` nao e `kg`.
+    ('Patinete Elétrico Adulto Suporta 150kg1 Dobrável', 150),
+    ('Patinete Elétrico Adulto Torque Máximo 90kgf Dobrável', None),
+    # A BORDA DA ESQUERDA: `ate` dentro de outra palavra nao liga nada. Sem o
+    # `\\b`, o `ate` de `Matelado` ligaria os 95kg do estofamento.
+    ('Patinete Elétrico Adulto Assento Matelado 95kg de Espuma', None),
+)
+
+
 def autoteste():
     falhas = []
     for titulo, familia, esperado, recusa in CASOS:
@@ -483,6 +605,23 @@ def autoteste():
             falhas.append('FALHOU rotulo: %r -> %s (esperava %s)'
                           % (titulo[:60], obtido, esperado))
 
+    for titulo, esperado in CASOS_DE_CARGA:
+        valor, porque = carga_declarada(titulo)
+        if valor != esperado:
+            falhas.append('FALHOU carga: %r -> %s (esperava %s) [%s]'
+                          % (titulo[:60], valor, esperado, porque))
+
+    # A FAIXA E CONTADA, NUNCA DIGITADA, e o mundo VAZIO tem de devolver zero
+    # sem inventar extremo: e o mundo da pagina da bicicleta eletrica, medido em
+    # 03/11/2026 — 0 dos 6 anuncios dela declara kg no titulo.
+    quantos, menor, maior = faixa_de_carga(
+        [{'titulo': t} for t, _ in CASOS_DE_CARGA])
+    if (quantos, menor, maior) != (6, 60, 150):
+        falhas.append('FALHOU faixa: (%s, %s, %s), esperava (6, 60, 150)'
+                      % (quantos, menor, maior))
+    if faixa_de_carga([{'titulo': 'Bicicleta Elétrica Dobrável Adulto'}]) != (0, None, None):
+        falhas.append('FALHOU faixa: mundo sem nenhuma carga nao devolveu (0, None, None)')
+
     # A trava da propria trava: recusa DESLIGADA tem de deixar passar.
     serve, por, _, _ = julgar(
         'Pneu Bike Bicicleta Elétrica Scooter 14x2.50 para adulto',
@@ -493,7 +632,7 @@ def autoteste():
 
     for f in falhas:
         print(f)
-    total = len(CASOS) + len(CASOS_DE_ROTULO) + 1
+    total = len(CASOS) + len(CASOS_DE_ROTULO) + len(CASOS_DE_CARGA) + 3
     print('\n%d caso(s), %d falha(s).' % (total, len(falhas)))
     print('APROVADO' if not falhas else 'REPROVADO')
     return 1 if falhas else 0

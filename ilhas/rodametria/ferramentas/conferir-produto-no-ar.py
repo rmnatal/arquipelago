@@ -243,6 +243,34 @@ def main():
         afirma("sem link de compra hoje" not in corpo,
                "%s serve celula 'sem link de compra hoje': ha anuncio sem saida no ar" % caminho)
 
+        # (3-b) A COLUNA DA CARGA MAXIMA — 03/11/2026, e as quatro afirmacoes
+        # abaixo existem por um defeito MEDIDO NO AR naquele dia: esta pagina
+        # servia, na dobra "Qual escolher", a frase declarada "a carga maxima
+        # declarada e o primeiro filtro, e ela QUASE NUNCA ESTA NO TITULO",
+        # enquanto SEIS dos DEZESSEIS anuncios dela a declaravam no titulo, de 60
+        # a 150 kg. Nenhum portao podia pegar aquilo, porque nenhum comparava a
+        # prosa declarada com o que a regua le dos titulos.
+        afirma("Carga máxima no título" in corpo,
+               "%s nao serve a coluna de carga maxima da tabela" % caminho)
+        celulas = corpo.count('class="rdm-tabela-carga"')
+        afirma(celulas == len(linhas),
+               "%s serve %d celula(s) de carga para %d linha(s): a coluna nao cobre a tabela"
+               % (caminho, celulas, len(linhas)))
+        # A FRASE E A CONTADA, byte por byte. Se a camada declarada voltar a
+        # escrever a mao o estado do catalogo, o molde deixa de ser preenchido com
+        # ela e esta afirmacao fica vermelha.
+        frase = str(pg["numeros"].get("frase_da_carga") or "")
+        afirma(frase != "", "%s: a vitrine do repositorio nao tem frase_da_carga" % caminho)
+        afirma(normalizar(frase) in normalizar(texto),
+               "%s nao serve a frase contada da carga: %r" % (caminho, frase[:70]))
+        # A FRASE APOSENTADA NAO PODE VOLTAR. Ela esta nomeada aqui, inteira, em
+        # vez de resumida: portao que procura "carga maxima" acusaria a coluna
+        # certa, e portao que reprova pagina certa e o caminho mais curto para
+        # alguem o ignorar (20.5).
+        afirma("quase nunca está no título" not in texto,
+               "%s voltou a servir a frase aposentada em 03/11/2026 ('quase nunca esta no "
+               "titulo'), que a medicao reprovou com seis dos dezesseis declarando" % caminho)
+
         # (4) rel e target em TODO link de afiliado.
         for a in re.findall(r"<a[^>]*s\.shopee\.com\.br[^>]*>", corpo):
             afirma('rel="sponsored noopener"' in a,
