@@ -364,8 +364,21 @@ def conferir():
                 exige_alguma=tuple(c['familia'].get('exige_alguma') or ()),
                 recusas_desligadas=tuple(c['familia'].get('recusas_desligadas') or ()))
             if serve != a['serve'] or por != a['recusado_por'] or faltou != a['exigencia_que_faltou']:
-                falhas.append('%s / %s: veredito gravado (%s/%s) discorda do calculado (%s/%s)'
-                              % (bloco['id'], a['item_id'], a['serve'], a['recusado_por'], serve, por))
+                # A MENSAGEM IMPRIME AS TRES COISAS QUE A COMPARACAO LE, e isto
+                # foi consertado em 03/11/2026 porque ela imprimia DUAS: a
+                # comparacao sempre leu `exigencia_que_faltou`, e quando era so
+                # ela que divergia a linha saia dizendo
+                # `gravado (False/acessorio) discorda do calculado
+                # (False/acessorio)` — o portao acusando a divergencia certa e
+                # escondendo QUAL campo divergiu, com os dois lados impressos
+                # identicos. Aconteceu na mesma passada que trocou a ordem da
+                # lista de `acessorio`: a palavra que recusa mudou, o nome do
+                # grupo nao. Portao que nao imprime o campo que ele compara faz
+                # quem o le duvidar do portao em vez do dado (20.5).
+                falhas.append('%s / %s: veredito gravado (%s/%s/%s) discorda do calculado (%s/%s/%s)'
+                              % (bloco['id'], a['item_id'],
+                                 a['serve'], a['recusado_por'], a['exigencia_que_faltou'],
+                                 serve, por, faltou))
             afirmacoes += 1
             if rel.rotulo_de_potencia(a['titulo']) != a['rotulo_de_potencia']:
                 falhas.append('%s / %s: rotulo de potencia gravado discorda do calculado'

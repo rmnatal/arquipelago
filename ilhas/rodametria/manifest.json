@@ -4,7 +4,7 @@
   "nicho": "mobilidade eletrica — acertar os tres numeros antes de comprar um veiculo eletrico: categoria legal (CNH e placa), autonomia real e carga maxima",
   "dominio": "https://rodametria.com.br",
   "versao_manifest": 1,
-  "revisao": 31,
+  "revisao": 33,
   "atualizado_em": "2026-11-02",
   "estado": "nascendo",
   "desembarque": {
@@ -65,7 +65,7 @@
       "arquivo": "dados/f2-respostas.json",
       "formato": "json",
       "publicar": true,
-      "sha256": "f8c918f27f5936f050afb19c0ab3fd04484dddb8123ef5a4937060c20b12a32f",
+      "sha256": "3b04556f8672b16254b274eb4158f54efacc1e37610c82c762516c34052cdad8",
       "descricao": "O que a F2 serve: campos, moldes de frase, fatores de relevo, resposta de exemplo pre-renderizada, tabela e prestacao de contas."
     },
     {
@@ -81,7 +81,7 @@
       "arquivo": "dados/veiculos.json",
       "formato": "json",
       "publicar": false,
-      "sha256": "03c5989feff1ef2600eedde697943b5c63d9b269040b1829df72ae722cdf5bdb",
+      "sha256": "f613da8f7e1606c7cafd35d9b5867052a1d5323c7866d718226386c9b79856d2",
       "descricao": "Banco de veiculos. A F2 conta a prestacao de contas dele."
     },
     {
@@ -89,7 +89,7 @@
       "arquivo": "dados/pecas.json",
       "formato": "json",
       "publicar": false,
-      "sha256": "b5a00ac557519eebabcc268a02031e15923d3da1cfc1adbadfd636b54811e19a",
+      "sha256": "d5001a09cfab0a46a9bd8db3e384999ae2d386a0c729a31698689ab357b74827",
       "descricao": "Banco de pecas."
     },
     {
@@ -113,7 +113,7 @@
       "arquivo": "dados/vitrine-de-produto.json",
       "formato": "json",
       "publicar": true,
-      "sha256": "d2c1c0f3ff66892eb18dba2700cdf65155cdb5ecaab1501992892e9fe9f1dd5a",
+      "sha256": "f22438485c1a2453ef566ff9ffb4282d13c1eedd792ce558267a80247f705849",
       "descricao": "A camada GERADA: cartoes do carrossel (teto de cinco, 32.1), linhas da tabela (todas) e os numeros, RECONTADOS de dados/anuncios-por-consulta.json."
     },
     {
@@ -129,7 +129,7 @@
       "arquivo": "dados/anuncios-por-consulta.json",
       "formato": "json",
       "publicar": false,
-      "sha256": "a3e05950bc5deca7d296039281e3cd5998652d901373db1ee6c5a71555af8264",
+      "sha256": "486d76f67fa1757675fe20c12afa127e7c9fab24dacc71676e290f512df16418",
       "descricao": "Os anuncios lidos na Shopee, com o veredito da regua de relevancia por anuncio, a escada medida e as fotos com largura e altura lidas no cabecalho do arquivo na CDN."
     },
     {

@@ -96,7 +96,27 @@ RECUSAS = (
     # absurdo que fechou a conta: `Bicicleta Eletrica Dobravel Adulto com Pneus A
     # Vacuo` PASSOU, porque `pneus` no plural nao casa com `pneu` entre bordas —
     # duas paginas certas, uma recusada e uma aprovada, pela letra `s`.
+    # `1 peca` ENTROU EM 03/11/2026, E ELE E A SEGUNDA METADE DO MESMO TITULO
+    # REAL QUE TROUXE A BORDA DA DIREITA (ver a nota em `_borda_direita`):
+    #
+    #   "1 Peca Certificado 3C ... Bicicleta Eletrica Motocicleta Meio Capacete1"
+    #
+    # Consertada a borda, este titulo AINDA passava — e por um segundo buraco,
+    # independente: `capacete1` esta no FIM, DEPOIS de `bicicleta`, e a regra de
+    # POSICAO abaixo le isso como "e peca DO veiculo" e pula a recusa. A regra de
+    # posicao esta certa para o titulo que ela nasceu medindo (o veiculo que
+    # nomeia as pecas DELE: `Patinete Eletrico 800W ... Pneu 10" Off-Road`) e
+    # cega para a forma INVERSA, que e a forma mais comum de titulo de acessorio:
+    # listar primeiro os veiculos COMPATIVEIS e nomear o produto por ultimo.
+    #
+    # `1 peca` fura os dois porque esta na POSICAO 0 — antes do substantivo da
+    # familia —, e porque a afirmacao que ele carrega e verdadeira no nicho e
+    # facil de conferir: **ninguem vende bicicleta, patinete ou moto eletrica
+    # como "1 Peca".** Quem anuncia "1 Peca" esta vendendo uma peca. E a irma
+    # singular do grupo `kit_multiplo` (`2 unidades`, `par de`), e mora aqui e
+    # nao la porque o que ela decide nao e quantidade: e O QUE o anuncio e.
     ('acessorio', (
+        '1 peca',
         'capacete', 'capa de chuva', 'pelicula', 'buzina', 'apoio', 'pedaleira',
         'pedal pes', 'assento', 'banco com encosto', 'camara de ar', 'camara',
         'pneu', 'pneus', 'aro 20', 'aro 4', 'garfo', 'quadro p/', 'corrente',
@@ -188,7 +208,57 @@ def normalizar(texto):
 # declara o plural na propria familia em vez de alargar este prefixo.
 PREFIXOS = ('eletric', 'adulto', 'bicicleta', 'patinete')
 
+# A BORDA DA DIREITA NAO E A MESMA DA ESQUERDA, E A ASSIMETRIA E MEDIDA
+# (03/11/2026)
+# ---------------------------------------------------------------------------
+# Medido na coleta das 16h5xZ de 03/11/2026, na consulta `bicicleta eletrica`:
+# o titulo real
+#
+#   "1 Peca Certificado 3C Masculino E Feminino Adulto Desenho Animado
+#    Bicicleta Eletrica Motocicleta Meio Capacete1"
+#
+# PASSOU a regua, e com R$ 113,34 ele seria o PISO da faixa de preco da pagina
+# `/veiculos/bicicleta-eletrica/` — o numero PROPRIO da ilha, servido na
+# primeira tela sob a frase "Preco mediano hoje". Um capacete publicado como
+# bicicleta, com botao de afiliado ao lado.
+#
+# A CAUSA: a recusa `capacete` nao casou porque o vendedor escreveu
+# `Capacete1`, com o digito COLADO. `\b` e borda entre caractere de palavra e
+# nao-palavra, e `1` E caractere de palavra — entao nao ha borda, e a regua
+# recusou DEZ capacetes pela palavra e deixou passar o DECIMO PRIMEIRO pelo
+# digito. Mesma familia do `git log` raso da 1.1 e do numero de tela digitado:
+# o instrumento responde, e a resposta sai curta com cara de completa.
+#
+# E A CORRECAO NAO PODE SER "casar por pedaco de palavra", porque a nota de cima
+# conta o que isso custou (`36V` recusado por `6v`). Entao as duas bordas deixam
+# de ser a mesma coisa, cada uma pelo que ela PROTEGE:
+#
+#   - a da ESQUERDA segue `\b`, estrita. E ela que impede `6v` de casar `36V`:
+#     o digito ANTES do termo e justamente o caso medido, e afrouxa-la aqui
+#     reabriria o defeito de 29/10 pelo qual esta regua tem bordas.
+#   - a da DIREITA, para termo que termina em LETRA, passa a ser "nao seguido de
+#     LETRA" (`(?![a-z])`). Digito colado no fim nao faz outra palavra —
+#     `capacete1` e `capacete` com a enumeracao do vendedor —, mas letra colada
+#     FAZ, e e por isso que `moto` continua nao casando `motocicleta` e
+#     `pneu` continua nao casando `pneus` (os dois estao na lista, pelo motivo
+#     escrito la).
+#   - a da DIREITA, para termo que termina em DIGITO, segue `\b`: `aro 20` nao
+#     pode casar `aro 200`, e ali o digito seguinte MUDA a medida.
+#
+# `normalizar` tira acento e baixa a caixa antes disto, entao `[a-z]` alcanca o
+# alfabeto inteiro que chega aqui.
 _CACHE = {}
+
+
+def _borda_direita(t):
+    if t in PREFIXOS:
+        return ''
+    if t[-1:].isdigit():
+        return r'\b'              # `aro 20` nao casa `aro 200`
+    if t[-1:].isalpha():
+        return r'(?![a-z])'       # `capacete` casa `capacete1`, nao casa `capacetear`
+
+    return ''
 
 
 def _padrao(termo):
@@ -196,8 +266,7 @@ def _padrao(termo):
     if p is None:
         t = normalizar(termo)
         esq = r'\b' if t[:1].isalnum() else ''
-        dir_ = '' if t in PREFIXOS else (r'\b' if t[-1:].isalnum() else '')
-        p = _CACHE[termo] = re.compile(esq + re.escape(t) + dir_)
+        p = _CACHE[termo] = re.compile(esq + re.escape(t) + _borda_direita(t))
 
     return p
 
@@ -326,6 +395,29 @@ CASOS = (
      BICICLETA, False, 'acessorio'),
     ('Capacete Coquinho Couro Moto Elétrica Scooter Patinete Elétrico Chopper Custom',
      PATINETE, False, 'sem_qualificador'),
+    # O TITULO REAL DE 03/11/2026, medido na Open API na consulta
+    # `bicicleta eletrica adulto`, a R$ 113,34 e com `serve: True` na regua de
+    # ontem. Ele e UM caso e DOIS defeitos somados, e por isso esta aqui inteiro:
+    # o digito colado em `Capacete1` furou a borda da direita, e a posicao do
+    # `capacete` DEPOIS de `bicicleta` furou a regra de POSICAO. A recusa que
+    # vence hoje e `1 peca`, que esta na posicao 0.
+    ('1 Peça Certificado 3C Masculino E Feminino Adulto Desenho Animado '
+     'Bicicleta Elétrica Motocicleta Meio Capacete1',
+     BICICLETA, False, 'acessorio'),
+    # E A METADE DA BORDA, SOZINHA, EM MUNDO FABRICADO — porque o titulo real
+    # acima e recusado por `1 peca` e NAO exerce a borda da direita: com ela
+    # quebrada ele continuaria sendo recusado, e a correcao da borda passaria
+    # por conferida sem nunca ter sido medida. Aqui o `Capacete1` esta ANTES do
+    # substantivo da familia (logo a regra de posicao nao o pula) e nao ha
+    # `1 peca` para salvar o veredito: se `(?![a-z])` voltar a ser `\b`, este
+    # caso PASSA e a bateria reprova. E a regra da secao 8 — trava que nunca viu
+    # o mundo dela nasce errada sem poder falhar.
+    ('Capacete1 Meio Casco Adulto para Bicicleta Elétrica e Motocicleta',
+     BICICLETA, False, 'acessorio'),
+    # O avesso dela, para a borda nao virar pedaco de palavra: `capacetear` nao
+    # e capacete, e letra colada tem de continuar barrando a recusa.
+    ('Bicicleta Elétrica Dobrável Adulto Capaceteria Lítio 350W',
+     BICICLETA, True, None),
     # Kit de dois veiculos que declara adulto. Na familia da bicicleta ele cai
     # antes, na familia, porque o titulo nao diz `bicicleta` — e e assim no ar.
     ('Kit 2 Triciclos Elétricos Drift 350W Adulto Infantil 3 Velocidades Motorizado',
