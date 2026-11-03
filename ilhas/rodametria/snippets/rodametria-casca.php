@@ -29,7 +29,7 @@
  */
 
 if ( ! defined( 'RODAMETRIA_CASCA_VERSAO' ) ) {
-	define( 'RODAMETRIA_CASCA_VERSAO', '1.7.0' );
+	define( 'RODAMETRIA_CASCA_VERSAO', '1.8.0' );
 }
 
 /**
@@ -1625,6 +1625,14 @@ add_action( 'rest_api_init', function () {
 				'versoes'      => rodametria_casca_versoes(),
 				'instalado'    => $feito ? $feito : null,
 				'paginas'      => $mapa,
+				/* A MESMA PERGUNTA QUE O RETRATO DA 29.3 RESPONDE, AQUI SEM
+				   TOKEN (03/11/2026). O retrato da rota `/rotas` exige o token
+				   do Sync, que não está no repositório e não deve estar — então
+				   o "pronto quando" do despacho da purga não era conferível
+				   desta nuvem, e portão que não roda não é portão. Isto é um
+				   booleano sobre a existência de uma função desta ilha: não é
+				   segredo do servidor, que é o que a 29.3 manda não vazar. */
+				'tem_purga_de_cache' => function_exists( 'rodametria_casca_purgar_cache' ),
 			);
 		},
 	) );
@@ -1687,17 +1695,18 @@ add_action( 'rest_api_init', function () {
  * AS DUAS COISAS EM QUE ESTA ILHA DIVERGE DO MODELO, ditas aqui porque
  * divergência calada é a que a próxima execução lê como descuido:
  *
- *   (a) ESTA ILHA NÃO TEM FUNÇÃO DE PURGA DE CACHE. A clubedomosaico e a
- *       robometria chamam `<ilha>_casca_purgar_cache()` depois do flush,
- *       porque nas duas o defeito foi lido por dias através de HTML servido
- *       de cache. Aqui a chamada existe guardada por `function_exists` e hoje
- *       é no-op — e a consequência tem de ser dita: a primeira leitura depois
- *       de um reparo pode medir a cópia velha do hospedeiro e dizer que não
- *       funcionou. Quem reparar daqui lê com quebra de cache. A falta da purga
- *       nesta ilha virou achado para despacho; ela NÃO foi consertada de
- *       carona neste bloco, porque purga que apaga arquivo em disco sem o
- *       portão da aquametria ao lado é como a armadilha do `realpath('')`
- *       entrou no Arquipélago.
+ *   (a) ~~ESTA ILHA NÃO TEM FUNÇÃO DE PURGA DE CACHE.~~ **FECHADA EM
+ *       03/11/2026, na casca 1.8.0:** a purga existe, mora na seção 13 deste
+ *       arquivo e entrou COM os dois portões que o despacho exigia
+ *       (`teste-purga-cache.php` e `mutacoes-purga-cache.py`). A chamada
+ *       abaixo continua guardada por `function_exists` de propósito — ela é o
+ *       contrato entre as duas seções, não uma suposição sobre esta ilha —, e
+ *       `tem_purga_de_cache` continua saindo no retrato, agora dizendo `true`.
+ *       O texto anterior desta alínea dizia que a chamada era no-op e que a
+ *       primeira leitura depois de um reparo podia medir a cópia velha do
+ *       hospedeiro: era verdade entre 03/11 às 10h4xZ e 03/11 às 13hxxZ, e
+ *       deixou de ser. Quem reparar daqui continua lendo com quebra de cache,
+ *       porque purga do hospedeiro não é promessa de cache de borda.
  *
  *   (b) O SNIPPET DO SYNC DESTA ILHA NÃO ESTÁ NO REPOSITÓRIO — as outras três
  *       têm o seu. Então o nome da função que guarda o token NÃO pôde ser
@@ -1873,11 +1882,13 @@ if ( ! function_exists( 'rodametria_casca_reparar_rotas' ) ) {
  * Reescreve as regras de reescrita, e devolve o antes e o depois.
  *
  * `flush_rewrite_rules( true )` é o mesmo caminho do botão Salvar dos Links
- * permanentes. A purga de cache iria junto porque o defeito que trouxe esta
- * função foi lido, por dias, através de página servida de cache — mas esta
- * ilha não tem purga (divergência (a) do cabeçalho). A chamada fica guardada,
- * e `tem_purga_de_cache` no retrato diz, em vez de esconder, que a medição
- * seguinte precisa de quebra de cache.
+ * permanentes. A purga de cache vai junto porque o defeito que trouxe esta
+ * função foi lido, por dias, através de página servida de cache: sem ela, a
+ * primeira medição depois do reparo mediria a cópia velha e diria que não
+ * funcionou. Desde a casca 1.8.0 (03/11/2026) a função existe nesta ilha, na
+ * seção 13; a chamada segue guardada por `function_exists` porque é assim que
+ * as duas seções se falam, e `tem_purga_de_cache` no retrato continua dizendo
+ * qual dos dois mundos está no ar, em vez de esconder.
  */
 function rodametria_casca_reparar_rotas() {
 	$antes = rodametria_casca_diagnostico_rotas();
@@ -1963,3 +1974,193 @@ add_action( 'rest_api_init', function () {
 		},
 	) );
 } );
+
+/* =========================================================================
+ * 13. A PURGA DE CACHE DO HOSPEDEIRO — a divergência (a) da seção 12,
+ *     fechada em 03/11/2026
+ *
+ * POR QUE ESTA SEÇÃO NASCEU DEPOIS DA 12, E NÃO JUNTO COM ELA. A seção 12
+ * entrou em 03/11/2026 com a chamada da purga já escrita e GUARDADA por
+ * `function_exists`, no-op, e com o cabeçalho dizendo com todas as letras que
+ * esta ilha era a única no ar sem a função. Não foi esquecimento: purga que
+ * apaga arquivo em disco é exatamente a função que entrou no Arquipélago com a
+ * armadilha do `realpath('')` — e portar isso de carona, no fim de um bloco que
+ * já havia mexido na porta de entrada do site, é como o defeito nasce. Virou
+ * despacho NORMAL em `dados/despachos.md`, e este é o bloco que o fecha, com os
+ * DOIS portões da aquametria do lado (`ferramentas/teste-purga-cache.php` e
+ * `ferramentas/mutacoes-purga-cache.py`), que é a condição que o despacho
+ * escreveu.
+ *
+ * ONDE ISSO CUSTA, e é medido nas irmãs e não suposto aqui: o reparo da 29.3
+ * chama a purga DEPOIS do `flush_rewrite_rules( true )`, porque o defeito que
+ * trouxe esta função foi lido, por dias, através de página servida de cache —
+ * sem a purga, a primeira medição depois do reparo mede a cópia velha e diz que
+ * não funcionou. É reprovação falsa, a mesma família que a 20.5 chama de "o
+ * caminho mais curto para alguém passar a ignorar um portão", e no uso real é
+ * pior: quem lê isso numa ilha caída conclui, pela 29.4, que o `AllowOverride`
+ * está desligado e abre chamado na HostGator por um defeito que o reparo já
+ * desfez.
+ *
+ * A LISTA DE GANCHOS É DEFENSIVA DE PROPÓSITO. A ilha não escolhe o hospedeiro
+ * e não pode medir daqui qual cache estará instalado amanhã; cada entrada é um
+ * `if` sobre algo que pode não existir, e nenhuma é obrigatória. O que NÃO é
+ * defensivo são as guardas da função que apaga arquivo, e quem as mede é
+ * `ferramentas/teste-purga-cache.php`, com `ferramentas/mutacoes-purga-cache.py`
+ * cobrando que o portão reprove — e reprove PELA AFIRMAÇÃO CERTA — quando cada
+ * guarda é retirada uma por vez.
+ *
+ * E A FALTA DESTA FUNÇÃO ERA DITA EM VEZ DE ESCONDIDA, que é o mecanismo da
+ * 20.7 noutro traje: `tem_purga_de_cache` sai no retrato da rota da 29.3 desde
+ * que a rota nasceu, e a partir desta revisão sai TAMBÉM no `/casca`, que é
+ * público. A diferença importa e está escrita no `REGISTRO.md`: o retrato da
+ * rota exige o token do Sync, que não está no repositório, então o "pronto
+ * quando" do despacho não era conferível desta nuvem. No `/casca` ele é — e
+ * booleano sobre a existência de uma função não é segredo do servidor (29.3).
+ * ========================================================================= */
+
+if ( ! function_exists( 'rodametria_casca_purgar_cache' ) ) {
+/**
+ * Esvazia o cache do hospedeiro, UMA vez por requisição.
+ *
+ * O `static` existe porque uma revisão do Sync grava muitas options, e o
+ * gatilho desta função é a gravação de option: sem ele, uma revisão que grava
+ * vinte options faria vinte varreduras de pasta na mesma requisição.
+ */
+function rodametria_casca_purgar_cache() {
+	static $ja = false;
+	if ( $ja ) {
+		return;
+	}
+	$ja = true;
+
+	/* Endurance Page Cache — é o que o `x-server-cache` desta hospedagem
+	   anuncia. As duas formas: a ação que as versões novas escutam e o método
+	   da classe, para as antigas. */
+	do_action( 'epc_purge' );
+	do_action( 'epc_purge_request' );
+	if ( class_exists( 'Endurance_Page_Cache' ) ) {
+		$epc = new Endurance_Page_Cache();
+		if ( method_exists( $epc, 'purge_all' ) ) {
+			$epc->purge_all();
+		}
+	}
+
+	/* A PURGA QUE NÃO DEPENDE DO NOME DO GANCHO: esvaziar
+	   `wp-content/endurance-page-cache/`, que é o que o `purge_all()` do próprio
+	   plugin faz. Ela existe porque o gancho pode ter mudado de nome entre
+	   versões, e gancho que ninguém escuta falha em silêncio.
+
+	   AS GUARDAS, e nenhuma é decoração — este é o único código desta ilha que
+	   apaga arquivo: o caminho é montado a partir de WP_CONTENT_DIR e nunca de
+	   entrada de requisição; o caminho real é conferido contra a raiz a cada
+	   nível da recursão; link simbólico não é seguido; e caminho VAZIO é
+	   recusado antes de tudo. */
+	$pasta = defined( 'WP_CONTENT_DIR' ) ? WP_CONTENT_DIR . '/endurance-page-cache' : '';
+	if ( '' !== $pasta && is_dir( $pasta ) && ! is_link( $pasta ) ) {
+		rodametria_casca_esvaziar_pasta( $pasta, $pasta );
+	}
+
+	/* Os outros, cada um só se estiver lá. Nenhum é esperado neste host. */
+	if ( function_exists( 'wp_cache_clear_cache' ) ) {   // WP Super Cache
+		wp_cache_clear_cache();
+	}
+	if ( function_exists( 'rocket_clean_domain' ) ) {    // WP Rocket
+		rocket_clean_domain();
+	}
+	if ( function_exists( 'w3tc_flush_all' ) ) {         // W3 Total Cache
+		w3tc_flush_all();
+	}
+	do_action( 'litespeed_purge_all' );                  // LiteSpeed Cache
+}
+}
+
+/**
+ * Apaga o conteúdo de uma pasta de cache, e NUNCA sai dela.
+ *
+ * `$raiz` viaja em toda chamada e é conferida a cada nível: antes de apagar
+ * qualquer coisa, o caminho real tem de começar pelo caminho real da raiz, COM
+ * a barra separadora no fim. É o que impede um link simbólico, um `..`, uma
+ * pasta montada — ou uma pasta vizinha cujo nome apenas COMEÇA pelo da raiz —
+ * de virarem uma exclusão em outro lugar do disco. A pasta raiz em si não é
+ * removida, só esvaziada: o plugin a recria, e sumir com ela não é direito
+ * desta ilha.
+ *
+ * A PRIMEIRA LINHA DESTA FUNÇÃO FOI ESCRITA, NA AQUAMETRIA, DEPOIS DE ELA
+ * APAGAR A ILHA INTEIRA, em 15/09/2026, e o registro é copiado para cá porque a
+ * causa é uma armadilha da linguagem que nenhuma leitura do código revelaria.
+ * **`realpath('')` não devolve `false` em PHP: devolve o DIRETÓRIO DE TRABALHO
+ * ATUAL.** Então, chamada com caminho e raiz vazios, a guarda de contenção
+ * comparava o diretório atual consigo mesmo, aprovava, e a recursão esvaziava o
+ * diretório de trabalho — que na bancada é a pasta da ilha. Foram 117 arquivos
+ * apagados, recuperados na hora com `git checkout` porque o repositório é o
+ * lugar do trabalho (seção 3); num servidor não haveria de onde recuperar.
+ *
+ * O QUE ISSO DIZ SOBRE A GUARDA, e é maior do que o caso: ela era escrita como
+ * "o caminho real tem de estar DENTRO da raiz real", que é a pergunta certa — e
+ * `realpath()` respondeu por um caminho que nunca foi pedido. Guarda que confia
+ * numa função de biblioteca para dizer "isto não existe" herda todos os valores
+ * que essa função devolve quando a entrada é degenerada. A primeira linha não
+ * substitui a guarda: ela recusa o vazio ANTES, para que a comparação nunca
+ * chegue a acontecer sobre um caminho inventado pela linguagem. O caso 5 do
+ * portão é o que impede essa linha de ser retirada por parecer redundante.
+ *
+ * NO SITE NADA DISSO ACONTECE: o único chamador monta o caminho a partir de
+ * `WP_CONTENT_DIR` e já exige `'' !== $pasta && is_dir( $pasta )`. O defeito era
+ * da FUNÇÃO, não do caminho de produção — e é exatamente o tipo de defeito que
+ * só aparece quando alguém escreve o portão, que é o motivo de o portão existir.
+ */
+if ( ! function_exists( 'rodametria_casca_esvaziar_pasta' ) ) {
+function rodametria_casca_esvaziar_pasta( $pasta, $raiz ) {
+	if ( ! is_string( $pasta ) || ! is_string( $raiz ) || '' === $pasta || '' === $raiz ) {
+		return;
+	}
+
+	$real_raiz = realpath( $raiz );
+	$real      = realpath( $pasta );
+	if ( ! $real_raiz || ! $real || 0 !== strpos( $real . DIRECTORY_SEPARATOR,
+		rtrim( $real_raiz, DIRECTORY_SEPARATOR ) . DIRECTORY_SEPARATOR ) ) {
+		return;
+	}
+
+	$itens = @scandir( $real );
+	if ( ! is_array( $itens ) ) {
+		return;
+	}
+	foreach ( $itens as $item ) {
+		if ( '.' === $item || '..' === $item ) {
+			continue;
+		}
+		$caminho = $real . DIRECTORY_SEPARATOR . $item;
+		if ( is_link( $caminho ) ) {
+			/* Link simbólico não é seguido: apagar o link é seguro, apagar o que
+			   ele aponta seria sair da pasta sem perceber. */
+			@unlink( $caminho );
+		} elseif ( is_dir( $caminho ) ) {
+			rodametria_casca_esvaziar_pasta( $caminho, $real_raiz );
+			@rmdir( $caminho );
+		} else {
+			@unlink( $caminho );
+		}
+	}
+}
+}
+
+/**
+ * O GATILHO: a ilha acabou de gravar dado no site.
+ *
+ * O Sync escreve `rodametria_dados_*` e `rodametria_sync_estado` a cada
+ * aplicação, e a casca escreve `rodametria_casca_instalado` quando remonta a
+ * estrutura, então uma revisão que muda QUALQUER coisa passa por aqui. O
+ * prefixo é conferido para a purga não disparar em gravação de option de
+ * terceiro — uma varredura de pasta em cada `update_option` do site inteiro —, e
+ * o `static` da função acima faz a purga acontecer UMA vez por requisição.
+ */
+if ( ! function_exists( 'rodametria_casca_purgar_ao_gravar' ) ) {
+function rodametria_casca_purgar_ao_gravar( $opcao ) {
+	if ( 0 === strpos( (string) $opcao, 'rodametria_' ) ) {
+		rodametria_casca_purgar_cache();
+	}
+}
+}
+add_action( 'updated_option', 'rodametria_casca_purgar_ao_gravar', 10, 1 );
+add_action( 'added_option', 'rodametria_casca_purgar_ao_gravar', 10, 1 );

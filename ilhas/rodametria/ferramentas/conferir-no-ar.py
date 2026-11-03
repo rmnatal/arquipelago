@@ -374,6 +374,30 @@ def main():
                  % (c.get("versao_casca"), (c.get("instalado") or {}).get("em")))
 
         # ---------------------------------------------------------------
+        # 3a. A PURGA DE CACHE DO HOSPEDEIRO ESTA CARREGADA (03/11/2026)
+        #
+        # O "pronto quando" do despacho da purga pedia `tem_purga_de_cache`
+        # saindo `true` no ar. Ele sai no retrato da rota da 29.3 desde que
+        # a rota nasceu — e aquele retrato exige o TOKEN DO SYNC, que nao
+        # esta no repositorio e nao deve estar. Ou seja: o criterio de
+        # pronto do despacho nao era conferivel desta nuvem, e portao que
+        # nao roda nao e portao. A casca 1.8.0 passou a servir o mesmo
+        # booleano no /casca, que e publico.
+        #
+        # E ELE NAO E REDUNDANTE COM A VERSAO DO SNIPPET (3b abaixo): a
+        # versao diz QUAL BYTE o WordPress carregou; este campo diz que a
+        # FUNCAO existe no processo. A chamada dentro do reparo da 29.3 e
+        # guardada por `function_exists`, entao e esta pergunta — e nao a
+        # versao — que decide se o reparo vai purgar ou nao. E a 20.7 ao
+        # contrario: la a ausencia do `id` acusa snippet morto; aqui a
+        # presenca do booleano prova a funcao viva.
+        # ---------------------------------------------------------------
+        afirma(c.get("tem_purga_de_cache") is True,
+               "/casca diz tem_purga_de_cache=%r — a purga do hospedeiro NAO esta "
+               "carregada, e o reparo da 29.3 vai medir a copia velha depois de "
+               "consertar" % (c.get("tem_purga_de_cache"),))
+
+        # ---------------------------------------------------------------
         # 3b. A VERSAO QUE O WORDPRESS CARREGOU, E A AUSENCIA E O SINAL
         #     (02/11/2026)
         #
