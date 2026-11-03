@@ -101,6 +101,111 @@ content-type mais o 404 que tem de ser 404 — conferido no ar, pela 18.4, em ca
 do Raphael. Lá se procura **a causa**; aqui se guarda **o instrumento**. Os dois são necessários, e o
 instrumento é o único dos dois que a fábrica controla.
 
+> **A METADE DA RODAMETRIA — o item (2) da ordem acima — ESTÁ FECHADA EM 03/11/2026.** A rota da 29.3
+> nasceu na casca daquela ilha (versão 1.7.0, seção 12), com `ferramentas/teste-rotas.php` no chão e a
+> leitura da rota **sem o token** dentro do `conferir-no-ar.py` dela. O "pronto quando" acima pede
+> `tem_wordpress: true` **pela rota própria**, e essa metade **não foi conferida e não podia ser**: o
+> token do Sync daquela ilha não está no repositório e não deve estar (está escrito no `PROMPT.md`
+> dela). O que **foi** conferido no ar, sem o token: a rota presente no índice de rotas do WordPress,
+> **401** sem token e **401** com token errado trazendo o código `rodametria_rotas_token_invalido` —
+> que só sai depois de a casca achar a fonte do token **e** rodar o `hash_equals`, e é por isso que ele
+> é a prova de que a parede está viva em vez de ser um portão morto. **Quem tiver o token fecha a
+> última afirmação com um GET.** Seguem abertas a **aquametria** (item 1, as duas faltas) e o
+> **`ilhas/_modelo/`** (item 3).
+
+
+### prioridade NORMAL — o MODELO da 29.3 devolve o retrato VELHO depois do reparo, e as DUAS ilhas que servem a rota estão com ele
+
+03/11/2026 — FUNDAÇÃO — Achado na rodametria, **no chão e antes do ar**, pelo portão
+`ferramentas/teste-rotas.php` que nasceu junto com a rota dela. Está aqui, e não no `PROMPT.md`
+daquelas ilhas, porque a **seção 3** proíbe editar arquivo de ilha que a execução não reservou — o
+conserto é de quem reservar cada uma. É a mesma forma do despacho do `realpath('')` de 15/09.
+
+**O DEFEITO, e ele é de uma linha que não existe.** As funções de `stat` do PHP — `file_exists()`,
+`filesize()`, `filemtime()`, `is_readable()`, `is_writable()` — são **cacheadas dentro da
+requisição**. `file_get_contents()` não é. O `<ilha>_casca_reparar_rotas()` do modelo tira o retrato,
+roda `flush_rewrite_rules( true )` (que reescreve o `.htaccess`) e tira o retrato **de novo, na mesma
+requisição**. Sem `clearstatcache()`, o segundo retrato lê o cache do primeiro:
+
+- `bytes` e `mtime` do "depois" são os do "antes" — e o antes/depois que a **29.4** existe para
+  oferecer (*"devolve o antes e o depois para quem pediu comparar"*) passa a comparar um retrato
+  com ele mesmo;
+- e o campo `reparado` é calculado **sobre `existe`**, então o caso em que o arquivo **não existia** e
+  o reparo o criou sai com `reparado: false` — **a rota diz que não consertou a porta depois de
+  consertá-la**.
+
+**É REPROVAÇÃO FALSA, que é a pior das duas**, e a **20.5** já escreveu o porquê com todas as letras:
+*"portão que reprova página certa é o caminho mais curto para alguém passar a ignorá-lo"*. Pior ainda
+no uso real: quem lê `reparado: false` numa ilha caída conclui, pela própria **29.4**, que o arquivo
+foi gravado e o `AllowOverride` está desligado — ou seja, **abre chamado na HostGator por um defeito
+que o reparo já desfez**.
+
+**NÃO É LEITURA DE CÓDIGO: FOI MEDIDO.** A afirmação que exige `antes.bytes < depois.bytes` reprovou na
+primeira passada do portão novo, com o reparo tendo escrito o bloco `# BEGIN WordPress` de verdade no
+`.htaccess` fabricado. Com `clearstatcache( true, $arquivo )` no topo do diagnóstico, 39 afirmações
+mais 40 no processo filho passaram, e a mutação que retira a linha **reprova**.
+
+**A VARREDURA — um `grep` por ilha, zero rede, feita em 03/11/2026:**
+
+| ilha | serve a rota da 29.3? | tem `clearstatcache`? |
+|---|---|---|
+| clubedomosaico | **SIM**, desde 24/09/2026 | **NÃO** |
+| robometria | **SIM**, desde 02/11/2026 | **NÃO** |
+| rodametria | SIM, desde 03/11/2026 | **SIM** (nasceu com ela) |
+
+**O que fazer, e é uma linha, na primeira execução que reservar cada uma:** no topo de
+`cdm_casca_diagnostico_rotas()` (em `ilhas/clubedomosaico/snippets/clubedomosaico-casca.php`) e de
+`robometria_casca_diagnostico_rotas()` (em `ilhas/robometria/snippets/robometria-casca.php`), logo
+depois de o caminho do arquivo ser montado:
+
+```php
+clearstatcache( true, $arquivo );
+```
+
+**E a metade que importa mais que a linha:** copiar o portão junto, senão a linha é retirada no
+primeiro dia em que alguém a achar redundante — foi exatamente a lição do despacho do `realpath('')`.
+`ilhas/rodametria/ferramentas/teste-rotas.php` está pronto para copiar e não depende de nada desta
+ilha além dos nomes: ele fabrica o `.htaccess` das quedas (bloco único `NFD EPC`), prova que o
+**segredo do servidor não sai** na resposta (29.3), separa o ramo "com ferramentas de admin" do "sem"
+em **dois processos** — porque `function_exists()` não se desfaz — e cobra quatro mutações da casca de
+verdade.
+
+**POR QUE NORMAL E NÃO ALTA:** nada está caído hoje, e o defeito só aparece **no instante do reparo**,
+que é justamente o instante em que ninguém tem paciência para desconfiar do instrumento. É risco
+guardado, não sangramento — a mesma classificação, pelo mesmo motivo, do despacho do `realpath('')`.
+
+**Pronto quando:** as duas ilhas tiverem a linha e o portão rodando verde dentro da `bancada.py` de
+cada uma, registrado no `REGISTRO.md` da própria ilha.
+
+
+### prioridade NORMAL — a rodametria é a única ilha no ar SEM função de purga de cache do hospedeiro
+
+03/11/2026 — FUNDAÇÃO — Medido na própria ilha reservada, em 03/11/2026, ao portar a rota da 29.3 — e
+**não consertado de propósito**, o que é a parte desta linha que vale ser lida.
+
+**O NÚMERO:** `grep -c purgar_cache` nas cascas das quatro ilhas no ar — clubedomosaico, robometria e
+aquametria **têm**; a rodametria **não tem**, e a palavra "purga" não aparece uma vez no `REGISTRO.md`
+nem no `ESTADO.md` dela, nos sete dias de vida da ilha.
+
+**ONDE ISSO CUSTA, e é medido e não suposto.** O reparo da 29.3 das irmãs chama a purga **depois** do
+`flush`, e a razão está escrita no código delas: *"o defeito que trouxe esta função foi lido, por
+dias, através de página servida de cache: sem a purga, a primeira medição depois do reparo mediria a
+cópia velha e diria que não funcionou"*. Na rodametria a chamada entrou **guardada por
+`function_exists`** e hoje é no-op, com a consequência dita no retrato — o campo
+`tem_purga_de_cache: false` sai na resposta da rota, em vez de a falta ficar invisível.
+
+**POR QUE NÃO FOI CONSERTADO NESTE BLOCO, e isto é decisão:** purga que apaga arquivo em disco é
+exatamente a função que entrou no Arquipélago com a armadilha do `realpath('')` — `realpath('')` não
+devolve `false`, devolve o diretório de trabalho atual, e numa passada o portão daquela função **apagou
+117 arquivos** da aquametria. Portar isso de carona, no fim de um bloco que já mexeu na porta de
+entrada do site, é como o defeito nasce. **Ela tem de entrar com o portão da aquametria ao lado**
+(`ferramentas/teste-purga-cache.php` e `ferramentas/mutacoes-purga-cache.py`, 21 afirmações e 8
+baterias), e isso é bloco, não carona.
+
+**Pronto quando:** a rodametria tiver `rodametria_casca_purgar_cache()` com a recusa do caminho vazio
+**antes** da comparação de `realpath`, mais os dois portões copiados da aquametria rodando verdes na
+`bancada.py` dela — e o `tem_purga_de_cache` do diagnóstico da 29.3 passando a sair `true` no ar.
+
 
 ### prioridade NORMAL — as TRÊS ETIQUETAS do Mercado Livre da rodametria, para os 5 produtos que a Shopee mediu em ZERO
 
