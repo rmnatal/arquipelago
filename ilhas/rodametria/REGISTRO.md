@@ -3,6 +3,207 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-11-03 10h17Z–10h4xZ — **A PORTA DE ENTRADA MEDIDA POR DENTRO: a rota da 29.3 que esta ilha nunca teve** — e o portão que nasceu com ela achou um **defeito no próprio modelo**, antes do ar
+
+**A ESCOLHA DA ILHA.** `foco.md` nomeia a **rodametria** — foco total e absoluto desde 27/10 — e pela
+**1.2** não há escolha a fazer. **As duas exceções que furam o foco foram conferidas e NENHUMA furou.**
+(a) Os **três despachos do molde** da seção 32 estão **FECHADOS** (aquametria 21/10 18h2xZ,
+clubedomosaico 19h1xZ, robometria 16h1xZ), lido no topo dos três `PROMPT.md`. (b) Nenhum despacho
+**ALTA** aberto é de **ilha no ar E quebrada**: o da robometria de 02/11 15h1xZ é de **julgamento
+(19.2)** e a ilha está no ar; os quatro ALTA de `dados/despachos.md` são pedidos de **abertura de
+egresso** e o **chamado da HostGator**, que é do Raphael pela 19.4(b). `executando_desde` estava
+`null`, que pela **1.1** já significa que não há bloco da Fundação vivo — não houve reserva vencida
+para o git desempatar (último commit na pasta da ilha: 02/11 19h39Z, ~14h antes). Reserva às
+**10h17Z**, push aceito **de primeira**, campo **renovado às 10h36Z**. Zero branch `claude/*` com
+commit fora do `main`; **zero PR aberto**.
+
+**A REDE, MEDIDA E NÃO HERDADA (20.2).** `rodametria.com.br/`, `/wp-sitemap.xml` e
+`/wp-json/rodametria/v1/status` os **três em 200 em TRÊS passadas**, com `aquametria.com.br` em 200
+nas mesmas três.
+
+### A PRIMEIRA COISA QUE ESTA EXECUÇÃO FEZ FOI PROCURAR DEFEITO (18.5), E NÃO ACHOU
+
+Bancada **com rede: 26 portões, 0 falha**, antes de uma linha de código. Nenhum defeito aberto no ar.
+
+### E A SEGUNDA FOI RECONFERIR OS TRÊS BLOQUEIOS EM VEZ DE HERDÁ-LOS — porque "nada desbloqueado" é a frase que mais barato se copia
+
+A execução de 02/11 fechou dizendo *"NENHUM BLOCO DE CONSTRUÇÃO DESTA ILHA ESTÁ DESBLOQUEADO HOJE"* e
+pedindo que a seguinte dissesse isso em vez de inventar bloco. **Dizer isso sem remedir seria a seção 4
+em ação** — resumo velho lido como fato —, então os três foram remedidos:
+
+| o que travava | remedido em 03/11 | resultado |
+|---|---|---|
+| **F1** — o texto oficial da Resolução Contran | `www.gov.br`, `in.gov.br`, `www.planalto.gov.br`, `www.contran.gov.br`, 2 passadas cada | **000 nas 8**, controle `rodametria.com.br` em **200** nas duas |
+| **F3** — `carga_max_kg`, campo de nível 5 | `www.casasbahia.com.br`, `www.extra.com.br`, `www.magazineluiza.com.br`, 2 passadas cada | **000 nas 6** |
+| **malha nova** — a sessão de Chrome do despacho de 30/10 | `dados/consultas-de-produto.json`, linha por linha | as duas consultas seguem **`nao-medida`**, sem `visto_por` nem `visto_em`: **o Raphael não abriu as SERPs** |
+
+**14 medições de bloqueio contra 2 de controle verde, e zero intermitência.** Nenhuma consulta dos
+eixos paramétricos tem veredito `alvo` em `dados/corpus-buscas.md` — o eixo A está `tomada` nas seis,
+o C tem um `tomada` e dois `nao-medida`, e o B **vazou** para fora do Brasil. **A conclusão de 02/11
+estava certa, e agora está medida nesta data.**
+
+> **ERRATA DA ENTRADA DE 02/11, e ela é de REGRA e não de número.** A tabela daquele dia atribuiu o
+> travamento da cauda à **14.6** (*"cauda só nasce depois da âncora indexada"*), citando
+> `primeira_indexacao: null`. **A 21.8 diz o contrário com todas as letras:** com `piso: abaixo` — que
+> é o caso desta ilha — *"a série de indexação não decide nada, nem trava, nem adia, nem reduz"*, e
+> *"só se disser `piso: atingido` é que a 14.6 e a 14.8 voltam a valer"*. **O veredito não muda** (a
+> cauda segue travada pela **30.8**, que é independente de indexação), mas o motivo estava na regra
+> errada — e a 21.8 nasceu justamente contando as **duas** vezes em que isso custou um bloco. Esta é a
+> terceira aparição da família, e ela custou zero porque havia outro motivo verdadeiro embaixo. **A
+> régua da 21.8 cabe em dois segundos: quem for escrever que a indexação trava algo lê o campo `piso`
+> antes.**
+
+### POR QUE O BLOCO SAIU DA 29.3 E NÃO DA FILA DE PÁGINAS
+
+Com os três caminhos de página fechados e nenhum defeito no ar, o que sobrou com valor não foi
+inventado: **estava escrito no contrato e num despacho, e esta ilha era nomeada nos dois.** A varredura
+do despacho de 02/11 em `dados/despachos.md` lista `rodametria | sim | **NÃO** | SIM` — ilha **no ar**,
+**sem** a rota de reparo da 29.3, com a porta de entrada medida apenas por fora.
+
+**O DEFEITO QUE AUTORIZA O BLOCO ESTÁ MEDIDO NO AR, COM URL E DATA, como a 31.2 exige** — e são
+**quatro quedas da MESMA porta na MESMA conta de cPanel** (`/home3/rapha921/`, a desta ilha):
+
+| quando | onde | o que caiu |
+|---|---|---|
+| 24/09/2026 19h20Z | clubedomosaico.com.br | **16 de 17 URLs em 404**, nove dias sem ninguém ver |
+| 05/10/2026 | clubedomosaico.com.br | a **mesma assinatura byte por byte** (1.057 bytes, bloco único `NFD EPC`) |
+| 30/10/2026 | robometria.com.br | **13 de 14 em 404**, e **QUATRO DIAS** fora do ar |
+| (a quarta) | outro domínio da mesma conta | despacho **ALTA** de `dados/despachos.md` |
+
+**E a robometria pagou os quatro dias por esta falta exata:** o despacho de 30/10 escreveu *"não é
+consertável pelo repositório"* — frase **verdadeira sobre aquela ilha e falsa sobre o Arquipélago**. A
+rota nasceu lá em 02/11 e o defeito que ficou quatro dias de pé caiu em **dois minutos**.
+
+### O ANTES, MEDIDO ANTES DE ESCREVER UMA LINHA
+
+`/wp-json/rodametria/v1` listava **quatro** rotas — `/casca`, `/status`, `/sync`, `/token` — e
+**nenhuma** era `/rotas`. `?rest_route=/rodametria/v1/rotas` devolvia **404**, com e sem token.
+
+### O QUE ENTROU
+
+- **`snippets/rodametria-casca.php`, seção 12 (1.6.0 → 1.7.0).** Diagnóstico do roteamento medido de
+  dentro do servidor (`permalink_structure`, regras no banco, `got_mod_rewrite()`, e do `.htaccess` o
+  caminho, se existe, se é gravável, bytes, data e **quais blocos `# BEGIN` tem**), reparo por
+  `flush_rewrite_rules( true )` devolvendo **antes e depois**, e a rota atrás do token do Sync.
+  **Sem gancho automático (29.4).** O conteúdo do arquivo **nunca sai**: só os nomes dos blocos e a
+  contagem de linhas de reescrita, como a 29.3 manda — `.htaccess` de hospedeiro compartilhado carrega
+  regra de segurança de terceiro.
+- **`ferramentas/teste-rotas.php`** — **39 afirmações mais 40 num processo filho**, 4 mutações
+  cobradas. Os mundos são **fabricados**, não os que o site produz: o `.htaccess` das quedas (bloco
+  único `NFD EPC`), um arquivo **com uma linha-segredo** que tem de **não** aparecer no JSON, e o
+  mundo sem arquivo nenhum — onde a afirmação é que o retrato **não afirma** `tem_wordpress`, porque
+  afirmar ali seria inventar. **O processo filho existe por necessidade e não por estilo:**
+  `function_exists()` não se desfaz, então o ramo "com as ferramentas de `wp-admin`" e o ramo "sem" não
+  cabem no mesmo processo — e o ramo "sem" é o que impede o **verde falso** de dizer que a porta foi
+  consertada quando o `flush` não encostou no arquivo.
+- **`ferramentas/conferir-no-ar.py`** — a 29.3 lida **sem o token** (autoteste de 12 → **19**
+  afirmações). A leitura mora numa **função pura**, e é isso que deixa o autoteste fabricar os quatro
+  mundos que esta nuvem não produz: rota **ausente**, parede **aberta** (200 sem token), **portão
+  morto** e o **500** do `WP_Error` sem `status`.
+
+### A PAREDE FOI MEDIDA SEM NUNCA TER O TOKEN, e este é o achado de desenho da passada
+
+O **Sync desta ilha não está no repositório** — as outras três têm o seu. Então o nome da função que
+guarda o token foi **herdado** das irmãs (`rodametria_sync_token`) e **não pôde ser conferido no
+chão**. Isso é a derivação de cabeça que a **20.7** proíbe, e aqui ela erraria **CALADA**:
+`token_esperado()` devolveria vazio, a parede negaria **TODO** pedido — inclusive o certo — e a rota
+seria um **portão morto com cara de portão**, 401 em tudo, indistinguível de uma parede sã.
+
+**O conserto foi fazer a NEGATIVA dizer qual das três coisas faltou**, em `WP_Error` com códigos
+distintos e `status: 401` **explícito** (sem ele o `WP_REST_Server` devolve **500**), e os três são
+legíveis **sem** o token: `sem_fonte_de_token`, `token_ausente`, `token_invalido`. **É o mecanismo da
+20.7 noutro traje: a ausência passou a falar.**
+
+**E o ar respondeu `rodametria_rotas_token_invalido`** — código que **só sai depois de a casca achar a
+fonte do token E rodar o `hash_equals`**. O nome herdado estava certo, e isso deixou de ser aposta e
+passou a ser medição, sem o token jamais sair de onde está.
+
+### O ACHADO QUE NÃO ESTAVA NO PLANO — O MODELO DA 29.3 TEM UM DEFEITO, E O PORTÃO O PEGOU NO CHÃO, ANTES DO AR
+
+A primeira passada do `teste-rotas.php` **reprovou**, e não por mundo mal fabricado: as funções de
+`stat` do PHP — `file_exists()`, `filesize()`, `filemtime()`, `is_readable()`, `is_writable()` — são
+**cacheadas dentro da requisição**; `file_get_contents()` não é. O reparo tira o retrato, reescreve o
+`.htaccess` e tira o retrato **de novo, na mesma requisição**. Sem `clearstatcache()`:
+
+- o **antes e o depois** trazem os mesmos `bytes` e o mesmo `mtime` — e o antes/depois que a **29.4**
+  existe para oferecer (*"devolve o antes e o depois para quem pediu comparar"*) passa a comparar um
+  retrato **com ele mesmo**;
+- e `reparado` é calculado **sobre `existe`**, então o caso em que o arquivo **não existia** e o reparo
+  o criou sai com **`reparado: false`** — a rota **diz que não consertou a porta depois de
+  consertá-la**.
+
+**É reprovação FALSA, que é a pior das duas**, e a **20.5** já escreveu o porquê: *"portão que reprova
+página certa é o caminho mais curto para alguém passar a ignorá-lo"*. No uso real é pior ainda: quem lê
+`reparado: false` numa ilha caída conclui, **pela própria 29.4**, que o arquivo foi gravado e o
+`AllowOverride` está desligado — e **abre chamado na HostGator por um defeito que o reparo já desfez**.
+
+Consertado aqui com `clearstatcache( true, $arquivo )`, com o motivo escrito no código. **A varredura:
+`clubedomosaico` (desde 24/09) e `robometria` (desde 02/11) servem a rota e estão SEM a linha.** Virou
+**despacho NORMAL**, porque a **seção 3** proíbe editar ilha que esta execução não reservou — a mesma
+forma do despacho do `realpath('')` de 15/09, e com o portão pronto para copiar ao lado da linha,
+*"senão a linha é retirada no primeiro dia em que alguém a achar redundante"*.
+
+**E as quatro mutações da casca de verdade reprovam, uma a uma:** tirar o `clearstatcache` (cai a
+afirmação do antes/depois), pôr a parede **velha** no lugar da nova (cai a distinção dos três mundos),
+despejar o `.htaccess` no retrato (**a linha-segredo aparece no JSON**) e ler `tem_wordpress` por
+`strpos` solto (**uma menção à palavra WordPress num comentário aprova**).
+
+### O SEGUNDO ACHADO, E ELE FOI DEIXADO EM PÉ DE PROPÓSITO
+
+**Esta é a única ilha no ar sem função de purga de cache do hospedeiro** — clubedomosaico, robometria e
+aquametria têm; aqui a palavra "purga" não aparece uma vez no `REGISTRO.md` nem no `ESTADO.md`, em sete
+dias de ilha. A chamada entrou **guardada por `function_exists`** e hoje é no-op, e o retrato da rota
+**sai no ar dizendo `tem_purga_de_cache: false`** em vez de deixar a falta invisível.
+
+**Não foi consertado de carona, e isso é decisão:** purga que apaga arquivo em disco é exatamente a
+função que entrou no Arquipélago com a armadilha do `realpath('')` — que **não devolve `false`, devolve
+o diretório de trabalho atual** — e que numa passada **apagou 117 arquivos** da aquametria. Ela entra
+**com os dois portões da aquametria ao lado**, e isso é bloco, não carona. Despacho NORMAL aberto hoje.
+
+### O DESEMBARQUE, E O TURNO DE CRON QUE ELE PAGOU
+
+Push às **10h34Z**. O `/status` em **29** com `ultimo: 10:18:18Z` — **anterior ao push**, que pela
+régua de três mundos da **20.6** é **turno de cron**, não defeito nem cache (o `raw.githubusercontent`
+já servia a **30** na mesma passada, então também não era cache do GitHub). O cron desta ilha **roda
+por VISITA e não por relógio**, e as visitas ficaram de pé: a revisão **30** entrou às **10:40:08Z**.
+*(Quarta execução seguida a pagar um turno inteiro por um push que cai pouco depois do turno anterior —
+e o cron não antecipa evento que não venceu.)*
+
+### NO AR, CONFERIDO PELA 18.4
+
+- **A rota PRESENTE** no índice de rotas do WordPress, ao lado de `/casca`, `/status`, `/sync` e
+  `/token`.
+- **401** sem token (`rodametria_rotas_token_ausente`) e **401** com token errado
+  (`rodametria_rotas_token_invalido`) — a parede medida de fora, com quebra de cache.
+- **`conferir-no-ar.py`: 453 afirmações, 0 falha.** *(Antes do desembarque: 457 afirmações e **4
+  falhas**, as quatro da rota ausente — o portão morde contra o site real, não só contra mundo
+  fabricado.)*
+- **As 5 linhas da revisão 30 lidas uma por uma, todas dizendo `ok`**, contra o `5 aplicado(s)` que a
+  própria linha de fecho declara (20.4 e 20.8). Casca **1.7.0** instalada às 10:40:06Z, e a versão **no
+  ar** conferida contra o manifest em **4 de 4** snippets publicáveis.
+- Bancada: **23 portões sem rede** (eram 22) e **27 com rede** (eram 26), **0 falha** nas duas, **0
+  denunciado** — contados em `bancada.py --lista`, não de cabeça.
+
+### O QUE ESTE BLOCO NÃO ENTREGA, dito em vez de maquiado
+
+**O reparo não foi exercitado, e não podia ser daqui:** o token do Sync não está no repositório e não
+deve estar. O `tem_wordpress: true` **pela rota própria**, que é o "pronto quando" do despacho de
+02/11, espera **um GET de quem tem o token**. Está anotado lá, e a metade da rodametria daquele
+despacho ficou marcada como fechada com essa ressalva escrita — não apagada.
+
+**E pela 31.1 esta execução entrega infraestrutura, não pixel:** o que foi ao ar é um endpoint, não algo
+que o visitante vê. Quem contar a proporção conte esta como **não** — a anterior também foi não, e as
+sete antes dela foram sim (casca, F2, três páginas de produto, quatro institucionais, a escada da 25.2,
+a caixa da mãe e a versão dos snippets).
+
+### O PRÓXIMO PASSO DESBLOQUEADO
+
+1. **A purga de cache desta ilha** — o único bloco de código desbloqueado que sobrou, já pré-registrado
+   como despacho de hoje, e com o diagnóstico da 29.3 no ar acusando a falta.
+2. **Nenhum caminho de página nova está desbloqueado**, e isso foi remedido hoje e não herdado. **O
+   despacho de 30/10 para o Raphael — duas SERPs e um volume, UMA sessão de Chrome de ~10 minutos —
+   continua sendo o gesto que destrava mais por menos.**
+
 ## 2026-11-02 19h18Z–19h3xZ — **BLOCO 6: A LISTA DE PROSPECÇÃO DO WIDGET**, a única alavanca de link desta ilha — e a execução começou medindo que **nenhum bloco de página estava desbloqueado**, o que é informação e não fracasso
 
 **A ESCOLHA DA ILHA.** `foco.md` nomeia a **rodametria** — foco total e absoluto desde 27/10 — e pela

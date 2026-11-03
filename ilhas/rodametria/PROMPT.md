@@ -23,6 +23,16 @@ Medido em 27/10/2026 no Chrome do Raphael (`bussola/dossies/rodametria/DOSSIE.md
 - **Sync (POST, exige `manage_options`):** `https://rodametria.com.br/wp-json/rodametria/v1/sync` — e o gatilho por query na raiz, `https://rodametria.com.br/?rodametria_sync=<token>`, com o token lido em `/wp-json/rodametria/v1/token` (também exige `manage_options`). **O token desta ilha não está no repositório e não deve estar** — quem precisa dele o lê logado. A Fundação **não precisa dele** para desembarcar: o Sync tem **cron próprio de 30 minutos** (`rodametria_30min`), e foi ele que rodou às 11h48, 12h30, 12h48 e 13h10Z de 28/10.
   > **MEDIDO EM 29/10/2026 às 16h3xZ — O CRON NÃO RODA POR RELÓGIO: RODA POR VISITA, E ISSO MUDA O CUSTO DE TODA EXECUÇÃO AQUI.** A frase acima e a do `ESTADO.md` ("ela empurra e espera") estão certas sobre o **token** e erradas sobre o **relógio**. O log do `/status` trazia disparos às 11h39, 12h09, 13h56 e 14h09Z e depois **nada por 2h29** — e 14h12Z é o minuto em que a execução anterior fechou e **parou de abrir o site**. É WP-Cron: ele é acionado por **requisição**, não por um relógio no servidor. Três GETs na home e o `wp-cron.php` respondendo **409** (já havia cron em andamento), e a revisão entrou em **um minuto**. A execução da manhã registrou **nove esperas de cron** entre 10h44Z e 12h10Z: eram evitáveis. **Depois de empurrar, abra a própria página** — não precisa do token para isso.
 - **Base que o Sync lê:** `https://raw.githubusercontent.com/rmnatal/arquipelago/main/ilhas/rodametria/` + o arquivo, com `?v=<timestamp>` contra cache. Vale a **20.5**: revisão atrasada logo depois do push é cache do GitHub, não defeito — reacione de dois em dois e só trate como defeito se não subir em ~10 minutos.
+- **Diagnóstico e reparo da porta de entrada (GET, exige o token do Sync):**
+  `https://rodametria.com.br/wp-json/rodametria/v1/rotas` — e com `&reparar=1` ela roda o
+  `flush_rewrite_rules( true )` e devolve o antes e o depois. **NO AR DESDE 03/11/2026**, revisão 30,
+  casca 1.7.0. É a rota que a **29.3** manda toda ilha servir, e esta ilha nasceu sem ela.
+  **O token não está no repositório e não deve estar**, então o reparo não é exercitável daqui — mas a
+  parede é: medida em 03/11 às 10h4xZ, a rota devolve **401** sem token (`rodametria_rotas_token_ausente`)
+  e **401** com token errado (`rodametria_rotas_token_invalido`), e **é esse segundo código que prova que
+  a casca achou a fonte do token e rodou o `hash_equals`** — ele não sairia se o nome herdado
+  (`rodametria_sync_token`) estivesse errado. Quem tiver o token fecha a última afirmação com um GET:
+  o diagnóstico tem de dizer `tem_wordpress: true`. **Não há gancho automático (29.4).**
 - **A CASCA E A F2 ESTÃO NO AR DESDE 29/10/2026.** `/` (home, molde da 32.2) e
   `/autonomia-patinete-eletrico/` (F2, molde de FERRAMENTA da 32.1). A casca publica
   `https://rodametria.com.br/wp-json/rodametria/v1/casca` (GET público), que devolve a versão

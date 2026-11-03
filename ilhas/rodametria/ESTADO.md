@@ -6,117 +6,98 @@ piso: abaixo              # 5 URLs publicadas contra as 40 da 21.1, e primeira_i
 urls_publicadas: 9        # 5 -> 9 em 30/10/2026 as 14h4xZ: as QUATRO paginas que a 16.1 nomeia (`/sobre/`, `/contato/`, `/divulgacao-de-afiliados/`, `/privacidade/`), pelo bloco 5d. CONTADO no wp-sitemap.xml no ar com quebra de cache, nao na conta de antes do desembarque. ELAS NAO MEXEM NO PISO DA 21.1 NEM GASTAM LEVA: a 21.7 tira as cinco paginas nomeadas da 16.1 do teto de 10 URLs por leva e 3 levas por semana, porque sao familia fechada e nenhuma responde a uma busca — o piso de malha segue pedindo 40 e as paginas de malha seguem 5. A DIVIDA QUE ELAS PAGAM estava medida na contagem de 30/10 as 10h3xZ: a ilha serve link de afiliado da Shopee desde 29/10 e nao tinha pagina de divulgacao de afiliados nem de privacidade.
 ultima_ronda: 2026-10-30T15:10Z   # RONDA DIARIA TECNICA, a PRIMEIRA desta ilha, e ela foi FUNDA. Escrito pela Sentinela, nunca pela Fundacao (secao 2). A ilha tinha 9 URLs no ar no momento da ronda (nao 5): as quatro institucionais do bloco 5d desembarcaram no meio dela, revisao 19 as 14h40:39Z. 9 de 9 em HTTP 200, porta da 29.2 verde nas quatro, soft 404 da borda AUSENTE nesta ilha (caminho virgem em 404 nas quatro leituras), regua tecnica inteira verde, console sem uma mensagem, conta da F2 refeita na mao em cinco casos e fechando. SEIS defeitos achados e ZERO consertados, de proposito: ver dados/consertos.md e o despacho de 30/10 em PROMPT.md. Teste de vida: 9 itens testados, 9 vivos, 0 morto, 13 nao testados por orcamento do anti-robo da Shopee.
 primeira_indexacao: null  # as duas primeiras URLs foram ao ar hoje; indexacao e trabalho de dias. Quem grava este campo e a leitura semanal, lendo o Search Console.
-ultima_execucao: 2026-11-02T19:36Z   # BLOCO 6 ENTREGUE INTEIRO: a LISTA DE PROSPECAO DO WIDGET, que a 14.7 chama de `a unica alavanca de link do projeto`. 10 candidatos com evidencia do PROPRIO DOMINIO, regua de quatro regras, portao de dado com 13 mundos fabricados e o `.md` GERADO do JSON. Bancada sem rede 22 portoes (eram 20) e com rede 24, 0 falha nas duas, 0 denunciado. NADA FOI AO AR nesta execucao e o REGISTRO.md diz isso: o arquivo tem `publicar: false`. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
-executando_desde: 2026-11-03T10:36Z   # RESERVA RENOVADA pela 1.1 (a reserva original e das 10h17Z e o bloco passou de 40 minutos). A causa de passar: o desembarque desta ilha depende do CRON, e o cron nao roda por relogio, roda por VISITA (20.6) — o log do `/status` estava em 10:18:18Z, ANTERIOR ao push das 10h34Z, que pela regua de tres mundos da 20.6 e TURNO DE CRON e nao defeito nem cache; o que resolve e esperar o turno mantendo as visitas de pe. Entrada por FOCO (`foco.md` nomeia a rodametria) e nenhuma das duas excecoes da 1.2 furou. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
-rede: aberta em 2026-10-30   # 20.2, MEDIDA e nao herdada nesta execucao: rodametria.com.br/, /wp-sitemap.xml e /wp-json/rodametria/v1/status os TRES em 200, com aquametria.com.br em 200 na mesma passada. O soft 404 da borda do hospedeiro, de 29/10, NAO foi remedido aqui: e despacho ALTA de dados/despachos.md e nao se conserta daqui.
+ultima_execucao: 2026-11-03T10:43Z   # A PORTA DE ENTRADA DESTA ILHA PASSOU A TER INSTRUMENTO: a rota da 29.3 no ar na revisao 30, casca 1.7.0, com `ferramentas/teste-rotas.php` no chao e a leitura da rota SEM o token dentro do `conferir-no-ar.py`. A divida era de NASCIMENTO — o contrato manda isso desde 24/09/2026 e esta casca nasceu em 29/10 sem ela. No caminho, o portao novo achou um DEFEITO NO MODELO da 29.3 (cache de stat do PHP) que faria a rota dizer que NAO consertou depois de consertar, e ele esta de pe nas outras DUAS ilhas que servem a rota. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
+executando_desde: null   # LIMPO as 2026-11-03T10:43Z pela propria execucao que reservou as 10h17Z de 03/11 e RENOVOU as 10h36Z pela 1.1. Passou de 40 minutos pelo desenho do desembarque desta ilha e nao por bloco longo: o cron roda por VISITA (20.6), e o push das 10h34Z caiu DEPOIS do turno de 10:18:18Z — o turno seguinte entrou as 10:40:08Z, com as visitas de pe. Esta execucao entrou por FOCO (`foco.md` nomeia a rodametria): as duas excecoes da 1.2 foram conferidas e NENHUMA furou. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
+rede: aberta em 2026-11-03   # 20.2, MEDIDA e nao herdada nesta execucao: rodametria.com.br/, /wp-sitemap.xml e /wp-json/rodametria/v1/status os TRES em 200 em TRES passadas, com aquametria.com.br em 200 nas MESMAS tres. E o EGRESSO foi remedido no mesmo fecho, tambem sem herdar: www.gov.br, in.gov.br, www.planalto.gov.br e www.contran.gov.br (a fonte da F1) e www.casasbahia.com.br, www.extra.com.br e www.magazineluiza.com.br (o nivel 5 que a F3 precisa) os SETE em 000, DUAS passadas cada — 14 medicoes de bloqueio contra 2 de controle verde. Os dois despachos ALTA seguem valendo.
 bloqueada_por: null      # obrigatorio pela secao 2. `null` DE PROPOSITO: o que falta (gov.br para a F1, as prefeituras para a camada municipal, as tres etiquetas do Mercado Livre) trava a FABRICA e nao a ILHA, e isso se escreve no despacho, que e o canal da 12.2. Preenche-lo congelaria tambem os blocos que ja podem andar — e o proximo da fila, o 3d, nao depende de nenhum deles.
 bloco_atual: |
-  O BLOCO 6 — A LISTA DE PROSPECAO DO WIDGET — ENTREGUE INTEIRO, e ele foi o
-  UNICO da fila que esta execucao podia executar: a F1 e a F3 travadas por
-  ABERTURA de egresso (despacho ALTA), pagina nova de malha travada pela 30.8
-  (`alvo` nao se afirma desta nuvem), e as duas consultas de maior volume com
-  SERP ja vista no Chrome — `moto eletrica` 823 mil e `scooter eletrica` 301
-  mil — travadas por PRODUTO, medido em 29/10. ZERO defeito aberto no ar: a
-  bancada fechou 24 portoes COM REDE, 0 falha, ANTES de construir (18.5).
+  A PORTA DE ENTRADA DESTA ILHA PASSOU A TER INSTRUMENTO, e a divida era de
+  NASCIMENTO. A 29.3 manda, desde 24/09/2026, que "a casca de TODA ilha" sirva
+  `?rest_route=/<ilha>/v1/rotas`; esta casca nasceu em 29/10 sem ela, e a
+  varredura do despacho de 02/11 listou esta ilha com `NAO` nessa coluna. No ar
+  na REVISAO 30, casca 1.7.0, as 10:40:08Z de 03/11.
 
   ESTE ARQUIVO CONTINUA SENDO A MEMORIA DESTA ILHA — `/areas/projeto-rodametria.md`
   nao existe nesta nuvem, e e por isso que este campo e longo.
 
-  POR QUE ESTE BLOCO VALE AGORA, e a 14.7 escreve a razao melhor do que eu:
-  "a prospecao do widget em lojas e a UNICA alavanca de link do projeto e por
-  isso vale mais no comeco do que no fim: backlink e o que faz o robo voltar".
-  A ilha tem SEIS DIAS de ar, 9 URLs e `primeira_indexacao: null`.
+  O DEFEITO QUE AUTORIZA O BLOCO ESTA MEDIDO NO AR, COM URL E DATA (31.2), e e a
+  conta de quatro quedas da MESMA porta na MESMA conta de cPanel (/home3/rapha921/):
+  clubedomosaico em 24/09 (16 de 17 URLs em 404) e em 05/10 (a mesma assinatura
+  byte por byte), robometria em 30/10 (13 de 14 em 404, QUATRO DIAS fora do ar) e
+  a quarta em outro dominio da conta. A robometria pagou os quatro dias porque a
+  rota que a consertaria nao existia la — o despacho de 30/10 escreveu "nao e
+  consertavel pelo repositorio", frase VERDADEIRA sobre aquela ilha e FALSA sobre
+  o Arquipelago. A rota nasceu la em 02/11 e o defeito caiu em dois minutos.
 
-  O PLACAR, CONTADO PELO PORTAO E NUNCA DIGITADO: 10 candidatos — 1 prioridade
-  1, 5 prioridade 2, 4 prioridade 3, e ZERO abertos no navegador, com o arquivo
-  dizendo isso no topo em vez de deixar a limitacao invisivel. O unico
-  prioridade 1 e `bicieletric.com.br`: e o unico que fecha as DUAS condicoes
-  medidas — vende os dois veiculos que as ferramentas desta ilha classificam E
-  publica conteudo no proprio dominio.
+  O ANTES, MEDIDO E NAO SUPOSTO: `/wp-json/rodametria/v1` listava QUATRO rotas e
+  nenhuma era `/rotas`; `?rest_route=/rodametria/v1/rotas` devolvia 404. O portao
+  de ar foi rodado ANTES do commit e REPROVOU com 4 falhas, as quatro certas.
 
-  AS QUATRO REGRAS DA REGUA, e as quatro sao sobre NAO AFIRMAR DEMAIS. (1) NAO
-  EXISTE `false` nos campos de fato: busca sabe afirmar PRESENCA, nunca
-  ausencia, que e a assimetria da 30.8 aplicada a outro assunto — `true` com
-  evidencia ou `null` (= nao medido), e `false` e RECUSADO pelo portao. (2) A
-  EVIDENCIA TEM DE SER DO PROPRIO DOMINIO, e a armadilha foi medida NESTA
-  coleta: a Eletricz apareceu primeiro numa materia de `mecanicaonline.com.br`
-  que FALA dela, com nome, cidade e catalogo — e materia de terceiro nao prova
-  nada sobre o site que vai instalar o widget; a linha so entrou quando a busca
-  devolveu `eletricz.com.br/...`. (3) A PRIORIDADE NAO SE ESCREVE, SE CALCULA:
-  o portao recalcula dos campos medidos e fica vermelho se discordar — a mesma
-  doenca do `versao` do manifest de hoje de manha, constante que alguem sobe a
-  mao e ninguem confere. (4) `null` EXIGE MOTIVO ESCRITO, porque campo vazio
-  sem motivo e onde a proxima passada inventa um e-mail.
+  O DEPOIS, CONFERIDO NO AR PELA 18.4: a rota PRESENTE no indice, 401 sem token
+  (`rodametria_rotas_token_ausente`) e 401 com token errado
+  (`rodametria_rotas_token_invalido`). `conferir-no-ar.py`: 453 afirmacoes, 0
+  falha. As 5 linhas da revisao 30 lidas uma por uma, todas dizendo `ok`, contra
+  o `5 aplicado(s)` que a propria linha de fecho declara (20.4 e 20.8). Versao no
+  ar conferida contra o manifest em 4 de 4 snippets.
 
-  A REGUA MORA DENTRO DO PORTAO, E ISSO E DECISAO. A Aquametria separa
-  `regua-prospeccao.py` porque la QUATRO arquivos a carregam; aqui sao DOIS, e
-  a `bancada.py` desta ilha classifica POR PREFIXO e DENUNCIA o que nao casa —
-  `regua-*` nasceria denunciado e o conserto seria escrever o nome dele numa
-  lista de excecao a mao, que e a doenca que esta bancada matou. E o AUTOTESTE
-  RODA SEMPRE, antes do arquivo de verdade: a bancada so descobre `--autoteste`
-  nos portoes de REDE (foi para eles que o mecanismo nasceu hoje de manha) e
-  este e dos sem rede, entao o autoteste dele nunca entraria na fila sozinho.
-  Portao que depende de alguem lembrar nao roda.
+  O QUE O TOKEN IMPEDE, DITO EM VEZ DE MAQUIADO: o reparo em si NAO e exercitavel
+  daqui — o token do Sync nao esta no repositorio e nao deve estar. O que falta
+  para o "pronto quando" do despacho de 02/11 fechar inteiro e UM GET de quem tem
+  o token, pedindo o diagnostico e lendo `tem_wordpress: true`.
 
-  E A 31 FOI LIDA ANTES DE ESCREVER FERRAMENTA, nao depois. A 31.2 proibe
-  portao NOVO sem defeito medido no ar — e este portao nunca vai pegar defeito
-  no ar nenhum, porque o arquivo que ele julga tem `publicar: false`. Quem o
-  autoriza e a 31.5, que preserva "portao de dado" com todas as letras, mais a
-  secao 10. Portao de AR e portao de DADO nao sao a mesma coisa: o primeiro
-  protege a pagina, o segundo protege a afirmacao. Por isso esta execucao
-  escreveu DOIS arquivos de ferramenta e nao cinco — a bateria de mutacao e o
-  teste sintetico da Aquametria seriam, aqui, bancada sobre bancada, que a 31.3
-  fecha. O `--autoteste` faz a metade que importa: 13 mundos fabricados, e o
-  portao foi MUTADO SOBRE O DADO DE VERDADE (a prioridade do `bici-eletric` de
-  1 para 2) e reprovou com a frase certa antes de ser restaurado.
+  E A PAREDE FOI MEDIDA SEM O TOKEN, que e o achado de desenho desta passada. O
+  Sync desta ilha NAO esta no repositorio (as outras tres tem o seu), entao o nome
+  da funcao que guarda o token foi HERDADO das irmas e nao conferido no chao —
+  derivacao de cabeca que a 20.7 proibe, e que aqui erraria CALADA: a casca
+  devolveria vazio, a parede negaria TODO pedido (inclusive o certo) e a rota seria
+  um portao morto com cara de portao. O conserto foi fazer a NEGATIVA dizer qual
+  das tres coisas faltou, em codigos distintos e legiveis SEM o token — e o
+  `rodametria_rotas_token_invalido` que o ar devolveu PROVA que a casca achou a
+  fonte e rodou o `hash_equals`. O nome herdado estava certo, e agora isso e
+  medicao e nao aposta. E o mecanismo da 20.7 noutro traje: a ausencia passou a falar.
 
-  O ACHADO QUE NAO E SOBRE PROSPECAO, e foi para `dados/despachos.md`: DUAS
-  PAGINAS DO MESMO SITE citam a MESMA Resolucao Contran 996/2023 com numeros
-  diferentes — "ate 1000 Watts, com velocidade de ate 32 km/h de fabrica" numa,
-  "potencia maxima de 4.000W para autopropelidos" na outra, as duas em
-  `eletricz.com.br`. A contradicao que o corpus de 28/10 mediu ENTRE tres
-  publicadores existe DENTRO de um so. Isso SOBE o custo do despacho ALTA do
-  `gov.br` em vez de so confirma-lo: enquanto a fonte primaria nao chega, nao
-  existe "a leitura de mercado" para a F1 herdar, e qualquer regua de maioria
-  entre fontes secundarias escolheria um numero sem saber qual.
+  O ACHADO QUE NAO ESTAVA NO PLANO, E ELE E UM DEFEITO DO MODELO DA 29.3, pego
+  pelo portao novo NO CHAO e ANTES DO AR: as funcoes de `stat` do PHP sao
+  CACHEADAS dentro da requisicao (`file_exists`, `filesize`, `filemtime`,
+  `is_readable`, `is_writable`; `file_get_contents` nao e). O reparo tira o
+  retrato, reescreve o `.htaccess` e tira o retrato DE NOVO na MESMA requisicao —
+  entao o "depois" e o "antes", e `reparado` sai de `existe`, logo a rota diria que
+  NAO consertou a porta depois de conserta-la. REPROVACAO FALSA, que a 20.5 chama
+  de "o caminho mais curto para alguem passar a ignorar um portao" — e no uso real
+  e pior: quem le `reparado: false` numa ilha caida conclui, pela propria 29.4, que
+  o `AllowOverride` esta desligado e ABRE CHAMADO na HostGator por um defeito que o
+  reparo ja desfez. Consertado aqui com `clearstatcache( true, $arquivo )`.
+  CLUBEDOMOSAICO E ROBOMETRIA ESTAO SEM A LINHA, as duas ilhas que servem a rota —
+  virou despacho NORMAL, porque a secao 3 proibe editar ilha nao reservada.
 
-  A LINHA VENCIDA QUE ESTA EXECUCAO ACHOU NA PROPRIA FILA, e ela custou leitura:
-  o paragrafo de fecho do bloco 5e ainda dizia "O QUE FICA, e e BLOCO e nao
-  conserto: /veiculos/ ESTA FORA DO MOLDE". Os DOIS itens dele estavam feitos —
-  a caixa da mae em 02/11 as 13h42Z (commit ce91604) e o campo `versao` as
-  17h4xZ — e so o segundo tinha sido marcado. Marcado agora, com o texto velho
-  preservado embaixo. E a secao 4 do contrato em forma de fila: o trabalho anda
-  e o indice fica para tras em silencio.
+  PORTOES: 23 sem rede (eram 22) e 27 com rede (eram 26), 0 falha nas duas,
+  CONTADOS em `bancada.py --lista` e nao de cabeca. 0 DENUNCIADO — o arquivo novo
+  entra pela convencao de nome (`teste-`), sem lista nenhuma. O `teste-rotas.php`
+  tem 39 afirmacoes mais 40 num PROCESSO FILHO, e o filho existe porque
+  `function_exists()` nao se desfaz: nao da para medir o ramo "com ferramentas de
+  admin" e o "sem" no mesmo processo. QUATRO mutacoes da casca de verdade reprovam.
 
-  PORTOES: 22 sem rede (eram 20) e 24 com rede, 0 falha nas duas, CONTADOS em
-  `bancada.py --lista` e nao de cabeca. 0 DENUNCIADO — os dois arquivos novos
-  entram pela convencao de nome (`validar-` e `gerar-`), sem lista nenhuma.
+  NENHUM BLOCO DE PAGINA ESTAVA DESBLOQUEADO, E ISSO FOI RECONFERIDO E NAO
+  HERDADO: `gov.br` e os tres varejos grandes seguem recusados (14 medicoes, 2
+  passadas cada, controle verde), a sessao de Chrome do Raphael NAO aconteceu (as
+  duas consultas seguem `nao-medida` em `dados/consultas-de-produto.json`) e
+  NENHUMA consulta dos eixos parametricos tem veredito `alvo`. Foi por isso que o
+  bloco desta execucao saiu da 29.3 e nao da fila de paginas — e a 18.5 manda
+  exatamente essa ordem: verificacao antes de construcao.
 
-  NADA FOI AO AR NESTA EXECUCAO, E ISSO E DITO E NAO ESCONDIDO. A 31.1 pede 7
-  de cada 10 execucoes entregando algo que o visitante ve, e esta e das 3 que
-  nao entregam: o arquivo tem `publicar: false` em cada linha. As anteriores
-  desta ilha entregaram no ar quase sem excecao (a casca, a F2, as tres paginas
-  de produto, as quatro institucionais, a escada da 25.2, a caixa da mae e a
-  versao dos snippets), entao a proporcao segue folgada — mas quem contar que
-  conte esta como nao.
-
-  O PROXIMO PASSO DESBLOQUEADO, e sao DOIS em ordem de valor:
-  (1) NENHUM BLOCO DE CONSTRUCAO DESTA ILHA ESTA DESBLOQUEADO HOJE, e isso e
-      informacao e nao fracasso. Os tres caminhos de pagina nova estao travados
-      por coisas que NAO se resolvem desta nuvem: o `gov.br` (F1), o nivel 5 de
-      varejo grande (F3) e o Chrome do Raphael (as duas SERPs do despacho de
-      30/10 e as duas etiquetas do Mercado Livre). A execucao seguinte que
-      encontrar os tres ainda fechados deve DIZER ISSO no relatorio em vez de
-      inventar bloco — e o despacho de 30/10 para o Raphael, uma sessao de
-      Chrome de ~10 minutos, continua sendo o gesto que destrava mais por menos.
-  (2) ABRIR OS DEZ CANDIDATOS DA LISTA no navegador, que e o que transforma
-      `null` em medido: `contato`, `plataforma` e `ja_tem_calculadora` sao os
-      tres campos que a lista nao sabe e diz que nao sabe. Dez dominios, um
-      navegador, e a lista passa de ordenada para acionavel. Isso tambem nao e
-      bloco desta nuvem — e despacho, pela mesma razao da 30.8.
-
-  E O DESPACHO DE 30/10 PARA O RAPHAEL CONTINUA ABERTO, intocado por esta
-  execucao: duas SERPs e um volume, numa sessao de Chrome.
+  O PROXIMO PASSO DESBLOQUEADO, em ordem de valor:
+  (1) A PURGA DE CACHE DESTA ILHA, que e o unico bloco de codigo desbloqueado que
+      sobrou e esta pre-registrado como despacho de hoje. Ela e a UNICA ilha no ar
+      sem `<ilha>_casca_purgar_cache()`, e o diagnostico da 29.3 ja sai no ar
+      dizendo `tem_purga_de_cache: false` em vez de esconder a falta. Ela entra COM
+      os dois portoes da aquametria ao lado (`teste-purga-cache.php` e
+      `mutacoes-purga-cache.py`), porque purga que apaga arquivo em disco e a
+      funcao que entrou no Arquipelago com a armadilha do `realpath('')` — que
+      custou 117 arquivos numa passada. NAO se faz de carona.
+  (2) NENHUM caminho de PAGINA nova esta desbloqueado, e a execucao seguinte que
+      encontrar os tres ainda fechados deve DIZER ISSO em vez de inventar bloco. O
+      despacho de 30/10 para o Raphael — duas SERPs e um volume, UMA sessao de
+      Chrome de ~10 minutos — continua sendo o gesto que destrava mais por menos.
 ---
 
 # Estado da ilha RODAMETRIA
