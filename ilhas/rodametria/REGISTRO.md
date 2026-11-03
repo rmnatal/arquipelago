@@ -3,6 +3,174 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-11-03 16h18Z–16h5xZ — **A FAIXA DE PREÇO REMEDIDA HOJE**, e a coleta achou a régua deixando passar **um capacete como bicicleta** — R$ 113,34 seria o piso do número próprio da ilha
+
+**A ESCOLHA DA ILHA.** `foco.md` nomeia a **rodametria** — foco total e absoluto desde 27/10 — e pela
+**1.2** não há escolha a fazer. **As duas exceções que furam o foco foram conferidas e NENHUMA
+furou.** (a) Os **três despachos do molde** da seção 32 estão **FECHADOS**, lido no topo dos três
+`PROMPT.md` (aquametria 21/10 18h2xZ, clubedomosaico 23/10 19h4xZ, robometria 21/10 16h1xZ). (b)
+Nenhum despacho **ALTA** é de **ilha no ar E quebrada**: o da robometria de 30/10 está FECHADO desde
+02/11 10h3xZ e conferido no ar, e os ALTA de `dados/despachos.md` são pedidos de **abertura de
+egresso** e o **chamado da HostGator**, que são do Raphael. `executando_desde` estava `null`, que
+pela **1.1** já significa que não há bloco da Fundação vivo. Reserva às **16h18Z**, push aceito **de
+primeira**, campo **renovado às 16h34Z**. Zero branch `claude/*` com commit fora do `main`; zero PR
+aberto.
+
+**A REDE, MEDIDA E NÃO HERDADA (20.2).** `rodametria.com.br/` e `/wp-json/rodametria/v1/status` os
+dois em **200 em TRÊS passadas**, com `aquametria.com.br` em **200 nas mesmas três**.
+
+**A PRIMEIRA COISA FOI PROCURAR DEFEITO (18.5), E NÃO ACHEI NO AR:** bancada **com rede, 29 portões,
+0 falha**, antes de uma linha de código.
+
+### O BLOCO: o número PRÓPRIO desta ilha dizia "hoje" e era de cinco dias atrás
+
+A execução anterior fechou dizendo que *"não há mais bloco de código desbloqueado nesta ilha
+pré-registrado"* e pedindo que a seguinte **dissesse isso em vez de inventar**. Antes de dizer, os
+três bloqueios foram remedidos (abaixo) — e no caminho apareceu o que não era bloqueio nenhum: a
+**faixa de preço**, que é o `numero_proprio_pedido` das duas páginas de produto, estava medida em
+**29/10** e as duas páginas serviam a frase **"Preço mediano hoje"** na primeira tela, com *"os 16
+anúncios que a gente conferiu em 29/10/2026"* no corpo. **É a seção 4 aplicada ao próprio produto da
+ilha:** o site não ficou para trás em silêncio, ficou para trás dizendo "hoje".
+
+Isso **não é bloco inventado**: o esquema desta ilha nasceu com `cotacoes[]` como **série** (achado 3
+do bloco 3, 28/10: *"leitura nova não substitui leitura velha, porque substituir apaga a série"*), e
+recolher é o trabalho recorrente que o desenho prevê. Nada de portão novo (31.2 e 31.3 respeitadas):
+as ferramentas que rodaram já existiam, com os modos `--gravar` que elas nasceram tendo.
+
+**O QUE MUDOU, medido e não estimado:**
+
+| página | faixa em 29/10 | faixa em 03/11 |
+|---|---|---|
+| `/veiculos/patinete-eletrico/` | R$ 1.297,13 a R$ 3.399,00 · mediana **1.590,53** · 16 anúncios | R$ 1.030,00 a R$ 2.699,00 · mediana **1.647,95** · 16 anúncios |
+| `/veiculos/bicicleta-eletrica/` | R$ 2.299,99 a R$ 6.199,90 · mediana **2.399,99** · 5 anúncios | R$ 2.299,99 a R$ 6.199,90 · mediana **2.299,99** · 6 anúncios |
+
+E a **série de cotações** do `honeywhale-m2-max` (o único registro casado) cresceu em vez de ser
+substituída: **03/11 R$ 2.299,00 com 5 vendas**, ao lado de 29/10 (3 vendas) e 27/10. O preço não
+mexeu; **as vendas sim**, e é dado que só existe porque a leitura velha ficou.
+
+### O ACHADO, E ELE É UM TÍTULO REAL COM DOIS BURACOS SOMADOS
+
+A coleta nova devolveu, na consulta `bicicleta eletrica adulto`, com `serve: True` e **R$ 113,34**:
+
+```
+1 Peca Certificado 3C Masculino E Feminino Adulto Desenho Animado
+Bicicleta Eletrica Motocicleta Meio Capacete1
+```
+
+**R$ 113,34 seria o PISO da faixa da página da bicicleta** — um **capacete publicado como
+bicicleta**, na primeira tela, sob a frase "Preço mediano hoje", com botão de afiliado ao lado. A
+régua recusou **dez** capacetes naquela mesma passada e deixou passar **o décimo primeiro**.
+
+**(1) A BORDA DA DIREITA.** A recusa `capacete` não casou porque o vendedor escreveu **`Capacete1`**,
+com o dígito **colado**: `\b` é borda entre caractere de palavra e não-palavra, e `1` **é** caractere
+de palavra — então não há borda. É a família do `git log` raso da **1.1** e do número de tela
+digitado: **o instrumento responde, e a resposta sai curta com cara de completa.**
+
+E a correção **não podia ser casar por pedaço de palavra**, porque a própria régua tem bordas por
+uma medição de 29/10 (`Patinete Eletrico ... 36V` recusado por `6v`). Então **as duas bordas
+deixaram de ser a mesma coisa, cada uma pelo que PROTEGE**: a da **esquerda** segue `\b` estrita, que
+é quem impede `6v` de casar `36V` — o dígito **antes** do termo é justamente o caso medido; a da
+**direita**, para termo que termina em **letra**, passa a ser `(?![a-z])`, porque dígito colado não
+faz outra palavra (`capacete1` é `capacete` com a enumeração do vendedor) e **letra colada faz** — e
+é por isso que `moto` continua não casando `motocicleta`; para termo que termina em **dígito** segue
+`\b`, porque `aro 20` não pode casar `aro 200`, onde o dígito seguinte **muda a medida**.
+
+**(2) A REGRA DE POSIÇÃO, e ela é um buraco independente.** Consertada a borda, **o título ainda
+passava**: `capacete1` está no **fim**, depois de `bicicleta`, e `POR_POSICAO` lê isso como *"é peça
+DO veículo"* e pula a recusa. A regra está **certa** para o título que ela nasceu medindo — o veículo
+que nomeia as peças dele, `Patinete Eletrico 800W ... Pneu 10" Off-Road` — e **cega para a forma
+inversa**, que é a forma **mais comum** de título de acessório: listar primeiro os veículos
+**compatíveis** e nomear o produto **por último**. Fecha `1 peca`, que está na **posição 0** e por
+isso fura as duas, sobre uma afirmação do nicho fácil de conferir: **ninguem vende bicicleta,
+patinete ou moto elétrica como "1 Peça"**. É a irmã singular de `kit_multiplo`, e mora em `acessorio`
+porque o que ela decide não é quantidade: é **o que o anúncio é**.
+
+**AS DUAS MORDEM, CADA UMA PELA AFIRMAÇÃO DECLARADA** — e a bateria precisou de um mundo
+**fabricado** para que a primeira pudesse falhar sozinha, porque o título real é recusado por
+`1 peca` e **não exerce a borda**: com a borda quebrada ele continuaria barrado, e a correção
+passaria por conferida sem nunca ter sido medida (seção 8). Revertida a borda → reprova **1** (o
+fabricado `Capacete1 Meio Casco Adulto para Bicicleta Elétrica`); revertido o `1 peca` → reprova **1**
+(o título real); revertidas as duas → reprova **2**. Mais o avesso, que tem de **passar**:
+`Bicicleta Elétrica Dobrável Adulto Capaceteria` — letra colada não é capacete. **28 casos, 0 falha.**
+
+### E O PORTÃO QUE ACUSOU ESCONDIA O CAMPO QUE DIVERGIA
+
+`coletar-por-consulta.py --conferir` reprovou — certo — e a linha saiu assim:
+
+```
+FALHA: bicicleta-eletrica / 25896948111: veredito gravado (False/acessorio)
+       discorda do calculado (False/acessorio)
+```
+
+**Os dois lados impressos idênticos.** A comparação lê **três** campos (`serve`, `recusado_por` e
+`exigencia_que_faltou`) e a mensagem imprimia **dois**; o que divergia naquele anúncio era a
+**palavra** que recusa (`capacete` → `1 peca`, porque a ordem da lista mudou), e ela não aparecia.
+Passou a imprimir os três. **Portão que não imprime o campo que ele compara faz quem o lê duvidar do
+portão em vez do dado**, que é o perigo que a **20.5** nomeia.
+
+### E OS PORTÕES PEGARAM UMA FALTA MINHA ANTES DO AR
+
+A recoleta **substituiu** `anuncios-por-consulta.json` e com isso derrubou o `piso_da_busca` da
+**25.2**. `validar-banco.py` (**22 falhas**) e `coletar-piso-da-vitrine.py --conferir` (**2**)
+acusaram, com a frase certa: *"serve link de ficha e não tem piso de compra; ficha apodrece, e quando
+esta morrer o cartão fica sem saída de compra"*. **Piso recolhido** nas duas consultas, e aí sim
+verde. É a 25.2 funcionando sobre um erro de **ordem de passos**, não de régua.
+
+### NO AR, CONFERIDO PELA 18.4
+
+Revisão **33**, aplicada às **16:39:42Z**. `conferir-no-ar.py`: **APROVADO**.
+Bancada **com rede: 29 portões, 0 falha** (inclusive o portão de pixel da 32.5 e o
+`conferir-produto-no-ar.py`).
+
+**20.4 e 20.8:** a linha de fecho da revisão 33 declara **`4 aplicado(s)`** e o grupo dela traz
+**exatamente 4 linhas de item**, lidas **uma por uma**, **todas dizendo `ok`**
+(`dados/paginas-institucionais`, `dados/vitrine-de-produto`, `dados/paginas-de-produto`,
+`dados/f2-respostas`). Conta fechada, janela não rolou, nenhuma linha de item ficou fora.
+
+**E O NÚMERO MUDOU NO AR, medido com quebra de cache nas três páginas:**
+
+| página | o que serve agora | `29/10/2026` na página | `03/11/2026` |
+|---|---|---|---|
+| `/veiculos/patinete-eletrico/` | *"Preço mediano hoje R$ 1.647,95 ... sobre os 16 anúncios que a gente conferiu em 03/11/2026"* | **0** | 10 |
+| `/veiculos/bicicleta-eletrica/` | *"R$ 2.299,99 ... sobre os 6 anúncios que a gente conferiu em 03/11/2026"* | **0** | 10 |
+| `/autonomia-patinete-eletrico/` | cartão com preço de **03/11/2026** | **0** | 2 |
+
+**E o capacete não está lá:** `113,34` **ausente** da página da bicicleta. A frase *"Preço mediano
+hoje"* voltou a ser verdadeira nas duas páginas.
+
+**O CRON:** o turno das 16:18:44Z caiu **antes** do push das 16h35Z, então pela 20.6 a espera era do
+turno seguinte — que entrou às **16:39:42Z**, com as visitas de pé. Quatro minutos, não dezenove: a
+diferença com 13h4xZ é que ali o push caiu **quatro minutos depois** de um turno e aqui caiu perto do
+fim da janela.
+
+### OS TRÊS BLOQUEIOS, REMEDIDOS E NÃO HERDADOS — e o quarto, que é de PRODUTO
+
+| o que travava | medido em 03/11 16h2xZ | resultado |
+|---|---|---|
+| **F1** — texto oficial da Resolução Contran | `www.gov.br`, `in.gov.br`, `www.planalto.gov.br`, `www.contran.gov.br`, 2 passadas cada | **000 nas 8** |
+| **F3** — `carga_max_kg`, campo de nível 5 | `www.casasbahia.com.br`, `www.extra.com.br`, `www.magazineluiza.com.br`, 2 passadas cada | **000 nas 6** |
+| **malha nova** — a sessão de Chrome do despacho de 30/10 | `dados/consultas-de-produto.json`, linha por linha | as duas seguem **`nao-medida`**, sem `visto_por` nem `visto_em` |
+
+**14 medições de bloqueio contra 2 de controle verde** (`rodametria.com.br` em 200 nas mesmas
+passadas), zero intermitência.
+
+**E O BLOQUEIO POR PRODUTO DE `moto eletrica` E `scooter eletrica` FOI REMEDIDO NA OPEN API, cinco
+dias depois, E REPRODUZIU EXATO** — as duas maiores cabeças sem página do nicho, **823 mil** e **301
+mil** buscas/mês:
+
+- `moto eletrica adulto`: **3 de 20 servem** — o piso da 30.2 **raspando** —, os **três com ZERO
+  vendas**, a R$ 8.500, R$ 13.999 e R$ 15.000. **Os mesmos três produtos de 29/10**, com a mesma
+  variação de R$ 6.500 para a mesma classe. *"Página que nasce no piso com os três sem uma venda sai
+  do ar na primeira coleta que perder um"* segue verdadeiro, e agora com duas medições.
+- `scooter eletrica adulto`: **6 de 20 servem e cinco são PATINETE** (o sexto é bicicleta).
+  **Nesta loja a palavra `scooter` É o patinete** — publicar a consulta serviria, sob um H1 que
+  promete scooter, o produto que a página do patinete já serve: canibalização da 30.4 construída de
+  propósito.
+
+**O veredito dos dois não mudou, e agora ele é uma série de duas medições em vez de uma leitura
+herdada.** O caminho delas continua sendo o Mercado Livre, onde a geração de link exige clique humano
+(25.6) — **despacho, nunca bloco**.
+
 ## 2026-11-03 13h21Z–13h4xZ — **A PURGA DE CACHE DO HOSPEDEIRO, com os dois portões ao lado** — e o "pronto quando" do despacho **não era conferível desta nuvem**, o que é o achado de método da passada
 
 **A ESCOLHA DA ILHA.** `foco.md` nomeia a **rodametria** — foco total e absoluto desde 27/10 — e pela

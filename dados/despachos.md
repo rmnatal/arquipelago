@@ -11,6 +11,81 @@ Prioridade: `alta` fura a fila da próxima execução do destinatário.
 
 ## ABERTOS
 
+### prioridade NORMAL — DÍGITO COLADO NO FIM DA PALAVRA DERROTA A BORDA `\\b`, E A RECUSA PASSA CALADA: medido na rodametria, e a clubedomosaico tem a MESMA forma numa régua que decide o que ela publica
+
+03/11/2026 — FUNDAÇÃO (quem reservar a ilha) — Achado na **rodametria**, na coleta das 16h2xZ, e está
+aqui e não no `PROMPT.md` daquela ilha porque a **seção 3** proíbe editar arquivo de ilha que a
+execução não reservou. Mesma forma do despacho do `clearstatcache` e do `realpath('')`.
+
+**O DEFEITO, com o título real que o trouxe:**
+
+```
+1 Peca Certificado 3C Masculino E Feminino Adulto Desenho Animado
+Bicicleta Eletrica Motocicleta Meio Capacete1
+```
+
+A régua da rodametria recusa acessório pela palavra `capacete`, entre bordas de palavra. **`\b` é
+borda entre caractere de palavra e não-palavra, e `1` É caractere de palavra** — então `Capacete1`
+**não casa**, e aquele anúncio passou com `serve: True` a **R$ 113,34**. Ele seria o **piso da faixa
+de preço** de `/veiculos/bicicleta-eletrica/`, que é o **número próprio** da ilha, servido na primeira
+tela sob a frase *"Preço mediano hoje"*, com botão de afiliado ao lado. **Dez capacetes foram
+recusados pela palavra na mesma passada; o décimo primeiro passou pelo dígito.**
+
+É a família do **`git log` raso da 1.1** e do **número de tela digitado**: o instrumento responde, e a
+resposta sai curta com cara de completa. E a correção **não pode ser casar por pedaço de palavra** —
+é por isso que aquela régua tem bordas: em 29/10 ela recusou `Patinete Eletrico ... 36V` pela palavra
+`6v` do brinquedo.
+
+**A RÉGUA, E ELA É ASSIMÉTRICA DE PROPÓSITO — cada borda pelo que ela PROTEGE:**
+
+- **esquerda: `\b` estrita.** É ela que impede `6v` de casar `36V`. O dígito **antes** do termo é o
+  caso medido, e afrouxar aqui reabre o defeito de 29/10.
+- **direita, termo terminado em LETRA: `(?![a-z])`.** Dígito colado não faz outra palavra
+  (`capacete1` é `capacete` com a enumeração do vendedor); **letra colada faz**, e é por isso que
+  `moto` continua não casando `motocicleta`.
+- **direita, termo terminado em DÍGITO: `\b`.** `aro 20` não pode casar `aro 200` — ali o dígito
+  seguinte **muda a medida**.
+
+**E ELA NÃO FECHA SOZINHA:** no título acima o `capacete1` está **depois** de `bicicleta`, e a regra
+de POSIÇÃO da régua lê isso como *"é peça DO veículo"* e pula a recusa. A regra de posição está
+**certa** para o título que ela nasceu medindo (o veículo que nomeia as peças dele) e **cega para a
+forma inversa**, que é a forma mais comum de título de acessório: listar os veículos **compatíveis** e
+nomear o produto **por último**. Na rodametria quem fecha é `1 peca`, na posição 0.
+
+**A VARREDURA, um `grep` por ilha, zero rede, feita em 03/11/2026:**
+
+| ilha | tem régua que recusa por palavra entre bordas? | estado |
+|---|---|---|
+| rodametria | **SIM** (`teste-relevancia-do-anuncio.py`) | **CONSERTADA em 03/11**, com os dois buracos e as duas mutações |
+| clubedomosaico | **SIM, outra forma** (`coletar-por-consulta.py`, padrões de quantidade) | **NÃO MEDIDO** — ver abaixo |
+| aquametria | não nesta forma | — |
+| robometria | não nesta forma | — |
+
+**O QUE OLHAR NA CLUBEDOMOSAICO, e está escrito como suspeita e não como defeito**, porque a
+**31.2** é literal (*"pode acontecer não basta"*) e eu **não medi aquela ilha**: os padrões de
+quantidade dela terminam em `\b` depois de letra — `r'\b([0-9][0-9\.]*)\s*(?:pcs|pecas|peca|pc)\b'`
+e os irmãos `kit-n` / `pacote-com-n`. Pela mecânica acima, **`10 pecas2` ou `kit 5 pcs1` não casam**,
+e ali o que a régua decide é o **tamanho do kit** — ou seja, errar faz a ilha publicar como peça
+única o que é pacote. **Quem reservar a clubedomosaico mede primeiro** (roda a régua sobre os
+títulos já colhidos procurando dígito colado) e **só conserta se achar**; achando, a régua
+assimétrica acima está escrita, rodando e comentada em
+`ilhas/rodametria/ferramentas/teste-relevancia-do-anuncio.py`, na função `_borda_direita`.
+
+**E A METADE QUE IMPORTA MAIS QUE A LINHA:** copiar o **caso** junto, e um caso **fabricado** ao lado
+do real. Na rodametria o título de verdade é recusado por `1 peca` e **não exerce a borda** — com a
+borda quebrada ele continuaria barrado, e a correção passaria **por conferida sem nunca ter sido
+medida**. Só o mundo fabricado (`Capacete1 Meio Casco Adulto para Bicicleta Elétrica`, com o dígito
+**antes** do substantivo da família) faz a borda falhar sozinha. É a seção 8: trava que nunca viu o
+mundo dela nasce errada sem poder falhar.
+
+**POR QUE NORMAL E NÃO ALTA:** na rodametria o defeito foi pego **antes do ar** pela própria coleta, e
+na clubedomosaico ele é **suspeita não medida**. Nada está errado no ar hoje por esta causa.
+
+**Pronto quando:** a clubedomosaico tiver a medição escrita no `REGISTRO.md` dela — achou ou não
+achou dígito colado nos títulos já colhidos — e, se achou, a borda assimétrica mais o caso fabricado
+rodando verde na `bancada.py` daquela ilha.
+
+
 ### precisa do Raphael — TRÊS domínios de varejo grande na lista de rede, e eles são o nível 5 da rodametria (29/10/2026)
 
 Aberto em 29/10/2026 pela Fundação, no bloco 3d, **e com o alvo corrigido por medição** — não é o que se esperava pedir.

@@ -6,101 +6,126 @@ piso: abaixo              # 5 URLs publicadas contra as 40 da 21.1, e primeira_i
 urls_publicadas: 9        # 5 -> 9 em 30/10/2026 as 14h4xZ: as QUATRO paginas que a 16.1 nomeia (`/sobre/`, `/contato/`, `/divulgacao-de-afiliados/`, `/privacidade/`), pelo bloco 5d. CONTADO no wp-sitemap.xml no ar com quebra de cache, nao na conta de antes do desembarque. ELAS NAO MEXEM NO PISO DA 21.1 NEM GASTAM LEVA: a 21.7 tira as cinco paginas nomeadas da 16.1 do teto de 10 URLs por leva e 3 levas por semana, porque sao familia fechada e nenhuma responde a uma busca — o piso de malha segue pedindo 40 e as paginas de malha seguem 5. A DIVIDA QUE ELAS PAGAM estava medida na contagem de 30/10 as 10h3xZ: a ilha serve link de afiliado da Shopee desde 29/10 e nao tinha pagina de divulgacao de afiliados nem de privacidade.
 ultima_ronda: 2026-10-30T15:10Z   # RONDA DIARIA TECNICA, a PRIMEIRA desta ilha, e ela foi FUNDA. Escrito pela Sentinela, nunca pela Fundacao (secao 2). A ilha tinha 9 URLs no ar no momento da ronda (nao 5): as quatro institucionais do bloco 5d desembarcaram no meio dela, revisao 19 as 14h40:39Z. 9 de 9 em HTTP 200, porta da 29.2 verde nas quatro, soft 404 da borda AUSENTE nesta ilha (caminho virgem em 404 nas quatro leituras), regua tecnica inteira verde, console sem uma mensagem, conta da F2 refeita na mao em cinco casos e fechando. SEIS defeitos achados e ZERO consertados, de proposito: ver dados/consertos.md e o despacho de 30/10 em PROMPT.md. Teste de vida: 9 itens testados, 9 vivos, 0 morto, 13 nao testados por orcamento do anti-robo da Shopee.
 primeira_indexacao: null  # as duas primeiras URLs foram ao ar hoje; indexacao e trabalho de dias. Quem grava este campo e a leitura semanal, lendo o Search Console.
-ultima_execucao: 2026-11-03T13:44Z   # A PURGA DE CACHE DO HOSPEDEIRO ENTROU NESTA ILHA, com os DOIS portoes ao lado, e o despacho NORMAL de 03/11 esta FECHADO e conferido NO AR (18.4): casca 1.8.0, revisao 31 as 13:40:42Z, `tem_purga_de_cache: true` lido no `/casca`. No caminho, o achado de metodo: o "pronto quando" do despacho pedia esse booleano no retrato da 29.3, que exige o token do Sync — criterio que ninguem desta nuvem podia medir. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
-executando_desde: 2026-11-03T16:34Z   # RESERVA RENOVADA pela 1.1, com `date -u` na MESMA linha de comando. A reserva original e das 16h18Z desta data; o bloco passou de 40 minutos por DESENHO DO DESEMBARQUE e nao por bloco longo — o cron desta ilha e de 30 minutos e a visita so dispara o que ja esta DEVIDO (20.6, e a cauda medida em 03/11 13h4xZ). Entrou por FOCO: `foco.md` nomeia a rodametria; as DUAS excecoes da 1.2 foram conferidas e NENHUMA furou.
+ultima_execucao: 2026-11-03T16:42Z   # A FAIXA DE PRECO REMEDIDA HOJE nas duas paginas de produto, e a coleta achou a REGUA DEIXANDO PASSAR UM CAPACETE COMO BICICLETA a R\$ 113,34 — que seria o PISO do numero proprio da pagina. Revisao 33 as 16:39:42Z, `4 aplicado(s)` contra 4 linhas de item dizendo `ok` (20.4 e 20.8). A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
+executando_desde: null   # LIMPO as 2026-11-03T16:42Z pela propria execucao que reservou as 16h18Z de 03/11 e RENOVOU as 16h34Z pela 1.1. Entrou por FOCO (`foco.md` nomeia a rodametria): as duas excecoes da 1.2 foram conferidas e NENHUMA furou.
 rede: aberta em 2026-11-03   # 20.2, MEDIDA e nao herdada na execucao das 13h21Z: rodametria.com.br/ e /wp-json/rodametria/v1/status os dois em 200 em TRES passadas, com aquametria.com.br em 200 nas MESMAS tres. O EGRESSO (gov.br para a F1, os tres varejos grandes para a F3) NAO foi remedido nesta passada — a de 10h17Z o mediu em 14 medicoes de bloqueio contra 2 de controle verde, e este bloco nao dependia dele. Os dois despachos ALTA seguem valendo.
 bloqueada_por: null      # obrigatorio pela secao 2. `null` DE PROPOSITO: o que falta (gov.br para a F1, as prefeituras para a camada municipal, as tres etiquetas do Mercado Livre) trava a FABRICA e nao a ILHA, e isso se escreve no despacho, que e o canal da 12.2. Preenche-lo congelaria tambem os blocos que ja podem andar — e o proximo da fila, o 3d, nao depende de nenhum deles.
 bloco_atual: |
-  A PURGA DE CACHE DO HOSPEDEIRO ENTROU NESTA ILHA, e com ela FECHA a
-  divergencia (a) da secao 12 da casca e o despacho NORMAL de 03/11 em
-  `dados/despachos.md`. Casca 1.8.0, revisao 31 no ar as 13:40:42Z.
+  A FAIXA DE PRECO REMEDIDA HOJE nas duas paginas de produto, e a coleta achou a
+  REGUA DEIXANDO PASSAR UM CAPACETE COMO BICICLETA. Revisao 33 no ar as
+  16:39:42Z.
 
   ESTE ARQUIVO CONTINUA SENDO A MEMORIA DESTA ILHA — `/areas/projeto-rodametria.md`
   nao existe nesta nuvem (conferido outra vez nesta passada), e e por isso que
   este campo e longo.
 
-  A ILHA VIVEU SETE DIAS NO AR SEM PURGA, E A FALTA ERA DITA EM VEZ DE
-  ESCONDIDA: a secao 12 registrava a divergencia com todas as letras e o
-  retrato da rota da 29.3 ja saia com `tem_purga_de_cache: false`. Ela nao foi
-  consertada de carona em 10h17Z de proposito, e a execucao da manha tinha
-  razao — purga que apaga arquivo em disco e a funcao que entrou no
-  Arquipelago com a armadilha do `realpath('')`, que custou 117 arquivos numa
-  passada da aquametria.
+  O BLOCO NAO ESTAVA PRE-REGISTRADO, e a execucao anterior tinha razao ao dizer
+  que nao havia bloco de CODIGO desbloqueado. O que havia era DADO vencido: o
+  `numero_proprio_pedido` das duas paginas de produto — a faixa de preco — estava
+  medido em 29/10 e as paginas serviam "Preco mediano hoje" na primeira tela, com
+  "os 16 anuncios que a gente conferiu em 29/10/2026" no corpo. E a secao 4
+  aplicada ao PRODUTO da ilha: o site nao ficou para tras em silencio, ficou para
+  tras dizendo "hoje". Recolher e o trabalho que o desenho preve — o esquema
+  nasceu com `cotacoes[]` como SERIE (achado 3 do bloco 3) — e nada de portao
+  novo nasceu (31.2 e 31.3 respeitadas).
 
-  OS DOIS PORTOES VIERAM JUNTO, porque era a condicao escrita no despacho:
-  `teste-purga-cache.php` (21 afirmacoes, 0 falha — armadilhas em disco de
-  verdade, cada uma com uma TESTEMUNHA do lado de fora, porque afirmacao sobre
-  o que foi apagado e metade da prova) e `mutacoes-purga-cache.py` (8 baterias,
-  o mundo intacto passando e as 7 mutacoes reprovando CADA UMA PELA AFIRMACAO
-  DECLARADA, zero inertes). Entraram na bancada PELA CONVENCAO DE NOME, sem
-  ninguem os listar: 25 portoes sem rede contra os 23 de antes, 0 falha,
-  contados em `bancada.py --lista` e nao de cabeca.
+  O QUE MUDOU NO AR, medido com quebra de cache:
+  - /veiculos/patinete-eletrico/: R$ 1.030,00 a R$ 2.699,00, mediana R$ 1.647,95
+    sobre 16 anuncios (era R$ 1.297,13 a R$ 3.399,00, mediana R$ 1.590,53).
+  - /veiculos/bicicleta-eletrica/: R$ 2.299,99 a R$ 6.199,90, mediana R$ 2.299,99
+    sobre 6 anuncios (eram 5).
+  - /autonomia-patinete-eletrico/: o cartao casado com preco de 03/11.
+  - ZERO ocorrencia de `29/10/2026` nas tres paginas.
+  - A serie do honeywhale-m2-max CRESCEU em vez de ser substituida: 03/11 R$
+    2.299 com 5 VENDAS, ao lado de 29/10 (3) e 27/10. O preco nao mexeu; as
+    vendas sim, e o dado so existe porque a leitura velha ficou.
 
-  O QUE MUDOU NO PORTE, e e uma afirmacao NOVA que a aquametria nao tem: la o
-  corte da secao e entre DOIS marcadores; aqui a secao 13 e a ULTIMA do
-  arquivo, entao o corte vai ate o fim — e isso so e honesto ENQUANTO for
-  verdade. O portao ganhou a AFIRMACAO DE FRONTEIRA: se nascer
-  `function_exists(` depois da ultima linha do gatilho, ele reprova dizendo que
-  o corte virou mentira. Mesma familia da 20.8: instrumento que responde curto
-  sem dar erro.
+  O ACHADO, UM TITULO REAL COM DOIS BURACOS SOMADOS. A coleta devolveu, em
+  `bicicleta eletrica adulto`, com `serve: True` e R$ 113,34:
+    "1 Peca Certificado 3C Masculino E Feminino Adulto Desenho Animado
+     Bicicleta Eletrica Motocicleta Meio Capacete1"
+  R$ 113,34 seria o PISO da faixa daquela pagina — um CAPACETE publicado como
+  BICICLETA, na primeira tela, sob "Preco mediano hoje", com botao de afiliado ao
+  lado. A regua recusou DEZ capacetes na mesma passada e deixou passar o DECIMO
+  PRIMEIRO.
+  (1) BORDA DA DIREITA: `capacete` nao casou porque o vendedor escreveu
+      `Capacete1`, digito COLADO — `\b` nao e borda entre `e` e `1`. Familia do
+      `git log` raso da 1.1: o instrumento responde e a resposta sai curta com
+      cara de completa. A correcao NAO podia ser casar por pedaco de palavra (foi
+      o que recusou `36V` por `6v` em 29/10), entao as bordas ficaram
+      ASSIMETRICAS, cada uma pelo que PROTEGE: esquerda `\b` estrita (e ela que
+      barra o `36V`); direita, termo terminado em LETRA, `(?![a-z])` (digito
+      colado nao faz outra palavra, letra colada faz — `moto` segue nao casando
+      `motocicleta`); direita, termo terminado em DIGITO, `\b` (`aro 20` nao pode
+      casar `aro 200`, onde o digito MUDA a medida).
+  (2) REGRA DE POSICAO, buraco INDEPENDENTE: consertada a borda o titulo AINDA
+      passava, porque `capacete1` esta no FIM, depois de `bicicleta`, e
+      POR_POSICAO le isso como "peca DO veiculo". A regra esta certa para o
+      titulo que nasceu medindo (o veiculo que nomeia as pecas dele) e cega para
+      a forma INVERSA, que e a forma mais comum de titulo de acessorio: listar os
+      veiculos COMPATIVEIS e nomear o produto por ultimo. Fecha `1 peca`, na
+      posicao 0, sobre uma afirmacao do nicho facil de conferir: ninguem vende
+      bicicleta eletrica como "1 Peca".
+  AS DUAS MORDEM, cada uma pela afirmacao declarada, e a borda precisou de um
+  mundo FABRICADO para poder falhar sozinha — o titulo real e barrado por
+  `1 peca`, entao com a borda quebrada ele continuaria barrado e a correcao
+  passaria POR CONFERIDA SEM NUNCA TER SIDO MEDIDA (secao 8). 28 casos, 0 falha.
 
-  O ACHADO DE METODO, E ELE VALE MAIS QUE O BLOCO: o "pronto quando" do
-  despacho pedia `tem_purga_de_cache: true` NO DIAGNOSTICO DA 29.3 — e aquele
-  retrato exige o TOKEN DO SYNC, que nao esta no repositorio e nao deve estar.
-  Criterio de pronto que so quem tem o token pode ler e criterio que NINGUEM
-  mede, e a 18.4 manda o contrario: o despacho morre quando e VERIFICADO. O
-  conserto foi uma linha — a casca passou a servir o MESMO booleano no
-  `/casca`, que e publico (booleano sobre a existencia de uma funcao desta ilha
-  nao e segredo do servidor, que e o que a 29.3 manda nao vazar) — mais a
-  afirmacao correspondente no `conferir-no-ar.py`, para a pergunta ser feita em
-  TODA passada e nao so hoje. E ele NAO e redundante com a versao do snippet da
-  20.7: a versao diz QUAL BYTE o WordPress carregou, e este campo diz que a
-  FUNCAO existe no processo — a chamada dentro do reparo e guardada por
-  `function_exists`, entao e esta pergunta que decide se o reparo vai purgar. E
-  a 20.7 ao contrario: la a AUSENCIA do `id` acusa snippet morto, aqui a
-  PRESENCA do booleano prova a funcao viva.
+  E O PORTAO QUE ACUSOU ESCONDIA O CAMPO: `--conferir` compara serve,
+  recusado_por E exigencia_que_faltou, e imprimia DOIS — a linha saia
+  "gravado (False/acessorio) discorda do calculado (False/acessorio)", os dois
+  lados identicos. Passou a imprimir os tres. Portao que nao imprime o campo que
+  compara faz quem o le duvidar do PORTAO em vez do DADO (20.5).
 
-  O QUE ESTE BLOCO NAO PROVA, dito para ninguem procurar aqui depois: ele NAO
-  prova que a purga esvazia o cache do hospedeiro. Isso so se mede no ar, com
-  um reparo de verdade, e o reparo exige o token. O que foi medido e a outra
-  metade, a que o ar nunca mostraria: que a funcao PARA quando a levam para
-  fora da pasta dela — e que ela esta CARREGADA no processo que o site serve.
+  E OS PORTOES PEGARAM UMA FALTA MINHA ANTES DO AR: a recoleta substituiu
+  `anuncios-por-consulta.json` e derrubou o `piso_da_busca` da 25.2;
+  validar-banco (22 falhas) e coletar-piso-da-vitrine --conferir (2) acusaram que
+  a pagina serviria ficha sem saida de compra para o dia em que ela esgotar.
+  Piso recolhido nas duas consultas. Erro de ORDEM DE PASSOS, nao de regua.
 
-  O DESEMBARQUE CUSTOU 19 MINUTOS DE RELOGIO, E A CAUSA E 20.6 NOUTRO TRAJE: o
-  turno do cron rodou as 13:22:08Z, QUATRO minutos ANTES do push das 13h26Z,
-  leu a revisao 30 e nao teve o que aplicar. O cron desta ilha e de 30 minutos,
-  entao as 13 visitas entre 13h27 e 13h40 nao adiantaram NADA e o `wp-cron.php`
-  devolveu 409. A 20.6 diz que o cron roda por VISITA e isso e verdade; o que
-  ela nao diz e que a visita so dispara o que ja esta DEVIDO. Quem empurrar nos
-  primeiros minutos depois de um turno espera o turno seguinte, e a espera NAO
-  e defeito. O minuto do ultimo turno se le sem adivinhar: campo `ultimo` do
-  `/status`.
+  NO AR (18.4): revisao 33 as 16:39:42Z, `conferir-no-ar.py` APROVADO, bancada
+  com rede em 29 portoes / 0 falha. A linha de fecho da revisao 33 declara
+  `4 aplicado(s)` e o grupo dela traz EXATAMENTE 4 linhas de item, lidas uma por
+  uma, TODAS dizendo `ok` (20.4 e 20.8).
 
-  NO AR, CONFERIDO PELA 18.4: `conferir-no-ar.py` 454 afirmacoes, 0 falha. As 5
-  linhas de item da revisao 31 lidas uma por uma, todas dizendo `ok`, contra o
-  `5 aplicado(s)` que a propria linha de fecho declara (20.4 e 20.8). Versao no
-  ar conferida contra o manifest em 4 de 4 snippets. A parede da rota da 29.3
-  de pe: 401 sem token e 401 com token errado (`rodametria_rotas_token_invalido`).
+  OS TRES BLOQUEIOS REMEDIDOS E NAO HERDADOS, antes de construir: F1 (gov.br,
+  in.gov.br, planalto, contran) 000 em 8 medicoes; F3 (casasbahia, extra,
+  magazineluiza) 000 em 6; as duas consultas do despacho de 30/10 seguem
+  `nao-medida` sem `visto_por` nem `visto_em` — a sessao de Chrome do Raphael NAO
+  aconteceu. 14 medicoes de bloqueio contra 2 de controle verde.
 
-  NENHUM BLOCO DE PAGINA ESTA DESBLOQUEADO, E ISSO FOI RECONFERIDO E NAO
-  HERDADO: as duas consultas do despacho de 30/10 seguem `nao-medida` em
-  `dados/consultas-de-produto.json` (a sessao de Chrome do Raphael nao
-  aconteceu) e nenhuma consulta dos eixos parametricos tem veredito `alvo`.
+  E O QUARTO BLOQUEIO, O DE PRODUTO, FOI REMEDIDO NA OPEN API E REPRODUZIU EXATO
+  cinco dias depois — as duas maiores cabecas sem pagina do nicho:
+  - `moto eletrica` (823 mil/mes): 3 de 20 servem, o piso da 30.2 RASPANDO, os
+    TRES com ZERO vendas, a R$ 8.500 / 13.999 / 15.000. Os MESMOS tres produtos
+    de 29/10, com a mesma variacao de R$ 6.500 para a mesma classe.
+  - `scooter eletrica` (301 mil/mes): 6 de 20 servem e CINCO SAO PATINETE (o
+    sexto e bicicleta). Nesta loja a palavra `scooter` E o patinete, e publicar
+    serviria sob um H1 que promete scooter o produto que a pagina do patinete ja
+    serve — canibalizacao da 30.4 de proposito.
+  O veredito nao mudou, e agora e uma SERIE DE DUAS MEDICOES em vez de leitura
+  herdada. O caminho das duas segue sendo o Mercado Livre, onde gerar link exige
+  clique humano (25.6): despacho, nunca bloco.
 
   O PROXIMO PASSO DESBLOQUEADO, em ordem de valor:
-  (1) NAO HA MAIS BLOCO DE CODIGO DESBLOQUEADO NESTA ILHA pre-registrado. A
-      purga era "o unico que sobrou", escrito assim pela execucao de 10h17Z, e
-      ela acabou de sair. A execucao seguinte que nao achar bloco novo deve
-      DIZER ISSO em vez de inventar — e antes de dizer, conferir os tres
-      bloqueios no ar outra vez, porque "nada desbloqueado" e a frase que mais
-      barato se copia.
-  (2) O QUE DESTRAVA MAIS POR MENOS CONTINUA SENDO O MESMO GESTO: o despacho de
-      30/10 para o Raphael — duas SERPs e um volume, UMA sessao de Chrome de
-      ~10 minutos. Sem ele nenhuma pagina nova nasce nesta ilha.
-  (3) FORA DESTA ILHA, e so para quem a reservar: o despacho NORMAL do
-      `clearstatcache` da 29.3 segue aberto na clubedomosaico e na robometria,
-      as duas ilhas que servem a rota. A secao 3 proibe editar ilha nao
-      reservada, entao ele nao e trabalho de quem esta aqui.
+  (1) NAO HA BLOCO DE PAGINA NOVA DESBLOQUEADO, e isto foi RECONFERIDO hoje e nao
+      herdado. O que esta ilha tem de trabalho recorrente e a RECOLETA: a faixa
+      de preco e a serie de cotacoes vencem sozinhas, e a passada de hoje mostra
+      que elas valem bloco — o numero mudou nas duas paginas e a coleta achou um
+      defeito de regua que nenhuma bancada acharia, porque so o CATALOGO DE HOJE
+      o produz. Quem recolher: `coletar-por-consulta.py --gravar` E DEPOIS
+      `coletar-piso-da-vitrine.py --gravar` (a ordem importa, foi o que os
+      portoes pegaram), mais `coletar-oferta.py --gravar`, e so entao gerar.
+  (2) O QUE DESTRAVA MAIS POR MENOS CONTINUA SENDO O MESMO GESTO, e e do Raphael:
+      o despacho de 30/10 — duas SERPs e um volume, UMA sessao de Chrome de ~10
+      minutos. Aberto ha QUATRO dias. Sem ele nenhuma pagina nova nasce aqui, e a
+      ilha tem 9 URLs contra as 40 do piso da 21.1.
+  (3) FORA DESTA ILHA, e so para quem a reservar: o despacho novo da BORDA DA
+      DIREITA (03/11, em `dados/despachos.md`) aponta a clubedomosaico, cujos
+      padroes de quantidade tem a mesma forma `\b` depois de letra. Esta escrito
+      como SUSPEITA NAO MEDIDA de proposito (31.2), e la o que a regua decide e o
+      TAMANHO DO KIT. E o despacho do `clearstatcache` da 29.3 segue aberto na
+      clubedomosaico e na robometria.
 ---
 
 # Estado da ilha RODAMETRIA
