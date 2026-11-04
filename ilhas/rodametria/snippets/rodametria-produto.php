@@ -87,7 +87,7 @@
    canal de desembarque desta ilha. (`dados/consertos.md` e da Sentinela, nao da
    Fundacao — por isso este achado nao foi escrito la.) */
 if ( ! defined( 'RODAMETRIA_PRODUTO_VERSAO' ) ) {
-	define( 'RODAMETRIA_PRODUTO_VERSAO', '1.4.0' );
+	define( 'RODAMETRIA_PRODUTO_VERSAO', '1.5.0' );
 }
 
 /* A VERSAO DESTE SNIPPET VAI AO AR, pelo filtro que a casca 1.6.0 abriu
@@ -241,6 +241,18 @@ function rdm_produto_preencher( $texto, $pagina ) {
 		   dela declarando. Os tres moldes de numero existem para quem quiser
 		   escrever a frase de outro jeito; a frase inteira e o molde seguro. */
 		'{FRASE_DA_CARGA}'   => (string) $n['frase_da_carga'],
+		/* O PIVO DA F1 E O DOBRAVEL — 04/11/2026. A frase do pivo e a contagem
+		   mais importante desta ilha e entrou pelo mesmo motivo que a da carga, um
+		   grau acima: a camada declarada da pagina da bicicleta afirmava os DOIS
+		   lados do pivo — "de pedal assistido" embaixo e "tem acelerador" em cima —
+		   com ZERO dos seis anuncios declarando qualquer um dos dois, separando-os
+		   por PRECO. A especificacao desta ilha proibe isso no BANCO com todas as
+		   letras ("nunca cai no lado 'so pedal assistido' por omissao") e a prosa
+		   fazia exatamente isso na TELA, na metade que decide se precisa de CNH. */
+		'{FRASE_DO_PIVO}'     => (string) $n['frase_do_pivo'],
+		'{FRASE_DO_DOBRAVEL}' => (string) $n['frase_do_dobravel'],
+		'{DECLARAM_PIVO}'     => (string) $n['declaram_pivo'],
+		'{DOBRAVEIS}'         => (string) $n['dobraveis'],
 		'{DECLARAM_CARGA}'   => (string) $n['declaram_carga'],
 		'{CARGA_DE}'         => ( null === $n['carga_de'] ) ? '' : (string) $n['carga_de'],
 		'{CARGA_ATE}'        => ( null === $n['carga_ate'] ) ? '' : (string) $n['carga_ate'],
@@ -632,6 +644,15 @@ function rdm_produto_agregado_das_prontas( $prontas ) {
 		'de'       => '',
 		'ate'      => '',
 		'datas'    => array(),
+		/* A CARGA AGREGADA — 04/11/2026. A mae tinha, escrita a mao, a frase que
+		   a execucao de 03/11 aposentou da pagina do patinete: "o filtro que
+		   quase ninguem olha e que QUASE NUNCA ESTA NO TITULO". Ela sobreviveu um
+		   dia inteiro no ar aqui porque o conserto foi feito na pagina onde o
+		   defeito foi ACHADO, e esta pagina e outra familia — a 32.5-c um andar
+		   acima do CSS. O numero dela e a soma das filhas, contado aqui. */
+		'carga_declaram' => 0,
+		'carga_de'       => null,
+		'carga_ate'      => null,
 	);
 	$de_num  = null;
 	$ate_num = null;
@@ -642,6 +663,16 @@ function rdm_produto_agregado_das_prontas( $prontas ) {
 
 		$ag['familias']++;
 		$ag['anuncios'] += isset( $n['n'] ) ? (int) $n['n'] : 0;
+
+		$ag['carga_declaram'] += isset( $n['declaram_carga'] ) ? (int) $n['declaram_carga'] : 0;
+		if ( isset( $n['carga_de'] ) && null !== $n['carga_de']
+			&& ( null === $ag['carga_de'] || (int) $n['carga_de'] < $ag['carga_de'] ) ) {
+			$ag['carga_de'] = (int) $n['carga_de'];
+		}
+		if ( isset( $n['carga_ate'] ) && null !== $n['carga_ate']
+			&& ( null === $ag['carga_ate'] || (int) $n['carga_ate'] > $ag['carga_ate'] ) ) {
+			$ag['carga_ate'] = (int) $n['carga_ate'];
+		}
 
 		if ( isset( $n['de_numero'], $n['de'] )
 			&& ( null === $de_num || (float) $n['de_numero'] < $de_num ) ) {
@@ -681,6 +712,61 @@ function rdm_produto_agregado_das_prontas( $prontas ) {
  * gerador da vitrine ja cobra na frase do rotulo de potencia: "imprime zero no
  * meio da frase" e falha nomeada naquele portao.
  */
+/**
+ * A FRASE DA CARGA AGREGADA DA SECAO MAE — UMA FRASE POR MUNDO (04/11/2026).
+ *
+ * POR QUE ELA EXISTE, e a causa e a mais instrutiva desta ilha: a execucao de
+ * 03/11 achou, na pagina do patinete, a frase declarada *"a carga maxima (...)
+ * QUASE NUNCA ESTA NO TITULO"* com SEIS dos DEZESSEIS anuncios daquela pagina
+ * declarando, e a trocou por uma contagem. **A MESMA AFIRMACAO VIVIA AQUI**, no
+ * `o_que_decide` da mae — *"o filtro que quase ninguem olha e que quase nunca
+ * esta no titulo"* — e sobreviveu o dia inteiro no ar, porque o conserto foi
+ * feito na pagina onde o defeito foi ACHADO. E a 32.5-c um andar acima do CSS: a
+ * metade que aprendeu nao contou a irma. O portao escrito no mesmo dia para
+ * impedir o retorno da frase tambem nao a pegou, porque ele varria as paginas de
+ * FILHA e a mae nao e uma delas.
+ *
+ * FUNCAO PURA sobre a relacao ja calculada, pelo mesmo motivo da irma de baixo: o
+ * mundo "todos declaram" e o mundo "todos no mesmo numero" nao existem no dado de
+ * hoje, e recusa escrita dentro do laco que a calcula so e testavel no dia em que
+ * o banco produzir o caso — que e o dia em que ela vai estar errada.
+ *
+ * E ELA E AGREGADA DE PROPOSITO: a mae nao tem anuncio proprio. O numero dela e a
+ * soma das filhas publicadas, e a faixa e o menor e o maior entre todas — nunca a
+ * faixa de uma familia servida como se fosse da secao.
+ */
+if ( ! function_exists( 'rdm_produto_frase_da_carga_agregada' ) ) {
+function rdm_produto_frase_da_carga_agregada( $ag, $moldes ) {
+	$n        = isset( $ag['anuncios'] ) ? (int) $ag['anuncios'] : 0;
+	$declaram = isset( $ag['carga_declaram'] ) ? (int) $ag['carga_declaram'] : 0;
+	$de       = ( isset( $ag['carga_de'] ) && null !== $ag['carga_de'] ) ? (int) $ag['carga_de'] : null;
+	$ate      = ( isset( $ag['carga_ate'] ) && null !== $ag['carga_ate'] ) ? (int) $ag['carga_ate'] : null;
+
+	if ( 0 === $declaram || null === $de || null === $ate ) {
+		/* O RAMO DO ZERO VEM PRIMEIRO E COBRE TAMBEM A FAIXA AUSENTE: sem ele a
+		   frase sairia com "de  a  kg" na tela, que e pior que numero velho
+		   porque nao parece defeito de dado, parece defeito de texto. */
+		$molde = isset( $moldes['nenhum'] ) ? $moldes['nenhum'] : '';
+	} elseif ( $de === $ate ) {
+		/* TODOS NO MESMO NUMERO. Sem este ramo a frase diria "de 60 a 60 kg". */
+		$molde = ( 1 === $declaram )
+			? ( isset( $moldes['um'] ) ? $moldes['um'] : '' )
+			: ( isset( $moldes['mesmo_valor'] ) ? $moldes['mesmo_valor'] : '' );
+	} elseif ( $declaram === $n ) {
+		$molde = isset( $moldes['todos'] ) ? $moldes['todos'] : '';
+	} else {
+		$molde = isset( $moldes['faixa'] ) ? $moldes['faixa'] : '';
+	}
+
+	return str_replace(
+		array( '{N}', '{DECLARAM}', '{CARGA_DE}', '{CARGA_ATE}' ),
+		array( (string) $n, (string) $declaram,
+			( null === $de ) ? '' : (string) $de,
+			( null === $ate ) ? '' : (string) $ate ),
+		(string) $molde );
+}
+}
+
 if ( ! function_exists( 'rdm_produto_caixa_frases' ) ) {
 function rdm_produto_caixa_frases( $ag, $faltam, $moldes ) {
 	$familias = isset( $ag['familias'] ) ? (int) $ag['familias'] : 0;
@@ -774,8 +860,11 @@ function rdm_produto_mae_html() {
 	   da camada declarada com moldes. Pagina que fala do estado do banco e
 	   justamente onde numero digitado passa a mentir calado (secao 8). */
 	$caixa = ( isset( $mae['caixa'] ) && is_array( $mae['caixa'] ) ) ? $mae['caixa'] : array();
+	/* UMA LEITURA, DOIS USOS: o agregado sai do laco das filhas uma vez e serve a
+	   caixa de resposta E a frase da carga do `o_que_decide`. Calcula-lo duas
+	   vezes abriria a porta para as duas metades divergirem, que e a 32.5-c. */
+	$ag = rdm_produto_agregado_das_prontas( $prontas );
 	if ( $caixa ) {
-		$ag = rdm_produto_agregado_das_prontas( $prontas );
 		$html .= rodametria_casca_caixa(
 			isset( $caixa['rotulo'] ) ? (string) $caixa['rotulo'] : '',
 			(string) (int) $ag['anuncios'],
@@ -849,9 +938,18 @@ function rdm_produto_mae_html() {
 	if ( ! empty( $mae['o_que_decide'] ) ) {
 		$html .= '<h2>' . esc_html( (string) $mae['o_que_decide_rotulo'] ) . '</h2>';
 		$html .= '<dl class="rdm-escolher">';
+		$moldes_carga = ( isset( $mae['carga'] ) && is_array( $mae['carga'] ) )
+			? $mae['carga'] : array();
+		$frase_carga  = rdm_produto_frase_da_carga_agregada( $ag, $moldes_carga );
 		foreach ( (array) $mae['o_que_decide'] as $item ) {
+			/* O PREENCHEDOR DA MAE — 04/11/2026. Este laco servia a prosa CRUA, e
+			   era por isso que a afirmacao da carga estava escrita a mao aqui: nao
+			   havia por onde um molde entrar. Molde cru na tela e reprovado pelo
+			   `conferir-produto-no-ar.py`, que ja varre `{...}` nesta pagina. */
+			$porque = str_replace( '{FRASE_DA_CARGA_AGREGADA}', $frase_carga,
+				(string) $item['porque'] );
 			$html .= '<dt>' . esc_html( $item['numero'] ) . '</dt>';
-			$html .= '<dd>' . esc_html( $item['porque'] ) . '</dd>';
+			$html .= '<dd>' . esc_html( $porque ) . '</dd>';
 		}
 		$html .= '</dl>';
 	}

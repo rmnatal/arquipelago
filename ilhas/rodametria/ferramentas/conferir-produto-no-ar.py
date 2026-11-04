@@ -156,6 +156,84 @@ def texto_do_corpo(html):
     return normalizar(re.sub(r"<[^>]+>", " ", corpo_da_pagina(html)))
 
 
+
+def _sem_acento(t):
+    import unicodedata
+    t = unicodedata.normalize("NFD", str(t or "").lower())
+    return "".join(c for c in t if unicodedata.category(c) != "Mn")
+
+
+# OS TERMOS SAO OS MESMOS DO `gerar-vitrine-de-produto.py`, e a lista esta
+# DUPLICADA de proposito: aquele portao julga o REPOSITORIO e este julga o AR, e
+# ha um mundo entre os dois — prosa escrita direto no PHP, que a camada declarada
+# nao ve. Lista unica num modulo compartilhado faria este portao medir o mesmo
+# arquivo duas vezes e perder exatamente o caso que ele existe para pegar.
+QUANTIFICADORES = (
+    "quase nunca", "quase sempre", "quase todo", "quase toda", "quase todos",
+    "quase todas", "quase ninguem", "quase nenhum", "quase nenhuma", "a maioria",
+    "maioria", "a minoria", "minoria", "raramente", "costuma", "costumam",
+    "na maior parte", "a maior parte", "maior parte", "boa parte", "grande parte",
+    "geralmente", "normalmente", "em geral", "de modo geral", "via de regra",
+    "tipicamente", "frequentemente", "na pratica", "poucos", "poucas", "muitos",
+    "muitas",
+)
+
+
+def ancoras_liberadas():
+    """Os pedacos LITERAIS dentro dos quais um quantificador esta liberado.
+
+    Lidos da camada declarada, nunca escritos aqui: quem libera uma frase responde
+    por escrito no arquivo, e `gerar-vitrine-de-produto.py --conferir` cobra que a
+    ancora exista no texto e contenha o proprio termo.
+    """
+    with open(os.path.join(ILHA, "dados", "paginas-de-produto.json"), encoding="utf-8") as f:
+        d = json.load(f)
+    return tuple(sorted({
+        _sem_acento(q.get("ancora_no_ar") or "")
+        for q in d.get("quantificadores_declarados_permitidos", [])
+        if (q.get("ancora_no_ar") or "").strip()}))
+
+
+def conferir_quantificadores(caminho, texto, ancoras):
+    """A CLASSE NO AR, EM TODA PAGINA DESTE MOTOR — e ela substitui a afirmacao
+    que nomeava UMA frase.
+
+    POR QUE ELA NASCEU ASSIM, e a causa esta medida duas vezes em dois dias:
+
+      03/11 — a pagina do patinete servia "a carga maxima QUASE NUNCA ESTA NO
+              TITULO" com SEIS dos DEZESSEIS declarando. O conserto trocou a
+              frase por uma contagem e escreveu, aqui, uma afirmacao que nomeava
+              a frase aposentada inteira.
+      04/11 — a MESMA afirmacao estava viva na secao MAE, servida o dia inteiro.
+              A afirmacao de 03/11 nao a pegou porque ela morava no laco das
+              FILHAS, e a mae nao e uma delas — e o cabecalho deste portao JA
+              DIZIA que a mae "caia fora de todo portao de ar desta ilha", de um
+              defeito identico de 02/11. A trava nomeava a INSTANCIA; o que
+              envelhece e a CLASSE.
+
+    Ela nao julga prosa (20.5): denuncia a ocorrencia e exige que ela esteja
+    liberada por escrito, com ancora, na camada declarada.
+    """
+    t = _sem_acento(texto)
+    for anc in ancoras:
+        t = t.replace(anc, " ")
+    for q in QUANTIFICADORES:
+        i = t.find(q)
+        while i >= 0:
+            antes = t[i - 1] if i else " "
+            depois = t[i + len(q):i + len(q) + 1] or " "
+            if not (antes.isalpha() or depois.isalpha()):
+                afirma(False,
+                       "%s serve uma PROPORCAO por extenso (%r) que nao esta liberada na "
+                       "camada declarada: %r — prosa que afirma o estado do catalogo "
+                       "envelhece calada, e foi assim que a frase da carga ficou cinco dias "
+                       "no ar na filha e um dia na mae"
+                       % (caminho, q, texto[max(0, i - 60):i + 80]))
+                return
+            i = t.find(q, i + 1)
+    afirma(True, "")
+    registro("%s: zero quantificador por extenso fora da lista liberada" % caminho)
+
 ROTULO_DO_PISO = "Veja todos disponíveis aqui"
 
 # A LINHA DO PISO DA TABELA SE CONTA PELA CLASSE, NUNCA PELA FRASE, e a primeira
@@ -168,6 +246,7 @@ CLASSE_DO_PISO_DA_TABELA = 'class="rdm-tabela-piso"'
 
 
 def main():
+    ancoras = ancoras_liberadas()
     cod, urls = urls_do_sitemap()
     if not afirma(cod == 200, "o wp-sitemap.xml nao respondeu 200 (deu %s)" % cod):
         return encerrar()
@@ -263,13 +342,21 @@ def main():
         afirma(frase != "", "%s: a vitrine do repositorio nao tem frase_da_carga" % caminho)
         afirma(normalizar(frase) in normalizar(texto),
                "%s nao serve a frase contada da carga: %r" % (caminho, frase[:70]))
-        # A FRASE APOSENTADA NAO PODE VOLTAR. Ela esta nomeada aqui, inteira, em
-        # vez de resumida: portao que procura "carga maxima" acusaria a coluna
-        # certa, e portao que reprova pagina certa e o caminho mais curto para
-        # alguem o ignorar (20.5).
-        afirma("quase nunca está no título" not in texto,
-               "%s voltou a servir a frase aposentada em 03/11/2026 ('quase nunca esta no "
-               "titulo'), que a medicao reprovou com seis dos dezesseis declarando" % caminho)
+        # A FRASE CONTADA DO PIVO DA F1 — 04/11/2026, e e a contagem que mais
+        # vale nesta ilha: hoje ZERO dos 22 anuncios que ela publica diz se o
+        # veiculo tem acelerador, que e o que decide se precisa de habilitacao.
+        pivo = str(pg["numeros"].get("frase_do_pivo") or "")
+        afirma(pivo != "", "%s: a vitrine do repositorio nao tem frase_do_pivo" % caminho)
+        afirma(normalizar(pivo) in normalizar(texto),
+               "%s nao serve a frase contada do pivo da F1: %r" % (caminho, pivo[:70]))
+        dobr = str(pg["numeros"].get("frase_do_dobravel") or "")
+        afirma(dobr != "", "%s: a vitrine do repositorio nao tem frase_do_dobravel" % caminho)
+
+        # A CLASSE, NAO A FRASE APOSENTADA. A versao anterior desta afirmacao
+        # nomeava "quase nunca esta no titulo" e vigiava SO as filhas; a mesma
+        # frase viveu um dia na secao mae por isso. A varredura esta numa funcao
+        # unica, chamada daqui E de `conferir_a_mae`.
+        conferir_quantificadores(caminho, texto, ancoras)
 
         # (4) rel e target em TODO link de afiliado.
         for a in re.findall(r"<a[^>]*s\.shopee\.com\.br[^>]*>", corpo):
@@ -321,14 +408,14 @@ def main():
                  % (caminho, len(linhas), com_ficha, vazios, quantos, nos_cartoes, ofertas,
                     com_disponibilidade))
 
-    conferir_a_mae(urls, fonte)
+    conferir_a_mae(urls, fonte, ancoras)
 
     registro("NAO MEDIDO AQUI: pixel. A 32.5 e trabalho de "
              "conferir-32-5-no-navegador.mjs, que abre a pagina a 390 px num navegador.")
     return encerrar()
 
 
-def conferir_a_mae(urls, fonte):
+def conferir_a_mae(urls, fonte, ancoras):
     """A SECAO MAE, que nao tinha portao de ar nenhum ate 02/11/2026.
 
     O numero da caixa dela e AGREGADO das filhas, entao ele se confere de um jeito
@@ -388,6 +475,34 @@ def conferir_a_mae(urls, fonte):
     #     a cicatriz que `teste-institucional.py` ja cobra na irma institucional.
     crus = re.findall(r"\{[A-Z_]{2,}\}", texto_do_corpo(html))
     afirma(not crus, "%s serve molde cru na tela: %s" % (caminho, ", ".join(sorted(set(crus)))))
+
+    # (d-2) A CLASSE, NA MAE, PELA MESMA FUNCAO QUE JULGA AS FILHAS — 04/11/2026.
+    #     Esta e a afirmacao que faltava, e a falta tem data: a frase declarada
+    #     "o filtro que quase ninguem olha e que QUASE NUNCA ESTA NO TITULO" foi
+    #     aposentada da pagina do patinete em 03/11 e serviu NESTA pagina o dia
+    #     inteiro depois disso, com SEIS dos DEZESSEIS anuncios da filha
+    #     declarando a carga no titulo. O portao escrito em 03/11 para impedir o
+    #     retorno dela nomeava a frase e vivia no laco das FILHAS.
+    conferir_quantificadores(caminho, texto_do_corpo(html), ancoras)
+
+    # (d-3) A FRASE DA CARGA DA MAE E A CONTADA, AGREGADA DAS FILHAS NO AR, e ela
+    #     se recalcula aqui da fonte em vez de ser lida de campo gravado — a mae
+    #     nao tem arquivo gerado, o numero dela nasce em PHP na hora de servir.
+    declaram = sum(int(p.get("numeros", {}).get("declaram_carga") or 0) for p in no_ar)
+    valores = [p["numeros"][k] for p in no_ar for k in ("carga_de", "carga_ate")
+               if p.get("numeros", {}).get(k) is not None]
+    if declaram and valores:
+        menor, maior = min(valores), max(valores)
+        esperado = ("%d dos %d anúncios desta seção declaram a carga máxima no título"
+                    % (declaram, soma))
+        afirma(normalizar(esperado) in normalizar(texto_do_corpo(html)),
+               "%s nao serve a contagem agregada da carga: %r" % (caminho, esperado))
+        afirma(("de %d a %d kg" % (menor, maior)) in texto_do_corpo(html),
+               "%s nao serve a faixa agregada da carga (de %d a %d kg)"
+               % (caminho, menor, maior))
+    else:
+        afirma(("Nenhum dos %d" % soma) in texto_do_corpo(html),
+               "%s: nenhuma filha declara carga e a mae nao diz isso" % caminho)
 
     # (e) O BOTAO DE CADA FAMILIA CAI NO BLOCO DE COMPRA DELA, e o alvo existe.
     #     Link interno para 404 e o defeito que a casca desta ilha publica a rota

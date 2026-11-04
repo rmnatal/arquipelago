@@ -50,6 +50,7 @@ import importlib.util
 import json
 import os
 import re as _re
+import unicodedata as _unicodedata
 import statistics
 import sys
 
@@ -97,6 +98,14 @@ def _textos(valor):
         for v in valor:
             for t in _textos(v):
                 yield t
+
+
+def _sem_acento(texto):
+    """Minuscula e sem acento. A trava de quantificador compara assim porque a
+    camada declarada escreve `pratica` e `prática` no mesmo arquivo."""
+    t = _unicodedata.normalize('NFD', (texto or '').lower())
+
+    return ''.join(c for c in t if _unicodedata.category(c) != 'Mn')
 
 
 def ler(caminho):
@@ -234,6 +243,78 @@ MUNDOS_DA_CARGA = (
 )
 
 
+# ---------------------------------------------------------------------------
+# A FRASE DO PIVO DA F1 — a contagem que mais vale nesta ilha, e ela nasceu de
+# uma prosa que afirmava o PIVO sem um anuncio declarando (04/11/2026)
+#
+# A camada declarada de `/veiculos/bicicleta-eletrica/` servia, escrito a mao:
+# *"quase toda a faixa de baixo e dobravel, de PEDAL ASSISTIDO (...); o topo da
+# faixa e a que tem ACELERADOR e motor forte — e e justamente ela que pode sair
+# da categoria de bicicleta e entrar na de ciclomotor."*
+#
+# Medido no mesmo instante, nos seis anuncios que aquela pagina publica: ZERO
+# declara acelerador e ZERO declara nao ter um. A frase punha os seis em dois
+# lados do pivo da F1 — o que decide se a pessoa precisa de habilitacao — por
+# PRECO, que nao e fonte de nada.
+#
+# E A ESPECIFICACAO DESTA ILHA JA PROIBIA ISSO NO BANCO, com estas palavras:
+# "o enum de `acelerador` e pivo da F1, entao ele nao aceita nulo silencioso
+# (...) e NUNCA cai no lado 'so pedal assistido' por omissao". A camada declarada
+# fazia em prosa o que o esquema proibe no registro — e nenhuma regua desta ilha
+# olhava para a prosa.
+#
+# O QUE A FRASE PODE DIZER E A CONTAGEM, e com zero declarando ela e a tese da
+# ilha medida na propria vitrine: "todos falam, ninguem calcula".
+def frase_do_pivo(n, declaram, com_acelerador, so_pedal):
+    if declaram == 0:
+        return ('Nenhum dos %d anúncios diz se o veículo tem acelerador, e é o '
+                'acelerador que decide se ele é bicicleta elétrica ou ciclomotor '
+                '— a diferença entre andar sem habilitação e precisar de uma.' % n)
+    if com_acelerador and not so_pedal:
+        return ('%d dos %d anúncios declaram acelerador no título; os outros não '
+                'dizem se têm um, e é o acelerador que separa bicicleta elétrica '
+                'de ciclomotor.' % (com_acelerador, n))
+    if so_pedal and not com_acelerador:
+        return ('%d dos %d anúncios declaram no título que não têm acelerador; os '
+                'outros não dizem, e é o acelerador que separa bicicleta elétrica '
+                'de ciclomotor.' % (so_pedal, n))
+
+    return ('Dos %d anúncios, %d declaram acelerador no título e %d declaram não '
+            'ter um; o resto não diz, e é o acelerador que separa bicicleta '
+            'elétrica de ciclomotor.' % (n, com_acelerador, so_pedal))
+
+
+MUNDOS_DO_PIVO = (
+    # (n, declaram, com, so, pedaco que a frase tem de conter)
+    (6, 0, 0, 0, 'Nenhum dos 6'),
+    (16, 0, 0, 0, 'Nenhum dos 16'),
+    (6, 2, 2, 0, '2 dos 6 anúncios declaram acelerador'),
+    (6, 1, 0, 1, '1 dos 6 anúncios declaram no título que não têm'),
+    (6, 5, 3, 2, 'Dos 6 anúncios, 3 declaram acelerador no título e 2'),
+)
+
+
+# A FRASE DO DOBRAVEL — a outra metade da mesma prosa falsa, e esta era apenas
+# NAO CONTADA em vez de errada: `dobravel` esta no titulo ou nao esta.
+def frase_do_dobravel(n, quantos):
+    if quantos == 0:
+        return 'Nenhum dos %d anúncios diz dobrável no título.' % n
+    if quantos == n:
+        return 'Os %d anúncios dizem dobrável no título.' % n
+    if quantos == 1:
+        return 'Um dos %d anúncios diz dobrável no título.' % n
+
+    return '%d dos %d anúncios dizem dobrável no título.' % (quantos, n)
+
+
+MUNDOS_DO_DOBRAVEL = (
+    (6, 0, 'Nenhum dos 6'),
+    (6, 6, 'Os 6 anúncios dizem'),
+    (6, 1, 'Um dos 6'),
+    (6, 5, '5 dos 6'),
+)
+
+
 def o_que_o_anuncio_declara_de_carga(a):
     """A celula da coluna de carga. Diz o numero, ou diz que o titulo se cala."""
     valor, porque = rel.carga_declarada(a['titulo'])
@@ -265,6 +346,11 @@ def montar(bloco, editorial_da_pagina):
     declaram_watt = sum(v for k, v in rotulos.items() if k != 'sem_watt')
     dizem_qual = sum(v for k, v in rotulos.items() if k in ('nominal', 'pico', 'os_dois'))
     declaram_carga, carga_menor, carga_maior = rel.faixa_de_carga(servem)
+    # O PIVO DA F1 E O DOBRAVEL, CONTADOS DO TITULO. Os dois entraram em
+    # 04/11/2026, quando a camada declarada da pagina da bicicleta foi medida
+    # afirmando os DOIS lados do pivo com ZERO anuncio declarando um deles.
+    declaram_pivo, com_acelerador, so_pedal = rel.contagem_do_pivo(servem)
+    dobraveis = rel.contagem_do_dobravel(servem)
 
     cartoes, linhas = [], []
     for i, a in enumerate(servem):
@@ -349,6 +435,13 @@ def montar(bloco, editorial_da_pagina):
             'carga_ate': carga_maior,
             'frase_da_carga': frase_da_carga(len(servem), declaram_carga,
                                              carga_menor, carga_maior),
+            'declaram_pivo': declaram_pivo,
+            'com_acelerador': com_acelerador,
+            'so_pedal_assistido': so_pedal,
+            'frase_do_pivo': frase_do_pivo(len(servem), declaram_pivo,
+                                           com_acelerador, so_pedal),
+            'dobraveis': dobraveis,
+            'frase_do_dobravel': frase_do_dobravel(len(servem), dobraveis),
             'lidas': bloco['resumo']['ofertas_lidas'],
             'recusadas': bloco['resumo']['ofertas_recusadas'],
             'recusas_por_causa': recusas,
@@ -497,6 +590,59 @@ def conferir():
                 falhas.append('%s: celula de carga %r nao refaz da regua: %r'
                               % (g['id'], item['carga'], esperado))
 
+    # OS MUNDOS FABRICADOS DAS DUAS FRASES NOVAS (04/11/2026). O dado de hoje
+    # produz UM dos cinco mundos do pivo — zero declarando nas duas paginas — e
+    # dois dos quatro do dobravel. Mundo que o banco nao tem e mundo que so a
+    # bateria fabricada ve: a frase do pivo com acelerador declarado NUNCA rodou
+    # contra dado de verdade, e e por isso que ela esta aqui.
+    for n, decl, com, so, pedaco in MUNDOS_DO_PIVO:
+        frase = frase_do_pivo(n, decl, com, so)
+        afirmacoes += 1
+        if pedaco not in frase:
+            falhas.append('frase_do_pivo(%d,%d,%d,%d) nao traz %r: %r'
+                          % (n, decl, com, so, pedaco, frase))
+        afirmacoes += 1
+        # IMPRIMIR ZERO NO MEIO DA FRASE e falha nomeada nas irmas desta funcao:
+        # "0 dos 6 anuncios declaram acelerador" e portugues de maquina, e o
+        # ramo do zero existe justamente para nao sair.
+        if ' 0 ' in frase:
+            falhas.append('frase_do_pivo(%d,%d,%d,%d) imprime zero no meio da frase: %r'
+                          % (n, decl, com, so, frase))
+        afirmacoes += 1
+        if decl == 1 and 'anúncios declaram' in frase and 'os outros' not in frase:
+            falhas.append('frase_do_pivo com UM declarando perde a ressalva dos outros')
+
+    for n, quantos, pedaco in MUNDOS_DO_DOBRAVEL:
+        frase = frase_do_dobravel(n, quantos)
+        afirmacoes += 1
+        if pedaco not in frase:
+            falhas.append('frase_do_dobravel(%d,%d) nao traz %r: %r'
+                          % (n, quantos, pedaco, frase))
+        afirmacoes += 1
+        if ' 0 ' in frase:
+            falhas.append('frase_do_dobravel(%d,%d) imprime zero no meio: %r'
+                          % (n, quantos, frase))
+
+    # E OS DOIS NUMEROS NOVOS REFAZEM DA REGUA, nunca de campo herdado — a mesma
+    # cobranca que a celula da carga ja tinha. Campo gravado que ninguem recontra
+    # e numero digitado com data de validade.
+    for g in calculado['paginas']:
+        ad = [{'titulo': item['nome']} for item in g['linhas']]
+        afirmacoes += 1
+        esperado = rel.contagem_do_pivo(ad)
+        obtido = (g['numeros']['declaram_pivo'], g['numeros']['com_acelerador'],
+                  g['numeros']['so_pedal_assistido'])
+        if obtido != esperado:
+            falhas.append('%s: a contagem do pivo %s nao refaz da regua: %s'
+                          % (g['id'], obtido, esperado))
+        afirmacoes += 1
+        if g['numeros']['dobraveis'] != rel.contagem_do_dobravel(ad):
+            falhas.append('%s: a contagem do dobravel nao refaz da regua' % g['id'])
+        afirmacoes += 1
+        if g['numeros']['frase_do_pivo'] != frase_do_pivo(len(ad), *esperado):
+            falhas.append('%s: a frase do pivo no arquivo nao e a que a funcao produz'
+                          % g['id'])
+
     # A CAMADA DECLARADA NAO PODE TRAZER NUMERO DIGITADO. Esta e a trava que a
     # cicatriz do `REGISTRO.md` desta ilha de 29/10 (16h2xZ) deixou escrita:
     # "prosa que afirma o estado do banco e numero digitado em outro traje".
@@ -526,6 +672,112 @@ def conferir():
                     falhas.append('%s: a camada declarada traz numero digitado em %r (%r): %r'
                                   % (pag.get('id', pag.get('slug')), campo,
                                      achado.group(0), texto[:70]))
+
+    # A CAMADA DECLARADA NAO PODE TRAZER QUANTIFICADOR POR EXTENSO, E ESTA TRAVA
+    # E IRMA DA DE CIMA — ela existe porque a de cima esta CERTA e nao bastava.
+    #
+    # Medido em 03/11 e outra vez em 04/11/2026, duas frases diferentes, o mesmo
+    # buraco. A trava de digito reprova QUALQUER digito na camada declarada, ate
+    # um so. As duas frases que foram ao ar afirmando o estado do catalogo
+    # passaram por ela SEM ESFORCO, porque nenhuma das duas tem um digito:
+    #
+    #   "a carga maxima (...) QUASE NUNCA ESTA NO TITULO"  -> 6 de 16 declaravam
+    #   "QUASE TODA a faixa de baixo e dobravel, de PEDAL ASSISTIDO"  -> 0 de 6
+    #                                                      declarava o pivo
+    #
+    # Proporcao por extenso e contagem com outro traje: ela afirma o estado do
+    # banco com a mesma validade de prazo que um numero, e envelhece do mesmo
+    # jeito — calada. Esta trava e a 32.5-d uma familia acima: a regua que nunca
+    # viu o mundo dela aprova o mundo que existia.
+    #
+    # E ELA NAO JULGA PROSA, DE PROPOSITO. Regua que tentasse decidir se um
+    # "quase nunca" fala do mundo ou do catalogo reprovaria voz legitima, que e o
+    # caminho mais curto para alguem a ignorar (20.5). Ela DENUNCIA a ocorrencia
+    # e exige que alguem a tenha olhado: o que escapa e so o que esta NOMEADO em
+    # `quantificadores_declarados_permitidos`, com o campo e o motivo ao lado —
+    # exatamente a forma de `numeros_declarados_permitidos`, que esta ilha ja
+    # usa. Quem acrescentar prosa nova com quantificador tem de responder, por
+    # escrito e no arquivo, se aquilo e voz ou contagem.
+    quantificadores = (
+        'quase nunca', 'quase sempre', 'quase todo', 'quase toda', 'quase todos',
+        'quase todas', 'quase ninguem', 'quase nenhum', 'quase nenhuma',
+        'a maioria', 'maioria', 'a minoria', 'minoria', 'raramente', 'costuma',
+        'costumam', 'na maior parte', 'a maior parte', 'maior parte', 'boa parte',
+        'grande parte', 'geralmente', 'normalmente', 'em geral', 'de modo geral',
+        'via de regra', 'tipicamente', 'frequentemente', 'na pratica',
+        'a maior parte das', 'poucos', 'poucas', 'muitos', 'muitas',
+    )
+    liberados = {}
+    for q in editorial.get('quantificadores_declarados_permitidos', []):
+        liberados.setdefault(q['termo'], []).append(q)
+        afirmacoes += 1
+        if not (q.get('porque') or '').strip():
+            falhas.append('quantificador liberado %r sem motivo escrito' % q['termo'])
+        afirmacoes += 1
+        if not (q.get('campo') or '').strip():
+            falhas.append('quantificador liberado %r sem o campo onde ele mora' % q['termo'])
+        afirmacoes += 1
+        if not (q.get('ancora_no_ar') or '').strip():
+            falhas.append('quantificador liberado %r sem ancora_no_ar: o portao de ar nao '
+                          'teria como saber dentro de que texto ele vale' % q['termo'])
+
+    # OS CAMPOS DE DOCUMENTACAO DA RAIZ ficam fora: eles nao vao para a tela e
+    # falam justamente desta trava. Varrer o que explica a regra e a familia do
+    # portao que reprova a pagina certa.
+    usados = set()
+    for pag in editorial['paginas'] + [editorial['mae']]:
+        quem = pag.get('id', pag.get('slug'))
+        for campo, valor in sorted(pag.items()):
+            for texto in _textos(valor):
+                t = _sem_acento(texto)
+                for q in quantificadores:
+                    i = t.find(q)
+                    if i < 0:
+                        continue
+                    # BORDA A DIREITA pela licao do `Capacete1` desta ilha:
+                    # `poucos` nao pode casar dentro de `poucossimos`, e `muitas`
+                    # nao pode casar `muitassimas`. A esquerda tem de ser inicio
+                    # ou nao-letra, senao `maioria` casaria dentro de outra.
+                    antes = t[i - 1] if i else ' '
+                    depois = t[i + len(q):i + len(q) + 1] or ' '
+                    if antes.isalpha() or depois.isalpha():
+                        continue
+                    afirmacoes += 1
+                    ok = [x for x in liberados.get(q, []) if x['campo'] == campo]
+                    if not ok:
+                        falhas.append(
+                            '%s: a camada declarada afirma uma PROPORCAO por extenso em %r '
+                            '(%r) e ela nao esta em quantificadores_declarados_permitidos: '
+                            '%r' % (quem, campo, q, texto[:90]))
+                    else:
+                        usados.add((q, campo))
+                        # A ANCORA TEM DE EXISTIR NO PROPRIO TEXTO, e ela tem de
+                        # CONTER o termo. Ancora solta (ou que nao cerca o termo)
+                        # faz o portao de ar apagar um pedaco qualquer da pagina e
+                        # aprovar o resto: liberacao de uma frase viraria anistia.
+                        for x in ok:
+                            anc = _sem_acento(x.get('ancora_no_ar') or '')
+                            afirmacoes += 1
+                            if anc and anc not in t:
+                                falhas.append(
+                                    '%s: a ancora %r do quantificador liberado %r nao '
+                                    'existe no texto declarado de %r'
+                                    % (quem, x['ancora_no_ar'], q, campo))
+                            afirmacoes += 1
+                            if anc and q not in anc:
+                                falhas.append(
+                                    'a ancora %r do quantificador liberado %r nao contem o '
+                                    'proprio termo' % (x['ancora_no_ar'], q))
+
+    # LIBERACAO QUE NAO LIBERA NADA E LIXO, e lixo nesta lista e pior que em
+    # outra: ela e a lista de quem JA FOI OLHADO. Entrada morta faz a proxima
+    # execucao pensar que alguem conferiu uma frase que nao existe mais.
+    for termo, itens in sorted(liberados.items()):
+        for q in itens:
+            afirmacoes += 1
+            if (termo, q['campo']) not in usados:
+                falhas.append('quantificador liberado %r em %r nao existe mais na camada '
+                              'declarada: liberacao morta' % (termo, q['campo']))
 
     for f in falhas:
         print('FALHA: ' + f)

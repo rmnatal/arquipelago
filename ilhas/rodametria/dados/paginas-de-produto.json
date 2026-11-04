@@ -7,6 +7,7 @@
   "o_que_este_arquivo_e": "A camada DECLARADA das paginas da secao 30: titulo, description, a resposta em duas frases, o que e e o que nao e, o `qual escolher` por uso e as perguntas. E a voz do VOZ.md, escrita a mao. A camada GERADA — cartao, tabela e numero — e `dados/vitrine-de-produto.json`.",
   "nenhum_numero_e_digitado_aqui": "A prosa traz MOLDES e quem os preenche e o PHP, com o numero que sai da vitrine: {N} anuncios, {DE} e {ATE} a faixa de preco, {MEDIANA}, {DECLARAM_WATT} e {DIZEM_QUAL_WATT} a contagem do rotulo de potencia, {SEM_WATT}, {LIDAS} e {RECUSADAS} a conta da coleta, {CHAVE} a palavra com que a loja foi consultada, {DATA} a data da coleta. A CAIXA DA MAE tem tres moldes que sao dela, porque o numero dela e agregado das filhas e nao de uma consulta: {NO_AR} as familias com pagina, {FALTAM} as que a mae nomeia e ainda nao tem, e {DE}/{ATE} a faixa que vai do menor preco de todas ao maior. Preco escrito a mao na frase e preco que mente na coleta seguinte, calado — e `gerar-vitrine-de-produto.py --conferir` REPROVA numero digitado neste arquivo. ACRESCENTADO EM 03/11/2026: {FRASE_DA_CARGA} e a contagem da CARGA MAXIMA que o titulo do anuncio declara, com a faixa — e ela nasceu de uma frase DECLARADA que esta pagina servia e que a medicao reprovou. A prosa dizia que a carga maxima \"quase nunca esta no titulo\" e, no mesmo instante, SEIS dos DEZESSEIS anuncios publicados na pagina do patinete a declaravam, de 60 a 150 kg. Frase a mao sobre o estado do catalogo e numero digitado em outro traje, e esta foi a segunda vez que esta ilha pagou por isso.",
   "a_caixa_da_mae": "A CAIXA DE RESPOSTA da 32.2 nesta pagina, e ela e UMA FRASE POR MUNDO em vez de uma frase costurada: o escopo muda com o numero de familias prontas, a frase da data muda quando as filhas foram lidas em dias diferentes, e a frase do que falta so sai quando falta algo. Quem escolhe e `rdm_produto_caixa_frases()`, que e funcao PURA sobre a relacao ja calculada — a secao 8 manda isso com todas as letras, e `teste-caixa-da-mae.php` FABRICA os mundos que o dado de hoje nao tem. ESTE CAMPO MORA NA RAIZ E NAO DENTRO DE `mae` DE PROPOSITO: `gerar-vitrine-de-produto.py --conferir` varre TODO campo da mae contra digito digitado, e prosa de documentacao cita numero de secao. O portao estava certo e o lugar estava errado — medido em 02/11/2026 pelo `teste-caixa-da-mae.php`, que reprovou o campo no minuto em que ele nasceu.",
+  "os_moldes_da_carga_da_mae": "OS MOLDES DA CARGA AGREGADA DA SECAO MAE — uma frase por mundo, escolhida por `rdm_produto_frase_da_carga_agregada()`, que e funcao PURA sobre a relacao ja calculada (secao 8), como a caixa desta mesma pagina. Eles nasceram em 04/11/2026, quando a mae foi medida servindo a frase que a execucao de 03/11 aposentou da pagina do patinete: o conserto de ontem foi feito na pagina onde o defeito foi ACHADO, e esta e outra familia. ESTE CAMPO MORA NA RAIZ E NAO DENTRO DE `mae` PELO MESMO MOTIVO QUE O `a_caixa_da_mae` acima, e o portao o provou no minuto em que ele nasceu: `gerar-vitrine-de-produto.py --conferir` e `teste-caixa-da-mae.php` varrem TODO campo da mae contra digito digitado, e prosa de documentacao cita data. O portao estava certo e o lugar estava errado — a segunda vez que este arquivo paga essa licao, dois dias depois da primeira.",
   "numeros_declarados_permitidos": [
     {
       "texto": "996/2023",
@@ -36,6 +37,13 @@
       "faltam": "As outras {FALTAM} famílias que a gente acompanha ainda não têm página, e o cartão de cada uma diz a causa medida em vez de prometer data.",
       "falta_uma": "A outra família que a gente acompanha ainda não tem página, e o cartão dela diz a causa medida em vez de prometer data."
     },
+    "carga": {
+      "nenhum": "Nenhum dos {N} anúncios que as famílias desta seção publicam declara a carga máxima no título, e é ela que decide se o veículo aguenta você.",
+      "um": "Um dos {N} anúncios desta seção declara a carga máxima no título: {CARGA_ATE} kg.",
+      "mesmo_valor": "{DECLARAM} dos {N} anúncios desta seção declaram a carga máxima no título, e todos dizem o mesmo número: {CARGA_ATE} kg.",
+      "todos": "Os {N} anúncios desta seção declaram a carga máxima no título, e ela vai de {CARGA_DE} a {CARGA_ATE} kg.",
+      "faixa": "{DECLARAM} dos {N} anúncios desta seção declaram a carga máxima no título, e entre eles ela vai de {CARGA_DE} a {CARGA_ATE} kg."
+    },
     "rotulo_do_botao_da_filha": "Ver os anúncios",
     "o_que_falta_dizer": "As famílias sem página são as que a loja ainda não serve: o texto de cada cartão diz qual é a causa, medida, em vez de prometer data.",
     "familias_que_faltam": [
@@ -64,7 +72,7 @@
       },
       {
         "numero": "Carga máxima declarada",
-        "porque": "é o filtro que quase ninguém olha e que quase nunca está no título. Você mais a mochila passam dos cem quilos mais fácil do que parece, e passar da carga máxima não deixa o veículo mais lento: deixa a solda do guidão mais perto de ceder."
+        "porque": "{FRASE_DA_CARGA_AGREGADA} Você mais a mochila passam dos cem quilos mais fácil do que parece, e passar da carga máxima não deixa o veículo mais lento: deixa a solda do guidão mais perto de ceder. Quando o título se cala, o número está na ficha do anúncio — e a página de cada família diz, linha por linha, qual título declarou e qual não."
       }
     ],
     "como_sabemos": [
@@ -82,7 +90,7 @@
       "resposta": [
         "Para adulto, o patinete elétrico à venda hoje custa de {DE} a {ATE}, com a mediana em {MEDIANA} sobre os {N} anúncios que a gente conferiu em {DATA}.",
         "Na faixa de baixo você leva um patinete de cidade, dobrável, de trajeto curto; em cima entra pneu maior e bateria que aguenta ladeira — e nenhum deles dispensa a conta de autonomia, porque o km do anúncio é o km de quem pesa menos que você.",
-        "E o número que quase ninguém compara: {FRASE_DA_CARGA}"
+        "E o terceiro número, o que decide se o veículo aguenta você: {FRASE_DA_CARGA}"
       ],
       "o_que_e": [
         "Patinete elétrico de adulto é o que você sobe de pé, com acelerador no guidão, dobrável, para trajeto curto de cidade.",
@@ -146,7 +154,7 @@
       "description": "As bicicletas elétricas de adulto à venda hoje, com a faixa de preço medida na loja e o que cada anúncio declara de potência e bateria.",
       "resposta": [
         "A bicicleta elétrica de adulto à venda hoje custa de {DE} a {ATE}, com a mediana em {MEDIANA} sobre os {N} anúncios que a gente conferiu em {DATA}.",
-        "Quase toda a faixa de baixo é dobrável, de pedal assistido, pensada para o trajeto casa–trabalho; o topo da faixa é a que tem acelerador e motor forte — e é justamente ela que pode sair da categoria de bicicleta e entrar na de ciclomotor.",
+        "{FRASE_DO_DOBRAVEL} {FRASE_DO_PIVO} Bicicleta que anda sem pedalar pode sair da categoria de bicicleta elétrica e entrar na de ciclomotor, que exige habilitação e placa — e é por isso que esse é o primeiro número a procurar na ficha, não o preço.",
         "E o número que falta em todos: {FRASE_DA_CARGA}"
       ],
       "o_que_e": [
@@ -168,7 +176,7 @@
         },
         {
           "para": "quem pesa mais que a média, ou leva carga no bagageiro",
-          "o_que_olhar": "{FRASE_DA_CARGA} Sem esse número no título, o caminho é abrir o anúncio e procurar a carga máxima na ficha antes de comparar preço: quadro dobrável é justamente onde o limite costuma ser mais baixo."
+          "o_que_olhar": "{FRASE_DA_CARGA} Sem esse número no título, o caminho é abrir o anúncio e procurar a carga máxima na ficha antes de comparar preço: é o número que não aparece na vitrine e que decide se o quadro aguenta você mais a carga que você leva."
         },
         {
           "para": "quem quer andar sem pedalar",
@@ -203,6 +211,24 @@
         "Potência, velocidade máxima, acelerador e carga máxima só entram na nossa ficha técnica vindos de ficha de fabricante ou de loja grande. Título de anúncio não basta para esses quatro."
       ],
       "aviso_de_afiliado": "Os botões levam para a loja por link de afiliado: a gente recebe comissão se você comprar, e o preço para você é o mesmo."
+    }
+  ],
+  "quantificadores_declarados_permitidos": [
+    {
+      "termo": "costuma",
+      "campo": "o_que_decide",
+      "pagina": "veiculos",
+      "porque": "a frase e \"o numero grande do anuncio COSTUMA ser o pico do motor\", e ela afirma o MERCADO e nao o banco desta ilha. Ela e mandada pela secao 1.4(a) de dados/especificacao-calculadoras.md, com estas palavras: \"a F1 pergunta potencia nominal e diz, na mesma tela, que o numero grande do anuncio costuma ser o pico e que o que a regra le esta na ficha\". E o caso que a sustenta esta medido no bloco 1, num titulo de loja grande. Tirar a frase nao melhoraria nada: ela e o aviso que impede a pessoa de classificar o veiculo pelo numero do titulo, e a contagem que o acompanha ({FRASE_DO_ROTULO}) ja diz quantos anuncios desta pagina dizem qual watt e aquele — hoje nenhum.",
+      "ancora_no_ar": "costuma ser o pico do motor",
+      "por_que_ancora": "O portao de ar varre a CLASSE e nao a frase de ontem, entao ele precisa saber exatamente dentro de qual texto este quantificador esta liberado. A ancora e o pedaco LITERAL que o portao retira da pagina servida antes de procurar; o que sobrar e defeito. Ancora que nao existe no proprio texto declarado REPROVA no `gerar-vitrine-de-produto.py --conferir`, para liberacao nao virar anistia geral."
+    },
+    {
+      "termo": "costuma",
+      "campo": "perguntas",
+      "pagina": "patinete-eletrico",
+      "porque": "a mesma frase do pico, na pergunta \"por que o anuncio diz um watt e a ficha diz outro\". Mesma procedencia da liberacao acima: afirma o mercado, vem da especificacao, e a contagem vive ao lado dela.",
+      "ancora_no_ar": "costuma ser o pico do motor",
+      "por_que_ancora": "O portao de ar varre a CLASSE e nao a frase de ontem, entao ele precisa saber exatamente dentro de qual texto este quantificador esta liberado. A ancora e o pedaco LITERAL que o portao retira da pagina servida antes de procurar; o que sobrar e defeito. Ancora que nao existe no proprio texto declarado REPROVA no `gerar-vitrine-de-produto.py --conferir`, para liberacao nao virar anistia geral."
     }
   ]
 }

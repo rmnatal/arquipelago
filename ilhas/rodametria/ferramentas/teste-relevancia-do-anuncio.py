@@ -440,6 +440,109 @@ def carga_declarada(titulo):
     return (None, 'o titulo nao declara nenhum kg')
 
 
+# ---------------------------------------------------------------------------
+# O PIVO DA F1 LIDO DO TITULO — e a leitura mais ASSIMETRICA desta ilha
+#
+# Nasceu de um defeito MEDIDO NO AR em 04/11/2026: a camada declarada de
+# `/veiculos/bicicleta-eletrica/` servia, escrito a mao, *"quase toda a faixa de
+# baixo e dobravel, de PEDAL ASSISTIDO (...); o topo da faixa e a que tem
+# ACELERADOR e motor forte"*. Naquele instante, dos SEIS anuncios que aquela
+# pagina publica, ZERO declarava acelerador e ZERO declarava nao ter um.
+#
+# E ISTO NAO E "numero velho na prosa": e a prosa afirmando o PIVO. A seção 3 da
+# `dados/especificacao-calculadoras.md` e literal — *"o enum de `acelerador` e
+# pivo da F1, entao ele NAO aceita nulo silencioso: ficha sem a informacao grava
+# `nao_declarado` (...) e NUNCA cai no lado 'so pedal assistido' por omissao"*. A
+# camada declarada fazia em PROSA exatamente o que o esquema proibe no BANCO, e
+# na metade que decide se a pessoa precisa de habilitacao.
+#
+# A REGRA, e ela e assimetrica DE PROPOSITO, cada lado pelo que ele afirma:
+#
+#   - `manual` (TEM acelerador): a palavra no titulo basta. Quem escreve
+#     "acelerador" esta vendendo o acelerador; ninguem o anuncia por engano.
+#   - `so_pedal_assistido`: a palavra "pedal assistido" NAO basta, e e aqui que
+#     esta o buraco que ninguem via. Ter pedal nao exclui ter acelerador — a
+#     maioria das bicicletas eletricas tem os dois. So declara este lado o
+#     titulo que NEGA o acelerador ("sem acelerador", "somente pedal assistido",
+#     "apenas pedal assistido"). E a regra do esquema aplicada a camada do
+#     titulo: nunca por omissao.
+#   - `pedal tripulado`, que esta em DOIS titulos reais desta coleta, nao declara
+#     nada: e traducao de maquina de "pedal assisted", e atribuir sentido a uma
+#     frase truncada e a familia do `kg` solto — "quase certamente" nao e
+#     procedencia.
+#
+# O que sai daqui e CONTAGEM, nunca campo tecnico: titulo e nivel 6, e
+# `niveis_minimos_por_campo` exige melhor para `acelerador`.
+# ---------------------------------------------------------------------------
+NEGA_O_ACELERADOR = ('sem acelerador', 'somente pedal assistido',
+                     'apenas pedal assistido', 'so pedal assistido',
+                     'sem manopla de aceleracao')
+
+TEM_ACELERADOR = ('acelerador', 'aceleracao', 'throttle')
+
+
+def declaracao_do_pivo(titulo):
+    """(lado, pedaco_do_titulo) ou (None, motivo). Nunca atribui `acelerador`.
+
+    `lado` e 'manual' ou 'so_pedal_assistido'. O pedaco do titulo e a
+    procedencia — se confere abrindo o anuncio, e nao e uma frase nossa.
+    """
+    t = normalizar(titulo)
+    # A NEGACAO VEM PRIMEIRO: "somente pedal assistido, sem acelerador" tem a
+    # palavra `acelerador` dentro dela, e ler a ordem inversa classificaria como
+    # `manual` o titulo que diz o contrario.
+    for termo in NEGA_O_ACELERADOR:
+        i = _onde(t, termo)
+        if i >= 0:
+            return ('so_pedal_assistido', t[i:i + len(normalizar(termo))])
+    for termo in TEM_ACELERADOR:
+        i = _onde(t, termo)
+        if i >= 0:
+            return ('manual', t[i:i + len(normalizar(termo))])
+    if _contem(t, 'pedal assistido') or _contem(t, 'pedal tripulado'):
+        return (None, 'fala de pedal e nao diz se tem acelerador: ter pedal nao '
+                      'exclui ter acelerador, e e o acelerador que decide a categoria')
+
+    return (None, 'o titulo nao diz se tem acelerador')
+
+
+def contagem_do_pivo(anuncios_que_servem):
+    """(declaram, com_acelerador, so_pedal) sobre os titulos que a pagina publica."""
+    com, so = 0, 0
+    for a in anuncios_que_servem:
+        lado = declaracao_do_pivo(a['titulo'])[0]
+        if lado == 'manual':
+            com += 1
+        elif lado == 'so_pedal_assistido':
+            so += 1
+
+    return (com + so, com, so)
+
+
+# ---------------------------------------------------------------------------
+# O DOBRAVEL, e ele esta aqui porque a frase falsa de 04/11 tinha DUAS metades:
+# a do pivo (acima, grave) e a do dobravel (contavel e nao contada). A palavra
+# esta no titulo ou nao esta — e esta e a leitura mais simples desta regua, com
+# a MESMA borda assimetrica das outras: `dobravel` casa `dobravel1` e nao casa
+# `dobravelmente`.
+# ---------------------------------------------------------------------------
+DOBRAVEL = ('dobravel', 'dobraveis', 'plegable')
+
+
+def declara_dobravel(titulo):
+    t = normalizar(titulo)
+    for termo in DOBRAVEL:
+        i = _onde(t, termo)
+        if i >= 0:
+            return (True, t[i:i + len(termo)])
+
+    return (False, 'o titulo nao diz dobravel')
+
+
+def contagem_do_dobravel(anuncios_que_servem):
+    return sum(1 for a in anuncios_que_servem if declara_dobravel(a['titulo'])[0])
+
+
 def faixa_de_carga(anuncios_que_servem):
     """(quantos_declaram, menor, maior) sobre os titulos que a pagina publica."""
     valores = sorted(v for v in (carga_declarada(a['titulo'])[0]
@@ -592,6 +695,43 @@ CASOS_DE_CARGA = (
 )
 
 
+# OS CASOS DO PIVO. Os quatro primeiros sao titulos REAIS da coleta de
+# 03-04/11/2026 e os quatro devolvem None — que e o achado, nao a lacuna: as 22
+# ofertas que esta ilha publica nao declaram o pivo da F1 em nenhum titulo. Os
+# fabricados estao aqui porque regra que nunca viu o mundo dela nasce errada sem
+# poder falhar (secao 8), e o terceiro fabricado e o que separa esta regua de uma
+# regua ingenua: "pedal assistido" NAO declara o lado do pedal.
+CASOS_DO_PIVO = (
+    ('Bicicleta elétrica dobrável para adultos, pedal tripulado, compras ao ar livre', None),
+    ('Bicicleta Elétrica Ebike M2 800w Litio 48v 43kmh Scooter eletrica adulto', None),
+    ('Patinete Elétrico Adulto 350W 36V | Dobrável 30km/h com Bluetooth', None),
+    ('Bicicleta Elétrica Dobrável Adulto com Pneus A Vácuo e Bateria de Lítio', None),
+    ('Bicicleta Elétrica Adulto com Acelerador e Pedal Assistido 500W', 'manual'),
+    ('Bicicleta Elétrica Adulto Somente Pedal Assistido, Sem Acelerador, 350W',
+     'so_pedal_assistido'),
+    # O CASO QUE A REGUA INGENUA ERRA: pedal declarado e acelerador CALADO. Ter
+    # pedal nao exclui ter acelerador, e por omissao nunca se cai neste lado.
+    ('Bicicleta Elétrica Adulto com Pedal Assistido 350W Dobrável', None),
+    # A ORDEM DA LEITURA: a negacao TEM a palavra `acelerador` dentro dela, e ler
+    # `TEM_ACELERADOR` primeiro classificaria como `manual` o titulo que nega.
+    ('Bike Elétrica Adulto Sem Acelerador 250W Dobrável', 'so_pedal_assistido'),
+    # A BORDA DA DIREITA, pela licao do `Capacete1`: digito colado nao derrota.
+    ('Bicicleta Elétrica Adulto com Acelerador1 500W', 'manual'),
+    # E A BORDA QUE PROTEGE: `aceleradormente` nao existe, mas `acelerado` sim,
+    # e ele nao e `acelerador`.
+    ('Bicicleta Elétrica Adulto Carregamento Acelerado 350W', None),
+)
+
+# OS CASOS DO DOBRAVEL — os tres primeiros reais, o quarto o mundo que se cala.
+CASOS_DO_DOBRAVEL = (
+    ('Bicicleta elétrica dobrável NIUDA para adultos, viagens diárias', True),
+    ('Patinete Elétrico Scooter Adulto 150w Dobrável Até 60kg Preto', True),
+    ('Patinete Elétrico 350w 10ah 120kg Autonomia 30km Dobravel Preto', True),
+    ('Bicicleta Elétrica Ebike M2 800w Litio 48v 43kmh Scooter eletrica adulto', False),
+    ('Patinete Elétrico Adulto Dobrável1 350W', True),
+)
+
+
 def autoteste():
     falhas = []
     for titulo, familia, esperado, recusa in CASOS:
@@ -622,6 +762,29 @@ def autoteste():
     if faixa_de_carga([{'titulo': 'Bicicleta Elétrica Dobrável Adulto'}]) != (0, None, None):
         falhas.append('FALHOU faixa: mundo sem nenhuma carga nao devolveu (0, None, None)')
 
+    for titulo, esperado in CASOS_DO_PIVO:
+        lado, porque = declaracao_do_pivo(titulo)
+        if lado != esperado:
+            falhas.append('FALHOU pivo: %r -> %s (esperava %s) [%s]'
+                          % (titulo[:60], lado, esperado, porque))
+
+    for titulo, esperado in CASOS_DO_DOBRAVEL:
+        obtido = declara_dobravel(titulo)[0]
+        if obtido is not esperado:
+            falhas.append('FALHOU dobravel: %r -> %s (esperava %s)'
+                          % (titulo[:60], obtido, esperado))
+
+    # A CONTAGEM E CONTADA. O mundo dos casos acima tem 2 `manual` e 2 `so_pedal`;
+    # o mundo REAL desta ilha tem (0, 0, 0) nas duas paginas, e so a bateria
+    # fabricada prova que a contagem sabe somar.
+    obtido = contagem_do_pivo([{'titulo': t} for t, _ in CASOS_DO_PIVO])
+    if obtido != (4, 2, 2):
+        falhas.append('FALHOU contagem do pivo: %s, esperava (4, 2, 2)' % (obtido,))
+    if contagem_do_pivo([{'titulo': 'Bicicleta Elétrica Dobrável Adulto'}]) != (0, 0, 0):
+        falhas.append('FALHOU contagem do pivo: mundo calado nao devolveu (0, 0, 0)')
+    if contagem_do_dobravel([{'titulo': t} for t, _ in CASOS_DO_DOBRAVEL]) != 4:
+        falhas.append('FALHOU contagem do dobravel: esperava 4')
+
     # A trava da propria trava: recusa DESLIGADA tem de deixar passar.
     serve, por, _, _ = julgar(
         'Pneu Bike Bicicleta Elétrica Scooter 14x2.50 para adulto',
@@ -632,7 +795,8 @@ def autoteste():
 
     for f in falhas:
         print(f)
-    total = len(CASOS) + len(CASOS_DE_ROTULO) + len(CASOS_DE_CARGA) + 3
+    total = (len(CASOS) + len(CASOS_DE_ROTULO) + len(CASOS_DE_CARGA)
+             + len(CASOS_DO_PIVO) + len(CASOS_DO_DOBRAVEL) + 6)
     print('\n%d caso(s), %d falha(s).' % (total, len(falhas)))
     print('APROVADO' if not falhas else 'REPROVADO')
     return 1 if falhas else 0

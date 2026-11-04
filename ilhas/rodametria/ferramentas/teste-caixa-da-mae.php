@@ -84,6 +84,7 @@ function afirma($cond, $msg) {
 foreach (array(
 	array('rdm_produto_agregado_das_prontas', $produto),
 	array('rdm_produto_caixa_frases', $produto),
+	array('rdm_produto_frase_da_carga_agregada', $produto),
 	array('rodametria_casca_caixa', $casca),
 ) as $par) {
 	$ok = carregar_funcao($par[1], $par[0]);
@@ -278,6 +279,73 @@ afirma(strpos($html, '<span class="rdm-num">21</span>') !== false,
 	'o numero contado nao saiu em Mono na caixa');
 afirma(substr_count($html, 'rdm-molde-caixa-frase') === 3, 'as tres frases nao sairam na caixa');
 afirma(strpos($html, 'rdm-molde-caixa-rotulo') !== false, 'o rotulo nao saiu na caixa');
+
+/* =========================================================================
+ * A FRASE DA CARGA AGREGADA — CINCO MUNDOS, E O DADO DE HOJE EXERCITA UM
+ *
+ * Ela nasceu em 04/11/2026 porque a mae servia, escrita a mao, a frase que a
+ * execucao de 03/11 aposentou da pagina do patinete: "o filtro que quase ninguem
+ * olha e que QUASE NUNCA ESTA NO TITULO". Hoje as duas filhas somam 22 anuncios
+ * com 6 declarando, de 60 a 150 kg — UM mundo. Os outros quatro nao existem no
+ * dado, e a 32.5-d e literal: "a regra do molde que nunca rodou contra o dado de
+ * verdade esta quebrada e parece sa".
+ * ========================================================================= */
+
+$MC = isset($decl['mae']['carga']) ? $decl['mae']['carga'] : array();
+afirma(!empty($MC), 'a camada declarada nao traz `mae.carga`');
+foreach (array('nenhum', 'um', 'mesmo_valor', 'todos', 'faixa') as $chave) {
+	afirma(!empty($MC[$chave]) && is_string($MC[$chave]),
+		sprintf('o molde `carga.%s` nao esta na camada declarada da mae', $chave));
+}
+/* E NENHUM MOLDE TRAZ DIGITO, a segunda chave da mesma porta da caixa. */
+foreach ($MC as $chave => $texto) {
+	if (!is_string($texto)) { continue; }
+	afirma(!preg_match('/\d/', $texto),
+		sprintf('o molde `carga.%s` traz digito digitado: %s', $chave, substr($texto, 0, 60)));
+}
+
+function ag_carga($n, $declaram, $de, $ate) {
+	return array('anuncios' => $n, 'carga_declaram' => $declaram,
+		'carga_de' => $de, 'carga_ate' => $ate, 'de' => '', 'ate' => '', 'datas' => array());
+}
+
+$MUNDOS_DA_CARGA_DA_MAE = array(
+	/* 1. O MUNDO DE HOJE: 22 anuncios, 6 declarando, 60 a 150 kg. */
+	array(ag_carga(22, 6, 60, 150), array('6 dos 22', 'de 60 a 150 kg')),
+	/* 2. NENHUM DECLARANDO — o mundo da pagina da bicicleta sozinha. */
+	array(ag_carga(6, 0, null, null), array('Nenhum dos 6')),
+	/* 3. UM SO: verbo no singular, e sem faixa. */
+	array(ag_carga(22, 1, 150, 150), array('Um dos 22', '150 kg')),
+	/* 4. TODOS NO MESMO NUMERO: nao pode sair "de 100 a 100 kg". */
+	array(ag_carga(22, 3, 100, 100), array('mesmo número: 100 kg')),
+	/* 5. TODOS DECLARANDO, com faixa de verdade. */
+	array(ag_carga(22, 22, 60, 150), array('Os 22 anúncios', 'de 60 a 150 kg')),
+);
+
+foreach ($MUNDOS_DA_CARGA_DA_MAE as $caso) {
+	$frase = rdm_produto_frase_da_carga_agregada($caso[0], $MC);
+	afirma($frase !== '', 'a frase da carga agregada saiu VAZIA num mundo fabricado');
+	foreach ($caso[1] as $pedaco) {
+		afirma(strpos($frase, $pedaco) !== false,
+			sprintf('a frase da carga agregada nao traz %s: %s', $pedaco, $frase));
+	}
+	/* NENHUM MOLDE CRU SOBREVIVE, e nenhuma FAIXA DE VALOR UNICO sai. */
+	afirma(strpos($frase, '{') === false,
+		sprintf('a frase da carga agregada deixou molde cru: %s', $frase));
+	afirma(!preg_match('/de (\d+) a \1 kg/', $frase),
+		sprintf('a frase da carga agregada imprime faixa de valor unico: %s', $frase));
+	afirma(strpos($frase, ' 0 ') === false,
+		sprintf('a frase da carga agregada imprime zero no meio: %s', $frase));
+}
+
+/* E A FRASE FALSA NAO PODE SER PRODUZIDA POR NENHUM DOS CINCO MUNDOS. Esta e a
+   afirmacao que faltava em 03/11: o portao daquele dia nomeia a frase aposentada
+   e varre as paginas de FILHA, e a mae nao e uma delas. */
+foreach ($MUNDOS_DA_CARGA_DA_MAE as $caso) {
+	$frase = rdm_produto_frase_da_carga_agregada($caso[0], $MC);
+	afirma(strpos($frase, 'quase nunca') === false && strpos($frase, 'quase ninguém') === false,
+		sprintf('a frase contada da mae traz um quantificador por extenso: %s', $frase));
+}
 
 /* =========================================================================
  * PROVA DE QUE MORDE — tres mutacoes no codigo de verdade.
