@@ -389,19 +389,44 @@ def passada(declarado, texto_php):
     afirma(bool(re.search(r"RODAMETRIA_INST_VERSAO'\s*,\s*'\d+\.\d+\.\d+'", texto_php)),
            "o PHP nao declara RODAMETRIA_INST_VERSAO com tres numeros")
     # --- a folha nao redecora o que e da casca (32.5-c) ---
-    folha = re.search(r"<style id=\"rdm-inst-folha\">(.*?)</style>", texto_php, re.S)
-    if afirma(bool(folha), "o PHP nao tem a folha desta familia"):
+    folha = folha_do_php(texto_php)
+    if afirma(folha is not None, "o PHP nao tem a folha desta familia"):
         # A REGUA MEDE O SELETOR, NUNCA A PALAVRA SOLTA. A primeira versao desta
         # linha procurava "h1" no texto da folha e REPROVOU a folha certa, por
         # causa do comentario que explica justamente por que ela nao mexe em h1 —
         # e portao que reprova pagina certa e o caminho mais curto para alguem
         # passar a ignora-lo (20.5 e 32.5-b, as duas pelo nome).
-        for seletor, por_que in seletores_da_casca_na_folha(folha.group(1)):
+        for seletor, por_que in seletores_da_casca_na_folha(folha):
             afirma(False,
                    "a folha desta familia veste %r, que e %s — e a 32.5-c: folha de pagina "
                    "vencendo a do molde por ordem de carga" % (seletor, por_que))
         nota("a folha desta familia tem %d regra(s), nenhuma sobre o que e da casca"
-             % len(regras_de_css(folha.group(1))))
+             % len(regras_de_css(folha)))
+
+
+def folha_do_php(texto_php, ident="rdm-inst-folha"):
+    """A folha desta familia, achada pelo PAR DE CAPTURA e nao pela tag.
+
+    ATUALIZADO EM 04/11/2026 PELO BLOCO 7: a tag `<style>` saiu dos snippets e
+    passou a ser escrita pela casca, em um lugar so, porque as folhas desta
+    ilha serviam os proprios comentarios (23 deles e 7.486 bytes na folha da
+    casca, medidos no ar as 19h2xZ). A regua antiga procurava
+    `<style id="rdm-inst-folha">` no PHP e REPROVOU com "o PHP nao tem a folha
+    desta familia" — defeito da REGUA, nao da folha, e a 32.5-c manda procurar
+    o mesmo na irma na mesma passada. O que a folha E nao mudou: e o texto
+    entre a abertura e o fechamento da captura.
+    """
+    abre = texto_php.find("rodametria_casca_abrir_folha(); ?>")
+    if abre < 0:
+        return None
+    abre = texto_php.find("\n", abre) + 1
+    fecha = texto_php.find("<?php rodametria_casca_fechar_folha( %r )" % ident, abre)
+    if fecha < 0:
+        fecha = texto_php.find("<?php rodametria_casca_fechar_folha(", abre)
+    if fecha < 0:
+        return None
+
+    return texto_php[abre:fecha]
 
 
 # ---------------------------------------------------------------------------
@@ -528,10 +553,18 @@ def autoteste(declarado, texto_php):
     #      metades sao provadas — o comentario que fala de h1 NAO reprova, e o
     #      seletor que veste h2 reprova. A primeira versao desta regua reprovou
     #      a folha certa por causa do proprio comentario.
-    folha_real = re.search(r"<style id=\"rdm-inst-folha\">(.*?)</style>", texto_php, re.S)
+    folha_real = folha_do_php(texto_php)
     casos.append(("a folha real passa, apesar de o comentario dela citar h1 e h2",
                   lambda: folha_real is not None
-                  and not seletores_da_casca_na_folha(folha_real.group(1))))
+                  and not seletores_da_casca_na_folha(folha_real)))
+    # A tag `<style>` nao sai mais daqui, e a conta e feita no HTML CRU — o que
+    # fica FORA de `<?php ... ?>`. Mencao a `<style>` em comentario de PHP nao e
+    # tag servida, e contar o arquivo inteiro reprovaria o snippet certo (20.5).
+    html_cru = re.sub(r"<\?php.*?\?>", "", texto_php, flags=re.S)
+    casos.append(("a folha e achada pelo PAR DE CAPTURA, e o HTML cru nao traz tag <style>",
+                  lambda: folha_real is not None
+                  and not re.search(r"</?style", html_cru, re.I)
+                  and "max-width:62ch" in folha_real))
     casos.append(("comentario que cita h2 NAO e lido como seletor",
                   lambda: not seletores_da_casca_na_folha(
                       "/* nada aqui mexe em h2 nem em .rdm-molde-caixa */\n.x{color:red}")))

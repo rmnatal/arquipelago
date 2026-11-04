@@ -44,7 +44,7 @@
    Antes disto a ilha cujo produto e "o preco de hoje" tinha ZERO ocorrencia de
    `dateModified` e de `datePublished` em todo o JSON-LD das 9 URLs. */
 if ( ! defined( 'RODAMETRIA_CASCA_VERSAO' ) ) {
-	define( 'RODAMETRIA_CASCA_VERSAO', '1.9.0' );
+	define( 'RODAMETRIA_CASCA_VERSAO', '1.10.0' );
 }
 
 /**
@@ -934,11 +934,134 @@ function rodametria_casca_barra_fixa( $rotulo, $numero, $unidade ) {
  * nenhum.
  * ======================================================================== */
 
+/* ===========================================================================
+ * 7-a. A FOLHA SAI SEM OS PROPRIOS COMENTARIOS — UM LUGAR SO, PARA AS TRES
+ * FOLHAS DESTA ILHA (bloco 7, 04/11/2026)
+ *
+ * O DEFEITO, medido no ar as 19h2xZ de 04/11/2026 nas 9 URLs do sitemap: as
+ * folhas DESTA ilha serviam 23 comentarios de CSS e 7.486 bytes na home e na
+ * F2, 24 e 7.866 nas tres de produto, 24 e 7.827 nas quatro institucionais.
+ * Na pagina da F2 isso e 10,6% do CSS que esta ilha escreve e 85,6% de TODOS
+ * os bytes de comentario que a pagina serve — os outros 17 sao one-liners do
+ * proprio WordPress, de 41 a 103 bytes, que nao sao desta ilha e nao saem
+ * daqui. E tres desses comentarios nomeiam uma rotina desta pasta
+ * (`conferir-32-5-no-navegador.mjs`), um deles diz `bancada`, e varios trazem
+ * numero de secao do contrato e prosa de bastidor — tudo o que a 32.4 proibe.
+ *
+ * POR QUE NENHUM PORTAO VIA: a regua de bastidor desta ilha e a da ronda leem
+ * o TEXTO VISIVEL, e `corpo_da_pagina()` tira `<script>` e `<style>` antes de
+ * medir — com razao, porque ali mora CSS e nao prosa. So que a 32.4 nao e
+ * sobre o que o leitor VE: e sobre o que a pagina SERVE, e e o fonte que a
+ * visao geral de IA ingere.
+ *
+ * O COMENTARIO FICA NO REPOSITORIO, que e o lugar dele (secao 3) — foi ele que
+ * pagou a 32.5-d duas vezes nesta ilha. O que muda e que ele nao sai na folha
+ * impressa. E muda EM UM LUGAR, para as tres folhas, porque a 32.5-c e
+ * literal: regra que nasce na folha de um snippet e nao viaja para as irmas e
+ * a doenca que esta ilha ja pagou.
+ *
+ * COMO NAO SE QUEBRA CSS TIRANDO COMENTARIO, e isto e a parte dificil: `/*`
+ * pode aparecer DENTRO de string (`content:"/* "`) e dentro de `url(...)` sem
+ * quote, e um removedor ingenuo corta a declaracao no meio. Entao as strings e
+ * as `url()` cruas sao consumidas INTEIRAS pela mesma varredura, antes de
+ * qualquer `/*` dentro delas ser visto. As duas travas estao medidas em
+ * `ferramentas/teste-folha-sem-comentario.php`, com os mundos FABRICADOS.
+ * ======================================================================== */
+
+if ( ! function_exists( 'rodametria_casca_css_sem_comentario' ) ) {
+/**
+ * Tira os comentarios de uma folha de estilo, sem tocar em mais nada.
+ *
+ * SAO DUAS PASSADAS, e a primeira existe por um motivo de CSS e nao de gosto:
+ * comentario COLADO entre dois caracteres de palavra (`a/*c* /b`) separa dois
+ * tokens, e tira-lo como nada colaria os dois num terceiro que ninguem
+ * escreveu. Essa passada o troca por UM espaco. A segunda tira todo o resto
+ * como nada. Nenhuma folha desta ilha tem o caso colado hoje — a passada
+ * existe para o dia em que tiver, e o portao do chao a prova num mundo
+ * fabricado.
+ *
+ * AS DUAS PASSADAS RODAM O MESMO PADRAO, e nele a ordem e o que protege o CSS:
+ * string entre aspas e `url(...)` sem quote entram como alternativas e sao
+ * devolvidas INTACTAS. E so por consumi-las INTEIRAS que um `/*` dentro delas
+ * nunca e lido como comentario — a varredura nunca COMECA dentro de uma
+ * string, porque a string ja casou como um pedaco so. `content:"/*"` e
+ * `url(data:image/svg+xml;...)` sobrevivem, e as duas estao medidas em
+ * `ferramentas/teste-folha-sem-comentario.php`.
+ *
+ * COMENTARIO SEM FECHAR come o resto da folha, que e exatamente o que o
+ * navegador faz. Nao se inventa um fechamento que o autor nao escreveu; o
+ * portao do chao reprova folha desta ilha que tenha um.
+ */
+function rodametria_casca_css_sem_comentario( $css ) {
+	$cauda = '|"(?:\\\\.|[^"\\\\])*"'
+		. "|'(?:\\\\.|[^'\\\\])*'"
+		. '|url\(\s*[^)"\']*\)';
+
+	/* Passada 1: so o comentario COLADO entre dois caracteres de palavra. Os
+	   vizinhos entram por lookbehind e lookahead, que nao os consomem — se
+	   fossem consumidos, o caractere seguinte sairia da varredura. */
+	$css = preg_replace_callback(
+		'~(?<=[A-Za-z0-9_-])/\*.*?\*/(?=[A-Za-z0-9_-])' . $cauda . '~s',
+		function ( $m ) {
+			return ( '/*' === substr( $m[0], 0, 2 ) ) ? ' ' : $m[0];
+		},
+		(string) $css
+	);
+
+	/* Passada 2: todo o resto, inclusive o comentario sem fechar. */
+	$css = preg_replace_callback(
+		'~/\*.*?\*/|/\*.*$' . $cauda . '~s',
+		function ( $m ) {
+			return ( '/*' === substr( $m[0], 0, 2 ) ) ? '' : $m[0];
+		},
+		$css
+	);
+
+	/* Linha que ficou vazia, e espaco no fim de linha, sao rastro do
+	   comentario e nao CSS. A quebra de linha fica, entao nada se cola. */
+	$css = preg_replace( '~[ \t]+$~m', '', $css );
+	$css = preg_replace( '~\n[ \t]*(?:\n[ \t]*)+~', "\n", $css );
+
+	return trim( $css, "\n" );
+}
+}
+
+if ( ! function_exists( 'rodametria_casca_abrir_folha' ) ) {
+/**
+ * Abre a captura da folha.
+ *
+ * O CSS continua escrito como HTML cru dentro do snippet — nenhum byte dele
+ * muda de lugar no repositorio, e era isso que importava: a folha da casca tem
+ * 600 linhas e reescreve-las para trocar QUEM as imprime seria mexer na
+ * variavel errada. A captura entrega o texto a funcao acima, e a tag `<style>`
+ * passa a ser escrita por ela, em um lugar so, para as tres folhas.
+ */
+function rodametria_casca_abrir_folha() {
+	ob_start();
+}
+}
+
+if ( ! function_exists( 'rodametria_casca_fechar_folha' ) ) {
+/** Fecha a captura e imprime a folha, sem um comentario.
+ *
+ * CADA FUNCAO EM SEU PROPRIO `if ( ! function_exists() )`, e isto nao e estilo:
+ * o `teste-f2.py` mede, no fonte, que toda funcao de nivel superior da casca
+ * esta atras de uma guarda — e ele REPROVOU a primeira versao deste bloco, que
+ * punha as duas sob a mesma. Guarda compartilhada mente no dia em que uma das
+ * duas existir e a outra nao.
+ */
+function rodametria_casca_fechar_folha( $id ) {
+	$css = ob_get_clean();
+	echo "\n" . '<style id="' . esc_attr( $id ) . '">' . "\n"
+		. rodametria_casca_css_sem_comentario( $css ) . "\n</style>\n";
+}
+}
+
 add_action( 'wp_head', function () {
 	?>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Barlow:wght@400;600&family=Barlow+Semi+Condensed:wght@700&family=JetBrains+Mono:wght@500&display=swap">
-<style id="rodametria-casca">
+<?php rodametria_casca_abrir_folha(); ?>
 :root{
   --rdm-tinta:#13212B; --rdm-verde:#0A6B4C; --rdm-verde-claro:#3FC08E;
   --rdm-alerta:#8F4A00; --rdm-legenda:#4A5A66; --rdm-piso:#F6F8F7;
@@ -1267,7 +1390,7 @@ body.rdm .rdm-cartoes p{font-size:.9375rem;margin:0 0 var(--rdm-e3)}
   body.rdm.rdm-com-barra{padding-bottom:72px}
 }
 @media (prefers-reduced-motion:reduce){body.rdm *{scroll-behavior:auto!important}}
-</style>
+<?php rodametria_casca_fechar_folha( 'rodametria-casca' ); ?>
 	<?php
 }, 8 );
 

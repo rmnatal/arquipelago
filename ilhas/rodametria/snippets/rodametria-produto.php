@@ -93,7 +93,7 @@
    pergunta que `dateModified` responde e "quando esta pagina mudou", e a mae muda
    no dia em que QUALQUER filha e recolhida. */
 if ( ! defined( 'RODAMETRIA_PRODUTO_VERSAO' ) ) {
-	define( 'RODAMETRIA_PRODUTO_VERSAO', '1.7.0' );
+	define( 'RODAMETRIA_PRODUTO_VERSAO', '1.7.1' );
 }
 
 /* A VERSAO DESTE SNIPPET VAI AO AR, pelo filtro que a casca 1.6.0 abriu
@@ -1151,7 +1151,7 @@ add_action( 'wp_footer', function () {
 		return;
 	}
 	?>
-<style id="rodametria-produto-css">
+<?php rodametria_casca_abrir_folha(); ?>
 body.rdm .rdm-tabela-rolo{overflow-x:auto;-webkit-overflow-scrolling:touch}
 body.rdm .rdm-tabela-nota,body.rdm .rdm-recusas{font-size:.9rem;color:var(--rdm-legenda)}
 /* A CELULA SEM SAIDA e a LINHA DO PISO, as duas de 30/10/2026. A celula nao e
@@ -1175,7 +1175,7 @@ body.rdm .rdm-cartao p{margin:0}
 body.rdm .rdm-cartao-mudo ul{margin:.5rem 0 0;padding-left:1.1rem}
 body.rdm .rdm-cartao-mudo li{padding:.25rem 0}
 @media (min-width:52rem){body.rdm .rdm-cartoes{grid-template-columns:repeat(2,minmax(0,1fr))}}
-</style>
+<?php rodametria_casca_fechar_folha( 'rodametria-produto-css' ); ?>
 	<?php
 }, 30 );
 

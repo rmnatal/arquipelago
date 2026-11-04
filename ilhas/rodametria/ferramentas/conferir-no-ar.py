@@ -104,6 +104,97 @@ def corpo_da_pagina(html):
     return corpo
 
 
+# ---------------------------------------------------------------------------
+# A 32.4 NO QUE A PAGINA SERVE, E NAO SO NO QUE O LEITOR VE (bloco 7, 04/11/2026)
+#
+# `corpo_da_pagina()` acima tira `<script>` e `<style>` antes de medir, e esta
+# CERTO: ali mora CSS e JS, nao prosa, e a afirmacao sobre o que a pagina DIZ se
+# mede no corpo. So que a 32.4 nao e sobre o que o leitor VE — e sobre o que a
+# pagina SERVE, e e o fonte que a visao geral de IA ingere. Entre as duas
+# leituras cabia o defeito medido no ar as 19h2xZ de 04/11/2026: as folhas desta
+# ilha serviam 23 comentarios de CSS e 7.486 bytes na home e na F2, com tres
+# mencoes a `conferir-32-5-no-navegador.mjs`, uma a `bancada` e varias a numero
+# de secao do contrato.
+#
+# AS DUAS AFIRMACOES SAO SEPARADAS de proposito, porque o conserto de cada uma e
+# diferente (20.5): uma diz que a FOLHA servida tem comentario; a outra diz que
+# ha PALAVRA de bastidor no HTML servido. A primeira se conserta na casca, a
+# segunda no texto que a produziu.
+# ---------------------------------------------------------------------------
+
+BASTIDOR = ["egresso", "SERP classificada", "snippet", "wp-sitemap", "manifest.json",
+            "ARQUIPELAGO", "Rodametria Sync", "bancada", "dados/", "ferramentas/",
+            "regras/", "publicavel", "sha256", "revisao"]
+
+# Extensao de rotina desta fabrica. `.php` NAO entra, e a causa foi MEDIDA em
+# 04/11/2026: o WordPress serve `/wp-*.php` e `xmlrpc.php` no proprio `<head>`,
+# em duas ocorrencias por pagina, e um termo `.php` reprovaria a pagina certa —
+# que e o caminho mais curto para alguem passar a ignorar o portao (20.5).
+# `.py` e `.mjs` foram medidos em ZERO fora das nossas folhas nas mesmas 9 URLs.
+EXTENSOES_DE_ROTINA = [".py", ".mjs"]
+
+
+def folhas_da_ilha(html):
+    """So as folhas que ESTA ilha escreve, nunca as do WordPress.
+
+    Medido em 04/11/2026 na pagina da F2: 18 blocos `<style>`, dos quais 17 sao
+    do proprio WordPress — one-liners de 41 a 103 bytes, 1.254 bytes de
+    comentario no total, que nao sao desta ilha e nao saem daqui. O nosso e 1
+    bloco com 23 comentarios e 7.486 bytes: 85,6% dos bytes de comentario da
+    pagina. Reprovar pelos 17 do WordPress seria reprovar o que esta ilha nao
+    pode consertar.
+    """
+    nossas = []
+    for atrib, css in re.findall(r"<style([^>]*)>(.*?)</style>", html, re.S | re.I):
+        if "rodametria" in atrib or "rdm-" in atrib:
+            m = re.search(r'id="([^"]+)"', atrib)
+            nossas.append((m.group(1) if m else "(sem id)", css))
+
+    return nossas
+
+
+def problemas_da_folha_servida(html):
+    """Comentario de CSS dentro de folha DESTA ilha. Funcao pura, sem rede."""
+    ruim = []
+    for ident, css in folhas_da_ilha(html):
+        quantos = len(re.findall(r"/\*", css))
+        if quantos:
+            bytes_ = sum(len(m) for m in re.findall(r"/\*.*?\*/", css, re.S))
+            ruim.append("a folha %s serve %d comentario(s) de CSS (%d bytes) — o comentario "
+                        "mora no repositorio (secao 3), nunca na folha impressa"
+                        % (ident, quantos, bytes_))
+
+    return ruim
+
+
+def problemas_de_bastidor_no_servido(html, nomes_de_arquivo=()):
+    """A 32.4 sobre o HTML SERVIDO INTEIRO, e a afirmacao e POSITIVA.
+
+    Nao procura "a falha que alguem ja imaginou" num pedaco escolhido: varre o
+    byte servido. Medido em 04/11/2026 nas 9 URLs, a UNICA palavra da lista que
+    aparecia no HTML inteiro era `bancada`, uma vez, DENTRO da nossa folha —
+    entao esta regua nao reprova o WordPress por acidente, e isso foi medido
+    antes de ela nascer, nao suposto.
+    """
+    ruim = []
+    baixo = html.lower()
+    for termo in BASTIDOR:
+        if termo.lower() in baixo:
+            ruim.append("32.4 no HTML servido: a palavra de bastidor %r aparece %d vez(es) — "
+                        "invisivel para o visitante e legivel para quem le o fonte, que e o "
+                        "que a visao geral de IA ingere" % (termo, baixo.count(termo.lower())))
+    for ext in EXTENSOES_DE_ROTINA:
+        if ext in baixo:
+            ruim.append("32.4 no HTML servido: a extensao de rotina %r aparece %d vez(es) — "
+                        "nome de arquivo desta fabrica nao e coisa que a pagina sirva"
+                        % (ext, baixo.count(ext)))
+    for nome in nomes_de_arquivo:
+        if nome.lower() in baixo:
+            ruim.append("32.4 no HTML servido: o nome de arquivo %r desta pasta aparece na "
+                        "pagina" % nome)
+
+    return ruim
+
 REV_RE = re.compile(r"revis\w*\s+(\d+)\s*:")
 
 
@@ -591,9 +682,20 @@ def main():
     # -------------------------------------------------------------------
     # 5. CADA PAGINA, UMA POR UMA
     # -------------------------------------------------------------------
-    bastidor = ["egresso", "SERP classificada", "snippet", "wp-sitemap", "manifest.json",
-                "ARQUIPELAGO", "Rodametria Sync", "bancada", "dados/", "ferramentas/",
-                "regras/", "publicavel", "sha256", "revisao"]
+    bastidor = BASTIDOR
+
+    # OS NOMES DE ARQUIVO DESTA PASTA, lidos do disco e nunca enumerados: nome
+    # de rotina e exatamente o que a 32.4 proibe, e tres comentarios da folha
+    # traziam `conferir-32-5-no-navegador.mjs` quando isto foi medido.
+    nomes_de_arquivo = []
+    for pasta in ("ferramentas", "regras", "dados", "snippets"):
+        caminho = os.path.join(ILHA, pasta)
+        if os.path.isdir(caminho):
+            nomes_de_arquivo += [f for f in os.listdir(caminho)
+                                 if os.path.isfile(os.path.join(caminho, f))]
+    nomes_de_arquivo += ["manifest.json", "PROMPT.md", "ESTADO.md", "REGISTRO.md",
+                         "VOZ.md", "DESIGN.md"]
+    registro("nomes de arquivo desta pasta na regua da 32.4: %d" % len(nomes_de_arquivo))
 
     ancoras_do_site = ancoras_liberadas_do_site()
     registro("liberacoes de quantificador lidas das tres camadas declaradas: %d ancora(s)"
@@ -723,6 +825,19 @@ def main():
             afirma(termo.lower() not in texto.lower(),
                    "32.4: a palavra de bastidor %r aparece no texto servido de %s"
                    % (termo, caminho))
+
+        # A FOLHA DESTA ILHA NAO SERVE OS PROPRIOS COMENTARIOS (bloco 7).
+        nossas = folhas_da_ilha(html)
+        afirma(len(nossas) >= 1,
+               "%s: nao serve nenhuma folha desta ilha — ou o snippet esta gravado e NAO "
+               "ativado (20.7), ou a tag <style> deixou de sair da casca" % caminho)
+        for problema in problemas_da_folha_servida(html):
+            afirma(False, "%s: %s" % (caminho, problema))
+
+        # E A 32.4 SOBRE O HTML SERVIDO INTEIRO, separada da de cima porque o
+        # conserto de cada uma e diferente (20.5).
+        for problema in problemas_de_bastidor_no_servido(html, nomes_de_arquivo):
+            afirma(False, "%s: %s" % (caminho, problema))
 
         # Shortcode cru na tela e desembarque que nao aconteceu.
         afirma("[rodametria_" not in texto,
@@ -1036,6 +1151,54 @@ def autoteste():
                 "discordam" % (i + 1, frase[:40]))
     finally:
         afirma = afirma_de_verdade
+
+    # MUNDO 11 — A FOLHA SERVIDA E A 32.4 NO BYTE SERVIDO (bloco 7, 04/11/2026).
+    # As duas funcoes sao puras, entao esta metade roda SEMPRE, sem rede.
+    #
+    # O MUNDO 1 DESTA PARTE E O MUNDO DE VERDADE: a folha da casca como ela
+    # estava no ar as 19h2xZ de 04/11/2026 — um comentario que nomeia a rotina
+    # `conferir-32-5-no-navegador.mjs`, outro que diz `bancada`, e numero de
+    # secao do contrato. A pagina tinha 17 blocos `<style>` do proprio
+    # WordPress ao lado, e NENHUM deles pode fazer este portao reprovar.
+    wp = ('<style id="wp-block-library-inline-css">/*! normalize */.wp-x{color:red}</style>'
+          '<style id="global-styles-inline-css">/* auto-generated */body{margin:0}</style>')
+    doente = ('<html><head>' + wp + '<style id="rodametria-casca">\n'
+              '/* MEDIDO NO AR a 390 px pelo conferir-32-5-no-navegador.mjs, e a bancada\n'
+              '   desta ilha roda o portao da secao 32.5 depois. */\n'
+              'body.rdm{margin:0}\n</style></head><body><p>Faz uns 35 km.</p></body></html>')
+    sao = ('<html><head>' + wp + '<style id="rodametria-casca">\n'
+           'body.rdm{margin:0}\n</style></head><body><p>Faz uns 35 km.</p></body></html>')
+
+    diz(len(folhas_da_ilha(doente)) == 1,
+        "11.1 das 3 folhas servidas so 1 e desta ilha — as 2 do WordPress ficam de fora, "
+        "porque esta ilha nao pode consertar o que nao escreve")
+    diz(len(problemas_da_folha_servida(doente)) == 1,
+        "11.2 a folha DOENTE e pega: comentario de CSS dentro da folha desta ilha")
+    diz(problemas_da_folha_servida(sao) == [],
+        "11.3 a folha SA passa, com os comentarios do WordPress intactos ao lado — portao "
+        "que reprova a pagina certa e o caminho mais curto para alguem ignora-lo (20.5)")
+    bast = problemas_de_bastidor_no_servido(doente, ("conferir-32-5-no-navegador.mjs",))
+    diz(any("bancada" in m for m in bast),
+        "11.4 a palavra de bastidor dentro do COMENTARIO da folha e pega pela 32.4 no servido")
+    diz(any(".mjs" in m for m in bast),
+        "11.5 a extensao de rotina dentro da folha e pega")
+    diz(any("conferir-32-5-no-navegador.mjs" in m for m in bast),
+        "11.6 o NOME do arquivo desta pasta dentro da folha e pego")
+    diz(problemas_de_bastidor_no_servido(sao, ("conferir-32-5-no-navegador.mjs",)) == [],
+        "11.7 a pagina SA passa na 32.4 do servido")
+
+    # E A REGUA VELHA REFEITA AO LADO DA NOVA: a velha le o TEXTO VISIVEL, e
+    # `corpo_da_pagina()` tira `<style>` antes de medir — entao ela APROVA a
+    # pagina doente. As duas tem de discordar, senao este mundo nao mede o
+    # conserto (20.8).
+    def regua_velha_do_bastidor(html):
+        corpo = corpo_da_pagina(html)
+        texto = re.sub(r"<[^>]+>", " ", corpo)
+        return [t for t in BASTIDOR if t.lower() in texto.lower()]
+
+    diz(regua_velha_do_bastidor(doente) == [] and bast != [],
+        "11.8 a regua VELHA (texto visivel) APROVA a pagina doente e a NOVA (byte servido) a "
+        "REPROVA — as duas discordam, senao este autoteste nao mede o conserto")
 
     print("conferir-no-ar --autoteste: %d de %d afirmacoes, %d falha(s)"
           % (len(ok), len(ok) + len(mal), len(mal)))

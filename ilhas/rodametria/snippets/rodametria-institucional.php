@@ -65,7 +65,7 @@
    Estas quatro nao tem coleta: a data em que a camada declarada foi escrita E a
    data em que a pagina mudou. */
 if ( ! defined( 'RODAMETRIA_INST_VERSAO' ) ) {
-	define( 'RODAMETRIA_INST_VERSAO', '1.2.0' );
+	define( 'RODAMETRIA_INST_VERSAO', '1.2.1' );
 }
 
 /* A VERSAO DESTE SNIPPET VAI AO AR, pelo filtro que a casca 1.6.0 abriu
@@ -581,7 +581,7 @@ add_action( 'wp_footer', function () {
 		return;
 	}
 	?>
-<style id="rdm-inst-folha">
+<?php rodametria_casca_abrir_folha(); ?>
 /* NADA AQUI REDECLARA h1, h2 NEM A CAIXA: a casca ja os veste, e folha de
    pagina que os reescreve e a 32.5-c em acao — a folha do Guia da
    clubedomosaico vencia a do molde por ordem de carga. O que esta linha
@@ -591,7 +591,7 @@ body.rdm .rdm-inst-secao p{max-width:62ch}
 body.rdm .rdm-inst-recusa{border-left:3px solid var(--rdm-traco);padding-left:var(--rdm-e3)}
 body.rdm .rdm-inst-recusa ul{max-width:62ch}
 body.rdm .rdm-inst-recusa li{margin-bottom:var(--rdm-e2)}
-</style>
+<?php rodametria_casca_fechar_folha( 'rdm-inst-folha' ); ?>
 	<?php
 }, 30 );
 
