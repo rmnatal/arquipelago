@@ -70,6 +70,10 @@ def registro_publicavel(d):
         "encurtamento_tentado_em": "2026-10-28",
         "sub_id_1": "rodametria", "sub_id_2": "f3",
         "motivo_sem_url_produto": None, "motivo_sem_url_busca": None,
+        # DECLARADO, como em todo registro desde 04/11/2026: a chave e escrita por
+        # `derivar-banco.py` e recalculada pelo validador. Este caso tem o par
+        # (url + url_produto), logo `false`.
+        "intestavel": False,
     }
     r["status"] = "publicavel"
     r["motivo_do_status"] = "caso de teste"
@@ -103,6 +107,38 @@ def _(d):
     r["afiliado"]["url"] = None
     r["afiliado"]["url_produto"] = None
     r["afiliado"]["par_colhido_em"] = None
+    return d
+
+
+# --------------------------------------- o `intestavel` DECLARADO (04/11/2026)
+# Tres quebras, e a segunda e a que importa: ela e o mundo em que o espelho
+# envelheceu calado — o campo diz uma coisa e o par de URLs diz outra.
+@caso("`afiliado.intestavel` AUSENTE num registro", "`afiliado.intestavel` AUSENTE")
+def _(d):
+    del primeiro(d)["afiliado"]["intestavel"]
+    return d
+
+
+@caso("`intestavel: false` num item que PERDEU o `url_produto`",
+      "declarado False and a regra da 25.4-b diz True".replace(" and ", " e "))
+def _(d):
+    r = registro_publicavel(d)
+    r["afiliado"]["url_produto"] = None
+    r["afiliado"]["par_colhido_em"] = None
+    r["afiliado"]["intestavel"] = False
+    r["afiliado"]["degrau"] = 4          # para a quebra ser SO a do espelho
+    r["afiliado"]["motivo_sem_url_produto"] = "CAUSA: teste. || ULTIMA TENTATIVA: teste."
+    return d
+
+
+@caso("`intestavel: true` sem motivo escrito", "sem `motivo_sem_url_produto`")
+def _(d):
+    r = registro_publicavel(d)
+    r["afiliado"]["url_produto"] = None
+    r["afiliado"]["par_colhido_em"] = None
+    r["afiliado"]["intestavel"] = True
+    r["afiliado"]["degrau"] = 4
+    r["afiliado"]["motivo_sem_url_produto"] = None
     return d
 
 

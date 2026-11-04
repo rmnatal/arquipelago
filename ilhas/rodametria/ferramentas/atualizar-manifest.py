@@ -10,7 +10,9 @@ paginas trocando no ar e os nove titulos nao. A regra que saiu de la e literal:
 que fez, senao o espelho envelhece calado".
 
 A REVISAO SOBE SOZINHA quando alguma troca acontece, e nunca e digitada: revisao
-digitada e a familia do numero de tela digitado.
+digitada e a familia do numero de tela digitado. E DESDE 04/11/2026 O
+`atualizado_em` SOBE COM ELA, no mesmo gesto — ver a secao do `atualizado_em`
+mais abaixo.
 
 DOIS CAMPOS SAO ESPELHADOS, E O SEGUNDO NASCEU EM 02/11/2026
 ===========================================================
@@ -50,6 +52,29 @@ Nunca escolhe. Espelho que adivinha a fonte nao e espelho. E a ferramenta
 IMPRIME o nome da constante que leu, para o espelho ser auditavel sem abrir o
 PHP — mesma razao de imprimir a troca.
 
+O `atualizado_em` — ITEM 5 DO DESPACHO DA RONDA DE 04/11/2026
+===========================================================
+
+O defeito medido: `manifest.json` dizia `atualizado_em: 2026-11-02` na revisao
+**40**, publicada em 04/11. A revisao batia (`/status` em 40, manifest em 40); a
+data ao lado dela era de dois dias antes. A secao 3 manda incrementar a revisao
+**e** atualizar o `atualizado_em` no mesmo commit, e a execucao daquela manha
+subiu a revisao deixando a data velha — porque a data era DIGITADA A MAO e a
+revisao nao.
+
+A regra aqui e a mesma da revisao: **data que sobe sozinha nao esquece.** Quando
+esta ferramenta troca qualquer coisa, ela escreve `atualizado_em` com a data de
+HOJE, lida do relogio na mesma passada, e IMPRIME a troca como imprime as outras.
+
+E O `--conferir` NAO EXIGE "HOJE", de proposito: manifest em dia hoje continua em
+dia amanha, e portao que reprova manifest certo e o caminho mais curto para
+alguem ignora-lo (a licao da 20.5). O que ele exige e que o `atualizado_em` bata
+com a data do **ultimo commit que tocou o manifest** — que e a frase do despacho
+("igual a data do commit que subiu a revisao corrente"). Em clone RASO desta
+nuvem o git pode nao ter esse commit; nesse caso o portao DIZ que nao pudo
+conferir, em vez de aprovar com cara de completo (a licao do `git log` raso da
+1.1).
+
 Somente `snippets` tem versao: `conteudo` e `dados` sao arquivo de dado, nao
 tem codigo e nao se declaram versao nenhuma.
 
@@ -57,10 +82,12 @@ tem codigo e nao se declaram versao nenhuma.
     python3 ferramentas/atualizar-manifest.py --conferir  # nao escreve; falha se divergir
 """
 
+import datetime
 import hashlib
 import json
 import os
 import re
+import subprocess
 import sys
 
 AQUI = os.path.dirname(os.path.abspath(__file__))
@@ -72,6 +99,29 @@ MANIFEST = os.path.join(ILHA, "manifest.json")
 VERSAO_RE = re.compile(
     r"""define\(\s*['"]([A-Z][A-Z0-9_]*_VERSAO)['"]\s*,\s*['"]([^'"]+)['"]\s*\)"""
 )
+
+
+def hoje():
+    """A data de HOJE, do relogio, nunca digitada."""
+    return datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d")
+
+
+def data_do_ultimo_commit():
+    """A data do ultimo commit que tocou o manifest, ou None se o git nao souber.
+
+    None nao e "esta certo": e "nao pude conferir", e quem chama imprime isso.
+    """
+    try:
+        r = subprocess.run(
+            ["git", "log", "-1", "--format=%cd", "--date=format:%Y-%m-%d", "--", MANIFEST],
+            cwd=ILHA, capture_output=True, text=True, timeout=20)
+    except (OSError, subprocess.SubprocessError):
+        return None
+    if r.returncode != 0:
+        return None
+    saida = (r.stdout or "").strip()
+
+    return saida if re.match(r"^\d{4}-\d{2}-\d{2}$", saida) else None
 
 
 def sha(rel):
@@ -155,6 +205,15 @@ def main():
     if trocas:
         m["revisao"] = revisao_antiga + 1
         trocas.append("revisao  %d -> %d" % (revisao_antiga, m["revisao"]))
+        # A DATA SOBE COM A REVISAO, no mesmo gesto e do relogio (item 5 do
+        # despacho de 04/11/2026). Em `--conferir` nada e escrito: o bloco abaixo
+        # compara o que esta no arquivo com o git e nunca com "hoje".
+        if not conferir:
+            data_nova = hoje()
+            if m.get("atualizado_em") != data_nova:
+                trocas.append("atualizado_em  %s -> %s"
+                              % (m.get("atualizado_em") or "(vazio)", data_nova))
+                m["atualizado_em"] = data_nova
 
     texto = json.dumps(m, ensure_ascii=False, indent=2) + "\n"
 
@@ -169,6 +228,21 @@ def main():
             return 1
         for c in constantes_lidas:
             print("  versao lida de  " + c)
+
+        do_git = data_do_ultimo_commit()
+        if do_git is None:
+            print("  atualizado_em   %s — NAO CONFERIDO contra o git (o ultimo commit do manifest "
+                  "nao esta neste clone; a 1.1 avisa que esta nuvem clona raso)"
+                  % (m.get("atualizado_em") or "(vazio)"))
+        elif m.get("atualizado_em") != do_git:
+            print("REPROVADO: `atualizado_em` %s e o ultimo commit do manifest e de %s."
+                  % (m.get("atualizado_em") or "(vazio)", do_git))
+            print("  A secao 3 manda subir a revisao E a data no MESMO commit. Rode esta "
+                  "ferramenta sem --conferir, ou corrija a data para a do commit.")
+            return 1
+        else:
+            print("  atualizado_em   %s, igual a data do ultimo commit do manifest" % do_git)
+
         print("APROVADO: manifest em dia, revisao %d, %d constante(s) de versao espelhada(s)."
               % (m["revisao"], len(constantes_lidas)))
         return 0

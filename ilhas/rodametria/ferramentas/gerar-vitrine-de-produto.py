@@ -384,6 +384,81 @@ def ordenar(servem):
     return sorted(servem, key=lambda a: (-(a.get('vendas') or 0), a.get('preco') or 0))
 
 
+def escolher_carrossel(linhas):
+    """O CARROSSEL NUNCA REPETE UM PRECO ENQUANTO HOUVER OUTRO PRECO ESPERANDO FORA DELE.
+
+    ITEM 3 DO DESPACHO DA RONDA DE 04/11/2026, e o defeito foi lido como um leitor
+    leria. O carrossel da bicicleta era os CINCO primeiros de `servem`, e os cinco
+    custavam `R$ 2.299,99` — em cinco lojas diferentes, com titulos que descrevem a
+    mesma bicicleta dobravel. A SEXTA linha, a unica de outro preco (R$ 6.199,90),
+    ficava de fora. Consequencia aritmetica, e ela estava certa: a pagina publicava
+    "custa de R$ 2.299,99 a R$ 6.199,90, com a mediana em R$ 2.299,99 sobre os 6
+    anuncios" — e **a mediana era o MINIMO**, porque 5 dos 6 tinham o mesmo preco.
+    A frase de faixa e o primeiro paragrafo da pagina, e ela nao informava nada.
+
+    E O DESEMPATE DECLARADO NUNCA ENGATAVA: a `ordem` deste arquivo diz "vendas
+    medidas na API (decrescente), depois preco crescente", e com cinco precos
+    iguais o segundo critério nao tem o que ordenar — o carrossel saia na ordem de
+    vendas de cinco anuncios que, para quem le, sao a mesma oferta.
+
+    A ESCOLHA, e ela e de PRECO e nao de produto. Deduplicar "oferta equivalente"
+    exigiria afirmar que dois anuncios de duas lojas SAO o mesmo produto, e esta
+    ilha nao mede isso: titulo parecido nao e prova, e a 25.9 ja ensinou o que
+    custa casar anuncio por semelhanca. Preco e campo medido, lido da loja na mesma
+    passada. Entao a regra fala do que esta medido: **enquanto houver preco que o
+    carrossel ainda nao mostra, a vaga e dele.**
+
+    O PISO DA 32.1 VEM ANTES DA DIVERSIDADE, e nessa ordem: a 32.1 pede "carrossel
+    horizontal de 3 a 5 cartoes", e carrossel de 2 cartoes seria trocar um defeito
+    de informacao por um de molde. Com dois precos e seis anuncios, saem TRES
+    cartoes: os dois precos distintos mais o primeiro repetido da ordem da secao 7.
+
+    A ORDEM DA SECAO 7 E PRESERVADA no que sai: a funcao escolhe QUEM entra e nunca
+    reordena. Carrossel ordenado por diversidade mentiria sobre o criterio que a
+    propria pagina declara no "como sabemos".
+    """
+    escolhidos, sobra, quantas = [], [], {}
+
+    # PASSADA 1 — UMA VAGA POR PRECO, na ordem da secao 7.
+    for item in linhas:
+        if len(escolhidos) >= TETO_DO_CARROSSEL:
+            break
+        preco = item['preco_numero']
+        if preco in quantas:
+            sobra.append(item)
+            continue
+        quantas[preco] = 1
+        escolhidos.append(item)
+
+    # PASSADA 2 — AS VAGAS QUE SOBRARAM, com no maximo UMA repeticao por preco.
+    # Carrossel de quatro quando ha vaga para cinco desperdicia a tela mais cara
+    # da pagina; carrossel com cinco do mesmo preco e o defeito de 04/11. O teto
+    # de duas ocorrencias e o meio: a segunda oferta de um preco e outra LOJA, que
+    # e informacao de verdade para quem compara, e a terceira nao acrescenta nada.
+    for item in sobra:
+        if len(escolhidos) >= TETO_DO_CARROSSEL:
+            break
+        preco = item['preco_numero']
+        if quantas.get(preco, 0) >= 2:
+            continue
+        quantas[preco] = quantas.get(preco, 0) + 1
+        escolhidos.append(item)
+
+    # PASSADA 3 — O PISO DE TRES DA 32.1 VENCE O TETO DE DUAS OCORRENCIAS, e so
+    # ele: familia que de fato tem um preco so (quatro ofertas, um valor) sairia
+    # com dois cartoes, e carrossel de dois nao e o molde. Aqui a repeticao e o
+    # que o mercado tem, nao uma escolha nossa.
+    for item in sobra:
+        if len(escolhidos) >= PISO_DA_30_2:
+            break
+        if item not in escolhidos:
+            escolhidos.append(item)
+
+    posicao = {id(x): i for i, x in enumerate(linhas)}
+
+    return sorted(escolhidos, key=lambda x: posicao[id(x)])
+
+
 def montar(bloco, editorial_da_pagina):
     # O piso de compra desta consulta, colhido por coletar-piso-da-vitrine.py.
     # Este gerador roda na bancada SEM REDE, entao ele LE o piso e nunca o gera.
@@ -412,7 +487,7 @@ def montar(bloco, editorial_da_pagina):
     par_dois, par_so_v, par_so_ah = rel.contagem_do_par_da_f2(servem)
 
     cartoes, linhas = [], []
-    for i, a in enumerate(servem):
+    for a in servem:
         item = {
             'nome': a['titulo'],
             'preco': real(a['preco']),
@@ -459,8 +534,11 @@ def montar(bloco, editorial_da_pagina):
             'piso_medido_em': (piso or {}).get('medido_em'),
         }
         linhas.append(item)
-        if i < TETO_DO_CARROSSEL:
-            cartoes.append(item)
+
+    # QUEM VAI AO CARROSSEL E ESCOLHIDO, NAO CORTADO NO TETO — ver
+    # escolher_carrossel(). Ate 04/11/2026 esta linha era `if i < TETO`, e era
+    # ela que publicava cinco cartoes do mesmo preco na pagina da bicicleta.
+    cartoes = escolher_carrossel(linhas)
 
     # AS RECUSAS VAO PARA A TELA, porque a secao 7 manda a pagina dizer o que
     # deve ao leitor sobre quem NAO entrou — e aqui o que nao entrou e, na
@@ -591,6 +669,36 @@ def conferir():
         if len(g['linhas']) < calculado['piso_da_30_2']:
             falhas.append('%s: tabela com %d linhas, piso da 30.2 e %d'
                           % (g['id'], len(g['linhas']), calculado['piso_da_30_2']))
+        afirmacoes += 1
+        if len(g['cartoes']) < calculado['piso_da_30_2']:
+            falhas.append('%s: carrossel com %d cartoes, piso da 32.1 e %d'
+                          % (g['id'], len(g['cartoes']), calculado['piso_da_30_2']))
+
+        # ITEM 3 DO DESPACHO DE 04/11/2026 — A DIVERSIDADE DE PRECO DO CARROSSEL.
+        # A afirmacao e POSITIVA e sobre o que a pagina SERVE, nao sobre a funcao
+        # que a montou: enquanto a tabela tiver mais de um preco, o carrossel tem
+        # de mostrar mais de um. E ela tem a segunda metade, que e a que pega o
+        # defeito de verdade: todo preco que o carrossel deixou de fora tem de
+        # estar REPETIDO dentro dele — preco unico esquecido la fora e o defeito
+        # da bicicleta com outro nome.
+        afirmacoes += 1
+        precos_carrossel = [c['preco_numero'] for c in g['cartoes']]
+        precos_tabela = [l['preco_numero'] for l in g['linhas']]
+        if len(set(precos_tabela)) > 1 and len(set(precos_carrossel)) < 2:
+            falhas.append('%s: a tabela tem %d precos distintos e o carrossel serve %d '
+                          '(todos os %d cartoes no mesmo preco). A frase de faixa do primeiro '
+                          'paragrafo publica uma faixa que o carrossel desmente'
+                          % (g['id'], len(set(precos_tabela)), len(set(precos_carrossel)),
+                             len(g['cartoes'])))
+        afirmacoes += 1
+        fora = set(precos_tabela) - set(precos_carrossel)
+        repetidos = len(precos_carrossel) - len(set(precos_carrossel))
+        if fora and repetidos and len(g['cartoes']) < calculado['teto_do_carrossel']:
+            falhas.append('%s: o carrossel repete %d preco(s) com %d preco(s) de fora (%s) e '
+                          'ainda tem vaga (teto %d). A vaga e de quem ainda nao apareceu'
+                          % (g['id'], repetidos, len(fora),
+                             ', '.join(real(x) for x in sorted(fora)),
+                             calculado['teto_do_carrossel']))
         # Link de compra sem `url` nao e saida de compra, e a secao 7 proibe
         # bloco de compra com item sem saida.
         for item in g['linhas']:
@@ -600,6 +708,50 @@ def conferir():
             afirmacoes += 1
             if 'preço de' not in (item.get('preco_nota') or ''):
                 falhas.append('%s: preco sem a data da coleta ao lado (secao 7)' % g['id'])
+
+    # OS CINCO MUNDOS DO CARROSSEL, e o banco de hoje produz DOIS deles (a
+    # bicicleta, com dois precos em seis anuncios, e o patinete, com dezesseis
+    # precos distintos). Os outros tres sao fabricados pela razao da secao 8:
+    # "regua escrita para um mundo que nunca aconteceu nasce errada sem poder
+    # falhar" — e o terceiro mundo, o da familia que SO tem um preco, e o unico
+    # em que o carrossel pode honestamente sair todo no mesmo preco.
+    def _linhas(precos):
+        return [{'preco_numero': x, 'nome': 'item %d' % i} for i, x in enumerate(precos)]
+
+    MUNDOS_DO_CARROSSEL = (
+        # (precos da tabela, quantos cartoes, quantos precos distintos no carrossel)
+        ([2299.99] * 5 + [6199.90], 3, 2),          # a bicicleta de 04/11/2026
+        ([1030.0, 1499.0, 1297.13, 1398.9, 1399.99, 1490.0, 1581.06,
+          1599.99, 1695.92, 1699.0, 1768.0, 1851.9, 2299.0, 2399.99,
+          2647.02, 2699.0], 5, 5),                  # o patinete de 04/11/2026
+        ([999.0] * 4, 3, 1),                        # familia de um preco so: honesto
+        ([100.0, 200.0, 100.0], 3, 2),
+        ([100.0, 100.0, 100.0, 200.0, 300.0, 400.0], 5, 4),
+    )
+    for precos, n_cartoes, n_precos in MUNDOS_DO_CARROSSEL:
+        linhas_fab = _linhas(precos)
+        escolhidos = escolher_carrossel(linhas_fab)
+        afirmacoes += 1
+        if len(escolhidos) != n_cartoes:
+            falhas.append('escolher_carrossel(%d linhas, %d precos) devolveu %d cartoes, esperado %d'
+                          % (len(precos), len(set(precos)), len(escolhidos), n_cartoes))
+        afirmacoes += 1
+        distintos = len({c['preco_numero'] for c in escolhidos})
+        if distintos != n_precos:
+            falhas.append('escolher_carrossel(%d linhas) devolveu %d preco(s) distinto(s), esperado %d'
+                          % (len(precos), distintos, n_precos))
+        afirmacoes += 1
+        # A ORDEM DA SECAO 7 E PRESERVADA: a funcao escolhe QUEM entra e nunca
+        # reordena, porque a pagina DECLARA o criterio de ordem no "como sabemos".
+        pos = [linhas_fab.index(c) for c in escolhidos]
+        if pos != sorted(pos):
+            falhas.append('escolher_carrossel reordenou o carrossel: posicoes %r' % (pos,))
+        afirmacoes += 1
+        # E O PRECO QUE SOBROU DE FORA SO PODE EXISTIR SE O CARROSSEL ESTIVER CHEIO.
+        fora_fab = set(precos) - {c['preco_numero'] for c in escolhidos}
+        if fora_fab and len(escolhidos) < TETO_DO_CARROSSEL:
+            falhas.append('escolher_carrossel deixou %d preco(s) de fora com vaga sobrando (%d cartoes)'
+                          % (len(fora_fab), len(escolhidos)))
 
     # OS CINCO MUNDOS DA FRASE DO ROTULO, e quatro deles o banco de hoje nao
     # produz. Trava que nunca viu o mundo dela nasce errada sem poder falhar.

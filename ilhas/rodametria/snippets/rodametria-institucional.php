@@ -59,8 +59,13 @@
 
 /* A VERSAO MORA NUMA CONSTANTE, e nao so no comentario: `atualizar-manifest.py`
    casa esta constante com o campo `versao` do manifest. */
+/* 1.2.0 (04/11/2026) — AS QUATRO PAGINAS DA 16.1 DECLARAM A DATA QUE PUBLICAM,
+   pendurando o `gerado_em` de `paginas-institucionais.json` no filtro
+   `rodametria_data_da_pagina` da casca (item 2 do despacho da ronda de 04/11).
+   Estas quatro nao tem coleta: a data em que a camada declarada foi escrita E a
+   data em que a pagina mudou. */
 if ( ! defined( 'RODAMETRIA_INST_VERSAO' ) ) {
-	define( 'RODAMETRIA_INST_VERSAO', '1.1.0' );
+	define( 'RODAMETRIA_INST_VERSAO', '1.2.0' );
 }
 
 /* A VERSAO DESTE SNIPPET VAI AO AR, pelo filtro que a casca 1.6.0 abriu
@@ -541,6 +546,26 @@ function rdm_inst_pagina_html() {
 }
 
 add_shortcode( 'rodametria_institucional', 'rdm_inst_pagina_html' );
+
+/* A DATA QUE AS QUATRO PAGINAS DA 16.1 PUBLICAM, pendurada no filtro da casca
+   (item 2 do despacho de 04/11/2026). Sai de `gerado_em` do proprio
+   `paginas-institucionais.json`, que e a fonte INTEIRA do texto delas: estas
+   quatro nao tem coleta e nao tem numero de loja, entao a data em que a camada
+   declarada foi escrita E a data em que a pagina mudou. Quem reescrever o JSON
+   sobe o `gerado_em` dele, e `dateModified` acompanha sem ninguem digitar data
+   em lugar nenhum. */
+add_filter( 'rodametria_data_da_pagina', function ( $data, $slug ) {
+	if ( '' !== $data ) {
+		return $data;
+	}
+	$paginas = rdm_inst_paginas();
+	if ( ! isset( $paginas[ $slug ] ) ) {
+		return $data;
+	}
+	$bruto = rodametria_casca_banco( RODAMETRIA_ID_DADOS_INST );
+
+	return ( $bruto && ! empty( $bruto['gerado_em'] ) ) ? (string) $bruto['gerado_em'] : $data;
+}, 10, 2 );
 
 /* ---------------------------------------------------------------------------
  * 6. A FOLHA — no wp_footer, nunca no retorno do shortcode (secao 8)

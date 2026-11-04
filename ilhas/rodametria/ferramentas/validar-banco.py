@@ -327,7 +327,29 @@ def validar(dados):
             if ch not in af:
                 falha(onde, "`afiliado.%s` ausente" % ch)
         piso = bool(af.get("url_busca")) and bool(af.get("url_busca_produto"))
+        # ITEM 4 DO DESPACHO DE 04/11/2026 — O `intestavel` E DECLARADO, E ESTE
+        # PORTAO RECALCULA. Ate hoje esta linha era a UNICA existencia do
+        # conceito: uma variavel local, viva por 20 linhas, e o campo nao existia
+        # em registro nenhum. A 25.9 (item 2) manda o contrario com todas as
+        # letras — campo declarado em todo registro, "pela mesma razao do
+        # `intestavel`" —, e sem a chave a ronda que mede "0 intestavel" mede a
+        # AUSENCIA DELA. Quem escreve e `derivar-banco.py`; aqui se RECALCULA e
+        # reprova divergencia, como ja e feito com `energia_wh`: duas metades que
+        # existem para discordar.
         intestavel = bool(af.get("url")) and not af.get("url_produto")
+        if "intestavel" not in af:
+            falha(onde, "`afiliado.intestavel` AUSENTE. Chave ausente nao declara nada (25.9), e "
+                        "campo ausente que se comporta como o valor certo espera o dia em que o "
+                        "valor certo muda. Quem o escreve e `derivar-banco.py`")
+        elif bool(af.get("intestavel")) != intestavel:
+            falha(onde, "`afiliado.intestavel` declarado %r e a regra da 25.4-b diz %r "
+                        "(url=%s, url_produto=%s). O espelho envelheceu: rode `derivar-banco.py`"
+                        % (af.get("intestavel"), intestavel,
+                           "S" if af.get("url") else "-",
+                           "S" if af.get("url_produto") else "-"))
+        elif intestavel and not (af.get("motivo_sem_url_produto") or "").strip():
+            falha(onde, "`intestavel: true` sem `motivo_sem_url_produto`. Intestavel sem motivo "
+                        "escrito manda a execucao seguinte adivinhar a causa (25.4-b.3)")
         v["_piso"] = piso
         if af.get("url") and af.get("url_produto") and not af.get("par_colhido_em"):
             falha(onde, "tem `url` e `url_produto` e nao tem `par_colhido_em`. Os dois vem da MESMA oferta "

@@ -28,8 +28,12 @@
  * em 08/09/2026.
  */
 
+/* 1.5.0 (04/11/2026) — ESTA PAGINA DECLARA A DATA QUE PUBLICA, pendurando
+   `gerado_em` do banco da F2 no filtro `rodametria_data_da_pagina` da casca
+   (item 2 do despacho da ronda de 04/11). E o MESMO campo que o "Como sabemos"
+   desta pagina ja imprimia em prosa — um fato, uma fonte (20.7). */
 if ( ! defined( 'RODAMETRIA_F2_VERSAO' ) ) {
-	define( 'RODAMETRIA_F2_VERSAO', '1.4.1' );
+	define( 'RODAMETRIA_F2_VERSAO', '1.5.0' );
 }
 
 /* A VERSAO DESTE SNIPPET VAI AO AR, pelo filtro que a casca 1.6.0 abriu
@@ -725,6 +729,19 @@ function rodametria_f2_pagina_html() {
 }
 
 add_shortcode( 'rodametria_f2', 'rodametria_f2_pagina_html' );
+
+/* A DATA QUE ESTA PAGINA PUBLICA, pendurada no filtro da casca (item 2 do
+   despacho de 04/11/2026). Sai de `gerado_em` do banco da F2 — o MESMO campo
+   que a secao "Como sabemos" desta pagina ja imprime em prosa ("Esta pagina foi
+   gerada a partir do nosso banco em 04/11/2026"). Um fato, uma fonte (20.7). */
+add_filter( 'rodametria_data_da_pagina', function ( $data, $slug ) {
+	if ( RODAMETRIA_F2_SLUG !== $slug || '' !== $data ) {
+		return $data;
+	}
+	$d = rodametria_casca_banco( RODAMETRIA_ID_DADOS_F2 );
+
+	return ( $d && ! empty( $d['gerado_em'] ) ) ? (string) $d['gerado_em'] : $data;
+}, 10, 2 );
 
 /* ---------------------------------------------------------------------------
  * JSON-LD da ferramenta — e ele nao repete o BreadcrumbList, que e da casca

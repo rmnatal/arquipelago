@@ -228,12 +228,32 @@ def m_vitrine_url_insegura(areia):
 
 
 def m_carrossel_acima_do_teto(areia):
-    """MUNDO FABRICADO: o gerador nunca escreve mais de cinco."""
+    """MUNDO FABRICADO: o gerador nunca escreve mais de cinco.
+
+    ATE 04/11/2026 esta mutacao EXIGIA que a pagina[0] estivesse exatamente no
+    teto — e no dia em que o carrossel passou a ser escolhido por PRECO (item 3
+    do despacho daquele dia) a pagina da bicicleta caiu para tres cartoes e a
+    mutacao virou INERTE, que e pior que sobrevivente. Mutacao presa ao tamanho
+    do dado de hoje mede o dado e nao o portao: agora ela EMPILHA cartoes ate
+    passar do teto, seja qual for o tamanho de onde comecou.
+    """
     v = ler(areia, VITRINE)
     p = v['paginas'][0]
-    exigir(len(p['cartoes']) == v['teto_do_carrossel'],
-           'o carrossel desta pagina deveria estar exatamente no teto')
-    p['cartoes'] = p['cartoes'] + [p['cartoes'][0]]
+    exigir(len(p['cartoes']) >= 1, 'o carrossel desta pagina deveria ter ao menos um cartao')
+    while len(p['cartoes']) <= v['teto_do_carrossel']:
+        p['cartoes'] = p['cartoes'] + [p['cartoes'][0]]
+    escrever(areia, VITRINE, v)
+
+
+def m_carrossel_todo_no_mesmo_preco(areia):
+    """O DEFEITO DE 04/11/2026 DA BICICLETA, REFABRICADO: cinco cartoes no mesmo
+    preco com a tabela guardando outro preco la fora. Era isso que ia ao ar sob
+    uma frase de faixa que a mediana desmentia."""
+    v = ler(areia, VITRINE)
+    p = v['paginas'][0]
+    exigir(len({l['preco_numero'] for l in p['linhas']}) > 1,
+           'a tabela desta pagina deveria ter mais de um preco')
+    p['cartoes'] = [dict(p['cartoes'][0]) for _ in p['cartoes']]
     escrever(areia, VITRINE, v)
 
 
@@ -397,6 +417,8 @@ MUTACOES = (
     ('link da tabela sem https', GERADOR, ('--conferir',), m_vitrine_url_insegura),
     ('carrossel acima do teto de cinco [mundo fabricado]', GERADOR, ('--conferir',),
      m_carrossel_acima_do_teto),
+    ('carrossel todo no mesmo preco [o defeito de 04/11 da bicicleta]', GERADOR, ('--conferir',),
+     m_carrossel_todo_no_mesmo_preco),
     ('pagina abaixo do piso de tres [mundo fabricado]', GERADOR, ('--conferir',),
      m_pagina_abaixo_do_piso),
     ('ordem do carrossel trocada', GERADOR, ('--conferir',), m_ordem_do_carrossel_trocada),

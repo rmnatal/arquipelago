@@ -2,7 +2,7 @@
  "id": "esquema-banco",
  "ilha": "rodametria",
  "bloco": "3e",
- "versao_esquema": 4,
+ "versao_esquema": 5,
  "gerado_em": "2026-10-29",
  "publicar": false,
  "descricao": "Modelo do banco da Rodametria: entidades VEICULO, PECA e MUNICIPIO. Define campo a campo o tipo, a unidade, a obrigatoriedade, o vocabulario controlado, o que e DERIVADO e a ORIGEM esperada do dado. E o contrato que dados/veiculos.json, dados/pecas.json e dados/municipios.json cumprem e que ferramentas/validar-banco.py verifica. Nasce da secao 5 de dados/especificacao-calculadoras.md, que e a lista de campos que as tres ferramentas LEEM.",
@@ -665,6 +665,16 @@
      "tipo": "data",
      "obrigatorio": "quando url e url_produto existirem os dois",
      "regra": "25.4-b.1: os dois vem da MESMA oferta na MESMA chamada, ou nenhum entra. Este campo e a prova de que ninguem grampeou."
+    },
+    "intestavel": {
+     "tipo": "booleano",
+     "obrigatorio": "em TODO registro que tem a chave `afiliado`",
+     "derivado": true,
+     "derivado_de": "`url` preenchida E `url_produto` vazia",
+     "escrito_por": "ferramentas/derivar-banco.py",
+     "conferido_por": "ferramentas/validar-banco.py, que RECALCULA e reprova divergencia — as duas metades existem para discordar, como em energia_wh",
+     "regra": "25.4-b: item com link de ficha e sem o par cru e `true` — um link cuja saude e desconhecida e PERMANECERA desconhecida, porque a 25.4 proibe clicar no proprio link de afiliado para conferir. Item de degrau 4, sem ficha nenhuma e vivendo do piso de busca, e `false`: nao ha ficha para testar e busca nao esgota. `true` exige `motivo_sem_url_produto` escrito (25.4-b.3).",
+     "por_que_declarado_e_nao_so_calculado": "ACRESCENTADO EM 04/11/2026, pelo item 4 do despacho da ronda daquele dia. A 25.9 (item 2) diz que campo declarado em todo registro com `null`/`false` significando 'nao se aplica' existe 'pela mesma razao do `intestavel`' — e nesta ilha o `intestavel` era o unico conceito NAO declarado: vivia como variavel local dentro do validador. A ronda que media '0 intestavel' media a AUSENCIA DA CHAVE. Campo ausente que se comporta como o valor certo espera o dia em que o valor certo muda, e nesse dia nenhum portao acusa."
     },
     "url_busca": {
      "tipo": "url",

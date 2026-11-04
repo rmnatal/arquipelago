@@ -86,8 +86,14 @@
    escada da 25.2 ao ar: aquele arquivo e o contrato do Sync, e o Sync e o unico
    canal de desembarque desta ilha. (`dados/consertos.md` e da Sentinela, nao da
    Fundacao — por isso este achado nao foi escrito la.) */
+/* 1.7.0 (04/11/2026) — A FILHA E A MAE DECLARAM A DATA QUE PUBLICAM, pendurada
+   no filtro `rodametria_data_da_pagina` da casca (item 2 do despacho da ronda de
+   04/11): a filha serve `colhido_em` da sua vitrine, o mesmo campo que a prosa
+   imprime como {DATA}; a mae serve a MAIS RECENTE das datas das filhas, porque a
+   pergunta que `dateModified` responde e "quando esta pagina mudou", e a mae muda
+   no dia em que QUALQUER filha e recolhida. */
 if ( ! defined( 'RODAMETRIA_PRODUTO_VERSAO' ) ) {
-	define( 'RODAMETRIA_PRODUTO_VERSAO', '1.6.0' );
+	define( 'RODAMETRIA_PRODUTO_VERSAO', '1.7.0' );
 }
 
 /* A VERSAO DESTE SNIPPET VAI AO AR, pelo filtro que a casca 1.6.0 abriu
@@ -1001,6 +1007,50 @@ function rdm_produto_familias_que_faltam() {
 }
 
 add_shortcode( 'rodametria_veiculos', 'rdm_produto_mae_html' );
+
+/* ---------------------------------------------------------------------------
+ * A DATA QUE ESTAS PAGINAS PUBLICAM, pendurada no filtro da casca (item 2 do
+ * despacho de 04/11/2026). O mecanismo e o comentario estao em
+ * `rodametria_casca_data_da_pagina()`; aqui fica so o que e DESTE snippet.
+ *
+ * A FILHA: `colhido_em` da sua propria vitrine — o MESMO campo que a prosa
+ * imprime como {DATA} em `colhido_em_br` ("os 16 anuncios que a gente conferiu
+ * em 04/11/2026"). Um fato, uma fonte (20.7).
+ *
+ * A MAE: a MAIS RECENTE das datas das filhas, e nao a unica. A caixa dela ja
+ * trata os dois mundos — `data_igual` quando as filhas foram lidas no mesmo dia
+ * e `data_divergente` quando nao — e `dateModified` nao tem dois mundos: a
+ * pergunta que ele responde e "quando esta pagina mudou pela ultima vez", e a
+ * mae muda no dia em que QUALQUER filha e recolhida. Com datas divergentes, a
+ * mais antiga seria falsa.
+ * ------------------------------------------------------------------------- */
+add_filter( 'rodametria_data_da_pagina', function ( $data, $slug ) {
+	if ( '' !== $data ) {
+		return $data;
+	}
+	$prontas = rdm_produto_paginas_prontas();
+
+	foreach ( $prontas as $pagina ) {
+		if ( $pagina['slug'] === $slug && ! empty( $pagina['vitrine']['colhido_em'] ) ) {
+			return (string) $pagina['vitrine']['colhido_em'];
+		}
+	}
+
+	if ( RODAMETRIA_PRODUTO_SECAO === $slug ) {
+		$datas = array();
+		foreach ( $prontas as $pagina ) {
+			if ( ! empty( $pagina['vitrine']['colhido_em'] ) ) {
+				$datas[] = (string) $pagina['vitrine']['colhido_em'];
+			}
+		}
+		if ( $datas ) {
+			sort( $datas );          /* AAAA-MM-DD ordena como texto */
+			return (string) end( $datas );
+		}
+	}
+
+	return $data;
+}, 10, 2 );
 
 /* ---------------------------------------------------------------------------
  * 8. JSON-LD — ItemList na pagina de produto (30.3) e FAQPage onde ha pergunta

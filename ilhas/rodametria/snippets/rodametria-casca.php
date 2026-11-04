@@ -28,8 +28,23 @@
  * ou escala nasce aqui sem estar la.
  */
 
+/* 1.9.0 (04/11/2026) — DUAS COISAS, e as duas sao de item de despacho da ronda
+   de 04/11.
+
+   (1) A SEGUNDA METADE DA 32.5-d: 24 regras do molde passaram a carregar
+   `body.rdm` no seletor. Elas DECLARAVAM margem, respiro e corpo e perdiam, em
+   silencio, para `body.rdm p` e `body.rdm h2` — inclusive o bloco de telefone
+   inteiro, escrito em 29/10 para comprar pixel e que nunca valeu um pixel.
+   Medido: 48 px dentro do cartao, logo acima do botao que a 32.5 mede. O
+   comentario longo esta junto das regras, e a trava nasceu na mesma passada
+   dentro de `conferir-32-5-no-navegador.mjs`.
+
+   (2) O `dateModified`: a casca passou a servir um no `WebPage` com a data que a
+   propria pagina publica, pendurada por FILTRO (`rodametria_data_da_pagina`).
+   Antes disto a ilha cujo produto e "o preco de hoje" tinha ZERO ocorrencia de
+   `dateModified` e de `datePublished` em todo o JSON-LD das 9 URLs. */
 if ( ! defined( 'RODAMETRIA_CASCA_VERSAO' ) ) {
-	define( 'RODAMETRIA_CASCA_VERSAO', '1.8.0' );
+	define( 'RODAMETRIA_CASCA_VERSAO', '1.9.0' );
 }
 
 /**
@@ -441,6 +456,60 @@ function rodametria_casca_trilha_html() {
 }
 }
 
+/* ---------------------------------------------------------------------------
+ * A DATA QUE A PAGINA PUBLICA, PARA A CAMADA QUE O GOOGLE E AS IAs LEEM
+ * (item 2 do despacho da ronda de 04/11/2026)
+ *
+ * O DEFEITO MEDIDO: ZERO ocorrencia de `dateModified` e ZERO de `datePublished`
+ * em todo o JSON-LD das 9 URLs desta ilha — numa ilha cujo produto E "o preco
+ * de hoje". As paginas diziam a data em PROSA ("os 16 anuncios que a gente
+ * conferiu em 04/11/2026") e a camada estruturada nao dizia nada. E a familia da
+ * 25.9: **chave ausente nao declara nada**, e aqui a chave ausente era o sinal
+ * de frescor da ilha que recoleta preco.
+ *
+ * POR QUE FILTRO E NAO UM CAMPO DA CASCA: a casca nao sabe, e nao pode saber, de
+ * que dado cada pagina e feita. Quem sabe e o snippet que a renderiza — a F2 sai
+ * de `f2-respostas.json`, as duas de produto saem da vitrine, as quatro da 16.1
+ * saem de `paginas-institucionais.json`. Entao cada snippet PENDURA a sua data
+ * neste filtro, pelo proprio slug, como a 20.7 ja faz com a versao do snippet
+ * carregado. A casca NAO inventa data: sem ninguem pendurando, o no nao sai, e o
+ * portao de ar REPROVA a pagina — o contrario (cair no `date()` do servidor)
+ * publicaria "modificada hoje" em pagina que nao muda desde 30/10, que e
+ * exatamente a mentira que um sinal de frescor pode contar.
+ *
+ * E A DATA VEM DO MESMO CAMPO QUE A PROSA USA, nunca de uma segunda declaracao:
+ * a licao da 20.7 e literal — "duas declaracoes do mesmo fato comecam iguais e
+ * so uma sobe". A pagina da bicicleta diz `colhido_em_br` na tela e serve
+ * `colhido_em` no JSON-LD: o mesmo campo, dois formatos.
+ * ------------------------------------------------------------------------- */
+if ( ! function_exists( 'rodametria_casca_data_da_pagina' ) ) {
+function rodametria_casca_data_da_pagina( $slug = null ) {
+	$slug = ( null === $slug ) ? rodametria_casca_slug_atual() : $slug;
+	if ( '' === $slug ) {
+		return '';
+	}
+	$data = apply_filters( 'rodametria_data_da_pagina', '', $slug );
+	$data = is_string( $data ) ? trim( $data ) : '';
+
+	/* AAAA-MM-DD ou nada. Data mal formada e pior que data ausente: ela entra no
+	   dado estruturado e o buscador a le como quiser. */
+	return preg_match( '/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/', $data ) ? $data : '';
+}
+}
+
+/* A HOME SAI DO MESMO BANCO QUE ELA IMPRIME, e isto esta aqui e nao no snippet
+   da F2 porque quem renderiza a home e esta casca: os tres numeros dela — 17
+   veiculos colhidos, 5 com oferta aberta, 24 combinacoes de bateria — sao
+   contados de `f2-respostas.json`, entao a data da home E a data daquele banco. */
+add_filter( 'rodametria_data_da_pagina', function ( $data, $slug ) {
+	if ( 'inicio' !== $slug || '' !== $data ) {
+		return $data;
+	}
+	$banco = rodametria_casca_banco( RODAMETRIA_ID_DADOS_F2 );
+
+	return ( $banco && ! empty( $banco['gerado_em'] ) ) ? (string) $banco['gerado_em'] : $data;
+}, 10, 2 );
+
 add_action( 'wp_head', function () {
 	$slug = rodametria_casca_slug_atual();
 	$mapa = rodametria_casca_paginas();
@@ -497,6 +566,33 @@ add_action( 'wp_head', function () {
 				'@type'           => 'BreadcrumbList',
 				'itemListElement' => $itens,
 			), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES )
+			. '</script>' . "\n";
+	}
+
+	/* O NO DA PAGINA, com a data que ela mesma publica. Sem data declarada ele
+	   nao sai: `WebPage` sem `dateModified` nao acrescenta nada ao que o
+	   BreadcrumbList e o ItemList ja dizem, e no vazio e ruido. */
+	$data = rodametria_casca_data_da_pagina( $slug );
+	if ( '' !== $data ) {
+		$pagina_ld = array(
+			'@context'     => 'https://schema.org',
+			'@type'        => 'WebPage',
+			'@id'          => rodametria_casca_url_do_slug( $slug ),
+			'url'          => rodametria_casca_url_do_slug( $slug ),
+			'name'         => isset( $p['nome'] ) ? $p['nome'] : '',
+			'inLanguage'   => 'pt-BR',
+			'dateModified' => $data,
+			'isPartOf'     => array(
+				'@type' => 'WebSite',
+				'name'  => 'Rodametria',
+				'url'   => home_url( '/' ),
+			),
+		);
+		if ( ! empty( $p['description'] ) ) {
+			$pagina_ld['description'] = $p['description'];
+		}
+		echo '<script type="application/ld+json">'
+			. wp_json_encode( $pagina_ld, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES )
 			. '</script>' . "\n";
 	}
 }, 6 );
@@ -904,7 +1000,7 @@ body.rdm select:focus-visible,body.rdm input:focus-visible{outline:2px solid var
 
 /* conteudo */
 .rdm-pagina{padding:var(--rdm-e2) 0 var(--rdm-e8)}
-.rdm-promessa{font-size:1.125rem;color:var(--rdm-legenda);margin-bottom:var(--rdm-e5)}
+body.rdm .rdm-promessa{font-size:1.125rem;color:var(--rdm-legenda);margin-bottom:var(--rdm-e5)}
 
 /* formulario de ferramenta */
 .rdm-f-formulario{background:var(--rdm-superficie);border:1px solid var(--rdm-traco);
@@ -916,7 +1012,7 @@ body.rdm select:focus-visible,body.rdm input:focus-visible{outline:2px solid var
   padding:9px 10px;border:1px solid var(--rdm-traco);border-radius:var(--rdm-e1);
   background:var(--rdm-superficie);color:var(--rdm-tinta);width:100%}
 .rdm-f-campo .rdm-f-dica{font-family:Barlow,sans-serif;font-size:.75rem;color:var(--rdm-legenda)}
-.rdm-f-acao{margin-top:var(--rdm-e3)}
+body.rdm .rdm-f-acao{margin-top:var(--rdm-e3)}
 .rdm-f-botao{background:var(--rdm-tinta);color:#FFF;border:0;border-radius:var(--rdm-e1);
   padding:12px 20px;font:600 1rem Barlow,sans-serif;cursor:pointer}
 
@@ -925,20 +1021,61 @@ body.rdm select:focus-visible,body.rdm input:focus-visible{outline:2px solid var
   border-radius:var(--rdm-e2);padding:var(--rdm-e4);margin:0 0 var(--rdm-e4)}
 .rdm-molde-caixa-verde{border-color:var(--rdm-verde);background:var(--rdm-verde-fundo)}
 .rdm-molde-caixa-alerta{border-color:var(--rdm-alerta);background:var(--rdm-alerta-fundo)}
-.rdm-molde-caixa-rotulo{font-size:.8125rem;text-transform:uppercase;letter-spacing:.08em;
+body.rdm .rdm-molde-caixa-rotulo{font-size:.8125rem;text-transform:uppercase;letter-spacing:.08em;
   color:var(--rdm-legenda);margin:0 0 var(--rdm-e1)}
-.rdm-molde-caixa-numero{font-size:2.25rem;line-height:1.1;margin:0 0 var(--rdm-e3)}
+body.rdm .rdm-molde-caixa-numero{font-size:2.25rem;line-height:1.1;margin:0 0 var(--rdm-e3)}
 .rdm-molde-caixa-unidade{font-size:1.25rem;color:var(--rdm-legenda)}
-.rdm-molde-caixa-frase{margin:0 0 var(--rdm-e2)}
-.rdm-molde-caixa-frase:last-child{margin-bottom:0}
+body.rdm .rdm-molde-caixa-frase{margin:0 0 var(--rdm-e2)}
+body.rdm .rdm-molde-caixa-frase:last-child{margin-bottom:0}
 
+/* ---------------------------------------------------------------------------
+ * POR QUE TODA REGRA DO MOLDE DAQUI PARA BAIXO CARREGA `body.rdm`, e nao e
+ * estilo: e a SEGUNDA METADE DA 32.5-d, medida em 04/11/2026 as 16h3xZ.
+ *
+ * Em 29/10 a 32.5-d achou que `body.rdm img{max-width:100%;height:auto}` vale
+ * (0,1,2) e vence `.rdm-molde-cartao-foto`, que vale (0,1,0) — e o conserto
+ * daquele dia pos `body.rdm` NO SELETOR DA FOTO. **So no da foto.** As outras
+ * declaracoes do molde ficaram em (0,1,0), e `body.rdm p{margin:0 0 16px}`,
+ * duas telas acima nesta mesma folha, vence TODAS elas pela mesma aritmetica.
+ *
+ * O QUE ISSO CUSTAVA, medido no navegador a 390 px nas 9 URLs do sitemap, com
+ * a regua nova deste dia (`conferir-32-5-no-navegador.mjs --disputa`): 21
+ * declaracoes do molde PERDIDAS so na pagina da F2, e tres delas dentro do
+ * cartao, logo acima do botao que a 32.5 mede — `cartao-nome`, `cartao-spec` e
+ * `cartao-preco` declaram `margin:0` e serviam 16 px cada uma. 48 px.
+ *
+ * E A IRONIA E EXATA: o bloco de telefone desta folha foi escrito em 29/10 para
+ * COMPRAR PIXEL (`.rdm-molde-compra-escopo{margin-bottom:8px}`,
+ * `.rdm-molde-compra-titulo{margin-bottom:4px;font-size:1.125rem}`), e nenhuma
+ * dessas linhas nunca valeu um pixel: media query NAO acrescenta
+ * especificidade, entao elas tambem perdiam para `body.rdm p` e `body.rdm h2`.
+ * A pagina servia 16 px onde a folha pedia 8, 12 onde pedia 4, e corpo 22 px
+ * onde pedia 18. E a familia da linha `height:44px` morta que a propria 32.5-d
+ * achou tres telas abaixo — com uma diferenca que importa: aquela perdia para
+ * uma IRMA, escrita depois com a mesma especificidade, e estas perdem para uma
+ * regra GENERICA da casca, que ninguem le quando mexe no molde.
+ *
+ * O conserto e de ESPECIFICIDADE e nunca `!important`, pela 32.5-d item 2:
+ * `body.rdm .rdm-molde-cartao-nome` vale (0,2,0) e vence `body.rdm p` (0,1,1).
+ * As 24 regras foram prefixadas DE UMA VEZ, incluindo as das media queries, para
+ * a ordem relativa entre elas nao mudar — prefixar metade seria trocar um
+ * defeito calado por outro.
+ *
+ * E A TRAVA NASCEU NA MESMA PASSADA, porque esta classe ja voltou duas vezes:
+ * `conferir-32-5-no-navegador.mjs` passou a comparar, em TODA pagina do molde,
+ * a declaracao do molde com a regra generica que a disputa, e REPROVA quando a
+ * generica vence E o valor servido discorda do declarado. Disputa que a
+ * generica vence com o MESMO valor ele chama de LATENTE e imprime, em vez de
+ * aprovar em silencio: foi exatamente assim que estas 48 px esperaram cinco
+ * dias dentro de uma folha que parecia conferida.
+ * ------------------------------------------------------------------------- */
 /* MOLDE: bloco de compra e carrossel */
 .rdm-molde-compra{margin:0 0 var(--rdm-e5)}
-.rdm-molde-compra-titulo{font-size:1.25rem;margin:0 0 var(--rdm-e2)}
-.rdm-molde-compra-escopo{color:var(--rdm-legenda);font-size:.9375rem;margin:0 0 var(--rdm-e3)}
-.rdm-molde-compra-vazio{color:var(--rdm-legenda);font-size:.9375rem;border-left:3px solid var(--rdm-traco);
+body.rdm .rdm-molde-compra-titulo{font-size:1.25rem;margin:0 0 var(--rdm-e2)}
+body.rdm .rdm-molde-compra-escopo{color:var(--rdm-legenda);font-size:.9375rem;margin:0 0 var(--rdm-e3)}
+body.rdm .rdm-molde-compra-vazio{color:var(--rdm-legenda);font-size:.9375rem;border-left:3px solid var(--rdm-traco);
   padding-left:var(--rdm-e3);margin:0}
-.rdm-molde-compra-comissao{font-size:.8125rem;color:var(--rdm-legenda);margin:var(--rdm-e3) 0 0}
+body.rdm .rdm-molde-compra-comissao{font-size:.8125rem;color:var(--rdm-legenda);margin:var(--rdm-e3) 0 0}
 .rdm-molde-carrossel{display:flex;gap:var(--rdm-e3);list-style:none;margin:0;padding:0 0 var(--rdm-e2);
   overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
 .rdm-molde-cartao{flex:0 0 232px;scroll-snap-align:start;background:var(--rdm-superficie);
@@ -957,10 +1094,10 @@ body.rdm select:focus-visible,body.rdm input:focus-visible{outline:2px solid var
    sem `!important`, que esconderia a disputa em vez de resolve-la. */
 body.rdm .rdm-molde-cartao-foto,.rdm-molde-cartao-sem-foto{display:block;width:100%;height:120px;
   object-fit:contain;background:var(--rdm-piso);border-radius:var(--rdm-e1)}
-.rdm-molde-cartao-nome{font-weight:600;font-size:.9375rem;margin:0;line-height:1.3}
-.rdm-molde-cartao-spec{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:.75rem;
+body.rdm .rdm-molde-cartao-nome{font-weight:600;font-size:.9375rem;margin:0;line-height:1.3}
+body.rdm .rdm-molde-cartao-spec{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:.75rem;
   color:var(--rdm-legenda);margin:0}
-.rdm-molde-cartao-preco{font-size:1rem;margin:0}
+body.rdm .rdm-molde-cartao-preco{font-size:1rem;margin:0}
 .rdm-molde-cartao-preco-nota{font-family:Barlow,sans-serif;font-size:.6875rem;color:var(--rdm-legenda)}
 .rdm-molde-cartao-botao{margin-top:auto;display:block;text-align:center;background:var(--rdm-tinta);
   color:#FFF;text-decoration:none;border-radius:var(--rdm-e1);padding:10px 12px;
@@ -1012,7 +1149,7 @@ body.rdm .rdm-molde-cartao-foto,.rdm-molde-cartao-sem-foto{display:block;width:1
 .rdm-cartoes>li{background:var(--rdm-superficie);border:1px solid var(--rdm-traco);
   border-radius:var(--rdm-e2);padding:var(--rdm-e4)}
 .rdm-cartoes h3{margin:0 0 var(--rdm-e2);font-size:1.125rem}
-.rdm-cartoes p{font-size:.9375rem;margin:0 0 var(--rdm-e3)}
+body.rdm .rdm-cartoes p{font-size:.9375rem;margin:0 0 var(--rdm-e3)}
 .rdm-cartao-estado{font-size:.8125rem;color:var(--rdm-legenda);margin:0}
 
 /* rodape */
@@ -1058,11 +1195,11 @@ body.rdm .rdm-molde-cartao-foto,.rdm-molde-cartao-sem-foto{display:block;width:1
   .rdm-f-campo label{font-size:.8125rem;line-height:1.25}
   .rdm-f-campo select,.rdm-f-campo input{padding:7px 8px;font-size:.9375rem}
   .rdm-f-campo .rdm-f-dica{font-size:.6875rem;line-height:1.25}
-  .rdm-f-acao{margin-top:var(--rdm-e2)}
+  body.rdm .rdm-f-acao{margin-top:var(--rdm-e2)}
   .rdm-f-botao{padding:10px 16px;width:100%}
   /* a promessa e a frase de escopo: mesmo texto, linha mais densa */
-  .rdm-promessa{font-size:1rem;line-height:1.45;margin-bottom:var(--rdm-e4)}
-  .rdm-molde-compra-escopo{font-size:.875rem;line-height:1.4;margin-bottom:var(--rdm-e2)}
+  body.rdm .rdm-promessa{font-size:1rem;line-height:1.45;margin-bottom:var(--rdm-e4)}
+  body.rdm .rdm-molde-compra-escopo{font-size:.875rem;line-height:1.4;margin-bottom:var(--rdm-e2)}
   /* o cartao: a 32.5 mede o BOTAO, e o espaco reservado da foto vinha antes
      dele. A secao 6 manda que produto sem foto apareca com espaco reservado
      neutro, e ele continua existindo.
@@ -1080,8 +1217,8 @@ body.rdm .rdm-molde-cartao-foto,.rdm-molde-cartao-sem-foto{display:block;width:1
      passa com 96, e trocar a altura agora mexeria no numero que o portao acabou
      de aprovar. */
   .rdm-molde-cartao{padding:var(--rdm-e2);gap:var(--rdm-e1)}
-  .rdm-molde-cartao-spec{font-size:.6875rem;line-height:1.3}
-  .rdm-molde-cartao-preco{font-size:.9375rem}
+  body.rdm .rdm-molde-cartao-spec{font-size:.6875rem;line-height:1.3}
+  body.rdm .rdm-molde-cartao-preco{font-size:.9375rem}
   .rdm-molde-cartao-botao{padding:9px 10px}
   /* SEGUNDA PASSADA, 29/10 as 11h4xZ: a primeira levou o botao de 1.730 para
      1.409 px — NOVE px acima do teto de 1.400. Nove px nao se resolve com
@@ -1091,11 +1228,11 @@ body.rdm .rdm-molde-cartao-foto,.rdm-molde-cartao-sem-foto{display:block;width:1
      a linha de preco do cartao, que gastava duas linhas para dizer o preco e a
      data. Nenhuma palavra saiu da pagina. */
   .rdm-molde-caixa{padding:var(--rdm-e3);margin-bottom:var(--rdm-e3)}
-  .rdm-molde-caixa-numero{margin-bottom:var(--rdm-e2)}
-  .rdm-molde-compra-titulo{font-size:1.125rem;margin-bottom:var(--rdm-e1)}
+  body.rdm .rdm-molde-caixa-numero{margin-bottom:var(--rdm-e2)}
+  body.rdm .rdm-molde-compra-titulo{font-size:1.125rem;margin-bottom:var(--rdm-e1)}
   .rdm-molde-carrossel{gap:var(--rdm-e2);padding-bottom:var(--rdm-e1)}
-  .rdm-molde-cartao-preco{line-height:1.25}
-  .rdm-molde-cartao-nome{font-size:.875rem}
+  body.rdm .rdm-molde-cartao-preco{line-height:1.25}
+  body.rdm .rdm-molde-cartao-nome{font-size:.875rem}
   .rdm-f-formulario{margin-bottom:var(--rdm-e3)}
   body.rdm h1{font-size:1.75rem}
   body.rdm h2{font-size:1.375rem;margin-top:var(--rdm-e5)}
@@ -1109,7 +1246,7 @@ body.rdm .rdm-molde-cartao-foto,.rdm-molde-cartao-sem-foto{display:block;width:1
   .rdm-nav-lista a{display:block;padding:12px 0}
   .rdm-nav[data-aberto="1"] .rdm-nav-lista{display:flex}
   .rdm-f-campos{grid-template-columns:1fr 1fr}
-  .rdm-molde-caixa-numero{font-size:1.75rem}
+  body.rdm .rdm-molde-caixa-numero{font-size:1.75rem}
   /* 32.5-c: a regra de telefone do molde alcanca TODA familia de cartao por
      seletor, e por isso ela mira a classe do MOLDE e nunca a de uma
      ferramenta. Cartao de 232 px no telefone de 390 px deixa a borda do
