@@ -235,7 +235,27 @@ foreach ( $folhas as $nome => $css ) {
 		sprintf( '%s: a saida NAO e subsequencia da entrada — a funcao inventou byte '
 			. '(parou no caractere %d de %d)', $nome, $pb, strlen( $b ) ) );
 
-	/* (f) a folha encolheu, e o quanto esta impresso para a proxima execucao
+	/* (f) O QUE DESAPARECEU E EXATAMENTE O QUE MORAVA DENTRO DE COMENTARIO, e
+	       esta e a trava mais forte desta bateria: a contagem de `{`, `}` e `;`
+	       da saida tem de ser a da entrada MENOS a que estava dentro dos
+	       comentarios. Medido na folha da casca em 04/11/2026: 145 `{` para
+	       140, 282 `;` para 280 — e dentro dos 23 comentarios havia
+	       exatamente 5 `{`, 5 `}` e 2 `;`, que eram CSS comentado na prosa. Se
+	       a funcao cortasse uma declaracao de verdade, esta conta abriria. */
+	$dentro = array( '{' => 0, '}' => 0, ';' => 0 );
+	preg_match_all( '~/\*.*?\*/~s', $css, $achados );
+	foreach ( $achados[0] as $c ) {
+		foreach ( array_keys( $dentro ) as $t ) { $dentro[ $t ] += substr_count( $c, $t ); }
+	}
+	foreach ( $dentro as $t => $q ) {
+		afirma( substr_count( $saiu, $t ) === substr_count( $css, $t ) - $q,
+			sprintf( '%s: %d `%s` na saida, e a conta pedia %d (%d na entrada menos %d que '
+				. 'moravam dentro de comentario) — a funcao cortou CSS de verdade',
+				$nome, substr_count( $saiu, $t ), $t,
+				substr_count( $css, $t ) - $q, substr_count( $css, $t ), $q ) );
+	}
+
+	/* (g) a folha encolheu, e o quanto esta impresso para a proxima execucao
 	       comparar em vez de supor. */
 	afirma( strlen( $saiu ) < strlen( $css ),
 		"$nome: a folha saiu do mesmo tamanho — nenhum comentario foi tirado" );
