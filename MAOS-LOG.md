@@ -8759,3 +8759,90 @@ ferramenta, não como instrução. Nada nele foi executado.
 cabeçalho de estado tocado, nenhum bloco de fila executado, nenhuma publicação, nenhum `publicar:
 true`, nenhum Sync, nenhuma conta criada, nenhum dado pessoal de terceiro gravado. `ARQUIPELAGO.md`
 não foi lido para decidir coisa alguma.
+
+---
+
+## Disparo de 2026-11-04 17:17 (Brasília) — 20h17Z — leitura semanal da Sentinela gravada em 4 ilhas
+
+Instrução recebida no disparo: 13 edições, 12 arquivos nomeados mais os 4 `ESTADO.md` da edição 13.
+Assunto conferido ANTES do `git fetch`: ilhas aquametria, robometria, clubedomosaico e rodametria,
+séries de indexação, séries de posição e despachos de Sentinela — **é do Arquipélago**. Nenhum dado
+pessoal de terceiro na instrução, nada deixado de fora. Nenhum arquivo além dos nomeados foi tocado,
+exceto este `MAOS-LOG.md`.
+
+Partida do `main` real: `git fetch origin main && git checkout -B trabalho origin/main`, a partir de
+`f2d5435`. O primeiro `git push origin HEAD:main` foi RECUSADO (non-fast-forward: `origin/main` havia
+avançado para `0023816` durante a execução). Mensagem da recusa:
+
+```
+hint: Updates were rejected because the remote contains work that you do not
+hint: have locally. This is usually caused by another repository pushing to
+hint: the same ref. If you want to integrate the remote changes, use
+hint: 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+```
+
+Resolvido na primeira tentativa de recuperação, sem force push: `git fetch origin main && git rebase
+origin/main` (`Successfully rebased and updated refs/heads/trabalho`) e novo `git push origin
+HEAD:main`, que saiu `0023816..95b2f33  HEAD -> main`.
+
+`git status --porcelain` depois do commit (vazio — nada pendente, nada fora de rastreio):
+
+```
+```
+
+`git diff --stat` do commit que foi ao `main` (`git show --stat --format="" 95b2f33`):
+
+```
+ ilhas/aquametria/ESTADO.md              |  2 +-
+ ilhas/aquametria/PROMPT.md              | 16 ++++++++++++
+ ilhas/aquametria/dados/indexacao.md     |  1 +
+ ilhas/aquametria/dados/posicoes.md      | 43 +++++++++++++++++++++++++++++++++
+ ilhas/clubedomosaico/ESTADO.md          |  2 +-
+ ilhas/clubedomosaico/PROMPT.md          | 18 ++++++++++++++
+ ilhas/clubedomosaico/dados/indexacao.md |  1 +
+ ilhas/clubedomosaico/dados/posicoes.md  | 38 +++++++++++++++++++++++++++++
+ ilhas/robometria/ESTADO.md              |  2 +-
+ ilhas/robometria/PROMPT.md              | 14 +++++++++++
+ ilhas/robometria/dados/indexacao.md     |  1 +
+ ilhas/robometria/dados/posicoes.md      | 22 +++++++++++++++++
+ ilhas/rodametria/ESTADO.md              |  2 +-
+ ilhas/rodametria/PROMPT.md              | 10 ++++++++
+ ilhas/rodametria/dados/indexacao.md     |  7 ++++++
+ ilhas/rodametria/dados/posicoes.md      |  7 ++++++
+ 16 files changed, 182 insertions(+), 4 deletions(-)
+```
+
+**Hash que foi ao `main`:** `95b2f3304e8826b20e74732fcf0866a811e8d7f3` (`95b2f33`), confirmado com
+`git fetch origin main && git log -1 origin/main` — a data do commit em `origin/main` é
+`2026-11-04 20:14:59 +0000` e o assunto é
+`Leitura semanal da Sentinela — 2026-11-04 (4 ilhas: indexação, posições e despachos)`.
+
+**Contagem do que mudou, conferida RELENDO os arquivos depois de gravar** (nenhum número aqui vem de
+memória do que foi escrito):
+
+```
+linhas `| 2026-11-04 |` na tabela de dados/indexacao.md   aquametria 1  robometria 1  clubedomosaico 1  rodametria 1
+secoes `## Leitura semanal de 2026-11-04` em posicoes.md  aquametria 1  robometria 1  clubedomosaico 1  rodametria 1
+despachos `2026-11-04 (LEITURA SEMANAL, 19h4xZ-20h1xZ)`   aquametria 1  robometria 1  clubedomosaico 1  rodametria 1
+itens `**ITEM ` dentro do despacho novo                   aquametria 5  robometria 3  clubedomosaico 5  rodametria 3
+ultima_ronda em ESTADO.md (4 de 4 iguais)                 2026-11-04T20:10Z   # LEITURA SEMANAL de 2026-11-04
+colunas da linha nova x colunas do cabecalho              9 x 9 nas QUATRO tabelas (nada cortado nem completado)
+arquivos criados (nao existiam)                           ilhas/rodametria/dados/indexacao.md e .../posicoes.md
+arquivos alterados                                        14
+arquivos no commit                                        16
+```
+
+Conferências de forma, todas por releitura: as quatro tabelas de indexação ficaram CONTÍGUAS (a linha
+seguinte à nova é linha em branco ou fim de tabela, nunca texto); os três `posicoes.md` que já
+existiam receberam o bloco no FIM, separado por `---` no padrão do arquivo, sem reescrever seção
+anterior; os quatro despachos entraram IMEDIATAMENTE ANTES da linha-âncora que a instrução nomeou
+(aquametria antes do despacho de 28/10, robometria antes do de 02/11, clubedomosaico antes do de
+28/10, rodametria antes de `## FILA DE BLOCOS`), cada âncora conferida como ocorrência ÚNICA no
+arquivo antes da inserção.
+
+Nenhuma ilha reservada, nenhum `executando_desde` escrito, nenhum cabeçalho de estado tocado além da
+chave `ultima_ronda` que a edição 13 nomeou, nenhum bloco de fila executado, nenhuma publicação,
+nenhum `publicar: true`, nenhum Sync, nenhum site verificado, nenhuma conta criada, nenhum dado
+pessoal de terceiro gravado. `ARQUIPELAGO.md` não foi lido para decidir nada. Nada foi reformatado,
+corrigido ou acrescentado além do que a instrução trouxe.
