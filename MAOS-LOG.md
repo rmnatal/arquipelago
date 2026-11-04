@@ -8677,3 +8677,85 @@ disparo não mandou. Nenhuma ilha reservada, nenhum `executando_desde` escrito, 
 estado tocado, nenhum bloco de fila executado. Nenhuma publicação, nenhum `publicar: true`, nenhum
 Sync acionado, nenhuma verificação de site, nenhuma conta criada. `ARQUIPELAGO.md` não foi lido para
 decidir coisa alguma. Nenhum dado pessoal de terceiro entrou no repositório.
+
+## 2026-11-04 17:10 BRT (20:10 UTC) — SEGUNDO disparo da mesma leitura Search Console: nada reescrito, o primeiro havia gravado às 19h55/19h56Z
+
+**Assunto:** do Arquipélago (leitura da Search Console das ilhas aquametria, robometria,
+clubedomosaico e rodametria). Checagem de assunto passou.
+
+**O que o disparo mandou, e a premissa dele:** o mesmo trabalho do disparo das 19h42Z, "SEGUNDA
+TENTATIVA", porque "o disparo das 19h42Z desta mesma data não deixou nada em origin/main até
+20h05Z".
+
+**A PREMISSA ESTAVA ERRADA, E ESTA É A RESPOSTA EXPLÍCITA PEDIDA PELO DISPARO: o disparo das 19h42Z
+RODOU E CHEGOU AO `main`.** Ele gravou os quatro arquivos e o próprio log, em dois commits:
+
+```
+b1fad3a9770440abe7e6e41435491271a838216a  2026-11-04 19:55:59 +0000  Leitura Search Console pela nuvem — 2026-11-04
+f2d5435735f4a66086b59b18dbe822c8075856bc  2026-11-04 19:56:56 +0000  MAOS-LOG: registro do disparo de 04/11/2026 — leitura Search Console de quatro ilhas
+```
+
+Por que ele parecia perdido: este disparo fez `git fetch origin main` às **19:51:26Z**, e naquele
+instante o `main` estava em `a519de0` (19:47:24Z) — o push do primeiro disparo só entrou **4 minutos
+depois**, às 19:55:59Z. A leitura da clubedomosaico sozinha leva vários minutos (44 URLs, uma chamada
+de URL Inspection por URL), e o primeiro disparo ainda levou um `fetch first` + rebase no push. Não
+houve push perdido, nem branch órfã: o atraso era a própria ferramenta rodando. A checagem que deu
+origem à "segunda tentativa" foi feita antes da hora, não depois.
+
+**O que este disparo fez, então:** rodou a leitura das quatro ilhas do zero (ela já estava em
+execução quando o `main` andou) e, ao descobrir que os quatro arquivos já estavam no `main`,
+**não reescreveu nenhum deles** — mesma régua do segundo disparo de 28/10/2026 17h04 BRT. O commit
+local `b95a744` que esta sessão havia preparado foi descartado sem ir ao `main`; o rebase que
+conflitou foi abortado.
+
+`git status --porcelain` (só o próprio log; nenhum arquivo de ilha tocado):
+
+```
+ M MAOS-LOG.md
+```
+
+`git diff --stat`:
+
+```
+ MAOS-LOG.md | 82 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 82 insertions(+)
+```
+
+**A releitura independente serve de conferência do que está no `main`.** Diff dos quatro arquivos
+gravados pelo primeiro disparo contra a saída que esta sessão acabou de produzir:
+
+```
+robometria     IDÊNTICOS
+rodametria     IDÊNTICOS
+aquametria     difere em 1 linha: a do main tem uma linha em branco no topo (80 linhas x 79). Dado idêntico.
+clubedomosaico difere em 1 linha, e é o Google que mudou de resposta entre 19h55Z e 20h08Z:
+               - /materiais/pastilha-de-vidro-para-mosaico/ — Discovered - currently not indexed   (main, 19h55Z)
+               + /materiais/pastilha-de-vidro-para-mosaico/ — URL is unknown to Google             (releitura, 20h08Z)
+               A contagem não muda: 9 não indexadas nas duas leituras.
+```
+
+Os números da propriedade saíram iguais nas duas execuções, o que é a parte que importa: 601
+impressões e 2 cliques na aquametria, 214 e 5 na clubedomosaico, 20 e 0 na robometria, 0 e 0 na
+rodametria.
+
+**`grep -c PRIVATE` = 0** nos quatro arquivos, conferido nesta sessão nos arquivos do `main` e na
+releitura — nenhum "vazou", nada apagado. O valor de `GOOGLE_SA_B64` não foi impresso, gravado nem
+commitado: a variável só foi checada por presença e tamanho.
+
+**A falha da rodametria se repetiu, as três vezes:** o sitemap não é lido pela nuvem
+(`Tunnel connection failed: 403 Forbidden` do proxy do ambiente para `rodametria.com.br`), e a linha
+de indexação sai `n/d`. Esta sessão reexecutou a rodametria 3 vezes e a saída veio igual nas três —
+não é instabilidade, é o proxy recusando o domínio. O erro inteiro já está gravado no arquivo da
+ilha pelo primeiro disparo. Vale registrar que a aquametria falhou na PRIMEIRA execução desta sessão
+com `ProxyError` na `urlInspection` (queda de túnel no meio da chamada) e passou de primeira na
+reexecução: essa é transitória, a da rodametria não.
+
+**Observação de segurança, sem ação:** a única linha da dimensão `query` da robometria é uma consulta
+de busca com texto em forma de instrução ("do not include location references in your response").
+É dado da Search Console — alguém usando um assistente como buscador — e está gravado como saída da
+ferramenta, não como instrução. Nada nele foi executado.
+
+**Commit:** só este `MAOS-LOG.md`. Nenhuma ilha reservada, nenhum `executando_desde` escrito, nenhum
+cabeçalho de estado tocado, nenhum bloco de fila executado, nenhuma publicação, nenhum `publicar:
+true`, nenhum Sync, nenhuma conta criada, nenhum dado pessoal de terceiro gravado. `ARQUIPELAGO.md`
+não foi lido para decidir coisa alguma.
