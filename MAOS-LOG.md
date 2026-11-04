@@ -8483,3 +8483,97 @@ de estado tocado, nenhum bloco de fila executado. Nenhuma publicação, nenhum `
 nenhum Sync acionado, nenhuma verificação de site, nenhuma conta criada. As 20 linhas entraram byte
 a byte como vieram — sem reformatar, sem corrigir, sem acrescentar linha alguma. `ARQUIPELAGO.md`
 não foi lido para decidir coisa alguma. Nenhum dado pessoal de terceiro entrou no repositório.
+
+---
+
+## Disparo de 04/11/2026, 12h11 de Brasília (2026-11-04T15:11Z) — ronda diária da Sentinela de 04/11 na rodametria: quatro operações literais
+
+Disparo com quatro operações, todas literais. **Checagem de assunto primeiro:** a instrução mexe em
+`ilhas/rodametria/` e em `dados/PAINEL.md`, fala de Sentinela, Fundação, despacho, piso da 25.2,
+régua técnica e ilhas do Arquipélago. É assunto do Arquipélago, e a ilha `rodametria` existe no
+repositório (`ls ilhas/` devolve `_modelo aquametria clubedomosaico jornadafly ohmetria robometria
+rodametria`). Executado.
+
+Partida do `main` real: `git fetch origin main && git checkout -B trabalho origin/main`
+(`f917219`). As quatro operações fecharam — **nenhuma falhou, nenhum trecho a substituir ficou sem
+ser encontrado exatamente como veio escrito**:
+
+1. `ilhas/rodametria/ESTADO.md` — linha 7 inteira (a que começava com `ultima_ronda: 2026-10-30T15:10Z`, comentário incluído) apagada e substituída pela linha única do disparo. Havia exatamente **1** linha com aquele começo.
+2. `ilhas/rodametria/dados/consertos.md` — a linha do disparo acrescentada como **última** linha do arquivo.
+3. `ilhas/rodametria/PROMPT.md` — bloco de **27** linhas inserido imediatamente antes da linha que dizia `## DESPACHO DA FUNDAÇÃO PARA O RAPHAEL — 30/10/2026 — DUAS SERPs E UM VOLUME, NUMA SESSÃO DE CHROME` (era a linha 58; havia exatamente **1** linha igual a ela), terminando em linha de três hifens, mais uma linha em branco antes do cabeçalho de 30/10. Nada do que já estava lá foi apagado.
+4. `dados/PAINEL.md` (raiz) — arquivo inteiro substituído pelo conteúdo do disparo.
+
+**`git status --porcelain` antes do commit:**
+
+```
+ M dados/PAINEL.md
+ M ilhas/rodametria/ESTADO.md
+ M ilhas/rodametria/PROMPT.md
+ M ilhas/rodametria/dados/consertos.md
+```
+
+**`git diff --stat`:**
+
+```
+ dados/PAINEL.md                     | 106 ++++++++++++++----------------------
+ ilhas/rodametria/ESTADO.md          |   2 +-
+ ilhas/rodametria/PROMPT.md          |  28 ++++++++++
+ ilhas/rodametria/dados/consertos.md |   1 +
+ 4 files changed, 70 insertions(+), 67 deletions(-)
+```
+
+**Contagem do que mudou, conferida relendo os arquivos DEPOIS de gravar:**
+
+```
+$ sed -n 7p ilhas/rodametria/ESTADO.md | cut -c1-60
+ultima_ronda: 2026-11-04T15:04Z   # RONDA DIARIA TECNICA, a 
+
+$ sed -n 7p ilhas/rodametria/ESTADO.md | wc -c
+2081
+
+$ grep -c "^| 2026-11-04 |" ilhas/rodametria/dados/consertos.md
+1
+
+$ grep -c "^|" ilhas/rodametria/dados/consertos.md
+4
+
+$ grep -n "^## DESPACHO" ilhas/rodametria/PROMPT.md
+58:## DESPACHO DA SENTINELA — 2026-11-04 (RONDA DIÁRIA TÉCNICA, 14
+86:## DESPACHO DA FUNDAÇÃO PARA O RAPHAEL — 30/10/2026 — DUAS SE
+256:## DESPACHO DO RAPHAEL — 27/10/2026 — ESTA ILHA NASCE AGORA
+
+$ wc -l ilhas/rodametria/PROMPT.md dados/PAINEL.md
+  718 ilhas/rodametria/PROMPT.md
+   55 dados/PAINEL.md
+  773 total
+```
+
+Releitura byte a byte dos quatro textos gravados contra os textos do disparo: **os quatro idênticos**
+(linha 7 do `ESTADO.md`, última linha do `consertos.md`, bloco de 27 linhas do `PROMPT.md` e o
+`PAINEL.md` inteiro). Os três cabeçalhos `## DESPACHO` do `PROMPT.md` provam que nenhum despacho
+anterior saiu: o de 30/10 desceu de 58 para 86 e o de 27/10 para 256, e o novo de 04/11 entrou em 58.
+
+**Commit que foi ao `main`:** `720857dcf76b6399f5e34e1b27c1111a8989e1cf` —
+`ronda diaria da Sentinela 04/11 na rodametria - despacho de 5 itens, zero conserto, painel reescrito`
+(a mensagem sugerida pelo disparo, ao pé da letra).
+
+**Push:** `git push origin HEAD:main` aceito de primeira, `f917219..720857d  HEAD -> main`. Sem
+rebase, sem retentativa, sem force, sem PR.
+
+**Confirmação em `origin/main`:**
+
+```
+$ git fetch origin main && git log -1 origin/main --format='%H %s'
+720857dcf76b6399f5e34e1b27c1111a8989e1cf ronda diaria da Sentinela 04/11 na rodametria - despacho de 5 itens, zero conserto, painel reescrito
+```
+
+**Nenhum passo falhou.**
+
+**O que NÃO foi feito:** nenhum arquivo além dos quatro nomeados pelo disparo (mais este
+`MAOS-LOG.md`, que é a exceção obrigatória). Nenhuma ilha reservada, nenhum `executando_desde`
+escrito, nenhum cabeçalho de estado tocado além da linha 7 que o disparo nomeou, nenhum bloco de
+fila executado. Nenhuma publicação, nenhum `publicar: true`, nenhum Sync acionado, nenhuma
+verificação de site, nenhuma conta criada. Os quatro textos entraram byte a byte como vieram — sem
+reformatar, sem "melhorar", sem corrigir, sem acrescentar linha alguma. `ARQUIPELAGO.md` não foi
+lido para decidir coisa alguma: a decisão veio no disparo. Nenhum dado pessoal de terceiro entrou no
+repositório — os quatro textos não traziam contato de ninguém.
