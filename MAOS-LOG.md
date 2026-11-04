@@ -8577,3 +8577,103 @@ verificação de site, nenhuma conta criada. Os quatro textos entraram byte a by
 reformatar, sem "melhorar", sem corrigir, sem acrescentar linha alguma. `ARQUIPELAGO.md` não foi
 lido para decidir coisa alguma: a decisão veio no disparo. Nenhum dado pessoal de terceiro entrou no
 repositório — os quatro textos não traziam contato de ninguém.
+
+---
+
+## 2026-11-04 16:56 BRT (19:56 UTC) — leitura Search Console pela nuvem, quatro ilhas
+
+**Assunto:** do Arquipélago (leitura da Search Console das ilhas aquametria, robometria,
+clubedomosaico e rodametria, gravada em `ilhas/<ilha>/dados/`). Checagem de assunto passou.
+
+**O que o disparo mandou:** para cada ilha em `[aquametria robometria clubedomosaico rodametria]`,
+rodar `python3 ferramentas/search-console.py <ilha> 2>&1 | grep -v '^\[notice\]\|WARNING: Running pip'`
+e gravar a saída inteira em `ilhas/<ilha>/dados/search-console-2026-11-04.md`; conferir
+`grep -c PRIVATE` = 0 em cada arquivo; commit `Leitura Search Console pela nuvem — 2026-11-04`;
+`git push origin HEAD:main`; confirmar com `git log -1 origin/main`.
+
+**Partida:** `git fetch origin main && git checkout -B trabalho origin/main` (base `ec0823c`).
+
+`git status --porcelain` antes do commit:
+
+```
+?? ilhas/aquametria/dados/search-console-2026-11-04.md
+?? ilhas/clubedomosaico/dados/search-console-2026-11-04.md
+?? ilhas/robometria/dados/search-console-2026-11-04.md
+?? ilhas/rodametria/dados/search-console-2026-11-04.md
+```
+
+`git status --porcelain` depois do commit: vazio. `git diff --stat`: vazio (nada fora do commit).
+
+`git diff --stat HEAD~1 HEAD` do commit que foi ao `main`:
+
+```
+ .../aquametria/dados/search-console-2026-11-04.md  | 80 ++++++++++++++++++++++
+ .../dados/search-console-2026-11-04.md             | 48 +++++++++++++
+ .../robometria/dados/search-console-2026-11-04.md  | 29 ++++++++
+ .../rodametria/dados/search-console-2026-11-04.md  | 16 +++++
+ 4 files changed, 173 insertions(+)
+```
+
+**Contagem conferida relendo os arquivos DEPOIS de gravar** (não pelo que achei que escrevi):
+
+```
+$ for f in ilhas/*/dados/search-console-2026-11-04.md; do echo "$f: $(wc -l < $f) linhas, $(wc -c < $f) bytes, PRIVATE=$(grep -c PRIVATE $f)"; done
+ilhas/aquametria/dados/search-console-2026-11-04.md: 80 linhas, 5231 bytes, PRIVATE=0
+ilhas/clubedomosaico/dados/search-console-2026-11-04.md: 48 linhas, 3163 bytes, PRIVATE=0
+ilhas/robometria/dados/search-console-2026-11-04.md: 29 linhas, 1887 bytes, PRIVATE=0
+ilhas/rodametria/dados/search-console-2026-11-04.md: 16 linhas, 1090 bytes, PRIVATE=0
+```
+
+Quatro arquivos, quatro ilhas, 173 linhas gravadas. **`grep -c PRIVATE` = 0 nos quatro** — nenhum
+arquivo apagado, nada de "vazou". Conferência extra, case-insensitive, por `private|BEGIN.*KEY`:
+também 0 nos quatro. O valor de `GOOGLE_SA_B64` não foi impresso, gravado nem commitado em momento
+nenhum; a variável só foi checada por presença e tamanho.
+
+**Linhas de indexação que saíram** (relidas dos arquivos, na ordem aquametria, clubedomosaico,
+robometria, rodametria):
+
+```
+| 2026-11-04 | 52 | 50 | 96% | 601 | 2 |
+| 2026-11-04 | 44 | 35 | 80% | 214 | 5 |
+| 2026-11-04 | 14 | 10 | 71% | 20 | 0 |
+| 2026-11-04 | n/d | n/d | n/d | 0 | 0 |
+```
+
+**Um passo da ferramenta não deu certo, e está gravado como veio:** na rodametria o sitemap não foi
+lido pela nuvem, e a linha de indexação saiu `n/d`. A saída traz o erro inteiro:
+
+```
+(sitemap não lido: https://rodametria.com.br/sitemap.xml -> ProxyError: HTTPSConnectionPool(host='rodametria.com.br', port=443): Max retries exceeded with url: /sitemap.xml (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden'))))
+```
+
+É o proxy do ambiente da nuvem recusando o túnel para o domínio, não o site fora do ar — a mesma
+leitura trouxe os totais da propriedade pela API da Search Console (0 impressão, 0 clique), que não
+passam pelo sitemap. Nada foi corrigido, adaptado nem reexecutado: a saída inteira foi gravada como
+veio, que era o que o disparo pediu.
+
+**Commit que foi ao `main`:** `b1fad3a9770440abe7e6e41435491271a838216a` —
+`Leitura Search Console pela nuvem — 2026-11-04` (a mensagem do disparo, ao pé da letra).
+
+**Push:** `git push origin HEAD:main` recusado na primeira tentativa (`fetch first`, o `main` andou
+de `ec0823c` para `a519de0` enquanto a leitura rodava). `git fetch origin main && git rebase
+origin/main` (rebase limpo, 1/1) e segunda tentativa aceita: `a519de0..b1fad3a  HEAD -> main`. Sem
+force, sem PR.
+
+**Confirmação em `origin/main`:**
+
+```
+$ git fetch origin main && git log -1 origin/main
+commit b1fad3a9770440abe7e6e41435491271a838216a
+Date:   Wed Nov 4 19:55:59 2026 +0000
+    Leitura Search Console pela nuvem — 2026-11-04
+ 4 files changed, 173 insertions(+)
+```
+
+**O que NÃO foi feito:** nenhum arquivo além dos quatro `search-console-2026-11-04.md` nomeados pelo
+disparo (mais este `MAOS-LOG.md`, exceção obrigatória). As saídas foram gravadas inteiras, sem
+reformatar, sem "melhorar", sem corrigir o `n/d` da rodametria, sem acrescentar linha alguma — e
+NENHUMA delas foi copiada para `dados/indexacao.md` ou `dados/posicoes.md` de ilha nenhuma, porque o
+disparo não mandou. Nenhuma ilha reservada, nenhum `executando_desde` escrito, nenhum cabeçalho de
+estado tocado, nenhum bloco de fila executado. Nenhuma publicação, nenhum `publicar: true`, nenhum
+Sync acionado, nenhuma verificação de site, nenhuma conta criada. `ARQUIPELAGO.md` não foi lido para
+decidir coisa alguma. Nenhum dado pessoal de terceiro entrou no repositório.
