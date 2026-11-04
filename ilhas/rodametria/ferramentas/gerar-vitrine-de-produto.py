@@ -48,6 +48,7 @@ em cada resposta, e e a tabela que faz isso.
 import argparse
 import importlib.util
 import json
+import json as _json
 import os
 import re as _re
 import unicodedata as _unicodedata
@@ -778,6 +779,60 @@ def conferir():
             if (termo, q['campo']) not in usados:
                 falhas.append('quantificador liberado %r em %r nao existe mais na camada '
                               'declarada: liberacao morta' % (termo, q['campo']))
+
+    # A PROVA DE QUE A TRAVA DO QUANTIFICADOR MORDE — trava que nunca falhou nao
+    # e trava, e a `bancada.py` desta ilha cobra as duas metades do veredito.
+    #
+    # OS MUNDOS SAO FABRICADOS A PARTIR DA CAMADA DECLARADA REAL, mexendo UMA
+    # coisa de cada vez, e o primeiro deles e a FRASE DE VERDADE que esteve no ar
+    # — nao um exemplo inventado.
+    def _varre(pag, liberados_de_teste):
+        achados = []
+        for campo, valor in sorted(pag.items()):
+            for texto in _textos(valor):
+                tt = _sem_acento(texto)
+                for q in quantificadores:
+                    i = tt.find(q)
+                    while i >= 0:
+                        antes = tt[i - 1] if i else ' '
+                        depois = tt[i + len(q):i + len(q) + 1] or ' '
+                        if not (antes.isalpha() or depois.isalpha()):
+                            if not [x for x in liberados_de_teste.get(q, [])
+                                    if x['campo'] == campo]:
+                                achados.append((campo, q))
+                            break
+                        i = tt.find(q, i + 1)
+        return achados
+
+    base = _json.loads(_json.dumps(editorial['mae']))
+    afirmacoes += 1
+    if _varre(base, liberados):
+        falhas.append('o mundo REAL da mae nao passa na trava do quantificador: a prova de '
+                      'que ela morde mede nada se o mundo sadio ja reprova')
+
+    # (a) A FRASE REAL DE 03/11, que viveu um dia inteiro nesta pagina.
+    real = _json.loads(_json.dumps(editorial['mae']))
+    real['o_que_decide'][2]['porque'] = (
+        'é o filtro que quase ninguém olha e que quase nunca está no título.')
+    afirmacoes += 1
+    if not _varre(real, liberados):
+        falhas.append('a frase REAL que esteve no ar ("quase nunca esta no titulo") NAO e '
+                      'achada pela trava do quantificador')
+
+    # (b) OUTRA FORMA, porque a trava nao pode pegar so o "quase nunca" que
+    #     alguem ja imaginou — a leitura pelo avesso e o defeito da 20.8.
+    outra = _json.loads(_json.dumps(editorial['mae']))
+    outra['resposta'].append('A maioria das famílias desta seção não declara a bateria.')
+    afirmacoes += 1
+    if not _varre(outra, liberados):
+        falhas.append('outra forma de proporcao ("a maioria") NAO e achada pela trava')
+
+    # (c) A LIBERACAO VALE PARA O CAMPO DELA E NAO PARA OUTRO. Sem esta, a lista
+    #     de quem foi olhado viraria anistia por palavra.
+    afirmacoes += 1
+    if not _varre(real, {'quase nunca': [{'campo': 'outro_campo'}]}):
+        falhas.append('a liberacao de um quantificador em OUTRO campo liberou este: a lista '
+                      'de quem foi olhado virou anistia por palavra')
 
     for f in falhas:
         print('FALHA: ' + f)

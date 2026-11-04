@@ -34,6 +34,7 @@ O autoteste roda SEMPRE, junto com a passada normal.
 """
 import json
 import re
+import unicodedata
 import sys
 from pathlib import Path
 
@@ -171,6 +172,66 @@ def digitos_soltos(pg, permitidos):
     return achados
 
 
+# ---------------------------------------------------------------------------
+# A TRAVA DO QUANTIFICADOR POR EXTENSO — e ela esta aqui porque a de digito
+# acima esta CERTA e nao bastava (04/11/2026)
+#
+# Medido no ar: `/sobre/` servia *"o anuncio (...) e QUASE NUNCA diz quanto peso
+# o quadro aguenta"*, enquanto `/veiculos/patinete-eletrico/`, na mesma ilha,
+# publicava SEIS dos DEZESSEIS anuncios declarando exatamente esse peso no
+# titulo, de 60 a 150 kg. **Era a TERCEIRA copia da mesma afirmacao**: a
+# primeira saiu da pagina do patinete em 03/11, a segunda da secao mae em 04/11,
+# e esta vivia numa camada declarada DIFERENTE, com portao proprio e sem nenhuma
+# regua desta classe.
+#
+# A trava de digito nao podia pega-la: a frase nao tem um digito. Proporcao por
+# extenso e contagem com outro traje — afirma o estado do catalogo com a mesma
+# validade de prazo que um numero, e envelhece calada.
+#
+# ELA NAO JULGA PROSA (20.5): denuncia a ocorrencia e exige liberacao escrita em
+# `quantificadores_declarados_permitidos`, com campo, motivo e ancora literal. A
+# lista e a MESMA do `gerar-vitrine-de-produto.py`, duplicada de proposito — as
+# duas camadas declaradas sao arquivos diferentes com portoes diferentes, e foi
+# justamente a que nao tinha a trava que guardou a terceira copia da frase.
+# ---------------------------------------------------------------------------
+QUANTIFICADORES = (
+    "quase nunca", "quase sempre", "quase todo", "quase toda", "quase todos",
+    "quase todas", "quase ninguem", "quase nenhum", "quase nenhuma", "a maioria",
+    "maioria", "a minoria", "minoria", "raramente", "costuma", "costumam",
+    "na maior parte", "a maior parte", "maior parte", "boa parte", "grande parte",
+    "geralmente", "normalmente", "em geral", "de modo geral", "via de regra",
+    "tipicamente", "frequentemente", "na pratica", "poucos", "poucas", "muitos",
+    "muitas",
+)
+
+
+def _sem_acento(t):
+    t = unicodedata.normalize("NFD", str(t or "").lower())
+    return "".join(c for c in t if unicodedata.category(c) != "Mn")
+
+
+def quantificadores_soltos(pg, liberados):
+    """[(onde, termo, texto)] dos quantificadores que ninguem liberou por escrito.
+
+    `liberados` e {(termo, campo)} lido da camada declarada. O par inclui o CAMPO
+    de proposito: liberar um "costuma" num paragrafo nao libera outro noutro.
+    """
+    achados = []
+    for onde, texto in prosa_da_pagina(pg):
+        t = _sem_acento(texto)
+        for q in QUANTIFICADORES:
+            i = t.find(q)
+            while i >= 0:
+                antes = t[i - 1] if i else " "
+                depois = t[i + len(q):i + len(q) + 1] or " "
+                if not (antes.isalpha() or depois.isalpha()):
+                    if (q, onde) not in liberados:
+                        achados.append((onde, q, texto))
+                    break
+                i = t.find(q, i + 1)
+    return achados
+
+
 def moldes_usados(pg):
     usados = set()
     for _, texto in prosa_da_pagina(pg):
@@ -234,6 +295,20 @@ def passada(declarado, texto_php):
     paginas = declarado.get("paginas") or []
     por_slug = {p.get("slug"): p for p in paginas}
     permitidos = declarado.get("digitos_permitidos") or []
+    liberados = set()
+    for q in declarado.get("quantificadores_declarados_permitidos") or []:
+        liberados.add((_sem_acento(q.get("termo")), q.get("campo")))
+        afirma(bool((q.get("porque") or "").strip()),
+               "quantificador liberado %r sem motivo escrito" % q.get("termo"))
+        afirma(bool((q.get("campo") or "").strip()),
+               "quantificador liberado %r sem o campo onde ele mora" % q.get("termo"))
+        afirma(bool((q.get("ancora_no_ar") or "").strip()),
+               "quantificador liberado %r sem ancora_no_ar: o portao de ar nao teria como "
+               "saber dentro de que texto ele vale" % q.get("termo"))
+        anc = _sem_acento(q.get("ancora_no_ar"))
+        afirma(_sem_acento(q.get("termo")) in anc,
+               "a ancora %r do quantificador liberado %r nao contem o proprio termo"
+               % (q.get("ancora_no_ar"), q.get("termo")))
 
     afirma(tuple(sorted(por_slug)) == tuple(sorted(AS_QUATRO)),
            "as paginas declaradas sao %s e a 16.1 nomeia %s"
@@ -254,6 +329,14 @@ def passada(declarado, texto_php):
         for onde, achados in digitos_soltos(pg, permitidos):
             afirma(False, "%s: digito na prosa em %s — %s. Numero de tela nasce contado, "
                           "e o lugar dele e um molde" % (slug, onde, achados))
+
+        for onde, termo, texto in quantificadores_soltos(pg, liberados):
+            afirma(False,
+                   "%s: a prosa declarada afirma uma PROPORCAO por extenso em %s (%r) e ela "
+                   "nao esta em quantificadores_declarados_permitidos: %r — prosa que afirma "
+                   "o estado do catalogo envelhece calada, e foi assim que esta camada "
+                   "guardou a TERCEIRA copia da frase da carga"
+                   % (slug, onde, termo, texto[:90]))
 
         usados = moldes_usados(pg)
         orfaos = sorted(usados - conhecidos)
@@ -345,6 +428,39 @@ def autoteste(declarado, texto_php):
                   lambda: not digitos_soltos(base, permitidos)))
     casos.append(("o mundo real passa: recusa bem formada",
                   lambda: not recusa_mal_formada(base)))
+
+    # (1-b) O MUNDO REAL PASSA NA TRAVA DO QUANTIFICADOR, e ele SO passa porque a
+    #       frase falsa do `/sobre/` saiu hoje. Sem este par de casos a trava
+    #       nasceria sem nunca ter falhado — e trava que nunca falhou nao e trava.
+    liberados_reais = set()
+    for q in declarado.get("quantificadores_declarados_permitidos") or []:
+        liberados_reais.add((_sem_acento(q.get("termo")), q.get("campo")))
+    casos.append(("o mundo real passa: quantificador por extenso",
+                  lambda: not quantificadores_soltos(base, liberados_reais)))
+
+    # (1-c) A FRASE DE VERDADE QUE ESTAVA NO AR ATE HOJE, plantada de volta. Ela
+    #       e o caso REAL e nao um fabricado: `/sobre/` servia "e quase nunca diz
+    #       quanto peso o quadro aguenta" com 6 dos 16 anuncios da pagina do
+    #       patinete declarando esse peso no titulo.
+    com_frase = copy.deepcopy(base)
+    com_frase["secoes"][0]["paragrafos"][0] += (
+        " O anuncio quase nunca diz quanto peso o quadro aguenta.")
+    casos.append(("a frase REAL que estava no ar e ACHADA",
+                  lambda: bool(quantificadores_soltos(com_frase, liberados_reais))))
+
+    # (1-d) E UM FABRICADO DE OUTRA FORMA, porque a trava nao pode pegar so o
+    #       "quase nunca" que alguem ja imaginou — a leitura pelo avesso e o
+    #       defeito que a 20.8 nomeia.
+    outro = copy.deepcopy(base)
+    outro["recusa"]["itens"].append("A maioria dos anuncios desta loja nao declara a bateria.")
+    casos.append(("outra forma de proporcao e ACHADA",
+                  lambda: bool(quantificadores_soltos(outro, liberados_reais))))
+
+    # (1-e) A LIBERACAO LIBERA, E SO NO CAMPO DELA. Liberar um termo num paragrafo
+    #       nao pode liberar o mesmo termo noutro: senao a lista de quem foi
+    #       olhado passaria a ser anistia por palavra.
+    casos.append(("a liberacao vale para o campo dela e nao para outro",
+                  lambda: bool(quantificadores_soltos(com_frase, {("quase nunca", "outro.campo")}))))
     casos.append(("o mundo real passa: molde conhecido",
                   lambda: not (moldes_usados(base) - conhecidos)))
     casos.append(("o mundo real passa: forma",

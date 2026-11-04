@@ -5,14 +5,11 @@
   "gerado_em": "2026-10-30",
   "publicar": true,
   "o_que_este_arquivo_e": "A camada DECLARADA das quatro paginas que a 16.1 nomeia por nome e que esta ilha devia a quem le: /sobre/, /contato/, /divulgacao-de-afiliados/ e /privacidade/. E a voz do VOZ.md, e toda a prosa daqui traz MOLDES no lugar de numero: nenhum digito e escrito nesta prosa fora de `digitos_permitidos`, e quem preenche os moldes e `rdm_inst_preencher()`, contando no banco e no mapa de paginas. O portao `teste-institucional.py` reprova digito solto, molde que o preenchedor nao conhece e bloco de recusa cujo item nao abre negando.",
-
   "por_que_sem_bloco_de_compra": "Pela 32.2 estas quatro sao paginas de RESPOSTA e nao de ferramenta, entao o teto de 700 px da 32.5 e da CAIXA DE RESPOSTA. E nao ha produto nenhum a vender nelas: a 32.2 diz que item vivo nunca tem link de compra, e aqui nem item ha. Elas nascem SEM bloco de compra, e isso e o molde certo e nao uma excecao a ele.",
-
   "digitos_permitidos": [
     "996/2023",
     "13.709/2018"
   ],
-
   "terceiros_que_carregam": [
     {
       "quem": "Google",
@@ -31,7 +28,6 @@
       "medido_em": "2026-10-30"
     }
   ],
-
   "paginas": [
     {
       "slug": "sobre",
@@ -54,7 +50,7 @@
         {
           "titulo": "Por que este site existe",
           "paragrafos": [
-            "Quem abre três anúncios de patinete, scooter ou bike elétrica lê a mesma coisa nos três: um número grande de watt, uma autonomia redonda e nenhuma resposta. O anúncio não diz se aquele watt é o que vale para a regra de trânsito, não diz quantos km sobram quando quem pilota pesa noventa quilos, e quase nunca diz quanto peso o quadro aguenta.",
+            "Quem abre três anúncios de patinete, scooter ou bike elétrica lê a mesma coisa nos três: um número grande de watt, uma autonomia redonda e nenhuma resposta. O anúncio não diz se aquele watt é o que vale para a regra de trânsito, não diz quantos km sobram quando quem pilota pesa noventa quilos, e o peso que o quadro aguenta, quando aparece, aparece no título — onde ninguém compara. A página de cada família aqui conta, anúncio por anúncio, qual título declarou esse peso e qual se calou.",
             "Essas três perguntas têm resposta, e ela é uma conta — não uma opinião. É isso que a Rodametria faz: recebe os números que estão no anúncio e devolve o que eles significam para você, com a fonte e a data de cada um ao lado."
           ]
         },
@@ -101,7 +97,6 @@
         "contato"
       ]
     },
-
     {
       "slug": "contato",
       "nome": "Contato",
@@ -167,7 +162,6 @@
         "divulgacao-de-afiliados"
       ]
     },
-
     {
       "slug": "divulgacao-de-afiliados",
       "nome": "Divulgação de afiliados",
@@ -242,7 +236,6 @@
         "contato"
       ]
     },
-
     {
       "slug": "privacidade",
       "nome": "Privacidade",
@@ -330,6 +323,16 @@
         "sobre",
         "contato"
       ]
+    }
+  ],
+  "quantificadores_declarados_permitidos": [
+    {
+      "termo": "na pratica",
+      "campo": "secoes[5].paragrafos[1]",
+      "pagina": "privacidade",
+      "ancora_no_ar": "na pratica nao ha um caso seu parado esperando",
+      "porque": "A frase e \"Na pratica nao ha um caso seu parado esperando\", na secao de direitos da pagina de privacidade. \"Na pratica\" aqui e marcador de discurso e nao proporcao: o que vem depois dela e uma afirmacao ABSOLUTA sobre esta ilha — nada e pedido, nada e gravado, nenhum cookie e escrito —, e as tres foram MEDIDAS do lado de fora em 30/10/2026 (zero Set-Cookie, zero medidor, zero pixel). Ela nao afirma nada sobre catalogo nem sobre banco, e tira-la nao mudaria uma afirmacao da pagina.",
+      "por_que_ancora": "O portao de ar varre a CLASSE e retira a ancora LITERAL da pagina servida antes de procurar. Ancora que nao existe no texto declarado, ou que nao contem o proprio termo, REPROVA: liberacao de uma frase nao pode virar anistia geral."
     }
   ]
 }

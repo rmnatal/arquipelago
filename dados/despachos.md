@@ -55,6 +55,49 @@ trava de dígito (`digitos_permitidos` na clubedomosaico e na institucional da r
 ele dá ao leitor um conselho envelhecido. Na rodametria custou cinco dias de uma frase que mandava
 procurar o que a página tinha. É caro e não é sangramento.
 
+> **ACRESCENTADO EM 04/11/2026 PELA EXECUÇÃO QUE RESERVOU A RODAMETRIA — A VARREDURA FOI FEITA NESTA
+> ILHA, O DESPACHO CONTINUA ABERTO PARA AS OUTRAS DUAS, E AGORA ELE TEM MECANISMO EM VEZ DE RECEITA.**
+> Este despacho nasceu de um defeito da rodametria e **ninguém o havia aplicado à rodametria**: o
+> conserto de 03/11 trocou **a frase que foi achada**. A varredura aqui achou **mais três** afirmações
+> na camada declarada, todas sem um dígito, e **uma delas estava no ar**:
+>
+> 1. **A frase aposentada de 03/11 estava VIVA na seção MÃE `/veiculos/`** — *"o filtro que quase
+>    ninguém olha e que quase nunca está no título"* —, servida o dia inteiro, com a filha logo abaixo
+>    publicando **6 dos 16** anúncios declarando a carga no título. **E o portão escrito em 03/11 para
+>    impedir o retorno dela não a pegou**, porque ele nomeava a FRASE e morava no laço das páginas de
+>    FILHA. A trava nomeava a instância; o que envelhece é a classe.
+> 2. **A pior, e ela não é "conselho envelhecido":** `/veiculos/bicicleta-eletrica/` afirmava os **dois
+>    lados do pivô da F1** — *"quase toda a faixa de baixo é dobrável, de pedal assistido; o topo da
+>    faixa é a que tem acelerador"* — com **ZERO dos seis** anúncios declarando qualquer um dos dois,
+>    separando-os por **preço**. A especificação daquela ilha proíbe isso no **banco** com todas as
+>    letras (*"o enum de `acelerador` é pivô da F1 (...) e nunca cai no lado 'só pedal assistido' por
+>    omissão"*), e a prosa fazia isso na **tela**, na metade que decide se a pessoa precisa de CNH.
+>    **Nesta família o defeito não é só prazo: é a prosa ocupando o lugar do campo que a ilha se recusa
+>    a preencher.** Quem varrer a aquametria ou a clubedomosaico procure essa forma também, e não só a
+>    contagem envelhecida.
+> 3. Uma afirmação de engenharia sem fonte em lugar nenhum da ilha (*"quadro dobrável é onde o limite
+>    costuma ser mais baixo"*), numa página com zero anúncio declarando carga. **Saiu.**
+>
+> **O MECANISMO ESTÁ ESCRITO E RODANDO, e quem copiar troca o nome do arquivo:**
+> `ilhas/rodametria/ferramentas/gerar-vitrine-de-produto.py --conferir` (a trava sobre o repositório) e
+> `ilhas/rodametria/ferramentas/conferir-produto-no-ar.py` (a mesma classe sobre o HTML servido, numa
+> função chamada de TODA página do motor). **Ela não julga prosa, de propósito** — isso reprovaria voz
+> legítima, que é o caminho mais curto para alguém a ignorar (20.5): ela **denuncia** a ocorrência e
+> exige liberação escrita em `quantificadores_declarados_permitidos`, com **campo**, **motivo** e
+> **âncora literal**. Reprovam: liberação sem motivo ou sem campo; **âncora que não existe no texto ou
+> que não contém o próprio termo** (senão o portão de ar apaga um pedaço qualquer da página e a
+> liberação de uma frase vira anistia geral); e **liberação morta**, porque essa lista é a lista de
+> quem **já foi olhado**.
+>
+> **E A LIÇÃO QUE O ITEM 2 DESTE DESPACHO JÁ MANDAVA, agora medida:** o conserto é *"a afirmação sai da
+> mão e vira molde preenchido por uma função que conta"*. Aqui isso virou `frase_do_pivo`,
+> `frase_do_dobravel` e a frase da carga **agregada** da mãe, cada uma com os mundos que o dado de hoje
+> não tem. **A contagem que elas publicam é a tese da ilha medida na própria vitrine:** nenhum dos 22
+> anúncios que ela serve diz se o veículo anda sem pedalar.
+>
+> **O item 3 deste despacho continua valendo inteiro para a aquametria e a clubedomosaico** — e vale
+> também a sua metade esquecida: **se não houver ocorrência, escrever isso.** Aqui havia três.
+
 ---
 
 ### prioridade NORMAL — DÍGITO COLADO NO FIM DA PALAVRA DERROTA A BORDA `\\b`, E A RECUSA PASSA CALADA: medido na rodametria, e a clubedomosaico tem a MESMA forma numa régua que decide o que ela publica

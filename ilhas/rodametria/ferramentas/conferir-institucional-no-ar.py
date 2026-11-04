@@ -189,6 +189,31 @@ def recontar(urls_do_sitemap=None):
     return contas
 
 
+QUANTIFICADORES = (
+    "quase nunca", "quase sempre", "quase todo", "quase toda", "quase todos",
+    "quase todas", "quase ninguem", "quase nenhum", "quase nenhuma", "a maioria",
+    "maioria", "a minoria", "minoria", "raramente", "costuma", "costumam",
+    "na maior parte", "a maior parte", "maior parte", "boa parte", "grande parte",
+    "geralmente", "normalmente", "em geral", "de modo geral", "via de regra",
+    "tipicamente", "frequentemente", "na pratica", "poucos", "poucas", "muitos",
+    "muitas",
+)
+
+
+def _sem_acento(t):
+    import unicodedata
+    t = unicodedata.normalize("NFD", str(t or "").lower())
+    return "".join(c for c in t if unicodedata.category(c) != "Mn")
+
+
+def ancoras_liberadas(declarado):
+    """Os pedacos LITERAIS dentro dos quais um quantificador esta liberado."""
+    return tuple(sorted({
+        _sem_acento(q.get("ancora_no_ar") or "")
+        for q in declarado.get("quantificadores_declarados_permitidos") or []
+        if (q.get("ancora_no_ar") or "").strip()}))
+
+
 def main():
     declarado = json.load(open(os.path.join(ILHA, "dados", "paginas-institucionais.json"),
                                encoding="utf-8"))
@@ -270,6 +295,7 @@ def main():
     registro("terceira conta: " + ", ".join("%s=%s" % (k, v) for k, v in sorted(contas.items())))
 
     por_slug = {p["slug"]: p for p in declarado["paginas"]}
+    ancoras = ancoras_liberadas(declarado)
 
     for slug in AS_QUATRO:
         caminho = "/%s/" % slug
@@ -288,6 +314,35 @@ def main():
         afirma(len(texto) >= 1500,
                "%s: o corpo tem %d caracteres e o piso e 1.500" % (caminho, len(texto)))
         registro("%s: %d caracteres de corpo no ar" % (caminho, len(texto)))
+
+        # A CLASSE DO QUANTIFICADOR POR EXTENSO, MEDIDA NO AR — 04/11/2026.
+        # `/sobre/` servia "e quase nunca diz quanto peso o quadro aguenta" com
+        # SEIS dos DEZESSEIS anuncios de `/veiculos/patinete-eletrico/`
+        # declarando esse peso no titulo. Era a TERCEIRA copia da mesma
+        # afirmacao: a primeira saiu da pagina do patinete em 03/11, a segunda da
+        # secao mae hoje, e esta vivia numa camada declarada DIFERENTE, com
+        # portao proprio e sem nenhuma regua desta classe.
+        # A liberacao sai da camada declarada, com ancora literal: o portao
+        # retira a ancora da pagina servida e o que sobra e defeito.
+        t_sa = _sem_acento(texto)
+        for anc in ancoras:
+            t_sa = t_sa.replace(anc, " ")
+        achou = None
+        for q in QUANTIFICADORES:
+            i = t_sa.find(q)
+            while i >= 0:
+                antes = t_sa[i - 1] if i else " "
+                depois = t_sa[i + len(q):i + len(q) + 1] or " "
+                if not (antes.isalpha() or depois.isalpha()):
+                    achou = (q, t_sa[max(0, i - 60):i + 80])
+                    break
+                i = t_sa.find(q, i + 1)
+            if achou:
+                break
+        afirma(achou is None,
+               "%s serve uma PROPORCAO por extenso (%s) que nao esta liberada na camada "
+               "declarada: %r — prosa que afirma o estado do catalogo envelhece calada"
+               % (caminho, achou[0] if achou else "", achou[1] if achou else ""))
 
         # ZERO molde cru na tela. Molde que escapa e a prosa falando em codigo.
         crus = re.findall(r"\{[A-Z_]{3,}\}", corpo)
