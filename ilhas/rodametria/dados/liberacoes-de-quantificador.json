@@ -1,0 +1,17 @@
+{
+ "id": "liberacoes-de-quantificador",
+ "ilha": "rodametria",
+ "publicar": false,
+ "o_que_este_arquivo_e": "A camada declarada de LIBERACAO para as paginas cuja prosa NAO tem camada declarada — a F2 e a casca, que escrevem texto dentro do PHP. As paginas de produto liberam em dados/paginas-de-produto.json e as institucionais em dados/paginas-institucionais.json, cada uma no proprio portao; este arquivo e o terceiro, e nasceu em 04/11/2026 junto com a varredura DO SITE INTEIRO que ferramentas/conferir-no-ar.py passou a fazer.",
+ "por_que_ele_existe": "A classe do quantificador por extenso nasceu em 03/11/2026 nomeando uma FRASE no laco das paginas FILHAS; em 04/11 de manha ela virou CLASSE em duas camadas declaradas. Na mesma tarde a varredura do site inteiro achou a MESMA classe numa TERCEIRA camada, que nenhuma das duas podia ver: a prosa da F2 vive dentro de `snippets/rodametria-f2.php`, e o cabecalho do portao de produto JA DIZIA que existe `um mundo entre os dois — prosa escrita direto no PHP, que a camada declarada nao ve`. Ela servia, desde 29/10, `E a lacuna MAIS COMUM do varejo` sobre o anuncio que cala a bateria: ranqueamento que esta ilha nunca mediu. O conserto nao e um portao por camada — e um portao por SITE, que varre toda URL do sitemap e nao sabe de camada nenhuma. Camada nova de pagina nasce JA coberta por ele, e a liberacao continua sendo por escrito.",
+ "como_se_libera": "Um item por ocorrencia, com `termo`, `pagina`, `ancora_no_ar` (pedaco LITERAL do texto servido, que tem de existir na pagina e tem de conter o proprio termo) e `porque`. Ancora que nao existe no ar REPROVA, e ancora que nao contem o termo REPROVA — liberacao morta e tao perigosa quanto frase sem liberacao, porque ela parece conferida.",
+ "quantificadores_declarados_permitidos": [
+  {
+   "termo": "a media",
+   "pagina": "autonomia-patinete-eletrico",
+   "ancora_no_ar": "a média simples porque a grandeza é um multiplicador",
+   "porque": "A frase explica POR QUE a regua usa media GEOMETRICA entre os dois extremos medidos de consumo e nao a aritmetica — `a grandeza e um multiplicador, e a media simples puxaria o meio`. E aritmetica desta ilha, declarada ao lado da conta que a usa, e nao afirmacao sobre o mercado nem sobre o catalogo: `media` aqui e o nome de uma operacao. Tira-la nao mudaria uma afirmacao da pagina; o que ela faz e prestar contas da escolha.",
+   "por_que_ancora": "A ancora e literal e carrega o termo, entao a liberacao vale so para esta frase: outra `media` nesta mesma pagina continua sendo denunciada."
+  }
+ ]
+}

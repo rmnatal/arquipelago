@@ -291,6 +291,50 @@ def m_editorial_com_numero_na_mae(areia):
     escrever(areia, EDITORIAL, d)
 
 
+def m_editorial_com_numero_colado_no_molde(areia):
+    """A TRAVA DA TRAVA DO MOLDE (04/11/2026). A trava de digito passou a tirar
+    os MOLDES antes de procurar digito, porque `{FRASE_DO_PAR_DA_F2}` carrega o
+    `2` do nome da ferramenta e a trava reprovava a frase CERTA. Afrouxar uma
+    regua pede provar que ela continua mordendo do lado de fora do que foi
+    afrouxado: um digito FORA das chaves, colado num molde de verdade."""
+    d = ler(areia, EDITORIAL)
+    p = d['paginas'][1]
+    campo = p['qual_escolher'][1]
+    exigir('{FRASE_DO_PAR_DA_F2}' in campo['o_que_olhar'],
+           'o segmento deveria usar o molde do par da F2')
+    campo['o_que_olhar'] = campo['o_que_olhar'].replace(
+        '{FRASE_DO_PAR_DA_F2}', '{FRASE_DO_PAR_DA_F2} e 2 deles declaram so a tensao.')
+    escrever(areia, EDITORIAL, d)
+
+
+def m_editorial_com_molde_em_minuscula(areia):
+    """A OUTRA METADE: `{frase_do_par_da_f2}` em MINUSCULA nao e molde — o PHP
+    nao o substitui e ele vai para a tela como esta, com o digito do nome. A
+    forma que a trava tira e estreita de proposito, e esta mutacao prova que ela
+    nao virou "tudo entre chaves passa"."""
+    d = ler(areia, EDITORIAL)
+    p = d['paginas'][1]
+    campo = p['qual_escolher'][1]
+    exigir('{FRASE_DO_PAR_DA_F2}' in campo['o_que_olhar'],
+           'o segmento deveria usar o molde do par da F2')
+    campo['o_que_olhar'] = campo['o_que_olhar'].replace(
+        '{FRASE_DO_PAR_DA_F2}', '{frase_do_par_da_f2}')
+    escrever(areia, EDITORIAL, d)
+
+
+def m_regua_sem_a_leitura_da_amperagem(areia):
+    """A regua do par de entrada da F2 sem a unidade `ah`: a contagem passa a
+    dizer que ninguem declara amperagem em mundo nenhum, e o autoteste dela
+    REPROVA — a frase que foi ao ar depende dessa leitura."""
+    caminho = os.path.join(areia, 'ferramentas', RELEVANCIA)
+    with open(caminho, encoding='utf-8') as f:
+        t = f.read()
+    alvo = "AMPERAGEM = re.compile(r'(?<![0-9a-z])(\\d{1,3}(?:[.,]\\d)?)\\s?ah(?![0-9a-z])')"
+    exigir(alvo in t, 'a regua deveria declarar a leitura da amperagem')
+    with open(caminho, 'w', encoding='utf-8') as f:
+        f.write(t.replace(alvo, "AMPERAGEM = re.compile(r'(?!x)x')"))
+
+
 def m_relevancia_sem_a_regra_da_posicao(areia):
     caminho = os.path.join(areia, 'ferramentas', RELEVANCIA)
     with open(caminho, encoding='utf-8') as f:
@@ -363,6 +407,12 @@ MUTACOES = (
     ('numero digitado dentro da pergunta frequente', GERADOR, ('--conferir',),
      m_editorial_com_numero_na_pergunta),
     ('numero digitado na prosa da mae', GERADOR, ('--conferir',), m_editorial_com_numero_na_mae),
+    ('numero digitado COLADO num molde de verdade', GERADOR, ('--conferir',),
+     m_editorial_com_numero_colado_no_molde),
+    ('molde em minuscula, que o PHP nao substitui', GERADOR, ('--conferir',),
+     m_editorial_com_molde_em_minuscula),
+    ('regua sem a leitura da amperagem', RELEVANCIA, (),
+     m_regua_sem_a_leitura_da_amperagem),
     ('regua sem a regra da posicao', RELEVANCIA, (),
      m_relevancia_sem_a_regra_da_posicao),
     ('regua sem o grupo do brinquedo', RELEVANCIA, (),

@@ -316,6 +316,60 @@ MUNDOS_DO_DOBRAVEL = (
 )
 
 
+# A FRASE DO PAR DE ENTRADA DA F2 — TENSAO E AMPERAGEM (04/11/2026)
+#
+# ELA NASCEU DE UMA FRASE QUE ESTAVA NO AR E NAO TINHA FONTE NENHUMA. A camada
+# declarada da pagina da bicicleta mandava "olhar a tensao e a amperagem, e
+# passar os dois na calculadora de autonomia" — instrucao CORRETA — e emendava,
+# escrito a mao: *"bateria pequena em cidade de ladeira e a RECLAMACAO MAIS
+# COMUM de quem compra sem fazer essa conta"*. Esta ilha nunca mediu reclamacao
+# de ninguem: era um RANQUEAMENTO inventado, e a lista de quantificadores dos
+# portoes de ar nao o via porque ele nao e um quantificador — e um SUPERLATIVO.
+#
+# E O NUMERO QUE A FRASE DEVIA DIZER E O MELHOR DESTA PAGINA: dos anuncios que
+# ela publica, ZERO declara os DOIS no titulo. A pagina manda usar uma
+# calculadora cujas duas entradas a propria vitrine nao entrega — a tese da ilha
+# medida na vitrine, como a do pivo.
+def frase_do_par_da_f2(n, os_dois, so_tensao, so_amperagem):
+    if os_dois == 0 and so_tensao == 0 and so_amperagem == 0:
+        return ('Nenhum dos %d anúncios declara a tensão e a amperagem no título '
+                '— e são esses dois números que a calculadora de autonomia pede.' % n)
+    if os_dois == 0:
+        partes = []
+        if so_tensao:
+            partes.append('%d declara%s só a tensão'
+                          % (so_tensao, '' if so_tensao == 1 else 'm'))
+        if so_amperagem:
+            partes.append('%d declara%s só a amperagem'
+                          % (so_amperagem, '' if so_amperagem == 1 else 'm'))
+        return ('Nenhum dos %d anúncios declara a tensão E a amperagem no mesmo '
+                'título (%s) — e a calculadora de autonomia pede os dois.'
+                % (n, ' e '.join(partes)))
+    if os_dois == n:
+        return ('Os %d anúncios declaram a tensão e a amperagem no título, que é '
+                'o par que a calculadora de autonomia pede.' % n)
+    if os_dois == 1:
+        return ('Um dos %d anúncios declara a tensão e a amperagem no título; nos '
+                'outros, o par que a calculadora de autonomia pede está na ficha.' % n)
+
+    return ('%d dos %d anúncios declaram a tensão e a amperagem no título; nos '
+            'outros, o par que a calculadora de autonomia pede está na ficha.'
+            % (os_dois, n))
+
+
+MUNDOS_DO_PAR_DA_F2 = (
+    # (n, os_dois, so_tensao, so_amperagem, pedaco que a frase tem de conter)
+    # O MUNDO REAL DAS DUAS PAGINAS em 04/11/2026: so a tensao, num anuncio so.
+    (6, 0, 1, 0, 'Nenhum dos 6 anúncios declara a tensão E a amperagem'),
+    (16, 0, 1, 0, '1 declara só a tensão'),
+    (16, 0, 0, 0, 'Nenhum dos 16 anúncios declara a tensão e a amperagem no título'),
+    (6, 6, 0, 0, 'Os 6 anúncios declaram'),
+    (6, 1, 2, 0, 'Um dos 6 anúncios declara'),
+    (16, 4, 3, 1, '4 dos 16 anúncios declaram'),
+    (6, 0, 2, 1, '2 declaram só a tensão e 1 declara só a amperagem'),
+)
+
+
 def o_que_o_anuncio_declara_de_carga(a):
     """A celula da coluna de carga. Diz o numero, ou diz que o titulo se cala."""
     valor, porque = rel.carga_declarada(a['titulo'])
@@ -352,6 +406,10 @@ def montar(bloco, editorial_da_pagina):
     # afirmando os DOIS lados do pivo com ZERO anuncio declarando um deles.
     declaram_pivo, com_acelerador, so_pedal = rel.contagem_do_pivo(servem)
     dobraveis = rel.contagem_do_dobravel(servem)
+    # O PAR DE ENTRADA DA F2, CONTADO DO TITULO (04/11/2026): entrou quando a
+    # camada declarada da pagina da bicicleta foi medida afirmando um
+    # RANQUEAMENTO de reclamacao que esta ilha nunca mediu.
+    par_dois, par_so_v, par_so_ah = rel.contagem_do_par_da_f2(servem)
 
     cartoes, linhas = [], []
     for i, a in enumerate(servem):
@@ -443,6 +501,11 @@ def montar(bloco, editorial_da_pagina):
                                            com_acelerador, so_pedal),
             'dobraveis': dobraveis,
             'frase_do_dobravel': frase_do_dobravel(len(servem), dobraveis),
+            'par_da_f2_os_dois': par_dois,
+            'par_da_f2_so_tensao': par_so_v,
+            'par_da_f2_so_amperagem': par_so_ah,
+            'frase_do_par_da_f2': frase_do_par_da_f2(len(servem), par_dois,
+                                                     par_so_v, par_so_ah),
             'lidas': bloco['resumo']['ofertas_lidas'],
             'recusadas': bloco['resumo']['ofertas_recusadas'],
             'recusas_por_causa': recusas,
@@ -624,6 +687,44 @@ def conferir():
             falhas.append('frase_do_dobravel(%d,%d) imprime zero no meio: %r'
                           % (n, quantos, frase))
 
+    # OS MUNDOS FABRICADOS DA FRASE DO PAR DA F2 (04/11/2026). O dado de hoje
+    # produz UM dos sete — zero com os dois e UM so com a tensao, nas duas
+    # paginas. O mundo "os dois declarados" nao existe em anuncio nenhum desta
+    # vitrine, e e exatamente por isso que ele esta fabricado aqui.
+    for n, dois, so_v, so_ah, pedaco in MUNDOS_DO_PAR_DA_F2:
+        frase = frase_do_par_da_f2(n, dois, so_v, so_ah)
+        afirmacoes += 1
+        if pedaco not in frase:
+            falhas.append('frase_do_par_da_f2(%d,%d,%d,%d) nao traz %r: %r'
+                          % (n, dois, so_v, so_ah, pedaco, frase))
+        afirmacoes += 1
+        if ' 0 ' in frase:
+            falhas.append('frase_do_par_da_f2(%d,%d,%d,%d) imprime zero no meio: %r'
+                          % (n, dois, so_v, so_ah, frase))
+        afirmacoes += 1
+        # A FRASE NUNCA PODE AFIRMAR RANQUEAMENTO, que e o defeito que ela
+        # substituiu: superlativo de frequencia sobre o mercado nao tem fonte
+        # nesta ilha.
+        for proibida in ('mais comum', 'mais comuns', 'vende mais', 'mais vendid'):
+            if proibida in frase.lower():
+                falhas.append('frase_do_par_da_f2 afirma ranqueamento (%r): %r'
+                              % (proibida, frase))
+
+    for g in calculado['paginas']:
+        ad = [{'titulo': item['nome']} for item in g['linhas']]
+        afirmacoes += 1
+        esperado_par = rel.contagem_do_par_da_f2(ad)
+        obtido_par = (g['numeros']['par_da_f2_os_dois'],
+                      g['numeros']['par_da_f2_so_tensao'],
+                      g['numeros']['par_da_f2_so_amperagem'])
+        if obtido_par != esperado_par:
+            falhas.append('%s: a contagem do par da F2 %s nao refaz da regua: %s'
+                          % (g['id'], obtido_par, esperado_par))
+        afirmacoes += 1
+        if g['numeros']['frase_do_par_da_f2'] != frase_do_par_da_f2(len(ad), *esperado_par):
+            falhas.append('%s: a frase do par da F2 no arquivo nao e a que a funcao produz'
+                          % g['id'])
+
     # E OS DOIS NUMEROS NOVOS REFAZEM DA REGUA, nunca de campo herdado — a mesma
     # cobranca que a celula da carga ja tinha. Campo gravado que ninguem recontra
     # e numero digitado com data de validade.
@@ -661,10 +762,25 @@ def conferir():
     # documento, nao numero de tela. Numero que a prosa precisa dizer e nao e
     # contagem (oito quilometros, cem quilos) se escreve por extenso.
     proibido = _re.compile(r'\d')
+    # O MOLDE NAO E NUMERO DIGITADO — ELE E O OPOSTO, E A TRAVA NAO SABIA DISSO
+    # (04/11/2026). Todo molde desta ilha nasceu sem digito no nome
+    # (`{FRASE_DA_CARGA}`, `{DECLARAM_WATT}`), entao a trava nunca encontrou um
+    # e o buraco ficou invisivel. O molde do par de entrada da F2 e o primeiro
+    # nomeado pela FERRAMENTA desta ilha, e as tres ferramentas se chamam F1, F2
+    # e F3: o nome carrega um digito, e a trava reprovou a frase CERTA — aquela
+    # que SUBSTITUIU uma afirmacao inventada por uma contagem.
+    #
+    # Renomear o molde para fugir da trava seria o conserto errado: o proximo
+    # `{FRASE_DA_F1}` pagaria de novo, e e a 32.5-c outra vez. A trava passa a
+    # tirar os MOLDES antes de procurar digito, e a forma do molde e estreita de
+    # proposito — `{` + MAIUSCULA/digito/sublinhado + `}` —, porque e a forma que
+    # o PHP substitui. Minuscula dentro das chaves NAO e molde e continua
+    # reprovando: molde que o PHP nao reconhece vai para a tela como esta.
+    molde = _re.compile(r'\{[A-Z][A-Z0-9_]*\}')
     for pag in editorial['paginas'] + [editorial['mae']]:
         for campo, valor in sorted(pag.items()):
             for texto in _textos(valor):
-                limpo = texto
+                limpo = molde.sub(' ', texto)
                 for ok in permitidos:
                     limpo = limpo.replace(ok, '')
                 afirmacoes += 1

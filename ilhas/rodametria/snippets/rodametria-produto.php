@@ -87,7 +87,7 @@
    canal de desembarque desta ilha. (`dados/consertos.md` e da Sentinela, nao da
    Fundacao — por isso este achado nao foi escrito la.) */
 if ( ! defined( 'RODAMETRIA_PRODUTO_VERSAO' ) ) {
-	define( 'RODAMETRIA_PRODUTO_VERSAO', '1.5.0' );
+	define( 'RODAMETRIA_PRODUTO_VERSAO', '1.6.0' );
 }
 
 /* A VERSAO DESTE SNIPPET VAI AO AR, pelo filtro que a casca 1.6.0 abriu
@@ -251,6 +251,15 @@ function rdm_produto_preencher( $texto, $pagina ) {
 		   fazia exatamente isso na TELA, na metade que decide se precisa de CNH. */
 		'{FRASE_DO_PIVO}'     => (string) $n['frase_do_pivo'],
 		'{FRASE_DO_DOBRAVEL}' => (string) $n['frase_do_dobravel'],
+		/* O PAR DE ENTRADA DA F2 — 04/11/2026. Entrou porque a camada declarada
+		   desta ilha mandava "olhar a tensao e a amperagem" (instrucao certa) e
+		   emendava que bateria pequena em ladeira era "a RECLAMACAO MAIS COMUM de
+		   quem compra sem fazer essa conta" — ranqueamento que esta ilha nunca
+		   mediu, e que a lista de quantificadores dos portoes nao via porque e um
+		   SUPERLATIVO e nao um quantificador. O numero que ela devia dizer: ZERO
+		   dos 22 anuncios desta vitrine declara os DOIS no titulo. */
+		'{FRASE_DO_PAR_DA_F2}' => (string) $n['frase_do_par_da_f2'],
+		'{PAR_DA_F2_OS_DOIS}'  => (string) $n['par_da_f2_os_dois'],
 		'{DECLARAM_PIVO}'     => (string) $n['declaram_pivo'],
 		'{DOBRAVEIS}'         => (string) $n['dobraveis'],
 		'{DECLARAM_CARGA}'   => (string) $n['declaram_carga'],

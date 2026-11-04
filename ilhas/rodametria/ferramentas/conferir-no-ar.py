@@ -214,6 +214,104 @@ def problemas_da_parede(rotas_no_indice, cod_sem_token, cod_token_errado, code_e
     return p
 
 
+# ---------------------------------------------------------------------------
+# A CLASSE DO QUANTIFICADOR E DO SUPERLATIVO, VARRIDA NO SITE INTEIRO — 04/11/2026
+#
+# POR QUE ELA ESTA NESTE PORTAO E NAO NOS OUTROS DOIS. A classe nasceu em
+# 03/11/2026 nomeando UMA FRASE dentro do laco das paginas FILHAS de produto; na
+# manha de 04/11 ela virou CLASSE, e entrou nas DUAS camadas declaradas que
+# tinham portao (produto e institucional), cada uma com a propria lista de termos
+# e a propria lista de liberacao. Na mesma tarde a varredura do site inteiro
+# achou a MESMA classe numa TERCEIRA pagina, que nenhuma das duas podia ver:
+#
+#   /autonomia-patinete-eletrico/  ->  "E a lacuna MAIS COMUM do varejo"
+#
+# A prosa da F2 vive dentro de `snippets/rodametria-f2.php`. O cabecalho do
+# portao de produto JA DIZIA, escrito antes deste dia, que existe *"um mundo
+# entre os dois — prosa escrita direto no PHP, que a camada declarada nao ve"* —
+# e a frase estava no ar desde 29/10 afirmando um ranqueamento que esta ilha
+# nunca mediu.
+#
+# ENTAO O CONSERTO NAO E UM PORTAO POR CAMADA: E UM PORTAO POR SITE. Este laco
+# varre TODA URL do sitemap e nao sabe de camada nenhuma — camada nova de pagina
+# nasce JA coberta, que e o contrario do que aconteceu tres vezes em tres dias.
+# As liberacoes continuam sendo por escrito, e ele le as TRES listas declaradas,
+# porque a liberacao e da frase e nao do portao que a encontrou.
+QUANTIFICADORES = (
+    "quase nunca", "quase sempre", "quase todo", "quase toda", "quase todos",
+    "quase todas", "quase ninguem", "quase nenhum", "quase nenhuma", "a maioria",
+    "maioria", "a minoria", "minoria", "raramente", "costuma", "costumam",
+    "na maior parte", "a maior parte", "maior parte", "boa parte", "grande parte",
+    "geralmente", "normalmente", "em geral", "de modo geral", "via de regra",
+    "tipicamente", "frequentemente", "na pratica", "poucos", "poucas", "muitos",
+    "muitas",
+    # O SUPERLATIVO DE FREQUENCIA E DE VENDA: nao e quantificador, e foi por isso
+    # que as duas travas de ontem e de hoje de manha aprovaram as tres frases.
+    "mais comum", "mais comuns", "mais vendido", "mais vendida",
+    "mais vendidos", "mais vendidas", "vende mais", "vendem mais",
+    "mais popular", "mais populares", "a media", "na media", "da media",
+)
+
+AS_TRES_CAMADAS_DECLARADAS = (
+    "paginas-de-produto.json",
+    "paginas-institucionais.json",
+    # A TERCEIRA nasceu com este laco, para a camada cuja prosa vive no PHP e
+    # que por isso nao tem camada declarada onde liberar.
+    "liberacoes-de-quantificador.json",
+)
+
+
+def _sem_acento_q(t):
+    import unicodedata
+    t = unicodedata.normalize("NFD", str(t or "").lower())
+    return "".join(c for c in t if unicodedata.category(c) != "Mn")
+
+
+def ancoras_liberadas_do_site():
+    """As ancoras LITERAIS das tres camadas declaradas, juntas.
+
+    A liberacao e da FRASE, nao do portao que a encontrou: frase liberada na
+    camada de produto nao pode ser denunciada aqui so porque este laco a achou
+    por outro caminho. E ancora ausente no ar e cobrada pelo portao DAQUELA
+    camada, que e quem sabe em que pagina ela devia estar.
+    """
+    ancoras = set()
+    for nome in AS_TRES_CAMADAS_DECLARADAS:
+        caminho = os.path.join(ILHA, "dados", nome)
+        if not os.path.exists(caminho):
+            continue
+        with open(caminho, encoding="utf-8") as f:
+            d = json.load(f)
+        for q in d.get("quantificadores_declarados_permitidos") or []:
+            a = (q.get("ancora_no_ar") or "").strip()
+            if a:
+                ancoras.add(_sem_acento_q(a))
+
+    return tuple(sorted(ancoras))
+
+
+def conferir_classe_no_site(caminho, texto, ancoras):
+    """Denuncia a ocorrencia; nunca julga a prosa (20.5)."""
+    t = _sem_acento_q(texto)
+    for anc in ancoras:
+        t = t.replace(anc, " ")
+    for q in QUANTIFICADORES:
+        i = t.find(q)
+        while i >= 0:
+            antes = t[i - 1] if i else " "
+            depois = t[i + len(q):i + len(q) + 1] or " "
+            if not (antes.isalpha() or depois.isalpha()):
+                afirma(False,
+                       "%s serve uma PROPORCAO ou um SUPERLATIVO por extenso (%r) que nao "
+                       "esta liberado em camada declarada nenhuma: %r — e a classe que "
+                       "chegou ao ar por TRES camadas em TRES dias, e este laco e o unico "
+                       "que varre o site inteiro"
+                       % (caminho, q, texto[max(0, i - 60):i + 80]))
+                return
+            i = t.find(q, i + 1)
+    afirma(True, "")
+
+
 def main():
     manifest = json.load(open(os.path.join(ILHA, "manifest.json"), encoding="utf-8"))
     revisao_esperada = int(manifest["revisao"])
@@ -497,6 +595,10 @@ def main():
                 "ARQUIPELAGO", "Rodametria Sync", "bancada", "dados/", "ferramentas/",
                 "regras/", "publicavel", "sha256", "revisao"]
 
+    ancoras_do_site = ancoras_liberadas_do_site()
+    registro("liberacoes de quantificador lidas das tres camadas declaradas: %d ancora(s)"
+             % len(ancoras_do_site))
+
     for u in todas:
         caminho = u.replace(DOMINIO, "")
         cod, ct, html = buscar(caminho)
@@ -524,6 +626,9 @@ def main():
                "%s: o corpo tem %d caracteres e o piso e 1.500 — pagina fina gasta orcamento "
                "de rastreamento de dominio novo" % (caminho, len(texto)))
         registro("%s: %d caracteres de corpo" % (caminho, len(texto)))
+
+        # A CLASSE DO QUANTIFICADOR E DO SUPERLATIVO, EM TODA URL DO SITEMAP.
+        conferir_classe_no_site(caminho, texto, ancoras_do_site)
 
         # <title>, H1, description e JSON-LD (32.3: nenhum deles muda com o molde).
         afirma(bool(re.search(r"<title>[^<]{10,}</title>", html)),
@@ -828,6 +933,72 @@ def autoteste():
         "9. a regua velha APROVA o portao morto e a nova o REPROVA — as duas discordam, senao este autoteste nao mede o conserto")
     diz(regua_velha(404) == [] and sem_rota != [],
         "9. a regua velha APROVA a rota AUSENTE e a nova a REPROVA")
+
+    # MUNDO 10 — A CLASSE DO QUANTIFICADOR E DO SUPERLATIVO, com as TRES frases
+    # REAIS que chegaram ao ar por TRES camadas diferentes em TRES dias. A
+    # funcao e pura e nao precisa de rede, entao ela roda sempre.
+    pegos = []
+
+    def espiao(cond, msg):
+        if not cond:
+            pegos.append(msg)
+
+    global afirma
+    afirma_de_verdade = afirma
+    try:
+        afirma = espiao
+        AS_TRES = (
+            "/veiculos/bicicleta-eletrica/ é a reclamação mais comum de quem compra sem fazer essa conta",
+            "/divulgacao-de-afiliados/ os dois são a maneira mais comum de prometer um aparelho",
+            "/autonomia-patinete-eletrico/ É a lacuna mais comum do varejo: o anúncio grita o watt",
+        )
+        for i, frase in enumerate(AS_TRES):
+            pegos = []
+            conferir_classe_no_site("/x/", frase, ())
+            diz(len(pegos) == 1,
+                "10.%d a frase REAL que foi ao ar e pega pela classe: %r" % (i + 1, frase[:48]))
+
+        # A LIBERACAO FUNCIONA, E SO PARA A ANCORA: a mesma frase com a ancora
+        # declarada passa, e uma ancora de OUTRA frase nao a salva.
+        pegos = []
+        conferir_classe_no_site(
+            "/x/", "a media simples porque a grandeza e um multiplicador",
+            ("a media simples porque a grandeza e um multiplicador",))
+        diz(not pegos, "10.4 ancora declarada libera a frase dela")
+        pegos = []
+        conferir_classe_no_site(
+            "/x/", "a media simples porque a grandeza e um multiplicador",
+            ("selo de mais vendido nem nota de estrela",))
+        diz(len(pegos) == 1, "10.5 ancora de OUTRA frase nao libera esta")
+
+        # A BORDA DA PALAVRA, pela licao do `Capacete1`: `na media` dentro de
+        # `permeado` nao e ocorrencia.
+        pegos = []
+        conferir_classe_no_site("/x/", "o texto diz amaioria e nada mais", ())
+        diz(not pegos, "10.6 termo colado dentro de outra palavra nao conta")
+
+        # E A REGUA VELHA REFEITA AO LADO DA NOVA: a lista SEM o superlativo
+        # APROVA as tres frases que foram ao ar, e a nova as REPROVA. Autoteste
+        # em que as duas concordam nao mede conserto nenhum (20.8).
+        velha = tuple(q for q in QUANTIFICADORES
+                      if q not in ("mais comum", "mais comuns", "mais vendido",
+                                   "mais vendida", "mais vendidos", "mais vendidas",
+                                   "vende mais", "vendem mais", "mais popular",
+                                   "mais populares", "a media", "na media", "da media"))
+
+        def com_a_lista_velha(texto):
+            t = _sem_acento_q(texto)
+            return [q for q in velha
+                    if q in t]
+
+        for i, frase in enumerate(AS_TRES):
+            pegos = []
+            conferir_classe_no_site("/x/", frase, ())
+            diz(not com_a_lista_velha(frase) and len(pegos) == 1,
+                "10.7.%d a lista VELHA aprova a frase %r e a nova a reprova — as duas "
+                "discordam" % (i + 1, frase[:40]))
+    finally:
+        afirma = afirma_de_verdade
 
     print("conferir-no-ar --autoteste: %d de %d afirmacoes, %d falha(s)"
           % (len(ok), len(ok) + len(mal), len(mal)))

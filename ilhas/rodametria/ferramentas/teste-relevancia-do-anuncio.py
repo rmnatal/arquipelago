@@ -543,6 +543,63 @@ def contagem_do_dobravel(anuncios_que_servem):
     return sum(1 for a in anuncios_que_servem if declara_dobravel(a['titulo'])[0])
 
 
+# ---------------------------------------------------------------------------
+# O PAR DE ENTRADA DA F2 — TENSAO E AMPERAGEM, LIDOS DO TITULO (04/11/2026)
+#
+# POR QUE ESTA REGUA NASCEU, e a causa esta no AR: a camada declarada de
+# `/veiculos/bicicleta-eletrica/` mandava a pessoa "olhar a tensao e a
+# amperagem" e emendava, escrito a mao, que bateria pequena em cidade de ladeira
+# "e a RECLAMACAO MAIS COMUM de quem compra sem fazer essa conta". Esta ilha
+# nunca mediu reclamacao nenhuma: a frase era um RANQUEAMENTO inventado, servido
+# o dia inteiro ao lado de uma instrucao correta.
+#
+# E O NUMERO QUE ELA DEVIA DIZER ESTAVA A UM `grep` DE DISTANCIA: dos 22
+# anuncios que esta ilha publica, ZERO declara os dois no titulo — 1 de 6 e 1 de
+# 16 declaram so a TENSAO, e nenhum declara a amperagem. A pagina manda usar uma
+# calculadora cujas duas entradas a propria vitrine nao entrega, e e a tese da
+# ilha outra vez: "todos falam, ninguem calcula".
+#
+# A LEITURA E DE UNIDADE E NUNCA DE NUMERO SOLTO: `48v` e tensao, `10ah` e
+# amperagem, e `350W 36V` tem as duas unidades no mesmo titulo sem uma vir da
+# outra. A borda e a mesma assimetria das outras reguas deste arquivo: digito
+# colado a esquerda DERROTA (`1048v` nao e tensao), letra colada a direita
+# DERROTA (`48va` nao e), e digito colado a direita idem.
+TENSAO = re.compile(r'(?<![0-9a-z])(\d{2,3})\s?v(?![0-9a-z])')
+AMPERAGEM = re.compile(r'(?<![0-9a-z])(\d{1,3}(?:[.,]\d)?)\s?ah(?![0-9a-z])')
+
+
+def declaracao_do_par_da_f2(titulo):
+    """(tem_tensao, tem_amperagem, pedaco_ou_motivo) sobre o TITULO.
+
+    O pedaco e a procedencia: confere abrindo o anuncio, e nao e frase nossa.
+    """
+    t = normalizar(titulo)
+    mv, ma = TENSAO.search(t), AMPERAGEM.search(t)
+    if mv and ma:
+        return (True, True, '%s + %s' % (mv.group(0).strip(), ma.group(0).strip()))
+    if mv:
+        return (True, False, mv.group(0).strip() + ' (sem amperagem)')
+    if ma:
+        return (False, True, ma.group(0).strip() + ' (sem tensao)')
+
+    return (False, False, 'o titulo nao declara tensao nem amperagem')
+
+
+def contagem_do_par_da_f2(anuncios_que_servem):
+    """(os_dois, so_tensao, so_amperagem) sobre os titulos que a pagina publica."""
+    dois = so_v = so_ah = 0
+    for a in anuncios_que_servem:
+        v, ah, _ = declaracao_do_par_da_f2(a['titulo'])
+        if v and ah:
+            dois += 1
+        elif v:
+            so_v += 1
+        elif ah:
+            so_ah += 1
+
+    return (dois, so_v, so_ah)
+
+
 def faixa_de_carga(anuncios_que_servem):
     """(quantos_declaram, menor, maior) sobre os titulos que a pagina publica."""
     valores = sorted(v for v in (carga_declarada(a['titulo'])[0]
@@ -732,6 +789,30 @@ CASOS_DO_DOBRAVEL = (
 )
 
 
+# OS CASOS DO PAR DA F2 — os quatro primeiros sao titulos REAIS desta vitrine
+# (medidos em 04/11/2026), e os fabricados existem porque regra que nunca viu o
+# mundo dela nasce errada sem poder falhar (secao 8): o mundo "os dois
+# declarados" NAO EXISTE em anuncio nenhum que esta ilha publica.
+CASOS_DO_PAR_DA_F2 = (
+    # (titulo, (tem_tensao, tem_amperagem))
+    ('Bicicleta Elétrica Ebike M2 800w Litio 48v 43kmh Scooter eletrica adulto', (True, False)),
+    ('Patinete Elétrico Adulto 350W 36V | Dobrável 30km/h com Bluetooth', (True, False)),
+    ('Patinete Elétrico 350w 10ah 120kg Autonomia 30km Dobravel Preto', (False, True)),
+    ('Bicicleta elétrica dobrável NIUDA para adultos, viagens diárias', (False, False)),
+    # O MUNDO QUE A VITRINE NAO TEM: os dois no mesmo titulo.
+    ('Scooter Elétrica Adulto 60V 20Ah 1000W Autonomia 60km', (True, True)),
+    # A BORDA DA ESQUERDA: digito colado derrota, senao `1048v` viraria 48 V.
+    ('Patinete Elétrico Adulto Código 1048v Dobrável', (False, False)),
+    # A BORDA DA DIREITA, nas duas unidades.
+    ('Bicicleta Elétrica Adulto 48va 350W', (False, False)),
+    ('Patinete Elétrico Adulto 10aho 350W', (False, False)),
+    # 43kmh NAO e tensao, e `10km` nao e amperagem: a unidade e que manda.
+    ('Bicicleta Elétrica Adulto 43kmh 10km Dobrável', (False, False)),
+    # Amperagem com decimal, que a Shopee escreve com virgula e com ponto.
+    ('Patinete Elétrico Adulto 36V 7,8Ah Dobrável', (True, True)),
+)
+
+
 def autoteste():
     falhas = []
     for titulo, familia, esperado, recusa in CASOS:
@@ -785,6 +866,21 @@ def autoteste():
     if contagem_do_dobravel([{'titulo': t} for t, _ in CASOS_DO_DOBRAVEL]) != 4:
         falhas.append('FALHOU contagem do dobravel: esperava 4')
 
+    for titulo, esperado in CASOS_DO_PAR_DA_F2:
+        v, ah, porque = declaracao_do_par_da_f2(titulo)
+        if (v, ah) != esperado:
+            falhas.append('FALHOU par da F2: %r -> (%s, %s) (esperava %s) [%s]'
+                          % (titulo[:60], v, ah, esperado, porque))
+
+    # A CONTAGEM E CONTADA. No mundo dos casos acima: 2 com os DOIS, 2 so
+    # tensao, 1 so amperagem. O mundo REAL desta ilha e (0, 1, 0) em cada uma
+    # das duas paginas, e so a bateria fabricada prova que a contagem soma.
+    obtido = contagem_do_par_da_f2([{'titulo': t} for t, _ in CASOS_DO_PAR_DA_F2])
+    if obtido != (2, 2, 1):
+        falhas.append('FALHOU contagem do par da F2: %s, esperava (2, 2, 1)' % (obtido,))
+    if contagem_do_par_da_f2([{'titulo': 'Bicicleta Elétrica Dobrável Adulto'}]) != (0, 0, 0):
+        falhas.append('FALHOU contagem do par da F2: mundo calado nao devolveu (0, 0, 0)')
+
     # A trava da propria trava: recusa DESLIGADA tem de deixar passar.
     serve, por, _, _ = julgar(
         'Pneu Bike Bicicleta Elétrica Scooter 14x2.50 para adulto',
@@ -796,7 +892,8 @@ def autoteste():
     for f in falhas:
         print(f)
     total = (len(CASOS) + len(CASOS_DE_ROTULO) + len(CASOS_DE_CARGA)
-             + len(CASOS_DO_PIVO) + len(CASOS_DO_DOBRAVEL) + 6)
+             + len(CASOS_DO_PIVO) + len(CASOS_DO_DOBRAVEL)
+             + len(CASOS_DO_PAR_DA_F2) + 8)
     print('\n%d caso(s), %d falha(s).' % (total, len(falhas)))
     print('APROVADO' if not falhas else 'REPROVADO')
     return 1 if falhas else 0

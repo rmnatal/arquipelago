@@ -29,7 +29,7 @@
  */
 
 if ( ! defined( 'RODAMETRIA_F2_VERSAO' ) ) {
-	define( 'RODAMETRIA_F2_VERSAO', '1.4.0' );
+	define( 'RODAMETRIA_F2_VERSAO', '1.4.1' );
 }
 
 /* A VERSAO DESTE SNIPPET VAI AO AR, pelo filtro que a casca 1.6.0 abriu
@@ -404,7 +404,13 @@ function rodametria_f2_contas_html( $d ) {
 	$linhas[] = array(
 		'Não declaram tensão nem amperagem',
 		count( $g['nao_declaram_v_ou_ah'] ),
-		$nomes( $g['nao_declaram_v_ou_ah'] ) . '. É a lacuna mais comum do varejo: o anúncio '
+		/* ESTA LINHA DIZIA "É a lacuna MAIS COMUM do varejo" — um ranqueamento que
+		   esta ilha nunca mediu, servido desde 29/10/2026. Trocado em 04/11/2026 pela
+		   contagem que esta propria funcao tem na mao: quantos dos registros do banco
+		   nao declaram o par, de quantos. Prosa que afirma o estado do mercado e numero
+		   digitado em outro traje, e aqui o numero estava na linha de cima. */
+		$nomes( $g['nao_declaram_v_ou_ah'] ) . '. São ' . count( $g['nao_declaram_v_ou_ah'] )
+			. ' dos ' . $total . ' registros deste banco: o anúncio '
 			. 'grita o watt do motor e cala a energia da bateria, que é o que de fato decide '
 			. 'quantos km dá. Os que têm oferta aberta estão na vitrine acima, com esse rótulo.',
 	);

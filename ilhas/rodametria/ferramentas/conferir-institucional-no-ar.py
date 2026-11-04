@@ -197,6 +197,20 @@ QUANTIFICADORES = (
     "geralmente", "normalmente", "em geral", "de modo geral", "via de regra",
     "tipicamente", "frequentemente", "na pratica", "poucos", "poucas", "muitos",
     "muitas",
+    # A CLASSE DO SUPERLATIVO DE FREQUENCIA E DE VENDA, acrescentada em
+    # 04/11/2026: ela NAO e quantificador e por isso a lista acima nao a via.
+    # Medido no ar no mesmo dia, em TRES paginas de TRES camadas diferentes:
+    # "a RECLAMACAO MAIS COMUM de quem compra sem fazer essa conta" (produto),
+    # "a maneira MAIS COMUM de prometer um aparelho e entregar outro"
+    # (institucional) e "e a lacuna MAIS COMUM do varejo" (F2, prosa em PHP).
+    # Nenhuma das tres tem um digito e nenhuma tem um quantificador — as duas
+    # travas anteriores aprovavam as tres. Venda entra na mesma lista porque a
+    # secao 7 proibe afirmacao de venda na tela, e "vende mais" e a forma dela
+    # sem numero. "a media" entra porque media e distribuicao, e esta ilha nao
+    # mede distribuicao de nada: ela conta titulos.
+    "mais comum", "mais comuns", "mais vendido", "mais vendida",
+    "mais vendidos", "mais vendidas", "vende mais", "vendem mais",
+    "mais popular", "mais populares", "a media", "na media", "da media",
 )
 
 

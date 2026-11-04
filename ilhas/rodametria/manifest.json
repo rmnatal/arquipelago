@@ -4,7 +4,7 @@
   "nicho": "mobilidade eletrica — acertar os tres numeros antes de comprar um veiculo eletrico: categoria legal (CNH e placa), autonomia real e carga maxima",
   "dominio": "https://rodametria.com.br",
   "versao_manifest": 1,
-  "revisao": 39,
+  "revisao": 40,
   "atualizado_em": "2026-11-02",
   "estado": "nascendo",
   "desembarque": {
@@ -31,8 +31,8 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "152e0782587a7c5674df54c122da138959e4ee976251bf9c0420e8a3ce2b5a64",
-      "versao": "1.4.0",
+      "sha256": "f6cd59f11fd91b7bb7819fb08addc725b7be30fafc954538acdc487cc3a68dd0",
+      "versao": "1.4.1",
       "descricao": "A F2 (versao corrente no campo `versao` deste item), a PRIMEIRA pagina desta ilha no ar, em /autonomia-patinete-eletrico/. Ordem da 32.1 de cima para baixo, conferida por afirmacao no fonte: trilha e H1, promessa, formulario ja preenchido com o caso de exemplo, caixa de resultado JA PRE-RENDERIZADA no HTML (a metade que a IA le sem preencher formulario, e o que a 22.8 exige de quem desliga o JavaScript), bloco de compra, prestacao de contas da secao 7 com os cinco grupos por causa e a soma fechando o banco contado, tabela pre-renderizada visivel, e o resto em <details>. NENHUM numero e NENHUMA frase de resposta e digitado neste arquivo: tudo vem da option que o Sync grava de dados/f2-respostas.json, escrito por ferramentas/gerar-f2.py a partir de ferramentas/f2-referencia.py e de dados/constantes.json. O JS do rodape preenche MOLDE, nunca escreve frase — a bateria de mutacoes de 29/10 reprovou as duas versoes em que ele escrevia. A VERSAO SAIU DESTA PROSA EM 02/11/2026, e ela estava VELHA nos QUATRO snippets (a casca dizia 1.4.0 servindo 1.6.0; os outros tres diziam 1.0.0) — e isso e a prova de que o campo `versao` faltava. Quem declara a versao agora e o campo, espelhado da constante do arquivo por `ferramentas/atualizar-manifest.py` e cobrado por `ferramentas/teste-versao-dos-snippets.php`; prosa que repete o mesmo fato e a segunda declaracao que sobe sozinha de um lado so."
     },
     {
@@ -42,8 +42,8 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "68c4b3576550a0102b79fef5088bfe6744c3335acce96d8aaaf0ee9c18b024ec",
-      "versao": "1.5.0",
+      "sha256": "1f5ab7b6a3f17753556f1d8255b68b390ff62e95903df52c495f7876f69cd73e",
+      "versao": "1.6.0",
       "descricao": "O MOTOR DA SECAO 30 nesta ilha (versao corrente no campo `versao` deste item): a secao de nivel 1 `/veiculos/` e as paginas de consulta de produto que nascem filhas diretas dela, com o slug igual a consulta. Ordem da 32.2 de cima para baixo: trilha e H1, caixa de resposta com o preco mediano em Mono, bloco de compra com id=comprar logo abaixo, tabela-resumo VISIVEL com TODOS os anuncios (a secao 7 manda nomear todo item uma vez), a prestacao de contas de quem nao entrou com a causa contada, a malha da 16.4 tambem visivel porque e alvo de link, e o resto nas dobras da casca. NENHUM numero e digitado neste arquivo: a prosa vem de dados/paginas-de-produto.json com moldes e o numero vem de dados/vitrine-de-produto.json, recontado por ferramentas/gerar-vitrine-de-produto.py. A tabela NAO tem coluna de potencia nominal, velocidade maxima, acelerador nem carga maxima: o esquema desta ilha exige nivel 5 ou melhor nesses quatro e titulo de anuncio e nivel 6, entao a coluna diz o que o anuncio DECLARA em vez de preencher coluna tecnica com palavra tirada do titulo. JSON-LD de ItemList e FAQPage no wp_head; folha no wp_footer; nada dentro do retorno do shortcode. A VERSAO SAIU DESTA PROSA EM 02/11/2026, e ela estava VELHA nos QUATRO snippets (a casca dizia 1.4.0 servindo 1.6.0; os outros tres diziam 1.0.0) — e isso e a prova de que o campo `versao` faltava. Quem declara a versao agora e o campo, espelhado da constante do arquivo por `ferramentas/atualizar-manifest.py` e cobrado por `ferramentas/teste-versao-dos-snippets.php`; prosa que repete o mesmo fato e a segunda declaracao que sobe sozinha de um lado so."
     },
     {
@@ -105,7 +105,7 @@
       "arquivo": "dados/paginas-de-produto.json",
       "formato": "json",
       "publicar": true,
-      "sha256": "ea6f4b4f9b916c257c0ab0546cf2962481dc6f7118bb66cb7fb2401b48d1a3cc",
+      "sha256": "fe1f65ec752b5b1ade2901e308b7c402f60e3776618d3e1712dca55006fd24c7",
       "descricao": "A camada DECLARADA das paginas da secao 30: a voz do VOZ.md com MOLDES no lugar de todo numero. `gerar-vitrine-de-produto.py --conferir` REPROVA qualquer digito escrito nesta prosa fora da lista de permitidos."
     },
     {
@@ -113,7 +113,7 @@
       "arquivo": "dados/vitrine-de-produto.json",
       "formato": "json",
       "publicar": true,
-      "sha256": "b136ffa02615a2485d5081873f330783d6da2b85269a66ab319b4bda5bd6aff8",
+      "sha256": "8ad80514e64d8dc679140346b204d926a6e72cca652bed6577a8ef4c3bdf6801",
       "descricao": "A camada GERADA: cartoes do carrossel (teto de cinco, 32.1), linhas da tabela (todas) e os numeros, RECONTADOS de dados/anuncios-por-consulta.json."
     },
     {
@@ -137,7 +137,7 @@
       "arquivo": "dados/paginas-institucionais.json",
       "formato": "json",
       "publicar": true,
-      "sha256": "1503b5ef10c4ce7dea9b1069554f6125d96a4586d4929ceb0c30cfcaebead8c0",
+      "sha256": "19551005c23163705efcc6dcf602e5cce29c37f6662ae59e5e3c6babe414c228",
       "descricao": "A camada DECLARADA das quatro paginas do bloco 5d: a voz do VOZ.md com MOLDES no lugar de todo numero. `teste-institucional.py` REPROVA digito solto na prosa fora de `digitos_permitidos`, molde que o preenchedor do PHP nao conhece, e item de bloco de recusa que nao ABRE negando. Traz tambem `terceiros_que_carregam`: os enderecos de fora que a pagina de privacidade NOMEIA, medidos em 30/10/2026 e conferidos contra o HTML servido de TODAS as URLs do sitemap por `conferir-institucional-no-ar.py` — endereco novo torna a pagina falsa e faz o portao falhar."
     }
   ]

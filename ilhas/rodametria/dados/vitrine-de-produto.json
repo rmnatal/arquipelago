@@ -38,6 +38,10 @@
     "frase_do_pivo": "Nenhum dos 6 anúncios diz se o veículo tem acelerador, e é o acelerador que decide se ele é bicicleta elétrica ou ciclomotor — a diferença entre andar sem habilitação e precisar de uma.",
     "dobraveis": 5,
     "frase_do_dobravel": "5 dos 6 anúncios dizem dobrável no título.",
+    "par_da_f2_os_dois": 0,
+    "par_da_f2_so_tensao": 1,
+    "par_da_f2_so_amperagem": 0,
+    "frase_do_par_da_f2": "Nenhum dos 6 anúncios declara a tensão E a amperagem no mesmo título (1 declara só a tensão) — e a calculadora de autonomia pede os dois.",
     "lidas": 20,
     "recusadas": 14,
     "recusas_por_causa": {
@@ -410,6 +414,10 @@
     "frase_do_pivo": "Nenhum dos 16 anúncios diz se o veículo tem acelerador, e é o acelerador que decide se ele é bicicleta elétrica ou ciclomotor — a diferença entre andar sem habilitação e precisar de uma.",
     "dobraveis": 14,
     "frase_do_dobravel": "14 dos 16 anúncios dizem dobrável no título.",
+    "par_da_f2_os_dois": 0,
+    "par_da_f2_so_tensao": 1,
+    "par_da_f2_so_amperagem": 0,
+    "frase_do_par_da_f2": "Nenhum dos 16 anúncios declara a tensão E a amperagem no mesmo título (1 declara só a tensão) — e a calculadora de autonomia pede os dois.",
     "lidas": 20,
     "recusadas": 4,
     "recusas_por_causa": {
