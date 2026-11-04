@@ -154,7 +154,7 @@
       "description": "As bicicletas elétricas de adulto à venda hoje, com a faixa de preço medida na loja e o que cada anúncio declara de potência e bateria.",
       "resposta": [
         "A bicicleta elétrica de adulto à venda hoje custa de {DE} a {ATE}, com a mediana em {MEDIANA} sobre os {N} anúncios que a gente conferiu em {DATA}.",
-        "{FRASE_DO_DOBRAVEL} {FRASE_DO_PIVO} Bicicleta que anda sem pedalar pode sair da categoria de bicicleta elétrica e entrar na de ciclomotor, que exige habilitação e placa — e é por isso que esse é o primeiro número a procurar na ficha, não o preço.",
+        "{FRASE_DO_DOBRAVEL} {FRASE_DO_PIVO}",
         "E o número que falta em todos: {FRASE_DA_CARGA}"
       ],
       "o_que_e": [
@@ -168,7 +168,7 @@
       "qual_escolher": [
         {
           "para": "casa–trabalho em cidade plana",
-          "o_que_olhar": "a dobrável de pedal assistido da faixa de baixo é o que o mercado vende mais, e ela resolve. Veja se o quadro dobra para o seu elevador antes de olhar a bateria."
+          "o_que_olhar": "o que resolve é a mais barata que caiba no seu elevador: meça o vão antes de olhar a bateria, porque quadro que não dobra para o seu prédio não vira hábito. E não suponha que ela só ande pedalando — isso o título não diz, e é o que decide se precisa de habilitação."
         },
         {
           "para": "subida ou carga no bagageiro",
