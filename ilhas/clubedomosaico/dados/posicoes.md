@@ -234,3 +234,41 @@ e não no título. **Não conclua nada antes dessa linha, em nenhuma direção.*
 - **`/materiais/acabamento/camadas-de-verniz-depois-do-rejunte/` ESTÁ SUBINDO** (12,5 em 28 dias contra 9,1 em 7 dias) e pela 12.1 **não se toca nela por mais uma semana**, por mais tentadora que seja a banda.
 - **A ilha tem UMA consulta que converte e ela é `picassiete`:** 25% de CTR em 4,7, 3 dos 8 cliques de 28 dias. A grafia catalã `picassiette` da MESMA página está em 9,5 — cinco posições abaixo — e a palavra aparece 2 vezes no HTML servido contra 9 da grafia com um T, e não aparece nem no `<title>` nem no `<h1>`. Registrado; com 2 impressões ainda é fino demais para virar proposta.
 - **Não abri a SERP de nenhuma destas consultas nesta leitura: não verifiquei.**
+
+---
+
+## Leitura semanal de 2026-11-04 — janela 27/10→02/11 (7 dias) pela nuvem, conferida na tela
+
+| consulta | página | posição hoje | impressões | cliques | banda |
+|---|---|---|---|---|---|
+| rejunte para mosaico | /materiais/rejunte-para-mosaico/ | 8,5 | 2 | **1** | 4-10 |
+| base para mosaico | /materiais/base-de-mdf-para-mosaico/ | 6,0 | 1 | **1** | 4-10 |
+| cola para mosaico | /materiais/qual-cola-usar-no-mosaico/ | 9,6 | 8 | 0 | 4-10 |
+| picassiete | /como-fazer/o-que-e-mosaico-picassiete/ | 4,5 | 2 | 0 | 4-10 |
+| como diluir verniz | /materiais/acabamento/diluir-o-verniz-do-mosaico/ | 25,0 | 1 | 0 | 21+ |
+
+| página | posição 7d | impressões 7d | cliques 7d | banda |
+|---|---|---|---|---|
+| /materiais/qual-cola-usar-no-mosaico/ | 7,1 | 118 | 1 | 4-10 |
+| /como-fazer/o-que-e-trencadis/ | 4,6 | 27 | 0 | 4-10 |
+| /materiais/quantas-pastilhas-para-mosaico/ | 6,2 | 26 | 0 | 4-10 |
+| /como-fazer/o-que-e-mosaico-picassiete/ | 5,3 | 21 | 0 | 4-10 |
+| /materiais/acabamento/ | 6,1 | 11 | 0 | 4-10 |
+| /materiais/acabamento/camadas-de-verniz-depois-do-rejunte/ | 9,5 | 6 | 0 | 4-10 |
+| /materiais/acabamento/diluir-o-verniz-do-mosaico/ | 10,8 | 6 | 0 | 4-10 |
+| /materiais/base-de-mdf-para-mosaico/ | 6,7 | 6 | **2** | 4-10 |
+| /materiais/rejunte-para-mosaico/ | 8,3 | 6 | **2** | 4-10 |
+| /loja/quadro-flores-do-campo/ | 2,2 | 4 | 0 | 1-3 |
+| /loja/vaso-com-flores-em-ceramica/ | 8,0 | 4 | 0 | 4-10 |
+| /loja/quadro-divino-espirito-santo/ | **2,0** | 3 | 0 | 1-3 |
+| /materiais/acabamento/peca-de-mosaico-esbranquicada/ | 4,0 | 3 | 0 | 4-10 |
+| /materiais/acabamento/selar-a-base-antes-de-fazer-mosaico/ | 4,5 | 2 | 0 | 4-10 |
+
+### O que esta leitura decide
+
+- **O ACHADO DE CONVERSÃO DA SEMANA, E ELE É CRITÉRIO DE BÚSSOLA: NESTA ILHA, A CONSULTA QUE NOMEIA O MATERIAL CONVERTE E A CONSULTA QUE FAZ A PERGUNTA NÃO.** `/materiais/base-de-mdf-para-mosaico/` fez **2 cliques em 6 impressões (CTR 33%)** e `/materiais/rejunte-para-mosaico/` fez **2 em 6 (CTR 33%)**, as duas com consulta nomeada de nome de material (`base para mosaico` 6,0 e `rejunte para mosaico` 8,5, uma com clique cada). No mesmo período `/materiais/qual-cola-usar-no-mosaico/` teve **1 clique em 118 impressões (CTR 0,85%)** — 55% de toda a impressão da ilha num único clique. **Quatro dos cinco cliques da semana vieram de 12 impressões somadas em duas páginas de nome de material.** Isso reforça, com dado, o DESPACHO DO RAPHAEL de 2026-10-09 ("páginas pelo nome do produto").
+- **`/loja/quadro-divino-espirito-santo/` SALTOU DE 44,0 PARA 2,0.** Estava em 48,0 (07/10), 48,0 (14/10), 44,0 (21/10) e hoje está em **2,0**. É a maior mudança de posição do arquipélago nesta semana. E as irmãs de `/loja/` acordaram junto: `/loja/quadro-flores-do-campo/` em **2,2** e `/loja/vaso-com-flores-em-ceramica/` em **8,0**. **As três somam 11 impressões e ZERO clique.** São os produtos que a artesã vende de verdade, com margem cheia e não com comissão de afiliado — é a página de maior valor unitário do arquipélago inteiro, e ela acabou de chegar à primeira página sem que ninguém pedisse.
+- **A LACUNA DE CTR MAIS ANTIGA DO ARQUIPÉLAGO CHEGOU À QUINTA SEMANA SEM SER TOCADA:** `/materiais/quantas-pastilhas-para-mosaico/`, **26 impressões na posição 6,2 e ZERO clique**. 14/10, 21/10, 28/10 e hoje. **Não foi reprovada: não foi executada**, porque a ilha está fora do foco desde 14/10.
+- **`picassiete` PERDEU O CLIQUE PELA SEGUNDA JANELA:** 2 impressões em 4,5, zero clique, contra 25% de CTR em 28/10. O CTR de 22–25% dessa página sempre veio de 9 a 12 impressões e não sobreviveu a duas repetições. **Não é regressão provada; é amostra fina voltando à média.**
+- Os **6 "Não encontrado (404)"** seguem na propriedade pela **quinta leitura seguida** (desde 07/10). 404 em endereço que já teve posição destrói ativo, e ninguém mediu quais são.
+- Não abri a SERP nesta leitura: **não verifiquei**.

@@ -126,7 +126,7 @@ executando_desde: null   # limpo as 2026-10-23T19:43Z pela propria execucao que 
                          # anterior
                                       # reservou as 10h20Z e limpou as 11h0xZ, e o ultimo commit na pasta da ilha
                                       # e de 10h59Z — mais de 40 minutos atras, entao a 1.1 nao tinha o que desempatar.
-ultima_ronda: 2026-10-28T20:00Z   # LEITURA SEMANAL as 20h00Z, DEPOIS da ronda diaria tecnica FUNDA das 14h57Z do mesmo dia. Serie de indexacao e posicoes de 28/10 gravadas, despacho de 6 itens no PROMPT.md. A ilha passou de 32 para 37 URLs entre as duas, sem execucao da Fundacao.
+ultima_ronda: 2026-11-04T20:10Z   # LEITURA SEMANAL de 2026-11-04
 bloqueada_por: null   # ACRESCENTADO em 30/09/2026: o campo FALTAVA neste cabecalho, e a secao 2 do
                       # ARQUIPELAGO.md o exige desde que ela existe. A secao 1, passo 3, LE este campo
                       # para decidir a ilha da execucao — entao a leitora dele vinha usando o valor

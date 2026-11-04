@@ -97,6 +97,22 @@ e os dois são passo do Raphael. **A receita do Arquipélago em 22/10/2026 é de
 — e nenhum desfecho desta seção pode ser lido como medição dela.
 
 
+## DESPACHO DA SENTINELA — 2026-11-04 (LEITURA SEMANAL, 19h4xZ–20h1xZ) — A PROMESSA NUMÉRICA NÃO DEVE SER REVERTIDA, E A CANIBALIZAÇÃO TETRA TRIPLICOU DE AMOSTRA
+
+Ilha em MODO DE MEDIÇÃO (1.2-b.1), fora do foco. Nenhum item abaixo autoriza construção enquanto `foco.md` nomear a rodametria; eles entram na fila para quando a ilha voltar.
+
+**RAMPA: MANTÉM.** A série autoriza dobrar (50 de 52, 96%, 601 impressões, apareceu), o foco total impede. Sem leva nova.
+
+**ITEM 1 — CANCELA A REVERSÃO DE TÍTULO. Prioridade sobre os outros, porque é trabalho que NÃO deve ser feito.** A proposta 2 de 21/10 (reverter `/calculadora-de-midia-filtrante/` para `– Aquametria`) **não deve mais ser executada como estava escrita**, e nenhuma outra promessa numérica deve ser retirada em ilha nenhuma. Motivo medido hoje: as quatro páginas que servem promessa somaram 277 impressões e **os 2 únicos cliques da ilha**; as três que servem `– Aquametria` somaram 81 impressões e **zero**. A página promessada `/calculadora-de-midia-filtrante/` está em **posição 1,0** na consulta nomeada `quanto de mídia biológica por litro`. Pronto quando: a decisão estiver escrita no `dados/posicoes.md` desta ilha (já está) e nenhum bloco da fila pedir reversão de `<title>`.
+
+**ITEM 2 (proposta de aceleração 1) — A CANIBALIZAÇÃO TETRA, agora com cinco consultas nomeadas.** `tetra cardinal` (3,0), `tetra neon cardinal` (2,0), `tetra peixe` (2,0), `tetra neon peixe` (6,0) e `peixe tetra neon` (2,3) são TODAS servidas por `/peixes/tetras/quantos-litros-para-tetra-neon/`; `/peixes/tetras/quantos-litros-para-tetra-cardinal/` tem 17 impressões em 5,1 e **zero consulta nomeada**. Trabalho: separar as duas páginas pela palavra que as distingue (cardinal × neon) em `<title>`, `<h1>` e primeiro parágrafo, e cruzar link interno entre elas com âncora igual à consulta. **Não mexer na URL** (proibido pela 12.1). Pronto quando: `tetra cardinal` E `tetra neon cardinal` aparecerem atribuídas à página do cardinal em **duas leituras semanais seguidas**.
+
+**ITEM 3 (proposta de aceleração 2) — `/calculadora-de-litragem/`, a única linha de banda 11-20 da ilha, caindo há três semanas.** 8,1 → 11,1 → **11,7**, com a impressão indo de 82 → 37 → **17**. Consulta nomeada `litragem` existe e é servida por **duas** páginas: a calculadora em 56,0 e a **home em 97,0**. Trabalho: pacote 11-20 da 12.1 nesta página (a consulta no `<title>` e no `<h1>`, três links internos de irmãs que rankeiam com âncora igual à consulta) **mantendo o `– Aquametria`**, para ela seguir sendo o braço sem promessa do teste. Pronto quando: `litragem` na calculadora abaixo de 30,0 **e** a home sem impressão nessa consulta, em duas leituras seguidas.
+
+**ITEM 4 (proposta de aceleração 3) — as duas mães de categoria fora do índice pela terceira semana.** `/peixes/acaras/` e `/peixes/tetras/`, as duas em "Discovered - currently not indexed", com as filhas entre as páginas de maior impressão da ilha. Mãe fora do índice com filha dentro é rastreamento, não qualidade. Alavanca é a 14.7 (solicitação manual), cuja cota de CONTA foi recusada em 14/10. Pronto quando: uma das duas devolver "Indexada" ou "Rastreada" na URL Inspection.
+
+**ITEM 5 — VIGILÂNCIA MEDIDA, não é bloco:** as `/peixes-2__trashed/…` subiram de 1,4% para **3,8% das impressões** (≈23 de 601, nove URLs) e passaram a receber consulta nomeada (`platy peixe` 2,0 e `ciclideos anões` 22,0). O endereço velho do platy tem **8 impressões em 7,5 contra 4 em 6,8 da página viva**. **O 301 está medido e correto (21/10 e 28/10) e este item NÃO reabre aquilo** — o que mudou é a proporção. Pronto quando: a leitura de 11/11 disser se a proporção subiu de novo. **Nenhum bloco de código nasce disto hoje.**
+
 ## DESPACHO DA SENTINELA — 2026-10-28 (LEITURA SEMANAL, 19h4xZ–20hxxZ) — ILHA EM MODO DE MEDIÇÃO (1.2-b.1), FORA DO FOCO
 
 **A semana foi a melhor da história desta ilha em clique: 641 impressões e 4 cliques (janela 20→26/10), contra 625 e 1 na anterior; posição de 6,9 para 6,4. Em 28 dias: 2.220 impressões e 13 cliques.** A ilha está fora do foco (a rodametria é foco total e absoluto desde 27/10), então nada aqui é para hoje — está escrito para a execução que voltar.

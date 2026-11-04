@@ -78,7 +78,7 @@ bloco_atual: |
   mesmo). O proximo passo NAO e um quarto localizador: e decidir se prosa dentro de
   dobra e "abertura" para o VOZ.md ou se ela ganha regua propria, escrita para o
   lugar onde ela esta hoje. Esta escrito tambem dentro do mutacoes-voz.py.
-ultima_ronda: 2026-10-28T20:00Z   # LEITURA SEMANAL (nao e ronda diaria tecnica): serie de indexacao e posicoes de 28/10 gravadas, despacho de 5 itens no PROMPT.md. 50 de 52 no indice, 641 impressoes e 4 cliques na janela 20->26/10. A ronda diaria tecnica mais recente desta ilha continua sendo a de 28/10 14h5xZ (curta).
+ultima_ronda: 2026-11-04T20:10Z   # LEITURA SEMANAL de 2026-11-04
 bloqueada_por: null
 congelamento: |
   ATUALIZADO EM 14/10/2026: o campo `piso` deste cabecalho passou a `atingido`, entao TODO o paragrafo

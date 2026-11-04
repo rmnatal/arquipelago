@@ -215,6 +215,24 @@ Medido em 10/09/2026 (Planejador de palavras-chave, conta do Raphael, faixas; SE
 
 ---
 
+## DESPACHO DA SENTINELA — 2026-11-04 (LEITURA SEMANAL, 19h4xZ–20h1xZ) — A MELHOR SEMANA DA ILHA, A RAMPA DESTRAVOU, E AS PÁGINAS DE `/loja/` CHEGARAM À PRIMEIRA PÁGINA
+
+Ilha fora do foco. Nada aqui autoriza construção enquanto `foco.md` nomear a rodametria — entra na fila para quando ela voltar.
+
+**RAMPA: DESTRAVA.** 24 de 37 (65%) → **35 de 44 (80%)**, com 11 páginas novas indexadas em sete dias. O gatilho da 14.6 deixou de valer. **E o diagnóstico de 14/10 está superado: não é orçamento de rastreamento da ilha — são NOVE páginas específicas travadas**, sete delas de `/materiais/`, todas em "Discovered" há 21 dias ou mais.
+
+**ITEM 1 (proposta de aceleração 1) — AS TRÊS PÁGINAS DE `/loja/` NA PRIMEIRA PÁGINA, COM ZERO CLIQUE. É o maior ROI aberto desta ilha e talvez do arquipélago.** `/loja/quadro-divino-espirito-santo/` saiu de **44,0 para 2,0**; `/loja/quadro-flores-do-campo/` está em **2,2**; `/loja/vaso-com-flores-em-ceramica/` em **8,0**. As três somam 11 impressões e **zero clique**. **São produto próprio da artesã, com margem cheia — não é comissão de afiliado.** Trabalho: abrir as três, medir o que a SERP mostra delas (`<title>`, meta description, imagem) e garantir que cada uma tem preço, foto e caminho de compra acima da dobra. Pronto quando: as três somarem **1 clique ou mais** numa leitura semanal, ou a leitura disser por medição por que não somaram.
+
+**ITEM 2 (proposta de aceleração 2) — `/materiais/quantas-pastilhas-para-mosaico/`: 26 impressões, posição 6,2, ZERO clique, QUINTA semana seguida.** Despachada em 14/10, 21/10 e 28/10 e **nunca executada** porque a ilha está fora do foco. É a lacuna de CTR mais antiga do arquipélago. **E a forma do conserto mudou com o dado de hoje:** não é pôr número no `<title>` nem tirar — é pôr no título a palavra que a consulta usa. Pronto quando: a página somar 1 clique ou mais numa leitura semanal.
+
+**ITEM 3 (proposta de aceleração 3) — `/materiais/acabamento/diluir-o-verniz-do-mosaico/`, a linha de banda 11-20 com consulta nomeada.** Posição da página **10,8**; a consulta nomeada `como diluir verniz` está em **25,0**. Medido em 28/10 e não consertado: o `<title>` servido é "Dá para passar o verniz como ele vem?" e o `<h1>` é o mesmo — **nenhum dos dois tem a palavra "diluir"**, que só existe na URL e na meta description. É o item 1 da 12.1 ao pé da letra, repetido pela segunda semana. Pronto quando: `como diluir verniz` abaixo de 15,0 em duas leituras seguidas.
+
+**ITEM 4 (correção) — OS SEIS "NÃO ENCONTRADO (404)" COMPLETAM CINCO SEMANAS E NINGUÉM SABE QUAIS SÃO.** Estão no relatório de Páginas desde 07/10, inalterados, enquanto a ronda diária mede 100% do sitemap em 200 — são endereços fora do sitemap que o Google conhece e que hoje morrem. 404 em endereço que já teve posição destrói ativo. Trabalho: listar os seis pela Search Console e, para cada um, ou 301 para o endereço vivo equivalente, ou dizer por escrito por que não há equivalente. Pronto quando: os seis estiverem nomeados num arquivo de `dados/` com a decisão de cada um.
+
+**ITEM 5 (correção, o mais grave de receita do arquipélago) — OS 58 LINKS SEM PISO DA `dados/vitrine-de-produto.json`, medidos em 28/10 e não consertados.** 58 dos 96 encurtadores `s.shopee.com.br` no ar (60%) têm `url_afiliado` e mais nada: 0 com `url_produto`, 0 com `url_busca`, 0 com `degrau`, 0 com `conferido_em`, e `item_id` **sem `shop_id`**, o que os torna intestáveis até pela API. Pela 25.2 não existe item publicável sem piso; pela 25.4-b.2, "já tem link" não é motivo para preservar. **Enquanto isso não for consertado, 60% dos botões de compra desta ilha viram página sem saída no dia em que o produto morrer.** Pronto quando: um portão contar `itens_sem_url_busca: 0` nos DOIS bancos — os `materiais-*.json` e a `vitrine-de-produto.json` — e a contagem estiver commitada.
+
+**REGISTRO, não é item:** `picassiete` perdeu o clique pela segunda janela (2 impressões, 4,5, zero). O CTR de 22–25% sempre veio de 9 a 12 impressões e não sobreviveu a duas repetições. **Não é regressão provada.**
+
 ## DESPACHO DA SENTINELA — 2026-10-28 (LEITURA SEMANAL, 19h4xZ–20hxxZ) — DUAS PROPOSTAS COM CONSULTA NOMEADA, E CINCO URLs QUE NASCERAM DURANTE ESTA LEITURA
 
 **A ilha subiu: 168 → 191 impressões e 1 → 3 cliques na janela, posição 8,4 → 7,8. Em 28 dias: 547 impressões, 8 cliques, CTR 1,5%.** É a ilha com mais clique do arquipélago.

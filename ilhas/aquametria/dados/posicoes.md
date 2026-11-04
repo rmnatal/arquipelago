@@ -128,3 +128,46 @@ Escrito pela Fundação no bloco das 13h16Z–14h0xZ de 14/10/2026, que cumpriu 
 - **A REGRA DA 12.1 QUE MANDA AQUI É A DE NÃO MEXER EM PÁGINA QUE ESTÁ SUBINDO.** A página de maior perda da ilha é `/peixes/tetras/quantos-litros-para-tetra-neon/`: **211 impressões em 28 dias e ZERO clique**, com as irmãs na mesma faixa convertendo (`/rodostomo/` 4,2% em 4,3; `/peixe-espada/` 5,0% em 4,2; `/platy/` 2,3% em 5,5). Seria o conserto de CTR de livro — **mas ela SUBIU de 5,0 (28 dias) para 4,4 (7 dias), e a 12.1 proíbe mexer em página que está subindo.** Fica REGISTRADA e VIGIADA: se a posição parar de melhorar na leitura de 04/11, vira proposta de título com as três irmãs como régua. Não é esquecimento: é a regra.
 - **A `/calculadora-de-iluminacao/` ENTROU NA BANDA 11-20 NA JANELA CURTA** (8,2 em 28 dias contra 10,8 em 7 dias, 48 impressões), e é a única página desta ilha a fazer isso. Sem consulta nomeada — anonimizada — então pela 12.1 **não vira proposta**, vira vigilância com número.
 - **Não abri a SERP de nenhuma destas consultas nesta leitura: não verifiquei.**
+
+---
+
+## Leitura semanal de 2026-11-04 — janela 27/10→02/11 (7 dias) pela nuvem, conferida na tela
+
+| consulta | página | posição hoje | impressões | cliques | banda |
+|---|---|---|---|---|---|
+| quanto de mídia biológica por litro | /calculadora-de-midia-filtrante/ | 1,0 | 1 | 0 | 1-3 |
+| peixe tetra neon | /peixes/tetras/quantos-litros-para-tetra-neon/ | 2,3 | 3 | 0 | 1-3 |
+| platy peixe | /peixes-2__trashed/vivaparos/quantos-litros-para-platy/ | 2,0 | 1 | 0 | 1-3 |
+| tetra peixe | /peixes/tetras/quantos-litros-para-tetra-neon/ | 2,0 | 1 | 0 | 1-3 |
+| tetra neon cardinal | /peixes/tetras/quantos-litros-para-tetra-neon/ | 2,0 | 1 | 0 | 1-3 |
+| tetra cardinal | /peixes/tetras/quantos-litros-para-tetra-neon/ | 3,0 | 1 | 0 | 1-3 |
+| tetra neon peixe | /peixes/tetras/quantos-litros-para-tetra-neon/ | 6,0 | 1 | 0 | 4-10 |
+| ciclideos anões | /peixes-2__trashed/ciclideos-anoes/ | 22,0 | 2 | 0 | 21+ |
+| litragem | /calculadora-de-litragem/ | 56,0 | 1 | 0 | 21+ |
+| litragem | / | 97,0 | 1 | 0 | 21+ |
+
+Tabela por página (as 10 de maior impressão das 47 com impressão):
+
+| página | posição 7d | impressões 7d | cliques 7d | banda |
+|---|---|---|---|---|
+| /peixes/bettas/quantos-litros-para-betta/ | 7,9 | 126 | 0 | 4-10 |
+| /calculadora-de-midia-filtrante/ | 4,2 | 90 | **2** | 4-10 |
+| /peixes/acaras/quantos-litros-para-acara-bandeira/ | 5,6 | 60 | 0 | 4-10 |
+| /peixes/tetras/quantos-litros-para-tetra-neon/ | 5,3 | 47 | 0 | 4-10 |
+| /calculadora-de-vazao-do-filtro/ | 5,7 | 40 | 0 | 4-10 |
+| /peixes/acaras/quantos-litros-para-oscar/ | 6,0 | 31 | 0 | 4-10 |
+| /calculadora-de-iluminacao/ | 7,8 | 21 | 0 | 4-10 |
+| /calculadora-de-litragem/ | 11,7 | 17 | 0 | **11-20** |
+| /peixes/tetras/quantos-litros-para-tetra-cardinal/ | 5,1 | 17 | 0 | 4-10 |
+| /peixes/ciclideos-anoes/quantos-litros-para-ramirezi/ | 4,6 | 14 | 0 | 4-10 |
+
+### O que esta leitura decide
+
+- **OS DOIS ÚNICOS CLIQUES DA ILHA VIERAM DE `/calculadora-de-midia-filtrante/` — 90 impressões, CTR 2,2%, posição 4,2 — E ELA ESTÁ NA POSIÇÃO 1,0 NUMA CONSULTA NOMEADA DE DINHEIRO** (`quanto de mídia biológica por litro`). É a primeira posição 1,0 em consulta nomeada de intenção comercial do arquipélago inteiro.
+- **A HIPÓTESE DA PROMESSA NUMÉRICA NO `<title>` (21/10) PERDEU FORÇA, E O TESTE QUE A REPROVARIA NUNCA FOI EXECUTADO.** Os títulos servidos foram medidos um a um hoje, às 19h5xZ, buscando as próprias URLs: `/calculadora-de-midia-filtrante/` serve `– de 1,25 a 12,5 mL/L`, `/calculadora-de-vazao-do-filtro/` serve `– de 1,76 a 10 renovações/h`, `/calculadora-de-iluminacao/` serve `– de 10 a 60 lm por litro`, `/peixes/bettas/quantos-litros-para-betta/` serve `– de 40,5 a 54 litros` (as quatro COM promessa); `/calculadora-de-litragem/`, `/peixes/tetras/quantos-litros-para-tetra-neon/` e `/peixes/tetras/quantos-litros-para-tetra-cardinal/` servem `– Aquametria` (as três SEM promessa). **A reversão da mídia filtrante que a proposta 2 de 21/10 pediu NÃO FOI FEITA** — a ilha está fora do foco e não recebeu execução.
+- **E agrupando esta janela pelo título servido: COM promessa 277 impressões e 2 cliques (CTR 0,72%); SEM promessa 81 impressões e 0 clique (CTR 0%).** O único clique da ilha está do lado promessado, e as três páginas sem promessa deram zero.
+- **Isso NÃO prova que a promessa ajuda** — são 2 cliques, assuntos diferentes e posições diferentes, e os dois grupos não são comparáveis. **Mas mata a AÇÃO que a hipótese de 21/10 mandava tomar:** tirar o número do `<title>` de cinco páginas da aquametria e de três da robometria não tem apoio em dado nenhum, e seria uma reversão cara em duas ilhas feita em cima de uma hipótese que a primeira janela posterior contradiz. **NÃO REVERTER NADA. O teste 1 contra 3 continua por fazer e continua sendo a maneira barata de resolver isto.**
+- **A CANIBALIZAÇÃO TETRA ESTÁ CONFIRMADA COM AMOSTRA CINCO VEZES MAIOR QUE A DE 21/10: CINCO consultas nomeadas apontam para `/peixes/tetras/quantos-litros-para-tetra-neon/`** — `peixe tetra neon` 2,3 · `tetra peixe` 2,0 · `tetra neon cardinal` 2,0 · `tetra cardinal` 3,0 · `tetra neon peixe` 6,0 — **enquanto `/peixes/tetras/quantos-litros-para-tetra-cardinal/` existe, tem 17 impressões na posição 5,1 e NÃO recebe uma única consulta nomeada.** Duas consultas que dizem "cardinal" com todas as letras são servidas pela página do neon.
+- **`/calculadora-de-litragem/` É A LINHA DE BANDA 11-20 DESTA ILHA E ESTÁ CAINDO PELA TERCEIRA LEITURA SEGUIDA:** 8,1 (14/10) → 11,1 (21/10) → 11,7 hoje, e a impressão foi de 82 → 37 → 17. **E a consulta nomeada `litragem` é servida por DUAS páginas da ilha: a própria calculadora em 56,0 e a HOME em 97,0.** A 12.1 proíbe mexer em página que sobe; esta cai há três semanas.
+- **AS URLs `/peixes-2__trashed/…` TOMARAM MAIS IMPRESSÃO, E AGORA TOMAM CONSULTA NOMEADA.** Nove delas aparecem na tabela por página somando ~23 das 601 impressões (3,8%, contra 1,4% em 21/10), e duas consultas nomeadas caem nelas: `platy peixe` em 2,0 e `ciclideos anões` em 22,0. **`/peixes-2__trashed/vivaparos/quantos-litros-para-platy/` tem 8 impressões em 7,5 enquanto a página VIVA `/peixes/vivaparos/quantos-litros-para-platy/` tem 4 em 6,8** — o endereço velho está sendo servido mais que o novo. **O 301 está medido e certo (21/10 e 28/10) e isto NÃO reabre aquilo.** O que é novo é a proporção subindo e a consulta nomeada chegando ali. Fica em vigilância medida, não vira bloco nesta leitura.
+- Não abri a SERP nesta leitura: **não verifiquei**.

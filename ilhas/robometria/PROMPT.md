@@ -45,6 +45,20 @@ python3 ferramentas/bancada.py --lista    # só imprime o que rodaria
 
 ---
 
+## DESPACHO DA SENTINELA — 2026-11-04 (LEITURA SEMANAL, 19h4xZ–20h1xZ) — A POSIÇÃO VOLTOU SOZINHA, E O TÍTULO DESTA ILHA NÃO DEVE SER REVERTIDO
+
+Ilha em MODO DE MEDIÇÃO, fora do foco. Nada aqui autoriza construção enquanto `foco.md` nomear a rodametria.
+
+**RAMPA: MANTÉM.** `piso: abaixo` (14 de 40), 21.8, e foco total impede.
+
+**ITEM 1 — CANCELA A REVERSÃO DE TÍTULO DAS TRÊS PÁGINAS DE 17/09.** As leituras de 21/10 e 28/10 apontavam as duas ilhas para o mesmo lado contra a promessa numérica no `<title>`. **A janela 27/10→02/11 da aquametria contradiz isso no único lugar onde houve clique:** lá, as quatro páginas COM promessa somaram 2 cliques e as três SEM promessa somaram zero. **Não reverter `– 1 de 5 marcas`, `– de 1.400 a 10.000 Pa` nem `– 0 das 35 peças`.** O zero de `/quantos-pa-o-robo-aspirador-precisa/` (47 impressões em cinco semanas) continua sem causa medida, e atribuí-lo ao título passou a ser opinião. Pronto quando: nenhum bloco da fila pedir reversão de `<title>` nesta ilha.
+
+**ITEM 2 — A ÚNICA ALAVANCA DESTA ILHA DEPENDE DO RAPHAEL, e ela está parada há 44 dias.** As quatro URLs da leva de 21/09 (`/pecas/`, `/pecas/filtros/`, `/pecas/filtros/electrolux/`, `/pecas/filtros/xiaomi/`) estão em "Discovered - currently not indexed" desde 21/09. Reenvio de sitemap já foi tentado (23/09) e moveu duas e parou; a solicitação manual da 14.7 foi **recusada por cota de CONTA** em 14/10. **Pedido ao Raphael: gastar UMA solicitação de indexação manual em `/pecas/` — a mãe —, num dia em que a cota não esteja estourada.** Pronto quando: `/pecas/` devolver "Rastreada" ou melhor na URL Inspection.
+
+**ITEM 3 — NADA MAIS, de propósito.** Com 20 impressões, uma consulta nomeada e a única linha de banda 11-20 tendo 1 impressão, qualquer terceira proposta seria opinião. **A ilha precisa de impressão antes de precisar de posição**, e impressão aqui depende do item 2.
+
+**REGISTRO, não é item:** a superfície generativa voltou pela **quinta janela seguida, sempre UMA por janela**, hoje em 6,0 na R1. O critério da proposta 3 de 16/09 ("duas ou mais numa janela") não vai ser atingido assim e está errado. Quem reabrir reescreve o critério: o padrão é *uma por janela, estável, sempre na mesma página*.
+
 ## DESPACHO DA SENTINELA — 2026-11-02 (RONDA DIÁRIA TÉCNICA, 15h1xZ) — UM ITEM NOVO, E ELE É DE JULGAMENTO
 
 A primeira ronda depois de a ilha voltar ao ar. Ela escolheu esta ilha pela regra da dívida (seção 12): duas ilhas publicaram desde a última ronda — esta hoje às 10h35Z, revisão 96, e a rodametria hoje às 14h14Z, revisão 28 — e o desempate foi a segunda metade da regra, `ultima_ronda` de 30/10 14h55Z aqui contra 15h10Z lá.

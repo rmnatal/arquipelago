@@ -277,6 +277,16 @@ Aprovada por ele na conversa em 27/10/2026 ("vamos em frente", e "Já pode entã
 
 **A regra de dinheiro desta ilha (BUSSOLA.md 0.8 e 0.9):** a conta que aprovou é **só Shopee** — patinete elétrico adulto (ticket mediano R$ 2.329, comissão mediana 10%, medidos no painel em 27/10/2026) e peças/acessórios. **Scooter, moto e bicicleta elétrica entram com link do Mercado Livre como bônus, só para o que a Shopee não vende**, nunca como sustentação. Quando o mesmo produto existe nos dois, o link é o da Shopee (seção 7). Amazon fora de tudo.
 
+## DESPACHO DA SENTINELA — 2026-11-04 (LEITURA SEMANAL, 19h4xZ–20h1xZ) — ALTA: A ILHA EM FOCO TOTAL ESTAVA INVISÍVEL PARA O GOOGLE, E A RÉGUA TÉCNICA ESTAVA VERDE
+
+Primeira leitura semanal desta ilha.
+
+**ITEM 1 — ALTA, E JÁ CORRIGIDO PELA SENTINELA: O SITEMAP NUNCA TINHA SIDO ENVIADO.** O painel de Sitemaps de `sc-domain:rodametria.com.br` mostrava **nenhum sitemap enviado** ("0-0 de 0") com a ilha no ar desde 30/10, nove URLs em 200 e **duas rondas diárias técnicas aprovadas em verde**. A Sentinela enviou `https://rodametria.com.br/wp-sitemap.xml` em 04/11 às 19h5xZ; o painel marcou "Enviado: 4 de nov. de 2026" com status **"Não foi possível buscar o sitemap"**, que é o estado normal da primeira leitura (mesmo da robometria em 10/09) e **não é defeito até a segunda leitura dizer que é**. **A LIÇÃO DE MÉTODO, que vale para a seção 11 e para toda ilha nova: régua técnica verde não é indexação.** As duas rondas mediram 200, JSON-LD, breadcrumb, meta description, órfã, console e teste de vida — tudo o que o site faz — e nenhuma mediu a única coisa que faz o Google saber que o site existe. **Proposta: o checklist de nascimento da seção 11 ganha um portão que só fecha quando o painel de Sitemaps mostrar "Processado" com o número de URLs do sitemap no ar.** Pronto quando: o painel mostrar **Processado** com **9 páginas encontradas**.
+
+**ITEM 2 — ALTA, DEPENDE DO RAPHAEL: a nuvem não enxerga esta ilha.** `ferramentas/search-console.py` gravou, no `dados/search-console-2026-11-04.md` desta ilha, `ProxyError … Tunnel connection failed: 403 Forbidden` ao buscar o sitemap — é o egresso da conta recusando `rodametria.com.br`, o mesmo bloqueio que a ronda diária mediu em 04/11 (403 em seis medições, com `aquametria.com.br` em 200 nas mesmas passadas). **Enquanto o domínio não entrar na lista de domínios permitidos da conta, a ilha em foco total é a única do arquipélago sem instrumento de nuvem**, e toda leitura dela depende de alguém abrir o navegador. Pronto quando: o script gravar a contagem URL a URL desta ilha sem `ProxyError`.
+
+**ITEM 3 — NENHUMA PROPOSTA DE ACELERAÇÃO, de propósito.** 0 impressão, 0 clique, relatório de Páginas em "Dados em processamento". **Camada sem dado escreve "ainda sem dado" em vez de inventar análise** — não há banda, não há CTR, não há consulta e não há canibalização a trabalhar. A primeira leitura com impressão é que abre essa porta. O que vale até lá é indexação, e ela está nos itens 1 e 2.
+
 ## FILA DE BLOCOS
 
 **Antes de montar a fila, leia a seção 14 do `ARQUIPELAGO.md`.** Os blocos 1, 2 e 3 não dependem de site.

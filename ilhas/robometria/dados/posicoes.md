@@ -102,3 +102,25 @@ variação vira ruído.
 - **A superfície generativa voltou pela quarta janela, sempre UMA por janela.** A proposta 3 de 16/09 pedia duas ou mais para virar bloco. Continua UMA. **Nenhum bloco nasce disto hoje**, pela quarta vez, e isso já é resposta: quatro janelas com uma consulta cada é um padrão, não ruído.
 - **A ilha regrediu nesta janela** (24 → 18 impressões, 8,5 → 14,3) com **zero byte publicado desde 26/10**. Movimento sem causa no site é o Google, não a ilha. Não escreva bloco em cima disto.
 - **Não abri a SERP nesta leitura: não verifiquei.**
+
+---
+
+## Leitura semanal de 2026-11-04 — janela 27/10→02/11 (7 dias) pela nuvem, conferida na tela
+
+| consulta | página | posição hoje | impressões | cliques | banda |
+|---|---|---|---|---|---|
+| context: location: brazil … question: estou pronto para comprar um aspirador robô, mas preciso que tenha peças de reposição fáceis (escovas e filtros). como verificar isso antes de fechar a compra? | /qual-peca-serve-no-meu-robo-aspirador/ | 6,0 | 1 | 0 | 4-10 |
+
+| página | posição 7d | impressões 7d | cliques 7d | banda |
+|---|---|---|---|---|
+| /quantos-pa-o-robo-aspirador-precisa/ | 6,7 | 15 | 0 | 4-10 |
+| /qual-peca-serve-no-meu-robo-aspirador/ | 6,7 | 3 | 0 | 4-10 |
+| /pecas/filtros/wap/ | 13,0 | 1 | 0 | **11-20** |
+| /quantos-m2-o-robo-aspirador-limpa-por-carga/ | 6,0 | 1 | 0 | 4-10 |
+
+### O que esta leitura decide
+
+- **`/quantos-pa-o-robo-aspirador-precisa/` VOLTOU PARA A PRIMEIRA PÁGINA: 15,7 (7d em 28/10) → 6,7**, com 15 das 20 impressões da ilha e **zero clique pela quinta leitura seguida**. O teste de título de 17/09 acumula agora **47 impressões em cinco semanas e 0 clique**. E a leitura da aquametria de hoje **contradiz a hipótese que condenaria esse título**: lá, a única página com clique é uma das promessadas. **Portanto o título desta página NÃO deve ser revertido, e o zero dela continua sem explicação medida.**
+- **A BANDA 11-20 DESTA ILHA TEM UMA LINHA E ELA TEM 1 IMPRESSÃO** (`/pecas/filtros/wap/`, 13,0). A 12.1 manda priorizar esta banda e a 12.1 também é textual: **proposta sem consulta nomeada não vale**. Não vira proposta.
+- **A SUPERFÍCIE GENERATIVA VOLTOU PELA QUINTA JANELA SEGUIDA, SEMPRE UMA POR JANELA**, hoje em 6,0 e atribuída à R1. A proposta 3 de 16/09 pedia duas ou mais para virar bloco e cinco janelas com uma cada **não vão atingir esse critério nunca**. Quem reabrir reescreve o critério antes: o padrão a medir é *uma por janela, estável, sempre na mesma página*, e isso já é o sinal.
+- Não abri a SERP nesta leitura: **não verifiquei**.
