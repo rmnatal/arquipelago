@@ -3,6 +3,232 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-11-04 16h17Z–17h13Z — **A TRAVA DA 32.5-d COBRIU UM SELETOR E 24 REGRAS DO MOLDE SEGUIAM PERDENDO** — e o bloco de telefone escrito para comprar pixel nunca valeu um pixel
+
+**A ESCOLHA DA ILHA.** `foco.md` nomeia a **rodametria** (foco total e absoluto desde 27/10), e pela **1.2**
+não há escolha a fazer — e esta execução tem, além do foco, **despacho aberto na própria ilha em foco**: a
+ronda diária de hoje (14h3xZ–15h0xZ) deixou **cinco itens**, o item 1 marcado **ALTA**. **As duas exceções
+que furam o foco foram conferidas ANTES da reserva e nenhuma furou**: nenhum despacho ALTA em ilha fora do
+foco que esteja **no ar E quebrada** (o único aberto fora do foco é a ronda NORMAL da robometria de 02/11,
+em ilha no ar e sã) e o **despacho do molde da 32.6** segue FECHADO nas três ilhas. `executando_desde`
+estava `null`, que pela **1.1** já é prova de que não há bloco da Fundação vivo. Reserva às **16h17Z**,
+renovada às **16h46Z**. Nenhum branch `claude/*` com commit fora do `main` e nenhum PR aberto.
+
+**A REDE, MEDIDA E NÃO HERDADA (20.2).** `rodametria.com.br/` e `/wp-json/rodametria/v1/status` os dois em
+**200 em TRÊS passadas**, com `aquametria.com.br` em **200 nas mesmas três**.
+
+**O DESPACHO SAIU INTEIRO (18.2): os CINCO itens.** O que segue é por item, e o item 1 é o que vale guardar.
+
+### ITEM 1 — A SENTINELA MEDIU 1.402 px, ESTA NUVEM MEDE 1.380, E AS DUAS ESTÃO CERTAS: O DEFEITO ERA MAIOR QUE OS DOIS NÚMEROS
+
+**A PRIMEIRA COISA FOI REMEDIR, e o número não bateu.** O portão de pixel desta ilha, lendo o
+`wp-sitemap.xml` no ar e abrindo as 9 URLs a 390 px num Chromium de verdade, devolveu **1.380 px** para
+`/autonomia-patinete-eletrico/` — 20 px DENTRO do teto —, contra os **1.402 px** que a ronda mediu três
+vezes no Chrome do Raphael. A medição foi repetida em **cinco instrumentos** desta nuvem (UA de iPhone com
+`deviceScaleFactor` 2 e 1, UA de desktop, viewport mais alto, e **dentro de um iframe de 390 px numa janela
+de 1536**, que é exatamente como a ronda mediu): **1.380 px e `scrollHeight` 5.196 nos cinco**, contra
+5.339 dela. A fonte do Google carrega aqui (as seis respostas em 200), e a foto do cartão foi conferida
+carregada (`naturalHeight` 1024, servida a 96 px). **Não há como esta execução dizer qual dos dois números
+o visitante vê** — e com 20 px de folga a pergunta não precisa de resposta: o parágrafo de escopo do bloco
+de compra ocupa **três linhas de 19,7 px** e está a um caractere da quarta. Teto que se decide por uma
+quebra de linha não é teto.
+
+**E PROCURANDO DE ONDE TIRAR FOLGA, APARECEU A CAUSA DE VERDADE, que não é desta página: é da CLASSE que a
+32.5-d nomeou em 29/10 e consertou pela metade.** Aquele dia mediu que `body.rdm img{height:auto}` vale
+(0,1,2) e vence `.rdm-molde-cartao-foto`, que vale (0,1,0) — e pôs `body.rdm` **no seletor da foto. Só no
+da foto.** Duas telas acima, na mesma folha, mora `body.rdm p{margin:0 0 16px}`, que vale (0,1,1) e vence
+**toda** declaração do molde que ficou em (0,1,0).
+
+**MEDIDO, com a régua nova, nas 9 URLs do ar: 21 declarações do molde perdidas só na página da F2.** As
+três que custam o botão estão DENTRO do cartão: `cartao-nome`, `cartao-spec` e `cartao-preco` declaram
+`margin:0` e a página servia **16 px cada uma** — **48 px empilhados logo acima do botão que a 32.5 mede**.
+
+**E A IRONIA É EXATA:** o bloco de telefone desta folha foi escrito em 29/10 **para comprar pixel**, com
+`escopo{margin-bottom:8px}` e `titulo{margin-bottom:4px;font-size:1.125rem}` — e **nenhuma dessas linhas
+nunca valeu um pixel**, porque *media query não acrescenta especificidade*. A página servia 16 onde a folha
+pedia 8, 12 onde pedia 4 e corpo de 22 px onde pedia 18. É a mesma família da linha `height:44px` morta que
+a própria 32.5-d achou três telas abaixo, com uma diferença que importa: aquela perdia para uma **irmã**,
+escrita depois com a mesma especificidade, e estas perdem para uma regra **genérica** da casca, que ninguém
+lê quando mexe no molde.
+
+**O CONSERTO É DE ESPECIFICIDADE E NUNCA `!important` (32.5-d item 2):** **24 regras** passaram a carregar
+`body.rdm`, as das media queries incluídas, para a ordem relativa entre elas não mudar — prefixar metade
+seria trocar um defeito calado por outro.
+
+**A TRAVA NASCEU NA MESMA PASSADA, e ela é da CLASSE e não desta página.**
+`conferir-32-5-no-navegador.mjs` ganhou duas afirmações novas:
+
+1. **A disputa de especificidade.** Em cada página do molde ele varre todo elemento com classe `rdm-`, acha
+   a regra do molde de maior especificidade e a regra NÃO-molde de maior especificidade para sete
+   propriedades de espaço, e **REPROVA quando a genérica vence E o valor servido discorda do declarado**,
+   nomeando seletor, propriedade, declarado e servido. Quando a genérica vence com o **mesmo** valor ele
+   chama de **LATENTE** e imprime — foram **47 latentes** nesta medição, e era nesse estado que as 48 px
+   esperavam. O que o molde declara é descoberto aplicando a declaração **inline** no próprio elemento e
+   relendo o computado: as variáveis resolvem no lugar certo da árvore, e não há valor adivinhado.
+2. **A foto é de verdade.** O portão passa a dizer, em toda página que vende algo, **quantos cartões têm
+   foto carregada e quantos têm o reservado**, e reprova `<img>` que não carregou. A 32.5-d existe porque o
+   portão "aprovava a página de verdade, com o número de verdade, sobre um cartão que nenhum visitante com
+   foto jamais veria" — e o portão que ela consertou **continuava sem saber dizer qual dos dois mundos ele
+   mediu**.
+
+**E A FOTO ENSINOU UMA COISA SOBRE O PRÓPRIO INSTRUMENTO, medida às 16h5xZ:** a mesma página devolveu
+`foto 1/4 real` numa passada e `0/4` na seguinte, com a CDN da loja respondendo **200 e 197 KB** para
+`curl` nas duas. A causa é o `loading="lazy"` do cartão — ele está a 1.128 px, fora da primeira tela, e
+`waitUntil: 'load'` **não espera imagem preguiçosa que o navegador ainda não decidiu buscar**. Portão que
+responde diferente na mesma página é portão que alguém passa a ignorar (a lição da 20.5). Agora o portão
+põe a página no estado em que o visitante a vê ao chegar ao bloco: `eager` e `decode()`, com **uma segunda
+tentativa** recarregando o `src`. Foto que não carrega em duas tentativas é defeito de verdade.
+
+**O `--autoteste` É O QUE PROVA QUE A TRAVA MORDE, e ele não precisa de rede** (então roda sempre na
+bancada): quatro mundos fabricados com `setContent`, **7 afirmações**. O mundo 2 é o de 29/10 a 04/11 — o
+molde sem prefixo — e nele a afirmação é a que a 20.8 exige com todas as letras: **a régua VELHA (só pixel)
+APROVA o mesmo mundo que a régua NOVA reprova.** Autoteste em que as duas concordam não mede conserto
+nenhum. O mundo 4 é a disputa **latente**, que tem de ser impressa e **não** reprovar.
+
+### ITEM 2 — `dateModified` POR FILTRO, E A CASCA NÃO INVENTA DATA
+
+O defeito medido pela ronda: **zero** ocorrência de `dateModified` e **zero** de `datePublished` em todo o
+JSON-LD das 9 URLs, numa ilha cujo produto é *"o preço de hoje"*. A casca passou a servir um nó `WebPage`
+com `dateModified`, e **a data não é dela**: vem de um filtro (`rodametria_data_da_pagina`) em que cada
+snippet pendura a data **que a própria página publica em prosa** — a F2 e a home, o `gerado_em` do banco da
+F2; as duas de produto, o `colhido_em` da sua vitrine (o mesmo campo que a prosa imprime como `{DATA}`); a
+mãe, a **mais recente** das datas das filhas; as quatro da 16.1, o `gerado_em` de
+`paginas-institucionais.json`.
+
+**POR QUE FILTRO, e não um campo da casca:** a casca não sabe de que dado cada página é feita, e quem sabe
+é o snippet que a renderiza — o mesmo mecanismo que a **20.7** já usa para a versão do snippet carregado. E
+**sem ninguém pendurando, o nó não sai**: cair no relógio do servidor publicaria *"modificada hoje"* em
+página que não muda desde 30/10, que é exatamente a mentira que um sinal de frescor pode contar.
+
+**A TRAVA É NO AR, E É DE DUAS PARTES.** `conferir-no-ar.py` passou a exigir `dateModified` em **toda URL
+do sitemap** e, quando a página publica alguma data em prosa, que a data servida **esteja entre elas** — se
+as duas declarações do mesmo fato não forem o mesmo campo, uma sobe e a outra fica (20.7). Página sem data
+em prosa recebe **registro** e não falha: não há com o que cruzar, e dizer isso é mais honesto que aprovar
+em silêncio.
+
+### ITEM 3 — O CARROSSEL ESCOLHE POR PREÇO, E A ESCOLHA É DE PREÇO PORQUE É O QUE ESTÁ MEDIDO
+
+O carrossel da bicicleta era **os cinco primeiros** de `servem`, e os cinco custavam **R$ 2.299,99** em
+cinco lojas; a única oferta de outro preço (R$ 6.199,90) ficava de fora, e a mediana da página **era o
+mínimo** dela. A frase de faixa é o primeiro parágrafo da página e não informava nada.
+
+**`escolher_carrossel()` é função pura e tem três passadas:** (1) **uma vaga por preço**, na ordem da seção
+7; (2) as vagas que sobraram, com **no máximo uma repetição por preço** — a segunda oferta de um preço é
+outra **loja**, que é informação para quem compara, e a terceira não acrescenta nada; (3) o **piso de três
+da 32.1 vence o teto de duas ocorrências**, e só ele, porque família que de fato tem um preço só sairia com
+dois cartões e carrossel de dois não é o molde.
+
+**NÃO foi deduplicação de "oferta equivalente", e a razão é de método:** dizer que dois anúncios de duas
+lojas são o mesmo produto exigiria afirmar o que esta ilha **não mede** — título parecido não é prova, e a
+25.9 já ensinou o que custa casar anúncio por semelhança. **Preço é campo medido**, lido da loja na mesma
+passada.
+
+**A bicicleta sai de 5 cartões num preço para 3 cartões com dois preços**; o patinete segue com 5 cartões e
+5 preços. **O portão nasceu antes do conserto e o pegou**: rodado com o dado de ontem,
+`gerar-vitrine-de-produto.py --conferir` reprovou com a frase *"a tabela tem 2 precos distintos e o
+carrossel serve 1"*. Mais **cinco mundos fabricados** para a função pura (os dois de hoje e três que o banco
+não produz, entre eles a família de um preço só), e **uma mutação nova** em `mutacoes-produto.py` que
+refabrica o defeito de hoje.
+
+**E UMA MUTAÇÃO VIROU INERTE NO MESMO GESTO, que é pior que sobrevivente:** `carrossel acima do teto de
+cinco` exigia que a página[0] estivesse **exatamente** no teto, e a bicicleta caiu para três. Mutação presa
+ao tamanho do dado de hoje mede o dado e não o portão — ela passou a **empilhar** cartões até passar do
+teto, seja qual for o tamanho de onde começa.
+
+### ITEM 4 — `intestavel` ERA UMA VARIÁVEL LOCAL DENTRO DO PORTÃO
+
+A 25.9 (item 2) diz, com todas as letras, que campo declarado em todo registro existe *"pela mesma razão do
+`intestavel`"* — e nesta ilha o `intestavel` era **o único conceito não declarado**: vivia como uma
+variável local de 20 linhas dentro de `validar-banco.py` (`bool(url) and not url_produto`). **A ronda que
+media "0 intestável" nesta ilha estava medindo a ausência da chave.**
+
+Agora ele é **derivado**, como o `energia_wh`: `derivar-banco.py` escreve nos **20 registros** dos dois
+bancos (17 de `veiculos.json` e 3 de `pecas.json`, todos `false` hoje) e **`validar-banco.py` RECALCULA e
+reprova divergência** — duas metades que existem para discordar. Chave ausente reprova; `true` sem
+`motivo_sem_url_produto` reprova. O esquema declara o campo (versão **4 → 5**, com os dois bancos
+acompanhando; a PECA herda do VEÍCULO e por isso basta declarar lá). **Três mutações novas** em
+`mutacoes-banco.py`, e a do meio é a que importa: `intestavel: false` num item que **perdeu** o
+`url_produto` — o mundo em que o espelho envelheceu calado.
+
+**E o fixture da bateria pagou a regra na hora:** `registro_publicavel()` montava um `afiliado` sem a
+chave, e os dois mundos-que-têm-de-passar reprovaram no minuto em que o portão nasceu.
+
+### ITEM 5 — A DATA DO MANIFEST SOBE COM A REVISÃO, DO RELÓGIO
+
+`manifest.json` dizia `atualizado_em: 2026-11-02` na revisão **40**, publicada em 04/11: a revisão subia
+sozinha e a data era **digitada**. Agora `atualizar-manifest.py` escreve as duas no mesmo gesto, com a data
+lida do `date -u` da própria passada, e **imprime a troca** como imprime as outras.
+
+**E o `--conferir` NÃO exige "hoje", de propósito:** manifest em dia hoje continua em dia amanhã, e portão
+que reprova manifest certo é o caminho mais curto para alguém ignorá-lo (20.5). Ele compara com a data do
+**último commit que tocou o manifest** — e, em clone **raso**, diz que **não pôde conferir** em vez de
+aprovar com cara de completo (a lição do `git log` raso da 1.1).
+
+### O ACHADO QUE NÃO ERA DE NENHUM DOS CINCO ITENS: **A FÁBRICA FALA DENTRO DO `<style>` DE TODA PÁGINA**
+
+Apareceu ao extrair as datas em prosa das 9 URLs para o item 2, e é um defeito da **32.4** que **nenhum
+portão desta ilha vê**. Medido no HTML servido de `/autonomia-patinete-eletrico/` às 16h4xZ:
+
+- a página tem **110.182 bytes**; os 18 blocos `<style>` somam **67.916**;
+- dentro deles vão **39 comentários de CSS, 6.042 bytes** — **8,9% do CSS e 5,5% da página**;
+- **6 comentários, 3.745 bytes**, trazem vocabulário que a 32.4 proíbe **com todas as letras**: `snippet`,
+  número de seção do contrato (`32.5`, `secao 6`), nome de rotina (`conferir-32-5-no-navegador.mjs`) e
+  prosa de bastidor (*"Medido no ar a 390 px em 29/10/2026, na primeira foto que a ilha teve"*).
+
+**POR QUE PASSOU:** a régua de bastidor da ronda e a desta ilha leem o **texto visível** — `corpo_da_pagina`
+tira `<script>` e `<style>` antes de medir, e com razão, porque ali mora CSS e não prosa. **Só que a 32.4
+não é sobre o que o leitor vê: é sobre o que a página SERVE**, e é o HTML servido que a visão geral de IA
+ingere. Comentário de folha é invisível para o visitante e perfeitamente legível para quem lê o fonte.
+
+**E ESTA EXECUÇÃO AUMENTOU O NÚMERO**, o que é a parte honesta de registrar: o comentário novo que explica
+as 24 regras prefixadas tem ~2,3 KB e vai para a mesma folha. O conserto não é apagar o comentário — ele é
+a memória da ilha e mora no repositório, que é o lugar dele (seção 3) — é **não servi-lo**: a casca tira os
+comentários da folha ao imprimi-la. Está pré-registrado como o próximo bloco no `PROMPT.md`, com o portão
+que falta nomeado, porque mexer em folha no mesmo desembarque que conserta a 32.5 trocaria duas variáveis
+ao mesmo tempo no número que a 32.5 acabou de medir.
+
+### O FECHO, E OS NÚMEROS SÃO DO AR
+
+**Revisão 41 no ar às 17:10:01Z.** O log do `/status` foi lido **DO FECHO PARA BAIXO** (20.8): a linha de
+fecho declara **`8 aplicado(s)`** e abaixo dela vêm **8 linhas de item, todas dizendo `ok`** — as quatro de
+dado e os quatro snippets. E as versões foram conferidas **no ar**, no endpoint público da casca, que é o
+mecanismo da **20.7**: casca **1.9.0**, f2 **1.5.0**, institucional **1.2.0**, produto **1.7.0** — nenhum
+`id` ausente, nenhuma versão divergente.
+
+**O CRON, e vale registrar porque custou 24 minutos desta execução:** o Sync desta ilha roda por
+`rodametria_30min` e a passada anterior foi às **16h41**, três minutos antes do push. A **20.6** está certa
+sobre o que ACORDA o cron (requisição, não relógio) e **não** dispensa o intervalo: visitar a home não
+antecipa uma passada que ainda não venceu, só garante que a vencida rode. A revisão entrou na primeira
+passada devida, **17h10**, com a home sendo visitada a cada 40 segundos desde 16h47.
+
+**A 32.5 NO AR, a 390 px, nas 9 URLs do sitemap, com foto de verdade no cartão:**
+
+| página | antes | agora | foto |
+|---|---|---|---|
+| `/autonomia-patinete-eletrico/` | 1.380 px | **1.279 px** | 1 real, 3 reservados |
+| `/veiculos/patinete-eletrico/` | 1.281 px | **1.165 px** | 5 de 5 reais |
+| `/veiculos/bicicleta-eletrica/` | 1.209 px | **1.092 px** | 3 de 3 reais |
+
+**Zero foto quebrada**, caixa pior em 405 px (teto 700), **9 de 9 páginas dentro da 32.5** e — o número que
+mais diz — **disputas de especificidade LATENTES: 47 → 0**. Toda declaração do molde desta ilha agora vale
+o que diz.
+
+**`dateModified` conferido URL por URL no ar:** `2026-11-04` na home, na mãe, na F2 e nas duas de produto;
+`2026-10-30` nas quatro da 16.1. Nó `WebPage` em todas as 9, ao lado do `BreadcrumbList`, do `ItemList` e
+do `FAQPage` que já existiam — **nenhum deles mudou** (32.3).
+
+**O carrossel da bicicleta, lido abrindo a página:** **3 cartões, 2 preços** — `R$ 2.299,99` (3B LOJA),
+`R$ 2.299,99` (Boa sorte vem) e `R$ 6.199,90` (NEGOCIO VELOZ).
+
+**BANCADA COM REDE: 31 portões, 0 falha, DEPOIS do desembarque** — os 27 sem rede mais os quatro de ar
+(`conferir-32-5-no-navegador.mjs`, `conferir-no-ar.py`, `conferir-produto-no-ar.py`,
+`conferir-institucional-no-ar.py`). Dois portões novos entraram na bancada **no dia em que foram escritos**,
+sem ninguém os listar, porque ela descobre por prefixo de nome.
+
+**PRÓXIMO PASSO DESBLOQUEADO: o bloco 7 da fila** — a folha da casca não servir os próprios comentários. É
+o único defeito que esta execução **mediu e não consertou**, e a razão está escrita no item da fila: mexer
+na folha duas vezes no mesmo desembarque trocaria duas variáveis no único número que a 32.5 tem como prova.
+
 ## 2026-11-04 13h19Z–13h4xZ — **A CLASSE TINHA TRÊS CAMADAS E A TRAVA ALCANÇAVA DUAS** — e a terceira escreve a prosa DENTRO DO PHP, que o cabeçalho do portão de produto já dizia por escrito
 
 **A ESCOLHA DA ILHA.** `foco.md` nomeia a **rodametria** (foco total e absoluto desde 27/10), e pela **1.2**

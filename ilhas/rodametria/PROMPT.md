@@ -55,7 +55,21 @@ Medido em 27/10/2026 no Chrome do Raphael (`bussola/dossies/rodametria/DOSSIE.md
 
 ---
 
-## DESPACHO DA SENTINELA — 2026-11-04 (RONDA DIÁRIA TÉCNICA, 14h3xZ–15h0xZ) — CINCO ITENS, E O ITEM 1 É A 32.5-d ACONTECENDO PELA SEGUNDA VEZ NESTA ILHA
+## ~~DESPACHO DA SENTINELA — 2026-11-04 (RONDA DIÁRIA TÉCNICA, 14h3xZ–15h0xZ) — CINCO ITENS, E O ITEM 1 É A 32.5-d ACONTECENDO PELA SEGUNDA VEZ NESTA ILHA~~ — **OS CINCO ITENS FECHADOS EM 04/11/2026, CONFERIDOS NO AR PELA 18.4**
+
+> **FECHADO pela execução de 16h17Z–17h13Z de 04/11/2026, revisão 41 no ar, com as linhas da revisão corrente do log lidas DO FECHO PARA BAIXO e todas dizendo `ok` (20.4 e 20.8).** O que cada item virou, com o número medido no ar:
+>
+> - **ITEM 1 (ALTA) — FECHADO, e a causa era maior que a página.** O portão de pixel desta nuvem media **1.380 px** onde a ronda mediu 1.402 (cinco instrumentos desta nuvem concordando entre si, inclusive o iframe de 390 px que a ronda usou), e com 20 px de folga a divergência não precisava de árbitro: o defeito de verdade era a **segunda metade da 32.5-d** — `body.rdm p` vencia **toda** declaração do molde que ficou em (0,1,0), **21 delas só nesta página**, **48 px** dentro do cartão. **24 regras** passaram a carregar `body.rdm`, sem `!important`. **No ar agora: 1.279 px** na F2, 1.165 px no patinete e 1.092 px na bicicleta, as três com **foto de verdade no cartão**, e o portão diz a conta foto/reservado em cada uma. A trava é da CLASSE e está dentro do portão, com `--autoteste` de 4 mundos fabricados — num deles a régua VELHA aprova o que a NOVA reprova, como a 20.8 exige.
+> - **ITEM 2 — FECHADO.** As **9 URLs** servem `dateModified` no JSON-LD, num nó `WebPage`, com a data que a própria página publica em prosa, pendurada por filtro pelo snippet que a renderiza. Conferido **URL por URL no ar** (`conferir-no-ar.py`, que também cruza a data servida com as datas da prosa) e no chão (`teste-data-da-pagina.php`, 89 afirmações, nenhuma data digitada).
+> - **ITEM 3 — FECHADO.** `/veiculos/bicicleta-eletrica/` serve **3 cartões com 2 preços** (R$ 2.299,99 em duas lojas e R$ 6.199,90), no lugar dos 5 no mesmo preço. A escolha é por **preço** e não por "oferta equivalente", porque preço é o que esta ilha mede.
+> - **ITEM 4 — FECHADO.** `afiliado.intestavel` declarado nos **20 registros** (esquema 4 → 5), escrito por `derivar-banco.py` e **recalculado** por `validar-banco.py`, com três mutações novas provando que o portão morde.
+> - **ITEM 5 — FECHADO.** `atualizado_em` sobe com a revisão, do relógio, e o `--conferir` o compara com a data do último commit do manifest — não com "hoje".
+>
+> **E a ronda deixou duas coisas sobre o INSTRUMENTO dela** (o `fetch` bloqueado no `javascript_tool` e o `resize_window` que mente), que não são para a Fundação e seguem valendo para a próxima ronda. **O texto inteiro do despacho está preservado abaixo**, porque o item 1 dele é a melhor explicação escrita da 32.5-d nesta ilha.
+
+### O TEXTO ORIGINAL DO DESPACHO, PRESERVADO
+
+#### DESPACHO DA SENTINELA — 2026-11-04 (RONDA DIÁRIA TÉCNICA, 14h3xZ–15h0xZ) — CINCO ITENS, E O ITEM 1 É A 32.5-d ACONTECENDO PELA SEGUNDA VEZ NESTA ILHA
 
 Ronda feita no Chrome do Raphael, com as páginas abertas no ar. **Zero conserto e nenhum tentado: nenhum dos cinco itens é da lista 19.1.** A régua técnica inteira está verde (o detalhe está no campo `ultima_ronda` do `ESTADO.md`); o que segue é só o que falta.
 
@@ -690,6 +704,43 @@ corpus de 28/10 mediu **entre** três publicadores existe **dentro** de um só. 
 do `gov.br` em vez de só confirmá-lo: não existe "leitura de mercado" para a F1 herdar.
 
 **6-ORIGINAL (guardado).** LISTA DE PROSPECÇÃO DO WIDGET — lojas brasileiras de mobilidade elétrica com site próprio, `publicar: false`.
+
+**7. A FOLHA DA CASCA NÃO SERVE OS PRÓPRIOS COMENTÁRIOS — PRÉ-REGISTRADO EM 04/11/2026, COM O NÚMERO MEDIDO**
+
+Achado pela execução de 16h17Z de 04/11 ao extrair as datas em prosa das 9 URLs, e é um defeito da **32.4**
+que **nenhum portão desta ilha vê**. Medido no HTML servido de `/autonomia-patinete-eletrico/`: a página tem
+**110.182 bytes**, os 18 blocos `<style>` somam **67.916**, e dentro deles vão **39 comentários de CSS,
+6.042 bytes** — **8,9% do CSS e 5,5% da página**. **Seis deles, 3.745 bytes**, trazem exatamente o
+vocabulário que a 32.4 proíbe: `snippet`, número de seção do contrato, nome de rotina
+(`conferir-32-5-no-navegador.mjs`) e prosa de bastidor (*"Medido no ar a 390 px em 29/10/2026, na primeira
+foto que a ilha teve"*).
+
+**POR QUE NENHUM PORTÃO VÊ:** a régua de bastidor desta ilha e a da ronda leem o **texto visível**, e
+`corpo_da_pagina()` tira `<script>` e `<style>` antes de medir — com razão, porque ali mora CSS e não prosa.
+**Só que a 32.4 não é sobre o que o leitor vê: é sobre o que a página SERVE.** Comentário de folha é
+invisível para o visitante e perfeitamente legível para quem lê o fonte — e é o fonte que a visão geral de
+IA ingere.
+
+**O QUE O BLOCO FAZ, e o que ele NÃO faz:** o comentário **fica no repositório**, que é o lugar dele
+(seção 3) — ele é a memória desta ilha e foi ele que pagou a 32.5-d duas vezes. O que muda é que a casca
+**tira os comentários da folha ao imprimi-la**, num só lugar, do mesmo jeito para os quatro snippets.
+
+**O QUE O PORTÃO TEM DE PROVAR, e as três partes são o difícil do bloco:**
+1. **que a folha servida não tem comentário nenhum** — contado no HTML do ar, dentro de `<style>`, nas 9
+   URLs;
+2. **que o CSS não quebrou** — e isto se mede, não se afirma: `/*` pode aparecer dentro de `url(data:...)`
+   e dentro de `content:"..."`, e um removedor ingênuo corta a declaração no meio. O autoteste **fabrica**
+   esses dois casos e exige que sobrevivam, e o portão de pixel da 32.5 roda depois, porque folha cortada
+   errado aparece como pixel errado antes de aparecer como qualquer outra coisa;
+3. **que a régua de bastidor da 32.4 passou a alcançar o `<style>`** — hoje ela mede o texto visível, e a
+   parte nova é uma afirmação separada sobre o HTML servido inteiro, com a lista de palavras da 32.4 mais os
+   nomes de arquivo desta pasta.
+
+**POR QUE NÃO FOI FEITO NA MESMA PASSADA:** o desembarque de 04/11 conserta a 32.5 mexendo em 24 regras da
+folha, e o número que a 32.5 mede ia ser lido no mesmo minuto. Mexer na folha duas vezes no mesmo
+desembarque trocaria duas variáveis ao mesmo tempo no único número que esta ilha tem como prova. **E a conta
+deste bloco cresceu com aquele conserto**, o que é a parte honesta: o comentário que explica as 24 regras
+prefixadas tem ~2,3 KB e vai para a mesma folha.
 
 ## A BANCADA DESTA ILHA É UM COMANDO SÓ, E ELA DESCOBRE OS PORTÕES (28/10/2026)
 
