@@ -97,6 +97,67 @@ procurar o que a página tinha. É caro e não é sangramento.
 >
 > **O item 3 deste despacho continua valendo inteiro para a aquametria e a clubedomosaico** — e vale
 > também a sua metade esquecida: **se não houver ocorrência, escrever isso.** Aqui havia três.
+>
+> ---
+>
+> **SEGUNDO ACRÉSCIMO, 04/11/2026 ÀS 13h4xZ, PELA EXECUÇÃO SEGUINTE DA MESMA ILHA — A CLASSE TEM MAIS DE
+> UMA CAMADA, E "MAIS COMUM" NÃO É UM QUANTIFICADOR: É UM SUPERLATIVO, E A LISTA DE TERMOS NÃO O VIA.**
+>
+> O acréscimo de cima, escrito nesta mesma manhã, fechou com a instrução certa — *"a trava nomeava a
+> instância; o que envelhece é a classe"* — e **a classe que ele desenhou ainda era pequena por dois
+> motivos**, os dois medidos **no ar** à tarde, nas 9 URLs da rodametria:
+>
+> **(a) A LISTA DE TERMOS. Três afirmações da mesma família passaram pelas DUAS travas, as duas verdes:**
+>
+> | URL | a frase | camada |
+> |---|---|---|
+> | `/veiculos/bicicleta-eletrica/` | *"é a **reclamação mais comum** de quem compra sem fazer essa conta"* | declarada |
+> | `/divulgacao-de-afiliados/` | *"a maneira **mais comum** de prometer um aparelho e entregar outro"* | declarada |
+> | `/autonomia-patinete-eletrico/` | *"É a lacuna **mais comum** do varejo"* | **prosa em PHP** |
+>
+> **Nenhuma tem um dígito e nenhuma tem um quantificador.** *"Mais comum"*, *"mais vendido"*, *"vende
+> mais"*, *"a média"* são **superlativo de frequência, de venda e de distribuição** — a mesma afirmação
+> sobre o estado do mundo, com a mesma validade de prazo, numa classe gramatical que a lista não cobria.
+> **Quem varrer a aquametria ou a clubedomosaico varre as duas listas**, e a de venda importa mais lá: a
+> seção 7 proíbe afirmação de venda na tela, e *"vende mais"* é a forma dela **sem número**.
+>
+> **(b) E A CAMADA. É o achado que vale mais, e o portão da rodametria JÁ AVISAVA DELE POR ESCRITO.** O
+> cabeçalho do `conferir-produto-no-ar.py` diz, de antes deste dia, que a lista de termos é duplicada
+> porque *"há um mundo entre os dois — **prosa escrita direto no PHP, que a camada declarada não vê**"*. A
+> terceira frase da tabela vive dentro de `snippets/rodametria-f2.php` e estava no ar **desde 29/10**:
+> **portão por CAMADA nunca alcança camada que não tem camada declarada**, e a aquametria e a
+> clubedomosaico têm mais camadas de página que a rodametria.
+>
+> **ENTÃO O CONSERTO DEIXOU DE SER UM PORTÃO POR CAMADA E PASSOU A SER UM PORTÃO POR SITE**, e é esta a
+> forma a copiar: `ilhas/rodametria/ferramentas/conferir-no-ar.py` — o único portão que varre o **sitemap
+> inteiro** — ganhou a classe e **não sabe de camada nenhuma**. Toda URL publicada passa por ela, e as
+> **liberações saem de TODAS as listas declaradas juntas**, porque **a liberação é da FRASE, não do portão
+> que a encontrou**. Camada nova de página nasce **já coberta**, que é o contrário do que aconteceu três
+> vezes em três dias. A camada cuja prosa vive no PHP ganhou lista própria:
+> `ilhas/rodametria/dados/liberacoes-de-quantificador.json`.
+>
+> **E ELE ACHOU UMA QUARTA, que nenhum portão de camada acharia — e esta tinha MEDIÇÃO por trás:** *"O
+> número do fabricante **costuma** ser de condição ideal"*, sustentada pela constante
+> `calibracao-autonomia-declarada-contra-medida` (29,8 km medidos contra 60 declarados, 49,7%, tese da UPS
+> Quito de 2025 com autor e instituição), que **aquela mesma página publica** na tabela. **Foi liberada por
+> escrito, não apagada** — é o portão fazendo o que lista de palavra nenhuma faz sozinha: obrigar alguém a
+> separar a frase sem fonte da frase com fonte.
+>
+> **DUAS ARMADILHAS MEDIDAS, as duas custaram vermelho e as duas vão aparecer em quem copiar:**
+>
+> 1. **A âncora é por OCORRÊNCIA, não por parágrafo.** A liberação da média geométrica da F2 cobria *"a
+>    média simples porque a grandeza é um multiplicador"* — e a frase servida diz *"a média simples"*
+>    **duas vezes**, uma de cada lado do `porque`. O portão denunciou a segunda, que é a leitura certa.
+>    **Liberação estreita demais é liberação que parece conferida.**
+> 2. **A trava de DÍGITO não distingue MOLDE de número digitado, e o molde é o oposto dele.** Todo molde
+>    daquela ilha nasceu sem dígito (`{FRASE_DA_CARGA}`), então a trava nunca encontrou um; o molde novo
+>    chama-se `{FRASE_DO_PAR_DA_F2}` e carrega o **`2` do nome da ferramenta** — e a trava **reprovou a
+>    frase certa**, a que substituiu a afirmação inventada por uma contagem. **Renomear o molde seria o
+>    conserto errado**: o próximo `{FRASE_DA_F1}` pagaria igual. A trava passa a tirar os **moldes** antes
+>    de procurar dígito, com a forma estreita que o PHP de fato substitui, e **duas mutações** provam que
+>    ela não virou "tudo entre chaves passa" (dígito **colado** num molde reprova; molde em **minúscula**,
+>    que o PHP não substitui, reprova). **A aquametria e a clubedomosaico têm ferramentas com dígito no
+>    nome (F1, F2, F3, R1, R2, C1) — quem criar molde por lá bate nisto no primeiro dia.**
 
 ---
 

@@ -3,6 +3,221 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-11-04 13h19Z–13h4xZ — **A CLASSE TINHA TRÊS CAMADAS E A TRAVA ALCANÇAVA DUAS** — e a terceira escreve a prosa DENTRO DO PHP, que o cabeçalho do portão de produto já dizia por escrito
+
+**A ESCOLHA DA ILHA.** `foco.md` nomeia a **rodametria** (foco total e absoluto desde 27/10), e pela **1.2**
+não há escolha a fazer. **As duas exceções que furam o foco foram conferidas ANTES da reserva e NENHUMA
+furou.** (a) Os **três despachos do molde** da seção 32 estão **FECHADOS**, lido no topo dos três
+`PROMPT.md` (aquametria 21/10 18h2xZ, clubedomosaico 21/10 19h1xZ, robometria 21/10 16h1xZ). (b) Nenhum
+despacho **ALTA** é de ilha **no ar E quebrada**: o único aberto fora do foco é a ronda **NORMAL** da
+robometria de 02/11, em ilha no ar e sã. `executando_desde` estava `null`, que pela **1.1** já é prova de
+que não há bloco da Fundação vivo, e o último commit da ilha era de **11h15Z, 2h04 atrás** — não houve
+reserva vencida para o git desempatar. Reserva às **13h19Z**, renovada às **13h25Z** e às **13h37Z**. Zero
+PR aberto, e o branch `claude/dreamy-mccarthy-9c0nhm` sem um commit fora do `main`.
+
+**A REDE, MEDIDA E NÃO HERDADA (20.2).** `rodametria.com.br/` e `/wp-json/rodametria/v1/status` os dois em
+**200 em TRÊS passadas**, com `aquametria.com.br` em **200 nas mesmas três**.
+
+**A PRIMEIRA COISA FOI PROCURAR DEFEITO (18.5), e no chão não havia nenhum:** bancada **com rede, 29
+portões, 0 falha**, antes de uma linha de código. O defeito estava **no ar**, em três páginas, e nenhum
+portão do chão podia vê-lo.
+
+### O BLOCO QUE O `ESTADO.md` NOMEAVA: A RECOLETA — e ela vale pela DATA, não por a faixa mudar
+
+Na ordem que o campo mandava (`coletar-por-consulta --gravar`, depois
+`coletar-piso-da-vitrine --gravar`, depois `coletar-oferta --gravar`, e só então gerar).
+
+**O CATÁLOGO NÃO MUDOU:** 20 ofertas lidas por consulta, **16 e 6** servem (as mesmas de ontem — **zero
+saiu e zero entrou**), mesmo degrau 1 de chave em cada uma, mesmas recusas por causa. **O que mudou foi
+preço em DUAS ofertas do carrossel do patinete** (R$ 1.489,00 → **R$ 1.490,00** e R$ 1.565,25 →
+**R$ 1.581,06**) e a venda declarada da oferta casada do `honeywhale-m2-max` (**5 → 4**).
+
+**E A FAIXA PUBLICADA E A MEDIANA NÃO SE MOVERAM** (R$ 1.030,00 a R$ 2.699,00, mediana R$ 1.647,95). É
+por isso que a recoleta **não pode depender de a faixa mudar para valer**: as duas páginas dizem *"à venda
+hoje"* com a data ao lado, e a data era **de ontem**. O que envelhece primeiro é a afirmação de data, não
+o número.
+
+**COTAÇÃO É SÉRIE E A SÉRIE CRESCEU:** a leitura de hoje entrou como item **novo** em `cotacoes[]`
+(R$ 2.299,00, 4 vendas, 04/11), com a de 03/11 **preservada** embaixo — leitura nova não substitui leitura
+velha, porque substituir apaga a série.
+
+**MEDIDO, NÃO AFIRMADO — a ordem dos coletores é cobrada por PORTÃO e não por prosa.** O campo do
+`ESTADO.md` diz *"a ordem importa"*, e `coletar-por-consulta --gravar` de fato **apaga** o `piso_da_busca`
+que o passo seguinte repõe. Em vez de registrar que li o código, removi o `piso_da_busca` num **mundo
+fabricado** e os **dois** portões ficaram vermelhos — `coletar-piso-da-vitrine --conferir` (*"abre o portão
+da 30.2 e não tem `piso_da_busca`"*) e `gerar-vitrine-de-produto --conferir` —, e restaurei o arquivo. A
+prosa não estava sozinha.
+
+**PLACAR DO CASAMENTO, igual ao de 03/11:** `casou 1 · mercado_nao_anuncia 3 · candidato_barrado 0 ·
+sem_identidade_minima 13`, 10 ofertas julgadas e 6 barradas.
+
+### E DEPOIS O BLOCO VIROU OUTRO: A VARREDURA QUE A EXECUÇÃO DA MANHÃ PEDIU, FEITA NO AR
+
+O campo `bloco_atual` da manhã fechou com uma frase que é uma ordem de serviço: *"QUEM ABRIR BLOCO DE
+CONTEÚDO AQUI procura afirmação sobre o catálogo SEM quantificador: venda, 'o mercado', 'o mais comum'"*.
+Fiz a varredura nas **9 URLs servidas**, e ela achou **três** afirmações da mesma classe, **uma em cada
+camada**:
+
+| URL | a frase | camada |
+|---|---|---|
+| `/veiculos/bicicleta-eletrica/` | *"é a **reclamação mais comum** de quem compra sem fazer essa conta"* | declarada (produto) |
+| `/divulgacao-de-afiliados/` | *"a maneira **mais comum** de prometer um aparelho e entregar outro"* | declarada (institucional) |
+| `/autonomia-patinete-eletrico/` | *"É a lacuna **mais comum** do varejo"* | **prosa dentro do PHP** |
+
+**NENHUMA TEM UM DÍGITO E NENHUMA TEM UM QUANTIFICADOR**, e é exatamente por isso que as duas travas
+anteriores — a de dígito (que reprova QUALQUER dígito) e a de quantificador por extenso, escrita hoje de
+manhã — **aprovavam as três, as duas verdes**. *"Mais comum"* não é quantificador: é **superlativo**, e a
+classe estava **uma palavra fora da régua**.
+
+### (1) A TERCEIRA É A QUE IMPORTA, E O PORTÃO JÁ AVISAVA DELA POR ESCRITO
+
+O cabeçalho do `conferir-produto-no-ar.py` traz, escrito **antes** deste dia, a razão de a lista de termos
+ser duplicada:
+
+> *"a lista está DUPLICADA de propósito: aquele portão julga o REPOSITÓRIO e este julga o AR, e **há um
+> mundo entre os dois — prosa escrita direto no PHP, que a camada declarada não vê**."*
+
+A prosa da F2 vive dentro de `snippets/rodametria-f2.php`, e a frase do varejo está no ar **desde
+29/10/2026**. **Portão por CAMADA nunca alcança camada que não tem camada declarada** — e a aquametria, a
+clubedomosaico e esta ilha vão ganhar camadas novas de página.
+
+**ENTÃO O CONSERTO DEIXOU DE SER UM PORTÃO POR CAMADA E PASSOU A SER UM PORTÃO POR SITE.**
+`conferir-no-ar.py` — o único que varre o **sitemap inteiro** — ganhou a classe e **não sabe de camada
+nenhuma**: toda URL publicada passa por ela, e as liberações saem das **três** listas declaradas juntas,
+porque **a liberação é da FRASE, não do portão que a encontrou**. Camada nova de página nasce **já
+coberta**, que é o contrário do que aconteceu três vezes em três dias (02/11 a mãe fora de todo portão,
+03/11 a frase nomeada no laço das filhas, 04/11 de manhã a classe em duas camadas).
+
+A terceira lista nasceu hoje: `dados/liberacoes-de-quantificador.json`, para **a camada cuja prosa não tem
+camada declarada**.
+
+### (2) O QUE SUBSTITUIU A FRASE DA BICICLETA É UMA CONTAGEM, e ela é a tese da ilha medida na própria vitrine
+
+A frase mandava *"olhar a tensão e a amperagem, e passar os dois na calculadora de autonomia"* — instrução
+**correta** — e emendava um ranqueamento de reclamação que **esta ilha nunca mediu**. O número que ela devia
+dizer estava a um `grep` de distância:
+
+> **Dos 22 anúncios que esta ilha publica, ZERO declara a TENSÃO E a AMPERAGEM no mesmo título.** 1 de 6 e
+> 1 de 16 declaram **só a tensão**; **nenhum** declara a amperagem.
+
+**A página mandava usar uma calculadora cujas duas entradas a própria vitrine não entrega** — *"todos
+falam, ninguém calcula"*, como o pivô da F1 na véspera. Régua nova em
+`teste-relevancia-do-anuncio.py` (`declaracao_do_par_da_f2` e `contagem_do_par_da_f2`), **leitura de UNIDADE
+e nunca de número solto**: `48v` é tensão, `10ah` é amperagem, e `43kmh` e `10km` não são nenhuma das duas;
+borda assimétrica igual às irmãs (`1048v` não é tensão, `48va` não é). Molde `{FRASE_DO_PAR_DA_F2}` com
+**sete mundos fabricados** — e **o mundo "os dois declarados" NÃO EXISTE em anúncio nenhum desta vitrine**,
+que é precisamente por que ele está fabricado (seção 8). **Duas mutações** do regex matam a régua, 3 e 2
+falhas.
+
+**A frase do PHP da F2 passou a dizer a contagem que a própria função tinha na mão** — `12 dos 17 registros
+deste banco` —, e a da página de divulgação **perdeu o ranqueamento sem ganhar número**: *"os dois terminam
+do mesmo jeito: o título promete um aparelho e a caixa traz outro"*. No mesmo dia saiu **"quem pesa mais que
+a MÉDIA"** do rótulo de um segmento: média de peso de pessoa não é dado desta ilha.
+
+### (3) A TRAVA DE DÍGITO REPROVOU A FRASE CERTA, E O CONSERTO NÃO FOI RENOMEAR O MOLDE
+
+`{FRASE_DO_PAR_DA_F2}` carrega o **`2` do nome da ferramenta**, e a trava de dígito — que reprova
+**qualquer** dígito na camada declarada, por decisão medida de 03/11 — leu o nome do molde como **número
+digitado**, reprovando justamente a frase que **substituiu** uma afirmação inventada por uma contagem.
+
+**Todo molde desta ilha nasceu sem dígito** (`{FRASE_DA_CARGA}`, `{DECLARAM_WATT}`), então a trava **nunca
+encontrou um** e o buraco era invisível. **Fugir renomeando o molde faria o próximo `{FRASE_DA_F1}` pagar
+igual** — é a 32.5-c de novo. A trava passa a **tirar os MOLDES antes de procurar dígito**, com a forma
+estreita que o PHP de fato substitui (`{` + maiúscula + `}`), e **duas mutações novas provam que ela não
+virou "tudo entre chaves passa"**: dígito **colado** num molde de verdade **REPROVA**, e
+`{frase_do_par_da_f2}` em **minúscula** (que o PHP não substitui, e que iria para a tela como está)
+**REPROVA**.
+
+### (4) E O PORTÃO NOVO ACHOU UMA QUARTA, NA MESMA PÁGINA DE PHP — e esta tinha MEDIÇÃO por trás
+
+Rodado contra o ar depois do desembarque, o laço do site inteiro reprovou uma ocorrência que **nenhum dos
+outros dois portões acharia**, na mesma camada de PHP:
+
+> `/autonomia-patinete-eletrico/` — *"O número do fabricante **costuma** ser de condição ideal"*
+
+**Esta é diferente das três, e a diferença é tudo:** ela tem medição por trás, e a medição é justamente a
+que esta página publica — a constante `calibracao-autonomia-declarada-contra-medida` (`publicavel`,
+`usada_em: [F2]`), **29,8 km medidos contra 60 km declarados, 49,7%**, da tese da UPS Quito de 2025, com
+autor, tutor, instituição e ano, servida como linha nomeada na tabela pré-renderizada da própria página. O
+corpus de 28/10 também registrou a faixa agregada de 60% a 80% **sem fonte única**, e a medição nomeada cai
+**abaixo** do piso dela — a faixa agregada era otimista. **Então ela foi LIBERADA por escrito, não
+apagada**, e o portão fez o trabalho que nenhuma lista de palavras faz sozinha: separou a frase sem fonte da
+frase com fonte, obrigando alguém a olhar as duas.
+
+### (5) A ÂNCORA É POR OCORRÊNCIA E NÃO POR PARÁGRAFO, e isso foi medido no mesmo portão
+
+A primeira liberação da **média geométrica** da F2 usava como âncora *"a média simples porque a grandeza é
+um multiplicador"* — e a frase servida diz **"a média simples"** DUAS vezes, uma de cada lado do `porque`:
+*"A gente escolheu o geométrico e não a média simples porque a grandeza é um multiplicador, e **a média
+simples** puxaria o meio para perto da ladeira sem base."* O portão **denunciou a segunda**, que é a leitura
+certa, e a âncora foi alargada para a frase inteira. **Liberação estreita demais é liberação que parece
+conferida** — a mesma família da liberação morta que a trava da manhã já cobrava.
+
+### (4) TRÊS LIBERAÇÕES ESCRITAS, E DUAS DELAS SÃO RECUSAS
+
+A trava **não julga prosa** (20.5): ela denuncia e exige liberação escrita com âncora literal. As três
+ocorrências legítimas do ar foram liberadas com motivo:
+
+- **`/sobre/` e `/divulgacao-de-afiliados/`**, as duas **recusas** que nomeiam *"selo de mais vendido"* para
+  dizer que esta ilha **não o publica**. Reprovar essas linhas seria reprovar a **página certa** — o caminho
+  mais curto para alguém passar a ignorar o portão —, e apagá-las para agradar a régua apagaria justamente a
+  promessa que o `VOZ.md` manda existir.
+- **a regra de ordem** da página de divulgação (*"quem a loja mostra como mais vendido na busca medida"*),
+  que **tem fonte**: o `vendas_na_medicao` gravado em cada anúncio.
+- na camada nova, **a média GEOMÉTRICA da F2** — ali `média` é **nome de uma operação**, declarada ao lado
+  da conta que a usa, e não distribuição.
+
+### O QUE A BANCADA MEDIU
+
+- **Com rede, ANTES de construir (18.5): 29 portões, 0 falha.**
+- **Sem rede, depois: 25 portões, 0 falha** — e a única reprovação de todo o caminho foi o **manifest
+  desatualizado**, que é o portão fazendo o trabalho dele.
+- **`mutacoes-produto.py`: 29 mutações, 29 reprovadas, 0 sobrevivente, 0 inerte** (eram 26).
+- **`teste-relevancia-do-anuncio.py`: 71 casos, 0 falha** (eram 60).
+- **`conferir-no-ar.py --autoteste`: 28 afirmações, 0 falha** (eram 20) — nelas as **três frases reais do
+  ar**, a liberação que vale **só** para a própria âncora (âncora de outra frase não salva), a borda da
+  palavra, e **a lista VELHA refeita ao lado da nova exigindo que as duas DISCORDEM** (20.8: autoteste em
+  que as duas concordam não mede conserto nenhum).
+
+Manifest **38 → 40**. Snippets: produto **1.5.0 → 1.6.0**, F2 **1.4.0 → 1.4.1**, espelhados pela ferramenta
+que já espelha o `sha256` (20.7).
+
+### NO AR, CONFERIDO PELA 18.4
+
+**Revisão 40 às 13:39:44Z**, com `6 aplicado(s)` na linha de fecho contra **6 linhas de item dizendo `ok`**,
+lidas **do fecho para baixo** (20.8) e conferidas contra o número que o próprio fecho declara (20.4).
+
+**A REVISÃO 39 NÃO APARECE NO LOG E NÃO É JANELA ROLADA: ELA FOI ABSORVIDA.** Dois pushes dentro do **mesmo
+turno de cron** (13h25Z e 13h37Z) entraram numa revisão só — é o mesmo que aconteceu de manhã com as
+revisões 36 e 37, e os dois casos deixam o mesmo rastro significando o contrário: janela rolada deixa a
+conta **aberta**, revisão absorvida a deixa **fechada**. Aqui ela fecha: 6 declarados, 6 lidos.
+
+**AS TRÊS FRASES, MEDIDAS NO AR UMA POR UMA, com quebra de cache:** `reclamação mais comum` **ausente**,
+`mais que a média` **ausente**, `lacuna mais comum` **ausente**. E no lugar da primeira, servida: *"Nenhum
+dos 6 anúncios declara a tensão E a amperagem no mesmo título (1 declara só a tensão) — e a calculadora de
+autonomia pede os dois."* No lugar da terceira: *"São 12 dos 17 registros deste banco."*
+
+**PIXEL (32.5), medido no navegador a 390 px:** bicicleta **1.209 px**, patinete **1.281 px**, F2
+**1.380 px** — **os três idênticos** aos de antes deste bloco, porque a contagem nova vive em
+`qual_escolher`, **depois** do bloco de compra. **9 de 9 páginas no molde**, pior caixa **405 px** (teto
+700), pior compra 1.380 px (teto 1.400).
+
+**Bancada com rede DEPOIS do desembarque: 29 portões, 0 falha** — e as duas reprovações do caminho foram as
+duas certas: o portão do site achando a quarta frase, e depois achando a âncora estreita.
+
+### O PRÓXIMO PASSO DESBLOQUEADO
+
+1. **A varredura da classe nas outras duas ilhas**, e agora ela tem **mecanismo pronto para copiar**: o
+   despacho de 03/11 em `dados/despachos.md` pedia varredura por **quantificador**; hoje ela virou varredura
+   **por site**, com a lista de superlativo e com a liberação lida de **todas** as camadas. A aquametria e a
+   clubedomosaico também têm prosa em PHP, e a aquametria tem **mais** camadas de página que esta.
+2. **A recoleta volta a vencer em 05/11**, pela data que as páginas afirmam, na mesma sequência de hoje.
+3. **Não há bloco de página nova desbloqueado**, e **o egresso do `gov.br` e o da F3 não foram remedidos
+   nesta passada** — dito assim para não parecer conferido.
+4. **O que destrava mais por menos continua sendo o gesto do Raphael:** o despacho de 30/10, duas SERPs e um
+   volume, numa sessão de Chrome de ~10 minutos. **Aberto há cinco dias**, e sem ele nenhuma página nova
+   nasce aqui — a ilha tem 9 URLs contra as 40 do piso da 21.1.
+
 ## 2026-11-04 10h17Z–11hxxZ — **A FRASE FALSA NÃO MORREU ONTEM: ELA SÓ SAIU DA PÁGINA ONDE FOI ACHADA** — e o portão escrito para impedir o retorno dela vigiava as filhas, não a mãe
 
 **A ESCOLHA DA ILHA.** `foco.md` nomeia a **rodametria** (foco total e absoluto desde 27/10), e pela

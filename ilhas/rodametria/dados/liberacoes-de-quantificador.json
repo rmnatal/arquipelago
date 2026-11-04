@@ -9,9 +9,16 @@
   {
    "termo": "a media",
    "pagina": "autonomia-patinete-eletrico",
-   "ancora_no_ar": "a média simples porque a grandeza é um multiplicador",
+   "ancora_no_ar": "A gente escolheu o geométrico e não a média simples porque a grandeza é um multiplicador, e a média simples puxaria o meio para perto da ladeira sem base.",
    "porque": "A frase explica POR QUE a regua usa media GEOMETRICA entre os dois extremos medidos de consumo e nao a aritmetica — `a grandeza e um multiplicador, e a media simples puxaria o meio`. E aritmetica desta ilha, declarada ao lado da conta que a usa, e nao afirmacao sobre o mercado nem sobre o catalogo: `media` aqui e o nome de uma operacao. Tira-la nao mudaria uma afirmacao da pagina; o que ela faz e prestar contas da escolha.",
-   "por_que_ancora": "A ancora e literal e carrega o termo, entao a liberacao vale so para esta frase: outra `media` nesta mesma pagina continua sendo denunciada."
+   "por_que_ancora": "A ancora e a FRASE INTEIRA e nao o pedaco, e isso foi medido: `a media simples` aparece DUAS vezes nela — uma de cada lado do `porque` —, e a primeira versao desta ancora cobria so a primeira. O portao denunciou a segunda, que e a leitura certa: a liberacao e por OCORRENCIA, nao por paragrafo. Outro `media` nesta mesma pagina continua denunciado."
+  },
+  {
+   "termo": "costuma",
+   "pagina": "autonomia-patinete-eletrico",
+   "ancora_no_ar": "O número do fabricante costuma ser de condição ideal",
+   "porque": "Esta e a UNICA das quatro ocorrencias que a varredura do site achou com MEDICAO por tras, e a medicao e justamente a que esta pagina publica: a constante `calibracao-autonomia-declarada-contra-medida` (status `publicavel`, `usada_em: [F2]`) traz 29,8 km MEDIDOS contra 60 km DECLARADOS na ficha — 49,7% —, da tese da UPS Quito de 2025 (Limaico Quinteros), com autor, tutor, instituicao e ano, e a tabela pre-renderizada desta mesma pagina serve essa linha com o nome de quem a mediu. O corpus de 28/10 tambem registrou a faixa agregada de 60% a 80% SEM fonte unica, e a medicao nomeada cai ABAIXO do piso dela, que e a direcao que importa: a faixa agregada era otimista. A frase diz, em portugues, o que a linha de calibracao da propria pagina mostra em numero — e e ela que da sentido a conta inteira da F2, que existe para por o Wh ao lado do numero declarado. Tira-la deixaria a tabela de calibracao sem a frase que a explica.",
+   "por_que_ancora": "A ancora e literal e carrega o termo, entao vale so para esta frase: outro `costuma` nesta mesma pagina continua denunciado. E e a mesma forma das DUAS liberacoes de `costuma` que a camada de produto ja tinha para a frase do pico do motor — a diferenca e que aquelas afirmam o MERCADO pela secao 1.4(a) da especificacao, e esta afirma o que a propria pagina MEDIU."
   }
  ]
 }
