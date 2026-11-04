@@ -3,6 +3,338 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-11-04 10h17Z–11hxxZ — **A FRASE FALSA NÃO MORREU ONTEM: ELA SÓ SAIU DA PÁGINA ONDE FOI ACHADA** — e o portão escrito para impedir o retorno dela vigiava as filhas, não a mãe
+
+**A ESCOLHA DA ILHA.** `foco.md` nomeia a **rodametria** (foco total e absoluto desde 27/10), e pela
+**1.2** não há escolha a fazer. **As duas exceções que furam o foco foram conferidas ANTES da reserva
+e NENHUMA furou.** (a) Os **três despachos do molde** da seção 32 estão **FECHADOS**, lido no topo dos
+três `PROMPT.md` (aquametria 21/10 18h2xZ, clubedomosaico 21/10 19h1xZ, robometria 21/10 16h1xZ). (b)
+Nenhum despacho **ALTA** é de ilha **no ar E quebrada**: o único aberto fora do foco é a ronda
+**NORMAL** da robometria de 02/11 (os minutos do ciclo da R2), e aquela ilha está no ar e sã; os ALTA
+de `dados/despachos.md` são pedidos de **abertura de egresso** e o chamado da HostGator, que são do
+Raphael. `executando_desde` estava `null`, que pela **1.1** já é prova de que não há bloco da Fundação
+vivo — não houve reserva vencida para o git desempatar. Reserva às **10h17Z**, renovada às **10h24Z**.
+Zero branch `claude/*` com commit fora do `main` (`git log origin/main..` vazio no
+`claude/dreamy-mccarthy-0gm7zh`), zero PR aberto.
+
+**O PUSH DA RENOVAÇÃO FOI RECUSADO PELO SERVIDOR, E O MEU TESTE DE SUCESSO MENTIU — lição de método
+que vale para toda execução desta fábrica.** O `git push` voltou com `remote: fatal error in
+commit_refs` e `! [remote rejected] main -> main (failure)`. A primeira retentativa usava
+`grep -q "main -> main"` para decidir se tinha funcionado — e **essa string está dentro da linha de
+ERRO**, então o laço imprimiu `PUSH-OK` sobre um push recusado. Quem pegou foi um `git fetch` logo
+depois: o `origin/main` ainda era o commit anterior. **A régua certa não lê a mensagem, compara o
+hash:** `git fetch` e `git rev-parse HEAD` contra `git rev-parse FETCH_HEAD`. É a mesma família do
+`git log` raso da **1.1** e do número de tela digitado — o instrumento responde, e a resposta tem cara
+de completa.
+
+**A REDE, MEDIDA E NÃO HERDADA (20.2).** `rodametria.com.br/` e `/wp-json/rodametria/v1/status` os dois
+em **200 em TRÊS passadas**, com `aquametria.com.br` em **200 nas mesmas três**.
+
+**A PRIMEIRA COISA FOI PROCURAR DEFEITO (18.5), e no chão não havia nenhum:** bancada **com rede, 29
+portões, 0 falha**, antes de uma linha de código. O defeito estava onde portão nenhum olhava — outra vez.
+
+### O BLOCO: a varredura que o despacho de ontem mandou fazer nas OUTRAS ilhas, feita nesta
+
+O despacho NORMAL de 03/11 em `dados/despachos.md` manda quem reservar a **aquametria** ou a
+**clubedomosaico** varrer a camada declarada por **quantificador por extenso**. Ele nasceu de um
+defeito **desta** ilha e **ninguém fez a varredura aqui** — o conserto de ontem foi feito na frase que
+foi achada. Fiz a varredura na ilha que reservei, e ela achou **três** afirmações, uma delas no ar e as
+três sem um dígito.
+
+### (1) A FRASE APOSENTADA ONTEM ESTAVA VIVA NA SEÇÃO MÃE, SERVIDA O DIA INTEIRO
+
+A execução de 03/11 às 19h3xZ tirou de `/veiculos/patinete-eletrico/` a frase declarada:
+
+> *"a carga máxima declarada é o primeiro filtro, e ela **quase nunca está no título**."*
+
+Medido no ar hoje às 10h2xZ, **`/veiculos/` servia a mesma afirmação**, em `o_que_decide`:
+
+> *"é o filtro que **quase ninguém olha** e que **quase nunca está no título**."*
+
+**E a filha logo abaixo dela publica SEIS dos DEZESSEIS anúncios declarando a carga no título, de 60 a
+150 kg** — o número que a mãe mandava procurar fora.
+
+**É a 32.5-c um andar acima do CSS, e dita com todas as letras: o conserto foi feito na página onde o
+defeito foi ACHADO, e a mãe é outra família.** Lá a regra de telefone não **alcançava** a segunda
+família de cartão; aqui a **correção** não alcançou a segunda família de página.
+
+**E O PORTÃO ESCRITO ONTEM PARA IMPEDIR EXATAMENTE ISSO NÃO A PEGOU.** O `REGISTRO.md` de 03/11
+registra, como a melhor afirmação daquele bloco, *"a que nomeia a frase aposentada inteira: se `quase
+nunca está no título` voltar à tela, o portão fica vermelho"*. Ela existe, está correta, e mora **dentro
+do laço que varre as páginas de FILHA** — e a mãe não é uma delas. O cabeçalho do próprio
+`conferir-produto-no-ar.py` **já dizia isso**, de um defeito idêntico de 02/11: a mãe *"não aparecia
+aqui porque este portão descobre as páginas CASANDO o sitemap com os slugs da vitrine (...) e CAÍA FORA
+de todo portão de ar desta ilha"*. **A trava nomeava a INSTÂNCIA; o que envelhece é a CLASSE.**
+
+### (2) A PIOR DAS TRÊS: a página da bicicleta afirmava os DOIS lados do pivô da F1, com ZERO anúncio declarando um deles
+
+`/veiculos/bicicleta-eletrica/` servia, na caixa de resposta:
+
+> *"**Quase toda** a faixa de baixo é dobrável, de **pedal assistido**, pensada para o trajeto
+> casa–trabalho; o topo da faixa é a que tem **acelerador** e motor forte — e é justamente ela que pode
+> sair da categoria de bicicleta e entrar na de ciclomotor."*
+
+**Medido nos seis anúncios que aquela página publica: ZERO declara acelerador e ZERO declara não ter
+um.** A frase punha os seis em dois lados do **pivô da F1** — o que decide se a pessoa precisa de
+habilitação — **separando-os por PREÇO**, que não é fonte de nada.
+
+**E o esquema desta ilha proíbe isso no BANCO com estas palavras**, na decisão 3 do bloco 3
+(`dados/especificacao-calculadoras.md`): *"o enum de `acelerador` é pivô da F1, então ele não aceita
+nulo silencioso: ficha sem a informação grava `nao_declarado`, que é um terceiro valor com frase
+própria, e **nunca** cai no lado 'só pedal assistido' por omissão."* **A camada declarada fazia em prosa
+exatamente o que o esquema proíbe no registro, na metade que manda a pessoa para a rua sem CNH.** Não é
+"número velho na prosa": é a prosa ocupando o lugar do campo que a ilha se recusa a preencher.
+
+### (3) E uma afirmação de engenharia sem fonte em lugar nenhum da ilha
+
+A mesma página: *"quadro dobrável é justamente onde o limite **costuma** ser mais baixo."* Nenhuma fonte
+da ilha a sustenta, e naquela página **zero dos seis** anúncios declara carga. É a mesma régua que esta
+ilha aplicou a si mesma quando **rebaixou a margem de 10% da F3** de "fonte estrangeira" para
+`decisao_da_ilha`, por não achar o percentual publicado em treze publicadores. **A afirmação saiu**, e o
+que ficou foi a instrução que se pode cumprir: abrir o anúncio e procurar na ficha.
+
+### E A QUE FICA, nomeada e com a procedência ao lado
+
+*"O número grande do anúncio **costuma** ser o pico do motor"* — na mãe e numa pergunta do patinete —
+**fica**, e está escrita na lista de liberadas com o motivo. Ela afirma o **mercado** e não o banco
+desta ilha, e é **mandada** pela seção 1.4(a) da especificação, com estas palavras: *"a F1 pergunta
+potência nominal e diz, na mesma tela, que o número grande do anúncio costuma ser o pico e que o que a
+regra lê está na ficha."* Tirá-la pioraria a página: ela é o aviso que impede alguém de classificar o
+veículo pelo título, e a contagem que a acompanha já diz quantos anúncios dizem qual watt é aquele —
+hoje **nenhum**.
+
+### O QUE FOI AO AR — e o conserto é da CLASSE, não das três frases
+
+- **A TRAVA DO QUANTIFICADOR, em `gerar-vitrine-de-produto.py --conferir`**, irmã da trava de dígito e
+  escrita **porque a de dígito está CERTA e não bastava**. A de dígito reprova **qualquer** dígito na
+  camada declarada, até um só — e as três frases passaram por ela sem esforço, porque **nenhuma tem um
+  dígito**. Proporção por extenso é contagem com outro traje: afirma o estado do banco com a mesma
+  validade de prazo que um número, e envelhece do mesmo jeito, calada.
+  **ELA NÃO JULGA PROSA, DE PROPÓSITO (20.5):** régua que tentasse decidir se um "quase nunca" fala do
+  mundo ou do catálogo reprovaria voz legítima, que é o caminho mais curto para alguém a ignorar. Ela
+  **denuncia** a ocorrência e exige liberação escrita em `quantificadores_declarados_permitidos`, com
+  **campo**, **motivo** e **âncora literal** — a forma de `numeros_declarados_permitidos`, que esta ilha
+  já usa. **Três coisas REPROVAM:** liberação sem motivo ou sem campo; **âncora que não existe no texto
+  declarado ou que não contém o próprio termo** (senão o portão de ar apagaria um pedaço qualquer da
+  página e liberação de uma frase viraria anistia geral); e **liberação morta**, que é pior nesta lista
+  que em outra, porque ela é a lista de quem **já foi olhado**.
+- **A RÉGUA DO PIVÔ, em `teste-relevancia-do-anuncio.py`**, e ela é a leitura mais assimétrica desta
+  ilha, cada lado pelo que ele afirma: a palavra `acelerador` no título **basta** para o lado `manual`
+  (ninguém anuncia acelerador por engano); o lado do pedal exige **NEGAÇÃO explícita** — "sem
+  acelerador", "somente pedal assistido" —, porque **ter pedal não exclui ter acelerador**. É a regra do
+  esquema aplicada à camada do título: **nunca por omissão**. E `pedal tripulado`, que está em **dois
+  títulos reais** desta coleta, **não declara nada**: é tradução de máquina de *pedal assisted*, e dar
+  sentido a frase truncada é a família do `kg` solto de ontem — "quase certamente" não é procedência.
+  **A ordem da leitura é cobrada por caso fabricado**, porque a negação **tem a palavra `acelerador`
+  dentro dela** e ler na ordem inversa classificaria como `manual` o título que diz o contrário.
+- **`frase_do_pivo`, `frase_do_dobravel` e a frase da carga AGREGADA da mãe**, as três contadas e com
+  forma por mundo. A da mãe é `rdm_produto_frase_da_carga_agregada()`, **função PURA** sobre a relação já
+  calculada, ao lado da irmã que já serve a caixa — e **agregada de propósito**: a mãe não tem anúncio
+  próprio, o número dela é a soma das filhas no ar e a faixa é o menor e o maior entre todas, nunca a
+  faixa de uma família servida como se fosse da seção.
+- **`snippets/rodametria-produto.php` 1.4.0 → 1.5.0.** O `o_que_decide` da mãe era servido **cru** — e
+  era por isso que a afirmação da carga estava escrita à mão ali: **não havia por onde um molde entrar**.
+  Ele passa por um preenchedor, e o agregado é calculado **uma vez** para a caixa e para a frase, porque
+  calculá-lo duas vezes abriria a porta para as duas metades divergirem, que é a 32.5-c outra vez.
+- **O PORTÃO DE AR VARRE A CLASSE EM TODA PÁGINA DO MOTOR, MÃE INCLUÍDA, POR UMA FUNÇÃO SÓ.** A
+  afirmação que nomeava a frase de ontem **saiu** e foi substituída pela varredura, chamada do laço das
+  filhas **e** de `conferir_a_mae`. A lista de termos está **duplicada** entre o portão do repositório e
+  o do ar **de propósito**: um julga o `main` e o outro julga o que o WordPress serve, e há um mundo
+  entre os dois — prosa escrita direto no PHP, que a camada declarada não vê. Lista única num módulo
+  compartilhado faria os dois medirem o mesmo arquivo e perderem exatamente o caso que o segundo existe
+  para pegar.
+
+### OS NÚMEROS, contados e não digitados
+
+| página | anúncios | declaram o PIVÔ da F1 | dizem dobrável | declaram carga no título |
+|---|---|---|---|---|
+| `/veiculos/patinete-eletrico/` | 16 | **0** | 14 | 6 (60 a 150 kg) |
+| `/veiculos/bicicleta-eletrica/` | 6 | **0** | 5 | 0 |
+| `/veiculos/` (agregado) | 22 | **0** | — | 6 (60 a 150 kg) |
+
+**E O ZERO É A TESE DA ILHA MEDIDA NA PRÓPRIA VITRINE.** O dossiê diz que a vaga da F1 não é "ninguém
+fala disso", é *"todos falam, ninguém calcula"*. **Nenhum dos 22 anúncios que esta ilha publica diz se o
+veículo anda sem você pedalar** — e sem isso nenhuma potência classifica, por decisão escrita do bloco
+1. A página passou a dizer esse zero em vez de preencher o silêncio com prosa.
+
+### O DEFEITO QUE O PORTÃO NOVO PEGOU ANTES DO AR, e ele é a mesma forma com o sinal invertido
+
+A varredura do ar reprovou `/veiculos/patinete-eletrico/` por **não servir** a frase contada do pivô: o
+molde entrou só na página da bicicleta, **onde o defeito foi achado**. É literalmente o defeito desta
+manhã repetido por mim, meia hora depois de o descrever — e desta vez o portão o pegou **antes** do ar.
+A frase entrou na dobra **"Qual escolher"**, que vive **depois** do bloco de compra, e não na caixa de
+resposta: a 32.5-d manda medir no navegador quem mexer ali, e o `ESTADO.md` de ontem deixou a folga
+escrita em px justamente para ela não ser estimada de cabeça.
+
+### (4) E A TERCEIRA CÓPIA DA MESMA FRASE ESTAVA NUMA CAMADA DECLARADA DIFERENTE, COM PORTÃO PRÓPRIO E SEM NENHUMA RÉGUA DESTA CLASSE
+
+Com a trava escrita, rodei a lista dela — a lista do **portão**, lida do código para não divergir —
+sobre as outras camadas declaradas desta ilha. `dados/f2-respostas.json`: **zero**. E
+`dados/paginas-institucionais.json`: **duas**, uma delas no ar em `/sobre/`:
+
+> *"O anúncio não diz se aquele watt é o que vale para a regra de trânsito, não diz quantos km sobram
+> quando quem pilota pesa noventa quilos, e **quase nunca diz quanto peso o quadro aguenta**."*
+
+**É a MESMA afirmação, pela terceira vez, no terceiro lugar.** A primeira saiu da página do patinete em
+03/11; a segunda, da seção mãe, hoje de manhã; esta vivia na camada institucional, que tem **gerador e
+portão próprios** (`teste-institucional.py` e `conferir-institucional-no-ar.py`) e **não tinha régua
+nenhuma desta classe** — só a de dígito, que a frase atravessa sem esforço.
+
+**A frase saiu, e no lugar dela ficou o que é verificável:** o peso aparece no título quando aparece, e
+a página de cada família conta, anúncio por anúncio, qual título declarou e qual se calou.
+
+**A outra ocorrência FICA, liberada e nomeada:** *"Na prática não há um caso seu parado esperando"*, na
+seção de direitos da página de privacidade. Ali "na prática" é **marcador de discurso**, e o que vem
+depois dele é uma afirmação **absoluta** sobre esta ilha — nada é pedido, nada é gravado, nenhum cookie
+é escrito —, e as três foram **medidas do lado de fora** em 30/10. Tirá-la não mudaria uma afirmação da
+página.
+
+**E A TRAVA ENTROU NAS DUAS CAMADAS, cada uma no portão dela, com a lista de termos DUPLICADA de
+propósito.** Lista única num módulo compartilhado é a tentação óbvia e é o erro: os dois portões julgam
+**arquivos diferentes**, e há um mundo entre eles — prosa escrita direto no PHP, que camada declarada
+nenhuma vê. **Foi justamente a camada sem a trava que guardou a terceira cópia.**
+
+### AS DUAS TRAVAS PROVAM QUE MORDEM, E O PRIMEIRO MUNDO DE CADA É A FRASE DE VERDADE
+
+Trava que nunca falhou não é trava, e a `bancada.py` desta ilha cobra as duas metades do veredito. As
+duas ganharam os mesmos quatro mundos, fabricados da camada declarada real mexendo uma coisa de cada
+vez:
+
+1. **o mundo sadio passa** — e ele só passa porque as frases saíram hoje; sem esta afirmação a prova
+   mediria nada;
+2. **a frase REAL plantada de volta é achada** — não um exemplo inventado: a que esteve no ar;
+3. **outra forma de proporção é achada** (*"a maioria das famílias não declara a bateria"*), porque
+   procurar só o "quase nunca" que alguém já imaginou é a **leitura pelo avesso** que a 20.8 nomeia;
+4. **a liberação vale só no campo dela** — liberar um termo num parágrafo não libera o mesmo termo
+   noutro, senão a lista de quem **já foi olhado** viraria anistia por palavra.
+
+### (5) A QUINTA CÓPIA, E A TRAVA NOVA NÃO A VÊ — dizer isto importa mais que o conserto
+
+Achada **medindo o custo de pixel do próprio conserto**. `/veiculos/bicicleta-eletrica/` servia, na dobra
+"Qual escolher":
+
+> *"a dobrável **de pedal assistido** da faixa de baixo é **o que o mercado vende mais**, e ela resolve."*
+
+Duas afirmações que esta ilha não pode fazer, e **nenhuma das duas tem um quantificador por extenso** —
+a trava escrita hoje passa por cima delas:
+
+- **O pivô da F1 afirmado por omissão outra vez.** "De pedal assistido" sobre a faixa de baixo, com
+  **zero dos seis** anúncios declarando. Mesma família do item 2 desta entrada, outra redação.
+- **Uma afirmação de VENDA na tela**, enquanto o próprio arquivo gerado desta ilha declara
+  `vendas_ordenam_e_nao_vao_para_a_tela`: *"a contagem de vendas NÃO é publicada: a seção 7 proíbe selo
+  de mais vendido, e prova social não é o que esta página vende."* **Medida, a frase BATE com o dado** —
+  os cinco mais baratos são dobráveis e três deles têm 18, 68 e 23 vendas; o de R$ 6.200 não dobra e tem
+  zero. **E continua proibida: afirmação verdadeira que a regra da casa manda não publicar não deixa de
+  ser defeito.**
+
+**O QUE ISTO DIZ SOBRE A TRAVA, e é a parte honesta:** ela pega a classe da **PROPORÇÃO POR EXTENSO**,
+que é a classe que custou cinco dias e quatro cópias. **Ela não pega toda prosa escrita à mão sobre o
+catálogo**, e a quinta cópia é a prova disso, achada por olho e não por portão. O que de fato fecha a
+família é o que o item 2 do despacho da raiz já dizia e esta passada aplicou cinco vezes: **a afirmação
+sai da mão e vira molde preenchido por uma função que conta.** Régua é rede de segurança; o mecanismo é
+a contagem.
+
+### A FOLGA DE PIXEL: CINCO FRASES CONTADAS A MAIS, CUSTO ZERO (32.5-d, medido duas vezes)
+
+Medido no navegador a **390 px reais**, na mesma passada, como a 32.5-d manda de quem mexe em página de
+molde — e **duas vezes**, porque a primeira medição pegou um estado intermediário e teria ido para o
+registro como número final:
+
+| página | ontem | revisão 35 (meio do bloco) | **revisão 38 (final)** |
+|---|---|---|---|
+| `/veiculos/bicicleta-eletrica/` | 1.209 px | **1.345 px** (55 px do teto) | **1.209 px** |
+| `/veiculos/patinete-eletrico/` | 1.281 px | 1.281 px | **1.281 px** |
+
+**Os dois voltaram ao número de ontem, na casa do pixel**, e isso não foi sorte: a frase do pivô do
+patinete entrou na dobra "Qual escolher", que vive **depois** do bloco de compra; e na bicicleta, as duas
+frases contadas na caixa de resposta custaram 136 px que voltaram quando a terceira frase daquela caixa
+saiu — ela **duplicava** o `qual_escolher[3]`, que diz a mesma coisa melhor e com procedência (*"nenhum
+destes anúncios declara os três"*). **Cinco frases contadas a mais em três páginas, zero pixel acima do
+bloco de compra.** A escolha do lugar foi feita lendo a folga que a execução de ontem deixou escrita em
+px no `ESTADO.md`, em vez de estimá-la de cabeça — que é exatamente para isso que ela estava escrita.
+
+**E A MEDIÇÃO DO MEIO VALE REGISTRO, porque ela era a que eu ia publicar:** às 11h0xZ o portão disse
+1.345 px na bicicleta e eu escrevi "55 px de folga" no rascunho desta entrada. Aquele número estava
+**certo sobre a revisão 35** e **errado sobre o bloco**, e só não foi para o `main` porque o `/status`
+disse que o ar era 35 e não 38. **Número medido no meio de um bloco de três desembarques é número de
+outro mundo** — a mesma família do `ultimo` anterior ao push, que esta ilha já tem escrita.
+
+**OS 32.5-d DESTAS DUAS PÁGINAS JÁ ESTÃO GASTOS NA METADE DA FOTO:** medido hoje, **5 de 5** cartões do
+carrossel das duas já servem foto de verdade, então a armadilha do "primeiro dado de uma espécie" não
+está mais à frente nelas. O que ainda consome folga ali é frase — e a forma **mais longa** da frase do
+pivô (a de zero declarando, que é a de hoje) **já é a que está medida**.
+
+### A VERIFICAÇÃO NO AR (18.4)
+
+- **Revisão 38** às **11:10:18Z**, com a linha de fecho declarando **`4 aplicado(s)`** e o grupo dela,
+  lido **do fecho para baixo** (20.8), trazendo **exatamente 4 linhas de item, todas dizendo `ok`**.
+- **AS REVISÕES 36 E 37 NÃO ESTÃO NO LOG, E ISSO NÃO É JANELA ROLADA — ELAS NUNCA RODARAM.** A 20.8
+  manda dizer quando a janela rola e leva item embora; aqui a leitura é outra, e ela se prova pelas
+  linhas de revisão do próprio log: **hoje houve DOIS disparos**, 10:40 (revisão 35) e 11:10 (revisão
+  38), com `ultimo` indo de 10:40:17 a 11:10:18. **O cron aplica o manifest como ele está no instante em
+  que dispara**, então três pushes dentro de um turno entram numa revisão só, e as de dentro não existem
+  como passada. **Os dois casos deixam o mesmo rastro — "a revisão N não está no log" — e significam
+  coisas opostas:** janela rolada é conta aberta, revisão absorvida é conta fechada. **Quem for ler este
+  log conta as linhas de revisão antes de concluir**, e as quatro linhas da 38 cobrem todo arquivo que
+  mudou nos três pushes (`paginas-institucionais` e `paginas-de-produto` entre elas).
+- **O snippet CARREGADO pelo WordPress (20.7):** `/casca` → `versoes` diz `rodametria-produto: 1.5.0`,
+  igual ao `manifest.json` — e os quatro snippets presentes, nenhum `id` ausente, que é o sinal de
+  snippet gravado e não ativado.
+- **AS CINCO FRASES MORTAS, AUSENTES NAS CINCO PÁGINAS que podiam servi-las**, conferidas uma por uma
+  com quebra de cache; **as cinco frases CONTADAS, servidas**, cada uma na página dela; e a **liberada**
+  (*"costuma ser o pico do motor"*) **servida** na mãe e no patinete, que é o que prova que a trava
+  libera em vez de apagar.
+- **Bancada com rede: 29 portões, 0 falha.** `conferir-no-ar.py`, `conferir-produto-no-ar.py`,
+  `conferir-institucional-no-ar.py` e `conferir-32-5-no-navegador.mjs` aprovados.
+- **E O PORTÃO NOVO REPROVOU O MUNDO REAL ANTES DO CONSERTO CHEGAR, que é a melhor prova que ele podia
+  dar:** rodado às 11h0xZ contra o ar da revisão 35, `conferir-institucional-no-ar.py` fechou
+  **REPROVADO com 1 falha**, nomeando `/sobre/` e a frase inteira. Não foi mundo fabricado: foi a página
+  de verdade, com o defeito de verdade, no ar.
+
+### UMA LIÇÃO DE MÉTODO QUE NÃO É DESTA ILHA E VALE PARA TODA EXECUÇÃO
+
+**O `git push` foi RECUSADO pelo servidor e o meu teste de sucesso disse que tinha funcionado.** O push
+voltou com `remote: fatal error in commit_refs` e `! [remote rejected] main -> main (failure)`, e a
+retentativa decidia o veredito com `grep -q "main -> main"` — **string que está dentro da linha de
+ERRO**. O laço imprimiu `PUSH-OK` sobre um push recusado, e quem pegou foi um `git fetch` logo depois.
+**A régua certa não lê a mensagem, compara o hash:** `git rev-parse HEAD` contra
+`git rev-parse FETCH_HEAD` depois de um `git fetch`. É a família do `git log` raso da **1.1** e do número
+de tela digitado: o instrumento responde, e a resposta tem cara de completa.
+
+**E a segunda, no mesmo dia:** o `git commit -m "..."` com acento grave dentro das aspas duplas **executa
+o que está entre os acentos**. O nome de campo `vendas_ordenam_e_nao_vao_para_a_tela`, citado numa das
+mensagens desta execução, virou comando (`command not found`) e **saiu da mensagem**, que foi para o
+`main` com um buraco no lugar dele. Não foi corrigida por `--amend`: a mensagem já estava empurrada, e
+force push é proibido. **Quem citar nome de campo ou de arquivo em mensagem de commit escreve a mensagem
+por arquivo (`-F`) ou sem acento grave.**
+
+### O PRÓXIMO PASSO DESBLOQUEADO
+
+1. **NÃO HÁ BLOCO DE PÁGINA NOVA DESBLOQUEADO**, e as duas execuções anteriores já o disseram com o
+   banco na mão. **Não remedi a F1 e a F3 hoje** e digo isso em vez de deixar parecer conferido: a
+   remedição registro por registro é de 03/11 às 19h3xZ, e nada entrou no banco desde então — o bloco de
+   hoje não tocou em `dados/veiculos.json`. A F1 segue atrás do `gov.br` (despacho ALTA) e a F3 atrás de
+   `carga_max_kg` em registro com oferta aberta.
+2. **O TRABALHO RECORRENTE É A RECOLETA**, e ela está **vencendo**: a faixa de preço no ar é de
+   **03/11** e as duas páginas dizem "à venda hoje" com a data da leitura ao lado. Quem a fizer roda
+   `coletar-por-consulta.py --gravar` **e depois** `coletar-piso-da-vitrine.py --gravar` (a ordem
+   importa), mais `coletar-oferta.py --gravar`, e só então gera. **E ela agora carrega TRÊS contagens
+   sem uma linha nova:** carga, pivô e dobrável são lidos do título a cada geração, nunca herdados de
+   campo gravado — anúncio novo entra já medido.
+3. **O QUE DESTRAVA MAIS POR MENOS CONTINUA SENDO O MESMO GESTO, e é do Raphael:** o despacho de 30/10
+   — duas SERPs e um volume, UMA sessão de Chrome de ~10 minutos. **Aberto há cinco dias.** Sem ele
+   nenhuma página nova nasce aqui, e a ilha tem 9 URLs contra as 40 do piso da 21.1.
+4. **A TRAVA NOVA NÃO FECHA A FAMÍLIA INTEIRA, e a quinta cópia é a prova.** Quem abrir bloco de
+   conteúdo nesta ilha lê a camada declarada procurando **afirmação sobre o catálogo sem quantificador**
+   — venda, "o mercado", "o mais comum" —, porque essas a régua não vê. O que fecha é o mecanismo:
+   contagem no lugar da prosa.
+5. **FORA DESTA ILHA, e só para quem a reservar:** o despacho de 03/11 em `dados/despachos.md` sobre
+   quantificador por extenso **foi atualizado hoje** com a medição desta ilha e com o mecanismo pronto
+   para copiar — ele segue **aberto** para a aquametria e a clubedomosaico. E seguem abertos ali o da
+   borda `\b`, o do `clearstatcache` da 29.3 e os dois ALTA de egresso desta ilha.
+
+---
+
 ## 2026-11-03 19h17Z–19h5xZ — **A CARGA MÁXIMA QUE O TÍTULO DECLARA VIRA NÚMERO PRÓPRIO DAS DUAS PÁGINAS DE PRODUTO**, e ela nasceu de uma frase que a própria página servia e que a medição reprovou
 
 **A ESCOLHA DA ILHA.** `foco.md` nomeia a **rodametria** (foco total e absoluto desde 27/10), e pela

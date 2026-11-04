@@ -6,110 +6,110 @@ piso: abaixo              # 5 URLs publicadas contra as 40 da 21.1, e primeira_i
 urls_publicadas: 9        # 5 -> 9 em 30/10/2026 as 14h4xZ: as QUATRO paginas que a 16.1 nomeia (`/sobre/`, `/contato/`, `/divulgacao-de-afiliados/`, `/privacidade/`), pelo bloco 5d. CONTADO no wp-sitemap.xml no ar com quebra de cache, nao na conta de antes do desembarque. ELAS NAO MEXEM NO PISO DA 21.1 NEM GASTAM LEVA: a 21.7 tira as cinco paginas nomeadas da 16.1 do teto de 10 URLs por leva e 3 levas por semana, porque sao familia fechada e nenhuma responde a uma busca — o piso de malha segue pedindo 40 e as paginas de malha seguem 5. A DIVIDA QUE ELAS PAGAM estava medida na contagem de 30/10 as 10h3xZ: a ilha serve link de afiliado da Shopee desde 29/10 e nao tinha pagina de divulgacao de afiliados nem de privacidade.
 ultima_ronda: 2026-10-30T15:10Z   # RONDA DIARIA TECNICA, a PRIMEIRA desta ilha, e ela foi FUNDA. Escrito pela Sentinela, nunca pela Fundacao (secao 2). A ilha tinha 9 URLs no ar no momento da ronda (nao 5): as quatro institucionais do bloco 5d desembarcaram no meio dela, revisao 19 as 14h40:39Z. 9 de 9 em HTTP 200, porta da 29.2 verde nas quatro, soft 404 da borda AUSENTE nesta ilha (caminho virgem em 404 nas quatro leituras), regua tecnica inteira verde, console sem uma mensagem, conta da F2 refeita na mao em cinco casos e fechando. SEIS defeitos achados e ZERO consertados, de proposito: ver dados/consertos.md e o despacho de 30/10 em PROMPT.md. Teste de vida: 9 itens testados, 9 vivos, 0 morto, 13 nao testados por orcamento do anti-robo da Shopee.
 primeira_indexacao: null  # as duas primeiras URLs foram ao ar hoje; indexacao e trabalho de dias. Quem grava este campo e a leitura semanal, lendo o Search Console.
-ultima_execucao: 2026-11-03T19:45Z   # A CARGA MAXIMA QUE O TITULO DECLARA virou numero proprio das duas paginas de produto, e ela nasceu de uma frase DECLARADA que a propria pagina servia e que a medicao reprovou: a dobra "Qual escolher" do patinete dizia que a carga "quase nunca esta no titulo" com SEIS dos DEZESSEIS anuncios dela declarando, de 60 a 150 kg. Revisao 34 as 19:40:19Z, `5 aplicado(s)` contra 5 linhas de item dizendo `ok`, lidas DO FECHO PARA BAIXO (20.4 e 20.8). A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
-executando_desde: 2026-11-04T10:59Z   # RESERVA RENOVADA pela 1.1 (a de 10h17Z segue viva, SEGUNDA renovacao). O bloco passa de 40 minutos porque o cron desta ilha e TURNO de 30 min (20.6) e este bloco pediu TRES desembarques, mais a bancada com rede de 29 portoes e o portao de navegador que abre as 9 URLs a 390 px. Entrou por FOCO; as duas excecoes da 1.2 foram conferidas ANTES e nenhuma furou.
-rede: aberta em 2026-11-03   # 20.2, MEDIDA e nao herdada nesta passada das 19h2xZ: rodametria.com.br/ e /wp-json/rodametria/v1/status os dois em 200 em TRES passadas, com aquametria.com.br em 200 nas MESMAS tres. O EGRESSO (gov.br para a F1, os tres varejos grandes para a F3) NAO foi remedido nesta passada — a de 16h2xZ o mediu em 14 medicoes de bloqueio contra 2 de controle verde, e este bloco nao dependia dele. Os dois despachos ALTA seguem valendo.
+ultima_execucao: 2026-11-04T11:15Z   # A FRASE FALSA QUE SAIU DA FILHA EM 03/11 ESTAVA VIVA NA MAE E NO /sobre/, e a trava passou a ser da CLASSE em vez da frase. Revisao 38 as 11:10:18Z, `4 aplicado(s)` contra 4 linhas de item dizendo `ok`, lidas DO FECHO PARA BAIXO (20.4 e 20.8). CINCO frases contadas a mais em tres paginas com CUSTO ZERO de pixel acima do bloco de compra. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
+executando_desde: null   # LIMPO as 2026-11-04T11:15Z pela propria execucao que reservou as 10h17Z de 04/11 e RENOVOU DUAS vezes pela 1.1 (10h24Z e 10h59Z): o bloco pediu DOIS turnos de cron de 30 minutos (20.6), a bancada com rede de 29 portoes e o portao de navegador que abre as 9 URLs a 390 px DUAS vezes. Entrou por FOCO (`foco.md` nomeia a rodametria): as duas excecoes da 1.2 foram conferidas ANTES da reserva e NENHUMA furou — despacho do molde FECHADO nas tres ilhas da 32.6, e o unico aberto fora do foco e NORMAL (robometria 02/11), em ilha NO AR e nao quebrada.
+rede: aberta em 2026-11-04   # 20.2, MEDIDA e nao herdada as 10h2xZ: rodametria.com.br/ e /wp-json/rodametria/v1/status os dois em 200 em TRES passadas, com aquametria.com.br em 200 nas MESMAS tres. O EGRESSO (gov.br para a F1, os tres varejos grandes para a F3) NAO foi remedido nesta passada e este bloco nao dependia dele; os dois despachos ALTA seguem valendo.
 bloqueada_por: null      # obrigatorio pela secao 2. `null` DE PROPOSITO: o que falta (gov.br para a F1, as prefeituras para a camada municipal, as tres etiquetas do Mercado Livre) trava a FABRICA e nao a ILHA, e isso se escreve no despacho, que e o canal da 12.2. Preenche-lo congelaria tambem os blocos que ja podem andar.
 bloco_atual: |
-  A CARGA MAXIMA QUE O TITULO DECLARA VIROU NUMERO PROPRIO DAS DUAS PAGINAS DE
-  PRODUTO, e ela nasceu de um defeito que estava NA TELA desde 29/10. Revisao 34
-  no ar as 19:40:19Z.
+  A FRASE FALSA NAO MORREU EM 03/11: ELA SO SAIU DA PAGINA ONDE FOI ACHADA.
+  Revisao 38 no ar as 11:10:18Z.
 
   ESTE ARQUIVO CONTINUA SENDO A MEMORIA DESTA ILHA — `/areas/projeto-rodametria.md`
-  nao existe nesta nuvem (conferido outra vez nesta passada), e e por isso que
-  este campo e longo.
+  nao existe nesta nuvem, e e por isso que este campo e longo.
 
-  O DEFEITO, E NENHUM PORTAO PODIA PEGA-LO. A dobra "Qual escolher" de
-  /veiculos/patinete-eletrico/ servia, escrito a MAO na camada declarada: "a
-  carga maxima declarada e o primeiro filtro, e ela QUASE NUNCA ESTA NO TITULO".
-  Medido no mesmo instante, nos anuncios que aquela pagina publica: SEIS DOS
-  DEZESSEIS declaram a carga maxima no titulo, de 60 a 150 kg. A frase mandava o
-  leitor procurar fora o numero que a pagina ja tinha na mao.
-  E A LICAO DE METODO E ESTA: a trava de digito desta ilha reprova QUALQUER
-  digito na camada declarada, ate um so — e aquela frase passou por ela sem
-  esforco, porque ela nao tem digito. Ela afirma uma PROPORCAO por extenso.
-  PROSA SEM DIGITO QUE AFIRMA CONTAGEM PASSA POR TODAS AS REGUAS DESTA ILHA, e a
-  saida nao foi regua nova de prosa (ela reprovaria voz legitima): foi tirar a
-  afirmacao da mao e por a CONTAGEM no lugar dela. Despacho NORMAL novo de 03/11
-  em dados/despachos.md, perguntando — nao afirmando — o mesmo das outras duas.
-  E a cicatriz de 29/10 desta ilha outra vez ("prosa que afirma o estado do banco
-  e numero digitado em outro traje"), e a 32.5-c num andar acima do CSS: a metade
-  que aprendeu nao contou a irma escrita no mesmo mutirao.
+  O DEFEITO, E ELE ESTAVA EM TRES LUGARES. A execucao de 03/11 tirou da pagina do
+  patinete a frase declarada "a carga maxima QUASE NUNCA ESTA NO TITULO", com SEIS
+  dos DEZESSEIS anuncios daquela pagina declarando. A MESMA afirmacao estava viva
+  em `/veiculos/` ("o filtro que quase ninguem olha e que quase nunca esta no
+  titulo") e em `/sobre/` ("e quase nunca diz quanto peso o quadro aguenta"), as
+  duas servidas no ar. E o PORTAO escrito em 03/11 para impedir o retorno dela
+  nomeava a FRASE e morava no laco das paginas de FILHA — a mae nao e uma delas, e
+  o /sobre/ vive em outra camada declarada, com portao proprio e sem regua nenhuma
+  desta classe. E a 32.5-c um andar acima do CSS: o conserto nao viajou.
 
-  O QUE MUDOU NO AR, medido com quebra de cache:
-  - /veiculos/patinete-eletrico/: 6 de 16 anuncios declaram carga no titulo,
-    faixa de 60 a 150 kg, na caixa de resposta, na dobra, numa pergunta nova e
-    numa COLUNA nova da tabela visivel.
-  - /veiculos/bicicleta-eletrica/: 0 de 6, e a AUSENCIA e dado — nenhum dos seis
-    titulos tem UM kg. A pagina diz isso com a mesma frase contada.
-  - A frase aposentada tem portao com nome: conferir-produto-no-ar.py fica
-    VERMELHO se "quase nunca esta no titulo" voltar a tela.
+  E A PIOR DAS CINCO NAO ERA A DA CARGA. `/veiculos/bicicleta-eletrica/` afirmava
+  os DOIS lados do PIVO DA F1 — "de pedal assistido" embaixo, "tem acelerador" em
+  cima — com ZERO dos seis anuncios declarando qualquer um dos dois, separando-os
+  por PRECO. A especificacao desta ilha proibe isso no BANCO com todas as letras
+  (o enum de `acelerador` "nunca cai no lado so pedal assistido por omissao") e a
+  prosa fazia isso na TELA, na metade que decide se precisa de habilitacao.
 
-  O NUMERO QUE VALE A PAGINA INTEIRA: um dos seis e vendido como ADULTO
-  declarando "Ate 60kg", na mesma vitrine de outro que declara 150 kg. O piso da
-  faixa e mais leve que a maior parte dos adultos do pais e esta escrito no
-  titulo, onde ninguem compara. E o TERCEIRO numero do dossie — "acertar os tres
-  numeros antes de comprar" —, o que nao tinha resposta nenhuma no site porque a
-  F3 nao pode nascer.
+  O NUMERO QUE O BLOCO PUBLICOU, e ele e a tese da ilha medida na propria vitrine:
+  ZERO dos 22 anuncios que esta ilha serve diz se o veiculo anda sem pedalar. O
+  dossie diz que a vaga da F1 e "todos falam, ninguem calcula" — a pagina passou a
+  dizer esse zero em vez de preencher o silencio com prosa.
+  Contados: pivo 0 de 16 e 0 de 6 · dobravel 14 de 16 e 5 de 6 · carga 6 de 16,
+  0 de 6, e 6 de 22 na mae (60 a 150 kg).
 
-  A REGRA, E A LIGACAO E ELA INTEIRA: `kg` solto no titulo e AMBIGUO entre a
-  carga que o veiculo aguenta e o peso do PROPRIO veiculo, e as duas aparecem em
-  titulo de patinete ("dobravel 12kg" e "ate 120kg"). So e lido o kg que uma
-  palavra de capacidade LIGA. O caso real deixado de fora de proposito estava na
-  coleta de hoje: `patinete eletrico 350w 10ah 120kg autonomia 30km` — quase
-  certamente carga, e "quase certamente" nao e procedencia (secao 8).
-  AS BORDAS SAO ASSIMETRICAS, cada uma pelo que protege, e e a licao da manha
-  nesta mesma regua (onde `\b` depois de LETRA deixou passar `Capacete1`):
-  esquerda `\b` estrita (`ate` nao casa dentro de `Matelado`); direita depois de
-  `kg` e `(?![a-z])` e NAO `(?![a-z0-9])` — barra `90kgf` e deixa passar
-  `150kg1`. A PRIMEIRA VERSAO ESCREVEU `(?![a-z0-9])` E O AUTOTESTE A REPROVOU
-  NA PRIMEIRA PASSADA: o mesmo buraco do capacete, do outro lado, pego antes do
-  ar. 41 casos, 0 falha.
+  A TRAVA DA CLASSE entrou nas DUAS camadas declaradas, cada uma no portao dela, e
+  a lista de termos esta DUPLICADA de proposito: foi a camada sem a trava que
+  guardou a terceira copia. Ela NAO julga prosa (20.5) — denuncia e exige liberacao
+  escrita com campo, motivo e ANCORA literal; ancora que nao existe no texto ou que
+  nao contem o termo REPROVA, e liberacao morta tambem. As duas provam que mordem
+  com a FRASE REAL plantada de volta, com outra forma de proporcao ("a maioria",
+  porque procurar so o "quase nunca" que alguem imaginou e a leitura pelo avesso da
+  20.8) e com a liberacao valendo so no campo dela.
 
-  A F1 E A F3 FORAM REMEDIDAS NO BANCO, registro por registro, e as duas seguem
-  travadas: `carga_max_kg` esta em TRES registros (maxshot-v1, maxshot-v1spro,
-  playbik) e os TRES sao `rascunho` — a escada de compra inteira devolveu ZERO
-  oferta na loja nos tres, com os degraus medidos um por um em
-  afiliado.motivo_sem_url_busca. Sem piso nao ha publicavel (25.2). A F1 segue
-  atras do gov.br (despacho ALTA).
+  E A TRAVA NAO FECHA A FAMILIA INTEIRA — A QUINTA COPIA E A PROVA, e ela foi
+  achada por OLHO, medindo o custo de pixel do proprio conserto. O
+  `qual_escolher[0]` da bicicleta dizia "a dobravel DE PEDAL ASSISTIDO da faixa de
+  baixo e O QUE O MERCADO VENDE MAIS": o pivo por omissao outra vez e uma afirmacao
+  de VENDA na tela, que o proprio arquivo gerado desta ilha proibe
+  (vendas ordenam e nao vao para a tela, secao 7). MEDIDA, a frase da venda BATE
+  com o dado (os 5 mais baratos sao dobraveis, com 18, 68 e 23 vendas; o de
+  R$ 6.200 nao dobra e tem zero) — e continua proibida. Nenhuma das duas tem
+  quantificador, entao a regua nova nao as ve. QUEM ABRIR BLOCO DE CONTEUDO AQUI
+  procura afirmacao sobre o catalogo SEM quantificador: venda, "o mercado", "o mais
+  comum". O que fecha a familia e o mecanismo, nao a regua: contagem no lugar da
+  prosa.
 
-  NO AR (18.4): revisao 34, `5 aplicado(s)` contra EXATAMENTE 5 linhas de item
-  dizendo `ok`, lidas do fecho para baixo (20.8). Bancada com rede em 29 portoes
-  / 0 falha. 32.5 no navegador a 390 px: 9 de 9 paginas do molde dentro dela, 0
-  fora do molde.
+  PIXEL, MEDIDO DUAS VEZES E A PRIMEIRA ERA DE OUTRO MUNDO: bicicleta 1.209 ->
+  1.345 (revisao 35, meio do bloco) -> 1.209 px (revisao 38); patinete 1.281 px nas
+  duas. OS DOIS VOLTARAM AO NUMERO DE ONTEM NA CASA DO PIXEL — a frase do pivo do
+  patinete entrou na dobra, DEPOIS do bloco de compra, e na bicicleta a terceira
+  frase da caixa saiu porque DUPLICAVA o `qual_escolher[3]`. Cinco frases contadas
+  a mais, zero pixel. O "55 px de folga" que eu ia publicar estava CERTO sobre a
+  revisao 35 e ERRADO sobre o bloco: numero medido no meio de tres desembarques e
+  numero de outro mundo. E os 32.5-d destas duas paginas ja estao gastos na metade
+  da FOTO: 5 de 5 cartoes das duas ja servem foto de verdade.
 
-  E O CUSTO DA ESCOLHA, EM PIXEL, ESCRITO AQUI PORQUE E A PROXIMA ARMADILHA: a
-  frase contada entrou NA CAIXA DE RESPOSTA, que e primeira tela, e o primeiro
-  botao de compra DESCEU nas duas paginas — patinete de 1.084 para 1.281 px e
-  bicicleta de 1.129 para 1.209 px, teto 1.400. As duas passam, e o patinete
-  passa com 119 PX DE FOLGA. Isso e a 32.5-d esperando acontecer: a proxima
-  frase na caixa daquela pagina, ou a primeira foto num cartao, estoura o teto.
-  Quem mexer ali mede no navegador NA MESMA PASSADA, e a folga esta em px aqui
-  para nao ser estimada de cabeca.
+  AS REVISOES 36 E 37 NAO APARECEM NO LOG E NAO E JANELA ROLADA: ELAS NUNCA
+  RODARAM. Dois disparos hoje (10:40 revisao 35, 11:10 revisao 38), com `ultimo` de
+  10:40:17 a 11:10:18 — o cron aplica o manifest como ele esta no instante em que
+  dispara, entao tres pushes dentro de um turno entram numa revisao so. OS DOIS
+  CASOS DEIXAM O MESMO RASTRO E SIGNIFICAM O CONTRARIO: janela rolada e conta
+  aberta, revisao absorvida e conta fechada. Quem ler este log conta as LINHAS DE
+  REVISAO antes de concluir.
 
-  O CRON E TURNO E NAO RELOGIO (20.6), e a regua do `ultimo` acertou outra vez:
-  as 19h36Z o /status trazia revisao 33 com `ultimo` em 19:16:15 — recente e
-  ANTERIOR ao push, que nao e defeito nem cache, e TURNO. Seis visitas a home,
-  uma por minuto, e a revisao entrou as 19h41Z.
+  DUAS LICOES DE FERRAMENTA, as duas de hoje e nenhuma desta ilha:
+  (1) `git push` recusado pelo servidor (`fatal error in commit_refs`) e o meu teste
+      de sucesso disse que funcionou, porque ele procurava `main -> main`, string
+      que esta DENTRO da linha de erro. A regua certa compara HASH: `git fetch` e
+      `git rev-parse HEAD` contra `FETCH_HEAD`.
+  (2) `git commit -m` com acento grave EXECUTA o que esta entre eles: um nome de
+      campo citado numa mensagem desta execucao virou comando e saiu da mensagem,
+      que foi para o `main` com um buraco. Nao corrigi por `--amend` porque ja
+      estava empurrada e force push e proibido. Quem citar nome de campo em
+      mensagem de commit usa `-F` ou nao usa acento grave.
 
   O PROXIMO PASSO DESBLOQUEADO, em ordem de valor:
-  (1) NAO HA BLOCO DE PAGINA NOVA DESBLOQUEADO, e isto foi RECONFERIDO no banco
-      hoje (a F3) e nao herdado. O trabalho recorrente e a RECOLETA: a de hoje
-      saiu as 16h2xZ e NAO esta vencida. Quem recolher: `coletar-por-consulta.py
+  (1) A RECOLETA, e ela esta VENCENDO: a faixa de preco no ar e de 03/11 e as duas
+      paginas dizem "a venda hoje" com a data ao lado. `coletar-por-consulta.py
       --gravar` E DEPOIS `coletar-piso-da-vitrine.py --gravar` (a ordem importa),
-      mais `coletar-oferta.py --gravar`, e so entao gerar. E A RECOLETA JA
-      CARREGA A CARGA DECLARADA SEM UMA LINHA NOVA: a celula e a faixa sao LIDAS
-      DO TITULO a cada geracao, nunca herdadas de campo gravado, entao anuncio
-      novo entra ja medido.
-  (2) O QUE DESTRAVA MAIS POR MENOS CONTINUA SENDO O MESMO GESTO, e e do Raphael:
-      o despacho de 30/10 — duas SERPs e um volume, UMA sessao de Chrome de ~10
-      minutos. Aberto ha QUATRO dias. Sem ele nenhuma pagina nova nasce aqui, e a
+      mais `coletar-oferta.py --gravar`, e so entao gerar. E ela agora carrega TRES
+      contagens sem uma linha nova: carga, pivo e dobravel sao LIDOS DO TITULO a
+      cada geracao, nunca herdados de campo gravado.
+  (2) NAO HA BLOCO DE PAGINA NOVA DESBLOQUEADO, e eu NAO remedi a F1 e a F3 hoje —
+      digo isso em vez de deixar parecer conferido. A remedicao registro por
+      registro e de 03/11 19h3xZ e nada entrou no banco desde entao (este bloco nao
+      tocou em `dados/veiculos.json`).
+  (3) O QUE DESTRAVA MAIS POR MENOS CONTINUA SENDO O MESMO GESTO, e e do Raphael: o
+      despacho de 30/10 — duas SERPs e um volume, UMA sessao de Chrome de ~10
+      minutos. Aberto ha CINCO dias. Sem ele nenhuma pagina nova nasce aqui, e a
       ilha tem 9 URLs contra as 40 do piso da 21.1.
-  (3) FORA DESTA ILHA, e so para quem a reservar: o despacho novo de 03/11 em
-      `dados/despachos.md` sobre QUANTIFICADOR POR EXTENSO na camada declarada da
-      aquametria e da clubedomosaico. Esta escrito como PERGUNTA e nao afirmacao,
-      de proposito (secao 3). E seguem abertos ali o da borda `\b` da manha, o do
-      `clearstatcache` da 29.3 e os dois ALTA de egresso desta ilha.
+  (4) FORA DESTA ILHA: o despacho de 03/11 sobre quantificador por extenso foi
+      ATUALIZADO hoje com a medicao desta ilha e com o mecanismo pronto para copiar,
+      e segue ABERTO para a aquametria e a clubedomosaico.
 ---
 
 # Estado da ilha RODAMETRIA
