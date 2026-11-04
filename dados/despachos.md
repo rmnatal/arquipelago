@@ -11,6 +11,59 @@ Prioridade: `alta` fura a fila da próxima execução do destinatário.
 
 ## ABERTOS
 
+### prioridade NORMAL — A FOLHA DE ESTILO SERVE OS PRÓPRIOS COMENTÁRIOS, E A RÉGUA DA 32.4 NÃO ALCANÇA O `<style>`: medido e consertado na rodametria, e as outras TRÊS ilhas rodam o mesmo desenho de folha
+
+04/11/2026 — FUNDAÇÃO (quem reservar a aquametria, a robometria ou a clubedomosaico) — Achado na
+**rodametria** às 19h2xZ, consertado lá na mesma passada, e escrito aqui e não no `PROMPT.md`
+daquelas ilhas porque a **seção 3** proíbe editar arquivo de ilha que a execução não reservou. Mesma
+forma do despacho da proporção por extenso logo abaixo. **A regra geral já está no contrato, na
+32.4-b** — este bloco é só o endereço dela nas outras três.
+
+**O DEFEITO, com o número medido.** As folhas que a rodametria escreve serviam **23 a 24 comentários
+de CSS e 7.486 a 7.866 bytes em cada uma das 9 URLs** — 10,6% de todo o CSS da ilha e 85,6% de todos
+os bytes de comentário que a página serve. **Três deles nomeavam uma rotina da pasta da ilha**
+(`conferir-32-5-no-navegador.mjs`), **um dizia `bancada`**, e vários traziam número de seção do
+contrato e prosa de bastidor. É a lista da 32.4 inteira, servida em toda página.
+
+**E O QUE IMPORTA É POR QUE NENHUM PORTÃO VIA.** A régua de bastidor de cada ilha e a da ronda leem o
+**texto visível**, e a função que extrai o corpo tira `<script>` e `<style>` antes de medir — **com
+razão**. Entre as duas leituras cabe o defeito inteiro: comentário de folha é invisível para o
+visitante e perfeitamente legível para quem lê o fonte, **e é o fonte que a visão geral de IA
+ingere.**
+
+**A PERGUNTA, e ela é pergunta e não afirmação, de propósito** (a lição do despacho de 16/10 mais
+abaixo: despacho que afirma o estado de ilha que quem o escreve não reservou está afirmando sobre
+arquivo que ele não pode abrir para conferir). As três ilhas têm snippets com folha de estilo e
+comentário de prosa dentro dela — é o desenho desta fábrica, e a rodametria o herdou pronto. **Quem
+reservar uma delas:**
+
+1. **Meça antes de consertar**, e meça no ar: conte os comentários dentro de cada bloco `<style>` que
+   a ilha escreve, URL por URL do sitemap, com quebra de cache. Separe os blocos da ilha dos do
+   **WordPress** — na rodametria eram 17 one-liners de 41 a 103 bytes, que não são da ilha, não saem
+   de lá e **não podem fazer portão nenhum reprovar**. Se der zero, escreva zero e feche: medir é a
+   entrega.
+2. **Se der acima de zero, o conserto é o da 32.4-b**, e ele é um lugar só: a tag `<style>` sai dos
+   snippets e passa a ser escrita pela casca, que tira os comentários ao imprimir. **O comentário
+   fica no repositório** (seção 3) — ele é a memória da ilha.
+3. **Copie os dois portões**, que são o caro deste bloco e já estão escritos: na rodametria são
+   `ferramentas/teste-folha-sem-comentario.php` (58 afirmações, 8 mundos fabricados com a saída
+   escrita à mão, 6 deles separando a régua nova da ingênua pela 20.8, e a conta de `{`, `}` e `;`
+   que **abre** se a função cortar CSS de verdade) e as duas afirmações novas de
+   `ferramentas/conferir-no-ar.py` (a folha servida e a 32.4 sobre o HTML **inteiro**, separadas, com
+   8 mundos no `--autoteste`). **Não reescreva do zero** — a parte difícil é a lista de exceções, e
+   ela está medida: `.php` **não** entra na régua, porque o WordPress serve `/wp-*.php` e
+   `xmlrpc.php` no próprio `<head>`.
+4. **Rode o portão de pixel da 32.5 DEPOIS do desembarque**, sempre. Folha cortada errado aparece
+   como pixel errado antes de aparecer como qualquer outra coisa. Na rodametria os **27 números das 9
+   páginas saíram idênticos** aos de antes — é esse o resultado que se espera, e qualquer número que
+   mude é defeito do removedor, não melhoria.
+
+**O QUE A RODAMETRIA RENDEU, para haver com o que comparar:** 9 de 9 URLs com **zero** comentário em
+folha da ilha, e a página encolhendo **7.546 a 7.926 bytes** cada, com os 27 números de pixel
+intactos e a bancada com rede em 32 portões, 0 falha.
+
+**NADA AQUI É DO RAPHAEL.** A correção inteira mora na casca de cada ilha.
+
 ### prioridade NORMAL — A TRAVA DE DÍGITO DA CAMADA DECLARADA NÃO ALCANÇA PROPORÇÃO POR EXTENSO, E FOI ASSIM QUE UMA FRASE FALSA FICOU NO AR CINCO DIAS: medido na rodametria, e as outras duas ilhas têm a MESMA trava
 
 03/11/2026 — FUNDAÇÃO (quem reservar a aquametria ou a clubedomosaico) — Achado na **rodametria** às

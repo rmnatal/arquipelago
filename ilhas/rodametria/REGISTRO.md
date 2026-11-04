@@ -3,6 +3,238 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-11-04 19h17Z–19h46Z — **A FOLHA SERVIA 7.486 BYTES DE COMENTÁRIO E TRÊS MENÇÕES A UMA ROTINA DESTA PASTA, E NENHUM PORTÃO VIA** — bloco 7, pré-registrado nesta mesma manhã
+
+**A ESCOLHA DA ILHA.** `foco.md` nomeia a **rodametria** (foco total e absoluto desde 27/10) e pela **1.2**
+não há escolha a fazer. **As duas exceções que furam o foco foram conferidas ANTES da reserva e nenhuma
+furou:** as **quatro** ilhas no ar — rodametria, aquametria, robometria e clubedomosaico — foram medidas em
+**200 em TRÊS passadas** às 19h1xZ, então nenhuma está "no ar E quebrada", inclusive a clubedomosaico do
+despacho ALTA da porta de entrada (ela está sã, e o próximo passo dela é **chamado do Raphael** pela
+19.4(b), não reparo); e o **despacho do molde da 32.6** segue FECHADO nas três ilhas. A fila da própria ilha
+em foco estava **limpa**: o despacho de cinco itens da ronda de hoje foi fechado pela execução de
+16h17Z–17h13Z. `executando_desde` estava `null`, que pela **1.1** já é prova de que não há bloco da Fundação
+vivo. Reserva às **19h17Z**, renovada às **19h31Z**. Nenhum branch `claude/*` com commit fora do `main` e
+nenhum PR aberto.
+
+**A REDE, MEDIDA E NÃO HERDADA (20.2).** `rodametria.com.br/` em **200 nas três passadas**, com
+`aquametria.com.br`, `robometria.com.br` e `clubedomosaico.com.br` em **200 nas mesmas três** — doze
+medições verdes, zero intermitência. O egresso do `gov.br` e dos três varejos grandes **não foi remedido**
+nesta passada e este bloco não dependia dele; os dois despachos ALTA seguem valendo.
+
+**A BANCADA ANTES DE CONSTRUIR (18.5):** 27 portões sem rede, **0 falha**, antes de uma linha ser escrita.
+Nenhum defeito aberto no chão.
+
+**O BLOCO ESCOLHIDO: O 7, e ele foi PRÉ-REGISTRADO nesta mesma manhã, pela execução de 16h17Z**, com o
+número já medido e com o motivo de não ter saído junto escrito nele: *"o desembarque de 04/11 conserta a
+32.5 mexendo em 24 regras da folha, e o número que a 32.5 mede ia ser lido no mesmo minuto. Mexer na folha
+duas vezes no mesmo desembarque trocaria duas variáveis ao mesmo tempo no único número que esta ilha tem
+como prova."* É a razão de ele ser bloco separado, e ela continua valendo: esta execução mexe na folha de
+novo e **mede a 32.5 depois**, com uma variável trocada por vez.
+
+### O NÚMERO, REMEDIDO E NÃO HERDADO — e ele é MAIOR do que o pré-registro dizia, pelo motivo que o pré-registro previu
+
+O pré-registro contou **39 comentários e 6.042 bytes** nos **18** blocos `<style>` da página da F2.
+Remedido no ar às **19h2xZ de hoje**, URL por URL com quebra de cache, a conta se divide — e a divisão é o
+achado, porque ela separa o que esta ilha pode consertar do que ela não escreve:
+
+| | comentários | bytes |
+|---|---|---|
+| **as folhas DESTA ilha** | **23 a 24** por página | **7.486 a 7.866** por página |
+| as 17 folhas do próprio WordPress | 17 | 1.254 |
+| **total servido** | 40 | 8.740 |
+
+**85,6% dos bytes de comentário da página são desta ilha**, e são **10,6% de todo o CSS que ela escreve**.
+Os 17 do WordPress são one-liners de 41 a 103 bytes (`/*! This file is auto-generated */` e parentes), não
+são desta ilha, **não saem daqui** e por isso **não podem fazer portão nenhum reprovar** — reprovar por eles
+seria reprovar o que esta ilha não pode consertar, que é o caminho mais curto para alguém passar a ignorar o
+portão (20.5).
+
+**E a folha cresceu 2,3 KB desde o pré-registro, exatamente como ele avisou** que cresceria: o comentário
+que explica as 24 regras prefixadas com `body.rdm` do conserto da 32.5-d foi para a mesma folha.
+
+**O QUE OS COMENTÁRIOS DIZEM, e é a 32.4 ao pé da letra:** três deles nomeiam uma rotina desta pasta
+(`conferir-32-5-no-navegador.mjs`), um diz `bancada`, e vários trazem número de seção do contrato e prosa de
+bastidor. Medido com a lista da 32.4 contra o **HTML servido inteiro** das 9 URLs: a **única** palavra da
+lista que aparecia em qualquer lugar da página era `bancada`, **uma vez, dentro da nossa folha**. Nada do
+WordPress casa com a lista — e isso foi **medido antes** de a régua nova nascer, não suposto.
+
+### O CONSERTO É MECANISMO, E ELE MORA EM UM LUGAR SÓ
+
+A tag `<style>` **saiu dos snippets**. Quem a escreve agora é a casca, em uma função
+(`rodametria_casca_fechar_folha()`), e ela tira os comentários no caminho. As três folhas desta ilha — a da
+casca, a de produto e a institucional — passaram a abrir e fechar a captura
+(`rodametria_casca_abrir_folha()`), e **nenhum byte de CSS mudou de lugar no repositório**: era isso que
+importava, porque a folha da casca tem 600 linhas e reescrevê-las para trocar *quem* as imprime seria mexer
+na variável errada no mesmo dia em que a 32.5 é medida.
+
+**O comentário fica no repositório, que é o lugar dele (seção 3).** Foi ele que pagou a 32.5-d duas vezes
+nesta ilha. O que muda é que ele não sai na folha impressa.
+
+**POR QUE EM UM LUGAR SÓ, e não em cada snippet:** a **32.5-c** é literal — regra que nasce na folha de um
+snippet e não viaja para as irmãs é a doença que esta ilha já pagou. Com a tag na casca, **folha nova nasce
+dentro do conserto**, sem ninguém se lembrar dele.
+
+**COMO NÃO SE QUEBRA CSS TIRANDO COMENTÁRIO, que é o difícil do bloco:** `/*` pode aparecer **dentro de
+string** (`content:"/*"`) e dentro de `url(...)` sem aspas, e o removedor ingênuo de uma linha
+(`preg_replace('~/\*.*?\*/~s','')`) casa do `/*` de dentro da string até o `*/` de um comentário de
+verdade **lá na frente** e corta a declaração do meio. Então string e `url()` entram na **mesma varredura**
+como alternativas e são devolvidas **intactas** — é só por consumi-las inteiras que um `/*` dentro delas
+nunca é lido como comentário. Mais duas decisões, as duas com o motivo escrito no código:
+
+- **comentário colado entre dois caracteres de palavra** (`div/*x*/span`) sai como **um espaço**, não como
+  nada: para o CSS são dois tokens, e colá-los inventaria um terceiro seletor que ninguém escreveu. Nenhuma
+  folha desta ilha tem esse caso hoje; a passada existe para o dia em que tiver.
+- **comentário sem fechar come o resto da folha**, que é exatamente o que o navegador faz. Não se inventa um
+  fechamento que o autor não escreveu — e o portão do chão **reprova** folha desta ilha que tenha um.
+
+### OS TRÊS PORTÕES, E O QUE CADA UM PROVA — ditos separados porque o conserto de cada um é diferente (20.5)
+
+**1. `ferramentas/teste-folha-sem-comentario.php` (novo, 58 afirmações, 0 falha).** PHP pelo motivo que o
+`teste-escada-de-compra.php` já escreveu: a remoção é decidida em PHP, então a régua **chama** a função.
+Régua em Python sobre o texto do PHP conferiria a FORMA.
+- **8 mundos fabricados, com a saída esperada escrita à mão** — `content:"/*"` seguido de um comentário de
+  verdade, `url(data:...)` com `/*` dentro, aspa simples, aspa escapada, o comentário colado, o comentário
+  sem fechar, e dois mundos que têm de sair **idênticos**. É aqui que a independência vive: nestes a saída é
+  literal, não derivada da mesma noção de comentário.
+- **A RÉGUA VELHA REFEITA AO LADO DA NOVA, e as duas DISCORDAM em 6 dos 8 mundos** — a 20.8 é literal:
+  autoteste em que as duas concordam não mede conserto nenhum.
+- **A TRAVA MAIS FORTE: o que desapareceu é exatamente o que morava dentro de comentário.** `{` de 145 para
+  140, `;` de 282 para 280 na folha da casca — e dentro dos 23 comentários havia **exatamente** 5 `{`, 5 `}`
+  e 2 `;`, que eram CSS comentado na prosa. A conta **abre** no dia em que a função cortar uma declaração de
+  verdade. Mais: chaves equilibradas na saída, zero `/*`, zero `*/`, nada inventado (a saída sem espaço em
+  branco é subsequência da entrada sem espaço em branco), e **comentário na entrada tem de existir** — senão
+  a bateria estaria aprovando sobre nada.
+- **E ele cobra que a tag `<style>` não saia de snippet nenhum**, contando no **HTML CRU** (o que fica fora
+  de `<?php ... ?>`), porque menção a `<style>` em comentário de PHP não é tag servida e contar o arquivo
+  inteiro reprovaria o próprio conserto.
+
+**2. `ferramentas/conferir-no-ar.py` ganhou DUAS afirmações novas por URL**, separadas de propósito: uma diz
+que a **folha servida** tem comentário (conserta-se na casca), a outra que há **palavra de bastidor no HTML
+servido** (conserta-se no texto que a produziu).
+- A segunda é a **32.4 sobre o byte servido**, e não sobre o texto visível. `corpo_da_pagina()` tira
+  `<script>` e `<style>` antes de medir, e está **certo** — ali mora CSS, não prosa. **Entre as duas
+  leituras cabia este defeito inteiro.**
+- A lista ganhou as **extensões de rotina** `.py` e `.mjs` e os **nomes de arquivo desta pasta, lidos do
+  disco e nunca enumerados**. `.php` **não** entra, e a causa foi medida: o WordPress serve `/wp-*.php` e
+  `xmlrpc.php` no próprio `<head>`, duas ocorrências por página, e um termo `.php` reprovaria a página certa.
+- **8 mundos no `--autoteste`**, que roda **sempre** porque as duas funções são puras e não precisam de rede.
+  O primeiro é o mundo de verdade; dois provam que as folhas do WordPress ficam de fora; e o último refaz a
+  **régua velha** (a do texto visível) ao lado da nova: a velha **aprova** a página doente e a nova a
+  **reprova**. Total: 36 de 36 afirmações.
+
+**3. O PORTÃO DE PIXEL da 32.5 roda DEPOIS do desembarque**, no navegador de verdade, porque folha cortada
+errado aparece como **pixel errado** antes de aparecer como qualquer outra coisa. O portão do chão diz, com
+estas palavras, que **não** promete que a folha continua pintando igual.
+
+### O PORTÃO NOVO REPROVOU O AR DE ANTES, E ISSO É A PROVA DE QUE ELE MORDE
+
+Rodado contra o site **antes** do desembarque: **524 afirmações, 43 falhas** — e as 43 são **só** das quatro
+classes que este bloco existe para fechar (9 páginas × folha da casca, bastidor `bancada`, extensão `.mjs`,
+nome do arquivo; mais 4 da folha institucional e 3 da de produto). **Zero falha de qualquer outro tipo**: o
+resto da página estava são, e a linha de base ficou medida.
+
+### AS DUAS IRMÃS ACHARAM O QUE A 32.5-c MANDA PROCURAR NA MESMA PASSADA, e as duas estavam certas
+
+A 32.5-c diz, com todas as letras, que *"quem conserta a folha de um snippet procura o mesmo defeito nas
+irmãs antes de fechar"*. Aqui as irmãs **se acusaram sozinhas**, na bancada, antes do desembarque:
+
+- **`teste-f2.py` reprovou** porque ele mede, no fonte, que **toda função de nível superior da casca está
+  atrás de uma guarda `if ( ! function_exists() )`** — e a primeira versão deste bloco punha as duas funções
+  novas sob a **mesma** guarda. Guarda compartilhada mente no dia em que uma das duas existir e a outra não.
+  Cada uma ganhou a sua.
+- **`teste-institucional.py` reprovou duas vezes** — "o PHP não tem a folha desta família" e um caso de
+  autoteste — porque ele achava a folha pela **tag** `<style id="rdm-inst-folha">`, que acabou de sair do
+  snippet. **Defeito da RÉGUA e não da folha:** o que a folha É não mudou, é o texto entre a abertura e o
+  fechamento da captura. Ela passou a achá-la pelo **par de captura**, e ganhou um caso de autoteste novo
+  que cobra que o **HTML cru** do snippet não traga mais tag `<style>` nenhuma.
+
+### O DESEMBARQUE, E O QUE FOI MEDIDO NO AR (18.4)
+
+**Revisão 42 no ar às 19h39:51Z.** O cron é de 30 minutos e **roda por visita, não por relógio** (20.6): o
+disparo anterior foi 19h16:45Z e o push saiu às 19h31Z — `ultimo` **recente mas anterior ao push** é o
+terceiro mundo que a 20.6 separa, **turno de cron**, nem defeito nem cache, e o que resolve é esperar o
+turno **mantendo as visitas de pé**. O `raw.githubusercontent.com` já servia 42 na primeira leitura.
+
+**O LOG LIDO DO FECHO PARA BAIXO (20.4 e 20.8).** A linha de fecho declara **`7 aplicado(s)`** e do fecho
+até a próxima linha de revisão há **exatamente 7 linhas de item**, as sete dizendo **`ok`** — a conta do
+portão fecha com a declarada, então **a janela não rolou e não há item fora da conferência**. Os três
+snippets no meio delas: `rodametria-institucional` (#9), `rodametria-produto` (#8) e `rodametria-casca`
+(#6), os três `atualizado`.
+
+**A VERSÃO CARREGADA PELO WORDPRESS (20.7), não a do byte do repositório:** `/casca` → `versoes` devolve
+`rodametria-casca 1.10.0`, `rodametria-f2 1.5.0`, `rodametria-institucional 1.2.1`,
+`rodametria-produto 1.7.1` — **4 de 4 conferidas contra o manifest**, e o `id` de nenhum está ausente, que
+é a prova de que nenhum snippet ficou *gravado e não ativado*.
+
+**OS COMENTÁRIOS, RECONTADOS NO AR, URL POR URL, COM QUEBRA DE CACHE:**
+
+| URL | antes | depois | página |
+|---|---|---|---|
+| `/` | 23 comentários · 7.486 B | **0 · 0 B** | 89.162 → **81.616** |
+| `/autonomia-patinete-eletrico/` | 23 · 7.486 B | **0 · 0 B** | 113.073 → **105.527** |
+| `/veiculos/` | 24 · 7.866 B | **0 · 0 B** | 93.174 → **85.248** |
+| `/veiculos/patinete-eletrico/` | 24 · 7.866 B | **0 · 0 B** | 116.946 → **109.020** |
+| `/veiculos/bicicleta-eletrica/` | 24 · 7.866 B | **0 · 0 B** | 105.686 → **97.760** |
+| `/sobre/` | 24 · 7.827 B | **0 · 0 B** | 92.266 → **84.379** |
+| `/contato/` | 24 · 7.827 B | **0 · 0 B** | 91.315 → **83.428** |
+| `/divulgacao-de-afiliados/` | 24 · 7.827 B | **0 · 0 B** | 92.701 → **84.814** |
+| `/privacidade/` | 24 · 7.827 B | **0 · 0 B** | 93.812 → **85.925** |
+
+**Zero em 9 de 9**, e a página encolheu de **7.546 a 7.926 bytes**. Os 17 blocos `<style>` do WordPress
+continuam lá, com os comentários deles intactos — como tem de ser.
+
+**`conferir-no-ar.py`: 481 afirmações, 0 falha** (eram 524 com 43 falhas antes do desembarque; a diferença
+na contagem é que as afirmações de bastidor que falhavam somavam por termo).
+
+**E A PROVA DE QUE A FOLHA CONTINUA PINTANDO IGUAL, que é a única que vale: o portão de pixel da 32.5
+devolveu os 27 números das 9 páginas BYTE POR BYTE IDÊNTICOS aos de antes do desembarque** — `diff` vazio
+entre as duas saídas. Caixa 331 · 329 · 244 · 244 · 244 · 211 · 405 · 211 · 211 px (teto 700); primeiro
+botão de compra **1.279 · 1.165 · 1.092 px** (teto 1.400); altura 2.652 · 5.108 · 3.344 · 3.918 · 5.064 ·
+3.850 · 3.574 · 4.018 · 6.373 px; 9 de 9 no molde, 0 fora, 0 disputa de especificidade latente. **A mesma
+medição foi feita ANTES do desembarque de propósito**, com a folha velha, para que a comparação fosse de um
+instrumento com ele mesmo e não de um número lembrado.
+
+**Bancada com rede DEPOIS do desembarque: 32 portões, 0 falha** (28 sem rede, e o portão novo entrou na
+bancada no dia em que foi escrito, porque ela descobre por convenção de nome).
+
+### A REGRA SUBIU PARA O CONTRATO, E O ENDEREÇO DELA NAS OUTRAS ILHAS É DESPACHO
+
+**`ARQUIPELAGO.md` ganhou a 32.4-b**, em três partes: o comentário fica no repositório e não vai na folha
+impressa (a tag `<style>` sai dos snippets e vira função da casca, para folha nova nascer dentro do
+conserto); a régua da 32.4 passa a medir o **HTML servido inteiro**, numa afirmação separada; e tirar
+comentário de CSS **quebra CSS**, com as travas de string, `url()`, comentário colado e comentário sem
+fechar, mais a conta de tokens e o portão de pixel depois do desembarque. **É a 20.4 aplicada a si mesma:**
+*"conserto escrito em registro de ilha conserta aquele dia; regra escrita aqui vale para as três ilhas"*.
+
+**E um despacho NORMAL novo em `dados/despachos.md`** para quem reservar a **aquametria**, a **robometria**
+ou a **clubedomosaico**: as três têm snippets com folha e comentário de prosa dentro dela — é o desenho
+desta fábrica, e esta ilha o herdou pronto. O despacho é escrito como **pergunta**, pela lição de 16/10:
+despacho que afirma o estado de ilha que quem o escreve não reservou está afirmando sobre arquivo que ele
+não pode abrir para conferir. Ele manda **medir primeiro** (e fechar escrevendo zero, se for zero), separar
+os blocos do WordPress dos da ilha, **copiar os dois portões em vez de reescrevê-los** (a parte difícil é a
+lista de exceções, e ela está medida) e rodar o pixel **depois**.
+
+### O QUE FICA, E É A FILA HONESTA DESTA ILHA
+
+**O bloco 7 era o último pré-registrado.** O que sobra da fila continua travado pelas mesmas três coisas,
+nenhuma delas de código:
+
+- **F1** (bloco 4) — o limiar legal segue `pendente` e os cinco domínios oficiais seguem recusados pelo
+  egresso. **Despacho ALTA de 28/10, não remedido nesta passada** porque este bloco não dependia dele.
+- **F3** — falta `carga_max_kg` em registro com oferta aberta, e o nível 5 da escada (os três varejos
+  grandes) está atrás do egresso. **Despacho ALTA de 29/10.**
+- **Página nova de malha** — a **30.8** proíbe afirmar veredito `alvo` desta nuvem, e as duas consultas que
+  faltam esperam o **despacho de 30/10** (duas SERPs e um volume, numa sessão de Chrome do Raphael).
+
+**O CANDIDATO A PRÓXIMO BLOCO, e a primeira coisa a fazer com ele é conferi-lo e não executá-lo:** o
+**artigo-âncora pareado com a F2** (bloco 5), que é a única peça da fila cuja ferramenta par **já está no
+ar**. Antes de abri-lo, a próxima execução lê a **seção 17** (guia é o terceiro nível da malha, não blog) e
+a **30.8**: se o artigo-âncora precisar de veredito de SERP para existir, ele está atrás do mesmo despacho
+de 30/10 que as páginas de produto, e aí a resposta honesta é dizer isso em vez de publicar sobre consulta
+não medida.
+
+---
+
 ## 2026-11-04 16h17Z–17h13Z — **A TRAVA DA 32.5-d COBRIU UM SELETOR E 24 REGRAS DO MOLDE SEGUIAM PERDENDO** — e o bloco de telefone escrito para comprar pixel nunca valeu um pixel
 
 **A ESCOLHA DA ILHA.** `foco.md` nomeia a **rodametria** (foco total e absoluto desde 27/10), e pela **1.2**

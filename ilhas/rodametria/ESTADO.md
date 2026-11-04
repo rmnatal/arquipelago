@@ -6,109 +6,121 @@ piso: abaixo              # 5 URLs publicadas contra as 40 da 21.1, e primeira_i
 urls_publicadas: 9        # 5 -> 9 em 30/10/2026 as 14h4xZ: as QUATRO paginas que a 16.1 nomeia (`/sobre/`, `/contato/`, `/divulgacao-de-afiliados/`, `/privacidade/`), pelo bloco 5d. CONTADO no wp-sitemap.xml no ar com quebra de cache, nao na conta de antes do desembarque. ELAS NAO MEXEM NO PISO DA 21.1 NEM GASTAM LEVA: a 21.7 tira as cinco paginas nomeadas da 16.1 do teto de 10 URLs por leva e 3 levas por semana, porque sao familia fechada e nenhuma responde a uma busca — o piso de malha segue pedindo 40 e as paginas de malha seguem 5. A DIVIDA QUE ELAS PAGAM estava medida na contagem de 30/10 as 10h3xZ: a ilha serve link de afiliado da Shopee desde 29/10 e nao tinha pagina de divulgacao de afiliados nem de privacidade.
 ultima_ronda: 2026-11-04T15:04Z   # RONDA DIARIA TECNICA, a SEGUNDA desta ilha. Escrita pela Sentinela, nunca pela Fundacao (secao 2). Escolhida pela regra da divida (secao 12): esta ilha publicou desde a ultima ronda (revisao 40 as 13:39:44Z de hoje) e as outras tres no ar nao publicaram. 9 de 9 URLs do sitemap em 200 em DUAS leituras com quebra de cache, as tres portas da 29.2 verdes com content-type certo e o 404 virgem em 404 na pagina da PROPRIA ilha, nas duas passadas. `/status` em revisao 40 IGUAL ao manifest. Regua tecnica verde: zero `&#038;` dentro de script nas 9, zero noindex, JSON-LD nas 9 e BreadcrumbList nas 8 que tem trilha (a home nao tem, e e o certo pela 16.3), as 9 meta descriptions dentro do teto de 160 (a maior tem 159), zero imagem sem alt e zero sem width e height, aria-expanded e aria-controls e favicon nas 9, zero palavra da lista Proibidas do VOZ.md em titulo ou primeiro paragrafo, zero frase de bastidor da 32.4, corpo nao comeca por metadado. Zero orfa e zero link interno morto: as 9 paginas linkam as 9, logo a menor contagem de ENTRADA pela 16.9 e 2. Console sem uma mensagem nas 9. F2 conferida NA MAO em CINCO entradas reais (48/20, 60/20 ladeira, 36/10.4 plano, 72/30 misto, 24/7.8 ladeira) e as cinco fecham, com a ressalva de peso diferenciando 50 de 150 e disparando o teto de 120 kg em 121. Portao da 25.8 verde: 29 encurtadores na tela, zero que o banco nao conheca. Piso da 25.2: 5 publicaveis entre veiculos e pecas, 5 com `url_busca` e `url_busca_produto`, zero publicavel sem piso; 22 de 22 itens da vitrine com `url_produto`, `shop_id`, `item_id` e `url_busca`, zero intestavel por falta de campo. Teste de vida: 9 de 22 testados pela API de ficha da Shopee, 9 VIVOS, 0 morto, 0 esgotado, 13 nao testados por orcamento do anti-robo (CAPTCHA `scene=crawler_item` encerrou a medicao), ZERO clique de afiliado gasto. CINCO defeitos novos e ZERO conserto, nenhum tentado: nenhum e da lista 19.1 - ver o despacho de 04/11 em PROMPT.md. A HORA DESTE CAMPO SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
 primeira_indexacao: null  # as duas primeiras URLs foram ao ar hoje; indexacao e trabalho de dias. Quem grava este campo e a leitura semanal, lendo o Search Console.
-ultima_execucao: 2026-11-04T17:13Z   # OS CINCO ITENS DO DESPACHO DA RONDA DE HOJE, FECHADOS E CONFERIDOS NO AR (18.4). A trava da 32.5-d cobria UM seletor e 24 regras do molde seguiam perdendo — primeiro botao de compra 1.380 -> 1.279 px na F2, e as disputas LATENTES de 47 para ZERO. Revisao 41 as 17:10:01Z, `8 aplicado(s)` contra 8 linhas de item dizendo `ok`, lidas DO FECHO PARA BAIXO (20.4 e 20.8). Bancada com rede em 31 portoes, 0 falha, DEPOIS do desembarque. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
-executando_desde: 2026-11-04T19:31Z   # RESERVA RENOVADA pela 1.1 no commit de desembarque do bloco 7 (a reserva original e de 19h17Z de 04/11): a bancada sem rede desta ilha tem 28 portoes e o bloco mexeu em tres snippets, em dois portoes irmaos e no portao de ar. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA.
-rede: aberta em 2026-11-04   # 20.2, MEDIDA e nao herdada as 13h19Z: rodametria.com.br/ e /wp-json/rodametria/v1/status os dois em 200 em TRES passadas, com aquametria.com.br em 200 nas MESMAS tres. O EGRESSO (gov.br para a F1, os tres varejos grandes para a F3) NAO foi remedido nesta passada e este bloco nao dependia dele; os dois despachos ALTA seguem valendo.
+ultima_execucao: 2026-11-04T19:46Z   # BLOCO 7 ENTREGUE E CONFERIDO NO AR (18.4): a folha desta ilha serve ZERO comentario de CSS nas 9 URLs, contra 23-24 e 7.486-7.866 bytes de manha, e a pagina encolheu de 7.546 a 7.926 bytes. Revisao 42 as 19:39:51Z, `7 aplicado(s)` contra 7 linhas de item dizendo `ok`, lidas DO FECHO PARA BAIXO (20.4 e 20.8). O portao de pixel da 32.5 devolveu os 27 numeros das 9 paginas IDENTICOS aos de antes do desembarque (diff vazio) — a unica prova que vale de que a folha continua pintando igual. Bancada com rede: 32 portoes, 0 falha. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA.
+executando_desde: null   # LIMPO as 2026-11-04T19:46Z pela propria execucao que reservou as 19h17Z de 04/11 e RENOVOU uma vez pela 1.1 (19h31Z, no commit de desembarque): o bloco mexeu em tres snippets, criou um portao de chao, acrescentou duas afirmacoes e oito mundos de autoteste ao portao de ar e consertou duas regras irmas, e a bancada desta ilha tem 28 portoes sem rede e 32 com rede. Entrou por FOCO (`foco.md` nomeia a rodametria) com a fila LIMPA: o despacho de cinco itens da ronda de hoje foi fechado pela execucao de 16h17Z. As duas excecoes da 1.2 foram conferidas ANTES da reserva e NENHUMA furou — as QUATRO ilhas no ar medidas em 200 em TRES passadas as 19h1xZ (doze medicoes verdes), e o despacho do molde da 32.6 segue FECHADO nas tres.
+rede: aberta em 2026-11-04   # 20.2, MEDIDA e nao herdada as 19h1xZ: rodametria.com.br em 200 em TRES passadas, e no mesmo comando aquametria.com.br, robometria.com.br e clubedomosaico.com.br tambem em 200 nas TRES — doze medicoes verdes, zero intermitencia. Essa mesma leitura serviu para conferir a excecao da 1.2 (nenhuma ilha fora do foco esta no ar E quebrada). O EGRESSO (gov.br para a F1, os tres varejos grandes para a F3) NAO foi remedido nesta passada e este bloco nao dependia dele; os dois despachos ALTA seguem valendo.
 bloqueada_por: null      # obrigatorio pela secao 2. `null` DE PROPOSITO: o que falta (gov.br para a F1, as prefeituras para a camada municipal, as tres etiquetas do Mercado Livre) trava a FABRICA e nao a ILHA, e isso se escreve no despacho, que e o canal da 12.2. Preenche-lo congelaria tambem os blocos que ja podem andar.
 bloco_atual: |
-  A TRAVA DA 32.5-d COBRIA UM SELETOR E 24 REGRAS DO MOLDE SEGUIAM PERDENDO.
-  Revisao 41 no ar as 17:10:01Z. Os CINCO itens do despacho da ronda de hoje
-  FECHADOS e conferidos no ar (18.4).
+  A FOLHA SERVIA 7.486 BYTES DE COMENTARIO E TRES MENCOES A UMA ROTINA DESTA
+  PASTA, E NENHUM PORTAO VIA. Revisao 42 no ar as 19:39:51Z. Bloco 7 ENTREGUE e
+  conferido no ar (18.4), e a regra virou a 32.4-b do ARQUIPELAGO.md.
 
   ESTE ARQUIVO CONTINUA SENDO A MEMORIA DESTA ILHA — `/areas/projeto-rodametria.md`
   nao existe nesta nuvem, e e por isso que este campo e longo.
 
-  ITEM 1, O QUE VALE GUARDAR. A Sentinela mediu o primeiro botao de compra da F2 a
-  1.402 px e ESTA NUVEM mediu 1.380 nos MESMOS pixels — em CINCO instrumentos
-  (UA de iPhone com dsf 2 e 1, UA de desktop, viewport mais alto, e dentro de um
-  iframe de 390 px numa janela de 1536, que e como a ronda mediu), todos em 1.380
-  e `scrollHeight` 5.196 contra os 5.339 dela. Nenhuma execucao daqui pode dizer
-  qual numero o visitante ve, e com 20 px de folga a pergunta nao precisava de
-  arbitro: o paragrafo de escopo do bloco de compra ocupa TRES linhas de 19,7 px e
-  esta a um caractere da quarta. Teto que se decide por uma quebra de linha nao e
-  teto.
+  O NUMERO, MEDIDO NO AR AS 19h2xZ E REMEDIDO AS 19h4xZ, URL POR URL com quebra
+  de cache: as folhas desta ilha serviam 23-24 comentarios de CSS e 7.486-7.866
+  bytes POR PAGINA — 10,6% de todo o CSS desta ilha e 85,6% de TODOS os bytes de
+  comentario que a pagina serve. Depois: ZERO em 9 de 9, e a pagina encolheu de
+  7.546 a 7.926 bytes. Os 17 blocos <style> do proprio WordPress (one-liners de
+  41 a 103 bytes) seguem la com os comentarios deles: nao sao desta ilha, nao
+  saem daqui, e NAO podem fazer portao nenhum reprovar.
 
-  E A CAUSA DE VERDADE NAO ERA DESTA PAGINA: era a SEGUNDA METADE DA 32.5-d. Em
-  29/10 ela mediu que `body.rdm img` (0,1,2) vence `.rdm-molde-cartao-foto`
-  (0,1,0) e pos `body.rdm` NO SELETOR DA FOTO — so no da foto. Duas telas acima,
-  na mesma folha, mora `body.rdm p{margin:0 0 16px}`, que vale (0,1,1) e vencia
-  TODA declaracao do molde que ficou em (0,1,0): 21 declaracoes perdidas so na
-  pagina da F2, TRES delas dentro do cartao (`cartao-nome`, `cartao-spec`,
-  `cartao-preco` declaram `margin:0` e a pagina servia 16 px cada) = 48 px
-  empilhados logo acima do botao que a 32.5 mede. E o bloco de telefone escrito em
-  29/10 PARA COMPRAR PIXEL nunca valeu um pixel, porque media query NAO
-  acrescenta especificidade: a pagina servia 16 onde a folha pedia 8, 12 onde
-  pedia 4 e corpo de 22 px onde pedia 18.
+  O QUE OS COMENTARIOS DIZIAM: tres nomeavam `conferir-32-5-no-navegador.mjs`,
+  um dizia `bancada`, e varios traziam numero de secao do contrato e prosa de
+  bastidor. A lista da 32.4 inteira, servida em toda pagina, por cinco dias.
 
-  24 REGRAS passaram a carregar `body.rdm`, as das media queries incluidas (para
-  a ordem relativa nao mudar), sem um `!important` — 32.5-d item 2. MEDIDO NO AR
-  DEPOIS DO DESEMBARQUE, a 390 px, nas 9 URLs do sitemap: primeiro botao de compra
-  1.380 -> 1.279 px na F2, 1.281 -> 1.165 no patinete, 1.209 -> 1.092 na
-  bicicleta; disputas LATENTES 47 -> ZERO; fotos 1/4, 5/5 e 3/3 reais e NENHUMA
-  quebrada. 9 de 9 paginas dentro da 32.5.
+  POR QUE NENHUM PORTAO VIA, e e isto que vale guardar: a regua de bastidor
+  desta ilha e a da ronda leem o TEXTO VISIVEL, e `corpo_da_pagina()` tira
+  <script> e <style> antes de medir — COM RAZAO, porque ali mora CSS e nao
+  prosa. Entre as duas leituras cabia o defeito inteiro. A 32.4 nao e sobre o
+  que o leitor VE: e sobre o que a pagina SERVE, e e o fonte que a visao geral
+  de IA ingere.
 
-  A TRAVA E DA CLASSE E MORA NO PORTAO DE PIXEL: ele passou a comparar, em toda
-  pagina do molde, a declaracao do molde com a regra generica que a disputa, e
-  REPROVA quando a generica vence E o valor servido discorda do declarado; disputa
-  que a generica ganha com o MESMO valor ele chama de LATENTE e IMPRIME. Mais a
-  conta foto/reservado por pagina, `<img>` que nao carregou reprovando, e
-  `--autoteste` com 4 mundos fabricados (7 afirmacoes, sem uma requisicao de rede)
-  — num deles a REGUA VELHA aprova o que a NOVA reprova, como a 20.8 exige.
+  O CONSERTO E UM LUGAR SO. A tag <style> SAIU dos tres snippets e passou a ser
+  escrita por `rodametria_casca_fechar_folha()`, que tira os comentarios ao
+  imprimir; a captura (`rodametria_casca_abrir_folha()`) entrega o texto a ela, e
+  NENHUM BYTE de CSS mudou de lugar no repositorio — a folha da casca tem 600
+  linhas e reescreve-las para trocar QUEM as imprime seria mexer na variavel
+  errada no mesmo dia em que a 32.5 e medida. Com a tag na casca, folha nova
+  nasce DENTRO do conserto (32.5-c). Casca 1.10.0, produto 1.7.1, institucional
+  1.2.1, espelhadas no manifest pela ferramenta que ja espelha o sha256.
 
-  E O INSTRUMENTO ENSINOU UMA COISA: a mesma pagina devolvia `foto 1/4 real` numa
-  passada e `0/4` na seguinte, com a CDN da loja em 200 e 197 KB para `curl` nas
-  duas. Era o `loading="lazy"` do cartao (ele esta a 1.128 px) — `waitUntil:
-  'load'` nao espera imagem preguicosa que o navegador ainda nao decidiu buscar.
-  O portao agora poe a pagina no estado em que o visitante a ve: `eager` e
-  `decode()`, com UMA segunda tentativa recarregando o `src`.
+  O COMENTARIO FICA NO REPOSITORIO, que e o lugar dele (secao 3): foi ele que
+  pagou a 32.5-d duas vezes nesta ilha.
 
-  ITEM 2 — `dateModified` nas 9 URLs, num no `WebPage`, com a data que a PROPRIA
-  pagina publica em prosa, pendurada por FILTRO pelo snippet que a renderiza (a
-  casca nao inventa data: sem ninguem pendurando, o no nao sai). Conferido no ar
-  URL por URL: 04/11 nas tres de dado fresco e na home e na mae, 30/10 nas quatro
-  da 16.1. Travas nas duas pontas: `teste-data-da-pagina.php` no chao (89
-  afirmacoes, nenhuma data digitada, 5 mundos) e `conferir-no-ar.py` no ar, que
-  ainda CRUZA a data servida com as datas da prosa (20.7).
+  COMO NAO SE QUEBRA CSS TIRANDO COMENTARIO, e e o difícil do bloco: `/*`
+  aparece dentro de string (`content:"/*"`) e dentro de `url(...)` sem aspas, e
+  o removedor ingenuo de uma linha casa do `/*` de dentro da string ate o fecho
+  de um comentario de verdade LA NA FRENTE e corta a declaracao do meio. String
+  e `url()` crua entram na MESMA varredura como alternativas e sao devolvidas
+  INTACTAS. Mais duas decisoes: comentario COLADO entre dois caracteres de
+  palavra sai como UM espaco (para o CSS sao dois tokens, e cola-los inventa um
+  terceiro), e comentario SEM FECHAR come o resto da folha, que e o que o
+  navegador faz — nao se inventa um fechamento que o autor nao escreveu.
 
-  ITEM 3 — o carrossel escolhe por PRECO: uma vaga por preco, no maximo DUAS
-  ocorrencias, e o piso de tres da 32.1 vence o teto de duas. A bicicleta saiu de
-  5 cartoes no MESMO preco para 3 cartoes com 2 precos (R$ 2.299,99 em duas lojas
-  e R$ 6.199,90), conferido abrindo a pagina. NAO foi deduplicacao de "oferta
-  equivalente": dizer que dois anuncios de duas lojas sao o mesmo produto exigiria
-  afirmar o que esta ilha nao mede (a licao da 25.9). Cinco mundos fabricados no
-  `--conferir` e uma mutacao nova; e uma mutacao VELHA virou INERTE no mesmo gesto
-  (ela exigia que a pagina[0] estivesse exatamente no teto) e passou a empilhar
-  cartoes em vez de depender do tamanho do dado de hoje.
+  A TRAVA QUE VALE MAIS QUE TODAS: o que desapareceu e EXATAMENTE o que morava
+  dentro de comentario. `{` de 145 para 140 e `;` de 282 para 280 na folha da
+  casca, e dentro dos 23 comentarios havia exatamente 5 `{`, 5 `}` e 2 `;` —
+  CSS comentado na prosa. A conta ABRE no dia em que a funcao cortar uma
+  declaracao de verdade.
 
-  ITEM 4 — `afiliado.intestavel` DECLARADO nos 20 registros (esquema 4 -> 5),
-  escrito por `derivar-banco.py` e RECALCULADO por `validar-banco.py`. Era uma
-  variavel local de 20 linhas dentro do portao: a ronda que media "0 intestavel"
-  media a AUSENCIA DA CHAVE. Tres mutacoes novas, e a do meio e o mundo em que o
-  espelho envelheceu calado.
+  E A PROVA DE QUE A FOLHA CONTINUA PINTANDO IGUAL NAO E DO CHAO: o portao de
+  pixel da 32.5, rodado DEPOIS do desembarque, devolveu os 27 numeros das 9
+  paginas BYTE POR BYTE IDENTICOS aos de antes — diff vazio. Caixa 331/329/244/
+  244/244/211/405/211/211 px (teto 700), compra 1.279/1.165/1.092 px (teto
+  1.400), 9 de 9 no molde, 0 fora, 0 disputa latente. A medicao de ANTES foi
+  feita de proposito, com a folha velha, para a comparacao ser de um instrumento
+  com ele mesmo e nao de um numero lembrado.
 
-  ITEM 5 — `atualizado_em` sobe com a revisao, do relogio, e o `--conferir` o
-  compara com a data do ULTIMO COMMIT do manifest (nunca com "hoje"), dizendo que
-  nao pudo conferir em clone raso.
+  OS PORTOES. Novo: `ferramentas/teste-folha-sem-comentario.php` — 58
+  afirmacoes, 8 mundos FABRICADOS com a saida escrita a mao, 6 deles separando a
+  regua nova da ingenua (20.8: autoteste em que as duas concordam nao mede
+  conserto nenhum), mais a conta de tokens, as chaves equilibradas, a trava de
+  "nada inventado" e a cobranca de que a entrada TENHA comentario (senao a
+  bateria aprova sobre nada). E PHP porque a remocao e decidida em PHP: regua em
+  Python sobre o texto do PHP conferiria a FORMA.
+  `ferramentas/conferir-no-ar.py` ganhou DUAS afirmacoes por URL, separadas de
+  proposito porque o conserto de cada uma e diferente (20.5): a folha servida
+  tem comentario (conserta-se na casca) e ha palavra de bastidor no HTML SERVIDO
+  (conserta-se no texto que a produziu). A lista ganhou os nomes de arquivo
+  desta pasta, LIDOS DO DISCO e nunca enumerados, e as extensoes `.py` e `.mjs`.
+  `.php` NAO entra, e a causa foi MEDIDA: o WordPress serve `/wp-*.php` e
+  `xmlrpc.php` no proprio <head>, duas ocorrencias por pagina, e um termo `.php`
+  reprovaria a PAGINA CERTA. 8 mundos novos no `--autoteste` (36 de 36), e o
+  ultimo refaz a regua velha ao lado da nova: a velha APROVA a pagina doente.
 
-  O ACHADO QUE NAO ERA DE ITEM NENHUM, e ele e o proximo bloco (fila 7): A FABRICA
-  FALA DENTRO DO `<style>` DE TODA PAGINA. Medido no HTML servido da F2: 39
-  comentarios de CSS, 6.042 bytes (8,9% do CSS, 5,5% da pagina), e SEIS deles
-  (3.745 bytes) com vocabulario que a 32.4 proibe com todas as letras — `snippet`,
-  numero de secao do contrato, nome de rotina, prosa de bastidor. Nenhum portao ve,
-  porque toda regua de bastidor le o TEXTO VISIVEL e `corpo_da_pagina()` tira
-  `<style>` antes de medir. A 32.4 nao e sobre o que o leitor ve: e sobre o que a
-  pagina SERVE. E esta execucao AUMENTOU o numero (o comentario das 24 regras tem
-  ~2,3 KB), o que e a parte honesta de registrar.
+  O PORTAO NOVO REPROVOU O AR DE ANTES: 43 falhas em 524 afirmacoes, todas das
+  quatro classes deste bloco e NENHUMA de outro tipo — a linha de base do resto
+  da pagina ficou medida. Depois do desembarque: 481 afirmacoes, 0 falha.
 
-  BANCADA COM REDE: 31 portoes, 0 falha, DEPOIS do desembarque. Revisao 41, log
-  lido DO FECHO PARA BAIXO (20.8): `8 aplicado(s)` contra 8 linhas de item dizendo
-  `ok`. Versoes no ar pelo endpoint da casca (20.7): casca 1.9.0, f2 1.5.0,
-  institucional 1.2.0, produto 1.7.0.
+  AS DUAS IRMAS ACHARAM O QUE A 32.5-c MANDA PROCURAR NA MESMA PASSADA, e as
+  duas reprovaram na BANCADA antes do desembarque, nao foram lembradas:
+  `teste-f2.py` cobra guarda `function_exists` POR FUNCAO no fonte da casca (as
+  duas novas estavam sob a mesma, e guarda compartilhada mente no dia em que uma
+  existir e a outra nao), e `teste-institucional.py` achava a folha pela TAG que
+  acabou de sair — defeito da REGUA e nao da folha: ela passou a acha-la pelo
+  PAR DE CAPTURA e ganhou um caso de autoteste que cobra que o HTML CRU do
+  snippet nao traga mais tag <style> nenhuma.
 
-  PROXIMO PASSO DESBLOQUEADO: o bloco 7 da fila (a folha nao serve os proprios
-  comentarios), que e o unico defeito aberto que esta execucao mediu e nao
-  consertou — de proposito, porque mexer na folha duas vezes no mesmo desembarque
-  trocaria duas variaveis no unico numero que a 32.5 tem como prova.
+  A REGRA SUBIU: `ARQUIPELAGO.md` 32.4-b, em tres partes. E o endereco dela nas
+  outras tres ilhas e DESPACHO NORMAL novo em `dados/despachos.md`, escrito como
+  PERGUNTA (a licao de 16/10) e mandando MEDIR antes de consertar, separar os
+  blocos do WordPress dos da ilha, COPIAR os dois portoes em vez de reescreve-los
+  e rodar o pixel DEPOIS.
+
+  PROXIMO PASSO, e a fila honesta: o bloco 7 era o ULTIMO pre-registrado. F1
+  (bloco 4) segue travada pelo egresso do gov.br (despacho ALTA de 28/10, NAO
+  remedido nesta passada porque este bloco nao dependia dele); F3 segue travada
+  por `carga_max_kg` em registro com oferta aberta, atras do nivel 5 da escada
+  (despacho ALTA de 29/10); pagina nova de malha segue travada pela 30.8, atras
+  do despacho de 30/10 (duas SERPs e um volume, numa sessao de Chrome do
+  Raphael). O CANDIDATO e o ARTIGO-ANCORA PAREADO COM A F2 (bloco 5), a unica
+  peca da fila cuja ferramenta par ja esta no ar — e a primeira coisa a fazer com
+  ele e CONFERI-LO: ler a secao 17 (guia e o terceiro nivel da malha, nao blog) e
+  a 30.8, porque se ele precisar de veredito de SERP para existir, esta atras do
+  mesmo despacho de 30/10, e ai a resposta honesta e dizer isso em vez de
+  publicar sobre consulta nao medida.
 ---
 
 # Estado da ilha RODAMETRIA

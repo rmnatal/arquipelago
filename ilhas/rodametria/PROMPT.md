@@ -705,7 +705,42 @@ do `gov.br` em vez de só confirmá-lo: não existe "leitura de mercado" para a 
 
 **6-ORIGINAL (guardado).** LISTA DE PROSPECÇÃO DO WIDGET — lojas brasileiras de mobilidade elétrica com site próprio, `publicar: false`.
 
-**7. A FOLHA DA CASCA NÃO SERVE OS PRÓPRIOS COMENTÁRIOS — PRÉ-REGISTRADO EM 04/11/2026, COM O NÚMERO MEDIDO**
+**7. ~~A FOLHA DA CASCA NÃO SERVE OS PRÓPRIOS COMENTÁRIOS~~ — ENTREGUE EM 04/11/2026 às 19h17Z–19h5xZ,
+E A REGRA VIROU A 32.4-b DO CONTRATO.** No ar na revisão **42**: **9 de 9 URLs com ZERO comentário em folha
+desta ilha**, contra 23–24 e 7.486–7.866 bytes de manhã, e a página encolhendo **7.546 a 7.926 bytes** cada.
+A tag `<style>` **saiu dos três snippets** e passou a ser escrita por `rodametria_casca_fechar_folha()`, que
+tira os comentários — um lugar só, pela 32.5-c, então **folha nova nasce dentro do conserto**. Nenhum byte de
+CSS mudou de lugar no repositório: a captura (`rodametria_casca_abrir_folha()`) entrega o texto à função.
+Casca 1.10.0, produto 1.7.1, institucional 1.2.1, espelhadas no manifest pela ferramenta.
+
+**AS TRÊS PARTES QUE O BLOCO PEDIA, as três medidas:** (1) **zero comentário** nas 9 URLs, contado no HTML do
+ar; (2) **o CSS não quebrou, e isso não foi afirmado**: `ferramentas/teste-folha-sem-comentario.php` (58
+afirmações, 8 mundos fabricados com a saída escrita à mão, **6 deles separando a régua nova da ingênua** pela
+20.8) cobra que o que desapareceu seja **exatamente** o que morava dentro de comentário — `{` de 145 para 140
+e `;` de 282 para 280, contra 5 `{`, 5 `}` e 2 `;` dentro dos 23 comentários —, e o **portão de pixel da 32.5,
+rodado depois do desembarque, devolveu os 27 números das 9 páginas IDÊNTICOS** aos de antes, byte por byte;
+(3) **a régua da 32.4 passou a alcançar o `<style>`**, numa afirmação **separada** da do texto visível, com os
+nomes de arquivo desta pasta lidos do disco e as extensões `.py` e `.mjs` — e **`.php` fora**, porque o
+WordPress serve `/wp-*.php` e `xmlrpc.php` no próprio `<head>` e um termo `.php` reprovaria a página certa.
+
+**O PORTÃO NOVO REPROVOU O AR DE ANTES — 43 falhas em 524 afirmações, todas das quatro classes deste bloco e
+nenhuma de outro tipo**, e depois do desembarque fechou em **481 afirmações, 0 falha**. Bancada com rede:
+**32 portões, 0 falha**.
+
+**E AS DUAS IRMÃS ACHARAM O QUE A 32.5-c MANDA PROCURAR NA MESMA PASSADA:** `teste-f2.py` cobrou guarda
+`function_exists` **por função** (as duas novas estavam sob a mesma) e `teste-institucional.py` procurava a
+folha pela **tag** que acabou de sair — defeito da régua, não da folha; ela passou a achá-la pelo **par de
+captura** e ganhou um caso de autoteste novo. **Nenhuma das duas foi consertada de cabeça: as duas reprovaram
+na bancada, antes do desembarque.**
+
+**A REGRA SUBIU PARA O CONTRATO (32.4-b) E O ENDEREÇO DELA NAS OUTRAS TRÊS ILHAS É DESPACHO**, em
+`dados/despachos.md`, porque a seção 3 proíbe editar arquivo de ilha que esta execução não reservou. **O texto
+original do bloco fica abaixo, preservado**, porque ele é a melhor explicação escrita de por que nenhum portão
+via o defeito.
+
+### O TEXTO ORIGINAL DO BLOCO 7, PRESERVADO
+
+**7-ORIGINAL. A FOLHA DA CASCA NÃO SERVE OS PRÓPRIOS COMENTÁRIOS — PRÉ-REGISTRADO EM 04/11/2026, COM O NÚMERO MEDIDO**
 
 Achado pela execução de 16h17Z de 04/11 ao extrair as datas em prosa das 9 URLs, e é um defeito da **32.4**
 que **nenhum portão desta ilha vê**. Medido no HTML servido de `/autonomia-patinete-eletrico/`: a página tem
