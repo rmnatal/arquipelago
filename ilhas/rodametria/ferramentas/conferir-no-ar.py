@@ -658,6 +658,43 @@ def main():
                 json.loads(j)
             except Exception as e:
                 afirma(False, "%s: JSON-LD invalido (%s)" % (caminho, e))
+        # ITEM 2 DO DESPACHO DE 04/11/2026 — `dateModified` EM TODA URL DO SITEMAP.
+        # O defeito medido: ZERO ocorrencia de `dateModified` e ZERO de
+        # `datePublished` em todo o JSON-LD das 9 URLs, numa ilha cujo produto E
+        # "o preco de hoje". As paginas diziam a data em PROSA e a camada que o
+        # Google e as IAs leem nao dizia nada — a familia da 25.9: chave ausente
+        # nao declara nada.
+        #
+        # E A AFIRMACAO NAO PARA NA PRESENCA DA CHAVE: a data servida tem de
+        # APARECER NA PROSA da propria pagina, no formato brasileiro, quando a
+        # pagina publicar alguma data. Sem isso o campo poderia dizer "hoje" em
+        # pagina que nao muda desde 30/10, que e precisamente a mentira que um
+        # sinal de frescor pode contar — e seria uma SEGUNDA declaracao do mesmo
+        # fato, que e o que a 20.7 proibe.
+        datas_ld = []
+        for j in jsonld:
+            try:
+                datas_ld += re.findall(r'"dateModified"\s*:\s*"(\d{4}-\d{2}-\d{2})', j)
+            except Exception:
+                pass
+        afirma(len(datas_ld) >= 1,
+               "%s: nenhum JSON-LD declara `dateModified`. A ilha que recoleta preco e a que mais "
+               "precisa do sinal de frescor, e chave ausente nao declara nada (25.9)" % caminho)
+        for d in set(datas_ld):
+            br = "%s/%s/%s" % (d[8:10], d[5:7], d[:4])
+            datas_na_prosa = set(re.findall(r"\d{2}/\d{2}/\d{4}", texto))
+            if datas_na_prosa:
+                afirma(br in datas_na_prosa,
+                       "%s: o JSON-LD diz dateModified %s (%s) e a prosa da pagina nao traz essa data "
+                       "em lugar nenhum (traz %s). Duas declaracoes do mesmo fato comecam iguais e so "
+                       "uma sobe (20.7)"
+                       % (caminho, d, br, ", ".join(sorted(datas_na_prosa)) or "nenhuma"))
+            else:
+                registro("%s: dateModified %s, e a pagina nao publica data em prosa para cruzar"
+                         % (caminho, d))
+        if datas_ld:
+            registro("%s: dateModified %s" % (caminho, ", ".join(sorted(set(datas_ld)))))
+
         if caminho not in ("/", ""):
             afirma(any("BreadcrumbList" in j for j in jsonld),
                    "%s: sem BreadcrumbList, e a 16.4 o exige em toda pagina que nao e a home"
