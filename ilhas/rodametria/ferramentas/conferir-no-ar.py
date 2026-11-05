@@ -44,6 +44,7 @@ Quem le como o Google le, sem quebra de cache, e outro portao.
 # morreria com AttributeError na PRIMEIRA description medida. Nenhuma LEITURA
 # pega isso: o nome existe, certinho, nos dois lugares. Quem pegou foi perguntar
 # ao arquivo quem MAIS usa o nome, antes de empurrar.
+from datetime import datetime, timedelta
 from html import unescape as desescapar_entidades
 import json
 import os
@@ -196,6 +197,129 @@ def problemas_de_bastidor_no_servido(html, nomes_de_arquivo=()):
     return ruim
 
 REV_RE = re.compile(r"revis\w*\s+(\d+)\s*:")
+
+
+
+# O EVENTO DO CRON DO SYNC E RECORRENTE DE 1.800 SEGUNDOS, e isto nao e palpite:
+# esta na fonte do Sync, que mora no repositorio — `$s['<ilha>_30min'] = array(
+# 'interval' => 1800, ... )`, agendado por `wp_schedule_event( time() + 120, ... )`
+# (linhas 530 e 536 de ilhas/robometria/snippets/robometria-sync.php; o mesmo
+# codigo nas quatro ilhas). O WP-Cron so dispara evento DEVIDO.
+INTERVALO_DO_CRON_S = 1800
+
+
+def veredito_da_revisao_atrasada(ultimo, agora, commit_do_manifest, raw_ja_serve,
+                                 intervalo=INTERVALO_DO_CRON_S):
+    """Por que a revisao do /status esta atras da do manifest — em QUATRO casos.
+
+    E FUNCAO PURA DE PROPOSITO, como `rotas_do_indice` e `diagnostico_da_porta`,
+    e e isso que faz o `--autoteste` fabricar o mundo em vez de esperar que ele
+    aconteca.
+
+    MEDIDO EM 05/11/2026 as 19h1xZ–19h3xZ, e o custo foi OITO MINUTOS e TRES
+    rodadas de uma execucao da ilha em FOCO TOTAL, gastos reacionando um Sync que
+    estava saudavel. A regua que existia aqui era de DUAS pontas e vinha da 20.5:
+    "log recente significa CACHE do GitHub (reacione de dois em dois) e log antigo
+    significa que o Sync NAO RODOU". Ela erra por DOIS motivos, e os dois estao
+    conferidos na fonte do Sync:
+
+      (a) ELA CHAMA `ultimo` DE "LOG", E OS DOIS NAO SAO A MESMA COISA. Na rodada
+          em que nao ha nada a aplicar, o Sync grava `ultimo` e RETORNA ANTES de
+          escrever linha de log — `if ( ! $forcar && (int) $m['revisao'] === (int)
+          $estado['revisao'] ) { $estado['ultimo'] = current_time( 'mysql' ); ...
+          return $estado; // nada novo }`, linhas 473 a 477. A linha de log nasce
+          na 518, DEPOIS de aplicar. Logo: `ultimo` diz se o Sync RODOU; o log diz
+          quando ele APLICOU. Log parado com `ultimo` de agora e um Sync saudavel
+          que nao tinha trabalho — nao e canal morto.
+
+      (b) ELA NAO TEM O CASO DO EVENTO NAO VENCIDO, QUE E O CASO COMUM. Push feito
+          logo DEPOIS de uma rodada espera o proximo vencimento, e reacionar NAO
+          antecipa vencimento — o WP-Cron dispara evento devido, e o evento e de
+          30 minutos. A 20.6 diz "roda por visita, nao por relogio", o que esta
+          certo contra a leitura de que haveria um relogio no servidor, mas lido
+          sozinho sugere que VISITAR BASTA. Nao basta. A receita inteira e "roda
+          por visita E quando devido".
+
+    OS QUATRO VEREDITOS, e cada um tem conserto DIFERENTE (e por isso a 20.5 manda
+    separa-los: portao que reprova a coisa certa pelo motivo errado e o caminho
+    mais curto para alguem ignora-lo):
+
+      `relogio-divergente` — `ultimo` NO FUTURO em relacao a quem mede. So o futuro
+          e inequivoco: Sync que nao roda nao grava hora que ainda nao chegou, entao
+          isto e relogio e nao canal morto. `ultimo` ATRASADO e ambiguo POR DESENHO
+          — um Sync morto e um site em UTC-3 dao a MESMA leitura numa amostra so —, e
+          esta funcao nao adivinha: devolve `sync-morto` e DIZ a ambiguidade na frase.
+          (Medido em 05/11: o relogio deste site bate com UTC — `ultimo` 19:16:46
+          contra 19:16Z de quem mediu.)
+      `sync-morto` — `ultimo` ausente, ou mais velho que o intervalo com folga: o
+          evento nao esta disparando. E defeito de verdade, e e o unico dos quatro
+          que e.
+      `raw-atrasado` — o Sync esta vivo e o `raw.githubusercontent.com` ainda nao
+          serve a revisao nova. Nao e do site: nao ha o que reacionar.
+      `evento-nao-vencido` — o Sync esta vivo e a ultima rodada dele e ANTERIOR ao
+          commit do manifest: naquela rodada nao havia nada a aplicar. Espere ate
+          `ultimo + intervalo`. REACIONAR NAO ANTECIPA.
+      `cache` — o Sync rodou DEPOIS do commit e ainda nao pegou a revisao: e o
+          cache do GitHub da 20.5. Reacione de dois em dois.
+
+    Devolve `(codigo, frase)`. Nenhum dos quatro e aprovacao: a revisao atrasada
+    continua sendo falha. O que muda e O QUE A PROXIMA PESSOA FAZ.
+    """
+    if ultimo is None:
+        return ("sync-morto", "o /status nao traz `ultimo`: o Sync nunca rodou neste site, "
+                              "ou a rodada nao chegou a gravar estado. E defeito de verdade.")
+
+    # SO O FUTURO E INEQUIVOCO. `ultimo` ADIANTADO nao pode ser Sync morto — Sync
+    # que nao roda nao grava hora que ainda nao chegou —, entao e relogio. Ja
+    # `ultimo` ATRASADO e ambiguo por desenho: um Sync morto e um site em UTC-3
+    # produzem a MESMA leitura numa amostra so, e nao ha como separa-los daqui.
+    # Esta funcao NAO adivinha: chama de `sync-morto` e DIZ a ambiguidade na
+    # frase, para quem ler conferir o fuso em vez de confiar no veredito.
+    deriva = (ultimo - agora).total_seconds()
+    if deriva > 600:
+        return ("relogio-divergente",
+                "`ultimo` (%s) esta %d minuto(s) NO FUTURO em relacao a hora de quem mediu (%s). "
+                "Sync que nao roda nao grava hora que ainda nao chegou, entao isto nao e Sync "
+                "morto: e relogio. `ultimo` vem de `current_time('mysql')`, a hora LOCAL do site. "
+                "Este portao DENUNCIA em vez de escolher veredito."
+                % (ultimo.strftime("%Y-%m-%d %H:%M:%S"), round(deriva / 60.0),
+                   agora.strftime("%Y-%m-%d %H:%M:%S")))
+
+    idade = -deriva
+    if idade > intervalo + 600:
+        return ("sync-morto",
+                "a ultima rodada do Sync (`ultimo` = %s) foi ha %d minuto(s), e o evento e de %d "
+                "minuto(s). Passou do vencimento com folga e nao rodou: o evento nao esta "
+                "disparando. E defeito de verdade, e o unico dos vereditos que e. E A RESSALVA, "
+                "porque ela nao cabe em palpite: `ultimo` e hora LOCAL do site, e um site atrasado "
+                "em relacao a quem mede produz esta MESMA leitura. Antes de abrir chamado, confira "
+                "o fuso do site — neste site ele foi MEDIDO batendo com UTC em 05/11/2026 "
+                "(`ultimo` 19:16:46 contra 19:16Z de quem mediu)."
+                % (ultimo.strftime("%Y-%m-%d %H:%M:%S"), round(idade / 60.0), intervalo // 60))
+
+    if not raw_ja_serve:
+        return ("raw-atrasado",
+                "o Sync esta VIVO (rodou ha %d minuto(s)) e o `raw.githubusercontent.com` ainda nao "
+                "serve a revisao nova. Nao e defeito do site e nao ha o que reacionar: espere o raw."
+                % round(idade / 60.0))
+
+    if commit_do_manifest is not None and ultimo < commit_do_manifest:
+        espera = (ultimo + timedelta(seconds=intervalo))
+        return ("evento-nao-vencido",
+                "o Sync esta VIVO e a ultima rodada dele (%s) e ANTERIOR ao commit do manifest "
+                "(%s): naquela rodada nao havia nada a aplicar, e por isso o log tambem nao ganhou "
+                "linha. O evento e de %d minuto(s), entao o proximo vencimento e ~%s. REACIONAR NAO "
+                "ANTECIPA VENCIMENTO — o WP-Cron dispara evento DEVIDO (20.6: roda por visita E "
+                "quando devido)."
+                % (ultimo.strftime("%H:%M:%S"), commit_do_manifest.strftime("%H:%M:%S"),
+                   intervalo // 60, espera.strftime("%H:%M:%S")))
+
+    return ("cache",
+            "o Sync rodou %s, DEPOIS do commit do manifest (%s), e ainda nao pegou a revisao nova: "
+            "e o cache do GitHub da 20.5. Reacione de dois em dois, com alguns minutos entre as "
+            "rodadas; se nao subir em ~10 minutos, ai sim e defeito."
+            % (ultimo.strftime("%H:%M:%S"),
+               commit_do_manifest.strftime("%H:%M:%S") if commit_do_manifest else "desconhecido"))
 
 
 def linhas_da_revisao(log, n):
@@ -582,12 +706,50 @@ def main():
     ultimo = str(st.get("ultimo", ""))
 
     if revisao_no_ar < revisao_esperada:
-        # 20.5: cache do GitHub, ou Sync que nao rodou? Quem decide e o log.
+        # QUATRO CAUSAS, NAO DUAS, e cada uma tem conserto diferente. A regua que
+        # morava aqui chamava `ultimo` de "log" e dava veredito de duas pontas; o
+        # que isso custou esta medido no docstring de
+        # `veredito_da_revisao_atrasada` — OITO minutos de uma execucao da ilha em
+        # foco total, reacionando um Sync saudavel.
+        ultimo_dt = None
+        if ultimo:
+            try:
+                ultimo_dt = datetime.strptime(ultimo.strip(), "%Y-%m-%d %H:%M:%S")
+            except ValueError:
+                ultimo_dt = None
+
+        commit_dt = None
+        bruto_commit = os.popen(
+            "git log -1 --format=%%cd --date=format-local:'%%Y-%%m-%%d %%H:%%M:%%S' -- "
+            "'%s' 2>/dev/null" % os.path.join(ILHA, "manifest.json")).read().strip().strip("'")
+        if bruto_commit:
+            try:
+                commit_dt = datetime.strptime(bruto_commit, "%Y-%m-%d %H:%M:%S")
+            except ValueError:
+                commit_dt = None
+
+        # O raw e OUTRO host, entao nao passa por `buscar()` (que prefixa DOMINIO).
+        raw_ja_serve = False
+        try:
+            url_raw = ("https://raw.githubusercontent.com/rmnatal/arquipelago/main/"
+                       "ilhas/rodametria/manifest.json?v=%d"
+                       % int(datetime.utcnow().timestamp()))
+            with urllib.request.urlopen(urllib.request.Request(
+                    url_raw, headers={"User-Agent": "rodametria-conferir/1.0"}),
+                    timeout=40) as r:
+                raw_ja_serve = int(json.load(r).get("revisao", -1)) >= revisao_esperada
+        except Exception:
+            raw_ja_serve = False
+
+        codigo, frase = veredito_da_revisao_atrasada(
+            ultimo_dt, datetime.utcnow(), commit_dt, raw_ja_serve)
+
         afirma(False,
-               "o manifest esta na revisao %d e o /status esta na %d. O ultimo log e de %s — "
-               "pela 20.5, log recente aqui significa CACHE do GitHub (reacione de dois em dois) "
-               "e log antigo significa que o Sync NAO RODOU."
-               % (revisao_esperada, revisao_no_ar, ultimo))
+               "o manifest esta na revisao %d e o /status esta na %d. CAUSA: `%s` — %s "
+               "(`ultimo` = %s; commit do manifest = %s; o raw %s serve a revisao %d)"
+               % (revisao_esperada, revisao_no_ar, codigo, frase, ultimo or "ausente",
+                  bruto_commit or "desconhecido",
+                  "JA" if raw_ja_serve else "AINDA NAO", revisao_esperada))
         return encerrar()
 
     afirma(revisao_no_ar == revisao_esperada,
@@ -1375,6 +1537,93 @@ def autoteste():
     diz(diagnostico_da_porta(200, [], True) is None,
         "13. sem porta medida nenhuma nao se nomeia causa — lista vazia nao e prova de "
         "que as portas estao mortas, e `all()` sobre vazio diria que sim")
+
+
+    # MUNDO 14 — A REVISAO ATRASADA TEM QUATRO CAUSAS, NAO DUAS, E O MUNDO (c) E
+    # O QUE ACONTECEU AS 19h1xZ DE 05/11/2026 NESTA ILHA.
+    #
+    # A regua que morava em `main()` chamava `ultimo` de "log" e dava veredito de
+    # duas pontas (cache ou Sync morto). Custou OITO MINUTOS e TRES rodadas de uma
+    # execucao da ilha em FOCO TOTAL, reacionando um Sync que estava saudavel.
+    # Os dois motivos estao conferidos na FONTE do Sync, que esta no repositorio
+    # (ilhas/robometria/snippets/robometria-sync.php, o mesmo codigo nas quatro):
+    # `interval => 1800` na 530, e o retorno antecipado das 473 a 477 que grava
+    # `ultimo` e NAO escreve linha de log quando nao ha nada a aplicar.
+    def t(hh, mm, ss=0):
+        return datetime(2026, 11, 5, hh, mm, ss)
+
+    # (a) `ultimo` AUSENTE — o Sync nunca gravou estado.
+    cod, _ = veredito_da_revisao_atrasada(None, t(19, 31), t(19, 30), True)
+    diz(cod == "sync-morto",
+        "14.a `ultimo` ausente e `sync-morto` — o Sync nunca rodou neste site")
+
+    # (b) `ultimo` VELHO — passou do vencimento com folga e nao rodou.
+    cod, frase = veredito_da_revisao_atrasada(t(17, 0), t(19, 31), t(19, 30), True)
+    diz(cod == "sync-morto" and "nao esta disparando" in frase,
+        "14.b `ultimo` de 2h31 atras, com evento de 30 min, e `sync-morto` — e o unico "
+        "dos quatro vereditos que e defeito de verdade")
+
+    # (c) O MUNDO MEDIDO: Sync VIVO, rodada ANTERIOR ao commit, raw JA servindo.
+    #     `ultimo` 19:16:46, commit do manifest 19:30, medicao 19:31.
+    cod, frase = veredito_da_revisao_atrasada(t(19, 16, 46), t(19, 31), t(19, 30), True)
+    diz(cod == "evento-nao-vencido",
+        "14.c o mundo MEDIDO as 19h3xZ de 05/11 (Sync vivo, ultima rodada ANTERIOR ao "
+        "commit, raw ja servindo) e `evento-nao-vencido`, nao `cache`")
+    diz("19:46:46" in frase,
+        "14.c e o veredito DIZ a hora do proximo vencimento (`ultimo` + 1.800 s = "
+        "19:46:46), porque a acao certa e esperar e nao reacionar")
+    diz("REACIONAR NAO ANTECIPA" in frase,
+        "14.c e diz, com todas as letras, que reacionar nao antecipa vencimento — a "
+        "metade que faltava na 20.6")
+
+    # (d) CACHE DE VERDADE: o Sync rodou DEPOIS do commit e nao pegou a revisao.
+    cod, _ = veredito_da_revisao_atrasada(t(19, 31), t(19, 32), t(19, 30), True)
+    diz(cod == "cache",
+        "14.d Sync que rodou DEPOIS do commit e ainda nao pegou a revisao e `cache` "
+        "do GitHub (20.5) — e so aqui reacionar de dois em dois e a acao certa")
+
+    # (e) O RAW AINDA NAO SERVE: nao e do site, e nao ha o que reacionar.
+    cod, _ = veredito_da_revisao_atrasada(t(19, 31), t(19, 32), t(19, 30), False)
+    diz(cod == "raw-atrasado",
+        "14.e com o raw ainda sem a revisao nova o veredito e `raw-atrasado` — o "
+        "defeito nao e do site e reacionar o Sync nao resolve")
+
+    # (f) O RELOGIO DIVERGENTE DENUNCIA EM VEZ DE ESCOLHER. `ultimo` vem de
+    #     `current_time('mysql')`, que e hora LOCAL do site. Um site em UTC-3
+    #     devolveria 16:16:46 onde este devolveu 19:16:46 — e, com a regua cega a
+    #     fuso, isso viraria "Sync morto" num Sync saudavel.
+    cod, frase = veredito_da_revisao_atrasada(t(16, 16, 46), t(19, 31), t(19, 30), True)
+    diz(cod in ("sync-morto", "relogio-divergente"),
+        "14.f `ultimo` com 3h de deriva cai num veredito nomeado e nao passa calado")
+    cod, frase = veredito_da_revisao_atrasada(t(21, 0), t(19, 31), t(19, 30), True)
+    diz(cod == "relogio-divergente" and "DENUNCIA" in frase,
+        "14.f `ultimo` NO FUTURO e `relogio-divergente` e DENUNCIA — adivinhar fuso "
+        "aqui trocaria `Sync morto` por `Sync vivo` nos dois sentidos")
+
+    # (g) A DISCORDANCIA QUE A 20.8 EXIGE: no mundo medido, a regua VELHA manda
+    #     reacionar e a NOVA manda esperar. Se as duas concordassem, este mundo
+    #     nao estaria medindo o conserto.
+    def regua_velha(ultimo, agora):
+        """A de duas pontas, como estava em main(): `ultimo` recente = cache."""
+        return "cache" if (agora - ultimo).total_seconds() < 1800 else "sync-morto"
+
+    velha = regua_velha(t(19, 16, 46), t(19, 31))
+    nova, _ = veredito_da_revisao_atrasada(t(19, 16, 46), t(19, 31), t(19, 30), True)
+    diz(velha == "cache" and nova == "evento-nao-vencido",
+        "14.g a regua VELHA diz `cache` (e manda reacionar de dois em dois) e a NOVA diz "
+        "`evento-nao-vencido` (e manda esperar o vencimento) no MESMO mundo — as duas "
+        "DISCORDAM, senao este autoteste nao mede o conserto. A discordancia vale os "
+        "oito minutos que a execucao de 05/11 gastou reacionando")
+
+    # (h) E O CONSERTO NAO AFROUXA O PORTAO: revisao atrasada continua FALHA nos
+    #     quatro vereditos. Nenhum deles e aprovacao.
+    diz(all(veredito_da_revisao_atrasada(u, t(19, 31), c, r)[0] in (
+            "sync-morto", "relogio-divergente", "raw-atrasado", "evento-nao-vencido", "cache")
+            for u, c, r in ((None, t(19, 30), True), (t(17, 0), t(19, 30), True),
+                            (t(19, 16, 46), t(19, 30), True), (t(19, 31), t(19, 30), True),
+                            (t(19, 31), t(19, 30), False))),
+        "14.h os quatro vereditos sao CAUSAS e nenhum e aprovacao — revisao atrasada "
+        "segue sendo falha, e o que muda e o que a proxima pessoa faz")
 
     print("conferir-no-ar --autoteste: %d de %d afirmacoes, %d falha(s)"
           % (len(ok), len(ok) + len(mal), len(mal)))
