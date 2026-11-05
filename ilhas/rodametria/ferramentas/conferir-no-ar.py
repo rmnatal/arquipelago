@@ -257,8 +257,14 @@ def veredito_da_revisao_atrasada(ultimo, agora, commit_do_manifest, raw_ja_serve
       `raw-atrasado` — o Sync esta vivo e o `raw.githubusercontent.com` ainda nao
           serve a revisao nova. Nao e do site: nao ha o que reacionar.
       `evento-nao-vencido` — o Sync esta vivo e a ultima rodada dele e ANTERIOR ao
-          commit do manifest: naquela rodada nao havia nada a aplicar. Espere ate
-          `ultimo + intervalo`. REACIONAR NAO ANTECIPA.
+          commit do manifest: naquela rodada nao havia nada a aplicar. REACIONAR NAO
+          ANTECIPA. E `ultimo + intervalo` e TETO e nao hora exata: o WordPress
+          reagenda evento recorrente a partir do horario AGENDADO, nao do horario em
+          que ele rodou, entao uma rodada ATRASADA e seguida por um vencimento mais
+          CEDO do que a conta ingenua diz. MEDIDO em 05/11/2026 nesta ilha, e a
+          medicao FALSIFICOU a primeira versao desta propria frase, escrita minutos
+          antes: rodada as 19:16:46, teto 19:46:46, revisao entrando as 19:40:09 —
+          porque o agendamento era de 19:10:09. O horario exato nao sai do `/status`.
       `cache` — o Sync rodou DEPOIS do commit e ainda nao pegou a revisao: e o
           cache do GitHub da 20.5. Reacione de dois em dois.
 
@@ -304,15 +310,20 @@ def veredito_da_revisao_atrasada(ultimo, agora, commit_do_manifest, raw_ja_serve
                 % round(idade / 60.0))
 
     if commit_do_manifest is not None and ultimo < commit_do_manifest:
-        espera = (ultimo + timedelta(seconds=intervalo))
+        teto = (ultimo + timedelta(seconds=intervalo))
         return ("evento-nao-vencido",
                 "o Sync esta VIVO e a ultima rodada dele (%s) e ANTERIOR ao commit do manifest "
                 "(%s): naquela rodada nao havia nada a aplicar, e por isso o log tambem nao ganhou "
-                "linha. O evento e de %d minuto(s), entao o proximo vencimento e ~%s. REACIONAR NAO "
-                "ANTECIPA VENCIMENTO — o WP-Cron dispara evento DEVIDO (20.6: roda por visita E "
-                "quando devido)."
+                "linha. REACIONAR NAO ANTECIPA VENCIMENTO — o WP-Cron dispara evento DEVIDO (20.6: "
+                "roda por visita E quando devido). O proximo vencimento cai em %s NO MAIS TARDE, e "
+                "PODE CAIR ANTES: o WordPress reagenda evento recorrente a partir do horario "
+                "AGENDADO e nao do horario em que ele rodou, entao `ultimo` + %d min e TETO e nunca "
+                "a hora exata. (Medido nesta ilha em 05/11/2026: rodada atrasada as 19:16:46, teto "
+                "calculado 19:46:46, e a revisao entrou as 19:40:09 — 6m37s ANTES do teto, porque o "
+                "agendamento era de 19:10:09. O horario exato nao sai do `/status`: sairia de "
+                "`wp_next_scheduled`, que nenhuma rota publica serve.)"
                 % (ultimo.strftime("%H:%M:%S"), commit_do_manifest.strftime("%H:%M:%S"),
-                   intervalo // 60, espera.strftime("%H:%M:%S")))
+                   teto.strftime("%H:%M:%S"), intervalo // 60))
 
     return ("cache",
             "o Sync rodou %s, DEPOIS do commit do manifest (%s), e ainda nao pegou a revisao nova: "
@@ -1569,9 +1580,12 @@ def autoteste():
     diz(cod == "evento-nao-vencido",
         "14.c o mundo MEDIDO as 19h3xZ de 05/11 (Sync vivo, ultima rodada ANTERIOR ao "
         "commit, raw ja servindo) e `evento-nao-vencido`, nao `cache`")
-    diz("19:46:46" in frase,
-        "14.c e o veredito DIZ a hora do proximo vencimento (`ultimo` + 1.800 s = "
-        "19:46:46), porque a acao certa e esperar e nao reacionar")
+    diz("19:46:46" in frase and "NO MAIS TARDE" in frase and "PODE CAIR ANTES" in frase,
+        "14.c o veredito da o TETO do proximo vencimento (`ultimo` + 1.800 s = 19:46:46) e diz, "
+        "com todas as letras, que PODE CAIR ANTES — o WordPress reagenda a partir do horario "
+        "AGENDADO e nao do horario em que rodou. ESTA AFIRMACAO EXISTE PORQUE A MEDICAO "
+        "FALSIFICOU A PRIMEIRA VERSAO DELA: ela exigia a hora exata `19:46:46`, e a revisao "
+        "entrou as 19:40:09, 6m37s antes, porque o agendamento era de 19:10:09")
     diz("REACIONAR NAO ANTECIPA" in frase,
         "14.c e diz, com todas as letras, que reacionar nao antecipa vencimento — a "
         "metade que faltava na 20.6")
