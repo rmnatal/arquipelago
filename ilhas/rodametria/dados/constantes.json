@@ -31,12 +31,14 @@
       "valor": null,
       "unidade": "W e km/h (mais mm para as dimensoes)",
       "tipo": "pendente",
-      "fonte_exigida": "Resolucao Contran no 996, de 15/06/2023, lida no texto oficial, com o artigo e a data da leitura. A resolucao ganhou FASE NOVA DE VIGENCIA em 1o/01/2026 (colhido em canalve.com.br e paraibabusiness.com.br em 28/10/2026, e isto tambem e segunda mao), entao a leitura tem de dizer QUAL fase esta lendo.",
-      "canal_de_coleta": "NENHUM ABERTO. Medido em 28/10/2026 as 13h2xZ, em duas passadas: www.gov.br, www.in.gov.br, www.planalto.gov.br, www.contran.gov.br e www.lex.com.br em 000 com CONNECT tunnel failed response 403. A mesma medicao foi feita as 10h4xZ pela execucao do bloco 1 e deu o mesmo resultado: tres horas e meia depois, o pedido do despacho ALTA ainda nao foi atendido.",
-      "verificado_em": "2026-10-28",
+      "fonte_exigida": "Resolucao Contran no 996, de 15/06/2023, lida no texto oficial, com o artigo e a data da leitura. A LEITURA TEM DE DIZER QUAL FASE/REDACAO ESTA LENDO, e este pedido FICA — pedi-lo e barato e desfazer um erro de fase depois e caro. MAS A PREMISSA POR TRAS DELE FOI CONFERIDA EM 05/11/2026 as 19h1xZ E PARECE SER OUTRA COISA: a frase `a resolucao ganhou FASE NOVA DE VIGENCIA em 1o/01/2026` (colhida em canalve.com.br e paraibabusiness.com.br em 28/10, segunda mao) foi lida como `existe um texto novo para ler`, e isso encarece o pedido. Busca dirigida a alteracao e revogacao nao achou NENHUMA alteracao nem revogacao da 996/2023: a resolucao entrou em vigor em 03/07/2023, o prazo de ADEQUACAO terminou em 31/12/2025, e 1o/01/2026 e o dia em que ela passou a valer INTEGRALMENTE — mesmo texto, fim de carencia, nao redacao nova. O TAMANHO HONESTO DISSO: e achado NEGATIVO (`nao encontrei alteracao`), colhido na MESMA camada de segunda mao que gerou a frase que ele corrige, em UMA rodada de busca. Nao e prova e nao vira constante. O que ele muda e o PEDIDO: leia a 996/2023 como publicada em 22/06/2023 e, na mesma sessao, confira no portal se ha ato posterior — em vez de sair atras de uma fase que talvez nao exista como texto.",
+      "canal_de_coleta": "NENHUM ABERTO, e em 05/11/2026 as 19h1xZ a parede foi medida como sendo o DOMINIO e nao os hosts. Seis recusas contra quatro controles verdes, com o egresso nomeando a causa em cada uma (`gateway answered 403 to CONNECT (policy denial or upstream failure)`): www.gov.br, in.gov.br, www.planalto.gov.br e www.lex.com.br em 000 pelo curl, `getaddrinfo ENOTFOUND www.gov.br` pela busca de pagina, e a porta NOVA desta passada — o PDF da resolucao hospedado em araras.sp.gov.br, um municipio, portanto host completamente diferente dos cinco federais — na MESMA recusa. A BUSCA DA NUVEM ATRAVESSA O EGRESSO E FOI MEDIDA E DESCARTADA COMO FONTE DE REGISTRO, com motivo e nao por regra de estilo: em duas consultas ela devolveu DUAS das TRES definicoes (o ciclomotor voltou cortado antes dos limites, e ela propria disse que nao conseguiu confirma-lo no texto oficial), e o unico numero que ofereceu para o ciclomotor foi `4.000 W` — exatamente o lado errado da contradicao que o bloco 6 ja mediu DENTRO de um unico publicador (eletricz.com.br afirma 1.000 W numa pagina e 4.000 W noutra, citando esta mesma resolucao). A busca reproduz a contradicao que esta ilha diagnosticou; ela nao a desfaz. Medicoes anteriores: 28/10 as 10h4xZ e as 13h2xZ, e 29/10 as 11hxxZ, todas com o mesmo resultado. A TABELA DE TODAS AS PORTAS, uma por uma e com data, esta em dados/fonte-oficial-f1.md.",
+      "verificado_em": "2026-11-05",
       "status": "pendente",
-      "usada_em": ["F1"],
-      "o_que_falta": "Um dos DOIS gestos do despacho ALTA de 28/10 em dados/despachos.md: (a) www.gov.br e gov.br na lista de Dominios permitidos dos ambientes de nuvem, ou (b) as definicoes literais de ciclomotor, bicicleta eletrica e equipamento de mobilidade individual autopropelido coladas no repositorio com potencia em W, velocidade em km/h, largura, distancia entre eixos, URL e data de leitura.",
+      "usada_em": [
+        "F1"
+      ],
+      "o_que_falta": "Um dos DOIS gestos do despacho ALTA de 28/10 em dados/despachos.md, e o PRIMEIRO ficou mais barato e mais abrangente em 05/11: (a) UMA LINHA na lista de Dominios permitidos dos ambientes de nuvem — `*.gov.br` — que fecha de uma vez este despacho, o despacho NORMAL da camada municipal (que ja pedia o curinga) e a porta nova do PDF em araras.sp.gov.br; ou (b) as definicoes literais de ciclomotor, bicicleta eletrica e equipamento de mobilidade individual autopropelido com potencia em W, velocidade em km/h, largura, distancia entre eixos, URL e data de leitura. PARA O GESTO (b) EXISTE LUGAR PRONTO DESDE 05/11/2026: a secao 5 de dados/fonte-oficial-f1.md tem os campos rotulados um por um, com a instrucao de escrever `NAO CONSTA` em vez de deixar em branco ou estimar.",
       "consequencia_declarada": "A F1 NAO VAI AO AR. Ela e a home da ilha e e a razao pela qual a ilha nasceu, entao esta constante trava o desembarque da ferramenta principal — e e por isso que o despacho e ALTA. O que ela NAO trava: a arvore de decisao, as duas ressalvas da 1.4, a camada municipal, o bloco de compra, a prestacao de contas da secao 7, o bloco 3 inteiro e o esquema do banco. Tudo isso esta especificado e pode ser construido.",
       "custo_de_destravar": "Editar este objeto: preencher valor, trocar status para publicavel, gravar url, verificado_em e o artigo lido. Nenhuma linha de logica muda, porque a 1.3 proibiu literal numerico no codigo.",
       "proibicao_explicita": "Caso de teste do portao da F1 usa limiar FICTICIO, declarado como ficticio no proprio caso (ex. LIMIAR_AUTOPROP_W = 777), e afirma a ARVORE, nunca os numeros do mundo. Portao que afirma 1.000 W antes de o texto oficial chegar e o numero de tela digitado com outra roupa."
@@ -51,8 +53,14 @@
       "canal_de_coleta": "nenhum necessario",
       "verificado_em": "2026-10-28",
       "status": "publicavel",
-      "usada_em": ["F2"],
-      "exemplos": ["48 V x 20 Ah = 960 Wh", "60 V x 20 Ah = 1.200 Wh", "36 V x 10,4 Ah = 374 Wh"],
+      "usada_em": [
+        "F2"
+      ],
+      "exemplos": [
+        "48 V x 20 Ah = 960 Wh",
+        "60 V x 20 Ah = 1.200 Wh",
+        "36 V x 10,4 Ah = 374 Wh"
+      ],
       "por_que_importa": "E metade do valor da F2 por si so, e nao depende de nada bloqueado. O bloco 1 mediu que nas fichas colhidas a autonomia ANUNCIADA sobe com a potencia do MOTOR (350 W -> 20 km; 1.000 W -> 70/75 km; 2.000 W -> 100 km), que nao e a grandeza que armazena energia. Por em Wh ao lado do numero declarado e a ferramenta inteira funcionando.",
       "divergencia_a_registrar": "Anuncio que declara Wh em desacordo com V x Ah e divergencia a registrar no banco, com as duas declaracoes e o nome de quem publicou cada uma. Media entre as duas e proibida."
     },
@@ -70,7 +78,9 @@
       "canal_de_coleta": "busca web em 28/10/2026. O repositorio NAO foi aberto diretamente: dspace.ups.edu.ec falha em getaddrinfo ENOTFOUND nesta nuvem. Nivel pelo elo mais fraco: leitura por busca, com autor, tutor, programa, instituicao e ano confirmados no registro.",
       "verificado_em": "2026-10-28",
       "status": "publicavel",
-      "usada_em": ["F2"],
+      "usada_em": [
+        "F2"
+      ],
       "por_que_RAZAO_e_nao_absoluto": "ERRATA AO BLOCO 1. A secao 6 do corpus-buscas.md entregou estes dois numeros a F2 como 'a regua do relevo com numero' e calculou com eles sobre 1.200 Wh ('os dois extremos dao ~29 km e ~12 km'), sem dizer a CLASSE do veiculo medido. O veiculo e uma MOTO de 1.800 Wh. O absoluto nao transfere para patinete; a razao, medida na mesma rota com o mesmo veiculo, transfere muito melhor. A F2 usa 2,37 e NUNCA 41,29 nem 97,74.",
       "revalidar": "Uma medicao, um veiculo, uma rota. Procurar segunda medicao independente de razao de relevo, de preferencia em patinete, quando houver canal de leitura direta."
     },
@@ -86,7 +96,9 @@
       "canal_de_coleta": "nenhum (decisao)",
       "verificado_em": "2026-10-28",
       "status": "publicavel",
-      "usada_em": ["F2"],
+      "usada_em": [
+        "F2"
+      ],
       "como_a_pagina_diz": "A pagina declara que 'misto' e criterio da Rodametria, entre os dois extremos medidos pelo estudo citado. Nunca atribui 1,54 ao estudo."
     },
     {
@@ -121,7 +133,9 @@
       "canal_de_coleta": "busca web em 28/10/2026; repositorio nao alcancavel diretamente.",
       "verificado_em": "2026-10-28",
       "status": "publicavel",
-      "usada_em": ["F2"],
+      "usada_em": [
+        "F2"
+      ],
       "por_que_NAO_e_fator_de_calculo": "Uma medicao, um veiculo, uma rota, e de classe diferente (moto). Entra como linha nomeada na tabela, com autor, instituicao e ano DENTRO da frase (secao 5, item 4), e nao multiplica nada.",
       "o_que_ela_corrige_no_bloco_1": "O corpus registrou 'faixa de 60% a 80% do valor anunciado em uso urbano' como leitura agregada SEM FONTE UNICA, e ele mesmo dizia que nao servia como constante. A medicao nomeada cai ABAIXO do piso daquela faixa (49,7% contra 60%), o que e a direcao que importa: a faixa agregada era OTIMISTA. A pagina publica as duas declaracoes com o nome de quem publicou cada uma, e a agregada continua sem servir de constante."
     },
@@ -137,7 +151,9 @@
       "canal_de_coleta": "nenhum (decisao), com a busca limpa registrada acima como o que a NEGOU",
       "verificado_em": "2026-10-28",
       "status": "publicavel",
-      "usada_em": ["F3"],
+      "usada_em": [
+        "F3"
+      ],
       "como_a_pagina_diz": "Uma linha dizendo que a folga de 10% e criterio da Rodametria, com o motivo. Atribuir a terceiro uma regua que terceiro nao publicou e o defeito que esta constante existe para nao cometer.",
       "revalidar": "Se aparecer norma tecnica brasileira ou recomendacao de fabricante com percentual publicado, o tipo muda de decisao_da_ilha para oficial ou medicao_de_terceiro, e o valor passa a ser o dela."
     },
@@ -153,7 +169,10 @@
       "canal_de_coleta": "busca web em 28/10/2026",
       "verificado_em": "2026-10-28",
       "status": "publicavel",
-      "usada_em": ["F3", "F2"],
+      "usada_em": [
+        "F3",
+        "F2"
+      ],
       "por_que_serve_a_ressalva_e_nao_a_formula": "Nao tem numero. Entra como frase do grupo do meio da F3, com o publicador nomeado, e NUNCA multiplica nem subtrai nada.",
       "o_que_ela_amarra": "Liga a F3 a F2: peso perto do teto nao derruba so a carga, derruba a velocidade e a autonomia. Por isso a F3 linka para a F2 com o peso ja passado na URL (secao 32.2 do ARQUIPELAGO.md)."
     },
@@ -168,7 +187,9 @@
       "canal_de_coleta": "busca web em 28/10/2026 (bloco 1) e painel da Shopee no Chrome do Raphael (27/10/2026)",
       "verificado_em": "2026-10-28",
       "status": "publicavel",
-      "usada_em": ["F3"],
+      "usada_em": [
+        "F3"
+      ],
       "por_que_NAO_entra_em_formula": "E faixa observada numa data, nao limite do mundo. A F3 compara o peso contra a carga_max_kg de CADA veiculo do banco, nunca contra este numero. Ele existe para a tela: e o que permite a frase de lista vazia da secao 3.5 da especificacao dizer 'o maior teto do nosso banco e X kg' com X CONTADO no banco, e nao digitado.",
       "o_que_ele_prediz": "Este e o eixo com a maior chance de devolver lista vazia. Com a margem de 10%, quem passa de 109 kg de peso total ja cai fora do grupo de folga nos modelos de 120 kg, e so o de 140 kg o acolhe com folga."
     }
