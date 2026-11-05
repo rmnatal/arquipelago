@@ -677,6 +677,8 @@ baterias), e isso é bloco, não carona.
 
 ### prioridade NORMAL — a CAMADA MUNICIPAL da F1 é dado de banco, e os quatro domínios de prefeitura que a sustentariam estão recusados pelo egresso
 
+> **PONTEIRO ACRESCENTADO ÀS 19h1xZ DE 05/11/2026: ESTE DESPACHO E O ALTA DO `gov.br` SÃO O MESMO PEDIDO, E ELE É UMA LINHA.** Medido nesta data: a parede é o **domínio** `.gov.br` e não os hosts — um PDF da Resolução 996/2023 hospedado em `araras.sp.gov.br`, host completamente diferente dos cinco federais, cai na **mesma** recusa. O curinga `*.gov.br` que este despacho já pedia fecha **os dois** (e mais essa porta nova). Quem atender um atende o outro; quem fechar um confere o outro na mesma passada.
+
 > **REMEDIDO EM 29/10/2026 às 11hxxZ pela execução da Fundação que pôs a casca e a F2 da
 > rodametria no ar, e NADA MUDOU AQUI: segue aberto.** As três passadas da 20.2 deram `000`
 > nos quatro domínios de prefeitura, nos dois periódicos que publicam o consumo de patinete
@@ -807,6 +809,86 @@ As três com **`connect_rejected` do egresso** (host fora da lista de permitidos
 **Pronto quando:** `curl` ao gov.br devolver 200 desta nuvem **ou** as três definições literais estiverem escritas no repositório com URL e data de leitura. Qualquer um dos dois destrava o fecho do bloco 2; os dois juntos destravam também a releitura, que a F1 vai precisar porque a resolução **ganhou fase nova de vigência em 1º/01/2026** (colhido em `canalve.com.br` e `paraibabusiness.com.br`, 28/10/2026 — e isto também é segunda mão).
 
 **O que NÃO está bloqueado por isto, para ninguém parar a ilha errada:** o bloco 2 pode ser escrito inteiro, e `dados/constantes.json` pode nascer com a constante da F1 marcada `publicavel: false` e a dívida nomeada. O que não pode é a F1 **ir ao ar** classificando veículo com número de portal de notícia. E a ilha **não** recebe `bloqueada_por` por causa disto (seção 11, passo 4): o que travou é uma fonte, não a ilha.
+
+**ACRESCENTADO ÀS 19h1xZ DE 05/11/2026, PELA TERCEIRA EXECUÇÃO DO DIA NESTA ILHA — O PEDIDO VIROU UMA LINHA, E ELA FECHA DOIS DESPACHOS.**
+
+Remedido às 19h1xZ, em três passadas, com **4 controles verdes contra 6 recusas** e o egresso
+nomeando a causa em cada uma: `gateway answered 403 to CONNECT (policy denial or upstream
+failure)`. **Segue aberto, e o pedido continua sendo o mesmo gesto** — mas o gesto A ficou mais
+barato e mais abrangente, por três achados desta passada. **A tabela de todas as portas
+tentadas, uma por uma e com data, nasceu em `ilhas/rodametria/dados/fonte-oficial-f1.md`**, para
+que nenhuma execução remeça porta já medida.
+
+**ACHADO 1 — A PAREDE É O DOMÍNIO, NÃO OS HOSTS, E ISSO UNE ESTE DESPACHO AO DA CAMADA
+MUNICIPAL.** A busca da nuvem achou uma reprodução do ato — **PDF da Resolução 996/2023
+hospedado em `araras.sp.gov.br`**, um município, portanto host completamente diferente dos cinco
+federais já medidos. **Ele cai na mesma recusa.** O que esta ilha não alcança não é um site: é o
+domínio `.gov.br` inteiro. **Logo o pedido deste despacho e o do despacho NORMAL da camada
+municipal — que já pedia o curinga — são o MESMO pedido**, e ele é uma linha:
+
+```
+*.gov.br
+```
+
+Essa linha fecha, de uma vez: (a) **este** despacho (a fonte primária da F1); (b) o **NORMAL da
+camada municipal** (`campinas.sp.gov.br`, `rio.rj.gov.br`, `joinville.sc.gov.br`,
+`sjc.sp.gov.br`), que destrava a terceira saída da camada 2 da F1 — hoje ela tem duas saídas
+imprimindo a mesma frase genérica; e (c) a **porta nova** desta passada, que ninguém havia
+contado porque ninguém sabia que existia. `lex.com.br` fica fora do curinga e **não faz falta**:
+é reprodução comercial, e com o `.gov.br` aberto a fonte primária está na mão.
+
+**ACHADO 2 — A PORTA DA BUSCA ATRAVESSA O EGRESSO, E FOI MEDIDA E DESCARTADA COM MOTIVO.** A
+busca da nuvem roda **fora** do egresso deste contêiner, então ela alcança o que o `curl` não
+alcança, e devolveu texto que se apresenta como citação do DOU de 22/06/2023. **Ela não serve
+como fonte de registro desta constante, e a razão é medida e não purista:** (i) nas duas
+consultas o **ciclomotor voltou cortado antes dos limites**, e a busca **ela própria** disse que
+não conseguiu confirmá-lo no texto oficial — três definições são pedidas, **duas** voltaram;
+(ii) o único número que ela ofereceu para o ciclomotor foi **4.000 W**, que é **exatamente o
+lado errado da contradição que o bloco 6 já mediu DENTRO de um único publicador** (a
+`eletricz.com.br` afirma 1.000 W numa página e 4.000 W noutra, citando esta mesma resolução).
+**A busca reproduz a contradição que esta ilha diagnosticou; ela não a desfaz.** Fica medido e
+fechado: a próxima execução não precisa tentá-la de novo esperando outro resultado. O que ela
+serve é para achar **portas** — foi ela que achou o PDF do município — e para medir o mercado,
+que é segunda mão declarada.
+
+**ACHADO 3 — A PREMISSA DA "FASE NOVA DE VIGÊNCIA" FOI CONFERIDA E PARECE SER OUTRA COISA, E
+ISSO MUDA O QUE SE PEDE PARA LER.** A linha "Pronto quando" acima diz que a resolução *"ganhou
+fase nova de vigência em 1º/01/2026"*, colhido em `canalve.com.br` e `paraibabusiness.com.br` —
+segunda mão, e o despacho diz isso de si mesmo. **Essa frase manda procurar uma redação alterada
+antes de ler a original**, e encarece o gesto. Busca dirigida a **alteração e revogação** não
+achou **nenhuma**: a 996/2023 **entrou em vigor em 03/07/2023**, o **prazo de adequação** terminou
+em **31/12/2025**, e **1º/01/2026 é o dia em que ela passou a valer integralmente** — mesmo
+texto, fim de carência, não redação nova.
+
+**E o tamanho honesto deste achado, porque ele é menor do que parece:** é achado **negativo**
+("não encontrei alteração"), colhido na **mesma** camada de segunda mão que gerou a frase que
+corrige, em **uma** rodada de busca. **Não é prova, e não virou constante.** O que ele muda é o
+**pedido**: leia a **996/2023 como publicada em 22/06/2023** e, na mesma sessão, confira no
+portal se há ato posterior — em vez de sair atrás de uma fase que, pelo que se mediu, talvez não
+exista como texto. **O pedido de a leitura dizer QUAL fase está lendo FICA**, porque pedi-lo é
+barato e desfazer um erro de fase depois é caro.
+
+**O GESTO B TEM LUGAR PRONTO DESDE HOJE, e isto é o que esta passada entregou de mais útil para
+quem for cumpri-lo.** A seção 5 de `ilhas/rodametria/dados/fonte-oficial-f1.md` traz os campos
+**rotulados um por um** — definição literal, potência em W, velocidade em km/h, largura,
+distância entre eixos, por categoria, mais URL, data e artigo —, com a instrução de escrever
+**`NÃO CONSTA`** em vez de deixar em branco ou estimar. **Quem tiver o texto oficial na frente
+preenche campos e nada mais**: não precisa saber como a ilha guarda a constante, nem abrir o
+JSON. A execução seguinte copia os valores para `dados/constantes.json` e a F1 passa a poder ir
+ao ar, **sem uma linha de lógica mudar**, porque a 1.3 da especificação proibiu literal numérico
+no código.
+
+**A CONSTANTE SEGUE `pendente`, COM VALOR `null`.** Nada foi inventado nesta passada, e é
+importante dizer: o que mudou em `dados/constantes.json` foi **procedência e custo de
+destravar**, nos campos `canal_de_coleta`, `fonte_exigida`, `o_que_falta` e `verificado_em`.
+Revisão 42 → 43, com o portão da **20.7** reprovando a edição duas vezes antes de passar (sha256
+velho, e depois a data fora do commit) — as duas travas morderam.
+
+**POR QUE ESTA EXECUÇÃO TRABALHOU NISTO E NÃO NUM BLOCO DA FILA:** a porta de entrada desta ilha
+está no chão desde 04/11 às 20h1xZ (**23 horas**, terceira execução do dia a medi-la), e a
+**18.5** proíbe página nova em ilha com defeito no ar. O despacho ALTA da porta é **para o
+Raphael** e não é fechável desta nuvem. Isto aqui é a pendência mais antiga da ilha que **não**
+depende do ar para andar.
 
 ---
 
