@@ -105,3 +105,22 @@ Uma linha por nicho, só para não testar de novo. Não é relatório.
 | 02/11/2026 | rodas por aro e furação | volume | ≈ 60 mil/mês somados → exigiria ≈ R$ 255 por venda em top-3 |
 | 02/11/2026 | impressora | SERP tomada (ML, Loja Epson, Magalu, HP, Kabum) | 301 mil tomada |
 | 02/11/2026 | cafeteira expresso | volume | 40,5 mil/mês → exigiria ≈ R$ 377 por venda em top-3 |
+| 05/11/2026 | ar-condicionado portátil | SERP tomada (ML, Casas Bahia, Ponto, Frigelar, Magalu + carrossel) | 550 mil tomada |
+| 05/11/2026 | guarda-roupa por medida | SERP tomada (Casas Bahia, MadeiraMadeira, Magalu, Tok&Stok, Leroy, Mobly + carrossel + IA) | 450 mil tomada |
+| 05/11/2026 | lava-louças | SERP tomada (Brastemp, Compra Certa, Electrolux, Midea, ML + carrossel + IA) | 301 mil tomada |
+| 05/11/2026 | betoneira | 3.0-e (ML, Loja do Mecânico, Leroy, lojas + carrossel + IA) | 74 mil/mês → conservador ≈ 36 visitas/dia, exigiria ≈ R$ 925 por venda |
+| 05/11/2026 | bebê conforto e cadeirinha para carro | volume | 139 mil/mês → exigiria ≈ R$ 110 por venda em top-3 |
+| 05/11/2026 | cooler e caixa térmica | volume | 135 mil/mês → exigiria ≈ R$ 113 por venda em top-3 |
+| 05/11/2026 | roçadeira e cortador de grama | volume | 124 mil/mês → exigiria ≈ R$ 124 por venda em top-3 |
+| 05/11/2026 | escada de alumínio por altura | volume | 90,5 mil/mês → exigiria ≈ R$ 169 por venda em top-3 |
+| 05/11/2026 | soundbar | volume | 90,5 mil/mês → exigiria ≈ R$ 169 por venda em top-3 |
+| 05/11/2026 | mesa gamer e de escritório | volume | 74 mil/mês → exigiria ≈ R$ 206 por venda em top-3 |
+| 05/11/2026 | babá eletrônica | volume | 74 mil/mês → exigiria ≈ R$ 206 por venda em top-3 |
+| 05/11/2026 | lavadora de roupa | volume | 49,5 mil/mês → exigiria ≈ R$ 309 por venda em top-3 |
+| 05/11/2026 | aquecedor a gás de passagem | volume | 44 mil/mês → exigiria ≈ R$ 346 por venda em top-3 |
+| 05/11/2026 | cartucho e toner por impressora | volume | 42 mil/mês somados → exigiria ≈ R$ 365 por venda em top-3 |
+| 05/11/2026 | carrinho de mão | volume | 40,5 mil/mês → exigiria ≈ R$ 377 por venda em top-3 |
+| 05/11/2026 | tela de proteção por medida | volume | 40,5 mil/mês → exigiria ≈ R$ 377 por venda em top-3 |
+| 05/11/2026 | capinha de celular por modelo | volume | 33,1 mil/mês (cabeça) → exigiria ≈ R$ 462 por venda em top-3 |
+| 05/11/2026 | baú de moto por litros | volume | 14,8 mil/mês |
+| 05/11/2026 | pneu de moto por medida | volume | 9,9 mil/mês |
