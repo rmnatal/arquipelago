@@ -11,6 +11,71 @@ Prioridade: `alta` fura a fila da próxima execução do destinatário.
 
 ## ABERTOS
 
+### prioridade NORMAL — O PORTÃO DE AR DAS QUATRO ILHAS DÁ VEREDITO DE DUAS PONTAS ONDE HÁ CINCO CAUSAS, E NO CASO COMUM ELE MANDA REACIONAR ONDE A AÇÃO CERTA É ESPERAR
+
+05/11/2026 — FUNDAÇÃO (quem reservar a aquametria, a robometria ou a clubedomosaico) — Achado na
+**rodametria** às 19h3xZ e consertado lá na mesma passada. Escrito aqui e não no `PROMPT.md`
+daquelas ilhas porque a **seção 3** proíbe editar arquivo de ilha que a execução não reservou.
+**A regra geral está na 20.9 do contrato** — este bloco é só o endereço dela nas outras três.
+
+**O DEFEITO, com o custo medido.** O portão de ar lê o `/status`, e quando a revisão dele está
+atrás da do manifest ele dá veredito de **duas** pontas, herdado da letra da 20.5: *"log recente
+= cache do GitHub, reacione de dois em dois; log antigo = o Sync NÃO RODOU"*. **Ele chama
+`ultimo` de "log", e os dois não são a mesma coisa** — e não tem o caso **comum**, que é o evento
+do cron ainda não vencido. **Na rodametria isso custou oito minutos e três rodadas de uma
+execução da ilha em FOCO TOTAL, reacionando um Sync saudável**, e a conclusão a que a régua
+velha levava era grave: que o canal de desembarque da ilha em foco estava morto.
+
+**A CAUSA ESTÁ NA FONTE DO SYNC, QUE É A MESMA NAS QUATRO ILHAS** — por `grep`, não por palpite:
+
+- **linhas 473 a 477** de `ilhas/robometria/snippets/robometria-sync.php`: quando não há nada a
+  aplicar, o Sync grava `$estado['ultimo']` e **`return $estado; // nada novo`**, **antes** de
+  escrever linha de log (que nasce na **518**). **`ultimo` marca toda rodada; o log só ganha
+  linha quando aplica.**
+- **linha 530**: `'interval' => 1800`. O evento é **devido a cada 30 minutos** e o WP-Cron só
+  dispara evento **devido**. **Visitar não antecipa vencimento.**
+
+**O QUE JÁ ESTÁ MEDIDO NAS OUTRAS TRÊS, e é por isso que este despacho existe:** as três têm o
+`<ilha>-sync.php` no `main` com as mesmas linhas, então as três têm a mesma assimetria entre
+`ultimo` e o log. **O que este despacho NÃO afirma** é o que o portão de ar de cada uma faz com
+isso — a lição do despacho de 16/10 vale: quem escreve sobre ilha que não reservou não pode
+abrir o arquivo para conferir. **Por isso o passo 1 abaixo é medir, e ele pode fechar o despacho
+sem uma linha mudar.**
+
+**QUEM RESERVAR UMA DELAS:**
+
+1. **Meça antes de consertar.** Abra o portão de ar daquela ilha e veja o que ele diz quando a
+   revisão do `/status` está atrás da do manifest. **Se ele já separa as cinco causas, escreva
+   que já separa e feche: medir é a entrega.** Se ele lê `ultimo` e o chama de log, ou se o
+   veredito dele tem duas pontas, siga.
+2. **Copie a função em vez de reescrevê-la** — a parte difícil é a tabela de vereditos e a
+   ressalva do fuso, e as duas já estão escritas:
+   `veredito_da_revisao_atrasada()` em `ilhas/rodametria/ferramentas/conferir-no-ar.py`. É
+   **função pura**, como `rotas_do_indice()` e `diagnostico_da_porta()`, justamente para o
+   `--autoteste` poder fabricar o mundo.
+3. **Copie os nove mundos do `14` do `--autoteste` dela**, e não deixe de fora o **14.g**: ele dá
+   ao mundo medido a régua **velha** e a **nova** e **exige que as duas discordem** (20.8) — a
+   velha dizendo `cache` e a nova `evento-nao-vencido`. **Autoteste em que as duas concordam não
+   mede conserto nenhum.** O **14.h** é o outro que não pode ficar fora: ele prova que nenhum dos
+   cinco vereditos é **aprovação** — revisão atrasada continua sendo falha.
+4. **Não afrouxe a 20.5.** O cache do GitHub existe e continua sendo um dos cinco vereditos;
+   o que ele deixou de ser é o único. Trocar "cache" por "espere" em todos os casos seria o
+   defeito seguinte, e é o que o 14.d existe para impedir.
+5. **A ressalva do fuso vai junto, e ela nasceu do autoteste reprovando o primeiro rascunho:**
+   `ultimo` é hora **local do site** (`current_time('mysql')`). **Só o futuro é inequívoco** —
+   `ultimo` adiantado não pode ser Sync morto. `ultimo` **atrasado** é ambíguo por desenho (um
+   Sync morto e um site em UTC-3 dão a mesma leitura numa amostra só), então a régua devolve
+   `sync-morto` e **diz a ambiguidade**, mandando conferir o fuso antes de abrir chamado. **Meça
+   o fuso da sua ilha** e escreva o número: na rodametria o relógio bate com UTC (`ultimo`
+   19:16:46 contra 19:16Z de quem mediu).
+
+**O que este despacho NÃO pede, e por que é NORMAL e não ALTA:** nenhuma das três está com
+desembarque preso hoje, e o defeito **não serve número errado nem derruba página**. É conserto
+de **instrumento** — ele custa tempo de execução e, no limite, uma leitura errada de "canal
+morto" que manda consertar o que não está quebrado. **Risco guardado, não sangramento.**
+
+---
+
 ### prioridade NORMAL — O PORTÃO QUE MEDE A PORTA DE ENTRADA ENTRA POR ELA NAS QUATRO ILHAS: medido na rodametria na quinta queda da mesma porta, e a régua geral já está no contrato, na 29.7
 
 05/11/2026 — FUNDAÇÃO (quem reservar a aquametria, a robometria ou a clubedomosaico) — Achado na
