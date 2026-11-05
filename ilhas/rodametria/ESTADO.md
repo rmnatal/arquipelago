@@ -6,121 +6,103 @@ piso: abaixo              # 5 URLs publicadas contra as 40 da 21.1, e primeira_i
 urls_publicadas: 9        # 5 -> 9 em 30/10/2026 as 14h4xZ: as QUATRO paginas que a 16.1 nomeia (`/sobre/`, `/contato/`, `/divulgacao-de-afiliados/`, `/privacidade/`), pelo bloco 5d. CONTADO no wp-sitemap.xml no ar com quebra de cache, nao na conta de antes do desembarque. ELAS NAO MEXEM NO PISO DA 21.1 NEM GASTAM LEVA: a 21.7 tira as cinco paginas nomeadas da 16.1 do teto de 10 URLs por leva e 3 levas por semana, porque sao familia fechada e nenhuma responde a uma busca — o piso de malha segue pedindo 40 e as paginas de malha seguem 5. A DIVIDA QUE ELAS PAGAM estava medida na contagem de 30/10 as 10h3xZ: a ilha serve link de afiliado da Shopee desde 29/10 e nao tinha pagina de divulgacao de afiliados nem de privacidade.
 ultima_ronda: 2026-11-04T20:10Z   # LEITURA SEMANAL de 2026-11-04
 primeira_indexacao: null  # as duas primeiras URLs foram ao ar hoje; indexacao e trabalho de dias. Quem grava este campo e a leitura semanal, lendo o Search Console.
-ultima_execucao: 2026-11-04T19:46Z   # BLOCO 7 ENTREGUE E CONFERIDO NO AR (18.4): a folha desta ilha serve ZERO comentario de CSS nas 9 URLs, contra 23-24 e 7.486-7.866 bytes de manha, e a pagina encolheu de 7.546 a 7.926 bytes. Revisao 42 as 19:39:51Z, `7 aplicado(s)` contra 7 linhas de item dizendo `ok`, lidas DO FECHO PARA BAIXO (20.4 e 20.8). O portao de pixel da 32.5 devolveu os 27 numeros das 9 paginas IDENTICOS aos de antes do desembarque (diff vazio) — a unica prova que vale de que a folha continua pintando igual. Bancada com rede: 32 portoes, 0 falha. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA.
-executando_desde: 2026-11-05T10:18Z   # RESERVA desta execucao, escrita ANTES do trabalho (passo 5 da secao 1). Hora do `date -u` na MESMA linha de comando que a grava. Entrou por FOCO (`foco.md` nomeia a rodametria, foco total e absoluto desde 27/10). As duas excecoes da 1.2 foram conferidas ANTES da reserva e NENHUMA furou: as QUATRO ilhas no ar medidas em 200 em TRES passadas com quebra de cache (doze medicoes verdes, zero intermitencia), e o despacho do molde da 32.6 segue FECHADO nas tres (aquametria 21/10 18h2xZ, clubedomosaico 21/10 19h1xZ, robometria 21/10 16h1xZ). Nenhum branch claude/* e nenhum PR aberto.
-rede: aberta em 2026-11-04   # 20.2, MEDIDA e nao herdada as 19h1xZ: rodametria.com.br em 200 em TRES passadas, e no mesmo comando aquametria.com.br, robometria.com.br e clubedomosaico.com.br tambem em 200 nas TRES — doze medicoes verdes, zero intermitencia. Essa mesma leitura serviu para conferir a excecao da 1.2 (nenhuma ilha fora do foco esta no ar E quebrada). O EGRESSO (gov.br para a F1, os tres varejos grandes para a F3) NAO foi remedido nesta passada e este bloco nao dependia dele; os dois despachos ALTA seguem valendo.
+ultima_execucao: 2026-11-05T10:30Z   # A PORTA DE ENTRADA CAIU (secao 29, QUINTA vez no Arquipelago) e o REPARO NAO E EXERCITAVEL DESTA NUVEM: despacho ALTA para o Raphael. O que esta execucao consertou foi o PORTAO, nao a porta — o portao de ar lia o REST pelo caminho bonito, acusava a casca de nao registrar a rota da 29.3 e encolhia de 481 afirmacoes para 9; agora le por `?rest_route=`, faz 43 com a porta no chao e NOMEIA a causa com o conserto. Regra no contrato, na 29.7. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
+executando_desde: null   # LIMPO as 2026-11-05T10:30Z pela propria execucao que reservou as 10h18Z de 05/11. Entrou por FOCO com a fila limpa; as duas excecoes da 1.2 foram conferidas antes da reserva e nenhuma furou. NAO HOUVE BLOCO DA FILA: a ilha foi achada FORA DO AR (8 das 9 URLs e as tres portas da 29.2 em 404), e pela 18.5 ilha com defeito no ar nao recebe pagina nova. O reparo exige o token do Sync, que nesta ilha nao esta no repositorio — despacho ALTA para o Raphael, notificado as 10h2xZ.
+rede: aberta em 2026-11-05   # 20.2, MEDIDA e nao herdada as 10h1xZ: rodametria.com.br em 200 em TRES passadas, e no mesmo comando aquametria, robometria e clubedomosaico tambem em 200 nas TRES — doze medicoes verdes. E A LICAO DE METODO DO DIA ESTA AQUI: essa medicao AUTORIZOU a reserva e ESCONDEU o defeito, porque a regua da 20.2 pede a RAIZ e a raiz e a unica coisa que esta queda deixa de pe (29.1). O EGRESSO desta ilha esta ABERTO e isso CONTRADIZ o item 2 do despacho de 04/11: o portao de ar fez 43 afirmacoes contra o site de verdade por urllib. O `gov.br` da F1 segue recusado e NAO foi remedido nesta passada.
 bloqueada_por: null      # obrigatorio pela secao 2. `null` DE PROPOSITO: o que falta (gov.br para a F1, as prefeituras para a camada municipal, as tres etiquetas do Mercado Livre) trava a FABRICA e nao a ILHA, e isso se escreve no despacho, que e o canal da 12.2. Preenche-lo congelaria tambem os blocos que ja podem andar.
 bloco_atual: |
-  A FOLHA SERVIA 7.486 BYTES DE COMENTARIO E TRES MENCOES A UMA ROTINA DESTA
-  PASTA, E NENHUM PORTAO VIA. Revisao 42 no ar as 19:39:51Z. Bloco 7 ENTREGUE e
-  conferido no ar (18.4), e a regra virou a 32.4-b do ARQUIPELAGO.md.
+  A ILHA ESTA FORA DO AR, MENOS A HOME, E O PORTAO ESCRITO PARA VER ISSO
+  ACUSOU A CASCA. Nenhum bloco da fila foi executado, e isso e a 18.5
+  funcionando: ilha com defeito no ar nao recebe pagina nova.
 
   ESTE ARQUIVO CONTINUA SENDO A MEMORIA DESTA ILHA — `/areas/projeto-rodametria.md`
   nao existe nesta nuvem, e e por isso que este campo e longo.
 
-  O NUMERO, MEDIDO NO AR AS 19h2xZ E REMEDIDO AS 19h4xZ, URL POR URL com quebra
-  de cache: as folhas desta ilha serviam 23-24 comentarios de CSS e 7.486-7.866
-  bytes POR PAGINA — 10,6% de todo o CSS desta ilha e 85,6% de TODOS os bytes de
-  comentario que a pagina serve. Depois: ZERO em 9 de 9, e a pagina encolheu de
-  7.546 a 7.926 bytes. Os 17 blocos <style> do proprio WordPress (one-liners de
-  41 a 103 bytes) seguem la com os comentarios deles: nao sao desta ilha, nao
-  saem daqui, e NAO podem fazer portao nenhum reprovar.
+  O NUMERO, MEDIDO AS 10h19Z–10h2xZ EM DUAS LEITURAS (com e sem quebra de
+  cache): 8 das 9 URLs em 404, servindo a pagina 404 da HostGator (server
+  nginx, last-modified de 07/04/2026, com `noindex`). As TRES portas da 29.2
+  idem — /wp-sitemap.xml, /robots.txt e /wp-json/ — e o caminho virgem
+  respondendo 404 na pagina do HOSPEDEIRO. So `/` responde 200, com a pagina
+  de verdade.
 
-  O QUE OS COMENTARIOS DIZIAM: tres nomeavam `conferir-32-5-no-navegador.mjs`,
-  um dizia `bancada`, e varios traziam numero de secao do contrato e prosa de
-  bastidor. A lista da 32.4 inteira, servida em toda pagina, por cinco dias.
+  O WORDPRESS ESTA DE PE, e e isso que nomeia a causa: `?rest_route=` entrega
+  a casca 1.10.0 com as quatro versoes de snippet batendo com o manifest, e o
+  log do /status traz a revisao 42 declarando `7 aplicado(s)` contra 7 linhas
+  de item dizendo `ok`. A ENTREGA DE 04/11 ESTA INTACTA; o que caiu foi a
+  porta — o bloco `# BEGIN WordPress` fora do .htaccess da raiz, a assinatura
+  da 29 pela QUINTA vez (clubedomosaico 24/09, 05/10, 08/10; robometria 30/10).
+  Caiu entre 04/11 20h1xZ e 05/11 10h19Z, e esta execucao foi a primeira a olhar.
 
-  POR QUE NENHUM PORTAO VIA, e e isto que vale guardar: a regua de bastidor
-  desta ilha e a da ronda leem o TEXTO VISIVEL, e `corpo_da_pagina()` tira
-  <script> e <style> antes de medir — COM RAZAO, porque ali mora CSS e nao
-  prosa. Entre as duas leituras cabia o defeito inteiro. A 32.4 nao e sobre o
-  que o leitor VE: e sobre o que a pagina SERVE, e e o fonte que a visao geral
-  de IA ingere.
+  O REPARO NAO E EXERCITAVEL DESTA NUVEM, e nao e omissao: a 29.3 exige o
+  token do Sync, que nesta ilha NAO esta no repositorio por decisao. As outras
+  tres tem o seu no PROMPT.md e qualquer execucao repara a porta delas em um
+  comando — A ILHA EM FOCO TOTAL E A UNICA DA FABRICA CUJA PORTA A FABRICA NAO
+  CONSEGUE REPARAR, e isso so ficou medido quando a porta caiu. Despacho ALTA
+  para o Raphael no PROMPT.md e em dados/despachos.md, com as duas vias de
+  conserto e as TRES saidas possiveis sobre o token, sem decisao tomada de
+  cabeca. /wp-admin/options-permalink.php foi MEDIDO alcancavel (302 para o
+  login, porque e arquivo em disco) e e a via sem token. Notificado as 10h2xZ.
 
-  O CONSERTO E UM LUGAR SO. A tag <style> SAIU dos tres snippets e passou a ser
-  escrita por `rodametria_casca_fechar_folha()`, que tira os comentarios ao
-  imprimir; a captura (`rodametria_casca_abrir_folha()`) entrega o texto a ela, e
-  NENHUM BYTE de CSS mudou de lugar no repositorio — a folha da casca tem 600
-  linhas e reescreve-las para trocar QUEM as imprime seria mexer na variavel
-  errada no mesmo dia em que a 32.5 e medida. Com a tag na casca, folha nova
-  nasce DENTRO do conserto (32.5-c). Casca 1.10.0, produto 1.7.1, institucional
-  1.2.1, espelhadas no manifest pela ferramenta que ja espelha o sha256.
+  O DEFEITO QUE ERA MEU CONSERTAR ESTAVA NO PORTAO. O conferir-no-ar.py lia o
+  indice de rotas em /wp-json/rodametria/v1 — caminho bonito, morto junto com
+  a porta — e o /status e o /casca do mesmo jeito. Com a porta no chao ele (a)
+  ACUSOU A CASCA de nao registrar a rota da 29.3, que estava registrada e
+  respondendo 401 com `rodametria_rotas_token_invalido` na mesma passada, e (b)
+  PAROU DE MEDIR O RESTO, encolhendo de 481 afirmacoes para NOVE. E a 29.1 com
+  um andar a mais: ela diz que nenhum portao viu a porta cair porque todos
+  entravam pela porta que continuou aberta — este, escrito para ver, entrava
+  pela porta que CAI, e por isso viu e culpou a casca.
 
-  O COMENTARIO FICA NO REPOSITORIO, que e o lugar dele (secao 3): foi ele que
-  pagou a 32.5-d duas vezes nesta ilha.
+  O CONSERTO E UMA TROCA DE PORTA E NAO UM AFROUXAMENTO: toda leitura de rota
+  REST passa a `?rest_route=`, e a afirmacao da 29.2 sobre /wp-json/ em 200 com
+  application/json FICOU INTEIRA — ela e a dona da porta bonita, e o que muda e
+  que as OUTRAS afirmacoes param de depender dela. Duas funcoes puras novas
+  (`rotas_do_indice()` e `diagnostico_da_porta()`) para o autoteste fabricar o
+  que esta nuvem nao produz.
 
-  COMO NAO SE QUEBRA CSS TIRANDO COMENTARIO, e e o difícil do bloco: `/*`
-  aparece dentro de string (`content:"/*"`) e dentro de `url(...)` sem aspas, e
-  o removedor ingenuo de uma linha casa do `/*` de dentro da string ate o fecho
-  de um comentario de verdade LA NA FRENTE e corta a declaracao do meio. String
-  e `url()` crua entram na MESMA varredura como alternativas e sao devolvidas
-  INTACTAS. Mais duas decisoes: comentario COLADO entre dois caracteres de
-  palavra sai como UM espaco (para o CSS sao dois tokens, e cola-los inventa um
-  terceiro), e comentario SEM FECHAR come o resto da folha, que e o que o
-  navegador faz — nao se inventa um fechamento que o autor nao escreveu.
+  E O PORTAO PASSOU A NOMEAR A CAUSA, com o conserto, numa linha — em vez de
+  seis reprovacoes espalhadas, cada uma verdadeira e nenhuma dizendo o que
+  fazer. E so com as QUATRO grandezas juntas (home 200, as tres portas em 404,
+  REST vivo, caminho bonito morto): home tambem morta, ou REST morto nas duas
+  formas, e OUTRO mundo, e ai ele devolve causa nenhuma, porque causa inventada
+  e a proxima execucao consertando a coisa errada (29.5). A trava do `all()`
+  sobre lista vazia tem mundo proprio.
 
-  A TRAVA QUE VALE MAIS QUE TODAS: o que desapareceu e EXATAMENTE o que morava
-  dentro de comentario. `{` de 145 para 140 e `;` de 282 para 280 na folha da
-  casca, e dentro dos 23 comentarios havia exatamente 5 `{`, 5 `}` e 2 `;` —
-  CSS comentado na prosa. A conta ABRE no dia em que a funcao cortar uma
-  declaracao de verdade.
+  OS NUMEROS: portao de ar contra o site quebrado de 9 para 43 afirmacoes, com
+  a acusacao falsa a casca SUMIDA (o registro agora diz `PRESENTE no indice`).
+  Autoteste de 36 para 46, 0 falha, com os mundos 12 e 13 novos — o 12 da a
+  regua VELHA os bytes de verdade da pagina do hospedeiro e EXIGE que as duas
+  discordem (20.8), e o 12(c) cobra o contrario, que e o risco do conserto:
+  indice de verdade SEM a rota continua sendo pego. Bancada sem rede: 28
+  portoes, 0 falha. NADA foi ao ar e nada podia: nenhum snippet e nenhuma
+  pagina mudaram, o manifest segue na revisao 42.
 
-  E A PROVA DE QUE A FOLHA CONTINUA PINTANDO IGUAL NAO E DO CHAO: o portao de
-  pixel da 32.5, rodado DEPOIS do desembarque, devolveu os 27 numeros das 9
-  paginas BYTE POR BYTE IDENTICOS aos de antes — diff vazio. Caixa 331/329/244/
-  244/244/211/405/211/211 px (teto 700), compra 1.279/1.165/1.092 px (teto
-  1.400), 9 de 9 no molde, 0 fora, 0 disputa latente. A medicao de ANTES foi
-  feita de proposito, com a folha velha, para a comparacao ser de um instrumento
-  com ele mesmo e nao de um numero lembrado.
+  A REGRA SUBIU PORQUE NAO E DE UMA ILHA: ARQUIPELAGO.md 29.7. As QUATRO leem
+  o REST pelo caminho bonito, medido por grep — e o conferir-desembarque.py da
+  aquametria, com a porta caida, sai mandando o leitor para INTERMITENCIA DE
+  REDE ("Pela 20.2, repita antes de chamar de bloqueio") com a porta do site no
+  chao. E a 20.5 ao pe da letra. Endereco nas outras tres: despacho NORMAL em
+  dados/despachos.md.
 
-  OS PORTOES. Novo: `ferramentas/teste-folha-sem-comentario.php` — 58
-  afirmacoes, 8 mundos FABRICADOS com a saida escrita a mao, 6 deles separando a
-  regua nova da ingenua (20.8: autoteste em que as duas concordam nao mede
-  conserto nenhum), mais a conta de tokens, as chaves equilibradas, a trava de
-  "nada inventado" e a cobranca de que a entrada TENHA comentario (senao a
-  bateria aprova sobre nada). E PHP porque a remocao e decidida em PHP: regua em
-  Python sobre o texto do PHP conferiria a FORMA.
-  `ferramentas/conferir-no-ar.py` ganhou DUAS afirmacoes por URL, separadas de
-  proposito porque o conserto de cada uma e diferente (20.5): a folha servida
-  tem comentario (conserta-se na casca) e ha palavra de bastidor no HTML SERVIDO
-  (conserta-se no texto que a produziu). A lista ganhou os nomes de arquivo
-  desta pasta, LIDOS DO DISCO e nunca enumerados, e as extensoes `.py` e `.mjs`.
-  `.php` NAO entra, e a causa foi MEDIDA: o WordPress serve `/wp-*.php` e
-  `xmlrpc.php` no proprio <head>, duas ocorrencias por pagina, e um termo `.php`
-  reprovaria a PAGINA CERTA. 8 mundos novos no `--autoteste` (36 de 36), e o
-  ultimo refaz a regua velha ao lado da nova: a velha APROVA a pagina doente.
+  O DESPACHO DE 04/11 NAO FICOU COMO ESTAVA, e as duas mudancas tem sinal
+  oposto. ITEM 1 ficou IMPOSSIVEL de fechar enquanto a porta estiver no chao: o
+  "pronto quando" e o painel de Sitemaps em Processado com 9 paginas, e o
+  sitemap esta em 404 servindo HTML — o Google vai reler o que a Sentinela
+  enviou em 04/11 e falhar de novo, com o painel PARECENDO o mesmo por causa
+  completamente diferente. ITEM 2 tem a premissa CONTRADITA e NAO esta fechado:
+  o egresso NAO recusa esta ilha hoje, e quem fecha o item e a leitura semanal
+  rodando ferramentas/search-console.py. Eu nao fechei o item 2 — derrubei a
+  premissa dele.
 
-  O PORTAO NOVO REPROVOU O AR DE ANTES: 43 falhas em 524 afirmacoes, todas das
-  quatro classes deste bloco e NENHUMA de outro tipo — a linha de base do resto
-  da pagina ficou medida. Depois do desembarque: 481 afirmacoes, 0 falha.
-
-  AS DUAS IRMAS ACHARAM O QUE A 32.5-c MANDA PROCURAR NA MESMA PASSADA, e as
-  duas reprovaram na BANCADA antes do desembarque, nao foram lembradas:
-  `teste-f2.py` cobra guarda `function_exists` POR FUNCAO no fonte da casca (as
-  duas novas estavam sob a mesma, e guarda compartilhada mente no dia em que uma
-  existir e a outra nao), e `teste-institucional.py` achava a folha pela TAG que
-  acabou de sair — defeito da REGUA e nao da folha: ela passou a acha-la pelo
-  PAR DE CAPTURA e ganhou um caso de autoteste que cobra que o HTML CRU do
-  snippet nao traga mais tag <style> nenhuma.
-
-  A REGRA SUBIU: `ARQUIPELAGO.md` 32.4-b, em tres partes. E o endereco dela nas
-  outras tres ilhas e DESPACHO NORMAL novo em `dados/despachos.md`, escrito como
-  PERGUNTA (a licao de 16/10) e mandando MEDIR antes de consertar, separar os
-  blocos do WordPress dos da ilha, COPIAR os dois portoes em vez de reescreve-los
-  e rodar o pixel DEPOIS.
-
-  PROXIMO PASSO, e a fila honesta: o bloco 7 era o ULTIMO pre-registrado. F1
-  (bloco 4) segue travada pelo egresso do gov.br (despacho ALTA de 28/10, NAO
-  remedido nesta passada porque este bloco nao dependia dele); F3 segue travada
-  por `carga_max_kg` em registro com oferta aberta, atras do nivel 5 da escada
-  (despacho ALTA de 29/10); pagina nova de malha segue travada pela 30.8, atras
-  do despacho de 30/10 (duas SERPs e um volume, numa sessao de Chrome do
-  Raphael). O CANDIDATO e o ARTIGO-ANCORA PAREADO COM A F2 (bloco 5), a unica
-  peca da fila cuja ferramenta par ja esta no ar — e a primeira coisa a fazer com
-  ele e CONFERI-LO: ler a secao 17 (guia e o terceiro nivel da malha, nao blog) e
-  a 30.8, porque se ele precisar de veredito de SERP para existir, esta atras do
-  mesmo despacho de 30/10, e ai a resposta honesta e dizer isso em vez de
-  publicar sobre consulta nao medida.
+  PROXIMO PASSO: A PORTA, E ELA E DO RAPHAEL. Quem pegar esta ilha comeca
+  rodando `python3 ferramentas/conferir-no-ar.py .`: se a causa nomeada da
+  porta aparecer, o despacho ALTA segue aberto e NAO HA BLOCO a executar; se a
+  porta estiver reparada, o despacho se fecha pela 18.4 (conferido no ar, por
+  quem confere e nao por quem reparou) e o item 1 de 04/11 volta a ser
+  alcancavel. Depois da porta a fila nao mudou: F1 travada pelo gov.br, F3 por
+  carga_max_kg, malha nova pela 30.8 — e o candidato segue sendo o
+  ARTIGO-ANCORA PAREADO COM A F2 (bloco 5), com a primeira coisa a fazer sendo
+  CONFERI-LO contra a secao 17 e a 30.8.
 ---
 
 # Estado da ilha RODAMETRIA

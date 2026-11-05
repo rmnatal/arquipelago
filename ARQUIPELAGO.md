@@ -1183,6 +1183,26 @@ As três são as **primeiras a cair** quando a reescrita some, porque não exist
 
 **29.6 ILHA FORA DO FOCO TAMBÉM CAI.** Esta ilha passou de 15/09 a 24/09 sem uma execução — e a 1.2 **dizia**, com todas as letras, que ninguém ronda ilha fora do foco (foi exatamente esta frase que a decisão do Raphael de 28/09/2026 revogou na metade técnica — ver o ponteiro da 1.2; alinhado pelo Pente Fino em 05/10/2026). O `conferir-no-ar.py` **teria** acusado (ele gruda quebra de cache em toda URL, então toda leitura dele já era uma URL com query, que era exatamente a forma que morria); o que faltou não foi sensibilidade, foi alguém rodar. A 1.2-b.1 manda a medição continuar em toda ilha justamente por isso, e **a medição de uma ilha fora do foco custa um `conferir-no-ar.py`** — que é um comando, não um bloco.
 
+**29.7 O PORTÃO QUE MEDE A PORTA DE ENTRADA NÃO PODE ENTRAR POR ELA — LEITURA REST DE PORTÃO SE FAZ POR `?rest_route=`, E A FORMA BONITA FICA SENDO AFIRMAÇÃO DA 29.2 (05/11/2026).**
+
+Medido na **rodametria** às 10h2xZ de 05/11/2026, na **quinta** queda desta mesma porta no Arquipélago (clubedomosaico 24/09, 05/10 e 08/10; robometria 30/10), e o defeito **era do portão escrito para ver a queda**.
+
+A **29.1** já diz que nenhum portão viu a porta cair porque **todos entravam pela porta que continuou aberta**. Esta linha é o andar de cima disso: o `conferir-no-ar.py` da rodametria lia o índice de rotas REST em `/wp-json/rodametria/v1` — **caminho bonito, portanto morto junto com a porta** — e o `/status` e o `/casca` do mesmo jeito. Com a porta no chão ele fez **duas** coisas erradas, e as duas são piores que não medir:
+
+1. **ACUSOU A CASCA DE UM DEFEITO QUE ELA NÃO TEM.** O `json.loads` falhava sobre a página 404 do hospedeiro, a lista de rotas vinha **vazia**, e a saída dizia *"esta casca não registra a rota que mede a porta de entrada por dentro"*. A rota **estava** registrada: `?rest_route=/rodametria/v1/rotas` respondia **401 com `rodametria_rotas_token_invalido`** na mesma passada, e a casca a servia desde 03/11. Quem lesse aquela linha iria procurar registro de rota na casca — **o conserto errado, no arquivo errado, com a porta de entrada do site no chão.**
+2. **PAROU DE MEDIR O RESTO.** O portão devolve na hora quando o `/status` não dá 200, e a leitura encolheu de **481 afirmações** (04/11, de tarde) para **NOVE** — conteúdo, voz, 32.4 e 32.5 deixaram de ser medidos exatamente no dia em que a ilha mais precisava.
+
+**E ISTO NÃO É DE UMA ILHA: AS QUATRO LEEM ASSIM, e está medido.** `ilhas/robometria/ferramentas/conferir-no-ar.py` monta o `/status` como `/wp-json/robometria/v1/status`; os `conferir-desembarque.py` da **aquametria** e da **clubedomosaico** idem. E o da aquametria, com a porta caída, **sai dizendo** *"o /status não respondeu ou não é JSON. Pela 20.2, repita antes de chamar de bloqueio"* — manda o leitor para a hipótese de **intermitência de rede**, que é a 20.5 ao pé da letra: **portão que reprova pelo motivo errado é o caminho mais curto para alguém passar a ignorá-lo.**
+
+**A RÉGUA, em três partes:**
+
+1. **Todo portão lê rota REST por `?rest_route=/<ilha>/v1/<rota>`**, nunca por `/wp-json/...`. É a porta que não cai: ela é query na raiz, e a raiz é o que continua servindo quando a reescrita some.
+2. **A forma bonita continua cobrada — pela afirmação que é dona dela.** `/wp-json/` em 200 com `application/json` é afirmação da **29.2**, e ela fica inteira. O que muda é que as **outras** afirmações param de depender dela. Trocar a porta por onde o portão entra **não afrouxa nada**: a rota de verdade ausente continua sendo pega pelo índice, e isso se prova com mundo fabricado, não com promessa.
+3. **O portão NOMEIA a causa quando as quatro grandezas estiverem na mesa** — home em 200, as três portas da 29.2 em 404, REST vivo por `?rest_route=`, caminho bonito morto. Essa assinatura já apareceu cinco vezes e tem conserto escrito; dizê-la transforma seis reprovações espalhadas em **uma causa com reparo**. E ela só se diz com as quatro juntas: home morta também, ou REST morto nas duas formas, é **outro** mundo, e aí o portão devolve causa nenhuma — **causa inventada é a próxima execução consertando a coisa errada (29.5)**.
+
+**O autoteste é o que separa esta regra de uma intenção:** a troca entra com mundo **fabricado** em que a régua velha e a nova **discordam** (20.8), dando à velha a página 404 do hospedeiro e exigindo que ela acuse a casca enquanto a nova não acusa nada — autoteste em que as duas concordam não mede conserto nenhum.
+
+
 ## 30. PÁGINAS PELO NOME DO PRODUTO — vale para toda ilha (decisão do Raphael, 09/10/2026)
 
 Decidido pelo Raphael em 09/10/2026 para o Clube do Mosaico ("eu gostaria de ranquear quando a pessoa procurar por esses produtos... eu quero ser um dos primeiros") e estendido por ele no mesmo dia: "Isso serve para todas as ilhas. Serve para aquametria, para robometria, para todo mundo."

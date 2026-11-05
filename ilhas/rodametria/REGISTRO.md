@@ -3,6 +3,54 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-11-05 10h18Z–10h3xZ — **A ILHA EM FOCO TOTAL ESTÁ FORA DO AR, MENOS A HOME, E O PORTÃO ESCRITO PARA VER ISSO ACUSOU A CASCA** — nenhum bloco da fila; o trabalho foi a porta e o instrumento
+
+**A ESCOLHA DA ILHA.** `foco.md` nomeia a **rodametria** (foco total e absoluto desde 27/10) e pela **1.2** não há escolha a fazer. `executando_desde` estava `null`, que pela **1.1** já significa que não havia bloco da Fundação vivo — não houve reserva vencida para o git desempatar. **As duas exceções que furam o foco foram conferidas ANTES da reserva e nenhuma furou:** as **quatro** ilhas no ar medidas em **200 em TRÊS passadas** com quebra de cache (doze medições verdes, zero intermitência), e o despacho do molde da **32.6** segue FECHADO nas três (aquametria 21/10 18h2xZ, clubedomosaico 21/10 19h1xZ, robometria 21/10 16h1xZ). Nenhum branch `claude/*` e nenhum PR aberto. Reserva no commit `a88a34e`, às 10h18Z.
+
+**E A MEDIÇÃO QUE AUTORIZOU A RESERVA É A MESMA QUE ESCONDEU O DEFEITO, e isto é a lição de método do dia:** `https://rodametria.com.br/` em 200 três vezes é exatamente o que esta queda produz. A régua de rede da **20.2** pede a raiz, e a raiz é a única coisa que sobrevive. **Medir a home e concluir "a ilha está no ar" é a 29.1 em uma linha** — e eu escrevi "doze medições verdes" no commit de reserva antes de descobrir que oito das nove URLs estavam em 404.
+
+### O QUE ESTÁ QUEBRADO, medido em DUAS leituras — com e sem quebra de cache
+
+**8 das 9 URLs em 404**, servindo a página 404 da HostGator (`server: nginx`, `x-server-cache: true`, `last-modified` de 07/04/2026 — arquivo estático do hospedeiro, com `<meta name="robots" content="noindex">`). As **três portas da 29.2** idem: `/wp-sitemap.xml`, `/robots.txt` e `/wp-json/`, as três em 404 com `content-type: text/html`. O caminho virgem responde 404 **na página do hospedeiro**, não na desta ilha. **Só `/` responde 200**, com a página de verdade.
+
+**O WORDPRESS ESTÁ DE PÉ, e é isso que nomeia a causa:** `?rest_route=/rodametria/v1/casca` responde **200**, casca **1.10.0**, as quatro versões de snippet batendo com o manifest, instalada em 2026-11-04 19:40:29; o log do `/status` traz a **revisão 42** declarando `7 aplicado(s)` contra **7 linhas de item dizendo `ok`**, lidas uma por uma (20.4). **A entrega de 04/11 está intacta. O que caiu foi a porta** — o bloco `# BEGIN WordPress` fora do `.htaccess` da raiz, a assinatura da **29** pela **quinta** vez no Arquipélago (clubedomosaico 24/09, 05/10, 08/10; robometria 30/10).
+
+**QUANDO:** entre 04/11 às **20h1xZ** (a leitura semanal fechou medindo as 9 URLs) e 05/11 às **10h19Z**. Menos de 15 horas, e esta execução foi a primeira a olhar — a `ultima_ronda` é de 04/11 20h10Z.
+
+**O REPARO NÃO É EXERCITÁVEL DESTA NUVEM**, e isso não é omissão: a 29.3 exige o **token do Sync**, que nesta ilha não está no repositório **por decisão** (divergência (b) da seção 12 da casca). Despacho **ALTA** para o Raphael no `PROMPT.md` e em `dados/despachos.md`, com as duas vias de conserto — e `/wp-admin/options-permalink.php` foi **medido alcançável** (302 para o login, porque é arquivo em disco), que é a via sem token. **Notificação enviada a ele às 10h2xZ.**
+
+### O DEFEITO QUE ERA MEU CONSERTAR, E ELE ESTAVA NO PORTÃO ESCRITO PARA VER A QUEDA
+
+O `conferir-no-ar.py` desta ilha lia o índice de rotas REST em `/wp-json/rodametria/v1` — **caminho bonito, portanto morto junto com a porta** — e o `/status` e o `/casca` do mesmo jeito. Com a porta no chão ele fez **duas** coisas piores que não medir:
+
+1. **ACUSOU A CASCA DE UM DEFEITO QUE ELA NÃO TEM.** O `json.loads` falhava sobre a página 404 do hospedeiro, a lista de rotas vinha vazia, e a saída dizia *"esta casca nao registra a rota que mede a porta de entrada por dentro"*. A rota **estava** registrada: `?rest_route=/rodametria/v1/rotas` respondia **401 com `rodametria_rotas_token_invalido`** na mesma passada — o código que prova que a casca achou a fonte do token e rodou o `hash_equals`. **Quem lesse aquela linha iria procurar registro de rota na casca**, o conserto errado no arquivo errado, com a porta do site no chão.
+2. **PAROU DE MEDIR O RESTO.** `main()` devolve na hora quando o `/status` não dá 200: a leitura encolheu de **481 afirmações** (04/11, de tarde) para **NOVE**. Conteúdo, voz, 32.4 e 32.5 deixaram de ser medidos exatamente no dia em que a ilha mais precisava.
+
+**É A 29.1 COM UM ANDAR A MAIS.** A 29.1 diz que nenhum portão viu a porta cair porque **todos entravam pela porta que continuou aberta**. Este portão, escrito para ver, entrava pela porta que **cai** — e por isso ele viu, e culpou a casca.
+
+**O CONSERTO, e ele é uma troca de porta e não um afrouxamento:** toda leitura de rota REST passa a `?rest_route=`. **A afirmação da 29.2 sobre `/wp-json/` em 200 com `application/json` ficou inteira** — ela é a dona da porta bonita, e o que muda é que as **outras** afirmações param de depender dela. Mais duas funções puras, para o autoteste poder fabricar o que esta nuvem não produz: `rotas_do_indice()` (índice que não é JSON devolve lista vazia, sem estourar) e `diagnostico_da_porta()`.
+
+**E O PORTÃO PASSOU A NOMEAR A CAUSA.** Com as quatro grandezas na mesa — home em 200, as três portas em 404, REST vivo por `?rest_route=`, caminho bonito morto — ele escreve numa linha o que aconteceu **e o conserto**, em vez de seis reprovações espalhadas, cada uma verdadeira e nenhuma dizendo o que fazer. **E só com as quatro juntas:** home também morta, ou REST morto nas duas formas, é **outro** mundo, e aí ele devolve causa nenhuma — **causa inventada é a próxima execução consertando a coisa errada (29.5)**. A trava do `all()` sobre lista vazia tem mundo próprio: sem porta medida nenhuma não se nomeia causa.
+
+**OS NÚMEROS DO CONSERTO.** Portão de ar contra o site quebrado: de **9 para 43 afirmações**, com a acusação falsa à casca **sumida** (agora o registro diz `PRESENTE no indice`) e a causa nomeada. `--autoteste`: de **36 para 46 afirmações, 0 falha**, com os mundos **12** e **13** novos. O mundo 12 dá à régua **velha** os bytes de verdade da página 404 do hospedeiro e **exige que as duas discordem** (20.8): a velha acusa a casca, a nova não acusa nada. E o **12(c)** cobra o contrário, que é o risco do conserto: índice de verdade **sem** a rota continua sendo pego — a troca de porta não afrouxou a afirmação. **Bancada sem rede: 28 portões, 0 falha.**
+
+**NADA FOI AO AR, e não podia:** nenhum snippet e nenhuma página mudaram, então não há revisão a desembarcar — e a **18.5** proíbe página nova em ilha com defeito no ar. O `manifest.json` segue na revisão 42.
+
+### A REGRA SUBIU, porque não é de uma ilha: as QUATRO leem assim
+
+`ARQUIPELAGO.md` **29.7**. E está medido pelo `grep`, não por palpite: `ilhas/robometria/ferramentas/conferir-no-ar.py` monta `STATUS = DOMINIO + '/wp-json/robometria/v1/status'`; os `conferir-desembarque.py` da **aquametria** e da **clubedomosaico** idem, com o domínio de cada uma. **E o pior não é parar de medir, é a causa errada:** o da aquametria, com a porta caída, sai dizendo *"o /status nao respondeu ou nao e JSON … Pela 20.2, repita antes de chamar de bloqueio"* — manda o leitor para **intermitência de rede**, com a porta de entrada do site no chão. É a **20.5** ao pé da letra, e é como uma ilha fica dias fora do ar com o portão vermelho pelo motivo errado. Endereço da regra nas outras três: despacho **NORMAL** em `dados/despachos.md`, escrito como **pergunta** e mandando **medir antes de consertar** e **copiar** os dois portões em vez de reescrevê-los.
+
+### O DESPACHO DE 04/11 NÃO FICOU COMO ESTAVA, e as duas mudanças são de sinal oposto
+
+- **ITEM 1 ficou IMPOSSÍVEL de fechar enquanto a porta estiver no chão**, e é o custo mais caro desta queda. O "pronto quando" é o painel de Sitemaps em **Processado com 9 páginas**; `/wp-sitemap.xml` está em **404 servindo HTML**, então o Google vai reler o sitemap enviado em 04/11 às 19h5xZ e **falhar de novo** — e o estado "Não foi possível buscar o sitemap", que aquele despacho classificou com razão como normal na primeira leitura, vai **parecer o mesmo** por uma causa completamente diferente. Primeiro a porta, depois o sitemap.
+- **ITEM 2 tem a premissa CONTRADITA por medição de hoje, e NÃO está fechado.** Ele diz que o egresso recusa `rodametria.com.br`. **Hoje não recusa:** 200 em três passadas às 10h1xZ, e o portão de ar fez **43 afirmações** contra o site de verdade, lendo `/status`, `/casca` e sitemap por `urllib`. O `ProxyError … 403 Forbidden` de 04/11 foi num **CONNECT**, que é recusa de **host** — e a Fundação mediu o mesmo host em 200 **quarenta minutos antes**, na mesma noite. As duas não podem ser verdade sobre um estado estável: é **intermitência ou lista de egresso mudando**, não bloqueio firme, e pela **20.2** bloqueio herdado se reteste antes de ser respeitado. **Quem fecha o item é a leitura semanal**, rodando `ferramentas/search-console.py` — instrumento dela, pede credencial de conta de serviço, e a Fundação não o roda por ela. Dito em vez de maquiado: **eu não fechei o item 2, eu derrubei a premissa dele.**
+
+### PRÓXIMO PASSO
+
+**A PORTA, e ela é do Raphael.** Nada de malha nova entra enquanto as 9 URLs não voltarem a 200 — **18.5**, e a ilha está invisível para o Google de qualquer forma. Quem pegar esta ilha a seguir **começa rodando `python3 ferramentas/conferir-no-ar.py .`**: se a causa nomeada da porta aparecer, o despacho ALTA segue aberto e **não há bloco a executar**; se a porta estiver reparada, o despacho se fecha pela **18.4** (conferido no ar, por quem confere e não por quem reparou) e **o item 1 do despacho de 04/11 volta a ser alcançável** — o sitemap passa a servir XML e o painel pode processar.
+
+**Depois da porta, a fila honesta não mudou:** F1 (bloco 4) segue travada pelo egresso do `gov.br` (despacho ALTA de 28/10, **não remedido nesta passada** porque este trabalho não dependia dele); F3 segue travada por `carga_max_kg` em registro com oferta aberta; página nova de malha segue travada pela **30.8**, atrás do despacho de 30/10. **O candidato continua sendo o ARTIGO-ÂNCORA PAREADO COM A F2 (bloco 5)** — e a primeira coisa a fazer com ele continua sendo **conferi-lo** contra a seção 17 e a 30.8, porque se ele precisar de veredito de SERP para existir, está atrás do mesmo despacho de 30/10.
+
 ## 2026-11-04 19h17Z–19h46Z — **A FOLHA SERVIA 7.486 BYTES DE COMENTÁRIO E TRÊS MENÇÕES A UMA ROTINA DESTA PASTA, E NENHUM PORTÃO VIA** — bloco 7, pré-registrado nesta mesma manhã
 
 **A ESCOLHA DA ILHA.** `foco.md` nomeia a **rodametria** (foco total e absoluto desde 27/10) e pela **1.2**

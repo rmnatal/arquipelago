@@ -277,6 +277,36 @@ Aprovada por ele na conversa em 27/10/2026 ("vamos em frente", e "Já pode entã
 
 **A regra de dinheiro desta ilha (BUSSOLA.md 0.8 e 0.9):** a conta que aprovou é **só Shopee** — patinete elétrico adulto (ticket mediano R$ 2.329, comissão mediana 10%, medidos no painel em 27/10/2026) e peças/acessórios. **Scooter, moto e bicicleta elétrica entram com link do Mercado Livre como bônus, só para o que a Shopee não vende**, nunca como sustentação. Quando o mesmo produto existe nos dois, o link é o da Shopee (seção 7). Amazon fora de tudo.
 
+## DESPACHO DA FUNDAÇÃO PARA O RAPHAEL — 2026-11-05 — ALTA: A ILHA ESTÁ FORA DO AR, MENOS A HOME, E O REPARO NÃO É EXERCITÁVEL DESTA NUVEM
+
+Medido às 10h19Z–10h2xZ de 05/11/2026 pela execução da Fundação que reservou esta ilha às 10h18Z, em **duas leituras — com e sem quebra de cache** —, e remedido pelo portão de ar da ilha.
+
+**O NÚMERO.** **8 das 9 URLs em 404**, servindo a página 404 da HostGator. As **três portas da 29.2** também: `/wp-sitemap.xml`, `/robots.txt` e `/wp-json/`, as três em 404 com `content-type: text/html`. **Só `https://rodametria.com.br/` responde 200**, com a página de verdade (`<title>Rodametria — os três números antes de comprar um elétrico</title>`). O caminho virgem responde 404 na página do **hospedeiro**, não na desta ilha.
+
+**A CAUSA TEM NOME, E É A QUINTA VEZ NO ARQUIPÉLAGO COM A MESMA ASSINATURA** — clubedomosaico em 24/09, 05/10 e 08/10; robometria em 30/10; esta ilha agora. O bloco `# BEGIN WordPress` sai do `.htaccess` da raiz, o Apache para de mandar caminho bonito para o `index.php`, e **só sobrevive o que é arquivo de verdade ou query na raiz**. O WordPress está **de pé**: `?rest_route=/rodametria/v1/casca` responde **200**, casca **1.10.0**, instalada em 2026-11-04 19:40:29, e o log do `/status` traz a **revisão 42** com as **7 linhas de item dizendo `ok`** (20.4, lidas uma por uma pelo portão). A entrega de 04/11 está intacta; o que caiu foi a porta.
+
+**QUANDO CAIU:** entre **04/11 às 20h1xZ** — a leitura semanal fechou medindo as 9 URLs e enviando o sitemap — e **05/11 às 10h19Z**. Menos de 15 horas, e esta execução foi a primeira a olhar.
+
+**O QUE EU NÃO CONSIGO FAZER, e é o motivo deste despacho ser para você.** O reparo da **29.3** é `flush_rewrite_rules( true )` e exige o **token do Sync**, que nesta ilha **não está no repositório, por decisão** (divergência (b) da seção 12 da casca). As outras três ilhas têm o seu no `PROMPT.md`, e por isso qualquer execução repara a porta delas em um comando. **A ilha em foco total é a única da fábrica cuja porta de entrada a fábrica não consegue reparar.** Isso agora está medido, e a escolha entre as três saídas possíveis está em `dados/despachos.md`, como despacho ALTA para você — sem decisão tomada de cabeça aqui.
+
+**O CONSERTO, as duas vias, e a mais curta não precisa de token:**
+
+1. **wp-admin → Configurações > Links permanentes → Salvar.** É o mesmo `flush_rewrite_rules` que a documentação do WordPress manda fazer para este defeito. `https://rodametria.com.br/wp-admin/options-permalink.php` foi **medido alcançável** nesta passada (302 para o login — é arquivo em disco, então não depende da reescrita).
+2. **A via medida, que devolve o antes e o depois:** logado, leia o token em `https://rodametria.com.br/?rest_route=/rodametria/v1/token` e chame `https://rodametria.com.br/?rest_route=/rodametria/v1/rotas&token=<token>&reparar=1`. **Use a forma `?rest_route=`** — `/wp-json/...` está em 404 justamente por causa do defeito, e é a armadilha que faria a via do reparo parecer quebrada também.
+
+**PRONTO QUANDO:** `python3 ferramentas/conferir-no-ar.py .` voltar a APROVAR as três portas da 29.2 e as 9 URLs em 200, com o `/wp-sitemap.xml` servindo XML de verdade. **Pela 18.4 este despacho só morre conferido no ar**, por quem conferir — não por quem reparar.
+
+**E SE O REPARO NÃO PEGAR:** se o diagnóstico da rota mostrar o `.htaccess` gravado e **correto** e as URLs continuarem em 404, o `AllowOverride` está desligado do lado do hospedeiro, e aí é **chamado na HostGator** e não código de ilha nenhuma (29.4). Pela **19.4(b)**, a **segunda** queda nesta mesma raiz deixa de ser conserto e vira chamado — esta é a primeira.
+
+### O QUE ESTA EXECUÇÃO CONSERTOU, e não é a porta: o PORTÃO que devia tê-la visto
+
+O portão de ar desta ilha entrava pela porta que cai, e com isso **acusou a casca de um defeito que ela não tem** e **parou de medir o resto**. A régua geral subiu para o contrato, na **29.7**; o endereço dela nas outras três ilhas é despacho NORMAL em `dados/despachos.md`. Detalhe no `REGISTRO.md` desta data.
+
+### O QUE ESTA QUEDA FAZ COM O DESPACHO DE 04/11 LOGO ABAIXO, dito aqui para ninguém o ler como se nada tivesse mudado
+
+- **O ITEM 1 daquele despacho ficou IMPOSSÍVEL de fechar enquanto a porta estiver no chão**, e isto é o custo mais caro desta queda. O "pronto quando" dele é o painel de Sitemaps mostrar **Processado com 9 páginas**; `/wp-sitemap.xml` está em **404 servindo HTML do hospedeiro**, então o Google vai reler o sitemap que a Sentinela enviou em 04/11 às 19h5xZ e **falhar de novo** — e o estado "Não foi possível buscar o sitemap", que aquele despacho classificou com razão como normal na primeira leitura, vai ficar **parecendo o mesmo** por uma causa completamente diferente. Primeiro a porta, depois o sitemap.
+- **O ITEM 2 daquele despacho tem a premissa CONTRADITA por medição de hoje, e ele NÃO está fechado.** Ele diz que o egresso desta nuvem recusa `rodametria.com.br`. **Hoje não recusa:** o domínio respondeu **200 em três passadas** às 10h1xZ (com as outras três ilhas em 200 nas mesmas três — doze medições verdes), e o portão de ar da ilha fez **43 afirmações** contra o site de verdade, lendo o `/status`, o `/casca` e o sitemap. O `ProxyError … 403 Forbidden` de 04/11 foi num **CONNECT**, que é recusa de **host** — e a Fundação havia medido o mesmo host em 200 **quarenta minutos antes**, na mesma noite. As duas leituras não podem ser as duas verdade sobre um estado estável, então o que há é **intermitência ou lista de egresso mudando**, e não bloqueio firme. **Pela 20.2 bloqueio herdado se reteste antes de ser respeitado**, e o reteste de hoje deu aberto. Quem fecha o item é a **leitura semanal** rodando `ferramentas/search-console.py` — é instrumento dela, pede credencial de conta de serviço, e a Fundação não o roda por ela.
+
 ## DESPACHO DA SENTINELA — 2026-11-04 (LEITURA SEMANAL, 19h4xZ–20h1xZ) — ALTA: A ILHA EM FOCO TOTAL ESTAVA INVISÍVEL PARA O GOOGLE, E A RÉGUA TÉCNICA ESTAVA VERDE
 
 Primeira leitura semanal desta ilha.

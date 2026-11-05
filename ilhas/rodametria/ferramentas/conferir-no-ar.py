@@ -252,6 +252,109 @@ def aplicados_declarados(fecho):
 
 ROTA_DA_293 = "/rodametria/v1/rotas"
 
+# A LISTA DA 29.2 MORA NUMA CONSTANTE porque o diagnostico da porta a conta.
+PORTAS_DA_292 = (
+    ("/robots.txt", "text/plain"),
+    ("/wp-sitemap.xml", "xml"),
+    ("/wp-json/", "application/json"),
+)
+
+
+def rest(rota):
+    """A rota REST pela porta QUE NAO CAI, e nunca pelo caminho bonito.
+
+    MEDIDO NESTA ILHA EM 05/11/2026, as 10h2xZ, e o defeito era DESTE ARQUIVO.
+    A porta de entrada caiu (o bloco `# BEGIN WordPress` fora do `.htaccess` da
+    raiz, a assinatura da 29 pela QUINTA vez no Arquipelago) e este portao, que
+    existe para medir isso, fez duas coisas erradas por ler o REST pelo caminho
+    bonito:
+
+      (1) ACUSOU A CASCA DE UM DEFEITO QUE ELA NAO TEM. O indice de rotas era
+          lido em `/wp-json/rodametria/v1` — que e caminho bonito, portanto
+          morto junto com a porta. O `json.loads` falhava sobre a pagina 404 do
+          hospedeiro, `rotas_no_indice` vinha VAZIA, e a saida dizia "esta casca
+          nao registra a rota que mede a porta de entrada por dentro". A rota
+          ESTAVA registrada: `?rest_route=/rodametria/v1/rotas` respondia 200 na
+          mesma passada, e a casca a servia desde 03/11. Quem lesse aquela linha
+          iria procurar registro de rota na casca — o conserto errado, no arquivo
+          errado, com a porta de entrada do site no chao.
+
+      (2) PAROU DE MEDIR O RESTO. O `/status` era lido pelo caminho bonito, e
+          `main()` devolve `encerrar()` quando ele nao da 200: a leitura inteira
+          encolheu de 481 afirmacoes (04/11, de tarde) para NOVE. Tudo o que este
+          portao sabe sobre conteudo, voz, 32.4 e 32.5 deixou de ser medido
+          exatamente no dia em que a ilha mais precisava ser medida.
+
+    E A 29.1 COM UM ANDAR A MAIS, e por isso esta aqui e nao so no registro do
+    dia: a 29.1 diz que nenhum portao viu a porta cair porque todos entravam
+    pela porta que continuou aberta. Este portao, escrito para ver, entrava pela
+    porta que CAI — e por isso ele viu, e culpou a casca.
+
+    O QUE ESTA TROCA NAO AFROUXA, porque afrouxar portao por conveniencia seria
+    o conserto virar o defeito seguinte: `/wp-json/` em 200 com
+    `application/json` continua sendo afirmacao da 29.2, inteira, logo acima.
+    A porta segue cobrada pela afirmacao que existe para cobra-la; o que muda e
+    que as OUTRAS afirmacoes param de depender dela. E a 20.5 ao pe da letra —
+    portao que reprova pelo motivo errado e o caminho mais curto para alguem
+    passar a ignora-lo.
+    """
+    return "?rest_route=" + rota
+
+
+def rotas_do_indice(bruto):
+    """As rotas que o indice REST declara, ou LISTA VAZIA se nao for JSON.
+
+    Separada de `main()` de proposito, para o `--autoteste` poder dar a ela a
+    pagina 404 do hospedeiro e medir o que a regua velha concluia dela.
+    """
+    try:
+        d = json.loads(bruto)
+    except Exception:
+        return []
+    if not isinstance(d, dict):
+        return []
+
+    return sorted((d.get("routes") or {}).keys())
+
+
+def diagnostico_da_porta(cod_home, cods_das_portas, rest_vivo):
+    """A ASSINATURA DA 29, NOMEADA — ou None quando ela nao esta na mesa.
+
+    Cinco vezes no Arquipelago com a mesma cara: clubedomosaico em 24/09, 05/10
+    e 08/10, robometria em 30/10 e esta ilha em 05/11. Sempre as mesmas quatro
+    grandezas juntas: a HOME em 200, as TRES portas da 29.2 em 404, o REST VIVO
+    por `?rest_route=` e o caminho bonito morto. O que isso quer dizer tem nome
+    e tem conserto, e os dois estao na 29: o bloco `# BEGIN WordPress` saiu do
+    `.htaccess` da raiz, e o conserto e o `flush_rewrite_rules( true )` da 29.3.
+
+    POR QUE O PORTAO DIZ A CAUSA E NAO SO OS SINTOMAS: sem esta linha a leitura
+    sai como seis ou oito reprovacoes espalhadas, cada uma verdadeira e nenhuma
+    dizendo o que fazer, e a de 05/11 ainda saia com uma SETIMA acusando a
+    casca. Causa medida cinco vezes e com conserto escrito nao e palpite: e o
+    que separa "a ilha esta vermelha" de "a porta caiu, e o conserto e este".
+
+    O QUE ELA NAO AFIRMA, e e por isso que ela cobra as quatro grandezas
+    juntas: se a home TAMBEM estiver morta, ou se o REST estiver morto nas duas
+    formas, nao e esta a causa — e esta funcao devolve None em vez de nomear a
+    errada. Causa inventada e a proxima execucao consertando a coisa errada
+    (29.5).
+    """
+    if cod_home != 200 or not rest_vivo:
+        return None
+    if not cods_das_portas or any(c == 200 for c in cods_das_portas):
+        return None
+
+    return ("29: A PORTA DE ENTRADA CAIU, e a assinatura e a conhecida — home em 200, "
+            "as %d portas da 29.2 em %s, e o REST VIVO por `?rest_route=`. O WordPress "
+            "esta de pe e o Apache parou de lhe mandar caminho bonito: e o bloco "
+            "`# BEGIN WordPress` fora do `.htaccess` da raiz. CONSERTO: o "
+            "`flush_rewrite_rules( true )` da 29.3 — `?rest_route=/rodametria/v1/rotas"
+            "&token=<token do Sync>&reparar=1`, ou Salvar em Configuracoes > Links "
+            "permanentes no wp-admin. O token desta ilha NAO esta no repositorio, "
+            "entao o reparo NAO e exercitavel desta nuvem (quinta ocorrencia no "
+            "Arquipelago: clubedomosaico 24/09, 05/10 e 08/10; robometria 30/10)"
+            % (len(cods_das_portas), "/".join(str(c) for c in cods_das_portas)))
+
 
 def codigo_do_erro(bruto):
     """O campo `code` do JSON de erro do WordPress, ou None se nao for um."""
@@ -411,15 +514,15 @@ def main():
     # 1. A PORTA DE ENTRADA (29.2). Ela cai sozinha, sem nenhum portao
     #    acusar, e foi assim que o Clube do Mosaico passou nove dias fora.
     # -------------------------------------------------------------------
-    porta = (
-        ("/robots.txt", "text/plain"),
-        ("/wp-sitemap.xml", "xml"),
-        ("/wp-json/", "application/json"),
-    )
-    for caminho, tipo in porta:
+    cods_das_portas = []
+    for caminho, tipo in PORTAS_DA_292:
         cod, ct, _ = buscar(caminho)
+        cods_das_portas.append(cod)
         afirma(cod == 200, "29.2: %s respondeu %s, nao 200" % (caminho, cod))
         afirma(tipo in ct, "29.2: %s veio como %r e tinha de ser %r" % (caminho, ct, tipo))
+
+    cod_home, _, _ = buscar("/")
+    afirma(cod_home == 200, "29.2: a home respondeu %s, nao 200" % cod_home)
 
     virgem = "/caminho-que-nunca-existiu-%d/" % int(__import__("time").time())
     cod, _, _ = buscar(virgem, v=False)
@@ -440,14 +543,11 @@ def main():
     #      a fonte do token e comparar. O reparo em si nao e exercitavel
     #      daqui, e isso esta dito em vez de maquiado.
     # -------------------------------------------------------------------
-    _, _, indice = buscar("/wp-json/rodametria/v1")
-    try:
-        rotas_no_indice = sorted(json.loads(indice).get("routes", {}).keys())
-    except Exception:
-        rotas_no_indice = []
+    _, _, indice = buscar(rest("/rodametria/v1"))
+    rotas_no_indice = rotas_do_indice(indice)
 
-    cod_sem, _, _ = buscar("?rest_route=/rodametria/v1/rotas")
-    cod_err, _, corpo_err = buscar("?rest_route=/rodametria/v1/rotas&token=token-de-proposito-errado")
+    cod_sem, _, _ = buscar(rest(ROTA_DA_293))
+    cod_err, _, corpo_err = buscar(rest(ROTA_DA_293) + "&token=token-de-proposito-errado")
     code_err = codigo_do_erro(corpo_err)
 
     for problema in problemas_da_parede(rotas_no_indice, cod_sem, cod_err, code_err):
@@ -459,7 +559,11 @@ def main():
     # afirma o que nao mediu e a familia do comentario que declara um
     # mecanismo: parece conferido e nao mede nada (32.5-d). Quem decide aqui
     # sao as afirmacoes acima.
-    registro("29.3: %s %s no indice; sem token -> %s; token errado -> %s com `%s` (a parede medida de fora, sem o token)"
+    porta_caida = diagnostico_da_porta(cod_home, cods_das_portas, cod_sem in (200, 401))
+    if porta_caida:
+        afirma(False, porta_caida)
+
+    registro("29.3: %s %s no indice; sem token -> %s; token errado -> %s com `%s` (a parede medida de fora, sem o token, e o indice lido por ?rest_route= — a porta que nao cai)"
              % (ROTA_DA_293,
                 "PRESENTE" if ROTA_DA_293 in rotas_no_indice else "AUSENTE",
                 cod_sem, cod_err, code_err))
@@ -467,7 +571,7 @@ def main():
     # -------------------------------------------------------------------
     # 2. O /status E O PORTAO DO DESEMBARQUE (20.4 e 20.5)
     # -------------------------------------------------------------------
-    cod, _, bruto = buscar("/wp-json/rodametria/v1/status")
+    cod, _, bruto = buscar(rest("/rodametria/v1/status"))
     afirma(cod == 200, "/status respondeu %s" % cod)
     if cod != 200:
         return encerrar()
@@ -554,7 +658,7 @@ def main():
     # -------------------------------------------------------------------
     # 3. A CASCA INSTALOU AS PAGINAS QUE DIZ TER INSTALADO
     # -------------------------------------------------------------------
-    cod, _, bruto = buscar("/wp-json/rodametria/v1/casca")
+    cod, _, bruto = buscar(rest("/rodametria/v1/casca"))
     afirma(cod == 200, "/casca respondeu %s — a casca nao esta ativa no ar" % cod)
     urls = {}
     if cod == 200:
@@ -1199,6 +1303,78 @@ def autoteste():
     diz(regua_velha_do_bastidor(doente) == [] and bast != [],
         "11.8 a regua VELHA (texto visivel) APROVA a pagina doente e a NOVA (byte servido) a "
         "REPROVA — as duas discordam, senao este autoteste nao mede o conserto")
+
+    # MUNDO 12 — A PORTA CAIDA, FABRICADA, E AS DUAS REGUAS LADO A LADO.
+    # Este mundo e o de 05/11/2026 as 10h2xZ nesta ilha, e ele existe porque o
+    # portao que devia medir a queda entrava pela porta que cai. Os bytes
+    # abaixo sao os que o hospedeiro serviu naquela leitura.
+    pagina_do_hospedeiro = (
+        '<!DOCTYPE html>\n<html lang="pt-BR">\n  <head>\n'
+        '    <meta name="robots" content="noindex">\n'
+        '    <title>Hospedagem de Site com Dominio Gratis - HostGator</title>\n'
+        '  </head>\n  <body>\n    <h3>Erro 404</h3>\n  </body>\n</html>'
+    )
+    indice_de_verdade = json.dumps({"namespace": "rodametria/v1", "routes": {
+        "/rodametria/v1": {}, "/rodametria/v1/casca": {},
+        "/rodametria/v1/rotas": {}, "/rodametria/v1/status": {},
+        "/rodametria/v1/sync": {}, "/rodametria/v1/token": {}}})
+
+    # (a) A REGUA VELHA lia o indice pelo caminho bonito, entao com a porta no
+    #     chao ela recebia a pagina do hospedeiro e concluia LISTA VAZIA.
+    velha = rotas_do_indice(pagina_do_hospedeiro)
+    nova = rotas_do_indice(indice_de_verdade)
+    diz(velha == [] and ROTA_DA_293 in nova,
+        "12. a regua VELHA (indice pelo caminho bonito) le a pagina do hospedeiro como "
+        "ZERO rota, e a NOVA (?rest_route=) acha a rota — as duas DISCORDAM, senao este "
+        "autoteste nao mede o conserto")
+
+    # (b) E a discordancia nao e academica: ela trocava o DONO do defeito.
+    acusacao_velha = problemas_da_parede(velha, 401, 401, "rodametria_rotas_token_invalido")
+    acusacao_nova = problemas_da_parede(nova, 401, 401, "rodametria_rotas_token_invalido")
+    diz(any("NAO aparece no indice" in m for m in acusacao_velha) and acusacao_nova == [],
+        "12. com a porta caida a regua VELHA acusa a casca de nao registrar a rota (o "
+        "conserto errado, no arquivo errado) e a NOVA nao acusa nada — a rota responde")
+
+    # (c) O CONSERTO NAO AFROUXA O PORTAO: rota de verdade ausente continua pega.
+    indice_sem_a_rota = json.dumps({"routes": {
+        "/rodametria/v1": {}, "/rodametria/v1/casca": {}, "/rodametria/v1/status": {}}})
+    ausente = problemas_da_parede(rotas_do_indice(indice_sem_a_rota), 404, 404, None)
+    diz(any("NAO aparece no indice" in m for m in ausente),
+        "12. rota DE VERDADE ausente segue sendo pega pela regua nova — o conserto nao "
+        "afrouxou a afirmacao, so trocou a porta por onde ela entra")
+
+    # (d) O JSON QUE NAO E DICIONARIO nao pode virar excecao nem rota inventada.
+    diz(rotas_do_indice("[]") == [] and rotas_do_indice('{"routes": null}') == [],
+        "12. indice que nao e dicionario, e `routes` nulo, devolvem lista vazia sem "
+        "estourar — a pagina do hospedeiro nao e o unico corpo que nao e indice")
+
+    # MUNDO 13 — O DIAGNOSTICO NOMEADO, E AS QUATRO GRANDEZAS QUE ELE EXIGE.
+    # A causa so e nomeada quando as quatro estao na mesa; fora disso o portao
+    # prefere nao dizer causa nenhuma (29.5: causa inventada e a proxima
+    # execucao consertando a coisa errada).
+    caiu = diagnostico_da_porta(200, [404, 404, 404], True)
+    diz(caiu is not None and "PORTA DE ENTRADA CAIU" in caiu and "flush_rewrite_rules" in caiu,
+        "13. o mundo de 05/11 e NOMEADO: home 200, as tres portas em 404, REST vivo — e a "
+        "linha traz o conserto, nao so o sintoma")
+
+    diz(diagnostico_da_porta(200, [200, 200, 200], True) is None,
+        "13. o mundo SADIO nao nomeia causa nenhuma")
+
+    diz(diagnostico_da_porta(404, [404, 404, 404], True) is None,
+        "13. home TAMBEM morta nao e esta causa — o site inteiro fora do ar e outro "
+        "mundo, e o portao devolve None em vez de nomear a errada")
+
+    diz(diagnostico_da_porta(200, [404, 404, 404], False) is None,
+        "13. REST morto nas DUAS formas nao e esta causa: o que esta assinatura exige e o "
+        "WordPress de pe atras de uma porta fechada")
+
+    diz(diagnostico_da_porta(200, [404, 200, 404], True) is None,
+        "13. UMA das portas viva ja nao e esta assinatura — ela cobra as tres juntas, "
+        "porque as tres sao rota virtual e caem juntas")
+
+    diz(diagnostico_da_porta(200, [], True) is None,
+        "13. sem porta medida nenhuma nao se nomeia causa — lista vazia nao e prova de "
+        "que as portas estao mortas, e `all()` sobre vazio diria que sim")
 
     print("conferir-no-ar --autoteste: %d de %d afirmacoes, %d falha(s)"
           % (len(ok), len(ok) + len(mal), len(mal)))

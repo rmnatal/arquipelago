@@ -11,6 +11,80 @@ Prioridade: `alta` fura a fila da próxima execução do destinatário.
 
 ## ABERTOS
 
+### prioridade NORMAL — O PORTÃO QUE MEDE A PORTA DE ENTRADA ENTRA POR ELA NAS QUATRO ILHAS: medido na rodametria na quinta queda da mesma porta, e a régua geral já está no contrato, na 29.7
+
+05/11/2026 — FUNDAÇÃO (quem reservar a aquametria, a robometria ou a clubedomosaico) — Achado na
+**rodametria** às 10h2xZ, com a ilha em foco total **fora do ar**, e consertado lá na mesma passada.
+Escrito aqui e não no `PROMPT.md` daquelas ilhas porque a **seção 3** proíbe editar arquivo de ilha
+que a execução não reservou. **A regra geral está na 29.7 do contrato** — este bloco é só o endereço
+dela nas outras três.
+
+**O DEFEITO, e ele é do instrumento e não do site.** O `conferir-no-ar.py` da rodametria lia o índice
+de rotas REST em `/wp-json/rodametria/v1` — caminho bonito, portanto **morto junto com a porta de
+entrada**. Com a porta no chão ele (a) acusou a casca de **não registrar** a rota da 29.3, que estava
+registrada e respondendo por `?rest_route=` na mesma passada, e (b) **parou de medir o resto**,
+encolhendo de 481 afirmações para 9.
+
+**O QUE JÁ ESTÁ MEDIDO NAS OUTRAS TRÊS, pelo `grep` e não por palpite** — e é por isso que este
+despacho existe:
+- `ilhas/robometria/ferramentas/conferir-no-ar.py` monta `STATUS = DOMINIO + '/wp-json/robometria/v1/status'`;
+- `ilhas/aquametria/ferramentas/conferir-desembarque.py` monta `STATUS = "https://aquametria.com.br/wp-json/aquametria/v1/status"`;
+- `ilhas/clubedomosaico/ferramentas/conferir-desembarque.py`, igual, com o domínio dela.
+
+**E O PIOR NÃO É PARAR DE MEDIR, É A CAUSA ERRADA.** O `conferir-desembarque.py` da aquametria, com a
+porta caída, sai dizendo *"o /status nao respondeu ou nao e JSON … Pela 20.2, repita antes de chamar
+de bloqueio"* — manda o leitor para **intermitência de rede**, com a porta de entrada do site no
+chão. É a 20.5 ao pé da letra, e é como uma ilha fica dias fora do ar com o portão vermelho pelo
+motivo errado.
+
+**A PERGUNTA, e ela é pergunta e não afirmação, de propósito** (a lição do despacho de 16/10: quem
+escreve sobre ilha que não reservou não pode abrir o arquivo para conferir). **Quem reservar uma
+delas:**
+
+1. **Meça antes de consertar.** Rode o portão de ar daquela ilha como está e guarde o número de
+   afirmações; é a linha de base contra a qual o conserto se compara.
+2. **Troque só a porta por onde o portão entra:** toda leitura de rota REST passa a
+   `?rest_route=/<ilha>/v1/<rota>`. **Não toque na afirmação da 29.2** sobre `/wp-json/` em 200 com
+   `application/json` — ela é a dona da porta bonita e fica inteira. Afrouxar portão para consertar
+   portão é o defeito seguinte.
+3. **Copie os dois portões da rodametria em vez de reescrevê-los:** `rotas_do_indice()` e
+   `diagnostico_da_porta()` em `ilhas/rodametria/ferramentas/conferir-no-ar.py`, mais os mundos 12 e
+   13 do `--autoteste` dela. O mundo 12 dá à régua velha a página 404 do hospedeiro e **exige que as
+   duas discordem** (20.8); o 13 cobra as quatro grandezas da assinatura juntas.
+4. **O número de afirmações do portão tem de SUBIR com a porta caída**, não descer — é essa a prova
+   de que o conserto moveu algo. Na rodametria foi de 9 para 43, com a causa nomeada numa linha.
+
+**O que este despacho NÃO pede:** nenhuma das três está com a porta caída — as quatro ilhas foram
+medidas em 200 às 10h1xZ de 05/11, em três passadas cada, doze medições verdes. Isto é conserto de
+**instrumento**, para o dia em que cair, e por isso é NORMAL e não ALTA.
+
+---
+
+### prioridade ALTA — A ILHA EM FOCO TOTAL É A ÚNICA DA FÁBRICA CUJA PORTA DE ENTRADA A FÁBRICA NÃO CONSEGUE REPARAR, e isso só ficou medido quando a porta caiu
+
+05/11/2026 — RAPHAEL — A rodametria ficou fora do ar na noite de 04/11 e **nenhuma execução da
+Fundação pode levantá-la**, porque o reparo da **29.3** exige o token do Sync e o token desta ilha
+**não está no repositório, por decisão** (a divergência (b) da seção 12 da casca dela). As outras
+três ilhas têm o seu no `PROMPT.md`, e por isso qualquer execução conserta a porta delas **em um
+comando**.
+
+**A decisão de guardar o token fora do repositório continua defensável** — segredo no repositório é
+segredo perdido —, e este despacho não pede para revertê-la de cabeça. Pede a **escolha**, agora com
+o custo medido na mesa, e são três saídas possíveis:
+
+1. **Fica como está**, e a porta desta ilha depende de você abrir o navegador. Custo: horas ou dias
+   de ar por queda, e a queda já aconteceu cinco vezes no Arquipélago.
+2. **O token entra no `PROMPT.md`**, como nas outras três, e a fábrica repara sozinha.
+3. **Nasce um segredo só para o reparo** — um token de reparo, separado do token do Sync, que só
+   consegue rodar o `flush_rewrite_rules( true )` e não lê retrato nenhum do servidor. Mais trabalho,
+   e é a única das três que não troca ar por segredo.
+
+**Não decida por mim nem por pressa:** a opção 1 é legítima se você preferir a porta de entrada do
+site só nas suas mãos — a **29.4** diz exatamente isso, que porta que se conserta calada é a que
+ninguém desfaz no dia em que estiver errada. O que não dá é a escolha ficar **implícita**, que é como
+ela estava até hoje.
+
+
 ### prioridade NORMAL — A FOLHA DE ESTILO SERVE OS PRÓPRIOS COMENTÁRIOS, E A RÉGUA DA 32.4 NÃO ALCANÇA O `<style>`: medido e consertado na rodametria, e as outras TRÊS ilhas rodam o mesmo desenho de folha
 
 04/11/2026 — FUNDAÇÃO (quem reservar a aquametria, a robometria ou a clubedomosaico) — Achado na
