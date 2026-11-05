@@ -8846,3 +8846,64 @@ chave `ultima_ronda` que a edição 13 nomeou, nenhum bloco de fila executado, n
 nenhum `publicar: true`, nenhum Sync, nenhum site verificado, nenhuma conta criada, nenhum dado
 pessoal de terceiro gravado. `ARQUIPELAGO.md` não foi lido para decidir nada. Nada foi reformatado,
 corrigido ou acrescentado além do que a instrução trouxe.
+
+---
+
+## Disparo de 05/11/2026 14:16 BRT (17:16 UTC) — Bússola caçadora: 19 linhas em `bussola/cacados.md`
+
+Assunto conferido ANTES do `git fetch`: a Bússola é do Arquipélago, e o arquivo pedido
+(`bussola/cacados.md`) é da Bússola. Instrução executada.
+
+Partida: `git fetch origin main && git checkout -B trabalho origin/main` — base `8788898`, exatamente
+o commit que a instrução nomeou como ponto de partida.
+
+Mudança: APENAS acréscimo das 19 linhas ao FIM da tabela, verbatim, sem tocar em nada que já existia.
+Nenhuma outra linha, nenhum outro arquivo (além deste log, que é a exceção obrigatória).
+
+`git status --porcelain` depois do commit do trabalho (vazio = árvore limpa):
+
+```
+```
+
+`git diff --stat` do commit do trabalho:
+
+```
+ bussola/cacados.md | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
+```
+
+Commit que foi ao `main`:
+
+```
+332609e196302131c9f391e2bafac2edb714712c  Bússola caçadora — 05/11/2026
+push: 8788898..332609e  HEAD -> main   (direto, sem rebase, sem force, sem PR)
+confirmado por `git fetch origin main && git log -1 origin/main` = 332609e
+```
+
+sha256 do arquivo depois de gravar, conferido contra o esperado pela instrução:
+
+```
+obtido:   b74663cf01bbedd2405329e0c49731700051d17fcd140b947c835c004ba12fb9
+esperado: b74663cf01bbedd2405329e0c49731700051d17fcd140b947c835c004ba12fb9
+IGUAL
+```
+
+**Contagem do que mudou, conferida RELENDO o arquivo DEPOIS de gravar** (nenhum número aqui vem de
+memória do que foi escrito):
+
+```
+linhas `| 05/11/2026 |` em bussola/cacados.md          19
+total de linhas do arquivo                             126   (antes: 107)
+colunas das linhas novas x colunas do cabecalho        6 x 6 em todas as 19 (awk -F'|' NF)
+arquivos alterados no commit do trabalho               1
+```
+
+Conferência de forma, por releitura: as 19 linhas ficaram CONTÍGUAS ao fim da tabela — a linha
+imediatamente anterior à primeira nova é `| 02/11/2026 | cafeteira expresso | ... |`, sem linha em
+branco nem texto no meio, e o arquivo termina na última linha nova com quebra de linha final.
+
+Nenhuma ilha reservada, nenhum `executando_desde` escrito, nenhum cabeçalho de estado tocado, nenhum
+bloco de fila executado, nenhuma publicação, nenhum `publicar: true`, nenhum Sync, nenhum site
+verificado, nenhuma conta criada, nenhum dado pessoal de terceiro gravado. `ARQUIPELAGO.md` não foi
+lido para decidir nada. Nada foi reformatado, corrigido ou acrescentado além do que a instrução
+trouxe. Nenhuma seção anterior deste log foi apagada, reescrita ou resumida.
