@@ -84,6 +84,75 @@ site só nas suas mãos — a **29.4** diz exatamente isso, que porta que se con
 ninguém desfaz no dia em que estiver errada. O que não dá é a escolha ficar **implícita**, que é como
 ela estava até hoje.
 
+---
+
+**ACRESCENTADO ÀS 13h3xZ DE 05/11/2026, PELA SEGUNDA EXECUÇÃO DO DIA A CHEGAR NESTA ILHA E NÃO PODER
+LEVANTÁ-LA — EXISTE UMA QUARTA SAÍDA, E ELA NÃO CUSTA SEGREDO NENHUM.**
+
+Primeiro o que mudou no mundo: às **13h2xZ** a porta continuava no chão. Portão de ar em **43
+afirmações e 9 falhas**, as três portas da 29.2 em 404, a casca **1.10.0** viva por `?rest_route=`,
+revisão **42** com `7 aplicado(s)` e as 7 linhas dizendo `ok`. **A ilha em foco total está fora do ar
+há pelo menos 17 horas e já gastou DUAS execuções sem publicar uma página.** A tentativa está
+registrada no `PROMPT.md` dela pela 18.4.
+
+**AS TRÊS SAÍDAS ACIMA PARTEM TODAS DE UMA PREMISSA QUE AGORA ESTÁ MEDIDA COMO FALSA:** que o reparo
+precisa de um segredo para ser *pedido*. Precisa de um **pedido**, que é o que a 29.4 cobra —
+*"o reparo é pedido, (…) e devolve o antes e o depois para quem pediu comparar"* —, e o token é
+**um** jeito de assinar um pedido, não o único que esta ilha tem.
+
+**O QUE JÁ EXISTE NO AR, e foi medido nesta passada, não suposto:**
+
+1. **O repositório já executa PHP arbitrário neste site.** O Sync instala `snippets/*.php` lidos do
+   `raw.githubusercontent.com` e os ativa no Code Snippets. O portão de ar de hoje conferiu
+   **4 de 4** versões de snippet no ar contra o `manifest.json` (casca 1.10.0, f2 1.5.0,
+   institucional 1.2.1, produto 1.7.1): **os bytes do `main` são o código que está rodando.** Logo um
+   pedido de reparo assinado por *push* **não concede privilégio novo nenhum** — quem pode pedir o
+   reparo por essa via já pode, hoje, trocar a casca inteira.
+2. **A função do reparo já está escrita e já é completa:** `rodametria_casca_reparar_rotas()` na
+   seção 12 da casca — `flush_rewrite_rules( true )`, purga de cache depois, e o retrato de **antes e
+   depois** devolvido. Hoje ela só tem uma porta de entrada, a rota com token.
+3. **O gatilho de "uma vez por pedido" já existe e já é guardado.** `rodametria_casca_instalar()`
+   roda no `init` e **não a cada requisição**: ela volta na hora se a `option`
+   `rodametria_casca_instalado` já traz a **versão da casca** e a **assinatura do mapa de páginas**
+   correntes. É exatamente a forma de um pedido que se cumpre **uma vez** e fica **registrado**.
+
+**A QUARTA SAÍDA, então:** *o pedido de reparo é um campo no `manifest.json`* — o canal que a fábrica
+já usa para instruir o site —, cumprido **uma vez** pelo mesmo guard da instalação, com o antes e o
+depois escritos numa linha do log do `/status`, que é onde a **20.4** já manda a execução ler linha
+por linha. **Zero segredo novo, zero rota nova, e o reparo volta a ser trabalho de um push.**
+
+**POR QUE ISTO NÃO É O GANCHO QUE A 29.4 PROÍBE**, item por item, porque a 29.4 é decisão e merece
+ser respondida na própria letra dela:
+
+| o que a 29.4 teme | o que o gancho do `init` faria | o que o pedido no manifest faz |
+|---|---|---|
+| *"se conserta calada"* | nada é escrito em lugar nenhum | linha no log do `/status` com o antes e o depois, lida pelo portão da 20.4 |
+| *"a cada carregamento"* | toda visita reescreve a porta | **uma vez por pedido**, pelo guard da `option` que já existe |
+| *"ninguém consegue desfazer"* | só editando o PHP no site | **um push** tira o campo do manifest |
+| *"o reparo é pedido"* | não é pedido por ninguém | é pedido, e o pedido fica **versionado no git**, com autor e hora |
+
+**E O CUSTO, dito inteiro, porque saída apresentada sem custo é saída vendida.** São três:
+
+1. **Quem dispara o cron é o visitante** (20.6: o WP-Cron roda por requisição, não por relógio),
+   então na prática a porta é reescrita dentro do carregamento de alguém. É o mesmo caminho pelo qual
+   a casca já instala página e já grava `option` hoje.
+2. **Campo esquecido ligado no manifest é a porta sendo reescrita a cada revisão nova** — o medo da
+   29.4 pela porta dos fundos. O conserto é o pedido carregar o **número da revisão** que o pediu e o
+   portão de ar **dizer quantas vezes o reparo rodou**: pedido preso vira vermelho em vez de hábito.
+3. **Isto não conserta a CAUSA e não promete consertar** — a 29.5 continua valendo, a causa de
+   origem segue sem nome, e pela **19.4(b)** a segunda queda nesta mesma raiz vira chamado na
+   HostGator. O que a quarta saída muda é **quanto tempo a ilha passa no chão esperando você**, que
+   hoje é a grandeza que está custando caro.
+
+**ESTA EXECUÇÃO NÃO A IMPLEMENTOU, DE PROPÓSITO.** A 29.4 é decisão escrita no contrato, e a escolha
+entre as saídas está aberta **para você** desde as 10h2xZ de hoje. Mexer na porta de entrada do site
+por iniciativa de uma execução, com um despacho ALTA pendurado exatamente nessa pergunta, seria
+tomar a sua decisão de cabeça — e é o que a frase acima, *"não decida por mim nem por pressa"*, pede
+para ninguém fazer. **O que esta passada fez foi tirar da mesa a premissa de que ar e segredo são uma
+troca obrigatória.** Se você escolher a 4, ela é bloco da Fundação e cabe numa execução: campo no
+manifest, chamada guardada na casca, linha no log, e os dois portões (um mundo fabricado em que o
+pedido roda **uma** vez e outro em que o pedido repetido **não** roda).
+
 
 ### prioridade NORMAL — A FOLHA DE ESTILO SERVE OS PRÓPRIOS COMENTÁRIOS, E A RÉGUA DA 32.4 NÃO ALCANÇA O `<style>`: medido e consertado na rodametria, e as outras TRÊS ilhas rodam o mesmo desenho de folha
 

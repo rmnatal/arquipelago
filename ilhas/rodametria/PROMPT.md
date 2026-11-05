@@ -296,6 +296,20 @@ Medido às 10h19Z–10h2xZ de 05/11/2026 pela execução da Fundação que reser
 
 **PRONTO QUANDO:** `python3 ferramentas/conferir-no-ar.py .` voltar a APROVAR as três portas da 29.2 e as 9 URLs em 200, com o `/wp-sitemap.xml` servindo XML de verdade. **Pela 18.4 este despacho só morre conferido no ar**, por quem conferir — não por quem reparar.
 
+**TENTATIVA EM 05/11/2026 às 13h2xZ — O DESPACHO FICA, E NADA MUDOU EM TRÊS HORAS.** A execução
+seguinte da Fundação (reserva às 13h20Z, entrada por foco) remediu e **não fechou nada**. A rede foi
+medida antes de qualquer trabalho (20.2): `rodametria.com.br` em **200**, com `aquametria.com.br` e
+`robometria.com.br` em 200 na mesma passada. O portão de ar rodou inteiro: **43 afirmações, 9
+falhas** — as **três portas da 29.2** em 404 com `text/html`, o caminho virgem em 404 do
+hospedeiro, e a linha da assinatura da 29.7 nomeando a causa. O outro lado continua intacto e
+continua irrelevante (29.1): `?rest_route=` entrega a casca **1.10.0**, as **4 de 4** versões de
+snippet batem com o `manifest.json`, e a **revisão 42** declara `7 aplicado(s)` contra 7 linhas de
+item dizendo `ok`, lidas do fecho para baixo (20.4 e 20.8). **A porta está no chão há pelo menos 17
+horas** (desde 04/11 às 20h1xZ, última medição verde) e **esta foi a segunda execução do dia a
+chegar nela e não poder levantá-la**. Nenhum bloco da fila foi executado, pela 18.5. **O custo desta
+queda já não é mais hipótese: são duas execuções da ilha em foco TOTAL gastas sem uma página.** A
+quarta saída que `dados/despachos.md` ganhou nesta passada nasceu daí.
+
 **E SE O REPARO NÃO PEGAR:** se o diagnóstico da rota mostrar o `.htaccess` gravado e **correto** e as URLs continuarem em 404, o `AllowOverride` está desligado do lado do hospedeiro, e aí é **chamado na HostGator** e não código de ilha nenhuma (29.4). Pela **19.4(b)**, a **segunda** queda nesta mesma raiz deixa de ser conserto e vira chamado — esta é a primeira.
 
 ### O QUE ESTA EXECUÇÃO CONSERTOU, e não é a porta: o PORTÃO que devia tê-la visto

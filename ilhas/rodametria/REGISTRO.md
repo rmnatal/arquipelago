@@ -3,6 +3,52 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-11-05 13h20Z–13h24Z — **A PORTA SEGUE NO CHÃO TRÊS HORAS DEPOIS, E O TRABALHO DESTA PASSADA FOI DERRUBAR UMA PREMISSA: AR E SEGREDO NÃO SÃO UMA TROCA OBRIGATÓRIA** — nenhum bloco da fila, pela 18.5
+
+**A ESCOLHA DA ILHA.** `foco.md` nomeia a **rodametria** (foco total e absoluto desde 27/10) e pela **1.2** não há escolha a fazer. `executando_desde` estava `null` na chegada, que pela **1.1** já significa que não havia bloco da Fundação vivo — sem reserva vencida, não houve o que o git desempatar. Nenhum branch `claude/*` e nenhum PR aberto: `origin/main` e `claude/dreamy-mccarthy-zapj3t` apontavam para o **mesmo** commit (`c1185a0`), então não havia o que mergear. Reserva no commit `edde4c7`, às **13h20Z**, com a hora saída do `date -u` na mesma linha de comando que a grava.
+
+**A REDE FOI MEDIDA ANTES DO TRABALHO E NÃO HERDADA (20.2):** `rodametria.com.br` em **200**, com `aquametria.com.br` e `robometria.com.br` em **200** na mesma passada. **E vale repetir a lição de método que a execução das 10h18Z escreveu, porque ela se repetiu inteira hoje:** essa medição é a que **autoriza** a reserva e é a mesma que **esconde** o defeito — a régua da 20.2 pede a raiz, e a raiz é a única coisa que esta queda deixa de pé (29.1).
+
+### O NÚMERO, E ELE NÃO MUDOU EM TRÊS HORAS
+
+`python3 ferramentas/conferir-no-ar.py .` — que é literalmente o que o `bloco_atual` da execução anterior mandou quem pegasse esta ilha rodar primeiro: **43 afirmações, 9 falhas**.
+
+- As **três portas da 29.2** em **404** com `content-type: text/html`: `/wp-sitemap.xml`, `/robots.txt`, `/wp-json/`.
+- O caminho virgem (`/nao-existe-<timestamp>/`) em 404 **na página do hospedeiro**.
+- **Só `/` responde 200**, com a página de verdade.
+- **O outro lado continua intacto e continua irrelevante (29.1):** `?rest_route=` entrega a casca **1.10.0** (instalada em 2026-11-04 19:40:29), **4 de 4** versões de snippet batendo com o `manifest.json` (casca 1.10.0, f2 1.5.0, institucional 1.2.1, produto 1.7.1), e a **revisão 42** declarando `7 aplicado(s)` contra **7 linhas de item dizendo `ok`**, lidas do **fecho para baixo** (20.4 e 20.8).
+- **O portão consertado às 10h3xZ fez o trabalho dele:** a linha da assinatura da **29.7** nomeou a causa e o conserto, e a leitura **não encolheu** — 43 afirmações com a porta no chão, contra as 9 de antes do conserto.
+
+**A PORTA ESTÁ NO CHÃO HÁ PELO MENOS 17 HORAS** (última medição verde: 04/11 às 20h1xZ, pela leitura semanal) e **esta foi a segunda execução do dia a chegar nela e não poder levantá-la**. O despacho ALTA ficou, com a linha de tentativa que a **18.4** manda escrever.
+
+**NENHUM BLOCO DA FILA FOI EXECUTADO, e isso é a 18.5 funcionando** — "ilha com defeito no ar não recebe página nova", e a dúvida entre fechar despacho e abrir bloco se resolve fechando despacho. Nada foi ao ar, nenhum snippet e nenhuma página mudaram, o `manifest.json` segue na **revisão 42** e **não há revisão a desembarcar**.
+
+### O TRABALHO DESTA PASSADA: A QUARTA SAÍDA, MEDIDA E NÃO IMPLEMENTADA
+
+O despacho ALTA de 10h2xZ pôs **três** saídas na mesa do Raphael (fica como está · o token entra no `PROMPT.md` · nasce um token só de reparo) e as três compartilham uma premissa: **que o reparo precisa de um segredo para ser pedido.** Medi a premissa e ela é **falsa**.
+
+**O QUE ESTÁ MEDIDO, não suposto:**
+
+1. **O repositório já executa PHP arbitrário neste site.** O Sync instala `snippets/*.php` lidos do `raw.githubusercontent.com` e os ativa. O portão de ar de hoje conferiu **4 de 4** versões no ar contra o manifest: **os bytes do `main` são o código que está rodando.** Um pedido de reparo assinado por *push* **não concede privilégio novo nenhum** — quem pode pedir por essa via já pode, hoje, trocar a casca inteira.
+2. **A função do reparo já existe e já é completa:** `rodametria_casca_reparar_rotas()`, seção 12 da casca — `flush_rewrite_rules( true )`, purga depois, retrato de **antes e depois**. Só lhe falta uma segunda porta de entrada.
+3. **O gatilho de "uma vez por pedido" já existe e já é guardado.** `rodametria_casca_instalar()` roda no `init` e **não a cada requisição**: volta na hora se a `option` `rodametria_casca_instalado` já traz a versão da casca e a assinatura do mapa de páginas correntes.
+
+**A SAÍDA 4:** o pedido de reparo é um **campo no `manifest.json`** — o canal que a fábrica já usa para instruir o site —, cumprido **uma vez** pelo guard que já existe, com o antes e o depois numa linha do log do `/status`, que é onde a 20.4 já manda ler linha por linha. **Zero segredo novo, zero rota nova, e a porta volta a ser trabalho de um push.** A 29.4 foi respondida **na própria letra dela**, item por item, numa tabela dentro do despacho: o que ela teme é reparo **calado**, **a cada carregamento** e **que ninguém desfaz** — e um pedido versionado no git, cumprido uma vez e escrito no log é o contrário dos três.
+
+**E O CUSTO ESTÁ ESCRITO INTEIRO**, porque saída apresentada sem custo é saída vendida: (a) quem dispara o cron é o **visitante** (20.6), então a porta é reescrita dentro do carregamento de alguém; (b) campo esquecido ligado é a porta reescrita a cada revisão — o medo da 29.4 pela porta dos fundos, e o conserto é o pedido carregar o **número da revisão** e o portão **dizer quantas vezes o reparo rodou**; (c) **isto não conserta a CAUSA e não promete consertar** — a 29.5 segue valendo, e pela 19.4(b) a segunda queda nesta mesma raiz vira chamado na HostGator.
+
+**POR QUE EU NÃO A IMPLEMENTEI, e é decisão e não fôlego.** A 29.4 é decisão escrita no contrato, e a escolha entre as saídas está aberta **para o Raphael** desde as 10h2xZ de hoje, com o próprio despacho pedindo *"não decida por mim nem por pressa"*. Mexer na porta de entrada do site por iniciativa de uma execução, com um despacho ALTA pendurado exatamente nessa pergunta, seria tomar a decisão dele de cabeça. **O que esta passada entrega é a premissa derrubada e a escolha mais barata na mesa** — e, se ele escolher a 4, ela cabe numa execução: campo no manifest, chamada guardada na casca, linha no log, e dois portões (um mundo fabricado em que o pedido roda **uma** vez e outro em que o pedido repetido **não** roda).
+
+### O QUE ESTA EXECUÇÃO NÃO FEZ, dito para ninguém procurar depois
+
+- **Não fechou o despacho ALTA** — pela 18.4 ele morre conferido no ar, e o ar reprova.
+- **Não fechou o item 1 do despacho de 04/11** (sitemap "Processado" no Search Console): `/wp-sitemap.xml` está em 404 servindo HTML do hospedeiro, então o Google relê e falha de novo. **Primeiro a porta, depois o sitemap.**
+- **Não rodou o portão de pixel** (`conferir-32-5-no-navegador.mjs`) nem a leitura sem quebra de cache: as duas medem páginas que estão em 404.
+- **Não tocou em nenhuma das outras três ilhas.** O despacho NORMAL da 29.7 para elas segue aberto em `dados/despachos.md`, e o foco total da 1.2 proíbe bloco fora da ilha em foco; nenhuma delas está com a porta caída (as três medidas em 200 nesta passada).
+- **Não remediu o `gov.br`** da F1: continua recusado desde 28/10, e não era o trabalho desta passada.
+
+**PRÓXIMO PASSO: SEGUE SENDO A PORTA, E SEGUE SENDO DO RAPHAEL.** Quem pegar esta ilha começa rodando `python3 ferramentas/conferir-no-ar.py .`. Se a linha da assinatura da 29.7 aparecer, **o despacho ALTA segue aberto e não há bloco a executar** — escreva a linha de tentativa da 18.4 e feche. Se a porta estiver reparada, o despacho se fecha pela 18.4 (conferido no ar, por quem confere e não por quem reparou), o item 1 de 04/11 volta a ser alcançável, e aí a fila não mudou: F1 travada pelo `gov.br`, F3 por `carga_max_kg`, malha nova pela 30.8 — e o candidato segue sendo o **ARTIGO-ÂNCORA PAREADO COM A F2 (bloco 5)**, com a primeira coisa a fazer sendo **conferi-lo contra a seção 17 e a 30.8**.
+
 ## 2026-11-05 10h18Z–10h3xZ — **A ILHA EM FOCO TOTAL ESTÁ FORA DO AR, MENOS A HOME, E O PORTÃO ESCRITO PARA VER ISSO ACUSOU A CASCA** — nenhum bloco da fila; o trabalho foi a porta e o instrumento
 
 **A ESCOLHA DA ILHA.** `foco.md` nomeia a **rodametria** (foco total e absoluto desde 27/10) e pela **1.2** não há escolha a fazer. `executando_desde` estava `null`, que pela **1.1** já significa que não havia bloco da Fundação vivo — não houve reserva vencida para o git desempatar. **As duas exceções que furam o foco foram conferidas ANTES da reserva e nenhuma furou:** as **quatro** ilhas no ar medidas em **200 em TRÊS passadas** com quebra de cache (doze medições verdes, zero intermitência), e o despacho do molde da **32.6** segue FECHADO nas três (aquametria 21/10 18h2xZ, clubedomosaico 21/10 19h1xZ, robometria 21/10 16h1xZ). Nenhum branch `claude/*` e nenhum PR aberto. Reserva no commit `a88a34e`, às 10h18Z.
