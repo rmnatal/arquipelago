@@ -138,7 +138,7 @@ A calculadora também responde à pergunta que a maioria das pessoas realmente t
 
 [aqm_dobra titulo="O que conversa com esta página"]
 
-- **[Quantos litros tem o seu aquário](https://aquametria.com.br/calculadora-de-litragem/)** — de onde vem o volume real de água que esta página usa. Aquecedor se dimensiona sobre a água que existe, não sobre o número da etiqueta do aquário.
+- **[Calculadora de litragem do aquário](https://aquametria.com.br/calculadora-de-litragem/)** — de onde vem o volume real de água que esta página usa. Aquecedor se dimensiona sobre a água que existe, não sobre o número da etiqueta do aquário.
 - **[Vazão do filtro (C3)](https://aquametria.com.br/calculadora-de-vazao-do-filtro/)** — o outro aparelho que o mesmo volume dimensiona, e a mesma história de fontes que discordam.
 - **[Quantos watts de aquecedor o seu aquário precisa](https://aquametria.com.br/2026/09/08/quantos-watts-de-aquecedor-para-aquario/)** — o texto longo: de onde veio o "1 W por litro", por que ele erra sempre para o mesmo lado e o que muda quando se pergunta o frio.
 - **[Como a Aquametria calcula](https://aquametria.com.br/metodologia/)** — a escada de fontes, o que é constante e o que é convenção declarada.

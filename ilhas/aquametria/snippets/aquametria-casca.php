@@ -1,5 +1,6 @@
 /**
  * Aquametria Casca — identidade e estrutura do site
+ * Versão: 1.14.1 (05/11/2026) — o cartão e a trilha da C1 passam a usar o nome novo da página, "Litragem do aquário: quantos litros tem o seu?" (um nome por página em toda superfície). Despacho de 04/11, item 3. Sessão de chat de 05/11.
  * Versão: 1.14.0 (21/10/2026) — A TABELA DO MARKDOWN PARA DE ESTOURAR A TELA DO
  * CELULAR, e isto mora aqui porque o defeito e de TODA pagina da ilha que tenha
  * tabela escrita em Markdown, nao da calculadora em que foi medido. Medido no ar
@@ -269,7 +270,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_CASCA_VERSAO' ) ) {
-	define( 'AQUAMETRIA_CASCA_VERSAO', '1.14.0' );
+	define( 'AQUAMETRIA_CASCA_VERSAO', '1.14.1' );
 	/* A tagline é a primeira frase que um visitante lê no rodapé de toda página.
 	   Até a 1.3.1 ela era a descrição interna do produto ("Calculadoras e dados
 	   técnicos para dimensionar o seu aquário"); agora fala com quem chegou. */
@@ -304,7 +305,7 @@ function aquametria_casca_calculadoras() {
 		array(
 			'codigo'  => 'C1',
 			'categoria' => 'aquario',
-			'titulo'  => 'Quantos litros tem o seu aquário?',
+			'titulo'  => 'Litragem do aquário: quantos litros tem o seu?',
 			'slug'    => 'calculadora-de-litragem',
 			'resumo'  => 'Mede comprimento, largura e altura em centímetros e sai o volume da etiqueta, o que cabe de verdade e a água que você vai tratar. O aquário fica guardado no seu navegador, então as outras contas já vêm preenchidas.',
 			'estado'  => 'em-construcao',

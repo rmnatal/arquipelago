@@ -122,7 +122,7 @@ E as constantes de manutenção — carvão, perlon, cerâmica, ordem das camada
 ## Continue por aqui
 
 - [Quanta mídia biológica o aquário realmente precisa](https://aquametria.com.br/2026/09/08/quanta-midia-biologica-o-aquario-precisa/) — o artigo que destrincha por que os quatro fabricantes discordam por dez vezes, e o que muda quando se segue cada um.
-- [Quantos litros tem o seu aquário](https://aquametria.com.br/calculadora-de-litragem/) — o volume real de água, que é a entrada de tudo aqui.
+- [Calculadora de litragem do aquário](https://aquametria.com.br/calculadora-de-litragem/) — o volume real de água, que é a entrada de tudo aqui.
 - [Qual filtro dá conta do seu aquário](https://aquametria.com.br/calculadora-de-vazao-do-filtro/) — a água precisa passar, e precisa passar por alguma coisa: vazão e mídia são as duas metades da mesma decisão.
 - [Quantos watts de aquecedor você precisa](https://aquametria.com.br/calculadora-de-potencia-do-aquecedor/) — a colônia nitrificante também depende de temperatura.
 - [Como a Aquametria calcula](https://aquametria.com.br/metodologia/) — por que uma faixa com fontes que discordam vale mais que um número redondo sem origem.
