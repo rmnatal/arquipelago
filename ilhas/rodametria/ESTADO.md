@@ -11,79 +11,81 @@ executando_desde: 2026-11-06T14:15Z   # RESERVA RENOVADA pela 1.1 (4a vez; a exe
 rede: aberta em 2026-11-06   # 20.2, MEDIDA e nao herdada ANTES da reserva: rodametria.com.br em 200 nas TRES passadas, com aquametria.com.br e robometria.com.br em 200 nas MESMAS tres — 9 de 9 em 200. E A PAREDE DO `.gov.br` SEGUE DE PE: ela nao foi remedida nesta passada de proposito, porque foi medida em 05/11 as 19h1xZ (6 recusas contra 4 controles verdes, com a parede sendo o DOMINIO e nao os hosts) e porque o que ela travava — o limiar legal da F1 — foi destravado pelo NAVEGADOR DO RAPHAEL e nao pelo egresso. O que ela ainda trava esta nomeado no despacho: o CTB (a metade da CNH), as prefeituras da camada municipal, e as tres etiquetas do Mercado Livre.
 bloqueada_por: null      # obrigatorio pela secao 2. `null` DE PROPOSITO: o que falta (gov.br para a F1, as prefeituras para a camada municipal, as tres etiquetas do Mercado Livre) trava a FABRICA e nao a ILHA, e isso se escreve no despacho, que e o canal da 12.2. Preenche-lo congelaria tambem os blocos que ja podem andar.
 bloco_atual: |
-  A F1 ESTA NO AR E ELA E A HOME. A ferramenta que esta ilha existe para ter,
-  travada desde 28/10, desembarcou em 06/11/2026 — e o que a destravou nao foi
-  uma execucao da fabrica: foi o RAPHAEL abrindo o PDF oficial da Resolucao
-  Contran 996/2023 no Chrome dele em 05/11 ~23h3x de Brasilia e preenchendo a
-  secao 5 de dados/fonte-oficial-f1.md campo por campo. Revisao 49.
+  AS TRES FERRAMENTAS QUE ESTA ILHA EXISTE PARA TER ESTAO NO AR. A F3 —
+  "aguenta o meu peso?" — desembarcou em 06/11/2026, na mesma tarde em que a F1
+  foi ao ar pela manha. A F2 esta no ar desde 29/10.
 
   ESTE ARQUIVO CONTINUA SENDO A MEMORIA DESTA ILHA — `/areas/projeto-rodametria.md`
   nao existe nesta nuvem, e e por isso que este campo e longo.
 
   PRIMEIRO COMANDO DE QUEM PEGAR ESTA ILHA: `python3 ferramentas/bancada.py --no-ar`.
-  Hoje ele fecha em 0 falha. A bancada tem 31 portoes sem rede e 35 com rede.
+  A bancada tem 34 portoes sem rede e 38 com rede.
+
+  O QUE FAZ A F3 DIFERENTE DAS DUAS IRMAS, e e o que a tornou publicavel com o
+  banco de hoje: A RESPOSTA PRINCIPAL DELA NAO DEPENDE DO BANCO. Dado o peso de
+  quem pilota e o que ele carrega, a carga maxima a procurar sai de
+  `total x (1 + margem)` — aritmetica sobre a entrada da pessoa mais UMA
+  constante desta ilha. A vitrine e a segunda camada, e hoje esta VAZIA com a
+  causa nomeada: os TRES registros que declaram `carga_max_kg` declaram 120 kg,
+  os tres lidos em ficha de varejo grande, e NENHUM tem oferta aberta.
+
+  A TABELA PRE-RENDERIZADA PUBLICA A TESE DA ILHA: com a folga de 10%, 109 kg e
+  o ultimo peso total que os 120 kg do teto de varejo acolhem, e 110 kg ja nao.
+  A constante previa isso POR ESCRITO em 28/10, e agora o numero esta na tela.
 
   O QUE ESTA EXECUCAO ENTREGOU, em uma linha cada:
-  - o despacho ALTA de 05/11 (a ilha fora do ar) FECHADO e conferido no ar pela
-    18.4 — a porta foi levantada a mao pelo Raphael na noite de 05/11, pela via 1
-    do proprio despacho, e a causa ficou medida (o bloco `# BEGIN WordPress` havia
-    sumido do .htaccess da raiz). O despacho de dados/despachos.md FICA ABERTO: a
-    pergunta dele e se a FABRICA consegue levantar a porta, e a resposta continua
-    nao.
-  - a constante dos limiares DESTRAVADA, e com ela a F1 inteira. Mais CINCO
-    constantes novas: as consequencias por categoria, a exigencia de habilitacao
-    (pendente, e e ela que da NOME ao silencio da pagina sobre CNH), a assistencia
-    a pe do paragrafo 4o, o caso de alteracao pos-compra e o titulo literal do
-    anuncio do pico.
-  - regras/f1.py, dados/f1-respostas.json, ferramentas/gerar-f1.py,
-    ferramentas/teste-f1.py (1.235 afirmacoes), ferramentas/teste-f1-arvore.mjs
-    (64 afirmacoes) e snippets/rodametria-f1.php, com a casca em 1.12.0 abrindo
-    dois filtros para a ferramenta tomar a primeira tela da home.
-  - esquema do banco 5 -> 6, com a quarta saida `acima_do_ciclomotor`.
-  - contrato: 32.1-b (o nome do campo do formulario) e 32.4-c (toda regua de texto
-    vale para o HTML SERVIDO, nao para o visivel).
+  - o BLOCO 4c: `regras/f3.py`, `dados/f3-respostas.json`,
+    `ferramentas/gerar-f3.py`, `ferramentas/teste-f3.py` (640 afirmacoes) e
+    `snippets/rodametria-f3.php`, em `/peso-maximo-patinete-eletrico/`.
+  - a 32.1-b VIAJANDO PARA A IRMA, pela 18.5. A regra nasceu nesta manha com a
+    F1 e a primeira ponta do portao nasceu DENTRO de `teste-f1-arvore.mjs`,
+    medindo so a F1 — por isso a divida da F2 (cinco campos nus e zero
+    `<noscript>`, no ar desde 29/10) era invisivel.
+    `ferramentas/teste-formulario-da-ilha.py` e a ponta SEM LISTA.
+  - SETE defeitos, e tres deles estavam NO AR na home desde a manha.
 
-  AS TRES COISAS QUE A LEITURA OFICIAL MUDOU NA ESPECIFICACAO estao escritas como
-  ERRATA dentro da secao 1 de dados/especificacao-calculadoras.md, porque quem for
-  mexer na F1 le aquele arquivo e nao este. A mais importante: A RESOLUCAO NAO
-  FALA DE CNH. Ela decide a CATEGORIA e decide placa, registro, licenciamento
-  (arts. 12 e 13) e capacete (art. 19 V); habilitacao e do CTB, que esta ilha NAO
-  leu. Entao a F1 esta no ar RESPONDENDO A CATEGORIA E CALANDO SOBRE CNH, com
-  frase propria dizendo por que — e o portao PROIBE as frases `dispensa CNH` e
-  `exige habilitacao` em todo texto de tela enquanto a constante for pendente.
+  A LICAO DE METODO, E ELA VALE MAIS QUE QUALQUER DAS REGUAS: QUATRO reguas
+  desta execucao reprovaram o texto ou o codigo CERTO (1, 5, 5 e 90 falsos
+  positivos), e as quatro pela mesma causa — foram escritas ANTES de medir o que
+  reprovariam. A quinta, a de paragrafo duplicado, foi medida nas 10 URLs antes
+  de entrar: achou 3 duplicatas reais e ZERO falso positivo. REGUA SE MEDE
+  CONTRA O REPOSITORIO ANTES DE ENTRAR.
+
+  E O OUTRO EIXO: SEIS VEZES A 32.5-c nesta passada. Regra que existia e nao
+  viajou — o prefixo e o `<noscript>` da 32.1-b, o seletor `.rdm-f1-noscript`, a
+  guarda de `function_exists` (que o `rodametria-produto` fazia certo desde
+  29/10), a maquinaria de `FONTE_NA_TELA`, e a licao do bloco de compra que
+  dizia a mesma coisa tres vezes. Nenhuma era desconhecida: as seis estavam
+  escritas e nenhuma morava num lugar que OBRIGASSE a proxima ferramenta a
+  obedece-las. O conserto das seis foi o mesmo — mover para a CASCA ou para um
+  portao que varre SEM LISTA.
 
   O PROXIMO PASSO DESBLOQUEADO, E ELE E DE DOIS MINUTOS DE NAVEGADOR E NAO DE
-  BLOCO: a secao 6 de dados/fonte-oficial-f1.md esta PRONTA e VAZIA, no mesmo
-  formato da 5, para a leitura do CTB aterrissar. Preenchida, a execucao seguinte
-  copia os valores para `exigencia-de-habilitacao-por-categoria-ctb`, troca o
-  status, e A F1 PASSA A RESPONDER A PERGUNTA DO TITULO DELA — sem uma linha de
-  logica mudar. O mecanismo ja foi exercitado uma vez hoje, com o limiar.
+  BLOCO: a secao 6 de `dados/fonte-oficial-f1.md` esta PRONTA e VAZIA, no mesmo
+  formato da 5, para a leitura do CTB aterrissar. Preenchida, a execucao
+  seguinte copia os valores para `exigencia-de-habilitacao-por-categoria-ctb`,
+  troca o status, e A F1 PASSA A RESPONDER A PERGUNTA DO TITULO DELA — sem uma
+  linha de logica mudar. O mecanismo foi exercitado em 06/11 com o limiar.
 
-  O PROXIMO PASSO DE CONSTRUCAO, se nao houver despacho: o bloco 3d (o casamento
-  do registro com a oferta), que e o que traz o campo tecnico. Enquanto
-  `veiculos_com_nominal_declarado` for ZERO, a F1 nao tem UM candidato na vitrine
-  — e a pagina diz isso com os 14 nomes contados, que e a tese da ilha publicada.
+  O PROXIMO PASSO DE CONSTRUCAO, se nao houver despacho: a MALHA. As tres
+  ferramentas estao no ar e a ilha tem 10 URLs contra as 40 do piso da 21.1,
+  com `primeira_indexacao: null`. O que NAO e o caminho: pagina de produto pela
+  cauda (a 30.8 trava, e as caudas medidas estao `tomada` ou `nao-medida`) e
+  coleta de campo tecnico (nivel 5 fechado — ver "O que esta travando").
 
-  O QUE NAO REMEDIR: a parede do `.gov.br` (medida em 05/11 as 19h1xZ, 6 recusas
-  contra 4 controles verdes, e a parede e o DOMINIO e nao os hosts) e a porta da
-  busca para a F1 (medida e descartada com motivo em 05/11).
+  O QUE NAO REMEDIR: a parede do `.gov.br` (medida em 05/11), a porta da busca
+  para a F1 (medida e descartada em 05/11), e a FICHA DA SHOPEE como fonte de
+  nivel 5 (medida em 06/11: 200 nas tres passadas e casca de SPA vazia, 155.908
+  bytes com ZERO ocorrencia de `Potencia`, `500W`, `km/h`, `Velocidade`,
+  `Marca`, `Peso` ou do nome do produto, e nem `<title>`).
 
-  O QUE AINDA NAO TEM PORTAO, e e decisao e nao lacuna: a ponta do COMPORTAMENTO.
-  Nenhuma regua desta ilha APERTA um controle da ferramenta — o portao de ar le o
-  HTML servido (e desde hoje aperta o BOTAO de cada formulario, exigindo 200) e o
-  de pixel abre a pagina e mede. Os quatro casos da arvore foram exercitados A MAO
-  no navegador em 06/11, na pagina de verdade, a 390 px: os quatro respondem, com
-  0 erro de JavaScript. Nao virou portao pela 31.2 (nao houve defeito medido), e a
-  receita esta no REGISTRO.md desta data.
-
-  E UMA COISA PRE-REGISTRADA QUE VAI QUEBRAR SOZINHA, de proposito: a prestacao de
-  contas da secao 7 e renderizada no SERVIDOR para a categoria do exemplo, e o
-  veredito recomputa no NAVEGADOR. Hoje isso nao mente porque NENHUM registro
-  classifica e os grupos saem identicos para as quatro categorias. A metade H do
-  teste-f1.py afirma esse INVARIANTE — e o dia em que ela ficar vermelha e
-  exatamente o dia em que o JS precisa passar a recomputar a secao. O portao nao
-  avisa que vai quebrar: ele quebra junto com o mundo.
-
+  O QUE AINDA NAO TEM PORTAO, e e decisao e nao lacuna: a ponta do
+  COMPORTAMENTO. Nenhuma regua desta ilha APERTA um controle da ferramenta — o
+  portao de ar le o HTML servido (e aperta o BOTAO de cada formulario, exigindo
+  200) e o de pixel abre a pagina e mede. A F1 foi exercitada a mao no navegador
+  em 06/11 (4 casos, 0 erro de JavaScript); A F3 NAO FOI. A receita esta no
+  REGISTRO.md de 06/11: `createRequire` e nao `import from 'playwright'`, e o
+  caminho do Chromium DESCOBERTO em `/opt/pw-browsers` em vez de fixo.
 ---
 
 # Estado da ilha RODAMETRIA
