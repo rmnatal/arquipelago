@@ -477,6 +477,48 @@ function rodametria_f1_dobras_html( $d ) {
 }
 }
 
+/**
+ * A FRASE DO PICO, MONTADA DO MOLDE E DA CONTAGEM — um lugar so.
+ *
+ * Ela e pedida em DOIS lugares: a ressalva da pagina (que vem pre-renderizada do
+ * cerebro) e a resposta do `FAQPage`. A versao do FAQ era prosa escrita a mao e
+ * foi ao ar com o quantificador `costuma` e com `0 de 14 declaram` — os dois
+ * defeitos que a camada visivel ja nao tinha. Esta funcao existe para a pergunta
+ * do JSON-LD ler o MESMO molde que a tela le.
+ *
+ * Os dois moldes (zero nominal e algum nominal) sao escolhidos pela CONTAGEM,
+ * como no cerebro e no JS: tres lugares, uma decisao, nenhuma frase digitada.
+ * Sem titulo ou sem contagem a funcao devolve string vazia, e quem a chama fica
+ * sem a frase — nunca com a frase pela metade.
+ */
+if ( ! function_exists( 'rodametria_f1_frase_do_pico' ) ) {
+function rodametria_f1_frase_do_pico( $d ) {
+	$c = isset( $d['contagem_de_fichas'] ) ? $d['contagem_de_fichas'] : null;
+	$titulo = isset( $d['constantes_usadas']['watt-sem-rotulo-no-titulo-caso-medido']['valor'] )
+		? (string) $d['constantes_usadas']['watt-sem-rotulo-no-titulo-caso-medido']['valor'] : '';
+
+	if ( ! is_array( $c ) || '' === $titulo ) {
+		return '';
+	}
+
+	$chave = ( (int) $c['com_nominal'] > 0 )
+		? 'ressalva_pico_com_nominal' : 'ressalva_pico_nenhum_nominal';
+	if ( empty( $d['frases_molde'][ $chave ] ) ) {
+		return '';
+	}
+
+	$molde = (string) $d['frases_molde'][ $chave ];
+	$vals  = array(
+		'{titulo}'      => $titulo,
+		'{colhidos}'    => number_format( (float) $c['colhidos'], 0, ',', '.' ),
+		'{sem_rotulo}'  => number_format( (float) $c['sem_rotulo'], 0, ',', '.' ),
+		'{com_nominal}' => number_format( (float) $c['com_nominal'], 0, ',', '.' ),
+	);
+
+	return strtr( $molde, $vals );
+}
+}
+
 if ( ! function_exists( 'rodametria_f1_data' ) ) {
 function rodametria_f1_data( $iso ) {
 	if ( ! preg_match( '/^(\d{4})-(\d{2})-(\d{2})$/', (string) $iso, $m ) ) {
@@ -617,11 +659,23 @@ add_action( 'wp_head', function () {
 		),
 		array(
 			'A potência de pico do anúncio serve para classificar?',
-			'Não. A regra lê a potência NOMINAL, que fica na ficha, e o número grande do anúncio '
-				. 'costuma ser o de pico. Dos anúncios que a gente colheu, '
-				. (int) $d['tabela_banco']['com_nominal'] . ' de '
-				. (int) $d['tabela_banco']['total'] . ' declaram a potência nominal — por isso esta '
-				. 'calculadora pergunta os números em vez de oferecer uma lista pronta.',
+			/* A RESPOSTA SAI DO MOLDE, E ELA NAO ERA ASSIM. Esta era prosa escrita
+			   A MAO aqui, e foi ao ar com DOIS defeitos que a propria pagina ja
+			   tinha consertado na camada visivel, medidos no JSON-LD servido em
+			   06/11/2026: o quantificador `costuma` (a classe que esta ilha paga
+			   desde 03/11) e `0 de 14 declaram`, que e o plural que mente.
+			   A CAUSA E ESTRUTURAL E VALE MAIS QUE AS DUAS FRASES: a varredura de
+			   quantificador do portao de ar le o TEXTO VISIVEL, e
+			   `corpo_da_pagina()` tira `<script>` antes de medir — com razao, porque
+			   ali mora CSS e JSON. Entao o JSON-LD escapa dela. E ele e justamente
+			   a camada que a visao geral de IA ingere: defeito ali vale MAIS do que
+			   na prosa, nao menos. E a familia da 32.4-b (o comentario de CSS que
+			   nenhum portao via) um andar acima.
+			   O conserto nao e consertar a frase: e a frase deixar de existir aqui.
+			   O molde ja e contado, ja escolhe o plural por mundo e ja passou pelas
+			   guardas do gerador. */
+			'Não. A regra lê a potência NOMINAL, que fica na ficha. '
+				. rodametria_f1_frase_do_pico( $d ),
 		),
 		array(
 			'Essa resolução diz se precisa de CNH?',

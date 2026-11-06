@@ -281,6 +281,51 @@ for (const nome of [...pedidos, ...pedidosPorChave]) {
 console.log('  o JS pede ' + (pedidos.length + pedidosPorChave.length) +
   ' molde(s) e todos existem no arquivo de respostas');
 
+/* -------------------- (6) O QUANTIFICADOR NO JSON-LD, que a prosa nao alcanca
+ *
+ * MEDIDO NO AR em 06/11/2026: a varredura de quantificador por extenso do portao
+ * de ar le o TEXTO VISIVEL, e `corpo_da_pagina()` tira `<script>` antes de medir
+ * — com razao, porque ali mora CSS e JSON. Entao o `FAQPage` desta pagina ESCAPA
+ * dela, e foi por ali que `costuma` e `0 de 14 declaram` chegaram ao ar, as duas
+ * frases que a camada visivel ja nao tinha. E o JSON-LD e justamente a camada que
+ * a visao geral de IA ingere: defeito ali vale MAIS que na prosa, nao menos. E a
+ * familia da 32.4-b (o comentario de CSS que nenhum portao via) um andar acima.
+ *
+ * A regua mede o FONTE do snippet e nao o ar, de proposito: ela pega a frase
+ * ANTES do desembarque, que e onde ela custa menos. Ela varre as strings longas
+ * do PHP que ficam FORA de comentario — a prosa que vai para a pagina e para o
+ * JSON-LD — e nao sabe de camada nenhuma, que e o que a fez achar o defeito.
+ * -------------------------------------------------------------------------- */
+const QUANTIFICADORES = [
+  'costuma', 'geralmente', 'normalmente', 'a maioria', 'quase sempre', 'quase nunca',
+  'na maior parte', 'o mais comum', 'mais comum', 'em geral', 'tipicamente', 'raramente',
+];
+
+// Tira comentarios de bloco e de linha do PHP: comentario CITA o defeito de
+// proposito (os desta ilha sao a memoria dela), e proibir a citacao seria proibir
+// o registro. O que a regua mede e o que a pagina SERVE.
+const phpCodigo = phpFonte
+  .replace(/\/\*[\s\S]*?\*\//g, '')
+  .split('\n').map((l) => l.replace(/^\s*\/\/.*$/, '')).join('\n');
+const stringsLongas = (phpCodigo.match(/'[^'\n]{25,}'|"[^"\n]{25,}"/g) || []);
+for (const t of QUANTIFICADORES) {
+  const achadas = stringsLongas.filter((x) => x.toLowerCase().includes(t));
+  ok(achadas.length === 0,
+    'o snippet da F1 traz o quantificador por extenso ' + JSON.stringify(t) + ' em ' +
+    achadas.length + ' string(s) que vao para a pagina ou para o JSON-LD: ' +
+    JSON.stringify(achadas.slice(0, 2)));
+}
+
+// E A OUTRA METADE: a resposta do FAQ sobre o pico nao pode ser prosa escrita a
+// mao. Ela TEM de chamar a funcao que monta a frase do molde — senao a frase
+// volta a existir em dois lugares, e so um deles e consertado.
+ok(/rodametria_f1_frase_do_pico\s*\(/.test(phpCodigo),
+  'o snippet nao chama `rodametria_f1_frase_do_pico()`: a frase do pico voltou a ' +
+  'ser escrita a mao, e foi assim que o quantificador chegou ao JSON-LD');
+console.log('  o JSON-LD e a prosa do snippet: ' + QUANTIFICADORES.length +
+  ' quantificador(es) proibido(s) conferido(s) em ' + stringsLongas.length +
+  ' string(s) longa(s) do PHP');
+
 console.log('');
 console.log('teste-f1-arvore: ' + afirmacoes + ' afirmacoes, ' + falhas.length + ' falha(s)');
 for (const f of falhas.slice(0, 20)) console.log('  FALHA ' + f);
