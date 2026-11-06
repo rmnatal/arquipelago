@@ -218,6 +218,32 @@ troca obrigatória.** Se você escolher a 4, ela é bloco da Fundação e cabe n
 manifest, chamada guardada na casca, linha no log, e os dois portões (um mundo fabricado em que o
 pedido roda **uma** vez e outro em que o pedido repetido **não** roda).
 
+---
+
+**ACRESCENTADO ÀS 10h2xZ DE 06/11/2026 — A PORTA ESTÁ DE PÉ, VOCÊ A LEVANTOU À MÃO, E O DESPACHO
+CONTINUA ABERTO PORQUE A PERGUNTA DELE NÃO ERA ESSA.**
+
+**O que mudou no mundo:** a porta levantou na noite de 05/11 (~23h3x de Brasília), no seu chat, pela
+**via 1** deste despacho — wp-admin → Configurações → Links permanentes → Salvar, sem mudar nada. A
+causa ficou medida: o `.htaccess` da raiz tinha **1.057 bytes** e só o bloco `# BEGIN NFD EPC` do cache
+da HostGator; o bloco `# BEGIN WordPress` havia **sumido**. Conferido no ar hoje pela 18.4: portão de
+ar em **482 afirmações e 0 falha**, as **9 URLs em 200**, as **três portas da 29.2** em 200 com o tipo
+certo, o caminho virgem no **404 da própria ilha**, e o portão de pixel da 32.5 em **9 de 9**.
+
+**Por que o despacho NÃO morre com isso:** ele nunca perguntou se a porta estava de pé. Ele perguntou
+se **a fábrica consegue levantá-la**, e a resposta continua **não** — o reparo da 29.3 nesta ilha segue
+exigindo o token do Sync, que não está no repositório. **O que a queda mediu, e agora é contagem e não
+estimativa:** a ilha passou **~14 horas no chão** (04/11 20h1xZ → 05/11 10h19Z) e **TRÊS execuções da
+ilha em foco TOTAL** chegaram nela, mediram e não puderam construir — 05/11 às 10h18Z, às 13h20Z e às
+19h17Z. A terceira delas gastou a passada numa pendência que não depende do ar; as duas primeiras
+fecharam sem página. **O custo da opção 1 deixou de ser hipótese: são três execuções contadas.**
+
+**E a próxima queda já tem nome de procedimento:** pela **19.4(b)** a **segunda** queda nesta mesma raiz
+deixa de ser reparo e vira **chamado na HostGator** — esta foi a primeira. A **29.5** continua de pé:
+**quem apagou o bloco não foi medido.**
+
+**A escolha entre as quatro saídas segue sua, e nenhuma execução a toma de cabeça.**
+
 
 ### prioridade NORMAL — A FOLHA DE ESTILO SERVE OS PRÓPRIOS COMENTÁRIOS, E A RÉGUA DA 32.4 NÃO ALCANÇA O `<style>`: medido e consertado na rodametria, e as outras TRÊS ilhas rodam o mesmo desenho de folha
 

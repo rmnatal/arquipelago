@@ -277,7 +277,45 @@ Aprovada por ele na conversa em 27/10/2026 ("vamos em frente", e "Já pode entã
 
 **A regra de dinheiro desta ilha (BUSSOLA.md 0.8 e 0.9):** a conta que aprovou é **só Shopee** — patinete elétrico adulto (ticket mediano R$ 2.329, comissão mediana 10%, medidos no painel em 27/10/2026) e peças/acessórios. **Scooter, moto e bicicleta elétrica entram com link do Mercado Livre como bônus, só para o que a Shopee não vende**, nunca como sustentação. Quando o mesmo produto existe nos dois, o link é o da Shopee (seção 7). Amazon fora de tudo.
 
-## DESPACHO DA FUNDAÇÃO PARA O RAPHAEL — 2026-11-05 — ALTA: A ILHA ESTÁ FORA DO AR, MENOS A HOME, E O REPARO NÃO É EXERCITÁVEL DESTA NUVEM
+## ~~DESPACHO DA FUNDAÇÃO PARA O RAPHAEL — 2026-11-05 — ALTA: A ILHA ESTÁ FORA DO AR, MENOS A HOME, E O REPARO NÃO É EXERCITÁVEL DESTA NUVEM~~ — **FECHADO EM 2026-11-06 às 10h2xZ, CONFERIDO NO AR PELA 18.4 — E QUEM LEVANTOU A PORTA FOI O RAPHAEL, À MÃO, NÃO A FÁBRICA**
+
+> **A PORTA ESTÁ DE PÉ.** Medido às 10h2xZ de 06/11/2026 pela execução que reservou esta ilha às 10h17Z,
+> **nas duas leituras que a 29.2 pede**: o portão de ar da ilha em **482 afirmações e 0 falha** (com quebra
+> de cache, sobre a origem) e um `curl` das 13 URLs **sem** quebra de cache, como o Google lê. As **9 URLs
+> do sitemap em 200**; as **três portas da 29.2** em 200 **com o tipo certo** (`/wp-sitemap.xml` em
+> `application/xml` servindo o `sitemapindex` de verdade, `/robots.txt` em `text/plain`, `/wp-json/` em
+> `application/json`); e o caminho virgem em **404 da PÁGINA DESTA ILHA** (`<title>Página não encontrada
+> – Rodametria</title>`), não do hospedeiro — que era a assinatura da queda. O **portão de pixel da 32.5**,
+> que a passada anterior deixou explicitamente pendente por não haver página para medir, rodou e aprovou
+> **9 de 9** (pior caixa 405 px contra o teto de 700; pior compra 1.279 px contra o teto de 1.400).
+>
+> **E A PRIMEIRA PASSADA DO PORTÃO DEU 1 FALHA, que NÃO era defeito, e isto fica escrito porque é a 20.2
+> ao pé da letra:** a home respondeu `0` numa afirmação (falha de túnel), com as outras 481 verdes. Pela
+> seção 4 falha de rede só vira defeito depois de repetir — a segunda e a terceira passada deram **0
+> falha**, e os 9 `curl` de rede antes da reserva deram **200 em 9 de 9**. Uma medição isolada não fecha
+> nem abre nada.
+>
+> **A CAUSA E O CONSERTO ESTÃO MEDIDOS, E SÃO O QUINTO CASO DA MESMA ASSINATURA NO ARQUIPÉLAGO** (a
+> entrada de 05/11 ~23h3x de Brasília no `REGISTRO.md`): o `.htaccess` da raiz tinha **1.057 bytes** e só
+> o bloco `# BEGIN NFD EPC` do cache da HostGator — o bloco `# BEGIN WordPress` havia **sumido**. O
+> conserto foi **wp-admin → Configurações → Links permanentes → Salvar**, sem mudar nada, que é
+> exatamente a **via 1** que este despacho escreveu. **Quem apagou o bloco não foi medido**, então a
+> **29.5** continua valendo e a causa de origem segue sem nome.
+>
+> **O QUE ESTE FECHO NÃO FECHA, e é o motivo de o despacho de `dados/despachos.md` FICAR ABERTO:** a
+> pergunta deste despacho nunca foi "a porta está de pé?" — foi **"a fábrica consegue levantá-la?"**, e a
+> resposta hoje continua **não**. A ilha passou **~14 horas no chão** (04/11 20h1xZ → 05/11 10h19Z) e
+> gastou **TRÊS execuções da ilha em foco TOTAL** sem publicar uma página, porque as três chegaram nela e
+> só puderam medir. A escolha entre as **quatro saídas** segue aberta **para o Raphael**, e nenhuma
+> execução a toma de cabeça. **O que mudou é o custo: ele deixou de ser estimativa e virou três execuções
+> contadas.**
+>
+> **O texto original do despacho está preservado abaixo**, porque ele é o diagnóstico que levou ao
+> conserto de 30 segundos — a via 1 dele foi a que funcionou.
+
+### O TEXTO ORIGINAL DO DESPACHO, PRESERVADO
+
+#### DESPACHO DA FUNDAÇÃO PARA O RAPHAEL — 2026-11-05 — ALTA: A ILHA ESTÁ FORA DO AR, MENOS A HOME, E O REPARO NÃO É EXERCITÁVEL DESTA NUVEM
 
 Medido às 10h19Z–10h2xZ de 05/11/2026 pela execução da Fundação que reservou esta ilha às 10h18Z, em **duas leituras — com e sem quebra de cache** —, e remedido pelo portão de ar da ilha.
 
