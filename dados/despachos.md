@@ -11,6 +11,58 @@ Prioridade: `alta` fura a fila da próxima execução do destinatário.
 
 ## ABERTOS
 
+### prioridade ALTA — O SYNC DEIXA A PÁGINA SEM O SNIPPET POR ATÉ 30 MINUTOS EM ILHA SEM TOKEN, E O VISITANTE VÊ 200 — a cicatriz da 20.4 medida na rodametria, com a causa e os dois consertos separados
+
+06/11/2026 às 20h1xZ — **RAPHAEL (item 1) e FUNDAÇÃO (item 2)** — Medido na rodametria, no desembarque
+da revisão **64**. Está aqui, e não só no registro daquela ilha, pelo motivo que a própria 20.4 escreveu
+com todas as letras: *"conserto escrito em registro de ilha conserta aquele dia; regra escrita vale para
+as ilhas, que rodam o mesmo Sync"*. **O Sync é o mesmo código nas quatro.**
+
+**O QUE ACONTECEU, com a linha inteira:** o log do `/status` da revisão 64 trouxe
+`snippets/rodametria-f1: gravado (#10) mas NÃO ativado: Não foi possível ativar o snippet: o código não
+passou na validação.` — e o Sync **seguiu em frente e subiu a revisão**, como a 20.4 descreve. **O que
+isso fez no ar:** a home respondeu **200**, perdeu a ferramenta principal e **voltou a ser HUB**, caindo
+de **118.860 para 83.633 bytes**. Pela **20.7**, `rodametria-f1` **ausente** de `/casca → versoes` é a
+prova: snippet inativo não roda, logo não se pendura no filtro.
+
+**NÃO É DEFEITO DO CÓDIGO DO SNIPPET, e isto está medido:** a revisão **63** aplicou o **mesmo PHP** 31
+minutos antes com `ok (snippet #10 atualizado)`; a diferença entre as duas é **duas palavras de texto
+num JSON** e a constante de versão. A causa é a que a 20.4 nomeia: `activate_snippet()` **executa o
+código ao ativar**, e o snippet **já estava carregado** naquela requisição, porque estava **ativo** desde
+a revisão anterior.
+
+**O QUE JÁ FUNCIONOU, e vale registrar porque é o investimento das últimas semanas pagando:** o portão
+de ar daquela ilha reprovou por **três caminhos independentes** na primeira passada — a conta da 20.8 (o
+fecho declara 7 aplicados e o log traz 8 linhas de item), a afirmação positiva da 20.8 (1 linha que não
+diz `ok`, citada inteira) e a ausência da 20.7 (`/casca` sem a versão), **cada uma dizendo o conserto**.
+**573 afirmações, 3 falhas, nenhuma de outro tipo.** Sem esses três, a revisão 64 teria sido escrita como
+entrega conferida.
+
+**ITEM 1 — RAPHAEL, E É UM GESTO SÓ: a Fundação precisa do token do Sync da rodametria.** As outras três
+ilhas o têm no `PROMPT.md` e por isso a Fundação aciona o Sync **duas vezes**, como a 20.4 manda por
+desenho — e a segunda passada é exatamente o que ativa o que a primeira gravou inativo. **Na rodametria
+ela não o tem**, então o conserto de "gravado mas não ativado" depende do **próximo vencimento do cron**:
+até **30 minutos** com a página servindo menos do que deveria, e a ilha em **foco total e absoluto** é
+justamente a que menos pode pagar isso. O gesto: pôr a linha do Sync com token no `PROMPT.md` daquela
+ilha, no formato das outras três (`https://rodametria.com.br/?rodametria_sync=<token>&forcar=1`).
+**Enquanto isso não existir, toda mudança no snippet da F1 daquela ilha corre este risco.**
+
+**ITEM 2 — FUNDAÇÃO, E O ARQUIVO É DE OUTRA ILHA, por isso é despacho e não conserto:** o Sync mora em
+`ilhas/robometria/snippets/robometria-sync.php` e a **seção 3** proíbe editar arquivo de ilha que a
+execução não reservou. O conserto que a causa pede é **desativar o snippet antes de reescrevê-lo**, para
+que a ativação nunca encontre um snippet carregado — hoje o Sync grava inativo *de propósito* e ativa
+depois, o que resolve o caso do snippet **novo** e não o do snippet **que já estava ativo**, que é o caso
+comum de toda mudança de código. **O "pronto quando" tem de ser medido e não afirmado:** uma passada que
+mude o código de um snippet **já ativo** de uma ilha e o log diga `ok` naquele item, na **primeira**
+rodada. Quem o fizer reserva a robometria, porque é lá que o arquivo mora, e o desembarque alcança as
+quatro.
+
+**O QUE ESTE DESPACHO NÃO PEDE:** nada no portão. Ele já mede, já reprova e já diz o conserto — a
+**31.2** é literal sobre portão novo só nascer com defeito que ele teria pegado, e este foi pego.
+
+---
+
+
 ### prioridade NORMAL — A RÉGUA DE QUANTIFICADOR DAS QUATRO ILHAS LÊ O TEXTO VISÍVEL E NÃO ALCANÇA O JSON-LD, que é a camada que a IA ingere — medido na rodametria, e a régua geral já está no contrato, na 32.4-c
 
 06/11/2026 às 11h1xZ — **FUNDAÇÃO** — Medido na rodametria, no HTML servido da home, **com o portão
