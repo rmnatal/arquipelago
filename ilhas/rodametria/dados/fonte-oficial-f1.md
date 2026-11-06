@@ -140,6 +140,23 @@ constante, só copiar número por número.
 
 ---
 
+## 5. O LUGAR DA LEITURA — PREENCHIDA EM 05/11/2026, E JÁ COPIADA PARA A CONSTANTE
+
+> **ESTA SEÇÃO FOI CUMPRIDA E CONSUMIDA.** Preenchida pelo Raphael em **05/11/2026, ~23h3x de
+> Brasília**, com o PDF oficial do Ministério dos Transportes aberto no Chrome dele. Em
+> **06/11/2026 às ~10h3xZ** a execução seguinte da Fundação copiou os valores para a constante
+> `limiares-categoria-contran-996-2023` de `dados/constantes.json` (`tipo: oficial`, `status:
+> publicavel`, com `url`, `verificado_em` e os artigos lidos), e **a F1 foi ao ar na revisão 46 — ela
+> é a home da ilha.** Nenhuma linha de lógica mudou, exatamente como a 1.3 da especificação prometia.
+>
+> **O QUE A LEITURA MUDOU NA ESPECIFICAÇÃO está escrito como ERRATA dentro da seção 1 de
+> `dados/especificacao-calculadoras.md`** — três coisas, e a mais importante é que **a resolução não
+> fala de CNH**. Veja a seção 6 abaixo, que é o lugar pronto para essa outra leitura.
+>
+> **O texto do preenchimento fica abaixo, intacto, porque ele é a procedência.** Não o apague: é
+> contra ele que qualquer releitura futura se compara, e é dele que a `url` e o `verificado_em` da
+> constante saíram.
+
 ## 5. O LUGAR DA LEITURA — preencher e nada mais
 
 > **Quem preencher esta seção destrava a F1.** Depois de preenchida, a execução seguinte copia
@@ -226,3 +243,65 @@ banco, a F2 (no ar desde 29/10) e a F3. **E a ilha não recebe `bloqueada_por` p
 O portão da F1, quando nascer, usa limiar **fictício** declarado como fictício no próprio caso
 (ex. `LIMIAR_AUTOPROP_W = 777`) e afirma a **árvore**, nunca os números do mundo. Portão que
 afirma 1.000 W antes de o texto oficial chegar é o número de tela digitado com outra roupa.
+
+---
+
+## 6. O LUGAR DA PRÓXIMA LEITURA — O CTB, E A F1 ESTÁ NO AR SEM ELE
+
+> **POR QUE ESTA SEÇÃO EXISTE, e ela nasceu da leitura da seção 5 e não de um palpite:** a Resolução
+> Contran nº 996/2023 **não tem artigo nenhum sobre habilitação**. Isso está medido no próprio
+> preenchimento acima — *"habilitação exigida por categoria: NÃO CONSTA na 996/2023 (nenhum artigo
+> sobre CNH/ACC; vem do CTB)"*. Ela decide a **categoria** e decide **registro, licenciamento e
+> emplacamento** (arts. 12 e 13) e **capacete** (art. 19 V).
+>
+> **A consequência é dura e está no ar:** a F1 responde a categoria, responde a placa com o artigo, e
+> **cala sobre CNH**, com uma frase própria dizendo que a resolução não decide isso e que a gente não
+> leu o Código de Trânsito na fonte. A constante `exigencia-de-habilitacao-por-categoria-ctb` nasceu
+> `pendente` para esse silêncio ter nome, e o portão `ferramentas/teste-f1.py` **proíbe** as frases
+> "dispensa CNH" e "exige habilitação" em todo texto de tela enquanto ela for pendente.
+>
+> **Quem preencher esta seção faz a F1 responder a pergunta do título dela.** Depois de preenchida, a
+> execução seguinte copia os valores para a constante, troca `status` e `tipo` para `publicavel`, e a
+> ferramenta passa a responder CNH **sem uma linha de lógica mudar** — é o mesmo mecanismo que
+> destravou o limiar em 06/11/2026, e ele já foi exercitado uma vez.
+>
+> **Se um campo não estiver no texto, escreva `NÃO CONSTA`** em vez de deixar em branco ou estimar.
+> Campo vazio não se distingue de campo esquecido, e número estimado aqui é exatamente o defeito que
+> este arquivo existe para impedir. **E a direção do erro importa mais aqui do que em qualquer outro
+> campo desta ilha:** dizer que dispensa habilitação quem precisa dela manda alguém para a rua sem o
+> documento.
+
+**A PAREDE, e ela é a mesma de sempre:** `www.planalto.gov.br` é um dos cinco domínios medidos em 403
+de CONNECT em 28/10, 29/10 e 05/11/2026, e em 05/11 a parede foi medida como sendo o **domínio
+`.gov.br` inteiro**, não os hosts. O pedido que destrava esta seção é o **mesmo** de uma linha
+(`*.gov.br`) do despacho ALTA de `dados/despachos.md`. A tabela de todas as portas tentadas está na
+seção 2 deste arquivo.
+
+```
+URL lida:
+data da leitura:
+qual redação está sendo lida (e se há ato posterior alterando os artigos de habilitação):
+COMO FOI LIDO (declarado, para a próxima execução pesar — leitor de página, PDF, texto consolidado):
+artigo(s) de onde cada linha abaixo saiu:
+
+--- BICICLETA ELÉTRICA ---
+exige habilitação (sim / não / NÃO CONSTA), com o artigo:
+idade mínima, se o texto declarar:
+
+--- EQUIPAMENTO DE MOBILIDADE INDIVIDUAL AUTOPROPELIDO ---
+exige habilitação (sim / não / NÃO CONSTA), com o artigo:
+idade mínima, se o texto declarar:
+
+--- CICLOMOTOR ---
+exige habilitação (sim / não / NÃO CONSTA), com o artigo:
+qual categoria ou autorização (ACC, categoria A, outra), com o artigo:
+idade mínima, se o texto declarar:
+
+--- MOTOCICLETA, MOTONETA E TRICICLO (o que a 996/2023 chama de "acima do ciclomotor") ---
+exige habilitação (sim / não / NÃO CONSTA), com o artigo:
+qual categoria, com o artigo:
+
+--- A DEFINIÇÃO QUE AMARRA TUDO ---
+como o CTB define "veículo automotor", literal, com o artigo (é ela que decide se autopropelido e
+bicicleta elétrica estão dentro ou fora da exigência de habilitação):
+```

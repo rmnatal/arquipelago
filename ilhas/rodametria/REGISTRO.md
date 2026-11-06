@@ -4633,3 +4633,273 @@ eixo A como se fosse a resolução.
   virgem em 404; `ferramentas/conferir-no-ar.py .` → APROVADO. A 32.5 no navegador NÃO foi rodada aqui.
 - **LIÇÃO:** quando a porta cair com só `/` em 200, ler o `.htaccess` antes de tudo e procurar o bloco
   `BEGIN WordPress`. O "Editar Site" do Portal do Cliente da HostGator mexe nesse arquivo (mtime mudou no clique).
+
+## 2026-11-06, 10h17Z–11hxxZ — A F1 FOI AO AR, E ELA É A HOME: nove dias de ferramenta travada fechados por dois minutos de navegador do Raphael
+
+**A ILHA DESTA EXECUÇÃO:** rodametria, por **foco** (`foco.md` nomeia a rodametria, foco total e
+absoluto desde 27/10). Reserva às **10h17Z**, renovada pela 1.1 às **10h44Z** porque o bloco mexeu em
+constante, esquema, cérebro, gerador, dois portões novos, validador e bateria de mutações, e a bancada
+sem rede desta ilha tem 31 portões. Nenhum branch `claude/*` e nenhum PR aberto; o `main` veio limpo.
+**Rede medida e não herdada antes da reserva (20.2):** `rodametria.com.br` em **200 nas três
+passadas**, com `aquametria.com.br` e `robometria.com.br` em 200 nas mesmas três — **9 de 9 em 200**.
+
+---
+
+### 1. O DESPACHO ALTA DE 05/11 MORREU CONFERIDO NO AR (18.4), E QUEM LEVANTOU A PORTA FOI O RAPHAEL, À MÃO
+
+**Primeiro comando da execução, como o `ESTADO.md` de ontem mandava:**
+`python3 ferramentas/conferir-no-ar.py .` → **482 afirmações, 0 falha**. As **9 URLs em 200**, as três
+portas da 29.2 em 200 **com o tipo certo** (`application/xml` servindo o `sitemapindex` de verdade,
+`text/plain`, `application/json`), e o caminho virgem em **404 da página desta ilha** —
+`<title>Página não encontrada – Rodametria</title>` —, que era a assinatura da queda. Conferido também
+**sem quebra de cache**, como o Google lê: 13 URLs, todas no código certo. O **portão de pixel da
+32.5**, que a passada de ontem deixou explicitamente pendente por não haver página para medir, rodou e
+aprovou **9 de 9** (pior caixa 405 px contra o teto de 700; pior compra 1.279 px contra 1.400).
+
+**E A PRIMEIRA PASSADA DO PORTÃO DEU 1 FALHA QUE NÃO ERA DEFEITO, e isso fica escrito porque é a 20.2
+ao pé da letra:** a home respondeu `0` numa afirmação, com as outras 481 verdes. Falha de rede só vira
+defeito depois de repetir — a segunda e a terceira passada deram **0 falha**. Uma medição isolada não
+fecha nem abre nada.
+
+**A causa da queda está medida e é a quinta da mesma assinatura no arquipélago:** o `.htaccess` da raiz
+tinha 1.057 bytes e só o bloco do cache da HostGator; o bloco `# BEGIN WordPress` havia **sumido**. O
+conserto foi **wp-admin → Links permanentes → Salvar**, que é exatamente a **via 1** que o despacho
+escrevia. **Quem apagou não foi medido**, então a 29.5 continua valendo e pela 19.4(b) a próxima queda
+nesta raiz vira **chamado**.
+
+**O DESPACHO DE `dados/despachos.md` FICA ABERTO, e o motivo é que a pergunta dele nunca foi "a porta
+está de pé?" — foi "a FÁBRICA consegue levantá-la?", e a resposta continua não.** O que mudou é o
+custo: deixou de ser estimativa e virou **três execuções contadas** da ilha em foco total que chegaram
+nela, mediram e não puderam construir (05/11 às 10h18Z, 13h20Z e 19h17Z), mais **~14 horas no chão**.
+
+---
+
+### 2. O BLOCO: A F1 DESTRAVOU, E O QUE A DESTRAVOU NÃO FOI UMA EXECUÇÃO DA FÁBRICA
+
+Havia um commit no `main` **posterior** ao fecho de ontem que nenhum `ESTADO.md` mencionava: `367842b`,
+*"secao 5 da fonte oficial da F1 preenchida"*. Em **05/11, ~23h3x de Brasília**, o Raphael abriu o PDF
+oficial do Ministério dos Transportes no Chrome dele e preencheu a seção 5 de
+`dados/fonte-oficial-f1.md` **campo por campo**, declarando até **como leu** (leitor de página e não
+`pdftotext`; os números da bicicleta e do autopropelido literais, os do ciclomotor parafraseados pelo
+leitor — e isso está escrito, não escondido).
+
+**ESTA PASSADA É O QUE A APOSTA DA 1.3 COMPROU.** A constante `limiares-categoria-contran-996-2023`
+ficou `pendente` por **nove dias**, com a consequência escrita sem maquiar — *"a F1 NÃO vai ao ar"* — e
+o `custo_de_destravar` declarado em 28/10 dizia, palavra por palavra: *"editar este objeto: preencher
+valor, trocar status para publicavel, gravar url, verificado_em e o artigo lido. Nenhuma linha de
+lógica muda."* **Foi exatamente isso.** O que existia em 28/10 e não precisou ser reescrito: a árvore de
+decisão, as duas ressalvas, a camada municipal, a prestação de contas, a tabela, o bloco de compra.
+
+**O QUE FOI AO AR:** `regras/f1.py` (o cérebro), `dados/f1-respostas.json`, `ferramentas/gerar-f1.py`,
+`ferramentas/teste-f1.py`, `ferramentas/teste-f1-arvore.mjs`, `snippets/rodametria-f1.php`, e a casca
+em **1.11.0** com dois filtros novos. **Revisão 45 e depois 46.**
+
+**ELA É A HOME, E NENHUMA URL MUDOU.** A casca prometia isso desde 29/10 com todas as letras. A
+ferramenta se pendura em `rodametria_home_ferramenta` e `rodametria_home_cartoes` de dentro do próprio
+snippet, pela 32.6-b — e **filtro vazio devolve a home HUB de 29/10 byte por byte**, porque o snippet
+**lê o status da constante** em vez de ter uma lista de pendências escrita à mão. O dia em que o limiar
+voltar a `pendente`, a home volta a ser HUB sozinha, sem ninguém editar PHP.
+
+---
+
+### 3. AS TRÊS COISAS QUE A LEITURA OFICIAL MUDOU NA ESPECIFICAÇÃO — e elas estão como ERRATA dentro dela
+
+Porque quem for mexer na F1 lê `dados/especificacao-calculadoras.md`, não este arquivo.
+
+**(1) A ÁRVORE TERMINAVA EM `senao -> ciclomotor`, E O TEXTO NÃO AUTORIZA ISSO.** O inciso IV do art. 2º
+põe **teto** no ciclomotor (4 kW e 50 km/h) e os §§ 6º e 7º mandam o excedente para *"ciclomotor,
+motocicleta, motoneta ou triciclo, **conforme o caso**"*. Nasceu a quarta saída,
+`acima_do_ciclomotor`, que diz que a resolução **não decide qual**. Chamar de ciclomotor um veículo de
+5 kW seria afirmar o que a resolução não diz — a proibição nominal do `VOZ.md` — na ilha cujo produto
+**é** a categoria legal. Esquema do banco 5 → 6.
+
+**(2) A RESOLUÇÃO NÃO FALA DE CNH, e esta é a descoberta que mais muda o produto.** A tabela da 1.2
+dizia `dispensa CNH` nas três linhas. A 996/2023 não tem **artigo nenhum** sobre habilitação: decide a
+categoria e decide **registro, licenciamento, emplacamento** (arts. 12 e 13) e **capacete** (art. 19
+V). A CNH está no CTB, no `planalto.gov.br`, atrás da mesma parede. **Então a F1 está no ar sem
+responder a pergunta do título dela**, dizendo com frase própria que a resolução não decide isso e que
+a gente não leu o CTB na fonte. Constante nova `exigencia-de-habilitacao-por-categoria-ctb`,
+`pendente`, e ela **não trava desembarque** — é a diferença entre ela e o limiar: sem o limiar não
+havia categoria e portanto não havia ferramenta; sem ela, a ferramenta responde menos e **diz o que
+falta**. O portão **proíbe** as frases `dispensa CNH` e `exige habilitação` em todo texto de tela
+enquanto ela for pendente.
+
+**E ISSO PÕE O `VOZ.md` CONTRA SI MESMO, com o desempate escrito:** ele traz as duas frases nos
+exemplos aprovados, de 27/10 — **antes** de alguém ter lido a resolução — e proíbe nominalmente
+*"qualquer frase que afirme o que a resolução não diz"*. Onde os dois lados dele divergem, **manda a
+proibição**: ela é sobre **fonte** e o exemplo era sobre **tom**.
+
+**(3) AS QUATRO ENTRADAS DA 1.1 NÃO FECHAM O AUTOPROPELIDO.** A alínea *e* do inciso II põe largura de
+70 cm e distância entre eixos de 130 cm, e a F1 não pergunta nenhuma das duas. Em vez de crescer o
+formulário — que custa pixel num orçamento já medido duas vezes nesta ilha —, o veredito sai com a
+condição **dita** e os dois números impressos.
+
+**E A CONTRADIÇÃO DO BLOCO 6 SE DESFEZ, com a causa ao contrário do que se supunha.** O
+`eletricz.com.br` afirmava 1.000 W numa página e 4.000 W noutra **citando esta mesma resolução** — e os
+**dois** estão nela: 1.000 W é o teto de autopropelido e de bicicleta elétrica, 4 kW é o de ciclomotor.
+O publicador colou o número de uma categoria no nome de outra. **Isso não absolve a fonte de segunda
+mão:** só a leitura oficial dizia de que lado estava o erro, e era isso que a regra
+`numero_de_portal_nunca_vira_constante_legal` protegia.
+
+---
+
+### 4. O QUE A PÁGINA SERVE, e a coluna que a 1.6 deixou vazia em 28/10 nasceu
+
+Ordem da 32.1 de cima para baixo: a pergunta como H2, o formulário com o **pivô do acelerador em
+radio no mesmo nível dos dois números** (a 1.1 é literal: *"nunca um checkbox abaixo do botão"*), a
+caixa de resposta **já pré-renderizada** com a categoria no lugar do número, a **camada 2 em bloco
+separado com título próprio** (fundi-la com a camada 1 é o defeito que a seção 7 nomeia), o bloco de
+compra, as ressalvas da 1.4, a prestação de contas, **duas** tabelas visíveis e três dobras.
+
+**A TABELA DA REGRA É NOVA E A 1.6 NÃO A PREVIA.** A 1.6 pede tabela de combinações colhidas e proíbe
+grade sintética; esta não é nem uma nem outra — é a **fonte pré-renderizada**, uma linha por categoria
+com o artigo ao lado. É a única coisa da página que responde a quem **não sabe** os números do próprio
+veículo, e é dela que o `FAQPage` do JSON-LD é montado **campo por campo**: a camada que a IA lê e a
+que a pessoa lê não podem divergir.
+
+**A COLUNA `categoria` DA TABELA DO BANCO NASCEU, e ela é a prova da tese da ilha.** A 1.6 dizia: *"a
+coluna categoria desta tabela está VAZIA neste bloco, e isso é proposital; ela só pode ser preenchida
+pelos limiares da 1.3"*. Os limiares chegaram: **14 linhas, 0 com watt nominal, 0 classificáveis**, e a
+coluna diz **a causa** em cada uma, nunca o watt sem rótulo. A **vitrine nasce com zero cartões** e a
+página diz por quê com os nomes contados: *"a causa é de ficha e não de estoque"*. A frase sai
+**contada** da própria prestação de contas — a irmã dela na F2 nasceu de um defeito medido em 29/10, e
+aqui ela nasce derivada no primeiro dia.
+
+**A DESCRIÇÃO DA HOME TROCOU, E É HONESTIDADE E NÃO SEO:** ela prometia, em primeiro lugar, *"se
+precisa de CNH"*, e a ferramenta que agora ocupa a primeira tela é literal sobre não responder isso.
+Descrição que promete o que a primeira tela recusa é a página se desdizendo na própria aba do
+navegador. 147 caracteres contra o teto de 160.
+
+---
+
+### 5. SETE DEFEITOS ACHADOS NESTA PASSADA, E ELES VALEM MAIS QUE A PÁGINA
+
+**O portão da própria ferramenta pegou cinco, antes de qualquer desembarque:**
+
+**(a) O LITERAL `32` DENTRO DO CÓDIGO DO CÉREBRO.** Os fatos das ressalvas nasceram num dicionário em
+`regras/f1.py`, e o `32` do caso da scooter adulterada bateu com o `LIMIAR_AUTOPROP_KMH` na régua da
+1.3. **A regra "fato externo mora num lugar só" estava escrita no CABEÇALHO DO ARQUIVO QUE A
+VIOLAVA**, e nenhum olho a viu — viu o portão, que compara o código com a constante em vez de **ler** o
+código. Os três fatos viraram constante. *(E a coincidência dos dois `32` também é dado, e está
+registrada: o caso medido é de uma scooter vendida com 32 km/h de fábrica, ou seja **no teto** do
+autopropelido, flagrada a 73.)*
+
+**(b) A MUTAÇÃO DE FRONTEIRA NÃO MORDIA, e o portão disse isso de si mesmo.** A grade da bateria usava
+(100, 556, 778, 1000, 5000) × (5, 12, 23, 45, 120) e **nenhum** desses valores é igual a um limiar — a
+mutação de `<` no lugar de `<=` só muda o veredito de quem está **exatamente** no limite. A mutação
+estava certa; a grade não a exercitava. **Mutação que nunca foi exercitada no mundo em que ela importa
+é afirmação sobre o portão, não medição dele.** A grade passou a ser **derivada** dos limiares
+fictícios, então troca de fictício e ela acompanha sozinha.
+
+**(c) A FRASE DO ESTOURO AFIRMAVA AS DUAS METADES quando só uma estourava.** Para 1.000 W com 45 km/h
+ela servia *"1.000 W passa dos 1.000 W"* — falso — ao lado da metade verdadeira. **Frase com "ou" não é
+frase imprecisa: ela afirma as duas metades.** Virou três moldes, um por causa, mais a função pura que
+escolhe e que **estoura** se for chamada sem estouro.
+
+**(d) O CAMPO `artigo` DA CONSTANTE IA PARA A TELA SEM ACENTO.** Os arquivos de dado desta ilha são
+ASCII de propósito, e a página servia *"a resolucao NAO diz qual"* dentro de uma frase acentuada. O
+campo ficou curto e acentuado; o longo virou `artigo_detalhe`, que nunca vai à tela.
+
+**(e) A GUARDA DA 32.4 PEGOU A MINHA PRÓPRIA PROSA:** a `fonte` de uma constante citava caminho de
+arquivo do repositório, e ela **vai** para a página.
+
+**E o portão de ar pegou três no minuto em que a página subiu — 3 falhas em 485 afirmações:**
+
+**(f) `costuma`** — a classe do quantificador por extenso, que esta ilha paga desde 03/11. **O portão
+estava certo por um motivo melhor que o de estilo:** a frase afirmava **frequência** e esta página
+**tem** a frequência medida. Em vez de declarar liberação, a frase virou **contagem**: *"dos 14
+anúncios que a gente colheu, 13 declaram um watt sem dizer se é nominal ou de pico, e NENHUM declara o
+nominal"*. **Trocar a hesitação pelo número contado deixou a ressalva mais forte, não mais fraca.**
+
+**(g) `dateModified` sem data na prosa** — a home servia 2026-11-06 na camada que a máquina lê e em
+lugar nenhum na que a pessoa lê. A saída não é tirar o JSON-LD: a página passou a **dizer** a data.
+
+**(h) A palavra de bastidor `publicavel` CINCO vezes no HTML servido**, dentro do pacote JSON do JS.
+Invisível para o visitante e perfeitamente legível para quem lê o fonte, que é o que a visão geral de
+IA ingere. A chave passou a se chamar `ato_lido`.
+
+**E DOIS QUE NENHUM PORTÃO PEGOU, porque os dois RODAM e os dois IMPRIMEM:**
+
+**(i) A CONVERSÃO DE MILÍMETRO PARA CENTÍMETRO DIVIDIA POR CEM**, nos **três** lugares que convertem, e
+a página foi ao ar dizendo que a resolução limita o autopropelido a **"7 cm de largura e 13 cm entre os
+eixos"** — onde ela diz 70 e 130. **Quem viu foi LER A FRASE GERADA**, e é por isso que o gerador
+imprime a resposta de exemplo. A régua nova está escrita **do outro lado**: em vez de repetir a divisão
+— o que aprovaria o erro dela — o portão **multiplica de volta** e exige fechar. E a conversão passou a
+morar num lugar só: a cópia no gerador existiu por meia hora e errava igual.
+
+**(j) "E 0 DECLARAM O NOMINAL"** — o plural que mente, a cicatriz que a clubedomosaico pagou em 12/10,
+com o agravante de que o mundo de hoje **é** o do zero. Dois moldes, um por mundo, e o mundo **com**
+nominal (que o banco não tem) é **fabricado** pelo portão.
+
+---
+
+### 6. E UM PORTÃO QUE JÁ EXISTIA ESTAVA MEDINDO MENOS DO QUE DIZIA — o achado de método da passada
+
+`ferramentas/teste-versao-dos-snippets.php` tinha a lista dos snippets **escrita à mão**, de 02/11, com
+os quatro que a ilha tinha naquele dia. A F1 nasceu e ele reprovou com a mensagem certa **pelo motivo
+errado**: *"o coletor devolve [4] e o manifest publica [5]"*. O coletor estava certo — ele devolve o que
+a lista manda carregar — e **a lista é que estava velha**.
+
+**E o defeito é mais feio do que parece, porque ele é ASSIMÉTRICO:** snippet novo deixa **uma**
+afirmação vermelha (e isso é **sorte**, porque é justamente a que compara com o manifest), e as
+afirmações *"cada snippet define exatamente uma constante"*, *"o manifest espelha a constante"* e
+*"cada snippet pendura algo em `rodametria_versoes`"* simplesmente **não alcançam** o snippet que falta
+na lista — **em silêncio**. Um snippet novo com duas constantes de versão, ou com o manifest
+desespelhado, entraria no ar sem nenhuma das três o ver.
+
+É a família que esta ilha já nomeou duas vezes: a `bancada.py` nasceu **sem lista** de propósito
+(*"portão novo entra no dia em que é escrito"*) e a `atualizar-manifest.py` **se proíbe de adivinhar** a
+constante *"porque convenção derivada de cabeça acerta em três dos quatro snippets desta ilha e erra no
+quarto, e erraria CALADA"*. A lista aqui era a mesma doença com um dia a mais de vida. **Os ids saem do
+manifest agora**, que é o contrato do Sync, e id sem arquivo no repositório é **denúncia**. 43 → 52
+afirmações, 4 → 5 snippets.
+
+---
+
+### 7. A TRAVA DE `categoria` DO BANCO FOI REAPONTADA, NÃO AMPLIADA
+
+Com o limiar `publicavel`, a trava antiga — *"categoria tem de ser null"* — **desligou sozinha**, e
+deixava o campo mais perigoso do banco sem portão nenhum. **Nenhum portão novo nasceu:** o mesmo passou
+de *"tem de ser null"* para *"tem de ser DERIVÁVEL e CONFERIDA"*, e o validador **recalcula com árvore
+própria** (seção 8) em vez de acreditar no campo.
+
+**E as duas mutações antigas de `categoria` liam o arquivo de verdade e passavam por sorte:** elas
+viraram **vermelhas** no dia em que a constante destravou, sem uma linha delas mudar, porque a premissa
+delas tinha deixado de ser verdade. Passaram a **fabricar** o mundo `pendente`, que é a regra desta
+própria bateria — *"o mundo que o esquema permite e o banco ainda não tem, e só a mutação que PRODUZ o
+mundo o enxerga"*. Mais três casos novos para o mundo de hoje, um deles um mundo **que passa**.
+
+---
+
+### 8. OS NÚMEROS, contados e não digitados
+
+- **Portão da F1:** 1.234 afirmações, 0 falha. 676 mundos varridos com limiares **fictícios** (pela
+  1.6, nenhum caso afirma 1.000 nem 32), e a régua **velha** de três saídas discordando da **nova** em
+  **80** deles — a divergência que a 20.8 exige.
+- **Portão da árvore no navegador:** 40 afirmações, 0 falha, 720 mundos, 4 mutações.
+- **Mutações do banco:** 72 casos (5 mundos que passam), 0 falha.
+- **Versão dos snippets:** 52 afirmações, 5 snippets, 6 de 6 mutações reprovadas.
+- **Bancada sem rede:** 31 portões (eram 28 de manhã), 0 falha.
+- **Portão de ar:** 482 → 485 afirmações. **Portão de pixel:** 9 de 9 na 32.5.
+- **Desembarque:** revisão 45 entrou em **menos de um minuto** (evento do cron já **devido**, 20.9),
+  com `8 aplicado(s)` contra as 8 linhas de item lidas uma por uma **do fecho para baixo**, todas
+  dizendo `ok` (20.4 e 20.8), e **5 de 5** versões de snippet batendo com o manifest —
+  `rodametria-f1 1.0.0` **presente** no `/casca`, que é a prova de que ele foi **ativado** e não só
+  gravado (20.7).
+
+**E A 20.9 FOI EXERCITADA DE NOVO, no caminho certo:** com a revisão 46 empurrada e o `/status` em 45,
+o `ultimo` de 10h57:09 era **anterior** ao commit do manifest e o raw já servia 46 — veredito
+`evento-nao-vencido`, e a ação certa é **esperar**, não reacionar. A régua que a passada de ontem
+escreveu depois de perder oito minutos poupou esses oito minutos hoje.
+
+---
+
+### 9. A LIÇÃO DE MÉTODO DESTA PASSADA, e ela não é sobre a F1
+
+**Dos dez defeitos achados hoje, SETE foram achados por portão e TRÊS por ler o texto gerado** — e os
+três de leitura são os que mais custariam: *"7 cm de largura"*, *"0 declaram o nominal"* e o caminho de
+arquivo na prosa de uma constante. Os três **rodam** e os três **imprimem**: nenhum quebra nada, e é
+por isso que chegariam ao ar e ficariam. **A contrapartida, que é o que vale a linha: os três viraram
+afirmação de portão na mesma passada**, e duas delas com a régua escrita **do outro lado** da conta —
+multiplicar de volta em vez de repetir a divisão, e fabricar o mundo do plural em vez de confiar no
+dado de hoje. É a seção 8 inteira em três linhas: **a régua que repete a conta aprova o erro da conta.**

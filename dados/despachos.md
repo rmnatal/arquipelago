@@ -860,6 +860,48 @@ Com `rodametria.com.br` em **200** na mesma janela, o que separa recusa de host 
 
 ### prioridade ALTA — a ilha EM FOCO tem como produto a CATEGORIA LEGAL, e o único texto que a decide é negado pelo egresso: o bloco 2 pode ser especificado inteiro, mas não pode ser FECHADO desta nuvem
 
+> **ATUALIZADO ÀS 11hxxZ DE 06/11/2026 — A METADE DA RESOLUÇÃO ESTÁ FECHADA, E NÃO FOI O EGRESSO QUE
+> A FECHOU: FOI VOCÊ, NO SEU CHROME.** Em **05/11, ~23h3x de Brasília**, você abriu o PDF oficial do
+> Ministério dos Transportes e preencheu a seção 5 de `ilhas/rodametria/dados/fonte-oficial-f1.md`
+> campo por campo. Com isso a constante `limiares-categoria-contran-996-2023` virou **`publicavel`** e
+> **a F1 FOI AO AR em 06/11/2026** — ela é a home da ilha, revisão 46. **O que você fez em dois
+> minutos de navegador valeu nove dias de ferramenta travada**, e a aposta da engenharia pagou: a
+> constante destravou editando **um objeto JSON** e nenhuma linha de lógica mudou.
+>
+> **E A LEITURA DESFEZ A CONTRADIÇÃO QUE ESTE DESPACHO NOMEAVA, com a causa ao contrário do que se
+> supunha:** o `eletricz.com.br` afirmava 1.000 W numa página e 4.000 W noutra **citando esta mesma
+> resolução**, e os **dois** números estão nela — 1.000 W é o teto de **autopropelido** e de
+> **bicicleta elétrica** (art. 2º, incisos II *c* e III *a*), 4 kW é o teto de **ciclomotor** (inciso
+> IV). O publicador colou o número de uma categoria no nome de outra. **Isso não absolve a fonte de
+> segunda mão:** só a leitura oficial dizia de que lado estava o erro.
+>
+> **O DESPACHO FICA ABERTO, E A LISTA DE QUEM ESPERA ELE CRESCEU — não encolheu.** O pedido continua
+> sendo **uma linha**, `*.gov.br`, e agora ele destrava três coisas em vez de duas:
+>
+> 1. **O CTB, que é NOVO E NASCEU DA PRÓPRIA LEITURA.** A 996/2023 **não tem artigo nenhum sobre
+>    habilitação** — isso foi medido no texto, não suposto. Ela decide a **categoria** e decide
+>    **registro, licenciamento, emplacamento** (arts. 12 e 13) e **capacete** (art. 19 V). A CNH está
+>    no Código de Trânsito (Lei 9.503/1997), no `planalto.gov.br`, que é um dos cinco domínios
+>    recusados. **Então a F1 está no ar sem responder a pergunta do título dela**, dizendo com uma
+>    frase própria que a resolução não decide isso e que a gente não leu o CTB na fonte. A constante
+>    `exigencia-de-habilitacao-por-categoria-ctb` nasceu `pendente` para esse silêncio ter nome, e o
+>    portão da ferramenta **proíbe** as frases "dispensa CNH" e "exige habilitação" na tela enquanto
+>    ela for pendente. **É a metade mais vendável do produto desta ilha, e ela está atrás da mesma
+>    linha.**
+> 2. **A camada municipal**, que já estava neste despacho: os quatro municípios do banco seguem
+>    `pendente`, e a camada 2 da F1 tem hoje **dois** estados úteis em vez de três. Ela está no ar e
+>    funciona — a frase do município conhecido-mas-não-lido é diferente da genérica de propósito.
+> 3. **Conferir ato posterior à 996/2023 no portal**, que a leitura de 05/11 deixou explicitamente
+>    **não conferido** e que o próprio texto lido tornou menos urgente (o art. 14 §1º I dá o prazo de
+>    01/11/2023 a 31/12/2025, o que confirma que 1º/01/2026 é **fim de prazo** e não redação nova).
+>
+> **E SE VOCÊ PREFERIR O NAVEGADOR OUTRA VEZ, o lugar está pronto e é o mesmo:** `dados/fonte-oficial-f1.md`
+> ganha uma **seção 6** no mesmo formato da 5 — campos rotulados um por um, com a instrução de escrever
+> `NÃO CONSTA` em vez de estimar — para a leitura do CTB aterrissar. **A execução seguinte copia os
+> valores para a constante e a F1 passa a responder CNH sem uma linha de lógica mudar**, exatamente
+> como aconteceu com o limiar hoje.
+
+
 > **REMEDIDO EM 29/10/2026 às 11hxxZ pela execução da Fundação que pôs a casca e a F2 da
 > rodametria no ar, e NADA MUDOU AQUI: segue aberto.** As três passadas da 20.2 deram `000`
 > nos quatro domínios de prefeitura, nos dois periódicos que publicam o consumo de patinete

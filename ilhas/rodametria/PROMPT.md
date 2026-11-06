@@ -560,6 +560,71 @@ no lugar onde quem for mexer a lê.
 
 **4. FERRAMENTAS**, uma por execução, com JSON-LD, tabela pré-renderizada, resposta antes da explicação, bloco de compra antes da procedência.
 
+**4a. ~~A F1 — "ESSE ELÉTRICO PRECISA DE CNH?"~~ — ENTREGUE EM 06/11/2026 às 10h4xZ–11hxxZ, E ELA É A
+HOME. A ferramenta que esta ilha existe para ter, travada desde 28/10, está no ar.** `regras/f1.py` (o
+cérebro), `dados/f1-respostas.json`, `ferramentas/gerar-f1.py`, `ferramentas/teste-f1.py` (**1.234
+afirmações**), `ferramentas/teste-f1-arvore.mjs` (**40 afirmações**) e `snippets/rodametria-f1.php`, com a
+casca em **1.11.0** abrindo dois filtros para ela. Revisão **46**.
+
+**O QUE DESTRAVOU, e não foi uma execução da fábrica:** o Raphael abriu o PDF oficial do Ministério dos
+Transportes no Chrome dele em **05/11, ~23h3x de Brasília**, e preencheu a seção 5 de
+`dados/fonte-oficial-f1.md` campo por campo. **Esta passada é o que a aposta da 1.3 comprou:** a
+constante destravou editando **um objeto JSON** e **nenhuma linha de lógica mudou**, porque nenhum
+limiar jamais foi literal no código. O `custo_de_destravar` que a constante declarava em 28/10 estava
+certo, palavra por palavra.
+
+**ELA É A HOME, E NENHUMA URL MUDOU** — a casca prometia isso desde 29/10 com todas as letras. Ela se
+pendura em dois filtros novos (`rodametria_home_ferramenta` e `rodametria_home_cartoes`) de dentro do
+próprio snippet, pela 32.6-b, e **filtro vazio devolve a home HUB de 29/10 byte por byte**: o snippet
+**lê o status** da constante em vez de ter uma lista de pendências escrita à mão, então o dia em que o
+limiar voltar a `pendente` a home volta a ser HUB sozinha.
+
+**AS TRÊS COISAS QUE A LEITURA OFICIAL MUDOU NA ESPECIFICAÇÃO estão escritas como ERRATA dentro da
+própria seção 1 de `dados/especificacao-calculadoras.md`**, porque quem for mexer na F1 lê aquele
+arquivo e não este. Em uma linha cada: (1) a árvore ganhou uma **quarta** saída, `acima_do_ciclomotor`,
+porque o inciso IV põe teto no ciclomotor e os §§ 6º e 7º mandam o excedente para "motocicleta, motoneta
+ou triciclo, conforme o caso" — e a resolução **não diz qual**; (2) **a resolução não fala de CNH**, e a
+F1 cala sobre habilitação nomeando a causa, com o portão cobrando a ausência das duas frases proibidas
+em todo texto de tela; (3) as quatro entradas da 1.1 **não fecham o autopropelido**, porque há largura e
+distância entre eixos, e o veredito sai com a condição dita em vez de o formulário crescer.
+
+**A COLUNA QUE A 1.6 DEIXOU VAZIA EM 28/10 NASCEU, e ela é a prova da tese da ilha:** 14 linhas, **zero**
+com watt nominal, **zero** classificáveis — a coluna diz a causa em cada uma, e não o watt sem rótulo. A
+vitrine nasce com **zero cartões** e a página diz por quê, com os nomes contados. **Uma tabela nova que
+a 1.6 não previa:** a da REGRA, uma linha por categoria com o artigo ao lado, que é a única coisa da
+página que responde a quem não sabe os números do próprio veículo — e é dela que o `FAQPage` do JSON-LD é
+montado, campo por campo, para a camada que a IA lê e a que a pessoa lê não poderem divergir.
+
+**CINCO DEFEITOS ACHADOS NESTA PASSADA, e eles valem mais que a página:**
+
+- **O LITERAL `32` DENTRO DO CÓDIGO DO CÉREBRO**, achado pelo portão da própria ferramenta no minuto em
+  que ele nasceu: os fatos das ressalvas moravam num dicionário em `regras/f1.py`, e o `32` do caso da
+  scooter adulterada bateu com o `LIMIAR_AUTOPROP_KMH` na régua da 1.3. **A regra "fato externo mora num
+  lugar só" estava escrita no cabeçalho do arquivo que a violava**, e nenhum olho a viu — viu o portão,
+  que compara o código com a constante em vez de ler o código. Os três fatos viraram constante.
+- **A MUTAÇÃO DE FRONTEIRA NÃO MORDIA, e o portão disse isso de si mesmo:** a grade da bateria usava
+  valores que **nenhum** era igual a um limiar, e a mutação de `<` no lugar de `<=` só muda o veredito de
+  quem está **exatamente** no limite. A grade passou a ser **derivada** dos limiares fictícios.
+- **A FRASE DO ESTOURO AFIRMAVA AS DUAS METADES quando só uma estourava** — para 1.000 W com 45 km/h ela
+  servia "1.000 W passa dos 1.000 W", que é falso, ao lado da metade verdadeira. Virou três moldes, um
+  por causa.
+- **A CONVERSÃO DE MILÍMETRO PARA CENTÍMETRO DIVIDIA POR CEM**, nos três lugares que convertem, e a
+  página foi ao ar dizendo "**7 cm** de largura e **13 cm** entre os eixos" onde a resolução diz 70 e
+  130. **Nenhum portão viu: a conversão rodava.** Quem viu foi ler a frase gerada, e a régua nova está
+  escrita **do outro lado** — multiplica de volta e exige fechar.
+- **"E 0 DECLARAM O NOMINAL"** — o plural que mente, a cicatriz da clubedomosaico de 12/10, com o
+  agravante de que o mundo de hoje **é** o do zero.
+
+**E UM PORTÃO QUE JÁ EXISTIA ESTAVA MEDINDO MENOS DO QUE DIZIA:** `teste-versao-dos-snippets.php` tinha a
+lista dos snippets **escrita à mão**, de 02/11. A F1 nasceu e ele reprovou com a mensagem certa pelo
+motivo errado. **O defeito é assimétrico e é por isso que ele é feio:** snippet novo deixa UMA afirmação
+vermelha e as outras três simplesmente **não alcançam** o snippet que falta na lista, em silêncio. Os ids
+saem do **manifest** agora, que é o contrato do Sync. 43 → 52 afirmações.
+
+**O QUE A F1 AINDA NÃO FAZ, e está dito na própria página:** não responde CNH. Despacho NORMAL novo em
+`dados/despachos.md` para o CTB, que é destravado pelo **mesmo** pedido de uma linha (`*.gov.br`) que o
+resto desta ilha espera.
+
 **5. ARTIGOS-ÂNCORA** pareados com cada ferramenta.
 
 **5b. ~~PÁGINAS PELO NOME DO PRODUTO~~ — PRIMEIRA LEVA ENTREGUE EM 29/10/2026 às 19h1xZ–20hxxZ, e o
