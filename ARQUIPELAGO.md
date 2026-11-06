@@ -1315,6 +1315,31 @@ Medido na aquametria em 14/10/2026, montando a lista que o item 1 do despacho do
 7. o resto do texto em seções recolhíveis com `<details>`/`<summary>`: como chegamos no número, as réguas, perguntas frequentes, "como sabemos" (fontes e datas).
 No celular, barra fixa no rodapé com o número do resultado e o botão para o bloco de compra, aparecendo quando o bloco de compra está fora da tela.
 
+**32.1-b O NOME DO CAMPO DO FORMULÁRIO CARREGA O PREFIXO DA ILHA, E ISSO NÃO É ARRUMAÇÃO: NOME CURTO COLIDE COM QUERY VAR DO WORDPRESS E O BOTÃO LEVA A UM 404 (06/11/2026).**
+
+Medido na rodametria no dia em que a F1 foi ao ar. O formulário de ferramenta destas ilhas é `method="get"` para a **própria página**, e o JavaScript é quem chama `preventDefault()`. Logo **a URL que o botão monta é uma página de verdade, servida a quem estiver sem JavaScript** — e o primeiro campo daquela ferramenta se chamava `w`, que é **query var reservada do WordPress** (a semana do arquivo de data). Medido campo por campo, com controle:
+
+```
+/?w=500          -> 404   (a pagina "Pagina nao encontrada" da propria ilha)
+/?kmh=80         -> 200
+/?acel=manual    -> 200
+/?mun=Osasco     -> 200
+/  (sem query)   -> 200
+```
+
+**Quem estivesse sem JavaScript e apertasse o botão da ferramenta principal daquela ilha caía num 404.** E ele é da família mais paciente que existe: **a página responde 200, o portão de ar fica verde, o portão de pixel fica verde**, e o defeito só aparece para quem **aperta o botão**. Naquela passada, sete réguas mediram aquela página e nenhuma tinha como vê-lo — **porque nenhuma delas apertava o botão.**
+
+**A regra, e ela é de espaço de nomes e não de lista:** todo `name=` de campo de formulário de ilha carrega o **prefixo da ilha** (`rdm_`, `cdm_`, `aqm_`, `rbm_`). São **mais de trinta** query vars reservadas, todas de nome curto (`m`, `p`, `w`, `s`, `cat`, `name`, `title`, `order`, `author`, `paged`, `feed`, `year`, `day`, `tag`, `term`, `preview`, `error`, `embed`…), e a lista **muda com a versão do WordPress**. Prefixo próprio torna a classe inteira impossível; conferir contra a lista conserta o caso de hoje.
+
+**O LEVANTAMENTO DAS QUATRO ILHAS FOI FEITO NA MESMA PASSADA, e o resultado é informação e não alívio:** fora o `w`, **nenhum** campo das quatro colide hoje — aquametria (`alvo`, `especie`, `volume`, `voltagem`, `carga`, `medida`…), robometria (`area`, `modelo`, `peca`, `pelo`, `piso`), rodametria F2 (`v`, `ah`, `peso`, `relevo`, `aut`) e clubedomosaico, que **já prefixa tudo** com `cdm_`. **Zero medido é informação; zero suposto não é** — e o risco não é de hoje, é do próximo campo que alguém acrescentar.
+
+**O PORTÃO QUE ISSO EXIGE TEM DUAS PONTAS, e a segunda é a que prova:**
+
+1. **Sem rede:** a régua lê os `name=` do snippet e cobra o **prefixo** (não a lista), com a lista como segunda afirmação para quem prefixar errado.
+2. **No ar, e esta é a que mede a coisa certa: o portão APERTA O BOTÃO.** Ele lê os `name=` de cada formulário do **HTML servido** — nunca de uma lista escrita nele —, monta a query com os valores que o navegador enviaria (a opção `selected`, o radio `checked`, o `value` do input) e exige **200**. Formulário novo entra na conta no dia em que nasce, e nome de campo trocado não deixa a afirmação velha passando verde. Modelo rodando: `ilhas/rodametria/ferramentas/conferir-no-ar.py`, seção 1-a.
+
+**E A OUTRA METADE DO MESMO DESENHO, que o 404 escondia:** com a URL respondendo 200, o botão **recarrega a página e a caixa volta a servir o CASO DE EXEMPLO** — a página responde outra pergunta e parece responder à da pessoa. A 22.8 e a 32.5 exigem que a resposta pré-renderizada **esteja** no HTML servido com o JavaScript desligado, e ela está; **o que elas não cobrem é esta confusão**, porque do lado de fora as duas páginas são idênticas. **Toda ferramenta com formulário serve um `<noscript>`** dizendo que a resposta mostrada é a do exemplo (com os valores dele, lidos do banco) e apontando o que funciona sem JavaScript naquela página — na rodametria, a tabela pré-renderizada da regra.
+
 **32.2 Página de RESPOSTA ou FICHA (peixe, peça, material, guia):** caixa de resposta no topo (o número e a condição em uma frase), logo abaixo um bloco "Monte / Compre o que esta resposta pede" com 2 a 4 itens, cada um com dois botões: "Calcular" (leva à ferramenta da ilha, com o parâmetro da página já passado na URL) e "Ver produtos" (leva ao bloco de compra da ferramenta ou a link de afiliado do banco). Depois, a tabela-resumo visível e o resto do texto recolhível. Item vivo (peixe, planta) nunca tem link de compra — o equipamento tem.
 
 **32.3 O que NÃO muda, porque é SEO (seções 13, 14, 16, 22):** URL, `<title>`, H1, trilha e `BreadcrumbList`, JSON-LD, links internos e âncoras, a resposta antes da explicação. Nenhuma palavra do texto sai da página: o que vai para `<details>` continua no HTML servido, legível com o JavaScript desligado (22.8). Nada de conteúdo injetado por JS, nada de carrossel automático, imagem com `width`/`height`, LCP nunca lazy.

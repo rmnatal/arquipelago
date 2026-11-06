@@ -58,6 +58,39 @@ continua podendo citar o termo (comentário é a memória da ilha, e a mesma dec
 escrita no `REGISTRO.md` daquela ilha — inclusive quando a contagem for **zero**, porque zero medido é
 informação e zero suposto não é.
 
+---
+
+**ITEM 2 DO MESMO DESPACHO, e ele é de outra classe e da mesma passada: O PORTÃO DAS QUATRO ILHAS NÃO
+APERTA O BOTÃO DO FORMULÁRIO, e a régua geral já está no contrato, na 32.1-b.**
+
+Medido na rodametria no dia em que a F1 foi ao ar: o formulário de ferramenta destas ilhas é
+`method="get"` para a **própria página** e o JS é quem chama `preventDefault()`, então a URL que o
+botão monta é uma página de verdade. O primeiro campo daquela ferramenta se chamava `w`, que é **query
+var reservada do WordPress**, e `/?w=500` devolvia **404**. **Quem estivesse sem JavaScript e apertasse
+o botão caía nisso** — com a página em 200, o portão de ar verde em 484 afirmações e o portão de pixel
+verde em 9 de 9, **porque nenhuma das sete réguas apertava o botão.**
+
+**O LEVANTAMENTO DAS QUATRO JÁ FOI FEITO, e o resultado é informação:** fora o `w`, **nenhum** campo
+das quatro colide hoje — aquametria (`alvo`, `especie`, `volume`, `voltagem`, `carga`, `medida`,
+`lamina`, `midia`, `nivel`, `perfil`, `regime`, `tampado`, `tipo`, `coluna`, `comprimento`, `data`,
+`filtro`, `minima`, `apelido`), robometria (`area`, `modelo`, `peca`, `pelo`, `piso`, `referencia`),
+rodametria F2 (`v`, `ah`, `peso`, `relevo`, `aut`) e clubedomosaico, que **já prefixa tudo** com
+`cdm_`. **Então este item não pede conserto de dado: pede o PORTÃO**, porque o risco é do próximo campo
+que alguém acrescentar, e a lista de reservadas muda com a versão do WordPress.
+
+**E A SEGUNDA METADE, que o 404 escondia:** com a URL em 200, o botão recarrega a página e a caixa
+volta a servir o **caso de exemplo** — a página responde outra pergunta e parece responder à da pessoa.
+A 32.1-b manda toda ferramenta com formulário servir um `<noscript>` que diga isso e aponte o que
+funciona sem JavaScript naquela página.
+
+**Pronto quando:** o portão de ar de cada uma das outras três ilhas montar a query de **cada**
+formulário do HTML servido e exigir **200**, e cada ferramenta com formulário servir o `<noscript>` —
+com o número de formulários conferidos escrito no `REGISTRO.md` daquela ilha. **Atenção ao orçamento de
+pixel:** o `<noscript>` entra **acima** da caixa de resposta e portanto **acima** do bloco de compra, e
+na rodametria a F2 serve o primeiro botão de compra a **1.279 px** contra o teto de 1.400 da 32.5 — nas
+outras ilhas há páginas mais apertadas que isso. Quem acrescentar o aviso roda o portão de pixel na
+mesma passada, pela 32.5-d.
+
 
 ### prioridade NORMAL — O PORTÃO DE AR DAS QUATRO ILHAS DÁ VEREDITO DE DUAS PONTAS ONDE HÁ CINCO CAUSAS, E NO CASO COMUM ELE MANDA REACIONAR ONDE A AÇÃO CERTA É ESPERAR
 
