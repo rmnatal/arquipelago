@@ -34,7 +34,7 @@
    "nome": "Sobre",
    "titulo": "Quem publica a Rodametria — método, fontes e o que ainda falta",
    "h1": "Quem publica a Rodametria",
-   "description": "Três perguntas sobre veículo elétrico e só elas: precisa de CNH, quantos km faz com o seu peso e se aguenta você. Todo número com fonte e data.",
+   "description": "Três perguntas sobre veículo elétrico e só elas: em que categoria ele cai, quantos km faz no seu relevo e se aguenta você. Todo número com fonte e data.",
    "caixa": {
     "rotulo": "No banco hoje",
     "numero": "{VEICULOS_NO_BANCO}",
@@ -45,7 +45,7 @@
      "Mais {PECAS_COM_LINK} peça com link, de {ANUNCIOS_LIDOS} anúncios lidos um por um."
     ]
    },
-   "linha_mestra": "Três perguntas sobre o seu elétrico, e só elas: precisa de CNH e placa, quantos km ele faz de verdade com o seu peso, e se ele aguenta você.",
+   "linha_mestra": "Três perguntas sobre o seu elétrico, e só elas: em que categoria ele cai na regra de trânsito, quantos km ele faz de verdade no seu relevo, e se ele aguenta você.",
    "secoes": [
     {
      "titulo": "Por que este site existe",
@@ -65,9 +65,9 @@
     {
      "titulo": "O que ainda não dá para responder aqui, dito aqui e não escondido",
      "paragrafos": [
-      "A pergunta da CNH é a mais procurada do assunto e é a que este site ainda não responde. O motivo é de fonte: a conta depende dos limites escritos na Resolução Contran nº 996/2023, e o texto oficial dela não é alcançável de onde estas páginas são construídas. Publicar o limite por notícia de segunda mão seria o pior erro possível aqui — errar para baixo manda alguém para a rua sem habilitação.",
-      "A pergunta do peso também não está no ar, e por outro motivo: pouquíssimos anúncios declaram a carga máxima do veículo. Sem o número do fabricante não há o que comparar, e inventar uma margem seria chutar com cara de cálculo.",
-      "A conta que está no ar é a da autonomia, porque os dois números que ela pede — tensão e amper-hora — aparecem na etiqueta da bateria e no anúncio. As outras duas entram no dia em que a fonte entrar, e não antes."
+      "A pergunta da CNH é a mais procurada do assunto e é a única das três que este site ainda não responde. A conta da categoria já está no ar: a Resolução Contran nº 996/2023 foi lida no texto oficial, e é ela que separa bicicleta elétrica, autopropelido e ciclomotor, com placa, registro e licenciamento. O que ela não tem é artigo nenhum sobre CNH; quem decide habilitação é o Código de Trânsito, e esse a gente ainda não leu na fonte oficial. Publicar o limite por notícia de segunda mão seria o pior erro possível aqui — errar para baixo manda alguém para a rua sem habilitação.",
+      "A pergunta do peso também já está no ar, e com a lacuna de dado dita dentro da própria página: pouquíssimos anúncios declaram a carga máxima do veículo. A conta diz qual carga a ficha precisa declarar para o seu peso e nomeia, um por um, os modelos que se calaram — sem o número do fabricante não há o que comparar, e inventar uma margem seria chutar com cara de cálculo.",
+      "As três contas estão no ar: a da categoria, a da autonomia e a da carga máxima. O que cada uma ainda NÃO faz está dito dentro dela, com a causa — na de autonomia o peso de quem pilota não entra no cálculo, porque não existe régua publicada de quanto cada quilo custa em watt-hora por km; a da carga máxima tem vitrine vazia enquanto nenhum veículo que declara o limite tiver oferta aberta. E falta a camada municipal inteira: onde se pode andar é regra de cada cidade, e a gente ainda não leu nenhuma na fonte oficial."
      ]
     }
    ],
@@ -78,7 +78,7 @@
      "Não aceita link pago, texto patrocinado nem posição paga em lista.",
      "Não publica \"melhor patinete\" nem \"top dez\": quem ordena uma lista aqui é o que o anúncio declara e o preço, nunca a comissão.",
      "Não publica contagem regressiva, \"últimas unidades\", selo de mais vendido nem nota de avaliação que este site não tenha medido.",
-     "Não diz que você pode andar sem CNH. Quem diz é a resolução, citada pelo nome e pela data na própria página."
+     "Não diz que você pode andar sem CNH: a resolução que decide a categoria não fala de habilitação, e o Código de Trânsito, que fala, a gente ainda não leu na fonte oficial."
     ]
    },
    "dobras": [
@@ -87,7 +87,7 @@
      "paragrafos": [
       "Preço, nome do modelo e foto saem do anúncio da loja, lidos pela porta de afiliados dela, com a data da leitura gravada ao lado. Preço nunca aparece como o preço de agora: ou não sai, ou sai com a data da coleta.",
       "Watt, tensão, amper-hora e autonomia declarada saem do que o anúncio escreve. Quando o anúncio diz um watt e não diz se é o nominal ou o de pico, a página escreve isso com essas palavras, em vez de preencher a coluna técnica com um palpite.",
-      "O fator de relevo e o desconto de peso da conta de autonomia saem de medição publicada, com autor e ano nomeados no fim da página da calculadora."
+      "O fator de relevo da conta de autonomia sai de medição publicada, com autor e ano nomeados no fim da página da calculadora. Fator de peso não existe: o peso de quem pilota não entra no cálculo, porque não existe régua publicada de quanto cada quilo custa em watt-hora por km, e a calculadora diz isso na tela em vez de disfarçar."
      ]
     }
    ],

@@ -54,6 +54,104 @@ def constante_publicavel():
     return None
 
 
+# ---------------------------------------------------------------------------
+# O TERCEIRO DERIVADO NASCEU EM 06/11/2026, PELO ITEM 5 DO DESPACHO DA RONDA
+# DAQUELE DIA — E ELE NAO E UM CAMPO DE REGISTRO: E UMA FRASE DE METADADO.
+#
+# O `nota` de `dados/veiculos.json` terminava assim: *"NENHUM registro e
+# `publicavel`, e a causa e uma so: nenhum tem saida de compra, e a 25.2 nao
+# admite item publicavel sem piso."* A primeira metade continua VERDADEIRA (os 17
+# seguem com `publicavel` false); a segunda era FALSA — quatro registros tem
+# `afiliado` preenchido, e os quatro aparecem como cartao no ar, com botao que o
+# teste de vida da ronda achou VIVO.
+#
+# NAO QUEBRA PAGINA NENHUMA, e e por isso que e a pior especie de defeito: o
+# arquivo e `publicar: false`, entao nada dele vai para a tela. O risco e de
+# METODO — a proxima execucao que ler esse `nota` como fato conclui que a ilha nao
+# tem monetizacao nenhuma, e ela tem. E a familia que a 20.7 nomeia nesta ilha:
+# *"duas declaracoes do mesmo fato comecam iguais e so uma sobe"*.
+#
+# O DESPACHO DEIXOU A ESCOLHA PARA A FUNDACAO (19.2), entre apagar a frase e fazer
+# o gerador reconta-la. ESCOLHI RECONTAR, por um motivo e nao por gosto: apagar
+# conserta hoje e nao impede o proximo numero digitado de entrar amanha. Recontado
+# pelo gerador, o campo nao pode mais envelhecer — e o `validar-banco.py` recalcula
+# e reprova divergencia, que e o par espelho+portao que esta ilha ja usa no
+# `energia_wh` e no `intestavel`.
+#
+# E O DESPACHO ERROU O NUMERO, no mesmo defeito que estava relatando: ele escreveu
+# *"CINCO tem"* e nomeou QUATRO, com a quinta linha dizendo "e o quinto por
+# `url_busca`" — contado no arquivo, sao QUATRO, e os quatro ja estao entre os
+# nomeados. Numero de prosa escrito a mao, dentro do relatorio sobre numero de
+# prosa escrito a mao.
+def contar_saida_de_compra(registros):
+    """Conta, no proprio arquivo, quem tem saida de compra e quem e publicavel.
+
+    SAIDA DE COMPRA e qualquer um dos quatro campos de URL do `afiliado`: a ficha
+    (`url`), o par cru (`url_produto`) e os dois de busca (`url_busca` e
+    `url_busca_produto`). A 25.2 poe o piso em `url_busca`, entao item de degrau 4
+    TEM saida de compra mesmo sem ficha — e era justamente isso que a frase velha
+    negava.
+    """
+    campos = ("url", "url_produto", "url_busca", "url_busca_produto")
+    com, publicaveis = [], []
+    for r in registros:
+        af = r.get("afiliado")
+        if isinstance(af, dict) and any(af.get(c) for c in campos):
+            com.append(r.get("id"))
+        if r.get("publicavel"):
+            publicaveis.append(r.get("id"))
+
+    return com, publicaveis
+
+
+def frase_da_saida_de_compra(registros):
+    """A frase do `nota`, montada da contagem. Nenhum numero daqui e digitado."""
+    com, publicaveis = contar_saida_de_compra(registros)
+    total = len(registros)
+    if publicaveis:
+        quantos = ("%d dos %d registros estao `publicavel`" % (len(publicaveis), total)
+                   if len(publicaveis) != total
+                   else "os %d registros estao `publicavel`" % total)
+    else:
+        quantos = "NENHUM dos %d registros esta `publicavel`" % total
+    if not com:
+        saida = ("e nenhum deles tem saida de compra, que e o piso que a 25.2 exige "
+                 "de item publicavel")
+    elif len(com) == 1:
+        saida = ("e 1 deles JA tem saida de compra (%s), entao a falta de piso da "
+                 "25.2 nao e mais a causa de todos" % com[0])
+    else:
+        saida = ("e %d deles JA tem saida de compra (%s), entao a falta de piso da "
+                 "25.2 nao e mais a causa de todos" % (len(com), ", ".join(com)))
+
+    return ("%s %s, %s. Numero de prosa digitado a mao envelhece calado, e este "
+            "envelheceu uma vez."
+            % (MARCA_DA_FRASE, quantos, saida))
+
+
+# A MARCA ABRE A FRASE E NAO A FECHA, e isto foi medido: com a marca no fim, o
+# corte `nota.split(MARCA)[0]` devolvia a frase recontada DENTRO do `base`, e a
+# ferramenta reescrevia o campo em toda passada — `--conferir` reprovando para
+# sempre, logo depois de escrever. Marca no comeco corta o bloco derivado inteiro.
+MARCA_DA_FRASE = ("SAIDA DE COMPRA E PUBLICAVEIS, RECONTADOS POR "
+                  "ferramentas/derivar-banco.py e conferidos por "
+                  "ferramentas/validar-banco.py:")
+
+
+def nota_com_a_frase(nota, registros):
+    """Troca a ultima afirmacao do `nota` pela frase recontada, preservando o resto."""
+    base = nota.split(MARCA_DA_FRASE)[0]
+    # A frase VELHA, de 28/10/2026, era a ultima sentenca do campo. Ela sai pela
+    # marca quando ja foi trocada uma vez, e pelo texto dela na primeira troca.
+    velha = ("NENHUM registro e `publicavel`, e a causa e uma so: nenhum tem saida "
+             "de compra, e a 25.2 nao admite item publicavel sem piso.")
+    base = base.replace(velha, "").rstrip()
+    if base and not base.endswith("."):
+        base += "."
+
+    return (base + " " + frase_da_saida_de_compra(registros)).strip()
+
+
 def main():
     conferir = "--conferir" in sys.argv
     c = constante_publicavel()
@@ -99,6 +197,14 @@ def main():
             }
             mudou.append("%s -> %s Wh" % (v["id"], novo))
 
+    # O `nota` DE veiculos.json, com a ultima afirmacao RECONTADA (item 5 do
+    # despacho de 06/11/2026). Ver `frase_da_saida_de_compra()` acima.
+    nota_atual = d.get("nota") or ""
+    nota_nova = nota_com_a_frase(nota_atual, d.get("registros", []))
+    nota_mudou = nota_nova != nota_atual
+    if nota_mudou:
+        d["nota"] = nota_nova
+
     # `afiliado.intestavel` — nos DOIS bancos que tem a chave `afiliado`.
     bancos = [(alvo, d)]
     pecas_caminho = RAIZ / "dados/pecas.json"
@@ -118,9 +224,13 @@ def main():
                 af["intestavel"] = novo
 
     if conferir:
-        if mudou or zerados or intestaveis:
-            print("REPROVADO: %d derivado(s) a escrever, %d a zerar e %d `intestavel` a espelhar."
-                  % (len(mudou), len(zerados), len(intestaveis)))
+        if mudou or zerados or intestaveis or nota_mudou:
+            print("REPROVADO: %d derivado(s) a escrever, %d a zerar, %d `intestavel` a "
+                  "espelhar e o `nota` %s."
+                  % (len(mudou), len(zerados), len(intestaveis),
+                     "A RECONTAR" if nota_mudou else "em dia"))
+            if nota_mudou:
+                print("  nota:       %s" % frase_da_saida_de_compra(d.get("registros", [])))
             for m in mudou:
                 print("  a escrever: %s" % m)
             for z in zerados:
@@ -133,21 +243,33 @@ def main():
               "com a regra da 25.4-b.")
         return 0
 
-    if mudou or zerados or intestaveis:
+    if mudou or zerados or intestaveis or nota_mudou:
         # A NOVA-LINHA FINAL E PARTE DO ARQUIVO: sem ela, todo commit desta
         # ferramenta carrega um "\ No newline at end of file" que nao e dela.
         alvo.write_text(json.dumps(d, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
-        if any(c.name == "pecas.json" for c, _ in bancos):
-            pecas_caminho.write_text(json.dumps(pecas, ensure_ascii=False, indent=1) + "\n",
-                                     encoding="utf-8")
+
+    # `pecas.json` SO E REESCRITO SE ALGO NELE MUDOU, e isto foi medido em
+    # 06/11/2026: a condicao anterior era `any(c.name == "pecas.json" ...)`, que e
+    # sempre VERDADEIRA porque o arquivo esta sempre na lista `bancos`. Qualquer
+    # escrita em veiculos.json reescrevia pecas.json tambem — e como este programa
+    # grava com `indent=1` e aquele arquivo nasceu com `indent=2`, o commit vinha
+    # com 186 linhas trocadas e ZERO byte de conteudo diferente. Diff de ruido
+    # esconde diff de verdade, e e o mesmo custo da 23.4: so entra no arquivo o
+    # que esta passada mudou.
+    if any(i.startswith("pecas.json:") for i in intestaveis):
+        pecas_caminho.write_text(json.dumps(pecas, ensure_ascii=False, indent=1) + "\n",
+                                 encoding="utf-8")
     for m in mudou:
         print("escrito: %s" % m)
     for z in zerados:
         print("zerado:  %s" % z)
     for i in intestaveis:
         print("espelhado: %s" % i)
-    print("%d derivado(s) escrito(s), %d zerado(s), %d `intestavel` espelhado(s)."
-          % (len(mudou), len(zerados), len(intestaveis)))
+    if nota_mudou:
+        print("recontado: o `nota` de veiculos.json")
+    print("%d derivado(s) escrito(s), %d zerado(s), %d `intestavel` espelhado(s), `nota` %s."
+          % (len(mudou), len(zerados), len(intestaveis),
+             "recontado" if nota_mudou else "em dia"))
     return 0
 
 

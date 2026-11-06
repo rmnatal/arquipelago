@@ -4,7 +4,7 @@
   "nicho": "mobilidade eletrica — acertar os tres numeros antes de comprar um veiculo eletrico: categoria legal (CNH e placa), autonomia real e carga maxima",
   "dominio": "https://rodametria.com.br",
   "versao_manifest": 1,
-  "revisao": 60,
+  "revisao": 62,
   "atualizado_em": "2026-11-06",
   "estado": "nascendo",
   "desembarque": {
@@ -20,8 +20,8 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "cd454dd17692a18721c9f7f6dc08c6dee20d1a0d8e75f120f4562105a677ac1d",
-      "versao": "1.16.0",
+      "sha256": "678fea0e0c7e7eac0b52a7e8101a0029885360b60e89ff77f7324fabe5fe6e78",
+      "versao": "1.17.0",
       "descricao": "A CASCA desta ilha (a versao corrente esta no campo `versao` deste item, espelhado da constante do arquivo). Tokens do DESIGN.md (tinta #13212B, verde #0A6B4C, Alfa Slab One so na marca, Barlow Semi Condensed nos titulos, JetBrains Mono em todo numero), simbolo V9 completo no cabecalho e em negativo no rodape, favicon proprio (secao 6: icone padrao do WordPress na aba e bloco reprovado), menu hamburguer com aria-expanded/aria-controls e links <a href> de verdade no HTML servido, trilha + BreadcrumbList, WebSite JSON-LD na home, <title> e description saindo de UM mapa de paginas. E os COMPONENTES DO MOLDE da secao 32, aqui e nao em cada snippet, como a 32.6-b manda: caixa de resultado, dobra <details>, cartao de compra com espaco reservado para quem nao tem foto, carrossel com scroll-snap em CSS puro, barra fixa do telefone e o rotulo do botao de loja por degrau da escada da 25.1. Pagina nova entra pelos filtros `rodametria_paginas` e `rodametria_instalar`, de dentro do proprio snippet dela — a casca nao e editada quando a ilha cresce. 1.3.0 (29/10/2026): `garantir_pagina()` aceita PAI, pela 16.2, e `url_do_slug()` acha a pagina pela meta `_rodametria_id` em vez de por caminho — `get_page_by_path()` casa o caminho INTEIRO e devolveria nulo para filha de arvore de dois niveis, com `casca_link()` transformando link vazio em texto sem reclamar. 1.4.0 (29/10/2026, no mesmo dia e por defeito MEDIDO no ar): a instalacao passou a rodar tambem quando a ASSINATURA DO MAPA muda, e nao so quando a versao da casca muda. A revisao 13 subiu casca nova e snippet de pagina nova na MESMA passada do Sync; quando o `init` chamou a instalacao, o snippet novo ainda nao estava carregado naquela requisicao, as tres paginas nao foram criadas, e a casca gravou `instalado: 1.3.0` — com a versao marcada, a instalacao nunca mais rodaria. O sintoma era o da secao 4: /status em 13, cinco linhas `ok`, o mapa de paginas ja com as tres novas, e o wp-sitemap.xml com duas URLs. A VERSAO SAIU DESTA PROSA EM 02/11/2026, e ela estava VELHA nos QUATRO snippets (a casca dizia 1.4.0 servindo 1.6.0; os outros tres diziam 1.0.0) — e isso e a prova de que o campo `versao` faltava. Quem declara a versao agora e o campo, espelhado da constante do arquivo por `ferramentas/atualizar-manifest.py` e cobrado por `ferramentas/teste-versao-dos-snippets.php`; prosa que repete o mesmo fato e a segunda declaracao que sobe sozinha de um lado so."
     },
     {
@@ -42,8 +42,8 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "e78803fce978400a5a5407257cd06bd98d5bd2951abe2068e9106bcd546c34e6",
-      "versao": "1.6.0",
+      "sha256": "2d1f830f634acbe0050d8aafe5b8f32301b3baf6b1c5dd9daa61548d2bcf3c29",
+      "versao": "1.6.1",
       "descricao": "A F2 (versao corrente no campo `versao` deste item), a PRIMEIRA pagina desta ilha no ar, em /autonomia-patinete-eletrico/. Ordem da 32.1 de cima para baixo, conferida por afirmacao no fonte: trilha e H1, promessa, formulario ja preenchido com o caso de exemplo, caixa de resultado JA PRE-RENDERIZADA no HTML (a metade que a IA le sem preencher formulario, e o que a 22.8 exige de quem desliga o JavaScript), bloco de compra, prestacao de contas da secao 7 com os cinco grupos por causa e a soma fechando o banco contado, tabela pre-renderizada visivel, e o resto em <details>. NENHUM numero e NENHUMA frase de resposta e digitado neste arquivo: tudo vem da option que o Sync grava de dados/f2-respostas.json, escrito por ferramentas/gerar-f2.py a partir de ferramentas/f2-referencia.py e de dados/constantes.json. O JS do rodape preenche MOLDE, nunca escreve frase — a bateria de mutacoes de 29/10 reprovou as duas versoes em que ele escrevia. A VERSAO SAIU DESTA PROSA EM 02/11/2026, e ela estava VELHA nos QUATRO snippets (a casca dizia 1.4.0 servindo 1.6.0; os outros tres diziam 1.0.0) — e isso e a prova de que o campo `versao` faltava. Quem declara a versao agora e o campo, espelhado da constante do arquivo por `ferramentas/atualizar-manifest.py` e cobrado por `ferramentas/teste-versao-dos-snippets.php`; prosa que repete o mesmo fato e a segunda declaracao que sobe sozinha de um lado so."
     },
     {
@@ -53,8 +53,8 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "53d7686e1dd72b3683138ba7aeaf4e02dc5176c66c282d9d9ddef807d53a0963",
-      "versao": "1.4.0",
+      "sha256": "341058e91901e51818af70432e64177d6fa2a40e02a6e15f8ede071119928329",
+      "versao": "1.4.1",
       "descricao": "A F3 — a TERCEIRA e ultima das tres ferramentas que esta ilha existe para ter, em /peso-maximo-patinete-eletrico/ (a URL carrega a consulta MEDIDA do eixo C do corpus, `patinete eletrico peso maximo suportado`, e nao a pergunta do H1). O QUE A SEPARA DAS DUAS IRMAS, e e por isso que ela pode ir ao ar hoje: A RESPOSTA PRINCIPAL NAO DEPENDE DO BANCO. Dado o peso de quem pilota e o que ele carrega, a carga maxima a procurar sai de `total x (1 + margem)` — aritmetica sobre a entrada da pessoa mais UMA constante desta ilha, que e `decisao_da_ilha` em 10% e que a pagina NUNCA atribui a terceiro (a constante carrega a busca limpa que NEGOU a fonte que o bloco 1 supunha). A vitrine e a segunda camada e hoje esta VAZIA, com a causa NOMEADA e os numeros contados: os tres registros do banco que declaram carga maxima declaram 120 kg, os tres lidos em ficha de varejo grande (nivel 5, o piso que a 3.5 da especificacao exige neste campo), e NENHUM tem oferta aberta — pela 25.2 item sem piso de compra nao entra em vitrine. A LISTA VAZIA TEM TRES CAUSAS E TRES FRASES, e isso nasceu de um defeito medido nesta propria passada: a primeira versao tinha UM molde e dizia que 'nenhum dos 3 aguenta os seus 108 kg com folga' quando os tres declaram 120 kg e cobrem com folga os 119 que a regra pede — o eixo que esvaziava a vitrine era a falta de LINK e nao a carga. A TABELA PRE-RENDERIZADA PUBLICA A TESE DA ILHA: com a folga de 10%, 109 kg e o ultimo peso total que os 120 kg do teto de varejo acolhem e 110 kg ja nao, e a virada esta visivel na tabela e no FAQPage, que e montado dela campo por campo. Ordem da 32.1: promessa, formulario ja preenchido com o caso que da 'no limite' e nao um folgado, o <noscript> da 32.1-b, a caixa pre-renderizada, o bloco de compra com a causa da falta, os tres grupos da 3.2 na ordem em que a 3.2 manda (o do meio NUNCA primeiro), a ressalva SOURCED da 3.4 logo depois do grupo do meio e so quando ele existe, o convite para a F2 com o peso na URL, a prestacao de contas da secao 7, a tabela VISIVEL e tres dobras. E ELA E A PRIMEIRA FERRAMENTA DESTA ILHA A NASCER DENTRO DO CONSERTO DA 32.1-b: os campos nascem com o prefixo (`rdm_peso`, `rdm_carga`) e o aviso vem do componente da casca, que e exatamente o que a regra pede ao mandar o componente morar num lugar so."
     },
     {
@@ -64,8 +64,8 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "dcf5b65dea3e7caea4d3e25e6473a5be0ac63450d6289ba6367e636ccd91fc6b",
-      "versao": "1.7.1",
+      "sha256": "d497176efe5daebf80e57d2da8c3b22b85a4722d743da94477d1d079aab09fe9",
+      "versao": "1.8.0",
       "descricao": "O MOTOR DA SECAO 30 nesta ilha (versao corrente no campo `versao` deste item): a secao de nivel 1 `/veiculos/` e as paginas de consulta de produto que nascem filhas diretas dela, com o slug igual a consulta. Ordem da 32.2 de cima para baixo: trilha e H1, caixa de resposta com o preco mediano em Mono, bloco de compra com id=comprar logo abaixo, tabela-resumo VISIVEL com TODOS os anuncios (a secao 7 manda nomear todo item uma vez), a prestacao de contas de quem nao entrou com a causa contada, a malha da 16.4 tambem visivel porque e alvo de link, e o resto nas dobras da casca. NENHUM numero e digitado neste arquivo: a prosa vem de dados/paginas-de-produto.json com moldes e o numero vem de dados/vitrine-de-produto.json, recontado por ferramentas/gerar-vitrine-de-produto.py. A tabela NAO tem coluna de potencia nominal, velocidade maxima, acelerador nem carga maxima: o esquema desta ilha exige nivel 5 ou melhor nesses quatro e titulo de anuncio e nivel 6, entao a coluna diz o que o anuncio DECLARA em vez de preencher coluna tecnica com palavra tirada do titulo. JSON-LD de ItemList e FAQPage no wp_head; folha no wp_footer; nada dentro do retorno do shortcode. A VERSAO SAIU DESTA PROSA EM 02/11/2026, e ela estava VELHA nos QUATRO snippets (a casca dizia 1.4.0 servindo 1.6.0; os outros tres diziam 1.0.0) — e isso e a prova de que o campo `versao` faltava. Quem declara a versao agora e o campo, espelhado da constante do arquivo por `ferramentas/atualizar-manifest.py` e cobrado por `ferramentas/teste-versao-dos-snippets.php`; prosa que repete o mesmo fato e a segunda declaracao que sobe sozinha de um lado so."
     },
     {
@@ -87,7 +87,7 @@
       "arquivo": "dados/f2-respostas.json",
       "formato": "json",
       "publicar": true,
-      "sha256": "00a4ff6b05f982f35a220a1899cfc1201355751184c3335f77bad0f8a1e8569d",
+      "sha256": "c9dde477fdb46f76ba18f4beb83993c5337e3dce83b11c329404cf8fabb8188f",
       "descricao": "O que a F2 serve: campos, moldes de frase, fatores de relevo, resposta de exemplo pre-renderizada, tabela e prestacao de contas."
     },
     {
@@ -103,7 +103,7 @@
       "arquivo": "dados/veiculos.json",
       "formato": "json",
       "publicar": false,
-      "sha256": "05c393773364e3ac5e82f20ddea497bc3ba1421713f6c3670a7d015dd4358a4e",
+      "sha256": "1082db772eef65168b48c3dd0f4ff41cac319bd973d5f7dfe717316913474547",
       "descricao": "Banco de veiculos. A F2 conta a prestacao de contas dele."
     },
     {
@@ -127,7 +127,7 @@
       "arquivo": "dados/paginas-de-produto.json",
       "formato": "json",
       "publicar": true,
-      "sha256": "fe1f65ec752b5b1ade2901e308b7c402f60e3776618d3e1712dca55006fd24c7",
+      "sha256": "90d5786a2d3a56ee237e8273f91cbb21d905b751f923e5b0cf202a2d60b85631",
       "descricao": "A camada DECLARADA das paginas da secao 30: a voz do VOZ.md com MOLDES no lugar de todo numero. `gerar-vitrine-de-produto.py --conferir` REPROVA qualquer digito escrito nesta prosa fora da lista de permitidos."
     },
     {
@@ -135,7 +135,7 @@
       "arquivo": "dados/vitrine-de-produto.json",
       "formato": "json",
       "publicar": true,
-      "sha256": "bb00903848892ade57b8dd6ce5919aadb05673ba1c9f44e45105a23d4357ed6b",
+      "sha256": "b6c5623f97fb649bfdf66d2f56b4be9d4949e2c25b5d365a559acd4f4d9e4b3f",
       "descricao": "A camada GERADA: cartoes do carrossel (teto de cinco, 32.1), linhas da tabela (todas) e os numeros, RECONTADOS de dados/anuncios-por-consulta.json."
     },
     {
@@ -159,7 +159,7 @@
       "arquivo": "dados/paginas-institucionais.json",
       "formato": "json",
       "publicar": true,
-      "sha256": "19551005c23163705efcc6dcf602e5cce29c37f6662ae59e5e3c6babe414c228",
+      "sha256": "edb1bac5b1e59c991660c0216c4aa6d2cee607ab3ab0b1ea30bf4f032c9bff30",
       "descricao": "A camada DECLARADA das quatro paginas do bloco 5d: a voz do VOZ.md com MOLDES no lugar de todo numero. `teste-institucional.py` REPROVA digito solto na prosa fora de `digitos_permitidos`, molde que o preenchedor do PHP nao conhece, e item de bloco de recusa que nao ABRE negando. Traz tambem `terceiros_que_carregam`: os enderecos de fora que a pagina de privacidade NOMEIA, medidos em 30/10/2026 e conferidos contra o HTML servido de TODAS as URLs do sitemap por `conferir-institucional-no-ar.py` — endereco novo torna a pagina falsa e faz o portao falhar."
     },
     {
@@ -175,7 +175,7 @@
       "arquivo": "dados/f3-respostas.json",
       "formato": "json",
       "publicar": true,
-      "sha256": "f6c941d3efed9c48b37f201818e580a4b16223f19abf83e10c257dd40497d743",
+      "sha256": "ab8449ff583ee210a94f4072e901a68682929b0c7b27e4f9861e7365cb6eefb5",
       "descricao": "Tudo o que a F3 serve na tela, escrito por ferramentas/gerar-f3.py a partir de regras/f3.py e de dados/constantes.json. Inclui os moldes de frase INTEIROS (o PHP e o JS leem os mesmos, para as duas metades nao poderem dizer coisas diferentes para a mesma entrada), a tabela pre-renderizada de 9 pesos com a carga minima de cada um recomputada pela referencia, as DUAS contagens por linha (quantos do banco aguentariam aquele peso e quantos poderiam ser oferecidos — fatos diferentes, e hoje a segunda e zero em toda linha), e a prestacao de contas com a soma fechando os 17 registros do banco."
     },
     {

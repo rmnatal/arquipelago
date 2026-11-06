@@ -64,11 +64,11 @@
     "o_que_decide": [
       {
         "numero": "Potência nominal e velocidade máxima",
-        "porque": "é o par que decide se o veículo dispensa habilitação e placa, ou se é ciclomotor e precisa dos dois. O número grande do anúncio costuma ser o pico do motor, que o motor entrega por alguns segundos; o que vale para a regra é a potência nominal, e ela mora na ficha do fabricante — não no título. Errar aqui manda a pessoa para a rua sem habilitação, então esta casa não afirma categoria de nenhum modelo cuja ficha não tenha sido lida."
+        "porque": "é o par que decide a categoria do veículo na Resolução Contran nº 996/2023 — bicicleta elétrica, autopropelido ou ciclomotor — e com ela placa, registro e licenciamento. Sobre habilitação esta página não responde: a resolução que decide a categoria não tem artigo nenhum sobre CNH, e quem decide habilitação é o Código de Trânsito, que a gente ainda não leu na fonte oficial. O número grande do anúncio costuma ser o pico do motor, que o motor entrega por alguns segundos; o que vale para a regra é a potência nominal, e ela mora na ficha do fabricante — não no título. Errar aqui manda a pessoa para a rua sem habilitação, então esta casa não afirma categoria de nenhum modelo cuja ficha não tenha sido lida."
       },
       {
         "numero": "Watt-hora da bateria",
-        "porque": "a tensão vezes a amperagem dá o watt-hora, e é dele que sai o quilômetro de verdade. O número do anúncio é o de quem pesa menos que você, num trajeto plano: com ladeira e com o seu peso, conte bem menos. A nossa calculadora de autonomia desconta o relevo, com a fonte do fator citada na própria página, e diz onde o seu peso põe você dentro da faixa."
+        "porque": "a tensão vezes a amperagem dá o watt-hora, e é dele que sai o quilômetro de verdade. O número do anúncio é o de quem pesa menos que você, num trajeto plano: com ladeira, conte bem menos. A nossa calculadora de autonomia desconta o relevo, com a fonte do fator citada na própria página — e diz, com todas as letras, que o peso de quem pilota não entra na conta, porque não existe régua publicada de quanto cada quilo custa em watt-hora por km. Quem quer a pergunta do peso respondida tem a conta de carga máxima, que é outra."
       },
       {
         "numero": "Carga máxima declarada",
@@ -114,14 +114,14 @@
           "o_que_olhar": "{FRASE_DA_CARGA} Quando o título se cala, o limite está na página do anúncio, e vale procurar antes de olhar preço — passar da carga máxima não deixa o patinete mais lento, deixa a solda do guidão mais perto de ceder."
         },
         {
-          "para": "quem quer saber se precisa de habilitação",
-          "o_que_olhar": "o que decide é a potência nominal e a velocidade máxima — e, antes das duas, se o veículo anda sem você empurrar: {FRASE_DO_PIVO} É exatamente o que estes anúncios não declaram. Enquanto a gente não lê o texto oficial da Resolução Contran nº 996/2023, esta página não afirma categoria de nenhum deles — e desconfiar do número grande do título é o começo certo."
+          "para": "quem quer saber em que categoria o veículo cai",
+          "o_que_olhar": "o que decide é a potência nominal e a velocidade máxima — e, antes das duas, se o veículo anda sem você empurrar: {FRASE_DO_PIVO} É exatamente o que estes anúncios não declaram, e por isso esta página não afirma a categoria de nenhum deles — desconfiar do número grande do título é o começo certo. A resolução já está lida no texto oficial; o que falta é o anúncio declarar os três campos que ela lê."
         }
       ],
       "perguntas": [
         {
           "pergunta": "Patinete elétrico precisa de CNH?",
-          "resposta": "Depende da potência nominal, da velocidade máxima e de ter acelerador — não do preço nem do tamanho. A gente não afirma a categoria de nenhum destes modelos porque eles não declaram a potência nominal. {FRASE_DO_ROTULO}"
+          "resposta": "Sobre habilitação esta página não responde, e o motivo é de fonte: a Resolução Contran nº 996/2023 decide a categoria do veículo e não tem artigo nenhum sobre CNH; quem decide habilitação é o Código de Trânsito, e a gente ainda não o leu na fonte oficial. O que a categoria decide, e está escrito na resolução, é placa, registro e licenciamento — e ela sai da potência nominal, da velocidade máxima e de ter acelerador, não do preço nem do tamanho. A gente não afirma a categoria de nenhum destes modelos porque eles não declaram a potência nominal. {FRASE_DO_ROTULO}"
         },
         {
           "pergunta": "Por que o anúncio diz um watt e a ficha diz outro?",
@@ -133,7 +133,7 @@
         },
         {
           "pergunta": "Quantos quilômetros o patinete faz de verdade?",
-          "resposta": "Menos do que o anúncio promete, e o quanto menos depende do seu peso e da ladeira. A nossa calculadora de autonomia desconta a ladeira a partir da tensão e da amperagem da bateria, mostra o número do anúncio ao lado para você comparar, e diz em que ponta da faixa o seu peso deixa você."
+          "resposta": "Menos do que o anúncio promete, e o quanto menos depende da ladeira e da bateria. A nossa calculadora de autonomia desconta a ladeira a partir da tensão e da amperagem, e mostra o número do anúncio ao lado para você comparar. O peso de quem pilota não entra na conta: não existe régua publicada de quanto cada quilo custa em watt-hora por km, e a página diz isso em vez de disfarçar."
         },
         {
           "pergunta": "De onde saem estes preços?",
@@ -158,7 +158,7 @@
         "E o número que falta em todos: {FRASE_DA_CARGA}"
       ],
       "o_que_e": [
-        "Bicicleta elétrica é a que você pedala com ajuda de motor. Se ela andar sozinha no acelerador, sem você pedalar, a conversa de categoria legal muda — e muda para pior, porque aí entra habilitação e placa.",
+        "Bicicleta elétrica é a que você pedala com ajuda de motor. Se ela andar sozinha no acelerador, sem você pedalar, a conversa de categoria legal muda — e muda para pior, porque aí ela pode ser ciclomotor, que precisa de placa e de registro.",
         "Aqui também chamam de bike elétrica e de e-bike: é o mesmo produto e a mesma página."
       ],
       "o_que_nao_e": [
@@ -168,7 +168,7 @@
       "qual_escolher": [
         {
           "para": "casa–trabalho em cidade plana",
-          "o_que_olhar": "o que resolve é a mais barata que caiba no seu elevador: meça o vão antes de olhar a bateria, porque quadro que não dobra para o seu prédio não vira hábito. E não suponha que ela só ande pedalando — isso o título não diz, e é o que decide se precisa de habilitação."
+          "o_que_olhar": "o que resolve é a mais barata que caiba no seu elevador: meça o vão antes de olhar a bateria, porque quadro que não dobra para o seu prédio não vira hábito. E não suponha que ela só ande pedalando — isso o título não diz, e é o que decide a categoria dela na regra de trânsito."
         },
         {
           "para": "subida ou carga no bagageiro",
@@ -180,17 +180,17 @@
         },
         {
           "para": "quem quer andar sem pedalar",
-          "o_que_olhar": "cuidado: aí não é mais bicicleta no papel. O que define a categoria é potência nominal, velocidade máxima e acelerador, e nenhum destes anúncios declara os três. Enquanto a gente não ler o texto oficial da Resolução Contran nº 996/2023, esta página não diz que nenhuma delas dispensa habilitação."
+          "o_que_olhar": "cuidado: aí não é mais bicicleta no papel. O que define a categoria é potência nominal, velocidade máxima e acelerador, e nenhum destes anúncios declara os três. A resolução já está lida e é ela que decide a categoria; o que ainda não está lido é o Código de Trânsito, que é quem fala de habilitação — então esta página não diz que nenhuma delas dispensa habilitação."
         }
       ],
       "perguntas": [
         {
           "pergunta": "Bicicleta elétrica precisa de CNH?",
-          "resposta": "A de pedal assistido, dentro dos limites da resolução, não. A que anda no acelerador pode ser ciclomotor, e aí precisa. O que decide são a potência nominal, a velocidade máxima e o acelerador — três campos que estes anúncios não declaram, e por isso a gente não afirma a categoria de nenhuma delas."
+          "resposta": "Sobre habilitação esta página não responde, e o motivo é de fonte: a Resolução Contran nº 996/2023 decide a categoria do veículo e não tem artigo nenhum sobre CNH; quem decide habilitação é o Código de Trânsito, e a gente ainda não o leu na fonte oficial. O que a resolução decide é a categoria — bicicleta elétrica de pedal assistido ou ciclomotor —, e com ela placa e registro. Quem decide a categoria são a potência nominal, a velocidade máxima e o acelerador, três campos que estes anúncios não declaram, e por isso a gente não afirma a categoria de nenhuma delas."
         },
         {
           "pergunta": "Quantos quilômetros ela faz?",
-          "resposta": "Depende da bateria, do seu peso e do relevo, e muito menos do que o anúncio diz. A nossa calculadora de autonomia desconta o relevo a partir da tensão e da amperagem, mostra o número do anúncio ao lado, e diz em que ponta da faixa o seu peso deixa você."
+          "resposta": "Depende da bateria e do relevo, e é muito menos do que o anúncio diz. A nossa calculadora de autonomia desconta o relevo a partir da tensão e da amperagem, e mostra o número do anúncio ao lado. O peso de quem pilota não entra na conta: não existe régua publicada de quanto cada quilo custa em watt-hora por km, e a página diz isso em vez de disfarçar."
         },
         {
           "pergunta": "A bicicleta elétrica aguenta o meu peso?",

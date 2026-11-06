@@ -93,7 +93,7 @@
    pergunta que `dateModified` responde e "quando esta pagina mudou", e a mae muda
    no dia em que QUALQUER filha e recolhida. */
 if ( ! defined( 'RODAMETRIA_PRODUTO_VERSAO' ) ) {
-	define( 'RODAMETRIA_PRODUTO_VERSAO', '1.7.1' );
+	define( 'RODAMETRIA_PRODUTO_VERSAO', '1.8.0' );
 }
 
 /* A VERSAO DESTE SNIPPET VAI AO AR, pelo filtro que a casca 1.6.0 abriu
@@ -485,6 +485,23 @@ function rdm_produto_malha_html( $pagina ) {
 		: '';
 	if ( '' !== $calc ) {
 		$html .= '<li>' . $calc . '</li>';
+	}
+
+	/* A TERCEIRA PERGUNTA DA ILHA, pelo item 1 do despacho de 06/11/2026.
+	   A F3 nasceu com ZERO link de miolo apontando para ela — so o menu e o
+	   rodape, que a casca serve em toda pagina, e navegacao NAO e cluster: a
+	   16.4(f) fala de QUEM APONTA, nao de quantos `href` existem no documento.
+	   Estas duas paginas de familia sao justamente onde a pergunta da carga
+	   nasce, porque e nelas que a ilha conta, anuncio por anuncio, qual titulo
+	   declarou o peso e qual se calou.
+
+	   A ancora e a CONSULTA e nunca "saiba mais" (16.4c), e o link so sai se a
+	   PAGINA existir — `rodametria_casca_link()` devolve vazio quando nao
+	   existe, que e a trava da secao 16 contra link interno para 404. */
+	$carga = rodametria_casca_link( 'peso-maximo-patinete-eletrico',
+		'o peso máximo que o elétrico suporta' );
+	if ( '' !== $carga ) {
+		$html .= '<li>' . $carga . '</li>';
 	}
 
 	/* 16.4(b): a filha linka a mae no corpo, e nao so na trilha. */

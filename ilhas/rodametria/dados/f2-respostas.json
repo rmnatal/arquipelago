@@ -3,7 +3,7 @@
   "ilha": "rodametria",
   "ferramenta": "F2",
   "bloco": "3b",
-  "gerado_em": "2026-11-04",
+  "gerado_em": "2026-11-06",
   "gerado_por": "ferramentas/gerar-f2.py",
   "referencia": "ferramentas/f2-referencia.py",
   "especificacao": "dados/especificacao-calculadoras.md, secao 2",
@@ -97,7 +97,7 @@
     "km_recusa": "Sem a autonomia que o anúncio declara, não dá para dizer quantos km esta bateria faz — e a gente não inventa o número. Falta a régua de quantos Wh um patinete gasta por km: a única medição de patinete que achamos está em periódico que não abre por aqui, e medição de moto não serve para patinete. Informe os km do anúncio no campo acima e a conta sai.",
     "peso": "Os seus {peso} kg não entram na conta: não achamos, em fonte que alcance, nenhuma régua de quanto cada quilo de quem pilota custa em Wh por km. Eles entram aqui, no que esperar da faixa.",
     "peso_ladeira": "Com {peso} kg e ladeira, espere o PISO da faixa, não o meio dela.",
-    "peso_acima_do_teto": "E antes da autonomia tem uma pergunta mais dura: {peso} kg passam do maior limite de carga que a gente viu no varejo brasileiro ({teto_carga} kg). Veja se o modelo aguenta o seu peso antes de olhar km.",
+    "peso_acima_do_teto": "E antes da autonomia tem uma pergunta mais dura: {peso} kg passam do maior limite de carga que a gente viu no varejo brasileiro ({teto_carga} kg). Esses quilos não entram na conta de autonomia, mas entram nessa — veja se o modelo aguenta você antes de olhar km.",
     "rotulo_km": "O que esperar no seu trajeto",
     "rotulo_wh": "A energia da bateria",
     "calibracao": "Para calibrar a expectativa: numa medição de 2025 de Rodrigo David Limaico Quinteros, na Universidade Politécnica Salesiana de Quito, o veículo entregou {pct}% da autonomia que a ficha declarava (29,8 km medidos contra 60 km de ficha). Não multiplicamos nada por esse número — ele é uma medição, de um veículo, numa rota, e de moto, não de patinete."

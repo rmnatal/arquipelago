@@ -110,10 +110,15 @@ MOLDES = {
         "Eles entram aqui, no que esperar da faixa."
     ),
     "peso_ladeira": "Com {peso} kg e ladeira, espere o PISO da faixa, n\u00e3o o meio dela.",
+    # A FRASE PERDEU O "seu peso" E GANHOU A RECUSA, pelo item 2 do despacho de
+    # 06/11/2026: ela punha `seu peso` ao lado de `km` sem dizer que o peso NAO
+    # entra na conta, e nenhuma regua lia a prosa. A pergunta mais dura continua
+    # sendo a da F3, e e para la que a tela manda quem pesa acima do teto.
     "peso_acima_do_teto": (
         "E antes da autonomia tem uma pergunta mais dura: {peso} kg passam do maior "
-        "limite de carga que a gente viu no varejo brasileiro ({teto_carga} kg). Veja se o "
-        "modelo aguenta o seu peso antes de olhar km."
+        "limite de carga que a gente viu no varejo brasileiro ({teto_carga} kg). Esses "
+        "quilos n\u00e3o entram na conta de autonomia, mas entram nessa \u2014 veja se o "
+        "modelo aguenta voc\u00ea antes de olhar km."
     ),
     "rotulo_km": "O que esperar no seu trajeto",
     "rotulo_wh": "A energia da bateria",

@@ -30,6 +30,26 @@ _spec = importlib.util.spec_from_file_location("vb", RAIZ / "ferramentas/validar
 VB = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(VB)
 
+# O GERADOR DO `nota`, IMPORTADO PORQUE MUNDO FABRICADO TEM DE SER MUNDO
+# CONSISTENTE (06/11/2026, com o item 5 do despacho da ronda daquele dia).
+#
+# Desde 06/11 o validador RECONTA, no proprio arquivo, quantos registros tem saida
+# de compra e quantos estao `publicavel`, e reprova divergencia com a frase do
+# `nota` — porque aquela frase afirmava *"nenhum tem saida de compra"* com QUATRO
+# tendo. A consequencia aqui e direta: um mundo que MEXE NA LISTA de registros e
+# deixa o `nota` do arquivo de verdade NAO e um mundo valido, e os tres "mundos
+# que tem de passar" desta bateria reprovaram por isso no minuto em que o portao
+# nasceu.
+#
+# A BATERIA IMPORTA O PRODUTOR, E ISSO NAO FERE A REGRA DA SECAO 8 ("quem confere
+# escreve a propria regua, nunca chama a de quem produziu o dado"): quem confere
+# aqui e `validar-banco.py`, com a propria contagem. Esta bateria nao confere o
+# `nota` — ela CONSTROI o mundo, e construir um mundo coerente e trabalho de quem
+# o fabrica.
+_spec_db = importlib.util.spec_from_file_location("db", RAIZ / "ferramentas/derivar-banco.py")
+DB = importlib.util.module_from_spec(_spec_db)
+_spec_db.loader.exec_module(DB)
+
 CASOS = []
 
 
@@ -54,6 +74,13 @@ def v(d, id_):
 
 def primeiro(d):
     return d["veiculos"]["registros"][0]
+
+
+def nota_consistente(d):
+    """Reescreve o `nota` de veiculos.json a partir dos registros DESTE mundo."""
+    d["veiculos"]["nota"] = DB.nota_com_a_frase(d["veiculos"].get("nota") or "",
+                                                d["veiculos"].get("registros", []))
+    return d
 
 
 def registro_publicavel(d):
@@ -91,13 +118,13 @@ def _(d):
 def _(d):
     for k in ("veiculos", "pecas", "municipios"):
         d[k]["registros"] = []
-    return d
+    return nota_consistente(d)
 
 
 @caso("um registro publicavel completo, degrau 3 com par colhido", passa=True)
 def _(d):
     registro_publicavel(d)
-    return d
+    return nota_consistente(d)
 
 
 @caso("um registro publicavel no degrau 4, com `url` vazia", passa=True)
@@ -107,7 +134,7 @@ def _(d):
     r["afiliado"]["url"] = None
     r["afiliado"]["url_produto"] = None
     r["afiliado"]["par_colhido_em"] = None
-    return d
+    return nota_consistente(d)
 
 
 # --------------------------------------- o `intestavel` DECLARADO (04/11/2026)
@@ -455,6 +482,32 @@ def _(d):
 @caso("versao_esquema do arquivo divergindo do esquema", "nao bate com a do esquema")
 def _(d):
     d["veiculos"]["versao_esquema"] = 99
+    return d
+
+
+# AS QUEBRAS DO `nota` RECONTADO (item 5 do despacho de 06/11/2026). Elas sao
+# TRES porque o portao tem tres pontas, e cada uma e um jeito diferente de o campo
+# voltar a mentir: a contagem errada, o nome que falta e o bloco inteiro apagado.
+@caso("o `nota` afirma que NENHUM registro tem saida de compra, e quatro tem",
+      "o `nota` recontado nao diz '4 deles JA tem saida de compra'")
+def _(d):
+    d["veiculos"]["nota"] = d["veiculos"]["nota"].replace(
+        "4 deles JA tem saida de compra", "nenhum deles tem saida de compra")
+    return d
+
+
+@caso("o `nota` recontado deixa de NOMEAR um registro que tem saida de compra",
+      "nao nomeia `ls-sport-scooter-1000w`")
+def _(d):
+    d["veiculos"]["nota"] = d["veiculos"]["nota"].replace(", ls-sport-scooter-1000w", "")
+    return d
+
+
+@caso("o bloco recontado do `nota` foi apagado e o campo voltou a ser prosa a mao",
+      "o `nota` nao traz o bloco recontado da saida de compra")
+def _(d):
+    d["veiculos"]["nota"] = d["veiculos"]["nota"].split(
+        "SAIDA DE COMPRA E PUBLICAVEIS, RECONTADOS POR")[0]
     return d
 
 

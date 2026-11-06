@@ -58,6 +58,97 @@ AQUI = os.path.dirname(os.path.abspath(__file__))
 ILHA = os.path.dirname(AQUI)
 DOMINIO = "https://rodametria.com.br"
 
+
+# ---------------------------------------------------------------------------
+# A REGUA DAS DUAS AFIRMACOES QUE ESTA ILHA NAO PODE FAZER MORA EM OUTRO PORTAO,
+# E E IMPORTADA DAQUI EM VEZ DE REESCRITA (06/11/2026)
+#
+# `ferramentas/teste-afirmacao-de-tela.py` e dono da regra: a de HABILITACAO
+# (itens 3 e 4 do despacho de 06/11) e a do PESO DE QUEM PILOTA NA AUTONOMIA
+# (item 2). Ele a aplica ao REPOSITORIO, sem rede; este portao a aplica ao HTML
+# SERVIDO de toda URL do `wp-sitemap.xml` e aos blocos `application/ld+json`,
+# que e onde o item 3 do despacho manda a regua chegar — *"o portao que cobra
+# isso roda sobre TODAS as URLs do wp-sitemap.xml, e nao so sobre as telas da
+# F1"*.
+#
+# POR QUE IMPORTAR E NAO COPIAR: duas copias da mesma regra sao a "segunda
+# declaracao do mesmo fato" que a 20.7 proibe nesta ilha — *"duas declaracoes do
+# mesmo fato comecam iguais e so uma sobe"*. E isto NAO fere a regra da secao 8
+# ("quem confere escreve a propria regua, nunca chama a de quem produziu o
+# dado"): a regua de afirmacao nao PRODUZ texto nenhum, ela so o reprova.
+#
+# Se o irmao nao estiver no disco, este portao DIZ e segue — mas as duas
+# afirmacoes ficam sem medir, e isso vai para o relatorio em vez de passar calado.
+_REGUA_DE_AFIRMACAO = None
+try:
+    import importlib.util as _ilu
+
+    _spec = _ilu.spec_from_file_location(
+        "rodametria_afirmacao_de_tela",
+        os.path.join(AQUI, "teste-afirmacao-de-tela.py"))
+    _REGUA_DE_AFIRMACAO = _ilu.module_from_spec(_spec)
+    _spec.loader.exec_module(_REGUA_DE_AFIRMACAO)
+except Exception as _e:  # noqa: BLE001 — qualquer falha aqui e "nao medi"
+    _POR_QUE_SEM_REGUA = str(_e)
+
+
+# As marcacoes que carregam PROSA nesta ilha. `label` e `option` ficam FORA de
+# proposito: o campo "Seu peso" da F2 e um ROTULO de formulario, e medi-lo como
+# afirmacao reprovaria o formulario que a propria ferramenta precisa ter.
+TAGS_DE_PROSA = ("p", "li", "h1", "h2", "h3", "h4", "summary", "dt", "dd",
+                 "td", "th", "caption", "figcaption", "blockquote")
+_RE_ELEMENTOS = re.compile(
+    r"<(%s)\b[^>]*>(.*?)</\1>" % "|".join(TAGS_DE_PROSA), re.S | re.I)
+
+
+def elementos_de_prosa(corpo):
+    """Cada elemento de prosa da pagina, como texto, na ordem em que e servido."""
+    out = []
+    sem_rotulo = re.sub(r"<label\b.*?</label>", " ", corpo, flags=re.S | re.I)
+    for m in _RE_ELEMENTOS.finditer(sem_rotulo):
+        t = desescapar_entidades(re.sub(r"<[^>]+>", " ", m.group(2)))
+        t = re.sub(r"\s+", " ", t).strip()
+        if t:
+            out.append(t)
+
+    return out
+
+
+def frases_e_pares_do_jsonld(blocos):
+    """As strings de todo JSON-LD e os pares (pergunta, resposta) de FAQPage.
+
+    O item 4 do despacho de 06/11/2026 e literal sobre por que isto existe: a
+    `FAQPage` da bicicleta respondia "precisa de CNH?" com **nao** na camada
+    estruturada, e *"a que vai para o Google e a do JSON-LD"*. Nenhuma regua
+    desta ilha olhava para dentro dele procurando afirmacao de habilitacao.
+    """
+    textos = []
+    pares = []
+    for b in blocos:
+        try:
+            d = json.loads(b)
+        except Exception:
+            continue
+        pilha = [d]
+        while pilha:
+            x = pilha.pop()
+            if isinstance(x, dict):
+                if x.get("@type") == "Question":
+                    nome = x.get("name")
+                    resp = x.get("acceptedAnswer") or {}
+                    texto = resp.get("text") if isinstance(resp, dict) else None
+                    if isinstance(nome, str) and isinstance(texto, str):
+                        pares.append((nome, texto))
+                for v in x.values():
+                    if isinstance(v, str):
+                        textos.append(v)
+                    else:
+                        pilha.append(v)
+            elif isinstance(x, list):
+                pilha += x
+
+    return textos, pares
+
 falhas = []
 registros = []
 afirmacoes = 0
@@ -1285,6 +1376,58 @@ def main():
                          % (caminho, d))
         if datas_ld:
             registro("%s: dateModified %s" % (caminho, ", ".join(sorted(set(datas_ld)))))
+
+        # =================================================================
+        # AS DUAS AFIRMACOES QUE ESTA ILHA NAO PODE FAZER, NA TELA E NO JSON-LD
+        # (itens 2, 3 e 4 do despacho de 06/11/2026)
+        #
+        # A regua e de `teste-afirmacao-de-tela.py` e esta importada no topo; o
+        # que e DAQUI e a superficie: o HTML servido, elemento por elemento, mais
+        # as strings e os pares de pergunta/resposta de todo `application/ld+json`
+        # — em TODA URL do `wp-sitemap.xml`, que e o alcance que o item 3 exige.
+        #
+        # MEDIDO CONTRA A REVISAO 60 ANTES DE QUALQUER CONSERTO, como o proprio
+        # despacho manda (*"portao que nao reprova o defeito conhecido nao esta
+        # medindo nada"*): 6 afirmacoes de habilitacao, 9 promessas de peso e 2
+        # pares de FAQ, em 5 das 10 URLs — e ZERO falso positivo nas outras
+        # cinco, inclusive na HOME, que e onde moram as sete mencoes CERTAS a
+        # habilitacao desta ilha, e na F2, que e dona da unica oracao de recusa
+        # de peso.
+        # =================================================================
+        if _REGUA_DE_AFIRMACAO is None:
+            registro("%s: as duas afirmacoes NAO foram medidas (%s)"
+                     % (caminho, _POR_QUE_SEM_REGUA))
+        else:
+            _elem = elementos_de_prosa(corpo)
+            _ld_textos, _ld_pares = frases_e_pares_do_jsonld(jsonld)
+            _maus_hab = (_REGUA_DE_AFIRMACAO.problemas_de_habilitacao(
+                             "%s (tela)" % caminho, _elem)
+                         + _REGUA_DE_AFIRMACAO.problemas_de_habilitacao(
+                             "%s (JSON-LD)" % caminho, _ld_textos))
+            _maus_peso = (_REGUA_DE_AFIRMACAO.problemas_de_peso(
+                              "%s (tela)" % caminho, _elem)
+                          + _REGUA_DE_AFIRMACAO.problemas_de_peso(
+                              "%s (JSON-LD)" % caminho, _ld_textos))
+            _maus_faq = _REGUA_DE_AFIRMACAO.problemas_do_faq_de_habilitacao(
+                "%s (FAQPage)" % caminho, _ld_pares)
+            afirma(not _maus_hab,
+                   "%s: %d afirmacao(oes) sobre HABILITACAO sem nenhuma das oracoes "
+                   "de recusa desta ilha. A 996/2023 decide a categoria e nao tem "
+                   "artigo sobre CNH; o CTB nao foi lido na fonte. A primeira: %s"
+                   % (caminho, len(_maus_hab), _maus_hab[0] if _maus_hab else ""))
+            afirma(not _maus_peso,
+                   "%s: %d texto(s) prometendo o peso de quem pilota na conta de "
+                   "autonomia, que a F2 NAO faz (a constante de consumo por quilo "
+                   "esta pendente). O primeiro: %s"
+                   % (caminho, len(_maus_peso), _maus_peso[0] if _maus_peso else ""))
+            afirma(not _maus_faq,
+                   "%s: %d pergunta(s) de FAQPage sobre habilitacao cuja resposta "
+                   "nao recusa responder. E a metade que o Google e as ferramentas "
+                   "de IA citam sem abrir formulario nenhum. A primeira: %s"
+                   % (caminho, len(_maus_faq), _maus_faq[0] if _maus_faq else ""))
+            registro("%s: %d elemento(s) de prosa e %d string(s) de JSON-LD na regua "
+                     "das duas afirmacoes, %d par(es) de FAQ"
+                     % (caminho, len(_elem), len(_ld_textos), len(_ld_pares)))
 
         if caminho not in ("/", ""):
             afirma(any("BreadcrumbList" in j for j in jsonld),

@@ -160,10 +160,23 @@ MOLDES = {
         "para entrar aqui, e estimar carga por tamanho de roda ou por potência "
         "seria inventar o número que esta página existe para dar."
     ),
-    # O convite para a F2, com o peso ja passado na URL (3.4 e 32.2).
+    # O CONVITE PARA A F2, com o peso ja passado na URL (3.4 e 32.2).
+    #
+    # ELE PROMETIA O QUE A IRMA NAO FAZ, e foi o item 2 do despacho da ronda de
+    # 06/11/2026: dizia *"a conta de autonomia aceita o seu peso e devolve a faixa
+    # do seu trajeto"*, e a F2 responde a MESMA faixa para 50 kg e para 130 kg —
+    # medido no navegador, byte por byte. A constante de consumo por quilo esta
+    # `pendente` e pela secao 10 nao entra em formula, entao a unica frase honesta
+    # aqui e a que a propria F2 serve na tela dela.
+    #
+    # O PESO CONTINUA INDO NA URL de proposito: a F2 preenche o campo com ele e
+    # responde, com o numero da pessoa na mao, que ele nao entra na conta. Levar o
+    # peso para ouvir a recusa nominal e melhor do que nao levar.
     "convite_f2": (
-        "Perto do limite o peso também come os km: a conta de autonomia aceita o "
-        "seu peso e devolve a faixa do seu trajeto."
+        "A conta de autonomia trabalha com a bateria e com o relevo, e é aberta "
+        "sobre o que ela não faz: o peso de quem pilota não entra no cálculo, "
+        "porque não existe régua publicada de quanto cada quilo custa em "
+        "watt-hora por km."
     ),
     # A frase do teto de mercado, dita como observacao datada e nunca como limite.
     "teto_de_mercado": (

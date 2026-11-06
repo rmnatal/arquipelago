@@ -219,6 +219,56 @@ def validar(dados):
         falha("veiculos.json", "versao_esquema %r nao bate com a do esquema (%r)"
               % (dados["veiculos"].get("versao_esquema"), esq["versao_esquema"]))
 
+    # O `nota` DE veiculos.json TEM DE DIZER OS NUMEROS QUE O ARQUIVO TEM
+    # (item 5 do despacho de 06/11/2026).
+    #
+    # O DEFEITO: o `nota` afirmava *"nenhum tem saida de compra"* com QUATRO
+    # registros de `afiliado` preenchido no mesmo arquivo, quatro deles servindo
+    # cartao no ar. Nao quebra pagina — `publicar: false` —, e e por isso que
+    # sobreviveu: o risco e de METODO, porque a proxima execucao que ler esse
+    # campo como fato conclui que a ilha nao tem monetizacao, e ela tem.
+    #
+    # QUEM ESCREVE E `derivar-banco.py`; QUEM CONFERE E AQUI, e as duas metades
+    # nao se falam de proposito — este portao RECONTA com a propria regua, como
+    # ja faz com `energia_wh` e com `intestavel`. Espelho sem portao envelhece
+    # calado; portao sem espelho obriga toda ronda a refazer a conta de cabeca.
+    campos_de_saida = ("url", "url_produto", "url_busca", "url_busca_produto")
+    com_saida = [r.get("id") for r in regs
+                 if isinstance(r.get("afiliado"), dict)
+                 and any((r["afiliado"] or {}).get(c) for c in campos_de_saida)]
+    publicaveis = [r.get("id") for r in regs if r.get("publicavel")]
+    nota = str(dados["veiculos"].get("nota") or "")
+    marca = "SAIDA DE COMPRA E PUBLICAVEIS, RECONTADOS POR"
+    if marca not in nota:
+        falha("veiculos.json",
+              "o `nota` nao traz o bloco recontado da saida de compra. Quem o escreve e "
+              "ferramentas/derivar-banco.py, e sem ele o campo volta a ser prosa digitada "
+              "a mao — que foi como ele passou a afirmar `nenhum tem saida de compra` com "
+              "%d registros tendo" % len(com_saida))
+    else:
+        bloco = nota.split(marca, 1)[1]
+        esperado_saida = ("%d deles JA tem saida de compra" % len(com_saida)
+                          if len(com_saida) > 1
+                          else ("1 deles JA tem saida de compra" if com_saida
+                                else "nenhum deles tem saida de compra"))
+        if esperado_saida not in bloco:
+            falha("veiculos.json",
+                  "o `nota` recontado nao diz %r. Contei %d registro(s) com saida de compra "
+                  "neste arquivo (%s) — rode ferramentas/derivar-banco.py"
+                  % (esperado_saida, len(com_saida), ", ".join(com_saida) or "nenhum"))
+        for ident in com_saida:
+            if ident not in bloco:
+                falha("veiculos.json",
+                      "o `nota` recontado nao nomeia `%s`, que tem saida de compra" % ident)
+        esperado_pub = ("NENHUM dos %d registros esta `publicavel`" % len(regs)
+                        if not publicaveis
+                        else "%d dos %d registros" % (len(publicaveis), len(regs)))
+        if esperado_pub not in bloco and "os %d registros estao" % len(regs) not in bloco:
+            falha("veiculos.json",
+                  "o `nota` recontado nao diz %r. Contei %d publicavel(eis) em %d registros "
+                  "— rode ferramentas/derivar-banco.py"
+                  % (esperado_pub, len(publicaveis), len(regs)))
+
     for v in regs:
         onde = "veiculo %s" % v.get("id")
         if not _slug(v.get("id")):

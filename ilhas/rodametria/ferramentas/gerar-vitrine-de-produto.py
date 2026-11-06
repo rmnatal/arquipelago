@@ -267,10 +267,17 @@ MUNDOS_DA_CARGA = (
 # O QUE A FRASE PODE DIZER E A CONTAGEM, e com zero declarando ela e a tese da
 # ilha medida na propria vitrine: "todos falam, ninguem calcula".
 def frase_do_pivo(n, declaram, com_acelerador, so_pedal):
+    # O RAMO DO ZERO DIZIA "a diferenca entre andar sem habilitacao e precisar de
+    # uma", NAS DUAS PAGINAS DE FAMILIA, e foi o item 3 do despacho de 06/11/2026:
+    # a Resolucao 996/2023 decide a CATEGORIA e nao tem artigo nenhum sobre CNH,
+    # entao dizer que o acelerador separa quem anda com e sem habilitacao e a ilha
+    # afirmando o que a fonte dela nao diz — para o lado PERMISSIVO, que e o lado
+    # caro. O que a categoria decide de verdade, e esta escrito na resolucao, e
+    # placa e registro.
     if declaram == 0:
         return ('Nenhum dos %d anúncios diz se o veículo tem acelerador, e é o '
                 'acelerador que decide se ele é bicicleta elétrica ou ciclomotor '
-                '— a diferença entre andar sem habilitação e precisar de uma.' % n)
+                '— duas categorias com regras de placa e registro diferentes.' % n)
     if com_acelerador and not so_pedal:
         return ('%d dos %d anúncios declaram acelerador no título; os outros não '
                 'dizem se têm um, e é o acelerador que separa bicicleta elétrica '

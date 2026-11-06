@@ -71,7 +71,7 @@
    Antes disto a ilha cujo produto e "o preco de hoje" tinha ZERO ocorrencia de
    `dateModified` e de `datePublished` em todo o JSON-LD das 9 URLs. */
 if ( ! defined( 'RODAMETRIA_CASCA_VERSAO' ) ) {
-	define( 'RODAMETRIA_CASCA_VERSAO', '1.16.0' );
+	define( 'RODAMETRIA_CASCA_VERSAO', '1.17.0' );
 }
 
 /**
@@ -705,6 +705,51 @@ function rodametria_casca_caixa( $rotulo, $numero, $unidade, $frases, $tom = 'ne
 	$html .= '</div>';
 
 	return $html;
+}
+}
+
+/**
+ * O CARTAO DE FERRAMENTA DA HOME, E O ESTADO DELE SAI DA EXISTENCIA DA PAGINA
+ * (item 1 do despacho da ronda de 06/11/2026)
+ *
+ * O DEFEITO MEDIDO: na revisao 60, o cartao da F3 servia, letra por letra, *"Ainda
+ * nao esta no ar: das fichas que colhemos, so tres declaram carga maxima..."* — e
+ * `/peso-maximo-patinete-eletrico/` estava no `wp-sitemap.xml`, em 200, e a F3 dela
+ * devolveu 119 kg na mesma ronda. Pior que a frase errada: **o cartao nao tinha
+ * `<a>`**, entao a pagina nasceu com ZERO link de miolo apontando para ela, contra
+ * os dois que a 16.4(f) pede.
+ *
+ * E A CAUSA NAO ERA A FRASE: era haver DUAS declaracoes de "esta no ar" — a pagina
+ * existir, e uma prosa dizendo que nao. A 20.7 ja nomeou esta familia nesta ilha:
+ * *"duas declaracoes do mesmo fato comecam iguais e so uma sobe"*. Por isso o
+ * conserto nao foi trocar o texto do cartao da F3: foi tirar do texto o direito de
+ * declarar isso. **O estado do cartao passa a ser DERIVADO** de
+ * `rodametria_casca_url_do_slug()`, que e a mesma funcao que decide se um link
+ * interno pode nascer (secao 16: link para 404 custa mais que link que falta).
+ *
+ * Pagina existe -> o cartao e um LINK, com o rotulo da acao.
+ * Pagina nao existe -> o cartao serve a prosa de espera, com a causa.
+ *
+ * NENHUM dos dois estados pode ser escrito a mao, e e isso que faz a ferramenta
+ * seguinte nascer certa sem ninguem se lembrar deste paragrafo. O cartao da F1 e o
+ * unico sem slug: a pagina dela E a home, e quem tira o cartao dela da lista e o
+ * filtro `rodametria_home_cartoes` do proprio snippet da F1, que sabe se o banco
+ * dela chegou. Slug vazio = sem pagina propria, entao a prosa de espera e a saida
+ * certa quando a F1 nao esta na primeira tela.
+ */
+if ( ! function_exists( 'rodametria_casca_cartao_de_ferramenta' ) ) {
+function rodametria_casca_cartao_de_ferramenta( $f ) {
+	$url = ( '' === (string) $f['slug'] ) ? '' : rodametria_casca_url_do_slug( $f['slug'] );
+	$li  = '<li><h3>' . esc_html( $f['titulo'] ) . '</h3>';
+	$li .= '<p>' . esc_html( $f['prosa'] ) . '</p>';
+	if ( '' === $url ) {
+		$li .= '<p class="rdm-cartao-estado">' . esc_html( $f['espera'] ) . '</p>';
+	} else {
+		$li .= '<p><a class="rdm-molde-cartao-botao" href="' . esc_url( $url ) . '">'
+			. esc_html( $f['rotulo'] ) . '</a></p>';
+	}
+
+	return $li . '</li>';
 }
 }
 
@@ -1770,59 +1815,103 @@ function rodametria_casca_home_html() {
 	 * ------------------------------------------------------------------- */
 	$ferramenta = (string) apply_filters( 'rodametria_home_ferramenta', '' );
 
+	/* AS TRES FERRAMENTAS, UMA INSTRUCAO CADA. O estado de cada cartao e DERIVADO
+	   pela `rodametria_casca_cartao_de_ferramenta()` — ver o comentario dela, que
+	   e o item 1 do despacho de 06/11/2026. Nada aqui declara "esta no ar".
+
+	   E UMA INSTRUCAO POR CARTAO NAO E ARRUMACAO: a regua de afirmacao de tela
+	   desta ilha le o PHP por INSTRUCAO (literal em cadeia e meia frase), e um
+	   `array()` com os tres dentro grudaria o "peso de quem pilota" do cartao da
+	   F3 com a "faixa de km" do cartao da F2 — reprovando dois textos certos por
+	   vizinhanca. Portao que reprova o certo e o caminho mais curto para alguem
+	   ignora-lo (20.5). */
+	$ferramentas = array();
+
+	$ferramentas['f2'] = array(
+		'slug'   => 'autonomia-patinete-eletrico',
+		'titulo' => 'Quantos km ele faz no seu relevo?',
+		'prosa'  => 'Tensão e amperagem da bateria entram, watt-hora e a faixa de km saem — '
+			. 'com o relevo do seu trajeto descontando o que tem de descontar.',
+		'rotulo' => 'Calcular a autonomia',
+		'espera' => 'Está sendo publicada agora.',
+	);
+
+	$ferramentas['f1'] = array(
+		'slug'   => '',
+		'titulo' => 'Esse elétrico precisa de CNH?',
+		'prosa'  => 'Potência, velocidade máxima e se tem acelerador decidem se o veículo é '
+			. 'bicicleta elétrica, autopropelido ou ciclomotor — e a categoria é o que decide '
+			. 'placa e registro.',
+		'rotulo' => '',
+		'espera' => 'Ainda não está no ar: o limite legal desta conta só entra com o texto '
+			. 'oficial da resolução lido na fonte, e enquanto ele não estiver no nosso banco a '
+			. 'gente não publica limite de potência tirado de notícia — errar para o lado '
+			. 'permissivo manda alguém para a rua sem habilitação.',
+	);
+
+	$ferramentas['f3'] = array(
+		'slug'   => 'peso-maximo-patinete-eletrico',
+		'titulo' => 'Aguenta você e a mochila?',
+		'prosa'  => 'Peso de quem pilota mais a carga, contra a carga máxima que o fabricante '
+			. 'declara, com folga — e os que ficam de fora dizem por quê.',
+		'rotulo' => 'Calcular a carga máxima',
+		'espera' => 'Ainda não está no ar: das fichas que colhemos, só três declaram carga '
+			. 'máxima, e nenhuma dessas três tem oferta aberta. Sem ficha que declare o limite, '
+			. 'a conta não teria o que comparar.',
+	);
+
 	if ( '' !== $ferramenta ) {
 		$html .= $ferramenta;
 	} else {
+		/* A CAIXA DE FORA DA PRIMEIRA TELA, E O NUMERO DELA E CONTADO.
+		   Ela dizia '1' e 'de 3 ferramentas' com os dois numeros DIGITADOS, e a
+		   frase seguinte afirmava que "as outras duas — a de CNH e a de carga
+		   maxima — estao esperando dado". As duas afirmacoes envelheceram no
+		   dia em que a F3 subiu, e e a mesma cicatriz do cartao: numero de tela
+		   digitado. Agora os dois saem da contagem das paginas que EXISTEM, e as
+		   ferramentas no ar sao NOMEADAS pelo proprio titulo do cartao delas. */
+		$no_ar = array();
+		foreach ( $ferramentas as $f ) {
+			if ( '' !== (string) $f['slug']
+				&& '' !== rodametria_casca_url_do_slug( $f['slug'] ) ) {
+				$no_ar[] = $f['titulo'];
+			}
+		}
+		$faltam = count( $ferramentas ) - count( $no_ar );
+		$frases = array();
+		if ( $no_ar ) {
+			$frases[] = ( 1 === count( $no_ar ) ? 'Já responde: ' : 'Já respondem: ' )
+				. implode( ' ', $no_ar );
+		}
+		if ( $faltam > 0 ) {
+			$frases[] = ( 1 === $faltam
+				? 'A que falta está esperando dado, e o cartão dela abaixo diz exatamente o quê.'
+				: 'As outras ' . $faltam . ' estão esperando dado, e cada cartão abaixo diz '
+					. 'exatamente o quê.' );
+		}
 		$html .= rodametria_casca_caixa(
 			'Pronto para usar agora',
-			'1',
-			'de 3 ferramentas',
-			array(
-				'A conta de autonomia está no ar: você diz a tensão e a amperagem da bateria e ela '
-					. 'devolve os watt-hora e a faixa de km que dá para esperar no seu relevo.',
-				'As outras duas — a de CNH e a de carga máxima — estão esperando dado, e cada cartão '
-					. 'abaixo diz exatamente o quê.',
-			),
+			(string) count( $no_ar ),
+			'de ' . count( $ferramentas ) . ' ferramentas',
+			$frases,
 			'neutro' );
 	}
 
-	/* Os cartoes, na linguagem de quem pilota (VOZ.md). Pagina que nao existe
-	   nao ganha link: o cartao diz o que falta, e nao promete data.
-	 *
-	 * ELES SAO UM MAPA COM CHAVE, E NAO HTML CORRIDO, desde 1.11.0: a
-	 * ferramenta que ocupa a primeira tela TIRA o proprio cartao da lista pelo
-	 * filtro `rodametria_home_cartoes`, porque cartao que aponta para a pagina
-	 * em que ele esta e ruido — e o `VOZ.md` e literal, *"a ferramenta
-	 * principal em cima; as OUTRAS ferramentas entram como cartoes"*. A chave e
-	 * o que permite remover por NOME e nao por posicao: lista que depende da
-	 * ordem de hoje quebra calada no dia em que a F3 entrar. */
-	$f2 = rodametria_casca_url_do_slug( 'autonomia-patinete-eletrico' );
+	/* Os cartoes, na linguagem de quem pilota (VOZ.md).
 
-	$cartoes = array(
-		'f2' => '<li><h3>Quantos km ele faz no seu relevo?</h3>'
-			. '<p>Tensão e amperagem da bateria entram, watt-hora e a faixa de km saem — com o relevo '
-			. 'do seu trajeto descontando o que tem de descontar.</p>'
-			. ( '' === $f2
-				? '<p class="rdm-cartao-estado">Está sendo publicada agora.</p>'
-				: '<p><a class="rdm-molde-cartao-botao" href="' . esc_url( $f2 ) . '">Calcular a autonomia</a></p>' )
-			. '</li>',
+	   ELES SAO UM MAPA COM CHAVE, E NAO HTML CORRIDO, desde 1.11.0: a ferramenta
+	   que ocupa a primeira tela TIRA o proprio cartao da lista pelo filtro
+	   `rodametria_home_cartoes`, porque cartao que aponta para a pagina em que ele
+	   esta e ruido — e o `VOZ.md` e literal, *"a ferramenta principal em cima; as
+	   OUTRAS ferramentas entram como cartoes"*. A chave e o que permite remover
+	   por NOME e nao por posicao: lista que depende da ordem de hoje quebra calada.
 
-		'f1' => '<li><h3>Esse elétrico precisa de CNH?</h3>'
-			. '<p>Potência, velocidade máxima e se tem acelerador decidem se o veículo é bicicleta '
-			. 'elétrica, autopropelido ou ciclomotor — e a categoria é o que decide placa e '
-			. 'registro.</p>'
-			. '<p class="rdm-cartao-estado">Ainda não está no ar, e o motivo é um só: o texto oficial '
-			. 'da resolução que fixa os limites não abre pelo nosso canal de leitura. A gente não vai '
-			. 'publicar limite de potência tirado de notícia — errar para o lado permissivo manda '
-			. 'alguém para a rua sem o documento que precisa.</p></li>',
-
-		'f3' => '<li><h3>Aguenta você e a mochila?</h3>'
-			. '<p>Peso de quem pilota mais a carga, contra a carga máxima que o fabricante declara, '
-			. 'com folga — e os que ficam de fora dizem por quê.</p>'
-			. '<p class="rdm-cartao-estado">Ainda não está no ar: das fichas que colhemos, só três '
-			. 'declaram carga máxima, e nenhuma dessas três tem oferta aberta. Sem ficha que declare o '
-			. 'limite, a conta não teria o que comparar.</p></li>',
-	);
+	   O HTML DE CADA UM SAI DE `rodametria_casca_cartao_de_ferramenta()`, e e ela
+	   que decide se o cartao e LINK ou prosa de espera — nunca este lugar. */
+	$cartoes = array();
+	foreach ( $ferramentas as $chave => $f ) {
+		$cartoes[ $chave ] = rodametria_casca_cartao_de_ferramenta( $f );
+	}
 
 	$cartoes = (array) apply_filters( 'rodametria_home_cartoes', $cartoes );
 

@@ -36,7 +36,7 @@
  */
 
 if ( ! defined( 'RODAMETRIA_F3_VERSAO' ) ) {
-	define( 'RODAMETRIA_F3_VERSAO', '1.4.0' );
+	define( 'RODAMETRIA_F3_VERSAO', '1.4.1' );
 }
 
 /* A VERSAO DESTE SNIPPET VAI AO AR (20.7). A CHAVE E O `id` DO manifest.json, e
@@ -513,7 +513,7 @@ function rodametria_f3_pagina_html() {
 			. '<a href="' . esc_url( add_query_arg(
 				'rdm_peso',
 				(int) $d['campos']['exemplo']['peso_piloto_kg'],
-				rodametria_f2_url() ) ) . '">Ver a conta de autonomia com o seu peso</a>.</p>';
+				rodametria_f2_url() ) ) . '">Ver a conta de autonomia</a>.</p>';
 	}
 
 	$html .= '<h2>Quem entrou, quem não entrou, e por quê</h2>';

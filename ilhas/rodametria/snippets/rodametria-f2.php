@@ -45,7 +45,7 @@
    (item 2 do despacho da ronda de 04/11). E o MESMO campo que o "Como sabemos"
    desta pagina ja imprimia em prosa — um fato, uma fonte (20.7). */
 if ( ! defined( 'RODAMETRIA_F2_VERSAO' ) ) {
-	define( 'RODAMETRIA_F2_VERSAO', '1.6.0' );
+	define( 'RODAMETRIA_F2_VERSAO', '1.6.1' );
 }
 
 /* A VERSAO DESTE SNIPPET VAI AO AR, pelo filtro que a casca 1.6.0 abriu
@@ -652,10 +652,20 @@ function rodametria_f2_dobras_html( $d ) {
 		. 'pelo relevo. O número do fabricante costuma ser de condição ideal; o seu trajeto não é '
 		. 'condição ideal.</p>';
 	$faq .= '<h3>E o meu peso, não conta nada?</h3>';
+	/* E AQUI QUE A ILHA MANDA QUEM PERGUNTA PELO PESO PARA A FERRAMENTA QUE
+	   RESPONDE PELO PESO (item 1 do despacho de 06/11/2026). A F3 nasceu sem
+	   nenhum link de miolo apontando para ela, e esta e a resposta da irma em
+	   que a pergunta da pessoa e exatamente a da F3. O link so sai se a pagina
+	   existir: `rodametria_casca_link()` devolve vazio quando nao existe, e a
+	   frase continua inteira e verdadeira sem ele. */
+	$pergunta_mais_dura = rodametria_casca_link( 'peso-maximo-patinete-eletrico',
+		'se o modelo aguenta você' );
 	$faq .= '<p>Conta na vida real, e não conta na nossa conta — e isso está dito na resposta em '
 		. 'vez de disfarçado. A gente não achou, em fonte que alcance, nenhuma régua de quantos '
 		. 'watt-hora por km cada quilo de quem pilota custa. O seu peso entra aqui escolhendo o '
-		. 'que esperar da faixa, e numa pergunta mais dura: se o modelo aguenta você.</p>';
+		. 'que esperar da faixa, e numa pergunta mais dura: '
+		. ( '' !== $pergunta_mais_dura ? $pergunta_mais_dura : 'se o modelo aguenta você' )
+		. '.</p>';
 	$faq .= '<h3>Serve para bateria usada?</h3>';
 	$faq .= '<p>Não. Bateria perde capacidade com os ciclos, e a gente não tem fonte para dizer '
 		. 'quanto. A conta aqui é da bateria como ela é declarada.</p>';
