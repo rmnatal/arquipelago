@@ -210,6 +210,43 @@ function rodametria_f1_nome_curto( $categoria ) {
 }
 }
 
+/* ---------------------------------------------------------------------------
+ * O QUE A PAGINA DIZ A QUEM ESTA SEM JAVASCRIPT — e isto nasceu de LER O
+ * PROPRIO DESENHO em 06/11/2026, nao de um portao.
+ *
+ * O formulario e `method="get"` para a propria pagina e o JS e quem chama
+ * `preventDefault()`. Quem estiver sem JavaScript e apertar o botao recarrega a
+ * home — e a caixa de resposta volta a servir O CASO DE EXEMPLO, com cara de
+ * resposta ao que a pessoa acabou de escolher. **A pagina estaria respondendo
+ * outra pergunta e parecendo responder a dela.**
+ *
+ * A 22.8 e a 32.5 exigem que a resposta pre-renderizada esteja no HTML servido
+ * com o JavaScript desligado, e ela esta — o que elas NAO cobrem e esta
+ * confusao, porque do lado de fora as duas paginas sao identicas. A saida nao e
+ * esconder o botao nem prometer o que a pagina nao faz: e DIZER, e apontar o que
+ * funciona sem JavaScript nenhum, que nesta pagina e a tabela da resolucao.
+ *
+ * O numero do exemplo vem do banco, nunca digitado aqui. */
+if ( ! function_exists( 'rodametria_f1_noscript_html' ) ) {
+function rodametria_f1_noscript_html( $d ) {
+	$ex = $d['campos']['exemplo'];
+	$r  = $d['rotulos'];
+	$acel = isset( $r[ 'acelerador_' . $ex['acelerador'] ] )
+		? $r[ 'acelerador_' . $ex['acelerador'] ] : (string) $ex['acelerador'];
+
+	return '<noscript><p class="rdm-f1-noscript">A conta responde no seu navegador. '
+		. 'Com o JavaScript desligado, o botão recarrega a página e a resposta abaixo '
+		. 'continua sendo a do exemplo já preenchido no formulário — '
+		. '<span class="rdm-num">' . esc_html( rodametria_f1_numero( $ex['potencia_nominal_w'] ) )
+		. '</span> W, <span class="rdm-num">'
+		. esc_html( rodametria_f1_numero( $ex['velocidade_max_kmh'] ) ) . '</span> km/h, '
+		. esc_html( mb_strtolower( $acel, 'UTF-8' ) ) . '. Para o seu caso, a tabela '
+		. '“' . esc_html( $r['titulo_tabela_regra'] ) . '”, mais abaixo, responde sem '
+		. 'precisar de conta: ela tem os limites de cada categoria e o artigo de onde '
+		. 'cada um saiu.</p></noscript>';
+}
+}
+
 if ( ! function_exists( 'rodametria_f1_resultado_html' ) ) {
 function rodametria_f1_resultado_html( $d ) {
 	$r = $d['resposta_exemplo'];
@@ -559,6 +596,7 @@ function rodametria_f1_html() {
 
 	$html  = '<h2 class="rdm-f1-pergunta">Esse elétrico precisa de CNH?</h2>';
 	$html .= rodametria_f1_formulario_html( $d );
+	$html .= rodametria_f1_noscript_html( $d );
 	$html .= rodametria_f1_resultado_html( $d );
 
 	$html .= rodametria_casca_bloco_de_compra(

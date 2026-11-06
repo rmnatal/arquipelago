@@ -44,7 +44,7 @@
    Antes disto a ilha cujo produto e "o preco de hoje" tinha ZERO ocorrencia de
    `dateModified` e de `datePublished` em todo o JSON-LD das 9 URLs. */
 if ( ! defined( 'RODAMETRIA_CASCA_VERSAO' ) ) {
-	define( 'RODAMETRIA_CASCA_VERSAO', '1.11.0' );
+	define( 'RODAMETRIA_CASCA_VERSAO', '1.12.0' );
 }
 
 /**
@@ -1151,6 +1151,48 @@ body.rdm .rdm-promessa{font-size:1.125rem;color:var(--rdm-legenda);margin-bottom
 body.rdm .rdm-f-acao{margin-top:var(--rdm-e3)}
 .rdm-f-botao{background:var(--rdm-tinta);color:#FFF;border:0;border-radius:var(--rdm-e1);
   padding:12px 20px;font:600 1rem Barlow,sans-serif;cursor:pointer}
+
+/* O PIVO DA F1 — um par de radios no MESMO NIVEL VISUAL dos dois numeros.
+   A 1.1 da especificacao e literal: "nunca um checkbox abaixo do botao de
+   calcular". `fieldset` cru tem borda e recuo do navegador, que neste molde
+   apareceriam como uma caixa dentro da caixa: os dois sao zerados e o campo
+   passa a se parecer com os irmaos dele na grade. `legend` vira o rotulo, com o
+   mesmo peso e tamanho do `label` dos outros campos.
+   O radio recebe `accent-color` da tinta da marca, que e a unica forma de
+   colorir controle nativo sem reconstrui-lo — e reconstruir controle nativo
+   custa teclado e leitor de tela, que e o que a 22.8 protege. */
+.rdm-f-campo-pivo{border:0;padding:0;margin:0;min-width:0}
+.rdm-f-campo-pivo>legend{font-weight:600;font-size:.875rem;padding:0;margin:0 0 var(--rdm-e1)}
+.rdm-f-radio{display:flex;align-items:center;gap:var(--rdm-e2);
+  font:500 .9375rem Barlow,sans-serif;padding:7px 10px;margin:0 0 var(--rdm-e1);
+  border:1px solid var(--rdm-traco);border-radius:var(--rdm-e1);
+  background:var(--rdm-superficie);cursor:pointer}
+.rdm-f-radio:last-of-type{margin-bottom:var(--rdm-e1)}
+.rdm-f-radio input{width:auto;margin:0;accent-color:var(--rdm-tinta);flex:0 0 auto}
+.rdm-f-radio:has(input:checked){border-color:var(--rdm-tinta);
+  box-shadow:inset 0 0 0 1px var(--rdm-tinta)}
+
+/* A PERGUNTA DA FERRAMENTA NA HOME, e ela e H2 e nao H1: o H1 da home e a
+   identidade da ilha e esta indexado. */
+body.rdm .rdm-f1-pergunta{margin:0 0 var(--rdm-e3)}
+
+/* A CAMADA 2 DA F1 — bloco SEPARADO com titulo proprio (1.2 da especificacao:
+   "fundi-las numa frase e o defeito que a secao 7 nomeia"). O titulo e menor que
+   um H2 de secao de propósito: ele rotula um bloco dentro da resposta, nao uma
+   secao da pagina. */
+.rdm-f1-municipal{border-left:3px solid var(--rdm-traco);padding:0 0 0 var(--rdm-e3);
+  margin:0 0 var(--rdm-e4)}
+body.rdm .rdm-f1-municipal-titulo{font-size:1rem;margin:0 0 var(--rdm-e1)}
+body.rdm .rdm-f1-municipal p:last-child{margin-bottom:0}
+
+/* AS RESSALVAS DA 1.4 — abaixo do bloco de compra, e elas NAO sao rodape. */
+.rdm-f1-ressalva{margin:0 0 var(--rdm-e5)}
+
+/* O AVISO DE QUEM ESTA SEM JAVASCRIPT. Legenda, nao alerta: a pagina continua
+   respondendo, so nao responde ao que a pessoa escolheu. */
+body.rdm .rdm-f1-noscript{font-size:.9375rem;color:var(--rdm-legenda);
+  background:var(--rdm-piso);border:1px dashed var(--rdm-traco);
+  border-radius:var(--rdm-e1);padding:var(--rdm-e3);margin:0 0 var(--rdm-e4)}
 
 /* MOLDE: caixa de resultado */
 .rdm-molde-caixa{background:var(--rdm-superficie);border:2px solid var(--rdm-traco);

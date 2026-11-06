@@ -371,6 +371,25 @@ console.log('  nomes de campo: ' + nomesDeCampo.length + ', todos com o prefixo 
   JSON.stringify(PREFIXO) + ' e nenhum nas ' + RESERVADAS_DO_WORDPRESS.length +
   ' query vars reservadas do WordPress');
 
+/* ------------------ (8) O <noscript>, porque o formulario SO responde com JS
+ *
+ * O formulario e method=get e o JS chama `preventDefault()`. Sem JavaScript o
+ * botao recarrega a pagina e a caixa volta a servir o CASO DE EXEMPLO, com cara
+ * de resposta ao que a pessoa escolheu — a pagina responderia outra pergunta
+ * parecendo responder a dela. A 22.8 e a 32.5 cobram que a resposta
+ * pre-renderizada ESTEJA no HTML servido, e ela esta; o que elas nao cobrem e
+ * esta confusao, porque do lado de fora as duas paginas sao identicas.
+ * Esta regua cobra que a pagina DIGA isso. Ela vale para toda ferramenta desta
+ * ilha que tenha formulario.
+ * ------------------------------------------------------------------------- */
+ok(/<noscript>/.test(phpFonte),
+  'o snippet nao serve <noscript> nenhum, e o formulario dele SO responde com ' +
+  'JavaScript: sem ele o botao recarrega a pagina e a caixa volta a servir o caso de ' +
+  'exemplo, parecendo resposta');
+ok(/rodametria_f1_noscript_html\s*\(/.test(phpCodigo),
+  'a pagina nao chama `rodametria_f1_noscript_html()`: o aviso existe e nao e impresso');
+console.log('  o <noscript> que diz que a caixa serve o exemplo: presente e impresso');
+
 console.log('');
 console.log('teste-f1-arvore: ' + afirmacoes + ' afirmacoes, ' + falhas.length + ' falha(s)');
 for (const f of falhas.slice(0, 20)) console.log('  FALHA ' + f);
