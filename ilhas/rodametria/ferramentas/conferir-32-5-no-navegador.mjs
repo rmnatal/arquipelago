@@ -267,7 +267,22 @@ function medirPagina() {
 	   caixa ali e medir o degrau de baixo. Nesta ilha a F2 tem formulario e a
 	   home e HUB, sem formulario nenhum — as duas familias existem desde o
 	   primeiro dia, e e por isso que a regua ja nasce com as duas. */
-	const formulario = primeiro('form.rdm-f2');
+	/* O SELETOR DO FORMULARIO E A CLASSE DO COMPONENTE, NAO A DA FERRAMENTA
+	   (06/11/2026). Esta linha dizia `form.rdm-f2`, literal, e o comentario acima
+	   dizia com todas as letras que "a home e HUB, sem formulario nenhum" — a
+	   regra escrita para o mundo que existia. No dia em que a F1 tomou a primeira
+	   tela da home, a home PASSOU A TER FORMULARIO e este portao mediu a CAIXA DE
+	   RESPOSTA dela, a 792 px, reprovando a pagina pelo degrau de baixo: o
+	   formulario de verdade estava a 331 px, com folga de 369 px no teto. E a
+	   32.5-c literal — "regra de celular escrita para uma familia de cartao nao
+	   alcanca a outra" — com o sinal invertido, porque aqui ela reprovava em vez
+	   de aprovar calado.
+	   `form.rdm-f-formulario` e a classe do COMPONENTE de formulario desta ilha,
+	   que a F1 e a F2 carregam as duas e que toda ferramenta futura vai carregar;
+	   `rdm-f1`/`rdm-f2` seguem no HTML como a classe da ferramenta, para a folha.
+	   Continua sendo seletor desta ilha e nunca `main form`, que e o que a 32.5-b
+	   proibe. */
+	const formulario = primeiro('form.rdm-f-formulario');
 	const caixa = formulario || primeiro('.rdm-molde-caixa');
 	const patrocinado = primeiro('a[rel~="sponsored"]');
 	const controle = bloco
@@ -288,7 +303,21 @@ function medirPagina() {
 		   comprar, e onde nao ha o portao DIZ que nao se aplica, em vez de pular
 		   calado. */
 		tem_molde: !!(bloco || formulario || primeiro('.rdm-molde-caixa')),
-		tem_compra: !!bloco,
+		/* BLOCO DE COMPRA VAZIO NAO E BLOCO DE COMPRA, E A DIFERENCA E MEDIDA E
+		   NAO SUPOSTA (06/11/2026). `!!bloco` sozinho reprovava a home no dia em
+		   que a F1 chegou: a 1.7 da especificacao manda a F1 servir o bloco de
+		   compra com o produto DA CATEGORIA que a pessoa recebeu, e hoje ZERO dos
+		   17 registros do banco declara potencia nominal — entao o bloco existe,
+		   imprime A CAUSA (que e o que a secao 7 manda e o que o componente da
+		   casca faz por desenho) e NAO tem botao nenhum para medir. O portao dizia
+		   `compra a null px` e reprovava uma pagina que esta certa.
+		   A distincao nao e por intencao: o estado vazio tem CLASSE PROPRIA
+		   (`.rdm-molde-compra-vazio`), escrita pela casca, e e ela que o portao le.
+		   E a trava NAO afrouxa, porque a outra metade continua de pe: link
+		   patrocinado servido com o bloco vazio cai em `tem_patrocinado` e
+		   REPROVA — "isso e defeito, nao isencao". */
+		bloco_vazio: !!(bloco && bloco.querySelector('.rdm-molde-compra-vazio')),
+		tem_compra: !!(bloco && !bloco.querySelector('.rdm-molde-compra-vazio')),
 		tem_patrocinado: !!patrocinado,
 		caixa: topo(caixa),
 		caixa_que: formulario ? 'formulario' : 'resposta',
@@ -550,10 +579,74 @@ if (argv.includes('--autoteste')) {
 		latente.fotos.reservados === 1 && latente.fotos.reais === 0 && latente.fotos.quebradas.length === 0,
 		JSON.stringify(latente.fotos));
 
+	/* MUNDO 5 — O FORMULARIO DE OUTRA FERRAMENTA. Em 06/11/2026 o seletor deste
+	   portao era `form.rdm-f2`, literal, e no dia em que a F1 tomou a primeira
+	   tela da home ele mediu a CAIXA DE RESPOSTA dela (792 px) em vez do
+	   FORMULARIO (331 px), reprovando a pagina pelo degrau de baixo. Este mundo
+	   fabrica uma pagina com formulario de uma ferramenta QUALQUER — `rdm-f9`, que
+	   nao existe — e exige que o portao o ache: regua que depende do nome da
+	   ferramenta de hoje e regua que quebra na proxima. */
+	const comFormulario = await medirFabricada(
+		'<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">'
+		+ '<meta name="viewport" content="width=device-width,initial-scale=1">'
+		/* AS ALTURAS SAO ESCOLHIDAS PARA AS DUAS REGUAS DISCORDAREM, e isso e o
+		   ponto do mundo: o formulario fica ABAIXO de 700 px (300) e a caixa de
+		   resposta ACIMA (300 + 450). A primeira versao deste mundo punha a caixa
+		   a 637 px, dentro do teto, e as duas reguas APROVAVAM — autoteste em que
+		   elas concordam nao mede conserto nenhum (20.8). */
+		+ '<style>body{margin:0;font:16px sans-serif}.alto{height:300px}'
+		+ '.mais-alto{height:450px}</style></head>'
+		+ '<body class="rdm"><div class="alto"></div>'
+		+ '<form class="rdm-f-formulario rdm-f9"><input name="x"></form>'
+		+ '<div class="mais-alto"></div>'
+		+ '<div class="rdm-molde-caixa"><p class="rdm-molde-caixa-numero">x</p></div>'
+		+ '</body></html>');
+	afirmar('mundo 5: o portao mede o FORMULARIO de uma ferramenta que ele nao conhece',
+		comFormulario.caixa_que === 'formulario' && comFormulario.caixa < 700,
+		`caixa_que=${comFormulario.caixa_que} caixa=${comFormulario.caixa}`);
+	afirmar('mundo 5: a REGUA VELHA, que media a caixa, REPROVA o mesmo mundo — as duas discordam',
+		(() => {
+			const velha = { ...comFormulario, caixa: comFormulario.resposta, caixa_que: 'resposta' };
+			return reguaDePixel(velha).length > 0 && reguaDePixel(comFormulario).length === 0;
+		})(),
+		`resposta=${comFormulario.resposta} formulario=${comFormulario.caixa}`);
+
+	/* MUNDO 6 — O BLOCO DE COMPRA VAZIO. A 1.7 da F1 manda servir o bloco com o
+	   produto da categoria, e hoje o banco nao tem nenhum classificavel: o bloco
+	   imprime A CAUSA e nao tem botao. `!!bloco` sozinho reprovava com
+	   `compra a null px` uma pagina que esta certa. E a trava NAO afrouxa: o
+	   mundo 6b serve link patrocinado com o bloco vazio e TEM de reprovar. */
+	const vazio = await medirFabricada(
+		'<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">'
+		+ '<meta name="viewport" content="width=device-width,initial-scale=1">'
+		+ '<style>body{margin:0;font:16px sans-serif}</style></head>'
+		+ '<body class="rdm">'
+		+ '<div class="rdm-molde-caixa"><p class="rdm-molde-caixa-numero">x</p></div>'
+		+ '<section class="rdm-molde-compra" id="comprar">'
+		+ '<p class="rdm-molde-compra-vazio">Nenhum anuncio colhido declara o que a regra le.</p>'
+		+ '</section></body></html>');
+	afirmar('mundo 6: bloco de compra VAZIO nao e julgado pelo teto de 1.400 px',
+		vazio.bloco_vazio === true && vazio.tem_compra === false && julgar(vazio).length === 0,
+		`vazio=${vazio.bloco_vazio} tem_compra=${vazio.tem_compra} problemas=${JSON.stringify(julgar(vazio))}`);
+
+	const vazioComLink = await medirFabricada(
+		'<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">'
+		+ '<meta name="viewport" content="width=device-width,initial-scale=1">'
+		+ '<style>body{margin:0;font:16px sans-serif}</style></head>'
+		+ '<body class="rdm">'
+		+ '<div class="rdm-molde-caixa"><p class="rdm-molde-caixa-numero">x</p></div>'
+		+ '<section class="rdm-molde-compra" id="comprar">'
+		+ '<p class="rdm-molde-compra-vazio">Nenhum anuncio.</p></section>'
+		+ '<p><a rel="sponsored nofollow" href="https://exemplo/x">Comprar</a></p>'
+		+ '</body></html>');
+	afirmar('mundo 6b: bloco VAZIO com link patrocinado na pagina REPROVA — a trava nao afrouxou',
+		julgar(vazioComLink).some((x) => x.includes('patrocinado')),
+		JSON.stringify(julgar(vazioComLink)));
+
 	await navegador.close();
 	const ruins = casos.filter((c) => !c.ok).length;
 	console.log('');
-	console.log(`  ${casos.length} afirmacao(oes) em 4 mundo(s) fabricado(s), sem uma requisicao de rede.`);
+	console.log(`  ${casos.length} afirmacao(oes) em 6 mundo(s) fabricado(s), sem uma requisicao de rede.`);
 	console.log(ruins ? `  REPROVADO — ${ruins} afirmacao(oes) do autoteste` : '  APROVADO — autoteste da regua da 32.5 inteiro');
 	process.exit(ruins ? 1 : 0);
 }
@@ -595,9 +688,17 @@ for (const url of lista) {
 	if (problemas.length) falhas++;
 	latentes += (m.disputas || []).filter((d) => !d.muda).length;
 
+	/* O "nao se aplica" TEM DUAS CAUSAS E ELAS SE DIZEM SEPARADAS, porque o
+	   conserto de cada uma e diferente: pagina sem bloco nenhum e desenho (a home
+	   HUB, a secao mae, as quatro da 16.1), e bloco PRESENTE e VAZIO e falta de
+	   DADO — na F1 de hoje, zero registro com potencia nominal declarada. Fundir
+	   as duas numa frase apagaria exatamente a informacao que a secao 7 manda a
+	   pagina publicar. */
 	const compraTexto = m.tem_compra
 		? `compra ${String(m.compra).padStart(5)} px`
-		: 'compra  nao se aplica (a pagina nao vende nada)';
+		: (m.bloco_vazio
+			? 'compra  nao se aplica (bloco de compra VAZIO: a pagina diz a causa)'
+			: 'compra  nao se aplica (a pagina nao vende nada)');
 	/* A CONTA DA FOTO VAI IMPRESSA em toda pagina que vende algo: e ela que diz
 	   SOBRE QUE MUNDO o numero de pixel ao lado foi medido (32.5-d). */
 	const fotoTexto = m.tem_compra
