@@ -44,7 +44,7 @@
    Antes disto a ilha cujo produto e "o preco de hoje" tinha ZERO ocorrencia de
    `dateModified` e de `datePublished` em todo o JSON-LD das 9 URLs. */
 if ( ! defined( 'RODAMETRIA_CASCA_VERSAO' ) ) {
-	define( 'RODAMETRIA_CASCA_VERSAO', '1.10.0' );
+	define( 'RODAMETRIA_CASCA_VERSAO', '1.11.0' );
 }
 
 /**
@@ -95,9 +95,22 @@ function rodametria_casca_paginas() {
 			   O 2: o "com o seu peso" saiu da pergunta de KM, porque a F2 nao faz
 			   essa conta. O peso ficou onde ele e de verdade — no "se aguenta
 			   voce", que e a F3 e compara carga maxima. 149 agora, contados. */
-			'description' => 'Antes de comprar patinete, scooter, moto ou bike elétrica: '
-				. 'se precisa de CNH, quantos km a bateria faz na sua ladeira e se '
-				. 'aguenta você.',
+			/* TROCADA EM 06/11/2026, NO DESEMBARQUE DA F1, E O MOTIVO E DE
+			   HONESTIDADE E NAO DE SEO. A frase anterior prometia, em primeiro
+			   lugar, *"se precisa de CNH"* — e a F1, que agora OCUPA a primeira
+			   tela desta pagina, e literal sobre nao responder isso: a Resolucao
+			   996/2023 nao tem artigo nenhum sobre habilitacao, e a pagina diz
+			   com todas as letras que nao vai afirmar nem que dispensa nem que
+			   exige. Descricao que promete o que a primeira tela recusa e a
+			   pagina se desdizendo na propria aba do navegador, e e a mesma
+			   familia do item 2 do despacho de 30/10 (*"o peso saiu da promessa
+			   porque a F2 nao faz essa conta"*).
+			   O que ela promete agora e o que a ferramenta entrega: a CATEGORIA
+			   e a PLACA, as duas saindo do texto lido. 147 caracteres, contra o
+			   teto de 160 que o portao de ar cobra. */
+			'description' => 'Potência, velocidade e acelerador decidem se o seu elétrico é '
+				. 'bicicleta, autopropelido ou ciclomotor — e a categoria é o que diz se ele '
+				. 'pede placa.',
 		),
 	);
 
@@ -1577,49 +1590,97 @@ function rodametria_casca_home_html() {
 		$n_vitrine = count( $dados['compra']['vitrine'] );
 	}
 
-	$html .= rodametria_casca_caixa(
-		'Pronto para usar agora',
-		'1',
-		'de 3 ferramentas',
-		array(
-			'A conta de autonomia está no ar: você diz a tensão e a amperagem da bateria e ela '
-				. 'devolve os watt-hora e a faixa de km que dá para esperar no seu relevo.',
-			'As outras duas — a de CNH e a de carga máxima — estão esperando dado, e cada cartão '
-				. 'abaixo diz exatamente o quê.',
-		),
-		'neutro' );
+	/* ---------------------------------------------------------------------
+	 * 1.11.0 (06/11/2026) — A PRIMEIRA TELA DA HOME E FILTRAVEL, E A PROMESSA
+	 * DE 29/10 FOI CUMPRIDA.
+	 *
+	 * O comentario acima diz, desde 29/10, que *"no dia em que a resolucao for
+	 * lida, a F1 toma a primeira tela da home e os cartoes descem — e NENHUMA
+	 * URL muda"*. Esse dia foi 05/11/2026, ~23h3x de Brasilia, no Chrome do
+	 * Raphael. A ferramenta se pendura AQUI, de dentro do snippet dela, pela
+	 * 32.6-b: a casca nao cresce quando a ilha cresce, e a ferramenta nao edita
+	 * a casca para aparecer.
+	 *
+	 * FILTRO VAZIO = A HOME HUB DE 29/10, BYTE POR BYTE. E isso que acontece se
+	 * o banco da F1 nao chegar ao site ou se o limiar legal voltar a `pendente`
+	 * — a home volta a ser HUB sozinha, sem ninguem editar PHP. A caixa abaixo
+	 * continua sendo a verdade do dia em que ela aparece.
+	 * ------------------------------------------------------------------- */
+	$ferramenta = (string) apply_filters( 'rodametria_home_ferramenta', '' );
+
+	if ( '' !== $ferramenta ) {
+		$html .= $ferramenta;
+	} else {
+		$html .= rodametria_casca_caixa(
+			'Pronto para usar agora',
+			'1',
+			'de 3 ferramentas',
+			array(
+				'A conta de autonomia está no ar: você diz a tensão e a amperagem da bateria e ela '
+					. 'devolve os watt-hora e a faixa de km que dá para esperar no seu relevo.',
+				'As outras duas — a de CNH e a de carga máxima — estão esperando dado, e cada cartão '
+					. 'abaixo diz exatamente o quê.',
+			),
+			'neutro' );
+	}
 
 	/* Os cartoes, na linguagem de quem pilota (VOZ.md). Pagina que nao existe
-	   nao ganha link: o cartao diz o que falta, e nao promete data. */
+	   nao ganha link: o cartao diz o que falta, e nao promete data.
+	 *
+	 * ELES SAO UM MAPA COM CHAVE, E NAO HTML CORRIDO, desde 1.11.0: a
+	 * ferramenta que ocupa a primeira tela TIRA o proprio cartao da lista pelo
+	 * filtro `rodametria_home_cartoes`, porque cartao que aponta para a pagina
+	 * em que ele esta e ruido — e o `VOZ.md` e literal, *"a ferramenta
+	 * principal em cima; as OUTRAS ferramentas entram como cartoes"*. A chave e
+	 * o que permite remover por NOME e nao por posicao: lista que depende da
+	 * ordem de hoje quebra calada no dia em que a F3 entrar. */
 	$f2 = rodametria_casca_url_do_slug( 'autonomia-patinete-eletrico' );
 
-	$html .= '<h2>As três perguntas</h2>';
-	$html .= '<ul class="rdm-cartoes">';
+	$cartoes = array(
+		'f2' => '<li><h3>Quantos km ele faz no seu relevo?</h3>'
+			. '<p>Tensão e amperagem da bateria entram, watt-hora e a faixa de km saem — com o relevo '
+			. 'do seu trajeto descontando o que tem de descontar.</p>'
+			. ( '' === $f2
+				? '<p class="rdm-cartao-estado">Está sendo publicada agora.</p>'
+				: '<p><a class="rdm-molde-cartao-botao" href="' . esc_url( $f2 ) . '">Calcular a autonomia</a></p>' )
+			. '</li>',
 
-	$html .= '<li><h3>Quantos km ele faz no seu relevo?</h3>'
-		. '<p>Tensão e amperagem da bateria entram, watt-hora e a faixa de km saem — com o relevo '
-		. 'do seu trajeto descontando o que tem de descontar.</p>'
-		. ( '' === $f2
-			? '<p class="rdm-cartao-estado">Está sendo publicada agora.</p>'
-			: '<p><a class="rdm-molde-cartao-botao" href="' . esc_url( $f2 ) . '">Calcular a autonomia</a></p>' )
-		. '</li>';
+		'f1' => '<li><h3>Esse elétrico precisa de CNH?</h3>'
+			. '<p>Potência, velocidade máxima e se tem acelerador decidem se o veículo é bicicleta '
+			. 'elétrica, autopropelido ou ciclomotor — e a categoria é o que decide placa e '
+			. 'registro.</p>'
+			. '<p class="rdm-cartao-estado">Ainda não está no ar, e o motivo é um só: o texto oficial '
+			. 'da resolução que fixa os limites não abre pelo nosso canal de leitura. A gente não vai '
+			. 'publicar limite de potência tirado de notícia — errar para o lado permissivo manda '
+			. 'alguém para a rua sem o documento que precisa.</p></li>',
 
-	$html .= '<li><h3>Esse elétrico precisa de CNH?</h3>'
-		. '<p>Potência, velocidade máxima e se tem acelerador decidem se o veículo é bicicleta '
-		. 'elétrica, autopropelido ou ciclomotor — e só o último exige habilitação e placa.</p>'
-		. '<p class="rdm-cartao-estado">Ainda não está no ar, e o motivo é um só: o texto oficial '
-		. 'da resolução que fixa os limites não abre pelo nosso canal de leitura. A gente não vai '
-		. 'publicar limite de potência tirado de notícia — errar para o lado permissivo manda '
-		. 'alguém para a rua sem habilitação.</p></li>';
+		'f3' => '<li><h3>Aguenta você e a mochila?</h3>'
+			. '<p>Peso de quem pilota mais a carga, contra a carga máxima que o fabricante declara, '
+			. 'com folga — e os que ficam de fora dizem por quê.</p>'
+			. '<p class="rdm-cartao-estado">Ainda não está no ar: das fichas que colhemos, só três '
+			. 'declaram carga máxima, e nenhuma dessas três tem oferta aberta. Sem ficha que declare o '
+			. 'limite, a conta não teria o que comparar.</p></li>',
+	);
 
-	$html .= '<li><h3>Aguenta você e a mochila?</h3>'
-		. '<p>Peso de quem pilota mais a carga, contra a carga máxima que o fabricante declara, '
-		. 'com folga — e os que ficam de fora dizem por quê.</p>'
-		. '<p class="rdm-cartao-estado">Ainda não está no ar: das fichas que colhemos, só três '
-		. 'declaram carga máxima, e nenhuma dessas três tem oferta aberta. Sem ficha que declare o '
-		. 'limite, a conta não teria o que comparar.</p></li>';
+	$cartoes = (array) apply_filters( 'rodametria_home_cartoes', $cartoes );
 
-	$html .= '</ul>';
+	if ( $cartoes ) {
+		/* O TITULO CONTA OS CARTOES QUE SOBRARAM, e nao diz "tres" de cabeca: a
+		   lista encolhe quando uma ferramenta sobe para a primeira tela, e
+		   titulo que afirma um numero que a lista nao tem e o numero de tela
+		   digitado — a cicatriz mais cobrada desta ilha. Tres cartoes = a home
+		   HUB, e o titulo e o de 29/10. */
+		$quantos = count( $cartoes );
+		if ( 3 === $quantos ) {
+			$titulo_cartoes = 'As três perguntas';
+		} elseif ( 1 === $quantos ) {
+			$titulo_cartoes = 'A outra pergunta';
+		} else {
+			$titulo_cartoes = 'As outras perguntas';
+		}
+		$html .= '<h2>' . esc_html( $titulo_cartoes ) . '</h2>';
+		$html .= '<ul class="rdm-cartoes">' . implode( '', $cartoes ) . '</ul>';
+	}
 
 	if ( $dados ) {
 		$html .= '<h2>O que a gente já mediu</h2>';

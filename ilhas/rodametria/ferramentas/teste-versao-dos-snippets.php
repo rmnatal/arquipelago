@@ -62,13 +62,51 @@ function apply_filters( $gancho, $valor ) {
 	return $valor;
 }
 
-$RAIZ  = dirname( __DIR__ );
-$IDS   = array( 'rodametria-casca', 'rodametria-f2', 'rodametria-produto', 'rodametria-institucional' );
-$ARQ   = array();
-foreach ( $IDS as $id ) {
-	$ARQ[ $id ] = file_get_contents( $RAIZ . '/snippets/' . $id . '.php' );
-}
+$RAIZ     = dirname( __DIR__ );
 $MANIFEST = json_decode( file_get_contents( $RAIZ . '/manifest.json' ), true );
+
+/* OS IDS SAEM DO MANIFEST, E NAO DE UMA LISTA ESCRITA AQUI (06/11/2026).
+ *
+ * Esta linha era `array( 'rodametria-casca', 'rodametria-f2', 'rodametria-
+ * produto', 'rodametria-institucional' )`, escrita a mao em 02/11/2026 quando a
+ * ilha tinha exatamente esses quatro snippets. Em 06/11 a F1 nasceu e o portao
+ * REPROVOU com a mensagem certa pelo motivo errado: *"o coletor devolve [4] e o
+ * manifest publica [5]"*. O coletor estava certo — ele devolve o que esta lista
+ * manda carregar — e a lista e que estava velha.
+ *
+ * E o defeito e mais feio do que parece, porque ele e ASSIMETRICO: snippet novo
+ * faz a afirmacao 3 ficar VERMELHA (e isso e sorte, porque e ela que compara com
+ * o manifest), mas as afirmacoes 1, 2 e 7 — *cada snippet define exatamente uma
+ * constante*, *o manifest espelha a constante*, *cada snippet pendura algo em
+ * `rodametria_versoes`* — simplesmente NAO ALCANCAM o snippet que falta na
+ * lista, e isso passa em SILENCIO. Um snippet novo com duas constantes de versao,
+ * ou com o manifest desespelhado, entraria no ar sem nenhuma dessas tres o ver.
+ *
+ * E a familia que esta ilha ja nomeou duas vezes: a `bancada.py` nasceu sem
+ * lista de proposito (*"portao novo entra no dia em que e escrito"*), e a
+ * `atualizar-manifest.py` se proibe de adivinhar a constante *"porque convencao
+ * derivada de cabeca acerta em tres dos quatro snippets desta ilha e erra no
+ * quarto, e erraria CALADA"*. A lista aqui era a mesma doenca com um dia a mais
+ * de vida.
+ *
+ * A fonte certa e o manifest, que e o CONTRATO do Sync: se o snippet esta nele
+ * com `publicar: true`, ele vai ao ar e portanto tem de ser medido. */
+$IDS = array();
+foreach ( $MANIFEST['snippets'] as $it ) {
+	if ( ! empty( $it['publicar'] ) ) { $IDS[] = $it['id']; }
+}
+sort( $IDS );
+$ARQ = array();
+foreach ( $IDS as $id ) {
+	$caminho = $RAIZ . '/snippets/' . $id . '.php';
+	if ( ! is_readable( $caminho ) ) {
+		/* DENUNCIA e nunca omissao: id no manifest sem arquivo no repositorio e o
+		   Sync com ordem de instalar o que nao existe. */
+		echo "REPROVADO: o manifest publica o snippet $id e nao existe snippets/$id.php\n";
+		exit( 1 );
+	}
+	$ARQ[ $id ] = file_get_contents( $caminho );
+}
 
 $falhas     = array();
 $afirmacoes = 0;

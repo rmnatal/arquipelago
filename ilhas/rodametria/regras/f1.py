@@ -639,7 +639,12 @@ def _tom(veredito):
         return "neutro"
     if veredito["categoria"] in ("ciclomotor", "acima_do_ciclomotor"):
         return "alerta"
-    return "bom"
+    # `verde` e nao `bom`: o vocabulario dos tres tons e o da casca
+    # (`rodametria_casca_caixa` aceita verde, alerta e neutro e cai em neutro
+    # silenciosamente no que nao reconhece). A primeira versao devolvia `bom`, e
+    # o resultado seria uma caixa NEUTRA em toda resposta que libera — defeito
+    # que nao quebra nada e so apaga a informacao, que e o tipo que vive mais.
+    return "verde"
 
 
 # --------------------------------------------------------------------------
