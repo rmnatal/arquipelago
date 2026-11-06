@@ -8907,3 +8907,73 @@ bloco de fila executado, nenhuma publicação, nenhum `publicar: true`, nenhum S
 verificado, nenhuma conta criada, nenhum dado pessoal de terceiro gravado. `ARQUIPELAGO.md` não foi
 lido para decidir nada. Nada foi reformatado, corrigido ou acrescentado além do que a instrução
 trouxe. Nenhuma seção anterior deste log foi apagada, reescrita ou resumida.
+
+---
+
+## 2026-11-06, 12:14 (horário de Brasília) — 15:14Z (UTC)
+
+**Instrução:** disparo da SENTINELA, ronda diária de 2026-11-06 na ilha `rodametria`. Quatro
+alterações num commit só. Assunto do Arquipélago (ilha `rodametria`, presente em `ilhas/`),
+checado antes do `git fetch`. Nenhum dado pessoal de terceiro na instrução, nada deixado de fora.
+
+**Âncoras:** as quatro casaram EXATAMENTE. A linha 7 de `ilhas/rodametria/ESTADO.md` era
+`ultima_ronda: 2026-11-04T20:10Z   # LEITURA SEMANAL de 2026-11-04`, conferida por asserção antes da
+troca. A última linha de `ilhas/rodametria/dados/consertos.md` era a de `| 2026-11-05 | todas, menos
+`/` | ...`. A âncora de `ilhas/rodametria/PROMPT.md` (`## ~~DESPACHO DA SENTINELA — 2026-11-04
+(RONDA DIÁRIA TÉCNICA, 14h3xZ–15h0xZ)`) ocorria uma única vez no arquivo, na linha 58. Nada que não
+casasse; nada inventado.
+
+**`git status --porcelain`** (antes do `git add`):
+
+```
+ M dados/PAINEL.md
+ M ilhas/rodametria/ESTADO.md
+ M ilhas/rodametria/PROMPT.md
+ M ilhas/rodametria/dados/consertos.md
+```
+
+**`git diff --stat`:**
+
+```
+ dados/PAINEL.md                     | 64 ++++++++++++++++-------------
+ ilhas/rodametria/ESTADO.md          |  2 +-
+ ilhas/rodametria/PROMPT.md          | 81 +++++++++++++++++++++++++++++++++++++
+ ilhas/rodametria/dados/consertos.md |  1 +
+ 4 files changed, 119 insertions(+), 29 deletions(-)
+```
+
+**Hash do commit que foi ao `main`:**
+
+```
+4aa4d5ce2d6958d475364f75fe6a6fcee5d0c1d9
+```
+
+Push em `git push origin HEAD:main`, aceito na primeira tentativa, sem rebase e sem force:
+`d2d833c..4aa4d5c  HEAD -> main`. Conferido depois com `git fetch origin main && git log -1
+origin/main`, que mostra o hash acima. Nenhum commit de ninguém descartado.
+
+**Contagem do que mudou, conferida RELENDO os arquivos depois de gravar:**
+
+```
+ilhas/rodametria/ESTADO.md          — 1 linha trocada (a 7), nenhum outro campo tocado
+ilhas/rodametria/dados/consertos.md — 9 -> 10 linhas (1 linha acrescentada ao fim)
+ilhas/rodametria/PROMPT.md          — 1076 -> 1157 linhas (+81); o novo cabeçalho
+                                      `## DESPACHO DA SENTINELA — 2026-11-06` aparece 1 vez,
+                                      na linha 58; nada do que já estava foi apagado
+dados/PAINEL.md                     — arquivo inteiro substituído, 63 linhas
+```
+
+**Portão de YAML da seção 2** (`python3 -c ... ESTADO.md`), rodado depois de salvar:
+
+```
+YAML ok
+```
+
+**Falhas:** nenhuma. Nenhum passo da instrução deixou de ser executado.
+
+Nenhuma ilha reservada, nenhum `executando_desde` escrito, nenhum cabeçalho de estado tocado além da
+linha `ultima_ronda` que a instrução nomeou, nenhum bloco de fila executado, nenhuma publicação,
+nenhum `publicar: true`, nenhum Sync acionado (a instrução diz expressamente para não acionar),
+nenhum site verificado, nenhuma conta criada, nenhum dado pessoal de terceiro gravado.
+`ARQUIPELAGO.md` não foi lido para decidir nada. Nada foi reformatado, corrigido ou acrescentado
+além do que a instrução trouxe. Nenhuma seção anterior deste log foi apagada, reescrita ou resumida.
