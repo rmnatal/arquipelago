@@ -647,6 +647,25 @@ saem do **manifest** agora, que é o contrato do Sync. 43 → 52 afirmações.
 `dados/despachos.md` para o CTB, que é destravado pelo **mesmo** pedido de uma linha (`*.gov.br`) que o
 resto desta ilha espera.
 
+**4b. PRÉ-REGISTRADO EM 06/11/2026, E É PERGUNTA PARA A LEITURA SEMANAL E NÃO BLOCO DA FUNDAÇÃO: O
+`<title>` DA HOME NÃO CARREGA "CNH", E A HOME AGORA É A FERRAMENTA DE CNH.** Ele diz *"Rodametria — os
+três números antes de comprar um elétrico"*, escrito em 27/10 quando a home era HUB. Desde 06/11 a
+primeira tela dela é a F1, o primeiro H2 é *"Esse elétrico precisa de CNH?"*, e a consulta-ponte que o
+dossiê mediu para este eixo é `bicicleta eletrica precisa de cnh`.
+
+**POR QUE A FUNDAÇÃO NÃO TROCOU, e isso é regra e não hesitação:** a **32.3** lista o `<title>` entre o
+que **não muda** numa conversão ao molde — *"o que NÃO muda, porque é SEO: URL, `<title>`, H1, trilha e
+`BreadcrumbList`, JSON-LD, links internos e âncoras"*. A `description` **mudou** nesta passada, e por um
+motivo diferente e de outra ordem: ela **prometia** um veredito de CNH que a página recusa dar, e
+descrição que promete o que a primeira tela recusa é a página se desdizendo na própria aba. **Trocar o
+título é decisão de posição, não de honestidade**, e quem tem o instrumento para ela é a leitura
+semanal, com o Search Console na mão.
+
+**A pergunta, para quem tiver o painel aberto:** com `primeira_indexacao: null` e **0 impressão**, a
+home não tem posição a perder — e é a janela mais barata que vai existir para mexer no título. Vale
+levar `CNH` para ele, ou a identidade da ilha paga mais no longo prazo? **A Fundação troca a linha em um
+gesto** (`'titulo'` no mapa de páginas da casca) **no dia em que a decisão estiver escrita.**
+
 **5. ARTIGOS-ÂNCORA** pareados com cada ferramenta.
 
 **5b. ~~PÁGINAS PELO NOME DO PRODUTO~~ — PRIMEIRA LEVA ENTREGUE EM 29/10/2026 às 19h1xZ–20hxxZ, e o
