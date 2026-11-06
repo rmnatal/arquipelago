@@ -733,19 +733,11 @@ def main():
     # query com eles. Formulario novo entra na conta no dia em que nasce, e
     # nome de campo trocado nao deixa a afirmacao velha passando verde.
     # -------------------------------------------------------------------
-    _, _, html_da_home = buscar("/")
-    for _acao, _campos in formularios_da_pagina(html_da_home):
-        if not _campos:
-            continue
-        _query = "&".join("%s=%s" % (urllib.parse.quote(n), urllib.parse.quote(str(v)))
-                          for n, v in _campos)
-        _cod, _, _ = buscar("/?" + _query)
-        afirma(_cod == 200,
-               "o botao do formulario da home monta `/?%s` e essa URL respondeu %s. "
-               "O formulario e method=get e o JS e quem faz preventDefault, entao quem "
-               "estiver sem JavaScript cai nisso. Nome de campo curto colide com query "
-               "var do WordPress" % (_query, _cod))
-        registro("o formulario da home monta `/?%s` e ela responde %s" % (_query, _cod))
+    # (A afirmacao vive no laco de TODA URL do sitemap, mais abaixo: o contrato que
+    #  nasceu deste defeito, a 32.1-b, diz "cada formulario do HTML servido", e a
+    #  primeira versao desta regua media so a home — ou seja, media a pagina em que
+    #  o defeito foi achado e nao a classe dele. E a licao da 32.5-b: "regua que
+    #  nao varre todas certifica a pagina que o autor abriu".)
 
     # -------------------------------------------------------------------
     # 1-b. A ROTA QUE MEDE A PORTA POR DENTRO (29.3). Ela nasceu nesta ilha
@@ -1089,6 +1081,45 @@ def main():
                "%s: o corpo tem %d caracteres e o piso e 1.500 — pagina fina gasta orcamento "
                "de rastreamento de dominio novo" % (caminho, len(texto)))
         registro("%s: %d caracteres de corpo" % (caminho, len(texto)))
+
+        # O BOTAO DE CADA FORMULARIO TEM DE LEVAR A UMA PAGINA (32.1-b), E ISSO
+        # NASCEU DE UM 404 MEDIDO EM 06/11/2026.
+        #
+        # Os formularios de ferramenta desta ilha sao `method="get"` para a
+        # PROPRIA pagina, e o JS e quem chama `preventDefault()`. Entao a URL que
+        # o botao monta e uma pagina de verdade, servida a quem estiver SEM
+        # JavaScript — e no dia em que a F1 foi ao ar o primeiro campo dela se
+        # chamava `w`, que e QUERY VAR RESERVADA do WordPress (a SEMANA do
+        # arquivo de data): `/?w=500` devolvia 404, a pagina "Pagina nao
+        # encontrada" da propria ilha. Medido campo por campo, com controle:
+        # `w=500` em 404 e `kmh`, `acel` e `mun` em 200 nas mesmas passadas.
+        #
+        # ESTE DEFEITO E DA FAMILIA MAIS PACIENTE QUE EXISTE: a pagina responde
+        # 200, este portao ficava verde em 484 afirmacoes, o portao de pixel
+        # ficava verde em 9 de 9, e o defeito so aparecia para quem APERTASSE O
+        # BOTAO sem JavaScript. Sete reguas mediram aquela pagina naquele dia e
+        # nenhuma tinha como ve-lo, porque nenhuma apertava o botao.
+        #
+        # A AFIRMACAO SE CONSTROI DO HTML SERVIDO, nunca de uma lista escrita
+        # aqui: o portao le os `name=` de cada formulario da pagina e monta a
+        # query com os valores que o navegador enviaria. Formulario novo entra na
+        # conta no dia em que nasce, e nome de campo trocado nao deixa a
+        # afirmacao velha passando verde.
+        for _acao, _campos in formularios_da_pagina(html):
+            if not _campos:
+                continue
+            _query = "&".join("%s=%s" % (urllib.parse.quote(n), urllib.parse.quote(str(v)))
+                              for n, v in _campos)
+            _destino = (_acao.replace(DOMINIO, "") or caminho) or "/"
+            _url = _destino + ("&" if "?" in _destino else "?") + _query
+            _cod, _, _ = buscar(_url)
+            afirma(_cod == 200,
+                   "32.1-b: o botao de um formulario de %s monta `%s` e essa URL respondeu "
+                   "%s. O formulario e method=get e o JS e quem faz preventDefault, entao "
+                   "quem estiver sem JavaScript cai nisso. Nome de campo curto colide com "
+                   "query var do WordPress" % (caminho, _url, _cod))
+            registro("32.1-b: o formulario de %s monta `%s` e ela responde %s"
+                     % (caminho, _url, _cod))
 
         # A CLASSE DO QUANTIFICADOR E DO SUPERLATIVO, EM TODA URL DO SITEMAP.
         conferir_classe_no_site(caminho, texto, ancoras_do_site)
