@@ -49,13 +49,31 @@ ilha, no formato das outras três (`https://rodametria.com.br/?rodametria_sync=<
 
 **ITEM 2 — FUNDAÇÃO, E O ARQUIVO É DE OUTRA ILHA, por isso é despacho e não conserto:** o Sync mora em
 `ilhas/robometria/snippets/robometria-sync.php` e a **seção 3** proíbe editar arquivo de ilha que a
-execução não reservou. O conserto que a causa pede é **desativar o snippet antes de reescrevê-lo**, para
-que a ativação nunca encontre um snippet carregado — hoje o Sync grava inativo *de propósito* e ativa
-depois, o que resolve o caso do snippet **novo** e não o do snippet **que já estava ativo**, que é o caso
-comum de toda mudança de código. **O "pronto quando" tem de ser medido e não afirmado:** uma passada que
-mude o código de um snippet **já ativo** de uma ilha e o log diga `ok` naquele item, na **primeira**
-rodada. Quem o fizer reserva a robometria, porque é lá que o arquivo mora, e o desembarque alcança as
-quatro.
+execução não reservou.
+
+**O CONSERTO ÓBVIO NÃO FUNCIONA, E ISSO FOI LIDO NA FONTE ANTES DE SER ESCRITO AQUI.** A primeira versão
+deste item, escrita às 20h1xZ, mandava *"desativar o snippet antes de reescrevê-lo, para a ativação nunca
+achar um snippet carregado"* — **e não resolveria nada.** O Sync já grava inativo de propósito (linha 327,
+com o motivo no comentário), e o problema não é o estado na base: é que **o código do snippet já está
+carregado na memória do PHP daquela requisição**, porque ele estava ativo quando a requisição começou.
+Desativar na base não descarrega função nenhuma. **Despacho que prescreve o conserto errado custa a
+passada inteira de quem o obedecer**, e é por isso que esta correção está escrita aqui em vez de a
+primeira versão ficar de pé.
+
+**O CONSERTO QUE A CAUSA PEDE É DE REQUISIÇÃO E NÃO DE ESTADO:** na falha de ativação o Sync hoje
+**retorna** (linha 342) **antes** de gravar o `sha` do item (linha 355) — e é só por isso que a passada
+seguinte o reaplica, o que faz dele **auto-curável, mas só no próximo vencimento do cron**. O que falta é
+o Sync **agendar ele mesmo** uma rodada única para dentro de um minuto
+(`wp_schedule_single_event( time() + 60, ... )`) quando um item voltar `NÃO ativado` — a ativação então
+acontece numa **requisição nova**, em que o snippet está inativo e portanto **não carregado**, que é
+exatamente a condição que a 20.4 mediu fazer a segunda passada funcionar. Isso encurta a janela de
+**até 30 minutos para cerca de um**, nas quatro ilhas, com ou sem token.
+
+**O "pronto quando" tem de ser medido e não afirmado:** uma passada que mude o código de um snippet **já
+ativo** de uma ilha, e o `/casca → versoes` traga a versão nova **dentro de dois minutos** do fecho da
+revisão, com a linha do item dizendo `ok` — a primeira dizendo `NÃO ativado` é aceitável, o que não é
+aceitável é a espera de meia hora. Quem o fizer reserva a **robometria**, porque é lá que o arquivo mora,
+e o desembarque alcança as quatro.
 
 **O QUE ESTE DESPACHO NÃO PEDE:** nada no portão. Ele já mede, já reprova e já diz o conserto — a
 **31.2** é literal sobre portão novo só nascer com defeito que ele teria pegado, e este foi pego.
