@@ -1,0 +1,284 @@
+{
+  "id": "f3-respostas",
+  "ilha": "rodametria",
+  "ferramenta": "F3",
+  "bloco": "4c",
+  "gerado_em": "2026-11-06",
+  "gerado_por": "ferramentas/gerar-f3.py",
+  "referencia": "regras/f3.py",
+  "especificacao": "dados/especificacao-calculadoras.md (secao 3)",
+  "publicar": true,
+  "nota": "A RESPOSTA PRINCIPAL DESTA FERRAMENTA NAO DEPENDE DO BANCO: dado o peso de quem pilota e o que ele carrega, a carga maxima a procurar sai de `total x (1 + margem)`, e a margem e uma constante desta ilha. E por isso que a F3 pode ir ao ar com a vitrine vazia sem deixar de responder. A camada do banco e a segunda, e hoje ela esta vazia por um motivo que a pagina NOMEIA: os tres registros que declaram carga maxima (120 kg, os tres, lidos em ficha de varejo grande) nao tem oferta aberta, e pela 25.2 item sem piso de compra nao entra em vitrine.",
+  "campos": {
+    "peso_minimo_kg": 40,
+    "peso_maximo_kg": 180,
+    "carga_maxima_kg": 40,
+    "exemplo": {
+      "peso_piloto_kg": 100,
+      "carga_kg": 8
+    }
+  },
+  "constantes_usadas": {
+    "margem-de-carga-f3": {
+      "valor": 10,
+      "unidade": "por cento acima do peso total",
+      "tipo": "decisao_da_ilha",
+      "status": "publicavel",
+      "fonte": "Decisao desta ilha. NAO e dado de terceiro, e a pagina nunca a atribui a ninguem.",
+      "verificado_em": "2026-10-28"
+    },
+    "ressalva-desempenho-perto-do-teto-de-carga": {
+      "valor": "perto do teto declarado, velocidade e aceleracao maximas nao sao alcancadas, e o desempenho e a seguranca caem",
+      "unidade": null,
+      "tipo": "afirmacao_qualitativa",
+      "status": "publicavel",
+      "fonte": "Convergente em tres publicadores colhidos em 28/10/2026: race.es (quem esta perto do peso maximo anunciado pode nao obter a velocidade e a aceleracao maximas declaradas pelo fabricante); milar.es ('o peso nao deve exceder a recomendacao, pois o desempenho do patinete eletrico pode ser afetado'); br.my-best.com, publicador BRASILEIRO (o limite extra 'evita sobrecarga no motor e mantem a velocidade e a seguranca, mesmo com peso adicional').",
+      "verificado_em": "2026-10-28"
+    },
+    "teto-de-carga-do-mercado-brasileiro": {
+      "valor": 120,
+      "unidade": "kg",
+      "tipo": "observacao_de_mercado",
+      "status": "publicavel",
+      "fonte": "Fichas de varejo colhidas no bloco 1 em 28/10/2026 (extra.com.br, casasbahia.com.br, magazineluiza.com.br) e painel da Shopee do dossie, lido pelo Raphael em 27/10/2026.",
+      "verificado_em": "2026-10-28"
+    }
+  },
+  "frases_molde": {
+    "precisa": "Você e o que carrega dão {total} kg. Procure um que declare pelo menos {minimo} kg de carga máxima.",
+    "precisa_sem_carga": "Com {piloto} kg, procure um que declare pelo menos {minimo} kg de carga máxima.",
+    "margem": "Os {minimo} kg são os seus {total} kg mais uma folga de {pct}% — critério nosso, não de norma: quem compra um que não aguenta o peso perde o veículo e pode se machucar, e quem compra com folga paga um pouco mais.",
+    "rotulo_precisa": "A carga máxima que você precisa",
+    "titulo_folga": "Aguentam com folga",
+    "titulo_no_limite": "Passam, mas no limite",
+    "titulo_nao_aguenta": "Não aguentam o seu peso",
+    "titulo_sem_carga": "Não declaram carga máxima",
+    "titulo_sem_compra": "Declaram a carga e não têm oferta aberta",
+    "ressalva_no_limite": "Quem fica perto do teto declarado costuma não alcançar a velocidade e a aceleração máximas que o fabricante anuncia — é o que dizem a espanhola RACE e o brasileiro my-best, que fala em evitar sobrecarga no motor. Perto do limite, o peso não derruba só a carga: derruba os km.",
+    "linha_folga": "{nome} declara {carga} kg — {sobra} kg acima do que você precisa.",
+    "linha_no_limite": "{nome} declara {carga} kg: até aguenta os seus {total} kg, mas sem a folga de {pct}% que a gente pede.",
+    "linha_nao_aguenta": "{nome} declara {carga} kg — faltam {faltam} kg só para alcançar o seu peso.",
+    "vazio_por_carga": "Nenhum dos {quantos} veículos com carga declarada e oferta aberta no nosso banco aguenta os seus {total} kg com folga: o maior teto que temos declarado é de {teto} kg. Não estimamos a carga de quem não a declara, então aqui a gente prefere dizer que não tem do que apontar um que talvez não sirva.",
+    "vazio_por_falta_de_oferta": "{quantos_servem} dos {quantos} veículos que declaram carga máxima no nosso banco aguentariam os seus {total} kg com folga — e nenhum deles tem oferta aberta hoje. Não montamos vitrine com item sem link de loja, porque o botão que não leva a lugar nenhum é pior que a ausência dele. Os nomes estão logo abaixo, com a carga de cada um.",
+    "vazio_sem_nenhum": "Nenhum veículo do nosso banco declara carga máxima hoje, então não há o que comparar com os seus {total} kg. O campo exige ficha de varejo grande para entrar aqui, e estimar carga por tamanho de roda ou por potência seria inventar o número que esta página existe para dar.",
+    "convite_f2": "Perto do limite o peso também come os km: a conta de autonomia aceita o seu peso e devolve a faixa do seu trajeto.",
+    "teto_de_mercado": "Para calibrar a expectativa: na faixa que vimos no varejo brasileiro em outubro de 2026, a carga máxima declarada ia de 115 a 140 kg, com {teto} kg sendo o valor que mais se repetia. É o que observamos numa data, não um limite do mercado — e por isso a conta acima compara o seu peso com a ficha de cada veículo, nunca com esse número."
+  },
+  "margem_pct": 10,
+  "grupos_em_ordem": [
+    "folga",
+    "no_limite",
+    "nao_aguenta"
+  ],
+  "resposta_exemplo": {
+    "entrada": {
+      "peso_piloto_kg": 100.0,
+      "carga_kg": 8.0
+    },
+    "peso_total_tela": "108",
+    "carga_minima_tela": "119",
+    "frase_precisa": "Você e o que carrega dão 108 kg. Procure um que declare pelo menos 119 kg de carga máxima.",
+    "frase_margem": "Os 119 kg são os seus 108 kg mais uma folga de 10% — critério nosso, não de norma: quem compra um que não aguenta o peso perde o veículo e pode se machucar, e quem compra com folga paga um pouco mais.",
+    "frase_convite_f2": "Perto do limite o peso também come os km: a conta de autonomia aceita o seu peso e devolve a faixa do seu trajeto.",
+    "frases_vazio": [
+      "3 dos 3 veículos que declaram carga máxima no nosso banco aguentariam os seus 108 kg com folga — e nenhum deles tem oferta aberta hoje. Não montamos vitrine com item sem link de loja, porque o botão que não leva a lugar nenhum é pior que a ausência dele. Os nomes estão logo abaixo, com a carga de cada um."
+    ],
+    "frases_ressalva": [],
+    "frases_mercado": [
+      "Para calibrar a expectativa: na faixa que vimos no varejo brasileiro em outubro de 2026, a carga máxima declarada ia de 115 a 140 kg, com 120 kg sendo o valor que mais se repetia. É o que observamos numa data, não um limite do mercado — e por isso a conta acima compara o seu peso com a ficha de cada veículo, nunca com esse número."
+    ],
+    "linhas": {
+      "folga": [],
+      "no_limite": [],
+      "nao_aguenta": []
+    }
+  },
+  "tabela": {
+    "linhas": [
+      {
+        "peso_total_kg": 70,
+        "por_que": "faixa em que praticamente toda ficha brasileira já serve",
+        "carga_minima_kg": 77,
+        "carga_minima_tela": "77",
+        "quantos_do_banco_aguentariam": 3,
+        "quantos_com_oferta_aberta": 0
+      },
+      {
+        "peso_total_kg": 80,
+        "por_que": "faixa em que praticamente toda ficha brasileira já serve",
+        "carga_minima_kg": 88,
+        "carga_minima_tela": "88",
+        "quantos_do_banco_aguentariam": 3,
+        "quantos_com_oferta_aberta": 0
+      },
+      {
+        "peso_total_kg": 90,
+        "por_que": "último peso que ainda cabe com folga nos 100 kg declarados",
+        "carga_minima_kg": 99,
+        "carga_minima_tela": "99",
+        "quantos_do_banco_aguentariam": 3,
+        "quantos_com_oferta_aberta": 0
+      },
+      {
+        "peso_total_kg": 100,
+        "por_que": "o valor que mais aparece como carga máxima nas fichas de entrada",
+        "carga_minima_kg": 110,
+        "carga_minima_tela": "110",
+        "quantos_do_banco_aguentariam": 3,
+        "quantos_com_oferta_aberta": 0
+      },
+      {
+        "peso_total_kg": 108,
+        "por_que": "a pessoa da nossa página: 100 kg de gente mais 8 kg de mochila",
+        "carga_minima_kg": 119,
+        "carga_minima_tela": "119",
+        "quantos_do_banco_aguentariam": 3,
+        "quantos_com_oferta_aberta": 0
+      },
+      {
+        "peso_total_kg": 109,
+        "por_que": "o ÚLTIMO peso que os 120 kg do teto de varejo acolhem com a nossa folga — um quilo acima, já não acolhem",
+        "carga_minima_kg": 120,
+        "carga_minima_tela": "120",
+        "quantos_do_banco_aguentariam": 3,
+        "quantos_com_oferta_aberta": 0
+      },
+      {
+        "peso_total_kg": 110,
+        "por_que": "um quilo acima da linha anterior, para a tabela mostrar a virada",
+        "carga_minima_kg": 121,
+        "carga_minima_tela": "121",
+        "quantos_do_banco_aguentariam": 0,
+        "quantos_com_oferta_aberta": 0
+      },
+      {
+        "peso_total_kg": 120,
+        "por_que": "peso igual ao teto declarado que mais se repete no varejo brasileiro",
+        "carga_minima_kg": 132,
+        "carga_minima_tela": "132",
+        "quantos_do_banco_aguentariam": 0,
+        "quantos_com_oferta_aberta": 0
+      },
+      {
+        "peso_total_kg": 130,
+        "por_que": "faixa que só o modelo de 140 kg do painel da loja acolheria",
+        "carga_minima_kg": 143,
+        "carga_minima_tela": "143",
+        "quantos_do_banco_aguentariam": 0,
+        "quantos_com_oferta_aberta": 0
+      }
+    ],
+    "total_de_linhas": 9
+  },
+  "compra": {
+    "vitrine": [],
+    "grupos": {
+      "folga": [],
+      "no_limite": [],
+      "nao_aguenta": [],
+      "nao_declaram_carga": [
+        {
+          "id": "honeywhale-m2-max",
+          "nome": "Honeywhale M2 MAX"
+        },
+        {
+          "id": "sousa-bike-aro-24",
+          "nome": "Sousa Bike"
+        },
+        {
+          "id": "siena-1000w-sem-cnh",
+          "nome": "Siena"
+        },
+        {
+          "id": "honeywhale-h3",
+          "nome": "Honeywhale H3"
+        },
+        {
+          "id": "verdevento-750w-60v-20ah",
+          "nome": "Verdevento"
+        },
+        {
+          "id": "l40-plus",
+          "nome": "L40 Plus"
+        },
+        {
+          "id": "evoo-scooter-1000w",
+          "nome": "Evoo"
+        },
+        {
+          "id": "haixia-scooter-1000w-60v-20ah",
+          "nome": "Haixia"
+        },
+        {
+          "id": "scooter-chopper-1000w-48v",
+          "nome": "Scooter eletrica chopper 1.000 W 48 V adulto, 32 km/h"
+        },
+        {
+          "id": "x13-chopper-1000w",
+          "nome": "X13"
+        },
+        {
+          "id": "ls-sport-scooter-1000w",
+          "nome": "LS Sport"
+        }
+      ],
+      "sem_saida_de_compra": [
+        {
+          "id": "maxshot-v1",
+          "nome": "MAXSHOT V1"
+        },
+        {
+          "id": "maxshot-v1spro",
+          "nome": "MAXSHOT V1SPRO"
+        },
+        {
+          "id": "playbik",
+          "nome": "PLAYBIK"
+        }
+      ],
+      "fora_do_banco": [
+        {
+          "id": "patinete-adulto-com-banco-shopee",
+          "nome": "Patinete eletrico adulto com banco (147 vendas)"
+        },
+        {
+          "id": "bike-scooter-moto-1000w-litio",
+          "nome": "Bike/Scooter/Moto eletrica bateria litio 1.000 W (+25 vendidos)"
+        },
+        {
+          "id": "guia-melhor-de-2026",
+          "nome": "o modelo 'melhor de 2026' de uma lista comercial (2 x 1.000 W, 72 km/h)"
+        }
+      ]
+    },
+    "contagem": {
+      "folga": 0,
+      "no_limite": 0,
+      "nao_aguenta": 0,
+      "nao_declaram_carga": 11,
+      "sem_saida_de_compra": 3,
+      "fora_do_banco": 3
+    },
+    "total_registros_veiculos": 17,
+    "teto_do_banco_kg": 120.0,
+    "quantos_declaram_carga": 3,
+    "quantos_serviriam_sem_oferta": 3,
+    "serviriam_sem_oferta": [
+      {
+        "id": "maxshot-v1",
+        "nome": "MAXSHOT V1",
+        "carga_max_kg": 120.0
+      },
+      {
+        "id": "maxshot-v1spro",
+        "nome": "MAXSHOT V1SPRO",
+        "carga_max_kg": 120.0
+      },
+      {
+        "id": "playbik",
+        "nome": "PLAYBIK",
+        "carga_max_kg": 120.0
+      }
+    ]
+  }
+}

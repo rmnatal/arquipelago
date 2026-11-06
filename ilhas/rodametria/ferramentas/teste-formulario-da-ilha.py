@@ -187,6 +187,94 @@ def tem_formulario(texto):
     return bool(re.search(r"<\s*form\b", texto, re.IGNORECASE))
 
 
+# ---------------------------------------------------------------------------
+# A SEGUNDA PERGUNTA DESTE PORTAO, E ELA NASCEU DE UM DEFEITO MEDIDO EM
+# 06/11/2026: TODA FUNCAO `rodametria_*` QUE UM SNIPPET CHAMA TEM DE EXISTIR
+# EM ALGUM SNIPPET DESTA PASTA.
+#
+# Ao escrever a F3, o snippet chamou `rodametria_casca_data_em_portugues()` —
+# uma funcao que NAO EXISTE: o nome foi derivado de cabeca a partir do padrao
+# dos outros componentes da casca. Em PHP isso e ERRO FATAL em tempo de
+# execucao, ou seja TELA BRANCA na pagina inteira.
+#
+# E NADA PEGARIA. `php -l` confere SINTAXE e passa verde — uma chamada a funcao
+# inexistente e sintaticamente perfeita. A bancada desta ilha tem 32 portoes sem
+# rede e nenhum resolve chamada entre snippets. O portao de ar pegaria, mas
+# DEPOIS do desembarque, com a pagina ja no chao.
+#
+# E A FAMILIA DO DEFEITO JA ESTAVA NOMEADA NO CONTRATO, na 20.7: "A CONSTANTE SE
+# ACHA NO ARQUIVO E NUNCA SE DERIVA DO `id`. Derivar e natural e erra CALADO."
+# Era sobre nome de constante; aqui e nome de funcao, e o erro calado e pior,
+# porque derruba a pagina em vez de so parecer um snippet sem versao.
+# ---------------------------------------------------------------------------
+
+_DEFINICAO = re.compile(r"\bfunction\s+(rodametria_[a-z0-9_]+)\s*\(", re.IGNORECASE)
+_CHAMADA = re.compile(r"\b(rodametria_[a-z0-9_]+)\s*\(")
+
+# Chamadas que nao sao de funcao desta pasta: palavras que aparecem em
+# `function_exists( 'rodametria_x' )`, em `add_shortcode` e em filtros. Elas
+# entram pelo mesmo regex e nao sao chamadas — sao NOMES passados como texto.
+# Esta regua as tira olhando o que vem ANTES, nunca por lista de excecao.
+_NAO_E_CHAMADA = re.compile(
+    r"(?:function_exists|add_shortcode|add_action|add_filter|has_filter|"
+    r"remove_filter|apply_filters|do_action)\s*\(\s*['\"]?$")
+
+
+def funcoes_definidas(textos):
+    """{nome: arquivo} de toda funcao `rodametria_*` definida nesta pasta."""
+    onde = {}
+    for rotulo, texto in textos:
+        for m in _DEFINICAO.finditer(texto):
+            onde.setdefault(m.group(1).lower(), rotulo)
+    return onde
+
+
+_GUARDA = re.compile(r"function_exists\s*\(\s*['\"](rodametria_[a-z0-9_]+)['\"]",
+                     re.IGNORECASE)
+
+
+def nomes_guardados(texto):
+    """Nomes que o arquivo pergunta por `function_exists()` antes de chamar.
+
+    ESTA E A SAIDA HONESTA PARA A FUNCAO QUE MORA FORA DESTE REPOSITORIO, e ela
+    existe de verdade nesta ilha: a casca chama `rodametria_sync_token()`, que
+    e do snippet do **Sync** — e o Sync desta ilha foi criado pelo Raphael no
+    painel do WordPress, com o token que "nao esta no repositorio e nao deve
+    estar". A funcao existe no ar e nao existe aqui.
+
+    A regra, e ela e melhor que uma lista de excecao: chamada de funcao que
+    esta pasta nao define SO passa se o proprio arquivo perguntar
+    `function_exists()` pelo MESMO nome. Lista de excecao envelhece calada e
+    perdoa o erro de digitacao do dia seguinte; a guarda e o que torna a
+    ausencia um caminho previsto em vez de uma tela branca. As duas chamadas da
+    casca ja faziam isso certo antes desta regua existir.
+    """
+    return {m.group(1).lower() for m in _GUARDA.finditer(texto)}
+
+
+def funcoes_chamadas(texto):
+    """Nomes `rodametria_*` CHAMADOS como funcao, na ordem do arquivo.
+
+    Comentario nao conta: funcao citada em prosa de cabecalho nao e chamada, e
+    reprovar por causa dela seria reprovar o arquivo certo (20.5). O recorte do
+    comentario e por linha, do mesmo jeito que a regua da 32.4 da F2 faz.
+    """
+    chamadas = []
+    for linha in texto.split("\n"):
+        nua = linha.strip()
+        if nua.startswith("*") or nua.startswith("/*") or nua.startswith("//"):
+            continue
+        for m in _CHAMADA.finditer(linha):
+            antes = linha[:m.start()]
+            if _NAO_E_CHAMADA.search(antes):
+                continue
+            # `function rodametria_x(` e definicao, nao chamada.
+            if re.search(r"\bfunction\s+$", antes):
+                continue
+            chamadas.append(m.group(1).lower())
+    return chamadas
+
+
 # O componente da casca que escreve o aviso. O snippet pode servir a tag ele
 # mesmo OU chamar o componente — as duas atendem a 32.1-b, e cobrar so a tag
 # reprovaria justamente o snippet que fez a coisa certa.
@@ -267,6 +355,38 @@ def passada():
     nota("%d snippet(s) lidos, %d campo(s) de formulario, %d com <form>: %s"
          % (len(arquivos), total_campos, len(com_formulario),
             ", ".join(com_formulario) if com_formulario else "nenhum"))
+
+    # TODA FUNCAO `rodametria_*` CHAMADA TEM DE EXISTIR. Ver o comentario longo
+    # acima de `funcoes_definidas` — o defeito e TELA BRANCA e nada mais o pega
+    # antes do desembarque.
+    textos = [(c.name, c.read_text(encoding="utf-8")) for c in arquivos]
+    definidas = funcoes_definidas(textos)
+    total_chamadas = 0
+    fantasmas = 0
+    guardadas_total = 0
+    for rotulo, texto in textos:
+        guardadas = nomes_guardados(texto)
+        guardadas_total += len(guardadas)
+        for nome in funcoes_chamadas(texto):
+            total_chamadas += 1
+            if nome in definidas or nome in guardadas:
+                continue
+            fantasmas += 1
+            afirma(False,
+                   "%s chama `%s()`, essa funcao nao esta definida em nenhum snippet "
+                   "desta pasta E a chamada nao esta guardada por "
+                   "`function_exists( '%s' )`. Em PHP isso e ERRO FATAL em tempo de "
+                   "execucao — tela branca na pagina inteira —, e `php -l` passa verde "
+                   "porque a sintaxe esta correta. Se a funcao mora fora deste "
+                   "repositorio (como `rodametria_sync_token()`, que e do Sync), a "
+                   "saida e a GUARDA e nunca uma lista de excecao."
+                   % (rotulo, nome, nome))
+    nota("chamadas entre snippets: %d chamada(s) de `rodametria_*`, %d definicao(oes), "
+         "%d nome(s) guardado(s) por function_exists, %d fantasma(s)"
+         % (total_chamadas, len(definidas), guardadas_total, fantasmas))
+    afirma(total_chamadas > 20,
+           "a regua achou so %d chamada(s) de `rodametria_*` nos snippets: ou a "
+           "varredura quebrou, ou este verde e falso" % total_chamadas)
 
     # A TRAVA DE ALVO EXATO DESTA BATERIA: se os snippets deixarem de ter campo
     # de formulario, este portao passa a medir NADA e ficaria verde dizendo
@@ -361,6 +481,50 @@ def autoteste():
     # (10) campo sem `name=` nao entra (botao de submit sem nome e comum e legal)
     casos.append(("<button> sem name nao entra na conta",
                   lambda: campos_de_formulario('<button type="submit">Calcular</button>') == []))
+
+    # (10-b) A CHAMADA FANTASMA, e o mundo e o que foi MEDIDO em 06/11/2026: a
+    #        F3 chamou `rodametria_casca_data_em_portugues()`, nome derivado de
+    #        cabeca a partir do padrao dos outros componentes da casca.
+    fantasma = ("<?php\nfunction rodametria_casca_caixa( $a ) { return $a; }\n"
+                "function rodametria_f3_x() {\n"
+                "  return rodametria_casca_data_em_portugues( '2026-11-06' );\n}\n")
+    casos.append(("a chamada de funcao inexistente e pega",
+                  lambda: "rodametria_casca_data_em_portugues"
+                  in funcoes_chamadas(fantasma)
+                  and "rodametria_casca_data_em_portugues"
+                  not in funcoes_definidas([("fab", fantasma)])))
+    casos.append(("a funcao que EXISTE nao e acusada",
+                  lambda: "rodametria_casca_caixa"
+                  in funcoes_definidas([("fab", fantasma)])))
+    # funcao citada em COMENTARIO nao e chamada: reprovar por causa dela seria
+    # reprovar o arquivo certo (20.5), e todo cabecalho desta ilha cita funcao.
+    casos.append(("funcao citada em comentario nao conta como chamada",
+                  lambda: "rodametria_casca_inexistente"
+                  not in funcoes_chamadas(" * ver rodametria_casca_inexistente() para o resto\n")))
+    # `function_exists( 'rodametria_x' )` passa o nome como TEXTO, nao chama.
+    casos.append(("function_exists nao e chamada da funcao citada",
+                  lambda: "rodametria_f3_data"
+                  not in funcoes_chamadas("if ( ! function_exists( 'rodametria_f3_data' ) ) {")))
+    casos.append(("add_shortcode nao e chamada da funcao citada",
+                  lambda: "rodametria_f3_pagina_html"
+                  not in funcoes_chamadas("add_shortcode( 'rodametria_f3', 'rodametria_f3_pagina_html' );")))
+    # e a DEFINICAO nao e lida como chamada de si mesma
+    casos.append(("a definicao nao conta como chamada",
+                  lambda: "rodametria_f3_data"
+                  not in funcoes_chamadas("function rodametria_f3_data( $iso ) {")))
+
+    # (10-c) A GUARDA, e o mundo e o da casca: funcao de snippet que nao esta
+    #        neste repositorio, chamada dentro de `function_exists()`.
+    guardado = ("function rodametria_casca_token_esperado() {\n"
+                "  if ( function_exists( 'rodametria_sync_token' ) ) {\n"
+                "    $t = rodametria_sync_token();\n  }\n}\n")
+    casos.append(("a funcao de fora do repositorio, GUARDADA, e aceita",
+                  lambda: "rodametria_sync_token" in nomes_guardados(guardado)))
+    casos.append(("a MESMA funcao SEM guarda continua sendo pega",
+                  lambda: "rodametria_sync_token"
+                  not in nomes_guardados("$t = rodametria_sync_token();")))
+    casos.append(("a guarda vale so para o nome que ela cita",
+                  lambda: "rodametria_outra" not in nomes_guardados(guardado)))
 
     # (11) A TRAVA DE ALVO EXATO: os arquivos de verdade ainda tem a forma que
     #      estes mundos mexem. Sem isto, a bateria passaria medindo nada no dia

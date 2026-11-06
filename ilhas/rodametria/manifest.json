@@ -4,7 +4,7 @@
   "nicho": "mobilidade eletrica — acertar os tres numeros antes de comprar um veiculo eletrico: categoria legal (CNH e placa), autonomia real e carga maxima",
   "dominio": "https://rodametria.com.br",
   "versao_manifest": 1,
-  "revisao": 51,
+  "revisao": 52,
   "atualizado_em": "2026-11-06",
   "estado": "nascendo",
   "desembarque": {
@@ -45,6 +45,17 @@
       "sha256": "e78803fce978400a5a5407257cd06bd98d5bd2951abe2068e9106bcd546c34e6",
       "versao": "1.6.0",
       "descricao": "A F2 (versao corrente no campo `versao` deste item), a PRIMEIRA pagina desta ilha no ar, em /autonomia-patinete-eletrico/. Ordem da 32.1 de cima para baixo, conferida por afirmacao no fonte: trilha e H1, promessa, formulario ja preenchido com o caso de exemplo, caixa de resultado JA PRE-RENDERIZADA no HTML (a metade que a IA le sem preencher formulario, e o que a 22.8 exige de quem desliga o JavaScript), bloco de compra, prestacao de contas da secao 7 com os cinco grupos por causa e a soma fechando o banco contado, tabela pre-renderizada visivel, e o resto em <details>. NENHUM numero e NENHUMA frase de resposta e digitado neste arquivo: tudo vem da option que o Sync grava de dados/f2-respostas.json, escrito por ferramentas/gerar-f2.py a partir de ferramentas/f2-referencia.py e de dados/constantes.json. O JS do rodape preenche MOLDE, nunca escreve frase — a bateria de mutacoes de 29/10 reprovou as duas versoes em que ele escrevia. A VERSAO SAIU DESTA PROSA EM 02/11/2026, e ela estava VELHA nos QUATRO snippets (a casca dizia 1.4.0 servindo 1.6.0; os outros tres diziam 1.0.0) — e isso e a prova de que o campo `versao` faltava. Quem declara a versao agora e o campo, espelhado da constante do arquivo por `ferramentas/atualizar-manifest.py` e cobrado por `ferramentas/teste-versao-dos-snippets.php`; prosa que repete o mesmo fato e a segunda declaracao que sobe sozinha de um lado so."
+    },
+    {
+      "id": "rodametria-f3",
+      "nome": "Rodametria F3 — aguenta o meu peso",
+      "arquivo": "snippets/rodametria-f3.php",
+      "escopo": "global",
+      "ativo": true,
+      "publicar": true,
+      "sha256": "e2acf69e919f3e341f558c74c7838ae3b88b386ab0f72d414f74c4831e1cd7ff",
+      "versao": "1.0.0",
+      "descricao": "A F3 — a TERCEIRA e ultima das tres ferramentas que esta ilha existe para ter, em /peso-maximo-patinete-eletrico/ (a URL carrega a consulta MEDIDA do eixo C do corpus, `patinete eletrico peso maximo suportado`, e nao a pergunta do H1). O QUE A SEPARA DAS DUAS IRMAS, e e por isso que ela pode ir ao ar hoje: A RESPOSTA PRINCIPAL NAO DEPENDE DO BANCO. Dado o peso de quem pilota e o que ele carrega, a carga maxima a procurar sai de `total x (1 + margem)` — aritmetica sobre a entrada da pessoa mais UMA constante desta ilha, que e `decisao_da_ilha` em 10% e que a pagina NUNCA atribui a terceiro (a constante carrega a busca limpa que NEGOU a fonte que o bloco 1 supunha). A vitrine e a segunda camada e hoje esta VAZIA, com a causa NOMEADA e os numeros contados: os tres registros do banco que declaram carga maxima declaram 120 kg, os tres lidos em ficha de varejo grande (nivel 5, o piso que a 3.5 da especificacao exige neste campo), e NENHUM tem oferta aberta — pela 25.2 item sem piso de compra nao entra em vitrine. A LISTA VAZIA TEM TRES CAUSAS E TRES FRASES, e isso nasceu de um defeito medido nesta propria passada: a primeira versao tinha UM molde e dizia que 'nenhum dos 3 aguenta os seus 108 kg com folga' quando os tres declaram 120 kg e cobrem com folga os 119 que a regra pede — o eixo que esvaziava a vitrine era a falta de LINK e nao a carga. A TABELA PRE-RENDERIZADA PUBLICA A TESE DA ILHA: com a folga de 10%, 109 kg e o ultimo peso total que os 120 kg do teto de varejo acolhem e 110 kg ja nao, e a virada esta visivel na tabela e no FAQPage, que e montado dela campo por campo. Ordem da 32.1: promessa, formulario ja preenchido com o caso que da 'no limite' e nao um folgado, o <noscript> da 32.1-b, a caixa pre-renderizada, o bloco de compra com a causa da falta, os tres grupos da 3.2 na ordem em que a 3.2 manda (o do meio NUNCA primeiro), a ressalva SOURCED da 3.4 logo depois do grupo do meio e so quando ele existe, o convite para a F2 com o peso na URL, a prestacao de contas da secao 7, a tabela VISIVEL e tres dobras. E ELA E A PRIMEIRA FERRAMENTA DESTA ILHA A NASCER DENTRO DO CONSERTO DA 32.1-b: os campos nascem com o prefixo (`rdm_peso`, `rdm_carga`) e o aviso vem do componente da casca, que e exatamente o que a regra pede ao mandar o componente morar num lugar so."
     },
     {
       "id": "rodametria-produto",
@@ -158,6 +169,14 @@
       "publicar": true,
       "sha256": "d5ddb375e8e6ebfc675d237c9b0a66030dc855a80a2d5fd509b61ad18b65495c",
       "descricao": "Tudo o que a F1 serve na tela, escrito por ferramentas/gerar-f1.py a partir de regras/f1.py e de dados/constantes.json. Inclui os moldes de frase INTEIROS (o PHP e o JS leem os mesmos, para as duas metades nao poderem dizer coisas diferentes para a mesma entrada), os limiares lidos da resolucao, as duas tabelas pre-renderizadas e a prestacao de contas com a soma fechando o banco."
+    },
+    {
+      "id": "f3-respostas",
+      "arquivo": "dados/f3-respostas.json",
+      "formato": "json",
+      "publicar": true,
+      "sha256": "a02d8731edd3ec6057da6b3dace3e740823a6b40bca5968c082718e9debc2cbe",
+      "descricao": "Tudo o que a F3 serve na tela, escrito por ferramentas/gerar-f3.py a partir de regras/f3.py e de dados/constantes.json. Inclui os moldes de frase INTEIROS (o PHP e o JS leem os mesmos, para as duas metades nao poderem dizer coisas diferentes para a mesma entrada), a tabela pre-renderizada de 9 pesos com a carga minima de cada um recomputada pela referencia, as DUAS contagens por linha (quantos do banco aguentariam aquele peso e quantos poderiam ser oferecidos — fatos diferentes, e hoje a segunda e zero em toda linha), e a prestacao de contas com a soma fechando os 17 registros do banco."
     },
     {
       "id": "municipios",
