@@ -1151,6 +1151,32 @@ def main():
             registro("32.1-b: %s serve <form> e %s <noscript>"
                      % (caminho, "serve" if _tem_aviso else "NAO serve"))
 
+        # O BLOCO DE COMPRA NAO DIZ A MESMA COISA DUAS VEZES (06/11/2026).
+        #
+        # Com a vitrine vazia, o componente da casca imprimia o paragrafo de
+        # ESCOPO e o paragrafo da CAUSA — e quando a ferramenta nao tem o que
+        # vender os dois sao a mesma frase. A HOME foi ao ar hoje de manha com o
+        # paragrafo inteiro DUPLICADO, as mesmas 14 contagens dentro dos dois, e
+        # nenhum portao viu: cada paragrafo, sozinho, e a frase certa, e nenhuma
+        # regua comparava os dois ENTRE SI.
+        #
+        # E a familia do bloco de compra da F2 em 29/10/2026, que "dizia a mesma
+        # coisa tres vezes" — e a licao de la media o texto de UMA pagina, por
+        # isso nao alcancou este componente. Esta afirmacao mede o COMPONENTE, em
+        # toda URL do sitemap, entao ferramenta nova entra na conta no dia em que
+        # nasce.
+        _escopo = re.findall(r'class="rdm-molde-compra-escopo">(.*?)</p>', html, re.S)
+        _vazio = re.findall(r'class="rdm-molde-compra-vazio">(.*?)</p>', html, re.S)
+        if _escopo and _vazio:
+            _a = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", "", _escopo[0])).strip()
+            _b = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", "", _vazio[0])).strip()
+            afirma(_a != _b,
+                   "%s: o bloco de compra serve o MESMO paragrafo duas vezes — o de "
+                   "escopo e o da causa de estar vazio sao identicos (%d caracteres "
+                   "cada): %r" % (caminho, len(_a), _a[:90]))
+            registro("%s: os dois paragrafos do bloco de compra vazio sao diferentes"
+                     % caminho)
+
         # A CLASSE DO QUANTIFICADOR E DO SUPERLATIVO, EM TODA URL DO SITEMAP.
         conferir_classe_no_site(caminho, texto, ancoras_do_site)
 

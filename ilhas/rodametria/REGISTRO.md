@@ -68,6 +68,59 @@ fatal — esta página cairia por causa da irmã.** O snippet `rodametria-produt
 mesma função desde 29/10** (`function_exists( 'rodametria_f2_url' )`) e a lição **não havia
 viajado**: 32.5-c dentro da mesma ilha. Sem a F2, o convite agora não nasce e a página não cai.
 
+### O QUINTO DEFEITO, ACHADO OFFLINE LENDO O QUE A PÁGINA IA SERVIR — e a máquina de consertá-lo já existia na irmã
+
+A dobra **"Como sabemos"** imprime o campo `fonte` de cada constante, e os três vinham **crus** do
+arquivo de registro:
+
+```
+"Decisao desta ilha. NAO e dado de terceiro, e a pagina nunca a atribui a ninguem"
+                                        ← ASCII sem acento
+"...painel da Shopee do DOSSIE, lido pelo RAPHAEL em 27/10/2026"
+                                        ← bastidor da fábrica E o nome do dono, na página pública
+```
+
+**É a cicatriz da F2 de 29/10/2026 no mesmo lugar**, quando a palavra "egresso" chegou à tela **por
+dado e não por código**, de dentro de um campo `fonte`. E a maquinaria nasceu naquela passada:
+`FONTE_NA_TELA` (a frase de **leitor** por constante), `PALAVRAS_DE_BASTIDOR` e
+`conferir_acento_na_tela`, todas em `gerar-f2.py`. **`gerar-f1.py` já importava duas das três hoje
+de manhã. Este gerador nasceu sem nenhuma.**
+
+**E a irmã já tinha a frase de DUAS das três constantes desta ferramenta** —
+`teto-de-carga-do-mercado-brasileiro` e `margem-de-carga-f3` —, escritas em **28/10** antecipando a
+F3. A que faltava, da ressalva da 3.4, foi escrita **lá, onde as outras moram**, e não aqui.
+`Raphael` e `dossiê` ganharam assert próprio: não estão na lista da 32.4 porque ela fala de
+vocabulário de fábrica, e este é caso próprio. E a conferência tem **duas metades** — o gerador
+decide, e `teste-f3.py` confere o que foi **publicado** (583 → 622 afirmações).
+
+### O SEXTO, E ELE ESTAVA NO AR NA HOME DESDE ESTA MANHÃ: O BLOCO DE COMPRA SERVIA A MESMA FRASE DUAS VEZES
+
+Achado ao conferir a assinatura do componente antes de chamá-lo na F3. Com a vitrine **vazia**,
+`rodametria_casca_bloco_de_compra()` imprime o parágrafo de **escopo** e o parágrafo da **causa** —
+e quando a ferramenta não tem o que vender, os dois são a mesma coisa. **Medido no HTML servido da
+home:**
+
+```
+rdm-molde-compra-escopo : 230 caracteres
+rdm-molde-compra-vazio  : 230 caracteres     IDÊNTICOS
+```
+
+O parágrafo duplicado é o das 14 contagens da F1 (*"nenhum dos 14 anúncios que a gente colheu
+declara a potência NOMINAL…"*), servido **duas vezes seguidas** na página que foi ao ar hoje de
+manhã. **A F1 não estava errada em passar o mesmo texto nos dois argumentos** — ela tem um texto e o
+componente pede dois campos.
+
+**E NENHUM PORTÃO VIA, porque nenhum comparava os dois parágrafos ENTRE SI:** cada um, sozinho, é a
+frase certa. É a família exata do bloco de compra da F2 em 29/10/2026, que *"dizia a mesma coisa três
+vezes"* — e a lição de lá media o texto de **uma página**, por isso não alcançou o componente.
+
+**O conserto mora na casca** (1.15.0, pela 32.6-b): com o escopo e a causa iguais, o escopo **não é
+impresso**. Ferramenta nova nasce sem poder cometer isto, e a que passa um texto só continua
+passando um texto só. A afirmação de ar que é o **veredito** mede o componente em **toda** URL do
+sitemap, então ferramenta nova entra na conta no dia em que nasce — e ela **reprova o ar de antes**,
+provado contra o HTML capturado às 13h5xZ. A F3 passa dois textos distintos, e o de escopo **não
+carrega número**: contagem fica na prestação de contas, que a conta do banco.
+
 ### A LIÇÃO DE MÉTODO DESTA PASSADA, E ELA VALE MAIS QUE QUALQUER DAS RÉGUAS
 
 **QUATRO** réguas desta execução reprovaram o texto ou o código **certo**, e as quatro pela mesma
@@ -79,6 +132,15 @@ causa: **foram escritas antes de medir o que reprovariam.**
 | acento por ausência | frase correta sem nenhum acento | 5 |
 | acento por substring | `so` dentro de "nosso" e "isso" | 5 |
 | guarda entre snippets | toda chamada para a casca, que é o desenho da 32.6-b | **90** |
+
+**E O OUTRO EIXO DA MESMA PASSADA: SEIS VEZES A 32.5-c.** Regra que existia e não viajou para a
+irmã — o prefixo e o `<noscript>` da 32.1-b (escrita hoje de manhã, aplicada só na F1), o aviso
+preso ao seletor `.rdm-f1-noscript`, a guarda de `function_exists` em chamada entre snippets (que o
+`rodametria-produto` fazia certo desde 29/10), a maquinaria de `FONTE_NA_TELA` (que a F2 tem desde
+29/10 e a F1 importou nesta manhã), e a lição do bloco de compra que dizia a mesma coisa três vezes
+(29/10, medida numa página e nunca levada ao componente). **Nenhuma delas era desconhecida: as cinco estavam escritas e
+nenhuma morava num lugar que obrigasse a próxima ferramenta a obedecê-las.** O conserto das cinco foi
+o mesmo — mover para a casca ou para um portão que varre **sem lista**.
 
 A **20.5** nomeia o perigo com todas as letras — *"portão que reprova a página certa é o caminho
 mais curto para alguém passar a ignorá-lo"* — e as quatro foram corrigidas na mesma passada, cada

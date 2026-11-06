@@ -28,7 +28,15 @@
  * ou escala nasce aqui sem estar la.
  */
 
-/* 1.14.0 (06/11/2026) — a folha ganhou as classes da F3 (os tres grupos da 3.2, a
+/* 1.15.0 (06/11/2026) — O BLOCO DE COMPRA NAO SERVE MAIS A MESMA FRASE DUAS VEZES.
+   Com a vitrine vazia ele imprimia o paragrafo de ESCOPO e o da CAUSA, e quando a
+   ferramenta nao tem o que vender os dois sao a mesma coisa. MEDIDO NO AR: a home,
+   que foi ao ar hoje de manha, servia o paragrafo de 230 caracteres DUPLICADO —
+   `rdm-molde-compra-escopo` e `rdm-molde-compra-vazio` identicos. Nenhum portao via,
+   porque nenhum comparava os dois ENTRE SI: cada um, sozinho, e a frase certa. E a
+   familia do bloco de compra da F2 em 29/10, que dizia a mesma coisa tres vezes.
+
+   1.14.0 (06/11/2026) — a folha ganhou as classes da F3 (os tres grupos da 3.2, a
    ressalva sourced da 3.4, a frase de lista vazia e o convite para a F2). Elas moram
    AQUI e nao no snippet da F3 porque e a casca que imprime o <style>, desde a 32.4-b
    de 04/11 — e porque CSS de ferramenta espalhado pelos snippets foi o que fez a folha
@@ -58,7 +66,7 @@
    Antes disto a ilha cujo produto e "o preco de hoje" tinha ZERO ocorrencia de
    `dateModified` e de `datePublished` em todo o JSON-LD das 9 URLs. */
 if ( ! defined( 'RODAMETRIA_CASCA_VERSAO' ) ) {
-	define( 'RODAMETRIA_CASCA_VERSAO', '1.14.0' );
+	define( 'RODAMETRIA_CASCA_VERSAO', '1.15.0' );
 }
 
 /**
@@ -949,13 +957,38 @@ function rodametria_casca_cartao_de_compra( $item ) {
  */
 if ( ! function_exists( 'rodametria_casca_bloco_de_compra' ) ) {
 function rodametria_casca_bloco_de_compra( $titulo, $itens, $frase_de_escopo, $causa_se_vazio = '' ) {
-	$html = '<section class="rdm-molde-compra" id="comprar">';
-	$html .= '<h2 class="rdm-molde-compra-titulo">' . esc_html( $titulo ) . '</h2>';
-	$html .= '<p class="rdm-molde-compra-escopo">' . esc_html( $frase_de_escopo ) . '</p>';
-
 	$cartoes = '';
 	foreach ( (array) $itens as $item ) {
 		$cartoes .= rodametria_casca_cartao_de_compra( $item );
+	}
+
+	/* A MESMA FRASE NAO SAI DUAS VEZES, E ISTO FOI MEDIDO NO AR EM 06/11/2026.
+	 *
+	 * Com a vitrine VAZIA este componente imprimia o `frase_de_escopo` e o
+	 * `causa_se_vazio`, um embaixo do outro — e quando a ferramenta nao tem o que
+	 * vender as duas frases sao a MESMA COISA, porque a causa do escopo vazio E a
+	 * causa de nao haver cartao. A F1 passa o mesmo texto nos dois argumentos (e
+	 * nao estava errada em passar: ela tem um texto e precisa preencher dois
+	 * campos), e a HOME foi ao ar hoje de manha servindo o paragrafo inteiro
+	 * DUPLICADO: `rdm-molde-compra-escopo` e `rdm-molde-compra-vazio` identicos,
+	 * com as mesmas 14 contagens, medidos um ao lado do outro no HTML servido.
+	 *
+	 * E NENHUM PORTAO VIA, porque nenhum comparava os dois paragrafos entre si:
+	 * cada um, sozinho, e a frase certa. E a familia exata do bloco de compra da
+	 * F2 em 29/10/2026, que "dizia a mesma coisa tres vezes" — e a licao de la
+	 * nao havia viajado para este componente.
+	 *
+	 * O CONSERTO MORA AQUI E NAO NO CHAMADOR, pela 32.6-b: com ele na casca,
+	 * ferramenta nova nasce sem poder cometer isto, e a que passa um texto so
+	 * continua passando um texto so. */
+	$duplicada = ( '' === $cartoes
+		&& '' !== trim( (string) $causa_se_vazio )
+		&& trim( (string) $frase_de_escopo ) === trim( (string) $causa_se_vazio ) );
+
+	$html = '<section class="rdm-molde-compra" id="comprar">';
+	$html .= '<h2 class="rdm-molde-compra-titulo">' . esc_html( $titulo ) . '</h2>';
+	if ( ! $duplicada ) {
+		$html .= '<p class="rdm-molde-compra-escopo">' . esc_html( $frase_de_escopo ) . '</p>';
 	}
 
 	if ( '' === $cartoes ) {

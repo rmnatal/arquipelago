@@ -462,10 +462,18 @@ function rodametria_f3_pagina_html() {
 		$causa = $f;
 		break;
 	}
+	/* DOIS TEXTOS DIFERENTES, E ISSO E REGRA DESDE 06/11/2026: o de ESCOPO diz
+	   o que entra neste bloco, e o da CAUSA diz por que ele esta vazio hoje. A
+	   casca passou a nao imprimir o escopo quando os dois sao iguais — porque a
+	   home foi ao ar hoje de manha com o paragrafo DUPLICADO —, e aqui eles
+	   nascem distintos. O de escopo NAO carrega numero: contagem fica na
+	   prestacao de contas, que a conta do banco. */
 	$html .= rodametria_casca_bloco_de_compra(
 		'À venda agora, e o que cada um aguenta',
 		(array) $d['compra']['vitrine'],
-		$causa,
+		'Entram aqui os veículos que declaram a carga máxima na ficha e têm link de '
+			. 'loja aberto. Quem declara a carga e não tem link aparece logo abaixo, '
+			. 'nomeado.',
 		$causa );
 
 	$html .= '<h2>O que o nosso banco tem para o seu peso</h2>';
@@ -667,7 +675,11 @@ add_action( 'wp_footer', function () {
           {minimo: num(min), total: num(total), pct: num(D.margem)});
       }
     }
-    var barra = document.querySelector('[data-rdm-barra] .rdm-num');
+    /* O atributo dedicado, que e o que as duas irmas usam.  dentro
+       da barra tambem casaria hoje, e casaria por acidente: ele e a classe de
+       TODO numero desta ilha, e no dia em que a barra ganhar um segundo numero
+       o seletor pegaria o primeiro que aparecesse. */
+    var barra = document.querySelector('[data-rdm-barra-numero]');
     if (barra) { barra.textContent = num(min); }
 
     if (!grupos) { return; }
