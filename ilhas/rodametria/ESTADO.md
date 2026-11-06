@@ -6,88 +6,84 @@ piso: abaixo              # 5 URLs publicadas contra as 40 da 21.1, e primeira_i
 urls_publicadas: 9        # 5 -> 9 em 30/10/2026 as 14h4xZ: as QUATRO paginas que a 16.1 nomeia (`/sobre/`, `/contato/`, `/divulgacao-de-afiliados/`, `/privacidade/`), pelo bloco 5d. CONTADO no wp-sitemap.xml no ar com quebra de cache, nao na conta de antes do desembarque. ELAS NAO MEXEM NO PISO DA 21.1 NEM GASTAM LEVA: a 21.7 tira as cinco paginas nomeadas da 16.1 do teto de 10 URLs por leva e 3 levas por semana, porque sao familia fechada e nenhuma responde a uma busca — o piso de malha segue pedindo 40 e as paginas de malha seguem 5. A DIVIDA QUE ELAS PAGAM estava medida na contagem de 30/10 as 10h3xZ: a ilha serve link de afiliado da Shopee desde 29/10 e nao tinha pagina de divulgacao de afiliados nem de privacidade.
 ultima_ronda: 2026-11-04T20:10Z   # LEITURA SEMANAL de 2026-11-04
 primeira_indexacao: null  # as duas primeiras URLs foram ao ar hoje; indexacao e trabalho de dias. Quem grava este campo e a leitura semanal, lendo o Search Console.
-ultima_execucao: 2026-11-05T19:42Z   # A PORTA SEGUE NO CHAO 23 HORAS DEPOIS e esta foi a TERCEIRA execucao do dia a chegar nela e nao poder levanta-la. NENHUM BLOCO DA FILA, pela 18.5. O que esta passada entregou foi na pendencia mais antiga que NAO depende do ar: a FONTE OFICIAL DA F1 — a parede e o DOMINIO `.gov.br` inteiro e nao os hosts, e com isso dois despachos viraram UM pedido de uma linha (`*.gov.br`). Revisao 43 no ar. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
-executando_desde: 2026-11-06T10:44Z   # RESERVA RENOVADA pela 1.1 (a de 10h17Z segue sendo desta mesma execucao): o bloco da F1 passou de 40 minutos porque mexeu em constante, esquema, cerebro, gerador, portao novo, validador e bateria de mutacoes, e a bancada sem rede desta ilha tem 30 portoes. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA.
-rede: aberta em 2026-11-05   # 20.2, REMEDIDA as 19h1xZ e NAO herdada: rodametria.com.br em 200, com aquametria.com.br e robometria.com.br em 200 na MESMA passada. E A LICAO DE METODO SE REPETIU PELA TERCEIRA VEZ NO DIA: essa medicao AUTORIZA a reserva e ESCONDE o defeito, porque a regua da 20.2 pede a RAIZ e a raiz e a unica coisa que esta queda deixa de pe (29.1). O EGRESSO DO `.gov.br` FOI REMEDIDO NESTA PASSADA e segue RECUSADO: 6 recusas contra 4 controles verdes, com `403 to CONNECT (policy denial)` nomeado em cada uma — e o achado e que a parede e o DOMINIO, nao os hosts (o PDF da resolucao num municipio, araras.sp.gov.br, cai na mesma recusa). A tabela de todas as portas esta em dados/fonte-oficial-f1.md.
+ultima_execucao: 2026-11-06T11:41Z   # A F1 FOI AO AR E ELA E A HOME: nove dias de ferramenta travada fechados pelos dois minutos em que o Raphael leu o PDF oficial da Resolucao Contran 996/2023 no Chrome dele, em 05/11 ~23h3x de Brasilia. Revisao 49, portao de ar em 486 afirmacoes e 0 falha, 32.5 em 9 de 9, e o COMPORTAMENTO medido no navegador de verdade (4 casos, 0 erro de JavaScript). O despacho ALTA de 05/11 morreu conferido no ar (18.4). A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
+executando_desde: null   # LIMPO as 2026-11-06T11:41Z pela propria execucao que reservou as 10h17Z de 06/11 e RENOVOU as 10h44Z pela 1.1. A passada durou mais de uma hora e meia porque o bloco mexeu em constante, esquema, cerebro, gerador, snippet, casca, validador, bateria de mutacoes e tres portoes, e porque CINCO desembarques foram conferidos um por um no ar — cada um esperando o vencimento do evento `rodametria_30min`, que e de 30 minutos e so dispara quando DEVIDO (20.9). A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA.
+rede: aberta em 2026-11-06   # 20.2, MEDIDA e nao herdada ANTES da reserva: rodametria.com.br em 200 nas TRES passadas, com aquametria.com.br e robometria.com.br em 200 nas MESMAS tres — 9 de 9 em 200. E A PAREDE DO `.gov.br` SEGUE DE PE: ela nao foi remedida nesta passada de proposito, porque foi medida em 05/11 as 19h1xZ (6 recusas contra 4 controles verdes, com a parede sendo o DOMINIO e nao os hosts) e porque o que ela travava — o limiar legal da F1 — foi destravado pelo NAVEGADOR DO RAPHAEL e nao pelo egresso. O que ela ainda trava esta nomeado no despacho: o CTB (a metade da CNH), as prefeituras da camada municipal, e as tres etiquetas do Mercado Livre.
 bloqueada_por: null      # obrigatorio pela secao 2. `null` DE PROPOSITO: o que falta (gov.br para a F1, as prefeituras para a camada municipal, as tres etiquetas do Mercado Livre) trava a FABRICA e nao a ILHA, e isso se escreve no despacho, que e o canal da 12.2. Preenche-lo congelaria tambem os blocos que ja podem andar.
 bloco_atual: |
-  A PORTA SEGUE NO CHAO 23 HORAS DEPOIS, E ESTA FOI A TERCEIRA EXECUCAO DO DIA A
-  CHEGAR NELA E NAO PODER LEVANTA-LA. Nenhum bloco da fila foi executado, e isso e
-  a 18.5 funcionando. O Raphael FOI SINALIZADO nesta passada, com o conserto de 30
-  segundos na notificacao (options-permalink.php -> Salvar).
+  A F1 ESTA NO AR E ELA E A HOME. A ferramenta que esta ilha existe para ter,
+  travada desde 28/10, desembarcou em 06/11/2026 — e o que a destravou nao foi
+  uma execucao da fabrica: foi o RAPHAEL abrindo o PDF oficial da Resolucao
+  Contran 996/2023 no Chrome dele em 05/11 ~23h3x de Brasilia e preenchendo a
+  secao 5 de dados/fonte-oficial-f1.md campo por campo. Revisao 49.
 
   ESTE ARQUIVO CONTINUA SENDO A MEMORIA DESTA ILHA — `/areas/projeto-rodametria.md`
   nao existe nesta nuvem, e e por isso que este campo e longo.
 
-  PRIMEIRO COMANDO DE QUEM PEGAR ESTA ILHA: `python3 ferramentas/conferir-no-ar.py .`
-  Hoje ele da 43 afirmacoes e 9 FALHAS, as nove da porta: as tres portas da 29.2
-  (/wp-sitemap.xml, /robots.txt, /wp-json/) em 404 com text/html, o caminho virgem
-  em 404 do HOSPEDEIRO, e so `/` em 200. Se voltarem a 200, o despacho ALTA de
-  05/11 morre conferido no ar (18.4) e A FILA ANDA. Enquanto estiverem em 404, a
-  18.5 proibe pagina nova.
+  PRIMEIRO COMANDO DE QUEM PEGAR ESTA ILHA: `python3 ferramentas/bancada.py --no-ar`.
+  Hoje ele fecha em 0 falha. A bancada tem 31 portoes sem rede e 35 com rede.
 
-  O QUE ESTA PASSADA ENTREGOU, e foi na pendencia que trava a F1 — a ferramenta que
-  e a home desta ilha e a razao pela qual ela nasceu, travada desde 28/10, OITO
-  dias. TRES ACHADOS, medidos as 19h1xZ com 4 controles verdes contra 6 recusas:
+  O QUE ESTA EXECUCAO ENTREGOU, em uma linha cada:
+  - o despacho ALTA de 05/11 (a ilha fora do ar) FECHADO e conferido no ar pela
+    18.4 — a porta foi levantada a mao pelo Raphael na noite de 05/11, pela via 1
+    do proprio despacho, e a causa ficou medida (o bloco `# BEGIN WordPress` havia
+    sumido do .htaccess da raiz). O despacho de dados/despachos.md FICA ABERTO: a
+    pergunta dele e se a FABRICA consegue levantar a porta, e a resposta continua
+    nao.
+  - a constante dos limiares DESTRAVADA, e com ela a F1 inteira. Mais CINCO
+    constantes novas: as consequencias por categoria, a exigencia de habilitacao
+    (pendente, e e ela que da NOME ao silencio da pagina sobre CNH), a assistencia
+    a pe do paragrafo 4o, o caso de alteracao pos-compra e o titulo literal do
+    anuncio do pico.
+  - regras/f1.py, dados/f1-respostas.json, ferramentas/gerar-f1.py,
+    ferramentas/teste-f1.py (1.235 afirmacoes), ferramentas/teste-f1-arvore.mjs
+    (64 afirmacoes) e snippets/rodametria-f1.php, com a casca em 1.12.0 abrindo
+    dois filtros para a ferramenta tomar a primeira tela da home.
+  - esquema do banco 5 -> 6, com a quarta saida `acima_do_ciclomotor`.
+  - contrato: 32.1-b (o nome do campo do formulario) e 32.4-c (toda regua de texto
+    vale para o HTML SERVIDO, nao para o visivel).
 
-  1. A PAREDE E O DOMINIO `.gov.br` INTEIRO, NAO OS HOSTS. A busca achou um PDF da
-     Resolucao 996/2023 hospedado em araras.sp.gov.br — um municipio, host
-     completamente diferente dos cinco federais — e ele cai na MESMA recusa. Com
-     isso o despacho ALTA do gov.br e o despacho NORMAL da camada municipal viraram
-     UM pedido, e ele e UMA LINHA: `*.gov.br`. Ponteiro cruzado nos dois.
-  2. A PORTA DA BUSCA ATRAVESSA O EGRESSO E ESTA DESCARTADA COM MOTIVO. Devolveu
-     DUAS das TRES definicoes (o ciclomotor voltou cortado, e ela propria disse que
-     nao conseguiu confirma-lo no texto oficial), e o unico numero que ofereceu para
-     o ciclomotor foi 4.000 W — o lado errado da contradicao que o bloco 6 mediu
-     DENTRO de um unico publicador. NAO A TENTE DE NOVO esperando outro resultado.
-  3. A PREMISSA DA "FASE NOVA DE VIGENCIA EM 1o/01/2026" parece ser o FIM DO PRAZO
-     DE ADEQUACAO (31/12/2025) e nao redacao nova. Achado NEGATIVO, segunda mao, UMA
-     rodada: nao e prova, nao virou constante, e muda o PEDIDO e nao a regra.
+  AS TRES COISAS QUE A LEITURA OFICIAL MUDOU NA ESPECIFICACAO estao escritas como
+  ERRATA dentro da secao 1 de dados/especificacao-calculadoras.md, porque quem for
+  mexer na F1 le aquele arquivo e nao este. A mais importante: A RESOLUCAO NAO
+  FALA DE CNH. Ela decide a CATEGORIA e decide placa, registro, licenciamento
+  (arts. 12 e 13) e capacete (art. 19 V); habilitacao e do CTB, que esta ilha NAO
+  leu. Entao a F1 esta no ar RESPONDENDO A CATEGORIA E CALANDO SOBRE CNH, com
+  frase propria dizendo por que — e o portao PROIBE as frases `dispensa CNH` e
+  `exige habilitacao` em todo texto de tela enquanto a constante for pendente.
 
-  A CONSTANTE SEGUE `pendente` COM VALOR null. Nada foi inventado.
+  O PROXIMO PASSO DESBLOQUEADO, E ELE E DE DOIS MINUTOS DE NAVEGADOR E NAO DE
+  BLOCO: a secao 6 de dados/fonte-oficial-f1.md esta PRONTA e VAZIA, no mesmo
+  formato da 5, para a leitura do CTB aterrissar. Preenchida, a execucao seguinte
+  copia os valores para `exigencia-de-habilitacao-por-categoria-ctb`, troca o
+  status, e A F1 PASSA A RESPONDER A PERGUNTA DO TITULO DELA — sem uma linha de
+  logica mudar. O mecanismo ja foi exercitado uma vez hoje, com o limiar.
 
-  O ARQUIVO NOVO, E E O QUE BARATEIA A PROXIMA PASSADA: `dados/fonte-oficial-f1.md`.
-  Tem a TABELA DE TODAS AS PORTAS tentadas com data (porta com data nao se tenta de
-  novo por habito) e, na SECAO 5, O LUGAR PRONTO PARA A LEITURA ATERRISSAR: campos
-  rotulados um por um, com a instrucao de escrever NAO CONSTA em vez de estimar.
-  SE VOCE ACHAR A SECAO 5 PREENCHIDA, o trabalho e copiar os valores para a
-  constante `limiares-categoria-contran-996-2023` de `dados/constantes.json`, trocar
-  `status` e `tipo` para `publicavel`, e A F1 PASSA A PODER IR AO AR — sem uma linha
-  de logica mudar, porque a 1.3 da especificacao proibiu literal numerico no codigo.
+  O PROXIMO PASSO DE CONSTRUCAO, se nao houver despacho: o bloco 3d (o casamento
+  do registro com a oferta), que e o que traz o campo tecnico. Enquanto
+  `veiculos_com_nominal_declarado` for ZERO, a F1 nao tem UM candidato na vitrine
+  — e a pagina diz isso com os 14 nomes contados, que e a tese da ilha publicada.
 
-  E A LICAO DE METODO DESTA PASSADA VIROU INSTRUMENTO E VIROU REGRA (20.9 do
-  contrato), porque custou OITO MINUTOS reacionando um Sync SAUDAVEL. Duas coisas,
-  as duas conferidas na FONTE do Sync (ilhas/robometria/snippets/robometria-sync.php,
-  o mesmo codigo nas quatro ilhas): (a) `ultimo` marca TODA rodada e o LOG so ganha
-  linha quando algum item e APLICADO (linhas 473-477 retornam antes de logar; a
-  linha de log nasce na 518) — log parado com `ultimo` de agora e Sync saudavel SEM
-  TRABALHO, nao canal morto; (b) o evento e `interval => 1800` e o WP-Cron dispara
-  evento DEVIDO, entao VISITAR NAO ANTECIPA VENCIMENTO. A 20.6 ("roda por visita")
-  esta certa e nao e suficiente.
-  O portao de ar ganhou `veredito_da_revisao_atrasada()`, funcao PURA com CINCO
-  vereditos de consertos diferentes, e nenhum deles e aprovacao. Autoteste 57 de 57.
+  O QUE NAO REMEDIR: a parede do `.gov.br` (medida em 05/11 as 19h1xZ, 6 recusas
+  contra 4 controles verdes, e a parede e o DOMINIO e nao os hosts) e a porta da
+  busca para a F1 (medida e descartada com motivo em 05/11).
 
-  E O MELHOR DESTA PASSADA FOI A MEDICAO FALSIFICAR A REGUA QUE ELA MESMA ACABOU DE
-  ESCREVER: o portao previu o vencimento em 19:46:46 e A REVISAO ENTROU AS 19:40:09,
-  6m37s ANTES, porque o WordPress reagenda evento recorrente a partir do horario
-  AGENDADO (19:10:09) e nao do horario em que ele RODOU (19:16:46). `ultimo` +
-  intervalo e TETO e nunca a hora exata, e a hora exata NAO SAI do `/status`.
-  Corrigido nos tres lugares no mesmo commit: a funcao, o mundo 14.c do autoteste (que
-  agora registra que a medicao o reprovou) e a 20.9.
+  O QUE AINDA NAO TEM PORTAO, e e decisao e nao lacuna: a ponta do COMPORTAMENTO.
+  Nenhuma regua desta ilha APERTA um controle da ferramenta — o portao de ar le o
+  HTML servido (e desde hoje aperta o BOTAO de cada formulario, exigindo 200) e o
+  de pixel abre a pagina e mede. Os quatro casos da arvore foram exercitados A MAO
+  no navegador em 06/11, na pagina de verdade, a 390 px: os quatro respondem, com
+  0 erro de JavaScript. Nao virou portao pela 31.2 (nao houve defeito medido), e a
+  receita esta no REGISTRO.md desta data.
 
-  DESEMBARQUE: revisao 42 -> 43, CONFERIDA no ar pela 20.4 — `4 aplicado(s)` contra
-  as 4 linhas de item lidas uma por uma, todas dizendo `ok`, e 4 de 4 versoes de
-  snippet batendo com o manifest. Bancada 28 portoes / 0 falha. O portao da 20.7
-  mordeu DUAS vezes antes de passar (sha256 velho, depois data fora do commit).
+  E UMA COISA PRE-REGISTRADA QUE VAI QUEBRAR SOZINHA, de proposito: a prestacao de
+  contas da secao 7 e renderizada no SERVIDOR para a categoria do exemplo, e o
+  veredito recomputa no NAVEGADOR. Hoje isso nao mente porque NENHUM registro
+  classifica e os grupos saem identicos para as quatro categorias. A metade H do
+  teste-f1.py afirma esse INVARIANTE — e o dia em que ela ficar vermelha e
+  exatamente o dia em que o JS precisa passar a recomputar a secao. O portao nao
+  avisa que vai quebrar: ele quebra junto com o mundo.
 
-  O QUE NAO REMEDIR: o egresso do `.gov.br` (medido hoje, 6 recusas / 4 controles) e
-  a porta da busca (medida e descartada). O QUE AINDA NAO FOI MEDIDO HOJE: o portao
-  de pixel da 32.5 (`node ferramentas/conferir-32-5-no-navegador.mjs`), que nao foi
-  rodado porque as paginas estao em 404 — rode-o no dia em que a porta levantar.
-
-  O PROXIMO PASSO DE CONSTRUCAO, quando houver construcao: o BLOCO 3d, o casamento
-  do registro com a oferta, que e o que traz o campo tecnico e deixa o bloco de
-  compra servir o produto que a ferramenta escolheu.
 ---
 
 # Estado da ilha RODAMETRIA

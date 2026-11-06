@@ -4999,3 +4999,37 @@ e com o jeito de rodá-la — o `import` desta nuvem é `createRequire` e não `
 que é a causa dos 21 portões de navegador inertes do arquipélago, e o caminho do Chromium se
 **descobre** em `/opt/pw-browsers` em vez de ser fixo. **No dia em que a terceira ponta falhar, há o
 defeito que autoriza o portão e há a receita para escrevê-lo em minutos.**
+
+### 12. O FECHO, CONFERIDO NO AR NA REVISÃO 49
+
+- **`/status` na revisão 49**, `8 aplicado(s)` contra as **8 linhas de item** lidas uma por uma **do
+  fecho para baixo**, todas dizendo `ok` (20.4 e 20.8). **5 de 5** versões de snippet batendo com o
+  manifest, com `rodametria-f1 1.0.0` **presente** no `/casca` — a prova de que ele foi **ativado** e
+  não só gravado (20.7). Casca **1.12.0**.
+- **Portão de ar: 486 afirmações, 0 falha**, e entre elas as duas da 32.1-b: o formulário da **home**
+  monta `/?rdm_w=500&rdm_kmh=32&rdm_acel=manual&rdm_mun=` e responde **200**, e o da **F2** monta
+  `/autonomia-patinete-eletrico/?v=48&ah=20&relevo=misto&peso=90&aut=60` e responde **200**.
+- **Portão de pixel: 9 de 9** dentro da 32.5. A home serve o **formulário a 377 px** (teto 700) e o
+  bloco de compra dela aparece como *"não se aplica (bloco de compra VAZIO: a página diz a causa)"* —
+  a frase que separa falta de **dado** de ausência de **desenho**.
+- **Comportamento no navegador: 4 de 4**, 0 erro de JavaScript, o tom trocando de verde para âmbar na
+  categoria que pede placa e a camada 2 trocando de frase por cidade.
+- **Leitura SEM quebra de cache, como o Google lê: 13 de 13** em 200, incluindo a URL que o botão do
+  formulário monta.
+- **Os cinco textos que foram ao ar errados hoje, conferidos no HTML servido final:** `costuma`
+  **fora**, `0 de 14` **fora**, `publicavel` **fora** (0 ocorrências), `70 cm de largura e 130 cm`
+  **dentro**, `NENHUM declara o nominal` **dentro**. Mais `name="rdm_w"`, o `<noscript>`, a data em
+  prosa e a classe do pivô, as quatro **dentro**. `FAQPage` com **5 perguntas**.
+- **Bancada: 31 portões sem rede, 0 falha.** Portão da F1 em **1.235** afirmações; portão da árvore no
+  navegador em **64**; versão dos snippets em **52**; mutações do banco em **72** casos.
+
+**CINCO DESEMBARQUES NESTA PASSADA — 45, 46, 47, 48 e 49 —, cada um conferido no ar antes do
+seguinte.** O primeiro entrou em **menos de um minuto** (o evento do cron estava **devido**); os
+outros esperaram o vencimento, que é de 30 minutos e **não se antecipa reacionando** (20.9). **A régua
+que a passada de ontem escreveu depois de perder oito minutos poupou esses oito minutos hoje, cinco
+vezes.**
+
+**E O NÚMERO QUE A 31.1 COBRA:** esta execução entregou **no ar, visível ao visitante**, a ferramenta
+principal da ilha, a `description` da home, o `<noscript>`, a folha do pivô e cinco consertos de texto
+servido. **Não foi passada de bancada** — os três portões novos nasceram todos de **defeito medido**,
+e dois deles mordendo contra o mundo real antes do conserto.
