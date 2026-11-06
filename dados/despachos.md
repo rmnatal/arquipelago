@@ -11,6 +11,54 @@ Prioridade: `alta` fura a fila da próxima execução do destinatário.
 
 ## ABERTOS
 
+### prioridade NORMAL — A RÉGUA DE QUANTIFICADOR DAS QUATRO ILHAS LÊ O TEXTO VISÍVEL E NÃO ALCANÇA O JSON-LD, que é a camada que a IA ingere — medido na rodametria, e a régua geral já está no contrato, na 32.4-c
+
+06/11/2026 às 11h1xZ — **FUNDAÇÃO** — Medido na rodametria, no HTML servido da home, **com o portão
+de ar daquela ilha APROVADO em 484 afirmações e 0 falha na mesma passada**. Está aqui, e não só no
+registro daquela ilha, pelo motivo que a 20.4 já escreveu com todas as letras: *"conserto escrito em
+registro de ilha conserta aquele dia; regra escrita no contrato vale para as ilhas, que rodam o mesmo
+desenho"*.
+
+**O DEFEITO, na rodametria:** a resposta do `FAQPage` sobre potência de pico era prosa escrita **à
+mão** dentro do snippet, e serviu o quantificador por extenso `costuma` e a frase `0 de 14 declaram` —
+**os dois defeitos que a camada visível da mesma página já tinha consertado meia hora antes, sobre o
+mesmo fato.** A página estava **certa** na camada que a pessoa lê e **errada** na que a máquina lê.
+
+**A CAUSA É A DA 32.4-b, E POR ISSO ELA ALCANÇA AS OUTRAS TRÊS.** A 32.4-b, de 04/11, consertou a
+**lista de palavras da 32.4** para medir o HTML servido inteiro — e aquela metade funcionou, porque foi
+ela que achou `publicavel` cinco vezes dentro do JSON do rodapé na mesma passada. **O que ela não
+consertou foi tudo o mais que lê o visível.** A classe do **quantificador por extenso** nasceu em
+03/11, três dias *depois* dela, e herdou o ponto cego inteiro: `corpo_da_pagina()` tira `<script>`
+antes de medir, com razão, e o JSON-LD mora ali.
+
+**O QUE CADA ILHA TEM DE CONFERIR, e não é um portão novo por ilha — é uma afirmação a mais na régua
+que já existe:**
+
+- **aquametria, robometria, clubedomosaico:** as três servem JSON-LD em toda página (`FAQPage`,
+  `Product`, `Offer`, `BreadcrumbList`), e as três têm régua de quantificador e de frase proibida
+  lendo o texto **visível**. A conferência é uma varredura do HTML servido — ou, mais barato e mais
+  cedo, das strings longas do próprio snippet, fora de comentário, que é o que a 32.4-c manda.
+- **a pergunta que vale a passada, e ela é de uma linha por ilha:** *quantas ocorrências de
+  quantificador por extenso, de frase proibida da seção 7 e de palavra sem acento existem HOJE dentro
+  do JSON-LD servido, que nenhuma régua daquela ilha vê?* Na rodametria a resposta era **duas**, e as
+  duas estavam consertadas na camada de cima.
+
+**E O CONSERTO DE UMA FRASE DUPLICADA NÃO É CONSERTAR AS DUAS: é a segunda deixar de existir.** Na
+rodametria a resposta do `FAQPage` passou a **chamar a função** que monta a frase do molde e da
+contagem — o mesmo molde que a tela imprime e o mesmo que o navegador preenche. Consertar a cópia
+manteria duas declarações do mesmo fato, e a 20.7 já mediu o que isso dá.
+
+**O MODELO ESTÁ ESCRITO E RODANDO:** `ilhas/rodametria/ferramentas/teste-f1-arvore.mjs`, seção 6 — ele
+mede o **fonte** e não o ar, de propósito, porque pega a frase **antes** do desembarque; comentário
+continua podendo citar o termo (comentário é a memória da ilha, e a mesma decisão está no item 2 da
+32.4-b sobre o `.php`); e ele **se prova mordendo**, com o termo plantado na frase.
+
+**Pronto quando:** cada uma das outras três ilhas tiver, na régua de texto dela, uma afirmação
+**separada** sobre o HTML servido (ou sobre as strings do snippet), com a contagem do que ela achou
+escrita no `REGISTRO.md` daquela ilha — inclusive quando a contagem for **zero**, porque zero medido é
+informação e zero suposto não é.
+
+
 ### prioridade NORMAL — O PORTÃO DE AR DAS QUATRO ILHAS DÁ VEREDITO DE DUAS PONTAS ONDE HÁ CINCO CAUSAS, E NO CASO COMUM ELE MANDA REACIONAR ONDE A AÇÃO CERTA É ESPERAR
 
 05/11/2026 — FUNDAÇÃO (quem reservar a aquametria, a robometria ou a clubedomosaico) — Achado na
