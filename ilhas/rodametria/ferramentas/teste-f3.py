@@ -450,6 +450,47 @@ def main():
         afirma(len(usados) >= 4,
                "o JS cita so %d molde(s): ou ele parou de usar o arquivo publicado, "
                "ou esta regua deixou de alcancar o bloco" % len(usados))
+
+        # O JS LE AS DUAS LISTAS, E ESTA AFIRMACAO FECHA UMA 32.5-d ANTES DE ELA
+        # ACONTECER. A primeira versao do JS reclassificava so
+        # `serviriam_sem_oferta` — os que aguentam e NAO tem link. No banco de
+        # hoje isso nao mente, porque a vitrine e vazia e as duas listas nao se
+        # cruzam. **O dia em que um registro ganhasse link seria o dia em que a
+        # recomputacao o deixaria CAIR DA TELA**, servindo MENOS do que o
+        # servidor acabou de servir — e sem nenhum portao vermelho, porque o
+        # HTML pre-renderizado continuaria certo. E a 32.5-d da F1,
+        # pre-registrada hoje de manha, e aqui ela esta FECHADA.
+        afirma("D.vitrine" in js and "D.servem" in js,
+               "o JS da F3 tem de reclassificar as DUAS listas — `vitrine` (carga "
+               "declarada E oferta aberta) e `servem` (aguenta e nao tem link). Lendo "
+               "so uma, a recomputacao no navegador serve MENOS do que o servidor "
+               "serviu, e nenhum portao fica vermelho porque o HTML pre-renderizado "
+               "continua certo (32.5-d)")
+        afirma("com_oferta" in json.dumps(d["compra"]),
+               "o arquivo publicado tem de carregar `com_oferta`, senao o JS nao tem "
+               "a vitrine de verdade para reclassificar")
+
+        # E O MUNDO EM QUE AS DUAS LISTAS SE CRUZAM E FABRICADO AQUI, porque o
+        # banco de hoje nao o tem: com um registro em cada lista, a frase de
+        # vazio NAO pode nascer (a vitrine tem item) e o nome do sem-link tem de
+        # continuar aparecendo.
+        misto = [
+            {"id": "fab-com", "marca": "Fab", "modelo": "Com", "status": "publicavel",
+             "carga_max_kg": {"valor": 150},
+             "afiliado": {"url_busca": "https://exemplo/busca"}},
+            {"id": "fab-sem", "marca": "Fab", "modelo": "Sem", "status": "rascunho",
+             "carga_max_kg": {"valor": 160}},
+        ]
+        r6 = f3ref.responder(100, 8, constantes=constantes, registros=misto)
+        afirma(not r6["frases_vazio"],
+               "com a vitrine cheia e um sem-link ao lado, nao pode sair frase de vazio")
+        afirma(r6["quantos_serviriam_sem_oferta"] == 2,
+               "a contagem de quem serviria conta os DOIS (o com link e o sem), porque "
+               "ela e sobre CARGA e nao sobre link; saiu %d"
+               % r6["quantos_serviriam_sem_oferta"])
+        afirma(len(r6["linhas"]["folga"]) == 1,
+               "a vitrine tem de ter exatamente o registro COM link; saiu %d"
+               % len(r6["linhas"]["folga"]))
         nota("o JS pede %d molde(s) e todos existem no arquivo publicado; 0 prosa literal"
              % len(usados))
 

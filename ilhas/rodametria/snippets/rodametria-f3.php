@@ -36,7 +36,7 @@
  */
 
 if ( ! defined( 'RODAMETRIA_F3_VERSAO' ) ) {
-	define( 'RODAMETRIA_F3_VERSAO', '1.0.0' );
+	define( 'RODAMETRIA_F3_VERSAO', '1.1.0' );
 }
 
 /* A VERSAO DESTE SNIPPET VAI AO AR (20.7). A CHAVE E O `id` DO manifest.json, e
@@ -618,6 +618,12 @@ add_action( 'wp_footer', function () {
 		'margem'   => $d['margem_pct'],
 		'ordem'    => $d['grupos_em_ordem'],
 		'servem'   => $d['compra']['serviriam_sem_oferta'],
+		/* A VITRINE DE VERDADE (carga declarada E oferta aberta). Hoje e vazia, e
+		   ela viaja porque e dela que o navegador reclassifica os grupos: sem
+		   ela, o dia em que um registro ganhasse link seria o dia em que a
+		   recomputacao o deixaria CAIR DA TELA. 32.5-d fechada, nao
+		   pre-registrada. */
+		'vitrine'  => isset( $d['compra']['com_oferta'] ) ? $d['compra']['com_oferta'] : array(),
 		'declaram' => $d['compra']['quantos_declaram_carga'],
 		'teto'     => $d['compra']['teto_do_banco_kg'],
 	);
@@ -683,11 +689,19 @@ add_action( 'wp_footer', function () {
     if (barra) { barra.textContent = num(min); }
 
     if (!grupos) { return; }
+    /* DOIS conjuntos, e eles nao se misturam: `baldes` e a VITRINE (tem link) e
+       `sem` e quem aguenta e nao tem link. O servidor serve os dois separados e
+       o navegador tem de servir os dois separados tambem. */
     var baldes = {folga: [], no_limite: [], nao_aguenta: []};
+    var sem = {folga: [], no_limite: [], nao_aguenta: []};
     var i;
+    for (i = 0; i < D.vitrine.length; i++) {
+      var v = D.vitrine[i];
+      baldes[grupoDe(v.carga_max_kg, total)].push(v);
+    }
     for (i = 0; i < D.servem.length; i++) {
       var s = D.servem[i];
-      baldes[grupoDe(s.carga_max_kg, total)].push(s);
+      sem[grupoDe(s.carga_max_kg, total)].push(s);
     }
     var html = '';
     var titulos = {folga: D.moldes.titulo_folga, no_limite: D.moldes.titulo_no_limite,
@@ -720,17 +734,27 @@ add_action( 'wp_footer', function () {
     /* A VITRINE E VAZIA HOJE, e a frase de vazio e escolhida pela MESMA causa
        que a referencia usa: se algum do banco aguentaria e nao ha link, a
        frase e a da falta de oferta; se nenhum aguenta, e a da carga. */
-    var servem = baldes.folga.length;
-    if (!servem) {
-      html += '<p class="rdm-f3-vazio">' + preencher(D.moldes.vazio_por_carga,
-        {quantos: num(D.declaram), total: num(total), teto: num(D.teto)}) + '</p>';
-    } else {
-      html += '<p class="rdm-f3-vazio">' + preencher(D.moldes.vazio_por_falta_de_oferta,
-        {quantos_servem: num(servem), quantos: num(D.declaram), total: num(total)}) + '</p>';
+    /* A FRASE DE LISTA VAZIA ESCOLHE PELA MESMA CAUSA QUE A REFERENCIA USA, e as
+       duas causas sao de eixos diferentes: `baldes.folga` vazio diz que a
+       VITRINE nao tem o que mostrar, e `sem.folga` diz se o que falta e o LINK
+       ou a CARGA. Molde unico aqui mentiu na primeira versao da ferramenta. */
+    if (!baldes.folga.length) {
+      if (sem.folga.length) {
+        html += '<p class="rdm-f3-vazio">' + preencher(D.moldes.vazio_por_falta_de_oferta,
+          {quantos_servem: num(sem.folga.length), quantos: num(D.declaram),
+           total: num(total)}) + '</p>';
+      } else {
+        html += '<p class="rdm-f3-vazio">' + preencher(D.moldes.vazio_por_carga,
+          {quantos: num(D.declaram), total: num(total), teto: num(D.teto)}) + '</p>';
+      }
+    }
+    /* E OS NOMES DE QUEM AGUENTA E NAO TEM LINK, nomeados e nunca sumidos
+       (secao 7) — independentes da vitrine estar cheia ou vazia. */
+    if (sem.folga.length) {
       html += '<h3 class="rdm-f3-grupo-titulo">' + D.moldes.titulo_sem_compra + '</h3>';
       html += '<ul class="rdm-f3-lista">';
-      for (i = 0; i < baldes.folga.length; i++) {
-        html += '<li>' + baldes.folga[i].nome + '</li>';
+      for (i = 0; i < sem.folga.length; i++) {
+        html += '<li>' + sem.folga[i].nome + '</li>';
       }
       html += '</ul>';
     }

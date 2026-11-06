@@ -266,6 +266,22 @@ def montar(constantes, veiculos):
             "quantos_declaram_carga": quantos_declaram,
             "quantos_serviriam_sem_oferta": quantos_serviriam,
             "serviriam_sem_oferta": serviriam,
+            # OS REGISTROS COM CARGA DECLARADA **E** OFERTA ABERTA — a vitrine
+            # de verdade, e hoje a lista e VAZIA. Ela existe no pacote porque e
+            # dela que o navegador reclassifica os grupos quando a pessoa troca
+            # o peso: sem ela, o dia em que um registro ganhasse link seria o
+            # dia em que a recomputacao o deixaria CAIR DA TELA, servindo menos
+            # do que o servidor serviu. E a familia da 32.5-d — a metade do
+            # servidor e a do navegador discordando sobre o mesmo dado — e aqui
+            # ela esta FECHADA em vez de pre-registrada.
+            "com_oferta": [
+                {"id": r.get("id"), "nome": f3ref.nome_do_registro(r),
+                 "carga_max_kg": float(f3ref._valor(r.get("carga_max_kg")))}
+                for r in registros
+                if r.get("status") != "excluido_do_banco"
+                and f3ref._valor(r.get("carga_max_kg")) is not None
+                and f3ref._tem_saida_de_compra(r)
+            ],
         },
     }
 
