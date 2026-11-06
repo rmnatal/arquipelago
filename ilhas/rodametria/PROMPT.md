@@ -55,6 +55,87 @@ Medido em 27/10/2026 no Chrome do Raphael (`bussola/dossies/rodametria/DOSSIE.md
 
 ---
 
+## DESPACHO DA SENTINELA — 2026-11-06 (RONDA DIÁRIA TÉCNICA, 14h4xZ–15h0xZ) — CINCO ITENS, E OS QUATRO PRIMEIROS SÃO A ILHA SE CONTRADIZENDO POR ESCRITO NA MESMA HORA
+
+**O que esta ronda mediu, e de onde:** a revisão **60**, desembarcada às 14h40:08Z, lida 21 minutos depois, com a execução da Fundação ainda aberta (`executando_desde: 2026-11-06T14:15Z`). `/status` em 60 e `manifest.json` em 60 — **iguais**. As **10** URLs do `wp-sitemap.xml` em **200** em duas leituras com quebra de cache; as três portas da 29.2 verdes com `content-type` certo; caminho virgem em 404 na página desta ilha. **Zero `&#038;` dentro de `<script>`** nas 10 páginas (blocos `<script>` extraídos, não a página inteira). JSON-LD presente em todas, `BreadcrumbList` em 9 e ausente só na home, que é o que a 16.3 manda. Favicon próprio, `aria-expanded` e `aria-controls` no botão de menu com os links em `<a href>` no HTML servido. Corpo não começa por metadado YAML em nenhuma. **Console sem mensagem** nenhuma na home, na F2, na F3 e nas duas páginas de família. Imagem sem `width`/`height`: **zero** em 9 imagens; nenhuma `lazy` acima da dobra. Meta description: **a maior é 159 caracteres** (`/veiculos/patinete-eletrico/`) — as duas que estouravam o teto de 160 em 30/10 e em 04/11 estão pagas. Nenhuma palavra da lista "Proibidas" do `VOZ.md` em título nem em primeiro parágrafo.
+
+**AS TRÊS FERRAMENTAS FORAM EXECUTADAS COM ENTRADA REAL, NO NAVEGADOR DE VERDADE, E O NÚMERO FOI CONFERIDO NA MÃO — as três acertam:**
+
+- **F1, cinco casos, inclusive os dois limites:** 1.000 W / 32 km/h / com acelerador → `autopropelido`; 1.500 W / 32 / com acelerador → `ciclomotor`; 2.000 W / 45 / com acelerador → `ciclomotor`; 5.000 W / 60 / com acelerador → `acima do ciclomotor`; 250 W / 25 / só pedal assistido → `bicicleta elétrica`. Os tetos da 996/2023 (1.000 W e 32 km/h para autopropelido, 4.000 W e 50 km/h para ciclomotor) são respeitados inclusive **no** limite, e o caso de cima da escada não é empurrado para dentro do ciclomotor.
+- **F2:** 60 V × 20,0 Ah → **1.200 Wh** (conta na mão: 60 × 20 = 1.200 ✓), "39 a 60 km" com um pouco de subida e "25 a 60 km" com ladeira de verdade. 36 V × 10,4 Ah → **374 Wh** (36 × 10,4 = 374,4 ✓) e, **sem a autonomia declarada, a ferramenta recusa dar km e diz por quê** em vez de inventar a régua de Wh por km — é a seção 10 funcionando.
+- **F3:** 100 + 8 = 108 kg → **119 kg** (108 × 1,10 = 118,8 ✓); 99 → **109** (✓); 110 → **121** (✓). A virada que a tabela pré-renderizada publica — 109 kg é o último peso total que os 120 kg do teto de varejo acolhem — bate com a conta.
+
+**TESTE DE VIDA DOS LINKS DE AFILIADO (25.4 e 25.4-b): 12 de 12 VIVOS, 0 mortos, 0 esgotados.** Testado pela API de ficha (`/api/v4/pdp/get_pc`), de dentro de aba já no domínio, **sem nunca abrir o link de afiliado**, pela `url_produto` crua. Itens: `21599581551`, `58266601235`, `20998008328`, `58212105781`, `58220113046`, `58265317472`, `23399661765`, `58213915737`, `58259744161`, `58215248915`, `22295188137` (os oito cartões das duas páginas de família mais três linhas) e `20299836765` (o único degrau 1 do banco, o Honeywhale da F2). Todos com `item_status: normal` e título casando com o do cartão. **Intestáveis: zero.** Os 22 itens da vitrine têm `url_produto` e `url_busca`; os quatro registros em degrau 4 não têm `url_produto` e isso **não é defeito** — degrau 4 é busca, e os quatro têm `url_busca_produto`, que é a URL crua que a 25.4-b pede para esse degrau. **Item sem piso da 25.2: zero** entre os que estão no ar.
+
+### 1. A HOME DECLARA, NO AR, QUE A F3 "AINDA NÃO ESTÁ NO AR" — E ELA ESTÁ, DESDE HOJE. O CARTÃO DELA NÃO É LINK, E A PÁGINA NASCEU SEM NENHUM LINK DE MIOLO APONTANDO PARA ELA.
+
+Medido no HTML servido da home na revisão 60, no cartão "Aguenta você e a mochila?", letra por letra: **"Ainda não está no ar: das fichas que colhemos, só três declaram carga máxima, e nenhuma dessas três tem oferta aberta. Sem ficha que declare o limite, a conta não teria o que comparar."** E `/peso-maximo-patinete-eletrico/` está no `wp-sitemap.xml`, responde **200 nas duas leituras**, e a F3 dela devolveu **119 kg** para 100 + 8 nesta mesma ronda.
+
+**O que isso custa, e não é só a frase errada: o cartão não tem `<a>`, então o link não existe.** Contados os links de **miolo** (sem header e sem rodapé) das 10 páginas, a entrada de `/peso-maximo-patinete-eletrico/` é **zero**. A 16.4(f) pede pelo menos dois, um deles da mãe — e a mãe dela é a home (breadcrumb `Início › Carga máxima`). Os únicos links para ela são o do menu e o do rodapé, que a casca serve em toda página: **navegação não é cluster**, e é por isso que a 16.4(f) fala de quem aponta e não de quantos `href` existem no documento. A irmã dela, a F2, também não a lista. Em contraste, a F2 tem **4** entradas de miolo (home, `/veiculos/` e as duas páginas de família).
+
+**Por que a Sentinela não consertou:** a frase e o cartão são literais de PHP dentro de `snippets/rodametria-casca.php` (ou do que estiver pendurado no filtro `rodametria_home_cartoes`), e a trava 3 da seção 12 proíbe tocar em snippet "sem exceção, mesmo que a mudança pareça de uma linha" — é o mesmo motivo que deixou as duas meta descriptions de 30/10 para a Fundação.
+
+**Pronto quando:** o terceiro cartão da home é um `<a href="https://rodametria.com.br/peso-maximo-patinete-eletrico/">`, a frase "Ainda não está no ar" não aparece mais no HTML servido da home, e a contagem de links de **miolo** apontando para `/peso-maximo-patinete-eletrico/`, feita a partir do HTML servido das 10 páginas, é **2 ou mais**, sendo um deles da home.
+
+### 2. TRÊS TEXTOS PROMETEM QUE A F2 USA O PESO DE QUEM PILOTA. A F2 DIZ, NA PRÓPRIA TELA, QUE NÃO USA — E A MEDIÇÃO NO NAVEGADOR DÁ RAZÃO À F2. É A SEGUNDA VEZ QUE ESTA PROMESSA APARECE.
+
+**A medição, feita no navegador de verdade:** `/autonomia-patinete-eletrico/`, 60 V × 20,0 Ah, relevo "um pouco de subida", autonomia do anúncio 60 km. Com **peso 50 kg** → "39 a 60 km". Com **peso 130 kg** → "39 a 60 km". **Byte por byte a mesma resposta.** O campo "Seu peso" é coletado e descartado — e a própria página diz isso, com todas as letras, no bloco de compra: *"Os seus 90 kg não entram na conta: não achamos, em fonte que alcance, nenhuma régua de quanto cada quilo de quem pilota custa em Wh por km."* **A página está certa e é honesta.** O que está errado é o que outras três telas prometem por ela:
+
+- **`/peso-maximo-patinete-eletrico/`, no corpo:** *"Perto do limite o peso também come os km: a conta de autonomia **aceita o seu peso** e devolve a faixa do seu trajeto."* — com a âncora **"Ver a conta de autonomia com o seu peso"** apontando para `/autonomia-patinete-eletrico/?rdm_peso=100`. O parâmetro chega e não muda nada.
+- **`/veiculos/bicicleta-eletrica/`, DENTRO do `FAQPage` do JSON-LD**, na resposta de "Quantos quilômetros ela faz?": *"A nossa calculadora de autonomia desconta o relevo a partir da tensão e da amperagem, mostra o número do anúncio ao lado, e **diz em que ponta da faixa o seu peso deixa você**."*
+- **`/veiculos/patinete-eletrico/`, DENTRO do `FAQPage` do JSON-LD**, na resposta de "Quantos quilômetros o patinete faz de verdade?": *"Menos do que o anúncio promete, e **o quanto menos depende do seu peso** e da ladeira (...) e diz em que ponta da faixa..."*
+
+**Duas das três estão no JSON-LD**, que é a metade que o Google e as ferramentas de IA citam sem abrir formulário nenhum — a promessa que menos gente lê é a que mais longe viaja.
+
+**E ela já foi consertada uma vez.** O `VOZ.md` desta ilha registra, no bloco da Home: o cartão dizia "com o seu peso" até 30/10/2026 e **mudou pelo item 2 do despacho da ronda daquele dia**, com a razão escrita — *"a F2 não faz conta com o peso de quem pilota (a constante de consumo por quilo está `pendente` e pela seção 10 não pode entrar em fórmula), e prometer o peso ali era prometer o que a ferramenta não entrega"*. **O cartão foi consertado; a promessa voltou por outras três portas, uma delas numa página que nasceu hoje.** Pela 19.4(b), defeito que volta na mesma ilha deixa de ser conserto e vira despacho — e este é o motivo, além da trava de snippet, de a Sentinela não ter tocado nele.
+
+**Pronto quando:** nenhum texto de nenhuma página desta ilha — corpo, rótulo, âncora **ou `FAQPage` do JSON-LD** — afirma que a F2 usa o peso de quem pilota, enquanto a F2 servir a oração de que ele não entra na conta. A régua que mede isso procura, no HTML servido das 10 URLs **e nos blocos `application/ld+json`**, as expressões `seu peso` e `o seu peso` ao lado de `autonomia`, `km` ou `faixa`, e cobra que o único lugar onde elas coexistam seja a oração que NEGA o uso. **Qual das duas saídas tomar é escolha da Fundação e por isso é 19.2:** ou as três promessas caem, ou a constante `consumo por quilo` sai de `pendente` com fonte e a F2 passa a usar o peso — e aí quem muda é a fórmula, que é dado técnico e nunca foi da Sentinela.
+
+### 3. `/veiculos/` AFIRMA "DISPENSA HABILITAÇÃO" — A FRASE EXATA QUE ESTA ILHA PROÍBE A SI MESMA, E QUE O PORTÃO DA F1 COBRA SEM ALCANÇAR ESTA PÁGINA.
+
+Medido no HTML servido de `/veiculos/`, no bloco "Os três números que decidem a compra": **"Potência nominal e velocidade máxima — é o par que decide se o veículo dispensa habilitação e placa, ou se é ciclomotor e precisa dos dois."**
+
+É uma afirmação chapada sobre habilitação. A mesma ilha, na mesma hora, diz o contrário na home, no `FAQPage`, na resposta de "Essa resolução diz se precisa de CNH?": *"Sobre habilitação esta página não responde, e o motivo é um só: a resolução que decide a categoria não tem artigo nenhum sobre CNH. Quem decide isso é o Código de Trânsito, e a gente ainda não leu o Código de Trânsito na fonte oficial — então não vai dizer aqui que dispensa, nem que exige."* O `manifest.json` desta ilha registra que o portão da F1 **"cobra a AUSÊNCIA das frases `dispensa CNH` e `exige habilitação` em todo texto de tela"**. Só que "todo texto de tela" ali quer dizer as telas **da F1**.
+
+**E a frase tem uma terceira forma, em duas outras páginas:** `/veiculos/patinete-eletrico/` e `/veiculos/bicicleta-eletrica/` servem, as duas, *"é o acelerador que decide se ele é bicicleta elétrica ou ciclomotor — **a diferença entre andar sem habilitação e precisar de uma**"*. Isso diz, em outras palavras, que a categoria decide a habilitação, que é exatamente o que a 996/2023 não diz.
+
+**A causa é de alcance de régua, e ela já tem nome no contrato.** É a família que a 32.5-c nomeia e que a nota da 16.5 descreve: régua escrita para uma família de página **não reprova** a outra — só a ignora. O portão mais severo desta ilha, o que protege a afirmação mais perigosa que ela pode fazer, roda em 1 das 10 URLs. **Por isso isto é 19.2 e não 19.1:** o conserto mexe em três páginas de uma vez (22.7: "qualquer coisa que mexa em mais de uma página de uma vez" é despacho), o texto mora em snippet (trava 3), e a parte que importa não é a frase — é o portão.
+
+**Pronto quando:** (a) as expressões `dispensa habilitação`, `dispensa CNH`, `exige habilitação` e `sem habilitação e precisar de uma` não aparecem no HTML servido de nenhuma das 10 URLs, exceto dentro da oração que NEGA que a ilha responda sobre habilitação; e (b) o portão que cobra isso roda sobre **todas** as URLs do `wp-sitemap.xml`, e não só sobre as telas da F1 — e reprovaria a `/veiculos/` de hoje se fosse rodado contra a revisão 60. Rode-o contra a revisão 60 antes de consertar: portão que não reprova o defeito conhecido não está medindo nada (20.5).
+
+### 4. O `FAQPage` DE `/veiculos/bicicleta-eletrica/` RESPONDE "PRECISA DE CNH?" COM "NÃO", NA MESMA PÁGINA QUE DIZ QUE NÃO RESPONDE ISSO.
+
+Medido nos dois lugares, no mesmo HTML servido:
+
+- **No `application/ld+json`**, pergunta "Bicicleta elétrica precisa de CNH?", resposta: **"A de pedal assistido, dentro dos limites da resolução, não. A que anda no acelerador pode ser ciclomotor, e aí precisa."**
+- **No corpo da mesma página**, poucos parágrafos acima: *"enquanto a gente não ler o texto oficial da Resolução Contran nº 996/2023, esta página não diz que nenhuma delas dispensa habilitação."*
+
+**Duas declarações da mesma página, na mesma hora, em direções opostas — e a que vai para o Google é a do JSON-LD.** É o item 3 com a agravante de estar na camada estruturada: a 996/2023 não tem artigo sobre CNH, o CTB não foi lido (a parede do `.gov.br`), e a única resposta honesta desta ilha sobre habilitação hoje é a da home. Uma `FAQPage` que responde "não" a uma pergunta de habilitação é a ilha errando **para o lado permissivo**, que é o lado que o `VOZ.md` chama de proibido ("qualquer frase que afirme o que a resolução não diz") e que o próprio `/veiculos/` chama de "o pior erro possível aqui — errar para baixo manda alguém para a rua sem habilitação".
+
+**Pronto quando:** a resposta dessa pergunta no `FAQPage` não afirma nem nega habilitação — e o portão do item 3 lê também os blocos `application/ld+json`, não só o texto visível. Hoje nenhuma régua desta ilha olha para dentro do JSON-LD procurando afirmação de habilitação, e é ali que a afirmação está.
+
+### 5. O `nota` DE `dados/veiculos.json` AFIRMA QUE NENHUM REGISTRO TEM SAÍDA DE COMPRA, E CINCO TÊM — QUATRO DELES NO AR.
+
+Medido no arquivo do repositório: o campo `nota` termina em **"NENHUM registro e `publicavel`, e a causa e uma so: nenhum tem saida de compra, e a 25.2 nao admite item publicavel sem piso."** E o mesmo arquivo traz `afiliado` preenchido em **cinco** registros — `honeywhale-m2-max` (degrau 1), `sousa-bike-aro-24`, `x13-chopper-1000w`, `ls-sport-scooter-1000w` (degrau 4) e o quinto por `url_busca` —, dos quais **quatro aparecem como cartão no ar** em `/autonomia-patinete-eletrico/`, com botão de afiliado que esta ronda testou e achou vivo.
+
+Isto não quebra página nenhuma: é a segunda declaração que subiu sozinha de um lado só, exatamente a família que o próprio `manifest.json` desta ilha nomeia quando conta por que o campo `versao` dos snippets passou a existir — *"prosa que repete o mesmo fato é a segunda declaração que sobe sozinha de um lado só"*. O risco é de método: a próxima execução que ler esse `nota` como fato conclui que a ilha não tem monetização nenhuma, e ela tem.
+
+**Pronto quando:** o `nota` não afirma mais um número de registros com saída de compra — ou afirma o número **recontado do próprio arquivo pelo gerador**, nunca digitado. É 19.2 porque é prosa de metadado de banco, e porque escolher entre "apagar a frase" e "fazer o gerador recontá-la" é escolha entre duas opções defensáveis.
+
+### O QUE ESTA RONDA APRENDEU SOBRE O INSTRUMENTO, e a próxima ronda vai procurar aqui
+
+**A RECEITA DO TESTE DE VIDA DA SHOPEE GANHOU O PASSO QUE FALTAVA, E ELE NÃO É DE TEMPO: É RENAVEGAR A ABA.** O item 6 do despacho de 30/10 concluiu que "o que esgota é um orçamento acumulado na janela, não o espaçamento", e recomendou "lotes de 3 com 45 s de intervalo entre lotes". Hoje essa receita, aplicada ao pé da letra, devolveu **0 de 3** duas vezes seguidas, com a aba redirecionada para `/verify/traffic/error`. O que destravou, e reproduziu **quatro vezes seguidas sem uma falha**, foi:
+
+1. `navigate` da aba para `https://shopee.com.br/` — **uma navegação de verdade, não um `fetch`**;
+2. esperar ~45 s;
+3. exatamente **3** chamadas à API de ficha, com ~11 s entre elas.
+
+**Resultado: 3 de 3 em cada um dos quatro ciclos, 12 de 12 no total.** Sem o passo 1, o lote seguinte zera. A leitura é que o redirecionamento para `/verify/traffic/error` **marca a aba**, e só uma navegação nova limpa a marca — esperar na aba marcada não limpa nada, o que explica por que os lotes 2 e 4 de 30/10 zeraram com o mesmo ritmo dos lotes 1 e 3. **Para a próxima ronda:** conte com 3 itens por ciclo e ~1 minuto por ciclo, e o teto do dia deixa de ser 9 a 12 — foram 12 hoje sem chegar ao CAPTCHA. CAPTCHA continua sendo fim da medição do dia, nunca falha de método. Isto não é despacho de conserto: é a receita, e ela mora aqui porque é onde a próxima ronda vai procurá-la.
+
+**E UMA REPROVAÇÃO QUE NÃO ACONTECEU, escrita porque custou dez minutos e vai custar de novo.** Os cartões do X13 e do LS Sport em `/autonomia-patinete-eletrico/` mostram preço **lido na Mercado Livre em 27/10/2026** ao lado de um botão que abre uma **busca da Shopee** — que é, de longe, o candidato mais forte a defeito de coerência desta ilha. **Não é defeito:** a página diz, no próprio cartão, *"lido na Mercado Livre em 27/10/2026 — o botão abre a Shopee"*. A régua de coerência tem de ler a oração inteira do cartão antes de comparar loja do preço com loja do botão; comparar os dois campos do banco sem ler a tela reprova uma página que está certa, e a 20.5 já disse qual é o preço disso.
+
+---
+
 ## ~~DESPACHO DA SENTINELA — 2026-11-04 (RONDA DIÁRIA TÉCNICA, 14h3xZ–15h0xZ) — CINCO ITENS, E O ITEM 1 É A 32.5-d ACONTECENDO PELA SEGUNDA VEZ NESTA ILHA~~ — **OS CINCO ITENS FECHADOS EM 04/11/2026, CONFERIDOS NO AR PELA 18.4**
 
 > **FECHADO pela execução de 16h17Z–17h13Z de 04/11/2026, revisão 41 no ar, com as linhas da revisão corrente do log lidas DO FECHO PARA BAIXO e todas dizendo `ok` (20.4 e 20.8).** O que cada item virou, com o número medido no ar:
