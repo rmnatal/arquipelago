@@ -4970,3 +4970,32 @@ nada, e é por isso que todos chegariam ao ar e ficariam.** A contrapartida é o
 **os sete viraram afirmação de portão na mesma passada**, e três delas com a régua escrita **do outro
 lado** da conta — multiplicar de volta em vez de repetir a divisão, fabricar o mundo do plural em vez
 de confiar no dado de hoje, e **apertar o botão** em vez de medir o HTML em volta dele.
+
+### 11. A TERCEIRA PONTA, E ELA NÃO TINHA RÉGUA NENHUMA: O COMPORTAMENTO NO NAVEGADOR
+
+Esta ilha tem portão que lê o **HTML servido** (`conferir-no-ar.py`) e portão que **mede pixel** num
+navegador de verdade (`conferir-32-5-no-navegador.mjs`). **Nenhum dos dois aperta um controle da
+ferramenta** — e a metade da F1 que a pessoa de fato usa é a recomputação no navegador. Então esta
+execução mediu isso à mão, na página de verdade, a 390 px, antes de fechar: **4 casos, um por saída da
+árvore, e os quatro respondem.**
+
+```
+500 W  · 25 km/h · só pedal assistido · (sem cidade)  -> bicicleta elétrica    (tom verde)
+500 W  · 25 km/h · com acelerador     · Campinas      -> autopropelido         (tom verde)
+1.000 W· 45 km/h · com acelerador     · (sem cidade)  -> ciclomotor            (tom alerta)
+5.000 W· 80 km/h · com acelerador     · Osasco        -> acima do ciclomotor   (tom alerta)
+```
+
+**Zero erro de JavaScript**, a barra fixa do telefone acompanhando a categoria nos quatro, o tom
+trocando de verde para âmbar exatamente na categoria que pede placa, e a **camada 2 trocando de frase
+por cidade** — a genérica sem cidade, a de "aparece com limite próprio mas a gente não leu o ato" em
+Campinas, e a de "não está no nosso banco" em Osasco. **A frase do estouro acertou a causa nos dois
+casos que estouram:** o ciclomotor citou **só** a velocidade (45 km/h passa dos 32) e não a potência,
+que não passou; o de cima citou os **dois**.
+
+**ISTO NÃO VIROU PORTÃO, e a razão é a 31.2:** portão novo só nasce quando existe **defeito medido no
+ar** que ele teria pegado, e esta medição achou **zero**. Ela fica registrada aqui com os quatro casos
+e com o jeito de rodá-la — o `import` desta nuvem é `createRequire` e não `import from 'playwright'`,
+que é a causa dos 21 portões de navegador inertes do arquipélago, e o caminho do Chromium se
+**descobre** em `/opt/pw-browsers` em vez de ser fixo. **No dia em que a terceira ponta falhar, há o
+defeito que autoriza o portão e há a receita para escrevê-lo em minutos.**

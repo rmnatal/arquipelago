@@ -958,6 +958,19 @@ prefixadas tem ~2,3 KB e vai para a mesma folha.
 
 ## A BANCADA DESTA ILHA É UM COMANDO SÓ, E ELA DESCOBRE OS PORTÕES (28/10/2026)
 
+> **A TERCEIRA PONTA NÃO TEM PORTÃO, E ISSO É DECISÃO E NÃO LACUNA (06/11/2026).** A bancada tem quem
+> lê o **HTML servido** (`conferir-no-ar.py`, que desde 06/11 também **aperta o botão** de cada
+> formulário e exige 200) e quem **mede pixel** num navegador de verdade
+> (`conferir-32-5-no-navegador.mjs`). **Nenhum dos dois aperta um controle da ferramenta** — e a metade
+> da F1 que a pessoa de fato usa é a recomputação no navegador, com a árvore escrita no JS.
+> **Isso foi medido à mão em 06/11, na página de verdade, a 390 px, com os quatro casos da árvore, e
+> deu zero defeito** (o detalhe e os números estão no `REGISTRO.md` daquela data). **Não virou portão
+> pela 31.2:** portão novo só nasce com defeito medido no ar que ele teria pegado. No dia em que essa
+> ponta falhar, a receita está registrada — `createRequire` e não `import from 'playwright'` (a causa
+> dos 21 portões de navegador inertes do arquipélago), e o caminho do Chromium **descoberto** em
+> `/opt/pw-browsers` em vez de fixo.
+
+
 ```
 python3 ferramentas/bancada.py            # os portões que rodam sem rede
 python3 ferramentas/bancada.py --no-ar    # mais os que abrem o site
