@@ -471,12 +471,21 @@ function rodametria_f3_pagina_html() {
 	$html .= '<h2>O que o nosso banco tem para o seu peso</h2>';
 	$html .= rodametria_f3_grupos_html( $d );
 
-	$html .= '<p class="rdm-f3-convite">'
-		. esc_html( $d['resposta_exemplo']['frase_convite_f2'] ) . ' '
-		. '<a href="' . esc_url( add_query_arg(
-			'rdm_peso',
-			(int) $d['campos']['exemplo']['peso_piloto_kg'],
-			rodametria_f2_url() ) ) . '">Ver a conta de autonomia com o seu peso</a>.</p>';
+	/* O CONVITE PARA A F2 (3.4 e 32.2), E A CHAMADA E GUARDADA.
+	   `rodametria_f2_url()` mora em OUTRO snippet, e pela cicatriz da 20.4 um
+	   snippet pode estar gravado e NAO ATIVADO — e ai a chamada direta seria
+	   erro fatal, ou seja TELA BRANCA nesta pagina por causa da irma. O snippet
+	   `rodametria-produto` ja guardava esta mesma funcao desde 29/10 e a licao
+	   nao havia viajado (32.5-c outra vez, dentro da mesma ilha). Sem a F2, o
+	   convite simplesmente NAO NASCE: a pagina perde um link e nao cai. */
+	if ( function_exists( 'rodametria_f2_url' ) ) {
+		$html .= '<p class="rdm-f3-convite">'
+			. esc_html( $d['resposta_exemplo']['frase_convite_f2'] ) . ' '
+			. '<a href="' . esc_url( add_query_arg(
+				'rdm_peso',
+				(int) $d['campos']['exemplo']['peso_piloto_kg'],
+				rodametria_f2_url() ) ) . '">Ver a conta de autonomia com o seu peso</a>.</p>';
+	}
 
 	$html .= '<h2>Quem entrou, quem não entrou, e por quê</h2>';
 	$html .= rodametria_f3_contas_html( $d );

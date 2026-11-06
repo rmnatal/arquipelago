@@ -61,6 +61,12 @@ SNIPPETS = ILHA / "snippets"
 # `cdm_`, `aqm_`, `rbm_`); aqui mora o desta, e so ele.
 PREFIXO = "rdm_"
 
+# A CASCA. Ela nao e "mais um snippet": e quem registra as paginas, serve a
+# folha e publica os componentes do molde (32.6-b). Com ela inativa a ilha nao
+# tem pagina nenhuma, entao chamada de ferramenta para a casca nao e caminho de
+# tela branca — ver o comentario longo na afirmacao de chamada entre snippets.
+CASCA = "rodametria-casca.php"
+
 # As tags que de fato enviam valor quando o formulario e submetido. `<meta
 # name=>` NAO e uma delas, e e exatamente onde a regua ingenua erra — ver o
 # mundo da 20.8 no autoteste.
@@ -364,11 +370,51 @@ def passada():
     total_chamadas = 0
     fantasmas = 0
     guardadas_total = 0
+    de_outro_snippet = 0
     for rotulo, texto in textos:
         guardadas = nomes_guardados(texto)
         guardadas_total += len(guardadas)
         for nome in funcoes_chamadas(texto):
             total_chamadas += 1
+
+            # A CHAMADA PARA FUNCAO DE OUTRO SNIPPET EXIGE GUARDA, E NAO E
+            # ZELO: pela cicatriz da 20.4, um snippet pode estar GRAVADO E NAO
+            # ATIVADO — o Sync escreve `gravado (#13) mas NAO ativado` numa
+            # linha do log, segue em frente e sobe a revisao. Snippet inativo
+            # nao define funcao nenhuma, e a chamada direta vira ERRO FATAL:
+            # esta pagina cai por causa da IRMA.
+            #
+            # O snippet `rodametria-produto` ja fazia isso certo desde 29/10
+            # (`function_exists( 'rodametria_f2_url' )`) e a licao NAO HAVIA
+            # VIAJADO — a F3 nasceu chamando a mesma funcao sem guarda, dentro
+            # da mesma ilha. E a 32.5-c, e e por isso que a regra mora num
+            # portao e nao num comentario.
+            #
+            # A CASCA E A EXCECAO, E ELA FOI MEDIDA E NAO SUPOSTA. A primeira
+            # versao desta afirmacao cobrava guarda em TODA chamada para outro
+            # snippet e deu 90 FALHAS, todas legitimas-de-mentira: pela 32.6-b
+            # os componentes do molde moram na casca de proposito e TODA
+            # ferramenta os chama — exigir guarda nos 90 encheria o codigo de
+            # `if` sem tirar risco nenhum, porque a casca e quem REGISTRA as
+            # paginas: com ela inativa nao existe pagina para cair. A
+            # fragilidade de verdade e ferramenta chamando FERRAMENTA (F3 -> F2),
+            # que e dependencia OPCIONAL: a pagina da F3 existe sem a F2.
+            # Foi o terceiro falso positivo de regua desta passada, e os tres
+            # tinham a mesma causa — a regua escrita antes de medir o que ela
+            # reprovaria.
+            if (nome in definidas and definidas[nome] != rotulo
+                    and definidas[nome] != CASCA):
+                de_outro_snippet += 1
+                afirma(nome in guardadas,
+                       "%s chama `%s()`, que e definida em %s — OUTRO snippet —, e a "
+                       "chamada nao esta guardada por `function_exists( '%s' )`. "
+                       "Snippet gravado e NAO ATIVADO (a cicatriz da 20.4) nao define "
+                       "funcao nenhuma, e ai esta pagina cai por causa da irma. O "
+                       "snippet `rodametria-produto` ja guardava `rodametria_f2_url()` "
+                       "desde 29/10 e a licao nao havia viajado."
+                       % (rotulo, nome, definidas[nome], nome))
+                continue
+
             if nome in definidas or nome in guardadas:
                 continue
             fantasmas += 1
@@ -382,8 +428,9 @@ def passada():
                    "saida e a GUARDA e nunca uma lista de excecao."
                    % (rotulo, nome, nome))
     nota("chamadas entre snippets: %d chamada(s) de `rodametria_*`, %d definicao(oes), "
-         "%d nome(s) guardado(s) por function_exists, %d fantasma(s)"
-         % (total_chamadas, len(definidas), guardadas_total, fantasmas))
+         "%d nome(s) guardado(s) por function_exists, %d chamada(s) para OUTRO "
+         "snippet, %d fantasma(s)"
+         % (total_chamadas, len(definidas), guardadas_total, de_outro_snippet, fantasmas))
     afirma(total_chamadas > 20,
            "a regua achou so %d chamada(s) de `rodametria_*` nos snippets: ou a "
            "varredura quebrou, ou este verde e falso" % total_chamadas)
