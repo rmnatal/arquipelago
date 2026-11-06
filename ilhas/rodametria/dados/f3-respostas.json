@@ -24,7 +24,7 @@
       "unidade": "por cento acima do peso total",
       "tipo": "decisao_da_ilha",
       "status": "publicavel",
-      "fonte": "Decisao desta ilha. NAO e dado de terceiro, e a pagina nunca a atribui a ninguem.",
+      "fonte": "Decisão da Rodametria, e a página nunca a atribui a ninguém.",
       "verificado_em": "2026-10-28"
     },
     "ressalva-desempenho-perto-do-teto-de-carga": {
@@ -32,7 +32,7 @@
       "unidade": null,
       "tipo": "afirmacao_qualitativa",
       "status": "publicavel",
-      "fonte": "Convergente em tres publicadores colhidos em 28/10/2026: race.es (quem esta perto do peso maximo anunciado pode nao obter a velocidade e a aceleracao maximas declaradas pelo fabricante); milar.es ('o peso nao deve exceder a recomendacao, pois o desempenho do patinete eletrico pode ser afetado'); br.my-best.com, publicador BRASILEIRO (o limite extra 'evita sobrecarga no motor e mantem a velocidade e a seguranca, mesmo com peso adicional').",
+      "fonte": "Três publicadores dizem a mesma coisa, sem número: a espanhola RACE (quem está perto do peso máximo anunciado pode não obter a velocidade e a aceleração máximas que o fabricante declara), a Milar (o peso não deve exceder a recomendação, porque o desempenho é afetado) e a brasileira my-best (o limite extra evita sobrecarga no motor e mantém a velocidade e a segurança). Lidos em 28/10/2026.",
       "verificado_em": "2026-10-28"
     },
     "teto-de-carga-do-mercado-brasileiro": {
@@ -40,7 +40,7 @@
       "unidade": "kg",
       "tipo": "observacao_de_mercado",
       "status": "publicavel",
-      "fonte": "Fichas de varejo colhidas no bloco 1 em 28/10/2026 (extra.com.br, casasbahia.com.br, magazineluiza.com.br) e painel da Shopee do dossie, lido pelo Raphael em 27/10/2026.",
+      "fonte": "Fichas de varejo lidas em extra.com.br, casasbahia.com.br e magazineluiza.com.br, mais o painel de afiliado da Shopee, em 27 e 28/10/2026. A faixa observada foi de 115 a 140 kg, com 120 kg repetido.",
       "verificado_em": "2026-10-28"
     }
   },

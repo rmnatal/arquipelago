@@ -331,6 +331,16 @@ def main():
             textos_de_tela.append(("resposta_exemplo/%s[%d]" % (grupo, i), v))
     for l in d["tabela"]["linhas"]:
         textos_de_tela.append(("tabela/%s/por_que" % l["peso_total_kg"], l["por_que"]))
+    # A `fonte` DE CADA CONSTANTE ENTRA AQUI, porque a dobra "Como sabemos" a
+    # IMPRIME — e foi exatamente por ela que a palavra "egresso" chegou a tela da
+    # F2 em 29/10/2026, por DADO e nao por codigo. Esta ferramenta nasceu
+    # publicando o `fonte` cru ("Decisao desta ilha. NAO e dado de terceiro..." —
+    # ASCII sem acento — e "painel da Shopee do dossie, lido pelo Raphael", que e
+    # bastidor da fabrica e o nome do dono na pagina publica). O gerador agora
+    # troca pela frase de LEITOR de `FONTE_NA_TELA`, e esta linha e a segunda
+    # metade: o gerador decide, o portao confere o que foi publicado.
+    for cid, c in d["constantes_usadas"].items():
+        textos_de_tela.append(("constantes_usadas/%s/fonte" % cid, c.get("fonte") or ""))
 
     for onde, texto in textos_de_tela:
         for termo in proibidas:

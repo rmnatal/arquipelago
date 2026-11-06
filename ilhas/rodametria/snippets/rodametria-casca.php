@@ -28,7 +28,13 @@
  * ou escala nasce aqui sem estar la.
  */
 
-/* 1.13.0 (06/11/2026) — O AVISO DE JAVASCRIPT DESLIGADO VIROU COMPONENTE DAQUI
+/* 1.14.0 (06/11/2026) — a folha ganhou as classes da F3 (os tres grupos da 3.2, a
+   ressalva sourced da 3.4, a frase de lista vazia e o convite para a F2). Elas moram
+   AQUI e nao no snippet da F3 porque e a casca que imprime o <style>, desde a 32.4-b
+   de 04/11 — e porque CSS de ferramenta espalhado pelos snippets foi o que fez a folha
+   servir 23 comentarios de bastidor em toda pagina.
+
+   1.13.0 (06/11/2026) — O AVISO DE JAVASCRIPT DESLIGADO VIROU COMPONENTE DAQUI
    (`rodametria_casca_noscript()`), e o seletor dele deixou de ser `.rdm-f1-noscript`
    para ser `.rdm-noscript`. A causa: a 32.1-b nasceu hoje de manha com a F1, a F1
    ganhou o aviso e a F2 NAO — a regra foi aplicada na pagina que a descobriu e nao
@@ -52,7 +58,7 @@
    Antes disto a ilha cujo produto e "o preco de hoje" tinha ZERO ocorrencia de
    `dateModified` e de `datePublished` em todo o JSON-LD das 9 URLs. */
 if ( ! defined( 'RODAMETRIA_CASCA_VERSAO' ) ) {
-	define( 'RODAMETRIA_CASCA_VERSAO', '1.13.0' );
+	define( 'RODAMETRIA_CASCA_VERSAO', '1.14.0' );
 }
 
 /**
@@ -1231,6 +1237,29 @@ body.rdm .rdm-f1-municipal p:last-child{margin-bottom:0}
 
 /* AS RESSALVAS DA 1.4 — abaixo do bloco de compra, e elas NAO sao rodape. */
 .rdm-f1-ressalva{margin:0 0 var(--rdm-e5)}
+
+/* A F3 — "aguenta o meu peso?" (06/11/2026).
+   Os TRES GRUPOS da 3.2 e o titulo de cada um. O titulo e menor que um H2 de
+   secao, pelo mesmo motivo que o da camada municipal da F1: ele rotula um
+   bloco DENTRO da resposta, nao uma secao da pagina. */
+body.rdm .rdm-f3-grupo-titulo{font-size:1rem;margin:var(--rdm-e4) 0 var(--rdm-e1)}
+body.rdm .rdm-f3-grupos > .rdm-f3-grupo-titulo:first-child{margin-top:0}
+.rdm-f3-lista{margin:0 0 var(--rdm-e3);padding-left:var(--rdm-e4)}
+.rdm-f3-lista li{margin:0 0 var(--rdm-e1)}
+
+/* A RESSALVA SOURCED DA 3.4 — ela segue o grupo do meio, e e ressalva e nao
+   alerta: cor de legenda, nunca a cor de sinal da marca (DESIGN.md). */
+.rdm-f3-ressalva{font-size:.9375rem;color:var(--rdm-legenda);margin:0 0 var(--rdm-e4)}
+
+/* A FRASE DE LISTA VAZIA. Ela e a resposta quando a vitrine nao tem o que
+   mostrar, entao NAO e legenda: tem o peso de texto normal, com o traco a
+   esquerda dizendo que e um bloco e nao um paragrafo solto. */
+.rdm-f3-vazio{border-left:3px solid var(--rdm-traco);padding:0 0 0 var(--rdm-e3);
+  margin:0 0 var(--rdm-e4)}
+
+.rdm-f3-convite{margin:0 0 var(--rdm-e5)}
+.rdm-f3-contas{margin:0 0 var(--rdm-e5)}
+.rdm-f3-data{color:var(--rdm-legenda)}
 
 /* O AVISO DE QUEM ESTA SEM JAVASCRIPT. Legenda, nao alerta: a pagina continua
    respondendo, so nao responde ao que a pessoa escolheu. */

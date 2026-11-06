@@ -59,6 +59,36 @@ Ao mover o aviso para a casca — que é **o conserto que a regra pede** —, a 
 2. **CHAMADA DE FUNÇÃO INEXISTENTE, E ELA É TELA BRANCA.** O snippet chamou `rodametria_casca_data_em_portugues()`, nome **derivado de cabeça** do padrão dos outros componentes da casca. Em PHP é erro fatal em tempo de execução; **`php -l` passa verde**, porque a sintaxe está perfeita, e **nenhum dos 32 portões sem rede resolvia chamada entre snippets**. É a família que a **20.7** já nomeou para nome de constante (*"derivar é natural e erra CALADO"*), com o estrago maior. Virou régua: toda função `rodametria_*` chamada tem de **existir** ou estar **guardada por `function_exists()`** — a saída honesta para `rodametria_sync_token()`, que é do Sync e não mora neste repositório. **Guarda e nunca lista de exceção.** Provada **reinjetando o defeito real no arquivo real**: 238 chamadas varridas, 86 definições, 88 nomes guardados, 1 fantasma pego.
 3. **A RÉGUA DE ACENTO NASCEU ERRADA DUAS VEZES, e as duas reprovaram texto CERTO.** Primeiro medindo **ausência** de acento acima de 40 caracteres — e *"peso igual ao teto declarado que mais se repete no varejo brasileiro"* não tem um acento e está perfeita. Depois casando **pedaço** de palavra: `so` dentro de "nosso" e "isso", cinco frases reprovadas. Agora procura a palavra escrita **sem o acento que exige**, por palavra inteira, com três mundos — morde no defeito, **passa no texto certo**, não casa pedaço. **Contorcer a cópia para agradar régua errada é pior que a régua errada:** é a régua passando a decidir o que a página diz. *(No caminho, o acento natural que faltava entrou em sete frases de tela, e `VOZ.md` saiu de um motivo da tabela pela 32.4.)*
 
+### E A F3 CHAMAVA A IRMÃ SEM GUARDA — o quarto defeito, achado pela régua que o terceiro produziu
+
+`rodametria_f2_url()` mora em **outro snippet**, e pela cicatriz da **20.4** um snippet pode estar
+**gravado e NÃO ATIVADO**: o Sync escreve `gravado (#13) mas NÃO ativado` numa linha do log, segue
+em frente e sobe a revisão. Snippet inativo não define função nenhuma, e a chamada direta é **erro
+fatal — esta página cairia por causa da irmã.** O snippet `rodametria-produto` **já guardava essa
+mesma função desde 29/10** (`function_exists( 'rodametria_f2_url' )`) e a lição **não havia
+viajado**: 32.5-c dentro da mesma ilha. Sem a F2, o convite agora não nasce e a página não cai.
+
+### A LIÇÃO DE MÉTODO DESTA PASSADA, E ELA VALE MAIS QUE QUALQUER DAS RÉGUAS
+
+**QUATRO** réguas desta execução reprovaram o texto ou o código **certo**, e as quatro pela mesma
+causa: **foram escritas antes de medir o que reprovariam.**
+
+| régua | o que reprovou errado | falsos positivos |
+|---|---|---|
+| `<noscript>` por tag | a F1, que tinha movido o aviso para o componente (o conserto certo) | 1 |
+| acento por ausência | frase correta sem nenhum acento | 5 |
+| acento por substring | `so` dentro de "nosso" e "isso" | 5 |
+| guarda entre snippets | toda chamada para a casca, que é o desenho da 32.6-b | **90** |
+
+A **20.5** nomeia o perigo com todas as letras — *"portão que reprova a página certa é o caminho
+mais curto para alguém passar a ignorá-lo"* — e as quatro foram corrigidas na mesma passada, cada
+uma ganhando o **mundo do próprio falso positivo** no autoteste, para não voltar. A quarta é a que
+ensina: 90 falhas de uma vez são **informação boa**, porque obrigam a olhar; uma só teria passado por
+defeito plausível. **A régua se mede contra o repositório antes de entrar, não depois.** E a ordem
+certa ficou escrita no portão: a casca é exceção porque é quem **registra as páginas** — com ela
+inativa não existe página para cair —, e a fragilidade real é ferramenta chamando **ferramenta**,
+que é dependência opcional. Medido: 239 chamadas varridas, 2 para outro snippet, as 2 guardadas.
+
 **BANCADA SEM REDE: 34 portões, 0 falha** (eram 31 na chegada — entraram `teste-formulario-da-ilha.py`, `teste-f3.py` e `gerar-f3.py --conferir`).
 
 ## 2026-11-05 19h17Z–19h5xZ — **A PORTA SEGUE NO CHÃO 23 HORAS DEPOIS, E A TERCEIRA EXECUÇÃO DO DIA FOI TRABALHAR NA PENDÊNCIA QUE TRAVA A F1 — a parede não é um site, é o domínio `.gov.br` inteiro** — nenhum bloco da fila, pela 18.5

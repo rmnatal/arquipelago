@@ -23,6 +23,7 @@ naquele peso, e ela e contada registro a registro.
     python3 ferramentas/gerar-f3.py --conferir # nao escreve; falha se divergir
 """
 
+import importlib.util
 import json
 import os
 import sys
@@ -39,6 +40,61 @@ f3ref = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(f3ref)
 
 SAIDA = os.path.join(ILHA, "dados", "f3-respostas.json")
+
+
+def _irma():
+    """A maquinaria de TEXTO DE TELA vem da irma, NAO e reescrita aqui.
+
+    `gerar-f2.py` guarda tres coisas que valem para as tres ferramentas: a lista
+    de PALAVRAS_DE_BASTIDOR da 32.4, a regua de ACENTO NA TELA (a cicatriz de
+    29/10/2026, quando a palavra "egresso" chegou a tela POR DADO, de dentro do
+    campo `fonte` de uma constante) e o dicionario FONTE_NA_TELA, que da a frase
+    de LEITOR de cada constante cujo texto interno e de registro.
+
+    `gerar-f1.py` ja importava as duas primeiras assim, em 06/11/2026 pela
+    manha. ESTE GERADOR NASCEU SEM NENHUMA DAS TRES e publicou o `fonte` cru na
+    dobra "Como sabemos": "Decisao desta ilha. NAO e dado de terceiro, e a
+    pagina nunca a atribui a ninguem" — ASCII sem acento —, e, pior, "painel da
+    Shopee do DOSSIE, lido pelo RAPHAEL em 27/10/2026", que e bastidor da
+    fabrica e nome do dono na pagina publica. A 32.5-c outra vez, e a quinta
+    desta passada.
+
+    E A IRMA JA TINHA A FRASE DE DUAS DAS TRES CONSTANTES DESTA FERRAMENTA
+    (`teto-de-carga-do-mercado-brasileiro` e `margem-de-carga-f3`), escritas em
+    28/10 antecipando a F3. Faltava a da ressalva da 3.4, e ela foi escrita LA,
+    onde as outras moram, e nao aqui.
+    """
+    caminho = os.path.join(AQUI, "gerar-f2.py")
+    spec = importlib.util.spec_from_file_location("gerar_f2", caminho)
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
+
+
+IRMA = _irma()
+conferir_acento_na_tela = IRMA.conferir_acento_na_tela
+PALAVRAS_DE_BASTIDOR = IRMA.PALAVRAS_DE_BASTIDOR
+FONTE_NA_TELA = IRMA.FONTE_NA_TELA
+
+
+def fonte_na_tela(cid, registro):
+    """O que a tela diz sobre a procedencia desta regua — e nada mais."""
+    texto = FONTE_NA_TELA.get(cid) or (registro.get("fonte") or "")
+    for palavra in PALAVRAS_DE_BASTIDOR:
+        assert palavra.lower() not in texto.lower(), (
+            "32.4: a frase de procedencia de %r carrega a palavra de bastidor %r e ela "
+            "iria para a tela: %r. Declare a frase de leitor em FONTE_NA_TELA, dentro "
+            "de gerar-f2.py, onde as outras moram." % (cid, palavra, texto[:120]))
+    # O NOME DO DONO NAO VAI PARA A PAGINA PUBLICA. Nao esta na lista da 32.4
+    # porque a 32.4 fala de vocabulario de fabrica, e este e um caso proprio:
+    # "painel da Shopee do dossie, lido pelo Raphael" era o `fonte` cru de uma
+    # das tres constantes desta ferramenta.
+    for proibido in ("Raphael", "dossie", "dossiê"):
+        assert proibido.lower() not in texto.lower(), (
+            "32.4: a frase de procedencia de %r carrega %r, que e bastidor da fabrica "
+            "na pagina publica: %r" % (cid, proibido, texto[:120]))
+
+    return texto
 
 # O CASO DE EXEMPLO. A 32.1 manda vir JA PREENCHIDO no formulario e JA
 # PRE-RENDERIZADO na caixa, e a 3.1 da especificacao diz qual e: a pessoa do
@@ -127,9 +183,18 @@ def montar(constantes, veiculos):
             # "egresso" chegar a tela POR DADO e nao por codigo, de dentro do
             # campo `fonte` de uma constante; por isso o portao desta
             # ferramenta varre estes textos tambem.
-            "fonte": c.get("fonte"),
+            # A FRASE DE LEITOR, nunca o `fonte` cru: ver `fonte_na_tela` acima.
+            "fonte": fonte_na_tela(cid, c),
             "verificado_em": c.get("verificado_em"),
         }
+
+    # A REGUA DE ACENTO DA IRMA, sobre TODO texto que esta pagina serve.
+    conferir_acento_na_tela(
+        [("constantes_usadas/%s/fonte" % k, v["fonte"])
+         for k, v in constantes_usadas.items()]
+        + [("frases_molde/%s" % k, v) for k, v in f3ref.MOLDES.items()]
+        + [("tabela/%s/por_que" % b["peso_total_kg"], b["por_que"])
+           for b in GRADE_DE_PESOS])
 
     teto_banco, quantos_declaram = f3ref.maior_teto_do_banco(registros)
     quantos_serviriam, serviriam = f3ref.quantos_serviriam_sem_a_oferta(

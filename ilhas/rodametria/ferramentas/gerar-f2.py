@@ -123,6 +123,17 @@ FONTE_NA_TELA = {
         "28/10/2026. A faixa observada foi de 115 a 140 kg, com 120 kg repetido.",
     "margem-de-carga-f3":
         "Decisão da Rodametria, e a página nunca a atribui a ninguém.",
+    # ACRESCENTADA EM 06/11/2026, pela F3, que e quem imprime esta constante na
+    # dobra "Como sabemos". O `fonte` interno dela nomeia os tres publicadores
+    # em ASCII e com aspas simples dentro de aspas simples; a frase de leitor
+    # nomeia os mesmos tres, acentuada e sem a prosa de coleta.
+    "ressalva-desempenho-perto-do-teto-de-carga":
+        "Três publicadores dizem a mesma coisa, sem número: a espanhola RACE "
+        "(quem está perto do peso máximo anunciado pode não obter a velocidade e "
+        "a aceleração máximas que o fabricante declara), a Milar (o peso não deve "
+        "exceder a recomendação, porque o desempenho é afetado) e a brasileira "
+        "my-best (o limite extra evita sobrecarga no motor e mantém a velocidade "
+        "e a segurança). Lidos em 28/10/2026.",
     "fator-relevo-ladeira-contra-plano":
         "Limaico Quinteros, Rodrigo David. “Análisis de la eficiencia energética de "
         "la batería de ion litio en una moto eléctrica para el uso de micro "
