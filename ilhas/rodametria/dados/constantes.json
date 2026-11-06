@@ -1,7 +1,7 @@
 {
   "ilha": "rodametria",
   "bloco": "2",
-  "versao": 2,
+  "versao": 3,
   "gerado_em": "2026-11-06",
   "publicar": false,
   "nota_de_procedencia": "Coleta de 28/10/2026 entre 13h20Z e 13h40Z, pela execucao da Fundacao que reservou a ilha as 13h19Z. DOIS canais tentados e so UM aberto. Leitura direta FECHADA para toda fonte de fora da ilha: www.gov.br, www.in.gov.br, www.planalto.gov.br, www.contran.gov.br e www.lex.com.br devolveram 000 com 'CONNECT tunnel failed, response 403' (recusa de politica do egresso, nao queda); dspace.ups.edu.ec e stdjet.scienceandtechnology.com.vn falharam em getaddrinfo ENOTFOUND. Controle verde na MESMA janela: rodametria.com.br em 200, o que separa recusa de host de queda de tunel. A repeticao que a secao 20.2 manda foi feita (duas passadas no gov.br) e nao mudou o veredito. Sobrou a BUSCA WEB, e e dela que sai tudo abaixo. Pela regra do elo mais fraco (secao 10 do ARQUIPELAGO.md), NENHUMA constante deste arquivo e leitura direta de fonte primaria, mesmo quando o documento citado e oficial: o elo da leitura e fraco e e ele que da o nivel.",
@@ -22,7 +22,8 @@
     "decisao_da_ilha": "regra que esta ilha escolheu, com o motivo escrito; nao e dado de terceiro",
     "observacao_de_mercado": "faixa observada em fichas de varejo numa data; calibra a tela, nao entra em formula",
     "entrada_do_leitor": "nao tem valor unico no mundo; e campo que a pessoa informa",
-    "pendente": "ainda nao tem base suficiente ou nao tem canal de leitura. Proibida em formula publicada"
+    "pendente": "ainda nao tem base suficiente ou nao tem canal de leitura. Proibida em formula publicada",
+    "afirmacao_de_terceiro": "numero que terceiro publicou e que esta ilha serve para CONTRADIZER na tela, com a atribuicao ao lado. Nunca entra em formula nem em campo tecnico (nivel 7 e 8 da escada_de_fontes de esquema-banco.json). O vocabulario e o do esquema desta ilha, que ja o usava por escrito antes de este arquivo o ter."
   },
   "constantes": [
     {
@@ -58,6 +59,28 @@
       "como_foi_lido": "DECLARADO PORQUE A FORCA DA PROVA MUDA COM ISSO, e a secao 5 de dados/fonte-oficial-f1.md pediu esta declaracao de proposito. O PDF foi aberto pelo LEITOR DE PAGINA da sessao de chat, nao por pdftotext. Os numeros da bicicleta eletrica e do autopropelido voltaram LITERAIS, entre aspas, alinea por alinea (`ate 1000 W (mil watts)`, `nao superior a 32 km/h`, `largura nao superior a 70 cm`). Os do CICLOMOTOR voltaram PARAFRASEADOS pelo leitor, com os numeros — e isso esta escrito aqui e nao escondido. A frase inteira das definicoes NAO foi transcrita (o leitor limita citacao longa). A pagina publica os numeros, nunca a transcricao que ninguem tem.",
       "ato_posterior": "NAO CONFERIDO no portal nesta leitura. A busca de 05/11 as 19h1xZ nao achou alteracao nem revogacao da 996/2023, e e achado NEGATIVO de segunda mao, em UMA rodada — nao e prova. ESTA LEITURA CONFIRMOU, PELO PROPRIO TEXTO, A PREMISSA QUE O PEDIDO CORRIGIA: o art. 14 par. 1o I da o prazo de 01/11/2023 a 31/12/2025 para o RENAVAM de ciclomotor sem CAT, logo 1o/01/2026 e FIM DE PRAZO e nao redacao nova. O pedido de conferir ato posterior FICA, pela razao original: pedi-lo e barato e desfazer um erro de fase depois e caro.",
       "contradicao_desfeita": "A CONTRADICAO QUE O BLOCO 6 MEDIU DENTRO DE UM UNICO PUBLICADOR ESTAVA DESFEITA NO TEXTO, E A CAUSA ERA CATEGORIA E NAO FONTE. O eletricz.com.br afirmava `ate 1000 Watts` numa pagina e `potencia maxima de 4.000W para autopropelidos` noutra, citando esta mesma resolucao. Os DOIS numeros sao da 996/2023: 1.000 W e o teto de AUTOPROPELIDO e de BICICLETA ELETRICA (art. 2o II alinea c e III alinea a) e 4 kW e o teto de CICLOMOTOR (art. 2o IV). O publicador colou o numero do ciclomotor no nome do autopropelido. ISSO NAO ABSOLVE A FONTE DE SEGUNDA MAO: a leitura oficial foi o unico jeito de saber de que lado estava o erro, e era exatamente isso que a regra `numero_de_portal_nunca_vira_constante_legal` protegia."
+    },
+    {
+      "id": "numero-que-circula-como-limite-nacional",
+      "descricao": "O par de numeros que o bloco 1 colheu circulando como se fosse o limite NACIONAL da bicicleta eletrica, e que a leitura oficial de 05/11/2026 mostrou NAO estar na resolucao. Ele existe no mundo — e regra de municipio —, e o que esta errado e a atribuicao, nao o numero. Esta constante existe para a pagina poder CONTRADIZE-LO nomeando-o, em vez de servir o numero certo e deixar quem leu o outro sem resposta.",
+      "valor": {
+        "potencia_w": 350,
+        "velocidade_kmh": 25,
+        "atribuido_a": "regra do município do Rio de Janeiro",
+        "apresentado_como": "limite nacional da bicicleta elétrica"
+      },
+      "unidade": "W e km/h",
+      "tipo": "afirmacao_de_terceiro",
+      "fonte": "Colhido por busca em 28/10/2026 pelo primeiro levantamento desta ilha: paginas de portal de transito e de noticia que explicam a regra em prosa repetem este par, e a atribuicao a regra do Rio de Janeiro aparece em tupi.fm. Nenhuma delas e ato oficial.",
+      "url": null,
+      "verificado_em": "2026-10-28",
+      "status": "publicavel",
+      "usada_em": [
+        "F1"
+      ],
+      "o_que_falta": "nada para a tela. O ato da prefeitura do Rio NAO foi lido: por isso a pagina diz que o par e atribuido a regra de municipio e NAO afirma qual e o limite do Rio. Afirmar o limite municipal exigiria o nivel 3 da escada, que esta atras da mesma parede de egresso dos quatro municipios de dados/municipios.json — remedida em 06/11/2026 as 19h2xZ, 000 nas tres passadas com controle verde.",
+      "consequencia_declarada": "A F1 nomeia os tres numeros que circulam e diz de qual categoria cada um e: os dois que estao na resolucao sao os tetos do autopropelido e do ciclomotor, e este terceiro nao esta lá. Sem isto a pagina serve o numero certo e PARECE errada para quem chegou tendo lido o outro — que e a maioria do que o eixo da CNH publica. A frase mora num molde so e e lida pela dobra da pagina e pela pergunta do FAQPage, porque a camada que a pessoa le e a que a IA le nao podem divergir (32.4-c).",
+      "por_que_isto_nao_e_constante_LEGAL": "A regra `numero_de_portal_nunca_vira_constante_legal` deste mesmo arquivo continua inteira: este numero NAO entra na arvore de decisao, nao e limiar e nao decide categoria nenhuma. Ele e CITACAO a ser contradita, do mesmo jeito que o titulo de anuncio da ressalva 1.4(a) — e mora aqui, com o tipo escrito, para que a regua do codigo nao o confunda com limiar."
     },
     {
       "id": "consequencias-por-categoria-contran-996-2023",

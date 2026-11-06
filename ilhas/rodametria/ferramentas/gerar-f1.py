@@ -309,6 +309,10 @@ def montar(constantes, veiculos, municipios):
 
     linhas_regra = tabela_da_regra(constantes)
 
+    # AS TRES FRASES DOS TRES NUMEROS, montadas pelo CEREBRO e nao aqui: a dobra
+    # da pagina e a pergunta do `FAQPage` leem esta MESMA lista, pela 32.4-c.
+    frases_circulam = f1ref.frases_dos_numeros_que_circulam(constantes, lim)
+
     # ---- TODO texto que a tela serve passa pelas duas guardas, aqui, ANTES de
     # ser gravado. Portao no ponto em que o dado vira texto, nunca no ponto em
     # que o texto e impresso.
@@ -319,6 +323,8 @@ def montar(constantes, veiculos, municipios):
                + exemplo["frases_ressalva"]]
     textos += [("frase de abertura da compra",
                 frase_do_bloco_de_compra(grupos, exemplo["categoria"]))]
+    textos += [("frase dos numeros que circulam %d" % i, f)
+               for i, f in enumerate(frases_circulam, 1)]
     for linha in (linhas_regra or []):
         for k, v in linha.items():
             if isinstance(v, str) and k != "categoria":
@@ -332,7 +338,8 @@ def montar(constantes, veiculos, municipios):
 
     constantes_na_tela = {}
     for cid in (f1ref.ID_LIMIARES, f1ref.ID_CONSEQUENCIAS, f1ref.ID_HABILITACAO,
-                f1ref.ID_ASSISTENCIA_A_PE, f1ref.ID_ALTERACAO, f1ref.ID_WATT_SEM_ROTULO):
+                f1ref.ID_ASSISTENCIA_A_PE, f1ref.ID_ALTERACAO, f1ref.ID_WATT_SEM_ROTULO,
+                f1ref.ID_NUMERO_QUE_CIRCULA):
         reg = constantes[cid]
         constantes_na_tela[cid] = {
             "valor": reg.get("valor"),
@@ -381,6 +388,10 @@ def montar(constantes, veiculos, municipios):
         # monta a resposta pre-renderizada. Duas metades lendo o mesmo molde nao
         # podem dizer coisas diferentes para a mesma entrada.
         "frases_molde": dict(f1ref.MOLDES),
+        # PRONTAS, de um lugar so: a dobra da pagina e a pergunta do `FAQPage`
+        # leem esta lista. Lista VAZIA quer dizer que falta base — e quem a le
+        # fica sem a explicacao, nunca com ela pela metade.
+        "frases_numeros_que_circulam": frases_circulam,
         "contagem_de_fichas": fichas,
         # OS FATOS DAS RESSALVAS SAO CONSTANTES, e por isso aparecem junto das
         # outras em `constantes_usadas` em vez de num campo proprio. O campo

@@ -156,6 +156,19 @@
       "fonte": "Título colhido numa ficha do extra.com.br em 28/10/2026, pela primeira leva de buscas desta ilha.",
       "url": null,
       "verificado_em": "2026-10-28"
+    },
+    "numero-que-circula-como-limite-nacional": {
+      "valor": {
+        "potencia_w": 350,
+        "velocidade_kmh": 25,
+        "atribuido_a": "regra do município do Rio de Janeiro",
+        "apresentado_como": "limite nacional da bicicleta elétrica"
+      },
+      "status": "publicavel",
+      "tipo": "afirmacao_de_terceiro",
+      "fonte": "Colhido por busca em 28/10/2026 pelo primeiro levantamento desta ilha: paginas de portal de transito e de noticia que explicam a regra em prosa repetem este par, e a atribuicao a regra do Rio de Janeiro aparece em tupi.fm. Nenhuma delas e ato oficial.",
+      "url": null,
+      "verificado_em": "2026-10-28"
     }
   },
   "limiares": {
@@ -192,6 +205,9 @@
     "placa_exigido": "Pede placa: a resolução manda registrar e licenciar ({artigo}), e cobra capacete.",
     "placa_nao_decidido": "E aqui a resolução para: o {artigo} manda classificar como ciclomotor, motocicleta, motoneta ou triciclo, conforme o caso — e não diz qual, nem o que cada um exige. Qualquer um dos quatro é veículo de placa.",
     "habilitacao_pendente": "Sobre habilitação esta página não responde, e o motivo é um só: a resolução que decide a categoria não tem artigo nenhum sobre CNH. Quem decide isso é o Código de Trânsito, e a gente ainda não leu o Código de Trânsito na fonte oficial — então não vai dizer aqui que dispensa, nem que exige.",
+    "numeros_que_circulam_abertura": "Procurando a resposta desta pergunta a gente achou três pares de números diferentes, em páginas que todas se apresentam como quem sabe. Depois de ler a resolução, dois deles estão lá — e são de categorias diferentes, por isso não competem.",
+    "numeros_que_circulam_os_dois_oficiais": "{lim_autoprop_w} W com {lim_autoprop_kmh} km/h é o teto da bicicleta elétrica e do autopropelido. {lim_ciclo_w} W com {lim_ciclo_kmh} km/h é o teto do ciclomotor, que é a categoria logo acima. Quem cita um dos dois sem dizer de qual categoria está falando não está errado no número: está errado no que o número separa.",
+    "numeros_que_circulam_o_terceiro": "O terceiro par, {w_circula} W com {kmh_circula} km/h, não está na resolução. Ele aparece atribuído a {atribuido_a} e é repetido como se fosse {apresentado_como}. A gente não leu o ato dessa prefeitura, então não diz aqui qual é o limite de lá. O que esta página afirma sobre ele é só isto: esse par não é o limite da resolução.",
     "ressalva_dimensao_autopropelido": "Falta um pedaço que esta conta não pergunta: a resolução também limita o autopropelido a {largura_cm} cm de largura e {eixos_cm} cm entre os eixos. Se o seu passa de um dos dois, ele sai desta categoria mesmo com a potência e a velocidade dentro.",
     "ressalva_pico_nenhum_nominal": "O número grande do anúncio não é o que a regra lê: ela lê a potência NOMINAL, que fica na ficha. Dos {colhidos} anúncios que a gente colheu, {sem_rotulo} declaram um watt sem dizer se é nominal ou de pico, e NENHUM declara o nominal. Um deles se chama, letra por letra, “{titulo}”: são quatro coisas que a regra separa, num título só.",
     "ressalva_pico_com_nominal": "O número grande do anúncio não é o que a regra lê: ela lê a potência NOMINAL, que fica na ficha. Dos {colhidos} anúncios que a gente colheu, {sem_rotulo} declaram um watt sem dizer se é nominal ou de pico, e {com_nominal} declaram o nominal. Um deles se chama, letra por letra, “{titulo}”: são quatro coisas que a regra separa, num título só.",
@@ -207,6 +223,11 @@
     "municipal_conhecido_pendente": "A categoria é nacional; a rua é municipal. {municipio} aparece com limite próprio nas nossas leituras, mas a gente ainda não leu o ato da prefeitura — então não publica o número. Confira na prefeitura.",
     "municipal_conhecido": "A categoria é nacional; a rua é municipal: {municipio} limita a {limite_kmh} km/h, pelo ato que a gente leu."
   },
+  "frases_numeros_que_circulam": [
+    "Procurando a resposta desta pergunta a gente achou três pares de números diferentes, em páginas que todas se apresentam como quem sabe. Depois de ler a resolução, dois deles estão lá — e são de categorias diferentes, por isso não competem.",
+    "1.000 W com 32 km/h é o teto da bicicleta elétrica e do autopropelido. 4.000 W com 50 km/h é o teto do ciclomotor, que é a categoria logo acima. Quem cita um dos dois sem dizer de qual categoria está falando não está errado no número: está errado no que o número separa.",
+    "O terceiro par, 350 W com 25 km/h, não está na resolução. Ele aparece atribuído a regra do município do Rio de Janeiro e é repetido como se fosse limite nacional da bicicleta elétrica. A gente não leu o ato dessa prefeitura, então não diz aqui qual é o limite de lá. O que esta página afirma sobre ele é só isto: esse par não é o limite da resolução."
+  ],
   "contagem_de_fichas": {
     "colhidos": 14,
     "sem_rotulo": 13,

@@ -196,6 +196,46 @@ MOLDES = {
         "vai dizer aqui que dispensa, nem que exige."
     ),
 
+    # ---- OS TRES NUMEROS QUE CIRCULAM, e esta e a resposta que faltava a quem
+    #      chegou tendo lido OUTRO numero.
+    #
+    # O primeiro levantamento desta ilha mediu, em 28/10/2026, que o eixo da CNH
+    # esta tomado por portal de transito e por noticia, e que as fontes NAO
+    # discordam de tom: discordam do NUMERO. Tres pares foram colhidos para a
+    # mesma pergunta. A leitura oficial de 05/11 desfez a contradicao, e o que
+    # ela mostrou nao foi "o nosso numero esta certo": foi que DOIS dos tres
+    # estao na resolucao, para categorias diferentes, e o terceiro nao esta la.
+    #
+    # Sem estas frases a pagina serve o numero certo e PARECE errada para quem
+    # chegou com o outro na cabeca — e quem chega com o outro na cabeca e o
+    # publico inteiro desta consulta. Por isso elas sao o produto da ilha e nao
+    # enfeite: o desacordo e o que a pagina existe para resolver.
+    #
+    # NENHUM DOS TRES MOLDES TRAZ DIGITO. Os dois primeiros sao preenchidos com
+    # o limiar LIDO da resolucao; o terceiro, com o par da constante
+    # `numero-que-circula-como-limite-nacional`, que e `afirmacao_de_terceiro` e
+    # nunca limiar.
+    "numeros_que_circulam_abertura": (
+        "Procurando a resposta desta pergunta a gente achou três pares de "
+        "números diferentes, em páginas que todas se apresentam como quem sabe. "
+        "Depois de ler a resolução, dois deles estão lá — e são de categorias "
+        "diferentes, por isso não competem."
+    ),
+    "numeros_que_circulam_os_dois_oficiais": (
+        "{lim_autoprop_w} W com {lim_autoprop_kmh} km/h é o teto da bicicleta "
+        "elétrica e do autopropelido. {lim_ciclo_w} W com {lim_ciclo_kmh} km/h é "
+        "o teto do ciclomotor, que é a categoria logo acima. Quem cita um dos "
+        "dois sem dizer de qual categoria está falando não está errado no "
+        "número: está errado no que o número separa."
+    ),
+    "numeros_que_circulam_o_terceiro": (
+        "O terceiro par, {w_circula} W com {kmh_circula} km/h, não está na "
+        "resolução. Ele aparece atribuído a {atribuido_a} e é repetido como se "
+        "fosse {apresentado_como}. A gente não leu o ato dessa prefeitura, "
+        "então não diz aqui qual é o limite de lá. O que esta página afirma "
+        "sobre ele é só isto: esse par não é o limite da resolução."
+    ),
+
     # ---- as ressalvas, cada uma com o caso medido atras ----
     "ressalva_dimensao_autopropelido": (
         "Falta um pedaço que esta conta não pergunta: a resolução também "
@@ -318,6 +358,14 @@ ID_ASSISTENCIA_A_PE = "assistencia-a-pe-contran-996-2023"
 ID_ALTERACAO = "alteracao-pos-compra-caso-medido"
 ID_WATT_SEM_ROTULO = "watt-sem-rotulo-no-titulo-caso-medido"
 
+# A AFIRMACAO DE TERCEIRO QUE A PAGINA CONTRADIZ. Ela NAO entra na arvore, nao e
+# limiar e nao decide categoria nenhuma — e por isso ela mora numa constante de
+# tipo `afirmacao_de_terceiro`, onde a regua do codigo nao a confunde com limiar.
+# A regra `numero_de_portal_nunca_vira_constante_legal` de dados/constantes.json
+# continua inteira: o que esta ilha publica deste numero e que ele NAO e o da
+# resolucao.
+ID_NUMERO_QUE_CIRCULA = "numero-que-circula-como-limite-nacional"
+
 
 def carregar_json(nome):
     with open(os.path.join(ILHA, nome), encoding="utf-8") as f:
@@ -384,6 +432,51 @@ def habilitacao_publicavel(constantes):
     devolve None e a pagina imprime `habilitacao_pendente`.
     """
     return constante_publicavel(constantes, ID_HABILITACAO)
+
+
+def frases_dos_numeros_que_circulam(constantes, limiares):
+    """As tres frases que nomeiam os tres numeros colhidos, ou [] se faltar base.
+
+    POR QUE ESTA FUNCAO EXISTE E NAO TRES PARAGRAFOS NO SNIPPET: a mesma
+    explicacao e pedida em DOIS lugares — a dobra da pagina e a pergunta do
+    `FAQPage`. A 32.4-c do ARQUIPELAGO.md foi escrita nesta ilha, em 06/11/2026,
+    por causa de uma resposta de `FAQPage` que era prosa escrita a mao e serviu,
+    na camada que a IA le, os dois defeitos que a camada visivel ja tinha
+    consertado meia hora antes. A licao dela e literal: *o conserto de uma frase
+    duplicada nao e consertar as duas, e a segunda deixar de existir*.
+
+    DEVOLVE LISTA VAZIA, NUNCA FRASE PELA METADE. Sem limiar publicavel nao ha
+    os dois numeros oficiais para nomear, e sem a constante de terceiro nao ha o
+    terceiro — e uma explicacao de "tres numeros" que nomeia dois e exatamente o
+    defeito que ela veio consertar: a dobra desta pagina dizia "tres numeros
+    diferentes" e explicava dois, sem nomear nenhum, desde que a F1 foi ao ar.
+    """
+    if limiares is None:
+        return []
+    circula = constante_publicavel(constantes, ID_NUMERO_QUE_CIRCULA)
+    if not isinstance(circula, dict):
+        return []
+    faltam = [k for k in ("potencia_w", "velocidade_kmh", "atribuido_a",
+                          "apresentado_como") if circula.get(k) in (None, "")]
+    if faltam:
+        raise ValueError(
+            "%s publicavel sem %s: a frase dos tres numeros nao sai pela metade"
+            % (ID_NUMERO_QUE_CIRCULA, ", ".join(faltam)))
+    return [
+        MOLDES["numeros_que_circulam_abertura"],
+        MOLDES["numeros_que_circulam_os_dois_oficiais"].format(
+            lim_autoprop_w=_n(limiares["LIMIAR_AUTOPROP_W"]),
+            lim_autoprop_kmh=_n(limiares["LIMIAR_AUTOPROP_KMH"]),
+            lim_ciclo_w=_n(limiares["LIMIAR_CICLOMOTOR_W"]),
+            lim_ciclo_kmh=_n(limiares["LIMIAR_CICLOMOTOR_KMH"]),
+        ),
+        MOLDES["numeros_que_circulam_o_terceiro"].format(
+            w_circula=_n(Fraction(str(circula["potencia_w"]))),
+            kmh_circula=_n(Fraction(str(circula["velocidade_kmh"]))),
+            atribuido_a=circula["atribuido_a"],
+            apresentado_como=circula["apresentado_como"],
+        ),
+    ]
 
 
 # --------------------------------------------------------------------------

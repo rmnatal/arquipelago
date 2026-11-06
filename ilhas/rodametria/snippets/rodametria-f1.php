@@ -48,7 +48,7 @@
  */
 
 if ( ! defined( 'RODAMETRIA_F1_VERSAO' ) ) {
-	define( 'RODAMETRIA_F1_VERSAO', '1.2.0' );
+	define( 'RODAMETRIA_F1_VERSAO', '1.3.0' );
 }
 
 if ( ! defined( 'RODAMETRIA_ID_DADOS_F1' ) ) {
@@ -471,6 +471,36 @@ function rodametria_f1_tabela_banco_html( $d ) {
  * ------------------------------------------------------------------------- */
 
 if ( ! function_exists( 'rodametria_f1_dobras_html' ) ) {
+/**
+ * AS TRES FRASES DOS TRES NUMEROS — lidas do dado, nunca escritas aqui.
+ *
+ * Elas sao pedidas em DOIS lugares: a dobra desta pagina e a pergunta do
+ * `FAQPage`. Quem as monta e o cerebro (`frases_dos_numeros_que_circulam` em
+ * regras/f1.py), de um lugar so, e por um motivo que esta ilha pagou em
+ * 06/11/2026: a resposta de `FAQPage` sobre potencia de pico era prosa escrita a
+ * mao e foi ao ar com os dois defeitos que a camada visivel da mesma pagina ja
+ * tinha consertado meia hora antes. A regra que nasceu daquilo e a 32.4-b do
+ * ARQUIPELAGO.md, e ela e literal: *o conserto de uma frase duplicada nao e
+ * consertar as duas, e a segunda deixar de existir*.
+ *
+ * Lista vazia quer dizer que falta base, e quem chama fica SEM a explicacao —
+ * nunca com ela pela metade.
+ */
+function rodametria_f1_frases_dos_numeros( $d ) {
+	if ( empty( $d['frases_numeros_que_circulam'] )
+		|| ! is_array( $d['frases_numeros_que_circulam'] ) ) {
+		return array();
+	}
+	$fs = array();
+	foreach ( $d['frases_numeros_que_circulam'] as $f ) {
+		$f = trim( (string) $f );
+		if ( $f !== '' ) {
+			$fs[] = $f;
+		}
+	}
+	return $fs;
+}
+
 function rodametria_f1_dobras_html( $d ) {
 	$c = $d['constantes_usadas'];
 
@@ -488,13 +518,21 @@ function rodametria_f1_dobras_html( $d ) {
 			. 'O arquivo oficial da resolução</a> — lido em '
 			. esc_html( rodametria_f1_data( (string) $lim['verificado_em'] ) ) . '.</p>';
 	}
-	$fonte .= '<p>Antes dessa leitura a gente tinha três números diferentes para a mesma '
-		. 'pergunta, colhidos em páginas que se apresentam como quem sabe — e <b>duas páginas do '
-		. 'mesmo site</b> citavam esta mesma resolução com limites diferentes. A leitura oficial '
-		. 'desfez a contradição e mostrou de que lado estava o erro: os dois números existem, '
-		. 'para categorias diferentes. Um é o teto do autopropelido; o outro é o do ciclomotor. '
-		. 'Enquanto a gente não tinha o texto, esta ferramenta ficou fora do ar — porque errar '
-		. 'para o lado permissivo aqui manda alguém para a rua sem habilitação.</p>';
+	/* ESTE PARAGRAFO EXPLICAVA "TRES NUMEROS" E DAVA CONTA DE DOIS, SEM NOMEAR
+	   NENHUM, desde que a F1 foi ao ar em 06/11/2026 pela manha. Ele dizia "a
+	   leitura oficial (...) mostrou de que lado estava o erro: os dois numeros
+	   existem, para categorias diferentes" — e os dois que ele explicava estao
+	   os DOIS certos. O terceiro, que e o unico errado e o que mais gente leu
+	   antes de chegar aqui, ficava de fora: quem chegasse tendo lido 350 W via
+	   esta pagina dizer outro numero e nao tinha como saber qual dos dois
+	   acreditar. A conta de tres que fecha em dois agora e dobra propria, logo
+	   abaixo, montada do dado e nao de prosa. O que fica aqui e o que e desta
+	   dobra: a PROCEDENCIA, e o custo de ela ter faltado. */
+	$fonte .= '<p>Antes dessa leitura a mesma pergunta tinha resposta diferente em cada '
+		. 'página — e <b>duas páginas do mesmo site</b> citavam esta mesma resolução com '
+		. 'limites diferentes. Enquanto a gente não tinha o texto, esta ferramenta ficou fora '
+		. 'do ar — porque errar para o lado permissivo aqui manda alguém para a rua sem '
+		. 'habilitação.</p>';
 
 	/* --- a metade que a gente nao responde, e ela e uma dobra PROPRIA ---
 	   A FRASE DA CAIXA NAO SE REPETE AQUI, e isso foi MEDIDO NO AR em
@@ -536,7 +574,19 @@ function rodametria_f1_dobras_html( $d ) {
 	$fonte .= '<p>Esta página foi gerada a partir do nosso banco em '
 		. esc_html( rodametria_f1_data( (string) $d['gerado_em'] ) ) . '.</p>';
 
+	/* A DOBRA DOS TRES NUMEROS. Ela e a SEGUNDA de propósito: quem abre "de onde
+	   saíram os limites" e a pessoa que desconfia do número, e a pergunta
+	   seguinte dela é sempre a mesma. */
+	$tres = rodametria_f1_frases_dos_numeros( $d );
 	$html  = rodametria_casca_dobra( 'De onde saíram os limites', $fonte );
+	if ( $tres ) {
+		$circ = '';
+		foreach ( $tres as $f ) {
+			$circ .= '<p>' . esc_html( $f ) . '</p>';
+		}
+		$html .= rodametria_casca_dobra(
+			'Se você leu outro número em outro lugar', $circ );
+	}
 	$html .= rodametria_casca_dobra( 'Por que esta página não responde sobre CNH', $cnh );
 	$html .= rodametria_casca_dobra( 'Como a conta decide', $conta );
 
@@ -750,6 +800,25 @@ add_action( 'wp_head', function () {
 			(string) $d['frases_molde']['habilitacao_pendente'],
 		),
 	);
+
+	/* A PERGUNTA DOS TRES NUMEROS — e ela le a MESMA lista que a dobra da pagina
+	   le, pela 32.4-c. A pergunta em si tambem e MONTADA: os dois numeros dela
+	   saem do limiar lido e da constante de terceiro, nunca digitados aqui. Sem
+	   os dois a pergunta nao entra — pergunta com um numero so nao e a pergunta
+	   que a pessoa faz. */
+	$tres = rodametria_f1_frases_dos_numeros( $d );
+	$circula = isset( $d['constantes_usadas']['numero-que-circula-como-limite-nacional']['valor'] )
+		? $d['constantes_usadas']['numero-que-circula-como-limite-nacional']['valor']
+		: null;
+	$lim_tela = isset( $d['limiares_tela'] ) ? (array) $d['limiares_tela'] : array();
+	if ( $tres && is_array( $circula ) && ! empty( $circula['potencia_w'] )
+		&& ! empty( $lim_tela['LIMIAR_AUTOPROP_W'] ) ) {
+		$perguntas[] = array(
+			'O limite é ' . rodametria_f1_numero( $circula['potencia_w'] ) . ' W ou '
+				. $lim_tela['LIMIAR_AUTOPROP_W'] . ' W?',
+			implode( ' ', $tres ),
+		);
+	}
 
 	$itens = array();
 	foreach ( $perguntas as $p ) {
