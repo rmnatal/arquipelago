@@ -3,6 +3,64 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-11-06 13h19Z–14hxxZ — **A F3 NASCE E AS TRÊS FERRAMENTAS DA ILHA ESTÃO NO AR; E A 32.1-b, ESCRITA ESTA MANHÃ, VIAJOU PARA A IRMÃ QUE ELA DEIXOU PARA TRÁS** — bloco 4c, mais o conserto da 32.1-b pela 18.5
+
+**A ESCOLHA DA ILHA.** `foco.md` nomeia a **rodametria** (foco total e absoluto desde 27/10) e pela **1.2** não há escolha a fazer. **Antes de aceitar o foco, conferi a exceção do molde (32):** os despachos do molde de conversão de 21/10 estão **fechados** nas três ilhas que a exceção nomeia — aquametria (18h2xZ de 21/10), clubedomosaico (19h1xZ de 21/10) e robometria (16h1xZ de 21/10) —, então o foco manda sozinho. `executando_desde` estava `null`, que pela **1.1** já significa que não havia bloco da Fundação vivo; o último commit da pasta era das 11h42Z, **1h36 atrás**, fora da janela de 40 minutos. `origin/main` e `claude/dreamy-mccarthy-34bsk9` no **mesmo** commit (`22c20e4`) e **nenhum PR aberto** — nada a mergear (passo 1). Reserva no commit `40dc771`, às **13h19Z**, hora saída do `date -u` na mesma linha que a grava.
+
+**E UMA OUTRA EXECUÇÃO ESTAVA VIVA NA AQUAMETRIA** na mesma janela (commit `22c20e4` às 13h07Z, 11 minutos antes desta chegar) — o que a reserva por commit da seção 1 existe para resolver, e resolveu: duas execuções, duas ilhas, zero atropelo.
+
+**A REDE MEDIDA ANTES DO TRABALHO E NÃO HERDADA (20.2):** `rodametria.com.br` em **200** nas TRÊS passadas, com `aquametria.com.br` e `robometria.com.br` em 200 nas mesmas três — **12 de 12** verdes (o `www` em 301, que é o redirecionamento normal). A parede do `.gov.br` **não foi remedida de propósito**: medida em 05/11 às 19h1xZ e o que ela trava (o CTB) continua sendo trabalho de navegador.
+
+**A BANCADA RODOU ANTES DE QUALQUER CONSTRUÇÃO (18.5):** `bancada.py --no-ar` em **35 portões, 0 falha**. Nenhum defeito aberto no ar na chegada.
+
+### A ESCOLHA DO BLOCO, COM A CONTA NA MESA
+
+A fila imediata estava travada e isso foi **medido**, não suposto:
+
+- **O passo que o `ESTADO.md` nomeava como próximo** era a seção 6 de `dados/fonte-oficial-f1.md` (a leitura do CTB). Fui ver: **continua pronta e vazia**. É trabalho de navegador do Raphael, não de bloco.
+- **O bloco 3d** (casamento de oferta, que traz o campo técnico) está travado por **ABERTURA de egresso**, e os campos que a F1 e a F3 leem exigem **nível 5**. Foi aqui que apareceu uma porta que ninguém havia medido: o nível 5 do esquema diz, com estas palavras, *"e as fichas dos marketplaces"*, e **`shopee.com.br` está aberto no egresso desde 28/10**. **MEDI A FICHA DA OFERTA CASADA** (`shopee.com.br/product/1461936230/20299836765`): **200 nas três passadas, e o HTML é casca de SPA vazia** — 155.908 bytes, **zero** ocorrência de `Potência`, `500W`, `km/h`, `Velocidade`, `Marca`, `Peso` ou do nome do produto, e nem `<title>`. **O nível 5 não fica alcançável por essa porta, e agora isso é medição e não suposição.**
+
+**Sobrou a F3**, e ela estava sendo lida como travada por um motivo que o **precedente da F1 desta manhã desfez**. O bloco 3b registrou em 29/10 que a F3 não ia ao ar porque *"só três registros declaram `carga_max_kg` e nenhum dos três tem oferta aberta — a conta não teria o que comparar nem o que vender"*. A primeira metade continua verdadeira; a segunda mede a coisa errada: **a resposta principal da F3 não depende do banco.**
+
+### O BLOCO 4c — A F3, E A RESPOSTA PRINCIPAL DELA NÃO TOCA O BANCO
+
+`regras/f3.py`, `dados/f3-respostas.json`, `ferramentas/gerar-f3.py`, `ferramentas/teste-f3.py` (**583 afirmações**) e `snippets/rodametria-f3.php`, em **`/peso-maximo-patinete-eletrico/`** — a URL carrega a consulta **medida** do eixo C do corpus, não a pergunta do H1.
+
+Dado o peso de quem pilota e o que ele carrega, a carga máxima a procurar sai de `total × (1 + margem)`: aritmética sobre a entrada da pessoa mais **uma** constante desta ilha, que é `decisao_da_ilha` em 10% e que a página **nunca atribui a terceiro** (a constante carrega a busca limpa que NEGOU a fonte que o bloco 1 supunha). A vitrine é a segunda camada e hoje está **vazia**, com a causa nomeada e os números contados.
+
+**A TABELA PRE-RENDERIZADA PUBLICA A TESE DA ILHA.** Com a folga de 10%, **109 kg** é o último peso total que os 120 kg do teto de varejo acolhem e **110 kg já não** — e a constante `teto-de-carga-do-mercado-brasileiro` previa isso **por escrito em 28/10**. O `FAQPage` é montado **da tabela**, procurando a virada em vez de a ter digitada, então as duas camadas não podem divergir.
+
+**A F3 É A PRIMEIRA FERRAMENTA DESTA ILHA A NASCER DENTRO DO CONSERTO DA 32.1-b:** campos prefixados desde o primeiro byte e o `<noscript>` vindo do componente da casca.
+
+### O QUE A 18.5 OBRIGOU A FAZER PRIMEIRO, E ELE ERA UMA DÍVIDA DE OITO DIAS NO AR
+
+A 32.1-b foi escrita **hoje de manhã**, dentro da execução que levou a F1 ao ar, e manda o portão ter **duas pontas**. A segunda — apertar o botão no ar — nasceu naquela passada. **A primeira nasceu também, mas DENTRO de `teste-f1-arvore.mjs`, medindo só a F1.** Foi por isso que a dívida da irmã ficou invisível:
+
+| | campos | `<noscript>` |
+|---|---|---|
+| **F1** (escrita depois da regra) | `rdm_w`, `rdm_kmh`, `rdm_acel`, `rdm_mun` | sim |
+| **F2** (no ar desde 29/10) | `v`, `ah`, `peso`, `relevo`, `aut` — **nus** | **não** |
+
+É a **32.5-c ao pé da letra**: a regra nasceu, foi aplicada na página que a descobriu e não viajou para a irmã — na mesma fábrica, no mesmo dia.
+
+- **`ferramentas/teste-formulario-da-ilha.py`** — a primeira ponta **sem lista**. Varre `snippets/*.php`, cobra o prefixo por **TAG de campo** (nunca por `name=` solto) e cobra `<noscript>` de quem serve `<form>`. **Reprovou com 6 falhas, todas reais, e zero falso positivo** nos outros três snippets. **32 mundos de autoteste**, um deles provando que a régua nova e a ingênua **discordam** no `<meta name=>` (20.8).
+- **F2 1.5.0 → 1.6.0**: os cinco campos prefixados e o aviso servido. **Nenhum dos cinco colidia hoje** — os cinco respondiam 200, e isso foi medido —, então isto **fecha a classe** e não conserta um 404. O JavaScript **não foi tocado**: ele acha os campos por `data-rdm-f2-*`, nunca por `name`, e é por isso que a troca custou cinco linhas.
+- **casca 1.12.0 → 1.13.0**: o aviso virou `rodametria_casca_noscript()`, num lugar só (32.6-b), e o seletor deixou de ser `.rdm-f1-noscript` para ser `.rdm-noscript` — nome de família do molde preso a UMA página é como a regra não viaja. **F1 1.0.0 → 1.1.0**, passando a usar o componente.
+- **`conferir-no-ar.py`** ganhou a afirmação que é o **veredito**: toda página servida com `<form>` tem de servir `<noscript>`. **Ela REPROVOU O AR DE ANTES** — 488 afirmações, **1 falha**, exatamente a F2, com a home passando.
+- **NO AR E CONFERIDO (18.4):** revisão **51**, o fecho do log declarando **9 aplicados** e **9 linhas de item, todas dizendo `ok`** (20.4, lidas uma por uma, do fecho para baixo pela 20.8). `conferir-no-ar.py` em **488 afirmações, 0 falha**, com o botão da F2 montando `?rdm_v=48&rdm_ah=20&rdm_relevo=misto&rdm_peso=90&rdm_aut=60` em **200** e as duas páginas com formulário servindo o aviso.
+
+### DOIS PORTÕES REPROVARAM A PÁGINA CERTA, E OS DOIS FORAM CORRIGIDOS NA MESMA PASSADA
+
+Ao mover o aviso para a casca — que é **o conserto que a regra pede** —, a régua nova e a de `teste-f1-arvore.mjs` ficaram **vermelhas na F1**, porque as duas procuravam a **tag** e o snippet passou a ter a **chamada**. As duas passaram a aceitar as duas formas, com o mundo do conserto fabricado no autoteste. **Portão que reprova quem obedeceu é o caminho mais curto para alguém passar a ignorá-lo (20.5).**
+
+### OS TRÊS DEFEITOS DA F3, E ELES VALEM MAIS QUE A PÁGINA
+
+1. **A FRASE DE LISTA VAZIA MENTIA.** Um molde único dizia *"nenhum dos 3 veículos que declaram carga máxima aguenta os seus 108 kg com folga"* — e os três declaram **120 kg**, que cobre com folga os **119** que a regra pede para 108. **O eixo que esvaziava a vitrine era a falta de LINK, não a carga.** Agora são **três** causas com três frases, e o portão **exige que elas difiram**. Achada **lendo a frase que saiu**, exatamente como a conversão de milímetro da F1 foi achada hoje de manhã: nenhum portão via, porque a conta rodava.
+2. **CHAMADA DE FUNÇÃO INEXISTENTE, E ELA É TELA BRANCA.** O snippet chamou `rodametria_casca_data_em_portugues()`, nome **derivado de cabeça** do padrão dos outros componentes da casca. Em PHP é erro fatal em tempo de execução; **`php -l` passa verde**, porque a sintaxe está perfeita, e **nenhum dos 32 portões sem rede resolvia chamada entre snippets**. É a família que a **20.7** já nomeou para nome de constante (*"derivar é natural e erra CALADO"*), com o estrago maior. Virou régua: toda função `rodametria_*` chamada tem de **existir** ou estar **guardada por `function_exists()`** — a saída honesta para `rodametria_sync_token()`, que é do Sync e não mora neste repositório. **Guarda e nunca lista de exceção.** Provada **reinjetando o defeito real no arquivo real**: 238 chamadas varridas, 86 definições, 88 nomes guardados, 1 fantasma pego.
+3. **A RÉGUA DE ACENTO NASCEU ERRADA DUAS VEZES, e as duas reprovaram texto CERTO.** Primeiro medindo **ausência** de acento acima de 40 caracteres — e *"peso igual ao teto declarado que mais se repete no varejo brasileiro"* não tem um acento e está perfeita. Depois casando **pedaço** de palavra: `so` dentro de "nosso" e "isso", cinco frases reprovadas. Agora procura a palavra escrita **sem o acento que exige**, por palavra inteira, com três mundos — morde no defeito, **passa no texto certo**, não casa pedaço. **Contorcer a cópia para agradar régua errada é pior que a régua errada:** é a régua passando a decidir o que a página diz. *(No caminho, o acento natural que faltava entrou em sete frases de tela, e `VOZ.md` saiu de um motivo da tabela pela 32.4.)*
+
+**BANCADA SEM REDE: 34 portões, 0 falha** (eram 31 na chegada — entraram `teste-formulario-da-ilha.py`, `teste-f3.py` e `gerar-f3.py --conferir`).
+
 ## 2026-11-05 19h17Z–19h5xZ — **A PORTA SEGUE NO CHÃO 23 HORAS DEPOIS, E A TERCEIRA EXECUÇÃO DO DIA FOI TRABALHAR NA PENDÊNCIA QUE TRAVA A F1 — a parede não é um site, é o domínio `.gov.br` inteiro** — nenhum bloco da fila, pela 18.5
 
 **A ESCOLHA DA ILHA.** `foco.md` nomeia a **rodametria** (foco total e absoluto desde 27/10) e pela **1.2** não há escolha a fazer. `executando_desde` estava `null` na chegada, que pela **1.1** já significa que não havia bloco da Fundação vivo — sem reserva vencida, não houve o que o git desempatar. `origin/main` e `claude/dreamy-mccarthy-m50fjs` apontavam para o **mesmo** commit (`ec52eb7`) e **nenhum PR estava aberto**, então não havia o que mergear (passo 1 da seção 1). Reserva no commit `07b5ec5`, às **19h17Z**, com a hora saída do `date -u` na mesma linha de comando que a grava.

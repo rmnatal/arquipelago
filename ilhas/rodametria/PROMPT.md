@@ -666,6 +666,67 @@ home não tem posição a perder — e é a janela mais barata que vai existir p
 levar `CNH` para ele, ou a identidade da ilha paga mais no longo prazo? **A Fundação troca a linha em um
 gesto** (`'titulo'` no mapa de páginas da casca) **no dia em que a decisão estiver escrita.**
 
+**4c. ~~A F3 — "AGUENTA O MEU PESO?"~~ — ENTREGUE EM 06/11/2026 às 13h2xZ–14hxxZ, E COM ELA AS
+TRÊS FERRAMENTAS QUE ESTA ILHA EXISTE PARA TER ESTÃO NO AR.** `regras/f3.py` (o cérebro),
+`dados/f3-respostas.json`, `ferramentas/gerar-f3.py`, `ferramentas/teste-f3.py` (**583 afirmações**)
+e `snippets/rodametria-f3.php`, em `/peso-maximo-patinete-eletrico/`. A URL carrega a consulta
+**medida** do eixo C do corpus (`patinete eletrico peso maximo suportado`), não a pergunta do H1.
+
+**POR QUE ELA PODE IR AO AR COM O BANCO DE HOJE, e isto é o desenho e não um contorno: A RESPOSTA
+PRINCIPAL NÃO DEPENDE DO BANCO.** Dado o peso de quem pilota e o que ele carrega, a carga máxima a
+procurar sai de `total × (1 + margem)` — aritmética sobre a entrada da pessoa mais **uma** constante
+desta ilha. Nenhum registro participa. A vitrine é a segunda camada, e hoje está **vazia** com a
+causa nomeada: os **três** registros que declaram `carga_max_kg` declaram **120 kg**, os três lidos
+em ficha de varejo grande (nível 5, o piso que a 3.5 exige neste campo), e **nenhum tem oferta
+aberta** — pela 25.2, item sem piso de compra não entra em vitrine. É o mesmo desenho da F1 de hoje
+de manhã, que foi ao ar com zero cartões e os 14 nomes contados.
+
+**A TABELA PRE-RENDERIZADA PUBLICA A TESE DA ILHA, e a virada está visível nela:** com a folga de
+10%, **109 kg** é o último peso total que os 120 kg do teto de varejo acolhem, e **110 kg já não**.
+A constante `teto-de-carga-do-mercado-brasileiro` previa isso por escrito em 28/10 (*"quem passa de
+109 kg de peso total já cai fora do grupo de folga nos modelos de 120 kg"*) e agora o número está na
+tela. O `FAQPage` do JSON-LD é montado **da tabela**, campo por campo, procurando a virada em vez de
+a ter escrita — então ele não pode divergir da tabela que a pessoa lê.
+
+**E ELA É A PRIMEIRA FERRAMENTA DESTA ILHA A NASCER DENTRO DO CONSERTO DA 32.1-b:** campos com o
+prefixo desde o primeiro byte (`rdm_peso`, `rdm_carga`) e o `<noscript>` vindo do componente da
+casca — que é exatamente o que a regra pede ao mandar o componente morar num lugar só.
+
+**TRÊS DEFEITOS ACHADOS NESTA PASSADA, e eles valem mais que a página:**
+
+- **A FRASE DE LISTA VAZIA MENTIA.** Um molde único dizia *"nenhum dos 3 veículos que declaram carga
+  máxima aguenta os seus 108 kg com folga"* — e os três declaram 120 kg, que cobre com folga os 119
+  que a regra pede para 108. **O eixo que esvaziava a vitrine era a falta de LINK, não a carga.**
+  Agora são **três** causas com três frases (sem banco · aguentariam e sem link · nenhum aguenta), e
+  o portão exige que elas **difiram** entre si. Achado **lendo a frase que saiu**, que é como a
+  conversão de milímetro da F1 foi achada hoje de manhã — nenhum portão via, porque a conta rodava.
+- **CHAMADA DE FUNÇÃO INEXISTENTE, E ELA É TELA BRANCA.** O snippet chamou
+  `rodametria_casca_data_em_portugues()`, nome **derivado de cabeça** do padrão dos outros
+  componentes da casca. Em PHP é erro fatal em tempo de execução; **`php -l` passa verde**, porque a
+  sintaxe está perfeita, e **nenhum dos 32 portões sem rede resolvia chamada entre snippets**. É a
+  família que a **20.7** já nomeou para nome de constante (*"derivar é natural e erra CALADO"*), com
+  o estrago maior. Virou régua em `ferramentas/teste-formulario-da-ilha.py`: ela varre os seis
+  snippets e exige que toda função `rodametria_*` chamada **exista** ou esteja **guardada por
+  `function_exists()`** — que é a saída honesta para `rodametria_sync_token()`, do Sync, que não mora
+  neste repositório e não deve morar. **Guarda e nunca lista de exceção:** lista envelhece calada e
+  perdoa o erro de digitação do dia seguinte. Provada **reinjetando o defeito real no arquivo real**.
+- **A RÉGUA DE ACENTO NASCEU ERRADA DUAS VEZES, e as duas reprovaram texto CERTO.** Primeiro ela
+  media **ausência** de acento em texto com mais de 40 caracteres — e *"peso igual ao teto declarado
+  que mais se repete no varejo brasileiro"* não tem um acento e está perfeita. Depois passou a
+  procurar a palavra sem acento por **substring**, e `so` casou dentro de "nosso" e "isso",
+  reprovando cinco frases. Agora procura a palavra escrita **sem o acento que ela exige**, por
+  palavra inteira, com três mundos: morde no defeito, **passa no texto certo**, e não casa pedaço.
+  **Contorcer a cópia para agradar régua errada é pior que a régua errada** — é a régua passando a
+  decidir o que a página diz.
+
+**4c-ORIGINAL (guardado).** F3 — "aguenta o meu peso?" Entrada: peso + carga. Saída: elegíveis pela
+carga máxima declarada, e os de fora com o motivo (seção 7). *(O bloco 3b registrou em 29/10 que a
+F3 não ia ao ar porque "só três registros declaram `carga_max_kg` e nenhum dos três tem oferta
+aberta — a conta não teria o que comparar nem o que vender". A primeira metade continua verdadeira e
+a segunda foi **superada pelo precedente da F1**: a conta tem o que responder sem o banco, e o que
+ela não tem é o que **vender**. Vitrine vazia com a causa nomeada é página honesta; ferramenta não
+publicada é página nenhuma.)*
+
 **5. ARTIGOS-ÂNCORA** pareados com cada ferramenta.
 
 **5b. ~~PÁGINAS PELO NOME DO PRODUTO~~ — PRIMEIRA LEVA ENTREGUE EM 29/10/2026 às 19h1xZ–20hxxZ, e o

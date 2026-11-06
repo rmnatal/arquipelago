@@ -147,6 +147,19 @@ Espelho legível do estado do projeto. **Nunca guarde credencial aqui.**
   `<h1>` por página, a palavra "egresso" chegando à tela **por dado** e não por código, texto ASCII sem acento no
   mesmo campo, e o primeiro botão de compra a 1.730 px contra o teto de 1.400 da 32.5.
 
+- **A F3 (bloco 4c) — 06/11/2026 às 13h2xZ–14hxxZ, E COM ELA AS TRÊS FERRAMENTAS DESTA ILHA ESTÃO
+  NO AR.** `regras/f3.py`, `dados/f3-respostas.json`, `ferramentas/gerar-f3.py`,
+  `ferramentas/teste-f3.py` (583 afirmações) e `snippets/rodametria-f3.php`, em
+  `/peso-maximo-patinete-eletrico/`. **A resposta principal dela não depende do banco** — a carga
+  máxima a procurar sai de `total × (1 + margem)` —, e é isso que a tornou publicável com o banco de
+  hoje. A tabela pré-renderizada publica a virada que a constante previa por escrito em 28/10: 109 kg
+  é o último peso que os 120 kg do teto de varejo acolhem com a folga, e 110 kg já não.
+- **O CONSERTO DA 32.1-b — 06/11/2026, pela 18.5.** `ferramentas/teste-formulario-da-ilha.py` (a
+  primeira ponta do portão, sem lista, varrendo os seis snippets), a **F2 1.6.0** com os cinco campos
+  prefixados e o `<noscript>` servido, a **casca 1.13.0** com o aviso como componente
+  (`rodametria_casca_noscript()`) e o seletor `.rdm-noscript`, a **F1 1.1.0** usando o componente, e
+  a afirmação de ar que reprovou o ar de antes. Revisão **51**, conferida em 488 afirmações e 0 falha.
+
 ## O que está travando
 - ~~**A CASCA (bloco 3b) não é o próximo passo, e isto foi MEDIDO em 28/10 às 19h3xZ.**~~ — **SUPERADO EM
   29/10/2026: A CASCA FOI, e a medição que o item traz continua VERDADEIRA — ela só não impedia a casca.** O que
@@ -167,6 +180,19 @@ Espelho legível do estado do projeto. **Nunca guarde credencial aqui.**
   pode ser escrito inteiro, mas a constante central nasce `publicavel: false`. Despacho **ALTA** de 28/10 em
   `dados/despachos.md`. **Isto NÃO é `bloqueada_por`** (seção 11, passo 4): travou uma fonte, não a ilha.
 - **A SERP dos eixos de autonomia, carga e peças**, que a busca da nuvem não vê (30.8) — despacho NORMAL de 28/10.
+- ~~**A F3 não vai ao ar por falta de `carga_max_kg` em registro com oferta aberta.**~~ — **SUPERADO EM
+  06/11/2026: A F3 FOI.** A medição que travava continua verdadeira (três registros declaram carga, os
+  três em 120 kg, e nenhum tem oferta aberta), e ela media a coisa errada: o que falta é o que a página
+  **vende**, não o que ela **responde**. A conta principal não toca o banco. Vitrine vazia com a causa
+  nomeada é página honesta; ferramenta não publicada é página nenhuma — o precedente é a F1 desta manhã.
+- **O NÍVEL 5 NÃO É ALCANÇÁVEL PELA FICHA DA SHOPEE, e isto agora é MEDIÇÃO e não suposição
+  (06/11/2026).** O nível 5 do esquema diz, com estas palavras, *"e as fichas dos marketplaces"*, e
+  `shopee.com.br` está aberto no egresso desde 28/10 — então a porta parecia existir. Medida na ficha da
+  oferta casada do `honeywhale-m2-max`: **200 nas três passadas, e o HTML é casca de SPA vazia** —
+  155.908 bytes, **zero** ocorrência de `Potência`, `500W`, `km/h`, `Velocidade`, `Marca`, `Peso` ou do
+  nome do produto, e nem `<title>`. A especificação vive na API interna do site, que não é a Open API de
+  afiliado da 25.6. **`potencia_nominal_w`, `velocidade_max_kmh` e `acelerador` seguem não colhíveis
+  desta nuvem**, e o caminho segue sendo ABERTURA (despacho ALTA), não coleta.
 - Os passos 4b a 9 da seção 11 que faltam (Search Console, snippet de Sync, plugins, conta de serviço) são trabalho
   de navegador do Raphael. **O WordPress e o DNS já saíram dessa lista** — ver a Infraestrutura acima.
 - Os blocos 2 e 3 não dependem de site, e o 2 é o próximo.
