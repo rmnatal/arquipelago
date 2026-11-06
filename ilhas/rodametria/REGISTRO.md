@@ -3,7 +3,7 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
-## 2026-11-06 13h19Z–14hxxZ — **A F3 NASCE E AS TRÊS FERRAMENTAS DA ILHA ESTÃO NO AR; E A 32.1-b, ESCRITA ESTA MANHÃ, VIAJOU PARA A IRMÃ QUE ELA DEIXOU PARA TRÁS** — bloco 4c, mais o conserto da 32.1-b pela 18.5
+## 2026-11-06 13h19Z–14h45Z — **A F3 NASCE E AS TRÊS FERRAMENTAS DA ILHA ESTÃO NO AR; E A 32.1-b, ESCRITA ESTA MANHÃ, VIAJOU PARA A IRMÃ QUE ELA DEIXOU PARA TRÁS** — bloco 4c, mais o conserto da 32.1-b pela 18.5
 
 **A ESCOLHA DA ILHA.** `foco.md` nomeia a **rodametria** (foco total e absoluto desde 27/10) e pela **1.2** não há escolha a fazer. **Antes de aceitar o foco, conferi a exceção do molde (32):** os despachos do molde de conversão de 21/10 estão **fechados** nas três ilhas que a exceção nomeia — aquametria (18h2xZ de 21/10), clubedomosaico (19h1xZ de 21/10) e robometria (16h1xZ de 21/10) —, então o foco manda sozinho. `executando_desde` estava `null`, que pela **1.1** já significa que não havia bloco da Fundação vivo; o último commit da pasta era das 11h42Z, **1h36 atrás**, fora da janela de 40 minutos. `origin/main` e `claude/dreamy-mccarthy-34bsk9` no **mesmo** commit (`22c20e4`) e **nenhum PR aberto** — nada a mergear (passo 1). Reserva no commit `40dc771`, às **13h19Z**, hora saída do `date -u` na mesma linha que a grava.
 
@@ -150,6 +150,47 @@ defeito plausível. **A régua se mede contra o repositório antes de entrar, n�
 certa ficou escrita no portão: a casca é exceção porque é quem **registra as páginas** — com ela
 inativa não existe página para cair —, e a fragilidade real é ferramenta chamando **ferramenta**,
 que é dependência opcional. Medido: 239 chamadas varridas, 2 para outro snippet, as 2 guardadas.
+
+### NO AR E CONFERIDO PELA 18.4 — DOIS DESEMBARQUES, E O SEGUNDO EXISTE PORQUE OS PORTÕES DE AR REPROVARAM O PRIMEIRO
+
+**PRIMEIRO DESEMBARQUE — revisão 57, às 14h11:37Z.** Fecho do log declarando **9 aplicados** e **9
+linhas de item, todas `ok`** (20.4, lidas do fecho para baixo pela 20.8), com `snippets/rodametria-f3:
+ok (snippet #11 criado)`. **A ATIVAÇÃO provada pela 20.7:** os seis snippets aparecem em `/casca` nas
+versões do `manifest.json` — `id` ausente é o que denunciaria snippet gravado e **não** ativado.
+
+**E OS DOIS PORTÕES DE AR REPROVARAM, os dois com razão** — é por isso que houve um segundo
+desembarque, e é o que a 18.4 existe para forçar:
+
+- `conferir-no-ar.py`, **537 afirmações, 1 falha**: o JSON-LD declarava `dateModified 2026-11-06` e a
+  prosa não trazia essa data em lugar nenhum — trazia os 28/10/2026 das constantes. **Duas declarações
+  do mesmo fato começam iguais e só uma sobe (20.7).** A dobra "Como sabemos" passou a declarar a data
+  do banco, do **mesmo** `gerado_em` de onde o JSON-LD sai, como as duas irmãs já faziam.
+- `conferir-32-5-no-navegador.mjs`: `.rdm-f3-convite` declarava `margin-bottom: var(--rdm-e5)` e a
+  página servia **16 px onde o molde pedia 24** — **perdia por especificidade** para `body.rdm p`
+  (0,1,1 contra 0,1,0). As três regras de parágrafo da F3 ganharam o prefixo `body.rdm`. Conserto por
+  especificidade e **nunca** com `!important`, que é o que a 32.5-d manda.
+
+**SEGUNDO DESEMBARQUE — revisão 60, às 14h40:08Z, e é este que fecha o bloco.** Fecho declarando **10
+aplicados** e **10 linhas de item, todas `ok`**. Versões carregadas: **6 de 6** batendo com o manifest,
+**0 divergência**.
+
+| régua | número |
+|---|---|
+| bancada **com rede** | **38 portões, 0 falha** |
+| bancada sem rede | 34 portões, 0 falha (eram 31 na chegada) |
+| `conferir-no-ar.py` | **547 afirmações, 0 falha** |
+| `conferir-32-5-no-navegador.mjs` | **10 de 10** páginas no molde, 0 fora |
+| parágrafos duplicados | **0 em todas as 10 URLs** (eram 1 em `/` e 2 na F3) |
+| disputas de especificidade latentes | **0** (eram 3) |
+
+**OS NÚMEROS DA PÁGINA NOVA, medidos no ar a 390 px:** caixa a **329 px** (teto 700), altura **3.630
+px**, corpo de **5.730 caracteres** (piso 1.500), `description` de **157** (teto 160), bloco de compra
+em *"não se aplica"* porque está **vazio com a causa dita**. Pior caixa do site: 405 px. Pior botão de
+compra: 1.279 px (teto 1.400).
+
+**AS 10 URLs CONTADAS NO AR, sub-sitemap por sub-sitemap, com quebra de cache** — não na conta de antes
+do desembarque. As três portas da **29.2** em 200 com o tipo certo (`application/xml`, `text/plain`,
+`application/json`) e o caminho virgem em **404**.
 
 **BANCADA SEM REDE: 34 portões, 0 falha** (eram 31 na chegada — entraram `teste-formulario-da-ilha.py`, `teste-f3.py` e `gerar-f3.py --conferir`).
 
