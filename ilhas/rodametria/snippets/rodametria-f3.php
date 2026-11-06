@@ -36,7 +36,7 @@
  */
 
 if ( ! defined( 'RODAMETRIA_F3_VERSAO' ) ) {
-	define( 'RODAMETRIA_F3_VERSAO', '1.1.0' );
+	define( 'RODAMETRIA_F3_VERSAO', '1.2.0' );
 }
 
 /* A VERSAO DESTE SNIPPET VAI AO AR (20.7). A CHAVE E O `id` DO manifest.json, e
@@ -416,7 +416,16 @@ function rodametria_f3_dobras_html( $d ) {
 		}
 		$corpo .= '</li>';
 	}
+	/* A DATA QUE A PROSA DECLARA, E ELA TEM DE SER A MESMA DO `dateModified` DO
+	   JSON-LD (20.7: um fato, uma fonte). O portao de ar REPROVOU esta pagina
+	   por isso na primeira conferencia: o JSON-LD dizia 06/11/2026 e a prosa
+	   trazia so os 28/10/2026 das constantes — duas declaracoes do mesmo fato
+	   comecam iguais e so uma sobe. As duas saem agora de `gerado_em`. */
 	$corpo .= '</ul>';
+	$corpo .= '<p class="rdm-fonte">Esta página foi gerada a partir do nosso banco em '
+		. esc_html( rodametria_f3_data( isset( $d['gerado_em'] ) ? $d['gerado_em'] : '' ) )
+		. ', e os números de veículos citados nela são contados no banco, nunca '
+		. 'escritos à mão.</p>';
 	$html .= rodametria_casca_dobra( 'Como sabemos', $corpo );
 
 	return $html;

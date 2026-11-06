@@ -4,7 +4,7 @@
   "nicho": "mobilidade eletrica — acertar os tres numeros antes de comprar um veiculo eletrico: categoria legal (CNH e placa), autonomia real e carga maxima",
   "dominio": "https://rodametria.com.br",
   "versao_manifest": 1,
-  "revisao": 57,
+  "revisao": 59,
   "atualizado_em": "2026-11-06",
   "estado": "nascendo",
   "desembarque": {
@@ -20,8 +20,8 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "1fc4ebb2cdfb1c98a2a45bbfc61b72c84d462346734ccdd8f9e2ecf2e58c1154",
-      "versao": "1.15.0",
+      "sha256": "cd454dd17692a18721c9f7f6dc08c6dee20d1a0d8e75f120f4562105a677ac1d",
+      "versao": "1.16.0",
       "descricao": "A CASCA desta ilha (a versao corrente esta no campo `versao` deste item, espelhado da constante do arquivo). Tokens do DESIGN.md (tinta #13212B, verde #0A6B4C, Alfa Slab One so na marca, Barlow Semi Condensed nos titulos, JetBrains Mono em todo numero), simbolo V9 completo no cabecalho e em negativo no rodape, favicon proprio (secao 6: icone padrao do WordPress na aba e bloco reprovado), menu hamburguer com aria-expanded/aria-controls e links <a href> de verdade no HTML servido, trilha + BreadcrumbList, WebSite JSON-LD na home, <title> e description saindo de UM mapa de paginas. E os COMPONENTES DO MOLDE da secao 32, aqui e nao em cada snippet, como a 32.6-b manda: caixa de resultado, dobra <details>, cartao de compra com espaco reservado para quem nao tem foto, carrossel com scroll-snap em CSS puro, barra fixa do telefone e o rotulo do botao de loja por degrau da escada da 25.1. Pagina nova entra pelos filtros `rodametria_paginas` e `rodametria_instalar`, de dentro do proprio snippet dela — a casca nao e editada quando a ilha cresce. 1.3.0 (29/10/2026): `garantir_pagina()` aceita PAI, pela 16.2, e `url_do_slug()` acha a pagina pela meta `_rodametria_id` em vez de por caminho — `get_page_by_path()` casa o caminho INTEIRO e devolveria nulo para filha de arvore de dois niveis, com `casca_link()` transformando link vazio em texto sem reclamar. 1.4.0 (29/10/2026, no mesmo dia e por defeito MEDIDO no ar): a instalacao passou a rodar tambem quando a ASSINATURA DO MAPA muda, e nao so quando a versao da casca muda. A revisao 13 subiu casca nova e snippet de pagina nova na MESMA passada do Sync; quando o `init` chamou a instalacao, o snippet novo ainda nao estava carregado naquela requisicao, as tres paginas nao foram criadas, e a casca gravou `instalado: 1.3.0` — com a versao marcada, a instalacao nunca mais rodaria. O sintoma era o da secao 4: /status em 13, cinco linhas `ok`, o mapa de paginas ja com as tres novas, e o wp-sitemap.xml com duas URLs. A VERSAO SAIU DESTA PROSA EM 02/11/2026, e ela estava VELHA nos QUATRO snippets (a casca dizia 1.4.0 servindo 1.6.0; os outros tres diziam 1.0.0) — e isso e a prova de que o campo `versao` faltava. Quem declara a versao agora e o campo, espelhado da constante do arquivo por `ferramentas/atualizar-manifest.py` e cobrado por `ferramentas/teste-versao-dos-snippets.php`; prosa que repete o mesmo fato e a segunda declaracao que sobe sozinha de um lado so."
     },
     {
@@ -53,8 +53,8 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "51cea0cf64920a08702179ab7082e8ae79006f4c26aab2fc601e89dec19ec203",
-      "versao": "1.1.0",
+      "sha256": "446cc2d424723b8b5ed460d24b869ebae648f927b3a30ab62f5dd711d161fe33",
+      "versao": "1.2.0",
       "descricao": "A F3 — a TERCEIRA e ultima das tres ferramentas que esta ilha existe para ter, em /peso-maximo-patinete-eletrico/ (a URL carrega a consulta MEDIDA do eixo C do corpus, `patinete eletrico peso maximo suportado`, e nao a pergunta do H1). O QUE A SEPARA DAS DUAS IRMAS, e e por isso que ela pode ir ao ar hoje: A RESPOSTA PRINCIPAL NAO DEPENDE DO BANCO. Dado o peso de quem pilota e o que ele carrega, a carga maxima a procurar sai de `total x (1 + margem)` — aritmetica sobre a entrada da pessoa mais UMA constante desta ilha, que e `decisao_da_ilha` em 10% e que a pagina NUNCA atribui a terceiro (a constante carrega a busca limpa que NEGOU a fonte que o bloco 1 supunha). A vitrine e a segunda camada e hoje esta VAZIA, com a causa NOMEADA e os numeros contados: os tres registros do banco que declaram carga maxima declaram 120 kg, os tres lidos em ficha de varejo grande (nivel 5, o piso que a 3.5 da especificacao exige neste campo), e NENHUM tem oferta aberta — pela 25.2 item sem piso de compra nao entra em vitrine. A LISTA VAZIA TEM TRES CAUSAS E TRES FRASES, e isso nasceu de um defeito medido nesta propria passada: a primeira versao tinha UM molde e dizia que 'nenhum dos 3 aguenta os seus 108 kg com folga' quando os tres declaram 120 kg e cobrem com folga os 119 que a regra pede — o eixo que esvaziava a vitrine era a falta de LINK e nao a carga. A TABELA PRE-RENDERIZADA PUBLICA A TESE DA ILHA: com a folga de 10%, 109 kg e o ultimo peso total que os 120 kg do teto de varejo acolhem e 110 kg ja nao, e a virada esta visivel na tabela e no FAQPage, que e montado dela campo por campo. Ordem da 32.1: promessa, formulario ja preenchido com o caso que da 'no limite' e nao um folgado, o <noscript> da 32.1-b, a caixa pre-renderizada, o bloco de compra com a causa da falta, os tres grupos da 3.2 na ordem em que a 3.2 manda (o do meio NUNCA primeiro), a ressalva SOURCED da 3.4 logo depois do grupo do meio e so quando ele existe, o convite para a F2 com o peso na URL, a prestacao de contas da secao 7, a tabela VISIVEL e tres dobras. E ELA E A PRIMEIRA FERRAMENTA DESTA ILHA A NASCER DENTRO DO CONSERTO DA 32.1-b: os campos nascem com o prefixo (`rdm_peso`, `rdm_carga`) e o aviso vem do componente da casca, que e exatamente o que a regra pede ao mandar o componente morar num lugar so."
     },
     {
