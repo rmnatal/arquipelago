@@ -107,6 +107,13 @@ MOLDES = {
     "titulo_nao_aguenta": "Não aguentam o seu peso",
     "titulo_sem_carga": "Não declaram carga máxima",
     "titulo_sem_compra": "Declaram a carga e não têm oferta aberta",
+    # DOIS ROTULOS PARA OS MESMOS NOMES, e eles sao dois porque os dois blocos
+    # os mostram por motivos diferentes: na RESPOSTA, a carga que cada um
+    # declara; na PRESTACAO DE CONTAS, a conta que fecha os 17 registros. Dois
+    # blocos com o MESMO titulo leem como a pagina se repetindo, e isso foi
+    # medido no ar em 06/11/2026 LENDO A PAGINA, junto com a duplicata do
+    # paragrafo de causa que saia nos dois lugares.
+    "titulo_aguentam_sem_link": "Aguentam o seu peso, e ainda não têm link de loja",
     # A ressalva SOURCED do grupo do meio (3.4), com o publicador nomeado.
     "ressalva_no_limite": (
         "Quem fica perto do teto declarado costuma não alcançar a velocidade e a "

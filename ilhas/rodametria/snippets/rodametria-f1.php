@@ -48,7 +48,7 @@
  */
 
 if ( ! defined( 'RODAMETRIA_F1_VERSAO' ) ) {
-	define( 'RODAMETRIA_F1_VERSAO', '1.1.0' );
+	define( 'RODAMETRIA_F1_VERSAO', '1.2.0' );
 }
 
 if ( ! defined( 'RODAMETRIA_ID_DADOS_F1' ) ) {
@@ -496,9 +496,16 @@ function rodametria_f1_dobras_html( $d ) {
 		. 'Enquanto a gente não tinha o texto, esta ferramenta ficou fora do ar — porque errar '
 		. 'para o lado permissivo aqui manda alguém para a rua sem habilitação.</p>';
 
-	/* --- a metade que a gente nao responde, e ela e uma dobra PROPRIA --- */
-	$cnh  = '<p>' . esc_html( (string) $d['frases_molde']['habilitacao_pendente'] ) . '</p>';
-	$cnh .= '<p>A resolução que decide a categoria responde <b>placa, registro, licenciamento e '
+	/* --- a metade que a gente nao responde, e ela e uma dobra PROPRIA ---
+	   A FRASE DA CAIXA NAO SE REPETE AQUI, e isso foi MEDIDO NO AR em
+	   06/11/2026: `habilitacao_pendente` ja e a terceira frase da caixa de
+	   resposta, e esta dobra a imprimia DE NOVO — a home servia os mesmos 290
+	   caracteres duas vezes, desde que a F1 foi ao ar nesta manha. Nenhum portao
+	   via, porque cada paragrafo, sozinho, e a frase certa; quem viu foi a regua
+	   de paragrafo duplicado, escrita na mesma tarde e medida nas 10 URLs antes
+	   de entrar. A dobra explica o que a resolucao RESPONDE e onde mora o resto;
+	   a recusa em si mora na caixa, que e onde a pessoa olha primeiro. */
+	$cnh  = '<p>A resolução que decide a categoria responde <b>placa, registro, licenciamento e '
 		. 'capacete</b>, e é isso que a caixa de resposta mostra, com o artigo ao lado. A '
 		. 'habilitação está em outra lei, e a gente só vai publicar o que ela diz depois de ler '
 		. 'nela.</p>';

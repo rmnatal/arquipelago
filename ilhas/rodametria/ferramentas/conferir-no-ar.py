@@ -1177,6 +1177,47 @@ def main():
             registro("%s: os dois paragrafos do bloco de compra vazio sao diferentes"
                      % caminho)
 
+        # A PAGINA NAO SERVE O MESMO PARAGRAFO LONGO DUAS VEZES (06/11/2026).
+        #
+        # A afirmacao acima compara os dois paragrafos DENTRO do bloco de compra.
+        # Esta e a geral, e ela nasceu porque a de cima nao bastou: no mesmo dia,
+        # na mesma ilha, a duplicata apareceu ATRAVESSANDO blocos — e uma delas
+        # foi cometida por quem acabara de consertar a outra.
+        #
+        # AS TRES QUE ELA ACHOU, medidas nas 10 URLs servidas ANTES de esta regua
+        # entrar no portao (a licao de metodo desta passada: regua se mede contra
+        # o repositorio antes de entrar, e as quatro que nao foram medidas antes
+        # reprovaram o texto certo):
+        #   /                                 290 caracteres — a recusa sobre
+        #       habilitacao saia na CAIXA e outra vez numa DOBRA, desde que a F1
+        #       foi ao ar nesta manha;
+        #   /peso-maximo-patinete-eletrico/   306 caracteres — a causa de lista
+        #       vazia saia no BLOCO DE COMPRA e outra vez no bloco de resposta;
+        #   /peso-maximo-patinete-eletrico/   200 caracteres — a frase da margem
+        #       saia na CAIXA e outra vez numa DOBRA.
+        # **Zero falso positivo nas outras OITO paginas**, com 13 a 32 paragrafos
+        # longos cada. E por isso o piso e 120 caracteres: abaixo disso, repetir
+        # rotulo e linha de procedencia e normal e a regua reprovaria a pagina
+        # certa.
+        #
+        # POR QUE NENHUM OUTRO PORTAO VE: cada paragrafo, SOZINHO, e a frase
+        # certa. Nenhuma regua desta ilha comparava os paragrafos ENTRE SI.
+        _longos = []
+        for _t in re.findall(r"<(?:p|li)\b[^>]*>(.*?)</(?:p|li)>", html, re.S | re.I):
+            _t = desescapar_entidades(re.sub(r"<[^>]+>", " ", _t))
+            _t = re.sub(r"\s+", " ", _t).strip()
+            if len(_t) >= 120:
+                _longos.append(_t)
+        _dup = sorted({t for t in _longos if _longos.count(t) > 1})
+        afirma(not _dup,
+               "%s: serve o MESMO paragrafo mais de uma vez — %d duplicata(s), a "
+               "primeira com %d caracteres: %r. Cada paragrafo sozinho e a frase "
+               "certa; o que esta errado e a pagina dizer a mesma coisa duas vezes"
+               % (caminho, len(_dup), len(_dup[0]) if _dup else 0,
+                  _dup[0][:90] if _dup else ""))
+        registro("%s: %d paragrafo(s) longo(s), %d duplicado(s)"
+                 % (caminho, len(_longos), len(_dup)))
+
         # A CLASSE DO QUANTIFICADOR E DO SUPERLATIVO, EM TODA URL DO SITEMAP.
         conferir_classe_no_site(caminho, texto, ancoras_do_site)
 

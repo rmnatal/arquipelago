@@ -36,7 +36,7 @@
  */
 
 if ( ! defined( 'RODAMETRIA_F3_VERSAO' ) ) {
-	define( 'RODAMETRIA_F3_VERSAO', '1.2.0' );
+	define( 'RODAMETRIA_F3_VERSAO', '1.4.0' );
 }
 
 /* A VERSAO DESTE SNIPPET VAI AO AR (20.7). A CHAVE E O `id` DO manifest.json, e
@@ -238,21 +238,30 @@ function rodametria_f3_grupos_html( $d ) {
 		}
 	}
 
-	/* LISTA VAZIA NOMEIA A CAUSA QUE A PAGINA MEDIU (3.5), e a frase vem da
-	   referencia, que distingue as TRES causas. Molde unico aqui MENTIU na
-	   primeira versao desta ferramenta: dizia que ninguem aguentava o peso
-	   quando o que faltava era o link de loja. */
-	foreach ( (array) $r['frases_vazio'] as $f ) {
-		$html .= '<p class="rdm-f3-vazio">' . esc_html( $f ) . '</p>';
-	}
+	/* A CAUSA DE LISTA VAZIA NAO MORA AQUI, E ISSO FOI MEDIDO NO AR EM
+	   06/11/2026, LENDO A PAGINA. Ela moro aqui ate a primeira leitura: o
+	   paragrafo de 300 caracteres saia DUAS VEZES na mesma pagina — uma como
+	   causa do bloco de compra vazio e outra logo abaixo, neste bloco —, e as
+	   duas eram byte por byte a mesma frase.
+	   E O DEFEITO ERA MEU, no mesmo arquivo em que eu acabara de consertar o
+	   gemeo dele na casca: a afirmacao de ar que escrevi compara os dois
+	   paragrafos DENTRO do bloco de compra, e esta duplicata atravessa dois
+	   blocos. Um fato, um lugar (20.7): a causa mora no BLOCO DE COMPRA, que e
+	   quem precisa explicar por que nao ha o que comprar, e e la que o
+	   navegador a reescreve. Este bloco fica com o que e dele — os grupos e os
+	   nomes. */
 
 	/* E OS NOMES DE QUEM SERVIRIA E NAO TEM LINK, porque a secao 7 manda
 	   nomear em vez de sumir — e a frase de vazio acima aponta para eles. */
 	$servem = isset( $d['compra']['serviriam_sem_oferta'] )
 		? (array) $d['compra']['serviriam_sem_oferta'] : array();
 	if ( $servem ) {
+		/* ROTULO PROPRIO, e nao o da prestacao de contas: os dois blocos mostram
+		   os mesmos nomes por motivos diferentes (aqui, a carga de cada um;
+		   la, a conta que fecha os 17), e dois blocos com o MESMO titulo leem
+		   como a pagina se repetindo. */
 		$html .= '<h3 class="rdm-f3-grupo-titulo">'
-			. esc_html( $m['titulo_sem_compra'] ) . '</h3>';
+			. esc_html( $m['titulo_aguentam_sem_link'] ) . '</h3>';
 		$html .= '<ul class="rdm-f3-lista">';
 		foreach ( $servem as $s ) {
 			$html .= '<li>' . esc_html( $s['nome'] ) . ' — '
@@ -377,9 +386,12 @@ function rodametria_f3_dobras_html( $d ) {
 	$r = $d['resposta_exemplo'];
 	$html = '';
 
-	/* COMO CHEGAMOS NO NUMERO */
-	$corpo = '<p>' . esc_html( $r['frase_margem'] ) . '</p>';
-	$corpo .= '<p>A conta é uma só: somamos o seu peso com o que você carrega e '
+	/* COMO CHEGAMOS NO NUMERO.
+	   A `frase_margem` NAO SE REPETE AQUI, e isso foi medido no ar em
+	   06/11/2026: ela ja esta na CAIXA DE RESULTADO, e a pagina servia os
+	   mesmos 200 caracteres duas vezes. A dobra explica o MECANISMO; o numero e
+	   a razao dele ficam na caixa, que e onde a pessoa olha primeiro. */
+	$corpo = '<p>A conta é uma só: somamos o seu peso com o que você carrega e '
 		. 'acrescentamos a folga. O resultado é a carga máxima que a ficha do veículo '
 		. 'precisa declarar — não é o peso que ele “provavelmente” aguenta.</p>';
 	foreach ( (array) $r['frases_mercado'] as $f ) {
@@ -747,20 +759,24 @@ add_action( 'wp_footer', function () {
        duas causas sao de eixos diferentes: `baldes.folga` vazio diz que a
        VITRINE nao tem o que mostrar, e `sem.folga` diz se o que falta e o LINK
        ou a CARGA. Molde unico aqui mentiu na primeira versao da ferramenta. */
-    if (!baldes.folga.length) {
-      if (sem.folga.length) {
-        html += '<p class="rdm-f3-vazio">' + preencher(D.moldes.vazio_por_falta_de_oferta,
+    /* A CAUSA E REESCRITA NO BLOCO DE COMPRA, que e onde ela mora — nunca aqui.
+       Ate 06/11/2026 ela era escrita nos dois lugares e a pagina servia o
+       paragrafo DUAS VEZES. */
+    var pVazio = document.querySelector('.rdm-molde-compra-vazio');
+    if (pVazio) {
+      if (!baldes.folga.length && sem.folga.length) {
+        pVazio.textContent = preencher(D.moldes.vazio_por_falta_de_oferta,
           {quantos_servem: num(sem.folga.length), quantos: num(D.declaram),
-           total: num(total)}) + '</p>';
-      } else {
-        html += '<p class="rdm-f3-vazio">' + preencher(D.moldes.vazio_por_carga,
-          {quantos: num(D.declaram), total: num(total), teto: num(D.teto)}) + '</p>';
+           total: num(total)});
+      } else if (!baldes.folga.length) {
+        pVazio.textContent = preencher(D.moldes.vazio_por_carga,
+          {quantos: num(D.declaram), total: num(total), teto: num(D.teto)});
       }
     }
     /* E OS NOMES DE QUEM AGUENTA E NAO TEM LINK, nomeados e nunca sumidos
        (secao 7) — independentes da vitrine estar cheia ou vazia. */
     if (sem.folga.length) {
-      html += '<h3 class="rdm-f3-grupo-titulo">' + D.moldes.titulo_sem_compra + '</h3>';
+      html += '<h3 class="rdm-f3-grupo-titulo">' + D.moldes.titulo_aguentam_sem_link + '</h3>';
       html += '<ul class="rdm-f3-lista">';
       for (i = 0; i < sem.folga.length; i++) {
         html += '<li>' + sem.folga[i].nome + '</li>';

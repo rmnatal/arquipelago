@@ -54,6 +54,7 @@
     "titulo_nao_aguenta": "Não aguentam o seu peso",
     "titulo_sem_carga": "Não declaram carga máxima",
     "titulo_sem_compra": "Declaram a carga e não têm oferta aberta",
+    "titulo_aguentam_sem_link": "Aguentam o seu peso, e ainda não têm link de loja",
     "ressalva_no_limite": "Quem fica perto do teto declarado costuma não alcançar a velocidade e a aceleração máximas que o fabricante anuncia — é o que dizem a espanhola RACE e o brasileiro my-best, que fala em evitar sobrecarga no motor. Perto do limite, o peso não derruba só a carga: derruba os km.",
     "linha_folga": "{nome} declara {carga} kg — {sobra} kg acima do que você precisa.",
     "linha_no_limite": "{nome} declara {carga} kg: até aguenta os seus {total} kg, mas sem a folga de {pct}% que a gente pede.",
