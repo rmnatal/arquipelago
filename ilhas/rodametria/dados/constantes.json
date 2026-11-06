@@ -66,8 +66,8 @@
       "valor": {
         "potencia_w": 350,
         "velocidade_kmh": 25,
-        "atribuido_a": "regra do município do Rio de Janeiro",
-        "apresentado_como": "limite nacional da bicicleta elétrica"
+        "atribuido_a": "uma regra do município do Rio de Janeiro",
+        "apresentado_como": "o limite nacional da bicicleta elétrica"
       },
       "unidade": "W e km/h",
       "tipo": "afirmacao_de_terceiro",

@@ -48,7 +48,7 @@
  */
 
 if ( ! defined( 'RODAMETRIA_F1_VERSAO' ) ) {
-	define( 'RODAMETRIA_F1_VERSAO', '1.3.0' );
+	define( 'RODAMETRIA_F1_VERSAO', '1.3.1' );
 }
 
 if ( ! defined( 'RODAMETRIA_ID_DADOS_F1' ) ) {

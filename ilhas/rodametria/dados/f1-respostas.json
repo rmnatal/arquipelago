@@ -161,8 +161,8 @@
       "valor": {
         "potencia_w": 350,
         "velocidade_kmh": 25,
-        "atribuido_a": "regra do município do Rio de Janeiro",
-        "apresentado_como": "limite nacional da bicicleta elétrica"
+        "atribuido_a": "uma regra do município do Rio de Janeiro",
+        "apresentado_como": "o limite nacional da bicicleta elétrica"
       },
       "status": "publicavel",
       "tipo": "afirmacao_de_terceiro",
@@ -226,7 +226,7 @@
   "frases_numeros_que_circulam": [
     "Procurando a resposta desta pergunta a gente achou três pares de números diferentes, em páginas que todas se apresentam como quem sabe. Depois de ler a resolução, dois deles estão lá — e são de categorias diferentes, por isso não competem.",
     "1.000 W com 32 km/h é o teto da bicicleta elétrica e do autopropelido. 4.000 W com 50 km/h é o teto do ciclomotor, que é a categoria logo acima. Quem cita um dos dois sem dizer de qual categoria está falando não está errado no número: está errado no que o número separa.",
-    "O terceiro par, 350 W com 25 km/h, não está na resolução. Ele aparece atribuído a regra do município do Rio de Janeiro e é repetido como se fosse limite nacional da bicicleta elétrica. A gente não leu o ato dessa prefeitura, então não diz aqui qual é o limite de lá. O que esta página afirma sobre ele é só isto: esse par não é o limite da resolução."
+    "O terceiro par, 350 W com 25 km/h, não está na resolução. Ele aparece atribuído a uma regra do município do Rio de Janeiro e é repetido como se fosse o limite nacional da bicicleta elétrica. A gente não leu o ato dessa prefeitura, então não diz aqui qual é o limite de lá. O que esta página afirma sobre ele é só isto: esse par não é o limite da resolução."
   ],
   "contagem_de_fichas": {
     "colhidos": 14,
