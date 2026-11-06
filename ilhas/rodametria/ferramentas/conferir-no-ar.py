@@ -51,6 +51,7 @@ import os
 import re
 import sys
 import urllib.error
+import urllib.parse
 import urllib.request
 
 AQUI = os.path.dirname(os.path.abspath(__file__))
@@ -88,6 +89,53 @@ def buscar(caminho, v=True):
         return e.code, e.headers.get("Content-Type", ""), e.read().decode("utf-8", "replace")
     except Exception as e:
         return 0, "", "ERRO: %s" % e
+
+
+def formularios_da_pagina(html):
+    """Os formularios da pagina, como (acao, [(nome, valor), ...]).
+
+    O valor de cada campo sai do HTML SERVIDO — a opcao `selected`, o radio
+    `checked`, o `value` do input —, que e exatamente o que o navegador
+    enviaria se alguem apertasse o botao sem tocar em nada. Campo sem valor
+    legivel entra vazio, que tambem e o que o navegador manda.
+
+    A funcao NAO tem lista de nomes de campo e nao pode ter: e justamente a
+    lista escrita a mao que deixaria a afirmacao verde depois de uma troca de
+    nome. Ela le o que a pagina serve.
+    """
+    saida = []
+    for m in re.finditer(r"<form\b([^>]*)>(.*?)</form>", html, re.S | re.I):
+        atributos, dentro = m.group(1), m.group(2)
+        acao = re.search(r'action="([^"]*)"', atributos)
+        campos = []
+        # <select name=...> ... <option value=X selected>
+        for sm in re.finditer(r"<select\b([^>]*)>(.*?)</select>", dentro, re.S | re.I):
+            nome = re.search(r'name="([^"]+)"', sm.group(1))
+            if not nome:
+                continue
+            sel = re.search(r'<option value="([^"]*)"[^>]*\bselected\b', sm.group(2), re.I)
+            primeira = re.search(r'<option value="([^"]*)"', sm.group(2), re.I)
+            valor = (sel or primeira)
+            campos.append((nome.group(1), valor.group(1) if valor else ""))
+        # <input>: radio/checkbox so entram quando marcados; os outros sempre
+        vistos_radio = set()
+        for im in re.finditer(r"<input\b([^>]*)>", dentro, re.I):
+            at = im.group(1)
+            nome = re.search(r'name="([^"]+)"', at)
+            if not nome:
+                continue
+            tipo = (re.search(r'type="([^"]+)"', at) or [None, "text"])[1].lower()
+            valor = re.search(r'value="([^"]*)"', at)
+            if tipo in ("radio", "checkbox"):
+                if re.search(r"\bchecked\b", at, re.I) and nome.group(1) not in vistos_radio:
+                    vistos_radio.add(nome.group(1))
+                    campos.append((nome.group(1), valor.group(1) if valor else "on"))
+                continue
+            if tipo in ("submit", "button", "image", "reset", "file"):
+                continue
+            campos.append((nome.group(1), valor.group(1) if valor else ""))
+        saida.append((acao.group(1) if acao else "", campos))
+    return saida
 
 
 def corpo_da_pagina(html):
@@ -662,6 +710,42 @@ def main():
     virgem = "/caminho-que-nunca-existiu-%d/" % int(__import__("time").time())
     cod, _, _ = buscar(virgem, v=False)
     afirma(cod == 404, "29.2: caminho virgem respondeu %s e tinha de ser 404" % cod)
+
+    # -------------------------------------------------------------------
+    # 1-a. O BOTAO DE CADA FORMULARIO TEM DE LEVAR A UMA PAGINA, E ISSO
+    #      NASCEU DE UM 404 MEDIDO EM 06/11/2026.
+    #
+    # Os formularios desta ilha sao `method="get"` para a propria pagina, e
+    # o JS e quem chama `preventDefault()`. Entao a URL que o botao monta e
+    # uma pagina de verdade, servida a quem estiver SEM JavaScript — e no dia
+    # em que a F1 foi ao ar o primeiro campo dela se chamava `w`, que e QUERY
+    # VAR RESERVADA do WordPress (a SEMANA do arquivo de data):
+    # `/?w=500` devolvia **404**, a pagina "Pagina nao encontrada" da propria
+    # ilha. Medido campo por campo, com controle: `w=500` em 404 e `kmh`,
+    # `acel` e `mun` em 200 nas mesmas passadas.
+    #
+    # ESTE DEFEITO E DA FAMILIA MAIS PACIENTE QUE EXISTE: a pagina responde
+    # 200, este portao ficava verde, o portao de pixel ficava verde, e o
+    # defeito so aparecia para quem APERTASSE O BOTAO sem JavaScript.
+    #
+    # A AFIRMACAO SE CONSTROI DO HTML SERVIDO, nunca de uma lista escrita
+    # aqui: o portao le os `name=` de cada formulario da pagina e monta a
+    # query com eles. Formulario novo entra na conta no dia em que nasce, e
+    # nome de campo trocado nao deixa a afirmacao velha passando verde.
+    # -------------------------------------------------------------------
+    _, _, html_da_home = buscar("/")
+    for _acao, _campos in formularios_da_pagina(html_da_home):
+        if not _campos:
+            continue
+        _query = "&".join("%s=%s" % (urllib.parse.quote(n), urllib.parse.quote(str(v)))
+                          for n, v in _campos)
+        _cod, _, _ = buscar("/?" + _query)
+        afirma(_cod == 200,
+               "o botao do formulario da home monta `/?%s` e essa URL respondeu %s. "
+               "O formulario e method=get e o JS e quem faz preventDefault, entao quem "
+               "estiver sem JavaScript cai nisso. Nome de campo curto colide com query "
+               "var do WordPress" % (_query, _cod))
+        registro("o formulario da home monta `/?%s` e ela responde %s" % (_query, _cod))
 
     # -------------------------------------------------------------------
     # 1-b. A ROTA QUE MEDE A PORTA POR DENTRO (29.3). Ela nasceu nesta ilha

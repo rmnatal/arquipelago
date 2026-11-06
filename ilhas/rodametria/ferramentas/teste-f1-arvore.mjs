@@ -326,6 +326,51 @@ console.log('  o JSON-LD e a prosa do snippet: ' + QUANTIFICADORES.length +
   ' quantificador(es) proibido(s) conferido(s) em ' + stringsLongas.length +
   ' string(s) longa(s) do PHP');
 
+/* ------- (7) O NOME DO CAMPO DO FORMULARIO, e esta regua nasceu de um 404 no ar
+ *
+ * MEDIDO EM 06/11/2026: o formulario desta ferramenta e `method="get"` para a
+ * propria home, e o primeiro campo se chamava `w`. `w` E QUERY VAR RESERVADA DO
+ * WORDPRESS (a SEMANA do arquivo de data), e `https://rodametria.com.br/?w=500`
+ * devolve **404** — a pagina "Pagina nao encontrada" da propria ilha. Medido
+ * campo por campo, com controle: `w=500` em 404, e `kmh`, `acel` e `mun` em 200
+ * nas mesmas passadas, com a home sem query em 200.
+ *
+ * O CUSTO ERA DE VERDADE: o JS e quem chama `preventDefault()`, entao quem
+ * estivesse sem JavaScript e apertasse o botao da ferramenta principal desta ilha
+ * caia num 404. E ele e da familia mais paciente — a pagina responde 200, o
+ * portao de ar fica verde, o portao de pixel fica verde, e o defeito so aparece
+ * para quem APERTA O BOTAO sem JavaScript.
+ *
+ * A REGUA COBRA O PREFIXO E NAO A LISTA, de proposito. A lista de reservadas do
+ * WordPress tem mais de vinte nomes curtos e muda com a versao; prefixo proprio
+ * torna a classe inteira impossivel em vez de consertar o caso de hoje. A lista
+ * entra tambem, como segunda afirmacao, para o caso de alguem prefixar errado.
+ * ------------------------------------------------------------------------- */
+const RESERVADAS_DO_WORDPRESS = [
+  'm', 'p', 'w', 's', 'cat', 'name', 'title', 'order', 'orderby', 'author',
+  'paged', 'page', 'page_id', 'feed', 'year', 'monthnum', 'day', 'hour',
+  'minute', 'second', 'attachment', 'attachment_id', 'pagename', 'tag',
+  'taxonomy', 'term', 'preview', 'robots', 'error', 'embed', 'cpage',
+  'comments_popup', 'subpost', 'static', 'post_type', 'sentence', 'search',
+];
+const PREFIXO = 'rdm_';
+const nomesDeCampo = [...new Set(
+  [...phpFonte.matchAll(/name="([^"]+)"/g)].map((m) => m[1]))];
+ok(nomesDeCampo.length > 0, 'nao achei nenhum `name=` de campo no snippet da F1');
+for (const nome of nomesDeCampo) {
+  ok(nome.startsWith(PREFIXO),
+    'o campo ' + JSON.stringify(nome) + ' do formulario nao carrega o prefixo ' +
+    JSON.stringify(PREFIXO) + '. O formulario e method=get para a propria pagina, e nome ' +
+    'curto colide com query var do WordPress — `w` custou um 404 na ferramenta principal ' +
+    'desta ilha em 06/11/2026');
+  ok(!RESERVADAS_DO_WORDPRESS.includes(nome),
+    'o campo ' + JSON.stringify(nome) + ' E QUERY VAR RESERVADA DO WORDPRESS: a URL que o ' +
+    'botao monta devolve 404');
+}
+console.log('  nomes de campo: ' + nomesDeCampo.length + ', todos com o prefixo ' +
+  JSON.stringify(PREFIXO) + ' e nenhum nas ' + RESERVADAS_DO_WORDPRESS.length +
+  ' query vars reservadas do WordPress');
+
 console.log('');
 console.log('teste-f1-arvore: ' + afirmacoes + ' afirmacoes, ' + falhas.length + ' falha(s)');
 for (const f of falhas.slice(0, 20)) console.log('  FALHA ' + f);

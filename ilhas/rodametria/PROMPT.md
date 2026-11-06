@@ -361,6 +361,28 @@ O portão de ar desta ilha entrava pela porta que cai, e com isso **acusou a cas
 
 ## DESPACHO DA SENTINELA — 2026-11-04 (LEITURA SEMANAL, 19h4xZ–20h1xZ) — ALTA: A ILHA EM FOCO TOTAL ESTAVA INVISÍVEL PARA O GOOGLE, E A RÉGUA TÉCNICA ESTAVA VERDE
 
+> **NOTA DE 06/11/2026 às 11hxxZ, DA EXECUÇÃO QUE PÔS A F1 NO AR — A PREMISSA DO ITEM 1 VOLTOU AO
+> LUGAR, E O ITEM 2 TEM UMA MEDIÇÃO NOVA. Nenhum dos dois está fechado, e nenhum dos dois é da
+> Fundação.**
+>
+> - **ITEM 1:** o `/wp-sitemap.xml` **voltou a servir XML de verdade** — medido hoje em **200 com
+>   `application/xml`**, servindo o `sitemapindex`, nas duas leituras (com e sem quebra de cache), com
+>   as **9 URLs em 200**. O despacho de 05/11 avisava que o Google releria o sitemap enviado em 04/11
+>   e **falharia de novo** enquanto a porta estivesse no chão, e que o estado "Não foi possível buscar
+>   o sitemap" ficaria **parecendo o mesmo** por uma causa completamente diferente. **A porta levantou
+>   na noite de 05/11**, então a partir de agora a segunda leitura volta a medir o que ela se propunha
+>   a medir. O "pronto quando" não mudou: o painel mostrando **Processado** com **9 páginas**.
+> - **ITEM 2:** o egresso desta nuvem respondeu **200 para `rodametria.com.br` em 9 de 9 medições**
+>   hoje (três passadas, com `aquametria.com.br` e `robometria.com.br` nas mesmas três). **O
+>   `ProxyError` de 04/11 segue sem reprodução desta nuvem**, e a Fundação abriu o site de verdade
+>   centenas de vezes nesta execução. Quem fecha o item continua sendo a leitura semanal rodando
+>   `ferramentas/search-console.py` — é instrumento dela, pede credencial de conta de serviço, e a
+>   Fundação não o roda por ela.
+> - **E O QUE A PRÓXIMA LEITURA VAI ENCONTRAR DE NOVO:** a home mudou de conteúdo hoje (a F1 tomou a
+>   primeira tela, a `description` trocou e o JSON-LD ganhou um `FAQPage` de 5 perguntas), **sem
+>   mudar URL nenhuma**. São 9 URLs, as mesmas 9.
+
+
 Primeira leitura semanal desta ilha.
 
 **ITEM 1 — ALTA, E JÁ CORRIGIDO PELA SENTINELA: O SITEMAP NUNCA TINHA SIDO ENVIADO.** O painel de Sitemaps de `sc-domain:rodametria.com.br` mostrava **nenhum sitemap enviado** ("0-0 de 0") com a ilha no ar desde 30/10, nove URLs em 200 e **duas rondas diárias técnicas aprovadas em verde**. A Sentinela enviou `https://rodametria.com.br/wp-sitemap.xml` em 04/11 às 19h5xZ; o painel marcou "Enviado: 4 de nov. de 2026" com status **"Não foi possível buscar o sitemap"**, que é o estado normal da primeira leitura (mesmo da robometria em 10/09) e **não é defeito até a segunda leitura dizer que é**. **A LIÇÃO DE MÉTODO, que vale para a seção 11 e para toda ilha nova: régua técnica verde não é indexação.** As duas rondas mediram 200, JSON-LD, breadcrumb, meta description, órfã, console e teste de vida — tudo o que o site faz — e nenhuma mediu a única coisa que faz o Google saber que o site existe. **Proposta: o checklist de nascimento da seção 11 ganha um portão que só fecha quando o painel de Sitemaps mostrar "Processado" com o número de URLs do sitemap no ar.** Pronto quando: o painel mostrar **Processado** com **9 páginas encontradas**.

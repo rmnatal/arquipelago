@@ -114,17 +114,32 @@ function rodametria_f1_formulario_html( $d ) {
 		return $html;
 	};
 
+	/* OS NOMES DOS CAMPOS CARREGAM O PREFIXO DA ILHA, E ISSO NAO E ARRUMACAO —
+	   E CONSERTO DE UM 404 MEDIDO NO AR EM 06/11/2026.
+	   O formulario e `method="get"` para a propria home (o mesmo desenho da F2), e
+	   o primeiro campo se chamava `w`. `w` E QUERY VAR RESERVADA DO WORDPRESS (a
+	   SEMANA do arquivo de data): `https://rodametria.com.br/?w=500` devolve
+	   **404** — a pagina "Pagina nao encontrada" da propria ilha. Medido campo por
+	   campo: `w=500` da 404, e `kmh`, `acel` e `mun` dao 200 nas mesmas passadas,
+	   com a home sem query em 200. Ou seja: **quem estiver sem JavaScript e
+	   apertar o botao desta ferramenta cai num 404**, porque o JS e quem faz
+	   `preventDefault()`.
+	   O conserto e o PREFIXO EM TODOS OS QUATRO e nao so no que colidiu: a proxima
+	   colisao esta a um nome de distancia (`m`, `p`, `s`, `cat`, `name`, `title`,
+	   `order`, `author`, `paged`, `feed` e mais de vinte outras sao reservadas), e
+	   um espaco de nomes proprio torna a classe inteira impossivel em vez de
+	   consertar o caso de hoje. O portao cobra o prefixo, nao a lista. */
 	$html  = '<form class="rdm-f-formulario rdm-f1" data-rdm-f1-form'
 		. ' method="get" action="' . esc_url( home_url( '/' ) ) . '">';
 	$html .= '<div class="rdm-f-campos">';
 
 	$html .= '<p class="rdm-f-campo"><label for="rdm-f1-w">' . esc_html( $r['potencia_nominal_w'] )
-		. '</label><select id="rdm-f1-w" name="w" data-rdm-f1-w>'
+		. '</label><select id="rdm-f1-w" name="rdm_w" data-rdm-f1-w>'
 		. $opcoes( $d['campos']['potencias_w'], $ex['potencia_nominal_w'], 'W' )
 		. '</select><span class="rdm-f-dica">A da ficha, não a do título do anúncio</span></p>';
 
 	$html .= '<p class="rdm-f-campo"><label for="rdm-f1-kmh">' . esc_html( $r['velocidade_max_kmh'] )
-		. '</label><select id="rdm-f1-kmh" name="kmh" data-rdm-f1-kmh>'
+		. '</label><select id="rdm-f1-kmh" name="rdm_kmh" data-rdm-f1-kmh>'
 		. $opcoes( $d['campos']['velocidades_kmh'], $ex['velocidade_max_kmh'], 'km/h' )
 		. '</select><span class="rdm-f-dica">A de fábrica, não a que ele já fez</span></p>';
 
@@ -137,14 +152,14 @@ function rodametria_f1_formulario_html( $d ) {
 	foreach ( array( 'manual', 'so_pedal_assistido' ) as $opt ) {
 		$id = 'rdm-f1-acel-' . str_replace( '_', '-', $opt );
 		$html .= '<label class="rdm-f-radio" for="' . esc_attr( $id ) . '">'
-			. '<input type="radio" id="' . esc_attr( $id ) . '" name="acel" value="' . esc_attr( $opt ) . '"'
+			. '<input type="radio" id="' . esc_attr( $id ) . '" name="rdm_acel" value="' . esc_attr( $opt ) . '"'
 			. ( $opt === $ex['acelerador'] ? ' checked' : '' ) . ' data-rdm-f1-acel>'
 			. '<span>' . esc_html( $r[ 'acelerador_' . $opt ] ) . '</span></label>';
 	}
 	$html .= '<span class="rdm-f-dica">É o que mais muda a resposta</span></fieldset>';
 
 	$html .= '<p class="rdm-f-campo"><label for="rdm-f1-mun">' . esc_html( $r['municipio'] )
-		. '</label><input id="rdm-f1-mun" name="mun" type="text" autocomplete="address-level2"'
+		. '</label><input id="rdm-f1-mun" name="rdm_mun" type="text" autocomplete="address-level2"'
 		. ' value="' . esc_attr( (string) $ex['municipio'] ) . '" data-rdm-f1-mun>'
 		. '<span class="rdm-f-dica">A categoria é nacional; o limite da rua é local</span></p>';
 
