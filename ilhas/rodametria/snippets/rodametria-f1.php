@@ -48,7 +48,7 @@
  */
 
 if ( ! defined( 'RODAMETRIA_F1_VERSAO' ) ) {
-	define( 'RODAMETRIA_F1_VERSAO', '1.0.0' );
+	define( 'RODAMETRIA_F1_VERSAO', '1.1.0' );
 }
 
 if ( ! defined( 'RODAMETRIA_ID_DADOS_F1' ) ) {
@@ -234,16 +234,24 @@ function rodametria_f1_noscript_html( $d ) {
 	$acel = isset( $r[ 'acelerador_' . $ex['acelerador'] ] )
 		? $r[ 'acelerador_' . $ex['acelerador'] ] : (string) $ex['acelerador'];
 
-	return '<noscript><p class="rdm-f1-noscript">A conta responde no seu navegador. '
-		. 'Com o JavaScript desligado, o botão recarrega a página e a resposta abaixo '
-		. 'continua sendo a do exemplo já preenchido no formulário — '
-		. '<span class="rdm-num">' . esc_html( rodametria_f1_numero( $ex['potencia_nominal_w'] ) )
-		. '</span> W, <span class="rdm-num">'
-		. esc_html( rodametria_f1_numero( $ex['velocidade_max_kmh'] ) ) . '</span> km/h, '
-		. esc_html( mb_strtolower( $acel, 'UTF-8' ) ) . '. Para o seu caso, a tabela '
-		. '“' . esc_html( $r['titulo_tabela_regra'] ) . '”, mais abaixo, responde sem '
-		. 'precisar de conta: ela tem os limites de cada categoria e o artigo de onde '
-		. 'cada um saiu.</p></noscript>';
+	/* A FORMA SAI DA CASCA (32.6-b), o TEXTO fica aqui: o que esta pagina
+	   oferece a quem esta sem JavaScript — a tabela da REGRA — e dela e de mais
+	   nenhuma. Ate 06/11/2026 a tag e a classe eram escritas aqui dentro, e foi
+	   por isso que a F2 nasceu sem o aviso: regra que mora no snippet nao viaja
+	   para a irma (32.5-c). O <span class="rdm-num"> dos dois numeros saiu com
+	   a mudanca — o componente escapa texto, e numero dentro de aviso de
+	   rodape nao e numero de caixa de resultado. */
+	return rodametria_casca_noscript( array(
+		'A conta responde no seu navegador. Com o JavaScript desligado, o botão '
+		. 'recarrega a página e a resposta abaixo continua sendo a do exemplo já '
+		. 'preenchido no formulário — '
+		. rodametria_f1_numero( $ex['potencia_nominal_w'] ) . ' W, '
+		. rodametria_f1_numero( $ex['velocidade_max_kmh'] ) . ' km/h, '
+		. mb_strtolower( $acel, 'UTF-8' ) . '. Para o seu caso, a tabela '
+		. '“' . $r['titulo_tabela_regra'] . '”, mais abaixo, responde sem precisar '
+		. 'de conta: ela tem os limites de cada categoria e o artigo de onde cada '
+		. 'um saiu.',
+	) );
 }
 }
 

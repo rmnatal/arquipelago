@@ -28,7 +28,15 @@
  * ou escala nasce aqui sem estar la.
  */
 
-/* 1.9.0 (04/11/2026) — DUAS COISAS, e as duas sao de item de despacho da ronda
+/* 1.13.0 (06/11/2026) — O AVISO DE JAVASCRIPT DESLIGADO VIROU COMPONENTE DAQUI
+   (`rodametria_casca_noscript()`), e o seletor dele deixou de ser `.rdm-f1-noscript`
+   para ser `.rdm-noscript`. A causa: a 32.1-b nasceu hoje de manha com a F1, a F1
+   ganhou o aviso e a F2 NAO — a regra foi aplicada na pagina que a descobriu e nao
+   viajou para a irma, que e a 32.5-c ao pe da letra. Com o componente aqui,
+   ferramenta nova nasce dentro do conserto, sem ninguem se lembrar dele; e o nome
+   do seletor deixou de prender uma familia do molde a UMA pagina.
+
+   1.9.0 (04/11/2026) — DUAS COISAS, e as duas sao de item de despacho da ronda
    de 04/11.
 
    (1) A SEGUNDA METADE DA 32.5-d: 24 regras do molde passaram a carregar
@@ -44,7 +52,7 @@
    Antes disto a ilha cujo produto e "o preco de hoje" tinha ZERO ocorrencia de
    `dateModified` e de `datePublished` em todo o JSON-LD das 9 URLs. */
 if ( ! defined( 'RODAMETRIA_CASCA_VERSAO' ) ) {
-	define( 'RODAMETRIA_CASCA_VERSAO', '1.12.0' );
+	define( 'RODAMETRIA_CASCA_VERSAO', '1.13.0' );
 }
 
 /**
@@ -682,6 +690,42 @@ function rodametria_casca_caixa( $rotulo, $numero, $unidade, $frases, $tom = 'ne
 }
 
 /**
+ * O AVISO DE JAVASCRIPT DESLIGADO (32.1-b, segunda metade), E ELE MORA AQUI
+ * PORQUE A REGRA JA FOI PERDIDA UMA VEZ POR MORAR NO SNIPPET.
+ *
+ * A 32.1-b nasceu em 06/11/2026, de manha, com a F1: o formulario de ferramenta
+ * destas ilhas e `method="get"` para a propria pagina e o JavaScript e quem
+ * chama `preventDefault()`. Logo, com o JavaScript desligado, o botao RECARREGA
+ * A PAGINA e a caixa volta a servir o CASO DE EXEMPLO — a pagina responde outra
+ * pergunta e parece responder a da pessoa. Do lado de fora as duas paginas sao
+ * IDENTICAS, entao nem a 22.8 nem a 32.5 cobrem isso.
+ *
+ * A F1 ganhou o aviso naquela passada e a F2 NAO — a regra nasceu, foi aplicada
+ * na pagina que a descobriu e nao viajou para a irma, que e a 32.5-c ao pe da
+ * letra. Na tarde do mesmo dia o portao `teste-formulario-da-ilha.py` mediu a
+ * divida e ela veio para ca: COMPONENTE DA CASCA, num lugar so, pela 32.6-b.
+ * Ferramenta nova nasce dentro do conserto, sem ninguem se lembrar dele.
+ *
+ * O TEXTO continua sendo de cada ferramenta — o que a pagina oferece a quem
+ * esta sem JavaScript muda de pagina para pagina (na F1, a tabela da regra; na
+ * F2 e na F3, a tabela pre-renderizada). O que e igual, e portanto mora aqui, e
+ * a FORMA: a tag, a classe e o escape.
+ */
+if ( ! function_exists( 'rodametria_casca_noscript' ) ) {
+function rodametria_casca_noscript( $frases ) {
+	$html = '';
+	foreach ( (array) $frases as $f ) {
+		if ( '' === (string) $f ) {
+			continue;
+		}
+		$html .= '<p class="rdm-noscript">' . esc_html( $f ) . '</p>';
+	}
+
+	return ( '' === $html ) ? '' : '<noscript>' . $html . '</noscript>';
+}
+}
+
+/**
  * A DOBRA (32.1, item 7). <details>/<summary> de verdade: pela 32.3 e pela
  * 22.8 o texto continua no HTML servido e legivel com o JavaScript desligado.
  */
@@ -1190,7 +1234,10 @@ body.rdm .rdm-f1-municipal p:last-child{margin-bottom:0}
 
 /* O AVISO DE QUEM ESTA SEM JAVASCRIPT. Legenda, nao alerta: a pagina continua
    respondendo, so nao responde ao que a pessoa escolheu. */
-body.rdm .rdm-f1-noscript{font-size:.9375rem;color:var(--rdm-legenda);
+/* O aviso de JavaScript desligado (32.1-b). O SELETOR E DO MOLDE e nao da
+   F1: ate 06/11/2026 ele se chamava `.rdm-f1-noscript`, e nome de familia
+   preso a uma pagina e como a regra nao viaja para a irma (32.5-c). */
+body.rdm .rdm-noscript{font-size:.9375rem;color:var(--rdm-legenda);
   background:var(--rdm-piso);border:1px dashed var(--rdm-traco);
   border-radius:var(--rdm-e1);padding:var(--rdm-e3);margin:0 0 var(--rdm-e4)}
 

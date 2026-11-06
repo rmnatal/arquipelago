@@ -382,10 +382,25 @@ console.log('  nomes de campo: ' + nomesDeCampo.length + ', todos com o prefixo 
  * Esta regua cobra que a pagina DIGA isso. Ela vale para toda ferramenta desta
  * ilha que tenha formulario.
  * ------------------------------------------------------------------------- */
-ok(/<noscript>/.test(phpFonte),
-  'o snippet nao serve <noscript> nenhum, e o formulario dele SO responde com ' +
-  'JavaScript: sem ele o botao recarrega a pagina e a caixa volta a servir o caso de ' +
-  'exemplo, parecendo resposta');
+/* DUAS FORMAS CONTAM, e esta regua nasceu aceitando UMA (06/11/2026, de manha)
+ * e foi corrigida na tarde do mesmo dia por ter reprovado a pagina CERTA: o
+ * aviso saiu deste snippet e virou `rodametria_casca_noscript()`, componente da
+ * casca (32.6-b) — que e exatamente o conserto que a 32.1-b pede, porque regra
+ * que mora no snippet nao viaja para a irma (foi assim que a F2 nasceu sem
+ * aviso). Procurando so a TAG, esta linha ficou vermelha em quem obedeceu, e
+ * portao que reprova quem obedeceu e o caminho mais curto para alguem passar a
+ * ignora-lo (20.5).
+ *
+ * E ESTA REGUA MEDE SO A F1, que e a causa de a divida da F2 ter ficado
+ * invisivel por oito dias: ela le `phpFonte`, que e o arquivo DESTA ferramenta.
+ * Quem mede as CINCO e `teste-formulario-da-ilha.py`, que nasceu em 06/11/2026
+ * varrendo `snippets/*.php` sem lista — e foi ele que achou a F2. Esta linha
+ * fica porque e barata e mora no caminho de quem mexe na F1; o veredito do que
+ * a PAGINA serve e do portao de ar. */
+ok(/<noscript>/.test(phpFonte) || /rodametria_casca_noscript\s*\(/.test(phpFonte),
+  'o snippet nao serve <noscript> nem chama o componente da casca que o escreve, ' +
+  'e o formulario dele SO responde com JavaScript: sem ele o botao recarrega a ' +
+  'pagina e a caixa volta a servir o caso de exemplo, parecendo resposta');
 ok(/rodametria_f1_noscript_html\s*\(/.test(phpCodigo),
   'a pagina nao chama `rodametria_f1_noscript_html()`: o aviso existe e nao e impresso');
 console.log('  o <noscript> que diz que a caixa serve o exemplo: presente e impresso');

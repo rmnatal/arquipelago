@@ -1121,6 +1121,36 @@ def main():
             registro("32.1-b: o formulario de %s monta `%s` e ela responde %s"
                      % (caminho, _url, _cod))
 
+        # A OUTRA METADE DA 32.1-b, E ELA E O VEREDITO DO QUE A PAGINA SERVE
+        # (acrescentada em 06/11/2026, na tarde do dia em que a regra nasceu).
+        #
+        # A afirmacao de cima exige 200 da URL que o botao monta. CONSEGUIDO O
+        # 200, nasce o defeito que o 404 escondia: a pagina recarrega e a caixa
+        # volta a servir o CASO DE EXEMPLO — ela responde outra pergunta e
+        # parece responder a da pessoa. Do lado de fora as duas paginas sao
+        # IDENTICAS, entao nem a 22.8 nem a 32.5 cobrem isso: as duas exigem que
+        # a resposta pre-renderizada ESTEJA no HTML servido, e ela esta.
+        #
+        # POR QUE AQUI E NAO SO NA BANCADA: o portao sem rede
+        # (`teste-formulario-da-ilha.py`) le o REPOSITORIO, e desde que o aviso
+        # virou componente da casca ele aceita a CHAMADA do componente como
+        # prova. Chamada no codigo nao e tag na pagina — snippet gravado e NAO
+        # ATIVADO (a 20.4) tem a chamada no repositorio e nao escreve byte
+        # nenhum. **Quem prova que o aviso chegou ao visitante e esta linha.**
+        if formularios_da_pagina(html):
+            _tem_aviso = bool(re.search(r"<\s*noscript\b", html, re.I))
+            afirma(_tem_aviso,
+                   "32.1-b: %s serve <form> e NAO serve <noscript>. Com o JavaScript "
+                   "desligado o botao recarrega a pagina e a caixa volta a servir o caso "
+                   "de exemplo, sem dizer que e o exemplo" % caminho)
+            # O REGISTRO NAO PODE CONTRADIZER A FALHA, e a primeira versao desta
+            # afirmacao contradizia: ela imprimia "serve <noscript>" como
+            # registro ao lado da propria falha que dizia que NAO servia. E a
+            # pagina se desdizendo, um andar abaixo — a mesma familia do bloco
+            # de compra da F2 que negava em palavras os botoes que mostrava.
+            registro("32.1-b: %s serve <form> e %s <noscript>"
+                     % (caminho, "serve" if _tem_aviso else "NAO serve"))
+
         # A CLASSE DO QUANTIFICADOR E DO SUPERLATIVO, EM TODA URL DO SITEMAP.
         conferir_classe_no_site(caminho, texto, ancoras_do_site)
 

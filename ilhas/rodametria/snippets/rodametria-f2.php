@@ -28,12 +28,24 @@
  * em 08/09/2026.
  */
 
-/* 1.5.0 (04/11/2026) — ESTA PAGINA DECLARA A DATA QUE PUBLICA, pendurando
+/* 1.6.0 (06/11/2026) — A 32.1-b CHEGOU AQUI, E ELA E DE HOJE PELA MANHA.
+   Os CINCO campos do formulario ganharam o prefixo da ilha (`v` -> `rdm_v`,
+   `ah` -> `rdm_ah`, `peso` -> `rdm_peso`, `relevo` -> `rdm_relevo`, `aut` ->
+   `rdm_aut`) e a pagina passou a servir o `<noscript>` que a segunda metade da
+   regra exige. NENHUM DOS CINCO COLIDIA com query var do WordPress — foi
+   medido, e os cinco respondiam 200 —, entao isto nao conserta um 404: fecha a
+   CLASSE, que e o que a regra pede, e o risco que ela nomeia e "o proximo campo
+   que alguem acrescentar". Quem cobrou foi `teste-formulario-da-ilha.py`, a
+   primeira ponta do portao que a 32.1-b mandava existir e que nao existia.
+   O JavaScript nao foi tocado: ele acha os campos por `data-rdm-f2-*`, nunca
+   por `name`, e e por isso que a troca custou cinco linhas.
+
+   1.5.0 (04/11/2026) — ESTA PAGINA DECLARA A DATA QUE PUBLICA, pendurando
    `gerado_em` do banco da F2 no filtro `rodametria_data_da_pagina` da casca
    (item 2 do despacho da ronda de 04/11). E o MESMO campo que o "Como sabemos"
    desta pagina ja imprimia em prosa — um fato, uma fonte (20.7). */
 if ( ! defined( 'RODAMETRIA_F2_VERSAO' ) ) {
-	define( 'RODAMETRIA_F2_VERSAO', '1.5.0' );
+	define( 'RODAMETRIA_F2_VERSAO', '1.6.0' );
 }
 
 /* A VERSAO DESTE SNIPPET VAI AO AR, pelo filtro que a casca 1.6.0 abriu
@@ -125,22 +137,22 @@ function rodametria_f2_formulario_html( $d ) {
 	$html .= '<div class="rdm-f-campos">';
 
 	$html .= '<p class="rdm-f-campo"><label for="rdm-f2-v">Tensão da bateria</label>'
-		. '<select id="rdm-f2-v" name="v" data-rdm-f2-v>'
+		. '<select id="rdm-f2-v" name="rdm_v" data-rdm-f2-v>'
 		. $opcoes( $d['campos']['tensoes_v'], $ex['tensao_v'], 'V' )
 		. '</select><span class="rdm-f-dica">Vem na etiqueta da bateria</span></p>';
 
 	$html .= '<p class="rdm-f-campo"><label for="rdm-f2-ah">Amperagem</label>'
-		. '<select id="rdm-f2-ah" name="ah" data-rdm-f2-ah>'
+		. '<select id="rdm-f2-ah" name="rdm_ah" data-rdm-f2-ah>'
 		. $opcoes( $d['campos']['amperagens_ah'], $ex['amperagem_ah'], 'Ah' )
 		. '</select><span class="rdm-f-dica">Também na etiqueta, ao lado dos volts</span></p>';
 
 	$html .= '<p class="rdm-f-campo"><label for="rdm-f2-peso">Seu peso</label>'
-		. '<input id="rdm-f2-peso" name="peso" type="number" inputmode="numeric" min="30" max="200"'
+		. '<input id="rdm-f2-peso" name="rdm_peso" type="number" inputmode="numeric" min="30" max="200"'
 		. ' step="1" value="' . esc_attr( (int) $ex['peso_piloto_kg'] ) . '" data-rdm-f2-peso>'
 		. '<span class="rdm-f-dica">Em kg, com mochila se você leva</span></p>';
 
 	$html .= '<p class="rdm-f-campo"><label for="rdm-f2-relevo">O seu trajeto</label>'
-		. '<select id="rdm-f2-relevo" name="relevo" data-rdm-f2-relevo>';
+		. '<select id="rdm-f2-relevo" name="rdm_relevo" data-rdm-f2-relevo>';
 	$nomes = array( 'plano' => 'Plano', 'misto' => 'Um pouco de subida', 'ladeira' => 'Ladeira de verdade' );
 	foreach ( $d['campos']['relevos'] as $r ) {
 		$html .= '<option value="' . esc_attr( $r ) . '"'
@@ -150,7 +162,7 @@ function rodametria_f2_formulario_html( $d ) {
 	$html .= '</select><span class="rdm-f-dica">É o que mais muda o resultado</span></p>';
 
 	$html .= '<p class="rdm-f-campo"><label for="rdm-f2-aut">Km que o anúncio promete</label>'
-		. '<input id="rdm-f2-aut" name="aut" type="number" inputmode="numeric" min="1" max="400"'
+		. '<input id="rdm-f2-aut" name="rdm_aut" type="number" inputmode="numeric" min="1" max="400"'
 		. ' step="1" value="' . esc_attr( (int) $ex['autonomia_declarada_km'] ) . '" data-rdm-f2-aut>'
 		. '<span class="rdm-f-dica">Opcional — sem ele a gente só dá os Wh</span></p>';
 
@@ -213,6 +225,36 @@ function rodametria_f2_nota_de_preco( $f ) {
 
 	return 'lido na ' . $loja_do_preco . ' em ' . $data
 		. ' — o botão abre a ' . $loja_do_botao;
+}
+}
+
+/**
+ * O AVISO DE JAVASCRIPT DESLIGADO (32.1-b), e esta pagina nasceu SEM ele.
+ *
+ * A 32.1-b e de 06/11/2026 pela manha e esta funcao e da tarde do mesmo dia:
+ * a regra foi escrita dentro da execucao que levou a F1 ao ar, foi aplicada na
+ * F1 e NAO VIAJOU PARA CA. Quem a cobrou foi o portao sem rede que a propria
+ * regra mandava existir e que nao existia — `teste-formulario-da-ilha.py`.
+ *
+ * A FORMA vem da casca (32.6-b); o TEXTO e desta pagina, porque o que ela
+ * oferece a quem esta sem JavaScript e a tabela pre-renderizada, que e dela.
+ * OS NUMEROS DO EXEMPLO SAEM DO BANCO, nunca digitados aqui.
+ */
+if ( ! function_exists( 'rodametria_f2_noscript_html' ) ) {
+function rodametria_f2_noscript_html( $d ) {
+	$ex = $d['campos']['exemplo'];
+
+	return rodametria_casca_noscript( array(
+		'A conta responde no seu navegador. Com o JavaScript desligado, o botão '
+		. 'recarrega a página e a resposta abaixo continua sendo a do exemplo já '
+		. 'preenchido no formulário — '
+		. rodametria_f2_numero( $ex['tensao_v'] ) . ' V, '
+		. rodametria_f2_numero( $ex['amperagem_ah'] ) . ' Ah, '
+		. rodametria_f2_numero( $ex['peso_piloto_kg'] ) . ' kg. A tabela '
+		. '“Já calculado para outras baterias”, mais abaixo, responde sem precisar '
+		. 'de conta: ela já traz os watt-hora e a faixa de km de cada combinação '
+		. 'de bateria que o nosso banco declara.',
+	) );
 }
 }
 
@@ -694,6 +736,7 @@ function rodametria_f2_pagina_html() {
 		. 'a faixa de km do seu trajeto, ao lado do número que o anúncio promete.</p>';
 
 	$html .= rodametria_f2_formulario_html( $d );
+	$html .= rodametria_f2_noscript_html( $d );
 	$html .= rodametria_f2_resultado_html( $d );
 
 	/* A frase de abertura NAO E DIGITADA AQUI. Ate 29/10/2026 ela era, e dizia
