@@ -4618,3 +4618,18 @@ entradas da F1, as duas camadas de saída, a régua do relevo da F2 e o teto de 
 **A constante legal da F1 nasce `publicavel: false`** até o despacho ALTA de 28/10 ser
 atendido — e quem fechar o bloco 2 lê a seção 4 do corpus antes, para não ler a tabela do
 eixo A como se fosse a resolução.
+
+## 2026-11-05 ~23h3x de Brasília (2026-11-06 ~02h3xZ) — A PORTA LEVANTOU: sessão de chat com o Raphael, não execução da fábrica
+
+- **CAUSA MEDIDA:** o `.htaccess` da raiz `/home3/rapha921/rodametria.com.br` tinha 1.057 bytes e SÓ o bloco
+  `# BEGIN NFD EPC … # END NFD EPC` (cache da HostGator). O bloco `# BEGIN WordPress … # END WordPress`
+  havia SUMIDO — por isso toda URL fora da raiz caía no 404 do hospedeiro. Quem apagou não foi medido.
+- **CONSERTO:** login no wp-admin pelo WordPress Manager (Softaculous) do cPanel, Configurações → Links
+  permanentes → Salvar, SEM mudar nada (estrutura `/%year%/%monthnum%/%day%/%postname%/`, bases vazias, as
+  mesmas de antes). O WordPress reescreveu o bloco. Cópia do `.htaccess` de antes em
+  `.htaccess.bak-20261105-antes-do-conserto` na mesma raiz (ATENÇÃO: gravada com fim de linha CRLF pelo
+  envio multipart; o conteúdo é o mesmo).
+- **CONFERIDO NO AR:** as 9 URLs do sitemap em 200, `/wp-sitemap.xml`, `/robots.txt` e `/wp-json/` em 200, caminho
+  virgem em 404; `ferramentas/conferir-no-ar.py .` → APROVADO. A 32.5 no navegador NÃO foi rodada aqui.
+- **LIÇÃO:** quando a porta cair com só `/` em 200, ler o `.htaccess` antes de tudo e procurar o bloco
+  `BEGIN WordPress`. O "Editar Site" do Portal do Cliente da HostGator mexe nesse arquivo (mtime mudou no clique).
