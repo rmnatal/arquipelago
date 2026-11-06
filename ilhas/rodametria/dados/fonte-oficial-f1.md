@@ -152,38 +152,65 @@ constante, só copiar número por número.
 > exatamente o defeito que este arquivo existe para impedir.
 
 ```
-URL lida:
-data da leitura:
+URL lida: https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao9962023.pdf/@@download/file
+  (PDF oficial do Ministério dos Transportes, "Criado em 22/06/2023 11:36", 118.177 bytes, servido em 200 application/pdf no Chrome do Raphael)
+data da leitura: 2026-11-05, ~23h3x de Brasília (2026-11-06 ~02h3xZ)
 qual fase/redação está sendo lida (e se há ato posterior à 996/2023):
-artigo(s) e/ou anexo de onde cada número abaixo saiu:
+  Texto ORIGINAL: Resolução CONTRAN nº 996, de 15/06/2023, DOU de 22/06/2023 (Ed. 117, Seção 1, p. 327).
+  Vigência pelo art. 22: 3 de julho de 2023. Prazo do art. 14 §1º I (RENAVAM de ciclomotor sem CAT):
+  1º/11/2023 a 31/12/2025 — confirma que 1º/01/2026 é FIM DE PRAZO e não redação nova.
+  Ato posterior: NÃO CONFERIDO no portal nesta leitura (a busca de 05/11 19h1xZ não achou alteração).
+COMO FOI LIDO (declarado, para a próxima execução pesar): o PDF foi aberto pelo leitor de página
+  (WebFetch) da sessão do chat de 05/11, não por pdftotext. Os números abaixo vêm entre aspas quando o
+  leitor os devolveu literais; os do ciclomotor vieram parafraseados pelo leitor, com os números.
+  A "frase inteira" das definições NÃO foi transcrita (o leitor limita citação longa) — só as alíneas.
+artigo(s) e/ou anexo de onde cada número abaixo saiu: art. 2º, incisos II (autopropelido), III (bicicleta
+  elétrica) e IV (ciclomotor); §§ 4º, 5º, 6º e 7º do art. 2º; arts. 12, 13, 14, 19, 21 e 22.
 
 --- BICICLETA ELÉTRICA ---
-definição literal (copiar a frase inteira):
-potência nominal máxima (W):
-velocidade máxima do motor auxiliar (km/h):
-tem acelerador, ou só pedal assistido:
+definição literal (copiar a frase inteira): NÃO TRANSCRITA INTEIRA. Alíneas do inciso III do art. 2º:
+  a) motor auxiliar "até 1000 W (mil watts)", duas rodas; b) "provido de sistema que garanta o
+  funcionamento do motor somente quando o condutor pedalar"; c) "não dispor de acelerador";
+  d) velocidade do motor auxiliar "não superior a 32 km/h"
+potência nominal máxima (W): 1000
+velocidade máxima do motor auxiliar (km/h): 32
+tem acelerador, ou só pedal assistido: SÓ PEDAL ASSISTIDO (alínea c proíbe acelerador). § 4º permite modo
+  de assistência a pé, sem pedalar, até 6 km/h.
 
 --- EQUIPAMENTO DE MOBILIDADE INDIVIDUAL AUTOPROPELIDO ---
-definição literal (copiar a frase inteira):
-potência nominal máxima (W):
-velocidade máxima de fabricação (km/h):
-largura máxima:
-distância entre eixos máxima:
+definição literal (copiar a frase inteira): NÃO TRANSCRITA INTEIRA. Alíneas do inciso II do art. 2º:
+  c) "provido de motor de propulsão com potência nominal máxima de até 1000 W (mil watts)";
+  d) "velocidade máxima de fabricação não superior a 32 km/h (trinta e dois quilômetros por hora)";
+  e) "largura não superior a 70 cm (setenta centímetros) e distância entre eixos de até 130 cm"
+potência nominal máxima (W): 1000
+velocidade máxima de fabricação (km/h): 32
+largura máxima: 70 cm (700 mm)
+distância entre eixos máxima: 130 cm (1300 mm)
+  (§ 5º trata de passageiro em autopropelido "que se assemelha a bicicleta com acelerador" — a bike COM
+  acelerador cai em autopropelido, não em bicicleta elétrica)
 
 --- CICLOMOTOR ---
-definição literal (copiar a frase inteira):
-potência máxima (W), se o texto declarar:
-cilindrada máxima, se o texto declarar:
-velocidade máxima (km/h), se o texto declarar:
+definição literal (copiar a frase inteira): NÃO TRANSCRITA. Inciso IV do art. 2º, sem alíneas, parafraseado
+  pelo leitor: veículo de 2 ou 3 rodas, motor a combustão até 50 cm³ ou elétrico até 4 kW, velocidade
+  máxima de fabricação 50 km/h.
+potência máxima (W), se o texto declarar: 4000 (4 kW, motor elétrico)
+cilindrada máxima, se o texto declarar: 50 cm³ (combustão)
+velocidade máxima (km/h), se o texto declarar: 50
+  >>> A CONTRADIÇÃO DO BLOCO 6 SE DESFAZ: 1.000 W é o teto de AUTOPROPELIDO e de BICICLETA ELÉTRICA;
+  4.000 W é o teto de CICLOMOTOR. Os dois números são da mesma resolução, para categorias diferentes.
 
 --- A REGRA DE TRANSBORDO ---
-o que o texto diz que acontece quando o equipamento passa dos limites do autopropelido:
+o que o texto diz que acontece quando o equipamento passa dos limites do autopropelido: §§ 6º e 7º do
+  art. 2º — passa a ser classificado como "ciclomotor, motocicleta, motoneta ou triciclo, conforme o caso."
 
 --- EXIGÊNCIAS, se o texto as declarar ---
-habilitação exigida por categoria:
-registro/placa exigido por categoria:
-capacete exigido por categoria:
-idade mínima por categoria:
+habilitação exigida por categoria: NÃO CONSTA na 996/2023 (nenhum artigo sobre CNH/ACC; vem do CTB)
+registro/placa exigido por categoria: art. 12 — autopropelido e bicicleta elétrica "não são sujeitos ao
+  registro, ao licenciamento e ao emplacamento para circulação nas vias"; art. 13 — ciclomotor É
+  registrado e licenciado (CAT + nota fiscal); art. 19 III e IV — sanção por falta de placa/registro.
+capacete exigido por categoria: só CICLOMOTOR (art. 19 V, remete ao art. 244 do CTB); NÃO CONSTA para
+  bicicleta elétrica e autopropelido
+idade mínima por categoria: NÃO CONSTA na 996/2023
 ```
 
 ---
