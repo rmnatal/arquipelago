@@ -3,6 +3,172 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-11-06 19h17Z–21h12Z — **A HOME PASSA A NOMEAR OS TRÊS NÚMEROS, E O TERCEIRO — O ÚNICO ERRADO — ERA O ÚNICO QUE FALTAVA** — bloco de conteúdo na F1
+
+**A ESCOLHA DA ILHA.** `foco.md` nomeia a **rodametria** (foco total e absoluto desde 27/10) e pela **1.2** não há escolha a fazer. **Confirmei a exceção do molde (seção 32) antes de aceitar o foco:** os três despachos do molde de conversão estão **fechados** nas três ilhas que a exceção nomeia — aquametria (18h2xZ de 21/10), clubedomosaico (19h1xZ de 21/10) e robometria (16h1xZ de 21/10) —, então o foco manda sozinho. **Nenhum branch `claude/*` divergente e nenhum PR aberto** (`list_pull_requests` em `open` devolveu lista vazia; `origin/claude/dreamy-mccarthy-m5kd8z` e `origin/main` no mesmo commit `e256016`, zero commit à frente) — nada a mergear, passo 1 cumprido. `executando_desde` estava `null`, o que pela **1.1** já significa que não havia bloco da Fundação vivo, e o último commit em `ilhas/rodametria` era de **16h54Z**, muito acima dos 40 minutos. Reserva no commit `4737644`, às **19h17Z**, hora saída do `date -u` na mesma linha que a grava; **RENOVADA** às 19h32Z pela 1.1.
+
+**O DESPACHO FOI LIDO ANTES DA FILA (18.1/18.5), E NÃO HÁ ITEM DA FUNDAÇÃO ABERTO.** O despacho da ronda de 06/11 (cinco itens) está **fechado e conferido no ar** desde 16h4xZ. O que resta aberto no `PROMPT.md` desta ilha são **dois itens da leitura semanal de 04/11** — o painel de Sitemaps mostrando `Processado` com as páginas encontradas (item 1) e o `search-console.py` rodando sem `ProxyError` (item 2) — e os **dois são instrumento da Sentinela estratégica**, com credencial de conta de serviço que a Fundação não tem; o despacho diz isso com estas letras (*"quem fecha o item continua sendo a leitura semanal"*). Mais a conta da **31.1** do despacho de 28/10, que por regra é fechada por quem lê e não por quem entrega. **Nenhum item acionável pela Fundação**, então a vez é da fila.
+
+**A REDE, MEDIDA E NÃO HERDADA (20.2), ANTES DA RESERVA.** `rodametria.com.br` em **200** nas três passadas, com `aquametria.com.br` e `robometria.com.br` em **200** nas mesmas três — **9 de 9 verdes**.
+
+---
+
+### POR QUE ESTE BLOCO, COM A CONTA NA MESA — e a conta começou medindo as paredes em vez de as herdar
+
+A fila desta ilha chega a esta execução com os blocos 1, 2, 3, 3b, 3c, 3d, 3e, 4a, 4c, 5b, 5c, 5d, 5e, 6 e 7 **entregues**. O que sobra na fila escrita é o **bloco 5 (artigos-âncora)** e a **próxima leva da malha**, e os dois pedem a mesma coisa que esta nuvem não produz: veredito `alvo` de SERP. Pela **30.8**, *"`alvo` NÃO se afirma da nuvem, nunca"* — e as consultas medidas dos eixos A, B e C saíram `tomada` ou `nao-medida`. As duas únicas consultas desta ilha com `alvo` **visto com os olhos** (`moto elétrica`, 823 mil/mês, e `scooter elétrica`, 301 mil/mês) têm o endereço reservado e estão travadas por **PRODUTO**, não por SERP: a medição de 29/10 achou três anúncios de adulto com **zero venda** e preços variando R$ 6.500 para a mesma classe, e a regra desta ilha, escrita no `PROMPT.md`, é literal — *"na Shopee, scooter e moto elétrica aparecem com 0 vendas e preços incoerentes, não entram como recomendação"*.
+
+**ENTÃO EU MEDI AS PAREDES ANTES DE ACEITAR QUE ELAS ESTÃO DE PÉ**, porque a 20.2 manda retestar bloqueio herdado e porque uma parede que caiu muda a fila inteira:
+
+| alvo | passadas | resultado | o que destravaria |
+|---|---|---|---|
+| `www.planalto.gov.br`, `www.gov.br`, `in.gov.br`, `www.in.gov.br`, `contran.gov.br` | 3 | **000** nas três, `connect_rejected` lido no status do proxy | o **CTB**, que é quem decide habilitação — a metade que a F1 cala |
+| `www.casasbahia.com.br`, `www.extra.com.br`, `www.magazineluiza.com.br` | 3 | **000** nas três | o **nível 5**, e com ele `potencia_nominal_w` (vitrine da F1) e `carga_max_kg` (vitrine da F3) |
+| `campinas.sp.gov.br`, `www.rio.rj.gov.br` | 3 | **000** nas três | a **camada municipal** da F1 |
+
+**30 medições, todas 000, com 6 controles em 200 nas mesmas passadas** (`rodametria.com.br` e `aquametria.com.br`). Não é intermitência e não é herança: é a mesma parede, remedida.
+
+**E A COLETA FOI REMEDIDA NAS DUAS PONTAS, porque uma semana passou desde 29/10:** `coletar-piso-de-compra.py` devolveu os **mesmos 5 com piso** de 17, e `coletar-oferta.py` o **mesmo placar** — `casou 1 · mercado_nao_anuncia 3 · candidato_barrado 0 · sem_identidade_minima 13`, com as mesmas 6 ofertas barradas pelas travas da 25.7. **O gargalo tem nome e não é régua: é o NOME.** Dez registros não declaram `modelo` ou `marca`, e os três que declaram `carga_max_kg` (os 120 kg que a F3 procura) não têm oferta aberta. O esquema desta ilha já tinha escrito a conclusão em 29/10, e a medição de hoje a confirma: *"coleta por busca não destrava mais nenhuma ferramenta: o que destrava é o despacho"*.
+
+**O que sobrou foi CONTEÚDO na página que a ilha já tem — e a 31.1 conta exatamente isso** (*"página nova, title/description, **texto**, bloco de compra, link de afiliado, ou correção de defeito medido no ar"*). O que não se fez, de propósito: **nenhum portão novo** (31.2 pede defeito medido no ar que ele teria pegado) e **nenhuma ampliação de bancada** (31.3 a proíbe enquanto houver item de conteúdo aberto).
+
+---
+
+### O DEFEITO, E ELE ESTAVA NA PÁGINA MAIS IMPORTANTE DESTA ILHA DESDE QUE ELA NASCEU HOJE DE MANHÃ
+
+A dobra **"De onde saíram os limites"** da home servia, desde que a F1 foi ao ar às 10h4xZ–11hxxZ de hoje, este parágrafo:
+
+> *"Antes dessa leitura a gente tinha **três números diferentes** para a mesma pergunta, colhidos em páginas que se apresentam como quem sabe (…). A leitura oficial desfez a contradição e mostrou de que lado estava o erro: **os dois números** existem, para categorias diferentes. Um é o teto do autopropelido; o outro é o do ciclomotor."*
+
+**Ele promete três e dá conta de dois — e não nomeia nenhum.** Pior: os dois que ele explica estão os **dois certos**. `1.000 W / 32 km/h` é o teto da bicicleta elétrica e do autopropelido; `4.000 W / 50 km/h` é o do ciclomotor; os dois estão na resolução, para categorias diferentes, e nenhum dos dois é o erro. **O terceiro — `350 W / 25 km/h` — é o único que não está na resolução, e é justamente o que a pessoa leu antes de chegar aqui.**
+
+**A assimetria é o que faz isso caro.** O eixo da CNH está **tomado** por portal de trânsito e por notícia (medido em 28/10, seis consultas independentes), e é lá que o `350 W` circula apresentado como limite nacional. Quem chega nesta home vindo de lá vê a ferramenta dizer `1.000 W`, não encontra na página uma linha sobre o número que ele acabou de ler, e tem de escolher entre duas afirmações sem critério nenhum. **Numa ilha cujo produto é a categoria legal, a página que não explica o número do concorrente não é incompleta: ela parece errada.**
+
+**E O DADO JÁ ESTAVA NO REPOSITÓRIO DESDE 28/10, EM PROSA.** O `ACHADO A1` de `dados/corpus-buscas.md` escreveu, com estas letras: *"O EIXO 350 W × 1.000 W É CONFUSÃO MUNICIPAL LIDA COMO NACIONAL, E ISSO É UMA PÁGINA"*. E `dados/constantes.json` guardava os três pares — inclusive a atribuição ao Rio — **dentro do texto da regra** `numero_de_portal_nunca_vira_constante_legal`. **Prosa que afirma um fato é número digitado em outro traje**, e é a lição que esta ilha já pagou duas vezes (o `nota` de `veiculos.json` às 16h4xZ de hoje, e as cinco frases do bloco de compra em 29/10): nenhuma régua alcançava aquele número, e nenhuma tela o servia.
+
+---
+
+### O QUE ENTROU, E SÃO TRÊS PEÇAS PARA UMA DECISÃO SÓ
+
+**1. A CONSTANTE, com o tipo que o esquema desta ilha já usava e o arquivo de constantes não tinha.** `numero-que-circula-como-limite-nacional` em `dados/constantes.json` (versão 2 → **3**), com o par **estruturado** (`potencia_w`, `velocidade_kmh`), a **atribuição** (`regra do município do Rio de Janeiro`), o que ele é **apresentado como** (`limite nacional da bicicleta elétrica`), a fonte e a data. O `tipo` é **`afirmacao_de_terceiro`** — e esse vocabulário **já estava escrito** em `dados/esquema-banco.json`, nos níveis 7 e 8 da `escada_de_fontes` (*"fonte deste nível pode entrar em `afirmacao_de_terceiro` para ser CONTRADITA na tela, nunca em campo técnico"*) —, só não existia na lista `tipos_de_constante`. **Duas metades do mesmo repositório falando o mesmo vocabulário, uma delas sem o ter.**
+
+**A regra do número de portal continua inteira, e isto está escrito dentro da própria constante:** ele **não** é limiar, **não** entra na árvore de decisão e **não** classifica nada. O que esta ilha publica dele é que ele **não** é o número da resolução. É o mesmo lugar do título de anúncio da ressalva 1.4(a) — citação a ser contradita, e por isso mora onde a régua do código não a confunde com limiar.
+
+**E o que a constante NÃO afirma é o que ela mais protege:** o ato da prefeitura do Rio **não foi lido** (nível 3 da escada, atrás da mesma parede remedida hoje), então a página diz que o par é **atribuído** a regra de município e **não diz qual é o limite de lá**. Afirmar o limite municipal com fonte de portal seria o defeito que travou esta ferramenta por nove dias, cometido na porta ao lado.
+
+**2. A FUNÇÃO, NO CÉREBRO, COM TRÊS MOLDES SEM UM DÍGITO.** `frases_dos_numeros_que_circulam()` em `regras/f1.py`: os dois números oficiais entram do **limiar lido** da resolução, o terceiro entra da **constante**, e nenhum deles é digitado em molde nenhum — a regra desta ilha desde 28/10 (*"molde com dígito é o número de tela digitado com outra roupa"*). **Sem limiar publicável ou sem a constante, a função devolve lista VAZIA** e quem a chama fica **sem** a explicação: explicação de "três números" que nomeia dois é exatamente o defeito que ela veio consertar, e repeti-lo por omissão seria trocar de lugar sem sair dele.
+
+**3. A DOBRA E A PERGUNTA DO `FAQPage`, LENDO A MESMA LISTA.** `Se você leu outro número em outro lugar` é a **segunda** dobra da página de propósito — quem abre "de onde saíram os limites" é a pessoa que desconfia do número, e a pergunta seguinte dela é sempre esta. E o `FAQPage` ganhou `O limite é 350 W ou 1.000 W?`, **com a pergunta também montada do dado** (os dois números saem do limiar lido e da constante, nenhum digitado no snippet) e a resposta sendo a **mesma lista** que a dobra imprime.
+
+**Isso é a 32.4-c ao pé da letra, e ela nasceu nesta ilha hoje de manhã**, por causa de uma resposta de `FAQPage` que era prosa escrita à mão e foi ao ar com os dois defeitos que a camada visível da mesma página já tinha consertado meia hora antes. A frase dela é literal: *"o conserto de uma frase duplicada não é consertar as duas: é a segunda deixar de existir"*. **Três lugares, uma decisão, nenhuma frase digitada** — e a camada que a visão geral de IA ingere não pode divergir da que a pessoa lê, que nesta consulta importa mais do que o normal: o `alvo` visto no Chrome do Raphael em 27/10 registrou `visao_geral_de_ia: true` para este eixo.
+
+**E A DOBRA ANTIGA PERDEU A METADE QUE MENTIA, não ganhou um remendo.** O que ficou nela é o que é dela: a **procedência** (a leitura oficial, nomeada, com data e link) e o **custo** de ela ter faltado (*"enquanto a gente não tinha o texto, esta ferramenta ficou fora do ar — porque errar para o lado permissivo aqui manda alguém para a rua sem habilitação"*, que é uma das orações permitidas da régua de habilitação desta ilha, e continua intacta).
+
+---
+
+### O DESEMBARQUE, E A 20.9 FOI OBEDECIDA EM VEZ DE REACIONADA
+
+Push na **revisão 63** (F1 **1.2.0 → 1.3.0**, espelhada no `manifest.json` pela ferramenta que também espelha o `sha256`, com as trocas impressas uma por uma). Depois do push, a receita da **20.6**: três GETs na home mais o `wp-cron.php`, que respondeu **409** — prova de que o cron já estava rodando.
+
+**O `/status` ficou em 62, e a régua da ilha disse por quê, com a ação certa junto.** `veredito_da_revisao_atrasada()` — a função pura que a **20.9** mandou toda ilha com Sync copiar — classificou o mundo medido como **`evento-nao-vencido`**: `ultimo` = `19:17:24` (o Sync **rodou**, e rodou **antes** do commit do manifest, às `19:32:46`, logo não tinha nada a aplicar e por isso o log também não ganhou linha), com o `raw.githubusercontent.com` **já servindo 63**. O veredito vem com a frase que vale os oito minutos que esta regra custou em 05/11: **"REACIONAR NÃO ANTECIPA VENCIMENTO"**. Então esta execução **esperou**, mantendo a visita de pé para o cron disparar quando o evento vencesse — e **não** reacionou de dois em dois, que é o que a régua velha da 20.5 mandaria fazer sobre um Sync saudável.
+
+**A REVISÃO 63 ENTROU ÀS 19:39:53 — 7 MINUTOS E 31 SEGUNDOS ANTES DO TETO**, e isso não é sorte: é a segunda ressalva da 20.9 acontecendo pela segunda vez nesta ilha. *"O WordPress reagenda evento recorrente a partir do horário AGENDADO, não do horário em que ele rodou"*, então `ultimo` + 30 min é **limite superior** e nunca a hora exata. Em 05/11 a diferença foi de 6m37s; hoje, de 7m31s. **Portão que imprimisse a hora prevista como se fosse certa ensinaria a desconfiar do portão** — o desta ilha imprime o teto, dizendo que pode cair antes, e ele disse.
+
+**O LOG LIDO DO FECHO PARA BAIXO (20.8), e a conta fecha:** a linha de fecho declara `revisão 63: 8 aplicado(s)`, e abaixo dela vêm **8 linhas de item**, lidas uma por uma, **todas dizendo `ok`** — sete grupos de dado e `snippets/rodametria-f1: ok (snippet #10 atualizado)`. **8 declarados contra 8 lidos**: a janela não rolou e a conta não ficou aberta. A afirmação é **positiva**, como a 20.8 manda: não se procurou `FALHA` nem `NÃO`, exigiu-se `ok` em todas.
+
+---
+
+### O QUE FOI MEDIDO NO AR (18.4)
+
+**O desembarque da 63 foi conferido NO AR, e o texto novo está nas DUAS camadas, idêntico, porque as duas leem a mesma função:**
+
+| o que foi medido | resultado |
+|---|---|
+| `conferir-no-ar.py` (origem, com quebra de cache) | **APROVADO** |
+| bancada com rede | **39 portões, 0 falha** |
+| bancada sem rede | **35 portões, 0 falha** |
+| 32.5 a 390 px, portão de pixel, num Chromium de verdade | **10 de 10 páginas do molde** — pior caixa 405 px (teto 700), pior compra 1.279 px (teto 1.400), 0 fora do molde |
+| o formulário da home | **369 px**, o MESMO de antes — a dobra nova é `<details>` **fechada** (conferido no HTML servido: `class="rdm-molde-dobra"`, sem `open`), então ela custa **zero pixel** acima da dobra, que é o que a 32.5-a exige |
+| a dobra no texto **visível** | servida, os três parágrafos, na ordem |
+| o `FAQPage` | **6 perguntas** (eram 5), e a resposta da nova é **byte por byte** a mesma prosa da dobra — `implode` da mesma lista |
+| a pergunta nova | `O limite é 350 W ou 1.000 W?`, com os **dois números montados do dado** |
+
+**E A LEITURA DA PÁGINA ACHOU DOIS DEFEITOS NO TEXTO QUE ACABARA DE IR AO AR, na revisão 63: `atribuído a regra do município` e `como se fosse limite nacional` — as duas sem o artigo.** Regência. **Nenhum portão desta ilha as veria:** as sete réguas medem afirmação de tela, acento, quantificador, bastidor, parágrafo duplicado e contagem, e regência não é nenhuma das seis. Quem as viu foi **ler a frase que saiu** — o mesmo caminho da conversão de milímetro da F1 e da frase de lista vazia da F3, as duas achadas hoje de manhã.
+
+**O conserto foi no VALOR e não no molde, e isso é decisão:** o molde diz `atribuído a {atribuido_a}`, então é o valor que decide se a regência fecha. Com o artigo dentro do valor, atribuição nova com outro artigo (a **um** ato, a **uma** portaria, ao **Código**) entra sem tocar no molde; pôr o artigo no molde o amarraria a um gênero e a um número, e o próximo valor teria de se contorcer para caber nele. **F1 1.3.0 → 1.3.1, revisão 64.** **E foi no desembarque DELA que o defeito abaixo apareceu.**
+
+---
+
+### O QUE ESTE BLOCO NÃO FEZ, DE PROPÓSITO
+
+- **Nenhum portão novo.** A **31.2** pede defeito **medido no ar** que o portão teria pegado, e o defeito de hoje é de **texto que faltava**, não de texto errado: nenhuma régua pega um parágrafo que promete três e dá conta de dois, porque cada frase dele, sozinha, é verdadeira. Quem o viu foi **ler a página**, que é como a conversão de milímetro da F1 e a frase de lista vazia da F3 foram achadas hoje de manhã. O que protege a frase nova é o par que já existe: o molde sem dígito (o gerador reprova dígito) e a função que devolve **lista vazia** em vez de frase pela metade.
+- **Nenhuma ampliação de bancada**, que a **31.3** proíbe enquanto houver item de conteúdo aberto na fila.
+- **Nenhuma URL nova**, e a causa é a **30.8**: `alvo` não se afirma desta nuvem, e as duas consultas com `alvo` visto com os olhos seguem travadas por produto. **O teto da 21.4 não foi gasto** — a leva 1 desta semana foi gasta em 06/11 pela F3, e esta passada não gastou leva nenhuma.
+- **`piso` não foi tocado**, e não é meu de tocar: quem decide esse campo é a leitura semanal (21.6).
+
+### O PRÓXIMO PASSO DESBLOQUEADO
+
+1. **A MESMA LENTE NAS OUTRAS NOVE URLS.** O que achou o defeito de hoje — e os dois de regência depois dele — foi **ler a página servida** procurando prosa que promete uma conta e não a fecha. É receita, não sorte, e nesta passada ela foi aplicada à **home** e a mais nenhuma das dez.
+2. **A VITRINE DA F1 E A DA F3 SEGUEM VAZIAS, as duas com a causa nomeada na tela, e NENHUMA se destrava por coleta desta nuvem** — remedido hoje nas duas pontas. O que as destrava é o despacho ALTA de `dados/despachos.md`: o **nível 5** (casasbahia, extra, magazineluiza) dá `potencia_nominal_w` à F1 e `carga_max_kg` à F3.
+3. **O `.gov.br` segue de pé** (CTB para a habilitação, prefeituras para a camada municipal) e as **três etiquetas do Mercado Livre** seguem não criadas. Os dois são despacho, não bloco.
+4. ~~A `VOZ.md` desta ilha ainda traz, nos exemplos aprovados de 27/10, a frase "dispensa CNH e placa".~~ **FECHADO NESTA PASSADA** — ver a seção abaixo.
+
+---
+
+### E O BLOCO FECHOU UM ITEM QUE ESTAVA NA LISTA DE PENDÊNCIAS DESTA ILHA DESDE 16h51Z DE HOJE
+
+O `ESTADO.md` nomeava, no item 4 dos próximos passos: *"a `VOZ.md` desta ilha ainda traz, nos exemplos aprovados de 27/10, a frase `dispensa CNH e placa` (…) e ele não é texto servido, então nenhuma régua o alcança"*. **E o `VOZ.md` é o arquivo que a próxima execução lê ANTES de escrever uma linha** — ele "manda no tom de toda página desta ilha". Três coisas dele estavam vencidas, e as três pela mesma causa: foram escritas em 27/10, **antes** de alguém ler a resolução no texto oficial.
+
+- `"Até 1.000 W e 32 km/h é autopropelido: **dispensa CNH e placa** (…) e aí **precisa de habilitação**"` → a resolução **não tem artigo nenhum sobre CNH**. O portão `teste-afirmacao-de-tela.py` reprova as duas orações desde hoje de manhã e as 10 URLs no ar não as servem — **só este arquivo ainda as servia.** O exemplo novo diz o que a resolução diz (registro, licenciamento, emplacamento, com o artigo) e **cala sobre habilitação nomeando a causa**, que é o que a página faz.
+- `"ela **costuma** estar na ficha"` → a classe do quantificador por extenso, que esta ilha paga desde 03/11.
+- `"dispensa CNH"` na lista de vocabulário de veredito → saiu. **O vocabulário da PESSOA continua sendo `CNH`:** ela digita isso, e a página responde nomeando o que falta para responder.
+
+**E O CONSERTO COMETEU, AO CORRIGIR, O DEFEITO QUE ESTAVA CORRIGINDO.** A primeira versão do quarto exemplo trouxe os números da contagem **à mão** e errou um dos dois: escreveu `14` onde o banco conta **13** sem rótulo. Agora o exemplo está **com as chaves do molde** (`{colhidos}`, `{sem_rotulo}`) e o arquivo diz, por escrito, que **exemplo de tom não carrega número de banco**. Os quatro exemplos de 27/10 ficam preservados no próprio arquivo, riscados, com a diferença entre as duas versões à vista — porque o que mudou entre elas foi a leitura da fonte, não o gosto.
+
+**Isto não é conserto de página e não conta como entrega no ar:** é o molde do tom deixando de ensinar a frase que os portões da própria ilha reprovam.
+
+---
+
+### A CICATRIZ DA 20.4 ACONTECEU NESTA ILHA PELA PRIMEIRA VEZ, NO SEGUNDO DESEMBARQUE DESTA PASSADA — E O PORTÃO DA 20.7 A PEGOU POR TRÊS CAMINHOS
+
+O desembarque da **revisão 64** (o conserto de regência) entrou às **20:10:13**, e o log trouxe, na oitava linha de item:
+
+> `snippets/rodametria-f1: gravado (#10) mas NÃO ativado: Não foi possível ativar o snippet: o código não passou na validação.`
+
+**É a cicatriz que a 20.4 existe para pegar, com a assinatura idêntica à da clubedomosaico de 09/10 e 12/10** — e é a primeira vez que ela aparece na Rodametria. O Sync **seguiu em frente e subiu a revisão**, exatamente como a 20.4 descreve.
+
+**O QUE ISSO FEZ NO AR, medido:** a home responde **200** e **perdeu a ferramenta**. `/casca → versoes` traz cinco snippets e **não traz `rodametria-f1`** — e pela **20.7** `id` ausente ali significa **gravado e não ativado**, porque snippet inativo não roda e por isso não chega a se pendurar no filtro. A página caiu de **118.860 para 83.633 bytes** e **voltou a ser HUB**: os dois filtros da F1 devolveram vazio e a casca serviu a home de 29/10, que é **exatamente o que ela foi desenhada para fazer** (*"filtro vazio devolve a home HUB de 29/10 byte por byte"*). **O desenho funcionou; o que faltou foi o snippet.**
+
+**O PORTÃO REPROVOU POR TRÊS CAMINHOS INDEPENDENTES, e os três dizem o conserto:** `conferir-no-ar.py` fechou em **573 afirmações, 3 falhas**, e nenhuma delas é de outro tipo —
+1. a **conta da 20.8**: o fecho declara `7 aplicado(s)` e o log traz **8** linhas de item, então a conta **não fecha** e isso é **dito** em vez de aprovado sobre o que sobrou;
+2. a **afirmação positiva da 20.8**: **1 linha de item que não diz `ok`**, citada inteira;
+3. a **ausência da 20.7**: *"o `/casca` não traz a versão de `rodametria-f1` (…) o conserto é acionar o Sync outra vez"*.
+
+**E NÃO É DEFEITO DO CÓDIGO, e isto está medido e não suposto:** a **revisão 63** aplicou o **mesmo PHP** às 19:39:53 com `snippets/rodametria-f1: ok (snippet #10 atualizado)`, e a única diferença entre as duas é **duas palavras de texto dentro de um JSON** mais a constante de versão. `php -l` passa nas duas. A causa é a que a própria 20.4 nomeia pelo número da linha: `activate_snippet()` **executa o código ao ativar**, e o snippet **já estava carregado naquela requisição** — ele estava **ativo** desde a 63.
+
+**O CONSERTO É ACIONAR O SYNC OUTRA VEZ**, e a Fundação **não tem o token desta ilha** (ele não está no repositório e não deve estar). Então quem o aciona é o **cron**, e a 20.4 explica por que a segunda passada resolve: na falha de ativação o Sync **retorna antes de gravar o `sha` do item**, então a passada seguinte o **reaplica mesmo sem `forcar=1`** — e desta vez o snippet está **inativo**, logo **não carregado** na requisição, que é a condição que faz a ativação passar.
+
+**E A PROMESSA DE AUTO-CURA DA 20.4 ESTÁ MEDIDA E DESMENTIDA — é o achado mais caro desta passada, e ele vale para as quatro ilhas.**
+
+A 20.4 afirma, com estas letras, que *"na falha de ativação o Sync **retorna antes de gravar o `sha` do item** (linha 342 contra 355), que é por que a passada seguinte o reaplica **mesmo sem `forcar`**"*. **A primeira metade é verdadeira — eu a li na fonte — e a conclusão é falsa.** Medido: o cron rodou às **20:39:46** (`ultimo` andou de `20:10:13` para `20:39:46`) e **não escreveu uma linha de log**, ou seja **não tinha nada a aplicar**, com o snippet ainda ausente do `/casca`. **Vinte e nove minutos depois da falha, nada havia sido retentado.**
+
+**A causa está em duas linhas, as duas lidas na fonte (`ilhas/robometria/snippets/robometria-sync.php`) e nenhuma suposta:**
+- **linha 472** — com a revisão do manifest igual à guardada, o Sync grava `ultimo` e **retorna `nada novo` ANTES de olhar item nenhum**. O laço dos itens, e portanto a comparação de `sha` que a 20.4 invoca, **nunca é alcançado**;
+- **linha 515** — `$estado['revisao'] = (int) $m['revisao']` roda no fim, **sem condição**, mesmo com item que voltou `NÃO ativado`. **A revisão é estampada como feita com um item quebrado dentro dela.**
+
+**Juntas, as duas fazem o item que falhou NUNCA ser retentado. A janela não é de meia hora: é indefinida.** Só saem dela `forcar=1` — que exige o **token**, e é por isso que na clubedomosaico o conserto sempre foi *"acionar o Sync outra vez"* — ou uma **revisão nova**. **Numa ilha sem token, snippet que falha na ativação fica fora do ar até alguém empurrar outra coisa.** A frase da 20.4 descreve o que o código faria **se o laço fosse alcançado**, e não o que ele faz.
+
+**O CONSERTO QUE ESTA EXECUÇÃO PODIA FAZER ERA A REVISÃO NOVA, E FOI ELA.** A constante de versão do snippet subiu **1.3.1 → 1.3.2** **sem trocar um byte de código** — só para existir a revisão **65** —, com o motivo escrito **dentro do próprio arquivo**, no lugar onde quem for mexer o lê. **Funcionou na primeira tentativa, e a teoria se sustentou:** com o snippet **inativo**, ele não está carregado na requisição, que é a condição que faz `activate_snippet` passar.
+
+**A F1 VOLTOU ÀS 21:10:13, NA REVISÃO 65**, e o fecho declara `8 aplicado(s)` contra **8 linhas de item lidas, todas dizendo `ok`** — inclusive `snippets/rodametria-f1: ok (snippet #10 atualizado)`. A conta fecha. **Tempo total fora do ar: 1h00m, das 20:10:13 às 21:10:13**, numa ilha com `primeira_indexacao: null` e zero impressão — o que torna o custo real desta vez próximo de zero, e é a única razão pela qual isto não é uma emergência. **Na próxima vez pode não ser.**
+
+**O DESPACHO FOI REESCRITO DUAS VEZES, E AS DUAS CORREÇÕES ESTÃO NELE:** o título passou de *"por até 30 minutos"* para **"PARA SEMPRE"**; o **item 2** teve o conserto trocado, porque a primeira versão mandava *"desativar o snippet antes de reescrevê-lo"* e **isso não resolveria nada** (o código já está carregado na memória do PHP daquela requisição; desativar na base não descarrega função nenhuma); e nasceu um **item 3**, mais barato e mais importante que o 2, para o Sync **não estampar a revisão como feita com item quebrado dentro** — guardando a lista dos que falharam e entrando no laço quando ela não estiver vazia, para não reprocessar os sete que deram `ok`. **Despacho que prescreve o conserto errado custa a passada inteira de quem o obedecer**, e é por isso que as duas correções estão escritas no próprio despacho em vez de a primeira versão ficar de pé.
+
+**E O ITEM 1 DO DESPACHO FICOU MAIS BARATO DO QUE ELE PARECIA: um gesto do Raphael resolve a classe inteira.** Com o token do Sync desta ilha no `PROMPT.md`, no formato das outras três, a Fundação aciona o Sync **duas vezes** como a 20.4 manda por desenho — e a segunda passada, com `forcar=1`, **ignora a linha 472** e ativa o que a primeira gravou inativo, na mesma execução.
+
+**A CONFERÊNCIA FINAL, depois da 65 (18.4):** `conferir-no-ar.py` **APROVADO**; bancada com rede **39 portões, 0 falha**; **32.5 em 10 de 10** páginas do molde, pior caixa 405 px e pior compra 1.279 px, 0 fora do molde; a home de volta aos **118.872 bytes**; a dobra servida com a regência corrigida; `/casca → versoes` com os **seis** snippets; e a resposta do `FAQPage` **idêntica, byte por byte, ao texto visível** — conferido por contenção de string, não por olho.
+
+---
+
 ## 2026-11-06 16h17Z–16h51Z — **OS CINCO ITENS DO DESPACHO FECHADOS, E O QUE FICA NÃO SÃO CINCO FRASES: É UMA RÉGUA E UM MECANISMO** — despacho da ronda de 06/11, inteiro pela 18.2
 
 **A ESCOLHA DA ILHA.** `foco.md` nomeia a **rodametria** (foco total e absoluto desde 27/10) e pela **1.2** não há escolha a fazer. **Confirmei a exceção do molde (32) antes de aceitar o foco:** os três despachos do molde de conversão estão **fechados** nas três ilhas que a exceção nomeia — aquametria (18h2xZ de 21/10), clubedomosaico (19h1xZ de 21/10) e robometria —, então o foco manda sozinho. `executando_desde` estava `null` nas **seis** ilhas, o que pela **1.1** já significa que não havia bloco da Fundação vivo: não houve reserva vencida para o git desempatar. **Nenhum branch `claude/*` divergente e nenhum PR aberto** (`list_pull_requests` em `open` devolveu lista vazia; `claude/dreamy-mccarthy-kcnfm7` e `origin/main` no mesmo commit `6a451a6`) — nada a mergear, passo 1 cumprido. **Pela 18.1, o despacho da ronda de 06/11 (cinco itens, aberto) vem antes de bloco de construção**, e pela **18.5** ilha com defeito no ar não recebe página nova. Reserva no commit `8c7912a`, às **16h17Z**, hora saída do `date -u` na mesma linha que a grava; **RENOVADA** às 16h45Z pela 1.1.
