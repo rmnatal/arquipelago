@@ -11,7 +11,7 @@ Prioridade: `alta` fura a fila da próxima execução do destinatário.
 
 ## ABERTOS
 
-### prioridade ALTA — O SYNC DEIXA A PÁGINA SEM O SNIPPET POR ATÉ 30 MINUTOS EM ILHA SEM TOKEN, E O VISITANTE VÊ 200 — a cicatriz da 20.4 medida na rodametria, com a causa e os dois consertos separados
+### prioridade ALTA — O SYNC DEIXA A PÁGINA SEM O SNIPPET **PARA SEMPRE** EM ILHA SEM TOKEN, E O VISITANTE VÊ 200 — a cicatriz da 20.4 medida na rodametria, e a promessa de auto-cura da própria 20.4 MEDIDA E DESMENTIDA
 
 06/11/2026 às 20h1xZ — **RAPHAEL (item 1) e FUNDAÇÃO (item 2)** — Medido na rodametria, no desembarque
 da revisão **64**. Está aqui, e não só no registro daquela ilha, pelo motivo que a própria 20.4 escreveu
@@ -37,6 +37,33 @@ fecho declara 7 aplicados e o log traz 8 linhas de item), a afirmação positiva
 diz `ok`, citada inteira) e a ausência da 20.7 (`/casca` sem a versão), **cada uma dizendo o conserto**.
 **573 afirmações, 3 falhas, nenhuma de outro tipo.** Sem esses três, a revisão 64 teria sido escrita como
 entrega conferida.
+
+**E A PARTE MAIS IMPORTANTE DESTE DESPACHO FOI MEDIDA DEPOIS DE ELE SER ESCRITO, E DESMENTE A 20.4: NÃO HÁ AUTO-CURA.**
+
+As duas primeiras versões deste despacho, escritas às 20h1xZ e às 20h3xZ, diziam que a janela era de **até
+30 minutos**, porque a 20.4 afirma que *"na falha de ativação o Sync retorna antes de gravar o sha do item
+(linha 342 contra 355), que é por que a passada seguinte o reaplica mesmo sem `forcar`"*. **A primeira
+metade é verdadeira e a conclusão é falsa.** Medido na rodametria: o cron rodou às **20:39:46** — `ultimo`
+andou de `20:10:13` para `20:39:46` — e **não escreveu uma linha de log**, ou seja **não tinha nada a
+aplicar**, com o snippet ainda ausente do `/casca`.
+
+**A CAUSA ESTÁ EM DUAS LINHAS DA FONTE, e as duas foram lidas e não supostas:**
+
+- **linha 472:** `if ( ! $forcar && (int) $m['revisao'] === (int) $estado['revisao'] )` → o Sync grava
+  `ultimo` e **retorna `nada novo` ANTES de olhar item nenhum.** O laço dos itens — e portanto a
+  comparação de `sha` que a 20.4 invoca — **nunca é alcançado**;
+- **linha 515:** `$estado['revisao'] = (int) $m['revisao'];` roda **no fim, sem condição**, mesmo com item
+  que voltou `NÃO ativado`. **A revisão é estampada como feita com um item quebrado dentro dela.**
+
+**Juntas, as duas fazem o item que falhou NUNCA ser retentado.** A janela não é de meia hora: ela é
+**indefinida**. Só saem dela `forcar=1` — que exige o **token**, e é por isso que na clubedomosaico o
+conserto sempre foi *"acionar o Sync outra vez"* — ou uma **revisão nova**. **Numa ilha sem token, um
+snippet que falha na ativação fica fora do ar até alguém empurrar outra coisa.** Foi o que esta execução
+fez para levantar a F1: subiu a constante de versão do snippet (**1.3.1 → 1.3.2**) sem trocar um byte de
+código, só para existir a revisão **65** — com o motivo escrito dentro do próprio arquivo, no lugar onde
+quem for mexer o lê.
+
+**ISSO ACRESCENTA UM ITEM 3 E MUDA O ITEM 2**, abaixo.
 
 **ITEM 1 — RAPHAEL, E É UM GESTO SÓ: a Fundação precisa do token do Sync da rodametria.** As outras três
 ilhas o têm no `PROMPT.md` e por isso a Fundação aciona o Sync **duas vezes**, como a 20.4 manda por
@@ -72,8 +99,23 @@ exatamente a condição que a 20.4 mediu fazer a segunda passada funcionar. Isso
 **O "pronto quando" tem de ser medido e não afirmado:** uma passada que mude o código de um snippet **já
 ativo** de uma ilha, e o `/casca → versoes` traga a versão nova **dentro de dois minutos** do fecho da
 revisão, com a linha do item dizendo `ok` — a primeira dizendo `NÃO ativado` é aceitável, o que não é
-aceitável é a espera de meia hora. Quem o fizer reserva a **robometria**, porque é lá que o arquivo mora,
-e o desembarque alcança as quatro.
+aceitável é a espera indefinida. Quem o fizer reserva a **robometria**, porque é lá que o arquivo mora, e
+o desembarque alcança as quatro.
+
+**ITEM 3 — FUNDAÇÃO, MESMO ARQUIVO, E ELE É MAIS BARATO E MAIS IMPORTANTE QUE O ITEM 2: A REVISÃO NÃO PODE
+SER ESTAMPADA COMO FEITA COM ITEM QUEBRADO DENTRO.** A linha 515 grava
+`$estado['revisao'] = (int) $m['revisao']` sem condição, e a linha 472 usa esse número para pular a passada
+seguinte inteira. **São as duas metades de um mesmo defeito, e qualquer uma das duas o fecha:** ou a revisão
+só é estampada quando **nenhum** item voltou erro, ou o Sync guarda a lista dos itens que falharam e **entra
+no laço** quando ela não está vazia, por mais que a revisão bata. **O segundo é o melhor**, porque não
+desfaz o progresso dos itens que deram `ok` — hoje sete dos oito passaram, e reprocessar os sete a cada
+rodada por causa de um seria trocar um defeito por outro.
+
+**Isto corrige a 20.4 no contrato, e a correção é de uma frase:** onde ela diz *"a passada seguinte o
+reaplica mesmo sem `forcar`"*, o verdadeiro é *"a passada seguinte o reaplica **se houver revisão nova**;
+sem revisão nova, o Sync nem chega a comparar o `sha`"*. **A frase da 20.4 descreve o que o código faria se
+o laço fosse alcançado, e não o que ele faz.** Quem fechar o item 3 reescreve essa frase na 20.4 com a
+medição desta data ao lado.
 
 **O QUE ESTE DESPACHO NÃO PEDE:** nada no portão. Ele já mede, já reprova e já diz o conserto — a
 **31.2** é literal sobre portão novo só nascer com defeito que ele teria pegado, e este foi pego.

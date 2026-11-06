@@ -48,7 +48,20 @@
  */
 
 if ( ! defined( 'RODAMETRIA_F1_VERSAO' ) ) {
-	define( 'RODAMETRIA_F1_VERSAO', '1.3.1' );
+	/* 1.3.1 -> 1.3.2 EM 06/11/2026 as 20h4xZ, E ESTA SUBIDA NAO TROCA UM BYTE DE
+	   CODIGO: ela existe para EXISTIR UMA REVISAO NOVA.
+	   A revisao 64 gravou este snippet e NAO o ativou (a cicatriz da 20.4), e a
+	   home ficou sem a F1. A 20.4 promete que "a passada seguinte o reaplica mesmo
+	   sem forcar", porque na falha de ativacao o Sync retorna antes de gravar o sha
+	   do item. MEDIDO HOJE: a promessa NAO se cumpre. O cron rodou as 20:39:46 e
+	   NAO escreveu linha nenhuma, porque a linha 472 do Sync devolve `nada novo`
+	   ANTES de olhar item nenhum quando a revisao do manifest e igual a guardada —
+	   e a linha 515 grava a revisao como feita mesmo com item que falhou. Entao o
+	   item que falhou NUNCA e retentado: as duas saidas sao `forcar=1` (que exige o
+	   token, e a Fundacao nao o tem nesta ilha) ou uma REVISAO NOVA.
+	   Esta e a revisao nova. Com o snippet INATIVO, ele nao esta carregado na
+	   requisicao, que e a condicao que faz `activate_snippet` passar. */
+	define( 'RODAMETRIA_F1_VERSAO', '1.3.2' );
 }
 
 if ( ! defined( 'RODAMETRIA_ID_DADOS_F1' ) ) {
