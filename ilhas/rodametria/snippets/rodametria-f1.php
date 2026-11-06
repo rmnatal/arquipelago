@@ -460,6 +460,15 @@ function rodametria_f1_dobras_html( $d ) {
 		. 'ferramenta poder ser construída inteira antes de a gente conseguir ler o texto '
 		. 'oficial — quando ele chegou, destravou sem uma linha de lógica mudar.</p>';
 
+	/* A DATA QUE ESTA PAGINA PUBLICA, EM PROSA, e ela nao e enfeite: o portao de
+	   ar cruza o `dateModified` do JSON-LD com as datas que a prosa traz, e
+	   reprovou esta pagina na primeira passada por servir `2026-11-06` na camada
+	   que a maquina le e em lugar nenhum na camada que a pessoa le. Duas
+	   declaracoes do mesmo fato comecam iguais e so uma sobe (20.7) — a saida
+	   nao e tirar o JSON-LD, e a pagina DIZER a data. */
+	$fonte .= '<p>Esta página foi gerada a partir do nosso banco em '
+		. esc_html( rodametria_f1_data( (string) $d['gerado_em'] ) ) . '.</p>';
+
 	$html  = rodametria_casca_dobra( 'De onde saíram os limites', $fonte );
 	$html .= rodametria_casca_dobra( 'Por que esta página não responde sobre CNH', $cnh );
 	$html .= rodametria_casca_dobra( 'Como a conta decide', $conta );
@@ -682,6 +691,7 @@ add_action( 'wp_footer', function () {
 			? $d['constantes_usadas']['alteracao-pos-compra-caso-medido']['valor'] : null,
 		'tituloPico'  => isset( $d['constantes_usadas']['watt-sem-rotulo-no-titulo-caso-medido']['valor'] )
 			? $d['constantes_usadas']['watt-sem-rotulo-no-titulo-caso-medido']['valor'] : null,
+		'contagem'    => isset( $d['contagem_de_fichas'] ) ? $d['contagem_de_fichas'] : null,
 		'municipios'  => rodametria_f1_municipios_para_o_js(),
 	);
 	?>
@@ -735,6 +745,20 @@ add_action( 'wp_footer', function () {
   var elKmh = form.querySelector('[data-rdm-f1-kmh]');
   var elMun = form.querySelector('[data-rdm-f1-mun]');
 
+  /* A RESSALVA DO PICO, com a contagem CONTADA do banco e dois moldes por
+     mundo. O molde do zero existe porque o mundo de hoje e o do zero, e "e 0
+     declaram o nominal" e o plural que mente — a cicatriz que a clubedomosaico
+     pagou em 12/10/2026. Sem titulo ou sem contagem a ressalva NAO SAI. */
+  function ressalvaPico(){
+    var c = D.contagem;
+    if (!D.tituloPico || !c) { return ''; }
+    var chave = c.com_nominal > 0 ? 'ressalva_pico_com_nominal' : 'ressalva_pico_nenhum_nominal';
+    return preencher(D.moldes[chave], {
+      titulo: D.tituloPico, colhidos: num(c.colhidos),
+      sem_rotulo: num(c.sem_rotulo), com_nominal: num(c.com_nominal)
+    });
+  }
+
   function acelEscolhido(){
     var rs = form.querySelectorAll('[data-rdm-f1-acel]');
     for (var i = 0; i < rs.length; i++) { if (rs[i].checked) { return rs[i].value; } }
@@ -748,7 +772,7 @@ add_action( 'wp_footer', function () {
     for (var i = 0; i < D.municipios.length; i++) {
       var m = D.municipios[i];
       if (m.nome.toLowerCase() === alvo || m.id.toLowerCase() === alvo) {
-        if (m.publicavel && m.limite_kmh !== null) {
+        if (m.ato_lido && m.limite_kmh !== null) {
           return preencher(D.moldes.municipal_conhecido,
             {municipio: m.nome, limite_kmh: num(m.limite_kmh)});
         }
@@ -771,9 +795,7 @@ add_action( 'wp_footer', function () {
 
     if (cat === null) {
       frases.push(acel === null ? D.moldes.recusa_acelerador : D.moldes.recusa_nao_positivo);
-      if (D.tituloPico) {
-        ressalvas.push(preencher(D.moldes.ressalva_pico, {titulo: D.tituloPico}));
-      }
+      if (ressalvaPico()) { ressalvas.push(ressalvaPico()); }
     } else {
       numeroCaixa = D.curtos[cat];
       tom = (cat === 'ciclomotor' || cat === 'acima_do_ciclomotor') ? 'alerta' : 'verde';
@@ -788,9 +810,13 @@ add_action( 'wp_footer', function () {
           w: num(w), kmh: num(kmh),
           lim_w: num(lim('LIMIAR_AUTOPROP_W')), lim_kmh: num(lim('LIMIAR_AUTOPROP_KMH'))
         }));
+        /* O DIVISOR E DEZ. Ele foi 100 por meia hora em 06/11/2026, nos TRES
+           lugares que convertem mm para cm, e a pagina foi ao ar dizendo "7 cm
+           de largura" onde a resolucao diz 70. O portao da ferramenta cobra a
+           conta agora, com a regua escrita do outro lado (cm x 10 == mm). */
         ressalvas.push(preencher(D.moldes.ressalva_dimensao_autopropelido, {
-          largura_cm: num(lim('LIMIAR_AUTOPROP_LARGURA_MM') / 100),
-          eixos_cm: num(lim('LIMIAR_AUTOPROP_ENTRE_EIXOS_MM') / 100)
+          largura_cm: num(lim('LIMIAR_AUTOPROP_LARGURA_MM') / 10),
+          eixos_cm: num(lim('LIMIAR_AUTOPROP_ENTRE_EIXOS_MM') / 10)
         }));
       } else if (cat === 'ciclomotor') {
         frases.push(preencher(D.moldes[moldeDoEstouro(
@@ -821,9 +847,7 @@ add_action( 'wp_footer', function () {
       }
       if (!D.habilitacao) { frases.push(D.moldes.habilitacao_pendente); }
 
-      if (D.tituloPico) {
-        ressalvas.push(preencher(D.moldes.ressalva_pico, {titulo: D.tituloPico}));
-      }
+      if (ressalvaPico()) { ressalvas.push(ressalvaPico()); }
       if (acel === 'manual' && D.assistenciaPe !== null
           && w <= lim('LIMIAR_BIKE_W') && kmh <= lim('LIMIAR_BIKE_KMH')) {
         ressalvas.push(preencher(D.moldes.ressalva_assistencia_a_pe,
@@ -894,7 +918,13 @@ function rodametria_f1_municipios_para_o_js() {
 		$saida[] = array(
 			'id'          => isset( $m['id'] ) ? (string) $m['id'] : '',
 			'nome'        => isset( $m['nome'] ) ? (string) $m['nome'] : '',
-			'publicavel'  => ( isset( $m['status'] ) && 'publicavel' === $m['status'] ),
+			/* A CHAVE NAO SE CHAMA `publicavel`, E ISSO FOI MEDIDO NO AR: a 32.4
+			   lista essa palavra entre as de bastidor, e o portao de ar a achou
+			   CINCO vezes no HTML servido da home em 06/11/2026 — dentro deste
+			   pacote JSON. Invisivel para o visitante e perfeitamente legivel
+			   para quem le o fonte, que e o que a visao geral de IA ingere.
+			   `ato_lido` diz o que o campo significa, e em portugues. */
+			'ato_lido'    => ( isset( $m['status'] ) && 'publicavel' === $m['status'] ),
 			'limite_kmh'  => isset( $m['limite_velocidade_kmh'] ) ? $m['limite_velocidade_kmh'] : null,
 		);
 	}

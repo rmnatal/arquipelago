@@ -193,7 +193,8 @@
     "placa_nao_decidido": "E aqui a resolução para: o {artigo} manda classificar como ciclomotor, motocicleta, motoneta ou triciclo, conforme o caso — e não diz qual, nem o que cada um exige. Qualquer um dos quatro é veículo de placa.",
     "habilitacao_pendente": "Sobre habilitação esta página não responde, e o motivo é um só: a resolução que decide a categoria não tem artigo nenhum sobre CNH. Quem decide isso é o Código de Trânsito, e a gente ainda não leu o Código de Trânsito na fonte oficial — então não vai dizer aqui que dispensa, nem que exige.",
     "ressalva_dimensao_autopropelido": "Falta um pedaço que esta conta não pergunta: a resolução também limita o autopropelido a {largura_cm} cm de largura e {eixos_cm} cm entre os eixos. Se o seu passa de um dos dois, ele sai desta categoria mesmo com a potência e a velocidade dentro.",
-    "ressalva_pico": "O número grande do anúncio costuma ser o de PICO, e a regra lê o NOMINAL — que fica na ficha, não no título. Um anúncio de loja grande que a gente colheu se chama, letra por letra, “{titulo}”: são quatro coisas que a regra separa, num título só.",
+    "ressalva_pico_nenhum_nominal": "O número grande do anúncio não é o que a regra lê: ela lê a potência NOMINAL, que fica na ficha. Dos {colhidos} anúncios que a gente colheu, {sem_rotulo} declaram um watt sem dizer se é nominal ou de pico, e NENHUM declara o nominal. Um deles se chama, letra por letra, “{titulo}”: são quatro coisas que a regra separa, num título só.",
+    "ressalva_pico_com_nominal": "O número grande do anúncio não é o que a regra lê: ela lê a potência NOMINAL, que fica na ficha. Dos {colhidos} anúncios que a gente colheu, {sem_rotulo} declaram um watt sem dizer se é nominal ou de pico, e {com_nominal} declaram o nominal. Um deles se chama, letra por letra, “{titulo}”: são quatro coisas que a regra separa, num título só.",
     "ressalva_alteracao": "E a categoria sai da ficha de fábrica, nunca do velocímetro: uma scooter adulterada foi flagrada a {kmh_flagrado} km/h com {kmh_fabrica} km/h de fábrica declarados. Mexer depois da compra tira o veículo da categoria em que ele foi vendido.",
     "ressalva_assistencia_a_pe": "Um detalhe que muda a resposta: a resolução deixa a bicicleta elétrica ter um modo de empurrar a pé, sem pedalar, até {kmh_pe} km/h. Se o acelerador do seu só serve para isso, ele não é o acelerador que tira a bike da categoria dela.",
     "recusa_acelerador": "Sem saber do acelerador não dá para classificar, e ele não é detalhe: acelerador manual tira o veículo da bicicleta elétrica mesmo com a potência abaixo do limite, e o autopropelido pode ter acelerador. É o campo que decide, não o que completa.",
@@ -205,6 +206,11 @@
     "municipal_desconhecido": "A categoria é nacional; a rua é municipal — e {municipio} não está no nosso banco. Prefeitura pode pôr limite próprio de velocidade e de potência, então confira a regra da sua antes de comprar.",
     "municipal_conhecido_pendente": "A categoria é nacional; a rua é municipal. {municipio} aparece com limite próprio nas nossas leituras, mas a gente ainda não leu o ato da prefeitura — então não publica o número. Confira na prefeitura.",
     "municipal_conhecido": "A categoria é nacional; a rua é municipal: {municipio} limita a {limite_kmh} km/h, pelo ato que a gente leu."
+  },
+  "contagem_de_fichas": {
+    "colhidos": 14,
+    "sem_rotulo": 13,
+    "com_nominal": 0
   },
   "resposta_exemplo": {
     "entrada": {
@@ -227,8 +233,8 @@
       "A categoria é nacional; a rua é municipal. Cidade nenhuma do nosso banco está com o ato lido ainda, então o que vale aqui é o aviso geral: prefeitura pode pôr limite próprio de velocidade e de potência, e já vimos notícia de duas fazendo isso. Antes de comprar, confira a regra da sua."
     ],
     "frases_ressalva": [
-      "Falta um pedaço que esta conta não pergunta: a resolução também limita o autopropelido a 7 cm de largura e 13 cm entre os eixos. Se o seu passa de um dos dois, ele sai desta categoria mesmo com a potência e a velocidade dentro.",
-      "O número grande do anúncio costuma ser o de PICO, e a regra lê o NOMINAL — que fica na ficha, não no título. Um anúncio de loja grande que a gente colheu se chama, letra por letra, “Bicicleta elétrica Siena 1000W adulto sem CNH scooter”: são quatro coisas que a regra separa, num título só.",
+      "Falta um pedaço que esta conta não pergunta: a resolução também limita o autopropelido a 70 cm de largura e 130 cm entre os eixos. Se o seu passa de um dos dois, ele sai desta categoria mesmo com a potência e a velocidade dentro.",
+      "O número grande do anúncio não é o que a regra lê: ela lê a potência NOMINAL, que fica na ficha. Dos 14 anúncios que a gente colheu, 13 declaram um watt sem dizer se é nominal ou de pico, e NENHUM declara o nominal. Um deles se chama, letra por letra, “Bicicleta elétrica Siena 1000W adulto sem CNH scooter”: são quatro coisas que a regra separa, num título só.",
       "Um detalhe que muda a resposta: a resolução deixa a bicicleta elétrica ter um modo de empurrar a pé, sem pedalar, até 6 km/h. Se o acelerador do seu só serve para isso, ele não é o acelerador que tira a bike da categoria dela.",
       "E a categoria sai da ficha de fábrica, nunca do velocímetro: uma scooter adulterada foi flagrada a 73 km/h com 32 km/h de fábrica declarados. Mexer depois da compra tira o veículo da categoria em que ele foi vendido."
     ]
@@ -250,7 +256,7 @@
       "potencia_w": "1.000",
       "velocidade_kmh": "32",
       "acelerador": "pode ter",
-      "dimensao": "até 7 cm de largura e 13 cm entre eixos",
+      "dimensao": "até 70 cm de largura e 130 cm entre eixos",
       "placa": "não é sujeito a registro, licenciamento nem placa",
       "artigo": "art. 12"
     },

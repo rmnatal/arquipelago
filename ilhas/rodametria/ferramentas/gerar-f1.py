@@ -135,8 +135,11 @@ def tabela_da_regra(constantes):
         return None
     cons = f1ref.consequencias_publicaveis(constantes)
 
-    def cm(mm):
-        return f1ref._n(mm / 100)
+    # A CONVERSAO E A DA REFERENCIA, nao uma copia. A copia existiu por meia
+    # hora em 06/11/2026 e dividia por CEM nos DOIS lugares — a pagina foi ao ar
+    # dizendo "7 cm de largura" onde a resolucao diz 70. Duas conversoes do mesmo
+    # fato comecam iguais e so uma e consertada.
+    cm = f1ref._mm_para_cm
 
     linhas = [
         {
@@ -271,18 +274,40 @@ def frase_do_bloco_de_compra(grupos, categoria_pedida):
             "diz isso em vez de oferecer outra coisa.")
 
 
+def contagem_de_fichas(linhas_banco):
+    """Os tres numeros que a ressalva do pico cita, CONTADOS da tabela.
+
+    Ela nasceu em 06/11/2026 porque o portao de ar reprovou a primeira versao
+    daquela ressalva: ela dizia *"o numero grande do anuncio COSTUMA ser o de
+    pico"*, e `costuma` e a classe do quantificador por extenso que esta ilha
+    paga desde 03/11. O portao estava certo por um motivo melhor do que o de
+    estilo — a frase afirma FREQUENCIA e esta pagina TEM a frequencia medida.
+    Trocar a hesitacao pelo numero contado deixou a frase mais forte.
+    """
+    sem_rotulo = sum(1 for l in linhas_banco if l["watt_sem_rotulo"])
+    com_nominal = sum(1 for l in linhas_banco if l["watt_nominal"])
+
+    return {
+        "colhidos": len(linhas_banco),
+        "sem_rotulo": sem_rotulo,
+        "com_nominal": com_nominal,
+    }
+
+
 def montar(constantes, veiculos, municipios):
     lim = f1ref.limiares_publicaveis(constantes)
+    linhas_banco = tabela_do_banco(veiculos, constantes)
+    fichas = contagem_de_fichas(linhas_banco)
     exemplo = f1ref.responder(
         EXEMPLO["potencia_nominal_w"], EXEMPLO["velocidade_max_kmh"],
         EXEMPLO["acelerador"], EXEMPLO["municipio"],
-        constantes=constantes, municipios=municipios)
+        constantes=constantes, municipios=municipios,
+        contagem_de_fichas=fichas)
 
     grupos = f1ref.grupos_de_compra(
         veiculos["registros"], exemplo["categoria"], lim)
 
     linhas_regra = tabela_da_regra(constantes)
-    linhas_banco = tabela_do_banco(veiculos, constantes)
 
     # ---- TODO texto que a tela serve passa pelas duas guardas, aqui, ANTES de
     # ser gravado. Portao no ponto em que o dado vira texto, nunca no ponto em
@@ -356,6 +381,7 @@ def montar(constantes, veiculos, municipios):
         # monta a resposta pre-renderizada. Duas metades lendo o mesmo molde nao
         # podem dizer coisas diferentes para a mesma entrada.
         "frases_molde": dict(f1ref.MOLDES),
+        "contagem_de_fichas": fichas,
         # OS FATOS DAS RESSALVAS SAO CONSTANTES, e por isso aparecem junto das
         # outras em `constantes_usadas` em vez de num campo proprio. O campo
         # proprio existiu por meia hora em 06/11/2026, quando eles moravam

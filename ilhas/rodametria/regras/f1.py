@@ -203,11 +203,36 @@ MOLDES = {
         "eixos. Se o seu passa de um dos dois, ele sai desta categoria mesmo com a "
         "potência e a velocidade dentro."
     ),
-    "ressalva_pico": (
-        "O número grande do anúncio costuma ser o de PICO, e a regra lê o "
-        "NOMINAL — que fica na ficha, não no título. Um anúncio de loja grande "
-        "que a gente colheu se chama, letra por letra, “{titulo}”: são quatro "
-        "coisas que a regra separa, num título só."
+    # A PRIMEIRA VERSAO DESTE MOLDE DIZIA "costuma ser o de PICO", E O PORTAO DE
+    # AR A REPROVOU NO MINUTO EM QUE ELA FOI AO AR — a classe do quantificador
+    # por extenso, que esta ilha paga desde 03/11/2026. E o portao estava certo
+    # por um motivo melhor do que o de estilo: "costuma" e uma afirmacao sobre
+    # FREQUENCIA, e esta pagina TEM a frequencia medida. Trocar a hesitacao pelo
+    # numero contado deixou a frase mais forte, nao mais fraca — e e exatamente
+    # o que a 1.4(a) pede com produto na mao.
+    #
+    # Os tres numeros entram por `{}`, CONTADOS do banco pelo gerador. Sem eles a
+    # ressalva NAO SAI: frase que cita uma contagem sem a contagem e o numero de
+    # tela digitado esperando a vez.
+    "ressalva_pico_nenhum_nominal": (
+        "O número grande do anúncio não é o que a regra lê: ela lê a potência "
+        "NOMINAL, que fica na ficha. Dos {colhidos} anúncios que a gente colheu, "
+        "{sem_rotulo} declaram um watt sem dizer se é nominal ou de pico, e "
+        "NENHUM declara o nominal. Um deles se chama, letra por letra, "
+        "“{titulo}”: são quatro coisas que a regra separa, num título só."
+    ),
+    # DOIS MOLDES, UM POR MUNDO, e a causa e a mesma que a clubedomosaico pagou
+    # em 12/10/2026: um molde so servia "e 0 declaram o nominal" — o plural que
+    # mente, com o agravante de que o mundo de hoje e justamente o do zero. O
+    # molde de baixo e o mundo em que o varejo passar a publicar o nominal, e ele
+    # nasce agora porque e o dia em que alguem o le; nascer depois seria escreve-lo
+    # com o dado na mao, e o portao o exercita FABRICANDO o mundo.
+    "ressalva_pico_com_nominal": (
+        "O número grande do anúncio não é o que a regra lê: ela lê a potência "
+        "NOMINAL, que fica na ficha. Dos {colhidos} anúncios que a gente colheu, "
+        "{sem_rotulo} declaram um watt sem dizer se é nominal ou de pico, e "
+        "{com_nominal} declaram o nominal. Um deles se chama, letra por letra, "
+        "“{titulo}”: são quatro coisas que a regra separa, num título só."
     ),
     "ressalva_alteracao": (
         "E a categoria sai da ficha de fábrica, nunca do velocímetro: uma "
@@ -449,7 +474,17 @@ def _n(fr, casas=0):
 
 
 def _mm_para_cm(mm):
-    return _n(Fraction(str(mm)) / 100)
+    """Milimetro para centimetro, e o divisor e DEZ.
+
+    A primeira versao desta funcao dividia por CEM, e a pagina foi ao ar dizendo
+    que a resolucao limita o autopropelido a "7 cm de largura e 13 cm entre os
+    eixos" — em vez de 70 e 130. Nenhum portao viu: a conversao estava certa como
+    codigo (nao quebrava nada), e nenhuma regua sabia quanto tem de dar. Quem viu
+    foi LER A FRASE GERADA, e e por isso que o gerador imprime a resposta de
+    exemplo. O portao da ferramenta passou a cobrar a conversao contra a propria
+    aritmetica, com a regua escrita do outro lado (cm x 10 == mm).
+    """
+    return _n(Fraction(str(mm)) / 10)
 
 
 def camada_municipal(municipio, municipios):
@@ -481,7 +516,8 @@ def camada_municipal(municipio, municipios):
 
 
 def responder(potencia_nominal_w, velocidade_max_kmh, acelerador,
-              municipio=None, constantes=None, municipios=None):
+              municipio=None, constantes=None, municipios=None,
+              contagem_de_fichas=None):
     """A resposta inteira da F1, ja em frases acentuadas.
 
     DUAS CAMADAS QUE NUNCA SE MISTURAM NUMA FRASE (1.2): a categoria nacional e
@@ -498,6 +534,22 @@ def responder(potencia_nominal_w, velocidade_max_kmh, acelerador,
     # O titulo LITERAL do caso da 1.4(a), lido da constante. `None` quando ela
     # nao esta publicavel, e ai a ressalva simplesmente NAO sai.
     titulo = constante_publicavel(constantes, ID_WATT_SEM_ROTULO)
+    # A CONTAGEM DO BANCO, que a ressalva do pico cita. Ela vem de FORA porque
+    # quem conta e o gerador (e o navegador a recebe no pacote): a referencia nao
+    # abre o banco de veiculos para responder a UMA pessoa. `None` faz a
+    # ressalva nao sair, em vez de sair com a contagem de ninguem.
+    tem_contagem = (titulo is not None and isinstance(contagem_de_fichas, dict)
+                    and all(k in contagem_de_fichas
+                            for k in ("colhidos", "sem_rotulo", "com_nominal")))
+    def _ressalva_pico():
+        chave = ("ressalva_pico_com_nominal"
+                 if int(contagem_de_fichas["com_nominal"]) > 0
+                 else "ressalva_pico_nenhum_nominal")
+        return MOLDES[chave].format(
+            titulo=titulo,
+            colhidos=_n(Fraction(str(contagem_de_fichas["colhidos"]))),
+            sem_rotulo=_n(Fraction(str(contagem_de_fichas["sem_rotulo"]))),
+            com_nominal=_n(Fraction(str(contagem_de_fichas["com_nominal"]))))
 
     veredito = classificar(potencia_nominal_w, velocidade_max_kmh, acelerador, lim)
 
@@ -569,8 +621,8 @@ def responder(potencia_nominal_w, velocidade_max_kmh, acelerador,
         # Ressalva que cita um caso sem o caso e afirmacao sem fonte, e o
         # silencio aqui e a mesma disciplina do `constante_publicavel`: nenhuma
         # lista de pendencias escrita a mao.
-        if titulo is not None:
-            frases_ressalva.append(MOLDES["ressalva_pico"].format(titulo=titulo))
+        if tem_contagem:
+            frases_ressalva.append(_ressalva_pico())
         if (acelerador == "manual" and lim is not None
                 and Fraction(str(potencia_nominal_w)) <= lim["LIMIAR_BIKE_W"]
                 and Fraction(str(velocidade_max_kmh)) <= lim["LIMIAR_BIKE_KMH"]):
@@ -596,8 +648,8 @@ def responder(potencia_nominal_w, velocidade_max_kmh, acelerador,
         # A ressalva do pico vale na recusa TAMBEM, e ali ela vale mais: quem
         # nao sabe qual watt tem e exatamente quem precisa saber onde olhar.
         if (causa in ("potencia_nominal_ausente", "acelerador_nao_declarado")
-                and titulo is not None):
-            frases_ressalva.append(MOLDES["ressalva_pico"].format(titulo=titulo))
+                and tem_contagem):
+            frases_ressalva.append(_ressalva_pico())
 
     chave_mun, campos_mun = camada_municipal(municipio, municipios)
     frases_municipal = [MOLDES[chave_mun].format(**campos_mun)]

@@ -91,6 +91,66 @@ direção que importa: a faixa agregada era otimista.
 
 ## 1. F1 — "ESSE ELÉTRICO PRECISA DE CNH?"
 
+> **ERRATA DE 06/11/2026 — A LEITURA OFICIAL DESFEZ TRÊS COISAS DESTA SEÇÃO, E ELAS ESTÃO AQUI PORQUE
+> QUEM FOR MEXER NA F1 LÊ ESTE ARQUIVO E NÃO O `REGISTRO.md`.** Esta seção foi escrita em 28/10/2026
+> a partir de fonte de **segunda mão** — o próprio arquivo diz isso na seção 0 — e o texto oficial da
+> Resolução Contran nº 996/2023 só foi lido em **05/11/2026, ~23h3x de Brasília**, no Chrome do
+> Raphael (PDF do Ministério dos Transportes; a leitura campo a campo está em
+> `dados/fonte-oficial-f1.md`, seção 5). O que a leitura mudou:
+>
+> **(1) A ÁRVORE DA 1.3 TERMINAVA EM `senao -> ciclomotor`, E O TEXTO NÃO AUTORIZA ISSO.** O inciso IV
+> do art. 2º põe **teto** no ciclomotor — 4 kW e 50 km/h — e os §§ 6º e 7º mandam o que passa dos
+> limites do autopropelido para *"ciclomotor, motocicleta, motoneta ou triciclo, **conforme o
+> caso**"*. Então existe uma **quarta** saída, `acima_do_ciclomotor`, e ela diz que a resolução **não
+> decide qual**. Chamar de ciclomotor um veículo de 5 kW e 80 km/h seria afirmar o que a resolução não
+> diz — a proibição nominal do `VOZ.md` — na ilha cujo produto **é** a categoria legal. O enum do
+> esquema do banco subiu para quatro valores (esquema 5 → 6).
+>
+> **(2) A TABELA DA 1.2 DIZIA `dispensa CNH` NAS TRÊS LINHAS, E A RESOLUÇÃO NÃO FALA DE CNH.** Ela não
+> tem artigo nenhum sobre habilitação: decide a **categoria** e decide **registro, licenciamento e
+> emplacamento** (arts. 12 e 13) e **capacete** (art. 19 V). Habilitação vem do CTB, que esta ilha
+> **não leu** em fonte oficial — e o `planalto.gov.br` está atrás da mesma parede de egresso. Então a
+> tabela da 1.2 passa a ser lida assim, e a F1 no ar cumpre **esta** e não aquela:
+>
+> | Categoria | O que a saída diz, e o artigo |
+> |---|---|
+> | `bicicleta_eletrica` | não é sujeita a registro, licenciamento nem emplacamento (art. 12) |
+> | `autopropelido` | não é sujeito a registro, licenciamento nem emplacamento (art. 12) |
+> | `ciclomotor` | **registrado e licenciado**, e com **capacete** (art. 13; art. 19 III, IV e V) |
+> | `acima_do_ciclomotor` | a resolução **não decide**: manda classificar como ciclomotor, motocicleta, motoneta ou triciclo, conforme o caso (art. 2º, §§ 6º e 7º) |
+>
+> **A frase sobre CNH é dita, não omitida**, e sai da constante
+> `exigencia-de-habilitacao-por-categoria-ctb`, que nasceu `pendente` para o silêncio ter nome. Ela
+> **não trava desembarque** — e essa é a diferença entre ela e o limiar, que travava: sem o limiar não
+> havia categoria e portanto não havia ferramenta; sem ela, a ferramenta responde a categoria,
+> responde a placa com o artigo, e **cala** sobre habilitação nomeando a causa. **O portão
+> `ferramentas/teste-f1.py` cobra a AUSÊNCIA das frases "dispensa CNH" e "exige habilitação" em todo
+> texto de tela enquanto a constante for pendente.** O `VOZ.md` traz as duas nos exemplos aprovados,
+> escritos em 27/10 — **antes** de alguém ter lido a resolução — e o mesmo `VOZ.md` proíbe
+> nominalmente *"qualquer frase que afirme o que a resolução não diz"*. Onde os dois lados dele
+> divergem, **manda a proibição**: ela é sobre fonte, e o exemplo era sobre tom.
+>
+> **(3) AS QUATRO ENTRADAS DA 1.1 NÃO FECHAM O AUTOPROPELIDO.** A alínea *e* do inciso II põe
+> **largura de 70 cm** e **distância entre eixos de 130 cm**, e a F1 não pergunta nenhuma das duas.
+> Em vez de crescer o formulário — que custa pixel num orçamento da 32.5 que já foi medido duas vezes
+> nesta ilha —, o veredito `autopropelido` sai com a condição **dita** e os dois números impressos, na
+> ressalva. **Veredito condicionado e dito é honesto; veredito que esconde a condição é o erro
+> permissivo.**
+>
+> **E A CONTRADIÇÃO DO BLOCO 6 SE DESFEZ, com a causa ao contrário do que se supunha.** O
+> `eletricz.com.br` afirmava `até 1000 Watts` numa página e `potência máxima de 4.000W para
+> autopropelidos` noutra, **citando esta mesma resolução** — e os **dois** números estão nela: 1.000 W
+> é o teto de **autopropelido** e de **bicicleta elétrica**, 4 kW é o teto de **ciclomotor**. O
+> publicador colou o número de uma categoria no nome de outra. **Isso não absolve a fonte de segunda
+> mão:** só a leitura oficial dizia de que lado estava o erro, e era exatamente isso que a regra
+> `numero_de_portal_nunca_vira_constante_legal` protegia.
+>
+> **O QUE NÃO MUDOU, e vale dizer:** a árvore da 1.3 continua certa nas duas primeiras pernas, o pivô
+> da 1.1 continua sendo o pivô, as duas ressalvas da 1.4 continuam obrigatórias, a 1.5 continua
+> valendo inteira (e ficou mais forte), e **nenhuma linha de lógica foi escrita duas vezes** — a
+> aposta da 1.3 de referenciar limiar por nome pagou exatamente o que prometia.
+
+
 A home da ilha (`DESIGN.md`, `VOZ.md`). É a ferramenta que o bloco 1 mediu como vaga
 real: em sete consultas independentes do eixo A, **nenhuma ferramenta** que receba
 potência e velocidade e devolva categoria. *"Todos falam, ninguém calcula."*

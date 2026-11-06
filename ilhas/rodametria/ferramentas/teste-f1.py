@@ -610,6 +610,86 @@ def metade_f():
     print("  mutacoes: %d, e a varredura pegou todas" % len(mutacoes))
 
 
+# ---------------------------------------------------------------------------
+# (G) AS DUAS CONTAS QUE O PORTAO NAO TINHA E QUE FORAM AO AR ERRADAS.
+#
+# As duas nasceram em 06/11/2026, depois de o texto gerado ser LIDO. Nenhuma
+# delas quebrava nada, e e exatamente por isso que elas chegaram ao ar: codigo
+# que converte errado roda, e frase com plural errado imprime.
+# ---------------------------------------------------------------------------
+def metade_g():
+    # (1) MILIMETRO PARA CENTIMETRO, e a regua esta escrita DO OUTRO LADO: em vez
+    # de repetir a divisao da referencia (o que aprovaria o erro dela), o portao
+    # multiplica de volta e exige fechar. A primeira versao da referencia dividia
+    # por CEM nos TRES lugares que convertem, e a pagina foi ao ar dizendo "7 cm
+    # de largura" onde a resolucao diz 70.
+    bruto = json.load(io.open(CONSTANTES, encoding="utf-8"))
+    cs = {c["id"]: c for c in bruto["constantes"]}
+    valor = (cs.get(f1ref.ID_LIMIARES) or {}).get("valor") or {}
+    for nome in ("LIMIAR_AUTOPROP_LARGURA_MM", "LIMIAR_AUTOPROP_ENTRE_EIXOS_MM"):
+        if nome not in valor:
+            continue
+        mm = Fraction(str(valor[nome]))
+        cm_tela = f1ref._mm_para_cm(mm)
+        # desfaz a formatacao de tela e multiplica de volta
+        cm = Fraction(cm_tela.replace(".", "").replace(",", "."))
+        ok(cm * 10 == mm,
+           "a conversao de %s esta errada: %s mm viraram %s cm na tela, e %s cm sao "
+           "%s mm. A pagina publica centimetro e a constante guarda milimetro"
+           % (nome, mm, cm_tela, cm_tela, cm * 10))
+
+    # (2) O PLURAL DA CONTAGEM, nos DOIS mundos, e o do ZERO e o de hoje. Um molde
+    # so servia "e 0 declaram o nominal" — o plural que mente, a cicatriz que a
+    # clubedomosaico pagou em 12/10/2026. O mundo com nominal e FABRICADO: o banco
+    # de hoje nao o tem, e sem fabrica-lo o molde dele iria ao ar nao medido.
+    cs_f = _constantes_ficticias()
+    cs_f[f1ref.ID_WATT_SEM_ROTULO] = {"status": "publicavel", "valor": "Titulo de teste"}
+    frases = {}
+    for rotulo, com_nominal in (("zero", 0), ("algum", 3)):
+        r = f1ref.responder(100, 5, "manual", "", constantes=cs_f, municipios=[],
+                            contagem_de_fichas={"colhidos": 14, "sem_rotulo": 13,
+                                                "com_nominal": com_nominal})
+        pico = [f for f in r["frases_ressalva"] if "NOMINAL" in f]
+        ok(len(pico) == 1,
+           "o mundo %r produziu %d ressalva(s) do pico e tinha de produzir 1"
+           % (rotulo, len(pico)))
+        frases[rotulo] = pico[0] if pico else ""
+
+    ok(frases["zero"] != frases["algum"],
+       "os dois mundos da contagem produziram a MESMA frase: causa que o codigo "
+       "separa e o texto funde")
+    ok("NENHUM declara" in frases["zero"],
+       "o mundo de ZERO nominal nao diz `NENHUM declara`: %r" % frases["zero"][:160])
+    ok(" 0 declaram" not in frases["zero"] and " 0 deles" not in frases["zero"],
+       "o mundo de ZERO nominal serve o plural que mente: %r" % frases["zero"][:160])
+    ok("3 declaram o nominal" in frases["algum"],
+       "o mundo COM nominal nao traz a contagem: %r" % frases["algum"][:160])
+
+    # (3) SEM CONTAGEM A RESSALVA NAO SAI. Frase que cita uma contagem sem a
+    # contagem e o numero de tela digitado esperando a vez.
+    r = f1ref.responder(100, 5, "manual", "", constantes=cs_f, municipios=[],
+                        contagem_de_fichas=None)
+    ok(not [f for f in r["frases_ressalva"] if "NOMINAL" in f],
+       "a ressalva do pico saiu SEM a contagem")
+
+    # (4) E NENHUM MOLDE PODE TRAZER QUANTIFICADOR POR EXTENSO. A classe que esta
+    # ilha paga desde 03/11/2026, e o portao de ar a achou na primeira versao do
+    # molde do pico (`costuma`) no minuto em que a pagina subiu. Aqui ela e barrada
+    # ANTES do ar.
+    resp = json.load(io.open(RESPOSTAS, encoding="utf-8"))
+    proibidos = ("costuma", "geralmente", "normalmente", "a maioria", "quase sempre",
+                 "quase nunca", "na maior parte", "o mais comum", "mais comum",
+                 "em geral", "tipicamente", "raramente")
+    for k, molde in resp["frases_molde"].items():
+        baixo = molde.lower()
+        for t in proibidos:
+            ok(t not in baixo,
+               "o molde %r traz o quantificador por extenso %r, e ele vai para a tela "
+               "sem camada de liberacao nenhuma: %r" % (k, t, molde[:140]))
+    print("  as duas contas que foram ao ar erradas: conversao mm->cm conferida do "
+          "outro lado, e os dois mundos do plural fabricados")
+
+
 def main():
     print("PORTAO DA F1 — RODAMETRIA (limiares FICTICIOS na arvore, pela 1.6)")
     metade_a()
@@ -618,6 +698,7 @@ def main():
     metade_d()
     metade_e()
     metade_f()
+    metade_g()
 
     print()
     print("teste-f1: %d afirmacoes, %d falha(s)" % (AFIRMACOES[0], len(FALHAS)))
