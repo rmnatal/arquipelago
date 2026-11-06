@@ -1,0 +1,559 @@
+{
+  "id": "f1-respostas",
+  "ilha": "rodametria",
+  "ferramenta": "F1",
+  "bloco": "4",
+  "gerado_em": "2026-11-06",
+  "gerado_por": "ferramentas/gerar-f1.py",
+  "referencia": "regras/f1.py",
+  "especificacao": "dados/especificacao-calculadoras.md, secao 1",
+  "publicar": true,
+  "nota": "Tudo que a F1 serve na tela sai daqui: nenhum numero e nenhuma frase da F1 e digitado dentro do snippet PHP. Os limiares legais saem da constante `limiares-categoria-contran-996-2023`, lida no PDF oficial da Resolucao Contran 996/2023 em 05/11/2026; as consequencias por categoria saem de `consequencias-por-categoria-contran-996-2023`; e a exigencia de HABILITACAO nao sai de nenhuma, porque a resolucao nao a declara — a F1 cala sobre CNH e nomeia a causa.",
+  "campos": {
+    "potencias_w": [
+      250,
+      350,
+      500,
+      750,
+      1000,
+      1500,
+      2000,
+      3000,
+      4000,
+      5000
+    ],
+    "velocidades_kmh": [
+      6,
+      20,
+      25,
+      32,
+      40,
+      45,
+      50,
+      60,
+      80
+    ],
+    "aceleradores": [
+      "manual",
+      "so_pedal_assistido",
+      "nao_declarado"
+    ],
+    "exemplo": {
+      "potencia_nominal_w": 500,
+      "velocidade_max_kmh": 32,
+      "acelerador": "manual",
+      "municipio": ""
+    }
+  },
+  "rotulos": {
+    "potencia_nominal_w": "Potência nominal (W)",
+    "velocidade_max_kmh": "Velocidade máxima de fábrica (km/h)",
+    "acelerador": "Tem acelerador?",
+    "municipio": "Sua cidade (opcional)",
+    "acelerador_manual": "Tem acelerador",
+    "acelerador_so_pedal_assistido": "Só funciona pedalando",
+    "titulo_categoria": "O que a resolução diz",
+    "titulo_municipal": "E a rua, que é municipal",
+    "titulo_ressalva": "Antes de usar esta resposta",
+    "titulo_tabela_regra": "Os limites da resolução, do jeito que ela escreve",
+    "titulo_tabela_banco": "O que os anúncios que a gente colheu declaram"
+  },
+  "categorias": [
+    "bicicleta_eletrica",
+    "autopropelido",
+    "ciclomotor",
+    "acima_do_ciclomotor"
+  ],
+  "nome_da_categoria": {
+    "bicicleta_eletrica": "bicicleta elétrica",
+    "autopropelido": "equipamento de mobilidade individual autopropelido",
+    "ciclomotor": "ciclomotor",
+    "acima_do_ciclomotor": "acima do ciclomotor"
+  },
+  "constantes_usadas": {
+    "limiares-categoria-contran-996-2023": {
+      "valor": {
+        "LIMIAR_BIKE_W": 1000,
+        "LIMIAR_BIKE_KMH": 32,
+        "LIMIAR_AUTOPROP_W": 1000,
+        "LIMIAR_AUTOPROP_KMH": 32,
+        "LIMIAR_AUTOPROP_LARGURA_MM": 700,
+        "LIMIAR_AUTOPROP_ENTRE_EIXOS_MM": 1300,
+        "LIMIAR_CICLOMOTOR_W": 4000,
+        "LIMIAR_CICLOMOTOR_KMH": 50,
+        "LIMIAR_CICLOMOTOR_CILINDRADA_CM3": 50
+      },
+      "status": "publicavel",
+      "tipo": "oficial",
+      "fonte": "Resolucao CONTRAN no 996, de 15/06/2023, publicada no DOU de 22/06/2023 (Ed. 117, Secao 1, p. 327), texto ORIGINAL, em vigor desde 03/07/2023 pelo art. 22. LIDA NO PDF OFICIAL do Ministerio dos Transportes em 2026-11-05 ~23h3x de Brasilia (2026-11-06 ~02h3xZ), no Chrome do Raphael.",
+      "url": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao9962023.pdf/@@download/file",
+      "verificado_em": "2026-11-05"
+    },
+    "consequencias-por-categoria-contran-996-2023": {
+      "valor": {
+        "bicicleta_eletrica": {
+          "registro_licenciamento_emplacamento": "nao_sujeito",
+          "capacete": "nao_consta",
+          "artigo": "art. 12",
+          "artigo_detalhe": "art. 12 — autopropelido e bicicleta eletrica nao sao sujeitos ao registro, ao licenciamento e ao emplacamento para circulacao nas vias."
+        },
+        "autopropelido": {
+          "registro_licenciamento_emplacamento": "nao_sujeito",
+          "capacete": "nao_consta",
+          "artigo": "art. 12",
+          "artigo_detalhe": "art. 12 — autopropelido e bicicleta eletrica nao sao sujeitos ao registro, ao licenciamento e ao emplacamento para circulacao nas vias."
+        },
+        "ciclomotor": {
+          "registro_licenciamento_emplacamento": "exigido",
+          "capacete": "exigido",
+          "artigo": "art. 13",
+          "artigo_detalhe": "art. 13 — o ciclomotor e registrado e licenciado (CAT mais nota fiscal); art. 19 incisos III e IV — sancao por falta de placa e de registro; art. 19 inciso V — capacete, remetendo ao art. 244 do CTB."
+        },
+        "acima_do_ciclomotor": {
+          "registro_licenciamento_emplacamento": "nao_decidido_por_esta_resolucao",
+          "capacete": "nao_decidido_por_esta_resolucao",
+          "artigo": "art. 2º, §§ 6º e 7º",
+          "artigo_detalhe": "art. 2o par. 6o e par. 7o — o equipamento que passa dos limites do autopropelido passa a ser classificado como `ciclomotor, motocicleta, motoneta ou triciclo, conforme o caso`, e a resolucao NAO diz qual nem o que cada um exige."
+        }
+      },
+      "status": "publicavel",
+      "tipo": "oficial",
+      "fonte": "Resolucao CONTRAN no 996, de 15/06/2023, arts. 12, 13 e 19, lidos no PDF oficial do Ministerio dos Transportes em 2026-11-05 ~23h3x de Brasilia.",
+      "url": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao9962023.pdf/@@download/file",
+      "verificado_em": "2026-11-05"
+    },
+    "exigencia-de-habilitacao-por-categoria-ctb": {
+      "valor": null,
+      "status": "pendente",
+      "tipo": "pendente",
+      "fonte": "",
+      "url": null,
+      "verificado_em": "2026-11-06"
+    },
+    "assistencia-a-pe-contran-996-2023": {
+      "valor": 6,
+      "status": "publicavel",
+      "tipo": "oficial",
+      "fonte": "Resolucao CONTRAN no 996, de 15/06/2023, art. 2o par. 4o, lido no PDF oficial do Ministerio dos Transportes em 2026-11-05.",
+      "url": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao9962023.pdf/@@download/file",
+      "verificado_em": "2026-11-05"
+    },
+    "alteracao-pos-compra-caso-medido": {
+      "valor": {
+        "kmh_flagrado": 73,
+        "kmh_fabrica": 32
+      },
+      "status": "publicavel",
+      "tipo": "medicao_de_terceiro",
+      "fonte": "Materia de folhavitoria.com.br, colhida em 28/10/2026 pelo bloco 1 desta ilha: scooter adulterada flagrada a 73 km/h com 32 km/h de fabrica declarados.",
+      "url": null,
+      "verificado_em": "2026-10-28"
+    },
+    "watt-sem-rotulo-no-titulo-caso-medido": {
+      "valor": "Bicicleta elétrica Siena 1000W adulto sem CNH scooter",
+      "status": "publicavel",
+      "tipo": "medicao_de_terceiro",
+      "fonte": "Título colhido numa ficha do extra.com.br em 28/10/2026, pela primeira leva de buscas desta ilha.",
+      "url": null,
+      "verificado_em": "2026-10-28"
+    }
+  },
+  "limiares": {
+    "LIMIAR_BIKE_W": "1000",
+    "LIMIAR_BIKE_KMH": "32",
+    "LIMIAR_AUTOPROP_W": "1000",
+    "LIMIAR_AUTOPROP_KMH": "32",
+    "LIMIAR_AUTOPROP_LARGURA_MM": "700",
+    "LIMIAR_AUTOPROP_ENTRE_EIXOS_MM": "1300",
+    "LIMIAR_CICLOMOTOR_W": "4000",
+    "LIMIAR_CICLOMOTOR_KMH": "50"
+  },
+  "limiares_tela": {
+    "LIMIAR_BIKE_W": "1.000",
+    "LIMIAR_BIKE_KMH": "32",
+    "LIMIAR_AUTOPROP_W": "1.000",
+    "LIMIAR_AUTOPROP_KMH": "32",
+    "LIMIAR_AUTOPROP_LARGURA_MM": "700",
+    "LIMIAR_AUTOPROP_ENTRE_EIXOS_MM": "1.300",
+    "LIMIAR_CICLOMOTOR_W": "4.000",
+    "LIMIAR_CICLOMOTOR_KMH": "50"
+  },
+  "habilitacao_respondida": false,
+  "frases_molde": {
+    "veredito_bicicleta_eletrica": "É bicicleta elétrica: {w} W de potência nominal e {kmh} km/h, só com pedal assistido — os três dentro do que a resolução pede ({lim_w} W e {lim_kmh} km/h).",
+    "veredito_autopropelido": "É autopropelido: {w} W de potência nominal e {kmh} km/h, dentro dos {lim_w} W e {lim_kmh} km/h da resolução — e com acelerador, que aqui pode.",
+    "veredito_ciclomotor_por_potencia": "É ciclomotor: {w} W de potência nominal passam dos {lim_autoprop_w} W que o autopropelido permite, e ainda cabem no teto do ciclomotor, que é {lim_w} W e {lim_kmh} km/h.",
+    "veredito_ciclomotor_por_velocidade": "É ciclomotor: {kmh} km/h passam dos {lim_autoprop_kmh} km/h que o autopropelido permite, e ainda cabem no teto do ciclomotor, que é {lim_w} W e {lim_kmh} km/h.",
+    "veredito_ciclomotor_por_dois": "É ciclomotor: {w} W passam dos {lim_autoprop_w} W e {kmh} km/h passam dos {lim_autoprop_kmh} km/h que o autopropelido permite — e os dois ainda cabem no teto do ciclomotor, que é {lim_w} W e {lim_kmh} km/h.",
+    "veredito_acima_por_potencia": "Passa do ciclomotor: {w} W de potência nominal ficam acima dos {lim_w} W que é o teto dele.",
+    "veredito_acima_por_velocidade": "Passa do ciclomotor: {kmh} km/h ficam acima dos {lim_kmh} km/h que é o teto dele.",
+    "veredito_acima_por_dois": "Passa do ciclomotor nos dois números: {w} W ficam acima dos {lim_w} W e {kmh} km/h ficam acima dos {lim_kmh} km/h, que são os tetos dele.",
+    "placa_nao_sujeito": "A resolução diz, no {artigo}, que não é sujeito a registro, a licenciamento nem a emplacamento para circular nas vias.",
+    "placa_exigido": "Pede placa: a resolução manda registrar e licenciar ({artigo}), e cobra capacete.",
+    "placa_nao_decidido": "E aqui a resolução para: o {artigo} manda classificar como ciclomotor, motocicleta, motoneta ou triciclo, conforme o caso — e não diz qual, nem o que cada um exige. Qualquer um dos quatro é veículo de placa.",
+    "habilitacao_pendente": "Sobre habilitação esta página não responde, e o motivo é um só: a resolução que decide a categoria não tem artigo nenhum sobre CNH. Quem decide isso é o Código de Trânsito, e a gente ainda não leu o Código de Trânsito na fonte oficial — então não vai dizer aqui que dispensa, nem que exige.",
+    "ressalva_dimensao_autopropelido": "Falta um pedaço que esta conta não pergunta: a resolução também limita o autopropelido a {largura_cm} cm de largura e {eixos_cm} cm entre os eixos. Se o seu passa de um dos dois, ele sai desta categoria mesmo com a potência e a velocidade dentro.",
+    "ressalva_pico": "O número grande do anúncio costuma ser o de PICO, e a regra lê o NOMINAL — que fica na ficha, não no título. Um anúncio de loja grande que a gente colheu se chama, letra por letra, “{titulo}”: são quatro coisas que a regra separa, num título só.",
+    "ressalva_alteracao": "E a categoria sai da ficha de fábrica, nunca do velocímetro: uma scooter adulterada foi flagrada a {kmh_flagrado} km/h com {kmh_fabrica} km/h de fábrica declarados. Mexer depois da compra tira o veículo da categoria em que ele foi vendido.",
+    "ressalva_assistencia_a_pe": "Um detalhe que muda a resposta: a resolução deixa a bicicleta elétrica ter um modo de empurrar a pé, sem pedalar, até {kmh_pe} km/h. Se o acelerador do seu só serve para isso, ele não é o acelerador que tira a bike da categoria dela.",
+    "recusa_acelerador": "Sem saber do acelerador não dá para classificar, e ele não é detalhe: acelerador manual tira o veículo da bicicleta elétrica mesmo com a potência abaixo do limite, e o autopropelido pode ter acelerador. É o campo que decide, não o que completa.",
+    "recusa_potencia": "Falta a potência NOMINAL em watts — a da ficha, não a do título. Sem ela não há o que comparar com o limite da resolução.",
+    "recusa_velocidade": "Falta a velocidade máxima de fábrica em km/h. A resolução usa as duas coisas juntas: potência E velocidade.",
+    "recusa_limiar_pendente": "A conta está de pé e os limites não: o texto oficial da resolução não foi lido ainda, e esta página não publica limite de potência tirado de notícia.",
+    "recusa_nao_positivo": "Potência e velocidade têm de ser maiores que zero para a conta existir.",
+    "municipal_generica": "A categoria é nacional; a rua é municipal. Cidade nenhuma do nosso banco está com o ato lido ainda, então o que vale aqui é o aviso geral: prefeitura pode pôr limite próprio de velocidade e de potência, e já vimos notícia de duas fazendo isso. Antes de comprar, confira a regra da sua.",
+    "municipal_desconhecido": "A categoria é nacional; a rua é municipal — e {municipio} não está no nosso banco. Prefeitura pode pôr limite próprio de velocidade e de potência, então confira a regra da sua antes de comprar.",
+    "municipal_conhecido_pendente": "A categoria é nacional; a rua é municipal. {municipio} aparece com limite próprio nas nossas leituras, mas a gente ainda não leu o ato da prefeitura — então não publica o número. Confira na prefeitura.",
+    "municipal_conhecido": "A categoria é nacional; a rua é municipal: {municipio} limita a {limite_kmh} km/h, pelo ato que a gente leu."
+  },
+  "resposta_exemplo": {
+    "entrada": {
+      "potencia_nominal_w": 500.0,
+      "velocidade_max_kmh": 32.0,
+      "acelerador": "manual",
+      "municipio": ""
+    },
+    "classifica": true,
+    "categoria": "autopropelido",
+    "categoria_nome": "equipamento de mobilidade individual autopropelido",
+    "causa_da_recusa": null,
+    "tom": "bom",
+    "frases_categoria": [
+      "É autopropelido: 500 W de potência nominal e 32 km/h, dentro dos 1.000 W e 32 km/h da resolução — e com acelerador, que aqui pode.",
+      "A resolução diz, no art. 12, que não é sujeito a registro, a licenciamento nem a emplacamento para circular nas vias.",
+      "Sobre habilitação esta página não responde, e o motivo é um só: a resolução que decide a categoria não tem artigo nenhum sobre CNH. Quem decide isso é o Código de Trânsito, e a gente ainda não leu o Código de Trânsito na fonte oficial — então não vai dizer aqui que dispensa, nem que exige."
+    ],
+    "frases_municipal": [
+      "A categoria é nacional; a rua é municipal. Cidade nenhuma do nosso banco está com o ato lido ainda, então o que vale aqui é o aviso geral: prefeitura pode pôr limite próprio de velocidade e de potência, e já vimos notícia de duas fazendo isso. Antes de comprar, confira a regra da sua."
+    ],
+    "frases_ressalva": [
+      "Falta um pedaço que esta conta não pergunta: a resolução também limita o autopropelido a 7 cm de largura e 13 cm entre os eixos. Se o seu passa de um dos dois, ele sai desta categoria mesmo com a potência e a velocidade dentro.",
+      "O número grande do anúncio costuma ser o de PICO, e a regra lê o NOMINAL — que fica na ficha, não no título. Um anúncio de loja grande que a gente colheu se chama, letra por letra, “Bicicleta elétrica Siena 1000W adulto sem CNH scooter”: são quatro coisas que a regra separa, num título só.",
+      "Um detalhe que muda a resposta: a resolução deixa a bicicleta elétrica ter um modo de empurrar a pé, sem pedalar, até 6 km/h. Se o acelerador do seu só serve para isso, ele não é o acelerador que tira a bike da categoria dela.",
+      "E a categoria sai da ficha de fábrica, nunca do velocímetro: uma scooter adulterada foi flagrada a 73 km/h com 32 km/h de fábrica declarados. Mexer depois da compra tira o veículo da categoria em que ele foi vendido."
+    ]
+  },
+  "tabela_regra": [
+    {
+      "categoria": "bicicleta_eletrica",
+      "nome": "bicicleta elétrica",
+      "potencia_w": "1.000",
+      "velocidade_kmh": "32",
+      "acelerador": "não pode ter",
+      "dimensao": "a resolução não limita",
+      "placa": "não é sujeita a registro, licenciamento nem placa",
+      "artigo": "art. 12"
+    },
+    {
+      "categoria": "autopropelido",
+      "nome": "equipamento de mobilidade individual autopropelido",
+      "potencia_w": "1.000",
+      "velocidade_kmh": "32",
+      "acelerador": "pode ter",
+      "dimensao": "até 7 cm de largura e 13 cm entre eixos",
+      "placa": "não é sujeito a registro, licenciamento nem placa",
+      "artigo": "art. 12"
+    },
+    {
+      "categoria": "ciclomotor",
+      "nome": "ciclomotor",
+      "potencia_w": "4.000",
+      "velocidade_kmh": "50",
+      "acelerador": "pode ter",
+      "dimensao": "a resolução não limita",
+      "placa": "registrado e licenciado, e com capacete",
+      "artigo": "art. 13"
+    },
+    {
+      "categoria": "acima_do_ciclomotor",
+      "nome": "acima disso",
+      "potencia_w": "mais de 4.000",
+      "velocidade_kmh": "mais de 50",
+      "acelerador": "—",
+      "dimensao": "—",
+      "placa": "motocicleta, motoneta ou triciclo, conforme o caso — e a resolução não diz qual",
+      "artigo": "art. 2º, §§ 6º e 7º"
+    }
+  ],
+  "tabela_banco": {
+    "linhas": [
+      {
+        "id": "honeywhale-m2-max",
+        "rotulo": "Honeywhale M2 MAX",
+        "titulo_colhido": "Honeywhale M2 MAX patinete eletrico adulto 500 W, 32 km/h (193 vendas)",
+        "watt_nominal": null,
+        "watt_sem_rotulo": "500",
+        "watt_pico": null,
+        "velocidade_kmh": null,
+        "acelerador": "nao_declarado",
+        "categoria": null,
+        "categoria_nome": null,
+        "causa_da_recusa": "acelerador_nao_declarado",
+        "fonte_tipo": "painel-de-afiliado",
+        "data_leitura": "2026-10-27"
+      },
+      {
+        "id": "maxshot-v1",
+        "rotulo": "MAXSHOT V1",
+        "titulo_colhido": "MAXSHOT V1 (ficha de patinete eletrico, 350 W)",
+        "watt_nominal": null,
+        "watt_sem_rotulo": "350",
+        "watt_pico": null,
+        "velocidade_kmh": null,
+        "acelerador": "manual",
+        "categoria": null,
+        "categoria_nome": null,
+        "causa_da_recusa": "potencia_nominal_ausente",
+        "fonte_tipo": "ficha-de-varejo",
+        "data_leitura": "2026-10-28"
+      },
+      {
+        "id": "maxshot-v1spro",
+        "rotulo": "MAXSHOT V1SPRO",
+        "titulo_colhido": "MAXSHOT V1SPRO (ficha de patinete eletrico, 500 W)",
+        "watt_nominal": null,
+        "watt_sem_rotulo": "500",
+        "watt_pico": null,
+        "velocidade_kmh": null,
+        "acelerador": "manual",
+        "categoria": null,
+        "categoria_nome": null,
+        "causa_da_recusa": "potencia_nominal_ausente",
+        "fonte_tipo": "ficha-de-varejo",
+        "data_leitura": "2026-10-28"
+      },
+      {
+        "id": "sousa-bike-aro-24",
+        "rotulo": "Sousa Bike",
+        "titulo_colhido": "Sousa Bike aro 24 (bicicleta eletrica, 350 W, acelerador no titulo)",
+        "watt_nominal": null,
+        "watt_sem_rotulo": "350",
+        "watt_pico": null,
+        "velocidade_kmh": null,
+        "acelerador": "manual",
+        "categoria": null,
+        "categoria_nome": null,
+        "causa_da_recusa": "potencia_nominal_ausente",
+        "fonte_tipo": "ficha-de-varejo",
+        "data_leitura": "2026-10-28"
+      },
+      {
+        "id": "siena-1000w-sem-cnh",
+        "rotulo": "Siena",
+        "titulo_colhido": "Bicicleta eletrica Siena 1000W adulto sem CNH scooter",
+        "watt_nominal": null,
+        "watt_sem_rotulo": "1.000",
+        "watt_pico": null,
+        "velocidade_kmh": null,
+        "acelerador": "nao_declarado",
+        "categoria": null,
+        "categoria_nome": null,
+        "causa_da_recusa": "acelerador_nao_declarado",
+        "fonte_tipo": "ficha-de-varejo",
+        "data_leitura": "2026-10-28"
+      },
+      {
+        "id": "playbik",
+        "rotulo": "PLAYBIK",
+        "titulo_colhido": "PLAYBIK (ficha de patinete eletrico)",
+        "watt_nominal": null,
+        "watt_sem_rotulo": null,
+        "watt_pico": null,
+        "velocidade_kmh": null,
+        "acelerador": "nao_declarado",
+        "categoria": null,
+        "categoria_nome": null,
+        "causa_da_recusa": "acelerador_nao_declarado",
+        "fonte_tipo": "ficha-de-varejo",
+        "data_leitura": "2026-10-28"
+      },
+      {
+        "id": "honeywhale-h3",
+        "rotulo": "Honeywhale H3",
+        "titulo_colhido": "Honeywhale H3 (anuncio Mercado Livre, 1.000 W, 55 km/h)",
+        "watt_nominal": null,
+        "watt_sem_rotulo": "1.000",
+        "watt_pico": null,
+        "velocidade_kmh": null,
+        "acelerador": "nao_declarado",
+        "categoria": null,
+        "categoria_nome": null,
+        "causa_da_recusa": "acelerador_nao_declarado",
+        "fonte_tipo": "painel-de-afiliado",
+        "data_leitura": "2026-10-27"
+      },
+      {
+        "id": "verdevento-750w-60v-20ah",
+        "rotulo": "Verdevento",
+        "titulo_colhido": "Verdevento bicicleta/moto eletrica 750 W 60 V 20 Ah (+100 vendidos)",
+        "watt_nominal": null,
+        "watt_sem_rotulo": "750",
+        "watt_pico": null,
+        "velocidade_kmh": null,
+        "acelerador": "nao_declarado",
+        "categoria": null,
+        "categoria_nome": null,
+        "causa_da_recusa": "acelerador_nao_declarado",
+        "fonte_tipo": "painel-de-afiliado",
+        "data_leitura": "2026-10-27"
+      },
+      {
+        "id": "l40-plus",
+        "rotulo": "L40 Plus",
+        "titulo_colhido": "L40 Plus 1.000 W 48 km autopropelido (+100 vendidos)",
+        "watt_nominal": null,
+        "watt_sem_rotulo": "1.000",
+        "watt_pico": null,
+        "velocidade_kmh": null,
+        "acelerador": "nao_declarado",
+        "categoria": null,
+        "categoria_nome": null,
+        "causa_da_recusa": "acelerador_nao_declarado",
+        "fonte_tipo": "painel-de-afiliado",
+        "data_leitura": "2026-10-27"
+      },
+      {
+        "id": "evoo-scooter-1000w",
+        "rotulo": "Evoo",
+        "titulo_colhido": "Evoo scooter/moto eletrica 1.000 W litio, sem CNH",
+        "watt_nominal": null,
+        "watt_sem_rotulo": "1.000",
+        "watt_pico": null,
+        "velocidade_kmh": null,
+        "acelerador": "nao_declarado",
+        "categoria": null,
+        "categoria_nome": null,
+        "causa_da_recusa": "acelerador_nao_declarado",
+        "fonte_tipo": "painel-de-afiliado",
+        "data_leitura": "2026-10-27"
+      },
+      {
+        "id": "haixia-scooter-1000w-60v-20ah",
+        "rotulo": "Haixia",
+        "titulo_colhido": "Haixia scooter eletrica 1.000 W 60 V 20 Ah, 45 km (+25 vendidos)",
+        "watt_nominal": null,
+        "watt_sem_rotulo": "1.000",
+        "watt_pico": null,
+        "velocidade_kmh": null,
+        "acelerador": "nao_declarado",
+        "categoria": null,
+        "categoria_nome": null,
+        "causa_da_recusa": "acelerador_nao_declarado",
+        "fonte_tipo": "painel-de-afiliado",
+        "data_leitura": "2026-10-27"
+      },
+      {
+        "id": "scooter-chopper-1000w-48v",
+        "rotulo": "Scooter eletrica chopper 1.000 W 48 V adulto, 32 km/h",
+        "titulo_colhido": "Scooter eletrica chopper 1.000 W 48 V adulto, 32 km/h",
+        "watt_nominal": null,
+        "watt_sem_rotulo": "1.000",
+        "watt_pico": null,
+        "velocidade_kmh": null,
+        "acelerador": "nao_declarado",
+        "categoria": null,
+        "categoria_nome": null,
+        "causa_da_recusa": "acelerador_nao_declarado",
+        "fonte_tipo": "painel-de-afiliado",
+        "data_leitura": "2026-10-27"
+      },
+      {
+        "id": "x13-chopper-1000w",
+        "rotulo": "X13",
+        "titulo_colhido": "X13 chopper 1.000 W, sem CNH",
+        "watt_nominal": null,
+        "watt_sem_rotulo": "1.000",
+        "watt_pico": null,
+        "velocidade_kmh": null,
+        "acelerador": "nao_declarado",
+        "categoria": null,
+        "categoria_nome": null,
+        "causa_da_recusa": "acelerador_nao_declarado",
+        "fonte_tipo": "painel-de-afiliado",
+        "data_leitura": "2026-10-27"
+      },
+      {
+        "id": "ls-sport-scooter-1000w",
+        "rotulo": "LS Sport",
+        "titulo_colhido": "LS Sport scooter 1.000 W bluetooth",
+        "watt_nominal": null,
+        "watt_sem_rotulo": "1.000",
+        "watt_pico": null,
+        "velocidade_kmh": null,
+        "acelerador": "nao_declarado",
+        "categoria": null,
+        "categoria_nome": null,
+        "causa_da_recusa": "acelerador_nao_declarado",
+        "fonte_tipo": "painel-de-afiliado",
+        "data_leitura": "2026-10-27"
+      }
+    ],
+    "total": 14,
+    "com_nominal": 0,
+    "classificaveis": 0
+  },
+  "compra": {
+    "vitrine": [],
+    "frase_de_abertura": "Não temos o que recomendar aqui, e a causa é de ficha e não de estoque: nenhum dos 14 anúncios que a gente colheu declara a potência NOMINAL. Todos declaram um watt sem dizer se é nominal ou de pico — e esse número a regra não lê.",
+    "grupos": {
+      "cabem_na_categoria": [],
+      "de_outra_categoria": [],
+      "nao_declaram_nominal": [
+        "honeywhale-m2-max",
+        "maxshot-v1",
+        "maxshot-v1spro",
+        "sousa-bike-aro-24",
+        "siena-1000w-sem-cnh",
+        "playbik",
+        "honeywhale-h3",
+        "verdevento-750w-60v-20ah",
+        "l40-plus",
+        "evoo-scooter-1000w",
+        "haixia-scooter-1000w-60v-20ah",
+        "scooter-chopper-1000w-48v",
+        "x13-chopper-1000w",
+        "ls-sport-scooter-1000w"
+      ],
+      "sem_saida_de_compra": [],
+      "fora_do_banco": [
+        "patinete-adulto-com-banco-shopee",
+        "bike-scooter-moto-1000w-litio",
+        "guia-melhor-de-2026"
+      ]
+    },
+    "contagem": {
+      "cabem_na_categoria": 0,
+      "de_outra_categoria": 0,
+      "nao_declaram_nominal": 14,
+      "sem_saida_de_compra": 0,
+      "fora_do_banco": 3
+    },
+    "nomes_por_grupo": {
+      "cabem_na_categoria": [],
+      "de_outra_categoria": [],
+      "nao_declaram_nominal": [
+        "Honeywhale M2 MAX",
+        "MAXSHOT V1",
+        "MAXSHOT V1SPRO",
+        "Sousa Bike",
+        "Siena",
+        "PLAYBIK",
+        "Honeywhale H3",
+        "Verdevento",
+        "L40 Plus",
+        "Evoo",
+        "Haixia",
+        "Scooter eletrica chopper 1.000 W 48 V adulto, 32 km/h",
+        "X13",
+        "LS Sport"
+      ],
+      "sem_saida_de_compra": [],
+      "fora_do_banco": [
+        "Patinete eletrico adulto com banco (147 vendas)",
+        "Bike/Scooter/Moto eletrica bateria litio 1.000 W (+25 vendid",
+        "o modelo 'melhor de 2026' de uma lista comercial (2 x 1.000 "
+      ]
+    },
+    "total_registros_veiculos": 17
+  }
+}

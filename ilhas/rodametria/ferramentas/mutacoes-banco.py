@@ -254,15 +254,87 @@ def _(d):
 
 
 # ---------------------------------------------------------- categoria e a constante
+#
+# OS DOIS PRIMEIROS CASOS FABRICAM O MUNDO EM QUE O LIMIAR E `pendente`, E ISSO
+# NAO E DETALHE: ate 06/11/2026 eles NAO fabricavam nada — liam o
+# dados/constantes.json de verdade, que estava pendente, e passavam por sorte.
+# No dia em que a Resolucao 996/2023 foi lida no texto oficial e a constante
+# virou `publicavel`, os dois viraram VERMELHO sem que uma linha deles mudasse:
+# a premissa deles tinha deixado de ser verdade. E a regra desta propria bateria
+# aplicada a ela mesma — *"o mundo que o esquema permite e o banco ainda nao
+# tem, e so a mutacao que PRODUZ o mundo o enxerga"*.
+def _com_limiar(d, status):
+    for c in d["constantes"]["constantes"]:
+        if c["id"] == "limiares-categoria-contran-996-2023":
+            c["status"] = status
+    return d
+
+
 @caso("categoria PREENCHIDA com o limiar legal pendente", "o anuncio escrevendo a regra")
 def _(d):
+    _com_limiar(d, "pendente")
     primeiro(d)["categoria"] = "autopropelido"
     return d
 
 
 @caso("categoria null sem `motivo_categoria_null`", "sem `motivo_categoria_null`")
 def _(d):
+    _com_limiar(d, "pendente")
     primeiro(d).pop("motivo_categoria_null")
+    return d
+
+
+# ---- E OS TRES CASOS DO MUNDO DE HOJE, em que o limiar JA esta publicavel.
+#
+# Com a constante publicavel a trava antiga ("categoria tem de ser null")
+# DESLIGA SOZINHA, e sem estes casos o campo mais perigoso do banco ficaria sem
+# portao nenhum. O perigo e a tese da ilha: o numero do anuncio nao e o que a
+# regra le, entao categoria escrita a mao a partir de um watt sem rotulo e o
+# ANUNCIO ESCREVENDO A REGRA — e o erro e para o lado permissivo.
+@caso("categoria preenchida com o limiar publicavel e SEM o watt nominal",
+      "NAO classifica este registro")
+def _(d):
+    primeiro(d)["categoria"] = "autopropelido"
+    return d
+
+
+def _declara_os_tres(d, w, kmh, acel):
+    """Fabrica o registro que o banco de hoje NAO TEM: um que declara os tres
+    campos de entrada da F1 e portanto CLASSIFICA. Sem este mundo, a trava
+    reapontada de 06/11 passaria sobre um banco em que nenhuma categoria e
+    derivavel — o teste que mede a si mesmo.
+
+    A fonte e `declarada_por` saem do proprio registro base (maxshot-v1, a unica
+    fonte dele e `ficha-extra`): mutacao que inventa fonte reprova pelas OUTRAS
+    reguas do portao e nao pela que ela quer medir.
+    """
+    r = v(d, "maxshot-v1")
+    r["potencia_nominal_w"] = {"valor": w, "unidade": "W", "fonte": "ficha-extra",
+                               "declarado_como": "%s W nominais" % w,
+                               "declarada_por": "titulo_ou_ficha_declara_literalmente"}
+    r["velocidade_max_kmh"] = {"valor": kmh, "unidade": "km/h", "fonte": "ficha-extra",
+                               "declarado_como": "%s km/h" % kmh,
+                               "declarada_por": "titulo_ou_ficha_declara_literalmente"}
+    r["acelerador"] = {"valor": acel, "fonte": "ficha-extra", "declarado_como": acel,
+                       "declarada_por": "titulo_ou_ficha_declara_literalmente"}
+    return r
+
+
+@caso("categoria preenchida com os tres campos e o valor ERRADO para eles",
+      "O campo e DERIVADO: ele nao escolhe")
+def _(d):
+    # Com acelerador MANUAL nao e bicicleta eletrica, por mais baixos que sejam
+    # os numeros — e o pivo da 1.1, e e justamente o erro permissivo.
+    r = _declara_os_tres(d, 500, 25, "manual")
+    r["categoria"] = "bicicleta_eletrica"
+    return d
+
+
+@caso("MUNDO QUE PASSA: categoria DERIVADA certa, com os tres campos declarados",
+      passa=True)
+def _(d):
+    r = _declara_os_tres(d, 500, 25, "manual")
+    r["categoria"] = "autopropelido"
     return d
 
 

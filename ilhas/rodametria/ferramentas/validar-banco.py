@@ -52,6 +52,57 @@ def _status_da_constante(constantes, id_):
     return None
 
 
+def _limiares_lidos(constantes):
+    """Os limiares da F1, ou None se a constante nao estiver publicavel.
+
+    O STATUS e lido do arquivo, como o resto deste portao ja faz. Limiar
+    faltando numa constante publicavel devolve None de proposito: melhor nao
+    classificar do que classificar com um limiar por omissao.
+    """
+    for c in constantes.get("constantes", []):
+        if c.get("id") == "limiares-categoria-contran-996-2023":
+            if c.get("status") != "publicavel":
+                return None
+            valor = c.get("valor") or {}
+            nomes = ("LIMIAR_BIKE_W", "LIMIAR_BIKE_KMH", "LIMIAR_AUTOPROP_W",
+                     "LIMIAR_AUTOPROP_KMH", "LIMIAR_CICLOMOTOR_W", "LIMIAR_CICLOMOTOR_KMH")
+            if any(n not in valor for n in nomes):
+                return None
+            return {n: valor[n] for n in nomes}
+    return None
+
+
+def _categoria_a_mao(w, kmh, acel, lim):
+    """A arvore da F1 ESCRITA AQUI, e nao importada de regras/f1.py.
+
+    E a regra da secao 8 do ARQUIPELAGO.md: *"quem confere escreve a propria
+    regua, nunca chama a de quem produziu o dado"*. E o mesmo que este portao ja
+    faz com `energia_wh`, que ele recalcula com a propria aritmetica em vez de
+    pedir o derivado a quem o escreveu. A arvore independente de
+    `ferramentas/teste-f1.py` confere a referencia; esta confere o CAMPO.
+    """
+    if lim is None:
+        return {"classifica": False, "categoria": None, "causa": "limiar_legal_pendente"}
+    if acel is None or acel == "nao_declarado":
+        return {"classifica": False, "categoria": None, "causa": "acelerador_nao_declarado"}
+    if w is None:
+        return {"classifica": False, "categoria": None, "causa": "potencia_nominal_ausente"}
+    if kmh is None:
+        return {"classifica": False, "categoria": None, "causa": "velocidade_max_ausente"}
+    if w <= 0 or kmh <= 0:
+        return {"classifica": False, "categoria": None, "causa": "entrada_nao_positiva"}
+    if (acel == "so_pedal_assistido" and w <= lim["LIMIAR_BIKE_W"]
+            and kmh <= lim["LIMIAR_BIKE_KMH"]):
+        cat = "bicicleta_eletrica"
+    elif w <= lim["LIMIAR_AUTOPROP_W"] and kmh <= lim["LIMIAR_AUTOPROP_KMH"]:
+        cat = "autopropelido"
+    elif w <= lim["LIMIAR_CICLOMOTOR_W"] and kmh <= lim["LIMIAR_CICLOMOTOR_KMH"]:
+        cat = "ciclomotor"
+    else:
+        cat = "acima_do_ciclomotor"
+    return {"classifica": True, "categoria": cat, "causa": None}
+
+
 def _campos_tecnicos_do_esquema(esquema):
     tec = esquema["entidades"]["VEICULO"]["campos_tecnicos"]
     # `forma_do_campo` e prosa (string) e cai fora sozinho; `acelerador` NAO tem unidade e
@@ -292,6 +343,32 @@ def validar(dados):
                   % (v.get("categoria"), st_limiar))
         elif v.get("categoria") is not None and v.get("categoria") not in enum_categoria:
             falha(onde, "`categoria` %r fora do enum" % v.get("categoria"))
+        elif v.get("categoria") is not None:
+            # A TRAVA REAPONTADA, 06/11/2026. Com o limiar `publicavel` a trava
+            # antiga ("categoria tem de ser null") desliga SOZINHA, e o campo
+            # mais perigoso do banco ficaria sem portao. Nenhum portao novo
+            # nasceu aqui: o mesmo portao passou de "tem de ser null" para "tem
+            # de ser DERIVAVEL e CONFERIDA", porque foi o mundo que mudou.
+            #
+            # A tese da ilha e que o numero do anuncio nao e o que a regra le.
+            # Categoria escrita a mao a partir de um watt sem rotulo e o ANUNCIO
+            # ESCREVENDO A REGRA, e o erro e para o lado permissivo — manda
+            # alguem para a rua sem habilitacao. Entao o validador RECALCULA:
+            # ele nao acredita no campo.
+            w = (v.get("potencia_nominal_w") or {}).get("valor")
+            kmh = (v.get("velocidade_max_kmh") or {}).get("valor")
+            acel = (v.get("acelerador") or {}).get("valor")
+            esperado = _categoria_a_mao(w, kmh, acel, _limiares_lidos(const))
+            if not esperado["classifica"]:
+                falha(onde, "`categoria` = %r e a arvore da F1 NAO classifica este registro "
+                            "(causa: %s). Os tres campos de entrada tem de estar declarados: "
+                            "nominal=%r, km/h=%r, acelerador=%r"
+                      % (v.get("categoria"), esperado["causa"], w, kmh, acel))
+            elif esperado["categoria"] != v.get("categoria"):
+                falha(onde, "`categoria` = %r e a arvore da F1 devolve %r para nominal=%r, "
+                            "km/h=%r e acelerador=%r. O campo e DERIVADO: ele nao escolhe, ele "
+                            "e recalculado"
+                      % (v.get("categoria"), esperado["categoria"], w, kmh, acel))
         if categoria_travada and v.get("categoria") is None and not v.get("motivo_categoria_null"):
             falha(onde, "`categoria` null sem `motivo_categoria_null`")
 

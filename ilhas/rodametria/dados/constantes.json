@@ -1,8 +1,8 @@
 {
   "ilha": "rodametria",
   "bloco": "2",
-  "versao": 1,
-  "gerado_em": "2026-10-28",
+  "versao": 2,
+  "gerado_em": "2026-11-06",
   "publicar": false,
   "nota_de_procedencia": "Coleta de 28/10/2026 entre 13h20Z e 13h40Z, pela execucao da Fundacao que reservou a ilha as 13h19Z. DOIS canais tentados e so UM aberto. Leitura direta FECHADA para toda fonte de fora da ilha: www.gov.br, www.in.gov.br, www.planalto.gov.br, www.contran.gov.br e www.lex.com.br devolveram 000 com 'CONNECT tunnel failed, response 403' (recusa de politica do egresso, nao queda); dspace.ups.edu.ec e stdjet.scienceandtechnology.com.vn falharam em getaddrinfo ENOTFOUND. Controle verde na MESMA janela: rodametria.com.br em 200, o que separa recusa de host de queda de tunel. A repeticao que a secao 20.2 manda foi feita (duas passadas no gov.br) e nao mudou o veredito. Sobrou a BUSCA WEB, e e dela que sai tudo abaixo. Pela regra do elo mais fraco (secao 10 do ARQUIPELAGO.md), NENHUMA constante deste arquivo e leitura direta de fonte primaria, mesmo quando o documento citado e oficial: o elo da leitura e fraco e e ele que da o nivel.",
   "regras": {
@@ -28,20 +28,149 @@
     {
       "id": "limiares-categoria-contran-996-2023",
       "descricao": "Os QUATRO limiares que a arvore de decisao da F1 referencia por nome: LIMIAR_BIKE_W, LIMIAR_BIKE_KMH, LIMIAR_AUTOPROP_W, LIMIAR_AUTOPROP_KMH, mais as dimensoes (largura e distancia entre eixos) do autopropelido. Separam bicicleta eletrica, autopropelido e ciclomotor.",
-      "valor": null,
+      "valor": {
+        "LIMIAR_BIKE_W": 1000,
+        "LIMIAR_BIKE_KMH": 32,
+        "LIMIAR_AUTOPROP_W": 1000,
+        "LIMIAR_AUTOPROP_KMH": 32,
+        "LIMIAR_AUTOPROP_LARGURA_MM": 700,
+        "LIMIAR_AUTOPROP_ENTRE_EIXOS_MM": 1300,
+        "LIMIAR_CICLOMOTOR_W": 4000,
+        "LIMIAR_CICLOMOTOR_KMH": 50,
+        "LIMIAR_CICLOMOTOR_CILINDRADA_CM3": 50
+      },
       "unidade": "W e km/h (mais mm para as dimensoes)",
-      "tipo": "pendente",
+      "tipo": "oficial",
       "fonte_exigida": "Resolucao Contran no 996, de 15/06/2023, lida no texto oficial, com o artigo e a data da leitura. A LEITURA TEM DE DIZER QUAL FASE/REDACAO ESTA LENDO, e este pedido FICA — pedi-lo e barato e desfazer um erro de fase depois e caro. MAS A PREMISSA POR TRAS DELE FOI CONFERIDA EM 05/11/2026 as 19h1xZ E PARECE SER OUTRA COISA: a frase `a resolucao ganhou FASE NOVA DE VIGENCIA em 1o/01/2026` (colhida em canalve.com.br e paraibabusiness.com.br em 28/10, segunda mao) foi lida como `existe um texto novo para ler`, e isso encarece o pedido. Busca dirigida a alteracao e revogacao nao achou NENHUMA alteracao nem revogacao da 996/2023: a resolucao entrou em vigor em 03/07/2023, o prazo de ADEQUACAO terminou em 31/12/2025, e 1o/01/2026 e o dia em que ela passou a valer INTEGRALMENTE — mesmo texto, fim de carencia, nao redacao nova. O TAMANHO HONESTO DISSO: e achado NEGATIVO (`nao encontrei alteracao`), colhido na MESMA camada de segunda mao que gerou a frase que ele corrige, em UMA rodada de busca. Nao e prova e nao vira constante. O que ele muda e o PEDIDO: leia a 996/2023 como publicada em 22/06/2023 e, na mesma sessao, confira no portal se ha ato posterior — em vez de sair atras de uma fase que talvez nao exista como texto.",
       "canal_de_coleta": "NENHUM ABERTO, e em 05/11/2026 as 19h1xZ a parede foi medida como sendo o DOMINIO e nao os hosts. Seis recusas contra quatro controles verdes, com o egresso nomeando a causa em cada uma (`gateway answered 403 to CONNECT (policy denial or upstream failure)`): www.gov.br, in.gov.br, www.planalto.gov.br e www.lex.com.br em 000 pelo curl, `getaddrinfo ENOTFOUND www.gov.br` pela busca de pagina, e a porta NOVA desta passada — o PDF da resolucao hospedado em araras.sp.gov.br, um municipio, portanto host completamente diferente dos cinco federais — na MESMA recusa. A BUSCA DA NUVEM ATRAVESSA O EGRESSO E FOI MEDIDA E DESCARTADA COMO FONTE DE REGISTRO, com motivo e nao por regra de estilo: em duas consultas ela devolveu DUAS das TRES definicoes (o ciclomotor voltou cortado antes dos limites, e ela propria disse que nao conseguiu confirma-lo no texto oficial), e o unico numero que ofereceu para o ciclomotor foi `4.000 W` — exatamente o lado errado da contradicao que o bloco 6 ja mediu DENTRO de um unico publicador (eletricz.com.br afirma 1.000 W numa pagina e 4.000 W noutra, citando esta mesma resolucao). A busca reproduz a contradicao que esta ilha diagnosticou; ela nao a desfaz. Medicoes anteriores: 28/10 as 10h4xZ e as 13h2xZ, e 29/10 as 11hxxZ, todas com o mesmo resultado. A TABELA DE TODAS AS PORTAS, uma por uma e com data, esta em dados/fonte-oficial-f1.md.",
       "verificado_em": "2026-11-05",
+      "status": "publicavel",
+      "usada_em": [
+        "F1"
+      ],
+      "o_que_falta": "NADA PARA A ARVORE DE DECISAO — os quatro limiares e as duas dimensoes estao lidos no texto oficial e a F1 pode ir ao ar. O QUE FICA, e e OUTRA constante e nao esta: a exigencia de HABILITACAO por categoria, que a 996/2023 NAO declara (ver `exigencia-de-habilitacao-por-categoria-ctb`). Conferir ato posterior a 996/2023 no portal continua pendente e nao trava nada.",
+      "consequencia_declarada": "DESTRAVADA EM 2026-11-06. A F1 PODE IR AO AR: a arvore de decisao da secao 1.3 da especificacao passa a ter os quatro LIMIAR_* com valor, e nenhuma linha de logica mudou, porque a 1.3 proibiu literal numerico no codigo. O QUE ESTA CONSTANTE NUNCA PROMETEU E CONTINUA NAO ENTREGANDO: ela decide a CATEGORIA, nao a CNH. A 996/2023 nao tem artigo sobre habilitacao, e isso esta medido na leitura (`habilitacao exigida por categoria: NAO CONSTA`). O que a resolucao decide sobre a pergunta da pessoa esta em `consequencias-por-categoria-contran-996-2023`: registro, licenciamento, emplacamento e capacete.",
+      "custo_de_destravar": "PAGO EM 2026-11-06 as 10h3xZ, e custou editar ESTE OBJETO e mais nada: valor, tipo, status, url, verificado_em, artigos_lidos. Nenhuma linha de logica mudou — era essa a aposta da 1.3 e ela pagou. A leitura que o destravou foi do Raphael, no Chrome dele, em 05/11 ~23h3x de Brasilia; a parede do egresso do `.gov.br` SEGUE DE PE e o pedido de `*.gov.br` continua aberto pela camada municipal e pelas prefeituras.",
+      "proibicao_explicita": "Caso de teste do portao da F1 usa limiar FICTICIO, declarado como ficticio no proprio caso (ex. LIMIAR_AUTOPROP_W = 777), e afirma a ARVORE, nunca os numeros do mundo. Portao que afirma 1.000 W antes de o texto oficial chegar e o numero de tela digitado com outra roupa.",
+      "url": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao9962023.pdf/@@download/file",
+      "artigos_lidos": "art. 2o, incisos II (autopropelido), III (bicicleta eletrica) e IV (ciclomotor), mais os paragrafos 4o, 5o, 6o e 7o do art. 2o. O inciso III alinea a da o teto de 1000 W da bicicleta eletrica e a alinea d os 32 km/h; o inciso II alinea c da o teto de 1000 W do autopropelido, a alinea d os 32 km/h e a alinea e a largura de 70 cm e a distancia entre eixos de 130 cm; o inciso IV da os 4 kW, os 50 cm3 e os 50 km/h do ciclomotor.",
+      "fonte": "Resolucao CONTRAN no 996, de 15/06/2023, publicada no DOU de 22/06/2023 (Ed. 117, Secao 1, p. 327), texto ORIGINAL, em vigor desde 03/07/2023 pelo art. 22. LIDA NO PDF OFICIAL do Ministerio dos Transportes em 2026-11-05 ~23h3x de Brasilia (2026-11-06 ~02h3xZ), no Chrome do Raphael.",
+      "como_foi_lido": "DECLARADO PORQUE A FORCA DA PROVA MUDA COM ISSO, e a secao 5 de dados/fonte-oficial-f1.md pediu esta declaracao de proposito. O PDF foi aberto pelo LEITOR DE PAGINA da sessao de chat, nao por pdftotext. Os numeros da bicicleta eletrica e do autopropelido voltaram LITERAIS, entre aspas, alinea por alinea (`ate 1000 W (mil watts)`, `nao superior a 32 km/h`, `largura nao superior a 70 cm`). Os do CICLOMOTOR voltaram PARAFRASEADOS pelo leitor, com os numeros — e isso esta escrito aqui e nao escondido. A frase inteira das definicoes NAO foi transcrita (o leitor limita citacao longa). A pagina publica os numeros, nunca a transcricao que ninguem tem.",
+      "ato_posterior": "NAO CONFERIDO no portal nesta leitura. A busca de 05/11 as 19h1xZ nao achou alteracao nem revogacao da 996/2023, e e achado NEGATIVO de segunda mao, em UMA rodada — nao e prova. ESTA LEITURA CONFIRMOU, PELO PROPRIO TEXTO, A PREMISSA QUE O PEDIDO CORRIGIA: o art. 14 par. 1o I da o prazo de 01/11/2023 a 31/12/2025 para o RENAVAM de ciclomotor sem CAT, logo 1o/01/2026 e FIM DE PRAZO e nao redacao nova. O pedido de conferir ato posterior FICA, pela razao original: pedi-lo e barato e desfazer um erro de fase depois e caro.",
+      "contradicao_desfeita": "A CONTRADICAO QUE O BLOCO 6 MEDIU DENTRO DE UM UNICO PUBLICADOR ESTAVA DESFEITA NO TEXTO, E A CAUSA ERA CATEGORIA E NAO FONTE. O eletricz.com.br afirmava `ate 1000 Watts` numa pagina e `potencia maxima de 4.000W para autopropelidos` noutra, citando esta mesma resolucao. Os DOIS numeros sao da 996/2023: 1.000 W e o teto de AUTOPROPELIDO e de BICICLETA ELETRICA (art. 2o II alinea c e III alinea a) e 4 kW e o teto de CICLOMOTOR (art. 2o IV). O publicador colou o numero do ciclomotor no nome do autopropelido. ISSO NAO ABSOLVE A FONTE DE SEGUNDA MAO: a leitura oficial foi o unico jeito de saber de que lado estava o erro, e era exatamente isso que a regra `numero_de_portal_nunca_vira_constante_legal` protegia."
+    },
+    {
+      "id": "consequencias-por-categoria-contran-996-2023",
+      "descricao": "O QUE A RESOLUCAO DIZ QUE CADA CATEGORIA EXIGE, por categoria, com o artigo. Nasceu em 2026-11-06 junto com a leitura oficial, porque a camada 1 da saida da F1 (secao 1.2 da especificacao) publica consequencia legal e consequencia legal nao pode ser literal dentro do codigo pela MESMA razao que o limiar nao podia: o dia em que o texto mudar, a F1 destrava editando este arquivo. A especificacao escrevia `dispensa CNH e dispensa placa` nas tres linhas; o texto lido declara PLACA e cala sobre CNH, e e por isso que esta constante existe separada da proxima.",
+      "valor": {
+        "bicicleta_eletrica": {
+          "registro_licenciamento_emplacamento": "nao_sujeito",
+          "capacete": "nao_consta",
+          "artigo": "art. 12",
+          "artigo_detalhe": "art. 12 — autopropelido e bicicleta eletrica nao sao sujeitos ao registro, ao licenciamento e ao emplacamento para circulacao nas vias."
+        },
+        "autopropelido": {
+          "registro_licenciamento_emplacamento": "nao_sujeito",
+          "capacete": "nao_consta",
+          "artigo": "art. 12",
+          "artigo_detalhe": "art. 12 — autopropelido e bicicleta eletrica nao sao sujeitos ao registro, ao licenciamento e ao emplacamento para circulacao nas vias."
+        },
+        "ciclomotor": {
+          "registro_licenciamento_emplacamento": "exigido",
+          "capacete": "exigido",
+          "artigo": "art. 13",
+          "artigo_detalhe": "art. 13 — o ciclomotor e registrado e licenciado (CAT mais nota fiscal); art. 19 incisos III e IV — sancao por falta de placa e de registro; art. 19 inciso V — capacete, remetendo ao art. 244 do CTB."
+        },
+        "acima_do_ciclomotor": {
+          "registro_licenciamento_emplacamento": "nao_decidido_por_esta_resolucao",
+          "capacete": "nao_decidido_por_esta_resolucao",
+          "artigo": "art. 2º, §§ 6º e 7º",
+          "artigo_detalhe": "art. 2o par. 6o e par. 7o — o equipamento que passa dos limites do autopropelido passa a ser classificado como `ciclomotor, motocicleta, motoneta ou triciclo, conforme o caso`, e a resolucao NAO diz qual nem o que cada um exige."
+        }
+      },
+      "unidade": "nao se aplica — e enum de exigencia, nao numero",
+      "tipo": "oficial",
+      "fonte": "Resolucao CONTRAN no 996, de 15/06/2023, arts. 12, 13 e 19, lidos no PDF oficial do Ministerio dos Transportes em 2026-11-05 ~23h3x de Brasilia.",
+      "url": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao9962023.pdf/@@download/file",
+      "verificado_em": "2026-11-05",
+      "status": "publicavel",
+      "usada_em": [
+        "F1"
+      ],
+      "o_que_falta": "nada. O que a resolucao NAO declara esta na constante seguinte, com o nome dela, em vez de ficar como silencio dentro desta.",
+      "consequencia_declarada": "A F1 publica placa, registro, licenciamento e capacete com o artigo ao lado, e NAO publica CNH. O enum `nao_consta` e `nao_decidido_por_esta_resolucao` sao valores de verdade e nao lacunas: cada um tem frase propria na tela, pela secao 7 do contrato (`causa que o codigo separa, o texto separa`).",
+      "proibicao_explicita": "`nao_consta` NUNCA vira `nao exigido` na tela. A resolucao calar sobre capacete de bicicleta eletrica nao autoriza a pagina a dizer que capacete nao e exigido — e o erro permissivo que a regra `direcao_do_erro_caro` deste arquivo proibe, aplicado a outro campo.",
+      "artigo_e_texto_de_tela": "`artigo` E IMPRESSO NA PAGINA e por isso e CURTO e ACENTUADO; `artigo_detalhe` e registro e nunca vai a tela. A separacao nasceu do smoke test de regras/f1.py em 06/11/2026: a primeira versao punha a prosa inteira no `artigo` e a pagina servia `a resolucao NAO diz qual` sem acento, no meio de uma frase acentuada. E a cicatriz da Ohmetria (texto de tela acentuado) numa roupa nova: o arquivo de registro desta ilha e escrito sem acento de proposito, entao TODO campo de registro que atravesse para a tela chega errado."
+    },
+    {
+      "id": "exigencia-de-habilitacao-por-categoria-ctb",
+      "descricao": "A METADE DA PERGUNTA DA ILHA QUE A RESOLUCAO NAO RESPONDE: quem precisa de habilitacao para conduzir cada uma das categorias. Nasceu `pendente` em 2026-11-06, no dia em que o texto oficial foi lido, e o ACHADO E ESTE: a 996/2023 nao tem um artigo sobre CNH nem sobre a ACC. Ela decide a CATEGORIA e decide PLACA, REGISTRO, LICENCIAMENTO e CAPACETE; a habilitacao vem do CTB (Lei 9.503/1997), que esta ilha NAO leu em fonte oficial.",
+      "valor": null,
+      "unidade": "nao se aplica — e enum de exigencia por categoria",
+      "tipo": "pendente",
+      "fonte_exigida": "O CTB (Lei 9.503/1997) lido em fonte oficial, com o artigo e a data da leitura, mais o ato do CONTRAN que trate da ACC se houver. A leitura tem de dizer QUAL REDACAO esta lendo, pelo mesmo motivo que o pedido da resolucao: desfazer erro de fase depois e caro.",
+      "canal_de_coleta": "NENHUM ABERTO. `www.planalto.gov.br` e um dos cinco dominios medidos em 403 de CONNECT em 28/10, 29/10 e 05/11/2026, e em 05/11 a parede foi medida como sendo o DOMINIO `.gov.br` INTEIRO e nao os hosts — o PDF da propria resolucao hospedado num municipio (araras.sp.gov.br) cai na mesma recusa. Logo esta constante e destravada pelo MESMO pedido de uma linha que o resto: `*.gov.br` na lista de Dominios permitidos. A tabela de todas as portas esta em dados/fonte-oficial-f1.md. A BUSCA DA NUVEM JA FOI MEDIDA E DESCARTADA como fonte de registro legal nesta ilha, em 05/11, e o motivo vale igual aqui.",
+      "verificado_em": "2026-11-06",
       "status": "pendente",
       "usada_em": [
         "F1"
       ],
-      "o_que_falta": "Um dos DOIS gestos do despacho ALTA de 28/10 em dados/despachos.md, e o PRIMEIRO ficou mais barato e mais abrangente em 05/11: (a) UMA LINHA na lista de Dominios permitidos dos ambientes de nuvem — `*.gov.br` — que fecha de uma vez este despacho, o despacho NORMAL da camada municipal (que ja pedia o curinga) e a porta nova do PDF em araras.sp.gov.br; ou (b) as definicoes literais de ciclomotor, bicicleta eletrica e equipamento de mobilidade individual autopropelido com potencia em W, velocidade em km/h, largura, distancia entre eixos, URL e data de leitura. PARA O GESTO (b) EXISTE LUGAR PRONTO DESDE 05/11/2026: a secao 5 de dados/fonte-oficial-f1.md tem os campos rotulados um por um, com a instrucao de escrever `NAO CONSTA` em vez de deixar em branco ou estimar.",
-      "consequencia_declarada": "A F1 NAO VAI AO AR. Ela e a home da ilha e e a razao pela qual a ilha nasceu, entao esta constante trava o desembarque da ferramenta principal — e e por isso que o despacho e ALTA. O que ela NAO trava: a arvore de decisao, as duas ressalvas da 1.4, a camada municipal, o bloco de compra, a prestacao de contas da secao 7, o bloco 3 inteiro e o esquema do banco. Tudo isso esta especificado e pode ser construido.",
-      "custo_de_destravar": "Editar este objeto: preencher valor, trocar status para publicavel, gravar url, verificado_em e o artigo lido. Nenhuma linha de logica muda, porque a 1.3 proibiu literal numerico no codigo.",
-      "proibicao_explicita": "Caso de teste do portao da F1 usa limiar FICTICIO, declarado como ficticio no proprio caso (ex. LIMIAR_AUTOPROP_W = 777), e afirma a ARVORE, nunca os numeros do mundo. Portao que afirma 1.000 W antes de o texto oficial chegar e o numero de tela digitado com outra roupa."
+      "o_que_falta": "O texto do CTB sobre habilitacao por categoria de veiculo. ATE QUE ELE CHEGUE, A F1 VAI AO AR SEM VEREDITO DE CNH, dizendo com uma frase propria que a resolucao que decide a categoria nao decide a habilitacao e que a gente nao leu o CTB na fonte. Nao vai com `dispensa CNH` tirado de notícia, que e exatamente o que a regra `numero_de_portal_nunca_vira_constante_legal` proibe para o limiar.",
+      "consequencia_declarada": "A F1 NAO AFIRMA CNH. Isto NAO trava o desembarque dela — e a diferenca entre esta constante e o limiar, que travava: sem o limiar nao havia categoria e portanto nao havia ferramenta; sem esta, a ferramenta responde a categoria, responde placa e registro com o artigo, e CALA sobre habilitacao nomeando a causa. A promessa da home passa a ser o que a pagina entrega: a categoria e a placa saem da resolucao lida, e a CNH e dita como o que ainda falta.",
+      "proibicao_explicita": "A frase `dispensa CNH` e a frase `precisa de habilitacao` ficam PROIBIDAS na tela da F1 enquanto esta constante for `pendente`, e o portao da ferramenta cobra isso no texto gerado. O VOZ.md desta ilha traz as duas frases nos exemplos aprovados, escritos em 27/10 — antes de alguem ter lido a resolucao —, e o mesmo VOZ.md proibe nominalmente `qualquer frase que afirme o que a resolucao nao diz`. Onde os dois lados dele divergem, manda a proibicao: ela e sobre fonte, e o exemplo era sobre tom."
+    },
+    {
+      "id": "assistencia-a-pe-contran-996-2023",
+      "descricao": "A velocidade do modo de empurrar a pe, SEM pedalar, que o art. 2o par. 4o da Resolucao 996/2023 permite a bicicleta eletrica. Ela MUDA A RESPOSTA da F1: um acelerador que so funciona ate esse limite para empurrar o veiculo a pe NAO e o acelerador que tira a bike da categoria dela, e sem esta ressalva a F1 responderia `autopropelido` a quem tem bicicleta eletrica com modo de caminhada.",
+      "valor": 6,
+      "unidade": "km/h",
+      "tipo": "oficial",
+      "fonte": "Resolucao CONTRAN no 996, de 15/06/2023, art. 2o par. 4o, lido no PDF oficial do Ministerio dos Transportes em 2026-11-05.",
+      "url": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao9962023.pdf/@@download/file",
+      "verificado_em": "2026-11-05",
+      "status": "publicavel",
+      "usada_em": [
+        "F1"
+      ],
+      "o_que_falta": "nada.",
+      "consequencia_declarada": "A F1 imprime esta ressalva SO no ramo em que o acelerador foi o que tirou o veiculo da bicicleta eletrica — ou seja, quando potencia e velocidade estao dentro do limite da bike e o acelerador e `manual`. Em qualquer outro ramo ela seria ruido.",
+      "por_que_nao_mora_no_codigo": "Nasceu dentro de regras/f1.py em 06/11/2026, num dicionario chamado FATOS_DAS_RESSALVAS, e o PORTAO DA PROPRIA FERRAMENTA a expulsou de la na primeira vez que rodou: a regua da 1.3 varre o codigo da referencia procurando literal numerico dos limiares, e o 32 do caso de alteracao bateu com o LIMIAR_AUTOPROP_KMH. A regra `fato externo mora num lugar so` estava escrita no cabecalho do proprio arquivo que a violava."
+    },
+    {
+      "id": "alteracao-pos-compra-caso-medido",
+      "descricao": "O caso medido da ressalva 1.4(b): scooter adulterada flagrada acima da velocidade de fabrica declarada. Sustenta a frase de que a categoria sai da FICHA DE FABRICA e nunca do velocimetro.",
+      "valor": {
+        "kmh_flagrado": 73,
+        "kmh_fabrica": 32
+      },
+      "unidade": "km/h",
+      "tipo": "medicao_de_terceiro",
+      "fonte": "Materia de folhavitoria.com.br, colhida em 28/10/2026 pelo bloco 1 desta ilha: scooter adulterada flagrada a 73 km/h com 32 km/h de fabrica declarados.",
+      "url": null,
+      "verificado_em": "2026-10-28",
+      "status": "publicavel",
+      "usada_em": [
+        "F1"
+      ],
+      "o_que_falta": "nada para a ressalva. O numero de fabrica deste caso (32 km/h) COINCIDE com o limiar de velocidade da resolucao, e a coincidencia e do mundo e nao do dado: o veiculo foi vendido como autopropelido, no teto da categoria.",
+      "consequencia_declarada": "A F1 imprime esta ressalva em TODA resposta que classifica, pela 1.4(b) — ela nao depende da categoria."
+    },
+    {
+      "id": "watt-sem-rotulo-no-titulo-caso-medido",
+      "descricao": "O titulo de anuncio, LITERAL, que sustenta a ressalva 1.4(a): o numero grande do anuncio costuma ser o de pico, e a regra le o nominal. O titulo junta QUATRO coisas que a regra separa — o watt, a categoria `bicicleta eletrica`, o nome comercial `scooter` e a afirmacao de vendedor `sem CNH`.",
+      "valor": "Bicicleta elétrica Siena 1000W adulto sem CNH scooter",
+      "unidade": "nao se aplica — e citacao literal",
+      "tipo": "medicao_de_terceiro",
+      "fonte": "Título colhido numa ficha do extra.com.br em 28/10/2026, pela primeira leva de buscas desta ilha.",
+      "url": null,
+      "verificado_em": "2026-10-28",
+      "status": "publicavel",
+      "usada_em": [
+        "F1"
+      ],
+      "o_que_falta": "nada.",
+      "consequencia_declarada": "A F1 imprime o titulo LITERAL, entre aspas, porque a prova da tese desta ilha e o literal: parafrasear o titulo apagaria justamente o que ele demonstra. O `1000W` dentro dele e CITACAO e nao limiar — e por isso ele mora aqui, onde a regua do codigo nao o confunde com um literal de regra.",
+      "onde_o_titulo_mora_no_repositorio": "dados/veiculos.json, registro `siena-1000w-sem-cnh`, campo `titulo_colhido`. ESTE CAMPO E REGISTRO E NUNCA VAI A TELA, e ele esta separado do `fonte` porque o `fonte` VAI: a guarda da 32.4 do gerador reprovou a primeira versao desta constante, que trazia o caminho de arquivo dentro do `fonte`. Caminho de arquivo na pagina e a ilha falando com o visitante no vocabulario de quem a escreveu."
     },
     {
       "id": "energia-wh-tensao-vezes-amperagem",
@@ -195,11 +324,13 @@
     }
   ],
   "pendencias_resumidas": {
-    "bloqueiam_desembarque": [
-      "limiares-categoria-contran-996-2023 — trava a F1, que e a HOME da ilha. Despacho ALTA de 28/10 em dados/despachos.md, aberto pelo bloco 1 e remedido nesta execucao."
-    ],
+    "bloqueiam_desembarque": [],
     "nao_bloqueiam_desembarque": [
-      "consumo-absoluto-wh-por-km-patinete — a F2 vai ao ar sem ele, com a conta reduzida da secao 2.2 da especificacao. Despacho NOVO desta execucao."
+      "consumo-absoluto-wh-por-km-patinete — a F2 esta no ar sem ele, com a conta reduzida da secao 2.2 da especificacao.",
+      "exigencia-de-habilitacao-por-categoria-ctb — NOVA em 06/11/2026, e a F1 vai ao ar sem ela: a resolucao decide a categoria e a placa, e a habilitacao e do CTB, que esta atras da mesma parede de egresso. A F1 CALA sobre CNH e nomeia a causa, em vez de nao existir."
+    ],
+    "destravadas_nesta_versao": [
+      "limiares-categoria-contran-996-2023 — DESTRAVADA em 06/11/2026 com a leitura oficial de 05/11 (PDF do Ministerio dos Transportes, no Chrome do Raphael). Era a UNICA que bloqueava desembarque, e ela travava a F1, que e a home da ilha."
     ]
   }
 }
