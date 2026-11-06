@@ -1,5 +1,6 @@
 /**
  * Aquametria Peixes — a malha do eixo /peixes/
+ * Versão: 1.20.1 (05/11/2026) — a ficha do cardinal passa a se chamar "tetra cardinal" no título, no H1 e no primeiro parágrafo (nome popular principal trocado de "neon cardinal" para "tetra cardinal", espelhado em dados/especies-agua-doce.json). Despacho de 04/11, item 2. Sessão de chat de 05/11, a pedido do Raphael.
  * Versão: 1.20.0 (21/10/2026) — A ORAÇÃO DO ESCOPO DO PORTE NAS 29 FICHAS, e ela
  * fechou uma dívida de 23/09/2026. O `porte_adulto_cm` que as tabelas de lotação
  * usam é o MÁXIMO REGISTRADO de um indivíduo extremo, e a ficha o servia calado:
@@ -797,7 +798,7 @@ if ( ! defined( 'ABSPATH' ) ) {
    NAO rodaram este portao com sucesso, e a revisao 133 desembarcou com ele
    vermelho. Corrigida aqui para 1.20.0, que e a versao desta passada. */
 if ( ! defined( 'AQUAMETRIA_PEIXES_VERSAO' ) ) {
-	define( 'AQUAMETRIA_PEIXES_VERSAO', '1.20.0' );
+	define( 'AQUAMETRIA_PEIXES_VERSAO', '1.20.1' );
 }
 
 /* A data em que a SERP das consultas foi classificada (seção 14.9).
@@ -1098,8 +1099,8 @@ function aquametria_peixes_catalogo() {
 				'Hyphessobrycon cardinalis',
 			),
 			'populares' => array(
-				'neon cardinal',
 				'tetra cardinal',
+				'neon cardinal',
 				'cardinal',
 			),
 			'familia' => 'Acestrorhamphidae',
@@ -4198,9 +4199,9 @@ function aquametria_peixes_registro() {
 			'nivel'    => 3,
 			'pai'      => 'tetras',
 			'especie'  => 'paracheirodon-axelrodi',
-			'titulo'   => 'Quantos litros para um cardume de neon cardinal?',
+			'titulo'   => 'Quantos litros para um cardume de tetra cardinal?',
 			'conteudo' => '[aquametria_peixes_ficha]',
-			'consulta' => 'quantos litros para neon cardinal',
+			'consulta' => 'quantos litros para tetra cardinal',
 			'porque'   => 'Medido em 12/09/2026: o top 9 tem blog de nicho, três lojas e um portal estrangeiro, e o único que declara base (60 × 30 × 30 cm) não diz de onde tirou. Nenhum publica o cardume mínimo de 8 ao lado da base, que é a conta que decide a compra.',
 		),
 		'quantos-litros-para-mato-grosso' => array(

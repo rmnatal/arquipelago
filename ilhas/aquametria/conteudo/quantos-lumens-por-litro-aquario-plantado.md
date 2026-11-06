@@ -131,7 +131,7 @@ Três coisas, e a primeira delas é a que fecharia a pergunta:
 ## Continue por aqui
 
 - [Quanta luz o seu aquário precisa](https://aquametria.com.br/calculadora-de-iluminacao/) — o número no seu volume, com as três leituras lado a lado e as luminárias que atendem à faixa no seu comprimento.
-- [Quantos litros tem o seu aquário](https://aquametria.com.br/calculadora-de-litragem/) — o volume real de água, que é a entrada de tudo aqui.
+- [Calculadora de litragem do aquário](https://aquametria.com.br/calculadora-de-litragem/) — o volume real de água, que é a entrada de tudo aqui.
 - [Quanta mídia biológica cabe no seu filtro](https://aquametria.com.br/calculadora-de-midia-filtrante/) — luz forte e CO2 aceleram o crescimento das plantas e a carga do filtro junto.
 - [Qual filtro dá conta do seu aquário](https://aquametria.com.br/calculadora-de-vazao-do-filtro/) — aquário plantado pede corrente mais lenta, e a faixa de lá muda por causa disso.
 - [Como a Aquametria calcula](https://aquametria.com.br/metodologia/) — por que publicamos a divergência entre fontes em vez da média delas.

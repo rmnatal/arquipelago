@@ -1,5 +1,6 @@
 /**
  * Aquametria SEO Técnico — sitemap curado, diretiva de robôs e meta description
+ * Versão: 1.2.1 (05/11/2026) — o <title> e a description da ficha do cardinal passam a dizer "tetra cardinal" (a consulta que o Google mandava para a ficha do neon) e a calculadora de litragem ganha "litragem" no <title> (despacho de 04/11, itens 2 e 3). Feito na sessão de chat de 05/11 a pedido do Raphael.
  * Versão: 1.2.0 (14/10/2026) — a seção 3c: a promessa numérica do <title>,
  *          que ocupa o lugar da marca nas cinco páginas que a leitura semanal
  *          de 07/10/2026 mediu na banda 4 a 10 com CTR perto de zero.
@@ -88,7 +89,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_SEO_VERSAO' ) ) {
-	define( 'AQUAMETRIA_SEO_VERSAO', '1.2.0' );
+	define( 'AQUAMETRIA_SEO_VERSAO', '1.2.1' );
 	define( 'AQUAMETRIA_SEO_CATEGORIA_SLUG', 'metodos' );
 	define( 'AQUAMETRIA_SEO_CATEGORIA_NOME', 'Métodos' );
 	define( 'AQUAMETRIA_SEO_NOME_DO_SITE', 'Aquametria' );
@@ -233,8 +234,8 @@ function aquametria_seo_metas_por_slug() {
 			'descricao' => 'Quem publica a Aquametria e por quê: um site de aquarismo que mostra a conta, cita o manual do fabricante e recusa número sem fonte declarada.',
 		),
 		'calculadora-de-litragem' => array(
-			'titulo'    => 'Quantos litros tem o seu aquário?',
-			'descricao' => 'Quantos litros tem o seu aquário? Informe as medidas em centímetros e receba os três volumes: o bruto da etiqueta, o interno e a água real.',
+			'titulo'    => 'Litragem do aquário: quantos litros tem o seu?',
+			'descricao' => 'Calculadora de litragem do aquário: informe as medidas em centímetros e receba os três volumes — o bruto da etiqueta, o interno e a água real.',
 		),
 		'calculadora-de-vazao-do-filtro' => array(
 			'titulo'    => 'Qual filtro dá conta do seu aquário?',
@@ -401,8 +402,8 @@ function aquametria_seo_metas_por_slug() {
 			'descricao' => 'Quantos litros para um cardume de tetra-brilhante? A base declarada, a divergência de um exemplar no cardume e a conta pelas duas réguas.',
 		),
 		'quantos-litros-para-tetra-cardinal' => array(
-			'titulo'    => 'Quantos litros para um cardume de neon cardinal?',
-			'descricao' => 'Quantos litros para um cardume de neon cardinal? A base declarada pela fonte, o cardume mínimo de 8 e a conta em litros pelas duas réguas.',
+			'titulo'    => 'Quantos litros para um cardume de tetra cardinal?',
+			'descricao' => 'Quantos litros para um cardume de tetra cardinal (o neon cardinal)? A base declarada pela fonte, o cardume mínimo de 8 e a conta pelas duas réguas.',
 		),
 		'quantos-litros-para-tetra-ember' => array(
 			'titulo'    => 'Quantos litros para um cardume de tetra ember?',
