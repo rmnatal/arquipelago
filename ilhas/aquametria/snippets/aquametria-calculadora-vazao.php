@@ -1,6 +1,6 @@
 /**
  * Aquametria Calculadora de Vazão do Filtro — C3
- * Versão: 1.9.2 (05/11/2026) — o link para a C1 passa a ter a âncora "Calculadora de litragem do aquário" (âncora igual à consulta, pacote 11-20 da 12.1, despacho de 04/11 item 3). Sessão de chat de 05/11, a pedido do Raphael.
+ * Versão: 1.9.2 (05/11/2026) — o link para a C1 passa a ter a âncora "Litragem do aquário: quantos litros tem o seu" (âncora igual à consulta, pacote 11-20 da 12.1, despacho de 04/11 item 3). Sessão de chat de 05/11, a pedido do Raphael.
  * Versão: 1.9.1 (21/10/2026) — A PROMESSA DA 32.1 PASSA A FALAR COM QUEM ENTROU.
  * O portão da voz desta ilha estava VERMELHO em 110 afirmações desde o commit do
  * molde, e ninguém o leu: medido no `main` de 21/10/2026 às 20h1xZ. A causa é que
@@ -3257,7 +3257,7 @@ function aquametria_c3_adiante_html() {
 	$h  = '<div class="aqm-c3-painel aqm-c3-adiante">';
 	$h .= '<h3>O que conversa com esta página</h3>';
 	$h .= '<ul>';
-	$h .= '<li><a href="' . esc_url( $c1 ) . '"><strong>Calculadora de litragem do aquário</strong></a> — é de onde vem o volume real que esta página usa. Se o número acima veio preenchido, veio de lá.</li>';
+	$h .= '<li><a href="' . esc_url( $c1 ) . '"><strong>Litragem do aquário: quantos litros tem o seu</strong></a> — é de onde vem o volume real que esta página usa. Se o número acima veio preenchido, veio de lá.</li>';
 	$h .= '<li><a href="' . esc_url( $c5 ) . '"><strong>Potência do aquecedor (C5)</strong></a> — o outro aparelho que o seu volume dimensiona, e o único que pergunta quanto frio faz no seu cômodo. Usa o mesmo volume real desta página.</li>';
 	$h .= '<li><a href="' . esc_url( $c12 ) . '"><strong>Mídia filtrante (C12)</strong></a> — quantos mililitros de mídia biológica o seu filtro precisa carregar, e se isso cabe no cesto dele. Usa o mesmo volume e o mesmo modelo de filtro que você escolheu aqui. A água precisa passar, e precisa passar por alguma coisa: vazão e mídia são as duas metades da mesma decisão.</li>';
 	$h .= '<li><a href="' . esc_url( $c15 ) . '"><strong>Iluminação e fotoperíodo (C15)</strong></a> — o mesmo volume, do outro lado do aquário. Se o seu é plantado, a faixa de vazão desta página já é mais lenta por causa disso: planta quer corrente suave, e luz forte com CO2 pede que o gás não escape na superfície agitada.</li>';

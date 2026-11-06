@@ -1,6 +1,6 @@
 /**
  * Aquametria Calculadora de Mídia Filtrante — C12
- * Versão: 1.7.1 (05/11/2026) — o link para a C1 passa a ter a âncora "Calculadora de litragem do aquário" (âncora igual à consulta, pacote 11-20 da 12.1, despacho de 04/11 item 3). Sessão de chat de 05/11, a pedido do Raphael.
+ * Versão: 1.7.1 (05/11/2026) — o link para a C1 passa a ter a âncora "Litragem do aquário: quantos litros tem o seu" (âncora igual à consulta, pacote 11-20 da 12.1, despacho de 04/11 item 3). Sessão de chat de 05/11, a pedido do Raphael.
  * Versão: 1.7.0 (21/10/2026) — O MOLDE DE CONVERSÃO DA SEÇÃO 32 CHEGA AQUI, pela
  * 32.6-b (mutirão), e esta é a SEGUNDA das cinco calculadoras. Medido no ar em
  * 21/10, no celular de 390 px, antes da mudança: o formulário começava a
@@ -2298,7 +2298,7 @@ function aquametria_c12_adiante_html() {
 	$h .= '<h3>O que conversa com esta página</h3>';
 	$h .= '<ul>';
 	$h .= '<li><a href="' . esc_url( $artigo ) . '"><strong>Quanta mídia biológica o aquário realmente precisa</strong></a> — o texto que mostra de onde vêm as dosagens, por que elas discordam por dez vezes e o que muda quando se segue cada uma.</li>';
-	$h .= '<li><a href="' . esc_url( $c1 ) . '"><strong>Calculadora de litragem do aquário</strong></a> — é de onde vem o volume real que esta página usa. Se o número acima veio preenchido, veio de lá.</li>';
+	$h .= '<li><a href="' . esc_url( $c1 ) . '"><strong>Litragem do aquário: quantos litros tem o seu</strong></a> — é de onde vem o volume real que esta página usa. Se o número acima veio preenchido, veio de lá.</li>';
 	$h .= '<li><a href="' . esc_url( $c3 ) . '"><strong>Vazão do filtro (C3)</strong></a> — o filtro que você escolheu aqui é o mesmo que vira renovações por hora lá. Vazão e mídia são as duas metades da mesma decisão: a água precisa passar, e precisa passar por alguma coisa.</li>';
 	$h .= '<li><a href="' . esc_url( $c5 ) . '"><strong>Potência do aquecedor (C5)</strong></a> — usa o mesmo volume de água. A colônia nitrificante também depende de temperatura: aquário frio cicla mais devagar.</li>';
 	$h .= '<li><a href="' . esc_url( $c15 ) . '"><strong>Iluminação e fotoperíodo (C15)</strong></a> — luz forte com CO2 acelera o crescimento das plantas e a carga do filtro junto: mais matéria orgânica para a mídia processar. É a mesma decisão vista pelo outro lado.</li>';

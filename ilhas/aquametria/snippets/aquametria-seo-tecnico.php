@@ -235,7 +235,7 @@ function aquametria_seo_metas_por_slug() {
 		),
 		'calculadora-de-litragem' => array(
 			'titulo'    => 'Litragem do aquário: quantos litros tem o seu?',
-			'descricao' => 'Calculadora de litragem do aquário: informe as medidas em centímetros e receba os três volumes — o bruto da etiqueta, o interno e a água real.',
+			'descricao' => 'Litragem do aquário: informe as medidas em centímetros e receba os três volumes — o bruto da etiqueta, o interno e a água real.',
 		),
 		'calculadora-de-vazao-do-filtro' => array(
 			'titulo'    => 'Qual filtro dá conta do seu aquário?',

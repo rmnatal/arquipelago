@@ -12593,3 +12593,21 @@ o `atualizar-manifest.py` nomeia em toda passada. E, no dia em que houver
 `playwright` instalado nesta nuvem, `python3 ferramentas/bancada.py --navegador`:
 são 18 portões que ninguém roda desde 14/09/2026, e dois deles reprovaram hoje só
 por falta do pacote.
+
+## 2026-11-06 ~10h–11h de Brasília — sessão de chat com o Raphael (não execução da Fundação), a pedido dele — despacho de 04/11, itens 2, 3 e 4
+
+- **Item 2 (canibalização tetra):** a ficha `/peixes/tetras/quantos-litros-para-tetra-cardinal/` passa a se chamar
+  "Quantos litros para um cardume de tetra cardinal?" (title, H1, description com "(o neon cardinal)") e o nome
+  popular principal da espécie vira "tetra cardinal" (peixes 1.20.1 e `dados/especies-agua-doce.json`), então o
+  primeiro parágrafo também diz "tetra cardinal". Consulta-alvo: "quantos litros para tetra cardinal". URL intocada (12.1).
+- **Item 3 (`/calculadora-de-litragem/`, banda 11-20):** title e H1 "Litragem do aquário: quantos litros tem o seu?"
+  mantendo o `– Aquametria` (braço sem promessa); description começa por "Litragem do aquário"; as quatro calculadoras
+  irmãs e os cinco textos de `conteudo/` passam a linkar com essa mesma âncora (a voz proíbe âncora começando por
+  "Calculadora de"). Casca 1.14.1, seo-técnico 1.2.1, C3 1.9.2, C5 1.9.1, C12 1.7.1, C15 1.9.1.
+- **Item 4:** "Solicitar indexação" feito na URL Inspection para `/peixes/tetras/` e `/peixes/acaras/` em 05/11 ~23h5x
+  (as duas confirmadas "Indexação solicitada"). Pronto quando: uma das duas sair de "Discovered".
+- **Bancada sem rede:** 73 portões; as falhas que a troca causou (índice de levas pela consulta, voz da âncora,
+  alvo da mutação de voz) foram corrigidas e os portões afetados rodados de novo, todos verdes. `--no-ar` e
+  `--navegador` NÃO foram rodados. Manifest na revisão 138.
+- **Pronto quando (leitura semanal):** `tetra cardinal` e `tetra neon cardinal` atribuídas à ficha do cardinal em
+  duas leituras seguidas; `litragem` na calculadora abaixo de 30,0 e a home sem impressão nessa consulta.

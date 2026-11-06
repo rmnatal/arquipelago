@@ -132,6 +132,6 @@ Se você quer o número, [a calculadora faz a conta](https://aquametria.com.br/c
 ## O que conversa com este texto
 
 - **[Quantos watts de aquecedor você precisa](https://aquametria.com.br/calculadora-de-potencia-do-aquecedor/)** — o número do seu caso, com a faixa atribuída fonte por fonte e os aquecedores que atendem.
-- **[Calculadora de litragem do aquário](https://aquametria.com.br/calculadora-de-litragem/)** — o volume real de água, que é sobre o que se dimensiona.
+- **[Litragem do aquário: quantos litros tem o seu](https://aquametria.com.br/calculadora-de-litragem/)** — o volume real de água, que é sobre o que se dimensiona.
 - **[Vazão do filtro (C3)](https://aquametria.com.br/calculadora-de-vazao-do-filtro/)** — a mesma história, no outro equipamento: fabricante e web brasileira divergindo em até 5,7 vezes.
 - **[Como a Aquametria calcula](https://aquametria.com.br/metodologia/)** — a escada de fontes e a diferença entre constante com origem e convenção declarada.

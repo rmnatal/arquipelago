@@ -206,7 +206,7 @@ MUTACOES = [
     (
         'uma ancora interna volta a se chamar pelo nome interno da ferramenta',
         troca(C5_SNIPPET,
-              "'\"><strong>Quantos litros tem o seu aquário</strong></a>",
+              "'\"><strong>Litragem do aquário: quantos litros tem o seu</strong></a>",
               "'\"><strong>Calculadora de litragem (C1)</strong></a>"),
     ),
     (

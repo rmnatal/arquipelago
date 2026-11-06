@@ -99,7 +99,7 @@ A calculadora avisa quando a sua lâmina passa de 45 cm, que é o limite a parti
 ## Continue por aqui
 
 - [Quantos lúmens por litro o aquário plantado precisa](https://aquametria.com.br/2026/09/08/quantos-lumens-por-litro-aquario-plantado/) — o artigo pareado com esta calculadora: de onde saiu a regra, por que o lúmen é a unidade errada para planta e o que o varejo brasileiro não declara.
-- [Calculadora de litragem do aquário](https://aquametria.com.br/calculadora-de-litragem/) — o volume real, o comprimento e a lâmina que esta página usa saem de lá.
+- [Litragem do aquário: quantos litros tem o seu](https://aquametria.com.br/calculadora-de-litragem/) — o volume real, o comprimento e a lâmina que esta página usa saem de lá.
 - [Qual filtro dá conta do seu aquário](https://aquametria.com.br/calculadora-de-vazao-do-filtro/) — o mesmo aquário visto pela filtragem; plantado pede corrente mais lenta.
 - [Quantos watts de aquecedor você precisa](https://aquametria.com.br/calculadora-de-potencia-do-aquecedor/) — o aparelho que mais pesa na conta de luz, e o único que pergunta quanto frio faz no seu cômodo.
 - [Quanta mídia biológica cabe no seu filtro](https://aquametria.com.br/calculadora-de-midia-filtrante/) — luz forte com CO2 acelera o crescimento das plantas e a carga do filtro junto.
