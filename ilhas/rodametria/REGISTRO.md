@@ -4903,3 +4903,70 @@ por isso que chegariam ao ar e ficariam. **A contrapartida, que é o que vale a 
 afirmação de portão na mesma passada**, e duas delas com a régua escrita **do outro lado** da conta —
 multiplicar de volta em vez de repetir a divisão, e fabricar o mundo do plural em vez de confiar no
 dado de hoje. É a seção 8 inteira em três linhas: **a régua que repete a conta aprova o erro da conta.**
+
+### 10. E DEPOIS DO DESEMBARQUE A EXECUÇÃO ACHOU MAIS QUATRO, três deles lendo o próprio desenho
+
+A F1 foi ao ar na revisão 45 e esta passada não parou ali. O que veio depois:
+
+**(k) O QUANTIFICADOR VAZOU PARA O JSON-LD, E ELE É A CAMADA QUE A IA INGERE.** A resposta do
+`FAQPage` sobre potência de pico era prosa escrita **à mão** dentro do snippet, e serviu `costuma` e
+`0 de 14 declaram` — **os dois defeitos que a camada visível da mesma página já tinha consertado meia
+hora antes, sobre o mesmo fato.** A página estava **certa** na camada que a pessoa lê e **errada** na
+que a máquina lê. **A causa é a da 32.4-b**, que nomeou o mecanismo em 04/11 — *"a função que extrai o
+corpo tira `<script>` e `<style>` antes de medir, com razão"* — e consertou a **lista de palavras** da
+32.4 para medir o servido inteiro (foi essa metade que achou `publicavel` cinco vezes no JSON hoje). O
+que ela não consertou foi tudo o mais que lê o visível, e a **classe do quantificador nasceu em 03/11,
+três dias antes dela**, herdando o ponto cego inteiro. **A regra subiu para o contrato como 32.4-c**, e
+o endereço dela nas outras três ilhas é despacho NORMAL. **E o conserto não foi consertar a frase: foi
+a frase deixar de existir** — a resposta do FAQ passou a **chamar a função** que monta o texto do molde
+e da contagem, o mesmo que a tela imprime e o mesmo que o navegador preenche.
+
+**(l) O BOTÃO DA FERRAMENTA PRINCIPAL LEVAVA A UM 404, e este é o pior desta passada.** O formulário é
+`method="get"` para a própria home e o JS é quem chama `preventDefault()`. O primeiro campo se chamava
+`w` — **query var reservada do WordPress**, a semana do arquivo de data. Medido campo por campo, com
+controle:
+
+```
+/?w=500          -> 404   (a página "Página não encontrada" da própria ilha)
+/?kmh=80         -> 200
+/?acel=manual    -> 200
+/?mun=Osasco     -> 200
+/  (sem query)   -> 200
+```
+
+**Quem estivesse sem JavaScript e apertasse o botão caía num 404.** E ele é da família mais paciente
+que existe: a página responde 200, o portão de ar estava **verde em 484 afirmações**, o portão de pixel
+**verde em 9 de 9** — e nenhuma das sete réguas que mediram esta página hoje tinha como vê-lo, **porque
+nenhuma delas apertava o botão.** O conserto é o **prefixo em todos os quatro** campos e não só no que
+colidiu: a próxima colisão está a um nome de distância (são 37 reservadas), e um espaço de nomes
+próprio torna a classe inteira impossível. **Dois portões, nas duas pontas, e os dois provados contra o
+mundo real:** sem rede, o prefixo é cobrado em todo `name=` do snippet; **no ar, o portão passou a
+APERTAR O BOTÃO** — ele lê os `name=` de cada formulário do HTML **servido**, monta a query com os
+valores que o navegador enviaria (a opção `selected`, o radio `checked`, o `value` do input) e exige
+200. **Rodado contra a revisão 46, antes do conserto, ele reprovou com a URL inteira e o 404 na
+mensagem.**
+
+**(m) SEM JAVASCRIPT A CAIXA VOLTA A SERVIR O EXEMPLO, COM CARA DE RESPOSTA.** Com o 404 consertado, o
+botão recarrega a home — e a resposta é a do **caso de exemplo**, não a do que a pessoa escolheu. **A
+página estaria respondendo outra pergunta e parecendo responder à dela.** A 22.8 e a 32.5 exigem que a
+resposta pré-renderizada esteja no HTML servido com o JavaScript desligado, e ela está; **o que elas
+não cobrem é esta confusão**, porque do lado de fora as duas páginas são idênticas. A saída não é
+esconder o botão nem prometer o que a página não faz: é **dizer**, num `<noscript>`, e apontar o que
+funciona sem JavaScript nenhum — que nesta página é a **tabela da resolução**.
+
+**(n) AS CLASSES NOVAS DO FORMULÁRIO NÃO TINHAM FOLHA, E UMA DELAS É O PIVÔ.** `fieldset` cru tem
+borda e recuo do navegador — uma caixa dentro da caixa, **na primeira tela da ilha**, no campo que a
+1.1 manda estar *"no mesmo nível visual dos dois números"*. Os dois foram zerados e o campo passou a se
+parecer com os irmãos dele na grade. O radio recebeu `accent-color` da tinta da marca, que é **a única
+forma de colorir controle nativo sem reconstruí-lo** — e reconstruir controle nativo custa teclado e
+leitor de tela, que é o que a 22.8 protege. A folha mora **na casca** e não no snippet, pela 32.6-b:
+são componentes de molde, e a F3 vai herdá-los prontos. Casca **1.12.0**.
+
+**O PLACAR FINAL DA PASSADA: 14 defeitos achados.** Sete por portão, **sete por leitura** — e os sete
+de leitura são os que mais custariam, porque todos eles **rodam** e **imprimem**: `7 cm de largura`,
+`0 declaram o nominal`, o caminho de arquivo na prosa de uma constante, o `costuma` no JSON-LD, o
+botão que leva ao 404, a caixa que serve o exemplo sem avisar, e o `fieldset` cru. **Nenhum quebra
+nada, e é por isso que todos chegariam ao ar e ficariam.** A contrapartida é o que vale a linha:
+**os sete viraram afirmação de portão na mesma passada**, e três delas com a régua escrita **do outro
+lado** da conta — multiplicar de volta em vez de repetir a divisão, fabricar o mundo do plural em vez
+de confiar no dado de hoje, e **apertar o botão** em vez de medir o HTML em volta dele.
