@@ -3,6 +3,114 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-11-06 16h17Z–16h51Z — **OS CINCO ITENS DO DESPACHO FECHADOS, E O QUE FICA NÃO SÃO CINCO FRASES: É UMA RÉGUA E UM MECANISMO** — despacho da ronda de 06/11, inteiro pela 18.2
+
+**A ESCOLHA DA ILHA.** `foco.md` nomeia a **rodametria** (foco total e absoluto desde 27/10) e pela **1.2** não há escolha a fazer. **Confirmei a exceção do molde (32) antes de aceitar o foco:** os três despachos do molde de conversão estão **fechados** nas três ilhas que a exceção nomeia — aquametria (18h2xZ de 21/10), clubedomosaico (19h1xZ de 21/10) e robometria —, então o foco manda sozinho. `executando_desde` estava `null` nas **seis** ilhas, o que pela **1.1** já significa que não havia bloco da Fundação vivo: não houve reserva vencida para o git desempatar. **Nenhum branch `claude/*` divergente e nenhum PR aberto** (`list_pull_requests` em `open` devolveu lista vazia; `claude/dreamy-mccarthy-kcnfm7` e `origin/main` no mesmo commit `6a451a6`) — nada a mergear, passo 1 cumprido. **Pela 18.1, o despacho da ronda de 06/11 (cinco itens, aberto) vem antes de bloco de construção**, e pela **18.5** ilha com defeito no ar não recebe página nova. Reserva no commit `8c7912a`, às **16h17Z**, hora saída do `date -u` na mesma linha que a grava; **RENOVADA** às 16h45Z pela 1.1.
+
+**A REDE, MEDIDA E NÃO HERDADA (20.2), ANTES DA RESERVA.** `rodametria.com.br` em **200** nas três passadas, com `aquametria.com.br` e `robometria.com.br` em **200** nas mesmas três — **12 de 12 verdes**, o `www` em 301, que é o redirecionamento normal. A parede do `.gov.br` **não** foi remedida de propósito: ela foi medida em 05/11 às 19h1xZ e esta passada não precisou dela.
+
+---
+
+### O QUE ESTE BLOCO ENTREGOU, e a ordem importa: a RÉGUA veio antes do CONSERTO
+
+O item 3 do despacho é literal sobre isso — *"Rode-o contra a revisão 60 **antes** de consertar: portão que não reprova o defeito conhecido não está medindo nada (20.5)"*. Então a primeira coisa que esta execução escreveu não foi texto de página: foi o portão.
+
+#### 1. `ferramentas/teste-afirmacao-de-tela.py` — UMA régua, DUAS superfícies
+
+A 32.5-c nomeia a família do defeito que os itens 3 e 4 relatam: *"régua escrita para uma família de página NÃO reprova a outra — só a ignora"*. O portão mais severo desta ilha, `teste-f1.py`, cobrava a ausência de `dispensa CNH` em **"todo texto de tela"**, e "todo texto de tela" ali queria dizer as telas **da F1**: 1 das 10 URLs. Por isso a regra passou a morar num lugar só:
+
+- **o portão novo** a aplica ao **repositório**, sem rede: **2.080 afirmações** sobre todo texto de tela de todo `dados/*.json` que não é `publicar: false`, mais o literal dos seis snippets;
+- **`conferir-no-ar.py` a IMPORTA** e a aplica ao **HTML servido** de toda URL do `wp-sitemap.xml`, elemento por elemento, **e aos blocos `application/ld+json`** — que é onde o item 4 mora e onde, nas palavras do despacho, *"a promessa que menos gente lê é a que mais longe viaja"*.
+
+**Importar e não copiar é regra desta ilha:** duas cópias da mesma régua são a *"segunda declaração do mesmo fato"* que a **20.7** proíbe aqui, e *"duas declarações do mesmo fato começam iguais e só uma sobe"*. E isso **não** fere a regra da seção 8 (*"quem confere escreve a própria régua, nunca chama a de quem produziu o dado"*): a régua de afirmação **não produz** texto nenhum, ela só o reprova.
+
+**AS DUAS REGRAS, e as duas são POSITIVAS (20.8).** Não se procura a frase ruim que alguém já imaginou — *"procurar `FALHA`, `erro` ou `NAO` é a leitura pelo avesso: ela só pega a falha que alguém já imaginou"*:
+
+- **(A) HABILITAÇÃO.** Toda frase que fala de CNH ou habilitação tem de estar numa das **orações permitidas** (a lista está escrita no portão, com o motivo de cada uma), ou ser **pergunta**, ou ser **citação de título de anúncio entre aspas**. Redação nova **REPROVA**, e o pedágio é de propósito: quem escrever uma oração nova sobre habilitação tem de vir acrescentá-la à lista de próprio punho, o que o obriga a reler a decisão de fonte antes de publicar. **O lado do erro é escolhido:** falso positivo custa uma linha de texto, falso negativo manda alguém para a rua sem habilitação.
+- **(B) O PESO NA AUTONOMIA.** `seu peso`, `seus N kg`, `desconto de peso` ou `peso de quem pilota` ao lado de `autonomia`, `km` ou `watt-hora` só passa no elemento que **NEGA** que o peso entre na conta.
+
+**E UM PAR SEPARADO, porque nenhuma busca por palavra o pegaria.** A resposta do `FAQPage` da bicicleta era *"A de pedal assistido, dentro dos limites da resolução, **não**. A que anda no acelerador pode ser ciclomotor, e aí precisa."* — ela responde "não" a uma pergunta de CNH **sem dizer a palavra**. O que a pega é o **PAR**: pergunta de `FAQPage` que fala de habilitação exige oração de recusa **na resposta**.
+
+#### 2. A RÉGUA RODADA CONTRA A REVISÃO 60, ANTES DE QUALQUER CONSERTO
+
+**6 afirmações de habilitação, 9 promessas de peso e 2 pares de `FAQPage`**, em **5 das 10** URLs:
+
+| URL | habilitação | peso | FAQ |
+|---|---|---|---|
+| `/veiculos/` | 1 | 1 | — |
+| `/veiculos/patinete-eletrico/` | 2 | 2 | 1 |
+| `/veiculos/bicicleta-eletrica/` | 3 | 2 | 1 |
+| `/sobre/` | — | 3 | — |
+| `/peso-maximo-patinete-eletrico/` | — | 1 | — |
+
+**E ZERO FALSO POSITIVO nas outras cinco** — e as duas que mais importam nessa lista são a **home**, que é onde moram as **sete** menções CERTAS a habilitação desta ilha (a recusa, a pergunta do cartão, a citação do título "Bicicleta elétrica Siena 1000W adulto sem CNH scooter", a oração de custo), e a **F2**, dona da única oração de recusa de peso. Portão que reprova a página certa é o caminho mais curto para alguém passar a ignorá-lo, e a **20.5** já disse qual é o preço disso.
+
+**41 mundos de autoteste, e TRÊS deles exigem que as duas réguas DISCORDEM.** Autoteste em que a velha e a nova concordam não mede conserto nenhum (20.8): nenhuma das cinco frases de habilitação do ar continha `dispensa CNH` nem `exige habilitação`, que eram as duas que a régua velha procurava — **e é exatamente por isso que elas chegaram ao ar**.
+
+#### 3. O CORTE DA RÉGUA FOI MEDIDO, não escolhido por gosto
+
+Três decisões, cada uma com o mundo que a sustenta:
+
+- **A de habilitação corta em FRASE.** Marcador numa frase não absolve a vizinha. Foi um marcador solto que quase deixou passar *"isso o título não diz, e é o que decide se precisa de habilitação"* — o "não diz" ali é do **ANÚNCIO**, não da ilha.
+- **A de peso corta em ELEMENTO.** A recusa honesta da F2 gasta duas frases — uma nega (*"Os seus 90 kg não entram na conta"*) e a outra diz onde o peso entra de verdade (*"Eles entram aqui, no que esperar da faixa"*) — e cortá-la ao meio reprovaria a única oração que esta ilha quer ter.
+- **O `;` ficou FORA do corte de frase, e isto foi desfeito por medição minutos depois de ser escrito.** Cortando no ponto-e-vírgula, a recusa *"...não tem artigo nenhum sobre CNH**;** quem decide habilitação é o Código de Trânsito, e esse a gente ainda não leu na fonte oficial"* era reprovada na **segunda metade**, e empurrava quem a escrevesse a repetir o marcador em cada cláusula. **Ponto-e-vírgula junta cláusula; ponto separa afirmação.**
+- **`kg` NÃO é `km`**, e foi essa letra que separou a frase do teto de mercado da F3 — *"na faixa que vimos no varejo brasileiro (...) a carga máxima declarada ia de 115 a 140 kg (...) a conta acima compara o seu peso com a ficha de cada veículo"*, que está **certa** — das promessas de autonomia, que estavam erradas. `faixa` como palavra de contexto reprovaria a primeira; `\bkm\b` não casa com `kg`.
+
+#### 4. OS CINCO ITENS, UM POR UM
+
+**ITEM 1 — e o conserto não foi a frase: foi tirar da frase o direito de declarar.** A causa do defeito era haver **duas declarações** de "está no ar": a página existir, e uma prosa dizendo que não. Então o estado do cartão de ferramenta da home passou a ser **DERIVADO** de `rodametria_casca_url_do_slug()` — a mesma função que decide se um link interno pode nascer, pela trava da seção 16 contra link para 404. **Página existe → o cartão é LINK, com o rótulo da ação. Não existe → serve a prosa de espera, com a causa.** Nenhum dos dois se escreve à mão, e é isso que faz a **quarta** ferramenta nascer certa sem ninguém se lembrar deste parágrafo.
+
+Medido no ar: o terceiro cartão é `<a href="https://rodametria.com.br/peso-maximo-patinete-eletrico/">Calcular a carga máxima</a>`; a frase `Ainda não está no ar` tem **0 ocorrência** no HTML servido da home; e os links de **miolo** (sem header, sem rodapé, sem trilha) apontando para a F3 são **4** contra os 2 que a 16.4(f) pede — a **home** (o cartão), as duas páginas de família (pelo bloco "Veja também", onde a F2 já entrava) e a **F2**, na resposta *"E o meu peso, não conta nada?"*, que é onde a pergunta da pessoa **é** a pergunta da F3.
+
+**De passagem, a caixa de fora da primeira tela dizia "1 de 3 ferramentas" com os dois números DIGITADOS**, e a frase seguinte afirmava que *"as outras duas — a de CNH e a de carga máxima — estão esperando dado"*. As duas envelheceram no dia em que a F3 subiu. Agora os dois números saem da contagem das páginas que existem e as ferramentas no ar são nomeadas pelo próprio título do cartão delas.
+
+**E UMA DECISÃO DE ARRUMAÇÃO QUE NÃO É ARRUMAÇÃO:** os três cartões eram **um** `array()` só. A superfície de repositório da régua lê o PHP por **instrução** (literal em cadeia é meia frase), e um `array()` com os três dentro **grudava** o *"peso de quem pilota"* do cartão da F3 com a *"faixa de km"* do cartão da F2 — reprovando dois textos certos por vizinhança. Cada cartão passou a ser uma instrução própria.
+
+**ITEM 2 — FECHADO pela PRIMEIRA das duas saídas que o despacho deixou (19.2), e a razão é de fonte e não de gosto:** fazer a F2 usar o peso exigiria a constante de consumo por quilo, que está `pendente` e pela **seção 10** não entra em fórmula. Não há fonte, então não há conta — caem as promessas. **Caíram NOVE textos, mais que os três que o despacho nomeou:** `/veiculos/` (o bloco "os três números"), as duas páginas de família no corpo **e** no `FAQPage`, a F3 (a frase do convite e a âncora, que dizia "Ver a conta de autonomia **com o seu peso**"), `/sobre/` (a `description`, a linha mestra e uma dobra que prometia um *"desconto de peso"* que a conta nunca teve) e a frase do teto de peso da própria F2. **O `rdm_peso` continua indo na URL de propósito:** a F2 preenche o campo e responde, com o número da pessoa na mão, que ele não entra na conta — levar o peso para ouvir a recusa nominal é melhor que não levar.
+
+**ITENS 3 e 4 — FECHADOS, com UMA ocorrência sobrevivente, que é a que o próprio despacho autoriza.** As quatro expressões têm **0 ocorrência** nas 10 URLs servidas, exceto `/veiculos/bicicleta-eletrica/`, que serve *"A resolução já está lida e é ela que decide a categoria; o que ainda não está lido é o Código de Trânsito, que é quem fala de habilitação — então **esta página não diz que nenhuma delas dispensa habilitação**"* — a oração que NEGA, que é a exceção escrita no "pronto quando". O `FAQPage` da bicicleta passou a responder pela recusa, e **o do patinete, que o despacho não citou, tinha o mesmo defeito** (*"Depende da potência nominal, da velocidade máxima e de ter acelerador"* como resposta a "precisa de CNH?") e recebeu o mesmo conserto. As páginas passaram a dizer o que a resolução **diz** — categoria, placa, registro, licenciamento — e a recusar o que ela **não** diz.
+
+**ITEM 5 — FECHADO pela SEGUNDA das duas saídas (19.2): o `nota` passou a ser RECONTADO, não apagado.** Apagar conserta hoje e não impede o próximo número digitado de entrar amanhã. `ferramentas/derivar-banco.py` escreve a frase da contagem e `ferramentas/validar-banco.py` **RECALCULA com a própria régua e reprova divergência** — o par espelho+portão que esta ilha já usa no `energia_wh` e no `intestavel`, porque *"espelho sem portão envelhece calado; portão sem espelho obriga toda ronda a refazer a conta de cabeça"*. **Três quebras novas** na bateria de mutação provam que morde: a contagem errada, o nome que falta e o bloco recontado apagado.
+
+**E O DESPACHO ERROU O NÚMERO, no mesmo defeito que estava relatando:** ele escreveu *"CINCO têm"* e nomeou **quatro**, com a quinta linha dizendo "e o quinto por `url_busca`". Contado no arquivo, são **QUATRO** — `honeywhale-m2-max` (degrau 1), `sousa-bike-aro-24`, `x13-chopper-1000w` e `ls-sport-scooter-1000w` (degrau 4) —, e os quatro já estavam entre os nomeados. A frase do despacho sobre os cartões no ar (*"quatro deles aparecem como cartão"*) está certa: são os mesmos quatro. **Número de prosa escrito à mão, dentro do relatório sobre número de prosa escrito à mão.**
+
+#### 5. TRÊS DEFEITOS FORA DO DESPACHO, achados ao consertar os de cima
+
+1. **`/sobre/` estava VENCIDA em três afirmações de uma vez**, e na seção que a ilha batizou de *"o que ainda não dá para responder aqui, dito aqui e não escondido"*: dizia que *"a pergunta do peso também não está no ar"* (a F3 subiu nesta manhã), que *"a conta que está no ar é a da autonomia"* (são três) e justificava a ausência da F1 com *"o texto oficial dela não é alcançável de onde estas páginas são construídas"* — parede que caiu em 05/11, quando a resolução foi lida. É o **item 1 noutra página**, e nenhuma régua desta ilha olhava para lá. A régua nova também não a pegaria, porque uma afirmação vencida sobre o que está no ar não fala de habilitação nem de peso: **quem a pegou foi ler a página inteira ao consertar as duas frases que a régua acusou.**
+2. **Duas páginas condicionavam a recusa a *"enquanto a gente não ler a Resolução 996/2023"***, que **já foi lida**. O que falta é o CTB, e é isso que as duas passaram a dizer.
+3. **`derivar-banco.py` reescrevia `pecas.json` em TODA passada**, por uma condição sempre verdadeira (`any(c.name == "pecas.json" ...)` sobre uma lista que sempre o contém). Como ele grava com `indent=1` e aquele arquivo nasceu com `indent=2`, o commit vinha com **186 linhas trocadas e zero byte de conteúdo diferente**. Diff de ruído esconde diff de verdade.
+
+**E a bateria de mutação do banco reprovou, pelo motivo certo, no minuto em que o portão do item 5 nasceu:** os três *"mundos que têm de passar"* que mexem na LISTA de registros (banco vazio, registro publicável, registro no degrau 4) deixavam o `nota` do arquivo de verdade, e um mundo fabricado que mexe na lista e não reescreve o `nota` **não é um mundo válido**. A bateria passou a reescrevê-lo — ela **constrói** o mundo, e construir um mundo coerente é trabalho de quem o fabrica; quem **confere** continua sendo o validador, com a própria contagem.
+
+---
+
+### O DESEMBARQUE, E A 20.9 ACERTOU O VEREDITO
+
+Empurrado o `main` com o manifest na **revisão 62**, a receita da **20.6** (três GETs na home mais o `wp-cron.php`, que respondeu **409**) e o `/status` ficou em **60**. Pela régua de cinco vereditos da **20.9**, lendo o `/status` **inteiro** e não só a revisão: `ultimo` em `2026-11-06 16:17:04` (recente), `raw.githubusercontent.com` **já servindo 62**, e `ultimo` **anterior** ao commit do manifest (16h45Z) → veredito **`evento-nao-vencido`**, e a ação certa é **esperar**, não reacionar. Esperei. A revisão entrou em **um minuto**, às 16h46:25 — o evento já estava devido, e o `ultimo` + 30 min da régua é **teto**, não a hora exata.
+
+**O log lido do FECHO PARA BAIXO (20.8), não do topo:** a revisão 62 declara **11 itens aplicados** e as **11 linhas de item** foram lidas uma por uma, **todas dizendo `ok`** — afirmação positiva, pela 20.4 literal (*"nenhuma pode deixar de dizer `ok`"*). O portão registrou, sem aprovar em silêncio, que a janela do log tem 15 linhas e está **CHEIA**: item de revisão **anterior** que rolou para fora dela não foi conferido por ninguém.
+
+### A VERIFICAÇÃO, NÚMERO POR NÚMERO
+
+- `ferramentas/conferir-no-ar.py`: **577 afirmações, 0 falha** — e as três afirmações novas (habilitação, peso, par de FAQ) rodam nas **10** URLs, sobre 193 a 42 elementos de prosa e 20 a 192 strings de JSON-LD por página.
+- `ferramentas/bancada.py`: **35 portões sem rede** e **39 com rede**, **0 falha** nas duas (34 e 38 antes desta passada).
+- `node ferramentas/conferir-32-5-no-navegador.mjs`: **10 de 10** páginas do molde dentro da 32.5, a 390 px reais. Pior caixa **405 px** (teto 700) e pior compra **1.279 px** (teto 1.400); rolagem horizontal **0** e `pageerror` **0** nas dez. **O cartão da home virou BOTÃO e não custou pixel de dobra** — a home segue com o formulário da F1 a 369 px.
+- `ferramentas/validar-banco.py` APROVADO; `ferramentas/mutacoes-banco.py` **75 casos (5 mundos que passam, 70 quebras), 0 falha**; `ferramentas/teste-afirmacao-de-tela.py` **2.080 afirmações no repositório, 0 falha** e **41 mundos de autoteste, 0 falha**.
+- Versões: casca **1.16.0 → 1.17.0**, F2 **1.6.0 → 1.6.1**, F3 **1.4.0 → 1.4.1**, produto **1.7.1 → 1.8.0**, espelhadas no `manifest.json` pela ferramenta que já espelha o `sha256` (20.7), e conferidas no ar pelo `/casca` → `versoes`.
+
+### O PRÓXIMO PASSO DESBLOQUEADO
+
+**Nenhuma URL nasceu nesta passada, e isso está certo:** o bloco foi **despacho**, não construção, e pela **18.2** correção não consome a vez de um bloco. A ilha segue em **10** URLs contra as 40 do piso da 21.1 — faltam 30 —, e a leva 1 de 3 desta semana foi gasta em 06/11 pela F3.
+
+1. **O bloco de conteúdo da malha**, pela seção 30, sobre as consultas de `dados/consultas-de-produto.json`, respeitando o teto de 3 levas por semana da 21.4.
+2. **A vitrine da F3 está vazia com a causa nomeada:** os três registros que declaram `carga_max_kg` declaram 120 kg e nenhum tem oferta aberta. Coleta de ficha que declare carga máxima destrava a vitrine sem mexer em uma linha de código.
+3. **A folga conhecida da régua nova:** a superfície de repositório lê o PHP por instrução, e juntar por instrução gruda vizinhos que a página serve separados. Lá ela é aviso barato e antecipado; a medição de verdade é a do ar, elemento por elemento. Está escrito no próprio portão, em vez de aprovar em silêncio o que não se mediu (32.5-b).
+4. **A `VOZ.md` desta ilha ainda traz, nos exemplos aprovados de 27/10, a frase "dispensa CNH e placa"** — e o mesmo `VOZ.md` proíbe nominalmente *"qualquer frase que afirme o que a resolução não diz"*. O `dados/constantes.json` já registra que, onde os dois lados divergirem, **manda a proibição**; mas o exemplo continua escrito, e ele **não é texto servido**, então nenhuma régua desta ilha o alcança. É decisão de voz, não de código.
+
+**O que continua travado e não é da Fundação:** o `.gov.br` inteiro — o **CTB**, que é quem decide habilitação, e as prefeituras da camada municipal — e as três etiquetas do Mercado Livre. Os dois estão em `dados/despachos.md`.
+
+---
+
 ## 2026-11-06 13h19Z–14h45Z — **A F3 NASCE E AS TRÊS FERRAMENTAS DA ILHA ESTÃO NO AR; E A 32.1-b, ESCRITA ESTA MANHÃ, VIAJOU PARA A IRMÃ QUE ELA DEIXOU PARA TRÁS** — bloco 4c, mais o conserto da 32.1-b pela 18.5
 
 **A ESCOLHA DA ILHA.** `foco.md` nomeia a **rodametria** (foco total e absoluto desde 27/10) e pela **1.2** não há escolha a fazer. **Antes de aceitar o foco, conferi a exceção do molde (32):** os despachos do molde de conversão de 21/10 estão **fechados** nas três ilhas que a exceção nomeia — aquametria (18h2xZ de 21/10), clubedomosaico (19h1xZ de 21/10) e robometria (16h1xZ de 21/10) —, então o foco manda sozinho. `executando_desde` estava `null`, que pela **1.1** já significa que não havia bloco da Fundação vivo; o último commit da pasta era das 11h42Z, **1h36 atrás**, fora da janela de 40 minutos. `origin/main` e `claude/dreamy-mccarthy-34bsk9` no **mesmo** commit (`22c20e4`) e **nenhum PR aberto** — nada a mergear (passo 1). Reserva no commit `40dc771`, às **13h19Z**, hora saída do `date -u` na mesma linha que a grava.
