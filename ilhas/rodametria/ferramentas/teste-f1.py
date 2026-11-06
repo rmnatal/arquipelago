@@ -690,6 +690,59 @@ def metade_g():
           "outro lado, e os dois mundos do plural fabricados")
 
 
+# ---------------------------------------------------------------------------
+# (H) A PRESTACAO DE CONTAS E RENDERIZADA NO SERVIDOR E O VEREDITO RECOMPUTA NO
+#     NAVEGADOR — E HOJE ISSO NAO SE CONTRADIZ PORQUE O BANCO ESTA VAZIO.
+#
+# Esta e a 32.5-d em forma nova, e ela e PRE-REGISTRADA e nao achada: *"a regra
+# que nunca rodou contra o dado de verdade esta quebrada e parece sa, e o espaco
+# reservado e quem a esconde"*. Lá o reservado escondia a disputa de
+# especificidade; aqui o que esconde e o banco com ZERO registro classificavel.
+#
+# O MECANISMO: a secao "Quem entrou, quem nao entrou, e por que" sai do PHP,
+# calculada para a categoria da RESPOSTA DE EXEMPLO. Quando a pessoa troca os
+# campos, o JS reescreve a caixa, a camada 2 e as ressalvas — e NAO reescreve a
+# prestacao de contas. Hoje isso nao mente, porque NENHUM dos 14 registros
+# classifica e portanto os grupos saem IDENTICOS para as quatro categorias. **No
+# dia em que um registro declarar os tres campos, a secao passa a falar da
+# categoria do exemplo enquanto a caixa fala da categoria da pessoa.**
+#
+# A AFIRMACAO E O INVARIANTE, e nao a promessa: enquanto a secao for do servidor
+# e a caixa for do navegador, os grupos TEM de ser independentes da categoria. O
+# dia em que esta afirmacao ficar VERMELHA e exatamente o dia em que o JS precisa
+# passar a recomputar a secao — o portao nao avisa que vai quebrar, ele quebra
+# junto com o mundo.
+# ---------------------------------------------------------------------------
+def metade_h():
+    bruto = json.load(io.open(CONSTANTES, encoding="utf-8"))
+    cs = {c["id"]: c for c in bruto["constantes"]}
+    lim = f1ref.limiares_publicaveis(cs)
+    with io.open(os.path.join(ILHA, "dados", "veiculos.json"), encoding="utf-8") as f:
+        regs = json.load(f)["registros"]
+
+    por_categoria = {}
+    for cat in f1ref.CATEGORIAS:
+        g = f1ref.grupos_de_compra(regs, cat, lim)
+        por_categoria[cat] = {k: sorted(r.get("id") for r in v) for k, v in g.items()}
+
+    primeiro = por_categoria[f1ref.CATEGORIAS[0]]
+    iguais = all(por_categoria[c] == primeiro for c in f1ref.CATEGORIAS)
+    ok(iguais,
+       "OS GRUPOS DA PRESTACAO DE CONTAS JA DEPENDEM DA CATEGORIA, e a secao que os "
+       "publica e renderizada no SERVIDOR para a categoria do EXEMPLO enquanto a caixa "
+       "de resposta recomputa no NAVEGADOR. A partir de agora a pagina diz, na mesma "
+       "tela, a prestacao de contas de uma categoria e o veredito de outra. O conserto "
+       "e o JS passar a reescrever a secao, pelos mesmos grupos. Contagens por "
+       "categoria: %s"
+       % {c: {k: len(v) for k, v in d.items()} for c, d in por_categoria.items()})
+
+    if iguais:
+        print("  prestacao de contas INDEPENDENTE da categoria em %d de %d categorias — "
+              "e e por isso que a secao pode ser do servidor enquanto a caixa e do "
+              "navegador. Quando esta linha ficar vermelha, o JS tem de recomputa-la"
+              % (len(f1ref.CATEGORIAS), len(f1ref.CATEGORIAS)))
+
+
 def main():
     print("PORTAO DA F1 — RODAMETRIA (limiares FICTICIOS na arvore, pela 1.6)")
     metade_a()
@@ -699,6 +752,7 @@ def main():
     metade_e()
     metade_f()
     metade_g()
+    metade_h()
 
     print()
     print("teste-f1: %d afirmacoes, %d falha(s)" % (AFIRMACOES[0], len(FALHAS)))
