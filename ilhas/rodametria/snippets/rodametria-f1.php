@@ -77,7 +77,20 @@ if ( ! defined( 'RODAMETRIA_F1_VERSAO' ) ) {
 	   saida que a Fundacao tem sem o token (`forcar=1` exige o token, que nesta
 	   ilha nao esta no repositorio por decisao). Quem desembarcar PHP aqui ja
 	   sobe a segunda revisao sem esperar o log pedir. */
-	define( 'RODAMETRIA_F1_VERSAO', '1.5.0' );
+	/* 1.5.1 NAO MUDA CODIGO: ela existe para FORCAR UMA REVISAO NOVA, e e a
+	   TERCEIRA ocorrencia da cicatriz da 20.4 em QUATRO DIAS (06/11, 09/11 as
+	   13h48Z e 09/11 as 17h09Z). O Sync grava o snippet INATIVO de proposito e
+	   ativa depois; quando ele JA ESTA ATIVO E CARREGADO na requisicao do cron,
+	   a ativacao falha com `gravado (#10) mas NAO ativado: o codigo nao passou
+	   na validacao`, e o Sync SEGUE e grava a revisao como feita. Sem o token
+	   (`forcar=1`) nao ha retentativa possivel: a UNICA saida e subir uma
+	   revisao nova, com o snippet agora INATIVO — e e por estar inativo que a
+	   passada seguinte consegue ativa-lo.
+	   O CUSTO MEDIDO NESTA PASSADA: a home respondeu 200 servindo a versao HUB,
+	   SEM o formulario da F1 e SEM a barra fixa, e o `/casca` nao trazia
+	   `rodametria-f1` nenhum — que e exatamente a ausencia que a 20.7 desenhou
+	   para ser o sinal. Tres dos cinco portoes de pagina ficaram verdes. */
+	define( 'RODAMETRIA_F1_VERSAO', '1.5.1' );
 }
 
 if ( ! defined( 'RODAMETRIA_ID_DADOS_F1' ) ) {
