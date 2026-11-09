@@ -60,8 +60,24 @@ if ( ! defined( 'RODAMETRIA_F1_VERSAO' ) ) {
 	   item que falhou NUNCA e retentado: as duas saidas sao `forcar=1` (que exige o
 	   token, e a Fundacao nao o tem nesta ilha) ou uma REVISAO NOVA.
 	   Esta e a revisao nova. Com o snippet INATIVO, ele nao esta carregado na
-	   requisicao, que e a condicao que faz `activate_snippet` passar. */
-	define( 'RODAMETRIA_F1_VERSAO', '1.4.0' );
+	   requisicao, que e a condicao que faz `activate_snippet` passar.
+
+	   1.4.0 -> 1.4.1 EM 09/11/2026 as 13h5xZ, PELA MESMA CICATRIZ E PELA SEGUNDA
+	   VEZ EM TRES DIAS, E AGORA ELA TEM FORMA PREVISIVEL: a revisao 69 trouxe
+	   codigo NOVO neste snippet e o log disse `gravado (#10) mas NAO ativado: o
+	   codigo nao passou na validacao`. A home degradou para a versao HUB — o
+	   cartao da F1 virou "ainda nao esta no ar" e a tabela, a prestacao de contas
+	   e o "quem entrou, quem nao entrou" sairam da pagina. A casca degradou
+	   CERTO, e e por isso que ninguem viu erro: o que se perdeu foi conteudo, nao
+	   um 500.
+	   O PADRAO, medido nas duas ocorrencias: o snippet que estava ATIVO E
+	   CARREGADO na requisicao do cron falha ao reativar; a passada seguinte,
+	   com ele INATIVO, passa. Entao desembarque que muda o PHP de um snippet
+	   desta ilha custa DUAS revisoes, e a segunda nao e opcional — e a unica
+	   saida que a Fundacao tem sem o token (`forcar=1` exige o token, que nesta
+	   ilha nao esta no repositorio por decisao). Quem desembarcar PHP aqui ja
+	   sobe a segunda revisao sem esperar o log pedir. */
+	define( 'RODAMETRIA_F1_VERSAO', '1.4.1' );
 }
 
 if ( ! defined( 'RODAMETRIA_ID_DADOS_F1' ) ) {
