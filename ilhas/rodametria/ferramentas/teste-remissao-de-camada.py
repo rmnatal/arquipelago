@@ -154,8 +154,9 @@ def problemas_de_remissao(onde, textos, liberacoes=None):
 # defeito de hoje — a primeira versao desta ficou, e e por isso que esta linha
 # esta escrita.
 #
-# O PISO DE 30 FOI MEDIDO E NAO ESCOLHIDO, nas 25 respostas de `FAQPage` que as
-# dez URLs desta ilha serviam as 13h3xZ de 09/11/2026: o defeito tem **41**
+# O PISO DE 30 FOI MEDIDO E NAO ESCOLHIDO, nas 22 respostas de `FAQPage` que as
+# dez URLs desta ilha serviam as 13h3xZ de 09/11/2026 (27 blocos de JSON-LD: 1
+# WebSite, 10 WebPage, 9 BreadcrumbList, 5 FAQPage e 2 ItemList): o defeito tem **41**
 # caracteres e a maior repeticao LEGITIMA de todas as outras tem **21** (`da
 # bicicleta eletrica`, na resposta dos dois limites). 30 cai no meio de um vao de
 # vinte caracteres, com zero falso positivo em dez URLs. Piso mais baixo
