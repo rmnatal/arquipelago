@@ -1,0 +1,17 @@
+{
+ "id": "liberacoes-de-remissao",
+ "ilha": "rodametria",
+ "publicar": false,
+ "o_que_este_arquivo_e": "A camada declarada de LIBERACAO da classe REMISSAO LOCATIVA — prosa que aponta para um lugar da pagina (`logo abaixo`, `na tabela acima`, `logo em seguida`). A regua esta em ferramentas/teste-remissao-de-camada.py e e aplicada ao JSON-LD de toda URL do wp-sitemap.xml por ferramentas/conferir-no-ar.py.",
+ "por_que_ele_existe": "A classe nasceu de um defeito MEDIDO NO AR as 13h4xZ de 09/11/2026 em /peso-maximo-patinete-eletrico/: a resposta do FAQPage terminava com `Os nomes estao logo abaixo, com a carga de cada um` — e no JSON-LD nao existe `abaixo`. A frase e VERDADEIRA na pagina (a lista com os tres nomes vem duas telas depois) e FALSA na camada que a cita, que e a que a visao geral de IA ingere. Este arquivo existe porque a lista de termos da regua tem de ser mais larga que o caso de hoje, e lista larga pega ocorrencia CERTA: a home serve `4.000 W com 50 km/h e o teto do ciclomotor, que e a categoria logo acima`, onde `logo acima` e a categoria seguinte na escada da resolucao e nao um lugar da tela. Portao que reprova pagina certa e o caminho mais curto para alguem passar a ignora-lo (20.5) — entao a ocorrencia certa entra aqui, por escrito, em vez de a regua encolher.",
+ "como_se_libera": "Um item por OCORRENCIA, com `termo`, `pagina`, `ancora_no_ar` (pedaco LITERAL do texto servido, que tem de existir na camada e tem de conter o proprio termo) e `porque`. Ancora que nao casa com nada NAO libera, e a mesma liberacao nao vale para outra frase da mesma pagina — e a forma das liberacoes de quantificador desta ilha, pela mesma razao: liberacao morta e tao perigosa quanto frase sem liberacao, porque ela parece conferida.",
+ "remissoes_declaradas_permitidas": [
+  {
+   "termo": "logo acima",
+   "pagina": "/",
+   "ancora_no_ar": "que é a categoria logo acima",
+   "porque": "`logo acima` aqui NAO e lugar de tela: e a categoria IMEDIATAMENTE SUPERIOR na escada da Resolucao Contran no 996/2023 — a frase responde `O limite e 350 W ou 1.000 W?` dizendo que 1.000 W com 32 km/h e o teto da bicicleta eletrica e do autopropelido e que 4.000 W com 50 km/h e o teto do ciclomotor, `que e a categoria logo acima`. Tirar a expressao tiraria a informacao de ORDEM entre as categorias, que e justamente o que a pergunta existe para separar. A frase se cumpre dentro de si mesma em qualquer camada: ela nao defere conteudo para nenhum vizinho.",
+   "por_que_ancora": "A ancora carrega o termo e o SUBSTANTIVO que prova a leitura (`a categoria`), entao ela vale so para esta frase: outro `logo acima` nesta mesma pagina continua denunciado. Foi medida no HTML servido da home as 13h3xZ de 09/11/2026."
+  }
+ ]
+}

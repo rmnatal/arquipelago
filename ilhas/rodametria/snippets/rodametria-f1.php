@@ -61,7 +61,7 @@ if ( ! defined( 'RODAMETRIA_F1_VERSAO' ) ) {
 	   token, e a Fundacao nao o tem nesta ilha) ou uma REVISAO NOVA.
 	   Esta e a revisao nova. Com o snippet INATIVO, ele nao esta carregado na
 	   requisicao, que e a condicao que faz `activate_snippet` passar. */
-	define( 'RODAMETRIA_F1_VERSAO', '1.3.2' );
+	define( 'RODAMETRIA_F1_VERSAO', '1.4.0' );
 }
 
 if ( ! defined( 'RODAMETRIA_ID_DADOS_F1' ) ) {
@@ -469,11 +469,28 @@ function rodametria_f1_tabela_banco_html( $d ) {
 
 	$html .= '</tbody></table></div>';
 
-	$html .= '<p>De <span class="rdm-num">' . (int) $t['total'] . '</span> anúncios colhidos, '
-		. '<span class="rdm-num">' . (int) $t['com_nominal'] . '</span> declaram a potência '
-		. 'nominal e <span class="rdm-num">' . (int) $t['classificaveis'] . '</span> dão para '
-		. 'classificar. Esse é o tamanho real do problema, e é por isso que esta ferramenta '
-		. 'pergunta os números a você em vez de prometer uma lista pronta.</p>';
+	/* A PRESTACAO DE CONTAS DA TABELA SAI DO MOLDE, E ELA NAO ERA ASSIM.
+	   Era esta prosa, escrita a mao aqui, com os tres numeros interpolados e o
+	   plural FIXO — e o que ela servia no ar, medido as 13h4xZ de 09/11/2026 na
+	   home, era *"De 14 anuncios colhidos, 0 declaram a potencia nominal e 0 DAO
+	   para classificar"*: dois plurais que mentem na mesma frase, no mundo que
+	   este banco produz HOJE. A cicatriz e a da clubedomosaico de 12/10/2026, e
+	   a `frase_do_rotulo` desta ilha pagou a mesma na manha de hoje, no ar.
+	   A FORMA e escolhida pela CONTAGEM num lugar so (`regras/f1.py`); aqui so se
+	   trocam as chaves pelo numero dentro do span, para o numero continuar em
+	   Mono. Molde ausente (banco de antes de hoje) imprime o paragrafo NENHUM, em
+	   vez de voltar a frase de plural fixo. */
+	if ( ! empty( $t['molde_da_prestacao'] ) ) {
+		$html .= '<p>' . str_replace(
+			array( '{total}', '{com_nominal}', '{classificaveis}' ),
+			array(
+				'<span class="rdm-num">' . (int) $t['total'] . '</span>',
+				'<span class="rdm-num">' . (int) $t['com_nominal'] . '</span>',
+				'<span class="rdm-num">' . (int) $t['classificaveis'] . '</span>',
+			),
+			esc_html( (string) $t['molde_da_prestacao'] )
+		) . '</p>';
+	}
 
 	return $html;
 }
@@ -788,30 +805,46 @@ add_action( 'wp_head', function () {
 				. $ciclo['velocidade_kmh'] . ' km/h. Aí o ' . $ciclo['artigo'] . ' manda que ele '
 				. 'seja ' . $ciclo['placa'] . '.',
 		),
-		array(
+	);
+
+	/* A PERGUNTA DO PICO — A RESPOSTA SAI DO MOLDE, E ELA NAO ERA ASSIM. Era prosa
+	   escrita A MAO aqui, e foi ao ar com DOIS defeitos que a propria pagina ja
+	   tinha consertado na camada visivel, medidos no JSON-LD servido em
+	   06/11/2026: o quantificador `costuma` (a classe que esta ilha paga desde
+	   03/11) e `0 de 14 declaram`, que e o plural que mente.
+	   A CAUSA E ESTRUTURAL E VALE MAIS QUE AS DUAS FRASES: a varredura de
+	   quantificador do portao de ar le o TEXTO VISIVEL, e `corpo_da_pagina()`
+	   tira `<script>` antes de medir — com razao, porque ali mora CSS e JSON.
+	   Entao o JSON-LD escapa dela. E ele e justamente a camada que a visao geral
+	   de IA ingere: defeito ali vale MAIS do que na prosa, nao menos. E a familia
+	   da 32.4-b (o comentario de CSS que nenhum portao via) um andar acima.
+
+	   E O CONSERTO DE 06/11 DEIXOU UMA CICATRIZ QUE ESTA PASSADA MEDIU NO AR, as
+	   13h4xZ de 09/11/2026: a abertura escrita a mao dizia *"Nao. A regra le a
+	   potencia NOMINAL, que fica na ficha."* e o molde logo em seguida abre com
+	   *"O numero grande do anuncio nao e o que a regra le: ela le a potencia
+	   NOMINAL, que fica na ficha."* — a MESMA oracao, palavra por palavra, duas
+	   vezes em duas frases seguidas, na camada que a IA ingere. E a 20.7 em
+	   miniatura: *"duas declaracoes do mesmo fato comecam iguais e so uma sobe"*,
+	   com o agravante de que aqui as duas subiram juntas, na mesma resposta.
+	   A abertura ficou sendo o que ela tem de ser e o molde nao repete: um "Nao."
+	   que responde a pergunta, e a explicacao vindo de um lugar so.
+
+	   SEM O MOLDE A PERGUNTA NAO SAI. A frase do pico devolve string vazia quando
+	   falta o titulo literal ou a contagem, e "Nao." sozinho nao e resposta —
+	   pergunta de `FAQPage` com resposta de uma palavra e pior do que pergunta
+	   que nao existe. */
+	$pico = rodametria_f1_frase_do_pico( $d );
+	if ( '' !== $pico ) {
+		$perguntas[] = array(
 			'A potência de pico do anúncio serve para classificar?',
-			/* A RESPOSTA SAI DO MOLDE, E ELA NAO ERA ASSIM. Esta era prosa escrita
-			   A MAO aqui, e foi ao ar com DOIS defeitos que a propria pagina ja
-			   tinha consertado na camada visivel, medidos no JSON-LD servido em
-			   06/11/2026: o quantificador `costuma` (a classe que esta ilha paga
-			   desde 03/11) e `0 de 14 declaram`, que e o plural que mente.
-			   A CAUSA E ESTRUTURAL E VALE MAIS QUE AS DUAS FRASES: a varredura de
-			   quantificador do portao de ar le o TEXTO VISIVEL, e
-			   `corpo_da_pagina()` tira `<script>` antes de medir — com razao, porque
-			   ali mora CSS e JSON. Entao o JSON-LD escapa dela. E ele e justamente
-			   a camada que a visao geral de IA ingere: defeito ali vale MAIS do que
-			   na prosa, nao menos. E a familia da 32.4-b (o comentario de CSS que
-			   nenhum portao via) um andar acima.
-			   O conserto nao e consertar a frase: e a frase deixar de existir aqui.
-			   O molde ja e contado, ja escolhe o plural por mundo e ja passou pelas
-			   guardas do gerador. */
-			'Não. A regra lê a potência NOMINAL, que fica na ficha. '
-				. rodametria_f1_frase_do_pico( $d ),
-		),
-		array(
-			'Essa resolução diz se precisa de CNH?',
-			(string) $d['frases_molde']['habilitacao_pendente'],
-		),
+			'Não. ' . $pico,
+		);
+	}
+
+	$perguntas[] = array(
+		'Essa resolução diz se precisa de CNH?',
+		(string) $d['frases_molde']['habilitacao_pendente'],
 	);
 
 	/* A PERGUNTA DOS TRES NUMEROS — e ela le a MESMA lista que a dobra da pagina

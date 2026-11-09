@@ -336,7 +336,67 @@ MOLDES = {
         "A categoria é nacional; a rua é municipal: {municipio} limita a "
         "{limite_kmh} km/h, pelo ato que a gente leu."
     ),
+
+    # ---- A PRESTACAO DE CONTAS DA TABELA DO BANCO (09/11/2026) ----
+    #
+    # ESTA FRASE ESTAVA ESCRITA A MAO DENTRO DO SNIPPET, com os tres numeros
+    # interpolados em PHP e o plural FIXO — e o que ela servia no ar, medido as
+    # 13h4xZ de 09/11/2026 na home, era *"De 14 anuncios colhidos, 0 declaram a
+    # potencia nominal e 0 DAO para classificar"*. Dois plurais que mentem na
+    # mesma frase, e e a cicatriz exata que a clubedomosaico pagou em 12/10/2026
+    # e que a `frase_do_rotulo` desta ilha pagou NO AR na manha de hoje ("1 dos 6
+    # DECLARAM um watt").
+    #
+    # E E O PADRAO DA IRMA DIVERGENTE, que o fecho da passada anterior nomeou e
+    # deixou sem regua: a `frase_do_rotulo` ganhou cinco formas e a concordancia
+    # de verbo; esta, que afirma a MESMA familia de contagem na MESMA ilha, nao
+    # tinha forma nenhuma. Duas metades contando a mesma coisa, a trava numa so.
+    #
+    # DOIS EIXOS INDEPENDENTES, TRES FORMAS CADA, e e por isso que o molde e
+    # COMPOSTO em vez de enumerado: 3 x 3 seriam nove moldes literais, e molde
+    # que nunca roda e molde que envelhece calado. O que se escolhe por contagem
+    # e o PEDACO; o corpo e um so.
+    "prestacao_da_tabela": (
+        "De {total} anúncios colhidos, {nominal} e {classifica}. Esse é o "
+        "tamanho real do problema, e é por isso que esta ferramenta pergunta os "
+        "números a você em vez de prometer uma lista pronta."
+    ),
+    # O eixo do watt NOMINAL. No zero o numero SAI da frase: "0 declaram" e o
+    # plural que mente, e "nenhum declara" e a mesma informacao em portugues.
+    "prestacao_nominal_nenhum": "nenhum declara a potência nominal",
+    "prestacao_nominal_um": "{com_nominal} declara a potência nominal",
+    "prestacao_nominal_varios": "{com_nominal} declaram a potência nominal",
+    # O eixo da CLASSIFICACAO, e o verbo dele e irregular ("da"/"dao"), que e
+    # justamente o que o plural fixo nao alcanca.
+    "prestacao_classifica_nenhum": "nenhum dá para classificar",
+    "prestacao_classifica_um": "{classificaveis} dá para classificar",
+    "prestacao_classifica_varios": "{classificaveis} dão para classificar",
 }
+
+
+def molde_da_prestacao_da_tabela(com_nominal, classificaveis):
+    """O molde JA CONJUGADO da prestacao de contas da tabela do banco.
+
+    Devolve o corpo com os dois pedacos escolhidos pela CONTAGEM e com os
+    numeros ainda em `{}`: quem imprime (PHP) troca cada chave pelo numero
+    dentro do `<span class="rdm-num">`, para o numero continuar em Mono sem que
+    a FORMA da frase seja decidida em dois lugares. A forma e decidida AQUI, e
+    so aqui.
+
+    Existe por um defeito medido no ar as 13h4xZ de 09/11/2026 na home desta
+    ilha: *"De 14 anuncios colhidos, 0 declaram a potencia nominal e 0 dao para
+    classificar"*. Ver o comentario dos moldes `prestacao_*`.
+    """
+    nominal = ("prestacao_nominal_nenhum" if com_nominal == 0
+               else "prestacao_nominal_um" if com_nominal == 1
+               else "prestacao_nominal_varios")
+    classifica = ("prestacao_classifica_nenhum" if classificaveis == 0
+                  else "prestacao_classifica_um" if classificaveis == 1
+                  else "prestacao_classifica_varios")
+    return MOLDES["prestacao_da_tabela"].format(
+        total="{total}",
+        nominal=MOLDES[nominal],
+        classifica=MOLDES[classifica])
 
 # OS FATOS DAS RESSALVAS MORAM EM dados/constantes.json, E NAO AQUI — e a
 # historia disso vale a linha, porque e o melhor que aconteceu nesta passada.

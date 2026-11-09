@@ -564,6 +564,42 @@ def main():
         nota("prestacao de contas da F3: %d grupo(s) de contas, todos com rotulo no "
              "snippet, e a soma fecha os %d registros" % (len(de_contas), total))
 
+    # ---- A RESPOSTA DO `FAQPage` LE A CAMADA AUTOCONTIDA (09/11/2026) ----
+    #
+    # Medido no ar as 13h4xZ de 09/11/2026 nesta URL: a resposta da pergunta
+    # "Quais modelos voces indicam para o meu peso?" do JSON-LD servia, letra por
+    # letra, a frase da TELA — e ela termina em *"Os nomes estao logo abaixo, com
+    # a carga de cada um"*. No JSON-LD nao existe "abaixo", e os tres nomes nunca
+    # aparecem naquele bloco. A regua da classe mora em
+    # `ferramentas/teste-remissao-de-camada.py`; o que se cobra AQUI e a ligacao:
+    # que o snippet leia o campo certo, e que ele exista.
+    with open(PHP, encoding="utf-8") as _fh:
+        php_txt = _fh.read()
+    afirma("frases_vazio_autocontidas" in php_txt,
+           "o snippet da F3 nao le `frases_vazio_autocontidas`: a resposta do "
+           "`FAQPage` voltou a servir a frase da tela, que aponta para um lugar "
+           "que o JSON-LD nao tem")
+    auto = list((d.get("resposta_exemplo") or {}).get(
+        "frases_vazio_autocontidas") or [])
+    tela = list((d.get("resposta_exemplo") or {}).get("frases_vazio") or [])
+    afirma(len(auto) == len(tela),
+           "as duas camadas da F3 tem tamanhos diferentes (%d na tela, %d "
+           "autocontida): item por item elas falam da MESMA causa"
+           % (len(tela), len(auto)))
+    afirma(not [t for t in auto if "logo abaixo" in t],
+           "a camada autocontida da F3 traz `logo abaixo`: %r"
+           % ([t for t in auto if "logo abaixo" in t][:1]))
+    _nomes = [x.get("nome") for x in (d.get("compra") or {}).get(
+        "serviriam_sem_oferta") or []]
+    if _nomes and auto:
+        _faltam = [n for n in _nomes if n and n not in auto[0]]
+        afirma(not _faltam,
+               "a frase autocontida da F3 nao carrega %d nome(s) que a pagina "
+               "serve (%s): a seta saiu e o conteudo nao entrou"
+               % (len(_faltam), _faltam))
+    nota("a resposta do `FAQPage` le a camada autocontida, e ela carrega os %d "
+         "nome(s) que a tela serve logo abaixo" % len(_nomes))
+
     for n in notas:
         print("  . %s" % n)
     print("")

@@ -452,6 +452,16 @@ def montar(constantes, veiculos, municipios):
             "total": len(linhas_banco),
             "com_nominal": sum(1 for l in linhas_banco if l["watt_nominal"]),
             "classificaveis": sum(1 for l in linhas_banco if l["categoria"]),
+            # O MOLDE JA CONJUGADO DA PRESTACAO DE CONTAS (09/11/2026). A frase
+            # estava escrita A MAO no snippet, com os numeros interpolados em PHP
+            # e o plural FIXO, e servia no ar *"0 declaram a potencia nominal e 0
+            # DAO para classificar"*. A FORMA e decidida num lugar so (a
+            # referencia, por contagem); o PHP troca `{total}`, `{com_nominal}` e
+            # `{classificaveis}` pelo numero dentro do span de Mono, e por isso
+            # as chaves viajam ABERTAS aqui de proposito.
+            "molde_da_prestacao": f1ref.molde_da_prestacao_da_tabela(
+                sum(1 for l in linhas_banco if l["watt_nominal"]),
+                sum(1 for l in linhas_banco if l["categoria"])),
         },
         "compra": {
             "vitrine": [

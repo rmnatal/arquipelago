@@ -36,7 +36,7 @@
  */
 
 if ( ! defined( 'RODAMETRIA_F3_VERSAO' ) ) {
-	define( 'RODAMETRIA_F3_VERSAO', '1.5.0' );
+	define( 'RODAMETRIA_F3_VERSAO', '1.6.0' );
 }
 
 /* A VERSAO DESTE SNIPPET VAI AO AR (20.7). A CHAVE E O `id` DO manifest.json, e
@@ -598,7 +598,21 @@ add_action( 'wp_head', function () {
 		);
 	}
 
-	foreach ( (array) $r['frases_vazio'] as $f ) {
+	/* A RESPOSTA DO JSON-LD LE A LISTA AUTOCONTIDA, E NAO A DA TELA (09/11/2026).
+	   Medido no ar as 13h4xZ de 09/11/2026 nesta URL: esta resposta servia, letra
+	   por letra, a frase da TELA — que termina em *"Os nomes estao logo abaixo,
+	   com a carga de cada um"*. No JSON-LD **nao existe "abaixo"**: o bloco nao
+	   tem vizinho, nao tem ordem e nao carrega os tres nomes. A camada que a
+	   visao geral de IA ingere lia uma promessa que ela nao podia cumprir,
+	   enquanto a camada visivel a cumpria duas telas depois — a 32.4-c literal,
+	   com o sinal invertido (la a tela estava certa e o JSON-LD errado; aqui as
+	   duas estao certas, cada uma com a frase que a sua camada pode cumprir).
+	   `frases_vazio_autocontidas` vem do MESMO corpo e da MESMA lista ordenada:
+	   so a seta final e trocada pelo conteudo apontado. Campo ausente (banco
+	   velho, de antes de hoje) faz a pergunta NAO SAIR — nunca sair apontando
+	   para um lugar que nao existe. */
+	foreach ( (array) ( isset( $r['frases_vazio_autocontidas'] )
+			? $r['frases_vazio_autocontidas'] : array() ) as $f ) {
 		$perguntas[] = array( 'Quais modelos vocês indicam para o meu peso?', $f );
 		break;
 	}
@@ -770,9 +784,13 @@ add_action( 'wp_footer', function () {
     var pVazio = document.querySelector('.rdm-molde-compra-vazio');
     if (pVazio) {
       if (!baldes.folga.length && sem.folga.length) {
+        /* O CORPO MAIS A REMISSAO, nesta ordem — e a remissao e um molde
+           PROPRIO desde 09/11/2026, porque so a TELA pode servi-la: ela
+           aponta para a lista de nomes que este mesmo bloco escreve logo
+           abaixo. O JSON-LD recebe os nomes em vez da seta. */
         pVazio.textContent = preencher(D.moldes.vazio_por_falta_de_oferta,
           {quantos_servem: num(sem.folga.length), quantos: num(D.declaram),
-           total: num(total)});
+           total: num(total)}) + ' ' + D.moldes.vazio_remissao_aos_nomes;
       } else if (!baldes.folga.length) {
         pVazio.textContent = preencher(D.moldes.vazio_por_carga,
           {quantos: num(D.declaram), total: num(total), teto: num(D.teto)});

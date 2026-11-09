@@ -71,7 +71,7 @@
    Antes disto a ilha cujo produto e "o preco de hoje" tinha ZERO ocorrencia de
    `dateModified` e de `datePublished` em todo o JSON-LD das 9 URLs. */
 if ( ! defined( 'RODAMETRIA_CASCA_VERSAO' ) ) {
-	define( 'RODAMETRIA_CASCA_VERSAO', '1.17.0' );
+	define( 'RODAMETRIA_CASCA_VERSAO', '1.18.0' );
 }
 
 /**
@@ -688,6 +688,38 @@ add_action( 'wp_head', function () {
  * 'alerta' para o que trava, 'neutro' para numero sem veredito. O DESIGN.md
  * manda: um uso forte do verde por tela, fora da marca.
  */
+/**
+ * UMA CONTAGEM COM A FORMA QUE A CONTAGEM PEDE — zero, um, muitos.
+ *
+ * Existe por um defeito MEDIDO NO AR as 13h4xZ de 09/11/2026 na home desta
+ * ilha, na frase irma desta: *"De 14 anuncios colhidos, 0 declaram a potencia
+ * nominal e 0 DAO para classificar"*. Prosa com numero interpolado e plural
+ * FIXO fica certa enquanto a contagem for maior que um e mente no dia em que
+ * nao for — a cicatriz da clubedomosaico de 12/10/2026, que esta ilha pagou no
+ * ar outra vez na manha de hoje ("1 dos 6 DECLARAM um watt").
+ *
+ * O ZERO SAI COMO PALAVRA e nao como digito: "nenhum veiculo colhido" diz a
+ * mesma coisa que "0 veiculos colhidos" sem o plural que mente, e por isso o
+ * mundo do zero recebe a frase INTEIRA em vez de um sufixo. Nos outros dois o
+ * numero entra em Mono, que e o que a seccao de tipografia desta ilha pede de
+ * todo numero.
+ *
+ * @param int    $n        a contagem, ja contada — nunca digitada.
+ * @param string $nenhum   a frase inteira do mundo do zero, sem numero.
+ * @param string $um       o que vem depois do `1`.
+ * @param string $varios   o que vem depois do numero, no plural.
+ */
+if ( ! function_exists( 'rodametria_casca_contagem' ) ) {
+function rodametria_casca_contagem( $n, $nenhum, $um, $varios ) {
+	$n = (int) $n;
+	if ( 0 === $n ) {
+		return esc_html( $nenhum );
+	}
+	return '<span class="rdm-num">' . $n . '</span> '
+		. esc_html( 1 === $n ? $um : $varios );
+}
+}
+
 if ( ! function_exists( 'rodametria_casca_caixa' ) ) {
 function rodametria_casca_caixa( $rotulo, $numero, $unidade, $frases, $tom = 'neutro', $atributos = '' ) {
 	$tons  = array( 'verde', 'alerta', 'neutro' );
@@ -1935,13 +1967,29 @@ function rodametria_casca_home_html() {
 
 	if ( $dados ) {
 		$html .= '<h2>O que a gente já mediu</h2>';
+		/* OS TRES NUMEROS DESTA FRASE SAO CONTADOS E A FORMA ACOMPANHA A
+		   CONTAGEM (09/11/2026). Ela era escrita com o plural FIXO nos tres —
+		   "N veiculos colhidos, N deles com oferta aberta e rastreavel, e N
+		   combinacoes" —, e com 1 em qualquer dos tres ela serviria "1
+		   veiculos", "1 deles" e "1 combinacoes". Nenhum dos tres mundos e
+		   produzido pelo banco de hoje (17, 4 e 4), e os tres estao conjugados
+		   agora pela mesma razao que fez o molde `ressalva_pico_com_nominal` da
+		   F1 nascer antes do mundo dele: e hoje que alguem os le, e a irma
+		   `prestacao_da_tabela` acabou de ser achada NO AR com o mesmo defeito.
+		   Zero sai como palavra, nunca como digito no meio da frase: "0
+		   veiculos colhidos" e o plural que mente da clubedomosaico (12/10). */
+		$n_regs = (int) $dados['compra']['total_registros_veiculos'];
 		$html .= '<p>A Rodametria não copia número de anúncio: cada campo entra no nosso banco com a '
 			. 'ficha de onde saiu e a data da leitura, e campo que a ficha não declara fica vazio em '
 			. 'vez de ser preenchido por estimativa. Hoje o banco tem '
-			. '<span class="rdm-num">' . (int) $dados['compra']['total_registros_veiculos'] . '</span> '
-			. 'veículos colhidos, <span class="rdm-num">' . (int) $n_vitrine . '</span> deles com oferta '
-			. 'aberta e rastreável, e <span class="rdm-num">' . (int) $n_tabela . '</span> combinações de '
-			. 'bateria já calculadas na conta de autonomia.</p>';
+			. rodametria_casca_contagem( $n_regs, 'nenhum veículo colhido', 'veículo colhido',
+				'veículos colhidos' )
+			. ', ' . rodametria_casca_contagem( $n_vitrine, 'nenhum deles com oferta aberta e rastreável',
+				'dele com oferta aberta e rastreável', 'deles com oferta aberta e rastreável' )
+			. ', e ' . rodametria_casca_contagem( $n_tabela, 'nenhuma combinação de bateria ainda '
+				. 'calculada', 'combinação de bateria já calculada', 'combinações de bateria já '
+				. 'calculadas' )
+			. ' na conta de autonomia.</p>';
 		$html .= '<p>O que ainda falta está dito em cada página, com a causa: é assim que a gente '
 			. 'separa “não sabemos” de “não existe”.</p>';
 	}

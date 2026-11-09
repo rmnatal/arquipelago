@@ -61,7 +61,10 @@
     "linha_no_limite": "{nome} declara {carga} kg: até aguenta os seus {total} kg, mas sem a folga de {pct}% que a gente pede.",
     "linha_nao_aguenta": "{nome} declara {carga} kg — faltam {faltam} kg só para alcançar o seu peso.",
     "vazio_por_carga": "Nenhum dos {quantos} veículos com carga declarada e oferta aberta no nosso banco aguenta os seus {total} kg com folga: o maior teto que temos declarado é de {teto} kg. Não estimamos a carga de quem não a declara, então aqui a gente prefere dizer que não tem do que apontar um que talvez não sirva.",
-    "vazio_por_falta_de_oferta": "{quantos_servem} dos {quantos} veículos que declaram carga máxima no nosso banco aguentariam os seus {total} kg com folga — e nenhum deles tem oferta aberta hoje. Não montamos vitrine com item sem link de loja, porque o botão que não leva a lugar nenhum é pior que a ausência dele. Os nomes estão logo abaixo, com a carga de cada um.",
+    "vazio_por_falta_de_oferta": "{quantos_servem} dos {quantos} veículos que declaram carga máxima no nosso banco aguentariam os seus {total} kg com folga — e nenhum deles tem oferta aberta hoje. Não montamos vitrine com item sem link de loja, porque o botão que não leva a lugar nenhum é pior que a ausência dele.",
+    "vazio_remissao_aos_nomes": "Os nomes estão logo abaixo, com a carga de cada um.",
+    "vazio_nomes_autocontidos": "São eles, com a carga que cada um declara: {lista}.",
+    "vazio_nome_autocontido_unico": "É ele, com a carga que declara: {lista}.",
     "vazio_sem_nenhum": "Nenhum veículo do nosso banco declara carga máxima hoje, então não há o que comparar com os seus {total} kg. O campo exige ficha de varejo grande para entrar aqui, e estimar carga por tamanho de roda ou por potência seria inventar o número que esta página existe para dar.",
     "convite_f2": "A conta de autonomia trabalha com a bateria e com o relevo, e é aberta sobre o que ela não faz: o peso de quem pilota não entra no cálculo, porque não existe régua publicada de quanto cada quilo custa em watt-hora por km.",
     "teto_de_mercado": "Para calibrar a expectativa: na faixa que vimos no varejo brasileiro em outubro de 2026, a carga máxima declarada ia de 115 a 140 kg, com {teto} kg sendo o valor que mais se repetia. É o que observamos numa data, não um limite do mercado — e por isso a conta acima compara o seu peso com a ficha de cada veículo, nunca com esse número."
@@ -84,6 +87,9 @@
     "frase_convite_f2": "A conta de autonomia trabalha com a bateria e com o relevo, e é aberta sobre o que ela não faz: o peso de quem pilota não entra no cálculo, porque não existe régua publicada de quanto cada quilo custa em watt-hora por km.",
     "frases_vazio": [
       "3 dos 3 veículos que declaram carga máxima no nosso banco aguentariam os seus 108 kg com folga — e nenhum deles tem oferta aberta hoje. Não montamos vitrine com item sem link de loja, porque o botão que não leva a lugar nenhum é pior que a ausência dele. Os nomes estão logo abaixo, com a carga de cada um."
+    ],
+    "frases_vazio_autocontidas": [
+      "3 dos 3 veículos que declaram carga máxima no nosso banco aguentariam os seus 108 kg com folga — e nenhum deles tem oferta aberta hoje. Não montamos vitrine com item sem link de loja, porque o botão que não leva a lugar nenhum é pior que a ausência dele. São eles, com a carga que cada um declara: MAXSHOT V1 (120 kg), MAXSHOT V1SPRO (120 kg) e PLAYBIK (120 kg)."
     ],
     "frases_ressalva": [],
     "frases_mercado": [

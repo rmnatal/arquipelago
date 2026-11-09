@@ -240,6 +240,12 @@ def montar(constantes, veiculos):
             "frase_margem": r["frase_margem"],
             "frase_convite_f2": r["frase_convite_f2"],
             "frases_vazio": r["frases_vazio"],
+            # A MESMA CAUSA, PARA A CAMADA QUE NAO TEM VIZINHO (09/11/2026).
+            # Item por item igual a lista de cima, com a remissao locativa
+            # ("os nomes estao logo abaixo") trocada pelos NOMES. Quem serve
+            # JSON-LD le esta; o defeito que isto conserta foi medido no ar em
+            # `/peso-maximo-patinete-eletrico/` as 13h4xZ de 09/11/2026.
+            "frases_vazio_autocontidas": r["frases_vazio_autocontidas"],
             "frases_ressalva": r["frases_ressalva"],
             "frases_mercado": r["frases_mercado"],
             "linhas": {k: v for k, v in r["linhas"].items()},

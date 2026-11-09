@@ -221,7 +221,14 @@
     "municipal_generica": "A categoria é nacional; a rua é municipal. Cidade nenhuma do nosso banco está com o ato lido ainda, então o que vale aqui é o aviso geral: prefeitura pode pôr limite próprio de velocidade e de potência, e já vimos notícia de duas fazendo isso. Antes de comprar, confira a regra da sua.",
     "municipal_desconhecido": "A categoria é nacional; a rua é municipal — e {municipio} não está no nosso banco. Prefeitura pode pôr limite próprio de velocidade e de potência, então confira a regra da sua antes de comprar.",
     "municipal_conhecido_pendente": "A categoria é nacional; a rua é municipal. {municipio} aparece com limite próprio nas nossas leituras, mas a gente ainda não leu o ato da prefeitura — então não publica o número. Confira na prefeitura.",
-    "municipal_conhecido": "A categoria é nacional; a rua é municipal: {municipio} limita a {limite_kmh} km/h, pelo ato que a gente leu."
+    "municipal_conhecido": "A categoria é nacional; a rua é municipal: {municipio} limita a {limite_kmh} km/h, pelo ato que a gente leu.",
+    "prestacao_da_tabela": "De {total} anúncios colhidos, {nominal} e {classifica}. Esse é o tamanho real do problema, e é por isso que esta ferramenta pergunta os números a você em vez de prometer uma lista pronta.",
+    "prestacao_nominal_nenhum": "nenhum declara a potência nominal",
+    "prestacao_nominal_um": "{com_nominal} declara a potência nominal",
+    "prestacao_nominal_varios": "{com_nominal} declaram a potência nominal",
+    "prestacao_classifica_nenhum": "nenhum dá para classificar",
+    "prestacao_classifica_um": "{classificaveis} dá para classificar",
+    "prestacao_classifica_varios": "{classificaveis} dão para classificar"
   },
   "frases_numeros_que_circulam": [
     "Procurando a resposta desta pergunta a gente achou três pares de números diferentes, em páginas que todas se apresentam como quem sabe. Depois de ler a resolução, dois deles estão lá — e são de categorias diferentes, por isso não competem.",
@@ -517,7 +524,8 @@
     ],
     "total": 14,
     "com_nominal": 0,
-    "classificaveis": 0
+    "classificaveis": 0,
+    "molde_da_prestacao": "De {total} anúncios colhidos, nenhum declara a potência nominal e nenhum dá para classificar. Esse é o tamanho real do problema, e é por isso que esta ferramenta pergunta os números a você em vez de prometer uma lista pronta."
   },
   "compra": {
     "vitrine": [],

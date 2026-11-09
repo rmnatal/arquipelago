@@ -702,8 +702,80 @@ def metade_g():
             ok(t not in baixo,
                "o molde %r traz o quantificador por extenso %r, e ele vai para a tela "
                "sem camada de liberacao nenhuma: %r" % (k, t, molde[:140]))
+
+    # (5) A PRESTACAO DE CONTAS DA TABELA DO BANCO, E A FORMA MUDA COM A CONTAGEM.
+    #
+    # ESTA FRASE FOI MEDIDA NO AR ERRADA as 13h4xZ de 09/11/2026, na home:
+    # *"De 14 anuncios colhidos, 0 declaram a potencia nominal e 0 DAO para
+    # classificar"*. Ela era prosa escrita a mao dentro de
+    # `snippets/rodametria-f1.php`, com os tres numeros interpolados em PHP e o
+    # plural FIXO nos dois eixos — a cicatriz da clubedomosaico de 12/10/2026, e
+    # a MESMA que a `frase_do_rotulo` desta ilha pagou no ar na manha de hoje
+    # ("1 dos 6 DECLARAM um watt"). E o padrao da IRMA DIVERGENTE: a irma ganhou
+    # cinco formas e a concordancia de verbo, e esta nao tinha forma nenhuma.
+    #
+    # OS MUNDOS SAO FABRICADOS porque o banco de hoje produz UM deles (0 e 0), e
+    # regua que nunca viu o mundo dela nasce errada sem poder falhar (secao 8).
+    MUNDOS_DA_PRESTACAO = (
+        # (com_nominal, classificaveis, pedaco que a frase TEM de conter)
+        (0, 0, "nenhum declara a potência nominal e nenhum dá para classificar"),
+        (1, 0, "1 declara a potência nominal e nenhum dá para classificar"),
+        (1, 1, "1 declara a potência nominal e 1 dá para classificar"),
+        (14, 3, "14 declaram a potência nominal e 3 dão para classificar"),
+        (3, 1, "3 declaram a potência nominal e 1 dá para classificar"),
+        # O MUNDO QUE NAO FECHA ARITMETICAMENTE e medido de proposito: a regua nao
+        # e sobre a conta, e sobre a FORMA, e a forma nao pode depender de o banco
+        # ser coerente.
+        (0, 1, "nenhum declara a potência nominal e 1 dá para classificar"),
+    )
+    for com_nom, classif, pedaco in MUNDOS_DA_PRESTACAO:
+        molde = f1ref.molde_da_prestacao_da_tabela(com_nom, classif)
+        frase = molde.format(total=14, com_nominal=com_nom,
+                             classificaveis=classif)
+        ok(pedaco in frase,
+           "o mundo (%d, %d) da prestacao da tabela nao traz %r: %r"
+           % (com_nom, classif, pedaco, frase[:200]))
+        ok(" 0 " not in frase and not frase.startswith("0 "),
+           "o mundo (%d, %d) imprime zero como digito no meio da frase — o plural "
+           "que mente: %r" % (com_nom, classif, frase[:200]))
+        if com_nom == 1:
+            ok("1 declaram" not in frase,
+               "o mundo (%d, %d) usa verbo no PLURAL para UM: %r"
+               % (com_nom, classif, frase[:200]))
+        if classif == 1:
+            ok("1 dão" not in frase,
+               "o mundo (%d, %d) usa `dao` para UM: %r"
+               % (com_nom, classif, frase[:200]))
+        if com_nom > 1:
+            ok("%d declaram" % com_nom in frase,
+               "o mundo (%d, %d) usa verbo no SINGULAR para muitos: %r"
+               % (com_nom, classif, frase[:200]))
+
+    # E A PONTA QUE PROVA: o molde SERVIDO e refabricavel da contagem da propria
+    # tabela. Sem isto os mundos acima poderiam estar certos com o banco no ar
+    # trazendo outra coisa — que e exatamente o que aconteceu em 06/11 e 09/11.
+    _tb = resp["tabela_banco"]
+    ok(_tb.get("molde_da_prestacao") == f1ref.molde_da_prestacao_da_tabela(
+           int(_tb["com_nominal"]), int(_tb["classificaveis"])),
+       "o molde da prestacao SERVIDO nao e refabricavel da contagem da tabela: "
+       "servido %r" % (_tb.get("molde_da_prestacao") or "")[:180])
+    # E A FRASE NAO PODE VOLTAR A SER ESCRITA NO SNIPPET. O defeito de hoje nao
+    # foi a frase: foi ela morar no PHP, onde nenhuma regua desta ilha a lia.
+    _php = io.open(os.path.join(ILHA, "snippets", "rodametria-f1.php"),
+                   encoding="utf-8").read()
+    ok("dão para classificar" not in _php and "declaram a potência" not in _php,
+       "a prosa da prestacao de contas voltou para dentro de "
+       "`snippets/rodametria-f1.php`: la ela nao tem forma, nao tem portao e foi "
+       "ao ar com dois plurais que mentem em 09/11/2026")
+    ok("molde_da_prestacao" in _php,
+       "o snippet nao le `molde_da_prestacao`: a frase da prestacao de contas "
+       "sumiu da pagina ou voltou a ser digitada")
+
     print("  as duas contas que foram ao ar erradas: conversao mm->cm conferida do "
           "outro lado, e os dois mundos do plural fabricados")
+    print("  prestacao de contas da tabela: %d mundos fabricados, a forma mudando "
+          "com a contagem, e o molde servido refeito da contagem"
+          % len(MUNDOS_DA_PRESTACAO))
 
 
 # ---------------------------------------------------------------------------

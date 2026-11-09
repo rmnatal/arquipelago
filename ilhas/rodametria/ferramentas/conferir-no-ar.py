@@ -92,6 +92,26 @@ except Exception as _e:  # noqa: BLE001 — qualquer falha aqui e "nao medi"
     _POR_QUE_SEM_REGUA = str(_e)
 
 
+# A REGUA DA REMISSAO DE CAMADA, pelo MESMO desenho e pela mesma razao
+# (09/11/2026). Dona: `ferramentas/teste-remissao-de-camada.py`, que a aplica ao
+# repositorio e aos mundos fabricados; aqui ela chega ao JSON-LD SERVIDO de toda
+# URL do sitemap, que e onde os dois defeitos que a fizeram nascer foram
+# medidos: a seta `logo abaixo` na resposta do `FAQPage` da F3 e a oracao
+# declarada duas vezes na resposta do pico, na home.
+_REGUA_DE_REMISSAO = None
+_POR_QUE_SEM_REMISSAO = ""
+try:
+    import importlib.util as _ilu2
+
+    _spec2 = _ilu2.spec_from_file_location(
+        "rodametria_remissao_de_camada",
+        os.path.join(AQUI, "teste-remissao-de-camada.py"))
+    _REGUA_DE_REMISSAO = _ilu2.module_from_spec(_spec2)
+    _spec2.loader.exec_module(_REGUA_DE_REMISSAO)
+except Exception as _e2:  # noqa: BLE001
+    _POR_QUE_SEM_REMISSAO = str(_e2)
+
+
 # As marcacoes que carregam PROSA nesta ilha. `label` e `option` ficam FORA de
 # proposito: o campo "Seu peso" da F2 e um ROTULO de formulario, e medi-lo como
 # afirmacao reprovaria o formulario que a propria ferramenta precisa ter.
@@ -1428,6 +1448,35 @@ def main():
             registro("%s: %d elemento(s) de prosa e %d string(s) de JSON-LD na regua "
                      "das duas afirmacoes, %d par(es) de FAQ"
                      % (caminho, len(_elem), len(_ld_textos), len(_ld_pares)))
+
+        # =================================================================
+        # A CAMADA QUE NAO TEM VIZINHO — REMISSAO LOCATIVA E ORACAO REPETIDA
+        # (09/11/2026, os dois medidos no ar nesta mesma passada)
+        #
+        # Isto NAO e a regua de cima com outra lista: aquela mede AFIRMACAO (a
+        # pagina diz algo que nao pode dizer) e esta mede o que a CAMADA pode
+        # cumprir. `Os nomes estao logo abaixo` e verdade na tela e mentira no
+        # JSON-LD, sem que uma palavra da frase mude — por isso ela roda SO
+        # sobre o JSON-LD, e nao sobre a prosa.
+        # =================================================================
+        if _REGUA_DE_REMISSAO is None:
+            registro("%s: a remissao de camada NAO foi medida (%s)"
+                     % (caminho, _POR_QUE_SEM_REMISSAO))
+        else:
+            _ld_textos2, _ld_pares2 = frases_e_pares_do_jsonld(jsonld)
+            _maus_rem = _REGUA_DE_REMISSAO.problemas_de_remissao(
+                "%s (JSON-LD)" % caminho, _ld_textos2)
+            _maus_rep = _REGUA_DE_REMISSAO.problemas_de_oracao_repetida(
+                "%s (FAQPage)" % caminho, _ld_pares2)
+            afirma(not _maus_rem,
+                   "%s: %d remissao(oes) locativa(s) no JSON-LD — prosa que aponta "
+                   "para um lugar da pagina numa camada que nao tem vizinho nem "
+                   "ordem. A primeira: %s"
+                   % (caminho, len(_maus_rem), _maus_rem[0] if _maus_rem else ""))
+            afirma(not _maus_rep,
+                   "%s: %d resposta(s) de FAQPage declarando o mesmo fato duas "
+                   "vezes dentro de si. A primeira: %s"
+                   % (caminho, len(_maus_rep), _maus_rep[0] if _maus_rep else ""))
 
         if caminho not in ("/", ""):
             afirma(any("BreadcrumbList" in j for j in jsonld),

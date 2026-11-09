@@ -166,12 +166,45 @@ MOLDES = {
         "é de {teto} kg. Não estimamos a carga de quem não a declara, então aqui a "
         "gente prefere dizer que não tem do que apontar um que talvez não sirva."
     ),
+    # TRES MOLDES ONDE HAVIA UM, E A CAUSA E DE CAMADA, NAO DE TEXTO (09/11/2026).
+    #
+    # Este molde terminava com *"Os nomes estao logo abaixo, com a carga de cada
+    # um."* — e a frase e VERDADEIRA na pagina e FALSA no `FAQPage`. Medido no ar
+    # as 13h4xZ de 09/11/2026 em `/peso-maximo-patinete-eletrico/`: a resposta da
+    # pergunta "Quais modelos voces indicam para o meu peso?" do JSON-LD servia a
+    # frase inteira, e **no JSON-LD nao existe "abaixo"** — os tres nomes nunca
+    # aparecem naquele bloco. Quem ingere a camada da IA le uma promessa que a
+    # camada nao pode cumprir.
+    #
+    # A CLASSE TEM NOME: *remissao locativa*. "logo abaixo", "na tabela acima",
+    # "a seguir" — prosa que aponta para um LUGAR da pagina. Ela e barata e certa
+    # no HTML e e sempre falsa no JSON-LD, que nao tem ordem nem vizinho. E a
+    # 32.4-c de novo: *"toda regua de TEXTO de uma pagina vale para o HTML
+    # SERVIDO"* — e aqui, mais do que a regua, o que precisava mudar era a FRASE.
+    #
+    # O CONSERTO NAO E CONSERTAR A FRASE DUAS VEZES: e cada camada receber a
+    # frase que ela pode cumprir, das MESMAS contagens e da MESMA lista. O corpo
+    # e um; a pagina ganha a REMISSAO (o que ela sempre fez), e a camada sem
+    # vizinho ganha os NOMES, lidos da lista que a propria pagina serve.
     "vazio_por_falta_de_oferta": (
         "{quantos_servem} dos {quantos} veículos que declaram carga máxima no nosso "
         "banco aguentariam os seus {total} kg com folga — e nenhum deles tem oferta "
         "aberta hoje. Não montamos vitrine com item sem link de loja, porque o botão "
-        "que não leva a lugar nenhum é pior que a ausência dele. Os nomes estão "
-        "logo abaixo, com a carga de cada um."
+        "que não leva a lugar nenhum é pior que a ausência dele."
+    ),
+    # SO A PAGINA PODE SERVIR ESTE: ele aponta para um lugar.
+    "vazio_remissao_aos_nomes": (
+        "Os nomes estão logo abaixo, com a carga de cada um."
+    ),
+    # E ESTE E O DA CAMADA SEM VIZINHO: ele CARREGA os nomes em vez de apontar.
+    # Dois moldes por contagem, porque "Os nomes" com um registro so e o plural
+    # que mente — a mesma cicatriz da clubedomosaico de 12/10/2026, e a mesma que
+    # a `frase_do_rotulo` pagou no ar em 09/11/2026 de manha.
+    "vazio_nomes_autocontidos": (
+        "São eles, com a carga que cada um declara: {lista}."
+    ),
+    "vazio_nome_autocontido_unico": (
+        "É ele, com a carga que declara: {lista}."
     ),
     "vazio_sem_nenhum": (
         "Nenhum veículo do nosso banco declara carga máxima hoje, então não há o "
@@ -391,6 +424,38 @@ def quantos_serviriam_sem_a_oferta(registros, total, margem_fr):
                          for c, n, i in servem]
 
 
+def frase_dos_nomes_que_serviriam(serviriam):
+    """Os nomes que a pagina serve LOGO ABAIXO, carregados dentro da frase.
+
+    Existe por um defeito medido no ar as 13h4xZ de 09/11/2026 em
+    `/peso-maximo-patinete-eletrico/`: a resposta do `FAQPage` terminava com
+    *"Os nomes estao logo abaixo, com a carga de cada um"* — e no JSON-LD nao
+    existe "abaixo". A camada que a visao geral de IA ingere lia uma promessa
+    que ela nao podia cumprir, enquanto a camada visivel a cumpria duas telas
+    depois. E a 32.4-c: as duas camadas nao podem divergir, e a que nao tem
+    vizinho recebe o CONTEUDO em vez da seta.
+
+    A lista sai NA ORDEM EM QUE A PAGINA A SERVE (`quantos_serviriam_sem_a_oferta`
+    ja ordena por carga declarada), e o molde muda com a contagem: com um
+    registro so, "Sao eles" e o plural que mente — a cicatriz da clubedomosaico
+    de 12/10/2026, e a mesma que a `frase_do_rotulo` pagou NO AR na manha de
+    09/11/2026. Lista vazia devolve string vazia: quem chama fica sem a frase,
+    nunca com a frase pela metade.
+    """
+    if not serviriam:
+        return ""
+    partes = ["%s (%s kg)" % (r["nome"],
+                              _n(Fraction(str(r["carga_max_kg"]))))
+              for r in serviriam]
+    if len(partes) == 1:
+        lista = partes[0]
+    else:
+        lista = ", ".join(partes[:-1]) + " e " + partes[-1]
+    chave = ("vazio_nome_autocontido_unico" if len(partes) == 1
+             else "vazio_nomes_autocontidos")
+    return MOLDES[chave].format(lista=lista)
+
+
 def maior_teto_do_banco(registros):
     """O maior `carga_max_kg` declarado no banco, e QUANTOS o declaram.
 
@@ -490,6 +555,12 @@ def responder(peso_piloto_kg, carga_kg=0, constantes=None, registros=None):
     linhas = {}
     contagem = {}
     frases_vazio = []
+    # A MESMA CAUSA, NA FRASE QUE UMA CAMADA SEM VIZINHO PODE CUMPRIR (09/11/2026).
+    # Mesmo tamanho e mesma ordem de `frases_vazio`, item por item: onde a frase
+    # da pagina aponta para um LUGAR, esta CARREGA o conteudo apontado; onde nao
+    # aponta, as duas sao a MESMA string. Quem serve JSON-LD le esta; quem serve
+    # HTML le a de cima. Ver o comentario dos tres moldes de `vazio_*`.
+    frases_vazio_autocontidas = []
     teto_do_banco = None
     quantos_declaram = 0
     quantos_serviriam = 0
@@ -528,17 +599,26 @@ def responder(peso_piloto_kg, carga_kg=0, constantes=None, registros=None):
             registros, total, margem_fr)
         if not linhas["folga"]:
             if teto_do_banco is None:
-                frases_vazio.append(MOLDES["vazio_sem_nenhum"].format(total=_n(total)))
+                _f = MOLDES["vazio_sem_nenhum"].format(total=_n(total))
+                frases_vazio.append(_f)
+                # Nao aponta para lugar nenhum: a mesma string nas duas camadas.
+                frases_vazio_autocontidas.append(_f)
             elif quantos_serviriam > 0:
                 # Aguentam e nao ha link: o eixo que esvaziou e o da COMPRA.
-                frases_vazio.append(MOLDES["vazio_por_falta_de_oferta"].format(
+                _corpo = MOLDES["vazio_por_falta_de_oferta"].format(
                     quantos_servem=_n(Fraction(quantos_serviriam)),
-                    quantos=_n(Fraction(quantos_declaram)), total=_n(total)))
+                    quantos=_n(Fraction(quantos_declaram)), total=_n(total))
+                frases_vazio.append(
+                    _corpo + " " + MOLDES["vazio_remissao_aos_nomes"])
+                frases_vazio_autocontidas.append(
+                    _corpo + " " + frase_dos_nomes_que_serviriam(serviriam))
             else:
                 # Ninguem aguenta: o eixo que esvaziou e o da CARGA.
-                frases_vazio.append(MOLDES["vazio_por_carga"].format(
+                _f = MOLDES["vazio_por_carga"].format(
                     quantos=_n(Fraction(quantos_declaram)), total=_n(total),
-                    teto=_n(teto_do_banco)))
+                    teto=_n(teto_do_banco))
+                frases_vazio.append(_f)
+                frases_vazio_autocontidas.append(_f)
 
     # ---- a ressalva SOURCED do grupo do meio, e ela so nasce onde ha grupo ----
     frases_ressalva = []
@@ -570,6 +650,7 @@ def responder(peso_piloto_kg, carga_kg=0, constantes=None, registros=None):
         "contagem": contagem,
         "linhas": linhas,
         "frases_vazio": frases_vazio,
+        "frases_vazio_autocontidas": frases_vazio_autocontidas,
         "frases_ressalva": frases_ressalva,
         "frases_mercado": frases_mercado,
         "teto_do_banco_kg": (None if teto_do_banco is None else float(teto_do_banco)),
