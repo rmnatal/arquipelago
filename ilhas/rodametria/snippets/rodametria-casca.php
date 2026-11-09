@@ -71,7 +71,7 @@
    Antes disto a ilha cujo produto e "o preco de hoje" tinha ZERO ocorrencia de
    `dateModified` e de `datePublished` em todo o JSON-LD das 9 URLs. */
 if ( ! defined( 'RODAMETRIA_CASCA_VERSAO' ) ) {
-	define( 'RODAMETRIA_CASCA_VERSAO', '1.19.0' );
+	define( 'RODAMETRIA_CASCA_VERSAO', '1.20.0' );
 }
 
 /**
@@ -116,6 +116,20 @@ function rodametria_casca_paginas() {
 			'titulo'      => 'Rodametria — os três números antes de comprar um elétrico',
 			'tipo'        => 'website',
 			'no_menu'     => false,
+			/* O ROTULO DO MENU, E ELE EXISTE PORQUE A F1 NAO TINHA NOME NO
+			   CABECALHO DE PAGINA NENHUMA (medido no ar as 19h4xZ de
+			   09/11/2026, no navegador desta nuvem, nas 10 URLs).
+			   O menu servia TRES itens — `Autonomia` (F2), `Carga maxima` (F3)
+			   e `Veiculos` — e a F1, que e a ferramenta principal desta ilha e
+			   mora NA HOME, nao aparecia em nenhum deles: `rodametria_casca_nav_html()`
+			   pulava o slug `inicio` por literal, com o proprio mapa declarando
+			   `no_menu => false` LOGO ACIMA. Duas declaracoes do mesmo fato, uma
+			   delas lida por ninguem — a familia da 20.7 (*"subir uma constante
+			   que ninguem le e rastro, nao mecanismo"*).
+			   `nome` continua `Inicio` porque e dele que sai a TRILHA da 16.3
+			   (`Inicio > Veiculos > ...`); o menu nomeia o que a ferramenta
+			   ENTREGA, no mesmo padrao das irmas. */
+			'menu_rotulo' => 'Categoria e placa',
 			'pai'         => null,
 			/* ITENS 5 E 2 DO DESPACHO DE 30/10/2026, NA MESMA FRASE.
 			   O 5: tinha 161 caracteres no HTML servido, um acima do teto de 160.
@@ -312,12 +326,41 @@ function rodametria_casca_assinatura_html( $negativo = false ) {
  * abre e fecha sai no wp_footer, nunca aqui.
  * ======================================================================== */
 
+/**
+ * O ROTULO DE UM ITEM DE MENU: `menu_rotulo` vence `nome`, e `nome` vence o slug.
+ *
+ * Os dois campos existem porque servem a DUAS superficies com exigencias
+ * diferentes: `nome` e o degrau da trilha da 16.3 (`Inicio > Veiculos > ...`),
+ * onde a home tem de se chamar `Inicio`; o menu nomeia o que a pagina ENTREGA,
+ * no padrao das irmas (`Autonomia`, `Carga maxima`). Sem a separacao, consertar
+ * um lado estraga o outro — e foi por nao ter onde escrever o rotulo do menu que
+ * a home ficou fora dele por literal, de 29/10 a 09/11/2026.
+ */
+if ( ! function_exists( 'rodametria_casca_rotulo_de_menu' ) ) {
+function rodametria_casca_rotulo_de_menu( $slug, $p ) {
+	if ( is_array( $p ) && isset( $p['menu_rotulo'] ) && '' !== $p['menu_rotulo'] ) {
+		return $p['menu_rotulo'];
+	}
+	if ( is_array( $p ) && isset( $p['nome'] ) && '' !== $p['nome'] ) {
+		return $p['nome'];
+	}
+
+	return (string) $slug;
+}
+}
+
 if ( ! function_exists( 'rodametria_casca_nav_html' ) ) {
 function rodametria_casca_nav_html() {
 	$mapa  = rodametria_casca_paginas();
 	$itens = array();
+	/* QUEM DECIDE E O CAMPO `no_menu`, E SO ELE. Antes de 09/11/2026 esta
+	   linha trazia tambem `'inicio' === $slug`, e o literal VENCIA o campo: a
+	   home declarava `no_menu => false` e ficava fora do menu de qualquer jeito.
+	   Nesta ilha a home E a pagina da F1, entao o literal escondia do menu a
+	   ferramenta principal — e o campo que dizia o contrario nao era lido por
+	   ninguem. `teste-menu-da-casca.php` passa a provar que ele e lido. */
 	foreach ( $mapa as $slug => $p ) {
-		if ( 'inicio' === $slug || ! empty( $p['no_menu'] ) ) {
+		if ( ! empty( $p['no_menu'] ) ) {
 			continue;
 		}
 		$url = rodametria_casca_url_do_slug( $slug );
@@ -327,7 +370,7 @@ function rodametria_casca_nav_html() {
 		$atual  = ( $slug === rodametria_casca_slug_atual() );
 		$itens[] = '<li><a href="' . esc_url( $url ) . '"'
 			. ( $atual ? ' aria-current="page"' : '' ) . '>'
-			. esc_html( isset( $p['nome'] ) ? $p['nome'] : $slug ) . '</a></li>';
+			. esc_html( rodametria_casca_rotulo_de_menu( $slug, $p ) ) . '</a></li>';
 	}
 
 	$html  = '<nav class="rdm-nav" aria-label="Navegação principal">';
