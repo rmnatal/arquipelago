@@ -8977,3 +8977,91 @@ nenhum `publicar: true`, nenhum Sync acionado (a instrução diz expressamente p
 nenhum site verificado, nenhuma conta criada, nenhum dado pessoal de terceiro gravado.
 `ARQUIPELAGO.md` não foi lido para decidir nada. Nada foi reformatado, corrigido ou acrescentado
 além do que a instrução trouxe. Nenhuma seção anterior deste log foi apagada, reescrita ou resumida.
+
+---
+
+## 2026-11-09, 12:05 (horário de Brasília) — 15:05Z (UTC) — ronda diária da Sentinela na rodametria: quatro escritas num commit só, tudo no `main`
+
+**Assunto conferido ANTES do `git fetch`:** ronda técnica da ilha **rodametria**, `PAINEL.md` do Arquipélago e
+arquivos de ilha (`PROMPT.md`, `ESTADO.md`, `dados/consertos.md`). É assunto do Arquipélago — instrução
+EXECUTADA. Nenhum dado pessoal de terceiro vinha na instrução, então nada foi deixado de fora por essa trava.
+
+**O que a instrução mandou, e o que foi feito:** quatro escritas, todas aplicadas byte a byte como vieram, num
+commit só. Nenhum trecho a localizar falhou: as quatro âncoras bateram exatamente.
+
+1. `ilhas/rodametria/PROMPT.md` — despacho de 09/11 (5 itens) inserido IMEDIATAMENTE ANTES da linha
+   `## ~~DESPACHO DA SENTINELA — 2026-11-06`, com uma linha em branco depois do bloco. O despacho de 06/11
+   ficou intacto onde estava.
+2. `ilhas/rodametria/dados/consertos.md` — uma linha de tabela acrescentada como ÚLTIMA linha, depois da de
+   `| 2026-11-06 |`.
+3. `ilhas/rodametria/ESTADO.md` — a linha `ultima_ronda:` (linha 7) substituída inteira. Nenhuma outra linha do
+   cabeçalho tocada: `ultima_execucao`, `executando_desde`, `bloco_atual`, `urls_publicadas` e `piso` estão como
+   estavam.
+4. `dados/PAINEL.md` (raiz) — arquivo substituído inteiro pelo conteúdo da instrução.
+
+**`git status --porcelain` (antes do commit):**
+
+```
+ M dados/PAINEL.md
+ M ilhas/rodametria/ESTADO.md
+ M ilhas/rodametria/PROMPT.md
+ M ilhas/rodametria/dados/consertos.md
+```
+
+**`git diff --stat`:**
+
+```
+ dados/PAINEL.md                     | 71 +++++++++++++++++----------------
+ ilhas/rodametria/ESTADO.md          |  2 +-
+ ilhas/rodametria/PROMPT.md          | 79 +++++++++++++++++++++++++++++++++++++
+ ilhas/rodametria/dados/consertos.md |  1 +
+ 4 files changed, 117 insertions(+), 36 deletions(-)
+```
+
+**Hash do commit que foi ao `main`:**
+
+```
+9df639c94d19672b166563eae23ff7299b083fd1
+sentinela: ronda diária de 09/11 na rodametria — despacho de 5 itens, zero consertos, painel e ultima_ronda
+```
+
+Push direto: `git push origin HEAD:main` → `525b0f7..9df639c  HEAD -> main`, de primeira, sem rebase e sem PR.
+Conferido depois com `git fetch origin main && git log -1 origin/main`: o hash em `origin/main` é
+**9df639c**, com os quatro arquivos no `--stat`. **O push está no `main`.**
+
+**Contagem do que mudou, conferida RELENDO os arquivos DEPOIS de gravar (não pelo que eu achei que escrevi):**
+
+```
+ilhas/rodametria/PROMPT.md        1267 linhas no total (+79)
+  "## DESPACHO DA SENTINELA — 2026-11-09"                   1 ocorrência
+  cabeçalhos "### " dentro do despacho de 09/11             6 (os 5 itens + "O QUE ESTA RONDA APRENDEU")
+  "## ~~DESPACHO DA SENTINELA — 2026-11-06" preservado      1 ocorrência
+ilhas/rodametria/dados/consertos.md  11 linhas (eram 10)
+  linhas "| 2026-11-09 |"                                   1
+ilhas/rodametria/ESTADO.md
+  "ultima_ronda: 2026-11-09T14:54Z"                         1 ocorrência
+  "2026-11-06T15:01Z" (a linha antiga)                      0 ocorrência
+dados/PAINEL.md                   64 linhas, começa em "# PAINEL DO ARQUIPÉLAGO"
+  linhas de ilha na tabela "Uma linha por ilha"             6
+  linhas da tabela "Despachos abertos"                      17
+  itens "- " na seção "Precisa do Raphael"                  7
+```
+
+**Saída do comando de verificação que a ESCRITA 3 mandou rodar e incluir na resposta:**
+
+```
+$ python3 -c "import io,yaml;d=yaml.safe_load(io.open('ilhas/rodametria/ESTADO.md',encoding='utf-8').read().split('---')[1]);f=[k for k in ('ilha','estado','prioridade','ultima_execucao','executando_desde','bloco_atual','ultima_ronda','bloqueada_por') if k not in d];print('YAML ok' if not f else 'FALTAM: '+', '.join(f))"
+YAML ok
+```
+
+**Nenhum passo falhou**, então não há mensagem de erro a transcrever aqui.
+
+**O que NÃO foi feito, pelas travas:** nenhuma ilha reservada, nenhum `executando_desde` escrito, nenhum
+cabeçalho de estado tocado além da linha `ultima_ronda` que a instrução nomeou, nenhum bloco de fila executado,
+nenhuma publicação, nenhum `publicar: true`, nenhum Sync acionado, nenhum site verificado, nenhuma conta criada,
+nenhum dado pessoal de terceiro gravado. `ARQUIPELAGO.md` não foi lido para decidir nada. Nada foi reformatado,
+corrigido, "melhorado" ou acrescentado além do que a instrução trouxe — e nenhum arquivo fora dos quatro
+nomeados foi tocado, com a exceção obrigatória deste log. Nenhuma seção anterior deste log foi apagada,
+reescrita ou resumida.
+
+**Este log foi num commit seguinte ao do trabalho**, porque ele precisa do hash do commit que já foi ao `main`.
