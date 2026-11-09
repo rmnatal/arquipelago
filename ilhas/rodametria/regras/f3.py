@@ -51,6 +51,8 @@ um veiculo tem carga declarada E oferta aberta NAO EXISTE no banco de hoje, e so
 a mutacao que o PRODUZ consegue enxergar a vitrine funcionando.
 """
 
+import importlib.util
+import os
 import json
 import os
 from fractions import Fraction
@@ -502,22 +504,19 @@ def _teto(fr):
     return inteiro if Fraction(inteiro) == fr else inteiro + 1
 
 
-def nome_do_registro(r):
-    """O nome que a tela usa, e ele sai do banco, nunca do `id`.
+# O NOME EXIBIDO SAIU DAQUI E PASSOU A MORAR EM `regras/nomes.py` (09/11/2026,
+# item 1 do despacho). Esta era a UNICA das cinco decisoes de nome desta ilha que
+# estava certa — e justamente por isso ela nao podia continuar sendo a quinta
+# copia: enquanto a regra morasse dentro da F3, cada gerador novo ia escrever a
+# sua, como escreveram. O reexporte abaixo mantem `f3ref.nome_do_registro` vivo
+# para quem ja o chama, sem criar uma segunda declaracao do mesmo fato (20.7).
+_spec_nomes = importlib.util.spec_from_file_location(
+    "nomes", os.path.join(os.path.dirname(os.path.abspath(__file__)), "nomes.py"))
+_nomes = importlib.util.module_from_spec(_spec_nomes)
+_spec_nomes.loader.exec_module(_nomes)
 
-    Marca + modelo quando os dois existem; o que houver quando falta um. Sem
-    marca nem modelo, o `titulo_colhido` — que e a palavra do VENDEDOR e nao
-    da ilha (secao 26). Sem nada disso, o `id`, que e o ultimo recurso e nunca
-    o primeiro.
-    """
-    marca = (r.get("marca") or "").strip()
-    modelo = (r.get("modelo") or "").strip()
-    if marca and modelo:
-        return "%s %s" % (marca, modelo)
-    if marca or modelo:
-        return marca or modelo
-    titulo = (r.get("titulo_colhido") or "").strip()
-    return titulo or r.get("id", "")
+nome_do_registro = _nomes.nome_do_registro
+nome_e_fonte = _nomes.nome_e_fonte
 
 
 def responder(peso_piloto_kg, carga_kg=0, constantes=None, registros=None):

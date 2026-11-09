@@ -93,7 +93,7 @@
    pergunta que `dateModified` responde e "quando esta pagina mudou", e a mae muda
    no dia em que QUALQUER filha e recolhida. */
 if ( ! defined( 'RODAMETRIA_PRODUTO_VERSAO' ) ) {
-	define( 'RODAMETRIA_PRODUTO_VERSAO', '1.8.0' );
+	define( 'RODAMETRIA_PRODUTO_VERSAO', '1.8.1' );
 }
 
 /* A VERSAO DESTE SNIPPET VAI AO AR, pelo filtro que a casca 1.6.0 abriu
@@ -605,7 +605,8 @@ function rdm_produto_pagina_html() {
 	$html .= '</div>';
 
 	/* (32.1, ultima linha) A barra fixa do telefone com o numero e o botao. */
-	$html .= rodametria_casca_barra_fixa( 'Mediano', $n['mediana'], '' );
+	$html .= rodametria_casca_barra_fixa( 'Mediano', $n['mediana'], '',
+		(array) $pagina['vitrine']['cartoes'] );
 
 	return $html;
 }

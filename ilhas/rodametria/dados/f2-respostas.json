@@ -3,7 +3,7 @@
   "ilha": "rodametria",
   "ferramenta": "F2",
   "bloco": "3b",
-  "gerado_em": "2026-11-06",
+  "gerado_em": "2026-11-09",
   "gerado_por": "ferramentas/gerar-f2.py",
   "referencia": "ferramentas/f2-referencia.py",
   "especificacao": "dados/especificacao-calculadoras.md, secao 2",
@@ -585,7 +585,7 @@
         },
         {
           "id": "scooter-chopper-1000w-48v",
-          "nome": "scooter-chopper-1000w-48v",
+          "nome": "Scooter eletrica chopper 1.000 W 48 V adulto, 32 km/h",
           "tipo_comercial": "scooter",
           "status": "rascunho",
           "watt_sem_rotulo": 1000,
@@ -699,7 +699,7 @@
       "fora_do_banco": [
         {
           "id": "patinete-adulto-com-banco-shopee",
-          "nome": "patinete-adulto-com-banco-shopee",
+          "nome": "Patinete eletrico adulto com banco (147 vendas)",
           "tipo_comercial": "patinete",
           "status": "excluido_do_banco",
           "watt_sem_rotulo": null,
@@ -721,7 +721,7 @@
         },
         {
           "id": "bike-scooter-moto-1000w-litio",
-          "nome": "bike-scooter-moto-1000w-litio",
+          "nome": "Bike/Scooter/Moto eletrica bateria litio 1.000 W (+25 vendidos)",
           "tipo_comercial": "nao_declarado",
           "status": "excluido_do_banco",
           "watt_sem_rotulo": 1000,
@@ -743,7 +743,7 @@
         },
         {
           "id": "guia-melhor-de-2026",
-          "nome": "guia-melhor-de-2026",
+          "nome": "o modelo 'melhor de 2026' de uma lista comercial (2 x 1.000 W, 72 km/h)",
           "tipo_comercial": "nao_declarado",
           "status": "excluido_do_banco",
           "watt_sem_rotulo": null,

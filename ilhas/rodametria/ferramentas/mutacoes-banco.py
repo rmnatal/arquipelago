@@ -511,6 +511,58 @@ def _(d):
     return d
 
 
+# AS QUEBRAS DA METADE *PUBLICAVEL* DO MESMO CAMPO (09/11/2026, item 2 do
+# despacho de hoje). As tres de cima, de 06/11, mordiam a clausula da SAIDA DE
+# COMPRA — e a frase tem DUAS clausulas. A de publicaveis ficou tres dias sem
+# nenhuma quebra, derivada de uma chave booleana `publicavel` que 0 dos 17
+# registros carrega: espelho e portao liam a MESMA chave ausente, os dois
+# contavam zero e os dois CONCORDAVAM. O despacho pediu, com todas as letras,
+# "uma quebra nova provando que a afirmacao morde ESTA clausula, nao so a
+# vizinha" — e e por isso que a primeira delas e a chave que nao pode voltar a
+# nascer, nao o numero.
+@caso("ALGUEM INVENTA O CAMPO BOOLEANO `publicavel` num registro",
+      "carrega a chave `publicavel`")
+def _(d):
+    # A mutacao do defeito de 06-09/11 pela RAIZ dele: com a chave existindo, a
+    # pergunta "quem e publicavel" passa a ter duas respostas no mesmo arquivo.
+    r = v(d, "maxshot-v1")
+    r["publicavel"] = True
+    return nota_consistente(d)
+
+
+@caso("o `nota` afirma que NENHUM registro esta publicavel, e quatro estao",
+      "a clausula de publicaveis do `nota` recontado nao e '4 dos 17 registros estao")
+def _(d):
+    # A FRASE EXATA que esteve no ar de 06/11 a 09/11, letra por letra.
+    d["veiculos"]["nota"] = d["veiculos"]["nota"].replace(
+        "4 dos 17 registros estao `publicavel` (honeywhale-m2-max, sousa-bike-aro-24, "
+        "x13-chopper-1000w, ls-sport-scooter-1000w)",
+        "NENHUM dos 17 registros esta `publicavel`")
+    return d
+
+
+@caso("o `nota` recontado deixa de NOMEAR um registro que esta publicavel",
+      "a clausula de publicaveis do `nota` recontado nao e '4 dos 17 registros estao")
+def _(d):
+    # So a PRIMEIRA ocorrencia: a clausula de publicaveis. A segunda, da saida de
+    # compra, fica intacta de proposito — se o portao cobrasse as duas de uma vez,
+    # esta quebra nao provaria QUAL clausula morde.
+    d["veiculos"]["nota"] = d["veiculos"]["nota"].replace(
+        ", x13-chopper-1000w", "", 1)
+    return d
+
+
+@caso("um registro SAI de `publicavel` e o `nota` nao foi reespelhado",
+      "a clausula de publicaveis do `nota` recontado nao e '3 dos 17 registros estao")
+def _(d):
+    # O envelhecimento de verdade: o banco anda e a frase fica. Sem nota_consistente
+    # de proposito — e exatamente o mundo que o espelho conserta e o portao acusa.
+    r = v(d, "sousa-bike-aro-24")
+    r["status"] = "rascunho"
+    r["motivo_do_status"] = "mundo fabricado pela bateria de mutacao"
+    return d
+
+
 @caso("status fora do enum", "`status` 'quase' fora do enum")
 def _(d):
     primeiro(d)["status"] = "quase"

@@ -236,7 +236,16 @@ def validar(dados):
     com_saida = [r.get("id") for r in regs
                  if isinstance(r.get("afiliado"), dict)
                  and any((r["afiliado"] or {}).get(c) for c in campos_de_saida)]
-    publicaveis = [r.get("id") for r in regs if r.get("publicavel")]
+    # `publicavel` E VALOR DE `status`, NUNCA CAMPO (09/11/2026, item 2 do
+    # despacho). Esta linha dizia `r.get("publicavel")` — uma chave BOOLEANA que
+    # 0 dos 17 registros carrega —, e o espelho de derivar-banco.py dizia o
+    # MESMO. As duas metades liam a chave ausente, as duas contavam ZERO e as
+    # duas CONCORDAVAM: a frase do `nota` afirmou tres dias que NENHUM registro
+    # estava publicavel, com quatro estando, DEBAIXO do par espelho+portao que
+    # nasceu em 06/11 exatamente para impedir isso. E o proprio arquivo le o
+    # conceito certo (`status == "publicavel"`) em quatro outros lugares.
+    # ESTE PORTAO NAO CHAMA O ESPELHO, pela secao 8: a regua e reescrita aqui.
+    publicaveis = [r.get("id") for r in regs if r.get("status") == "publicavel"]
     nota = str(dados["veiculos"].get("nota") or "")
     marca = "SAIDA DE COMPRA E PUBLICAVEIS, RECONTADOS POR"
     if marca not in nota:
@@ -260,17 +269,66 @@ def validar(dados):
             if ident not in bloco:
                 falha("veiculos.json",
                       "o `nota` recontado nao nomeia `%s`, que tem saida de compra" % ident)
-        esperado_pub = ("NENHUM dos %d registros esta `publicavel`" % len(regs)
-                        if not publicaveis
-                        else "%d dos %d registros" % (len(publicaveis), len(regs)))
-        if esperado_pub not in bloco and "os %d registros estao" % len(regs) not in bloco:
+        # A CLAUSULA DE PUBLICAVEIS E COBRADA INTEIRA, COMO PREFIXO, E NAO POR
+        # DOIS `in` SOLTOS — E ISSO FOI MEDIDO DESFAZENDO A PROPRIA VERSAO
+        # ANTERIOR DESTA LINHA (09/11/2026, item 2 do despacho).
+        #
+        # A versao de 06/11 perguntava duas coisas com `in`: se o bloco tinha
+        # `"%d dos %d registros"` OU `"os %d registros estao"`. A segunda era a
+        # saida de escape para o mundo em que TODOS sao publicaveis — e ela e
+        # SUBSTRING DA PRIMEIRA: `"4 d` + `os 17 registros estao"`. Logo, enquanto
+        # a frase dissesse "N dos M registros estao", a afirmacao NAO PODIA
+        # FALHAR, qualquer que fosse N. Esse foi o SEGUNDO motivo, independente da
+        # chave booleana inexistente, pelo qual o campo envelheceu tres dias
+        # debaixo do portao que nasceu para vigia-lo: a chave errada fazia a
+        # contagem dar zero, e o `in` solto fazia a comparacao nunca morder.
+        # A bateria de mutacao achou este, nao eu: a quebra "um registro SAI de
+        # `publicavel`" foi escrita, rodou, e o validador APROVOU o banco
+        # estragado.
+        #
+        # PREFIXO E NAO `in` porque e a unica forma que nao tem vizinho: a
+        # clausula comeca onde a marca termina, e qualquer palavra diferente ali
+        # — numero, nome, ordem, conjugacao — reprova. Os nomes viajam DENTRO
+        # dela, entao nao precisam de um laco proprio (o laco que eu escrevi
+        # primeiro nao mordia: removido de UMA clausula, o id continuava na
+        # outra, e `ident not in bloco` seguia falso).
+        #
+        # A REGUA E REESCRITA AQUI, pela secao 8, e nao importada do espelho.
+        # Divergencia de redacao entre as duas e exatamente o que este portao
+        # deve acusar: e alguem tendo trocado a frase num lugar so.
+        if not publicaveis:
+            clausula = "NENHUM dos %d registros esta `publicavel`" % len(regs)
+        elif len(publicaveis) == len(regs):
+            clausula = ("os %d registros estao `publicavel` (%s)"
+                        % (len(regs), ", ".join(publicaveis)))
+        else:
+            clausula = ("%d dos %d registros estao `publicavel` (%s)"
+                        % (len(publicaveis), len(regs), ", ".join(publicaveis)))
+        abertura = "validar-banco.py: "
+        depois = bloco.split(abertura, 1)[1] if abertura in bloco else ""
+        if not depois.startswith(clausula):
             falha("veiculos.json",
-                  "o `nota` recontado nao diz %r. Contei %d publicavel(eis) em %d registros "
+                  "a clausula de publicaveis do `nota` recontado nao e %r. Contei %d "
+                  "publicavel(eis) em %d registros, por `status`, e o campo abre com %r "
                   "— rode ferramentas/derivar-banco.py"
-                  % (esperado_pub, len(publicaveis), len(regs)))
+                  % (clausula, len(publicaveis), len(regs), depois[:len(clausula) + 20]))
 
     for v in regs:
         onde = "veiculo %s" % v.get("id")
+        # A CHAVE QUE NAO PODE VOLTAR A NASCER. O defeito de 06/11 a 09/11 nao
+        # foi um numero errado: foi duas metades inventando um campo booleano
+        # `publicavel` que o esquema nunca declarou, e concordando no zero. Se
+        # alguem a escrever num registro para "consertar" a contagem, passam a
+        # existir DUAS verdades sobre publicavel no mesmo arquivo — e e a 20.7
+        # desta ilha: a segunda declaracao do mesmo fato comeca igual e envelhece
+        # sozinha. Publicavel se diz pelo `status`, num lugar so.
+        if "publicavel" in v:
+            falha(onde, "carrega a chave `publicavel`. Publicavel e VALOR de `status` neste "
+                        "banco (`dados/esquema-banco.json`: 'todo VEICULO com status "
+                        "publicavel'), nunca um campo booleano. Chave booleana aqui cria uma "
+                        "segunda verdade sobre o mesmo fato (20.7) — e foi uma chave como esta, "
+                        "LIDA e nunca escrita, que fez o espelho e este portao contarem zero "
+                        "publicavel e CONCORDAREM, de 06/11 a 09/11, com quatro publicaveis")
         if not _slug(v.get("id")):
             falha(onde, "`id` nao e slug")
         if v.get("id") in vistos:

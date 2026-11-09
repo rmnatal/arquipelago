@@ -36,7 +36,7 @@
  */
 
 if ( ! defined( 'RODAMETRIA_F3_VERSAO' ) ) {
-	define( 'RODAMETRIA_F3_VERSAO', '1.6.0' );
+	define( 'RODAMETRIA_F3_VERSAO', '1.6.1' );
 }
 
 /* A VERSAO DESTE SNIPPET VAI AO AR (20.7). A CHAVE E O `id` DO manifest.json, e
@@ -187,7 +187,8 @@ function rodametria_f3_resultado_html( $d ) {
 	return rodametria_casca_caixa(
 		$m['rotulo_precisa'], $r['carga_minima_tela'], 'kg', $frases, 'verde',
 		' data-rdm-f3-caixa' )
-		. rodametria_casca_barra_fixa( $m['rotulo_precisa'], $r['carga_minima_tela'], 'kg' );
+		. rodametria_casca_barra_fixa( $m['rotulo_precisa'], $r['carga_minima_tela'], 'kg',
+			(array) $d['compra']['vitrine'] );
 }
 }
 

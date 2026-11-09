@@ -6,7 +6,7 @@
  "versao_esquema": 6,
  "gerado_em": "2026-10-28",
  "publicar": false,
- "nota": "PRIMEIRA LEVA, montada SO do que ja estava colhido no repositorio em 28/10/2026: dados/corpus-buscas.md (bloco 1), a tabela 1.6 de dados/especificacao-calculadoras.md (bloco 2) e a secao (c) de bussola/dossies/rodametria/DOSSIE.md (Bussola, 27/10/2026). Nenhuma rede foi tocada para montar este arquivo e nenhum numero foi digitado de cabeca. SAIDA DE COMPRA E PUBLICAVEIS, RECONTADOS POR ferramentas/derivar-banco.py e conferidos por ferramentas/validar-banco.py: NENHUM dos 17 registros esta `publicavel`, e 4 deles JA tem saida de compra (honeywhale-m2-max, sousa-bike-aro-24, x13-chopper-1000w, ls-sport-scooter-1000w), entao a falta de piso da 25.2 nao e mais a causa de todos. Numero de prosa digitado a mao envelhece calado, e este envelheceu uma vez.",
+ "nota": "PRIMEIRA LEVA, montada SO do que ja estava colhido no repositorio em 28/10/2026: dados/corpus-buscas.md (bloco 1), a tabela 1.6 de dados/especificacao-calculadoras.md (bloco 2) e a secao (c) de bussola/dossies/rodametria/DOSSIE.md (Bussola, 27/10/2026). Nenhuma rede foi tocada para montar este arquivo e nenhum numero foi digitado de cabeca. SAIDA DE COMPRA E PUBLICAVEIS, RECONTADOS POR ferramentas/derivar-banco.py e conferidos por ferramentas/validar-banco.py: 4 dos 17 registros estao `publicavel` (honeywhale-m2-max, sousa-bike-aro-24, x13-chopper-1000w, ls-sport-scooter-1000w), e 4 deles JA tem saida de compra (honeywhale-m2-max, sousa-bike-aro-24, x13-chopper-1000w, ls-sport-scooter-1000w), entao a falta de piso da 25.2 nao e mais a causa de todos. Numero de prosa digitado a mao envelhece calado, e este envelheceu uma vez.",
  "registros": [
   {
    "id": "honeywhale-m2-max",

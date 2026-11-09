@@ -45,7 +45,7 @@
    (item 2 do despacho da ronda de 04/11). E o MESMO campo que o "Como sabemos"
    desta pagina ja imprimia em prosa — um fato, uma fonte (20.7). */
 if ( ! defined( 'RODAMETRIA_F2_VERSAO' ) ) {
-	define( 'RODAMETRIA_F2_VERSAO', '1.6.1' );
+	define( 'RODAMETRIA_F2_VERSAO', '1.7.0' );
 }
 
 /* A VERSAO DESTE SNIPPET VAI AO AR, pelo filtro que a casca 1.6.0 abriu
@@ -285,7 +285,15 @@ function rodametria_f2_resultado_html( $d ) {
 
 	return rodametria_casca_caixa( $rotulo, $numero, $unidade, $frases, 'verde',
 		' data-rdm-f2-caixa' )
-		. rodametria_casca_barra_fixa( $rotulo, $numero, $unidade );
+		/* A BARRA RECEBE A MESMA EXPRESSAO QUE O BLOCO, E NAO A FONTE DELA
+		   (09/11/2026, item 3). O bloco desta pagina recebe
+		   `rodametria_f2_itens_da_vitrine( $d )`, que HOJE mapeia um para um
+		   sobre `$d['compra']['vitrine']` — entao as duas contagens batem por
+		   coincidencia, nao por construcao. Passar a FONTE aqui seria a segunda
+		   declaracao do mesmo fato (20.7), e ela mentiria no dia em que aquela
+		   funcao passasse a filtrar um cartao. */
+		. rodametria_casca_barra_fixa( $rotulo, $numero, $unidade,
+			rodametria_f2_itens_da_vitrine( $d ) );
 }
 }
 
@@ -737,7 +745,14 @@ function rodametria_f2_pagina_html() {
 			. '</div>';
 	}
 
-	$itens = rodametria_f2_itens_da_vitrine( $d );
+	/* NOME LOCAL UNICO NO ARQUIVO (09/11/2026, item 3). Ele se chamava `$itens`,
+	   e `$itens` tambem e o acumulador DENTRO de
+	   `rodametria_f2_itens_da_vitrine()` — dois locais homonimos em funcoes
+	   diferentes. Nada quebrava por isso, e era impossivel conferir de fora
+	   que a barra e o bloco recebem a MESMA lista: quem resolvesse o nome
+	   achava `array()` primeiro e concluia o contrario. Nome ambiguo nao e
+	   defeito de estilo; e defeito de CONFERIBILIDADE. */
+	$itens_da_vitrine = rodametria_f2_itens_da_vitrine( $d );
 
 	$html  = '<div class="rdm-faixa rdm-pagina">';
 	$html .= rodametria_casca_trilha_html();
@@ -756,7 +771,7 @@ function rodametria_f2_pagina_html() {
 	   Agora ela sai contada da propria vitrine, em gerar-f2.py. */
 	$html .= rodametria_casca_bloco_de_compra(
 		'À venda agora, e o que cada um é',
-		$itens,
+		$itens_da_vitrine,
 		(string) $d['compra']['frase_de_abertura'],
 		'Nenhum veículo do nosso banco tem oferta aberta neste momento.' );
 

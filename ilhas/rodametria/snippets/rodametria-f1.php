@@ -77,7 +77,7 @@ if ( ! defined( 'RODAMETRIA_F1_VERSAO' ) ) {
 	   saida que a Fundacao tem sem o token (`forcar=1` exige o token, que nesta
 	   ilha nao esta no repositorio por decisao). Quem desembarcar PHP aqui ja
 	   sobe a segunda revisao sem esperar o log pedir. */
-	define( 'RODAMETRIA_F1_VERSAO', '1.4.1' );
+	define( 'RODAMETRIA_F1_VERSAO', '1.5.0' );
 }
 
 if ( ! defined( 'RODAMETRIA_ID_DADOS_F1' ) ) {
@@ -314,7 +314,10 @@ function rodametria_f1_resultado_html( $d ) {
 	}
 	$html .= '</div>';
 
-	$html .= rodametria_casca_barra_fixa( $rotulo, $numero, '' );
+	/* A LISTA DA VITRINE VIAJA PARA A BARRA (09/11/2026, item 3): o rotulo do
+	   atalho sai da MESMA lista que monta o bloco de compra, nunca de um literal. */
+	$html .= rodametria_casca_barra_fixa( $rotulo, $numero, '',
+		(array) $d['compra']['vitrine'] );
 
 	return $html;
 }
@@ -710,9 +713,17 @@ function rodametria_f1_html() {
 	$html .= rodametria_f1_noscript_html( $d );
 	$html .= rodametria_f1_resultado_html( $d );
 
+	/* A VITRINE, E NAO `array()` LITERAL (09/11/2026, achado ao consertar o item
+	   3). Esta chamada passava uma lista VAZIA escrita a mao. Ela esta certa
+	   HOJE, por coincidencia — `gerar-f1.py` escreve `compra.vitrine` com zero
+	   cartao, porque nenhum dos 14 registros classifica —, e e a mesma familia
+	   do numero de tela digitado: no dia em que o primeiro registro declarar a
+	   potencia NOMINAL e tiver oferta, a F1 continuaria servindo bloco vazio com
+	   a vitrine cheia, e nenhum portao veria, porque os dois numeros batem
+	   enquanto os dois sao zero. */
 	$html .= rodametria_casca_bloco_de_compra(
 		'À venda agora nesta categoria',
-		array(),
+		(array) $d['compra']['vitrine'],
 		(string) $d['compra']['frase_de_abertura'],
 		(string) $d['compra']['frase_de_abertura'] );
 

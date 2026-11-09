@@ -260,6 +260,76 @@ def problemas_de_peso(onde, elementos):
 
 
 # ---------------------------------------------------------------------------
+# A TERCEIRA CLASSE: O MESMO ATO DE COLHER, CONTADO COM DOIS NUMEROS NA MESMA
+# PAGINA (09/11/2026, item 4 do despacho da ronda de hoje).
+#
+# O DEFEITO MEDIDO no HTML servido da home: *"Hoje o banco tem 17 VEICULOS
+# COLHIDOS"* e, duas dobras abaixo, *"Dos 14 anuncios que a gente COLHEU"* e
+# *"De 14 anuncios COLHIDOS"*. Os numeros estavam todos CERTOS — 17 registros no
+# arquivo, 14 nao excluidos — e as PALAVRAS nao: quem le a pagina de cima a baixo
+# recebe duas respostas para "quantos vocês colheram".
+#
+# POR QUE A REGUA SE ANCORA NO VERBO E NAO NO SUBSTANTIVO: os substantivos eram
+# DIFERENTES (`veiculos` e `anuncios`), entao uma regua que cruzasse substantivos
+# nao veria nada. O que colide e a AFIRMACAO — "colhemos N" —, e ela se escreve
+# com o participio ou com a oracao `que a gente colheu`. E a mesma licao do corte
+# de frase da regua de habilitacao, de 06/11: o que se mede e a afirmacao, nao a
+# forma em que alguem imaginou que ela apareceria.
+#
+# E A AFIRMACAO E POSITIVA, pela 20.8: nao procuro o par (17, 14) que eu ja vi.
+# Recolho TODA contagem de colheita da pagina e exijo que haja no maximo UMA.
+# Redacao nova, numero novo, substantivo novo — tudo cai na mesma conta, e par
+# novo REPROVA sem ninguem ter imaginado.
+
+#: "N <coisa> colhido(s)/colhida(s)" e "N <coisa> que a gente colheu/colhemos".
+#: O miolo entre o numero e o verbo e limitado para a regua nao atravessar frase.
+CONTAGEM_DE_COLHEITA = re.compile(
+    r"(\d[\d.]*)\s+([^.;:!?]{0,60}?)\b(colhid[oa]s?|que a gente colheu|que colhemos)\b",
+    re.I)
+
+
+def contagens_de_colheita(texto):
+    """As contagens de colheita de um texto, como [(numero, trecho)].
+
+    O numero volta NORMALIZADO (ponto de milhar fora), porque "1.000 colhidos" e
+    "1000 colhidos" sao a mesma afirmacao e um par delas nao e contradicao.
+    """
+    saida = []
+    for m in CONTAGEM_DE_COLHEITA.finditer(sem_acento(texto)):
+        bruto = m.group(1)
+        numero = bruto.replace(".", "")
+        if not numero.isdigit():
+            continue
+        saida.append((int(numero), re.sub(r"\s+", " ", m.group(0)).strip()))
+    return saida
+
+
+def problemas_de_colheita(onde, elementos):
+    """Reprova quando a MESMA pagina declara duas colheitas de tamanhos diferentes.
+
+    O corte e por PAGINA e nao por elemento, e e a unica forma de ver esta
+    classe: cada frase, sozinha, esta certa. Foi assim que o defeito sobreviveu
+    — a 20.4 desta ilha ja escreveu a familia com todas as letras sobre o log do
+    `/status`, e aqui ela reaparece em prosa.
+    """
+    vistos = {}
+    for texto in elementos:
+        for numero, trecho in contagens_de_colheita(texto):
+            vistos.setdefault(numero, trecho)
+
+    if len(vistos) < 2:
+        return []
+
+    pares = ", ".join("%d em %r" % (n, vistos[n]) for n in sorted(vistos))
+    return ["%s: a pagina declara %d colheitas de tamanhos DIFERENTES (%s). Os numeros podem "
+            "estar todos certos e ainda assim a pagina responde duas coisas a \"quantos voces "
+            "colheram\". Um numero, um substantivo: nesta ilha o total do arquivo e "
+            "`registros` e o que o banco conta e `anuncios colhidos`, e a soma fecha com o "
+            "grupo `fora do banco` da prestacao de contas"
+            % (onde, len(vistos), pares)]
+
+
+# ---------------------------------------------------------------------------
 # A SUPERFICIE DO REPOSITORIO
 # ---------------------------------------------------------------------------
 
@@ -410,12 +480,23 @@ def medir_repositorio():
     falhas = []
     afirmacoes = 0
 
+    # A COLHEITA SE MEDE POR ARQUIVO AQUI, E A MEDICAO QUE MANDA E A DO AR.
+    # A unidade desta classe e a PAGINA — cada frase, sozinha, esta certa —, e o
+    # repositorio nao sabe de pagina: um `dados/*.json` pode alimentar varias e
+    # a prosa de um snippet pode sair em nenhuma. Entao aqui ela e aviso BARATO
+    # E ANTECIPADO, agrupado por arquivo, e o veredito e o de
+    # `conferir-no-ar.py`, que agrupa por URL do `wp-sitemap.xml`. Esta distincao
+    # esta escrita pelo mesmo motivo que a de 06/11 sobre o PHP lido por
+    # instrucao: regua que promete mais do que alcanca ensina a desconfiar dela.
+    por_arquivo = {}
+
     for nome, d in arquivos_publicaveis():
         textos = textos_de_tela_do_dado(nome, d)
         for onde, t in textos:
             afirmacoes += 2
             falhas += problemas_de_habilitacao(onde, [t])
             falhas += problemas_de_peso(onde, [t])
+            por_arquivo.setdefault(nome, []).append(t)
         pares = pares_de_faq_do_dado(d)
         afirmacoes += len(pares)
         falhas += problemas_do_faq_de_habilitacao(nome, pares)
@@ -424,6 +505,12 @@ def medir_repositorio():
         afirmacoes += 2
         falhas += problemas_de_habilitacao(nome, [t])
         falhas += problemas_de_peso(nome, [t])
+        # O nome vem como "arquivo.php (instrucao N)"; o agrupamento e por ARQUIVO.
+        por_arquivo.setdefault(nome.split(" (instrucao")[0], []).append(t)
+
+    for nome, textos in sorted(por_arquivo.items()):
+        afirmacoes += 1
+        falhas += problemas_de_colheita(nome, textos)
 
     return afirmacoes, falhas
 
@@ -620,6 +707,86 @@ def autoteste():
         "8. `seu peso` com `kg` e sem `km` nao dispara a regua da autonomia")
     diz(len(problemas_de_peso("x", ["O seu peso muda os km que a conta devolve."])) == 1,
         "8. `seu peso` com `km` dispara")
+
+    # ======================================================================
+    # MUNDO 9 — A COLHEITA CONTADA DUAS VEZES (item 4 do despacho de 09/11/2026).
+    #
+    # O PRIMEIRO MUNDO E O AR DA REVISAO 70, copiado letra por letra do HTML
+    # servido da home as 16h2xZ de 09/11/2026 pela execucao que fechou o
+    # despacho. Mundo fabricado de cabeca prova a regua contra a imaginacao de
+    # quem a escreveu; este prova contra o defeito.
+    # ======================================================================
+    AR_70_HOME_MA = (
+        "A Rodametria não copia número de anúncio: cada campo entra no nosso banco com a "
+        "ficha de onde saiu e a data da leitura, e campo que a ficha não declara fica vazio "
+        "em vez de ser preenchido por estimativa. Hoje o banco tem 17 veículos colhidos, "
+        "4 deles com oferta aberta e rastreável, e 4 combinações de bateria já calculadas "
+        "na conta de autonomia.",
+        "O número grande do anúncio não é o que a regra lê: ela lê a potência NOMINAL, que "
+        "fica na ficha. Dos 14 anúncios que a gente colheu, 13 declaram um watt sem dizer "
+        "se é nominal ou de pico, e NENHUM declara o nominal.",
+        "De 14 anúncios colhidos, nenhum declara a potência nominal e nenhum dá para "
+        "classificar.",
+        "A soma fecha os 17 registros do banco, contada e nunca digitada.",
+    )
+    p9 = problemas_de_colheita("ar70/home", list(AR_70_HOME_MA))
+    diz(len(p9) == 1, "9. o AR DA REVISAO 70 da home REPROVA: 17 colhidos e 14 colhidos na "
+                      "mesma pagina%s" % ("" if len(p9) == 1 else "  <-- %d achado(s)" % len(p9)))
+    if p9:
+        diz("17" in p9[0] and "14" in p9[0],
+            "9. e a frase do defeito NOMEIA os dois numeros, para quem a ler saber onde olhar")
+
+    # O MESMO MUNDO COM O CONSERTO: so o 17 muda de substantivo, e a pagina passa.
+    AR_70_HOME_BOA = tuple(
+        t.replace("17 veículos colhidos", "17 registros") for t in AR_70_HOME_MA)
+    diz(not problemas_de_colheita("ar70/home-consertada", list(AR_70_HOME_BOA)),
+        "9. e a MESMA pagina com `17 registros` em vez de `17 veículos colhidos` passa")
+
+    # A DISCORDANCIA QUE TORNA ISTO MEDICAO (20.8): a regua VELHA — a que
+    # cruzaria SUBSTANTIVOS — nao ve este defeito, porque os substantivos eram
+    # diferentes (`veículos` e `anúncios`). Se as duas concordassem, a ancora no
+    # verbo nao valeria nada.
+    def velha_cruza_substantivo(elementos):
+        achados = {}
+        for t in elementos:
+            for m in re.finditer(r"(\d[\d.]*)\s+(veiculos?|anuncios?|registros?)",
+                                 sem_acento(t), re.I):
+                achados.setdefault(m.group(2).rstrip("s"), set()).add(m.group(1))
+        return [k for k, v in achados.items() if len(v) > 1]
+
+    diz(not velha_cruza_substantivo(list(AR_70_HOME_MA)),
+        "9. a regua VELHA (cruzando substantivos) NAO ve o defeito — os substantivos eram "
+        "diferentes, e e por isso que a nova se ancora no VERBO. As duas discordam")
+
+    # MUNDO 9-b — O QUE A REGUA NAO PODE REPROVAR.
+    diz(not problemas_de_colheita("x", ["Dos 14 anúncios que a gente colheu, 13 declaram "
+                                        "um watt.", "De 14 anúncios colhidos, nenhum "
+                                        "declara o nominal."]),
+        "9b. duas frases com a MESMA contagem (14 e 14) passam — repeticao nao e contradicao")
+    diz(not problemas_de_colheita("x", ["Hoje o banco tem 17 registros, 4 deles com oferta "
+                                        "aberta, e 4 combinações de bateria."]),
+        "9b. numeros SEM verbo de colher nao entram na conta")
+    diz(not problemas_de_colheita("x", ["De 1.000 anúncios colhidos, 1000 foram lidos na "
+                                        "ficha e 1.000 colhidos tinham watt."]),
+        "9b. `1.000` e `1000` sao a MESMA afirmacao: ponto de milhar nao e contradicao")
+    diz(len(problemas_de_colheita("x", ["Colhemos tudo. 9 anúncios colhidos hoje.",
+                                        "E 11 veículos que colhemos ontem."])) == 1,
+        "9b. redacao NOVA (`que colhemos`) com numero diferente REPROVA sem ninguem "
+        "ter imaginado o par")
+    # O MIOLO E LIMITADO: a regua nao atravessa frase para casar um numero de uma
+    # com o verbo de outra. Sem esse teto, "17 registros. Os anúncios colhidos..."
+    # viraria um par falso.
+    # O PONTO SEPARA AFIRMACAO: o `17` de uma frase nao pode casar com o verbo da
+    # seguinte. (Escrito depois de este bloco ter nascido com um `or True`
+    # pendurado nesta linha — afirmacao que passa sempre e portao INERTE, que e
+    # o que o proprio `bancada.py` desta ilha denuncia por nome.)
+    diz(not problemas_de_colheita("x", ["Hoje o banco tem 17 registros. Os 14 anúncios "
+                                        "colhidos estão na tabela."]),
+        "9b. o PONTO separa afirmacao: o 17 de uma frase nao casa com o verbo da seguinte")
+    diz(not contagens_de_colheita("Hoje o banco tem 17 registros. " + ("x " * 40)
+                                  + "anúncios colhidos."),
+        "9b. a regua NAO atravessa 60 caracteres entre o numero e o verbo — par a "
+        "distancia e par inventado")
 
     print("")
     print("  AUTOTESTE — %d mundo(s) medido(s), %d falha(s)" % (len(ok) + len(mal), len(mal)))

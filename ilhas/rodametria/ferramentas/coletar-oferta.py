@@ -48,6 +48,16 @@ contagem sai separada em `mercado_nao_anuncia`, `candidato_barrado` e
 """
 import argparse
 import importlib.util
+
+
+def _nomes():
+    """`regras/nomes.py`, importado pelo caminho e so quando preciso."""
+    caminho = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                           "regras", "nomes.py")
+    spec = importlib.util.spec_from_file_location("nomes", caminho)
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
 import json
 import re
 import struct
@@ -621,7 +631,11 @@ def trabalhar(dados, gravar):
             # --- a foto, MEDIDA nos primeiros bytes (25.7)
             dim, erro_foto = medir_foto(escolhida.get("imagem_url"))
             if dim:
-                nome = " ".join(x for x in (r.get("marca"), r.get("modelo")) if x) or r["id"]
+                # A MESMA FUNCAO QUE AS TRES FERRAMENTAS (09/11/2026, item 1).
+                # Esta nao vai para tela, e e por onde o nome ENTRA: nome de
+                # entrada diferente do nome de tela e a divergencia da semana que
+                # vem, e foi assim que nasceram as cinco respostas de antes.
+                nome = _nomes().nome_do_registro(r)
                 r["imagem"] = {
                     "url": escolhida.get("imagem_url"),
                     "largura": dim[0],

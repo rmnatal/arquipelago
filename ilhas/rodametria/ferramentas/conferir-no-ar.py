@@ -50,6 +50,7 @@ import json
 import os
 import re
 import sys
+import time
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -185,7 +186,26 @@ def registro(msg):
     registros.append(msg)
 
 
-def buscar(caminho, v=True):
+class _SemSeguir(urllib.request.HTTPRedirectHandler):
+    """NAO segue redirecionamento: devolve a resposta do 3xx como ela veio.
+
+    NASCEU EM 09/11/2026, PELO ITEM 5 DO DESPACHO. `urllib.request.urlopen`
+    segue 301 e 302 por padrao, e `buscar()` devolvia o codigo do FIM DA CADEIA.
+    Com isso a afirmacao da 32.1-b — que manda *"montar a query com os valores
+    que o navegador enviaria e exigir 200"* — media "chega em 200" onde a regra
+    pede "responde 200", e aprovava 486 afirmacoes com o botao da ferramenta
+    principal respondendo 301. Portao que relata o estado do fim da cadeia nao ve
+    o que acontece no meio dela.
+    """
+
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        return None
+
+
+_ABRIDOR_SEM_SEGUIR = urllib.request.build_opener(_SemSeguir)
+
+
+def buscar(caminho, v=True, seguir=True):
     url = DOMINIO + caminho
     if v:
         url += ("&" if "?" in caminho else "?") + "v=" + str(int(__import__("time").time()))
@@ -193,13 +213,77 @@ def buscar(caminho, v=True):
         "User-Agent": "rodametria-conferir/1.0",
         "Accept-Encoding": "identity",
     })
+    abrir = urllib.request.urlopen if seguir else _ABRIDOR_SEM_SEGUIR.open
     try:
-        with urllib.request.urlopen(req, timeout=40) as r:
+        with abrir(req, timeout=40) as r:
             return r.status, r.headers.get("Content-Type", ""), r.read().decode("utf-8", "replace")
     except urllib.error.HTTPError as e:
-        return e.code, e.headers.get("Content-Type", ""), e.read().decode("utf-8", "replace")
+        # COM `seguir=False` O 3xx CHEGA AQUI, e o `Location` entra no
+        # `Content-Type` nao — entao ele vai no corpo, que e onde quem chama o
+        # le. Sem isso o portao diria "301" e nao diria PARA ONDE.
+        corpo = e.read().decode("utf-8", "replace")
+        if not seguir and 300 <= e.code < 400:
+            corpo = "LOCATION: %s\n%s" % (e.headers.get("Location", ""), corpo)
+        return e.code, e.headers.get("Content-Type", ""), corpo
     except Exception as e:
         return 0, "", "ERRO: %s" % e
+
+
+def normalizar_par_vazio(url):
+    """A URL com todo `chave=` vazio reescrito como `chave`, que e o que o
+    WordPress faz no `redirect_canonical`.
+
+    MEDIDO DE FORA EM 09/11/2026, e a causa NAO e desta ilha: `?foo=` tambem
+    devolve 301 para `?foo`, e `?rdm_mun=sao-paulo` devolve 200. Nao e colisao
+    com query var do WordPress (a familia do `w=500` em 404, de 06/11) e nao e
+    nome de campo: e canonicalizacao, e vale para QUALQUER parametro vazio, em
+    qualquer pagina, em qualquer ilha com WordPress.
+
+    E ELA NAO TEM CONSERTO DO LADO DO HTML: formulario `method="get"` com campo
+    de texto opcional vazio faz o navegador enviar `chave=`, e nenhum atributo de
+    HTML impede isso. Entao o conserto escolhido foi NOMEAR o salto — e nomear
+    com precisao, nao com complacencia: o unico salto aceito e este, de uma perna
+    so, e qualquer outro REPROVA.
+    """
+    partes = urllib.parse.urlsplit(url)
+    if not partes.query:
+        return url
+    pares = []
+    for pedaco in partes.query.split("&"):
+        pares.append(pedaco[:-1] if pedaco.endswith("=") else pedaco)
+    return urllib.parse.urlunsplit(
+        (partes.scheme, partes.netloc, partes.path, "&".join(pares), partes.fragment))
+
+
+def veredito_do_botao(url, codigo, destino):
+    """O veredito do botao de um formulario: `ok`, ou a frase do que esta errado.
+
+    FUNCAO PURA, para o `--autoteste` FABRICAR o mundo em vez de esperar que ele
+    aconteca — a mesma razao escrita na `veredito_da_revisao_atrasada` desta
+    ferramenta, pela 20.9.
+
+    OS QUATRO VEREDITOS, E ELES NAO SAO O MESMO CONSERTO:
+      - 200                                  -> `ok`
+      - 3xx cujo destino e a MESMA URL com o par vazio normalizado -> `ok`,
+        porque e a canonicalizacao do WordPress e nao ha HTML que a evite
+      - 3xx para QUALQUER outro lugar         -> REPROVA, e e o caso perigoso:
+        botao que leva a outra pagina, ou cadeia de dois saltos, ou destino em
+        404 depois do salto
+      - qualquer outro codigo                 -> REPROVA
+    """
+    if codigo == 200:
+        return "ok"
+    if 300 <= codigo < 400:
+        esperado = normalizar_par_vazio(url)
+        if destino and urllib.parse.urlsplit(destino).geturl() == urllib.parse.urlsplit(esperado).geturl():
+            return "ok"
+        return ("responde %s e o destino e `%s`, que NAO e a propria URL com o par vazio "
+                "normalizado (esperava `%s`). Salto de botao para outro lugar nao e "
+                "canonicalizacao: e botao que leva a pessoa a uma pagina que ela nao pediu"
+                % (codigo, destino or "(sem Location)", esperado))
+    return ("responde %s. O formulario e method=get e o JS e quem faz preventDefault, entao "
+            "quem estiver sem JavaScript cai nisso. Nome de campo curto colide com query var "
+            "do WordPress" % codigo)
 
 
 def formularios_da_pagina(html):
@@ -1223,14 +1307,34 @@ def main():
                               for n, v in _campos)
             _destino = (_acao.replace(DOMINIO, "") or caminho) or "/"
             _url = _destino + ("&" if "?" in _destino else "?") + _query
-            _cod, _, _ = buscar(_url)
-            afirma(_cod == 200,
-                   "32.1-b: o botao de um formulario de %s monta `%s` e essa URL respondeu "
-                   "%s. O formulario e method=get e o JS e quem faz preventDefault, entao "
-                   "quem estiver sem JavaScript cai nisso. Nome de campo curto colide com "
-                   "query var do WordPress" % (caminho, _url, _cod))
-            registro("32.1-b: o formulario de %s monta `%s` e ela responde %s"
-                     % (caminho, _url, _cod))
+            # SEM SEGUIR REDIRECIONAMENTO (item 5 do despacho de 09/11/2026). A
+            # 32.1-b e literal: *"monta a query com os valores que o navegador
+            # enviaria e exige 200"*. `urlopen` segue 301 por padrao, entao esta
+            # linha media "chega em 200" — e aprovava 486 afirmacoes com o botao
+            # da ferramenta PRINCIPAL respondendo 301, por causa do `=` vazio do
+            # campo opcional de cidade. O visitante nao ve nada quebrado, e e por
+            # isso que o defeito e deste tipo: so aparece para quem monta a query
+            # a mao e PROIBE o cliente de seguir o salto.
+            #
+            # A URL E MONTADA AQUI, COM O QUEBRA-CACHE DENTRO, e `buscar` a
+            # recebe com `v=False`. MEDIDO: deixando o quebra-cache para o
+            # `buscar` acrescentar, a URL comparada NAO era a URL enviada — o
+            # `Location` voltava com `&v=1794242521` e o veredito o chamava de
+            # "destino diferente", reprovando a canonicalizacao por um parametro
+            # que o proprio portao tinha posto. Regua que nao sabe o que mandou
+            # nao pode julgar o que voltou.
+            _url_v = _url + ("&" if "?" in _url else "?") + "v=" + str(int(time.time()))
+            _cod, _, _corpo = buscar(_url_v, v=False, seguir=False)
+            _loc = ""
+            if _corpo.startswith("LOCATION: "):
+                _loc = _corpo.split("\n", 1)[0][len("LOCATION: "):].strip()
+            _veredito = veredito_do_botao(DOMINIO + _url_v, _cod, _loc)
+            afirma(_veredito == "ok",
+                   "32.1-b: o botao de um formulario de %s monta `%s` e essa URL %s"
+                   % (caminho, _url, _veredito))
+            registro("32.1-b: o formulario de %s monta `%s` e ela responde %s%s"
+                     % (caminho, _url, _cod,
+                        "" if _cod == 200 else " -> %s (par vazio canonicalizado)" % _loc))
 
         # A OUTRA METADE DA 32.1-b, E ELA E O VEREDITO DO QUE A PAGINA SERVE
         # (acrescentada em 06/11/2026, na tarde do dia em que a regra nasceu).
@@ -1448,6 +1552,30 @@ def main():
             registro("%s: %d elemento(s) de prosa e %d string(s) de JSON-LD na regua "
                      "das duas afirmacoes, %d par(es) de FAQ"
                      % (caminho, len(_elem), len(_ld_textos), len(_ld_pares)))
+
+            # -------------------------------------------------------------
+            # A TERCEIRA AFIRMACAO: O MESMO ATO DE COLHER CONTADO DUAS VEZES
+            # NA MESMA PAGINA (item 4 do despacho de 09/11/2026).
+            #
+            # AQUI E QUE ELA VALE, e nao no repositorio: a unidade desta classe
+            # e a PAGINA, porque cada frase, sozinha, esta certa. A home servia
+            # "17 veiculos colhidos" numa dobra e "14 anuncios que a gente
+            # colheu" em duas outras, com os tres numeros CERTOS — e nenhum
+            # portao via, porque nenhum lia a pagina como um texto so.
+            #
+            # A TELA E O JSON-LD JUNTOS, de proposito: a camada que a IA ingere
+            # cita as mesmas contagens, e foi la que os defeitos de 09/11 de
+            # manha moravam. Contradicao que a tela nao tem e o JSON-LD tem
+            # continua sendo contradicao da pagina.
+            _maus_colheita = _REGUA_DE_AFIRMACAO.problemas_de_colheita(
+                "%s (tela + JSON-LD)" % caminho, list(_elem) + list(_ld_textos))
+            afirma(not _maus_colheita,
+                   "%s: %s" % (caminho, _maus_colheita[0] if _maus_colheita else ""))
+            _contagens = sorted({n for t in (list(_elem) + list(_ld_textos))
+                                 for n, _tr in _REGUA_DE_AFIRMACAO.contagens_de_colheita(t)})
+            registro("%s: %d contagem(ns) distinta(s) de colheita na pagina (%s)"
+                     % (caminho, len(_contagens),
+                        ", ".join(str(n) for n in _contagens) or "nenhuma"))
 
         # =================================================================
         # A CAMADA QUE NAO TEM VIZINHO — REMISSAO LOCATIVA E ORACAO REPETIDA
@@ -2042,6 +2170,91 @@ def autoteste():
                             (t(19, 31), t(19, 30), False))),
         "14.h os quatro vereditos sao CAUSAS e nenhum e aprovacao — revisao atrasada "
         "segue sendo falha, e o que muda e o que a proxima pessoa faz")
+
+    # ======================================================================
+    # MUNDO 15 — O BOTAO DO FORMULARIO RESPONDE 200, E NAO "CHEGA EM 200"
+    # (item 5 do despacho de 09/11/2026).
+    #
+    # FUNCAO PURA, mundos FABRICADOS, pela mesma razao da 20.9 nesta mesma
+    # ferramenta: esperar que o salto aconteca para medi-lo e esperar que o
+    # defeito volte ao ar.
+    # ======================================================================
+    HOME = "https://rodametria.com.br/?rdm_w=500&rdm_kmh=32&rdm_acel=manual&rdm_mun=&v=1"
+    CANON = "https://rodametria.com.br/?rdm_w=500&rdm_kmh=32&rdm_acel=manual&rdm_mun&v=1"
+
+    # (a) O MUNDO MEDIDO: a home de hoje, 301 para a propria URL canonicalizada.
+    diz(veredito_do_botao(HOME, 301, CANON) == "ok",
+        "15.a o 301 do par vazio para a PROPRIA URL canonicalizada e `ok` — e o "
+        "`redirect_canonical` do WordPress, medido tambem com `?foo=`, e nenhum atributo "
+        "de HTML impede o navegador de enviar `chave=` num campo de texto vazio")
+
+    # (b) 200 e `ok`, e e o caso da F2, da F3 e da home sem o campo vazio.
+    diz(veredito_do_botao(HOME.replace("&rdm_mun=", ""), 200, "") == "ok",
+        "15.b 200 e `ok`")
+
+    # (c) O CASO PERIGOSO: salto para OUTRO lugar. E aqui que o conserto nao
+    #     afrouxa nada — era exatamente isto que o portao, seguindo o 301, nao
+    #     podia distinguir do caso (a).
+    for destino, oquee in (
+            ("https://rodametria.com.br/autonomia-patinete-eletrico/", "outra PAGINA"),
+            ("https://rodametria.com.br/?rdm_w=500&v=1", "a URL com CAMPOS A MENOS"),
+            ("https://rodametria.com.br/?rdm_w=500&rdm_kmh=32&rdm_acel=manual&rdm_mun=&v=1",
+             "a MESMA URL (cadeia que nao termina)"),
+            ("", "nenhum Location")):
+        diz(veredito_do_botao(HOME, 301, destino) != "ok",
+            "15.c 301 para %s REPROVA" % oquee)
+
+    # (d) 404 e 0 continuam reprovando, e e o defeito de 06/11 (o campo `w`
+    #     colidindo com query var do WordPress) que nasceu esta afirmacao.
+    diz(veredito_do_botao(HOME, 404, "") != "ok", "15.d 404 REPROVA (o `w=500` de 06/11)")
+    diz(veredito_do_botao(HOME, 0, "") != "ok", "15.d codigo 0 (rede) REPROVA")
+
+    # (e) A NORMALIZACAO: `chave=` vira `chave`, e `chave=valor` nao se toca.
+    diz(normalizar_par_vazio(HOME) == CANON, "15.e o par vazio e normalizado")
+    diz(normalizar_par_vazio("https://x/?a=1&b=2") == "https://x/?a=1&b=2",
+        "15.e par com valor nao e tocado")
+    diz(normalizar_par_vazio("https://x/sem-query") == "https://x/sem-query",
+        "15.e URL sem query nao e tocada")
+    diz(normalizar_par_vazio("https://x/?a=&b=&c=3") == "https://x/?a&b&c=3",
+        "15.e DOIS pares vazios sao normalizados, e o terceiro fica")
+
+    # (f) A DISCORDANCIA QUE TORNA ISTO MEDICAO (20.8). A regua VELHA era "o
+    #     codigo do FIM DA CADEIA": ela recebia 200 e aprovava. A nova ve o 301.
+    #     No caso (a) as duas concordam no veredito final e DISCORDAM no que
+    #     mediram; no caso (c) elas discordam no VEREDITO, e e esse que importa.
+    def regua_velha_segue(codigo_do_fim):
+        return "ok" if codigo_do_fim == 200 else "reprova"
+
+    diz(regua_velha_segue(200) == "ok" and veredito_do_botao(HOME, 301, CANON) == "ok",
+        "15.f no caso canonico as duas chegam a `ok` — mas a velha o fez sem NUNCA ter "
+        "visto o 301, e e por isso que ela nao podia distinguir o caso de baixo")
+    diz(regua_velha_segue(200) == "ok"
+        and veredito_do_botao(HOME, 301, "https://rodametria.com.br/outra/") != "ok",
+        "15.f e no salto para OUTRA pagina a velha APROVA (o fim da cadeia e 200) e a nova "
+        "REPROVA — as duas DISCORDAM, e essa discordancia e todo o valor do item 5")
+
+    # (g) E A EXIGENCIA CRUA DE 200 REPROVA A HOME COMO ELA ESTA HOJE, que e o
+    #     que o despacho manda provar antes de qualquer escolha: *"portao que nao
+    #     reprova o defeito conhecido nao esta medindo nada"*.
+    # O MECANISMO, e nao a aritmetica: `301 != 200` seria afirmacao que passa
+    # sempre, e portao inerte e o que o proprio `bancada.py` desta ilha denuncia
+    # por nome. O que da para medir sem rede e se o abridor REALMENTE nao segue.
+    diz(_SemSeguir().redirect_request(None, None, 301, "", {}, "https://x/") is None,
+        "15.g o abridor sem-seguir devolve None em `redirect_request`, que e como o urllib "
+        "para de seguir. Sem isto a afirmacao da 32.1-b voltaria a medir `chega em 200`")
+    diz(_ABRIDOR_SEM_SEGUIR is not urllib.request.urlopen
+        and any(isinstance(h, _SemSeguir) for h in _ABRIDOR_SEM_SEGUIR.handlers),
+        "15.g e o abridor usado por `buscar(seguir=False)` e o que carrega esse tratador")
+
+    # E A MEDICAO NO AR, que nao cabe em autoteste e esta aqui escrita porque e
+    # ela que justifica a escolha: as 16h2xZ de 09/11/2026 a URL do botao da home
+    # respondeu 301 em tres passadas iguais (`x-redirect-by: WordPress`), e o
+    # controle sem o campo vazio respondeu 200 nas mesmas tres; `?foo=` tambem
+    # respondeu 301, o que prova que a causa e canonicalizacao e NAO colisao com
+    # query var. A exigencia crua de 200 REPROVA a home como ela esta hoje — foi
+    # medida antes de qualquer conserto, como o despacho manda —, e a escolha da
+    # Fundacao foi NOMEAR esse unico salto em vez de exigir do HTML uma coisa que
+    # o HTML nao pode dar.
 
     print("conferir-no-ar --autoteste: %d de %d afirmacoes, %d falha(s)"
           % (len(ok), len(ok) + len(mal), len(mal)))

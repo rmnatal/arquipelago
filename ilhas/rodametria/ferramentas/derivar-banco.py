@@ -83,6 +83,39 @@ def constante_publicavel():
 # `url_busca`" — contado no arquivo, sao QUATRO, e os quatro ja estao entre os
 # nomeados. Numero de prosa escrito a mao, dentro do relatorio sobre numero de
 # prosa escrito a mao.
+# ---------------------------------------------------------------------------
+# `publicavel` E VALOR DE `status`, NUNCA CAMPO — E ESPELHO E PORTAO QUE LEEM A
+# MESMA CHAVE INEXISTENTE CONCORDAM, O QUE E INDISTINGUIVEL DE CONFERENCIA
+# (09/11/2026, item 2 do despacho da ronda de hoje).
+#
+# O item 2 do despacho diz que a contagem de publicaveis do `nota` "continuou
+# escrita a mao". MEDIDO, ela NAO estava: ela era derivada desde 06/11, e era
+# derivada de `r.get("publicavel")` — um campo BOOLEANO QUE NAO EXISTE EM
+# REGISTRO NENHUM deste banco (0 de 17 o carregam). O banco diz publicavel pelo
+# `status`, e `dados/esquema-banco.json` escreve isso com todas as letras:
+# *"universo: todo VEICULO com status publicavel"*. A chave booleana foi
+# INVENTADA pelas duas metades ao mesmo tempo.
+#
+# POR QUE SOBREVIVEU TRES DIAS DEBAIXO DO PORTAO QUE NASCEU PARA ISSO: o espelho
+# (aqui) e o portao (`validar-banco.py`, linha da contagem) liam a MESMA chave
+# ausente, entao os dois contavam ZERO e os dois CONCORDAVAM. A 20.7 desta ilha
+# ensina que "duas declaracoes do mesmo fato comecam iguais e so uma sobe"; este
+# e o caso em que as duas comecam iguais e as duas ESTAO ERRADAS — e a
+# concordancia entre elas tem exatamente a cara da conferencia. Pior: o MESMO
+# `validar-banco.py` le o conceito do jeito certo (`status == "publicavel"`) em
+# quatro outros lugares, a algumas centenas de linhas de distancia.
+#
+# A REGRA, E ELA E A LICAO DO ITEM: quem conta publicavel chama ESTA funcao, e
+# quem invento o booleano e DENUNCIADO pelo validador. Chave ausente lida por
+# duas metades independentes nao e divergencia — e silencio em estereo.
+def e_publicavel(r):
+    """Publicavel e um VALOR de `status`. Nao existe campo booleano `publicavel`."""
+    return r.get("status") == STATUS_PUBLICAVEL
+
+
+STATUS_PUBLICAVEL = "publicavel"
+
+
 def contar_saida_de_compra(registros):
     """Conta, no proprio arquivo, quem tem saida de compra e quem e publicavel.
 
@@ -98,7 +131,7 @@ def contar_saida_de_compra(registros):
         af = r.get("afiliado")
         if isinstance(af, dict) and any(af.get(c) for c in campos):
             com.append(r.get("id"))
-        if r.get("publicavel"):
+        if e_publicavel(r):
             publicaveis.append(r.get("id"))
 
     return com, publicaveis
@@ -109,9 +142,15 @@ def frase_da_saida_de_compra(registros):
     com, publicaveis = contar_saida_de_compra(registros)
     total = len(registros)
     if publicaveis:
-        quantos = ("%d dos %d registros estao `publicavel`" % (len(publicaveis), total)
+        # OS NOMES ENTRAM NA FRASE pelo mesmo motivo que entram na metade da
+        # saida de compra: numero sozinho envelhece sem acusar QUAL registro
+        # mudou, e o validador so pode cobrar o que a frase diz. Com os nomes,
+        # registro que entra ou sai de `publicavel` reprova a bancada.
+        quantos = ("%d dos %d registros estao `publicavel` (%s)"
+                   % (len(publicaveis), total, ", ".join(publicaveis))
                    if len(publicaveis) != total
-                   else "os %d registros estao `publicavel`" % total)
+                   else "os %d registros estao `publicavel` (%s)"
+                   % (total, ", ".join(publicaveis)))
     else:
         quantos = "NENHUM dos %d registros esta `publicavel`" % total
     if not com:

@@ -34,6 +34,11 @@ import importlib.util
 _spec = importlib.util.spec_from_file_location("f2ref", os.path.join(ILHA, "regras", "f2.py"))
 f2ref = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(f2ref)
+# O NOME EXIBIDO DE UM REGISTRO MORA NUM LUGAR SO (09/11/2026, item 1 do despacho).
+_spec_nomes = importlib.util.spec_from_file_location(
+    "nomes", os.path.join(ILHA, "regras", "nomes.py"))
+nomes = importlib.util.module_from_spec(_spec_nomes)
+_spec_nomes.loader.exec_module(nomes)
 
 SAIDA = os.path.join(ILHA, "dados", "f2-respostas.json")
 
@@ -270,7 +275,10 @@ def linhas_do_banco(veiculos):
         aut = _valor(r.get("autonomia_declarada_km"))
         fonte_campo = (r.get("tensao_v") or {}).get("fonte") if isinstance(r.get("tensao_v"), dict) else None
         fonte = (r.get("fontes") or {}).get(fonte_campo) or {}
-        nome = " ".join(x for x in (r.get("marca"), r.get("modelo")) if x) or r.get("id")
+        # ESTA LINHA ERA O ITEM 1 DO DESPACHO: ela caia no `id` e servia
+        # `scooter-chopper-1000w-48v` em texto visivel, no grupo "Nao declaram
+        # tensao nem amperagem", onde a home e a F3 serviam o nome humano.
+        nome = nomes.nome_do_registro(r)
         linhas.append({
             "rotulo": nome,
             "id_registro": r["id"],
@@ -392,7 +400,9 @@ def montar(constantes, veiculos, pecas, escada):
     def ficha(r):
         af = r.get("afiliado") or {}
         cot = (r.get("cotacoes") or [{}])[0] if r.get("cotacoes") else {}
-        nome = " ".join(x for x in (r.get("marca"), r.get("modelo")) if x) or r["id"]
+        # A MESMA FUNCAO, e esta era a chamada que servia os TRES slugs do grupo
+        # "Fora do banco" na ficha do cartao.
+        nome = nomes.nome_do_registro(r)
         return {
             "id": r["id"],
             "nome": nome,

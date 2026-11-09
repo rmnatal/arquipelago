@@ -71,7 +71,7 @@
    Antes disto a ilha cujo produto e "o preco de hoje" tinha ZERO ocorrencia de
    `dateModified` e de `datePublished` em todo o JSON-LD das 9 URLs. */
 if ( ! defined( 'RODAMETRIA_CASCA_VERSAO' ) ) {
-	define( 'RODAMETRIA_CASCA_VERSAO', '1.18.0' );
+	define( 'RODAMETRIA_CASCA_VERSAO', '1.19.0' );
 }
 
 /**
@@ -1088,18 +1088,69 @@ function rodametria_casca_bloco_de_compra( $titulo, $itens, $frase_de_escopo, $c
 }
 
 /**
+ * O ROTULO DO BOTAO DE ATALHO DA BARRA FIXA, DERIVADO DA MESMA LISTA QUE MONTA O
+ * BLOCO DE COMPRA (09/11/2026, item 3 do despacho da ronda de hoje).
+ *
+ * O DEFEITO MEDIDO: a barra fixa trazia `Ver produtos` ESCRITO A MAO no molde,
+ * nas tres ferramentas. Em `/` o destino `#comprar` serve *"Nao temos o que
+ * recomendar aqui, e a causa e de ficha e nao de estoque"*; em
+ * `/peso-maximo-patinete-eletrico/` serve *"nenhum deles tem oferta aberta hoje.
+ * Nao montamos vitrine com item sem link de loja, porque o botao que nao leva a
+ * lugar nenhum e pior que a ausencia dele"*. A pagina escrevia essa frase e
+ * servia, acima dela, um botao prometendo produto. O gate do bloco NAO era o
+ * defeito — o catalogo das duas paginas foi lido antes da acusacao, e nos dois
+ * casos a ausencia e legitima. O defeito era o ROTULO.
+ *
+ * E E A MESMA FAMILIA DO ITEM 1 DE 06/11, com tres dias de diferenca: naquele
+ * dia o ESTADO do cartao da home virou derivado de
+ * `rodametria_casca_url_do_slug()` — "nenhum dos dois se escreve a mao, e e isso
+ * que faz a quarta ferramenta nascer certa sem ninguem se lembrar deste
+ * paragrafo" —, e esta barra ficou com o texto fixo. A licao viajou pela metade.
+ *
+ * A ESCOLHA, E ELA ERA ENTRE DUAS OPCOES DEFENSAVEIS (19.2): esconder a barra ou
+ * trocar o rotulo. ESCOLHI TROCAR, e o motivo nao e gosto: a barra carrega o
+ * NUMERO DA RESPOSTA da ferramenta, que e o produto desta ilha, e ela existe
+ * para manter esse numero visivel enquanto a pessoa rola no telefone. Esconde-la
+ * quando nao ha produto puniria a pessoa pela falta de oferta, tirando dela a
+ * resposta que ela veio buscar. O bloco de compra SEMPRE tem o que dizer —
+ * cartoes, ou a causa de nao haver —, entao o atalho continua levando a um lugar
+ * que responde; o que muda e a promessa.
+ *
+ * POR QUE A LISTA E NAO UM BOOLEANO: o argumento e a MESMA `$itens` que vai para
+ * `rodametria_casca_bloco_de_compra()`. Booleano seria uma segunda declaracao do
+ * mesmo fato (20.7), e quem a calculasse de cabeca erraria no dia em que o bloco
+ * passasse a filtrar item. Lista igual, decisao igual, por construcao.
+ */
+if ( ! function_exists( 'rodametria_casca_rotulo_do_atalho' ) ) {
+function rodametria_casca_rotulo_do_atalho( $itens ) {
+	return count( (array) $itens )
+		? 'Ver produtos'
+		: 'Por que não indicamos';
+}
+}
+
+/**
  * A BARRA FIXA DO RODAPE NO CELULAR (32.1, ultima linha): numero do resultado e
  * botao para o bloco de compra, aparecendo quando o bloco de compra esta fora
  * da tela. Quem a mostra e a esconde e o JS do wp_footer; ela nasce escondida
  * para quem esta sem JavaScript nao receber barra que nao fecha.
+ *
+ * `$itens` E OBRIGATORIO E NAO TEM PADRAO, de proposito (09/11/2026, item 3).
+ * Padrao `array()` daria a quem esquecesse o argumento o rotulo de "nao ha
+ * produto" numa pagina COM produto — e padrao que mente calado e exatamente o
+ * defeito que esta funcao acabou de pagar. Quem esquecer o argumento e pego
+ * ANTES do ar, por `ferramentas/teste-barra-de-compra.php`, que conta os
+ * argumentos de toda chamada no repositorio. A guarda e o portao, nunca um
+ * padrao complacente.
  */
 if ( ! function_exists( 'rodametria_casca_barra_fixa' ) ) {
-function rodametria_casca_barra_fixa( $rotulo, $numero, $unidade ) {
+function rodametria_casca_barra_fixa( $rotulo, $numero, $unidade, $itens ) {
 	return '<div class="rdm-molde-barra" data-rdm-barra hidden>'
 		. '<span class="rdm-molde-barra-num"><span class="rdm-molde-barra-rotulo">'
 		. esc_html( $rotulo ) . '</span> <span class="rdm-num" data-rdm-barra-numero>'
 		. esc_html( $numero ) . '</span> <span>' . esc_html( $unidade ) . '</span></span>'
-		. '<a class="rdm-molde-barra-botao" href="#comprar">Ver produtos</a></div>';
+		. '<a class="rdm-molde-barra-botao" href="#comprar">'
+		. esc_html( rodametria_casca_rotulo_do_atalho( $itens ) ) . '</a></div>';
 }
 }
 
@@ -1978,12 +2029,42 @@ function rodametria_casca_home_html() {
 		   `prestacao_da_tabela` acabou de ser achada NO AR com o mesmo defeito.
 		   Zero sai como palavra, nunca como digito no meio da frase: "0
 		   veiculos colhidos" e o plural que mente da clubedomosaico (12/10). */
+		/* O 17 E `registros` E O 14 E `anuncios colhidos` — UM NUMERO, UM
+		   SUBSTANTIVO (09/11/2026, item 4 do despacho da ronda de hoje).
+		
+		   O DEFEITO MEDIDO no HTML servido desta pagina: tres afirmacoes, uma
+		   pagina. Aqui dizia "Hoje o banco tem 17 VEICULOS COLHIDOS"; duas dobras
+		   abaixo, "Dos 14 anuncios que a gente COLHEU" e "De 14 anuncios
+		   COLHIDOS"; e na prestacao de contas, "A soma fecha os 17 registros do
+		   banco" ao lado do grupo "Fora do banco, e cada um diz por que: 3". Os
+		   numeros estavam todos CERTOS e as palavras nao: o verbo de colher
+		   contava 17 numa frase e 14 na outra, a dois paragrafos de distancia.
+		
+		   O QUE FOI ESCOLHIDO, E ERA ESCOLHA ENTRE OPCOES DEFENSAVEIS (19.2):
+		   17 = `registros` (tudo o que esta no arquivo, que e literalmente o que
+		   `total_registros_veiculos` conta) e 14 = `anuncios colhidos` (os que o
+		   banco conta). A soma fecha: 17 registros = 14 anuncios colhidos + 3
+		   fora do banco, e a prestacao de contas ja enumera esses grupos.
+		
+		   POR QUE `anuncios` E NAO `veiculos colhidos`, QUE E O QUE O DESPACHO
+		   SUGERIU: ele ofereceu a sugestao dizendo "sem escolher a redacao", e a
+		   parte que obriga e "nunca os dois com o mesmo substantivo". `anuncio` e
+		   LOAD-BEARING nesta ilha — a tese dela e que o numero do ANUNCIO engana,
+		   e a tabela da F1 fala do que cada ANUNCIO declara, nao do que o veiculo
+		   e. Trocar aquela palavra por `veiculo` consertaria a contradicao
+		   apagando a distincao que o site existe para fazer (secao 26). Mudou,
+		   entao, o lado que nao custava nada: o 17, que aqui nao precisava do
+		   verbo de colher — a frase ao lado ja diz que cada campo entra "com a
+		   ficha de onde saiu e a data da leitura".
+		
+		   E QUEM VIGIA ISSO E `ferramentas/teste-afirmacao-de-tela.py`, pela
+		   mesma regua que `conferir-no-ar.py` aplica ao HTML servido: duas
+		   contagens diferentes para o mesmo ato de colher REPROVAM. */
 		$n_regs = (int) $dados['compra']['total_registros_veiculos'];
 		$html .= '<p>A Rodametria não copia número de anúncio: cada campo entra no nosso banco com a '
 			. 'ficha de onde saiu e a data da leitura, e campo que a ficha não declara fica vazio em '
 			. 'vez de ser preenchido por estimativa. Hoje o banco tem '
-			. rodametria_casca_contagem( $n_regs, 'nenhum veículo colhido', 'veículo colhido',
-				'veículos colhidos' )
+			. rodametria_casca_contagem( $n_regs, 'nenhum registro', 'registro', 'registros' )
 			. ', ' . rodametria_casca_contagem( $n_vitrine, 'nenhum deles com oferta aberta e rastreável',
 				'dele com oferta aberta e rastreável', 'deles com oferta aberta e rastreável' )
 			. ', e ' . rodametria_casca_contagem( $n_tabela, 'nenhuma combinação de bateria ainda '

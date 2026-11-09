@@ -43,6 +43,7 @@ ILHA = os.path.dirname(AQUI)
 sys.path.insert(0, os.path.join(ILHA, "regras"))
 
 import f1 as f1ref  # noqa: E402
+import nomes  # noqa: E402  (o nome exibido de um registro mora num lugar so)
 
 SAIDA = os.path.join(ILHA, "dados", "f1-respostas.json")
 
@@ -220,8 +221,10 @@ def tabela_do_banco(veiculos, constantes):
 
         linhas.append({
             "id": r.get("id"),
-            "rotulo": (" ".join(x for x in (r.get("marca"), r.get("modelo")) if x)
-                       or (r.get("titulo_colhido") or "")[:60]),
+            # UMA FUNCAO DECIDE O NOME (09/11/2026, item 1 do despacho). Esta
+            # linha cortava o titulo em 60 caracteres e a home servia
+            # `(+25 vendid` e `(2 x 1.000 ` — cortado no meio do NUMERO.
+            "rotulo": nomes.nome_do_registro(r),
             "titulo_colhido": r.get("titulo_colhido"),
             "watt_nominal": None if w_nom is None else f1ref._n(
                 f1ref.Fraction(str(w_nom))),
@@ -467,7 +470,10 @@ def montar(constantes, veiculos, municipios):
             "vitrine": [
                 {
                     "id": r.get("id"),
-                    "nome": " ".join(x for x in (r.get("marca"), r.get("modelo")) if x),
+                    # SEM FALLBACK esta linha devolvia CADEIA VAZIA para
+                    # registro sem marca e sem modelo. O grupo esta vazio hoje, e
+                    # o buraco estava armado para o primeiro que classificasse.
+                    "nome": nomes.nome_do_registro(r),
                 }
                 for r in grupos["cabem_na_categoria"]
             ],
@@ -475,8 +481,7 @@ def montar(constantes, veiculos, municipios):
             "grupos": {k: [r.get("id") for r in v] for k, v in grupos.items()},
             "contagem": {k: len(v) for k, v in grupos.items()},
             "nomes_por_grupo": {
-                k: [" ".join(x for x in (r.get("marca"), r.get("modelo")) if x)
-                    or (r.get("titulo_colhido") or "")[:60] for r in v]
+                k: [nomes.nome_do_registro(r) for r in v]
                 for k, v in grupos.items()
             },
             "total_registros_veiculos": len(veiculos["registros"]),
