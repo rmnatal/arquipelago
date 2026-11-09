@@ -3,6 +3,142 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-11-09 13h26Z–14h1xZ — **A LENTE APLICADA AO JSON-LD ACHOU TRÊS DEFEITOS NO AR, E UM DELES É UMA CLASSE NOVA: A PÁGINA PROMETENDO UM LUGAR A UMA CAMADA QUE NÃO TEM LUGAR** — bloco de conteúdo na F1, na F3 e na casca
+
+**A ESCOLHA DA ILHA.** `foco.md` nomeia a **rodametria** (foco total e absoluto desde 27/10) e pela **1.2** não há escolha a fazer. **Confirmei a exceção do molde (seção 32) antes de aceitar o foco:** os três despachos do molde de conversão estão **fechados** nas três ilhas que a exceção nomeia — aquametria (18h2xZ de 21/10), clubedomosaico (19h1xZ de 21/10) e robometria (16h1xZ de 21/10) —, então o foco manda sozinho. **Nenhum branch `claude/*` divergente e nenhum PR aberto:** `origin/claude/dreamy-mccarthy-irv2if` e `origin/main` no mesmo commit `b327fd1`, zero commit à frente nos dois sentidos — nada a mergear, passo 1 cumprido. `executando_desde` estava `null`, o que pela **1.1** já significa que não havia bloco da Fundação vivo. Reserva no commit `2a5913b`, às **13h26Z**, hora saída do `date -u` na mesma linha que a grava; **RENOVADA** às 13h44Z pela 1.1.
+
+**A REDE, MEDIDA E NÃO HERDADA (20.2), ANTES DA RESERVA.** `rodametria.com.br` em **200** nas três passadas, com `aquametria.com.br` e `robometria.com.br` em **200** nas mesmas três — **9 de 9 verdes**.
+
+**O DESPACHO FOI LIDO ANTES DA FILA (18.1/18.5), E NADA MUDOU DESDE A PASSADA DA MANHÃ.** O despacho da ronda de 06/11 está fechado desde 16h4xZ daquele dia. O despacho **ALTA** de `dados/despachos.md` segue com os itens 2 e 3 **abertos e não pegáveis daqui**, pela razão que a passada da manhã escreveu dentro dele: os dois consertam `ilhas/robometria/snippets/robometria-sync.php`, a seção 3 proíbe tocar em pasta de ilha não reservada, e a **1.2** só abre exceção ao foco para ilha **no ar e quebrada** — `robometria.com.br` respondeu **200** no controle de rede desta passada, ou seja ela não está quebrada. Os dois itens abertos da leitura semanal de 04/11 são instrumento da Sentinela estratégica, com credencial que a Fundação não tem.
+
+**BANCADA, ANTES DE TOCAR EM NADA:** `python3 ferramentas/bancada.py --no-ar` — **39 portões, 0 falha**.
+
+---
+
+### POR QUE ESTE BLOCO: ERA O ITEM 1 DO PRÓXIMO PASSO, ESCRITO PELA PASSADA DA MANHÃ
+
+O `bloco_atual` que esta execução herdou nomeia o próximo passo desbloqueado em primeiro lugar, com a causa:
+
+> *"A LENTE AINDA NÃO FOI APLICADA AO JSON-LD, e essa é a camada que a IA ingere. Esta passada leu o TEXTO VISÍVEL das dez URLs e descascou `<script>` para fazer isso — ou seja, não olhou o FAQPage nem o resto do JSON-LD com a mesma lente. Pela 32.4-c as duas camadas não podem divergir."*
+
+**Então eu li os blocos `application/ld+json` das dez URLs, um por um, do HTML servido com quebra de cache.** As dez em **200**. São **27 blocos** (1 `WebSite`, 10 `WebPage`, 9 `BreadcrumbList`, 5 `FAQPage` e 2 `ItemList`) e **22 pares de pergunta e resposta** — contados, nunca digitados. A lente achou **três** defeitos, e os três estavam **verdes** nos 39 portões.
+
+---
+
+### DEFEITO 1 — A RESPOSTA DO `FAQPage` DA F3 PROMETIA "OS NOMES ESTÃO LOGO ABAIXO" NUMA CAMADA QUE NÃO TEM ABAIXO
+
+Em `/peso-maximo-patinete-eletrico/`, a resposta da pergunta *"Quais modelos vocês indicam para o meu peso?"* servia, no JSON-LD:
+
+> *"3 dos 3 veículos que declaram carga máxima no nosso banco aguentariam os seus 108 kg com folga — e nenhum deles tem oferta aberta hoje. Não montamos vitrine com item sem link de loja, porque o botão que não leva a lugar nenhum é pior que a ausência dele. **Os nomes estão logo abaixo, com a carga de cada um.**"*
+
+**A frase é VERDADEIRA na página e FALSA na camada que a cita.** Na tela, a lista vem duas telas depois, com os três nomes e a carga de cada um — MAXSHOT V1, MAXSHOT V1SPRO e PLAYBIK, **120 kg** os três. **No JSON-LD não existe "abaixo":** o bloco não tem vizinho, não tem ordem e não carrega nome nenhum. Quem ingere a camada da visão geral de IA lê uma promessa que a camada não pode cumprir — e é a **32.4-c** com o sinal invertido: lá a tela estava certa e o JSON-LD errado **sobre o mesmo fato**; aqui as duas camadas estão certas sobre o fato e **uma delas não pode servir a mesma frase**.
+
+**A CLASSE TEM NOME: REMISSÃO LOCATIVA.** "logo abaixo", "na tabela acima", "logo em seguida" — prosa que **defere conteúdo** para um lugar da página. Ela é barata e certa no HTML e é **sempre** falsa no JSON-LD.
+
+**O CONSERTO NÃO É CONSERTAR A FRASE DUAS VEZES.** São **três moldes onde havia um**, e cada camada recebe a frase que ela pode cumprir, do **mesmo corpo** e da **mesma lista ordenada**:
+
+- `vazio_por_falta_de_oferta` — o corpo, sem a última oração;
+- `vazio_remissao_aos_nomes` — *"Os nomes estão logo abaixo, com a carga de cada um."* **Só a tela serve este**, e ela continua servindo byte por byte o que servia antes;
+- `vazio_nomes_autocontidos` / `vazio_nome_autocontido_unico` — *"São eles, com a carga que cada um declara: {lista}."* **Dois moldes por contagem**, porque "São eles" com um registro só é o plural que mente.
+
+O cérebro passou a devolver **duas listas de mesmo tamanho e mesma ordem** (`frases_vazio` e `frases_vazio_autocontidas`), e o `FAQPage` lê a segunda. **No ar agora:** *"…é pior que a ausência dele. **São eles, com a carga que cada um declara: MAXSHOT V1 (120 kg), MAXSHOT V1SPRO (120 kg) e PLAYBIK (120 kg).**"* Campo ausente (banco de antes de hoje) faz a **pergunta não sair** — nunca sair apontando para um lugar que não existe.
+
+---
+
+### DEFEITO 2 — A RESPOSTA DO PICO, NA HOME, DECLARAVA A MESMA ORAÇÃO DUAS VEZES — E A CICATRIZ É DO CONSERTO DE 06/11
+
+No JSON-LD da home, a resposta de *"A potência de pico do anúncio serve para classificar?"*:
+
+> *"Não. **A regra lê a potência NOMINAL, que fica na ficha.** O número grande do anúncio não é o que a regra lê: **ela lê a potência NOMINAL, que fica na ficha.** Dos 14 anúncios…"*
+
+**41 caracteres iguais, duas vezes, em duas frases seguidas, na mesma resposta.** E a causa é o conserto de 06/11: aquele dia tirou a prosa escrita à mão e fez a resposta **chamar** `rodametria_f1_frase_do_pico()` — e **deixou a abertura escrita à mão**, que repetia palavra por palavra a abertura do molde que ela mesma chama. É a **20.7** em miniatura (*"duas declarações do mesmo fato começam iguais e só uma sobe"*), com o agravante de que aqui as duas subiram **juntas**, na mesma resposta, no mesmo minuto.
+
+**Conserto:** a abertura passou a ser o que ela tem de ser — um **"Não."** que responde à pergunta — e a explicação vem de um lugar só. E a pergunta passou a ser **condicional**: sem o molde (quando falta o título literal ou a contagem) ela **não sai**, porque `FAQPage` com resposta de uma palavra é pior do que pergunta que não existe.
+
+---
+
+### DEFEITO 3 — A HOME SERVIA "0 DECLARAM A POTÊNCIA NOMINAL E 0 DÃO PARA CLASSIFICAR", E É O PADRÃO DA IRMÃ DIVERGENTE QUE O FECHO DA MANHÃ NOMEOU E DEIXOU SEM RÉGUA
+
+Logo abaixo da tabela dos 14 anúncios, na tela:
+
+> *"De 14 anúncios colhidos, **0 declaram** a potência nominal e **0 dão** para classificar. Esse é o tamanho real do problema…"*
+
+**Dois plurais que mentem na mesma frase, no mundo que este banco produz HOJE.** Era prosa escrita à mão dentro de `snippets/rodametria-f1.php`, com os três números interpolados em PHP e o plural **fixo** nos dois eixos — a cicatriz da clubedomosaico de 12/10/2026, e a **mesma** que a `frase_do_rotulo` desta ilha pagou no ar **na manhã de hoje** (*"1 dos 6 DECLARAM um watt"*).
+
+**E É O PADRÃO QUE O PRÓPRIO FECHO DA MANHÃ NOMEOU, no item 3 do próximo passo:** *"O PADRÃO DE IRMÃ DIVERGENTE TEM NOME AGORA E NÃO TEM RÉGUA… duas funções/páginas irmãs, o mesmo risco, a trava ou o grupo numa só."* A `frase_do_rotulo` ganhou cinco formas e a concordância de verbo; **esta, que afirma a mesma família de contagem na mesma ilha, não tinha forma nenhuma.**
+
+**O CONSERTO É UM MOLDE COMPOSTO, e a composição é a decisão:** dois eixos independentes com três formas cada seriam **nove** moldes literais enumerados, e molde que nunca roda envelhece calado. O que se escolhe pela contagem é o **pedaço** (`prestacao_nominal_*`, `prestacao_classifica_*`); o corpo é um só. A forma é decidida **em `regras/f1.py` e só lá**; o PHP troca `{total}`, `{com_nominal}` e `{classificaveis}` pelo número **dentro do span de Mono**, para o número continuar em Mono sem que a forma seja decidida em dois lugares. **No zero o dígito sai da frase:** *"nenhum declara a potência nominal e nenhum dá para classificar"* diz a mesma coisa sem o plural que mente. **No ar agora,** com o verbo irregular conjugado nos dois sentidos.
+
+---
+
+### A TERCEIRA IRMÃ, ACHADA NA MESMA VARREDURA — E NENHUM DOS TRÊS MUNDOS DELA É PRODUZIDO PELO BANCO DE HOJE
+
+A frase *"o que a gente já mediu"* da home, na **casca**, tinha plural fixo nos **três** números: *"Hoje o banco tem 17 veículos colhidos, 4 deles com oferta aberta e rastreável, e 4 combinações…"*. Com **1** em qualquer dos três ela serviria *"1 veículos"*, *"1 deles"*, *"1 combinações"*. **Nenhum desses mundos existe no banco de hoje** (17, 4 e 4), e os três estão conjugados agora por `rodametria_casca_contagem()` — pela mesma razão que fez o molde `ressalva_pico_com_nominal` da F1 nascer antes do mundo dele: **é hoje que alguém os lê**, e a irmã de baixo acabou de ser achada **no ar** com o defeito igual. O **zero sai como palavra** e não como dígito.
+
+---
+
+### O PORTÃO NOVO — `ferramentas/teste-remissao-de-camada.py`, 84 AFIRMAÇÕES, E A MELHOR PARTE É O PISO MEDIDO
+
+Nasce com os **dois defeitos medidos no ar que ele teria pegado** (31.2), nomeados com URL e data dentro dele. Ele é **dono da régua** e a aplica ao repositório e aos mundos fabricados; `ferramentas/conferir-no-ar.py` a **importa** e a aplica ao JSON-LD de **toda** URL do `wp-sitemap.xml` — não copia a régua, porque duas cópias são a segunda declaração do mesmo fato que a **20.7** proíbe aqui.
+
+**(A) A REMISSÃO LOCATIVA, E A LISTA É MAIS LARGA QUE O CASO DE HOJE DE PROPÓSITO.** 28 termos. E lista larga pega **ocorrência certa**: a home serve *"4.000 W com 50 km/h é o teto do ciclomotor, que é a categoria **logo acima**"*, onde "logo acima" é a categoria **seguinte na escada da resolução** e não um lugar da tela. **Portão que reprova página certa é o caminho mais curto para alguém passar a ignorá-lo** (20.5) — então essa ocorrência entra por **liberação escrita**, com âncora literal, em `dados/liberacoes-de-remissao.json`, exatamente na forma das liberações de quantificador desta ilha: a âncora tem de existir no texto **e** tem de conter o termo, e a mesma liberação **não vale para outra frase**. Três afirmações provam as três pontas: a liberação libera o que nomeia, **não** vaza para outra frase da mesma camada, e **âncora morta não libera**.
+
+**(B) A RÉGUA DA REPETIÇÃO É DE MAIOR PEDAÇO REPETIDO E NÃO DE ORAÇÃO IGUAL — e a diferença foi medida, porque a primeira versão deste portão ficava VERDE.** O que foi ao ar não era a mesma oração duas vezes: era *"A regra lê…"* seguido de *"ela lê…"*. Partindo por ponto e vírgula, os pedaços **não coincidem**; o que coincide é um trecho que **atravessa a vírgula**. A régua velha está escrita **ao lado** da nova dentro do autoteste, e ele **exige que as duas discordem** (20.8) — autoteste em que as duas concordam não mede conserto nenhum.
+
+**O PISO DE 30 CARACTERES FOI MEDIDO E NÃO ESCOLHIDO,** nas 22 respostas de `FAQPage` que as dez URLs serviam às 13h3xZ: o defeito tem **41** caracteres e a maior repetição **legítima** de todas as outras tem **21** (*"da bicicleta elétrica"*, na resposta dos dois limites). **30 cai no meio de um vão de vinte, com zero falso positivo em dez URLs.** Piso mais baixo reprovaria página certa; piso de 45 não teria pegado o defeito de hoje.
+
+**E A RÉGUA NÃO CONFUNDE REPETIÇÃO ENTRE RESPOSTAS COM REPETIÇÃO DENTRO DE UMA:** as duas páginas de família servem, **de propósito**, a mesma oração de recusa de habilitação em duas perguntas diferentes. A conta é **dentro** de cada resposta, e há um mundo fabricado só para provar isso.
+
+**AS TRAVAS QUE IMPEDEM A VOLTA.** No `teste-f1.py`, **seis mundos fabricados** da prestação de contas (inclusive um que **não fecha aritmeticamente**, de propósito: a régua é sobre a FORMA e não pode depender de o banco ser coerente), mais duas afirmações sobre o **arquivo**: a prosa não pode voltar para dentro do snippet e o snippet tem de ler `molde_da_prestacao`. No `teste-f3.py`, quatro afirmações de **ligação**: o snippet lê o campo autocontido, as duas camadas têm o mesmo tamanho, a autocontida não traz `logo abaixo`, e ela **carrega os três nomes** que a tela serve.
+
+---
+
+### O DESEMBARQUE CUSTOU DUAS REVISÕES, E A SEGUNDA NÃO FOI OPCIONAL — A CICATRIZ DA 20.4 PELA SEGUNDA VEZ EM TRÊS DIAS
+
+A **revisão 69** aplicou 9 itens e o log trouxe, na linha do décimo: `snippets/rodametria-f1: gravado (#10) mas NÃO ativado: o código não passou na validação`. **Medido no HTML servido com quebra de cache:** a home **degradou para a versão HUB** — o cartão da F1 virou *"ainda não está no ar"*, e a tabela dos 14 anúncios, a prestação de contas e o *"quem entrou, quem não entrou"* saíram da página.
+
+**A CASCA DEGRADOU CERTO, E É POR ISSO QUE NINGUÉM VERIA ERRO:** a página responde **200**, nenhum portão de ar reprova, e o que se perdeu foi **conteúdo**. É a **29.1** com um andar a mais, e é literalmente o que a **20.4** escreveu: *"a linha que acusa o defeito já estava escrita dentro do próprio `/status`, e faltava alguém lê-la."*
+
+**E O PRÓPRIO SNIPPET JÁ TINHA MEDIDO, EM 06/11, QUE A RETENTATIVA NÃO ACONTECE NESTA ILHA:** o Sync devolve `nada novo` antes de olhar item nenhum quando a revisão do manifest é igual à guardada, e grava a revisão como feita **mesmo com item que falhou**. As duas saídas são `forcar=1` (que exige o token, e esta ilha não o tem no repositório, por decisão) ou uma **REVISÃO NOVA**. Subi a **revisão 70** (F1 1.4.0 → 1.4.1, **zero byte de lógica**), e com o snippet **INATIVO** ele não está carregado na requisição — que é a condição que faz `activate_snippet` passar.
+
+**A LIÇÃO FICOU ESCRITA NO SNIPPET, com as duas ocorrências na mão:** desembarque que muda o **PHP** de um snippet desta ilha custa **duas revisões**, e a segunda não é opcional. Quem desembarcar PHP aqui sobe a segunda **sem esperar o log pedir**.
+
+**O QUE FOI MEDIDO NO AR DEPOIS DA 70 (18.4), e a conta da 20.8 fecha:** o log traz **8 linhas de item** e o fecho declara **8 aplicados**, lidas **do fecho para baixo** até a linha da revisão anterior — as oito dizendo `ok`, inclusive `snippets/rodametria-f1: ok (snippet #10 atualizado)`. `/status` em **70**.
+
+**AS TRÊS CORREÇÕES, CONFERIDAS UMA A UMA NO HTML SERVIDO COM QUEBRA DE CACHE:**
+
+- **Defeito 1** — `/peso-maximo-patinete-eletrico/`, no `FAQPage`: *"…é pior que a ausência dele. **São eles, com a carga que cada um declara: MAXSHOT V1 (120 kg), MAXSHOT V1SPRO (120 kg) e PLAYBIK (120 kg).**"* E a **tela continua** servindo *"Os nomes estão logo abaixo"*, como tem de ser.
+- **Defeito 2** — a home, no `FAQPage`: *"**Não.** O número grande do anúncio não é o que a regra lê: ela lê a potência NOMINAL, que fica na ficha. Dos 14 anúncios…"* — uma vez só. As **6** perguntas do `FAQPage` da home continuam lá.
+- **Defeito 3** — a home, na tela: *"De 14 anúncios colhidos, **nenhum declara** a potência nominal e **nenhum dá** para classificar."* Zero ocorrência de `0 declaram a potência` e de `0 dão para`.
+
+**E A VARREDURA INTEIRA REFEITA DO ZERO, por um script meu e não pelo portão** (quem gera não aprova o que gerou): **10 de 10** URLs em 200, **27 blocos** de JSON-LD, **22 pares** de pergunta e resposta, **0 remissão locativa** e **0 repetição** de 30 caracteres ou mais dentro de uma resposta.
+
+**BANCADA COM REDE: 40 portões, 0 falha** (eram 39). Casca **1.18.0**, F1 **1.4.1**, F3 **1.6.0**, manifest e `/status` na revisão **70**.
+
+**URLs: SEM MUDANÇA, seguem 10**, e nenhuma precisava nascer — os três defeitos eram de conteúdo em página que já existia, que é o que a **31.1** conta. **O teto da 21.4 não foi gasto:** esta passada não gastou leva nenhuma.
+
+---
+
+### MEDIDO E NÃO É DEFEITO — escrito para a próxima execução não consertar o que não está errado
+
+- **"mostra os watt-hora ao lado"** (F2) e **"cada cartão leva a data da leitura ao lado"** (as duas páginas de família) **não são** remissão locativa: elas **descrevem** o que a página faz, e não **deferem** conteúdo para um vizinho. A frase se cumpre dentro de si mesma em qualquer camada. Foi por isso que a lista de termos da régua ficou com as formas que deferem, e não com todo advérbio de lugar.
+- **"esta página não responde" / "esta página não afirma"** (quatro ocorrências no JSON-LD) são afirmações **sobre a página**, não setas para um lugar dela — e são justamente as orações de recusa que a régua de habilitação **exige**.
+- **A resposta do pico diz "Dos 14 anúncios…, 13 declaram um watt… e NENHUM declara o nominal"** e **não** nomeia o 14º. Não é a classe do defeito 3 da manhã: ela **não promete** os outros ("os outros não entram nesta conta" era a promessa que a F3 não cumpria). A contagem que ela **afirma** — nenhum nominal em 14 — fecha. A frase de abertura da vitrine, na mesma página, é a que fecha os dois lados, e ela foi consertada hoje de manhã.
+
+---
+
+### O PRÓXIMO PASSO DESBLOQUEADO
+
+1. **A SEGUNDA CLASSE DA LENTE SEGUE SEM VARRER, e agora ela vale para as DUAS camadas.** A lente de hoje de manhã foi *"prosa que promete uma conta"*; a desta passada foi *"prosa que promete um lugar"*, e eu a apliquei **só ao JSON-LD**. Na **TELA** ela não foi varrida: as dez URLs servem "logo abaixo", "nesta página", "no fim da página" em prosa visível, e ali a promessa **pode** ser cumprida ou não — a F3, a F2 e a `/privacidade/` foram conferidas por acidente em 09/11 de manhã (as três cumprindo), e as outras sete não. A régua do portão novo está pronta para isso: basta passá-la por `elementos_de_prosa()` em vez de pelo JSON-LD, **com a liberação por âncora**, porque na tela a remissão é legítima e o que se mede é se o lugar apontado **existe**.
+2. **A `ItemList` da página de patinete declara 16 itens e o carrossel serve 5.** Medido e **não** consertado nesta passada, de propósito: os 16 são o conjunto que a página inteira discute (a tabela os nomeia) e os 5 são o teto do carrossel da 32.1, então as duas contagens podem estar certas. O que **não** está medido é se alguma frase da página promete uma dessas duas contagens como se fosse a outra. É a lente da conta, aplicada ao par tela/`ItemList`.
+3. **O PADRÃO DA IRMÃ DIVERGENTE AGORA TEM TRÊS OCORRÊNCIAS E AINDA NÃO TEM RÉGUA.** `frase_do_rotulo` (09/11 manhã, no ar), `prestacao_da_tabela` (09/11 tarde, no ar) e a frase da casca (hoje, mundo não produzido). As três são a mesma forma: prosa com número e plural fixo. **A régua que falta não é de frase, é de ARQUIVO:** varrer os snippets procurando interpolação de número seguida de palavra que muda com a contagem (`declaram`, `dão`, `veículos`, `deles`, `combinações`) **fora** de molde. Nenhuma régua desta ilha compara irmãs entre si, e esta seria a primeira.
+4. **O DESEMBARQUE DE PHP CUSTA DUAS REVISÕES NESTA ILHA, e isso agora é previsível.** Duas ocorrências em três dias, com a mesma assinatura: o snippet que estava **ativo e carregado** na requisição do cron falha ao reativar, e a passada seguinte, com ele **inativo**, passa. Quem desembarcar PHP aqui sobe a segunda revisão **sem esperar o log pedir** — está escrito dentro do próprio snippet da F1. O item 1 do despacho ALTA de `dados/despachos.md` (o token do Sync para o Raphael) é o que fecharia isso de verdade, porque com o token `forcar=1` resolve numa passada.
+5. **A VITRINE DA F1 E DA F3 SEGUEM VAZIAS**, com a causa nomeada nas duas, e nenhuma se destrava por coleta desta nuvem (remedido em 06/11).
+
+**O QUE CONTINUA TRAVADO E NÃO É DA FUNDAÇÃO:** o `.gov.br` inteiro (o CTB e as prefeituras da camada municipal), o varejo grande do nível 5 e as três etiquetas do Mercado Livre — os três em `dados/despachos.md`. Os **itens 2 e 3** do despacho ALTA consertam `ilhas/robometria/snippets/robometria-sync.php` e não são pegáveis daqui (seção 3 + 1.2; `robometria.com.br` em **200** no controle de rede desta passada, ou seja não está quebrada). E os **dois itens abertos da leitura semanal de 04/11** (painel de Sitemaps em `Processado`, e o `search-console.py` sem `ProxyError`) são instrumento da Sentinela estratégica, com credencial que a Fundação não tem.
+
+---
+
 ## 2026-11-09 10h17Z–10h47Z — **A LENTE DE 06/11 APLICADA ÀS DEZ URLs ACHOU TRÊS DEFEITOS NO AR, E OS TRÊS SÃO A PÁGINA SE CONTRADIZENDO POR ESCRITO** — bloco de conteúdo nas três ferramentas
 
 **A ESCOLHA DA ILHA.** `foco.md` nomeia a **rodametria** (foco total e absoluto desde 27/10) e pela **1.2** não há escolha a fazer. **Confirmei a exceção do molde (seção 32) antes de aceitar o foco:** os três despachos do molde de conversão estão **fechados** nas três ilhas que a exceção nomeia — aquametria (18h2xZ de 21/10), clubedomosaico (19h1xZ de 21/10) e robometria (16h1xZ de 21/10) —, então o foco manda sozinho. **Nenhum branch `claude/*` divergente e nenhum PR aberto** (`list_pull_requests` em `open` devolveu lista vazia; `origin/claude/dreamy-mccarthy-rqhhzg` e `origin/main` no mesmo commit `ef2048f`, zero commit à frente nos dois sentidos) — nada a mergear, passo 1 cumprido. `executando_desde` estava `null`, o que pela **1.1** já significa que não havia bloco da Fundação vivo. Reserva no commit `731b1fa`, às **10h17Z**, hora saída do `date -u` na mesma linha que a grava; **RENOVADA** às 10h33Z pela 1.1 — esta ilha não tem o token do Sync e cada desembarque espera o cron por visita (20.6), e esta passada teve dois.
