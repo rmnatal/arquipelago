@@ -4,8 +4,8 @@
   "nicho": "mobilidade eletrica — acertar os tres numeros antes de comprar um veiculo eletrico: categoria legal (CNH e placa), autonomia real e carga maxima",
   "dominio": "https://rodametria.com.br",
   "versao_manifest": 1,
-  "revisao": 65,
-  "atualizado_em": "2026-11-06",
+  "revisao": 66,
+  "atualizado_em": "2026-11-09",
   "estado": "nascendo",
   "desembarque": {
     "aprovado": true,
@@ -167,7 +167,7 @@
       "arquivo": "dados/f1-respostas.json",
       "formato": "json",
       "publicar": true,
-      "sha256": "3f29256398f5653f11e9564be4532b921ea97bf279e6e966e17e9377b68197d2",
+      "sha256": "4a74f8b997d1ac6a35dbba7fa212f27b42f01c36f8144f3e26cc0d61ced405a9",
       "descricao": "Tudo o que a F1 serve na tela, escrito por ferramentas/gerar-f1.py a partir de regras/f1.py e de dados/constantes.json. Inclui os moldes de frase INTEIROS (o PHP e o JS leem os mesmos, para as duas metades nao poderem dizer coisas diferentes para a mesma entrada), os limiares lidos da resolucao, as duas tabelas pre-renderizadas e a prestacao de contas com a soma fechando o banco."
     },
     {

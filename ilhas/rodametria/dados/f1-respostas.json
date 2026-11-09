@@ -3,7 +3,7 @@
   "ilha": "rodametria",
   "ferramenta": "F1",
   "bloco": "4",
-  "gerado_em": "2026-11-06",
+  "gerado_em": "2026-11-09",
   "gerado_por": "ferramentas/gerar-f1.py",
   "referencia": "regras/f1.py",
   "especificacao": "dados/especificacao-calculadoras.md, secao 1",
@@ -521,7 +521,7 @@
   },
   "compra": {
     "vitrine": [],
-    "frase_de_abertura": "Não temos o que recomendar aqui, e a causa é de ficha e não de estoque: nenhum dos 14 anúncios que a gente colheu declara a potência NOMINAL. Todos declaram um watt sem dizer se é nominal ou de pico — e esse número a regra não lê.",
+    "frase_de_abertura": "Não temos o que recomendar aqui, e a causa é de ficha e não de estoque: nenhum dos 14 anúncios que a gente colheu declara a potência NOMINAL. 13 declaram um watt sem dizer se é nominal ou de pico — e esse número a regra não lê; o outro não declara watt nenhum.",
     "grupos": {
       "cabem_na_categoria": [],
       "de_outra_categoria": [],

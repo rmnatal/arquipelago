@@ -51,8 +51,24 @@ CONSTANTES = os.path.join(ILHA, "dados", "constantes.json")
 RESPOSTAS = os.path.join(ILHA, "dados", "f1-respostas.json")
 FONTE_DA_REFERENCIA = os.path.join(ILHA, "regras", "f1.py")
 
+GERADOR = os.path.join(AQUI, "gerar-f1.py")
+
 FALHAS = []
 AFIRMACOES = [0]
+
+
+def _carregar_gerador():
+    """O gerador tem HIFEN no nome, entao entra por importlib e nao por import.
+
+    Ele e carregado porque a metade (I) mede uma frase que mora NELE e nao nos
+    moldes da referencia — e foi justamente por nao ser molde que ela foi ao ar
+    falsa em 06/11/2026 e ficou tres dias sem nenhum portao olhando.
+    """
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("gerar_f1_para_teste", GERADOR)
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
 
 
 def ok(condicao, frase):
@@ -743,6 +759,113 @@ def metade_h():
               % (len(f1ref.CATEGORIAS), len(f1ref.CATEGORIAS)))
 
 
+# ---------------------------------------------------------------------------
+# (I) A FRASE DE ABERTURA DA VITRINE CITAVA UMA CONTAGEM COM UM QUANTIFICADOR, E
+#     ELA FOI AO AR FALSA — medido na home em 09/11/2026, pela lente do defeito
+#     de 06/11 (prosa que promete uma conta e nao a fecha).
+#
+# O QUE ESTAVA NO AR: *"nenhum dos 14 anuncios que a gente colheu declara a
+# potencia NOMINAL. TODOS declaram um watt sem dizer se e nominal ou de pico"*.
+# A primeira metade era verdadeira; a segunda era FALSA — dos 14, treze
+# declaravam watt e UM (a ficha PLAYBIK) nao declarava watt nenhum. E a pagina
+# se contradizia duas vezes na MESMA tela: a ressalva do pico dizia `13`,
+# contada do banco pelo gerador, e a TABELA imprimia "nao declara" na linha do
+# PLAYBIK. Quem lesse a pagina inteira via tres respostas para uma contagem.
+#
+# POR QUE NENHUM PORTAO VIU, e e a licao de metodo: a regua de quantificador por
+# extenso da metade (G) le `frases_molde`, e esta frase nasce INLINE no
+# `gerar-f1.py`, fora daquela lista. `todos` tambem nao estava entre os
+# proibidos. Portao que mede uma lista de moldes nao alcanca a frase que nao e
+# molde — e a frase que nao e molde e justamente a que ninguem reconferiu.
+#
+# ESTA METADE MEDE AS DUAS PONTAS: fabrica os tres mundos da frase (nenhum deles
+# e o de hoje por acidente) e exige que a frase SERVIDA seja refabricavel do
+# banco, byte por byte.
+def _grupos_fabricados(wattless, com_watt):
+    """Grupos com `nao_declaram_nominal` montado a dedo, para fabricar mundo."""
+    g = {"cabem_na_categoria": [], "de_outra_categoria": [],
+         "nao_declaram_nominal": [], "sem_saida_de_compra": [], "fora_do_banco": []}
+    for i in range(com_watt):
+        g["nao_declaram_nominal"].append(
+            {"id": "com-watt-%d" % i,
+             "potencia_declarada_sem_rotulo_w": {"valor": 500}})
+    for i in range(wattless):
+        g["nao_declaram_nominal"].append(
+            {"id": "sem-watt-%d" % i,
+             "potencia_declarada_sem_rotulo_w": {"valor": None}})
+    return g
+
+
+def metade_i():
+    gen = _carregar_gerador()
+    frase = gen.frase_do_bloco_de_compra
+
+    # OS TRES MUNDOS, e nenhum deles e escolhido pela intencao: a contagem
+    # escolhe. O mundo do meio e o de hoje (13 com watt, 1 sem).
+    mundos = {
+        "todos com watt": (0, 14),
+        "misto": (1, 13),
+        "nenhum com watt": (14, 0),
+    }
+    saiu = {}
+    for rotulo, (wattless, com_watt) in mundos.items():
+        saiu[rotulo] = frase(_grupos_fabricados(wattless, com_watt), "autopropelido")
+
+    ok(len(set(saiu.values())) == 3,
+       "os tres mundos da frase de abertura nao produziram tres frases distintas: "
+       "causa que a contagem separa e o texto funde — %r" % saiu)
+
+    ok("Os 14 declaram um watt" in saiu["todos com watt"]
+       and "watt nenhum" not in saiu["todos com watt"],
+       "o mundo em que TODOS declaram watt sem rotulo nao traz a contagem, ou "
+       "inventa um resto que nao existe: %r" % saiu["todos com watt"][:200])
+
+    ok("13 declaram um watt" in saiu["misto"]
+       and "o outro não declara watt nenhum" in saiu["misto"],
+       "o mundo MISTO — o de hoje — nao nomeia as duas contagens: %r"
+       % saiu["misto"][:220])
+
+    ok("watt nenhum" in saiu["nenhum com watt"]
+       and " 0 declara" not in saiu["nenhum com watt"],
+       "o mundo em que NENHUM declara watt serve o plural que mente (a cicatriz "
+       "da clubedomosaico de 12/10/2026): %r" % saiu["nenhum com watt"][:200])
+
+    # E NENHUM DOS TRES PODE TRAZER QUANTIFICADOR POR EXTENSO. A classe que esta
+    # ilha paga desde 03/11/2026, com `todos` acrescentado em 09/11 porque foi
+    # ele que foi ao ar falso. Esta lista e mais larga que a da metade (G) de
+    # proposito: aqui a frase fala de uma contagem que a pagina TEM medida, e
+    # entao quantificador nenhum tem desculpa.
+    proibidos = ("todos", "todas", "costuma", "geralmente", "normalmente",
+                 "a maioria", "quase sempre", "quase nunca", "na maior parte",
+                 "o mais comum", "mais comum", "em geral", "tipicamente",
+                 "raramente", "varios", "vários", "alguns", "muitos")
+    for rotulo, f in saiu.items():
+        baixo = f.lower()
+        for t in proibidos:
+            ok(t not in baixo,
+               "a frase de abertura do mundo %r traz o quantificador por extenso "
+               "%r onde a pagina TEM a contagem medida: %r" % (rotulo, t, f[:180]))
+
+    # E A PONTA QUE PROVA: a frase SERVIDA e refabricavel do banco. Sem isto os
+    # tres mundos acima poderiam estar certos com o JSON no ar trazendo outra
+    # coisa — que e exatamente o que aconteceu em 06/11 e 09/11.
+    bruto = json.load(io.open(CONSTANTES, encoding="utf-8"))
+    cs = {c["id"]: c for c in bruto["constantes"]}
+    lim = f1ref.limiares_publicaveis(cs)
+    with io.open(os.path.join(ILHA, "dados", "veiculos.json"), encoding="utf-8") as fh:
+        regs = json.load(fh)["registros"]
+    servido = json.load(io.open(RESPOSTAS, encoding="utf-8"))
+    cat = (servido.get("resposta_exemplo") or {}).get("categoria")
+    refeita = frase(f1ref.grupos_de_compra(regs, cat, lim), cat)
+    no_ar = (servido.get("compra") or {}).get("frase_de_abertura")
+    ok(no_ar == refeita,
+       "a frase de abertura SERVIDA nao e refabricavel do banco — servida %r, "
+       "refeita do banco %r" % ((no_ar or "")[:170], refeita[:170]))
+
+    print("  frase de abertura da vitrine: 3 mundos fabricados, %d quantificador(es) "
+          "barrado(s) por mundo, e a frase servida refeita do banco" % len(proibidos))
+
+
 def main():
     print("PORTAO DA F1 — RODAMETRIA (limiares FICTICIOS na arvore, pela 1.6)")
     metade_a()
@@ -753,6 +876,7 @@ def main():
     metade_f()
     metade_g()
     metade_h()
+    metade_i()
 
     print()
     print("teste-f1: %d afirmacoes, %d falha(s)" % (AFIRMACOES[0], len(FALHAS)))

@@ -260,11 +260,48 @@ def frase_do_bloco_de_compra(grupos, categoria_pedida):
                 "regra lê e cai%s nesta categoria."
                 % (cabem, "m" if cabem > 1 else "", "em" if cabem > 1 else ""))
     if sem_ficha and not outra:
-        return ("Não temos o que recomendar aqui, e a causa é de ficha e não "
-                "de estoque: nenhum dos %d anúncios que a gente colheu declara a "
-                "potência NOMINAL. Todos declaram um watt sem dizer se é nominal "
-                "ou de pico — e esse número a regra não lê."
-                % sem_ficha)
+        # OS NUMEROS SAO CONTADOS SOBRE O MESMO CONJUNTO DE QUE A FRASE FALA, e
+        # isso e o conserto de 09/11/2026. A versao anterior dizia "TODOS
+        # declaram um watt sem dizer se e nominal ou de pico" sobre os
+        # `nao_declaram_nominal`, e isso era FALSO no ar: dos 14, treze
+        # declaravam watt e UM (a ficha PLAYBIK) nao declarava watt nenhum. A
+        # ressalva do pico, duas telas abaixo na MESMA pagina, dizia `13` —
+        # contado do banco pelo gerador. A pagina se contradizia por escrito na
+        # mesma hora, e a TABELA dela, logo embaixo, imprimia "nao declara" na
+        # linha do PLAYBIK.
+        #
+        # POR QUE NENHUM PORTAO VIU: a regua de quantificador por extenso do
+        # `teste-f1.py` le `frases_molde`, e esta frase nasce AQUI, string
+        # inline no gerador, fora daquela lista — e `todos` nao estava entre os
+        # proibidos. As duas pontas foram fechadas na mesma passada.
+        #
+        # TRES MUNDOS, ESCOLHIDOS PELA CONTAGEM E NUNCA PELA INTENCAO, pelo
+        # mesmo desenho dos dois moldes de `ressalva_pico_*`: o plural que mente
+        # (" 0 declaram") e a cicatriz que a clubedomosaico pagou em 12/10/2026,
+        # e o mundo do zero existe neste banco.
+        sem_rotulo = sum(
+            1 for r in grupos["nao_declaram_nominal"]
+            if f1ref._valor(r.get("potencia_declarada_sem_rotulo_w")) is not None)
+        sem_watt = sem_ficha - sem_rotulo
+        abertura = ("Não temos o que recomendar aqui, e a causa é de ficha e não "
+                    "de estoque: nenhum dos %d anúncios que a gente colheu declara "
+                    "a potência NOMINAL. " % sem_ficha)
+        if sem_watt == 0:
+            return abertura + (
+                "Os %d declaram um watt sem dizer se é nominal ou de pico — e "
+                "esse número a regra não lê." % sem_ficha)
+        if sem_rotulo == 0:
+            return abertura + (
+                "E não é que o watt deles seja o errado: %s não declara%s watt "
+                "nenhum, nem com rótulo nem sem."
+                % (("nenhum dos %d" % sem_ficha) if sem_ficha > 1 else "o único",
+                   "" if sem_ficha == 1 else "m"))
+        return abertura + (
+            "%d declara%s um watt sem dizer se é nominal ou de pico — e esse "
+            "número a regra não lê; %s não declara%s watt nenhum."
+            % (sem_rotulo, "m" if sem_rotulo > 1 else "",
+               ("os outros %d" % sem_watt) if sem_watt > 1 else "o outro",
+               "m" if sem_watt > 1 else ""))
     if outra and not cabem:
         return ("Nenhum dos anúncios colhidos cai em %s: %d dele%s classifica%s "
                 "noutra categoria e %d não declara%s a potência nominal."
