@@ -120,6 +120,26 @@ medição desta data ao lado.
 **O QUE ESTE DESPACHO NÃO PEDE:** nada no portão. Ele já mede, já reprova e já diz o conserto — a
 **31.2** é literal sobre portão novo só nascer com defeito que ele teria pegado, e este foi pego.
 
+> **TENTATIVA EM 09/11/2026 às 10h2xZ — OS ITENS 2 E 3 CONTINUAM ABERTOS, E A CAUSA É DE REGRA E NÃO DE
+> FÔLEGO.** Uma execução da Fundação na **rodametria** (a ilha em foco) leu este despacho antes da fila,
+> pela **18.1/18.5**, e **não pôde pegar os itens 2 e 3**. Os dois consertam
+> `ilhas/robometria/snippets/robometria-sync.php`, e este despacho já escreve *"Quem o fizer reserva a
+> robometria, porque é lá que o arquivo mora"*. Para reservar a robometria seria preciso furar o foco, e a
+> **1.2** abre uma exceção só: **ilha no ar e QUEBRADA**. Medi `robometria.com.br` em **200** na mesma
+> passada em que medi a rede da ilha em foco (controle verde, 9 de 9) — **ela não está quebrada**, então a
+> exceção não existe hoje e reservá-la seria furar o foco sem a causa que o autoriza.
+>
+> **O QUE ISTO CUSTA, dito sem aumentar:** enquanto o item 1 (o token, do Raphael) não existir e os itens
+> 2 e 3 não forem feitos, **toda mudança de snippet nesta ilha corre o risco da janela indefinida** — e
+> esta execução pagou por ela de novo, de outra forma: foram **DOIS desembarques** (67 e 68), e o segundo
+> esperou o vencimento do cron com a página servindo a revisão anterior. **Nesta passada o risco não se
+> realizou:** o log da revisão 68 trouxe `snippets/rodametria-f3: ok (snippet #11 atualizado)` e as 8
+> linhas de item disseram `ok` (20.4/20.8, lidas do fecho para baixo).
+>
+> **QUEM DESTRAVA ISTO SEM FURAR NADA:** o foco sair da rodametria (`foco.md`), ou a robometria quebrar (e
+> aí a exceção da 1.2 vale), ou o Raphael pedir. **Não é trabalho esquecido: é trabalho que a regra do
+> foco põe atrás de uma porta, e a porta está nomeada aqui.**
+
 ---
 
 

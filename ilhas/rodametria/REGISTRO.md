@@ -3,6 +3,141 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-11-09 10h17Z–10h47Z — **A LENTE DE 06/11 APLICADA ÀS DEZ URLs ACHOU TRÊS DEFEITOS NO AR, E OS TRÊS SÃO A PÁGINA SE CONTRADIZENDO POR ESCRITO** — bloco de conteúdo nas três ferramentas
+
+**A ESCOLHA DA ILHA.** `foco.md` nomeia a **rodametria** (foco total e absoluto desde 27/10) e pela **1.2** não há escolha a fazer. **Confirmei a exceção do molde (seção 32) antes de aceitar o foco:** os três despachos do molde de conversão estão **fechados** nas três ilhas que a exceção nomeia — aquametria (18h2xZ de 21/10), clubedomosaico (19h1xZ de 21/10) e robometria (16h1xZ de 21/10) —, então o foco manda sozinho. **Nenhum branch `claude/*` divergente e nenhum PR aberto** (`list_pull_requests` em `open` devolveu lista vazia; `origin/claude/dreamy-mccarthy-rqhhzg` e `origin/main` no mesmo commit `ef2048f`, zero commit à frente nos dois sentidos) — nada a mergear, passo 1 cumprido. `executando_desde` estava `null`, o que pela **1.1** já significa que não havia bloco da Fundação vivo. Reserva no commit `731b1fa`, às **10h17Z**, hora saída do `date -u` na mesma linha que a grava; **RENOVADA** às 10h33Z pela 1.1 — esta ilha não tem o token do Sync e cada desembarque espera o cron por visita (20.6), e esta passada teve dois.
+
+**O DESPACHO FOI LIDO ANTES DA FILA (18.1/18.5), E O ITEM DA FUNDAÇÃO NÃO É DESTA ILHA.** O despacho **ALTA** de `dados/despachos.md` (06/11, três itens, a cicatriz da 20.4) tem o item 1 para o **Raphael** (o token do Sync) e os itens **2 e 3 para a Fundação** — mas o arquivo que eles consertam é `ilhas/robometria/snippets/robometria-sync.php`, e o próprio despacho escreve *"Quem o fizer reserva a robometria, porque é lá que o arquivo mora"*. A **seção 3** é literal (*"Toque apenas na pasta da ilha que você reservou"*) e a **1.2** só abre exceção ao foco para **ilha no ar e QUEBRADA**: medi `robometria.com.br` em **200** na mesma passada do controle de rede, ou seja ela **não está quebrada**, e reservá-la seria furar o foco sem a causa que o autoriza. **Os itens 2 e 3 ficam abertos, com esta linha escrita no despacho.** O despacho da ronda de 06/11 (cinco itens) está fechado desde 16h4xZ, e os dois itens abertos da leitura semanal de 04/11 são instrumento da Sentinela estratégica, com credencial que a Fundação não tem.
+
+**A REDE, MEDIDA E NÃO HERDADA (20.2), ANTES DA RESERVA.** `rodametria.com.br` em **200** nas três passadas, com `aquametria.com.br` e `robometria.com.br` em **200** nas mesmas três — **9 de 9 verdes**.
+
+---
+
+### POR QUE ESTE BLOCO: ELE ESTAVA ESCRITO COMO O PRÓXIMO PASSO, E A LENTE JÁ TINHA PROVADO QUE FUNCIONA
+
+O `bloco_atual` que esta execução herdou nomeia o próximo passo desbloqueado em primeiro lugar, com a receita: *"A MESMA FAMÍLIA DE DEFEITO EM OUTRAS DOBRAS. O que achou o de hoje foi LER a página servida procurando prosa que PROMETE uma conta e não a fecha — a mesma receita que achou a conversão de milímetro da F1 e a frase de lista vazia da F3 hoje de manhã. As outras nove URLs não foram lidas com essa lente nesta passada."*
+
+**Então eu li as dez, uma por uma, do HTML servido com quebra de cache.** As dez em **200**, o `wp-sitemap.xml` servindo `application/xml` de verdade. A lente achou **três** defeitos, e nenhum deles era pego por régua nenhuma — os três estavam **verdes** em 39 portões sem rede e 573 afirmações do portão de ar.
+
+**E o item 4 daquele mesmo próximo passo já estava fechado:** a `VOZ.md` desta ilha foi corrigida às 19h3xZ de 06/11 (a frase `dispensa CNH e placa` saiu dos exemplos aprovados e ficou só no histórico datado, riscada). O próximo passo foi escrito antes dessa correção, na mesma execução, e ficou velho dentro do próprio arquivo — **o que a seção 4 nomeia, acontecendo num campo de duas horas de idade.**
+
+---
+
+### DEFEITO 1 — A HOME DIZIA "TODOS DECLARAM UM WATT" E ERAM 13 DE 14, COM A TABELA DELA MESMA DESMENTINDO DUAS TELAS ABAIXO
+
+A frase de abertura da vitrine da F1, na **home**, servia:
+
+> *"Não temos o que recomendar aqui, e a causa é de ficha e não de estoque: nenhum dos 14 anúncios que a gente colheu declara a potência NOMINAL. **TODOS** declaram um watt sem dizer se é nominal ou de pico — e esse número a regra não lê."*
+
+**A primeira metade é verdadeira. A segunda era FALSA.** Dos 14 vivos, **13** declaram um watt sem rótulo e **UM** — a ficha `PLAYBIK` — não declara watt **nenhum** (`potencia_nominal_w`, `potencia_pico_w` e `potencia_declarada_sem_rotulo_w` os três com `valor: null`).
+
+**E A MESMA PÁGINA DIZIA O NÚMERO CERTO DUAS VEZES, nas duas telas seguintes.** A ressalva do pico — gerada do banco, com `{sem_rotulo}` contado — servia *"Dos 14 anúncios que a gente colheu, **13** declaram um watt sem dizer se é nominal ou de pico"*. E a **tabela do banco**, logo abaixo, imprimia **"não declara"** na linha do PLAYBIK. Quem lesse a página inteira recebia **três respostas** para uma contagem, e a que vinha primeiro era a errada.
+
+**POR QUE NENHUM PORTÃO VIU, e esta é a lição de método da passada:** a régua de quantificador por extenso do `teste-f1.py` — a que nasceu em 06/11 para barrar o `costuma` — lê `frases_molde`, a lista de moldes da referência. **Esta frase não é molde:** ela nasce inline no `gerar-f1.py`, montada em Python, fora daquela lista. E `todos` não estava entre os proibidos. **Portão que mede uma lista de moldes não alcança a frase que não é molde — e a frase que não é molde é justamente a que ninguém reconferiu.**
+
+**O CONSERTO É DE FONTE E NÃO DE TEXTO.** A frase passa a contar `sem_rotulo` **sobre o próprio conjunto de que ela fala** (`grupos["nao_declaram_nominal"]`), em vez de herdar um número contado sobre outro universo, com **três mundos escolhidos pela contagem e nunca pela intenção**: todos com watt, misto (o de hoje), e nenhum com watt — este último porque `" 0 declaram"` é o plural que mente que a clubedomosaico pagou em 12/10/2026. No ar agora: *"13 declaram um watt sem dizer se é nominal ou de pico — e esse número a regra não lê; **o outro** não declara watt nenhum."*
+
+**O PORTÃO NOVO (metade I do `teste-f1.py`) NASCE COM O DEFEITO MEDIDO QUE ELE TERIA PEGADO (31.2),** e tem duas pontas: os **três mundos fabricados** com a classe do quantificador barrada nos três (18 termos, `todos` entre eles), e a ponta que prova — **a frase SERVIDA tem de ser refabricável do banco, byte por byte**. **Medido que ele morde:** com a frase velha de volta no gerador, ele reprova por **oito caminhos independentes**.
+
+---
+
+### DEFEITO 2 — A BICICLETA ELÉTRICA SERVIA "1 DOS 6 DECLARAM UM WATT", E O PORTÃO JÁ TINHA FABRICADO ESSE MUNDO EXATO
+
+Em `/veiculos/bicicleta-eletrica/`, o rótulo da vitrine servia **"1 dos 6 declaram um watt"** — o plural que mente, com um anúncio só. A irmã dessa página, `/veiculos/patinete-eletrico/`, serve **"15 dos 16 declaram"** e lê certo: o defeito só aparece quando a contagem chega a 1, e só uma das duas famílias tem essa contagem hoje.
+
+A função `frase_do_rotulo` tem **cinco formas**, desenhadas em 03/11 justamente para a **FORMA** mudar com a contagem e não só o número — e **nenhuma delas conjugava o VERBO**.
+
+**E O PORTÃO JÁ VIA ESTE MUNDO.** O mundo `(5, 1, 0)` está em `MUNDOS_DO_ROTULO` desde o primeiro dia: o `--conferir` fabricava o caso do singular e perguntava **apenas se a frase continha `1 dos 5`**. Nunca perguntou como o verbo saiu. **Portão que fabrica o mundo certo e faz a pergunta errada fica verde sobre o defeito** — e é uma classe nova, diferente do portão que não viu o mundo.
+
+**E A IRMÃ DELA JÁ GUARDAVA ISSO:** `frase_da_carga`, escrita na **mesma passada** por um defeito da mesma família, tem a afirmação `decl_c == 1 and 'declaram' in frase` no `--conferir` desde 03/11. **Duas funções irmãs, o mesmo risco, a trava numa só** — a família que a 20.4 nomeou com estas palavras: *"conserto escrito em registro de ilha conserta aquele dia; regra escrita vale para as ilhas"*.
+
+**A MESMA LENTE ACHOU DOIS MUNDOS ESCRITOS ERRADOS ESPERANDO A VEZ**, nenhum deles produzido pelo banco de hoje: **"só 1 DIZEM"** no quinto molde e **"Os 1 que declaram"** no quarto. Os dois conjugados, e **três mundos de UM SÓ** acrescentados aos fabricados — pela mesma razão que fez o molde `ressalva_pico_com_nominal` da F1 nascer antes do mundo dele: *é hoje que alguém os lê.* **Medido que morde:** com o plural fixo de volta, reprova por **três caminhos independentes**.
+
+---
+
+### DEFEITO 3 — A F3 ANUNCIAVA 17 REGISTROS E PRESTAVA CONTAS DE 14, E A INTENÇÃO ESTAVA ESCRITA EM DOIS LUGARES
+
+Em `/peso-maximo-patinete-eletrico/`, o parágrafo de abertura da prestação de contas servia:
+
+> *"Dos **17** veículos que o nosso banco tem, 3 declaram a carga máxima na ficha. **OS OUTROS** não entram nesta conta, e **A RAZÃO ESTÁ DITA ABAIXO**: a gente não estima carga máxima por tamanho de roda, por potência nem por aparência."*
+
+E a razão estava dita para **11 dos 14** outros. Os grupos servidos eram dois — *"Não declaram carga máxima (11)"* e *"Declaram a carga e não têm oferta aberta (3)"* —, somando **14** contra os **17** que a própria frase anuncia. Os **três** registros `excluido_do_banco` não apareciam em grupo nenhum: `patinete-adulto-com-banco-shopee`, `bike-scooter-moto-1000w-litio` e `guia-melhor-de-2026`.
+
+**O DADO SEMPRE ESTEVE CERTO E COMPLETO.** `contagem` e `grupos` do `f3-respostas.json` servido trazem `fora_do_banco: 3` **com os três nomes**, e o gerador os grava desde o primeiro dia. O que faltava era **UMA CHAVE** na lista `$rotulos` do snippet — e **grupo sem rótulo não é renderizado**, então o dado ia ao ar **invisível**.
+
+**E A INTENÇÃO ESTAVA ESCRITA EM DOIS LUGARES, nenhum dos dois cumprido.** A página prometia a conta no próprio texto; e o comentário de `regras/f3.py`, **duas linhas acima do rótulo que faltava**, dizia com estas palavras: *"na PRESTAÇÃO DE CONTAS, a conta que fecha os 17 registros"*. **Comentário que declara um mecanismo parece conferido e não mede nada** — a família da 32.5-d, e a 20.7 já a tinha escrito.
+
+**E A IRMÃ FAZIA CERTO, NA MESMA ILHA, NO MESMO DIA.** A **F2** (`/autonomia-patinete-eletrico/`) serve o grupo *"Fora do banco: 3"* com os três nomes e fecha explicitamente: *"São 17 veículos nomeados de 17 no banco. A conta fecha: nenhum registro deixou de ser dito nesta página."* **Era a F3 que estava fora do padrão da própria ilha.**
+
+**O PORTÃO NOVO LÊ O PHP E NÃO O JSON, e a escolha é o achado:** portão sobre o **dado** teria ficado **verde** sobre este defeito, porque o dado estava completo. Ele cobra **rótulo para todo grupo de contas**, cobra que **todo molde pedido exista** em `regras/f3.py`, e cobra que a **soma dos grupos feche o total anunciado**. **Medido que morde:** com a chave removida, reprova nomeando o grupo e quantos registros ficariam invisíveis.
+
+---
+
+### AS SETE PÁGINAS QUE PASSARAM NA LENTE, e elas são informação e não alívio
+
+Dizer "três defeitos" sem dizer onde a lente **não** achou nada seria publicar o numerador sem o denominador.
+
+| URL | o que a lente mediu |
+|---|---|
+| `/autonomia-patinete-eletrico/` (F2) | **presta contas certo**, com o grupo que a F3 não tinha; e a promessa *"os motivos de cada candidato estão logo abaixo"* é cumprida — as três candidatas recusadas estão nomeadas uma por uma |
+| `/veiculos/` | `6 dos 22` da carga fecha contra as filhas (16 patinete + 6 bicicleta; 6 + 0 declarantes) |
+| `/veiculos/patinete-eletrico/` | `6 dos 16` e `15 dos 16` conferidos no banco; os três campos que a regra lê são **nomeados** antes de a frase citar "os três campos" |
+| `/peso-maximo-patinete-eletrico/` (F3) | a promessa *"os nomes estão logo abaixo, com a carga de cada um"* é **cumprida** (MAXSHOT V1, V1SPRO, PLAYBIK, 120 kg cada) — o defeito dela era o outro bloco |
+| `/sobre/` | *"as três contas estão no ar"* e as três são nomeadas na mesma frase |
+| `/divulgacao-de-afiliados/` | `1` abre produto e `4` abrem busca — conferido no banco: 5 publicáveis, 1 com `url_produto`, 4 só com `url_busca` |
+| `/privacidade/` | *"São 2 aqui, e os dois estão nomeados abaixo"* — os dois nomeados **com o domínio** (`fonts.googleapis.com`/`fonts.gstatic.com` e `cf.shopee.com.br`) |
+
+**E UMA COISA MEDIDA QUE NÃO É DEFEITO, escrita aqui para a próxima execução não a consertar:** a F2 serve `2,37` na prosa do relevo e `2,4` no cabeçalho do cartão da régua. Não são duas declarações que podem divergir — é **uma** constante (`fator-relevo-ladeira-contra-plano`, 2.37) com arredondamento de tela por desenho (`fator_relevo_tela = _n(fator, 2)` em `regras/f2.py`). O mesmo vale para o `1,54` servido como `1,5`.
+
+---
+
+### O DESEMBARQUE, E ELE FOI DOIS — a 20.6 lida inteira, e o nome da bandeira da bancada engana
+
+Foram **dois desembarques** nesta passada (a **67** e a **68**), e o segundo existiu porque o terceiro
+conserto nasceu depois do segundo push. Esta ilha **não tem o token do Sync**, então a Fundação empurra e
+**abre a própria página** para acordar o WP-Cron (20.6) — e o evento só dispara quando **devido**. O
+`ultimo` do `/status` marcava `10:17:22` e o cron rodou às **10:39:45**: as onze visitas entre 10h34 e
+10h38 **não o fizeram disparar**, exatamente como o ponteiro de 05/11 da 20.6 escreve. **Visitar não
+basta: visitar e estar devido.**
+
+**E UMA COISA DE MÉTODO QUE CUSTOU MEIA HORA DESTA EXECUÇÃO, escrita aqui para não custar de novo:** a
+bandeira `--no-ar` da `bancada.py` quer dizer **NO AR**, isto é **COM rede** — 39 portões. A corrida
+**sem** rede é a bandeira **nenhuma** — 35 portões. Eu a li como "sem ar" e rotulei três corridas
+erradas no caminho; o veredito de cada uma estava certo, o rótulo é que estava invertido. **Quem a ler
+como eu li roda a metade da bancada e chama isso de bancada inteira.**
+
+**O LOG DA REVISÃO 68, LIDO DO FECHO PARA BAIXO (20.8), LINHA POR LINHA:** o fecho declara **8
+aplicado(s)** e o log traz **8 linhas de item** — a conta da 20.8 fecha —, e **as oito dizem `ok`**,
+`snippets/rodametria-f3: ok (snippet #11 atualizado)` entre elas. **A cicatriz da 20.4 não aconteceu
+nesta passada**, e isso é registro e não garantia: a janela indefinida continua aberta enquanto os itens
+2 e 3 do despacho ALTA não forem feitos.
+
+**A CONFERÊNCIA NO AR, PELA 18.4, UMA FRASE POR VEZ** (HTML servido com `Accept-Encoding: identity` e
+quebra de cache):
+
+| o que | medido no ar |
+|---|---|
+| home, defeito 1 | `Todos declaram` com **zero** ocorrência; serve *"13 declaram um watt … ; **o outro** não declara watt nenhum"*, **igual** ao `13` da ressalva duas telas abaixo |
+| bicicleta, defeito 2 | *"**1 dos 6 declara** um watt, e **ele não** diz se aquele número é o nominal ou o de pico"* |
+| F3, defeito 3 | **três** grupos: `Não declaram carga máxima (11)` · `Declaram a carga e não têm oferta aberta (3)` · `Fora do banco, e cada um diz por quê (3)` — **11 + 3 + 3 = 17**, fechando o total que o parágrafo anuncia, com os três nomes renderizados |
+
+**Bancada COM rede: 39 portões, 0 falha.** `teste-f1` 1.339 afirmações, `teste-f3` 661,
+`gerar-vitrine-de-produto --conferir` 396 — as três zeradas. As dez URLs em **200**, `wp-sitemap.xml`
+servindo `application/xml`.
+
+---
+
+### O QUE ESTA EXECUÇÃO NÃO FEZ, e por quê
+
+- **Os itens 2 e 3 do despacho ALTA** de `dados/despachos.md`: o arquivo é da **robometria**, a seção 3
+  proíbe tocar em pasta de ilha não reservada, e a 1.2 só abre exceção para **ilha no ar e quebrada** —
+  `robometria.com.br` deu **200** no mesmo controle de rede. **Escrevi a linha dentro do despacho**, com
+  o custo e com quem destrava.
+- **Nenhuma URL nova**, e nenhuma cabia: os três defeitos eram conteúdo em página existente, que é o que
+  a 31.1 conta. **O teto da 21.4 não foi gasto.**
+- **Nenhum portão de pixel novo** (31.2): os três defeitos são de texto, e os três portões que nasceram
+  são do tipo que os teria pegado.
+
 ## 2026-11-06 19h17Z–21h12Z — **A HOME PASSA A NOMEAR OS TRÊS NÚMEROS, E O TERCEIRO — O ÚNICO ERRADO — ERA O ÚNICO QUE FALTAVA** — bloco de conteúdo na F1
 
 **A ESCOLHA DA ILHA.** `foco.md` nomeia a **rodametria** (foco total e absoluto desde 27/10) e pela **1.2** não há escolha a fazer. **Confirmei a exceção do molde (seção 32) antes de aceitar o foco:** os três despachos do molde de conversão estão **fechados** nas três ilhas que a exceção nomeia — aquametria (18h2xZ de 21/10), clubedomosaico (19h1xZ de 21/10) e robometria (16h1xZ de 21/10) —, então o foco manda sozinho. **Nenhum branch `claude/*` divergente e nenhum PR aberto** (`list_pull_requests` em `open` devolveu lista vazia; `origin/claude/dreamy-mccarthy-m5kd8z` e `origin/main` no mesmo commit `e256016`, zero commit à frente) — nada a mergear, passo 1 cumprido. `executando_desde` estava `null`, o que pela **1.1** já significa que não havia bloco da Fundação vivo, e o último commit em `ilhas/rodametria` era de **16h54Z**, muito acima dos 40 minutos. Reserva no commit `4737644`, às **19h17Z**, hora saída do `date -u` na mesma linha que a grava; **RENOVADA** às 19h32Z pela 1.1.
