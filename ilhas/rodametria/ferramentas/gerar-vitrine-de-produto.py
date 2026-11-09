@@ -171,31 +171,69 @@ def o_que_o_anuncio_declara(a):
 # As cinco formas sao conferidas sobre MUNDOS FABRICADOS em `--conferir`, porque
 # o banco de hoje produz uma delas so e regua que nunca viu o mundo dela nasce
 # errada sem poder falhar (secao 8).
+# A CONCORDANCIA DE NUMERO ENTROU EM 09/11/2026, E ELA FOI AO AR ERRADA, medida
+# em `/veiculos/bicicleta-eletrica/`: a pagina servia **"1 dos 6 DECLARAM um
+# watt"**. As cinco formas desta funcao foram desenhadas para a FORMA mudar com a
+# contagem — e nenhuma delas conjugava o VERBO. O mundo `(5, 1, 0)` estava
+# FABRICADO em `MUNDOS_DO_ROTULO` desde o primeiro dia, ou seja o portao viu
+# exatamente este mundo e fez a pergunta errada: perguntou se a frase continha
+# `1 dos 5` e nunca perguntou como o verbo saiu.
+#
+# E A IRMA DELA JA GUARDAVA ISSO. `frase_da_carga`, escrita na mesma passada por
+# um defeito da mesma familia, tem a afirmacao `decl_c == 1 and 'declaram' in
+# frase` no `--conferir` desde 03/11. Duas funcoes irmas, o mesmo risco, e a
+# trava numa so — a familia que esta ilha paga desde que a 20.4 escreveu que
+# conserto escrito num lugar conserta aquele dia.
+#
+# A MESMA PASSADA ACHOU, pela mesma lente, que a `dizem_qual_watt == 1` do
+# quinto molde imprimia "so 1 DIZEM" e que `declaram_watt == 1` no quarto
+# imprimia "Os 1 que declaram". Nenhum dos dois estava no ar — o banco de hoje
+# nao os produz —, e os dois estao conjugados aqui porque e hoje que alguem os
+# le (a mesma razao que fez o molde `ressalva_pico_com_nominal` da F1 nascer
+# antes do mundo dele).
 def frase_do_rotulo(n, declaram_watt, dizem_qual_watt):
     if declaram_watt == 0:
+        if n == 1:
+            return ('O único anúncio não declara potência, e é a potência nominal que '
+                    'decide se precisa de habilitação.')
         return ('Nenhum dos %d anúncios declara potência, e é a potência nominal que '
                 'decide se precisa de habilitação.' % n)
     if dizem_qual_watt == 0 and declaram_watt == n:
+        if n == 1:
+            return ('O único declara um watt, e não diz se aquele número é o nominal '
+                    'ou o de pico — e é o nominal que decide a categoria.')
         return ('Todos os %d declaram um watt, e nenhum diz se aquele número é o nominal '
                 'ou o de pico — e é o nominal que decide a categoria.' % n)
     if dizem_qual_watt == 0:
-        return ('%d dos %d declaram um watt, e nenhum diz se aquele número é o nominal ou '
-                'o de pico — e é o nominal que decide a categoria.' % (declaram_watt, n))
+        return ('%d dos %d %s um watt, e %s diz se aquele número é o nominal ou '
+                'o de pico — e é o nominal que decide a categoria.'
+                % (declaram_watt, n,
+                   'declara' if declaram_watt == 1 else 'declaram',
+                   'ele não' if declaram_watt == 1 else 'nenhum'))
     if dizem_qual_watt == declaram_watt:
+        if declaram_watt == 1:
+            return ('O único que declara watt diz qual watt é aquele, o que nesta '
+                    'família é raro.')
         return ('Os %d que declaram watt dizem todos qual watt é aquele, o que nesta '
                 'família é raro.' % declaram_watt)
 
-    return ('%d dos %d declaram um watt e só %d dizem qual watt é aquele — e é o nominal '
-            'que decide a categoria.' % (declaram_watt, n, dizem_qual_watt))
+    return ('%d dos %d declaram um watt e só %d %s qual watt é aquele — e é o nominal '
+            'que decide a categoria.'
+            % (declaram_watt, n, dizem_qual_watt,
+               'diz' if dizem_qual_watt == 1 else 'dizem'))
 
 
 MUNDOS_DO_ROTULO = (
     # (n, declaram, dizem_qual, pedaco que a frase tem de conter)
     (5, 0, 0, 'Nenhum dos 5'),
     (5, 5, 0, 'Todos os 5'),
-    (5, 1, 0, '1 dos 5'),
+    (5, 1, 0, '1 dos 5 declara um watt'),   # O MUNDO QUE FOI AO AR ERRADO
     (5, 3, 3, 'Os 3 que declaram'),
-    (16, 15, 1, 'só 1 dizem'),
+    (16, 15, 1, 'só 1 diz'),                # "so 1 dizem" ate 09/11/2026
+    # OS TRES MUNDOS DE UM SO, nenhum deles produzido pelo banco de hoje:
+    (1, 0, 0, 'O único anúncio não declara potência'),
+    (1, 1, 0, 'O único declara um watt'),
+    (6, 1, 1, 'O único que declara watt'),
 )
 
 
@@ -772,6 +810,22 @@ def conferir():
         if ', 0 ' in frase or frase.endswith(' 0.'):
             falhas.append('frase_do_rotulo(%d,%d,%d) imprime zero no meio da frase: %r'
                           % (n, decl_w, dizem, frase))
+        # A AFIRMACAO QUE FALTAVA, E A IRMA `frase_da_carga` JA A TINHA desde
+        # 03/11: UM anuncio nao pode sair com verbo no plural. Sem ela o mundo
+        # `(5, 1, 0)` passava verde servindo "1 dos 5 DECLARAM um watt" — e foi
+        # exatamente isso que `/veiculos/bicicleta-eletrica/` serviu ao visitante.
+        afirmacoes += 1
+        if decl_w == 1 and 'declaram' in frase:
+            falhas.append('frase_do_rotulo(%d,%d,%d) usa verbo no plural para UM '
+                          'anuncio que declara watt: %r' % (n, decl_w, dizem, frase))
+        afirmacoes += 1
+        if dizem == 1 and 'dizem' in frase:
+            falhas.append('frase_do_rotulo(%d,%d,%d) usa verbo no plural para UM '
+                          'anuncio que diz qual watt: %r' % (n, decl_w, dizem, frase))
+        afirmacoes += 1
+        if n == 1 and ('dos 1' in frase or 'Os 1 ' in frase or 'os 1 ' in frase):
+            falhas.append('frase_do_rotulo(%d,%d,%d) escreve "1" onde o portugues '
+                          'pede "o unico": %r' % (n, decl_w, dizem, frase))
 
     # OS CINCO MUNDOS DA FRASE DA CARGA, e o banco de hoje produz DOIS deles (o
     # vazio na bicicleta e a faixa no patinete). Os outros tres sao fabricados

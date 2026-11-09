@@ -27,7 +27,7 @@
     "declaram_watt": 1,
     "dizem_qual_watt": 0,
     "sem_watt": 5,
-    "frase_do_rotulo": "1 dos 6 declaram um watt, e nenhum diz se aquele número é o nominal ou o de pico — e é o nominal que decide a categoria.",
+    "frase_do_rotulo": "1 dos 6 declara um watt, e ele não diz se aquele número é o nominal ou o de pico — e é o nominal que decide a categoria.",
     "declaram_carga": 0,
     "carga_de": null,
     "carga_ate": null,
