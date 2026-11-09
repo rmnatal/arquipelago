@@ -6,10 +6,10 @@ Este contrato tem mais de 500 linhas e continua crescendo. **Ninguém lê tudo.*
 
 | Papel | Seções |
 |---|---|
-| **Fundação** | 1 a 11, 13 a 18, 20, 21, 22, 24, **25**, 26, 29, **30**, **31**, **32** |
-| **Sentinela — ronda diária** | **1.2**, **1.2-b**, 2, 3, 4, 10, 12, 15, 16, 18, 19, 21, 22, 23, 24, **25**, 29, **32** |
+| **Fundação** | 1 a 11, 13 a 18, 20, 21, 22, 24, **25**, 26, 29, **30**, **31**, **32**, **33** |
+| **Sentinela — ronda diária** | **1.2**, **1.2-b**, 2, 3, 4, 10, 12, 15, 16, 18, 19, 21, 22, 23, 24, **25**, 29, **32**, **33** |
 | **Painel** | quem escreve é a ronda diária, pela seção 23. Quem quiser saber o estado do Arquipélago lê `dados/PAINEL.md` e não precisa de seção nenhuma |
-| **Sentinela — leitura semanal** | **1.2**, **1.2-b**, 2, 3, 4, 10, 12, 12.1, 14, 18, 21, 29, **31** |
+| **Sentinela — leitura semanal** | **1.2**, **1.2-b**, 2, 3, 4, 10, 12, 12.1, 14, 18, 21, 29, **31**, **33** |
 | **Bússola** | **7**, 10, 11, **12.2**, 14, **15**, 20, 21 — e `bussola/BUSSOLA.md`, que é a lei dela |
 | **Pauta das ilhas** | 10, 14, 15, 16, 17, 21 |
 | **Mãos no repositório** | nenhuma. A decisão já vem no disparo; ler o contrato é sinal de que virou Fundação |
@@ -17,6 +17,8 @@ Este contrato tem mais de 500 linhas e continua crescendo. **Ninguém lê tudo.*
 *(A **29** entrou nas três linhas em 24/09/2026: ela é sobre a porta de entrada do site cair sem nenhum portão acusar, e quem não a lê continua lendo "o repositório está verde" como "o site está no ar".)*
 
 *(A **25** e a **30** entraram pelo Pente Fino em 12/10/2026, pelo mesmo motivo que a 1.2 entrou em 16/09, a 1.2-b em 21/09 e as três seções da Bússola em 05/10 — **a seção que decide não estava na linha de quem decide.** A **25** não estava na linha de papel NENHUM, e a **7**, que está na linha da Fundação e da Bússola, termina dizendo com todas as letras: *"Onde esta seção e a 25 divergirem, **manda a 25**"*. É a 25 que põe o piso de `url_busca` em todo item publicável (25.2), que proíbe registro publicável sem encurtamento tentado (25.2-b), que exige `url_produto` para o teste de vida existir (25.4-b) e que proíbe gerar link de afiliado à mão (25.8) — tudo trabalho da Fundação no banco —, e é a 25.4 que manda a **ronda diária** conferir os links dos itens publicados e tratar link morto como defeito da 19.1. A **30** é de 09/10/2026, nasceu dizendo "vale para toda ilha" por decisão do Raphael no mesmo dia, e também não entrou em linha nenhuma: a Fundação é quem cria as páginas que ela manda criar. O desempate continua sendo o desta própria seção: "errar por ler a mais é barato; errar por não saber a regra custa uma leva inteira".)*
+
+*(A **33** entrou nas TRÊS linhas em 09/11/2026, na passada que a escreveu, e o motivo é o da própria seção: as três rondas que declararam "não medido por falta de navegador" eram rondas — a seção que diz que o navegador existe tem de estar na linha de quem escreve "não medido". A **20.10** não precisou de linha nova: a 20 já está na da Fundação e a 12 manda a ronda ler o `/status`.)*
 
 **Sempre, para todo papel:** seções **1.2** (foco único — enquanto `foco.md` nomear uma ilha, ela manda em quem trabalha em quê), **2** (cabeçalho de estado), **3** (o repositório é o lugar do trabalho), **4** (o site fica para trás em silêncio), **10** (regras que valem sempre) e **18** (correção fura a fila).
 
@@ -788,6 +790,25 @@ Medido na rodametria entre 19h1xZ e 19h3xZ de 05/11/2026, e **está aqui pelo mo
 
 **O PORTÃO QUE ISSO EXIGE, e ele é o caro desta regra e já está escrito:** a régua é **função pura** (`veredito_da_revisao_atrasada` em `ilhas/rodametria/ferramentas/conferir-no-ar.py`), para o `--autoteste` **fabricar** o mundo em vez de esperar que ele aconteça, e vem com **nove mundos** de saída escrita à mão. O que os torna medição e não intenção é o mundo da **20.8**: no mundo medido a régua **velha** diz `cache` (e manda reacionar) e a **nova** diz `evento-nao-vencido` (e manda esperar) — **as duas discordam**, e a discordância vale exatamente os oito minutos perdidos. Mais um mundo provando que o conserto **não afrouxa** o portão. **Toda ilha com Sync copia essa função e esses mundos** em vez de reescrevê-los; quem copiar troca só o domínio e o nome da rota.
 
+20.10 **O SYNC JÁ CONTA OS ITENS QUE FALHARAM, E A CONTA ESTÁ NO PRÓPRIO FECHO DA REVISÃO: `linhas de item` − `aplicado(s)` = itens que NÃO disseram `ok` (09/11/2026).**
+
+Medido na rodametria às 19h3xZ de 09/11/2026, **no código do Sync** (`ilhas/robometria/snippets/robometria-sync.php`, que é o mesmo nas quatro ilhas), para responder a uma pergunta que o fecho da execução anterior deixou escrita e sem resposta: *"o fecho da revisão 71 declarou 11 itens aplicados e o log trouxe 12 linhas de item; o portão DISSE a divergência em vez de aprovar sobre o que sobrou (20.8), e ninguém a investigou."*
+
+**A causa não é a janela do log rolando. É aritmética do Sync, e ela é de propósito:**
+
+```
+robometria_sync_log( $estado, $grupo . '/' . $item['id'] . ': ' . $res );   // TODA tentativa ganha linha
+if ( 0 === strpos( $res, 'ok' ) ) { $aplicados++; }                          // SÓ o sucesso conta
+```
+
+Toda tentativa de aplicar um item escreve **uma linha**; `$aplicados` só sobe quando a resposta **começa** com `ok`. Então a diferença entre as duas contagens do mesmo grupo é exatamente **o número de itens que falharam** — e na revisão 71 a diferença era **1**, que é a linha `snippets/rodametria-f1: gravado (#10) mas NÃO ativado`, a cicatriz da 20.4 pela terceira vez em quatro dias. **A divergência não era ruído: era o defeito, escrito em número, no cabeçalho do grupo.**
+
+**Por que isto vale mais do que parece, e é a 20.8 ganhando uma segunda perna:** a 20.4 manda ler as linhas uma por uma e exige que **nenhuma deixe de dizer `ok`** — afirmação positiva, certa, e que depende de alguém **ler prosa** em português, linha por linha, numa redação que pode ser nova. Esta conta não depende de redação nenhuma: ela é **um número contra outro número, os dois escritos pelo próprio Sync**. Redação nova de falha muda a prosa e **não muda a aritmética**. As duas réguas ficam, e ficam **separadas**: a conta diz **quantos** falharam, a leitura diz **qual** e **por quê**.
+
+**A ressalva, e ela é dura:** a conta só vale quando o **grupo inteiro da revisão está dentro da janela** que o `/status` serve — **15 linhas** (`array_slice( $e['log'], 0, 15 )`; o estado guarda **40** e a rota pública serve 15, então "fora da janela" é limite da **vista**, não do dado). Grupo cortado dá diferença falsa, nos dois sentidos. Quem fizer a conta **diz quantas linhas de item viu e qual era o `aplicado(s)`**, e, se o grupo estiver cortado, diz isso em vez de dar veredito — a mesma honestidade que a 20.4 já cobra da janela.
+
+**E a leitura ao contrário é a que importa guardar:** `linhas de item` **igual** a `aplicado(s)` é a única forma de verde desta conta. Grupo com mais linhas do que aplicados tem item falhado **com certeza**, sem ninguém abrir uma linha de prosa.
+
 20.3 **A mesma armadilha vale para toda fonte nova** que uma ilha precise alcançar (domínio de fabricante, API, marketplace): quem escreve a regra que exige a fonte é quem confere se a fonte está liberada.
 
 ## 21. O PISO DA RAMPA — antes de 40 páginas e 21 dias, zero impressão não é sinal (11/09/2026)
@@ -1407,3 +1428,33 @@ Medido na Rodametria. A 32.1 pede foto no cartão de compra e a seção 6 manda 
 **32.6-b MUTIRÃO, ordem do Raphael de 21/10/2026 12h01: o molde sai no SITE INTEIRO, não uma página por execução.** Cada execução da Fundação que pegar o despacho do molde aplica em TODAS as páginas da lista daquela ilha, em sequência, conferindo cada uma pela 32.5 antes da próxima (modo mutirão da seção 13). Para isso, o que se repete entre páginas (ordem dos blocos, carrossel de compra, barra fixa do rodapé, `<details>`) vira componente da CASCA, reaproveitado por todas as ferramentas, em vez de ser reescrito em cada snippet. Só sobra para a execução seguinte o que de fato não coube no tempo — e a execução diz no `REGISTRO.md` quantas páginas fechou e quais faltam. **As três ilhas andam EM PARALELO**: a ordem aquametria → clubedomosaico → robometria da 32.6 passa a ser só ordem de prioridade quando houver uma execução só; com mais de uma execução no ar, cada uma reserva uma ilha diferente (seção 1) e aplica o molde nela.
 
 **32.7 Proporção da seção 31:** cada página convertida a este molde conta como entrega no ar para a 31.1.
+
+---
+
+## 33. O NAVEGADOR DESTA NUVEM EXISTE, E "NÃO HAVIA NAVEGADOR" MEDIU A AUSÊNCIA DAS FERRAMENTAS DE NAVEGADOR (09/11/2026)
+
+Medido na rodametria entre 19h1xZ e 19h5xZ de 09/11/2026, pela execução que foi atrás das três medições que a própria ilha declarava impossíveis. **Esta seção está no contrato, e não no registro daquela ilha, pelo motivo que a 20.4 já escreveu com todas as letras:** *"conserto escrito em registro de ilha conserta aquele dia; regra escrita aqui vale para as ilhas, que rodam o mesmo Sync"* — e aqui o que é o mesmo nas quatro é a **nuvem**.
+
+**O NÚMERO, primeiro.** As rondas diárias de **04, 06 e 09/11** fecharam declarando, cada uma, três coisas **não medidas** — o teste de vida da 25.4, o **console** das páginas e os **números de pixel da 32.5** — e as três pela mesma frase: *"a causa é uma só: NÃO HAVIA NAVEGADOR. Nem a Claude in Chrome (extensão não conectada), nem o navegador embutido, nem o shell do computador do Raphael."* **A frase é verdadeira sobre as ferramentas de navegador e falsa sobre o navegador.** Esta nuvem tem **Chromium e Playwright pré-instalados**, `chromium.launch()` sobe sem opção nenhuma, e a própria ilha tinha, na própria pasta `ferramentas/`, um portão de pixel usando os dois **desde 29/10** (`conferir-32-5-no-navegador.mjs`). **O instrumento estava na pasta ao lado da afirmação "não medido".**
+
+**O QUE ELE DESTRAVA, medido na mesma passada, nas 10 URLs do sitemap, a 390 px e com quebra de cache:**
+
+- **os pixels da 32.5**: `conferir-32-5-no-navegador.mjs` rodou e **aprovou 10 de 10** (pior caixa 405 px contra o teto de 700; pior compra 1.279 px contra o teto de 1.400; 0 página fora do molde);
+- **o console limpo da 32.5**: **10 de 10** páginas sem uma mensagem — 0 `error`, 0 exceção de JavaScript, 0 recurso caído, 0 resposta ≥ 400 entre os recursos;
+- **a camada de COMPORTAMENTO, que nenhum portão de HTTP alcança:** o menu de celular abre e fecha nas 10 (o `aria-expanded` alterna, a lista sai de `display:none` para `flex`, os links ficam clicáveis); os `<details>` abrem (nenhum aberto por padrão, e a altura cresce ao abrir); a barra fixa aparece quando o bloco de compra está fora da tela e **desaparece** quando ele entra, nas 6 páginas que a servem; rolagem horizontal **zero** nas 10; e as **três ferramentas apertadas de verdade**, com entrada trocada no formulário, o botão clicado e o número da caixa conferido na mão (F1 em quatro casos, inclusive os dois limites da 996/2023; F2 em 374 Wh e 1.800 Wh; F3 em 77, 119 e 121 kg) — **9 de 9 certas**.
+- **e foi o que achou o defeito desta passada**, que nenhuma das sete réguas de HTTP daquela ilha podia ver: o menu do cabeçalho servia três itens e **a ferramenta principal da ilha não estava em nenhum deles**.
+
+**O QUE ELE NÃO DESTRAVA, E ESTÁ MEDIDO PARA NINGUÉM GASTAR UMA EXECUÇÃO REDESCOBRINDO:**
+
+- **A SERP brasileira continua fora, e a 30.8 fica inteira.** Medido no mesmo egresso, na mesma passada: `google.com.br`, `bing.com` e `duckduckgo.com` respondem **000** — os três. O navegador atravessa o **mesmo** egresso que o `curl`, então ter navegador não é ter SERP. **`alvo` continua não se afirmando da nuvem**, e continua exigindo a SERP aberta com os olhos.
+- **O teste de vida da Shopee da 25.4 continua NÃO sendo tarefa de nuvem, e agora por DOIS motivos independentes.** O primeiro é o de 17/09/2026, que está escrito lá: chamada direta devolve **403 do próprio servidor da Shopee**, e o caminho que funciona é `fetch` de dentro de uma aba já no domínio. O segundo nasceu hoje: `shopee.com.br` responde **200** e a aba **abre**, e **conduzir essa aba para chamar a API de ficha protegida por anti-robô foi RECUSADO pelo guarda deste próprio ambiente**, como contorno de verificação de robô. **Essa recusa não se contorna**, e a ferramenta que a execução havia escrito para isso foi apagada antes de entrar no repositório. Quem for medir vida de link da Shopee mede do navegador do Raphael, como a 25.4 já manda, e com a receita de orçamento de janela (lotes de 3, CAPTCHA é fim da medição do dia).
+
+**A REGRA, e ela cabe em duas linhas.** Pixel, console e comportamento de página de ilha **são tarefa de nuvem** desde 09/11/2026, e *"não havia navegador"* deixa de ser causa aceitável para eles em ronda nenhuma. **Quem for escrever "não medido por falta de navegador" roda um comando antes:**
+
+```
+node -e "require('playwright')"          # o pacote resolve? então há navegador
+```
+
+E quem escrever portão de navegador novo copia a linha de `createRequire` de um dos que **iniciam** (`rodametria` ou `robometria`), nunca o `import { chromium } from 'playwright'` — o despacho de 26/10 em `dados/despachos.md` conta por que, e esta passada foi a **quarta** confirmação da mesma causa.
+
+**E A CICATRIZ DE MÉTODO QUE SOBRA, porque ela é maior que o navegador:** a frase *"não havia navegador"* foi escrita **três vezes**, em três documentos, por três rondas, e nenhuma delas perguntou ao ambiente — **a causa foi herdada, não medida**. É a 20.2 ao pé da letra (*"bloqueio herdado do `ESTADO.md` é retestado antes de ser respeitado, nunca lido como fato"*), aplicada a um instrumento em vez de a um domínio, e a 25.4-b.3 pela segunda vez (*"motivo velho manda não tentar"*). **Causa de impossibilidade também envelhece, e quem a repete sem remedir está copiando, não medindo.**

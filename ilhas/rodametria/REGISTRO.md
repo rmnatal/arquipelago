@@ -3,6 +3,59 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-11-09 19h17Z–20hxxZ — **O NAVEGADOR DESTA NUVEM, E O QUE ELE ACHOU NO PRIMEIRO MINUTO: A FERRAMENTA PRINCIPAL DESTA ILHA NÃO ESTAVA NO MENU** — revisão 73
+
+**A ESCOLHA DA ILHA.** `foco.md` nomeia a **rodametria** (foco total e absoluto desde 27/10) e pela **1.2** não há escolha a fazer. **Confirmei a exceção do molde (seção 32) antes de aceitar o foco:** os três despachos do molde estão riscados e fechados na aquametria (21/10, 18h2xZ), na clubedomosaico (21/10, 19h1xZ) e na robometria (21/10, 16h1xZ), então nada fura o foco; e **nenhuma das três ilhas fora do foco tem despacho ALTA aberto**, que é a única outra porta da 1.2. **Branch e PR, passo 1:** `origin/claude/dreamy-mccarthy-z8333k` e `origin/main` no mesmo commit `de41a5c`, zero commit à frente nos dois sentidos — nada a mergear. `executando_desde` estava `null`, o que pela **1.1** já significa que não havia bloco da Fundação vivo. Reserva no commit `56a7ca9`, às **19h17Z**, hora saída do `date -u` na mesma linha que a grava; **RENOVADA** às 19h33Z pela 1.1.
+
+**A REDE, MEDIDA E NÃO HERDADA (20.2), ANTES DA RESERVA.** `rodametria.com.br` em **200** nas três passadas com quebra de cache — 3 de 3 verdes.
+
+**A FILA, E POR QUE ESTE BLOCO.** Não havia despacho aberto para a Fundação: o de 09/11 fechou às 17h4xZ, o item 1 do de 04/11 pede o painel de Sitemaps (credencial da leitura semanal) e o item 2 pede o `search-console.py` (idem). Os dois caminhos de **página nova** estão travados por coisa que não é desta nuvem — a seção **30.8** não deixa afirmar `alvo` daqui, e as duas consultas com SERP já autorizada (`moto eletrica`, `scooter eletrica`) esperam etiqueta do Mercado Livre, que é despacho e nunca bloco. O que sobrou na memória do `ESTADO.md` foi o **item 5**: *"SEM NAVEGADOR NÃO SE MEDE: o teste de vida da 25.4, o console e os pixels da 32.5"*. Fui atrás dele, e é aí que a passada virou.
+
+---
+
+### O NAVEGADOR ESTAVA NA PASTA AO LADO DA FRASE "NÃO MEDIDO", E ISSO VIROU A SEÇÃO 33 DO CONTRATO
+
+As rondas de **04, 06 e 09/11** fecharam as três declarando as mesmas três coisas não medidas, pela mesma frase: *"a causa é uma só: NÃO HAVIA NAVEGADOR. Nem a Claude in Chrome, nem o navegador embutido, nem o shell do computador do Raphael."* A frase mede a ausência das **ferramentas** de navegador. **Esta nuvem tem Chromium e Playwright pré-instalados** — e esta ilha tem, em `ferramentas/`, um portão de pixel que usa os dois **desde 29/10**. Primeiro comando desta passada, `node -e "require('playwright')"`: resolve.
+
+**MEDIDO, nas 10 URLs do sitemap, a 390 px e com quebra de cache:**
+
+- **os pixels da 32.5** — `conferir-32-5-no-navegador.mjs`: **APROVADO, 10 de 10**, 0 fora do molde. Pior caixa **405 px** (teto 700), pior compra **1.279 px** (teto 1.400) nas 3 páginas que vendem algo. Foto: 1/4 real na F2, 3/3 e 5/5 reais nas duas páginas de família.
+- **o console limpo da 32.5** — **10 de 10 páginas sem UMA mensagem**: 0 `error`, 0 exceção de JavaScript, 0 recurso que o navegador tentou e não conseguiu, 0 resposta ≥ 400 entre os recursos da página. É a primeira vez que esta exigência do "pronto quando" da 32.5 é medida nas 10 de uma vez.
+- **a camada de comportamento, que nenhuma régua de HTTP alcança:** o menu abre e fecha nas 10 (o `aria-expanded` alterna, a lista sai de `display:none` para `flex`, os links ficam clicáveis, e o segundo clique fecha); os `<details>` abrem nas 10 (nenhum aberto por padrão; a altura cresce de 55 px para até 1.596 px); **a barra fixa aparece com o bloco de compra fora da tela e DESAPARECE quando ele entra**, nas 6 páginas que a servem, e não existe nas 4 que não vendem nada — a 32.1 cumprida, medida em três posições de rolagem por página; rolagem horizontal **zero** nas 10.
+- **as três ferramentas apertadas de verdade**, com valor trocado no campo, botão clicado e o número da caixa conferido na mão: F1 em quatro casos (500 W/25 km/h com acelerador → autopropelido; o mesmo só com pedal assistido → bicicleta elétrica; 1.500 W/40 km/h → ciclomotor; 5.000 W/80 km/h → acima do ciclomotor), F2 em dois (36 V × 10,4 Ah = **374 Wh**, plano, com o número do anúncio virando TETO; 60 V × 30 Ah = **1.800 Wh**, ladeira, 34 a 80 km — e 80 ÷ 2,37 = 33,8) e F3 em três (108 kg → **119**, 70 → **77**, 110 → **121**). **9 de 9 certas.**
+
+**E O QUE NÃO DESTRAVA, medido para ninguém gastar execução redescobrindo:** `google.com.br`, `bing.com` e `duckduckgo.com` respondem **000** no mesmo egresso — o navegador atravessa o mesmo túnel que o `curl`, então ter navegador **não é ter SERP**, e a **30.8 fica inteira**. E o teste de vida da Shopee da **25.4** continua não sendo tarefa de nuvem, agora por **dois** motivos independentes: o 403 do servidor dela, de 17/09, e o segundo que nasceu hoje — `shopee.com.br` responde 200, a aba abre, e **conduzir a aba para chamar a API de ficha protegida por anti-robô foi RECUSADO pelo guarda deste ambiente**, como contorno de verificação de robô. A recusa **não se contorna**: a ferramenta que eu havia escrito para isso (`medir-vida-no-navegador.mjs`, com autoteste de 15 afirmações passando) foi **apagada antes de entrar no repositório**, e os 11 itens da vitrine que nunca foram testados continuam nunca testados, com o dono da medição nomeado — o navegador do Raphael, pela receita de orçamento de janela de 30/10.
+
+---
+
+### O DEFEITO QUE SÓ O NAVEGADOR VIA: A F1 NÃO TINHA NOME NO CABEÇALHO DE PÁGINA NENHUMA
+
+Abri o menu de celular para medir se ele abre, e li o que havia dentro: **três itens** — `Autonomia` (F2), `Carga máxima` (F3) e `Veículos`. **A F1 não estava em nenhum deles.** Ela é a ferramenta principal desta ilha (a categoria da Resolução 996/2023, que é a tese do site) e mora **na home**: quem chegasse por busca em `/veiculos/bicicleta-eletrica/` e abrisse o menu no celular não tinha como chegar a ela por ali. O rodapé lista as 10 URLs e a trilha tem `Início`, então a página não é órfã pela 16.4(f) — **o que faltava era o nome da resposta no único lugar que existe para navegar.**
+
+**A CAUSA, e ela é da família da 20.7:**
+
+```php
+if ( 'inicio' === $slug || ! empty( $p['no_menu'] ) ) { continue; }
+```
+
+O literal pulava a home **sempre** — e o mapa da casca declarava `'no_menu' => false` para a mesma página **três linhas acima**. Duas declarações do mesmo fato, e a lida era a que ninguém tinha escrito de propósito. **O campo não estava errado: estava MORTO**, exatamente como as constantes de versão desta ilha em 30/10 (*"subir uma constante que ninguém lê é rastro, não mecanismo"*).
+
+**O CONSERTO.** Quem decide passa a ser o campo `no_menu`, e só ele; o rótulo sai de `rodametria_casca_rotulo_de_menu()`, onde `menu_rotulo` vence `nome`. **As duas superfícies ficam separadas de propósito (20.5):** `nome` continua `Início`, porque dele sai o degrau da trilha da 16.3, e o menu nomeia o que a ferramenta **entrega** — `Categoria e placa`, no padrão de `Autonomia` e `Carga máxima`. Casca **1.19.0 → 1.20.0**, revisão **73**.
+
+**O PORTÃO, pela 31.2, com o defeito medido no ar nomeado no commit:** `ferramentas/teste-menu-da-casca.php`, **18 afirmações**, e ele refaz a regra **velha** ao lado da nova exigindo que as duas **discordem em exatamente um slug** (20.8) — autoteste em que as duas concordam não mede conserto nenhum. **Ele reprovou quem o escreveu na primeira passada**, e o motivo é de família conhecida: buscava o literal por texto cru e o achou **dentro do comentário que explica a troca**, reprovando a casca **já consertada**. É a 32.4-b pelo avesso — lá a régua lia o visível e o defeito morava no comentário; aqui ela lia o comentário e o mecanismo morava no código. Agora separa os dois com `token_get_all()`, que é do PHP e não uma regra minha sobre `/*`.
+
+---
+
+### A PERGUNTA QUE A PASSADA ANTERIOR DEIXOU ESCRITA ESTÁ RESPONDIDA, E A RESPOSTA VIROU A 20.10
+
+O fecho de 17h4xZ deixou: *"o fecho da revisão 71 declarou 11 itens aplicados e o log trouxe 12 linhas de item; o portão DISSE a divergência em vez de aprovar sobre o que sobrou (20.8), e ninguém a investigou."* **Não é a janela rolando. É aritmética do Sync**, lida no código (`robometria-sync.php`, o mesmo nas quatro ilhas): a linha de log é escrita para **toda** tentativa de aplicar um item, e `$aplicados` só sobe quando a resposta **começa** com `ok`. Então `linhas de item − aplicado(s)` **é o número de itens que falharam** — e na 71 a diferença era **1**, que é a linha `snippets/rodametria-f1: gravado (#10) mas NÃO ativado`, a cicatriz da 20.4 pela terceira vez em quatro dias. **A divergência não era ruído: era o defeito, escrito em número, no cabeçalho do grupo.** Virou a **20.10** do contrato, com a ressalva dura — a conta só vale com o grupo inteiro dentro da janela de 15 linhas que o `/status` serve (o estado guarda 40).
+
+### E A TERCEIRA PENDÊNCIA DO FECHO ANTERIOR JÁ ESTAVA FECHADA NO ARQUIVO
+
+O fecho de 17h4xZ e o `ESTADO.md` traziam: *"a `VOZ.md` ainda traz, nos exemplos aprovados de 27/10, a frase `dispensa CNH e placa`"*. **Contado no arquivo, são três ocorrências e nenhuma é exemplo aprovado:** uma na nota de correção de 06/11 que as **proíbe** pelo nome, uma dentro de `~~...~~` sob o título *"Os quatro exemplos de 27/10/2026, preservados"*, e uma menção à expressão `precisa de placa`, que é a autorizada. A execução de 06/11 fechou isso às 19h3xZ e **a pendência sobreviveu dois dias em dois documentos** — seção 4 outra vez, com o agravante de que o que envelheceu foi a lista de pendências, não o conteúdo.
+
+---
+
 ## 2026-11-09 16h19Z–17h0xZ — **OS CINCO ITENS DO DESPACHO DE HOJE, E TRÊS DELES TINHAM CAUSA MAIS FUNDA DO QUE O DIAGNÓSTICO** — revisão 71
 
 **A ESCOLHA DA ILHA.** `foco.md` nomeia a **rodametria** (foco total e absoluto desde 27/10) e pela **1.2** não há escolha a fazer. **Confirmei a exceção do molde (seção 32) antes de aceitar o foco:** os três despachos do molde estão fechados nas três ilhas que a exceção nomeia, então o foco manda sozinho. **Nenhum branch `claude/*` divergente e nenhum PR aberto:** `origin/claude/dreamy-mccarthy-ttykpn` e `origin/main` no mesmo commit `11dd64d`, zero commit à frente nos dois sentidos — nada a mergear, passo 1 cumprido. `executando_desde` estava `null`, o que pela **1.1** já significa que não havia bloco da Fundação vivo; o último commit na pasta era da **ronda** das 15h05Z, que pela 1.1 não reserva nada. Reserva no commit `35c92d6`, às **16h19Z**, hora saída do `date -u` na mesma linha que a grava; **RENOVADA** às 16h44Z pela 1.1.

@@ -1302,6 +1302,26 @@ camara de ar patinete eletrico aro 10
 > passada que reservar cada ilha"* — consertar arquivo de ilha que esta execução não reservou é
 > exatamente a colisão que a reserva por commit existe para impedir.
 
+> **NOTA DE 09/11/2026 às 19h5xZ — QUARTA CONFIRMAÇÃO DA MESMA CAUSA, E AGORA A CAMADA INTEIRA ESTÁ MEDIDA DO LADO DE CÁ: ELA FUNCIONA.**
+> A execução da rodametria de hoje escreveu um portão de navegador novo (`ferramentas/medir-console-no-navegador.mjs`)
+> e ele morreu na primeira tentativa com `ERR_MODULE_NOT_FOUND: Cannot find package 'playwright'` — a causa
+> descrita aqui, confirmada pela quarta vez. Com `createRequire(import.meta.url)` passou a rodar.
+> **E a razão desta nota não é a quarta confirmação: é que a camada de navegador desta nuvem acabou de ser
+> exercitada de ponta a ponta e entrega.** Nas 10 URLs da rodametria, a 390 px: pixel da 32.5 **10 de 10**,
+> console **10 de 10 limpos**, e a camada de **comportamento** — menu que abre e fecha, `<details>` que abrem,
+> barra fixa que aparece e desaparece com o bloco de compra, e as três calculadoras **apertadas de verdade** com
+> o número conferido na mão. **Então os 21 inertes não são 21 arquivos quebrados: são 21 afirmações que esta
+> nuvem sabe fazer e não está fazendo**, nas duas ilhas mais antigas — a aquametria tem 52 URLs e é a de maior
+> impressão do arquipélago. O "pronto quando" deste item não muda; o que muda é que o custo de não o fazer
+> agora tem número ao lado.
+> **E a lição de método que saiu disso virou a seção 33 do contrato**, porque é maior que este despacho: as
+> rondas de 04, 06 e 09/11 declararam o console e o pixel da rodametria *"não medidos, porque não havia
+> navegador"* — com o portão de pixel da própria ilha usando o Playwright desde 29/10, na pasta ao lado. Causa
+> de impossibilidade também envelhece, e as três a herdaram em vez de remedir (20.2 aplicada a instrumento em
+> vez de domínio).
+> **Esta execução não tocou nos 21 arquivos das outras duas ilhas:** `foco.md` nomeia a rodametria (1.2) e este
+> despacho é explícito em que o conserto é no commit da passada que reservar cada ilha.
+
 **Pronto quando (este item):** os 21 arquivos trocarem o `import` direto pelo `createRequire`, no commit da passada que reservar cada ilha, e o veredito dos 21 ficar escrito — porque portão que volta a rodar pode voltar vermelho, e aí a leitura é outra.
 
 ---
