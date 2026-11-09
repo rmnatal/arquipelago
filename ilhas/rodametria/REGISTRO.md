@@ -127,6 +127,59 @@ As **cinco constantes de versão** dos snippets tocados subiram (casca 1.19.0, F
 
 **E A 20.9 POUPOU ESTA PASSADA DE OITO MINUTOS.** Depois do push, o `/status` ficou em **70** com o manifest em **71**. Pela régua de duas pontas da 20.5 isso seria *"o Sync não rodou"* e eu reacionaria. A função da ilha deu o veredito certo: **`evento-nao-vencido`** — `ultimo` = `16:42:04`, **anterior** ao commit do manifest (`16:44:55`), e o raw já servindo 71. Ou seja o Sync **rodou e não tinha nada a aplicar**, e o log não ganhou linha porque ele retorna antes de escrevê-la. **Reacionar não antecipa vencimento.** Teto `17:12:04`, podendo cair antes.
 
+**A 20.9, MEDIDA AO VIVO DUAS VEZES, E O NÚMERO É O QUE IMPORTA: 19 VISITAS EM 18 MINUTOS NÃO MOVERAM `ultimo` UM SEGUNDO.** Pela régua de duas pontas da 20.5 eu teria reacionado o Sync nas duas esperas; o veredito certo foi `evento-nao-vencido` nas duas. A revisão 71 entrou às **17:10:31Z**, **1m33s antes** do teto `17:12:04` que a própria função calculou — e a função **avisa** que pode cair antes, porque o WordPress reagenda a partir do horário AGENDADO e não do horário em que rodou. **A 20.6 lida sozinha ("roda por visita") teria me feito gastar a execução visitando.**
+
+---
+
+### O DESEMBARQUE DA 71 REPROVOU, E ERA A CICATRIZ DA 20.4 PELA **TERCEIRA VEZ EM QUATRO DIAS**
+
+`conferir-no-ar.py` na revisão 71: **603 afirmações, 3 falhas**, e as três são o mesmo fato:
+
+```
+snippets/rodametria-f1: gravado (#10) mas NÃO ativado: o código não passou na validação.
+```
+
+**E O CUSTO FOI MEDIDO, não suposto:** a **home respondeu 200 servindo a versão HUB** — sem o formulário da F1 e sem a barra fixa —, e o `/casca` não trazia `rodametria-f1` **nenhum**. É a **ausência** que a 20.7 desenhou para ser o sinal, funcionando exatamente como projetada: snippet que não está ativo não roda, logo não pendura nada no filtro, logo o `id` dele não aparece. Sem esse campo, a home 200 degradada passaria por entrega.
+
+A terceira falha do portão foi honesta de um jeito que vale registrar: **o fecho da revisão 71 declarou 11 itens aplicados e o log trouxe 12 linhas de item.** O portão **disse** a divergência em vez de aprovar sobre o que sobrou (20.8, parte 3). **Não investiguei** — fica no próximo passo.
+
+**Ocorrências: 06/11, hoje às 13h48Z, hoje às 17h09Z.** Sempre no PHP de um snippet que estava ativo e carregado na requisição do cron. Sem o token (`forcar=1`) **não existe retentativa**: o Sync devolve `nada novo` quando a revisão do manifest é igual à guardada, e grava a revisão como feita mesmo com item que falhou. A única saída é revisão nova — e com o snippet agora **inativo**, a passada seguinte o ativa. **Revisão 72**, só a constante da F1 (1.5.0 → 1.5.1), sem uma linha de código mudada, com a cicatriz escrita ao lado da constante para a próxima passada não gastar a execução redescobrindo.
+
+A 72 entrou às **~17:40Z** e o `/casca` passou a trazer `rodametria-f1: 1.5.1`.
+
+---
+
+### A CONFERÊNCIA NO AR (18.4), NA REVISÃO 72
+
+`conferir-no-ar.py`: **607 afirmações, 0 falha. APROVADO.** `/status` 72 = `manifest` 72, **8 itens declarados e as 8 linhas de item lidas uma por uma, todas dizendo `ok`**, do fecho para baixo pela 20.8. As **10** URLs do sitemap em **200**.
+
+**Item 1 — os quatro slugs têm 0 ocorrência em texto visível nas 10 URLs** (eram 4 na F2), e os quatro nomes **inteiros** são servidos identicamente nas três páginas que os listam. Os dois cortes que a home servia — `(2 x 1.000 ` sem o `W` e `(+25 vendid` sem o `os)` — têm **0 ocorrência**.
+
+**Item 3 — a barra não promete produto onde o bloco não tem cartão**, com os cartões **contados dentro de `#comprar`**:
+
+| URL | cartões | barra |
+|---|---|---|
+| `/` | 0 | `Por que não indicamos` |
+| `/autonomia-patinete-eletrico/` | 4 | `Ver produtos` |
+| `/peso-maximo-patinete-eletrico/` | 0 | `Por que não indicamos` |
+| `/veiculos/bicicleta-eletrica/` | 3 | `Ver produtos` |
+| `/veiculos/patinete-eletrico/` | 5 | `Ver produtos` |
+
+**Item 4 — a home serve 1 contagem distinta de colheita (14)**, contra **2** (14 e 17) na revisão 70. As outras nove servem 0.
+
+**Item 5 — o botão da home responde 301 e o portão o NOMEIA** como o par vazio canonicalizado, de uma perna, para a própria URL; a F2 e a F3 respondem **200**. Qualquer outro destino reprovaria.
+
+**Item 2** não tem conferência no ar e isso está dito em vez de maquiado: `dados/veiculos.json` é `publicar: false`, nenhuma linha dele vai para a tela, e o veredito é o do validador e da bateria de mutação.
+
+---
+
+### O QUE FICA PARA QUEM VIER
+
+1. **A cicatriz da 20.4 é um padrão medido**, não azar: três ocorrências em quatro dias, ~30 minutos de página degradada servindo 200 em cada. **Quem tiver o token do Sync fecha isso em segundos**, e a Fundação não o tem — é a única peça desta passada que depende de uma decisão do Raphael.
+2. **A divergência 11 × 12 no fecho da revisão 71**, dita pelo portão e não investigada.
+3. **A `VOZ.md` ainda traz `"dispensa CNH e placa"`** nos exemplos de 27/10, pendência que o fecho de 06/11 já anotou.
+4. **A indexação segue sendo a prioridade máxima (seção 14)** e `primeira_indexacao` segue `null`, com 10 URLs contra as 40 do piso da 21.1. O teto da 21.4 está **inteiro** nesta semana: três passadas hoje, zero leva gasta.
+
 ---
 
 ## 2026-11-09 13h26Z–14h1xZ — **A LENTE APLICADA AO JSON-LD ACHOU TRÊS DEFEITOS NO AR, E UM DELES É UMA CLASSE NOVA: A PÁGINA PROMETENDO UM LUGAR A UMA CAMADA QUE NÃO TEM LUGAR** — bloco de conteúdo na F1, na F3 e na casca
