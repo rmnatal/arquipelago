@@ -124,3 +124,23 @@ Uma linha por nicho, só para não testar de novo. Não é relatório.
 | 05/11/2026 | capinha de celular por modelo | volume | 33,1 mil/mês (cabeça) → exigiria ≈ R$ 462 por venda em top-3 |
 | 05/11/2026 | baú de moto por litros | volume | 14,8 mil/mês |
 | 05/11/2026 | pneu de moto por medida | volume | 9,9 mil/mês |
+| 09/11/2026 | sofá retrátil | SERP tomada (Casas Bahia, Mobly, King House, Esplanada, Abra Casa, Cama inBox + mapa local + bloco de produtos) | 246 mil tomada |
+| 09/11/2026 | quadriciclo | SERP tomada (Honda, Can-Am, Polaris, OLX, ML) | 135 mil tomada |
+| 09/11/2026 | cervejeira | SERP tomada (Metalfrio, ML, Midea, Electrolux, Ponto, Consul) | 165 mil tomada |
+| 09/11/2026 | mesa de sinuca | 3.0-e (fábricas de bilhar + ML, com IA) | 74 mil/mês → conservador ≈ 72 visitas/dia, exigiria ≈ R$ 460 por venda |
+| 09/11/2026 | panela de pressão | volume | 301 mil/mês → exigiria ≈ R$ 51 por venda em top-3 |
+| 09/11/2026 | jogo de panelas | volume | 165 mil/mês → exigiria ≈ R$ 92 por venda em top-3 |
+| 09/11/2026 | tanquinho | volume | 110 mil/mês → exigiria ≈ R$ 139 por venda em top-3 |
+| 09/11/2026 | berço portátil | volume | 110 mil/mês → exigiria ≈ R$ 139 por venda em top-3 |
+| 09/11/2026 | máquina de gelo | volume | 90,5 mil/mês → exigiria ≈ R$ 168 por venda em top-3 |
+| 09/11/2026 | fritadeira elétrica | volume | 90,5 mil/mês → exigiria ≈ R$ 168 por venda em top-3 |
+| 09/11/2026 | tablet infantil | volume | 74 mil/mês → exigiria ≈ R$ 206 por venda em top-3 |
+| 09/11/2026 | pipoqueira | volume | 74 mil/mês → exigiria ≈ R$ 206 por venda em top-3 |
+| 09/11/2026 | jogos de salão (ping pong, pebolim) | volume | 66 mil/mês somados → exigiria ≈ R$ 230 por venda em top-3 |
+| 09/11/2026 | poltrona do papai e cadeira de massagem | volume | 82,7 mil/mês somados → exigiria ≈ R$ 184 por venda em top-3 |
+| 09/11/2026 | coifa | volume | 60,5 mil/mês → exigiria ≈ R$ 252 por venda em top-3 |
+| 09/11/2026 | piscina infantil | volume | 49,5 mil/mês → exigiria ≈ R$ 308 por venda em top-3 |
+| 09/11/2026 | purificador de ar | volume | 40,5 mil/mês → exigiria ≈ R$ 376 por venda em top-3 |
+| 09/11/2026 | desumidificador | volume | 40,5 mil/mês → exigiria ≈ R$ 376 por venda em top-3 |
+| 09/11/2026 | bicicleta motorizada (motor de bicicleta) | volume | 33,1 mil/mês → exigiria ≈ R$ 460 por venda em top-3 |
+| 09/11/2026 | chocadeira | volume | 22,2 mil/mês |
