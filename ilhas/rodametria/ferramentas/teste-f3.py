@@ -514,6 +514,56 @@ def main():
            "32.1: a ordem da pagina da F3 saiu %s e tem de ser formulario, noscript, "
            "resultado, compra, tabela" % [r for _, r in ordem])
 
+    # -----------------------------------------------------------------------
+    # A PRESTACAO DE CONTAS TEM DE FECHAR NA TELA, E NAO SO NO DADO — medido no
+    # ar em 09/11/2026 em /peso-maximo-patinete-eletrico/.
+    #
+    # O paragrafo de abertura daquele bloco anuncia *"Dos 17 veiculos que o
+    # nosso banco tem, 3 declaram a carga maxima na ficha. OS OUTROS nao entram
+    # nesta conta, e A RAZAO ESTA DITA ABAIXO"* — e a razao estava dita para 11
+    # dos 14 outros. Os tres `excluido_do_banco` nao apareciam em grupo nenhum.
+    #
+    # O DADO ESTAVA CERTO E COMPLETO: `contagem` e `grupos` do JSON servido
+    # trazem `fora_do_banco: 3` desde o primeiro dia. O que faltava era UMA
+    # CHAVE no `$rotulos` do snippet, e grupo sem rotulo nao e renderizado — o
+    # dado ia ao ar invisivel. Por isso este portao le o PHP e nao o JSON: um
+    # portao sobre o dado teria ficado VERDE sobre este defeito, que e
+    # exatamente o que aconteceu durante tres dias.
+    php_rot = php.split("$rotulos = array(")
+    afirma(len(php_rot) == 2,
+           "nao achei o `$rotulos = array(` da prestacao de contas no snippet da F3")
+    if len(php_rot) == 2:
+        bloco = php_rot[1].split(");")[0]
+        chaves_php = set(re.findall(r"'([a-z_]+)'\s*=>", bloco))
+        moldes_php = set(re.findall(r"\$m\['([a-z_]+)'\]", bloco))
+
+        contagem = d["compra"]["contagem"]
+        # Os grupos da RESPOSTA saem no outro bloco (GRUPOS_EM_ORDEM); todo o
+        # resto e da prestacao de contas e precisa de rotulo.
+        de_contas = [k for k in contagem if k not in f3ref.GRUPOS_EM_ORDEM]
+        for k in de_contas:
+            afirma(k in chaves_php,
+                   "o grupo %r da prestacao de contas (%d registro(s) no dado) NAO tem "
+                   "rotulo no `$rotulos` do snippet, e grupo sem rotulo nao e "
+                   "renderizado: o dado vai ao ar INVISIVEL e a conta nao fecha"
+                   % (k, contagem[k]))
+
+        for m in moldes_php:
+            afirma(m in f3ref.MOLDES,
+                   "o `$rotulos` do snippet pede o molde %r e ele nao existe em "
+                   "regras/f3.py — a pagina serviria rotulo vazio" % m)
+
+        # E A CONTA FECHA: a soma de TODOS os grupos e o total anunciado no
+        # paragrafo. Se um dia ela nao fechar, o texto esta prometendo uma conta
+        # que os grupos nao entregam, com ou sem rotulo.
+        soma = sum(contagem.values())
+        total = d["compra"]["total_registros_veiculos"]
+        afirma(soma == total,
+               "a prestacao de contas da F3 anuncia %d registro(s) e os grupos somam "
+               "%d: %r" % (total, soma, contagem))
+        nota("prestacao de contas da F3: %d grupo(s) de contas, todos com rotulo no "
+             "snippet, e a soma fecha os %d registros" % (len(de_contas), total))
+
     for n in notas:
         print("  . %s" % n)
     print("")

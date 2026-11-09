@@ -107,6 +107,25 @@ MOLDES = {
     "titulo_nao_aguenta": "Não aguentam o seu peso",
     "titulo_sem_carga": "Não declaram carga máxima",
     "titulo_sem_compra": "Declaram a carga e não têm oferta aberta",
+    # ESTE ROTULO FALTAVA, E A CONTA DA PRESTACAO DE CONTAS NAO FECHAVA POR
+    # CAUSA DELE — medido no ar em 09/11/2026 em /peso-maximo-patinete-eletrico/.
+    # A pagina abria dizendo *"Dos 17 veiculos que o nosso banco tem, 3 declaram
+    # a carga maxima na ficha. OS OUTROS nao entram nesta conta, e A RAZAO ESTA
+    # DITA ABAIXO"* — e a razao estava dita para 11 dos 14 outros. Os TRES
+    # `excluido_do_banco` nao apareciam em grupo nenhum: os grupos servidos
+    # somavam 14 contra os 17 anunciados.
+    #
+    # A CAUSA NAO ERA DE DADO: `grupos_de_compra` da f3 ja devolve
+    # `fora_do_banco` e o gerador ja o GRAVA no JSON. O `$rotulos` do snippet
+    # tinha DUAS chaves, e grupo sem rotulo nao e renderizado — entao o dado
+    # estava no ar e invisivel.
+    #
+    # E A INTENCAO JA ESTAVA ESCRITA DUAS LINHAS ABAIXO, no comentario dos dois
+    # rotulos: *"na PRESTACAO DE CONTAS, a conta que fecha os 17 registros"*. A
+    # pagina prometia a conta no proprio texto e o comentario do codigo
+    # prometia a mesma coisa; o render nao cumpria nenhuma das duas. E a familia
+    # do defeito da home de 06/11 — prosa que promete uma conta e nao a fecha.
+    "titulo_fora_do_banco": "Fora do banco, e cada um diz por quê",
     # DOIS ROTULOS PARA OS MESMOS NOMES, e eles sao dois porque os dois blocos
     # os mostram por motivos diferentes: na RESPOSTA, a carga que cada um
     # declara; na PRESTACAO DE CONTAS, a conta que fecha os 17 registros. Dois

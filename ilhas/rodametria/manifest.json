@@ -4,7 +4,7 @@
   "nicho": "mobilidade eletrica — acertar os tres numeros antes de comprar um veiculo eletrico: categoria legal (CNH e placa), autonomia real e carga maxima",
   "dominio": "https://rodametria.com.br",
   "versao_manifest": 1,
-  "revisao": 67,
+  "revisao": 68,
   "atualizado_em": "2026-11-09",
   "estado": "nascendo",
   "desembarque": {
@@ -53,8 +53,8 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "341058e91901e51818af70432e64177d6fa2a40e02a6e15f8ede071119928329",
-      "versao": "1.4.1",
+      "sha256": "5fd53cf2348979318d752eaf1edc8be731fd81fdbf22517242f19363d0841bdc",
+      "versao": "1.5.0",
       "descricao": "A F3 — a TERCEIRA e ultima das tres ferramentas que esta ilha existe para ter, em /peso-maximo-patinete-eletrico/ (a URL carrega a consulta MEDIDA do eixo C do corpus, `patinete eletrico peso maximo suportado`, e nao a pergunta do H1). O QUE A SEPARA DAS DUAS IRMAS, e e por isso que ela pode ir ao ar hoje: A RESPOSTA PRINCIPAL NAO DEPENDE DO BANCO. Dado o peso de quem pilota e o que ele carrega, a carga maxima a procurar sai de `total x (1 + margem)` — aritmetica sobre a entrada da pessoa mais UMA constante desta ilha, que e `decisao_da_ilha` em 10% e que a pagina NUNCA atribui a terceiro (a constante carrega a busca limpa que NEGOU a fonte que o bloco 1 supunha). A vitrine e a segunda camada e hoje esta VAZIA, com a causa NOMEADA e os numeros contados: os tres registros do banco que declaram carga maxima declaram 120 kg, os tres lidos em ficha de varejo grande (nivel 5, o piso que a 3.5 da especificacao exige neste campo), e NENHUM tem oferta aberta — pela 25.2 item sem piso de compra nao entra em vitrine. A LISTA VAZIA TEM TRES CAUSAS E TRES FRASES, e isso nasceu de um defeito medido nesta propria passada: a primeira versao tinha UM molde e dizia que 'nenhum dos 3 aguenta os seus 108 kg com folga' quando os tres declaram 120 kg e cobrem com folga os 119 que a regra pede — o eixo que esvaziava a vitrine era a falta de LINK e nao a carga. A TABELA PRE-RENDERIZADA PUBLICA A TESE DA ILHA: com a folga de 10%, 109 kg e o ultimo peso total que os 120 kg do teto de varejo acolhem e 110 kg ja nao, e a virada esta visivel na tabela e no FAQPage, que e montado dela campo por campo. Ordem da 32.1: promessa, formulario ja preenchido com o caso que da 'no limite' e nao um folgado, o <noscript> da 32.1-b, a caixa pre-renderizada, o bloco de compra com a causa da falta, os tres grupos da 3.2 na ordem em que a 3.2 manda (o do meio NUNCA primeiro), a ressalva SOURCED da 3.4 logo depois do grupo do meio e so quando ele existe, o convite para a F2 com o peso na URL, a prestacao de contas da secao 7, a tabela VISIVEL e tres dobras. E ELA E A PRIMEIRA FERRAMENTA DESTA ILHA A NASCER DENTRO DO CONSERTO DA 32.1-b: os campos nascem com o prefixo (`rdm_peso`, `rdm_carga`) e o aviso vem do componente da casca, que e exatamente o que a regra pede ao mandar o componente morar num lugar so."
     },
     {
@@ -175,7 +175,7 @@
       "arquivo": "dados/f3-respostas.json",
       "formato": "json",
       "publicar": true,
-      "sha256": "ab8449ff583ee210a94f4072e901a68682929b0c7b27e4f9861e7365cb6eefb5",
+      "sha256": "2a11e14bfd58c26e0cf0d52d080fbbf3320394a7eb23cc1cfd34ce8a893b626f",
       "descricao": "Tudo o que a F3 serve na tela, escrito por ferramentas/gerar-f3.py a partir de regras/f3.py e de dados/constantes.json. Inclui os moldes de frase INTEIROS (o PHP e o JS leem os mesmos, para as duas metades nao poderem dizer coisas diferentes para a mesma entrada), a tabela pre-renderizada de 9 pesos com a carga minima de cada um recomputada pela referencia, as DUAS contagens por linha (quantos do banco aguentariam aquele peso e quantos poderiam ser oferecidos — fatos diferentes, e hoje a segunda e zero em toda linha), e a prestacao de contas com a soma fechando os 17 registros do banco."
     },
     {

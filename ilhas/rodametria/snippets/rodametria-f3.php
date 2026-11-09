@@ -36,7 +36,7 @@
  */
 
 if ( ! defined( 'RODAMETRIA_F3_VERSAO' ) ) {
-	define( 'RODAMETRIA_F3_VERSAO', '1.4.1' );
+	define( 'RODAMETRIA_F3_VERSAO', '1.5.0' );
 }
 
 /* A VERSAO DESTE SNIPPET VAI AO AR (20.7). A CHAVE E O `id` DO manifest.json, e
@@ -297,9 +297,14 @@ function rodametria_f3_contas_html( $d ) {
 		return implode( ', ', $out );
 	};
 
+	// OS TRES GRUPOS QUE A CONTA PRECISA PARA FECHAR. `fora_do_banco` entrou em
+	// 09/11/2026: o dado sempre esteve aqui (o gerador o grava) e esta lista
+	// tinha DUAS chaves, entao os tres `excluido_do_banco` ficavam invisiveis e
+	// os grupos servidos somavam 14 contra os 17 que o paragrafo anuncia.
 	$rotulos = array(
 		'nao_declaram_carga'  => $m['titulo_sem_carga'],
 		'sem_saida_de_compra' => $m['titulo_sem_compra'],
+		'fora_do_banco'       => $m['titulo_fora_do_banco'],
 	);
 
 	$html = '<div class="rdm-f3-contas">';
