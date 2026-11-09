@@ -9065,3 +9065,46 @@ nomeados foi tocado, com a exceção obrigatória deste log. Nenhuma seção ant
 reescrita ou resumida.
 
 **Este log foi num commit seguinte ao do trabalho**, porque ele precisa do hash do commit que já foi ao `main`.
+
+## 09/11/2026 14:19 (17:19 UTC) — Bússola caçadora — 09/11/2026
+
+Instrução: acrescentar 20 linhas ao fim de `bussola/cacados.md`, verbatim, um commit, destino `main`.
+Checagem de assunto: Arquipélago (Bússola) — executado.
+
+`git status --porcelain` antes do commit (depois de aplicar a mudança):
+
+```
+ M bussola/cacados.md
+```
+
+`git diff --stat`:
+
+```
+ bussola/cacados.md | 20 ++++++++++++++++++++
+ 1 file changed, 20 insertions(+)
+```
+
+Commit que foi ao `main`:
+
+```
+032aafbb1ddd606bb7218c8b0b96298adf9779a3  Bússola caçadora — 09/11/2026
+```
+
+Push: `git push origin HEAD:main` aceito de primeira (f61a8b2..032aafb). Verificado com
+`git fetch origin main && git log -1 origin/main` — mostra o commit acima.
+
+sha256 de `bussola/cacados.md` depois do acréscimo (confere com o esperado na instrução):
+
+```
+115936b846f088536314772d9008c804451221941be0aca98ce16cc31a0f7151
+```
+
+Contagem conferida relendo o arquivo depois de gravar:
+
+```
+antes: 126 linhas
+depois: 146 linhas
+acrescentadas: 20 linhas (todas com data 09/11/2026)
+```
+
+Sem falhas. Nada mais foi tocado além de `bussola/cacados.md` e deste log.
