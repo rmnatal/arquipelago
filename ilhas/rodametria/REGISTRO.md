@@ -3,6 +3,132 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-11-09 16h19Z–17h0xZ — **OS CINCO ITENS DO DESPACHO DE HOJE, E TRÊS DELES TINHAM CAUSA MAIS FUNDA DO QUE O DIAGNÓSTICO** — revisão 71
+
+**A ESCOLHA DA ILHA.** `foco.md` nomeia a **rodametria** (foco total e absoluto desde 27/10) e pela **1.2** não há escolha a fazer. **Confirmei a exceção do molde (seção 32) antes de aceitar o foco:** os três despachos do molde estão fechados nas três ilhas que a exceção nomeia, então o foco manda sozinho. **Nenhum branch `claude/*` divergente e nenhum PR aberto:** `origin/claude/dreamy-mccarthy-ttykpn` e `origin/main` no mesmo commit `11dd64d`, zero commit à frente nos dois sentidos — nada a mergear, passo 1 cumprido. `executando_desde` estava `null`, o que pela **1.1** já significa que não havia bloco da Fundação vivo; o último commit na pasta era da **ronda** das 15h05Z, que pela 1.1 não reserva nada. Reserva no commit `35c92d6`, às **16h19Z**, hora saída do `date -u` na mesma linha que a grava; **RENOVADA** às 16h44Z pela 1.1.
+
+**A REDE, MEDIDA E NÃO HERDADA (20.2), ANTES DA RESERVA.** `rodametria.com.br` em **200** nas três passadas, com `robometria.com.br` em **200** nas mesmas três — **6 de 6 verdes**. O controle da robometria serviu, como na passada da manhã, para decidir se a exceção da 1.2 abre para os itens 2 e 3 do despacho ALTA de `dados/despachos.md`: **não abre**, porque a robometria não está quebrada.
+
+**BANCADA, ANTES DE TOCAR EM NADA:** `python3 ferramentas/bancada.py --no-ar` — **40 portões, 0 falha**. Os cinco defeitos do despacho estavam **verdes** nela, que é o que o próprio despacho já dizia.
+
+**O DESPACHO SAIU INTEIRO (18.2), E ELE TINHA CINCO ITENS.** O que segue é item por item, com a causa que eu achei ao lado da causa que o despacho diagnosticou — porque em **três** dos cinco as duas não são a mesma, e a diferença é o que importa para a próxima passada.
+
+---
+
+### ITEM 1 — O DESPACHO VIU QUATRO SLUGS NUMA PÁGINA. ERAM **SEIS LUGARES COM CINCO RESPOSTAS**, E DUAS DELAS SERVIAM NÚMERO DECAPITADO NA HOME
+
+O despacho mediu o certo: a F2 servia `scooter-chopper-1000w-48v` e os três slugs do grupo "Fora do banco", em texto visível, e pediu *"uma função só decide o nome exibido de um registro, chamada pelos três geradores"*. **Mas a conta de quantas respostas existiam estava por baixo.** Varri `marca`+`modelo` em `ferramentas/` e `regras/` e achei **seis** pontos de decisão com **cinco** respostas diferentes para o registro em que os dois campos são null:
+
+| onde | o que fazia |
+|---|---|
+| `regras/f3.py` | `titulo_colhido` inteiro — **a única certa** |
+| `gerar-f1.py:223` | `titulo_colhido[:60]` |
+| `gerar-f1.py:470` | **sem fallback nenhum**: cadeia vazia |
+| `gerar-f1.py:478` | `titulo_colhido[:60]` |
+| `gerar-f2.py:273` | `or id` — o defeito do despacho |
+| `gerar-f2.py:395` | `or id` — o mesmo, na ficha do cartão |
+
+**E O CORTE EM 60 NÃO ERA COSMÉTICO.** Medido no HTML servido da revisão 70: a **home** servia `o modelo 'melhor de 2026' de uma lista comercial (2 x 1.000 ` — **cortado no meio do número**, perdendo o `W` e o `72 km/h` — e `Bike/Scooter/Moto eletrica bateria litio 1.000 W (+25 vendid`, cortado no meio da palavra, **sem nenhuma reticência que avisasse do corte**. A F3, lendo os mesmos registros, servia os dois **inteiros**. Numa ilha cuja tese é que o número do anúncio engana, a home servia número decapitado — e isso não estava no despacho porque ele olhou a F2.
+
+**E o ponto sem fallback (`gerar-f1.py:470`) nunca foi servido**: o grupo `cabem_na_categoria` está vazio hoje, porque nenhum dos 14 registros declara a potência nominal. Era um buraco **armado** para o dia em que o primeiro classificasse.
+
+**O CONSERTO.** `regras/nomes.py` passa a ser dona da decisão, com `nome_do_registro` e `nome_e_fonte`; `regras/f3.py` **reexporta** em vez de guardar uma cópia (a regra certa não podia continuar sendo a quinta cópia — enquanto ela morasse dentro da F3, cada gerador novo escrevia a sua, como escreveram); os seis pontos chamam a função; e `coletar-oferta.py`, que é por onde o nome **entra**, chama a mesma — nome de entrada diferente do nome de tela é a divergência da semana que vem.
+
+**O PORTÃO QUE IMPEDE A SÉTIMA CÓPIA:** `ferramentas/teste-nome-do-registro.py`. Ele **não** confere a função — confere que ninguém a contorna: varre `ferramentas/` e `regras/` procurando `marca`+`modelo` na mesma expressão e **denuncia**, com uma lista curta de liberações, cada uma com motivo escrito. Mais 8 mundos de função e o **mundo da discordância** da 20.8: as regras velhas são refeitas ao lado da nova e as duas **têm de divergir** nos quatro registros de verdade.
+
+**E ELE REPROVOU A MIM DUAS VEZES, nas três primeiras passadas:**
+
+1. **O padrão não atravessava quebra de linha.** Eu escrevi `[^\n]` e o comentário ao lado dizia *"o corte é por linha lógica e não por linha de arquivo"* — o código dizia o contrário. O portão acusou a própria `regras/nomes.py` como "liberação vencida", porque ela lê os dois campos em duas linhas seguidas. **Pior que a liberação vencida que ele acusou: com `[^\n]`, quem escrevesse a derivação em duas linhas passava calado.** É a 32.5-d — comentário que declara um mecanismo parece conferido e não mede nada.
+2. **Eu liberei dois arquivos preventivamente, e as duas liberações nasceram vencidas.** Raciocinei que `validar-banco.py` e `mutacoes-banco.py` tocariam os dois campos juntos por causa da simetria `marca`/`motivo_sem_marca`. O portão respondeu que nenhum dos dois casa o padrão — eles leem por laço sobre tuplas. **Liberação preventiva é buraco pré-aberto**, e eu teria aberto a porta por um raciocínio que nunca medi. Removidas, e a tentação fica escrita no arquivo, porque ela volta a cada portão novo.
+
+**Pronto quando (o critério do despacho):** as quatro cadeias com **0 ocorrência** no HTML servido das 10 URLs, e a F2 nomeando os quatro com a mesma frase que a home serve. **Conferido no ar abaixo.** *(Uma nota de honestidade: a frase que as três passaram a servir é a da **F3**, não a que a home servia — porque a da home era a truncada. "A mesma frase nas três" está cumprido; o que mudou de lado foi qual das três venceu.)*
+
+---
+
+### ITEM 2 — O DESPACHO DIZ QUE A CONTAGEM "CONTINUOU ESCRITA À MÃO". ELA ERA **DERIVADA**, E O PORTÃO ESTAVA MORTO POR **DOIS MOTIVOS INDEPENDENTES**
+
+O despacho escreveu: *"O que passou a ser recontado foi a contagem de saída de compra; a contagem de PUBLICÁVEIS, na mesma frase, continuou escrita à mão."* **Medido, não estava.** Ela era recontada desde 06/11 — de `r.get("publicavel")`, **um campo booleano que 0 dos 17 registros carrega**. O banco diz publicável pelo `status`, e `dados/esquema-banco.json` escreve isso com todas as letras: *"universo: todo VEICULO com status publicavel"*. **A chave booleana foi inventada pelas duas metades ao mesmo tempo.**
+
+**POR QUE SOBREVIVEU TRÊS DIAS DEBAIXO DO PORTÃO QUE NASCEU PARA ISSO (a pergunta que a 19.4(b) manda fazer):** o espelho (`derivar-banco.py`) e o portão (`validar-banco.py`) liam a **mesma chave ausente**, os dois contavam **zero** e os dois **concordavam**. A 20.7 desta ilha ensina que *"duas declarações do mesmo fato começam iguais e só uma sobe"*; este é o caso em que as duas começam iguais e **as duas estão erradas** — e a concordância entre elas tem exatamente a cara da conferência. Pior: o **mesmo** `validar-banco.py` lê o conceito do jeito certo (`status == "publicavel"`) em quatro outros lugares, a algumas centenas de linhas de distância.
+
+**E O SEGUNDO MOTIVO FOI ACHADO PELA BATERIA DE MUTAÇÃO REPROVANDO A QUEBRA QUE EU ACABARA DE ESCREVER.** Escrevi quatro quebras novas; duas passaram verdes. Investigando: a afirmação perguntava por **dois `in` soltos** — se o bloco tinha `"%d dos %d registros"` **ou** `"os %d registros estao"`, a saída de escape para o mundo em que todos são publicáveis. **E a segunda é SUBSTRING da primeira:** `"4 d"` + `"os 17 registros estao"`. Logo, enquanto a frase dissesse "N dos M registros estão", **a afirmação não podia falhar, com qualquer N**. Dois motivos independentes: a chave errada fazia a contagem dar zero, e o `in` solto fazia a comparação nunca morder.
+
+**O CONSERTO.** `e_publicavel()` é dona do conceito em `derivar-banco.py`; o validador **reescreve a régua** (seção 8, nunca importa do espelho) e cobra a cláusula **inteira, como prefixo** — prefixo é a única forma que não tem vizinho. Os **nomes** entram na frase, pelo mesmo motivo que entram na metade da saída de compra. E o validador **denuncia** qualquer registro que carregue a chave booleana, para ela não poder nascer de novo. **Quatro quebras novas** na bateria (79 casos, 0 falhas), a primeira delas sendo a chave inventada e não o número — a raiz, não o sintoma.
+
+*(O laço por nome que eu escrevi primeiro **não mordia**: removido de uma cláusula, o id continuava na outra, e `ident not in bloco` seguia falso. O prefixo resolveu as duas coisas de uma vez.)*
+
+**Pronto quando:** o `nota` diz **4**, nunca "nenhum", recontado do próprio arquivo; o validador reprova divergência; quebra nova provando que morde **esta** cláusula. **Cumprido** — e o arquivo é `publicar: false`, então nada dele vai para a tela e não há o que conferir no ar.
+
+---
+
+### ITEM 3 — O RÓTULO DA BARRA FIXA SAI DA MESMA LISTA QUE MONTA O BLOCO
+
+Medido no HTML servido da revisão 70, com os cartões **contados dentro da seção `#comprar`**: a **home** tem **0 cartões** e a barra promete `Ver produtos`; a **F3** tem **0 cartões** e promete o mesmo; a **F2** tem **4 cartões** e a promessa está **certa**. É por isso que nenhum portão via: **o literal acerta em um terço das páginas, e o verde dessa página ocupa o espaço das outras duas.**
+
+**A ESCOLHA, E ERA ENTRE DUAS DEFENSÁVEIS (19.2): escondi a barra ou troquei o rótulo? TROQUEI**, e o motivo não é gosto: a barra carrega o **número da resposta** da ferramenta, que é o produto desta ilha, e ela existe para manter esse número visível enquanto a pessoa rola no telefone. Escondê-la quando não há produto puniria a pessoa pela falta de oferta, tirando dela a resposta que ela veio buscar. O bloco **sempre** tem o que dizer — cartões, ou a causa de não haver —, então o atalho continua levando a um lugar que responde; o que muda é a promessa.
+
+`rodametria_casca_rotulo_do_atalho( $itens )` decide, e `rodametria_casca_barra_fixa` a chama. **`$itens` é obrigatório e sem padrão**, de propósito: padrão `array()` daria a quem esquecesse o argumento o rótulo de "não há produto" numa página **com** produto, que é o mesmo defeito com o sinal trocado. A guarda é o portão, nunca um padrão complacente.
+
+**O PORTÃO: `ferramentas/teste-barra-de-compra.php`** — PHP porque a escolha é decidida em PHP e a régua **chama** a função; régua em Python sobre o texto do PHP conferiria a forma do código e nunca a decisão. 35 afirmações, 5 mundos, a contagem de argumentos de **toda** chamada, e a exigência de que a barra e o bloco recebam a **mesma expressão**.
+
+**E ELE ACHOU TRÊS COISAS QUE O DESPACHO NÃO PEDIU, duas delas minhas:**
+
+1. **`rodametria-f1.php` passava `array()` LITERAL** ao bloco de compra, em vez de `$d['compra']['vitrine']`. Está certo **hoje por coincidência** (a vitrine da F1 tem zero cartão), e é a mesma família do número de tela digitado: no dia em que o primeiro registro declarar a potência nominal e tiver oferta, a F1 continuaria servindo bloco vazio com a vitrine cheia, **e nenhum portão veria, porque os dois números batem enquanto os dois são zero**.
+2. **Eu passei a FONTE da lista na F2, não a lista.** O bloco dela recebe `rodametria_f2_itens_da_vitrine( $d )`; eu passei `$d['compra']['vitrine']` para a barra. As duas contagens batem **por coincidência** (aquela função mapeia um para um), e passar a fonte seria a segunda declaração do mesmo fato (20.7) — mentindo no dia em que ela passasse a filtrar um cartão.
+3. **A F2 tinha dois locais homônimos `$itens`** — um recebendo a chamada, outro sendo o acumulador dentro dela. Nada quebrava, e **era impossível conferir de fora** que a barra e o bloco recebem a mesma lista: quem resolvesse o nome achava `array()` primeiro. Nome ambíguo não é defeito de estilo; é defeito de **conferibilidade**. O local virou `$itens_da_vitrine`, e a resolução do portão passou a **denunciar** ambiguidade em vez de escolher a primeira — que é a regra que a 20.7 já escreveu nesta ilha: *"zero `define` ou mais de um é DENÚNCIA, nunca escolha"*.
+
+*(E o cortador de argumentos nasceu errado: ele contava profundidade de parênteses e ignorava literais, e o título do bloco da F2 é `'À venda agora, e o que cada um é'` — **com vírgula dentro**. Ele partia o título e devolvia `e o que cada um é'` como se fosse a lista, acusando a F2 e a F3 de passarem listas diferentes quando passam a mesma. É a família do corte de frase da régua de habilitação, de 06/11. Virou **um** cortador ciente de aspas, usado pelas duas conferências — duas cópias do mesmo corte começariam iguais e só uma receberia o conserto, que é literalmente o defeito que este portão vigia.)*
+
+---
+
+### ITEM 4 — UM NÚMERO, UM SUBSTANTIVO. E A RÉGUA SE ANCORA NO **VERBO**, PORQUE OS SUBSTANTIVOS ERAM DIFERENTES
+
+Medido na home da revisão 70: *"Hoje o banco tem **17 veículos colhidos**"*, *"Dos **14 anúncios que a gente colheu**"*, *"De **14 anúncios colhidos**"* e *"A soma fecha os **17 registros** do banco"*, ao lado do grupo *"Fora do banco: 3"*. Os números **todos certos** e as palavras não.
+
+**A ESCOLHA: 17 passa a ser `registros` e o 14 fica `anúncios colhidos`.** O despacho sugeriu `veículos colhidos` para o 14, dizendo *"sem escolher a redação"*; a parte que obriga é *"nunca os dois com o mesmo substantivo"*. **Mantive `anúncio` de propósito:** a tese desta ilha é que o número do **anúncio** engana, e a tabela da F1 fala do que cada **anúncio** declara, não do que o veículo é. Trocar aquela palavra consertaria a contradição **apagando a distinção que o site existe para fazer** (seção 26). Mudei o lado que não custava nada: o 17, que ali não precisava do verbo de colher — a frase ao lado já diz que cada campo entra *"com a ficha de onde saiu e a data da leitura"*. A soma fecha: **17 registros = 14 anúncios colhidos + 3 fora do banco**, e a prestação de contas já enumera esses grupos.
+
+**A RÉGUA SE ANCORA NO VERBO, E ISSO É O ACHADO DO ITEM.** Uma régua que cruzasse **substantivos** não veria nada: os substantivos eram `veículos` e `anúncios`, diferentes. O que colide é a **afirmação** — "colhemos N" —, escrita com o participío ou com a oração `que a gente colheu`. **E a afirmação é POSITIVA (20.8):** não procuro o par (17, 14) que eu já vi — recolho **toda** contagem de colheita da página e exijo que haja no máximo **uma**. Redação nova, número novo, substantivo novo caem na mesma conta, e par novo reprova sem ninguém ter imaginado.
+
+**UMA RÉGUA, DUAS SUPERFÍCIES**, como o conserto de 06/11 estabeleceu: `teste-afirmacao-de-tela.py` é dona e a aplica ao **repositório** (agrupada por arquivo, e dito no código que ali ela é aviso **barato e antecipado**, porque a unidade da classe é a PÁGINA e o repositório não sabe de página); `conferir-no-ar.py` **a importa** e a aplica ao **HTML servido mais o JSON-LD** de toda URL do sitemap, que é onde o veredito mora. **51 mundos** de autoteste (eram 41), com o **ar da revisão 70** copiado letra por letra como primeiro mundo, o mundo consertado ao lado, e a régua velha provando que **não vê** o defeito.
+
+*(Removi uma afirmação minha que passava sempre — um `or True` pendurado numa linha. Afirmação que passa sempre é **portão inerte**, que é o que o próprio `bancada.py` desta ilha denuncia por nome. Trocada por medição: o ponto separa afirmação, e o 17 de uma frase não casa com o verbo da seguinte.)*
+
+---
+
+### ITEM 5 — A CAUSA DO 301 **NÃO É DESTA ILHA**, E NÃO TEM CONSERTO DO LADO DO HTML
+
+O despacho leu o 301 como vindo *"do `=` vazio do campo opcional"* e isso está certo pela metade. **Medido de fora, três passadas iguais:**
+
+```
+/?rdm_w=500&rdm_kmh=32&rdm_acel=manual&rdm_mun=   -> 301 -> /?...&rdm_mun       (o defeito)
+/?rdm_w=500&rdm_kmh=32&rdm_acel=manual            -> 200                        (controle)
+/?rdm_mun=sao-paulo                               -> 200   (valor cheio: nao salta)
+/?foo=                                            -> 301 -> /?foo               (A CAUSA)
+/?rdm_w=&rdm_kmh=32                               -> 301   (qualquer campo, nao so o mun)
+```
+
+**`?foo=` também devolve 301.** Não é colisão com query var do WordPress — essa é a família do `w=500` em 404, de 06/11, e é **outra**. É o `redirect_canonical` normalizando `chave=` para `chave`, para **qualquer** parâmetro vazio, em **qualquer** página de **qualquer** ilha com WordPress. E **não há atributo de HTML** que impeça um `method="get"` de enviar `chave=` num campo de texto vazio: a opção "não emitir o par vazio" que o despacho oferece **não existe** sem JavaScript, e o formulário é `method=get` justamente para funcionar sem ele.
+
+**A EXIGÊNCIA CRUA DE 200 REPROVA A HOME COMO ELA ESTÁ HOJE, e foi medida ANTES de qualquer escolha**, como o despacho manda: `buscar(..., seguir=False)` devolveu **301** onde a régua velha, seguindo o salto, devolvia **200**. *(E a régua velha devolvia 200 porque `urllib.request.urlopen` segue 3xx por padrão — é aí que os 486 afirmações ficaram verdes.)*
+
+**A ESCOLHA: nomear o salto, com precisão, em vez de fingir que ele não existe.** `veredito_do_botao` é **função pura** — para o autoteste **fabricar** o mundo em vez de esperar que ele aconteça, a mesma razão da 20.9 nesta mesma ferramenta — e tem quatro vereditos: `200` é ok; `3xx` cujo destino é a **própria URL com o par vazio normalizado** é ok; **`3xx` para qualquer outro lugar REPROVA**; outro código reprova. **É isso que a régua velha não podia distinguir:** lendo o fim da cadeia, ela aprovava igual um salto canônico e um salto para outra página.
+
+**A DISCORDÂNCIA QUE TORNA ISTO MEDIÇÃO (20.8):** no salto para outra página a régua velha **aprova** (o fim da cadeia é 200) e a nova **reprova**. 16 afirmações novas no autoteste (73 no total, eram 57).
+
+*(E aqui eu também errei, e o portão pegou: deixando o quebra-cache para o `buscar` acrescentar, a URL comparada **não era a URL enviada** — o `Location` voltava com `&v=1794242521` e o veredito chamava a canonicalização de "destino diferente", reprovando por um parâmetro que o próprio portão tinha posto. **Régua que não sabe o que mandou não pode julgar o que voltou.** E a afirmação `15.g` nasceu como `301 != 200`, aritmética que passa sempre: trocada por medição do mecanismo — o tratador sem-seguir devolve `None` em `redirect_request`, que é como o urllib para de seguir.)*
+
+---
+
+### O DESEMBARQUE, E O QUE A 20.9 POUPOU
+
+Bancada **sem rede: 38 portões, 0 falha** — eram **36**, e os dois novos são `teste-nome-do-registro.py` e `teste-barra-de-compra.php`, que entraram na bancada **no dia em que foram escritos**, sem ninguém se lembrar deles, porque ela varre `ferramentas/` e classifica pela convenção de nome.
+
+As **cinco constantes de versão** dos snippets tocados subiram (casca 1.19.0, F1 1.5.0, F2 1.7.0, F3 1.6.1, produto 1.8.1) e o `manifest.json` foi **reespelhado pela ferramenta**, que **imprimiu cada troca que fez** (20.7): 5 `sha256` de snippet + 5 `versao` + 3 `sha256` de dado, revisão **70 → 71**.
+
+**E A 20.9 POUPOU ESTA PASSADA DE OITO MINUTOS.** Depois do push, o `/status` ficou em **70** com o manifest em **71**. Pela régua de duas pontas da 20.5 isso seria *"o Sync não rodou"* e eu reacionaria. A função da ilha deu o veredito certo: **`evento-nao-vencido`** — `ultimo` = `16:42:04`, **anterior** ao commit do manifest (`16:44:55`), e o raw já servindo 71. Ou seja o Sync **rodou e não tinha nada a aplicar**, e o log não ganhou linha porque ele retorna antes de escrevê-la. **Reacionar não antecipa vencimento.** Teto `17:12:04`, podendo cair antes.
+
+---
+
 ## 2026-11-09 13h26Z–14h1xZ — **A LENTE APLICADA AO JSON-LD ACHOU TRÊS DEFEITOS NO AR, E UM DELES É UMA CLASSE NOVA: A PÁGINA PROMETENDO UM LUGAR A UMA CAMADA QUE NÃO TEM LUGAR** — bloco de conteúdo na F1, na F3 e na casca
 
 **A ESCOLHA DA ILHA.** `foco.md` nomeia a **rodametria** (foco total e absoluto desde 27/10) e pela **1.2** não há escolha a fazer. **Confirmei a exceção do molde (seção 32) antes de aceitar o foco:** os três despachos do molde de conversão estão **fechados** nas três ilhas que a exceção nomeia — aquametria (18h2xZ de 21/10), clubedomosaico (19h1xZ de 21/10) e robometria (16h1xZ de 21/10) —, então o foco manda sozinho. **Nenhum branch `claude/*` divergente e nenhum PR aberto:** `origin/claude/dreamy-mccarthy-irv2if` e `origin/main` no mesmo commit `b327fd1`, zero commit à frente nos dois sentidos — nada a mergear, passo 1 cumprido. `executando_desde` estava `null`, o que pela **1.1** já significa que não havia bloco da Fundação vivo. Reserva no commit `2a5913b`, às **13h26Z**, hora saída do `date -u` na mesma linha que a grava; **RENOVADA** às 13h44Z pela 1.1.
