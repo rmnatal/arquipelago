@@ -3,6 +3,85 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-11-10 13h25Z–14hxxZ — **A F2 SERVIA A CHAVE DE MÁQUINA DO TIPO COMO FRASE DE LEITOR, E A /PRIVACIDADE/ DIZIA A MESMA COISA DUAS VEZES SEM ACENTO** — revisões 75 e 76
+
+**A ESCOLHA DA ILHA.** `foco.md` nomeia a **rodametria** (foco total e absoluto desde 27/10) e pela **1.2** não há escolha a fazer. **A exceção do molde (seção 32) e o despacho ALTO, MEDIDOS NESTA PASSADA e não herdados do registro anterior** — a primeira versão desta linha os afirmava por herança, que é exatamente *"cada execução leu o `ESTADO.md` da anterior como fato"* da 20.2, e foi corrigida antes de o fecho ir ao `main`: o despacho do molde está **FECHADO INTEIRO** nas três ilhas (aquametria 21/10 às 18h2xZ, clubedomosaico 21/10 às 19h1xZ, robometria 21/10 às 16h1xZ, as duas últimas riscadas), e **nenhuma ilha fora do foco tem despacho ALTO aberto** — varri as cinco. **E a varredura achou uma armadilha de instrumento:** a busca crua por `ALTA` casa dentro de **FALTA**, e devolveu dois despachos reescritos pela 18.3 cujo título diz *"só o que FALTA ficou"*. Não eram ALTA. Nada fura o foco. **Branch e PR, passo 1:** `origin/claude/dreamy-mccarthy-57g7b4` sem **nenhum** commit fora do `main` e **zero PR aberto** — nada a mergear. `executando_desde` estava `null`, o que pela **1.1** já significa que não havia bloco da Fundação vivo, logo não houve reserva vencida a desempatar no git nem reserva órfã a limpar (1.2-b.5). Reserva no commit `96b1965`, às **13h25Z**, hora saída do `date -u` na mesma linha que a grava.
+
+**A REDE, MEDIDA E NÃO HERDADA (20.2), ANTES DA RESERVA.** `rodametria.com.br` em **200** nas três passadas com quebra de cache, com `robometria.com.br` e `aquametria.com.br` em 200 nas mesmas três — **9 de 9, zero `000`**. O túnel isolado que a passada das 10h1xZ viu no aquametria **não reapareceu**.
+
+**A BANCADA ANTES DE CONSTRUIR (18.5): 40 portões sem rede, 0 falha.** Ilha sã no ar: `/status` em **74** = `manifest` em **74**, as **10** URLs do `wp-sitemap.xml` em **200**.
+
+**A FILA, E POR QUE ESTE BLOCO.** Não havia despacho aberto para a Fundação: o de 09/11 fechou às 17h4xZ, os dois itens do de 04/11 pedem o Search Console (credencial da leitura semanal, nunca da Fundação) e o de 30/10 é **para o Raphael**, numa sessão de Chrome. A fila de blocos segue **toda entregue menos o 5**, que depende de `pauta.md` e pela **17.1** não é arquivo da Fundação. Página nova segue travada pelas duas pontas (30.8 e o Mercado Livre).
+
+**ENTÃO FIZ A PONTA QUE O FECHO DAS 10h45Z DEIXOU ESCRITA, LETRA POR LETRA:** *"as réguas de tela desta ilha agora moram num lugar só e cobrem quatro classes, mas alcançam A FRASE DE PROCEDÊNCIA das constantes — não todo texto que um snippet imprime. O caminho para a próxima família é o desta passada: LER A PÁGINA SERVIDA COM OS OLHOS e perguntar em que vocabulário ela está falando."* Baixei as 10 URLs, extraí o texto visível e varri. **A leitura achou DOIS defeitos, e os dois estavam no ar.**
+
+---
+
+### DEFEITO 1 — `Tipo: observacao_de_mercado`, A CHAVE DE MÁQUINA COMO FRASE, NA F2 (revisão 75)
+
+A F2 servia, em texto visível, na dobra "Como a gente chegou nesses números":
+
+> Maior carga máxima que vimos no varejo — **120**. Tipo: **observacao_de_mercado**. Fichas de varejo lidas em extra.com.br, casasbahia.com.br e magazineluiza.com.br (…)
+
+**As outras CINCO réguas da MESMA lista serviam frase de leitor na MESMA tela** — *"identidade matemática, não depende de fonte"*, *"medição de terceiro, nomeada"*, *"decisão nossa, e está dito que é nossa"*, *"pendente, sem valor publicado"*. Uma servia a chave: sublinhado, sem acento, o vocabulário de quem escreveu a fábrica (32.4).
+
+**A CAUSA.** O mapa que traduzia tipo em frase morava dentro de `snippets/rodametria-f2.php` com **QUATRO** entradas escritas à mão, e esta ilha declara **NOVE** tipos em `dados/constantes.json`. O fallback era `return isset( $mapa[ $tipo ] ) ? $mapa[ $tipo ] : (string) $tipo;` — e **chave que cai num `return $tipo` não reclama: ela vira a frase.** É o item 1 de 09/11 outra vez (*"três geradores, três decisões de fallback, e o da F2 cai no `id`"*), agora sobre o tipo e não sobre o nome do produto.
+
+**CINCO DOS NOVE ESTAVAM ARMADOS, não um:** `oficial` — que é o tipo dos **limiares legais da F1** —, `afirmacao_qualitativa`, `observacao_de_mercado`, `entrada_do_leitor` e `afirmacao_de_terceiro`. Só um é impresso hoje porque a F2 serve seis réguas; os três `*-respostas.json` usam **OITO** dos nove tipos. Buraco pré-aberto, como o de ontem.
+
+**O CONSERTO TIROU O MAPA DO PHP**, porque ele era a segunda declaração do mesmo fato que a **20.7** proíbe nesta ilha — e com ele aconteceu exatamente o que a 20.7 avisa: *as duas declarações começaram iguais e só uma subiu.* A frase nasce agora em `gerar-f2.py` (`TIPO_NA_TELA`), viaja no `*-respostas.json` como `tipo_na_tela`, e **o PHP imprime o que recebe**. Sem mapa, não há fallback que possa cair na chave. **Campo ausente devolve cadeia VAZIA e quem chama OMITE a oração inteira** — a ausência como sinal, da 20.7: a página perde uma cláusula de procedência e continua honesta. **Uma função, três geradores**, como no `fonte_na_tela` de ontem.
+
+**CONFERIDO NO AR (18.4), revisão 75:** as **seis** cláusulas `Tipo:` da F2 servem frase de leitor, e as **sete** chaves de máquina em **ZERO** ocorrência no HTML servido.
+
+---
+
+### DEFEITO 2 — A /PRIVACIDADE/ DIZIA A MESMA COISA DUAS VEZES, SEM ACENTO, NA VOZ DA PRÓPRIA ILHA (revisão 76)
+
+> Google, que serve as fontes da letra **desta pagina em toda pagina**, por fonts.googleapis.com e fonts.gstatic.com. Shopee, que serve a foto do produto, **quando a pagina tem uma nas paginas com foto de produto**, por cf.shopee.com.br.
+
+**Dois defeitos numa frase:** **CINCO** `pagina`/`paginas` sem acento — e aqui **não é citação, é a ilha falando** —, e **a mesma coisa dita duas vezes**, porque `o_que` já carregava o alcance e `onde` o repetia. É a família do bloco de compra da F2 de 29/10, que dizia a mesma coisa três vezes na mesma tela. Agora são *"as fontes da letra em toda página"* e *"a foto do produto nas páginas que têm uma"*.
+
+---
+
+### O PORTÃO FOI PARA ONDE A MEDIÇÃO É HONESTA: O AR — E ISSO FOI MEDIDO ANTES DE SER ESCOLHIDO
+
+**Rodar as cinco réguas de tela sobre TODO texto de tela dos arquivos de dado devolve 188 falhas**, e a esmagadora maioria **não é tela**: é prosa de bastidor (`especificacao`, `a_caixa_da_mae`, `por_que_ancora`, `vendas_ordenam_e_nao_vao_para_a_tela`) e **CITAÇÃO** (título de anúncio colhido, chave da loja). Um portão assim reprovaria a página certa **em massa**, que é o caminho mais curto para alguém passar a ignorá-lo (**20.5**) — e *contorcer a cópia para agradar régua errada é pior que a régua errada*, escrito nesta ilha em 06/11. **No ar a pergunta é a certa: o que o VISITANTE lê está no vocabulário dele?**
+
+**E A CITAÇÃO É DESCONTADA POR LITERAL, NUNCA POR ELEMENTO.** Esta ilha cita o título do anúncio letra por letra de propósito — é a tese dela — e cita a **chave da loja** entre aspas, porque *"a consulta é a palavra da PESSOA; a chave é a palavra da LOJA"*. As duas chegam à tela sem acento e estão **CERTAS**. O desconto remove a cadeia exata e mede **o que sobra**: defeito ao lado da citação continua sendo pego, e pular o elemento inteiro perdoaria a frase da ilha que convive com um título colhido na mesma linha.
+
+**A RÉGUA DO SUBLINHADO É A QUE ALCANÇA O DEFEITO 1 DO AR.** Prosa portuguesa não tem sublinhado, então toda cadeia com um é nome de chave. Ela é de **FORMATO**, como a de data ISO, e por isso pega a chave **DENTRO** da frase — onde `conferir_nao_e_chave_de_maquina`, que é do texto **INTEIRO**, não chega, e era exatamente ali que `observacao_de_mercado` estava. **MEDIDA ANTES DE ENTRAR, nas 10 URLs: UMA ocorrência de sublinhado em todo o texto de prosa servido, e ela era o defeito.** Zero falso positivo.
+
+### TRÊS VEZES A RÉGUA REPROVOU TEXTO CERTO, E AS TRÊS VEZES O CONSERTO FOI NA RÉGUA
+
+1. **`{lim_w}` DO MOLDE REAL DA F1.** A régua do sublinhado reprovou `gerar-f1.py --conferir` **no minuto em que nasceu**: `lim_w` tem sublinhado porque é o **nome da lacuna**, e quem a preenche é o molde antes de a frase existir. A lacuna `{ASSIM}` passa a sair antes das réguas de formato, e a conta de quem a preenche continua sendo de outro portão — `teste-institucional.py` já reprova *"molde que o preenchedor não conhece"*, que é o **único** mundo em que uma lacuna chegaria crua à tela. Duas réguas, duas perguntas, separadas como a 20.5 pede.
+2. **O TÍTULO DO ANÚNCIO SOBREVIVIA AO DESCONTO POR UM ESPAÇO.** O título colhido `…bike eletrica  E` tem **DOIS** espaços no dado e **UM** no ar, porque o HTML colapsa — o desconto por literal cru não o removia e a régua de acento o reprovava por `eletric`, **que está certo porque é o anúncio falando**. Conferi antes de acusar: o título tem 98 caracteres de até 120 que o coletor aceita, então o `E` solto é da loja e não corte nosso. O desconto normaliza o espaço nas duas pontas.
+3. **O MEU PRÓPRIO MUNDO 11d.** Ele afirmava que chave **dentro** de uma frase não reprova — verdade sobre a régua do texto inteiro e **falsa dez minutos depois**, quando a do sublinhado nasceu justamente para alcançar esse caso. Reescrito dizendo **qual régua pega o quê**, com um mundo novo provando que palavra composta com hífen (*"meio-caminho geométrico"*, *"watt-hora"*) **não** reprova: cobrar hífen por substring seria o erro do `so` dentro de "nosso" pela terceira vez. **O portão reprovou quem o escreveu, como o de 09/11.**
+
+### A RESPOSTA DA 19.4(b) — POR QUE O PORTÃO DE ONTEM NÃO PEGOU O DEFEITO 1
+
+`textos_de_tela_do_dado` pula toda cadeia **SEM ESPAÇO**, com a frase *"SEM ESPACO = IDENTIFICADOR, nunca frase"* escrita no comentário ao lado. **Ela está CERTA sobre o dado e FALSA sobre a tela**, porque era o PHP que promovia o identificador a frase. Mesma cadeia, papel oposto — a assinatura da **20.7**, a mesma do campo `fonte` de ontem, **um degrau abaixo e no campo vizinho**. E a exclusão de ontem era por **NOME**; esta era por **FORMA**, e nenhuma lista de nomes a pegaria. **O conserto não foi relaxar a exclusão** — relaxar reprovaria os slugs legítimos do banco (`siena-1000w-sem-cnh` é o nome que o próprio anúncio deu ao produto) — e sim **escrever quais campos a tela recebe prontos** (`CHAVES_PROMOVIDAS_A_TELA`).
+
+### A PENDÊNCIA (c) DO DESPACHO DE 09/11 NÃO ERA PENDÊNCIA, E ISTO ESTÁ AQUI PARA NÃO CUSTAR UMA QUARTA EXECUÇÃO
+
+O despacho de 09/11 deixou escrito que *"a `VOZ.md` desta ilha ainda traz, nos exemplos aprovados de 27/10, a frase `dispensa CNH e placa`"*, e o fecho de 06/11 já a havia anotado. **Fui ler: a frase está RISCADA (`~~…~~`), debaixo do título "Os quatro exemplos de 27/10/2026, PRESERVADOS", com o motivo escrito ao lado** — *"a diferença entre eles e os de cima é a leitura da fonte, e quem for escrever tom nesta ilha precisa ver as duas versões lado a lado"*. É o mesmo mecanismo com que esta ilha preserva o texto original de todo despacho fechado. **Varri a pasta: a única ocorrência NÃO riscada da frase é a PRÓPRIA PROIBIÇÃO que a nomeia**, na linha 24 do `VOZ.md`. Zero uso vivo. **Ler texto riscado como texto vivo é a família da seção 4 com o sinal invertido** — lá o cabeçalho velho é lido como fato; aqui o registro histórico é lido como dívida. **A pendência está fechada por leitura, e não há o que consertar.**
+
+### E A 32.5 E O CONSOLE FORAM MEDIDOS DE VERDADE, PELA SEÇÃO 33, NO NAVEGADOR DESTA NUVEM
+
+As rondas de **04, 06 e 09/11** fecharam declarando os três "não medidos" por falta de navegador, e a **33** (09/11) desmentiu a causa: esta nuvem tem Chromium e Playwright, e o portão de pixel desta ilha os usa desde 29/10. **Rodei o comando que a 33 manda rodar antes de escrever "não medido"** (`node -e "require('playwright')"`) e os dois portões:
+
+- **`conferir-32-5-no-navegador.mjs`, a 390 px, com quebra de cache: APROVADO, 10 de 10.** Pior caixa de resposta **405 px** contra o teto de 700 (em `/veiculos/`); pior primeiro botão de compra **1.279 px** contra o teto de 1.400 (na F2); **0 página fora do molde**; 0 disputa de especificidade custando pixel. As fotos: 1 de 4 real na F2 (3 reservadas), 3 de 3 na bicicleta, 5 de 5 no patinete.
+- **`medir-console-no-navegador.mjs`: APROVADO, 10 de 10 com console limpo** — 0 `error`, 0 exceção de JavaScript, 0 recurso caído, 0 resposta ≥ 400.
+
+**O que segue não sendo de nuvem, e a 33 já o mediu e fechou:** o **teste de vida da 25.4** (a Shopee exige `fetch` de dentro de aba no domínio, e conduzir a aba contra o anti-robô foi **recusado pelo guarda deste ambiente** — recusa que não se contorna) e a **SERP** (google, bing e duckduckgo em `000` no mesmo egresso, então ter navegador não é ter SERP, e a **30.8** fica inteira). **Não remedi nenhum dos dois de propósito**, porque a 33 os mediu ontem e *"causa de impossibilidade também envelhece"* corta nos dois sentidos: o que foi medido ontem com nome e número não precisa de uma execução por dia.
+
+### O DESEMBARQUE, E A 20.9 POUPOU ESTA PASSADA DE DUAS SEQUÊNCIAS DE REAÇÃO INÚTEIS
+
+Nas **duas** revisões o veredito da função foi `evento-nao-vencido` — `ultimo` recente e **anterior** ao commit do manifest, com o `raw` já servindo — e a ação certa era **esperar**. A **75** entrou às **13:40:40Z**, **13m28s ANTES** do teto de 13:54:08 que a própria função calculou, exatamente como ela avisa que pode acontecer. **Conta da 20.10 no fecho da 75: 8 linhas de item contra 8 `aplicado(s)` declarados — ZERO falha**, e as 8 lidas do fecho para baixo (20.8) dizendo `ok`. **Nenhuma cicatriz da 20.4** nas duas: a passada tocou em PHP de snippet (o `rodametria-f2.php`) e a ativação veio `ok` — o padrão de três ocorrências em quatro dias **não** se repetiu, e isso é dado e não garantia.
+
+**MEDIDO.** A régua nova contra o HTML **servido da revisão 74**, as 10 URLs, **133 citações descontadas**: **2 falhas, e são os dois defeitos de hoje, zero falso positivo**. **AS DUAS SUPERFÍCIES DISCORDAM (20.8):** as réguas que o portão de ar já tinha (habilitação e peso) reprovam os dois mundos em **ZERO**. Autoteste do portão de tela: **100 mundos, 0 falha** (eram **76** ontem). Portão de ar: **80** afirmações de autoteste, 0 falha. Repositório: **2.207** afirmações, 0 falha (eram 2.160). Bancada: **40** portões sem rede, 0 falha. O defeito 1 foi **reinjetado no arquivo real**: sem a frase, o gerador **PARA** e a completude acusa, nomeando o tipo.
+
+---
+
 ## 2026-11-10 10h17Z–10h4xZ — **A HOME CITAVA A FONTE NO VOCABULÁRIO DA FÁBRICA, COM O NOME DO DONO DENTRO — E A FUNÇÃO QUE DECIDE ISSO ERA TRÊS** — revisão 74
 
 **A ESCOLHA DA ILHA.** `foco.md` nomeia a **rodametria** (foco total e absoluto desde 27/10) e pela **1.2** não há escolha a fazer. **Confirmei a exceção do molde (seção 32) antes de aceitar o foco:** os três despachos do molde seguem riscados e fechados na aquametria, na clubedomosaico e na robometria, e nenhuma das ilhas fora do foco tem despacho ALTA aberto — nada fura o foco. **Branch e PR, passo 1:** `origin/claude/dreamy-mccarthy-82vkwa` sem **nenhum** commit fora do `main` (`git log origin/main..origin/claude/...` vazio) e **zero PR aberto** — nada a mergear. `executando_desde` estava `null`, o que pela **1.1** já significa que não havia bloco da Fundação vivo, e portanto não houve reserva vencida para o git desempatar. Reserva no commit `a418b91`, às **10h17Z**, hora saída do `date -u` na mesma linha que a grava.
