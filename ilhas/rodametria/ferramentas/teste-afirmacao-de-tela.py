@@ -501,8 +501,12 @@ def problemas_de_procedencia(onde, texto):
         if re.search(r"\b%s\b" % re.escape(forma), baixo):
             falhas.append("%s: palavra sem acento %r na tela (secao 8): %r"
                           % (onde, forma, texto[:120]))
+    # A LACUNA `{ASSIM}` sai antes das reguas de FORMATO: ela e slot, nao frase.
+    # Ver `sem_lacuna_de_molde` em `gerar-f2.py` — a regua do sublinhado reprovou
+    # `{lim_w}` no minuto em que nasceu, e `lim_w` e o nome da lacuna.
+    alvo = REGUAS.sem_lacuna_de_molde(texto)
     for padrao, porque in REGUAS.VOCABULARIO_DE_MAQUINA:
-        achado = re.search(padrao, texto)
+        achado = re.search(padrao, alvo)
         if achado is not None:
             falhas.append("%s: serve %r, que e %s (32.4): %r"
                           % (onde, achado.group(0), porque, texto[:120]))
@@ -1057,17 +1061,31 @@ def autoteste():
         diz(not problemas_de_procedencia("tipo %s" % tipo, frase),
             "11c. a frase de leitor do tipo %r passa limpa nas cinco reguas" % tipo)
 
-    # MUNDO 11d — A CHAVE DENTRO DE UMA FRASE NAO REPROVA, e isto e de proposito:
-    # a regua e sobre o texto INTEIRO. Cobrar substring reprovaria a pagina que
-    # explica a propria escada citando o nome de um degrau — o erro que esta ilha
-    # ja pagou duas vezes com o `so` casando dentro de "nosso" e "isso".
-    diz(not problemas_de_procedencia(
-            "x", "O tipo desta régua, no arquivo, é observacao_de_mercado."),
-        "11d. chave DENTRO de uma frase acentuada nao reprova (a regua e do texto "
-        "inteiro)")
+    # MUNDO 11d — AS DUAS REGUAS DE CHAVE SAO SEPARADAS, E ESTE MUNDO EXISTE
+    # PARA DIZER QUAL PEGA O QUE. Ele foi REESCRITO na propria passada que o
+    # escreveu: a primeira versao afirmava que chave DENTRO de uma frase nao
+    # reprova — verdade sobre `conferir_nao_e_chave_de_maquina`, que e do texto
+    # INTEIRO, e falsa depois de a regua do SUBLINHADO nascer, dez minutos
+    # depois, justamente para alcancar a chave no meio da frase, que e onde o
+    # defeito do ar estava. O portao reprovou quem o escreveu, como o de 09/11.
+    dentro = "O tipo desta régua, no arquivo, é observacao_de_mercado."
+    f11d = problemas_de_procedencia("x", dentro)
+    diz(any("sublinhado" in f for f in f11d),
+        "11d. chave com SUBLINHADO dentro de uma frase reprova pela regua de "
+        "formato — e e ali que o defeito do ar estava")
+    diz(not any("chave de maquina" in f for f in f11d),
+        "11d. e NAO pela regua do texto inteiro, que de fato nao a alcanca: as "
+        "duas sao separadas porque o conserto de cada uma e diferente (20.5)")
     diz(any("chave de maquina" in f
             for f in problemas_de_procedencia("x", "observacao-de-mercado")),
-        "11d. e o slug com hifen reprova igual ao com sublinhado")
+        "11d. o slug com HIFEN, sendo o texto inteiro, reprova pela do texto inteiro")
+    # E O HIFEN DENTRO DE UMA FRASE NAO REPROVA, de proposito e medido: o
+    # portugues tem palavra composta, e a propria F2 serve "meio-caminho
+    # geometrico" e "watt-hora". Cobrar hifen por substring reprovaria texto
+    # certo — o erro do `so` dentro de "nosso", pela terceira vez.
+    diz(not problemas_de_procedencia(
+            "x", "O nosso é o meio-caminho geométrico entre os dois watt-hora."),
+        "11d. palavra composta com hifen dentro da frase NAO reprova")
 
     # MUNDO 11e — A COMPLETUDE, NAS DUAS DIRECOES, sobre listas FABRICADAS.
     # O numero real sai do passe do repositorio; aqui se mede a REGUA.
@@ -1092,6 +1110,20 @@ def autoteste():
         diz(False, "11e. lista vazia tem de reprovar, nunca aprovar por vacuidade")
     except AssertionError:
         diz(True, "11e. lista vazia REPROVA — portao inerte nao aprova (20.8)")
+
+    # MUNDO 11f — A LACUNA DE MOLDE PASSA, E O DEFEITO AO LADO DELA NAO.
+    # O primeiro texto e o molde REAL da F1 que reprovou a regua do sublinhado no
+    # minuto em que ela nasceu; o segundo e o mesmo molde com uma chave de
+    # verdade solta na prosa, e ele TEM de reprovar — senao o desconto da lacuna
+    # teria aberto um buraco em vez de fechar um falso positivo.
+    molde_real = ("É bicicleta elétrica: {lim_w} W de potência nominal e {lim_kmh} "
+                  "km/h, só com pedal assistido.")
+    diz(not problemas_de_procedencia("molde da F1", molde_real),
+        "11f. a lacuna `{lim_w}` do molde real da F1 NAO reprova: slot nao e frase")
+    diz(any("sublinhado" in f for f in problemas_de_procedencia(
+            "x", molde_real + " Tipo: observacao_de_mercado.")),
+        "11f. e a chave de verdade ao lado da lacuna REPROVA — o desconto remove a "
+        "lacuna, nunca a regua")
 
     print("")
     print("  AUTOTESTE — %d mundo(s) medido(s), %d falha(s)" % (len(ok) + len(mal), len(mal)))

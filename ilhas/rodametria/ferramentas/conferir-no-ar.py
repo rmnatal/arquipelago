@@ -122,6 +122,140 @@ _RE_ELEMENTOS = re.compile(
     r"<(%s)\b[^>]*>(.*?)</\1>" % "|".join(TAGS_DE_PROSA), re.S | re.I)
 
 
+# ---------------------------------------------------------------------------
+# AS CINCO REGUAS DE TELA SOBRE O TEXTO SERVIDO, E A CITACAO E DESCONTADA ANTES
+# (10/11/2026)
+# ---------------------------------------------------------------------------
+#
+# O QUE FEZ ISTO NASCER: o fecho de 10/11 as 10h45Z deixou escrito, como o que
+# sobrou para quem viesse, que *"as reguas de tela desta ilha agora moram num
+# lugar so e cobrem quatro classes, mas alcancam A FRASE DE PROCEDENCIA das
+# constantes — nao todo texto que um snippet imprime"*, e que o caminho era
+# *"LER A PAGINA SERVIDA COM OS OLHOS e perguntar em que vocabulario ela esta
+# falando"*. Esta e aquela leitura virada mecanismo, e ela achou DOIS defeitos
+# na mesma passada:
+#
+#   - a F2 servindo `Tipo: observacao_de_mercado`, a chave de maquina como frase;
+#   - a `/privacidade/` servindo "as fontes da letra desta pagina em toda
+#     pagina" e "a foto do produto, quando a pagina tem uma nas paginas com foto
+#     de produto" — CINCO `pagina`/`paginas` sem acento na voz da propria ilha,
+#     e a mesma coisa dita DUAS VEZES na mesma oracao.
+#
+# POR QUE O PORTAO MORA NO AR E NAO NO REPOSITORIO, E ISTO FOI MEDIDO ANTES DE
+# ESCOLHER: rodar as cinco reguas sobre TODO texto de tela dos arquivos de dado
+# devolve 188 falhas, e a esmagadora maioria NAO e tela — e prosa de bastidor
+# (`especificacao`, `a_caixa_da_mae`, `por_que_ancora`,
+# `vendas_ordenam_e_nao_vao_para_a_tela`) e CITACAO (titulo de anuncio colhido,
+# chave da loja). Um portao assim reprovaria a pagina certa em massa, que e o
+# caminho mais curto para alguem passar a ignora-lo (20.5) — e contorcer a copia
+# para agradar regua errada e pior que a regua errada, que e a licao escrita
+# nesta ilha em 06/11. No ar a pergunta e outra e e a certa: o que o VISITANTE
+# le esta no vocabulario dele?
+#
+# E A CITACAO E DESCONTADA POR LITERAL, NUNCA POR ELEMENTO. Esta ilha cita o
+# titulo do anuncio letra por letra de proposito — e a tese dela, *"o numero do
+# anuncio nao e o que a regra le"* —, e cita a CHAVE DA LOJA entre aspas porque
+# *"a consulta e a palavra da PESSOA; a chave e a palavra da LOJA"*. As duas
+# chegam a tela sem acento e estao CERTAS. O desconto remove a cadeia exata e
+# mede o que sobra: defeito DENTRO da citacao fica invisivel (e deve), e defeito
+# ao lado dela continua sendo pego. Pular o elemento inteiro perdoaria a frase
+# da ilha que convive com um titulo colhido na mesma linha.
+#
+# MEDIDO EM 10/11/2026 as 13h2xZ, nas 10 URLs: 17 achados, dos quais 16 eram
+# citacao (titulo de anuncio e chave da loja) e 1 era a ilha falando.
+
+# Os nomes de campo que carregam CITACAO nos arquivos de dado desta ilha. Cada
+# um esta aqui com a razao, porque lista sem razao envelhece calada:
+#   titulo_colhido/titulo_do_anuncio/titulo_da_oferta — o anuncio, letra por letra
+#   nome/rotulo/alt — a copia que o gerador promove daquele titulo (`regras/nomes.py`)
+#   chave/chave_da_loja/chave_escolhida/chave_que_achou — a palavra da LOJA
+#   consulta — a palavra da PESSOA, servida entre aspas
+CHAVES_DE_CITACAO_NO_DADO = (
+    "titulo_colhido", "titulo_do_anuncio", "titulo_da_oferta",
+    "nome", "rotulo", "alt",
+    "chave", "chave_da_loja", "chave_escolhida", "chave_que_achou",
+    "consulta",
+)
+
+
+def citacoes_do_dado(pasta=None):
+    """Toda cadeia que esta ilha CITA, colhida dos arquivos de `dados/`.
+
+    Devolve a lista ordenada da mais longa para a mais curta, porque o desconto
+    e por substring: descontar a curta primeiro picaria a longa e deixaria
+    pedacos soltos que a regua leria como texto da ilha.
+    """
+    pasta = pasta or os.path.join(ILHA, "dados")
+    achadas = set()
+
+    def anda(x, chave=None):
+        if isinstance(x, dict):
+            for k, v in x.items():
+                anda(v, k)
+        elif isinstance(x, list):
+            for v in x:
+                anda(v, chave)
+        elif isinstance(x, str) and chave in CHAVES_DE_CITACAO_NO_DADO:
+            if len(x.strip()) >= 4:
+                achadas.add(x.strip())
+
+    if os.path.isdir(pasta):
+        for nome in sorted(os.listdir(pasta)):
+            if not nome.endswith(".json"):
+                continue
+            try:
+                with open(os.path.join(pasta, nome), encoding="utf-8") as f:
+                    anda(json.load(f))
+            except Exception:  # noqa: BLE001 — arquivo ilegivel nao e desta regua
+                continue
+
+    return sorted(achadas, key=lambda t: (-len(t), t))
+
+
+def _um_espaco(t):
+    """Espaco normalizado — e esta funcao e o conserto de um falso positivo MEDIDO.
+
+    O HTML colapsa espaco e o extrator normaliza; o arquivo de dado guarda o que
+    a loja serviu. O titulo colhido do anuncio `Bicicleta Eletrica Ebike M2 (...)
+    bike eletrica  E` tem DOIS espacos antes do `E` no dado e UM no ar, e por
+    isso o desconto por literal cru nao o removia: a citacao sobrevivia ao
+    desconto e a regua de acento a reprovava por `eletric`, que esta CERTO
+    porque e o anuncio falando. Portao que reprova a citacao que a ilha faz de
+    proposito e o caminho mais curto para alguem ignora-lo (20.5).
+    """
+    return re.sub(r"\s+", " ", t).strip()
+
+
+def descontar_citacoes(texto, citacoes):
+    """O texto sem as cadeias que a ilha cita — e o que sobra e a voz dela."""
+    texto = _um_espaco(texto)
+    for c in citacoes:
+        c = _um_espaco(c)
+        if c and c in texto:
+            texto = texto.replace(c, " ")
+
+    return texto
+
+
+def problemas_de_vocabulario_servido(onde, textos, citacoes):
+    """As cinco reguas de tela sobre o texto SERVIDO, citacao descontada.
+
+    A regua e de `teste-afirmacao-de-tela.py` e esta importada no topo; o que e
+    DAQUI e a superficie (o HTML servido) e o desconto da citacao.
+    """
+    if _REGUA_DE_AFIRMACAO is None:
+        return []
+    falhas = []
+    for i, t in enumerate(textos):
+        limpo = descontar_citacoes(t, citacoes)
+        if not limpo.strip():
+            continue
+        falhas += _REGUA_DE_AFIRMACAO.problemas_de_procedencia(
+            "%s elemento %d" % (onde, i + 1), limpo)
+
+    return falhas
+
+
 def elementos_de_prosa(corpo):
     """Cada elemento de prosa da pagina, como texto, na ordem em que e servido."""
     out = []
@@ -1554,6 +1688,23 @@ def main():
                      % (caminho, len(_elem), len(_ld_textos), len(_ld_pares)))
 
             # -------------------------------------------------------------
+            # O VOCABULARIO DA TELA, NAS CINCO REGUAS, COM A CITACAO DESCONTADA
+            # (10/11/2026). Ver o comentario de `citacoes_do_dado` acima: as
+            # duas medicoes que a fizeram nascer sao a chave `observacao_de_mercado`
+            # servida pela F2 como frase e os cinco `pagina` sem acento da
+            # `/privacidade/`.
+            _cit = citacoes_do_dado()
+            _maus_voc = problemas_de_vocabulario_servido(
+                "%s (tela)" % caminho, _elem, _cit)
+            afirma(not _maus_voc,
+                   "%s: %d texto(s) servido(s) no vocabulario da FABRICA e nao no "
+                   "de quem le — palavra portuguesa sem acento, bastidor, nome do "
+                   "dono, formato de maquina ou chave de maquina —, ja descontadas "
+                   "as %d citacoes que esta ilha faz de proposito. O primeiro: %s"
+                   % (caminho, len(_maus_voc), len(_cit),
+                      _maus_voc[0] if _maus_voc else ""))
+
+            # -------------------------------------------------------------
             # A TERCEIRA AFIRMACAO: O MESMO ATO DE COLHER CONTADO DUAS VEZES
             # NA MESMA PAGINA (item 4 do despacho de 09/11/2026).
             #
@@ -2256,7 +2407,77 @@ def autoteste():
     # Fundacao foi NOMEAR esse unico salto em vez de exigir do HTML uma coisa que
     # o HTML nao pode dar.
 
-    print("conferir-no-ar --autoteste: %d de %d afirmacoes, %d falha(s)"
+    # =====================================================================
+    # MUNDO 16 — O VOCABULARIO DA TELA, E O PRIMEIRO MUNDO E O AR DE VERDADE
+    # (10/11/2026)
+    # =====================================================================
+    #
+    # Os dois elementos abaixo sao copiados LETRA POR LETRA do HTML servido as
+    # 13h2xZ de 10/11/2026, revisao 74, pela execucao que escreveu esta regua.
+    AR_74_TIPO_CRU = (
+        "Maior carga maxima que vimos no varejo — 120 . Tipo: "
+        "observacao_de_mercado. Fichas de varejo lidas em extra.com.br, "
+        "casasbahia.com.br e magazineluiza.com.br, mais o painel de afiliado da "
+        "Shopee, em 27 e 28/10/2026. Lido em 28/10/2026.")
+    AR_74_PRIVACIDADE_CRUA = (
+        "Google, que serve as fontes da letra desta pagina em toda pagina, por "
+        "fonts.googleapis.com e fonts.gstatic.com. Shopee, que serve a foto do "
+        "produto, quando a pagina tem uma nas paginas com foto de produto, por "
+        "cf.shopee.com.br.")
+
+    if _REGUA_DE_AFIRMACAO is None:
+        diz(False, "16. a regua de vocabulario de tela NAO pode ser medida: o irmao "
+                   "`teste-afirmacao-de-tela.py` nao carregou")
+    else:
+        m16 = problemas_de_vocabulario_servido("ar74", [AR_74_TIPO_CRU], [])
+        diz(any("sublinhado" in f for f in m16),
+            "16. a chave `observacao_de_mercado` DENTRO da frase de procedencia "
+            "reprova pela regua de sublinhado")
+        m16b = problemas_de_vocabulario_servido("ar74", [AR_74_PRIVACIDADE_CRUA], [])
+        diz(any("pagina" in f and "sem acento" in f for f in m16b),
+            "16. os `pagina` sem acento da /privacidade/ reprovam pela regua de acento")
+
+        # AS DUAS SUPERFICIES DISCORDAM, e e isso que prova o conserto (20.8).
+        # A regua que ja existia neste portao media HABILITACAO e PESO, e as
+        # duas frases acima nao falam de nenhum dos dois: ela reprovava em ZERO.
+        velha16 = (_REGUA_DE_AFIRMACAO.problemas_de_habilitacao("x", [AR_74_TIPO_CRU])
+                   + _REGUA_DE_AFIRMACAO.problemas_de_peso("x", [AR_74_TIPO_CRU])
+                   + _REGUA_DE_AFIRMACAO.problemas_de_habilitacao(
+                       "x", [AR_74_PRIVACIDADE_CRUA])
+                   + _REGUA_DE_AFIRMACAO.problemas_de_peso("x", [AR_74_PRIVACIDADE_CRUA]))
+        diz(not velha16,
+            "16. e as reguas que este portao JA TINHA reprovam os dois mundos em "
+            "ZERO — as duas discordam, senao o conserto nao existiria (20.8)")
+
+        # MUNDO 16b — A CITACAO PASSA, E ELA E O TESTE QUE IMPORTA. Contorcer a
+        # copia para agradar regua errada e pior que a regua errada; aqui o que
+        # nao pode ser contorcido e o ANUNCIO, citado letra por letra.
+        titulo = ("Bicicleta Elétrica Ebike M2 800w Litio 48v 43kmh Scooter eletrica "
+                  "Trabalho adulto bike eletrica  E")
+        elemento = titulo.replace("  E", " E") + " E declara watt, sem dizer se é nominal"
+        diz(problemas_de_vocabulario_servido("x", [elemento], []),
+            "16b. sem desconto, o titulo do anuncio REPROVA por `eletric` — e e por "
+            "isso que o desconto existe")
+        diz(not problemas_de_vocabulario_servido("x", [elemento], [titulo]),
+            "16b. com a citacao descontada, o MESMO elemento passa — e o espaco "
+            "DOBRADO do dado contra o espaco unico do ar nao impede o desconto")
+
+        # MUNDO 16c — O DESCONTO E POR LITERAL E NAO POR ELEMENTO. Defeito ao
+        # LADO da citacao continua sendo pego; se o desconto pulasse o elemento
+        # inteiro, a frase da ilha pegaria carona no titulo do anuncio.
+        vizinho = titulo.replace("  E", " E") + " e esta pagina nao tem acento"
+        falhas16c = problemas_de_vocabulario_servido("x", [vizinho], [titulo])
+        diz(any("pagina" in f for f in falhas16c),
+            "16c. defeito AO LADO da citacao e pego: o desconto remove a cadeia, "
+            "nunca o elemento")
+
+        # MUNDO 16d — O SUBLINHADO NAO TEM FALSO POSITIVO MEDIDO, e a frase certa
+        # da tela passa.
+        diz(not problemas_de_vocabulario_servido(
+                "x", ["A faixa que a gente observou no varejo, numa data."], []),
+            "16d. a frase de leitor que substituiu a chave passa limpa")
+
+        print("conferir-no-ar --autoteste: %d de %d afirmacoes, %d falha(s)"
           % (len(ok), len(ok) + len(mal), len(mal)))
     for m in mal:
         print("  REPROVADO: %s" % m)

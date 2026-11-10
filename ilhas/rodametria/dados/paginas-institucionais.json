@@ -13,18 +13,18 @@
  "terceiros_que_carregam": [
   {
    "quem": "Google",
-   "o_que": "as fontes da letra desta pagina",
+   "o_que": "as fontes da letra",
    "endereco": "fonts.googleapis.com",
    "endereco_irmao": "fonts.gstatic.com",
-   "onde": "em toda pagina",
+   "onde": "em toda página",
    "medido_em": "2026-10-30"
   },
   {
    "quem": "Shopee",
-   "o_que": "a foto do produto, quando a pagina tem uma",
+   "o_que": "a foto do produto",
    "endereco": "cf.shopee.com.br",
    "endereco_irmao": "",
-   "onde": "nas paginas com foto de produto",
+   "onde": "nas páginas que têm uma",
    "medido_em": "2026-10-30"
   }
  ],

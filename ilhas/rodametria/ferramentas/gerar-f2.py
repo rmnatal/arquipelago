@@ -252,6 +252,20 @@ VOCABULARIO_DE_MAQUINA = (
     (r"\b\d{4}-\d{2}-\d{2}\b", "data em AAAA-MM-DD; a tela escreve DD/MM/AAAA"),
     (r"\b\d{1,2}h\d{2}Z\b", "hora Zulu; a tela nao serve fuso de servidor"),
     (r"\b\d{1,2}h\d?x", "o marcador `x` de minuto da convencao desta fabrica"),
+    # O SUBLINHADO (10/11/2026). Prosa portuguesa nao tem sublinhado: toda cadeia
+    # com um e nome de chave, de campo ou de constante. Esta regua e de FORMATO
+    # como as tres de cima, e por isso ela pega a chave DENTRO de uma frase, onde
+    # `conferir_nao_e_chave_de_maquina` (que e sobre o texto INTEIRO) nao chega —
+    # e era exatamente ali que `observacao_de_mercado` estava: dentro do `<li>`
+    # de procedencia da F2, "Maior carga maxima que vimos no varejo — 120. Tipo:
+    # observacao_de_mercado. Fichas de varejo lidas em (...)".
+    #
+    # MEDIDA ANTES DE ENTRAR, nas 10 URLs do sitemap: UMA ocorrencia de
+    # sublinhado em todo o texto de prosa servido, e ela era o defeito. Zero
+    # falso positivo — por isso esta regua pode ser de substring sem repetir o
+    # erro do `so` dentro de "nosso".
+    (r"\b[a-z0-9]+_[a-z0-9_]+\b", "identificador com sublinhado; prosa portuguesa "
+                                   "nao tem sublinhado, entao isto e nome de chave"),
 )
 
 
@@ -303,11 +317,35 @@ def conferir_acento_na_tela(textos):
                 % (onde, forma, texto[:120]))
 
 
+# A LACUNA DE MOLDE NAO E TEXTO DE TELA, E ELA REPROVOU TEXTO CERTO NO MINUTO EM
+# QUE A REGUA DO SUBLINHADO NASCEU (10/11/2026).
+#
+# A regua do sublinhado acima reprovou `gerar-f1.py --conferir` com a mensagem
+# certa pelo motivo errado: o molde `veredito_bicicleta_eletrica` traz
+# `{lim_w}`, e `lim_w` tem sublinhado porque e o NOME DA LACUNA — quem a
+# preenche e o molde, antes de a frase existir. Chamar isso de vocabulario de
+# maquina na tela e reprovar a pagina certa, que e o caminho mais curto para
+# alguem passar a ignorar o portao (20.5), e foi assim que o portao de pixel
+# desta ilha quase morreu em 30/10.
+#
+# A LACUNA SAI ANTES DAS REGUAS DE FORMATO, e a conta de quem a preenche e de
+# outro portao: `teste-institucional.py` ja reprova *"molde que o preenchedor
+# nao conhece"*, que e o unico mundo em que uma lacuna chegaria crua a tela.
+# Duas reguas, duas perguntas — a mesma separacao que a 20.5 pede.
+_RE_LACUNA_DE_MOLDE = re.compile(r"\{[^}]*\}")
+
+
+def sem_lacuna_de_molde(texto):
+    """O texto sem as lacunas `{ASSIM}`, que sao slot e nao frase."""
+    return _RE_LACUNA_DE_MOLDE.sub(" ", texto)
+
+
 def conferir_vocabulario_de_maquina(textos):
-    """Data ISO, hora Zulu e o marcador de minuto desta fabrica nao vao a tela."""
+    """Data ISO, hora Zulu, o marcador de minuto desta fabrica e o sublinhado."""
     for onde, texto in textos:
+        alvo = sem_lacuna_de_molde(texto)
         for padrao, porque in VOCABULARIO_DE_MAQUINA:
-            achado = re.search(padrao, texto)
+            achado = re.search(padrao, alvo)
             assert achado is None, (
                 "32.4: %s serve %r, que e %s: %r"
                 % (onde, achado.group(0), porque, texto[:120]))

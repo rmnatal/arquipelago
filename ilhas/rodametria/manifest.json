@@ -4,7 +4,7 @@
   "nicho": "mobilidade eletrica — acertar os tres numeros antes de comprar um veiculo eletrico: categoria legal (CNH e placa), autonomia real e carga maxima",
   "dominio": "https://rodametria.com.br",
   "versao_manifest": 1,
-  "revisao": 75,
+  "revisao": 76,
   "atualizado_em": "2026-11-10",
   "estado": "nascendo",
   "desembarque": {
@@ -159,7 +159,7 @@
       "arquivo": "dados/paginas-institucionais.json",
       "formato": "json",
       "publicar": true,
-      "sha256": "edb1bac5b1e59c991660c0216c4aa6d2cee607ab3ab0b1ea30bf4f032c9bff30",
+      "sha256": "e32492cc0388fd0cd2b921d008b9cad013665eb2bedc02c1ab7b13f5fcf5ab1f",
       "descricao": "A camada DECLARADA das quatro paginas do bloco 5d: a voz do VOZ.md com MOLDES no lugar de todo numero. `teste-institucional.py` REPROVA digito solto na prosa fora de `digitos_permitidos`, molde que o preenchedor do PHP nao conhece, e item de bloco de recusa que nao ABRE negando. Traz tambem `terceiros_que_carregam`: os enderecos de fora que a pagina de privacidade NOMEIA, medidos em 30/10/2026 e conferidos contra o HTML servido de TODAS as URLs do sitemap por `conferir-institucional-no-ar.py` — endereco novo torna a pagina falsa e faz o portao falhar."
     },
     {
