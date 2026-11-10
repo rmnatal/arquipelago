@@ -3,102 +3,94 @@ ilha: rodametria
 estado: viva              # `nascendo` -> `viva` em 29/10/2026 as 12h1xZ: a ilha SERVE PAGINA. Duas URLs no wp-sitemap.xml, as duas em 200, com a casca e a F2 desembarcadas na revisao 9 e os dois portoes de ar APROVADOS. Antes deste dia a ilha tinha banco e nenhum byte que um visitante visse.
 prioridade: 1
 piso: abaixo              # 10 URLs publicadas contra as 40 da 21.1, e primeira_indexacao null. O NUMERO DESTE COMENTARIO ESTAVA VENCIDO: dizia 5, de 30/10, e a ilha passou por 9 e chegou a 10 em 06/11 — numero velho lido como fato e o defeito que a secao 4 nomeia. O VALOR do campo nao mudou e nao e meu de mudar. Quem decide este campo e a leitura semanal (21.6), nunca a Fundacao de cabeca. O teto da 21.4 tem folga: nesta semana saiu UMA leva, de 3 URLs, contra o teto de 3 levas por semana.
-urls_publicadas: 10       # SEM MUDANCA nesta passada e nenhuma URL podia nascer: a 30.8 nao deixa afirmar `alvo` desta nuvem e o navegador NAO muda isso (google, bing e duckduckgo em 000 os tres, medido hoje no mesmo egresso). Piso da 21.1 pede 40 — faltam 30. TETO DA 21.4: a semana virou hoje (segunda, 09/11) e as QUATRO passadas de hoje gastaram ZERO leva (o numero anterior deste comentario dizia TRES e era da passada das 16h19Z). Quem decide o campo `piso` e a leitura semanal (21.6), nunca a Fundacao de cabeca.
+urls_publicadas: 10       # SEM MUDANCA nesta passada, e nenhuma URL podia nascer: a FILA DE BLOCOS ACABOU (todos entregues menos o 5, que depende de um `pauta.md` que NAO EXISTE e que pela 17.1 nao e arquivo da Fundacao) e as duas pontas de pagina de produto seguem travadas, reconferidas hoje — a 30.8 para a SERP e o Mercado Livre para o produto das duas consultas de maior volume. Piso da 21.1 pede 40 — faltam 30. TETO DA 21.4: a semana virou ontem (segunda, 09/11) e segue com as TRES levas INTEIRAS, porque nao ha o que publicar nela. Quem decide o campo `piso` e a leitura semanal (21.6), nunca a Fundacao de cabeca.
 ultima_ronda: 2026-11-09T14:54Z   # RONDA DIARIA TECNICA de 2026-11-09, 14h4xZ-14h5xZ, medida na revisao 70 (status 70 = manifest 70), 27 minutos depois do desembarque. CINCO defeitos, ZERO consertos e nenhum tentado: nenhum dos cinco e da lista 19.1 — gerador, metadado de banco, componente de casca e duas escolhas defensaveis. QUARTA ronda seguida desta ilha com zero conserto. Despacho de 5 itens no PROMPT.md. A ilha esta SA no ar: 10 de 10 URLs em 200 em duas leituras com quebra de cache, as tres portas da 29.2 verdes, caminho virgem em 404 na pagina da ilha, zero pagina orfa, zero link interno quebrado, meta description maxima de 159. SEM NAVEGADOR NESTA PASSADA (nem extensao, nem embutido, nem o shell do computador): o teste de vida da 25.4, o console e os pixels da 32.5 NAO foram medidos hoje e NAO foram estimados — e a ausencia rendeu o item 5, que so aparece para quem monta a query do formulario a mao e proibe o cliente de seguir o 301.
 primeira_indexacao: null  # as duas primeiras URLs foram ao ar hoje; indexacao e trabalho de dias. Quem grava este campo e a leitura semanal, lendo o Search Console.
-ultima_execucao: 2026-11-09T19:42Z   # O MENU PASSOU A TER A FERRAMENTA PRINCIPAL DESTA ILHA, conferido no ar pela 18.4 nas 10 URLs (4 itens, `Categoria e placa` apontando para a home, `aria-current` certo em cada pagina, trilha da 16.3 intacta). Revisao 73, 8 linhas de item dizendo `ok` lidas do fecho para baixo (20.8) e a conta nova da 20.10 concordando (8 linhas - 8 aplicados = 0 falha). Bancada: 45 portoes com rede, 0 falha; 40 sem rede, 0 falha (eram 38). E O BLOCO COMECOU EM OUTRO LUGAR: fui atras do item 5 da memoria ("sem navegador nao se mede") e descobri que ESTA NUVEM TEM NAVEGADOR — Chromium e Playwright pre-instalados, com o portao de pixel desta ilha usando os dois desde 29/10. Virou a secao 33 do contrato. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA.
-executando_desde: 2026-11-10T10:17Z   # RESERVA da execucao de 10/11 (10h1xZ). Rede MEDIDA e nao herdada ANTES da reserva (20.2): rodametria.com.br em 200 nas TRES passadas com quebra de cache, com robometria.com.br em 200 nas mesmas tres. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
-rede: aberta em 2026-11-09   # 20.2, MEDIDA e nao herdada ANTES da reserva: rodametria.com.br em 200 nas TRES passadas com quebra de cache, as 19h1xZ. E MEDIDO TAMBEM O QUE ESTA FECHADO, para ninguem gastar execucao redescobrindo: google.com.br, bing.com e duckduckgo.com em 000 os tres (o navegador atravessa o MESMO egresso que o curl, entao ter navegador nao e ter SERP, e a 30.8 fica inteira); shopee.com.br em 200 e a aba ABRE, mas conduzir a aba para chamar a API de ficha protegida por anti-robo foi RECUSADO pelo guarda deste ambiente, e a recusa nao se contorna.
+ultima_execucao: 2026-11-10T10:45Z   # A HOME PAROU DE CITAR A FONTE NO VOCABULARIO DA FABRICA, conferido no ar pela 18.4 nas 10 URLs: os defeitos daquele paragrafo em ZERO ocorrencia cada um (`Chrome do Raphael`, `Raphael`, `Chrome`, `Resolucao`, `Secao`, `Ministerio`, `Brasilia`, `2026-11-05`, `2026-11-06`, `02h3xZ`, `23h3x`), e a frase de leitor no ar com os TREZE fatos conferidos um por um — citar na voz do leitor nao virou citar menos. Revisao 74, 7 linhas de item dizendo `ok` lidas do fecho para baixo (20.8) e a conta da 20.10 concordando (7 linhas - 7 aplicados = 0 falha). Bancada: 45 portoes com rede, 0 falha; 40 sem rede, 0 falha. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA.
+executando_desde: null   # LIMPO as 2026-11-10T10:45Z pela propria execucao que reservou as 10h17Z. A passada teve UM desembarque (74) e ele entrou LIMPO: nenhuma cicatriz da 20.4 — e a causa vale escrever porque ela NAO revoga o padrao: esta passada nao tocou em PHP de snippet nenhum (mexeu em gerador, em portao e em dado), e as TRES ocorrencias da cicatriz em quatro dias foram todas no PHP de um snippet ativo. A revisao entrou as 10:39:57, 3m50s ANTES do teto de 10:43:47 que a 20.9 calculou, exatamente como a propria funcao avisa que pode acontecer.
+rede: aberta em 2026-11-10   # 20.2, MEDIDA e nao herdada ANTES da reserva: rodametria.com.br em 200 nas TRES passadas com quebra de cache, as 10h1xZ, com robometria.com.br em 200 nas mesmas tres. O aquametria.com.br deu 000 na PRIMEIRA e 200 nas outras duas, e isso e o que a 20.2 chama de TUNEL e nao de rede (`uma falha isolada e o tunel; tres seguidas, em enderecos diferentes, e rede`) — nao e desta ilha e nao virou campo. SEGUE MEDIDO E FECHADO, de 09/11, para ninguem gastar execucao redescobrindo: google.com.br, bing.com e duckduckgo.com em 000 os tres (o navegador atravessa o MESMO egresso que o curl, entao ter navegador nao e ter SERP, e a 30.8 fica inteira); shopee.com.br em 200 e a aba ABRE, mas conduzir a aba contra o anti-robo foi RECUSADO pelo guarda deste ambiente, e a recusa nao se contorna.
 bloqueada_por: null      # obrigatorio pela secao 2. `null` DE PROPOSITO: o que falta (gov.br para a F1, as prefeituras para a camada municipal, as tres etiquetas do Mercado Livre) trava a FABRICA e nao a ILHA, e isso se escreve no despacho, que e o canal da 12.2. Preenche-lo congelaria tambem os blocos que ja podem andar.
 bloco_atual: |
-  A F1 ENTROU NO MENU E ESTA CONFERIDA NO AR NAS 10 URLs. Revisao 73.
+  A HOME PAROU DE FALAR COM O VISITANTE NO VOCABULARIO DA FABRICA. Revisao 74.
 
   ESTE ARQUIVO CONTINUA SENDO A MEMORIA DESTA ILHA — `/areas/projeto-rodametria.md`
   nao existe nesta nuvem, e e por isso que este campo e longo.
 
-  PRIMEIRO, E E A COISA MAIS IMPORTANTE QUE ESTA PASSADA DESCOBRIU: ESTA NUVEM TEM
-  NAVEGADOR. Chromium e Playwright pre-instalados; `node -e "require('playwright')"`
-  resolve. As rondas de 04, 06 e 09/11 declararam o console e os pixels da 32.5
-  "nao medidos, porque nao havia navegador" — com o portao de pixel DESTA ILHA
-  usando o Playwright desde 29/10, na pasta ao lado. A frase media a ausencia das
-  FERRAMENTAS de navegador (a extensao, o embutido, o shell do computador do
-  Raphael), nao a ausencia de navegador. Virou a SECAO 33 do ARQUIPELAGO.md, e ela
-  esta nas tres linhas do mapa de leitura. NAO ESCREVA "nao medido por falta de
-  navegador" sem rodar aquele comando.
+  O DEFEITO, MEDIDO NO AR AS 10h2xZ, EM NEGRITO, na dobra "De onde sairam os
+  limites" — a dobra em que a ilha prova que leu a fonte oficial. A home servia:
+  "Resolucao CONTRAN no 996 (...) Ed. 117, Secao 1, p. 327 (...) LIDA NO PDF
+  OFICIAL do Ministerio dos Transportes em 2026-11-05 ~23h3x de Brasilia
+  (2026-11-06 ~02h3xZ), no Chrome do Raphael." OITO defeitos de CINCO classes:
+  quatro palavras portuguesas sem acento; o NOME DO DONO e o navegador dele numa
+  pagina publica; data em AAAA-MM-DD; hora Zulu; e o `x` de `~23h3x`, que e o
+  marcador de minuto desta fabrica e para quem le a pagina e erro de digitacao.
+  A MESMA DATA saia em DOIS vocabularios no MESMO paragrafo: `2026-11-05` e,
+  duas frases depois, "lido em 05/11/2026". Assinatura da 20.7 em forma de data.
 
-  SEGUNDO: `python3 ferramentas/bancada.py --no-ar` sao 45 portoes (sem rede, 40).
-  ATENCAO AO NOME DA BANDEIRA: `--no-ar` quer dizer NO AR, isto e COM rede. Os dois
-  portoes novos desta passada sao `teste-menu-da-casca.php` e
-  `medir-console-no-navegador.mjs` (este ultimo roda nas duas metades: `--autoteste`
-  sem rede, e as 10 URLs com rede).
+  A CAUSA NAO ERA LISTA FALTANDO PALAVRA: ERA A MESMA PERGUNTA RESPONDIDA EM TRES
+  LUGARES. `gerar-f3.py` JA TINHA a guarda do nome do dono, escrita as 13h2xZ de
+  06/11. A F1 foi ao ar as 10h4xZ do MESMO DIA, TRES HORAS ANTES, com uma copia
+  (`fonte_na_tela_legal`) que nao tinha guarda nenhuma — e cujo comentario
+  AFIRMAVA que o campo "JA e frase de leitor". Era falso e estava no ar (32.5-d).
+  A licao nasceu na pasta ao lado e nunca voltou: a 32.5-c literal. Agora
+  `fonte_na_tela` e UMA, em `gerar-f2.py`, e as tres ferramentas a chamam.
 
-  TERCEIRO, E ISTO POUPA EXECUCAO: NAO REACIONE O SYNC. Use
-  `veredito_da_revisao_atrasada` de `ferramentas/conferir-no-ar.py` (20.9). Nesta
-  passada o veredito foi `evento-nao-vencido` e a revisao 73 entrou as 19:40:25Z,
-  6m33s ANTES do teto de 19:46:58 que a funcao calculou. Visitar nao antecipa
-  vencimento.
+  E A RESPOSTA DA 19.4(b) E A MELHOR COISA QUE A PASSADA ACHOU: a regua de acento
+  TEM `secao` na lista desde 29/10 e nunca RECEBIA a frase (ela e montada DEPOIS
+  da chamada); e `teste-afirmacao-de-tela.py` exclui a chave `fonte` POR NOME. A
+  exclusao esta CERTA em `constantes.json`, onde `fonte` e prosa de metodo — mas o
+  gerador PROMOVE o campo a texto de tela ao copia-lo para `constantes_usadas` de
+  um `*-respostas.json`. Mesmo nome, papel oposto, e a exclusao por nome pulava
+  exatamente o campo que acabara de virar tela.
 
-  QUARTO, E E CONTA E NAO PROSA (20.10, escrita nesta passada): no log do
-  `/status`, `linhas de item` menos `aplicado(s)` E O NUMERO DE ITENS QUE FALHARAM.
-  O Sync escreve linha para TODA tentativa e so conta `aplicados` quando a
-  resposta comeca com `ok`. Foi assim que a divergencia 12-contra-11 da revisao 71,
-  que a passada anterior deixou sem investigar, ficou explicada: era a cicatriz da
-  20.4 escrita em numero. A ressalva e dura — a conta so vale com o grupo INTEIRO
-  dentro da janela de 15 linhas que a rota publica serve.
+  SEIS DAS SETE ESTAVAM ARMADAS: so uma e impressa hoje, e quatro das outras seis
+  carregavam a mesma doenca, viajando no JSON da pagina. Buraco pre-aberto.
 
-  QUINTO: SE VOCE FOR MEXER NO PHP DE UM SNIPPET, CONTINUE CONTANDO COM DUAS
-  REVISOES. A cicatriz da 20.4 bateu TRES vezes em quatro dias (06/11, 09/11 as
-  13h48Z e 09/11 as 17h09Z). ESTA passada mexeu na casca e o desembarque entrou
-  LIMPO na primeira (`snippets/rodametria-casca: ok (snippet #6 atualizado)`) —
-  entao o padrao nao e lei, e o que decide parece ser se o snippet estava
-  carregado na requisicao do cron. Uma ocorrencia limpa nao revoga tres sujas.
+  O QUE NASCEU DE PORTAO, com defeito medido no ar (31.2):
+  `SEM_ACENTO_PALAVRA_INTEIRA` (tupla SEPARADA de proposito — `fabrica` por
+  substring reprovaria `fabricante`, que esta CERTO e aparece na F2; misturar os
+  dois modos de casar numa tupla erraria CALADO porque o modo nao estaria
+  escrito), `conferir_vocabulario_de_maquina` (nao e palavra, e FORMATO — nenhuma
+  lista pegaria `02h3xZ`), e `teste-afirmacao-de-tela.py` IMPORTANDO as reguas em
+  vez de reescreve-las, com `fonte` sob `constantes_usadas` passando a ser colhido.
 
-  O QUE ESTA PASSADA MEDIU NO NAVEGADOR, nas 10 URLs a 390 px com quebra de cache:
-  pixel da 32.5 APROVADO 10/10 (pior caixa 405 px de 700; pior compra 1.279 px de
-  1.400; 0 fora do molde); console LIMPO 10/10 (0 error, 0 excecao, 0 recurso
-  caido, 0 resposta >= 400); menu abre e fecha nas 10; `<details>` abrem nas 10;
-  barra fixa aparece com o bloco de compra fora da tela e DESAPARECE quando ele
-  entra, nas 6 que a servem, e nao existe nas 4 que nao vendem; rolagem horizontal
-  ZERO nas 10; e as TRES ferramentas apertadas de verdade, 9 de 9 casos certos
-  (F1 nos dois limites da 996/2023, F2 em 374 e 1.800 Wh, F3 em 77/119/121 kg).
+  MEDIDO: autoteste 76 mundos, 0 falha, o primeiro sendo a frase do ar INTEIRA,
+  exigindo as oito classes uma por uma. AS DUAS REGUAS DISCORDAM (20.8): a velha
+  colhe ZERO frase do `*-respostas.json` e a nova colhe uma e a reprova em OITO
+  classes. A regua de Zulu e medida SOZINHA, porque no mundo do ar o marcador `x`
+  reclama a classe primeiro e regua exercitada so por tabela de outra pode estar
+  INERTE. Portao do repositorio: 2.160 afirmacoes, 0 falha, contra 18 ANTES.
 
-  O DEFEITO QUE SO O NAVEGADOR VIA, e o conserto: o menu servia TRES itens e a F1
-  — a ferramenta principal, que mora NA HOME — nao estava em nenhum. A causa era
-  `'inicio' === $slug` por literal vencendo o campo `no_menu => false` declarado
-  tres linhas acima: o campo estava MORTO (familia da 20.7). Agora decide o campo,
-  e `menu_rotulo` ("Categoria e placa") nomeia o que a ferramenta ENTREGA sem
-  tocar no `nome` ("Inicio"), que e o degrau da trilha da 16.3.
+  E O PORTAO REPROVOU QUEM O ESCREVEU: a primeira versao do mundo do ar afirmava
+  que a regua de Zulu acusaria `02h3xZ`, e ela nao acusa. Estava errada sobre o
+  INSTRUMENTO, nao sobre o defeito, e quem disse isso foi o autoteste.
 
-  E O PORTAO NOVO REPROVOU QUEM O ESCREVEU: `teste-menu-da-casca.php` buscava o
-  literal por texto cru e o achou DENTRO DO COMENTARIO que explica a troca,
-  reprovando a casca ja consertada. Agora le codigo por `token_get_all()`. E a
-  32.4-b pelo avesso.
+  PROXIMO PASSO DESBLOQUEADO, e a frase honesta vem primeiro: NAO HA BLOCO DE
+  CONSTRUCAO DESBLOQUEADO NESTA ILHA, e isso agora esta MEDIDO E ESCRITO NO
+  DESPACHO, nao suposto.
 
-  PROXIMO PASSO DESBLOQUEADO, em ordem:
-
-  1. A INDEXACAO E A PRIORIDADE MAXIMA (secao 14) E `primeira_indexacao` SEGUE
-     `null`. 10 URLs no ar, piso da 21.1 em 40 — faltam 30. O item 1 do despacho
-     de 04/11 pede o painel de Sitemaps em "Processado" com o numero do sitemap no
-     ar, que e 10 desde 06/11. Precisa de Search Console: credencial da leitura
-     semanal, nao da Fundacao.
-  2. PAGINA NOVA CONTINUA TRAVADA, e agora com as duas pontas medidas: a 30.8 nao
-     deixa afirmar `alvo` daqui e a SERP esta FORA desta nuvem tambem pelo
-     navegador (google, bing e duckduckgo em 000 os tres, medido hoje). As duas
-     consultas com SERP ja autorizada pelo Raphael (`moto eletrica`, `scooter
-     eletrica`) esperam etiqueta do Mercado Livre, que e despacho e nunca bloco.
-     O teto da 21.4 segue INTEIRO nesta semana: quatro passadas hoje, ZERO leva.
-  3. OS 11 ITENS DA VITRINE NUNCA TESTADOS CONTINUAM NUNCA TESTADOS, e o dono da
-     medicao esta nomeado: o navegador do Raphael, pela receita de orcamento de
-     janela de 30/10. A nuvem esta provadamente fora dessa medicao por DOIS
-     motivos (403 da Shopee desde 17/09, e a recusa do guarda deste ambiente a
-     conduzir a aba contra o anti-robo, medida hoje). Esta escrito na secao 33.
-  4. A `VOZ.md` NAO TEM MAIS PENDENCIA: contei as tres ocorrencias de "dispensa
-     CNH e placa" no arquivo e nenhuma e exemplo aprovado (uma e a nota de 06/11
-     que as PROIBE, uma esta riscada em "preservados", uma e a expressao
-     autorizada "precisa de placa"). A pendencia sobreviveu dois dias em dois
-     documentos depois de fechada — secao 4 aplicada a lista de pendencias.
-  5. A CAMADA DE NAVEGADOR DAS DUAS ILHAS MAIS ANTIGAS continua inerte (21 de 26
-     portoes), e agora o custo tem numero ao lado: esta passada provou que a
-     camada entrega. Nota nova no despacho de 26/10 em `dados/despachos.md`.
-     Nao e desta ilha e nao e desta execucao: o conserto e no commit da passada
-     que reservar cada uma.
+  1. A FILA ACABOU. Todos os blocos entregues menos o 5 (artigos-ancora), e ele
+     depende de `ilhas/rodametria/pauta.md`, que NAO EXISTE. Pela 17.1 quem o
+     escreve e a rotina Pauta das ilhas, pelas Maos, no computador do Raphael —
+     NAO e arquivo da Fundacao, e esta execucao nao o escreveu de proposito. A
+     ilha esta em foco total desde 27/10 e nenhuma pauta saiu em nenhuma das duas
+     tercas. Virou NOTA no despacho de 30/10, que e o canal da 12.2.
+  2. PAGINA NOVA SEGUE TRAVADA PELAS DUAS PONTAS, reconferidas hoje: a 30.8 nao
+     deixa afirmar `alvo` daqui, e `moto eletrica` (823 mil) e `scooter eletrica`
+     (301 mil) esperam PRODUTO e nao SERP — o caminho delas e o Mercado Livre,
+     onde o link exige clique humano (25.6). A `scooter eletrica` publicada hoje
+     serviria PATINETE sob um H1 que promete scooter: canibalizacao da 30.4 de
+     proposito. Teto da 21.4 inteiro e nada para publicar nele.
+  3. A INDEXACAO SEGUE SENDO A PRIORIDADE MAXIMA (secao 14) e `primeira_indexacao`
+     segue `null`, com a ilha no ar desde 29/10 e 10 URLs contra as 40 da 21.1.
+     Os dois itens do despacho de 04/11 pedem o Search Console, que e instrumento
+     da leitura semanal e nunca da Fundacao.
+  4. OS 11 ITENS DA VITRINE NUNCA TESTADOS continuam nunca testados, e o dono da
+     medicao segue nomeado: o navegador do Raphael. A nuvem esta fora por DOIS
+     motivos independentes, os dois medidos e escritos na secao 33.
+  5. O QUE SOBROU PARA QUEM VIER, e nao e bloco: as reguas de tela desta ilha
+     agora moram num lugar so e cobrem quatro classes, mas alcancam A FRASE DE
+     PROCEDENCIA das constantes — nao todo texto que um snippet imprime. O caminho
+     para a proxima familia e o desta passada: LER A PAGINA SERVIDA COM OS OLHOS e
+     perguntar em que vocabulario ela esta falando. Foi assim que este defeito
+     apareceu, e nenhum dos 45 portoes o tinha visto em quatro dias.

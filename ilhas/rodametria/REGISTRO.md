@@ -3,7 +3,7 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
-## 2026-11-10 10h17Z–10hxxZ — **A HOME CITAVA A FONTE NO VOCABULÁRIO DA FÁBRICA, COM O NOME DO DONO DENTRO — E A FUNÇÃO QUE DECIDE ISSO ERA TRÊS** — revisão 74
+## 2026-11-10 10h17Z–10h4xZ — **A HOME CITAVA A FONTE NO VOCABULÁRIO DA FÁBRICA, COM O NOME DO DONO DENTRO — E A FUNÇÃO QUE DECIDE ISSO ERA TRÊS** — revisão 74
 
 **A ESCOLHA DA ILHA.** `foco.md` nomeia a **rodametria** (foco total e absoluto desde 27/10) e pela **1.2** não há escolha a fazer. **Confirmei a exceção do molde (seção 32) antes de aceitar o foco:** os três despachos do molde seguem riscados e fechados na aquametria, na clubedomosaico e na robometria, e nenhuma das ilhas fora do foco tem despacho ALTA aberto — nada fura o foco. **Branch e PR, passo 1:** `origin/claude/dreamy-mccarthy-82vkwa` sem **nenhum** commit fora do `main` (`git log origin/main..origin/claude/...` vazio) e **zero PR aberto** — nada a mergear. `executando_desde` estava `null`, o que pela **1.1** já significa que não havia bloco da Fundação vivo, e portanto não houve reserva vencida para o git desempatar. Reserva no commit `a418b91`, às **10h17Z**, hora saída do `date -u` na mesma linha que a grava.
 
@@ -76,6 +76,34 @@ A home servia, letra por letra, dentro de um `<b>`:
 - **A régua de Zulu é medida SOZINHA** (mundo 10e), porque no mundo do ar o marcador `x` reclama a classe primeiro, e régua exercitada só por tabela de outra pode estar **INERTE** — o defeito que o próprio `bancada.py` desta ilha denuncia por nome.
 - **Portão sobre o repositório: 2.160 afirmações, 0 falha** — contra **18 falhas** antes de regenerar, espalhadas pelas quatro frases doentes.
 - **E O PORTÃO REPROVOU QUEM O ESCREVEU:** a primeira versão do mundo do ar afirmava que a régua de Zulu acusaria `02h3xZ`, e ela não acusa. A afirmação estava errada **sobre o instrumento**, não sobre o defeito — e foi o autoteste que disse isso, não eu.
+
+---
+
+### NO AR, CONFERIDO PELA 18.4 — REVISÃO 74, E O DESEMBARQUE ENTROU LIMPO
+
+**O desembarque.** Veredito da **20.9** antes de acionar, e ele poupou a passada de reacionar um Sync saudável: `ultimo` era **10:13:47** e o commit do manifest **10:34**, logo `evento-nao-vencido`, com teto em **10:43:47**. A revisão entrou às **10:39:57** — **3m50s ANTES do teto**, exatamente como a própria função avisa que pode acontecer, porque o WordPress reagenda a partir do horário **agendado** e não do horário em que rodou. Visitas de pé na home mais o `wp-cron.php`, pela **20.6**.
+
+**O log, lido do FECHO PARA BAIXO (20.8), com afirmação POSITIVA.** 7 linhas de item, **todas dizendo `ok`**, lidas uma por uma. **A conta da 20.10 concorda: 7 linhas de item − 7 aplicados = 0 falha.** **Nenhuma cicatriz da 20.4**, e a causa é simples e vale escrever: esta passada **não tocou em PHP de snippet nenhum** — mexeu em gerador, em portão e em dado —, e as três ocorrências da cicatriz em quatro dias foram todas no PHP de um snippet ativo. O padrão continua de pé; esta passada só não o exercitou.
+
+**OS OITO DEFEITOS, UM POR UM, NO HTML SERVIDO DAS 10 URLs, com quebra de cache: ZERO ocorrência de cada um.** `Chrome do Raphael` 0, `Raphael` 0, `Chrome` 0, `Resolucao` 0, `Secao` 0, `Ministerio` 0, `Brasilia` 0, `2026-11-05` 0, `2026-11-06` 0, `02h3xZ` 0, `23h3x` 0. Antes do desembarque eram **8 ocorrências numa página**.
+
+**E A AFIRMAÇÃO POSITIVA, que é a que importa (20.8): a frase de leitor está no ar com os TREZE fatos**, conferidos um por um no texto servido da home — `996`, `15/06/2023`, `Diário Oficial da União`, `22/06/2023`, `edição 117`, `seção 1`, `página 327`, `texto original`, `03/07/2023`, `art. 22`, `PDF oficial`, `Ministério dos Transportes`, `05/11/2026`. **Citar na voz do leitor não virou citar menos.**
+
+**E A CONTRADIÇÃO DE DATA MORREU ONDE ELA VIVIA.** O parágrafo agora serve, em sequência: *"…no site do Ministério dos Transportes em **05/11/2026**. O arquivo oficial da resolução — lido em **05/11/2026**."* Duas vezes a mesma data, no mesmo vocabulário, no mesmo parágrafo. Antes era `2026-11-05 ~23h3x de Brasilia (2026-11-06 ~02h3xZ)` contra `05/11/2026`.
+
+**BANCADA DEPOIS DO DESEMBARQUE: 45 portões com rede, 0 falha; 40 sem rede, 0 falha.** `/status` em **74** e `manifest.json` em **74**, iguais.
+
+---
+
+### PRÓXIMO PASSO DESBLOQUEADO
+
+**Em uma frase: não há bloco de construção desbloqueado nesta ilha, e isso agora está medido e escrito no despacho, não suposto.**
+
+1. **A FILA ACABOU.** Todos os blocos estão entregues menos o **5 (artigos-âncora)**, e ele depende de `ilhas/rodametria/pauta.md`, que **não existe**. Pela **17.1** quem o escreve é a rotina *Pauta das ilhas*, pelas Mãos, no computador do Raphael — **não é arquivo da Fundação, e esta execução não o escreveu de propósito**. A ilha está em foco total desde 27/10 e nenhuma pauta foi produzida em nenhuma das duas terças. **Virou nota no despacho de 30/10**, que é o canal da 12.2.
+2. **PÁGINA NOVA SEGUE TRAVADA PELAS DUAS PONTAS, reconferidas hoje.** A **30.8** não deixa afirmar `alvo` desta nuvem; e as duas consultas de maior volume com SERP já vista pelo Raphael (`moto elétrica` 823 mil, `scooter elétrica` 301 mil) esperam **produto** e não SERP — reli o `motivo_para_nao_publicar_agora` das duas e os dois seguem válidos, inclusive o detalhe de que a `scooter elétrica` publicada hoje serviria **patinete** debaixo de um H1 que promete scooter, que é canibalização da 30.4 construída de propósito. **O teto da 21.4 tem a semana inteira livre e não há o que publicar nela.**
+3. **A INDEXAÇÃO SEGUE SENDO A PRIORIDADE MÁXIMA (seção 14) E `primeira_indexacao` SEGUE `null`**, com a ilha no ar desde 29/10 e **10 URLs** contra as **40** do piso da 21.1. Os dois itens do despacho de 04/11 pedem o Search Console, que é instrumento da **leitura semanal** e não da Fundação.
+4. **OS 11 ITENS DA VITRINE NUNCA TESTADOS CONTINUAM NUNCA TESTADOS**, e o dono da medição segue nomeado: o navegador do Raphael. A nuvem está fora dessa medição por dois motivos independentes, os dois já medidos e escritos na seção 33.
+5. **O QUE SOBROU DESTA PASSADA PARA QUEM VIER, e não é bloco:** as réguas de tela desta ilha agora moram num lugar só e cobrem quatro classes, mas elas alcançam **a frase de procedência das constantes**, não todo texto que um snippet imprime. O caminho para a próxima família é o mesmo de hoje: **ler a página servida com os olhos** e perguntar em que vocabulário ela está falando — foi assim que este defeito apareceu, e nenhum dos 45 portões o tinha visto em quatro dias.
 
 ---
 
