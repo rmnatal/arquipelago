@@ -77,24 +77,15 @@ PALAVRAS_DE_BASTIDOR = IRMA.PALAVRAS_DE_BASTIDOR
 FONTE_NA_TELA = IRMA.FONTE_NA_TELA
 
 
-def fonte_na_tela(cid, registro):
-    """O que a tela diz sobre a procedencia desta regua — e nada mais."""
-    texto = FONTE_NA_TELA.get(cid) or (registro.get("fonte") or "")
-    for palavra in PALAVRAS_DE_BASTIDOR:
-        assert palavra.lower() not in texto.lower(), (
-            "32.4: a frase de procedencia de %r carrega a palavra de bastidor %r e ela "
-            "iria para a tela: %r. Declare a frase de leitor em FONTE_NA_TELA, dentro "
-            "de gerar-f2.py, onde as outras moram." % (cid, palavra, texto[:120]))
-    # O NOME DO DONO NAO VAI PARA A PAGINA PUBLICA. Nao esta na lista da 32.4
-    # porque a 32.4 fala de vocabulario de fabrica, e este e um caso proprio:
-    # "painel da Shopee do dossie, lido pelo Raphael" era o `fonte` cru de uma
-    # das tres constantes desta ferramenta.
-    for proibido in ("Raphael", "dossie", "dossiê"):
-        assert proibido.lower() not in texto.lower(), (
-            "32.4: a frase de procedencia de %r carrega %r, que e bastidor da fabrica "
-            "na pagina publica: %r" % (cid, proibido, texto[:120]))
-
-    return texto
+# A FRASE DE PROCEDENCIA VEM DA IRMA DESDE 10/11/2026, E A GUARDA DO NOME DO
+# DONO QUE MORAVA AQUI FOI PROMOVIDA PARA LA — nao apagada. Ela nasceu nesta
+# ferramenta em 06/11/2026 e ficou SO nesta: a F1 tinha ido ao ar as 10h4xZ do
+# mesmo dia servindo "no Chrome do Raphael" na home, e a copia dela desta funcao
+# nao tinha guarda nenhuma. Tres funcoes respondiam a mesma pergunta e so uma
+# subia; agora e uma. Ver `fonte_na_tela` e `NUNCA_NA_PAGINA_PUBLICA` em
+# `gerar-f2.py`.
+fonte_na_tela = IRMA.fonte_na_tela
+conferir_vocabulario_de_maquina = IRMA.conferir_vocabulario_de_maquina
 
 # O CASO DE EXEMPLO. A 32.1 manda vir JA PREENCHIDO no formulario e JA
 # PRE-RENDERIZADO na caixa, e a 3.1 da especificacao diz qual e: a pessoa do

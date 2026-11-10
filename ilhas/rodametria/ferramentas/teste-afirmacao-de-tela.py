@@ -45,6 +45,7 @@ esse e o lado seguro do erro: falso positivo custa uma linha de texto, falso
 negativo manda alguem para a rua sem habilitacao.
 """
 
+import importlib.util
 import json
 import os
 import re
@@ -53,6 +54,27 @@ import unicodedata
 
 AQUI = os.path.dirname(os.path.abspath(__file__))
 ILHA = os.path.dirname(AQUI)
+
+
+def _reguas_de_tela():
+    """As reguas de TEXTO DE TELA vivem em `gerar-f2.py` e sao IMPORTADAS daqui.
+
+    Este arquivo ja diz, no proprio cabecalho, por que a regra mora num lugar so
+    e os portoes a aplicam: *"Duas copias da mesma regra seriam a segunda
+    declaracao do mesmo fato que a 20.7 proibe nesta ilha"*. As reguas de acento,
+    de bastidor, de nome do dono e de vocabulario de maquina moram la porque e la
+    que o dado vira texto; aqui elas correm sobre o repositorio COMO ELE ESTA,
+    que e o que pega a frase que entrou por edicao a mao do JSON.
+    """
+    caminho = os.path.join(AQUI, "gerar-f2.py")
+    spec = importlib.util.spec_from_file_location("gerar_f2_reguas", caminho)
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+
+    return mod
+
+
+REGUAS = _reguas_de_tela()
 
 
 # ---------------------------------------------------------------------------
@@ -400,6 +422,70 @@ def textos_de_tela_do_dado(nome, d):
     return out
 
 
+# A CHAVE `fonte` E BASTIDOR EM `constantes.json` E E TELA EM `f1-respostas.json`
+# — E A LISTA ACIMA EXCLUI POR NOME (10/11/2026).
+#
+# ESTA E A CAUSA, pela 19.4(b), DE O DEFEITO TER PASSADO POR ESTE PORTAO. Em
+# `dados/constantes.json` o `fonte` e prosa de registro, escrita para quem le o
+# repositorio, e medi-la reprovaria a explicacao de metodo — por isso `fonte`
+# esta em CHAVES_DE_BASTIDOR, e esta certo. Mas o gerador PROMOVE esse campo a
+# texto de tela quando o copia para `constantes_usadas` de um `*-respostas.json`,
+# e o snippet da F1 o imprime EM NEGRITO na dobra "De onde sairam os limites".
+# Mesmo nome, papel oposto — e a exclusao, sendo por nome, pulou exatamente o
+# campo que acabara de virar tela.
+#
+# A regra: `fonte` sob `constantes_usadas` E TELA e se mede. Em qualquer outro
+# lugar segue sendo registro.
+def frases_de_procedencia_do_dado(nome, d):
+    """As frases de procedencia que a tela serve: `constantes_usadas/<id>/fonte`."""
+    out = []
+    usadas = d.get("constantes_usadas") if isinstance(d, dict) else None
+    if not isinstance(usadas, dict):
+        return out
+    for cid, reg in sorted(usadas.items()):
+        if not isinstance(reg, dict):
+            continue
+        texto = reg.get("fonte")
+        if isinstance(texto, str) and texto.strip():
+            out.append(("%s constantes_usadas/%s/fonte" % (nome, cid), texto))
+
+    return out
+
+
+def problemas_de_procedencia(onde, texto):
+    """As quatro reguas de tela sobre uma frase de procedencia, como FALHA.
+
+    As reguas moram em `gerar-f2.py` e la elas levantam `AssertionError`, porque
+    la o certo e PARAR antes de gravar. Aqui a mesma regua tem de devolver falha
+    para o portao somar e imprimir todas de uma vez.
+    """
+    falhas = []
+    baixo = texto.lower()
+    for palavra in REGUAS.PALAVRAS_DE_BASTIDOR:
+        if palavra.lower() in baixo:
+            falhas.append("%s: palavra de bastidor %r na tela (32.4): %r"
+                          % (onde, palavra, texto[:120]))
+    for proibido in REGUAS.NUNCA_NA_PAGINA_PUBLICA:
+        if proibido.lower() in baixo:
+            falhas.append("%s: %r e bastidor da fabrica na pagina publica (32.4): %r"
+                          % (onde, proibido, texto[:120]))
+    for forma in REGUAS.SEM_ACENTO_NA_TELA:
+        if forma in baixo:
+            falhas.append("%s: forma sem acento %r na tela (secao 8): %r"
+                          % (onde, forma, texto[:120]))
+    for forma in REGUAS.SEM_ACENTO_PALAVRA_INTEIRA:
+        if re.search(r"\b%s\b" % re.escape(forma), baixo):
+            falhas.append("%s: palavra sem acento %r na tela (secao 8): %r"
+                          % (onde, forma, texto[:120]))
+    for padrao, porque in REGUAS.VOCABULARIO_DE_MAQUINA:
+        achado = re.search(padrao, texto)
+        if achado is not None:
+            falhas.append("%s: serve %r, que e %s (32.4): %r"
+                          % (onde, achado.group(0), porque, texto[:120]))
+
+    return falhas
+
+
 def pares_de_faq_do_dado(d):
     """Os pares (pergunta, resposta) que esta ilha publica em FAQPage.
 
@@ -500,6 +586,10 @@ def medir_repositorio():
         pares = pares_de_faq_do_dado(d)
         afirmacoes += len(pares)
         falhas += problemas_do_faq_de_habilitacao(nome, pares)
+        for onde, t in frases_de_procedencia_do_dado(nome, d):
+            afirmacoes += 1
+            falhas += problemas_de_procedencia(onde, t)
+            por_arquivo.setdefault(nome, []).append(t)
 
     for nome, t in textos_de_tela_do_php():
         afirmacoes += 2
@@ -787,6 +877,88 @@ def autoteste():
                                   + "anúncios colhidos."),
         "9b. a regua NAO atravessa 60 caracteres entre o numero e o verbo — par a "
         "distancia e par inventado")
+
+    # MUNDO 10 — A FRASE QUE A HOME SERVIA EM NEGRITO ATE 10/11/2026, LITERAL.
+    # Medida no HTML servido de https://rodametria.com.br/ as 10h2xZ de
+    # 10/11/2026, na dobra "De onde sairam os limites". Ela e o mundo real e nao
+    # um mundo imaginado, e esta aqui inteira porque cada defeito dela e de uma
+    # CLASSE diferente — contar so o total esconderia qual regua morde o que.
+    AR_10_11_PROCEDENCIA_CRUA = (
+        "Resolucao CONTRAN no 996, de 15/06/2023, publicada no DOU de 22/06/2023 "
+        "(Ed. 117, Secao 1, p. 327), texto ORIGINAL, em vigor desde 03/07/2023 pelo "
+        "art. 22. LIDA NO PDF OFICIAL do Ministerio dos Transportes em 2026-11-05 "
+        "~23h3x de Brasilia (2026-11-06 ~02h3xZ), no Chrome do Raphael."
+    )
+    p10 = problemas_de_procedencia("ar10/11", AR_10_11_PROCEDENCIA_CRUA)
+    for classe, agulha in (
+            ("nome do dono", "'Raphael'"),
+            ("navegador", "'Chrome'"),
+            ("acento", "'resolucao'"),
+            ("acento", "'ministerio'"),
+            ("acento", "'brasilia'"),
+            ("data em AAAA-MM-DD", "'2026-11-05'"),
+            # O `02h3xZ` DESTA FRASE NAO SAI PELA REGUA DE ZULU, e isso e desenho
+            # e nao lacuna: cada regua reporta a PRIMEIRA ocorrencia dela, e o
+            # `~23h3x` ja tinha reclamado a classe do marcador — que casa dentro
+            # de `02h3xZ` tambem. A regua de Zulu sozinha e medida no mundo 10e.
+            ("marcador de minuto", "'23h3x'"),
+    ):
+        diz(any(agulha in f for f in p10),
+            "10. reprova %s (%s) na frase que a home servia em 10/11/2026"
+            % (classe, agulha))
+    # `Secao 1` e pego pelo radical `secao`, que ja estava na lista de substring.
+    diz(any("'secao'" in f for f in p10),
+        "10. reprova o `Secao 1` da mesma frase pelo radical que ja existia")
+
+    # MUNDO 10b — A FRASE DE LEITOR QUE A SUBSTITUIU TEM DE PASSAR. Portao que
+    # reprova a pagina certa e o caminho mais curto para alguem ignora-lo (20.5).
+    boa = REGUAS.FONTE_NA_TELA["limiares-categoria-contran-996-2023"]
+    pb = problemas_de_procedencia("x", boa)
+    diz(not pb, "10b. aprova a frase de leitor que foi ao ar%s"
+                % ("" if not pb else "  <-- reprovou: %s" % pb[0][:160]))
+    # E ELA NAO PERDEU O QUE O LEITOR PRECISA: o ato, a data, o DOU, a vigencia
+    # com o artigo, o texto original, o orgao e a data da leitura.
+    for pedaco in ("996", "15/06/2023", "22/06/2023", "117", "327",
+                   "03/07/2023", "art. 22", "original", "Transportes", "05/11/2026"):
+        diz(pedaco in boa,
+            "10b. a frase de leitor preserva %r, que a crua tambem dizia" % pedaco)
+
+    # MUNDO 10c — AS DUAS REGUAS TEM DE DISCORDAR, senao o conserto nao existe
+    # (20.8). A VELHA e a deste proprio portao antes de hoje: ela colhe texto de
+    # tela por `textos_de_tela_do_dado`, que exclui a chave `fonte` POR NOME —
+    # entao sobre um `*-respostas.json` ela colhe ZERO frase de procedencia e nao
+    # tem o que reprovar, por mais defeituosa que a frase seja.
+    mundo = {"id": "f1-respostas", "constantes_usadas": {
+        "limiares-categoria-contran-996-2023": {
+            "valor": {"LIMIAR_BIKE_W": 1000},
+            "fonte": AR_10_11_PROCEDENCIA_CRUA,
+        }}}
+    velha = [t for _, t in textos_de_tela_do_dado("f1-respostas.json", mundo)]
+    nova = frases_de_procedencia_do_dado("f1-respostas.json", mundo)
+    diz(AR_10_11_PROCEDENCIA_CRUA not in velha,
+        "10c. a regua VELHA nao colhe a frase de procedencia (exclui `fonte` por nome)")
+    diz(len(nova) == 1 and nova[0][1] == AR_10_11_PROCEDENCIA_CRUA,
+        "10c. a regua NOVA colhe a frase de procedencia do `*-respostas.json`")
+    diz(len(problemas_de_procedencia(*nova[0])) >= 8,
+        "10c. e a reprova em 8 classes ou mais, onde a velha reprovava em zero")
+
+    # MUNDO 10e — A REGUA DE HORA ZULU, MEDIDA SOZINHA. Ela nao aparece no mundo
+    # 10 porque la o marcador `x` reclama a classe primeiro, e regua que so e
+    # exercitada por tabela de outra regua e regua que pode estar INERTE — o
+    # defeito que o proprio `bancada.py` desta ilha denuncia por nome.
+    pz = problemas_de_procedencia("x", "Lido no painel em 05/11/2026, às 19h17Z.")
+    diz(any("19h17Z" in f for f in pz),
+        "10e. a regua de hora Zulu morde `19h17Z` sozinha")
+    diz(not problemas_de_procedencia("x", "Lido no painel em 05/11/2026, às 19h17."),
+        "10e. e a MESMA frase sem o `Z` passa — o defeito e o fuso de servidor, "
+        "nao a hora")
+
+    # MUNDO 10d — `fonte` CONTINUA SENDO REGISTRO FORA DE `constantes_usadas`.
+    # Se a colheita nova alcancasse `constantes.json`, ela reprovaria a prosa de
+    # metodo do repositorio, que e o oposto do que este arquivo quer.
+    diz(not frases_de_procedencia_do_dado("constantes.json", {
+            "constantes": {"x": {"fonte": AR_10_11_PROCEDENCIA_CRUA}}}),
+        "10d. `fonte` fora de `constantes_usadas` segue sendo registro e nao e medido")
 
     print("")
     print("  AUTOTESTE — %d mundo(s) medido(s), %d falha(s)" % (len(ok) + len(mal), len(mal)))

@@ -63,7 +63,14 @@ def _irma():
 
 IRMA = _irma()
 conferir_acento_na_tela = IRMA.conferir_acento_na_tela
+conferir_vocabulario_de_maquina = IRMA.conferir_vocabulario_de_maquina
 PALAVRAS_DE_BASTIDOR = IRMA.PALAVRAS_DE_BASTIDOR
+# A FRASE DE PROCEDENCIA VEM DA IRMA DESDE 10/11/2026, E ANTES DISSO ESTA
+# FERRAMENTA TINHA A PROPRIA. Ver `fonte_na_tela` em `gerar-f2.py`: a copia que
+# morava aqui (`fonte_na_tela_legal`) nao tinha a guarda do nome do dono nem a
+# regua de acento, e a home foi ao ar servindo "no Chrome do Raphael" com quatro
+# palavras sem acento, duas datas em AAAA-MM-DD e hora Zulu.
+fonte_na_tela = IRMA.fonte_na_tela
 
 
 # O caso que a casca ja deixa preenchido no formulario (1.1 da especificacao).
@@ -96,22 +103,6 @@ ROTULOS = {
     "titulo_tabela_regra": "Os limites da resolução, do jeito que ela escreve",
     "titulo_tabela_banco": "O que os anúncios que a gente colheu declaram",
 }
-
-
-def fonte_na_tela_legal(cid, registro):
-    """A frase de procedencia da regua legal, conferida contra bastidor.
-
-    A irma tem um dicionario de frases de leitor por constante; estas duas
-    constantes nasceram em 06/11/2026 e o `fonte` delas JA e frase de leitor,
-    porque foi escrito sabendo que iria para a tela. O que esta funcao faz e
-    cobrar isso, em vez de supor.
-    """
-    texto = registro.get("fonte") or ""
-    for palavra in PALAVRAS_DE_BASTIDOR:
-        assert palavra.lower() not in texto.lower(), (
-            "32.4: a frase de procedencia de %r carrega a palavra de bastidor %r e "
-            "ela iria para a tela: %r" % (cid, palavra, texto[:140]))
-    return texto
 
 
 def _valor(campo):
@@ -370,6 +361,7 @@ def montar(constantes, veiculos, municipios):
             if isinstance(v, str) and k != "categoria":
                 textos.append(("tabela da regra, %s de %s" % (k, linha["categoria"]), v))
     conferir_acento_na_tela(textos)
+    conferir_vocabulario_de_maquina(textos)
     for onde, texto in textos:
         for palavra in PALAVRAS_DE_BASTIDOR:
             assert palavra.lower() not in texto.lower(), (
@@ -385,7 +377,7 @@ def montar(constantes, veiculos, municipios):
             "valor": reg.get("valor"),
             "status": reg.get("status"),
             "tipo": reg.get("tipo"),
-            "fonte": fonte_na_tela_legal(cid, reg),
+            "fonte": fonte_na_tela(cid, reg),
             "url": reg.get("url"),
             "verificado_em": reg.get("verificado_em"),
         }

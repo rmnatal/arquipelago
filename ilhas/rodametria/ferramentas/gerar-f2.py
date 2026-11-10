@@ -22,6 +22,7 @@ propria linha, e nunca se misturam com as do banco.
 
 import json
 import os
+import re
 import sys
 from fractions import Fraction
 
@@ -155,6 +156,36 @@ FONTE_NA_TELA = {
         "Mesma medição de Quito, de 2025: a mesma moto elétrica de 60 V e 30 Ah, na "
         "mesma rota de 25,8 km, entregou 29,8 km contra os 60 km que a ficha "
         "declarava.",
+    # AS SETE DA F1, ACRESCENTADAS EM 10/11/2026, E A PRIMEIRA DELAS ESTAVA NO AR
+    # CRUA DESDE 06/11. A home servia, em negrito, dentro da dobra "De onde
+    # sairam os limites": "Resolucao CONTRAN no 996 (...) Ed. 117, Secao 1 (...)
+    # LIDA NO PDF OFICIAL do Ministerio dos Transportes em 2026-11-05 ~23h3x de
+    # Brasilia (2026-11-06 ~02h3xZ), no Chrome do Raphael." Cinco defeitos num
+    # paragrafo: quatro palavras portuguesas sem acento, o NOME DO DONO e o
+    # navegador dele, duas datas em AAAA-MM-DD duas frases antes de a propria
+    # pagina escrever "lido em 05/11/2026", hora Zulu, e o `x` da convencao de
+    # hora desta fabrica — que para quem le a pagina e um erro de digitacao.
+    # As outras seis nunca foram impressas e iam no mesmo JSON, armadas.
+    "limiares-categoria-contran-996-2023":
+        "Resolução Contran nº 996, de 15/06/2023, publicada no Diário Oficial da "
+        "União de 22/06/2023 (edição 117, seção 1, página 327). É o texto original, "
+        "em vigor desde 03/07/2023 pelo art. 22. Lemos o PDF oficial no site do "
+        "Ministério dos Transportes em 05/11/2026.",
+    "consequencias-por-categoria-contran-996-2023":
+        "Mesma Resolução Contran nº 996, de 15/06/2023: os arts. 12, 13 e 19, lidos "
+        "no PDF oficial do site do Ministério dos Transportes em 05/11/2026.",
+    "assistencia-a-pe-contran-996-2023":
+        "Mesma Resolução Contran nº 996, de 15/06/2023: o art. 2º, § 4º, lido no PDF "
+        "oficial do site do Ministério dos Transportes em 05/11/2026.",
+    "alteracao-pos-compra-caso-medido":
+        "Matéria do folhavitoria.com.br, lida em 28/10/2026: uma scooter adulterada "
+        "foi flagrada a 73 km/h, com 32 km/h de fábrica declarados.",
+    "watt-sem-rotulo-no-titulo-caso-medido":
+        "Título lido numa ficha do extra.com.br em 28/10/2026.",
+    "numero-que-circula-como-limite-nacional":
+        "Lido em 28/10/2026 em páginas de portal de trânsito e de notícia que "
+        "explicam a regra em prosa: elas repetem este par, e a atribuição à regra do "
+        "município do Rio de Janeiro aparece no tupi.fm. Nenhuma delas é ato oficial.",
 }
 
 # PALAVRA PORTUGUESA SEM ACENTO NA TELA E DEFEITO, E ELA CHEGA DE ARQUIVO.
@@ -173,6 +204,56 @@ SEM_ACENTO_NA_TELA = (
     "pagina", "secao", "ultima", "proximo", "orcamento", "duvida",
 )
 
+# AS FORMAS QUE SO PODEM SER COBRADAS POR PALAVRA INTEIRA, E A LISTA ACIMA NAO
+# PODIA RECEBE-LAS (10/11/2026).
+#
+# A tupla de cima casa por SUBSTRING, e isso esta certo para os radicais que ela
+# guarda (`eletric` cobre eletrico e eletrica). Mas `fabrica` por substring
+# reprovaria `fabricante`, que esta CERTO e aparece na F2 ("o numero do
+# fabricante", "que o fabricante declara"); `materia` reprovaria `material`.
+# E a armadilha que esta ilha ja pagou duas vezes no mesmo dia — o `so` que
+# casou dentro de "nosso" e "isso" em 06/11/2026 — e a licao escrita entao foi
+# "procura a palavra escrita sem o acento que ela exige, POR PALAVRA INTEIRA".
+# Ela morava so na regua da F3. Aqui ela vira mecanismo.
+#
+# Misturar os dois modos numa tupla so erraria CALADO, porque o modo de casar
+# nao estaria escrito em lugar nenhum. Sao duas tuplas de proposito.
+SEM_ACENTO_PALAVRA_INTEIRA = (
+    # Medidas em 10/11/2026 nos campos `fonte` das sete constantes da F1.
+    "resolucao", "ministerio", "brasilia", "materia", "fabrica",
+    "transito", "noticia", "atribuicao",
+)
+
+# O NOME DO DONO E O NAVEGADOR DELE NUNCA VAO PARA A PAGINA PUBLICA.
+#
+# PROMOVIDO PARA CA EM 10/11/2026, DE `gerar-f3.py`, ONDE NASCEU EM 06/11 —
+# e e por ter nascido la que o defeito foi ao ar aqui. A F3 escreveu esta guarda
+# as 13h2xZ de 06/11 porque o `fonte` cru de uma constante dela dizia "painel da
+# Shopee do DOSSIE, lido pelo RAPHAEL". A F1 tinha ido ao ar as 10h4xZ do MESMO
+# DIA servindo "no Chrome do Raphael" na home — tres horas antes, no arquivo ao
+# lado, com a guarda nascendo na pasta e nunca voltando. A 32.5-c literal: a
+# licao que nao viaja paga duas vezes.
+#
+# `Chrome` entrou em 10/11/2026 pelo defeito medido no ar: qual navegador leu a
+# fonte e bastidor da fabrica, e a forca da prova que o leitor precisa (PDF
+# oficial, e nao noticia) ja esta dita sem ele.
+NUNCA_NA_PAGINA_PUBLICA = ("Raphael", "Chrome", "dossie", "dossiê")
+
+# VOCABULARIO DE MAQUINA NA TELA, E ELE NAO E PALAVRA: E FORMATO.
+#
+# Nenhuma lista de palavras pegaria `2026-11-05`, `02h3xZ` ou `~23h3x`, e os
+# tres estavam no ar na home. O pior dos tres e o `x`: ele e o marcador de
+# minuto da convencao de hora DESTA FABRICA ("as 19h1xZ"), que diz "a hora esta
+# certa e o minuto nao importa" para quem escreve o repositorio e parece erro de
+# digitacao para quem le a pagina. A pagina servia as duas datas em AAAA-MM-DD
+# DUAS FRASES antes de escrever "lido em 05/11/2026" — o mesmo fato em dois
+# vocabularios, no mesmo paragrafo, que e a assinatura da 20.7.
+VOCABULARIO_DE_MAQUINA = (
+    (r"\b\d{4}-\d{2}-\d{2}\b", "data em AAAA-MM-DD; a tela escreve DD/MM/AAAA"),
+    (r"\b\d{1,2}h\d{2}Z\b", "hora Zulu; a tela nao serve fuso de servidor"),
+    (r"\b\d{1,2}h\d?x", "o marcador `x` de minuto da convencao desta fabrica"),
+)
+
 
 def conferir_acento_na_tela(textos):
     """Toda frase que a tela serve tem de estar acentuada (secao 8)."""
@@ -182,16 +263,52 @@ def conferir_acento_na_tela(textos):
             assert forma not in baixo, (
                 "texto de tela sem acento em %s: a forma %r aparece em %r. Texto de "
                 "arquivo ASCII nao vai para a tela cru." % (onde, forma, texto[:120]))
+        for forma in SEM_ACENTO_PALAVRA_INTEIRA:
+            assert not re.search(r"\b%s\b" % re.escape(forma), baixo), (
+                "texto de tela sem acento em %s: a palavra %r aparece inteira em %r. "
+                "Texto de arquivo ASCII nao vai para a tela cru."
+                % (onde, forma, texto[:120]))
+
+
+def conferir_vocabulario_de_maquina(textos):
+    """Data ISO, hora Zulu e o marcador de minuto desta fabrica nao vao a tela."""
+    for onde, texto in textos:
+        for padrao, porque in VOCABULARIO_DE_MAQUINA:
+            achado = re.search(padrao, texto)
+            assert achado is None, (
+                "32.4: %s serve %r, que e %s: %r"
+                % (onde, achado.group(0), porque, texto[:120]))
 
 
 def fonte_na_tela(cid, registro):
-    """O que a tela diz sobre a procedencia desta regua — e nada mais."""
+    """O que a tela diz sobre a procedencia desta regua — e nada mais.
+
+    ESTA E A UNICA FUNCAO QUE RESPONDE ESTA PERGUNTA NAS TRES FERRAMENTAS
+    (10/11/2026). Ate 09/11 eram TRES: esta, a `fonte_na_tela` de `gerar-f3.py`
+    (que tinha a guarda do nome do dono) e a `fonte_na_tela_legal` de
+    `gerar-f1.py` (que nao tinha nenhuma das duas, e cujo comentario AFIRMAVA
+    que o `fonte` das constantes legais "ja e frase de leitor, porque foi escrito
+    sabendo que iria para a tela"). A afirmacao era falsa e estava no ar: e a
+    32.5-d, o comentario que declara um mecanismo e nao mede nada.
+
+    As quatro reguas correm AQUI, no ponto em que o dado vira texto, e nao no
+    ponto em que o texto e impresso — por isso elas alcancam tambem as seis
+    frases que hoje nao sao impressas e viajam no JSON da pagina.
+    """
     texto = FONTE_NA_TELA.get(cid) or (registro.get("fonte") or "")
+    onde = "a frase de procedencia de %r" % cid
     for palavra in PALAVRAS_DE_BASTIDOR:
         assert palavra.lower() not in texto.lower(), (
             "32.4: a frase de procedencia de %r carrega a palavra de bastidor %r e ela "
             "iria para a tela: %r. Declare a frase de leitor em FONTE_NA_TELA."
             % (cid, palavra, texto[:120]))
+    for proibido in NUNCA_NA_PAGINA_PUBLICA:
+        assert proibido.lower() not in texto.lower(), (
+            "32.4: a frase de procedencia de %r carrega %r, que e bastidor da fabrica "
+            "na pagina publica: %r. Declare a frase de leitor em FONTE_NA_TELA."
+            % (cid, proibido, texto[:120]))
+    conferir_acento_na_tela([(onde, texto)])
+    conferir_vocabulario_de_maquina([(onde, texto)])
 
     return texto
 

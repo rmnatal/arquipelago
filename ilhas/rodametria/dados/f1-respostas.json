@@ -3,7 +3,7 @@
   "ilha": "rodametria",
   "ferramenta": "F1",
   "bloco": "4",
-  "gerado_em": "2026-11-09",
+  "gerado_em": "2026-11-10",
   "gerado_por": "ferramentas/gerar-f1.py",
   "referencia": "regras/f1.py",
   "especificacao": "dados/especificacao-calculadoras.md, secao 1",
@@ -85,7 +85,7 @@
       },
       "status": "publicavel",
       "tipo": "oficial",
-      "fonte": "Resolucao CONTRAN no 996, de 15/06/2023, publicada no DOU de 22/06/2023 (Ed. 117, Secao 1, p. 327), texto ORIGINAL, em vigor desde 03/07/2023 pelo art. 22. LIDA NO PDF OFICIAL do Ministerio dos Transportes em 2026-11-05 ~23h3x de Brasilia (2026-11-06 ~02h3xZ), no Chrome do Raphael.",
+      "fonte": "Resolução Contran nº 996, de 15/06/2023, publicada no Diário Oficial da União de 22/06/2023 (edição 117, seção 1, página 327). É o texto original, em vigor desde 03/07/2023 pelo art. 22. Lemos o PDF oficial no site do Ministério dos Transportes em 05/11/2026.",
       "url": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao9962023.pdf/@@download/file",
       "verificado_em": "2026-11-05"
     },
@@ -118,7 +118,7 @@
       },
       "status": "publicavel",
       "tipo": "oficial",
-      "fonte": "Resolucao CONTRAN no 996, de 15/06/2023, arts. 12, 13 e 19, lidos no PDF oficial do Ministerio dos Transportes em 2026-11-05 ~23h3x de Brasilia.",
+      "fonte": "Mesma Resolução Contran nº 996, de 15/06/2023: os arts. 12, 13 e 19, lidos no PDF oficial do site do Ministério dos Transportes em 05/11/2026.",
       "url": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao9962023.pdf/@@download/file",
       "verificado_em": "2026-11-05"
     },
@@ -134,7 +134,7 @@
       "valor": 6,
       "status": "publicavel",
       "tipo": "oficial",
-      "fonte": "Resolucao CONTRAN no 996, de 15/06/2023, art. 2o par. 4o, lido no PDF oficial do Ministerio dos Transportes em 2026-11-05.",
+      "fonte": "Mesma Resolução Contran nº 996, de 15/06/2023: o art. 2º, § 4º, lido no PDF oficial do site do Ministério dos Transportes em 05/11/2026.",
       "url": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao9962023.pdf/@@download/file",
       "verificado_em": "2026-11-05"
     },
@@ -145,7 +145,7 @@
       },
       "status": "publicavel",
       "tipo": "medicao_de_terceiro",
-      "fonte": "Materia de folhavitoria.com.br, colhida em 28/10/2026 pelo bloco 1 desta ilha: scooter adulterada flagrada a 73 km/h com 32 km/h de fabrica declarados.",
+      "fonte": "Matéria do folhavitoria.com.br, lida em 28/10/2026: uma scooter adulterada foi flagrada a 73 km/h, com 32 km/h de fábrica declarados.",
       "url": null,
       "verificado_em": "2026-10-28"
     },
@@ -153,7 +153,7 @@
       "valor": "Bicicleta elétrica Siena 1000W adulto sem CNH scooter",
       "status": "publicavel",
       "tipo": "medicao_de_terceiro",
-      "fonte": "Título colhido numa ficha do extra.com.br em 28/10/2026, pela primeira leva de buscas desta ilha.",
+      "fonte": "Título lido numa ficha do extra.com.br em 28/10/2026.",
       "url": null,
       "verificado_em": "2026-10-28"
     },
@@ -166,7 +166,7 @@
       },
       "status": "publicavel",
       "tipo": "afirmacao_de_terceiro",
-      "fonte": "Colhido por busca em 28/10/2026 pelo primeiro levantamento desta ilha: paginas de portal de transito e de noticia que explicam a regra em prosa repetem este par, e a atribuicao a regra do Rio de Janeiro aparece em tupi.fm. Nenhuma delas e ato oficial.",
+      "fonte": "Lido em 28/10/2026 em páginas de portal de trânsito e de notícia que explicam a regra em prosa: elas repetem este par, e a atribuição à regra do município do Rio de Janeiro aparece no tupi.fm. Nenhuma delas é ato oficial.",
       "url": null,
       "verificado_em": "2026-10-28"
     }
