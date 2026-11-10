@@ -93,7 +93,7 @@
    pergunta que `dateModified` responde e "quando esta pagina mudou", e a mae muda
    no dia em que QUALQUER filha e recolhida. */
 if ( ! defined( 'RODAMETRIA_PRODUTO_VERSAO' ) ) {
-	define( 'RODAMETRIA_PRODUTO_VERSAO', '1.8.2' );
+	define( 'RODAMETRIA_PRODUTO_VERSAO', '1.9.0' );
 }
 
 /* A VERSAO DESTE SNIPPET VAI AO AR, pelo filtro que a casca 1.6.0 abriu
@@ -558,11 +558,28 @@ function rdm_produto_pagina_html() {
 
 	/* (32.2) A CAIXA DE RESPOSTA NO TOPO: o numero e a condicao em uma frase.
 	   O numero e a MEDIANA e nao a faixa, porque numero grande em Mono e um
-	   numero so — a faixa inteira vive na frase logo abaixo, onde ela cabe. */
+	   numero so — a faixa inteira vive na frase logo abaixo, onde ela cabe.
+
+	   O ROTULO E O NUMERO SAO DECLARADOS UMA VEZ, AQUI, porque a barra fixa do
+	   rodape (32.1, ultima linha) serve O MESMO NUMERO no fim desta funcao —
+	   e, pela 20.7, "duas declaracoes do mesmo fato comecam iguais e so uma
+	   sobe". Medido no ar as 19h2xZ de 10/11/2026: a barra servia 'Mediano' ao
+	   lado de R$ 1.647,95 enquanto esta caixa servia 'Preço mediano hoje' para
+	   o MESMO R$ 1.647,95 — adjetivo solto, sem o substantivo que diz mediano
+	   de QUE, na superficie que o visitante de telefone le por mais tempo. As
+	   outras quatro barras desta ilha ja nasciam certas por construcao (f1 e
+	   f2 passam `$rotulo`/`$numero`, a f3 passa `$m['rotulo_precisa']`): esta
+	   era a UNICA que escrevia o rotulo a mao uma segunda vez. Quem cobra isso
+	   e `ferramentas/teste-barra-de-compra.php`, que exige que toda barra case
+	   com uma caixa do mesmo arquivo pela MESMA EXPRESSAO. */
+	$rotulo  = 'Preço mediano hoje';
+	$numero  = $n['mediana'];
+	$unidade = '';
+
 	$html .= rodametria_casca_caixa(
-		'Preço mediano hoje',
-		$n['mediana'],
-		'',
+		$rotulo,
+		$numero,
+		$unidade,
 		array_map(
 			function ( $t ) use ( $pagina ) {
 				return rdm_produto_preencher( $t, $pagina );
@@ -618,8 +635,10 @@ function rdm_produto_pagina_html() {
 
 	$html .= '</div>';
 
-	/* (32.1, ultima linha) A barra fixa do telefone com o numero e o botao. */
-	$html .= rodametria_casca_barra_fixa( 'Mediano', $n['mediana'], '',
+	/* (32.1, ultima linha) A barra fixa do telefone com o numero e o botao.
+	   O rotulo, o numero e a unidade sao os DA CAIXA, pela MESMA expressao
+	   (20.7): a barra repete o numero da resposta, entao repete o rotulo dela. */
+	$html .= rodametria_casca_barra_fixa( $rotulo, $numero, $unidade,
 		(array) $pagina['vitrine']['cartoes'] );
 
 	return $html;

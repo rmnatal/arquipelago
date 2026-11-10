@@ -4,7 +4,7 @@
   "nicho": "mobilidade eletrica — acertar os tres numeros antes de comprar um veiculo eletrico: categoria legal (CNH e placa), autonomia real e carga maxima",
   "dominio": "https://rodametria.com.br",
   "versao_manifest": 1,
-  "revisao": 77,
+  "revisao": 78,
   "atualizado_em": "2026-11-10",
   "estado": "nascendo",
   "desembarque": {
@@ -64,8 +64,8 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "877cd48fa72873431622668ece2a0172811f2979abe2e58835a731320f3e1553",
-      "versao": "1.8.2",
+      "sha256": "ea7e8d3dadbd501f231e2b64cbdb401392b0d0f364a6e6d9bbb340e1768efd11",
+      "versao": "1.9.0",
       "descricao": "O MOTOR DA SECAO 30 nesta ilha (versao corrente no campo `versao` deste item): a secao de nivel 1 `/veiculos/` e as paginas de consulta de produto que nascem filhas diretas dela, com o slug igual a consulta. Ordem da 32.2 de cima para baixo: trilha e H1, caixa de resposta com o preco mediano em Mono, bloco de compra com id=comprar logo abaixo, tabela-resumo VISIVEL com TODOS os anuncios (a secao 7 manda nomear todo item uma vez), a prestacao de contas de quem nao entrou com a causa contada, a malha da 16.4 tambem visivel porque e alvo de link, e o resto nas dobras da casca. NENHUM numero e digitado neste arquivo: a prosa vem de dados/paginas-de-produto.json com moldes e o numero vem de dados/vitrine-de-produto.json, recontado por ferramentas/gerar-vitrine-de-produto.py. A tabela NAO tem coluna de potencia nominal, velocidade maxima, acelerador nem carga maxima: o esquema desta ilha exige nivel 5 ou melhor nesses quatro e titulo de anuncio e nivel 6, entao a coluna diz o que o anuncio DECLARA em vez de preencher coluna tecnica com palavra tirada do titulo. JSON-LD de ItemList e FAQPage no wp_head; folha no wp_footer; nada dentro do retorno do shortcode. A VERSAO SAIU DESTA PROSA EM 02/11/2026, e ela estava VELHA nos QUATRO snippets (a casca dizia 1.4.0 servindo 1.6.0; os outros tres diziam 1.0.0) — e isso e a prova de que o campo `versao` faltava. Quem declara a versao agora e o campo, espelhado da constante do arquivo por `ferramentas/atualizar-manifest.py` e cobrado por `ferramentas/teste-versao-dos-snippets.php`; prosa que repete o mesmo fato e a segunda declaracao que sobe sozinha de um lado so."
     },
     {

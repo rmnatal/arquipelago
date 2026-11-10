@@ -290,6 +290,184 @@ foreach (array('rodametria-f1.php', 'rodametria-f2.php', 'rodametria-f3.php',
 			$base, $lista_barra, $lista_bloco));
 }
 
+/* ---------------------------------------------------------------------------
+ * 4. A BARRA REPETE O NUMERO DA CAIXA, ENTAO REPETE O ROTULO DELA — UMA
+ *    DECLARACAO, NAO DUAS (10/11/2026, 19h2xZ)
+ * ------------------------------------------------------------------------ */
+/* O DEFEITO QUE ISTO EXISTE PARA IMPEDIR, MEDIDO NO HTML SERVIDO DA REVISAO 77:
+ * em `/veiculos/patinete-eletrico/` a caixa de resposta servia
+ * `Preço mediano hoje` ao lado de `R$ 1.647,95`, e a barra fixa do rodape —
+ * que serve O MESMO `$n['mediana']` — servia o adjetivo solto `Mediano`. Duas
+ * declaracoes do mesmo fato na mesma pagina, as duas escritas a mao, e so uma
+ * com o substantivo que diz mediano de QUE. `/veiculos/bicicleta-eletrica/`
+ * servia o mesmo com `R$ 2.299,99`. E a 20.7 literal: *"duas declaracoes do
+ * mesmo fato comecam iguais e so uma sobe"*.
+ *
+ * E A ILHA JA FAZIA CERTO EM QUATRO DOS CINCO LUGARES, o que e o que torna esta
+ * regua uma regra medida e nao um gosto: a f1 e a f2 passam `$rotulo`/`$numero`
+ * as DUAS chamadas, a f3 passa `$m['rotulo_precisa']`/`$r['carga_minima_tela']`
+ * as duas, e so a `rodametria-produto.php` escrevia o rotulo uma SEGUNDA vez.
+ * Nenhum portao a via, porque o rotulo da barra mora num `<span>` e as cinco
+ * reguas de tela desta ilha leem PROSA (`<p>`, `<li>`, `<td>`...), ATRIBUTO e
+ * JSON-LD — nunca `<span>` fora de prosa. E as cinco reguas, medidas sobre o
+ * texto `Mediano`, dao ZERO: ele e acentuado, nao e chave de maquina e nao e
+ * vocabulario de bastidor. Superficie nova nao pegaria este defeito; o que o
+ * pega e exigir UMA declaracao.
+ *
+ * AS DUAS AFIRMACOES, E A SEGUNDA E A QUE MATA A CLASSE:
+ *
+ *   (a) MESMA EXPRESSAO. O rotulo e o numero da barra tem de ser, letra por
+ *       letra, os de alguma chamada a `rodametria_casca_caixa` do MESMO arquivo
+ *       e da MESMA funcao. A comparacao e sobre o TEXTO da expressao e nao
+ *       resolve variavel de proposito: onde o texto ja concorda nao ha o que
+ *       resolver, e onde ele discorda o portao quer que alguem escreva a
+ *       declaracao UMA vez, nao que a regua afrouxe ate aprovar (20.8).
+ *   (b) O ROTULO DA BARRA NUNCA E LITERAL. Escrever `'Preço mediano hoje'` nas
+ *       duas chamadas satisfaria (a) e seria, no dia seguinte, o mesmo defeito:
+ *       duas copias que comecam iguais. Exigir que a barra receba uma
+ *       expressao — variavel ou campo do molde — torna a classe inteira
+ *       impossivel, que e a licao da 32.1-b: *"prefixo proprio torna a classe
+ *       inteira impossivel; conferir contra a lista conserta o caso de hoje"*.
+ *       Medido: as quatro chamadas de verdade passam expressao, zero literal.
+ *
+ * O QUE ELA NAO ALCANCA, ESCRITO PARA NAO PARECER CONFERIDO (20.7): duas
+ * variaveis de mesmo NOME em funcoes diferentes comparariam iguais sendo coisas
+ * diferentes. E por isso que (a) exige a MESMA FUNCAO, e nao so o mesmo
+ * arquivo — e nas quatro chamadas de verdade a caixa e a barra moram na mesma
+ * funcao, medido e nao suposto. */
+
+/** O nome da funcao que contem a posicao $pos, ou '' se nenhuma. */
+function funcao_que_contem($src, $pos) {
+	$nome = '';
+	if (preg_match_all('/\bfunction\s+([A-Za-z_][A-Za-z0-9_]*)\s*\(/', substr($src, 0, $pos), $m,
+			PREG_OFFSET_CAPTURE)) {
+		$ult = end($m[1]);
+		$nome = $ult[0];
+	}
+	return $nome;
+}
+
+/** TODAS as chamadas a $nome em $src, como array de (args, posicao, funcao).
+ *  A DEFINICAO nao e chamada — e a unica coisa que esta funcao descarta. */
+function chamadas_de($src, $nome) {
+	$out = array();
+	$pos = 0;
+	while (($p = strpos($src, $nome . '(', $pos)) !== false) {
+		$pos = $p + 1;
+		if (substr($src, max(0, $p - 9), 9) === 'function ') { continue; }
+		$abre = strpos($src, '(', $p);
+		$n = 0; $fim = $abre;
+		for ($k = $abre; $k < strlen($src); $k++) {
+			if ($src[$k] === '(') { $n++; }
+			elseif ($src[$k] === ')') { $n--; if ($n === 0) { $fim = $k; break; } }
+		}
+		$out[] = array(
+			'args'   => argumentos_de_topo(substr($src, $abre + 1, $fim - $abre - 1)),
+			'pos'    => $p,
+			'funcao' => funcao_que_contem($src, $p),
+		);
+	}
+	return $out;
+}
+
+/** OS PROBLEMAS DE UMA FONTE, como lista de frases. Funcao pura sobre o TEXTO,
+ *  para que os mundos fabricados abaixo possam prova-la sem tocar no disco. */
+function problemas_de_rotulo_da_barra($base, $src) {
+	$problemas = array();
+	$barras = chamadas_de($src, 'rodametria_casca_barra_fixa');
+	$caixas = chamadas_de($src, 'rodametria_casca_caixa');
+	foreach ($barras as $b) {
+		$rot = isset($b['args'][0]) ? normalizar_lista($b['args'][0]) : '';
+		$num = isset($b['args'][1]) ? normalizar_lista($b['args'][1]) : '';
+
+		/* (b) O ROTULO NUNCA E LITERAL. */
+		if ($rot === '' || preg_match('/^([\'"]).*\1$/s', $rot)) {
+			$problemas[] = sprintf('%s: a barra recebe o rotulo %s, escrito A MAO na chamada. '
+				. 'O rotulo da barra e o da caixa que serve o MESMO numero, e declaracao '
+				. 'repetida comeca igual e so uma sobe (20.7): passe a expressao que a '
+				. 'caixa recebe', $base, $rot === '' ? '(nenhum)' : '`' . $rot . '`');
+			continue;
+		}
+
+		/* (a) MESMA EXPRESSAO, MESMA FUNCAO. */
+		$casou = false;
+		$vistos = array();
+		foreach ($caixas as $c) {
+			$crot = isset($c['args'][0]) ? normalizar_lista($c['args'][0]) : '';
+			$cnum = isset($c['args'][1]) ? normalizar_lista($c['args'][1]) : '';
+			if ($c['funcao'] !== $b['funcao']) { continue; }
+			$vistos[] = $crot . ' / ' . $cnum;
+			if ($crot === $rot && $cnum === $num) { $casou = true; break; }
+		}
+		if (!$casou) {
+			$problemas[] = sprintf('%s: a barra da funcao `%s` serve rotulo `%s` e numero `%s`, '
+				. 'e nenhuma caixa da MESMA funcao serve esse par. As caixas de la servem: %s. '
+				. 'A barra repete o numero da resposta, entao repete o rotulo dela — uma '
+				. 'declaracao, nao duas (20.7)',
+				$base, $b['funcao'], $rot, $num,
+				$vistos ? '`' . implode('`, `', $vistos) . '`' : '(nenhuma)');
+		}
+	}
+	return $problemas;
+}
+
+/* OS QUATRO ARQUIVOS DE VERDADE. */
+$com_barra = 0;
+foreach (glob($RAIZ . '/snippets/*.php') as $arquivo) {
+	$src  = file_get_contents($arquivo);
+	$base = basename($arquivo);
+	if (!chamadas_de($src, 'rodametria_casca_barra_fixa')) { continue; }
+	$com_barra++;
+	$ps = problemas_de_rotulo_da_barra($base, $src);
+	afirma(!$ps, implode(' | ', $ps));
+}
+afirma($com_barra === 4, sprintf('achei barra fixa em %d arquivo(s) e esperava 4 (f1, f2, f3 '
+	. 'e produto). Regua que nao acha a chamada nao a confere', $com_barra));
+
+/* OS MUNDOS FABRICADOS, E O PRIMEIRO E O AR DE VERDADE DA REVISAO 77 (20.8):
+   autoteste em que a regua velha e a nova concordam nao mede conserto nenhum. */
+$MOLDE = 'function rdm_x() { $rotulo = %s; $numero = $n[\'mediana\']; '
+	. '$html = rodametria_casca_caixa( %s, %s, \'\', $f, \'verde\' ); '
+	. '$html .= rodametria_casca_barra_fixa( %s, %s, \'\', $c ); return $html; }';
+
+$mundos_de_rotulo = array(
+	/* nome => array(rotulo da caixa, numero da caixa, rotulo da barra, numero da barra, deve_reprovar) */
+	'O AR DA REVISAO 77: caixa `Preço mediano hoje`, barra `Mediano`, MESMO numero'
+		=> array("'Preço mediano hoje'", "\$n['mediana']", "'Mediano'", "\$n['mediana']", true),
+	'o conserto desta passada: as duas pela MESMA variavel'
+		=> array('$rotulo', '$numero', '$rotulo', '$numero', false),
+	'o conserto FALSO: o mesmo literal escrito DUAS vezes (satisfaz (a) e cai em (b))'
+		=> array("'Preço mediano hoje'", "\$n['mediana']", "'Preço mediano hoje'", "\$n['mediana']", true),
+	'rotulo igual e NUMERO diferente: a barra serve outra resposta'
+		=> array('$rotulo', '$numero', '$rotulo', "\$n['faixa']", true),
+	'a f3 de hoje: campo do molde nas duas'
+		=> array("\$m['rotulo_precisa']", "\$r['carga_minima_tela']",
+			"\$m['rotulo_precisa']", "\$r['carga_minima_tela']", false),
+);
+
+foreach ($mundos_de_rotulo as $nome => $m) {
+	list($crot, $cnum, $brot, $bnum, $deve) = $m;
+	$src = sprintf($MOLDE, $crot, $crot, $cnum, $brot, $bnum);
+	$ps  = problemas_de_rotulo_da_barra('(mundo fabricado)', $src);
+	afirma($deve === (bool) count($ps), sprintf('mundo %s: esperava %s e a regua deu %s%s',
+		$nome, $deve ? 'REPROVADO' : 'aprovado', count($ps) ? 'REPROVADO' : 'aprovado',
+		count($ps) ? ' (' . implode(' | ', $ps) . ')' : ''));
+}
+
+/* A BARRA SEM CAIXA NENHUMA TEM DE REPROVAR: numero na barra que a pagina nao
+   declara em lugar nenhum e resposta sem fonte na tela. */
+$ps = problemas_de_rotulo_da_barra('(mundo fabricado)',
+	'function rdm_y() { return rodametria_casca_barra_fixa( $rotulo, $numero, \'\', $c ); }');
+afirma(count($ps) === 1, 'mundo barra SEM caixa: esperava REPROVADO e a regua aprovou');
+
+/* E A FUNCAO IMPORTA: caixa certa em OUTRA funcao nao vale pela barra desta. */
+$ps = problemas_de_rotulo_da_barra('(mundo fabricado)',
+	'function rdm_a() { return rodametria_casca_caixa( $rotulo, $numero, \'\', $f, \'verde\' ); } '
+	. 'function rdm_b() { return rodametria_casca_barra_fixa( $rotulo, $numero, \'\', $c ); }');
+afirma(count($ps) === 1,
+	'mundo caixa em OUTRA funcao: esperava REPROVADO e a regua aprovou (a variavel tem o '
+	. 'mesmo nome e nao e o mesmo local)');
+
 printf("teste-barra-de-compra: %d afirmacoes · %d mundos fabricados · %d chamada(s) "
 	. "conferida(s) · %d falha(s)\n",
 	$afirmacoes, count($mundos), $chamadas, count($falhas));
