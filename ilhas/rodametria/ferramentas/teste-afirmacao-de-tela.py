@@ -436,8 +436,31 @@ def textos_de_tela_do_dado(nome, d):
 #
 # A regra: `fonte` sob `constantes_usadas` E TELA e se mede. Em qualquer outro
 # lugar segue sendo registro.
+# E O MESMO DEFEITO VOLTOU UM DEGRAU ABAIXO NO DIA SEGUINTE (10/11/2026), NO
+# CAMPO AO LADO — por isso esta colheita deixou de ser sobre UMA chave.
+#
+# O comentario acima diz, sobre `fonte`: "a exclusao, sendo por nome, pulou
+# exatamente o campo que acabara de virar tela". O campo `tipo` do mesmo
+# `constantes_usadas` tambem virava tela — o PHP da F2 o traduzia por um mapa de
+# quatro entradas e caia na PROPRIA CHAVE quando o tipo nao estava nele —, e a F2
+# servia `Tipo: observacao_de_mercado` em texto visivel.
+#
+# E AQUI A EXCLUSAO NAO FOI POR NOME: FOI POR FORMA. `textos_de_tela_do_dado`
+# pula toda cadeia sem espaco, com a frase "SEM ESPACO = IDENTIFICADOR, nunca
+# frase" escrita ao lado. Ela esta CERTA sobre o dado e FALSA sobre a tela,
+# porque era o PHP que promovia o identificador a frase. Mesma cadeia, papel
+# oposto: a 20.7 outra vez, e nenhuma lista de nomes a pegaria.
+#
+# O CONSERTO NAO FOI RELAXAR A EXCLUSAO, e isto importa: relaxar reprovaria os
+# slugs legitimos do banco (`siena-1000w-sem-cnh` e o nome que o proprio anuncio
+# deu ao produto). O que esta escrito agora e QUAIS CAMPOS a tela recebe prontos,
+# e eles sao medidos SEM pergunta de forma — chave de maquina em campo promovido
+# e defeito justamente por ter a forma de chave.
+CHAVES_PROMOVIDAS_A_TELA = ("fonte", "tipo_na_tela")
+
+
 def frases_de_procedencia_do_dado(nome, d):
-    """As frases de procedencia que a tela serve: `constantes_usadas/<id>/fonte`."""
+    """Os textos que a tela recebe PRONTOS de `constantes_usadas/<id>/<campo>`."""
     out = []
     usadas = d.get("constantes_usadas") if isinstance(d, dict) else None
     if not isinstance(usadas, dict):
@@ -445,9 +468,10 @@ def frases_de_procedencia_do_dado(nome, d):
     for cid, reg in sorted(usadas.items()):
         if not isinstance(reg, dict):
             continue
-        texto = reg.get("fonte")
-        if isinstance(texto, str) and texto.strip():
-            out.append(("%s constantes_usadas/%s/fonte" % (nome, cid), texto))
+        for campo in CHAVES_PROMOVIDAS_A_TELA:
+            texto = reg.get(campo)
+            if isinstance(texto, str) and texto.strip():
+                out.append(("%s constantes_usadas/%s/%s" % (nome, cid, campo), texto))
 
     return out
 
@@ -482,6 +506,12 @@ def problemas_de_procedencia(onde, texto):
         if achado is not None:
             falhas.append("%s: serve %r, que e %s (32.4): %r"
                           % (onde, achado.group(0), porque, texto[:120]))
+    # A QUINTA REGUA (10/11/2026): o texto INTEIRO sendo uma chave de maquina.
+    # Ela mora em `gerar-f2.py` com as outras quatro e e importada daqui.
+    limpo = texto.strip().rstrip(".")
+    if REGUAS.CHAVE_DE_MAQUINA.match(limpo):
+        falhas.append("%s: serve %r, que e chave de maquina e nao frase de leitor "
+                      "(32.4)" % (onde, limpo[:120]))
 
     return falhas
 
@@ -601,6 +631,20 @@ def medir_repositorio():
     for nome, textos in sorted(por_arquivo.items()):
         afirmacoes += 1
         falhas += problemas_de_colheita(nome, textos)
+
+    # NOVE CONTRA NOVE (10/11/2026): todo tipo declarado em
+    # `dados/constantes.json` tem de ter frase de leitor em `TIPO_NA_TELA`, e
+    # vice-versa. E a licao da 20.10 — numero contra numero, escrito pelas duas
+    # fontes, sem depender de ninguem ler prosa. O gerador ja PARA nisso; aqui a
+    # mesma conta roda sobre o repositorio COMO ELE ESTA, que e o que pega o tipo
+    # acrescentado ao JSON a mao sem regerar nada.
+    afirmacoes += 1
+    try:
+        quantos = REGUAS.conferir_tipos_na_tela_completos()
+    except AssertionError as e:
+        falhas.append("dados/constantes.json x TIPO_NA_TELA: %s" % e)
+    else:
+        print("  tipos de constante com frase de leitor: %d de %d" % (quantos, quantos))
 
     return afirmacoes, falhas
 
@@ -959,6 +1003,95 @@ def autoteste():
     diz(not frases_de_procedencia_do_dado("constantes.json", {
             "constantes": {"x": {"fonte": AR_10_11_PROCEDENCIA_CRUA}}}),
         "10d. `fonte` fora de `constantes_usadas` segue sendo registro e nao e medido")
+
+    # ---------------------------------------------------------------------
+    # MUNDO 11 — O AR DE 10/11/2026 AS 13h2xZ: A CHAVE DO TIPO COMO FRASE
+    # ---------------------------------------------------------------------
+    #
+    # A F2 servia, em texto visivel: "Maior carga maxima que vimos no varejo —
+    # 120. Tipo: observacao_de_mercado." O mundo abaixo e aquele registro.
+    mundo_tipo = {"id": "f2-respostas", "constantes_usadas": {
+        "teto-de-carga-do-mercado-brasileiro": {
+            "valor": 120,
+            "tipo": "observacao_de_mercado",
+        }}}
+
+    # AS DUAS REGUAS TEM DE DISCORDAR, senao o conserto nao existe (20.8).
+    # A VELHA e a deste portao antes de hoje, e ela falha por DOIS motivos
+    # independentes: `textos_de_tela_do_dado` pula cadeia SEM ESPACO (a chave nao
+    # tem nenhum) e tambem cadeia com menos de 12 caracteres uteis; e a colheita
+    # de campo promovido so conhecia `fonte`.
+    velha_t = [t for _, t in textos_de_tela_do_dado("f2-respostas.json", mundo_tipo)]
+    diz("observacao_de_mercado" not in velha_t,
+        "11. a regua VELHA nao colhe a chave do tipo (ela pula cadeia sem espaco)")
+
+    # E A NOVA TAMBEM NAO A COLHE DAQUI — e isto e o desenho, nao uma falha:
+    # o conserto nao foi passar a MEDIR a chave de maquina no dado, foi parar de
+    # PROMOVE-LA a tela. O `tipo` segue sendo chave de maquina no arquivo, que e
+    # o papel dele; quem vai a tela e `tipo_na_tela`, e e esse que se mede.
+    nova_t = frases_de_procedencia_do_dado("f2-respostas.json", mundo_tipo)
+    diz(not nova_t,
+        "11. e a chave `tipo` crua nao e campo promovido: o dado pode guarda-la")
+
+    # O QUE A REGUA NOVA PEGA E A CHAVE PROMOVIDA — o mundo em que alguem
+    # escreve a chave no campo que a tela imprime. ESTE e o defeito de hoje em
+    # forma de dado, e a regua velha reprovava em ZERO.
+    mundo_promovido = {"id": "f2-respostas", "constantes_usadas": {
+        "teto-de-carga-do-mercado-brasileiro": {
+            "tipo": "observacao_de_mercado",
+            "tipo_na_tela": "observacao_de_mercado",
+        }}}
+    velha_p = [t for _, t in textos_de_tela_do_dado("f2-respostas.json", mundo_promovido)]
+    nova_p = frases_de_procedencia_do_dado("f2-respostas.json", mundo_promovido)
+    diz("observacao_de_mercado" not in velha_p,
+        "11b. a regua VELHA segue cega a chave promovida (sem espaco)")
+    diz(len(nova_p) == 1 and nova_p[0][1] == "observacao_de_mercado",
+        "11b. a regua NOVA colhe o campo `tipo_na_tela`")
+    diz(any("chave de maquina" in f for f in problemas_de_procedencia(*nova_p[0])),
+        "11b. e o reprova por ser chave de maquina, onde a velha reprovava em zero")
+
+    # MUNDO 11c — A REGUA NAO MORDE A FRASE CERTA. Contorcer o texto para
+    # agradar regua errada e pior que a regua errada: as NOVE frases de verdade
+    # passam, uma por uma.
+    for tipo, frase in sorted(REGUAS.TIPO_NA_TELA.items()):
+        diz(not problemas_de_procedencia("tipo %s" % tipo, frase),
+            "11c. a frase de leitor do tipo %r passa limpa nas cinco reguas" % tipo)
+
+    # MUNDO 11d — A CHAVE DENTRO DE UMA FRASE NAO REPROVA, e isto e de proposito:
+    # a regua e sobre o texto INTEIRO. Cobrar substring reprovaria a pagina que
+    # explica a propria escada citando o nome de um degrau — o erro que esta ilha
+    # ja pagou duas vezes com o `so` casando dentro de "nosso" e "isso".
+    diz(not problemas_de_procedencia(
+            "x", "O tipo desta régua, no arquivo, é observacao_de_mercado."),
+        "11d. chave DENTRO de uma frase acentuada nao reprova (a regua e do texto "
+        "inteiro)")
+    diz(any("chave de maquina" in f
+            for f in problemas_de_procedencia("x", "observacao-de-mercado")),
+        "11d. e o slug com hifen reprova igual ao com sublinhado")
+
+    # MUNDO 11e — A COMPLETUDE, NAS DUAS DIRECOES, sobre listas FABRICADAS.
+    # O numero real sai do passe do repositorio; aqui se mede a REGUA.
+    reais = set(REGUAS.TIPO_NA_TELA.keys())
+    diz(REGUAS.conferir_tipos_na_tela_completos(reais) == len(reais),
+        "11e. a regua aprova quando as duas listas sao a mesma, e devolve %d"
+        % len(reais))
+    try:
+        REGUAS.conferir_tipos_na_tela_completos(reais | {"tipo_que_ninguem_traduziu"})
+        diz(False, "11e. tipo declarado SEM frase de leitor tem de reprovar")
+    except AssertionError as e:
+        diz("tipo_que_ninguem_traduziu" in str(e),
+            "11e. tipo declarado SEM frase de leitor reprova, e a mensagem o nomeia")
+    try:
+        REGUAS.conferir_tipos_na_tela_completos(reais - {"pendente"})
+        diz(False, "11e. frase que sobrou depois de o tipo sair do JSON tem de reprovar")
+    except AssertionError as e:
+        diz("pendente" in str(e),
+            "11e. frase sem dono no JSON reprova, e a mensagem a nomeia")
+    try:
+        REGUAS.conferir_tipos_na_tela_completos(set())
+        diz(False, "11e. lista vazia tem de reprovar, nunca aprovar por vacuidade")
+    except AssertionError:
+        diz(True, "11e. lista vazia REPROVA — portao inerte nao aprova (20.8)")
 
     print("")
     print("  AUTOTESTE — %d mundo(s) medido(s), %d falha(s)" % (len(ok) + len(mal), len(mal)))

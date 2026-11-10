@@ -71,6 +71,12 @@ PALAVRAS_DE_BASTIDOR = IRMA.PALAVRAS_DE_BASTIDOR
 # regua de acento, e a home foi ao ar servindo "no Chrome do Raphael" com quatro
 # palavras sem acento, duas datas em AAAA-MM-DD e hora Zulu.
 fonte_na_tela = IRMA.fonte_na_tela
+# E A FRASE DO TIPO, PELO MESMO MOTIVO E NO MESMO DIA SEGUINTE (10/11/2026): o
+# mapa de tipo->frase vivia dentro do PHP da F2 com quatro das nove entradas, e
+# a F2 serviu a chave `observacao_de_mercado` na tela. A F1 usa SETE constantes e
+# os tipos delas incluem `oficial` e `afirmacao_de_terceiro`, dois dos cinco que
+# o mapa nao tinha. Uma funcao, tres geradores — como a 20.7 manda.
+tipo_na_tela = IRMA.tipo_na_tela
 
 
 # O caso que a casca ja deixa preenchido no formulario (1.1 da especificacao).
@@ -377,6 +383,7 @@ def montar(constantes, veiculos, municipios):
             "valor": reg.get("valor"),
             "status": reg.get("status"),
             "tipo": reg.get("tipo"),
+            "tipo_na_tela": tipo_na_tela(reg.get("tipo")),
             "fonte": fonte_na_tela(cid, reg),
             "url": reg.get("url"),
             "verificado_em": reg.get("verificado_em"),

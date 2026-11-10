@@ -45,7 +45,7 @@
    (item 2 do despacho da ronda de 04/11). E o MESMO campo que o "Como sabemos"
    desta pagina ja imprimia em prosa — um fato, uma fonte (20.7). */
 if ( ! defined( 'RODAMETRIA_F2_VERSAO' ) ) {
-	define( 'RODAMETRIA_F2_VERSAO', '1.7.0' );
+	define( 'RODAMETRIA_F2_VERSAO', '1.8.0' );
 }
 
 /* A VERSAO DESTE SNIPPET VAI AO AR, pelo filtro que a casca 1.6.0 abriu
@@ -640,7 +640,9 @@ function rodametria_f2_dobras_html( $d ) {
 				? 'sem valor publicável.'
 				: '<span class="rdm-num">' . esc_html( is_string( $valor ) ? $valor
 					: rodametria_f2_numero( $valor ) ) . '</span>.' )
-			. ' Tipo: ' . esc_html( rodametria_f2_nome_do_tipo( $k['tipo'] ) ) . '.'
+			. ( '' === rodametria_f2_nome_do_tipo( $k )
+				? ''
+				: ' Tipo: ' . esc_html( rodametria_f2_nome_do_tipo( $k ) ) . '.' )
 			. ( empty( $k['fonte'] ) ? '' : ' ' . esc_html( $k['fonte'] ) )
 			. ( empty( $k['url'] ) ? '' : ' <a href="' . esc_url( $k['url'] )
 				. '" rel="nofollow noopener">fonte</a>' )
@@ -713,16 +715,37 @@ function rodametria_f2_nome_da_regua( $id ) {
 }
 }
 
+/**
+ * A FRASE DO TIPO VEM PRONTA DO DADO, E ESTA FUNCAO NAO TRADUZ NADA (10/11/2026).
+ *
+ * O QUE ESTAVA AQUI ERA UM MAPA DE QUATRO ENTRADAS, e esta ilha declara NOVE
+ * tipos em `dados/constantes.json`. O fallback era `: (string) $tipo`, e foi
+ * por ele que a dobra "Como a gente chegou nesses numeros" serviu, em texto
+ * visivel, `Tipo: observacao_de_mercado` — a chave de maquina como frase, ao
+ * lado de cinco irmas que serviam frase de leitor na mesma lista.
+ *
+ * CINCO DOS NOVE ESTAVAM ARMADOS, nao um: `oficial` (o tipo dos limiares legais
+ * da F1), `afirmacao_qualitativa`, `observacao_de_mercado`, `entrada_do_leitor` e
+ * `afirmacao_de_terceiro`.
+ *
+ * O mapa era a segunda declaracao do mesmo fato que a 20.7 proibe nesta ilha, e
+ * aconteceu com ele o que a 20.7 avisa: as duas declaracoes comecaram iguais e
+ * so uma subiu. A frase agora nasce em `ferramentas/gerar-f2.py` (`TIPO_NA_TELA`,
+ * cobrada INTEIRA contra as chaves de `tipos_de_constante`, nas duas direcoes) e
+ * viaja no `*-respostas.json` como `tipo_na_tela`.
+ *
+ * E A AUSENCIA E O SINAL, como na 20.7: campo que nao veio devolve cadeia VAZIA,
+ * e quem chama OMITE a oracao inteira. Nunca a chave, nunca molde cru. A pagina
+ * perde uma clausula de procedencia e continua honesta; imprimir a chave e
+ * servir o vocabulario de quem escreveu a fabrica (32.4).
+ */
 if ( ! function_exists( 'rodametria_f2_nome_do_tipo' ) ) {
-function rodametria_f2_nome_do_tipo( $tipo ) {
-	$mapa = array(
-		'identidade_matematica' => 'identidade matemática, não depende de fonte',
-		'medicao_de_terceiro'   => 'medição de terceiro, nomeada',
-		'decisao_da_ilha'       => 'decisão nossa, e está dito que é nossa',
-		'pendente'              => 'pendente, sem valor publicado',
-	);
+function rodametria_f2_nome_do_tipo( $k ) {
+	if ( ! is_array( $k ) || empty( $k['tipo_na_tela'] ) || ! is_string( $k['tipo_na_tela'] ) ) {
+		return '';
+	}
 
-	return isset( $mapa[ $tipo ] ) ? $mapa[ $tipo ] : (string) $tipo;
+	return trim( $k['tipo_na_tela'] );
 }
 }
 

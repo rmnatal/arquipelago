@@ -3,7 +3,7 @@
   "ilha": "rodametria",
   "ferramenta": "F2",
   "bloco": "3b",
-  "gerado_em": "2026-11-09",
+  "gerado_em": "2026-11-10",
   "gerado_por": "ferramentas/gerar-f2.py",
   "referencia": "ferramentas/f2-referencia.py",
   "especificacao": "dados/especificacao-calculadoras.md, secao 2",
@@ -44,6 +44,7 @@
       "valor": "Wh = V * Ah",
       "status": "publicavel",
       "tipo": "identidade_matematica",
+      "tipo_na_tela": "identidade matemática, não depende de fonte",
       "fonte": "Identidade de unidades: volt × ampère-hora dá watt-hora. Não é dado de ninguém e não tem fonte a citar — é a definição das unidades.",
       "url": null,
       "verificado_em": "2026-10-28"
@@ -52,6 +53,7 @@
       "valor": 2.37,
       "status": "publicavel",
       "tipo": "medicao_de_terceiro",
+      "tipo_na_tela": "medição de terceiro, nomeada",
       "fonte": "Limaico Quinteros, Rodrigo David. “Análisis de la eficiencia energética de la batería de ion litio en una moto eléctrica para el uso de micro movilidad”. Mestrado em Engenharia Automotiva, Universidade Politécnica Salesiana, sede Quito, 2025. Bateria de 60 V e 30 Ah numa moto elétrica, em rota de 25,8 km: 41,29 Wh/km no plano e 97,74 Wh/km em subida de 12%.",
       "url": "https://dspace.ups.edu.ec/handle/123456789/30451",
       "verificado_em": "2026-10-28"
@@ -60,6 +62,7 @@
       "valor": 1.54,
       "status": "publicavel",
       "tipo": "decisao_da_ilha",
+      "tipo_na_tela": "decisão nossa, e está dito que é nossa",
       "fonte": "Decisão da Rodametria, não medição. O estudo de Quito também mediu uma condição mista, mas a mista dele é a rota dele, com a proporção de subida dele — usar aquele número aqui seria emprestar a geografia de Quito ao seu trajeto. O nosso é o meio-caminho geométrico entre os dois extremos medidos, e a página diz que é nosso.",
       "url": null,
       "verificado_em": "2026-10-28"
@@ -68,6 +71,7 @@
       "valor": 49.7,
       "status": "publicavel",
       "tipo": "medicao_de_terceiro",
+      "tipo_na_tela": "medição de terceiro, nomeada",
       "fonte": "Mesma medição de Quito, de 2025: a mesma moto elétrica de 60 V e 30 Ah, na mesma rota de 25,8 km, entregou 29,8 km contra os 60 km que a ficha declarava.",
       "url": "https://dspace.ups.edu.ec/handle/123456789/30451",
       "verificado_em": "2026-10-28"
@@ -76,6 +80,7 @@
       "valor": null,
       "status": "pendente",
       "tipo": "pendente",
+      "tipo_na_tela": "pendente, sem valor publicado",
       "fonte": "Não publicamos nenhum valor. A medição mais forte que achamos está em periódico que não conseguimos abrir, e as outras três candidatas foram recusadas: uma é de bicicleta e de fabricante de kit, uma é conta circular (divide a autonomia declarada pela energia, assumindo o número do fabricante) e uma é de moto, não de patinete.",
       "url": null,
       "verificado_em": "2026-10-28"
@@ -84,6 +89,7 @@
       "valor": 120,
       "status": "publicavel",
       "tipo": "observacao_de_mercado",
+      "tipo_na_tela": "faixa que a gente observou no varejo, numa data",
       "fonte": "Fichas de varejo lidas em extra.com.br, casasbahia.com.br e magazineluiza.com.br, mais o painel de afiliado da Shopee, em 27 e 28/10/2026. A faixa observada foi de 115 a 140 kg, com 120 kg repetido.",
       "url": null,
       "verificado_em": "2026-10-28"

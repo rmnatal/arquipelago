@@ -3,7 +3,7 @@
   "ilha": "rodametria",
   "ferramenta": "F3",
   "bloco": "4c",
-  "gerado_em": "2026-11-09",
+  "gerado_em": "2026-11-10",
   "gerado_por": "ferramentas/gerar-f3.py",
   "referencia": "regras/f3.py",
   "especificacao": "dados/especificacao-calculadoras.md (secao 3)",
@@ -23,6 +23,7 @@
       "valor": 10,
       "unidade": "por cento acima do peso total",
       "tipo": "decisao_da_ilha",
+      "tipo_na_tela": "decisão nossa, e está dito que é nossa",
       "status": "publicavel",
       "fonte": "Decisão da Rodametria, e a página nunca a atribui a ninguém.",
       "verificado_em": "2026-10-28"
@@ -31,6 +32,7 @@
       "valor": "perto do teto declarado, velocidade e aceleracao maximas nao sao alcancadas, e o desempenho e a seguranca caem",
       "unidade": null,
       "tipo": "afirmacao_qualitativa",
+      "tipo_na_tela": "afirmação de terceiro sem número, e mais de um publicador diz o mesmo",
       "status": "publicavel",
       "fonte": "Três publicadores dizem a mesma coisa, sem número: a espanhola RACE (quem está perto do peso máximo anunciado pode não obter a velocidade e a aceleração máximas que o fabricante declara), a Milar (o peso não deve exceder a recomendação, porque o desempenho é afetado) e a brasileira my-best (o limite extra evita sobrecarga no motor e mantém a velocidade e a segurança). Lidos em 28/10/2026.",
       "verificado_em": "2026-10-28"
@@ -39,6 +41,7 @@
       "valor": 120,
       "unidade": "kg",
       "tipo": "observacao_de_mercado",
+      "tipo_na_tela": "faixa que a gente observou no varejo, numa data",
       "status": "publicavel",
       "fonte": "Fichas de varejo lidas em extra.com.br, casasbahia.com.br e magazineluiza.com.br, mais o painel de afiliado da Shopee, em 27 e 28/10/2026. A faixa observada foi de 115 a 140 kg, com 120 kg repetido.",
       "verificado_em": "2026-10-28"

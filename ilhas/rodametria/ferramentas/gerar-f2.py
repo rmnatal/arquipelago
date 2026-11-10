@@ -255,6 +255,39 @@ VOCABULARIO_DE_MAQUINA = (
 )
 
 
+# CHAVE DE MAQUINA COMO O TEXTO INTEIRO, E ELA NAO E PALAVRA NEM FORMATO
+# (10/11/2026).
+#
+# AS DUAS REGUAS ABAIXO NAO A PEGARIAM, E A PROVA E QUE NENHUMA PEGOU: a F2
+# serviu `observacao_de_mercado` em texto visivel, na dobra "Como a gente chegou
+# nesses numeros", desde que aquela dobra nasceu. A lista de acento procura
+# PALAVRA portuguesa sem acento, e `observacao_de_mercado` nao e palavra: e um
+# identificador. O vocabulario de maquina procura FORMATO de data e de hora.
+#
+# E O PORTAO QUE DEVERIA PEGAR TINHA A EXCLUSAO ESCRITA NO PROPRIO COMENTARIO:
+# `textos_de_tela_do_dado`, em `teste-afirmacao-de-tela.py`, pula toda cadeia sem
+# espaco dizendo "SEM ESPACO = IDENTIFICADOR, nunca frase" — e aquela frase esta
+# CERTA sobre o dado e FALSA sobre a tela, porque o PHP promovia o identificador
+# a frase. Mesma cadeia, papel oposto: a assinatura da 20.7, a mesma do campo
+# `fonte` de 09/11, um degrau abaixo.
+#
+# A REGUA E SOBRE O TEXTO INTEIRO DE PROPOSITO. Chave DENTRO de uma frase pode
+# ser legitima — a propria pagina cita o nome de um degrau quando explica a
+# escada — e cobrar substring reprovaria texto certo, que e o erro que esta ilha
+# ja pagou duas vezes na regua de acento (o `so` dentro de "nosso" e "isso").
+CHAVE_DE_MAQUINA = re.compile(r"^[a-z0-9]+(?:[_-][a-z0-9]+)+$")
+
+
+def conferir_nao_e_chave_de_maquina(textos):
+    """Texto de tela que e, INTEIRO, um identificador de maquina REPROVA."""
+    for onde, texto in textos:
+        limpo = texto.strip().rstrip(".")
+        assert not CHAVE_DE_MAQUINA.match(limpo), (
+            "32.4: %s serve %r, que e chave de maquina e nao frase de leitor. "
+            "Chave na tela e o vocabulario de quem escreveu a fabrica, nunca o de "
+            "quem le a pagina." % (onde, limpo[:120]))
+
+
 def conferir_acento_na_tela(textos):
     """Toda frase que a tela serve tem de estar acentuada (secao 8)."""
     for onde, texto in textos:
@@ -309,8 +342,133 @@ def fonte_na_tela(cid, registro):
             % (cid, proibido, texto[:120]))
     conferir_acento_na_tela([(onde, texto)])
     conferir_vocabulario_de_maquina([(onde, texto)])
+    conferir_nao_e_chave_de_maquina([(onde, texto)])
 
     return texto
+
+
+# ---------------------------------------------------------------------------
+# O TIPO DA REGUA, NA VOZ DO LEITOR — E A LISTA E COBRADA INTEIRA CONTRA
+# `dados/constantes.json` (10/11/2026)
+# ---------------------------------------------------------------------------
+#
+# O DEFEITO, MEDIDO NO AR AS 13h2xZ DE 10/11/2026, em texto visivel da F2:
+#
+#     "Maior carga maxima que vimos no varejo — 120. Tipo: observacao_de_mercado."
+#
+# As outras CINCO reguas da mesma lista serviam frase de leitor na MESMA tela
+# ("medicao de terceiro, nomeada", "identidade matematica, nao depende de
+# fonte"). Uma servia a chave.
+#
+# A CAUSA: o mapa que traduzia tipo em frase morava dentro de
+# `snippets/rodametria-f2.php` com QUATRO entradas escritas a mao, e esta ilha
+# declara NOVE tipos em `dados/constantes.json`. O fallback era
+# `return isset( $mapa[ $tipo ] ) ? $mapa[ $tipo ] : (string) $tipo;` — e chave
+# que cai num `return $tipo` nao reclama: ela VIRA a frase. E o item 1 de 09/11
+# outra vez ("tres geradores, tres decisoes de fallback, e o da F2 cai no `id`"),
+# agora em cima do tipo e nao do nome do produto.
+#
+# CINCO DOS NOVE ESTAVAM ARMADOS, nao um: `oficial` — que e o tipo dos limiares
+# legais da F1 —, `afirmacao_qualitativa`, `observacao_de_mercado`,
+# `entrada_do_leitor` e `afirmacao_de_terceiro`. So um e impresso hoje porque a
+# F2 serve seis reguas; os tres `*-respostas.json` usam OITO dos nove tipos.
+# Buraco pre-aberto, como o de ontem.
+#
+# POR QUE O MAPA SAIU DO PHP: ele era a segunda declaracao do mesmo fato que a
+# 20.7 proibe nesta ilha, e "duas declaracoes do mesmo fato comecam iguais e so
+# uma sobe" — foi literalmente o que aconteceu, a declaracao do JSON chegou a
+# nove e o mapa do PHP ficou em quatro. A frase nasce AQUI, no ponto em que o
+# dado vira texto; viaja no `*-respostas.json` como `tipo_na_tela`; e o PHP
+# IMPRIME O QUE RECEBE, sem mapa e portanto sem fallback que possa cair na chave.
+#
+# A COMPLETUDE E COBRADA COMO NUMERO CONTRA NUMERO, pela licao da 20.10, nas
+# duas direcoes: tipo novo no JSON reprova na bancada, nunca na tela; e frase
+# que sobrou aqui depois de o tipo sair do JSON tambem reprova, porque
+# declaracao sem dono envelhece calada.
+TIPO_NA_TELA = {
+    "oficial":
+        "norma oficial, lida na fonte",
+    "identidade_matematica":
+        "identidade matemática, não depende de fonte",
+    "medicao_de_terceiro":
+        "medição de terceiro, nomeada",
+    "afirmacao_qualitativa":
+        "afirmação de terceiro sem número, e mais de um publicador diz o mesmo",
+    "decisao_da_ilha":
+        "decisão nossa, e está dito que é nossa",
+    "observacao_de_mercado":
+        "faixa que a gente observou no varejo, numa data",
+    "entrada_do_leitor":
+        "número que você informa, e não é nosso",
+    "pendente":
+        "pendente, sem valor publicado",
+    "afirmacao_de_terceiro":
+        "número que circula por aí, e esta página o contradiz",
+}
+
+
+def tipo_na_tela(tipo):
+    """O que a tela diz sobre o TIPO de uma regua — e tipo sem frase DENUNCIA.
+
+    DENUNCIA e nunca escolhe, pela 20.7. O mapa antigo ESCOLHIA: devolvia a
+    propria chave, e foi por isso que `observacao_de_mercado` foi para a tela.
+    Aqui o gerador PARA antes de gravar, que e o lugar certo de parar — a mesma
+    decisao que `fonte_na_tela` ja tomava para a frase de procedencia.
+    """
+    texto = TIPO_NA_TELA.get(tipo)
+    assert texto, (
+        "32.4: o tipo de constante %r nao tem frase de leitor em TIPO_NA_TELA, e "
+        "iria para a tela como chave de maquina. Declare a frase aqui." % (tipo,))
+    onde = "a frase do tipo %r" % tipo
+    conferir_acento_na_tela([(onde, texto)])
+    conferir_vocabulario_de_maquina([(onde, texto)])
+    conferir_nao_e_chave_de_maquina([(onde, texto)])
+
+    return texto
+
+
+def tipos_declarados_no_json(caminho=None):
+    """As chaves de `tipos_de_constante` de `dados/constantes.json`.
+
+    `carregar_constantes()` de `regras/f2.py` devolve `{id: registro}` e PERDE
+    esta secao — ela nao e constante, e a declaracao dos tipos. Por isso a regua
+    de completude le o arquivo cru em vez de reaproveitar aquele carregador.
+    """
+    caminho = caminho or os.path.join(ILHA, "dados", "constantes.json")
+    with open(caminho, encoding="utf-8") as f:
+        bruto = json.load(f)
+
+    return bruto.get("tipos_de_constante") or {}
+
+
+def conferir_tipos_na_tela_completos(declarados=None):
+    """NOVE contra NOVE: a lista daqui e a declaracao do JSON, nas duas direcoes.
+
+    Devolve quantos tipos conferiu, para quem chama poder IMPRIMIR o numero —
+    portao que nao diz sobre quantos decidiu aprova com cara de completo, que e
+    o que a 20.4 e a 20.8 cobram da janela do log.
+    """
+    if declarados is None:
+        declarados = tipos_declarados_no_json()
+    declarados = set(declarados.keys() if hasattr(declarados, "keys") else declarados)
+    com_frase = set(TIPO_NA_TELA.keys())
+
+    assert declarados, (
+        "dados/constantes.json nao declara `tipos_de_constante`, e e dele que esta "
+        "regua tira a lista. Sem a declaracao nao ha o que conferir, e aprovar "
+        "sobre lista vazia e o portao inerte da 20.8.")
+
+    faltam = sorted(declarados - com_frase)
+    sobram = sorted(com_frase - declarados)
+    assert not faltam, (
+        "32.4: %d tipo(s) declarado(s) em dados/constantes.json sem frase de leitor "
+        "em TIPO_NA_TELA: %s. Sem a frase, a chave de maquina vai para a tela."
+        % (len(faltam), ", ".join(faltam)))
+    assert not sobram, (
+        "TIPO_NA_TELA tem %d frase(s) para tipo que dados/constantes.json nao "
+        "declara: %s. Frase sem dono envelhece calada." % (len(sobram), ", ".join(sobram)))
+
+    return len(declarados)
 
 
 def _valor(campo):
@@ -490,6 +648,11 @@ def conferir_moldes(constantes):
 
 
 def montar(constantes, veiculos, pecas, escada):
+    # NOVE CONTRA NOVE, antes de montar qualquer coisa (10/11/2026): tipo novo
+    # em `dados/constantes.json` sem frase de leitor para a tela REPROVA aqui, e
+    # nao na pagina servida.
+    conferir_tipos_na_tela_completos()
+
     conferir_moldes(constantes)
     CONSTANTES_NA_TELA = (
         "energia-wh-tensao-vezes-amperagem",
@@ -626,6 +789,11 @@ def montar(constantes, veiculos, pecas, escada):
                 "valor": constantes[cid].get("valor"),
                 "status": constantes[cid].get("status"),
                 "tipo": constantes[cid].get("tipo"),
+                # A FRASE DO TIPO, E ELA NASCE AQUI (10/11/2026). O `tipo` acima
+                # continua viajando porque e a chave de maquina que o dado precisa
+                # ter; o que a TELA imprime e este campo, e o PHP nao tem mais
+                # mapa nenhum para traduzir um do outro.
+                "tipo_na_tela": tipo_na_tela(constantes[cid].get("tipo")),
                 "fonte": fonte_na_tela(cid, constantes[cid]),
                 "url": constantes[cid].get("url"),
                 "verificado_em": constantes[cid].get("verificado_em"),

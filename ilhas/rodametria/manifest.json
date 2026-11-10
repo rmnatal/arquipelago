@@ -4,7 +4,7 @@
   "nicho": "mobilidade eletrica — acertar os tres numeros antes de comprar um veiculo eletrico: categoria legal (CNH e placa), autonomia real e carga maxima",
   "dominio": "https://rodametria.com.br",
   "versao_manifest": 1,
-  "revisao": 74,
+  "revisao": 75,
   "atualizado_em": "2026-11-10",
   "estado": "nascendo",
   "desembarque": {
@@ -42,8 +42,8 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "e45999f7e8d2fe7c9316a45edee6090eb928975e898683f49b139a8362932e67",
-      "versao": "1.7.0",
+      "sha256": "a039181ecbe4bb642dc96d8a06690ff4d0553e2f41e50e2e175f79ae5a0ee9a3",
+      "versao": "1.8.0",
       "descricao": "A F2 (versao corrente no campo `versao` deste item), a PRIMEIRA pagina desta ilha no ar, em /autonomia-patinete-eletrico/. Ordem da 32.1 de cima para baixo, conferida por afirmacao no fonte: trilha e H1, promessa, formulario ja preenchido com o caso de exemplo, caixa de resultado JA PRE-RENDERIZADA no HTML (a metade que a IA le sem preencher formulario, e o que a 22.8 exige de quem desliga o JavaScript), bloco de compra, prestacao de contas da secao 7 com os cinco grupos por causa e a soma fechando o banco contado, tabela pre-renderizada visivel, e o resto em <details>. NENHUM numero e NENHUMA frase de resposta e digitado neste arquivo: tudo vem da option que o Sync grava de dados/f2-respostas.json, escrito por ferramentas/gerar-f2.py a partir de ferramentas/f2-referencia.py e de dados/constantes.json. O JS do rodape preenche MOLDE, nunca escreve frase — a bateria de mutacoes de 29/10 reprovou as duas versoes em que ele escrevia. A VERSAO SAIU DESTA PROSA EM 02/11/2026, e ela estava VELHA nos QUATRO snippets (a casca dizia 1.4.0 servindo 1.6.0; os outros tres diziam 1.0.0) — e isso e a prova de que o campo `versao` faltava. Quem declara a versao agora e o campo, espelhado da constante do arquivo por `ferramentas/atualizar-manifest.py` e cobrado por `ferramentas/teste-versao-dos-snippets.php`; prosa que repete o mesmo fato e a segunda declaracao que sobe sozinha de um lado so."
     },
     {
@@ -87,7 +87,7 @@
       "arquivo": "dados/f2-respostas.json",
       "formato": "json",
       "publicar": true,
-      "sha256": "97f5a3b2c38cc2e81e24a304ff0443541e21c3ecc7ceaf1b6165a984ab67acee",
+      "sha256": "7b912f0711632b0f9fece256fce1a2851b4a7c03c8e140048483ebbb801f5440",
       "descricao": "O que a F2 serve: campos, moldes de frase, fatores de relevo, resposta de exemplo pre-renderizada, tabela e prestacao de contas."
     },
     {
@@ -167,7 +167,7 @@
       "arquivo": "dados/f1-respostas.json",
       "formato": "json",
       "publicar": true,
-      "sha256": "dd6e33c6c8b63f4cb3aadf434c1cc903e39bb7142f053967bdcd452280ba1c9c",
+      "sha256": "e498872b46283db2a6178c1e1600620e2bdcf5aaf71f20206e2e1803c3a9a7e2",
       "descricao": "Tudo o que a F1 serve na tela, escrito por ferramentas/gerar-f1.py a partir de regras/f1.py e de dados/constantes.json. Inclui os moldes de frase INTEIROS (o PHP e o JS leem os mesmos, para as duas metades nao poderem dizer coisas diferentes para a mesma entrada), os limiares lidos da resolucao, as duas tabelas pre-renderizadas e a prestacao de contas com a soma fechando o banco."
     },
     {
@@ -175,7 +175,7 @@
       "arquivo": "dados/f3-respostas.json",
       "formato": "json",
       "publicar": true,
-      "sha256": "16da77ddff84925897c76034670859fdaa8a8cca763529456ff84fb28fdf5ff5",
+      "sha256": "80a23ad6ab527c5da70a2a86a0904cd6b63039f57226c2961b2ac59699d01cc7",
       "descricao": "Tudo o que a F3 serve na tela, escrito por ferramentas/gerar-f3.py a partir de regras/f3.py e de dados/constantes.json. Inclui os moldes de frase INTEIROS (o PHP e o JS leem os mesmos, para as duas metades nao poderem dizer coisas diferentes para a mesma entrada), a tabela pre-renderizada de 9 pesos com a carga minima de cada um recomputada pela referencia, as DUAS contagens por linha (quantos do banco aguentariam aquele peso e quantos poderiam ser oferecidos — fatos diferentes, e hoje a segunda e zero em toda linha), e a prestacao de contas com a soma fechando os 17 registros do banco."
     },
     {

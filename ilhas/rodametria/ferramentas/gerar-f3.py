@@ -85,6 +85,11 @@ FONTE_NA_TELA = IRMA.FONTE_NA_TELA
 # subia; agora e uma. Ver `fonte_na_tela` e `NUNCA_NA_PAGINA_PUBLICA` em
 # `gerar-f2.py`.
 fonte_na_tela = IRMA.fonte_na_tela
+# E A FRASE DO TIPO, pelo defeito de 10/11/2026 na F2: ver `tipo_na_tela` em
+# `gerar-f2.py`. A F3 usa tres constantes, e uma delas e justamente a
+# `teto-de-carga-do-mercado-brasileiro`, cujo tipo `observacao_de_mercado` era o
+# que estava impresso cru no ar.
+tipo_na_tela = IRMA.tipo_na_tela
 conferir_vocabulario_de_maquina = IRMA.conferir_vocabulario_de_maquina
 
 # O CASO DE EXEMPLO. A 32.1 manda vir JA PREENCHIDO no formulario e JA
@@ -166,6 +171,7 @@ def montar(constantes, veiculos):
             "valor": c.get("valor"),
             "unidade": c.get("unidade"),
             "tipo": c.get("tipo"),
+            "tipo_na_tela": tipo_na_tela(c.get("tipo")),
             "status": c.get("status"),
             # A 32.4 PROIBE TEXTO DE BASTIDOR NA TELA, e a `fonte` destas
             # constantes vai para a dobra "Como sabemos". A da margem diz
