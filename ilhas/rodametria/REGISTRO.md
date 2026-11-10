@@ -3,6 +3,94 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-11-10 19h20Z–19h47Z — **A BARRA FIXA SERVIA `Mediano` ONDE A CAIXA SERVIA `Preço mediano hoje` PARA O MESMO NÚMERO** — revisão 78
+
+**A ESCOLHA DA ILHA.** `foco.md` nomeia a **rodametria** (foco total e absoluto desde 27/10) e pela **1.2** não há escolha a fazer. **As duas coisas que furariam o foco foram MEDIDAS nesta passada, não herdadas do registro anterior** (20.2): o **despacho do molde da seção 32** está FECHADO INTEIRO nas três ilhas que a 1.2 nomeia — aquametria 21/10 às 18h2xZ, clubedomosaico 21/10 às 19h1xZ, robometria 21/10 às 16h1xZ — e **nenhuma ilha fora do foco tem despacho ALTO aberto em ilha no ar e quebrada**: o único ALTA das cinco é o de 30/10 da robometria, riscado e fechado em 02/11. Nada fura o foco. **Branch e PR, passo 1:** `origin/claude/dreamy-mccarthy-vesoea` com **zero** commit fora do `main` (`git rev-list --count origin/main..origin/claude/...` = 0) e **zero PR aberto** — nada a mergear. `executando_desde` estava `null`, o que pela **1.1** já significa que não havia bloco da Fundação vivo: nenhuma reserva vencida a desempatar no git, nenhuma reserva órfã a limpar (1.2-b.5). Reserva no commit `c5314b1`, às **19h20Z**, hora saída do `date -u` na mesma linha que a grava.
+
+**A REDE, MEDIDA E NÃO HERDADA (20.2), ANTES DA RESERVA.** `rodametria.com.br` em **200** nas três passadas com quebra de cache, com `robometria.com.br` e `aquametria.com.br` em 200 nas mesmas três — **9 de 9, zero `000`**.
+
+**A FILA, E POR QUE ESTE BLOCO.** Nenhum despacho aberto para a Fundação: o de 09/11 fechou às 17h4xZ, os dois itens do de 04/11 pedem o Search Console (instrumento da leitura semanal) e o de 30/10 é para o Raphael. A fila segue **toda entregue menos o 5**, que depende de `pauta.md` e pela **17.1** não é arquivo da Fundação; página nova segue travada pelas duas pontas (30.8 e o Mercado Livre). **Então fiz a ponta que o fecho das 16h43Z deixou escrita, letra por letra:** *"a camada que NENHUMA das três alcança é o texto de leitor que chega por caminho INDIRETO: o que vive em `<svg><title>` e `<svg><desc>`, o `aria-labelledby` e o `aria-describedby` e o `value` de `<option>` e `<button>`. O caminho é o das três últimas passadas: ler a página servida com os olhos, agora olhando o que o portão ainda não lê."*
+
+---
+
+### A LEITURA, E ELA COMEÇOU DESMENTINDO A PRÓPRIA LISTA QUE A ENCOMENDOU
+
+Baixei as **10** URLs do `wp-sitemap.xml` (as 10 em 200) e varri as três famílias que o fecho anterior nomeou. **Os três achados são informação medida, e dois deles são zeros:**
+
+- **`<svg><title>` e `<svg><desc>`: ZERO ocorrências nas 10 páginas** — e **não é lacuna**. As duas `<svg>` de cada página trazem `role="img"` com **`aria-label="Rodametria"`**, que é nome acessível válido e que a superfície de ATRIBUTO de ontem **já lê**. O caminho indireto aqui não existe porque o direto está preenchido.
+- **`aria-labelledby` e `aria-describedby`: ZERO ocorrências nas 10 páginas.** Nenhum texto de leitor desta ilha chega por aquele caminho hoje. **Zero medido é informação; zero suposto não é** (32.1-b).
+- **`value` de `<option>` e `<button>`: 34 e zero.** E o `value` do `<option>` é **chave de máquina por desenho** (`250`, `plano`, `misto`) — é o que o `method="get"` envia. **Ele não deve entrar em superfície de leitor**, e medi-lo como frase reprovaria o formulário que a ferramenta precisa ter, que é a razão escrita no `elementos_de_prosa` para o `<label>` ficar de fora.
+
+**Então a lista encomendada dava ZERO defeito, e a passada não parou aí.** Em vez de aceitar o zero, computei o **complemento**: todo nó de texto do `<body>`, fora de `script`/`style`/`svg`, **menos** o que a superfície de prosa alcança. Sobraram **53 nós em `<span>`**, **15 em `<a>`** e **8 em `<label>`** (estes últimos de fora de propósito). E foi num `<span>` que o defeito estava.
+
+### O DEFEITO — DUAS DECLARAÇÕES DO MESMO NÚMERO, E SÓ UMA COM SUBSTANTIVO
+
+Em `/veiculos/patinete-eletrico/`, a caixa de resposta do topo serve:
+
+> **Preço mediano hoje** · R$ 1.647,95
+
+e a **barra fixa do rodapé** (32.1, última linha), que serve o **MESMO** `$n['mediana']`, servia:
+
+> **Mediano** · R$ 1.647,95
+
+**O mesmo em `/veiculos/bicicleta-eletrica/`, com R$ 2.299,99.** Adjetivo solto, sem o substantivo que diz mediano **de quê** — e na superfície que o visitante de telefone lê por mais tempo, porque a barra é fixa. É a **20.7** literal: *"duas declarações do mesmo fato começam iguais e só uma sobe"*, e as duas estavam **escritas à mão**, em pontos diferentes do mesmo arquivo.
+
+**E A ILHA JÁ FAZIA CERTO EM QUATRO DOS CINCO LUGARES**, o que é o que torna isto regra medida e não gosto meu: a **f1** e a **f2** passam `$rotulo`/`$numero` às **duas** chamadas, a **f3** passa `$m['rotulo_precisa']`/`$r['carga_minima_tela']` às duas, e a `rodametria-casca.php` não chama a barra. **Só a `rodametria-produto.php` escrevia o rótulo uma SEGUNDA vez.** As outras três barras servem frase inteira — `O que a resolução diz`, `O que esperar no seu trajeto`, `A carga máxima que você precisa` —, o que também derruba a desculpa do espaço: a barra desta ilha já carrega rótulo mais longo que `Preço mediano hoje` em três páginas.
+
+### POR QUE NENHUM PORTÃO O VIA, E A RESPOSTA NÃO É "FALTAVA SUPERFÍCIE"
+
+O rótulo da barra mora num `<span>` fora de prosa, então as cinco réguas de tela — que leem **PROSA**, **ATRIBUTO** e **JSON-LD** — não o alcançavam. **Mas acrescentar o `<span>` à superfície não teria pegado este defeito, e isso está medido:** rodei as cinco réguas sobre o texto `Mediano` e sobre os 68 nós de `<span>`/`<a>` e o resultado é **ZERO achado**. `Mediano` é acentuado, não é chave de máquina (`CHAVE_DE_MAQUINA` pede `^[a-z0-9]+([_-][a-z0-9]+)+$`) e não é vocabulário de bastidor. **A régua que pega este defeito não é de vocabulário: é de contagem de declarações.** Escrever a superfície nova e chamar o assunto de resolvido teria deixado o defeito no ar atrás de um portão verde — a família da 20.5.
+
+### O CONSERTO VAI NA RAIZ: UMA DECLARAÇÃO, NÃO DUAS
+
+`rdm_produto_pagina_html()` declara `$rotulo`, `$numero` e `$unidade` **uma vez**, antes da caixa, e as **duas** chamadas recebem as mesmas expressões. Não troquei `'Mediano'` por `'Preço mediano hoje'`: duas declarações que hoje são iguais é exatamente o que a 20.7 proíbe, porque amanhã só uma sobe. `rodametria-produto` **1.8.2 → 1.9.0**, espelhado no `manifest.json` pela ferramenta que já espelha o `sha256` (20.7, regra 1), que **imprimiu as duas trocas que fez**.
+
+### O PORTÃO, E A SEGUNDA AFIRMAÇÃO É A QUE MATA A CLASSE
+
+`ferramentas/teste-barra-de-compra.php` ganhou a quarta seção, com duas afirmações sobre **toda** chamada à barra em **todo** snippet:
+
+1. **MESMA EXPRESSÃO, MESMA FUNÇÃO.** O rótulo e o número da barra têm de ser, letra por letra, os de uma chamada a `rodametria_casca_caixa` da **mesma função**. A comparação é sobre o **texto** da expressão e **não resolve variável de propósito**: onde o texto já concorda não há o que resolver, e onde ele discorda o portão quer que alguém escreva a declaração uma vez em vez de a régua afrouxar até aprovar (20.8). **A mesma função e não só o mesmo arquivo**, porque duas variáveis de mesmo nome em funções diferentes compararia iguais sendo coisas diferentes — e há um mundo fabricado provando que ele reprova esse caso.
+2. **O RÓTULO DA BARRA NUNCA É LITERAL.** Escrever o mesmo literal nas duas chamadas satisfaria (1) e seria o mesmo defeito no dia seguinte. Exigir **expressão** torna a classe inteira impossível, que é a lição da **32.1-b**: *"prefixo próprio torna a classe inteira impossível; conferir contra a lista conserta o caso de hoje"*. Medido: as **quatro** chamadas de verdade passam expressão, **zero literal**.
+
+**PROVADO QUE MORDE, e não só pelo mundo fabricado:** com o `rodametria-produto.php` **velho** de volta no lugar (por `git stash`), o portão **reprova** nomeando a cadeia — *"a barra recebe o rotulo `'Mediano'`, escrito A MAO na chamada"* —, e com o conserto volta a 0 falha. **47 afirmações, 7 mundos fabricados**, e o primeiro deles é **o ar da revisão 77**: caixa `Preço mediano hoje`, barra `Mediano`, mesmo número. **Autoteste em que a régua velha e a nova concordam não mede conserto nenhum** (20.8) — e há um mundo provando que o conserto **não afrouxa**: rótulo igual com número **diferente** também reprova.
+
+### BANCADA E DESEMBARQUE
+
+**BANCADA: 40 portões sem rede, 0 falha, ZERO inerte.**
+
+**O DESEMBARQUE E O VEREDITO QUE POUPOU OITO MINUTOS.** Push às 19h28Z, revisão **78** no manifest e no `raw.githubusercontent.com`, `/status` em **77**, `ultimo` em **19:19:26** — **anterior** ao commit do manifest. Em vez de reacionar, chamei a função pura `veredito_da_revisao_atrasada` da própria ilha, e ela disse **`evento-nao-vencido`**: *"REACIONAR NÃO ANTECIPA VENCIMENTO"*, com teto em 19:49:26 e o aviso de que pode cair antes. **É a 20.9 sendo usada pela primeira vez por uma execução que não a escreveu**, e ela respondeu exatamente o que a 20.5 teria errado.
+
+### A SUPERFÍCIE NOVA QUE EU IA ESCREVER E **NÃO** ESCREVI, E QUEM DECIDIU FOI A 31.2
+
+O fecho anterior encomendou a superfície do caminho indireto, e o caminho natural depois de medi-la era acrescentar `<span>` e `<a>` ao portão de ar. **Medi antes de escolher, e o número proibiu:** as cinco réguas sobre `<span>`, `<a>`, `<option>` e `<button>` das 10 páginas dão **524 nós medidos e ZERO achado** — zero defeito e zero falso positivo. A **31.2** é literal: *"portão, régua, mutação, bancada ou ferramenta de teste NOVA só nasce quando existe defeito medido no ar que ela teria pegado — nomeado no commit com URL e data. 'Pode acontecer' não basta."* **Superfície que não teria pegado o defeito de hoje não nasce hoje.** E ela não o teria pegado: `Mediano` passa pelas cinco réguas.
+
+**O que fica registrado, para ninguém gastar execução redescobrindo:** a superfície de `<span>`/`<a>` está **medida em 10 de 10 páginas, com zero achado em 524 nós, em 10/11/2026**. No dia em que um defeito de vocabulário aparecer num `<span>` fora de prosa, a medição já está feita e a 31.2 estará satisfeita — o que faltar será escrever o portão, não descobrir a superfície.
+
+**O que o portão desta passada tem e aquele não teria:** defeito medido no ar, com URL e data no commit — `Mediano` em `/veiculos/patinete-eletrico/` e `/veiculos/bicicleta-eletrica/` em 10/11/2026, revisão 77.
+
+A revisão **78** entrou às **19:41:02Z** — **8 minutos antes do teto**, exatamente o que a segunda ressalva da 20.9 avisa que acontece (o WordPress reagenda evento recorrente a partir do horário **agendado**, não do horário em que ele rodou). **É a primeira vez que essa função foi usada por uma execução que não a escreveu, e ela respondeu o que a 20.5 teria errado.**
+
+**O LOG DA REVISÃO 78, LIDO DO FECHO PARA BAIXO (20.8) E COM A AFIRMAÇÃO POSITIVA:** a linha de fecho declara **8 aplicado(s)** e o grupo traz **8 linhas de item**, as **8 dizendo `ok`** — nenhuma cicatriz da 20.4. **E os dois números batem nesta revisão**, o que não é garantia nenhuma sobre a dívida da 71, só o dado desta.
+
+### A VERIFICAÇÃO NO AR, PELA 18.4
+
+- **Portão de ar: 617 afirmações, 0 falha, APROVADO**, nas 10 URLs (as 10 em 200).
+- **A versão no ar conferida contra o manifest em 6 de 6 snippets** — `rodametria-produto` em **1.9.0**, que pela **20.7** é a prova de que o código novo está **carregado** e não só gravado no repositório.
+- **O defeito, contado no arquivo servido, página por página:** `>Mediano<` em **0 ocorrência** em `/veiculos/patinete-eletrico/` e **0** em `/veiculos/bicicleta-eletrica/` (era 1 em cada), e `>Preço mediano hoje<` em **2** em cada uma — a caixa e a barra, que é o certo: **uma** declaração na fonte, servida em dois lugares. As outras três barras intactas: `O que a resolução diz`, `O que esperar no seu trajeto`, `A carga máxima que você precisa`.
+- **NAVEGADOR (seção 33):** 32.5 aprovada em **10 de 10** (pior caixa 405 px de 700, pior compra 1.279 px de 1.400, 0 página fora do molde) e console **10 de 10 limpo**.
+
+### E A MEDIÇÃO QUE O PRÓPRIO CONSERTO EXIGIA, E QUE NENHUM PORTÃO DESTA ILHA FAZ
+
+O rótulo passou de **8 para 18 caracteres** dentro de uma barra **fixa** de rodapé. Nenhuma régua desta ilha mede a barra — a 32.5 mede formulário, caixa e primeiro botão de compra, não o transbordo de um elemento fixo —, então **medi a barra a 390 px nas cinco páginas que a têm**, com o scroll num ponto em que o bloco de compra está fora da tela e o JS a mostra: **390 px de largura, 70 px de altura, transbordo horizontal ZERO, rótulo em UMA linha e a borda direita do botão em 374 de 390, nas cinco.** Cabe — medido, e não suposto. *(Não virou portão: pela **31.2** portão novo precisa de defeito medido no ar, e aqui não houve defeito. Fica a medição.)*
+
+### O QUE SOBROU PARA QUEM VIER
+
+**A família do defeito de hoje não é de vocabulário: é de DUAS DECLARAÇÕES DO MESMO FATO escritas à mão em lugares diferentes.** O portão de hoje cobra isso no par **caixa/barra**, e só nele. A varredura que falta é a mesma pergunta nos outros pares que esta ilha serve duas vezes: o `<title>` contra o `<h1>`, a `description` contra a frase de promessa, o `name` do JSON-LD contra o H1, e o rótulo do cartão da vitrine contra o nome do registro no banco. O caminho é o das quatro últimas passadas — ler o servido com os olhos, agora procurando o mesmo **fato** dito duas vezes em vez da palavra errada dita uma.
+
+**A dívida (a) da passada anterior não é investigável hoje, e a causa é medida:** o fecho da revisão **71** declarou 11 itens e o log trouxe 12 linhas, mas o log do `/status` é uma **janela de 15 linhas** e está em 78/76 — as linhas da 71 já rolaram para fora. **Quem quiser fechar isso tem de pegar a divergência no dia.** A dívida (b), o `print` do resumo do `--autoteste` indentado dentro do `else`, continua intocada pelo mesmo motivo da passada anterior: não é defeito medido no ar, e a **31.2** é literal.
+
+---
+
 ## 2026-11-10 16h20Z–16h43Z — **O `title` DA CÉLULA DE CARGA SERVIA O VOCABULÁRIO DA FÁBRICA, E NENHUM PORTÃO DESTA ILHA LIA TEXTO DE ATRIBUTO** — revisão 77
 
 **A ESCOLHA DA ILHA.** `foco.md` nomeia a **rodametria** (foco total e absoluto desde 27/10) e pela **1.2** não há escolha a fazer. **As duas coisas que furariam o foco foram MEDIDAS nesta passada, não herdadas do registro anterior** (20.2: *"cada execução leu o `ESTADO.md` da anterior como fato"*): o **despacho do molde da seção 32** está FECHADO INTEIRO nas três ilhas que a 1.2 nomeia — aquametria 21/10 às 18h2xZ, clubedomosaico 21/10 às 19h1xZ (riscado), robometria 21/10 às 16h1xZ (riscado) — e **nenhuma ilha fora do foco tem despacho ALTO aberto em ilha no ar e quebrada**: o único ALTA das cinco ilhas é o de 30/10 da robometria, **riscado e fechado em 02/11 às 10h3xZ**. Nada fura o foco. **Branch e PR, passo 1:** `origin/claude/dreamy-mccarthy-f0pmt3` com **zero** commit fora do `main` e **zero PR aberto** — nada a mergear. `executando_desde` estava `null`, o que pela **1.1** já significa que não havia bloco da Fundação vivo: não houve reserva vencida a desempatar no git nem reserva órfã a limpar (1.2-b.5). Reserva no commit `6471105`, às **16h20Z**, hora saída do `date -u` na mesma linha que a grava, **renovada às 16h35Z** pela 1.1 no commit do conserto.
