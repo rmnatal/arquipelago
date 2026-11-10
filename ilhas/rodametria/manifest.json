@@ -4,7 +4,7 @@
   "nicho": "mobilidade eletrica — acertar os tres numeros antes de comprar um veiculo eletrico: categoria legal (CNH e placa), autonomia real e carga maxima",
   "dominio": "https://rodametria.com.br",
   "versao_manifest": 1,
-  "revisao": 76,
+  "revisao": 77,
   "atualizado_em": "2026-11-10",
   "estado": "nascendo",
   "desembarque": {
@@ -64,8 +64,8 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "49f54af50c89e8afe5ec29ed9fa888aab19192e42e4ac0c07befbbf31689add2",
-      "versao": "1.8.1",
+      "sha256": "877cd48fa72873431622668ece2a0172811f2979abe2e58835a731320f3e1553",
+      "versao": "1.8.2",
       "descricao": "O MOTOR DA SECAO 30 nesta ilha (versao corrente no campo `versao` deste item): a secao de nivel 1 `/veiculos/` e as paginas de consulta de produto que nascem filhas diretas dela, com o slug igual a consulta. Ordem da 32.2 de cima para baixo: trilha e H1, caixa de resposta com o preco mediano em Mono, bloco de compra com id=comprar logo abaixo, tabela-resumo VISIVEL com TODOS os anuncios (a secao 7 manda nomear todo item uma vez), a prestacao de contas de quem nao entrou com a causa contada, a malha da 16.4 tambem visivel porque e alvo de link, e o resto nas dobras da casca. NENHUM numero e digitado neste arquivo: a prosa vem de dados/paginas-de-produto.json com moldes e o numero vem de dados/vitrine-de-produto.json, recontado por ferramentas/gerar-vitrine-de-produto.py. A tabela NAO tem coluna de potencia nominal, velocidade maxima, acelerador nem carga maxima: o esquema desta ilha exige nivel 5 ou melhor nesses quatro e titulo de anuncio e nivel 6, entao a coluna diz o que o anuncio DECLARA em vez de preencher coluna tecnica com palavra tirada do titulo. JSON-LD de ItemList e FAQPage no wp_head; folha no wp_footer; nada dentro do retorno do shortcode. A VERSAO SAIU DESTA PROSA EM 02/11/2026, e ela estava VELHA nos QUATRO snippets (a casca dizia 1.4.0 servindo 1.6.0; os outros tres diziam 1.0.0) — e isso e a prova de que o campo `versao` faltava. Quem declara a versao agora e o campo, espelhado da constante do arquivo por `ferramentas/atualizar-manifest.py` e cobrado por `ferramentas/teste-versao-dos-snippets.php`; prosa que repete o mesmo fato e a segunda declaracao que sobe sozinha de um lado so."
     },
     {
@@ -135,7 +135,7 @@
       "arquivo": "dados/vitrine-de-produto.json",
       "formato": "json",
       "publicar": true,
-      "sha256": "a4ef854bbbb7bbf2c78935177a66e2d4be4a8f9dc35b2d3c2648343d680e4a17",
+      "sha256": "4107db82ab26e52406d683c3752831a68e8d1417151b9868d7f3335974b6857f",
       "descricao": "A camada GERADA: cartoes do carrossel (teto de cinco, 32.1), linhas da tabela (todas) e os numeros, RECONTADOS de dados/anuncios-por-consulta.json."
     },
     {

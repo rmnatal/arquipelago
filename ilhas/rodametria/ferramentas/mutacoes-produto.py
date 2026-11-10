@@ -58,11 +58,29 @@ def exigir(condicao, o_que):
 # ---------------------------------------------------------------------------
 # A BANCADA DE AREIA
 # ---------------------------------------------------------------------------
+# As pastas que a areia carrega. `ferramentas` porque e o que roda, `dados`
+# porque e o que se muta, `regras` porque e o que as ferramentas importam.
+_ARQUIVOS_DA_AREIA = ('dados', 'ferramentas', 'regras')
 def montar_areia():
-    """Uma copia da ilha com `dados/` e `ferramentas/` reais, para mutar `dados/`."""
+    """Uma copia da ilha com `dados/`, `ferramentas/` e `regras/` reais.
+
+    `regras/` ENTROU EM 10/11/2026 as 16h4xZ, e a ausencia dele nao era teorica:
+    a areia so copiava `dados/` e `ferramentas/`, e no minuto em que
+    `gerar-vitrine-de-produto.py` passou a importar as reguas de acento de
+    `gerar-f2.py` — que importa `regras/f2.py` — a bateria inteira morreu com
+    `FileNotFoundError: .../regras/f2.py`, e a BANCADA a chamou de INERTE em vez
+    de aprovada. Areia que nao carrega o que a ferramenta importa nao mede a
+    ferramenta: ela mede a areia.
+
+    O `_ARQUIVOS_DA_AREIA` esta nomeado em vez de "as pastas do repositorio"
+    porque `snippets/` fica FORA de proposito — a mutacao e de DADO, e copiar PHP
+    para a areia nao muda nada que esta bateria leia.
+    """
     areia = tempfile.mkdtemp(prefix='rdm-mut-')
-    shutil.copytree(os.path.join(RAIZ, 'dados'), os.path.join(areia, 'dados'))
-    shutil.copytree(FERRAMENTAS, os.path.join(areia, 'ferramentas'))
+    for pasta in _ARQUIVOS_DA_AREIA:
+        de = os.path.join(RAIZ, pasta)
+        if os.path.isdir(de):
+            shutil.copytree(de, os.path.join(areia, pasta))
     return areia
 
 

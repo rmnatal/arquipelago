@@ -80,6 +80,15 @@ def _modulo(nome, caminho):
 # gravado; a leitura dele e refeita aqui e refeita no `--conferir`.
 rel = _modulo('relevancia', os.path.join(FERRAMENTAS, 'teste-relevancia-do-anuncio.py'))
 
+# AS REGUAS DE ACENTO SAO AS DA ILHA, IMPORTADAS, NUNCA UMA LISTA NOVA AQUI.
+# `gerar-f2.py` e onde elas moram desde 10/11/2026, e `teste-afirmacao-de-tela.py`
+# as carrega do mesmo jeito, com a razao escrita no cabecalho dele: *"duas copias
+# da mesma regra seriam a segunda declaracao do mesmo fato que a 20.7 proibe
+# nesta ilha"*. Lista nova aqui envelheceria sozinha no dia em que alguem achasse
+# a proxima forma sem acento.
+_VOZ = _modulo('voz_da_tela', os.path.join(FERRAMENTAS, 'gerar-f2.py'))
+SEM_ACENTO_NA_FRASE_DA_CARGA = _VOZ.conferir_acento_na_tela
+
 
 def _textos(valor):
     """Toda string dentro de um valor da camada declarada, em qualquer profundidade.
@@ -416,12 +425,19 @@ MUNDOS_DO_PAR_DA_F2 = (
 
 
 def o_que_o_anuncio_declara_de_carga(a):
-    """A celula da coluna de carga. Diz o numero, ou diz que o titulo se cala."""
-    valor, porque = rel.carga_declarada(a['titulo'])
-    if valor is None:
-        return ('o título não declara', porque)
+    """A celula da coluna de carga, e o que o `title` dela leva.
 
-    return ('até %d kg' % valor, porque)
+    Devolve `(celula, porque, porque_e_citacao)`. O terceiro valor e DECLARADO
+    pela regua, nunca adivinhado aqui: `True` quer dizer que `porque` e o pedaco
+    LITERAL do titulo do anuncio, `False` que e uma frase nossa. A diferenca
+    importa porque o portao exige coisas diferentes das duas — a citacao tem de
+    existir dentro do titulo, a frase nossa tem de estar acentuada.
+    """
+    valor, porque, e_citacao = rel.carga_declarada(a['titulo'])
+    if valor is None:
+        return ('o título não declara', porque, e_citacao)
+
+    return ('até %d kg' % valor, porque, e_citacao)
 
 
 def ordenar(servem):
@@ -539,11 +555,25 @@ def montar(bloco, editorial_da_pagina):
             'preco_numero': a['preco'],
             'preco_nota': '(preço de %s)' % data_br(a['coletado_em']),
             'especificacao': o_que_o_anuncio_declara(a),
-            # A CARGA QUE O TITULO DECLARA, e `carga_porque` e o PEDACO DO
-            # TITULO que a sustenta — procedencia que se confere abrindo o
-            # anuncio, nunca uma frase nossa (secao 24).
+            # A CARGA QUE O TITULO DECLARA, E `carga_porque` E UMA DE DUAS
+            # COISAS — por isso o campo ao lado existe, e por isso ele e
+            # GRAVADO e nao deduzido na hora de servir.
+            #
+            # O COMENTARIO QUE ESTAVA AQUI DIZIA `nunca uma frase nossa`, E ERA
+            # FALSO NAS DUAS PONTAS, medido no ar em 10/11/2026 as 16h3xZ:
+            # `/veiculos/patinete-eletrico/` servia, no `title` da celula,
+            # `o titulo nao declara nenhum kg` NOVE vezes (frase nossa, e sem
+            # acento) e `suporta ate 150kg` (a NORMALIZACAO do pedaco, que nao
+            # se acha no anuncio que escreve `Suporta Até 150kg`). Comentario
+            # que declara um mecanismo parece conferido e nao mede nada (20.7).
+            #
+            # `carga_porque_e_citacao=True` -> pedaco LITERAL do titulo, que se
+            # confere abrindo o anuncio (secao 24). `False` -> frase nossa, na
+            # voz do leitor e acentuada, dizendo por que a ilha nao afirma a
+            # carga daquele anuncio.
             'carga': o_que_o_anuncio_declara_de_carga(a)[0],
             'carga_porque': o_que_o_anuncio_declara_de_carga(a)[1],
+            'carga_porque_e_citacao': o_que_o_anuncio_declara_de_carga(a)[2],
             'url': a['url_afiliado'],
             'programa': 'shopee',
             # DOIS "DEGRAUS" DIFERENTES, E JUNTA-LOS SERIA DEFEITO SILENCIOSO.
@@ -859,6 +889,36 @@ def conferir():
             afirmacoes += 1
             if not (item.get('carga_porque') or '').strip():
                 falhas.append('%s: celula de carga sem procedencia' % g['id'])
+
+            # O `title` DA CELULA E TEXTO QUE O VISITANTE LE, E ELE PASSOU DEZ
+            # DIAS SERVINDO O VOCABULARIO DA FABRICA (10/11/2026, 16h3xZ).
+            # O portao velho conferia que o campo EXISTIA; nunca o que ele
+            # dizia. As duas afirmacoes abaixo sao as que faltavam, e cada uma
+            # cobra o que a sua metade promete.
+            porque = (item.get('carga_porque') or '')
+            e_cit = item.get('carga_porque_e_citacao')
+            afirmacoes += 1
+            if e_cit not in (True, False):
+                falhas.append('%s: carga_porque sem declarar se e citacao (%r). '
+                              'Quem recebe o campo nao pode adivinhar de qual das '
+                              'duas metades ele e' % (g['id'], e_cit))
+            afirmacoes += 1
+            if e_cit is True and porque not in (item.get('nome') or ''):
+                falhas.append('%s: carga_porque %r se declara pedaco do titulo e NAO '
+                              'esta no titulo do anuncio — procedencia que nao se '
+                              'acha no anuncio nao e procedencia (secao 24)'
+                              % (g['id'], porque))
+            afirmacoes += 1
+            if e_cit is False:
+                # A REGUA INTEIRA DA ILHA, as duas tuplas, pela funcao dela —
+                # nao uma copia da lista de substring, que deixaria de fora a
+                # cobranca por palavra inteira (`resolucao`, `transito`, `ate`).
+                try:
+                    SEM_ACENTO_NA_FRASE_DA_CARGA(
+                        [('%s: carga_porque' % g['id'], porque)])
+                except AssertionError as erro:
+                    falhas.append('%s (e FRASE NOSSA, nao citacao: texto de '
+                                  'atributo e texto de tela, secao 8)' % erro)
             afirmacoes += 1
             # A CELULA TEM DE REFAZER DA REGUA, nunca de campo herdado.
             valor = rel.carga_declarada(item['nome'])[0]

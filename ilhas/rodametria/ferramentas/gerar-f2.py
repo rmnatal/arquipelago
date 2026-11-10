@@ -202,6 +202,14 @@ SEM_ACENTO_NA_TELA = (
     "decisao", "medicao", "proposito", "numero", "nao ", "tambem", "voce",
     "veiculo", "eletric", "reguas", "procedencia", "amperagem-hora",
     "pagina", "secao", "ultima", "proximo", "orcamento", "duvida",
+    # ACRESCENTADA EM 10/11/2026 as 16h3xZ, pelo defeito medido no ar: o `title`
+    # do `<td>` da coluna de carga servia `o titulo nao declara nenhum kg` em
+    # `/veiculos/patinete-eletrico/` (9 vezes) e em `/veiculos/bicicleta-eletrica/`
+    # (6). O `nao ` desta mesma tupla pegou a frase; `titulo` nao estava aqui, e
+    # e a palavra que o defeito tem no meio. Por SUBSTRING de proposito: cobre
+    # `titulos` sem precisar das duas, e `titulo` nao e inicio de nenhuma palavra
+    # portuguesa que esta ilha escreva certa sem acento.
+    "titulo",
 )
 
 # AS FORMAS QUE SO PODEM SER COBRADAS POR PALAVRA INTEIRA, E A LISTA ACIMA NAO
@@ -222,6 +230,14 @@ SEM_ACENTO_PALAVRA_INTEIRA = (
     # Medidas em 10/11/2026 nos campos `fonte` das sete constantes da F1.
     "resolucao", "ministerio", "brasilia", "materia", "fabrica",
     "transito", "noticia", "atribuicao",
+    # ACRESCENTADO EM 10/11/2026 as 16h3xZ, e ELE SO PODIA ENTRAR AQUI: o `title`
+    # da celula de carga servia `suporta ate 150kg` e `ate 60kg`, a NORMALIZACAO
+    # do pedaco do titulo. Por SUBSTRING o `ate` casaria dentro de `atender`,
+    # `atencao` e `atento` — a armadilha que esta ilha ja pagou com o `so` dentro
+    # de `nosso` e com o `6v` dentro de `36V`. Por palavra inteira, `ate` em
+    # portugues e sempre o `até` sem acento: a forma do verbo atar existe na
+    # lingua e nao existe no vocabulario desta ilha, que fala de veiculo.
+    "ate",
 )
 
 # O NOME DO DONO E O NAVEGADOR DELE NUNCA VAO PARA A PAGINA PUBLICA.
@@ -303,9 +319,22 @@ def conferir_nao_e_chave_de_maquina(textos):
 
 
 def conferir_acento_na_tela(textos):
-    """Toda frase que a tela serve tem de estar acentuada (secao 8)."""
+    """Toda frase que a tela serve tem de estar acentuada (secao 8).
+
+    A LACUNA DE MOLDE SAI ANTES, pelo mesmo motivo que ela sai antes das reguas
+    de formato, e ESTA FUNCAO NAO A TIRAVA (10/11/2026, 16h4xZ). Acusou no minuto
+    em que `titulo` entrou na tupla de cima: o molde
+    `ressalva_pico_nenhum_nominal` serve *"Um deles se chama, letra por letra,
+    “{titulo}”"*, e `titulo` ali e o NOME DA LACUNA — quem a preenche e o molde,
+    antes de a frase existir. Chamar isso de palavra sem acento e reprovar a
+    pagina certa, que e o caminho mais curto para alguem passar a ignorar o
+    portao (20.5). A nota de `_RE_LACUNA_DE_MOLDE` abaixo ja escreveu esta licao
+    para a regua do sublinhado, nesta mesma manha, e a licao nao tinha chegado
+    aqui: `sem_lacuna_de_molde` esta definida DEPOIS desta funcao no arquivo, e
+    por isso ela se chama aqui dentro, em tempo de execucao.
+    """
     for onde, texto in textos:
-        baixo = texto.lower()
+        baixo = sem_lacuna_de_molde(texto).lower()
         for forma in SEM_ACENTO_NA_TELA:
             assert forma not in baixo, (
                 "texto de tela sem acento em %s: a forma %r aparece em %r. Texto de "

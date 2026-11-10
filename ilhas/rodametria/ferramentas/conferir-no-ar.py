@@ -269,6 +269,80 @@ def elementos_de_prosa(corpo):
     return out
 
 
+# ---------------------------------------------------------------------------
+# A TERCEIRA SUPERFICIE: O TEXTO QUE VIVE EM ATRIBUTO (10/11/2026, 16h3xZ)
+# ---------------------------------------------------------------------------
+#
+# O FECHO DAS 14h13Z DE HOJE DEIXOU ESTA FAMILIA ESCRITA, letra por letra, como
+# o que sobrava para quem viesse: *"as cinco reguas de tela agora correm sobre o
+# AR (...) e o alcance delas e o TEXTO DE PROSA (`<p>`, `<li>`, `<h1>`...,
+# `<td>`). O que elas NAO alcancam e o texto que vive em ATRIBUTO — `alt`,
+# `title`, `aria-label`"*. Esta e aquela ponta, e ela achou defeito no ar na
+# primeira passada: `/veiculos/patinete-eletrico/` servia, no `title` do `<td>`
+# da coluna de carga, `o titulo nao declara nenhum kg` NOVE vezes e
+# `/veiculos/bicicleta-eletrica/` SEIS — frase da ilha, em portugues sem acento,
+# dentro do atributo que o visitante le ao parar o ponteiro na celula e que o
+# leitor de tela anuncia.
+#
+# `elementos_de_prosa` NAO podia ver isso: ela recorta o MIOLO das marcacoes de
+# prosa e joga as marcacoes fora com `re.sub(r"<[^>]+>", " ", ...)`. O atributo
+# mora justamente no que ela descarta.
+#
+# AS QUATRO MARCACOES DE FORA, cada uma com a razao, porque lista sem razao
+# envelhece calada:
+#   script/style — ali mora codigo, nao texto de leitor (a 20.8 ja separa isso)
+#   link         — `title="Feed para Rodametria »"`, `title="RSD"` e
+#                  `title="oEmbed (JSON)"` sao do WordPress e nao desta ilha:
+#                  nenhum visitante os le, e cobra-los seria reprovar a pagina
+#                  certa por texto que a fabrica nao escreve (20.5)
+#
+# E O `<meta>` ENTRA SO POR TRES NOMES. `content` carrega
+# `width=device-width`, `#13212B`, `website`, `pt_BR` e `WordPress 7.1.4` —
+# valor de maquina que a ilha nao escolhe. O que ela escreve e a `description` e
+# o par `og:`, que e texto de leitor servido no resultado de busca e no cartao
+# de compartilhamento. Medido antes de escolher: com os tres, 16 achados e ZERO
+# falso positivo nas outras oito URLs; sem o recorte, a tupla inteira de
+# `content` reprovaria as dez.
+ATRIBUTOS_DE_LEITOR = ("title", "alt", "aria-label", "placeholder")
+TAGS_SEM_TEXTO_DE_LEITOR = ("script", "style", "link")
+META_DE_LEITOR = ("description", "og:description", "og:title")
+
+_RE_MARCACAO = re.compile(r"""<([a-zA-Z][\w:-]*)((?:[^<>"]|"[^"]*")*)>""")
+_RE_NOME_DO_META = re.compile(r"""\b(?:name|property)\s*=\s*"([^"]*)\"""", re.I)
+
+
+def textos_de_atributo(corpo):
+    """Cada texto de ATRIBUTO que o visitante le, com onde ele mora.
+
+    Devolve pares `(onde, texto)`. `onde` diz o atributo e a marcacao — `title@td`,
+    `alt@img` — porque o conserto de cada um e em lugar diferente e mensagem que
+    nao diz onde manda alguem procurar.
+    """
+    out = []
+    for m in _RE_MARCACAO.finditer(corpo):
+        tag = m.group(1).lower()
+        atributos = m.group(2)
+        if tag in TAGS_SEM_TEXTO_DE_LEITOR:
+            continue
+        if tag == "meta":
+            nome = _RE_NOME_DO_META.search(atributos)
+            if not nome or nome.group(1).lower() not in META_DE_LEITOR:
+                continue
+            for valor in re.finditer(r'\bcontent\s*=\s*"([^"]*)"', atributos, re.I):
+                texto = desescapar_entidades(valor.group(1)).strip()
+                if texto:
+                    out.append(("meta[%s]" % nome.group(1).lower(), texto))
+            continue
+        for atributo in ATRIBUTOS_DE_LEITOR:
+            padrao = r'\b%s\s*=\s*"([^"]*)"' % re.escape(atributo)
+            for valor in re.finditer(padrao, atributos, re.I):
+                texto = desescapar_entidades(valor.group(1)).strip()
+                if texto:
+                    out.append(("%s@%s" % (atributo, tag), texto))
+
+    return out
+
+
 def frases_e_pares_do_jsonld(blocos):
     """As strings de todo JSON-LD e os pares (pergunta, resposta) de FAQPage.
 
@@ -1694,8 +1768,12 @@ def main():
             # servida pela F2 como frase e os cinco `pagina` sem acento da
             # `/privacidade/`.
             _cit = citacoes_do_dado()
-            _maus_voc = problemas_de_vocabulario_servido(
-                "%s (tela)" % caminho, _elem, _cit)
+            _attr = textos_de_atributo(corpo)
+            _maus_voc = (problemas_de_vocabulario_servido(
+                             "%s (tela)" % caminho, _elem, _cit)
+                         + problemas_de_vocabulario_servido(
+                             "%s (atributo)" % caminho,
+                             [t for _onde, t in _attr], _cit))
             afirma(not _maus_voc,
                    "%s: %d texto(s) servido(s) no vocabulario da FABRICA e nao no "
                    "de quem le — palavra portuguesa sem acento, bastidor, nome do "
@@ -1703,6 +1781,14 @@ def main():
                    "as %d citacoes que esta ilha faz de proposito. O primeiro: %s"
                    % (caminho, len(_maus_voc), len(_cit),
                       _maus_voc[0] if _maus_voc else ""))
+            # A CONTA DAS TRES SUPERFICIES VAI DITA, pela 20.8: portao que nao
+            # diz sobre quanto mediu aprova sobre o que sobrou com cara de
+            # completo. A de atributo e a mais nova e a que precisa mais disso —
+            # ela nasceu com zero afirmacao nas oito URLs que passam, e zero
+            # afirmacao e indistinguivel de regua que nao rodou.
+            registro("%s: %d texto(s) de ATRIBUTO na regua do vocabulario (%s)"
+                     % (caminho, len(_attr),
+                        ", ".join(sorted({onde for onde, _t in _attr})) or "nenhum"))
 
             # -------------------------------------------------------------
             # A TERCEIRA AFIRMACAO: O MESMO ATO DE COLHER CONTADO DUAS VEZES
@@ -2476,6 +2562,93 @@ def autoteste():
         diz(not problemas_de_vocabulario_servido(
                 "x", ["A faixa que a gente observou no varejo, numa data."], []),
             "16d. a frase de leitor que substituiu a chave passa limpa")
+
+        # =================================================================
+        # MUNDO 17 — O TEXTO QUE VIVE EM ATRIBUTO, E O PRIMEIRO MUNDO E O AR
+        # DE VERDADE (10/11/2026, 16h3xZ)
+        # =================================================================
+        #
+        # As duas celulas abaixo sao copiadas LETRA POR LETRA do HTML servido
+        # as 16h2xZ de 10/11/2026 por `/veiculos/patinete-eletrico/`, revisao
+        # 76 — a pagina servia a de cima NOVE vezes e a de baixo UMA.
+        AR_76_CELULA_FRASE_NOSSA = (
+            '<td class="rdm-tabela-carga" title="o titulo nao declara nenhum kg">'
+            'o título não declara</td>')
+        AR_76_CELULA_NORMALIZADA = (
+            '<td class="rdm-tabela-carga" title="suporta ate 150kg">até 150 kg</td>')
+        # E O QUE A PAGINA SERVE AO LADO, que NAO pode fazer o portao reprovar:
+        # o `<link>` do WordPress, o `<meta>` de maquina, e o `alt` que e o
+        # titulo do anuncio citado letra por letra.
+        TITULO_DO_ANUNCIO = ("Patinete Elétrico Adulto 350W – Alta Velocidade, "
+                             "Bateria Longa e Suporta Até 150kg")
+        AO_LADO = (
+            '<link rel="alternate" title="Feed para Rodametria &#187;" href="/feed/">'
+            '<link rel="EditURI" title="RSD" href="/xmlrpc.php?rsd">'
+            '<link rel="alternate" title="oEmbed (JSON)" href="/x">'
+            '<meta name="viewport" content="width=device-width, initial-scale=1">'
+            '<meta name="generator" content="WordPress 7.1.4">'
+            '<meta name="theme-color" content="#13212B">'
+            '<meta property="og:locale" content="pt_BR">'
+            '<img src="/x.jpg" alt="' + TITULO_DO_ANUNCIO + '">')
+
+        _attr_doente = textos_de_atributo(
+            AR_76_CELULA_FRASE_NOSSA + AR_76_CELULA_NORMALIZADA + AO_LADO)
+        _attr_doente_textos = [t for _o, t in _attr_doente]
+        m17 = problemas_de_vocabulario_servido(
+            "ar76", _attr_doente_textos, [TITULO_DO_ANUNCIO])
+        diz(any("titulo" in f and "sem acento" in f for f in m17),
+            "17.1 o `title` da celula de carga com a FRASE NOSSA sem acento reprova — "
+            "e o defeito que estava no ar em 2 das 10 URLs")
+        diz(any("ate" in f for f in m17),
+            "17.2 o `title` com a NORMALIZACAO do pedaco (`suporta ate 150kg`, onde o "
+            "anuncio escreve `Suporta Até 150kg`) reprova pelo `ate` por palavra inteira")
+
+        # A SUPERFICIE NAO ALCANCA O QUE NAO E DESTA ILHA, e isto e medido e nao
+        # declarado: `<link title>` e `<meta>` de maquina ficam FORA, senao o
+        # portao reprovaria as dez URLs por texto que a fabrica nao escreve.
+        diz(not any("Feed para Rodametria" in t or "RSD" in t or "oEmbed" in t
+                    for t in _attr_doente_textos),
+            "17.3 o `title` dos `<link>` do WordPress NAO entra na superficie")
+        diz(not any(t.startswith("width=device-width") or t == "WordPress 7.1.4"
+                    or t == "#13212B" or t == "pt_BR" for t in _attr_doente_textos),
+            "17.4 o `content` de `<meta>` de maquina NAO entra: so description e og:")
+        diz(TITULO_DO_ANUNCIO in _attr_doente_textos,
+            "17.5 o `alt` da foto ENTRA na superficie (e texto que o leitor de tela le)")
+        diz(not problemas_de_vocabulario_servido(
+                "x", [TITULO_DO_ANUNCIO], [TITULO_DO_ANUNCIO]),
+            "17.6 e ele passa com a citacao descontada, apesar do `Elétrico`/`eletric`")
+
+        # A `description` E MEDIDA, porque e texto de leitor servido no resultado
+        # de busca — e so ela e o par `og:` entre os `<meta>`.
+        _desc = textos_de_atributo(
+            '<meta name="description" content="o titulo nao declara nada">'
+            '<meta property="og:title" content="Patinete elétrico">')
+        diz([o for o, _t in _desc] == ["meta[description]", "meta[og:title]"],
+            "17.7 `description` e `og:title` entram, e so eles")
+        diz(problemas_de_vocabulario_servido("x", [t for _o, t in _desc], []),
+            "17.8 e a `description` sem acento REPROVA, como qualquer texto de tela")
+
+        # E A REGUA VELHA REFEITA AO LADO DA NOVA: a de PROSA recorta o miolo das
+        # marcacoes e joga as marcacoes fora — ela APROVA as duas celulas doentes,
+        # porque o texto visivel delas (`o título não declara`, `até 150 kg`) esta
+        # CERTO. Autoteste em que as duas concordam nao mede conserto nenhum (20.8).
+        _prosa_doente = elementos_de_prosa(
+            AR_76_CELULA_FRASE_NOSSA + AR_76_CELULA_NORMALIZADA + AO_LADO)
+        diz(not problemas_de_vocabulario_servido(
+                "x", _prosa_doente, [TITULO_DO_ANUNCIO]) and m17 != [],
+            "17.9 a regua de PROSA APROVA as duas celulas doentes e a de ATRIBUTO as "
+            "REPROVA — as duas discordam, e e esta discordancia que explica por que o "
+            "defeito ficou dez dias no ar debaixo de um portao verde")
+
+        # E A CELULA CONSERTADA PASSA NAS DUAS, que e a outra metade do conserto.
+        _attr_sa = textos_de_atributo(
+            '<td class="rdm-tabela-carga" title="o título não declara nenhum kg">'
+            'o título não declara</td>'
+            '<td class="rdm-tabela-carga" title="Suporta Até 150kg">até 150 kg</td>')
+        diz(not problemas_de_vocabulario_servido(
+                "x", [t for _o, t in _attr_sa], [TITULO_DO_ANUNCIO]),
+            "17.10 as duas celulas CONSERTADAS passam — portao que reprova a pagina "
+            "certa e o caminho mais curto para alguem ignora-lo (20.5)")
 
         print("conferir-no-ar --autoteste: %d de %d afirmacoes, %d falha(s)"
           % (len(ok), len(ok) + len(mal), len(mal)))

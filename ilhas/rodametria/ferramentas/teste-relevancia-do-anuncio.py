@@ -178,11 +178,73 @@ QUALIFICADOR_ADULTO = ('adulto', 'adultos')
 POR_POSICAO = ('acessorio',)
 
 
+def normalizar_mapeado(texto):
+    """Como `normalizar`, E diz de onde cada caractere veio no texto ORIGINAL.
+
+    Devolve `(normalizado, de_onde)`, com `de_onde[i]` sendo o indice, no texto
+    original, do caractere que produziu `normalizado[i]`. Com isso um casamento
+    feito na cadeia normalizada se recorta do ORIGINAL.
+
+    POR QUE ISTO EXISTE, E E DEFEITO MEDIDO NO AR EM 10/11/2026 as 16h3xZ:
+    `carga_declarada` promete, no proprio docstring, devolver *"o PEDACO DO
+    TITULO que sustenta o numero (...) procedencia que se confere abrindo o
+    anuncio"* — e devolvia `m.group(0)` da cadeia NORMALIZADA. Resultado servido
+    em `/veiculos/patinete-eletrico/`, no `title` do `<td>` da coluna de carga:
+    `suporta ate 150kg`, quando o anuncio escreve `Suporta Até 150kg`. Quem
+    abrisse o anuncio e procurasse aquela cadeia NAO a acharia — a procedencia
+    que o comentario promete nao se conferia. E a familia da 20.7: comentario
+    que declara um mecanismo parece conferido e nao mede nada.
+
+    `normalizar` passa a DERIVAR daqui, e nao a repetir a conta: duas
+    declaracoes do mesmo fato comecam iguais e so uma sobe (20.7). O autoteste
+    prova que a derivacao reproduz a implementacao velha em todo titulo real
+    desta ilha e nos mundos fabricados de espaco, acento e caixa.
+    """
+    saida, de_onde = [], []
+    texto = texto or ''
+    i, n = 0, len(texto)
+    while i < n:
+        if texto[i].isspace():
+            # O COLAPSO DE ESPACO PRESERVA O INDICE DO PRIMEIRO da sequencia:
+            # `re.sub(r'\s+', ' ')` da implementacao velha come o resto, e o
+            # mapa tem de apontar para onde a sequencia COMECA no original.
+            j = i
+            while j < n and texto[j].isspace():
+                j += 1
+            saida.append(' ')
+            de_onde.append(i)
+            i = j
+            continue
+        base = ''.join(c for c in unicodedata.normalize('NFD', texto[i].lower())
+                       if unicodedata.category(c) != 'Mn')
+        # UM CARACTERE PODE RENDER MAIS DE UM (caixa alta turca, ligadura), e os
+        # dois apontam para o MESMO indice de origem. O mapa e normalizado ->
+        # original, nunca o contrario, e por isso nao precisa ser bijecao.
+        for c in base:
+            saida.append(c)
+            de_onde.append(i)
+        i += 1
+
+    return ''.join(saida), de_onde
+
+
 def normalizar(texto):
     """Sem acento e em minuscula. Titulo de anuncio vem dos dois jeitos."""
-    t = unicodedata.normalize('NFD', (texto or '').lower())
-    t = ''.join(c for c in t if unicodedata.category(c) != 'Mn')
-    return re.sub(r'\s+', ' ', t)
+    return normalizar_mapeado(texto)[0]
+
+
+def pedaco_do_original(texto, inicio, fim):
+    """O trecho do texto ORIGINAL que produziu `normalizado[inicio:fim]`.
+
+    E este o valor que vai para a tela quando a ilha diz "foi isto que o anuncio
+    escreveu": literal, achavel no anuncio, com acento e caixa do vendedor.
+    """
+    _, de_onde = normalizar_mapeado(texto)
+    if not de_onde or inicio >= len(de_onde):
+        return ''
+    a = de_onde[inicio]
+    b = de_onde[min(fim, len(de_onde)) - 1]
+    return (texto or '')[a:b + 1].strip()
 
 
 # A BUSCA E POR PALAVRA INTEIRA, NUNCA POR PEDACO DE PALAVRA — e isto nao e
@@ -422,22 +484,50 @@ PADRAO_KG_SOLTO = re.compile(r'(\d{2,3})\s*(?:kg|quilos?)(?![a-z])')
 
 
 def carga_declarada(titulo):
-    """(valor_kg, declarado_como) ou (None, motivo). Nunca atribui campo tecnico.
+    """`(valor_kg, porque, porque_e_citacao)`. Nunca atribui campo tecnico.
 
-    `declarado_como` e o PEDACO DO TITULO que sustenta o numero, nao uma frase
-    nossa: procedencia que se confere abrindo o anuncio.
+    `porque` vai para o `title` do `<td>` da coluna de carga, e ele e UMA DE
+    DUAS COISAS — por isso o terceiro valor existe e e DECLARADO, nunca
+    inferido por quem recebe:
+
+      - `porque_e_citacao=True`: e o PEDACO LITERAL DO TITULO que sustenta o
+        numero, recortado do titulo ORIGINAL. Procedencia que se confere
+        abrindo o anuncio e procurando a cadeia.
+      - `porque_e_citacao=False`: e UMA FRASE NOSSA, explicando por que a ilha
+        nao afirma a carga. Vai na voz do leitor, acentuada, porque e a ilha
+        falando.
+
+    OS DOIS DEFEITOS QUE FIZERAM ESTA ASSINATURA MUDAR, medidos no ar em
+    10/11/2026 as 16h3xZ nas duas paginas de familia:
+
+      (1) O pedaco saia da cadeia NORMALIZADA: `/veiculos/patinete-eletrico/`
+          servia `suporta ate 150kg` num anuncio que escreve
+          `Suporta Até 150kg`. Procedencia que nao se acha no anuncio nao e
+          procedencia, e o comentario do gerador prometia que se achava.
+      (2) As duas saidas sem numero devolviam FRASE NOSSA em portugues sem
+          acento — `o titulo nao declara nenhum kg`, servido NOVE vezes na
+          pagina do patinete e SEIS na da bicicleta —, enquanto o comentario
+          que as imprimia declarava, letra por letra, *"nunca uma frase
+          nossa"*. O codigo dizia uma coisa e servia a outra, e nenhum portao
+          lia o texto de ATRIBUTO.
     """
-    t = normalizar(titulo)
+    t, _ = normalizar_mapeado(titulo)
     m = PADRAO_CARGA.search(t)
     if m:
-        return (int(m.group(1)), m.group(0).strip())
+        # O PEDACO SAI DO ORIGINAL, nunca da cadeia normalizada: e o unico jeito
+        # de a cadeia servida existir dentro do anuncio.
+        return (int(m.group(1)),
+                pedaco_do_original(titulo, m.start(), m.end()),
+                True)
     solto = PADRAO_KG_SOLTO.search(t)
     if solto:
-        return (None, 'tem %r no titulo e nenhuma palavra de capacidade o liga: '
-                      'kg solto e ambiguo entre a carga que o veiculo aguenta e o '
-                      'peso do proprio veiculo' % solto.group(0).strip())
+        return (None, 'o título diz %r e nenhuma palavra de capacidade liga esse '
+                      'número à carga: kg solto é ambíguo entre o que o veículo '
+                      'aguenta e o peso do próprio veículo'
+                      % pedaco_do_original(titulo, solto.start(), solto.end()),
+                False)
 
-    return (None, 'o titulo nao declara nenhum kg')
+    return (None, 'o título não declara nenhum kg', False)
 
 
 # ---------------------------------------------------------------------------
@@ -826,11 +916,84 @@ def autoteste():
             falhas.append('FALHOU rotulo: %r -> %s (esperava %s)'
                           % (titulo[:60], obtido, esperado))
 
+    # AS AFIRMACOES NOVAS DE 10/11/2026 SE CONTAM DE VERDADE, e nao entram na
+    # formula do fim: ela SOMA TUPLAS DE CASO e, por desenho, nao vê afirmacao
+    # acrescentada dentro de um laco. A 20.8 ja escreveu o preco disso nesta
+    # ilha — *"o portao nao acredita na propria contagem"* —, e a formula velha
+    # imprimiu 71 com as 100 afirmacoes novas ja rodando.
+    afirmacoes_novas = 0
+
     for titulo, esperado in CASOS_DE_CARGA:
-        valor, porque = carga_declarada(titulo)
+        valor, porque, e_citacao = carga_declarada(titulo)
+        afirmacoes_novas += 2
         if valor != esperado:
             falhas.append('FALHOU carga: %r -> %s (esperava %s) [%s]'
                           % (titulo[:60], valor, esperado, porque))
+        # A PROCEDENCIA TEM DE SE ACHAR NO ANUNCIO, e e esta afirmacao que
+        # faltava: o autoteste velho conferia SO o valor, e por isso o pedaco
+        # normalizado foi ao ar por dez dias. Citacao que nao esta no titulo
+        # nao e citacao.
+        if e_citacao and porque not in titulo:
+            falhas.append('FALHOU procedencia da carga: %r diz que %r e pedaco do '
+                          'titulo, e a cadeia NAO esta nele' % (titulo[:60], porque))
+        # A FRASE NOSSA VAI ACENTUADA, porque e a ilha falando com o visitante.
+        if not e_citacao:
+            afirmacoes_novas += 1 + 5
+            if porque != porque.strip() or not porque:
+                falhas.append('FALHOU frase da carga: %r -> %r' % (titulo[:60], porque))
+            for forma in ('nao ', 'titulo', 'numero', 'veiculo', ' ate '):
+                if forma in porque.lower():
+                    falhas.append('FALHOU acento na frase da carga: %r traz %r em %r'
+                                  % (titulo[:60], forma, porque))
+        # E O LADO QUE NAO PODE SER O OUTRO: quem tem numero tem citacao, quem
+        # nao tem numero tem frase nossa. Sem esta afirmacao o terceiro valor
+        # poderia mentir sem ninguem ver.
+        if e_citacao is not (valor is not None):
+            falhas.append('FALHOU par da carga: %r -> valor=%s e_citacao=%s'
+                          % (titulo[:60], valor, e_citacao))
+
+    # O PEDACO SAI DO ORIGINAL, COM ACENTO E CAIXA DO VENDEDOR. Os tres mundos
+    # sao os que a implementacao velha errava, e o terceiro e o que o colapso de
+    # espaco quebra: sem o mapa de indices, o recorte sai deslocado.
+    for titulo, esperada in (
+        ('Patinete Elétrico Adulto 350W – Alta Velocidade, Bateria Longa e '
+         'Suporta Até 150kg', 'Suporta Até 150kg'),
+        ('Patinete Elétrico Scooter Adulto 150w Dobrável Até 60kg Preto', 'Até 60kg'),
+        ('Patinete  Elétrico   Adulto    Suporta    Até    120kg',
+         'Suporta    Até    120kg'),
+    ):
+        obtido = carga_declarada(titulo)[1]
+        afirmacoes_novas += 2
+        if obtido != esperada:
+            falhas.append('FALHOU pedaco do original: %r -> %r (esperava %r)'
+                          % (titulo[:60], obtido, esperada))
+        if obtido not in titulo:
+            falhas.append('FALHOU pedaco do original: %r nao esta em %r'
+                          % (obtido, titulo[:60]))
+
+    # A DERIVACAO REPRODUZ A IMPLEMENTACAO VELHA, e este e o preco de `normalizar`
+    # ter passado a derivar de `normalizar_mapeado`: duas declaracoes do mesmo
+    # fato comecam iguais e so uma sobe (20.7), entao aqui a velha e o ORACULO.
+    def _normalizar_velha(texto):
+        t = unicodedata.normalize('NFD', (texto or '').lower())
+        t = ''.join(c for c in t if unicodedata.category(c) != 'Mn')
+        return re.sub(r'\s+', ' ', t)
+
+    mundos = [t for t, _ in CASOS_DE_CARGA] + [t for t, _, _, _ in CASOS]
+    mundos += ['', '   ', 'Até  150kg', 'ÁGUA ÔNIBUS Çedilha',
+               'Patinete\tElétrico\nAdulto', 'ß æ Œ İ', 'sem acento nenhum']
+    for t in mundos:
+        nova, de_onde = normalizar_mapeado(t)
+        afirmacoes_novas += 3
+        if nova != _normalizar_velha(t):
+            falhas.append('FALHOU normalizar: %r -> %r, a velha diz %r'
+                          % (t[:60], nova, _normalizar_velha(t)))
+        if len(de_onde) != len(nova):
+            falhas.append('FALHOU mapa de normalizar: %r tem %d caracteres e %d '
+                          'indices' % (t[:60], len(nova), len(de_onde)))
+        if de_onde and (min(de_onde) < 0 or max(de_onde) >= len(t)):
+            falhas.append('FALHOU mapa de normalizar: indice fora do original em %r'
+                          % t[:60])
 
     # A FAIXA E CONTADA, NUNCA DIGITADA, e o mundo VAZIO tem de devolver zero
     # sem inventar extremo: e o mundo da pagina da bicicleta eletrica, medido em
@@ -894,7 +1057,8 @@ def autoteste():
     total = (len(CASOS) + len(CASOS_DE_ROTULO) + len(CASOS_DE_CARGA)
              + len(CASOS_DO_PIVO) + len(CASOS_DO_DOBRAVEL)
              + len(CASOS_DO_PAR_DA_F2) + 8)
-    print('\n%d caso(s), %d falha(s).' % (total, len(falhas)))
+    print('\n%d caso(s) e %d afirmacao(oes) contada(s) uma por uma, %d falha(s).'
+          % (total, afirmacoes_novas, len(falhas)))
     print('APROVADO' if not falhas else 'REPROVADO')
     return 1 if falhas else 0
 

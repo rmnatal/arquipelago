@@ -93,7 +93,7 @@
    pergunta que `dateModified` responde e "quando esta pagina mudou", e a mae muda
    no dia em que QUALQUER filha e recolhida. */
 if ( ! defined( 'RODAMETRIA_PRODUTO_VERSAO' ) ) {
-	define( 'RODAMETRIA_PRODUTO_VERSAO', '1.8.1' );
+	define( 'RODAMETRIA_PRODUTO_VERSAO', '1.8.2' );
 }
 
 /* A VERSAO DESTE SNIPPET VAI AO AR, pelo filtro que a casca 1.6.0 abriu
@@ -389,9 +389,23 @@ function rdm_produto_tabela_html( $pagina ) {
 		$html .= '<td>' . esc_html( $item['especificacao'] ) . '</td>';
 		/* A CELULA NUNCA NASCE VAZIA: ou traz o numero que o titulo declara, ou
 		   diz que o titulo nao declara. Coluna vazia deixaria o leitor sem saber
-		   se ninguem declarou ou se ninguem leu — e o `title` leva o PEDACO DO
-		   TITULO que sustenta o numero, que e procedencia conferivel abrindo o
-		   anuncio (secao 24), nunca uma frase nossa. */
+		   se ninguem declarou ou se ninguem leu.
+
+		   O `title` LEVA UMA DE DUAS COISAS, E O DADO DIZ QUAL — este comentario
+		   dizia "nunca uma frase nossa" e era FALSO nas duas pontas, medido no ar
+		   em 10/11/2026 as 16h3xZ: esta celula servia `o titulo nao declara nenhum
+		   kg` NOVE vezes nesta pagina e SEIS na da bicicleta (frase nossa, e sem
+		   acento), e `suporta ate 150kg` onde o anuncio escreve `Suporta Até
+		   150kg` (a normalizacao do pedaco, que nao se acha no anuncio). Comentario
+		   que declara um mecanismo parece conferido e nao mede nada (20.7), e
+		   nenhum portao desta ilha lia texto de ATRIBUTO.
+
+		   `carga_porque_e_citacao` true  -> pedaco LITERAL do titulo, conferivel
+		                                     abrindo o anuncio (secao 24);
+		                        false -> frase nossa, na voz do leitor e acentuada.
+		   O PHP serve o campo como ele vem: quem garante o conteudo das duas
+		   metades e o portao de `gerar-vitrine-de-produto.py`, e quem o confere no
+		   ar e a regua de atributo de `conferir-no-ar.py`. */
 		$carga = isset( $item['carga'] ) ? (string) $item['carga'] : '';
 		$porque = isset( $item['carga_porque'] ) ? (string) $item['carga_porque'] : '';
 		$html .= '<td class="rdm-tabela-carga" title="' . esc_attr( $porque ) . '">'
