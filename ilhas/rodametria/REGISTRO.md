@@ -3,6 +3,106 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-11-10 16h20Z–16h43Z — **O `title` DA CÉLULA DE CARGA SERVIA O VOCABULÁRIO DA FÁBRICA, E NENHUM PORTÃO DESTA ILHA LIA TEXTO DE ATRIBUTO** — revisão 77
+
+**A ESCOLHA DA ILHA.** `foco.md` nomeia a **rodametria** (foco total e absoluto desde 27/10) e pela **1.2** não há escolha a fazer. **As duas coisas que furariam o foco foram MEDIDAS nesta passada, não herdadas do registro anterior** (20.2: *"cada execução leu o `ESTADO.md` da anterior como fato"*): o **despacho do molde da seção 32** está FECHADO INTEIRO nas três ilhas que a 1.2 nomeia — aquametria 21/10 às 18h2xZ, clubedomosaico 21/10 às 19h1xZ (riscado), robometria 21/10 às 16h1xZ (riscado) — e **nenhuma ilha fora do foco tem despacho ALTO aberto em ilha no ar e quebrada**: o único ALTA das cinco ilhas é o de 30/10 da robometria, **riscado e fechado em 02/11 às 10h3xZ**. Nada fura o foco. **Branch e PR, passo 1:** `origin/claude/dreamy-mccarthy-f0pmt3` com **zero** commit fora do `main` e **zero PR aberto** — nada a mergear. `executando_desde` estava `null`, o que pela **1.1** já significa que não havia bloco da Fundação vivo: não houve reserva vencida a desempatar no git nem reserva órfã a limpar (1.2-b.5). Reserva no commit `6471105`, às **16h20Z**, hora saída do `date -u` na mesma linha que a grava, **renovada às 16h35Z** pela 1.1 no commit do conserto.
+
+**A REDE, MEDIDA E NÃO HERDADA (20.2), ANTES DA RESERVA.** `rodametria.com.br` em **200** nas três passadas com quebra de cache, com `robometria.com.br` e `aquametria.com.br` em 200 nas mesmas três — **9 de 9, zero `000`**.
+
+**A FILA, E POR QUE ESTE BLOCO.** Nenhum despacho aberto para a Fundação: o de 09/11 fechou às 17h4xZ, os dois itens do de 04/11 pedem o Search Console (instrumento da leitura semanal, nunca da Fundação) e o de 30/10 é para o Raphael, numa sessão de Chrome. A fila de blocos segue **toda entregue menos o 5**, que depende de `pauta.md` e pela **17.1** não é arquivo da Fundação; página nova segue travada pelas duas pontas (30.8 e o Mercado Livre). **Então fiz a ponta que o fecho das 14h13Z de hoje deixou escrita, letra por letra:** *"o que elas NÃO alcançam é o texto que vive em ATRIBUTO — `alt`, `title`, `aria-label` — e o do JSON-LD, que é a camada que a IA ingere. O caminho para a próxima família é ler a página servida com os olhos, agora olhando o que o portão ainda não lê."*
+
+**A LEITURA, E ELA MEDIU AS DUAS CAMADAS.** Baixei as **10** URLs do `wp-sitemap.xml` (as 10 em 200), extraí **201** textos de atributo e **198** valores de string de `application/ld+json`, e li com os olhos. **O JSON-LD está limpo** — acentuado, na voz do leitor, com fonte e data, e as contagens batendo com o banco (`6 dos 16 anúncios declaram no título a carga máxima` contra as 6 células com kg declarado). **O atributo não estava, e os dois defeitos são o MESMO campo.**
+
+---
+
+### DEFEITO 1 — A ILHA FALANDO SEM ACENTO, DENTRO DO ATRIBUTO, 15 VEZES
+
+`/veiculos/patinete-eletrico/` servia, no `title` do `<td class="rdm-tabela-carga">`:
+
+> `o titulo nao declara nenhum kg`
+
+**DEZ vezes nessa página e SEIS na `/veiculos/bicicleta-eletrica/`** — frase da **ILHA**, não citação, em português sem acento, dentro do atributo que o visitante lê ao parar o ponteiro na célula e que o leitor de tela anuncia. **E a célula visível ao lado dizia `o título não declara`, certa e acentuada.** Duas declarações do mesmo fato na mesma célula, e só uma estava na voz do leitor — a família da 20.7 com o sinal invertido: aqui as duas nasceram juntas e uma nasceu errada.
+
+### DEFEITO 2 — A PROCEDÊNCIA QUE NÃO SE ACHA NO ANÚNCIO
+
+A mesma célula servia `suporta ate 150kg` onde o anúncio escreve, letra por letra, **`Suporta Até 150kg`**. A causa: `carga_declarada` recortava `m.group(0)` da cadeia **NORMALIZADA** — minúscula, sem acento, espaço colapsado. **Quem abrisse o anúncio e procurasse aquela cadeia NÃO a acharia**, e é justamente isso que a seção 24 chama de procedência. **SEIS** células assim, todas na página do patinete — a da bicicleta tem **zero**, porque nenhum dos 6 anúncios dela declara kg no título. Contadas no HTML servido da revisão 76: `suporta ate 150kg`, `suporta 100kg`, `ate 60kg` ×2, `ate 150kg` e `ate 140kg`.
+
+### E OS DOIS ESTAVAM DEBAIXO DE UM COMENTÁRIO QUE DECLARAVA O CONTRÁRIO
+
+O comentário do PHP que imprime a célula dizia, com todas as letras: *"o `title` leva o **PEDACO DO TITULO** que sustenta o numero, que e procedencia conferivel abrindo o anuncio (secao 24), **nunca uma frase nossa**"* — e o docstring da régua repetia a promessa. A página servia **frase nossa em 16 células** e **pedaço inachável em 6** — as 22 células de carga das duas páginas, sem exceção nenhuma. **Comentário que declara um mecanismo parece conferido e não mede nada**: a 20.7 pela terceira vez nesta ilha, e desta vez o comentário era a única coisa que afirmava a regra.
+
+---
+
+### O CONSERTO VAI NA RAIZ, E A ASSINATURA PASSA A DIZER QUAL DAS DUAS METADES É QUAL
+
+`carga_declarada` devolve agora **três** valores: `(valor, porque, porque_e_citacao)`. O terceiro é **DECLARADO e nunca inferido por quem recebe**, e a razão é que o portão cobra coisas **diferentes** das duas metades — a citação tem de **existir dentro do título**, a frase nossa tem de estar **acentuada**. Deduzir "é citação se eu a achar no título" seria o portão adivinhando o que o dado pode dizer.
+
+- **O pedaço sai do título ORIGINAL**, por `normalizar_mapeado`, que devolve a cadeia normalizada **e de onde cada caractere dela veio**. Recorte sobre cadeia normalizada não se acha no anúncio; recorte sobre o original, sim.
+- **`normalizar` passa a DERIVAR de `normalizar_mapeado`** em vez de repetir a conta — duas declarações do mesmo fato começam iguais e só uma sobe (20.7) —, e **a implementação velha virou ORÁCULO do autoteste**: 25 mundos (todo título real da ilha mais espaço dobrado, tabulação, caixa alta turca, ligadura e cadeia vazia) exigem que a derivação reproduza a velha caractere por caractere.
+- **As duas frases sem número passaram a ser escritas na voz do leitor**, acentuadas, e a do `kg` solto agora **cita o número que achou**: *"o título diz '120kg' e nenhuma palavra de capacidade liga esse número à carga: kg solto é ambíguo entre o que o veículo aguenta e o peso do próprio veículo"*.
+
+### A SUPERFÍCIE DE ATRIBUTO ENTRA NO PORTÃO DE AR, E O RECORTE DELA FOI MEDIDO ANTES DE SER ESCOLHIDO
+
+`elementos_de_prosa` **não podia ver nada disto**: ela recorta o **miolo** das marcações de prosa e joga as marcações fora com `re.sub(r"<[^>]+>", " ", ...)` — e o atributo mora exatamente no que ela descarta. `textos_de_atributo` lê `title`, `alt`, `aria-label` e `placeholder`, e as cinco réguas correm sobre ela com a **citação descontada pelo mesmo mecanismo** da prosa.
+
+**MEDIDO ANTES DE ESCOLHER, nas 10 URLs:** **16 achados** (10 na página do patinete, 6 na da bicicleta) e **ZERO falso positivo nas outras oito**. Os dois recortes que esse número pagou:
+
+- **`<link title>` fica FORA.** O WordPress serve `title="Feed para Rodametria »"`, `title="RSD"` e `title="oEmbed (JSON)"`: **nenhum visitante os lê**, não são texto desta ilha, e cobrá-los seria reprovar a página certa — o caminho mais curto para alguém passar a ignorar o portão (20.5).
+- **`<meta content>` entra só por `description`, `og:description` e `og:title`.** A tupla inteira de `content` reprovaria as **dez** URLs, por `width=device-width`, `#13212B`, `pt_BR` e `WordPress 7.1.4` — valor de máquina que a ilha não escolhe. O que ela escreve é a `description`, que é texto de leitor servido no resultado de busca.
+
+### DUAS FORMAS SEM ACENTO ENTRARAM NA RÉGUA, CADA UMA NO MODO CERTO
+
+A régua de acento desta ilha é explícita sobre não adivinhar: *"ela tem a lista das formas que esta ilha de fato produz, e cresce quando alguém achar outra"*. Achei duas:
+
+- **`titulo` por SUBSTRING**, na tupla de cima: cobre `titulos` sem precisar das duas, e não é início de palavra portuguesa que esta ilha escreva certa sem acento.
+- **`ate` por PALAVRA INTEIRA**, e **só podia entrar aí**: por substring casaria dentro de `atender`, `atenção` e `atento` — a armadilha que esta ilha já pagou com o `so` dentro de `nosso` e com o `6v` dentro de `36V`.
+
+### E A RÉGUA NOVA REPROVOU TEXTO CERTO NO MINUTO EM QUE NASCEU, PELA LIÇÃO QUE ESTA ILHA JÁ TINHA ESCRITO HOJE
+
+`gerar-f1.py --conferir` passou a REPROVAR o molde `ressalva_pico_nenhum_nominal`, que serve *"Um deles se chama, letra por letra, `“{titulo}”`"* — e `titulo` ali é o **NOME DA LACUNA**, não palavra de tela: quem a preenche é o molde, antes de a frase existir. **A nota de `_RE_LACUNA_DE_MOLDE` já escrevia essa lição nesta mesma manhã**, para a régua de **formato**, e ela não tinha chegado à régua de **palavra**: `conferir_acento_na_tela` media o texto com a lacuna dentro. Agora tira a lacuna antes, como a de formato.
+
+### E A AREIA DA BATERIA DE MUTAÇÃO NÃO CARREGAVA `regras/`
+
+No minuto em que o gerador passou a importar as réguas de acento de `gerar-f2.py` — que importa `regras/f2.py` —, `mutacoes-produto.py` morreu inteira com `FileNotFoundError: /tmp/rdm-mut-.../regras/f2.py`, e a **BANCADA a chamou de INERTE**, não de reprovada: 30 mutações deixaram de rodar sem ninguém ser avisado de que o portão tinha caído. A areia copiava `dados/` e `ferramentas/` e nada mais. **Areia que não carrega o que a ferramenta importa não mede a ferramenta: mede a areia.** As três pastas estão nomeadas uma por uma, com `snippets/` de fora de propósito — a mutação é de dado.
+
+---
+
+### OS PORTÕES, E NENHUM APROVADO POR AFIRMAÇÃO
+
+- **`teste-relevancia-do-anuncio.py`: 71 casos e 178 afirmações contadas uma por uma, 0 falha.** A contagem passou a ser contada porque a fórmula velha **somava tuplas de caso** e imprimiu **71** com as afirmações novas já rodando dentro do laço — *"o portão não acredita na própria contagem"* (20.8), de novo nesta ilha.
+  - **Com a implementação VELHA de `carga_declarada` no lugar: 19 falhas**, a primeira sendo *"diz que 'ate 150kg' é pedaço do título, e a cadeia NÃO está nele"*. O defeito do ar reprova.
+  - **Com o mapa de índices trocado pela identidade: 1 falha**, no mundo de espaço dobrado — o recorte sai deslocado (`'to    Suporta'`).
+- **`gerar-vitrine-de-produto.py --conferir`: REPROVOU em 4 antes da regeração** (`campo 'linhas' gravado nao refaz`, nas duas páginas) e **462 afirmações, 0 falha** depois. As afirmações novas: o campo **declara** de qual metade é; citação **ocorre literalmente** no título do anúncio; frase nossa passa a régua de acento **inteira** da ilha, pelas duas tuplas, chamada pela função dela e nunca por uma cópia da lista.
+- **`conferir-no-ar.py --autoteste`: 90 afirmações, 0 falha** (eram 80). O **mundo 17** é o **ar de verdade**, as duas células copiadas letra por letra do HTML servido às 16h2xZ, com o `<link>`, o `<meta>` de máquina e o `alt` do anúncio ao lado. O **17.9** exige que a régua de **PROSA APROVE** as duas células doentes e a de **ATRIBUTO as REPROVE** — e é essa discordância que explica por que o defeito ficou dias no ar debaixo de um portão verde. O **17.10** exige que as células **consertadas passem**. Mutando a superfície para deixar `<link>` entrar, o mundo 17.3 reprova: o portão mede.
+- **`mutacoes-produto.py`: 30 de 30 reprovadas, 0 sobrevivente, 0 inerte.**
+- **BANCADA: 40 portões sem rede, 0 falha, e nenhum INERTE** (eram dois: `mutacoes-produto.py` e `gerar-f1.py --conferir`).
+
+### A CONFERÊNCIA NO AR (18.4), NA REVISÃO 77
+
+A revisão entrou às **16h39:51Z** — **antes** do teto de 16:49:39 que a régua dos cinco vereditos calculou, e a nota dela já explicava por que o teto não é a hora exata (o WordPress reagenda evento recorrente a partir do horário **agendado**). O veredito pedido pela 20.9 era `evento-nao-vencido`, e a ação certa dele é **esperar visitando**, nunca reacionar: a rodada anterior do Sync (16:19:39) era anterior ao commit do manifest (16:35:23), então não havia o que reacionar antecipar.
+
+- **20.4/20.8, log lido linha por linha, do fecho para baixo:** a revisão 77 **declara 8 itens aplicados** e as **8 linhas de item dela foram lidas uma por uma, todas dizendo `ok`**. A conta do fecho fecha com as linhas lidas. **Nenhuma cicatriz da 20.4** — e isto é dado e não garantia: a janela do log tem 15 linhas e está cheia, o que o portão **diz** em vez de aprovar sobre o que sobrou.
+- **A versão de snippet no ar conferida contra o manifest em 6 de 6** (20.7): `rodametria-produto` em **1.8.2**, a desta passada, mais casca 1.20.0, f1 1.5.1, f2 1.8.0, f3 1.6.1 e institucional 1.2.1. `id` ausente seria snippet gravado e não ativado; nenhum faltou.
+- **`conferir-no-ar.py`: 617 afirmações, 0 falha**, as 10 URLs em 200. A superfície nova vai **dita** por página, pela 20.8 — `/veiculos/patinete-eletrico/` com **26** textos de atributo (`alt@img`, `aria-label@nav`, `aria-label@svg`, `title@td`) e a da bicicleta com **14**. Régua que mede zero é indistinguível de régua que não rodou, e por isso o número sai impresso mesmo quando passa.
+- **AS CADEIAS DO DEFEITO, contadas nas 10 URLs servidas: ZERO.** `o titulo nao declara nenhum kg`, `suporta ate 150kg`, `suporta 100kg`, `ate 60kg`, `ate 150kg` e `ate 140kg` — **0 ocorrência cada uma**. E as consertadas no lugar: `title="o título não declara nenhum kg"` **16**, `title="Suporta Até 150kg"` 1, `title="Até 60kg"` 2, `title="até 150kg"` 1, `title="Até 140kg"` 1, `title="Suporta 100KG"` 1. **22 de 22 células de carga**, e as seis citações batem letra por letra com o título do anúncio, maiúscula e acento do vendedor incluídos (`Suporta 100KG` com o `KG` dele).
+- **O NAVEGADOR DESTA NUVEM FOI USADO (seção 33), e os dois portões dele rodaram:** a **32.5** aprovou **10 de 10** páginas do molde — pior caixa 405 px de 700, pior compra 1.279 px de 1.400, 0 página fora do molde, e a `/veiculos/patinete-eletrico/` em **1.165 px** de compra com 5 de 5 fotos reais. O **console** em **10 de 10 limpo** (0 erro, 0 exceção, 0 recurso caído).
+
+### A ERRATA DESTA PASSADA, E ELA É DO MESMO DEFEITO QUE A PASSADA RELATA
+
+**A mensagem do commit `3efde95` diz `NOVE vezes` e diz `frase nossa em 15 celulas e pedaco inachavel em 7`. Os três números estão errados.** Contados no HTML servido da revisão 76, página por página: **DEZ** células de frase nossa no patinete e **SEIS** na bicicleta (**16**, não 15), e **SEIS** pedaços normalizados (não 7), os seis no patinete. O total fecha com as 22 células das duas páginas — 16 anúncios numa e 6 na outra.
+
+O `9` saiu de eu contar ocorrências num despejo de contexto do `grep` em vez de contar o arquivo, e é **número de prosa escrito à mão dentro do relatório sobre número de prosa escrito à mão** — exatamente o que o fecho de 06/11 registrou quando o despacho dele disse "CINCO têm" e nomeou quatro. **O conserto não é trocar o número e seguir:** os números desta entrada saem de `grep -o -F ... | wc -l` por página, com o comando na mão, e é assim que a próxima passada os deve refazer.
+
+### O PRÓXIMO PASSO DESBLOQUEADO
+
+A frase honesta vem primeiro: **não há bloco de construção desbloqueado nesta ilha, e isso segue medido, não suposto.** A fila acabou (todos entregues menos o 5, que depende de `pauta.md`, inexistente, e que pela 17.1 não é arquivo da Fundação); página nova segue travada pelas duas pontas (a 30.8 não deixa afirmar `alvo` daqui, e a 33 já mediu que ter navegador não é ter SERP porque o navegador atravessa o mesmo egresso; `moto eletrica` e `scooter eletrica` esperam produto pelo Mercado Livre, onde o link exige clique humano pela 25.6); `primeira_indexacao` segue `null` e quem a grava é a leitura semanal, no Search Console.
+
+**O que sobrou para quem vier, e é a ponta desta passada:** as cinco réguas de tela agora correm sobre **prosa**, **JSON-LD** e **atributo**. A camada que **nenhuma das três alcança** é o que o visitante ouve e não lê de nenhum dos três jeitos: o texto dentro de `<svg><title>` e `<svg><desc>`, o `aria-*` que aponta para outro elemento por `id` (`aria-labelledby`, `aria-describedby` — a superfície nova lê o **id**, que é chave de máquina, e não a frase que ele endereça), e o `value` de `<option>` e `<button>`. Os três são texto de leitor por caminho indireto, e o caminho para achar defeito neles é o mesmo das três últimas passadas: **ler a página servida com os olhos, agora olhando o que o portão ainda não lê.**
+
+**E duas dívidas que não são desta passada e seguem abertas, para ninguém gastar execução redescobrindo:** (a) o fecho da revisão **71** declarou 11 itens aplicados e o log trouxe **12** linhas de item — o portão **disse** a divergência em vez de aprovar sobre o que sobrou, e ninguém a investigou, nem hoje nem em 09/11; (b) o `print` do resumo do `--autoteste` de `conferir-no-ar.py` está indentado **dentro** do `else` do carregamento da régua irmã, então no mundo em que ela não carrega o portão imprime o veredito **sem** dizer quantas afirmações mediu. Não toquei nele porque não é defeito medido no ar e a **31.2** é literal sobre portão novo; fica nomeado para quem tiver um motivo medido.
+
+---
+
 ## 2026-11-10 13h25Z–14h1xZ — **A F2 SERVIA A CHAVE DE MÁQUINA DO TIPO COMO FRASE DE LEITOR, E A /PRIVACIDADE/ DIZIA A MESMA COISA DUAS VEZES SEM ACENTO** — revisões 75 e 76
 
 **A ESCOLHA DA ILHA.** `foco.md` nomeia a **rodametria** (foco total e absoluto desde 27/10) e pela **1.2** não há escolha a fazer. **A exceção do molde (seção 32) e o despacho ALTO, MEDIDOS NESTA PASSADA e não herdados do registro anterior** — a primeira versão desta linha os afirmava por herança, que é exatamente *"cada execução leu o `ESTADO.md` da anterior como fato"* da 20.2, e foi corrigida antes de o fecho ir ao `main`: o despacho do molde está **FECHADO INTEIRO** nas três ilhas (aquametria 21/10 às 18h2xZ, clubedomosaico 21/10 às 19h1xZ, robometria 21/10 às 16h1xZ, as duas últimas riscadas), e **nenhuma ilha fora do foco tem despacho ALTO aberto** — varri as cinco. **E a varredura achou uma armadilha de instrumento:** a busca crua por `ALTA` casa dentro de **FALTA**, e devolveu dois despachos reescritos pela 18.3 cujo título diz *"só o que FALTA ficou"*. Não eram ALTA. Nada fura o foco. **Branch e PR, passo 1:** `origin/claude/dreamy-mccarthy-57g7b4` sem **nenhum** commit fora do `main` e **zero PR aberto** — nada a mergear. `executando_desde` estava `null`, o que pela **1.1** já significa que não havia bloco da Fundação vivo, logo não houve reserva vencida a desempatar no git nem reserva órfã a limpar (1.2-b.5). Reserva no commit `96b1965`, às **13h25Z**, hora saída do `date -u` na mesma linha que a grava.
