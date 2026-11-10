@@ -3,6 +3,82 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-11-10 10h17Z–10hxxZ — **A HOME CITAVA A FONTE NO VOCABULÁRIO DA FÁBRICA, COM O NOME DO DONO DENTRO — E A FUNÇÃO QUE DECIDE ISSO ERA TRÊS** — revisão 74
+
+**A ESCOLHA DA ILHA.** `foco.md` nomeia a **rodametria** (foco total e absoluto desde 27/10) e pela **1.2** não há escolha a fazer. **Confirmei a exceção do molde (seção 32) antes de aceitar o foco:** os três despachos do molde seguem riscados e fechados na aquametria, na clubedomosaico e na robometria, e nenhuma das ilhas fora do foco tem despacho ALTA aberto — nada fura o foco. **Branch e PR, passo 1:** `origin/claude/dreamy-mccarthy-82vkwa` sem **nenhum** commit fora do `main` (`git log origin/main..origin/claude/...` vazio) e **zero PR aberto** — nada a mergear. `executando_desde` estava `null`, o que pela **1.1** já significa que não havia bloco da Fundação vivo, e portanto não houve reserva vencida para o git desempatar. Reserva no commit `a418b91`, às **10h17Z**, hora saída do `date -u` na mesma linha que a grava.
+
+**A REDE, MEDIDA E NÃO HERDADA (20.2), ANTES DA RESERVA.** `rodametria.com.br` em **200** nas três passadas com quebra de cache, com `robometria.com.br` em 200 nas mesmas três. O `aquametria.com.br` deu **000 na primeira e 200 nas outras duas** — e isso é o que a 20.2 chama de túnel, não de rede: *"uma falha isolada é o túnel; três seguidas, em endereços diferentes, é rede"*. Não é desta ilha e não virou campo.
+
+**A BANCADA ANTES DE CONSTRUIR (18.5): 45 portões com rede, 0 falha; 40 sem rede, 0 falha.** Ilha sã no ar, nenhum defeito aberto.
+
+**A FILA, E POR QUE ESTE BLOCO.** Não havia despacho aberto para a Fundação: o de 09/11 fechou às 17h4xZ, os dois itens do de 04/11 pedem o Search Console (credencial da leitura semanal, nunca da Fundação) e o de 30/10 é **para o Raphael**, numa sessão de Chrome. A fila de blocos está **toda entregue menos o 5 (artigos-âncora)**, e o 5 depende de `ilhas/rodametria/pauta.md`, que **não existe** e que pela **17.1** é escrito pela rotina *Pauta das ilhas*, pelas Mãos, no computador do Raphael — não é arquivo da Fundação. **Página nova continua travada pelas duas pontas já medidas:** a **30.8** não deixa afirmar `alvo` desta nuvem, e as duas consultas com SERP já autorizada pelo Raphael (`moto elétrica` 823 mil, `scooter elétrica` 301 mil) esperam etiqueta do Mercado Livre, que é despacho e nunca bloco — reli o `motivo_para_nao_publicar_agora` das duas e os dois seguem válidos, inclusive o da `scooter elétrica`, que publicada hoje serviria **patinete** debaixo de um H1 que promete scooter (canibalização da 30.4 construída de propósito).
+
+**Então fui procurar o que a 31.1 pede — algo NO AR que o visitante vê — no lugar onde esta ilha já pagou caro: o que o banco sabe e a tela não serve.** Conferi as **15 constantes publicáveis** uma por uma contra o texto visível das 10 URLs: as 15 estão na tela. Não havia dado escondido. **O defeito estava na outra ponta: no que a tela serve e não devia.**
+
+---
+
+### O DEFEITO, MEDIDO NO AR ÀS 10h2xZ DE HOJE, EM NEGRITO, NA DOBRA "DE ONDE SAÍRAM OS LIMITES"
+
+A home servia, letra por letra, dentro de um `<b>`:
+
+> Resolucao CONTRAN no 996, de 15/06/2023, publicada no DOU de 22/06/2023 (Ed. 117, Secao 1, p. 327), texto ORIGINAL, em vigor desde 03/07/2023 pelo art. 22. LIDA NO PDF OFICIAL do Ministerio dos Transportes em 2026-11-05 ~23h3x de Brasilia (2026-11-06 ~02h3xZ), no Chrome do Raphael.
+
+**Oito defeitos num parágrafo, de cinco classes:**
+
+1. **Quatro palavras portuguesas sem acento** na tela — `Resolucao`, `Secao`, `Ministerio`, `Brasilia`. A seção 8 manda o contrário, e esta ilha tem régua de acento desde 29/10.
+2. **O NOME DO DONO e o navegador dele numa página pública** — *"no Chrome do Raphael"*. Quem lê a página não sabe quem é Raphael, e a 32.4 é sobre exatamente isto: a ilha falando com o visitante no vocabulário de quem escreveu a fábrica.
+3. **Duas datas em `AAAA-MM-DD`** — e o agravante é que a **mesma data** sai em **dois vocabulários no mesmo parágrafo**: `2026-11-05` e, duas frases depois, *"lido em 05/11/2026"*. É a assinatura da **20.7** em forma de data.
+4. **Hora Zulu** (`02h3xZ`) — fuso de servidor na página de quem compra patinete.
+5. **O `x` de `~23h3x`** — o marcador de minuto da convenção **desta fábrica**, que para quem escreve o repositório diz "a hora está certa e o minuto não importa" e para quem lê a página é **erro de digitação**.
+
+**ONDE ISSO CUSTA:** é a dobra em que a ilha prova que leu a fonte oficial, na página da ferramenta que ela existe para ter, e é a camada que a visão geral de IA ingere junto com o resto. A contradição é de credibilidade: o parágrafo que existe para dizer "nós lemos o ato" é o único da página escrito em idioma de bastidor.
+
+**E O CONTRASTE ESTAVA NA PÁGINA AO LADO.** A F2 cita a tese de Quito assim: *"Limaico Quinteros, Rodrigo David. “Análisis de la eficiencia energética de la batería de ion litio…”. Mestrado em Engenharia Automotiva, Universidade Politécnica Salesiana, sede Quito, 2025."* — acentuada, em português, na voz do leitor. **Duas páginas da mesma ilha citam a fonte, uma na língua do leitor e a outra na da fábrica.**
+
+---
+
+### A CAUSA NÃO ERA UMA LISTA FALTANDO UMA PALAVRA: ERA A MESMA PERGUNTA RESPONDIDA EM TRÊS LUGARES
+
+`gerar-f3.py` **já tinha a guarda do nome do dono**, escrita às **13h2xZ de 06/11**, porque o `fonte` cru de uma constante dela dizia *"painel da Shopee do DOSSIE, lido pelo RAPHAEL"*. O comentário dela nomeia o caso inteiro.
+
+**A F1 tinha ido ao ar às 10h4xZ do MESMO DIA — três horas antes —, servindo "no Chrome do Raphael" na home.** A cópia dela desta função, `fonte_na_tela_legal`, não tinha a guarda do nome, não tinha a régua de acento e não tinha a de vocabulário de máquina. A guarda nasceu na pasta ao lado, no mesmo dia, e **nunca voltou**. É a **32.5-c** literal.
+
+**E O COMENTÁRIO DELA AFIRMAVA O QUE NÃO MEDIA (32.5-d):** dizia que *"estas duas constantes nasceram em 06/11/2026 e o `fonte` delas JÁ é frase de leitor, porque foi escrito sabendo que iria para a tela. O que esta função faz é cobrar isso, em vez de supor."* **A afirmação era falsa e estava no ar.** A função não cobrava acento nem data nem o nome do dono; cobrava 20 palavras de fábrica, e nenhuma delas é `Raphael`.
+
+**POR QUE A RÉGUA DE ACENTO NÃO VIU, e ela tem `secao` na lista desde 29/10:** a frase de procedência **nunca entrava em `textos`**. Ela é montada **depois** da chamada de `conferir_acento_na_tela`, e a única guarda que a alcançava era a de bastidor. O portão certo existia, com a palavra certa dentro, e nunca recebeu a frase.
+
+**POR QUE `teste-afirmacao-de-tela.py` NÃO VIU — a pergunta da 19.4(b), e a resposta é a melhor coisa que esta passada achou:** a chave `fonte` está em `CHAVES_DE_BASTIDOR`, a lista das chaves que **não** são texto de tela. Em `dados/constantes.json` isso está **certo**: lá o `fonte` é prosa de método, e medi-la reprovaria a explicação de por que a ilha não responde sobre CNH. **Mas o gerador PROMOVE esse campo a texto de tela ao copiá-lo para `constantes_usadas` de um `*-respostas.json`** — mesmo nome, papel oposto. A exclusão, **sendo por nome**, pulava exatamente o campo que acabara de virar tela.
+
+**E AS SEIS OUTRAS ESTAVAM ARMADAS.** Sete constantes passam por essa função e **só uma é impressa hoje**; as outras seis viajavam no JSON da página, **quatro delas com a mesma doença** (`transito`, `noticia`, `atribuicao`, `materia`, `fabrica` sem acento, e *"pelo bloco 1 desta ilha"* como vocabulário de fábrica). Buraco pré-aberto, esperando o dia em que um snippet imprimisse qualquer uma.
+
+---
+
+### O CONSERTO: UMA FUNÇÃO, QUATRO RÉGUAS, E AS SETE FRASES REESCRITAS NA VOZ DO LEITOR
+
+**`fonte_na_tela` é agora a ÚNICA função que responde esta pergunta nas três ferramentas**, em `gerar-f2.py`, onde as outras réguas de tela já moravam. `fonte_na_tela_legal` foi **apagada** (com a afirmação falsa dela) e a cópia da F3 virou uma atribuição — a guarda do nome do dono foi **promovida**, não apagada. As quatro réguas correm **no ponto em que o dado vira texto**, por isso alcançam também as seis frases que hoje não são impressas.
+
+**As sete frases de leitor, e nenhuma perdeu fato.** A do limiar preserva os dez pedaços que importam — o ato, o número, a data, o DOU, a edição, a seção, a página, a vigência com o artigo, o texto original, o órgão e a data da leitura — e o portão **cobra os dez um por um**, para que "frase de leitor" não vire desculpa para citar menos:
+
+> Resolução Contran nº 996, de 15/06/2023, publicada no Diário Oficial da União de 22/06/2023 (edição 117, seção 1, página 327). É o texto original, em vigor desde 03/07/2023 pelo art. 22. Lemos o PDF oficial no site do Ministério dos Transportes em 05/11/2026.
+
+**O que saiu foi só bastidor:** qual navegador, de quem, em que fuso, com o minuto marcado por `x`. **A força da prova que o leitor precisa — PDF oficial, e não notícia — continua dita.**
+
+**O QUE NASCEU DE PORTÃO, e nasceu com defeito medido no ar (31.2), com URL e data no commit:**
+
+- **`SEM_ACENTO_PALAVRA_INTEIRA`, tupla SEPARADA de propósito.** A lista antiga casa por **substring**, e está certa para os radicais que ela guarda (`eletric` cobre elétrico e elétrica). Mas `fabrica` por substring **reprovaria `fabricante`**, que está certo e aparece na F2 (*"o número do fabricante"*); `materia` reprovaria `material`. É a armadilha que esta ilha pagou duas vezes no mesmo dia — o `so` que casou dentro de "nosso" e "isso" em 06/11 — e a lição morava **só** na régua da F3. **Misturar os dois modos de casar numa tupla só erraria calado, porque o modo não estaria escrito em lugar nenhum.**
+- **`conferir_vocabulario_de_maquina`.** Data ISO, hora Zulu e o marcador `x`. **Não é palavra, é FORMATO** — nenhuma lista de palavras pegaria `02h3xZ`.
+- **`teste-afirmacao-de-tela.py` IMPORTA as réguas em vez de reescrevê-las**, que é o que o próprio cabeçalho dele manda (*"duas cópias da mesma regra seriam a segunda declaração do mesmo fato que a 20.7 proíbe"*), e passa a colher `fonte` **sob `constantes_usadas`**. Fora dali `fonte` segue sendo registro, e há mundo fabricado cobrando isso.
+
+**MEDIDO, e o conserto não foi afirmado:**
+
+- **Autoteste: 76 mundos, 0 falha.** O primeiro é a **frase do ar de hoje, inteira**, e ele exige as **oito classes separadas**, uma por uma — contar só o total esconderia qual régua morde o quê.
+- **AS DUAS RÉGUAS DISCORDAM, que é o que prova o conserto (20.8):** sobre um `*-respostas.json` fabricado, a régua **velha** colhe **ZERO** frase de procedência (exclui `fonte` por nome) e a **nova** colhe uma e a reprova em **oito** classes. Autoteste em que as duas concordam não mede conserto nenhum.
+- **A régua de Zulu é medida SOZINHA** (mundo 10e), porque no mundo do ar o marcador `x` reclama a classe primeiro, e régua exercitada só por tabela de outra pode estar **INERTE** — o defeito que o próprio `bancada.py` desta ilha denuncia por nome.
+- **Portão sobre o repositório: 2.160 afirmações, 0 falha** — contra **18 falhas** antes de regenerar, espalhadas pelas quatro frases doentes.
+- **E O PORTÃO REPROVOU QUEM O ESCREVEU:** a primeira versão do mundo do ar afirmava que a régua de Zulu acusaria `02h3xZ`, e ela não acusa. A afirmação estava errada **sobre o instrumento**, não sobre o defeito — e foi o autoteste que disse isso, não eu.
+
+---
+
 ## 2026-11-09 19h17Z–20hxxZ — **O NAVEGADOR DESTA NUVEM, E O QUE ELE ACHOU NO PRIMEIRO MINUTO: A FERRAMENTA PRINCIPAL DESTA ILHA NÃO ESTAVA NO MENU** — revisão 73
 
 **A ESCOLHA DA ILHA.** `foco.md` nomeia a **rodametria** (foco total e absoluto desde 27/10) e pela **1.2** não há escolha a fazer. **Confirmei a exceção do molde (seção 32) antes de aceitar o foco:** os três despachos do molde estão riscados e fechados na aquametria (21/10, 18h2xZ), na clubedomosaico (21/10, 19h1xZ) e na robometria (21/10, 16h1xZ), então nada fura o foco; e **nenhuma das três ilhas fora do foco tem despacho ALTA aberto**, que é a única outra porta da 1.2. **Branch e PR, passo 1:** `origin/claude/dreamy-mccarthy-z8333k` e `origin/main` no mesmo commit `de41a5c`, zero commit à frente nos dois sentidos — nada a mergear. `executando_desde` estava `null`, o que pela **1.1** já significa que não havia bloco da Fundação vivo. Reserva no commit `56a7ca9`, às **19h17Z**, hora saída do `date -u` na mesma linha que a grava; **RENOVADA** às 19h33Z pela 1.1.

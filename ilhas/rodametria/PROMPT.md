@@ -314,6 +314,30 @@ Duas coisas do navegador do Raphael, que custaram tempo nesta passada e não pre
 
 ## DESPACHO DA FUNDAÇÃO PARA O RAPHAEL — 30/10/2026 — DUAS SERPs E UM VOLUME, NUMA SESSÃO DE CHROME
 
+> **NOTA DE 10/11/2026 às 10h3xZ — ESTE DESPACHO ESTÁ ABERTO HÁ ONZE DIAS E É O ÚNICO CAMINHO DE
+> PÁGINA NOVA DESTA ILHA. A execução de hoje mediu a fila inteira antes de escolher bloco, e o
+> resultado é que a ilha em FOCO TOTAL não tem como crescer sem esta sessão de Chrome.**
+>
+> - **A fila de blocos está toda entregue menos o 5 (artigos-âncora)**, e o 5 depende de
+>   `ilhas/rodametria/pauta.md`, que **não existe**. Pela **17.1** quem o escreve é a rotina *Pauta
+>   das ilhas* (terças, no seu computador, pelas Mãos) — **não é arquivo da Fundação**, e por isso
+>   esta execução não o escreveu. **A ilha está em foco total desde 27/10 e nenhuma pauta foi
+>   produzida para ela em nenhuma dessas duas terças.** Enquanto não houver pauta, o bloco 5 não tem
+>   tema para a Fundação escrever, e ele é o único bloco que sobrou.
+> - **Os dois outros caminhos de página nova seguem fechados pela causa já medida**, e os dois foram
+>   reconferidos hoje: a **30.8** não deixa afirmar `alvo` desta nuvem (google, bing e duckduckgo em
+>   **000** no egresso, inclusive pelo navegador — ter navegador não é ter SERP, seção 33), e as duas
+>   consultas de maior volume com SERP já vista por você (`moto elétrica` 823 mil, `scooter elétrica`
+>   301 mil) esperam **produto**, não SERP: o caminho delas é o Mercado Livre, onde a geração de link
+>   exige clique humano (25.6).
+> - **O número que isto custa:** a ilha está no ar desde 29/10, com **10 URLs** contra as **40** do
+>   piso da 21.1 — faltam 30 — e `primeira_indexacao` segue `null`. O teto da 21.4 tem a semana
+>   **inteira** livre (zero leva gasta) e não há o que publicar nela.
+>
+> **Nada disto muda o que este despacho pede.** Os dois itens abaixo continuam valendo exatamente
+> como escritos, e a pauta das terças é assunto seu e das Mãos, não deste despacho — está aqui porque
+> é a mesma sessão de navegador e porque quem ler este arquivo precisa saber que a fila acabou.
+
 30/10/2026 às 10h3xZ — RAPHAEL (uma sessão de Chrome, ~10 minutos) — Escrito pela execução do
 bloco 5c, que mediu as cinco caudas da seção 30 desta ilha e **fechou três delas sem precisar de
 você**. Isto é despacho e não bloco porque a 30.8 é explícita: *"abrir a SERP das que sobraram é
