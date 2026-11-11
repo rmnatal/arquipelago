@@ -827,6 +827,18 @@ Medido na rodametria às 13h4xZ de 11/11/2026, no desembarque da revisão 82. O 
 
 **O que isto NÃO revoga:** a 20.4 inteira continua valendo — o log se lê linha por linha, e a segunda rodada do Sync continua sendo o conserto do dia em que a ativação falhar por outro motivo. O que esta seção acrescenta é que **a maior parte dessas falhas é evitável no repositório, antes do desembarque**, e que ilha que ainda não cobra a guarda nos snippets todos está a um desembarque de perder uma página sem saber por quê.
 
+20.12 **ARQUIVO GERADO NÃO É FONTE: TROCA DE PROSA EM ARQUIVO GERADO PARECE CONSERTO E DURA ATÉ O PRÓXIMO `--gravar` (11/11/2026).**
+
+Medido na rodametria às 16h4xZ de 11/11/2026, no desembarque da revisão 84, e **quem o pegou foi um portão escrito na mesma passada** — a página continuava servindo a palavra que acabara de ser trocada.
+
+**O QUE ACONTECEU:** a execução trocou uma frase em `dados/f2-respostas.json`, rodou os geradores da ilha no fecho (como manda a bancada) e **`gerar-f2.py` desfez a troca calado**, porque aquela frase mora numa lista de medições **dentro do gerador** e o arquivo de dados é só o espelho dela. A troca existiu por minutos, no disco, sem nunca chegar ao ar.
+
+**POR QUE ISSO NÃO É DESATENÇÃO E VAI REPETIR:** todo arquivo de dados destas ilhas traz um campo `gerado_por`, e **metade deles é escrito à mão e metade é espelho**. Os dois se parecem: mesma pasta, mesma extensão, mesma cara de dado declarado. O `grep` acha a frase nos dois, e o arquivo gerado é quase sempre o primeiro a aparecer, porque é nele que a frase está **montada**.
+
+**A REGRA, e ela cabe numa pergunta:** antes de trocar prosa ou número em qualquer arquivo de `dados/`, leia o campo **`gerado_por`** dele. Se houver um, a troca é na **ferramenta** nomeada ali, nunca no arquivo — e depois se roda a ferramenta. Se não houver, o arquivo é a camada declarada e a troca é nele mesmo.
+
+**E O PORTÃO QUE PEGA É O QUE JÁ EXISTE:** todo gerador desta fábrica tem `--conferir`, que refaz o arquivo e **reprova se o gravado não refizer**. Quem editou o gerado e não rodou o gerador vê `REPROVADO` na bancada; quem editou o gerado **e** rodou o gerador vê verde — com a edição desfeita. **Verde depois de uma troca não prova que a troca entrou: prova que o arquivo bate com quem o escreve.** A prova de que a troca entrou é a leitura **no ar**, que é o que a 18.4 já manda e o que pegou este caso.
+
 20.3 **A mesma armadilha vale para toda fonte nova** que uma ilha precise alcançar (domínio de fabricante, API, marketplace): quem escreve a regra que exige a fonte é quem confere se a fonte está liberada.
 
 ## 21. O PISO DA RAMPA — antes de 40 páginas e 21 dias, zero impressão não é sinal (11/09/2026)
@@ -1168,6 +1180,22 @@ Ele é o **programa de vendedor da Shopee** (`[1]`, `[2]`, `[]` — preferido, m
 
 ---
 
+### 25.11 ANÚNCIO QUE PAROU DE VENDER SAI DOS CAMPOS VIVOS — E A QUARENTENA TEM DE ATRAVESSAR A COLETA SEGUINTE, SENÃO O CONSERTO SE DESFAZ CALADO (11/11/2026)
+
+Medido na rodametria em 11/11/2026, no conserto do primeiro `Esgotado` daquela ilha: o segundo cartão da página de maior intenção de compra servia um anúncio que **existe, abre em 200 e não vende** — o segundo dos dois desfechos que a 25.4 manda ler **no corpo** da página do produto.
+
+**O QUE SAI E O QUE FICA, e isto é o precedente da robometria de 02/11 virando regra:** o anúncio aposentado **não fica em campo vivo**. Ele sai da lista de ofertas e a história dele fica **inteira dentro de uma prosa de quarentena** — ids, loja, título, preço, degrau, encurtado, causa e última medição —, no formato `CAUSA || ULTIMA MEDICAO` da 25.4-b.3. As contagens de **coleta** (quantas ofertas a busca devolveu, quantas foram recusadas pela régua de relevância) **não mudam**: são fato do dia em que a coleta aconteceu. O que refaz é o que **serve hoje** — a faixa de preço, a mediana, as contagens de atributo e a vaga do cartão, que vai para o próximo da ordem.
+
+**E A TELA TEM DE DIZER, porque a conta do leitor deixa de fechar.** Página que presta contas dizendo *"a busca devolveu N ofertas e M ficaram de fora"* passa a ter uma tabela menor que `N − M` no dia em que uma oferta sai. **Conta que não fecha na tela é pior que conta ausente: ela ensina a desconfiar do número que está certo.** Uma frase de leitor resolve — *"outra saiu da lista depois dessa leitura: a loja mostrava o produto como esgotado"* — e ela é honesta porque é verdade.
+
+**A METADE QUE NINGUÉM VÊ, E É ELA QUE DESFAZ O CONSERTO:** a ferramenta de coleta **reescreve o bloco inteiro a partir da loja**. Sem quarentena no caminho da gravação, o anúncio esgotado **volta na próxima coleta, com o mesmo id, como oferta viva** — e volta calado, porque a loja continua a devolvê-lo. **Então a prosa da quarentena é também a LISTA DE BLOQUEIO:** o formato da linha é fechado, a ferramenta de coleta lê o id dela, recusa o anúncio e **imprime a recusa**. Prosa que é também a lista não envelhece separada da história, e foi para isso que o formato fechado existe.
+
+**ONDE A RÉGUA MORA:** no dono do arquivo — a ferramenta que grava a coleta —, e quem aposenta anúncio a **usa** em vez de copiá-la (20.7). O conserto é **ferramenta e não edição à mão**: link de afiliado apodrece (25.1), isto vai acontecer em toda ilha, e o conserto à mão mexe em meia dúzia de lugares do mesmo arquivo e erra calado no que não tocar. Modelo rodando: `ilhas/rodametria/ferramentas/aplicar-aposentadoria-de-anuncio.py` (com portão próprio, que exige a soma `ofertas_lidas == ofertas + aposentados` fechar e **varre todos** os campos de todas as ofertas vivas procurando o id aposentado).
+
+**E O TESTE DE VIDA CONTINUA NÃO SENDO TAREFA DE NUVEM (25.4):** quem **mede** o esgotado é a ronda, no navegador; quem **aplica** é a Fundação. Por isso a ferramenta exige a prosa da medição na linha de comando, em vez de inventar uma — e por isso reescolher ficha nova não é conserto desta nuvem: grampear ficha que ninguém pode abrir é a 25.4-b.1 ao pé da letra.
+
+---
+
 ## 26. O VOCABULÁRIO DA ILHA CLASSIFICA PELA FUNÇÃO; O FABRICANTE BATIZA PELA POSIÇÃO (13/09/2026)
 
 **Medido na Robometria, em 13/09/2026, colhendo peça da WAP.** O banco daquela ilha separa `escova lateral` de `escova principal` — são **funções**, e é a função que decide se a peça encaixa. O fabricante não nomeia função nenhuma: ele batiza pela **posição** ou pelo marketing. A mesma marca publica "Escova Direita", "Escova Esquerda", "Escova Central", "Escova Frontal" e "Escova Rotativa", e nenhuma dessas cinco palavras está no vocabulário da ilha.
@@ -1434,6 +1462,20 @@ Medido na rodametria às 13h2xZ de 11/11/2026, nas 10 URLs do sitemap, **com a b
 **O PORTÃO QUE ISSO EXIGE É O DA 32.4-b MAIS UMA TRAVA QUE A FOLHA NÃO TEM: `node --check` NA ENTRADA E NA SAÍDA.** Roteiro cortado errado quase sempre deixa de ser JavaScript válido, e quem diz isso não é opinião — é o próprio motor, e ele roda do chão, antes do desembarque. O resto é igual: mundos fabricados com a saída escrita à mão, a régua ingênua ao lado da nova obrigada a **discordar** (20.8), e a conta de que **o que desapareceu é exatamente o que morava dentro de comentário**. Modelo rodando: `ilhas/rodametria/ferramentas/teste-roteiro-sem-comentario.php` (12 mundos, 7 discordâncias, 88 afirmações) e `rodametria_casca_js_sem_comentario()` na casca daquela ilha. **O que ele NÃO prova é que o roteiro continua FAZENDO o que fazia** — sintaxe válida não é comportamento igual, e quem mede isso é o console e o pixel, depois do desembarque.
 
 **O QUE ISTO RENDEU NO AR, para as outras ilhas terem com o que comparar:** 10 de 10 URLs com **zero** comentário em roteiro da ilha, contra 14 e 3.489 bytes de manhã. Os roteiros do próprio WordPress (o `importmap` e o módulo de navegação do tema) **não são da ilha, não saem daí e não podem fazer portão nenhum reprovar** — é a mesma decisão que a 32.4-b tomou sobre as 17 folhas dele.
+
+**32.4-e A LISTA DA 32.4 NÃO FALHA POR TER POUCOS TERMOS: FALHA PELA COMPARAÇÃO. TERMO SEM ACENTO NÃO ACHA A PALAVRA ACENTUADA, E PALAVRA QUE VIVE DENTRO DE OUTRA NÃO PODE SER MEDIDA POR PEDAÇO (11/11/2026).**
+
+Medido na rodametria em 11/11/2026, e os dois achados são sobre o **instrumento**, não sobre a lista.
+
+**(a) `publicavel` ESTAVA NA LISTA DESDE QUE ELA NASCEU, E O AR SERVIA `publicável`.** A comparação era `termo.lower() in texto.lower()`, e o acento atravessou: **termo na lista, ocorrência na tela, portão verde**. É a família do `git log` raso da 1.1 e do número de tela digitado da seção 8 — o instrumento responde, e a resposta não mede o que promete. Pior que termo ausente, porque **termo presente parece conferido**: ninguém procura de novo o que a lista já diz cobrir.
+
+**(b) O NOME COMUM DA COISA É PIOR QUE O NOME PRÓPRIO DELA, e a 32.4-d consertou só o nome próprio.** A 32.4-d pôs na lista o nome das ilhas irmãs. Na mesma ilha, no mesmo dia, a ronda contou **10 ocorrências da palavra `ilha`** em prosa de leitor, em 5 das 10 páginas — *"Se um número desta ilha está errado…"*, *"todos os botões de compra desta ilha…"*. **`ilha` é o nome que este contrato dá a um site desta fábrica** (a seção de vocabulário o diz com todas as letras), e na tela ele diz ao visitante que ele está dentro de uma peça de uma fábrica cujo nome o site nunca explica. **Na tela, a ilha se diz `este site`.**
+
+**E `ilha` NÃO PODE ENTRAR NA LISTA POR PEDAÇO DE TEXTO:** ela vive dentro de **`trilha`**, e a trilha de migalhas que a 16.3 exige sai em **5 a 7 ocorrências por página**, em todas elas. Termo de substring crua reprovaria as 10 páginas pelo que elas têm de **certo** — o caminho mais curto para alguém passar a ignorar o portão (20.5).
+
+**A REGRA, em duas linhas, para toda ilha:** a régua da 32.4 tem **duas** listas, e a segunda é a que faltava. A primeira continua sendo de pedaço de texto, que basta para `snippet` ou `manifest.json`. A segunda é de **padrão com fronteira de palavra**, lida sobre o texto **dobrado** (sem acento, em minúscula) dos dois lados — e é nela que entram o nome comum da coisa (`ilha`/`ilhas`), os valores de enum do banco (`publicável` e família) e os **rótulos de campo de banco** servidos como frase (`Tipo:`). As duas valem no **texto visível E no HTML servido**, porque é no servido que mora o JSON-LD (32.4-c).
+
+**E NENHUM TERMO ENTRA SEM SER CONTADO ANTES.** `Tipo:` entrou depois de medido em **uma** ocorrência nas 10 URLs — a nossa —, e `pendente` **não** entrou: na home ele aparece três vezes, todas como **chave de JSON** de um payload que a ferramenta precisa (`habilitacao_pendente`). Termo que reprovaria máquina legítima fica fora, e a contagem que o prova fica escrita. Modelo rodando: `BASTIDOR_COM_FRONTEIRA` em `ilhas/rodametria/ferramentas/conferir-no-ar.py`, com os mundos fabricados que exigem que a régua **morda** a frase que estava no ar e **não** morda a trilha.
 
 **32.5 Pronto quando (medido no ar, celular de 390 px, para cada página):** o formulário (ou a caixa de resposta, em ficha) começa antes de 700 px; o primeiro botão de compra aparece antes de 1.400 px; o HTML servido com JavaScript desligado contém o texto inteiro que existia antes; title, H1, URL, trilha e JSON-LD idênticos aos de antes da mudança; zero frase da lista 32.4; console limpo. A Sentinela confere isso na ronda e registra os números no `dados/consertos.md`.
 
