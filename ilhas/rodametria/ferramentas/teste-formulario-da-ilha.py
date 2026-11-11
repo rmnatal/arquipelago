@@ -427,6 +427,61 @@ def passada():
                    "repositorio (como `rodametria_sync_token()`, que e do Sync), a "
                    "saida e a GUARDA e nunca uma lista de excecao."
                    % (rotulo, nome, nome))
+    # ---------------------------------------------------------------
+    # TODA FUNCAO DE NIVEL SUPERIOR DOS SEIS SNIPPETS DENTRO DE GUARDA
+    # (11/11/2026, e custou 30 minutos de home sem a F1)
+    # ---------------------------------------------------------------
+    #
+    # O DEFEITO, medido as 13h4xZ de 11/11/2026 no desembarque da revisao 82:
+    # o Sync escreveu `snippets/rodametria-f1: gravado (#10) mas NAO ativado: o
+    # codigo nao passou na validacao`, seguiu em frente e subiu a revisao — e a
+    # home VOLTOU A SER HUB, sem a F1. A causa nao e do plugin: o Code Snippets
+    # ATIVA avaliando o codigo, o snippet ja estava carregado naquela
+    # requisicao, e `rodametria_f1_frases_dos_numeros()` era a UNICA funcao de
+    # nivel superior das tres ferramentas FORA de `if ( ! function_exists() )`.
+    # PHP recusa redeclarar, a ativacao falha. A F2 e a F3 passaram no MESMO
+    # desembarque, pela mesma porta, porque as 28 funcoes delas tem guarda.
+    #
+    # ENTAO A CICATRIZ DA 20.4 NAO E INEVITAVEL NESTA ILHA: ela e uma guarda
+    # que falta. O conserto que o contrato ensina — *"acionar o Sync outra
+    # vez"* — trata o sintoma e depende de uma segunda rodada de cron, que
+    # nesta ilha pode levar meia hora com a pagina fora do ar.
+    #
+    # E A REGUA QUE DEVIA TER PEGADO MEDIA SO DOIS DOS SEIS: o `teste-f2.py`
+    # cobra a guarda na CASCA e na F2 (`for nome, bruto in ( ("casca", casca),
+    # ("f2", php_f2) )`), e a F1, a F3, a institucional e a de produto nunca
+    # foram medidas. Aqui ela corre sobre os SEIS, porque esta bateria ja os le
+    # todos — e lista de dois escrita a mao e o que envelhece calado. A regua
+    # do `teste-f2.py` NAO foi apagada: duas reguas sobre a mesma trava e
+    # redundancia barata, e a de la mede o fonte SEM COMENTARIO, que e um
+    # recorte diferente.
+    # A GUARDA SE PROCURA POR QUALQUER PREFIXO, e nao por `rodametria_`:
+    # `nomes_guardados()` acima existe para a chamada de funcao que mora FORA
+    # desta pasta e por isso so olha `rodametria_*`. O snippet de produto nomeia
+    # as funcoes dele `rdm_produto_*`, e reaproveitar aquela regua aqui deu 30
+    # falhas em funcoes que JA tinham guarda — regua que reprova o arquivo certo
+    # e o caminho mais curto para alguem ignora-la (20.5). Medido antes de
+    # escrever esta linha, nao depois.
+    guarda_qualquer = re.compile(r"function_exists\s*\(\s*['\"](\w+)['\"]")
+    sem_guarda = []
+    for rotulo, texto in textos:
+        guardadas = {m.group(1) for m in guarda_qualquer.finditer(texto)}
+        for m in re.finditer(r"(?m)^function\s+(\w+)\s*\(", texto):
+            afirma(m.group(1) in guardadas,
+                   "%s: a funcao de nivel superior `%s()` NAO esta dentro de "
+                   "`if ( ! function_exists( '%s' ) )`. O Code Snippets ATIVA o snippet "
+                   "AVALIANDO o codigo, e quando ele ja esta carregado na requisicao PHP "
+                   "recusa redeclarar: a ativacao falha, o Sync escreve `gravado mas NAO "
+                   "ativado` numa linha do log, SOBE A REVISAO e a pagina desse snippet "
+                   "sai do ar. Foi o que derrubou a F1 da home na revisao 82, em "
+                   "11/11/2026." % (rotulo, m.group(1), m.group(1)))
+            if m.group(1) not in guardadas:
+                sem_guarda.append("%s:%s" % (rotulo, m.group(1)))
+    nota("guarda de redeclaracao: %d snippet(s) varridos, %d funcao(oes) de nivel "
+         "superior sem guarda%s"
+         % (len(textos),
+            len(sem_guarda), (" — " + ", ".join(sem_guarda)) if sem_guarda else ""))
+
     nota("chamadas entre snippets: %d chamada(s) de `rodametria_*`, %d definicao(oes), "
          "%d nome(s) guardado(s) por function_exists, %d chamada(s) para OUTRO "
          "snippet, %d fantasma(s)"

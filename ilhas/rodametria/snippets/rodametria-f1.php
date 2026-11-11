@@ -90,7 +90,7 @@ if ( ! defined( 'RODAMETRIA_F1_VERSAO' ) ) {
 	   SEM o formulario da F1 e SEM a barra fixa, e o `/casca` nao trazia
 	   `rodametria-f1` nenhum — que e exatamente a ausencia que a 20.7 desenhou
 	   para ser o sinal. Tres dos cinco portoes de pagina ficaram verdes. */
-	define( 'RODAMETRIA_F1_VERSAO', '1.5.2' );
+	define( 'RODAMETRIA_F1_VERSAO', '1.5.3' );
 }
 
 if ( ! defined( 'RODAMETRIA_ID_DADOS_F1' ) ) {
@@ -548,6 +548,28 @@ if ( ! function_exists( 'rodametria_f1_dobras_html' ) ) {
  * Lista vazia quer dizer que falta base, e quem chama fica SEM a explicacao —
  * nunca com ela pela metade.
  */
+if ( ! function_exists( 'rodametria_f1_frases_dos_numeros' ) ) {
+/* A GUARDA QUE FALTAVA, E ELA DERRUBOU A HOME POR 30 MINUTOS EM 11/11/2026.
+ *
+ * Esta era a UNICA funcao de nivel superior das tres ferramentas desta ilha
+ * FORA de `if ( ! function_exists() )` — 18 funcoes neste snippet, 16 na F2,
+ * 12 na F3, e so esta. No desembarque da revisao 82 o Sync escreveu
+ * `snippets/rodametria-f1: gravado (#10) mas NAO ativado: o codigo nao passou
+ * na validacao`, seguiu em frente e subiu a revisao — e a home VOLTOU A SER
+ * HUB, sem a F1, porque o filtro dela nao e pendurado por snippet inativo.
+ *
+ * A CAUSA NAO E DO PLUGIN: o Code Snippets ATIVA avaliando o codigo, e o
+ * snippet ja estava carregado naquela requisicao — a cicatriz que a 20.4
+ * descreve. Com a guarda, reavaliar e inofensivo; sem ela, PHP recusa
+ * redeclarar a funcao e a ativacao falha. A F2 e a F3 passaram no MESMO
+ * desembarque, pela mesma porta, porque as 28 funcoes delas tem guarda.
+ *
+ * E A REGUA QUE DEVIA TER PEGADO MEDIA SO DOIS DOS SEIS SNIPPETS: o
+ * `teste-f2.py` cobra a guarda na CASCA e na F2 — `for nome, bruto in
+ * ( ('casca', casca), ('f2', php_f2) )` —, e a F1, a F3, a institucional e a
+ * de produto nunca foram medidas. Desde 11/11/2026 quem cobra isso nos SEIS
+ * e `ferramentas/teste-formulario-da-ilha.py`, que ja lia os seis para outra
+ * coisa. 32.5-c outra vez, e desta vez a regra nem precisou sair da ilha. */
 function rodametria_f1_frases_dos_numeros( $d ) {
 	if ( empty( $d['frases_numeros_que_circulam'] )
 		|| ! is_array( $d['frases_numeros_que_circulam'] ) ) {
@@ -561,6 +583,7 @@ function rodametria_f1_frases_dos_numeros( $d ) {
 		}
 	}
 	return $fs;
+}
 }
 
 function rodametria_f1_dobras_html( $d ) {
