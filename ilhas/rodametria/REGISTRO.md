@@ -3,7 +3,7 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
-## 2026-11-11 16h19Z–17hxxZ — **O DESPACHO DE QUATRO ITENS, INTEIRO — E O ITEM 4 ERA QUATRO CÓPIAS, NÃO DUAS** — revisões 84 e 85
+## 2026-11-11 16h19Z–17h1xZ — **O DESPACHO DE QUATRO ITENS, INTEIRO — E O ITEM 4 ERA QUATRO CÓPIAS, NÃO DUAS** — revisões 84 e 85
 
 **A ESCOLHA DA ILHA, E ELA FOI A DECISÃO MAIS PESADA DESTA PASSADA.** `foco.md` nomeia a **rodametria** (foco total e absoluto desde 27/10), e a 1.2 tem UMA exceção: despacho **ALTO** em ilha que esteja **no ar e quebrada**. **Havia DOIS, escritos hoje mesmo** — a ronda técnica curta das 15h0xZ achou a **robometria** e a **clubedomosaico** fora do ar, as duas com a home em 200 e as **três portas da 29.2 em 404** servindo a página de estacionamento da HostGator, a assinatura do bloco `# BEGIN WordPress` ausente do `.htaccess` da raiz (4ª queda da clubedomosaico, 2ª da robometria em 12 dias). **Eu remedi as duas às 16h17Z, 1h15 depois da ronda, e as duas continuavam caídas** — 404 nas três portas de cada uma, com a home em 200.
 
@@ -75,6 +75,7 @@ O rodapé da casca **parou de declarar e passou a remeter**, com link: *"Isso nu
 
 - **item 1:** `9pfbJrNKOR` **0** e `58212105781` **0** nas 10 URLs; a vitrine serve **5 cartões, os 5 com ficha** e a busca (`60Su92trfV`) como piso em 6 botões; a frase da oferta que saiu está na tela.
 - **item 2:** `\bilhas?\b` **0** em **9 das 10** URLs, no texto visível e no HTML servido — com `trilha` intacta em 5 a 7 por página. **A décima, a `/autonomia-patinete-eletrico/`, esperava a revisão 85 quando esta linha foi escrita (16h5xZ):** o conserto está no `main` e o veredito da 20.9 é `evento-nao-vencido` (`ultimo` 16:43:44, o raw já servindo 85, teto 17:13:44), e **reacionar não antecipa vencimento**. A releitura daquela URL fecha o item, e a linha que a registra é a de baixo — se ela não existir, o item NÃO foi conferido no ar e o despacho continua aberto por força da 18.4.
+- **item 2, FECHADO às 17h1xZ:** a revisão **85** entrou às **17:09:45** — 7 declarados, 7 linhas de item, **as 7 dizendo `ok`**, lidas do fecho para baixo, conta da 20.10 em **zero** —, e a releitura das 10 URLs com quebra de cache deu **`\bilhas?\b` em ZERO nas dez**, no texto visível e no HTML servido, com a **trilha intacta: 68 ocorrências de `trilha` nas dez páginas**, nenhuma reprovada. O portão de ar da ilha fechou **APROVADO**. A espera foi de **26 minutos** e foi espera e não inércia: o veredito da 20.9 era `evento-nao-vencido`, e a revisão entrou **4 minutos antes** do teto de 17:13:44 — mais uma medição a favor da ressalva daquela seção, de que `ultimo` + 30 min é **teto** e não a hora exata.
 - **item 3:** `publicav` **0** e `Tipo: ` **0** nas 10.
 - **item 4:** a MESMA cadeia de critério servida em **4 páginas** (`/sobre/`, `/divulgacao-de-afiliados/` e as duas de produto), vinda de **um** lugar, e **zero** molde cru.
 - **bancada:** 43 portões sem rede, **0 falha** (dois portões novos nesta passada); portão de ar da ilha **APROVADO**.
