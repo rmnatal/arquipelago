@@ -93,7 +93,7 @@
    pergunta que `dateModified` responde e "quando esta pagina mudou", e a mae muda
    no dia em que QUALQUER filha e recolhida. */
 if ( ! defined( 'RODAMETRIA_PRODUTO_VERSAO' ) ) {
-	define( 'RODAMETRIA_PRODUTO_VERSAO', '1.9.0' );
+	define( 'RODAMETRIA_PRODUTO_VERSAO', '1.10.0' );
 }
 
 /* A VERSAO DESTE SNIPPET VAI AO AR, pelo filtro que a casca 1.6.0 abriu
@@ -224,6 +224,35 @@ function rdm_produto_paginas_prontas() {
  * 2. OS MOLDES — nenhum numero e digitado na prosa
  * ------------------------------------------------------------------------- */
 
+if ( ! function_exists( 'rdm_produto_criterio_de_ordem' ) ) {
+/**
+ * A FRASE DO CRITERIO DE ORDEM, LIDA DE QUEM ORDENA (item 4, 11/11/2026).
+ *
+ * Mesma funcao, mesmo dado e mesmo desenho de ausencia do
+ * `rdm_inst_criterio_de_ordem()` das paginas institucionais: sem a frase no
+ * dado, devolve o PROPRIO molde, cru, em vez de cadeia vazia — molde cru e
+ * barato de ver na tela e o portao de ar o acha; frase mutilada em silencio e
+ * o que custa caro (20.7).
+ *
+ * E A FRASE NAO E ESCRITA AQUI NEM LA: as duas camadas a LEEM de
+ * `criterio_de_ordem_na_tela`, que o gerador monta da tupla que ordena. Tres
+ * camadas serviam tres versoes diferentes dela antes deste conserto.
+ */
+function rdm_produto_criterio_de_ordem() {
+	static $frase = null;
+	if ( null !== $frase ) {
+		return $frase;
+	}
+	$bruto = rodametria_casca_banco( RODAMETRIA_ID_DADOS_VITRINE );
+	$frase = ( is_array( $bruto ) && ! empty( $bruto['criterio_de_ordem_na_tela'] )
+		&& is_string( $bruto['criterio_de_ordem_na_tela'] ) )
+		? trim( $bruto['criterio_de_ordem_na_tela'] )
+		: '{CRITERIO_DE_ORDEM}';
+
+	return $frase;
+}
+}
+
 if ( ! function_exists( 'rdm_produto_preencher' ) ) {
 function rdm_produto_preencher( $texto, $pagina ) {
 	$n = $pagina['vitrine']['numeros'];
@@ -273,6 +302,16 @@ function rdm_produto_preencher( $texto, $pagina ) {
 		'{CARGA_ATE}'        => ( null === $n['carga_ate'] ) ? '' : (string) $n['carga_ate'],
 		'{CHAVE}'            => (string) $pagina['vitrine']['chave_da_loja'],
 		'{DATA}'             => (string) $pagina['vitrine']['colhido_em_br'],
+		/* O CRITERIO QUE ORDENA A VITRINE — item 4 do despacho de 11/11/2026, e
+		   esta era a QUARTA copia da mesma declaracao: o bloco de compra dizia
+		   `A ordem e por venda medida e depois por preco`, com `venda medida`
+		   dizendo que a VENDA foi medida por nos. Ela nao foi: o numero de
+		   vendas vem da resposta da propria loja na busca que a gente mediu, e a
+		   diferenca e exatamente a que o `VOZ.md` proibe apagar. O criterio tem
+		   UM dono — a tupla `CHAVES_DE_ORDEM` de
+		   ferramentas/gerar-vitrine-de-produto.py, de onde sai tambem a chave que
+		   ordena de verdade — e chega aqui pelo dado. */
+		'{CRITERIO_DE_ORDEM}' => rdm_produto_criterio_de_ordem(),
 	);
 
 	return str_replace( array_keys( $de ), array_values( $de ), (string) $texto );
@@ -593,7 +632,7 @@ function rdm_produto_pagina_html() {
 		$pagina['vitrine']['cartoes'],
 		rdm_produto_preencher(
 			'Os {N} anúncios abaixo foram lidos em {DATA} na busca por "{CHAVE}". '
-			. 'A ordem é por venda medida e depois por preço.', $pagina ),
+			. '{CRITERIO_DE_ORDEM}', $pagina ),
 		'Nenhum anúncio desta família passou pela nossa conferência nesta leitura.' );
 
 	/* (32.2) A TABELA-RESUMO VISIVEL — e o que as IAs citam. */
@@ -654,8 +693,9 @@ if ( ! function_exists( 'rdm_produto_recusas_html' ) ) {
  * no anuncio, e esta funcao so a traduz para portugues de leitor.
  */
 function rdm_produto_recusas_html( $pagina ) {
-	$n = $pagina['vitrine']['numeros'];
-	if ( empty( $n['recusadas'] ) ) {
+	$n           = $pagina['vitrine']['numeros'];
+	$aposentadas = isset( $n['aposentadas'] ) ? (int) $n['aposentadas'] : 0;
+	if ( empty( $n['recusadas'] ) && ! $aposentadas ) {
 		return '';
 	}
 	$nomes = array(
@@ -672,12 +712,30 @@ function rdm_produto_recusas_html( $pagina ) {
 		$pedacos[] = $quantos . ' ' . $rotulo;
 	}
 
-	return '<p class="rdm-recusas">'
-		. esc_html( sprintf(
-			'A mesma busca devolveu %d ofertas, e %d ficaram de fora: %s. '
-			. 'Elas não estão na tabela porque não são o produto desta página.',
-			(int) $n['lidas'], (int) $n['recusadas'], implode( ' · ', $pedacos ) ) )
-		. '</p>';
+	$frase = sprintf(
+		'A mesma busca devolveu %d ofertas, e %d ficaram de fora: %s. '
+		. 'Elas não estão na tabela porque não são o produto desta página.',
+		(int) $n['lidas'], (int) $n['recusadas'], implode( ' · ', $pedacos ) );
+
+	/* A OFERTA QUE SAIU DEPOIS DA LEITURA — item 1 do despacho de 11/11/2026.
+	   `lidas` e `recusadas` sao fato do dia da coleta e nao mudam; quando uma
+	   oferta para de vender, ela sai da tabela e das contas de preco, e sem
+	   esta frase a conta que o leitor faz de cabeca (lidas menos recusadas)
+	   NAO FECHA com o tamanho da tabela. Conta que nao fecha na tela e pior
+	   que conta ausente: ela ensina a desconfiar do numero que esta certo. */
+	if ( $aposentadas > 0 ) {
+		$frase .= ' ' . ( 1 === $aposentadas
+			? 'Outra saiu da lista depois dessa leitura: quando fomos abrir a página '
+				. 'dela, a loja mostrava o produto como esgotado — e oferta que não '
+				. 'vende não entra na tabela nem nas contas de preço desta página.'
+			: sprintf(
+				'Outras %d saíram da lista depois dessa leitura: quando fomos abrir as '
+				. 'páginas delas, a loja mostrava os produtos como esgotados — e oferta '
+				. 'que não vende não entra na tabela nem nas contas de preço desta página.',
+				$aposentadas ) );
+	}
+
+	return '<p class="rdm-recusas">' . esc_html( $frase ) . '</p>';
 }
 }
 

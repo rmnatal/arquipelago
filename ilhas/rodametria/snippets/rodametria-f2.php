@@ -45,7 +45,7 @@
    (item 2 do despacho da ronda de 04/11). E o MESMO campo que o "Como sabemos"
    desta pagina ja imprimia em prosa — um fato, uma fonte (20.7). */
 if ( ! defined( 'RODAMETRIA_F2_VERSAO' ) ) {
-	define( 'RODAMETRIA_F2_VERSAO', '1.9.0' );
+	define( 'RODAMETRIA_F2_VERSAO', '1.10.0' );
 }
 
 /* A VERSAO DESTE SNIPPET VAI AO AR, pelo filtro que a casca 1.6.0 abriu
@@ -639,17 +639,42 @@ function rodametria_f2_dobras_html( $d ) {
 		. 'que é isso que está fazendo.</p>';
 
 	/* --- as reguas, uma a uma, com fonte e data --- */
+	/* A PRESTACAO DE CONTAS DE CADA REGUA FALA PORTUGUES DE LEITOR, E NAO O
+	   VOCABULARIO DO BANCO — item 3 do despacho de 11/11/2026.
+
+	   O QUE ESTAVA NO AR, letra por letra: `Consumo de um patinete por km — sem
+	   valor publicável. Tipo: pendente, sem valor publicado. Nao publicamos
+	   nenhum valor. A medicao mais forte que achamos esta em periodico que nao
+	   conseguimos abrir...`. TRES coisas erradas numa linha:
+
+	   (a) `publicável` e `pendente` sao VALORES DO ENUM de `status` do banco
+	       (`dados/esquema-banco.json`), servidos como se fossem palavra de
+	       leitor;
+	   (b) `Tipo:` e ROTULO DE CAMPO DE BANCO impresso como frase;
+	   (c) a mesma coisa era dita TRES vezes — e a terceira, a do `fonte`, e a
+	       unica que diz POR QUE. Pela 32.4-c o conserto de uma frase duplicada
+	       nao e consertar as duas: e a segunda deixar de existir.
+
+	   ENTAO, COM VALOR NULO, A LINHA E SO A PROSA DA FONTE, que e a que explica.
+	   E a ausencia tem guarda: se nao houver fonte escrita, a linha diz em
+	   portugues que nao publicamos numero ali — nunca fica so o nome da regua,
+	   que seria a lacuna aparecendo como se fosse descuido de layout.
+
+	   E A CLAUSULA DO TIPO SAI DA LINHA DE VALOR NULO pelo mesmo motivo: o tipo
+	   de uma regua sem valor e `pendente`, e dizer `pendente` ali e repetir, no
+	   vocabulario da fabrica, o que a frase anterior ja disse em portugues. */
 	$reguas = '<ul>';
 	foreach ( $c as $id => $k ) {
 		$valor = $k['valor'];
+		$tem_fonte = '' !== trim( (string) ( isset( $k['fonte'] ) ? $k['fonte'] : '' ) );
 		$reguas .= '<li><b>' . esc_html( rodametria_f2_nome_da_regua( $id ) ) . '</b> — '
 			. ( null === $valor
-				? 'sem valor publicável.'
+				? ( $tem_fonte ? '' : 'ainda não publicamos nenhum número aqui.' )
 				: '<span class="rdm-num">' . esc_html( is_string( $valor ) ? $valor
 					: rodametria_f2_numero( $valor ) ) . '</span>.' )
-			. ( '' === rodametria_f2_nome_do_tipo( $k )
+			. ( ( null === $valor || '' === rodametria_f2_nome_do_tipo( $k ) )
 				? ''
-				: ' Tipo: ' . esc_html( rodametria_f2_nome_do_tipo( $k ) ) . '.' )
+				: ' ' . esc_html( rodametria_f2_frase_do_tipo( $k ) ) . '.' )
 			. ( empty( $k['fonte'] ) ? '' : ' ' . esc_html( $k['fonte'] ) )
 			. ( empty( $k['url'] ) ? '' : ' <a href="' . esc_url( $k['url'] )
 				. '" rel="nofollow noopener">fonte</a>' )
@@ -746,6 +771,31 @@ function rodametria_f2_nome_da_regua( $id ) {
  * perde uma clausula de procedencia e continua honesta; imprimir a chave e
  * servir o vocabulario de quem escreveu a fabrica (32.4).
  */
+/**
+ * A FRASE DO TIPO COMO FRASE, E NAO COMO VALOR DE CAMPO (11/11/2026).
+ *
+ * `rodametria_f2_nome_do_tipo()` devolve a frase como ela nasce no dado, em
+ * minuscula, porque e assim que ela viaja: `medicao de terceiro, nomeada`. Na
+ * tela ela deixou de ter o rotulo `Tipo:` na frente — rotulo de campo de banco
+ * nao e texto de leitor (item 3 do despacho de 11/11/2026) —, e sem o rotulo ela
+ * precisa comecar como frase comeca.
+ *
+ * `ucfirst` basta e isto NAO e descuido com acento: as nove frases de
+ * `TIPO_NA_TELA` comecam todas com letra ASCII (`a`, `d`, `f`, `i`, `m`, `n`,
+ * `o`, `p`), e `ferramentas/gerar-f2.py` cobra a lista INTEIRA contra as chaves
+ * de `tipos_de_constante` nas duas direcoes. No dia em que uma frase comecar com
+ * letra acentuada, `ucfirst` a devolveria intacta — e minuscula no inicio da
+ * frase e defeito de tela, nao de dado, entao quem acrescentar frase assim
+ * acrescenta tambem a regua que a maiuscula pede.
+ */
+if ( ! function_exists( 'rodametria_f2_frase_do_tipo' ) ) {
+function rodametria_f2_frase_do_tipo( $k ) {
+	$frase = rodametria_f2_nome_do_tipo( $k );
+
+	return '' === $frase ? '' : ucfirst( $frase );
+}
+}
+
 if ( ! function_exists( 'rodametria_f2_nome_do_tipo' ) ) {
 function rodametria_f2_nome_do_tipo( $k ) {
 	if ( ! is_array( $k ) || empty( $k['tipo_na_tela'] ) || ! is_string( $k['tipo_na_tela'] ) ) {

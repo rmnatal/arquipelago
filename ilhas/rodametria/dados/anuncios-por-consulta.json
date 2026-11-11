@@ -766,32 +766,33 @@
    ],
    "resumo": {
     "ofertas_lidas": 20,
-    "ofertas_que_servem": 16,
+    "ofertas_que_servem": 15,
     "ofertas_recusadas": 4,
     "recusas_por_causa": {
      "fora_da_familia": 2,
      "outro_veiculo": 1,
      "sem_qualificador": 1
     },
-    "ofertas_com_link_de_afiliado": 16,
+    "ofertas_com_link_de_afiliado": 15,
     "abre_o_portao_da_30_2": true,
     "numero_proprio_pedido": "faixa_de_preco",
     "numero_proprio": {
      "de": 1030.0,
      "ate": 2699.0,
-     "mediana": 1647.95,
-     "sobre_quantas_ofertas": 16
+     "mediana": 1695.92,
+     "sobre_quantas_ofertas": 15
     },
     "motivo_sem_numero_proprio": null,
     "contagem_de_rotulo_de_potencia": {
      "sem_watt": 1,
-     "watt_sem_rotulo": 15,
+     "watt_sem_rotulo": 14,
      "nominal": 0,
      "pico": 0,
      "os_dois": 0,
-     "declaram_watt": 15,
+     "declaram_watt": 14,
      "dizem_qual_watt": 0
-    }
+    },
+    "ofertas_aposentadas": 1
    },
    "anuncios": [
     {
@@ -1406,48 +1407,6 @@
      "url_afiliado_gerada_em": "2026-11-04"
     },
     {
-     "item_id": 58212105781,
-     "shop_id": 1430771203,
-     "titulo": "Patinete Elétrico Adulto  650W com 3 Velocidades Bateria Recarregável para Mobilidade Urbana",
-     "preco": 1499.0,
-     "moeda": "BRL",
-     "loja": "Super mantimentos comprar",
-     "nota": "5",
-     "vendas": 3,
-     "tipo_de_loja": [
-      2
-     ],
-     "imagem": {
-      "url": "https://cf.shopee.com.br/file/br-11134207-820lj-muh9zievynsxf0",
-      "largura": 1024,
-      "altura": 1024,
-      "alt": "Patinete Elétrico Adulto  650W com 3 Velocidades Bateria Recarregável para Mobilidade Urbana",
-      "fonte": "anuncio-shopee",
-      "coletado_em": "2026-11-04",
-      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
-     },
-     "motivo_sem_imagem": null,
-     "url_produto": "https://shopee.com.br/product/1430771203/58212105781",
-     "url_afiliado": "https://s.shopee.com.br/9pfbJrNKOR",
-     "motivo_sem_link": null,
-     "sub_id_1": "rodametria",
-     "sub_id_2": "patineteeletrico",
-     "fonte": "anuncio-shopee",
-     "coletado_em": "2026-11-04",
-     "chave_que_achou": "patinete eletrico adulto",
-     "degrau_da_escada": 1,
-     "serve": true,
-     "recusado_por": null,
-     "exigencia_que_faltou": null,
-     "exigencias_atendidas": [
-      "patinete",
-      "eletric",
-      "adulto"
-     ],
-     "rotulo_de_potencia": "watt_sem_rotulo",
-     "url_afiliado_gerada_em": "2026-11-04"
-    },
-    {
      "item_id": 23994917531,
      "shop_id": 946220316,
      "titulo": "Patinete Elétrico Scooter Adulto 150w Dobrável Até 60kg Preto",
@@ -1580,7 +1539,10 @@
     "encurtamento_tentado_em": "2026-11-04",
     "medido_em": "2026-11-04",
     "por_que_existe": "PISO DA 25.2 para os cartoes desta pagina: o link de cada cartao e a ficha de um anuncio, e ficha apodrece. Quando ela morrer, esta busca e a saida que a pessoa ja tinha na tela."
-   }
+   },
+   "anuncios_aposentados": [
+    "APOSENTADO EM 2026-11-11 — item 58212105781 da loja 1430771203 — Patinete Elétrico Adulto  650W com 3 Velocidades Bateria Recarregável para Mobilidade Urbana — R$ 1499,00, preco de 2026-11-04, degrau 1 da escada de chaves, encurtado https://s.shopee.com.br/9pfbJrNKOR, loja \"Super mantimentos comprar\" — CAUSA: a pagina do produto serve a palavra `Esgotado` colada ao titulo — o anuncio existe, abre em 200 e NAO VENDE, que e o segundo dos dois desfechos que a 25.4 manda ler no corpo e nunca no `<title>`. Nesta leva o `<title>` veio com o nome do produto, o que o torna ainda mais enganoso que o generico que a 25.4 descreve. Oferta que nao vende sai da vitrine inteira — carrossel, tabela, faixa de preco e mediana —, porque numero contado sobre oferta inexistente e numero que ninguem pode comprar || ULTIMA MEDICAO: 11/11/2026, ronda diaria tecnica das 14h5xZ, no navegador do Raphael, abrindo a `url_produto` e NUNCA o link de afiliado (25.4), em DUAS leituras sem CAPTCHA: `Esgotado` nas duas, com o corpo caindo de ~4.400 para 2.789 caracteres na primeira e voltando a 4.353 na segunda. Reescolher ficha nova nao foi tentado nesta passada e nao e omissao: o teste de vida da Shopee nao e exercitavel desta nuvem (25.4, remedido em 11/11 — o Chromium daqui abre a ficha em 200 e ela nao renderiza, com 23 recursos de `deo.shopeemobile.com` recusados pelo egresso), e grampear ficha nova sem poder abri-la e a 25.4-b.1 ao pe da letra. A vaga do cartao vai para o proximo da ordem da secao 7, que a mesma coleta de 04/11 ja trouxe com o par completo"
+   ]
   }
  ]
 }

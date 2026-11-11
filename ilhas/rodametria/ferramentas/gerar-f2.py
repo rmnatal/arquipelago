@@ -467,8 +467,11 @@ TIPO_NA_TELA = {
         "faixa que a gente observou no varejo, numa data",
     "entrada_do_leitor":
         "número que você informa, e não é nosso",
+    # ERA `pendente, sem valor publicado` — e `pendente` e VALOR DO ENUM de
+    # `status` do banco, servido como palavra de leitor (item 3 do despacho de
+    # 11/11/2026). A frase de leitor nao usa o nome que o banco da ao estado.
     "pendente":
-        "pendente, sem valor publicado",
+        "ainda sem número publicado, e o porquê está nesta lista",
     "afirmacao_de_terceiro":
         "número que circula por aí, e esta página o contradiz",
 }

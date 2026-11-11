@@ -65,7 +65,7 @@
    Estas quatro nao tem coleta: a data em que a camada declarada foi escrita E a
    data em que a pagina mudou. */
 if ( ! defined( 'RODAMETRIA_INST_VERSAO' ) ) {
-	define( 'RODAMETRIA_INST_VERSAO', '1.2.1' );
+	define( 'RODAMETRIA_INST_VERSAO', '1.3.0' );
 }
 
 /* A VERSAO DESTE SNIPPET VAI AO AR, pelo filtro que a casca 1.6.0 abriu
@@ -310,9 +310,40 @@ function rdm_inst_numeros() {
 		'NOME_DAS_LOJAS'       => $nomes ? implode( ' e ', $nomes ) : 'loja nenhuma',
 		'TERCEIROS'            => count( $terceiros ),
 		'NOMES_DOS_TERCEIROS'  => rdm_inst_frase_dos_terceiros( $terceiros ),
+		'CRITERIO_DE_ORDEM'    => rdm_inst_criterio_de_ordem( $vitrine ),
 	);
 
 	return $n;
+}
+}
+
+if ( ! function_exists( 'rdm_inst_criterio_de_ordem' ) ) {
+/**
+ * O CRITERIO QUE ORDENA A VITRINE, E ELE VEM DE QUEM ORDENA — item 4 do
+ * despacho de 11/11/2026.
+ *
+ * `/sobre/` e `/divulgacao-de-afiliados/` declaravam o mesmo criterio com DUAS
+ * reguas diferentes, e as duas discordavam no que a ordem E: uma dizia "o que o
+ * anuncio declara e o preco", a outra "quem a loja mostra como mais vendido na
+ * busca medida". A ordem real e UMA, e ela acontece em
+ * `ferramentas/gerar-vitrine-de-produto.py`: a frase nasce da MESMA tupla de
+ * onde sai a chave de `ordenar()` (`CHAVES_DE_ORDEM`), viaja no arquivo de dados
+ * da vitrine e as duas paginas a recebem pelo molde. Pela 32.4-c, o conserto de
+ * uma frase duplicada nao e consertar as duas: e a segunda deixar de existir.
+ *
+ * E A AUSENCIA FICA VISIVEL (20.7): sem a frase no dado, esta funcao devolve o
+ * PROPRIO MOLDE, cru, e ele aparece na tela como `{CRITERIO_DE_ORDEM}` — que o
+ * portao `teste-institucional.py` acha na hora e que qualquer leitor ve.
+ * Devolver cadeia vazia mutilaria a frase em silencio, e silencio e o que custa
+ * caro: molde cru e barato de ver, frase mutilada nao.
+ */
+function rdm_inst_criterio_de_ordem( $vitrine ) {
+	if ( is_array( $vitrine ) && ! empty( $vitrine['criterio_de_ordem_na_tela'] )
+		&& is_string( $vitrine['criterio_de_ordem_na_tela'] ) ) {
+		return trim( $vitrine['criterio_de_ordem_na_tela'] );
+	}
+
+	return '{CRITERIO_DE_ORDEM}';
 }
 }
 

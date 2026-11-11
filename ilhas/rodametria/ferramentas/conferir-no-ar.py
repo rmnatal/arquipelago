@@ -51,6 +51,7 @@ import os
 import re
 import sys
 import time
+import unicodedata
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -618,7 +619,7 @@ def corpo_da_pagina(html):
 
 BASTIDOR = ["egresso", "SERP classificada", "snippet", "wp-sitemap", "manifest.json",
             "ARQUIPELAGO", "Rodametria Sync", "bancada", "dados/", "ferramentas/",
-            "regras/", "publicavel", "sha256", "revisao",
+            "regras/", "sha256", "revisao",
             # O NOME DAS IRMAS, acrescentado em 11/11/2026: um comentario do
             # roteiro da home servia "a cicatriz que a clubedomosaico pagou em
             # 12/10/2026" em toda leitura. Nome de outra ilha do arquipelago na
@@ -632,6 +633,73 @@ BASTIDOR = ["egresso", "SERP classificada", "snippet", "wp-sitemap", "manifest.j
             # mesmos comentarios: a ordem de servico e o nome que esta ilha da
             # ao modulo de regra.
             "despacho", "cerebro"]
+
+# ---------------------------------------------------------------------------
+# A MESMA 32.4, PARA O QUE SUBSTRING CRUA NAO CONSEGUE DIZER (itens 2 e 3 do
+# despacho de 11/11/2026)
+# ---------------------------------------------------------------------------
+# A lista de cima casa pedaco de texto, em minuscula, e isso basta para
+# `snippet` ou `manifest.json`. Duas classes de termo ela NAO alcanca, e as duas
+# chegaram ao ar:
+#
+# (a) PALAVRA QUE VIVE DENTRO DE OUTRA. `ilha` esta dentro de `trilha`, e a
+#     trilha de migalhas e exigida pela 16.3 em toda pagina desta ilha — 5 a 7
+#     ocorrencias por URL, medidas. Um termo `ilha` de substring reprovaria as 10
+#     paginas pelo que elas tem de CERTO, que e o caminho mais curto para alguem
+#     passar a ignorar o portao (20.5). Entao a regua e de FRONTEIRA DE PALAVRA.
+#
+# (b) PALAVRA ACENTUADA NA TELA E SEM ACENTO NA LISTA. `publicavel` ESTAVA na
+#     lista de cima desde que ela nasceu, e o que a F2 servia era `publicável`
+#     — com acento. A lista nao pegou, a ronda de 11/11 pegou com os olhos. A
+#     regua aqui DOBRA o acento dos dois lados antes de comparar, entao
+#     `publicável`, `publicaveis` e `publicáveis` caem no mesmo termo.
+#
+# `ilha` E `ilhas` SAO O NOME QUE O CONTRATO DA A UM SITE DESTA FABRICA (a
+# secao de vocabulario: "cada site de nicho e uma ilha"). A 32.4-d de 11/11 pos
+# na lista o nome PROPRIO das irmas e deixou de pe o nome COMUM da coisa — e era
+# o nome comum que aparecia 10 vezes, em prosa de leitor, em 5 das 10 paginas,
+# dizendo ao visitante que ele esta dentro de uma peca de uma fabrica cujo nome
+# o site nunca explica.
+#
+# `Tipo:` e ROTULO DE CAMPO DE BANCO impresso como texto de leitor. Medido em
+# 11/11/2026: UMA ocorrencia nas 10 URLs, a nossa, na lista de reguas da F2 —
+# `Tipo: pendente, sem valor publicado`, onde `pendente` e valor do enum de
+# `status` do esquema. Nenhuma pagina do WordPress serve `tipo:`, e isso foi
+# contado antes de o termo entrar, nao suposto.
+BASTIDOR_COM_FRONTEIRA = [
+    (r"\bilhas?\b",
+     "`ilha`/`ilhas` — e o nome que esta fabrica da a um site dela, e o visitante "
+     "nao tem como saber do que se trata; na tela ele se diz `este site`"),
+    (r"publicav\w*",
+     "`publicavel` e familia — e valor do enum de `status` do banco, nao palavra "
+     "de leitor"),
+    (r"tipo:",
+     "`Tipo:` — rotulo de campo de banco impresso como se fosse frase de leitor"),
+]
+
+
+def _sem_acento(texto):
+    return "".join(c for c in unicodedata.normalize("NFKD", texto)
+                   if not unicodedata.combining(c))
+
+
+def problemas_de_bastidor_com_fronteira(texto, onde):
+    """Os termos da 32.4 que pedem fronteira de palavra ou acento dobrado.
+
+    `texto` e lido DOBRADO (sem acento, em minuscula) e os padroes sao escritos
+    sem acento, entao `publicável` e `publicavel` sao o mesmo termo. Devolve uma
+    linha por termo, com a contagem e o motivo — a linha diz o CONSERTO, nunca so
+    o veredito.
+    """
+    ruim = []
+    dobrado = _sem_acento(texto).lower()
+    for padrao, motivo in BASTIDOR_COM_FRONTEIRA:
+        achados = re.findall(padrao, dobrado)
+        if achados:
+            ruim.append("32.4 em %s: %s — %d ocorrencia(s)" % (onde, motivo, len(achados)))
+
+    return ruim
+
 
 # Extensao de rotina desta fabrica. `.php` NAO entra, e a causa foi MEDIDA em
 # 04/11/2026: o WordPress serve `/wp-*.php` e `xmlrpc.php` no proprio `<head>`,
@@ -2014,6 +2082,11 @@ def main():
             afirma(termo.lower() not in texto.lower(),
                    "32.4: a palavra de bastidor %r aparece no texto servido de %s"
                    % (termo, caminho))
+        # E OS TERMOS DE FRONTEIRA DE PALAVRA, no texto visivel (itens 2 e 3 do
+        # despacho de 11/11/2026). Afirmacao separada da de cima porque a regua
+        # e outra, nao porque o conserto seja outro.
+        for problema in problemas_de_bastidor_com_fronteira(texto, "texto visivel de %s" % caminho):
+            afirma(False, problema)
 
         # A FOLHA DESTA ILHA NAO SERVE OS PROPRIOS COMENTARIOS (bloco 7).
         nossas = folhas_da_ilha(html)
@@ -2042,6 +2115,11 @@ def main():
         # conserto de cada uma e diferente (20.5).
         for problema in problemas_de_bastidor_no_servido(html, nomes_de_arquivo):
             afirma(False, "%s: %s" % (caminho, problema))
+        # ... e os de fronteira, sobre o BYTE SERVIDO INTEIRO, que e onde mora o
+        # JSON-LD. O item 2 do despacho pede as duas leituras com todas as
+        # letras: "zero ocorrencia em texto visivel E em JSON-LD".
+        for problema in problemas_de_bastidor_com_fronteira(html, "HTML servido de %s" % caminho):
+            afirma(False, problema)
 
         # Shortcode cru na tela e desembarque que nao aconteceu.
         afirma("[rodametria_" not in texto,
@@ -2444,6 +2522,53 @@ def autoteste():
     diz(regua_velha_do_bastidor(rot_doente) == [] and bast_rot != [],
         "11.14 a regua VELHA (texto visivel) APROVA a pagina de roteiro doente e a NOVA a "
         "REPROVA — foi exatamente esta fenda que guardou o defeito por sete dias")
+
+    # MUNDO 11-b-ii — A PALAVRA `ilha` E A PALAVRA `publicavel` NA PROSA DE
+    # LEITOR (itens 2 e 3 do despacho de 11/11/2026), E OS MUNDOS 1 SAO O QUE
+    # ESTAVA NO AR, letra por letra.
+    #
+    # A trilha de migalhas VAI em todos eles, porque e ela que a regua velha nao
+    # saberia poupar: `ilha` esta dentro de `trilha`, e a 16.3 exige a trilha nas
+    # 10 paginas. Portao que reprovasse a trilha reprovaria o CERTO (20.5).
+    trilha = ('<nav aria-label="Trilha"><a href="/">Rodametria</a> › '
+              '<a href="/veiculos/">Veiculos</a> › <span>Patinete</span></nav>')
+    texto_doente_ilha = (trilha + '<p>Se um numero desta ilha esta errado, ele vale menos '
+                         'que a fonte que o contradiz.</p>')
+    texto_sao_ilha = (trilha + '<p>Se um numero deste site esta errado, ele vale menos '
+                      'que a fonte que o contradiz.</p>')
+    # E O MUNDO DA F2, COM ACENTO — que e o detalhe que fez a lista de cima
+    # falhar: ela tinha `publicavel` e o ar servia `publicável`.
+    texto_doente_publicavel = (trilha + '<p>Consumo de um patinete por km — sem valor '
+                               'publicável. Tipo: pendente, sem valor publicado.</p>')
+    texto_sao_publicavel = (trilha + '<p>Consumo de um patinete por km — não publicamos '
+                            'nenhum valor, e o motivo está nesta lista.</p>')
+
+    p_ilha = problemas_de_bastidor_com_fronteira(texto_doente_ilha, "/contato/")
+    diz(len(p_ilha) == 1 and "/contato/" in p_ilha[0],
+        "11.14-b a palavra `ilha` na prosa de leitor e pega, UMA vez, e a linha NOMEIA a "
+        "pagina — plantar `desta ilha` numa das cinco paginas reprova, que e o que o item "
+        "2 do despacho pede")
+    diz(problemas_de_bastidor_com_fronteira(texto_sao_ilha, "/contato/") == [],
+        "11.15-b a mesma pagina com `deste site` passa — e a TRILHA de migalhas, com cinco "
+        "`trilha` dentro, NAO reprova nenhuma das duas: `ilha` dentro de `trilha` nao e "
+        "ocorrencia, e e por isso que esta regua e de fronteira de palavra")
+    p_pub = problemas_de_bastidor_com_fronteira(texto_doente_publicavel, "/autonomia/")
+    diz(len(p_pub) == 2,
+        "11.16-b a linha da F2 que estava no ar e pega DUAS vezes — `publicável` (com "
+        "acento, que a lista sem acento nao pegava) e o rotulo `Tipo:`")
+    diz(problemas_de_bastidor_com_fronteira(texto_sao_publicavel, "/autonomia/") == [],
+        "11.17-b a mesma prestacao de contas em portugues de leitor passa")
+    # E A REGUA VELHA AO LADO DA NOVA, nos dois mundos: ela e a lista de
+    # substring crua, e nos DOIS ela APROVA o que a nova reprova. Sem esta
+    # discordancia o autoteste nao mede conserto nenhum (20.8).
+    diz(regua_velha_do_bastidor('<body>' + texto_doente_ilha + '</body>') == [] and p_ilha != [],
+        "11.18-b a regua VELHA APROVA a pagina com `desta ilha` (a palavra nao estava na "
+        "lista) e a NOVA a reprova — as duas discordam")
+    diz(regua_velha_do_bastidor('<body>' + texto_doente_publicavel + '</body>') == []
+        and p_pub != [],
+        "11.19-b a regua VELHA APROVA `publicável` com acento MESMO TENDO `publicavel` na "
+        "lista desde que ela nasceu — e a NOVA reprova. Esta e a fenda exata do item 3: o "
+        "termo estava na lista e o acento o atravessava")
 
     # MUNDO 11-c — O ARTIGO DA LOJA, e o mundo 1 e a frase que estava no ar.
     diz(len(problemas_de_artigo_da_loja(

@@ -59,7 +59,7 @@
      "paragrafos": [
       "Sem pessoa em cena: sem rosto, sem vídeo, sem canal. O que sustenta uma resposta aqui é a conta e a procedência do número, e as duas ficam abertas no fim de cada página.",
       "Todo número que aparece na tela é contado no banco na hora de servir a página, nunca digitado à mão. Isso não é preciosismo: número cravado no texto era verdade no dia em que alguém o escreveu e passa a mentir calado no dia seguinte, quando o banco cresce ou um anúncio sai do ar.",
-      "O código e os dados desta ilha são versionados fora do site antes de qualquer página mudar, e o banco tem um verificador que recusa registro sem fonte, sem data ou com divergência não resolvida. O que está no ar passou por ele."
+      "O código e os dados deste site são versionados fora do site antes de qualquer página mudar, e o banco tem um verificador que recusa registro sem fonte, sem data ou com divergência não resolvida. O que está no ar passou por ele."
      ]
     },
     {
@@ -76,7 +76,7 @@
     "itens": [
      "Não vende veículo nem peça, não tem estoque e não intermedia venda nenhuma.",
      "Não aceita link pago, texto patrocinado nem posição paga em lista.",
-     "Não publica \"melhor patinete\" nem \"top dez\": quem ordena uma lista aqui é o que o anúncio declara e o preço, nunca a comissão.",
+     "Não publica \"melhor patinete\" nem \"top dez\". {CRITERIO_DE_ORDEM}",
      "Não publica contagem regressiva, \"últimas unidades\", selo de mais vendido nem nota de avaliação que este site não tenha medido.",
      "Não diz que você pode andar sem CNH: a resolução que decide a categoria não fala de habilitação, e o Código de Trânsito, que fala, a gente ainda não leu na fonte oficial."
     ]
@@ -113,12 +113,12 @@
      "Todo número daqui pode ser contestado: a ficha do fabricante vale mais que a nossa primeira versão, e entra."
     ]
    },
-   "linha_mestra": "Se um número desta ilha está errado, ele vale menos que a fonte que o contradiz — e trocar o número é trabalho normal aqui, não vergonha.",
+   "linha_mestra": "Se um número deste site está errado, ele vale menos que a fonte que o contradiz — e trocar o número é trabalho normal aqui, não vergonha.",
    "secoes": [
     {
      "titulo": "O canal, dito como ele está hoje",
      "paragrafos": [
-      "Esta ilha ainda não tem uma caixa de e-mail própria, e por isso esta página não traz endereço nenhum. Publicar um endereço que ninguém lê seria pior do que dizer isto: o primeiro promete e falha, o segundo diz a verdade.",
+      "Este site ainda não tem uma caixa de e-mail própria, e por isso esta página não traz endereço nenhum. Publicar um endereço que ninguém lê seria pior do que dizer isto: o primeiro promete e falha, o segundo diz a verdade.",
       "Enquanto o canal não existir, a página não te deixa sem saída — ela te deixa sem intermediário. Toda afirmação daqui carrega a fonte e a data da leitura, e a seção do fim de cada página nomeia a loja, o anúncio e o dia em que ele foi lido. Dá para conferir na fonte sem passar por nós, e é isso que uma procedência serve para permitir."
      ]
     },
@@ -152,7 +152,7 @@
      "titulo": "Por que não existe formulário nesta página",
      "paragrafos": [
       "Formulário pede um dado seu e promete resposta. Sem uma caixa que alguém leia do outro lado, as duas coisas seriam falsas ao mesmo tempo — e a segunda é a que magoa.",
-      "Então esta página não tem campo nenhum para preencher, e nenhuma outra página desta ilha pede cadastro, login ou e-mail. O que o site vê de quem entra está escrito na página de privacidade, medido e não prometido."
+      "Então esta página não tem campo nenhum para preencher, e nenhuma outra página deste site pede cadastro, login ou e-mail. O que o site vê de quem entra está escrito na página de privacidade, medido e não prometido."
      ]
     }
    ],
@@ -178,12 +178,12 @@
      "{ITENS_COM_FICHA} abre a página de um produto e {ITENS_COM_BUSCA} abrem a busca da loja já filtrada."
     ]
    },
-   "linha_mestra": "Quando você compra por um botão desta ilha, a loja nos paga uma comissão e o preço para você é exatamente o mesmo. É assim que este site se paga, e é a única maneira pela qual ele ganha dinheiro.",
+   "linha_mestra": "Quando você compra por um botão deste site, a loja nos paga uma comissão e o preço para você é exatamente o mesmo. É assim que este site se paga, e é a única maneira pela qual ele ganha dinheiro.",
    "secoes": [
     {
      "titulo": "O que a comissão nunca muda",
      "paragrafos": [
-      "A ordem da lista. Primeiro vem quem a loja mostra como mais vendido na busca medida, e o desempate é o preço — nunca a taxa que um programa paga. Comparar comissão entre lojas para decidir o que aparece primeiro seria trocar a sua compra pela nossa receita.",
+      "A ordem da lista. {CRITERIO_DE_ORDEM} Comparar a taxa de uma loja com a de outra para decidir o que aparece primeiro seria trocar a sua compra pela nossa receita.",
       "Quem aparece. Produto que não serve para a conta da página não sobe de posição por ter link: ele vai para o grupo de baixo, com a causa escrita de por que não entrou.",
       "O número técnico. A fonte de um watt, de uma tensão ou de uma carga máxima é a declaração de quem fabricou ou o texto do próprio anúncio, com data. Um link de loja nunca substitui a origem do número."
      ]
@@ -191,7 +191,7 @@
     {
      "titulo": "Quais links rendem, e por que hoje todos rendem",
      "paragrafos": [
-      "Hoje todos os botões de compra desta ilha são endereços de afiliado da {NOME_DAS_LOJAS}, e todos levam a marcação de patrocinado que o buscador pede. Não há aqui o caso do botão que não rende nada: se houver um dia, ele vai aparecer nesta página com esse nome.",
+      "Hoje todos os botões de compra deste site são endereços de afiliado da {NOME_DAS_LOJAS}, e todos levam a marcação de patrocinado que o buscador pede. Não há aqui o caso do botão que não rende nada: se houver um dia, ele vai aparecer nesta página com esse nome.",
       "O que varia é para onde o botão leva. {ITENS_COM_FICHA} abre direto a página do produto, que é o melhor dos dois mundos enquanto o anúncio estiver vivo. {ITENS_COM_BUSCA} abrem a busca da loja já filtrada, porque o modelo exato não tem anúncio que a gente consiga conferir — e busca não esgota e não sai do ar.",
       "Onde existe a página do produto, a busca não desaparece: ela fica logo abaixo do botão, numa linha discreta. Anúncio morre; busca continua respondendo. Mandar você para um beco sem saída seria pior do que não ganhar nada."
      ]
@@ -226,7 +226,7 @@
      "paragrafos": [
       "A palavra que vai para a busca da loja é medida antes de virar botão: ela é consultada, e se não devolver oferta nenhuma ela não vira link. Palavra escolhida no escritório e nunca testada é o jeito mais rápido de mandar alguém para uma tela vazia.",
       "A palavra da pessoa e a palavra da loja não são a mesma coisa, e isso foi medido aqui: \"patinete elétrico\" devolve brinquedo infantil nas primeiras ofertas; com a palavra \"adulto\" ao lado, a mesma busca devolve a família certa. É a segunda que vai para o botão, e a primeira que vai para o endereço da página.",
-      "Anúncio que enumera vários modelos no mesmo título é barrado, e anúncio de um modelo vizinho com nome parecido também. Os dois casos foram medidos nesta ilha, e os dois terminam do mesmo jeito: o título promete um aparelho e a caixa traz outro."
+      "Anúncio que enumera vários modelos no mesmo título é barrado, e anúncio de um modelo vizinho com nome parecido também. Os dois casos foram medidos aqui, e os dois terminam do mesmo jeito: o título promete um aparelho e a caixa traz outro."
      ]
     }
    ],
@@ -257,7 +257,7 @@
     {
      "titulo": "O que este site não coleta",
      "paragrafos": [
-      "Não há cadastro, não há login, não há lista de e-mail e não há comentário. Nenhuma página desta ilha tem um campo pedindo um dado seu sobre você.",
+      "Não há cadastro, não há login, não há lista de e-mail e não há comentário. Nenhuma página deste site tem um campo pedindo um dado seu sobre você.",
       "Não há medidor de audiência: nem o do buscador, nem pixel de rede social, nem gravador de tela ou de clique. Nenhum deles carrega aqui, e uma conferência automática lê estas páginas no ar e falha no dia em que um deles aparecer sem esta página ser atualizada antes.",
       "Este site não escreve cookie nenhum. As páginas no ar foram abertas e nenhuma devolveu pedido de gravar cookie no seu navegador."
      ]
@@ -295,7 +295,7 @@
     {
      "titulo": "Seus direitos, e o que falta nesta página, dito aqui em vez de escondido",
      "paragrafos": [
-      "A Lei Geral de Proteção de Dados, a Lei nº 13.709/2018, te dá o direito de saber o que é guardado sobre você, de corrigir e de pedir para apagar. Para exercer isso é preciso um canal formal, e esta ilha ainda não tem uma caixa de e-mail própria — então o canal não existe hoje, e está escrito aqui em vez de omitido.",
+      "A Lei Geral de Proteção de Dados, a Lei nº 13.709/2018, te dá o direito de saber o que é guardado sobre você, de corrigir e de pedir para apagar. Para exercer isso é preciso um canal formal, e este site ainda não tem uma caixa de e-mail própria — então o canal não existe hoje, e está escrito aqui em vez de omitido.",
       "Na prática não há um caso seu parado esperando: não há dado seu aqui para consultar, corrigir ou apagar, porque nada é pedido, nada é gravado e nenhum cookie é escrito. O que falta é o endereço, e ele é a próxima coisa que esta página ganha."
      ]
     }
@@ -333,14 +333,6 @@
    "ancora_no_ar": "na pratica nao ha um caso seu parado esperando",
    "porque": "A frase e \"Na pratica nao ha um caso seu parado esperando\", na secao de direitos da pagina de privacidade. \"Na pratica\" aqui e marcador de discurso e nao proporcao: o que vem depois dela e uma afirmacao ABSOLUTA sobre esta ilha — nada e pedido, nada e gravado, nenhum cookie e escrito —, e as tres foram MEDIDAS do lado de fora em 30/10/2026 (zero Set-Cookie, zero medidor, zero pixel). Ela nao afirma nada sobre catalogo nem sobre banco, e tira-la nao mudaria uma afirmacao da pagina.",
    "por_que_ancora": "O portao de ar varre a CLASSE e retira a ancora LITERAL da pagina servida antes de procurar. Ancora que nao existe no texto declarado, ou que nao contem o proprio termo, REPROVA: liberacao de uma frase nao pode virar anistia geral."
-  },
-  {
-   "termo": "mais vendido",
-   "campo": "secoes[0].paragrafos[0]",
-   "pagina": "divulgacao-de-afiliados",
-   "ancora_no_ar": "quem a loja mostra como mais vendido na busca medida",
-   "porque": "E a REGRA DE ORDEM desta ilha, prestada em conta na pagina que existe para isso, e ela tem FONTE: o numero de vendas vem da propria resposta da loja na busca que esta ilha mediu (`vendas_na_medicao`, gravado em cada anuncio). A frase nao afirma que um produto e o mais vendido do mercado — ela diz de onde sai a ordem da lista, e o paragrafo seguinte diz o que NUNCA a decide (a comissao). Tira-la deixaria a ordem sem procedencia, que e pior.",
-   "por_que_ancora": "A ancora literal carrega o termo e amarra a liberacao a esta frase: um `mais vendido` em qualquer outro lugar desta pagina continua denunciado — inclusive na recusa, que tem liberacao propria logo abaixo."
   },
   {
    "termo": "mais vendido",

@@ -440,9 +440,74 @@ def o_que_o_anuncio_declara_de_carga(a):
     return ('até %d kg' % valor, porque, e_citacao)
 
 
+# ---------------------------------------------------------------------------
+# A ORDEM DA VITRINE E DADO, E A FRASE QUE A PAGINA PUBLICA SAI DESSE DADO
+# (item 4 do despacho de 11/11/2026)
+# ---------------------------------------------------------------------------
+# O DEFEITO: `/sobre/` e `/divulgacao-de-afiliados/` declaravam o MESMO fato —
+# o criterio que ordena a vitrine — com DUAS reguas diferentes. A primeira dizia
+# `quem ordena uma lista aqui e o que o anuncio declara e o preco`; a segunda,
+# `Primeiro vem quem a loja mostra como mais vendido na busca medida, e o
+# desempate e o preco`. As duas concordavam no que a ordem NAO e (comissao) e
+# discordavam no que ela E — e a ordem real e UMA, esta aqui, e nenhuma das duas
+# a descrevia inteira.
+#
+# A 20.7 ja mediu o que isso da: "duas declaracoes do mesmo fato comecam iguais e
+# so uma sobe". E a 32.4-c diz o conserto: "o conserto de uma frase duplicada nao
+# e consertar as duas: e a segunda deixar de existir".
+#
+# ENTAO NAO HA FRASE ESCRITA A MAO EM LUGAR NENHUM. A ordem e declarada UMA vez,
+# como dado, em `CHAVES_DE_ORDEM`; `ordenar()` monta a chave de ordenacao dela, e
+# `frase_do_criterio_de_ordem()` monta a frase de leitor da MESMA tupla. As duas
+# paginas recebem a frase pelo molde `{CRITERIO_DE_ORDEM}`, que o PHP preenche do
+# campo `criterio_de_ordem_na_tela` deste arquivo. Mudar a ordem sem mudar a
+# frase deixa de ser possivel: a frase nao existe separada da ordem.
+#
+# POR QUE `vendas` E NAO "mais vendido": a contagem vem da resposta da propria
+# loja na busca que esta ilha mediu (`vendas` de cada anuncio, colhido com data),
+# e a frase diz isso com todas as letras. Ela nao afirma que o produto e o mais
+# vendido do mercado — afirmacao que esta ilha nao mede e que o `VOZ.md` proibe —,
+# e e por isso que a palavra na tela e `vendas declaradas pela propria loja`.
+CHAVES_DE_ORDEM = (
+    {'campo': 'vendas', 'sentido': 'desc',
+     'na_tela': 'o anúncio com mais vendas declaradas pela própria loja na busca que a gente mediu'},
+    {'campo': 'preco', 'sentido': 'asc',
+     'na_tela': 'o preço menor'},
+)
+
+
+def frase_do_criterio_de_ordem(chaves=CHAVES_DE_ORDEM):
+    """A frase de leitor do criterio de ordem, montada das CHAVES de ordenacao.
+
+    Primeira chave = quem vem primeiro; as seguintes = desempate, na ordem. A
+    frase termina pela recusa que as duas paginas sempre fizeram e que e a razao
+    de a secao 7 existir: comissao nunca ordena.
+    """
+    primeira = chaves[0]['na_tela']
+    desempates = [c['na_tela'] for c in chaves[1:]]
+    frase = 'Primeiro vem ' + primeira
+    if len(desempates) == 1:
+        frase += ', e o desempate é ' + desempates[0]
+    elif desempates:
+        frase += ', e o desempate é ' + ', depois '.join(desempates)
+    return frase + ' — nunca a comissão que um programa paga.'
+
+
 def ordenar(servem):
-    """Secao 7, passo 3: desempate entre equivalentes. Ver o cabecalho."""
-    return sorted(servem, key=lambda a: (-(a.get('vendas') or 0), a.get('preco') or 0))
+    """Secao 7, passo 3: desempate entre equivalentes. Ver o cabecalho.
+
+    A chave sai de `CHAVES_DE_ORDEM`, que e a MESMA declaracao de onde sai a
+    frase que a pagina publica. Escrever a chave aqui a mao seria a segunda
+    declaracao do mesmo fato (20.7).
+    """
+    def chave(a):
+        valores = []
+        for c in CHAVES_DE_ORDEM:
+            v = a.get(c['campo']) or 0
+            valores.append(-v if c['sentido'] == 'desc' else v)
+        return tuple(valores)
+
+    return sorted(servem, key=chave)
 
 
 def escolher_carrossel(linhas):
@@ -662,6 +727,14 @@ def montar(bloco, editorial_da_pagina):
             'lidas': bloco['resumo']['ofertas_lidas'],
             'recusadas': bloco['resumo']['ofertas_recusadas'],
             'recusas_por_causa': recusas,
+            # QUANTAS SAIRAM DEPOIS DA COLETA, por nao vender mais (item 1 do
+            # despacho de 11/11/2026). `lidas` e `recusadas` sao fato do dia da
+            # coleta e nao mudam; esta contagem e o que mudou DESDE ela, e vai
+            # para a tela porque a prestacao de contas da pagina diz quantas
+            # ofertas a busca devolveu e quantas ficaram de fora — sem este
+            # numero a conta nao fecha para quem a soma, e conta que nao fecha
+            # na tela e pior que conta ausente.
+            'aposentadas': int(bloco['resumo'].get('ofertas_aposentadas') or 0),
         },
         'cartoes': cartoes,
         'linhas': linhas,
@@ -709,6 +782,16 @@ def gerar():
             'esta pagina vende.'),
         'piso_da_30_2': PISO_DA_30_2,
         'teto_do_carrossel': TETO_DO_CARROSSEL,
+        # A FRASE QUE AS DUAS PAGINAS INSTITUCIONAIS PUBLICAM, e ela mora aqui
+        # porque e aqui que a ordem acontece (item 4 do despacho de 11/11/2026).
+        # O PHP a serve pelo molde `{CRITERIO_DE_ORDEM}`; prosa declarada que
+        # descreva a ordem com palavras proprias e a segunda copia, e
+        # `ferramentas/teste-criterio-de-ordem.py` a reprova sem rede.
+        'criterio_de_ordem_na_tela': frase_do_criterio_de_ordem(),
+        'de_onde_sai_o_criterio_de_ordem': (
+            'Montado de `CHAVES_DE_ORDEM` em ferramentas/gerar-vitrine-de-produto.py, '
+            'que e a MESMA declaracao de onde sai a chave de `ordenar()`. Frase e ordem '
+            'nao podem divergir porque nao existem separadas.'),
         'paginas': paginas,
         'nao_nasceram': recusadas,
     }
@@ -729,6 +812,11 @@ def conferir():
     afirmacoes += 1
     if gravado.get('nao_nasceram') != calculado.get('nao_nasceram'):
         falhas.append('a lista de `nao_nasceram` gravada discorda da calculada')
+    afirmacoes += 1
+    if gravado.get('criterio_de_ordem_na_tela') != calculado.get('criterio_de_ordem_na_tela'):
+        falhas.append('`criterio_de_ordem_na_tela` gravado %r nao refaz: %r'
+                      % (gravado.get('criterio_de_ordem_na_tela'),
+                         calculado.get('criterio_de_ordem_na_tela')))
 
     for g, c in zip(gravado['paginas'], calculado['paginas']):
         for campo in ('numeros', 'cartoes', 'linhas', 'chave_da_loja', 'degrau_da_escada',

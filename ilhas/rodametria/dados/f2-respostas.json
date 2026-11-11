@@ -3,7 +3,7 @@
   "ilha": "rodametria",
   "ferramenta": "F2",
   "bloco": "3b",
-  "gerado_em": "2026-11-10",
+  "gerado_em": "2026-11-11",
   "gerado_por": "ferramentas/gerar-f2.py",
   "referencia": "ferramentas/f2-referencia.py",
   "especificacao": "dados/especificacao-calculadoras.md, secao 2",
@@ -80,7 +80,7 @@
       "valor": null,
       "status": "pendente",
       "tipo": "pendente",
-      "tipo_na_tela": "pendente, sem valor publicado",
+      "tipo_na_tela": "ainda sem número publicado, e o porquê está nesta lista",
       "fonte": "Não publicamos nenhum valor. A medição mais forte que achamos está em periódico que não conseguimos abrir, e as outras três candidatas foram recusadas: uma é de bicicleta e de fabricante de kit, uma é conta circular (divide a autonomia declarada pela energia, assumindo o número do fabricante) e uma é de moto, não de patinete.",
       "url": null,
       "verificado_em": "2026-10-28"

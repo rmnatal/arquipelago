@@ -3,7 +3,7 @@
   "ilha": "rodametria",
   "ferramenta": "F1",
   "bloco": "4",
-  "gerado_em": "2026-11-10",
+  "gerado_em": "2026-11-11",
   "gerado_por": "ferramentas/gerar-f1.py",
   "referencia": "regras/f1.py",
   "especificacao": "dados/especificacao-calculadoras.md, secao 1",
@@ -128,7 +128,7 @@
       "valor": null,
       "status": "pendente",
       "tipo": "pendente",
-      "tipo_na_tela": "pendente, sem valor publicado",
+      "tipo_na_tela": "ainda sem número publicado, e o porquê está nesta lista",
       "fonte": "",
       "url": null,
       "verificado_em": "2026-11-06"

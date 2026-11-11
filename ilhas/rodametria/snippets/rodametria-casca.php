@@ -71,7 +71,7 @@
    Antes disto a ilha cujo produto e "o preco de hoje" tinha ZERO ocorrencia de
    `dateModified` e de `datePublished` em todo o JSON-LD das 9 URLs. */
 if ( ! defined( 'RODAMETRIA_CASCA_VERSAO' ) ) {
-	define( 'RODAMETRIA_CASCA_VERSAO', '1.23.0' );
+	define( 'RODAMETRIA_CASCA_VERSAO', '1.24.0' );
 }
 
 /**
@@ -411,10 +411,28 @@ function rodametria_casca_rodape_html() {
 	if ( $links ) {
 		$html .= '<ul class="rdm-rodape-links">' . implode( '', $links ) . '</ul>';
 	}
+	/* O RODAPE PAROU DE DECLARAR O CRITERIO DE ORDEM — item 4 do despacho de
+	   11/11/2026, e esta era a TERCEIRA copia da mesma declaracao, servida em
+	   TODA pagina da ilha: `quem decide a ordem e o que o fabricante declara`.
+	   Ela era a mais errada das tres — a ordem da vitrine sai das vendas que a
+	   propria loja declarou na busca medida e, no empate, do preco menor; o
+	   fabricante nao entra nela. O criterio tem UM dono (a tupla
+	   `CHAVES_DE_ORDEM` de ferramentas/gerar-vitrine-de-produto.py, que e de
+	   onde sai tambem a chave que ordena), e a pagina que presta contas dele e
+	   a `/divulgacao-de-afiliados/`. Aqui fica a REMISSAO, com link: o rodape
+	   nao repete o criterio, ele diz onde ele esta escrito.
+
+	   O LINK SO SAI SE A PAGINA EXISTIR: `rodametria_casca_link()` devolve vazio
+	   quando nao existe, e a frase continua inteira e verdadeira sem ele — o
+	   mesmo desenho da remissao da F2 para a F3. */
+	$onde_esta_a_ordem = rodametria_casca_link( 'divulgacao-de-afiliados',
+		'na página que explica como este site ganha dinheiro' );
 	$html .= '<p class="rdm-rodape-aviso">A Rodametria participa de programas de afiliados: '
 		. 'quando você compra pelos links desta página, a gente recebe uma comissão da loja, '
-		. 'sem mudar o preço para você. Isso nunca muda a ordem das recomendações — quem decide '
-		. 'a ordem é o que o fabricante declara.</p>';
+		. 'sem mudar o preço para você. Isso nunca muda a ordem das recomendações, e o critério '
+		. 'que decide essa ordem está escrito '
+		. ( '' !== $onde_esta_a_ordem ? $onde_esta_a_ordem
+			: 'na página que explica como este site ganha dinheiro' ) . '.</p>';
 	$html .= '<p class="rdm-rodape-creditos">© ' . $ano . ' Rodametria · Os números desta página vêm '
 		. 'das fichas e das medições citadas em “Como sabemos”, com a data de cada leitura.</p>';
 	$html .= '</div></footer>';

@@ -8,6 +8,8 @@
  "vendas_ordenam_e_nao_vao_para_a_tela": "A ordem e o desempate entre equivalentes da secao 7, e `vendas` e o unico desempate honesto porque comissao nunca ordena. Mas a contagem de vendas NAO e publicada: a secao 7 proibe selo de mais vendido, e prova social nao e o que esta pagina vende.",
  "piso_da_30_2": 3,
  "teto_do_carrossel": 5,
+ "criterio_de_ordem_na_tela": "Primeiro vem o anúncio com mais vendas declaradas pela própria loja na busca que a gente mediu, e o desempate é o preço menor — nunca a comissão que um programa paga.",
+ "de_onde_sai_o_criterio_de_ordem": "Montado de `CHAVES_DE_ORDEM` em ferramentas/gerar-vitrine-de-produto.py, que e a MESMA declaracao de onde sai a chave de `ordenar()`. Frase e ordem nao podem divergir porque nao existem separadas.",
  "paginas": [
   {
    "id": "bicicleta-eletrica",
@@ -47,7 +49,8 @@
     "recusas_por_causa": {
      "fora_da_familia": 3,
      "acessorio": 11
-    }
+    },
+    "aposentadas": 0
    },
    "cartoes": [
     {
@@ -343,37 +346,38 @@
    "colhido_em": "2026-11-04",
    "colhido_em_br": "04/11/2026",
    "numeros": {
-    "n": 16,
+    "n": 15,
     "de": "R$ 1.030,00",
     "ate": "R$ 2.699,00",
-    "mediana": "R$ 1.647,95",
+    "mediana": "R$ 1.695,92",
     "de_numero": 1030.0,
     "ate_numero": 2699.0,
-    "declaram_watt": 15,
+    "declaram_watt": 14,
     "dizem_qual_watt": 0,
     "sem_watt": 1,
-    "frase_do_rotulo": "15 dos 16 declaram um watt, e nenhum diz se aquele número é o nominal ou o de pico — e é o nominal que decide a categoria.",
+    "frase_do_rotulo": "14 dos 15 declaram um watt, e nenhum diz se aquele número é o nominal ou o de pico — e é o nominal que decide a categoria.",
     "declaram_carga": 6,
     "carga_de": 60,
     "carga_ate": 150,
-    "frase_da_carga": "6 dos 16 anúncios declaram no título a carga máxima, e entre eles ela vai de 60 a 150 kg. Nos outros, o limite não está no título.",
+    "frase_da_carga": "6 dos 15 anúncios declaram no título a carga máxima, e entre eles ela vai de 60 a 150 kg. Nos outros, o limite não está no título.",
     "declaram_pivo": 0,
     "com_acelerador": 0,
     "so_pedal_assistido": 0,
-    "frase_do_pivo": "Nenhum dos 16 anúncios diz se o veículo tem acelerador, e é o acelerador que decide se ele é bicicleta elétrica ou ciclomotor — duas categorias com regras de placa e registro diferentes.",
+    "frase_do_pivo": "Nenhum dos 15 anúncios diz se o veículo tem acelerador, e é o acelerador que decide se ele é bicicleta elétrica ou ciclomotor — duas categorias com regras de placa e registro diferentes.",
     "dobraveis": 14,
-    "frase_do_dobravel": "14 dos 16 anúncios dizem dobrável no título.",
+    "frase_do_dobravel": "14 dos 15 anúncios dizem dobrável no título.",
     "par_da_f2_os_dois": 0,
     "par_da_f2_so_tensao": 1,
     "par_da_f2_so_amperagem": 0,
-    "frase_do_par_da_f2": "Nenhum dos 16 anúncios declara a tensão E a amperagem no mesmo título (1 declara só a tensão) — e a calculadora de autonomia pede os dois.",
+    "frase_do_par_da_f2": "Nenhum dos 15 anúncios declara a tensão E a amperagem no mesmo título (1 declara só a tensão) — e a calculadora de autonomia pede os dois.",
     "lidas": 20,
     "recusadas": 4,
     "recusas_por_causa": {
      "fora_da_familia": 2,
      "outro_veiculo": 1,
      "sem_qualificador": 1
-    }
+    },
+    "aposentadas": 1
    },
    "cartoes": [
     {
@@ -402,37 +406,6 @@
      "url_produto": "https://shopee.com.br/product/1059936083/58266601235",
      "shop_id": 1059936083,
      "item_id": 58266601235,
-     "par_colhido_em": "2026-11-04",
-     "url_busca": "https://s.shopee.com.br/60Su92trfV",
-     "url_busca_produto": "https://shopee.com.br/search?keyword=patinete%20eletrico%20adulto",
-     "piso_medido_em": "2026-11-04"
-    },
-    {
-     "nome": "Patinete Elétrico Adulto  650W com 3 Velocidades Bateria Recarregável para Mobilidade Urbana",
-     "preco": "R$ 1.499,00",
-     "preco_numero": 1499.0,
-     "preco_nota": "(preço de 04/11/2026)",
-     "especificacao": "declara watt, sem dizer se é nominal ou de pico",
-     "carga": "o título não declara",
-     "carga_porque": "o título não declara nenhum kg",
-     "carga_porque_e_citacao": false,
-     "url": "https://s.shopee.com.br/9pfbJrNKOR",
-     "programa": "shopee",
-     "degrau": 1,
-     "degrau_da_escada_de_chaves": 1,
-     "imagem": {
-      "url": "https://cf.shopee.com.br/file/br-11134207-820lj-muh9zievynsxf0",
-      "largura": 1024,
-      "altura": 1024,
-      "alt": "Patinete Elétrico Adulto  650W com 3 Velocidades Bateria Recarregável para Mobilidade Urbana",
-      "fonte": "anuncio-shopee",
-      "coletado_em": "2026-11-04",
-      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
-     },
-     "loja": "Super mantimentos comprar",
-     "url_produto": "https://shopee.com.br/product/1430771203/58212105781",
-     "shop_id": 1430771203,
-     "item_id": 58212105781,
      "par_colhido_em": "2026-11-04",
      "url_busca": "https://s.shopee.com.br/60Su92trfV",
      "url_busca_produto": "https://shopee.com.br/search?keyword=patinete%20eletrico%20adulto",
@@ -530,6 +503,37 @@
      "url_busca": "https://s.shopee.com.br/60Su92trfV",
      "url_busca_produto": "https://shopee.com.br/search?keyword=patinete%20eletrico%20adulto",
      "piso_medido_em": "2026-11-04"
+    },
+    {
+     "nome": "Patinete Elétrico Dobrável 350W Adulto | infantil Até 30km/h Suspensão Reforçada Suporta 100KG",
+     "preco": "R$ 1.490,00",
+     "preco_numero": 1490.0,
+     "preco_nota": "(preço de 04/11/2026)",
+     "especificacao": "declara watt, sem dizer se é nominal ou de pico",
+     "carga": "até 100 kg",
+     "carga_porque": "Suporta 100KG",
+     "carga_porque_e_citacao": true,
+     "url": "https://s.shopee.com.br/1BNeO3bR38",
+     "programa": "shopee",
+     "degrau": 1,
+     "degrau_da_escada_de_chaves": 1,
+     "imagem": {
+      "url": "https://cf.shopee.com.br/file/sg-11134201-825bc-mrkfsjm69r7k19",
+      "largura": 1024,
+      "altura": 1024,
+      "alt": "Patinete Elétrico Dobrável 350W Adulto | infantil Até 30km/h Suspensão Reforçada Suporta 100KG",
+      "fonte": "anuncio-shopee",
+      "coletado_em": "2026-11-04",
+      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
+     },
+     "loja": "verennacomerce",
+     "url_produto": "https://shopee.com.br/product/1898476912/58265708355",
+     "shop_id": 1898476912,
+     "item_id": 58265708355,
+     "par_colhido_em": "2026-11-04",
+     "url_busca": "https://s.shopee.com.br/60Su92trfV",
+     "url_busca_produto": "https://shopee.com.br/search?keyword=patinete%20eletrico%20adulto",
+     "piso_medido_em": "2026-11-04"
     }
    ],
    "linhas": [
@@ -559,37 +563,6 @@
      "url_produto": "https://shopee.com.br/product/1059936083/58266601235",
      "shop_id": 1059936083,
      "item_id": 58266601235,
-     "par_colhido_em": "2026-11-04",
-     "url_busca": "https://s.shopee.com.br/60Su92trfV",
-     "url_busca_produto": "https://shopee.com.br/search?keyword=patinete%20eletrico%20adulto",
-     "piso_medido_em": "2026-11-04"
-    },
-    {
-     "nome": "Patinete Elétrico Adulto  650W com 3 Velocidades Bateria Recarregável para Mobilidade Urbana",
-     "preco": "R$ 1.499,00",
-     "preco_numero": 1499.0,
-     "preco_nota": "(preço de 04/11/2026)",
-     "especificacao": "declara watt, sem dizer se é nominal ou de pico",
-     "carga": "o título não declara",
-     "carga_porque": "o título não declara nenhum kg",
-     "carga_porque_e_citacao": false,
-     "url": "https://s.shopee.com.br/9pfbJrNKOR",
-     "programa": "shopee",
-     "degrau": 1,
-     "degrau_da_escada_de_chaves": 1,
-     "imagem": {
-      "url": "https://cf.shopee.com.br/file/br-11134207-820lj-muh9zievynsxf0",
-      "largura": 1024,
-      "altura": 1024,
-      "alt": "Patinete Elétrico Adulto  650W com 3 Velocidades Bateria Recarregável para Mobilidade Urbana",
-      "fonte": "anuncio-shopee",
-      "coletado_em": "2026-11-04",
-      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
-     },
-     "loja": "Super mantimentos comprar",
-     "url_produto": "https://shopee.com.br/product/1430771203/58212105781",
-     "shop_id": 1430771203,
-     "item_id": 58212105781,
      "par_colhido_em": "2026-11-04",
      "url_busca": "https://s.shopee.com.br/60Su92trfV",
      "url_busca_produto": "https://shopee.com.br/search?keyword=patinete%20eletrico%20adulto",

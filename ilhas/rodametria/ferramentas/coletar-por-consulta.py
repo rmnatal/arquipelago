@@ -172,6 +172,81 @@ def contagem_de_rotulo(anuncios):
 # morre — foi o que esta ferramenta fez na primeira passada. A conversao e
 # estrita de proposito: preco que nao vira numero vira `None` com o motivo, e o
 # anuncio deixa de contar para a faixa em vez de entrar com zero.
+# ---------------------------------------------------------------------------
+# A QUARENTENA DO ANUNCIO APOSENTADO — e ela mora AQUI, e nao na ferramenta que
+# aposenta, por um motivo so: e ESTE arquivo que reescreve o bloco inteiro a
+# partir da API. Sem a quarentena no caminho do `--gravar`, o anuncio esgotado
+# VOLTA na proxima coleta, com o mesmo id, como oferta viva — e o conserto de
+# 11/11/2026 se desfaria calado na primeira coleta seguinte.
+#
+# O ID DO APOSENTADO NAO VIVE EM CAMPO NENHUM, por desenho (item 1 do despacho
+# de 11/11/2026: "zero ocorrencia em campo vivo do banco"). Ele vive DENTRO da
+# prosa da quarentena, num formato fechado, e e de la que esta funcao o le.
+# Prosa que e tambem a lista de quarentena nao envelhece separada da historia.
+PADRAO_APOSENTADO = re.compile(
+    r'^APOSENTADO EM (?P<em>\d{4}-\d{2}-\d{2}) — item (?P<item>\d+) '
+    r'da loja (?P<loja>\d+) — .*CAUSA: .+ \|\| ULTIMA MEDICAO: .+$', re.S)
+
+
+def aposentados_de(bloco):
+    return list(bloco.get('anuncios_aposentados') or [])
+
+
+def ids_em_quarentena(bloco):
+    """Os `item_id` aposentados deste bloco, lidos da prosa da quarentena."""
+    ids = set()
+    for linha in aposentados_de(bloco):
+        m = PADRAO_APOSENTADO.match((linha or '').strip())
+        if m:
+            ids.add(int(m.group('item')))
+    return ids
+
+
+def recontar_resumo(bloco):
+    """Reconta o `resumo` sobre os anuncios que SOBRARAM no bloco.
+
+    `ofertas_lidas` e `ofertas_recusadas` NAO entram: sao fato da coleta do dia
+    em que ela aconteceu. O que esta funcao reconta e o que serve HOJE — e e por
+    isso que ela e uma funcao, chamada pelo `--gravar` daqui e pela ferramenta
+    que aposenta anuncio: duas contas do mesmo numero comecam iguais e so uma
+    sobe (20.7).
+    """
+    r = bloco['resumo']
+    servem = [x for x in bloco['anuncios'] if x['serve']]
+    com_link = [x for x in servem if x.get('url_afiliado')]
+    num, motivo = numero_proprio(r.get('numero_proprio_pedido'), bloco['anuncios'])
+    r['ofertas_que_servem'] = len(servem)
+    r['ofertas_com_link_de_afiliado'] = len(com_link)
+    r['ofertas_aposentadas'] = len(aposentados_de(bloco))
+    r['numero_proprio'] = num
+    r['motivo_sem_numero_proprio'] = motivo
+    r['contagem_de_rotulo_de_potencia'] = contagem_de_rotulo(bloco['anuncios'])
+    r['abre_o_portao_da_30_2'] = len(com_link) >= PISO_DA_30_2 and num is not None
+    return r
+
+
+def aplicar_quarentena(novo_bloco, bloco_antigo):
+    """Carrega a quarentena do bloco antigo e RECUSA o anuncio que ela nomeia.
+
+    Devolve quantos anuncios foram recusados. Imprime cada recusa (secao 8): o
+    que uma coleta deixa de fora em silencio e o que a passada seguinte
+    redescobre do zero.
+    """
+    quarentena = ids_em_quarentena(bloco_antigo or {})
+    if not quarentena:
+        return 0
+    novo_bloco['anuncios_aposentados'] = aposentados_de(bloco_antigo)
+    fora = [a for a in novo_bloco['anuncios'] if int(a.get('item_id') or 0) in quarentena]
+    for a in fora:
+        print('  QUARENTENA: a loja devolveu de novo o item %s (%s) e ele esta APOSENTADO; '
+              'nao entra.' % (a.get('item_id'), (a.get('titulo') or '')[:60]))
+    if fora:
+        novo_bloco['anuncios'] = [a for a in novo_bloco['anuncios']
+                                  if int(a.get('item_id') or 0) not in quarentena]
+    recontar_resumo(novo_bloco)
+    return len(fora)
+
+
 def preco_numero(bruto):
     try:
         return round(float(str(bruto).replace(',', '.')), 2)
@@ -531,6 +606,8 @@ def main():
         with open(BANCO, encoding='utf-8') as f:
             antigo = {b['id']: b for b in json.load(f).get('consultas', [])}
     for b in blocos:
+        # A QUARENTENA ATRAVESSA A COLETA. Ver `aplicar_quarentena`.
+        aplicar_quarentena(b, antigo.get(b['id']))
         antigo[b['id']] = b
 
     saida = {

@@ -4,7 +4,7 @@
   "nicho": "mobilidade eletrica — acertar os tres numeros antes de comprar um veiculo eletrico: categoria legal (CNH e placa), autonomia real e carga maxima",
   "dominio": "https://rodametria.com.br",
   "versao_manifest": 1,
-  "revisao": 83,
+  "revisao": 84,
   "atualizado_em": "2026-11-11",
   "estado": "nascendo",
   "desembarque": {
@@ -20,8 +20,8 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "d113b3d7ba2182bc6ddadb77e841c1e0c50373e15d4c0621df53387704d0ec8c",
-      "versao": "1.23.0",
+      "sha256": "ef7e48dee6e87fcafdeb9c85c6f25b5eecd3fd099e96652abe9e97f6675d29c9",
+      "versao": "1.24.0",
       "descricao": "A CASCA desta ilha (a versao corrente esta no campo `versao` deste item, espelhado da constante do arquivo). Tokens do DESIGN.md (tinta #13212B, verde #0A6B4C, Alfa Slab One so na marca, Barlow Semi Condensed nos titulos, JetBrains Mono em todo numero), simbolo V9 completo no cabecalho e em negativo no rodape, favicon proprio (secao 6: icone padrao do WordPress na aba e bloco reprovado), menu hamburguer com aria-expanded/aria-controls e links <a href> de verdade no HTML servido, trilha + BreadcrumbList, WebSite JSON-LD na home, <title> e description saindo de UM mapa de paginas. E os COMPONENTES DO MOLDE da secao 32, aqui e nao em cada snippet, como a 32.6-b manda: caixa de resultado, dobra <details>, cartao de compra com espaco reservado para quem nao tem foto, carrossel com scroll-snap em CSS puro, barra fixa do telefone e o rotulo do botao de loja por degrau da escada da 25.1. Pagina nova entra pelos filtros `rodametria_paginas` e `rodametria_instalar`, de dentro do proprio snippet dela — a casca nao e editada quando a ilha cresce. 1.3.0 (29/10/2026): `garantir_pagina()` aceita PAI, pela 16.2, e `url_do_slug()` acha a pagina pela meta `_rodametria_id` em vez de por caminho — `get_page_by_path()` casa o caminho INTEIRO e devolveria nulo para filha de arvore de dois niveis, com `casca_link()` transformando link vazio em texto sem reclamar. 1.4.0 (29/10/2026, no mesmo dia e por defeito MEDIDO no ar): a instalacao passou a rodar tambem quando a ASSINATURA DO MAPA muda, e nao so quando a versao da casca muda. A revisao 13 subiu casca nova e snippet de pagina nova na MESMA passada do Sync; quando o `init` chamou a instalacao, o snippet novo ainda nao estava carregado naquela requisicao, as tres paginas nao foram criadas, e a casca gravou `instalado: 1.3.0` — com a versao marcada, a instalacao nunca mais rodaria. O sintoma era o da secao 4: /status em 13, cinco linhas `ok`, o mapa de paginas ja com as tres novas, e o wp-sitemap.xml com duas URLs. A VERSAO SAIU DESTA PROSA EM 02/11/2026, e ela estava VELHA nos QUATRO snippets (a casca dizia 1.4.0 servindo 1.6.0; os outros tres diziam 1.0.0) — e isso e a prova de que o campo `versao` faltava. Quem declara a versao agora e o campo, espelhado da constante do arquivo por `ferramentas/atualizar-manifest.py` e cobrado por `ferramentas/teste-versao-dos-snippets.php`; prosa que repete o mesmo fato e a segunda declaracao que sobe sozinha de um lado so."
     },
     {
@@ -42,8 +42,8 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "bffb2403348fe7d3be18255018e93f75f89b32ab93937f824cd5e0f6738c7458",
-      "versao": "1.9.0",
+      "sha256": "0019eaedbd43c75562bc6cde62b4777290ab4e007da6b70cf527ff2c350d8c48",
+      "versao": "1.10.0",
       "descricao": "A F2 (versao corrente no campo `versao` deste item), a PRIMEIRA pagina desta ilha no ar, em /autonomia-patinete-eletrico/. Ordem da 32.1 de cima para baixo, conferida por afirmacao no fonte: trilha e H1, promessa, formulario ja preenchido com o caso de exemplo, caixa de resultado JA PRE-RENDERIZADA no HTML (a metade que a IA le sem preencher formulario, e o que a 22.8 exige de quem desliga o JavaScript), bloco de compra, prestacao de contas da secao 7 com os cinco grupos por causa e a soma fechando o banco contado, tabela pre-renderizada visivel, e o resto em <details>. NENHUM numero e NENHUMA frase de resposta e digitado neste arquivo: tudo vem da option que o Sync grava de dados/f2-respostas.json, escrito por ferramentas/gerar-f2.py a partir de ferramentas/f2-referencia.py e de dados/constantes.json. O JS do rodape preenche MOLDE, nunca escreve frase — a bateria de mutacoes de 29/10 reprovou as duas versoes em que ele escrevia. A VERSAO SAIU DESTA PROSA EM 02/11/2026, e ela estava VELHA nos QUATRO snippets (a casca dizia 1.4.0 servindo 1.6.0; os outros tres diziam 1.0.0) — e isso e a prova de que o campo `versao` faltava. Quem declara a versao agora e o campo, espelhado da constante do arquivo por `ferramentas/atualizar-manifest.py` e cobrado por `ferramentas/teste-versao-dos-snippets.php`; prosa que repete o mesmo fato e a segunda declaracao que sobe sozinha de um lado so."
     },
     {
@@ -64,8 +64,8 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "ea7e8d3dadbd501f231e2b64cbdb401392b0d0f364a6e6d9bbb340e1768efd11",
-      "versao": "1.9.0",
+      "sha256": "7d35bd0ae9ad96ba0325949517fbb47c30e12a7bf02b1f096f12264bb7a8ca77",
+      "versao": "1.10.0",
       "descricao": "O MOTOR DA SECAO 30 nesta ilha (versao corrente no campo `versao` deste item): a secao de nivel 1 `/veiculos/` e as paginas de consulta de produto que nascem filhas diretas dela, com o slug igual a consulta. Ordem da 32.2 de cima para baixo: trilha e H1, caixa de resposta com o preco mediano em Mono, bloco de compra com id=comprar logo abaixo, tabela-resumo VISIVEL com TODOS os anuncios (a secao 7 manda nomear todo item uma vez), a prestacao de contas de quem nao entrou com a causa contada, a malha da 16.4 tambem visivel porque e alvo de link, e o resto nas dobras da casca. NENHUM numero e digitado neste arquivo: a prosa vem de dados/paginas-de-produto.json com moldes e o numero vem de dados/vitrine-de-produto.json, recontado por ferramentas/gerar-vitrine-de-produto.py. A tabela NAO tem coluna de potencia nominal, velocidade maxima, acelerador nem carga maxima: o esquema desta ilha exige nivel 5 ou melhor nesses quatro e titulo de anuncio e nivel 6, entao a coluna diz o que o anuncio DECLARA em vez de preencher coluna tecnica com palavra tirada do titulo. JSON-LD de ItemList e FAQPage no wp_head; folha no wp_footer; nada dentro do retorno do shortcode. A VERSAO SAIU DESTA PROSA EM 02/11/2026, e ela estava VELHA nos QUATRO snippets (a casca dizia 1.4.0 servindo 1.6.0; os outros tres diziam 1.0.0) — e isso e a prova de que o campo `versao` faltava. Quem declara a versao agora e o campo, espelhado da constante do arquivo por `ferramentas/atualizar-manifest.py` e cobrado por `ferramentas/teste-versao-dos-snippets.php`; prosa que repete o mesmo fato e a segunda declaracao que sobe sozinha de um lado so."
     },
     {
@@ -75,8 +75,8 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "edebe87ca78b836d824be5caa4e5bc174195c893385b262e9e5a07153861d3cb",
-      "versao": "1.2.1",
+      "sha256": "adb83cf6aaddd655be5bd6eb27ce1de7ff5fc08a74ce22769208cc7764984b67",
+      "versao": "1.3.0",
       "descricao": "AS QUATRO PAGINAS DA 16.1 (versao corrente no campo `versao` deste item), em `/sobre/`, `/contato/`, `/divulgacao-de-afiliados/` e `/privacidade/`. Pai NULO nas quatro, porque a 16.1 as nomeia como as unicas paginas soltas na raiz fora da home; `no_menu` TRUE, porque o VOZ.md manda um menu curto de assunto e pagina institucional no menu de cima rouba o lugar do que a pessoa veio procurar — elas aparecem no RODAPE, que a casca monta do mapa inteiro e serve em toda pagina, o que tambem fecha a 16.4(f) para as quatro de uma vez. Ordem da 32.2: trilha e H1, caixa de resposta, linha mestra, secoes visiveis, bloco de recusa, dobras, malha. SEM bloco de compra, porque nao ha o que comprar nelas. NENHUM numero e digitado: a prosa mora em dados/paginas-institucionais.json com 16 moldes, e `rdm_inst_numeros()` os CONTA na hora de servir, lendo as options que o Sync grava e o mapa de paginas da casca — a 'pagina que fala de si' e justamente o caso em que numero digitado passa a mentir calado (secao 8). O BLOCO DE RECUSA e marcado no markup (`rdm-inst-recusa`) e todo item dele ABRE negando: a cicatriz da clubedomosaico de 11/09/2026 e que perdoar por presenca de palavra e adivinhar. A folha sai no wp_footer e nao redecora nada da casca (32.5-c); o portao mede isso por SELETOR, nunca por palavra solta. A VERSAO SAIU DESTA PROSA EM 02/11/2026, e ela estava VELHA nos QUATRO snippets (a casca dizia 1.4.0 servindo 1.6.0; os outros tres diziam 1.0.0) — e isso e a prova de que o campo `versao` faltava. Quem declara a versao agora e o campo, espelhado da constante do arquivo por `ferramentas/atualizar-manifest.py` e cobrado por `ferramentas/teste-versao-dos-snippets.php`; prosa que repete o mesmo fato e a segunda declaracao que sobe sozinha de um lado so."
     }
   ],
@@ -87,7 +87,7 @@
       "arquivo": "dados/f2-respostas.json",
       "formato": "json",
       "publicar": true,
-      "sha256": "7b912f0711632b0f9fece256fce1a2851b4a7c03c8e140048483ebbb801f5440",
+      "sha256": "be36ec1d962a3b249c686d9706e26a1a0004d1234e23765381cbda1559cb15c3",
       "descricao": "O que a F2 serve: campos, moldes de frase, fatores de relevo, resposta de exemplo pre-renderizada, tabela e prestacao de contas."
     },
     {
@@ -135,7 +135,7 @@
       "arquivo": "dados/vitrine-de-produto.json",
       "formato": "json",
       "publicar": true,
-      "sha256": "4107db82ab26e52406d683c3752831a68e8d1417151b9868d7f3335974b6857f",
+      "sha256": "50e479b46be2627a98fe70fdcb466dee234e525c2d192019c2bf34a8455fccd6",
       "descricao": "A camada GERADA: cartoes do carrossel (teto de cinco, 32.1), linhas da tabela (todas) e os numeros, RECONTADOS de dados/anuncios-por-consulta.json."
     },
     {
@@ -151,7 +151,7 @@
       "arquivo": "dados/anuncios-por-consulta.json",
       "formato": "json",
       "publicar": false,
-      "sha256": "6aae78202f1e950352b4789736ee9adbf6dee85bd078a2338f6bd5905c26b7e7",
+      "sha256": "e7d7756c46748446a376d75373f8ebceb46fea115f6c91d8b8149d6687acf5ee",
       "descricao": "Os anuncios lidos na Shopee, com o veredito da regua de relevancia por anuncio, a escada medida e as fotos com largura e altura lidas no cabecalho do arquivo na CDN."
     },
     {
@@ -159,7 +159,7 @@
       "arquivo": "dados/paginas-institucionais.json",
       "formato": "json",
       "publicar": true,
-      "sha256": "e32492cc0388fd0cd2b921d008b9cad013665eb2bedc02c1ab7b13f5fcf5ab1f",
+      "sha256": "4c20090c44f077f89fb4f0a1b4660faf99b880f56b60d4f13ffce37d6fe34a0b",
       "descricao": "A camada DECLARADA das quatro paginas do bloco 5d: a voz do VOZ.md com MOLDES no lugar de todo numero. `teste-institucional.py` REPROVA digito solto na prosa fora de `digitos_permitidos`, molde que o preenchedor do PHP nao conhece, e item de bloco de recusa que nao ABRE negando. Traz tambem `terceiros_que_carregam`: os enderecos de fora que a pagina de privacidade NOMEIA, medidos em 30/10/2026 e conferidos contra o HTML servido de TODAS as URLs do sitemap por `conferir-institucional-no-ar.py` — endereco novo torna a pagina falsa e faz o portao falhar."
     },
     {
@@ -167,7 +167,7 @@
       "arquivo": "dados/f1-respostas.json",
       "formato": "json",
       "publicar": true,
-      "sha256": "e498872b46283db2a6178c1e1600620e2bdcf5aaf71f20206e2e1803c3a9a7e2",
+      "sha256": "ad4af4e6cd8a5522e206cabf6c51fd2cc288ba1cbe17de04184244458950d59a",
       "descricao": "Tudo o que a F1 serve na tela, escrito por ferramentas/gerar-f1.py a partir de regras/f1.py e de dados/constantes.json. Inclui os moldes de frase INTEIROS (o PHP e o JS leem os mesmos, para as duas metades nao poderem dizer coisas diferentes para a mesma entrada), os limiares lidos da resolucao, as duas tabelas pre-renderizadas e a prestacao de contas com a soma fechando o banco."
     },
     {
