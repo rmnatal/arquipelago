@@ -9346,3 +9346,114 @@ tinha escrito:** a seção começa na linha **9262** e, no momento da medição,
 com o arquivo terminando em **9342** linhas e **134** seções `##`. Este parágrafo final acrescenta
 linhas depois da medição; o número que vale é o da última releitura, e ele entra na resposta do
 disparo.
+
+## Disparo de 11/11/2026, 16h52 BRT (19h52 UTC) — SEGUNDO disparo da leitura Search Console: o trabalho já estava no `main`, nada novo foi gravado
+
+A instrução deste disparo era a MESMA do anterior, com uma cláusula a mais: *"o primeiro, de 19h41Z
+de 11/11/2026, não deixou os arquivos no `origin/main` dez minutos depois; se os arquivos de hoje JÁ
+existirem, não refaça, apenas responda dizendo que já existem e pare"*.
+
+**A checagem foi feita e, na hora em que foi feita, os arquivos NÃO existiam.** Às 19h43 UTC o
+`git fetch origin main && git checkout -B trabalho origin/main` trouxe o `main` em `5a55498`, e
+`ls ilhas/<ilha>/dados/search-console-2026-11-11.md` devolveu `No such file or directory` para as
+quatro ilhas (a série mais recente parava em `2026-11-04`). Então o disparo seguiu o procedimento e
+rodou o script.
+
+**O que aconteceu é que o primeiro disparo não havia falhado — estava atrasado.** Ele gravou o
+commit `2169969` em `origin/main` às 19h50:49 UTC, enquanto este segundo disparo rodava o script. A
+condição da instrução ("não deixou os arquivos no `main` dez minutos depois") era verdadeira quando a
+instrução foi escrita e deixou de ser verdadeira no meio desta execução.
+
+**`git status --porcelain` depois de rodar o script (os quatro arquivos, recém-gravados):**
+
+```
+?? ilhas/aquametria/dados/search-console-2026-11-11.md
+?? ilhas/clubedomosaico/dados/search-console-2026-11-11.md
+?? ilhas/robometria/dados/search-console-2026-11-11.md
+?? ilhas/rodametria/dados/search-console-2026-11-11.md
+```
+
+**`git diff --stat` do commit local que este disparo chegou a fazer (`fc7fe1c`):**
+
+```
+ .../aquametria/dados/search-console-2026-11-11.md  | 75 ++++++++++++++++++++++
+ .../dados/search-console-2026-11-11.md             | 37 +++++++++++
+ .../robometria/dados/search-console-2026-11-11.md  | 28 ++++++++
+ .../rodametria/dados/search-console-2026-11-11.md  | 19 ++++++
+ 4 files changed, 159 insertions(+)
+```
+
+**O primeiro `git push origin HEAD:main` foi RECUSADO, e a mensagem completa entra aqui:**
+
+```
+hint: Updates were rejected because the remote contains work that you do not
+hint: have locally. This is usually caused by another repository pushing to
+hint: the same ref. If you want to integrate the remote changes, use
+hint: 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+```
+
+**Conserto pelo passo 4, sem force — e o rebase revelou o porquê:**
+
+```
+ * branch            main       -> FETCH_HEAD
+   5a55498..bb0dcaf  main       -> origin/main
+warning: skipped previously applied commit fc7fe1c
+hint: use --reapply-cherry-picks to include skipped commits
+Successfully rebased and updated refs/heads/trabalho.
+Everything up-to-date
+```
+
+`skipped previously applied commit fc7fe1c` é a prova de que a leitura deste disparo saiu **byte a
+byte igual** à do primeiro: o `git rebase` compara o patch e descartou o commit local por já estar
+aplicado em `origin/main`. O push devolveu `Everything up-to-date` porque não havia mais nada para
+levar. **Nenhum commit deste disparo foi ao `main`, e isso é o resultado correto:** o trabalho já
+estava lá, e refazer por cima só duplicaria histórico.
+
+**Hash que está no `main` com os quatro arquivos (do PRIMEIRO disparo, não deste):**
+
+```
+2169969db46983d48e6b669b59cd473a12c73fb5
+Leitura Search Console pela nuvem — 2026-11-11
+```
+
+**Confirmação pelo passo 5, `git ls-tree -r --name-only origin/main`:**
+
+```
+ilhas/aquametria/dados/search-console-2026-11-11.md
+ilhas/clubedomosaico/dados/search-console-2026-11-11.md
+ilhas/robometria/dados/search-console-2026-11-11.md
+ilhas/rodametria/dados/search-console-2026-11-11.md
+```
+
+**Contagem dos arquivos gravados por este disparo, conferida relendo cada um DEPOIS de gravar, por
+`wc -l` — e idêntica à do primeiro disparo:**
+
+```
+  75 ilhas/aquametria/dados/search-console-2026-11-11.md
+  37 ilhas/clubedomosaico/dados/search-console-2026-11-11.md
+  28 ilhas/robometria/dados/search-console-2026-11-11.md
+  19 ilhas/rodametria/dados/search-console-2026-11-11.md
+ 159 total
+```
+
+**A checagem de vazamento foi feita de novo nos quatro arquivos, antes do commit:** `grep -c PRIVATE`
+deu **0** em cada um, `grep -ci 'begin .*key'` deu **0** em cada um, e um `grep -l -F` com o valor da
+credencial não casou com arquivo nenhum (**0 arquivos**). O valor de `GOOGLE_SA_B64` não foi impresso,
+gravado nem commitado em passo nenhum — a única coisa que este log registra sobre ele é que a
+variável estava presente no ambiente.
+
+**A lição deste disparo, e ela é sobre a cláusula "se já existirem, não refaça":** a checagem de
+existência foi honesta e deu negativo, porque o primeiro disparo ainda não tinha pousado. Uma
+cláusula de idempotência que só olha o estado do `main` *no começo* não protege contra o disparo
+anterior pousando no meio — quem protegeu aqui foi o `git rebase` recusando o patch duplicado e a
+regra de nunca dar force push. Se este disparo tivesse forçado o push, teria reescrito o commit do
+primeiro por um idêntico, trocando o hash que o log anterior já citava. **Não forçar push é o que
+transformou uma corrida entre dois disparos em zero dano.**
+
+**Contagem desta seção, conferida relendo o arquivo DEPOIS de gravar:** os números entram na
+releitura abaixo, nunca pelo que eu achava que tinha escrito.
+
+Releitura: esta seção começa na linha **9350** e, no momento da medição, somava **106** linhas, com o
+arquivo terminando em **9455** linhas e **135** seções `##`. Este parágrafo final acrescenta linhas
+depois da medição; o número que vale é o da última releitura, e ele entra na resposta do disparo.
