@@ -9192,3 +9192,7 @@ Sem falhas em nenhum passo. Nada foi tocado além dos seis arquivos da instruç�
 Contagem deste próprio log, relida depois de gravar: `MAOS-LOG.md` foi de **9110** para **9190**
 linhas — **80** linhas acrescentadas, todas nesta seção. O log entra num commit seguinte ao do
 trabalho, porque o trabalho tinha de ser confirmado em `origin/main` antes de ser registrado.
+
+Correção da própria contagem acima, relida depois deste parágrafo entrar: com este fechamento, a
+seção soma **84** linhas e o arquivo termina em **9194** linhas. Os números 9190/80 valiam para o
+momento em que foram medidos, antes deste último acréscimo.
