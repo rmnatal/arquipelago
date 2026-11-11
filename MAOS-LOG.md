@@ -9196,3 +9196,65 @@ trabalho, porque o trabalho tinha de ser confirmado em `origin/main` antes de se
 Correção da própria contagem acima, relida depois deste parágrafo entrar: com este fechamento, a
 seção soma **84** linhas e o arquivo termina em **9194** linhas. Os números 9190/80 valiam para o
 momento em que foram medidos, antes deste último acréscimo.
+
+---
+
+## 11/11/2026 15h02 de Brasília (18h02Z) — fecho da RONDA DIÁRIA DA SENTINELA de 2026-11-11: porta de entrada da robometria e da clubedomosaico REPARADA e conferida no ar, despachos ALTA fechados
+
+**Assunto conferido antes do `git fetch`:** instrução sobre as ilhas robometria e clubedomosaico e
+sobre o `dados/PAINEL.md` da Bússola. É do Arquipélago, logo executável aqui.
+
+**Instrução:** cinco arquivos, commit único, todo o texto pronto para colar. Os seis trechos-âncora
+foram localizados com contagem de ocorrências antes de qualquer escrita, e **todos os seis casaram
+exatamente uma vez** — nenhum trecho falhou, nada foi adivinhado. Nove substituições/acréscimos no
+total (1 acréscimo em cada `consertos.md`, 1 inserção + 1 troca de título na robometria, 1 troca de
+título na clubedomosaico, 4 trocas no `PAINEL.md`).
+
+**Nada fora do que a instrução nomeou:** não foi tocado `executando_desde`, não foi tocado
+`urls_publicadas` de ilha nenhuma, nenhuma ilha foi reservada, nenhum outro arquivo foi alterado
+além deste log. Os tokens do Sync aparecem no texto apenas como o literal `<token>` que a instrução
+trouxe — nenhum segredo e nenhum contato pessoal de terceiro entrou neste repositório público.
+
+`git status --porcelain` antes do commit:
+
+```
+ M dados/PAINEL.md
+ M ilhas/clubedomosaico/PROMPT.md
+ M ilhas/clubedomosaico/dados/consertos.md
+ M ilhas/robometria/PROMPT.md
+ M ilhas/robometria/dados/consertos.md
+```
+
+`git diff --stat` antes do commit:
+
+```
+ dados/PAINEL.md                         | 12 +++++----
+ ilhas/clubedomosaico/PROMPT.md          |  2 +-
+ ilhas/clubedomosaico/dados/consertos.md | 23 +++++++++++++++++
+ ilhas/robometria/PROMPT.md              | 44 ++++++++++++++++++++++++++++++++-
+ ilhas/robometria/dados/consertos.md     | 36 +++++++++++++++++++++++++++
+ 5 files changed, 110 insertions(+), 7 deletions(-)
+```
+
+**Commit que foi ao `main`:**
+
+```
+7e6164b300afad63a2c0a1f46e6e781ec0340c87
+ronda: porta de entrada da robometria e da clubedomosaico REPARADA e conferida no ar; despachos ALTA fechados
+```
+
+**Push aceito de primeira**, sem recusa, sem rebase e sem force. Confirmado pelo passo 5:
+`git fetch origin main && git log -1 origin/main` devolveu o hash acima, que é o mesmo do commit
+local — `8ec061c..7e6164b  HEAD -> main`. Push que aparece em `origin/main` é push.
+
+**Nenhum passo falhou neste disparo.**
+
+O log entra num commit seguinte ao do trabalho, porque o hash só existe depois de o trabalho estar
+confirmado em `origin/main`.
+
+**Contagem conferida relendo o arquivo DEPOIS de gravar, não pelo que eu achava que tinha escrito:**
+esta seção começa na linha **9202** e, no momento da medição, somava **52** linhas, com o arquivo
+terminando em **9253** linhas e **133** seções `##`. Este parágrafo final acrescenta mais linhas
+depois da medição, e o número que vale é o da última releitura: o arquivo fecha em **9260** linhas
+e esta seção em **59**. Os 9253/52 valiam para o instante em que foram medidos; a diferença é só o
+tamanho deste parágrafo, e está aqui porque contagem prevista não é contagem conferida.
