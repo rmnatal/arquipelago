@@ -3,6 +3,90 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-11-11 19h17Z–19h44Z — **AS DUAS SUPERFÍCIES QUE A 32.4 NUNCA LEU, E OS DOIS DEFEITOS QUE A LEITURA ACHOU** — revisão 86
+
+**A ESCOLHA DA ILHA, em três linhas porque não houve o que decidir.** `foco.md` nomeia a **rodametria** (foco total e absoluto desde 27/10). **Não havia despacho aberto** no topo do `PROMPT.md` — os quatro itens da ronda de hoje fecharam às 17h1xZ, conferidos no ar pela 18.4 — e nenhuma das duas exceções da 1.2 estava de pé: a ronda das 18h01Z **reparou** a porta de entrada da robometria e da clubedomosaico e fechou os dois despachos ALTA, e o despacho do molde da 32 não existe aberto em nenhuma das três ilhas que ele nomeia. Então esta passada é **bloco de fila**, pelo próximo passo desbloqueado que o `bloco_atual` desta ilha deixou escrito de manhã.
+
+**Passo 1:** `origin/claude/dreamy-mccarthy-4uvyye` no **mesmo SHA** do `main` (`da4f4e0`), **zero** commit fora do `main` nas duas direções, **zero PR aberto** — nada a mergear. `executando_desde: null`, o que pela **1.1** já significa que não havia bloco da Fundação vivo; nenhuma reserva órfã a limpar (1.2-b.5). Reserva no commit `9a90ec8`, às **19h17Z**, hora saída do `date -u` na mesma linha que a grava, e **RENOVADA às 19h34Z** no commit de desembarque — a bancada sem rede desta ilha tem 43 portões e a leitura das duas superfícies desceu as 10 URLs uma por uma.
+
+**A REDE, MEDIDA E NÃO HERDADA (20.2), ANTES DA RESERVA.** `rodametria.com.br` em **200** nas três passadas com quebra de cache, com `robometria.com.br` e `aquametria.com.br` em 200 nas mesmas três — **9 de 9, zero `000`**. As duas irmãs que estavam caídas nas duas rondas anteriores foram reparadas às 18h01Z e respondem.
+
+### O BLOCO: APONTAR AS DUAS LISTAS DA 32.4 PARA O ATRIBUTO E PARA O JSON-LD
+
+O `bloco_atual` da manhã nomeou este passo com todas as letras — *"o TEXTO DE ATRIBUTO (`alt`, `aria-label`, `title`) e o JSON-LD contra a régua de bastidor nas 10 URLs de uma vez, agora que a régua de FRONTEIRA existe e pode ser apontada para eles"* — e acrescentou *"atributo contra a 32.4 nunca foi medido"*.
+
+**A FRASE ESTAVA CERTA, E POR UM MOTIVO MAIS ESTREITO DO QUE ELA PARECIA DIZER.** Os **extratores já existiam**: `textos_de_atributo()` nasceu em 10/11 e `frases_e_pares_do_jsonld()` em 06/11. O que nunca tinha sido apontado para eles eram **as duas listas da 32.4** — elas corriam sobre o **texto visível** e sobre o **byte servido inteiro**, e o byte **parecia** cobrir os dois. Esta passada mediu em que esse "parecia" falha, e são três coisas (estão escritas no contrato como **32.4-f**):
+
+1. **ENTIDADE DE HTML.** A régua de fronteira **dobra o acento** e não desfaz entidade: `title="public&aacute;vel"` atravessa o byte sem ser vista, e `alt="&#105;lha"` é `ilha` escrito em decimal. O extrator de atributo já entrega o texto **desescapado** — e nenhuma das duas listas o recebia.
+2. **ESCAPE DE JSON.** `wp_json_encode` escreve `á` e `dados\/` quando as bandeiras `JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES` não vão na chamada. **Três termos da lista terminam em `/`** — `dados/`, `ferramentas/`, `regras/` — e ficariam cegos **de uma vez** no dia em que uma chamada nova nascesse sem a bandeira. **Contado, não suposto:** as seis chamadas desta ilha que servem JSON-LD passam as duas hoje. Ou seja, a cobertura do byte depende de uma bandeira que ninguém estava vigiando.
+3. **ENDEREÇO (20.5).** O byte inteiro não sabe dizer se o termo está num `alt` que o leitor de tela anuncia, numa resposta de `FAQPage` que o Google cita sem abrir a página, ou num comentário nosso — e o conserto de cada um mora em arquivo diferente.
+
+**A LEITURA VEIO LIMPA, E ISSO É UMA MEDIÇÃO.** Nas 10 URLs: **zero achado em 75 textos de atributo e 492 valores de JSON-LD**, contados e ditos pelo portão (20.8), com `@context` e `@type` **incluídos** — nenhuma chave foi excluída, e a decisão de não excluir está escrita com a contagem que a sustenta, em vez de uma lista de exceção que envelheceria calada. **É por isso que os mundos do autoteste dessa régua são fabricados:** zero no ar com régua que nunca mordeu não distingue página sã de régua que não roda.
+
+### OS DOIS DEFEITOS, E OS DOIS SAÍRAM DE LER AS SUPERFÍCIES COM OS OLHOS — NÃO DA LISTA
+
+#### DEFEITO 1 — O `alt` DA FOTO REPETIA, LETRA POR LETRA, O NOME QUE O CARTÃO IMPRIME TRÊS LINHAS ABAIXO
+
+**NOVE ocorrências em 3 das 10 URLs**, medidas no ar às 19h2xZ: a F2 (1), `/veiculos/patinete-eletrico/` (5) e `/veiculos/bicicleta-eletrica/` (3). O cartão servia
+
+    <img class="rdm-molde-cartao-foto" ... alt="TÍTULO DO ANÚNCIO">
+    <p class="rdm-molde-cartao-nome">TÍTULO DO ANÚNCIO</p>
+
+com a **mesma cadeia** encostada, de 60 a 120 caracteres. Para quem usa leitor de tela é o título do anúncio anunciado **duas vezes por cartão**.
+
+**E TEM A METADE DE VOZ, QUE É PIOR QUE A REPETIÇÃO.** O `alt` é esta ilha **descrevendo a imagem com as palavras dela**, e a cadeia copiada afirma `Suporta Até 150kg` e `Até 30Km/h` **sem o verbo que nomeia quem declarou** — numa ilha cuja tese é que o número do anúncio engana (seção 26, e o item 4 do despacho de 09/11, que ancorou a régua no VERBO). Na tela a frase de escopo do carrossel diz de onde a cadeia vem; **no atributo não há vizinho nenhum.**
+
+**A CÓPIA NASCE NO COLETOR E O CONSERTO NÃO ESTÁ LÁ.** `coletar-oferta.py` grava `imagem.alt` com o `nome_do_registro()` — o campo é o mesmo dado duas vezes, e será assim em toda coleta nova. Consertar só o coletor deixaria no ar o que já foi colhido; **a comparação mora em `rodametria_casca_cartao_de_compra()`, que é a única função que sabe que as duas cadeias ficam encostadas**, e por isso o conserto **atravessa a coleta seguinte** — que é a lição que a 25.11 escreveu nesta mesma ilha hoje de manhã.
+
+**ATRIBUTO VAZIO É UMA AFIRMAÇÃO, e ela é verdadeira aqui:** a imagem é redundante porque a página imprime o nome ao lado dela. `alt` que **descreva a foto** continua sendo servido — a régua mede **igualdade com o vizinho**, nunca redação —, e no dia em que o banco trouxer um `imagem.alt` escrito para a foto, ele vai ao ar.
+
+#### DEFEITO 2 — A CÉLULA DA TABELA DA REGRA VIRA ORAÇÃO DENTRO DE UMA FRASE, E A CONCORDÂNCIA É DE QUEM ESCREVEU PRIMEIRO
+
+A home servia, **nas duas camadas**, *"o art. 12 diz que o veículo não é **sujeita** a registro, licenciamento nem placa"* — na resposta de `FAQPage` e na linha `bicicleta elétrica` da tabela visível, três dobras acima. **Na mesma página, a resposta seguinte dizia *"ele não é sujeito"*.** Duas concordâncias para a mesma afirmação, e uma delas errada, na camada que a visão geral de IA cita sem abrir formulário nenhum.
+
+**NÃO É ERRO DE DIGITAÇÃO.** O campo `placa` é **um** dado servido em **dois** lugares, de propósito, e o comentário do snippet diz por quê com todas as letras: *"as respostas são montadas dos campos da tabela, nunca digitadas (...) a camada que a IA lê e a camada que a pessoa lê não podem divergir"*. **Essa regra está certa e continua valendo.** O que ninguém havia medido é que o campo não é substantivo nem número: é um **pedaço de oração**, e pedaço de oração **concorda com o sujeito de quem o usa**. Na tabela o sujeito é a linha (`bicicleta elétrica`, feminino); na frase era `o veículo`. **A célula estava certa onde nasceu e errada onde foi colada**, e as duas pontas são indistinguíveis lendo só uma delas.
+
+**O CONSERTO É DA FRASE, NUNCA DO DADO.** Ela passa a nomear a categoria de que fala, e os dois sujeitos passam a ser o mesmo. Trocar o campo consertaria a resposta e **quebraria a linha da tabela** — que é exatamente o jeito de este defeito voltar pela outra ponta. Para nomear, a frase precisa do **artigo**, e artigo não se deriva da cadeia do nome (`equipamento` é masculino, `bicicleta` é feminino, e nada no texto diz isso): nasceu `ARTIGO_DA_CATEGORIA` em `regras/f1.py`, ao lado de `NOME_DA_CATEGORIA`, e o gerador o copia para cada linha da tabela. **Nenhuma linha da tabela mudou de texto.**
+
+### A RÉGUA NOVA REPETIU, NA PRIMEIRA ESCRITA, A 32.4-e QUE ESTA ILHA ESCREVEU HOJE DE MANHÃ
+
+A régua de concordância, escrita com `str.rfind`, achou **`ele` dentro de `acELErador`** e **dentro de `ELEtrica`** — e, por tomar o masculino mais perto do particípio como sujeito, **aprovou a frase doente e a consertada do mesmo jeito**. A 32.4-e de hoje diz, com todas as letras, que *"palavra que vive dentro de outra não pode ser medida por pedaço"*, e quem a leu de manhã a repetiu à tarde, no mesmo arquivo. **Quem pegou foi o autoteste, antes do ar:** as duas afirmações que exigem a discordância reprovaram, e o conserto foi fronteira de palavra nos sujeitos também.
+
+### O QUE FICOU MEDIDO E NÃO É DESTA PASSADA — DUAS AFIRMAÇÕES DE MÁQUINA QUE A TELA NÃO FAZ
+
+Lendo o JSON-LD com os olhos apareceram **duas coisas que não são de vocabulário e não entraram no conserto de hoje**, porque as duas pedem escolha entre opções defensáveis sobre uma afirmação que o Google lê — e a tela, nas duas, é **mais cuidadosa que o dado**:
+
+- **`availability: InStock` em todos os 15 `Product`** de `/veiculos/patinete-eletrico/` (e nos da bicicleta). A regra do snippet está escrita e é boa — *"`InStock` é uma afirmação, e ela só vale sobre uma ficha"*, e o campo sai quando o degrau sobe para busca. **O que a regra não sabia é que ficha existir não é o mesmo que estar vendendo:** o teste de vida de hoje achou **uma ficha esgotada entre 24**, e foi o item 1 do despacho desta manhã. A garantia real é *"nenhuma ficha foi medida esgotada na última leitura"*, que é afirmação **datada**, e `availability` não tem data.
+- **`price` sem nenhuma marca de data.** A tela diz `(preço de 04/11/2026)` ao lado do número; o `Offer` serve `"price": "1030.00"` como preço corrente. `priceValidUntil` não é a resposta (ele afirma validade **futura**, que não temos), e é por isso que isto é escolha e não conserto.
+
+Nenhuma das duas foi tocada, e nenhuma foi inventada: estão aqui com a contagem e o lugar, para a passada que decidir.
+
+### A CONFERÊNCIA NO AR, EM DUAS LEITURAS COM QUEBRA DE CACHE (19h4xZ)
+
+**Revisão 86, entregue às 19:39:53.** Quatro leituras do `/status` antes dela deram veredito **`evento-nao-vencido`** — `ultimo` congelado em `19:17:01` com a home sendo aberta a toda hora, que é a assinatura exata da **20.9** —, e **esperar era a ação certa: reacionar não antecipa vencimento.** O log da revisão declara **9 itens aplicados** e traz **9 linhas de item, todas dizendo `ok`**, lidas uma por uma (20.4). A janela de 15 linhas está **cheia**, e o portão diz isso como registro em vez de aprovar sobre o que sobrou.
+
+**E AS VERSÕES QUE O WORDPRESS CARREGOU, lidas em `/casca` (20.7):** `rodametria-casca` **1.25.0** e `rodametria-f1` **1.6.0** — as duas iguais ao `manifest.json`. O `sha256` prova o byte do repositório e não prova o código carregado; isto prova.
+
+**O portão de ar completo: 727 afirmações, 0 falha**, nas 10 URLs do sitemap, as 10 em **200**.
+
+**Os dois consertos, contados nas duas leituras:**
+
+| | antes (19h2xZ) | depois (19h4xZ, leitura 1) | leitura 2 |
+|---|---|---|---|
+| `alt` que copia o vizinho | **9**, em 3 das 10 URLs | **0** | **0** |
+| oração de sujeição discordando | **1** (home, nas 2 camadas) | **0** | **0** |
+| 32.4 no atributo e no JSON-LD | 0 em 75 e 492 | **0** em 66 e 492 | **0** em 66 e 492 |
+| `alt=""` em cartão de vitrine | 0 | **9** | **9** |
+
+**A ARITMÉTICA FECHA E É ELA QUE PROVA O CONSERTO:** os textos de atributo caíram de **75 para 66**, que são exatamente os **9** que passaram a ser vazios — e atributo vazio não é contado, porque não é texto que alguém leia. Na home, `o veículo não é sujeita` tem **0** ocorrência, `a bicicleta elétrica não é sujeita` tem **1**, e `não é sujeito` continua em **4**: as três corretas que já estavam lá não foram tocadas. **A linha `bicicleta elétrica` da tabela segue servindo a célula como antes** — o dado não mudou, e era essa a outra metade do conserto.
+
+### CONTAGEM DESTA PASSADA
+
+- **Bancada:** 43 portões, **0 falha**, sem rede. O `--autoteste` do portão de ar passou de **104 para 128 afirmações** — três mundos novos (18, 19 e 20), cada um com a régua VELHA refeita ao lado da nova e obrigada a **discordar** (20.8). No mundo 18 a discordância é contada **termo por termo**, porque o byte servido **acha** o `Tipo:` em texto cru e é cego **só** para as duas palavras escondidas em entidade — afirmação de discordância escrita grosso demais aprova por acaso.
+- **As réguas novas reprovam o ar de antes do conserto**, que é o teste que importa: 9 cópias de `alt` em 3 URLs e 1 oração de concordância na home, contra 0 de 32.4 nas duas superfícies.
+- **Três regras novas no contrato**, e nenhuma é desta ilha: **32.4-f** (o byte servido não é o texto que a pessoa lê em duas superfícies), **32.6** (campo que é pedaço de oração concorda com quem o usa) e o `alt` que copia o vizinho, na **seção 6**, onde já mora o padrão do cartão de vitrine.
+- **Snippets:** casca **1.25.0**, F1 **1.6.0**. Manifest na revisão **86**.
+
 ## 2026-11-11 16h19Z–17h1xZ — **O DESPACHO DE QUATRO ITENS, INTEIRO — E O ITEM 4 ERA QUATRO CÓPIAS, NÃO DUAS** — revisões 84 e 85
 
 **A ESCOLHA DA ILHA, E ELA FOI A DECISÃO MAIS PESADA DESTA PASSADA.** `foco.md` nomeia a **rodametria** (foco total e absoluto desde 27/10), e a 1.2 tem UMA exceção: despacho **ALTO** em ilha que esteja **no ar e quebrada**. **Havia DOIS, escritos hoje mesmo** — a ronda técnica curta das 15h0xZ achou a **robometria** e a **clubedomosaico** fora do ar, as duas com a home em 200 e as **três portas da 29.2 em 404** servindo a página de estacionamento da HostGator, a assinatura do bloco `# BEGIN WordPress` ausente do `.htaccess` da raiz (4ª queda da clubedomosaico, 2ª da robometria em 12 dias). **Eu remedi as duas às 16h17Z, 1h15 depois da ronda, e as duas continuavam caídas** — 404 nas três portas de cada uma, com a home em 200.

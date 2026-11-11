@@ -3,69 +3,78 @@ ilha: rodametria
 estado: viva              # `nascendo` -> `viva` em 29/10/2026 as 12h1xZ: a ilha SERVE PAGINA. Duas URLs no wp-sitemap.xml, as duas em 200, com a casca e a F2 desembarcadas na revisao 9 e os dois portoes de ar APROVADOS. Antes deste dia a ilha tinha banco e nenhum byte que um visitante visse.
 prioridade: 1
 piso: abaixo              # 10 URLs publicadas contra as 40 da 21.1, e primeira_indexacao null. O NUMERO DESTE COMENTARIO ESTAVA VENCIDO: dizia 5, de 30/10, e a ilha passou por 9 e chegou a 10 em 06/11 — numero velho lido como fato e o defeito que a secao 4 nomeia. O VALOR do campo nao mudou e nao e meu de mudar. Quem decide este campo e a leitura semanal (21.6), nunca a Fundacao de cabeca. O teto da 21.4 tem folga: nesta semana saiu UMA leva, de 3 URLs, contra o teto de 3 levas por semana.
-urls_publicadas: 10       # SEM MUDANCA nesta passada, e nenhuma URL podia nascer: a FILA DE BLOCOS SEGUE ACABADA (todos entregues menos o 5, que depende de um `pauta.md` que NAO EXISTE e que pela 17.1 nao e arquivo da Fundacao) e as duas pontas de pagina de produto seguem travadas — a 30.8 para a SERP e o Mercado Livre para o produto das duas consultas de maior volume. CONTADO no wp-sitemap no ar com quebra de cache as 17h1xZ de 11/11: 10 URLs, as 10 em 200. Piso da 21.1 pede 40 — faltam 30. TETO DA 21.4: a semana segue com as TRES levas INTEIRAS, porque nao ha o que publicar nela. Quem decide o campo `piso` e a leitura semanal (21.6), nunca a Fundacao de cabeca.
+urls_publicadas: 10       # SEM MUDANCA nesta passada, e nenhuma URL podia nascer: a FILA DE BLOCOS SEGUE ACABADA (todos entregues menos o 5, que depende de um `pauta.md` que NAO EXISTE e que pela 17.1 nao e arquivo da Fundacao) e as duas pontas de pagina de produto seguem travadas — a 30.8 para a SERP e o Mercado Livre para o produto das duas consultas de maior volume. CONTADO no ar com quebra de cache as 19h4xZ de 11/11, em DUAS leituras: 10 URLs, as 10 em 200 nas duas. Piso da 21.1 pede 40 — faltam 30. TETO DA 21.4: a semana segue com as TRES levas INTEIRAS, porque nao ha o que publicar nela. Quem decide o campo `piso` e a leitura semanal (21.6), nunca a Fundacao de cabeca.
 ultima_ronda: 2026-11-11T15:03Z   # RONDA DIARIA TECNICA de 2026-11-11, 14h3xZ-15h0xZ, medida na revisao 83 (status 83 = manifest 83). QUATRO defeitos, ZERO consertos e nenhum tentado: nenhum dos quatro e da lista 19.1 — link morto do banco, prosa em 5 paginas que mora em dado E em snippet, literal de snippet, e escolha entre duas redacoes. QUINTA ronda seguida desta ilha com zero conserto. Despacho de 4 itens no PROMPT.md. A ilha esta SA no ar: 10 de 10 URLs em 200 em duas leituras com quebra de cache, as tres portas da 29.2 verdes, caminho virgem em 404 na pagina da ilha, zero pagina orfa contada na direcao de ENTRADA, zero link interno para fora do sitemap, meta description maxima de 159. HOUVE NAVEGADOR NESTA PASSADA (extensao de Chrome do Raphael mais o Chromium desta nuvem, secao 33) e as TRES medicoes que as rondas de 04, 06 e 09/11 declararam impossiveis SAIRAM: 32.5 aprovada 10 de 10 (pior caixa 548 px de 700, pior compra 1.351 px de 1.400), console 10 de 10 limpo do lado da ilha, e o teste de vida da 25.4 inteiro — 24 fichas com 23 vivas e UMA ESGOTADA, mais 7 palavras-chave de busca todas vivas, em 31 leituras sem um CAPTCHA. A 32.4-d escrita hoje esta FECHADA no ar: zero comentario dentro do <script> da ilha. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
 primeira_indexacao: null  # as duas primeiras URLs foram ao ar hoje; indexacao e trabalho de dias. Quem grava este campo e a leitura semanal, lendo o Search Console.
-ultima_execucao: 2026-11-11T17:14Z   # O DESPACHO DE QUATRO ITENS DA RONDA DE HOJE, INTEIRO (18.2) e conferido no ar (18.4) — e o item 4 era QUATRO declaracoes do criterio de ordem, nao as duas que o despacho mediu: o rodape da casca dizia `quem decide a ordem e o que o FABRICANTE declara`, em TODA pagina, e era falso. Revisoes 84 e 85, as duas limpas (11 e 7 itens declarados, 11 e 7 linhas de item, TODAS dizendo `ok`, lidas do fecho para baixo pela 20.8, conta da 20.10 em zero nas duas). Dois portoes novos na bancada (43 portoes, 0 falha) e TRES regras novas no contrato: 20.12, 32.4-e e 25.11. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
-executando_desde: 2026-11-11T19:34Z   # RESERVA RENOVADA pela 1.1 neste commit de desembarque: o bloco passou de 40 minutos porque a bancada sem rede desta ilha tem 43 portoes e a leitura das duas superficies novas desceu as 10 URLs uma por uma. Reservada as 19h17Z. A hora saiu do `date -u` na mesma linha de comando que a grava.
-rede: aberta em 2026-11-11   # 20.2, MEDIDA e nao herdada ANTES da reserva, as 16:19Z: rodametria.com.br em 200 nas TRES passadas com quebra de cache, com robometria.com.br e aquametria.com.br em 200 nas mesmas tres — 9 de 9, zero `000`. E A LEITURA QUE DECIDIU A ILHA DESTA PASSADA, medida as 16h17Z: clubedomosaico.com.br e robometria.com.br respondem 200 na HOME e 404 nas TRES portas da 29.2, que e a assinatura do `.htaccess` sem o bloco `# BEGIN WordPress` — rede aberta e ilha caida sao coisas diferentes e se medem separadas. O reparo da 29.3 NAO e exercitavel desta nuvem (exige o token do Sync, que nao esta no repositorio) e a 29.4 proibe gancho automatico: o Raphael foi avisado, com as duas URLs de reparo prontas. SEGUE MEDIDO E FECHADO, de 09/11: google.com.br, bing.com e duckduckgo.com em 000 os tres (ter navegador NAO e ter SERP, e a 30.8 fica inteira); shopee.com.br em 200 e a aba ABRE, mas conduzir a aba contra o anti-robo foi RECUSADO pelo guarda deste ambiente, e a recusa nao se contorna.
+ultima_execucao: 2026-11-11T19:44Z   # BLOCO DA FILA ENTREGUE: as DUAS superficies que as duas listas da 32.4 nunca tinham lido — o TEXTO DE ATRIBUTO desescapado e o VALOR de cada string de JSON-LD depois do `json.loads`. A leitura da 32.4 veio LIMPA (zero achado em 66 textos de atributo e 492 valores, nas 10 URLs, contados e ditos pelo portao), e foi LER AS SUPERFICIES COM OS OLHOS que achou os dois defeitos: NOVE `alt` de foto repetindo letra por letra o nome que o cartao imprime ao lado (3 das 10 URLs) e a celula da tabela da regra colada numa frase de outro genero na home, nas DUAS camadas (`o veiculo nao e SUJEITA`). Revisao 86, as 9 linhas do log dizendo `ok` (20.4, lidas uma por uma), casca 1.25.0 e F1 1.6.0 CONFIRMADAS em /casca como as versoes que o WordPress carregou (20.7). Portao de ar: 727 afirmacoes, 0 falha, nas 10 URLs em 200. Bancada: 43 portoes, 0 falha; o autoteste do portao de ar passou de 104 para 128 afirmacoes. TRES regras novas no contrato: 32.4-f, 32.6 e o `alt` da secao 6. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
+executando_desde: null   # LIMPO as 2026-11-11T19:44Z pela propria execucao que reservou as 19h17Z e RENOVOU as 19h34Z pela 1.1. O desembarque foi de UMA revisao, limpa na primeira: a 86 entrou as 19:39:53, depois de quatro leituras do /status com veredito `evento-nao-vencido` — o `ultimo` ficou congelado em 19:17:01 com a home sendo aberta a toda hora, que e a assinatura da 20.9. Esperar era a acao certa, e reacionar nao antecipa vencimento.
+rede: aberta em 2026-11-11   # 20.2, MEDIDA e nao herdada ANTES da reserva, as 19h16Z: rodametria.com.br em 200 nas TRES passadas com quebra de cache, com robometria.com.br e aquametria.com.br em 200 nas mesmas tres — 9 de 9, zero `000`. AS DUAS IRMAS QUE ESTAVAM CAIDAS VOLTARAM: a ronda das 18h01Z reparou a porta de entrada da robometria e da clubedomosaico e fechou os dois despachos ALTA, e as duas respondem 200 na rede desta passada — por isso a excecao da 1.2 nao se exerceu e esta passada foi bloco de fila. SEGUE MEDIDO E FECHADO, de 09/11: google.com.br, bing.com e duckduckgo.com em 000 os tres (ter navegador NAO e ter SERP, e a 30.8 fica inteira); shopee.com.br em 200 e a aba ABRE, mas conduzir a aba contra o anti-robo foi RECUSADO pelo guarda deste ambiente, e a recusa nao se contorna.
 bloqueada_por: null      # obrigatorio pela secao 2. `null` DE PROPOSITO: o que falta (gov.br para a F1, as prefeituras para a camada municipal, as tres etiquetas do Mercado Livre) trava a FABRICA e nao a ILHA, e isso se escreve no despacho, que e o canal da 12.2. Preenche-lo congelaria tambem os blocos que ja podem andar.
 bloco_atual: |
-  O DESPACHO DE QUATRO ITENS DA RONDA DE 11/11, INTEIRO E CONFERIDO NO AR — e o
-  item 4 era QUATRO copias, nao duas. Revisoes 84 e 85.
+  AS DUAS SUPERFICIES QUE AS DUAS LISTAS DA 32.4 NUNCA TINHAM LIDO — o texto de
+  ATRIBUTO e o VALOR do JSON-LD —, mais os dois defeitos que a leitura achou.
+  Revisao 86.
 
   ESTE ARQUIVO CONTINUA SENDO A MEMORIA DESTA ILHA — `/areas/projeto-rodametria.md`
   nao existe nesta nuvem, e e por isso que este campo e longo.
 
-  ITEM 1 — o cartao 2 da vitrine de `/veiculos/patinete-eletrico/` servia um
-  anuncio ESGOTADO (item 58212105781, encurtado 9pfbJrNKOR). Ele saiu dos campos
-  vivos e virou UMA LINHA DE PROSA de quarentena, no formato fechado que o
-  coletor LE: a prosa e tambem a lista de bloqueio, e
-  `coletar-por-consulta.py --gravar` passa a RECUSAR o anuncio aposentado quando
-  a loja o devolver — sem isso o conserto se desfazia na coleta seguinte, calado.
-  O conserto virou FERRAMENTA (`aplicar-aposentadoria-de-anuncio.py`, com portao
-  proprio), porque link de afiliado apodrece e isto vai repetir. As contas
-  refizeram sobre quem sobrou (15 anuncios, mediana R$ 1.647,95 -> R$ 1.695,92) e
-  a TELA passou a dizer que uma oferta saiu: conta que nao fecha na tela e pior
-  que conta ausente. A ficha do cartao que entrou foi testada VIVA pela ronda de
-  hoje (as 24 fichas deram 23 vivas e UMA esgotada, a que saiu).
+  O BLOCO. Os extratores das duas superficies JA existiam (`textos_de_atributo()`
+  de 10/11, `frases_e_pares_do_jsonld()` de 06/11); o que nunca tinha sido
+  apontado para eles eram as DUAS LISTAS DA 32.4, que corriam sobre o texto
+  visivel e sobre o BYTE SERVIDO. O byte PARECIA cobrir os dois, e esta passada
+  mediu onde ele falha: entidade de HTML (`public&aacute;vel`, `&#105;lha`),
+  escape de JSON (`\u00e1`, `dados\/` — e TRES termos da lista terminam em `/`,
+  entao uma chamada nova de `wp_json_encode` sem a bandeira cegaria os tres de
+  uma vez) e ENDERECO (20.5: o byte nao diz se o termo esta num `alt` que o
+  leitor de tela anuncia ou num comentario nosso). Virou a 32.4-f do contrato.
+  A LEITURA VEIO LIMPA: zero achado em 66 textos de atributo e 492 valores de
+  JSON-LD, contados e ditos (20.8). Por isso os mundos do autoteste sao
+  FABRICADOS — zero no ar com regua que nunca mordeu nao distingue pagina sa de
+  regua que nao roda.
 
-  ITEM 2 — a palavra `ilha` ia ao visitante 10 vezes em 5 das 10 paginas. Agora
-  diz `este site`, e a regua nova mora num lugar so, com FRONTEIRA DE PALAVRA
-  (porque `ilha` vive dentro de `trilha`, que a 16.3 exige em toda pagina: 68
-  ocorrencias de `trilha` nas 10, nenhuma reprovada) e ACENTO DOBRADO.
+  DEFEITO 1, de ler o atributo com os olhos — NOVE `alt` de foto repetindo letra
+  por letra o `<p>` que o cartao imprime encostado nele, em 3 das 10 URLs. Para
+  leitor de tela e o titulo do anuncio (60 a 120 caracteres) dito DUAS vezes por
+  cartao, e a metade de voz e pior: o `alt` e esta ilha descrevendo a imagem com
+  as palavras dela, e a copia afirma `Suporta Ate 150kg` sem o verbo que nomeia
+  quem declarou. A copia nasce no COLETOR (`imagem.alt` = nome do registro) e o
+  conserto esta na CASCA, que e a unica que sabe que as duas cadeias ficam
+  encostadas — assim ele atravessa a coleta seguinte (25.11). Agora os 9 servem
+  `alt=""`, conferido no ar em duas leituras.
 
-  ITEM 3 — o acento era o buraco: `publicavel` ESTAVA na lista de bastidor desde
-  que ela nasceu e o ar servia `publicável`. Termo na lista, ocorrencia na tela,
-  portao verde. Na tela, a linha da regua sem valor passou a dizer a coisa UMA
-  vez, pela prosa da fonte, que e a unica das tres que diz POR QUE; o rotulo
-  `Tipo:` saiu, e a frase do tipo `pendente` parou de repetir o valor do enum.
+  DEFEITO 2, de ler o JSON-LD com os olhos — a home servia, nas DUAS camadas, `o
+  art. 12 diz que o veiculo nao e SUJEITA a registro`, com a resposta seguinte
+  dizendo `ele nao e SUJEITO` tres linhas abaixo. Nao e erro de digitacao: o
+  campo `placa` e UM dado servido em DOIS lugares de proposito, e a regra que
+  manda monta-los do mesmo campo esta CERTA — o que ninguem havia medido e que o
+  campo e um PEDACO DE ORACAO que concorda com o sujeito de quem o usa. A celula
+  estava certa na tabela e errada na frase. O conserto e da FRASE (nasceu
+  `ARTIGO_DA_CATEGORIA` em `regras/f1.py`, porque o nome nao entrega o genero);
+  o dado nao mudou e a linha da tabela segue intacta, conferida no ar. Virou a 32.6.
 
-  ITEM 4 — a ordem da vitrine virou DADO: a tupla `CHAVES_DE_ORDEM` e de onde
-  saem a chave de `ordenar()` E a frase de leitor, e as tres camadas de tela a
-  recebem pelo molde `{CRITERIO_DE_ORDEM}`. Frase e ordem nao existem separadas.
-  O rodape da casca parou de declarar (dizia `o que o FABRICANTE declara`, falso,
-  em toda pagina) e passou a REMETER com link. Portao novo sem rede:
-  `teste-criterio-de-ordem.py`, com as QUATRO frases que estavam no ar como
-  mundos fabricados e a remissao nova como o mundo que tem de PASSAR.
+  E A REGUA NOVA REPETIU A 32.4-e DESTA MANHA, no mesmo arquivo: escrita com
+  `str.rfind`, achou `ele` dentro de `acELErador` e de `ELEtrica` e aprovou a
+  frase doente e a consertada do mesmo jeito. Quem pegou foi o autoteste, antes
+  do ar. Sujeito tambem se mede com fronteira de palavra.
 
-  TRES REGRAS NOVAS NO CONTRATO, porque nenhuma das tres e desta ilha: a 20.12
-  (arquivo gerado nao e fonte — a troca no gerado dura ate o proximo `--gravar`,
-  e foi assim que a 85 nasceu), a 32.4-e (a lista da 32.4 falhava pela
-  COMPARACAO, nao por falta de termos) e a 25.11 (a quarentena do anuncio
-  esgotado tem de atravessar a coleta seguinte).
+  O PROXIMO PASSO DESBLOQUEADO, e ele esta MEDIDO e nao e palpite: as DUAS
+  AFIRMACOES DE MAQUINA que a tela nao faz, achadas lendo o JSON-LD nesta
+  passada e deixadas de proposito fora do conserto, porque as duas pedem escolha
+  entre opcoes defensaveis sobre afirmacao que o Google le.
+  (a) `availability: InStock` nos 15 `Product` de `/veiculos/patinete-eletrico/`
+  e nos da bicicleta. A regra escrita no snippet e boa — "`InStock` e uma
+  afirmacao, e ela so vale sobre uma ficha", e o campo sai quando o degrau sobe
+  para busca —, mas o teste de vida de HOJE achou UMA ficha esgotada entre 24
+  (foi o item 1 do despacho da manha). Ficha existir nao e estar vendendo, e a
+  garantia real e "nenhuma ficha foi medida esgotada na ultima leitura", que e
+  afirmacao DATADA; `availability` nao tem data.
+  (b) `price` sem nenhuma marca de data, enquanto a TELA diz `(preco de
+  04/11/2026)` ao lado do mesmo numero. `priceValidUntil` nao e a resposta (ele
+  afirma validade FUTURA, que nao temos), e e por isso que isto e escolha e nao
+  conserto.
+  As duas estao na camada que a visao geral de IA cita sem abrir a pagina, e nas
+  duas a TELA e mais cuidadosa que o DADO.
 
-  O PROXIMO PASSO DESBLOQUEADO, e ele e da mesma familia que achou defeito nas
-  sete ultimas passadas — ler o SERVIDO com os olhos, numa superficie nova. A que
-  ninguem leu ainda: o TEXTO DE ATRIBUTO (`alt`, `aria-label`, `title`) e o
-  JSON-LD contra a regua de bastidor nas 10 URLs de uma vez, agora que a regua de
-  FRONTEIRA existe e pode ser apontada para eles. O `title` da celula ja pagou uma
-  cicatriz em 10/11 e o par `description` x primeira frase ja deu zero; atributo
-  contra a 32.4 nunca foi medido.
-
-  E O QUE NAO E DESTA ILHA E PRECISA DO RAPHAEL: a robometria e a clubedomosaico
-  estao FORA DO AR desde algum momento entre 09/11 14h5xZ e 11/11 15h0xZ, com a
-  home em 200 e as tres portas da 29.2 em 404 (remedido as 16h17Z de 11/11: as
-  duas seguiam caidas). O reparo e UM GET com o token do Sync, que nao esta nesta
-  nuvem, e a 29.4 proibe gancho automatico. Ele foi avisado por notificacao, com
-  as duas URLs prontas.
+  E O QUE NAO E DESTA ILHA: nada aberto nesta passada. A robometria e a
+  clubedomosaico, que estavam fora do ar desde 09/11, foram REPARADAS pela ronda
+  das 18h01Z e respondem 200 na rede medida as 19h16Z.
