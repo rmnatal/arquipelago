@@ -146,3 +146,18 @@ variação vira ruído.
 - **A SUPERFÍCIE GENERATIVA VOLTOU PELA SEXTA JANELA SEGUIDA, sempre UMA por janela**, de novo atribuída à R1 (`/qual-peca-serve-no-meu-robo-aspirador/`). A proposta 3 de 16/09 pedia duas ou mais numa janela para virar bloco; seis janelas com uma só é constância, não volume — e segue sem virar bloco.
 - **ZERO CLIQUE PELA SEXTA LEITURA SEGUIDA**, com três páginas na banda 4-10. A 12.1 chama isso de trabalho de CTR, e ele continua sem poder ser feito: com 8 impressões na janela, a diferença entre um título bom e um ruim não é mensurável. **Medir CTR aqui exige volume que a ilha não tem, e o que falta para ter volume é o sitemap.**
 - Não abri a SERP nesta leitura: **não verifiquei**.
+
+---
+
+### ERRATA E COMPLEMENTO DA LEITURA DE 2026-11-11
+
+**ERRATA.** O bloco acima e a linha de `dados/indexacao.md` dizem que "a leitura pela nuvem falhou nos dois disparos". **É falso.** O commit `2169969db46983d48e6b669b59cd473a12c73fb5` gravou `dados/search-console-2026-11-11.md` às 19h51Z, e o `raw.githubusercontent.com` serviu **404 em cache por mais de 20 minutos mesmo com `?v=`**. As duas fontes bateram exatamente: **8 impressões, 0 clique, posição 8,1, 10 de 14 indexadas**.
+
+**O QUE SÓ A NUVEM TEM — AS QUATRO NÃO INDEXADAS, NOMEADAS, com o motivo do Google:**
+
+- `/pecas/` — Discovered - currently not indexed
+- `/pecas/filtros/` — Discovered - currently not indexed
+- `/pecas/filtros/electrolux/` — Discovered - currently not indexed
+- `/pecas/filtros/xiaomi/` — Discovered - currently not indexed
+
+**São as MESMAS quatro da leva de 21/09, agora com 51 dias sem uma única página no índice, e as quatro em "Discovered" ao mesmo tempo pela segunda leitura seguida** — em 21/10 e 14/10 elas trocavam de lugar entre "Discovered" e "unknown" sem ninguém tocar no site. **0 sem veredito.** A consulta de superfície generativa sai atribuída: `/qual-peca-serve-no-meu-robo-aspirador/`, posição 9,0.

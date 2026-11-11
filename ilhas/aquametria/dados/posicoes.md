@@ -217,3 +217,30 @@ Tabela por página (as 10 de maior impressão das 47 com impressão):
 - **DUAS URLs COM PREFIXO DE DATA (`/2026/09/08/…`) APARECEM NA TABELA, UMA DELAS COM CLIQUE.** `/2026/09/08/quanta-midia-biologica-o-aquario-precisa/` fez **1 dos 5 cliques da semana** em 5,2, e `/2026/09/08/quantos-lumens-por-litro-aquario-plantado/` está em 11,0. São POSTS servidos pela estrutura de permalink por data, fora da árvore da seção 16. **Não é defeito medido e não virou conserto** — mas é a primeira vez que um endereço fora da árvore paga clique nesta ilha, e isso precisa de decisão (seção 16), não de palpite.
 - **`/peixes/tetras/quantos-litros-para-rodostomo/` ENTROU NA BANDA 1-3 (3,3) E JÁ PAGA CLIQUE.** A 12.1 é literal: não toque.
 - Não abri a SERP nesta leitura: **não verifiquei**.
+
+---
+
+### ERRATA E COMPLEMENTO DA LEITURA DE 2026-11-11 — a nuvem NÃO falhou, e ela nomeia a consulta que o navegador não nomeia
+
+**ERRATA.** O bloco acima diz que "a leitura pela nuvem FALHOU nesta data". **É falso.** O commit `2169969db46983d48e6b669b59cd473a12c73fb5` gravou `dados/search-console-2026-11-11.md` às 19h51Z; o `raw.githubusercontent.com` serviu **404 em cache por mais de 20 minutos, mesmo com `?v=<timestamp>`**, e a Sentinela leu esse 404 como ausência de arquivo. **Lição de método, irmã da 20.5: cache de CDN também serve 404, não só conteúdo velho — e 404 em cache é indistinguível de arquivo que não existe. Quando um disparo responder que gravou, confira pelo `MAOS-LOG.md` antes de concluir que não gravou.** As duas fontes, confrontadas, **bateram exatamente** nos totais (523 impressões, 5 cliques, posição 6,5) e na tabela por página.
+
+**O QUE SÓ A NUVEM TEM, E MUDA UMA DECISÃO: a consulta ATRIBUÍDA À PÁGINA.** A aba de consultas do navegador não diz a que página cada consulta pertence; a leitura pela nuvem diz.
+
+| consulta | página | posição hoje | impressões | cliques | banda |
+|---|---|---|---|---|---|
+| quanto de mídia biológica por litro | /calculadora-de-midia-filtrante/ | **3,0** | 1 | 0 | **1-3** |
+| como diferenciar acara bandeira macho e femea | /peixes/acaras/quantos-litros-para-acara-bandeira/ | 5,0 | 1 | 0 | 4-10 |
+| acaras | /peixes/acaras/ | 8,0 | 1 | 0 | 4-10 |
+| acará | /peixes/acaras/ | **11,0** | 1 | 0 | **11-20** |
+| medidas de aquario | / | 35,0 | 1 | 0 | 21+ |
+| peixe tetra | /peixes/tetras/ | **61,0** | 1 | 0 | 21+ |
+| litragem | /calculadora-de-litragem/ | **64,0** | 2 | 0 | **21+** |
+| medidas para aquario | / | 85,0 | 1 | 0 | 21+ |
+
+**E ISSO DERRUBA METADE DO ITEM 1 DO DESPACHO DE HOJE, PARA MELHOR.** O despacho pediu "nomeie a consulta de `/calculadora-de-litragem/` antes de mexer no texto". **A consulta já está nomeada, e ela é `litragem`, na posição 64,0 — banda 21+, não 11-20.** A página tem média 13,9 porque uma cauda de consultas anonimizadas a puxa para cima; a consulta de cabeça dela está a 64 posições de distância. **Pela 12.1, 21+ não é conserto de detalhe: é lacuna de COBERTURA DE INTENÇÃO — a página responde a outra pergunta.** Trabalhar título e meta dessa página em cima de "litragem" seria gastar trabalho na banda errada.
+
+**O CONTRASTE QUE DECIDE ONDE GASTAR:** `/calculadora-de-midia-filtrante/` tem a consulta nomeada `quanto de mídia biológica por litro` na posição **3,0**, 101 impressões e **2 dos 5 cliques da semana**. É a página que funciona, e funciona porque a consulta de cabeça dela está na banda 1-3.
+
+**A NOVA LINHA DE BANDA 11-20 DESTA ILHA, COM CONSULTA NOMEADA, É `/peixes/acaras/`:** `acará` em **11,0** e `acaras` em 8,0, a mesma mãe de categoria que acabou de entrar no índice. É a única linha 11-20 desta ilha que tem consulta nomeada, e a 12.1 é literal sobre isso valer mais que posição média.
+
+**A INDEXAÇÃO FECHOU EM 52 DE 52 (100%), 0 não indexadas e 0 sem veredito** — primeira vez na história da ilha. As duas que faltavam eram as duas mães, e as duas entraram.
