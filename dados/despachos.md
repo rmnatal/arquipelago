@@ -120,6 +120,42 @@ medição desta data ao lado.
 **O QUE ESTE DESPACHO NÃO PEDE:** nada no portão. Ele já mede, já reprova e já diz o conserto — a
 **31.2** é literal sobre portão novo só nascer com defeito que ele teria pegado, e este foi pego.
 
+> **MEDIÇÃO DE 11/11/2026 às 13h4xZ — A MESMA FALHA ACONTECEU DE NOVO, NO MESMO SNIPPET, E A PREMISSA
+> DESTE DESPACHO ESTÁ DESMENTIDA: ERA DEFEITO DO CÓDIGO DO SNIPPET. O ITEM 1 FICOU MAIS BARATO E OS
+> ITENS 2 E 3 CONTINUAM ABERTOS.**
+>
+> Segunda ocorrência: revisão **64** em 06/11 e revisão **82** em 11/11, as duas em
+> `snippets/rodametria-f1`, as duas com a home voltando a ser HUB, as duas pegas pelos três caminhos do
+> portão de ar. **E este despacho afirma, em maiúsculas, *"NÃO É DEFEITO DO CÓDIGO DO SNIPPET, e isto
+> está medido"*, com a prova de que a revisão anterior aplicara o mesmo PHP. A prova está certa e a
+> conclusão está errada** — ela mostra que o código não tinha ficado inválido, não que ele estivesse
+> reavaliável.
+>
+> **A CAUSA, medida hoje:** `rodametria_f1_frases_dos_numeros()` era a **única** função de nível superior
+> das três ferramentas daquela ilha **fora** de `if ( ! function_exists() )` — 18 funções na F1, 16 na
+> F2, 12 na F3. O plugin ativa **avaliando** o código; com o snippet já carregado na requisição, o PHP
+> **recusa redeclarar** a função, erro fatal que o plugin relata como *"o código não passou na
+> validação"*. **A F2 e a F3 foram ao ar no MESMO desembarque, pela mesma porta, porque as 28 funções
+> delas têm guarda. Um contra 46 é a prova.** O conserto entrou na revisão **83**: a guarda no snippet.
+>
+> **ISSO SUBIU PARA O CONTRATO COMO 20.11**, com a régua que cobra a guarda em **todos** os snippets da
+> ilha — na rodametria o `teste-f2.py` cobrava em dois dos seis, por lista escrita à mão. **Toda ilha que
+> ainda não cobra isso está a um desembarque de perder uma página sem saber por quê**, e a conferência é
+> um comando.
+>
+> **O QUE ISTO MUDA NOS TRÊS ITENS, dito sem aliviar nenhum:**
+> - **ITEM 1 (Raphael, o token):** continua valendo e ficou **mais barato de dispensar**, não de fazer.
+>   Com a guarda nos snippets, a classe de falha que o token conserta deixa de nascer. Mas o token
+>   continua sendo o que permite acionar o Sync **duas vezes** como a 20.4 manda por desenho.
+> - **ITENS 2 e 3 (o Sync, em `ilhas/robometria/`):** **continuam abertos e continuam certos.** A
+>   medição de hoje explica a causa mais comum, não todas: o Sync segue **estampando a revisão como
+>   feita com item quebrado dentro** (linha 515) e segue **pulando a passada seguinte** por revisão igual
+>   (linha 472), e com isso qualquer OUTRA causa de falha de ativação continua fora do ar por tempo
+>   indefinido. **A espera medida hoje foi de 30 minutos**, e só terminou porque esta execução empurrou
+>   uma revisão nova — exatamente o contorno que o item 3 descreve.
+> - **E a regra de foco segue impedindo os dois:** `robometria.com.br` em **200** nas três passadas de
+>   hoje (controle verde, 9 de 9), então a ilha **não está quebrada** e a exceção da 1.2 não existe.
+
 > **TENTATIVA EM 09/11/2026 às 10h2xZ — OS ITENS 2 E 3 CONTINUAM ABERTOS, E A CAUSA É DE REGRA E NÃO DE
 > FÔLEGO.** Uma execução da Fundação na **rodametria** (a ilha em foco) leu este despacho antes da fila,
 > pela **18.1/18.5**, e **não pôde pegar os itens 2 e 3**. Os dois consertam
@@ -510,6 +546,75 @@ folha da ilha, e a página encolhendo **7.546 a 7.926 bytes** cada, com os 27 n�
 intactos e a bancada com rede em 32 portões, 0 falha.
 
 **NADA AQUI É DO RAPHAEL.** A correção inteira mora na casca de cada ilha.
+
+> **ACRESCENTADO EM 11/11/2026 às 14hxxZ — ESTE DESPACHO AGORA TEM DUAS METADES, E A SEGUNDA É O
+> `<script>`. A regra geral está no contrato, na 32.4-d.**
+>
+> Medido na rodametria às 13h2xZ de 11/11, sete dias depois de a folha dela ser consertada: os quatro
+> blocos `<script>` daquela ilha serviam **14 comentários e 3.489 bytes**, em 3 das 10 URLs, e **seis
+> deles traziam o vocabulário que a 32.4 proíbe** — inclusive *"a cicatriz que a **clubedomosaico**
+> pagou em 12/10/2026"*, servido na home de outra ilha em toda leitura. **O conserto de 04/11 tirou o
+> comentário da folha e deixou o do roteiro: metade da mesma página.**
+>
+> **O conserto é o mesmo desenho, e o endereço em cada ilha é o mesmo lugar:** a tag `<script>` sai dos
+> snippets e passa a ser escrita por `<ilha>_casca_fechar_roteiro()`, que tira os comentários ao
+> imprimir. Modelo rodando na rodametria: `rodametria_casca_js_sem_comentario()` na casca e
+> `ferramentas/teste-roteiro-sem-comentario.php` (12 mundos, 7 discordâncias contra a régua ingênua, 88
+> afirmações).
+>
+> **E AS TRÊS ARMADILHAS DO JAVASCRIPT QUE O CSS NÃO TEM — quem copiar copia as três ou quebra a
+> página:** (1) `//` aparece dentro de toda URL, e o removedor de linha ingênuo come o resto da linha;
+> (2) **a quebra de linha FICA**, porque o fim de linha fecha instrução em JavaScript e comê-la cola
+> duas instruções numa **sem erro de sintaxe**; (3) `/` abre expressão regular *ou* divide, e só a
+> posição as separa. Por isso a varredura é **de caractere**, com string, template e expressão regular
+> consumidos inteiros. A trava que a folha não tem e esta tem: **`node --check` na entrada e na saída**,
+> do chão, antes do desembarque.
+>
+> **O QUE A RODAMETRIA RENDEU:** 10 de 10 URLs com **zero** comentário em roteiro da ilha. Os roteiros
+> do próprio WordPress (`importmap` e o módulo de navegação do tema) **não são da ilha e não podem fazer
+> portão nenhum reprovar** — a mesma decisão que a metade de 04/11 tomou sobre as 17 folhas dele. E o
+> nome das ilhas irmãs entrou na lista da 32.4 daquela ilha, medido em zero fora dos próprios
+> comentários antes de entrar.
+
+### prioridade NORMAL — TODA FUNÇÃO DE NÍVEL SUPERIOR DE SNIPPET TEM DE ESTAR DENTRO DE `function_exists`, E A RÉGUA QUE MEDE ISSO NAS QUATRO ILHAS MEDE UM SUBCONJUNTO ESCRITO À MÃO: a cicatriz da 20.4 é uma guarda que falta, e ela derrubou a mesma página DUAS vezes
+
+11/11/2026 às 13h4xZ — FUNDAÇÃO (quem reservar a aquametria, a robometria ou a clubedomosaico) —
+Medido e consertado na **rodametria**, e escrito aqui porque a **seção 3** proíbe editar arquivo de ilha
+que a execução não reservou. **A regra geral já está no contrato, na 20.11** — este bloco é só o
+endereço dela nas outras três.
+
+**O DEFEITO, pela segunda vez no mesmo snippet.** Revisão **64** em 06/11 e revisão **82** em 11/11: o
+Sync escreveu `snippets/rodametria-f1: gravado (#10) mas NÃO ativado: o código não passou na
+validação`, **subiu a revisão** e a home da ilha em foco total **perdeu a ferramenta principal**,
+servindo 200. O despacho ALTA no topo deste arquivo afirmava, em maiúsculas, *"NÃO É DEFEITO DO CÓDIGO
+DO SNIPPET"*. **Era.**
+
+**A CAUSA:** `rodametria_f1_frases_dos_numeros()` era a **única** função de nível superior das três
+ferramentas daquela ilha **fora** de `if ( ! function_exists() )` — 18 funções na F1, 16 na F2, 12 na
+F3. O Code Snippets **ativa avaliando** o código, e com o snippet já carregado na requisição o PHP
+**recusa redeclarar**: erro fatal, relatado como falha de validação. **A F2 e a F3 foram ao ar no MESMO
+desembarque, pela mesma porta, porque as 28 funções delas têm guarda. Um contra 46.**
+
+**O QUE FAZER EM CADA ILHA, e é um comando mais um `if`:**
+
+1. **Conte.** Toda função de nível superior (`^function nome(`) de todo snippet da pasta, e quais delas
+   **não** têm `if ( ! function_exists( '<nome>' ) )` em volta. Na rodametria eram 1 de 47.
+2. **Ponha a guarda** nas que faltarem, uma por função — **guarda compartilhada entre duas não serve**,
+   porque mente no dia em que uma existir e a outra não.
+3. **Cobre isso por régua, sobre os snippets TODOS da pasta, varrendo o diretório e nunca por lista.**
+   Na rodametria a régua existia e media **dois dos seis** (`teste-f2.py`, com os nomes escritos à mão);
+   agora quem cobra é `teste-formulario-da-ilha.py`, que já os lia todos.
+4. **A armadilha da régua, medida antes de a linha ser escrita:** o padrão da guarda **não leva
+   prefixo**. A primeira versão reaproveitou um coletor que só conhecia `rodametria_` e deu **30 falhas
+   em funções que já tinham guarda** — o snippet de produto nomeia as dele `rdm_produto_*`. Régua que
+   reprova o arquivo certo é o caminho mais curto para alguém ignorá-la (20.5).
+
+**Pronto quando:** a régua da ilha reprovar com a guarda arrancada de uma função de verdade (provado no
+arquivo real, por cópia de arquivo e nunca `git stash` com bancada rodando) e aprovar com ela de volta,
+e a contagem de funções sem guarda for **zero** nos snippets todos.
+
+**NADA AQUI É DO RAPHAEL**, e nada aqui depende dos itens 2 e 3 do despacho ALTA do topo — aqueles
+consertam o Sync, que é de outra ilha; este conserta a causa mais comum, na própria pasta.
 
 ### prioridade NORMAL — A TRAVA DE DÍGITO DA CAMADA DECLARADA NÃO ALCANÇA PROPORÇÃO POR EXTENSO, E FOI ASSIM QUE UMA FRASE FALSA FICOU NO AR CINCO DIAS: medido na rodametria, e as outras duas ilhas têm a MESMA trava
 
