@@ -45,6 +45,31 @@ python3 ferramentas/bancada.py --lista    # só imprime o que rodaria
 
 ---
 
+## DESPACHO DA SENTINELA — 2026-11-11 (RONDA TÉCNICA CURTA, 15h0xZ) — **ALTA: A ILHA ESTÁ FORA DO AR, MENOS A HOME. É A SEGUNDA QUEDA DA MESMA PORTA EM 12 DIAS**
+
+Medido às 15h0xZ de 11/11/2026 por uma ronda cuja ilha funda era a rodametria; esta ilha recebeu a ronda técnica curta que a decisão do Raphael de 28/09/2026 tornou obrigatória em toda ilha no ar (ponteiro da 1.2), **e foi ela que achou isto.**
+
+**AS QUATRO GRANDEZAS DA 29.7(3) ESTÃO NA MESA, ENTÃO A CAUSA SE NOMEIA:**
+
+- `https://robometria.com.br/` — **200**
+- as três portas da **29.2** — **404 nas três**: `/robots.txt`, `/wp-json/`, `/wp-sitemap.xml`
+- **0 de 7** páginas de caminho bonito em 200: `/pecas/`, `/pecas/filtros/`, `/sobre/`, `/contato/`, `/privacidade/`, `/calculadoras/`, `/guias/`
+- quem serve o 404: a **página de estacionamento da HostGator**, 2.361 bytes, com **zero** ocorrência de `robometria` no corpo
+- REST **vivo** por `?rest_route=/robometria/v1/status` — **200**, `application/json`, `versao_sync 1.1.5`, **revisão 96**
+- a rota da **29.3** está registrada: `?rest_route=/robometria/v1` lista `/robometria/v1/rotas`, e ela devolve **401** sem token
+
+**A assinatura é a do bloco `# BEGIN WordPress` ausente do `.htaccess` da raiz.** É a **6ª** queda desta porta no Arquipélago (clubedomosaico 24/09, 05/10 e 08/10; esta ilha 30/10; rodametria 05/11) e a **2ª desta ilha em 12 dias**.
+
+**JANELA DA QUEDA, MEDIDA E NÃO ESTIMADA:** o `dados/PAINEL.md` escrito pela ronda de **09/11 às 14h5xZ** registra esta ilha com **14 de 14 URLs em 200 e as três portas verdes**. Logo a queda aconteceu **entre 09/11 14h5xZ e 11/11 15h0xZ — no máximo 2 dias e 20 minutos.**
+
+**NÃO REPAREI, E A CAUSA NÃO É OMISSÃO: O REPARO NÃO É EXERCITÁVEL DESTA NUVEM.** O reparo da 29.3 é
+`https://robometria.com.br/?rest_route=/robometria/v1/rotas&token=<token do Sync>&reparar=1`,
+e o token desta ilha **não está no repositório**. Lê-se logado em `?rest_route=/robometria/v1/token`, que exige `manage_options`. **Quem tiver o token levanta a porta com um GET.**
+
+**pronto quando:** as três portas da 29.2 em **200** com `content-type` certo (`text/plain`, `application/json`, `application/xml`), o `/wp-sitemap.xml` servindo `sitemapindex` de verdade, as **14** URLs do sitemap em 200 em **duas** leituras com quebra de cache, e o caminho virgem respondendo **404 na página desta ilha** e não na do hospedeiro. E, pela **29.3**, o diagnóstico tem de dizer `tem_wordpress: true`.
+
+**E O DESFECHO QUE NÃO É DA FÁBRICA, pela 19.4(b):** o chamado na HostGator que está em `dados/despachos.md` fala só do `.htaccess` da raiz de `/clubedomosaico.com.br`. **Esta ilha cai pela mesma assinatura byte por byte e precisa entrar no mesmo chamado** — duas quedas em 12 dias nesta raiz deixam de ser conserto e viram chamado. Lembrete da 29.7 nota (a): **vigie o CONTEÚDO do arquivo, nunca a data** — o `.htaccess` é reescrito a cada requisição e o `mtime` dele é ruído.
+
 ## DESPACHO DA SENTINELA — 2026-11-04 (LEITURA SEMANAL, 19h4xZ–20h1xZ) — A POSIÇÃO VOLTOU SOZINHA, E O TÍTULO DESTA ILHA NÃO DEVE SER REVERTIDO
 
 Ilha em MODO DE MEDIÇÃO, fora do foco. Nada aqui autoriza construção enquanto `foco.md` nomear a rodametria.

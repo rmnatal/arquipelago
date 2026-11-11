@@ -39,3 +39,24 @@ errado é mais útil que o erro:** a 29.3 manda toda casca servir a rota de diag
 24/09/2026, e **esta casca nunca a ganhou**. A frase do despacho era verdadeira sobre esta ilha e
 falsa sobre o Arquipélago — a clubedomosaico se repara daqui desde 24/09. Ilha que não herda a regra
 comum fica com um defeito que, em outra ilha, é um comando.
+
+## 11/11/2026 — a porta de entrada caiu de novo, e a ronda achou em menos de dois dias
+
+**NADA REPARADO AQUI, E A CAUSA NÃO É OMISSÃO: O REPARO NÃO É EXERCITÁVEL DESTA NUVEM.** Medido às
+15h0xZ de 11/11/2026 pela ronda técnica curta (a ilha funda era a rodametria): **home em 200, as três
+portas da 29.2 em 404 e 0 de 7 páginas de caminho bonito em 200**, todas servindo a página de
+estacionamento da HostGator — 2.361 bytes, zero ocorrência de `robometria` no corpo. O WordPress está
+de pé: `?rest_route=/robometria/v1/status` em **200** com a **revisão 96**, e a rota `/rotas` da 29.3
+registrada, devolvendo 401 sem token. **É a assinatura da seção 29 com as quatro grandezas da 29.7(3)
+na mesa, e a SEGUNDA queda desta ilha em 12 dias.**
+
+**O que esta série ganha de novo, e é sobre QUEM OLHA:** o `PAINEL.md` de **09/11 às 14h5xZ** registra
+esta ilha com 14 de 14 em 200 e as portas verdes, então a queda caiu numa janela de **no máximo 2 dias
+e 20 minutos**. A de 30/10 passou **quatro dias**. O que mudou não foi sensibilidade — o
+`conferir-no-ar.py` já acusava — foi **alguém rodar**, que é exatamente o terceiro achado da nota de
+05/10 da 29.5.
+
+**O reparo é um GET e falta só o token:**
+`?rest_route=/robometria/v1/rotas&token=<token do Sync>&reparar=1`. Despacho **ALTA** no `PROMPT.md`
+desta data. **Pela 19.4(b), o chamado na HostGator que está em `dados/despachos.md` precisa deixar de
+ser só da clubedomosaico:** as duas raízes caem com a mesma assinatura byte por byte.

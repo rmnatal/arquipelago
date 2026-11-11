@@ -78,7 +78,7 @@ bloco_atual: |
   mesmo). O proximo passo NAO e um quarto localizador: e decidir se prosa dentro de
   dobra e "abertura" para o VOZ.md ou se ela ganha regua propria, escrita para o
   lugar onde ela esta hoje. Esta escrito tambem dentro do mutacoes-voz.py.
-ultima_ronda: 2026-11-04T20:10Z   # LEITURA SEMANAL de 2026-11-04
+ultima_ronda: 2026-11-11T15:03Z   # RONDA TECNICA CURTA de 2026-11-11 (28/09, ponteiro da 1.2). ILHA SA, e medida e nao herdada: 52 de 52 URLs do wp-sitemap.xml em 200 (contadas no ar com quebra de cache, dois sitemaps: posts-post-1 e posts-page-1), as tres portas da 29.2 em 200 com content-type certo, e caminho virgem em 404 na pagina da propria ilha. Zero defeito, zero conserto, zero despacho novo. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA.
 bloqueada_por: null
 congelamento: |
   ATUALIZADO EM 14/10/2026: o campo `piso` deste cabecalho passou a `atingido`, entao TODO o paragrafo

@@ -215,6 +215,31 @@ Medido em 10/09/2026 (Planejador de palavras-chave, conta do Raphael, faixas; SE
 
 ---
 
+## DESPACHO DA SENTINELA — 2026-11-11 (RONDA TÉCNICA CURTA, 15h0xZ) — **ALTA: A ILHA ESTÁ FORA DO AR, MENOS A HOME. QUARTA QUEDA DA MESMA PORTA NESTA ILHA**
+
+Medido às 15h0xZ de 11/11/2026 pela ronda técnica curta que a decisão do Raphael de 28/09/2026 tornou obrigatória em toda ilha no ar (ponteiro da 1.2). A ilha funda da ronda era a rodametria.
+
+**AS QUATRO GRANDEZAS DA 29.7(3) ESTÃO NA MESA, ENTÃO A CAUSA SE NOMEIA:**
+
+- `https://clubedomosaico.com.br/` — **200**
+- as três portas da **29.2** — **404 nas três**: `/robots.txt`, `/wp-json/`, `/wp-sitemap.xml`
+- **0 de 8** páginas de caminho bonito em 200: `/materiais/`, `/como-fazer/`, `/sobre/`, `/contato/`, `/loja/`, `/privacidade/`, `/materiais/colas-e-adesivos/`, `/materiais/acabamento/`
+- quem serve o 404: a **página de estacionamento da HostGator**, 2.361 bytes, com **zero** ocorrência de `clubedomosaico` no corpo
+- REST **vivo** por `?rest_route=/clubedomosaico/v1/status` — **200**, `application/json`, `versao_sync 1.1.5`, **revisão 93**
+- a rota da **29.3** está registrada: `?rest_route=/clubedomosaico/v1` lista `/clubedomosaico/v1/rotas`, e ela devolve **401** sem token
+
+**É a assinatura do bloco `# BEGIN WordPress` ausente do `.htaccess` da raiz — a 4ª vez nesta ilha** (24/09, 05/10, 08/10 e hoje) **e a 7ª no Arquipélago.**
+
+**JANELA DA QUEDA, MEDIDA E NÃO ESTIMADA:** o `dados/PAINEL.md` escrito pela ronda de **09/11 às 14h5xZ** registra esta ilha com **44 de 44 URLs em 200 e as três portas verdes**. Logo a queda aconteceu **entre 09/11 14h5xZ e 11/11 15h0xZ — no máximo 2 dias e 20 minutos.** É a queda mais rapidamente detectada desta ilha: a de 24/09 passou nove dias e a de 05/10 passou até 2 dias e 14 horas.
+
+**NÃO REPAREI, E A CAUSA NÃO É OMISSÃO: O REPARO NÃO É EXERCITÁVEL DESTA NUVEM.** O reparo é
+`https://clubedomosaico.com.br/?rest_route=/clubedomosaico/v1/rotas&token=<token do Sync>&reparar=1`,
+e o `dados/consertos.md` desta ilha registra os reparos de 24/09 e 05/10 **com o token escrito como `<token do Sync>`, isto é, como lacuna**. O token não está no repositório e não deve estar; lê-se logado em `?rest_route=/clubedomosaico/v1/token`.
+
+**pronto quando:** as três portas da 29.2 em **200** com `content-type` certo, o `/wp-sitemap.xml` servindo `sitemapindex` de verdade, as URLs do sitemap em 200 em **duas** leituras com quebra de cache, o caminho virgem em **404 na página desta ilha**, e o diagnóstico da 29.3 dizendo `tem_wordpress: true`. **E a contagem de URLs desta ilha fica `não medido` até a porta subir** — a divergência 32 (cabeçalho) × 44 (ar), aberta desde 28/10, não é mensurável com o sitemap em 404.
+
+**O CHAMADO NA HOSTGATOR, pela 19.4(b) e pela nota da 29.5 de 05/10, DEIXOU DE SER DE UMA ILHA.** Ele está em `dados/despachos.md` só sobre o `.htaccess` da raiz de `/clubedomosaico.com.br`; **a robometria caiu na mesma passada de hoje com a mesma assinatura** e precisa entrar no mesmo chamado. O reparo da 29.3 continua valendo enquanto o chamado não tiver resposta — ilha caída esperando fornecedor é pior que ilha reparada quatro vezes —, e **o que não vale é tratar o reparo como solução.**
+
 ## DESPACHO DA SENTINELA — 2026-11-04 (LEITURA SEMANAL, 19h4xZ–20h1xZ) — A MELHOR SEMANA DA ILHA, A RAMPA DESTRAVOU, E AS PÁGINAS DE `/loja/` CHEGARAM À PRIMEIRA PÁGINA
 
 Ilha fora do foco. Nada aqui autoriza construção enquanto `foco.md` nomear a rodametria — entra na fila para quando ela voltar.

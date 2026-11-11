@@ -126,7 +126,7 @@ executando_desde: null   # limpo as 2026-10-23T19:43Z pela propria execucao que 
                          # anterior
                                       # reservou as 10h20Z e limpou as 11h0xZ, e o ultimo commit na pasta da ilha
                                       # e de 10h59Z — mais de 40 minutos atras, entao a 1.1 nao tinha o que desempatar.
-ultima_ronda: 2026-11-04T20:10Z   # LEITURA SEMANAL de 2026-11-04
+ultima_ronda: 2026-11-11T15:03Z   # RONDA TECNICA CURTA de 2026-11-11 (28/09, ponteiro da 1.2). ACHADO ALTA: A ILHA ESTA FORA DO AR, MENOS A HOME — home em 200, as tres portas da 29.2 em 404 e 0 de 8 paginas de caminho bonito em 200, todas servindo a pagina de estacionamento da HostGator (2.361 bytes, zero ocorrencia do nome da ilha). WordPress de pe: ?rest_route=/clubedomosaico/v1/status em 200, revisao 93, e a rota /rotas da 29.3 registrada devolvendo 401 sem token. QUARTA queda desta porta nesta ilha (24/09, 05/10, 08/10 e hoje) e SETIMA do Arquipelago. NAO REPARADO: o reparo exige o token do Sync, que nao esta no repositorio. Despacho ALTA no PROMPT.md. Janela da queda: entre 09/11 14h5xZ (PAINEL com 44 de 44 em 200) e 11/11 15h0xZ — no maximo 2 dias e 20 minutos, a deteccao mais rapida desta ilha. A divergencia 32 (cabecalho) x 44 (ar) segue aberta e NAO e mensuravel com o sitemap em 404. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA.
 bloqueada_por: null   # ACRESCENTADO em 30/09/2026: o campo FALTAVA neste cabecalho, e a secao 2 do
                       # ARQUIPELAGO.md o exige desde que ela existe. A secao 1, passo 3, LE este campo
                       # para decidir a ilha da execucao — entao a leitora dele vinha usando o valor

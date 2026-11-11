@@ -280,3 +280,23 @@ Raphael.
 **E O NÚMERO QUE DEVE SER RECONFERIDO NA PRÓXIMA: 58.** São as ofertas de `dados/vitrine-de-produto.json` servidas nas 8 páginas de consulta de produto (58 de 58 conferidas no HTML servido), todas com **só** `url_afiliado` encurtada — **sem `url_produto`, sem `shop_id`, sem `url_busca`**. Intestáveis pela 25.4-b e sem piso pela 25.2, e invisíveis a todo painel desde 25/09 porque `contar-piso-de-compra.py` lê, nas palavras dele, *"cinco arquivos `dados/materiais-*.json` e de mais nada"*. Item 1 do despacho de hoje.
 
 **O que a próxima ronda reconfere:** (1) a porta de entrada, pelos dois comandos da 29; (2) o item 1 do despacho de hoje pelo critério de pronto dele — a contagem imprimindo **101** itens com saída de compra e 0 intestável fora do degrau 4; (3) o item 2, com os dois links de irmã no ar; (4) o teste de vida das 58 ofertas, pelo par `shop_id` + `item_id`, **com 4 a 5 segundos entre chamadas** — e se a recusa voltar mesmo nesse ritmo, registrar e não insistir.
+
+## 11/11/2026 — QUARTA queda da mesma porta, e a mais rápida de achar
+
+**NADA REPARADO AQUI, E A CAUSA NÃO É OMISSÃO: O REPARO NÃO É EXERCITÁVEL DESTA NUVEM.** Medido às
+15h0xZ de 11/11/2026 pela ronda técnica curta: **home em 200, as três portas da 29.2 em 404 e 0 de 8
+páginas de caminho bonito em 200** (`/materiais/`, `/como-fazer/`, `/sobre/`, `/contato/`, `/loja/`,
+`/privacidade/`, `/materiais/colas-e-adesivos/`, `/materiais/acabamento/`), todas servindo a página de
+estacionamento da HostGator — 2.361 bytes, zero ocorrência de `clubedomosaico` no corpo. O WordPress
+está de pé: `?rest_route=/clubedomosaico/v1/status` em **200** com a **revisão 93**, e a rota `/rotas`
+da 29.3 registrada, devolvendo 401 sem token.
+
+**A SÉRIE QUE SUSTENTA O CHAMADO GANHA A QUARTA LINHA, e o tempo de detecção caiu de nove dias (24/09)
+para até 2 dias e 14 horas (05/10) e agora para no máximo 2 dias e 20 minutos** — o `PAINEL.md` de
+09/11 às 14h5xZ registra esta ilha com 44 de 44 em 200 e as portas verdes. **Isso não é melhora de
+sensibilidade: é a ronda técnica curta da decisão de 28/09 finalmente rodando todo dia.**
+
+**O reparo é `?rest_route=/clubedomosaico/v1/rotas&token=<token do Sync>&reparar=1`, e o token não
+está no repositório** — as linhas de 24/09 e 05/10 desta mesma tabela já o escrevem como lacuna.
+Despacho **ALTA** no `PROMPT.md` desta data. **O chamado na HostGator deixou de ser desta ilha:** a
+robometria caiu na mesma passada, com a mesma assinatura.

@@ -55,6 +55,74 @@ Medido em 27/10/2026 no Chrome do Raphael (`bussola/dossies/rodametria/DOSSIE.md
 
 ---
 
+## DESPACHO DA SENTINELA — 2026-11-11 (RONDA DIÁRIA TÉCNICA, 14h3xZ–15h0xZ) — QUATRO ITENS, E O PRIMEIRO É UM BOTÃO DE COMPRA QUE NÃO VENDE
+
+> **A ILHA ESTÁ SÃ, E ISSO FOI MEDIDO E NÃO SUPOSTO.** 10 de 10 URLs em 200 em duas leituras com quebra de cache; as três portas da 29.2 verdes com `content-type` certo e o `/wp-sitemap.xml` servindo `sitemapindex` de verdade; caminho virgem em 404 na página da própria ilha; `/status` em **83** = `manifest.json` em **83**; zero `&#038;` dentro de `<script>`; zero página órfã contada na direção de ENTRADA (16.9(b)); zero link interno para fora do sitemap; meta description máxima de 159.
+>
+> **E HOUVE NAVEGADOR NESTA PASSADA — as três medições que as rondas de 04, 06 e 09/11 declararam impossíveis foram feitas.** A extensão de Chrome do Raphael respondeu e o Chromium desta nuvem subiu (seção 33). Resultado: **32.5 aprovada 10 de 10** (pior formulário/caixa 548 px de 700; pior botão de compra 1.351 px de 1.400); **console 10 de 10 limpo do lado da ilha** — as 5 a 10 falhas de rede por página são `fonts.gstatic.com` e `cf.shopee.com.br` recusados pelo EGRESSO DESTA NUVEM, não defeito de página, e por isso não viram item; **comportamento**: menu abre e fecha nas 10 com o `aria-expanded` alternando, `<details>` nenhum aberto por padrão, rolagem horizontal zero, barra fixa escondendo quando o bloco de compra entra na tela nas 6 que a servem; **as três ferramentas apertadas de verdade, 9 de 9 certas** (F1 em 1.000 W/32, 1.000 W/40, 1.500 W/45, 5.000 W/80 e 500 W/25 só pedal; F2 em 36 V × 10,4 Ah plano = 374 Wh e 50 km, e 72 V × 30 Ah ladeira = 2.160 Wh e 38 km; F3 em 130 kg = 143 kg e 60 kg = 66 kg).
+>
+> **A 32.4-d, ESCRITA HOJE, ESTÁ FECHADA NO AR:** zero comentário dentro do `<script>` da ilha nas 10 páginas. Os 7 marcadores que sobram por página estão no `speculationrules` do próprio WordPress e não são da ilha.
+>
+> **RECONFERÊNCIA DO DESPACHO DE 09/11, item por item, no ar — OS CINCO PASSAM:** (1) os quatro `id` de repositório com **zero** ocorrência em texto visível nas 10 URLs; (2) o `nota` de `veiculos.json` dizendo **4 publicáveis** recontados por `derivar-banco.py` e conferidos por `validar-banco.py` — o campo que voltou duas vezes fechou na terceira; (3) rótulo da barra fixa `Ver produtos` só onde há cartão e `Por que não indicamos` onde não há; (4) `17 registros` × `14 anúncios colhidos`, separados pelo verbo; (5) o menu serve **4 itens** e a ferramenta principal da ilha está entre eles.
+
+**ITEM 1 — UM BOTÃO DE COMPRA DA VITRINE ESTÁ ESGOTADO, E ELE É O SEGUNDO CARTÃO DA PÁGINA DE MAIOR INTENÇÃO DE COMPRA DA ILHA.** Medido no navegador do Raphael às 14h5xZ, abrindo a `url_produto` e **nunca** o link de afiliado, em **duas** leituras:
+
+- registro: *"Patinete Elétrico Adulto 650W com 3 Velocidades Bateria Recarregável para Mobilidade Urbana"*
+- `url_produto`: `https://shopee.com.br/product/1430771203/58212105781`
+- encurtado servido ao leitor: `https://s.shopee.com.br/9pfbJrNKOR`
+- **degrau atual: 1** (loja oficial)
+- onde está no ar: **cartão 2 da vitrine de `/veiculos/patinete-eletrico/`**, e o mesmo encurtado é servido **duas vezes** naquela página
+- o que a página do produto serve: a palavra **`Esgotado`** colada ao título, nas duas leituras, sem CAPTCHA. O corpo caiu de ~4.400 para 2.789 caracteres na primeira leitura e voltou a 4.353 na segunda, com o `Esgotado` nas duas — o sinal é o texto do corpo, nunca o `<title>`, que nesta leva veio com o nome do produto e por isso é ainda mais enganoso que o genérico que a 25.4 descreve.
+
+**Não consertei, e o motivo é a 19.2:** link morto é **dado do banco**, e trocar por outro anúncio é escolher entre duas opções defensáveis (reescolher ficha do mesmo produto, ou descer para o degrau 4 e deixar a busca virar o botão, como a robometria fez com o `electrolux-erb60` em 02/11).
+
+**pronto quando:** `s.shopee.com.br/9pfbJrNKOR` tem **zero** ocorrência no HTML servido de `/veiculos/patinete-eletrico/` lido com quebra de cache; o anúncio `58212105781` tem **zero** ocorrência em campo vivo do banco; a vitrine daquela página volta a ter **todos** os cartões com ficha viva ou com a busca no botão; e a história do anúncio aposentado fica inteira dentro de `motivo_sem_url_produto`, fora dos campos vivos, como a 25.4-b manda.
+
+**ITEM 2 — A PALAVRA `ilha` ESTÁ SENDO SERVIDA AO VISITANTE EM 5 DAS 10 PÁGINAS, 10 VEZES, E ELE NÃO TEM COMO SABER DO QUE SE TRATA.** Medido no HTML servido **e** no texto visível, com fronteira de palavra (`\bilhas?\b`), para não confundir com `trilha`:
+
+| página | ocorrências | trecho |
+|---|---|---|
+| `/contato/` | 3 | *"Se um número desta **ilha** está errado…"*, *"Esta **ilha** ainda não tem uma caixa de e-mail própria…"*, *"nenhuma outra página desta **ilha** pede cadastro…"* |
+| `/divulgacao-de-afiliados/` | 3 | *"Quando você compra por um botão desta **ilha**…"*, *"Hoje todos os botões de compra desta **ilha** são endereços de afiliado da Shopee…"*, *"Os dois casos foram medidos nesta **ilha**…"* |
+| `/privacidade/` | 2 | *"Nenhuma página desta **ilha** tem um campo pedindo um dado seu…"*, *"esta **ilha** ainda não tem uma caixa de e-mail própria"* |
+| `/sobre/` | 1 | *"O código e os dados desta **ilha** são versionados fora do site…"* |
+| `/autonomia-patinete-eletrico/` | 1 | *"a única medição real de autonomia que a **ilha** tem com a ficha ao lado"* |
+
+**Isto é a 32.4 no sentido mais literal que existe, e a 32.4-d de hoje já escreveu a régua:** *"o nome das ilhas irmãs entra na lista da 32.4: nome de outra ilha do Arquipélago numa página é bastidor da fábrica no sentido mais literal que existe, e o visitante não tem nem como saber do que se trata."* **`ilha` é o nome que o contrato dá a um site desta fábrica** (seção de vocabulário: *"cada site de nicho é uma ilha"*). A 32.4-d cuidou do nome PRÓPRIO das irmãs e deixou de pé o nome COMUM da coisa — e é o nome comum que aparece 10 vezes, em prosa de leitor, dizendo ao visitante que ele está dentro de uma peça de uma fábrica cujo nome o site nunca explica.
+
+**Não consertei, por três motivos independentes:** (a) a prosa mora em **dois lugares de natureza diferente** — `dados/paginas-institucionais.json` (9 ocorrências) e os snippets `rodametria-casca.php` (33, a maioria em comentário), `rodametria-f2.php` (4) e `rodametria-institucional.php` (3) —, e a trava 3 da seção 12 proíbe a Sentinela de tocar em snippet *"sem exceção, mesmo que a mudança pareça de uma linha"*; (b) alcança **5 páginas de uma vez**, o que a 22.7 manda despachar; (c) não está na lista fechada da 19.1 — não é título, meta description, primeiro parágrafo nem rótulo, e `ilha` não está na lista "Proibidas" do `VOZ.md`. **Na dúvida, é despacho.**
+
+**E a parte que vale mais que o conserto:** o conserto de uma palavra em cinco arquivos é a 32.5-c de novo. **A lista de termos de bastidor da régua desta ilha precisa ganhar `ilha`/`ilhas` com fronteira de palavra**, medida no HTML servido (32.4-c), **excluindo `trilha`** — senão o portão reprova a própria trilha que a 16.3 exige. E a lista mora num lugar só, para a régua nova não nascer fora do conserto.
+
+**pronto quando:** `\bilhas?\b` tem **zero** ocorrência em texto visível e em JSON-LD nas 10 URLs do sitemap, lidas com quebra de cache; o portão de ar da ilha faz uma afirmação nova que **morde** (plantando `desta ilha` numa das cinco páginas, ele reprova nomeando a página) e **não** reprova a trilha; e a palavra `ilha` continua livre em comentário de snippet, porque comentário é a memória da ilha (seção 3) e a 32.4-b item 2 já decidiu isso para o `.php`.
+
+**ITEM 3 — A F2 SERVE A PALAVRA `publicável` E O RÓTULO `Tipo: pendente` AO LEITOR, NO "COMO SABEMOS".** O trecho, literal, do HTML servido de `/autonomia-patinete-eletrico/`:
+
+> *"Consumo de um patinete por km — **sem valor publicável**. **Tipo: pendente**, sem valor publicado. Não publicamos nenhum valor. A medição mais forte que achamos está em periódico que não conseguimos abrir, e as outras três candidatas foram recusadas…"*
+
+`publicavel` e `pendente` são **valores do enum de `status` do banco** (`dados/esquema-banco.json`), e `Tipo:` é rótulo de campo de banco impresso como se fosse texto de leitor. **É a SEGUNDA vez que `publicavel` chega ao ar nesta ilha:** a ronda de 06/11 achou a palavra cinco vezes dentro do JSON do rodapé e o item foi fechado naquele dia. Pela **19.4(b)**, defeito que volta deixa de ser conserto e vira despacho de qualquer jeito. E a frase diz a coisa certa duas vezes com dois vocabulários — *"sem valor publicável"* e *"Não publicamos nenhum valor"* —, então o que falta ali não é informação, é a palavra da fábrica.
+
+**pronto quando:** `publicáv`, `publicav` e a cadeia `Tipo: pendente` têm **zero** ocorrência em texto visível e em JSON-LD nas 10 URLs; a prestação de contas da constante pendente continua dizendo, em português de leitor, que a ilha não publica número para aquele consumo e por quê; e o termo entra na mesma lista única do item 2, medida no servido.
+
+**ITEM 4 — `/sobre/` E `/divulgacao-de-afiliados/` DECLARAM O MESMO FATO — O CRITÉRIO QUE ORDENA A VITRINE — COM DUAS RÉGUAS DIFERENTES.** Os dois trechos, literais, do HTML servido:
+
+- `/sobre/`: *"Não publica 'melhor patinete' nem 'top dez': **quem ordena uma lista aqui é o que o anúncio declara e o preço**, nunca a comissão."*
+- `/divulgacao-de-afiliados/`: *"A ordem da lista. **Primeiro vem quem a loja mostra como mais vendido na busca medida**, e o desempate é o preço — nunca a taxa que um programa paga."*
+
+As duas concordam no que a ordem **não** é (comissão) e discordam no que ela **é**: numa, o que o anúncio declara; na outra, a posição de mais vendido que a loja mostra. **A 20.7 já mediu o que isso dá:** *"duas declarações do mesmo fato começam iguais e só uma sobe."* E há um agravante de voz: a lista "Proibidas" do `VOZ.md` barra *"'mais vendido', selo de avaliação que a ilha não mediu"*, e a `/divulgacao-de-afiliados/` usa a posição de mais vendido da loja como o **critério** — a `/sobre/`, na mesma leitura, promete que a ilha não publica esse selo.
+
+**Não consertei: é escolha entre duas opções defensáveis (19.2)** — a ordem real é uma só e quem sabe qual é quem escreveu o gerador da vitrine, não quem leu as duas páginas. E o conserto certo não é acertar as duas frases: pela 32.4-c, *"o conserto de uma frase duplicada não é consertar as duas: é a segunda deixar de existir"* — uma função monta a frase do critério e as duas páginas a chamam.
+
+**pronto quando:** as duas páginas servem a **mesma** cadeia de critério de ordenação, vinda de **um** lugar; a cadeia descreve o que `ferramentas/` realmente usa para ordenar `cartoes` em `dados/vitrine-de-produto.json`; e um portão sem rede reprova quem escrever a segunda cópia.
+
+### O QUE ESTA RONDA MEDIU E NÃO VIROU ITEM, dito para ninguém gastar execução redescobrindo
+
+- **As 5 a 10 falhas de recurso por página no console são do EGRESSO DESTA NUVEM.** `fonts.gstatic.com` (as 5 fontes do `DESIGN.md`) e `cf.shopee.com.br` (as fotos dos cartões) devolvem `ERR_TUNNEL_CONNECTION_FAILED` no Chromium desta nuvem. **Zero** erro de JavaScript, **zero** exceção e **zero** resposta ≥ 400 vinda da ilha nas 10 páginas. Quem rodar console daqui vai ver as mesmas linhas e **não** é defeito de página.
+- **A barra fixa da `/veiculos/bicicleta-eletrica/` parece quebrada na primeira leitura e não está.** No instante do `load` ela sai `hidden`/`display:none` nessa página e `flex` na `/veiculos/patinete-eletrico/` — é corrida do observador, não comportamento. Com a página assentada, as duas se comportam igual: escondida enquanto o bloco de compra está na tela (ele começa a 794 e 821 px, dentro dos 844 px do telefone) e `flex` a partir de ~1.400 px de rolagem. **Quem medir barra fixa espera a página assentar, ou mede duas vezes.**
+- **O teste de vida da Shopee continua NÃO sendo tarefa desta nuvem, e agora a causa tem NOME.** O Chromium daqui abre `shopee.com.br/product/...` com HTTP 200, e a página **não renderiza**: `<title>` vazio, `innerText` vazio, `body.innerHTML` com 2.321 bytes, e **23 recursos de `deo.shopeemobile.com` recusados pelo egresso** — é a CDN de script da Shopee. `curl` é pior: devolve 200 com **199.781 bytes idênticos** para dois produtos diferentes e o corpo *"Please enable JavaScript on your browser"*. **O que funciona é o navegador do Raphael pela extensão**, lendo o corpo da `url_produto`: 31 itens em lotes de 3, zero CAPTCHA, título e `h1` do produto de verdade em cada um.
+- **O teste de vida saiu INTEIRO nesta passada, e é a primeira vez desde 06/11:** 24 links de ficha (**23 vivos, 1 esgotado** — o item 1) e **7 palavras-chave de busca, 7 vivas**, 15 cartões cada, zero busca vazia (`Honeywhale M2 MAX patinete eletrico`, `Sousa Bike bicicleta eletrica`, `X13 scooter eletrica`, `LS Sport scooter eletrica`, `Kenda camara de ar 16 x 3.0`, `bicicleta eletrica adulto`, `patinete eletrico adulto`). **29 de 29 botões servidos no `<main>` rastreáveis até o repositório; intestáveis ZERO; item sem piso da 25.2 ZERO.**
+- **A coerência da recomendação da F3 está certa, e isso foi medido em quatro entradas.** Acima de ~109 kg de peso total a caixa pede uma carga que o mercado não tem, e o bloco de compra diz isso com o número: *"Nenhum dos 3 veículos com carga declarada e oferta aberta no nosso banco aguenta os seus 130 kg com folga: o maior teto que temos declarado é de 120 kg"*. Nenhuma vitrine inventada.
+
 ## ~~DESPACHO DA SENTINELA — 2026-11-09 (RONDA DIÁRIA TÉCNICA, 14h4xZ–14h5xZ) — CINCO ITENS~~ — **OS CINCO FECHADOS EM 09/11/2026 às 17h4xZ, CONFERIDOS NO AR PELA 18.4, NA REVISÃO 72**
 
 > **O QUE FECHOU, MEDIDO NA REVISÃO 72** (`/status` 72 = `manifest` 72, 8 itens aplicados e as **8** linhas de item dizendo `ok`, lidas **do fecho para baixo** pela 20.8). `conferir-no-ar.py`: **607 afirmações, 0 falha**. Bancada sem rede: **38 portões, 0 falha** — eram 36, e os dois novos são `teste-nome-do-registro.py` e `teste-barra-de-compra.php`.
