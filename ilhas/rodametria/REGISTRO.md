@@ -3,6 +3,109 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-11-11 10h16Z–11h14Z — **A HOME PROMETIA, NA PRIMEIRA TELA, A RESPOSTA DE CNH QUE ELA RECUSA 36 ELEMENTOS ABAIXO — E O `og:title` SERVIA O RÓTULO DA TRILHA NAS 10 URLs** — revisões 79 e 81
+
+**A ESCOLHA DA ILHA.** `foco.md` nomeia a **rodametria** (foco total e absoluto desde 27/10) e pela **1.2** não há escolha a fazer. **As duas coisas que furariam o foco foram MEDIDAS nesta passada, não herdadas do registro anterior** (20.2): o **despacho do molde da seção 32** está riscado e FECHADO INTEIRO nas três ilhas que a 1.2 nomeia (aquametria 21/10, clubedomosaico 21/10, robometria 21/10), e **nenhuma ilha fora do foco tem despacho ALTO aberto estando no ar e quebrada** — o único ALTA das cinco é o de 30/10 da robometria, riscado e fechado em 02/11. Nada fura o foco. **Branch e PR, passo 1:** `origin/claude/dreamy-mccarthy-61bo57` com **zero** commit fora do `main` (`git rev-list --count origin/main..origin/claude/...` = 0) e **zero PR aberto** — nada a mergear. `executando_desde` estava `null`, o que pela **1.1** já significa que não havia bloco da Fundação vivo: nenhuma reserva vencida a desempatar no git, nenhuma reserva órfã a limpar (1.2-b.5). Reserva no commit `1af0edb`, às **10h16Z**, hora saída do `date -u` na mesma linha que a grava.
+
+**A REDE, MEDIDA E NÃO HERDADA (20.2), ANTES DA RESERVA.** `rodametria.com.br` em **200** nas três passadas com quebra de cache, com `robometria.com.br` e `aquametria.com.br` em 200 nas mesmas três — **9 de 9, zero `000`**.
+
+**A FILA, E POR QUE ESTE BLOCO.** Nenhum despacho aberto **para a Fundação**: o de 09/11 está riscado e fechado, os dois itens do de 04/11 pedem o Search Console (instrumento da leitura semanal, com credencial de conta de serviço que a Fundação não roda por ela) e o de 30/10 é **para o Raphael**. A fila de blocos segue **toda entregue menos o 5**, que depende de `pauta.md`, inexistente, e que pela **17.1** não é arquivo da Fundação; página nova segue travada pelas duas pontas (a **30.8** para a SERP e o Mercado Livre para o produto). **Então fiz a ponta que o fecho das 19h46Z de 10/11 deixou escrita, letra por letra:** *"a família do defeito de hoje não é de vocabulário, é de DUAS DECLARAÇÕES DO MESMO FATO escritas à mão em lugares diferentes. (...) A varredura que falta é a mesma pergunta nos OUTROS pares que esta ilha serve duas vezes: o `<title>` contra o `<h1>`, a `description` contra a frase de promessa, o `name` do JSON-LD contra o H1 da página, e o rótulo do cartão da vitrine contra o nome do registro no banco."*
+
+---
+
+### A VARREDURA ENCOMENDADA, PAR POR PAR — E ELA ACHOU DOIS DEFEITOS E TRÊS ZEROS
+
+Baixei as **10** URLs do `wp-sitemap.xml` (as 10 em 200, com quebra de cache) e medi os quatro pares que o fecho anterior nomeou:
+
+- **`<title>` × `<h1>`: ZERO defeito, e é convenção uniforme.** Em 9 das 10 o `<title>` **começa** pelo `<h1>` letra por letra e acrescenta um complemento depois de `—` ou `:`; na décima (a home) ele é `Rodametria — ` mais o H1. Os dois são escritos à mão em arquivos diferentes — o `titulo` no mapa de páginas, o `<h1>` no snippet da ferramenta —, e **hoje não divergem**. Fica registrado como o zero que é: medido, não suposto.
+- **`name` do JSON-LD × `<h1>`: ZERO defeito, e por desenho.** O `WebPage.name` sai de `$p['nome']`, que é o rótulo da **trilha** da 16.3, e a mesma expressão alimenta o `BreadcrumbList` — **uma declaração servindo três superfícies**, que é o contrário do defeito que eu procurava.
+- **Rótulo do cartão da vitrine × nome do registro no banco: ZERO defeito**, e ele já tem portão com nome próprio (`teste-nome-do-registro.py`), nascido do item 1 do despacho de 09/11.
+- **`description` × frase de promessa: DEFEITO, e é o da home.** Abaixo.
+
+E no caminho, medindo o par `og:`, **o segundo defeito**, que não estava na lista encomendada.
+
+### DEFEITO 1 — A PÁGINA PROMETE NA PRIMEIRA TELA O QUE RECUSA NA SEGUNDA
+
+Em `https://rodametria.com.br/`, revisão **78**, o primeiro parágrafo de prosa debaixo do H1 — o `<p class="rdm-promessa">`, a segunda coisa que o visitante lê — servia, letra por letra:
+
+> **Precisa de CNH?** Faz quantos km de verdade na sua ladeira? Aguenta você e a mochila? O anúncio não responde nenhuma das três direito. **Aqui a gente responde** com a conta na mesa e a ficha citada.
+
+E a **mesma página**, 36 elementos de prosa abaixo, servia:
+
+> **Sobre habilitação esta página não responde**, e o motivo é um só: a resolução que decide a categoria não tem artigo nenhum sobre CNH.
+
+com um título inteiro, `<h2>`, dizendo **"Por que esta página não responde sobre CNH"**.
+
+**E ESTA É A METADE QUE FICOU DE UM CONSERTO JÁ FEITO DUAS VEZES.** A `description` desta **mesma página** foi trocada em **06/11** por este motivo exato, e o comentário dela no PHP o diz com todas as letras: *"Descrição que promete o que a primeira tela recusa é a página se desdizendo na própria aba do navegador"*. O `menu_rotulo` foi trocado em **09/11** pela mesma razão: *"o menu nomeia o que a ferramenta ENTREGA"*. **Duas execuções consertaram a declaração que estavam olhando, e as duas deixaram esta — que é a mais lida das três, porque é prosa de primeira tela.** É a **20.7** literal: o mesmo fato declarado à mão em lugares diferentes sobe de um lado só.
+
+**E HÁ UMA SEGUNDA CAUSA, que é de data e não de descuido:** esta frase é a promessa da **home HUB de 29/10**, quando a home era um índice de três cartões e as três perguntas eram o conteúdo dela. A home deixou de ser hub em **06/11**, quando a F1 tomou a primeira tela — e a **32.1, item 2**, pede de página de FERRAMENTA *"UMA frase de promessa (o que a pessoa coloca e o que sai)"*. As duas irmãs cumprem o molde (*"Diga a tensão e a amperagem da bateria: saem os watt-hora e a faixa de km..."*, *"Diga o seu peso e o que você leva: sai a carga máxima..."*). **A home virou página de ferramenta e a promessa dela não acompanhou.**
+
+#### POR QUE NENHUM PORTÃO O VIA, E A RESPOSTA NÃO É "FALTAVA SUPERFÍCIE"
+
+A home **estava** na régua: `teste-afirmacao-de-tela.py` tem uma régua de habilitação desde 06/11, a mais severa desta ilha, e `conferir-no-ar.py` a aplica sobre os **955 elementos de prosa** das 10 URLs. O que absolvia o parágrafo era **uma linha**:
+
+```python
+if "?" in f:
+    continue
+```
+
+— a forma PERMITIDA de *"nomear a pergunta em vez de respondê-la"*. **E essa absolvição está certa** para a pergunta que fica sozinha: o `<h2>` da F1 é `Esse elétrico precisa de CNH?` e o `VOZ.md`, na seção "Home", o aprova letra por letra. Ela está errada quando o **mesmo elemento promete responder na frase seguinte**.
+
+**E é a metade que faltava de uma simetria que o próprio código já nomeava.** O docstring daquela função diz, desde 06/11: *"marcador de recusa numa frase NÃO absolve a frase vizinha. Foi um marcador solto que quase deixou passar..."*. **A guarda existia para a RECUSA e faltava para a PROMESSA** — a recusa não vazava para o lado, e a promessa vazava. Agora as duas valem por **elemento**.
+
+#### O CONSERTO, E ELE TEM TRÊS PARTES
+
+1. **A frase nova é a que a 32.1 pede** — o que entra e o que sai, no molde das irmãs: *"Diga a potência nominal, a velocidade máxima de fábrica e se tem acelerador: sai a categoria do seu elétrico — bicicleta elétrica, autopropelido ou ciclomotor — e o que a regra exige dele de placa e registro."* **O nome da resolução não entra aqui de propósito:** o `VOZ.md` proíbe "a Resolução Contran nº 996/2023" no título e no primeiro parágrafo — ela mora na tabela e no "como sabemos", no fim da página. Por isso "a regra".
+2. **O portão passa a valer por elemento.** Pergunta de habilitação em elemento que promete que **esta ilha** responde REPROVA, com a cadeia inteira nomeada na mensagem — a pergunta **mais** a promessa, nunca só a pergunta, que sozinha está certa. O sujeito da promessa é a ilha e nunca o anúncio: *"o anúncio não responde nenhuma das três"* é a tese desta casa e **tem de passar**, então a forma negada sai do texto antes da busca.
+3. **O elemento que promete E declara o limite no mesmo elemento desarma a reprovação.** *"Precisa de CNH? Sobre habilitação esta página não responde; o resto a gente responde"* é a forma honesta, e reprová-la empurraria quem a escrevesse a **tirar a recusa de perto da promessa** — o contrário do que a régua quer (20.5). O desarme é do ELEMENTO; dentro dele a recusa continua **não** absolvendo a frase vizinha.
+
+**O QUE EU NÃO MEXI, E ESTÁ MEDIDO PARA NINGUÉM GASTAR EXECUÇÃO:** o `<h2>` da F1 continua `Esse elétrico precisa de CNH?`. Ele está **certo** — o `VOZ.md` o aprova na seção "Home", o vocabulário da pessoa é `CNH` (ela digita isso) e nomear a pergunta é a forma permitida. O que esta página não pode é **prometer a resposta dela**. E o cartão da F1 na home HUB, que traz `espera` dizendo *"Ainda não está no ar"*, também está certo: ele só é servido quando o filtro da F1 devolve vazio, e nesse mundo a F1 **de fato** não está no ar — a causa que o texto dele nomeia (o limiar legal `pendente`) é exatamente a condição que faz `rodametria_f1_banco()` devolver nulo.
+
+### DEFEITO 2 — O `og:title` SERVIA O RÓTULO DA TRILHA, NAS 10 URLs
+
+Medindo o par `og:` contra o `<title>`, em 10 de 10:
+
+| URL | `<title>` | `og:title` |
+|---|---|---|
+| `/` | Rodametria — os três números antes de comprar um elétrico | **Início** |
+| `/peso-maximo-patinete-eletrico/` | Peso máximo suportado por patinete elétrico — quanto você precisa | **Carga máxima** |
+| `/sobre/` | Quem publica a Rodametria — método, fontes e o que ainda falta | **Sobre** |
+
+O `<title>` sai do campo `titulo` do mapa de páginas; o `og:title` saía do campo `nome`, que é o rótulo da **trilha** da 16.3, de uma ou duas palavras. **E o `og:title` não é decoração:** é o nome que o WhatsApp, o Facebook, o LinkedIn e o Slack mostram quando alguém compartilha o link, e nesta ilha ele é **meta de leitor** declarado (`META_DE_LEITOR` de `conferir-no-ar.py`). **A home desta ilha, compartilhada em qualquer um deles, se chamava "Início".**
+
+**E A LINHA DE BAIXO JÁ FAZIA CERTO, o que torna isto defeito e não escolha:** o `og:description`, escrito na linha seguinte, lê a **mesma** `description` da `<meta>` de cima — mesma fonte, duas superfícies. **Era o par `og:` metade certo.**
+
+**POR QUE NENHUM PORTÃO O VIA, e de novo não é falta de superfície:** o `og:title` **já** estava na régua desta ilha, e as cinco réguas de vocabulário o leem desde 09/11. O que nenhuma delas podia ver é que o **valor estava certo e vinha do campo errado** — `Início` é acentuado, não é chave de máquina e não é vocabulário de bastidor. **É a mesma lição de 10/11, no segundo dia seguido: a régua que pega esta classe não é de VOCABULÁRIO, é de CONTAGEM DE DECLARAÇÕES.**
+
+**O CONSERTO VAI NA RAIZ**, no desenho que esta ilha usou ontem no rótulo da barra fixa: `rodametria_casca_titulo_do_slug()` resolve o título **uma** vez e as **duas** chamadas — o `<title>` do documento e o `og:title` do `wp_head` — recebem a mesma expressão. Não troquei o literal de um lado só, que é exatamente o que a 20.7 proíbe. Sem título a tag não sai: `og:title` vazio diz menos do que `og:title` ausente. **O portão:** `conferir-no-ar.py` passa a exigir, em toda URL do sitemap, que o `og:title` **exista** e seja o `<title>` servido **letra por letra**, com as entidades desfeitas antes da comparação.
+
+### O DESEMBARQUE, EM DUAS REVISÕES, E O CRON DECIDIU AS DUAS
+
+**Revisão 79** (a promessa da home) — push às 10h27Z, `/status` em 78 com `ultimo` em 10:15:49, **anterior** ao commit do manifest. Em vez de reacionar, chamei a função pura `veredito_da_revisao_atrasada` desta ilha: `evento-nao-vencido`, teto em **10:45:49**, com o aviso de que pode cair antes. **Entrou às 10:40:11**, cinco minutos antes do teto — a segunda ressalva da **20.9** pela segunda passada seguida.
+
+**Revisão 81** (o `og:title`) — push às **10h41Z**, um minuto depois de a 79 ser aplicada, o que é o pior momento possível para empurrar. O veredito foi o mesmo, com teto em **11:10:11**, e **entrou às 11:09:46 — 25 segundos antes do teto**. No meio da espera, com o bloco passando de 40 minutos, **renovei `executando_desde` pela 1.1**, que é uma linha e é o que faz a próxima execução não precisar do git para saber.
+
+**As duas revisões entraram LIMPAS, sem nenhuma cicatriz da 20.4:** 8 itens declarados e 8 linhas de item em cada uma, as 8 dizendo `ok`, lidas do **FECHO PARA BAIXO** (20.8), com a conta da **20.10** fechando em zero nas duas. A versão da casca **carregada** está no ar — `1.22.0` em `/wp-json/rodametria/v1/casca`, que é a prova da 20.7 de que o código novo está carregado e não só no repositório.
+
+### MEDIDO
+
+- **Antes do conserto, que é o que a 31.2 pede para portão nascer:** **955 elementos de prosa** nas 10 URLs, **2** com promessa de resposta, **1** deles falando de habilitação — a home. No repositório, **2.207 afirmações** e **1 falha**, a mesma. **Zero falso positivo** nas outras nove URLs e nos outros 2.206.
+- **Bancada:** 40 portões sem rede, **0 falha**, zero inerte.
+- **Portão de ar:** **637 afirmações, 0 falha** (eram 617 em 10/11; as 20 novas são as duas do `og:title` em cada uma das 10 URLs).
+- **Autoteste da régua de afirmação de tela:** **110 mundos, 0 falha**.
+- **PROVADO QUE MORDE por fora do mundo fabricado:** com o texto velho de volta no PHP — por cópia de arquivo, **nunca** `git stash` com bancada rodando, que é a lição de método de 21/10 — o portão reprova nomeando a cadeia (*"e o MESMO elemento promete 'aqui a gente responde'"*), e com o conserto volta a **0 falha**.
+- **No ar, com quebra de cache:** `Aqui a gente responde` em **ZERO** ocorrência; `Precisa de CNH?` (a abertura da promessa velha) em **ZERO**; o `<h2>` da F1 (`Esse elétrico precisa de CNH?`) em **1**, como tem de ser; a oração de recusa em **3**. `og:title` **idêntico ao `<title>` em 10 de 10**.
+- **NAVEGADOR (seção 33):** 32.5 aprovada em **10 de 10** — pior caixa **405 px** de 700, pior compra **1.279 px** de 1.400, zero página fora do molde — e **a home melhorou**: o formulário subiu de **405 px para 369 px**, porque a frase nova é mais curta na tela que as três perguntas que ela substituiu. Console **10 de 10 limpo**.
+
+### PRÓXIMO PASSO DESBLOQUEADO — e a frase honesta vem primeiro: SEGUE NÃO HAVENDO BLOCO DE CONSTRUÇÃO DESBLOQUEADO
+
+1. **A FILA ACABOU.** Todos os blocos entregues menos o **5** (artigos-âncora), que depende de `ilhas/rodametria/pauta.md`, inexistente, e que pela **17.1** é escrito pela rotina Pauta das ilhas, não pela Fundação.
+2. **PÁGINA NOVA SEGUE TRAVADA PELAS DUAS PONTAS:** a **30.8** não deixa afirmar `alvo` daqui — e a **33** já mediu que ter navegador **não** é ter SERP, porque o navegador atravessa o mesmo egresso —, e `moto eletrica` (823 mil) e `scooter eletrica` (301 mil) esperam **produto** e não SERP, pelo Mercado Livre, onde o link exige clique humano (25.6).
+3. **A INDEXAÇÃO SEGUE SENDO A PRIORIDADE MÁXIMA** (seção 14) e `primeira_indexacao` segue `null`, com a ilha no ar desde 29/10 e 10 URLs contra as 40 da 21.1. Os dois itens do despacho de 04/11 pedem o Search Console, instrumento da leitura semanal e nunca da Fundação.
+4. **OS 11 ITENS DA VITRINE NUNCA TESTADOS** continuam nunca testados, e a causa é uma só e está medida na **33**: conduzir a aba contra o anti-robô da Shopee foi **RECUSADO** pelo guarda deste ambiente, e a recusa não se contorna.
+5. **O QUE SOBROU PARA QUEM VIER, E É A PONTA DESTA PASSADA.** A família é a mesma de ontem — **o mesmo fato declarado à mão em lugares diferentes** —, e **dois dos quatro pares encomendados deram zero por desenho, não por sorte**: onde a ilha resolve o fato numa expressão e passa a mesma expressão às duas superfícies (o `nome` alimentando trilha e `WebPage.name`; o `$rotulo` alimentando caixa e barra desde ontem), **não há o que divergir**. Os dois defeitos de hoje eram os dois lugares onde ela ainda **escrevia duas vezes**. **Os pares que esta varredura NÃO alcançou, e eles são a lista encomendada para a próxima:** (a) o `description` da `<meta>` contra a **primeira frase do corpo** em cada uma das 9 páginas que não são a home — hoje só a home foi lida par a par; (b) o `dateModified` do JSON-LD contra a data em prosa, que o portão de ar **já** cruza em toda URL, e portanto é onde procurar o par que ele **não** cruza: a data do banco (`gerado_em`) contra a data que a página imprime; (c) o `aria-label` do `<nav>` contra o rótulo visível do menu; (d) o `alt` da foto do cartão de compra contra o nome do anúncio no banco. **O caminho é o das cinco últimas passadas: ler o servido com os olhos, procurando o mesmo FATO dito duas vezes, e consertar na RAIZ — uma declaração, duas chamadas — em vez de igualar os dois literais.**
+6. **E AS DUAS DÍVIDAS QUE NÃO SÃO DESTA PASSADA, repetidas de 10/11 porque continuam abertas:** (a) o fecho da revisão **71** declarou 11 itens e o log trouxe 12 linhas — **não investigável**, e a causa é medida: o log do `/status` é uma janela de 15 linhas e já está em 81/79, então as linhas da 71 rolaram para fora. Quem quiser fechar isso tem de pegar a divergência **no dia**; nas revisões 79 e 81 os números batem (8 e 8). (b) O `print` do resumo do `--autoteste` de `conferir-no-ar.py` está indentado **dentro** do `else` do carregamento da régua irmã, então no mundo em que ela não carrega o portão imprime o veredito sem dizer quantas afirmações mediu. **Não toquei nele**, pelo mesmo motivo das duas passadas anteriores: não é defeito medido no ar, e a **31.2** é literal.
+
 ## 2026-11-10 19h20Z–19h47Z — **A BARRA FIXA SERVIA `Mediano` ONDE A CAIXA SERVIA `Preço mediano hoje` PARA O MESMO NÚMERO** — revisão 78
 
 **A ESCOLHA DA ILHA.** `foco.md` nomeia a **rodametria** (foco total e absoluto desde 27/10) e pela **1.2** não há escolha a fazer. **As duas coisas que furariam o foco foram MEDIDAS nesta passada, não herdadas do registro anterior** (20.2): o **despacho do molde da seção 32** está FECHADO INTEIRO nas três ilhas que a 1.2 nomeia — aquametria 21/10 às 18h2xZ, clubedomosaico 21/10 às 19h1xZ, robometria 21/10 às 16h1xZ — e **nenhuma ilha fora do foco tem despacho ALTO aberto em ilha no ar e quebrada**: o único ALTA das cinco é o de 30/10 da robometria, riscado e fechado em 02/11. Nada fura o foco. **Branch e PR, passo 1:** `origin/claude/dreamy-mccarthy-vesoea` com **zero** commit fora do `main` (`git rev-list --count origin/main..origin/claude/...` = 0) e **zero PR aberto** — nada a mergear. `executando_desde` estava `null`, o que pela **1.1** já significa que não havia bloco da Fundação vivo: nenhuma reserva vencida a desempatar no git, nenhuma reserva órfã a limpar (1.2-b.5). Reserva no commit `c5314b1`, às **19h20Z**, hora saída do `date -u` na mesma linha que a grava.

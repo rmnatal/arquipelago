@@ -3,125 +3,125 @@ ilha: rodametria
 estado: viva              # `nascendo` -> `viva` em 29/10/2026 as 12h1xZ: a ilha SERVE PAGINA. Duas URLs no wp-sitemap.xml, as duas em 200, com a casca e a F2 desembarcadas na revisao 9 e os dois portoes de ar APROVADOS. Antes deste dia a ilha tinha banco e nenhum byte que um visitante visse.
 prioridade: 1
 piso: abaixo              # 10 URLs publicadas contra as 40 da 21.1, e primeira_indexacao null. O NUMERO DESTE COMENTARIO ESTAVA VENCIDO: dizia 5, de 30/10, e a ilha passou por 9 e chegou a 10 em 06/11 — numero velho lido como fato e o defeito que a secao 4 nomeia. O VALOR do campo nao mudou e nao e meu de mudar. Quem decide este campo e a leitura semanal (21.6), nunca a Fundacao de cabeca. O teto da 21.4 tem folga: nesta semana saiu UMA leva, de 3 URLs, contra o teto de 3 levas por semana.
-urls_publicadas: 10       # SEM MUDANCA nesta passada, e nenhuma URL podia nascer: a FILA DE BLOCOS SEGUE ACABADA (todos entregues menos o 5, que depende de um `pauta.md` que NAO EXISTE e que pela 17.1 nao e arquivo da Fundacao) e as duas pontas de pagina de produto seguem travadas — a 30.8 para a SERP e o Mercado Livre para o produto das duas consultas de maior volume. CONTADO no wp-sitemap no ar com quebra de cache as 19h2xZ de 10/11: 10 URLs, as 10 em 200. Piso da 21.1 pede 40 — faltam 30. TETO DA 21.4: a semana segue com as TRES levas INTEIRAS, porque nao ha o que publicar nela. Quem decide o campo `piso` e a leitura semanal (21.6), nunca a Fundacao de cabeca.
+urls_publicadas: 10       # SEM MUDANCA nesta passada, e nenhuma URL podia nascer: a FILA DE BLOCOS SEGUE ACABADA (todos entregues menos o 5, que depende de um `pauta.md` que NAO EXISTE e que pela 17.1 nao e arquivo da Fundacao) e as duas pontas de pagina de produto seguem travadas — a 30.8 para a SERP e o Mercado Livre para o produto das duas consultas de maior volume. CONTADO no wp-sitemap no ar com quebra de cache as 11h1xZ de 11/11: 10 URLs, as 10 em 200. Piso da 21.1 pede 40 — faltam 30. TETO DA 21.4: a semana segue com as TRES levas INTEIRAS, porque nao ha o que publicar nela. Quem decide o campo `piso` e a leitura semanal (21.6), nunca a Fundacao de cabeca.
 ultima_ronda: 2026-11-09T14:54Z   # RONDA DIARIA TECNICA de 2026-11-09, 14h4xZ-14h5xZ, medida na revisao 70 (status 70 = manifest 70), 27 minutos depois do desembarque. CINCO defeitos, ZERO consertos e nenhum tentado: nenhum dos cinco e da lista 19.1 — gerador, metadado de banco, componente de casca e duas escolhas defensaveis. QUARTA ronda seguida desta ilha com zero conserto. Despacho de 5 itens no PROMPT.md. A ilha esta SA no ar: 10 de 10 URLs em 200 em duas leituras com quebra de cache, as tres portas da 29.2 verdes, caminho virgem em 404 na pagina da ilha, zero pagina orfa, zero link interno quebrado, meta description maxima de 159. SEM NAVEGADOR NESTA PASSADA (nem extensao, nem embutido, nem o shell do computador): o teste de vida da 25.4, o console e os pixels da 32.5 NAO foram medidos hoje e NAO foram estimados — e a ausencia rendeu o item 5, que so aparece para quem monta a query do formulario a mao e proibe o cliente de seguir o 301.
 primeira_indexacao: null  # as duas primeiras URLs foram ao ar hoje; indexacao e trabalho de dias. Quem grava este campo e a leitura semanal, lendo o Search Console.
-ultima_execucao: 2026-11-10T19:46Z   # A BARRA FIXA DO RODAPE SERVIA `Mediano` ONDE A CAIXA SERVIA `Preço mediano hoje` PARA O MESMO NUMERO, nas duas paginas de familia — duas declaracoes do mesmo fato escritas a mao, e so uma com o substantivo que diz mediano de QUE (20.7). Conserto na raiz: uma declaracao, e as duas chamadas recebem a mesma expressao. Conferido pela 18.4: `>Mediano<` em ZERO ocorrencia nas duas e as CINCO barras com rotulo certo. Revisao 78. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA.
-executando_desde: 2026-11-11T11:01Z   # RESERVA RENOVADA pela 1.1 (reservada as 10h16Z): o bloco passou de 40 minutos porque o desembarque desta passada e de DUAS revisoes — a 79 entrou as 10:40:11 e a 81 espera o vencimento do cron, com teto em 11:10:11 pela funcao pura `veredito_da_revisao_atrasada` desta ilha (`evento-nao-vencido`). Renovar e uma linha, e e o que faz a proxima execucao nao precisar do git para saber.
-rede: aberta em 2026-11-10   # 20.2, MEDIDA e nao herdada ANTES da reserva, as 19h19Z: rodametria.com.br em 200 nas TRES passadas com quebra de cache, com robometria.com.br e aquametria.com.br em 200 nas mesmas tres — 9 de 9, zero `000`. E O NAVEGADOR DESTA NUVEM FOI USADO, pela secao 33: a 32.5 aprovou 10 de 10 (pior caixa 405 px de 700, pior compra 1.279 px de 1.400, 0 pagina fora do molde), o console 10 de 10 limpo, e a BARRA FIXA medida a 390 px nas cinco paginas que a tem (transbordo horizontal ZERO, rotulo em UMA linha). SEGUE MEDIDO E FECHADO, de 09/11, para ninguem gastar execucao redescobrindo: google.com.br, bing.com e duckduckgo.com em 000 os tres (o navegador atravessa o MESMO egresso que o curl, entao ter navegador nao e ter SERP, e a 30.8 fica inteira); shopee.com.br em 200 e a aba ABRE, mas conduzir a aba contra o anti-robo foi RECUSADO pelo guarda deste ambiente, e a recusa nao se contorna.
+ultima_execucao: 2026-11-11T11:14Z   # DOIS DEFEITOS DA MESMA FAMILIA, OS DOIS CONFERIDOS NO AR PELA 18.4: a home PROMETIA na primeira tela a resposta de CNH que ela RECUSA 36 elementos abaixo, e o `og:title` servia o rotulo da TRILHA onde o `<title>` servia o titulo da pagina, nas 10 URLs. Revisoes 79 e 81, casca 1.21.0 -> 1.22.0. Os dois sao a 20.7: o mesmo fato declarado a mao em lugares diferentes, com um lado so subindo. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
+executando_desde: null   # LIMPO as 2026-11-11T11:14Z pela propria execucao que reservou as 10h16Z e RENOVOU a reserva as 11h01Z pela 1.1 (o desembarque desta passada foi de DUAS revisoes, e cada uma esperou o vencimento do cron). As duas entraram LIMPAS, sem cicatriz da 20.4: 8 itens declarados e 8 linhas de item em cada, as 8 dizendo `ok`, lidas do FECHO PARA BAIXO (20.8), com a conta da 20.10 em zero nas duas. Versao CARREGADA conferida no ar: casca 1.22.0 em /casca (20.7).
+rede: aberta em 2026-11-11   # 20.2, MEDIDA e nao herdada ANTES da reserva, as 10h16Z: rodametria.com.br em 200 nas TRES passadas com quebra de cache, com robometria.com.br e aquametria.com.br em 200 nas mesmas tres — 9 de 9, zero `000`. E O NAVEGADOR DESTA NUVEM FOI USADO, pela secao 33: a 32.5 aprovou 10 de 10 (pior caixa 405 px de 700, pior compra 1.279 px de 1.400, 0 pagina fora do molde) e o console 10 de 10 limpo — e A HOME MELHOROU, com o formulario subindo de 405 px para 369 px, porque a frase de promessa nova e mais curta na tela que as tres perguntas que ela substituiu. SEGUE MEDIDO E FECHADO, de 09/11, para ninguem gastar execucao redescobrindo: google.com.br, bing.com e duckduckgo.com em 000 os tres (o navegador atravessa o MESMO egresso que o curl, entao ter navegador nao e ter SERP, e a 30.8 fica inteira); shopee.com.br em 200 e a aba ABRE, mas conduzir a aba contra o anti-robo foi RECUSADO pelo guarda deste ambiente, e a recusa nao se contorna.
 bloqueada_por: null      # obrigatorio pela secao 2. `null` DE PROPOSITO: o que falta (gov.br para a F1, as prefeituras para a camada municipal, as tres etiquetas do Mercado Livre) trava a FABRICA e nao a ILHA, e isso se escreve no despacho, que e o canal da 12.2. Preenche-lo congelaria tambem os blocos que ja podem andar.
 bloco_atual: |
-  A BARRA FIXA SERVIA UM ADJETIVO SOLTO ONDE A CAIXA SERVIA A FRASE INTEIRA, PARA
-  O MESMO NUMERO. Revisao 78.
+  DOIS DEFEITOS DA MESMA FAMILIA — O MESMO FATO DECLARADO A MAO EM DOIS LUGARES,
+  COM UM LADO SO SUBINDO (20.7). Revisoes 79 e 81.
 
   ESTE ARQUIVO CONTINUA SENDO A MEMORIA DESTA ILHA — `/areas/projeto-rodametria.md`
   nao existe nesta nuvem, e e por isso que este campo e longo.
 
-  ESTA PASSADA FEZ A PONTA QUE O FECHO DAS 16h43Z DEIXOU ESCRITA — o texto de
-  leitor que chega por caminho INDIRETO — E A LISTA ENCOMENDADA DEU ZERO. Os tres
-  achados sao medidos, e dois sao zeros honestos: `<svg><title>` e `<svg><desc>`
-  em ZERO ocorrencia nas 10 paginas, e NAO e lacuna (as duas `<svg>` de cada
-  pagina trazem `role="img"` com `aria-label="Rodametria"`, nome acessivel valido
-  que a superficie de ATRIBUTO de ontem JA le); `aria-labelledby` e
-  `aria-describedby` em ZERO ocorrencia; e o `value` de `<option>` e chave de
-  maquina POR DESENHO (`250`, `plano`, `misto` — e o que o `method="get"` envia),
-  que nao deve entrar em superficie de leitor, pela mesma razao escrita em
-  `elementos_de_prosa` para o `<label>` ficar de fora.
+  ESTA PASSADA FEZ A VARREDURA QUE O FECHO DAS 19h46Z DE 10/11 ENCOMENDOU, par
+  por par: `<title>` x `<h1>`, `name` do JSON-LD x H1, rotulo do cartao x nome do
+  registro, e `description` x frase de promessa. DOIS DEFEITOS E TRES ZEROS, e os
+  zeros sao POR DESENHO e nao por sorte: onde a ilha resolve o fato numa expressao
+  e passa a MESMA expressao as duas superficies (o `nome` alimentando trilha e
+  `WebPage.name`; o `$rotulo` alimentando caixa e barra desde ontem), nao ha o que
+  divergir. Os dois defeitos eram os dois lugares onde ela ainda ESCREVIA DUAS
+  VEZES.
 
-  E A PASSADA NAO PAROU NO ZERO: calculei o COMPLEMENTO. Todo no de texto do
-  `<body>`, fora de `script`/`style`/`svg`, MENOS o que a superficie de prosa
-  alcanca. Sobraram 53 nos em `<span>`, 15 em `<a>` e 8 em `<label>` (estes de
-  fora de proposito). O defeito estava num `<span>`.
+  DEFEITO 1 — A PAGINA PROMETIA NA PRIMEIRA TELA O QUE RECUSA NA SEGUNDA. Em
+  https://rodametria.com.br/ , revisao 78, o primeiro paragrafo de prosa debaixo
+  do H1 servia "Precisa de CNH? (...) AQUI A GENTE RESPONDE com a conta na mesa e
+  a ficha citada", e a MESMA pagina servia, 36 elementos abaixo, "Sobre
+  habilitacao esta pagina nao responde" e um <h2> inteiro dizendo "Por que esta
+  pagina nao responde sobre CNH".
 
-  O DEFEITO. Em /veiculos/patinete-eletrico/ a caixa de resposta do topo serve
-  `Preço mediano hoje` ao lado de R$ 1.647,95, e a BARRA FIXA DO RODAPE (32.1,
-  ultima linha) — que serve o MESMO `$n['mediana']` — servia `Mediano`. O mesmo em
-  /veiculos/bicicleta-eletrica/, com R$ 2.299,99. Adjetivo sem o substantivo que
-  diz mediano de QUE, na superficie que o visitante de telefone le por mais tempo,
-  porque a barra e fixa. E a 20.7 literal — "duas declaracoes do mesmo fato comecam
-  iguais e so uma sobe" — e as duas estavam escritas A MAO, em pontos diferentes do
-  mesmo arquivo.
+  E ERA A METADE QUE FICOU DE UM CONSERTO JA FEITO DUAS VEZES: em 06/11 a
+  `description` desta MESMA pagina foi trocada por este motivo exato, com o
+  comentario dela dizendo "descricao que promete o que a primeira tela recusa e a
+  pagina se desdizendo na propria aba do navegador"; em 09/11 o `menu_rotulo` foi
+  trocado pela mesma razao. Duas execucoes consertaram a declaracao que estavam
+  OLHANDO e as duas deixaram esta — a mais lida das tres, porque e prosa de
+  primeira tela. A segunda causa e de DATA: a frase era a promessa da home HUB de
+  29/10, e a home deixou de ser hub em 06/11, quando a F1 tomou a primeira tela.
+  A 32.1 item 2 pede de pagina de FERRAMENTA "UMA frase de promessa (o que a
+  pessoa coloca e o que sai)", as duas irmas cumprem o molde, e a home virou
+  pagina de ferramenta sem a promessa acompanhar.
 
-  A ILHA JA FAZIA CERTO EM 4 DOS 5 LUGARES, e e isso que torna a regra MEDIDA e
-  nao gosto de quem a escreveu: a f1 e a f2 passam `$rotulo`/`$numero` as DUAS
-  chamadas, a f3 passa `$m['rotulo_precisa']`/`$r['carga_minima_tela']` as duas, e
-  a casca nao chama a barra. So a produto.php escrevia o rotulo uma SEGUNDA vez. E
-  as outras tres barras servem FRASE INTEIRA (`O que a resolução diz`, `O que
-  esperar no seu trajeto`, `A carga máxima que você precisa`), o que derruba a
-  desculpa do espaco antes de ela ser dada.
+  POR QUE NENHUM PORTAO O VIA, E A RESPOSTA NAO E "FALTAVA SUPERFICIE": a home
+  ESTAVA na regua (955 elementos de prosa das 10 URLs). O que a absolvia era UMA
+  linha — `if "?" in f: continue`, a forma permitida de "nomear a pergunta em vez
+  de responde-la". Ela esta CERTA para a pergunta sozinha (o <h2> da F1, que o
+  VOZ.md aprova letra por letra) e ERRADA quando o mesmo elemento promete
+  responder na frase seguinte. E e a metade que faltava de uma simetria que o
+  proprio codigo nomeava desde 06/11: "marcador de recusa numa frase NAO absolve a
+  frase vizinha". A guarda existia para a RECUSA e faltava para a PROMESSA.
 
-  POR QUE NENHUM PORTAO O VIA, E A RESPOSTA NAO E "FALTAVA SUPERFICIE". O rotulo
-  mora num `<span>` fora de prosa, entao as cinco reguas — que leem PROSA,
-  ATRIBUTO e JSON-LD — nao o alcancavam. MAS ACRESCENTAR O `<span>` NAO TERIA
-  PEGADO ESTE DEFEITO, e isso esta medido: as cinco reguas sobre `<span>`, `<a>`,
-  `<option>` e `<button>` das 10 paginas dao 524 NOS MEDIDOS E ZERO ACHADO.
-  `Mediano` e acentuado, nao e chave de maquina (`CHAVE_DE_MAQUINA` pede
-  `^[a-z0-9]+([_-][a-z0-9]+)+$`) e nao e vocabulario de bastidor. A regua que pega
-  este defeito nao e de VOCABULARIO: e de CONTAGEM DE DECLARACOES.
+  DEFEITO 2 — O `og:title` SERVIA O ROTULO DA TRILHA, EM 10 DE 10 URLs. O
+  `<title>` sai do campo `titulo` do mapa; o `og:title` saia do `nome`, que e o
+  rotulo da trilha da 16.3. A home compartilhada no WhatsApp se chamava "Inicio";
+  a F3, "Carga maxima". E A LINHA DE BAIXO JA FAZIA CERTO — o `og:description` le
+  a MESMA `description` da meta de cima —, entao era o par `og:` metade certo. De
+  novo o portao nao podia ver: o `og:title` JA esta em `META_DE_LEITOR` e as cinco
+  reguas de vocabulario o leem desde 09/11, mas o VALOR estava certo e vinha do
+  CAMPO ERRADO. "Inicio" e acentuado, nao e chave de maquina, nao e bastidor. PELO
+  SEGUNDO DIA SEGUIDO: a regua que pega esta classe nao e de VOCABULARIO, e de
+  CONTAGEM DE DECLARACOES.
 
-  O CONSERTO VAI NA RAIZ: `rdm_produto_pagina_html()` declara `$rotulo`, `$numero`
-  e `$unidade` UMA vez, e as duas chamadas recebem as mesmas expressoes. NAO
-  troquei `'Mediano'` por `'Preço mediano hoje'`: duas declaracoes que hoje sao
-  iguais e exatamente o que a 20.7 proibe, porque amanha so uma sobe.
-  `rodametria-produto` 1.8.2 -> 1.9.0, espelhado no manifest pela ferramenta que ja
-  espelha o `sha256` (20.7, regra 1), que IMPRIMIU as duas trocas que fez.
+  OS DOIS CONSERTOS VAO NA RAIZ, no desenho de 10/11. O titulo e resolvido UMA vez
+  em `rodametria_casca_titulo_do_slug()` e as DUAS chamadas — o <title> do
+  documento e o og:title do wp_head — recebem a mesma expressao. A frase de
+  promessa nova e a que a 32.1 pede, no molde das irmas, SEM o nome da resolucao,
+  que o VOZ.md proibe no primeiro paragrafo.
 
-  O PORTAO, E A SEGUNDA AFIRMACAO E A QUE MATA A CLASSE.
-  `teste-barra-de-compra.php` ganhou a quarta secao: (1) o rotulo e o numero da
-  barra tem de ser, letra por letra, os de uma chamada a `rodametria_casca_caixa`
-  da MESMA FUNCAO — a comparacao e sobre o TEXTO e NAO resolve variavel de
-  proposito, porque onde o texto ja concorda nao ha o que resolver e onde discorda
-  o portao quer que alguem escreva a declaracao uma vez em vez de a regua afrouxar
-  (20.8); e (2) o rotulo da barra NUNCA e literal escrito a mao, porque o mesmo
-  literal nas duas chamadas satisfaria (1) e seria o mesmo defeito no dia seguinte
-  — exigir EXPRESSAO torna a classe inteira impossivel, que e a licao da 32.1-b.
-  47 afirmacoes, 7 mundos fabricados, e o primeiro deles e O AR DA REVISAO 77.
-  PROVADO QUE MORDE por fora do mundo fabricado tambem: com o produto.php VELHO de
-  volta no lugar (`git stash`), o portao reprova nomeando a cadeia — "a barra
-  recebe o rotulo `'Mediano'`, escrito A MAO na chamada" — e com o conserto volta
-  a 0 falha.
+  OS DOIS PORTOES. (1) A regua de habilitacao passa a valer por ELEMENTO: pergunta
+  de CNH em elemento que promete que ESTA ILHA responde reprova, com a cadeia
+  inteira nomeada. O sujeito da promessa e a ilha e nunca o anuncio — "o anuncio
+  nao responde nenhuma das tres" e a tese desta casa e TEM de passar —, entao a
+  forma negada sai do texto antes da busca. E o elemento que promete E declara o
+  limite no MESMO elemento desarma a reprovacao, senao o portao empurraria quem
+  escreve a tirar a recusa de perto da promessa (20.5). (2) `conferir-no-ar.py`
+  exige, em toda URL do sitemap, que o `og:title` exista e seja o <title> servido
+  LETRA POR LETRA, com as entidades desfeitas antes de comparar.
 
-  A SUPERFICIE NOVA QUE EU IA ESCREVER E NAO ESCREVI, E QUEM DECIDIU FOI A 31.2.
-  O caminho natural depois de medir era acrescentar `<span>` e `<a>` ao portao de
-  ar. A 31.2 e literal: portao novo "so nasce quando existe defeito medido no ar
-  que ela teria pegado — nomeado no commit com URL e data. 'Pode acontecer' nao
-  basta". Superficie que nao teria pegado o defeito de hoje nao nasce hoje. FICA
-  REGISTRADO para ninguem gastar execucao redescobrindo: a superficie de
-  `<span>`/`<a>`/`<option>`/`<button>` esta MEDIDA em 10 de 10 paginas, 524 nos,
-  ZERO achado, em 10/11/2026. No dia em que um defeito de vocabulario aparecer num
-  `<span>` fora de prosa, a medicao ja esta feita.
+  O QUE EU NAO MEXI, E ESTA MEDIDO PARA NINGUEM GASTAR EXECUCAO: o <h2> da F1
+  continua "Esse eletrico precisa de CNH?" e esta CERTO — o VOZ.md o aprova na
+  secao "Home", o vocabulario da pessoa e CNH, e nomear a pergunta e a forma
+  permitida. O que a pagina nao pode e PROMETER a resposta dela. E o cartao da F1
+  na home HUB, com `espera` dizendo "Ainda nao esta no ar", tambem esta certo: ele
+  so e servido quando o filtro da F1 devolve vazio, e nesse mundo a F1 de fato nao
+  esta no ar — a causa que o texto nomeia (o limiar legal `pendente`) e exatamente
+  a condicao que faz `rodametria_f1_banco()` devolver nulo.
 
-  O DESEMBARQUE E O VEREDITO QUE POUPOU OITO MINUTOS. Push as 19h28Z, revisao 78
-  no manifest e no raw, `/status` em 77, `ultimo` em 19:19:26 — ANTERIOR ao commit
-  do manifest. Em vez de reacionar, chamei a funcao pura
-  `veredito_da_revisao_atrasada` desta ilha, e ela disse `evento-nao-vencido`:
-  "REACIONAR NAO ANTECIPA VENCIMENTO", com teto em 19:49:26 e o aviso de que pode
-  cair ANTES. A revisao entrou as 19:41:02 — 8 minutos antes do teto, exatamente a
-  segunda ressalva da 20.9. E a primeira vez que essa funcao foi usada por uma
-  execucao que nao a escreveu, e ela respondeu o que a 20.5 teria errado.
+  MEDIDO. Antes do conserto, que e o que a 31.2 pede: 955 elementos de prosa nas
+  10 URLs, 2 com promessa de resposta, 1 falando de habilitacao — a home; no
+  repositorio, 2.207 afirmacoes e 1 falha, a mesma, com ZERO falso positivo.
+  Bancada: 40 portoes sem rede, 0 falha, ZERO inerte. Portao de ar: 637 afirmacoes,
+  0 falha (eram 617 em 10/11; as 20 novas sao as duas do og:title em cada URL).
+  Autoteste da regua de tela: 110 mundos, 0 falha. PROVADO QUE MORDE por fora do
+  mundo fabricado: com o texto velho de volta no PHP — por COPIA DE ARQUIVO, nunca
+  `git stash` com bancada rodando — o portao reprova nomeando a cadeia, e com o
+  conserto volta a 0. NO AR: `Aqui a gente responde` em ZERO, `Precisa de CNH?` em
+  ZERO, o <h2> da F1 em 1, a oracao de recusa em 3, e og:title identico ao <title>
+  em 10 de 10. NAVEGADOR: 32.5 em 10 de 10 (pior caixa 405 px, pior compra
+  1.279 px) e console 10 de 10 limpo. A HOME MELHOROU: formulario de 405 px para
+  369 px.
 
-  MEDIDO. Bancada: 40 portoes sem rede, 0 falha, ZERO inerte. Portao de ar: 617
-  afirmacoes, 0 falha, com a versao no ar conferida em 6 de 6 snippets
-  (`rodametria-produto` 1.9.0). Log da revisao 78: 8 itens declarados e 8 linhas de
-  item, as 8 dizendo `ok`, lidas do FECHO PARA BAIXO. NAVEGADOR: 32.5 em 10 de 10
-  (pior caixa 405 px, pior compra 1.279 px) e console 10 de 10 limpo. E A MEDICAO
-  QUE O CONSERTO EXIGIA E QUE NENHUM PORTAO DESTA ILHA FAZ: o rotulo passou de 8
-  para 18 caracteres DENTRO de uma barra FIXA, entao medi a barra a 390 px nas
-  CINCO paginas que a tem — 390 px de largura, 70 px de altura, transbordo
-  horizontal ZERO, rotulo em UMA linha e borda direita do botao em 374 de 390 nas
-  cinco. Cabe, medido e nao suposto.
+  O DESEMBARQUE FOI DE DUAS REVISOES E O CRON DECIDIU AS DUAS, pela funcao pura
+  `veredito_da_revisao_atrasada` desta ilha, chamada em vez de reacionar: a 79 deu
+  `evento-nao-vencido` com teto em 10:45:49 e entrou as 10:40:11; a 81, empurrada
+  um minuto DEPOIS da rodada anterior (o pior momento possivel), deu o mesmo
+  veredito com teto em 11:10:11 e entrou as 11:09:46 — 25 segundos antes do teto.
+  A segunda ressalva da 20.9 pela segunda passada seguida. No meio da espera a
+  reserva foi RENOVADA pela 1.1.
 
-  PROXIMO PASSO DESBLOQUEADO, e a frase honesta vem primeiro: NAO HA BLOCO DE
-  CONSTRUCAO DESBLOQUEADO NESTA ILHA, e isso segue MEDIDO, nao suposto.
+  PROXIMO PASSO DESBLOQUEADO, e a frase honesta vem primeiro: SEGUE NAO HAVENDO
+  BLOCO DE CONSTRUCAO DESBLOQUEADO NESTA ILHA, e isso segue MEDIDO.
 
   1. A FILA ACABOU. Todos os blocos entregues menos o 5 (artigos-ancora), que
      depende de `ilhas/rodametria/pauta.md`, inexistente, e que pela 17.1 e
      escrito pela rotina Pauta das ilhas, nao pela Fundacao.
   2. PAGINA NOVA SEGUE TRAVADA PELAS DUAS PONTAS: a 30.8 nao deixa afirmar `alvo`
-     daqui — e a 33 ja mediu que ter navegador NAO e ter SERP, porque o navegador
-     atravessa o mesmo egresso —, e `moto eletrica` (823 mil) e `scooter eletrica`
-     (301 mil) esperam PRODUTO e nao SERP, pelo Mercado Livre, onde o link exige
-     clique humano (25.6).
+     daqui — e a 33 ja mediu que ter navegador NAO e ter SERP —, e `moto eletrica`
+     (823 mil) e `scooter eletrica` (301 mil) esperam PRODUTO e nao SERP, pelo
+     Mercado Livre, onde o link exige clique humano (25.6).
   3. A INDEXACAO SEGUE SENDO A PRIORIDADE MAXIMA (secao 14) e `primeira_indexacao`
      segue `null`, com a ilha no ar desde 29/10 e 10 URLs contra as 40 da 21.1. Os
      dois itens do despacho de 04/11 pedem o Search Console, instrumento da
@@ -129,22 +129,24 @@ bloco_atual: |
   4. OS 11 ITENS DA VITRINE NUNCA TESTADOS continuam nunca testados, e a causa e
      UMA so e esta medida na 33: conduzir a aba contra o anti-robo da Shopee foi
      RECUSADO pelo guarda deste ambiente, e a recusa nao se contorna.
-  5. O QUE SOBROU PARA QUEM VIER, E E A PONTA DESTA PASSADA: a familia do defeito
-     de hoje nao e de vocabulario, e de DUAS DECLARACOES DO MESMO FATO escritas a
-     mao em lugares diferentes. O portao de hoje cobra isso no PAR caixa/barra, e
-     so nele. A varredura que falta e a mesma pergunta nos OUTROS pares que esta
-     ilha serve duas vezes: o `<title>` contra o `<h1>`, a `description` contra a
-     frase de promessa, o `name` do JSON-LD contra o H1 da pagina, e o rotulo do
-     cartao da vitrine contra o nome do registro no banco. O caminho e o das
-     quatro ultimas passadas: ler o servido com os olhos, agora procurando o mesmo
-     FATO dito duas vezes em vez de a palavra errada dita uma.
+  5. A LISTA ENCOMENDADA PARA A PROXIMA, e ela e a continuacao desta: os pares que
+     esta varredura NAO alcancou. (a) a `description` da <meta> contra a PRIMEIRA
+     FRASE DO CORPO nas 9 paginas que nao sao a home — hoje so a home foi lida par
+     a par, e foi exatamente ali que o defeito morava; (b) o `gerado_em` do banco
+     contra a data que a pagina IMPRIME em prosa (o portao de ar ja cruza o
+     `dateModified` do JSON-LD contra a prosa, entao e o par do BANCO que ninguem
+     cruza); (c) o `aria-label` do <nav> contra o rotulo visivel do menu; (d) o
+     `alt` da foto do cartao de compra contra o nome do anuncio no banco. O caminho
+     e o das cinco ultimas passadas: ler o servido com os olhos procurando o mesmo
+     FATO dito duas vezes, e consertar na RAIZ — uma declaracao, duas chamadas —
+     em vez de igualar os dois literais.
   6. E AS DUAS DIVIDAS QUE NAO SAO DESTA PASSADA: (a) o fecho da revisao 71
-     declarou 11 itens e o log trouxe 12 linhas — NAO investigavel hoje e a causa
-     e medida: o log do `/status` e uma janela de 15 linhas e esta em 78/76, entao
-     as linhas da 71 ja rolaram para fora. Quem quiser fechar isso tem de pegar a
-     divergencia NO DIA. Nesta revisao 78 os dois numeros batem (8 e 8). (b) O
+     declarou 11 itens e o log trouxe 12 linhas — NAO investigavel, e a causa e
+     medida: o log do `/status` e uma janela de 15 linhas e esta em 81/79, entao as
+     linhas da 71 ja rolaram para fora. Quem quiser fechar isso tem de pegar a
+     divergencia NO DIA; nas revisoes 79 e 81 os numeros batem (8 e 8). (b) O
      `print` do resumo do `--autoteste` de `conferir-no-ar.py` esta indentado
      DENTRO do `else` do carregamento da regua irma, entao no mundo em que ela nao
      carrega o portao imprime o veredito SEM dizer quantas afirmacoes mediu. Nao
-     toquei nele, pelo mesmo motivo da passada anterior: nao e defeito medido no
-     ar, e a 31.2 e literal.
+     toquei nele, pelo mesmo motivo das duas passadas anteriores: nao e defeito
+     medido no ar, e a 31.2 e literal.
