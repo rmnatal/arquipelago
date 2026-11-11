@@ -71,7 +71,7 @@
    Antes disto a ilha cujo produto e "o preco de hoje" tinha ZERO ocorrencia de
    `dateModified` e de `datePublished` em todo o JSON-LD das 9 URLs. */
 if ( ! defined( 'RODAMETRIA_CASCA_VERSAO' ) ) {
-	define( 'RODAMETRIA_CASCA_VERSAO', '1.20.0' );
+	define( 'RODAMETRIA_CASCA_VERSAO', '1.21.0' );
 }
 
 /**
@@ -1901,17 +1901,40 @@ if ( ! function_exists( 'rodametria_casca_home_html' ) ) {
 function rodametria_casca_home_html() {
 	$html  = '<div class="rdm-faixa rdm-pagina">';
 	$html .= '<h1>Os três números antes de comprar um elétrico</h1>';
-	/* ITEM 2 DO DESPACHO DE 30/10/2026 — O PESO SAIU DA PERGUNTA DE KM.
-	   Ela dizia "Faz quantos km de verdade com o seu peso?" e a F2 nao faz essa
-	   conta: a constante de consumo por quilo de quem pilota esta `pendente` e
-	   pela secao 10 nao pode entrar em formula. O RELEVO entra de verdade — e o
-	   fator medido no estudo de Quito —, entao a pergunta passa a prometer o que
-	   a ferramenta entrega. A TERCEIRA pergunta CONTINUA sendo de peso, e esta
-	   certa: "Aguenta voce e a mochila?" e a F3, e carga maxima e peso de
-	   verdade, comparado contra o `carga_max_kg` de cada veiculo. */
-	$html .= '<p class="rdm-promessa">Precisa de CNH? Faz quantos km de verdade na sua ladeira? '
-		. 'Aguenta você e a mochila? O anúncio não responde nenhuma das três direito. Aqui a gente '
-		. 'responde com a conta na mesa e a ficha citada.</p>';
+	/* A FRASE DE PROMESSA DESTA HOME ERA A DA HOME HUB DE 29/10, E A HOME DEIXOU
+	   DE SER HUB EM 06/11 — E A PRIMEIRA DAS TRES PERGUNTAS QUE ELA PROMETIA
+	   RESPONDER E A UNICA QUE ESTA PAGINA RECUSA.
+	   Medida no ar as 10h2xZ de 11/11/2026, revisao 78, em
+	   https://rodametria.com.br/ : o primeiro paragrafo de prosa debaixo do H1
+	   servia "Precisa de CNH? (...) AQUI A GENTE RESPONDE com a conta na mesa e a
+	   ficha citada", e a MESMA pagina servia, 36 elementos abaixo, "Sobre
+	   habilitacao esta pagina nao responde" e um titulo inteiro, "Por que esta
+	   pagina nao responde sobre CNH".
+	   E A METADE QUE FICOU DE UM CONSERTO JA FEITO: em 06/11 a `description`
+	   desta MESMA pagina foi trocada por este mesmo motivo, e o comentario dela
+	   logo acima o diz com todas as letras — "descricao que promete o que a
+	   primeira tela recusa e a pagina se desdizendo na propria aba do
+	   navegador". Em 09/11 o `menu_rotulo` foi trocado pela mesma razao ("o menu
+	   nomeia o que a ferramenta ENTREGA"). Duas execucoes consertaram a
+	   declaracao que estavam olhando, e as DUAS deixaram esta — que e a mais
+	   lida das tres, porque e prosa de primeira tela. E a 20.7 literal: o mesmo
+	   fato declarado a mao em lugares diferentes sobe de um lado so.
+	   O QUE ELA DIZ AGORA e o que a 32.1, item 2, pede de pagina de FERRAMENTA:
+	   o que a pessoa coloca e o que sai — no molde das duas irmas ("Diga a tensao
+	   e a amperagem...", "Diga o seu peso e o que voce leva..."). A home passou a
+	   ser pagina de ferramenta quando a F1 tomou a primeira tela, e a promessa
+	   dela nao acompanhou.
+	   E O NOME DA RESOLUCAO NAO ENTRA AQUI, de proposito: o `VOZ.md` proibe
+	   "a Resolucao Contran no 996/2023" no titulo e no primeiro paragrafo — ela
+	   mora na tabela e no "como sabemos", no fim da pagina. Por isso "a regra".
+	   O QUE NAO MUDOU, e esta MEDIDO para ninguem gastar execucao mexendo: o H2
+	   da F1 continua "Esse eletrico precisa de CNH?", e ele esta CERTO — o
+	   `VOZ.md`, na secao "Home", o aprova letra por letra, e nomear a pergunta
+	   que a pessoa digita e a forma que a regua de afirmacao de tela permite. O
+	   que esta pagina nao pode e PROMETER a resposta dela. */
+	$html .= '<p class="rdm-promessa">Diga a potência nominal, a velocidade máxima de fábrica e '
+		. 'se tem acelerador: sai a categoria do seu elétrico — bicicleta elétrica, autopropelido '
+		. 'ou ciclomotor — e o que a regra exige dele de placa e registro.</p>';
 
 	/* Caixa de resposta no topo (32.2), e o numero dela e CONTADO do banco,
 	   nunca digitado — a regra do numero de tela da secao 8. */

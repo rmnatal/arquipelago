@@ -141,6 +141,56 @@ RECUSAS_DE_HABILITACAO = (
     "para a rua sem habilitacao",
 )
 
+# ---------------------------------------------------------------------------
+# A PROMESSA DE RESPOSTA — e ela existe porque A ABSOLVICAO DESTA REGUA ERA DE
+# MAO UNICA (11/11/2026).
+#
+# MEDIDO NO AR as 10h2xZ de 11/11/2026, na revisao 78, em
+# `https://rodametria.com.br/` — o primeiro paragrafo de prosa da home, debaixo
+# do H1, servia LETRA POR LETRA:
+#
+#   "Precisa de CNH? Faz quantos km de verdade na sua ladeira? Aguenta voce e a
+#    mochila? O anuncio nao responde nenhuma das tres direito. AQUI A GENTE
+#    RESPONDE com a conta na mesa e a ficha citada."
+#
+# e a MESMA pagina, 36 elementos abaixo, servia *"Sobre habilitacao esta pagina
+# nao responde"* e um titulo inteiro, *"Por que esta pagina nao responde sobre
+# CNH"*. A pagina promete na primeira tela o que recusa na segunda.
+#
+# POR QUE NENHUM PORTAO O VIA, e a resposta nao e "faltava superficie": a home
+# ESTAVA na regua (955 elementos de prosa medidos nas 10 URLs nesta mesma
+# passada). O que a absolvia era o `if "?" in f: continue` abaixo — a forma
+# PERMITIDA de "nomear a pergunta em vez de responde-la". Essa absolvicao esta
+# certa para a pergunta que fica sozinha (o H2 da F1, que o `VOZ.md` aprova na
+# secao "Home"), e esta errada quando o MESMO elemento promete responder na
+# frase seguinte.
+#
+# E E A METADE QUE FALTAVA DE UMA SIMETRIA QUE O CODIGO JA NOMEAVA: o docstring
+# de `problemas_de_habilitacao` diz, desde 06/11, que *"marcador de recusa numa
+# frase NAO absolve a frase vizinha"*. A guarda era de mao unica — a recusa nao
+# vazava para o lado, e a PROMESSA vazava. Agora as duas valem por ELEMENTO.
+#
+# O sujeito da promessa e a ILHA, nunca o anuncio: "o anuncio nao responde
+# nenhuma das tres" e a tese desta casa e tem de passar. Por isso a forma negada
+# sai do texto ANTES da busca.
+NEGACAO_DE_RESPOSTA = re.compile(r"\b(?:nao|nunca|ainda\s+nao)\s+respond\w*")
+PROMESSA_DE_RESPOSTA = re.compile(
+    r"\b(?:aqui\s+)?"
+    r"(?:a\s+gente|nos|este\s+site|esta\s+pagina|esta\s+casa|esta\s+ilha|a\s+rodametria)"
+    r"\s+(?:ja\s+|sempre\s+)?respond\w*")
+
+
+def promessa_de_resposta(texto):
+    """A promessa, se o ELEMENTO prometer que esta ilha responde. Senao, `None`.
+
+    Devolve o trecho casado para que a mensagem de reprovacao nomeie a cadeia
+    inteira — pergunta mais promessa — em vez de so apontar a pergunta, que
+    sozinha esta certa.
+    """
+    m = PROMESSA_DE_RESPOSTA.search(NEGACAO_DE_RESPOSTA.sub(" ", sem_acento(texto)))
+
+    return m.group(0) if m else None
+
 
 def _so_dentro_de_citacao(frase, token):
     """O token aparece SO dentro de titulo de anuncio citado?
@@ -170,6 +220,23 @@ def problemas_de_habilitacao(onde, elementos):
     """
     maus = []
     for texto in elementos:
+        # A PROMESSA E DO ELEMENTO, NAO DA FRASE (11/11/2026). Ver o comentario
+        # de `promessa_de_resposta`: as duas absolvicoes abaixo — a pergunta e o
+        # substantivo "pergunta" — valem porque NOMEIAR a pergunta nao e
+        # responde-la. Num elemento que promete que esta ilha responde, nomear
+        # deixa de ser nomear: e a promessa, dita em duas frases.
+        promessa = promessa_de_resposta(texto)
+        # E O ELEMENTO QUE PROMETE E DECLARA O LIMITE NO MESMO ELEMENTO ESTA
+        # CERTO, e por isso a promessa se desarma aqui: "Precisa de CNH? Sobre
+        # habilitacao esta pagina nao responde; o resto a gente responde" e a
+        # forma honesta, e reprova-la empurraria quem a escrevesse a tirar a
+        # recusa de perto da promessa — o contrario do que esta regua quer
+        # (20.5: portao que reprova o certo e o caminho mais curto para alguem
+        # passar a ignora-lo). O desarme e do ELEMENTO; dentro dele a recusa
+        # continua NAO absolvendo a frase vizinha, logo abaixo.
+        if promessa is not None and any(m in sem_acento(texto)
+                                        for m in RECUSAS_DE_HABILITACAO):
+            promessa = None
         for f in frases(texto):
             s = sem_acento(f)
             toca = [t for t in TOKENS_DE_HABILITACAO if t in s]
@@ -177,14 +244,20 @@ def problemas_de_habilitacao(onde, elementos):
                 continue
             if all(_so_dentro_de_citacao(f, t) for t in toca):
                 continue
+            if any(m in s for m in RECUSAS_DE_HABILITACAO):
+                continue
+            if promessa is not None:
+                maus.append("%s: %s  <- e o MESMO elemento promete \"%s\": a "
+                            "pergunta deixa de nomear a pergunta e passa a "
+                            "prometer a resposta que esta pagina recusa"
+                            % (onde, f.strip(), promessa))
+                continue
             if "?" in f:
                 continue
             # "pergunta"/"perguntas" NOMEIA a pergunta em vez de responde-la:
             # "Tres perguntas (...): precisa de CNH e placa, quantos km (...)",
             # "A pergunta da CNH e a mais procurada", "Perguntas frequentes".
             if "pergunta" in s:
-                continue
-            if any(m in s for m in RECUSAS_DE_HABILITACAO):
                 continue
             maus.append("%s: %s" % (onde, f.strip()))
 
@@ -1124,6 +1197,79 @@ def autoteste():
             "x", molde_real + " Tipo: observacao_de_mercado.")),
         "11f. e a chave de verdade ao lado da lacuna REPROVA — o desconto remove a "
         "lacuna, nunca a regua")
+
+    # MUNDO 12 — A PROMESSA DE RESPOSTA, E O PRIMEIRO MUNDO E O AR DA REVISAO 78.
+    # Copiado letra por letra do primeiro paragrafo de prosa da home servida as
+    # 10h2xZ de 11/11/2026 em https://rodametria.com.br/ . Mundo fabricado de
+    # cabeca prova a regua contra a imaginacao de quem a escreveu; este prova
+    # contra o defeito.
+    AR_78_PROMESSA_DA_HOME = (
+        "Precisa de CNH? Faz quantos km de verdade na sua ladeira? Aguenta você "
+        "e a mochila? O anúncio não responde nenhuma das três direito. Aqui a "
+        "gente responde com a conta na mesa e a ficha citada.")
+    p12 = problemas_de_habilitacao("ar78", [AR_78_PROMESSA_DA_HOME])
+    diz(len(p12) == 1,
+        "12. o AR DA REVISAO 78 da home REPROVA: a pergunta de CNH e a promessa "
+        "de resposta no MESMO elemento (%d achado(s))" % len(p12))
+    diz(bool(p12) and "aqui a gente responde" in p12[0],
+        "12. e a mensagem nomeia a CADEIA — a pergunta mais a promessa —, nunca "
+        "so a pergunta, que sozinha esta certa")
+
+    # 12-b — O QUE A REGUA NAO PODE REPROVAR, e sao as formas que esta ilha SERVE
+    # hoje. As duas primeiras sao do ar desta mesma revisao.
+    for t in (
+        # O H2 DA F1, que o VOZ.md aprova na secao "Home": pergunta sozinha.
+        "Esse elétrico precisa de CNH?",
+        # A DOBRA da propria F1, que e a recusa com todas as letras.
+        "Sobre habilitação esta página não responde, e o motivo é um só: a "
+        "resolução que decide a categoria não tem artigo nenhum sobre CNH.",
+        # O SUJEITO DA NEGATIVA E O ANUNCIO, e isso e a tese desta casa.
+        "Precisa de CNH? O anúncio não responde isso direito.",
+        # A PROMESSA SEM HABILITACAO NENHUMA — a frase nova desta passada.
+        "Diga a potência nominal, a velocidade máxima de fábrica e se tem "
+        "acelerador: sai a categoria do seu elétrico — bicicleta elétrica, "
+        "autopropelido ou ciclomotor — e o que a regra exige dele de placa e "
+        "registro.",
+        # A PROMESSA QUE DECLARA O LIMITE NO MESMO ELEMENTO (o desarme).
+        "Precisa de CNH? Sobre habilitação esta página não responde. O resto a "
+        "gente responde com a conta na mesa.",
+    ):
+        diz(not problemas_de_habilitacao("boa", [t]),
+            "12-b. passa, e tem de passar: %r" % t[:62])
+
+    # 12-c — AS DUAS REGUAS TEM DE DISCORDAR (20.8). A velha e esta mesma regua
+    # ANTES de 11/11/2026: a absolvicao pelo `?` sem olhar o elemento. Autoteste
+    # em que as duas concordam nao mede conserto nenhum.
+    def regua_de_10_11(texto):
+        """A regua de ontem, refeita ao lado da nova."""
+        maus = []
+        for f in frases(texto):
+            s = sem_acento(f)
+            if not any(t in s for t in TOKENS_DE_HABILITACAO):
+                continue
+            if "?" in f or "pergunta" in s:
+                continue
+            if any(m in s for m in RECUSAS_DE_HABILITACAO):
+                continue
+            maus.append(f)
+        return maus
+
+    diz(not regua_de_10_11(AR_78_PROMESSA_DA_HOME),
+        "12-c. a regua de 10/11 APROVAVA o ar da revisao 78 — e por isso o "
+        "defeito ficou no ar")
+    diz(len(regua_de_10_11("Esse elétrico precisa de CNH?")) == 0
+        and len(problemas_de_habilitacao("x", ["Esse elétrico precisa de CNH?"])) == 0,
+        "12-c. e as duas CONCORDAM na pergunta sozinha: o conserto tirou uma "
+        "absolvicao, nao a forma permitida")
+
+    # 12-d — A PROMESSA E DO ELEMENTO, NAO DA PAGINA. Dois elementos separados —
+    # a pergunta num, a promessa noutro — NAO reprovam, pelo mesmo motivo que o
+    # corte em frase existe: a unidade desta regua e o elemento, e grudar
+    # vizinhos reprovaria texto certo por vizinhanca.
+    diz(not problemas_de_habilitacao(
+            "x", ["Esse elétrico precisa de CNH?", "Aqui a gente responde com a conta na mesa."]),
+        "12-d. pergunta num elemento e promessa noutro NAO reprovam: a unidade e "
+        "o elemento")
 
     print("")
     print("  AUTOTESTE — %d mundo(s) medido(s), %d falha(s)" % (len(ok) + len(mal), len(mal)))
