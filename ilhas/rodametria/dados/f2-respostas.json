@@ -218,7 +218,7 @@
         "autonomia_declarada_km": 60,
         "fonte": "Limaico Quinteros, R. D. — Universidade Politécnica Salesiana, sede Quito, 2025 (mestrado em Engenharia Automotiva)",
         "data_leitura": "2026-10-28",
-        "nota": "É MOTO, não patinete. Entra aqui porque é a única medição real de autonomia que a ilha tem com a ficha ao lado: 29,8 km medidos em condição mista contra 60 km de ficha.",
+        "nota": "É MOTO, não patinete. Entra aqui porque é a única medição real de autonomia que temos com a ficha do fabricante ao lado: 29,8 km medidos em condição mista contra 60 km de ficha.",
         "externa": true,
         "wh": "1.800",
         "wh_bruto": 1800,
