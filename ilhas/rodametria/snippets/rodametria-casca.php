@@ -71,7 +71,7 @@
    Antes disto a ilha cujo produto e "o preco de hoje" tinha ZERO ocorrencia de
    `dateModified` e de `datePublished` em todo o JSON-LD das 9 URLs. */
 if ( ! defined( 'RODAMETRIA_CASCA_VERSAO' ) ) {
-	define( 'RODAMETRIA_CASCA_VERSAO', '1.21.0' );
+	define( 'RODAMETRIA_CASCA_VERSAO', '1.22.0' );
 }
 
 /**
@@ -605,7 +605,15 @@ add_action( 'wp_head', function () {
 		echo '<meta name="description" content="' . esc_attr( $p['description'] ) . '">' . "\n";
 		echo '<meta property="og:description" content="' . esc_attr( $p['description'] ) . '">' . "\n";
 	}
-	echo '<meta property="og:title" content="' . esc_attr( isset( $p['nome'] ) ? $p['nome'] : '' ) . '">' . "\n";
+	/* O og:title E O <title> SERVIDO, LETRA POR LETRA — e nao o `nome`, que e o
+	   rotulo da trilha. A razao inteira, com as 10 medicoes de 11/11/2026, esta
+	   no comentario de `rodametria_casca_titulo_do_slug()`, que e quem resolve o
+	   titulo para as DUAS chamadas. Sem titulo a tag nao sai: og:title vazio diz
+	   menos do que og:title ausente. */
+	$titulo_desta_pagina = rodametria_casca_titulo_do_slug( $slug );
+	if ( '' !== $titulo_desta_pagina ) {
+		echo '<meta property="og:title" content="' . esc_attr( $titulo_desta_pagina ) . '">' . "\n";
+	}
 	echo '<meta property="og:type" content="website">' . "\n";
 	echo '<meta property="og:site_name" content="Rodametria">' . "\n";
 	echo '<meta property="og:locale" content="pt_BR">' . "\n";
@@ -680,16 +688,48 @@ add_action( 'wp_head', function () {
 	}
 }, 6 );
 
+/* O TITULO DESTA PAGINA, NUMA FUNCAO SO — e ela nasceu em 11/11/2026 porque a
+ * SEGUNDA chamada estava lendo o campo ERRADO, nas 10 URLs.
+ *
+ * MEDIDO NO AR as 10h3xZ de 11/11/2026, revisao 78, nas 10 URLs do
+ * `wp-sitemap.xml`: o `<title>` servia o `titulo` do mapa e o `og:title` servia
+ * o `nome` — que e o rotulo da TRILHA da 16.3, de duas palavras. Em 10 de 10:
+ *
+ *   /                                 <title> "Rodametria — os tres numeros (...)"   og:title "Inicio"
+ *   /peso-maximo-patinete-eletrico/   <title> "Peso maximo suportado (...)"           og:title "Carga maxima"
+ *   /sobre/                           <title> "Quem publica a Rodametria (...)"       og:title "Sobre"
+ *
+ * E O og:title NAO E DECORACAO: e o nome que o WhatsApp, o Facebook, o LinkedIn
+ * e o Slack mostram quando alguem compartilha o link, e e meta de LEITOR nesta
+ * ilha (`META_DE_LEITOR` de `conferir-no-ar.py`). A home desta ilha
+ * compartilhada em qualquer um deles se chamava "Inicio".
+ *
+ * E A LINHA DE BAIXO JA FAZIA CERTO, o que torna isto defeito e nao escolha: o
+ * `og:description` ao lado le a MESMA `description` que a `<meta>` de cima —
+ * mesma fonte, duas superficies. Era o par `og:` metade certo.
+ *
+ * O CONSERTO VAI NA RAIZ, no desenho da 20.7 que esta ilha usou em 10/11 no
+ * rotulo da barra fixa: o titulo e resolvido UMA vez, aqui, e as DUAS chamadas
+ * — o `<title>` do documento e o `og:title` do `wp_head` — recebem a mesma
+ * expressao. Trocar o literal de um lado so e o que esta regra proibe, porque
+ * amanha so um sobe. */
+if ( ! function_exists( 'rodametria_casca_titulo_do_slug' ) ) {
+function rodametria_casca_titulo_do_slug( $slug ) {
+	$mapa = rodametria_casca_paginas();
+	if ( '' !== (string) $slug && ! empty( $mapa[ $slug ]['titulo'] ) ) {
+		return (string) $mapa[ $slug ]['titulo'];
+	}
+
+	return '';
+}
+}
+
 /* O <title> do documento sai do mapa, nao do tema: titulo e campo publicado e
  * precisa ter uma fonte so (secao 8). */
 add_filter( 'pre_get_document_title', function ( $titulo ) {
-	$slug = rodametria_casca_slug_atual();
-	$mapa = rodametria_casca_paginas();
-	if ( '' !== $slug && ! empty( $mapa[ $slug ]['titulo'] ) ) {
-		return $mapa[ $slug ]['titulo'];
-	}
+	$meu = rodametria_casca_titulo_do_slug( rodametria_casca_slug_atual() );
 
-	return $titulo;
+	return '' !== $meu ? $meu : $titulo;
 }, 10, 1 );
 
 /* ===========================================================================

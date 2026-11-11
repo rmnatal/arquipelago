@@ -1647,6 +1647,34 @@ def main():
         # <title>, H1, description e JSON-LD (32.3: nenhum deles muda com o molde).
         afirma(bool(re.search(r"<title>[^<]{10,}</title>", html)),
                "%s: sem <title>" % caminho)
+
+        # O og:title E O <title>, LETRA POR LETRA (11/11/2026).
+        #
+        # MEDIDO NO AR as 10h3xZ de 11/11/2026, revisao 78, em 10 de 10 URLs: o
+        # `<title>` servia o `titulo` do mapa de paginas e o `og:title` servia o
+        # `nome`, que e o rotulo da TRILHA da 16.3. A home se chamava "Inicio" no
+        # cartao de compartilhamento; a F3, "Carga maxima". O `og:description` ao
+        # lado ja lia a MESMA `description` da meta de cima — o par `og:` estava
+        # metade certo, e e por isso que isto e defeito e nao escolha.
+        #
+        # O og:title JA ESTAVA NA REGUA DESTA ILHA — `META_DE_LEITOR` o nomeia,
+        # e as cinco reguas de vocabulario o leem desde 09/11. O que nenhuma
+        # delas podia ver e que o VALOR estava certo e vinha do CAMPO ERRADO:
+        # "Inicio" e acentuado, nao e chave de maquina e nao e vocabulario de
+        # bastidor. A regua que pega isto nao e de vocabulario, e de CONTAGEM DE
+        # DECLARACOES — a mesma familia do `Mediano` da barra fixa, de 10/11.
+        _t_doc = re.search(r"<title>([^<]*)</title>", html)
+        _t_og = re.search(r'<meta property="og:title" content="([^"]*)"', html)
+        afirma(bool(_t_og), "%s: sem og:title" % caminho)
+        if _t_doc and _t_og:
+            _d = desescapar_entidades(_t_doc.group(1)).strip()
+            _o = desescapar_entidades(_t_og.group(1)).strip()
+            afirma(_d == _o,
+                   "%s: o <title> serve %r e o og:title serve %r. Duas declaracoes "
+                   "do mesmo fato comecam iguais e so uma sobe (20.7) — e o "
+                   "og:title e o nome que o WhatsApp, o Facebook e o Slack mostram "
+                   "do link" % (caminho, _d[:70], _o[:70]))
+
         h1 = re.findall(r"<h1[^>]*>(.*?)</h1>", html, re.S | re.I)
         afirma(len(h1) == 1, "%s: tem %d <h1> e tinha de ter 1" % (caminho, len(h1)))
         desc = re.search(r'<meta name="description" content="([^"]{20,})"', html)
