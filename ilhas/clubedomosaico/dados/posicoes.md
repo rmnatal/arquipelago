@@ -272,3 +272,46 @@ e não no título. **Não conclua nada antes dessa linha, em nenhuma direção.*
 - **`picassiete` PERDEU O CLIQUE PELA SEGUNDA JANELA:** 2 impressões em 4,5, zero clique, contra 25% de CTR em 28/10. O CTR de 22–25% dessa página sempre veio de 9 a 12 impressões e não sobreviveu a duas repetições. **Não é regressão provada; é amostra fina voltando à média.**
 - Os **6 "Não encontrado (404)"** seguem na propriedade pela **quinta leitura seguida** (desde 07/10). 404 em endereço que já teve posição destrói ativo, e ninguém mediu quais são.
 - Não abri a SERP nesta leitura: **não verifiquei**.
+
+---
+
+## Leitura semanal de 2026-11-11 — janela 03→09/11 (7 dias), medida no navegador do Raphael
+
+| consulta | página | posição hoje | impressões | cliques | banda |
+|---|---|---|---|---|---|
+| cola para mosaico | (não atribuída na aba de consultas) | — | 6 | 0 | — |
+| rejunte para mosaico | (não atribuída) | — | 4 | 0 | — |
+| cola para rejunte | (não atribuída) | — | 3 | 0 | — |
+| cola para rejunte de banheiro | (não atribuída) | — | 2 | 0 | — |
+| verniz precisa diluir | (não atribuída) | — | 1 | 0 | — |
+
+**5 consultas nomeadas somam 16 das 162 impressões: 90% da janela está anonimizada.**
+
+| página | posição 7d | impressões 7d | cliques 7d | banda |
+|---|---|---|---|---|
+| /materiais/qual-cola-usar-no-mosaico/ | 7,1 | 71 | 0 | 4-10 |
+| /como-fazer/o-que-e-trencadis/ | 5,6 | 21 | 0 | 4-10 |
+| /materiais/quantas-pastilhas-para-mosaico/ | 6,8 | 17 | 0 | 4-10 |
+| /materiais/rejunte-para-mosaico/ | 6,6 | 12 | 0 | 4-10 |
+| /como-fazer/o-que-e-mosaico-picassiete/ | 5,9 | 10 | **1** | 4-10 |
+| /materiais/acabamento/ | **16,0** | 7 | 0 | **11-20** |
+| /materiais/acabamento/camadas-de-verniz-depois-do-rejunte/ | 9,7 | 6 | 0 | 4-10 |
+| /materiais/acabamento/diluir-o-verniz-do-mosaico/ | **16,4** | 5 | 0 | **11-20** |
+| /materiais/base-de-mdf-para-mosaico/ | 8,2 | 4 | 0 | 4-10 |
+| /sobre/ | 8,3 | 3 | 0 | 4-10 |
+| / | 2,5 | 2 | 0 | 1-3 |
+| /materiais/acabamento/verniz-para-peca-de-mosaico/ | **3,0** | 2 | 0 | **1-3** |
+| /contato/ | 5,5 | 2 | 0 | 4-10 |
+| /loja/nossa-senhora-aparecida/ | 3,0 | 1 | 0 | 1-3 |
+
+(17 páginas receberam impressão.)
+
+### O que esta leitura decide
+
+- **A SEMANA FOI RUIM E O NÚMERO É CLARO: 214 → 162 impressões (−24%) e 5 → 1 clique**, com a posição média de 6,6 → 7,8. A queda está concentrada na carro-chefe: `/materiais/qual-cola-usar-no-mosaico/` foi de **118 → 71 impressões** sem perder posição de forma relevante (7,1 contra 7,1 em 04/11). Impressão que cai com posição parada é demanda, não ranqueamento — mas há uma segunda hipótese e ela é pior, está no item seguinte.
+- **A ILHA CAIU DE NOVO, E A MEDIÇÃO DE POSIÇÃO ACIMA É ANTERIOR AO ACHADO.** Às 20h0xZ de 11/11 as 44 páginas, o `/robots.txt` e o `/wp-sitemap.xml` desta ilha estavam servindo a página de estacionamento da HostGator. **Robots.txt em 404 é a pior metade disso para quem mede posição**, e é a 5ª queda desta porta. Qualquer conclusão sobre ranqueamento desta janela tem de carregar essa ressalva.
+- **A BANDA 11-20 TEM DUAS LINHAS, E AS DUAS CAÍRAM DE DENTRO DA PRIMEIRA PÁGINA NESTA SEMANA:** `/materiais/acabamento/` de **6,1 → 16,0** (quase dez casas) e `/materiais/acabamento/diluir-o-verniz-do-mosaico/` de **10,8 → 16,4**. As duas são da mesma categoria, e a mãe e a filha caíram juntas — queda de categoria inteira não se conserta com título de página.
+- **O GANHO DA SEMANA, E ELE É DAS NOVE PRESAS: `/materiais/acabamento/verniz-para-peca-de-mosaico/` SAIU DE "Discovered - currently not indexed" E ESTÁ EM 3,0.** Ela estava na lista das nove travadas que a leitura de 04/11 nomeou. Entrou direto na banda 1-3. A 12.1 é literal: **não toque.**
+- **A LACUNA DE CTR MAIS ANTIGA DO ARQUIPÉLAGO CHEGOU À SEXTA SEMANA:** `/materiais/quantas-pastilhas-para-mosaico/`, **17 impressões na posição 6,8 e ZERO clique**. 14/10, 21/10, 28/10, 04/11 e hoje.
+- Os **6 "Não encontrado (404)"** seguem na propriedade pela **sexta leitura seguida** (desde 07/10), e continuam sem ninguém dizer quais são. Com a ilha caída hoje, esse balde tende a crescer.
+- Não abri a SERP nesta leitura: **não verifiquei**.

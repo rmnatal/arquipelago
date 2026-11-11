@@ -124,3 +124,25 @@ variação vira ruído.
 - **A BANDA 11-20 DESTA ILHA TEM UMA LINHA E ELA TEM 1 IMPRESSÃO** (`/pecas/filtros/wap/`, 13,0). A 12.1 manda priorizar esta banda e a 12.1 também é textual: **proposta sem consulta nomeada não vale**. Não vira proposta.
 - **A SUPERFÍCIE GENERATIVA VOLTOU PELA QUINTA JANELA SEGUIDA, SEMPRE UMA POR JANELA**, hoje em 6,0 e atribuída à R1. A proposta 3 de 16/09 pedia duas ou mais para virar bloco e cinco janelas com uma cada **não vão atingir esse critério nunca**. Quem reabrir reescreve o critério antes: o padrão a medir é *uma por janela, estável, sempre na mesma página*, e isso já é o sinal.
 - Não abri a SERP nesta leitura: **não verifiquei**.
+
+---
+
+## Leitura semanal de 2026-11-11 — janela 03→09/11 (7 dias), medida no navegador do Raphael
+
+| consulta | página | posição hoje | impressões | cliques | banda |
+|---|---|---|---|---|---|
+| context: location: brazil … question: estou pronto para comprar um aspirador robô, mas preciso que tenha peças de reposição fáceis (escovas e filtros). como verificar isso antes de fechar a compra? | /qual-peca-serve-no-meu-robo-aspirador/ | (não atribuída na aba) | 1 | 0 | — |
+
+| página | posição 7d | impressões 7d | cliques 7d | banda |
+|---|---|---|---|---|
+| /quantos-pa-o-robo-aspirador-precisa/ | 9,0 | 5 | 0 | 4-10 |
+| /qual-peca-serve-no-meu-robo-aspirador/ | 7,0 | 2 | 0 | 4-10 |
+| /quantos-m2-o-robo-aspirador-limpa-por-carga/ | 6,0 | 1 | 0 | 4-10 |
+
+### O que esta leitura decide
+
+- **A IMPRESSÃO CAIU 60% NUMA SEMANA: 20 → 8.** Três páginas receberam impressão, contra quatro em 04/11. `/pecas/filtros/wap/`, que em 04/11 tinha tido a primeira impressão da vida dela (1, em 13,0), **não recebeu nenhuma nesta janela** — e com isso **a banda 11-20 desta ilha ficou VAZIA**. Não há linha de 11-20 para trabalhar, e inventar uma seria opinião.
+- **A CAUSA MAIS PROVÁVEL NÃO É RANQUEAMENTO E ESTÁ MEDIDA NO PAINEL DE SITEMAPS, NÃO NO DE DESEMPENHO:** o sitemap está em "Não foi possível buscar" com última leitura em **20/10** — 22 dias —, e a ilha caiu duas vezes nesse intervalo (30/10 e 11/11). Enquanto o Google não conseguir ler o sitemap, discutir título e meta é trabalhar na metade errada do funil. **Reenviado nesta leitura pela 14.7.**
+- **A SUPERFÍCIE GENERATIVA VOLTOU PELA SEXTA JANELA SEGUIDA, sempre UMA por janela**, de novo atribuída à R1 (`/qual-peca-serve-no-meu-robo-aspirador/`). A proposta 3 de 16/09 pedia duas ou mais numa janela para virar bloco; seis janelas com uma só é constância, não volume — e segue sem virar bloco.
+- **ZERO CLIQUE PELA SEXTA LEITURA SEGUIDA**, com três páginas na banda 4-10. A 12.1 chama isso de trabalho de CTR, e ele continua sem poder ser feito: com 8 impressões na janela, a diferença entre um título bom e um ruim não é mensurável. **Medir CTR aqui exige volume que a ilha não tem, e o que falta para ter volume é o sitemap.**
+- Não abri a SERP nesta leitura: **não verifiquei**.

@@ -171,3 +171,49 @@ Tabela por página (as 10 de maior impressão das 47 com impressão):
 - **`/calculadora-de-litragem/` É A LINHA DE BANDA 11-20 DESTA ILHA E ESTÁ CAINDO PELA TERCEIRA LEITURA SEGUIDA:** 8,1 (14/10) → 11,1 (21/10) → 11,7 hoje, e a impressão foi de 82 → 37 → 17. **E a consulta nomeada `litragem` é servida por DUAS páginas da ilha: a própria calculadora em 56,0 e a HOME em 97,0.** A 12.1 proíbe mexer em página que sobe; esta cai há três semanas.
 - **AS URLs `/peixes-2__trashed/…` TOMARAM MAIS IMPRESSÃO, E AGORA TOMAM CONSULTA NOMEADA.** Nove delas aparecem na tabela por página somando ~23 das 601 impressões (3,8%, contra 1,4% em 21/10), e duas consultas nomeadas caem nelas: `platy peixe` em 2,0 e `ciclideos anões` em 22,0. **`/peixes-2__trashed/vivaparos/quantos-litros-para-platy/` tem 8 impressões em 7,5 enquanto a página VIVA `/peixes/vivaparos/quantos-litros-para-platy/` tem 4 em 6,8** — o endereço velho está sendo servido mais que o novo. **O 301 está medido e certo (21/10 e 28/10) e isto NÃO reabre aquilo.** O que é novo é a proporção subindo e a consulta nomeada chegando ali. Fica em vigilância medida, não vira bloco nesta leitura.
 - Não abri a SERP nesta leitura: **não verifiquei**.
+
+---
+
+## Leitura semanal de 2026-11-11 — janela 03→09/11 (7 dias), medida no navegador do Raphael
+
+**A LEITURA PELA NUVEM FALHOU NESTA DATA** (dois disparos, nenhum `dados/search-console-2026-11-11.md` em `origin/main`), então toda linha abaixo vem do Search Console aberto no Chrome dele, em 11/11 entre 19h5xZ e 20h0xZ.
+
+| consulta | página | posição hoje | impressões | cliques | banda |
+|---|---|---|---|---|---|
+| litragem | (não atribuída na aba de consultas) | — | 2 | 0 | — |
+| quanto de mídia biológica por litro | (não atribuída) | — | 1 | 0 | — |
+| como diferenciar acara bandeira macho e femea | (não atribuída) | — | 1 | 0 | — |
+| acaras | (não atribuída) | — | 1 | 0 | — |
+| acará | (não atribuída) | — | 1 | 0 | — |
+| medidas de aquario | (não atribuída) | — | 1 | 0 | — |
+| peixe tetra | (não atribuída) | — | 1 | 0 | — |
+| medidas para aquario | (não atribuída) | — | 1 | 0 | — |
+
+**8 consultas nomeadas somam 9 das 523 impressões: 98,3% da janela está anonimizada.** A tabela por PÁGINA é, outra vez, a única leitura que existe de verdade.
+
+| página | posição 7d | impressões 7d | cliques 7d | banda |
+|---|---|---|---|---|
+| /calculadora-de-midia-filtrante/ | 4,9 | 101 | **2** | 4-10 |
+| /calculadora-de-vazao-do-filtro/ | 6,9 | 54 | 0 | 4-10 |
+| /peixes/bettas/quantos-litros-para-betta/ | 7,3 | 54 | 0 | 4-10 |
+| /peixes/acaras/quantos-litros-para-acara-bandeira/ | 5,4 | 49 | 0 | 4-10 |
+| /peixes/tetras/quantos-litros-para-tetra-neon/ | 6,3 | 32 | 0 | 4-10 |
+| /calculadora-de-iluminacao/ | 7,7 | 31 | 0 | 4-10 |
+| /peixes/acaras/quantos-litros-para-oscar/ | 6,7 | 24 | 0 | 4-10 |
+| /peixes/ciclideos-anoes/quantos-litros-para-ramirezi/ | 5,2 | 20 | 0 | 4-10 |
+| /calculadora-de-litragem/ | **13,9** | 19 | 0 | **11-20** |
+| /2026/09/08/quanta-midia-biologica-o-aquario-precisa/ | 5,2 | 8 | **1** | 4-10 |
+| /peixes/tetras/quantos-litros-para-rodostomo/ | 3,3 | 7 | **1** | 1-3 |
+| / | **19,3** | 7 | **1** | **11-20** |
+| /2026/09/08/quantos-lumens-por-litro-aquario-plantado/ | **11,0** | 4 | 0 | **11-20** |
+| /peixes/tetras/ | **18,0** | 4 | 0 | **11-20** |
+
+(45 páginas receberam impressão; a tabela traz as 14 que decidem alguma coisa.)
+
+### O que esta leitura decide
+
+- **A BANDA 11-20 DESTA ILHA TEM QUATRO LINHAS, E A QUE VALE DINHEIRO É UMA SÓ: `/calculadora-de-litragem/`, HOJE EM 13,9.** A série dela agora tem quatro leituras e desce em todas: 8,1 (14/10) → 11,1 (21/10) → 11,7 (04/11) → **13,9**. A impressão foi 82 → 37 → 17 → **19**. A 12.1 proíbe mexer em página que está SUBINDO; esta está caindo há quatro leituras, então a proibição não a cobre. **É a linha de banda 11-20 mais antiga e mais cara do Arquipélago, e nenhuma leitura ainda a transformou em tarefa nomeada** — o que falta é a consulta, e a consulta está anonimizada em 98% da janela. A proposta vai no `PROMPT.md` com o único caminho que a 12.1 autoriza: nomear a consulta antes de escrever qualquer coisa.
+- **`/peixes/tetras/` SAIU DO LIMBO.** Nas leituras de 21/10, 28/10 e 04/11 ela era uma das duas mães de categoria presas em "Discovered - currently not indexed"; hoje aparece na tabela por página com **4 impressões na posição 18,0**. Mãe de categoria que entra no índice é a condição que a 16.4 pede para a malha funcionar. Não toquei nela.
+- **DUAS URLs COM PREFIXO DE DATA (`/2026/09/08/…`) APARECEM NA TABELA, UMA DELAS COM CLIQUE.** `/2026/09/08/quanta-midia-biologica-o-aquario-precisa/` fez **1 dos 5 cliques da semana** em 5,2, e `/2026/09/08/quantos-lumens-por-litro-aquario-plantado/` está em 11,0. São POSTS servidos pela estrutura de permalink por data, fora da árvore da seção 16. **Não é defeito medido e não virou conserto** — mas é a primeira vez que um endereço fora da árvore paga clique nesta ilha, e isso precisa de decisão (seção 16), não de palpite.
+- **`/peixes/tetras/quantos-litros-para-rodostomo/` ENTROU NA BANDA 1-3 (3,3) E JÁ PAGA CLIQUE.** A 12.1 é literal: não toque.
+- Não abri a SERP nesta leitura: **não verifiquei**.

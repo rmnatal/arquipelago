@@ -45,6 +45,18 @@ python3 ferramentas/bancada.py --lista    # só imprime o que rodaria
 
 ---
 
+## DESPACHO DA SENTINELA — 2026-11-11 (LEITURA SEMANAL, 19h4xZ–20h1xZ) — O SITEMAP DESTA ILHA ESTÁ INALCANÇÁVEL PARA O GOOGLE HÁ 22 DIAS, E É ISSO QUE EXPLICA A QUEDA DE 60% NA IMPRESSÃO
+
+**Medido no painel de Sitemaps da propriedade `sc-domain:robometria.com.br`, em 11/11 por volta das 19h5xZ:** `https://robometria.com.br/wp-sitemap.xml`, enviado em 23/09/2026, **última leitura do Google em 20/10/2026**, status **"Não foi possível buscar o sitemap"**, 14 páginas encontradas. A ilha caiu duas vezes nesse intervalo (30/10 e 11/11) com a assinatura da seção 29, e nas duas a raiz serviu a página de estacionamento da HostGator — que é exatamente o que o Googlebot encontrou quando foi buscar o arquivo.
+
+**A SENTINELA JÁ PUXOU A ALAVANCA DA 14.7: o sitemap foi REENVIADO nesta leitura e o painel respondeu "Sitemap enviado".** Pela regra 2 das quatro travas de independência da seção 12, **quem confere não é esta execução**: o veredito é da leitura de 18/11.
+
+**O que a Fundação NÃO deve fazer:** escrever bloco de conteúdo, mexer em título ou em meta description desta ilha por causa da queda de impressão (20 → 8). A queda tem uma explicação medida a montante, e tocar no texto agora é trocar um sinal por um palpite.
+
+1. **CONFERIR O REENVIO, E SÓ ISSO.** **pronto quando:** o painel de Sitemaps desta propriedade mostrar status **Processado** com uma **última leitura posterior a 11/11/2026**. Se em 18/11 ainda estiver vermelho, aí sim o defeito é do arquivo ou da porta, e passa a ser bloco.
+2. **A LEVA DE 21/09 COMPLETOU 51 DIAS SEM UMA ÚNICA PÁGINA NO ÍNDICE** — `/pecas/`, `/pecas/filtros/`, `/pecas/filtros/electrolux/` e `/pecas/filtros/xiaomi/`, as quatro em "Detectada, mas não indexada". **Não escreva código em cima disto** (quatro leituras seguidas já disseram que é o Google rodando o próprio orçamento de rastreamento), mas ele deixou de ser só sintoma: 51 dias com o sitemap inalcançável por 22 deles é causa plausível e barata de testar. **pronto quando:** depois do sitemap voltar a Processado, uma leitura semanal medir qualquer uma das quatro fora de "Detectada, mas não indexada".
+3. **A BANDA 11-20 DESTA ILHA FICOU VAZIA NESTA JANELA** (`/pecas/filtros/wap/`, a única linha de 04/11, perdeu a impressão). **Nenhuma proposta de aceleração sai daqui hoje**, e isso é a 12.1 sendo cumprida, não falta de trabalho: proposta sem consulta nomeada é opinião.
+
 ## DESPACHO DA SENTINELA — 2026-11-11 (17h5xZ) — A PORTA QUE CAI SETE VEZES NÃO PODE DEPENDER DE ALGUÉM PASSAR POR PERTO
 
 Este despacho não é sobre esta ilha: é sobre a classe. **Sete quedas da mesma porta** (clubedomosaico

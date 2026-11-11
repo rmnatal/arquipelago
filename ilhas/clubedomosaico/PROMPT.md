@@ -215,6 +215,43 @@ Medido em 10/09/2026 (Planejador de palavras-chave, conta do Raphael, faixas; SE
 
 ---
 
+## DESPACHO DA SENTINELA — 2026-11-11 (LEITURA SEMANAL, 20h0xZ) — ALTA: A ILHA CAIU DE NOVO 2h06 DEPOIS DO REPARO DE HOJE, E AGORA EXISTE PROVA DE QUE QUEM APAGA O BLOCO É O HOSPEDEIRO
+
+**A ronda técnica de hoje fechou às 17h54Z declarando esta porta REPARADA e conferida no ar, com 44 de 44 URLs em 200. Às 20h0xZ ela estava caída outra vez.** É a **5ª queda desta porta** (24/09, 05/10, 08/10, 11/11 manhã, 11/11 noite) e a **8ª do Arquipélago**.
+
+**AS GRANDEZAS DA 29.7(3), MEDIDAS DESTA NUVEM EM 11/11 POR VOLTA DAS 20h0xZ, COM User-Agent de Googlebot E QUEBRA DE CACHE:**
+
+- `https://clubedomosaico.com.br/` — **200**, 107.415 bytes, 35 ocorrências de `mosaico` no corpo: a home é da ilha e está viva
+- `/robots.txt` — **404**, 2.361 bytes · `/wp-sitemap.xml` — **404**, 2.361 bytes · caminho virgem `/nao-existe-xyz-virgem/` — **404**, 2.361 bytes
+- `/materiais/qual-cola-usar-no-mosaico/` (a página de maior impressão da ilha) — **404**, 2.361 bytes · `/loja/quadro-flores-do-campo/` — **404**, 2.361 bytes
+- quem serve os 404: a **página de estacionamento da HostGator**, 2.361 bytes, **zero** ocorrência de `mosaico` no corpo
+- REST **vivo**: `?rest_route=/clubedomosaico/v1/status` — **200**, 1.340 bytes
+- **CONTROLE DE REDE VERDE NA MESMA PASSADA:** `aquametria.com.br`, `robometria.com.br` e `rodametria.com.br` as três em **200** na home, e as três com `/robots.txt` e `/wp-sitemap.xml` em 200. **Rede aberta e ilha caída são coisas diferentes, e aqui elas se mediram separadas.**
+
+**O ACHADO QUE MUDA O CHAMADO — E ELE É NOVO: O RETRATO DA ROTA DA 29.3 TRAZ O `mtime`, E O `mtime` ACUSA O HOSPEDEIRO.** Lido em `?rest_route=/clubedomosaico/v1/rotas` com o token do Sync:
+
+```
+htaccess.caminho      = /home3/rapha921/clubedomosaico.com.br/.htaccess
+htaccess.existe       = true     htaccess.legivel = true     htaccess.gravavel = true
+htaccess.bytes        = 1057
+htaccess.mtime        = 2026-11-11 20:00:34Z
+htaccess.blocos       = ["NFD EPC"]        <- UM bloco só, e NÃO é o do WordPress
+htaccess.tem_wordpress = false
+htaccess.linhas_rewrite = 8
+raiz_gravavel = true   mod_rewrite = true   regras_no_banco = 115   versao_casca = 1.25.0
+permalink_structure = /%year%/%monthnum%/%day%/%postname%/
+```
+
+**Leia o `mtime`: o arquivo foi REESCRITO às 20:00:34Z de hoje — 2 horas e 6 minutos depois de o reparo das 17h54Z o ter deixado com 1.580 bytes e dois blocos.** Isto deixa de ser "a porta cai de vez em quando" e passa a ser uma afirmação verificável: **alguma coisa do lado do hospedeiro reescreve este `.htaccess` e deixa apenas o bloco `NFD EPC`**, apagando o `# BEGIN WordPress`. Não é permissão (a raiz e o arquivo estão graváveis), não é `AllowOverride` (a 29.4 separa esse caso), não é o WordPress (115 regras no banco, `mod_rewrite` true).
+
+**NÃO REPAREI, E O MOTIVO NÃO É OMISSÃO:** o GET de reparo (`…/rotas&token=<token do Sync>&reparar=1`) foi **RECUSADO PELO GUARDA DESTE AMBIENTE**, com a classificação "Modify Shared Resources". A ronda das 17h54Z conseguiu; esta leitura não. **O Raphael foi avisado por notificação, com a URL de reparo pronta.** O token continua fora do repositório, como deve.
+
+1. **REPARAR, por quem puder.** `https://clubedomosaico.com.br/?rest_route=/clubedomosaico/v1/rotas&token=<token do Sync>&reparar=1`. **pronto quando:** o retrato da rota disser `tem_wordpress: true` com `bytes` acima de 1.500, e `/robots.txt`, `/wp-sitemap.xml` e uma página de caminho bonito responderem 200 em duas leituras com quebra de cache.
+2. **ESCREVER A 5ª LINHA EM `dados/consertos.md`, E DESTA VEZ COM O `mtime`.** A série é o que sustenta o chamado, e até hoje ela só tinha "caiu / reparei". **pronto quando:** `dados/consertos.md` tiver uma linha de 11/11 com os dois `mtime` (o de depois do reparo das 17h54Z e o `2026-11-11 20:00:34Z`), o nome do bloco `NFD EPC` e o caminho absoluto do arquivo.
+3. **O CHAMADO NA HOSTGATOR DEIXOU DE SER PEDIDO DE SOCORRO E VIROU UM RELATÓRIO COM PROVA — e ele é do Raphael.** Está aberto em `dados/despachos.md` desde 05/10 sem resposta. O que faltava era exatamente isto: um horário em que o arquivo foi reescrito **sem que ninguém do nosso lado o tocasse**, e o nome do bloco que sobrou. **O chamado tem de cobrir as DUAS raízes**, `/home3/rapha921/clubedomosaico.com.br/` e `/home3/rapha921/robometria.com.br/`, porque a robometria caiu com a assinatura idêntica na mesma manhã. **pronto quando:** houver resposta da HostGator registrada em `dados/despachos.md`.
+4. **NORMAL, e é dinheiro perdido devagar: a propriedade da Search Console tem um sitemap MORTO desde 2019.** `https://clubedomosaico.com.br/sitemap.xml`, enviado em **21/02/2019** pelo dono anterior do domínio, última leitura **28/03/2020**, status "Não foi possível buscar o sitemap", 0 páginas. Ele não quebra nada, mas é uma entrada vermelha permanente no painel que faz toda leitura futura ter de a descartar à mão. **pronto quando:** o painel de Sitemaps desta propriedade listar **um** sitemap só.
+5. **NÃO MEXER EM `/materiais/acabamento/` NEM NA FILHA `diluir-o-verniz-do-mosaico/` NESTA SEMANA, mesmo as duas tendo caído para a banda 11-20** (6,1 → 16,0 e 10,8 → 16,4). Mãe e filha da mesma categoria caindo juntas, na mesma semana em que a ilha ficou fora do ar servindo 404 em todas as páginas e em `/robots.txt`, **não é sinal de conteúdo**. Medir de novo em 18/11, com a porta de pé. **pronto quando:** a leitura de 18/11 trouxer as duas com a porta verde durante a janela inteira — e só então a banda 11-20 desta ilha vira tarefa nomeada.
+
 ## ~~DESPACHO DA SENTINELA — 2026-11-11 (RONDA TÉCNICA CURTA, 15h0xZ) — ALTA: A ILHA ESTÁ FORA DO AR, MENOS A HOME~~ — **FECHADO ÀS 17h54Z DE 11/11/2026 PELA PRÓPRIA SENTINELA, CONFERIDO NO AR PELA 18.4: `.htaccess` de 1.057 para 1.580 bytes, `tem_wordpress` de false para true, e as 44 URLs em 200 em duas leituras com quebra de cache. O reparo ERA exercitável desta nuvem — o token mora na memória do projeto. O despacho de CLASSE que saiu desta queda está no `PROMPT.md` da robometria, de hoje 17h5xZ, e vale para esta ilha também. Registro inteiro em `dados/consertos.md`.**
 
 Medido às 15h0xZ de 11/11/2026 pela ronda técnica curta que a decisão do Raphael de 28/09/2026 tornou obrigatória em toda ilha no ar (ponteiro da 1.2). A ilha funda da ronda era a rodametria.
