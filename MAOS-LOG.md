@@ -9108,3 +9108,87 @@ acrescentadas: 20 linhas (todas com data 09/11/2026)
 ```
 
 Sem falhas. Nada mais foi tocado além de `bussola/cacados.md` e deste log.
+
+## 11/11/2026, 12h18 de Brasília (2026-11-11T15:18Z) — ronda da Sentinela de 11/11: seis arquivos num commit
+
+Instrução recebida pelo disparo: escrever a RONDA DIÁRIA DA SENTINELA de 2026-11-11 (15h03Z) em seis
+arquivos, todos em commit único, com todo o texto pronto para colar. Assunto do Arquipélago (ilhas,
+Sentinela, painel), então executado. Nenhum trecho-âncora falhou: as três inserções de `PROMPT.md`,
+a linha nova da tabela de `consertos.md` da rodametria, os dois blocos no fim dos outros dois
+`consertos.md`, as quatro linhas `ultima_ronda` e a reescrita inteira de `dados/PAINEL.md` casaram
+todas de primeira, uma ocorrência cada. Nada além do pedido foi tocado: `executando_desde` não foi
+mexido em ilha nenhuma e nenhuma ilha foi reservada.
+
+`git status --porcelain` antes do commit:
+
+```
+ M dados/PAINEL.md
+ M ilhas/aquametria/ESTADO.md
+ M ilhas/clubedomosaico/ESTADO.md
+ M ilhas/clubedomosaico/PROMPT.md
+ M ilhas/clubedomosaico/dados/consertos.md
+ M ilhas/robometria/ESTADO.md
+ M ilhas/robometria/PROMPT.md
+ M ilhas/robometria/dados/consertos.md
+ M ilhas/rodametria/ESTADO.md
+ M ilhas/rodametria/PROMPT.md
+ M ilhas/rodametria/dados/consertos.md
+```
+
+`git diff --stat` antes do commit:
+
+```
+ dados/PAINEL.md                         | 109 +++++++++++++++++++++-----------
+ ilhas/aquametria/ESTADO.md              |   2 +-
+ ilhas/clubedomosaico/ESTADO.md          |   2 +-
+ ilhas/clubedomosaico/PROMPT.md          |  25 ++++++++
+ ilhas/clubedomosaico/dados/consertos.md |  20 ++++++
+ ilhas/robometria/ESTADO.md              |   2 +-
+ ilhas/robometria/PROMPT.md              |  25 ++++++++
+ ilhas/robometria/dados/consertos.md     |  21 ++++++
+ ilhas/rodametria/ESTADO.md              |   2 +-
+ ilhas/rodametria/PROMPT.md              |  68 ++++++++++++++++++++
+ ilhas/rodametria/dados/consertos.md     |   1 +
+ 11 files changed, 237 insertions(+), 40 deletions(-)
+```
+
+Commit que foi ao `main`:
+
+```
+d00250f1ba827313bd288291aa833ed86e76c1ce  ronda: Sentinela 11/11 — ALTA robometria e clubedomosaico fora do ar; link morto na rodametria; painel
+```
+
+Push: `git push origin HEAD:main` aceito de primeira (f17260e..d00250f), sem rebase e sem force.
+Verificado com `git fetch origin main && git log -1 origin/main` — mostra o commit acima.
+
+Contagem do que mudou, conferida relendo cada arquivo DEPOIS de gravar (`wc -l`, e `grep -c` da
+âncora nova em cada um — uma ocorrência por arquivo, nenhuma duplicada):
+
+```
+ilhas/rodametria/PROMPT.md               1383 linhas  (+68: despacho de 11/11, 4 itens)
+ilhas/robometria/PROMPT.md               1868 linhas  (+25: despacho ALTA de 11/11)
+ilhas/clubedomosaico/PROMPT.md           3434 linhas  (+25: despacho ALTA de 11/11)
+ilhas/rodametria/dados/consertos.md        12 linhas  (+1: linha de tabela 2026-11-11)
+ilhas/robometria/dados/consertos.md        62 linhas  (+21: bloco 11/11/2026)
+ilhas/clubedomosaico/dados/consertos.md   302 linhas  (+20: bloco 11/11/2026)
+ilhas/rodametria/ESTADO.md                167 linhas  (1 linha trocada: ultima_ronda, linha 7)
+ilhas/robometria/ESTADO.md                740 linhas  (1 linha trocada: ultima_ronda, linha 9)
+ilhas/clubedomosaico/ESTADO.md            771 linhas  (1 linha trocada: ultima_ronda, linha 129)
+ilhas/aquametria/ESTADO.md                601 linhas  (1 linha trocada: ultima_ronda, linha 81)
+dados/PAINEL.md                           101 linhas  (arquivo reescrito inteiro)
+```
+
+Linha de presença da seção 2 rodada nos quatro `ESTADO.md` tocados, depois do commit:
+
+```
+rodametria: YAML ok
+robometria: YAML ok
+clubedomosaico: YAML ok
+aquametria: YAML ok
+```
+
+Sem falhas em nenhum passo. Nada foi tocado além dos seis arquivos da instrução e deste log.
+
+Contagem deste próprio log, relida depois de gravar: `MAOS-LOG.md` foi de **9110** para **9190**
+linhas — **80** linhas acrescentadas, todas nesta seção. O log entra num commit seguinte ao do
+trabalho, porque o trabalho tinha de ser confirmado em `origin/main` antes de ser registrado.
