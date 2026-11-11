@@ -9457,3 +9457,126 @@ releitura abaixo, nunca pelo que eu achava que tinha escrito.
 Releitura: esta seção começa na linha **9350** e, no momento da medição, somava **106** linhas, com o
 arquivo terminando em **9455** linhas e **135** seções `##`. Este parágrafo final acrescenta linhas
 depois da medição; o número que vale é o da última releitura, e ele entra na resposta do disparo.
+
+## Disparo de 11/11/2026, 17h18 BRT (20h18 UTC) — Leitura semanal da Sentinela: 17 escritas em 17 arquivos, num commit só, no `main`
+
+**Assunto conferido antes do `git fetch`:** Arquipélago — as quatro ilhas (aquametria, robometria,
+rodametria, clubedomosaico). Instrução executada ao pé da letra, byte a byte, sem reformatar e sem
+acrescentar uma linha que não estivesse nela.
+
+**Checagem de âncora feita ANTES de cada escrita, como a instrução manda:**
+
+- `| 2026-11-04 |` nos quatro `dados/indexacao.md`: **1 ocorrência em cada** — as quatro inserções
+  foram feitas imediatamente depois dela, sem alterar a linha âncora.
+- `ultima_ronda: 2026-11-11T15:03Z   # ` (três espaços antes do `#`) nos quatro `ESTADO.md`:
+  **1 ocorrência em cada**.
+- `piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md` em
+  `ilhas/clubedomosaico/ESTADO.md`: **1 ocorrência**.
+- **RESSALVA HONESTA SOBRE AS QUATRO ESCRITAS DE `PROMPT.md` (3, 7, 11 e 16):** o preâmbulo da
+  instrução pede que toda âncora case exatamente uma vez, mas a regra dessas quatro escritas diz
+  outra coisa e é ela que vale aqui — "localize a PRIMEIRA linha do arquivo, contando do topo, que
+  comece com `## DESPACHO DA SENTINELA` ou com `## ~~DESPACHO DA SENTINELA`". Esses cabeçalhos
+  aparecem **muitas vezes** em cada arquivo (aquametria **9**, robometria **22**, rodametria **7**,
+  clubedomosaico **15**), e é por isso que a regra foi escrita por POSIÇÃO e não por unicidade.
+  Nenhuma escrita foi pulada: usei a primeira ocorrência de cada arquivo — linha **100** na
+  aquametria, **48** na robometria, **58** na rodametria, **218** na clubedomosaico — e inseri o
+  bloco imediatamente antes dela, seguido de uma linha em branco, sem tocar nessa linha nem em nada
+  abaixo dela. **Nenhuma outra âncora falhou, e nenhuma escrita deixou de ser feita.**
+
+**`git status --porcelain` (tudo já staged, antes do commit):**
+
+```
+M  ilhas/aquametria/ESTADO.md
+M  ilhas/aquametria/PROMPT.md
+M  ilhas/aquametria/dados/indexacao.md
+M  ilhas/aquametria/dados/posicoes.md
+M  ilhas/clubedomosaico/ESTADO.md
+M  ilhas/clubedomosaico/PROMPT.md
+M  ilhas/clubedomosaico/dados/indexacao.md
+M  ilhas/clubedomosaico/dados/posicoes.md
+M  ilhas/robometria/ESTADO.md
+M  ilhas/robometria/PROMPT.md
+M  ilhas/robometria/dados/indexacao.md
+M  ilhas/robometria/dados/posicoes.md
+M  ilhas/rodametria/ESTADO.md
+M  ilhas/rodametria/PROMPT.md
+M  ilhas/rodametria/dados/indexacao.md
+A  ilhas/rodametria/dados/links-afiliado-pendentes.md
+M  ilhas/rodametria/dados/posicoes.md
+```
+
+**`git diff --stat` do commit:**
+
+```
+ ilhas/aquametria/ESTADO.md                         |  2 +-
+ ilhas/aquametria/PROMPT.md                         | 10 +++++
+ ilhas/aquametria/dados/indexacao.md                |  1 +
+ ilhas/aquametria/dados/posicoes.md                 | 46 ++++++++++++++++++++++
+ ilhas/clubedomosaico/ESTADO.md                     |  4 +-
+ ilhas/clubedomosaico/PROMPT.md                     | 37 +++++++++++++++++
+ ilhas/clubedomosaico/dados/indexacao.md            |  1 +
+ ilhas/clubedomosaico/dados/posicoes.md             | 43 ++++++++++++++++++++
+ ilhas/robometria/ESTADO.md                         |  2 +-
+ ilhas/robometria/PROMPT.md                         | 12 ++++++
+ ilhas/robometria/dados/indexacao.md                |  1 +
+ ilhas/robometria/dados/posicoes.md                 | 22 +++++++++++
+ ilhas/rodametria/ESTADO.md                         |  2 +-
+ ilhas/rodametria/PROMPT.md                         | 27 +++++++++++++
+ ilhas/rodametria/dados/indexacao.md                |  1 +
+ ilhas/rodametria/dados/links-afiliado-pendentes.md | 29 ++++++++++++++
+ ilhas/rodametria/dados/posicoes.md                 | 24 +++++++++++
+ 17 files changed, 259 insertions(+), 5 deletions(-)
+```
+
+**`git show --numstat` — acrescentado/removido por arquivo, lido do commit já no `main`:**
+
+```
+1	1	ilhas/aquametria/ESTADO.md
+10	0	ilhas/aquametria/PROMPT.md
+1	0	ilhas/aquametria/dados/indexacao.md
+46	0	ilhas/aquametria/dados/posicoes.md
+2	2	ilhas/clubedomosaico/ESTADO.md
+37	0	ilhas/clubedomosaico/PROMPT.md
+1	0	ilhas/clubedomosaico/dados/indexacao.md
+43	0	ilhas/clubedomosaico/dados/posicoes.md
+1	1	ilhas/robometria/ESTADO.md
+12	0	ilhas/robometria/PROMPT.md
+1	0	ilhas/robometria/dados/indexacao.md
+22	0	ilhas/robometria/dados/posicoes.md
+1	1	ilhas/rodametria/ESTADO.md
+27	0	ilhas/rodametria/PROMPT.md
+1	0	ilhas/rodametria/dados/indexacao.md
+29	0	ilhas/rodametria/dados/links-afiliado-pendentes.md
+24	0	ilhas/rodametria/dados/posicoes.md
+```
+
+**Hash do commit que foi ao `main`: `2325904456a0d79ae2eedd81084e54b796fbcb58`** (`2325904`), com a
+mensagem `leitura semanal da Sentinela — 2026-11-11: as quatro ilhas, e a clubedomosaico caiu de novo
+2h depois do reparo`. Push direto: `git push origin HEAD:main`, aceito de primeira
+(`7977f9e..2325904  HEAD -> main`), **sem rebase e sem force push**. Conferido depois com
+`git fetch origin main && git log -1 origin/main`: o `origin/main` mostra este hash. **Push que não
+aparece em `origin/main` não é push — este aparece.**
+
+**Contagem do que mudou, conferida relendo os arquivos DEPOIS de gravar (nunca pelo que eu achava que
+tinha escrito):**
+
+- **17 escritas, 17 arquivos, 1 commit**, 259 linhas acrescentadas e 5 removidas.
+- `grep -c '^| 2026-11-11 |'` nos quatro `dados/indexacao.md`: **1 em cada** (4 linhas novas).
+- `grep -c '## Leitura semanal de 2026-11-11'` nos quatro `dados/posicoes.md`: **1 em cada**.
+- `grep -c '## DESPACHO DA SENTINELA — 2026-11-11 (LEITURA SEMANAL'` nos quatro `PROMPT.md`:
+  **1 em cada**.
+- `grep -c 'ultima_ronda: 2026-11-11T20:03Z'`: **1** em cada um dos quatro `ESTADO.md` das ilhas
+  tocadas, e **0** em `_modelo`, `jornadafly` e `ohmetria` — as três não foram tocadas.
+- `ilhas/clubedomosaico/ESTADO.md` linha 5 agora começa com `piso: atingido`.
+- `ilhas/rodametria/dados/links-afiliado-pendentes.md` criado: **29 linhas, 4.516 bytes**.
+
+**Nada foi deixado de fora e nada foi acrescentado.** Não houve dado pessoal de terceiro na
+instrução (os caminhos `/home3/rapha921/...` são caminho de servidor, não contato de pessoa), o
+token do Sync aparece só como o literal `<token do Sync>`, exatamente como veio, e nenhum valor de
+credencial entrou no repositório. Não reservei ilha, não escrevi `executando_desde`, não executei
+bloco de fila, não acionei Sync e não toquei em arquivo que a instrução não nomeou — fora este
+`MAOS-LOG.md`, que é a exceção obrigatória.
+
+Releitura: esta seção começa na linha **9461** e, no momento da medição, somava **118** linhas, com o
+arquivo terminando em **9578** linhas e **136** seções `##`. Este parágrafo final acrescenta linhas
+depois da medição; o número que vale é o da última releitura, e ele entra na resposta do disparo.
