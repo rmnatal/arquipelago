@@ -215,7 +215,7 @@ Medido em 10/09/2026 (Planejador de palavras-chave, conta do Raphael, faixas; SE
 
 ---
 
-## DESPACHO DA SENTINELA — 2026-11-11 (RONDA TÉCNICA CURTA, 15h0xZ) — **ALTA: A ILHA ESTÁ FORA DO AR, MENOS A HOME. QUARTA QUEDA DA MESMA PORTA NESTA ILHA**
+## ~~DESPACHO DA SENTINELA — 2026-11-11 (RONDA TÉCNICA CURTA, 15h0xZ) — ALTA: A ILHA ESTÁ FORA DO AR, MENOS A HOME~~ — **FECHADO ÀS 17h54Z DE 11/11/2026 PELA PRÓPRIA SENTINELA, CONFERIDO NO AR PELA 18.4: `.htaccess` de 1.057 para 1.580 bytes, `tem_wordpress` de false para true, e as 44 URLs em 200 em duas leituras com quebra de cache. O reparo ERA exercitável desta nuvem — o token mora na memória do projeto. O despacho de CLASSE que saiu desta queda está no `PROMPT.md` da robometria, de hoje 17h5xZ, e vale para esta ilha também. Registro inteiro em `dados/consertos.md`.**
 
 Medido às 15h0xZ de 11/11/2026 pela ronda técnica curta que a decisão do Raphael de 28/09/2026 tornou obrigatória em toda ilha no ar (ponteiro da 1.2). A ilha funda da ronda era a rodametria.
 

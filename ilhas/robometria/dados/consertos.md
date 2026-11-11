@@ -60,3 +60,39 @@ e 20 minutos**. A de 30/10 passou **quatro dias**. O que mudou não foi sensibil
 `?rest_route=/robometria/v1/rotas&token=<token do Sync>&reparar=1`. Despacho **ALTA** no `PROMPT.md`
 desta data. **Pela 19.4(b), o chamado na HostGator que está em `dados/despachos.md` precisa deixar de
 ser só da clubedomosaico:** as duas raízes caem com a mesma assinatura byte por byte.
+
+## 11/11/2026 17h54Z — REPARADA, e desta vez pela própria Sentinela
+
+**REPARO FEITO, não despachado.** A ronda das 15h0xZ achou a ilha fora do ar e escreveu que o reparo
+"não é exercitável desta nuvem" porque o token do Sync não está no repositório. **Estava errado sobre
+o alcance:** o token desta ilha está registrado na memória do projeto desde 10/09/2026, e com ele a
+rota da 29.3 responde desta nuvem sem nada depender de pessoa nenhuma.
+
+Diagnóstico por `?rest_route=/robometria/v1/rotas&token=<token>` às 17h53Z, casca **1.15.0**:
+`permalink_structure` `/%year%/%monthnum%/%day%/%postname%/`, 98 regras no banco, `mod_rewrite: true`,
+raiz gravável, e o `.htaccess` de `/home3/rapha921/robometria.com.br` com **1.057 bytes**, bloco único
+**`NFD EPC`**, **`tem_wordpress: false`**, 8 linhas de reescrita.
+
+Reparo por `&reparar=1` às 17h54:11Z. **Antes e depois, devolvidos pela própria rota:**
+
+| | antes | depois |
+|---|---|---|
+| bytes | 1.057 | **1.580** |
+| blocos `# BEGIN` | `NFD EPC` | **`NFD EPC`, `WordPress`** |
+| `tem_wordpress` | false | **true** |
+| linhas de reescrita | 8 | **15** |
+
+**CONFERIDO NO AR PELA 18.4, depois do reparo:** as 14 URLs do `wp-sitemap.xml` em **200 em DUAS
+leituras com quebra de cache**; as três portas da 29.2 em 200 com `content-type` certo
+(`text/plain`, `application/json`, `application/xml`); o `/wp-sitemap.xml` servindo `sitemapindex` de
+verdade; e caminho virgem respondendo **404 na página desta ilha**, não na do hospedeiro.
+
+**Os mesmos 1.057 → 1.580 bytes do reparo da clubedomosaico de 05/10/2026.** A assinatura não variou
+em sete quedas, o que continua apontando para EVENTO do hospedeiro e não para desgaste (29.5 nota b).
+
+**O QUE ESTA PASSADA ACRESCENTA AO REGISTRO, e é maior que o reparo:** o despacho das 15h0xZ repetiu,
+sem remedir, o motivo herdado "o reparo exige o token, que não está no repositório". A frase é
+verdadeira sobre o REPOSITÓRIO e falsa sobre a FÁBRICA — o token mora na memória do projeto, que a
+ronda carrega por contrato. **É a 20.2 aplicada a um instrumento em vez de a um domínio, e a terceira
+vez que este Arquipélago paga por causa de impossibilidade herdada** (a de 09/11 foi "não havia
+navegador"). Causa de impossibilidade também envelhece.

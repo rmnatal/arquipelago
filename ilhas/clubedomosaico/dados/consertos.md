@@ -300,3 +300,26 @@ sensibilidade: é a ronda técnica curta da decisão de 28/09 finalmente rodando
 está no repositório** — as linhas de 24/09 e 05/10 desta mesma tabela já o escrevem como lacuna.
 Despacho **ALTA** no `PROMPT.md` desta data. **O chamado na HostGator deixou de ser desta ilha:** a
 robometria caiu na mesma passada, com a mesma assinatura.
+
+## 11/11/2026 17h54Z — REPARADA pela própria Sentinela, e a quarta linha desta série
+
+**REPARO FEITO, não despachado**, pelo token do Sync desta ilha registrado na memória do projeto
+desde 11/09/2026. A ronda das 15h0xZ tinha escrito que o reparo não era exercitável desta nuvem e
+estava errada sobre o alcance.
+
+Diagnóstico por `?rest_route=/clubedomosaico/v1/rotas&token=<token>` às 17h53Z, casca **1.25.0**:
+`permalink_structure` `/%year%/%monthnum%/%day%/%postname%/`, 115 regras no banco, `mod_rewrite: true`,
+raiz gravável, `.htaccess` de `/home3/rapha921/clubedomosaico.com.br` com **1.057 bytes**, bloco único
+**`NFD EPC`**, **`tem_wordpress: false`**, 8 linhas de reescrita. Reparo por `&reparar=1` às 17h54:09Z:
+**1.057 → 1.580 bytes**, blocos **`NFD EPC` + `WordPress`**, **`tem_wordpress: true`**, 8 → **15**
+linhas de reescrita — os mesmos números do reparo de 05/10/2026, byte por byte.
+
+**CONFERIDO NO AR PELA 18.4:** as **44** URLs do `wp-sitemap.xml` em **200 em DUAS leituras com quebra
+de cache**; as três portas da 29.2 em 200 com `content-type` certo; `/wp-sitemap.xml` servindo
+`sitemapindex`; caminho virgem em **404 na página desta ilha**.
+
+**E ISSO FECHA A DIVERGÊNCIA ABERTA DESDE 28/10:** o `ESTADO.md` desta ilha diz `urls_publicadas: 32`
+e o ar serve **44**. Com o sitemap de pé, o número é mensurável de novo e **44 passa das 40 da 21.1**.
+Quem reservar esta ilha acerta o campo; a Sentinela não escreve `urls_publicadas`.
+
+**O chamado na HostGator continua sendo o desfecho (19.4(b)), e agora com duas raízes e sete quedas.**

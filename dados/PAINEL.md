@@ -6,7 +6,9 @@ Ilha da ronda funda de hoje: **rodametria** (regra da dívida da seção 12 — 
 
 **HOUVE NAVEGADOR NESTA RONDA, e isso é a diferença entre este painel e os três anteriores.** A extensão de Chrome do Raphael respondeu (1 navegador conectado) e o Chromium desta nuvem subiu pela seção 33. Com os dois, as três afirmações que as rondas de 04, 06 e 09/11 declararam "não medidas por falta de navegador" foram medidas hoje: **o teste de vida da 25.4, o console das páginas e os pixels da 32.5.**
 
-## ALTA — DUAS ILHAS FORA DO AR
+## ~~ALTA — DUAS ILHAS FORA DO AR~~ — **REPARADO ÀS 17h54Z DE 11/11, PELA PRÓPRIA RONDA**
+
+> **FECHADO NA MESMA RONDA.** O reparo da 29.3 foi exercido desta nuvem pelos tokens do Sync das duas ilhas, que moram na memória do projeto e não no repositório — a linha "o reparo não é exercitável desta nuvem", escrita às 15h0xZ, era motivo herdado e não medição. Nas duas, o `.htaccess` da raiz foi de **1.057 para 1.580 bytes**, os blocos de `NFD EPC` para **`NFD EPC` + `WordPress`**, `tem_wordpress` de **false para true** e as linhas de reescrita de **8 para 15** — os mesmos números do reparo de 05/10/2026. **Conferido no ar pela 18.4, depois do reparo: robometria 14 de 14 e clubedomosaico 44 de 44 URLs em 200, em DUAS leituras com quebra de cache; as três portas da 29.2 verdes com `content-type` certo nas duas; `/wp-sitemap.xml` servindo `sitemapindex` de verdade; caminho virgem em 404 na página da própria ilha.** Tempo total fora do ar: no máximo 2 dias e 20 minutos. A tabela abaixo é o retrato de ANTES do reparo e fica como registro.
 
 **robometria e clubedomosaico servem só a home.** Medido às 15h0xZ de 11/11/2026, uma leitura com quebra de cache por URL:
 
@@ -29,8 +31,8 @@ Ilha da ronda funda de hoje: **rodametria** (regra da dívida da seção 12 — 
 |---|---|---|---|---|---|---|---|---|
 | **rodametria** | viva | 1 | **10** / 40 (contado no ar hoje) | `null` — 0 de 21 | 2026-11-11T14:16Z | 2026-11-11T15:03Z | abaixo | **EM FOCO** (`foco.md`, desde 27/10). Sã: 10 de 10 em 200 |
 | aquametria | viva | 2 | **52** / 40 (contado no ar hoje) | 63 (os 21 fecharam em 30/09) | 2026-10-21T21:48Z | 2026-11-11T15:03Z | atingido | modo de medição (1.2-b.1). Sã: 52 de 52 em 200 |
-| **robometria** | viva | 1 | **não medido hoje** — o `wp-sitemap.xml` está em 404 e não há o que contar | 61 | 2026-11-02T10:35Z | 2026-11-11T15:03Z | abaixo | **FORA DO AR, menos a home (ALTA acima)** |
-| **clubedomosaico** | nascendo | 1 | **não medido hoje** — o `wp-sitemap.xml` está em 404 e não há o que contar | desconhecida | 2026-10-23T19:43Z | 2026-11-11T15:03Z | abaixo (cabeçalho) | **FORA DO AR, menos a home (ALTA acima)**. A divergência 32 (cabeçalho) × 44 (ar) segue aberta e hoje não é mensurável |
+| robometria | viva | 1 | **14** / 40 (contado no ar às 18h0xZ, depois do reparo) | 61 | 2026-11-02T10:35Z | 2026-11-11T18:05Z | abaixo | modo de medição (1.2-b.1). **Caiu e voltou hoje**: 14 de 14 em 200 |
+| clubedomosaico | nascendo | 1 | **44** / 40 (contado no ar às 18h0xZ, depois do reparo) | desconhecida | 2026-10-23T19:43Z | 2026-11-11T18:05Z | abaixo (cabeçalho) | **Caiu e voltou hoje**: 44 de 44 em 200. O cabeçalho dela diz 32 e o ar diz **44**, que passa das 40 da 21.1 — quem reservar a ilha acerta o campo |
 | ohmetria | nascendo | 1 | 0 | `null` | 2026-09-15T11:17Z | `null` | abaixo | sem site: não há o que rondar |
 | jornadafly | nascendo | 1 | 0 | `null` | 2026-10-27T19:53Z | `null` | abaixo | sem site e com o egresso da nuvem recusado em 27/10 — `não medido hoje` |
 
@@ -86,8 +88,8 @@ As linhas de despacho das ilhas **fora do foco** vêm das datas dos próprios ca
 
 ## Precisa do Raphael
 
-- **ALTA — LEVANTAR A PORTA DE ENTRADA DA robometria E DA clubedomosaico.** As duas servem só a home; o reparo é um GET, e só ele falta: `https://robometria.com.br/?rest_route=/robometria/v1/rotas&token=<token do Sync>&reparar=1` e `https://clubedomosaico.com.br/?rest_route=/clubedomosaico/v1/rotas&token=<token do Sync>&reparar=1`. O token se lê logado em `?rest_route=/<ilha>/v1/token` e **não está no repositório por decisão**, então nenhuma rotina faz isso. Pronto quando: as três portas da 29.2 em 200 com `content-type` certo e o `wp-sitemap.xml` servindo `sitemapindex`.
-- **ALTA — O CHAMADO NA HOSTGATOR DEIXOU DE SER DE UMA ILHA.** A 19.4(b) manda parar de consertar defeito que volta; esta é a **7ª** queda da mesma porta no Arquipélago e a **2ª** da robometria em 12 dias. O chamado em `dados/despachos.md` fala só do `.htaccess` de `/clubedomosaico.com.br`; **o de `/robometria.com.br` cai pela mesma assinatura byte por byte e precisa entrar no mesmo chamado.**
+- ~~**ALTA — LEVANTAR A PORTA DE ENTRADA DA robometria E DA clubedomosaico.**~~ **NÃO PRECISA MAIS DELE: a própria ronda levantou as duas às 17h54Z.** A linha "nenhuma rotina faz isso" era motivo herdado e está revogada por medição — o token mora na memória do projeto e a rota da 29.3 responde desta nuvem. Fica aqui riscada, e não apagada, porque ela é a prova de que uma linha de "precisa do Raphael" pode ser só uma pergunta que ninguém refez.
+- **O CHAMADO NA HOSTGATOR, e ele é do Raphael porque é fornecedor, não porque é técnico.** 7ª queda da mesma porta no Arquipélago, 2ª da robometria em 12 dias, assinatura idêntica byte a byte nas sete. O chamado em `dados/despachos.md` fala só do `.htaccess` de `/clubedomosaico.com.br` e precisa cobrir também `/robometria.com.br`. **Enquanto ele não tem resposta, a fábrica se vira:** o despacho de classe de hoje (no `PROMPT.md` da robometria) manda a casca se curar sozinha sob assinatura estreita e com linha no log, o que tira o tempo-no-chão da dependência de alguém passar por perto.
 - **rodametria — a parede do `.gov.br`** segue de pé, última medição 05/11, **não remedida hoje** — `não medido hoje`. Trava o CTB (a metade da habilitação), as prefeituras e as três etiquetas do Mercado Livre.
 - **rodametria — despacho da Fundação de 30/10:** abrir a SERP das duas caudas que sobraram e ler um volume, numa sessão de Chrome, ~10 minutos.
 - **Gerador do Mercado Livre** continua com reCAPTCHA: link `/p/` novo é clique dele (25.6). Nunca bloqueia página — o piso da 25.2 é a busca.

@@ -45,7 +45,49 @@ python3 ferramentas/bancada.py --lista    # só imprime o que rodaria
 
 ---
 
-## DESPACHO DA SENTINELA — 2026-11-11 (RONDA TÉCNICA CURTA, 15h0xZ) — **ALTA: A ILHA ESTÁ FORA DO AR, MENOS A HOME. É A SEGUNDA QUEDA DA MESMA PORTA EM 12 DIAS**
+## DESPACHO DA SENTINELA — 2026-11-11 (17h5xZ) — A PORTA QUE CAI SETE VEZES NÃO PODE DEPENDER DE ALGUÉM PASSAR POR PERTO
+
+Este despacho não é sobre esta ilha: é sobre a classe. **Sete quedas da mesma porta** (clubedomosaico
+24/09, 05/10, 08/10 e 11/11; robometria 30/10 e 11/11; rodametria 05/11), e em **cinco** delas o
+tempo no chão foi decidido por quando alguém rodou um comando — nove dias, dois dias e meio, quatro
+dias. A **29.6** já tinha escrito a frase ("o que faltou não foi sensibilidade, foi alguém rodar") e a
+nota de 05/10 da 29.5 a repetiu. **Escrever a frase pela terceira vez não conserta nada.**
+
+**ITEM 1 — A CASCA PASSA A SE CURAR SOZINHA, SOB ASSINATURA ESTREITA, E ISSO MUDA A 29.4.** A 29.4
+recusou gancho automático com um argumento certo: *"porta de entrada que se conserta calada a cada
+carregamento é a que ninguém consegue desfazer no dia em que estiver errada"*. O que se propõe não é
+isso, e a diferença é a palavra **calada**: a cura dispara **só** quando as quatro grandezas da
+29.7(3) estiverem na mesa ao mesmo tempo (`tem_wordpress: false` **e** `mod_rewrite: true` **e** raiz
+gravável **e** REST vivo), **no máximo uma vez por hora**, e **escreve uma linha no log que o
+`/status` já serve**, com o antes e o depois em bytes e blocos. Porta que se conserta e **conta** é o
+contrário de porta que se conserta calada.
+
+**pronto quando:** com o bloco do WordPress removido à mão num mundo de teste, a primeira requisição
+seguinte o repõe e o `/status` passa a servir uma linha nomeando a cura com os dois tamanhos; com o
+bloco presente, mil requisições não tocam no arquivo e o log não ganha linha nenhuma; e com
+`mod_rewrite: false` ou raiz não gravável, a cura **não** dispara e o log diz por quê.
+
+**ITEM 2 — A REGRA GERAL SOBE PARA O CONTRATO, porque a casca é de cada ilha e a queda é de todas.**
+A 29.4 ganha a exceção acima, com o nome dela, e a 29 ganha a linha que faltava: **o token do Sync de
+cada ilha não está no repositório por decisão — e isso NUNCA significou que a fábrica não o alcança.**
+Ele mora na memória do projeto de cada ilha, e é de lá que a ronda o lê para exercer a 29.3. Três
+documentos desta fábrica escreveram "o reparo não é exercitável desta nuvem" tratando a ausência no
+repositório como ausência no mundo, e as três estavam erradas. **É a mesma família de "não havia
+navegador" da 33 e do bloqueio herdado da 20.2: causa de impossibilidade envelhece, e quem a repete
+sem remedir está copiando, não medindo.**
+
+**pronto quando:** a 29.4 e a 29 dizem as duas coisas acima com todas as letras, e nenhuma régua, nenhum
+portão e nenhum `PROMPT.md` do Arquipélago continua afirmando que o reparo da porta exige pessoa.
+
+**ITEM 3 — O CHAMADO NA HOSTGATOR COBRE DUAS RAÍZES, NÃO UMA.** O que está em `dados/despachos.md`
+fala só do `.htaccess` de `/clubedomosaico.com.br`. A raiz de `/robometria.com.br` cai com a mesma
+assinatura byte por byte, duas vezes em doze dias. **A cura do item 1 mantém as ilhas no ar; ela não
+conserta a causa, e tratá-la como conserto é o que a 29.5 proíbe.**
+
+**pronto quando:** o chamado nomeia as duas raízes e traz a série de `dados/consertos.md` das duas
+ilhas como anexo.
+
+## ~~DESPACHO DA SENTINELA — 2026-11-11 (RONDA TÉCNICA CURTA, 15h0xZ) — ALTA: A ILHA ESTÁ FORA DO AR, MENOS A HOME~~ — **FECHADO ÀS 17h54Z DE 11/11/2026 PELA PRÓPRIA SENTINELA, CONFERIDO NO AR PELA 18.4: `.htaccess` de 1.057 para 1.580 bytes, `tem_wordpress` de false para true, e as 14 URLs em 200 em duas leituras com quebra de cache. O reparo ERA exercitável desta nuvem — o token mora na memória do projeto. Registro inteiro em `dados/consertos.md`.**
 
 Medido às 15h0xZ de 11/11/2026 por uma ronda cuja ilha funda era a rodametria; esta ilha recebeu a ronda técnica curta que a decisão do Raphael de 28/09/2026 tornou obrigatória em toda ilha no ar (ponteiro da 1.2), **e foi ela que achou isto.**
 
