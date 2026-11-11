@@ -9580,3 +9580,102 @@ bloco de fila, não acionei Sync e não toquei em arquivo que a instrução não
 Releitura: esta seção começa na linha **9461** e, no momento da medição, somava **118** linhas, com o
 arquivo terminando em **9578** linhas e **136** seções `##`. Este parágrafo final acrescenta linhas
 depois da medição; o número que vale é o da última releitura, e ele entra na resposta do disparo.
+
+## Disparo de 11/11/2026 17h23 BRT (2026-11-11 20h23Z) — ERRATA da leitura semanal de 2026-11-11: 9 escritas em 8 arquivos, num commit só
+
+**Assunto:** Arquipélago (ilhas aquametria, robometria e rodametria; dados de Search Console e despacho do
+`PROMPT.md`). Passou a checagem de assunto do cabeçalho — nada de outro projeto nesta instrução.
+
+**O que a instrução pediu:** 9 escritas, TUDO NUM COMMIT SÓ, corrigindo a afirmação de que "a leitura pela
+nuvem FALHOU nos dois disparos". A errata registra que o commit `2169969db46983d48e6b669b59cd473a12c73fb5`
+gravou os quatro `ilhas/<ilha>/dados/search-console-2026-11-11.md` às 19h51Z, e que o
+`raw.githubusercontent.com` serviu **404 em cache por mais de 20 minutos mesmo com `?v=<timestamp>`** —
+forma nova da 20.5, cache servindo 404 em vez de conteúdo velho.
+
+**AS 9 ÂNCORAS CASARAM EXATAMENTE UMA VEZ CADA, as 9 escritas foram aplicadas, ZERO pulada.** Nenhum
+arquivo fora dos 8 nomeados foi tocado, com a exceção obrigatória deste `MAOS-LOG.md`.
+
+`git status --porcelain` (antes do commit, depois de aplicar as 9 escritas):
+
+```
+ M ilhas/aquametria/ESTADO.md
+ M ilhas/aquametria/PROMPT.md
+ M ilhas/aquametria/dados/indexacao.md
+ M ilhas/aquametria/dados/posicoes.md
+ M ilhas/robometria/ESTADO.md
+ M ilhas/robometria/dados/posicoes.md
+ M ilhas/rodametria/ESTADO.md
+ M ilhas/rodametria/dados/posicoes.md
+```
+
+`git diff --stat`:
+
+```
+ ilhas/aquametria/ESTADO.md          |  2 +-
+ ilhas/aquametria/PROMPT.md          |  2 +-
+ ilhas/aquametria/dados/indexacao.md |  2 +-
+ ilhas/aquametria/dados/posicoes.md  | 27 +++++++++++++++++++++++++++
+ ilhas/robometria/ESTADO.md          |  2 +-
+ ilhas/robometria/dados/posicoes.md  | 15 +++++++++++++++
+ ilhas/rodametria/ESTADO.md          |  2 +-
+ ilhas/rodametria/dados/posicoes.md  | 18 ++++++++++++++++++
+ 8 files changed, 65 insertions(+), 5 deletions(-)
+```
+
+São 9 escritas em 8 arquivos porque as ESCRITAS 1 e 2 caem na MESMA linha 14 de
+`ilhas/aquametria/dados/indexacao.md` (a célula da tabela e a observação da mesma linha de série).
+
+**Commit que foi ao `main`:** `4351bd4224b70cbaefa18adebc10b2a47c951972`
+
+```
+git push origin HEAD:main
+To https://github.com/rmnatal/arquipelago
+   0b8b930..4351bd4  HEAD -> main
+```
+
+Push aceito de primeira, sem recusa, sem rebase e sem force. **Confirmado em `origin/main`** com
+`git fetch origin main && git log -1 origin/main`, que devolveu
+`4351bd4224b70cbaefa18adebc10b2a47c951972` — o commit desta execução. Push que não aparece em
+`origin/main` não é push; este aparece.
+
+**Contagem conferida RELENDO OS ARQUIVOS DEPOIS DE GRAVAR, nunca pelo que eu achava ter escrito:**
+
+```
+indexacao.md   '| 2026-11-11 | 52 | 52 | 100% | 523'          : 1   (ESCRITA 1)
+indexacao.md   'A ILHA FECHOU 100% DE INDEXACAO'              : 1   (ESCRITA 2)
+indexacao.md   '61 na PROPRIEDADE' restante                   : 1   (so a citacao 'dizia "61 na
+                                                                     PROPRIEDADE"' dentro da nova
+                                                                     ERRATA; a celula antiga saiu)
+aquametria/dados/posicoes.md  secao '### ERRATA E COMPLEMENTO': 1   (ESCRITA 3) — 219 -> 246 linhas
+aquametria/PROMPT.md   'ERRATA DO MESMO DIA, 20h2xZ'          : 1   (ESCRITA 4)
+aquametria/ESTADO.md   'INDEXACAO FECHOU EM 52 DE 52 (100%)'  : 1   (ESCRITA 5)
+robometria/dados/posicoes.md  secao '### ERRATA E COMPLEMENTO': 1   (ESCRITA 6) — 148 -> 163 linhas
+robometria/ESTADO.md   'CONFERIDA contra a leitura pela nuvem': 1   (ESCRITA 7)
+rodametria/dados/posicoes.md  secao '### ERRATA E COMPLEMENTO': 1   (ESCRITA 8) —  31 ->  49 linhas
+rodametria/ESTADO.md   'ERRATA: a leitura pela nuvem NAO falhou': 1 (ESCRITA 9)
+
+frase antiga 'a leitura pela nuvem falhou nos dois disparos' nos tres ESTADO.md:
+  ilhas/aquametria/ESTADO.md:0   ilhas/robometria/ESTADO.md:0   ilhas/rodametria/ESTADO.md:0
+```
+
+**Zero erro, zero passo falhado neste disparo.** Nada foi reformatado, nada foi "melhorado", nenhuma linha
+foi acrescentada além do que a instrução trouxe. Não reservei ilha, não escrevi `executando_desde`, não
+toquei em cabeçalho de estado que a instrução não nomeou, não executei bloco de fila, não publiquei, não
+acionei Sync e não criei conta em plataforma nenhuma. Nenhum contato pessoal de terceiros entrou — a
+instrução não trazia nenhum.
+
+**O que a errata deixa registrado, e que vale para as próximas leituras:** (1) cache de CDN também serve
+**404**, não só conteúdo velho, e 404 em cache é indistinguível de arquivo que não existe — quando um
+disparo responder que gravou, a conferência é pelo `MAOS-LOG.md`, não pelo `raw.githubusercontent.com`;
+(2) a aquametria fechou **52 de 52 (100%)** de indexação pela primeira vez, com as duas mães de categoria
+`/peixes/acaras/` e `/peixes/tetras/` entrando no índice; (3) a consulta de `/calculadora-de-litragem/` é
+`litragem` na posição **64,0** (banda 21+), o que derruba metade do item 1 do despacho da aquametria e
+passa a banda 11-20 para `/peixes/acaras/`; (4) `ferramentas/search-console.py` busca
+`/sitemap.xml` quando as ilhas servem `/wp-sitemap.xml`; e (5) o egresso do ambiente das MÃOS recusa
+`rodametria.com.br` (403) enquanto o da Sentinela já o alcança (200) — dois ambientes com listas de
+domínio diferentes, separado por escrito pela primeira vez.
+
+Releitura: esta seção começa na linha **9584** e, no momento da medição, somava **93** linhas, com o
+arquivo terminando em **9676** linhas e **137** seções `##`. Este parágrafo final acrescenta linhas depois
+da medição; o número que vale é o da última releitura, e ele entra na resposta do disparo. O arquivo é
+append-only: nenhuma seção anterior foi apagada, reescrita ou resumida neste disparo.
