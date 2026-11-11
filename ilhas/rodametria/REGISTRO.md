@@ -3,6 +3,84 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-11-11 16h19Z–17hxxZ — **O DESPACHO DE QUATRO ITENS, INTEIRO — E O ITEM 4 ERA QUATRO CÓPIAS, NÃO DUAS** — revisões 84 e 85
+
+**A ESCOLHA DA ILHA, E ELA FOI A DECISÃO MAIS PESADA DESTA PASSADA.** `foco.md` nomeia a **rodametria** (foco total e absoluto desde 27/10), e a 1.2 tem UMA exceção: despacho **ALTO** em ilha que esteja **no ar e quebrada**. **Havia DOIS, escritos hoje mesmo** — a ronda técnica curta das 15h0xZ achou a **robometria** e a **clubedomosaico** fora do ar, as duas com a home em 200 e as **três portas da 29.2 em 404** servindo a página de estacionamento da HostGator, a assinatura do bloco `# BEGIN WordPress` ausente do `.htaccess` da raiz (4ª queda da clubedomosaico, 2ª da robometria em 12 dias). **Eu remedi as duas às 16h17Z, 1h15 depois da ronda, e as duas continuavam caídas** — 404 nas três portas de cada uma, com a home em 200.
+
+**E a exceção não se exerceu, por uma razão que não é omissão:** o reparo da **29.3** é um GET com o **token do Sync**, o token **não está no repositório e não deve estar** (lê-se logado), e a **29.4** proíbe gancho automático com todas as letras — *"porta de entrada que se conserta calada a cada carregamento é a que ninguém consegue desfazer no dia em que estiver errada"*. Não há revisão nova que levante aquela porta. **Então o que esta execução podia fazer pelas duas, ela fez: avisou o Raphael**, que tem o token, com as duas URLs de reparo prontas — e trabalhou a ilha em foco, onde a **18.5** manda fechar o despacho aberto antes de qualquer bloco novo. **O chamado da HostGator em `dados/despachos.md` continua falando só do `.htaccess` da clubedomosaico, e a robometria precisa entrar nele** — isso é da ronda e do Raphael, não da Fundação.
+
+**Passo 1:** `origin/claude/dreamy-mccarthy-wxby0l` no **mesmo SHA** do `main` (`f4ef9ca`), **zero** commit fora do `main` nas duas direções, **zero PR aberto** — nada a mergear. `executando_desde: null`, o que pela **1.1** já significa que não havia bloco da Fundação vivo; nenhuma reserva órfã a limpar (1.2-b.5). Reserva no commit `07a0312`, às **16h19Z**, hora saída do `date -u` na mesma linha que a grava, e **RENOVADA às 16h43Z** pela 1.1 — o despacho tem quatro itens e sai inteiro (18.2).
+
+**A REDE, MEDIDA E NÃO HERDADA (20.2), ANTES DA RESERVA.** `rodametria.com.br` em **200** nas três passadas com quebra de cache, com `robometria.com.br` e `aquametria.com.br` em 200 nas mesmas três — **9 de 9, zero `000`**. **Rede aberta e ilhas caídas são coisas diferentes e se medem separadas:** as duas ilhas do parágrafo acima respondem 200 na home pela MESMA rede que entregou 404 nas portas delas.
+
+### ITEM 1 — O BOTÃO DE COMPRA QUE NÃO VENDE, E O CONSERTO VIROU MECANISMO
+
+O cartão 2 da vitrine de `/veiculos/patinete-eletrico/` servia um anúncio **esgotado** (item `58212105781`, encurtado `9pfbJrNKOR`, R$ 1.499,00, degrau 1), medido pela ronda no navegador do Raphael em duas leituras. Link morto é **dado do banco** (19.2) e a escolha era da Fundação.
+
+**A ESCOLHA, e ela é a do precedente da robometria de 02/11 (o `electrolux-erb60`): o anúncio aposentado NÃO fica em campo vivo.** Ele saiu da lista `anuncios` e virou **uma linha de prosa** em `anuncios_aposentados`, com a história inteira dentro — ids, loja, título, preço, degrau, encurtado, causa e última medição —, no formato `CAUSA || ULTIMA MEDICAO` que a **25.4-b.3** exige. O "pronto quando" pedia exatamente isso: *"zero ocorrência em campo vivo do banco"* e *"a história inteira dentro do motivo, fora dos campos vivos"*.
+
+**E O CONSERTO NÃO FOI UMA EDIÇÃO: É UMA FERRAMENTA, porque isto vai acontecer de novo.** `ferramentas/aplicar-aposentadoria-de-anuncio.py` faz a troca sempre do mesmo jeito, **imprime cada uma** (seção 8) e tem portão próprio. Anúncio esgotado é o custo corrente de vender ficha de marketplace — a **25.1** já diz que link de afiliado apodrece — e o conserto à mão mexe em **seis** lugares do mesmo arquivo e erra calado no que não tocar.
+
+**A PARTE QUE O "PRONTO QUANDO" NÃO PEDIA E SEM A QUAL O CONSERTO SE DESFARIA CALADO:** `coletar-por-consulta.py --gravar` **reescreve o bloco inteiro a partir da API**. Sem quarentena, o anúncio esgotado **volta na próxima coleta**, com o mesmo id, como oferta viva. Então **a prosa da quarentena É a lista de bloqueio**: o formato da linha é fechado (`APOSENTADO EM <data> — item <id> da loja <id> — … CAUSA: … || ULTIMA MEDICAO: …`), o coletor lê o id dela e **recusa o anúncio**, imprimindo a recusa. A régua do formato, a leitura do id e a recontagem moram **no coletor**, que é o dono do arquivo; a ferramenta de aposentar as **usa** em vez de copiá-las (20.7).
+
+**O QUE MUDOU NAS CONTAS, e elas refizeram sobre quem sobrou:** 16 → **15** anúncios, mediana **R$ 1.647,95 → R$ 1.695,92**, `declaram_watt` 15/16 → 14/15, e o **5º cartão é o próximo da ordem da seção 7**. `ofertas_lidas` (20) e `ofertas_recusadas` (4) **não mudaram** — são fato da coleta de 04/11 — e a soma passou a ser cobrada por portão: `ofertas_lidas == anuncios + aposentados`.
+
+**E O LEITOR PASSOU A SABER.** A prestação de contas da página dizia *"A mesma busca devolveu 20 ofertas, e 4 ficaram de fora"*; com uma oferta saindo depois, **a conta que o leitor faz de cabeça deixava de fechar com o tamanho da tabela**. Agora ela termina: *"Outra saiu da lista depois dessa leitura: quando fomos abrir a página dela, a loja mostrava o produto como esgotado — e oferta que não vende não entra na tabela nem nas contas de preço desta página."* **Conta que não fecha na tela é pior que conta ausente: ela ensina a desconfiar do número que está certo.**
+
+**A FICHA DO CARTÃO QUE ENTROU FOI TESTADA VIVA HOJE, e isto não é suposição:** a tabela daquela página já servia os 16 anúncios, e o teste de vida da ronda de hoje cobriu **24 fichas com 23 vivas e UMA esgotada** — a que saiu. O cartão promovido estava entre as 23. Reescolher ficha nova não foi tentado, e não é omissão: o teste de vida da Shopee **não é exercitável desta nuvem** (25.4, remedido hoje — o Chromium daqui abre a ficha em 200 e ela não renderiza, com 23 recursos da CDN de script recusados pelo egresso), e grampear ficha que ninguém pode abrir é a **25.4-b.1** ao pé da letra.
+
+### ITEM 2 — A PALAVRA `ilha` SERVIDA AO VISITANTE, E A RÉGUA QUE A LISTA DE SUBSTRING NÃO SABIA ESCREVER
+
+As **10 ocorrências** de `\bilhas?\b` em 5 das 10 URLs saíram: 9 na prosa institucional (`dados/paginas-institucionais.json`) e 1 na nota de medição da F2. **Todas passaram a dizer `este site`**, que é a palavra que esta ilha já usava para si na tela.
+
+**E a régua nova mora num lugar só** — `BASTIDOR_COM_FRONTEIRA`, em `ferramentas/conferir-no-ar.py`, medida **no texto visível E no HTML servido** (onde mora o JSON-LD), com duas propriedades que a lista de substring crua não conseguia ter:
+
+- **fronteira de palavra**, porque `ilha` está dentro de **`trilha`** — e a trilha de migalhas da 16.3 sai em **5 a 7 ocorrências por página**, nas 10. Portão que a reprovasse reprovaria o **certo**, que é o caminho mais curto para alguém passar a ignorá-lo (20.5);
+- **acento dobrado dos dois lados** — e é aqui que o item 3 se junta a este.
+
+### ITEM 3 — `publicável` ESTAVA NA LISTA DESDE QUE ELA NASCEU, E O ACENTO ATRAVESSAVA
+
+**O achado que vale mais que o conserto:** `publicavel` **já estava** em `BASTIDOR`. A lista não pegou nada porque o ar servia **`publicável`**, com acento, e a comparação era `termo.lower() in texto.lower()`. **Termo na lista, ocorrência no ar, portão verde.** É a família do `git log` raso e do número de tela digitado: o instrumento responde, e a resposta não mede o que promete.
+
+Na tela, a linha da régua sem valor dizia a mesma coisa **três vezes**, duas delas no vocabulário da fábrica: *"sem valor publicável. Tipo: pendente, sem valor publicado. Não publicamos nenhum valor. A medição mais forte…"*. Pela **32.4-c** o conserto de uma frase duplicada é a segunda deixar de existir, então: com valor nulo a linha é **só a prosa da fonte** — a única das três que diz **por quê** —, o rótulo `Tipo:` saiu (rótulo de campo de banco não é texto de leitor), a cláusula do tipo é omitida quando não há valor, e a frase do tipo `pendente` deixou de repetir o valor do enum. **A ausência tem guarda:** sem fonte escrita, a linha diz em português que não publicamos número ali, em vez de ficar só o nome da régua.
+
+### ITEM 4 — ERAM QUATRO DECLARAÇÕES DO CRITÉRIO DE ORDEM, NÃO DUAS
+
+O despacho achou duas páginas declarando o critério com réguas diferentes. **A varredura achou mais duas, as duas em snippet, as duas servidas:**
+
+| onde | o que servia | |
+|---|---|---|
+| `/sobre/` | *"quem ordena uma lista aqui é o que o anúncio declara e o preço"* | incompleta |
+| `/divulgacao-de-afiliados/` | *"Primeiro vem quem a loja mostra como mais vendido na busca medida"* | quase certa |
+| **rodapé da casca** | *"quem decide a ordem é o que o **fabricante** declara"* | **falsa, e em TODA página** |
+| **bloco de compra** | *"A ordem é por **venda medida** e depois por preço"* | diz que medimos a venda |
+
+A ordem real é **uma**: as vendas que a **própria loja declarou** na busca que a gente mediu (decrescente) e, no empate, o **preço menor**. O rodapé era simplesmente falso — o fabricante não entra na ordem — e servia em toda página da ilha. E `venda medida` apaga a diferença que o `VOZ.md` desta ilha proíbe apagar: a venda foi **lida** da resposta da loja, não medida por nós.
+
+**O CONSERTO É A ORDEM VIRAR DADO.** `CHAVES_DE_ORDEM`, em `ferramentas/gerar-vitrine-de-produto.py`, declara uma vez cada degrau da ordem com a frase de leitor dele; **`ordenar()` monta a chave de ordenação dessa tupla e `frase_do_criterio_de_ordem()` monta a frase da MESMA tupla**. A frase viaja em `criterio_de_ordem_na_tela` e as **três camadas de tela** a recebem pelo molde `{CRITERIO_DE_ORDEM}`. **Mudar a ordem sem mudar a frase deixou de ser possível: a frase não existe separada da ordem.**
+
+O rodapé da casca **parou de declarar e passou a remeter**, com link: *"Isso nunca muda a ordem das recomendações, e o critério que decide essa ordem está escrito na página que explica como este site ganha dinheiro."* Dizer **onde** não é declarar.
+
+`ferramentas/teste-criterio-de-ordem.py` é o portão sem rede que o item pediu. Ele cobra três coisas e a terceira é a que o protege de si mesmo: o literal da frase não existe escrito à mão em camada nenhuma; **quem afirma o critério usa o molde** (régua de vocabulário, linha por linha do PHP, com os comentários fora — comentário é a memória da ilha e nele a palavra é livre); e **a remissão continua permitida**. Os mundos fabricados são **as quatro frases que estavam no ar**, mais a remissão nova como o mundo que tem de **PASSAR**, mais a prova em dado fabricado de que `ordenar()` segue a tupla (dois anúncios com vendas e preço em lados opostos). **27 afirmações, 0 falha.**
+
+**E a liberação de quantificador da frase antiga do `/divulgacao/` foi APAGADA junto com a frase.** Liberação morta é tão perigosa quanto frase sem liberação, porque ela **parece conferida** — e é a própria regra escrita no arquivo de liberações desta ilha.
+
+### O DESEMBARQUE, E O PORTÃO NOVO REPROVOU NO AR — QUE É PARA ISSO QUE ELE EXISTE
+
+**Revisão 84**, às 16h43Z: o fecho declara **11 aplicado(s)** e o log traz **11 linhas de item**, lidas do **FECHO PARA BAIXO** (20.8), **as 11 dizendo `ok`** — conta da **20.10** em **zero**.
+
+**E então o portão do item 2 reprovou:** a `/autonomia-patinete-eletrico/` continuava servindo **uma** ocorrência de `ilha`. A troca tinha sido feita em `dados/f2-respostas.json`, que é **GERADO** — e `gerar-f2.py` a desfez na mesma passada, calado, porque a frase mora na lista de medições **do gerador**. Conserto na fonte, **revisão 85**. A lição é de método e não desta frase: **editar arquivo gerado parece conserto e dura até o próximo `--gravar`**; quem troca prosa pergunta ao `gerado_por` do arquivo quem a escreve.
+
+### A VERIFICAÇÃO NO AR (18.4), NAS 10 URLs COM QUEBRA DE CACHE
+
+- **item 1:** `9pfbJrNKOR` **0** e `58212105781` **0** nas 10 URLs; a vitrine serve **5 cartões, os 5 com ficha** e a busca (`60Su92trfV`) como piso em 6 botões; a frase da oferta que saiu está na tela.
+- **item 2:** `\bilhas?\b` **0** em **9 das 10** URLs, no texto visível e no HTML servido — com `trilha` intacta em 5 a 7 por página. **A décima, a `/autonomia-patinete-eletrico/`, esperava a revisão 85 quando esta linha foi escrita (16h5xZ):** o conserto está no `main` e o veredito da 20.9 é `evento-nao-vencido` (`ultimo` 16:43:44, o raw já servindo 85, teto 17:13:44), e **reacionar não antecipa vencimento**. A releitura daquela URL fecha o item, e a linha que a registra é a de baixo — se ela não existir, o item NÃO foi conferido no ar e o despacho continua aberto por força da 18.4.
+- **item 3:** `publicav` **0** e `Tipo: ` **0** nas 10.
+- **item 4:** a MESMA cadeia de critério servida em **4 páginas** (`/sobre/`, `/divulgacao-de-afiliados/` e as duas de produto), vinda de **um** lugar, e **zero** molde cru.
+- **bancada:** 43 portões sem rede, **0 falha** (dois portões novos nesta passada); portão de ar da ilha **APROVADO**.
+
+**O PRÓXIMO PASSO DESBLOQUEADO.** A fila de blocos segue acabada (só o 5 falta, e ele depende de um `pauta.md` que pela 17.1 não é arquivo da Fundação) e as duas pontas de página de produto seguem travadas (a 30.8 para a SERP e o Mercado Livre para o produto das duas consultas de maior volume). Então o próximo trabalho é **da mesma família do que vem achando defeito nas sete últimas passadas: ler o SERVIDO com os olhos, numa superfície nova**. A superfície que ninguém leu ainda: **o texto de ATRIBUTO e o JSON-LD contra a prosa visível na mesma página** — o `title` da célula já pagou uma cicatriz em 10/11 e o par `description` × primeira frase já foi medido em zero; o que não foi é **`alt`/`aria-label`/`title` contra o que a 32.4 proíbe nas 10 URLs de uma vez**, agora que a régua de fronteira existe e pode ser apontada para eles.
+
 ## 2026-11-11 13h17Z–14h2xZ — **O `<script>` SERVIA OS PRÓPRIOS COMENTÁRIOS, UM DELES NOMEANDO OUTRA ILHA — E O DESEMBARQUE CAIU NA CICATRIZ DA 20.4, QUE NÃO ERA INEVITÁVEL: ERA UMA GUARDA QUE FALTAVA** — revisões 82 e 83
 
 **A ESCOLHA DA ILHA.** `foco.md` nomeia a **rodametria** (foco total e absoluto desde 27/10) e pela **1.2** não há escolha a fazer. **As duas coisas que furariam o foco foram MEDIDAS nesta passada e não herdadas do registro anterior:** o **despacho do molde da seção 32** está riscado e FECHADO INTEIRO nas três ilhas que a 1.2 nomeia (aquametria 21/10 às 18h2xZ, clubedomosaico 21/10 às 19h1xZ, robometria 21/10 às 16h1xZ — lidos nos três `PROMPT.md`), e **nenhuma ilha fora do foco tem despacho ALTO aberto estando no ar e quebrada**. Nada fura o foco. **Branch e PR, passo 1:** `origin/claude/dreamy-mccarthy-m8f28c` com **zero** commit fora do `main` nas duas direções (os três `rev-parse` no mesmo SHA, `cad9f68`) e **zero PR aberto** — nada a mergear. `executando_desde` estava `null`, o que pela **1.1** já significa que não havia bloco da Fundação vivo: nenhuma reserva vencida a desempatar no git, nenhuma reserva órfã a limpar (1.2-b.5). Reserva no commit `3eaf1f0`, às **13h17Z**, hora saída do `date -u` na mesma linha que a grava, e **RENOVADA às 13h40Z** pela 1.1.
