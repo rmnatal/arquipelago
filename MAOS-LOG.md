@@ -9258,3 +9258,91 @@ terminando em **9253** linhas e **133** seções `##`. Este parágrafo final acr
 depois da medição, e o número que vale é o da última releitura: o arquivo fecha em **9260** linhas
 e esta seção em **59**. Os 9253/52 valiam para o instante em que foram medidos; a diferença é só o
 tamanho deste parágrafo, e está aqui porque contagem prevista não é contagem conferida.
+
+## 11/11/2026 — 16h51 (19:51Z) — Leitura Search Console pela nuvem das quatro ilhas
+
+**Instrução do disparo:** rodar `ferramentas/search-console.py` para `aquametria`, `robometria`,
+`rodametria` e `clubedomosaico`, gravar a saída inteira de cada uma em
+`ilhas/<ilha>/dados/search-console-2026-11-11.md`, conferir `grep -c PRIVATE` = 0 em cada arquivo,
+commitar com a mensagem `Leitura Search Console pela nuvem — 2026-11-11` e empurrar para o `main`.
+Assunto do Arquipélago (dados de ilha), executado. O valor de `GOOGLE_SA_B64` não foi impresso,
+gravado nem commitado em nenhum momento.
+
+**Conferência de vazamento — `grep -c PRIVATE` em cada arquivo, antes do commit:**
+
+```
+aquametria PRIVATE=0
+robometria PRIVATE=0
+rodametria PRIVATE=0
+clubedomosaico PRIVATE=0
+```
+
+**`git status --porcelain` antes do commit do trabalho:**
+
+```
+?? ilhas/aquametria/dados/search-console-2026-11-11.md
+?? ilhas/clubedomosaico/dados/search-console-2026-11-11.md
+?? ilhas/robometria/dados/search-console-2026-11-11.md
+?? ilhas/rodametria/dados/search-console-2026-11-11.md
+```
+
+**`git diff --stat` do commit do trabalho:**
+
+```
+ .../aquametria/dados/search-console-2026-11-11.md  | 75 ++++++++++++++++++++++
+ .../dados/search-console-2026-11-11.md             | 37 +++++++++++
+ .../robometria/dados/search-console-2026-11-11.md  | 28 ++++++++
+ .../rodametria/dados/search-console-2026-11-11.md  | 19 ++++++
+ 4 files changed, 159 insertions(+)
+```
+
+**Hash que foi ao `main`:**
+
+```
+2169969db46983d48e6b669b59cd473a12c73fb5
+Leitura Search Console pela nuvem — 2026-11-11
+```
+
+**O primeiro push foi RECUSADO**, e a mensagem completa entra aqui porque disparo com passo que
+falhou é o que mais precisa de rastro:
+
+```
+hint: Updates were rejected because the remote contains work that you do not
+hint: have locally. This is usually caused by another repository pushing to
+hint: the same ref. If you want to integrate the remote changes, use
+hint: 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+```
+
+O `main` tinha andado de `5a55498` para `33d15f5` entre o `git fetch` do começo e o push. Conserto
+pelo passo 4, sem force: `git fetch origin main && git rebase origin/main` (`Successfully rebased`)
+e `git push origin HEAD:main` devolveu `33d15f5..2169969  HEAD -> main`. Confirmado pelo passo 5:
+`git fetch origin main && git log -1 origin/main` devolve o hash acima. Push que aparece em
+`origin/main` é push.
+
+**Contagem dos arquivos gravados, conferida relendo cada um DEPOIS de gravar, por `wc -l`:**
+
+```
+  75 ilhas/aquametria/dados/search-console-2026-11-11.md
+  37 ilhas/clubedomosaico/dados/search-console-2026-11-11.md
+  28 ilhas/robometria/dados/search-console-2026-11-11.md
+  19 ilhas/rodametria/dados/search-console-2026-11-11.md
+ 159 total
+```
+
+**Duas leituras saíram com o sitemap não lido, e isso está na saída gravada, não escondido:** a
+`rodametria` deu `ProxyError ... Tunnel connection failed: 403 Forbidden` em
+`https://rodametria.com.br/sitemap.xml` e a `clubedomosaico` deu `HTTP 404` no dela, então as duas
+gravaram `n/d` na linha de indexação. Os números de cliques e impressões das duas vieram normais,
+porque esses não dependem do sitemap. A `robometria` acusou 4 URLs não indexadas, todas
+`Discovered - currently not indexed`, e a `aquametria` veio com 52 de 52 indexadas. Nenhum ajuste
+foi feito em arquivo nenhum por conta disso: as mãos gravam a leitura, quem decide é a Fundação.
+
+O log entra num commit seguinte ao do trabalho, porque o hash só existe depois de o trabalho estar
+confirmado em `origin/main`.
+
+**Contagem desta seção, conferida relendo o arquivo DEPOIS de gravar e não pelo que eu achava que
+tinha escrito:** a seção começa na linha **9262** e, no momento da medição, somava **81** linhas,
+com o arquivo terminando em **9342** linhas e **134** seções `##`. Este parágrafo final acrescenta
+linhas depois da medição; o número que vale é o da última releitura, e ele entra na resposta do
+disparo.
