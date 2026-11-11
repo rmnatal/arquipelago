@@ -71,7 +71,7 @@
    Antes disto a ilha cujo produto e "o preco de hoje" tinha ZERO ocorrencia de
    `dateModified` e de `datePublished` em todo o JSON-LD das 9 URLs. */
 if ( ! defined( 'RODAMETRIA_CASCA_VERSAO' ) ) {
-	define( 'RODAMETRIA_CASCA_VERSAO', '1.24.0' );
+	define( 'RODAMETRIA_CASCA_VERSAO', '1.25.0' );
 }
 
 /**
@@ -1132,11 +1132,58 @@ function rodametria_casca_cartao_de_compra( $item ) {
 
 	if ( ! empty( $item['imagem']['url'] ) ) {
 		$img = $item['imagem'];
+		/* O `alt` E VAZIO QUANDO ELE SERIA O NOME QUE ESTE CARTAO IMPRIME TRES
+		   LINHAS ABAIXO, e a comparacao e feita aqui porque ESTA funcao e a
+		   unica que sabe que as duas cadeias ficam encostadas (11/11/2026).
+
+		   MEDIDO NO AR as 19h2xZ de 11/11/2026, nos 8 cartoes com foto de
+		   `/veiculos/patinete-eletrico/` e `/veiculos/bicicleta-eletrica/`: o
+		   atributo e o `<p class="rdm-molde-cartao-nome">` seguinte serviam a
+		   MESMA cadeia, de 60 a 120 caracteres. Para quem usa leitor de tela e o
+		   titulo do anuncio anunciado DUAS vezes por cartao. E tem a metade de
+		   voz: o `alt` e esta ilha descrevendo a imagem com as palavras dela, e a
+		   cadeia copiada diz `Suporta Ate 150kg` sem o verbo que nomeia quem
+		   declarou — numa ilha cuja tese e que o numero do anuncio engana (26, e o
+		   item 4 do despacho de 09/11, que ancorou a regua no VERBO). Na tela a
+		   frase de escopo do carrossel diz de onde a cadeia vem; no atributo nao
+		   ha vizinho nenhum.
+
+		   A COPIA NASCE NO COLETOR: `coletar-oferta.py` grava `imagem.alt` com o
+		   `nome_do_registro()`, entao o campo e o mesmo dado duas vezes, e sera
+		   assim em toda coleta nova. Consertar so o coletor deixaria no ar o que
+		   ja foi colhido; a comparacao aqui atravessa a coleta seguinte, que e a
+		   licao que a 25.11 escreveu nesta mesma ilha hoje.
+
+		   ATRIBUTO VAZIO E UMA AFIRMACAO, e ela e verdadeira aqui: a imagem e
+		   redundante porque a pagina imprime o nome ao lado dela. `alt` que
+		   DESCREVA a foto continua sendo servido, porque o que sai e so a COPIA —
+		   e e isso que `alts_que_repetem_a_prosa_vizinha()` mede no ar. */
+		$alt_da_foto = isset( $img['alt'] ) ? (string) $img['alt'] : '';
+		if ( $alt_da_foto === (string) $item['nome'] ) {
+			$alt_da_foto = '';
+		}
 		$html .= '<img class="rdm-molde-cartao-foto" src="' . esc_url( $img['url'] ) . '"'
 			. ' width="' . (int) ( isset( $img['largura'] ) ? $img['largura'] : 320 ) . '"'
 			. ' height="' . (int) ( isset( $img['altura'] ) ? $img['altura'] : 320 ) . '"'
 			. ' loading="lazy" decoding="async"'
-			. ' alt="' . esc_attr( isset( $img['alt'] ) ? $img['alt'] : $item['nome'] ) . '">';
+			/* O `alt` NAO REPETE O NOME QUE O CARTAO IMPRIME TRES LINHAS ABAIXO
+			   (11/11/2026). O padrao `$img['alt'] ?: $item['nome']` servia, nos 8
+			   cartoes com foto das duas paginas de familia, a MESMA cadeia no
+			   atributo e no `<p class="rdm-molde-cartao-nome">` encostado nele:
+			   para quem usa leitor de tela, o titulo do anuncio — 60 a 120
+			   caracteres — anunciado DUAS vezes por cartao. E tem a metade de
+			   voz: o `alt` e a ilha descrevendo a imagem com as palavras dela, e
+			   a cadeia copiada diz `Suporta Ate 150kg` sem o verbo que nomeia
+			   quem declarou, numa ilha cuja tese e que o numero do anuncio engana
+			   (26, e o item 4 do despacho de 09/11, que ancorou a regua no VERBO).
+			   Na tela a frase de escopo do carrossel diz de onde a cadeia vem; no
+			   atributo nao ha vizinho nenhum.
+			   ATRIBUTO VAZIO E UMA AFIRMACAO, e ela e verdadeira aqui: a imagem
+			   e redundante porque a pagina imprime o nome ao lado dela. `alt` que
+			   DESCREVA a foto continua passando — o portao mede igualdade com o
+			   vizinho, nao redacao —, e o dia em que o banco trouxer `imagem.alt`
+			   escrito para a foto, ele e servido. */
+			. ' alt="' . esc_attr( $alt_da_foto ) . '">';
 	} else {
 		$html .= '<span class="rdm-molde-cartao-sem-foto" aria-hidden="true"></span>';
 	}

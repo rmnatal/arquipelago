@@ -421,6 +421,260 @@ def frases_e_pares_do_jsonld(blocos):
 
     return textos, pares
 
+
+# ---------------------------------------------------------------------------
+# AS DUAS SUPERFICIES QUE AS DUAS LISTAS DA 32.4 NUNCA TINHAM LIDO (11/11/2026,
+# a tarde)
+#
+# O `bloco_atual` desta ilha deixou esta ponta escrita de manha: *"o TEXTO DE
+# ATRIBUTO (`alt`, `aria-label`, `title`) e o JSON-LD contra a regua de bastidor
+# nas 10 URLs de uma vez, agora que a regua de FRONTEIRA existe e pode ser
+# apontada para eles"*. As duas superficies JA tinham extrator aqui —
+# `textos_de_atributo()` nasceu em 10/11 e `frases_e_pares_do_jsonld()` em
+# 06/11 —, e as DUAS listas da 32.4 nunca foram apontadas para nenhum dos dois:
+# elas correm sobre o TEXTO VISIVEL e sobre o BYTE SERVIDO INTEIRO.
+#
+# O BYTE SERVIDO PARECE COBRIR OS DOIS, E E ESSE "PARECE" QUE ESTA MEDIDO AQUI.
+# Ele cobre enquanto o byte e igual ao texto que a pessoa le, e as duas
+# superficies sao exatamente as duas em que ele NAO e:
+#
+#   (a) ENTIDADE DE HTML. Atributo nasce de `esc_attr()`, que escreve `&amp;`,
+#       `&#039;` e, em servidor com `htmlentities`, tambem o acento. A regua de
+#       fronteira DOBRA o acento (`publicável` -> `publicavel`) e nao desdobra
+#       entidade: `title="public&aacute;vel"` passa pela regua do byte sem ser
+#       vista, e `textos_de_atributo()` ja a entrega desescapada. A mesma coisa
+#       vale para `&#105;lha`, que e `ilha` escrito em numero.
+#   (b) ESCAPE DE JSON. `wp_json_encode` escreve `á` e `dados\/` quando
+#       `JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES` nao vao na chamada.
+#       Esta ilha passa as duas bandeiras hoje, nas seis chamadas que servem
+#       JSON-LD — contado, nao suposto — e por isso o byte serve `publicável` e
+#       `dados/` legiveis. TRES TERMOS DA LISTA DE CIMA TERMINAM EM `/`
+#       (`dados/`, `ferramentas/`, `regras/`): no dia em que uma chamada nova
+#       nascer sem a bandeira, os tres ficam cegos de uma vez, e NENHUM portao
+#       acusaria. `json.loads` desfaz os dois escapes, e e por isso que a regua
+#       le o VALOR e nao a linha.
+#
+# E A TERCEIRA RAZAO NAO E DE CODIFICACAO, E DE ENDERECO (20.5): o byte inteiro
+# nao sabe dizer se o termo esta num `alt` que o leitor de tela anuncia, numa
+# resposta de `FAQPage` que o Google cita, ou dentro de um comentario nosso —
+# e o conserto de cada um fica em arquivo diferente. Afirmacao que nao diz onde
+# manda procurar.
+# ---------------------------------------------------------------------------
+
+def valores_do_jsonld(blocos):
+    """Toda string de todo `application/ld+json`, com o CAMINHO dela dentro do bloco.
+
+    Diferente de `frases_e_pares_do_jsonld()`, que devolve texto solto para as
+    reguas de afirmacao: aqui o endereco vem junto (`ld[2]/mainEntity/0/name`),
+    porque o conserto de uma string de JSON-LD mora em lugar diferente conforme
+    a chave, e mensagem sem endereco manda alguem procurar.
+
+    NENHUMA CHAVE E EXCLUIDA, de proposito. `@context` e `@type` sao vocabulario
+    da schema.org e nao prosa desta ilha, e excluir os dois seria barato — mas
+    lista de excecao envelhece calada, e as duas foram MEDIDAS em zero achado
+    nas 10 URLs antes desta decisao. No dia em que uma palavra da schema.org
+    colidir com a lista, o portao diz qual chave e, e a excecao nasce com
+    medicao em vez de nascer por precaucao.
+    """
+    out = []
+    for i, bloco in enumerate(blocos):
+        try:
+            dado = json.loads(bloco)
+        except Exception:
+            continue
+
+        pilha = [("ld[%d]" % i, dado)]
+        while pilha:
+            onde, x = pilha.pop()
+            if isinstance(x, dict):
+                for k, v in x.items():
+                    pilha.append(("%s/%s" % (onde, k), v))
+            elif isinstance(x, list):
+                for j, v in enumerate(x):
+                    pilha.append(("%s/%d" % (onde, j), v))
+            elif isinstance(x, str) and x.strip():
+                out.append((onde, x))
+
+    return out
+
+
+def problemas_de_bastidor_em_pares(pares, superficie):
+    """AS DUAS listas da 32.4 sobre pares `(onde, texto)` JA DESESCAPADOS.
+
+    A de substring e a de fronteira, nesta ordem, com o endereco de dentro da
+    pagina em cada linha. O texto chega desescapado de quem chama — e isso e a
+    metade que o byte servido nao tem.
+    """
+    ruim = []
+    for onde, texto in pares:
+        baixo = texto.lower()
+        for termo in BASTIDOR:
+            if termo.lower() in baixo:
+                ruim.append("32.4 em %s %s: a palavra de bastidor %r — %r"
+                            % (superficie, onde, termo, texto[:140]))
+        for problema in problemas_de_bastidor_com_fronteira(
+                texto, "%s %s" % (superficie, onde)):
+            ruim.append("%s — %r" % (problema, texto[:140]))
+
+    return ruim
+
+
+# ---------------------------------------------------------------------------
+# O `alt` QUE DIZ, LETRA POR LETRA, O QUE A PAGINA JA IMPRIME AO LADO
+# (11/11/2026, achado na primeira leitura do texto de atributo com os olhos)
+#
+# MEDIDO NO AR as 19h2xZ de 11/11/2026, em `/veiculos/patinete-eletrico/` e
+# `/veiculos/bicicleta-eletrica/`: os 8 cartoes com foto serviam
+#
+#     <img class="rdm-molde-cartao-foto" ... alt="TITULO DO ANUNCIO">
+#     <p class="rdm-molde-cartao-nome">TITULO DO ANUNCIO</p>
+#
+# com a MESMA cadeia nos dois, encostadas. Para quem usa leitor de tela isso e
+# o titulo do anuncio anunciado DUAS vezes por cartao — e o titulo do anuncio
+# desta ilha tem 60 a 120 caracteres. E tem a outra metade, que e de voz: o
+# `alt` e a ilha descrevendo a imagem com as PALAVRAS DELA, e a cadeia copiada
+# diz `Suporta Ate 150kg` e `Ate 30Km/h` sem o verbo que nomeia quem declarou —
+# numa ilha cuja tese e que o numero do anuncio engana (26, e o item 4 do
+# despacho de 09/11, que ancorou a regua no VERBO). Na tela a cadeia tem a
+# frase de escopo do carrossel acima dela dizendo de onde ela vem; no atributo
+# nao tem vizinho nenhum.
+#
+# POR QUE A REGUA MEDE IGUALDADE E NAO A FRASE: igualdade e conferivel sem
+# escolher redacao, e e ela que prova a repeticao. Um `alt` que descreva a FOTO
+# (o que ela mostra) passa, porque nao e igual ao texto ao lado; um `alt` vazio
+# passa, porque atributo vazio e a declaracao de que a imagem e redundante — que
+# e a verdade aqui — e `textos_de_atributo()` ja nao o conta. O que ela reprova
+# e a copia.
+# ---------------------------------------------------------------------------
+
+_RE_IMG_COM_ALT = re.compile(r'<img\b[^>]*\balt\s*=\s*"([^"]*)"[^>]*>', re.I)
+_RE_PROSA_VIZINHA = re.compile(
+    r'<(p|h1|h2|h3|h4|li|td|figcaption|span)\b[^>]*>(.*?)</\1>', re.I | re.S)
+
+
+def _texto_cru(fragmento):
+    return re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ",
+                                      desescapar_entidades(fragmento))).strip()
+
+
+def alts_que_repetem_a_prosa_vizinha(corpo, vizinhanca=600):
+    """`alt` identico ao texto do primeiro elemento de prosa que vem depois dele.
+
+    Devolve uma linha por ocorrencia. A janela e de `vizinhanca` caracteres de
+    HTML depois da tag: o cartao desta ilha imprime o nome na marcacao
+    IMEDIATAMENTE seguinte, e janela maior passaria a casar com prosa que a
+    pessoa nao le junto com a imagem.
+    """
+    ruim = []
+    for m in _RE_IMG_COM_ALT.finditer(corpo):
+        alt = _texto_cru(m.group(1))
+        if not alt:
+            continue
+        depois = corpo[m.end():m.end() + vizinhanca]
+        vizinho = _RE_PROSA_VIZINHA.search(depois)
+        if not vizinho:
+            continue
+        if _texto_cru(vizinho.group(2)) == alt:
+            ruim.append("o `alt` da imagem repete, letra por letra, o <%s> que a "
+                        "pagina imprime logo depois dela — leitor de tela diz a "
+                        "mesma cadeia duas vezes: %r"
+                        % (vizinho.group(1).lower(), alt[:120]))
+
+    return ruim
+
+
+# ---------------------------------------------------------------------------
+# A CELULA DA TABELA VIRA ORACAO DENTRO DE UMA FRASE, E A CONCORDANCIA E DE QUEM
+# ESCREVEU PRIMEIRO (11/11/2026, achado na primeira leitura do JSON-LD com os
+# olhos)
+#
+# MEDIDO NO AR as 19h2xZ de 11/11/2026, na home, nas DUAS camadas: a `FAQPage`
+# servia *"o art. 12 diz que o veiculo nao e **sujeita** a registro,
+# licenciamento nem placa"* e a tabela visivel, tres dobras acima, servia a
+# MESMA cadeia na linha `bicicleta eletrica`. Na mesma pagina, a resposta
+# seguinte dizia *"ele nao e **sujeito**"*. Duas concordancias para a mesma
+# afirmacao, e uma delas errada.
+#
+# A CAUSA NAO E ERRO DE DIGITACAO, E E POR ISSO QUE ISTO E PORTAO E NAO CONSERTO
+# DE UMA PALAVRA. O campo `placa` da tabela da regra e UM dado servido em DOIS
+# lugares, de proposito — o comentario de `rodametria-f1.php` o diz com todas as
+# letras: *"as respostas sao montadas dos campos da tabela, nunca digitadas (...)
+# a camada que a IA le e a camada que a pessoa le nao podem divergir"*, e essa
+# regra esta CERTA. O que ninguem havia medido e que o campo e um PEDACO DE
+# ORACAO que concorda com o sujeito de quem o usa: na tabela o sujeito e a
+# linha (`bicicleta eletrica`, feminino) e na frase era `o veiculo` (masculino).
+# A celula estava certa no lugar onde nasceu e errada no lugar onde foi colada.
+#
+# O CONSERTO E DA FRASE, NAO DO DADO: a frase passa a nomear a categoria de que
+# ela fala, e com isso os dois sujeitos passam a ser o mesmo. Trocar o dado
+# consertaria a frase e quebraria a tabela — que e o jeito de este defeito voltar
+# pela outra ponta.
+#
+# O QUE A REGUA NAO ALCANCA, DITO AQUI PARA NAO APROVAR EM SILENCIO: ela conhece
+# UMA familia de oracao (a de registro e placa, que e a afirmacao mais perigosa
+# que esta ilha faz) e uma lista de sujeitos. Sujeito fora da lista nao reprova:
+# vira linha de REGISTRO, porque regua que aprova o que nao reconheceu e pior
+# que regua que nao roda.
+# ---------------------------------------------------------------------------
+
+# O SUJEITO E MEDIDO COM FRONTEIRA DE PALAVRA, e isto nao e zelo: escrito com
+# `str.rfind`, este dicionario achou `ele` dentro de `acELErador` e dentro de
+# `ELEtrica`, nas DUAS frases do mundo 20 — e, por achar o masculino mais perto
+# do participio, APROVOU a frase doente e a consertada do mesmo jeito. E a
+# 32.4-e, escrita nesta ilha nesta manha (*"palavra que vive dentro de outra nao
+# pode ser medida por pedaco"*), repetida a tarde por quem a leu. A ordem da
+# tupla continua importando: `a bicicleta eletrica` vem antes de `a bicicleta`
+# porque as duas comecam no mesmo lugar e a mais longa e a que a frase diz.
+SUJEITOS_COM_GENERO = (
+    (r"\ba bicicleta eletrica\b", "a bicicleta eletrica", "f"),
+    (r"\ba bicicleta\b", "a bicicleta", "f"),
+    (r"\bo autopropelido\b", "o autopropelido", "m"),
+    (r"\bo ciclomotor\b", "o ciclomotor", "m"),
+    (r"\bo equipamento\b", "o equipamento", "m"),
+    (r"\bo veiculo\b", "o veiculo", "m"),
+    (r"\bela\b", "ela", "f"),
+    (r"\bele\b", "ele", "m"),
+)
+
+_RE_PARTICIPIO_DE_SUJEICAO = re.compile(r"\bnao e (sujeit[oa])\b")
+
+
+def problemas_de_concordancia_da_sujeicao(textos, onde):
+    """`nao e sujeito/sujeita` concordando com o sujeito que a frase traz.
+
+    Devolve `(problemas, sem_sujeito)`. O texto e lido DOBRADO, pela mesma razao
+    da regua de fronteira da 32.4: `veículo` e `veiculo` sao a mesma palavra e
+    nenhuma regua desta ilha deve depender de qual das duas chegou.
+    """
+    ruim = []
+    sem_sujeito = []
+    for texto in textos:
+        dobrado = re.sub(r"\s+", " ", _sem_acento(texto).lower())
+        for m in _RE_PARTICIPIO_DE_SUJEICAO.finditer(dobrado):
+            participio = m.group(1)
+            genero_dito = "f" if participio.endswith("a") else "m"
+            antes = dobrado[max(0, m.start() - 70):m.start()]
+            achado = None
+            for padrao, sujeito, genero in SUJEITOS_COM_GENERO:
+                encontrados = list(re.finditer(padrao, antes))
+                if not encontrados:
+                    continue
+                pos = encontrados[-1].start()
+                if achado is None or pos > achado[0]:
+                    achado = (pos, sujeito, genero)
+            if achado is None:
+                sem_sujeito.append("%s: %r sem sujeito reconhecido em %r"
+                                   % (onde, participio, texto[:120]))
+                continue
+            if achado[2] != genero_dito:
+                ruim.append("%s: %r depois de %r — a celula da tabela da regra foi "
+                            "colada numa frase cujo sujeito e de outro genero, e a "
+                            "frase tem de nomear a categoria de que fala: %r"
+                            % (onde, participio, achado[1], texto[:160]))
+
+    return ruim, sem_sujeito
+
+
 falhas = []
 registros = []
 afirmacoes = 0
@@ -2121,6 +2375,51 @@ def main():
         for problema in problemas_de_bastidor_com_fronteira(html, "HTML servido de %s" % caminho):
             afirma(False, problema)
 
+
+        # E AS DUAS LISTAS DA 32.4 SOBRE AS DUAS SUPERFICIES DESESCAPADAS: o
+        # texto de ATRIBUTO e o VALOR do JSON-LD (11/11/2026, a tarde). Ver o
+        # comentario de `valores_do_jsonld()` acima para as tres razoes de nao
+        # bastar o byte servido — entidade de HTML, escape de JSON e endereco.
+        # Duas afirmacoes SEPARADAS porque o conserto de cada uma mora em
+        # arquivo diferente (20.5): atributo sai da casca e do gerador da
+        # vitrine; valor de JSON-LD sai do snippet que monta o bloco.
+        _attr_324 = textos_de_atributo(corpo)
+        _ld_324 = valores_do_jsonld(jsonld)
+        _maus_attr = problemas_de_bastidor_em_pares(_attr_324, "atributo de %s" % caminho)
+        _maus_ld = problemas_de_bastidor_em_pares(_ld_324, "JSON-LD de %s" % caminho)
+        afirma(not _maus_attr,
+               "%s: %d texto(s) de ATRIBUTO com palavra de bastidor da 32.4 — e e "
+               "o atributo que o leitor de tela anuncia e que o ponteiro mostra. "
+               "O primeiro: %s"
+               % (caminho, len(_maus_attr), _maus_attr[0] if _maus_attr else ""))
+        afirma(not _maus_ld,
+               "%s: %d valor(es) de JSON-LD com palavra de bastidor da 32.4 — e e "
+               "a camada que o Google e as ferramentas de IA citam sem abrir a "
+               "pagina. O primeiro: %s"
+               % (caminho, len(_maus_ld), _maus_ld[0] if _maus_ld else ""))
+        # A CONTA DAS DUAS VAI DITA (20.8): zero achado e indistinguivel de regua
+        # que nao rodou, e as duas nasceram com zero achado nas 10 URLs.
+        registro("%s: a 32.4 leu %d texto(s) de atributo e %d valor(es) de JSON-LD"
+                 % (caminho, len(_attr_324), len(_ld_324)))
+
+        # O `alt` NAO REPETE A PROSA QUE VEM LOGO DEPOIS DELE (11/11/2026).
+        for problema in alts_que_repetem_a_prosa_vizinha(corpo):
+            afirma(False, "%s: %s" % (caminho, problema))
+
+        # A CONCORDANCIA DA ORACAO DE SUJEICAO, nas DUAS camadas (11/11/2026).
+        # Sobre a prosa visivel e sobre o valor do JSON-LD, porque a celula da
+        # tabela da regra e colada nas duas e o defeito medido estava na segunda.
+        _textos_da_sujeicao = (elementos_de_prosa(corpo)
+                               + [v for _onde, v in _ld_324])
+        _maus_conc, _sem_suj = problemas_de_concordancia_da_sujeicao(
+            _textos_da_sujeicao, caminho)
+        afirma(not _maus_conc,
+               "%s: %d oracao(oes) de sujeicao concordando com outro sujeito. A "
+               "primeira: %s"
+               % (caminho, len(_maus_conc), _maus_conc[0] if _maus_conc else ""))
+        for linha in _sem_suj:
+            registro(linha)
+
         # Shortcode cru na tela e desembarque que nao aconteceu.
         afirma("[rodametria_" not in texto,
                "%s: shortcode cru servido na tela — o snippet nao esta ativo" % caminho)
@@ -2989,6 +3288,185 @@ def autoteste():
                 "x", [t for _o, t in _attr_sa], [TITULO_DO_ANUNCIO]),
             "17.10 as duas celulas CONSERTADAS passam — portao que reprova a pagina "
             "certa e o caminho mais curto para alguem ignora-lo (20.5)")
+
+        # =================================================================
+        # MUNDO 18 — AS DUAS LISTAS DA 32.4 NAS DUAS SUPERFICIES DESESCAPADAS,
+        # E O BYTE SERVIDO TEM DE DISCORDAR (11/11/2026, a tarde)
+        # =================================================================
+        #
+        # O PRIMEIRO MUNDO E O AR DE VERDADE: as 10 URLs servidas as 19h2xZ de
+        # 11/11/2026 deram ZERO achado nas duas superficies, e e por isso que
+        # estes mundos sao FABRICADOS. Zero no ar com regua que nunca mordeu nao
+        # distingue pagina sa de regua que nao roda.
+        _ATTR_COM_ENTIDADE = (
+            '<td class="rdm-tabela-carga" title="Tipo: public&aacute;vel">até 150 kg</td>'
+            '<img src="/x.jpg" alt="foto desta &#105;lha">')
+        _m18_attr = problemas_de_bastidor_em_pares(
+            textos_de_atributo(_ATTR_COM_ENTIDADE), "atributo")
+        diz(any("publicavel" in p for p in _m18_attr),
+            "18.1 `public&aacute;vel` dentro de um `title` REPROVA — o acento escrito "
+            "em entidade e a mesma palavra do enum de `status`")
+        diz(any("Tipo:" in p or "rotulo de campo de banco" in p for p in _m18_attr),
+            "18.2 o rotulo `Tipo:` dentro do mesmo `title` REPROVA pela lista de fronteira")
+        diz(any("este site" in p for p in _m18_attr),
+            "18.3 `&#105;lha` dentro de um `alt` REPROVA — o acento nao e a unica "
+            "entidade que esconde palavra; o numero tambem esconde")
+
+        # E A REGUA DO BYTE SERVIDO, QUE JA EXISTIA, APROVA OS TRES. E a
+        # discordancia que a 20.8 exige: ela dobra o ACENTO e nao desfaz a
+        # ENTIDADE, e `publicavel` so existe depois de desescapar.
+        # E A REGUA DO BYTE SERVIDO, QUE JA EXISTIA, PERDE EXATAMENTE AS DUAS
+        # PALAVRAS ESCONDIDAS EM ENTIDADE — e acha a terceira, que nao esta
+        # escondida. A discordancia nao e "ela nao ve nada": e "ela ve o que esta
+        # em texto cru e e cega para o que `esc_attr` escreveu", e e por isso que
+        # a afirmacao e contada termo por termo em vez de no bloco todo.
+        _m18_byte = problemas_de_bastidor_com_fronteira(_ATTR_COM_ENTIDADE, "byte")
+        diz(any("rotulo de campo de banco" in p for p in _m18_byte),
+            "18.4 o byte servido ACHA o `Tipo:`, que esta em texto cru")
+        diz(not any("publicavel" in p or "este site" in p for p in _m18_byte)
+                and any("publicavel" in p for p in _m18_attr)
+                and any("este site" in p for p in _m18_attr),
+            "18.4-b e e CEGO para `public&aacute;vel` e `&#105;lha`, que a regua de "
+            "atributo reprova — a discordancia e o motivo de esta afirmacao existir")
+
+        # O JSON-LD, com os DOIS escapes que `wp_json_encode` escreve quando as
+        # bandeiras nao vao na chamada: `á` no acento e `\/` na barra. Os
+        # tres termos da lista que terminam em `/` ficam cegos de uma vez.
+        _LD_COM_ESCAPE = ['{"@type":"WebPage","name":"public\\u00e1vel",'
+                          '"description":"lido de dados\\/veiculos.json"}']
+        _m18_ld = problemas_de_bastidor_em_pares(
+            valores_do_jsonld(_LD_COM_ESCAPE), "JSON-LD")
+        diz(any("publicavel" in p for p in _m18_ld),
+            "18.5 `\\u00e1` dentro de um valor de JSON-LD REPROVA depois do `json.loads`")
+        diz(any("'dados/'" in p for p in _m18_ld),
+            "18.6 `dados\\/` REPROVA pelo mesmo caminho — e e o escape que cegaria "
+            "`dados/`, `ferramentas/` e `regras/` juntos")
+        diz(problemas_de_bastidor_com_fronteira(_LD_COM_ESCAPE[0], "byte") == []
+                and [t for t in BASTIDOR if t.lower() in _LD_COM_ESCAPE[0].lower()] == []
+                and _m18_ld != [],
+            "18.7 e a regua do byte aprova os dois — a mesma discordancia, do outro lado")
+
+        # O ENDERECO VAI NA MENSAGEM, porque o conserto de cada chave mora em
+        # lugar diferente e mensagem sem endereco manda alguem procurar.
+        diz(any("/description" in p for p in _m18_ld),
+            "18.8 a linha diz a CHAVE de dentro do bloco (`ld[0]/description`)")
+
+        # E O AR DE VERDADE PASSA NAS DUAS, com o JSON-LD da home como ele foi
+        # servido: nenhuma das duas listas pode reprovar a pagina certa (20.5).
+        _LD_SAO = ['{"@context":"https://schema.org","@type":"WebSite",'
+                   '"name":"Rodametria","inLanguage":"pt-BR",'
+                   '"description":"Potência, velocidade e acelerador decidem se o '
+                   'seu elétrico é bicicleta, autopropelido ou ciclomotor."}']
+        diz(problemas_de_bastidor_em_pares(valores_do_jsonld(_LD_SAO), "JSON-LD") == [],
+            "18.9 o JSON-LD da home como ele esta no ar PASSA, `@context` e `@type` "
+            "inclusive — nenhuma chave e excluida da leitura")
+        diz(len(valores_do_jsonld(_LD_SAO)) == 5,
+            "18.10 e ela diz quantos valores leu: 5 do bloco da home, contados")
+        diz(valores_do_jsonld(['{"isto nao e json']) == [],
+            "18.11 bloco ilegivel nao derruba a leitura dos outros")
+
+        # =================================================================
+        # MUNDO 19 — O `alt` QUE REPETE A PROSA VIZINHA, E O MUNDO 1 E O AR
+        # (11/11/2026, 19h2xZ, `/veiculos/patinete-eletrico/`)
+        # =================================================================
+        _AR_CARTAO_DOENTE = (
+            '<li class="rdm-molde-cartao">'
+            '<img class="rdm-molde-cartao-foto" src="https://cf.shopee.com.br/file/x"'
+            ' width="1024" height="1024" loading="lazy" decoding="async"'
+            ' alt="' + TITULO_DO_ANUNCIO + '">'
+            '<p class="rdm-molde-cartao-nome">' + TITULO_DO_ANUNCIO + '</p>'
+            '<p class="rdm-molde-cartao-spec">declara watt, sem dizer se é nominal '
+            'ou de pico</p></li>')
+        _m19 = alts_que_repetem_a_prosa_vizinha(_AR_CARTAO_DOENTE)
+        diz(len(_m19) == 1 and "<p>" in _m19[0].replace("`", ""),
+            "19.1 o cartao como ele estava no ar REPROVA: o `alt` e o <p> seguinte "
+            "sao a mesma cadeia, e o leitor de tela diz o titulo do anuncio duas vezes")
+
+        # O CONSERTO: `alt` vazio. A imagem e redundante porque a pagina imprime
+        # o nome ao lado dela, e atributo vazio e a declaracao disso.
+        _AR_CARTAO_SAO = _AR_CARTAO_DOENTE.replace(
+            'alt="' + TITULO_DO_ANUNCIO + '"', 'alt=""')
+        diz(alts_que_repetem_a_prosa_vizinha(_AR_CARTAO_SAO) == [],
+            "19.2 com `alt=\"\"` o cartao PASSA — e `textos_de_atributo()` deixa de "
+            "contar o atributo vazio, que e a verdade daquele atributo")
+
+        # E UM `alt` QUE DESCREVE A FOTO TAMBEM PASSA: a regua mede IGUALDADE e nao
+        # redacao, entao ela nao obriga o atributo a ser vazio.
+        diz(alts_que_repetem_a_prosa_vizinha(_AR_CARTAO_DOENTE.replace(
+                'alt="' + TITULO_DO_ANUNCIO + '"',
+                'alt="patinete branco dobrado, de perfil"')) == [],
+            "19.3 um `alt` que descreve a FOTO passa — a regua reprova a copia, "
+            "nao o atributo")
+
+        # E A FOTO LONGE DA PROSA PASSA: a janela e curta de proposito, porque
+        # prosa distante nao e lida junto com a imagem.
+        diz(alts_que_repetem_a_prosa_vizinha(
+                '<img src="/x.jpg" alt="' + TITULO_DO_ANUNCIO + '">'
+                + ("<div>" * 200)
+                + '<p>' + TITULO_DO_ANUNCIO + '</p>') == [],
+            "19.4 prosa igual a 600 caracteres de distancia NAO reprova — a janela "
+            "mede vizinhanca, nao a pagina")
+
+        # A REGUA VELHA REFEITA AO LADO: a afirmacao que esta ilha ja tinha sobre
+        # `<img>` e `"alt=" in img`, e ela APROVA o cartao doente, porque o
+        # atributo existe. Ela tambem aprova o consertado. Nunca mediu repeticao.
+        diz(all("alt=" in i for i in re.findall(r"<img[^>]*>", _AR_CARTAO_DOENTE))
+                and _m19 != [],
+            "19.5 a afirmacao velha (`<img> sem alt`) APROVA o cartao doente e a nova "
+            "o REPROVA — a discordancia que a 20.8 exige")
+
+        # =================================================================
+        # MUNDO 20 — A CONCORDANCIA DA ORACAO DE SUJEICAO, E O MUNDO 1 E O AR
+        # (11/11/2026, 19h2xZ, home, nas DUAS camadas)
+        # =================================================================
+        #
+        # A frase abaixo e copiada LETRA POR LETRA da resposta de `FAQPage`
+        # servida pela home as 19h2xZ de 11/11/2026, e a mesma celula aparecia
+        # na tabela visivel tres dobras acima.
+        AR_FAQ_DOENTE = ("Pela Resolução Contran nº 996/2023, quando o motor auxiliar "
+                         "tem até 1.000 W de potência nominal, a velocidade do motor "
+                         "não passa de 32 km/h, o veículo só funciona quando a pessoa "
+                         "pedala e ele não tem acelerador. Nessa categoria, o art. 12 "
+                         "diz que o veículo não é sujeita a registro, licenciamento "
+                         "nem placa.")
+        _m20, _s20 = problemas_de_concordancia_da_sujeicao([AR_FAQ_DOENTE], "/")
+        diz(len(_m20) == 1 and "sujeita" in _m20[0],
+            "20.1 a resposta de `FAQPage` como ela estava no ar REPROVA: `o veículo` "
+            "e masculino e a celula da tabela diz `sujeita`")
+
+        # O CONSERTO E DA FRASE: ela passa a nomear a categoria de que fala, e os
+        # dois sujeitos passam a ser o mesmo. O DADO nao muda.
+        AR_FAQ_SAO = AR_FAQ_DOENTE.replace("que o veículo não é sujeita",
+                                           "que a bicicleta elétrica não é sujeita")
+        diz(problemas_de_concordancia_da_sujeicao([AR_FAQ_SAO], "/")[0] == [],
+            "20.2 com a categoria nomeada a mesma celula PASSA — o conserto nao "
+            "toca o campo `placa` da tabela")
+
+        # E A OUTRA PONTA, QUE E COMO ESTE DEFEITO VOLTARIA: trocar o DADO para
+        # `sujeito` consertaria a frase antiga e quebraria a linha da tabela.
+        diz(problemas_de_concordancia_da_sujeicao(
+                ["a bicicleta elétrica não é sujeito a registro, licenciamento nem placa"],
+                "/")[0] != [],
+            "20.3 `a bicicleta elétrica não é sujeito` tambem REPROVA — a regua nao "
+            "decidiu que `sujeita` e sempre errado, ela mede concordancia")
+
+        # AS DUAS FRASES CERTAS QUE A HOME JA SERVIA passam, e e isso que separa
+        # esta regua de um termo proibido.
+        diz(problemas_de_concordancia_da_sujeicao(
+                ["Pelo art. 12, ele não é sujeito a registro, licenciamento nem placa.",
+                 "A resolução diz, no art. 12, que não é sujeito a registro, a "
+                 "licenciamento nem a emplacamento para circular nas vias."],
+                "/")[0] == [],
+            "20.4 as duas oracoes CERTAS que a home ja servia passam")
+
+        # E A CELULA SOZINHA — como a TABELA a serve, sem sujeito na frase — nao
+        # reprova: vira linha de REGISTRO. Regua que aprova o que nao reconheceu
+        # e pior que regua que nao roda.
+        _m20c, _s20c = problemas_de_concordancia_da_sujeicao(
+            ["não é sujeita a registro, licenciamento nem placa"], "/")
+        diz(_m20c == [] and len(_s20c) == 1,
+            "20.5 a celula sozinha, como a tabela a serve, nao reprova e e RELATADA — "
+            "ali o sujeito e a linha da tabela, que nao esta na frase")
 
         print("conferir-no-ar --autoteste: %d de %d afirmacoes, %d falha(s)"
           % (len(ok), len(ok) + len(mal), len(mal)))

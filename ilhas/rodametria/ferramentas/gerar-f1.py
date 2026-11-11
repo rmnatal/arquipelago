@@ -142,6 +142,9 @@ def tabela_da_regra(constantes):
     linhas = [
         {
             "categoria": "bicicleta_eletrica",
+            # O ARTIGO VEM DA REFERENCIA, nunca digitado: e ele que deixa a
+            # resposta nomear a categoria com que a celula `placa` concorda.
+            "artigo_definido": f1ref.ARTIGO_DA_CATEGORIA["bicicleta_eletrica"],
             "nome": f1ref.NOME_DA_CATEGORIA["bicicleta_eletrica"],
             "potencia_w": f1ref._n(lim["LIMIAR_BIKE_W"]),
             "velocidade_kmh": f1ref._n(lim["LIMIAR_BIKE_KMH"]),
@@ -152,6 +155,9 @@ def tabela_da_regra(constantes):
         },
         {
             "categoria": "autopropelido",
+            # O ARTIGO VEM DA REFERENCIA, nunca digitado: e ele que deixa a
+            # resposta nomear a categoria com que a celula `placa` concorda.
+            "artigo_definido": f1ref.ARTIGO_DA_CATEGORIA["autopropelido"],
             "nome": f1ref.NOME_DA_CATEGORIA["autopropelido"],
             "potencia_w": f1ref._n(lim["LIMIAR_AUTOPROP_W"]),
             "velocidade_kmh": f1ref._n(lim["LIMIAR_AUTOPROP_KMH"]),
@@ -164,6 +170,9 @@ def tabela_da_regra(constantes):
         },
         {
             "categoria": "ciclomotor",
+            # O ARTIGO VEM DA REFERENCIA, nunca digitado: e ele que deixa a
+            # resposta nomear a categoria com que a celula `placa` concorda.
+            "artigo_definido": f1ref.ARTIGO_DA_CATEGORIA["ciclomotor"],
             "nome": f1ref.NOME_DA_CATEGORIA["ciclomotor"],
             "potencia_w": f1ref._n(lim["LIMIAR_CICLOMOTOR_W"]),
             "velocidade_kmh": f1ref._n(lim["LIMIAR_CICLOMOTOR_KMH"]),
@@ -174,6 +183,9 @@ def tabela_da_regra(constantes):
         },
         {
             "categoria": "acima_do_ciclomotor",
+            # O ARTIGO VEM DA REFERENCIA, nunca digitado: e ele que deixa a
+            # resposta nomear a categoria com que a celula `placa` concorda.
+            "artigo_definido": f1ref.ARTIGO_DA_CATEGORIA["acima_do_ciclomotor"],
             "nome": "acima disso",
             "potencia_w": "mais de %s" % f1ref._n(lim["LIMIAR_CICLOMOTOR_W"]),
             "velocidade_kmh": "mais de %s" % f1ref._n(lim["LIMIAR_CICLOMOTOR_KMH"]),

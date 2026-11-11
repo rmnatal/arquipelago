@@ -90,7 +90,7 @@ if ( ! defined( 'RODAMETRIA_F1_VERSAO' ) ) {
 	   SEM o formulario da F1 e SEM a barra fixa, e o `/casca` nao trazia
 	   `rodametria-f1` nenhum — que e exatamente a ausencia que a 20.7 desenhou
 	   para ser o sinal. Tres dos cinco portoes de pagina ficaram verdes. */
-	define( 'RODAMETRIA_F1_VERSAO', '1.5.3' );
+	define( 'RODAMETRIA_F1_VERSAO', '1.6.0' );
 }
 
 if ( ! defined( 'RODAMETRIA_ID_DADOS_F1' ) ) {
@@ -851,8 +851,18 @@ add_action( 'wp_head', function () {
 			'Pela Resolução Contran nº 996/2023, quando o motor auxiliar tem até '
 				. $bike['potencia_w'] . ' W de potência nominal, a velocidade do motor não passa de '
 				. $bike['velocidade_kmh'] . ' km/h, o veículo só funciona quando a pessoa pedala e '
-				. 'ele não tem acelerador. Nessa categoria, o ' . $bike['artigo'] . ' diz que o '
-				. 'veículo ' . $bike['placa'] . '.',
+				/* A FRASE NOMEIA A CATEGORIA DE QUE FALA, e isto nao e estilo
+				   (11/11/2026). O campo `placa` e um PEDACO DE ORACAO que
+				   concorda com o sujeito de quem o usa: na tabela da regra o
+				   sujeito e a linha (`bicicleta eletrica`, feminino) e aqui era
+				   `o veiculo`, masculino. A home servia, nas duas camadas,
+				   *"o art. 12 diz que o veiculo nao e SUJEITA a registro"*, com
+				   a resposta seguinte dizendo *"ele nao e SUJEITO"* tres linhas
+				   abaixo — duas concordancias para a mesma afirmacao, medidas no
+				   ar as 19h2xZ de 11/11/2026. A celula estava certa onde nasceu e
+				   errada onde foi colada, e trocar a celula quebraria a tabela. */
+				. 'ele não tem acelerador. Nessa categoria, o ' . $bike['artigo'] . ' diz que '
+				. $bike['artigo_definido'] . ' ' . $bike['nome'] . ' ' . $bike['placa'] . '.',
 		),
 		array(
 			'Quando é autopropelido, e o que muda em relação à bicicleta elétrica?',

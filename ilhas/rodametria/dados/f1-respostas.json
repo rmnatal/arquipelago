@@ -277,6 +277,7 @@
   "tabela_regra": [
     {
       "categoria": "bicicleta_eletrica",
+      "artigo_definido": "a",
       "nome": "bicicleta elétrica",
       "potencia_w": "1.000",
       "velocidade_kmh": "32",
@@ -287,6 +288,7 @@
     },
     {
       "categoria": "autopropelido",
+      "artigo_definido": "o",
       "nome": "equipamento de mobilidade individual autopropelido",
       "potencia_w": "1.000",
       "velocidade_kmh": "32",
@@ -297,6 +299,7 @@
     },
     {
       "categoria": "ciclomotor",
+      "artigo_definido": "o",
       "nome": "ciclomotor",
       "potencia_w": "4.000",
       "velocidade_kmh": "50",
@@ -307,6 +310,7 @@
     },
     {
       "categoria": "acima_do_ciclomotor",
+      "artigo_definido": "o",
       "nome": "acima disso",
       "potencia_w": "mais de 4.000",
       "velocidade_kmh": "mais de 50",

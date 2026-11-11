@@ -102,6 +102,29 @@ NOME_DA_CATEGORIA = {
     "acima_do_ciclomotor": "acima do ciclomotor",
 }
 
+# O ARTIGO DEFINIDO DE CADA NOME, E ELE NASCE AQUI PORQUE O NOME NAO O ENTREGA
+# (11/11/2026).
+#
+# O campo `placa` da tabela da regra e um PEDACO DE ORACAO — "nao e sujeita a
+# registro, licenciamento nem placa" — e ele concorda com o sujeito de quem o
+# usa. Na tabela o sujeito e a linha; na resposta de `FAQPage` da home o sujeito
+# era `o veiculo`, masculino, e a home servia "o veiculo nao e SUJEITA", nas
+# duas camadas, com a resposta seguinte dizendo "ele nao e SUJEITO" tres linhas
+# abaixo. Medido no ar as 19h2xZ de 11/11/2026.
+#
+# O CONSERTO E DA FRASE E NAO DO DADO: a frase passa a nomear a categoria de que
+# fala, e para isso ela precisa do artigo. Derivar genero da cadeia do nome
+# seria chute (`equipamento` e masculino e `bicicleta` e feminino, e nada no
+# texto diz isso), e trocar o campo `placa` para o masculino consertaria a
+# resposta e quebraria a linha da tabela — que e o jeito de este defeito voltar
+# pela outra ponta.
+ARTIGO_DA_CATEGORIA = {
+    "bicicleta_eletrica": "a",
+    "autopropelido": "o",
+    "ciclomotor": "o",
+    "acima_do_ciclomotor": "o",
+}
+
 
 # --------------------------------------------------------------------------
 # OS MOLDES DE FRASE, NUM LUGAR SO.
