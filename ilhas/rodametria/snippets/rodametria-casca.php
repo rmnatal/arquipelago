@@ -71,7 +71,7 @@
    Antes disto a ilha cujo produto e "o preco de hoje" tinha ZERO ocorrencia de
    `dateModified` e de `datePublished` em todo o JSON-LD das 9 URLs. */
 if ( ! defined( 'RODAMETRIA_CASCA_VERSAO' ) ) {
-	define( 'RODAMETRIA_CASCA_VERSAO', '1.22.0' );
+	define( 'RODAMETRIA_CASCA_VERSAO', '1.23.0' );
 }
 
 /**
@@ -939,11 +939,61 @@ function rodametria_casca_nome_da_loja( $programa ) {
 }
 }
 
+if ( ! function_exists( 'rodametria_casca_artigo_da_loja' ) ) {
+/**
+ * O ARTIGO DA LOJA PELO NOME DELA — `a` Shopee, `o` Mercado Livre (11/11/2026).
+ *
+ * O PARAMETRO E O NOME E NAO O PROGRAMA, de proposito: o genero e propriedade
+ * do NOME, e ha um caminho nesta ilha em que o nome da loja do preco vem CRU
+ * de um campo do banco (`preco_loja`), sem programa nenhum para traduzir. Com
+ * o programa na porta, aquele caminho pediria uma segunda regra de genero.
+ *
+ * MEDIDO NO AR as 13h2xZ de 11/11/2026, na pagina da F2, em DOIS cartoes:
+ * *"R$ 8.244,00 lido na Mercado Livre em 27/10/2026"* e o mesmo no cartao
+ * seguinte. `Mercado Livre` e masculino e a frase o tratava como feminino,
+ * porque a PREPOSICAO era literal (`'lido na ' . $loja`) e so o NOME vinha da
+ * funcao. A mesma linha estava escrita em quatro lugares: as duas frases da
+ * nota de preco, o rotulo do botao de ficha e o de busca.
+ *
+ * E ELA E DA FAMILIA QUE ESTA ILHA JA PAGOU DUAS VEZES: o molde supoe uma
+ * forma e o dado tem outra — *"e 0 declaram o nominal"*, o plural que mente
+ * (06/11), e *"nenhum dos 3 veiculos aguenta"*, a frase de lista vazia que
+ * mentia (06/11). Aqui quem mente e o ARTIGO, e por isso ele passa a ser
+ * propriedade do NOME e nao da frase: o genero mora no mesmo lugar unico que
+ * ja sabia traduzir programa em nome, e toda frase o pergunta.
+ *
+ * O PORTAO de `ferramentas/teste-nota-de-preco.php` tinha a frase errada
+ * DENTRO DELE, como texto esperado, desde 30/10 — regua escrita a partir do
+ * que o codigo fazia, e nao do que o portugues pede.
+ */
+function rodametria_casca_artigo_da_loja( $nome_da_loja ) {
+	return ( 'Mercado Livre' === $nome_da_loja ) ? 'o' : 'a';
+}
+}
+
+if ( ! function_exists( 'rodametria_casca_na_loja' ) ) {
+/** `na Shopee` / `no Mercado Livre` — a preposicao `em` com o artigo da loja. */
+function rodametria_casca_na_loja( $programa ) {
+	$nome = rodametria_casca_nome_da_loja( $programa );
+
+	return 'n' . rodametria_casca_artigo_da_loja( $nome ) . ' ' . $nome;
+}
+}
+
+if ( ! function_exists( 'rodametria_casca_a_loja' ) ) {
+/** `a Shopee` / `o Mercado Livre` — so o artigo com o nome. */
+function rodametria_casca_a_loja( $programa ) {
+	$nome = rodametria_casca_nome_da_loja( $programa );
+
+	return rodametria_casca_artigo_da_loja( $nome ) . ' ' . $nome;
+}
+}
+
 if ( ! function_exists( 'rodametria_casca_rotulo_da_loja' ) ) {
 function rodametria_casca_rotulo_da_loja( $programa, $degrau ) {
-	$loja = rodametria_casca_nome_da_loja( $programa );
+	$na_loja = rodametria_casca_na_loja( $programa );
 
-	return ( (int) $degrau >= 4 ) ? 'Ver ofertas na ' . $loja : 'Ver na ' . $loja;
+	return ( (int) $degrau >= 4 ) ? 'Ver ofertas ' . $na_loja : 'Ver ' . $na_loja;
 }
 }
 
@@ -1366,6 +1416,298 @@ function rodametria_casca_fechar_folha( $id ) {
 	$css = ob_get_clean();
 	echo "\n" . '<style id="' . esc_attr( $id ) . '">' . "\n"
 		. rodametria_casca_css_sem_comentario( $css ) . "\n</style>\n";
+}
+}
+
+/* ==========================================================================
+ * O ROTEIRO SERVIDO NAO LEVA OS PROPRIOS COMENTARIOS (32.4-b, 11/11/2026)
+ *
+ * A 32.4-b NASCEU NESTA ILHA EM 04/11/2026 E FOI APLICADA A UMA METADE SO DA
+ * PAGINA. Ela tirou os comentarios da FOLHA e deixou os do ROTEIRO, e o
+ * defeito que isso guardou esta medido no ar as 13h2xZ de 11/11/2026, nas 10
+ * URLs do sitemap: os quatro blocos `<script>` desta ilha servem 14
+ * comentarios e 3.489 bytes, em 3 das 10 paginas. SEIS deles trazem
+ * exatamente o vocabulario que a 32.4 proibe — um nomeia OUTRA ILHA do
+ * arquipelago (*"a cicatriz que a clubedomosaico pagou em 12/10/2026"*), um
+ * diz `despacho` e cita o numero de uma secao deste contrato (*"o item 2 do
+ * despacho de 30/10/2026"*, *"32.5"*), e outros dizem `cerebro` e `secao`.
+ *
+ * E A CAUSA DE NINGUEM VER E A MESMA DE 04/11, UM ANDAR AO LADO: o portao que
+ * nasceu naquele dia conta comentario dentro de `<style>` e nunca olhou
+ * `<script>`; a regua de palavra de bastidor varre o HTML inteiro, mas com
+ * uma LISTA, e nenhuma das palavras destes 14 comentarios estava nela. Entre a
+ * regua que mede o lugar certo com a lista curta e a que tem a lista boa e
+ * mede o lugar errado cabia o defeito inteiro. E A 32.5-c LITERAL: *"regra que
+ * nao viaja para as irmas e a doenca que este molde ja pagou tres vezes"* — e
+ * aqui ela nem precisou viajar para outra ilha, bastou nao atravessar a
+ * pagina.
+ *
+ * TIRAR COMENTARIO DE JAVASCRIPT E MAIS PERIGOSO QUE DE CSS, e por tres
+ * razoes que nao existem na folha:
+ *
+ *   1. `//` APARECE DENTRO DE TODA URL (`https://...`). Um removedor de linha
+ *      ingenuo apaga o resto da linha a partir do `//` de `https://` e come o
+ *      codigo que vinha depois. Medido hoje: ZERO `//` no roteiro servido
+ *      desta ilha — mas o pacote de dado do rodape e `wp_json_encode` do
+ *      banco, e banco ganha URL. A trava existe para esse dia.
+ *   2. A QUEBRA DE LINHA FICA. Em JavaScript o fim de linha fecha instrucao
+ *      sozinho (insercao automatica de ponto e virgula): comer a quebra junto
+ *      com o `//` colaria duas instrucoes numa, e isso NAO e erro de sintaxe —
+ *      e comportamento trocado em silencio.
+ *   3. `/` ABRE EXPRESSAO REGULAR *ou* DIVIDE, e as duas se escrevem igual: so
+ *      a POSICAO as separa. Esta ilha tem duas expressoes regulares por
+ *      ferramenta (o separador de milhar e o molde de `{chave}`), e ler a
+ *      primeira como divisao faria a varredura entrar no meio dela.
+ *
+ * POR ISSO A VARREDURA AQUI E DE CARACTERE, e nao de expressao regular como a
+ * da folha: string, template e expressao regular sao consumidos INTEIROS, e e
+ * so por isso que um `/*` ou um `//` dentro deles nunca e lido como
+ * comentario — a varredura nunca COMECA dentro de um literal.
+ *
+ * O QUE ELA NAO PROMETE, dito aqui porque promessa calada e pior que limite
+ * escrito: a posicao da expressao regular e decidida por HEURISTICA (o ultimo
+ * token significativo), que e o que todo destacador de sintaxe faz e nao e um
+ * analisador de JavaScript. E comentario DENTRO da substituicao de um template
+ * (`${/* ... * /}`) sobrevive, porque o template sai intacto — e o portao de
+ * ar o acusa, porque ele conta o que a pagina SERVE e nao o que esta funcao
+ * conseguiu tirar. O conserto, nesse dia, e mover o comentario para fora do
+ * template.
+ * ======================================================================== */
+
+if ( ! function_exists( 'rodametria_casca_js_fim_do_literal' ) ) {
+/**
+ * Onde termina o literal que comeca em $i (aspas simples, dupla ou template).
+ *
+ * Devolve a posicao DEPOIS do fechamento. Literal sem fechar come o resto do
+ * roteiro, que e o que o navegador faz — nao se inventa um fechamento que o
+ * autor nao escreveu.
+ */
+function rodametria_casca_js_fim_do_literal( $js, $i ) {
+	$n    = strlen( $js );
+	$abre = $js[ $i ];
+	$i++;
+	while ( $i < $n ) {
+		$c = $js[ $i ];
+		if ( '\\' === $c ) {
+			$i += 2;
+			continue;
+		}
+		if ( $c === $abre ) {
+			return $i + 1;
+		}
+		if ( '`' === $abre && '$' === $c && $i + 1 < $n && '{' === $js[ $i + 1 ] ) {
+			$i = rodametria_casca_js_fim_da_substituicao( $js, $i + 1 );
+			continue;
+		}
+		$i++;
+	}
+
+	return $n;
+}
+}
+
+if ( ! function_exists( 'rodametria_casca_js_fim_da_substituicao' ) ) {
+/**
+ * Onde termina o `${...}` que comeca na chave em $i.
+ *
+ * A substituicao de um template e CODIGO, e dentro dela cabe outra string,
+ * outro template e outra chave. Sem contar as chaves, um `}` de dentro
+ * fecharia a substituicao cedo e o resto do template seria lido como codigo.
+ */
+function rodametria_casca_js_fim_da_substituicao( $js, $i ) {
+	$n           = strlen( $js );
+	$profundidade = 0;
+	while ( $i < $n ) {
+		$c = $js[ $i ];
+		if ( "'" === $c || '"' === $c || '`' === $c ) {
+			$i = rodametria_casca_js_fim_do_literal( $js, $i );
+			continue;
+		}
+		if ( '{' === $c ) {
+			$profundidade++;
+			$i++;
+			continue;
+		}
+		if ( '}' === $c ) {
+			$profundidade--;
+			$i++;
+			if ( $profundidade <= 0 ) {
+				return $i;
+			}
+			continue;
+		}
+		$i++;
+	}
+
+	return $n;
+}
+}
+
+if ( ! function_exists( 'rodametria_casca_js_abre_regex' ) ) {
+/**
+ * A `/` que vem agora abre expressao regular, ou divide?
+ *
+ * Decide pelo ULTIMO TOKEN SIGNIFICATIVO ja emitido, que e a unica informacao
+ * que separa as duas em JavaScript. Comeco de arquivo abre. Operador, abre
+ * parentese, virgula, dois pontos e chave abrem. Nome, numero, fecha
+ * parentese e fecha colchete dividem. E as palavras que esperam expressao
+ * (`return /x/.test(s)`) abrem, porque sem elas a divisao ganharia o caso mais
+ * comum de todos.
+ *
+ * `}` ABRE, e a escolha esta aqui para ser derrubada por quem medir o
+ * contrario: fim de BLOCO abre (`if(a){b}/re/.test(s)`), fim de objeto
+ * literal divide (`({}) / 2`), e as duas terminam no mesmo caractere. O
+ * segundo caso praticamente nao se escreve; o primeiro, sim.
+ */
+function rodametria_casca_js_abre_regex( $emitido ) {
+	$t = rtrim( $emitido );
+	if ( '' === $t ) {
+		return true;
+	}
+	$ultimo = substr( $t, -1 );
+	if ( false !== strpos( '(,=:[!&|?{};+-*%~^<>', $ultimo ) ) {
+		return true;
+	}
+	if ( preg_match( '~(?:^|[^A-Za-z0-9_$])(return|typeof|case|in|of|new|delete|void|do|else|yield|await|instanceof|throw)$~', $t ) ) {
+		return true;
+	}
+
+	return false;
+}
+}
+
+if ( ! function_exists( 'rodametria_casca_js_fim_da_regex' ) ) {
+/**
+ * Onde termina a expressao regular que comeca na `/` em $i.
+ *
+ * A CLASSE DE CARACTERE E O PONTO: dentro de `[...]` uma `/` crua e legal e
+ * NAO fecha a expressao (`/[/]/` e valida). Quem nao conta a classe fecha a
+ * expressao no meio dela.
+ */
+function rodametria_casca_js_fim_da_regex( $js, $i ) {
+	$n      = strlen( $js );
+	$classe = false;
+	$i++;
+	while ( $i < $n ) {
+		$c = $js[ $i ];
+		if ( '\\' === $c ) {
+			$i += 2;
+			continue;
+		}
+		if ( "\n" === $c || "\r" === $c ) {
+			/* Expressao regular nao atravessa linha. Se chegou aqui, aquela
+			   `/` era divisao e a heuristica errou: devolve a propria `/`
+			   sozinha, em vez de engolir a linha. */
+			return $i;
+		}
+		if ( '[' === $c ) {
+			$classe = true;
+		} elseif ( ']' === $c ) {
+			$classe = false;
+		} elseif ( '/' === $c && ! $classe ) {
+			$i++;
+			/* As bandeiras (`g`, `i`, `u`...) fazem parte do literal. */
+			while ( $i < $n && preg_match( '~[A-Za-z]~', $js[ $i ] ) ) {
+				$i++;
+			}
+
+			return $i;
+		}
+		$i++;
+	}
+
+	return $n;
+}
+}
+
+if ( ! function_exists( 'rodametria_casca_js_sem_comentario' ) ) {
+/**
+ * Tira os comentarios de um roteiro, sem tocar em mais nada.
+ *
+ * Comentario COLADO entre dois caracteres de palavra vira UM espaco, pelo
+ * mesmo motivo do CSS: para o JavaScript sao dois tokens, e cola-los inventa
+ * um terceiro que ninguem escreveu. Comentario de BLOCO sem fechar come o
+ * resto, como no navegador. Comentario de LINHA para na quebra e A QUEBRA
+ * FICA.
+ */
+function rodametria_casca_js_sem_comentario( $js ) {
+	$js    = (string) $js;
+	$n     = strlen( $js );
+	$saida = '';
+	$i     = 0;
+
+	while ( $i < $n ) {
+		$c = $js[ $i ];
+
+		if ( "'" === $c || '"' === $c || '`' === $c ) {
+			$fim    = rodametria_casca_js_fim_do_literal( $js, $i );
+			$saida .= substr( $js, $i, $fim - $i );
+			$i      = $fim;
+			continue;
+		}
+
+		if ( '/' === $c && $i + 1 < $n && '*' === $js[ $i + 1 ] ) {
+			$fecha = strpos( $js, '*/', $i + 2 );
+			$fim   = ( false === $fecha ) ? $n : $fecha + 2;
+			$antes  = ( '' === $saida ) ? '' : substr( $saida, -1 );
+			$depois = ( $fim < $n ) ? $js[ $fim ] : '';
+			if ( '' !== $antes && '' !== $depois
+				&& preg_match( '~[A-Za-z0-9_$]~', $antes )
+				&& preg_match( '~[A-Za-z0-9_$]~', $depois ) ) {
+				$saida .= ' ';
+			}
+			$i = $fim;
+			continue;
+		}
+
+		if ( '/' === $c && $i + 1 < $n && '/' === $js[ $i + 1 ] ) {
+			$i += strcspn( $js, "\n\r", $i );
+			continue;
+		}
+
+		if ( '/' === $c && rodametria_casca_js_abre_regex( $saida ) ) {
+			$fim    = rodametria_casca_js_fim_da_regex( $js, $i );
+			$saida .= substr( $js, $i, $fim - $i );
+			$i      = $fim;
+			continue;
+		}
+
+		$saida .= $c;
+		$i++;
+	}
+
+	/* Linha que ficou vazia, e espaco no fim de linha, sao rastro do
+	   comentario e nao codigo. A quebra de linha fica, entao nada se cola e a
+	   insercao automatica de ponto e virgula continua vendo o que via. */
+	$saida = preg_replace( '~[ \t]+$~m', '', $saida );
+	$saida = preg_replace( '~\n[ \t]*(?:\n[ \t]*)+~', "\n", $saida );
+
+	return trim( $saida, "\n" );
+}
+}
+
+if ( ! function_exists( 'rodametria_casca_abrir_roteiro' ) ) {
+/**
+ * Abre a captura do roteiro.
+ *
+ * O JavaScript continua escrito como HTML cru dentro do snippet, com o
+ * `<?php echo wp_json_encode( ... ); ?>` do pacote de dado no lugar onde
+ * sempre esteve — nenhum byte dele muda de lugar no repositorio. A captura
+ * entrega o texto JA RESOLVIDO a funcao acima, e a tag `<script>` passa a ser
+ * escrita por ela, em um lugar so, para os quatro roteiros: roteiro novo nasce
+ * dentro do conserto, sem ninguem se lembrar dele (32.5-c).
+ */
+function rodametria_casca_abrir_roteiro() {
+	ob_start();
+}
+}
+
+if ( ! function_exists( 'rodametria_casca_fechar_roteiro' ) ) {
+/** Fecha a captura e imprime o roteiro, sem um comentario. */
+function rodametria_casca_fechar_roteiro( $id ) {
+	$js = ob_get_clean();
+	echo "\n" . '<script id="' . esc_attr( $id ) . '">' . "\n"
+		. rodametria_casca_js_sem_comentario( $js ) . "\n</script>\n";
 }
 }
 
@@ -1798,7 +2140,7 @@ add_filter( 'body_class', function ( $c ) {
 
 add_action( 'wp_footer', function () {
 	?>
-<script id="rodametria-casca-js">
+<?php rodametria_casca_abrir_roteiro(); ?>
 (function(){
   var nav = document.querySelector('.rdm-nav');
   if (nav) {
@@ -1829,7 +2171,7 @@ add_action( 'wp_footer', function () {
     }
   }
 })();
-</script>
+<?php rodametria_casca_fechar_roteiro( 'rodametria-casca-js' ); ?>
 	<?php
 }, 30 );
 

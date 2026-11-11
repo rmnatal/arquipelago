@@ -225,10 +225,16 @@ console.log('  mutacoes: 4, e a varredura pegou todas');
 
 /* ------------------------------- (5) o JS nao escreve frase e nao digita limiar */
 
-const jsAbre = phpFonte.indexOf('<script id="rodametria-f1-js">');
-const jsFecha = phpFonte.indexOf('</script>', jsAbre);
+/* O BLOCO DO ROTEIRO SE ACHA PELA CAPTURA DA CASCA DESDE 11/11/2026, e nao
+   pela tag: a tag `<script>` saiu dos snippets e passou a ser escrita por
+   `rodametria_casca_fechar_roteiro()`, num lugar so, para os quatro roteiros
+   desta ilha — e o que o conserto da 32.4-b fez com a `<style>` em 04/11. O
+   fecho carrega o `id`, entao o recorte continua nomeando qual roteiro quer. */
+const jsAbre = phpFonte.indexOf('<?php rodametria_casca_abrir_roteiro(); ?>');
+const jsFecha = phpFonte.indexOf(
+  "<?php rodametria_casca_fechar_roteiro( 'rodametria-f1-js' ); ?>", jsAbre);
 const js = jsAbre === -1 ? '' : phpFonte.slice(jsAbre, jsFecha);
-ok(js !== '', 'nao achei o bloco <script> do JS da F1 dentro do snippet');
+ok(js !== '', 'nao achei o roteiro capturado da F1 dentro do snippet');
 
 // (a) NENHUM LIMIAR DIGITADO NO JS. Os valores proibidos saem da constante, nao
 // desta lista: a regua continua certa no dia em que a resolucao trocar os numeros.

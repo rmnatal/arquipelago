@@ -67,6 +67,9 @@ function afirma($cond, $msg) {
 
 foreach (array(
 	array('rodametria_casca_nome_da_loja', $casca),
+	array('rodametria_casca_artigo_da_loja', $casca),
+	array('rodametria_casca_na_loja', $casca),
+	array('rodametria_casca_a_loja', $casca),
 	array('rodametria_casca_rotulo_da_loja', $casca),
 	array('rodametria_f2_data', $f2),
 	array('rodametria_f2_nota_de_preco', $f2),
@@ -92,7 +95,13 @@ function promete_o_destino($nota, $loja_do_botao) {
 	// vazia. Regua que reprova o mundo certo e o caminho mais curto para
 	// alguem a ignorar, que e a licao que a 20.5 nomeou.
 	if ('' === $loja_do_botao) { return false; }
-	if (false === strpos($nota, 'botão abre a')) {
+	// O AVISO SE PROCURA SEM O ARTIGO (11/11/2026). Esta linha procurava
+	// `botão abre a` — com o artigo FEMININO colado — e por isso ela mesma
+	// virou o defeito desta data: no dia em que a nota passou a dizer "o botão
+	// abre o Mercado Livre", a regua deixou de achar o aviso e passou a
+	// reprovar a nota CERTA. Artigo em literal de regua envelhece igual a
+	// artigo em literal de tela.
+	if (false === strpos($nota, 'botão abre')) {
 		// A nota nao avisa nada: entao toda loja que ela nomear tem de ser a do botao.
 		foreach (array('Shopee', 'Mercado Livre') as $loja) {
 			if (false !== strpos($nota, $loja) && $loja !== $loja_do_botao) {
@@ -103,12 +112,62 @@ function promete_o_destino($nota, $loja_do_botao) {
 	return false;
 }
 
+/**
+ * A SEGUNDA REGUA: O ARTIGO CONCORDA COM A LOJA QUE A NOTA NOMEIA (11/11/2026).
+ *
+ * MEDIDO NO AR as 13h2xZ de 11/11/2026, nos dois cartoes de Mercado Livre
+ * da pagina da F2: *"R$ 8.244,00 lido na Mercado Livre em 27/10/2026"*. O
+ * genero estava no literal (`'lido na ' . $loja`) e so o NOME vinha da
+ * funcao, entao a frase tratava um nome masculino como feminino em toda
+ * leitura.
+ *
+ * A TABELA DE GENERO E ESCRITA AQUI, A MAO, e nao importada de quem produz a
+ * frase — e a secao 8 literal: *"quem confere escreve a propria regua, nunca
+ * chama a de quem produziu o dado"*. Com a tabela importada, trocar o genero
+ * no lugar errado deixaria as duas metades concordando no erro.
+ *
+ * E ELA MEDE A PALAVRA INTEIRA: `a Shopee` dentro de `para a Shopee` e certo,
+ * e `na Shopee` dentro de `assinatura Shopee` nao existe — o que nao pode e
+ * artigo de um genero colado ao nome do outro.
+ */
+function artigo_discorda_da_loja($nota) {
+	$genero = array('Shopee' => 'f', 'Mercado Livre' => 'm');
+	$erros  = array();
+	foreach ($genero as $loja => $g) {
+		$padrao = '~\b(n?[ao]s?)\s+' . preg_quote($loja, '~') . '\b~u';
+		if (preg_match_all($padrao, $nota, $achados)) {
+			foreach ($achados[1] as $artigo) {
+				$masculino = (false !== strpos($artigo, 'o'));
+				if (('m' === $g) !== $masculino) {
+					$erros[] = $artigo . ' ' . $loja;
+				}
+			}
+		}
+	}
+	return $erros;
+}
+
 /* ---- O AUTOTESTE DA REGUA, e ele vem antes de qualquer veredito ---- */
+afirma(array('na Mercado Livre') === artigo_discorda_da_loja('lido na Mercado Livre em 27/10/2026'),
+	'a regua do artigo NAO reprova a frase que estava no ar em 11/11/2026: ela e INERTE');
+afirma(array() === artigo_discorda_da_loja('lido no Mercado Livre em 27/10/2026'),
+	'a regua do artigo reprova o masculino CERTO do Mercado Livre');
+afirma(array() === artigo_discorda_da_loja('na Shopee, lido em 27/10/2026'),
+	'a regua do artigo reprova o feminino CERTO da Shopee');
+afirma(array('no Shopee') === artigo_discorda_da_loja('lido no Shopee em 27/10/2026'),
+	'a regua do artigo nao pega o masculino errado da Shopee');
+afirma(array('a Mercado Livre') === artigo_discorda_da_loja('o botão abre a Mercado Livre'),
+	'a regua do artigo nao pega o artigo solto errado');
+afirma(array() === artigo_discorda_da_loja('o botão abre o Mercado Livre'),
+	'a regua do artigo reprova o artigo solto CERTO');
+afirma(array() === artigo_discorda_da_loja('lido no Mercado Livre em 27/10/2026 — o botão abre a Shopee'),
+	'a regua do artigo reprova a nota CERTA de duas lojas');
+
 afirma(promete_o_destino('na Mercado Livre, lido em 27/10/2026', 'Shopee'),
 	'a regua NAO reprova a nota que estava no ar em 30/10/2026: ela e INERTE');
 afirma(!promete_o_destino('na Shopee, lido em 27/10/2026', 'Shopee'),
 	'a regua reprova nota sadia de loja igual');
-afirma(!promete_o_destino('lido na Mercado Livre em 27/10/2026 — o botão abre a Shopee', 'Shopee'),
+afirma(!promete_o_destino('lido no Mercado Livre em 27/10/2026 — o botão abre a Shopee', 'Shopee'),
 	'a regua reprova a nota que avisa o destino');
 afirma(!promete_o_destino('na Shopee, lido em 27/10/2026', ''),
 	'a regua reprova cartao SEM botao, que nao tem destino para prometer');
@@ -148,6 +207,10 @@ foreach ($mundos as $m) {
 	afirma(!promete_o_destino($nota, $m['botao']),
 		sprintf('%s: a nota promete o destino. Botao vai para %s e a nota diz %s',
 			$m['nome'], $m['botao'] === '' ? '(nenhum)' : $m['botao'], $nota));
+	$discorda = artigo_discorda_da_loja($nota);
+	afirma(array() === $discorda,
+		sprintf('%s: o artigo discorda da loja — %s em "%s"',
+			$m['nome'], implode(', ', $discorda), $nota));
 	// A nota e CURTA: ela nasce ACIMA do botao dentro do cartao, e a 32.5 mede o
 	// primeiro botao de compra antes de 1.400 px a 390 px.
 	afirma(mb_strlen($nota) <= 90,
@@ -171,6 +234,10 @@ if (is_array($resp) && isset($resp['compra'])) {
 			afirma(!promete_o_destino($nota, $botao),
 				sprintf('o cartao %s promete o destino: botao vai para %s e a nota diz "%s"',
 					isset($it['nome']) ? $it['nome'] : '?', $botao, $nota));
+			$discorda = artigo_discorda_da_loja($nota);
+			afirma(array() === $discorda,
+				sprintf('o cartao %s serve artigo que discorda da loja — %s em "%s"',
+					isset($it['nome']) ? $it['nome'] : '?', implode(', ', $discorda), $nota));
 			afirma(!empty($it['preco_programa']),
 				sprintf('o cartao %s tem preco e nao tem preco_programa: a tela nao tem como '
 					. 'saber se a loja do preco e a do botao',

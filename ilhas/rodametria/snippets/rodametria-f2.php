@@ -45,7 +45,7 @@
    (item 2 do despacho da ronda de 04/11). E o MESMO campo que o "Como sabemos"
    desta pagina ja imprimia em prosa — um fato, uma fonte (20.7). */
 if ( ! defined( 'RODAMETRIA_F2_VERSAO' ) ) {
-	define( 'RODAMETRIA_F2_VERSAO', '1.8.0' );
+	define( 'RODAMETRIA_F2_VERSAO', '1.9.0' );
 }
 
 /* A VERSAO DESTE SNIPPET VAI AO AR, pelo filtro que a casca 1.6.0 abriu
@@ -213,6 +213,13 @@ function rodametria_f2_nota_de_preco( $f ) {
 	$loja_do_preco = ! empty( $f['preco_programa'] )
 		? rodametria_casca_nome_da_loja( $f['preco_programa'] )
 		: (string) $f['preco_loja'];
+	/* A PREPOSICAO VEM DA LOJA E NAO DA FRASE (11/11/2026): o genero e
+	   propriedade do NOME, e `lido na Mercado Livre` foi servido no ar em dois
+	   cartoes desta pagina por 12 dias. Quando nao ha programa, o nome vem
+	   cru do campo e o artigo sai da mesma funcao, pelo nome. */
+	$na_loja_do_preco = ! empty( $f['preco_programa'] )
+		? rodametria_casca_na_loja( $f['preco_programa'] )
+		: 'n' . rodametria_casca_artigo_da_loja( $loja_do_preco ) . ' ' . $loja_do_preco;
 
 	$programa_do_botao = empty( $f['url_afiliado_da_ficha'] ) && empty( $f['url_busca'] )
 		? '' : (string) $f['programa'];
@@ -220,11 +227,11 @@ function rodametria_f2_nota_de_preco( $f ) {
 		? '' : rodametria_casca_nome_da_loja( $programa_do_botao );
 
 	if ( '' === $loja_do_botao || $loja_do_preco === $loja_do_botao ) {
-		return 'na ' . $loja_do_preco . ', lido em ' . $data;
+		return $na_loja_do_preco . ', lido em ' . $data;
 	}
 
-	return 'lido na ' . $loja_do_preco . ' em ' . $data
-		. ' — o botão abre a ' . $loja_do_botao;
+	return 'lido ' . $na_loja_do_preco . ' em ' . $data
+		. ' — o botão abre ' . rodametria_casca_a_loja( $programa_do_botao );
 }
 }
 
@@ -913,7 +920,7 @@ add_action( 'wp_footer', function () {
 			? $d['constantes_usadas']['calibracao-autonomia-declarada-contra-medida']['valor'] : null,
 	);
 	?>
-<script id="rodametria-f2-js">
+<?php rodametria_casca_abrir_roteiro(); ?>
 (function(){
   var D = <?php echo wp_json_encode( $pacote, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ); ?>;
   var form = document.querySelector('[data-rdm-f2-form]');
@@ -1040,7 +1047,7 @@ add_action( 'wp_footer', function () {
     caixa.scrollIntoView({behavior: 'smooth', block: 'start'});
   });
 })();
-</script>
+<?php rodametria_casca_fechar_roteiro( 'rodametria-f2-js' ); ?>
 	<?php
 }, 30 );
 

@@ -72,6 +72,9 @@ function afirma($cond, $msg) {
 
 foreach (array(
 	array('rodametria_casca_nome_da_loja', $casca),
+	array('rodametria_casca_artigo_da_loja', $casca),
+	array('rodametria_casca_na_loja', $casca),
+	array('rodametria_casca_a_loja', $casca),
 	array('rodametria_casca_rotulo_da_loja', $casca),
 	array('rodametria_casca_rotulo_do_piso', $casca),
 	array('rodametria_casca_escada_de_compra', $casca),

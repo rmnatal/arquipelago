@@ -36,7 +36,7 @@
  */
 
 if ( ! defined( 'RODAMETRIA_F3_VERSAO' ) ) {
-	define( 'RODAMETRIA_F3_VERSAO', '1.6.1' );
+	define( 'RODAMETRIA_F3_VERSAO', '1.6.2' );
 }
 
 /* A VERSAO DESTE SNIPPET VAI AO AR (20.7). A CHAVE E O `id` DO manifest.json, e
@@ -669,7 +669,7 @@ add_action( 'wp_footer', function () {
 		'teto'     => $d['compra']['teto_do_banco_kg'],
 	);
 	?>
-<script id="rodametria-f3-js">
+<?php rodametria_casca_abrir_roteiro(); ?>
 (function(){
   var D = <?php echo wp_json_encode( $pacote, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ); ?>;
   var form = document.querySelector('[data-rdm-f3-form]');
@@ -814,7 +814,7 @@ add_action( 'wp_footer', function () {
   campoPeso.addEventListener('change', responder);
   campoCarga.addEventListener('change', responder);
 })();
-</script>
+<?php rodametria_casca_fechar_roteiro( 'rodametria-f3-js' ); ?>
 	<?php
 }, 30 );
 

@@ -270,6 +270,48 @@ def elementos_de_prosa(corpo):
 
 
 # ---------------------------------------------------------------------------
+# O ARTIGO CONCORDA COM A LOJA QUE A FRASE NOMEIA (11/11/2026)
+# ---------------------------------------------------------------------------
+#
+# MEDIDO NO AR as 13h2xZ de 11/11/2026, nos dois cartoes de Mercado Livre da
+# pagina da F2: *"R$ 8.244,00 lido na Mercado Livre em 27/10/2026"*. `Mercado
+# Livre` e masculino e a frase o tratava como feminino, porque a PREPOSICAO
+# era literal no PHP (`'lido na ' . $loja`) e so o NOME vinha da funcao.
+#
+# POR QUE A REGUA MORA TAMBEM NO AR, e nao so no portao do chao que conserta a
+# frase: o chao mede UMA funcao, e o nome da loja chega a tela por mais de um
+# caminho — o rotulo do botao, a nota do preco, a linha do piso, a prosa do
+# escopo da vitrine e a dobra "Como sabemos". Regua no ar nao pergunta por
+# onde a frase veio.
+#
+# MEDIDO ANTES DE ENTRAR, nas 10 URLs: 43 pares de artigo com nome de loja no
+# texto de prosa — 38 `na Shopee`, 3 `a Shopee` e os 2 `na Mercado Livre` do
+# defeito. ZERO falso positivo, inclusive nos titulos de anuncio colhidos, que
+# e onde uma regua de vocabulario costuma tropecar nesta ilha.
+#
+# A TABELA DE GENERO E ESCRITA AQUI, nao importada de quem produz a frase —
+# secao 8: *"quem confere escreve a propria regua, nunca chama a de quem
+# produziu o dado"*.
+GENERO_DA_LOJA = {"Shopee": "f", "Mercado Livre": "m"}
+_RE_ARTIGO_DA_LOJA = re.compile(
+    r"\b(n?[ao]s?)\s+(%s)\b" % "|".join(re.escape(k) for k in GENERO_DA_LOJA))
+
+
+def problemas_de_artigo_da_loja(textos):
+    """Artigo de um genero colado ao nome de loja do outro. Funcao pura."""
+    ruim = []
+    for t in textos:
+        for m in _RE_ARTIGO_DA_LOJA.finditer(t):
+            artigo, loja = m.group(1), m.group(2)
+            masculino = "o" in artigo
+            if (GENERO_DA_LOJA[loja] == "m") != masculino:
+                ruim.append("o artigo discorda da loja: %r em %r — o genero e propriedade "
+                            "do NOME e nao da frase" % (m.group(0), t[:120]))
+
+    return ruim
+
+
+# ---------------------------------------------------------------------------
 # A TERCEIRA SUPERFICIE: O TEXTO QUE VIVE EM ATRIBUTO (10/11/2026, 16h3xZ)
 # ---------------------------------------------------------------------------
 #
@@ -576,7 +618,20 @@ def corpo_da_pagina(html):
 
 BASTIDOR = ["egresso", "SERP classificada", "snippet", "wp-sitemap", "manifest.json",
             "ARQUIPELAGO", "Rodametria Sync", "bancada", "dados/", "ferramentas/",
-            "regras/", "publicavel", "sha256", "revisao"]
+            "regras/", "publicavel", "sha256", "revisao",
+            # O NOME DAS IRMAS, acrescentado em 11/11/2026: um comentario do
+            # roteiro da home servia "a cicatriz que a clubedomosaico pagou em
+            # 12/10/2026" em toda leitura. Nome de outra ilha do arquipelago na
+            # pagina e bastidor da fabrica no sentido mais literal que existe —
+            # e o visitante nao tem nem como saber do que se trata. MEDIDO em
+            # zero fora dos nossos proprios comentarios, nas 10 URLs, antes de
+            # entrar: `rodametria` ficaria de fora de qualquer jeito, porque e o
+            # dominio e o prefixo de toda classe desta casca.
+            "clubedomosaico", "aquametria", "robometria", "jornadafly", "ohmetria",
+            # E as duas palavras do vocabulario da fabrica que estavam nos
+            # mesmos comentarios: a ordem de servico e o nome que esta ilha da
+            # ao modulo de regra.
+            "despacho", "cerebro"]
 
 # Extensao de rotina desta fabrica. `.php` NAO entra, e a causa foi MEDIDA em
 # 04/11/2026: o WordPress serve `/wp-*.php` e `xmlrpc.php` no proprio `<head>`,
@@ -615,6 +670,66 @@ def problemas_da_folha_servida(html):
             ruim.append("a folha %s serve %d comentario(s) de CSS (%d bytes) — o comentario "
                         "mora no repositorio (secao 3), nunca na folha impressa"
                         % (ident, quantos, bytes_))
+
+    return ruim
+
+
+def roteiros_da_ilha(html):
+    """So os roteiros que ESTA ilha escreve, nunca os do WordPress.
+
+    Medido em 11/11/2026 nas 10 URLs: os quatro blocos desta ilha sao os de
+    `id="rodametria-*-js"`; o WordPress serve mais dois (`wp-importmap` e o
+    modulo de navegacao do tema) e um sem `id`, e nenhum deles e nosso nem sai
+    daqui. O `application/ld+json` fica FORA de proposito: ele serve dado
+    estruturado, nao codigo, e nao tem comentario para esconder.
+    """
+    nossos = []
+    for atrib, js in re.findall(r"<script([^>]*)>(.*?)</script>", html, re.S | re.I):
+        if "ld+json" in atrib.lower():
+            continue
+        m = re.search(r'id="(rodametria-[^"]+)"', atrib)
+        if m:
+            nossos.append((m.group(1), js))
+
+    return nossos
+
+
+# A REGUA QUE CONTA — A DE DENTRO DA CASCA DECIDE O QUE APAGAR (secao 8)
+#
+# Ela tira os literais (aspa simples, dupla e template) e conta o comentario no
+# que sobra. NAO e a funcao da casca reescrita em Python: aquela decide o que
+# REMOVER e esta decide o que CONTAR, e e por as duas serem independentes que
+# uma pode reprovar a outra. O que ela nao enxerga e expressao regular com `//`
+# ou `/*` dentro — medido em ZERO nos quatro roteiros, e o portao do chao
+# (`teste-roteiro-sem-comentario.php`) tem a afirmacao que fica vermelha no dia
+# em que deixar de ser zero.
+_SEM_LITERAL = (
+    re.compile(r'"(?:\\.|[^"\\])*"', re.S),
+    re.compile(r"'(?:\\.|[^'\\])*'", re.S),
+    re.compile(r"`(?:\\.|[^`\\])*`", re.S),
+)
+
+
+def problemas_do_roteiro_servido(html):
+    """Comentario de JavaScript dentro de roteiro DESTA ilha. Sem rede.
+
+    O DEFEITO, medido no ar as 13h2xZ de 11/11/2026 nas 10 URLs: os quatro
+    roteiros desta ilha serviam 14 comentarios e 3.489 bytes, seis deles com o
+    vocabulario que a 32.4 proibe. A 32.4-b de 04/11 tirou o comentario da
+    FOLHA e deixou o do ROTEIRO — mesma pagina, metade do lado.
+    """
+    ruim = []
+    for ident, js in roteiros_da_ilha(html):
+        cru = js
+        for padrao in _SEM_LITERAL:
+            cru = padrao.sub('""', cru)
+        blocos = len(re.findall(r"/\*", cru))
+        linhas = len(re.findall(r"//", cru))
+        if blocos or linhas:
+            bytes_ = sum(len(m) for m in re.findall(r"/\*.*?\*/", js, re.S))
+            ruim.append("o roteiro %s serve %d comentario(s) de bloco (%d bytes) e %d de "
+                        "linha — o comentario mora no repositorio (secao 3), nunca no "
+                        "roteiro impresso" % (ident, blocos, bytes_, linhas))
 
     return ruim
 
@@ -1908,6 +2023,21 @@ def main():
         for problema in problemas_da_folha_servida(html):
             afirma(False, "%s: %s" % (caminho, problema))
 
+        # E O ROTEIRO DESTA ILHA, PELA MESMA RAZAO E NUMA AFIRMACAO SEPARADA
+        # (11/11/2026). Separada da folha porque o conserto e outro (20.5):
+        # um sai de `rodametria_casca_fechar_folha()`, o outro de
+        # `rodametria_casca_fechar_roteiro()`. Pagina sem roteiro nosso e
+        # legitima — as quatro institucionais e as tres de produto nao tem
+        # formulario —, entao aqui nao ha piso de contagem como o da folha.
+        for problema in problemas_do_roteiro_servido(html):
+            afirma(False, "%s: %s" % (caminho, problema))
+
+        # O ARTIGO CONCORDA COM A LOJA (11/11/2026). Sobre a prosa e sobre o
+        # texto de atributo, porque o nome da loja aparece nos dois.
+        for problema in problemas_de_artigo_da_loja(
+                elementos_de_prosa(corpo) + [v for _, v in textos_de_atributo(corpo)]):
+            afirma(False, "%s: %s" % (caminho, problema))
+
         # E A 32.4 SOBRE O HTML SERVIDO INTEIRO, separada da de cima porque o
         # conserto de cada uma e diferente (20.5).
         for problema in problemas_de_bastidor_no_servido(html, nomes_de_arquivo):
@@ -2273,6 +2403,63 @@ def autoteste():
     diz(regua_velha_do_bastidor(doente) == [] and bast != [],
         "11.8 a regua VELHA (texto visivel) APROVA a pagina doente e a NOVA (byte servido) a "
         "REPROVA — as duas discordam, senao este autoteste nao mede o conserto")
+
+    # MUNDO 11-b — O ROTEIRO SERVIDO, E ELE E O MUNDO DE VERDADE DE 11/11/2026.
+    #
+    # O comentario abaixo e o que a home servia as 13h2xZ, letra por letra: ele
+    # nomeia OUTRA ILHA do arquipelago. Ao lado vao os roteiros do proprio
+    # WordPress, com comentario dentro, e NENHUM deles pode fazer este portao
+    # reprovar — e a licao da folha de 04/11 aplicada ao roteiro.
+    wpjs = ('<script id="wp-importmap" type="importmap">/* gerado */{"imports":{}}</script>'
+            '<script id="@wordpress/block-library/navigation/view-js-module">'
+            '// modulo do tema\nvar a=1;</script>')
+    rot_doente = ('<html><head>' + wpjs
+                  + '<script type="application/ld+json">{"@type":"WebPage"}</script>'
+                  + '<script id="rodametria-f1-js">\n(function(){\n'
+                  + '  /* A RESSALVA DO PICO. O molde do zero existe porque o mundo de hoje\n'
+                  + '     e o do zero, e "e 0 declaram o nominal" e o plural que mente — a\n'
+                  + '     cicatriz que a clubedomosaico pagou em 12/10/2026. */\n'
+                  + '  var u = "https://s.shopee.com.br/a";\n})();\n</script>'
+                  + '</head><body><p>Faz uns 35 km.</p></body></html>')
+    rot_sao = ('<html><head>' + wpjs
+               + '<script type="application/ld+json">{"@type":"WebPage"}</script>'
+               + '<script id="rodametria-f1-js">\n(function(){\n'
+               + '  var u = "https://s.shopee.com.br/a";\n})();\n</script>'
+               + '</head><body><p>Faz uns 35 km.</p></body></html>')
+
+    diz(len(roteiros_da_ilha(rot_doente)) == 1,
+        "11.9 dos 4 roteiros servidos so 1 e desta ilha — os 2 do WordPress e o JSON-LD "
+        "ficam de fora, porque esta ilha nao escreve os dois primeiros e o terceiro nao e "
+        "codigo")
+    diz(len(problemas_do_roteiro_servido(rot_doente)) == 1,
+        "11.10 o roteiro DOENTE e pego: comentario de JavaScript dentro do roteiro desta ilha")
+    diz(problemas_do_roteiro_servido(rot_sao) == [],
+        "11.11 o roteiro SAO passa, com os comentarios do WordPress intactos ao lado — e a "
+        "URL com `//` DENTRO DE STRING nao e lida como comentario de linha (20.5)")
+    bast_rot = problemas_de_bastidor_no_servido(rot_doente)
+    diz(any("clubedomosaico" in m for m in bast_rot),
+        "11.12 o nome de OUTRA ILHA dentro do comentario do roteiro e pego pela 32.4 no servido")
+    diz(problemas_de_bastidor_no_servido(rot_sao) == [],
+        "11.13 a pagina de roteiro SAO passa na 32.4 do servido")
+    diz(regua_velha_do_bastidor(rot_doente) == [] and bast_rot != [],
+        "11.14 a regua VELHA (texto visivel) APROVA a pagina de roteiro doente e a NOVA a "
+        "REPROVA — foi exatamente esta fenda que guardou o defeito por sete dias")
+
+    # MUNDO 11-c — O ARTIGO DA LOJA, e o mundo 1 e a frase que estava no ar.
+    diz(len(problemas_de_artigo_da_loja(
+            ["R$ 8.244,00 lido na Mercado Livre em 27/10/2026 — o botao abre a Shopee"])) == 1,
+        "11.15 a frase que estava no ar as 13h2xZ de 11/11/2026 e pega — e so uma vez, "
+        "porque `a Shopee` na mesma frase esta CERTO")
+    diz(problemas_de_artigo_da_loja(
+            ["R$ 8.244,00 lido no Mercado Livre em 27/10/2026 — o botao abre a Shopee"]) == [],
+        "11.16 a frase CERTA das duas lojas passa")
+    diz(len(problemas_de_artigo_da_loja(["lido no Shopee em 27/10/2026"])) == 1,
+        "11.17 o espelho do defeito (masculino na Shopee) tambem e pego — regua que so "
+        "conhece o erro de hoje nao pega o de amanha")
+    diz(problemas_de_artigo_da_loja(
+            ["na Shopee, lido em 27/10/2026", "o botao abre o Mercado Livre",
+             "Os anuncios saem da busca \"patinete eletrico adulto\" na Shopee"]) == [],
+        "11.18 as tres formas sadias que a ilha de fato serve passam")
 
     # MUNDO 12 — A PORTA CAIDA, FABRICADA, E AS DUAS REGUAS LADO A LADO.
     # Este mundo e o de 05/11/2026 as 10h2xZ nesta ilha, e ele existe porque o

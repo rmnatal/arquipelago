@@ -90,7 +90,7 @@ if ( ! defined( 'RODAMETRIA_F1_VERSAO' ) ) {
 	   SEM o formulario da F1 e SEM a barra fixa, e o `/casca` nao trazia
 	   `rodametria-f1` nenhum — que e exatamente a ausencia que a 20.7 desenhou
 	   para ser o sinal. Tres dos cinco portoes de pagina ficaram verdes. */
-	define( 'RODAMETRIA_F1_VERSAO', '1.5.1' );
+	define( 'RODAMETRIA_F1_VERSAO', '1.5.2' );
 }
 
 if ( ! defined( 'RODAMETRIA_ID_DADOS_F1' ) ) {
@@ -972,7 +972,7 @@ add_action( 'wp_footer', function () {
 		'municipios'  => rodametria_f1_municipios_para_o_js(),
 	);
 	?>
-<script id="rodametria-f1-js">
+<?php rodametria_casca_abrir_roteiro(); ?>
 (function(){
   var D = <?php echo wp_json_encode( $pacote, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ); ?>;
   var form = document.querySelector('[data-rdm-f1-form]');
@@ -1177,7 +1177,7 @@ add_action( 'wp_footer', function () {
   form.addEventListener('change', responder);
   if (elMun) { elMun.addEventListener('input', responder); }
 })();
-</script>
+<?php rodametria_casca_fechar_roteiro( 'rodametria-f1-js' ); ?>
 <?php
 }, 20 );
 

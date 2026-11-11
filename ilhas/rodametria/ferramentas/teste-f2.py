@@ -283,10 +283,17 @@ def main():
     # porque a regua so conferia que os moldes CITADOS existiam. Agora ela olha
     # os literais do bloco <script> da F2 e proibe prosa ali dentro — frase com
     # tres palavras ou mais, ou qualquer acento.
-    bloco_js = php_f2.split('<script id="rodametria-f2-js">')
-    afirma(len(bloco_js) == 2, "nao achei o bloco <script> da F2")
+    # O BLOCO DO ROTEIRO SE ACHA PELA CAPTURA DA CASCA DESDE 11/11/2026, e
+    # nao pela tag: a tag `<script>` saiu dos snippets e passou a ser escrita
+    # por `rodametria_casca_fechar_roteiro()`, num lugar so, para os quatro
+    # roteiros desta ilha — e o que o conserto da 32.4-b fez com a `<style>`
+    # em 04/11. O fecho carrega o `id`, entao o recorte continua nomeando qual
+    # roteiro ele quer em vez de pegar o primeiro que aparecer.
+    bloco_js = php_f2.split("<?php rodametria_casca_abrir_roteiro(); ?>")
+    afirma(len(bloco_js) == 2, "nao achei o roteiro capturado da F2")
     if len(bloco_js) == 2:
-        js = bloco_js[1].split("</script>")[0]
+        js = bloco_js[1].split(
+            "<?php rodametria_casca_fechar_roteiro( 'rodametria-f2-js' ); ?>")[0]
         # o pacote de dados vem do PHP e nao e literal do JS
         js = re.sub(r"<\?php.*?\?>", "", js, flags=re.S)
         for lit in re.findall(r"'([^'\n]{4,})'", js) + re.findall(r'"([^"\n]{4,})"', js):

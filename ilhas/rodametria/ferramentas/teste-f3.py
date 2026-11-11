@@ -427,10 +427,17 @@ def main():
                    "'Como sabemos' a imprime" % (termo, cid))
 
     # ---- (H) o JS nao tem frase propria ----
-    bloco = php.split('<script id="rodametria-f3-js">')
-    afirma(len(bloco) == 2, "nao achei o bloco <script> da F3 no snippet")
+    # O BLOCO DO ROTEIRO SE ACHA PELA CAPTURA DA CASCA DESDE 11/11/2026, e
+    # nao pela tag: a tag `<script>` saiu dos snippets e passou a ser escrita
+    # por `rodametria_casca_fechar_roteiro()`, num lugar so, para os quatro
+    # roteiros desta ilha — e o que o conserto da 32.4-b fez com a `<style>`
+    # em 04/11. O fecho carrega o `id`, entao o recorte continua nomeando qual
+    # roteiro ele quer em vez de pegar o primeiro que aparecer.
+    bloco = php.split("<?php rodametria_casca_abrir_roteiro(); ?>")
+    afirma(len(bloco) == 2, "nao achei o roteiro capturado da F3 no snippet")
     if len(bloco) == 2:
-        js = bloco[1].split("</script>")[0]
+        js = bloco[1].split(
+            "<?php rodametria_casca_fechar_roteiro( 'rodametria-f3-js' ); ?>")[0]
         js = re.sub(r"<\?php.*?\?>", "", js, flags=re.S)
         usados = set(re.findall(r"moldes\.([a-z_0-9]+)", js))
         for m in sorted(usados):
