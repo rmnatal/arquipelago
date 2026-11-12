@@ -9679,3 +9679,59 @@ Releitura: esta seção começa na linha **9584** e, no momento da medição, so
 arquivo terminando em **9676** linhas e **137** seções `##`. Este parágrafo final acrescenta linhas depois
 da medição; o número que vale é o da última releitura, e ele entra na resposta do disparo. O arquivo é
 append-only: nenhuma seção anterior foi apagada, reescrita ou resumida neste disparo.
+
+## Disparo de 12/11/2026, 14:20 BRT (17:20 UTC) — Bússola caçadora: 16 linhas em `bussola/cacados.md` + medição nova
+
+**Assunto:** Bússola (caça de nichos do Arquipélago) — passa na trava de assunto. Instrução executada ao
+pé da letra: acréscimo de 16 linhas ao fim de `bussola/cacados.md` e criação de
+`bussola/medicoes/volume-cacada-2026-11-12.md`. Nenhum outro arquivo alterado (além deste log, que é a
+exceção obrigatória).
+
+`git status --porcelain` (com as duas mudanças já no índice, antes do commit):
+
+```
+M  bussola/cacados.md
+A  bussola/medicoes/volume-cacada-2026-11-12.md
+```
+
+`git diff --stat` do commit:
+
+```
+ bussola/cacados.md                           | 16 +++++++++++++
+ bussola/medicoes/volume-cacada-2026-11-12.md | 34 ++++++++++++++++++++++++++++
+ 2 files changed, 50 insertions(+)
+```
+
+**Commit que foi ao `main`:** `fdc7aa219b1d7cb717c2a19915236bbe73d7eaa8` — "Bússola caçadora — 12/11/2026"
+Push confirmado: `git fetch origin main && git log -1 origin/main` devolve esse mesmo hash
+(`beeafc4..fdc7aa2  HEAD -> main`). Sem force push, sem PR, sem rebase — o push passou de primeira.
+
+**sha256 conferido depois de gravar, byte a byte contra o que a instrução pediu:**
+
+```
+bussola/cacados.md                            b247f7737fa869464f9a7d87bcba522795e38dae431df25e7d01d50b4a920f81  (esperado: igual)
+bussola/medicoes/volume-cacada-2026-11-12.md  42b45b6719e38971e19112bf513f63220b14cd8a885f07b34a1766159e8c30cb  (esperado: igual)
+```
+
+**Contagem conferida relendo os arquivos DEPOIS de gravar:**
+
+```
+bussola/cacados.md                            146 -> 162 linhas (+16); 16 linhas comecando por '| 12/11/2026 |'
+bussola/medicoes/volume-cacada-2026-11-12.md  34 linhas, 2 secoes '##' (arquivo novo), termina em \n
+
+conferencia real na releitura (este bloco e o que vale; a linha acima foi corrigida para bater com ele --
+eu havia escrito '3 secoes ##' de cabeca e a releitura devolveu 2, porque o titulo do arquivo e '#'):
+  cacados.md             linhas=162  linhas '| 12/11/2026 |'=16
+  volume-cacada-...md    linhas=34  secoes '##'=2  termina em newline=True
+```
+
+**Zero erro, zero passo falhado neste disparo.** Nada foi reformatado, nada foi "melhorado", nenhuma linha
+foi acrescentada além do que a instrução trouxe. Não reservei ilha, não escrevi `executando_desde`, não
+toquei em cabeçalho de estado, não executei bloco de fila, não publiquei, não acionei Sync e não criei
+conta em plataforma nenhuma. Nenhum contato pessoal de terceiros entrou — a instrução não trazia nenhum
+(só "conta Raphael" e "Chrome do Raphael", primeiro nome, que já é o padrão do repositório).
+
+Releitura: esta seção começa na linha **9682** e, somando este parágrafo final, o arquivo termina em
+**9733** linhas e **138** seções `##`. O arquivo é append-only: nenhuma seção anterior foi apagada,
+reescrita ou resumida neste disparo — a única edição fora do acréscimo foi dentro desta própria seção,
+corrigindo a contagem de `##` do arquivo novo para o valor que a releitura devolveu.
