@@ -45,7 +45,7 @@
    (item 2 do despacho da ronda de 04/11). E o MESMO campo que o "Como sabemos"
    desta pagina ja imprimia em prosa — um fato, uma fonte (20.7). */
 if ( ! defined( 'RODAMETRIA_F2_VERSAO' ) ) {
-	define( 'RODAMETRIA_F2_VERSAO', '1.10.0' );
+	define( 'RODAMETRIA_F2_VERSAO', '1.11.0' );
 }
 
 /* A VERSAO DESTE SNIPPET VAI AO AR, pelo filtro que a casca 1.6.0 abriu
@@ -375,6 +375,16 @@ function rodametria_f2_itens_da_vitrine( $d ) {
 			$spec[] = $f['rotulo_do_grupo'];
 		}
 
+		/* A MESMA LOJA NOS DOIS LADOS: onde o preco foi lido e de que programa
+		   e a saida de compra. A comparacao e entre as duas CHAVES de programa,
+		   nunca entre o nome humano da loja — `preco_loja` diz "Mercado Livre"
+		   e `programa` diz `shopee`, e comparar os dois vocabularios e a familia
+		   do campo que empacota dois identificadores da 25.9. */
+		$mesma_loja = ( ! empty( $f['preco_brl'] )
+			&& ! empty( $f['preco_data'] )
+			&& ! empty( $f['preco_programa'] )
+			&& (string) $f['preco_programa'] === (string) $f['programa'] );
+
 		$itens[] = array(
 			'nome'          => $f['nome'],
 			'especificacao' => implode( ' · ', $spec ),
@@ -412,6 +422,25 @@ function rodametria_f2_itens_da_vitrine( $d ) {
 			'programa'      => $f['programa'],
 			'degrau'        => $f['degrau'],
 			'imagem'        => $f['imagem'],
+			/* O PRECO PARA A CAMADA DA MAQUINA, E ELE SO EXISTE QUANDO O PRECO E
+			   A SAIDA SAO DA MESMA LOJA (12/11/2026).
+			   A tela desta pagina ja resolveu isto em 30/10, no item 3 daquele
+			   despacho: dois cartoes serviam um preco do Mercado Livre com o
+			   botao "Ver ofertas na Shopee" do lado, e o conserto foi a FRASE —
+			   `rodametria_f2_nota_de_preco()` passou a dizer onde o preco foi
+			   lido E para onde o botao vai. **A frase da tela pode dizer as duas
+			   coisas; uma `Offer` nao pode.** `Offer` e um par preco-URL: servir
+			   R$ 8.244,00 lido no Mercado Livre com a `url` de uma busca da
+			   Shopee e afirmar, na camada que a visao geral de IA ingere sem
+			   abrir a pagina (32.4-c), um preco que ninguem mediu naquele
+			   destino. Entao estes dois campos nascem VAZIOS quando as lojas
+			   divergem, e sem eles `rdm_produto_oferta_de_linha()` nao monta
+			   oferta nenhuma — a ausencia e a afirmacao certa, pela 25.9.
+			   MEDIDO NO BANCO DE HOJE: dos 4 cartoes, 1 tem preco e saida na
+			   Shopee (Honeywhale M2 MAX, degrau 1), 2 tem preco do Mercado Livre
+			   com saida de busca da Shopee e 1 nao tem preco nenhum. */
+			'preco_numero'     => $mesma_loja ? (float) $f['preco_brl'] : '',
+			'preco_colhido_em' => $mesma_loja ? (string) $f['preco_data'] : '',
 		);
 	}
 
@@ -806,6 +835,24 @@ function rodametria_f2_nome_do_tipo( $k ) {
 }
 }
 
+/* O H1 DESTA PAGINA, NUMA FUNCAO SO — e ela nasce em 12/11/2026 pelo motivo que
+ * a `rodametria_casca_titulo_do_slug()` escreveu em 11/11: a frase morava em
+ * DOIS literais neste arquivo (a pagina viva e a pagina degradada) e o
+ * `ItemList` que nasce hoje seria o TERCEIRO. Tres literais da mesma frase e a
+ * 20.7 esperando a vez — "comecam iguais e so uma sobe", e aqui quem sobe
+ * sozinho e o nome que a visao geral de IA le da lista.
+ *
+ * E NAO SERVE O `nome` NEM O `titulo` DO MAPA: `nome` e `Autonomia`, o rotulo
+ * da trilha da 16.3, que e exatamente o campo errado que o `og:title` desta
+ * ilha servia nas 10 URLs; `titulo` carrega a promessa de busca ("— a conta por
+ * Wh"), que nao e o H1. O `name` de uma lista e o nome da LISTA, e nesta pagina
+ * a lista e a resposta: a mesma frase do H1. */
+if ( ! function_exists( 'rodametria_f2_h1' ) ) {
+function rodametria_f2_h1() {
+	return 'Quantos km o patinete elétrico faz de verdade';
+}
+}
+
 /* ---------------------------------------------------------------------------
  * A PAGINA INTEIRA, NA ORDEM DA 32.1
  * ------------------------------------------------------------------------- */
@@ -818,7 +865,7 @@ function rodametria_f2_pagina_html() {
 		/* Pagina DEGRADADA e honesta. Nunca molde cru, nunca numero inventado. */
 		return '<div class="rdm-faixa rdm-pagina">'
 			. rodametria_casca_trilha_html()
-			. '<h1>Quantos km o patinete elétrico faz de verdade</h1>'
+			. '<h1>' . esc_html( rodametria_f2_h1() ) . '</h1>'
 			. '<p class="rdm-promessa">A calculadora está fora do ar neste momento: o banco de '
 			. 'dados que alimenta as contas não chegou ao site nesta atualização. Nenhum número '
 			. 'desta página é estimado, então ela prefere não responder a responder errado.</p>'
@@ -836,7 +883,7 @@ function rodametria_f2_pagina_html() {
 
 	$html  = '<div class="rdm-faixa rdm-pagina">';
 	$html .= rodametria_casca_trilha_html();
-	$html .= '<h1>Quantos km o patinete elétrico faz de verdade</h1>';
+	$html .= '<h1>' . esc_html( rodametria_f2_h1() ) . '</h1>';
 	$html .= '<p class="rdm-promessa">Diga a tensão e a amperagem da bateria: saem os watt-hora e '
 		. 'a faixa de km do seu trajeto, ao lado do número que o anúncio promete.</p>';
 
@@ -890,6 +937,119 @@ add_filter( 'rodametria_data_da_pagina', function ( $data, $slug ) {
 
 	return ( $d && ! empty( $d['gerado_em'] ) ) ? (string) $d['gerado_em'] : $data;
 }, 10, 2 );
+
+/* ---------------------------------------------------------------------------
+ * O `ItemList` DO BLOCO DE COMPRA DESTA PAGINA (12/11/2026)
+ *
+ * POR QUE ELE NASCE, e a causa esta MEDIDA no ar as 19h2xZ de 12/11/2026 nas 10
+ * URLs desta ilha: `/autonomia-patinete-eletrico/` serve bloco de compra com
+ * QUATRO cartoes — nome, especificacao, preco com a data da leitura e botao de
+ * afiliado — e **ZERO `Product` no JSON-LD**. Das TRES paginas desta ilha que
+ * servem `id="comprar"`, duas o servem VAZIO (`/` e
+ * `/peso-maximo-patinete-eletrico/`, onde a ausencia e legitima) e esta e a
+ * UNICA com cartao e sem declaracao nenhuma. **O leitor recebia quatro precos
+ * datados e a maquina nao recebia nada** — e a camada da maquina e a que a
+ * visao geral de IA ingere sem abrir a pagina (32.4-c). E a mesma assimetria
+ * que o `availability` sem data desta manha consertou na vitrine, com o sinal
+ * invertido: la a maquina dizia MAIS do que a tela; aqui ela nao diz nada.
+ *
+ * A ESCOLHA ENTRE DECLARAR E NAO DECLARAR ERA DA FUNDACAO (19.2) e esta
+ * registrada: declarar. A alternativa que a passada das 16h18Z deixou escrita
+ * — "ou a pagina de produto nao precisava do dela" — seria apagar uma
+ * declaracao VERDADEIRA para resolver uma AUSENCIA, o que troca um buraco por
+ * dois.
+ *
+ * E A LISTA NAO E UM ESPELHO DOS CARTOES: ela declara `Offer` so onde o preco e
+ * a saida sao da MESMA loja. Ver o comentario de `preco_numero` em
+ * `rodametria_f2_itens_da_vitrine()` — no banco de hoje sao 4 itens e UMA
+ * oferta. Os outros tres entram como `Product` com nome (e foto, quando ha),
+ * porque estar na lista e verdade; o preco deles naquele destino nao e.
+ * ------------------------------------------------------------------------- */
+
+if ( ! function_exists( 'rodametria_f2_itemlist' ) ) {
+function rodametria_f2_itemlist( $d ) {
+	/* A LISTA VEM DA MESMA EXPRESSAO QUE O BLOCO E QUE A BARRA, nunca da fonte
+	   dela — a licao ja estava escrita neste arquivo em 09/11, sobre a barra
+	   fixa: passar `$d['compra']['vitrine']` aqui seria a segunda declaracao do
+	   mesmo fato (20.7) e mentiria no dia em que
+	   `rodametria_f2_itens_da_vitrine()` passasse a filtrar um cartao. */
+	/* NOME LOCAL UNICO NO ARQUIVO, e esta linha nasceu VERMELHA: a primeira
+	   versao desta funcao chamou o local de `$itens_da_vitrine`, que e o nome
+	   que `rodametria_f2_pagina_html()` ja usa, e o `teste-barra-de-compra.php`
+	   REPROVOU na mesma passada — "AMBIGUO: 2 atribuicoes no arquivo". Aquele
+	   portao nasceu em 09/11/2026 do item 3 do despacho, e o que ele protege e
+	   a CONFERIBILIDADE de fora: que a barra fixa e o bloco de compra recebam a
+	   MESMA expressao. Um homonimo meu cegava essa leitura. */
+	$itens_da_lista = rodametria_f2_itens_da_vitrine( $d );
+	if ( ! $itens_da_lista ) {
+		return array();
+	}
+
+	$mapa = rodametria_casca_paginas();
+	$desc = isset( $mapa[ RODAMETRIA_F2_SLUG ]['description'] )
+		? (string) $mapa[ RODAMETRIA_F2_SLUG ]['description'] : '';
+
+	$degraus = array();
+	foreach ( $itens_da_lista as $i => $item ) {
+		$produto = array(
+			'@type' => 'Product',
+			'name'  => (string) $item['nome'],
+		);
+		if ( ! empty( $item['imagem']['url'] ) ) {
+			$produto['image'] = (string) $item['imagem']['url'];
+		}
+		/* A OFERTA SAI DA FUNCAO DA VITRINE DE PRODUTO, nao de uma copia: e a
+		   mesma regra de oferta datada da secao 7-b, com o mesmo portao sem
+		   rede (`teste-oferta-datada.php`) por tras. Duas copias da regra do
+		   dinheiro seriam iguais so no dia em que fossem escritas (32.5-c). */
+		if ( function_exists( 'rdm_produto_oferta_de_linha' ) ) {
+			$oferta = rdm_produto_oferta_de_linha( $item );
+			if ( $oferta ) {
+				$produto['offers'] = $oferta;
+			}
+		}
+		$degraus[] = array(
+			'@type'    => 'ListItem',
+			'position' => $i + 1,
+			'item'     => $produto,
+		);
+	}
+
+	$lista = array(
+		'@context'      => 'https://schema.org',
+		'@type'         => 'ItemList',
+		/* O `name` E O H1 SERVIDO e a `description` e a MESMA que a casca
+		   imprime na `<meta>` e no `og:`, lida do MESMO mapa — por construcao,
+		   nao por coincidencia. O portao do envelope compara as tres letra por
+		   letra (`ferramentas/teste-envelope-do-itemlist.py`). */
+		'name'          => rodametria_f2_h1(),
+		'numberOfItems' => count( $degraus ),
+	);
+	if ( '' !== $desc ) {
+		$lista['description'] = $desc;
+	}
+	$lista['itemListElement'] = $degraus;
+
+	return $lista;
+}
+}
+
+add_action( 'wp_head', function () {
+	if ( ! rodametria_f2_na_pagina() ) {
+		return;
+	}
+	$d = rodametria_casca_banco( RODAMETRIA_ID_DADOS_F2 );
+	if ( ! $d || empty( $d['compra']['vitrine'] ) ) {
+		return;
+	}
+	$lista = rodametria_f2_itemlist( $d );
+	if ( ! $lista ) {
+		return;
+	}
+	echo '<script type="application/ld+json">'
+		. wp_json_encode( $lista, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES )
+		. "</script>\n";
+}, 21 );
 
 /* ---------------------------------------------------------------------------
  * JSON-LD da ferramenta — e ele nao repete o BreadcrumbList, que e da casca

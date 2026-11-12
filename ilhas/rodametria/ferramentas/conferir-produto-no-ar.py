@@ -57,6 +57,26 @@ AQUI = os.path.dirname(os.path.abspath(__file__))
 ILHA = os.path.dirname(AQUI)
 DOMINIO = "https://rodametria.com.br"
 
+# A REGUA DO ENVELOPE DO `ItemList` (12/11/2026). Dona:
+# `ferramentas/teste-envelope-do-itemlist.py`, que a aplica aos mundos
+# fabricados; aqui ela chega ao HTML SERVIDO das paginas de vitrine, COM as
+# linhas da fonte na mao — e so com elas se pode afirmar o pareamento POR
+# POSICAO de que a secao (5) deste arquivo ja dependia sem nunca o ter provado.
+# Duas copias da mesma regua seriam a segunda declaracao do mesmo fato que a
+# 20.7 proibe aqui.
+_REGUA_DO_ENVELOPE = None
+_POR_QUE_SEM_ENVELOPE = ""
+try:
+    import importlib.util as _ilu
+
+    _spec = _ilu.spec_from_file_location(
+        "rodametria_envelope_do_itemlist",
+        os.path.join(AQUI, "teste-envelope-do-itemlist.py"))
+    _REGUA_DO_ENVELOPE = _ilu.module_from_spec(_spec)
+    _spec.loader.exec_module(_REGUA_DO_ENVELOPE)
+except Exception as _e:  # noqa: BLE001 — qualquer falha aqui e "nao medi"
+    _POR_QUE_SEM_ENVELOPE = str(_e)
+
 falhas = []
 registros = []
 afirmacoes = 0
@@ -471,6 +491,45 @@ def main():
                "indicativo sobre leitura de dias atras" % (caminho, com_disponibilidade))
         afirma(com_data == ofertas,
                "%s: %d de %d Offer(s) dizem a data do preco" % (caminho, com_data, ofertas))
+
+        # (5-b) O ENVELOPE DA LISTA, que e o que a secao (5) acima NAO olha.
+        #       Ela desce fundo na `Offer` de dentro de cada item e trata a
+        #       lista como uma CONTAGEM. O que a lista declara de fora —
+        #       `name`, `description`, `numberOfItems`, a `position` de cada
+        #       degrau e o `@type` dos dois niveis — nao tinha portao nenhum, e
+        #       a `description` dela e IDENTICA a `meta name=description` da
+        #       mesma pagina: duas declaracoes do mesmo fato, que pela 20.7
+        #       "comecam iguais e so uma sobe". A regra inteira e o motivo estao
+        #       em `teste-envelope-do-itemlist.py`.
+        if _REGUA_DO_ENVELOPE is None:
+            registro("%s: o envelope do ItemList NAO foi medido (%s)"
+                     % (caminho, _POR_QUE_SEM_ENVELOPE))
+        else:
+            _tela = _REGUA_DO_ENVELOPE.declaracoes_da_pagina(html)
+            _listas = _REGUA_DO_ENVELOPE.itemlists_do_html(html)
+            afirma(len(_listas) == 1,
+                   "%s: serve %d ItemList e a pagina de vitrine tem UMA lista"
+                   % (caminho, len(_listas)))
+            for _i, _lista in _listas:
+                _maus_env = (_REGUA_DO_ENVELOPE.problemas_do_envelope(
+                                 caminho, _lista, _tela, linhas)
+                             + _REGUA_DO_ENVELOPE.problemas_da_foto_na_tela(
+                                 caminho, _lista, html, linhas))
+                afirma(not _maus_env,
+                       "%s: %d problema(s) no ENVELOPE do ItemList. O primeiro: %s"
+                       % (caminho, len(_maus_env),
+                          _maus_env[0] if _maus_env else ""))
+            for _i, _lista in _listas:
+                _na_tela, _declaradas = _REGUA_DO_ENVELOPE.fotos_na_tela(
+                    _lista, html, linhas)
+                registro("%s: %d de %d foto(s) declarada(s) estao na tela — o "
+                         "carrossel tem teto pela 32.1 e a tabela da secao 7 nao "
+                         "leva foto, entao o numero menor e o estado certo"
+                         % (caminho, _na_tela, _declaradas))
+            registro("%s: envelope do ItemList medido em %d lista(s) (name x h1, "
+                     "description x meta x og, numberOfItems, posicoes 1..N, tipos "
+                     "dos dois niveis, pareamento por posicao com a fonte e a foto)"
+                     % (caminho, len(_listas)))
 
         registro("%s: %d linha(s), %d com ficha, %d href vazio, piso da tabela %dx, a MESMA frase "
                  "%dx nos cartoes do carrossel, %d Offer(s) (%d com availability, %d datadas)"

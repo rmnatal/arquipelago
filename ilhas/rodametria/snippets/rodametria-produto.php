@@ -110,7 +110,7 @@
    pergunta que `dateModified` responde e "quando esta pagina mudou", e a mae muda
    no dia em que QUALQUER filha e recolhida. */
 if ( ! defined( 'RODAMETRIA_PRODUTO_VERSAO' ) ) {
-	define( 'RODAMETRIA_PRODUTO_VERSAO', '1.11.0' );
+	define( 'RODAMETRIA_PRODUTO_VERSAO', '1.12.0' );
 }
 
 /* A VERSAO DESTE SNIPPET VAI AO AR, pelo filtro que a casca 1.6.0 abriu
@@ -1232,7 +1232,23 @@ function rdm_produto_oferta_de_linha( $item ) {
 	   com a ficha morta, a `Offer` saia com `"url": ""` — dado estruturado
 	   invalido que nenhum olho humano ve na pagina. */
 	$escada = rodametria_casca_escada_de_compra( $item );
-	$preco  = number_format( (float) $item['preco_numero'], 2, '.', '' );
+
+	/* SEM PRECO UTIL NAO EXISTE OFERTA, E A RECUSA MORA AQUI E NAO NO CHAMADOR
+	   (12/11/2026, pela 32.6-b: "o conserto mora na casca e nao no chamador,
+	   para ferramenta nova nascer sem poder cometer isto").
+	   Ate hoje esta funcao era chamada so pela vitrine de produto, onde as 21
+	   linhas tem preco — medido: zero sem preco, minimo R$ 1.030,00 —, e um
+	   `preco_numero` ausente teria virado `"price": "0.00"`, que e a mentira
+	   mais barata que esta camada pode contar. A F2 passa a chama-la hoje e
+	   tem, no banco de hoje, UM cartao sem preco nenhum (Sousa Bike) e DOIS cujo
+	   preco foi lido em OUTRA loja que a da saida — nos tres o campo chega vazio
+	   de proposito, e aqui a resposta certa e nao declarar oferta. Pela 25.9,
+	   chave ausente nao declara nada; `price: 0.00` declara que e de graca. */
+	$cru = isset( $item['preco_numero'] ) ? $item['preco_numero'] : '';
+	if ( '' === $cru || null === $cru || ! ( (float) $cru > 0 ) ) {
+		return array();
+	}
+	$preco = number_format( (float) $cru, 2, '.', '' );
 
 	$oferta = array(
 		'@type'         => 'Offer',
@@ -1280,10 +1296,15 @@ add_action( 'wp_head', function () {
 		$oferta = rdm_produto_oferta_de_linha( $item );
 
 		$produto = array(
-			'@type'  => 'Product',
-			'name'   => $item['nome'],
-			'offers' => $oferta,
+			'@type' => 'Product',
+			'name'  => $item['nome'],
 		);
+		/* `offers` SO QUANDO HA OFERTA (12/11/2026). Com a recusa da secao 7-b,
+		   um item sem preco util devolve `array()`, e `"offers": []` seria dado
+		   estruturado dizendo "nenhuma oferta" onde o certo e nao dizer nada. */
+		if ( $oferta ) {
+			$produto['offers'] = $oferta;
+		}
 		if ( ! empty( $item['imagem']['url'] ) ) {
 			$produto['image'] = $item['imagem']['url'];
 		}

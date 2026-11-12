@@ -114,6 +114,27 @@ except Exception as _e2:  # noqa: BLE001
     _POR_QUE_SEM_REMISSAO = str(_e2)
 
 
+# A REGUA DO ENVELOPE DO `ItemList`, pelo MESMO desenho e pela mesma razao
+# (12/11/2026). Dona: `ferramentas/teste-envelope-do-itemlist.py`, que a aplica
+# aos mundos fabricados; `conferir-produto-no-ar.py` a aplica as duas paginas de
+# vitrine COM as linhas da fonte na mao. **Aqui ela alcanca TODA URL do
+# `wp-sitemap.xml`**, sem a fonte — porque `ItemList` servido em pagina que
+# ninguem esperava e justamente o caso que uma lista digitada nao alcanca
+# (32.5-b), e porque hoje 8 das 10 URLs desta ilha nao servem nenhum.
+_REGUA_DO_ENVELOPE = None
+_POR_QUE_SEM_ENVELOPE = ""
+try:
+    import importlib.util as _ilu3
+
+    _spec3 = _ilu3.spec_from_file_location(
+        "rodametria_envelope_do_itemlist",
+        os.path.join(AQUI, "teste-envelope-do-itemlist.py"))
+    _REGUA_DO_ENVELOPE = _ilu3.module_from_spec(_spec3)
+    _spec3.loader.exec_module(_REGUA_DO_ENVELOPE)
+except Exception as _e3:  # noqa: BLE001
+    _POR_QUE_SEM_ENVELOPE = str(_e3)
+
+
 # As marcacoes que carregam PROSA nesta ilha. `label` e `option` ficam FORA de
 # proposito: o campo "Seu peso" da F2 e um ROTULO de formulario, e medi-lo como
 # afirmacao reprovaria o formulario que a propria ferramenta precisa ter.
@@ -2278,6 +2299,49 @@ def main():
                          % (caminho, d))
         if datas_ld:
             registro("%s: dateModified %s" % (caminho, ", ".join(sorted(set(datas_ld)))))
+
+        # O ENVELOPE DE TODO `ItemList` SERVIDO (12/11/2026), e a razao de ele
+        # ser medido AQUI e nao so no portao de vitrine: `conferir-produto-no-ar`
+        # descobre as paginas CASANDO o sitemap com os slugs da vitrine, entao
+        # `ItemList` servido em qualquer OUTRA pagina desta ilha nao teria
+        # portao nenhum. Sem a fonte do repositorio na mao, o que se afirma aqui
+        # e a metade das CAMADAS — `name` x `<h1>`, `description` x `meta` x
+        # `og:`, `numberOfItems` x contagem, posicoes 1..N e os dois `@type`.
+        # A regra inteira e o motivo estao em `teste-envelope-do-itemlist.py`.
+        if _REGUA_DO_ENVELOPE is None:
+            registro("%s: o envelope do ItemList NAO foi medido (%s)"
+                     % (caminho, _POR_QUE_SEM_ENVELOPE))
+        else:
+            _listas_env = _REGUA_DO_ENVELOPE.itemlists_do_html(html)
+            if _listas_env:
+                _tela_env = _REGUA_DO_ENVELOPE.declaracoes_da_pagina(html)
+                for _ie, _lista_env in _listas_env:
+                    _maus_env = _REGUA_DO_ENVELOPE.problemas_do_envelope(
+                        caminho, _lista_env, _tela_env)
+                    afirma(not _maus_env,
+                           "%s: %d problema(s) no ENVELOPE do ItemList. O primeiro: %s"
+                           % (caminho, len(_maus_env),
+                              _maus_env[0] if _maus_env else ""))
+                registro("%s: %d ItemList servido(s), envelope medido nas camadas"
+                         % (caminho, len(_listas_env)))
+            # E A OUTRA METADE, QUE E REGISTRO E NAO VEREDITO: a pagina que
+            # serve bloco de compra COM cartao e nao declara `ItemList` nenhum.
+            # Medido no ar as 19h2xZ de 12/11/2026 nas 10 URLs: TRES paginas
+            # servem `id="comprar"` e so DUAS declaram lista — a terceira e
+            # `/autonomia-patinete-eletrico/`, com 4 cartoes de preco datado e
+            # ZERO `Product`. As outras duas com bloco de compra (`/` e
+            # `/peso-maximo-patinete-eletrico/`) o servem VAZIO, e nelas a
+            # ausencia e legitima. Nao e afirmacao porque a escolha entre
+            # declarar a lista ou nao e da Fundacao (19.2) e esta escrita no
+            # REGISTRO.md desta data; o numero fica aqui para ela nao precisar
+            # ser remedida.
+            _cartoes_de_compra = len(re.findall(
+                r'<li[^>]*class="[^"]*rdm-molde-cartao', corpo))
+            if 'id="comprar"' in corpo and _cartoes_de_compra and not _listas_env:
+                registro("%s: serve bloco de compra com %d cartao(oes) e NENHUM "
+                         "ItemList — a tela declara o preco e a camada da maquina "
+                         "nao declara nada (32.4-c)"
+                         % (caminho, _cartoes_de_compra))
 
         # =================================================================
         # AS DUAS AFIRMACOES QUE ESTA ILHA NAO PODE FAZER, NA TELA E NO JSON-LD
