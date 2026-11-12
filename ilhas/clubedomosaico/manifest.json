@@ -4,8 +4,8 @@
   "nicho": "mosaico artesanal — loja de pecas proprias, guia de materiais com afiliado e escola de tecnicas",
   "dominio": "https://clubedomosaico.com.br",
   "versao_manifest": 1,
-  "revisao": 93,
-  "atualizado_em": "2026-10-23",
+  "revisao": 94,
+  "atualizado_em": "2026-11-12",
   "estado": "nascendo",
   "desembarque": {
     "aprovado": true,
@@ -20,9 +20,9 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "versao": "1.25.0",
-      "sha256": "91826a4c91734d6aaa0e1f0b9990609fa1a853aed04c5578cd8c6fd1fa318955",
-      "descricao": "Casca 1.25.0 — O CARTAO DO GUIA ENTRA NA COMPACTACAO DE TELEFONE DO MOLDE, que ate 23/10/2026 so alcancava o cartao das ferramentas (`.cdm-f2-cartao`): as sete paginas do Guia entraram no molde no mesmo mutirao de 21/10 com `.cdm-guia-cartao` e ficaram com o recheio e o corpo de texto do desktop dentro do bloco de compra do telefone. Valem 71 px de primeira tela em toda pagina do Guia e nao mudam uma palavra servida. Causa medida: item 1 do despacho da Sentinela de 23/10/2026. O cabecalho do arquivo estava em 1.22.0 com a constante em 1.24.0, e a 1.23.0 e a 1.24.0 seguem sem entrada — esta execucao nao as inventou. || Casca 1.24.0 — AS PECAS DO MOLDE DE CONVERSAO DA SECAO 32, e elas nascem na casca porque a 32.6-b manda: o que se repete entre paginas e componente da casca, nunca copia em cada snippet. Sao quatro, e cada uma tem um numero medido no ar atras dela, em 21/10/2026, no celular de 390 px. (1) A DOBRA (`cdm_casca_dobra()` e `cdm_casca_dobrar_secao()`): o texto longo vai para `<details>` e NAO sai da pagina — o HTML servido continua com tudo, legivel sem JavaScript (22.8 e 32.3). A `dobrar_secao` recolhe secao que JA EXISTE sem reescreve-la: o `<h2>` dela vira o titulo da dobra, no mesmo nivel e com o mesmo texto, entao o titulo continua tendo UMA fonte — quinze secoes entre as duas ferramentas, zero titulo digitado duas vezes. (2) A CAIXA DE RESULTADO (`cdm_casca_resultado_html()`): numero em Mono com tabular-nums e a frase de leitura embaixo, PRE-RENDERIZADA com o caso de exemplo, para quem chega da busca — e para todo modelo de linguagem que leia a pagina — achar numero de resposta na primeira tela. (3) O BLOCO DE COMPRA (`.cdm-molde-compra`): o lugar dele e logo abaixo do resultado, a secao de dentro nao carrega a margem dela para o topo do bloco, e no telefone o cartao DEITA (foto flutuando a esquerda, 4,5rem) — em pe, o botao de loja do primeiro cartao caia fundo demais para o teto de 1.400 px da 32.5. (4) A BARRA DO RODAPE (`cdm_casca_barra_html()`): leva o numero do resultado e o botao para o bloco de compra, aparece enquanto esse bloco esta fora da tela, nasce SERVIDA com o caso de exemplo e so e MOSTRADA pelo script — sem IntersectionObserver ela nao aparece, porque barra que pisca e pior que barra que nao ha. O script sai no wp_footer, nunca dentro do retorno de shortcode (secao 8). DOIS ESCAPES QUE CUSTARAM UMA TELA e estao escritos no codigo: `valor` da caixa e da barra e HTML JA ESCAPADO, porque o numero desta ilha sai de `cdm_casca_num()`, que devolve `<span class=\"cdm-num\">720</span>` — na primeira versao o `esc_html()` publicou a etiqueta impressa na tela. Bancada: teste-casca 1041 afirmacoes, 0 falha."
+      "versao": "1.26.0",
+      "sha256": "9f3c27e3c0517a173724b6a65f2bd812cd8e29d3048983a4562419ecf8f0843c",
+      "descricao": "A PORTA DE ENTRADA PASSA A SE CURAR SOZINHA, SOB ASSINATURA ESTREITA E FALANDO (secao 6-b). Item 1 do despacho de classe da Sentinela de 11/11/2026, escrito depois da NONA queda do Arquipelago e da SEXTA desta ilha — 12/11/2026, com a assinatura byte por byte das cinco anteriores (1.057 bytes, bloco unico NFD EPC, tem_wordpress false). Em cinco das nove quedas o tempo no chao foi decidido por quando alguem rodou um comando: nove dias, dois dias e meio, quatro dias. A cura dispara SO com as quatro grandezas da 29.7(3) na mesa, no maximo uma vez por hora, e escreve UMA linha no log que o /status ja serve, com o antes e o depois em bytes e em blocos — e a palavra 'calada' da 29.4 que ela nao usa. Nao roda na rota que MEDE a porta, para o retrato da Sentinela continuar podendo mostrar a queda. Portao: ferramentas/teste-cura-da-porta.php, 40 afirmacoes em oito mundos fabricados. NO CAMINHO, UM DEFEITO MEDIDO NO DIAGNOSTICO DA 29.3 QUE JA ESTAVA NO AR: bytes e mtime vinham do cache de stat do PHP e saiam VELHOS ao lado de blocos e tem_wordpress, que vinham frescos de file_get_contents — dois retratos na mesma requisicao, que e o que o reparo faz, davam um 'depois' com tamanho de porta caida e conteudo de porta de pe, e o campo que isso corrompia e o mtime, que e o que deu prova ao chamado na HostGator. Conserto: clearstatcache(), com o mundo H do portao novo. A PROSA NAO DECLARA MAIS A VERSAO CORRENTE, pela 20.7: quem tem o campo `versao` tira o numero da prosa, porque duas declaracoes do mesmo fato comecam iguais e so uma sobe. O historico datado das versoes anteriores mora no cabecalho do proprio arquivo, que e uma fonte so."
     },
     {
       "id": "f2",
@@ -737,7 +737,7 @@
     {
       "id": "render-para-teste",
       "arquivo": "ferramentas/render-para-teste.php",
-      "sha256": "f6de5feea60d037ec2c669d85ec3a4e46bbb0dbc028086544b6a9dd804d61280",
+      "sha256": "e33e533ced42582d8921569c6a2477f1ff56814f4807a128e80595d91edcac4a",
       "descricao": "Monta uma pagina do site fora do WordPress para poder medir o HTML servido sem depender do site no ar — necessario porque o gateway da rede das rotinas respondeu 403 ao CONNECT para clubedomosaico.com.br em 11/09/2026. Imita de verdade os ganchos wp_head/wp_footer com prioridade, o escape de '&' que os filtros do the_content aplicam ao retorno do shortcode, e o remove_action casando gancho + funcao + prioridade. Carrega nas options o que o Sync carrega, pela cicatriz da bancada pela metade (secao 8). NUNCA e publicada no site."
     },
     {
@@ -955,6 +955,12 @@
       "arquivo": "ferramentas/conferir-32-5-no-navegador.mjs",
       "sha256": "8118fecfedf169376ef3ed2ec19d34959c46e132fa778800f99ce17a3abb0f94",
       "descricao": "A REGUA DA 32.5 NO AR, A 390 px, EM TODAS AS PAGINAS DO MOLDE, e ela DESCOBRE as paginas em vez de as listar: le o wp-sitemap.xml com quebra de cache, abre cada URL num Chromium de verdade e julga a que serve o molde (`.cdm-molde-compra` ou `.cdm-molde-resultado`), listando como fora do molde a que nao serve — nunca aprovando em silencio. Mede por pagina: onde a primeira caixa comeca (teto 700 px), onde o primeiro botao de compra aparece (teto 1.400 px; o primeiro `a[rel~=sponsored]` onde ha afiliado, e o primeiro controle de compra de dentro do bloco nas cinco pecas de /loja/, que nao tem link de loja por desenho), rolagem horizontal, altura e erro de JavaScript. NASCEU DO ITEM 1 DO DESPACHO DA SENTINELA DE 23/10/2026, que mediu /materiais/acabamento/peca-de-mosaico-esbranquicada/ servindo o primeiro link de loja a 1.495 px contra o teto de 1.400 — a unica das 20 paginas do mutirao de 21/10 fora da regua, contra o \"20 de 20 passam\" que o ESTADO daquele dia registrou. A licao e do proprio despacho e e o contrato deste arquivo: regua que nao varre todas certifica a pagina que o autor abriu. O que ele NAO promete: a metade da 32.5 que fala do HTML servido sem JavaScript e do title/H1/trilha/JSON-LD identicos — isso e do conferir-no-ar.py e do leitura-do-visitante.py. Bancada com rede e navegador."
+    },
+    {
+      "id": "teste-cura-da-porta",
+      "arquivo": "ferramentas/teste-cura-da-porta.php",
+      "sha256": "21836f1b50854cfe49788292de6cb609fb79f09e9c502d738ad9ffea43f1795c",
+      "descricao": "40 afirmacoes sobre a CURA DA PORTA DE ENTRADA (secao 6-b da casca), sem site e sem rede, em oito mundos fabricados: porta caida com as quatro grandezas da 29.7(3) na mesa (cura, e UMA linha de log com antes e depois em bytes e blocos); porta de pe com MIL requisicoes (arquivo intocado em byte, tamanho e mtime, zero linha de log, zero option, zero flush); mod_rewrite desligado; raiz nao gravavel; arquivo nao gravavel; sem as funcoes de wp-admin; arquivo ausente; hora nao vencida (nao cura e NAO FALA); flush que roda e nao repoe o bloco (o mundo do AllowOverride, que e chamado na HostGator e nao codigo desta ilha); a rota que MEDE a porta nunca curada no meio da propria medicao; e DOIS retratos na mesma requisicao, que e o mundo onde o cache de stat do PHP foi pego servindo tamanho velho ao lado de conteudo novo. OS MUNDOS DE mod_rewrite E DE RAIZ NAO GRAVAVEL SE MEDEM COM RETRATO FABRICADO, e isso e argumento e nao atalho: este contentor roda como root, e o is_writable() do PHP responde true para diretorio 0444 quando quem pergunta e root — 'raiz nao gravavel' nao se encena no disco daqui, e e por isso que a regra inteira mora numa funcao PURA que recebe o retrato. O QUE ELE NAO PROVA: que o Apache obedece ao arquivo. Isso e o AllowOverride, mora no hospedeiro, e so a leitura das URLs no ar responde (29.2 e 29.4). NUNCA e publicada no site."
     }
   ],
   "esquema": {

@@ -228,7 +228,36 @@ function wp_delete_post($id,$forcar=false){
 	return true;
 }
 function is_wp_error($v){ return ($v instanceof CdmTesteErro); }
-function flush_rewrite_rules($dura=true){ $GLOBALS['__reescritas'] = (isset($GLOBALS['__reescritas']) ? $GLOBALS['__reescritas'] : 0) + 1; }
+/* O FLUSH CONTA AS CHAMADAS E, QUANDO PEDIDO, FAZ O QUE O WORDPRESS FAZ DE
+   VERDADE COM $dura=true: repoe o bloco `# BEGIN WordPress` no `.htaccess`.
+   Acrescentado em 12/11/2026 para a secao 6-b da casca (a cura da porta) poder
+   ser MEDIDA: sem este efeito, todo mundo de teste cairia no desfecho
+   "o flush rodou e o bloco NAO voltou", e o portao nunca mediria o sucesso.
+   Fica atras de `__htaccess_de_teste` porque nenhum outro teste desta bancada
+   tem arquivo de porta, e `__flush_nao_repoe` produz de proposito o mundo do
+   `AllowOverride` desligado da 29.4 — o flush roda, grava e o Apache ignora. */
+function flush_rewrite_rules($dura=true){
+	$GLOBALS['__reescritas'] = (isset($GLOBALS['__reescritas']) ? $GLOBALS['__reescritas'] : 0) + 1;
+	if (!$dura || empty($GLOBALS['__htaccess_de_teste']) || !empty($GLOBALS['__flush_nao_repoe'])) { return; }
+	$arq = $GLOBALS['__htaccess_de_teste'];
+	$txt = is_readable($arq) ? (string) file_get_contents($arq) : '';
+	if (preg_match('/^#\s*BEGIN\s+WordPress\s*$/mi', $txt)) { return; }
+	file_put_contents($arq, rtrim($txt, "\n") . "\n\n" . cdm_teste_bloco_wordpress() . "\n");
+}
+/* O bloco que o `save_mod_rewrite_rules()` do nucleo escreve, com as mesmas 6
+   linhas de Rewrite* que o `.htaccess` desta ilha tem quando a porta esta de pe
+   (medido no ar: 15 linhas de Rewrite* com o bloco, 8 sem ele). */
+function cdm_teste_bloco_wordpress(){
+	return "# BEGIN WordPress\n<IfModule mod_rewrite.c>\nRewriteEngine On\nRewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]\nRewriteBase /\nRewriteRule ^index\.php$ - [L]\nRewriteCond %{REQUEST_FILENAME} !-f\nRewriteCond %{REQUEST_FILENAME} !-d\nRewriteRule . /index.php [L]\n</IfModule>\n# END WordPress";
+}
+/* AS TRES DE `wp-admin/includes/` que o diagnostico da 29.3 exige. No site elas
+   vem do `require_once` que `cdm_casca_carregar_ferramentas_de_admin()` faz; aqui
+   o ABSPATH e de mentira, entao elas moram na bancada. `__mod_rewrite` e
+   `__raiz_de_teste` sao os dois unicos pontos que um teste precisa mexer. */
+function get_home_path(){ return isset($GLOBALS['__raiz_de_teste']) ? rtrim($GLOBALS['__raiz_de_teste'],'/').'/' : ABSPATH; }
+function got_mod_rewrite(){ return !isset($GLOBALS['__mod_rewrite']) ? true : (bool) $GLOBALS['__mod_rewrite']; }
+function save_mod_rewrite_rules(){ return true; }
+function site_url($p=''){ return 'https://clubedomosaico.com.br'.$p; }
 /* O REDIRECIONAMENTO VIRA EXCECAO, e e o unico jeito de medir as acoes do painel
    nesta bancada: no site elas terminam em `wp_safe_redirect()` seguido de `exit`,
    e `exit` mataria o processo do teste no meio da primeira afirmacao. A excecao

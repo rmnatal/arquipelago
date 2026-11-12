@@ -1,6 +1,26 @@
 /**
  * Clube do Mosaico Casca — identidade e estrutura do site
  *
+ * Versão 1.26.0 (12/11/2026) — A PORTA DE ENTRADA PASSA A SE CURAR SOZINHA, SOB
+ *   ASSINATURA ESTREITA E FALANDO (seção 6-b). Item 1 do despacho de classe da
+ *   Sentinela de 11/11/2026, escrito depois da NONA queda do Arquipélago e da
+ *   SEXTA desta ilha — hoje, com a assinatura byte por byte das cinco
+ *   anteriores. Em cinco das nove quedas o tempo no chão foi decidido por
+ *   quando alguém rodou um comando: nove dias, dois dias e meio, quatro dias.
+ *   A cura dispara só com as quatro grandezas da 29.7(3) na mesa, no máximo
+ *   uma vez por hora, e escreve UMA linha no log que o `/status` já serve, com
+ *   o antes e o depois em bytes e em blocos — é a palavra "calada" da 29.4 que
+ *   ela não usa. Não roda na rota que MEDE a porta, para o retrato da Sentinela
+ *   continuar podendo mostrar a queda. Portão: `teste-cura-da-porta.php`, 40
+ *   afirmações em oito mundos fabricados.
+ *   NO CAMINHO, UM DEFEITO MEDIDO NO DIAGNÓSTICO DA 29.3 QUE JÁ ESTAVA NO AR:
+ *   `bytes` e `mtime` vinham do cache de `stat` do PHP e saíam VELHOS ao lado de
+ *   `blocos` e `tem_wordpress`, que vinham frescos de `file_get_contents`. Dois
+ *   retratos na mesma requisição — que é exatamente o que o reparo faz — davam
+ *   um `depois` com tamanho de porta caída e conteúdo de porta de pé. O campo
+ *   que isso corrompia é o `mtime`, que é o que deu prova ao chamado na
+ *   HostGator. Conserto: `clearstatcache()`, com o mundo H do portão novo.
+ *
  * Versão 1.25.0 (23/10/2026) — O CARTÃO DO GUIA ENTRA NA COMPACTAÇÃO DE TELEFONE
  *   DO MOLDE, que até aqui só alcançava o cartão das ferramentas. As regras de
  *   celular do bloco de compra nasceram em 21/10 escritas para `.cdm-f2-cartao`;
@@ -321,7 +341,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'CDM_CASCA_VERSAO' ) ) {
-	define( 'CDM_CASCA_VERSAO', '1.25.0' );
+	define( 'CDM_CASCA_VERSAO', '1.26.0' );
 	/* O nome do site e a linha que o WordPress serve no <title> da home. A
 	   Aquametria descobriu em 11/09/2026 que a tagline nunca tocada desde o
 	   nascimento da ilha continuava sendo a linha mais lida do site — a do
@@ -4105,6 +4125,20 @@ function cdm_casca_diagnostico_rotas() {
 	$raiz      = function_exists( 'get_home_path' ) ? get_home_path() : ABSPATH;
 	$arquivo   = rtrim( (string) $raiz, '/\\' ) . DIRECTORY_SEPARATOR . '.htaccess';
 
+	/* O CACHE DE `stat` DO PHP SAI DAQUI, E ISTO NÃO É PRECAUÇÃO — É UM DEFEITO
+	   MEDIDO EM 12/11/2026 pelo portão `teste-cura-da-porta.php`, na primeira vez
+	   que este retrato foi tirado DUAS vezes na mesma requisição (o reparo tira o
+	   antes e o depois). `blocos` e `tem_wordpress` vêm de `file_get_contents`, que
+	   não tem cache, e saíam FRESCOS; `bytes` e `mtime` vêm de `filesize()` e
+	   `filemtime()`, que têm, e saíam VELHOS. O retrato misturava os dois: no
+	   mundo medido, o `depois` dizia `255 bytes` com `[NFD EPC, WordPress]`
+	   dentro — tamanho de porta caída ao lado de conteúdo de porta de pé.
+	   E o campo que isso corrompe é justamente o `mtime`, que é o que deu prova
+	   ao chamado na HostGator (o arquivo reescrito às 20:00:34Z de 11/11 sem
+	   ninguém do nosso lado o tocar). É a família da seção 8: o instrumento
+	   responde, e a resposta é velha. */
+	clearstatcache( true, $arquivo );
+
 	$regras = get_option( 'rewrite_rules' );
 
 	$retrato = array(
@@ -4206,6 +4240,320 @@ add_action( 'rest_api_init', function () {
 		},
 	) );
 } );
+
+/* -------------------------------------------------------------------------
+ * SEÇÃO 6-b — A CURA DA PORTA DE ENTRADA (12/11/2026)
+ *
+ * Item 1 do DESPACHO DE CLASSE da Sentinela de 11/11/2026 ("a porta que cai
+ * sete vezes não pode depender de alguém passar por perto"), escrito depois da
+ * NONA queda do Arquipélago e da SEXTA desta ilha — hoje, 12/11/2026 às
+ * 10h1xZ, com a assinatura byte por byte das cinco anteriores: 1.057 bytes,
+ * bloco único `NFD EPC`, `tem_wordpress: false`, 8 linhas de reescrita.
+ *
+ * EM CINCO DAS NOVE QUEDAS, O TEMPO NO CHÃO FOI DECIDIDO POR QUANDO ALGUÉM
+ * RODOU UM COMANDO — nove dias, dois dias e meio, quatro dias. A 29.6 escreveu
+ * a frase ("o que faltou não foi sensibilidade, foi alguém rodar"), a nota de
+ * 05/10 da 29.5 a repetiu, o despacho de classe a repetiu de novo. Escrever a
+ * frase pela quarta vez não põe uma ilha no ar.
+ *
+ * E ISTO MUDA A 29.4, QUE RECUSOU GANCHO AUTOMÁTICO — com um argumento certo:
+ * "porta de entrada que se conserta CALADA a cada carregamento é a que ninguém
+ * consegue desfazer no dia em que estiver errada". A palavra que carrega aquele
+ * argumento é **calada**, e é exatamente ela que esta seção não usa:
+ *
+ *   1. A cura dispara SÓ sob a assinatura das quatro grandezas da 29.7(3) na
+ *      mesa ao mesmo tempo — bloco do WordPress ausente, `mod_rewrite` ligado,
+ *      raiz e arquivo graváveis, e PHP vivo (que é o que o próprio gancho
+ *      rodando prova). Falta uma, ela não dispara, e DIZ qual faltou.
+ *   2. No máximo UMA tentativa por hora, contada em option, gravada ANTES de
+ *      agir — porque tentativa que só se registra no sucesso vira laço na
+ *      requisição seguinte quando o `flush` morre no meio.
+ *   3. Toda tentativa escreve UMA LINHA no log que o `/status` já serve, com o
+ *      antes e o depois em BYTES e em BLOCOS. Porta que se conserta e CONTA é o
+ *      contrário de porta que se conserta calada.
+ *   4. E ela NÃO se conserta "a cada carregamento": com o bloco no lugar, o
+ *      gancho lê o arquivo, não escreve nada e não diz nada — nem no log.
+ *
+ * A CURA NÃO RODA NA ROTA QUE MEDE A PORTA, e isso é desenho e não descuido:
+ * `?rest_route=/clubedomosaico/v1/rotas` é o instrumento com que a Sentinela
+ * fotografa a porta. Curar no meio da própria medição faria o retrato NUNCA
+ * mostrar a queda — o `mtime` de 20:00:34Z de 11/11, que foi o que transformou
+ * o chamado na HostGator de pedido de socorro em relatório com prova, teria se
+ * perdido. O instrumento mede; o gancho cura; e os dois não são a mesma
+ * requisição.
+ *
+ * O QUE ELA NÃO É, escrito com todas as letras porque a 29.5 proíbe o
+ * contrário: **não é o conserto da causa.** A causa continua sem nome — alguma
+ * coisa do lado do hospedeiro reescreve este arquivo e deixa só o `NFD EPC` —, o
+ * chamado na HostGator continua aberto em `dados/despachos.md` cobrindo as duas
+ * raízes, e a série de `dados/consertos.md` continua sendo o que o sustenta. Esta
+ * seção mantém a ilha NO AR entre a queda e a resposta do fornecedor. Tratá-la
+ * como solução é o que a 29.5 chama de causa inventada.
+ *
+ * E ELA TAMBÉM NÃO ALCANÇA `AllowOverride` DESLIGADO (29.4): nesse mundo o
+ * `flush` roda, o arquivo é gravado e o Apache continua ignorando. O log diz
+ * isso SEPARADO do sucesso — "o flush rodou e o bloco NÃO voltou" —, porque o
+ * conserto dos dois mundos não é o mesmo, e portão que reprova pelo motivo
+ * errado é o caminho mais curto para alguém passar a ignorá-lo (20.5).
+ *
+ * O portão sem rede é `ferramentas/teste-cura-da-porta.php`.
+ * ------------------------------------------------------------------------- */
+
+if ( ! defined( 'CDM_CASCA_CURA_INTERVALO' ) ) {
+	define( 'CDM_CASCA_CURA_INTERVALO', 3600 );
+}
+if ( ! defined( 'CDM_CASCA_CURA_OPTION' ) ) {
+	define( 'CDM_CASCA_CURA_OPTION', 'cdm_casca_cura_ultima' );
+}
+
+if ( ! function_exists( 'cdm_casca_cura_caminho' ) ) {
+/**
+ * O caminho do `.htaccess` da raiz, SEM carregar nada de `wp-admin/includes`.
+ *
+ * O caminho canônico é o `get_home_path()` que o diagnóstico da 29.3 usa, e ele
+ * não existe numa requisição de visitante. Aqui vale o `ABSPATH`, e os dois
+ * coincidem em instalação na raiz do domínio — que é o caso desta ilha
+ * (`home_url` e `site_url` são o mesmo, medido na rota de diagnóstico). Em
+ * instalação em subpasta eles divergem, e o efeito disso é só perder o atalho:
+ * o pré-filtro devolve `null`, o gancho segue para o diagnóstico completo, e é o
+ * caminho de LÁ que a cura usa. Atalho que erra para o lado de medir mais.
+ */
+function cdm_casca_cura_caminho() {
+	$raiz = function_exists( 'get_home_path' ) ? get_home_path() : ( defined( 'ABSPATH' ) ? ABSPATH : '' );
+	if ( '' === (string) $raiz ) {
+		return '';
+	}
+
+	return rtrim( (string) $raiz, '/\\' ) . DIRECTORY_SEPARATOR . '.htaccess';
+}
+}
+
+if ( ! function_exists( 'cdm_casca_cura_tem_bloco' ) ) {
+/**
+ * O bloco `# BEGIN WordPress` está no arquivo? `true`, `false`, ou `null`.
+ *
+ * `null` é "não sei" — arquivo ausente ou ilegível —, e nunca se lê como "está
+ * de pé". É a mesma régua do diagnóstico da 29.3, de propósito: duas leituras
+ * do mesmo fato com dois regexes diferentes é um jeito conhecido de os dois
+ * lados discordarem no dia que importa.
+ */
+function cdm_casca_cura_tem_bloco( $arquivo ) {
+	if ( '' === (string) $arquivo || ! file_exists( $arquivo ) || ! is_readable( $arquivo ) ) {
+		return null;
+	}
+	$texto = (string) @file_get_contents( $arquivo );
+
+	return (bool) preg_match( '/^#\s*BEGIN\s+WordPress\s*$/mi', $texto );
+}
+}
+
+if ( ! function_exists( 'cdm_casca_cura_decidir' ) ) {
+/**
+ * A REGRA INTEIRA, como função pura: o retrato entra, a decisão sai.
+ *
+ * Nada aqui toca arquivo, option, relógio ou rede — é o que permite medir os
+ * mundos que não se fabricam no disco deste contêiner. `raiz_gravavel: false`
+ * não se encena rodando como root (o `is_writable` do PHP responde `true` para
+ * diretório 0444 quando quem pergunta é root), então ele se mede aqui, com
+ * retrato fabricado, e é por isso que esta função existe separada do gancho.
+ *
+ * Devolve `motivo => null` quando não há NADA a dizer: porta de pé, ou hora não
+ * vencida. Motivo preenchido é linha no log.
+ */
+function cdm_casca_cura_decidir( $retrato, $ultima, $agora, $intervalo ) {
+	$nao = function ( $motivo ) {
+		return array( 'curar' => false, 'motivo' => $motivo );
+	};
+
+	if ( ! is_array( $retrato ) || ! isset( $retrato['htaccess'] ) || ! is_array( $retrato['htaccess'] ) ) {
+		return $nao( 'o retrato da porta nao veio; a cura nao age sobre medicao que nao existe' );
+	}
+	$h = $retrato['htaccess'];
+
+	/* PORTA DE PÉ: o único desfecho em que a cura não tem nada a dizer, e é o
+	   desfecho de quase toda requisição desta ilha. É daqui que sai a promessa
+	   "mil requisições não tocam no arquivo e o log não ganha linha". */
+	if ( ! empty( $h['tem_wordpress'] ) ) {
+		return $nao( null );
+	}
+
+	if ( empty( $h['existe'] ) || empty( $h['legivel'] ) ) {
+		return $nao( 'o .htaccess da raiz nao existe ou nao e legivel, e a cura nao escreve arquivo que nao consegue ler' );
+	}
+
+	/* UMA POR HORA, e o relógio é checado ANTES dos motivos de recusa. Sem isto,
+	   ilha com `mod_rewrite` desligado encheria as 40 linhas do log com a mesma
+	   frase em um minuto, e janela cheia de ruído é janela que rolou: a 20.4 já
+	   mede item que saiu dela como item NÃO conferido. */
+	if ( (int) $ultima > 0 && ( (int) $agora - (int) $ultima ) < (int) $intervalo ) {
+		return $nao( null );
+	}
+
+	if ( true !== $retrato['mod_rewrite'] ) {
+		return $nao( 'mod_rewrite nao esta ligado (' . wp_json_encode( $retrato['mod_rewrite'] ) . '); reescrever o .htaccess nao poria a porta de pe' );
+	}
+	if ( empty( $retrato['raiz_gravavel'] ) ) {
+		return $nao( 'a raiz do site nao e gravavel; o flush nao conseguiria escrever o .htaccess' );
+	}
+	if ( empty( $h['gravavel'] ) ) {
+		return $nao( 'o .htaccess existe e nao e gravavel; o flush nao conseguiria reescreve-lo' );
+	}
+	if ( empty( $retrato['ferramentas_de_admin'] ) ) {
+		return $nao( 'as funcoes de wp-admin/includes nao carregaram; sem elas o flush(true) vira flush(false) e nao encosta no arquivo' );
+	}
+
+	return array( 'curar' => true, 'motivo' => null );
+}
+}
+
+if ( ! function_exists( 'cdm_casca_cura_retrato_curto' ) ) {
+/**
+ * `1057 bytes [NFD EPC]` — o retrato que cabe numa linha de log.
+ *
+ * Só bytes e NOMES de bloco. O conteúdo do arquivo não sai daqui pelo mesmo
+ * motivo da 29.3: `.htaccess` de hospedeiro compartilhado carrega regra de
+ * segurança de terceiro, e o log do `/status` é PÚBLICO — mais público que a
+ * rota de diagnóstico, que pelo menos pede token.
+ */
+function cdm_casca_cura_retrato_curto( $retrato ) {
+	if ( ! is_array( $retrato ) || empty( $retrato['htaccess'] ) || ! is_array( $retrato['htaccess'] ) ) {
+		return 'sem retrato';
+	}
+	$h      = $retrato['htaccess'];
+	$blocos = isset( $h['blocos'] ) && is_array( $h['blocos'] ) ? $h['blocos'] : array();
+
+	return (int) ( isset( $h['bytes'] ) ? $h['bytes'] : 0 ) . ' bytes [' . implode( ', ', $blocos ) . ']';
+}
+}
+
+if ( ! function_exists( 'cdm_casca_cura_registrar' ) ) {
+/**
+ * Escreve a linha NO LOG QUE O `/status` JÁ SERVE — não num log novo.
+ *
+ * O despacho de classe pede "uma linha no log que o `/status` já serve", e isso
+ * é literal: quem olha esta ilha olha aquele endpoint, e log paralelo é log que
+ * ninguém abre. O estado do Sync é relido do banco no instante da escrita, para
+ * a linha não ser montada sobre uma cópia velha.
+ *
+ * Devolve `false` quando o snippet do Sync não está carregado — e aí a cura
+ * NÃO acontece, porque cura que não conta é exatamente o que a 29.4 recusou.
+ */
+function cdm_casca_cura_registrar( $msg ) {
+	if ( ! function_exists( 'clubedomosaico_sync_estado' ) || ! function_exists( 'clubedomosaico_sync_log' ) ) {
+		return false;
+	}
+	$estado = clubedomosaico_sync_estado();
+	clubedomosaico_sync_log( $estado, (string) $msg );
+	update_option( 'clubedomosaico_sync_estado', $estado, 'no' );
+
+	return true;
+}
+}
+
+if ( ! function_exists( 'cdm_casca_cura_e_a_rota_que_mede' ) ) {
+/**
+ * A requisição atual é a rota de diagnóstico da 29.3?
+ *
+ * Se for, a cura se cala: o retrato que a Sentinela lê tem de mostrar a porta
+ * como ela está, inclusive caída. Foi o `mtime` de uma porta caída que deu
+ * prova ao chamado na HostGator.
+ *
+ * SÓ A FORMA `?rest_route=` É CONFERIDA, E ISSO BASTA — não por economia, por
+ * argumento: a única requisição em que esta cura poderia atropelar a medição é
+ * a que acontece com a porta JÁ no chão, e com a porta no chão o caminho bonito
+ * `/wp-json/...` morre ANTES do PHP (29.1), então ele não chega aqui para ser
+ * conferido. Com a porta de pé, a cura sai no primeiro passo do gancho sem
+ * tocar em nada, e o que ela faria na rota é nada de qualquer forma.
+ *
+ * E LER A SUPERGLOBAL DE SERVIDOR AQUI ESTÁ PROIBIDO, por uma razão que não é
+ * de estilo: o ModSecurity deste hospedeiro recusa, EM SILÊNCIO, a gravação de
+ * snippet cujo corpo a contenha — e o corpo inclui COMENTÁRIO, então o nome dela
+ * não se escreve nem aqui. A bancada cobra isso numa afirmação própria
+ * (`teste-casca.php`, higiene do snippet), varrendo o arquivo inteiro. O
+ * caminho bonito seria justamente o que exigiria `REQUEST_URI`, e ele é o que o
+ * parágrafo acima dispensa.
+ *
+ * `$_GET` direto, e não `filter_input( INPUT_GET, ... )`, pelo mesmo motivo que
+ * o painel desta ilha: `filter_input` não vê o que a bancada escreve em `$_GET`,
+ * e afirmação que a bancada não consegue produzir é afirmação que não existe.
+ */
+function cdm_casca_cura_e_a_rota_que_mede() {
+	$rota = isset( $_GET['rest_route'] ) ? (string) $_GET['rest_route'] : '';
+
+	return '' !== $rota && false !== stripos( $rota, '/clubedomosaico/v1/rotas' );
+}
+}
+
+if ( ! function_exists( 'cdm_casca_cura_da_porta' ) ) {
+/**
+ * O gancho. Devolve a linha que escreveu, ou `''` quando ficou calado.
+ *
+ * A ordem dos passos é a conta do custo, e ela importa: o caso de QUASE TODA
+ * requisição é "porta de pé", e ele sai no primeiro passo com UMA leitura de
+ * arquivo de 1,5 kB — sem option, sem `require` de `wp-admin/includes`, sem
+ * escrita. O caro só roda no mundo em que a porta já está no chão.
+ */
+function cdm_casca_cura_da_porta() {
+	if ( cdm_casca_cura_e_a_rota_que_mede() ) {
+		return '';
+	}
+
+	/* PASSO 1, o barato: o bloco está lá? `true` encerra aqui. `null` (arquivo
+	   ausente, ilegível, ou raiz em subpasta) NÃO encerra — segue para o
+	   diagnóstico completo, que sabe achar o caminho de verdade. */
+	if ( true === cdm_casca_cura_tem_bloco( cdm_casca_cura_caminho() ) ) {
+		return '';
+	}
+
+	$agora  = time();
+	$ultima = (int) get_option( CDM_CASCA_CURA_OPTION, 0 );
+	if ( $ultima > 0 && ( $agora - $ultima ) < CDM_CASCA_CURA_INTERVALO ) {
+		return '';
+	}
+
+	$antes    = cdm_casca_diagnostico_rotas();
+	$decisao  = cdm_casca_cura_decidir( $antes, $ultima, $agora, CDM_CASCA_CURA_INTERVALO );
+
+	/* A TENTATIVA É GRAVADA ANTES DE AGIR. Se o `flush` morrer no meio — e ele
+	   escreve na porta de entrada do site —, a requisição seguinte encontra a
+	   hora já queimada e não tenta de novo. Marcar depois seria um laço de
+	   reescrita da raiz a cada visita, que é a coisa exata que a 29.4 recusou. */
+	update_option( CDM_CASCA_CURA_OPTION, $agora, 'no' );
+
+	if ( empty( $decisao['curar'] ) ) {
+		if ( null === $decisao['motivo'] ) {
+			return '';
+		}
+		$linha = 'cura da porta NAO disparou: ' . $decisao['motivo'] . ' — ' . cdm_casca_cura_retrato_curto( $antes );
+		cdm_casca_cura_registrar( $linha );
+
+		return $linha;
+	}
+
+	$r      = cdm_casca_reparar_rotas();
+	$depois = isset( $r['depois'] ) ? $r['depois'] : $antes;
+
+	if ( ! empty( $r['reparado'] ) ) {
+		$linha = 'cura da porta: bloco WordPress reposto — '
+			. cdm_casca_cura_retrato_curto( $antes ) . ' -> ' . cdm_casca_cura_retrato_curto( $depois );
+	} else {
+		$linha = 'cura da porta FALHOU: o flush rodou e o bloco WordPress NAO voltou — '
+			. cdm_casca_cura_retrato_curto( $antes ) . ' -> ' . cdm_casca_cura_retrato_curto( $depois )
+			. ( empty( $r['motivo'] ) ? '. AllowOverride desligado do lado do hospedeiro? Pela 29.4 isto e chamado, nao codigo desta ilha' : '. ' . $r['motivo'] );
+	}
+	cdm_casca_cura_registrar( $linha );
+
+	return $linha;
+}
+}
+
+/* O gancho é `wp_loaded`, e não `init`: ele roda DEPOIS de todo snippet ter
+   carregado, então `clubedomosaico_sync_log()` existe e a linha tem onde cair.
+   E roda em requisição REST também, de propósito — quando a porta cai, o
+   caminho bonito morre ANTES do PHP, e o que continua chegando aqui é a home e
+   a query na raiz (29.1). Curar só no caminho bonito seria curar pela porta que
+   está no chão. */
+add_action( 'wp_loaded', 'cdm_casca_cura_da_porta', 99 );
 
 if ( did_action( 'init' ) ) {
 	cdm_casca_boot();
