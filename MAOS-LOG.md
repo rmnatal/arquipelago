@@ -9731,8 +9731,8 @@ toquei em cabeçalho de estado, não executei bloco de fila, não publiquei, nã
 conta em plataforma nenhuma. Nenhum contato pessoal de terceiros entrou — a instrução não trazia nenhum
 (só "conta Raphael" e "Chrome do Raphael", primeiro nome, que já é o padrão do repositório).
 
-Releitura: esta seção começa na linha **9682** e, somando este parágrafo final, o arquivo termina em
-**9737** linhas e **138** seções `##` (medido com `wc -l` depois de gravar; eu havia estimado 9733 de
-cabeça e o número medido é este — a correção não muda a contagem de linhas, só o dígito). O arquivo é append-only: nenhuma seção anterior foi apagada,
+Releitura: esta seção começa na linha **9682** e o arquivo termina em **9738** linhas e **138** seções
+`##` — medido com `wc -l` depois de gravar, e não de cabeça. Os dois números que escrevi antes (9733, e
+depois 9737) ficaram atrás porque cada correção mexia no próprio arquivo que estava sendo contado. O arquivo é append-only: nenhuma seção anterior foi apagada,
 reescrita ou resumida neste disparo — a única edição fora do acréscimo foi dentro desta própria seção,
 corrigindo a contagem de `##` do arquivo novo para o valor que a releitura devolveu.
