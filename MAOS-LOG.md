@@ -9801,5 +9801,7 @@ Nenhum outro arquivo tocado, como a instrução pediu. O `MAOS-LOG.md` é a exce
 num commit seguinte, porque a instrução dizia "um commit" com aqueles dois arquivos. Nada de reserva,
 nada de `executando_desde`, nada de publicar, nada de fila de ilha, nada de `ARQUIPELAGO.md`.
 O arquivo é append-only: nenhuma seção anterior foi apagada, reescrita ou resumida neste disparo.
-Esta seção acrescentou 65 linhas ao `MAOS-LOG.md` (de 9738 para 9803 linhas, medido com `wc -l`
-depois de gravar — o 9803 inclui estas duas últimas linhas).
+Esta seção acrescentou 69 linhas ao `MAOS-LOG.md` (de 9738 para 9807 linhas, medido com `wc -l`
+depois de gravar). Os números que escrevi antes (65/9803 e 67/9805) ficaram atrás porque a própria
+linha da contagem mexia no arquivo que estava sendo contado — mesma pegadinha registrada na seção
+anterior. Vale o 9807, que é o que a releitura devolveu com o texto nesta forma final.
