@@ -3,6 +3,99 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-11-12 13h17Z–13h42Z — **A PORTA DESTA ILHA PASSA A SE CURAR SOZINHA, E O 404 NO ÍNDICE DA PÁGINA DE 673 MIL BUSCAS/MÊS TEM CAUSA MEDIDA: ELA FOI RASTREADA COM A PORTA NO CHÃO** — despacho da leitura semanal fechado no item 1, casca 1.26.0, revisão 87
+
+**A ILHA DESTA EXECUÇÃO:** rodametria, por **foco** (`foco.md` nomeia a rodametria, foco total e absoluto desde 27/10). Pela **1.2** não há escolha a fazer, e **as duas exceções que furam o foco foram conferidas ANTES da reserva e nenhuma furou:** os três despachos do **MOLDE** (seção 32) estão fechados nas três ilhas (aquametria 21/10 18h2xZ, clubedomosaico 21/10 19h1xZ, robometria 21/10 16h1xZ), e o único despacho **ALTA** de ilha no ar e quebrada era o da porta da clubedomosaico, **fechado às 10h46Z de hoje** pela execução da manhã. O despacho de **CLASSE** da porta, no `PROMPT.md` da robometria, é **NORMAL** e espera pela 1.2. `executando_desde` estava `null`, que pela **1.1** já significa que não havia bloco da Fundação vivo. Nenhum branch `claude/*` nem PR com trabalho fora do `main` (a branch de trabalho estava idêntica ao `main`). Reserva no commit `eb23228`, às **13h17Z**.
+
+**A REDE, pela 20.2 e pela 29.2, ANTES de trabalhar:** `/`, `/robots.txt` e `/wp-sitemap.xml` em **200**, `/status` em **200** servindo a revisão 86 = manifest 86.
+
+---
+
+### O ITEM 1 DO DESPACHO — A RESPOSTA JÁ MORAVA NOS ARQUIVOS DESTA ILHA, E O ATALHO QUE O DESPACHO OFERECIA RESPONDERIA ERRADO
+
+O item 1 (ALTA) da leitura semanal de 11/11 pergunta, com todas as letras: *"por que o Googlebot pegou 404 nessa URL em 05/11 às 22:14:32?"*, e o "pronto quando" dele é *"existir no `dados/consertos.md` desta ilha uma linha dizendo, com número, se houve ou não queda da porta em 05/11"*.
+
+**HOUVE, e a janela está medida por três execuções e já estava escrita neste repositório:**
+
+| momento | o que foi medido |
+|---|---|
+| **04/11 20h1xZ** | a leitura semanal fecha medindo as **9 URLs** do sitemap — último retrato verde |
+| **05/11 10h19Z** | **8 das 9 URLs e as três portas da 29.2 em 404**, servindo a página da HostGator; só `/` em 200; WordPress de pé por `?rest_route=` (casca 1.10.0, revisão 42) |
+| **05/11 13h2xZ** | segunda execução do dia: *"a porta segue no chão três horas depois"* |
+| **05/11 19h17Z–19h5xZ** | terceira: *"a porta segue no chão 23 horas depois"* |
+| **05/11 ~23h3x BRT = 06/11 ~02h3xZ** | **porta levantada** por sessão de chat do Raphael no cPanel (Links permanentes → Salvar). O `.htaccess` tinha **1.057 bytes e só o bloco `NFD EPC`** |
+| **06/11** | a ronda reconfere: **10 URLs em 200** em duas leituras |
+
+**O rastreamento de 05/11 às 22:14:32 cai dentro dessa janela NAS DUAS LEITURAS POSSÍVEIS DO FUSO**, e é isso que fecha o caso sem instrumento nenhum: em Brasília são **06/11 01h14:32Z**, cerca de **1h20 antes** do reparo; em UTC são **05/11 22h14:32Z**, cerca de **4h20 antes**. **Não existe leitura do relógio que ponha aquele rastreamento fora das ~16 horas em que esta ilha serviu 404 em tudo menos a home.** Logo: o 404 no índice não é defeito de página nem de sitemap — **é a porta de entrada**, e o balde "Não encontrado (404)" do Search Console é o único rastro que a queda deixou do lado do Google.
+
+**E O ATALHO OFERECIDO PELO DESPACHO RESPONDERIA ERRADO, o que vale mais do que a resposta.** Ele dizia: *"se o `.htaccess` desta raiz tiver `tem_wordpress: true` e um `mtime` anterior a 05/11, a resposta é 'não houve' e o caso fecha aí"*. **O arquivo foi reescrito no conserto de 06/11**, então o `mtime` dele é **posterior** a 05/11 e aquele ramo nunca poderia fechar — e, pior, ele exigia o **token do Sync**, que não está no repositório. **A resposta barata estava em `dados/consertos.md`, escrita pelas próprias execuções de 05/11.** É a família do `git log` raso da **1.1** e do "não havia navegador" da **33**: instrumento novo procurado onde já havia registro, e causa de impossibilidade herdada sem remedir.
+
+**E A PREMISSA DO ITEM ESTAVA CERTA NO MECANISMO E ERRADA NA ESCALA.** Ele supõe: *"uma queda de minutos nesta ilha em 05/11 não teria sido vista por ninguém, e o 404 no índice seria o único rastro que ela deixaria"*. O mecanismo é exatamente esse. A escala, não: foi vista por **três execuções**, com despacho ALTA, notificação ao Raphael às 10h2xZ e registro inteiro — e durou **~16 horas**, não minutos.
+
+**Despacho reescrito pela 18.3**, com o texto original preservado embaixo e a nota de cima dizendo o que sobra e **de quem é**: a metade do Search Console do item 1 é da leitura de **18/11** (trava 2 da seção 12 — quem pediu a indexação não confere); o item 2 e a proposta 3 são **NÃO AGIR**, pela 12.1; a proposta 2 (`moto elétrica`, 823 mil buscas/mês) é **do Raphael**, porque o gerador de link do Mercado Livre tem reCAPTCHA (25.6).
+
+---
+
+### O BLOCO: A CURA DA PORTA — SEÇÃO 14 DA CASCA, A EXCEÇÃO NOMEADA DA 29.4
+
+Responder não põe ilha no ar. O **item 1 do despacho de CLASSE** da Sentinela de 11/11 diz, no `PROMPT.md` da robometria, que *"a **rodametria** também está sem a cura, e o `PROMPT.md` dela registra isso"* — e registrava, nesta frase: *"esta ilha ainda não a tem, e copiar a seção 6-b é tarefa aberta aqui"*. **Em cinco das nove quedas desta conta de cPanel o tempo no chão foi decidido por quando alguém rodou um comando** — nove dias, dois dias e meio, quatro dias, e nesta ilha dezesseis horas que custaram a indexação da página de compra de 673 mil buscas/mês.
+
+**As cinco travas do contrato, todas no código:** dispara só com as quatro grandezas da 29.7(3) na mesa; no máximo uma tentativa por hora, gravada **antes** de agir; uma linha no log que o `/status` já serve, com o antes e o depois em **bytes** e em **blocos** e nunca o conteúdo do arquivo; **calada** com o bloco no lugar; e **nunca na rota que MEDE a porta**, senão o retrato da 29.3 não mostraria a queda — e foi o `mtime` de uma porta caída que deu prova ao chamado na HostGator.
+
+**A DIVERGÊNCIA DA IRMÃ, E ELA É FORÇADA POR UM FATO MEDIDO, NÃO POR GOSTO.** O snippet do **Sync desta ilha não está no repositório**: ele nasceu no site, pela mão do Raphael (passo 8 da seção 11). Então os nomes `rodametria_sync_estado()` e `rodametria_sync_log()` são **herdados das irmãs e não conferidos no chão** — exatamente o que a seção 12 desta casca já escrevia sobre o token, na divergência (b). Na irmã, cura que não consegue registrar não acontece; aqui isso faria a exceção **nascer inerte por causa de um nome**. A saída foi a mesma que a casca já usou para o token: a cura escreve pela função do Sync quando ela existe e, quando não existe, escreve a **mesma linha na mesma forma** direto na option que o `/status` serve — e o portão **cobra que as duas formas sejam idênticas**, porque formato novo no mesmo log é o mesmo fato dito de duas maneiras.
+
+**E A CHECAGEM DE ONDE ESCREVER VEM ANTES DE TOCAR NO ARQUIVO — isto é um defeito da primeira implementação, achado lendo o código dela para copiá-lo.** Na clubedomosaico, `cdm_casca_cura_registrar()` traz escrito que *"devolve `false` quando o snippet do Sync não está carregado — **e aí a cura NÃO acontece**"*. **O código faz outra coisa:** o `reparar_rotas()` roda **antes**, e só depois se descobre que não há onde escrever. Então, nesse mundo, a porta é reescrita **sem uma linha em lugar nenhum** — que é precisamente a "porta que se conserta CALADA" que a 29.4 recusou, com a trava 3 furada. **O comentário descreve a intenção e não o código**, que é a família da 32.5-d. Aqui a pergunta mora no **passo 2** do gancho, antes do `update_option` da hora e antes do diagnóstico, e devolve uma cadeia que se **nomeia**. A irmã não pode ser editada por esta execução (**seção 3**), então virou **despacho NORMAL**, e a regra geral subiu para a **29.4** do contrato.
+
+**E a recusa não é calada:** `/casca` passou a servir `tem_cura_da_porta` e `fonte_do_log_da_cura`, os dois **sem token**, pelo mesmo argumento do `tem_purga_de_cache` de 03/11 — booleano e nome de caminho sobre função da própria ilha não são segredo do servidor (29.3). **Eles separam dois silêncios que são o mesmo byte:** "o log nunca ganhou linha da cura porque a porta nunca caiu" (sadio, quase todo dia) e "a cura não achou onde escrever e, pela trava 3, se recusou a agir" (defeito).
+
+### O PORTÃO REPROVOU QUEM O ESCREVEU DUAS VEZES, E AS DUAS LIÇÕES SUBIRAM AO CONTRATO
+
+`ferramentas/teste-cura-da-porta.php`: **65 afirmações mais 109 em processos filhos = 174**, em dez mundos, com **5 mutações cobradas**. Na primeira passada **duas mutações PASSARAM**, e isso foi o portão funcionando:
+
+1. **A M4 passou com razão**, e é a lição mais útil: ela remove a checagem de onde escrever, que **não decide nada no mundo comum** — ali existe log. O mundo em que ela morde é o **J** (sem função e sem option), que roda em processo filho. **Mutação rodada no mundo errado mede o mundo, não a trava.** Agora cada mutação **declara o modo** em que é executada.
+2. **A M5 atacava uma linha de DEFESA e não de mecanismo.** Ela removia o `clearstatcache()` do **pré-filtro** — e o pré-filtro só lê existência e legibilidade, que nada fabricável ali muda. **Medido neste contêiner, PHP 8.3.6:** `file_put_contents()` e `unlink()` invalidam o cache de `stat` do próprio processo, e **só o `fwrite` sobre descritor aberto o deixa velho** (um `fwrite` de 500 bytes num arquivo de 3 deixa o `filesize()` respondendo **3**). Então o stub do `flush` passou a escrever com `fopen`/`fwrite`/`fclose`, **como o `insert_with_markers()` do WordPress realmente escreve**, e a M5 foi para onde morde: o `clearstatcache` do **DIAGNÓSTICO**, que é a regressão de 03/11 desta ilha, presa por uma afirmação nova do mundo A — **os dois números de bytes da linha de log têm de crescer**. **Stub mais cômodo que a realidade aprova o código que a realidade reprova.** A linha do pré-filtro **fica, anotada como defesa e não como trava:** trava que não se consegue fazer morder não se declara trava.
+
+### E O `teste-purga-cache.php` PREVIU ESTE DIA POR ESCRITO
+
+O corte dele ia da seção 13 **ao fim do arquivo**, e o comentário dizia: *"se um dia nascer uma seção 14 depois dela, este corte passa a arrastar código que não é desta medição — e a afirmação de FRONTEIRA logo abaixo é o que denuncia isso em vez de deixar passar"*. **Nasceu, e ela denunciou na primeira passada** — `FALHA: nasceu código depois da seção 13; este corte virou mentira` —, nele e nas **8 baterias** de `mutacoes-purga-cache.py`, as oito reprovando **"pelo motivo ERRADO"**, que é o aviso de que o instrumento parou antes de medir. O corte agora é **entre dois marcadores** e a fronteira mede o vão entre as duas seções. **Previsão escrita que, no dia, aponta o arquivo e a linha vale mais que portão que não quebra.**
+
+### O DESEMBARQUE, E A 20.9 OUTRA VEZ — ESPERAR FOI A AÇÃO CERTA
+
+Quatro leituras do `/status` depois do push deram veredito **`evento-nao-vencido`**: `ultimo` congelado em **13:17:29**, anterior ao commit do manifest (13:32:06), com o raw do GitHub **já servindo a 87**. O portão imprimiu o teto de **13:47:29** dizendo que podia cair antes — **e a revisão entrou às 13:40:33Z, quase SETE MINUTOS antes dele**, porque o WordPress reagenda evento recorrente a partir do horário **agendado** e não do horário em que rodou. É a ressalva da 20.9 medida uma segunda vez nesta ilha. **Reacionar não antecipa vencimento.**
+
+### A CONFERÊNCIA NO AR (18.4), EM DUAS LEITURAS COM QUEBRA DE CACHE
+
+- **A versão que o WordPress CARREGOU (20.7):** `/casca` serve `rodametria-casca` **1.26.0**, igual ao `manifest.json`. O `sha256` prova o byte do repositório; isto prova o código carregado.
+- **`tem_cura_da_porta: true`**, e **`fonte_do_log_da_cura: funcao:rodametria_sync_log`** — **o ar respondeu a pergunta que o repositório não podia:** o nome herdado das irmãs está **certo**, e o caminho preferido (um escritor só) é o que está vivo. O caminho de reserva existe e não foi preciso.
+- **O log da revisão 87, lido do fecho para baixo (20.8):** o fecho declara **8 aplicados** e o grupo traz **8 linhas de item**, as oito dizendo `ok`, lidas uma por uma (20.4) — inclusive `snippets/rodametria-casca: ok (snippet #6 atualizado)`, **sem a cicatriz da 20.4**. **A conta da 20.10 fecha: 8 − 8 = 0.** A janela de 15 linhas está **cheia**, e isso é dito como registro em vez de aprovado como completo.
+- **ZERO linha de cura no log**, e esse é o desfecho **sadio** da trava 4: porta de pé, a cura lê o arquivo, não escreve nada e não fala.
+- **Portão de ar completo: 729 afirmações, 0 falha**, nas 10 URLs do sitemap, as 10 em **200**. Eram **727** antes — as duas a mais são exatamente as da cura, então elas **rodaram**.
+- **As três portas da 29.2 verdes com `content-type` certo** (`text/plain`, `application/xml`, `application/json`) e **caminho virgem em 404 de 73.105 bytes na página DESTA ilha** — a de estacionamento da HostGator tem 2.361.
+- **Bancada sem rede: 44 portões, 0 falha** (eram 43; o novo é o da cura).
+
+**A PROVA DO "ANTES" veio da leitura direta do `/casca`, e não do portão** — e isso merece ser dito: com a casca ainda em 1.25.0 os dois campos novos saíam `None`, e o portão de ar **não chega a medi-los** nesse mundo, porque ele sai na hora quando a revisão do `/status` está atrás da do manifest. A régua nova foi exercitada pela leitura de **depois**; a de antes foi medida com `curl`.
+
+### O QUE NÃO FOI MEDIDO, E NÃO SERÁ POR ESCOLHA
+
+**A cura DISPARANDO no ar.** Para medir isso seria preciso derrubar a porta de um site que está no ar e servindo, e **não se fabrica queda em produção para ver o conserto funcionar**. O que está medido é a **regra** (174 afirmações em dez mundos, 5 mutações, com os dois mundos que não se encenam no disco deste contêiner fabricados no retrato) e o **código carregado** (a versão e os dois campos em `/casca`). A prova de fogo será a próxima queda desta raiz, e `dados/consertos.md` é onde ela se lê. **E a cura não é o conserto da causa (29.5):** o chamado na HostGator continua aberto, cobrindo as duas raízes, e continua sendo o único lugar onde a causa se resolve.
+
+### ERRATA DESTA PASSADA, E ELA É DA MINHA MÃO
+
+1. **A mensagem do commit `2c72d55` diz *"Reserva RENOVADA pela 1.1: o bloco passou de 40 minutos"*. É FALSO:** eram **14 minutos** naquele instante, e o campo `executando_desde` não foi tocado. A frase entrou por hábito de fecho de bloco longo. O bloco inteiro levou cerca de **30 minutos**, dentro da janela de 40, então **não havia o que renovar**. Não se reescreve histórico empurrado; a correção fica aqui e no cabeçalho do `ESTADO.md`.
+2. **Dois nomes de campo foram comidos pelo bash na mensagem daquele mesmo commit**, por crase não escapada numa heredoc — são **`tem_cura_da_porta`** e **`fonte_do_log_da_cura`**. O código está certo; só a mensagem perdeu os dois nomes. Daqui em diante a mensagem de commit vai por `-F` com arquivo.
+
+### O QUE NÃO É DESTA ILHA, ABERTO EM `dados/despachos.md`
+
+1. **clubedomosaico (NORMAL)** — a cura dela checa onde escrever **depois** de reparar, e o comentário promete o contrário. O mundo em que isso morde é a própria **cicatriz da 20.4**: o dia em que o Code Snippets desativar o snippet do Sync é o pior dia possível para a cura ser silenciosa.
+2. **robometria (NORMAL)** — segue sem a cura **e** sem o `clearstatcache()` do diagnóstico (o despacho NORMAL de 03/11). Agora há **duas** implementações de referência com uma diferença medida, então o despacho diz **qual copiar** (esta) e **o que não perder na cópia**: o modo por mutação e o stub que escreve como o WordPress escreve.
+
+### CONTAGEM DESTA PASSADA
+
+- **Bancada:** 44 portões, **0 falha**, sem rede. Portão novo: `teste-cura-da-porta.php`, **174 afirmações** em dez mundos, **5 mutações** cobradas, com dois mundos fabricados no **retrato** porque não se encenam no disco deste contêiner (raiz não gravável e `mod_rewrite: false` não se produzem rodando como root).
+- **Portão de ar:** **729 afirmações, 0 falha** (eram 727). `--autoteste` segue em **128**: as duas afirmações novas são de **ar**, pelo mesmo desenho do `tem_purga_de_cache`, e quem as exercita é a leitura do site.
+- **Snippets:** casca **1.26.0**. Manifest na revisão **87**.
+- **Contrato:** a exceção da **29.4** ganhou a ordem da trava 3, o mundo da ilha sem Sync no repositório, as duas lições de método do portão e a segunda implementação de referência.
+
 ## 2026-11-11 19h17Z–19h44Z — **AS DUAS SUPERFÍCIES QUE A 32.4 NUNCA LEU, E OS DOIS DEFEITOS QUE A LEITURA ACHOU** — revisão 86
 
 **A ESCOLHA DA ILHA, em três linhas porque não houve o que decidir.** `foco.md` nomeia a **rodametria** (foco total e absoluto desde 27/10). **Não havia despacho aberto** no topo do `PROMPT.md` — os quatro itens da ronda de hoje fecharam às 17h1xZ, conferidos no ar pela 18.4 — e nenhuma das duas exceções da 1.2 estava de pé: a ronda das 18h01Z **reparou** a porta de entrada da robometria e da clubedomosaico e fechou os dois despachos ALTA, e o despacho do molde da 32 não existe aberto em nenhuma das três ilhas que ele nomeia. Então esta passada é **bloco de fila**, pelo próximo passo desbloqueado que o `bloco_atual` desta ilha deixou escrito de manhã.
