@@ -1788,6 +1788,53 @@ def main():
                "consertar" % (c.get("tem_purga_de_cache"),))
 
         # ---------------------------------------------------------------
+        # 3a-b. A CURA DA PORTA ESTA CARREGADA, E TEM ONDE ESCREVER
+        #       (12/11/2026, excecao nomeada da 29.4)
+        #
+        # POR QUE ISTO E AFIRMACAO DE AR E NAO DE BANCADA. A bancada
+        # (`teste-cura-da-porta.php`, 174 afirmacoes) prova que a REGRA
+        # decide certo; ela nao prova que o codigo esta CARREGADO no
+        # WordPress — e snippet gravado e nao ativado e a cicatriz da 20.4,
+        # medida tres vezes em quatro dias nesta fabrica, nesta ilha
+        # inclusive (revisao 82, em 11/11). Cura que nao esta no processo e
+        # cura que nao acontece, e o jeito de descobrir isso NAO pode ser
+        # a proxima queda da porta.
+        #
+        # E O SEGUNDO CAMPO E O QUE SEPARA DOIS SILENCIOS IDENTICOS. A cura
+        # e calada por desenho com a porta de pe (trava 4), entao "o log
+        # nunca ganhou linha da cura" e o desfecho SADIO de quase todo dia.
+        # Ele e tambem o que se veria se a cura nao tivesse onde escrever —
+        # e nesse mundo ela, pela trava 3, se recusa a agir. Os dois
+        # silencios sao o mesmo byte; `fonte_do_log_da_cura` e o que os
+        # distingue, e por isso ele e campo e nao comentario.
+        #
+        # O NOME DA FONTE E CONFERIDO, nao so a presenca: o Sync desta ilha
+        # nao esta no repositorio (nasceu no site, passo 8 da secao 11),
+        # entao `funcao:` prova que o nome herdado das irmas esta certo no
+        # ar. `option:` nao reprova — e o caminho de reserva, e a linha sai
+        # com a mesma forma —, mas ele e DITO, porque e a prova de que a
+        # funcao de log do Sync nao esta carregada, e isso e informacao
+        # sobre o Sync e nao sobre a cura.
+        # ---------------------------------------------------------------
+        afirma(c.get("tem_cura_da_porta") is True,
+               "/casca diz tem_cura_da_porta=%r — a excecao da 29.4 NAO esta carregada "
+               "no ar, e a proxima queda desta porta volta a durar ate alguem rodar um "
+               "comando (05/11: ~16 horas)" % (c.get("tem_cura_da_porta"),))
+
+        fonte_cura = c.get("fonte_do_log_da_cura")
+        afirma(isinstance(fonte_cura, str) and fonte_cura != "",
+               "/casca diz fonte_do_log_da_cura=%r — a cura nao tem onde escrever a "
+               "linha da tentativa e, pela trava 3 da 29.4, ela se RECUSA a agir. "
+               "Porta sem cura com cara de porta com cura" % (fonte_cura,))
+        if isinstance(fonte_cura, str) and fonte_cura.startswith("option:"):
+            registro("a cura da porta escreveria pelo caminho de RESERVA (%s), nao pela "
+                     "funcao de log do Sync — a linha sai com a mesma forma, e o que isto "
+                     "diz e que `rodametria_sync_log` nao esta carregada no ar" % fonte_cura)
+        elif fonte_cura == "funcao:rodametria_sync_log":
+            registro("a cura da porta escreve pela funcao de log do Sync "
+                     "(`rodametria_sync_log`), que e o caminho preferido: um escritor so")
+
+        # ---------------------------------------------------------------
         # 3b. A VERSAO QUE O WORDPRESS CARREGOU, E A AUSENCIA E O SINAL
         #     (02/11/2026)
         #
