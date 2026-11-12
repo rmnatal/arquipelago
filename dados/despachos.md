@@ -11,6 +11,20 @@ Prioridade: `alta` fura a fila da próxima execução do destinatário.
 
 ## ABERTOS
 
+### prioridade NORMAL — A RÉGUA DA 20.4 DE TODA ILHA COM A CURA DA PORTA CONTA A LINHA DA CURA COMO ITEM DE DESEMBARQUE, E REPROVA A ILHA SÃ — medido no ar na rodametria em 12/11/2026, quando a cura disparou de verdade pela primeira vez
+
+**Destinatário: Fundação, na próxima execução da clubedomosaico** (a única outra ilha que hoje tem a cura; a robometria herda isto junto com a cura, no despacho de 03/11 que manda copiá-la). A seção 3 proíbe esta execução de editar arquivo de ilha que ela não reservou, e é por isso que isto é despacho e não conserto.
+
+**O QUE ACONTECEU, com número.** A cura da porta da rodametria foi ao ar às 13h40Z de 12/11/2026 e **disparou às 16:25Z do mesmo dia** — 2h45 depois —, escrevendo no log do `/status` a linha que a trava 3 da 29.4 exige: `cura da porta: bloco WordPress reposto — 0 bytes [] -> 1579 bytes [NFD EPC, WordPress]`. O desembarque daquela revisão (89) foi às **16:39Z**. **O log vem do mais novo para o mais velho e o corte da 20.4 é posicional**, então a linha da cura caiu **dentro** do grupo da revisão corrente: a conta da **20.10** acusou **8 declarados contra 9 lidos**, e a afirmação positiva do `ok` reprovou uma linha que **nunca vai dizer `ok`** porque não é um item sendo aplicado. **O portão de ar reprovou uma ilha sã.**
+
+**POR QUE ISTO ALCANÇA A CLUBEDOMOSAICO SEM TER SIDO MEDIDO LÁ:** a casca e a régua de ar são o mesmo desenho nas ilhas, a cura dela está no ar desde 1.26.0 e a porta daquela raiz é a que mais cai no Arquipélago — **sete quedas**. É a 32.5-c literal: regra que não viaja para a irmã é a doença que esta fábrica já pagou três vezes. Lá a reprovação vai aparecer no **primeiro** disparo da cura, que é o pior momento possível para o portão de ar ficar vermelho sem defeito embaixo: é exatamente o minuto em que alguém precisa confiar no retrato.
+
+**O QUE FAZER, e está escrito por inteiro na 29.4 do `ARQUIPELAGO.md`** (o parágrafo que começa *"A TRAVA 3 PÕE UMA LINHA DE OUTRA CLASSE NO LOG DO DESEMBARQUE"*): a linha da cura **sai da conta de itens** e **ganha afirmações próprias** — nunca é descartada em silêncio. As afirmações são as da trava 3, lidas da própria linha: antes e depois **em bytes e em blocos**, `WordPress` presente no depois, o arquivo **não encolhendo**, e **nenhum conteúdo do `.htaccess`** dentro da linha. O reconhecimento é pela **frase** `cura da porta:` e nunca pelo nome de arquivo — snippet chamado `cura-da-porta` sendo aplicado **é** item.
+
+**MODELO A COPIAR:** `CURA_RE` e `CURA_FORMA_RE` em `ilhas/rodametria/ferramentas/conferir-no-ar.py`, mais os **dez mundos novos** do `--autoteste` daquele arquivo (128 → 138), entre eles o mundo de verdade medido hoje, a **régua ingênua refeita ao lado e obrigada a discordar** (20.8), a cura que encolhe o arquivo, e o snippet com `cura-da-porta` no nome que **não** pode ser confundido. **O que não se deve copiar é só o descarte:** filtrar a linha e seguir deixa a ilha aprovando sem ler o único rastro que a queda deixou.
+
+**pronto quando:** o portão de ar da clubedomosaico **aprovar com uma linha de `cura da porta:` dentro da janela do log** — e, por não haver como esperar a queda, com essa linha fabricada no `--autoteste` dele, com a régua ingênua discordando ao lado.
+
 ### prioridade NORMAL — NA CLUBEDOMOSAICO A CURA DA PORTA CHECA ONDE ESCREVER **DEPOIS** DE REPARAR, E O COMENTÁRIO DELA PROMETE O CONTRÁRIO — a trava 3 da 29.4 fica furada por uma linha de ordem (medido na rodametria em 12/11/2026)
 
 **Destinatário: Fundação, na próxima execução da clubedomosaico.** Esta ilha não pode consertar

@@ -3,6 +3,172 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-11-12 16h18Z–16h51Z — **A CAMADA DA MÁQUINA DEIXA DE SER MENOS CUIDADOSA QUE A TELA: `availability` SEM DATA SAI DAS 21 `Offer`, E O PREÇO PASSA A DIZER QUANDO FOI LIDO** — produto 1.11.0, revisão 89
+
+**A ILHA DESTA EXECUÇÃO:** rodametria, por **foco** (`foco.md` nomeia a rodametria, foco total e absoluto desde 27/10). Pela **1.2** não há escolha a fazer, e **as duas exceções que furam o foco foram MEDIDAS antes da reserva, não supostas, e nenhuma furou:**
+
+- **A exceção do MOLDE (seção 32) esgotou-se por conclusão.** Os três despachos do molde estão fechados: aquametria em 21/10 às 18h2xZ, clubedomosaico em 21/10 às 19h1xZ, robometria em 21/10 às 16h1xZ. A 1.2 é literal — *"quando as três estiverem com o molde no ar e conferido, o foco volta a mandar sozinho"*.
+- **Nenhuma irmã está NO AR E QUEBRADA.** As quatro homes em **200 em três passadas** com quebra de cache (12 de 12, zero `000`), e nas três irmãs as **três portas da 29.2 em 200** com **caminho virgem em 404 servindo a página da própria ilha** (zero ocorrência de `hostgator`/`parked` nos três corpos). O despacho ALTA da porta da clubedomosaico foi fechado às 10h46Z de hoje e o da robometria às 17h54Z de 11/11; o despacho de **classe** da porta, no `PROMPT.md` da robometria, é **NORMAL** e espera pela 1.2.
+
+`executando_desde` estava `null`, que pela **1.1** já significa que não havia bloco da Fundação vivo — não houve reserva vencida para o git desempatar; o último commit na pasta da ilha era de **13h45Z**, mais de 40 minutos atrás. Nenhum branch `claude/*` com trabalho fora do `main` (a branch de trabalho estava idêntica ao `main`) e **nenhum PR aberto**. Reserva no commit `3f26533`, às **16h18Z**.
+
+**A REDE, pela 20.2, ANTES de trabalhar:** medida e não herdada, nas três passadas acima.
+
+**POR QUE ESTE BLOCO:** o despacho aberto da leitura semanal de 11/11 foi reescrito pela 18.3 na passada das 13h17Z e **os três itens que sobraram não são da Fundação** (a metade do Search Console é da leitura de 18/11 pela trava 2 da seção 12; o item 2 e a proposta 3 são *não agir* pela 12.1; a proposta 2 é do Raphael, por reCAPTCHA no gerador do Mercado Livre). A fila de blocos segue acabada. Então esta execução fez exatamente o que o **próximo passo desbloqueado** daquela passada deixou escrito, com estas palavras: *"as DUAS AFIRMAÇÕES DE MÁQUINA que a tela não faz, nos `Product` do JSON-LD"*.
+
+---
+
+### O DEFEITO, MEDIDO NO AR ANTES DE SER CONSERTADO
+
+Medido às **16h2xZ de 12/11/2026**, nas duas páginas de produto, com quebra de cache:
+
+| página | `Offer` | com `availability` | com data no preço | a tela diz a data |
+|---|---|---|---|---|
+| `/veiculos/bicicleta-eletrica/` | 6 | **6** | **0** | 3 vezes |
+| `/veiculos/patinete-eletrico/` | 15 | **15** | **0** | 5 vezes |
+
+A `Offer` servida era esta, literal:
+
+```json
+{"@type":"Offer","price":"2299.99","priceCurrency":"BRL",
+ "url":"https://s.shopee.com.br/qkmbKqr0y",
+ "availability":"https://schema.org/InStock"}
+```
+
+**E a MESMA página, na linha que o leitor lê, escrevia `(preço de 04/11/2026)` ao lado do mesmo número.** Nas duas pontas a **TELA era mais cuidadosa que o DADO**: o preço tinha data para o olho e nenhuma para a máquina, e o estoque era prometido no **presente do indicativo** sobre uma leitura de oito dias. E a camada errada é a que pesa mais — o JSON-LD é o que a visão geral de IA ingere sem abrir a página (**32.4-c**).
+
+**A VARREDURA DA CLASSE NA MESMA PASSADA (32.5-c), para ninguém procurar depois:** as **10 URLs** do sitemap foram lidas uma por uma e **só estas duas** servem `Offer`; **zero** `priceValidUntil` em qualquer uma das dez. `/autonomia-patinete-eletrico/` tem bloco de compra e **nenhum `Product` no JSON-LD** — isso é observação medida, não defeito desta passada, e fica escrita aqui para a pergunta ser feita por quem a decidir.
+
+---
+
+### AS DUAS DECISÕES, E AS DUAS SÃO DE *NÃO AFIRMAR*
+
+**(1) `availability` SAI, e a razão já estava escrita no próprio snippet — só não tinha sido levada até o fim.** O comentário que morava ali recusava o campo quando o piso sobe, porque *"dizer que um resultado de busca está em estoque é afirmar o que ninguém mediu"*. **O mesmo vale para a FICHA: ficha EXISTIR não é estar VENDENDO.** A garantia real desta ilha é *"nenhuma ficha foi medida esgotada na última leitura"* — e isso é afirmação **DATADA**: a ronda de 11/11/2026 rodou o teste de vida da 25.4 e achou **UMA ficha esgotada entre 24**. `availability` não tem onde pendurar data: é presente do indicativo, lido no dia em que o robô passar, que pode ser semanas depois.
+
+**E O QUE NÃO SE FEZ, escrito para a tentação não voltar:** `availabilityStarts` **não** é a saída. Ele afirma quando a disponibilidade **começou**, e o que medimos foi **um dia em que ela existia** — não o primeiro. Vocabulário emprestado para caber na data que temos é a família do número digitado em outro traje.
+
+**(2) O `price` GANHA DATA, pelo único campo do vocabulário que diz data PASSADA sem prometer futuro: `priceSpecification.validFrom`.** `priceValidUntil` foi **recusado por escrito** — ele afirma validade **futura**, e esta ilha não sabe até quando o preço vale; seria exatamente a promessa sem lastro que a seção 7 proíbe.
+
+**E A DATA DEIXA DE EXISTIR SÓ EM PORTUGUÊS.** O campo ISO `preco_colhido_em` nasce **por linha** no gerador, e a frase da tela passa a ser **derivada dele**, uma linha abaixo do dicionário. Enquanto as duas nasciam lado a lado do mesmo `a['coletado_em']`, eram **duas declarações do mesmo fato** — e a **20.7** já mediu nesta fábrica o que isso dá: *"duas declarações do mesmo fato começam iguais e só uma sobe"*. Agora há **uma fonte e duas leituras dela**, e três portões cobram que a nota da tela contenha a data que o JSON-LD serve.
+
+**O campo é da LINHA e não da página**, e isso não é zelo: é o anúncio que tem data de leitura. Hoje as 21 linhas das duas páginas saíram da mesma passada de 04/11 — **o mundo em que elas divergem é o da próxima recoleta parcial**, e é ele que a mutação M3 e o mundo F fabricam.
+
+**A OFERTA VIROU FUNÇÃO NOMEADA (`rdm_produto_oferta_de_linha()`), e isso é de portão e não de arrumação:** dentro do fecho anônimo do `wp_head` ela não era chamável, e o que media esta camada era **só o portão de ar** — depois do desembarque, que é o lugar mais caro de descobrir o defeito. Agora a régua **chama a função**, como a seção 8 do contrato manda.
+
+---
+
+### O PORTÃO NOVO, E O MUNDO G É A PROVA DE QUE ELE NÃO É INERTE
+
+`ferramentas/teste-oferta-datada.php`: **66 afirmações**, **oito mundos**, **4 mutações** cobradas, e **cada mutação DECLARA o mundo em que morde** — a lição que o `teste-cura-da-porta.php` pagou nesta mesma ilha na manhã de hoje, quando duas mutações passaram por estarem rodando no mundo errado.
+
+| mundo | o que ele é | por que existe |
+|---|---|---|
+| A | ficha viva e data ISO | o mundo das 21 linhas de hoje |
+| B | ficha morta, piso subiu | a data é do **preço**, não da porta de compra: `priceSpecification` **fica** |
+| C | linha **sem** data | toda vitrine gerada por versão anterior do gerador |
+| D | data **em português** no campo ISO | o erro mais barato de cometer neste par de campos |
+| E | `2026-11-4` | "quase" não é categoria de dado estruturado |
+| F | duas linhas lidas em **dias diferentes** | o mundo que o dado de hoje não tem |
+| **G** | **a `Offer` que estava NO AR hoje** | **a régua tem de achar os dois defeitos e nomear os dois** |
+| H | `priceValidUntil` | a tentação mora na documentação do buscador |
+
+**As quatro mutações, com o mundo em que cada uma morde:** M1 remove a trava de **forma** (morde em D e E); M2 traz `availability` de volta (morde em A, B, C e nas 21 linhas publicadas); M3 troca a data **da linha** por um literal (morde em F); M4 faz os dois `price` da mesma oferta saírem de variáveis diferentes (morde em A e no dado publicado). **As quatro reprovaram.**
+
+**MAIS DUAS MUTAÇÕES DE DADO** em `mutacoes-produto.py`, que agora são **32, todas reprovadas** (eram 30): a data BR gravada no campo ISO, e a nota da tela dizendo **outra** data que o JSON-LD — o defeito que o campo novo existe para tornar impossível, e que **não era medível** enquanto a data existia só em português.
+
+---
+
+### O PORTÃO DA ILHA REPROVOU QUEM ESCREVEU ISTO, DUAS VEZES, E AS DUAS ANTES DO DESEMBARQUE
+
+1. **`rdm_produto_oferta_de_linha()` nasceu SEM a guarda `function_exists`**, e `teste-formulario-da-ilha.py` a acusou **pelo nome**, com a consequência inteira escrita na mensagem: o Code Snippets ativa o snippet **avaliando** o código, recusa redeclarar o que já está carregado, e a página daquele snippet **sai do ar** com a revisão subindo. **É a cicatriz da revisão 82, de 11/11**, e ela custou a F1 da home naquele dia. Função nova de nível superior é exatamente onde esse defeito nasce, e o portão que o pega não depende de ninguém se lembrar dele.
+2. **`teste-versao-dos-snippets.php` reprovou a constante subida sem reespelhar**, com estas palavras: *"subir a constante sem reespelhar é exatamente o rastro-sem-mecanismo que este portão existe para proibir"*.
+
+### E UM COMENTÁRIO DESTE SNIPPET ENVELHECEU — ACHADO POR OBEDECER A ELE
+
+O comentário da constante de versão dizia, desde 30/10, que ela e a da F2 são **"LIDAS POR NINGUÉM"** e que *"`atualizar-manifest.py` casa esta constante com o campo `versao` do manifest — **não casa, e nunca casou**"*. **É falso desde o próprio 30/10:** a ferramenta tem `versao_do_arquivo()`, lê a constante, grava `versao` ao lado do `sha256` de cada snippet — e imprimiu exatamente isso nesta passada (`versao snippets:rodametria-produto 1.10.0 -> 1.11.0 (de RODAMETRIA_PRODUTO_VERSAO)`) —, e `teste-versao-dos-snippets.php` **reprova** a divergência. O comentário que nomeava a ausência do mecanismo ficou no lugar depois de o mecanismo nascer, no mesmo dia. **Corrigido com a data e o nome do portão dentro, porque comentário que corrige comentário também envelhece** — é a 32.5-d aplicada ao texto que a própria 32.5-d inspirou.
+
+---
+
+### A CONFERÊNCIA NO AR (18.4), EM DUAS LEITURAS COM QUEBRA DE CACHE
+
+**O desembarque:** revisão **89** no ar às **16:40:24Z**, com `ultimo` em 16:39:47. O portão imprimiu o teto de **16:47:28** (o `ultimo` anterior mais 30 min) e **a revisão entrou quase sete minutos antes dele** — é a ressalva da **20.9** medida pela segunda vez nesta ilha no mesmo dia: o teto é teto, não a hora exata, e esperar é a ação certa.
+
+- **A versão que o WordPress CARREGOU (20.7):** `/casca` serve `rodametria-produto` **1.11.0**, igual ao `manifest.json`. O `sha256` prova o byte do repositório; isto prova o código carregado.
+- **O log da revisão 89, lido do fecho para baixo (20.4):** o fecho declara **8 aplicados** e o grupo traz **8 linhas de item**, as oito dizendo `ok`, lidas uma por uma — inclusive `snippets/rodametria-produto: ok (snippet #8 atualizado)`, **sem a cicatriz da 20.4**. **A conta da 20.10 fecha: 8 − 8 = 0.** A janela de 15 linhas está **cheia**, e isso é dito como registro, não aprovado como completo.
+- **A LINHA DA CURA DA PORTA, SEPARADA E COM AFIRMAÇÕES PRÓPRIAS** — ver a seção abaixo, que é o achado do dia.
+- **O JSON-LD, LIDO COM OS OLHOS no HTML servido das duas páginas**, em duas leituras com quebra de cache:
+
+```json
+{"@type":"Offer","price":"2299.99","priceCurrency":"BRL",
+ "url":"https://s.shopee.com.br/qkmbKqr0y",
+ "priceSpecification":{"@type":"UnitPriceSpecification",
+   "price":"2299.99","priceCurrency":"BRL","validFrom":"2026-11-04"}}
+```
+
+| página | `Offer` | com `availability` | datadas | `priceValidUntil` |
+|---|---|---|---|---|
+| `/veiculos/bicicleta-eletrica/` | 6 | **0** | **6** | 0 |
+| `/veiculos/patinete-eletrico/` | 15 | **0** | **15** | 0 |
+
+- **Portão de produto no ar: 365 afirmações, 0 falha**, e o registro dele diz o número em vez de o esconder: *"6 Offer(s) (0 com availability, 6 datadas)"* e *"15 Offer(s) (0 com availability, 15 datadas)"*.
+- **Portão de ar completo: 733 afirmações, 0 falha** (eram 729; as quatro novas são as da linha da cura).
+- **As 10 URLs do sitemap em 200**; as **três portas da 29.2** verdes com `content-type` certo (`text/plain`, `application/xml`, `application/json`); **caminho virgem em 404 de 73.105 bytes na página DESTA ilha** — a de estacionamento da HostGator tem 2.361.
+- **Bancada:** **45 portões sem rede** e **50 com rede**, **0 falha** nas duas. `--autoteste` do portão de ar: **138 de 138** (eram 128).
+
+---
+
+### O ACHADO DO DIA, E ELE NÃO ERA DESTE BLOCO: **A CURA DA PORTA DISPAROU DE VERDADE, 2h45 DEPOIS DE IR AO AR, E O `.htaccess` DESTA RAIZ ESTAVA COM ZERO BYTE**
+
+A passada das 13h17Z de hoje escreveu a cura e fechou dizendo, com estas palavras, que *"a prova de fogo será a próxima queda desta raiz, e `dados/consertos.md` é onde ela se lê"*. **Ela veio em duas horas e quarenta e cinco minutos**, e a linha está no log do `/status`:
+
+```
+2026-11-12 16:25 cura da porta: bloco WordPress reposto — 0 bytes [] -> 1579 bytes [NFD EPC, WordPress]
+```
+
+**O ANTES É MAIS GRAVE QUE NAS QUEDAS ANTERIORES, e é número:** em 05/10 e em 05/11 o arquivo tinha **1.057 bytes com o bloco `NFD EPC`**; aqui tinha **0 bytes e nenhum bloco** — o arquivo foi **esvaziado**.
+
+**E NINGUÉM DO NOSSO LADO O TOCOU.** Esta execução não tem o token do Sync, não abriu o cPanel e não roda `flush_rewrite_rules` por fora da casca; o que havia no ar entre 16h18Z e 16h25Z era um `git push` e requisições GET. **É exatamente a prova que a 29.5 dizia faltar ao chamado na HostGator:** *"um horário em que o arquivo foi reescrito sem que ninguém do nosso lado o tocasse, e o nome do bloco que sobrou"*.
+
+**A JANELA NO CHÃO, PELAS MINHAS PRÓPRIAS LEITURAS E NÃO ESTIMADA:** `/veiculos/bicicleta-eletrica/` em **200 com o JSON-LD inteiro às ~16h24Z**; a linha da cura às **16:25**; **10 de 10 URLs servindo a página da ilha às ~16h33Z**. Entre as duas leituras verdes cabe a queda inteira, e **nenhuma leitura minha pegou um 404**. Contra as **~16 horas** de 05/11, que custaram a indexação da página de 673 mil buscas/mês. **A exceção da 29.4 pagou o próprio custo no dia em que nasceu.**
+
+**O QUE EU NÃO AFIRMO:** não medi o 404 acontecendo, e não se fabrica queda em produção para ver o conserto funcionar. O que está medido é a linha (a casca só a escreve com as quatro grandezas da 29.7(3) na mesa), o antes e o depois em bytes e blocos, e as duas leituras verdes em volta.
+
+**E O PORTÃO DE AR REPROVOU A ILHA SÃ POR CAUSA DESSA LINHA** — a segunda vez hoje que um portão desta ilha reprovou algo que não era defeito da ilha. O log vem do mais novo para o mais velho e o corte da 20.4 é **posicional**, então a linha da cura (16:25) caiu **dentro** do grupo da revisão 89 (16:39): a conta da **20.10** acusou **8 declarados contra 9 lidos**, e a afirmação positiva do `ok` reprovou uma linha que **nunca** vai dizer `ok`, porque não é item sendo aplicado. **E a régua não podia tê-lo visto antes: até aquele minuto nenhuma janela de log do Arquipélago tinha uma linha de cura dentro, e a trava 4 garante que a maioria dos dias não terá.**
+
+**O CONSERTO, na mesma passada:** a linha sai da conta de itens e **ganha quatro afirmações próprias** sobre a forma que a trava 3 exige — bytes e blocos dos dois lados, `WordPress` no depois, o arquivo **não encolhendo**, e **nenhum conteúdo do `.htaccess`** dentro da linha —, mais um `registro` que a imprime inteira. **Ela nunca é descartada em silêncio:** linha de classe nova descartada é o mesmo que item que rolou para fora da janela, aprovar sobre o que sobrou.
+
+**E O CONSERTO SE PROVA DO CHÃO, em dez mundos novos do `--autoteste`** (128 → 138): o mundo de verdade medido hoje, com a **régua ingênua refeita ao lado e obrigada a discordar** — 9 itens contra 8 — porque sem discordância o autoteste não mede conserto nenhum (**20.8**); a cura que **encolhe** o arquivo, para a afirmação morder e não só passar; e o snippet chamado `cura-da-porta` sendo aplicado, que **é** item e não pode ser confundido com a linha da cura. O reconhecimento é pela **frase**, nunca pelo nome de arquivo.
+
+**A REGRA SUBIU AO CONTRATO (29.4)** — *"quem põe a cura numa ilha conserta a régua da 20.4 dela na mesma passada"* — e o **endereço dela nas irmãs é despacho**, em `dados/despachos.md`: a clubedomosaico tem a cura desde 1.26.0 e a régua dela tem o mesmo furo, que vai aparecer no **primeiro** disparo — o pior momento possível para o portão de ar ficar vermelho sem defeito embaixo. A seção 3 proíbe esta execução de editar ilha que não reservou.
+
+**E A LINHA DA SÉRIE ESTÁ ESCRITA** em `dados/consertos.md` desta ilha, com os números acima e as três coisas que a ronda seguinte reconfere.
+
+---
+
+### PRÓXIMO PASSO DESBLOQUEADO — e ele já está MEDIDO, não suposto (16h3xZ, nas duas páginas)
+
+A fila de blocos segue acabada (só o 5 falta, e ele depende de um `pauta.md` que pela 17.1 não é arquivo da Fundação) e as duas pontas de página de produto seguem travadas — a **30.8** para a SERP e o Mercado Livre para o produto das duas consultas de maior volume. O próximo trabalho é o da mesma família que achou defeito nas **oito** últimas passadas, **ler o SERVIDO com os olhos numa superfície nova**, e a superfície é o **`ItemList` inteiro**, não mais a `Offer` dentro dele.
+
+**O NÚMERO:** `ItemList.description` e a `<meta name="description">` da mesma página são **idênticas, letra por letra, nas duas páginas**. São **duas declarações do mesmo fato em duas camadas, e nenhum portão as amarra** — a 20.7 diz o que acontece com elas (*"começam iguais e só uma sobe"*), e esta ilha **já pagou exatamente essa cicatriz em 11/11** com o `og:title` servindo o rótulo da trilha nas 10 URLs; a régua que nasceu daquele dia compara `og:title` e `<title>` letra por letra, e a `description` **ficou fora dela**.
+
+**E O QUE NÃO SE DEVE "CONSERTAR":** o `ItemList.name` serve o **H1** (`Bicicleta elétrica`) e não o `<title>` (`Bicicleta elétrica: qual comprar e quanto custa hoje`). Isso está **certo** — `name` de uma lista é o nome da LISTA, não o título da página. Escrito aqui para a próxima execução não gastar bloco igualando duas coisas que devem ser diferentes.
+
+**E A PERGUNTA QUE ESTA PASSADA LEVANTA E NÃO RESPONDE,** porque responder é escolher entre duas opções defensáveis e isso é da Fundação com decisão escrita (19.2): `/autonomia-patinete-eletrico/` serve **bloco de compra** e **nenhum `Product`** no JSON-LD. Ou os cartões dela merecem um `ItemList`, ou a página de produto não precisava do dela.
+
+---
+
+### CONTAGEM DESTA PASSADA
+
+- **Bancada sem rede:** **45 portões, 0 falha** (eram 44; o novo é o `teste-oferta-datada.php`).
+- **Portão novo:** 66 afirmações, oito mundos, 4 mutações cobradas.
+- **Mutações de dado do produto:** 32, **32 reprovadas, 0 sobrevivente, 0 inerte** (eram 30).
+- **Portão de ar:** **733 afirmações, 0 falha** (eram 729) · `--autoteste` **138 de 138** (eram 128) · portão de produto no ar **365 afirmações, 0 falha**.
+- **Bancada com rede:** **50 portões, 0 falha**.
+- **Snippets:** produto **1.11.0**. Manifest na revisão **89**.
+- **Contrato:** a **29.4** ganhou a regra da linha da cura dentro do log do desembarque, com o número medido e o modelo a copiar.
+- **Fora desta ilha:** despacho **NORMAL** novo em `dados/despachos.md` para a clubedomosaico (a régua da 20.4 dela tem o mesmo furo), e a linha da série em `dados/consertos.md` desta ilha.
+- **ERRATA DE PROCEDIMENTO DESTA PASSADA:** `atualizar-manifest.py` foi rodado **duas vezes** (a segunda depois da correção do comentário), então a revisão subiu **87 → 88 → 89** e a **88 nunca existiu no ar** — nada foi empurrado entre as duas. Dito porque a série de revisões é lida como história.
+
 ## 2026-11-12 13h17Z–13h42Z — **A PORTA DESTA ILHA PASSA A SE CURAR SOZINHA, E O 404 NO ÍNDICE DA PÁGINA DE 673 MIL BUSCAS/MÊS TEM CAUSA MEDIDA: ELA FOI RASTREADA COM A PORTA NO CHÃO** — despacho da leitura semanal fechado no item 1, casca 1.26.0, revisão 87
 
 **A ILHA DESTA EXECUÇÃO:** rodametria, por **foco** (`foco.md` nomeia a rodametria, foco total e absoluto desde 27/10). Pela **1.2** não há escolha a fazer, e **as duas exceções que furam o foco foram conferidas ANTES da reserva e nenhuma furou:** os três despachos do **MOLDE** (seção 32) estão fechados nas três ilhas (aquametria 21/10 18h2xZ, clubedomosaico 21/10 19h1xZ, robometria 21/10 16h1xZ), e o único despacho **ALTA** de ilha no ar e quebrada era o da porta da clubedomosaico, **fechado às 10h46Z de hoje** pela execução da manhã. O despacho de **CLASSE** da porta, no `PROMPT.md` da robometria, é **NORMAL** e espera pela 1.2. `executando_desde` estava `null`, que pela **1.1** já significa que não havia bloco da Fundação vivo. Nenhum branch `claude/*` nem PR com trabalho fora do `main` (a branch de trabalho estava idêntica ao `main`). Reserva no commit `eb23228`, às **13h17Z**.

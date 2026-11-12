@@ -1086,6 +1086,13 @@ def problemas_de_bastidor_no_servido(html, nomes_de_arquivo=()):
 
 REV_RE = re.compile(r"revis\w*\s+(\d+)\s*:")
 
+# A LINHA DA CURA DA PORTA (29.4), que mora no MESMO log do desembarque e NAO e
+# item dele. O nome e escrito pela casca em `rodametria_casca_cura_registrar()`;
+# a forma e a que a 29.4 exige — o antes e o depois em bytes E em blocos.
+CURA_RE = re.compile(r"cura da porta\s*:")
+CURA_FORMA_RE = re.compile(
+    r"cura da porta:.*?(\d+)\s*bytes\s*\[([^\]]*)\]\s*->\s*(\d+)\s*bytes\s*\[([^\]]*)\]")
+
 
 
 # O EVENTO DO CRON DO SYNC E RECORRENTE DE 1.800 SEGUNDOS, e isto nao e palpite:
@@ -1713,6 +1720,49 @@ def main():
     # quantos itens foram aplicados, e as linhas lidas tem de ser esse numero.
     # Janela que rolou e levou item deixa a conta aberta, e aberta ela e dita.
     fecho, itens_da_revisao = linhas_da_revisao(log, revisao_no_ar)
+
+    # A LINHA DA CURA DA PORTA NAO E ITEM DE DESEMBARQUE, E ELA MORA NO MESMO
+    # LOG — ACHADO AS 16h4xZ DE 12/11/2026, QUANDO A CURA DISPAROU DE VERDADE
+    # PELA PRIMEIRA VEZ, 2h43 DEPOIS DE IR AO AR.
+    #
+    # O log vem do mais novo para o mais velho e o agrupamento desta regua e
+    # POSICIONAL: o fecho da revisao corrente no topo, e tudo abaixo dele ate o
+    # fecho anterior. A cura escreveu `2026-11-12 16:25 cura da porta: ...`
+    # entre a revisao 89 (16:39) e a 87 (13:39) — e caiu DENTRO do grupo da 89.
+    # Resultado: a conta da 20.10 acusou 8 declarados contra 9 lidos, e a
+    # afirmacao positiva do `ok` reprovou uma linha que NUNCA vai dizer `ok`
+    # porque nao e um item sendo aplicado. **O portao reprovava a ilha sa, e o
+    # defeito era da regua.**
+    #
+    # POR QUE ELA NAO E SIMPLESMENTE DESCARTADA: a 29.4 nomeia esta linha como a
+    # EXCECAO que sustenta o chamado — "a serie e o que sustenta o chamado". Ela
+    # sai da conta de ITENS e ganha afirmacoes PROPRIAS, sobre a forma que a
+    # 29.4 exige: o antes e o depois em bytes e em blocos, e NUNCA o conteudo do
+    # arquivo. Linha de classe nova silenciosamente descartada e como item que
+    # rolou para fora da janela: aprovar sobre o que sobrou.
+    curas = [l for l in itens_da_revisao if CURA_RE.search(l)]
+    itens_da_revisao = [l for l in itens_da_revisao if not CURA_RE.search(l)]
+    for l in curas:
+        m = CURA_FORMA_RE.search(l)
+        afirma(m is not None,
+               "29.4: a linha da cura da porta esta fora da forma que a 29.4 exige (antes e "
+               "depois em bytes e em blocos): %r" % l)
+        afirma(not re.search(r"Rewrite(Rule|Cond|Base|Engine)|<IfModule", l),
+               "29.4: a linha da cura da porta carrega CONTEUDO do .htaccess, e a trava diz "
+               "bytes e blocos e nunca o conteudo: %r" % l)
+        if m:
+            antes, depois = int(m.group(1)), int(m.group(3))
+            afirma(depois > antes,
+                   "29.4: a cura da porta registrou %d bytes ANTES e %d DEPOIS — repor bloco "
+                   "nao encolhe o arquivo, e a linha e a unica prova do que aconteceu"
+                   % (antes, depois))
+            afirma("WordPress" in m.group(4),
+                   "29.4: a cura da porta diz ter reposto o bloco e o `depois` nao lista "
+                   "`WordPress` nos blocos: %r" % l)
+    if curas:
+        registro("29.4: a cura da porta DISPAROU nesta janela, %d linha(s), e ela nao e item de "
+                 "desembarque: %s" % (len(curas), curas))
+
     afirma(fecho is not None,
            "20.4: o log do /status nao tem a linha de fecho da revisao %d — a janela pode "
            "ter rolado, e entrega sem linha de fecho nao foi conferida" % revisao_no_ar)
@@ -2666,6 +2716,68 @@ def autoteste():
     fecho_r, itens_r = linhas_da_revisao(rolado, 29)
     diz(aplicados_declarados(fecho_r) == 8 and len(itens_r) == 3,
         "4. janela rolada: o fecho declara 8 e so 3 itens sobraram — a conta abre")
+
+    # MUNDO 4-b — A LINHA DA CURA DA PORTA DENTRO DO GRUPO DA REVISAO, E ESTE
+    # E O MUNDO DE VERDADE, LIDO NO /status AS 16h4xZ DE 12/11/2026. A cura
+    # disparou as 16:25 e o desembarque da revisao 89 foi as 16:39: o log vem do
+    # mais novo para o mais velho, entao a linha da cura caiu ENTRE o grupo da 89
+    # e o fecho da 87 — isto e, DENTRO do grupo da 89 pelo corte posicional.
+    #
+    # A REGUA INGENUA (a de antes, refeita aqui ao lado) CONTAVA 9 ITENS CONTRA 8
+    # DECLARADOS e reprovava a linha da cura por nao dizer `ok`. Ela nunca vai
+    # dizer `ok`: nao e um item sendo aplicado, e a 29.4 a nomeia como excecao.
+    # **O portao reprovava a ilha sa, e as duas reguas tem de DISCORDAR aqui,
+    # senao este mundo nao mede o conserto (20.8).**
+    com_cura = [
+        "2026-11-12 16:39 revisão 89: 8 aplicado(s), 6 aguardando desembarque",
+        "2026-11-12 16:39 dados/municipios: ok (option rodametria_dados_municipios)",
+        "2026-11-12 16:39 dados/f3-respostas: ok (option rodametria_dados_f3-respostas)",
+        "2026-11-12 16:39 dados/f1-respostas: ok (option rodametria_dados_f1-respostas)",
+        "2026-11-12 16:39 dados/paginas-institucionais: ok (option rodametria_dados_paginas-institucionais)",
+        "2026-11-12 16:39 dados/vitrine-de-produto: ok (option rodametria_dados_vitrine-de-produto)",
+        "2026-11-12 16:39 dados/paginas-de-produto: ok (option rodametria_dados_paginas-de-produto)",
+        "2026-11-12 16:39 dados/f2-respostas: ok (option rodametria_dados_f2-respostas)",
+        "2026-11-12 16:39 snippets/rodametria-produto: ok (snippet #8 atualizado)",
+        "2026-11-12 16:25 cura da porta: bloco WordPress reposto — 0 bytes [] -> 1579 bytes [NFD EPC, WordPress]",
+        "2026-11-12 13:39 revisão 87: 8 aplicado(s), 6 aguardando desembarque",
+    ]
+    fecho_c, itens_c = linhas_da_revisao(com_cura, 89)
+    ingenua = list(itens_c)                      # a regua de antes: nao separava nada
+    curas_c = [l for l in itens_c if CURA_RE.search(l)]
+    itens_c = [l for l in itens_c if not CURA_RE.search(l)]
+    diz(len(ingenua) == 9 and aplicados_declarados(fecho_c) == 8,
+        "4-b. a regua INGENUA conta 9 itens contra 8 declarados — a conta da 20.10 abre sem defeito embaixo")
+    diz(any(not re.search(r"\bok\b", l) for l in ingenua),
+        "4-b. a regua INGENUA reprova a linha da cura por nao dizer `ok`, e ela nunca vai dizer")
+    diz(len(curas_c) == 1 and len(itens_c) == 8,
+        "4-b. a regua NOVA separa 1 linha de cura e 8 de item — a conta da 20.10 fecha 8 contra 8")
+    diz(len(ingenua) != len(itens_c),
+        "4-b. AS DUAS REGUAS DISCORDAM (9 contra 8), senao este mundo nao mede o conserto (20.8)")
+    diz(all(re.search(r"\bok\b", l) for l in itens_c),
+        "4-b. as 8 linhas de item que sobraram dizem `ok`, uma por uma")
+    m_c = CURA_FORMA_RE.search(curas_c[0]) if curas_c else None
+    diz(m_c is not None and int(m_c.group(1)) == 0 and int(m_c.group(3)) == 1579,
+        "4-b. a forma da 29.4 e lida da linha: 0 bytes antes, 1.579 depois")
+    diz(m_c is not None and m_c.group(2) == "" and "WordPress" in m_c.group(4),
+        "4-b. os BLOCOS sao lidos dos dois lados: nenhum antes, `NFD EPC, WordPress` depois")
+    diz(not re.search(r"Rewrite(Rule|Cond|Base|Engine)|<IfModule", curas_c[0]) if curas_c else False,
+        "4-b. a linha da cura NAO carrega conteudo do .htaccess (a trava da 29.4)")
+
+    # MUNDO 4-c — A CURA QUE ENCOLHE O ARQUIVO, que nao se encena no disco e
+    # portanto so existe fabricado: repor um bloco nao pode deixar o arquivo
+    # MENOR, e uma linha que diga isso e sinal de que a cura cortou em vez de
+    # repor. O mundo 4-b prova que a afirmacao passa; este prova que ela morde.
+    encolheu = "2026-11-12 16:25 cura da porta: bloco WordPress reposto — 1579 bytes [NFD EPC, WordPress] -> 0 bytes []"
+    m_e = CURA_FORMA_RE.search(encolheu)
+    diz(m_e is not None and int(m_e.group(1)) > int(m_e.group(3)),
+        "4-c. a regua LE o encolhimento (1.579 -> 0) em vez de aprovar a linha por ela existir")
+
+    # MUNDO 4-d — A LINHA DE ITEM QUE FALA DE CURA SEM SER DA CURA. `CURA_RE`
+    # casa `cura da porta:` e nada mais: um snippet chamado `cura-da-porta.php`
+    # sendo aplicado e ITEM, e tira-lo da conta seria aprovar sobre o que sobrou.
+    quase = "2026-11-12 16:39 snippets/rodametria-cura-da-porta: ok (snippet #11 atualizado)"
+    diz(CURA_RE.search(quase) is None,
+        "4-d. linha de ITEM com `cura-da-porta` no NOME do arquivo nao e confundida com a linha da cura")
 
     # MUNDO 5 — REVISAO QUE NAO ESTA NA JANELA.
     fecho_x, itens_x = linhas_da_revisao(real, 99)
