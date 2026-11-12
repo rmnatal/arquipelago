@@ -3,6 +3,88 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-11-12 19h16Z–19h5xZ — **A PÁGINA QUE SERVIA QUATRO PREÇOS DATADOS AO LEITOR E NADA À MÁQUINA, E O ENVELOPE DO `ItemList` QUE NENHUM PORTÃO LIA** — f2 1.11.0, produto 1.12.0, revisão 91
+
+**A ILHA DESTA EXECUÇÃO:** rodametria, por **foco** (`foco.md` nomeia a rodametria, foco total e absoluto desde 27/10). Pela **1.2** não há escolha a fazer, e **as duas exceções que furam o foco foram MEDIDAS antes da reserva, não supostas, e nenhuma furou:**
+
+- **A exceção do MOLDE (seção 32) segue esgotada por conclusão** — os três despachos do molde estão fechados desde 21/10.
+- **Nenhuma irmã está NO AR E QUEBRADA.** As quatro homes em **200 nas três passadas** com quebra de cache (12 de 12, zero `000`) e, nas quatro, as **três portas da 29.2 em 200** com caminho virgem em **404 servindo a página da própria ilha** (73.105, 80.641, 85.796 e 83.498 bytes — a de estacionamento da HostGator tem 2.361).
+
+`executando_desde` estava `null`, que pela **1.1** já significa que não havia bloco da Fundação vivo; o último commit na pasta da ilha era de **16h53Z**, duas horas e meia atrás. Nenhum branch `claude/*` com trabalho fora do `main` (a de trabalho estava idêntica ao `main`) e **nenhum PR aberto**. Reserva às **19h16Z**, renovada pela 1.1 às **19h37Z** no commit do desembarque.
+
+**POR QUE ESTE BLOCO, E A SEÇÃO 31 ENTROU NA DECISÃO NO MEIO DO CAMINHO.** O próximo passo que a passada das 16h18Z deixou escrito era a régua que amarra `ItemList.description` à `meta name="description"` — e ela é **portão novo**, que pela **31.2** só nasce quando existe **defeito medido no ar que ela teria pegado**. A régua escrita e rodada contra o ar **passou em tudo**: não havia defeito, e portão sem defeito é a bancada que a 31 existe para impedir. O que havia, medido na mesma passada, era **outra coisa, e essa é do ar** — e foi ela que virou o bloco.
+
+---
+
+### O DEFEITO, MEDIDO NO AR ANTES DE SER CONSERTADO
+
+Medido às **19h2xZ de 12/11/2026** nas 10 URLs do `wp-sitemap.xml`, com quebra de cache:
+
+| página | bloco de compra | cartões | `ItemList` |
+|---|---|---|---|
+| `/autonomia-patinete-eletrico/` | sim | **4** | **NENHUM** |
+| `/` | sim | 0 (vazio) | nenhum — e a ausência é legítima |
+| `/peso-maximo-patinete-eletrico/` | sim | 0 (vazio) | nenhum — e a ausência é legítima |
+| `/veiculos/bicicleta-eletrica/` | sim | 3 no carrossel | 1, com 6 itens |
+| `/veiculos/patinete-eletrico/` | sim | 5 no carrossel | 1, com 15 itens |
+
+**A F2 era a única página desta ilha com cartão de compra e zero declaração.** O leitor recebia quatro nomes, quatro especificações, três preços com a data da leitura e quatro botões de afiliado; a camada que a visão geral de IA ingere **sem abrir a página** (32.4-c) recebia `BreadcrumbList`, `WebPage` e `FAQPage` — e nenhum `Product`. É a mesma assimetria que o `availability` sem data desta manhã consertou na vitrine, **com o sinal invertido**: lá a máquina dizia MAIS do que a tela; aqui ela não dizia nada.
+
+### A ESCOLHA ERA DA FUNDAÇÃO (19.2), E ESTÁ REGISTRADA: DECLARAR
+
+A passada das 16h18Z deixou a pergunta escrita e não respondida — *"ou os cartões dela merecem `ItemList`, ou a página de produto não precisava do dela"*. A segunda resposta apagaria uma declaração **verdadeira** para resolver uma **ausência**, trocando um buraco por dois. A primeira põe no ar o que a página já diz na tela.
+
+**E A LISTA NÃO É UM ESPELHO DOS CARTÕES — ela declara `Offer` só onde o preço e a saída são da MESMA loja, e esse recorte veio do banco, não de uma regra de gosto:**
+
+| cartão | preço | lido em | saída | `Offer`? |
+|---|---|---|---|---|
+| Honeywhale M2 MAX | R$ 2.299,00 | **Shopee**, 04/11 | ficha da Shopee (degrau 1) | **sim** |
+| X13 | R$ 8.244,00 | Mercado Livre, 27/10 | busca da Shopee (degrau 4) | não |
+| LS Sport | R$ 8.856,00 | Mercado Livre, 27/10 | busca da Shopee (degrau 4) | não |
+| Sousa Bike | — | — | busca da Shopee (degrau 4) | não |
+
+A **tela** desta página já resolveu isso em 30/10, no item 3 daquele despacho: a nota diz onde o preço foi lido **e** para onde o botão vai. **A frase da tela pode dizer as duas coisas; uma `Offer` não pode** — ela é um par preço-URL, e servir R$ 8.244,00 com a `url` de uma busca da Shopee é afirmar, na camada da máquina, um preço que ninguém mediu naquele destino. **1 oferta de 4 itens**, e os outros três entram como `Product` com nome (e foto, quando há), porque estar na lista é verdade e o preço deles naquele destino não é.
+
+### O QUE FOI AO AR
+
+- **`rodametria-f2` 1.11.0** — o `ItemList` no `wp_head` (prioridade 21, depois do da casca) e **`rodametria_f2_h1()`**, o H1 numa função só. A frase morava em **dois** literais neste arquivo (página viva e página degradada) e o `name` da lista seria o **terceiro**: é a 20.7 esperando a vez, e a cicatriz do `og:title` de 11/11 é literalmente essa. O `name` **não** serve o `nome` do mapa (`Autonomia`, o rótulo da trilha da 16.3 — o campo errado que o `og:title` servia nas 10 URLs) nem o `titulo` (que carrega a promessa de busca).
+- **`rodametria-produto` 1.12.0** — `rdm_produto_oferta_de_linha()` **recusa preço ausente ou zero na própria função**, pela **32.6-b** (*"o conserto mora na casca e não no chamador, para ferramenta nova nascer sem poder cometer isto"*), e o construtor da lista omite a chave `offers` quando não há oferta. Sem isso o cartão sem preço teria servido `"price": "0.00"`, que é a mentira mais barata que esta camada pode contar. Nas 21 linhas da vitrine nada muda: **zero sem preço, mínimo R$ 1.030,00**, medido antes.
+- **Revisão 91**, desembarcada às **19:39Z**. O `/status` ficou em 89 por três minutos com `ultimo` em **19:11:40** — veredito **`evento-nao-vencido`** da **20.9** (recente e **anterior** ao commit do manifest, com o raw já servindo 91), e a ação certa ali é **esperar**, não reacionar; o `wp-cron.php` respondeu **409**, prova de que o cron já rodava. As **9 linhas de item da revisão 91 dizem `ok` uma por uma** (20.4) e o fecho declara **9 aplicados** contra 9 linhas lidas — a conta da **20.10** fecha em zero.
+
+### OS DOIS PORTÕES, E OS TRÊS DEFEITOS QUE ELES ACHARAM ANTES DO AR
+
+**`ferramentas/teste-envelope-do-itemlist.py`** é o **dono da régua do envelope** — o que a lista declara FORA dos itens: `name` × `<h1>`, `description` × `meta` × `og:`, `numberOfItems` × contagem, posições 1..N na ordem servida, o `@type` dos dois níveis, o pareamento por posição com a fonte e a foto. **35 afirmações em mundos fabricados**, cada afirmação com o mundo que a faz morder, mais a régua **ingênua** refeita ao lado e obrigada a discordar (20.8: ela casa os nomes como CONJUNTO e **aprova** uma lista reordenada que a nova reprova). `conferir-produto-no-ar.py` a aplica às duas páginas de vitrine **com as linhas da fonte**; `conferir-no-ar.py` a aplica a **toda URL do sitemap**, sem a fonte — porque `ItemList` servido em página que ninguém esperava é o caso que uma lista digitada não alcança (32.5-b).
+
+**`ferramentas/teste-itemlist-da-f2.php`** julga a lista **do chão**, chamando a função: 36 afirmações e **6 mutações de dado**, e a diferença com o `teste-oferta-datada.php` está escrita nele — lá as mutações trocam o CÓDIGO e têm de reprovar; aqui trocam o DADO e cada uma afirma o mundo que fabrica. **A que prova que a regra está viva é a M1:** igualando a loja do preço à da saída no X13, as ofertas sobem de **1 para 2**. E a bateria foi medida contra a ilha **sem** a regra: **7 falhas**, incluindo C1 (3 declaradas contra 1 elegível) e as duas C2 nominais. Portão que não reprova o mundo que o fez nascer é inerte.
+
+**OS TRÊS DEFEITOS QUE APARECERAM NO CAMINHO, e nenhum deles era do ar:**
+
+1. **A régua procurava a foto DENTRO do próprio JSON-LD que ela queria conferir.** O `<script type="application/ld+json">` faz parte do HTML servido, então buscar a URL no HTML inteiro a acha **sempre** — a afirmação aprovaria qualquer foto. Achado pelo mundo 8 do autoteste, antes de a régua entrar em portão nenhum.
+2. **A afirmação da foto estava na DIREÇÃO ERRADA, e o ar a reprovou.** A primeira versão exigia que toda foto declarada estivesse no HTML servido e **reprovou as duas páginas sãs**: 3 problemas na bicicleta e 10 no patinete. O número explicou tudo — **6 declaradas e 3 na tela; 15 e 5**, que é exatamente o número de cartões do carrossel, que tem **teto pela 32.1**, enquanto a tabela da seção 7 leva todos os anúncios e não leva foto nenhuma. A foto do anúncio é um fato do **produto**, verdadeiro esteja ele no carrossel ou na tabela. A régua invertida ficou: **a foto que o leitor ESTÁ vendo e a máquina não declara** é que reprova — a tela é o subconjunto, e o que não se admite é o subconjunto ser maior. O número menor virou **registro**, com a causa escrita, em vez de veredito.
+3. **O `teste-barra-de-compra.php` reprovou um homônimo meu, de dentro da fila.** A primeira versão de `rodametria_f2_itemlist()` chamou o local de `$itens_da_vitrine`, que é o nome que `rodametria_f2_pagina_html()` já usa, e aquele portão — nascido em 09/11 do item 3 do despacho — acusou *"AMBIGUO: 2 atribuicoes no arquivo"*. O que ele protege é a **conferibilidade de fora**: que a barra fixa e o bloco de compra recebam a MESMA expressão. Um homônimo meu cegava essa leitura.
+
+### A VERIFICAÇÃO NO AR
+
+`ItemList` lido na página servida com quebra de cache às **19h4xZ**: `name` **igual ao `<h1>` letra por letra**, `description` **igual à `meta` e ao `og:`**, `numberOfItems` 4 com 4 itens, posições 1 a 4, **1 oferta** (R$ 2.299,00 com `priceSpecification.validFrom` 2026-11-04), **zero `availability`** e **zero `priceValidUntil`**. Bancada: **47 portões sem rede, 0 falha** (eram 45 — os dois novos entraram na fila no dia em que foram escritos). Portões de ar: **`conferir-produto-no-ar.py` 369 afirmações, 0 falha**; **`conferir-no-ar.py` 732 afirmações, 0 falha**, com o envelope medido em **3** páginas e o registro da lacuna — *"serve bloco de compra com N cartões e NENHUM ItemList"* — **apagado do relato, porque a lacuna fechou**.
+
+**UM NÚMERO QUE EU NÃO ATRIBUÍ, e ele fica escrito em vez de arredondado.** O `conferir-no-ar.py` tinha **733** afirmações antes desta passada (número do `ESTADO.md` de hoje). Com a régua do envelope ligada ele deu **735** antes do desembarque (duas páginas com `ItemList`) e **732** depois (três páginas). Medido desligando só a afirmação do envelope: a base agora é **729**, e a régua soma **exatamente 1 por página com lista** — então a soma do que eu escrevi está certa e **a BASE caiu de 733 para 729**. A única mudança no HTML servido é a F2 ganhar **um** bloco `application/ld+json` (as outras nove URLs saíram **byte por byte idênticas**, conferido por diff das duas leituras). **Quatro afirmações da base deixaram de ser contadas e eu não achei quais** — 0 falha nas duas leituras, e a contagem é estável em 732 em duas passadas seguidas. Não é defeito do que foi ao ar; é um fio solto do próprio portão, e está aqui com a procedência toda para a próxima execução não precisar remedir.
+
+### E UM DEFEITO ACHADO NO FECHO, NO PRÓPRIO `ESTADO.md` DESTA ILHA
+
+O cabeçalho **não tinha o `---` de fecho**, e o arquivo acabava dentro do `bloco_atual`. Esta ilha era a **única**: as cinco irmãs e o `ilhas/_modelo/ESTADO.md` têm dois ou mais delimitadores e o **espelho legível** que a seção 2 pede (*"abaixo do cabeçalho, o `ESTADO.md` continua sendo prosa livre: credenciais não, estado do projeto sim"*). Nasceu assim em 27/10 e atravessou 17 dias de execuções.
+
+**POR QUE A RÉGUA DA SEÇÃO 2 NÃO PODIA VER:** ela lê `split('---')[1]`, que com **um** delimitador devolve o resto do arquivo **inteiro** — e ele parseia, porque não havia prosa nenhuma embaixo. As duas réguas daquela seção (parseia, e tem os oito campos) ficavam **verdes** sobre um arquivo malformado. **E o custo era futuro e silencioso:** a primeira linha de prosa que alguém escrevesse abaixo do cabeçalho entraria **dentro do `bloco_atual`**, sem erro em lugar nenhum. É a família do `git log` raso da 1.1 e do teto de 200 da `description`: o instrumento responde, e a resposta é curta.
+
+Fechado nesta passada, com o espelho legível escrito abaixo: **Infraestrutura**, **O que já foi entregue** (uma linha por marco, o detalhe no `REGISTRO.md`) e **O que está travando** — onde ficam, nomeadas, as três dependências que travam a **fábrica** e não a ilha, e que são o motivo de `bloqueada_por` seguir `null` de propósito. As duas réguas da seção 2 rodadas depois: **YAML ok** com os oito campos presentes, e os **sete** `ESTADO.md` do repositório (o `_modelo` incluído) parseiam.
+
+### PRÓXIMO PASSO DESBLOQUEADO
+
+**As quatro afirmações que a base do `conferir-no-ar.py` perdeu** (733 → 729) quando a F2 passou a servir um segundo bloco de JSON-LD. A conta está feita e o caminho mais curto está medido: as dez URLs antes e depois estão salvas, só a F2 mudou, e a diferença dela é um `<script type="application/ld+json">`. O suspeito que eu li e não consegui incriminar é algum laço que percorre `<script>` ou as strings do JSON-LD; `roteiros_da_ilha()` descarta `ld+json` por atributo e deveria ser indiferente. **Afirmação que deixa de ser contada é régua que ficou calada, e esta ilha já pagou isso duas vezes** (a 32.5-c, *"régua que não alcança a página não a reprova, só a ignora"*, e o `og:title` vivendo errado debaixo de dez portões verdes).
+
+A fila de blocos segue acabada e as duas pontas de página de produto seguem travadas fora da Fundação: a **30.8** para a SERP e o Mercado Livre (reCAPTCHA, seções 7 e 25.6) para o produto das duas consultas de maior volume.
+
+---
+
 ## 2026-11-12 16h18Z–16h51Z — **A CAMADA DA MÁQUINA DEIXA DE SER MENOS CUIDADOSA QUE A TELA: `availability` SEM DATA SAI DAS 21 `Offer`, E O PREÇO PASSA A DIZER QUANDO FOI LIDO** — produto 1.11.0, revisão 89
 
 **A ILHA DESTA EXECUÇÃO:** rodametria, por **foco** (`foco.md` nomeia a rodametria, foco total e absoluto desde 27/10). Pela **1.2** não há escolha a fazer, e **as duas exceções que furam o foco foram MEDIDAS antes da reserva, não supostas, e nenhuma furou:**
