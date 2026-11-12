@@ -50,27 +50,41 @@ if ( ! $raiz ) {
 
 /* O snippet inteiro pede meio WordPress; só a seção 13 interessa.
  *
- * NESTA ILHA A SEÇÃO 13 VAI ATÉ O FIM DO ARQUIVO, e o corte diz isso em vez de
- * supor: o `$fim` é o tamanho do fonte. Se um dia nascer uma seção 14 depois
- * dela, este corte passa a arrastar código que não é desta medição — e a
- * afirmação de FRONTEIRA logo abaixo é o que denuncia isso em vez de deixar
- * passar. (Na aquametria o corte é entre dois marcadores; lá a purga tem
- * vizinha embaixo e aqui não.) */
+ * O DIA QUE A VERSÃO ANTERIOR DESTE COMENTÁRIO PREVIU CHEGOU, EM 12/11/2026.
+ * Ele dizia: *"nesta ilha a seção 13 vai até o fim do arquivo (...) se um dia
+ * nascer uma seção 14 depois dela, este corte passa a arrastar código que não é
+ * desta medição — e a afirmação de FRONTEIRA logo abaixo é o que denuncia isso
+ * em vez de deixar passar"*. Nasceu a **seção 14** (a cura da porta, exceção
+ * nomeada da 29.4), e a afirmação de fronteira **denunciou na primeira
+ * passada** — `FALHA: nasceu código depois da seção 13; este corte virou
+ * mentira`, em `teste-purga-cache.php` e nas oito baterias de
+ * `mutacoes-purga-cache.py`, as oito reprovando "pelo motivo ERRADO", que é o
+ * aviso de que o instrumento parou antes de medir.
+ *
+ * ENTÃO O CORTE PASSA A SER ENTRE DOIS MARCADORES, como na aquametria — e a
+ * fronteira continua AFIRMADA, agora sobre o novo vizinho de baixo: entre o
+ * gatilho da purga e a primeira linha da seção 14 não pode nascer função
+ * nenhuma. Previsão escrita que, no dia, apontou o arquivo e a linha vale mais
+ * que portão que não quebra: este não deixou passar, parou e disse o nome. */
 $src = file_get_contents( $raiz . '/snippets/rodametria-casca.php' );
 $ini = strpos( $src, "if ( ! function_exists( 'rodametria_casca_purgar_cache' ) ) {" );
 if ( false === $ini ) {
 	fwrite( STDERR, "FALHA: a seção 13 da casca não foi encontrada no snippet.\n" );
 	exit( 1 );
 }
-$fim = strlen( $src );
+/* O vizinho de baixo é a seção 14. Ausente, o corte vai até o fim do arquivo —
+   que é o mundo de antes de 12/11/2026 e continua sendo um mundo válido. */
+$ini14 = strpos( $src, "if ( ! defined( 'RODAMETRIA_CASCA_CURA_INTERVALO' ) ) {" );
+$fim   = ( false === $ini14 ) ? strlen( $src ) : $ini14;
 
-/* A FRONTEIRA É AFIRMADA, NÃO SUPOSTA. O corte até o fim do arquivo só é
-   honesto enquanto a purga for a última seção; esta linha é o que avisa no dia
-   em que deixar de ser, em vez de o portão passar a medir código alheio. */
-$depois_do_gatilho = substr( $src, strpos( $src,
-	"add_action( 'added_option', 'rodametria_casca_purgar_ao_gravar', 10, 1 );" ) );
-if ( false !== strpos( $depois_do_gatilho, 'function_exists(' ) ) {
-	fwrite( STDERR, "FALHA: nasceu código depois da seção 13; este corte virou mentira.\n" );
+/* A FRONTEIRA É AFIRMADA, NÃO SUPOSTA, e agora ela mede o espaço ENTRE as duas
+   seções: o gatilho da purga é a última linha de código da 13, e a primeira da
+   14 é o `define` acima. Função nascida nesse vão não é desta medição e não
+   pode entrar no `eval` caladamente. */
+$gatilho = strpos( $src, "add_action( 'added_option', 'rodametria_casca_purgar_ao_gravar', 10, 1 );" );
+$vao     = substr( $src, $gatilho, $fim - $gatilho );
+if ( 1 === preg_match( '/^\s*function\s+\w+\s*\(/m', $vao ) ) {
+	fwrite( STDERR, "FALHA: nasceu função entre o gatilho da seção 13 e a seção 14; este corte virou mentira.\n" );
 	exit( 1 );
 }
 

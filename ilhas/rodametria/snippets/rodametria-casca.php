@@ -71,7 +71,7 @@
    Antes disto a ilha cujo produto e "o preco de hoje" tinha ZERO ocorrencia de
    `dateModified` e de `datePublished` em todo o JSON-LD das 9 URLs. */
 if ( ! defined( 'RODAMETRIA_CASCA_VERSAO' ) ) {
-	define( 'RODAMETRIA_CASCA_VERSAO', '1.25.0' );
+	define( 'RODAMETRIA_CASCA_VERSAO', '1.26.0' );
 }
 
 /**
@@ -2847,6 +2847,19 @@ add_action( 'rest_api_init', function () {
 				   booleano sobre a existência de uma função desta ilha: não é
 				   segredo do servidor, que é o que a 29.3 manda não vazar. */
 				'tem_purga_de_cache' => function_exists( 'rodametria_casca_purgar_cache' ),
+				/* A CURA DA PORTA (secao 14), PELA MESMA REGRA DO CAMPO ACIMA.
+				   `tem_cura_da_porta` diz se a excecao da 29.4 esta carregada
+				   nesta ilha, e `fonte_do_log_da_cura` diz POR ONDE a linha
+				   dela seria escrita — `funcao:` pela do Sync, `option:` pelo
+				   caminho de reserva, `null` quando nao ha caminho nenhum e a
+				   cura, por desenho, NAO acontece. Os dois existem porque o
+				   snippet do Sync desta ilha nao esta no repositorio: sem eles,
+				   "a cura nunca escreveu linha nenhuma" e indistinguivel de
+				   "a cura nunca precisou escrever", e a primeira e um defeito e
+				   a segunda e o desfecho sadio. A ausencia e o sinal (20.7). */
+				'tem_cura_da_porta'    => function_exists( 'rodametria_casca_cura_da_porta' ),
+				'fonte_do_log_da_cura' => function_exists( 'rodametria_casca_cura_fonte_do_log' )
+					? rodametria_casca_cura_fonte_do_log() : null,
 			);
 		},
 	) );
@@ -3378,3 +3391,412 @@ function rodametria_casca_purgar_ao_gravar( $opcao ) {
 }
 add_action( 'updated_option', 'rodametria_casca_purgar_ao_gravar', 10, 1 );
 add_action( 'added_option', 'rodametria_casca_purgar_ao_gravar', 10, 1 );
+
+/* =========================================================================
+ * 14. A CURA DA PORTA DE ENTRADA — a excecao nomeada da secao 29.4 do
+ *     ARQUIPELAGO.md (12/11/2026)
+ *
+ * ITEM 1 DO DESPACHO DE CLASSE DA SENTINELA DE 11/11/2026, no `PROMPT.md` da
+ * robometria, que diz com todas as letras: "a rodametria tambem esta sem a
+ * cura, e o PROMPT.md dela registra isso" e "COPIE, NAO REINVENTE". A primeira
+ * implementacao e a da clubedomosaico (casca 1.26.0, secao 6-b); esta e a
+ * segunda, e as cinco travas sao as mesmas cinco do contrato.
+ *
+ * E O MOTIVO NAO E DE CLASSE SO: ESTA ILHA PAGOU A QUEDA COM INDEXACAO, e a
+ * conta esta medida nesta mesma passada. A porta desta raiz caiu em 05/11/2026
+ * entre 04/11 as 20h1xZ e 05/11 as 10h19Z, ficou no chao as 16 horas seguintes
+ * (tres execucoes a mediram no chao: 10h19Z, 13h2xZ e 19h17Z) e so levantou as
+ * ~02h3xZ de 06/11, pela mao do Raphael no cPanel. O Googlebot passou DENTRO
+ * dessa janela — ultimo rastreamento de `/veiculos/bicicleta-eletrica/` em
+ * 05/11 as 22:14:32 — e aquela URL esta fora do indice como 404 ate hoje. Ela
+ * e uma das duas unicas paginas desta ilha com botao de compra, na consulta de
+ * 673 mil buscas/mes. O tempo no chao foi decidido por quando alguem rodou um
+ * comando, que e exatamente a frase que a 29.6 escreveu e que escrever de novo
+ * nao conserta.
+ *
+ * AS CINCO TRAVAS, e a ilha que nao as tiver todas NAO tem a excecao:
+ *
+ *   1. Dispara so com as quatro grandezas da 29.7(3) na mesa ao mesmo tempo —
+ *      bloco do WordPress ausente, `mod_rewrite` ligado, raiz e arquivo
+ *      gravaveis, e PHP vivo (que e o que o proprio gancho rodando prova).
+ *      Falta uma, nao dispara, e DIZ qual faltou.
+ *   2. No maximo UMA tentativa por hora, contada em option e gravada ANTES de
+ *      agir. Tentativa que so se registra no sucesso vira laco de reescrita da
+ *      raiz na requisicao seguinte quando o `flush` morre no meio.
+ *   3. Toda tentativa escreve UMA linha no log que o `/status` ja serve, com o
+ *      antes e o depois em BYTES e em BLOCOS — nunca o conteudo do arquivo,
+ *      porque o log do `/status` e publico e a rota de diagnostico pelo menos
+ *      pede token (29.3).
+ *   4. Com o bloco no lugar ela nao escreve nada e nao diz nada, nem no log.
+ *      Porta que fala quando esta de pe enche a janela de 15 linhas, e janela
+ *      cheia e item que rolou para fora dela sem ser conferido (20.4).
+ *   5. Ela nao roda na rota que MEDE a porta. Curar no meio da propria medicao
+ *      faria o retrato da 29.3 nunca mostrar a queda — e foi o `mtime` de uma
+ *      porta caida que deu prova ao chamado na HostGator.
+ *
+ * O QUE ELA NAO E, e a 29.5 proibe o contrario: nao e o conserto da causa. A
+ * causa continua sem nome, o chamado na HostGator continua aberto cobrindo as
+ * duas raizes, e cada cura continua escrevendo uma linha na serie de
+ * `dados/consertos.md`. Ela mantem a ilha NO AR entre a queda e a resposta do
+ * fornecedor, e e isso que estava faltando.
+ *
+ * E ELA NAO ALCANCA `AllowOverride` DESLIGADO: nesse mundo o `flush` roda, o
+ * arquivo e gravado e o Apache continua ignorando. O log diz isso com palavra
+ * DIFERENTE da do sucesso, porque o conserto dos dois mundos nao e o mesmo e
+ * portao que reprova pelo motivo errado e o caminho mais curto para alguem
+ * passar a ignora-lo (20.5).
+ *
+ * A UNICA DIVERGENCIA DESTA ILHA EM RELACAO A IRMA, e ela e forcada por um
+ * fato medido e nao por gosto: O SNIPPET DO SYNC DESTA ILHA NAO ESTA NO
+ * REPOSITORIO (ele nasceu no site, pela mao do Raphael, passo 8 da secao 11).
+ * Entao os nomes `rodametria_sync_estado()` e `rodametria_sync_log()` sao
+ * HERDADOS das irmas e nao conferidos no chao — exatamente o que a secao 12
+ * desta casca ja escreveu sobre o token, na divergencia (b). Na irma, cura que
+ * nao consegue registrar NAO acontece; aqui, isso faria a excecao da 29.4
+ * nascer INERTE nesta ilha por causa de um nome, e inercia silenciosa e o
+ * oposto do que o despacho pediu. A saida e a mesma que a secao 12 usou para o
+ * token: a cura escreve pela funcao do Sync quando ela existe e, quando nao
+ * existe, escreve a MESMA linha, na MESMA forma, direto na option que o
+ * `/status` serve — e `rodametria_casca_cura_fonte_do_log()` DIZ qual dos dois
+ * caminhos esta vivo, num campo publico do `/casca`, para a leitura no ar nao
+ * precisar supor. Cura que nao consegue registrar por caminho NENHUM continua
+ * nao acontecendo.
+ *
+ * O portao sem rede e `ferramentas/teste-cura-da-porta.php`.
+ * ------------------------------------------------------------------------- */
+
+if ( ! defined( 'RODAMETRIA_CASCA_CURA_INTERVALO' ) ) {
+	define( 'RODAMETRIA_CASCA_CURA_INTERVALO', 3600 );
+}
+if ( ! defined( 'RODAMETRIA_CASCA_CURA_OPTION' ) ) {
+	define( 'RODAMETRIA_CASCA_CURA_OPTION', 'rodametria_casca_cura_ultima' );
+}
+if ( ! defined( 'RODAMETRIA_CASCA_SYNC_OPTION' ) ) {
+	define( 'RODAMETRIA_CASCA_SYNC_OPTION', 'rodametria_sync_estado' );
+}
+
+if ( ! function_exists( 'rodametria_casca_cura_caminho' ) ) {
+/**
+ * O caminho do `.htaccess` da raiz, SEM carregar nada de `wp-admin/includes`.
+ *
+ * O caminho canonico e o `get_home_path()` que o diagnostico da secao 12 usa, e
+ * ele nao existe numa requisicao de visitante. Aqui vale o `ABSPATH`, e os dois
+ * coincidem em instalacao na raiz do dominio — que e o caso desta ilha
+ * (`home_url` e `site_url` sao o mesmo, medido na rota de diagnostico em
+ * 03/11/2026). Em instalacao em subpasta eles divergem, e o efeito e so perder
+ * o atalho: o pre-filtro devolve `null`, o gancho segue para o diagnostico
+ * completo, e e o caminho de LA que a cura usa. Atalho que erra para o lado de
+ * medir mais.
+ */
+function rodametria_casca_cura_caminho() {
+	$raiz = function_exists( 'get_home_path' ) ? get_home_path() : ( defined( 'ABSPATH' ) ? ABSPATH : '' );
+	if ( '' === (string) $raiz ) {
+		return '';
+	}
+
+	return rtrim( (string) $raiz, '/\\' ) . DIRECTORY_SEPARATOR . '.htaccess';
+}
+}
+
+if ( ! function_exists( 'rodametria_casca_cura_tem_bloco' ) ) {
+/**
+ * O bloco `# BEGIN WordPress` esta no arquivo? `true`, `false`, ou `null`.
+ *
+ * `null` e "nao sei" — arquivo ausente ou ilegivel — e nunca se le como "esta
+ * de pe". E o MESMO regex do diagnostico da secao 12, de proposito: duas
+ * leituras do mesmo fato com dois padroes diferentes e um jeito conhecido de os
+ * dois lados discordarem no dia que importa.
+ */
+function rodametria_casca_cura_tem_bloco( $arquivo ) {
+	if ( '' === (string) $arquivo ) {
+		return null;
+	}
+	clearstatcache( true, $arquivo );
+	if ( ! file_exists( $arquivo ) || ! is_readable( $arquivo ) ) {
+		return null;
+	}
+	$texto = (string) @file_get_contents( $arquivo );
+
+	return (bool) preg_match( '/^#\s*BEGIN\s+WordPress\s*$/mi', $texto );
+}
+}
+
+if ( ! function_exists( 'rodametria_casca_cura_decidir' ) ) {
+/**
+ * A REGRA INTEIRA, como funcao PURA: o retrato entra, a decisao sai.
+ *
+ * Nada aqui toca arquivo, option, relogio ou rede — e e isso que permite medir
+ * os mundos que nao se fabricam no disco deste conteiner. `raiz_gravavel:
+ * false` nao se encena rodando como root (o `is_writable()` do PHP responde
+ * `true` para diretorio 0444 quando quem pergunta e root), entao ele se mede
+ * aqui, com retrato fabricado. E por isso esta funcao existe separada do
+ * gancho.
+ *
+ * Devolve `motivo => null` quando nao ha NADA a dizer: porta de pe, ou hora nao
+ * vencida. Motivo preenchido e linha no log.
+ */
+function rodametria_casca_cura_decidir( $retrato, $ultima, $agora, $intervalo ) {
+	$nao = function ( $motivo ) {
+		return array( 'curar' => false, 'motivo' => $motivo );
+	};
+
+	if ( ! is_array( $retrato ) || ! isset( $retrato['htaccess'] ) || ! is_array( $retrato['htaccess'] ) ) {
+		return $nao( 'o retrato da porta nao veio; a cura nao age sobre medicao que nao existe' );
+	}
+	$h = $retrato['htaccess'];
+
+	/* PORTA DE PE: o unico desfecho em que a cura nao tem nada a dizer, e e o
+	   desfecho de quase toda requisicao desta ilha. E daqui que sai a promessa
+	   "mil requisicoes nao tocam no arquivo e o log nao ganha linha" (trava 4). */
+	if ( ! empty( $h['tem_wordpress'] ) ) {
+		return $nao( null );
+	}
+
+	if ( empty( $h['existe'] ) || empty( $h['legivel'] ) ) {
+		return $nao( 'o .htaccess da raiz nao existe ou nao e legivel, e a cura nao escreve arquivo que nao consegue ler' );
+	}
+
+	/* UMA POR HORA, e o relogio e checado ANTES dos motivos de recusa. Sem
+	   isto, ilha com `mod_rewrite` desligado encheria as 40 linhas do log com a
+	   mesma frase em um minuto — e a 20.4 ja mede item que saiu da janela como
+	   item NAO conferido. */
+	if ( (int) $ultima > 0 && ( (int) $agora - (int) $ultima ) < (int) $intervalo ) {
+		return $nao( null );
+	}
+
+	if ( true !== $retrato['mod_rewrite'] ) {
+		return $nao( 'mod_rewrite nao esta ligado (' . wp_json_encode( $retrato['mod_rewrite'] ) . '); reescrever o .htaccess nao poria a porta de pe' );
+	}
+	if ( empty( $retrato['raiz_gravavel'] ) ) {
+		return $nao( 'a raiz do site nao e gravavel; o flush nao conseguiria escrever o .htaccess' );
+	}
+	if ( empty( $h['gravavel'] ) ) {
+		return $nao( 'o .htaccess existe e nao e gravavel; o flush nao conseguiria reescreve-lo' );
+	}
+	if ( empty( $retrato['ferramentas_de_admin'] ) ) {
+		return $nao( 'as funcoes de wp-admin/includes nao carregaram; sem elas o flush(true) vira flush(false) e nao encosta no arquivo' );
+	}
+
+	return array( 'curar' => true, 'motivo' => null );
+}
+}
+
+if ( ! function_exists( 'rodametria_casca_cura_retrato_curto' ) ) {
+/**
+ * `1057 bytes [NFD EPC]` — o retrato que cabe numa linha de log.
+ *
+ * So bytes e NOMES de bloco. O conteudo do arquivo nao sai daqui pelo motivo da
+ * 29.3, e aqui com mais forca: `.htaccess` de hospedeiro compartilhado carrega
+ * regra de seguranca de terceiro, e o log do `/status` e PUBLICO — mais publico
+ * que a rota de diagnostico, que pelo menos pede token.
+ */
+function rodametria_casca_cura_retrato_curto( $retrato ) {
+	if ( ! is_array( $retrato ) || empty( $retrato['htaccess'] ) || ! is_array( $retrato['htaccess'] ) ) {
+		return 'sem retrato';
+	}
+	$h      = $retrato['htaccess'];
+	$blocos = isset( $h['blocos'] ) && is_array( $h['blocos'] ) ? $h['blocos'] : array();
+
+	return (int) ( isset( $h['bytes'] ) ? $h['bytes'] : 0 ) . ' bytes [' . implode( ', ', $blocos ) . ']';
+}
+}
+
+if ( ! function_exists( 'rodametria_casca_cura_fonte_do_log' ) ) {
+/**
+ * POR ONDE a linha da cura vai ser escrita — e e um campo publico do `/casca`.
+ *
+ * Existe pela mesma razao que `rodametria_casca_fonte_do_token()`: o Sync desta
+ * ilha nao esta no repositorio, entao o nome da funcao e HERDADO e nao
+ * conferido no chao. Este campo transforma "a cura nunca escreveu linha
+ * nenhuma" em "a cura nao achou onde escrever, e o nome procurado foi este".
+ *
+ * `funcao:` e o caminho preferido — um escritor so, o do Sync, com a forma dele.
+ * `option:` e o de reserva, que monta a MESMA linha na MESMA forma.
+ * `null` e o unico mundo em que a cura NAO acontece por falta de registro.
+ */
+function rodametria_casca_cura_fonte_do_log() {
+	if ( function_exists( 'rodametria_sync_estado' ) && function_exists( 'rodametria_sync_log' ) ) {
+		return 'funcao:rodametria_sync_log';
+	}
+	if ( is_array( get_option( RODAMETRIA_CASCA_SYNC_OPTION ) ) ) {
+		return 'option:' . RODAMETRIA_CASCA_SYNC_OPTION;
+	}
+
+	return null;
+}
+}
+
+if ( ! function_exists( 'rodametria_casca_cura_registrar' ) ) {
+/**
+ * Escreve a linha NO LOG QUE O `/status` JA SERVE — nunca num log novo.
+ *
+ * A trava 3 do contrato e literal: "uma linha no log que o `/status` ja serve".
+ * Quem olha esta ilha olha aquele endpoint, e log paralelo e log que ninguem
+ * abre. O estado e relido no instante da escrita, para a linha nao ser montada
+ * sobre uma copia velha.
+ *
+ * A forma da linha — data de minuto na frente, empilhada por cima, lista
+ * cortada em 40 — e a do Sync das irmas, byte por byte. O caminho de reserva
+ * nao inventa formato: formato novo no mesmo log seria o mesmo fato dito de
+ * duas maneiras, que e a divida que esta fabrica mais paga.
+ *
+ * Devolve `false` quando nao ha caminho nenhum. Isso aqui e o cinto de
+ * seguranca, nao a trava: o gancho ja perguntou pela fonte ANTES de tocar em
+ * qualquer coisa (passo 2) e devolveu sem agir, entao este `false` so se alcanca
+ * se a fonte desaparecer entre os dois instantes.
+ */
+function rodametria_casca_cura_registrar( $msg ) {
+	$fonte = rodametria_casca_cura_fonte_do_log();
+	if ( null === $fonte ) {
+		return false;
+	}
+
+	if ( 0 === strpos( $fonte, 'funcao:' ) ) {
+		$estado = rodametria_sync_estado();
+		rodametria_sync_log( $estado, (string) $msg );
+		update_option( RODAMETRIA_CASCA_SYNC_OPTION, $estado, 'no' );
+
+		return true;
+	}
+
+	$estado = get_option( RODAMETRIA_CASCA_SYNC_OPTION );
+	if ( ! is_array( $estado ) ) {
+		return false;
+	}
+	if ( ! isset( $estado['log'] ) || ! is_array( $estado['log'] ) ) {
+		$estado['log'] = array();
+	}
+	array_unshift( $estado['log'], current_time( 'Y-m-d H:i' ) . ' ' . (string) $msg );
+	$estado['log'] = array_slice( $estado['log'], 0, 40 );
+	update_option( RODAMETRIA_CASCA_SYNC_OPTION, $estado, 'no' );
+
+	return true;
+}
+}
+
+if ( ! function_exists( 'rodametria_casca_cura_e_a_rota_que_mede' ) ) {
+/**
+ * A requisicao atual e a rota de diagnostico da 29.3?
+ *
+ * Se for, a cura se cala (trava 5): o retrato que a Sentinela le tem de mostrar
+ * a porta como ela esta, inclusive caida. Foi o `mtime` de uma porta caida que
+ * deu prova ao chamado na HostGator.
+ *
+ * SO A FORMA `?rest_route=` E CONFERIDA, E ISSO BASTA — nao por economia, por
+ * argumento: a unica requisicao em que esta cura poderia atropelar a medicao e
+ * a que acontece com a porta JA no chao, e com a porta no chao o caminho bonito
+ * `/wp-json/...` morre ANTES do PHP (29.1 e 29.7), entao ele nao chega aqui
+ * para ser conferido. Com a porta de pe a cura sai no primeiro passo do gancho
+ * sem tocar em nada, e o que ela faria na rota e nada de qualquer forma.
+ *
+ * E LER A SUPERGLOBAL DE SERVIDOR AQUI ESTA PROIBIDO, por uma razao que nao e
+ * de estilo: o ModSecurity deste hospedeiro recusa, EM SILENCIO, a gravacao de
+ * snippet cujo corpo a contenha — e o corpo inclui COMENTARIO, entao o nome
+ * dela nao se escreve nem aqui. Medido na clubedomosaico em 12/11/2026, na
+ * primeira versao da cura dela. O caminho bonito seria justamente o que
+ * exigiria aquela leitura, e e ele que o paragrafo acima dispensa.
+ *
+ * `$_GET` direto, e nao `filter_input( INPUT_GET, ... )`, pelo mesmo motivo das
+ * irmas: `filter_input` nao ve o que a bancada escreve em `$_GET`, e afirmacao
+ * que a bancada nao consegue produzir e afirmacao que nao existe.
+ */
+function rodametria_casca_cura_e_a_rota_que_mede() {
+	$rota = isset( $_GET['rest_route'] ) ? (string) $_GET['rest_route'] : '';
+
+	return '' !== $rota && false !== stripos( $rota, '/rodametria/v1/rotas' );
+}
+}
+
+if ( ! function_exists( 'rodametria_casca_cura_da_porta' ) ) {
+/**
+ * O gancho. Devolve a linha que escreveu, ou `''` quando ficou calado.
+ *
+ * A ORDEM DOS PASSOS E A CONTA DO CUSTO, e ela importa: o caso de QUASE TODA
+ * requisicao e "porta de pe", e ele sai no primeiro passo com UMA leitura de
+ * arquivo de ~1,5 kB — sem option, sem `require` de `wp-admin/includes`, sem
+ * escrita. O caro so roda no mundo em que a porta JA esta no chao.
+ */
+function rodametria_casca_cura_da_porta() {
+	if ( rodametria_casca_cura_e_a_rota_que_mede() ) {
+		return '';
+	}
+
+	/* PASSO 1, o barato: o bloco esta la? `true` encerra aqui. `null` (arquivo
+	   ausente, ilegivel, ou raiz em subpasta) NAO encerra — segue para o
+	   diagnostico completo, que sabe achar o caminho de verdade. */
+	if ( true === rodametria_casca_cura_tem_bloco( rodametria_casca_cura_caminho() ) ) {
+		return '';
+	}
+
+	$agora  = time();
+	$ultima = (int) get_option( RODAMETRIA_CASCA_CURA_OPTION, 0 );
+	if ( $ultima > 0 && ( $agora - $ultima ) < RODAMETRIA_CASCA_CURA_INTERVALO ) {
+		return '';
+	}
+
+	/* PASSO 2: HA ONDE ESCREVER A LINHA? Se nao houver, a cura NAO acontece, e
+	   o arquivo nao e tocado. A trava 3 da excecao da 29.4 nao e um enfeite do
+	   sucesso: "toda tentativa escreve UMA linha no log", e a ilha que nao tem
+	   as cinco travas nao tem a excecao. Cura sem linha e exatamente a porta
+	   que se conserta CALADA que a 29.4 recusou — a palavra que carrega aquele
+	   argumento inteiro.
+	   E ESTA CHECAGEM VEM ANTES DE QUALQUER ESCRITA, de proposito: na primeira
+	   implementacao (clubedomosaico, secao 6-b) ela mora DEPOIS do reparo, e o
+	   comentario de la promete que "a cura NAO acontece" quando nao ha log —
+	   mas o `reparar_rotas()` ja rodou quando o registro falha. O codigo cura e
+	   a prosa diz que nao, que e a familia do comentario que declara mecanismo
+	   da 32.5-d. Esta ilha nao pode editar aquela (secao 3), entao virou
+	   despacho em `dados/despachos.md`.
+	   A RECUSA NAO E CALADA, e e isso que a faz medivel em vez de silenciosa:
+	   `/casca` serve `fonte_do_log_da_cura: null` no mesmo instante, sem token,
+	   e a ausencia e o sinal (20.7). */
+	if ( null === rodametria_casca_cura_fonte_do_log() ) {
+		return 'cura da porta NAO disparou: nao ha onde escrever a linha da tentativa '
+			. '(nem a funcao de log do Sync nem a option ' . RODAMETRIA_CASCA_SYNC_OPTION
+			. '), e cura que nao conta e o que a 29.4 recusou';
+	}
+
+	$antes   = rodametria_casca_diagnostico_rotas();
+	$decisao = rodametria_casca_cura_decidir( $antes, $ultima, $agora, RODAMETRIA_CASCA_CURA_INTERVALO );
+
+	/* A TENTATIVA E GRAVADA ANTES DE AGIR (trava 2). Se o `flush` morrer no
+	   meio — e ele escreve na porta de entrada do site —, a requisicao seguinte
+	   encontra a hora ja queimada e nao tenta de novo. Marcar depois seria um
+	   laco de reescrita da raiz a cada visita, que e a coisa exata que a 29.4
+	   recusou. */
+	update_option( RODAMETRIA_CASCA_CURA_OPTION, $agora, 'no' );
+
+	if ( empty( $decisao['curar'] ) ) {
+		if ( null === $decisao['motivo'] ) {
+			return '';
+		}
+		$linha = 'cura da porta NAO disparou: ' . $decisao['motivo'] . ' — ' . rodametria_casca_cura_retrato_curto( $antes );
+		rodametria_casca_cura_registrar( $linha );
+
+		return $linha;
+	}
+
+	$r      = rodametria_casca_reparar_rotas();
+	$depois = isset( $r['depois'] ) ? $r['depois'] : $antes;
+
+	if ( ! empty( $r['reparado'] ) ) {
+		$linha = 'cura da porta: bloco WordPress reposto — '
+			. rodametria_casca_cura_retrato_curto( $antes ) . ' -> ' . rodametria_casca_cura_retrato_curto( $depois );
+	} else {
+		$linha = 'cura da porta FALHOU: o flush rodou e o bloco WordPress NAO voltou — '
+			. rodametria_casca_cura_retrato_curto( $antes ) . ' -> ' . rodametria_casca_cura_retrato_curto( $depois )
+			. ( empty( $r['motivo'] ) ? '. AllowOverride desligado do lado do hospedeiro? Pela 29.4 isto e chamado, nao codigo desta ilha' : '. ' . $r['motivo'] );
+	}
+	rodametria_casca_cura_registrar( $linha );
+
+	return $linha;
+}
+}
+
+/* O gancho e `wp_loaded`, e nao `init`: ele roda DEPOIS de todo snippet ter
+   carregado, entao a funcao de log do Sync existe e a linha tem onde cair. E
+   roda em requisicao REST tambem, de proposito — quando a porta cai, o caminho
+   bonito morre ANTES do PHP, e o que continua chegando aqui e a home e a query
+   na raiz (29.1). Curar so no caminho bonito seria curar pela porta que esta no
+   chao. */
+add_action( 'wp_loaded', 'rodametria_casca_cura_da_porta', 99 );
