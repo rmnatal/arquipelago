@@ -160,3 +160,4 @@ Uma linha por nicho, só para não testar de novo. Não é relatório.
 | 12/11/2026 | central multimídia automotiva | volume | 17,7 mil/mês somados |
 | 12/11/2026 | câmera de ré | volume | 14,8 mil/mês |
 | 12/11/2026 | capa de banco automotivo | volume | 2,4 mil/mês |
+| 12/11/2026 | veículo elétrico infantil + hoverboard | 0.9 (comissão conservadora) | 413,6 mil/mês em SERP mista → ≈ 405 visitas/dia × R$ 62,50 mediano por venda ≈ R$ 7.600/mês |

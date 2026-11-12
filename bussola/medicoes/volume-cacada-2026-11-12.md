@@ -32,3 +32,14 @@ estante 74.000 · penteadeira camarim 60.500 · gazebo 60.500 · cabeceira 60.50
 mesa de centro 49.500 · bicama 40.500 · cofre 33.100 · cadeira de jantar 33.100 · banheira de hidromassagem 18.100 ·
 estante de aço 18.100 · central multimidia 14.800 · camera de re 14.800 · tenda gazebo 6.600 · spa inflavel 6.600 ·
 multimidia automotiva 2.900 · capa de banco automotivo 2.400
+
+## Portão 4 medido depois (12/11/2026, ~15h de Brasília, painel de afiliado da Shopee, conta com Open API válida)
+10 produtos que a ferramenta indicaria (veículos, com venda, sem acessório):
+Hoverboard Elétrico Bluetooth 6.5 Infantil R$ 446,88 (5%, 2 mil+ vendas) · BAKA Sports Hoverboard 6.5" R$ 599,99 (11%, 554) ·
+Hoverboard 500W Bluetooth R$ 849,00 (5%, 16) · Hoverboard Adultos R$ 655,00 (9%, 16) · Trailforge Hoverboard 6.5" R$ 609,00 (11%, 9) ·
+Moto Elétrica Infantil 12v pneus de borracha R$ 1.029,00 (9%, 1 mil+) · Carrinho Elétrico Infantil 12V Titan R$ 819,90 (5%, 162) ·
+Carro Elétrico Infantil 12V Mini Jeep R$ 899,90 (9%, 103) · Carro Elétrico Infantil Carrinho para Criança R$ 1.372,72 (5%, 12) ·
+Quadriciclo Elétrico Infantil 6V R$ 423,83 (13%, 1).
+**Mediana: ticket R$ 737 · comissão 9% · R$ por venda R$ 62,50.** Cobertura só-Shopee: 10 de 10.
+**Conta:** conservador ≈ 405 × 1% × 30 × R$ 62,50 ≈ **R$ 7.600/mês** — abaixo do piso de R$ 10 mil (0.9). Teto ≈ R$ 48 mil/mês.
+Reprovado; segue valendo a nota de 29/10: cabe na Rodametria como cluster.
