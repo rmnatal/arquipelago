@@ -9736,3 +9736,70 @@ Releitura: esta seção começa na linha **9682** e o arquivo termina em **9738*
 depois 9737) ficaram atrás porque cada correção mexia no próprio arquivo que estava sendo contado. O arquivo é append-only: nenhuma seção anterior foi apagada,
 reescrita ou resumida neste disparo — a única edição fora do acréscimo foi dentro desta própria seção,
 corrigindo a contagem de `##` do arquivo novo para o valor que a releitura devolveu.
+
+## 12/11/2026 16h54 de Brasília (19h54Z) — Bússola caçadora, portão 4 do veículo elétrico infantil
+
+Pedido da Bússola, complemento de 12/11/2026, chegado por disparo manual. Assunto: Bússola — é do
+Arquipélago, passou a trava. Dois acréscimos verbatim, cada um com sha256 final esperado na própria
+instrução, e um commit só.
+
+Partida do `main` real: `git fetch origin main && git checkout -B trabalho origin/main`, que caiu em
+c3b7819.
+
+`git status --porcelain` (depois de aplicar, antes do commit):
+
+```
+M  bussola/cacados.md
+M  bussola/medicoes/volume-cacada-2026-11-12.md
+```
+
+`git diff --stat`:
+
+```
+ bussola/cacados.md                           |  1 +
+ bussola/medicoes/volume-cacada-2026-11-12.md | 11 +++++++++++
+ 2 files changed, 12 insertions(+)
+```
+
+Commit que foi ao `main`: **58b322dc7168ead2d1f1b00058eca40f9e0df123** — "Bússola caçadora —
+12/11/2026 (portão 4 do veículo elétrico infantil)".
+
+O primeiro `git push origin HEAD:main` foi recusado (non-fast-forward: o `main` havia andado para
+30c3b5c, "rodametria: FECHO da execucao de 12/11 ... o cabecalho desta ilha era o unico sem o --- de
+fecho", entre o fetch e o push). Mensagem do git:
+
+```
+hint: Updates were rejected because the remote contains work that you do not
+hint: have locally. This is usually caused by another repository pushing to
+hint: the same ref. If you want to integrate the remote changes, use
+hint: 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+```
+
+`git fetch origin main && git rebase origin/main` (rebase de 1 commit, limpo) e o segundo push passou:
+`30c3b5c..58b322d  HEAD -> main`. Nenhum force push. Conferido com `git fetch origin main &&
+git log -1 origin/main`: o topo do `main` é 58b322d, o commit desta sessão.
+
+Contagem do que mudou, conferida relendo os arquivos DEPOIS de gravar:
+
+```
+bussola/cacados.md ...................... +1 linha  (linha de 12/11/2026, veículo elétrico infantil
+                                                     + hoverboard, nota 0.9)
+                                          sha256 986b4e9ec298e09a20314b36e91bbd16b7a8742df98a96f920e546568c918065
+                                          (= o esperado na instrução)
+bussola/medicoes/volume-cacada-2026-11-12.md
+  ....................................... +11 linhas (1 em branco + bloco de 10 linhas do portão 4)
+                                          sha256 ff92d5928dcf1f06cf5f93fbfc2440202e8fbb3150b1ee097d3fed1cd9170001
+                                          (= o esperado na instrução)
+```
+
+Os dois sha256 bateram byte a byte com os que a instrução deu, na primeira gravação, sem retoque.
+Ambos os arquivos já terminavam em `\n` antes do acréscimo (conferido com `od -c`), então o
+heredoc citado entrou sem emendar linha.
+
+Nenhum outro arquivo tocado, como a instrução pediu. O `MAOS-LOG.md` é a exceção obrigatória e vai
+num commit seguinte, porque a instrução dizia "um commit" com aqueles dois arquivos. Nada de reserva,
+nada de `executando_desde`, nada de publicar, nada de fila de ilha, nada de `ARQUIPELAGO.md`.
+O arquivo é append-only: nenhuma seção anterior foi apagada, reescrita ou resumida neste disparo.
+Esta seção acrescentou 65 linhas ao `MAOS-LOG.md` (de 9738 para 9803 linhas, medido com `wc -l`
+depois de gravar — o 9803 inclui estas duas últimas linhas).
