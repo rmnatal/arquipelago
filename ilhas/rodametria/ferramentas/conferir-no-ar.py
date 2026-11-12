@@ -1373,9 +1373,17 @@ def diagnostico_da_porta(cod_home, cods_das_portas, rest_vivo):
             "`# BEGIN WordPress` fora do `.htaccess` da raiz. CONSERTO: o "
             "`flush_rewrite_rules( true )` da 29.3 — `?rest_route=/rodametria/v1/rotas"
             "&token=<token do Sync>&reparar=1`, ou Salvar em Configuracoes > Links "
-            "permanentes no wp-admin. O token desta ilha NAO esta no repositorio, "
-            "entao o reparo NAO e exercitavel desta nuvem (quinta ocorrencia no "
-            "Arquipelago: clubedomosaico 24/09, 05/10 e 08/10; robometria 30/10)"
+            "permanentes no wp-admin. O token desta ilha nao esta no REPOSITORIO; "
+            "pela 29.3-a isso NAO significa que o reparo nao e exercitavel daqui — "
+            "esta linha afirmava o contrario e foi corrigida em 12/11/2026, depois "
+            "de a Sentinela reparar duas ilhas desta nuvem em 11/11 as 17h54Z e de "
+            "a Fundacao reparar a clubedomosaico em 12/11 as 10h18Z. TENTE antes de "
+            "escrever que nao da: causa de impossibilidade envelhece. E pela "
+            "excecao da 29.4 (a cura da porta) a casca da ilha que a tiver repoe o "
+            "bloco sozinha na primeira requisicao, sem token nenhum — esta ilha "
+            "ainda NAO a tem (nona ocorrencia no Arquipelago: clubedomosaico 24/09, "
+            "05/10, 08/10, 11/11 manha, 11/11 noite e 12/11; robometria 30/10 e "
+            "11/11; rodametria 05/11)"
             % (len(cods_das_portas), "/".join(str(c) for c in cods_das_portas)))
 
 

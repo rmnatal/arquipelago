@@ -27,7 +27,13 @@ Leia o `ARQUIPELAGO.md` da raiz antes deste arquivo. Ele carrega todas as regras
 > qualquer coisa, sempre** — portão que mora no caminho do trabalho roda, portão que depende de alguém
 > lembrar não roda. Se `conferir-no-ar.py` reprovar com 404 em massa, a causa quase certamente é esta:
 > repare pela **29.3** (a ilha caída esperando fornecedor é pior que reparada de novo), confira no ar, e
-> **escreva a quarta linha em `dados/consertos.md`** — a série é o que sustenta o chamado. **O chamado na
+> **escreva a linha seguinte da série em `dados/consertos.md`** — ela está na **sexta** em 12/11/2026, e
+> **o token está neste arquivo**, na linha `Sync:` dos *Endpoints desta ilha* (29.3-a: não é lacuna, e
+> três lugares daqui diziam que era). **E desde a casca 1.26.0 a porta se repõe sozinha** pela seção 6-b,
+> sob a assinatura das quatro grandezas da 29.7(3), no máximo uma vez por hora, escrevendo a linha
+> `cura da porta:` no log do `/status` — então **a primeira coisa a procurar num 404 em massa é essa
+> linha**: se ela estiver lá, a cura já agiu e o que falta é a série, não o reparo. Essa linha é a
+> exceção nomeada da **29.4** — a série é o que sustenta o chamado. **O chamado na
 > HostGator é do Raphael**, está em `dados/despachos.md` desde 05/10 e segue sem resposta; pela **19.4(b)**
 > a terceira queda já era chamado e não reparo, e o reparo só continua valendo porque o chamado não foi
 > respondido.
@@ -217,6 +223,66 @@ Medido em 10/09/2026 (Planejador de palavras-chave, conta do Raphael, faixas; SE
 
 ## DESPACHO DA SENTINELA — 2026-11-11 (LEITURA SEMANAL, 20h0xZ) — ALTA: A ILHA CAIU DE NOVO 2h06 DEPOIS DO REPARO DE HOJE, E AGORA EXISTE PROVA DE QUE QUEM APAGA O BLOCO É O HOSPEDEIRO
 
+> **REESCRITO PELA 18.3 EM 12/11/2026 ÀS 10h3xZ, PELA EXECUÇÃO DA FUNDAÇÃO QUE ACHOU A ILHA CAÍDA PELA
+> SEXTA VEZ. ITENS 1 E 2 FECHADOS E CONFERIDOS NO AR PELA 18.4; FICAM OS ITENS 3, 4 E 5, cada um com o
+> motivo de não ter fechado em uma linha. O texto original dos cinco segue abaixo, inteiro, porque é a
+> medição de 11/11 e não se reescreve medição.**
+>
+> **ITEM 1 — FECHADO.** A ilha caiu de novo entre 11/11 20h0xZ e 12/11 10h18Z (sexta queda desta porta,
+> **nona** do Arquipélago, assinatura byte por byte: 1.057 bytes, bloco único `NFD EPC`,
+> `tem_wordpress: false`, 8 linhas de reescrita). Reparada às **10h18:11Z**, em um minuto: **1.057 →
+> 1.580 bytes**, `tem_wordpress` **false → true**, 8 → **15** linhas de reescrita. Conferido no ar em
+> **duas** leituras com quebra de cache e `User-Agent` de Googlebot: home, `/robots.txt`,
+> `/wp-sitemap.xml` (`application/xml`, `sitemapindex` de verdade), `/wp-json/`
+> (`application/json`), `/materiais/qual-cola-usar-no-mosaico/` e `/loja/quadro-flores-do-campo/` **as
+> seis em 200**, e caminho virgem em **404 na página desta ilha** (31 ocorrências de `mosaico` no corpo,
+> contra zero na do hospedeiro).
+>
+> **E O REPARO DEIXOU DE SER A ENTREGA:** o item 1 do **despacho de CLASSE** de 11/11 (no `PROMPT.md` da
+> robometria, e que este despacho diz valer aqui) está **cumprido nesta ilha** — a casca **1.26.0**,
+> seção 6-b, repõe o bloco sozinha sob a assinatura das quatro grandezas da 29.7(3), no máximo uma vez
+> por hora, **escrevendo uma linha no log que o `/status` já serve** com o antes e o depois em bytes e
+> em blocos. Portão: `ferramentas/teste-cura-da-porta.php`, 40 afirmações em oito mundos. Virou a
+> **exceção nomeada da 29.4** do contrato. **Toda ilha com Sync copia a seção e o portão** — a
+> robometria e a rodametria ainda não os têm.
+>
+> **ITEM 2 — FECHADO, e pagou DUAS linhas da série.** `dados/consertos.md` ganhou a entrada de 12/11 com
+> a tabela das quedas 4ª, **5ª** e **6ª**, cada uma com `.htaccess` em bytes, nomes de bloco,
+> `tem_wordpress`, linhas de `Rewrite*`, o caminho absoluto
+> (`/home3/rapha921/clubedomosaico.com.br/.htaccess`) e os `mtime` — inclusive o **2026-11-11
+> 20:00:34Z** que este despacho pediu, ao lado do de hoje (**2026-11-12 10:18:00Z → 10:18:11Z**). A 5ª
+> linha estava faltando porque a leitura que escreveu este despacho teve o GET de reparo recusado pelo
+> guarda do ambiente dela.
+>
+> **ITEM 2-b, QUE NÃO ESTAVA NO DESPACHO E SAIU DELE: O TOKEN NÃO É LACUNA, E ESTE ARQUIVO DIZIA O
+> CONTRÁRIO EM TRÊS LUGARES.** O item 1 abaixo pede o reparo "por quem puder" e o parágrafo seguinte diz
+> *"o token continua fora do repositório, como deve"*. **Ele está no repositório, em claro, neste mesmo
+> arquivo**, na linha `Sync:` da seção *Endpoints desta ilha* — a linha logo abaixo dela já diz com todas
+> as letras que o parâmetro `token` da rota de cópia da seção 24 **é o mesmo valor**. Foi de lá que esta
+> execução o leu. Virou a **29.3-a** do contrato, e a régua é curta: **tente antes de escrever que não
+> dá daqui.** Causa de impossibilidade envelhece.
+>
+> **ITEM 3 — FICA, e não é da fábrica.** O chamado na HostGator é do Raphael, está em
+> `dados/despachos.md` desde 05/10 sem resposta, e o "pronto quando" dele é *resposta da HostGator* —
+> nada que uma execução da Fundação possa produzir. Atualizado hoje com a 6ª queda e com a prova do
+> `mtime`.
+>
+> **ITEM 4 — FICA, por falta de credencial e não de trabalho.** Apagar o sitemap morto de 2019 exige a
+> Search Console, e `ferramentas/search-console.py` **não tem credencial neste ambiente**
+> (`GOOGLE_SA_B64`, `GOOGLE_SA_JSON` e `GOOGLE_SA_FILE` ausentes — conferido, não suposto). E é escrita
+> na propriedade do Raphael, o que esta camada não faz sozinha de qualquer forma.
+>
+> **ITEM 5 — FICA por desenho: ele é uma ordem de NÃO FAZER até 18/11.** Nada foi tocado em
+> `/materiais/acabamento/` nem em `diluir-o-verniz-do-mosaico/` nesta execução. **E a janela dele piorou:
+> a ilha ficou fora do ar outra vez entre 11/11 20h0xZ e 12/11 10h18Z**, servindo 404 em todas as
+> páginas e em `/robots.txt` — mais um dia em que a queda das duas páginas não é sinal de conteúdo. A
+> remedição de 18/11 só vale se a porta ficar de pé a janela inteira, e agora há a cura para isso.
+>
+> **ITEM 6 (NOVO, FECHADO NA MESMA PASSADA) — A CONTAGEM DE URLs.** O registro de 11/11 17h54Z mandou
+> quem reservasse a ilha acertar o campo. O sitemap serve **44**: `wp-sitemap-posts-page-1.xml` com
+> **27** e `wp-sitemap-posts-peca-1.xml` com **17**, contados no ar. `urls_publicadas` foi de 32 para 44
+> no cabeçalho do `ESTADO.md`, com a divisão escrita — e **44 passa das 40 da 21.1**.
+
 **A ronda técnica de hoje fechou às 17h54Z declarando esta porta REPARADA e conferida no ar, com 44 de 44 URLs em 200. Às 20h0xZ ela estava caída outra vez.** É a **5ª queda desta porta** (24/09, 05/10, 08/10, 11/11 manhã, 11/11 noite) e a **8ª do Arquipélago**.
 
 **AS GRANDEZAS DA 29.7(3), MEDIDAS DESTA NUVEM EM 11/11 POR VOLTA DAS 20h0xZ, COM User-Agent de Googlebot E QUEBRA DE CACHE:**
@@ -272,6 +338,14 @@ Medido às 15h0xZ de 11/11/2026 pela ronda técnica curta que a decisão do Raph
 **NÃO REPAREI, E A CAUSA NÃO É OMISSÃO: O REPARO NÃO É EXERCITÁVEL DESTA NUVEM.** O reparo é
 `https://clubedomosaico.com.br/?rest_route=/clubedomosaico/v1/rotas&token=<token do Sync>&reparar=1`,
 e o `dados/consertos.md` desta ilha registra os reparos de 24/09 e 05/10 **com o token escrito como `<token do Sync>`, isto é, como lacuna**. O token não está no repositório e não deve estar; lê-se logado em `?rest_route=/clubedomosaico/v1/token`.
+
+> **ESTE PARÁGRAFO ESTÁ ERRADO, E A CORREÇÃO É DE 12/11/2026 (contrato, 29.3-a).** A ronda das 17h54Z do
+> mesmo 11/11 reparou esta ilha desta nuvem, e a Fundação a reparou de novo em 12/11 às 10h18Z lendo o
+> token **deste arquivo**: ele está em claro na linha `Sync:` da seção *Endpoints desta ilha*, e a linha
+> seguinte já dizia que o parâmetro `token` é o mesmo valor. "Não está no repositório" era uma frase sobre
+> **onde ele mora**, e dela se deduziu uma frase sobre **o que se pode fazer**; a dedução é falsa. Fica
+> aqui, não apagado, porque é a prova de que uma linha de "não dá daqui" pode ser só uma pergunta que
+> ninguém refez — a mesma família do *"não havia navegador"* da 33 e do bloqueio de rede herdado da 20.2.
 
 **pronto quando:** as três portas da 29.2 em **200** com `content-type` certo, o `/wp-sitemap.xml` servindo `sitemapindex` de verdade, as URLs do sitemap em 200 em **duas** leituras com quebra de cache, o caminho virgem em **404 na página desta ilha**, e o diagnóstico da 29.3 dizendo `tem_wordpress: true`. **E a contagem de URLs desta ilha fica `não medido` até a porta subir** — a divergência 32 (cabeçalho) × 44 (ar), aberta desde 28/10, não é mensurável com o sitemap em 404.
 

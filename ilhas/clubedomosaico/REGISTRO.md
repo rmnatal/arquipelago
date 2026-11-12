@@ -3,6 +3,185 @@
 Log append-only da Fundacao. Cada execucao escreve aqui o bloco entregue e o
 proximo passo desbloqueado.
 
+12/11/2026 10h17Z–10h5xZ — A SEXTA QUEDA DA PORTA REPARADA EM UM MINUTO, E A PORTA PASSOU A SE CURAR SOZINHA: CASCA 1.26.0, EXCEÇÃO NOMEADA DA 29.4
+
+**A ESCOLHA DA ILHA, e ela fura o foco por uma porta medida.** `foco.md` nomeia a **rodametria**, e a
+**1.2** suspende a rotação inteira — *"a ÚNICA coisa que fura o foco é despacho marcado ALTO em ilha
+que está no ar e quebrada"*. As duas metades foram conferidas antes de reservar: o despacho **ALTA** de
+11/11/2026 às 20h0xZ está aberto no `PROMPT.md` desta ilha, e a ilha **estava quebrada agora**. A
+medição das 10h1xZ, com `User-Agent` de Googlebot e quebra de cache: `clubedomosaico.com.br/` em **200**
+servindo WordPress (título "Clube do Mosaico — Mosaico feito à mão"), e `/wp-sitemap.xml` servindo a
+**página de estacionamento da HostGator** ("Hospedagem de Site com Domínio Grátis — HostGator", com
+`noindex`). **Controle de rede na mesma passada:** aquametria, robometria e rodametria as três em 200 na
+home — rede aberta e ilha caída são coisas diferentes, e aqui se mediram separadas (20.2). A rodametria
+e as outras não receberam bloco de construção.
+
+**RESERVA POR COMMIT, pelo passo 5 da seção 1:** `executando_desde` gravado às 10h17Z e empurrado sozinho
+antes de qualquer trabalho (commit `167c9e5`), e **renovada uma vez pela 1.1** no commit da casca, porque
+o bloco passou de 40 minutos.
+
+**ITEM 1 DO DESPACHO — FECHADO, em um minuto.** O retrato da 29.3 às 10h18:00Z: `.htaccess` de
+`/home3/rapha921/clubedomosaico.com.br/` com **1.057 bytes**, bloco único **`NFD EPC`**,
+**`tem_wordpress: false`**, **8** linhas de reescrita, raiz e arquivo graváveis, `mod_rewrite: true`, 115
+regras no banco. Reparo por `&reparar=1` às 10h18:11Z: **1.057 → 1.580 bytes**, blocos `NFD EPC` +
+`WordPress`, `tem_wordpress: true`, 8 → **15** linhas. Os mesmos números dos reparos de 05/10 e de 11/11,
+byte por byte. **Conferido no ar pela 18.4, em DUAS leituras com quebra de cache:** home, `/robots.txt`
+(`text/plain`), `/wp-sitemap.xml` (`application/xml`, `sitemapindex` de verdade), `/wp-json/`
+(`application/json`), `/materiais/qual-cola-usar-no-mosaico/` (a página de maior impressão da ilha) e
+`/loja/quadro-flores-do-campo/` — **as seis em 200** —, e caminho virgem em **404 na página desta ilha**
+(31 ocorrências de `mosaico` no corpo, contra **zero** na do hospedeiro).
+
+**E O TOKEN NÃO ERA LACUNA — TRÊS LUGARES DESTA ILHA DIZIAM QUE ERA, NO MESMO DIA.** O despacho de
+11/11 às 20h0xZ escreveu *"o token continua fora do repositório, como deve"*, e o `dados/consertos.md`
+registra os reparos de 24/09 e 05/10 *"com o token escrito como `<token do Sync>`, isto é, como lacuna"*.
+**Ele está no repositório, em claro, no `PROMPT.md` desta ilha**, na linha `Sync:` da seção *Endpoints
+desta ilha* — e a linha imediatamente abaixo dela já dizia, com todas as letras, que o parâmetro `token`
+da rota de cópia da seção 24 **é o mesmo valor**. Foi de lá que esta execução o leu. Virou a **29.3-a** do
+contrato, com a régua curta: **tente antes de escrever que não dá daqui.** Causa de impossibilidade
+envelhece — mesma família do *"não havia navegador"* da 33 e do bloqueio de rede herdado da 20.2.
+
+**ITEM 1 DO DESPACHO DE CLASSE DE 11/11 — A CURA DA PORTA, e é a entrega deste bloco.** Em **cinco das
+nove** quedas o tempo no chão foi decidido por quando alguém rodou um comando (nove dias, dois dias e
+meio, quatro dias), e a **29.6** já tinha escrito a frase duas vezes. A **29.4** recusou gancho automático
+com um argumento que **continua inteiro**, e a palavra que o carrega é **calada** — é só ela que a seção
+6-b da casca não usa. As cinco travas, e a ilha que não as tiver todas não tem a exceção: (1) dispara só
+com as **quatro grandezas da 29.7(3)** na mesa ao mesmo tempo; (2) **uma tentativa por hora**, gravada
+**antes** de agir, porque tentativa que só se registra no sucesso vira laço de reescrita da raiz quando o
+`flush` morre no meio — e laço de reescrita da raiz é a coisa exata que a 29.4 recusou; (3) toda tentativa
+escreve **uma linha no log que o `/status` já serve**, com o antes e o depois em **bytes** e em **blocos**,
+e nunca o conteúdo do arquivo (o log é público, e a rota de diagnóstico pelo menos pede token); (4) com o
+bloco no lugar, não escreve nada e **não diz nada**; (5) **não roda na rota que MEDE a porta**, porque
+curar no meio da própria medição faria o retrato nunca mostrar a queda — e foi o `mtime` de uma porta
+caída que transformou o chamado na HostGator de pedido de socorro em relatório com prova.
+
+**CONFERIDO NO AR, as duas metades que o ar pode responder hoje:** `versao_casca` **1.26.0** na rota da
+29.3, e **zero** linha `cura da porta` no log do `/status` com a porta de pé — o caso silencioso, medido
+no ar e não só na bancada. A metade que só a próxima queda responde é a cura disparando, e ela está
+medida na bancada em mundo fabricado, que é onde se pode remover o bloco à mão.
+
+**UM DEFEITO DO INSTRUMENTO MEDIDO NO CAMINHO, E ELE JÁ ESTAVA NO AR.** O diagnóstico da 29.3 tirava
+`bytes` e `mtime` de `filesize()`/`filemtime()`, que passam pelo **cache de `stat` do PHP**, e
+`blocos`/`tem_wordpress` de `file_get_contents`, que não passa. **Dois retratos na mesma requisição — que
+é exatamente o que o `&reparar=1` faz** — devolviam um `depois` com **255 bytes** e **`[NFD EPC,
+WordPress]`** dentro: tamanho de porta caída ao lado de conteúdo de porta de pé, metade dos campos de um
+mundo e metade do outro. **E o campo que isso corrompe é o `mtime`**, que é a prova do chamado. Conserto:
+`clearstatcache( true, $arquivo )` no topo do diagnóstico.
+
+**E ISSO FECHOU, SEM TER SIDO LIDO, A METADE DESTA ILHA DO DESPACHO NORMAL DE 03/11/2026** em
+`dados/despachos.md`, que pedia exatamente esta linha nesta função. Esta execução não tinha lido aquele
+despacho quando o portão novo reprovou; **os dois diagnósticos chegaram ao mesmo arquivo e à mesma
+linha**, o que é a melhor notícia que um despacho de risco guardado pode receber — ele não dependia de
+ninguém o ter lido. Segue aberta a metade da **robometria**.
+
+**O PORTÃO: `ferramentas/teste-cura-da-porta.php`, 53 afirmações em ONZE mundos**, e três deles vieram do
+despacho de 03/11, que diz que **o portão importa mais que a linha** (*"senão a linha é retirada no
+primeiro dia em que alguém a achar redundante"* — a lição do `realpath('')`):
+
+- a **ROTA**: `reparado: true`, antes `false` e depois `true`, **tamanhos e linhas de `Rewrite*`
+  diferentes** (a afirmação que reprovava sem o `clearstatcache`), uma **linha-segredo fabricada** que
+  **não** pode sair no JSON (29.3) enquanto os **nomes** dos blocos saem, e o arquivo que **não existia** e
+  que o reparo criou — o caso que aquele despacho nomeia como **reprovação falsa**, a que faz alguém abrir
+  chamado na HostGator por um defeito que o reparo já desfez;
+- o ramo **sem as ferramentas de `wp-admin`**, em **processo separado**, porque `function_exists()` não se
+  desfaz e um `reparado: true` ali seria um verde dizendo que a porta foi consertada;
+- a **MUTAÇÃO**: os snippets são copiados para um diretório temporário, a linha do `clearstatcache` é
+  **retirada**, e o portão tem de **REPROVAR** — e reprovar **na** afirmação do cache de `stat`, não por
+  acidente em outra. **Trava que nunca falhou não é trava.**
+
+**O `teste-rotas.php` da rodametria NÃO foi copiado linha a linha, e o motivo está escrito:** metade dele
+mede a parede do token com **três códigos de erro distintos**, que existem lá porque a fonte do token
+daquela casca era herdada e não conferida no chão; a desta é conferida e o `permission_callback` daqui
+devolve `bool`. Copiou-se **o que ele mede**, com as réguas desta casca.
+
+**DOIS MUNDOS SE MEDEM COM RETRATO FABRICADO, e é argumento e não atalho:** `mod_rewrite: false` e raiz
+não gravável **não se encenam no disco deste contêiner**, porque ele roda como root e o `is_writable()` do
+PHP responde `true` para diretório 0444 quando quem pergunta é root. É por isso que a regra inteira mora
+numa **função pura** (`cdm_casca_cura_decidir`) que recebe o retrato: o que não se fabrica no disco se
+fabrica no retrato. E o gancho tem um atalho de custo que sai **antes** dela, então o portão mede também
+que os dois **concordam**.
+
+**E UMA RECURSÃO INFINITA FOI MEDIDA DOENDO, no primeiro disparo do mundo da mutação:** a filha mutante
+copia snippets **já sem** a linha, então a afirmação "achou a linha" falha nela e ela seguia adiante para
+gerar **outra** filha, para sempre. Consertado com uma guarda por variável de ambiente, e a guarda está
+comentada no arquivo com a data — porque portão que se chama a si mesmo sem fundo é um portão que ninguém
+roda duas vezes.
+
+**ITEM 2 DO DESPACHO — FECHADO, e pagou DUAS linhas da série.** `dados/consertos.md` ganhou a entrada de
+12/11 com a tabela das quedas **4ª, 5ª e 6ª**, cada uma com `.htaccess` em bytes, nomes de bloco,
+`tem_wordpress`, linhas de `Rewrite*`, o caminho absoluto e os `mtime` — inclusive o **2026-11-11
+20:00:34Z** que o despacho pediu, ao lado dos de hoje. A 5ª linha estava faltando porque a leitura que
+escreveu o despacho teve o GET de reparo **recusado pelo guarda do ambiente dela**.
+
+**O CHAMADO NA HOSTGATOR GANHOU A PROVA QUE FALTAVA, em `dados/despachos.md`:** o reparo de 11/11 às
+17h54Z deixou o arquivo com 1.580 bytes e dois blocos, e às **20:00:34Z do mesmo dia** ele estava com
+1.057 bytes e um bloco só, **sem ninguém do nosso lado o tocar**. A pergunta do chamado passa a vir com
+**hora**. São **nove** quedas, e o intervalo entre as duas últimas desta ilha foi de **14 horas** — era de
+11 dias entre a primeira e a segunda. E a 29.5 continua valendo inteira: **a cura não conserta a causa**,
+e tratá-la como solução é o que aquela seção proíbe.
+
+**ITENS 3, 4 E 5 — FICAM, pela 18.3, cada um com o motivo em uma linha.** (3) o chamado é do Raphael e o
+"pronto quando" dele é *resposta da HostGator*, que nenhuma execução produz; (4) apagar o sitemap morto de
+2019 exige a Search Console, e **não há credencial neste ambiente** — `GOOGLE_SA_B64`, `GOOGLE_SA_JSON` e
+`GOOGLE_SA_FILE` ausentes, **conferido e não suposto** —, além de ser escrita na propriedade do Raphael;
+(5) é uma ordem de **não fazer** até 18/11, e nada foi tocado em `/materiais/acabamento/` nem na filha
+`diluir-o-verniz-do-mosaico/`. **A janela do item 5 piorou:** a ilha ficou fora do ar mais uma vez entre
+11/11 20h0xZ e hoje 10h18Z, servindo 404 em todas as páginas e em `/robots.txt` — mais um dia em que a
+queda das duas páginas para a banda 11-20 **não é sinal de conteúdo**.
+
+**ITEM NOVO FECHADO NA MESMA PASSADA — A CONTAGEM DE URLs, que o registro de 11/11 mandou quem reservasse
+a ilha acertar.** O sitemap serve **44**, contados no ar: `wp-sitemap-posts-page-1.xml` com **27** e
+`wp-sitemap-posts-peca-1.xml` com **17**, e `/wp-json/clubedomosaico/v1/loja` confirma 17 peças
+publicadas. `urls_publicadas` foi de **32 para 44** no cabeçalho, com a divisão escrita. **44 passa das 40
+da 21.1.** A divergência estava aberta desde 28/10 e não era mensurável nos dois dias de sitemap em 404.
+
+**UM ACHADO NOVO, DESPACHADO E NÃO CONSERTADO.** O `conferir-no-ar.py` desta ilha fechou com **530
+afirmações e 1 falha**, e a falha é *"[description] nenhuma se repete entre páginas"*. A varredura achou
+**cinco** e não duas: `/loja/oratorio-com-a-imagem-da-nossa-senhora-aparecida/` e `-2/` com a mesma
+`description`, e `/loja/oratorio-em-mosaico-com-a-imagem-da-nossa-senhora-aparecida/`, `-2/` e `-3/` com a
+mesma. **Cinco das 17 peças da loja são o mesmo oratório.** **Não consertei, por três motivos
+independentes:** (a) **não é defeito de código** — a `description` é gerada do título, e gerar a mesma
+frase para o mesmo título é o comportamento certo; o duplicado é o **catálogo**; (b) apagar ou juntar
+páginas da artesã é **escolher entre duas opções defensáveis** (podem ser cinco oratórios de verdade, com
+fotos diferentes), e a **19.2** manda despachar isso; (c) três das cinco URLs já têm endereço conhecido do
+Google, e a **12.1** proíbe mexer em URL com impressão. Virou despacho **NORMAL** para o Raphael em
+`dados/despachos.md`, com o "pronto quando" sendo a frase dele ou da artesã dizendo quais são peças
+distintas e quais são cadastro repetido; a Fundação executa os `301` e os títulos **depois** dessa frase.
+
+**DESEMBARQUE (seções 4, 8, 20.4 e 20.8).** Manifest **93 → 94**, Sync acionado **duas vezes com
+`forcar=1`** (a 20.4 manda duas por desenho: a primeira grava snippet inativo, a segunda ativa). O
+`raw.githubusercontent.com` já servia 94 antes do primeiro disparo, então não houve espera de cache
+(20.5). Portão da 20.4 **APROVADO**: `/status` em 94, cabeçalho do log da revisão 94, **14 linhas de item
+e nenhuma deixando de dizer `ok`** — e o portão **DIZ** que viu 14 de 18 aplicados, porque a janela do log
+cortou 4 e **o que não está na janela não foi conferido**. As cinco linhas de `snippets/` visíveis dizem
+`atualizado`, nenhuma diz `gravado mas NÃO ativado`.
+
+**BANCADA, as duas direções.** `teste-cura-da-porta.php` **53/0**; `teste-casca.php` **1041/0**; os outros
+nove portões PHP da ilha verdes (`atelie`, `f1` 230, `f2` 174, `guia` 246, `leads` 211, `loja` 208,
+`prestacao-rejunte`, `produto` 306, `tecnicas` 139). `conferir-no-ar.py` **530/1**, com a falha única sendo
+o achado da loja acima. **E a casca não ganhou a superglobal de servidor nem em comentário:** a primeira
+versão da cura lia `REQUEST_URI` para reconhecer a forma bonita da rota de diagnóstico, e a bancada
+reprovou — o ModSecurity deste hospedeiro recusa **em silêncio** a gravação de snippet cujo corpo a
+contenha, e o corpo inclui comentário. A checagem foi retirada **por argumento e não por contorno**: com a
+porta no chão o caminho bonito morre **antes** do PHP (29.1), então ele não chega para ser conferido; com
+a porta de pé a cura sai no primeiro passo sem tocar em nada. O portão mede esse caso sobrante.
+
+**CONTRATO, duas seções novas** (`ARQUIPELAGO.md`): a **exceção nomeada da 29.4** com as cinco travas, o
+que ela não é, o defeito do cache de `stat` e a ordem de **toda ilha com Sync copiar a seção e o portão**;
+e a **29.3-a**, que separa "onde o token mora" de "o que se pode fazer". **E as réguas velhas foram
+corrigidas, que é o "pronto quando" do item 2 do despacho de classe:**
+`ilhas/rodametria/ferramentas/conferir-no-ar.py` dizia, na mensagem que um humano lê com a porta no chão,
+*"o reparo NÃO é exercitável desta nuvem"* — corrigido, com a data e as duas medições que o desmentem; e
+`ilhas/rodametria/PROMPT.md` dizia o mesmo. **Os dois arquivos são de outra ilha, e isso está dito:** a
+seção 3 proíbe editar arquivo de ilha não reservada, e a exceção aqui é o próprio "pronto quando" do
+despacho de classe, que é sobre o **Arquipélago** e não sobre uma ilha — e a mudança é de **mensagem**,
+não de comportamento. O `dados/PAINEL.md` tem a mesma frase velha em duas linhas e **não foi tocado**:
+pela **23** quem escreve o painel é a ronda.
+
+**PRÓXIMO PASSO DESBLOQUEADO:** copiar a seção 6-b e o portão da cura para a **robometria** e a
+**rodametria** — as duas caem pela mesma porta, nenhuma tem a cura, e a robometria também deve a linha do
+`clearstatcache`. Depois, nada de construção nova aqui enquanto o foco for a rodametria: esta execução
+furou o foco pela exceção da 1.2, e a exceção se fechou com a porta de pé.
+
 23/10/2026 19h17Z–19h5xZ — O ITEM 1 DO DESPACHO DE 23/10 FECHADO NO AR: A PRIMEIRA TELA DO GUIA DEIXA DE DEPENDER DO TAMANHO DA RESPOSTA, E A RÉGUA PASSA A VARRER AS 22 PÁGINAS DO MOLDE
 
 **A ESCOLHA DA ILHA, e ela fura o foco por uma porta escrita.** `foco.md` nomeia a **jornadafly**, e a

@@ -79,6 +79,30 @@ seguinte o repõe e o `/status` passa a servir uma linha nomeando a cura com os 
 bloco presente, mil requisições não tocam no arquivo e o log não ganha linha nenhuma; e com
 `mod_rewrite: false` ou raiz não gravável, a cura **não** dispara e o log diz por quê.
 
+> **FEITO NA CLUBEDOMOSAICO EM 12/11/2026, E ABERTO AQUI: COPIE, NÃO REINVENTE.** A cura está no ar
+> naquela ilha (casca **1.26.0**, seção 6-b do `clubedomosaico-casca.php`, revisão 94), virou a **exceção
+> nomeada da 29.4** do contrato, e o portão é
+> `ilhas/clubedomosaico/ferramentas/teste-cura-da-porta.php` — **53 afirmações em onze mundos**, com a
+> mutação que retira a linha reprovando em processo filho. **O "pronto quando" acima está medido lá,
+> item por item**, mais quatro coisas que ele não pedia e que a implementação exigiu:
+>
+> - **a cura não roda na rota que MEDE a porta**, senão o retrato da 29.3 nunca mostra a queda — e foi o
+>   `mtime` de uma porta caída que deu prova ao chamado na HostGator;
+> - **a hora da tentativa é gravada ANTES de agir**, senão o `flush` que morre no meio vira laço de
+>   reescrita da raiz na requisição seguinte, que é a coisa exata que a 29.4 recusou;
+> - **nada de superglobal de servidor na casca, nem em comentário** — o ModSecurity deste hospedeiro
+>   recusa a gravação do snippet **em silêncio**, e a primeira versão da cura foi reprovada pela bancada
+>   da clubedomosaico por ler `REQUEST_URI`;
+> - **e o diagnóstico da 29.3 desta ilha tem um defeito medido**, que é o despacho NORMAL de 03/11 em
+>   `dados/despachos.md`: sem `clearstatcache()`, `bytes` e `mtime` saem do cache de `stat` do PHP e
+>   **saem velhos** ao lado de `blocos` e `tem_wordpress`, que saem frescos — dois retratos na mesma
+>   requisição, que é o que o `&reparar=1` faz, davam um `depois` com tamanho de porta caída e conteúdo
+>   de porta de pé. A clubedomosaico fechou essa metade em 12/11; **esta ilha ainda não.** Conserte a
+>   linha e copie o portão junto, na mesma passada — é o que aquele despacho diz importar mais que a
+>   linha.
+>
+> A **rodametria** também está sem a cura, e o `PROMPT.md` dela registra isso.
+
 **ITEM 2 — A REGRA GERAL SOBE PARA O CONTRATO, porque a casca é de cada ilha e a queda é de todas.**
 A 29.4 ganha a exceção acima, com o nome dela, e a 29 ganha a linha que faltava: **o token do Sync de
 cada ilha não está no repositório por decisão — e isso NUNCA significou que a fábrica não o alcança.**

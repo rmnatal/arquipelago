@@ -254,6 +254,109 @@ cura_ok( (int) $r2['htaccess']['bytes'] === $tamanho_real, 'o 2o retrato, na MES
 cura_ok( (int) $r2['htaccess']['bytes'] !== (int) $r1['htaccess']['bytes'], 'os dois retratos discordam no tamanho, que e o que prova que o cache saiu', $r1['htaccess']['bytes'] . ' -> ' . $r2['htaccess']['bytes'] );
 cura_ok( ! empty( $r2['htaccess']['tem_wordpress'] ) && (int) $r2['htaccess']['linhas_rewrite'] > (int) $r1['htaccess']['linhas_rewrite'], 'e conteudo e tamanho contam a MESMA historia nos dois retratos', $r1['htaccess']['linhas_rewrite'] . ' -> ' . $r2['htaccess']['linhas_rewrite'] . ' linhas de Rewrite*' );
 
+echo "\nMUNDO I — a ROTA da 29.3: o reparo, o antes/depois, e o que NAO pode sair na resposta\n";
+
+/* ESTE MUNDO FECHA O DESPACHO NORMAL DE 03/11/2026 (`dados/despachos.md`), que
+   pedia duas coisas desta ilha: a linha `clearstatcache()` no topo do
+   diagnostico E O PORTAO JUNTO — "senao a linha e retirada no primeiro dia em
+   que alguem a achar redundante", que foi a licao do despacho do `realpath('')`.
+   O portao modelo citado la e o `teste-rotas.php` da rodametria, e ele NAO foi
+   copiado linha a linha de proposito: metade dele (os tres codigos de erro da
+   parede do token) mede uma casca cuja fonte de token nao estava conferida no
+   chao, e a desta ilha esta — o `permission_callback` daqui devolve bool, nao
+   codigo. O que foi copiado e o que ele MEDE, com as reguas desta casca. */
+cura_zerar( $arq, $caido );
+$rep = cdm_casca_reparar_rotas();
+cura_ok( ! empty( $rep['reparado'] ), 'o reparo devolve reparado=true no mundo medido das seis quedas', var_export( $rep['reparado'], true ) );
+cura_ok( empty( $rep['antes']['htaccess']['tem_wordpress'] ) && ! empty( $rep['depois']['htaccess']['tem_wordpress'] ), 'o antes diz false e o depois diz true — o campo e medicao, nao afirmacao', 'false -> true' );
+cura_ok( (int) $rep['antes']['htaccess']['bytes'] < (int) $rep['depois']['htaccess']['bytes'], 'o antes e o depois trazem tamanhos DIFERENTES (a afirmacao que reprovava sem clearstatcache)', $rep['antes']['htaccess']['bytes'] . ' < ' . $rep['depois']['htaccess']['bytes'] );
+cura_ok( (int) $rep['antes']['htaccess']['linhas_rewrite'] < (int) $rep['depois']['htaccess']['linhas_rewrite'], 'e linhas de Rewrite* tambem crescem', $rep['antes']['htaccess']['linhas_rewrite'] . ' -> ' . $rep['depois']['htaccess']['linhas_rewrite'] );
+
+/* O SEGREDO DO SERVIDOR NAO SAI NA RESPOSTA (29.3, literal). O mundo fabricado
+   carrega uma linha que nao pode aparecer em lugar nenhum do JSON. */
+$segredo = 'SetEnvIf Request_URI SENHA-DO-TERCEIRO-NAO-PODE-SAIR';
+cura_zerar( $arq, "# BEGIN NFD EPC\n" . $segredo . "\nRewriteEngine On\n# END NFD EPC\n" );
+$json = json_encode( cdm_casca_diagnostico_rotas() );
+cura_ok( false === strpos( $json, 'SENHA-DO-TERCEIRO' ), 'o conteudo do .htaccess NAO sai na resposta da rota (29.3)', 'linha-segredo ausente do JSON' );
+cura_ok( false !== strpos( $json, 'NFD EPC' ), 'mas os NOMES dos blocos saem, que e o que a 29.3 manda sair', 'NFD EPC presente' );
+
+/* O ARQUIVO QUE NAO EXISTIA E QUE O REPARO CRIOU. O despacho de 03/11 nomeia
+   este caso: `reparado` e calculado sobre `existe`, e com o cache de stat velho
+   ele saia `false` DEPOIS de a porta ter sido consertada — reprovacao falsa, que
+   a 20.5 diz ser a pior das duas, porque quem a le abre chamado na HostGator por
+   um defeito que o reparo ja desfez. */
+cura_zerar( $arq, $caido );
+@unlink( $arq );
+clearstatcache( true, $arq );
+$d_sem = cdm_casca_diagnostico_rotas();
+cura_ok( empty( $d_sem['htaccess']['existe'] ), 'sem arquivo, o diagnostico diz que ele nao existe', 'existe=false' );
+file_put_contents( $arq, rtrim( $caido, "\n" ) . "\n\n" . cdm_teste_bloco_wordpress() . "\n" );
+$d_com = cdm_casca_diagnostico_rotas();
+cura_ok( ! empty( $d_com['htaccess']['existe'] ) && (int) $d_com['htaccess']['bytes'] > 0, 'e o retrato seguinte, na MESMA requisicao, ve o arquivo que nasceu', $d_com['htaccess']['bytes'] . ' bytes' );
+
+echo "\nMUNDO J — sem as ferramentas de wp-admin, em PROCESSO SEPARADO\n";
+
+/* `function_exists()` nao se desfaz, entao o ramo da recusa mora numa filha com
+   CDM_SEM_ADMIN=1. Um `reparado: true` aqui seria um verde dizendo que a porta
+   foi consertada quando o flush(true) virou flush(false) e nao encostou no
+   arquivo — e e a 4a coisa que o portao modelo da rodametria mede. */
+if ( '1' === (string) getenv( 'CDM_SEM_ADMIN' ) ) {
+	cura_zerar( $arq, $caido );
+	$r = cdm_casca_reparar_rotas();
+	$conteudo = (string) file_get_contents( $arq );
+	$falhou = ( empty( $r['reparado'] ) && ! empty( $r['motivo'] ) && false === strpos( $conteudo, 'BEGIN WordPress' ) ) ? 0 : 1;
+	echo '  filha CDM_SEM_ADMIN=1: reparado=' . var_export( $r['reparado'], true ) . ', motivo=' . var_export( $r['motivo'], true ) . "\n";
+	@unlink( $arq ); @rmdir( $dir );
+	exit( $falhou );
+}
+$cmd = escapeshellcmd( PHP_BINARY ) . ' ' . escapeshellarg( __FILE__ ) . ' ' . escapeshellarg( $raiz ) . ' 2>&1';
+$saida_filha = array();
+$codigo_filha = 1;
+exec( 'CDM_SEM_ADMIN=1 ' . $cmd, $saida_filha, $codigo_filha );
+$texto_filha = implode( "\n", $saida_filha );
+cura_ok( 0 === (int) $codigo_filha, 'sem save_mod_rewrite_rules o reparo RECUSA, com motivo, e NAO escreve no arquivo', 'filha saiu ' . (int) $codigo_filha );
+cura_ok( false !== strpos( $texto_filha, 'wp-admin' ), 'e o motivo da recusa nomeia wp-admin/includes', 'motivo nomeado na filha' );
+
+echo "\nMUNDO K — A MUTACAO: tirar o clearstatcache do diagnostico tem de REPROVAR\n";
+
+/* TRAVA QUE NUNCA FALHOU NAO E TRAVA. A linha que este bloco acrescentou ao
+   diagnostico e de UMA palavra, e e exatamente o tipo de linha que a proxima
+   passada apaga por achar redundante — foi a licao do despacho do `realpath('')`,
+   citada no despacho de 03/11 que manda copiar o portao junto com a linha.
+   Aqui a mutacao e feita de verdade: os snippets sao copiados para um diretorio
+   temporario, a linha e retirada, e o portao roda contra a casca mutante numa
+   filha que tem de SAIR 1. */
+/* A FILHA MUTANTE NAO REFAZ ESTE MUNDO, e esta guarda nao e detalhe: sem ela o
+   portao se chama a si mesmo sem fundo — a filha mutante copia snippets JA sem a
+   linha, entao a afirmacao "achou a linha" falha nela e ela segue adiante para
+   gerar OUTRA filha, para sempre. Medido doendo em 12/11/2026, na primeira
+   execucao deste mundo. */
+if ( '1' === (string) getenv( 'CDM_MUTANTE' ) ) {
+	printf( "\n%d afirmacoes, %d falha(s)\n", $feitos, $falhas );
+	echo $falhas ? "REPROVADO\n" : "APROVADO\n";
+	@unlink( $arq ); @rmdir( $dir );
+	exit( $falhas ? 1 : 0 );
+}
+$mut = sys_get_temp_dir() . '/cdm-mut-' . getmypid();
+@mkdir( $mut . '/snippets', 0777, true );
+$copiados = 0;
+foreach ( glob( $raiz . '/snippets/*.php' ) as $f ) {
+	$corpo = (string) file_get_contents( $f );
+	if ( false !== strpos( $corpo, 'clearstatcache( true, $arquivo );' ) ) {
+		$corpo = str_replace( 'clearstatcache( true, $arquivo );', '/* MUTANTE: linha retirada */', $corpo );
+		$copiados++;
+	}
+	file_put_contents( $mut . '/snippets/' . basename( $f ), $corpo );
+}
+cura_ok( 1 === $copiados, 'a mutacao achou a linha do clearstatcache no diagnostico, uma vez', $copiados . ' ocorrencia(s)' );
+$saida_mut = array();
+$codigo_mut = 0;
+exec( 'CDM_MUTANTE=1 ' . escapeshellcmd( PHP_BINARY ) . ' ' . escapeshellarg( __FILE__ ) . ' ' . escapeshellarg( $mut ) . ' 2>&1', $saida_mut, $codigo_mut );
+cura_ok( 0 !== (int) $codigo_mut, 'o portao REPROVA a casca sem o clearstatcache — a trava morde', 'filha mutante saiu ' . (int) $codigo_mut );
+cura_ok( false !== strpos( implode( "\n", $saida_mut ), 'cache de stat' ), 'e reprova NA afirmacao do cache de stat, nao por acidente em outra', 'mundo H acusou' );
+foreach ( glob( $mut . '/snippets/*.php' ) as $f ) { @unlink( $f ); }
+@rmdir( $mut . '/snippets' ); @rmdir( $mut );
+
 /* -------------------------------------------------------------- fim do mundo */
 
 @unlink( $arq );

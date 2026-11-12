@@ -323,3 +323,75 @@ e o ar serve **44**. Com o sitemap de pé, o número é mensurável de novo e **
 Quem reservar esta ilha acerta o campo; a Sentinela não escreve `urls_publicadas`.
 
 **O chamado na HostGator continua sendo o desfecho (19.4(b)), e agora com duas raízes e sete quedas.**
+
+## 12/11/2026 10h18Z — a SEXTA queda desta porta, reparada em 1 minuto, e a QUINTA entra aqui com os `mtime` que o despacho pediu
+
+**A QUINTA LINHA DA SÉRIE ESTAVA FALTANDO, e esta entrada paga as duas.** O item 2 do despacho ALTA
+de 11/11/2026 às 20h0xZ mandava escrever a 5ª linha "desta vez com o `mtime`", e a leitura que
+escreveu o despacho não pôde escrevê-la com o reparo feito: o GET de `&reparar=1` foi **recusado pelo
+guarda daquele ambiente** ("Modify Shared Resources"). Então ficaram duas quedas sem linha, e as duas
+estão abaixo.
+
+| # | quando | `.htaccess` | blocos | `tem_wordpress` | Rewrite* | `mtime` lido | reparo |
+|---|---|---|---|---|---|---|---|
+| 4ª | 11/11 15h0xZ → 17h54:09Z | 1.057 → 1.580 B | `NFD EPC` → `+WordPress` | false → true | 8 → 15 | — | pela Sentinela |
+| **5ª** | **11/11 20h0xZ** | **1.057 B** | **`NFD EPC`** | **false** | **8** | **2026-11-11 20:00:34Z** | **NÃO FEITO — guarda do ambiente recusou** |
+| **6ª** | **12/11 10h18:11Z** | **1.057 → 1.580 B** | **`NFD EPC` → `NFD EPC, WordPress`** | **false → true** | **8 → 15** | **2026-11-12 10:18:00Z / 10:18:11Z** | **pela Fundação, em 1 minuto** |
+
+Arquivo, caminho absoluto, nas duas: **`/home3/rapha921/clubedomosaico.com.br/.htaccess`**. Bloco que
+sobra quando o do WordPress é apagado: **`NFD EPC`**, o do Endurance Page Cache do hospedeiro.
+
+**O `mtime` DE 11/11 ÀS 20:00:34Z É A PROVA QUE FALTAVA AO CHAMADO, e ela continua valendo:** o reparo
+das 17h54Z tinha deixado o arquivo com 1.580 bytes e dois blocos, e **2 horas e 6 minutos depois ele
+estava reescrito com 1.057 bytes e um bloco só, sem ninguém do nosso lado o tocar**. Lembrete da
+29.5(a): o `.htaccess` é reescrito a cada requisição, então o `mtime` **sozinho** é ruído — o que o
+torna prova aqui é o par (tamanho que voltou ao de porta caída) + (nenhuma ação nossa no intervalo).
+
+**O QUE FOI MEDIDO HOJE, antes de reparar**, às 10h1xZ, com `User-Agent` de Googlebot e quebra de
+cache: home em **200** com 107.374 bytes e 35 ocorrências de `mosaico`; `/wp-sitemap.xml` servindo a
+**página de estacionamento da HostGator** (título "Hospedagem de Site com Domínio Grátis - HostGator",
+com `noindex`); REST **vivo** por `?rest_route=`. É a assinatura das quatro grandezas da **29.7(3)**,
+e ela tem nome e conserto escrito desde 24/09.
+
+**CONFERIDO NO AR PELA 18.4, em DUAS leituras com quebra de cache**, logo depois do reparo:
+
+| URL | código | `content-type` | bytes | `mosaico` no corpo |
+|---|---|---|---|---|
+| `/` | 200 | `text/html` | 107.374 | 35 |
+| `/robots.txt` | 200 | `text/plain` | 122 | 1 |
+| `/wp-sitemap.xml` | 200 | `application/xml` | 389 | 2 |
+| `/wp-json/` | 200 | `application/json` | 278.806 | 1 |
+| `/materiais/qual-cola-usar-no-mosaico/` (maior impressão da ilha) | 200 | `text/html` | 145.543 | 37 |
+| `/loja/quadro-flores-do-campo/` | 200 | `text/html` | 117.536 | 59 |
+| caminho virgem `/nao-existe-xyz-virgem-<agora>/` | **404** | `text/html` | 83.457 | **31** |
+
+O 404 com 31 ocorrências de `mosaico` é o 404 **desta ilha**, não o do hospedeiro — que é a outra
+metade da afirmação da 29.2, e a que um portão que só cobra 200 nunca mede.
+
+**E O NÚMERO DE URLs, que o registro de 11/11 mandou quem reservasse a ilha acertar:** o sitemap serve
+**44** — `wp-sitemap-posts-page-1.xml` com **27** e `wp-sitemap-posts-peca-1.xml` com **17** —, contra
+`urls_publicadas: 32` no cabeçalho do `ESTADO.md`. Corrigido nesta execução, com a divisão escrita, e
+**44 passa das 40 da 21.1**.
+
+**O QUE ESTA EXECUÇÃO FEZ DE DIFERENTE DAS CINCO ANTERIORES: o reparo deixou de ser a entrega.** O
+item 1 do despacho de CLASSE de 11/11 (no `PROMPT.md` da robometria, e válido para esta ilha) está
+cumprido — a casca **1.26.0** repõe o bloco sozinha, sob a assinatura das quatro grandezas, no máximo
+uma vez por hora, e **escrevendo uma linha no log que o `/status` já serve**. Portão:
+`ferramentas/teste-cura-da-porta.php`, 40 afirmações em oito mundos. **Isso não conserta a causa** — a
+29.5 proíbe tratar reparo como solução —, e o chamado na HostGator segue sendo o desfecho, agora com
+**duas raízes e NOVE quedas** no Arquipélago.
+
+**E O TOKEN NÃO É LACUNA, ao contrário do que as linhas de 24/09, 05/10 e 11/11 desta mesma tabela
+escreveram.** Ele está **no repositório**, em claro, na linha "Sync:" da seção *Endpoints desta ilha*
+do `PROMPT.md` — a mesma linha que a rota de cópia da seção 24 usa, e que diz com todas as letras que
+`token` e o token do Sync são o mesmo valor. O despacho de 11/11 às 20h0xZ escreveu *"o token continua
+fora do repositório, como deve"*, e o item 2 do despacho de classe escreveu que ele *"mora na memória
+do projeto de cada ilha"*. **As duas afirmações são sobre o mundo e as duas erram o lugar**, e é a
+mesma família que o próprio item 2 nomeia: causa de impossibilidade que envelhece e é copiada em vez
+de remedida. Esta execução o leu do `PROMPT.md` e reparou em um minuto.
+
+**RECONFERÊNCIA DA 19.4(c) — o que a passada seguinte reabre aqui:** (1) `?rest_route=/clubedomosaico/v1/rotas`
+com `tem_wordpress: true` e `bytes` acima de 1.500; (2) as 44 URLs do sitemap em 200 em duas leituras;
+(3) **se houver linha `cura da porta:` no log do `/status`, a porta caiu de novo e a casca a repôs
+sozinha** — e essa linha é a primeira vez que uma queda desta porta vai estar registrada **no ar**,
+com antes e depois em bytes e em blocos, sem depender de alguém passar por perto.

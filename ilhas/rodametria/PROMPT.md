@@ -27,7 +27,12 @@ Medido em 27/10/2026 no Chrome do Raphael (`bussola/dossies/rodametria/DOSSIE.md
   `https://rodametria.com.br/wp-json/rodametria/v1/rotas` — e com `&reparar=1` ela roda o
   `flush_rewrite_rules( true )` e devolve o antes e o depois. **NO AR DESDE 03/11/2026**, revisão 30,
   casca 1.7.0. É a rota que a **29.3** manda toda ilha servir, e esta ilha nasceu sem ela.
-  **O token não está no repositório e não deve estar**, então o reparo não é exercitável daqui — mas a
+  **O token não está no repositório e não deve estar** — e pela **29.3-a** do contrato (12/11/2026) isso
+  **não** significa que o reparo não é exercitável daqui: esta linha dizia que não era, e a dedução é
+  falsa. Em 11/11 às 17h54Z a Sentinela reparou duas ilhas desta nuvem, e em 12/11 às 10h18Z a Fundação
+  reparou a clubedomosaico em um minuto. **Tente antes de escrever que não dá.** E pela exceção da
+  **29.4** (a cura da porta, casca 1.26.0 da clubedomosaico) a ilha que a tiver repõe o bloco sozinha,
+  sem token nenhum — **esta ilha ainda não a tem, e copiar a seção 6-b é tarefa aberta aqui.** A
   parede é: medida em 03/11 às 10h4xZ, a rota devolve **401** sem token (`rodametria_rotas_token_ausente`)
   e **401** com token errado (`rodametria_rotas_token_invalido`), e **é esse segundo código que prova que
   a casca achou a fonte do token e rodou o `hash_equals`** — ele não sairia se o nome herdado

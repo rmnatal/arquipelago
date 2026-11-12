@@ -944,6 +944,42 @@ instrumento é o único dos dois que a fábrica controla.
 > **`ilhas/_modelo/`** (item 3).
 
 
+### prioridade NORMAL — CINCO PÁGINAS DA LOJA DA CLUBEDOMOSAICO SÃO O MESMO ORATÓRIO, COM A MESMA DESCRIÇÃO, E ISSO É DECISÃO DA ARTESÃ E NÃO CONSERTO DE CÓDIGO
+
+12/11/2026 às 10h4xZ — **RAPHAEL** — Achado pelo `conferir-no-ar.py` desta ilha, na passada que fechou o
+despacho ALTA da porta: **530 afirmações, 1 falha**, e a falha é *"[description] nenhuma se repete entre
+páginas"*. As duas páginas acusadas são `/loja/oratorio-em-mosaico-com-a-imagem-da-nossa-senhora-aparecida-2/`
+e `.../-3/`.
+
+**E A VARREDURA ACHOU CINCO, não duas.** Lidas no ar, as `<meta name="description">` saem assim:
+
+| URL | description (início) |
+|---|---|
+| `/loja/oratorio-com-a-imagem-da-nossa-senhora-aparecida/` | "Oratório com a imagem da Nossa Senhora Aparecida, peça de mosaico fe…" |
+| `/loja/oratorio-com-a-imagem-da-nossa-senhora-aparecida-2/` | **idêntica à de cima** |
+| `/loja/oratorio-em-mosaico-com-a-imagem-da-nossa-senhora-aparecida/` | "Oratório em mosaico com a imagem da Nossa Senhora Aparecida, peça de…" |
+| `/loja/oratorio-em-mosaico-com-a-imagem-da-nossa-senhora-aparecida-2/` | **idêntica à de cima** |
+| `/loja/oratorio-em-mosaico-com-a-imagem-da-nossa-senhora-aparecida-3/` | **idêntica à de cima** |
+
+A loja serve **17 peças publicadas** (`/wp-json/clubedomosaico/v1/loja`, medido hoje). **Cinco delas, quase
+um terço, são o mesmo oratório** — os sufixos `-2` e `-3` são o que o WordPress faz quando um título é
+cadastrado de novo.
+
+**NÃO CONSERTEI, e são três motivos independentes:** (a) **não é defeito de código** — a `description` é
+gerada do título da peça, e gerar a mesma frase para o mesmo título é o comportamento certo; o que está
+duplicado é o **catálogo**; (b) apagar ou juntar páginas da artesã é **escolher entre duas opções
+defensáveis** (ela pode ter cinco oratórios de verdade, com fotos diferentes), e a **19.2** manda despachar
+isso; (c) as cinco URLs **estão no índice** e mexer em URL que já tem impressão é a **12.1**.
+
+**O CUSTO, dito sem drama:** cinco páginas disputando a mesma consulta é canibalização — o Google escolhe
+uma e as outras diluem. Não quebra nada hoje; é posição que não se ganha.
+
+**pronto quando:** a artesã (ou você) disser, para o grupo dos cinco, **quais são peças distintas** — e
+essas ganham título e descrição próprios, com o que as diferencia — e **quais são cadastro repetido** — e
+essas saem com `301` para a que fica, nunca apagadas sem redirecionamento, porque três delas já têm
+endereço conhecido pelo Google. A Fundação executa os `301` e os títulos depois dessa frase; antes dela,
+não há o que executar.
+
 ### prioridade NORMAL — o MODELO da 29.3 devolve o retrato VELHO depois do reparo, e as DUAS ilhas que servem a rota estão com ele
 
 03/11/2026 — FUNDAÇÃO — Achado na rodametria, **no chão e antes do ar**, pelo portão
@@ -1006,6 +1042,35 @@ guardado, não sangramento — a mesma classificação, pelo mesmo motivo, do de
 
 **Pronto quando:** as duas ilhas tiverem a linha e o portão rodando verde dentro da `bancada.py` de
 cada uma, registrado no `REGISTRO.md` da própria ilha.
+
+> **A METADE DA CLUBEDOMOSAICO ESTÁ FECHADA EM 12/11/2026, às 10h4xZ, pela execução da Fundação que
+> reservou a ilha para o despacho ALTA da porta. Segue aberta a metade da ROBOMETRIA.**
+>
+> **E ELA FOI REMEDIDA EM VEZ DE COPIADA, o que é a parte que vale.** Esta execução não tinha lido este
+> despacho quando achou o defeito: ela estava escrevendo a cura da porta (item 1 do despacho de classe
+> de 11/11, hoje a exceção nomeada da **29.4**), e a primeira afirmação do portão novo que tirou **dois
+> retratos na mesma requisição** reprovou com `255 bytes` ao lado de `[NFD EPC, WordPress]` — tamanho de
+> porta caída e conteúdo de porta de pé no mesmo retrato. **O diagnóstico dos dois lados chegou ao mesmo
+> arquivo e à mesma linha**, o que é a melhor notícia que um despacho de risco guardado pode receber:
+> ele não dependia de ninguém o ter lido.
+>
+> **O QUE FOI FEITO:** `clearstatcache( true, $arquivo );` no topo de `cdm_casca_diagnostico_rotas()`
+> (casca **1.26.0**, revisão 94 no ar e conferida pelo portão da 20.4), com o comentário nomeando o
+> mundo medido. **E O PORTÃO FOI JUNTO**, que é o que este despacho diz importar mais que a linha:
+> `ilhas/clubedomosaico/ferramentas/teste-cura-da-porta.php`, **53 afirmações em onze mundos**, com
+> **a mutação que retira a linha reprovando de verdade, em processo filho** — e reprovando *na*
+> afirmação do cache de `stat`, não por acidente em outra.
+>
+> **O `teste-rotas.php` da rodametria NÃO foi copiado linha a linha, e o motivo está escrito:** metade
+> dele mede a parede do token com **três códigos de erro distintos**, que existem lá porque a fonte do
+> token daquela casca era herdada e não conferida no chão. A desta ilha é conferida, e o
+> `permission_callback` daqui devolve `bool`. O que foi copiado é **o que ele mede**, com as réguas
+> desta casca: o segredo do servidor que não sai no JSON (29.3, com linha-segredo fabricada), o mundo
+> medido das quedas reprovando (`tem_wordpress: false` no `.htaccess` de bloco único `NFD EPC`), o
+> antes e o depois **diferentes**, o ramo "sem as ferramentas de admin" **em processo separado** (porque
+> `function_exists()` não se desfaz), e o arquivo que não existia e que o reparo criou — que é o caso
+> que este despacho nomeia como **reprovação falsa**, a que faz alguém abrir chamado na HostGator por um
+> defeito que o reparo já desfez.
 
 
 ### ~~prioridade NORMAL — a rodametria é a única ilha no ar SEM função de purga de cache do hospedeiro~~ — **FECHADO EM 03/11/2026 às 13h4xZ, CONFERIDO NO AR PELA 18.4**
@@ -1635,6 +1700,33 @@ com nome e endereço.
 quem encontrar a porta no chão (`?rest_route=/clubedomosaico/v1/rotas&token=<token do Sync>&reparar=1`), e cada
 reparo escreve uma linha em `ilhas/clubedomosaico/dados/consertos.md`. **A série é o que sustenta o chamado** —
 duas linhas já valem mais que a primeira, e uma terceira fecha qualquer dúvida sobre ser acaso.
+
+> **ATUALIZADO EM 12/11/2026 às 10h4xZ — SÃO NOVE QUEDAS, E O INTERVALO ENTRE AS DUAS ÚLTIMAS FOI DE 14
+> HORAS. O CHAMADO GANHOU A PROVA QUE FALTAVA E A FÁBRICA PAROU DE DEPENDER DELE PARA FICAR NO AR.**
+>
+> **A PROVA, e é um par de números e não uma impressão:** o reparo de **11/11 às 17h54Z** deixou o
+> `.htaccess` de `/home3/rapha921/clubedomosaico.com.br/` com **1.580 bytes e dois blocos**. Às
+> **20:00:34Z do mesmo dia** — `mtime` lido pela rota da 29.3 — ele estava com **1.057 bytes e um bloco
+> só, `NFD EPC`**, e **ninguém do nosso lado o tocou nesse intervalo**. É a primeira vez que a série tem
+> um **horário** em que o arquivo foi reescrito sem ação nossa, e é exatamente o que o item 4 acima pedia
+> ("existe UM evento que gravou o arquivo sem o bloco"). **A pergunta do item 3 pode agora vir com hora:**
+> *o que, do lado da HostGator, reescreveu `/home3/rapha921/clubedomosaico.com.br/.htaccess` em
+> 2026-11-11 por volta de 20:00:34 UTC, deixando apenas o bloco `NFD EPC`?*
+>
+> **AS QUEDAS, atualizadas:** clubedomosaico **24/09, 05/10, 08/10, 11/11 manhã, 11/11 noite e 12/11**;
+> robometria **30/10 e 11/11**; rodametria **05/11**. **Nove.** O intervalo entre quedas desta ilha
+> encurtou de 11 dias para **14 horas**. As duas raízes continuam sendo
+> `/home3/rapha921/clubedomosaico.com.br/.htaccess` e `/home3/rapha921/robometria.com.br/.htaccess`.
+>
+> **E A SEGUNDA METADE — "ninguém rodou o comando" — DEIXOU DE SER VERDADE NESTA ILHA, por código e não
+> por disciplina.** A casca **1.26.0** (seção 6-b, exceção nomeada da **29.4**) repõe o bloco sozinha na
+> primeira requisição depois da queda, sob a assinatura das quatro grandezas da 29.7(3), no máximo uma
+> vez por hora, e **escrevendo uma linha no log que o `/status` já serve** com o antes e o depois em
+> bytes e em blocos. **Isso não responde nada à HostGator** — a 29.5 proíbe tratar reparo como solução,
+> e o chamado segue aberto exatamente como está. O que muda é que a ilha para de passar dias no chão
+> enquanto a resposta não vem, e que **a próxima queda vai estar registrada no ar**, com hora e números,
+> sem depender de alguém passar por perto. **A robometria e a rodametria ainda não têm a cura, e copiar
+> a seção 6-b é tarefa aberta nas duas.**
 
 **E A SEGUNDA METADE DISTO NÃO É DA HOSTGATOR, É NOSSA — as duas quedas demoraram a ser vistas pelo mesmo
 motivo: ninguém rodou o comando.** A decisão sua de 28/09 já manda a ronda técnica diária rodar em **toda** ilha

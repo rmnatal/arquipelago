@@ -3,7 +3,17 @@ ilha: clubedomosaico
 estado: nascendo
 prioridade: 1
 piso: atingido          # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md. MUDADO DE `abaixo` PARA `atingido` PELA LEITURA SEMANAL DE 2026-11-11, que é quem decide este campo (21.6) — nunca a Fundação de cabeça. O que ela mediu: 44 URLs no ar (passa das 40 da 21.1) e indexação desde pelo menos 10/09/2026, então os 21 dias da 21.1 fecharam há muito. Com isso a 21.8 deixa de suspender a série nesta ilha e a 14.6 e a 14.8 voltam a valer. ATENÇÃO: destravar o piso NÃO autoriza leva nova enquanto o `foco.md` nomear a rodametria (1.2).
-urls_publicadas: 32        # 31 -> 32 em 12/10/2026 17h5xZ: a SEXTA filha de /materiais/acabamento/,
+urls_publicadas: 44        # 32 -> 44 em 12/11/2026 10h4xZ, CONTADO NO AR e nao estimado, pela execucao
+                           # que reservou a ilha para o despacho ALTA da porta: o wp-sitemap.xml serve
+                           # DOIS sub-sitemaps, `wp-sitemap-posts-page-1.xml` com 27 e
+                           # `wp-sitemap-posts-peca-1.xml` com 17 — 44, e `/wp-json/clubedomosaico/v1/loja`
+                           # confirma as 17 pecas publicadas. A divergencia 32 x 44 estava aberta desde
+                           # 28/10 e o registro de 11/11 17h54Z mandou quem reservasse a ilha acerta-la;
+                           # ela nao era mensuravel nos dois dias em que o sitemap servia 404. 44 passa
+                           # das 40 da 21.1. E O NUMERO TEM UMA RESSALVA QUE NAO E DE MEDICAO: 5 das 17
+                           # pecas sao o MESMO oratorio (sufixos -2 e -3), despacho NORMAL novo em
+                           # dados/despachos.md para o Raphael — se elas virarem 301, este campo cai.
+                           # O comentario anterior, de 12/10/2026 17h5xZ: a SEXTA filha de /materiais/acabamento/,
                            # a TERCEIRA desta ilha em forma de PERGUNTA, e ela FECHA a categoria por
                            # PROPRIEDADE: o recorte dela e `pigmentado`, a ultima das nove
                            # propriedades com 3+ itens de lastro que nenhuma pagina no ar usava.
@@ -31,7 +41,7 @@ urls_publicadas: 32        # 31 -> 32 em 12/10/2026 17h5xZ: a SEXTA filha de /ma
                            # primeira vez que esta ilha serve a arvore inteira de TRES segmentos.
                            # contado no wp-sitemap.xml no ar em 24/09/2026 19h33Z: 12 em posts-page e 5 em posts-peca. O 13 anterior era de 14/09 e era a secao 4 em acao.
 primeira_indexacao: desconhecida
-ultima_execucao: 2026-10-23T19:43Z   # o item 1 do despacho da ronda de 23/10 FECHADO e conferido no ar (18.4): a filha do pigmentado serve o primeiro link de loja a 1.137 px contra o teto de 1.400 da 32.5, e a regua nova diz 22 de 22 paginas do molde dentro da 32.5. Revisao 93. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
+ultima_execucao: 2026-11-12T10:46Z   # DESPACHO ALTA DA PORTA FECHADO NOS ITENS 1 E 2, e o reparo deixou de ser a entrega: a casca 1.26.0 (secao 6-b) repoe o bloco do WordPress sozinha, sob a assinatura das quatro grandezas da 29.7(3), no maximo uma vez por hora, escrevendo uma linha no log que o /status ja serve com o antes e o depois em bytes e em blocos. Virou a excecao nomeada da 29.4 do contrato, mais a 29.3-a (o token nao e lacuna). Revisao 94 no ar, conferida pelo portao da 20.4: 14 linhas de item dizendo ok, 14 visiveis de 18 aplicados (a janela cortou 4, e isso esta DITO). Portao novo: teste-cura-da-porta.php, 53 afirmacoes em onze mundos, com a mutacao que retira o clearstatcache REPROVANDO. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada. || ANTERIOR 2026-10-23T19:43Z: o item 1 do despacho da ronda de 23/10 FECHADO e conferido no ar (18.4): a filha do pigmentado serve o primeiro link de loja a 1.137 px contra o teto de 1.400 da 32.5, e a regua nova diz 22 de 22 paginas do molde dentro da 32.5. Revisao 93. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
                                      # (a linha anterior dizia 20 de 20 passam a 32.5 no ar, de 21/10 19h12Z; a medicao independente da ronda de 23/10 achou 19 de 20, e e por isso que a regua desta ilha deixou de ser uma lista.)
                                      # QUE O CRITERIO DELE PERMITIA, e o que o mantinha fechado NAO era
                                      # o que estava escrito nele. Nenhuma URL nova (a ilha segue em 32),
@@ -115,7 +125,9 @@ ultima_execucao: 2026-10-23T19:43Z   # o item 1 do despacho da ronda de 23/10 FE
                                      # 06/10 envelhecida sete dias: com DOIS produtos saindo pela regra
                                      # 7 na mesma celula, o teste-f2.php media a saida de cada um contra
                                      # o texto do bloco INTEIRO. Passa a medir por PARAGRAFO do produto.
-executando_desde: 2026-11-12T10:17Z   # reservada as 10h17Z de 12/11/2026 pela Fundacao. FURA O FOCO da rodametria pela 1.2: despacho ALTA de 11/11 aberto e a ilha esta NO AR E QUEBRADA agora — sitemap e URLs internas servindo a pagina de estacionamento da HostGator, so a home responde WordPress. Oitava queda da mesma porta.
+executando_desde: null   # limpo as 10h46Z de 12/11/2026 pela propria execucao que reservou as 10h17Z. Reserva RENOVADA uma vez pela 1.1 no commit da casca (10h3xZ): o bloco passou de 40 minutos — reparo no ar, secao 6-b da casca, portao novo com processo filho e mutacao, duas secoes de contrato e tres arquivos de outra ilha.
+                         # UMA CORRECAO DE HONESTIDADE, porque ela foi para o `main` num commit: o comentario da reserva das 10h17Z dizia "Oitava queda da mesma porta". Era a NONA do Arquipelago e a SEXTA desta ilha — clubedomosaico 24/09, 05/10, 08/10, 11/11 manha, 11/11 noite e 12/11; robometria 30/10 e 11/11; rodametria 05/11. O numero errado saiu de somar a queda de hoje ao total de 11/11 de manha em vez de ao de 11/11 de noite, que a propria leitura semanal daquele dia ja contava como oitava. Contagem certa no `dados/consertos.md` e no chamado de `dados/despachos.md`.
+                         # FURA O FOCO da rodametria pela 1.2: despacho ALTA de 11/11 aberto e a ilha estava NO AR E QUEBRADA as 10h1xZ — sitemap e URLs internas servindo a pagina de estacionamento da HostGator, so a home respondendo WordPress.
                          # execucao de 21/10 18:10Z-19:12Z FECHADA: o despacho do molde da 32.2 saiu INTEIRO — os tres grupos, 20 paginas, revisoes 90, 91 e 92, conferidas no ar uma a uma pela 18.4. Reserva RENOVADA tres vezes pela 1.1 (18:24Z, 18:39Z e 19:04Z), uma por grupo, porque o mutirao da 32.6-b nesta ilha passa de uma hora.
                          # limpo as 20h2xZ de 13/10/2026 pela propria execucao que reservou as 19h17Z. Ele foi reescrito as 19h51Z, e o motivo que eu escrevi naquele commit estava errado: dizia que o bloco tinha passado de 40 minutos e ele tinha 34. Renovar antes nao fere nada (o campo so fica mais novo), mas o motivo escrito tinha de ser verdade — e e o mesmo deslize que o comentario da execucao de 13h18Z, mais abaixo, registra.
                          # UMA CORRECAO DE HONESTIDADE, porque ela foi para o `main` num commit: no commit
@@ -132,6 +144,78 @@ bloqueada_por: null   # ACRESCENTADO em 30/09/2026: o campo FALTAVA neste cabeca
                       # para decidir a ilha da execucao — entao a leitora dele vinha usando o valor
                       # ausente como se fosse null por sorte do idioma, nao por o campo estar escrito.
 bloco_atual: |
+  A PORTA DE ENTRADA DESTA ILHA PAROU DE DEPENDER DE ALGUEM PASSAR POR PERTO.
+  Casca 1.26.0, revisao 94, e a excecao nomeada da 29.4 do contrato.
+
+  O QUE ACONTECEU HOJE, 12/11/2026. As 10h1xZ a ilha estava caida pela SEXTA vez
+  (NONA do Arquipelago), com a assinatura byte por byte das cinco anteriores:
+  .htaccess de /home3/rapha921/clubedomosaico.com.br/ com 1.057 bytes, bloco
+  unico `NFD EPC`, tem_wordpress false, 8 linhas de reescrita. Home em 200 e
+  servindo WordPress; /wp-sitemap.xml servindo a pagina de estacionamento da
+  HostGator. REPARADA em um minuto (10h18:11Z, 1.057 -> 1.580 bytes, 8 -> 15
+  linhas), conferida no ar em DUAS leituras com quebra de cache e User-Agent de
+  Googlebot: 6 URLs em 200 com content-type certo e o caminho virgem em 404 NA
+  PAGINA DESTA ILHA.
+
+  E O REPARO DEIXOU DE SER A ENTREGA, que e o unico jeito de a setima queda nao
+  custar o mesmo. A secao 6-b da casca repoe o bloco sozinha, e as cinco travas
+  sao o que a separa do gancho que a 29.4 recusou — a palavra de la era CALADA:
+  (1) dispara so com as quatro grandezas da 29.7(3) na mesa ao mesmo tempo;
+  (2) no maximo UMA tentativa por hora, gravada ANTES de agir (tentativa que so
+  se registra no sucesso vira laco de reescrita da raiz quando o flush morre no
+  meio); (3) toda tentativa escreve UMA linha no log que o /status ja serve, com
+  o antes e o depois em BYTES e em BLOCOS, nunca o conteudo do arquivo; (4) com
+  o bloco no lugar nao escreve nada e NAO DIZ NADA — conferido no ar hoje, zero
+  linha `cura da porta` no log com a porta de pe; (5) nao roda na rota que MEDE
+  a porta, porque curar no meio da propria medicao faria o retrato da Sentinela
+  nunca mostrar a queda, e foi o `mtime` de uma porta caida que deu prova ao
+  chamado na HostGator.
+
+  UM DEFEITO DO INSTRUMENTO FOI MEDIDO NO CAMINHO, E JA ESTAVA NO AR. O
+  diagnostico da 29.3 tirava `bytes` e `mtime` do cache de `stat` do PHP e
+  `blocos`/`tem_wordpress` de file_get_contents, que nao tem cache. DOIS
+  retratos na mesma requisicao — que e exatamente o que o `&reparar=1` faz —
+  devolviam um `depois` com 255 bytes e [NFD EPC, WordPress] dentro: tamanho de
+  porta caida ao lado de conteudo de porta de pe. Conserto: clearstatcache().
+  E ISSO FECHOU, SEM TER SIDO LIDO, A METADE DESTA ILHA DO DESPACHO NORMAL DE
+  03/11 em dados/despachos.md, que pedia essa linha e O PORTAO JUNTO. Segue
+  aberta a metade da robometria.
+
+  O PORTAO: ferramentas/teste-cura-da-porta.php, 53 afirmacoes em ONZE mundos,
+  e o mundo K e o que faz a trava morder — ele copia os snippets para um
+  diretorio temporario, RETIRA a linha do clearstatcache e exige que o portao
+  REPROVE, na afirmacao do cache de `stat` e nao por acidente em outra. Os
+  mundos de `mod_rewrite: false` e de raiz nao gravavel se medem com retrato
+  FABRICADO, e isso e argumento e nao atalho: este contentor roda como root e o
+  is_writable() do PHP responde true para diretorio 0444 — por isso a regra
+  inteira mora numa funcao PURA que recebe o retrato.
+
+  O QUE O PROXIMO PASSO DESBLOQUEADO E, por ordem:
+  (a) COPIAR A SECAO 6-b E O PORTAO para a robometria e a rodametria. As duas
+      caem pela mesma porta e nenhuma das duas tem a cura. A robometria tambem
+      deve a linha do clearstatcache (despacho NORMAL de 03/11).
+  (b) O DESPACHO NORMAL NOVO, para o Raphael, em dados/despachos.md: CINCO das
+      17 pecas da loja sao o MESMO oratorio, com description identica aos pares.
+      Nao e defeito de codigo e nao e da Fundacao decidir — pede 301 e titulo
+      proprio, e a frase da artesa vem antes.
+  (c) OS ITENS 3, 4 e 5 do despacho ALTA seguem abertos, cada um com o motivo
+      escrito: o chamado e do Raphael, o sitemap morto de 2019 exige credencial
+      de Search Console que NAO existe neste ambiente (conferido, nao suposto),
+      e o item 5 e uma ordem de NAO FAZER ate 18/11 — e a janela dele piorou,
+      porque a ilha ficou fora do ar mais uma vez entre 11/11 20h0xZ e hoje.
+  (d) NADA DE CONSTRUCAO NOVA AQUI ENQUANTO O FOCO FOR A RODAMETRIA: esta
+      execucao furou o foco pela excecao da 1.2 (despacho ALTO em ilha no ar e
+      quebrada) e a excecao se fechou com a porta de pe.
+
+  O QUE A PASSADA SEGUINTE RECONFERE AQUI (19.4-c): o retrato da 29.3 com
+  tem_wordpress true e bytes acima de 1.500; as 44 URLs do sitemap em 200 em
+  duas leituras; e — a parte nova — SE HOUVER LINHA `cura da porta:` NO LOG DO
+  /status, a porta caiu de novo e a casca a repos sozinha. Essa linha sera a
+  primeira queda desta porta registrada NO AR, com antes e depois em bytes e em
+  blocos, sem depender de ninguem passar por perto.
+
+  O BLOCO ANTERIOR, de 23/10/2026, segue abaixo como historico.
+
   O ITEM 1 DO DESPACHO DA RONDA DE 23/10 ESTA FECHADO E CONFERIDO NO AR PELA 18.4,
   e com ele o molde da secao 32 desta ilha esta no ar E CONFERIDO nas 22 paginas —
   o que, pela excecao da 1.2 de 21/10, faz esta ilha DEIXAR DE FURAR O FOCO: com a

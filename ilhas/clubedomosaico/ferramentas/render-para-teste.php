@@ -256,7 +256,13 @@ function cdm_teste_bloco_wordpress(){
    `__raiz_de_teste` sao os dois unicos pontos que um teste precisa mexer. */
 function get_home_path(){ return isset($GLOBALS['__raiz_de_teste']) ? rtrim($GLOBALS['__raiz_de_teste'],'/').'/' : ABSPATH; }
 function got_mod_rewrite(){ return !isset($GLOBALS['__mod_rewrite']) ? true : (bool) $GLOBALS['__mod_rewrite']; }
-function save_mod_rewrite_rules(){ return true; }
+/* `save_mod_rewrite_rules` SO EXISTE QUANDO CDM_SEM_ADMIN NAO E 1, e isto e o
+   unico jeito de medir o ramo da RECUSA: `carregar_ferramentas_de_admin()`
+   decide por `function_exists()`, que nao se desfaz depois de definida, entao o
+   ramo "sem ferramentas de admin" e o ramo "com" nao cabem no mesmo processo.
+   Quem quiser o ramo da recusa reexecuta uma filha com CDM_SEM_ADMIN=1. Mesma
+   forma do `teste-rotas.php` da rodametria (despacho NORMAL de 03/11/2026). */
+if ('1' !== (string) getenv('CDM_SEM_ADMIN')) { function save_mod_rewrite_rules(){ return true; } }
 function site_url($p=''){ return 'https://clubedomosaico.com.br'.$p; }
 /* O REDIRECIONAMENTO VIRA EXCECAO, e e o unico jeito de medir as acoes do painel
    nesta bancada: no site elas terminam em `wp_safe_redirect()` seguido de `exit`,
