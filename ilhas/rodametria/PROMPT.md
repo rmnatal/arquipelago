@@ -31,8 +31,13 @@ Medido em 27/10/2026 no Chrome do Raphael (`bussola/dossies/rodametria/DOSSIE.md
   **não** significa que o reparo não é exercitável daqui: esta linha dizia que não era, e a dedução é
   falsa. Em 11/11 às 17h54Z a Sentinela reparou duas ilhas desta nuvem, e em 12/11 às 10h18Z a Fundação
   reparou a clubedomosaico em um minuto. **Tente antes de escrever que não dá.** E pela exceção da
-  **29.4** (a cura da porta, casca 1.26.0 da clubedomosaico) a ilha que a tiver repõe o bloco sozinha,
-  sem token nenhum — **esta ilha ainda não a tem, e copiar a seção 6-b é tarefa aberta aqui.** A
+  **29.4** (a cura da porta) a ilha que a tiver repõe o bloco sozinha,
+  sem token nenhum — **e desde 12/11/2026 esta ilha A TEM: seção 14 da casca, versão 1.26.0, revisão
+  87, com as cinco travas do contrato e o portão `ferramentas/teste-cura-da-porta.php` (174
+  afirmações, 5 mutações cobradas).** `/casca` serve `tem_cura_da_porta` e `fonte_do_log_da_cura`, os
+  dois sem token, para a leitura no ar não precisar supor que ela está carregada. *(Esta linha dizia
+  "esta ilha ainda não a tem, e copiar a seção 6-b é tarefa aberta aqui", escrito em 12/11 de manhã
+  pela execução da clubedomosaico; fechado na tarde do mesmo dia.)* A
   parede é: medida em 03/11 às 10h4xZ, a rota devolve **401** sem token (`rodametria_rotas_token_ausente`)
   e **401** com token errado (`rodametria_rotas_token_invalido`), e **é esse segundo código que prova que
   a casca achou a fonte do token e rodou o `hash_equals`** — ele não sairia se o nome herdado
@@ -60,7 +65,25 @@ Medido em 27/10/2026 no Chrome do Raphael (`bussola/dossies/rodametria/DOSSIE.md
 
 ---
 
-## DESPACHO DA SENTINELA — 2026-11-11 (LEITURA SEMANAL, 19h4xZ–20h1xZ) — A ILHA ENTROU NA DISPUTA, E A PÁGINA DE COMPRA DE 673 MIL BUSCAS/MÊS ESTÁ FORA DO ÍNDICE COMO 404
+## DESPACHO DA SENTINELA — 2026-11-11 (LEITURA SEMANAL, 19h4xZ–20h1xZ) — A ILHA ENTROU NA DISPUTA, E A PÁGINA DE COMPRA DE 673 MIL BUSCAS/MÊS ESTÁ FORA DO ÍNDICE COMO 404 — **O ITEM 1 ESTÁ FECHADO EM 12/11/2026 às 13h2xZ; O QUE SOBRA NÃO É DA FUNDAÇÃO E ESTÁ LISTADO ABAIXO**
+
+> **REESCRITO PELA 18.3 EM 12/11/2026, e a 18.3 é literal: "a execução resolve os que couber, reescreve o despacho deixando SÓ os itens que faltam (com o motivo em uma linha) e fecha".** O texto original fica preservado embaixo, inteiro — o que esta nota faz é dizer, de cima, o que ainda está aberto e **de quem é**, porque despacho pela metade sem essa reescrita é o próximo trabalhador não tendo como saber o que já foi feito.
+>
+> **ITEM 1 — FECHADO, E A RESPOSTA JÁ MORAVA NOS ARQUIVOS DESTA ILHA.** O item pede uma linha em `dados/consertos.md` dizendo, **com número**, se houve ou não queda da porta em 05/11. **Houve**, e a linha está lá, datada de hoje. A janela: verde em **04/11 20h1xZ**, queda achada em **05/11 10h19Z** (8 das 9 URLs e as três portas da 29.2 em 404 na página da HostGator, só `/` em 200), **ainda no chão às 13h2xZ e às 19h17Z** de 05/11, levantada às **~02h3xZ de 06/11** pela mão do Raphael no cPanel. O rastreamento de **05/11 às 22:14:32** cai dentro dessa janela **nas duas leituras possíveis do fuso** (Brasília ⇒ 06/11 01h14Z, ~1h20 antes do reparo; UTC ⇒ 05/11 22h14Z, ~4h20 antes), então não há leitura do relógio que o ponha fora dela. **O 404 no índice é a porta de entrada, não a página.**
+>
+> **E O ATALHO QUE O ITEM OFERECIA RESPONDERIA ERRADO**, o que vale mais que a resposta: ele dizia *"se o `.htaccess` desta raiz tiver `tem_wordpress: true` e um `mtime` anterior a 05/11, a resposta é 'não houve'"*. O arquivo foi **reescrito** no conserto de 06/11, então o `mtime` dele é **posterior** a 05/11 e aquele ramo nunca poderia fechar — e ele exigia o token do Sync, que não está no repositório. **A resposta barata estava em `dados/consertos.md`, escrita pelas próprias execuções de 05/11.** É a família do `git log` raso da 1.1 e do "não havia navegador" da 33: instrumento novo procurado onde já havia registro.
+>
+> **E A PREMISSA DO ITEM ESTAVA CERTA NO MECANISMO E ERRADA NA ESCALA:** ele supõe *"uma queda de minutos nesta ilha em 05/11 não teria sido vista por ninguém"*. Foi vista por três execuções, com despacho ALTA e notificação ao Raphael às 10h2xZ, e durou **~16 horas**.
+>
+> **O QUE A FUNDAÇÃO FEZ ALÉM DE RESPONDER, porque responder não põe ilha no ar:** a casca passa a repor o bloco sozinha — **seção 14, casca 1.26.0, revisão 87**, a exceção nomeada da 29.4 com as cinco travas, portão `ferramentas/teste-cura-da-porta.php` com **174 afirmações e 5 mutações cobradas**. Era o item 1 do despacho de CLASSE de 11/11 (no `PROMPT.md` da robometria), que diz com todas as letras que esta ilha estava sem a cura. **Não é o conserto da causa (29.5):** o chamado na HostGator continua aberto e continua sendo o único lugar onde a causa se resolve.
+>
+> **O QUE CONTINUA ABERTO, E NENHUM DOS TRÊS É BLOCO DA FUNDAÇÃO:**
+>
+> 1. **ITEM 1, a metade do Search Console — É DA LEITURA DE 18/11.** A indexação de `/veiculos/bicicleta-eletrica/` foi **solicitada em 11/11 e o Google aceitou**; pela trava 2 da seção 12 quem confere não é quem pediu. **pronto quando:** a Inspeção de URL disser "O URL está no Google" e ela aparecer com ≥1 impressão.
+> 2. **ITEM 2 e PROPOSTA 3 — a ação correta é NÃO AGIR, e isso é regra e não preguiça.** A **12.1** proíbe mexer em texto de página que o Google ainda não viu. **pronto quando:** a leitura de 18/11 disser se `/veiculos/patinete-eletrico/` recebeu a primeira impressão dela.
+> 3. **PROPOSTA 2 (`moto elétrica`, 823 mil buscas/mês) — É DO RAPHAEL E NÃO É AUTOMATIZÁVEL.** Falta o **produto**, não a SERP: criar a etiqueta `rodametriamotoeletrica` em `mercadolivre.com.br/afiliados/adminlabel` e gerar os 5 links, porque o gerador do Mercado Livre tem reCAPTCHA (seções 7 e 25.6). A lista está em `dados/links-afiliado-pendentes.md`. **pronto quando:** aquele arquivo tiver os 5 encurtados com `url_produto` ao lado.
+>
+> **O texto original do despacho fica abaixo, preservado.**
 
 **O NÚMERO DA SEMANA, E ELE É BOM: as primeiras 8 impressões da vida desta ilha** (0 em 04/11), sitemap **Processado** com 10 páginas e última leitura do Google em 09/11, **9 das 10 URLs do sitemap no índice**. O conserto que a leitura de 04/11 fez — enviar o sitemap, que nunca tinha sido enviado — pagou em sete dias.
 

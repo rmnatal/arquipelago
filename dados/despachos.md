@@ -11,6 +11,96 @@ Prioridade: `alta` fura a fila da próxima execução do destinatário.
 
 ## ABERTOS
 
+### prioridade NORMAL — NA CLUBEDOMOSAICO A CURA DA PORTA CHECA ONDE ESCREVER **DEPOIS** DE REPARAR, E O COMENTÁRIO DELA PROMETE O CONTRÁRIO — a trava 3 da 29.4 fica furada por uma linha de ordem (medido na rodametria em 12/11/2026)
+
+**Destinatário: Fundação, na próxima execução da clubedomosaico.** Esta ilha não pode consertar
+aquela: a **seção 3** proíbe editar ilha que a execução não reservou.
+
+**O QUE FOI MEDIDO, lendo o código da irmã para copiá-lo.** Em
+`ilhas/clubedomosaico/snippets/clubedomosaico-casca.php`, seção 6-b, a função
+`cdm_casca_cura_registrar()` traz escrito: *"Devolve `false` quando o snippet do Sync não está
+carregado — **e aí a cura NÃO acontece**, porque cura que não conta é exatamente o que a 29.4
+recusou"*. **O código faz outra coisa.** No gancho `cdm_casca_cura_da_porta()` a ordem é:
+
+```
+$r = cdm_casca_reparar_rotas();     // o flush_rewrite_rules( true ) JA RODOU aqui
+...
+cdm_casca_cura_registrar( $linha ); // e so agora se descobre que nao ha onde escrever
+```
+
+Então, no mundo em que as funções do Sync não estiverem carregadas, **a porta é reescrita e a
+tentativa não é registrada em lugar nenhum** — que é precisamente a "porta que se conserta CALADA"
+da 29.4, com a trava 3 (*"toda tentativa escreve UMA linha no log"*) furada. **O comentário não
+descreve o código: ele descreve a intenção**, e comentário que declara mecanismo parece conferido e
+não mede nada (32.5-d).
+
+**POR QUE ISTO NÃO É TEÓRICO NAQUELA ILHA, e também não é urgente:** o snippet do Sync dela **está**
+no repositório, então as duas funções existem e o mundo nunca aparece hoje. Ele aparece no dia em que
+o Code Snippets desativar o snippet do Sync — que é exatamente a cicatriz da **20.4**, medida três
+vezes em quatro dias nesta fábrica. **Cura silenciosa justamente no dia em que o Sync caiu** é o pior
+dos dias para ela ser silenciosa.
+
+**O CONSERTO, e ele é mover uma pergunta para cima:** checar a fonte do log **antes** de tocar em
+qualquer coisa — antes do `update_option` da hora e antes do diagnóstico —, devolvendo uma cadeia que
+nomeia a recusa. **Está implementado e medido na rodametria** (seção 14 da casca dela, casca 1.26.0,
+passo 2 do gancho), com o **MUNDO J** do portão `ilhas/rodametria/ferramentas/teste-cura-da-porta.php`
+cobrando as quatro coisas que não podem acontecer sem lugar para escrever: arquivo intocado, `flush`
+não rodado, hora não queimada e a recusa se nomeando para quem chamou. **E a mutação M4 daquele
+portão reprova quem remover a checagem** — rodada no modo `sem-log`, que é o único mundo em que ela
+morde.
+
+**E A RECUSA NÃO PRECISA SER CALADA, que é a parte que faz a trava 3 valer:** a rodametria serve
+`fonte_do_log_da_cura` no `/casca`, **sem token**, ao lado de `tem_cura_da_porta`. Booleano e nome de
+caminho sobre função da própria ilha não é segredo do servidor (29.3), e é o que separa "a cura nunca
+escreveu linha nenhuma porque nunca precisou" de "a cura não achou onde escrever".
+
+**pronto quando:** na clubedomosaico a checagem da fonte do log acontecer **antes** de qualquer
+escrita, o portão `teste-cura-da-porta.php` dela ganhar o mundo que o cobra (arquivo intocado, log
+vazio, hora não queimada) **com uma mutação que reprove ao removê-la**, e o comentário da
+`cdm_casca_cura_registrar()` passar a descrever o que o código faz.
+
+### prioridade NORMAL — A ROBOMETRIA SEGUE SEM A CURA DA PORTA E SEM O `clearstatcache` DO DIAGNÓSTICO, E AGORA EXISTEM DUAS IMPLEMENTAÇÕES DE REFERÊNCIA COM UMA DIFERENÇA MEDIDA (12/11/2026)
+
+**Destinatário: Fundação, na próxima execução da robometria.** A seção 3 proíbe esta execução de
+editar aquela ilha, e `foco.md` nomeia a rodametria.
+
+**O que já estava escrito:** o item 1 do despacho de CLASSE da Sentinela de 11/11/2026 (no
+`PROMPT.md` da robometria) pede a cura, e o parágrafo dele diz *"a **rodametria** também está sem a
+cura"*. **Essa metade fechou hoje**, 12/11/2026: a rodametria está na casca **1.26.0**, revisão 87.
+**A robometria continua sem ela**, e continua também sem a outra metade que aquele mesmo despacho
+nomeia: o `clearstatcache()` no topo do diagnóstico da 29.3 (o despacho NORMAL de 03/11 neste mesmo
+arquivo). A clubedomosaico fechou as duas em 12/11 de manhã.
+
+**O QUE MUDOU PARA QUEM FOR COPIAR, e é por isso que este despacho existe em vez de "ver o de
+11/11":** há **duas** implementações no repositório agora, e elas **diferem num ponto medido** —
+
+- `ilhas/clubedomosaico/.../clubedomosaico-casca.php`, seção 6-b: a primeira, com 40 afirmações em
+  oito mundos. **Tem o defeito de ordem do despacho acima** (checa onde escrever depois de reparar).
+- `ilhas/rodametria/.../rodametria-casca.php`, seção 14: a segunda, com **174 afirmações e 5
+  mutações** no portão. Checa a fonte do log **antes** de agir, e serve `tem_cura_da_porta` e
+  `fonte_do_log_da_cura` no `/casca` sem token.
+
+**Copie a da rodametria**, e copie o portão junto — a 20.4 já escreveu, com estas palavras, que
+*"conserto escrito em registro de ilha conserta aquele dia"*. **Duas coisas do portão da rodametria
+não são enfeite e não se devem perder na cópia**, porque as duas nasceram dele reprovando quem o
+escreveu:
+
+1. **A mutação roda no mundo em que ela morde, não no mundo padrão.** As mutações M4 e M5 PASSARAM na
+   primeira passada. A M4 porque a trava que ela remove só decide algo no mundo sem log; rodada no
+   mundo comum, ela mede o mundo e não a trava.
+2. **O stub do `flush` escreve com `fopen`/`fwrite`/`fclose`, como o `insert_with_markers()` do
+   WordPress — e não com `file_put_contents`.** Medido neste PHP 8.3.6: `file_put_contents()` e
+   `unlink()` invalidam o cache de `stat` do próprio processo, e **só o `fwrite` sobre descritor
+   aberto o deixa velho**. Com o stub cômodo, o mundo do defeito de 03/11 **não se fabrica** e a
+   mutação que ataca o `clearstatcache` do diagnóstico passa. **Stub mais cômodo que a realidade
+   aprova o código que a realidade reprova.**
+
+**pronto quando:** a robometria servir `tem_cura_da_porta: true` no `/casca` dela, o diagnóstico da
+29.3 dela tiver o `clearstatcache()` no topo, e o portão `teste-cura-da-porta.php` dela estar na
+bancada com a mutação do `clearstatcache` **reprovando** — e, pela 18.4, com uma queda fabricada num
+mundo de teste mostrando a reposição e a linha no log.
+
+
 ### prioridade ALTA — O SYNC DEIXA A PÁGINA SEM O SNIPPET **PARA SEMPRE** EM ILHA SEM TOKEN, E O VISITANTE VÊ 200 — a cicatriz da 20.4 medida na rodametria, e a promessa de auto-cura da própria 20.4 MEDIDA E DESMENTIDA
 
 06/11/2026 às 20h1xZ — **RAPHAEL (item 1) e FUNDAÇÃO (item 2)** — Medido na rodametria, no desembarque
