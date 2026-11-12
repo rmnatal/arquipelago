@@ -23,9 +23,13 @@ O QUE ELE COBRA, e cada item e uma coisa que o dado de hoje NAO exercita:
      distinta por pagina, e repeti-la seria o mesmo link dezesseis vezes.
   3. TODO anuncio da vitrine NOMEADO na tabela (secao 7) e com saida de compra.
   4. `rel="sponsored noopener"` e `target="_blank"` em TODO link de afiliado.
-  5. O JSON-LD: nenhuma `Offer` com `url` vazia, e `availability` so onde ha
-     ficha — afirmar estoque sobre um resultado de busca e afirmar o que ninguem
-     mediu.
+  5. O JSON-LD: nenhuma `Offer` com `url` vazia; NENHUMA com `availability` ou
+     `priceValidUntil`; e TODA com `priceSpecification.validFrom` igual a data
+     de coleta daquela linha, que e a MESMA que a tela imprime ao lado do
+     numero. Ate 12/11/2026 este item dizia "`availability` so onde ha ficha", e
+     a frase estava meia certa: ficha EXISTIR nao e estar VENDENDO, e
+     `availability` nao tem onde pendurar a data da medicao. Ver a secao 7-b do
+     `rodametria-produto.php` e o `teste-oferta-datada.php`.
   6. A SECAO MAE (`/veiculos/`), ACRESCENTADA EM 02/11/2026 no bloco que a poe no
      molde. Ela nao aparecia aqui porque este portao descobre as paginas CASANDO o
      sitemap com os slugs da vitrine — e a mae nao e uma consulta, entao nao tem
@@ -383,6 +387,7 @@ def main():
         #     `Offer` e dado estruturado invalido que olho humano nao ve.
         ofertas = 0
         com_disponibilidade = 0
+        com_data = 0
         for bloco in re.findall(
                 r'<script type="application/ld\+json">(.*?)</script>', html, re.S):
             try:
@@ -396,7 +401,7 @@ def main():
             afirma(len(itens) == len(linhas),
                    "%s: o ItemList tem %d itens e a vitrine tem %d linhas"
                    % (caminho, len(itens), len(linhas)))
-            for it in itens:
+            for i, it in enumerate(itens):
                 of = ((it or {}).get("item") or {}).get("offers") or {}
                 if not of:
                     continue
@@ -405,22 +410,72 @@ def main():
                        "%s: uma Offer do JSON-LD esta com url vazia" % caminho)
                 if of.get("availability"):
                     com_disponibilidade += 1
+                # A OFERTA DATADA, NO AR — 12/11/2026. A regua e a mesma que o
+                # `teste-oferta-datada.php` aplica do chao sobre a funcao; aqui
+                # ela mede o que o WordPress SERVIU, que e a camada que a visao
+                # geral de IA ingere sem abrir a pagina (32.4-c). A data
+                # esperada sai da linha da vitrine de MESMA POSICAO — o
+                # `ItemList` e ordenado pela mesma lista, e a afirmacao de
+                # contagem logo acima e o que torna o pareamento por indice
+                # legitimo.
+                esperada = ""
+                if i < len(linhas):
+                    esperada = str(linhas[i].get("preco_colhido_em") or "")
+                afirma("priceValidUntil" not in of,
+                       "%s: uma Offer declara priceValidUntil — validade FUTURA que esta ilha "
+                       "nao mediu" % caminho)
+                if not esperada:
+                    afirma("priceSpecification" not in of,
+                           "%s: a linha %d nao tem data de coleta e a Offer serve uma "
+                           "priceSpecification" % (caminho, i + 1))
+                    continue
+                ps = of.get("priceSpecification") or {}
+                afirma(bool(ps),
+                       "%s: a Offer da linha %d serve `price` CRU, sem a data da coleta, "
+                       "enquanto a tela diz %r ao lado do mesmo numero"
+                       % (caminho, i + 1, linhas[i].get("preco_nota")))
+                if not ps:
+                    continue
+                com_data += 1
+                afirma(ps.get("@type") == "UnitPriceSpecification",
+                       "%s: a priceSpecification da linha %d nao e UnitPriceSpecification"
+                       % (caminho, i + 1))
+                afirma(ps.get("validFrom") == esperada,
+                       "%s: o `validFrom` da linha %d e %r e a data da coleta e %r"
+                       % (caminho, i + 1, ps.get("validFrom"), esperada))
+                afirma(ps.get("price") == of.get("price"),
+                       "%s: os dois `price` da Offer da linha %d discordam (%r e %r)"
+                       % (caminho, i + 1, of.get("price"), ps.get("price")))
+                # AS DUAS SUPERFICIES DIZEM A MESMA DATA, no HTML servido: a
+                # frase que o leitor le e o campo que a maquina recebe. Enquanto
+                # a data existia so em portugues, nao havia como afirmar isto.
+                br = "%s/%s/%s" % (esperada[8:10], esperada[5:7], esperada[0:4])
+                afirma(br in str(linhas[i].get("preco_nota") or ""),
+                       "%s: a nota da tela da linha %d (%r) nao diz a data que o JSON-LD serve "
+                       "(%s)" % (caminho, i + 1, linhas[i].get("preco_nota"), br))
+                afirma(br in corpo,
+                       "%s: a data %s do `validFrom` da linha %d nao aparece no corpo servido — "
+                       "a tela e o dado divergiram" % (caminho, br, i + 1))
         afirma(ofertas == len(linhas),
                "%s: o JSON-LD serve %d Offer(s) e a vitrine tem %d linhas"
                % (caminho, ofertas, len(linhas)))
-        # HOJE TODA LINHA TEM FICHA, entao toda Offer declara estoque. No dia em
-        # que uma ficha morrer, este numero cai — e esta linha e quem o mostra,
-        # em vez de o portao aprovar em silencio.
+        # ZERO, E ESTE ZERO E A REGRA E NAO UM ACIDENTE DO DADO DE HOJE.
+        # Ate 12/11/2026 esta afirmacao cobrava `availability` em toda linha com
+        # ficha. Ficha EXISTIR nao e estar VENDENDO: a garantia desta ilha e
+        # "nenhuma ficha foi medida esgotada na ULTIMA LEITURA" — afirmacao
+        # datada, e `availability` nao tem data. A ronda de 11/11/2026 achou UMA
+        # ficha esgotada entre 24.
         com_ficha = sum(1 for l in linhas if str(l.get("url") or "").strip())
-        afirma(com_disponibilidade == com_ficha,
-               "%s: %d Offer(s) declaram availability e %d linha(s) tem ficha — estoque de "
-               "resultado de busca e afirmacao sem medicao"
-               % (caminho, com_disponibilidade, com_ficha))
+        afirma(com_disponibilidade == 0,
+               "%s: %d Offer(s) declaram availability — promessa de estoque no presente do "
+               "indicativo sobre leitura de dias atras" % (caminho, com_disponibilidade))
+        afirma(com_data == ofertas,
+               "%s: %d de %d Offer(s) dizem a data do preco" % (caminho, com_data, ofertas))
 
         registro("%s: %d linha(s), %d com ficha, %d href vazio, piso da tabela %dx, a MESMA frase "
-                 "%dx nos cartoes do carrossel, %d Offer(s) (%d com availability)"
+                 "%dx nos cartoes do carrossel, %d Offer(s) (%d com availability, %d datadas)"
                  % (caminho, len(linhas), com_ficha, vazios, quantos, nos_cartoes, ofertas,
-                    com_disponibilidade))
+                    com_disponibilidade, com_data))
 
     conferir_a_mae(urls, fonte, ancoras)
 

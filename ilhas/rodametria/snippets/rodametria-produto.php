@@ -58,6 +58,14 @@
  * sai no `wp_head` e a folha no `wp_footer`. Foi o E-comercial duplo dentro de
  * `<script>` que derrubou cinco calculadoras da Aquametria em 08/09/2026.
  *
+ * 1.11.0 (12/11/2026) — A CAMADA DA MAQUINA DEIXA DE SER MENOS CUIDADOSA QUE A
+ * TELA. `availability: InStock` saiu das `Offer` (ficha EXISTIR nao e estar
+ * VENDENDO, e o campo nao tem onde pendurar a data da medicao) e o `price`
+ * ganhou `priceSpecification.validFrom` com a data da coleta, lida do campo ISO
+ * `preco_colhido_em` — a mesma fonte de onde a frase da tela e derivada. A
+ * oferta virou FUNCAO NOMEADA (`rdm_produto_oferta_de_linha()`) para poder ser
+ * chamada por portao sem rede, em vez de ser medida so depois do desembarque.
+ *
  * 1.2.0 (02/11/2026) — A MAE ENTROU NO MOLDE, e ela estava FORA dele desde que
  * nasceu. O portao de pixel desta ilha a listava como "sem componente de molde
  * nenhum", e o preco disso nao era feio: era que os 700 px da 32.5 NUNCA a
@@ -80,7 +88,16 @@
    E a familia do `height:44px` morto que a 32.5-d registra: comentario que
    declara um mecanismo parece conferido e nao mede nada. A constante fica, porque
    subi-la junto com o snippet e barato e e o rastro que a Robometria pagou para
-   aprender; o que sai e a frase que prometia um portao inexistente. O portao que
+   aprender; o que sai e a frase que prometia um portao inexistente.
+   E ESTE PROPRIO COMENTARIO ENVELHECEU, achado em 12/11/2026 por uma execucao que
+   subiu esta constante: o portao que ele dizia inexistente FOI CONSTRUIDO em
+   30/10/2026, no mesmo dia, e a frase "LIDAS POR NINGUEM" acima e FALSA desde
+   entao. `atualizar-manifest.py` le a constante (`versao_do_arquivo()`) e grava
+   `versao` ao lado do `sha256` de cada snippet, e `teste-versao-dos-snippets.php`
+   REPROVA a divergencia — foi ele que acusou esta passada, com estas palavras:
+   "subir a constante sem reespelhar e exatamente o rastro-sem-mecanismo que este
+   portao existe para proibir". Comentario que corrige um comentario tambem
+   envelhece, e por isso este diz a data e o nome do portao. O portao que
    faltaria esta nomeado no `REGISTRO.md` desta ilha, na entrada de 30/10/2026, com
    a decisao de NAO mexer no esquema do `manifest.json` na mesma passada que leva a
    escada da 25.2 ao ar: aquele arquivo e o contrato do Sync, e o Sync e o unico
@@ -93,7 +110,7 @@
    pergunta que `dateModified` responde e "quando esta pagina mudou", e a mae muda
    no dia em que QUALQUER filha e recolhida. */
 if ( ! defined( 'RODAMETRIA_PRODUTO_VERSAO' ) ) {
-	define( 'RODAMETRIA_PRODUTO_VERSAO', '1.10.0' );
+	define( 'RODAMETRIA_PRODUTO_VERSAO', '1.11.0' );
 }
 
 /* A VERSAO DESTE SNIPPET VAI AO AR, pelo filtro que a casca 1.6.0 abriu
@@ -1162,6 +1179,90 @@ add_filter( 'rodametria_data_da_pagina', function ( $data, $slug ) {
 }, 10, 2 );
 
 /* ---------------------------------------------------------------------------
+ * 7-b. A `Offer` DE UMA LINHA — A CAMADA DA MAQUINA DEIXA DE SER MENOS
+ *      CUIDADOSA QUE A TELA (12/11/2026)
+ *
+ * ELA E FUNCAO NOMEADA, e nao mais um pedaco solto dentro do `wp_head`, por
+ * uma razao de portao e nao de arrumacao: a escolha e decidida em PHP, e a
+ * secao 8 do ARQUIPELAGO.md manda quem confere CHAMAR a funcao em vez de ler o
+ * texto do arquivo. Dentro do fecho anonimo do `wp_head` ela nao era chamavel,
+ * e o que media esta camada era SO o portao de ar — depois do desembarque, que
+ * e o lugar mais caro de descobrir o defeito.
+ *
+ * OS DOIS DEFEITOS QUE ESTA FUNCAO NASCE CONSERTANDO, e nos dois a TELA estava
+ * mais cuidadosa que o DADO. Medido no ar as 16h2xZ de 12/11/2026 em
+ * `/veiculos/bicicleta-eletrica/`: as SEIS `Offer` serviam
+ * `availability: InStock` e um `price` cru, enquanto a mesma pagina escrevia
+ * "(preco de 04/11/2026)" ao lado do mesmo numero, na linha que o leitor le.
+ *
+ * (1) `availability: InStock` SAI, E A RAZAO E A QUE JA ESTAVA ESCRITA AQUI
+ *     — ela so nao tinha sido levada ate o fim. O comentario anterior recusava
+ *     o campo quando o piso sobe, porque "dizer que um resultado de busca esta
+ *     em estoque e afirmar o que ninguem mediu". O mesmo vale para a FICHA:
+ *     ficha EXISTIR nao e estar VENDENDO. A garantia real desta ilha e
+ *     "nenhuma ficha foi medida esgotada na ultima leitura" — uma afirmacao
+ *     DATADA, da ronda de 11/11/2026, que achou UMA ficha esgotada entre 24 —
+ *     e `availability` nao tem onde pendurar data: e presente do indicativo,
+ *     lido no dia em que o robo passar, que pode ser semanas depois. Sem o
+ *     campo, o buscador nao recebe promessa nenhuma, que e a verdade.
+ *     E O QUE NAO SE FAZ: `availabilityStarts` NAO e a saida. Ele afirma
+ *     quando a disponibilidade COMECOU, e o que medimos foi um dia em que ela
+ *     existia — nao o primeiro. Vocabulario emprestado para caber na data que
+ *     temos e a mesma familia do numero digitado em outro traje.
+ *
+ * (2) O `price` GANHA DATA, pelo unico campo do vocabulario que diz uma data
+ *     PASSADA sem prometer futuro: `priceSpecification.validFrom`.
+ *     `priceValidUntil` NAO e a resposta e foi recusado por escrito — ele
+ *     afirma validade FUTURA, e esta ilha nao sabe ate quando o preco vale;
+ *     seria exatamente a promessa sem lastro que a secao 7 proibe. A data sai
+ *     de `preco_colhido_em`, o campo ISO da linha, que e a MESMA fonte de onde
+ *     a frase da tela e derivada no gerador (32.4-c): tres lugares, uma
+ *     decisao, nenhuma data digitada.
+ *
+ * O `price` APARECE DUAS VEZES E ISSO E DELIBERADO: o de cima e o campo que o
+ * buscador exige e o de dentro da `priceSpecification` e o datado. Os dois
+ * saem da MESMA variavel, na mesma linha de codigo, entao nao ha mundo em que
+ * discordem — e o portao cobra que sejam identicos, porque promessa de
+ * mecanismo sem afirmacao e comentario, nao trava (20.7).
+ * ------------------------------------------------------------------------- */
+
+if ( ! function_exists( 'rdm_produto_oferta_de_linha' ) ) {
+function rdm_produto_oferta_de_linha( $item ) {
+	/* O TERCEIRO LUGAR QUE LIA A `url` CRUA, e o mais silencioso dos tres:
+	   com a ficha morta, a `Offer` saia com `"url": ""` — dado estruturado
+	   invalido que nenhum olho humano ve na pagina. */
+	$escada = rodametria_casca_escada_de_compra( $item );
+	$preco  = number_format( (float) $item['preco_numero'], 2, '.', '' );
+
+	$oferta = array(
+		'@type'         => 'Offer',
+		'price'         => $preco,
+		'priceCurrency' => 'BRL',
+	);
+	if ( $escada['tem_saida'] ) {
+		$oferta['url'] = $escada['url'];
+	}
+
+	/* A DATA E CONFERIDA NA FORMA ANTES DE IR, e a recusa e calada de
+	   proposito: `validFrom` fora de AAAA-MM-DD e dado estruturado invalido, e
+	   um campo ausente afirma menos que um campo errado. Quem denuncia a
+	   ausencia e o portao — sem rede o `teste-oferta-datada.php`, no ar o
+	   `conferir-produto-no-ar.py` —, nunca a pagina. */
+	$colhido = isset( $item['preco_colhido_em'] ) ? (string) $item['preco_colhido_em'] : '';
+	if ( 1 === preg_match( '/^\d{4}-\d{2}-\d{2}$/', $colhido ) ) {
+		$oferta['priceSpecification'] = array(
+			'@type'         => 'UnitPriceSpecification',
+			'price'         => $preco,
+			'priceCurrency' => 'BRL',
+			'validFrom'     => $colhido,
+		);
+	}
+
+	return $oferta;
+}
+}
+
+/* ---------------------------------------------------------------------------
  * 8. JSON-LD — ItemList na pagina de produto (30.3) e FAQPage onde ha pergunta
  *
  * O BreadcrumbList nao se repete aqui: ele e da casca.
@@ -1176,27 +1277,7 @@ add_action( 'wp_head', function () {
 
 	$itens = array();
 	foreach ( $pagina['vitrine']['linhas'] as $i => $item ) {
-		/* O TERCEIRO LUGAR QUE LIA A `url` CRUA, e o mais silencioso dos tres:
-		   com a ficha morta, a `Offer` saia com `"url": ""` — dado estruturado
-		   invalido que nenhum olho humano ve na pagina. */
-		$escada = rodametria_casca_escada_de_compra( $item );
-
-		$oferta = array(
-			'@type'         => 'Offer',
-			'price'         => number_format( (float) $item['preco_numero'], 2, '.', '' ),
-			'priceCurrency' => 'BRL',
-		);
-		if ( $escada['tem_saida'] ) {
-			$oferta['url'] = $escada['url'];
-		}
-		/* `InStock` E UMA AFIRMACAO, E ELA SO VALE SOBRE UMA FICHA. Quando o piso
-		   sobe, a url da oferta e uma PAGINA DE BUSCA: dizer que um resultado de
-		   busca esta em estoque e afirmar o que ninguem mediu, e a secao 7 desta
-		   fabrica nao deixa. Sem o campo, o buscador nao recebe promessa nenhuma
-		   — que e a verdade daquele momento. */
-		if ( ! $escada['piso_subiu'] ) {
-			$oferta['availability'] = 'https://schema.org/InStock';
-		}
+		$oferta = rdm_produto_oferta_de_linha( $item );
 
 		$produto = array(
 			'@type'  => 'Product',

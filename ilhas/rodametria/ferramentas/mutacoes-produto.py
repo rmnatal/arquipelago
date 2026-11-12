@@ -237,6 +237,36 @@ def m_vitrine_preco_sem_data(areia):
     escrever(areia, VITRINE, v)
 
 
+def m_vitrine_data_do_preco_em_portugues(areia):
+    """A DATA DA TELA GRAVADA NO CAMPO QUE A MAQUINA LE (12/11/2026).
+
+    O campo `preco_colhido_em` nasceu em 12/11/2026 ao lado de uma frase que
+    diz a MESMA data em portugues, e e de la que sai o `validFrom` do JSON-LD.
+    Trocar um pelo outro e o erro mais barato de cometer neste par de campos, e
+    `validFrom` fora de AAAA-MM-DD e dado estruturado invalido que olho humano
+    nenhum ve na pagina.
+    """
+    v = ler(areia, VITRINE)
+    p = v['paginas'][0]
+    exigir(p['linhas'][0]['preco_colhido_em'][:2] == '20',
+           'a linha deveria trazer a data da coleta em AAAA-MM-DD')
+    p['linhas'][0]['preco_colhido_em'] = '04/11/2026'
+    escrever(areia, VITRINE, v)
+
+
+def m_vitrine_nota_de_outra_data(areia):
+    """AS DUAS SUPERFICIES DIVERGINDO, que e o defeito que o campo novo existe
+    para tornar impossivel: a tela dizendo uma data e o JSON-LD servindo outra
+    para o MESMO numero. Enquanto a data existia so em portugues, nao havia
+    regua que pudesse comparar as duas."""
+    v = ler(areia, VITRINE)
+    p = v['paginas'][0]
+    exigir('preço de' in p['linhas'][0]['preco_nota'],
+           'a linha deveria trazer a data da coleta ao lado do preco')
+    p['linhas'][0]['preco_nota'] = '(preço de 29/10/2026)'
+    escrever(areia, VITRINE, v)
+
+
 def m_vitrine_url_insegura(areia):
     v = ler(areia, VITRINE)
     p = v['paginas'][0]
@@ -432,6 +462,10 @@ MUTACOES = (
     ('contagem da vitrine mexida', GERADOR, ('--conferir',), m_vitrine_contagem_mexida),
     ('preco da tabela mexido', GERADOR, ('--conferir',), m_vitrine_preco_mexido),
     ('preco sem a data da coleta', GERADOR, ('--conferir',), m_vitrine_preco_sem_data),
+    ('data do preco em portugues no campo ISO', GERADOR, ('--conferir',),
+     m_vitrine_data_do_preco_em_portugues),
+    ('a nota da tela diz outra data que o JSON-LD', GERADOR, ('--conferir',),
+     m_vitrine_nota_de_outra_data),
     ('link da tabela sem https', GERADOR, ('--conferir',), m_vitrine_url_insegura),
     ('carrossel acima do teto de cinco [mundo fabricado]', GERADOR, ('--conferir',),
      m_carrossel_acima_do_teto),

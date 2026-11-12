@@ -618,7 +618,20 @@ def montar(bloco, editorial_da_pagina):
             'nome': a['titulo'],
             'preco': real(a['preco']),
             'preco_numero': a['preco'],
-            'preco_nota': '(preço de %s)' % data_br(a['coletado_em']),
+            # A DATA DO PRECO DEIXA DE EXISTIR SO EM PORTUGUES (12/11/2026).
+            # `preco_nota` e a frase da TELA e ela sempre foi cuidadosa — diz
+            # "(preco de 04/11/2026)" ao lado do numero. A camada que a visao
+            # geral de IA ingere nao dizia data nenhuma: o `price` do `Offer`
+            # saia cru. Para o JSON-LD poder dizer a MESMA data sem ninguem a
+            # digitar duas vezes, a data passa a existir como CAMPO ISO, e a
+            # frase da tela e DERIVADA dele logo abaixo deste dicionario —
+            # nunca o contrario. E a 32.4-c ao pe da letra: "o conserto de uma
+            # frase duplicada nao e consertar as duas: e a segunda deixar de
+            # existir". O campo e por LINHA e nao da pagina, porque e o anuncio
+            # que tem data de leitura; hoje as 21 linhas das duas paginas foram
+            # lidas no mesmo dia, e vitrine recolhida em duas passadas nao tera.
+            'preco_colhido_em': a['coletado_em'],
+            'preco_nota': '',
             'especificacao': o_que_o_anuncio_declara(a),
             # A CARGA QUE O TITULO DECLARA, E `carga_porque` E UMA DE DUAS
             # COISAS — por isso o campo ao lado existe, e por isso ele e
@@ -673,6 +686,12 @@ def montar(bloco, editorial_da_pagina):
             'url_busca_produto': (piso or {}).get('url_busca_produto'),
             'piso_medido_em': (piso or {}).get('medido_em'),
         }
+        # A FRASE DA TELA SAI DO CAMPO ISO, UMA LINHA DEPOIS DO DICIONARIO.
+        # Enquanto as duas nasciam lado a lado do mesmo `a['coletado_em']`,
+        # eram DUAS declaracoes do mesmo fato — e a 20.7 ja mediu nesta fabrica
+        # o que isso da: "duas declaracoes do mesmo fato comecam iguais e so
+        # uma sobe". Agora ha uma fonte e duas leituras dela.
+        item['preco_nota'] = '(preço de %s)' % data_br(item['preco_colhido_em'])
         linhas.append(item)
 
     # QUEM VAI AO CARROSSEL E ESCOLHIDO, NAO CORTADO NO TETO — ver
@@ -871,6 +890,25 @@ def conferir():
             afirmacoes += 1
             if 'preço de' not in (item.get('preco_nota') or ''):
                 falhas.append('%s: preco sem a data da coleta ao lado (secao 7)' % g['id'])
+            # AS DUAS SUPERFICIES DIZEM A MESMA DATA, E ELA E UMA SO.
+            # A primeira afirmacao e sobre a FORMA do campo que o JSON-LD le
+            # (`validFrom` exige AAAA-MM-DD; data em portugues ali seria dado
+            # estruturado invalido que olho humano nenhum ve). A segunda cobra
+            # que a frase da TELA seja a leitura DAQUELE campo — e e a unica
+            # trava que impede as duas superficies de voltarem a divergir, que
+            # e exatamente o que a 32.4-c manda nao deixar acontecer.
+            afirmacoes += 1
+            iso = str(item.get('preco_colhido_em') or '')
+            if not _re.match(r'^\d{4}-\d{2}-\d{2}$', iso):
+                falhas.append('%s: preco_colhido_em %r nao e AAAA-MM-DD — o '
+                              '`validFrom` do JSON-LD sai desse campo'
+                              % (g['id'], iso))
+            else:
+                afirmacoes += 1
+                if data_br(iso) not in (item.get('preco_nota') or ''):
+                    falhas.append('%s: a nota da tela %r nao diz a data do campo '
+                                  '(%s) — as duas superficies divergiram'
+                                  % (g['id'], item.get('preco_nota'), data_br(iso)))
 
     # OS CINCO MUNDOS DO CARROSSEL, e o banco de hoje produz DOIS deles (a
     # bicicleta, com dois precos em seis anuncios, e o patinete, com dezesseis
