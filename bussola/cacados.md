@@ -144,3 +144,19 @@ Uma linha por nicho, só para não testar de novo. Não é relatório.
 | 09/11/2026 | desumidificador | volume | 40,5 mil/mês → exigiria ≈ R$ 376 por venda em top-3 |
 | 09/11/2026 | bicicleta motorizada (motor de bicicleta) | volume | 33,1 mil/mês → exigiria ≈ R$ 460 por venda em top-3 |
 | 09/11/2026 | chocadeira | volume | 22,2 mil/mês |
+| 12/11/2026 | armário de cozinha | SERP tomada (Casas Bahia, MadeiraMadeira, Mobly, Esplanada, ML, Itatiaia, Leroy, Ponto + carrossel + IA) | 673 mil tomada |
+| 12/11/2026 | penteadeira | SERP tomada (ML, Leroy, Tok&Stok, Mobly, MadeiraMadeira, Henn + IA) | 301 mil tomada |
+| 12/11/2026 | microfone | volume | 135 mil/mês → exigiria ≈ R$ 113 por venda em top-3 |
+| 12/11/2026 | colchão inflável | volume | 90,5 mil/mês → exigiria ≈ R$ 169 por venda em top-3 |
+| 12/11/2026 | home theater | volume | 90,5 mil/mês → exigiria ≈ R$ 169 por venda em top-3 |
+| 12/11/2026 | máquina de cortar cabelo | volume | 90,5 mil/mês → exigiria ≈ R$ 169 por venda em top-3 |
+| 12/11/2026 | vitrola | volume | 74 mil/mês → exigiria ≈ R$ 206 por venda em top-3 |
+| 12/11/2026 | beliche | volume | 74 mil/mês → exigiria ≈ R$ 206 por venda em top-3 |
+| 12/11/2026 | gazebo e tenda | volume | 60,5 mil/mês → exigiria ≈ R$ 253 por venda em top-3 |
+| 12/11/2026 | toldo retrátil | volume | 49,5 mil/mês → exigiria ≈ R$ 309 por venda em top-3 |
+| 12/11/2026 | bicama | volume | 40,5 mil/mês → exigiria ≈ R$ 377 por venda em top-3 |
+| 12/11/2026 | cofre | volume | 33,1 mil/mês → exigiria ≈ R$ 462 por venda em top-3 |
+| 12/11/2026 | banheira de hidromassagem e spa inflável | volume | 24,7 mil/mês somados |
+| 12/11/2026 | central multimídia automotiva | volume | 17,7 mil/mês somados |
+| 12/11/2026 | câmera de ré | volume | 14,8 mil/mês |
+| 12/11/2026 | capa de banco automotivo | volume | 2,4 mil/mês |
