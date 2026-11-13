@@ -456,7 +456,32 @@ pois o desempenho pode ser afetado"* (`milar.es`), e o limite extra *"evita sobr
 motor e mantém a velocidade e a segurança, mesmo com peso adicional"* (`br.my-best.com`,
 publicador brasileiro). **É a frase do grupo "no limite", e ela amarra a F3 à F2:** peso
 perto do teto não derruba só a carga — derruba a velocidade e a autonomia. A F3 linka para
-a F2 com o peso já passado na URL (32.2).
+a F2, e o peso vai na URL **quando o leitor o declarou**.
+
+> **ERRATA MEDIDA EM 13/11/2026 — ESTA FRASE AFIRMAVA UM MECANISMO QUE NÃO EXISTIA, E O
+> MECANISMO QUE PASSOU A EXISTIR É OUTRO.** Ela dizia *"A F3 linka para a F2 com o peso já
+> passado na URL (32.2)"*, e as duas metades estavam erradas. **Primeira:** o link servido
+> levava `?rdm_peso=<o peso do EXEMPLO desta ilha>` e **a F2 nunca leu `$_GET`** — o
+> parâmetro não fazia nada, e nunca fez, desde 06/11/2026. **Segunda, e é a mais dura:** o
+> número que ele levava era a quantidade errada. O campo da F2 é *"em kg, com mochila se você
+> leva"* — é o peso **total** —, e esta ferramenta separa piloto e carga; mandar só
+> `peso_piloto_kg` subestima o total em tudo o que a pessoa carrega, e é esse número que a
+> ressalva `peso_acima_do_teto` da F2 compara com o maior limite de carga do varejo
+> brasileiro. Com 115 kg de piloto e 8 kg de mochila, o piloto sozinho passa calado e o
+> total não passa.
+>
+> **O QUE EXISTE AGORA, e a decisão é de autoria:** número que a **ilha** escreveu não
+> viaja; número que o **leitor** declarou viaja. O href servido sai **sem parâmetro algum**,
+> e quem acrescenta `rdm_peso=<peso + carga>` é o JS da F3, no instante em que o leitor
+> declara — e ele **devolve o href cru** quando o campo é apagado, porque link que leva um
+> número que saiu da tela é a mesma mentira com um passo a mais. Do outro lado, a F2 lê o
+> endereço **no navegador**, validando cada parâmetro contra o próprio controle (`select`
+> pela lista de `option` que ele serve, campo numérico pelos próprios `min`/`max`), e o
+> **servidor continua não escrevendo valor nenhum**: o HTML entregue é byte por byte o de
+> antes, o que protege a 32.3 e mantém fechado o item 2 do despacho de 13/11 — a página
+> nunca devolve um número que ela mesma inventou. Portão:
+> `ferramentas/teste-passagem-de-peso.mjs`, que extrai as duas funções dos próprios arquivos
+> PHP e as aperta sobre endereços fabricados (50 afirmações, 6 mutações cobradas).
 
 ### 3.5 O QUE A F3 SE RECUSA A RESPONDER
 

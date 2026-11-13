@@ -28,7 +28,18 @@
  * em 08/09/2026.
  */
 
-/* 1.6.0 (06/11/2026) — A 32.1-b CHEGOU AQUI, E ELA E DE HOJE PELA MANHA.
+/* 1.13.0 (13/11/2026) — ESTA PAGINA PASSOU A LER O PROPRIO ENDERECO, NO
+   NAVEGADOR. O formulario e `method="get"` e manda os cinco campos para a URL
+   desde que nasceu, e a pagina NAO LIA NENHUM: quem chegava pelo convite da F3
+   ou por um endereco compartilhado via a pagina ignorar os numeros que ela
+   mesma havia posto la. O que entra e sempre numero de LEITOR — digitado aqui
+   ou declarado na F3 —, a validacao sai do PROPRIO controle (`select` pela
+   lista de `option`, campo numerico pelos proprios `min`/`max`) e o SERVIDOR
+   continua nao escrevendo valor nenhum: o HTML entregue e byte por byte o de
+   antes, o que protege a 32.3 e mantem fechado o item 2 do despacho de 13/11.
+   Portao: `ferramentas/teste-passagem-de-peso.mjs`.
+
+   1.6.0 (06/11/2026) — A 32.1-b CHEGOU AQUI, E ELA E DE HOJE PELA MANHA.
    Os CINCO campos do formulario ganharam o prefixo da ilha (`v` -> `rdm_v`,
    `ah` -> `rdm_ah`, `peso` -> `rdm_peso`, `relevo` -> `rdm_relevo`, `aut` ->
    `rdm_aut`) e a pagina passou a servir o `<noscript>` que a segunda metade da
@@ -45,7 +56,7 @@
    (item 2 do despacho da ronda de 04/11). E o MESMO campo que o "Como sabemos"
    desta pagina ja imprimia em prosa — um fato, uma fonte (20.7). */
 if ( ! defined( 'RODAMETRIA_F2_VERSAO' ) ) {
-	define( 'RODAMETRIA_F2_VERSAO', '1.12.0' );
+	define( 'RODAMETRIA_F2_VERSAO', '1.13.0' );
 }
 
 /* A VERSAO DESTE SNIPPET VAI AO AR, pelo filtro que a casca 1.6.0 abriu
@@ -1215,6 +1226,63 @@ add_action( 'wp_footer', function () {
   var elRelevo = form.querySelector('[data-rdm-f2-relevo]');
   var elAut = form.querySelector('[data-rdm-f2-aut]');
 
+  /* O QUE CHEGA PELO ENDERECO (13/11/2026)
+     --------------------------------------
+     Este formulario e `method="get"` e manda os cinco campos para a propria
+     URL — e ate hoje a pagina NAO LIA NENHUM. Quem chegava pelo convite da F3
+     (`?rdm_peso=...`) ou por um endereco compartilhado via a pagina ignorar os
+     numeros que ela mesma havia posto no endereco. O que entra aqui e SEMPRE
+     numero de leitor: ou ele o digitou neste formulario, ou o declarou na F3 e
+     clicou no convite. O SERVIDOR CONTINUA NAO ESCREVENDO VALOR NENHUM — o
+     HTML entregue e byte por byte o de antes, o que e o que protege a 32.3 e o
+     que mantem o item 2 do despacho de 13/11 fechado: a pagina nunca devolve
+     um numero que ela mesma inventou.
+     A VALIDACAO SAI DO PROPRIO CONTROLE, nunca de um numero escrito aqui:
+     `select` responde pela lista de `option` que ele serve, e campo numerico
+     responde pelos proprios `min`/`max`. Fato externo mora num lugar so, e
+     aqui o lugar e o HTML do formulario. */
+  function valorDaUrl(busca, nome){
+    var partes = String(busca).replace(/^[?]/, '').split('&');
+    for (var i = 0; i < partes.length; i++) {
+      if (!partes[i]) { continue; }
+      var corte = partes[i].indexOf('=');
+      var chave = corte === -1 ? partes[i] : partes[i].slice(0, corte);
+      if (chave.replace(/[+]/g, ' ') !== nome) { continue; }
+      var cru = corte === -1 ? '' : partes[i].slice(corte + 1);
+      try { return decodeURIComponent(cru.replace(/[+]/g, ' ')); }
+      catch (e) { return null; }
+    }
+    return null;
+  }
+
+  function aplicarNoCampo(el, texto){
+    if (!el || texto === null || texto === '') { return false; }
+    if (el.tagName === 'SELECT') {
+      for (var i = 0; i < el.options.length; i++) {
+        if (el.options[i].value === texto) { el.value = texto; return true; }
+      }
+      return false;
+    }
+    /* Inteiro e nada mais: `step="1"` nos dois campos numericos, e
+       `parseFloat` sozinho aceitaria "60kg", "6e2" e " 60". */
+    if (!/^[0-9]{1,4}$/.test(texto)) { return false; }
+    var n = parseInt(texto, 10);
+    if (el.min !== '' && el.min !== undefined && n < parseFloat(el.min)) { return false; }
+    if (el.max !== '' && el.max !== undefined && n > parseFloat(el.max)) { return false; }
+    el.value = String(n);
+    return true;
+  }
+
+  function aplicarUrl(busca){
+    var mapa = [[elV, 'rdm_v'], [elAh, 'rdm_ah'], [elPeso, 'rdm_peso'],
+                [elRelevo, 'rdm_relevo'], [elAut, 'rdm_aut']];
+    var mexeu = false;
+    for (var i = 0; i < mapa.length; i++) {
+      if (aplicarNoCampo(mapa[i][0], valorDaUrl(busca, mapa[i][1]))) { mexeu = true; }
+    }
+    return mexeu;
+  }
+
   function responder(){
     var v = parseFloat(elV.value);
     var ah = parseFloat(elAh.value);
@@ -1339,6 +1407,12 @@ add_action( 'wp_footer', function () {
     responder();
     caixa.scrollIntoView({behavior: 'smooth', block: 'start'});
   });
+
+  /* E SO AGORA O ENDERECO E LIDO, uma vez: se nenhum campo mudou, a pagina
+     fica EXATAMENTE como o servidor a entregou — nao ha recomputo a esmo, e
+     endereco sem parametro nosso nao mexe um pixel. Sem `scrollIntoView`: quem
+     chega por link nao pediu para a pagina pular. */
+  if (aplicarUrl(window.location.search)) { responder(); }
 })();
 <?php rodametria_casca_fechar_roteiro( 'rodametria-f2-js' ); ?>
 	<?php

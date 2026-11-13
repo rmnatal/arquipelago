@@ -29,6 +29,15 @@
  * voce e a mochila dao 108" — cabe por um quilo, e e por isso que o caso de
  * exemplo desta pagina e ela e nao um caso que passa folgado (32.1 item 4).
  *
+ * 1.7.0 (13/11/2026) — O CONVITE PARA A F2 LEVA O NUMERO DO LEITOR, E SO O
+ * DELE. Ate hoje o href servido saia com `?rdm_peso=<o peso do EXEMPLO desta
+ * pagina>` e a F2 nunca leu `$_GET`: o parametro nao fazia nada, e no dia em
+ * que fizesse entregaria a ela um numero que esta ilha escreveu. Agora o
+ * servidor serve o href CRU e quem acrescenta o parametro e o JS, no instante
+ * em que o leitor declara o peso — e ele manda `peso + carga`, porque o campo
+ * da F2 e o peso COM MOCHILA e mandar so o piloto subestima o total. Campo
+ * apagado devolve o href cru. Portao: `ferramentas/teste-passagem-de-peso.mjs`.
+ *
  * 1.0.0 (06/11/2026) — a F3 nasce, com os campos ja prefixados pela 32.1-b e
  * com o `<noscript>` pelo componente da casca. Ela e a primeira ferramenta
  * desta ilha a nascer DENTRO do conserto da 32.1-b, que e exatamente o que a
@@ -36,7 +45,7 @@
  */
 
 if ( ! defined( 'RODAMETRIA_F3_VERSAO' ) ) {
-	define( 'RODAMETRIA_F3_VERSAO', '1.6.2' );
+	define( 'RODAMETRIA_F3_VERSAO', '1.7.0' );
 }
 
 /* A VERSAO DESTE SNIPPET VAI AO AR (20.7). A CHAVE E O `id` DO manifest.json, e
@@ -513,13 +522,29 @@ function rodametria_f3_pagina_html() {
 	   `rodametria-produto` ja guardava esta mesma funcao desde 29/10 e a licao
 	   nao havia viajado (32.5-c outra vez, dentro da mesma ilha). Sem a F2, o
 	   convite simplesmente NAO NASCE: a pagina perde um link e nao cai. */
+	/* O CONVITE SERVIDO NAO LEVA NUMERO NENHUM (13/11/2026), E A DECISAO E
+	   DE AUTORIA. Ate hoje este href saia como `?rdm_peso=<exemplo da F3>` e a
+	   F2 NUNCA LEU $_GET: o parametro nao fazia nada, e no dia em que fizesse
+	   entregaria a ela um peso que e o EXEMPLO DESTA ILHA, nao o do leitor — o
+	   mesmo defeito que o item 2 do despacho de 13/11 fechou do outro lado
+	   (campo com `value` cravado que a pagina devolvia como "os seus 90 kg").
+	   A pergunta que a passada anterior deixou escrita era "DE QUEM E aquele
+	   numero", e a resposta e: numero que a ilha escreveu NAO VIAJA; numero
+	   que o LEITOR declarou viaja, e quem o escreve no href e o JS do rodape,
+	   no momento em que ele e declarado.
+	   E A QUANTIDADE TAMBEM ESTAVA ERRADA, o que e a metade mais dura do
+	   achado: o campo da F2 diz "em kg, COM MOCHILA se voce leva" — ele e o
+	   peso TOTAL —, e esta pagina separa piloto e carga. Mandar so
+	   `peso_piloto_kg` subestimaria o total em tudo o que a pessoa carrega, e
+	   a ressalva do teto de carga da F2 (`peso_acima_do_teto`) compara esse
+	   numero com o maior limite que o varejo publica: com 115 kg de piloto e
+	   8 kg de mochila, o piloto sozinho passa calado e o total nao passa. O JS
+	   manda `peso + carga`. */
 	if ( function_exists( 'rodametria_f2_url' ) ) {
 		$html .= '<p class="rdm-f3-convite">'
 			. esc_html( $d['resposta_exemplo']['frase_convite_f2'] ) . ' '
-			. '<a href="' . esc_url( add_query_arg(
-				'rdm_peso',
-				(int) $d['campos']['exemplo']['peso_piloto_kg'],
-				rodametria_f2_url() ) ) . '">Ver a conta de autonomia</a>.</p>';
+			. '<a href="' . esc_url( rodametria_f2_url() ) . '"'
+			. ' data-rdm-f3-convite>Ver a conta de autonomia</a>.</p>';
 	}
 
 	$html .= '<h2>Quem entrou, quem não entrou, e por quê</h2>';
@@ -682,6 +707,28 @@ add_action( 'wp_footer', function () {
   function num(x){
     return String(Math.round(x)).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
   }
+
+  /* O CONVITE PARA A F2 LEVA O NUMERO DO LEITOR, E SO O DELE (13/11/2026).
+     O servidor serve o href SEM parametro (a razao esta escrita no PHP, junto
+     ao link); quem o acrescenta e esta funcao, no momento em que o leitor
+     declara o peso. Campo vazio ou invalido DEVOLVE o href cru em vez de
+     deixar o ultimo numero pendurado: link que leva um numero que nao esta
+     mais na tela e a mesma mentira, com um passo a mais. E o que viaja e o
+     TOTAL (`peso + carga`), porque o campo da F2 e o peso com mochila. */
+  var convite = document.querySelector('[data-rdm-f3-convite]');
+  var conviteCru = convite ? convite.getAttribute('href') : null;
+
+  function sincronizarConvite(){
+    if (!convite || conviteCru === null) { return; }
+    var peso = parseFloat(campoPeso.value);
+    var carga = parseFloat(campoCarga.value);
+    if (!(peso > 0)) { convite.setAttribute('href', conviteCru); return; }
+    if (!(carga >= 0)) { carga = 0; }
+    var total = Math.round(peso + carga);
+    convite.setAttribute('href', conviteCru
+      + (conviteCru.indexOf('?') === -1 ? '?' : '&')
+      + 'rdm_peso=' + encodeURIComponent(String(total)));
+  }
   function preencher(molde, vals){
     return molde.replace(/\{(\w+)\}/g, function(_, k){
       return (k in vals) ? vals[k] : '';
@@ -810,9 +857,14 @@ add_action( 'wp_footer', function () {
     grupos.innerHTML = html;
   }
 
-  form.addEventListener('submit', function(e){ e.preventDefault(); responder(); });
-  campoPeso.addEventListener('change', responder);
-  campoCarga.addEventListener('change', responder);
+  /* UM SO LUGAR AMARRA OS DOIS GESTOS: a caixa responde e o convite se
+     sincroniza na MESMA mexida. Pendurar `responder` direto no listener
+     deixava o href envelhecer sozinho, que e como a divergencia nasce. */
+  function aoMexer(){ responder(); sincronizarConvite(); }
+
+  form.addEventListener('submit', function(e){ e.preventDefault(); aoMexer(); });
+  campoPeso.addEventListener('change', aoMexer);
+  campoCarga.addEventListener('change', aoMexer);
 })();
 <?php rodametria_casca_fechar_roteiro( 'rodametria-f3-js' ); ?>
 	<?php
