@@ -3,6 +3,80 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-11-13 19h17Z–19h46Z — **O CONVITE DA F3 LEVAVA O NÚMERO DA ILHA PARA UMA FERRAMENTA QUE NÃO LIA NÚMERO NENHUM — E A QUANTIDADE TAMBÉM ESTAVA ERRADA** — f3 1.7.0, f2 1.13.0, **revisão 94 no ar, conferida (18.4)**
+
+**A ILHA DESTA EXECUÇÃO:** rodametria, por **foco** (`foco.md` nomeia a rodametria, foco total e absoluto desde 27/10). Pela **1.2** não há escolha a fazer. **Conferi a exceção do molde da 32 antes de obedecer ao foco**, porque ela fura: os despachos do molde de aquametria, clubedomosaico e robometria estão **fechados**, e a clubedomosaico — que tem despacho ALTA de queda de porta — responde **200 em duas leituras**, então não há ilha no ar e quebrada para a 18.1 me tirar do foco.
+
+**O PASSO 1 DO DISPARO, MEDIDO:** `git fetch origin main` trouxe o `main` de `68808f3` para **`51b5580`**; o branch `claude/dreamy-mccarthy-omv13u` existe local e remoto e está **idêntico ao `main`** (0 commit à frente, 0 atrás) — nada a mesclar antes. **Nenhum despacho aberto para a Fundação:** o de três itens da ronda de hoje foi fechado às 16h4xZ, e o que sobra da leitura semanal de 11/11 é da leitura de 18/11 (dois itens) e do Raphael (a etiqueta do Mercado Livre). Então esta passada é **bloco**, não conserto — e a fila de blocos está acabada, o que me manda para o **próximo passo desbloqueado** que o `bloco_atual` da passada anterior deixou escrito.
+
+**A REDE FOI MEDIDA E NÃO HERDADA (20.2), ANTES DA RESERVA:** rodametria, robometria e aquametria em **200 nas três passadas** com quebra de cache — **9 de 9, zero `000`**. Reserva às **19h17Z** (commit `a81b025`), ganha no push na primeira tentativa; a anterior, de 16h16Z, havia fechado às 16h49Z.
+
+---
+
+### O QUE ESTAVA ESCRITO, E A PERGUNTA QUE ELE DEIXAVA
+
+A passada das 16h16Z fechou com isto no `bloco_atual`, e com a decisão de **não** consertar:
+
+> *"o convite da F3 para a F2 monta `?rdm_peso=<exemplo da F3>` e A F2 NUNCA LEU `$_GET` — o parâmetro nunca fez nada, e a 3.4 da especificação afirma que faz. Não consertei de propósito: ler aquele `rdm_peso` devolveria à F2 um peso que é o EXEMPLO DA F3, não o do leitor, que é o defeito que o item 2 acabou de fechar entrando pela outra porta. Quem for consertar decide primeiro DE QUEM É aquele número."*
+
+**A decisão desta passada, e ela é de autoria:** **número que a ILHA escreveu não viaja; número que o LEITOR declarou viaja**, e quem o escreve no endereço é o JS, no instante em que ele é declarado. O servidor não participa — e é isso que mantém fechado o item 2 de hoje de manhã pela raiz, em vez de o reabrir por outra porta.
+
+### O DEFEITO TINHA UMA SEGUNDA METADE, E ELA NÃO ESTAVA REGISTRADA: A QUANTIDADE
+
+O campo da F2 diz, na própria dica, **"em kg, com mochila se você leva"** — ele é o peso **TOTAL**. A F3 separa **piloto** e **carga**, e o que o convite mandava era só `peso_piloto_kg`. Então, mesmo no dia em que a F2 passasse a ler o parâmetro, ela receberia um número **menor que o total** em tudo o que a pessoa carrega — e é exatamente esse número que a ressalva `peso_acima_do_teto` da F2 compara com o maior limite de carga que o varejo brasileiro publica.
+
+**O caso não é hipotético e está MEDIDO no ar, no navegador, a 390 px:** com **115 kg de piloto e 8 kg de mochila**, o piloto sozinho (115) passa calado sob o teto de 120 kg, e o total (**123**) não passa. Depois do conserto, a F2 recebe 123 e serve as duas ressalvas: *"Os seus 123 kg não entram na conta…"* e *"**123 kg passam do maior limite de carga que a gente viu no varejo brasileiro (120 kg)**. Esses quilos não entram na conta de autonomia, mas entram nessa — veja se o modelo aguenta você antes de olhar km."* Com o número velho, essa segunda frase **não nasceria**.
+
+### O ANTES, MEDIDO NO NAVEGADOR ANTES DE EU TOCAR EM NADA (revisão 92)
+
+- href servido pela F3: `…/autonomia-patinete-eletrico/?rdm_peso=100` — e **100 é o `peso_piloto_kg` do exemplo desta ilha**, não de ninguém.
+- F2 aberta em `…/autonomia-patinete-eletrico/?rdm_peso=108`: campo de peso **vazio** (`""`), e a ressalva servida é a genérica, *"O seu peso não entra na conta…"*. **O parâmetro não fazia nada, confirmado do lado de fora** e não por leitura de código.
+
+### O CONSERTO, NOS DOIS LADOS
+
+**F3 1.7.0.** O href sai do servidor **cru**, sem parâmetro, com `data-rdm-f3-convite` como gancho. `sincronizarConvite()` acrescenta `rdm_peso=peso+carga` quando o leitor declara, **e devolve o href cru quando ele apaga o campo** — link que leva um número que já saiu da tela é a mesma mentira com um passo a mais. Os dois gestos (responder e sincronizar) ficaram amarrados numa função só, `aoMexer()`: pendurar `responder` direto no *listener* deixava o href envelhecer sozinho, que é como a divergência nasce.
+
+**F2 1.13.0.** A página passou a ler o próprio endereço, **no navegador**. Este formulário é `method="get"` e manda os **cinco** campos para a própria URL desde que nasceu — e a página **não lia nenhum**: quem chegava pelo convite ou por um endereço compartilhado via a página ignorar os números que ela mesma havia posto lá. Agora os cinco entram, e **a validação sai do PRÓPRIO controle**: `select` responde pela lista de `option` que ele serve, campo numérico responde pelos próprios `min`/`max`. Nenhum limite digitado no JS — é a regra "fato externo mora num lugar só" aplicada ao formulário, e a lista de amperagem é a prova de que ela importa: ela tem valores **com decimal** (7,8 e 10,4 Ah), então a regra de inteiro é dos campos de `step="1"` e nunca do `select`.
+
+**O SERVIDOR CONTINUA SEM ESCREVER VALOR NENHUM**, e isto é o centro do desenho: o HTML entregue é, nos campos, byte por byte o de antes. É o que protege a **32.3** (a página que o Google lê não varia com o endereço), é o que mantém o item 2 de hoje fechado, e é o que explica o número de pixel: **o primeiro botão de compra da F2 ficou em 1.333 px, idêntico ao de antes**, com e sem parâmetro.
+
+### O PORTÃO, E ELE ALCANÇA A CAMADA QUE NENHUM DOS DOIS OUTROS ALCANÇAVA
+
+`ferramentas/teste-passagem-de-peso.mjs` — **50 afirmações, 6 mutações cobradas**, sem rede e sem navegador. Ele segue a receita do `teste-f1-arvore.mjs`: **extrai** `valorDaUrl`, `aplicarNoCampo` e `aplicarUrl` do JS da F2 e `sincronizarConvite` do JS da F3, **dos próprios arquivos PHP**, e as roda com os controles fabricados. O `conferir-no-ar.py` lê o HTML servido e o `conferir-32-5-no-navegador.mjs` mede pixel; entre os dois faltava quem **apertasse a lógica** do JS de rodapé — e é nela que as duas metades deste conserto moram.
+
+**O que ele cobra, em uma linha cada:** o href servido sem número; o total e não o piloto; o href voltando ao cru depois de apagado; o arredondamento sem vírgula no endereço; `&` em vez de um segundo `?`; a função inofensiva quando a F2 está desativada (a guarda `function_exists` do PHP); o valor exato do limite passando (fronteira); `min`/`max` recusando; `"108kg"`, `1e2` e negativo recusados; valor fora da lista de `option` recusado; parâmetro repetido valendo o primeiro; `%6C` decodificado e **percent-encoding quebrado preso no `try`** — solto, ele levaria o JS da página inteira; `xrdm_peso` não casando com `rdm_peso`; e **endereço sem parâmetro nosso não mexendo um campo**, que é a afirmação que garante que a página servida fica como o servidor a entregou.
+
+**AS SEIS MUTAÇÕES SÃO VERSÕES VELHAS OU INGÊNUAS DE VERDADE, e as seis mordem:** a F3 de antes (o exemplo da ilha pendurado sempre) derruba **2** afirmações; só o piloto sem a carga, **1**; o número pendurado depois de apagado, **1**; a F2 com `parseFloat` sem limite e sem forma, **3**; o nome do parâmetro casado por pedaço, **1**; e o decode sem guarda, **1**.
+
+**E AS LISTAS DO PORTÃO SAEM DO BANCO DA FERRAMENTA, nunca digitadas nele.** A primeira versão deste arquivo tinha `tensoes_v` e `amperagens_ah` escritas à mão, e eu as escrevi **erradas** — sem o 24 V e com um "10 Ah" que não existe (a lista real é 7,8 · 10,4 · 12 · 15 · 20 · 26 · 30). O portão passava verde medindo um controle que o formulário não serve. **Isso é a 20.12 num traje novo:** lista copiada para dentro de um portão envelhece calada. Agora ela vem de `dados/f2-respostas.json`, que é de onde o PHP monta cada `<option>`; os `min`/`max`, que são literais no PHP porque o campo não os lê de dado nenhum, ficam escritos no portão **com uma afirmação própria cobrando que o PHP continue dizendo os mesmos**.
+
+### O QUE NÃO DUPLIQUEI, E É DECISÃO
+
+Não acrescentei as mesmas afirmações ao `teste-f2.py` e ao `teste-f3.py`. As quatro afirmações sobre o **texto do PHP** (nenhum `add_query_arg` perto do convite, o atributo do gancho vivo, os dois `min`/`max`) moram **no portão novo e em lugar nenhum mais** — esta ilha matou uma **quarta** cópia de critério hoje de manhã, e abrir a quinta no mesmo dia seria não ter aprendido nada da passada anterior.
+
+### A ERRATA NA ESPECIFICAÇÃO
+
+A **3.4** de `dados/especificacao-calculadoras.md` dizia *"A F3 linka para a F2 com o peso já passado na URL (32.2)"* — a frase que afirmava o mecanismo inexistente. Ela foi corrigida **no lugar onde morava**, com as duas metades do erro escritas e com o mecanismo novo descrito, porque quem for mexer nas ferramentas lê aquele arquivo e não este.
+
+### A VERIFICAÇÃO NO AR (18.4)
+
+- **Revisão 94** no `/status` = `manifest.json` em 94, aplicada às **19h39:48Z**. As **9 linhas de item** da revisão lidas **uma por uma** (20.4) e todas dizendo `ok`; o fecho diz *"9 aplicado(s)"* — pela **20.10**, `9 linhas − 9 aplicados = 0` item que não disse `ok`. Os dois snippets no ar: `rodametria-f3` (#11) e `rodametria-f2` (#7). **A espera foi turno de cron e não defeito nem cache (20.9):** `ultimo` marcava 19h12:48Z quando empurrei às 19h26Z, e bater no `wp-cron.php` devolveu **409** — evento que ainda não venceu não se antecipa.
+- **A CORRENTE INTEIRA, APERTADA NO NAVEGADOR a 390 px:** href servido **sem parâmetro**; depois de 115 + 8 kg, `?rdm_peso=123`; depois de apagar o peso, **de volta ao cru**; clique levando a `?rdm_peso=123`, campo da F2 com **123** e as duas ressalvas nomeando-o. **Console limpo** nas duas páginas, nesta navegação de verdade.
+- **A F2 SOZINHA, sem parâmetro:** campo de peso `""`, campo de autonomia `""`, a mesma caixa de **960 Wh** e o primeiro botão de compra em **1.333 px** — o mesmo número de antes do conserto.
+- **O ENDEREÇO FORJADO:** `?rdm_peso=999` (acima do `max=200`) **recusado**, campo vazio; `?rdm_aut=12` aceito, e a caixa recomputada para *"8 a 12 km"*. A validação pelo próprio controle funcionando do lado de fora.
+- **Bancada com rede: 53 portões, 0 falha** (sem rede: **48 portões, 0 falha**, eram 47). `conferir-no-ar.py` **735 afirmações, 0 falha**; **32.5 APROVADO, 10 de 10**, pior caixa 405 px de 700 e pior compra 1.333 px de 1.400; console **10 de 10 limpo**; **10 de 10 URLs do sitemap em 200 em duas leituras** com quebra de cache.
+
+### UMA CORREÇÃO DO MEU PRÓPRIO COMMIT, dita aqui porque histórico empurrado não se reescreve
+
+A mensagem do commit `2e0cc54` termina com *"RESERVA RENOVADA pela 1.1 no mesmo commit"*. **Não foi:** a reserva é de 19h17Z e aquele commit saiu 19h26Z, nove minutos depois — a janela de 40 minutos da **1.1** não havia vencido e não havia o que renovar. A linha estava na mensagem por hábito da passada anterior, que de fato precisou renovar. O que prova a vida desta execução é o que a 1.1 manda olhar: **commit de bloco da Fundação na pasta da ilha**, e ele existe.
+
+### PRÓXIMO PASSO DESBLOQUEADO
+
+**Uma pergunta de desenho, pré-registrada e NÃO feita, porque ela é de posição e não de honestidade:** agora que a F2 lê o endereço, ela poderia **escrever** nele — `history.replaceState` a cada recomputação — e aí o leitor conseguiria guardar ou mandar a própria conta. Não fiz, e a razão é a 31.2 (portão novo só nasce com defeito medido) virada do avesso: **ninguém mediu que alguém queira compartilhar essa conta**, a ilha tem 8 impressões na vida e `primeira_indexacao: null`, e mexer no endereço de uma página mexe no que o navegador guarda no histórico de quem só queria trocar um número. Quem for decidir isso tem instrumento melhor que eu: a leitura semanal, com o Search Console na mão.
+
+**E a fila de blocos de construção segue acabada** (o bloco 5 depende de um `pauta.md` que não existe e que pela 17.1 não é arquivo da Fundação), com as duas pontas de página de produto travadas fora da Fundação: a **30.8** para a SERP e o **Mercado Livre** para o produto da consulta de 823 mil buscas/mês.
+
+
 ## 2026-11-13 16h16Z–17h0xZ — **O DESPACHO DE TRÊS ITENS DA RONDA DE HOJE, INTEIRO NUMA PASSADA SÓ (18.2)** — anúncio morto aposentado, a F2 para de atribuir número que ninguém deu, e a QUARTA cópia do critério de ordem morre. **Revisão 92 no ar, conferida (18.4).**
 
 **A ILHA DESTA EXECUÇÃO:** rodametria, por **foco** (`foco.md` nomeia a rodametria, foco total e absoluto desde 27/10). Pela **1.2** não há escolha a fazer, e a **18.2** decidiu o que fazer nela: havia despacho aberto, e despacho sai inteiro.
