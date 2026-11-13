@@ -98,7 +98,7 @@ $MUTACOES = array(
 		'de'    => "	return \$oferta;\n}",
 		'para'  => "	\$oferta['availability'] = 'https://schema.org/InStock';\n	return \$oferta;\n}",
 		'o_que' => 'a promessa sem data VOLTA: `availability` no presente do indicativo sobre leitura de dias atras',
-		'morde' => 'mundos A, B e C, e as 21 linhas do dado publicado',
+		'morde' => 'mundos A, B e C, e as 20 linhas do dado publicado',
 	),
 	'M3' => array(
 		'de'    => "			'validFrom'     => \$colhido,",
@@ -319,8 +319,19 @@ foreach ( (array) $vit['paginas'] as $pagina ) {
 		}
 	}
 }
-afirma( $vistos >= 21,
-	sprintf( 'a vitrine publicada tem %d linha(s) e tinha 21 em 12/11/2026 — esta metade do portao encolheu', $vistos ) );
+/* A CATRACA DESCEU DE 21 PARA 20 EM 13/11/2026, e a descida tem NOME e
+   PROCEDENCIA — que e a unica coisa que separa uma catraca ajustada de uma
+   catraca afrouxada. A linha que saiu e o item 23898889810 da loja 1389372092
+   ("Patinete Eletrico Adulto Dobravel 30km/h Original Premium", ZeroOne!),
+   APOSENTADO pelo item 1 do despacho da ronda de 13/11: a ficha dele devolve
+   "O produto nao existe" no navegador, em duas leituras. A historia inteira
+   esta na linha de quarentena de `dados/anuncios-por-consulta.json`, e ela diz
+   tambem o achado que importa para quem mexer nisto depois: a Open API de
+   afiliados AINDA LISTA o item: catalogo de afiliado NAO e teste de vida.
+   Catraca que so sobe transforma anuncio morto em divida permanente; o que ela
+   tem de impedir e a vitrine encolher SEM que alguem escreva por que. */
+afirma( $vistos >= 20,
+	sprintf( 'a vitrine publicada tem %d linha(s) e tinha 20 em 13/11/2026 — esta metade do portao encolheu', $vistos ) );
 afirma( $com_data === $vistos,
 	sprintf( '%d de %d linha(s) publicadas tem data de coleta — as sem data servem preco cru para a maquina',
 		$com_data, $vistos ) );

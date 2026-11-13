@@ -196,10 +196,126 @@ def main():
     afirma(d["resposta_exemplo"]["wh_tela"] == numero_pt(wh_ex),
            "o exemplo publica %r Wh e eu calculo %r"
            % (d["resposta_exemplo"]["wh_tela"], numero_pt(wh_ex)))
-    piso_ex = Fraction(str(ex["autonomia_declarada_km"])) / meus_fatores[ex["relevo"]]
-    afirma(d["resposta_exemplo"]["piso_km_tela"] == numero_pt(piso_ex),
-           "o exemplo publica piso %r e eu calculo %r"
-           % (d["resposta_exemplo"]["piso_km_tela"], numero_pt(piso_ex)))
+    if ex["autonomia_declarada_km"] is None:
+        # O EXEMPLO ENTREGUE NAO TEM AUTONOMIA DECLARADA desde 13/11/2026 (item 2
+        # do despacho da ronda). Entao a caixa NAO pode publicar faixa nenhuma:
+        # com o degrau 3 pendente, km sem numero do anuncio seria numero
+        # inventado, que e exatamente o que a 2.4 da especificacao proibe.
+        afirma(d["resposta_exemplo"]["piso_km_tela"] is None
+               and d["resposta_exemplo"]["teto_km_tela"] is None,
+               "o exemplo chega SEM autonomia declarada e mesmo assim publica faixa "
+               "de km (%r a %r) — numero que o leitor nao deu"
+               % (d["resposta_exemplo"]["piso_km_tela"],
+                  d["resposta_exemplo"]["teto_km_tela"]))
+        afirma(bool(d["resposta_exemplo"].get("frase_porque_da_recusa")),
+               "a recusa do km nao nomeia a causa: `frase_porque_da_recusa` veio "
+               "vazia, e a 2.4 exige que a recusa diga POR QUE")
+    else:
+        piso_ex = Fraction(str(ex["autonomia_declarada_km"])) / meus_fatores[ex["relevo"]]
+        afirma(d["resposta_exemplo"]["piso_km_tela"] == numero_pt(piso_ex),
+               "o exemplo publica piso %r e eu calculo %r"
+               % (d["resposta_exemplo"]["piso_km_tela"], numero_pt(piso_ex)))
+        afirma(d["resposta_exemplo"].get("frase_porque_da_recusa") is None,
+               "a conta de km saiu e a pagina ainda serve a causa de uma recusa que "
+               "ela nao fez")
+
+    # ---------------------------------------------------------------
+    # 3-b. A PAGINA NAO ATRIBUI NUMERO QUE O LEITOR NAO DEU — item 2 do
+    #      despacho da ronda de 13/11/2026, e as tres reguas abaixo sao as
+    #      tres metades dele. Nenhuma delas precisa de rede.
+    #
+    #      O DEFEITO QUE ELAS FECHAM: os campos `rdm_peso` e `rdm_aut` saiam do
+    #      HTML JA PREENCHIDOS (90 e 60), e a resposta afirmava os dois numeros
+    #      como se fossem do leitor e do anuncio — "60 km e o melhor caso",
+    #      "Com 90 kg e ladeira". Nenhum anuncio disse 60; a ilha disse. E o
+    #      preco disso aparecia na propria conta: com o teto vindo do padrao, a
+    #      faixa SATURAVA, e 374 Wh e 2.160 Wh em ladeira devolviam a MESMA
+    #      "25 a 60 km". A aritmetica estava certa; a ENTRADA e que mentia, e e
+    #      por isso que nenhum portao de numero pegou.
+    # ---------------------------------------------------------------
+    php_f2 = open(SNIPPET_F2, encoding="utf-8").read()
+    # SEM OS COMENTARIOS: a explicacao do conserto cita o `value="60"` que ele
+    # desfez, e regua que mede o arquivo inteiro confunde a explicacao com a
+    # afirmacao — a cicatriz que o portao do criterio de ordem ja nomeia.
+    php_servido = re.sub(r"/\*.*?\*/", " ", php_f2, flags=re.S)
+    for campo in ("rdm-f2-aut", "rdm-f2-peso"):
+        i = php_servido.find("data-%s>" % campo)
+        afirma(i > 0, "nao achei o campo `%s` no snippet da F2" % campo)
+        if i <= 0:
+            continue
+        bloco = php_servido[max(0, i - 700):i]
+        bloco = bloco[bloco.rfind("<p class=\"rdm-f-campo\">"):]
+        tem_value = "value=" in bloco
+        guardado = ("null === $aut_do_exemplo" in bloco
+                    or "null === $peso_do_exemplo" in bloco)
+        afirma((not tem_value) or guardado,
+               "o campo `%s` volta a sair do HTML com `value` cravado, sem guarda: a "
+               "pagina devolve ao leitor um numero que ele nao deu, e no caso dos km "
+               "ela ainda fecha a faixa por esse numero" % campo)
+
+    # O RAMO QUE O ROTULO PROMETE E ALCANCADO — e provado sobre o DADO que a
+    # pagina serve, nao sobre o codigo que o serve.
+    afirma("km_recusa" in d["frases_molde"] and "km_recusa_porque" in d["frases_molde"],
+           "os moldes da recusa sumiram do dado: o ramo `sem os km do anuncio` nao "
+           "teria frase para escrever")
+    afirma(ex["autonomia_declarada_km"] is None,
+           "o exemplo que o servidor entrega voltou a trazer `autonomia_declarada_km` "
+           "preenchido (%r): o rotulo `Opcional — sem ele a gente so da os Wh` volta a "
+           "descrever um ramo que a entrega nao tem"
+           % (ex["autonomia_declarada_km"],))
+
+    # A DESIGUALDADE QUE O DESPACHO COBRA: duas baterias 5,8 vezes diferentes,
+    # na MESMA entrada que o servidor entrega, nao podem devolver a mesma
+    # resposta de km. Reescrita a mao aqui, como manda a secao 8.
+    fator_ladeira = meus_fatores["ladeira"]
+    for wh_a, wh_b in ((Fraction(374), Fraction(2160)),):
+        aut = ex["autonomia_declarada_km"]
+        if aut is None:
+            # Sem numero do anuncio nao ha faixa nenhuma para nenhuma das duas, e
+            # o que a caixa publica e a ENERGIA — que as separa: 374 != 2.160.
+            afirma(numero_pt(wh_a) != numero_pt(wh_b),
+                   "as duas baterias publicariam o mesmo numero de manchete")
+        else:
+            piso_a = Fraction(str(aut)) / fator_ladeira
+            piso_b = Fraction(str(aut)) / fator_ladeira
+            afirma(piso_a != piso_b or wh_a == wh_b,
+                   "com `autonomia_declarada_km` vindo de NOS (%r), %s Wh e %s Wh em "
+                   "ladeira devolvem a MESMA faixa de km (%s a %s): a faixa sai de "
+                   "`declarada / fator` e nao depende da bateria, entao o numero de "
+                   "manchete e nosso e nao do anuncio"
+                   % (aut, wh_a, wh_b, numero_pt(piso_a), numero_pt(aut and Fraction(str(aut)))))
+
+    # NENHUMA FRASE ENTREGUE CARREGA O NUMERO DO PESO. O peso nao entra em conta
+    # nenhuma desta ferramenta e a guarda da frase de ladeira olha `relevo`,
+    # nunca o peso — entao o numero ali era decoracao que afirmava um dado do
+    # leitor. A unica frase que pode traze-lo e a de peso acima do teto, e com o
+    # exemplo entregue ela NAO nasce (90 contra o teto de 120).
+    afirma(ex["peso_piloto_kg"] is None,
+           "o exemplo que o servidor entrega voltou a trazer `peso_piloto_kg` "
+           "preenchido (%r): a pagina devolve ao leitor um peso que ele nao informou"
+           % (ex["peso_piloto_kg"],))
+    entregues = list(d["resposta_exemplo"]["frases_peso"]) + \
+        list(d["resposta_exemplo"]["frases_km"]) + [d["resposta_exemplo"]["frase_wh"]]
+    for frase in entregues:
+        afirma(" kg" not in frase,
+               "a resposta que o servidor entrega cita um peso em kg sem que o leitor "
+               "tenha informado nenhum: %r" % frase[:110])
+
+    # E A OUTRA METADE, que e a decisao do item 2 de 30/10/2026 e continua de pe:
+    # INFORMADO, o peso tem de ser NOMEADO, senao o campo "Seu peso" vira enfeite.
+    # Os dois moldes do par tem de existir no dado, e o que NOMEIA tem de ter o
+    # lugar do numero — molde sem `{peso}` nomearia zero pesos para sempre.
+    for chave in ("peso", "peso_informado", "peso_ladeira", "peso_ladeira_informado"):
+        afirma(chave in d["frases_molde"],
+               "o molde %r sumiu do dado: o par de frases do peso ficou manco" % chave)
+    for chave in ("peso_informado", "peso_ladeira_informado", "peso_acima_do_teto"):
+        afirma("{peso}" in d["frases_molde"].get(chave, ""),
+               "o molde %r perdeu o lugar do numero: informado, o peso deixaria de "
+               "ser nomeado e o campo 'Seu peso' viraria enfeite" % chave)
+    for chave in ("peso", "peso_ladeira"):
+        afirma("{peso}" not in d["frases_molde"].get(chave, ""),
+               "o molde %r de peso AUSENTE tem lugar de numero: ele imprimiria "
+               "`{peso}` cru ou um numero que ninguem deu" % chave)
 
     # Bordas da lista de campos: o menor e o maior V e Ah tem de produzir Wh
     # positivo e a faixa tem de degradar na mesma direcao em toda a grade.
@@ -366,10 +482,26 @@ def main():
     # A RESSALVA DO PESO CONTINUA DIFERENCIANDO, e e ela que faz o campo "Seu
     # peso" nao ser enfeite: ela NOMEIA o peso informado. O que mudou no item 2
     # foi a promessa, nunca a entrega.
-    peso_ex = Fraction(str(ex["entrada"]["peso_piloto_kg"]))
-    afirma(any(numero_pt(peso_ex) in f for f in (ex.get("frases_peso") or [])),
-           "a ressalva nao nomeia os %s kg da entrada publicada: o campo 'Seu peso' "
-           "voltou a ser enfeite" % numero_pt(peso_ex))
+    # A DECISAO DE 30/10/2026 CONTINUA DE PE, E AGORA ELA TEM MUNDO: ela vale
+    # quando o peso FOI informado. Em 13/11/2026 o campo passou a chegar vazio
+    # (item 2 do despacho daquela ronda), e cobrar o numero sobre a entrada
+    # entregue era cobrar que a pagina devolvesse ao leitor um peso que ela
+    # mesma escreveu no campo dele. Entao a regua passou a julgar o MUNDO em que
+    # o peso existe — fabricado aqui, sem banco e sem rede, pela regra do
+    # "produza o mundo" da secao 8 —, e o mundo entregue e julgado pela regua de
+    # cima, que proibe kg nenhum.
+    if ex["entrada"]["peso_piloto_kg"] is not None:
+        peso_ex = Fraction(str(ex["entrada"]["peso_piloto_kg"]))
+        afirma(any(numero_pt(peso_ex) in f for f in (ex.get("frases_peso") or [])),
+               "a ressalva nao nomeia os %s kg da entrada publicada: o campo 'Seu peso' "
+               "voltou a ser enfeite" % numero_pt(peso_ex))
+    else:
+        molde_informado = d["frases_molde"].get("peso_informado", "")
+        for kg in ("77", "130"):
+            frase = molde_informado.replace("{peso}", kg)
+            afirma(kg in frase and " kg" in frase,
+                   "o molde do peso informado nao nomeia os %s kg: o campo 'Seu peso' "
+                   "seria enfeite para quem o preenche" % kg)
 
     # E A PROMESSA DE KM NAO CARREGA O PESO EM LUGAR NENHUM DA ILHA.
     # A F2 deriva o piso de `declarada / fator`, e `fator` e relevo. Nenhum

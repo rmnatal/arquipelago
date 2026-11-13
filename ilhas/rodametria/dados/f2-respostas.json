@@ -3,7 +3,7 @@
   "ilha": "rodametria",
   "ferramenta": "F2",
   "bloco": "3b",
-  "gerado_em": "2026-11-11",
+  "gerado_em": "2026-11-13",
   "gerado_por": "ferramentas/gerar-f2.py",
   "referencia": "ferramentas/f2-referencia.py",
   "especificacao": "dados/especificacao-calculadoras.md, secao 2",
@@ -34,9 +34,9 @@
     "exemplo": {
       "tensao_v": 48,
       "amperagem_ah": 20,
-      "peso_piloto_kg": 90,
+      "peso_piloto_kg": null,
       "relevo": "misto",
-      "autonomia_declarada_km": 60
+      "autonomia_declarada_km": null
     }
   },
   "constantes_usadas": {
@@ -100,9 +100,12 @@
     "km_plano": "No plano a régua de relevo não desconta nada — ela é 1,0 por definição, porque o trecho plano é justamente o denominador da medição. Então aqui o número do anúncio fica como TETO, não como promessa: {teto} km é o melhor caso.",
     "km_degradado": "Com {relevo_frase}, conte com {piso} a {teto} km — os {teto} do anúncio são o teto.",
     "km_absoluto": "Com {wh} Wh e o consumo medido, conte com uns {piso} km.",
-    "km_recusa": "Sem a autonomia que o anúncio declara, não dá para dizer quantos km esta bateria faz — e a gente não inventa o número. Falta a régua de quantos Wh um patinete gasta por km: a única medição de patinete que achamos está em periódico que não abre por aqui, e medição de moto não serve para patinete. Informe os km do anúncio no campo acima e a conta sai.",
-    "peso": "Os seus {peso} kg não entram na conta: não achamos, em fonte que alcance, nenhuma régua de quanto cada quilo de quem pilota custa em Wh por km. Eles entram aqui, no que esperar da faixa.",
-    "peso_ladeira": "Com {peso} kg e ladeira, espere o PISO da faixa, não o meio dela.",
+    "km_recusa": "Sem os km que o anúncio promete, a conta de km não sai — e a gente não inventa o número. O que dá para afirmar é a energia, aí em cima.",
+    "km_recusa_porque": "Por que a conta de km não sai sem o número do anúncio: falta a régua de quantos Wh um patinete gasta por km. A única medição de patinete que achamos está em periódico que não abre por aqui, e medição de moto não serve para patinete. Informe os km do anúncio no campo acima e a conta sai.",
+    "peso": "O seu peso não entra na conta: não achamos, em fonte que alcance, nenhuma régua de quanto cada quilo de quem pilota custa em Wh por km. Ele entra aqui, no que esperar da faixa.",
+    "peso_informado": "Os seus {peso} kg não entram na conta: não achamos, em fonte que alcance, nenhuma régua de quanto cada quilo de quem pilota custa em Wh por km. Eles entram aqui, no que esperar da faixa.",
+    "peso_ladeira": "Em ladeira de verdade, espere o PISO da faixa, não o meio dela.",
+    "peso_ladeira_informado": "Com {peso} kg e ladeira, espere o PISO da faixa, não o meio dela.",
     "peso_acima_do_teto": "E antes da autonomia tem uma pergunta mais dura: {peso} kg passam do maior limite de carga que a gente viu no varejo brasileiro ({teto_carga} kg). Esses quilos não entram na conta de autonomia, mas entram nessa — veja se o modelo aguenta você antes de olhar km.",
     "rotulo_km": "O que esperar no seu trajeto",
     "rotulo_wh": "A energia da bateria",
@@ -127,19 +130,20 @@
     "entrada": {
       "tensao_v": 48.0,
       "amperagem_ah": 20.0,
-      "peso_piloto_kg": 90.0,
+      "peso_piloto_kg": null,
       "relevo": "misto",
-      "autonomia_declarada_km": 60.0
+      "autonomia_declarada_km": null
     },
     "wh_tela": "960",
-    "piso_km_tela": "39",
-    "teto_km_tela": "60",
+    "piso_km_tela": null,
+    "teto_km_tela": null,
     "frase_wh": "48 V × 20,0 Ah são 960 Wh de bateria.",
     "frases_km": [
-      "Com um pouco de subida, conte com 39 a 60 km — os 60 do anúncio são o teto."
+      "Sem os km que o anúncio promete, a conta de km não sai — e a gente não inventa o número. O que dá para afirmar é a energia, aí em cima."
     ],
+    "frase_porque_da_recusa": "Por que a conta de km não sai sem o número do anúncio: falta a régua de quantos Wh um patinete gasta por km. A única medição de patinete que achamos está em periódico que não abre por aqui, e medição de moto não serve para patinete. Informe os km do anúncio no campo acima e a conta sai.",
     "frases_peso": [
-      "Os seus 90 kg não entram na conta: não achamos, em fonte que alcance, nenhuma régua de quanto cada quilo de quem pilota custa em Wh por km. Eles entram aqui, no que esperar da faixa."
+      "O seu peso não entra na conta: não achamos, em fonte que alcance, nenhuma régua de quanto cada quilo de quem pilota custa em Wh por km. Ele entra aqui, no que esperar da faixa."
     ],
     "frases_calibracao": [
       "Para calibrar a expectativa: numa medição de 2025 de Rodrigo David Limaico Quinteros, na Universidade Politécnica Salesiana de Quito, o veículo entregou 49,7% da autonomia que a ficha declarava (29,8 km medidos contra 60 km de ficha). Não multiplicamos nada por esse número — ele é uma medição, de um veículo, numa rota, e de moto, não de patinete."

@@ -317,9 +317,13 @@ nunca fundidos:
 |---|---|---|---|---|
 | 1 | `tensao_v` | inteiro, V | sim | `48` |
 | 2 | `amperagem_ah` | decimal, Ah | sim | `20` |
-| 3 | `peso_piloto_kg` | inteiro, kg | sim | `90` |
+| 3 | `peso_piloto_kg` | inteiro, kg, opcional | não | **vazio** |
 | 4 | `relevo` | `plano` · `misto` · `ladeira` | sim | `misto` |
-| 5 | `autonomia_declarada_km` | inteiro, km, opcional | não | `60` |
+| 5 | `autonomia_declarada_km` | inteiro, km, opcional | não | **vazio** |
+
+> **AS LINHAS 3 E 5 DIZIAM `90` E `60` ATÉ 13/11/2026**, e foi corrigida pelo item 2 do despacho da ronda daquele dia. Duas razões, as duas medidas no navegador. **(1)** O rótulo do campo promete *"Opcional — sem ele a gente só dá os Wh"*, e o ramo que ele descreve era **inalcançável na página que o servidor entrega**, porque o campo nunca chegava vazio. **(2)** E é esta que decidiu: com um número declarado, a faixa de km sai de `declarada ÷ fator` e **não depende da bateria** — com os 60 vindo de nós, a página respondia **"25 a 60 km"** tanto para 374 Wh quanto para 2.160 Wh em ladeira, uma bateria 5,8 vezes maior fechada pelo número que ninguém digitou. A aritmética estava certa nos três casos conferidos na mão; o defeito era de **entrada**, e por isso nenhum portão de número o via. O que a primeira tela entrega agora é o **degrau 1 desta mesma seção** — a energia —, que a 2.2 chama, com todas as letras, de *"a ferramenta inteira funcionando"*.
+>
+> **A LINHA 3 mudou pela outra metade do mesmo item, e ela era `Obrigatório: sim` sobre um campo que nunca foi obrigatório de fato:** o peso do piloto **não entra em conta nenhuma desta ferramenta** — a 2.4 abaixo diz isso com todas as letras e a própria resposta diz ao leitor —, e a única decisão que ele toma é a da frase de carga acima do teto. Exigi-lo obrigava o formulário a entregar um número **nosso** no campo do leitor, e era esse número que a página devolvia como se fosse dele (*"Os seus 90 kg"*, *"Com 90 kg e ladeira"*). **O que não mudou:** informado, o peso continua sendo **nomeado** na ressalva — decisão do item 2 do despacho de 30/10/2026, que segue de pé. Informado, é nomeado; não informado, não existe para ser nomeado.
 
 ### 2.2 A CONTA, em três degraus de força de prova diferente — e eles ficam separados
 

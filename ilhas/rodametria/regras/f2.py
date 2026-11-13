@@ -96,20 +96,54 @@ MOLDES = {
         "Com {relevo_frase}, conte com {piso} a {teto} km \u2014 os {teto} do an\u00fancio s\u00e3o o teto."
     ),
     "km_absoluto": "Com {wh} Wh e o consumo medido, conte com uns {piso} km.",
+    # A RECUSA FOI PARTIDA EM DUAS EM 13/11/2026, item 2 do despacho da ronda, e
+    # a causa da PARTICAO e de pixel medido e nao de gosto. A partir desta data o
+    # campo `autonomia_declarada_km` chega VAZIO ao leitor (ver a nota em
+    # `gerar-f2.py`), entao a recusa deixou de ser um ramo raro e passou a ser a
+    # PRIMEIRA TELA. Inteira dentro da caixa ela custa ~12 linhas a 390 px, e a
+    # 32.5 da a esta pagina pouco mais de 20 px de folga no primeiro botao de
+    # compra — a frase inteira na caixa empurraria o botao para fora do teto.
+    #
+    # Entao a RESPOSTA fica na caixa e a CAUSA fica logo abaixo do bloco de
+    # compra, ao lado da ressalva do peso. As duas continuam no HTML servido,
+    # legiveis com o JavaScript desligado (22.8 e 32.3), e a 2.4 da
+    # especificacao continua obedecida ao pe da letra: a recusa NOMEIA a causa.
+    # O que mudou e ONDE a causa e lida, nunca SE ela e dita.
     "km_recusa": (
-        "Sem a autonomia que o an\u00fancio declara, n\u00e3o d\u00e1 para dizer quantos km "
-        "esta bateria faz \u2014 e a gente n\u00e3o inventa o n\u00famero. Falta a r\u00e9gua de "
-        "quantos Wh um patinete gasta por km: a \u00fanica medi\u00e7\u00e3o de patinete que "
+        "Sem os km que o an\u00fancio promete, a conta de km n\u00e3o sai \u2014 e a gente "
+        "n\u00e3o inventa o n\u00famero. O que d\u00e1 para afirmar \u00e9 a energia, a\u00ed em cima."
+    ),
+    "km_recusa_porque": (
+        "Por que a conta de km n\u00e3o sai sem o n\u00famero do an\u00fancio: falta a r\u00e9gua de "
+        "quantos Wh um patinete gasta por km. A \u00fanica medi\u00e7\u00e3o de patinete que "
         "achamos est\u00e1 em peri\u00f3dico que n\u00e3o abre por aqui, e medi\u00e7\u00e3o de moto "
         "n\u00e3o serve para patinete. Informe os km do an\u00fancio no campo acima e a "
         "conta sai."
     ),
+    # AS FRASES DO PESO VIRARAM PARES EM 13/11/2026, item 2 do despacho da ronda,
+    # e o par existe por uma razao so: **quem nao informou o peso nao pode ouvir
+    # o proprio peso de volta.** Ate aqui o campo "Seu peso" saia do HTML com
+    # `value="90"` e a pagina respondia "Os seus 90 kg" e "Com 90 kg e ladeira"
+    # — afirmando ao leitor um dado que NOS escrevemos no campo dele.
+    #
+    # E O PAR, E NAO O APAGAMENTO, PORQUE O ITEM 2 DO DESPACHO DE 30/10/2026
+    # DECIDIU O CONTRARIO E CONTINUA VALENDO: a ressalva NOMEIA o peso informado,
+    # e e isso que faz o campo "Seu peso" nao ser enfeite. As duas decisoes nao
+    # brigam quando se olha de quem e o numero: informado, ele e nomeado; nao
+    # informado, ele nao existe para ser nomeado. O portao desta ilha cobra as
+    # DUAS metades, cada uma no seu mundo.
     "peso": (
+        "O seu peso n\u00e3o entra na conta: n\u00e3o achamos, em fonte que alcance, "
+        "nenhuma r\u00e9gua de quanto cada quilo de quem pilota custa em Wh por km. "
+        "Ele entra aqui, no que esperar da faixa."
+    ),
+    "peso_informado": (
         "Os seus {peso} kg n\u00e3o entram na conta: n\u00e3o achamos, em fonte que alcance, "
         "nenhuma r\u00e9gua de quanto cada quilo de quem pilota custa em Wh por km. "
         "Eles entram aqui, no que esperar da faixa."
     ),
-    "peso_ladeira": "Com {peso} kg e ladeira, espere o PISO da faixa, n\u00e3o o meio dela.",
+    "peso_ladeira": "Em ladeira de verdade, espere o PISO da faixa, n\u00e3o o meio dela.",
+    "peso_ladeira_informado": "Com {peso} kg e ladeira, espere o PISO da faixa, n\u00e3o o meio dela.",
     # A FRASE PERDEU O "seu peso" E GANHOU A RECUSA, pelo item 2 do despacho de
     # 06/11/2026: ela punha `seu peso` ao lado de `km` sem dizer que o peso NAO
     # entra na conta, e nenhuma regua lia a prosa. A pergunta mais dura continua
@@ -257,10 +291,17 @@ def responder(tensao_v, amperagem_ah, peso_piloto_kg, relevo,
 
     if relevo not in RELEVOS:
         raise ValueError("relevo desconhecido: %r" % (relevo,))
-    for nome, v in (("tensao_v", tensao_v), ("amperagem_ah", amperagem_ah),
-                    ("peso_piloto_kg", peso_piloto_kg)):
+    for nome, v in (("tensao_v", tensao_v), ("amperagem_ah", amperagem_ah)):
         if v is None or Fraction(str(v)) <= 0:
             raise ValueError("%s tem de ser positivo" % nome)
+    # O PESO E OPCIONAL DESDE 13/11/2026 (item 2 do despacho da ronda), e a
+    # razao e que ele SEMPRE foi opcional de fato: ele nao entra em conta
+    # nenhuma desta ferramenta — a propria resposta diz isso ao leitor — e a
+    # unica decisao que ele toma e a da frase de peso acima do teto de carga.
+    # Exigi-lo obrigava o formulario a entregar um numero NOSSO no campo dele, e
+    # era esse numero que a pagina devolvia como se fosse do leitor.
+    if peso_piloto_kg is not None and Fraction(str(peso_piloto_kg)) <= 0:
+        raise ValueError("peso_piloto_kg tem de ser positivo quando informado")
 
     wh = energia_wh(tensao_v, amperagem_ah)
     fator, cid_fator = fator_do_relevo(constantes, relevo)
@@ -276,6 +317,7 @@ def responder(tensao_v, amperagem_ah, peso_piloto_kg, relevo,
 
     # ---- camada 2: o km, ou a recusa que nomeia a causa ----
     frases_km = []
+    frase_porque_da_recusa = None
     if faixa["tem_km"] and faixa["degrau"] == 2:
         if faixa["faixa_degenerada"]:
             frases_km.append(MOLDES["km_plano"].format(teto=_n(faixa["teto_km"])))
@@ -288,9 +330,15 @@ def responder(tensao_v, amperagem_ah, peso_piloto_kg, relevo,
             wh=_n(wh), piso=_n(faixa["piso_km"])))
     else:
         frases_km.append(MOLDES["km_recusa"])
+        # A CAUSA NAO ENTRA EM `frases_km`: `frases_km` e o que a CAIXA imprime,
+        # e a caixa e a primeira tela. Ela sai em campo proprio, que a pagina
+        # serve abaixo do bloco de compra e o navegador esvazia quando o leitor
+        # informa os km. Campo proprio e o que impede a causa de voltar para a
+        # caixa por descuido de quem escrever a proxima frase.
+        frase_porque_da_recusa = MOLDES["km_recusa_porque"]
 
     # ---- a ressalva do peso: declarada como ressalva, nunca como conta ----
-    peso = Fraction(str(peso_piloto_kg))
+    peso = None if peso_piloto_kg is None else Fraction(str(peso_piloto_kg))
 
     # `peso_ladeira` fala do PISO DA FAIXA, entao ela so pode nascer onde existe
     # faixa com DUAS PONTAS. Sem esta guarda ela contradizia a recusa: com
@@ -311,10 +359,16 @@ def responder(tensao_v, amperagem_ah, peso_piloto_kg, relevo,
     # Nenhuma combinacao coube: a melhor, com a promessa encurtada e a frase
     # dentro do paragrafo do km, deu 1.411 px. Entao a pagina deixa de prometer
     # o que nao entrega, em vez de entregar mal o que prometia.
-    frases_peso = [MOLDES["peso"].format(peso=_n(peso))]
+    informado = peso is not None
+    frases_peso = [MOLDES["peso_informado"].format(peso=_n(peso)) if informado
+                   else MOLDES["peso"]]
     if relevo == "ladeira" and faixa_com_duas_pontas:
-        frases_peso.append(MOLDES["peso_ladeira"].format(peso=_n(peso)))
-    if teto_carga is not None and peso > Fraction(str(teto_carga)):
+        frases_peso.append(MOLDES["peso_ladeira_informado"].format(peso=_n(peso))
+                           if informado else MOLDES["peso_ladeira"])
+    # A FRASE DO TETO DE CARGA SO EXISTE COM PESO INFORMADO, e o numero dela
+    # continua inteiro: la ele NAO e decoracao — e a propria decisao, porque a
+    # frase so nasce quando o peso passa do teto.
+    if informado and teto_carga is not None and peso > Fraction(str(teto_carga)):
         frases_peso.append(MOLDES["peso_acima_do_teto"].format(
             peso=_n(peso), teto_carga=_n(Fraction(str(teto_carga)))))
 
@@ -330,7 +384,8 @@ def responder(tensao_v, amperagem_ah, peso_piloto_kg, relevo,
         "entrada": {
             "tensao_v": float(tensao_v),
             "amperagem_ah": float(amperagem_ah),
-            "peso_piloto_kg": float(peso_piloto_kg),
+            "peso_piloto_kg": (None if peso_piloto_kg is None
+                               else float(peso_piloto_kg)),
             "relevo": relevo,
             "autonomia_declarada_km": (None if autonomia_declarada_km is None
                                        else float(autonomia_declarada_km)),
@@ -346,6 +401,10 @@ def responder(tensao_v, amperagem_ah, peso_piloto_kg, relevo,
         "degrau_da_conta": faixa["degrau"],
         "frase_wh": frase_wh,
         "frases_km": frases_km,
+        # `None` quando a conta de km sai. A pagina serve este campo FORA da
+        # caixa (13/11/2026, item 2 do despacho): dentro dela a causa empurra o
+        # primeiro botao de compra para fora do teto da 32.5.
+        "frase_porque_da_recusa": frase_porque_da_recusa,
         "frases_peso": frases_peso,
         "frases_calibracao": frases_calibracao,
     }

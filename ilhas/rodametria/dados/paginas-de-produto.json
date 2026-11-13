@@ -142,7 +142,7 @@
       ],
       "como_sabemos": [
         "Os anúncios saem da busca \"{CHAVE}\" na Shopee, lida em {DATA}. De {LIDAS} ofertas, {N} são patinete elétrico de adulto e {RECUSADAS} não são — capacete, capa de chuva, patinete de criança e patinete de empurrar aparecem na mesma busca.",
-        "A ordem dos cartões é por venda medida e depois por preço; a gente não compara comissão entre lojas e não ordena por ela.",
+        "A ordem dos cartões. {CRITERIO_DE_ORDEM}",
         "Potência, velocidade máxima, acelerador e carga máxima só entram na nossa ficha técnica quando vêm de ficha de fabricante ou de ficha de loja grande. Título de anúncio não basta para esses quatro, e é por isso que esta página diz o que o anúncio declarou em vez de preencher uma tabela técnica."
       ],
       "aviso_de_afiliado": "Os botões levam para a loja por link de afiliado: a gente recebe comissão se você comprar, e o preço para você é o mesmo."
@@ -207,7 +207,7 @@
       ],
       "como_sabemos": [
         "Os anúncios saem da busca \"{CHAVE}\" na Shopee, lida em {DATA}. De {LIDAS} ofertas, {N} são bicicleta elétrica de adulto e {RECUSADAS} não são — capacete e capa de chuva dominam o resto da busca.",
-        "A ordem dos cartões é por venda medida e depois por preço; comissão não ordena nada nesta casa.",
+        "A ordem dos cartões. {CRITERIO_DE_ORDEM}",
         "Potência, velocidade máxima, acelerador e carga máxima só entram na nossa ficha técnica vindos de ficha de fabricante ou de loja grande. Título de anúncio não basta para esses quatro."
       ],
       "aviso_de_afiliado": "Os botões levam para a loja por link de afiliado: a gente recebe comissão se você comprar, e o preço para você é o mesmo."

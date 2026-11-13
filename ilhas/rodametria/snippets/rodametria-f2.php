@@ -45,7 +45,7 @@
    (item 2 do despacho da ronda de 04/11). E o MESMO campo que o "Como sabemos"
    desta pagina ja imprimia em prosa — um fato, uma fonte (20.7). */
 if ( ! defined( 'RODAMETRIA_F2_VERSAO' ) ) {
-	define( 'RODAMETRIA_F2_VERSAO', '1.11.0' );
+	define( 'RODAMETRIA_F2_VERSAO', '1.12.0' );
 }
 
 /* A VERSAO DESTE SNIPPET VAI AO AR, pelo filtro que a casca 1.6.0 abriu
@@ -146,10 +146,18 @@ function rodametria_f2_formulario_html( $d ) {
 		. $opcoes( $d['campos']['amperagens_ah'], $ex['amperagem_ah'], 'Ah' )
 		. '</select><span class="rdm-f-dica">Também na etiqueta, ao lado dos volts</span></p>';
 
+	/* O PESO TAMBEM SO GANHA `value` SE O EXEMPLO TROUXER UM (13/11/2026, item 2).
+	   Ele nao entra em conta nenhuma aqui, e com `value="90"` cravado a pagina
+	   devolvia "Os seus 90 kg" a quem nunca informou peso. Informado, ele volta
+	   a ser NOMEADO na ressalva — que e a decisao do item 2 de 30/10/2026 e
+	   continua de pe. */
+	$peso_do_exemplo = isset( $ex['peso_piloto_kg'] ) ? $ex['peso_piloto_kg'] : null;
 	$html .= '<p class="rdm-f-campo"><label for="rdm-f2-peso">Seu peso</label>'
 		. '<input id="rdm-f2-peso" name="rdm_peso" type="number" inputmode="numeric" min="30" max="200"'
-		. ' step="1" value="' . esc_attr( (int) $ex['peso_piloto_kg'] ) . '" data-rdm-f2-peso>'
-		. '<span class="rdm-f-dica">Em kg, com mochila se você leva</span></p>';
+		. ' step="1"'
+		. ( null === $peso_do_exemplo ? '' : ' value="' . esc_attr( (int) $peso_do_exemplo ) . '"' )
+		. ' data-rdm-f2-peso>'
+		. '<span class="rdm-f-dica">Opcional — em kg, com mochila se você leva</span></p>';
 
 	$html .= '<p class="rdm-f-campo"><label for="rdm-f2-relevo">O seu trajeto</label>'
 		. '<select id="rdm-f2-relevo" name="rdm_relevo" data-rdm-f2-relevo>';
@@ -161,9 +169,22 @@ function rodametria_f2_formulario_html( $d ) {
 	}
 	$html .= '</select><span class="rdm-f-dica">É o que mais muda o resultado</span></p>';
 
+	/* O CAMPO OPCIONAL CHEGA VAZIO, E O `value` SO NASCE SE O EXEMPLO TROUXER UM
+	   NUMERO (13/11/2026, item 2 do despacho da ronda). Ate aqui ele vinha com
+	   `value="60"` cravado, e as duas consequencias foram MEDIDAS no navegador:
+	   (1) o ramo que o rotulo ao lado promete — "sem ele a gente so da os Wh" —
+	   era inalcancavel na pagina que o servidor entrega; (2) a faixa de km sai
+	   de `declarada / fator` e nao depende da bateria, entao 374 Wh e 2.160 Wh
+	   em ladeira devolviam a MESMA "25 a 60 km", fechada pelo 60 que ninguem
+	   digitou. O molde e lido do banco e nao decidido aqui: se um dia o exemplo
+	   voltar a trazer numero, o atributo volta junto — o que nao volta e a
+	   decisao estar escrita no PHP. */
+	$aut_do_exemplo = isset( $ex['autonomia_declarada_km'] ) ? $ex['autonomia_declarada_km'] : null;
 	$html .= '<p class="rdm-f-campo"><label for="rdm-f2-aut">Km que o anúncio promete</label>'
 		. '<input id="rdm-f2-aut" name="rdm_aut" type="number" inputmode="numeric" min="1" max="400"'
-		. ' step="1" value="' . esc_attr( (int) $ex['autonomia_declarada_km'] ) . '" data-rdm-f2-aut>'
+		. ' step="1"'
+		. ( null === $aut_do_exemplo ? '' : ' value="' . esc_attr( (int) $aut_do_exemplo ) . '"' )
+		. ' data-rdm-f2-aut>'
 		. '<span class="rdm-f-dica">Opcional — sem ele a gente só dá os Wh</span></p>';
 
 	$html .= '</div>';
@@ -251,13 +272,30 @@ if ( ! function_exists( 'rodametria_f2_noscript_html' ) ) {
 function rodametria_f2_noscript_html( $d ) {
 	$ex = $d['campos']['exemplo'];
 
+	/* OS CAMPOS DO EXEMPLO SAO CONTADOS, NUNCA ENUMERADOS A MAO (13/11/2026,
+	   item 2). Esta frase listava "48 V, 20 Ah, 90 kg" com o kg escrito na
+	   emenda; desde que o peso e os km do anuncio chegam VAZIOS, listar um
+	   campo vazio diria ao leitor que ele preencheu algo que nao preencheu. A
+	   lista agora nasce do que o exemplo REALMENTE traz. */
+	$preenchidos = array();
+	if ( null !== $ex['tensao_v'] ) {
+		$preenchidos[] = rodametria_f2_numero( $ex['tensao_v'] ) . ' V';
+	}
+	if ( null !== $ex['amperagem_ah'] ) {
+		$preenchidos[] = rodametria_f2_numero( $ex['amperagem_ah'] ) . ' Ah';
+	}
+	if ( isset( $ex['peso_piloto_kg'] ) ) {
+		$preenchidos[] = rodametria_f2_numero( $ex['peso_piloto_kg'] ) . ' kg';
+	}
+	if ( isset( $ex['autonomia_declarada_km'] ) ) {
+		$preenchidos[] = rodametria_f2_numero( $ex['autonomia_declarada_km'] ) . ' km de anúncio';
+	}
+
 	return rodametria_casca_noscript( array(
 		'A conta responde no seu navegador. Com o JavaScript desligado, o botão '
 		. 'recarrega a página e a resposta abaixo continua sendo a do exemplo já '
 		. 'preenchido no formulário — '
-		. rodametria_f2_numero( $ex['tensao_v'] ) . ' V, '
-		. rodametria_f2_numero( $ex['amperagem_ah'] ) . ' Ah, '
-		. rodametria_f2_numero( $ex['peso_piloto_kg'] ) . ' kg. A tabela '
+		. implode( ', ', $preenchidos ) . '. A tabela '
 		. '“Já calculado para outras baterias”, mais abaixo, responde sem precisar '
 		. 'de conta: ela já traz os watt-hora e a faixa de km de cada combinação '
 		. 'de bateria que o nosso banco declara.',
@@ -311,7 +349,22 @@ function rodametria_f2_resultado_html( $d ) {
  */
 if ( ! function_exists( 'rodametria_f2_ressalva_html' ) ) {
 function rodametria_f2_ressalva_html( $d ) {
-	$html = '<div class="rdm-f2-ressalva" data-rdm-f2-ressalva>';
+	/* A CAUSA DA RECUSA DO KM VEM ANTES DA RESSALVA DO PESO, e ela mora AQUI e
+	   nao na caixa (13/11/2026, item 2 do despacho). A 2.4 da especificacao
+	   exige que a recusa NOMEIE a causa, e ela continua nomeada e no HTML
+	   servido, legivel com o JavaScript desligado (22.8). O que a mudou de
+	   lugar foi a 32.5: desde que o campo opcional passou a chegar vazio, a
+	   recusa e a PRIMEIRA TELA, e a causa inteira dentro da caixa empurraria o
+	   primeiro botao de compra para fora dos 1.400 px.
+	   O conteiner existe mesmo vazio: e nele que o navegador escreve e apaga a
+	   causa quando a pessoa informa ou limpa os km do anuncio. */
+	$porque = isset( $d['resposta_exemplo']['frase_porque_da_recusa'] )
+		? (string) $d['resposta_exemplo']['frase_porque_da_recusa'] : '';
+	$html  = '<div class="rdm-f2-porque" data-rdm-f2-porque>';
+	$html .= ( '' === $porque ) ? '' : '<p>' . esc_html( $porque ) . '</p>';
+	$html .= '</div>';
+
+	$html .= '<div class="rdm-f2-ressalva" data-rdm-f2-ressalva>';
 	foreach ( (array) $d['resposta_exemplo']['frases_peso'] as $f ) {
 		$html .= '<p>' . esc_html( $f ) . '</p>';
 	}
@@ -1165,17 +1218,22 @@ add_action( 'wp_footer', function () {
   function responder(){
     var v = parseFloat(elV.value);
     var ah = parseFloat(elAh.value);
-    var peso = parseFloat(elPeso.value);
+    var peso = elPeso.value === '' ? null : parseFloat(elPeso.value);
     var relevo = elRelevo.value;
     var aut = elAut.value === '' ? null : parseFloat(elAut.value);
-    if (!(v > 0) || !(ah > 0) || !(peso > 0)) { return; }
+    /* O PESO SAIU DA GUARDA (13/11/2026, item 2): ele e OPCIONAL, nao entra em
+       conta nenhuma, e deixa-lo na guarda fazia a pagina CONGELAR a resposta
+       quando alguem apagava o campo — a caixa ficava com a frase anterior,
+       dizendo um peso que ja nao estava mais la. */
+    if (!(v > 0) || !(ah > 0)) { return; }
+    if (peso !== null && !(peso > 0)) { return; }
 
     var wh = v * ah;
     var fator = fracao(String(D.fatores[relevo]));
     var frases = [];
     frases.push(preencher(D.moldes.wh, {v: num(v), ah: num(ah, 1), wh: num(wh)}));
 
-    var rotulo, numero, unidade;
+    var rotulo, numero, unidade, porque;
     if (aut !== null && aut > 0) {
       var piso = aut / fator;
       if (piso === aut) {
@@ -1190,11 +1248,17 @@ add_action( 'wp_footer', function () {
       }
       rotulo = D.moldes.rotulo_km;
       unidade = 'km';
+      porque = null;
     } else {
       frases.push(D.moldes.km_recusa);
       rotulo = D.moldes.rotulo_wh;
       numero = num(wh);
       unidade = 'Wh';
+      /* A CAUSA NAO ENTRA NA CAIXA (13/11/2026, item 2). Ela vai para o
+         conteiner proprio abaixo do bloco de compra, pelo mesmo motivo de
+         pixel que o PHP explica la — e e APAGADA assim que a conta de km
+         sai, senao a pagina explicaria uma recusa que ela nao fez. */
+      porque = D.moldes.km_recusa_porque;
     }
 
     /* A RESSALVA DO PESO, abaixo do bloco de compra. Ela NAO sobe para a caixa:
@@ -1205,11 +1269,20 @@ add_action( 'wp_footer', function () {
        PISO DA FAIXA, e com ladeira sem autonomia declarada a caixa RECUSA o km,
        entao a ressalva mandava esperar o piso de uma faixa que nao existe. */
     var faixaComDuasPontas = (aut !== null && aut > 0 && fator !== 1);
-    var ressalvas = [preencher(D.moldes.peso, {peso: num(peso)})];
+    /* O PAR DE MOLDES DO PESO (13/11/2026, item 2): informado, o peso e
+       NOMEADO — que e a decisao do item 2 de 30/10/2026 e continua de pe; nao
+       informado, ele nao existe para ser nomeado, e a pagina nao devolve ao
+       leitor um numero que ela mesma escreveu no campo dele. */
+    var temPeso = (peso !== null && peso > 0);
+    var ressalvas = [temPeso
+      ? preencher(D.moldes.peso_informado, {peso: num(peso)})
+      : D.moldes.peso];
     if (relevo === 'ladeira' && faixaComDuasPontas) {
-      ressalvas.push(preencher(D.moldes.peso_ladeira, {peso: num(peso)}));
+      ressalvas.push(temPeso
+        ? preencher(D.moldes.peso_ladeira_informado, {peso: num(peso)})
+        : D.moldes.peso_ladeira);
     }
-    if (D.tetoCarga !== null && peso > D.tetoCarga) {
+    if (temPeso && D.tetoCarga !== null && peso > D.tetoCarga) {
       ressalvas.push(preencher(D.moldes.peso_acima_do_teto, {
         peso: num(peso), teto_carga: num(D.tetoCarga)
       }));
@@ -1229,6 +1302,16 @@ add_action( 'wp_footer', function () {
       p.textContent = f;
       caixa.appendChild(p);
     });
+
+    var alvoPorque = document.querySelector('[data-rdm-f2-porque]');
+    if (alvoPorque) {
+      alvoPorque.textContent = '';
+      if (porque) {
+        var pPorque = document.createElement('p');
+        pPorque.textContent = porque;
+        alvoPorque.appendChild(pPorque);
+      }
+    }
 
     var alvoRessalva = document.querySelector('[data-rdm-f2-ressalva]');
     if (alvoRessalva) {

@@ -46,8 +46,36 @@ SAIDA = os.path.join(ILHA, "dados", "f2-respostas.json")
 # O caso de exemplo que a 32.1 manda vir JA PREENCHIDO no formulario e JA
 # PRE-RENDERIZADO na caixa de resultado. Os valores sao os da tabela 2.1 da
 # especificacao, nao escolhidos aqui.
-EXEMPLO = {"tensao_v": 48, "amperagem_ah": 20, "peso_piloto_kg": 90,
-           "relevo": "misto", "autonomia_declarada_km": 60}
+#
+# `autonomia_declarada_km` PASSOU A SER `None` EM 13/11/2026 — item 2 do
+# despacho da ronda daquele dia, e a linha 5 da tabela 2.1 da especificacao foi
+# corrigida na mesma passada (de `60` para `vazio`). Duas coisas obrigaram:
+#
+# 1. O rotulo do campo promete "Opcional — sem ele a gente so da os Wh", e o
+#    ramo que ele descreve era inalcancavel na pagina que o servidor entrega,
+#    porque o campo nunca chegava vazio. Rotulo que descreve um ramo que a
+#    entrega nao tem e afirmacao falsa na tela.
+# 2. Pior, e e isto que decidiu: com um numero declarado, a faixa de km sai de
+#    `declarada / fator` e NAO DEPENDE DA BATERIA. Com os 60 vindo de NOS, a
+#    pagina respondia "25 a 60 km" tanto para 374 Wh quanto para 2.160 Wh em
+#    ladeira — uma bateria 5,8 vezes maior devolvendo a mesma faixa, fechada
+#    pelo numero que ninguem digitou. A aritmetica estava certa nos tres casos
+#    conferidos na mao; o defeito era de ENTRADA, e por isso nenhum portao de
+#    numero o via.
+#
+# O que a pagina entrega agora: a ENERGIA (Wh), que e o degrau 1 da 2.2 da
+# especificacao e, nas palavras dela, "a ferramenta inteira funcionando". O km
+# aparece quando o leitor informar o numero do anuncio — e ai ele e dele.
+# `peso_piloto_kg` TAMBEM PASSOU A SER `None` NA MESMA PASSADA, e pela outra
+# metade do mesmo item: com `value="90"` no campo, a resposta dizia "Os seus 90
+# kg" e "Com 90 kg e ladeira" a quem nunca informou peso nenhum. O peso nao
+# entra em conta nenhuma desta ferramenta — a propria resposta diz isso — e a
+# unica decisao que ele toma e a da frase de carga acima do teto. A linha 3 da
+# tabela 2.1 da especificacao foi corrigida junto (de `sim`/`90` para
+# `nao`/`vazio`). O que NAO mudou: informado, o peso continua sendo NOMEADO na
+# ressalva, que foi a decisao do item 2 do despacho de 30/10/2026 e segue de pe.
+EXEMPLO = {"tensao_v": 48, "amperagem_ah": 20, "peso_piloto_kg": None,
+           "relevo": "misto", "autonomia_declarada_km": None}
 
 # Opcoes dos campos de escolha. V e Ah saem das faixas que as fichas colhidas
 # declaram (bloco 1 e banco); a lista existe para o formulario nao aceitar
@@ -678,6 +706,12 @@ def conferir_moldes(constantes):
         (36, 10.4, 70, "plano", 25),
         (48, 20, 90, "misto", None),
         (72, 30, 130, "ladeira", 100),
+        # OS TRES MUNDOS DO PESO AUSENTE (13/11/2026, item 2 do despacho): sem
+        # peso com faixa, sem peso em ladeira (a frase do piso muda de molde) e
+        # sem peso nem km do anuncio, que e a ENTRADA QUE O SERVIDOR ENTREGA.
+        (48, 20, None, "misto", 60),
+        (60, 20, None, "ladeira", 70),
+        (48, 20, None, "misto", None),
     ]
     for c in casos:
         r = f2ref.responder(*c, constantes=constantes)
@@ -696,8 +730,19 @@ def conferir_moldes(constantes):
             assert r["frases_km"][0] == f2ref.MOLDES["km_degradado"].format(
                 relevo_frase=f2ref.RELEVO_FRASE[relevo],
                 piso=f2ref._n(f["piso_km"]), teto=f2ref._n(f["teto_km"]))
-        assert r["frases_peso"][0] == f2ref.MOLDES["peso"].format(
-            peso=f2ref._n(F(str(peso))))
+        # O PAR DE MOLDES DO PESO: informado, NOMEIA; ausente, nao inventa.
+        if peso is None:
+            assert r["frases_peso"][0] == f2ref.MOLDES["peso"], r["frases_peso"][0]
+        else:
+            assert r["frases_peso"][0] == f2ref.MOLDES["peso_informado"].format(
+                peso=f2ref._n(F(str(peso))))
+        # E NENHUMA FRASE ENTREGUE SEM PESO PODE CARREGAR UM NUMERO DE KG: e a
+        # afirmacao que o item 2 do despacho de 13/11/2026 cobra, e ela e sobre
+        # a frase SERVIDA, nao sobre a escolha do molde.
+        if peso is None:
+            for frase in r["frases_peso"]:
+                assert " kg" not in frase, (
+                    "a resposta sem peso informado cita kg: %r" % frase)
 
         # ITEM 1: NENHUMA frase da caixa pode negar o numero que a propria
         # caixa serve. A oracao proibida e "nao os <teto> km", com o teto que
@@ -898,6 +943,7 @@ def montar(constantes, veiculos, pecas, escada):
             "teto_km_tela": exemplo["teto_km_tela"],
             "frase_wh": exemplo["frase_wh"],
             "frases_km": exemplo["frases_km"],
+            "frase_porque_da_recusa": exemplo["frase_porque_da_recusa"],
             "frases_peso": exemplo["frases_peso"],
             "frases_calibracao": exemplo["frases_calibracao"],
         },

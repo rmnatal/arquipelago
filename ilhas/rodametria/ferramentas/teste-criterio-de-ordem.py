@@ -78,17 +78,31 @@ SNIPPETS = ('rodametria-casca.php', 'rodametria-produto.php', 'rodametria-f1.php
 
 # O VOCABULARIO DE QUEM AFIRMA O CRITERIO. Cada padrao e uma forma medida ou
 # obvia de DECLARAR a ordem; nenhum deles e uma forma de REMETER a ela.
+#
+# SAO EXPRESSOES REGULARES DESDE 13/11/2026, e a troca tem causa medida: ate
+# aqui eram cadeias cruas, e `a ordem e por` NAO alcanca
+# `A ordem DOS CARTOES e por venda medida` — que era exatamente a QUARTA copia,
+# viva em `dados/paginas-de-produto.json` e servida nas duas paginas de produto
+# desde 11/11. A regra 3 ja varria aquele arquivo; o que faltava era o
+# vocabulario morder o sujeito no meio. Padrao que so casa a forma EXATA mede a
+# frase de ontem, nao o defeito.
 PADROES_DE_AFIRMACAO = (
-    'quem ordena',
-    'quem decide a ordem',
-    'ordena uma lista',
-    'primeiro vem',
-    'a ordem e por',
-    'a ordem da lista e',
-    'ordenamos',
-    'o desempate e o preco',
-    'em ordem de preco',
-    'a ordem e o',
+    r'quem ordena',
+    r'quem decide a ordem',
+    r'ordena uma lista',
+    r'primeiro vem',
+    # `a ordem <qualquer sujeito curto> e por ...` — a forma generica da QUARTA
+    # copia. O `[^.]` para na frase: sujeito nao atravessa ponto final.
+    r'a ordem\b[^.]{0,40}\be por\b',
+    r'a ordem da lista e',
+    r'ordenamos',
+    r'o desempate e\b',
+    r'em ordem de preco',
+    r'a ordem e o',
+    # A FALSIDADE NOMEADA, e ela entra por si: `venda medida` diz que a VENDA foi
+    # medida por nos, e nao foi — foi LIDA da resposta da loja. Quem escrever a
+    # cadeia fora de comentario esta reabrindo o defeito de 11/11.
+    r'\bvenda medida\b',
 )
 
 
@@ -127,7 +141,7 @@ def afirmacoes_sem_molde(textos):
             continue
         t = sem_acento(texto)
         for padrao in PADROES_DE_AFIRMACAO:
-            if padrao in t:
+            if re.search(padrao, t):
                 achados.append((onde, padrao, texto))
                 break
     return achados
@@ -289,6 +303,27 @@ def main():
              [('casca', 'Isso nunca muda a ordem das recomendacoes, e o criterio que decide '
                         'essa ordem esta escrito na pagina que explica como este site ganha '
                         'dinheiro.')])),
+        # OS DOIS MUNDOS DA QUARTA COPIA — 13/11/2026, item 3 do despacho da ronda
+        # de hoje. As duas cadeias abaixo sao LITERAIS do que
+        # `dados/paginas-de-produto.json` servia nas duas paginas de produto, e
+        # as duas PASSAVAM pela regua de 11/11: a regra 3 varria aquele arquivo,
+        # e o vocabulario dela nao tinha forma que casasse `a ordem DOS CARTOES
+        # e por`. Elas estao aqui, e nao so o conserto, porque mundo que reprova
+        # e o que impede a terceira volta.
+        ('a QUARTA copia do /veiculos/patinete-eletrico/ e ACHADA',
+         lambda: bool(afirmacoes_sem_molde(
+             [('produto.json', 'A ordem dos cartoes e por venda medida e depois por preco; '
+                               'a gente nao compara comissao entre lojas e nao ordena por ela.')]))),
+        ('a QUARTA copia do /veiculos/bicicleta-eletrica/ e ACHADA',
+         lambda: bool(afirmacoes_sem_molde(
+             [('produto.json', 'A ordem dos cartoes e por venda medida e depois por preco; '
+                               'comissao nao ordena nada nesta casa.')]))),
+        ('a cadeia `venda medida` sozinha e ACHADA — ela diz que a VENDA foi medida por nos',
+         lambda: bool(afirmacoes_sem_molde(
+             [('qualquer', 'Os cartoes saem por venda medida.')]))),
+        ('o CONSERTO de hoje passa — lead-in curto mais o molde',
+         lambda: not afirmacoes_sem_molde(
+             [('produto.json', 'A ordem dos cartoes. %s' % MOLDE)])),
         ('a MESMA afirmacao COM o molde passa',
          lambda: not afirmacoes_sem_molde(
              [('qualquer', 'A ordem da lista. %s' % MOLDE)])),

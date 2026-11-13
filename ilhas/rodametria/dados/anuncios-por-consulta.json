@@ -766,25 +766,25 @@
    ],
    "resumo": {
     "ofertas_lidas": 20,
-    "ofertas_que_servem": 15,
+    "ofertas_que_servem": 14,
     "ofertas_recusadas": 4,
     "recusas_por_causa": {
      "fora_da_familia": 2,
      "outro_veiculo": 1,
      "sem_qualificador": 1
     },
-    "ofertas_com_link_de_afiliado": 15,
+    "ofertas_com_link_de_afiliado": 14,
     "abre_o_portao_da_30_2": true,
     "numero_proprio_pedido": "faixa_de_preco",
     "numero_proprio": {
      "de": 1030.0,
      "ate": 2699.0,
-     "mediana": 1695.92,
-     "sobre_quantas_ofertas": 15
+     "mediana": 1697.46,
+     "sobre_quantas_ofertas": 14
     },
     "motivo_sem_numero_proprio": null,
     "contagem_de_rotulo_de_potencia": {
-     "sem_watt": 1,
+     "sem_watt": 0,
      "watt_sem_rotulo": 14,
      "nominal": 0,
      "pico": 0,
@@ -792,7 +792,7 @@
      "declaram_watt": 14,
      "dizem_qual_watt": 0
     },
-    "ofertas_aposentadas": 1
+    "ofertas_aposentadas": 2
    },
    "anuncios": [
     {
@@ -833,46 +833,6 @@
       "adulto"
      ],
      "rotulo_de_potencia": "watt_sem_rotulo",
-     "url_afiliado_gerada_em": "2026-11-04"
-    },
-    {
-     "item_id": 23898889810,
-     "shop_id": 1389372092,
-     "titulo": "Patinete Elétrico Adulto Dobrável 30km/h Original Premium",
-     "preco": 1599.99,
-     "moeda": "BRL",
-     "loja": "ZeroOne!",
-     "nota": "5",
-     "vendas": 0,
-     "tipo_de_loja": [],
-     "imagem": {
-      "url": "https://cf.shopee.com.br/file/sg-11134201-824hl-menkaco2tpfpa4",
-      "largura": 500,
-      "altura": 500,
-      "alt": "Patinete Elétrico Adulto Dobrável 30km/h Original Premium",
-      "fonte": "anuncio-shopee",
-      "coletado_em": "2026-11-04",
-      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
-     },
-     "motivo_sem_imagem": null,
-     "url_produto": "https://shopee.com.br/product/1389372092/23898889810",
-     "url_afiliado": "https://s.shopee.com.br/4fxWYUAZJT",
-     "motivo_sem_link": null,
-     "sub_id_1": "rodametria",
-     "sub_id_2": "patineteeletrico",
-     "fonte": "anuncio-shopee",
-     "coletado_em": "2026-11-04",
-     "chave_que_achou": "patinete eletrico adulto",
-     "degrau_da_escada": 1,
-     "serve": true,
-     "recusado_por": null,
-     "exigencia_que_faltou": null,
-     "exigencias_atendidas": [
-      "patinete",
-      "eletric",
-      "adulto"
-     ],
-     "rotulo_de_potencia": "sem_watt",
      "url_afiliado_gerada_em": "2026-11-04"
     },
     {
@@ -1541,7 +1501,8 @@
     "por_que_existe": "PISO DA 25.2 para os cartoes desta pagina: o link de cada cartao e a ficha de um anuncio, e ficha apodrece. Quando ela morrer, esta busca e a saida que a pessoa ja tinha na tela."
    },
    "anuncios_aposentados": [
-    "APOSENTADO EM 2026-11-11 — item 58212105781 da loja 1430771203 — Patinete Elétrico Adulto  650W com 3 Velocidades Bateria Recarregável para Mobilidade Urbana — R$ 1499,00, preco de 2026-11-04, degrau 1 da escada de chaves, encurtado https://s.shopee.com.br/9pfbJrNKOR, loja \"Super mantimentos comprar\" — CAUSA: a pagina do produto serve a palavra `Esgotado` colada ao titulo — o anuncio existe, abre em 200 e NAO VENDE, que e o segundo dos dois desfechos que a 25.4 manda ler no corpo e nunca no `<title>`. Nesta leva o `<title>` veio com o nome do produto, o que o torna ainda mais enganoso que o generico que a 25.4 descreve. Oferta que nao vende sai da vitrine inteira — carrossel, tabela, faixa de preco e mediana —, porque numero contado sobre oferta inexistente e numero que ninguem pode comprar || ULTIMA MEDICAO: 11/11/2026, ronda diaria tecnica das 14h5xZ, no navegador do Raphael, abrindo a `url_produto` e NUNCA o link de afiliado (25.4), em DUAS leituras sem CAPTCHA: `Esgotado` nas duas, com o corpo caindo de ~4.400 para 2.789 caracteres na primeira e voltando a 4.353 na segunda. Reescolher ficha nova nao foi tentado nesta passada e nao e omissao: o teste de vida da Shopee nao e exercitavel desta nuvem (25.4, remedido em 11/11 — o Chromium daqui abre a ficha em 200 e ela nao renderiza, com 23 recursos de `deo.shopeemobile.com` recusados pelo egresso), e grampear ficha nova sem poder abri-la e a 25.4-b.1 ao pe da letra. A vaga do cartao vai para o proximo da ordem da secao 7, que a mesma coleta de 04/11 ja trouxe com o par completo"
+    "APOSENTADO EM 2026-11-11 — item 58212105781 da loja 1430771203 — Patinete Elétrico Adulto  650W com 3 Velocidades Bateria Recarregável para Mobilidade Urbana — R$ 1499,00, preco de 2026-11-04, degrau 1 da escada de chaves, encurtado https://s.shopee.com.br/9pfbJrNKOR, loja \"Super mantimentos comprar\" — CAUSA: a pagina do produto serve a palavra `Esgotado` colada ao titulo — o anuncio existe, abre em 200 e NAO VENDE, que e o segundo dos dois desfechos que a 25.4 manda ler no corpo e nunca no `<title>`. Nesta leva o `<title>` veio com o nome do produto, o que o torna ainda mais enganoso que o generico que a 25.4 descreve. Oferta que nao vende sai da vitrine inteira — carrossel, tabela, faixa de preco e mediana —, porque numero contado sobre oferta inexistente e numero que ninguem pode comprar || ULTIMA MEDICAO: 11/11/2026, ronda diaria tecnica das 14h5xZ, no navegador do Raphael, abrindo a `url_produto` e NUNCA o link de afiliado (25.4), em DUAS leituras sem CAPTCHA: `Esgotado` nas duas, com o corpo caindo de ~4.400 para 2.789 caracteres na primeira e voltando a 4.353 na segunda. Reescolher ficha nova nao foi tentado nesta passada e nao e omissao: o teste de vida da Shopee nao e exercitavel desta nuvem (25.4, remedido em 11/11 — o Chromium daqui abre a ficha em 200 e ela nao renderiza, com 23 recursos de `deo.shopeemobile.com` recusados pelo egresso), e grampear ficha nova sem poder abri-la e a 25.4-b.1 ao pe da letra. A vaga do cartao vai para o proximo da ordem da secao 7, que a mesma coleta de 04/11 ja trouxe com o par completo",
+    "APOSENTADO EM 2026-11-13 — item 23898889810 da loja 1389372092 — Patinete Elétrico Adulto Dobrável 30km/h Original Premium — R$ 1599,99, preco de 2026-11-04, degrau 1 da escada de chaves, encurtado https://s.shopee.com.br/4fxWYUAZJT, loja \"ZeroOne!\" — CAUSA: a ficha do anuncio devolve \"O produto nao existe\", sem `h1` e com 1.640 bytes de corpo. NAO e `Esgotado`, que e o outro desfecho da 25.4: aqui o anuncio sumiu da loja, e a linha 7 da tabela de exemplos da pagina de maior intencao de compra desta ilha levava o leitor a um beco. Oferta que nao existe sai da vitrine inteira — carrossel, tabela, faixa de preco e mediana —, porque numero contado sobre oferta inexistente e numero que ninguem pode comprar || ULTIMA MEDICAO: 13/11/2026, ronda diaria tecnica das 14h4xZ, no navegador do Raphael, abrindo a `url_produto` e NUNCA o link de afiliado (25.4), em DUAS leituras: \"O produto nao existe\" nas duas. E O ACHADO DA FUNDACAO AS 16h3xZ DO MESMO DIA, que vale mais que a baixa: a Open API de afiliados AINDA LISTA este item na busca `patinete eletrico adulto` (50 ofertas lidas), com o MESMO `productLink`, o mesmo titulo e os mesmos R$ 1.599,99 — catalogo de afiliado NAO e teste de vida, e quem perguntar a API em vez de abrir a ficha vai ressuscitar este anuncio. Desta nuvem a ficha segue nao mensuravel: shopee.com.br responde 200 com 155.800 bytes de casca de SPA, sem `<title>`, sem `og:` e sem o proprio `item_id` dentro. Reescolher ficha nova nao foi tentado e nao e omissao: grampear ficha que nao se pode abrir e a 25.4-b.1 ao pe da letra"
    ]
   }
  ]

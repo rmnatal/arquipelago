@@ -4,8 +4,8 @@
   "nicho": "mobilidade eletrica — acertar os tres numeros antes de comprar um veiculo eletrico: categoria legal (CNH e placa), autonomia real e carga maxima",
   "dominio": "https://rodametria.com.br",
   "versao_manifest": 1,
-  "revisao": 91,
-  "atualizado_em": "2026-11-12",
+  "revisao": 92,
+  "atualizado_em": "2026-11-13",
   "estado": "nascendo",
   "desembarque": {
     "aprovado": true,
@@ -42,8 +42,8 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "f24d10a579262d755219df7c65df5a63ad7ee843e2cc58d1598cb0c0d07792b6",
-      "versao": "1.11.0",
+      "sha256": "61629390340542e98a37061dfce0024cc47e26a3c6afb184041d34307d62b806",
+      "versao": "1.12.0",
       "descricao": "A F2 (versao corrente no campo `versao` deste item), a PRIMEIRA pagina desta ilha no ar, em /autonomia-patinete-eletrico/. Ordem da 32.1 de cima para baixo, conferida por afirmacao no fonte: trilha e H1, promessa, formulario ja preenchido com o caso de exemplo, caixa de resultado JA PRE-RENDERIZADA no HTML (a metade que a IA le sem preencher formulario, e o que a 22.8 exige de quem desliga o JavaScript), bloco de compra, prestacao de contas da secao 7 com os cinco grupos por causa e a soma fechando o banco contado, tabela pre-renderizada visivel, e o resto em <details>. NENHUM numero e NENHUMA frase de resposta e digitado neste arquivo: tudo vem da option que o Sync grava de dados/f2-respostas.json, escrito por ferramentas/gerar-f2.py a partir de ferramentas/f2-referencia.py e de dados/constantes.json. O JS do rodape preenche MOLDE, nunca escreve frase — a bateria de mutacoes de 29/10 reprovou as duas versoes em que ele escrevia. A VERSAO SAIU DESTA PROSA EM 02/11/2026, e ela estava VELHA nos QUATRO snippets (a casca dizia 1.4.0 servindo 1.6.0; os outros tres diziam 1.0.0) — e isso e a prova de que o campo `versao` faltava. Quem declara a versao agora e o campo, espelhado da constante do arquivo por `ferramentas/atualizar-manifest.py` e cobrado por `ferramentas/teste-versao-dos-snippets.php`; prosa que repete o mesmo fato e a segunda declaracao que sobe sozinha de um lado so."
     },
     {
@@ -87,7 +87,7 @@
       "arquivo": "dados/f2-respostas.json",
       "formato": "json",
       "publicar": true,
-      "sha256": "5a17c0add7c59e41bf4d85bbc3b3d0745307ba54e0235f8b1f5f158edf28035a",
+      "sha256": "03633f5b060f5f25586182a9a71135217c8b612bb73ce4dc92861b018642ed4d",
       "descricao": "O que a F2 serve: campos, moldes de frase, fatores de relevo, resposta de exemplo pre-renderizada, tabela e prestacao de contas."
     },
     {
@@ -127,7 +127,7 @@
       "arquivo": "dados/paginas-de-produto.json",
       "formato": "json",
       "publicar": true,
-      "sha256": "90d5786a2d3a56ee237e8273f91cbb21d905b751f923e5b0cf202a2d60b85631",
+      "sha256": "5a6dfd9eb984dc4d57b7ffe0fa666fdab6e0edb0de62638484fe0ebcdbe8918d",
       "descricao": "A camada DECLARADA das paginas da secao 30: a voz do VOZ.md com MOLDES no lugar de todo numero. `gerar-vitrine-de-produto.py --conferir` REPROVA qualquer digito escrito nesta prosa fora da lista de permitidos."
     },
     {
@@ -135,7 +135,7 @@
       "arquivo": "dados/vitrine-de-produto.json",
       "formato": "json",
       "publicar": true,
-      "sha256": "73762a14e6fd3556f2fbce38f55dda4e25ab5029421337bd206434ee3940aaef",
+      "sha256": "27432db5b9b64b7f8c98be506e5633b9563708911677ff0e8a8fbb3e8470c25f",
       "descricao": "A camada GERADA: cartoes do carrossel (teto de cinco, 32.1), linhas da tabela (todas) e os numeros, RECONTADOS de dados/anuncios-por-consulta.json."
     },
     {
@@ -151,7 +151,7 @@
       "arquivo": "dados/anuncios-por-consulta.json",
       "formato": "json",
       "publicar": false,
-      "sha256": "e7d7756c46748446a376d75373f8ebceb46fea115f6c91d8b8149d6687acf5ee",
+      "sha256": "2e6439a5d2274a2bccef08bb35f41ec23b3f9a75c837bfd28d496c086649c298",
       "descricao": "Os anuncios lidos na Shopee, com o veredito da regua de relevancia por anuncio, a escada medida e as fotos com largura e altura lidas no cabecalho do arquivo na CDN."
     },
     {
