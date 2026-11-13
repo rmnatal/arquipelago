@@ -3,6 +3,88 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-11-13 16h16Z–17h0xZ — **O DESPACHO DE TRÊS ITENS DA RONDA DE HOJE, INTEIRO NUMA PASSADA SÓ (18.2)** — anúncio morto aposentado, a F2 para de atribuir número que ninguém deu, e a QUARTA cópia do critério de ordem morre. **Revisão 92 no ar, conferida (18.4).**
+
+**A ILHA DESTA EXECUÇÃO:** rodametria, por **foco** (`foco.md` nomeia a rodametria, foco total e absoluto desde 27/10). Pela **1.2** não há escolha a fazer, e a **18.2** decidiu o que fazer nela: havia despacho aberto, e despacho sai inteiro.
+
+**O PASSO 1 DO DISPARO, MEDIDO:** `git fetch origin main` com o `main` em `f81a4fb`; o branch `claude/dreamy-mccarthy-u7j3yy` existe e está **idêntico ao `main`** (0 à frente, 0 atrás) e **nenhum PR aberto** — nada a mesclar antes. Reserva às **16h16Z** (commit `b7e94d9`), ganha no push na primeira tentativa; a anterior, de 13h39Z, havia fechado às 13h53Z.
+
+**A REDE FOI MEDIDA E NÃO HERDADA (20.2), ANTES DA RESERVA:** rodametria, robometria e aquametria em **200 nas três passadas** com quebra de cache — **9 de 9, zero `000`**.
+
+---
+
+### ITEM 1 (ALTA) — O ANÚNCIO MORTO SAIU, E O ACHADO VALE MAIS QUE A BAIXA
+
+A linha 7 da tabela de exemplos de `/veiculos/patinete-eletrico/` apontava para o item **23898889810** da loja **1389372092** (*"Patinete Elétrico Adulto Dobrável 30km/h Original Premium"*, ZeroOne!, R$ 1.599,99), cuja ficha devolve **"O produto não existe"** no navegador do Raphael, em duas leituras. Aposentado por `aplicar-aposentadoria-de-anuncio.py` com causa `produto-nao-existe`, e a vitrine regerada: a página do patinete vai de **15 para 14 linhas**, `ofertas_que_servem` de 15 para 14 e a mediana de **R$ 1.695,92 para R$ 1.697,46**. `ofertas_lidas` e `ofertas_recusadas` não mudaram — são fato da coleta de 04/11.
+
+**E AQUI ESTÁ O QUE ESTA PASSADA APRENDEU, que não estava no despacho: a OPEN API DE AFILIADOS AINDA LISTA ESTE ANÚNCIO.** Antes de aplicar a baixa eu tentei remedir a ficha, porque a seção 4 proíbe herdar medição. Desta nuvem a ficha **não é mensurável**: `shopee.com.br` responde **200** com **155.800 bytes** de casca de SPA — sem `<title>`, sem `og:` e **sem o próprio `item_id` dentro**. Então perguntei à API, que é o outro instrumento que eu tenho: `shopee-api.py busca "patinete eletrico adulto" --quantos 50` devolve o item **vivo**, com o **mesmo `productLink`**, o mesmo título e os mesmos R$ 1.599,99.
+
+**Catálogo de afiliado NÃO é teste de vida**, e isso tem consequência operacional: quem perguntar à API em vez de abrir a ficha **ressuscita este anúncio**. É por isso que a frase está dentro da **linha de quarentena** do `dados/anuncios-por-consulta.json` — que é o lugar que `coletar-por-consulta.py` lê para recusar o item na próxima coleta —, e não só aqui.
+
+**O que NÃO foi feito, e não é omissão:** não reescolhi ficha nova. Grampear uma ficha que não se pode abrir é a **25.4-b.1** ao pé da letra, e o piso da 25.2 desta página está vivo (`shopee.com.br/search?keyword=patinete%20eletrico%20adulto`), então a página não ficou sem porta de compra um minuto.
+
+**O MESMO ITEM CONTINUA EM `anuncios` NA CONSULTA `bicicleta-eletrica`, e isso é decisão escrita e não descuido:** lá ele está `serve: false`, `recusado_por: fora_da_familia`, **sem link de afiliado e sem caminho para o leitor** — o "pronto quando" do despacho fala do HTML servido e de `dados/vitrine-de-produto.json`, e nos dois ele tem zero ocorrência. Tirá-lo de lá mexeria nas contagens de recusa de uma coleta que aconteceu, para zero ganho de leitor.
+
+---
+
+### ITEM 2 — A F2 PARA DE DIZER AO LEITOR NÚMEROS QUE ELE NÃO DEU
+
+O defeito do despacho: `rdm_peso` e `rdm_aut` saíam do HTML com `value="90"` e `value="60"`, e a resposta os afirmava — *"60 km é o melhor caso"*, *"Com 90 kg e ladeira"*. **Nenhum anúncio disse 60. A ilha disse.**
+
+**O CONSERTO, e ele foi de ENTRADA e não de conta** (a aritmética estava certa nos três casos que a ronda conferiu na mão):
+
+- **Os dois campos chegam VAZIOS.** O `value` só nasce se o exemplo trouxer número, e o exemplo passou a trazer `None` nos dois. As **linhas 3 e 5 da tabela 2.1 da especificação** foram corrigidas na mesma passada, com o porquê ao lado — a linha 3 dizia `Obrigatório: sim` sobre um campo que **nunca foi obrigatório de fato**, porque o peso não entra em conta nenhuma desta ferramenta.
+- **O rótulo passou a descrever um ramo que a entrega tem.** A primeira tela agora responde a **energia** — `960 Wh` —, que é o **degrau 1 da 2.2 da especificação** e que ela mesma chama de *"a ferramenta inteira funcionando"*.
+- **As frases do peso viraram PARES.** Informado, o peso é **nomeado** (`peso_informado`, `peso_ladeira_informado`) — que é a decisão do item 2 do despacho de **30/10/2026** e continua de pé, porque é ela que impede o campo "Seu peso" de virar enfeite. Ausente, ele **não existe para ser nomeado**. O portão cobra as duas metades, cada uma no seu mundo; antes ele cobrava só uma, e por isso a regra nova e a velha teriam se atropelado.
+- **A recusa do km foi PARTIDA EM DUAS, por pixel medido.** Com o campo vazio, a recusa virou a **primeira tela**, e inteira dentro da caixa ela empurraria o primeiro botão de compra para fora dos 1.400 px da 32.5. A **resposta** fica na caixa; a **causa** vai para um contêiner próprio **abaixo do bloco de compra**, e o navegador a escreve e a **apaga** conforme o leitor informa ou limpa os km. A 2.4 continua obedecida ao pé da letra: a recusa **nomeia** a causa. **Medido no ar: o primeiro botão de compra da F2 DESCEU de ~1.380 px para 1.333 px.**
+
+**MEDIDO NO NAVEGADOR DESTA NUVEM, apertando o formulário de verdade a 390 px** (seção 33): entregue pelo servidor → manchete `960 Wh`, recusa + causa, **zero kg** na resposta; `36 V × 10,4 Ah` sem os dois campos → **374 Wh**; `72 V × 30 Ah` sem os dois → **2.160 Wh**. A desigualdade que o despacho cobra está cumprida na entrada que o servidor entrega.
+
+**E A METADE QUE O CONSERTO NÃO ALCANÇA, dita aqui em vez de sumir no verde.** Se o **leitor** declarar os mesmos 60 km para as duas baterias, a faixa volta a ser **"25 a 60 km"** nas duas — medido no navegador, nesta passada. **Isso não tem conserto nesta ilha hoje:** o degrau 2 degrada o número **declarado** pelo relevo, e com `consumo-absoluto-wh-por-km-patinete` em `pendente` não existe segunda fonte de km. O que a página continua distinguindo é a **energia**, que é a primeira frase da caixa. Os três fatos viraram afirmação em `teste-f2.py` — inclusive a de que **o dia em que o degrau 3 destravar, essa régua REPROVA** em vez de seguir verde com um comentário envelhecido.
+
+`teste-f2.py` fechou em **910 afirmações, 0 falha** (eram 890), e a régua nova foi **provada mordendo**: com o `value="60"` reposto à mão no snippet, ela reprova; retirado, aprova.
+
+---
+
+### ITEM 3 — A QUARTA CÓPIA DO CRITÉRIO DE ORDEM MORREU, E A RÉGUA QUE NÃO A VIA PASSOU A VER
+
+As duas frases de `dados/paginas-de-produto.json` — *"A ordem dos cartões é por venda medida e depois por preço…"* — passam a ser **`A ordem dos cartões. {CRITERIO_DE_ORDEM}`**, pela **32.4-c**: o conserto de uma frase duplicada não é consertar as duas, é a segunda deixar de existir. As duas páginas de produto agora servem a **mesma** cadeia nas duas camadas, vinda de `rdm_produto_criterio_de_ordem()`.
+
+**POR QUE O PORTÃO NÃO VIA, e é a lição desta metade:** a regra 3 do `teste-criterio-de-ordem.py` **já varria aquele arquivo** desde 11/11. O que faltava era o **vocabulário**: os padrões eram cadeias cruas, e `a ordem e por` **não alcança** `A ordem DOS CARTÕES é por`. Padrão que só casa a forma exata mede a frase de ontem, não o defeito. `PADROES_DE_AFIRMACAO` virou **expressão regular**, ganhou a família genérica `a ordem\b[^.]{0,40}\be por\b` e a própria cadeia `venda medida` — que é a falsidade nomeada —, mais **quatro mundos**, dois deles os **literais que estavam no ar**. O portão foi de 27 para **31 afirmações**, e foi provado mordendo: com a frase antiga reposta no arquivo real, reprova.
+
+---
+
+### O DESEMBARQUE E A CONFERÊNCIA NO AR (18.4)
+
+Revisão **92** empurrada às 16h3xZ. O cron do Sync é **por visita e quando devido** (20.6): o `ultimo` do `/status` marcava **16:16:10** e o evento só venceu às **16:40** — nove visitas à home entre 16h32 e 16h40 **não anteciparam** nada, e isso é a 20.6 literal, não defeito. Às **16:40:10** a revisão entrou. **As 8 linhas da revisão 92 no log foram lidas uma por uma e todas dizem `ok`** (20.4).
+
+| portão | resultado |
+|---|---|
+| `conferir-no-ar.py` | **735 afirmações, 0 falha — APROVADO** |
+| `conferir-32-5-no-navegador.mjs` | **APROVADO, 10 de 10**; pior caixa 405 px (teto 700), pior compra **1.333 px** (teto 1.400) |
+| `medir-console-no-navegador.mjs` | **APROVADO, 10 de 10 limpo** |
+| bancada sem rede | **47 portões, 0 falha** |
+| `23898889810` / `4fxWYUAZJT` no HTML das 10 URLs | **zero** |
+| `venda medida` no HTML das 10 URLs | **zero** |
+
+**UMA FALHA FOI MEDIDA E DESCARTADA PELA SEÇÃO 4, e está escrita porque descartar calado é o que custa caro:** a primeira passada do portão de console acusou `cf.shopee.com.br/...825bc-mrkfsjm69r7k19` em `ERR_BLOCKED_BY_ORB` em `/veiculos/patinete-eletrico/`. **Duas passadas seguintes deram 10 de 10 limpo**, e o portão de pixel, na mesma janela, leu as **5 fotos daquela página carregando 5 de 5**. É o egresso desta nuvem para a CDN da Shopee, que a ronda de hoje já havia medido com outra assinatura (`ERR_TUNNEL_CONNECTION_FAILED`) — **não é defeito da página**, e não virou item.
+
+**UM PORTÃO ESTAVA INERTE E FOI CONSERTADO NO CAMINHO:** `conferir-no-ar.py` **estourava** com `TypeError` ao procurar `piso_km_tela` (que agora é `None`) e **saía com código 0** — a bancada o chamou de **INERTE** com todas as letras, que é exatamente a palavra certa: portão que estoura não reprova, some. Ele ganhou o ramo do mundo da recusa, e agora cobra o Wh no HTML, a causa **fora** da caixa (caixa < compra < causa, por posição) e **nenhum kg** na resposta entregue.
+
+---
+
+### O QUE ESTA EXECUÇÃO ACHOU E NÃO CONSERTOU, para a próxima ronda decidir
+
+**O convite da F3 para a F2 monta `?rdm_peso=<exemplo da F3>` e a F2 NUNCA LEU `$_GET`.** O parâmetro não faz nada, e não fazia nada antes desta passada também — a especificação diz, na 3.4, que a F3 chama *"a F2 com o peso já passado na URL"*, e isso nunca foi verdade. **Não mexi, e a razão é do mesmo item 2:** ler aquele `rdm_peso` devolveria à F2 um peso que é o **exemplo da F3**, não o do leitor — o defeito que acabei de fechar, entrando pela outra porta. Quem for consertar tem de decidir primeiro **de quem é aquele número**.
+
+---
+
+### PRÓXIMO PASSO DESBLOQUEADO
+
+**A fila de blocos de construção continua acabada** (o bloco 5 depende de um `pauta.md` que não existe e que pela 17.1 não é arquivo da Fundação), e as duas pontas de página de produto continuam travadas fora da Fundação — a **30.8** para a SERP e o Mercado Livre para o produto. Os três itens que sobram do despacho de 11/11 **não são da Fundação**: dois são da leitura semanal de **18/11** (indexação de `/veiculos/bicicleta-eletrica/` e a primeira impressão de `/veiculos/patinete-eletrico/`) e um é gesto do Raphael (a etiqueta `rodametriamotoeletrica` no Mercado Livre).
+
+**O que está desbloqueado e é da Fundação:** decidir o `?rdm_peso` da F3 → F2 acima, que é pequeno e tem uma pergunta de desenho dentro. E, quando o despacho da próxima ronda chegar, ele fura a fila de novo.
+
 ## 2026-11-13 13h39Z–13h55Z — **AS QUATRO AFIRMAÇÕES QUE O PORTÃO DE AR "DEIXOU DE CONTAR" SÃO AS DA CURA DA PORTA, E NENHUMA RÉGUA FICOU CALADA** — contrato ganha a **20.13**; nada foi ao ar
 
 **A ILHA DESTA EXECUÇÃO:** rodametria, por **foco** (`foco.md` nomeia a rodametria, foco total e absoluto desde 27/10). Pela **1.2** não há escolha a fazer.

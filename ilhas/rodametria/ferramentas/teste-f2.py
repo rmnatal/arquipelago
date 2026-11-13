@@ -285,6 +285,34 @@ def main():
                    "manchete e nosso e nao do anuncio"
                    % (aut, wh_a, wh_b, numero_pt(piso_a), numero_pt(aut and Fraction(str(aut)))))
 
+    # A METADE QUE O CONSERTO NAO ALCANCA, E ELA FICA MEDIDA AQUI EM VEZ DE
+    # SUMIR NO VERDE. Quando o LEITOR declara o MESMO numero de km para as duas
+    # baterias, a faixa coincide — e tem de coincidir: o degrau 2 degrada o
+    # numero DECLARADO pelo relevo, e com o degrau 3 `pendente` nao existe
+    # segunda fonte de km nesta ilha. O que o item 2 do despacho de 13/11/2026
+    # consertou foi a ILHA deixar de fornecer esse numero; o que continua
+    # verdadeiro e que, com o mesmo numero declarado, a faixa e a mesma. A
+    # RESPOSTA, essa, continua distinguindo as duas: a frase da energia e a
+    # primeira da caixa, e ela diz 374 contra 2.160.
+    fator_lad = meus_fatores["ladeira"]
+    declarada_do_leitor = Fraction(60)
+    faixa_a = declarada_do_leitor / fator_lad
+    faixa_b = declarada_do_leitor / fator_lad
+    afirma(faixa_a == faixa_b,
+           "a faixa do degrau 2 deixou de sair so do numero declarado: alguma coisa "
+           "passou a misturar a bateria na conta, e nao ha fonte para isso enquanto "
+           "`consumo-absoluto-wh-por-km-patinete` estiver pendente")
+    molde_wh = d["frases_molde"]["wh"]
+    frase_a = molde_wh.replace("{v}", "36").replace("{ah}", "10,4").replace("{wh}", "374")
+    frase_b = molde_wh.replace("{v}", "72").replace("{ah}", "30,0").replace("{wh}", "2.160")
+    afirma(frase_a != frase_b,
+           "com a mesma faixa de km, a resposta inteira ficou IGUAL para 374 Wh e "
+           "2.160 Wh: a frase da energia e a unica coisa que separa as duas, e ela "
+           "parou de separar")
+    afirma(not d["degrau_3_disponivel"],
+           "o degrau 3 DESTRAVOU: a faixa pode passar a sair da energia, e esta regua "
+           "(e o comentario dela) precisa ser reescrita em vez de continuar verde")
+
     # NENHUMA FRASE ENTREGUE CARREGA O NUMERO DO PESO. O peso nao entra em conta
     # nenhuma desta ferramenta e a guarda da frase de ladeira olha `relevo`,
     # nunca o peso — entao o numero ali era decoracao que afirmava um dado do

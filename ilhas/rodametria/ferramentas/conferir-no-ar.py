@@ -2618,10 +2618,39 @@ def main():
         # estar no HTML servido, sem ninguem clicar em nada. E a 32.1 item 4 e a
         # secao 5 (visibilidade em IA) na mesma afirmacao.
         r = d["resposta_exemplo"]
-        afirma(r["piso_km_tela"] in corpo,
-               "a F2 nao serve o piso de km do exemplo (%s) no HTML" % r["piso_km_tela"])
-        afirma(r["teto_km_tela"] in corpo,
-               "a F2 nao serve o teto de km do exemplo (%s) no HTML" % r["teto_km_tela"])
+        # O NUMERO PRE-RENDERIZADO DEPENDE DO MUNDO DO EXEMPLO, e desde
+        # 13/11/2026 (item 2 do despacho da ronda) o exemplo entregue NAO tem
+        # autonomia declarada: os dois campos opcionais chegam vazios, e o que a
+        # caixa publica e a ENERGIA. A regua anterior procurava `piso_km_tela`
+        # cru e estourava com `None` — portao que estoura nao reprova, so some,
+        # e a bancada o chamou de INERTE na mesma passada.
+        if r["piso_km_tela"] is None:
+            afirma(r["wh_tela"] in corpo,
+                   "a F2 nao serve o Wh do exemplo (%s) no HTML" % r["wh_tela"])
+            # A CAUSA DA RECUSA ESTA NO AR, e FORA da caixa: dentro dela o
+            # primeiro botao de compra sai dos 1.400 px da 32.5.
+            porque = re.sub(r"\s+", " ", r["frase_porque_da_recusa"] or "")
+            afirma(bool(porque) and porque[:60] in texto,
+                   "a F2 recusa o km e nao serve a causa: a 2.4 da especificacao exige "
+                   "que a recusa NOMEIE o que falta")
+            pos_caixa = corpo.find("data-rdm-f2-caixa")
+            pos_porque = corpo.find("rdm-f2-porque")
+            pos_compra_da_causa = corpo.find("rdm-molde-compra")
+            afirma(0 < pos_caixa < pos_compra_da_causa < pos_porque,
+                   "a causa da recusa voltou para dentro da caixa (caixa em %d, compra "
+                   "em %d, causa em %d)"
+                   % (pos_caixa, pos_compra_da_causa, pos_porque))
+            # E NENHUM KG NA RESPOSTA ENTREGUE: o campo do peso chega vazio, e
+            # a pagina nao devolve ao leitor um numero que ela mesma escreveu.
+            for f in r["frases_km"] + r["frases_peso"]:
+                afirma(" kg" not in f,
+                       "a F2 serve um peso em kg sem que o leitor tenha informado "
+                       "nenhum: %r" % f[:80])
+        else:
+            afirma(r["piso_km_tela"] in corpo,
+                   "a F2 nao serve o piso de km do exemplo (%s) no HTML" % r["piso_km_tela"])
+            afirma(r["teto_km_tela"] in corpo,
+                   "a F2 nao serve o teto de km do exemplo (%s) no HTML" % r["teto_km_tela"])
         for f in r["frases_km"] + r["frases_peso"]:
             limpo = re.sub(r"\s+", " ", f)
             afirma(limpo[:60] in texto,
