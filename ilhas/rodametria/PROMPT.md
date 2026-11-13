@@ -65,6 +65,23 @@ Medido em 27/10/2026 no Chrome do Raphael (`bussola/dossies/rodametria/DOSSIE.md
 
 ---
 
+## DESPACHO DO RAPHAEL — 13/11/2026 — VEÍCULO ELÉTRICO INFANTIL E HOVERBOARD ENTRAM NESTA ILHA COMO CLUSTER
+
+Decisão dele na conversa de 13/11/2026, depois da medição da Bússola: *"já estaria ótimo, não daria pra adicionar esse projeto na rodametria?"*. A caça de 12/11 reprovou o cluster como **ilha própria** por pouco (piso de R$ 10 mil/mês da 0.9 do `BUSSOLA.md`); como cluster desta ilha ele não precisa passar no piso sozinho — não custa domínio nem casca, e soma às páginas que faltam para o piso da 21.1. A medição inteira está em `bussola/medicoes/volume-cacada-2026-11-12.md`.
+
+**O que foi medido (12/11/2026, Planejador da conta Raphael, SERP no Chrome dele, painel de afiliado da Shopee):**
+- Volume com SERP vista, as cinco **mistas** (ML, lojas pequenas de marca, lojas de brinquedo, PDP da Shopee; IA no topo; sem carrossel): `hoverboard` 165.000 · `carro eletrico infantil` 90.500 · `moto eletrica infantil` 90.500 · `quadriciclo infantil` 40.500 · `patinete eletrico infantil` 27.100 = **413.600/mês**. Fora da soma, SERP não vista: `overborde` 49.500 · `skate eletrico` 27.100 · `mini moto` 22.200 · `hoverboard infantil` 9.900.
+- Painel da Shopee, 10 veículos com venda: ticket mediano **R$ 737**, comissão mediana **9%**, **R$ 62,50 por venda**, cobertura **10 de 10 só-Shopee** (não depende do Mercado Livre).
+- Conta: conservador ≈ 405 visitas/dia → **≈ R$ 7.600/mês**; teto ≈ **R$ 48 mil/mês**. Estimativa, com a ressalva de sempre: 1% de conversão é a constante da lei.
+
+**Como entra, e o que NÃO muda:**
+1. **É cluster, não pivô.** O foco desta ilha continua o que a ficha aprovou (patinete adulto só-Shopee) e a fila de blocos em andamento não é reordenada por este despacho; o cluster entra como bloco NOVO no fim da fila.
+2. **Os três números da ilha valem igual para a criança**, e é isso que faz o cluster caber na identidade: **carga** (peso e idade máximos declarados × a criança), **bateria** (6 V / 12 V / 24 V, Ah → quanto tempo brinca) e **velocidade** (km/h máximos e se tem controle remoto dos pais). Nada de CNH aqui: brinquedo não é veículo da 996/2023, e a F1 nunca classifica brinquedo.
+3. **O banco separa adulto de infantil por campo, nunca por palavra no título** — o `REGISTRO.md` já mediu em 27–28/10 que a busca da Shopee mistura os dois (`patinete eletrico` servindo brinquedo de 150 W). Produto infantil nunca aparece em ferramenta de adulto, e vice-versa.
+4. **Dado técnico de brinquedo continua só de fabricante** (seção 10 e 30.2); certificação do Inmetro, quando declarada, entra como dado com fonte, nunca como selo inventado. Nada de "seguro para a criança" que a ilha não mediu (seção 7).
+5. **Hoverboard** entra aqui também (adulto e infantil): é veículo elétrico de pé, e os mesmos três números valem.
+6. **Primeira tarefa do bloco:** abrir no Chrome a SERP das quatro consultas fora da soma acima e das consultas-ponte de idade e peso (`carro eletrico infantil idade`, `hoverboard aguenta quantos kg`), registrar em `dados/corpus-buscas.md`, e só depois desenhar página. As páginas pelo nome do produto (seção 30) começam pelas cinco consultas de SERP mista.
+
 ## DESPACHO DA SENTINELA — 2026-11-11 (LEITURA SEMANAL, 19h4xZ–20h1xZ) — A ILHA ENTROU NA DISPUTA, E A PÁGINA DE COMPRA DE 673 MIL BUSCAS/MÊS ESTÁ FORA DO ÍNDICE COMO 404 — **O ITEM 1 ESTÁ FECHADO EM 12/11/2026 às 13h2xZ; O QUE SOBRA NÃO É DA FUNDAÇÃO E ESTÁ LISTADO ABAIXO**
 
 > **REESCRITO PELA 18.3 EM 12/11/2026, e a 18.3 é literal: "a execução resolve os que couber, reescreve o despacho deixando SÓ os itens que faltam (com o motivo em uma linha) e fecha".** O texto original fica preservado embaixo, inteiro — o que esta nota faz é dizer, de cima, o que ainda está aberto e **de quem é**, porque despacho pela metade sem essa reescrita é o próximo trabalhador não tendo como saber o que já foi feito.
