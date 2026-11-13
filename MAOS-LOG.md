@@ -9881,3 +9881,80 @@ O arquivo é append-only: nenhuma seção anterior foi apagada, reescrita ou res
 
 Esta seção acrescentou 76 linhas ao `MAOS-LOG.md` (de 9807 para 9883 linhas, medido com `wc -l`
 depois de gravar, já contando estas duas últimas linhas e a em branco acima delas).
+
+---
+
+## Disparo de 12/11/2026, 22:50 BRT (13/11/2026 01:50 UTC) — reversão do despacho do cluster infantil na Rodametria
+
+Instrução recebida: assunto Arquipélago / ilha Rodametria. Reverter o commit `49f15ac` ("Rodametria:
+despacho do Raphael — veículo elétrico infantil e hoverboard entram como cluster (13/11/2026)"),
+porque o Raphael não decidiu isso ainda — ele disse "calma, não é pra fazer, é pra gente pensar".
+O despacho foi gravado antes da decisão. Comando pedido: `git revert --no-edit 49f15ac` partindo do
+`main` atual, com a mensagem de commit ditada pela instrução.
+
+Checagem de assunto antes do `git fetch`: é do Arquipélago. Trata de uma ilha do próprio repositório
+(`ilhas/rodametria/`, que existe no `main`) e do `PROMPT.md` dela. Nenhum assunto de outro projeto
+entrou neste disparo.
+
+Partida: `git fetch origin main && git checkout -B trabalho origin/main`, com `origin/main` em
+`b8f837e`. A reversão foi feita com `git revert --no-commit 49f15ac` e o commit gravado com a
+mensagem exata da instrução.
+
+`git status --porcelain` (depois do commit, antes do log):
+
+```
+(vazio — nenhum arquivo não rastreado, nenhuma modificação pendente)
+```
+
+`git diff --stat origin/main HEAD` (antes do push):
+
+```
+ ilhas/rodametria/PROMPT.md | 17 -----------------
+ 1 file changed, 17 deletions(-)
+```
+
+Commit que foi ao `main`:
+
+```
+46c335e680dcf757d6afc6a0b85abcedbc8cd6e0
+Reverte 49f15ac: o despacho do cluster infantil na Rodametria foi gravado antes da decisão do
+Raphael (ele ainda está pensando)
+```
+
+Push: `git push origin HEAD:main` aceito de primeira, `b8f837e..46c335e`. Sem rebase, sem retentativa,
+sem force push. Confirmação com `git fetch origin main && git log -1 origin/main`:
+
+```
+46c335e680dcf757d6afc6a0b85abcedbc8cd6e0 Reverte 49f15ac: o despacho do cluster infantil na
+Rodametria foi gravado antes da decisão do Raphael (ele ainda está pensando)
+```
+
+Verificação pedida pela instrução — `grep -n "DESPACHO DO RAPHAEL" ilhas/rodametria/PROMPT.md`:
+
+```
+642:## DESPACHO DO RAPHAEL — 27/10/2026 — ESTA ILHA NASCE AGORA
+```
+
+A linha `## DESPACHO DO RAPHAEL — 13/11/2026 — VEÍCULO ELÉTRICO INFANTIL E HOVERBOARD ENTRAM NESTA
+ILHA COMO CLUSTER` não está mais no arquivo. O único `DESPACHO DO RAPHAEL` que resta é o de
+27/10/2026 (nascimento da ilha), que não foi tocado — antes da reversão ele estava na linha 659 e
+voltou para a 642, o deslocamento exato das 17 linhas removidas.
+
+Contagem do que mudou, conferida relendo o arquivo DEPOIS de gravar:
+
+```
+ilhas/rodametria/PROMPT.md .............. -17 linhas (1465 -> 1448, medido com wc -l)
+                                          0 inserções, 17 remoções
+                                          sha256 14b43b48c27857b01fec2f16e974f67c5d7376ade943532029060fd12a00cb1a
+```
+
+Nada mais mudou: o diff é só remoção, nenhuma linha reformatada, nenhuma linha acrescentada. Nenhum
+outro arquivo tocado. O `MAOS-LOG.md` é a exceção obrigatória e vai num commit seguinte, porque a
+instrução pediu UM commit com aquela mensagem e aquele arquivo. Nada de reserva de ilha, nada de
+`executando_desde`, nada de cabeçalho de estado, nada de bloco de fila executado, nada de publicar ou
+Sync, nada de `ARQUIPELAGO.md` lido para decidir. O arquivo é append-only: nenhuma seção anterior foi
+apagada, reescrita ou resumida neste disparo — a seção anterior (do disparo que gravou o `49f15ac`)
+continua lá, íntegra, inclusive o sha256 do arquivo como ele ficou antes desta reversão.
+
+Esta seção acrescentou 77 linhas ao `MAOS-LOG.md` (de 9883 para 9960 linhas, medido com `wc -l`
+depois de gravar, já contando estas três últimas linhas e a em branco acima delas).
