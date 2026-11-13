@@ -1,103 +1,85 @@
 # PAINEL DO ARQUIPÉLAGO
 
-**Instantâneo escrito pela RONDA DIÁRIA de 2026-11-11, entre 14h3xZ e 15h0xZ.** Pela seção 23, só a Sentinela escreve aqui, e este arquivo é instantâneo: sem narrativa, sem histórico, sem projeção. Número sem procedência não entra (23.4); campo não medido nesta ronda diz `não medido hoje`.
+**Instantâneo escrito pela RONDA DIÁRIA de 2026-11-13, entre 14h4xZ e 15h1xZ.** Pela seção 23, só a Sentinela escreve aqui, e este arquivo é instantâneo: sem narrativa, sem histórico, sem projeção. Número sem procedência não entra (23.4); campo não medido nesta ronda diz `não medido hoje`.
 
-Ilha da ronda funda de hoje: **rodametria** (regra da dívida da seção 12 — publicou desde a última ronda: as revisões 82 e 83 desembarcaram hoje, a última às 14h10Z, e a ronda mediu na 83). As outras três no ar receberam a ronda técnica curta pela decisão do Raphael de 28/09/2026 (ponteiro da 1.2) — **e foi ela que achou o defeito ALTA de hoje.**
+Ilha da ronda funda de hoje: **rodametria** (regra da dívida da seção 12 — é a única que teve execução desde a última ronda: 12/11 e 13/11, com a casca indo de 1.10.0 para 1.26.0 e a revisão de 83 para 91). As outras três no ar receberam a ronda técnica curta pela decisão do Raphael de 28/09/2026 (ponteiro da 1.2), e **as três estão sãs**.
 
-**HOUVE NAVEGADOR NESTA RONDA, e isso é a diferença entre este painel e os três anteriores.** A extensão de Chrome do Raphael respondeu (1 navegador conectado) e o Chromium desta nuvem subiu pela seção 33. Com os dois, as três afirmações que as rondas de 04, 06 e 09/11 declararam "não medidas por falta de navegador" foram medidas hoje: **o teste de vida da 25.4, o console das páginas e os pixels da 32.5.**
-
-## ~~ALTA — DUAS ILHAS FORA DO AR~~ — **REPARADO ÀS 17h54Z DE 11/11, PELA PRÓPRIA RONDA**
-
-> **FECHADO NA MESMA RONDA.** O reparo da 29.3 foi exercido desta nuvem pelos tokens do Sync das duas ilhas, que moram na memória do projeto e não no repositório — a linha "o reparo não é exercitável desta nuvem", escrita às 15h0xZ, era motivo herdado e não medição. Nas duas, o `.htaccess` da raiz foi de **1.057 para 1.580 bytes**, os blocos de `NFD EPC` para **`NFD EPC` + `WordPress`**, `tem_wordpress` de **false para true** e as linhas de reescrita de **8 para 15** — os mesmos números do reparo de 05/10/2026. **Conferido no ar pela 18.4, depois do reparo: robometria 14 de 14 e clubedomosaico 44 de 44 URLs em 200, em DUAS leituras com quebra de cache; as três portas da 29.2 verdes com `content-type` certo nas duas; `/wp-sitemap.xml` servindo `sitemapindex` de verdade; caminho virgem em 404 na página da própria ilha.** Tempo total fora do ar: no máximo 2 dias e 20 minutos. A tabela abaixo é o retrato de ANTES do reparo e fica como registro.
-
-**robometria e clubedomosaico servem só a home.** Medido às 15h0xZ de 11/11/2026, uma leitura com quebra de cache por URL:
-
-| medida | robometria | clubedomosaico |
-|---|---|---|
-| `/` (home) | **200** | **200** |
-| as três portas da 29.2 (`/robots.txt`, `/wp-json/`, `/wp-sitemap.xml`) | **404 nas três** | **404 nas três** |
-| páginas de caminho bonito testadas | **0 de 7 em 200** (`/pecas/`, `/pecas/filtros/`, `/sobre/`, `/contato/`, `/privacidade/`, `/calculadoras/`, `/guias/`) | **0 de 8 em 200** (`/materiais/`, `/como-fazer/`, `/sobre/`, `/contato/`, `/loja/`, `/privacidade/`, `/materiais/colas-e-adesivos/`, `/materiais/acabamento/`) |
-| quem serve o 404 | página de estacionamento da **HostGator**, 2.361 bytes, **zero** ocorrência do nome da ilha | idêntica, 2.361 bytes, **zero** ocorrência do nome da ilha |
-| REST por `?rest_route=` (29.7) | **200**, `application/json`, revisão **96** | **200**, `application/json`, revisão **93** |
-| rota `/rotas` da 29.3 registrada | **sim** (401 sem token) | **sim** (401 sem token) |
-
-**As quatro grandezas da 29.7(3) estão na mesa, então a causa se NOMEIA:** o bloco `# BEGIN WordPress` sumiu do `.htaccess` da raiz. **6ª e 7ª queda da mesma porta no Arquipélago** (clubedomosaico 24/09, 05/10 e 08/10; robometria 30/10; rodametria 05/11). O reparo é `?rest_route=/<ilha>/v1/rotas&token=<token do Sync>&reparar=1`, e **o token não está no repositório: o reparo não é exercitável desta nuvem.**
-
-**Janela da queda, medida e não estimada:** o painel de **09/11 às 14h5xZ** registrou as duas ilhas com 14 de 14 e 44 de 44 URLs em 200 e as três portas verdes. Portanto as duas caíram **entre 09/11 14h5xZ e 11/11 15h0xZ** — no máximo **2 dias e 20 minutos**.
+**AS DUAS ILHAS QUE CAÍRAM EM 11/11 ESTÃO NO AR HOJE, MEDIDO E NÃO HERDADO:** robometria **14 de 14** e clubedomosaico **44 de 44** URLs do sitemap em 200, as três portas da 29.2 verdes nas duas e caminho virgem em 404 na página da própria ilha nas duas. A clubedomosaico tinha caído **de novo** às 20h0xZ de 11/11 (5ª queda daquela porta, 8ª do Arquipélago) e está de pé agora. A causa segue sendo o chamado na HostGator, que é do Raphael.
 
 ## Uma linha por ilha
 
 | ilha | estado | prio | URLs / 40 | dias desde 1ª indexação / 21 | última execução | última ronda | piso | observação |
 |---|---|---|---|---|---|---|---|---|
-| **rodametria** | viva | 1 | **10** / 40 (contado no ar hoje) | `null` — 0 de 21 | 2026-11-11T14:16Z | 2026-11-11T15:03Z | abaixo | **EM FOCO** (`foco.md`, desde 27/10). Sã: 10 de 10 em 200 |
-| aquametria | viva | 2 | **52** / 40 (contado no ar hoje) | 63 (os 21 fecharam em 30/09) | 2026-10-21T21:48Z | 2026-11-11T15:03Z | atingido | modo de medição (1.2-b.1). Sã: 52 de 52 em 200 |
-| robometria | viva | 1 | **14** / 40 (contado no ar às 18h0xZ, depois do reparo) | 61 | 2026-11-02T10:35Z | 2026-11-11T18:05Z | abaixo | modo de medição (1.2-b.1). **Caiu e voltou hoje**: 14 de 14 em 200 |
-| clubedomosaico | nascendo | 1 | **44** / 40 (contado no ar às 18h0xZ, depois do reparo) | desconhecida | 2026-10-23T19:43Z | 2026-11-11T18:05Z | abaixo (cabeçalho) | **Caiu e voltou hoje**: 44 de 44 em 200. O cabeçalho dela diz 32 e o ar diz **44**, que passa das 40 da 21.1 — quem reservar a ilha acerta o campo |
+| **rodametria** | viva | 1 | **10** / 40 (contado no ar hoje, 2 leituras) | `null` — 0 de 21 | 2026-11-13T13:53Z | 2026-11-13T15:12Z | abaixo | **EM FOCO** (`foco.md`, desde 27/10). Sã: 10 de 10 em 200. `/status` 91 = `manifest` 91 |
+| aquametria | viva | 2 | **52** / 40 (contado no ar hoje) | 65 (os 21 fecharam em 30/09) | 2026-10-21T21:48Z | 2026-11-13T15:12Z | atingido | modo de medição (1.2-b.1). Sã: 52 de 52 em 200. `/status` 138 = `manifest` 138 |
+| robometria | viva | 1 | **14** / 40 (contado no ar hoje) | 63 | 2026-11-02T10:35Z | 2026-11-13T15:12Z | abaixo | modo de medição (1.2-b.1). Sã: 14 de 14 em 200. `/status` 96 = `manifest` 96 |
+| clubedomosaico | nascendo | 1 | **44** / 40 (contado no ar hoje) | desconhecida | 2026-10-23T19:43Z | 2026-11-13T15:12Z | atingido | **caiu em 11/11 às 20h0xZ e está no ar hoje**: 44 de 44 em 200. `/status` 94 = `manifest` 94 |
 | ohmetria | nascendo | 1 | 0 | `null` | 2026-09-15T11:17Z | `null` | abaixo | sem site: não há o que rondar |
-| jornadafly | nascendo | 1 | 0 | `null` | 2026-10-27T19:53Z | `null` | abaixo | sem site e com o egresso da nuvem recusado em 27/10 — `não medido hoje` |
+| jornadafly | nascendo | 1 | 0 | `null` | 2026-10-27T19:53Z | `null` | abaixo | sem site: não há o que rondar. Egresso da nuvem para o domínio: `não medido hoje` |
 
 ## O que a rodametria mediu hoje (ilha da ronda funda)
 
-**No ar, em duas leituras com quebra de cache:** 10 de 10 URLs em **200**; as três portas da 29.2 em 200 com `content-type` certo (`text/plain`, `application/json`, `application/xml`) e o `/wp-sitemap.xml` servindo `sitemapindex` de verdade; caminho virgem em **404 na página da própria ilha** (28 ocorrências do nome da ilha no corpo, zero da HostGator); `/status` em **83** e `manifest.json` em **83**, iguais.
+**No ar, em duas leituras com quebra de cache:** 10 de 10 URLs em **200**; as três portas da 29.2 em 200 com `content-type` certo (`text/plain`, `application/json`, `application/xml`) e o `/wp-sitemap.xml` servindo `sitemapindex` de verdade; caminho virgem em **404 na página da própria ilha** (73.105 bytes, 28 ocorrências do nome da ilha, zero da HostGator); `/status` em **91** = `manifest.json` em **91**.
 
-**Conteúdo:** zero `&#038;` dentro de `<script>` nas 10 páginas; **zero comentário dentro do `<script>` da ilha** — a 32.4-d, escrita hoje, está **fechada no ar** (os 7 marcadores que sobram são do `speculationrules` do próprio WordPress, não da ilha); JSON-LD em 10 de 10, trilha em 9 e ausente só na home (16.3); **zero página órfã** (mínimo de 2 links de miolo por URL, contados na direção de ENTRADA pela 16.9(b)) e **zero** link interno apontando para fora do sitemap; meta description máxima de **159** (teto 160).
+**A CURA DA PORTA DA 29.4 ESTÁ CARREGADA E TEM ONDE ESCREVER:** `/casca` serve `tem_cura_da_porta: true` e `fonte_do_log_da_cura: "funcao:rodametria_sync_log"`, casca **1.26.0**. **Linha nova de `cura da porta:` nas últimas 24 h: NENHUMA VISÍVEL** — e isto é `não medido` e não `zero`: a janela de 15 linhas do `/status` começa em 12/11 16:39 e a linha da cura de 12/11 16:25 já saiu dela (é a 20.13). O instrumento que responderia "quantas vezes" não existe nesta janela.
 
-**Pixel da 32.5, a 390 px, em navegador de verdade — 10 de 10 APROVADAS:** pior formulário/caixa a **548 px** (teto 700) e pior primeiro botão de compra a **1.351 px** (teto 1.400). Números por página: `/` form 369; `/autonomia-patinete-eletrico/` form 353 e botão 1.351; `/peso-maximo-patinete-eletrico/` form 353 e caixa 548; `/veiculos/patinete-eletrico/` caixa 211 e botão 1.191; `/veiculos/bicicleta-eletrica/` caixa 211 e botão 1.145; `/veiculos/` caixa 428; as quatro institucionais caixa 244.
+**Conteúdo:** zero `&#038;` dentro de `<script>` nas 10 páginas; JSON-LD em 10 de 10, trilha em 9 e ausente só na home (16.3, correto); **zero página órfã** contada na direção de ENTRADA pela 16.9(b) (mínimo medido: 2 links de miolo); **zero** link interno de miolo apontando para fora do sitemap (os `?p=NN` que respondem 301 são o `rel=shortlink` do WordPress, no `<head>`, e não miolo); meta description máxima de **159** (teto 160); **zero** `alt` faltando e **zero** imagem sem `width`/`height`; **zero** `noindex` nas 10; zero frase da lista "Proibidas" do `VOZ.md` em título ou primeiro parágrafo.
 
-**Console: 10 de 10 limpo do lado da ilha** — 0 erro de JavaScript, 0 exceção, 0 recurso da ilha caído, 0 resposta ≥ 400 vinda da ilha. As 5 a 10 falhas de rede por página são **do egresso desta nuvem e não da ilha**: `fonts.gstatic.com` e `cf.shopee.com.br` devolvem `ERR_TUNNEL_CONNECTION_FAILED`. Não é defeito de página e não vira despacho.
+**Pixel da 32.5, a 390 px, em navegador de verdade — os números PASSAM:** pior caixa/formulário **428 px** (teto 700), pior primeiro botão de compra **1.351 px** (teto 1.400), 10 de 10 páginas dentro do molde, 0 fora. O portão fecha REPROVADO por outra régua, a 32.5-d (foto de cartão que não carregou), e **a causa é o egresso desta nuvem, medida e não suposta**: `cf.shopee.com.br` devolve `ERR_TUNNEL_CONNECTION_FAILED` aqui, e **no navegador do Raphael as 5 fotos de `/veiculos/patinete-eletrico/` carregam, 5 de 5**. Não é defeito de página e não virou item.
 
-**Comportamento, que nenhuma régua de HTTP alcança:** o menu de celular abre e fecha nas 10 (o `aria-expanded` alterna `false→true→false` e a lista sai de `display:none` para `flex`); o menu serve **4 itens** e a ferramenta principal da ilha está entre eles (**o item 5 do despacho de 09/11 está fechado no ar**); `<details>` nenhum aberto por padrão; rolagem horizontal **zero** nas 10 (`scrollWidth` 390 = `innerWidth` 390); a barra fixa esconde quando o bloco de compra está na tela e aparece quando sai, nas 6 páginas que a servem, com o rótulo certo nas duas pontas (`Ver produtos` onde há cartão, `Por que não indicamos` onde não há).
+**Console: 10 de 10 limpo do lado da ilha** — 0 erro de JavaScript, 0 exceção, 0 recurso da ilha caído, 0 resposta ≥ 400 vinda da ilha. As 5 a 10 falhas de rede por página são `fonts.gstatic.com` e `cf.shopee.com.br` recusados pelo egresso desta nuvem.
 
-**As três ferramentas apertadas de verdade, com entrada trocada no formulário e o número conferido na mão — 9 de 9 CERTAS:** F1 em 1.000 W/32 km/h com acelerador (autopropelido, o limite inclusive), 1.000 W/40 (ciclomotor), 1.500 W/45 (ciclomotor), 5.000 W/80 (acima do ciclomotor) e 500 W/25 só pedal assistido (bicicleta elétrica); F2 em 36 V × 10,4 Ah no plano (374 Wh, 50 km) e 72 V × 30 Ah em ladeira (2.160 Wh, 38 km = 90 ÷ 2,37); F3 em 130 kg (143 kg = 130 × 1,10) e 60 kg (66 kg). **Coerência da recomendação:** acima de ~109 kg de peso total o bloco de compra diz, com o número, que nenhum dos 3 veículos com carga declarada aguenta — e não inventa vitrine.
+**Comportamento:** menu de celular abre e fecha nas 10 (`aria-expanded` alternando `false→true→false`, lista de `display:none` para `flex`), **4 itens** com a ferramenta principal entre eles; rolagem horizontal **zero** nas 10 (`scrollWidth` 390 = `innerWidth` 390); `<details>` nenhum aberto por padrão.
 
-**Teste de vida dos links de afiliado (25.4), no navegador do Raphael, lendo a `url_produto` e NUNCA clicando no link de afiliado — 31 itens medidos, 1 MORTO:**
+**As três ferramentas apertadas de verdade, com entrada trocada no formulário e o número conferido na mão — 10 de 10 CERTAS na aritmética:** F1 em 1.000 W/32 km/h com acelerador (autopropelido, o limite inclusive), 1.000 W/40 (ciclomotor), 500 W/25 só pedal (bicicleta elétrica) e 5.000 W/80 (acima do ciclomotor, com a resolução parando onde para); F2 em 36 V × 10,4 Ah = 374 Wh, 72 V × 30 Ah = 2.160 Wh e 48 V × 15 Ah = 720 Wh; F3 em 130 kg → 152, 60 kg → 75 e 77+10 kg → 96, as três com a folga de 10% batendo na mão. **A aritmética está certa e mesmo assim a F2 tem defeito — item 2 do despacho de hoje, e ele é de ENTRADA, não de conta.**
 
-- **24 links de ficha de produto: 23 vivos, 1 esgotado.** O morto é `https://shopee.com.br/product/1430771203/58212105781` — *"Patinete Elétrico Adulto 650W com 3 Velocidades Bateria Recarregável para Mobilidade Urbana"*, **degrau 1**, encurtado `s.shopee.com.br/9pfbJrNKOR`, servido como **cartão 2 da vitrine de `/veiculos/patinete-eletrico/`**. A palavra **`Esgotado`** aparece colada ao título, em **duas** leituras.
-- **7 palavras-chave de busca (o piso da 25.2): 7 vivas**, 15 cartões cada, zero busca vazia.
-- **29 de 29 botões servidos no `<main>` rastreáveis até o repositório; intestáveis (sem `url_produto`) ZERO; item sem piso da 25.2 ZERO.**
+**Teste de vida dos links de afiliado (25.4), no navegador do Raphael, lendo a `url_produto` e NUNCA clicando no link de afiliado — 28 leituras, 1 MORTO:**
+
+- **22 links de ficha de produto: 21 vivos, 1 MORTO.** O morto é `https://shopee.com.br/product/1389372092/23898889810` — *"Patinete Elétrico Adulto Dobrável 30km/h Original Premium"*, loja ZeroOne!, **degrau 1**, encurtado `s.shopee.com.br/4fxWYUAZJT`, servido como **linha 7 da tabela de exemplos de `/veiculos/patinete-eletrico/`**. A página devolve **"O produto não existe"** em **duas** leituras, sem `h1` e com 1.640 bytes de corpo.
+- **6 palavras-chave de busca (o piso da 25.2): 6 vivas**, 44 a 74 cartões cada, zero busca vazia.
+- **28 de 28 links de loja servidos no `<main>` rastreáveis até o repositório; intestáveis (sem `url_produto`) ZERO; item sem piso da 25.2 ZERO; 44 de 44 botões com `rel="sponsored noopener"` e ZERO link cru.**
+
+**Reconferência do que a ronda de 11/11 e a passada de 12/11 pediram por escrito:**
+
+- `s.shopee.com.br/9pfbJrNKOR` e o anúncio `58212105781` com **zero** ocorrência nas 10 URLs e nos campos vivos do banco — **FECHADO**;
+- `\bilhas?\b` com **zero** ocorrência em texto visível nas 10 URLs — **FECHADO**;
+- `publicáv` e `Tipo: pendente` com **zero** ocorrência na F2 — **FECHADO**;
+- a cadeia de critério de ordenação **idêntica** em `/sobre/`, `/divulgacao-de-afiliados/` e nas duas páginas de produto, vinda de um lugar — **FECHADO na cadeia e ABERTO na quarta cópia**: a frase que o próprio despacho de 11/11 chamou de falsa (*"a ordem é por venda medida"*) **segue no ar** nas duas páginas de produto, vinda de `dados/paginas-de-produto.json`, que o conserto não tocou. Virou o item 3 de hoje;
+- a porta de pé e a cura carregada — **FECHADO** (ver acima).
 
 ## Despachos abertos
 
 | ilha | onde | o que é | aberto há |
 |---|---|---|---|
-| robometria | `PROMPT.md`, DESPACHO DA SENTINELA — 2026-11-11 | **ALTA: ilha fora do ar, menos a home. Reparo exige o token do Sync** | 0 dias |
-| clubedomosaico | `PROMPT.md`, DESPACHO DA SENTINELA — 2026-11-11 | **ALTA: ilha fora do ar, menos a home. Reparo exige o token do Sync** | 0 dias |
-| rodametria | `PROMPT.md`, DESPACHO DA SENTINELA — 2026-11-11 | 4 itens desta ronda; o item 1 é link morto na vitrine | 0 dias |
-| rodametria | `PROMPT.md`, DESPACHO DA SENTINELA — 2026-11-04 (leitura semanal) | ALTA: itens 1 e 2, nenhum fechado — quem fecha é a leitura semanal; o "pronto quando" do item 1 pede 9 páginas e o sitemap serve 10 | 7 dias |
-| rodametria | `PROMPT.md`, DESPACHO DA FUNDAÇÃO PARA O RAPHAEL — 30/10 | duas SERPs e um volume, numa sessão de Chrome | 12 dias |
-| robometria | `PROMPT.md`, DESPACHO DA SENTINELA — 2026-11-04 (leitura semanal) | a posição voltou sozinha; o título não deve ser revertido | 7 dias |
-| robometria | `PROMPT.md`, DESPACHO DA SENTINELA — 2026-11-02 (ronda técnica) | os minutos do ciclo da R2 não dependem da metragem | 9 dias |
-| robometria | `PROMPT.md`, DESPACHO DA SENTINELA — 2026-10-28 (leitura semanal) | ilha em modo de medição | 14 dias |
-| robometria | `PROMPT.md`, DESPACHO DA SENTINELA — 2026-10-21 (leitura semanal) | — | 21 dias |
-| clubedomosaico | `PROMPT.md`, DESPACHO DA SENTINELA — 2026-11-04 (leitura semanal) | a rampa destravou; `/loja/` chegou à primeira página | 7 dias |
-| clubedomosaico | `PROMPT.md`, DESPACHO DA SENTINELA — 2026-10-28 (ronda técnica) | 2 itens; o item 1 é um terço dos links da ilha | 14 dias |
-| clubedomosaico | `PROMPT.md`, DESPACHO DA SENTINELA — 2026-10-28 (leitura semanal) | duas propostas com consulta nomeada | 14 dias |
-| clubedomosaico | `PROMPT.md`, DESPACHO DA SENTINELA — 2026-10-21 (leitura semanal) | — | 21 dias |
-| clubedomosaico | `PROMPT.md`, DESPACHO DA SENTINELA — 2026-10-14 (leitura semanal) | — | 28 dias |
-| aquametria | `PROMPT.md`, DESPACHO DA SENTINELA — 2026-10-28 (leitura semanal) | ilha em modo de medição | 14 dias |
-| aquametria | `PROMPT.md`, DESPACHO DA SENTINELA — 2026-10-21 (leitura semanal) | — | 21 dias |
-| aquametria | `PROMPT.md`, DESPACHO DO RAPHAEL — 2026-10-09 | páginas pelo nome do produto: só a metade que esta nuvem não alcança | 33 dias |
-| aquametria | `PROMPT.md`, DESPACHO DA SENTINELA — 2026-10-07 (leitura semanal) | só o que falta ficou | 35 dias |
-| aquametria | `PROMPT.md`, DESPACHO DA SENTINELA — 2026-09-23 (leitura semanal) | — | 49 dias |
-| ohmetria | `PROMPT.md`, DESPACHO DO RAPHAEL — 14/09 | despacho de nascimento: a ilha não tem site | 58 dias |
-| jornadafly | `PROMPT.md`, DESPACHO DO RAPHAEL — 14/09 | despacho de nascimento: a ilha não tem site | 58 dias |
+| rodametria | `PROMPT.md`, DESPACHO DA SENTINELA — 2026-11-13 | 3 itens desta ronda; o item 1 é link morto na tabela de exemplos da página de maior intenção de compra | 0 dias |
+| rodametria | `PROMPT.md`, DESPACHO DA SENTINELA — 2026-11-11 (leitura semanal) | item 1 fechado em 12/11; o que sobra não é da Fundação | 2 dias |
+| rodametria | `PROMPT.md`, DESPACHO DA SENTINELA — 2026-11-04 (leitura semanal) | itens 1 e 2 — quem fecha é a leitura semanal | 9 dias |
+| rodametria | `PROMPT.md`, DESPACHO DA FUNDAÇÃO PARA O RAPHAEL — 30/10 | duas SERPs e um volume, numa sessão de Chrome | 14 dias |
+| clubedomosaico | `PROMPT.md`, DESPACHO DA SENTINELA — 2026-11-11 | ALTA de queda da porta: **a ilha está no ar hoje, 44 de 44**, mas foi a 5ª queda e a causa segue na HostGator | 2 dias |
+| robometria | `PROMPT.md`, DESPACHO DA SENTINELA — 2026-11-04 (leitura semanal) | a posição voltou sozinha; o título não deve ser revertido | 9 dias |
+| robometria | `PROMPT.md`, DESPACHO DA SENTINELA — 2026-11-02 (ronda técnica) | os minutos do ciclo da R2 não dependem da metragem | 11 dias |
+| robometria | `PROMPT.md`, DESPACHO DA SENTINELA — 2026-10-28 (leitura semanal) | ilha em modo de medição | 16 dias |
+| robometria | `PROMPT.md`, DESPACHO DA SENTINELA — 2026-10-21 (leitura semanal) | — | 23 dias |
+| clubedomosaico | `PROMPT.md`, DESPACHO DA SENTINELA — 2026-11-04 (leitura semanal) | a rampa destravou; `/loja/` chegou à primeira página | 9 dias |
+| clubedomosaico | `PROMPT.md`, DESPACHO DA SENTINELA — 2026-10-28 (ronda técnica) | 2 itens; o item 1 é um terço dos links da ilha | 16 dias |
+| clubedomosaico | `PROMPT.md`, DESPACHO DA SENTINELA — 2026-10-28 (leitura semanal) | duas propostas com consulta nomeada | 16 dias |
+| clubedomosaico | `PROMPT.md`, DESPACHO DA SENTINELA — 2026-10-21 (leitura semanal) | — | 23 dias |
+| clubedomosaico | `PROMPT.md`, DESPACHO DA SENTINELA — 2026-10-14 (leitura semanal) | — | 30 dias |
+| aquametria | `PROMPT.md`, DESPACHO DA SENTINELA — 2026-10-28 (leitura semanal) | ilha em modo de medição | 16 dias |
+| aquametria | `PROMPT.md`, DESPACHO DA SENTINELA — 2026-10-21 (leitura semanal) | — | 23 dias |
+| aquametria | `PROMPT.md`, DESPACHO DO RAPHAEL — 2026-10-09 | páginas pelo nome do produto: só a metade que esta nuvem não alcança | 35 dias |
+| aquametria | `PROMPT.md`, DESPACHO DA SENTINELA — 2026-10-07 (leitura semanal) | só o que falta ficou | 37 dias |
 
-**FECHADO desde o painel anterior, e por isso saiu desta lista:** o DESPACHO DA SENTINELA — 2026-11-09 da rodametria, cinco itens, fechado em 09/11 às 17h4xZ na revisão 72. **Reconferência independente desta ronda, item por item, no ar:** (1) os quatro `id` de repositório **não aparecem** em texto visível nas 10 URLs; (2) o `nota` de `veiculos.json` diz **4 publicáveis, recontados por `derivar-banco.py` e conferidos por `validar-banco.py`** — o campo que voltou duas vezes está fechado na terceira; (3) o rótulo da barra fixa é `Ver produtos` só onde há cartão; (4) `17 registros` × `14 anúncios colhidos` separados pelo verbo; (5) o menu serve a ferramenta principal da ilha. **Os cinco passam.**
-
-As linhas de despacho das ilhas **fora do foco** vêm das datas dos próprios cabeçalhos e **não foram reconferidas nesta ronda**: a ronda técnica curta mede o ar delas, não a fila delas.
+**FECHADO DESDE O PAINEL ANTERIOR:** o despacho ALTA da robometria de 2026-11-11 (ilha fora do ar) — reparado em 11/11 às 17h54Z e **conferido no ar hoje**, 14 de 14 URLs em 200 e as três portas verdes.
 
 ## Precisa do Raphael
 
-- ~~**ALTA — LEVANTAR A PORTA DE ENTRADA DA robometria E DA clubedomosaico.**~~ **NÃO PRECISA MAIS DELE: a própria ronda levantou as duas às 17h54Z.** A linha "nenhuma rotina faz isso" era motivo herdado e está revogada por medição — o token mora na memória do projeto e a rota da 29.3 responde desta nuvem. Fica aqui riscada, e não apagada, porque ela é a prova de que uma linha de "precisa do Raphael" pode ser só uma pergunta que ninguém refez.
-- **O CHAMADO NA HOSTGATOR, e ele é do Raphael porque é fornecedor, não porque é técnico.** 7ª queda da mesma porta no Arquipélago, 2ª da robometria em 12 dias, assinatura idêntica byte a byte nas sete. O chamado em `dados/despachos.md` fala só do `.htaccess` de `/clubedomosaico.com.br` e precisa cobrir também `/robometria.com.br`. **Enquanto ele não tem resposta, a fábrica se vira:** o despacho de classe de hoje (no `PROMPT.md` da robometria) manda a casca se curar sozinha sob assinatura estreita e com linha no log, o que tira o tempo-no-chão da dependência de alguém passar por perto.
-- **rodametria — a parede do `.gov.br`** segue de pé, última medição 05/11, **não remedida hoje** — `não medido hoje`. Trava o CTB (a metade da habilitação), as prefeituras e as três etiquetas do Mercado Livre.
-- **rodametria — despacho da Fundação de 30/10:** abrir a SERP das duas caudas que sobraram e ler um volume, numa sessão de Chrome, ~10 minutos.
-- **Gerador do Mercado Livre** continua com reCAPTCHA: link `/p/` novo é clique dele (25.6). Nunca bloqueia página — o piso da 25.2 é a busca.
-- **jornadafly** segue sem WordPress e com o egresso recusado (última medição 27/10), em espera até decisão nova dele.
-- **ohmetria** segue sem site.
-
-**O QUE DEIXOU DE PRECISAR DELE:** a linha "um navegador aberto no computador dele", que os painéis de 04, 06 e 09/11 traziam como a mais caradura. A extensão respondeu hoje sem nada ser pedido, e o Chromium desta nuvem resolve pixel, console e comportamento pela seção 33. **O teste de vida da Shopee continua sendo do navegador dele** (desta nuvem o `deo.shopeemobile.com` é recusado pelo egresso e a página não renderiza — medido hoje, 23 recursos falhados, corpo vazio) — e hoje ele respondeu, 31 itens em lotes de 3, zero CAPTCHA.
+1. **O chamado na HostGator, e ele é o único lugar onde a causa se resolve.** O bloco `# BEGIN WordPress` do `.htaccess` da raiz foi apagado **oito vezes** no Arquipélago, a mais recente em 11/11 às 20h0xZ na clubedomosaico, 2h06 depois de um reparo. A rodametria já tem a cura automática da 29.4 carregada (casca 1.26.0); **as outras três não têm**, e nelas a próxima queda dura até alguém rodar um comando.
+2. **rodametria — duas SERPs e um volume, numa sessão de Chrome** (despacho da Fundação de 30/10, 14 dias abertos). A SERP brasileira não se alcança desta nuvem: `google.com.br`, `bing.com` e `duckduckgo.com` em `000` (seção 33, remedido em 13/11 no cabeçalho da ilha).
+3. **rodametria — o limiar legal da F1 segue sem fonte**: `gov.br`, `in.gov.br`, `planalto.gov.br` e `lex.com.br` em **000** no egresso desta nuvem, remedidos em 13/11. E `lista.mercadolivre.com.br` em **403**, que é o que trava as duas pontas de página de produto do degrau 2.
+4. **clubedomosaico — os 5 oratórios repetidos** (a mesma peça com sufixos `-2` e `-3` entre as 17 do sitemap): a decisão de virar 301 é dele, e muda `urls_publicadas` de 44 para 39.
+5. **aquametria — o despacho do Raphael de 09/10**, na metade que esta nuvem não alcança (35 dias).
 
 ## Consertos das últimas 24 h (lista mecânica da 19.1)
 
-**Nenhum.** A ronda de hoje na rodametria achou 4 defeitos e consertou **zero**, e **nenhum conserto foi tentado, porque nenhum dos quatro é da lista 19.1**: o item 1 é link morto, que é dado do banco (19.2); o item 2 é a palavra `ilha` servida ao visitante em 5 páginas, e ela mora em `dados/paginas-institucionais.json` **e** em três snippets, o que cai na trava 3 da seção 12 e na 22.7; o item 3 é literal de snippet; o item 4 é escolha entre duas redações defensáveis (19.2). **É a QUINTA ronda seguida desta ilha com zero conserto, e as cinco pelo mesmo motivo** — o defeito mecânico desta ilha nasce dentro de snippet, de gerador ou do metadado do banco. Pela 19.5, volume de defeito mecânico que não cabe na Sentinela é problema de casca, e casca é da Fundação.
+**ZERO**, e nenhum foi tentado: **nenhum dos três defeitos achados hoje é da lista 19.1.** É a SEXTA ronda técnica seguida desta ilha com zero conserto, sempre pela mesma causa — o defeito mecânico da rodametria nasce dentro de snippet, de gerador ou do metadado do banco.
