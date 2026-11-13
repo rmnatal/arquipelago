@@ -9805,3 +9805,79 @@ Esta seção acrescentou 69 linhas ao `MAOS-LOG.md` (de 9738 para 9807 linhas, m
 depois de gravar). Os números que escrevi antes (65/9803 e 67/9805) ficaram atrás porque a própria
 linha da contagem mexia no arquivo que estava sendo contado — mesma pegadinha registrada na seção
 anterior. Vale o 9807, que é o que a releitura devolveu com o texto nesta forma final.
+
+---
+
+## 2026-11-12, 22h48 de Brasília (2026-11-13 01h48Z) — Rodametria: despacho do Raphael de 13/11/2026 entra no `PROMPT.md` (veículo elétrico infantil + hoverboard como cluster)
+
+Disparo com payload de instrução manual. Assunto: Arquipélago, ilha Rodametria — passou na checagem de
+assunto antes do `git fetch`. A trava foi conferida de fato, não presumida: a lista de ilhas no prompt
+deste trabalhador (Aquametria, Robometria, Clube do Mosaico, Ohmetria, Jornada Fly) **não cita
+Rodametria**, então a confirmação veio do próprio repositório — `ls ilhas/` devolve
+`_modelo aquametria clubedomosaico jornadafly ohmetria robometria rodametria`, e a instrução mexe no
+`PROMPT.md` dessa ilha citando `BUSSOLA.md`, `bussola/medicoes/`, `REGISTRO.md` e a fila de blocos
+dela. Assunto do Arquipélago, sem dúvida de qual lado cai. Nenhum dado pessoal de terceiro no bloco:
+"conta Raphael" e "Chrome dele" são o dono do repositório, não contato de outra pessoa, e não há
+e-mail, telefone nem endereço no texto.
+
+Trabalho pedido: INSERIR um bloco de 17 linhas (16 de texto + 1 em branco no fim) em
+`ilhas/rodametria/PROMPT.md`, imediatamente antes da linha que começa com
+`## DESPACHO DA SENTINELA — 2026-11-11 (LEITURA SEMANAL, 19h4xZ–20h1xZ)`. A instrução dizia que essa
+linha era a 68 — **conferido antes de mexer** com `sed -n '60,75p' | cat -A`: linha 65 em branco,
+66 `---`, 67 em branco, 68 o cabeçalho da Sentinela. A âncora estava exatamente onde a instrução disse.
+
+Inserção feita sem `sed -i` e sem editor: `head -n 67` + o bloco + `tail -n +68` para um arquivo novo
+no scratchpad, sha256 conferido ANTES de sobrescrever o arquivo do repositório, e só então `cp`.
+Heredoc com delimitador citado (`<<'BLOCO_EOF'`), então nada de `R$`, backtick ou `*` sofreu expansão.
+
+```
+$ git status --porcelain
+ M ilhas/rodametria/PROMPT.md
+```
+
+```
+$ git diff --stat
+ ilhas/rodametria/PROMPT.md | 17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
+```
+
+Commit que foi ao `main`, com a mensagem que a instrução deu, palavra por palavra:
+
+```
+49f15ac953d9de0ddae7d7c434379f8898be7c65
+Rodametria: despacho do Raphael — veículo elétrico infantil e hoverboard entram como cluster (13/11/2026)
+2026-11-13 01:48:30 +0000
+```
+
+Partiu de `origin/main` real (`git fetch origin main && git checkout -B trabalho origin/main`, que
+trouxe `beeafc4..b5644af`), não da branch da sessão. `git push origin HEAD:main` passou de primeira:
+`b5644af..49f15ac  HEAD -> main`. Nenhum rebase foi necessário, nenhum force push, nenhum PR.
+Conferido com `git fetch origin main && git log -1 origin/main`: o topo do `main` é 49f15ac, o commit
+deste disparo, e `git show --stat` nele mostra um único arquivo, `ilhas/rodametria/PROMPT.md`, 17
+inserções e 0 remoções.
+
+Contagem do que mudou, conferida relendo o arquivo DEPOIS de gravar:
+
+```
+ilhas/rodametria/PROMPT.md .............. +17 linhas (1448 -> 1465, medido com wc -l)
+                                          bloco inserido nas linhas 68-84; a linha 84 é a em branco
+                                          que fecha o bloco
+                                          sha256 3d9fd1a0892aab5de0844489790da1b078ecce315cec522c74878cf706684fc4
+                                          (= o esperado na instrução, byte a byte, na primeira
+                                          gravação, sem retoque)
+```
+
+A separação pedida foi conferida com `sed -n '82,86p' | cat -A`: o item 6 do bloco na 83, **uma única
+linha em branco** na 84, e o `## DESPACHO DA SENTINELA — 2026-11-11` na 85. Exatamente uma linha em
+branco entre o bloco novo e o cabeçalho que já existia, como a instrução especificou. O `---` e a
+linha em branco que vinham antes da âncora continuam intactos acima do bloco novo.
+
+Nada mais mudou no arquivo: o diff é só inserção, 0 remoções, nenhuma linha anterior reformatada,
+nenhuma linha acrescentada além das 17 do bloco. Nenhum outro arquivo tocado. O `MAOS-LOG.md` é a
+exceção obrigatória e vai num commit seguinte, porque a instrução pediu UM commit com aquela mensagem
+e aquele arquivo. Nada de reserva de ilha, nada de `executando_desde`, nada de cabeçalho de estado,
+nada de bloco de fila executado, nada de publicar ou Sync, nada de `ARQUIPELAGO.md` lido para decidir.
+O arquivo é append-only: nenhuma seção anterior foi apagada, reescrita ou resumida neste disparo.
+
+Esta seção acrescentou 76 linhas ao `MAOS-LOG.md` (de 9807 para 9883 linhas, medido com `wc -l`
+depois de gravar, já contando estas duas últimas linhas e a em branco acima delas).
