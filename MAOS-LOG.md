@@ -9958,3 +9958,74 @@ continua lá, íntegra, inclusive o sha256 do arquivo como ele ficou antes desta
 
 Esta seção acrescentou 77 linhas ao `MAOS-LOG.md` (de 9883 para 9960 linhas, medido com `wc -l`
 depois de gravar, já contando estas três últimas linhas e a em branco acima delas).
+
+---
+
+## 2026-11-13 12:1xBRT (15h1xZ UTC) — RONDA DIÁRIA DA SENTINELA DE 13/11: CINCO ESCRITAS, UM COMMIT, TUDO NO `main`
+
+Disparo com instrução completa, assunto do Arquipélago (rodametria, aquametria, robometria,
+clubedomosaico e o `dados/PAINEL.md` da raiz). Nada recusado, nada omitido, nada acrescentado: as
+cinco escritas pedidas foram as cinco feitas, byte a byte como vieram. A escrita 1 ("arquivos
+consertados: NENHUM") não tinha arquivo, e a própria instrução mandava pular para a 2.
+
+Partida de `origin/main` em `caa7b5e`, numa branch `trabalho` criada com `git checkout -B` — não da
+branch da sessão.
+
+O que cada escrita fez, conferido relendo os arquivos DEPOIS de gravar:
+
+- **Escrita 2** — `ilhas/rodametria/PROMPT.md`: o despacho de 13/11 entrou imediatamente antes da
+  primeira linha `## DESPACHO` do arquivo (a de 2026-11-11, que estava na linha 68 e passou para a
+  136), seguido de uma linha em branco. Nenhum despacho anterior foi tocado. O arquivo foi de 1448
+  para **1516 linhas** (+68), e `grep -c '^## DESPACHO'` devolve **5**, com **1** ocorrência de
+  `^## DESPACHO DA SENTINELA — 2026-11-13`.
+- **Escrita 3** — `ilhas/rodametria/dados/consertos.md`: uma linha única acrescentada ao fim.
+  `grep -c '^| 2026-'` foi de **8 para 9**; o arquivo foi de 14 para **15 linhas**; a última linha
+  começa com `| 2026-11-13 | — | **NADA.**`.
+- **Escrita 4** — a única linha `ultima_ronda:` substituída inteira nos quatro `ESTADO.md`
+  (rodametria linha 10, aquametria linha 81, robometria linha 9, clubedomosaico linha 141). Em cada
+  um dos quatro, `grep -c '^ultima_ronda:'` = **1** e `grep -c '^ultima_ronda: 2026-11-13T15:12Z'`
+  = **1**. Nenhum outro campo de cabeçalho foi tocado em nenhum dos quatro — `git diff --stat`
+  mostra exatamente **1 linha trocada** em cada (`2 +-`).
+- **Escrita 5** — `dados/PAINEL.md` (raiz, não `ilhas/`) substituído inteiro: **85 linhas**,
+  **12.148 bytes**, primeira linha `# PAINEL DO ARQUIPÉLAGO`, última a do bloco "Consertos das
+  últimas 24 h".
+
+```
+$ git status --porcelain      (antes do commit)
+ M dados/PAINEL.md
+ M ilhas/aquametria/ESTADO.md
+ M ilhas/clubedomosaico/ESTADO.md
+ M ilhas/robometria/ESTADO.md
+ M ilhas/rodametria/ESTADO.md
+ M ilhas/rodametria/PROMPT.md
+ M ilhas/rodametria/dados/consertos.md
+```
+
+```
+$ git diff --stat
+ dados/PAINEL.md                     | 126 ++++++++++++++++--------------------
+ ilhas/aquametria/ESTADO.md          |   2 +-
+ ilhas/clubedomosaico/ESTADO.md      |   2 +-
+ ilhas/robometria/ESTADO.md          |   2 +-
+ ilhas/rodametria/ESTADO.md          |   2 +-
+ ilhas/rodametria/PROMPT.md          |  68 +++++++++++++++++++
+ ilhas/rodametria/dados/consertos.md |   1 +
+ 7 files changed, 127 insertions(+), 76 deletions(-)
+```
+
+**Hash do commit que foi ao `main`:** `1d19c5a5a37927a77029389f4e59de67b3ec7e64`
+(`caa7b5e..1d19c5a`, push direto com `git push origin HEAD:main`, aceito na primeira tentativa, sem
+rebase e sem force).
+
+**Conferido no remoto, não suposto:** `git fetch origin main && git log -1 origin/main` devolve
+`1d19c5a5a37927a77029389f4e59de67b3ec7e64`, que é o commit acima. `git status --porcelain` depois do
+commit: vazio.
+
+**Nenhum passo falhou.** Nenhuma mensagem de erro a registrar.
+
+Este log vai num commit próprio, logo depois — o hash do trabalho só existe depois do commit do
+trabalho, então não havia como empurrar os dois juntos. O `MAOS-LOG.md` segue append-only: nada foi
+apagado, reescrito nem resumido neste disparo.
+
+Esta seção acrescentou 71 linhas ao `MAOS-LOG.md` (de 9960 para 10031 linhas, medido com `wc -l`
+depois de gravar, já contando estas três últimas linhas e a em branco acima delas).
