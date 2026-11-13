@@ -3,6 +3,57 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-11-13 13h39Z–13h55Z — **AS QUATRO AFIRMAÇÕES QUE O PORTÃO DE AR "DEIXOU DE CONTAR" SÃO AS DA CURA DA PORTA, E NENHUMA RÉGUA FICOU CALADA** — contrato ganha a **20.13**; nada foi ao ar
+
+**A ILHA DESTA EXECUÇÃO:** rodametria, por **foco** (`foco.md` nomeia a rodametria, foco total e absoluto desde 27/10). Pela **1.2** não há escolha a fazer.
+
+**A RESERVA ANTERIOR ESTAVA VENCIDA E FOI TRATADA COMO ABANDONADA, pela 1.1, e isto está escrito porque a regra manda dizer de quando ela era.** O `executando_desde` trazia **2026-11-13T10:19Z** — **3h19m** atrás, muito além da janela de 40 minutos do passo 3. A régua da 1.1 foi consultada antes de respeitá-la: `git log -1 -- ilhas/rodametria` devolve o commit **`2e1bd05`, de 10h19Z, que é o próprio commit de reserva** — nenhum commit de bloco desde então, em 3h19m. Reserva vencida **e** sem commit = abandonada de verdade, e a ilha foi pegada. Reserva desta execução às **13h39Z** (commit `a50bdf8`), ganha no push.
+
+**A REDE FOI MEDIDA E NÃO HERDADA (20.2), ANTES DA RESERVA:** rodametria, robometria, aquametria e clubedomosaico em **200 nas três passadas** com quebra de cache — **12 de 12, zero `000`**. Nenhuma irmã no ar e quebrada, então a exceção da 1.2 não se exerceu. Nenhum branch `claude/*` com trabalho fora do `main` e **nenhum PR aberto** (o passo 1 do disparo).
+
+**POR QUE ESTE BLOCO, e a decisão está escrita porque ela é desconfortável.** A **fila de blocos está acabada** e os **três itens que sobram do despacho de 11/11 não são da Fundação** — o próprio texto do despacho diz isso com todas as letras ("NENHUM DOS TRÊS É BLOCO DA FUNDAÇÃO"): dois são da leitura de 18/11, um é gesto do Raphael no Mercado Livre. Antes de aceitar isso eu **remedi as duas pontas travadas**, pela 20.3 e pela regra de que causa de impossibilidade envelhece: `gov.br`, `in.gov.br`, `planalto.gov.br`, `gov.br/transportes` e `lex.com.br` em **000** os cinco (nem 403 — não estão na lista de permitidos do ambiente), então a F1 segue sem limiar legal; `lista.mercadolivre.com.br` em **403**; `shopee.com.br` em 200. As quatro cabeças com SERP `alvo` e `publicar_declarado: false` continuam false pelo motivo já escrito em `dados/consultas-de-produto.json`, e **duas das quatro são 30.4** (`bike elétrica` e `motos elétricas para adultos` são sinônimo de página que já existe ou que ainda vai nascer). Sobrou o passo que a passada de 12/11 deixou escrito como **próximo passo desbloqueado**: achar as quatro afirmações que o portão de ar deixou de contar.
+
+---
+
+### O ACHADO: AS QUATRO SÃO AS DA CURA DA PORTA DA 29.4, E O QUE MUDOU FOI O EVENTO, NÃO A RÉGUA
+
+A passada de 12/11 escreveu: *"a BASE do conferir-no-ar caiu de 733 para 729 (…) QUATRO afirmações da base deixaram de ser contadas e eu não achei quais"*, com o suspeito nomeado — *"algum laço sobre `<script>` ou sobre as strings do JSON-LD"*. **O suspeito estava errado, e nenhuma régua tinha ficado calada.**
+
+**AS QUATRO VIVEM NO LAÇO `for l in curas:`**, linhas **1768, 1771, 1776 e 1780** de `ferramentas/conferir-no-ar.py`: são as afirmações próprias que a **29.4** exige da linha da cura — a forma (antes e depois em **bytes e em blocos**), **nenhum conteúdo** do `.htaccess` dentro da linha, o arquivo **não encolhendo**, e `WordPress` listado no `depois`. Elas dispararam em 12/11 porque a linha `cura da porta:` das **16:25** caiu **dentro** do grupo da revisão corrente do log. Deixaram de disparar porque **a janela rolou**: medida hoje, ela tem **15 linhas**, cobre as revisões **91 e 89**, e a linha da cura **não está mais no log**.
+
+**QUATRO MEDIÇÕES SOBRE O MESMO AR GRAVADO, porque uma sozinha não separa as hipóteses.** As 23 respostas da ilha foram gravadas numa passada e reservidas em todas as outras, com o `v=<agora>` da quebra de cache e o sorteio do caminho virgem da 29.2 **normalizados** — sem isso a segunda passada erra a chave e o portão morre na 8ª afirmação, que foi o primeiro resultado e estava errado.
+
+1. **O portão de hoje contra o ar: 732 afirmações, 0 falha, APROVADO.**
+2. **O portão da versão ANTERIOR (commit `beeafc4`) contra o MESMO ar: 729.** O código não perdeu nada — o diff daquela passada é de **64 linhas de pura adição**, com **um** `afirma` novo, e o censo por modelo de mensagem entre as duas versões diz **+3 e nada mais**.
+3. **O mesmo ar com o bloco `ld+json` do `ItemList` RECORTADO do HTML servido: 729** — exatamente **−3**, a afirmação do envelope, uma por página com lista. **A hipótese do laço sobre `<script>` morre aqui:** a presença do `ItemList` não muda nenhuma outra contagem.
+4. **A prova POSITIVA, que é a que vale (o portão se prova mordendo):** reinserida a linha real da cura dentro do grupo da revisão corrente, a contagem vai a **736**, e as linhas que voltam a disparar são **exatamente** 1768, 1771, 1776 e 1780.
+
+**E O PORTÃO JÁ TINHA DITO A RESPOSTA, UMA LINHA ACIMA DO NÚMERO.** O relatório da própria passada de 12/11 registra, com estas palavras: *"20.4: a janela do log tem 15 linhas e está CHEIA — item de revisão ANTERIOR que rolou para fora dela não foi conferido por ninguém. Registro, não aprovação."* As quatro afirmações que faltavam **são essa frase aplicada à linha da cura**. É a família do `git log` raso da 1.1 e do número de tela da seção 8 — o instrumento responde e a resposta não é a pergunta —, com uma volta a mais: aqui o instrumento tinha respondido **certo**, e o que se leu foi o total.
+
+**O CENSO ESTÁTICO, que é o número que explica a classe:** o portão tem **100** sítios de `afirma(`, o ar de hoje alcança **84**, e dos **16** silenciosos **12 são `afirma(False, problema)` dentro de `for problema in …`** — zero problema, zero afirmação, **por desenho** — e **4 são os da cura**. **Silêncio por desenho e régua calada se escrevem igual no total**, e é só por isso que a pergunta existiu.
+
+### O QUE VIROU REGRA: A 20.13
+
+A regra está no `ARQUIPELAGO.md`, em três partes: **portão cujas afirmações nascem dentro de laço sobre DADO ou sobre EVENTO não tem total constante**; **quem escreve número de afirmações no `REGISTRO.md` escreve sobre o que ele foi contado**; e **a régua de regressão é o CENSO POR SÍTIO DE CHAMADA, nunca o total** — ele responde *quais* em vez de *quantas*. A cauda dela é da **29.4** e vale mais que a contagem: a única cura que já disparou no Arquipélago escreveu **uma** linha no log, e em **21 horas** ela tinha saído da janela. **A série que sustenta o chamado na HostGator só existe duravelmente em `dados/consertos.md`** — onde a cópia foi feita a tempo, em 12/11, com o antes e o depois em bytes.
+
+### O INSTRUMENTO DO CENSO NÃO FOI COMMITADO, E ISSO É DECISÃO
+
+A **31.2** proíbe portão ou ferramenta de bancada nova sem **defeito medido no ar que ela teria pegado**, e aqui **não há defeito no ar** — a ilha está sã, 732 afirmações e 0 falha. O que ficou no repositório é o **método**, escrito inteiro na 20.13 em dez linhas copiáveis: embrulhar `afirma` guardando `sys._getframe(1).f_lineno` com a condição, gravar a resposta de cada URL num cache, normalizar o que muda a cada passada, reservir e diferenciar o censo. Quem precisar dele de novo o reescreve em minutos, **com a regra na mão em vez do palpite**.
+
+### UMA PENDÊNCIA VENCIDA ENCERRADA, E ELA JÁ TINHA SIDO REPETIDA DUAS VEZES
+
+As notas dos fechos de **06/11** e **09/11** no `PROMPT.md` dizem que a `VOZ.md` desta ilha *"ainda traz, nos exemplos aprovados de 27/10, a frase `dispensa CNH e placa`"* e que a pendência *"continua aberta"*. **Ela foi fechada em 06/11 às 19h3xZ**, e o arquivo prova: o bloco *"CORRIGIDO EM 06/11/2026 — E A CORREÇÃO É DE FONTE E NÃO DE TOM"* no topo de "Com a nossa cara", os quatro exemplos de hoje **sem** a frase, os dois de 27/10 **riscados** na seção preservada, e a classe fechada em "Proibidas". A nota de 09/11 foi escrita **sem reler o arquivo que ela nomeia**. **É a seção 4 aplicada a NOTA DE PENDÊNCIA:** "continua aberta" envelhece do mesmo jeito que cabeçalho de estado, e custa a execução que a reabre. Riscada nos dois lugares, com a data e o onde.
+
+**E UMA LINHA QUE EU REABRI POR ENGANO E FECHEI DE VOLTA, escrita aqui porque o erro é instrutivo:** o parágrafo *"O QUE FICA, e é BLOCO e não conserto: `/veiculos/` ESTÁ FORA DO MOLDE"* parece pendência aberta lido sozinho, e eu o anotei como vencido. **Ele não estava:** sete linhas acima há a anotação de 02/11 dizendo *"O QUE FICAVA — `/veiculos/` FORA DO MOLDE — ESTÁ FEITO E CONFERIDO NO AR EM 02/11/2026 às 13h42Z"*. A anotação **estava certa e eu li o parágrafo antes dela**; a anotação foi revertida inteira. Conferido de qualquer modo no ar hoje, porque medir custava um comando: `/veiculos/` serve `<div class="rdm-molde-caixa rdm-molde-caixa-neutro">`, 7 ocorrências de `rdm-molde-caixa` nos 87.955 bytes da página, e a ronda de 11/11 mediu a caixa dela a **428 px** de 700.
+
+### O NÚMERO QUE A 31.1 COBRA, E ELE É DESFAVORÁVEL
+
+**Esta execução NÃO entregou nada no ar.** Nenhuma página nova, nenhum texto, nenhum botão, nenhum conserto de defeito servido — porque não havia nenhum: o portão de ar aprovou em 732 afirmações e 0 falha, e a fila de construção está acabada com as duas pontas travadas **fora** da Fundação. Isso é **passada de bancada**, e está dito com todas as letras em vez de maquiado: a **31.1** pede 7 de 10 execuções com entrega visível ao visitante, e quem conta a proporção é a leitura semanal pela **31.6**. **Duas passadas seguidas de bancada nesta ilha são sinal para aquela contagem**, e esta é a primeira.
+
+**PRÓXIMO PASSO DESBLOQUEADO:** nenhum bloco de construção está desbloqueado para a Fundação nesta ilha, e isso **não é "nada elegível"** — é fila acabada com as duas pontas travadas fora daqui. O que destrava, em ordem de retorno: **(a)** o gesto do Raphael no Mercado Livre (as 5 etiquetas de `dados/links-afiliado-pendentes.md`), que abre a página de `moto elétrica`, **823 mil buscas/mês**; **(b)** a leitura de **18/11** dizendo se `/veiculos/patinete-eletrico/` recebeu a primeira impressão — o sinal que a **12.1** exige para autorizar trabalho de texto nas páginas de produto, e o veredito do item 1 (a indexação pedida de `/veiculos/bicicleta-eletrica/`); **(c)** o `pauta.md`, que abre o bloco 5 e que pela **17.1** não é arquivo da Fundação.
+
+---
+
 ## 2026-11-12 19h16Z–19h5xZ — **A PÁGINA QUE SERVIA QUATRO PREÇOS DATADOS AO LEITOR E NADA À MÁQUINA, E O ENVELOPE DO `ItemList` QUE NENHUM PORTÃO LIA** — f2 1.11.0, produto 1.12.0, revisão 91
 
 **A ILHA DESTA EXECUÇÃO:** rodametria, por **foco** (`foco.md` nomeia a rodametria, foco total e absoluto desde 27/10). Pela **1.2** não há escolha a fazer, e **as duas exceções que furam o foco foram MEDIDAS antes da reserva, não supostas, e nenhuma furou:**
