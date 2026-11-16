@@ -37,6 +37,16 @@ Retorno = M×0,40 + D×0,30 + R×0,15 + A×0,15 · Índice = média harmônica.
 
 > ## ⚖️ A CONTRADIÇÃO QUE A RODADA 008 MEDIU E NÃO RESOLVEU — 3.0-d × 30.5
 >
+> > **PONTEIRO DO PENTE FINO, 16/11/2026 — ELA FOI RESOLVIDA EM 27/10/2026, UM DIA DEPOIS DESTA PÁGINA.** O
+> > bloco abaixo fecha dizendo *"nada foi aplicado: as contas desta página seguem a letra em vigor"*, e a letra
+> > em vigor mudou: a **3.0-e** da `BUSSOLA.md` diz, datada de 27/10/2026, *"o Raphael escolheu a saída (b) da
+> > rodada 008"* — a consulta-ponte entra na soma da 3.0-d.1 —, e a **3.0-e.3** aplica também a saída (a), com os
+> > descontos de carrossel (× 0,5), de resposta de IA (× 0,7) e de resposta que cabe no snippet (× 0,5). No mesmo
+> > dia a **0.9** tirou o caráter eliminatório da 3.0-d.1 e pôs no lugar o piso de **comissão** de R$ 10.000/mês,
+> > então a frase *"o portão eliminatório da 3.0-d.1 segue fechado para todo nicho desta página"*, mais acima,
+> > também é a ponta velha. **Nada aqui foi reescrito** — a 0.3 diz que esta página é registro de medição e só
+> > recebe linha quando houver ficha; o que mudou é que ela deixou de declarar aberta uma decisão já tomada.
+>
 > Nas dez SERPs brasileiras lidas em 26/10/2026 o padrão não teve exceção:
 >
 > **Consulta cuja resposta é UM PRODUTO NOMEADO está tomada por carrossel de compras e PDP de marketplace**

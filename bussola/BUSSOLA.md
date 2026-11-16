@@ -16,6 +16,8 @@ volume de tráfego com intenção de compra não existe venda — só ~1% de que
 divergir sobre O QUE a Bússola entrega e QUANDO ela fala com o Raphael, vale esta. Os portões (seções 2, 3,
 3.0-c, 3.0-d, 3.0-e, 3.1) continuam valendo inteiros: o que muda é o comportamento, não a régua.
 
+> **PONTEIRO DO PENTE FINO, 16/11/2026 — "INTEIROS" É A PONTA VELHA EM DOIS PORTÕES, E QUEM OS MUDOU FOI A PRÓPRIA SEÇÃO 0, NO MESMO DIA.** A **0.9** tira o caráter eliminatório da **3.0-c.1** e da **3.0-d.1** ("deixam de ser eliminatórias") e troca o portão 3 da 0.2 pelo piso de **comissão** de R$ 10.000/mês; a **0.8** passa a medir a cobertura da **seção 2** só na Shopee. As três são de 27/10/2026 e esta linha é a que ficou velha. Leia a 0.8 e a 0.9 antes de aplicar a seção 2, a 3.0-c ou a 3.0-d.
+
 **0.2 O CICLO DE CAÇA, em toda execução.** A Bússola testa até **20 nichos candidatos** inéditos (os que não
 estão em `bussola/cacados.md`), um por vez, e para cada um corre os portões nesta ordem, parando no primeiro que
 reprovar e passando ao próximo candidato sem escrever análise:
@@ -25,7 +27,11 @@ reprovar e passando ao próximo candidato sem escrever análise:
    meses), colando **termos-cabeça e consultas de 2 a 5 palavras** — nunca frase de 6 ou mais palavras, que volta
    `—` (lição medida em 21 e 22/10/2026). Use também "Descobrir novas palavras-chave" com 3 a 6 sementes para
    achar a forma como o brasileiro busca de verdade, e só depois separe a metade de compra pela 3.0-d.2/3.0-e.
-3. **A conta da 3.0-d com a 3.0-e**, no cenário conservador. Menos de 1.000 visitas/dia → próximo.
+3. **A conta da 3.0-d com a 3.0-e**, no cenário conservador. ~~Menos de 1.000 visitas/dia → próximo.~~
+   **O CORTE DESTE PORTÃO É O DA 0.9 — ponteiro do Pente Fino, 16/11/2026:** a 0.9 nomeia esta linha com todas as
+   letras (*"o portão 3 da 0.2 muda"*) e o corte passou a ser **comissão projetada no conservador, só Shopee, de
+   pelo menos R$ 10.000/mês**. Como o ticket só é medido no portão 4, a conta deste portão fecha **depois** dele;
+   a ordem de corte barato continua SERP, volume, painel, conta.
 4. **Ticket e comissão medianos no painel de afiliado da Shopee** (Oferta de produto), 10 produtos que a
    ferramenta indicaria. Cobertura da seção 2 reprovada → próximo.
 5. **Passou nos quatro → vira FICHA DE OPORTUNIDADE (0.4).** A execução para quando tiver UMA ficha completa,
@@ -151,7 +157,7 @@ Toda a régua acima é **relativa**. `S_par` e `S_com` medem quem ocupa a SERP; 
 
 **A frase dele:** "Como a gente vai se basear em tráfego 100% orgânico, a Bússola tem que encontrar nichos que sejam, ao mesmo tempo, fáceis de ranquear e que tragam pelo menos 1.000 pessoas por dia. Se for menos de 1.000 pessoas por dia, não compensa fazer essa ilha. A conversão em venda fica em torno de 1%; ranquear fácil numa palavra que traz 10 ou 20 pessoas por mês não adianta nada. E tem que ter produto para vender para essas pessoas, de preferência na Shopee."
 
-**3.0-c.1 A trava, eliminatória:** nenhum nicho vira ilha se a conta abaixo der **menos de 1.000 visitas orgânicas por dia** com a ilha ranqueada no que ela consegue alcançar. Mais é melhor; menos desqualifica, por melhor que seja o índice da seção 3.
+**3.0-c.1 A trava, ~~eliminatória~~ — DEIXOU DE SER ELIMINATÓRIA PELA 0.9 (27/10/2026); ponteiro do Pente Fino, 16/11/2026. O que vale como corte é o piso de comissão da 0.9; o que continua valendo inteiro desta seção é a 3.0-c.2, que diz COMO se faz a conta de visitas:** nenhum nicho vira ilha se a conta abaixo der **menos de 1.000 visitas orgânicas por dia** com a ilha ranqueada no que ela consegue alcançar. Mais é melhor; menos desqualifica, por melhor que seja o índice da seção 3.
 
 **3.0-c.2 A conta, obrigatória em todo dossiê:**
 - Liste as consultas que a ilha vai atender **e que levam a um produto vendável** (a metade paramétrica e a de produto pelo nome, seção 30 do `ARQUIPELAGO.md`). Consulta sem produto no fim não entra na soma.
@@ -183,7 +189,7 @@ informacionais ranqueáveis por mês e **apenas 20.930 delas — 5,2% — termin
 tem a planta e quer multiplicar de graça em vez de comprar outra. Pelo piso antigo jardinagem dava 1.441
 visitas/dia e passava. Pelo piso desta seção dá **73** e reprova por treze vezes.
 
-**3.0-d.1 A TRAVA, eliminatória, e ela substitui a leitura da 3.0-c.1 sobre o nicho inteiro:** nenhum nicho vira
+**3.0-d.1 A TRAVA, ~~eliminatória~~ — DEIXOU DE SER ELIMINATÓRIA PELA 0.9 (27/10/2026); ponteiro do Pente Fino, 16/11/2026: o piso de 1.000 visitas/dia virou insumo da conta de comissão da 0.9, e o que reprova é a comissão abaixo de R$ 10.000/mês no conservador. A separação das duas metades (3.0-d.2 e 3.0-d.3) continua obrigatória e é o que alimenta essa conta. E ela substitui a leitura da 3.0-c.1 sobre o nicho inteiro:** nenhum nicho vira
 ilha se as consultas **com intenção de compra** não somarem, sozinhas, **1.000 visitas orgânicas por dia** com a
 ilha ranqueada no que ela alcança. O corpus informacional que não termina em produto **não entra na soma** — pode
 ser escrito ao lado como volume de apoio, nunca somado ao piso. Como o piso novo é estritamente mais duro que o
@@ -235,7 +241,9 @@ compra ranqueadas em top-3** — e, se a SERP for mista (4–10, 4,2%), exigem q
 significa que **só SERP aberta passa nesta seção**. É um corte duro e deliberado: **é possível que nenhum nicho
 da `fila.md` de hoje passe nele.** O Raphael aceitou esse custo ao fixá-lo, e a leitura correta disso é que a
 Bússola prefere não parir ilha a parir ilha sem comprador. **Nicho que reprova aqui não vira ilha por melhor que
-seja o índice da seção 3** — e nicho que passa aqui ainda tem de passar na seção 3 (fácil de ranquear) e na
+seja o índice da seção 3** *(ponteiro do Pente Fino, 16/11/2026: "reprova aqui" passou a querer dizer reprovar no
+piso de comissão da **0.9**, que substituiu o de 1.000 visitas/dia em 27/10/2026 — e foi exatamente a aritmética
+desta 3.0-d.5, "R$ 213 por venda pede ≈ 160 visitas/dia", que o Raphael usou para trocar o piso)* — e nicho que passa aqui ainda tem de passar na seção 3 (fácil de ranquear) e na
 cobertura de afiliado da seção 2. São três portões independentes, e a ilha ideal é o cruzamento dos três.
 
 ## 3.0-e A BUSCA-PONTE CONTA, COM DESCONTO DE CARROSSEL (decisão do Raphael, 27/10/2026)

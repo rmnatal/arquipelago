@@ -10,13 +10,15 @@ Este contrato tem mais de 500 linhas e continua crescendo. **Ninguém lê tudo.*
 | **Sentinela — ronda diária** | **1.2**, **1.2-b**, 2, 3, 4, 10, 12, 15, 16, 18, 19, 21, 22, 23, 24, **25**, 29, **32**, **33** |
 | **Painel** | quem escreve é a ronda diária, pela seção 23. Quem quiser saber o estado do Arquipélago lê `dados/PAINEL.md` e não precisa de seção nenhuma |
 | **Sentinela — leitura semanal** | **1.2**, **1.2-b**, 2, 3, 4, 10, 12, 12.1, 14, 18, 21, 29, **31**, **33** |
-| **Bússola** | **7**, 10, 11, **12.2**, 14, **15**, 20, 21 — e `bussola/BUSSOLA.md`, que é a lei dela |
+| **Bússola** | **7**, 10, 11, **12.2**, 14, **15**, 20, 21, **30** — e `bussola/BUSSOLA.md`, que é a lei dela |
 | **Pauta das ilhas** | 10, 14, 15, 16, 17, 21 |
 | **Mãos no repositório** | nenhuma. A decisão já vem no disparo; ler o contrato é sinal de que virou Fundação |
 
 *(A **29** entrou nas três linhas em 24/09/2026: ela é sobre a porta de entrada do site cair sem nenhum portão acusar, e quem não a lê continua lendo "o repositório está verde" como "o site está no ar".)*
 
 *(A **25** e a **30** entraram pelo Pente Fino em 12/10/2026, pelo mesmo motivo que a 1.2 entrou em 16/09, a 1.2-b em 21/09 e as três seções da Bússola em 05/10 — **a seção que decide não estava na linha de quem decide.** A **25** não estava na linha de papel NENHUM, e a **7**, que está na linha da Fundação e da Bússola, termina dizendo com todas as letras: *"Onde esta seção e a 25 divergirem, **manda a 25**"*. É a 25 que põe o piso de `url_busca` em todo item publicável (25.2), que proíbe registro publicável sem encurtamento tentado (25.2-b), que exige `url_produto` para o teste de vida existir (25.4-b) e que proíbe gerar link de afiliado à mão (25.8) — tudo trabalho da Fundação no banco —, e é a 25.4 que manda a **ronda diária** conferir os links dos itens publicados e tratar link morto como defeito da 19.1. A **30** é de 09/10/2026, nasceu dizendo "vale para toda ilha" por decisão do Raphael no mesmo dia, e também não entrou em linha nenhuma: a Fundação é quem cria as páginas que ela manda criar. O desempate continua sendo o desta própria seção: "errar por ler a mais é barato; errar por não saber a regra custa uma leva inteira".)*
+
+*(A **30** entrou na linha da **Bússola** pelo Pente Fino em 16/11/2026, pelo mesmo motivo que pôs a 1.2 ali em 16/09, a 1.2-b em 21/09, as três seções da Bússola em 05/10 e a 25 e a 30 na linha da Fundação em 12/10 — **a seção que decide não estava na linha de quem decide.** A nota de 12/10 acima escreveu que a 30 "não entrou em linha nenhuma" e a pôs só na da Fundação, porque ali quem cria a página é a Fundação. Isso mudou em 27/10, quando a seção 0 da `BUSSOLA.md` passou a mandar a Bússola decidir **por** ela: o portão 1 do ciclo de caça (0.2) manda classificar a SERP *"(seção 3 e **seção 30.5** do `ARQUIPELAGO.md`)"*, e a 0.6 afirma que o Chrome dela *"satisfaz a **30.8** do `ARQUIPELAGO.md` para `alvo`"* — duas seções que a linha dela mandava, ao pé da letra, não ler. O desempate é o desta própria seção: "errar por ler a mais é barato".)*
 
 *(A **33** entrou nas TRÊS linhas em 09/11/2026, na passada que a escreveu, e o motivo é o da própria seção: as três rondas que declararam "não medido por falta de navegador" eram rondas — a seção que diz que o navegador existe tem de estar na linha de quem escreve "não medido". A **20.10** não precisou de linha nova: a 20 já está na da Fundação e a 12 manda a ronda ler o `/status`.)*
 
@@ -990,7 +992,7 @@ O dado exportado deixa de ser refém da tela: vira dado do repositório, version
 
 Toda escolha de link de compra desce esta escada e **para no primeiro degrau que servir**. O degrau usado fica gravado em `afiliado.degrau`.
 
-1. **Loja oficial do fabricante na Shopee.** Achada no **feed de afiliado** (ver 25.3). É o mais durável que existe: fabricante não fecha loja nem fica sem o próprio produto. Exemplo vivo: Cascorez na Henkel Oficial.
+1. **Loja oficial do fabricante na Shopee.** ~~Achada no **feed de afiliado** (ver 25.3).~~ **A RÉGUA DESTE DEGRAU É A DA 25.10 (29/10/2026) — PONTEIRO DO PENTE FINO, 16/11/2026:** a 25.6 aposentou o feed em 16/09/2026, e a 25.10 nomeia este buraco com todas as letras — *"desde esse dia o degrau mais durável da escada não tem como ser achado: a regra diz onde procurar, e o lugar não existe mais"*. O degrau 1 se mede hoje pelo **nome da loja carregar a marca do registro**, com **como ele foi medido escrito em palavras no próprio registro**; e `shopType` **não** é essa régua (ele é o programa de vendedor da plataforma). Leia a 25.10 antes de gravar `degrau: 1`. É o mais durável que existe: fabricante não fecha loja nem fica sem o próprio produto. Exemplo vivo: Cascorez na Henkel Oficial.
 2. **Página de catálogo do Mercado Livre** — a URL com `/p/MLB...`. Ela é *o produto*, não o anúncio: o Mercado Livre roteia para quem tiver estoque. Só morre se ninguém no Brasil vender aquilo. **Nunca use `produto.mercadolivre.com.br/MLB-...-_JM`** quando existir a `/p/` — aquela é anúncio de vendedor e apodrece igual à Shopee.
 3. **Anúncio de vendedor comum na Shopee.** Último recurso. Foi o degrau que quebrou quatro em doze horas. Quem usa este degrau **tem de** ter `url_busca` preenchida.
 4. **Link de busca** — `shopee.com.br/search?keyword=...`, transformado em link de afiliado pelo gerador normal. Página de busca não esgota e não some. Converte pior que ficha de produto, mas é o que separa "ver outras ofertas" de beco sem saída.
@@ -1585,7 +1587,9 @@ Medido na Rodametria. A 32.1 pede foto no cartão de compra e a seção 6 manda 
 
 ---
 
-### 32.6 CAMPO QUE É PEDAÇO DE ORAÇÃO CONCORDA COM QUEM O USA — E A REGRA DE MONTAR A CAMADA DA IA DO MESMO CAMPO QUE A VISÍVEL ESTÁ CERTA E TEM ESTE CUSTO (11/11/2026)
+### 32.8 CAMPO QUE É PEDAÇO DE ORAÇÃO CONCORDA COM QUEM O USA — E A REGRA DE MONTAR A CAMADA DA IA DO MESMO CAMPO QUE A VISÍVEL ESTÁ CERTA E TEM ESTE CUSTO (11/11/2026)
+
+> **RENUMERADA DE 32.6 PARA 32.8 PELO PENTE FINO EM 16/11/2026 — SÓ O NÚMERO MUDOU.** Esta seção nasceu em 11/11/2026 com o número **32.6**, que já era o da *"Ordem de aplicação"* do molde desde 21/10/2026 — a seção que a 32.6-b estende, que a 32.5-c cita e que os documentos das ilhas chamam de *"o despacho do molde da 32.6"* em mais de dez linhas. Medido antes de renumerar: **nenhum arquivo do repositório citava esta regra por número**, então trocá-lo não deixa referência órfã, e deixá-lo tornava ambígua toda citação de "32.6". 32.7 era o último número usado da seção.
 
 Medido na rodametria às 19h2xZ de 11/11/2026, na home, nas **duas** camadas ao mesmo tempo. A `FAQPage` servia *"o art. 12 diz que o veículo não é **sujeita** a registro, licenciamento nem placa"* e a tabela visível, três dobras acima, servia a **mesma cadeia** na linha `bicicleta elétrica`. Na mesma página, a resposta seguinte dizia *"ele não é **sujeito**"*. **Duas concordâncias para a mesma afirmação, e uma delas errada, na camada que a visão geral de IA cita sem abrir formulário nenhum.**
 

@@ -3,6 +3,14 @@
 Leia o `ARQUIPELAGO.md` da raiz antes deste arquivo. Ele carrega todas as regras comuns; aqui fica só o que é desta ilha. **Nunca copie regra do `ARQUIPELAGO.md` para cá.**
 O dossiê que aprovou esta ilha é `bussola/dossies/som-automotivo/DOSSIE.md` — leia-o na primeira execução e não repita o que ele já mediu.
 
+> **ANTES DE ABRIR BLOCO NESTA ILHA, LEIA ISTO — PONTEIRO DO PENTE FINO, 16/11/2026: A BÚSSOLA FECHOU ESTE NICHO EM 22/10/2026, E NENHUM ARQUIVO DESTA PASTA DIZIA ISSO.**
+>
+> `bussola/cacados.md`, linha 11, registra: **`| 22/10/2026 | som automotivo | SERP de compra tomada por carrossel | 230 buscas/mês nas consultas de compra exatas |`**. O dossiê acima aprovou o nicho na rodada 004; a reavaliação da **seção 4 da `BUSSOLA.md`** — *"toda rodada reavalia o topo (SERP aberta fecha) (…) nicho aprovado que fechou tem que ser desmarcado antes de alguém pagar domínio"* — o fechou três semanas depois. **O domínio já estava pago** (14/09/2026, até 14/09/2028), então a régua da seção 4 chegou tarde e nenhuma regra do Arquipélago diz o que se faz com a ilha a partir daí.
+>
+> **POR QUE ISTO É URGENTE E NÃO HISTÓRICO:** medido em 16/11/2026 nos seis cabeçalhos de `ilhas/*/ESTADO.md`, esta ilha tem a **`ultima_execucao` mais antiga do arquipélago** (15/09/2026, cinco semanas à frente da segunda), `estado: nascendo` (que o passo 3 da seção 1 **não** descarta) e `executando_desde: null`. **No dia em que `foco.md` disser `ilha: nenhuma`, o passo 4 da seção 1 aponta para cá primeiro** — e a execução que chegar lê, acima, "leia o dossiê e não repita o que ele já mediu", sem uma linha dizendo que a SERP de compra deste nicho está fechada desde 22/10.
+>
+> **O QUE ESTE PONTEIRO NÃO DECIDE, de propósito:** o desfecho da ilha. A **1.2-b.4** pede um critério **pré-registrado** com três desfechos (volta ao foco · manutenção · arquivada, com o aprendizado indo para a `BUSSOLA.md`) e esta ilha nunca o recebeu. Escolher entre eles muda a ordem da fila e joga fora quatro blocos entregues (8.262 afirmações na bancada da F1, 144 estados, 18 constantes) mais um domínio pago até 2028 — **é decisão do Raphael**, e está no relatório da auditoria de 16/11/2026 como `PRECISA DO RAPHAEL`. Até ela existir, **não abra bloco de construção aqui sem relê-la**.
+
 > **ESTA ILHA NÃO ESTÁ EM FOCO — 16/09/2026; A ILHA EM FOCO MUDOU DUAS VEZES DESDE ENTÃO.** *(Ponteiro do Pente
 > Fino em 28/09/2026: `foco.md` nomeia a **clubedomosaico** desde 24/09/2026 — nomeou a aquametria de 21/09 a
 > 24/09 e a robometria antes disso. A conclusão deste aviso continua certa; a ilha que ele nomeia, não. Quem ler
