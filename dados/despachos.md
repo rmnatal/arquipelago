@@ -1347,6 +1347,50 @@ Com `rodametria.com.br` em **200** na mesma janela, o que separa recusa de host 
 
 ### prioridade ALTA — a ilha EM FOCO tem como produto a CATEGORIA LEGAL, e o único texto que a decide é negado pelo egresso: o bloco 2 pode ser especificado inteiro, mas não pode ser FECHADO desta nuvem
 
+> **PONTEIRO ACRESCENTADO EM 16/11/2026 às 13h2xZ — O PEDIDO PASSA A TER DUAS LINHAS, E A SEGUNDA
+> NASCEU DE UMA PORTA QUE NINGUÉM HAVIA TENTADO. NADA AQUI FECHA: o despacho continua ALTA e continua
+> sendo do Raphael.**
+>
+> **O pedido, como fica:**
+>
+> ```
+> *.gov.br
+> *.leg.br
+> ```
+>
+> **POR QUE A SEGUNDA LINHA, e ela é medição e não zelo.** Este despacho e o arquivo
+> `ilhas/rodametria/dados/fonte-oficial-f1.md` dizem, desde 05/11, que *"o que esta ilha não alcança
+> não é um site, é o domínio `.gov.br` inteiro"*. **Esse diagnóstico é mais estreito que a parede**, e
+> lido ao pé da letra ele promete uma porta que não existe: que uma reprodução oficial **fora** do
+> `.gov.br` seria alcançável. O CTB tem exatamente isso — ele **não é** resolução de órgão, é a **Lei
+> 9.503/1997**, e lei tem custódia no Legislativo. **A via da Câmara e do Senado era a candidata
+> natural a furar a parede, e nunca havia sido tentada em 19 dias de despacho aberto.**
+>
+> **Tentada hoje, pela 20.3, e está fechada:** `www2.camara.leg.br`, `legis.senado.leg.br` e
+> `normas.leg.br` em **`000` nas três passadas** (9 medições de recusa), com `rodametria.com.br` e
+> `aquametria.com.br` em **200 nas mesmas três** (6 controles verdes, zero intermitência) e
+> `www.planalto.gov.br` em `000` como controle da parede conhecida. Classificação **lida** no
+> `__agentproxy/status`: `connect_rejected`, *"gateway answered 403 to CONNECT (policy denial or other
+> refusal)"*. O **403 no CONNECT** foi lido direto no `curl -v`, e o leitor de página devolveu
+> `getaddrinfo ENOTFOUND www2.camara.leg.br` — **a mesma assinatura que o `www.gov.br`**: fora da
+> lista, domínio que existe não se distingue de domínio que não existe.
+>
+> **A PAREDE É A LISTA DE PERMITIDOS (20.1), e `.gov.br` era só o primeiro domínio a bater nela.** O
+> `*.gov.br` continua certo e continua necessário — é por ele que vêm a resolução, o CTB **compilado**
+> no `planalto` e os quatro folhetos municipais. O que ele **não** faz é abrir a **publicação
+> original** do CTB, que é a via do Legislativo. **E essa diferença já custou caro uma vez nesta
+> ilha:** a seção 5 do `fonte-oficial-f1.md` tem um campo chamado *"qual fase/redação está sendo
+> lida"* porque a leitura de 05/11 não soube dizer se havia ato posterior. Ler a compilação **e** a
+> publicação original é a diferença entre ler o CTB e ler **uma** versão dele. **As duas linhas custam
+> o mesmo gesto que uma.**
+>
+> **E A LIÇÃO DE MÉTODO, que vale mais que as duas linhas:** o que envelheceu aqui não foi o bloqueio
+> — ele é real e foi remedido verde-contra-vermelho. Foi o **diagnóstico** dele, escrito uma vez e
+> lido como fato por cinco execuções seguidas. É a **seção 4** do contrato acontecendo num arquivo de
+> bancada, e é a mesma doença que a própria seção 20 corrigiu em 11/09/2026 — *"era intermitência do
+> túnel lida como bloqueio, e o diagnóstico se propagou porque cada execução leu o `ESTADO.md` da
+> anterior como fato"*. **Causa de impossibilidade se remede (20.3); diagnóstico de causa também.**
+
 > **ATUALIZADO ÀS 11hxxZ DE 06/11/2026 — A METADE DA RESOLUÇÃO ESTÁ FECHADA, E NÃO FOI O EGRESSO QUE
 > A FECHOU: FOI VOCÊ, NO SEU CHROME.** Em **05/11, ~23h3x de Brasília**, você abriu o PDF oficial do
 > Ministério dos Transportes e preencheu a seção 5 de `ilhas/rodametria/dados/fonte-oficial-f1.md`

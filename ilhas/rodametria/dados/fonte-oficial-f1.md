@@ -33,6 +33,10 @@ Este arquivo existe por dois motivos, e os dois são para baratear a próxima pa
 | **busca de página (`WebFetch`)** no `gov.br` | a outra porta da nuvem | 28/10 · **05/11 19h1xZ** | `getaddrinfo ENOTFOUND www.gov.br` — falha na resolução de nome, não no HTTP |
 | **`araras.sp.gov.br`** — PDF da resolução | **porta NOVA, achada em 05/11** | **05/11 19h1xZ** | `000`, mesma recusa — é `.gov.br`, cai na mesma parede |
 | **busca da nuvem (`WebSearch`)** | a única porta que ATRAVESSA | **05/11 19h1xZ** | **responde, e NÃO serve** — ver a seção 2 |
+| **`www2.camara.leg.br`** — o CTB na Câmara dos Deputados | **porta NOVA, tentada pela PRIMEIRA vez em 16/11** | **16/11 13h2xZ** | `000`, `connect_rejected`, **403 no CONNECT lido com `curl -v`** |
+| **`legis.senado.leg.br`** — o CTB no Senado | **porta NOVA, tentada pela PRIMEIRA vez em 16/11** | **16/11 13h2xZ** | `000`, mesma recusa |
+| **`normas.leg.br`** (LexML/LEG) | **porta NOVA, tentada pela PRIMEIRA vez em 16/11** | **16/11 13h2xZ** | `000`, mesma recusa |
+| **leitor de página (`WebFetch`) no `www2.camara.leg.br`** | a outra porta da nuvem, no `.leg.br` | **16/11 13h2xZ** | `getaddrinfo ENOTFOUND www2.camara.leg.br` — **a mesma assinatura que o `www.gov.br`** |
 
 **O controle é o que torna isto medição e não palpite.** Nas mesmas passadas de 05/11 às
 19h1xZ, `aquametria.com.br` respondeu **200** três vezes e `rodametria.com.br`,
@@ -40,6 +44,35 @@ Este arquivo existe por dois motivos, e os dois são para baratear a próxima pa
 São **4 controles verdes** contra **6 recusas**, com o egresso nomeando a causa em cada uma:
 `gateway answered 403 to CONNECT (policy denial or upstream failure)`. **Recusa de política,
 não queda de host** — e por isso repetir não muda nada, como a 20.2 prevê.
+
+> **CORREÇÃO MEDIDA EM 16/11/2026 às 13h2xZ, E ELA É DO DIAGNÓSTICO E NÃO DO FATO — A PAREDE NÃO É
+> O `.gov.br`: É A LISTA DE PERMITIDOS, E O `.leg.br` CAI COM ELA.** O parágrafo abaixo é de 05/11 e
+> conclui, das seis recusas daquele dia, que *"o que esta ilha não alcança não é um site, é o domínio
+> `.gov.br` inteiro"*. **A conclusão é mais estreita que a parede, e lida ao pé da letra ela promete
+> uma porta que não existe:** quem a ler acredita que uma reprodução oficial fora do `.gov.br` é
+> alcançável — e o CTB tem exatamente isso, na custódia de quem o promulgou.
+>
+> **MEDIDO HOJE, três passadas cada, com dois controles verdes nas MESMAS três passadas:**
+> `www2.camara.leg.br`, `legis.senado.leg.br` e `normas.leg.br` devolveram **`000` nas três** — 9
+> medições de recusa —, com `rodametria.com.br` e `aquametria.com.br` em **200 nas mesmas três** (6
+> controles verdes, zero intermitência). `www.planalto.gov.br` foi medido na mesma passada como
+> controle da parede conhecida e deu **`000`**. A classificação foi **lida** no
+> `__agentproxy/status` e não suposta — `connect_rejected`, *"gateway answered 403 to CONNECT
+> (policy denial or other refusal)"*, `host: www2.camara.leg.br:443` —, e o **403 no CONNECT** foi
+> lido direto no `curl -v`. O leitor de página devolveu `getaddrinfo ENOTFOUND www2.camara.leg.br`,
+> **a mesma assinatura que a seção 1 registra para o `www.gov.br`**: fora da lista, um domínio que
+> existe não se distingue de um que não existe.
+>
+> **O QUE ISTO MUDA, e é o motivo de a correção valer uma passada:** a parede é a **lista de
+> permitidos** da seção 20.1, e `.gov.br` era só o primeiro domínio a bater nela. O `*.gov.br` do
+> GESTO A **continua certo e continua necessário** — é por ele que vêm a resolução, o CTB compilado
+> no `planalto` e os quatro folhetos municipais. O que ele **não** faz é abrir a via da Câmara e do
+> Senado, que é a via da **publicação original** do CTB contra a **compilação** do `planalto`, e por
+> isso o pedido ganhou uma segunda linha na seção 4. **É a seção 4 do contrato acontecendo dentro de
+> um arquivo de bancada:** o diagnóstico ficou para trás em silêncio e cada execução o leu como
+> fato, que é a mesma doença que a própria seção 20 corrigiu em 11/09 — *"era intermitência do túnel
+> lida como bloqueio, e o diagnóstico se propagou porque cada execução leu o `ESTADO.md` da anterior
+> como fato"*.
 
 **O que esta passada acrescentou à parede, e é o achado de maior alcance:** o que esta ilha
 não alcança **não é um site, é o domínio `.gov.br` inteiro**. O PDF da resolução hospedado num
@@ -112,15 +145,27 @@ de fase depois é caro.
 Os dois gestos do despacho ALTA de 28/10 continuam valendo e **qualquer um dos dois destrava**.
 O que mudou em 05/11 é que o primeiro ficou **mais barato e mais abrangente**:
 
-**GESTO A — uma linha na lista de "Domínios permitidos"** dos ambientes de nuvem
+**GESTO A — DUAS linhas na lista de "Domínios permitidos"** dos ambientes de nuvem
 (`claude.ai/code` → seletor de ambiente → Nuvem → engrenagem):
 
 ```
 *.gov.br
+*.leg.br
 ```
 
-**Por que o curinga e não os dois nomes do despacho original:** esta passada mediu que a parede
-é o **domínio**, não os hosts. `*.gov.br` fecha, de uma vez:
+> **A SEGUNDA LINHA NASCEU EM 16/11/2026, MEDIDA, e até hoje este gesto pedia só a primeira.** O
+> `*.gov.br` traz a resolução, o CTB **compilado** no `planalto` e os quatro folhetos municipais. O
+> `*.leg.br` traz o CTB na custódia de **quem o promulgou** — `www2.camara.leg.br` (publicação
+> original de 23/09/1997) e `legis.senado.leg.br` —, e os três hosts `.leg.br` foram medidos hoje em
+> **`000` nas três passadas**, com `connect_rejected` lido no status do proxy. **Por que as duas e
+> não só a primeira:** o que o `planalto` serve é texto **compilado**, e a seção 5 deste arquivo já
+> pagou o preço de não saber qual redação estava lendo — o campo *"qual fase/redação está sendo
+> lida"* existe por isso. Ter a publicação original ao lado da compilação é a diferença entre ler o
+> CTB e ler **uma** versão dele. Pedir as duas custa o mesmo gesto; descobrir depois que faltava uma
+> custa a passada de quem for ler.
+
+**Por que o curinga e não os dois nomes do despacho original:** a passada de 05/11 mediu que a
+parede não eram os hosts. `*.gov.br` fecha, de uma vez:
 
 - o **despacho ALTA de 28/10** (`www.gov.br`, `gov.br`, `in.gov.br`, `planalto.gov.br`,
   `contran.gov.br`) — a fonte primária da F1;
@@ -130,8 +175,9 @@ O que mudou em 05/11 é que o primeiro ficou **mais barato e mais abrangente**:
 - a porta **nova** desta passada, o PDF da resolução em `araras.sp.gov.br`, que ninguém havia
   contado porque ninguém sabia que existia.
 
-`lex.com.br` fica de fora do curinga e **não faz falta**: é reprodução comercial, e com o
-`.gov.br` aberto a fonte primária está na mão.
+`lex.com.br` fica de fora dos dois curingas e **não faz falta**: é reprodução comercial, e com o
+`.gov.br` e o `.leg.br` abertos a fonte primária está na mão — em duas custódias independentes,
+que é o que permite conferir uma contra a outra em vez de confiar numa só.
 
 **GESTO B — dois minutos de navegador, e vale a passada do mesmo jeito se o A demorar.** Abrir o
 texto oficial da **Resolução Contran nº 996, de 15/06/2023** e preencher a seção 5 abaixo. Os
@@ -271,11 +317,24 @@ afirma 1.000 W antes de o texto oficial chegar é o número de tela digitado com
 > campo desta ilha:** dizer que dispensa habilitação quem precisa dela manda alguém para a rua sem o
 > documento.
 
-**A PAREDE, e ela é a mesma de sempre:** `www.planalto.gov.br` é um dos cinco domínios medidos em 403
-de CONNECT em 28/10, 29/10 e 05/11/2026, e em 05/11 a parede foi medida como sendo o **domínio
-`.gov.br` inteiro**, não os hosts. O pedido que destrava esta seção é o **mesmo** de uma linha
-(`*.gov.br`) do despacho ALTA de `dados/despachos.md`. A tabela de todas as portas tentadas está na
-seção 2 deste arquivo.
+**A PAREDE, E ELA FICOU MAIOR DO QUE SE PENSAVA — REMEDIDA EM 16/11/2026 às 13h2xZ pela 20.3.**
+`www.planalto.gov.br` é um dos cinco domínios medidos em 403 de CONNECT em 28/10, 29/10 e 05/11/2026,
+e em 05/11 a parede foi **diagnosticada** como sendo o domínio `.gov.br` inteiro. **Esse diagnóstico
+está corrigido na seção 1:** a parede é a **lista de permitidos** (20.1), e o `.leg.br` cai com ela.
+
+**O QUE ISTO FAZ COM ESTA SEÇÃO, e é a razão de a remedição ter valido a passada.** O CTB **não é**
+uma resolução de órgão: é a **Lei 9.503/1997**, e lei tem reprodução oficial fora do Executivo — a
+**Câmara dos Deputados** e o **Senado** guardam o texto de quem o promulgou. Era a via que esta
+tabela nunca havia contado, e era a candidata natural a furar uma parede de `.gov.br`. **Foi tentada
+hoje, pela primeira vez, e está fechada:** `www2.camara.leg.br`, `legis.senado.leg.br` e
+`normas.leg.br` em `000` nas três passadas, com dois controles em 200 nas mesmas três, e o leitor de
+página devolvendo `ENOTFOUND` — a mesma assinatura do `www.gov.br`.
+
+**Então esta seção não tem porta aberta nenhuma, e isso agora está medido em vez de suposto.** O
+pedido que a destrava são as **duas** linhas da seção 4 (`*.gov.br` e `*.leg.br`) do despacho ALTA de
+`dados/despachos.md` — a segunda nasceu desta medição. A tabela de todas as portas tentadas, com
+data, está na seção 1 deste arquivo; **nenhuma execução precisa remedir o `.leg.br` por hábito**, e a
+20.2 continua mandando retestar bloqueio **herdado**, que é outra coisa.
 
 ```
 URL lida:
