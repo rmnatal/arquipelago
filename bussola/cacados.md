@@ -161,3 +161,23 @@ Uma linha por nicho, só para não testar de novo. Não é relatório.
 | 12/11/2026 | câmera de ré | volume | 14,8 mil/mês |
 | 12/11/2026 | capa de banco automotivo | volume | 2,4 mil/mês |
 | 12/11/2026 | veículo elétrico infantil + hoverboard | 0.9 (comissão conservadora) | 413,6 mil/mês em SERP mista → ≈ 405 visitas/dia × R$ 62,50 mediano por venda ≈ R$ 7.600/mês |
+| 16/11/2026 | liquidificador | volume | 450 mil/mês → exigiria ≈ R$ 34 por venda em top-3 |
+| 16/11/2026 | aspirador de pó | volume | 301 mil/mês → exigiria ≈ R$ 51 por venda em top-3 |
+| 16/11/2026 | escova secadora | volume | 246 mil/mês → exigiria ≈ R$ 62 por venda em top-3 |
+| 16/11/2026 | panificadora | volume | 246 mil/mês → exigiria ≈ R$ 62 por venda em top-3 |
+| 16/11/2026 | tv box | volume | 165 mil/mês → exigiria ≈ R$ 92 por venda em top-3 |
+| 16/11/2026 | processador de alimentos | volume | 110 mil/mês → exigiria ≈ R$ 139 por venda em top-3 |
+| 16/11/2026 | video game portátil | volume | 74 mil/mês → exigiria ≈ R$ 206 por venda em top-3 |
+| 16/11/2026 | halteres | volume | 49,5 mil/mês → exigiria ≈ R$ 308 por venda em top-3 |
+| 16/11/2026 | massageador | volume | 49,5 mil/mês → exigiria ≈ R$ 308 por venda em top-3 |
+| 16/11/2026 | scanner automotivo | volume | 40,5 mil/mês → exigiria ≈ R$ 377 por venda em top-3 |
+| 16/11/2026 | binóculo | volume | 40,5 mil/mês → exigiria ≈ R$ 377 por venda em top-3 |
+| 16/11/2026 | óculos de realidade virtual | volume | 27,1 mil/mês → exigiria ≈ R$ 563 por venda em top-3 |
+| 16/11/2026 | aparador de pelos | volume | 27,1 mil/mês → exigiria ≈ R$ 563 por venda em top-3 |
+| 16/11/2026 | walkie talkie | volume | 27,1 mil/mês → exigiria ≈ R$ 563 por venda em top-3 |
+| 16/11/2026 | estação de musculação | volume | 27,1 mil/mês → exigiria ≈ R$ 563 por venda em top-3 |
+| 16/11/2026 | caixa de som amplificada | volume | 18,1 mil/mês |
+| 16/11/2026 | mochila para notebook | volume | 18,1 mil/mês |
+| 16/11/2026 | mini system | volume | 14,8 mil/mês |
+| 16/11/2026 | câmera de ação | volume | 6,6 mil/mês |
+| 16/11/2026 | kit academia em casa | volume | 5,4 mil/mês |
