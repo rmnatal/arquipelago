@@ -238,7 +238,7 @@
         },
         {
           "para": "quem quer andar na rua sem placa",
-          "o_que_olhar": "o que decide isso são três campos — potência nominal, velocidade máxima e acelerador —, e nenhum destes anúncios declara os três. Passe os números que você tiver na ferramenta de categoria, na página inicial, e compare com o que a ficha do anúncio diz. Esta página não diz que nenhuma delas pode andar sem placa: preferimos a pergunta aberta a mandar você para a rua sem habilitação."
+          "o_que_olhar": "o que decide isso são três campos — potência nominal, velocidade máxima e acelerador —, e nenhum destes anúncios declara os três. {FRASE_DO_PIVO} Passe os números que você tiver na ferramenta de categoria, na página inicial, e compare com o que a ficha do anúncio diz. Esta página não diz que nenhuma delas pode andar sem placa: preferimos a pergunta aberta a mandar você para a rua sem habilitação."
         },
         {
           "para": "quem é mais pesado, ou leva garupa e carga",
@@ -252,7 +252,7 @@
         },
         {
           "pergunta": "Moto elétrica precisa de placa?",
-          "resposta": "Isso a resolução decide, e ela decide pela categoria: o equipamento autopropelido não é sujeito a registro, licenciamento nem emplacamento, e o ciclomotor é. O que coloca o veículo de um lado ou do outro são a potência nominal, a velocidade máxima e o acelerador — e é aí que o anúncio não ajuda. {FRASE_DO_ROTULO} Por isso esta página não afirma a categoria de nenhuma delas: ela mostra o que o título declarou e manda você conferir o nominal na ficha."
+          "resposta": "Isso a resolução decide, e ela decide pela categoria: o equipamento autopropelido não é sujeito a registro, licenciamento nem emplacamento, e o ciclomotor é. O que coloca o veículo de um lado ou do outro são a potência nominal, a velocidade máxima e o acelerador — e é aí que o anúncio não ajuda. {FRASE_DO_ROTULO} {FRASE_DO_PIVO} Por isso esta página não afirma a categoria de nenhuma delas: ela mostra o que o título declarou e manda você conferir o nominal na ficha."
         },
         {
           "pergunta": "Quantos quilômetros ela faz de verdade?",

@@ -119,6 +119,36 @@ def itemlists_do_html(html):
 # (B) A REGUA
 # ---------------------------------------------------------------------------
 
+
+# A COMPARACAO DO NOME E SOBRE O CITADO, NAO SOBRE A TIPOGRAFIA (16/11/2026).
+#
+# Medido no ar as 11h1xZ de 16/11/2026, em `/veiculos/moto-eletrica/`, revisao
+# 96: este portao reprovou com *"a lista servida nao esta na ordem da fonte"* e a
+# lista ESTAVA na ordem. A unica diferenca entre o `name` servido e o `nome` da
+# vitrine era um par de aspas curvas — `rodametria_casca_nome_de_anuncio()`
+# passou a servir entre aspas o titulo de anuncio que promete habilitacao, para
+# a pagina nao assinar a promessa da loja (ver o comentario daquela funcao e
+# `teste-citacao-de-anuncio.php`).
+#
+# ESTE PORTAO NAO DECIDE QUANDO CITAR, e nao e dele reimplementar a decisao: isso
+# e do portao da citacao, e duas copias da mesma regra em linguagens diferentes
+# e a quarta copia de criterio que esta ilha matou em 13/11. O que ele mede e o
+# PAREAMENTO por posicao, e a unidade dele e o produto — entao ele tolera o par
+# de aspas DE FORA e compara o citado. Aspas no meio do titulo continuam
+# diferenca, porque ai o nome mudou de verdade.
+_ASPAS_DE_FORA = (("\u201c", "\u201d"), ('"', '"'), ("\u2018", "\u2019"), ("'", "'"))
+
+
+def _sem_aspas(t):
+    """O texto sem o par de aspas MAIS EXTERNO, se houver um."""
+    t = (t or "").strip()
+    for abre, fecha in _ASPAS_DE_FORA:
+        if len(t) >= 2 and t.startswith(abre) and t.endswith(fecha):
+            return t[len(abre):-len(fecha)].strip()
+
+    return t
+
+
 def problemas_do_envelope(caminho, lista, tela, linhas=None):
     """Os problemas do ENVELOPE de UM `ItemList`. Funcao pura.
 
@@ -245,7 +275,7 @@ def problemas_do_envelope(caminho, lista, tela, linhas=None):
             item = el.get("item") or {}
             nome_ld = (item.get("name") or "").strip()
             nome_fonte = str(linha.get("nome") or "").strip()
-            if nome_ld != nome_fonte:
+            if _sem_aspas(nome_ld) != nome_fonte:
                 mal("o degrau %d do ItemList nomeia %r e a linha %d da vitrine e "
                     "%r: a lista servida nao esta na ordem da fonte"
                     % (i + 1, nome_ld[:50], i + 1, nome_fonte[:50]))
@@ -490,6 +520,22 @@ def mundos():
     l["itemListElement"][1].pop("item")
     ok(any("nao carrega `item`" in f for f in _medir(l)),
        "6-d. degrau sem item REPROVA")
+
+    # 6-e. A CITACAO DO TITULO NAO E DESORDEM (16/11/2026). O mundo e o do ar:
+    #      o `name` servido vem entre aspas curvas porque o titulo promete
+    #      habilitacao, e o `nome` da vitrine e cru. A lista ESTA na ordem.
+    l = _lista()
+    cru = l["itemListElement"][1]["item"]["name"]
+    l["itemListElement"][1]["item"]["name"] = "\u201c" + cru + "\u201d"
+    ok(not any("nao esta na ordem da fonte" in f for f in _medir(l)),
+       "6-e. titulo servido ENTRE ASPAS nao e lido como desordem: a comparacao e "
+       "sobre o citado, nao sobre a tipografia")
+    # 6-f. E A TOLERANCIA E DO PAR DE FORA, NUNCA DO MEIO: aspas dentro do nome
+    #      mudam o produto nomeado e continuam reprovando.
+    l = _lista()
+    l["itemListElement"][1]["item"]["name"] = cru[:4] + "\u201cX\u201d" + cru[4:]
+    ok(any("nao esta na ordem da fonte" in f for f in _medir(l)),
+       "6-f. aspas no MEIO do nome continuam REPROVANDO: a licenca e do par de fora")
 
     # 7. O PAREAMENTO COM A FONTE, e e aqui que mora a discordancia da 20.8.
     l = _lista()
