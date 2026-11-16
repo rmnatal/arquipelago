@@ -3,6 +3,126 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-11-16 16h16Z–17h1xZ — **O DESPACHO DE TRÊS ITENS DA RONDA DE HOJE, INTEIRO NUMA PASSADA SÓ (18.2)** — link morto aposentado, a **cabeça do título** passa a decidir a família, e as duas escadas deixam de dividir o nome `degrau`. **Revisões 99 e 100 no ar, conferidas (18.4).**
+
+**A ILHA DESTA EXECUÇÃO:** rodametria, por **foco** (`foco.md` nomeia a rodametria, foco total e absoluto desde 27/10). Pela **1.2** não há escolha a fazer, e **não precisei conferir as exceções que furam o foco**: o trabalho desta passada é o despacho da ronda **desta mesma ilha**, que é a ilha em foco. **Passo 1 do disparo, medido:** `git fetch origin main` trouxe o `main` em **`787e48d`**; a branch `claude/dreamy-mccarthy-9y5yua` (local e remota) está **idêntica a ele** — 0 commit à frente, 0 atrás —, **nenhum PR aberto** (`list_pull_requests` devolveu lista vazia), logo nada a mesclar antes.
+
+**A RESERVA (passo 5 da seção 1), E O QUE ELA TEVE DE DESEMPATAR:** `executando_desde` estava **`null`**, que pela **1.1** já é prova de que não havia bloco da Fundação vivo — a reserva é escrita ANTES do trabalho. O `git log` da pasta da ilha trazia commit de **9 minutos antes** (`5beb7e8`, 16h07Z), e ele **não reserva nada**: é commit de **ronda da Sentinela**, e a 1.1 escreve com todas as letras que *"o commit que torna a ilha VIVA é commit de bloco da Fundação"* — justamente a ilha que acabou de receber ordem de serviço. Reserva às **16h16Z**, ganha no push na primeira tentativa, e **RENOVADA pela 1.1 às 16h38Z**, porque o despacho tem três itens e dois deles pediram rede.
+
+**A REDE FOI MEDIDA E NÃO HERDADA (20.2):** `rodametria.com.br` em **200 nas duas leituras** antes da reserva, com `aquametria.com.br` em **200** como controle — 3 de 3 em 200, e o `/status` respondendo com a revisão 98.
+
+---
+
+### O DESPACHO SAIU INTEIRO, E ELE NÃO ERA TRÊS CONSERTOS: ERA UM DEFEITO DE DADO, UM DE RÉGUA E UM DE NOME
+
+A ronda de hoje (15h3xZ–15h5xZ, revisão 98) fechou com **três itens e zero consertos**, e escreveu por que: nenhum dos três está na lista 19.1 — os três são **dado do banco ou lógica de ferramenta**, que a 19.2 manda despachar. Ela estava certa nos três.
+
+---
+
+### ITEM 1 (ALTA) — O LINK MORTO ERA O TETO DA FAIXA DE PREÇO, E A QUARENTENA DA 25.11 PROVOU-SE NA MESMA PASSADA
+
+O anúncio **23598774355** da `GTRBSHOP`, **4º cartão** de `/veiculos/moto-eletrica/` — página que **nasceu hoje de manhã** —, serve `"O produto não existe"`: 1.748 bytes de corpo, sem `h1`, sem botão de compra. E dele saía o **`ate: R$ 15.000,00`** da frase que a página publica.
+
+**Aposentado pela ferramenta, nunca à mão**, como a 25.11 manda (`aplicar-aposentadoria-de-anuncio.py`), com a prosa de quarentena no formato fechado `CAUSA || ULTIMA MEDICAO`. **E a metade que a 25.11 chama de "a que ninguém vê" provou-se dentro desta mesma execução:** a coleta nova que rodou minutos depois **devolveu o mesmo item**, e a quarentena o recusou **em voz alta** — `QUARENTENA: a loja devolveu de novo o item 23598774355 ... não entra`. Sem ela o anúncio morto voltaria calado, com o mesmo id, como oferta viva.
+
+**A MEDIANA MUDOU, AO CONTRÁRIO DO QUE O DESPACHO PREVIU, e isto fica escrito porque é aritmética e não opinião.** O despacho afirmava *"a mediana NÃO muda (sai de 8.500 e 13.999, os dois vivos)"*. Com **quatro** ofertas a mediana era a **média de duas** — `(8.500 + 13.999) / 2 = 11.249,50` —; com **três**, ela passaria a ser a **do meio**, 8.500. A frase do despacho descreve de onde a mediana SAI, e lê isso como "não muda": tirar um elemento muda a paridade do conjunto, e com ela a conta. Quem refez o número não fui eu de cabeça — foi a `recontar_resumo` do dono do arquivo, que é o que torna este tipo de erro impossível de vazar para a tela.
+
+---
+
+### ITEM 2 — A RÉGUA COBRAVA O TOKEN EM QUALQUER LUGAR DO TÍTULO, E A **CABEÇA** DO TÍTULO É QUEM DIZ O QUE O ANÚNCIO É
+
+O 1º cartão de `/veiculos/moto-eletrica/` era o anúncio **58271745327**, *"**Bicicleta Bike** Moto Scooter Elétrica Dobrável Adulto ..."*, cuja descrição lista **"Pedais para utilização como bicicleta"** — numa página que define, poucos parágrafos abaixo do cartão, *"Moto elétrica de adulto é a que você senta e anda no acelerador, **sem pedalar**"*. O `exige_todas` da família cobra `moto` em **qualquer lugar** do título, e "Bicicleta Bike **Moto** Scooter" o satisfaz com a palavra perdida no meio. É a **armadilha 1 da 25.7** (*"o tipo tem de ser o objeto, e não uma palavra perdida no meio"*) e a **3** (*"o produto na cabeça do título"*).
+
+**A FORMA DA TRAVA É A ASSIMETRIA DA 25.9(3), e é ela que a torna barata.** Nasce a recusa `outra_familia_na_cabeca`: título que **cala** outra família não barra nada; título que declara outra família **ANTES do próprio substantivo** barra sempre, porque aí ele não está calado sobre o que vende — *está dizendo outro*. **Não** se exige o substantivo na cabeça: isso recusaria `VYRON Moto Elétrica Cross GT600`, com a marca na frente.
+
+**A LISTA É DECLARADA POR CONSULTA, nunca global, e cada `porque` cita a frase da PRÓPRIA página que decide quem é sinônimo** — regra que escolhe sozinha qual trava vale é a régua que mede a si mesma. A `/veiculos/moto-eletrica/` escreve *"na loja ela aparece como moto, como scooter e como ciclomotor elétrico"* (`scooter` é **sinônimo** ali) e a `/veiculos/bicicleta-eletrica/` escreve *"aqui também chamam de bike elétrica e de e-bike"* (`bike` é sinônimo ali). **Lista global mataria o anúncio certo 58215666648**, *"Scooter (Bike) Elétrica Foston X15 Max ... Moto Elétrica Adulto"*, que é produto da página da moto.
+
+**E A PROVA DA 25.9 SAIU EM FERRAMENTA, não em parágrafo.** A 25.9 fecha exigindo *"rodar a régua ANTIGA sobre o banco ANTIGO e a NOVA sobre o NOVO, registro por registro, e contar quantos vereditos mudaram"*, porque *"régua afrouxada apareceria aqui como verdadeiro novo em registro que não tinha nada a ganhar"*. Nasceu `ferramentas/aplicar-regua-de-relevancia.py`, e ela **não guarda cópia da régua antiga** — a trava é declarada na consulta, então a régua antiga é a **mesma função** com a declaração vazia (20.7). O laudo:
+
+```
+1 de 58 vereditos mudaram.
+afrouxamentos (serve False -> True): 0
+recusas renomeadas (False -> False, outro nome): 0
+```
+
+O único veredito mudado é o anúncio do despacho. **A trava é a ÚLTIMA a decidir dentro do `julgar`, de propósito:** assim ela só pode tirar o que passava, nunca **trocar o nome** de uma recusa que já existia — e é isso que faz o laudo sair limpo em vez de sair cheio de diferença que não é conserto. O portão permanente da ferramenta cobra essa assimetria, e não a igualdade.
+
+**DOIS CONSERTOS DE PROCEDÊNCIA ENTRARAM COM ELE, e os dois são de silêncio:**
+- **A tradução de `familia` para argumentos estava escrita DUAS vezes** no `coletar-por-consulta.py` — uma no `julgar_oferta`, que **grava** o veredito, e outra no `conferir()`, que o **confere**. A trava nova entraria numa delas e o portão ficaria conferindo com a régua velha, **ou seja aprovando**. Virou uma função só, `rel.julgar_declaracao`, e o autoteste passa a exercê-la em vez de chamar o `julgar` cru.
+- **O `substantivo` passa a ser DECLARADO** em cada consulta e deixa de sair da primeira posição de `exige_todas`. O comentário da própria régua já avisava: *"regra que depende da ORDEM de uma lista se desliga em silêncio no dia em que alguém reordena a lista por estética"* — e a trava nova depende dele.
+
+---
+
+### O QUE O ITEM 2 CUSTOU, E A DECISÃO QUE ELE FORÇOU: A PÁGINA IA CAIR ABAIXO DO PISO DA 30.2
+
+Com o item 1 tirando um anúncio e o item 2 tirando outro, `moto-eletrica` ficou com **2 ofertas que servem** contra o piso de **3** da 30.2 — `abre_o_portao_da_30_2: True -> False` e `numero_proprio: None`, medido e impresso pela própria ferramenta. **Uma página publicada hoje perderia a vitrine inteira.**
+
+Fechar o despacho pela metade não era opção (18.2), e o outro ramo do "pronto quando" do item 2 — *"ou a página deixar de afirmar 'sem pedalar'"* — pioraria a página para salvar um anúncio errado. **A saída foi medir se a loja tinha o que repor: a Open API responde desta nuvem** (com `error [10000]: System Error` intermitente, já registrado nesta ilha desde 30/10; passou na 3ª tentativa). Coleta nova de `moto-eletrica`, com a régua nova e a quarentena atravessando: **20 lidas, 5 que servem, 1 recusada pela quarentena, 4 publicáveis com link** — e a página voltou acima do piso, agora com **quatro motos de verdade**. Faixa de `R$ 1.096,38 a R$ 13.999,00`.
+
+**E A COLETA NOVA DERRUBOU O PISO DA 25.2 SEM AVISAR, o que o portão pegou:** reescrever o bloco apagou o `piso_da_busca` da consulta, e os quatro cartões saíram com `url_busca: None` — *"a página serve cartão com ficha de anúncio e nenhuma saída para o dia em que ela esgotar"*. `coletar-piso-da-vitrine.py --conferir` reprovou, o piso foi recolhido e a vitrine regerada. **Quem contou isto foi a bancada, não eu**: é exatamente o tipo de buraco que uma passada fecha calada.
+
+---
+
+### ITEM 3 — DUAS ESCADAS, UM NOME: `degrau: 1` EM 24 ANÚNCIOS DE REVENDEDOR
+
+A 25.1 define o degrau **1** como *"Loja oficial do fabricante na Shopee"* e o **3** como *"Anúncio de vendedor comum na Shopee. Último recurso"*. Os 24 itens das três páginas estavam gravados com **`degrau: 1`** e nenhum é fabricante de nada — `3B LOJA`, `vipcasa`, `GTRBSHOP`, e **`Auto Home Shop`**, que é a loja que a **própria 25.10** nomeia como exemplo de quem não é.
+
+**A CAUSA NÃO FOI DESCUIDO, E ESTAVA ESCRITA NO CÓDIGO:** o comentário do gerador dizia, com todas as letras, *"Estes links são `url_produto` encurtado, ou seja FICHA, então o degrau de compra é 1"*. **A dedução é falsa e é fácil de fazer** — ficha de produto é o que o degrau 1 e o 3 **têm em comum**; o que separa os dois é **de quem é a loja**. Comentário que declara um mecanismo parece conferido e não mede nada (20.7).
+
+**Três consertos, e o do nome é o que impede a volta:**
+1. O campo vira **`degrau_de_compra`**. Nesta ilha `degrau_da_escada`, `degrau_escolhido` e o `degrau` de `escada_medida` guardam a escada de **palavra-chave** da 25.6 — duas escadas e um nome, e quem lesse o banco pela 25.1 lia "loja oficial do fabricante" em 24 anúncios de revendedor. A escada de chaves segue em `degrau_da_escada_de_chaves`. **Nenhum campo chamado só `degrau` sobrou no `vitrine-de-produto.json`.**
+2. O valor é **MEDIDO pela régua da 25.10**: o degrau 1 se mede pelo **nome da loja carregar a marca do registro**, e a lista de marcas sai do **banco desta ilha** (`veiculos.json`, 9 marcas), nunca de lista escrita na régua — a disciplina da 25.9(3). **`shopType` (gravado como `tipo_de_loja`) NÃO é decisor** e passa a viajar ao lado, no próprio item, como procedência. Resultado: **3 em 36 de 36 linhas**. A régua **pode acertar o 1**: `HONEYWHALE BRASIL` sai 1, e é o exemplo que a 25.10 usa.
+3. Cada item leva **`degrau_de_compra_como_medido`** em palavras — a outra metade da exigência da 25.10: *"degrau sem essa frase é degrau que ninguém consegue reauditar"*.
+
+**E o `f2-respostas.json` NÃO foi renomeado, de propósito:** lá o `degrau` vem de `afiliado.degrau`, que é o nome que a **própria 25.1** reserva, e naquele arquivo não existe escada de chaves para confundir com ele. Quem pede o nome sem ambiguidade é a **casca**, que serve as duas fontes.
+
+---
+
+### O ACHADO QUE NÃO ESTAVA NO DESPACHO, E ELE ESTAVA NO AR DESDE 13/11: A TELA DIZIA A CAUSA ERRADA
+
+A 25.11 exige que a página diga, em palavras, que uma oferta saiu da lista depois da leitura, e justifica a frase assim: *"ela é honesta porque é verdade"*. **A frase servida dizia `"a loja mostrava o produto como esgotado"` para TODA aposentadoria** — e desde **13/11** isso era **falso** em `/veiculos/patinete-eletrico/`, onde um anúncio saiu porque a ficha devolve `"O produto não existe"`, que a própria 25.4 separa de `Esgotado` como **o outro desfecho**. Tela que diz a causa errada é pior que tela calada: ela ensina a desconfiar do que está certo, que é o mesmo argumento com que a 25.11 manda a frase existir.
+
+**O conserto é de formato, não de frase:** o formato fechado da quarentena ganha o **rótulo curto da causa** (`CAUSA (produto-nao-existe): ...`), a contagem por causa sobe para a tela em `numeros.aposentadas_por_causa`, e a frase de leitor é montada por causa. **As três linhas antigas foram rotuladas pela ferramenta que as escreve** (modo `--rotular`, com a troca impressa e sem tocar a prosa): editar prosa de quarentena à mão é o que a 25.11 proíbe. O portão passou a cobrar que **todo rótulo seja um dos declarados** e que a soma feche — linha sem rótulo sairia da contagem **e da lista de bloqueio**, calada.
+
+No ar, `/veiculos/patinete-eletrico/` passou a dizer: *"Outras 2 saíram da lista depois dessa leitura, quando fomos abrir as páginas delas: **1 porque a loja mostrava o produto como esgotado · 1 porque a página do produto já não existia na loja**"*.
+
+---
+
+### E A REVISÃO 99 SERVIU JARGÃO DE MÁQUINA AO LEITOR, MEDIDO NO AR POR MIM MESMA
+
+Conferindo a 99 no ar, `/veiculos/moto-eletrica/` servia: *"20 ofertas, e 15 ficaram de fora: **4 outra_familia_na_cabeca** · 3 outra família de produto ..."* — o **slug da régua, com sublinhado**, na frase que presta contas ao leitor. A causa: o mapa de frases de leitor do `rdm_produto_recusas_html` não tinha a trava nascida na mesma tarde, e aquele mapa **cai no `isset` e imprime a chave**.
+
+Dois consertos, e o segundo é o que importa: a frase de leitor da trava (*"anúncio cujo título começa por outro tipo de veículo"*), e uma **régua em `conferir-produto-no-ar.py` que recusa SUBLINHADO dentro da prestação de contas da recusa**. Nome de recusa desta ilha é sempre `a_b_c` e frase de leitor nunca tem sublinhado: **toda recusa nova que chegar à tela sem frase cai ali, e não só esta.** Revisão **100**.
+
+**Isto fica escrito como defeito meu e não como detalhe:** a mesma passada que escreveu uma régua nova a serviu crua para o visitante, e o que a pegou foi abrir a página — não o repositório verde.
+
+---
+
+### A VERIFICAÇÃO NO AR (18.4) — O DESPACHO MORREU CONFERIDO
+
+- **`23598774355`, `58271745327`, o encurtado `20x4K92xyI` e o preço `15.000,00`: ZERO ocorrência** nas **11 URLs** do sitemap, todas em **200**, com quebra de cache.
+- `/veiculos/moto-eletrica/`: **4 cartões**, nenhum deles bicicleta, nenhum deles o anúncio morto. O 1º cartão é uma moto.
+- A frase de leitor da 25.11 no ar nas duas páginas, **com a causa certa em palavras**.
+- `conferir-produto-no-ar.py`: **448 afirmações, 0 falha**.
+- Bancada sem rede: **50 portões, 0 falha, APROVADO** (eram 49; o portão novo entrou e o nome dele teve de ser consertado — a bancada **denunciou** `reaplicar-*` por não casar com convenção nenhuma, *"ou ele é portão e precisa do prefixo, ou não é e precisa estar fora de ferramentas/"*, e virou `aplicar-regua-de-relevancia.py`).
+- **O portão `teste-citacao-de-anuncio.php`, que nasceu HOJE de manhã, reprovou por causa do conserto** — e estava errado: ele exigia **2** títulos com token de habilitação na colheita, e um dos dois era justamente o anúncio aposentado. O próprio docstring dele já prometia o contrário (*"no dia em que a loja os aposentar, a afirmação cai com eles — e é o que se quer"*). Piso de 2 amarrava a régua ao **corpus de um dia**: passou a 1, com um **mundo fabricado** garantindo a discordância da 20.8 mesmo com zero título real.
+- **`teste-afirmacao-de-tela.py` acusou a prosa da quarentena**, porque ela carrega o título da loja inteiro e o título diz `Sem Cnh`. `anuncios_aposentados` entrou em `CHAVES_DE_BASTIDOR`: **prosa de quarentena não vai para a tela** (a tela recebe a contagem), e ela tem portão próprio. Ler bastidor como afirmação de tela reprovaria a ilha por ter feito o conserto certo.
+
+---
+
+### O QUE ESTA PASSADA DEIXA ABERTO, E ELE É NOVO — DOIS CARTÕES DO MESMO PRODUTO
+
+A coleta nova de `moto-eletrica` trouxe **dois anúncios da MESMA loja (`francyellenoliveira`, shop 277054573) para o MESMO produto** — `Moto Elétrica Adulto Panda A4 ...` a **R$ 1.522,76** e `11.11 Moto Elétrica Adulto Panda A4 ...` a **R$ 1.096,38** —, e os dois estão na tela, nos cartões 1 e 2. **Não inventei régua de deduplicação nesta passada**, e o motivo é a 19.2 aplicada a mim mesma: escolher entre "um anúncio por produto", "um anúncio por loja" e "deixar os dois porque são duas ofertas reais com preços diferentes" é escolher entre opções defensáveis, e nenhuma delas tem medição por trás hoje. **O que está no ar é honesto** (duas ofertas reais, cada uma com seu preço e sua data), e é **melhor do que antes desta passada** — mas o espaço mais caro da página está gasto duas vezes com o mesmo veículo, e o `de: R$ 1.096,38` da faixa sai da linha de campanha. **Fica como achado para a ronda decidir.**
+
+---
+
+### O PRÓXIMO PASSO DESBLOQUEADO
+
+**A fila de blocos de construção segue ACABADA** — todos entregues menos o **5 (artigos-âncora)**, que depende de `ilhas/rodametria/pauta.md`, inexistente, e que pela **17.1** não é arquivo da Fundação. As duas pontas de página de produto nova seguem travadas: a **30.8** para a SERP e o Mercado Livre para o produto das duas consultas de maior volume. O despacho **ALTA do `.gov.br`/`.leg.br`** segue aberto e continua pedindo **duas linhas** na lista de permitidos — gesto do Raphael, não desta nuvem.
+
+**O que esta passada desbloqueou para a próxima:** a régua da cabeça do título está **declarada também para `scooter-eletrica`**, que ainda não tem página — a primeira coleta dela já nasce sem o defeito de hoje. E `aplicar-regua-de-relevancia.py` existe: **toda mudança futura de régua de relevância tem como provar que não afrouxou**, item por item, em um comando.
+
+
 ## 2026-11-16 13h16Z–13h3xZ — **A PAREDE NÃO É O `.gov.br`: É A LISTA DE PERMITIDOS, E O `.leg.br` CAI COM ELA** — o pedido do despacho ALTA passa a ter DUAS linhas, e nada foi ao ar
 
 **A ILHA DESTA EXECUÇÃO:** rodametria, por **foco** (`foco.md` nomeia a rodametria, foco total e absoluto desde 27/10). Pela **1.2** não há escolha a fazer. **Conferi as duas exceções que furam o foco antes de obedecer a ele, e nenhuma furou:** o despacho do **MOLDE da seção 32** segue fechado nas três ilhas, e nenhum despacho **ALTA** aberto está em ilha que esteja **no ar E quebrada** — `robometria.com.br` e `aquametria.com.br` responderam **200** no controle de rede desta passada. Os **itens 2 e 3** do despacho ALTA do Sync consertam `ilhas/robometria/snippets/robometria-sync.php`, e pegá-los exigiria reservar a **robometria**: a seção 3 proíbe editar arquivo de ilha não reservada e a 1.2 proíbe sair do foco para ilha sã.

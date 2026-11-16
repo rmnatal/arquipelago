@@ -65,7 +65,7 @@ Medido em 27/10/2026 no Chrome do Raphael (`bussola/dossies/rodametria/DOSSIE.md
 
 ---
 
-## DESPACHO DA SENTINELA — 2026-11-16 (RONDA DIÁRIA TÉCNICA, 15h3xZ–15h5xZ) — TRÊS ITENS, E OS DOIS PRIMEIROS ESTÃO NA PÁGINA QUE NASCEU HOJE
+## ~~DESPACHO DA SENTINELA — 2026-11-16 (RONDA DIÁRIA TÉCNICA, 15h3xZ–15h5xZ) — TRÊS ITENS, E OS DOIS PRIMEIROS ESTÃO NA PÁGINA QUE NASCEU HOJE~~ — **OS TRÊS FECHADOS EM 16/11/2026 às 17h1xZ, INTEIROS NUMA PASSADA SÓ (18.2), CONFERIDOS NO AR PELA 18.4, NAS REVISÕES 99 E 100**
 
 > **ZERO CONSERTOS, E NENHUM TENTADO: nenhum dos três é da lista 19.1.** SÉTIMA ronda técnica seguida desta ilha com zero conserto — e a causa mudou de lugar: já não nasce dentro de snippet, nasce no **dado do banco e na régua que o admite**. Medida na revisão **98** (`/status` 98 = `manifest.json` 98), casca **1.27.0**.
 >
@@ -118,6 +118,32 @@ Medido em 27/10/2026 no Chrome do Raphael (`bussola/dossies/rodametria/DOSSIE.md
 **pronto quando:** `dados/vitrine-de-produto.json` e `dados/anuncios-por-consulta.json` tiverem a escada de palavra-chave e a escada de link de compra em **campos de nomes diferentes**, sem nenhum campo chamado só `degrau` guardando as duas; o degrau de compra de cada um dos 24 for o que a 25.1 manda para anúncio de vendedor comum; e cada registro trouxer, em palavras, como aquele degrau foi medido — com a régua do degrau 1 sendo o nome da loja carregar a marca do registro, nunca o `shopType`, que a 25.10 manda guardar como procedência e nunca como decisor.
 
 **FIM DO DESPACHO DE 16/11.**
+
+> **FECHADO EM 16/11/2026 às 17h1xZ, E CONFERIDO NO AR (18.4).** `23598774355`, `58271745327`, o
+> encurtado `20x4K92xyI` e o preço `15.000,00`: **zero ocorrência** nas 11 URLs do sitemap, todas em
+> 200, com quebra de cache. `/veiculos/moto-eletrica/` serve **4 cartões**, nenhum bicicleta e nenhum
+> morto, e a página voltou acima do piso da 30.2 com coleta nova (faixa R$ 1.096,38 a R$ 13.999,00).
+> `degrau_de_compra` **3 em 36 de 36 linhas**, medido pela régua da 25.10 contra as marcas do banco, com
+> `degrau_de_compra_como_medido` em palavras e `tipo_de_loja` ao lado como procedência; **nenhum campo
+> chamado só `degrau`** sobrou na vitrine. A prova da 25.9 do item 2 saiu em ferramenta
+> (`aplicar-regua-de-relevancia.py`): **1 de 58 vereditos mudou, zero afrouxamento, zero recusa
+> renomeada.** `conferir-produto-no-ar.py` 451/0, `conferir-no-ar.py` APROVADO, pixel da 32.5 11 de 11,
+> bancada 50 portões sem rede e 0 falha.
+>
+> **DUAS CORREÇÕES AO PRÓPRIO DESPACHO, e as duas são aritmética e não opinião.** (a) O item 1 afirmava
+> *"a mediana NÃO muda"*: ela mudou. Com quatro ofertas a mediana era a MÉDIA de duas (11.249,50); com
+> três passaria a ser a DO MEIO. A frase descreve de onde a mediana sai e lê isso como "não muda" —
+> tirar um elemento muda a paridade do conjunto. (b) Tirar os dois anúncios derrubava a página ABAIXO do
+> piso de 3 da 30.2 (`abre_o_portao_da_30_2: True -> False`), o que o despacho não previu; o fecho
+> exigiu coleta nova na Open API, e com ela o `piso_da_busca` da consulta foi apagado e teve de ser
+> recolhido — o portão `coletar-piso-da-vitrine.py` foi quem acusou.
+>
+> **E O QUE SOBROU COMO ACHADO NOVO, para a ronda decidir:** a coleta nova trouxe **dois anúncios da
+> mesma loja (`francyellenoliveira`) para o MESMO produto** (Panda A4, R$ 1.522,76 e R$ 1.096,38 na
+> linha de campanha "11.11"), e os dois estão nos cartões 1 e 2. Nenhuma régua de deduplicação foi
+> inventada: "um por produto", "um por loja" e "os dois, porque são duas ofertas reais com preços
+> diferentes" são três opções defensáveis sem medição por trás (19.2 aplicada à Fundação). O que está no
+> ar é honesto e melhor que antes, e o espaço mais caro da página está gasto duas vezes.
 
 ## DESPACHO DA SENTINELA — 2026-11-11 (LEITURA SEMANAL, 19h4xZ–20h1xZ) — A ILHA ENTROU NA DISPUTA, E A PÁGINA DE COMPRA DE 673 MIL BUSCAS/MÊS ESTÁ FORA DO ÍNDICE COMO 404 — **O ITEM 1 ESTÁ FECHADO EM 12/11/2026 às 13h2xZ; O QUE SOBRA NÃO É DA FUNDAÇÃO E ESTÁ LISTADO ABAIXO**
 
