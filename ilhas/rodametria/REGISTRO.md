@@ -3,6 +3,91 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-11-16 13h16Z–13h3xZ — **A PAREDE NÃO É O `.gov.br`: É A LISTA DE PERMITIDOS, E O `.leg.br` CAI COM ELA** — o pedido do despacho ALTA passa a ter DUAS linhas, e nada foi ao ar
+
+**A ILHA DESTA EXECUÇÃO:** rodametria, por **foco** (`foco.md` nomeia a rodametria, foco total e absoluto desde 27/10). Pela **1.2** não há escolha a fazer. **Conferi as duas exceções que furam o foco antes de obedecer a ele, e nenhuma furou:** o despacho do **MOLDE da seção 32** segue fechado nas três ilhas, e nenhum despacho **ALTA** aberto está em ilha que esteja **no ar E quebrada** — `robometria.com.br` e `aquametria.com.br` responderam **200** no controle de rede desta passada. Os **itens 2 e 3** do despacho ALTA do Sync consertam `ilhas/robometria/snippets/robometria-sync.php`, e pegá-los exigiria reservar a **robometria**: a seção 3 proíbe editar arquivo de ilha não reservada e a 1.2 proíbe sair do foco para ilha sã.
+
+**O PASSO 1 DO DISPARO, MEDIDO:** `git fetch origin main` deu o `main` em **`9b3fcf2`**, e a branch `claude/dreamy-mccarthy-ht5tvf` (local e remota) está **idêntica a ele** — 0 commit à frente, 0 atrás —, logo **nada a mesclar antes**. `executando_desde` estava **`null`**, que pela **1.1** já é prova de que não havia bloco da Fundação vivo: a reserva é escrita ANTES do trabalho, e a execução anterior fechou às 11h43Z.
+
+**A REDE FOI MEDIDA E NÃO HERDADA (20.2):** `rodametria.com.br` em **200 nas duas leituras** antes da reserva, e **200 nas três** do controle da seção de medição abaixo. Reserva às **13h16Z**, ganha no push na primeira tentativa, e **RENOVADA pela 1.1 às 13h28Z**.
+
+---
+
+### A FILA ESTÁ ACABADA, E ELA FOI CONFERIDA ITEM POR ITEM ANTES DE EU PROCURAR TRABALHO FORA DELA
+
+**Nenhum despacho aberto para a Fundação nesta ilha.** O de três itens da ronda de 13/11 fechou às 16h4xZ daquele dia; o que sobra do `PROMPT.md` é da **leitura de 18/11** (dois itens, os dois com a ação correta sendo **NÃO AGIR**, pela 12.1) e do **Raphael** (a etiqueta do Mercado Livre). Os cinco despachos abertos de `dados/despachos.md` endereçados à Fundação são todos **de outras ilhas** — "quem reservar a aquametria, a robometria ou a clubedomosaico" —, e nenhum é pegável daqui sob foco.
+
+**A fila de blocos de construção continua acabada:** todos entregues menos o **5 (artigos-âncora)**, que depende de `ilhas/rodametria/pauta.md`, inexistente, e que pela **17.1** é escrito pela rotina *Pauta das ilhas*, pelas Mãos — **não é arquivo da Fundação, e esta execução não o escreveu de propósito.**
+
+**E A VERIFICAÇÃO VEIO ANTES DE QUALQUER CONSTRUÇÃO (18.5), COM A BANCADA INTEIRA:** **49 portões sem rede, 0 falha** e **54 portões com rede, 0 falha — APROVADO nas duas**. A ilha não tem defeito no ar para consertar, então não havia conserto a furar fila.
+
+**O CANDIDATO A PÁGINA NOVA FOI PESADO E RECUSADO, com a régua na mão e não por preguiça.** O corpus de 28/10 escreve, em maiúsculas, que o eixo 350 W × 1.000 W *"É UMA PÁGINA"*. **Ela não nasce hoje:** as **seis** consultas do cluster A1 saíram `tomada` naquela medição, e quem as ocupa é portal de trânsito e notícia com domínio forte (`olhardigital`, `moneytimes`, `portaldotransito`, `vrum`). Pela **14.9** isso é a lista de *"quando houver autoridade"*, e pela **14.1** publicar ali gastaria orçamento de rastreamento de um domínio de 20 dias com **11 URLs e 8 impressões** para estacionar na página 4. **Página que não merece ser indexada não entra no sitemap, e quase sempre não deveria existir** — é a 14.1 literal.
+
+---
+
+### ENTÃO A PERGUNTA FOI A MESMA DA PASSADA ANTERIOR, APLICADA AO QUE SOBROU: QUAL **DIAGNÓSTICO** DE CAUSA ENVELHECEU
+
+A passada das 10h17Z remediu o **catálogo** e achou que ele havia envelhecido — e foi assim que `/veiculos/moto-eletrica/` nasceu. Ela deixou escrito que o caminho curto do catálogo estava esgotado e que o que destrava de verdade continua fora da Fundação. **O que ela não fez, e nenhuma das cinco execuções anteriores fez, foi remedir o DIAGNÓSTICO da parede** — e era ali que havia dívida.
+
+**O QUE ESTAVA ESCRITO, desde 05/11, no `fonte-oficial-f1.md` e no despacho ALTA:** *"o que esta ilha não alcança não é um site, é o domínio `.gov.br` inteiro"*. A frase nasceu de uma medição boa (o PDF da resolução em `araras.sp.gov.br`, um município, caindo como os cinco federais) e virou **a** conclusão sobre a parede.
+
+**POR QUE ELA É MAIS ESTREITA QUE A PAREDE, e isso importa:** lida ao pé da letra, ela **promete uma porta que não existe** — a de que uma reprodução oficial **fora** do `.gov.br` seria alcançável. E o que falta a esta ilha é exatamente isso: o **CTB não é resolução de órgão, é a Lei 9.503/1997**, e lei tem custódia no **Legislativo**. A via da Câmara e do Senado era a candidata natural a furar uma parede de `.gov.br`, e em **19 dias de despacho ALTA aberto** ela nunca havia sido tentada — não está em nenhuma linha da tabela de portas, que tem oito.
+
+**TENTADA HOJE ÀS 13h2xZ, PELA 20.3, E ESTÁ FECHADA — com o verde-contra-vermelho que torna isto medição e não palpite:**
+
+| porta | passadas | resposta |
+|---|---|---|
+| `www2.camara.leg.br` (publicação original do CTB, 23/09/1997) | 3 | **`000`** nas três |
+| `legis.senado.leg.br` | 3 | **`000`** nas três |
+| `normas.leg.br` (LexML/LEG) | 3 | **`000`** nas três |
+| `www.planalto.gov.br` — **controle da parede conhecida** | 3 | **`000`** nas três |
+| `rodametria.com.br` — **controle verde** | 3 | **200** nas três |
+| `aquametria.com.br` — **controle verde** | 3 | **200** nas três |
+| leitor de página (`WebFetch`) em `www2.camara.leg.br` | 1 | `getaddrinfo ENOTFOUND` |
+
+**12 medições de recusa contra 6 de controle verde, zero intermitência.** A classificação foi **lida** no `__agentproxy/status` e não suposta — `connect_rejected`, *"gateway answered 403 to CONNECT (policy denial or other refusal)"*, com `host: www2.camara.leg.br:443` nomeado na linha —, e o **403 no CONNECT** foi lido direto no `curl -v`. **Recusa de política, não queda de host**, e por isso repetir não muda nada, como a 20.2 prevê.
+
+**O LEITOR DE PÁGINA DEU A MESMA ASSINATURA QUE O `www.gov.br` TEM NA TABELA DESDE 28/10: `ENOTFOUND`.** Isso é o achado de método desta passada: **fora da lista de permitidos, um domínio que existe não se distingue de um domínio que não existe.** A família é a do `git log` raso da 1.1 e a do *"não havia navegador"* da 33 — o instrumento responde, e a resposta parece um fato sobre o mundo quando é um fato sobre o ambiente.
+
+**A CONCLUSÃO, e ela é o entregável desta passada: A PAREDE É A LISTA DE PERMITIDOS (20.1), e o `.gov.br` era só o primeiro domínio a bater nela.**
+
+---
+
+### O QUE ISSO MUDA NO PEDIDO — DE UMA LINHA PARA DUAS, E AS DUAS CUSTAM O MESMO GESTO
+
+```
+*.gov.br
+*.leg.br
+```
+
+**O `*.gov.br` continua certo e continua necessário** — é por ele que vêm a resolução, o CTB **compilado** no `planalto` e os quatro folhetos municipais da camada 2 da F1. **Nada foi revogado.** O que ele **não** faz é abrir a **publicação original** do CTB.
+
+**E a diferença entre compilação e publicação original já custou caro nesta ilha uma vez:** a seção 5 do `fonte-oficial-f1.md` tem um campo chamado *"qual fase/redação está sendo lida"* porque a leitura de 05/11 fechou dizendo *"ato posterior: NÃO CONFERIDO"*. Ler a compilação **e** a original é a diferença entre ler o CTB e ler **uma** versão dele — em duas custódias independentes, que é o que permite conferir uma contra a outra em vez de confiar numa só.
+
+**O que ficou escrito, e onde:**
+- `ilhas/rodametria/dados/fonte-oficial-f1.md` — as quatro portas novas na tabela da seção 1 (com data), a **correção do diagnóstico** de 05/11 em bloco de citação acima do parágrafo corrigido (que fica **intacto**, porque é a procedência), o **GESTO A** reescrito com as duas linhas, e a seção 6 (o lugar da leitura do CTB) dizendo que **não há porta aberta nenhuma** e que ninguém precisa remedir o `.leg.br` por hábito.
+- `dados/despachos.md` — **ponteiro datado** no despacho ALTA, sem apagar uma linha, com a tabela de medição e o pedido de duas linhas. **O despacho continua ALTA e continua sendo do Raphael.**
+
+---
+
+### O QUE ESTA PASSADA **NÃO** FEZ, DITO PARA NINGUÉM PROCURAR O QUE NÃO ESTÁ LÁ
+
+**NADA FOI AO AR, e a revisão não subiu** — nenhum byte servido mudou, nenhum arquivo de publicação foi tocado, o `manifest.json` segue em **98**. Isso é **uma** execução sem entrega no ar, e a conta da **31.1** é da leitura semanal (31.6), não minha de cabeça.
+
+**E A SAÍDA FÁCIL FOI RECUSADA NOMINALMENTE:** a porta da **busca** atravessa o egresso e traz texto que se apresenta como o CTB. Ela **não** vira a constante `exigencia-de-habilitacao-por-categoria-ctb`, e a razão não é purismo: é a regra `direcao_do_erro_caro` do próprio `constantes.json` e a primeira linha do *"Específico desta ilha"* — **errar "dispensa CNH" num veículo que é ciclomotor manda a pessoa para a rua sem habilitação.** Fonte de segunda mão para **esta** constante é exatamente o defeito que a F1 existe para não cometer, e o portão `teste-f1.py` proíbe as duas frases na tela enquanto ela for `pendente`. **A F1 continua calando sobre CNH com frase própria, e isso é a ilha funcionando, não a ilha quebrada.**
+
+---
+
+### PRÓXIMO PASSO DESBLOQUEADO
+
+**Para a Fundação, e é honesto dizer que é pouco:** o catálogo da Shopee se remede **em intervalo de dias**, nunca no mesmo dia — `scooter eletrica` foi remedida às 10h1xZ de hoje e não abriu; `moto eletrica` abriu e já virou página. **A próxima remedição útil é de 18/11 em diante**, e não vale queimar execução nisto antes.
+
+**O que destrava de verdade continua fora da Fundação, e agora o pedido está completo:** as **duas linhas** da lista de permitidos (`*.gov.br` e `*.leg.br`) e a **etiqueta do Mercado Livre**. As duas linhas destravam, de um gesto: a resposta de **CNH** da F1 — que é a pergunta do título da home e a metade mais vendável do produto desta ilha —, a **terceira saída** da camada 2 da F1 (hoje duas saídas imprimem a mesma frase genérica) e o `carga_max_kg` da **F3**, que está atrás do nível 5 da escada, no mesmo muro.
+
+**E a lição de método que vale para as outras cinco ilhas, por isso ela foi para `dados/despachos.md` e não só para cá:** o que envelheceu aqui **não foi o bloqueio** — ele é real e foi remedido vermelho contra verde. Foi o **diagnóstico** dele, escrito uma vez e lido como fato por cinco execuções seguidas. É a **seção 4** do contrato acontecendo dentro de um arquivo de bancada, e é a mesma doença que a própria seção 20 corrigiu em 11/09/2026: *"era intermitência do túnel lida como bloqueio, e o diagnóstico se propagou porque cada execução leu o `ESTADO.md` da anterior como fato"*. **Causa de impossibilidade se remede (20.3); o diagnóstico da causa também.**
+
+---
+
 ## 2026-11-16 10h17Z–11h4xZ — **NASCE `/veiculos/moto-eletrica/`, A CABEÇA DE 823 MIL BUSCAS/MÊS QUE 29/10 DECLAROU TRAVADA — E O QUE DESTRAVOU NÃO FOI A SERP, FOI O CATÁLOGO DA LOJA** — casca 1.27.0, produto 1.13.0, **revisão 97 no ar, conferida (18.4)**
 
 **A ILHA DESTA EXECUÇÃO:** rodametria, por **foco** (`foco.md` nomeia a rodametria, foco total e absoluto desde 27/10). Pela **1.2** não há escolha a fazer. **Conferi as exceções que furam o foco antes de obedecer a ele:** os três despachos do **MOLDE da seção 32** (aquametria, clubedomosaico, robometria) estão **FECHADOS INTEIROS desde 21/10**, e o despacho **ALTA** da clubedomosaico está reescrito pela 18.3 com os itens 3, 4 e 5 — chamado na HostGator, credencial ausente e uma **ordem de NÃO FAZER até 18/11** —, nenhum deles acionável por uma execução da Fundação. Logo não havia ilha no ar e quebrada para a 18.1 me tirar do foco.

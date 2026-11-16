@@ -15,85 +15,88 @@ urls_publicadas: 11       # 10 -> 11 em 16/11/2026: nasceu `/veiculos/moto-eletr
                           # a leitura semanal (21.6), nunca a Fundacao de cabeca.
 ultima_ronda: 2026-11-13T15:12Z   # RONDA DIARIA TECNICA de 2026-11-13, 14h4xZ-15h1xZ, medida na revisao 91 (status 91 = manifest 91). TRES defeitos, ZERO consertos e nenhum tentado: nenhum dos tres e da lista 19.1 — link de afiliado MORTO no banco, `value` de campo e logica dentro de snippets/rodametria-f2.php, e prosa de metadado de banco que e a SEGUNDA volta ao ar. SEXTA ronda seguida desta ilha com zero conserto. Despacho de 3 itens no PROMPT.md. A ILHA ESTA SA NO ENCANAMENTO: 10 de 10 URLs em 200 em duas leituras com quebra de cache, as tres portas da 29.2 verdes, caminho virgem em 404 na pagina da ilha (73.105 bytes), zero pagina orfa na direcao de ENTRADA, zero link de miolo fora do sitemap, meta description maxima de 159, zero noindex. CURA DA PORTA CARREGADA: /casca com tem_cura_da_porta true e fonte_do_log_da_cura "funcao:rodametria_sync_log", casca 1.26.0 — e linha nova de cura nas ultimas 24h e NAO MEDIDA, nao zero, porque a janela de 15 linhas do /status ja passou dela (20.13). NAVEGADOR NOS DOIS LUGARES: Chromium desta nuvem para pixel, console e comportamento (32.5 com pior caixa 428 px de 700 e pior compra 1.351 px de 1.400, 10 de 10 no molde; console 10 de 10 limpo do lado da ilha; menu abrindo e fechando nas 10; rolagem horizontal zero), e Chrome do Raphael para o teste de vida da 25.4 — 28 leituras, 22 fichas com 21 VIVAS e UMA MORTA ("O produto nao existe"), 6 buscas todas vivas, intestaveis ZERO e item sem piso ZERO. O portao conferir-32-5-no-navegador.mjs fecha REPROVADO so pela 32.5-d, e a causa e o egresso DESTA NUVEM: cf.shopee.com.br em ERR_TUNNEL_CONNECTION_FAILED aqui, e as 5 fotos carregando 5 de 5 no Chrome do Raphael. As tres ferramentas apertadas com entrada trocada: 10 de 10 contas certas na mao, e o defeito da F2 e de ENTRADA e nao de conta. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
 primeira_indexacao: null  # as duas primeiras URLs foram ao ar hoje; indexacao e trabalho de dias. Quem grava este campo e a leitura semanal, lendo o Search Console.
-ultima_execucao: 2026-11-16T11:43Z   # BLOCO, nao conserto: nenhum despacho aberto para a Fundacao. NASCEU `/veiculos/moto-eletrica/`, a cabeca de 823 mil buscas/mes que 29/10 declarou travada no Mercado Livre — a causa foi REMEDIDA e havia envelhecido: o catalogo da Shopee passou de tres para QUATRO anuncios de adulto que servem, e o piso da 30.2 fechou daqui. casca 1.27.0, produto 1.13.0, revisao 98 no /status = manifest 98 (a 97 foi a ultima que mudou byte servido), CONFERIDA no ar as 12:10:11Z com 7 aplicados e 7 linhas `ok`, as linhas de cada uma das tres revisoes (95, 96 e 97) lidas uma por uma e todas dizendo `ok` (20.4; 7-7, 9-9 e 7-7 = 0 pela 20.10). A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
-executando_desde: 2026-11-16T13:28Z   # RESERVA RENOVADA pela 1.1 (a primeira foi as 13h16Z): o bloco passou de 40 minutos porque a bancada desta ilha roda 54 portoes e seis deles abrem o site URL por URL. Gravada com `date -u` na MESMA linha de comando, nunca digitada.
-rede: aberta em 2026-11-16   # 20.2, MEDIDA e nao herdada ANTES da reserva: rodametria, robometria e aquametria.com.br em 200 nas TRES passadas com quebra de cache — 9 de 9, zero `000`. REMEDIDO nesta passada pela 20.3, porque causa de impossibilidade envelhece e ESTA NAO ENVELHECEU: `gov.br`, `in.gov.br`, `planalto.gov.br`, `gov.br/transportes`, `contran.gov.br` e `lex.com.br` os SEIS em `000` com o proxy dizendo `connect_rejected` — nao estao na lista de dominios permitidos (20.1), e os dois limiares legais seguem `pendente`. A Open API da Shopee RESPONDE e tem ORCAMENTO DE JANELA: duas buscas de ensaio passaram, as duas chamadas seguintes vieram `error [10000] System Error`, e a mesma chamada passou na primeira tentativa depois de ~3 minutos de espera.
+ultima_execucao: 2026-11-16T13:30Z   # BLOCO, e NADA FOI AO AR: a revisao segue em 98 e nenhum byte servido mudou. O que esta passada entregou foi a REMEDICAO DE UM DIAGNOSTICO (20.3): a parede NAO e o dominio `.gov.br`, como o `fonte-oficial-f1.md` e o despacho ALTA diziam desde 05/11 — e a LISTA DE PERMITIDOS (20.1), e o `.leg.br` cai com ela. O CTB nao e resolucao de orgao, e a Lei 9.503/1997, e lei tem custodia no Legislativo: a via da Camara e do Senado era a candidata natural a furar uma parede de `.gov.br` e em 19 dias de despacho aberto nunca havia sido tentada. Tentada hoje e FECHADA. O pedido do despacho ALTA passa de UMA para DUAS linhas (`*.gov.br` e `*.leg.br`), e as duas custam o mesmo gesto. Bancada: 49 portoes sem rede e 54 com rede, 0 falha, APROVADO nas duas. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
+executando_desde: null   # LIMPO no fecho desta execucao (passo 7 da secao 1). A reserva foi as 13h16Z e foi RENOVADA uma vez pela 1.1 (13h28Z): o bloco passou de 40 minutos porque a bancada desta ilha roda 54 portoes e seis deles abrem o site URL por URL.
+rede: aberta em 2026-11-16   # 20.2, MEDIDA e nao herdada. `rodametria.com.br` em 200 nas duas leituras antes da reserva e, com `aquametria.com.br`, em 200 nas TRES passadas do controle das 13h2xZ — 6 controles verdes. REMEDIDO NESTA PASSADA pela 20.3, e o DIAGNOSTICO da parede mudou: nao e o dominio `.gov.br`, e a LISTA DE PERMITIDOS (20.1). `www2.camara.leg.br`, `legis.senado.leg.br` e `normas.leg.br` — as portas do CTB no Legislativo, NUNCA tentadas antes — em `000` nas TRES passadas cada, com `www.planalto.gov.br` em `000` como controle da parede conhecida: 12 recusas contra 6 controles verdes, zero intermitencia. `connect_rejected` e o 403 no CONNECT LIDOS no `__agentproxy/status` e no `curl -v`, nao supostos. O leitor de pagina devolveu `getaddrinfo ENOTFOUND www2.camara.leg.br`, A MESMA ASSINATURA que a tabela registra para o `www.gov.br` desde 28/10: fora da lista, dominio que existe nao se distingue de dominio que nao existe. Os dois limiares legais seguem `pendente`.
 bloqueada_por: null      # obrigatorio pela secao 2. `null` DE PROPOSITO: o que falta (gov.br para a F1, as prefeituras para a camada municipal, as tres etiquetas do Mercado Livre) trava a FABRICA e nao a ILHA, e isso se escreve no despacho, que e o canal da 12.2. Preenche-lo congelaria tambem os blocos que ja podem andar.
 bloco_atual: |
-  BLOCO, nao conserto, e ele nasceu de REMEDIR uma causa em vez de a herdar.
-  Nenhum despacho aberto para a Fundacao: o de tres itens da ronda de 13/11
-  fechou as 16h4xZ daquele dia, e o que sobra da leitura semanal de 11/11 e da
-  leitura de 18/11 (dois itens) e do Raphael (a etiqueta do Mercado Livre).
-  A fila de blocos de construcao continuava ACABADA. Entao a pergunta desta
-  passada nao foi "qual bloco", foi "qual causa de impossibilidade envelheceu".
+  BLOCO, e NADA FOI AO AR — a revisao segue em 98, nenhum byte servido mudou.
+  Esta passada remediu um DIAGNOSTICO em vez de um bloqueio, e e por isso que ela
+  vale estar escrita: o bloqueio era real e foi remedido vermelho contra verde; o
+  que havia envelhecido era a FRASE que o explicava.
 
-  NASCEU `/veiculos/moto-eletrica/` — 823 MIL BUSCAS/MES, a maior cabeca do
-  nicho. A decisao de 29/10 mandou esta consulta esperar o Mercado Livre, que
-  exige gesto humano no gerador (25.6), porque a Shopee tinha tres anuncios de
-  adulto com zero venda e preco incoerente. Remedida em 16/11 na MESMA chave
-  (`moto eletrica adulto`) e com a MESMA regua: 20 ofertas lidas, QUATRO servem,
-  16 recusadas (9 acessorio, 2 brinquedo, 5 fora da familia). Com os quatro
-  encurtados, o portao da 30.2 ABRE daqui. NAO foi a SERP que destravou — o
-  veredito `alvo` continua o de 27/10, visto pelo Raphael; foi o CATALOGO DA
-  LOJA. A 30.8 trava a SERP, e a SERP nao era o que faltava nesta consulta.
+  A FILA FOI CONFERIDA ITEM POR ITEM ANTES DE EU PROCURAR TRABALHO FORA DELA.
+  Nenhum despacho aberto para a Fundacao nesta ilha: o de tres itens da ronda de
+  13/11 fechou naquele dia, o que sobra do PROMPT.md e da leitura de 18/11 (dois
+  itens, os dois com a acao correta sendo NAO AGIR, pela 12.1) e do Raphael (a
+  etiqueta do Mercado Livre). Os cinco despachos abertos de dados/despachos.md
+  endereçados a Fundacao sao todos DE OUTRAS ILHAS, e sob foco nao sao pegaveis
+  (os itens 2 e 3 do ALTA do Sync exigiriam reservar a robometria, que esta no ar
+  e SA). A fila de blocos segue ACABADA: so falta o 5 (artigos-ancora), que
+  depende de um `pauta.md` inexistente e que pela 17.1 nao e arquivo da Fundacao.
+  VERIFICACAO ANTES DE CONSTRUCAO (18.5): bancada em 49 portoes sem rede e 54 com
+  rede, 0 falha, APROVADO nas duas. Nao havia defeito no ar para furar fila.
 
-  E A IRMA FOI REMEDIDA NA MESMA PASSADA E NAO MUDOU: `scooter eletrica` segue
-  `publicar_declarado: false`, agora com medicao de 16/11 e nao de 29/10 — o
-  degrau 1 dela devolve PATINETE (cinco que "servem", todos patinete), e
-  publicar seria canibalizacao da 30.4 construida de proposito. A diferenca
-  entre as duas e o dado da passada: cada consulta se move no tempo da loja.
+  O CANDIDATO A PAGINA NOVA FOI PESADO E RECUSADO COM A REGUA NA MAO. O corpus de
+  28/10 escreve em maiusculas que o eixo 350 W x 1.000 W "E UMA PAGINA". Ela nao
+  nasce hoje: as SEIS consultas do cluster A1 sairam `tomada`, ocupadas por portal
+  de transito e noticia de dominio forte (olhardigital, moneytimes,
+  portaldotransito, vrum). Pela 14.9 isso e a lista de "quando houver
+  autoridade", e pela 14.1 publicar ali gastaria orcamento de rastreamento de um
+  dominio de 20 dias com 11 URLs e 8 impressoes para estacionar na pagina 4.
 
-  PAGINA NOVA SEM UMA LINHA DE PHP NOVA: o motor da secao 30 desta ilha e
-  dirigido por dado, entao bastou a voz declarada e a vitrine gerada. A familia
-  saiu de `familias_que_faltam` da mae, que passou a contar TRES no ar.
+  A PAREDE NAO E O `.gov.br`: E A LISTA DE PERMITIDOS (20.1), E O `.leg.br` CAI
+  COM ELA. Desde 05/11 o `fonte-oficial-f1.md` e o despacho ALTA diziam que "o que
+  esta ilha nao alcanca nao e um site, e o dominio `.gov.br` inteiro". A frase
+  nasceu de medicao boa e e MAIS ESTREITA QUE A PAREDE — lida ao pe da letra ela
+  promete uma porta que nao existe, a de que reproducao oficial FORA do `.gov.br`
+  seria alcancavel. E o que falta aqui e exatamente isso: o CTB nao e resolucao de
+  orgao, e a LEI 9.503/1997, e lei tem custodia no LEGISLATIVO. A via da Camara e
+  do Senado era a candidata natural a furar a parede e, em 19 dias de despacho
+  ALTA aberto, nunca havia sido tentada — nao estava em nenhuma das oito linhas da
+  tabela de portas.
 
-  O QUE A PAGINA DIZ E NAO DISFARCA: faixa de R$ 2.257,99 a R$ 15.000,00 (quase
-  sete vezes entre as pontas, porque o mesmo nome cobre a de trilha e a scooter
-  de rua), mediana R$ 11.249,50; os QUATRO declaram watt e so UM diz qual watt
-  e; NENHUM declara carga maxima; DOIS declaram tensao e amperagem (nas irmas
-  era zero); e NENHUM declara venda na loja.
+  TENTADA HOJE as 13h2xZ, PELA 20.3, E ESTA FECHADA: `www2.camara.leg.br`,
+  `legis.senado.leg.br` e `normas.leg.br` em `000` nas TRES passadas cada, com
+  `www.planalto.gov.br` em `000` como controle da parede conhecida e
+  `rodametria.com.br` e `aquametria.com.br` em 200 nas MESMAS tres — 12 recusas
+  contra 6 controles verdes, zero intermitencia. `connect_rejected` LIDO no
+  `__agentproxy/status` ("gateway answered 403 to CONNECT (policy denial)") e o
+  403 LIDO no `curl -v`. Recusa de politica, nao queda de host.
 
-  TRES PORTOES ESTAVAM CERTOS E REPROVARAM A PAGINA CERTA (20.5), E OS TRES
-  FORAM CONSERTADOS NA RAIZ, nao contornados:
-  1. `teste-afirmacao-de-tela.py` reprovou os titulos da loja em DOZE lugares.
-     A `CHAVES_DE_CITACAO` nomeava tres chaves que NAO EXISTEM nesta ilha. Agora
-     a regua PERGUNTA AO DADO: citacao e a cadeia identica a um titulo COLHIDO.
-  2. `teste-data-da-pagina.php --divergente` fabricava DUAS datas para o que
-     eram DUAS filhas. Passaram a ser DERIVADAS, uma por filha.
-  3. `teste-envelope-do-itemlist.py` leu a citacao como desordem. Ele passou a
-     comparar o CITADO, tolerando o par de aspas DE FORA e so ele.
-  E a bancada achou um QUARTO que eu mesma criei: `teste-escada-de-compra.php`
-  virou INERTE, morrendo com `undefined function` antes de imprimir veredito.
+  E O ACHADO DE METODO: o leitor de pagina devolveu `getaddrinfo ENOTFOUND
+  www2.camara.leg.br`, A MESMA ASSINATURA que a tabela registra para o
+  `www.gov.br` desde 28/10. FORA DA LISTA, DOMINIO QUE EXISTE NAO SE DISTINGUE DE
+  DOMINIO QUE NAO EXISTE. E a familia do `git log` raso da 1.1 e do "nao havia
+  navegador" da 33: o instrumento responde, e a resposta parece fato sobre o mundo
+  quando e fato sobre o ambiente.
 
-  O CONSERTO DE CONTEUDO QUE O AR COBROU: a pagina nao servia a frase CONTADA do
-  pivo da F1 — e o pivo e o acelerador, que e o campo que decide a categoria
-  desta familia. Entrou na pergunta da placa e na instrucao de uso.
+  O PEDIDO PASSA DE UMA LINHA PARA DUAS, e as duas custam o mesmo gesto:
+  `*.gov.br` e `*.leg.br`. Nada foi revogado — o `*.gov.br` continua certo e
+  necessario (a resolucao, o CTB COMPILADO no planalto, os quatro folhetos
+  municipais). O que ele nao faz e abrir a PUBLICACAO ORIGINAL do CTB. E essa
+  diferenca ja custou caro aqui: a secao 5 do `fonte-oficial-f1.md` tem o campo
+  "qual fase/redacao esta sendo lida" porque a leitura de 05/11 fechou com "ato
+  posterior: NAO CONFERIDO". Ler a compilacao E a original e a diferenca entre ler
+  o CTB e ler UMA versao dele, em duas custodias independentes.
 
-  E UM CHURN QUE NAO ERA DO BLOCO, RESTAURADO: `coletar-piso-da-vitrine.py` nao
-  tem `--so` e regerou o piso de busca das TRES consultas, trocando o das duas
-  paginas ja indexadas e vivas desde 04/11. Os dois foram restaurados; so o piso
-  novo da moto entrou. Piso vivo nao se regenera.
+  A SAIDA FACIL FOI RECUSADA NOMINALMENTE: a porta da BUSCA atravessa o egresso e
+  traz texto que se apresenta como o CTB. Ela NAO vira a constante
+  `exigencia-de-habilitacao-por-categoria-ctb`, e nao por purismo: e a regra
+  `direcao_do_erro_caro` do proprio constantes.json e a primeira linha do
+  "Especifico desta ilha" — errar "dispensa CNH" num veiculo que e ciclomotor
+  manda a pessoa para a rua sem habilitacao. A F1 segue calando sobre CNH com
+  frase propria, e isso e a ilha FUNCIONANDO.
 
-  NO AR, CONFERIDO (18.4): revisao 97 = manifest 97, as linhas das revisoes 95,
-  96 e 97 lidas uma por uma e todas `ok`; conferir-no-ar 805 afirmacoes 0 falha;
-  conferir-produto-no-ar 448 0; conferir-institucional-no-ar 244 0; 32.5
-  APROVADA 11 de 11 (resposta 211 px de 700 e compra 1.340 px de 1.400 na pagina
-  nova); console 11 de 11 limpo; 11 de 11 URLs em 200 em DUAS leituras; as tres
-  portas da 29.2 verdes e caminho virgem em 404 na pagina desta ilha. Bancada em
-  49 portoes sem rede, 0 falha.
-
-  PROXIMO PASSO DESBLOQUEADO, e ele e o mesmo metodo desta passada aplicado ao
-  que sobrou: as OUTRAS consultas com veredito ja dado esperam por PRODUTO, nao
-  por SERP, e produto se remede. `bike eletrica` e `motos eletricas para
-  adultos` estao fechadas pela 30.4 (mesma intencao de outras duas), e
-  `scooter eletrica` foi remedida hoje e nao abriu. Sobram as CAUDAS fechadas por
-  SERP tomada, que nao se reabrem por catalogo. Entao o caminho curto do catalogo
-  esta esgotado por ora, e o que destrava de verdade continua fora da Fundacao:
-  o egresso do `gov.br` (os dois limiares da F1, despacho ALTA de 28/10) e a
-  etiqueta do Mercado Livre. O que a Fundacao PODE fazer sozinha na proxima
-  passada e remedir `scooter eletrica` e `moto eletrica` em intervalo de dias, e
-  so isso — nao vale queimar execucao remedindo o mesmo catalogo no mesmo dia.
-  A 12.1 proibe mexer no texto das paginas de produto antes da leitura de 18/11.
+  PROXIMO PASSO DESBLOQUEADO, e e honesto dizer que e pouco: o catalogo da Shopee
+  se remede EM INTERVALO DE DIAS, nunca no mesmo dia — `scooter eletrica` foi
+  remedida as 10h1xZ de hoje e nao abriu, `moto eletrica` abriu e ja virou pagina.
+  A proxima remedicao util e de 18/11 em diante. O que destrava de verdade
+  continua fora da Fundacao, e agora o pedido esta COMPLETO: as DUAS linhas da
+  lista de permitidos e a etiqueta do Mercado Livre. As duas linhas destravam, de
+  um gesto, a resposta de CNH da F1 (a pergunta do titulo da home), a TERCEIRA
+  saida da camada 2 da F1 (hoje duas saidas imprimem a mesma frase generica) e o
+  `carga_max_kg` da F3, que esta atras do nivel 5 da escada, no mesmo muro.
 
 ---
 
