@@ -340,6 +340,28 @@ def main():
                    "%s tem %d buscas distintas na fonte e ainda serve a linha unica do piso da "
                    "tabela: 'a primeira' e arbitraria" % (caminho, len(buscas)))
 
+        # (2-b) A PRESTACAO DE CONTAS DA RECUSA NAO FALA JARGAO DE MAQUINA, e
+        # isto foi medido NO AR, nao suposto: a revisao 99 de 16/11/2026 serviu
+        # em `/veiculos/moto-eletrica/` a frase *"20 ofertas, e 15 ficaram de
+        # fora: 4 outra_familia_na_cabeca · 3 outra familia de produto ..."* — o
+        # SLUG da regua de relevancia, com sublinhado, na frase que presta contas
+        # ao leitor. A causa: a trava `outra_familia_na_cabeca` nasceu na mesma
+        # passada e o mapa de frases de leitor do `rdm_produto_recusas_html` nao
+        # a tinha, e aquele mapa cai no `isset` e imprime a CHAVE.
+        #
+        # A REGUA E O SUBLINHADO, e ela e barata exatamente por isso: nome de
+        # recusa desta ilha e sempre `a_b_c` e frase de leitor nunca tem
+        # sublinhado. Toda recusa nova que chegar a tela sem frase cai aqui, e
+        # nao so esta.
+        texto_das_recusas = ''
+        m_rec = re.search(r'A mesma busca devolveu.{0,400}', texto_do_corpo(html), re.S)
+        if m_rec:
+            texto_das_recusas = m_rec.group(0)
+            afirma('_' not in texto_das_recusas,
+                   "%s serve JARGAO na prestacao de contas da recusa (nome de recusa sem frase "
+                   "de leitor cai no mapa e imprime a chave): %s"
+                   % (caminho, texto_das_recusas[:160]))
+
         # (3) TODO anuncio NOMEADO, e TODO anuncio com saida de compra.
         texto = texto_do_corpo(html)
         for l in linhas:

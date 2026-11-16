@@ -724,6 +724,12 @@ function rdm_produto_recusas_html( $pagina ) {
 		'outro_veiculo'   => 'outro tipo de veículo (triciclo, quadriciclo, hoverboard)',
 		'kit_multiplo'    => 'kit com mais de uma unidade',
 		'fora_da_familia' => 'outra família de produto',
+		/* NASCEU EM 16/11/2026 COM A TRAVA DA CABECA DO TITULO, e a linha ficou
+		   faltando na primeira passada: a pagina serviu, no ar, a revisao 99,
+		   `4 outra_familia_na_cabeca` — o SLUG da regua, com sublinhado, na
+		   frase que presta contas ao leitor. Nome de recusa sem frase de leitor
+		   cai no `isset` logo abaixo e vira jargao de maquina na tela. */
+		'outra_familia_na_cabeca' => 'anúncio cujo título começa por outro tipo de veículo',
 		'sem_qualificador' => 'anúncio que não diz ser de adulto',
 	);
 	$pedacos = array();
