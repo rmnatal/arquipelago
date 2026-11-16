@@ -10146,3 +10146,78 @@ apagado, reescrito nem resumido neste disparo.
 
 Esta seção acrescentou 117 linhas ao `MAOS-LOG.md` (de 10031 para 10148 linhas, medido com
 `wc -l` depois de gravar, já contando estas três últimas linhas e a em branco acima delas).
+
+## Disparo de 2026-11-16, 13h08 de Brasília (16h08Z) — INSTRUÇÃO DA SENTINELA, RONDA DIÁRIA TÉCNICA DE 16/11 (15h3xZ–15h5xZ): CINCO OPERAÇÕES, UM COMMIT, TUDO NO `main`
+
+Assunto conferido ANTES do `git fetch`: é do Arquipélago (ilha rodametria, Sentinela, painel do
+Arquipélago). Nenhum dado pessoal de terceiro na instrução — os identificadores escritos são de
+anúncio e de loja, não de pessoa.
+
+As cinco operações foram executadas, **nenhuma falhou**:
+
+1. `ilhas/rodametria/PROMPT.md` — apagado o bloco inteiro do despacho de 13/11 (da linha do título
+   até imediatamente antes da linha do despacho de 11/11, que ficou). Marcador localizado
+   LITERALMENTE, uma única ocorrência.
+2. `ilhas/rodametria/PROMPT.md` — inserido o despacho de 16/11 no topo da fila, seguido de uma linha
+   em branco, imediatamente antes da linha do despacho de 11/11.
+3. `ilhas/rodametria/dados/consertos.md` — acrescentada ao FIM a linha nova da tabela, uma única
+   linha de texto, sem quebras.
+4. `ilhas/rodametria/ESTADO.md` — substituída a linha única `ultima_ronda:` do cabeçalho YAML. Nenhum
+   outro campo, nenhum `bloco_atual`, nenhum byte do corpo.
+5. `dados/PAINEL.md` (na RAIZ) — arquivo substituído inteiro pelo texto da instrução, nada antes e
+   nada depois.
+
+`git status --porcelain` depois de aplicar as cinco operações e antes do commit:
+
+```
+ M dados/PAINEL.md
+ M ilhas/rodametria/ESTADO.md
+ M ilhas/rodametria/PROMPT.md
+ M ilhas/rodametria/dados/consertos.md
+```
+
+`git diff --stat` do commit que foi ao `main`:
+
+```
+dados/PAINEL.md                     | 105 ++++++++++++++++++------------------
+ilhas/rodametria/ESTADO.md          |   2 +-
+ilhas/rodametria/PROMPT.md          |  54 ++++++++++++++++---
+ilhas/rodametria/dados/consertos.md |   1 +
+4 files changed, 103 insertions(+), 59 deletions(-)
+```
+
+Hash do commit que está em `origin/main`, conferido com `git fetch origin main && git log -1 origin/main`
+depois do push (e `git diff --stat origin/main HEAD` devolveu vazio):
+
+```
+5beb7e8ae933cfa6df8a2347d4b382c183686da0
+Sentinela 16/11: despacho de 3 itens na rodametria, ultima_ronda, consertos.md e PAINEL.md
+dbcbcbd..5beb7e8  HEAD -> main
+```
+
+Saída da linha de validação do YAML que a operação 4 manda rodar:
+
+```
+YAML ok
+```
+
+Contagem do que mudou, **conferida RELENDO os arquivos depois de gravar**, nunca pelo que eu achei
+que tinha escrito:
+
+```
+PROMPT.md ........... 1502 linhas; '## DESPACHO DA SENTINELA — 2026-11-16' = 1 ocorrencia;
+                      'DESPACHO DA SENTINELA — 2026-11-13' = 0 ocorrencia (apagado);
+                      '## DESPACHO DA SENTINELA — 2026-11-11' = 1 ocorrencia (ficou)
+consertos.md ........ 16 linhas (eram 15); linhas que comecam por '| 2026-11-16 |' = 1
+ESTADO.md ........... 'ultima_ronda:' = 1 ocorrencia no total, e
+                      'ultima_ronda: 2026-11-16T15:56Z' = 1 ocorrencia
+dados/PAINEL.md ..... 12888 bytes e 88 linhas (eram 12148 bytes); zero marca '<<<' sobrando
+```
+
+A hora do título saiu de `date -u` e `TZ=America/Sao_Paulo date` na mesma linha de comando, nunca
+digitada. O trabalho e este log foram em dois commits porque o log só existe depois de o push ter
+sido conferido em `origin/main`. O `MAOS-LOG.md` segue append-only: nada foi apagado, reescrito nem
+resumido neste disparo.
+
+Esta seção acrescentou 72 linhas ao `MAOS-LOG.md` (de 10148 para 10220 linhas, medido com `wc -l`
+depois de gravar, antes destas duas últimas linhas serem contadas).
