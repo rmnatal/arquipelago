@@ -250,10 +250,29 @@ def conferir():
                                       % (pagina['slug'], onde, alt[:50]))
                     # E O `alt` E O NOME DA TELA, nao outro texto: duas frases
                     # para a mesma coisa comecam iguais e so uma sobe (20.7).
-                    if alt != nome[:120]:
+                    if alt != nome:
                         falhas.append('FALHOU alt publicado: %s %s o alt %r nao e o '
                                       'nome da tela %r'
                                       % (pagina['slug'], onde, alt[:40], nome[:40]))
+
+    # O NOME LONGO, FABRICADO, porque a vitrine de hoje NAO TEM ESTE MUNDO: o
+    # nome mais longo dela tem exatamente 120 caracteres. A casca serve `alt=""`
+    # so quando o `alt` e IGUAL ao nome do cartao (trava de 11/11/2026), e `alt`
+    # cortado em 120 fica QUASE igual num titulo de 121 — a trava deixa de
+    # disparar calada e o leitor de tela ouve o nome truncado mais o inteiro.
+    # Sem este mundo, reintroduzir o corte passaria verde com o dado de hoje.
+    ger = _modulo('gerador_da_vitrine',
+                  os.path.join(FERRAMENTAS, 'gerar-vitrine-de-produto.py'))
+    longo = 'Moto Elétrica Adulto Panda A4 ' + ('X' * 100)
+    afirmacoes += 2
+    if len(longo) <= 120:
+        falhas.append('FALHOU mundo do nome longo: o nome fabricado tem %d '
+                      'caracteres e precisa passar de 120' % len(longo))
+    fabricada = ger.imagem_do_cartao({'imagem': {'url': 'u', 'alt': 'cru'}}, longo)
+    if fabricada.get('alt') != longo:
+        falhas.append('FALHOU mundo do nome longo: o alt saiu com %d caracteres e o '
+                      'nome tem %d — a trava de 11/11 da casca compara IGUALDADE'
+                      % (len(fabricada.get('alt') or ''), len(longo)))
 
     print('A CONTA DA 25.9 SOBRE O BANCO DE VERDADE: %d anuncio(s) julgado(s), '
           '%d veredito(s) mudaram.' % (total, len(mudaram)))

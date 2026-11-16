@@ -491,10 +491,20 @@ def m_alt_da_foto_com_o_marcador(areia):
     caminho = os.path.join(areia, 'ferramentas', GERADOR)
     with open(caminho, encoding='utf-8') as f:
         t = f.read()
-    alvo = "    nova['alt'] = (nome_na_tela or '')[:120]"
+    alvo = "    nova['alt'] = nome_na_tela or ''"
     exigir(alvo in t, 'o gerador deveria derivar o alt do nome da tela')
     with open(caminho, 'w', encoding='utf-8') as f:
-        f.write(t.replace(alvo, "    nova['alt'] = (anuncio['titulo'] or '')[:120]", 1))
+        f.write(t.replace(alvo, "    nova['alt'] = anuncio['titulo'] or ''", 1))
+
+
+def m_alt_cortado_em_120(areia):
+    caminho = os.path.join(areia, 'ferramentas', GERADOR)
+    with open(caminho, encoding='utf-8') as f:
+        t = f.read()
+    alvo = "    nova['alt'] = nome_na_tela or ''"
+    exigir(alvo in t, 'o gerador deveria entregar o nome INTEIRO como alt')
+    with open(caminho, 'w', encoding='utf-8') as f:
+        f.write(t.replace(alvo, "    nova['alt'] = (nome_na_tela or '')[:120]", 1))
 
 
 def m_nome_do_cartao_com_o_marcador(areia):
@@ -574,6 +584,8 @@ MUTACOES = (
      m_nome_do_cartao_com_o_marcador),
     ('alt da foto de volta com o `11.11`', GERADOR, ('--conferir',),
      m_alt_da_foto_com_o_marcador),
+    ('alt cortado em 120, que desliga a trava de 11/11 em nome longo',
+     'aplicar-oferta-repetida.py', ('--conferir',), m_alt_cortado_em_120),
 )
 
 

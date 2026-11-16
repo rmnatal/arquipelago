@@ -653,14 +653,23 @@ def imagem_do_cartao(anuncio, nome_na_tela):
     banco segue guardando o `alt` como a loja escreveu o titulo — o que esta
     funcao faz e escolher o que VAI A TELA, sem tocar na procedencia.
 
-    O corte em 120 caracteres e o mesmo do coletor e esta aqui pelo mesmo
-    motivo: alt longo e lido inteiro em voz alta.
+    E O `alt` E O NOME INTEIRO, SEM CORTE, e isto e uma borda medida e nao
+    descuido. A casca serve `alt=""` quando o `alt` e IGUAL ao nome que o cartao
+    imprime tres linhas abaixo (decisao de 11/11/2026: leitor de tela ouviria o
+    titulo duas vezes por cartao). Com o corte em 120 que o coletor usa, um nome
+    de 121 caracteres produziria um `alt` QUASE igual — e a trava de 11/11
+    deixaria de disparar em silencio, servindo o nome truncado no atributo e o
+    nome inteiro ao lado: o defeito de 11/11 de volta, pior, porque as duas
+    cadeias nao sao nem iguais. O nome mais longo da vitrine de hoje tem
+    exatamente 120 caracteres — a borda esta a um titulo de distancia. Quem
+    decide se o atributo vai vazio e a casca; o trabalho daqui e entregar a ela a
+    unica cadeia que ela sabe comparar.
     """
     imagem = anuncio.get('imagem')
     if not imagem:
         return imagem
     nova = dict(imagem)
-    nova['alt'] = (nome_na_tela or '')[:120]
+    nova['alt'] = nome_na_tela or ''
 
     return nova
 

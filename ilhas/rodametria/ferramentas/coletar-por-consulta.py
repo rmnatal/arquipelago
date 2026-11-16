@@ -514,10 +514,14 @@ def colher_consulta(c, api, com_link):
                 'url': a['url_bruto_da_imagem'],
                 'largura': dim[0],
                 'altura': dim[1],
-                # SEM A CABECA DE CAMPANHA (16/11/2026): o `alt` e texto de
-                # pagina, e `11.11` nao e nome de veiculo. O titulo cru da loja
+                # SEM A CABECA DE CAMPANHA E SEM CORTE (16/11/2026): o `alt`
+                # e texto de pagina, `11.11` nao e nome de veiculo, e quem
+                # decide se o atributo vai VAZIO e a casca, comparando o `alt`
+                # com o nome do cartao (trava de 11/11). Corte em 120 produzia
+                # um `alt` QUASE igual ao nome em titulo de 121 caracteres, e
+                # quase igual desliga a trava em silencio. O titulo cru da loja
                 # segue ao lado, no campo `titulo`, que e a procedencia.
-                'alt': rel.nome_do_anuncio(a['titulo'])[:120],
+                'alt': rel.nome_do_anuncio(a['titulo']),
                 'fonte': 'anuncio-shopee',
                 'coletado_em': HOJE,
                 'como_a_dimensao_foi_medida': 'cabecalho do arquivo na CDN, nunca digitada',
