@@ -10221,3 +10221,84 @@ resumido neste disparo.
 
 Esta seção acrescentou 72 linhas ao `MAOS-LOG.md` (de 10148 para 10220 linhas, medido com `wc -l`
 depois de gravar, antes destas duas últimas linhas serem contadas).
+
+---
+
+## Disparo de 16/11/2026, 14h14 de Brasília (17h14 UTC) — BÚSSOLA CAÇADORA DE 16/11/2026: 20 LINHAS EM `cacados.md` + NOVA MEDIÇÃO, UM COMMIT, NO `main`
+
+Checagem de assunto antes do `git fetch`: a instrução fala de `bussola/cacados.md` e de uma medição
+de volume em `bussola/medicoes/`. Bússola é do Arquipélago. Assunto APROVADO, execução seguiu.
+
+Instrução: num commit só, com a mensagem `Bússola caçadora — 16/11/2026`, (1) acrescentar 20 linhas
+ao fim de `bussola/cacados.md` e (2) criar `bussola/medicoes/volume-cacada-2026-11-16.md`. Ambos os
+conteúdos vieram verbatim no disparo, com sha256 esperado para cada arquivo final.
+
+Parti do `main` real: `git fetch origin main && git checkout -B trabalho origin/main`, que trouxe
+`8ddda59` como ponto de partida (o fetch avançou `beeafc4..8ddda59`). Nada foi reformatado, nenhuma
+linha foi acrescentada além das que a instrução deu, e nenhum outro arquivo foi tocado além deste log.
+
+`git status --porcelain` depois do `git add`, antes do commit:
+
+```
+M  bussola/cacados.md
+A  bussola/medicoes/volume-cacada-2026-11-16.md
+```
+
+`git diff --cached --stat`:
+
+```
+ bussola/cacados.md                           | 20 ++++++++++++++++++++
+ bussola/medicoes/volume-cacada-2026-11-16.md | 10 ++++++++++
+ 2 files changed, 30 insertions(+)
+```
+
+Os DOIS sha256 bateram exatamente com os esperados, conferidos com `sha256sum` depois de gravar —
+não houve nenhuma diferença a registrar na mensagem de commit:
+
+```
+esperado cacados.md ...... 47e74f18bfd60002532ca1d7557012a520cf2f18cbf9b15897386ea637e648ac
+obtido   cacados.md ...... 47e74f18bfd60002532ca1d7557012a520cf2f18cbf9b15897386ea637e648ac  BATEU
+esperado medicao ......... 4a885f617e02ceccf60187a6a7bdb113894ba175c0467fe9ddd3a9c23d6d78d4
+obtido   medicao ......... 4a885f617e02ceccf60187a6a7bdb113894ba175c0467fe9ddd3a9c23d6d78d4  BATEU
+```
+
+Antes de acrescentar, conferi que `bussola/cacados.md` terminava em quebra de linha (`tail -c 1 |
+od -c` devolveu `\n`) e que a última linha era a de `12/11/2026 | veículo elétrico infantil +
+hoverboard`, como a instrução descreveu. O append foi por heredoc entre aspas simples, para que
+nenhum caractere fosse expandido pelo shell.
+
+Commit que foi ao `main`:
+
+```
+2d17896925c4338afeb85c19463723a51a6576cb  Bússola caçadora — 16/11/2026
+```
+
+`git push origin HEAD:main` foi aceito de primeira, sem rebase e sem force:
+
+```
+To https://github.com/rmnatal/arquipelago
+   8ddda59..2d17896  HEAD -> main
+```
+
+Conferência obrigatória — `git fetch origin main && git log -1 origin/main` mostra o MEU commit:
+
+```
+2d17896925c4338afeb85c19463723a51a6576cb Bússola caçadora — 16/11/2026
+```
+
+Contagem do que mudou, **conferida RELENDO os arquivos depois de gravar**, nunca pelo que eu achei
+que tinha escrito:
+
+```
+bussola/cacados.md ......................... 20 linhas novas no fim;
+                                             linhas que comecam por '| 16/11/2026 |' = 20
+bussola/medicoes/volume-cacada-2026-11-16.md  10 linhas, arquivo novo (antes nao existia)
+```
+
+A hora do título saiu de `date -u` e `TZ=America/Sao_Paulo date` na mesma linha de comando, nunca
+digitada. O trabalho e este log foram em dois commits porque o log só existe depois de o push ter
+sido conferido em `origin/main`. O `MAOS-LOG.md` segue append-only: nada foi apagado, reescrito nem
+resumido neste disparo.
+
+Esta seção acrescentou 78 linhas ao `MAOS-LOG.md` (de 10223 para 10301 linhas, medido com `wc -l`
+depois de gravar, antes destas duas últimas linhas serem contadas).
