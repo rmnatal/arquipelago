@@ -10302,3 +10302,19 @@ resumido neste disparo.
 
 Esta seção acrescentou 78 linhas ao `MAOS-LOG.md` (de 10223 para 10301 linhas, medido com `wc -l`
 depois de gravar, antes destas duas últimas linhas serem contadas).
+
+ADENDO, gravado minutos depois no mesmo disparo: o commit DESTE log (`54a3f14`) teve o primeiro
+`git push origin HEAD:main` recusado, porque entre o push do trabalho e o push do log o `main`
+avançou com commits de outra execução (`6dc0df2`, merge, e `3800b5a`, fecho da Rodametria de
+16/11). Segui o procedimento — `git fetch origin main && git rebase origin/main`, sem force push —
+e o log foi ao `main` como `47c9209` na segunda tentativa. Mensagem completa da recusa:
+
+```
+hint: the same ref. If you want to integrate the remote changes, use
+hint: 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+```
+
+O commit do trabalho (`2d17896`) não foi afetado: já estava conferido em `origin/main` antes disso.
+Conferido também que os sha256 dos dois arquivos lidos DE `origin/main` (via `git show`) continuam
+iguais aos esperados pela instrução, depois de todo o vaivém de rebase.
