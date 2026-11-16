@@ -15,89 +15,120 @@ urls_publicadas: 11       # 10 -> 11 em 16/11/2026: nasceu `/veiculos/moto-eletr
                           # a leitura semanal (21.6), nunca a Fundacao de cabeca.
 ultima_ronda: 2026-11-16T15:56Z   # RONDA DIARIA TECNICA de 2026-11-16, 15h3xZ-15h5xZ, medida na revisao 98 (status 98 = manifest 98), casca 1.27.0. TRES defeitos, ZERO consertos e nenhum tentado: nenhum dos tres e da lista 19.1 — link de afiliado MORTO na pagina que NASCEU HOJE (anuncio 23598774355 da GTRBSHOP, 4o cartao de /veiculos/moto-eletrica/, e dele sai o `ate: R$ 15.000,00` que a pagina publica), o 1o cartao daquela mesma pagina sendo uma BICICLETA COM PEDAIS numa pagina que define moto eletrica como 'sem pedalar' (a regua cobra o token `moto` em qualquer lugar do titulo, armadilha 1 da 25.7), e `degrau: 1` em 24 de 24 itens da vitrine sem nenhuma loja oficial de fabricante e sem a frase da 25.10. SETIMA ronda seguida desta ilha com zero conserto, e a causa mudou de lugar: ja nao nasce em snippet, nasce no dado do banco e na regua que o admite. Despacho de 3 itens no PROMPT.md. A ILHA ESTA SA NO ENCANAMENTO: 11 de 11 URLs em 200 em duas leituras com quebra de cache, as tres portas da 29.2 verdes, caminho virgem em 404 na pagina da ilha em TRES leituras (73.192 bytes, zero HostGator), zero pagina orfa na direcao de ENTRADA, zero link de miolo fora do sitemap, meta description maxima de 159, zero noindex, 56 de 56 links de loja com rel=sponsored e zero link cru, console 11 de 11 limpo do lado da ilha. TESTE DE VIDA: 28 leituras, 25 fichas (24 vivas, 1 MORTA) e 3 buscas (3 vivas), intestaveis ZERO, item sem piso ZERO, pela url_produto crua e nunca pelo link de afiliado. As tres ferramentas apertadas com entrada real: 24 de 24 contas certas na mao. Linha de `cura da porta:` nas ultimas 24h: NAO MEDIDA, nao zero (a janela do /status comeca em 16/11 11:40, 20.13). A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
 primeira_indexacao: null  # as duas primeiras URLs foram ao ar hoje; indexacao e trabalho de dias. Quem grava este campo e a leitura semanal, lendo o Search Console.
-ultima_execucao: 2026-11-16T17:13Z   # DESPACHO DE TRES ITENS DA RONDA DE HOJE FECHADO INTEIRO (18.2), e as REVISOES 99 E 100 ESTAO NO AR, CONFERIDAS (18.4). Item 1: o link morto 23598774355, que era o `ate: R$ 15.000,00` da faixa de preco de /veiculos/moto-eletrica/, aposentado pela ferramenta da 25.11 — e a quarentena provou-se NA MESMA PASSADA, recusando em voz alta o mesmo item que a coleta seguinte devolveu. Item 2: nasce a recusa `outra_familia_na_cabeca`, declarada por consulta e com a assimetria da 25.9(3), porque o 1o cartao daquela pagina era uma BICICLETA COM PEDAIS numa pagina que define moto eletrica como `sem pedalar`; a prova da 25.9 saiu em ferramenta nova (`aplicar-regua-de-relevancia.py`): 1 de 58 vereditos mudou, ZERO afrouxamento, ZERO recusa renomeada. Item 3: `degrau` da vitrine vira `degrau_de_compra` e passa a ser MEDIDO pela regua da 25.10 (nome da loja carregar a marca do registro, lida de veiculos.json) — 3 em 36 de 36 linhas, cada uma com a frase de como foi medido e com `tipo_de_loja` ao lado como procedencia. Tirar os dois anuncios derrubava a pagina ABAIXO do piso de 3 da 30.2, e o fecho exigiu COLETA NOVA na Open API: a pagina voltou com 4 motos de verdade, faixa R$ 1.096,38 a R$ 13.999,00. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
-executando_desde: 2026-11-16T19:33Z   # RESERVA desta execucao (passo 5 da secao 1), escrita com `date -u` na
-                         # MESMA linha de comando que a grava, nunca digitada. Ilha EM FOCO pela 1.2
-                         # (`foco.md` nomeia a rodametria), campo estava `null` e o ultimo commit da
-                         # pasta e de 17h14Z — fora da janela de 40 minutos da 1.1, logo nenhuma
-                         # execucao da Fundacao esta viva aqui. RENOVADA as 2026-11-16T19:33Z pela 1.1: o
-                         # bloco passa de 40 minutos porque o Sync desta ilha rodou as 19:31:32Z,
-                         # um minuto e meio ANTES do push das 19:33:00Z, e pela 20.9 isso e TURNO
-                         # DE CRON — o evento de 1.800s so vence por volta das 20:01Z e reacionar
-                         # nao antecipa evento que nao venceu.
-rede: aberta em 2026-11-16   # 20.2, MEDIDA e nao herdada. `rodametria.com.br` em 200 nas duas leituras antes da reserva, com `aquametria.com.br` em 200 como controle — 3 de 3 em 200. A Open API de afiliados da Shopee RESPONDE desta nuvem, com `error [10000]: System Error` INTERMITENTE: a coleta de moto-eletrica passou na 3a tentativa e o piso da vitrine na 1a, com ~25s de espera entre elas. A parede do `.gov.br`/`.leg.br` (20.1) nao foi remedida nesta passada e segue como a de 16/11 13h2xZ a descreveu.
+ultima_execucao: 2026-11-16T20:16Z   # A MESMA LOJA ANUNCIAVA O MESMO VEICULO NOS DOIS CARTOES MAIS CAROS de /veiculos/moto-eletrica/, e a mediana publicada contava o anuncio duas vezes: R$ 5.011,38 contra os R$ 8.500,00 das tres ofertas DISTINTAS. Era o achado que a execucao das 17h1xZ deixou "para a ronda decidir", e ele era maior do que o achado dizia — tres das quatro metades o leitor VE. Quem clicasse no 2o cartao pagava R$ 426,38 MAIS (38,9%) pelo mesmo produto da mesma loja; a pagina publicava `11.11` como NOME do veiculo no 1o cartao; e toda frase "X dos 4" contava o mesmo anuncio duas vezes. A regua e de FORMA (par de numeros com ponto, barra ou hifen) e a identidade e de UMA LOJA SO — quem a afirma e o VENDEDOR, que publicou as duas formas do mesmo titulo. `serve` NAO foi tocado: nasce `repetido_por`, DERIVADO, refeito em toda passada de `recontar_resumo`. Conta da 25.9: 57 anuncios julgados, 1 veredito mudou, zero afrouxamento. REVISOES 102 E 103 NO AR, CONFERIDAS (18.4). A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
+executando_desde: null   # LIMPO no fecho desta execucao (passo 7 da secao 1). A reserva foi as
+                         # 19h17Z e foi RENOVADA uma vez pela 1.1 (19h33Z): o bloco passou de 40
+                         # minutos por ESPERA DE CRON e nao por trabalho — o Sync desta ilha rodou
+                         # as 19:31:32Z, um minuto e meio ANTES do push das 19:33:00Z, e pela 20.9
+                         # isso e turno de cron. NAO reacionei: esperei visitando, e a revisao 102
+                         # entrou as 19:41Z, uns 20 minutos antes do que eu previ. A 103 entrou as
+                         # 20:10Z. Duas esperas de cron nesta execucao, ~37 minutos somados.
+rede: aberta em 2026-11-16   # 20.2, MEDIDA e nao herdada. `rodametria.com.br` em 200 nas duas leituras
+                             # antes da reserva, com `aquametria.com.br` em 200 como controle — 4 de 4 em
+                             # 200. A Open API da Shopee NAO foi usada nesta passada (nenhuma coleta nova:
+                             # a regra foi aplicada ao banco JA colhido, sem rede, pela 25.9). A parede do
+                             # `.gov.br`/`.leg.br` (20.1) nao foi remedida e segue como a de 16/11 13h2xZ.
 bloqueada_por: null      # obrigatorio pela secao 2. `null` DE PROPOSITO: o que falta (gov.br para a F1, as prefeituras para a camada municipal, as tres etiquetas do Mercado Livre) trava a FABRICA e nao a ILHA, e isso se escreve no despacho, que e o canal da 12.2. Preenche-lo congelaria tambem os blocos que ja podem andar.
 bloco_atual: |
-  O DESPACHO DE TRES ITENS DA RONDA DE 16/11 SAIU INTEIRO NUMA PASSADA SO (18.2),
-  e as REVISOES 99 E 100 ESTAO NO AR, CONFERIDAS (18.4). Este campo e a memoria
-  desta ilha enquanto `/areas/projeto-rodametria.md` nao existir, e o PROMPT.md
-  manda quem fecha bloco escrever nele o proximo passo desbloqueado.
+  A MESMA LOJA ANUNCIAVA O MESMO VEICULO NOS DOIS CARTOES MAIS CAROS DE
+  /veiculos/moto-eletrica/, E A MEDIANA PUBLICADA CONTAVA O ANUNCIO DUAS VEZES.
+  Revisoes 102 e 103 no ar, conferidas (18.4). Este campo e a memoria desta ilha
+  enquanto `/areas/projeto-rodametria.md` nao existir, e o PROMPT.md manda quem
+  fecha bloco escrever nele o proximo passo desbloqueado.
 
-  OS TRES ITENS, E NENHUM ERA "MAIS UM CONSERTO":
-  1. (ALTA) o link morto 23598774355 da GTRBSHOP era o `ate: R$ 15.000,00` da
-     faixa que /veiculos/moto-eletrica/ publicava. Aposentado pela ferramenta da
-     25.11, nunca a mao — e a metade que a 25.11 chama de "a que ninguem ve"
-     provou-se DENTRO desta execucao: a coleta nova devolveu o mesmo item e a
-     quarentena o recusou EM VOZ ALTA. A mediana MUDOU, ao contrario do que o
-     despacho previu (com 4 ofertas ela era a MEDIA de duas; com 3 seria a DO
-     MEIO) — quem a refez foi a `recontar_resumo` do dono do arquivo.
-  2. a regua cobrava o token `moto` em QUALQUER lugar do titulo, e "Bicicleta
-     Bike Moto Scooter" a satisfazia com a palavra perdida no meio, numa pagina
-     que define moto eletrica como "sem pedalar". Nasce `outra_familia_na_cabeca`,
-     DECLARADA por consulta (cada `porque` cita a frase da PROPRIA pagina que
-     decide quem e sinonimo) e com a assimetria da 25.9(3): titulo que CALA outra
-     familia nao barra, titulo que a declara ANTES do proprio substantivo barra
-     sempre. A prova da 25.9 saiu em FERRAMENTA, sem copia da regua antiga:
-     `aplicar-regua-de-relevancia.py` — 1 de 58 vereditos mudou, ZERO
-     afrouxamento, ZERO recusa renomeada.
-  3. `degrau` da vitrine guardava a escada de COMPRA da 25.1 com o valor 1 em 24
-     anuncios de REVENDEDOR, ao lado do `degrau_da_escada_de_chaves` da 25.6 —
-     duas escadas, um nome. Vira `degrau_de_compra`, MEDIDO pela regua da 25.10
-     (nome da loja carregar a marca do registro, lida de `veiculos.json`), 3 em 36
-     de 36 linhas, cada uma com `degrau_de_compra_como_medido` em palavras e com
-     `tipo_de_loja` ao lado como procedencia e nunca como decisor.
+  A FILA ESTAVA ACABADA E NAO HAVIA DESPACHO ABERTO. O que esta passada executou
+  foi o ACHADO que a execucao das 17h1xZ deixou escrito aqui "para a ronda
+  decidir" — e ele era MAIOR do que o achado dizia. Tres das quatro metades sao
+  coisa que o leitor VE:
 
-  O QUE O ITEM 2 CUSTOU, E FICA ESCRITO PORQUE NAO ESTAVA PREVISTO: tirar os dois
-  anuncios derrubava a moto-eletrica para 2 ofertas contra o piso de 3 da 30.2
-  (`abre_o_portao_da_30_2: True -> False`), e uma pagina publicada HOJE perderia a
-  vitrine inteira. Fechar pela metade nao era opcao (18.2) e o outro ramo do
-  "pronto quando" pioraria a pagina. A saida foi medir se a loja tinha o que
-  repor: a Open API RESPONDE desta nuvem (com `System Error` intermitente),
-  coleta nova trouxe 20 lidas / 5 que servem / 1 recusada pela quarentena, e a
-  pagina voltou com 4 MOTOS DE VERDADE, faixa R$ 1.096,38 a R$ 13.999,00. A
-  coleta apagou o `piso_da_busca` da consulta sem avisar e os 4 cartoes sairam sem
-  `url_busca` (25.2) — quem acusou foi `coletar-piso-da-vitrine.py --conferir`.
+    cartao 1  "11.11 Moto Eletrica Adulto Panda A4 ... 150kg"   R$ 1.096,38
+    cartao 2  "Moto Eletrica Adulto Panda A4 ... 150kg"         R$ 1.522,76
 
-  E DOIS DEFEITOS QUE NAO ESTAVAM NO DESPACHO, OS DOIS NA TELA:
-  (a) a frase de leitor da 25.11 dizia "a loja mostrava o produto como esgotado"
-      para TODA aposentadoria, e desde 13/11 isso era FALSO em
-      /veiculos/patinete-eletrico/. O formato fechado da quarentena ganhou o
-      ROTULO curto da causa, a contagem sobe por causa para a tela, e as tres
-      linhas antigas foram rotuladas PELA FERRAMENTA que as escreve.
-  (b) a revisao 99, servida por mim, imprimiu `4 outra_familia_na_cabeca` — o
-      SLUG, com sublinhado — na frase que presta contas ao leitor, porque o mapa
-      de frases do PHP cai no `isset` e imprime a CHAVE. Consertado na 100, e com
-      regua: `conferir-produto-no-ar.py` recusa SUBLINHADO naquela frase, entao
-      toda recusa nova que chegar a tela sem frase de leitor cai ali.
+  os dois da loja `francyellenoliveira` (shop_id 277054573), itens 58273014613 e
+  58273026115, com o titulo igual menos a cabeca.
+
+  1. QUEM CLICASSE NO CARTAO 2 PAGAVA R$ 426,38 MAIS (38,9%) pelo mesmo produto
+     da mesma loja. Nao e escolha a oferecer: e a pagina cobrando do leitor por
+     existir.
+  2. A MEDIANA PUBLICADA ESTAVA ERRADA: R$ 5.011,38 sobre 4 "ofertas" contra
+     R$ 8.500,00 sobre as 3 DISTINTAS — R$ 3.488,62, no primeiro paragrafo da
+     pagina. E o item 3 do despacho de 04/11 num traje novo: la a mediana virou
+     o MINIMO por cinco precos iguais, e o conserto alcancou o CARROSSEL e nao a
+     CONTA.
+  3. A PAGINA PUBLICAVA `11.11` COMO NOME DO VEICULO no primeiro cartao — a
+     familia do item 1 de 09/11 (identificador de repositorio como nome de
+     produto), agora com identificador de CAMPANHA da loja.
+  4. toda frase "X dos 4" contava o mesmo anuncio duas vezes: "2 dos 4 declaram
+     a carga maxima, e os 2 dizem o mesmo numero: 150 kg" eram UM.
+
+  POR QUE NENHUM PORTAO VIA, E O `escolher_carrossel` NAO ESTA ERRADO: a regra
+  dele e de PRECO e os dois precos sao distintos. Ela recusa deduplicar por
+  produto com a razao certa, escrita no proprio codigo em 04/11 — "exigiria
+  afirmar que dois anuncios de duas lojas SAO o mesmo produto, e esta ilha nao
+  mede isso". Esta passada nao fura aquela recusa: ela e de UMA LOJA SO, e quem
+  afirma a identidade e o VENDEDOR, que publicou as DUAS formas do mesmo titulo.
+
+  A REGUA E DE FORMA E ESTREITA: a cabeca sai so quando e um par de numeros com
+  ponto, barra ou hifen (11.11, 12.12, 9.9, 11/11). `1000W Moto ...`, `48V ...`,
+  `2026 ...` e `2 Unidades de Capacete ...` ficam intactos — e o `2 Unidades` e o
+  caso que mandou a regua ser de FORMA e nao de "cabeca sem letra": ali o numero
+  E o produto.
+
+  `serve` NAO FOI TOCADO, e isso e o item 3 do despacho de hoje sendo obedecido:
+  nasce `repetido_por`, e quem le a pagina usa `entra_na_pagina`, que e as duas
+  perguntas. A marca e DERIVADA, refeita do zero em `recontar_resumo` — no dia em
+  que o mais barato sair do ar, o mais caro volta sozinho. Quarentena da 25.11 e
+  para anuncio MORTO; este esta vivo.
+
+  A CONTA DA 25.9: 57 anuncios julgados no banco inteiro, 1 veredito mudou, no
+  sentido `entra_na_pagina True -> False`. Zero afrouxamento.
+
+  E UM SEGUNDO DEFEITO, ACHADO NO AR DEPOIS DE A REVISAO 102 ENTRAR, por um
+  `grep` por `11.11` no HTML servido e nao por portao nenhum: o nome visivel
+  estava limpo e o `alt` da foto do 1o cartao ainda dizia "11.11 Moto Eletrica
+  Adulto Panda A4 ...". A metade que nao viajou (32.5-c). O `alt` passa a DERIVAR
+  do nome da tela, nos dois lados (gerador e coletor).
+
+  E ELE FECHA A CAUSA DO PRIMEIRO POR OUTRO LADO: a casca serve `alt=""` desde
+  11/11 quando o `alt` e IGUAL ao nome do cartao (leitor de tela ouviria o titulo
+  duas vezes). O `11.11` chegava ao ar PORQUE a cabeca de campanha fazia o `alt`
+  DIFERIR do nome e desligava aquela trava. Dois defeitos, uma causa — e o
+  `alt=""` que o ar passou a servir NAO e regressao: e a trava de 11/11
+  disparando pela primeira vez nestes cartoes.
+
+  A BORDA QUE ISSO MOSTROU, A UM TITULO DE DISTANCIA: o corte em 120 do coletor
+  produziria `alt` QUASE igual num nome de 121 caracteres, e a trava da casca
+  compara IGUALDADE — ela deixaria de disparar CALADA. O nome mais longo da
+  vitrine de hoje tem EXATAMENTE 120. O corte saiu dos dois lados, e o mundo do
+  nome longo foi FABRICADO no portao, porque o dado de hoje nao o tem.
+
+  PORTOES: regua 95 casos / 254 afirmacoes; `aplicar-oferta-repetida.py
+  --conferir` (nasceu nesta passada) 8 mundos fabricados / 233 afirmacoes, sempre
+  com as DUAS metades (duas lojas de titulo igual NAO deduplicam; A4 e A5 da
+  mesma loja NAO deduplicam); mutacoes-produto 38 de 38 reprovadas, 0
+  sobrevivente, 0 inerte, com 6 novas. Bancada 51 portoes sem rede e 56 com rede,
+  0 falha nas duas.
 
   O PROXIMO PASSO DESBLOQUEADO, e ele e curto porque a fila esta acabada:
   - A FILA DE BLOCOS SEGUE ACABADA. So falta o 5 (artigos-ancora), que depende de
     um `pauta.md` INEXISTENTE e que pela 17.1 NAO e arquivo da Fundacao.
-  - ACHADO NOVO PARA A RONDA DECIDIR, e nao e conserto desta nuvem: a coleta nova
-    trouxe DOIS anuncios da MESMA loja (`francyellenoliveira`) para o MESMO
-    produto (Panda A4, R$ 1.522,76 e R$ 1.096,38 na linha de campanha "11.11"), e
-    os dois estao nos cartoes 1 e 2. Nao inventei regua de deduplicacao: "um por
-    produto", "um por loja" e "os dois, porque sao duas ofertas reais com precos
-    diferentes" sao tres opcoes defensaveis sem medicao por tras (19.2 aplicada a
-    Fundacao). O que esta no ar e honesto e melhor que antes — e o espaco mais
-    caro da pagina esta gasto duas vezes com o mesmo veiculo, e o `de:` da faixa
-    sai da linha de campanha.
-  - A regua da cabeca do titulo ja esta DECLARADA tambem para `scooter-eletrica`,
-    que ainda nao tem pagina: a primeira coleta dela nasce sem o defeito de hoje.
-  - As duas pontas de pagina de produto nova seguem travadas: a 30.8 para a SERP e
-    o Mercado Livre para o produto das duas consultas de maior volume. O despacho
-    ALTA do `.gov.br`/`.leg.br` segue aberto e continua pedindo DUAS linhas na
-    lista de permitidos — gesto do Raphael, nao desta nuvem.
+  - A regua da repeticao ja vale para TODA consulta e para toda coleta nova: a
+    primeira coleta de `scooter-eletrica`, que ainda nao tem pagina, nasce sem o
+    defeito de hoje — como a regua da cabeca do titulo de 16/11 de manha.
+  - O QUE ESTA PASSADA NAO DECIDIU, e fica escrito para ninguem redescobrir: a
+    repeticao entre LOJAS DIFERENTES do mesmo produto nao e medida e nao deve
+    ser, pela 25.9 — titulo parecido entre lojas nao e prova. Se um dia houver
+    identificador de produto na resposta da loja, a pergunta muda de natureza.
+  - As duas pontas de pagina de produto nova seguem travadas: a 30.8 para a SERP
+    e o Mercado Livre para o produto das duas consultas de maior volume. O
+    despacho ALTA do `.gov.br`/`.leg.br` segue aberto e continua pedindo DUAS
+    linhas na lista de permitidos — gesto do Raphael, nao desta nuvem.
+  - E UMA MEDICAO DE CRON PARA QUEM FOR ESPERAR DESEMBARQUE AQUI: as duas esperas
+    desta execucao foram de ~8 e ~26 minutos (Sync as 19:31:32, revisao 102 as
+    19:40:05; depois revisao 103 as 20:10:14). O intervalo de 1.800 s da 20.9 e o
+    TETO e nao o passo: minha previsao de "~20:01Z" para a 102 errou por 20
+    minutos para o lado pessimista. Visitar nao antecipa evento que nao venceu, e
+    tambem nao se sabe quando ele vence — a leitura certa e a do `/status`.
 ---
 
 # Estado da ilha RODAMETRIA

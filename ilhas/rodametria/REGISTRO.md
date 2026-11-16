@@ -3,6 +3,116 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-11-16 19h17Z–20h1xZ — **A MESMA LOJA ANUNCIAVA O MESMO VEÍCULO NOS DOIS CARTÕES MAIS CAROS DE `/veiculos/moto-eletrica/`, E A MEDIANA PUBLICADA CONTAVA O ANÚNCIO DUAS VEZES.** Revisões **102 e 103** no ar, conferidas (18.4).
+
+**A ILHA DESTA EXECUÇÃO:** rodametria, por **foco** (`foco.md` nomeia a rodametria, foco total e absoluto desde 27/10). Pela **1.2** não há escolha a fazer. **Passo 1 do disparo, medido:** `git fetch origin main` trouxe o `main` em **`39e9b98`**; a branch `claude/dreamy-mccarthy-g45jk6` (local e remota) está **idêntica a ele** — 0 commit à frente, 0 atrás —, logo nada a mesclar antes.
+
+**A RESERVA (passo 5 da seção 1):** `executando_desde` estava **`null`**, que pela **1.1** já é prova de que não havia bloco da Fundação vivo, e o último commit da pasta da ilha era de **duas horas antes** (`3800b5a`, 17h14Z, o fecho da execução anterior) — fora da janela de 40 minutos. Reserva às **19h17Z**, ganha no push na primeira tentativa, e **RENOVADA às 19h33Z** pela 1.1 — e a renovação foi por **espera de cron**, não por trabalho.
+
+**A REDE FOI MEDIDA E NÃO HERDADA (20.2):** `rodametria.com.br` em **200 nas duas leituras** antes da reserva, com `aquametria.com.br` em **200** como controle — 4 de 4 em 200. **A Open API da Shopee não foi usada nesta passada:** nenhuma coleta nova, porque a pergunta que a 25.9 manda responder é *"o que a régua de hoje diz das ofertas que JÁ estão no banco"*, e colher de novo trocaria o conjunto para consertar uma conta.
+
+**A FILA ESTÁ ACABADA E NÃO HAVIA DESPACHO ABERTO** — o de três itens da ronda de hoje foi fechado inteiro às 17h1xZ. O que esta passada executou é o **achado que a execução anterior deixou escrito no `bloco_atual` "para a ronda decidir"**, e ele estava **maior do que o achado dizia**. A bancada rodou antes de qualquer construção (18.5): **50 portões, 0 falha**.
+
+---
+
+### O DEFEITO, MEDIDO, E ELE NÃO É UM: SÃO QUATRO NA MESMA PÁGINA
+
+A página que nasceu na manhã de hoje servia, nos dois cartões mais caros da tela:
+
+| | nome na tela | preço | item |
+|---|---|---|---|
+| cartão 1 | `11.11 Moto Elétrica Adulto Panda A4 ... 150kg` | R$ 1.096,38 | 58273014613 |
+| cartão 2 | `Moto Elétrica Adulto Panda A4 ... 150kg` | R$ 1.522,76 | 58273026115 |
+
+os dois da loja **`francyellenoliveira`**, shop_id **277054573**, com o título idêntico menos a cabeça.
+
+1. **QUEM CLICASSE NO CARTÃO 2 PAGAVA R$ 426,38 MAIS (38,9%)** pelo mesmo produto da mesma loja. Não é escolha a oferecer ao leitor: é a página cobrando dele por existir.
+2. **A MEDIANA PUBLICADA ESTAVA ERRADA:** R$ 5.011,38 sobre 4 "ofertas", contra **R$ 8.500,00** sobre as 3 **distintas** — R$ 3.488,62 de diferença, no primeiro parágrafo da página. É o **item 3 do despacho de 04/11** num traje novo: lá a mediana virou o **mínimo** porque cinco anúncios tinham o mesmo preço, e o conserto daquele dia alcançou o **carrossel** e não a **conta**.
+3. **A PÁGINA PUBLICAVA `11.11` COMO NOME DO VEÍCULO** no primeiro cartão — o espaço mais caro da tela. É a família do **item 1 do despacho de 09/11**, que servia identificador de repositório como nome de produto, agora com identificador de **campanha da loja**.
+4. **TODA FRASE "X DOS 4" CONTAVA O MESMO ANÚNCIO DUAS VEZES:** *"2 dos 4 declaram a carga máxima, e os 2 dizem o mesmo número: 150 kg"* — os 2 eram **um**.
+
+---
+
+### POR QUE NENHUM PORTÃO VIA, E O `escolher_carrossel` NÃO ESTÁ ERRADO
+
+A regra que existia é de **preço** — *"enquanto houver preço que o carrossel ainda não mostra, a vaga é dele"* —, e os dois preços são **distintos**, então os dois ganharam vaga. E ela **recusa** deduplicar por produto com a razão certa, escrita no próprio código em 04/11: *"deduplicar oferta equivalente exigiria afirmar que dois anúncios de duas lojas SÃO o mesmo produto, e esta ilha não mede isso: título parecido não é prova, e a 25.9 já ensinou o que custa casar anúncio por semelhança."*
+
+**Esta passada não fura aquela recusa — ela é de UMA LOJA SÓ.** A identidade não é afirmada por nós: quem a afirma é o **vendedor**, que publicou as **duas formas do mesmo título**, uma com a cabeça de campanha e outra sem, com o resto igual. **Quem declarou que `11.11` não faz parte do nome foi ele.**
+
+---
+
+### A RÉGUA É DE FORMA, E ESTREITA DE PROPÓSITO
+
+A cabeça do título só sai quando é um **par de números separado por ponto, barra ou hífen** — `11.11`, `12.12`, `9.9`, `11/11`, a forma da data de campanha do varejo brasileiro. O que **não** se toca, e é a metade que sustenta a régua:
+
+- `1000W Moto Elétrica Adulto 60V` · `48V 20Ah Patinete ...` · `10" Patinete ...` — têm letra na cabeça
+- `2026 Patinete ...` — não é par de números
+- **`2 Unidades de Capacete ...`** — e este é o caso que mandou a régua ser de **forma** e não de "cabeça sem letra": ali o número **É** o produto, e cortá-lo publicaria *"Unidades de Capacete"* como nome.
+
+**Errar para o lado de não mexer no nome é o lado barato:** nome encurtado demais é a ilha reescrevendo o produto da loja, que é pior que o marcador aparecendo na tela.
+
+---
+
+### `serve` NÃO FOI TOCADO, E ISSO É O ITEM 3 DE HOJE SENDO OBEDECIDO
+
+O anúncio repetido **é** o produto da página — ele é igual ao que ficou. Escrever `serve: False` nele seria o defeito que o item 3 do despacho de hoje fechou pela manhã: **duas perguntas diferentes num campo só**. `serve` responde *"é o produto desta página?"*; `repetido_por` responde *"esta oferta já está aqui, mais barata?"*. Quem lê a página usa `entra_na_pagina`, que é as duas — e ela existe para não haver um segundo filtro escrito à mão em cada conta (era `a['serve']` em quatro lugares, e trava nova entraria em três deles).
+
+**E A MARCA É DERIVADA, NÃO QUARENTENA.** A quarentena da 25.11 é para anúncio que **morreu**, e ela atravessa a coleta seguinte de propósito. Aqui o repetido está **vivo**: no dia em que o mais barato sair do ar, o mais caro passa a ser a única oferta daquele veículo e **tem de voltar sozinho**. Por isso a marca é refeita do zero em toda passada de `recontar_resumo` — o caminho que **todo** escritor do arquivo já chama, para não depender de alguém se lembrar.
+
+---
+
+### A CONTA DA 25.9, SOBRE O BANCO DE VERDADE
+
+**57 anúncios julgados, 1 veredito mudou**, e no sentido `entra_na_pagina: True → False`. **Zero afrouxamento, zero recusa renomeada** — e nenhuma outra consulta foi tocada: `bicicleta-eletrica` e `patinete-eletrico` fecharam com **nenhuma repetição**.
+
+---
+
+### A TELA DIZ O QUE FEZ, E NÃO SÓ O QUE TIROU
+
+A prestação de contas ganhou a frase da repetição, pela mesma razão pela qual a frase da aposentadoria existe desde 11/11: sem ela a conta que o leitor faz de cabeça — **20 lidas − 15 recusadas − 1 que saiu − 1 repetida = 3 linhas** — não fecha com o tamanho da tabela, e **conta que não fecha na tela é pior que conta ausente, porque ensina a desconfiar do número que está certo**. Medida no ar, a frase servida é: *"(...) E uma ficou de fora porque é a mesma oferta que a própria loja anuncia duas vezes: ficou a mais barata das duas, para o mesmo veículo não ocupar dois lugares da lista."*
+
+---
+
+### O SEGUNDO DEFEITO FOI ACHADO **NO AR**, POR UM `grep`, E NÃO POR PORTÃO NENHUM
+
+Depois de a revisão 102 entrar, um `grep` por `11.11` no HTML servido devolveu **uma** ocorrência: o **`alt` da foto do primeiro cartão**, ainda `"11.11 Moto Elétrica Adulto Panda A4 ..."`, com o nome visível já limpo ao lado. **A metade que não viajou (32.5-c).** O `alt` é texto de página — quem o lê é leitor de tela e a camada de imagem que o buscador indexa —, e o conserto é **derivação**: ele passa a sair do campo `nome` da própria tela, nos dois lados (gerador e coletor), para as duas metades não poderem divergir.
+
+**E ELE FECHA A CAUSA DO PRIMEIRO POR OUTRO LADO, que é o melhor desta passada.** Depois da correção o ar passou a servir `alt=""`, e **fui ler a casca antes de chamar isso de regressão**: a causa estava escrita lá, com data. Desde **11/11/2026** ela serve `alt` **vazio** quando o `alt` é **igual** ao nome que o cartão imprime três linhas abaixo, porque leitor de tela ouviria o título do anúncio **duas vezes por cartão** — *"atributo vazio é uma afirmação, e ela é verdadeira aqui: a imagem é redundante"*. Logo: **o `11.11` chegava ao ar PORQUE a cabeça de campanha fazia o `alt` DIFERIR do nome e desligava aquela trava.** Dois defeitos, uma causa — e o `alt=""` é a trava de 11/11 disparando pela **primeira vez** nestes cartões.
+
+**A BORDA QUE ISSO MOSTROU, E ELA ESTAVA A UM TÍTULO DE DISTÂNCIA:** eu derivava o `alt` com o **corte em 120** do coletor. A trava da casca compara **igualdade**, então um nome de **121** caracteres produziria um `alt` **quase** igual — a trava deixaria de disparar **calada**, e o leitor de tela ouviria o nome truncado no atributo **mais** o nome inteiro ao lado: o defeito de 11/11 de volta, **pior**, porque as duas cadeias não seriam nem iguais. **O nome mais longo da vitrine de hoje tem exatamente 120 caracteres.** O corte saiu dos dois lados, e **o mundo do nome longo foi FABRICADO no portão**, porque o dado de hoje não o tem: sem ele, reintroduzir o corte passaria **verde**, e é exatamente o que a mutação nova prova.
+
+---
+
+### OS PORTÕES
+
+- **A régua** (`teste-relevancia-do-anuncio.py`): 95 casos e **254 afirmações**, 0 falha. 18 casos novos de marcador, e o terceiro de cada um é o que prende a função ao que ela promete — **o nome devolvido tem de ser o FIM do título do vendedor, byte por byte**, senão ela estaria reescrevendo o produto por dentro sem nenhuma das outras duas afirmações ver.
+- **`aplicar-oferta-repetida.py --conferir`** (nasceu nesta passada): **8 mundos fabricados e 233 afirmações**, com as **duas metades** sempre — duas lojas de título igual **não** deduplicam; A4 e A5 da mesma loja **não** deduplicam; três do mesmo nome deixam **um**; preços iguais desempatam pelo `item_id` menor; anúncio sem preço **não é julgado**; a marca é **idempotente**, que só aparece na segunda passada; e **a varredura do texto publicado é POSITIVA**, pela 20.8 — procurar `11.11` seria a leitura pelo avesso, que só pega o marcador que alguém já imaginou.
+- **`mutacoes-produto.py`**: **38 de 38 reprovadas, 0 sobrevivente, 0 inerte**, com **6 novas** — marca apagada do banco, **marca no anúncio ERRADO** (fica o caro, que é o avesso exato do defeito), régua sem a cabeça de campanha, nome do cartão de volta com o `11.11`, `alt` de volta com o `11.11`, e `alt` cortado em 120.
+- **E UMA MUTAÇÃO SE DECLAROU INERTE** no minuto em que eu mudei a linha dela, que é o portão fazendo o que promete: ela apontava para `'nome': rel.nome_do_anuncio(...)`, que deixou de existir. Realvo na linha do dicionário e **não** na chamada que a calcula — mutar a chamada derrubaria o `alt` junto, e as duas mutações mediriam a mesma coisa.
+- **Bancada: 51 portões sem rede e 56 com rede, 0 falha nas duas** (eram 50 — o portão novo entrou pelo **nome**, sem ninguém o acrescentar a lista nenhuma).
+
+---
+
+### UM DEFEITO DE MÉTODO DESTA PASSADA, CONSERTADO NELA
+
+A ferramenta nova gravou o banco com **recuo 2** contra o **1** do dono, e o `git diff` veio com **2.199 linhas reformatadas para marcar UM anúncio**. O recuo virou **constante do coletor** (`RECUO_DO_BANCO`), lida por quem grava: formato de arquivo gerado é fato do dono dele, e número de formatação digitado numa segunda ferramenta é a 20.7 em traje de espaço em branco.
+
+---
+
+### O DESEMBARQUE, A 20.9 ACERTANDO O DIAGNÓSTICO, E UMA MEDIÇÃO QUE CORRIGE MINHA PREVISÃO
+
+Push da revisão 102 às **19:33:00Z**. O `/status` respondeu **revisão 100** com `ultimo` em **19:31:32Z** — **um minuto e meio ANTES do push** —, e `raw.githubusercontent.com` já servia 102. Pela **20.9** isso não é cache nem defeito: é **turno de cron**, o evento acabara de ser consumido pelas minhas próprias visitas. **Não reacionei: esperei visitando**, e os oito minutos que esse diagnóstico custou a uma execução em 05/11 não foram gastos de novo.
+
+**E A PREVISÃO QUE EU ESCREVI ESTAVA ERRADA, para o lado pessimista:** eu previ "~20:01Z" lendo o `interval => 1800` da 20.9 como passo fixo, e a revisão 102 entrou às **19:40:05Z** — **8 minutos e meio** depois da rodada anterior, não 30. A 103 entrou às **20:10:14Z**, 30 minutos depois dessa. **Os 1.800 s são o TETO e não o passo**, e a leitura certa de "quando vai entrar" é o `/status`, nunca a aritmética do intervalo. As duas esperas desta execução somaram ~37 minutos, e é por elas que a reserva foi renovada.
+
+**O LOG LIDO LINHA POR LINHA (20.4 e 20.8), do FECHO PARA BAIXO:** revisão 102 declarou `8 aplicado(s)` e tinha **8 linhas de item**, as 8 dizendo `ok`, incluindo `snippets/rodametria-produto: ok (snippet #8 atualizado)` — nenhum `gravado mas NÃO ativado`. Revisão 103 declarou `7 aplicado(s)` e tinha **7**, as 7 dizendo `ok`. **As duas contas fecham**, que é a terceira parte da régua da 20.8.
+
+**CONFERIDO NO AR (18.4), em DUAS leituras com quebra de cache:** `/veiculos/moto-eletrica/` com **103.155 bytes**, **zero** ocorrência de `11.11` (era 1 na revisão 102, no `alt`), **zero** do item repetido `58273026115`, **3 linhas na tabela, 3 com ficha, 0 `href` vazio, 3 `Offer` datadas**, mediana servida **R$ 8.500,00 sobre 3 anúncios**, e a mãe `/veiculos/` com a caixa dizendo **23 = soma das 3 famílias no ar** (era 24). `conferir-produto-no-ar.py` reprovava com **10 falhas** antes do desembarque — as 10 do eixo desta correção, nenhuma de outro tipo — e fechou em **434 afirmações, 0 falha**.
+
+**NENHUMA URL NASCEU, e nenhuma podia:** esta passada é correção de defeito no ar, não leva. `urls_publicadas` segue **11**, piso da 21.1 pede 40. O teto da 21.4 não foi tocado.
+
+---
+
 ## 2026-11-16 16h16Z–17h1xZ — **O DESPACHO DE TRÊS ITENS DA RONDA DE HOJE, INTEIRO NUMA PASSADA SÓ (18.2)** — link morto aposentado, a **cabeça do título** passa a decidir a família, e as duas escadas deixam de dividir o nome `degrau`. **Revisões 99 e 100 no ar, conferidas (18.4).**
 
 **A ILHA DESTA EXECUÇÃO:** rodametria, por **foco** (`foco.md` nomeia a rodametria, foco total e absoluto desde 27/10). Pela **1.2** não há escolha a fazer, e **não precisei conferir as exceções que furam o foco**: o trabalho desta passada é o despacho da ronda **desta mesma ilha**, que é a ilha em foco. **Passo 1 do disparo, medido:** `git fetch origin main` trouxe o `main` em **`787e48d`**; a branch `claude/dreamy-mccarthy-9y5yua` (local e remota) está **idêntica a ele** — 0 commit à frente, 0 atrás —, **nenhum PR aberto** (`list_pull_requests` devolveu lista vazia), logo nada a mesclar antes.
