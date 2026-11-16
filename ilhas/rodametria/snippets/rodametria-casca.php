@@ -1146,7 +1146,14 @@ function rodametria_casca_escada_de_compra( $item ) {
 		return array(
 			'url'        => $ficha,
 			'url_busca'  => $busca,
-			'degrau'     => isset( $item['degrau'] ) ? (int) $item['degrau'] : 0,
+			/* `degrau_de_compra`, E NAO `degrau`, DESDE 16/11/2026 (item 3 do
+			   despacho da ronda daquele dia): nesta ilha `degrau_da_escada`,
+			   `degrau_escolhido` e o `degrau` de `escada_medida` guardam o
+			   degrau da escada de PALAVRA-CHAVE da 25.6, e o campo da vitrine
+			   chamado so `degrau` guardava o da escada de LINK DE COMPRA da
+			   25.1. Duas escadas, um nome: quem lesse o banco pela 25.1 lia
+			   "loja oficial do fabricante" em 24 anuncios de revendedor. */
+			'degrau_de_compra' => isset( $item['degrau_de_compra'] ) ? (int) $item['degrau_de_compra'] : 0,
 			'piso_subiu' => false,
 			'tem_saida'  => true,
 		);
@@ -1160,7 +1167,7 @@ function rodametria_casca_escada_de_compra( $item ) {
 		return array(
 			'url'        => $busca,
 			'url_busca'  => '',
-			'degrau'     => 4,
+			'degrau_de_compra' => 4,
 			'piso_subiu' => true,
 			'tem_saida'  => true,
 		);
@@ -1175,7 +1182,7 @@ function rodametria_casca_escada_de_compra( $item ) {
 	return array(
 		'url'        => '',
 		'url_busca'  => '',
-		'degrau'     => 0,
+		'degrau_de_compra' => 0,
 		'piso_subiu' => false,
 		'tem_saida'  => false,
 	);
@@ -1207,7 +1214,7 @@ function rodametria_casca_cartao_de_compra( $item ) {
 	$url    = $escada['url'];
 	$rotulo = rodametria_casca_rotulo_da_loja(
 		isset( $item['programa'] ) ? $item['programa'] : '',
-		$escada['degrau'] );
+		$escada['degrau_de_compra'] );
 
 	$html = '<li class="rdm-molde-cartao">';
 

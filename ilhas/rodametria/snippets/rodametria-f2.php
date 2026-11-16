@@ -484,7 +484,12 @@ function rodametria_f2_itens_da_vitrine( $d ) {
 				? $f['url_afiliado_da_ficha'] : '',
 			'url_busca'     => isset( $f['url_busca'] ) ? $f['url_busca'] : '',
 			'programa'      => $f['programa'],
-			'degrau'        => $f['degrau'],
+			/* O `degrau` do `f2-respostas.json` vem de `afiliado.degrau` do
+			   banco de veiculos, que e o nome que a PROPRIA 25.1 reserva para a
+			   escada de link de compra — e naquele arquivo nao existe escada de
+			   chaves para confundir com ele. A casca, que serve as duas fontes,
+			   pede o nome sem ambiguidade. */
+			'degrau_de_compra' => $f['degrau'],
 			'imagem'        => $f['imagem'],
 			/* O PRECO PARA A CAMADA DA MAQUINA, E ELE SO EXISTE QUANDO O PRECO E
 			   A SAIDA SAO DA MESMA LOJA (12/11/2026).

@@ -479,7 +479,7 @@ function rdm_produto_tabela_html( $pagina ) {
 			$html .= '<td><a href="' . esc_url( $escada['url'] ) . '"'
 				. ' rel="sponsored noopener" target="_blank">'
 				. esc_html( rodametria_casca_rotulo_da_loja(
-					$item['programa'], $escada['degrau'] ) ) . '</a></td>';
+					$item['programa'], $escada['degrau_de_compra'] ) ) . '</a></td>';
 		} else {
 			/* NEM FICHA NEM BUSCA. O anuncio continua NOMEADO na tabela, porque
 			   a secao 7 manda todo item ser nomeado uma vez em cada resposta —
@@ -743,16 +743,42 @@ function rdm_produto_recusas_html( $pagina ) {
 	   esta frase a conta que o leitor faz de cabeca (lidas menos recusadas)
 	   NAO FECHA com o tamanho da tabela. Conta que nao fecha na tela e pior
 	   que conta ausente: ela ensina a desconfiar do numero que esta certo. */
+	/* A CAUSA VEM DO BANCO, E NAO ESTAVA VINDO — consertado em 16/11/2026, item
+	   1 do despacho da ronda daquele dia. As duas frases que ficavam aqui diziam
+	   "a loja mostrava o produto como esgotado" para TODA aposentadoria, e a
+	   25.11 pede a causa em palavras dizendo, com todas as letras, que a frase
+	   "e honesta porque e verdade". Desde 13/11 ela era FALSA nesta ilha: o
+	   anuncio 23898889810 de `/veiculos/patinete-eletrico/` saiu porque a ficha
+	   dele devolve "O produto nao existe", que a propria 25.4 separa de
+	   `Esgotado` como o OUTRO desfecho. Tela que diz a causa errada e pior que
+	   tela calada: ela ensina a desconfiar do que esta certo, que e o mesmo
+	   argumento com que a 25.11 manda a frase existir. */
 	if ( $aposentadas > 0 ) {
+		$por_causa = isset( $n['aposentadas_por_causa'] ) && is_array( $n['aposentadas_por_causa'] )
+			? $n['aposentadas_por_causa'] : array();
+		$frases = array(
+			'esgotado'           => 'a loja mostrava o produto como esgotado',
+			'produto-nao-existe' => 'a página do produto já não existia na loja',
+		);
+		$ditas = array();
+		foreach ( $por_causa as $causa => $quantos ) {
+			if ( ! isset( $frases[ $causa ] ) || (int) $quantos < 1 ) {
+				continue;
+			}
+			$ditas[] = ( 1 === count( (array) $por_causa ) && 1 === (int) $quantos )
+				? $frases[ $causa ]
+				: (int) $quantos . ' porque ' . $frases[ $causa ];
+		}
+		/* SEM ROTULO NAO SE INVENTA CAUSA: a frase diz que a oferta saiu e para
+		   ali. Causa suposta na tela e exatamente o que esta correcao desfez. */
+		$causa_dita = $ditas ? ( ': ' . implode( ' · ', $ditas ) ) : '';
 		$frase .= ' ' . ( 1 === $aposentadas
-			? 'Outra saiu da lista depois dessa leitura: quando fomos abrir a página '
-				. 'dela, a loja mostrava o produto como esgotado — e oferta que não '
-				. 'vende não entra na tabela nem nas contas de preço desta página.'
-			: sprintf(
-				'Outras %d saíram da lista depois dessa leitura: quando fomos abrir as '
-				. 'páginas delas, a loja mostrava os produtos como esgotados — e oferta '
-				. 'que não vende não entra na tabela nem nas contas de preço desta página.',
-				$aposentadas ) );
+			? sprintf( 'Outra saiu da lista depois dessa leitura, quando fomos abrir a '
+				. 'página dela%s — e oferta que não vende não entra na tabela nem nas '
+				. 'contas de preço desta página.', $causa_dita )
+			: sprintf( 'Outras %d saíram da lista depois dessa leitura, quando fomos abrir '
+				. 'as páginas delas%s — e oferta que não vende não entra na tabela nem '
+				. 'nas contas de preço desta página.', $aposentadas, $causa_dita ) );
 	}
 
 	return '<p class="rdm-recusas">' . esc_html( $frase ) . '</p>';

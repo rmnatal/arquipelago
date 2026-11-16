@@ -265,7 +265,7 @@ foreach ( $itens as $i => $el ) {
 	$escada = rodametria_casca_escada_de_compra( array(
 		'url'       => isset( $f['url_afiliado_da_ficha'] ) ? $f['url_afiliado_da_ficha'] : '',
 		'url_busca' => isset( $f['url_busca'] ) ? $f['url_busca'] : '',
-		'degrau'    => $f['degrau'],
+		'degrau_de_compra'    => $f['degrau'],   /* `$f` e cru do f2-respostas.json */
 	) );
 	afirma( $escada['url'] === $of['url'],
 		"C9: a url da oferta de $nome e a que a escada da 25.2 escolhe, nao a crua" );

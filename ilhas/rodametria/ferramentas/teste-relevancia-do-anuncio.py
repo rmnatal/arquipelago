@@ -345,13 +345,50 @@ def _contem(texto_normalizado, termo):
 
 
 def julgar(titulo, exige_todas, exige_alguma=(), recusas_desligadas=(),
-           substantivo=None):
+           substantivo=None, cabeca_de_outra_familia=()):
     """Devolve (serve, recusado_por, exigencia_que_faltou, exigencias_atendidas).
 
     `recusas_desligadas` existe para a consulta cujo produto E o que outra
     recusa: uma pagina de PECA desta ilha vai querer `acessorio` desligada. Ela
     e DECLARADA na consulta, nunca decidida aqui — regua que escolhe sozinha
     qual trava vale e a regua que mede a si mesma.
+
+    `cabeca_de_outra_familia` E A TRAVA DE 16/11/2026, item 2 do despacho da
+    ronda daquele dia, e ela tambem e DECLARADA na consulta pelo mesmo motivo.
+    O QUE ELA CONSERTA, medido no ar: o 1o cartao de `/veiculos/moto-eletrica/`,
+    pagina publicada em 16/11, era o anuncio 58271745327 — *"Bicicleta Bike Moto
+    Scooter Eletrica Dobravel Adulto ..."*, cuja descricao lista "Pedais para
+    utilizacao como bicicleta" — numa pagina que define moto eletrica, poucos
+    paragrafos abaixo do cartao, como *"a que voce senta e anda no acelerador,
+    sem pedalar"*. A regra de `exige_todas` cobra o token `moto` em QUALQUER
+    lugar do titulo, e "Bicicleta Bike **Moto** Scooter" a satisfaz com a palavra
+    perdida no meio enquanto a CABECA do titulo diz "Bicicleta Bike". E a
+    armadilha 1 da 25.7 (*"o tipo tem de ser o objeto, e nao uma palavra perdida
+    no meio"*) e a 3 (*"o produto na cabeca do titulo"*).
+
+    A FORMA DA TRAVA E A ASSIMETRIA DA 25.9(3), e e ela que a torna barata:
+    titulo que CALA a outra familia nao barra nada; titulo que declara OUTRA
+    familia ANTES do proprio substantivo barra sempre, porque ai ele nao esta
+    calado sobre o que vende — *esta dizendo outro*. Nao se exige o substantivo
+    na cabeca (isso recusaria `VYRON Moto Eletrica Cross GT600`, com a marca na
+    frente): exige-se que nenhuma familia CONCORRENTE venha antes dele.
+
+    E A LISTA E DECLARADA POR CONSULTA, nunca global, porque sinonimo de uma
+    pagina e familia concorrente de outra, e isto esta nas proprias paginas
+    desta ilha: a `/veiculos/moto-eletrica/` escreve *"na loja ela aparece como
+    moto, como scooter e como ciclomotor eletrico"* (`scooter` e SINONIMO ali, e
+    nao pode barrar) e a `/veiculos/bicicleta-eletrica/` escreve *"aqui tambem
+    chamam de bike eletrica e de e-bike"* (`bike` e sinonimo ali). Lista global
+    barraria o anuncio 58215666648, *"Scooter (Bike) Eletrica Foston X15 Max
+    ... Moto Eletrica Adulto"*, que e o produto certo da pagina da moto.
+
+    ELA E A ULTIMA A DECIDIR, DEPOIS DAS `RECUSAS`, de proposito: assim ela so
+    pode tirar o que passava, nunca TROCAR o nome de uma recusa que ja existia —
+    e a prova da 25.9 (*"regua antiga sobre o banco antigo e a nova sobre o
+    novo, anuncio por anuncio, com a contagem de quantos vereditos mudaram"*)
+    sai limpa, com os vereditos mudados sendo exatamente os anuncios que a trava
+    nova barra. A ferramenta que faz essa prova e
+    `ferramentas/aplicar-regua-de-relevancia.py`.
     """
     t = normalizar(titulo)
     atendidas = []
@@ -380,7 +417,41 @@ def julgar(titulo, exige_todas, exige_alguma=(), recusas_desligadas=(),
                 continue              # e peca DO veiculo, nao o produto a venda
             return (False, nome, palavra, atendidas)
 
+    # A TRAVA DA CABECA DE OUTRA FAMILIA — ver o docstring. Ela e a ULTIMA, e
+    # `onde_o_produto` aqui nunca e -1: `exige_todas` ja provou que o
+    # substantivo esta no titulo (ele e `exige_todas[0]` quando a consulta nao
+    # o declara por nome).
+    for palavra in cabeca_de_outra_familia:
+        onde = _onde(t, palavra)
+        if 0 <= onde < onde_o_produto:
+            return (False, 'outra_familia_na_cabeca', palavra, atendidas)
+
     return (True, None, None, atendidas)
+
+
+def julgar_declaracao(titulo, familia, sem_cabeca_de_outra_familia=False):
+    """`julgar` lendo a DECLARACAO da consulta, e ela e a unica traducao dela.
+
+    POR QUE ELA EXISTE, E E A 20.7 AO PE DA LETRA: ate 16/11/2026 a traducao de
+    `familia` (o dicionario do `consultas-de-produto.json`) para os argumentos
+    do `julgar` estava escrita DUAS vezes dentro do `coletar-por-consulta.py` —
+    uma no `julgar_oferta`, que grava o veredito, e outra no `conferir()`, que
+    o confere. Duas declaracoes do mesmo fato comecam iguais e so uma sobe: a
+    trava nova de `cabeca_de_outra_familia` entraria numa delas, e o portao que
+    confere o banco ficaria conferindo com a regua velha — ou seja, aprovando.
+
+    `sem_cabeca_de_outra_familia=True` devolve o veredito da REGUA ANTIGA, sem
+    nenhuma copia do codigo antigo: e com ele que a prova da 25.9 e feita.
+    """
+    return julgar(
+        titulo,
+        exige_todas=tuple(familia['exige_todas']),
+        exige_alguma=tuple(familia.get('exige_alguma') or ()),
+        recusas_desligadas=tuple(familia.get('recusas_desligadas') or ()),
+        substantivo=familia.get('substantivo'),
+        cabeca_de_outra_familia=(
+            () if sem_cabeca_de_outra_familia
+            else tuple(familia.get('recusa_cabeca_de_outra_familia') or ())))
 
 
 # ---------------------------------------------------------------------------
@@ -713,8 +784,48 @@ BICICLETA = dict(exige_todas=('bicicleta', 'eletric'), exige_alguma=QUALIFICADOR
 MOTO = dict(exige_todas=('moto', 'eletric'), exige_alguma=QUALIFICADOR_ADULTO,
             substantivo='moto')
 
+# AS TRES FAMILIAS COM A LISTA DE CABECA DE 16/11/2026, para o autoteste
+# exercer a trava nova. A lista de verdade mora no `consultas-de-produto.json`;
+# aqui ela e repetida so para o caso de teste, como as outras tres acima.
+MOTO_COM_CABECA = dict(MOTO, recusa_cabeca_de_outra_familia=('bicicleta', 'patinete'))
+BICICLETA_COM_CABECA = dict(BICICLETA, recusa_cabeca_de_outra_familia=('patinete', 'moto'))
+PATINETE_COM_CABECA = dict(PATINETE, recusa_cabeca_de_outra_familia=('bicicleta', 'moto'))
+
 CASOS = (
     # (titulo, familia, serve_esperado, recusa_esperada)
+    # ---- A TRAVA DA CABECA DE OUTRA FAMILIA (item 2 do despacho de 16/11/2026)
+    # O TITULO REAL, 1o cartao de `/veiculos/moto-eletrica/` em 16/11/2026: a
+    # cabeca diz "Bicicleta Bike" e a descricao do anuncio lista "Pedais para
+    # utilizacao como bicicleta", numa pagina que define a moto como "sem
+    # pedalar". Com a lista declarada ele CAI; sem ela, ele serve — e e esse o
+    # par que faz a trava poder falhar (secao 8).
+    ('Bicicleta Bike Moto Scooter Elétrica Dobrável Adulto Bateria de Lítio 48v 10Ah 32km/h 350W',
+     MOTO_COM_CABECA, False, 'outra_familia_na_cabeca'),
+    ('Bicicleta Bike Moto Scooter Elétrica Dobrável Adulto Bateria de Lítio 48v 10Ah 32km/h 350W',
+     MOTO, True, None),
+    # O MESMO TITULO NA PAGINA DA BICICLETA SERVE, e e a metade que prova que a
+    # trava e por consulta e nao global: ali `bicicleta` E a cabeca.
+    ('Bicicleta Bike Moto Scooter Elétrica Dobrável Adulto Bateria de Lítio 48v 10Ah 32km/h 350W',
+     BICICLETA_COM_CABECA, True, None),
+    # O ANUNCIO CERTO QUE UMA LISTA GLOBAL MATARIA: `Scooter (Bike)` na cabeca,
+    # `Moto Eletrica` depois. `scooter` e `bike` NAO estao na lista da moto
+    # porque a propria pagina os declara sinonimos.
+    ('Scooter (Bike) Elétrica Foston X15 Max (X13 EX) 1000w 32km/h Moto Elétrica Adulto Bateria Litio',
+     MOTO_COM_CABECA, True, None),
+    # A MARCA NA FRENTE DO SUBSTANTIVO NAO BARRA: a trava nao exige o
+    # substantivo na cabeca, exige que nenhuma familia concorrente venha antes.
+    ('VYRON Moto Elétrica Cross GT600 7500W Pico 72V 30Ah Off Road Trilha Adulto 4000W',
+     MOTO_COM_CABECA, True, None),
+    # E O AVESSO, EM MUNDO FABRICADO: familia concorrente DEPOIS do substantivo
+    # nao barra — a pagina da bicicleta publica hoje um titulo assim
+    # ("Bicicleta Elétrica Ebike M2 ... Scooter eletrica Trabalho adulto").
+    ('Patinete Elétrico Adulto 350W Dobrável tipo Bicicleta Elétrica',
+     PATINETE_COM_CABECA, True, None),
+    # E A TRAVA NAO ROUBA RECUSA QUE JA EXISTIA, porque ela e a ULTIMA: este
+    # titulo tem `bicicleta` na cabeca E e capacete, e a recusa que sai e
+    # `acessorio`, como antes dela existir.
+    ('Capacete de Bicicleta Leve para Adultos com Óculos para Moto Elétrica',
+     MOTO_COM_CABECA, False, 'acessorio'),
     ('Patinete Elétrico Adulto 350W 36V | Dobrável 30km/h com Bluetooth, LED Alta Potência',
      PATINETE, True, None),
     ('Patinete Elétrico Adulto Dobrável Turbo 550W - 40km/h, 40km Autonomia Portátil',
@@ -906,7 +1017,12 @@ CASOS_DO_PAR_DA_F2 = (
 def autoteste():
     falhas = []
     for titulo, familia, esperado, recusa in CASOS:
-        serve, por, _, _ = julgar(titulo, **familia)
+        # PELO `julgar_declaracao`, E NAO PELO `julgar`, de proposito: assim o
+        # autoteste exerce a UNICA traducao de `familia` para argumentos, que e
+        # a mesma que o coletor usa para gravar e para conferir (20.7). Com
+        # `julgar(**familia)` o caso novo de 16/11 nem chegava a rodar: ele
+        # estourava `TypeError` na chave da declaracao.
+        serve, por, _, _ = julgar_declaracao(titulo, familia)
         if serve is not esperado or por != recusa:
             falhas.append('FALHOU: %r -> serve=%s recusado_por=%s (esperava %s/%s)'
                           % (titulo[:60], serve, por, esperado, recusa))

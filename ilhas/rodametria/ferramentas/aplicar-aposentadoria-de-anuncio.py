@@ -115,6 +115,21 @@ def conferir():
         apos = col.aposentados_de(bloco)
         r = bloco['resumo']
 
+        # 0. O ROTULO DA CAUSA TEM DE SER UM DOS DECLARADOS, senao a tela nao
+        #    tem frase de leitor para ele e a 25.11 fica sem a metade que ela
+        #    chama de honesta ("ela e honesta porque e verdade").
+        for causa, quantos in sorted(col.causas_em_quarentena(bloco).items()):
+            afirmacoes += 1
+            if causa not in col.CAUSAS_DE_APOSENTADORIA:
+                falhas.append('%s: a quarentena usa a causa %r (%d linha(s)) e ela nao '
+                              'esta em CAUSAS_DE_APOSENTADORIA: a tela nao tem frase de '
+                              'leitor para ela' % (bid, causa, quantos))
+        afirmacoes += 1
+        if sum(col.causas_em_quarentena(bloco).values()) != len(apos):
+            falhas.append('%s: %d linha(s) de quarentena e %d com rotulo de causa lido: '
+                          'linha sem rotulo sai da contagem E sai da LISTA DE BLOQUEIO'
+                          % (bid, len(apos), sum(col.causas_em_quarentena(bloco).values())))
+
         # 1. O formato da linha e fechado, porque o coletor LE o id dela.
         for linha in apos:
             afirmacoes += 1
@@ -172,6 +187,64 @@ def conferir():
 
 
 # ---------------------------------------------------------------------------
+def rotular(args):
+    """PoE o rotulo curto da causa numa linha de quarentena que nasceu sem ele.
+
+    POR QUE ESTE MODO EXISTE, E POR QUE ELE E AQUI. O formato fechado da 25.11
+    ganhou o rotulo curto da causa em 16/11/2026, para a frase de leitor poder
+    dizer a causa CERTA em palavras — ate aquele dia a tela servia "esgotado"
+    para toda aposentadoria, e desde 13/11 isso era falso em
+    `/veiculos/patinete-eletrico/`, que tem um anuncio aposentado por "O produto
+    nao existe".
+
+    Tres linhas ja estavam gravadas sem rotulo. Editar prosa de quarentena a mao
+    e exatamente o que a 25.11 proibe ("o conserto e ferramenta e nao edicao a
+    mao"), e o dono da linha e esta ferramenta — entao o rotulo entra por aqui,
+    com a troca IMPRESSA e o portao cobrando o formato depois. O modo NAO toca a
+    prosa da causa nem a da ultima medicao: ele so insere o rotulo que a
+    contagem le.
+    """
+    banco = carregar()
+    col = _coletor()
+    if args.causa not in col.CAUSAS_DE_APOSENTADORIA:
+        print('REPROVADO: causa %r nao esta em CAUSAS_DE_APOSENTADORIA (%s)'
+              % (args.causa, ', '.join(sorted(col.CAUSAS_DE_APOSENTADORIA))))
+        return 1
+    alvo = None
+    for bloco in banco['consultas']:
+        for i, linha in enumerate(col.aposentados_de(bloco)):
+            if ('item %d da loja' % args.item) in linha:
+                alvo = (bloco, i, linha)
+    if alvo is None:
+        print('REPROVADO: nenhuma linha de quarentena menciona o item %d' % args.item)
+        return 1
+    bloco, i, linha = alvo
+    if ' — CAUSA (' in linha:
+        print('nada a fazer: a linha do item %d ja tem rotulo' % args.item)
+        return 0
+    if ' — CAUSA: ' not in linha:
+        print('REPROVADO: a linha do item %d nao tem o trecho " — CAUSA: "' % args.item)
+        return 1
+    nova = linha.replace(' — CAUSA: ', ' — CAUSA (%s): ' % args.causa, 1)
+    if not col.PADRAO_APOSENTADO.match(nova):
+        print('REPROVADO: a linha rotulada nao casa com o formato fechado.')
+        return 1
+    print('ROTULANDO a quarentena do item %d com a causa %r:' % (args.item, args.causa))
+    print('  - antes: ...%s...' % linha[linha.index(' — CAUSA: '):][:60])
+    print('  - depois: ...%s...' % nova[nova.index(' — CAUSA ('):][:60])
+    print('  - a prosa da causa e a da ultima medicao NAO foram tocadas.')
+    if not args.gravar:
+        print('\nnada gravado (rode outra vez com --gravar).')
+        return 0
+    bloco['anuncios_aposentados'][i] = nova
+    with open(BANCO, 'w', encoding='utf-8') as f:
+        json.dump(banco, f, ensure_ascii=False, indent=1)
+        f.write('\n')
+    print('\ngravado em %s' % os.path.relpath(BANCO, RAIZ))
+    return 0
+
+
+# ---------------------------------------------------------------------------
 def aposentar(args):
     banco = carregar()
     col = _coletor()
@@ -192,8 +265,16 @@ def aposentar(args):
         return 1
     a = alvo[0]
 
+    if args.causa not in col.CAUSAS_DE_APOSENTADORIA:
+        print('REPROVADO: causa %r nao esta na lista do coletor (%s). O rotulo e o que a '
+              'TELA conta para dizer a causa em palavras (25.11): causa nova se declara '
+              'em `CAUSAS_DE_APOSENTADORIA`, com a frase de leitor dela, antes de ser '
+              'usada aqui.' % (args.causa, ', '.join(sorted(col.CAUSAS_DE_APOSENTADORIA))))
+        return 1
+
     linha = ('APOSENTADO EM %s — item %d da loja %d — %s — R$ %s, preco de %s, '
-             'degrau %s da escada de chaves, encurtado %s, loja "%s" — CAUSA: %s '
+             'degrau %s da escada de chaves, encurtado %s, loja "%s" — CAUSA (' +
+             args.causa + '): %s '
              '|| ULTIMA MEDICAO: %s'
              % (args.em, int(a['item_id']), int(a['shop_id']), a['titulo'].strip(),
                 (('%.2f' % a['preco']).replace('.', ',')) if a.get('preco') is not None
@@ -246,6 +327,9 @@ def aposentar(args):
 def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--conferir', action='store_true', help='portao, sem rede')
+    p.add_argument('--rotular', action='store_true',
+                   help='poe o rotulo curto da causa numa linha de quarentena antiga '
+                        '(pede --item e --causa)')
     p.add_argument('--consulta')
     p.add_argument('--item', type=int)
     p.add_argument('--causa', help='nome curto da causa: esgotado, produto-nao-existe')
@@ -257,6 +341,11 @@ def main():
 
     if a.conferir:
         return conferir()
+    if a.rotular:
+        if a.item is None or not a.causa:
+            print('REPROVADO: --rotular pede --item e --causa')
+            return 1
+        return rotular(a)
     faltando = [n for n in ('consulta', 'item', 'causa', 'em', 'causa_prosa', 'ultima_medicao')
                 if getattr(a, n) in (None, '')]
     if faltando:

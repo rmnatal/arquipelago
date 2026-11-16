@@ -459,6 +459,24 @@ CHAVES_DE_BASTIDOR = {
     "o_que_decide_rotulo", "fonte", "descricao", "o_que_falta",
     "proibicao_explicita", "por_que_a_trava_mudou_de_forma_em_06_11_2026",
     "valor",
+    # `anuncios_aposentados` ENTROU EM 16/11/2026, E A RAZAO E DE NATUREZA, nao
+    # de conveniencia: a prosa de quarentena da 25.11 NAO vai para a tela. O que
+    # a tela recebe daquele bloco e a CONTAGEM (`numeros.aposentadas` e
+    # `numeros.aposentadas_por_causa`), e a frase de leitor e escrita no PHP, que
+    # esta regua ja mede por outro caminho. A prosa e bastidor escrito por
+    # ferramenta, com portao proprio: `aplicar-aposentadoria-de-anuncio.py
+    # --conferir` cobra o formato fechado, o rotulo de causa conhecido e a soma
+    # `ofertas_lidas == anuncios + aposentados`.
+    #
+    # E O QUE A FEZ ACUSAR E JUSTAMENTE O QUE A 25.11 MANDA GUARDAR: a linha
+    # carrega o TITULO da loja inteiro, e o titulo aposentado em 16/11 e
+    # `Scooter Moto Eletrica 1000w Adulto Sem Cnh Bluetooth Re`. A licenca de
+    # citacao desta regua compara a cadeia INTEIRA com os titulos colhidos, e
+    # aqui o titulo vem embutido numa frase maior — e, por desenho da 25.11, ele
+    # ja saiu dos campos vivos, ou seja saiu tambem do conjunto de citacoes. Ler
+    # prosa de bastidor como afirmacao de tela reprovaria a ilha por ter feito o
+    # conserto certo.
+    "anuncios_aposentados",
 }
 
 # O TITULO DO ANUNCIO, COLHIDO. Ele VAI para a tela — e vai como CITACAO, que e a

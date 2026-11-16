@@ -183,13 +183,43 @@ def contagem_de_rotulo(anuncios):
 # de 11/11/2026: "zero ocorrencia em campo vivo do banco"). Ele vive DENTRO da
 # prosa da quarentena, num formato fechado, e e de la que esta funcao o le.
 # Prosa que e tambem a lista de quarentena nao envelhece separada da historia.
+# O FORMATO FECHADO DA LINHA DE QUARENTENA (25.11), E ELE GANHOU O ROTULO CURTO
+# DA CAUSA EM 16/11/2026. A linha ja guardava a causa em PROSA, e prosa nao se
+# conta: a frase de leitor que a 25.11 exige — *"outra saiu da lista depois dessa
+# leitura: a loja mostrava o produto como esgotado"* — era servida IGUAL para as
+# duas causas, e desde 13/11 ela publicava `esgotado` para um anuncio cuja ficha
+# devolve "O produto nao existe". A 25.11 pede a causa EM PALAVRAS na tela, e
+# tela que diz a causa errada e pior que tela calada. O rotulo e o que a contagem
+# le; a prosa continua sendo a historia.
+CAUSAS_DE_APOSENTADORIA = {
+    'esgotado': 'a loja mostrava o produto como esgotado',
+    'produto-nao-existe': 'a pagina do produto ja nao existia na loja',
+}
+
 PADRAO_APOSENTADO = re.compile(
     r'^APOSENTADO EM (?P<em>\d{4}-\d{2}-\d{2}) — item (?P<item>\d+) '
-    r'da loja (?P<loja>\d+) — .*CAUSA: .+ \|\| ULTIMA MEDICAO: .+$', re.S)
+    r'da loja (?P<loja>\d+) — .*CAUSA \((?P<causa>[a-z][a-z-]*)\): .+ '
+    r'\|\| ULTIMA MEDICAO: .+$', re.S)
 
 
 def aposentados_de(bloco):
     return list(bloco.get('anuncios_aposentados') or [])
+
+
+def causas_em_quarentena(bloco):
+    """{rotulo_da_causa: quantos} lido da prosa da quarentena deste bloco.
+
+    E daqui que sai a contagem que a tela usa para dizer a causa EM PALAVRAS
+    (25.11). Ela mora no dono do arquivo e e USADA por quem precisa, nunca
+    copiada (20.7).
+    """
+    contagem = {}
+    for linha in aposentados_de(bloco):
+        m = PADRAO_APOSENTADO.match((linha or '').strip())
+        if m:
+            causa = m.group('causa')
+            contagem[causa] = contagem.get(causa, 0) + 1
+    return contagem
 
 
 def ids_em_quarentena(bloco):
@@ -256,11 +286,11 @@ def preco_numero(bruto):
 
 def julgar_oferta(oferta, familia, chave, degrau):
     titulo = oferta.get('titulo') or ''
-    serve, por, faltou, atendidas = rel.julgar(
-        titulo,
-        exige_todas=tuple(familia['exige_todas']),
-        exige_alguma=tuple(familia.get('exige_alguma') or ()),
-        recusas_desligadas=tuple(familia.get('recusas_desligadas') or ()))
+    # A TRADUCAO DE `familia` PARA ARGUMENTOS MORA NA REGUA, numa funcao so, e
+    # nao aqui — ela estava escrita duas vezes neste arquivo (aqui e no
+    # `conferir()`), e a trava nova de 16/11 entraria em uma delas e deixaria o
+    # portao conferindo com a regua velha, ou seja aprovando (20.7).
+    serve, por, faltou, atendidas = rel.julgar_declaracao(titulo, familia)
 
     return {
         'item_id': oferta.get('item_id'),
@@ -433,11 +463,7 @@ def conferir():
 
         for a in bloco['anuncios']:
             afirmacoes += 1
-            serve, por, faltou, _ = rel.julgar(
-                a['titulo'],
-                exige_todas=tuple(c['familia']['exige_todas']),
-                exige_alguma=tuple(c['familia'].get('exige_alguma') or ()),
-                recusas_desligadas=tuple(c['familia'].get('recusas_desligadas') or ()))
+            serve, por, faltou, _ = rel.julgar_declaracao(a['titulo'], c['familia'])
             if serve != a['serve'] or por != a['recusado_por'] or faltou != a['exigencia_que_faltou']:
                 # A MENSAGEM IMPRIME AS TRES COISAS QUE A COMPARACAO LE, e isto
                 # foi consertado em 03/11/2026 porque ela imprimia DUAS: a

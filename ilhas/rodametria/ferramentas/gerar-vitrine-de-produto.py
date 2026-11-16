@@ -59,6 +59,7 @@ RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ANUNCIOS = os.path.join(RAIZ, 'dados', 'anuncios-por-consulta.json')
 EDITORIAL = os.path.join(RAIZ, 'dados', 'paginas-de-produto.json')
 VITRINE = os.path.join(RAIZ, 'dados', 'vitrine-de-produto.json')
+VEICULOS = os.path.join(RAIZ, 'dados', 'veiculos.json')
 
 PISO_DA_30_2 = 3
 TETO_DO_CARROSSEL = 5
@@ -585,7 +586,104 @@ def escolher_carrossel(linhas):
     return sorted(escolhidos, key=lambda x: posicao[id(x)])
 
 
+# ---------------------------------------------------------------------------
+# O DEGRAU DA ESCADA DE COMPRA DA 25.1 — item 3 do despacho da ronda de
+# 16/11/2026, e a regua dele e a da 25.10.
+#
+# O DEFEITO QUE ISTO FECHA, medido item por item em `vitrine-de-produto.json`:
+# os 24 itens das tres paginas estavam gravados com `degrau: 1` e NENHUM e loja
+# oficial de fabricante. A 25.1 define o degrau 1 como "Loja oficial do
+# fabricante na Shopee" e o degrau 3 como "Anuncio de vendedor comum na Shopee.
+# Ultimo recurso" — e as lojas eram `3B LOJA`, `Boa sorte vem`, `vipcasa`,
+# `GTRBSHOP`, `Auto Home Shop` (a loja que a propria 25.10 nomeia como exemplo
+# de quem NAO e fabricante de nada do que vende). Quem lesse o banco pela 25.1
+# lia "loja oficial do fabricante" em 24 anuncios de revendedor.
+#
+# E A CAUSA NAO FOI DESCUIDO: o comentario que ficava aqui dizia, com todas as
+# letras, *"Estes links sao `url_produto` encurtado, ou seja FICHA, entao o
+# degrau de compra e 1"*. A deducao e falsa e e facil de fazer — ficha de
+# produto e o que o degrau 1 e o 3 TEM EM COMUM; o que separa os dois e DE QUEM
+# e a loja. Comentario que declara um mecanismo parece conferido e nao mede
+# nada (20.7).
+#
+# E O NOME ERA A OUTRA METADE DO PROBLEMA: o campo chamava-se `degrau`, e nesta
+# ilha `degrau_da_escada`, `degrau_escolhido` e o `degrau` de `escada_medida`
+# guardam o degrau da ESCADA DE PALAVRA-CHAVE da 25.6. Duas escadas, um nome.
+# Ele passa a ser `degrau_de_compra`, e a escada de chaves segue em
+# `degrau_da_escada_de_chaves`.
+#
+# A REGUA, E ELA E A DA 25.10 AO PE DA LETRA: o degrau 1 se mede pelo NOME DA
+# LOJA CARREGAR A MARCA DO REGISTRO, e a lista de marcas sai do banco desta
+# ilha (`dados/veiculos.json`), nunca de uma lista escrita aqui — e a disciplina
+# da 25.9(3), *"a lista de codigos sai do banco, nunca de lista escrita na
+# regua"*. `shopType` (gravado como `tipo_de_loja`) NAO e consultado como
+# decisor: a 25.10 mediu que ele e o programa de vendedor da plataforma e saiu
+# `[1]` em `Auto Home Shop` e `[]` em `HONEYWHALE-Scooter`. Ele viaja ao lado,
+# como procedencia.
+#
+# E CADA ITEM LEVA A FRASE DE COMO O DEGRAU FOI MEDIDO, que e a outra metade da
+# exigencia da 25.10: *"toda ilha grava, junto do degrau, COMO ele foi medido,
+# em palavras, no proprio registro. Degrau sem essa frase e degrau que ninguem
+# consegue reauditar."*
+# ---------------------------------------------------------------------------
+def rel_quarentena(bloco):
+    """A contagem de aposentadorias por causa, LIDA do coletor (20.7)."""
+    return _modulo('coletor_por_consulta',
+                   os.path.join(RAIZ, 'ferramentas',
+                                'coletar-por-consulta.py')).causas_em_quarentena(bloco)
+
+
+def marcas_do_registro():
+    """As marcas que o banco desta ilha conhece, normalizadas. Nunca uma lista
+    escrita aqui: lista na regua envelhece calada quando o banco cresce."""
+    with open(VEICULOS, encoding='utf-8') as f:
+        registros = json.load(f).get('registros') or []
+    marcas = {}
+    for r in registros:
+        bruta = (r.get('marca') or '').strip()
+        if bruta:
+            marcas[_sem_acento(bruta)] = bruta
+    return marcas
+
+
+def degrau_de_compra(a, marcas):
+    """(degrau, como_foi_medido) para um anuncio da Shopee com ficha de produto.
+
+    Devolve 1 so quando o nome da loja carrega uma marca do registro; nos outros
+    casos devolve 3, que e o que a 25.1 reserva para "anuncio de vendedor comum
+    na Shopee". O degrau 4 (link de busca) nao nasce aqui: ele e decidido na
+    TELA, pela casca, no dia em que a ficha morre — e e por isso que todo item
+    leva `url_busca` (25.2).
+    """
+    loja = (a.get('loja') or '').strip()
+    nome = _sem_acento(loja)
+    achada = next((bruta for chave, bruta in sorted(marcas.items())
+                   if chave and chave in nome), None)
+    tipo = a.get('tipo_de_loja')
+    if achada:
+        return 1, (
+            'degrau 1 da 25.1: o nome da loja "%s" carrega a marca "%s", que e marca de '
+            'registro do banco desta ilha (dados/veiculos.json), e a 25.10 define essa '
+            'presenca como a regua do degrau 1. Medido no nome da loja, sem acento e sem '
+            'caixa, contra as %d marcas do banco; `tipo_de_loja` %s NAO foi decisor '
+            '(25.10: ele e o programa de vendedor da plataforma, nao a relacao com o '
+            'fabricante), e viaja neste mesmo registro como procedencia.'
+            % (loja, achada, len(marcas), tipo))
+    return 3, (
+        'degrau 3 da 25.1 ("anuncio de vendedor comum na Shopee, ultimo recurso"): o nome '
+        'da loja "%s" nao carrega nenhuma das %d marcas de registro do banco desta ilha '
+        '(dados/veiculos.json), que e a regua do degrau 1 pela 25.10. O link e ficha de '
+        'produto encurtada, e ficha e o que o degrau 1 e o 3 tem em comum — o que separa os '
+        'dois e de quem e a loja. `tipo_de_loja` %s NAO foi decisor (25.10) e viaja neste '
+        'mesmo registro como procedencia. O piso da 25.2 esta neste item em `url_busca`, '
+        'que e o que a 25.1 exige justamente deste degrau.'
+        % (loja, len(marcas), tipo))
+
+
 def montar(bloco, editorial_da_pagina):
+    # AS MARCAS DO REGISTRO, LIDAS UMA VEZ POR PAGINA: elas sao a regua do
+    # degrau 1 da 25.1 pela 25.10, e vem do banco desta ilha.
+    marcas = marcas_do_registro()
     # O piso de compra desta consulta, colhido por coletar-piso-da-vitrine.py.
     # Este gerador roda na bancada SEM REDE, entao ele LE o piso e nunca o gera.
     piso = bloco.get('piso_da_busca') or {}
@@ -614,6 +712,10 @@ def montar(bloco, editorial_da_pagina):
 
     cartoes, linhas = [], []
     for a in servem:
+        # O DEGRAU DE COMPRA E MEDIDO UMA VEZ POR ANUNCIO, e as duas pontas
+        # (o numero e a frase de como foi medido) saem da MESMA chamada: duas
+        # chamadas da mesma funcao sao duas declaracoes do mesmo fato (20.7).
+        compra = degrau_de_compra(a, marcas)
         item = {
             'nome': a['titulo'],
             'preco': real(a['preco']),
@@ -654,15 +756,22 @@ def montar(bloco, editorial_da_pagina):
             'carga_porque_e_citacao': o_que_o_anuncio_declara_de_carga(a)[2],
             'url': a['url_afiliado'],
             'programa': 'shopee',
-            # DOIS "DEGRAUS" DIFERENTES, E JUNTA-LOS SERIA DEFEITO SILENCIOSO.
-            # `degrau_da_escada` do anuncio e o degrau da escada de CHAVES (que
-            # palavra achou o produto na loja). O `degrau` que o cartao da casca
-            # le e o da escada de COMPRA da 25.1, e e ele que decide o rotulo do
-            # botao: ficha de produto diz "Ver na Shopee", busca diz "Ver ofertas
-            # na Shopee". Estes links sao `url_produto` encurtado, ou seja FICHA,
-            # entao o degrau de compra e 1 — e vai declarado, nao herdado.
-            'degrau': 1,
+            # DOIS "DEGRAUS" DIFERENTES, E JUNTA-LOS FOI DEFEITO SILENCIOSO POR
+            # DEZESSEIS DIAS. `degrau_da_escada_de_chaves` e o degrau da escada
+            # de CHAVES da 25.6 (que palavra achou o produto na loja). O degrau
+            # de COMPRA da 25.1 e o que o cartao da casca le para decidir o
+            # rotulo do botao: ficha diz "Ver na Shopee", busca diz "Ver ofertas
+            # na Shopee". Ele chamava-se `degrau` — o mesmo nome — e vinha
+            # gravado `1`, "loja oficial do fabricante", em 24 anuncios de
+            # revendedor. Agora ele tem NOME proprio e e MEDIDO: ver
+            # `degrau_de_compra()`, logo acima, e a 25.10.
+            'degrau_de_compra': compra[0],
+            'degrau_de_compra_como_medido': compra[1],
             'degrau_da_escada_de_chaves': a['degrau_da_escada'],
+            # `shopType` DA 25.10, GRAVADO COMO PROCEDENCIA E NUNCA COMO
+            # DECISOR: ele viaja ao lado do degrau para quem for reauditar a
+            # escolha nao ter de voltar ao `anuncios-por-consulta.json`.
+            'tipo_de_loja': a.get('tipo_de_loja'),
             'imagem': a.get('imagem'),
             'loja': a['loja'],
             # ITEM 4 DO DESPACHO DE 30/10/2026 — O PAR DA 25.4-b E O PISO DA 25.2.
@@ -754,6 +863,15 @@ def montar(bloco, editorial_da_pagina):
             # numero a conta nao fecha para quem a soma, e conta que nao fecha
             # na tela e pior que conta ausente.
             'aposentadas': int(bloco['resumo'].get('ofertas_aposentadas') or 0),
+            # A CAUSA DE CADA APOSENTADORIA, EM ROTULO, PARA A TELA PODER
+            # DIZE-LA EM PALAVRAS (25.11). Ate 16/11/2026 a tela servia
+            # "esgotado" para TODA aposentadoria, e desde 13/11 isso era FALSO
+            # em `/veiculos/patinete-eletrico/`, que tem um anuncio aposentado
+            # por "O produto nao existe". A 25.11 pede a causa em palavras, e a
+            # frase e honesta "porque e verdade" — frase que diz a causa errada
+            # e pior que frase ausente. A contagem e LIDA do dono do arquivo,
+            # nunca refeita aqui (20.7).
+            'aposentadas_por_causa': rel_quarentena(bloco),
         },
         'cartoes': cartoes,
         'linhas': linhas,

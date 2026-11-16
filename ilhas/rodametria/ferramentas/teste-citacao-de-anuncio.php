@@ -105,9 +105,30 @@ foreach ($banco['consultas'] as $bloco) {
 	}
 }
 
-afirma(count($com_token) >= 2,
+/* O PISO ERA 2 E PASSOU A SER 1 EM 16/11/2026, NA MESMA TARDE, e a causa e o
+   que o docstring desta regua JA PROMETIA: *"no dia em que a loja os aposentar,
+   a afirmacao cai com eles — e e o que se quer"*. Um dos dois titulos do ar era
+   o anuncio 23598774355, *"Scooter Moto Eletrica 1000w Adulto Sem Cnh Bluetooth
+   Re"*, e as 15h5xZ a ronda mediu que a ficha dele devolve "O produto nao
+   existe": ele foi para a quarentena da 25.11 nesta mesma passada e saiu dos
+   campos vivos do banco. Piso de 2 amarrava esta regua ao CORPUS DE UM DIA e
+   reprovava a ilha por um conserto — a familia do numero de tela digitado, com
+   o sinal invertido. O que a metade 2 (a discordancia da 20.8) precisa e de um
+   mundo em que as duas regras discordem, e ele nao tem de vir da loja: o mundo
+   FABRICADO logo abaixo o garante com zero titulo real. O piso de 1 fica porque
+   regua que nunca toca o dado do ar deixa de ser regua do ar. */
+afirma(count($com_token) >= 1,
 	sprintf('a colheita desta ilha tem %d titulo(s) com token de habilitacao e esta '
-		. 'regua precisa de ao menos 2 para medir o mundo do ar de 16/11', count($com_token)));
+		. 'regua precisa de ao menos 1 para tocar o dado do ar', count($com_token)));
+
+/* O MUNDO FABRICADO DA DISCORDANCIA (20.8), QUE NAO DEPENDE DA LOJA: se a
+   citacao parar de acontecer, estas duas afirmacoes caem mesmo que a colheita
+   do dia nao traga titulo nenhum com o token. */
+$fab = 'Moto Elétrica Adulto 1000w SEM CNH Painel Led';
+afirma(rodametria_casca_nome_de_anuncio($fab) === $ABRE . $fab . $FECHA,
+	'mundo fabricado: titulo com token NAO saiu entre aspas');
+afirma(rodametria_casca_nome_de_anuncio($fab) !== regra_velha($fab),
+	'mundo fabricado: a regra nova e a VELHA concordam, e tinham de discordar');
 
 foreach ($com_token as $t) {
 	$novo = rodametria_casca_nome_de_anuncio($t);

@@ -4,7 +4,7 @@
   "nicho": "mobilidade eletrica — acertar os tres numeros antes de comprar um veiculo eletrico: categoria legal (CNH e placa), autonomia real e carga maxima",
   "dominio": "https://rodametria.com.br",
   "versao_manifest": 1,
-  "revisao": 98,
+  "revisao": 99,
   "atualizado_em": "2026-11-16",
   "estado": "nascendo",
   "desembarque": {
@@ -20,7 +20,7 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "2930074ca83f930c6abec94d62898409533ec70ab260ce0355dd01b751ddcc03",
+      "sha256": "ad9a4f106e5e39f08e75859495667666a6c17fd642921cc715f3f843391196bf",
       "versao": "1.27.0",
       "descricao": "A CASCA desta ilha (a versao corrente esta no campo `versao` deste item, espelhado da constante do arquivo). Tokens do DESIGN.md (tinta #13212B, verde #0A6B4C, Alfa Slab One so na marca, Barlow Semi Condensed nos titulos, JetBrains Mono em todo numero), simbolo V9 completo no cabecalho e em negativo no rodape, favicon proprio (secao 6: icone padrao do WordPress na aba e bloco reprovado), menu hamburguer com aria-expanded/aria-controls e links <a href> de verdade no HTML servido, trilha + BreadcrumbList, WebSite JSON-LD na home, <title> e description saindo de UM mapa de paginas. E os COMPONENTES DO MOLDE da secao 32, aqui e nao em cada snippet, como a 32.6-b manda: caixa de resultado, dobra <details>, cartao de compra com espaco reservado para quem nao tem foto, carrossel com scroll-snap em CSS puro, barra fixa do telefone e o rotulo do botao de loja por degrau da escada da 25.1. Pagina nova entra pelos filtros `rodametria_paginas` e `rodametria_instalar`, de dentro do proprio snippet dela — a casca nao e editada quando a ilha cresce. 1.3.0 (29/10/2026): `garantir_pagina()` aceita PAI, pela 16.2, e `url_do_slug()` acha a pagina pela meta `_rodametria_id` em vez de por caminho — `get_page_by_path()` casa o caminho INTEIRO e devolveria nulo para filha de arvore de dois niveis, com `casca_link()` transformando link vazio em texto sem reclamar. 1.4.0 (29/10/2026, no mesmo dia e por defeito MEDIDO no ar): a instalacao passou a rodar tambem quando a ASSINATURA DO MAPA muda, e nao so quando a versao da casca muda. A revisao 13 subiu casca nova e snippet de pagina nova na MESMA passada do Sync; quando o `init` chamou a instalacao, o snippet novo ainda nao estava carregado naquela requisicao, as tres paginas nao foram criadas, e a casca gravou `instalado: 1.3.0` — com a versao marcada, a instalacao nunca mais rodaria. O sintoma era o da secao 4: /status em 13, cinco linhas `ok`, o mapa de paginas ja com as tres novas, e o wp-sitemap.xml com duas URLs. A VERSAO SAIU DESTA PROSA EM 02/11/2026, e ela estava VELHA nos QUATRO snippets (a casca dizia 1.4.0 servindo 1.6.0; os outros tres diziam 1.0.0) — e isso e a prova de que o campo `versao` faltava. Quem declara a versao agora e o campo, espelhado da constante do arquivo por `ferramentas/atualizar-manifest.py` e cobrado por `ferramentas/teste-versao-dos-snippets.php`; prosa que repete o mesmo fato e a segunda declaracao que sobe sozinha de um lado so."
     },
@@ -42,7 +42,7 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "001ba952e6656f414dceead1175c9bfeaa09f9bc857c54ab7cbfb04bc2a1b018",
+      "sha256": "9521361142218c032d0209593e46a1b752be287c25231978752b7bcc317e810c",
       "versao": "1.13.0",
       "descricao": "A F2 (versao corrente no campo `versao` deste item), a PRIMEIRA pagina desta ilha no ar, em /autonomia-patinete-eletrico/. Ordem da 32.1 de cima para baixo, conferida por afirmacao no fonte: trilha e H1, promessa, formulario ja preenchido com o caso de exemplo, caixa de resultado JA PRE-RENDERIZADA no HTML (a metade que a IA le sem preencher formulario, e o que a 22.8 exige de quem desliga o JavaScript), bloco de compra, prestacao de contas da secao 7 com os cinco grupos por causa e a soma fechando o banco contado, tabela pre-renderizada visivel, e o resto em <details>. NENHUM numero e NENHUMA frase de resposta e digitado neste arquivo: tudo vem da option que o Sync grava de dados/f2-respostas.json, escrito por ferramentas/gerar-f2.py a partir de ferramentas/f2-referencia.py e de dados/constantes.json. O JS do rodape preenche MOLDE, nunca escreve frase — a bateria de mutacoes de 29/10 reprovou as duas versoes em que ele escrevia. A VERSAO SAIU DESTA PROSA EM 02/11/2026, e ela estava VELHA nos QUATRO snippets (a casca dizia 1.4.0 servindo 1.6.0; os outros tres diziam 1.0.0) — e isso e a prova de que o campo `versao` faltava. Quem declara a versao agora e o campo, espelhado da constante do arquivo por `ferramentas/atualizar-manifest.py` e cobrado por `ferramentas/teste-versao-dos-snippets.php`; prosa que repete o mesmo fato e a segunda declaracao que sobe sozinha de um lado so."
     },
@@ -64,7 +64,7 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "23ef830b642bd964251a504590cf311c918649c00b9b1517e363a028904b2e95",
+      "sha256": "421284da176129b20135790ceac50837b5e2d78f98dfa378da08461ab2d0501f",
       "versao": "1.13.0",
       "descricao": "O MOTOR DA SECAO 30 nesta ilha (versao corrente no campo `versao` deste item): a secao de nivel 1 `/veiculos/` e as paginas de consulta de produto que nascem filhas diretas dela, com o slug igual a consulta. Ordem da 32.2 de cima para baixo: trilha e H1, caixa de resposta com o preco mediano em Mono, bloco de compra com id=comprar logo abaixo, tabela-resumo VISIVEL com TODOS os anuncios (a secao 7 manda nomear todo item uma vez), a prestacao de contas de quem nao entrou com a causa contada, a malha da 16.4 tambem visivel porque e alvo de link, e o resto nas dobras da casca. NENHUM numero e digitado neste arquivo: a prosa vem de dados/paginas-de-produto.json com moldes e o numero vem de dados/vitrine-de-produto.json, recontado por ferramentas/gerar-vitrine-de-produto.py. A tabela NAO tem coluna de potencia nominal, velocidade maxima, acelerador nem carga maxima: o esquema desta ilha exige nivel 5 ou melhor nesses quatro e titulo de anuncio e nivel 6, entao a coluna diz o que o anuncio DECLARA em vez de preencher coluna tecnica com palavra tirada do titulo. JSON-LD de ItemList e FAQPage no wp_head; folha no wp_footer; nada dentro do retorno do shortcode. A VERSAO SAIU DESTA PROSA EM 02/11/2026, e ela estava VELHA nos QUATRO snippets (a casca dizia 1.4.0 servindo 1.6.0; os outros tres diziam 1.0.0) — e isso e a prova de que o campo `versao` faltava. Quem declara a versao agora e o campo, espelhado da constante do arquivo por `ferramentas/atualizar-manifest.py` e cobrado por `ferramentas/teste-versao-dos-snippets.php`; prosa que repete o mesmo fato e a segunda declaracao que sobe sozinha de um lado so."
     },
@@ -135,7 +135,7 @@
       "arquivo": "dados/vitrine-de-produto.json",
       "formato": "json",
       "publicar": true,
-      "sha256": "03fcfec5c9a78115206042b24173abb31b930335668b2fe59dc2c61e4b4609a7",
+      "sha256": "0c965f7c0e9f174c01dd8b077a0ec5f13a4ebf130392e92011ca96237094bfce",
       "descricao": "A camada GERADA: cartoes do carrossel (teto de cinco, 32.1), linhas da tabela (todas) e os numeros, RECONTADOS de dados/anuncios-por-consulta.json."
     },
     {
@@ -143,7 +143,7 @@
       "arquivo": "dados/consultas-de-produto.json",
       "formato": "json",
       "publicar": false,
-      "sha256": "5e8b907c79be8516d76abad39ee6ccf55a6a3fbca65f20568e3bd3ade6c3b5fd",
+      "sha256": "78aad1d080c3f87c9d2f5721419e5ba06aca7b2f6ca8352c18b8d806a1891ade",
       "descricao": "A declaracao das consultas de compra: volume, classificacao de SERP com quem viu e quando, escada de chaves da loja, e a decisao de nascer ou nao com a causa. NAO vai para o site: e cheio do vocabulario de bastidor que a 32.4 proibe na pagina publica."
     },
     {
@@ -151,7 +151,7 @@
       "arquivo": "dados/anuncios-por-consulta.json",
       "formato": "json",
       "publicar": false,
-      "sha256": "5b056b70e68f45b06eb1e08a8f71bf43b912954bcde304df9218a63296e1d9a6",
+      "sha256": "30a7129422899f661641c5d98085049cfb8705cceb92f0a6efa311098bb81b40",
       "descricao": "Os anuncios lidos na Shopee, com o veredito da regua de relevancia por anuncio, a escada medida e as fotos com largura e altura lidas no cabecalho do arquivo na CDN."
     },
     {

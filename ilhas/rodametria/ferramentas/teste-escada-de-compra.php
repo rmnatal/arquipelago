@@ -107,34 +107,34 @@ $BUSCA = 'https://s.shopee.com.br/BUSCAxxxxx';
 
 /* MUNDO A — ficha viva e busca: o mundo de hoje, 21 de 21. */
 $a = rodametria_casca_escada_de_compra(array(
-	'url' => $FICHA, 'url_busca' => $BUSCA, 'degrau' => 1, 'programa' => 'shopee'));
+	'url' => $FICHA, 'url_busca' => $BUSCA, 'degrau_de_compra' => 1, 'programa' => 'shopee'));
 afirma($a['url'] === $FICHA, 'mundo A: a ficha viva nao virou o botao');
 afirma($a['url_busca'] === $BUSCA, 'mundo A: a busca nao desceu para a linha discreta — a 25.2 diz "nunca sai"');
-afirma($a['degrau'] === 1, 'mundo A: o degrau declarado da ficha foi trocado');
+afirma($a['degrau_de_compra'] === 1, 'mundo A: o degrau declarado da ficha foi trocado');
 afirma($a['piso_subiu'] === false, 'mundo A: a escada diz que o piso subiu e a ficha esta viva');
 afirma($a['tem_saida'] === true, 'mundo A: a escada diz que nao ha saida de compra');
 
 /* MUNDO B — A FICHA MORREU E O PISO ESTA NO DADO. Este e o mundo que o defeito
    escondia, e as cinco afirmacoes abaixo sao a regra inteira. */
 $b = rodametria_casca_escada_de_compra(array(
-	'url' => '', 'url_busca' => $BUSCA, 'degrau' => 1, 'programa' => 'shopee'));
+	'url' => '', 'url_busca' => $BUSCA, 'degrau_de_compra' => 1, 'programa' => 'shopee'));
 afirma($b['url'] === $BUSCA, 'MUNDO B: a ficha morreu e A BUSCA NAO SUBIU — e o defeito que este portao nasceu para pegar');
 afirma($b['url_busca'] === '', 'mundo B: a busca esta no botao E na linha discreta — o mesmo link duas vezes no cartao');
-afirma($b['degrau'] === 4, 'MUNDO B: a busca subiu e o DEGRAU ficou para tras — o rotulo vai prometer uma ficha que nao existe');
+afirma($b['degrau_de_compra'] === 4, 'MUNDO B: a busca subiu e o DEGRAU ficou para tras — o rotulo vai prometer uma ficha que nao existe');
 afirma($b['piso_subiu'] === true, 'mundo B: a escada nao avisa que o piso subiu, e o JSON-LD precisa disso para nao afirmar InStock');
 afirma($b['tem_saida'] === true, 'mundo B: a escada diz que nao ha saida e o piso esta gravado no dado');
 
 /* MUNDO C — ficha sem busca: o item sem piso, que a 25.2 chama de defeito da
    19.1. A tela nao o conserta; ela so nao mente sobre ele. */
 $c = rodametria_casca_escada_de_compra(array(
-	'url' => $FICHA, 'url_busca' => '', 'degrau' => 1, 'programa' => 'shopee'));
+	'url' => $FICHA, 'url_busca' => '', 'degrau_de_compra' => 1, 'programa' => 'shopee'));
 afirma($c['url'] === $FICHA, 'mundo C: a ficha sem busca nao virou o botao');
 afirma($c['url_busca'] === '', 'mundo C: inventou linha discreta sem busca no dado');
 afirma($c['tem_saida'] === true, 'mundo C: a escada diz que nao ha saida e ha ficha');
 
 /* MUNDO D — nem ficha nem busca. */
 $d = rodametria_casca_escada_de_compra(array(
-	'url' => '', 'url_busca' => '', 'degrau' => 0, 'programa' => 'shopee'));
+	'url' => '', 'url_busca' => '', 'degrau_de_compra' => 0, 'programa' => 'shopee'));
 afirma($d['tem_saida'] === false, 'mundo D: a escada promete saida de compra sem link nenhum');
 afirma($d['url'] === '', 'mundo D: a escada devolveu url sem ter link');
 
@@ -143,14 +143,14 @@ afirma($d['url'] === '', 'mundo D: a escada devolveu url sem ter link');
 $e = rodametria_casca_escada_de_compra(array('programa' => 'shopee'));
 afirma($e['tem_saida'] === false, 'mundo E: chave ausente nao foi lida como ausencia');
 $e2 = rodametria_casca_escada_de_compra(array('url' => null, 'url_busca' => $BUSCA, 'programa' => 'shopee'));
-afirma($e2['url'] === $BUSCA && $e2['degrau'] === 4, 'mundo E: `url` nula nao caiu para a busca');
+afirma($e2['url'] === $BUSCA && $e2['degrau_de_compra'] === 4, 'mundo E: `url` nula nao caiu para a busca');
 
 /* MUNDO F — SO ESPACO NO LUGAR DA FICHA. `"  "` nao e link e nao e vazio, e e o
    que um `strip()` esquecido no gerador produz. */
 $f6 = rodametria_casca_escada_de_compra(array(
-	'url' => '   ', 'url_busca' => $BUSCA, 'degrau' => 1, 'programa' => 'shopee'));
+	'url' => '   ', 'url_busca' => $BUSCA, 'degrau_de_compra' => 1, 'programa' => 'shopee'));
 afirma($f6['url'] === $BUSCA, 'mundo F: ficha so de espaco foi tratada como ficha viva');
-afirma($f6['degrau'] === 4, 'mundo F: ficha so de espaco manteve o degrau da ficha');
+afirma($f6['degrau_de_compra'] === 4, 'mundo F: ficha so de espaco manteve o degrau da ficha');
 
 /* =========================================================================
  * 2. O CARTAO — o mundo B tem de CHEGAR A TELA, e com o rotulo certo
@@ -158,7 +158,7 @@ afirma($f6['degrau'] === 4, 'mundo F: ficha so de espaco manteve o degrau da fic
 
 $cartao_b = rodametria_casca_cartao_de_compra(array(
 	'nome' => 'Patinete de teste', 'url' => '', 'url_busca' => $BUSCA,
-	'degrau' => 1, 'programa' => 'shopee', 'preco' => 'R$ 1.000,00'));
+	'degrau_de_compra' => 1, 'programa' => 'shopee', 'preco' => 'R$ 1.000,00'));
 afirma($cartao_b !== '', 'O CARTAO SUMIU NO MUNDO B: ficha morta com piso no dado nao chega a tela');
 afirma(false !== strpos($cartao_b, $BUSCA), 'o cartao do mundo B nao serve a busca');
 afirma(false !== strpos($cartao_b, 'Ver ofertas na Shopee'),
@@ -174,13 +174,13 @@ afirma(false !== strpos($cartao_b, 'Patinete de teste'),
 
 $cartao_a = rodametria_casca_cartao_de_compra(array(
 	'nome' => 'Patinete de teste', 'url' => $FICHA, 'url_busca' => $BUSCA,
-	'degrau' => 1, 'programa' => 'shopee', 'preco' => 'R$ 1.000,00'));
+	'degrau_de_compra' => 1, 'programa' => 'shopee', 'preco' => 'R$ 1.000,00'));
 afirma(false !== strpos($cartao_a, 'Ver na Shopee'), 'o cartao do mundo A perdeu o rotulo de ficha');
 afirma(false !== strpos($cartao_a, rodametria_casca_rotulo_do_piso()),
 	'o cartao do mundo A perdeu a linha discreta da busca, que a 25.2 diz que "nunca sai"');
 
 $cartao_d = rodametria_casca_cartao_de_compra(array(
-	'nome' => 'Sem saida', 'url' => '', 'url_busca' => '', 'degrau' => 0, 'programa' => 'shopee'));
+	'nome' => 'Sem saida', 'url' => '', 'url_busca' => '', 'degrau_de_compra' => 0, 'programa' => 'shopee'));
 afirma($cartao_d === '', 'o cartao sem link NENHUM foi para a tela: botao sem destino');
 
 /* AS DUAS METADES DO VEREDITO, NO PROPRIO CARTAO: nenhum `href` vazio sai daqui. */
@@ -198,7 +198,7 @@ function pagina_de_teste($linhas) {
 function linha($url, $busca, $nome = 'Anuncio') {
 	return array('nome' => $nome, 'preco' => 'R$ 1.000,00', 'preco_numero' => 1000.0,
 		'especificacao' => '350 W', 'loja' => 'Loja de teste', 'programa' => 'shopee',
-		'degrau' => 1, 'url' => $url, 'url_busca' => $busca);
+		'degrau_de_compra' => 1, 'url' => $url, 'url_busca' => $busca);
 }
 
 /* A tabela do mundo de hoje: tres fichas vivas com o MESMO piso. */
@@ -248,15 +248,15 @@ function escada_velha($item) {
 	/* O QUE A CASCA FAZIA ATE 30/10/2026: a `url` crua, e vazio some. */
 	$url = isset($item['url']) ? $item['url'] : '';
 	return array('url' => $url, 'url_busca' => isset($item['url_busca']) ? $item['url_busca'] : '',
-		'degrau' => isset($item['degrau']) ? (int) $item['degrau'] : 0,
+		'degrau_de_compra' => isset($item['degrau_de_compra']) ? (int) $item['degrau_de_compra'] : 0,
 		'piso_subiu' => false, 'tem_saida' => ('' !== $url));
 }
-$velho_b = escada_velha(array('url' => '', 'url_busca' => $BUSCA, 'degrau' => 1));
+$velho_b = escada_velha(array('url' => '', 'url_busca' => $BUSCA, 'degrau_de_compra' => 1));
 afirma($velho_b['url'] !== $BUSCA,
 	'A BATERIA ESTA INERTE: a escada velha passaria no mundo B, logo a regua nao mede nada');
 afirma($velho_b['tem_saida'] === false,
 	'a bateria esta inerte: a escada velha ja daria saida de compra no mundo B');
-afirma($velho_b['degrau'] !== 4,
+afirma($velho_b['degrau_de_compra'] !== 4,
 	'a bateria esta inerte: a escada velha ja subiria o degrau no mundo B');
 
 /* =========================================================================
@@ -308,7 +308,10 @@ function escolha_velha_da_f2($f) {
 	return array(
 		'url'       => ('' === $ficha) ? (isset($f['url_busca']) ? (string) $f['url_busca'] : '') : $ficha,
 		'url_busca' => ('' === $ficha) ? '' : (isset($f['url_busca']) ? (string) $f['url_busca'] : ''),
-		'degrau'    => isset($f['degrau']) ? (int) $f['degrau'] : 0,
+		/* A DIREITA FICA `degrau`: este `$f` vem CRU do `f2-respostas.json`, onde
+		   o nome e o da 25.1 (`afiliado.degrau`) e nao ha escada de chaves para
+		   confundir com ele. O nome novo e o da ENTRADA da escada da casca. */
+		'degrau_de_compra'    => isset($f['degrau']) ? (int) $f['degrau'] : 0,
 	);
 }
 
@@ -329,22 +332,22 @@ if (is_array($resp) && isset($resp['compra'])) {
 			$nova = rodametria_casca_escada_de_compra(array(
 				'url'       => isset($it['url_afiliado_da_ficha']) ? $it['url_afiliado_da_ficha'] : '',
 				'url_busca' => isset($it['url_busca']) ? $it['url_busca'] : '',
-				'degrau'    => isset($it['degrau']) ? $it['degrau'] : 0,
+				'degrau_de_compra'    => isset($it['degrau']) ? $it['degrau'] : 0,
 			));
 
 			afirma($nova['url'] === $velha['url'],
 				sprintf('a F2 MUDOU o link do item %s: era "%s", virou "%s"', $nome, $velha['url'], $nova['url']));
 			afirma($nova['url_busca'] === $velha['url_busca'],
 				sprintf('a F2 MUDOU a linha discreta do item %s', $nome));
-			afirma($nova['degrau'] === $velha['degrau'],
-				sprintf('a F2 MUDOU o degrau do item %s: era %d, virou %d', $nome, $velha['degrau'], $nova['degrau']));
+			afirma($nova['degrau_de_compra'] === $velha['degrau_de_compra'],
+				sprintf('a F2 MUDOU o degrau do item %s: era %d, virou %d', $nome, $velha['degrau_de_compra'], $nova['degrau_de_compra']));
 
 			if (empty($it['url_afiliado_da_ficha']) && !empty($it['url_busca'])) {
 				$f2_mundo_b++;
 				/* O MUNDO B DE VERDADE, no dado publicado: a F2 ja o servia certo
 				   porque o GERADOR dela grava `degrau: 4` nestes itens. E a prova
 				   de que a escada nova concorda com quem ja acertava. */
-				afirma($nova['degrau'] === 4,
+				afirma($nova['degrau_de_compra'] === 4,
 					sprintf('o item %s da F2 vive o mundo B e o degrau nao e 4', $nome));
 				afirma($nova['url'] === $it['url_busca'],
 					sprintf('o item %s da F2 vive o mundo B e a busca nao e o botao', $nome));

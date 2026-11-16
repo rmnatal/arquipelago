@@ -194,7 +194,7 @@ function linha( $extra = array() ) {
 		'preco_colhido_em'  => '2026-11-04',
 		'url'               => $FICHA,
 		'url_busca'         => $BUSCA,
-		'degrau'            => 1,
+		'degrau_de_compra'            => 1,
 		'programa'          => 'shopee',
 	), $extra );
 }
