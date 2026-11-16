@@ -78,6 +78,32 @@ A passada das 10h17Z remediu o **catálogo** e achou que ele havia envelhecido �
 
 ---
 
+### NOTA DE PROCEDÊNCIA — A MENSAGEM DO COMMIT DE FECHO PERDEU QUATRO PALAVRAS, E O CONSERTO NÃO É REESCREVER A HISTÓRIA
+
+Dito aqui porque a mensagem já está no `main` e **o conserto óbvio é proibido**: amendar exigiria
+`--force`, e o disparo desta rotina é literal — *"nunca force push"*. Então a correção vira registro,
+que é o canal certo.
+
+**O que aconteceu:** a mensagem do commit de fecho (`2de7292`) foi escrita com acentos graves dentro de
+uma linha de comando do `bash`, e o shell as leu como **substituição de comando**. Quatro palavras
+foram **comidas** da mensagem e trocadas por nada, com o shell reclamando `command not found` ao lado:
+`tomada`, `.gov.br`, `*.gov.br` e `*.leg.br`. **O commit entrou e o push passou** — o estrago é só na
+mensagem.
+
+**Onde a mensagem fica incompleta, e o que ela deveria dizer:** *"as seis consultas do cluster A1 estão
+`tomada` por portal de domínio forte"*; *"a parede não é o domínio `.gov.br`, e a **LISTA DE
+PERMITIDOS** (20.1)"*; e *"o pedido passa de UMA para DUAS linhas: `*.gov.br` e `*.leg.br`"*.
+
+**Nenhum arquivo foi afetado** — o diff daquele commit está inteiro e correto, e é dele que o
+`fonte-oficial-f1.md`, o `dados/despachos.md` e este registro falam. **É a família do número de tela
+digitado com outra roupa:** a mensagem parecia escrita e estava truncada, e quem a lesse sem o diff ao
+lado leria uma frase sem sujeito.
+
+**A régua, para a próxima execução não pagar de novo:** mensagem de commit com acento grave vai por
+`-F <arquivo>` ou por heredoc **com delimitador citado**, nunca dentro de `-m "..."` no `bash`.
+
+---
+
 ### PRÓXIMO PASSO DESBLOQUEADO
 
 **Para a Fundação, e é honesto dizer que é pouco:** o catálogo da Shopee se remede **em intervalo de dias**, nunca no mesmo dia — `scooter eletrica` foi remedida às 10h1xZ de hoje e não abriu; `moto eletrica` abriu e já virou página. **A próxima remedição útil é de 18/11 em diante**, e não vale queimar execução nisto antes.
