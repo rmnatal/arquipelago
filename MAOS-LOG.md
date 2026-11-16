@@ -10029,3 +10029,120 @@ apagado, reescrito nem resumido neste disparo.
 
 Esta seção acrescentou 71 linhas ao `MAOS-LOG.md` (de 9960 para 10031 linhas, medido com `wc -l`
 depois de gravar, já contando estas três últimas linhas e a em branco acima delas).
+
+---
+
+## 16/11/2026, 05h32 BRT (08h32 UTC) — entrega da auditoria PENTE FINO de 16/11/2026
+
+**O disparo.** Assunto do Arquipélago (repositório `rmnatal/arquipelago`, contrato, `BUSSOLA.md`,
+`fila.md` e a ilha `ohmetria`), então passou a trava de assunto. Veio porque o push da sessão que
+rodou a auditoria foi recusado com 403 pelo proxy de git daquela sessão
+(`rmnatal/arquipelago is not in this session's authorized repository set`) — egresso, não conflito.
+
+**O que a instrução mandou, e é tudo o que foi feito:** criar o arquivo novo
+`AUDITORIA-PENTE-FINO-2026-11-16.md` na raiz, e aplicar **12 edições de busca-e-troca** em **5**
+arquivos (4 no `ARQUIPELAGO.md`, 5 no `bussola/BUSSOLA.md`, 1 em `bussola/fila.md`, 1 em
+`ilhas/ohmetria/PROMPT.md`, 1 em `ilhas/ohmetria/ESTADO.md`), num commit só, com a mensagem dada.
+
+**Partida:** `git fetch origin main && git checkout -B trabalho origin/main`, de `dbc8b21`, que é a
+revisão contra a qual a instrução diz ter conferido os trechos.
+
+**Os 12 trechos A casaram EXATAMENTE UMA VEZ cada um**, conferido antes de qualquer escrita, e a
+aplicação foi tudo-ou-nada (os 12 contados no conteúdo original dos arquivos; se um só tivesse dado
+0 ou 2, nada seria gravado e nada commitado). A contagem, edição por edição:
+
+```
+EDICAO 1  ARQUIPELAGO.md               ocorrencias de A: 1
+EDICAO 2  ARQUIPELAGO.md               ocorrencias de A: 1
+EDICAO 3  ARQUIPELAGO.md               ocorrencias de A: 1
+EDICAO 4  ARQUIPELAGO.md               ocorrencias de A: 1
+EDICAO 5  bussola/BUSSOLA.md           ocorrencias de A: 1
+EDICAO 6  bussola/BUSSOLA.md           ocorrencias de A: 1
+EDICAO 7  bussola/BUSSOLA.md           ocorrencias de A: 1
+EDICAO 8  bussola/BUSSOLA.md           ocorrencias de A: 1
+EDICAO 9  bussola/BUSSOLA.md           ocorrencias de A: 1
+EDICAO 10 bussola/fila.md              ocorrencias de A: 1
+EDICAO 11 ilhas/ohmetria/PROMPT.md     ocorrencias de A: 1
+EDICAO 12 ilhas/ohmetria/ESTADO.md     ocorrencias de A: 1
+```
+
+```
+$ git status --porcelain      (antes do commit)
+ M ARQUIPELAGO.md
+ M bussola/BUSSOLA.md
+ M bussola/fila.md
+ M ilhas/ohmetria/ESTADO.md
+ M ilhas/ohmetria/PROMPT.md
+?? AUDITORIA-PENTE-FINO-2026-11-16.md
+```
+
+```
+$ git diff --stat             (antes do commit, só os 5 editados)
+ ARQUIPELAGO.md           | 10 +++++++---
+ bussola/BUSSOLA.md       | 16 ++++++++++++----
+ bussola/fila.md          | 10 ++++++++++
+ ilhas/ohmetria/ESTADO.md |  1 +
+ ilhas/ohmetria/PROMPT.md |  8 ++++++++
+ 5 files changed, 38 insertions(+), 7 deletions(-)
+```
+
+```
+$ git show --stat f99354f
+ ARQUIPELAGO.md                     |  10 +-
+ AUDITORIA-PENTE-FINO-2026-11-16.md | 301 +++++++++++++++++++++++++++++++++++++
+ bussola/BUSSOLA.md                 |  16 +-
+ bussola/fila.md                    |  10 ++
+ ilhas/ohmetria/ESTADO.md           |   1 +
+ ilhas/ohmetria/PROMPT.md           |   8 +
+ 6 files changed, 339 insertions(+), 7 deletions(-)
+```
+
+**Hash do commit que foi ao `main`:** `f99354fe2fca5ed11946cdd589786dc74c7e179c`
+(`dbc8b21..f99354f`, push direto com `git push origin HEAD:main`, **aceito na primeira tentativa**,
+sem rebase e sem force).
+
+**Conferido no remoto, não suposto:** `git fetch origin main && git log -1 origin/main` devolve
+`f99354fe2fca5ed11946cdd589786dc74c7e179c`, com a mensagem
+`pente fino: auditoria de coerencia do contrato`.
+
+**A contagem do que mudou, medida RELENDO os arquivos depois de gravar:**
+
+- `AUDITORIA-PENTE-FINO-2026-11-16.md` — arquivo **novo**, não existia (conferido com `ls` antes de
+  escrever): **301 linhas**, **26.059 bytes**, primeira linha `# AUDITORIA PENTE FINO — 2026-11-16`,
+  última a linha de fecho da auditoria.
+- `ARQUIPELAGO.md` — **1.624 → 1.628 linhas** (+4). As 4 edições: a seção **30** acrescentada à
+  linha da **Bússola** no mapa de leitura; a nota datada de 16/11 sobre essa entrada; o ponteiro
+  para a **25.10** dentro do degrau 1 da **25.1**, com a referência ao feed riscada; e o `### 32.6`
+  de 11/11/2026 renumerado para `### 32.8` com a nota da troca. Conferido depois de gravar:
+  `**32.6 Ordem de aplicação:**` segue na linha 1582 e o `### 32.8` está na 1590 — **o número 32.6
+  não aparece mais duas vezes como cabeçalho de seção**.
+- `bussola/BUSSOLA.md` — **404 → 412 linhas** (+8). Os 5 ponteiros: na **0.1**, no **portão 3 da
+  0.2**, na **3.0-c.1**, na **3.0-d.1** e na **3.0-d.5**. Nenhum número de medição tocado.
+- `bussola/fila.md` — **600 → 610 linhas** (+10). Um ponteiro, dentro do bloco da contradição da
+  rodada 008; nada do bloco foi reescrito.
+- `ilhas/ohmetria/PROMPT.md` — **131 → 139 linhas** (+8). O ponteiro do nicho fechado em 22/10/2026,
+  acima do aviso de foco que já estava lá.
+- `ilhas/ohmetria/ESTADO.md` — **65 → 66 linhas** (+1). Uma linha no topo de "O que está travando".
+  **O cabeçalho YAML não foi tocado** — conferido no `git diff`: a única linha acrescentada está na
+  linha 58, dentro da seção de prosa; `estado`, `executando_desde`, `prioridade` e os demais campos
+  estão byte por byte como estavam.
+
+**Nada além dos 6 arquivos nomeados e deste `MAOS-LOG.md` foi tocado.** Nenhuma ilha reservada,
+nenhum `executando_desde` escrito, nenhum bloco de fila executado, nada publicado, nenhum valor de
+segredo escrito aqui nem em commit.
+
+**Nenhum passo falhou.** Nenhuma mensagem de erro a registrar.
+
+**Uma medição que divirjo do texto entregue, e que não corrigi de propósito:** o relatório afirma
+"clone COMPLETO, não raso (`.git/shallow` não existe)". No clone **desta** sessão de mãos,
+`.git/shallow` **existe** — o clone daqui é raso. Medido antes de aplicar qualquer coisa. Não mexi
+numa letra do relatório: a instrução manda aplicar byte a byte, e a afirmação é sobre o clone da
+sessão que rodou a auditoria, não sobre o nosso. Fica registrado para quem for conferir as contagens
+de commits e de arquivos tocados a partir deste repositório.
+
+Este log vai num commit próprio, logo depois — o hash do trabalho só existe depois do commit do
+trabalho, então não havia como empurrar os dois juntos. O `MAOS-LOG.md` segue append-only: nada foi
+apagado, reescrito nem resumido neste disparo.
+
+Esta seção acrescentou 117 linhas ao `MAOS-LOG.md` (de 10031 para 10148 linhas, medido com
+`wc -l` depois de gravar, já contando estas três últimas linhas e a em branco acima delas).
