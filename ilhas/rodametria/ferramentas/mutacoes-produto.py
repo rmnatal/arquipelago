@@ -487,12 +487,27 @@ def m_regua_sem_a_cabeca_de_campanha(areia):
         f.write(t.replace(alvo, "FORMA_DO_MARCADOR = re.compile(r'^(?!)$')", 1))
 
 
+def m_alt_da_foto_com_o_marcador(areia):
+    caminho = os.path.join(areia, 'ferramentas', GERADOR)
+    with open(caminho, encoding='utf-8') as f:
+        t = f.read()
+    alvo = "    nova['alt'] = (nome_na_tela or '')[:120]"
+    exigir(alvo in t, 'o gerador deveria derivar o alt do nome da tela')
+    with open(caminho, 'w', encoding='utf-8') as f:
+        f.write(t.replace(alvo, "    nova['alt'] = (anuncio['titulo'] or '')[:120]", 1))
+
+
 def m_nome_do_cartao_com_o_marcador(areia):
     caminho = os.path.join(areia, 'ferramentas', GERADOR)
     with open(caminho, encoding='utf-8') as f:
         t = f.read()
-    alvo = "'nome': rel.nome_do_anuncio(a['titulo']),"
-    exigir(alvo in t, 'o gerador deveria tirar o marcador de campanha do nome')
+    # O ALVO E A LINHA DO `nome` NO DICIONARIO, e nao a chamada que o calcula:
+    # mutar a chamada derrubaria o `alt` junto (ele deriva do mesmo campo desde
+    # 16/11/2026) e as duas mutacoes mediriam a mesma coisa. Esta mutacao nasceu
+    # declarando-se INERTE no minuto em que a linha mudou de forma, que e o
+    # portao fazendo o que ele promete.
+    alvo = "'nome': nome_na_tela,"
+    exigir(alvo in t, 'o gerador deveria publicar o nome sem a cabeca de campanha')
     with open(caminho, 'w', encoding='utf-8') as f:
         f.write(t.replace(alvo, "'nome': a['titulo'],", 1))
 
@@ -557,6 +572,8 @@ MUTACOES = (
      m_regua_sem_a_cabeca_de_campanha),
     ('nome do cartao de volta com o `11.11`', GERADOR, ('--conferir',),
      m_nome_do_cartao_com_o_marcador),
+    ('alt da foto de volta com o `11.11`', GERADOR, ('--conferir',),
+     m_alt_da_foto_com_o_marcador),
 )
 
 

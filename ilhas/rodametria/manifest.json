@@ -4,7 +4,7 @@
   "nicho": "mobilidade eletrica — acertar os tres numeros antes de comprar um veiculo eletrico: categoria legal (CNH e placa), autonomia real e carga maxima",
   "dominio": "https://rodametria.com.br",
   "versao_manifest": 1,
-  "revisao": 102,
+  "revisao": 103,
   "atualizado_em": "2026-11-16",
   "estado": "nascendo",
   "desembarque": {
@@ -135,7 +135,7 @@
       "arquivo": "dados/vitrine-de-produto.json",
       "formato": "json",
       "publicar": true,
-      "sha256": "5324cb4ea64d6cc4ee29591ca7a9bbe0300e2ea2c4efd73344888cc78e20eb38",
+      "sha256": "f922a06689f71f5dffaef54b21b2cad188c1f9eb8571d881376a2d46ef2f8107",
       "descricao": "A camada GERADA: cartoes do carrossel (teto de cinco, 32.1), linhas da tabela (todas) e os numeros, RECONTADOS de dados/anuncios-por-consulta.json."
     },
     {

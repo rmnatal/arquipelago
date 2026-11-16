@@ -217,6 +217,44 @@ def conferir():
                 falhas.append('FALHOU nome: %s item %s -> %r nao e o fim do titulo'
                               % (bloco['slug'], a.get('item_id'), nome[:50]))
 
+    # ---- O TEXTO QUE A VITRINE PUBLICA, E A AFIRMACAO E POSITIVA ----
+    # A 20.8 e literal sobre isto: procurar `11.11` seria a leitura pelo avesso,
+    # que so pega o marcador que alguem ja imaginou. Aqui se exige que TODO
+    # texto publicado passe pela regua — nome e `alt`, nos cartoes e nas linhas.
+    # O `alt` entrou porque o conserto do nome foi AO AR sem ele em 16/11/2026
+    # (revisao 102): o nome visivel estava limpo e o `alt` da foto do primeiro
+    # cartao de `/veiculos/moto-eletrica/` ainda dizia "11.11 Moto Eletrica
+    # Adulto Panda A4 ...". Quem o achou foi um `grep` no HTML servido, e nao
+    # um portao — e e por isso que esta afirmacao existe.
+    vitrine = os.path.join(RAIZ, 'dados', 'vitrine-de-produto.json')
+    if os.path.exists(vitrine):
+        with open(vitrine, encoding='utf-8') as f:
+            v = json.load(f)
+        for pagina in v.get('paginas') or []:
+            for onde in ('cartoes', 'linhas'):
+                for item in pagina.get(onde) or []:
+                    nome = item.get('nome') or ''
+                    afirmacoes += 1
+                    if rel.marcador_de_campanha(nome)[0]:
+                        falhas.append('FALHOU nome publicado: %s %s %r comeca por '
+                                      'marcador de campanha'
+                                      % (pagina['slug'], onde, nome[:50]))
+                    imagem = item.get('imagem') or {}
+                    alt = imagem.get('alt')
+                    if alt is None:
+                        continue
+                    afirmacoes += 2
+                    if rel.marcador_de_campanha(alt)[0]:
+                        falhas.append('FALHOU alt publicado: %s %s %r comeca por '
+                                      'marcador de campanha'
+                                      % (pagina['slug'], onde, alt[:50]))
+                    # E O `alt` E O NOME DA TELA, nao outro texto: duas frases
+                    # para a mesma coisa comecam iguais e so uma sobe (20.7).
+                    if alt != nome[:120]:
+                        falhas.append('FALHOU alt publicado: %s %s o alt %r nao e o '
+                                      'nome da tela %r'
+                                      % (pagina['slug'], onde, alt[:40], nome[:40]))
+
     print('A CONTA DA 25.9 SOBRE O BANCO DE VERDADE: %d anuncio(s) julgado(s), '
           '%d veredito(s) mudaram.' % (total, len(mudaram)))
     for slug, iid, antes_v, depois_v in mudaram:

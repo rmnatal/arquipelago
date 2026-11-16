@@ -645,6 +645,26 @@ def rel_quarentena(bloco):
     return _coletor().causas_em_quarentena(bloco)
 
 
+def imagem_do_cartao(anuncio, nome_na_tela):
+    """A foto do cartao, com o `alt` DERIVADO do nome que a tela publica.
+
+    O `alt` e texto da pagina: quem o le e leitor de tela e a camada de imagem
+    que o buscador indexa, e nele valem as mesmas regras do nome visivel. O
+    banco segue guardando o `alt` como a loja escreveu o titulo — o que esta
+    funcao faz e escolher o que VAI A TELA, sem tocar na procedencia.
+
+    O corte em 120 caracteres e o mesmo do coletor e esta aqui pelo mesmo
+    motivo: alt longo e lido inteiro em voz alta.
+    """
+    imagem = anuncio.get('imagem')
+    if not imagem:
+        return imagem
+    nova = dict(imagem)
+    nova['alt'] = (nome_na_tela or '')[:120]
+
+    return nova
+
+
 def marcas_do_registro():
     """As marcas que o banco desta ilha conhece, normalizadas. Nunca uma lista
     escrita aqui: lista na regua envelhece calada quando o banco cresce."""
@@ -735,6 +755,7 @@ def montar(bloco, editorial_da_pagina):
         # (o numero e a frase de como foi medido) saem da MESMA chamada: duas
         # chamadas da mesma funcao sao duas declaracoes do mesmo fato (20.7).
         compra = degrau_de_compra(a, marcas)
+        nome_na_tela = rel.nome_do_anuncio(a['titulo'])
         item = {
             # O NOME SAI DO TITULO DA LOJA SEM A CABECA DE CAMPANHA (16/11/2026):
             # a pagina publicava `11.11 Moto Eletrica Adulto Panda A4 ...` como
@@ -743,7 +764,7 @@ def montar(bloco, editorial_da_pagina):
             # ver `marcador_de_campanha` na regua. O titulo INTEIRO do vendedor
             # segue no banco, em `anuncios-por-consulta.json`: o que muda e o
             # que a tela chama de nome, nunca o que a loja escreveu.
-            'nome': rel.nome_do_anuncio(a['titulo']),
+            'nome': nome_na_tela,
             'preco': real(a['preco']),
             'preco_numero': a['preco'],
             # A DATA DO PRECO DEIXA DE EXISTIR SO EM PORTUGUES (12/11/2026).
@@ -798,7 +819,16 @@ def montar(bloco, editorial_da_pagina):
             # DECISOR: ele viaja ao lado do degrau para quem for reauditar a
             # escolha nao ter de voltar ao `anuncios-por-consulta.json`.
             'tipo_de_loja': a.get('tipo_de_loja'),
-            'imagem': a.get('imagem'),
+            # O `alt` DA FOTO E TEXTO DA PAGINA, E POR ISSO ELE DERIVA DO `nome`
+            # DA TELA E NAO DO TITULO CRU (16/11/2026, conferido no ar na mesma
+            # passada que o nome). O conserto do nome foi ao ar e a METADE DO
+            # `alt` NAO VIAJOU: a revisao 102 servia `alt="11.11 Moto Eletrica
+            # Adulto Panda A4 ..."` no primeiro cartao de
+            # `/veiculos/moto-eletrica/`, com o nome visivel ja limpo. E a
+            # 32.5-c ao pe da letra — e quem leu o `alt` foi um `grep` por
+            # `11.11` no HTML servido, nao um portao. Derivar aqui, do mesmo
+            # campo, e o que torna as duas metades incapazes de divergir.
+            'imagem': imagem_do_cartao(a, nome_na_tela),
             'loja': a['loja'],
             # ITEM 4 DO DESPACHO DE 30/10/2026 — O PAR DA 25.4-b E O PISO DA 25.2.
             # As 21 ofertas desta vitrine iam para a tela com SO `url`, o

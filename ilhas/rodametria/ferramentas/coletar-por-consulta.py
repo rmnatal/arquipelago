@@ -514,7 +514,10 @@ def colher_consulta(c, api, com_link):
                 'url': a['url_bruto_da_imagem'],
                 'largura': dim[0],
                 'altura': dim[1],
-                'alt': a['titulo'][:120],
+                # SEM A CABECA DE CAMPANHA (16/11/2026): o `alt` e texto de
+                # pagina, e `11.11` nao e nome de veiculo. O titulo cru da loja
+                # segue ao lado, no campo `titulo`, que e a procedencia.
+                'alt': rel.nome_do_anuncio(a['titulo'])[:120],
                 'fonte': 'anuncio-shopee',
                 'coletado_em': HOJE,
                 'como_a_dimensao_foi_medida': 'cabecalho do arquivo na CDN, nunca digitada',
