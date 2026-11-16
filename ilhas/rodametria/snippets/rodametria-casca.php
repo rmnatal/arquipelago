@@ -71,7 +71,88 @@
    Antes disto a ilha cujo produto e "o preco de hoje" tinha ZERO ocorrencia de
    `dateModified` e de `datePublished` em todo o JSON-LD das 9 URLs. */
 if ( ! defined( 'RODAMETRIA_CASCA_VERSAO' ) ) {
-	define( 'RODAMETRIA_CASCA_VERSAO', '1.26.0' );
+	define( 'RODAMETRIA_CASCA_VERSAO', '1.27.0' );
+}
+
+/* ---------------------------------------------------------------------------
+ * O TITULO DO ANUNCIO QUE PROMETE HABILITACAO VAI ENTRE ASPAS, PORQUE ALI A
+ * PALAVRA E DA LOJA (16/11/2026)
+ *
+ * MEDIDO NO AR as 10h4xZ de 16/11/2026, em `/veiculos/moto-eletrica/`, revisao
+ * 95, pelo portao `conferir-no-ar.py`: SEIS afirmacoes sobre habilitacao sem
+ * nenhuma das oracoes de recusa desta ilha. Nenhuma delas foi escrita por nos —
+ * sao DOIS titulos que a loja devolveu para a chave `moto eletrica adulto`,
+ * `(...) Painel Led - SEM CNH` e `(...) Adulto Sem Cnh Bluetooth Re`, servidos
+ * no nome do cartao, na celula da tabela e no `name` do `ItemList`.
+ *
+ * E O PORTAO ESTA CERTO: do lado de fora, o elemento que serve o titulo ao lado
+ * da nossa prosa ("declara watt, sem dizer se e nominal ou de pico", "Ver na
+ * Shopee") e uma unica cadeia, e nela a pagina PARECE afirmar que a moto
+ * dispensa habilitacao — que e a unica coisa que o "Especifico desta ilha" do
+ * `PROMPT.md` chama de risco de mandar alguem para a rua sem habilitacao.
+ *
+ * A LICENCA NAO FOI INVENTADA AQUI: ela e o mecanismo que esta ilha ja tem.
+ * `_so_dentro_de_citacao` da regua de afirmacao de tela absolve o token que
+ * esta DENTRO de aspas — curvas ou retas —, e a home desta ilha ja cita um
+ * titulo de anuncio assim desde 06/11. O que faltava era o titulo CHEGAR
+ * entre aspas na pagina de produto.
+ *
+ * POR QUE SO O TITULO QUE CARREGA O TOKEN, e nao todo titulo: aspas em todo
+ * nome de anuncio seria tipografia mais uniforme e reescreveria o texto SERVIDO
+ * das duas paginas que ja estao indexadas, uma delas a de 673 mil buscas/mes,
+ * sem ganho medido — e a 12.1 manda nao trabalhar texto de pagina cujo sinal
+ * ainda se espera. As aspas aqui nao sao enfeite: elas marcam a promessa como
+ * palavra da loja, e e exatamente onde a loja a fez que elas aparecem.
+ *
+ * ELA MORA NA CASCA, E NAO NO SNIPPET DE PRODUTO, porque quem serve o nome sao
+ * DOIS arquivos (o cartao aqui, a tabela e o `ItemList` la) e porque a 32.5-c
+ * desta fabrica e literal: regra que nao viaja para as irmas e a doenca que
+ * este molde ja pagou tres vezes. Ilha irma que colher titulo com esta promessa
+ * ganha o conserto no dia em que copiar a casca.
+ * ------------------------------------------------------------------------- */
+
+if ( ! function_exists( 'rodametria_casca_nome_de_anuncio' ) ) {
+/**
+ * O nome do anuncio como ele vai para a tela: entre aspas quando promete
+ * habilitacao, cru quando nao promete.
+ *
+ * @param string $nome O titulo COLHIDO, letra por letra.
+ * @return string
+ */
+function rodametria_casca_nome_de_anuncio( $nome ) {
+	$nome = (string) $nome;
+	if ( '' === trim( $nome ) ) {
+		return $nome;
+	}
+	$abre  = json_decode( '"“"' );
+	$fecha = json_decode( '"”"' );
+	/* JA ENTRE ASPAS NAO GANHA OUTRO PAR: aspas sobre aspas e a familia do
+	   numero contado duas vezes, e a regua de citacao le o par de fora. */
+	$aspas = array( '"', "'", $abre, $fecha,
+		json_decode( '"‘"' ), json_decode( '"’"' ) );
+	$primeiro = mb_substr( trim( $nome ), 0, 1 );
+	if ( in_array( $primeiro, $aspas, true ) ) {
+		return $nome;
+	}
+	/* OS TOKENS SAO OS DA REGUA, sem acento, e a comparacao e sem acento pelo
+	   mesmo motivo que a 32.4-e: o ar serve a palavra COM acento e comparar
+	   cadeia crua deixa passar a mesma palavra com o traje de cima. */
+	$sem_acento = $nome;
+	if ( function_exists( 'iconv' ) ) {
+		$convertido = @iconv( 'UTF-8', 'ASCII//TRANSLIT', $nome );
+		if ( false !== $convertido && '' !== $convertido ) {
+			$sem_acento = $convertido;
+		}
+	}
+	$agulha = strtolower( $sem_acento );
+	foreach ( array( 'cnh', 'habilitac', 'habilitad' ) as $t ) {
+		if ( false !== strpos( $agulha, $t ) ) {
+			return $abre . $nome . $fecha;
+		}
+	}
+
+	return $nome;
+}
 }
 
 /**
@@ -1188,7 +1269,8 @@ function rodametria_casca_cartao_de_compra( $item ) {
 		$html .= '<span class="rdm-molde-cartao-sem-foto" aria-hidden="true"></span>';
 	}
 
-	$html .= '<p class="rdm-molde-cartao-nome">' . esc_html( $item['nome'] ) . '</p>';
+	$html .= '<p class="rdm-molde-cartao-nome">'
+		. esc_html( rodametria_casca_nome_de_anuncio( $item['nome'] ) ) . '</p>';
 
 	if ( ! empty( $item['especificacao'] ) ) {
 		$html .= '<p class="rdm-molde-cartao-spec">' . esc_html( $item['especificacao'] ) . '</p>';

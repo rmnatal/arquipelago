@@ -79,6 +79,12 @@ foreach (array(
 	array('rodametria_casca_rotulo_do_piso', $casca),
 	array('rodametria_casca_escada_de_compra', $casca),
 	array('rodametria_casca_cartao_de_compra', $casca),
+	/* ACRESCENTADA EM 16/11/2026: o cartao e a tabela passaram a servir o nome
+	   do anuncio pela citacao (`rodametria_casca_nome_de_anuncio`), e sem ela
+	   este portao morria com `undefined function` ANTES de imprimir veredito —
+	   a bancada o leu como INERTE, que e a leitura certa: portao que nao diz o
+	   veredito em portugues nao e lido por ninguem. */
+	array('rodametria_casca_nome_de_anuncio', $casca),
 	array('rdm_produto_tabela_html', $produto),
 ) as $par) {
 	$ok = carregar_funcao($par[1], $par[0]);

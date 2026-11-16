@@ -110,7 +110,7 @@
    pergunta que `dateModified` responde e "quando esta pagina mudou", e a mae muda
    no dia em que QUALQUER filha e recolhida. */
 if ( ! defined( 'RODAMETRIA_PRODUTO_VERSAO' ) ) {
-	define( 'RODAMETRIA_PRODUTO_VERSAO', '1.12.0' );
+	define( 'RODAMETRIA_PRODUTO_VERSAO', '1.13.0' );
 }
 
 /* A VERSAO DESTE SNIPPET VAI AO AR, pelo filtro que a casca 1.6.0 abriu
@@ -440,7 +440,10 @@ function rdm_produto_tabela_html( $pagina ) {
 		$escada = rodametria_casca_escada_de_compra( $item );
 
 		$html .= '<tr>';
-		$html .= '<td>' . esc_html( $item['nome'] ) . '</td>';
+		/* O NOME VAI PELA CITACAO DA CASCA (16/11/2026): titulo de anuncio que
+		   promete habilitacao sai entre aspas, porque ali a palavra e da loja.
+		   Ver o comentario de `rodametria_casca_nome_de_anuncio()`. */
+		$html .= '<td>' . esc_html( rodametria_casca_nome_de_anuncio( $item['nome'] ) ) . '</td>';
 		$html .= '<td class="rdm-num">' . esc_html( $item['preco'] ) . '</td>';
 		$html .= '<td>' . esc_html( $item['especificacao'] ) . '</td>';
 		/* A CELULA NUNCA NASCE VAZIA: ou traz o numero que o titulo declara, ou
@@ -1297,7 +1300,12 @@ add_action( 'wp_head', function () {
 
 		$produto = array(
 			'@type' => 'Product',
-			'name'  => $item['nome'],
+			/* A CAMADA DA MAQUINA NAO E MENOS CUIDADOSA QUE A TELA (32.4-c), E A
+			   REGUA DE AFIRMACAO MEDE AS DUAS: o `name` passa pela MESMA citacao
+			   do cartao e da tabela. Sem isto o `ItemList` afirmaria, em dado
+			   estruturado, o que a tela ja nao afirma — que e o defeito da
+			   32.4-c com o sinal invertido. */
+			'name'  => rodametria_casca_nome_de_anuncio( $item['nome'] ),
 		);
 		/* `offers` SO QUANDO HA OFERTA (12/11/2026). Com a recusa da secao 7-b,
 		   um item sem preco util devolve `array()`, e `"offers": []` seria dado
