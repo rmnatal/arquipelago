@@ -3,6 +3,107 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-11-16 10h17Z–11h4xZ — **NASCE `/veiculos/moto-eletrica/`, A CABEÇA DE 823 MIL BUSCAS/MÊS QUE 29/10 DECLAROU TRAVADA — E O QUE DESTRAVOU NÃO FOI A SERP, FOI O CATÁLOGO DA LOJA** — casca 1.27.0, produto 1.13.0, **revisão 97 no ar, conferida (18.4)**
+
+**A ILHA DESTA EXECUÇÃO:** rodametria, por **foco** (`foco.md` nomeia a rodametria, foco total e absoluto desde 27/10). Pela **1.2** não há escolha a fazer. **Conferi as exceções que furam o foco antes de obedecer a ele:** os três despachos do **MOLDE da seção 32** (aquametria, clubedomosaico, robometria) estão **FECHADOS INTEIROS desde 21/10**, e o despacho **ALTA** da clubedomosaico está reescrito pela 18.3 com os itens 3, 4 e 5 — chamado na HostGator, credencial ausente e uma **ordem de NÃO FAZER até 18/11** —, nenhum deles acionável por uma execução da Fundação. Logo não havia ilha no ar e quebrada para a 18.1 me tirar do foco.
+
+**O PASSO 1 DO DISPARO, MEDIDO:** `git fetch origin main` trouxe o `main` de `68808f3` para **`07b60ce`**; a branch `claude/dreamy-mccarthy-7oilnx` existe local e remota e está **idêntica ao `main`** (0 commit à frente, 0 atrás), e `list_pull_requests` devolveu **lista vazia** — nada a mesclar antes. **Nenhum despacho aberto para a Fundação.**
+
+**A REDE FOI MEDIDA E NÃO HERDADA (20.2), ANTES DA RESERVA:** rodametria, robometria e aquametria em **200 nas três passadas** com quebra de cache — **9 de 9, zero `000`**. Reserva às **10h17Z** (commit `bce68c9`), ganha no push na primeira tentativa, e **RENOVADA uma vez pela 1.1 às 10h46Z**.
+
+---
+
+### A PERGUNTA DESTA PASSADA NÃO FOI "QUAL BLOCO", FOI "QUAL CAUSA DE IMPOSSIBILIDADE ENVELHECEU"
+
+A fila de blocos de construção desta ilha está **acabada** desde 06/11 (o bloco 5 depende de um `pauta.md` que não existe e que pela 17.1 não é arquivo da Fundação), e o `bloco_atual` da passada anterior deixou escrito que as duas pontas de página de produto estavam travadas **fora** da Fundação: a **30.8** para a SERP e o Mercado Livre para o produto.
+
+**Então a primeira coisa que fiz foi remedir os bloqueios, e um deles continua de pé:** pela **20.3** e pela **29.3-a** (*"tente antes de escrever que não dá daqui"*), `gov.br`, `in.gov.br`, `planalto.gov.br`, `gov.br/transportes`, `contran.gov.br` e `lex.com.br` responderam **`000` os seis**, com o proxy dizendo `connect_rejected` — **não estão na lista de domínios permitidos (20.1)**, e os dois limiares legais da F1 seguem `pendente`. Isso é despacho ALTA de 28/10 e é do Raphael. Os quatro domínios municipais também seguem recusados, pela mesma causa.
+
+**O que NÃO continuou de pé é a outra ponta, e ela não era SERP.** `dados/consultas-de-produto.json` escrevia, para a `moto elétrica` (823 mil buscas/mês, a maior cabeça do nicho): veredito de SERP **`alvo`**, visto com os olhos do Raphael em 27/10 — e *"o que falta é o PRODUTO (…) Ela espera o Mercado Livre, junto com a `scooter elétrica`"*, porque em 29/10 a Shopee tinha **três** anúncios de adulto, os três com **zero venda** e preços variando R$ 6.500 para a mesma classe.
+
+**Produto é catálogo de loja, e catálogo se move.** Remedi as duas consultas na **mesma chave** e com a **mesma régua de relevância** de 29/10 — sem gravar, sem gerar link, reusando as funções da própria ferramenta da ilha para a régua ser a dela e não a minha:
+
+| consulta | chave (degrau 1) | lidas | servem (29/10) | servem (16/11) | veredito |
+|---|---|---|---|---|---|
+| `moto elétrica` | `moto eletrica adulto` | 20 | 3 | **4** | **abriu** |
+| `scooter elétrica` | `scooter eletrica adulto` | 20 | — | 5, **todos PATINETE** | **continua fechada** |
+
+**A `scooter elétrica` é a metade que vale mais que a que abriu.** Os cinco que "servem" nela são `Patinete Elétrico Scooter 350W`, `Patinete Elétrico Scooter Adulto 150w`, `Patinete Scooter Elétrico Dobrável 350W` — **nesta loja a palavra `scooter` É o patinete**. Publicar seria servir, numa página cujo H1 promete scooter, o produto que `/veiculos/patinete-eletrico/` já serve: **canibalização da 30.4 construída de propósito**. Ela ficou `publicar_declarado: false`, **agora com medição de 16/11 e não de 29/10** — motivo velho manda não tentar (25.4-b.3), e a régua desta vez foi rodada.
+
+**E a lição é de instrumento, não de nicho: a 30.8 trava a SERP, e a SERP não era o que faltava nesta consulta.** Uma execução que lesse "travado fora da Fundação" e parasse teria deixado a maior cabeça do nicho fora do ar por mais uma semana.
+
+---
+
+### A PÁGINA NASCEU SEM UMA LINHA DE PHP NOVA, E ISSO É O MOTOR DO 5b PAGANDO
+
+`rdm_produto_paginas_prontas()` lê a vitrine e a voz declarada; o mapa de páginas da casca sai de um filtro. Então o caminho inteiro foi **dado**: declarar a consulta, escrever a voz em `dados/paginas-de-produto.json`, colher, gerar a vitrine, subir o manifest. A família **saiu de `familias_que_faltam` da mãe** (3 → 2), e a caixa da mãe passou a contar **três** no ar.
+
+**O QUE A PÁGINA DIZ E NÃO DISFARÇA** — quatro anúncios, faixa de **R$ 2.257,99 a R$ 15.000,00**, mediana **R$ 11.249,50**:
+
+- **a faixa é de quase sete vezes entre as pontas, e a página explica por quê**: o mesmo nome cobre a de trilha (freio hidráulico, bateria grande) e a scooter de rua. *"Compare dentro da mesma, nunca entre as duas."*
+- **os quatro declaram watt e só UM diz qual watt é** (o GT600 diz `Pico`) — a frase é contada, com molde, nunca digitada;
+- **nenhum declara carga máxima** no título;
+- **DOIS declaram tensão e amperagem** — e isso é novidade boa: nas duas irmãs o par de entrada da F2 era **zero**;
+- **nenhum dos quatro declara venda na loja.** Está escrito no `motivo_para_publicar_agora`, antes de a página nascer.
+
+**E O CASO EDITORIAL DESTA PÁGINA, QUE É A TESE DA ILHA ACONTECENDO:** **dois dos quatro títulos prometem "SEM CNH"**, letra por letra, nas palavras da loja. A página serve o título como está, **não o endossa**, e responde na própria tela: *"Quando o título do anúncio disser que a moto é sem CNH, leia como palavra da loja (…) a regra que a gente leu não tem artigo nenhum sobre CNH."*
+
+---
+
+### TRÊS PORTÕES ESTAVAM CERTOS E REPROVARAM A PÁGINA CERTA (20.5) — E OS TRÊS FORAM CONSERTADOS NA RAIZ
+
+**1. `teste-afirmacao-de-tela.py` reprovou os títulos da loja em DOZE lugares.** A `CHAVES_DE_CITACAO` nomeia `titulo_colhido`, `titulo_do_anuncio` e `titulo_da_oferta` — e **nenhuma das três existe nos arquivos desta ilha**: ela colhe em `titulo` e serve em `nome`. A régua estava escrita para um esquema que esta ilha não tem, e **passou verde dezoito dias porque nenhum título colhido trazia a palavra**. Excluir `titulo` e `nome` **por nome** seria o pior conserto disponível: `paginas[i]/titulo` é o `<title>` da página, que é afirmação **da ilha**. Agora a régua **pergunta ao dado**: citação é a cadeia **idêntica** a um título **colhido** em `anuncios-por-consulta.json`. **Mundo 13 do autoteste**, com a régua velha ao lado da nova e as duas **discordando** (20.8), com a licença provada como **igualdade e não como pedaço** (título colhido + oração nossa emendada **continua reprovando**) e com os dois títulos **lidos da colheita**, nunca digitados na régua.
+
+**2. `teste-data-da-pagina.php --divergente` fabricava DUAS datas para o que eram DUAS filhas.** No dia em que a terceira nasceu, ela ficou com a data **real** — a mais recente de todas —, a mãe passou a servir essa, e as duas afirmações do mundo divergente reprovaram. As datas passaram a ser **derivadas, uma por filha**: a quarta página não quebra o mundo de novo.
+
+**3. `teste-envelope-do-itemlist.py` leu a citação como desordem** — *"a lista servida não está na ordem da fonte"*, **e a lista estava na ordem**: a única diferença era o par de aspas. **Ele não passou a decidir quando citar**, e não é dele: isso é do portão da citação, e duas cópias da mesma regra em linguagens diferentes é a quarta cópia de critério que esta ilha matou em 13/11. O que ele mede é o **pareamento por posição**, e a unidade dele é o **produto** — então tolera o par de aspas **de fora** e compara o citado. **Mundos 6-e e 6-f**, e o 6-f é o que impede a tolerância de virar anistia: **aspas no MEIO do nome continuam reprovando**.
+
+**E A BANCADA ACHOU UM QUARTO, QUE EU MESMA CRIEI MINUTOS ANTES:** `teste-escada-de-compra.php` virou **INERTE** — morria com `undefined function` **antes de imprimir veredito**, porque carrega função por função e não conhecia a nova. A bancada o leu como INERTE e **não como falha**, que é a leitura certa: *portão que não diz o veredito em português não é lido por ninguém*.
+
+**O CONSERTO QUE ERA DE CONTEÚDO, E O AR FOI QUEM COBROU:** `conferir-produto-no-ar.py` reprovou porque a página **não servia a frase contada do pivô da F1** — e o pivô é o **acelerador**, que é exatamente o campo que decide a categoria desta família. *"Nenhum dos 4 anúncios diz se o veículo tem acelerador, e é o acelerador que decide se ele é bicicleta elétrica ou ciclomotor."* Entrou na pergunta da placa e na instrução de uso de quem quer andar na rua sem placa.
+
+**E A `description` SAIU COM 170 CARACTERES CONTRA O TETO DE 160**, pega no ar. Encurtada para 156.
+
+---
+
+### O PORTÃO NOVO, E O DEFEITO QUE O AUTORIZA ESTÁ MEDIDO NO AR COM URL E DATA (31.2)
+
+`ferramentas/teste-citacao-de-anuncio.php`, **69 afirmações**. Ele existe porque `conferir-no-ar.py` reprovou `/veiculos/moto-eletrica/` na **revisão 95**, às 10h4xZ de 16/11/2026, com **6 afirmações sobre habilitação sem nenhuma das orações de recusa desta ilha** — nenhuma escrita por nós. É PHP porque a decisão é tomada em PHP e a régua **chama a função**; régua em Python sobre o texto do PHP conferiria a **forma** e nunca a decisão.
+
+**A licença não foi inventada:** `_so_dentro_de_citacao` já absolve o token que está **dentro de aspas**, e a home desta ilha cita um título de anúncio assim desde 06/11. O que faltava era o título **chegar** entre aspas na página de produto. `rodametria_casca_nome_de_anuncio()` mora na **casca** — e não no snippet de produto — porque quem serve o nome são **dois arquivos** e porque a **32.5-c** é literal: regra que não viaja para as irmãs é a doença que este molde já pagou três vezes.
+
+**SÓ O TÍTULO QUE CARREGA O TOKEN, e a escolha está escrita no código:** aspas em **todo** nome de anúncio seria tipografia mais uniforme e **reescreveria o texto SERVIDO das duas páginas já indexadas**, uma delas a de 673 mil buscas/mês, **sem ganho medido** — e a 12.1 manda não trabalhar texto de página cujo sinal ainda se espera.
+
+**E A CAMADA DA MÁQUINA VAI PELA MESMA CITAÇÃO (32.4-c):** sem isso o `ItemList` afirmaria, em dado estruturado, o que a tela já não afirma. **Conferido no ar:** as **seis** ocorrências de "sem CNH" na página — duas no `name` do JSON-LD, duas no nome do cartão, duas na célula da tabela — estão **todas dentro de aspas curvas**; a sétima é a nossa prosa, que carrega a oração de recusa.
+
+---
+
+### O CHURN QUE NÃO ERA DO BLOCO, E FOI RESTAURADO
+
+`coletar-piso-da-vitrine.py` **não tem `--so`** e regerou o piso de busca das **três** consultas, trocando o das duas páginas que estão no ar e **vivas desde 04/11** (`2BGBa08SR6` e `60Su92trfV`, conferidas no ar em 13/11). Os dois foram **restaurados**; só o piso novo da moto (`6AmdIJaB5H`) entrou. **Piso vivo não se regenera:** gasta geração de link e mexe em página indexada sem ganho. Fica escrito aqui para a próxima passada não repetir.
+
+---
+
+### A API DA SHOPEE TEM ORÇAMENTO DE JANELA TAMBÉM NA OPEN API, E A RECEITA DA 30/10 ERA SÓ DO NAVEGADOR
+
+Medido nesta passada: **duas** buscas de ensaio passaram; as **duas** chamadas seguintes, a mesma consulta, devolveram `error [10000]: System Error`; e a **mesma** chamada passou **na primeira tentativa** depois de ~3 minutos de espera. O item 6 do despacho de 30/10 escreveu o orçamento de janela para o **navegador** (CAPTCHA, `/verify/traffic/error`); aqui ele apareceu na **Open API**, com outro código e sem CAPTCHA. **A receita é a mesma: espere, não reacione em sequência.**
+
+---
+
+### O DESEMBARQUE — TRÊS REVISÕES, E A 20.9 POUPOU TODAS AS TENTATIVAS QUE ELA EXISTE PARA POUPAR
+
+| revisão | push | no ar | espera | aplicados × linhas `ok` |
+|---|---|---|---|---|
+| 95 | 10h36Z | **10:39:43Z** | 3 min | 7 × 7 |
+| 96 | 10h47Z | **11:10:17Z** | 23 min | 9 × 9 |
+| 97 | 11h12Z | **11:40:38Z** | 29 min | 7 × 7 |
+
+Nas três, `/status` = `manifest.json`, as linhas de cada revisão **lidas uma por uma do fecho PARA BAIXO** (20.8) e **todas dizendo `ok`**, com `aplicados − linhas = 0` (20.10). **Nenhuma rodada de Sync foi reacionada:** o veredito das três esperas foi `evento-nao-vencido` pela tabela da **20.9** (`ultimo` recente, raw já servindo, `ultimo` anterior ao commit do manifest), e a ação certa ali é **esperar**. E as três caíram **antes** do teto de `ultimo` + 30 min, como a segunda ressalva daquela seção prevê.
+
+**A VERIFICAÇÃO FINAL, NO AR (18.4):** `conferir-no-ar.py` **805 afirmações, 0 falha**; `conferir-produto-no-ar.py` **448, 0**; `conferir-institucional-no-ar.py` **244, 0**; **32.5 APROVADA 11 de 11** (pior caixa 405 px de 700; pior compra 1.340 px de 1.400; na página nova, resposta a **211 px** e compra a **1.340 px**, com 3 de 4 fotos reais e 1 reservada); **console 11 de 11 limpo**; **11 de 11 URLs do sitemap em 200 em DUAS leituras** com quebra de cache; as **três portas da 29.2** verdes (`/wp-sitemap.xml` em `application/xml`, `/robots.txt` em `text/plain`) e caminho virgem em **404 na página desta ilha** (73.151 bytes, 52 ocorrências de `rodametria`). **Bancada: 49 portões sem rede, 0 falha, APROVADO.** A REVISAO 98 SAIU NO MESMO FECHO e leva SO o `placar` de `consultas-de-produto.json`, que e arquivo de repositorio (`publicar: false`) e nao e servido a visitante nenhum — ela subiu porque o manifest espelha o `sha256` de todo item, e manifest fora de passo faria a bancada da proxima execucao comecar vermelha por um motivo que nao e dela.
+
+**E O NÚMERO QUE A 31.1 COBRA:** esta execução entregou **no ar, visível ao visitante**, uma **página nova** na maior consulta do nicho, com bloco de compra, quatro links de afiliado novos e o piso de busca; mais a frase contada do acelerador, a `description` encurtada e a citação dos dois títulos nas três camadas. **`urls_publicadas` foi de 10 para 11.** Os quatro portões mexidos nasceram todos de **defeito medido no ar**, com URL e data, e três deles mordendo contra o mundo real antes do conserto.
+
 ## 2026-11-13 19h17Z–19h46Z — **O CONVITE DA F3 LEVAVA O NÚMERO DA ILHA PARA UMA FERRAMENTA QUE NÃO LIA NÚMERO NENHUM — E A QUANTIDADE TAMBÉM ESTAVA ERRADA** — f3 1.7.0, f2 1.13.0, **revisão 94 no ar, conferida (18.4)**
 
 **A ILHA DESTA EXECUÇÃO:** rodametria, por **foco** (`foco.md` nomeia a rodametria, foco total e absoluto desde 27/10). Pela **1.2** não há escolha a fazer. **Conferi a exceção do molde da 32 antes de obedecer ao foco**, porque ela fura: os despachos do molde de aquametria, clubedomosaico e robometria estão **fechados**, e a clubedomosaico — que tem despacho ALTA de queda de porta — responde **200 em duas leituras**, então não há ilha no ar e quebrada para a 18.1 me tirar do foco.

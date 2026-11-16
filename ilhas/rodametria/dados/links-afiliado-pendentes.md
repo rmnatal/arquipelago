@@ -27,3 +27,28 @@
 **O QUE ESTA LISTA NÃO DECIDE:** quem entra na vitrine. A régua de família desta consulta (`exige_todas: [moto, eletric]`, `exige_alguma: [adulto, adultos]`) e o veredito por anúncio são de `ferramentas/teste-relevancia-do-anuncio.py`, que é da Fundação. **Quatro das cinco linhas acima provavelmente NÃO passam nessa régua pelo título** — as linhas 3, 4 e 5 dizem `scooter`/`bicicleta` e não `moto`, e nenhuma das cinco diz `adulto` no título. Isto está escrito aqui de propósito: **a lista é de candidatos colhidos, não de aprovados.**
 
 **O AVISO HONESTO, e ele muda a decisão de publicar:** das 5 ofertas distintas, **só 1 declara venda**. O piso da 30.2 é três anúncios que servem; nascer no piso com quatro ofertas sem uma venda é o mesmo risco que `dados/consultas-de-produto.json` já nomeou para a Shopee. **Se a régua reprovar e sobrarem menos de três, a consulta NÃO recebe endereço** — e isso é a 30.2 funcionando, não um bloco perdido.
+
+---
+
+## A PREMISSA DESTA FILA MUDOU EM 16/11/2026, E ELA NÃO ESTÁ CANCELADA: PASSOU DE **ÚNICA PORTA** A **REFORÇO**
+
+**A página nasceu sem o Mercado Livre.** Às 10h2xZ de 16/11/2026 a Fundação remediu a consulta na Open
+API da Shopee, na mesma chave (`moto eletrica adulto`) e com a mesma régua de 29/10: **quatro anúncios
+de adulto servem**, contra os três de 29/10, e com os quatro encurtados o piso da 30.2 fecha da nuvem.
+`https://rodametria.com.br/veiculos/moto-eletrica/` está **no ar desde a revisão 95**, conferida pela
+18.4.
+
+**O que isto muda neste arquivo, dito em uma linha:** o parágrafo acima que diz *"o que falta é o
+PRODUTO e que o caminho é o Mercado Livre"* era verdade em 11/11 e **ficou velho em 16/11** — a loja se
+moveu, não a régua. Os três passos continuam valendo e **continuam sendo do Raphael**; o que eles
+entregam agora é **profundidade de vitrine**, não a existência da página.
+
+**E o aviso honesto da seção anterior continua inteiro, agora dos dois lados:** nas quatro ofertas da
+Shopee que foram ao ar, **nenhuma declara venda**, e das cinco do Mercado Livre **só uma declara** — e
+ela é a única das dez com venda medida. Por isso o Mercado Livre vale: a linha 1 (`MLB78820650`,
+Off-road GT600, +50 vendidos) é o único anúncio desta consulta, em qualquer loja, que a fábrica viu
+vender.
+
+**O que NÃO fazer com esta lista:** apagá-la. Fila de link pendente que some quando a página nasce é
+exatamente o motivo que a 25.4-b escreve — *"motivo velho manda não tentar"* — com o sinal invertido:
+página no ar faria alguém concluir que a fila fechou.

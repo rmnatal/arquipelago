@@ -1144,14 +1144,15 @@
     "veredito_tomada_fechadas_nao_nascem": 3,
     "veredito_nao_medida_esperam_o_Chrome": 2,
     "com_slug_declarado_neste_arquivo": 4,
-    "com_pagina_SERVIDA_no_ar": 2,
+    "com_pagina_SERVIDA_no_ar": 3,
     "quais_estao_servidas": [
       "veiculos/patinete-eletrico",
-      "veiculos/bicicleta-eletrica"
+      "veiculos/bicicleta-eletrica",
+      "veiculos/moto-eletrica"
     ],
-    "porque_os_dois_numeros_diferem": "`veiculos/moto-eletrica` e `veiculos/scooter-eletrica` tem slug escrito desde o 5b e `publicar_declarado: false`: o endereco esta reservado, a pagina nao existe. Contar slug como pagina no ar e a familia do numero de tela digitado — parece conferido. O numero do ar e CONTADO no wp-sitemap.xml, e esta no `urls_publicadas` do ESTADO.md.",
-    "nascem_agora_nesta_execucao": 0,
-    "porque_zero_nascem_agora": "Das cinco caudas, tres fecharam por SERP tomada e duas ficaram `nao-medida`, que pela 30.8 nao autoriza pagina. Zero pagina nova nao e bloco perdido: e a assimetria da 30.8 funcionando — \"errar para o lado de nao publicar e barato; errar para o lado de publicar e a leva inteira\". O que esta execucao entregou no ar foi outra coisa, e esta no REGISTRO.md.",
+    "porque_os_dois_numeros_diferem": "`veiculos/scooter-eletrica` tem slug escrito desde o 5b e `publicar_declarado: false`: o endereco esta reservado, a pagina nao existe. Contar slug como pagina no ar e a familia do numero de tela digitado — parece conferido. O numero do ar e CONTADO no wp-sitemap.xml, e esta no `urls_publicadas` do ESTADO.md. EM 16/11/2026 a diferenca caiu de dois para UM: a `moto eletrica` saiu do grupo das reservadas e virou pagina servida.",
+    "nascem_agora_nesta_execucao": 1,
+    "porque_zero_nascem_agora": "SUPERADO EM 16/11/2026, e o campo fica com o nome que tinha porque a serie nao se reescreve. Este texto descrevia a execucao de 30/10, que fechou tres caudas por SERP tomada e deixou duas `nao-medida` — e ali zero pagina nova era a assimetria da 30.8 funcionando. Em 16/11 nasceu UMA: `veiculos/moto-eletrica`, e nao por SERP nova (o veredito `alvo` continua o de 27/10, visto pelo Raphael) e sim porque o CATALOGO DA LOJA se moveu — o degrau 1 passou de tres para quatro anuncios de adulto que servem. A licao e de instrumento: a 30.8 trava a SERP, e a SERP nao era o que faltava nesta consulta.",
     "paginas_dedicadas_de_fazenda_nas_caudas": 26,
     "ocupantes_com_url_das_CAUDAS_medidos_em_30_10": 102,
     "porque_as_cabecas_nao_entram_nessa_conta": "As seis cabecas foram vistas no Chrome do Raphael em 27/10 e o top 10 delas mora na secao (b) de bussola/dossies/rodametria/DOSSIE.md, por DOMINIO e na ordem, sem URL por ocupante. Somar os dois daria um total com duas procedencias diferentes dentro — entao a conta diz de quem ela e."
