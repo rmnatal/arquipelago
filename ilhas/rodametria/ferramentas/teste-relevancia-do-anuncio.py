@@ -773,6 +773,95 @@ def faixa_de_carga(anuncios_que_servem):
 
 
 # ---------------------------------------------------------------------------
+# O MARCADOR DE CAMPANHA NA CABECA DO TITULO, E ELE NAO E ADIVINHADO: QUEM O
+# PROVA E A PROPRIA LOJA (16/11/2026)
+#
+# Medido em `/veiculos/moto-eletrica/`, a pagina que nasceu na manha do mesmo
+# dia. A loja `francyellenoliveira` anunciava o MESMO veiculo DUAS vezes, e os
+# dois titulos eram iguais menos a cabeca:
+#
+#   "11.11 Moto Eletrica Adulto Panda A4 ... Capacidade De Carga 150kg"  R$ 1.096,38
+#   "Moto Eletrica Adulto Panda A4 ... Capacidade De Carga 150kg"        R$ 1.522,76
+#
+# E A PAGINA PUBLICAVA `11.11` COMO NOME DO VEICULO no primeiro cartao, que e o
+# espaco mais caro da tela. E a familia do item 1 do despacho de 09/11/2026,
+# que servia identificador de repositorio como nome de produto, num traje novo:
+# aqui o identificador e de CAMPANHA da loja.
+#
+# A PROVA DE QUE `11.11` NAO E NOME NAO E NOSSA. Esta ilha nao afirma semelhanca
+# entre titulos — a 25.9 ja mediu o que isso custa, e o comentario de
+# `escolher_carrossel` no gerador recusa deduplicar "oferta equivalente"
+# justamente por isso. O que se afirma aqui e mais fraco e mais forte ao mesmo
+# tempo: **o vendedor escreveu as duas formas**, uma com o marcador e outra sem,
+# com o resto identico. Quem declarou que `11.11` nao faz parte do nome foi ele.
+#
+# A REGUA E ESTREITA DE PROPOSITO, E E A FORMA QUE A DECIDE: a cabeca sai so
+# quando ela e um PAR DE NUMEROS separado por ponto, barra ou hifen — a forma da
+# data de campanha do varejo brasileiro (`11.11`, `12.12`, `9.9`, `11/11`) — e
+# quando sobra nome comecando por letra. Com isso:
+#
+#   "1000W Moto Eletrica ..."        -> intacto (tem letra na cabeca)
+#   "48V 20Ah Patinete ..."          -> intacto (tem letra na cabeca)
+#   "2 Unidades de Capacete ..."     -> intacto (`2` nao e par de numeros)
+#   "2026 Patinete ..."              -> intacto (`2026` nao e par de numeros)
+#   "11.11 Moto Eletrica Panda A4"   -> marcador `11.11`
+#
+# O caso do `2 Unidades` e o que mandou a regua ser de FORMA e nao de "cabeca
+# sem letra": aquele `2` E o produto (quantidade), e cortar o numero da frente
+# dele publicaria "Unidades de Capacete" como nome. Errar para o lado de NAO
+# mexer no nome e o lado barato — nome encurtado demais e a ilha reescrevendo o
+# produto da loja, que e pior que o marcador aparecendo na tela.
+# ---------------------------------------------------------------------------
+FORMA_DO_MARCADOR = re.compile(r'^\d{1,2}(?:[./-]\d{1,2})+$')
+
+# O que pode cercar o marcador sem fazer parte dele: a loja escreve "11.11 |",
+# "11.11 -" e "11.11:" com a mesma intencao.
+BORDA_DO_MARCADOR = ' \t|:·-\u2013\u2014'
+
+
+def marcador_de_campanha(titulo):
+    """`(marcador, nome)` — o marcador de campanha da cabeca, e o nome sem ele.
+
+    Sem marcador devolve `('', titulo)`: a ausencia e o caso comum e ela nao e
+    um erro. O nome devolvido e o do VENDEDOR, com acento e caixa dele — a unica
+    coisa que esta funcao faz e tirar da frente o que ele mesmo provou nao ser
+    nome (ver o comentario acima).
+    """
+    bruto = titulo or ''
+    i = 0
+    while i < len(bruto) and not bruto[i].isalpha():
+        i += 1
+    cabeca, nome = bruto[:i], bruto[i:].strip()
+    miolo = cabeca.strip(BORDA_DO_MARCADOR)
+    if not nome or not FORMA_DO_MARCADOR.match(miolo):
+        return ('', bruto.strip())
+
+    return (miolo, nome)
+
+
+def nome_do_anuncio(titulo):
+    """O nome que a TELA publica: o titulo da loja sem o marcador de campanha."""
+    return marcador_de_campanha(titulo)[1]
+
+
+def chave_de_oferta_da_loja(titulo):
+    """A identidade de uma oferta DENTRO DE UMA LOJA SO, e nunca entre lojas.
+
+    Duas lojas com titulos iguais NAO sao o mesmo produto para esta ilha, e isso
+    nao e cautela vazia: a 25.9 mediu a chave `MAXSHOT` devolvendo pelicula de
+    Zenfone e `Honeywhale` devolvendo bolsa. O que esta chave serve e para a
+    pergunta estreita que tem resposta medida — *a mesma loja esta anunciando
+    duas vezes a mesma coisa?* —, e quem responde e o vendedor, que escreveu os
+    dois titulos.
+
+    A chave e o nome sem o marcador, normalizado (sem acento, minuscula) e com o
+    espaco colapsado. Nada de reordenar palavra, nada de casar por pedaco: duas
+    cadeias iguais ou nada.
+    """
+    return ' '.join(normalizar(nome_do_anuncio(titulo)).split())
+
+
+# ---------------------------------------------------------------------------
 # AUTOTESTE — e os casos sao titulos REAIS da medicao de 29/10/2026
 # ---------------------------------------------------------------------------
 PATINETE = dict(exige_todas=('patinete', 'eletric'), exige_alguma=QUALIFICADOR_ADULTO,
@@ -1014,6 +1103,49 @@ CASOS_DO_PAR_DA_F2 = (
 )
 
 
+# OS DOIS TITULOS REAIS DE 16/11/2026 E AS BORDAS QUE A FORMA DECIDE. Cada caso
+# diz o marcador que espera e o nome que sobra — e os casos que esperam `''`
+# sao os que mais importam, porque o estrago desta regua e cortar nome certo.
+CASOS_DO_MARCADOR = (
+    # (titulo, marcador_esperado, nome_esperado)
+    # OS DOIS TITULOS REAIS, medidos na loja `francyellenoliveira`:
+    ('11.11 Moto Elétrica Adulto Panda A4 Bateria De Lítio 1000W 60V 24ah '
+     'Velocidade Max 32km h Capacidade De Carga 150kg',
+     '11.11',
+     'Moto Elétrica Adulto Panda A4 Bateria De Lítio 1000W 60V 24ah '
+     'Velocidade Max 32km h Capacidade De Carga 150kg'),
+    ('Moto Elétrica Adulto Panda A4 Bateria De Lítio 1000W 60V 24ah '
+     'Velocidade Max 32km h Capacidade De Carga 150kg',
+     '',
+     'Moto Elétrica Adulto Panda A4 Bateria De Lítio 1000W 60V 24ah '
+     'Velocidade Max 32km h Capacidade De Carga 150kg'),
+    # AS OUTRAS FORMAS DA MESMA INTENCAO, que o varejo brasileiro escreve:
+    ('12.12 Patinete Elétrico Adulto 350W', '12.12', 'Patinete Elétrico Adulto 350W'),
+    ('9.9 Patinete Elétrico Adulto 350W', '9.9', 'Patinete Elétrico Adulto 350W'),
+    ('11/11 Patinete Elétrico Adulto 350W', '11/11', 'Patinete Elétrico Adulto 350W'),
+    ('11.11 | Patinete Elétrico Adulto 350W', '11.11', 'Patinete Elétrico Adulto 350W'),
+    ('11.11 - Patinete Elétrico Adulto 350W', '11.11', 'Patinete Elétrico Adulto 350W'),
+    # O QUE NAO SE TOCA, E ESTA METADE E A QUE SUSTENTA A REGUA. Os quatro
+    # primeiros sao titulos da forma mais comum deste nicho: numero tecnico na
+    # cabeca. O `2 Unidades` e o caso que mandou a regua ser de FORMA e nao de
+    # "cabeca sem letra" — ali o numero E o produto.
+    ('1000W Moto Elétrica Adulto 60V', '', '1000W Moto Elétrica Adulto 60V'),
+    ('48V 20Ah Patinete Elétrico Adulto', '', '48V 20Ah Patinete Elétrico Adulto'),
+    ('10" Patinete Elétrico Adulto Off-Road', '', '10" Patinete Elétrico Adulto Off-Road'),
+    ('2026 Patinete Elétrico Adulto 350W', '', '2026 Patinete Elétrico Adulto 350W'),
+    ('2 Unidades de Capacete Coquinho Adulto', '',
+     '2 Unidades de Capacete Coquinho Adulto'),
+    ('Kit 2 Unidades de Capacete Adulto', '', 'Kit 2 Unidades de Capacete Adulto'),
+    # AS BORDAS DEGENERADAS: titulo so de numero nao tem nome a devolver, e
+    # titulo vazio nao e marcador nenhum.
+    ('11.11', '', '11.11'),
+    ('11.11 ', '', '11.11'),
+    ('', '', ''),
+    # Tres digitos de cada lado nao e data de campanha.
+    ('111.111 Patinete Elétrico Adulto', '', '111.111 Patinete Elétrico Adulto'),
+)
+
+
 def autoteste():
     falhas = []
     for titulo, familia, esperado, recusa in CASOS:
@@ -1168,11 +1300,50 @@ def autoteste():
     if not serve:
         falhas.append('FALHOU: recusa desligada nao deixou passar (recusado_por=%s)' % por)
 
+    # O MARCADOR DE CAMPANHA — tres afirmacoes por caso, e a terceira e a que
+    # prende a regua ao que ela promete: o nome devolvido tem de ser o FIM do
+    # titulo do vendedor, byte por byte. Funcao que "limpa" o nome por dentro
+    # estaria reescrevendo o produto da loja, e nenhuma das duas primeiras
+    # afirmacoes veria isso.
+    for titulo, marcador_esperado, nome_esperado in CASOS_DO_MARCADOR:
+        marcador, nome = marcador_de_campanha(titulo)
+        afirmacoes_novas += 3
+        if marcador != marcador_esperado:
+            falhas.append('FALHOU marcador: %r -> %r (esperava %r)'
+                          % (titulo[:60], marcador, marcador_esperado))
+        if nome != nome_esperado:
+            falhas.append('FALHOU nome sem marcador: %r -> %r (esperava %r)'
+                          % (titulo[:60], nome, nome_esperado))
+        if nome and not titulo.strip().endswith(nome):
+            falhas.append('FALHOU nome sem marcador: %r NAO e o fim do titulo %r'
+                          % (nome, titulo[:60]))
+
+    # A CHAVE DE IDENTIDADE: os dois titulos reais de 16/11 tem de dar a MESMA
+    # chave, e esta e a unica afirmacao que decide se a repeticao e vista. E a
+    # chave tem de DISCORDAR de produto diferente da mesma loja, senao a regua
+    # apagaria oferta de verdade — as duas metades, sempre.
+    iguais = chave_de_oferta_da_loja(CASOS_DO_MARCADOR[0][0])
+    afirmacoes_novas += 4
+    if iguais != chave_de_oferta_da_loja(CASOS_DO_MARCADOR[1][0]):
+        falhas.append('FALHOU chave de oferta: os dois titulos reais de 16/11 nao '
+                      'deram a mesma chave')
+    if not iguais:
+        falhas.append('FALHOU chave de oferta: chave vazia para titulo com nome')
+    if iguais == chave_de_oferta_da_loja('11.11 Moto Elétrica Adulto Panda A5 '
+                                         'Bateria De Lítio 1000W'):
+        falhas.append('FALHOU chave de oferta: A4 e A5 deram a mesma chave')
+    # ACENTO E CAIXA DO VENDEDOR NAO SEPARAM A MESMA OFERTA: a loja reescreve o
+    # proprio titulo entre campanhas, e `LITIO` e `Lítio` sao a mesma palavra.
+    if chave_de_oferta_da_loja('MOTO ELETRICA ADULTO PANDA A4') != \
+            chave_de_oferta_da_loja('Moto  Elétrica   Adulto Panda A4'):
+        falhas.append('FALHOU chave de oferta: acento e espaco separaram a mesma '
+                      'oferta')
+
     for f in falhas:
         print(f)
     total = (len(CASOS) + len(CASOS_DE_ROTULO) + len(CASOS_DE_CARGA)
              + len(CASOS_DO_PIVO) + len(CASOS_DO_DOBRAVEL)
-             + len(CASOS_DO_PAR_DA_F2) + 8)
+             + len(CASOS_DO_PAR_DA_F2) + len(CASOS_DO_MARCADOR) + 8)
     print('\n%d caso(s) e %d afirmacao(oes) contada(s) uma por uma, %d falha(s).'
           % (total, afirmacoes_novas, len(falhas)))
     print('APROVADO' if not falhas else 'REPROVADO')

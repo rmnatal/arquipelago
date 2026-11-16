@@ -626,11 +626,23 @@ def escolher_carrossel(linhas):
 # em palavras, no proprio registro. Degrau sem essa frase e degrau que ninguem
 # consegue reauditar."*
 # ---------------------------------------------------------------------------
+_COLETOR = []
+
+
+def _coletor():
+    """O coletor, carregado UMA vez. Ele e o dono de `anuncios-por-consulta.json`,
+    e e dele que saem as regras sobre quem entra na pagina e as contagens de
+    coleta — este gerador LE, nunca refaz a conta (20.7)."""
+    if not _COLETOR:
+        _COLETOR.append(_modulo('coletor_por_consulta',
+                                os.path.join(RAIZ, 'ferramentas',
+                                             'coletar-por-consulta.py')))
+    return _COLETOR[0]
+
+
 def rel_quarentena(bloco):
     """A contagem de aposentadorias por causa, LIDA do coletor (20.7)."""
-    return _modulo('coletor_por_consulta',
-                   os.path.join(RAIZ, 'ferramentas',
-                                'coletar-por-consulta.py')).causas_em_quarentena(bloco)
+    return _coletor().causas_em_quarentena(bloco)
 
 
 def marcas_do_registro():
@@ -687,8 +699,15 @@ def montar(bloco, editorial_da_pagina):
     # O piso de compra desta consulta, colhido por coletar-piso-da-vitrine.py.
     # Este gerador roda na bancada SEM REDE, entao ele LE o piso e nunca o gera.
     piso = bloco.get('piso_da_busca') or {}
+    # QUEM ENTRA NA PAGINA SAI DO COLETOR, QUE E O DONO DO ARQUIVO (20.7): ele
+    # junta `serve` (e o produto desta pagina) com a repeticao da propria loja
+    # (16/11/2026). Escrever `a['serve']` aqui a mao deixaria esta tela servindo
+    # a oferta repetida enquanto o `resumo` do banco ja a tirou das contas — as
+    # duas metades da mesma pagina discordando, que e o defeito que a 32.5-c
+    # nomeia.
     servem = ordenar([a for a in bloco['anuncios']
-                      if a['serve'] and a.get('url_afiliado') and a.get('preco') is not None])
+                      if _coletor().entra_na_pagina(a) and a.get('url_afiliado')
+                      and a.get('preco') is not None])
     if len(servem) < PISO_DA_30_2:
         return None, ('menos de %d anuncios que servem COM link e preco: %d'
                       % (PISO_DA_30_2, len(servem)))
@@ -717,7 +736,14 @@ def montar(bloco, editorial_da_pagina):
         # chamadas da mesma funcao sao duas declaracoes do mesmo fato (20.7).
         compra = degrau_de_compra(a, marcas)
         item = {
-            'nome': a['titulo'],
+            # O NOME SAI DO TITULO DA LOJA SEM A CABECA DE CAMPANHA (16/11/2026):
+            # a pagina publicava `11.11 Moto Eletrica Adulto Panda A4 ...` como
+            # NOME DO VEICULO no primeiro cartao. Quem provou que `11.11` nao e
+            # nome foi a propria loja, que publicou o mesmo produto sem ele —
+            # ver `marcador_de_campanha` na regua. O titulo INTEIRO do vendedor
+            # segue no banco, em `anuncios-por-consulta.json`: o que muda e o
+            # que a tela chama de nome, nunca o que a loja escreveu.
+            'nome': rel.nome_do_anuncio(a['titulo']),
             'preco': real(a['preco']),
             'preco_numero': a['preco'],
             # A DATA DO PRECO DEIXA DE EXISTIR SO EM PORTUGUES (12/11/2026).
@@ -863,6 +889,12 @@ def montar(bloco, editorial_da_pagina):
             # numero a conta nao fecha para quem a soma, e conta que nao fecha
             # na tela e pior que conta ausente.
             'aposentadas': int(bloco['resumo'].get('ofertas_aposentadas') or 0),
+            # QUANTAS FICARAM DE FORA PORQUE A PROPRIA LOJA AS REPETE
+            # (16/11/2026). Mesma razao de `aposentadas` existir: `lidas` e
+            # `recusadas` sao fato do dia da coleta, e sem este numero a conta
+            # que o leitor faz de cabeca nao fecha com o tamanho da tabela.
+            # LIDO do dono do arquivo, nunca refeito aqui (20.7).
+            'repetidas': int(bloco['resumo'].get('ofertas_repetidas_pela_loja') or 0),
             # A CAUSA DE CADA APOSENTADORIA, EM ROTULO, PARA A TELA PODER
             # DIZE-LA EM PALAVRAS (25.11). Ate 16/11/2026 a tela servia
             # "esgotado" para TODA aposentadoria, e desde 13/11 isso era FALSO

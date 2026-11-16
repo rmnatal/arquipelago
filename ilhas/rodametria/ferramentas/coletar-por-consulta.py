@@ -74,6 +74,12 @@ SUB_ID_1 = 'rodametria'      # a Shopee recusa sub-id com hifen ou sublinhado
 QUANTOS = 20
 PAUSA = 0.5
 PISO_DA_30_2 = 3
+# O RECUO COM QUE ESTE ARQUIVO E GRAVADO, declarado UMA vez. Ele estava escrito
+# so dentro do `--gravar` daqui, e a ferramenta que aplicou a repeticao da loja
+# em 16/11/2026 gravou com outro — o diff saiu com o arquivo INTEIRO reformatado,
+# 2.199 linhas trocadas para marcar um anuncio. Formato de arquivo gerado e fato
+# do dono dele: quem grava le daqui.
+RECUO_DO_BANCO = 1
 HOJE = datetime.date.today().isoformat()
 
 
@@ -135,8 +141,137 @@ def sub_id_2_de(id_da_consulta):
 # que a ilha publica sobre si mesma nasce contado, e continua contado na passada
 # seguinte (secao 8).
 # ---------------------------------------------------------------------------
+# ---------------------------------------------------------------------------
+# A MESMA LOJA ANUNCIANDO A MESMA OFERTA DUAS VEZES — 16/11/2026
+#
+# MEDIDO NO AR em `/veiculos/moto-eletrica/`, a pagina que nasceu na manha do
+# mesmo dia, e o estrago era de TRES ordens diferentes ao mesmo tempo:
+#
+#   cartao 1  "11.11 Moto Eletrica Adulto Panda A4 ... 150kg"   R$ 1.096,38
+#   cartao 2  "Moto Eletrica Adulto Panda A4 ... 150kg"         R$ 1.522,76
+#
+# os dois da loja `francyellenoliveira`, shop_id 277054573, item 58273014613 e
+# 58273026115 — o mesmo veiculo, nos DOIS cartoes mais caros da tela.
+#
+#   (1) O LEITOR PAGA PELO CARTAO ERRADO. Clicar no segundo custa R$ 426,38 mais
+#       (38,9%) pelo MESMO produto da MESMA loja. Nao e escolha a oferecer: e a
+#       pagina cobrando do leitor por existir.
+#   (2) A MEDIANA PUBLICADA ESTAVA ERRADA. Com o repetido dentro, a pagina
+#       publicava mediana de R$ 5.011,38 sobre 4 ofertas; sobre as 3 ofertas
+#       DISTINTAS ela e R$ 8.500,00. A diferenca e de R$ 3.488,62, e e a
+#       cicatriz do item 3 do despacho de 04/11/2026 num traje novo — lá a
+#       mediana virou o MINIMO porque cinco anuncios tinham o mesmo preco, e o
+#       conserto daquele dia alcancou o CARROSSEL e nao a CONTA.
+#   (3) TODA FRASE "X DOS 4" CONTAVA O MESMO ANUNCIO DUAS VEZES: "2 dos 4
+#       declaram a carga maxima, e os 2 dizem o mesmo numero: 150 kg" — os 2
+#       eram um.
+#
+# POR QUE O `escolher_carrossel` DO GERADOR NAO PEGAVA, e ele nao esta errado: a
+# regra dele e de PRECO ("enquanto houver preco que o carrossel ainda nao mostra,
+# a vaga e dele") e os dois precos sao DISTINTOS. Ela recusa deduplicar por
+# produto com a razao certa — *"deduplicar oferta equivalente exigiria afirmar
+# que dois anuncios de duas lojas SAO o mesmo produto, e esta ilha nao mede
+# isso"*. Esta passada nao fura aquela recusa: ela e de UMA LOJA SO, e quem
+# afirma a identidade e o VENDEDOR, que escreveu os dois titulos (ver
+# `chave_de_oferta_da_loja` na regua).
+#
+# E ELA NAO E UMA RECUSA DE RELEVANCIA, E `serve` NAO E TOCADO. O anuncio
+# repetido E o produto da pagina — ele e exatamente igual ao que ficou. Escrever
+# `serve: False` nele seria o item 3 do despacho de 16/11 acontecendo outra vez:
+# duas perguntas diferentes num campo so. `serve` responde "e o produto desta
+# pagina?"; `repetido_por` responde "esta oferta ja esta nesta pagina, mais
+# barata?". Quem le a pagina usa `entra_na_pagina`, que e as duas.
+#
+# E ELA NAO E QUARENTENA, e isto e deliberado: a quarentena da 25.11 e para
+# anuncio que MORREU e ela atravessa a coleta seguinte de proposito. Aqui o
+# repetido esta VIVO, e no dia em que o mais barato sair do ar o mais caro passa
+# a ser a unica oferta daquele veiculo — e tem de voltar sozinho. Por isso esta
+# marca e DERIVADA, recalculada do zero em toda passada (`a.pop`), como o
+# `energia_wh` do `derivar-banco.py`. Marca derivada que se grava uma vez e
+# nunca se refaz e a divida que a 25.11 pagou do outro lado.
+#
+# QUEM FICA E O MAIS BARATO, e o desempate e o `item_id` menor: precos iguais
+# com o mesmo nome na mesma loja sao a mesma oferta duplicada, e escolher pelo
+# `item_id` e escolher o anuncio mais antigo da loja em vez de deixar a ordem do
+# dicionario decidir.
+# ---------------------------------------------------------------------------
+CAUSA_DA_REPETICAO = 'mesma_oferta_repetida_pela_loja'
+
+
+def entra_na_pagina(a):
+    """O anuncio entra na tela e nas CONTAS da pagina?
+
+    Duas perguntas, e as duas no mesmo lugar porque toda conta desta pagina quer
+    as duas: `serve` (e o produto desta pagina) e `repetido_por` (esta oferta ja
+    esta aqui, mais barata). Ela existe para nao haver um segundo filtro escrito
+    a mao em cada conta — era `a['serve']` em quatro lugares, e trava nova
+    entraria em tres deles (20.7).
+    """
+    return bool(a.get('serve')) and not a.get('repetido_por')
+
+
+def marcar_repeticao_da_loja(bloco, dizer=False):
+    """Marca como repetida a oferta que a MESMA loja anuncia duas vezes.
+
+    Devolve a lista dos anuncios marcados. Recalcula do zero: a marca de ontem
+    e apagada antes, porque ela e derivada do preco de HOJE (ver o comentario
+    acima). `dizer=True` imprime cada marca — a secao 8 nao admite que uma
+    passada deixe oferta de fora em silencio.
+    """
+    for a in bloco.get('anuncios') or []:
+        a.pop('repetido_por', None)
+
+    grupos = {}
+    for a in bloco.get('anuncios') or []:
+        # SO QUEM TEM PRECO E JULGADO: sem preco nao ha "mais barato" a medir, e
+        # anuncio sem preco ja nao entra na faixa nem no carrossel. Inventar um
+        # criterio de desempate para ele seria escolher no escuro.
+        if not a.get('serve') or a.get('preco') is None:
+            continue
+        chave = (a.get('shop_id'), rel.chave_de_oferta_da_loja(a.get('titulo')))
+        if not chave[1]:
+            continue
+        grupos.setdefault(chave, []).append(a)
+
+    marcados = []
+    for (shop_id, _), grupo in sorted(grupos.items(), key=lambda kv: str(kv[0])):
+        if len(grupo) < 2:
+            continue
+        grupo = sorted(grupo, key=lambda a: (a['preco'], int(a.get('item_id') or 0)))
+        fica = grupo[0]
+        for a in grupo[1:]:
+            diferenca = round(a['preco'] - fica['preco'], 2)
+            a['repetido_por'] = {
+                'causa': CAUSA_DA_REPETICAO,
+                'mesmo_que': fica.get('item_id'),
+                'mais_caro_em_brl': diferenca,
+                # COMO FOI MEDIDO, EM PALAVRAS, NO PROPRIO REGISTRO: e a
+                # exigencia que a 25.10 poe no degrau de compra, e ela vale
+                # igual aqui — marca que ninguem consegue reauditar e marca que
+                # ninguem vai desfazer no dia em que estiver errada.
+                'como_foi_medido': (
+                    'a loja %s (shop_id %s) anuncia os itens %s e %s com o MESMO nome '
+                    'depois de tirada a cabeca de campanha do titulo, e quem declarou '
+                    'que a cabeca nao e nome foi ela mesma, publicando as duas formas. '
+                    'Ficou o mais barato (R$ %s contra R$ %s). A identidade e de UMA '
+                    'loja so: titulo parecido entre lojas NAO e prova, e esta ilha nao '
+                    'a usa (25.9).'
+                    % (a.get('loja'), shop_id, fica.get('item_id'), a.get('item_id'),
+                       ('%.2f' % fica['preco']).replace('.', ','),
+                       ('%.2f' % a['preco']).replace('.', ','))),
+            }
+            marcados.append(a)
+            if dizer:
+                print('  REPETIDA: a loja %s anuncia o item %s pelo mesmo nome do item '
+                      '%s e R$ %s mais caro; fica o mais barato.'
+                      % (a.get('loja'), a.get('item_id'), fica.get('item_id'),
+                         ('%.2f' % diferenca).replace('.', ',')))
+
+    return marcados
+
+
 def numero_proprio(pedido, anuncios):
-    servem = [a for a in anuncios if a['serve'] and a.get('preco') is not None]
+    servem = [a for a in anuncios if entra_na_pagina(a) and a.get('preco') is not None]
     if pedido != 'faixa_de_preco':
         return (None, 'forma de numero proprio nao implementada: %r' % pedido)
     if len(servem) < PISO_DA_30_2:
@@ -155,7 +290,7 @@ def contagem_de_rotulo(anuncios):
     """Quantos titulos declaram watt, e quantos dizem QUAL watt e."""
     conta = {'sem_watt': 0, 'watt_sem_rotulo': 0, 'nominal': 0, 'pico': 0, 'os_dois': 0}
     for a in anuncios:
-        if a['serve']:
+        if entra_na_pagina(a):
             conta[a['rotulo_de_potencia']] = conta.get(a['rotulo_de_potencia'], 0) + 1
     conta['declaram_watt'] = (conta['watt_sem_rotulo'] + conta['nominal']
                               + conta['pico'] + conta['os_dois'])
@@ -242,12 +377,25 @@ def recontar_resumo(bloco):
     sobe (20.7).
     """
     r = bloco['resumo']
-    servem = [x for x in bloco['anuncios'] if x['serve']]
+    # A MARCA DA REPETICAO E REFEITA AQUI, ANTES DE QUALQUER CONTA, e nao na
+    # ferramenta que a aplica: e esta funcao que todo caminho de escrita chama
+    # (o `--gravar` daqui, a ferramenta que aposenta anuncio e a que reaplica a
+    # regua), e marca derivada que depende de alguem se lembrar de a refazer nao
+    # se refaz. A ordem importa: a repeticao se mede sobre quem SERVE e as
+    # contas se fazem sobre quem ENTRA.
+    repetidos = marcar_repeticao_da_loja(bloco)
+    servem = [x for x in bloco['anuncios'] if entra_na_pagina(x)]
     com_link = [x for x in servem if x.get('url_afiliado')]
     num, motivo = numero_proprio(r.get('numero_proprio_pedido'), bloco['anuncios'])
     r['ofertas_que_servem'] = len(servem)
     r['ofertas_com_link_de_afiliado'] = len(com_link)
     r['ofertas_aposentadas'] = len(aposentados_de(bloco))
+    # QUANTAS FICARAM DE FORA POR REPETICAO DA PROPRIA LOJA. Vai para a tela
+    # porque sem ela a conta do leitor (lidas menos recusadas menos aposentadas)
+    # NAO FECHA com o tamanho da tabela — a mesma razao pela qual
+    # `ofertas_aposentadas` existe, e conta que nao fecha na tela e pior que
+    # conta ausente.
+    r['ofertas_repetidas_pela_loja'] = len(repetidos)
     r['numero_proprio'] = num
     r['motivo_sem_numero_proprio'] = motivo
     r['contagem_de_rotulo_de_potencia'] = contagem_de_rotulo(bloco['anuncios'])
@@ -515,7 +663,27 @@ def conferir():
         if contagem_de_rotulo(bloco['anuncios']) != r.get('contagem_de_rotulo_de_potencia'):
             falhas.append('%s: contagem de rotulo de potencia nao refaz' % bloco['id'])
 
-        servem = [a for a in bloco['anuncios'] if a['serve']]
+        # A MARCA DA REPETICAO GRAVADA TEM DE SER A QUE A REGRA REFAZ. Este
+        # portao le o arquivo como ele esta no disco, entao sem esta afirmacao
+        # um banco editado a mao — marca apagada, marca posta no anuncio errado
+        # — passaria verde: as contas abaixo concordariam com o resumo porque as
+        # duas leriam a MESMA marca errada. A regra nao e repetida aqui; ela e
+        # chamada, e o que se confere e o arquivo contra ela.
+        marcados_no_disco = sorted(int(a.get('item_id') or 0) for a in bloco['anuncios']
+                                   if a.get('repetido_por'))
+        marcados_pela_regra = sorted(int(a.get('item_id') or 0)
+                                     for a in marcar_repeticao_da_loja(
+                                         json.loads(json.dumps(bloco))))
+        afirmacoes += 1
+        if marcados_no_disco != marcados_pela_regra:
+            falhas.append('%s: a repeticao da loja gravada e %s e a regra refaz %s'
+                          % (bloco['id'], marcados_no_disco, marcados_pela_regra))
+
+        # QUEM ENTRA NA PAGINA, E NAO QUEM SERVE: a conta e refeita aqui por um
+        # caminho proprio (a terceira conta que a secao 8 pede), mas a PERGUNTA
+        # e a mesma que o resumo responde. Contar `serve` aqui mediria uma coisa
+        # e o resumo outra, e o portao reprovaria a pagina certa.
+        servem = [a for a in bloco['anuncios'] if entra_na_pagina(a)]
         com_link = [a for a in servem if a.get('url_afiliado')]
         afirmacoes += 1
         if len(servem) != r['ofertas_que_servem']:
@@ -657,7 +825,7 @@ def main():
         'consultas': [antigo[k] for k in sorted(antigo)],
     }
     with open(BANCO, 'w', encoding='utf-8') as f:
-        json.dump(saida, f, ensure_ascii=False, indent=1)
+        json.dump(saida, f, ensure_ascii=False, indent=RECUO_DO_BANCO)
         f.write('\n')
     print('\ngravado: %s (%d consulta(s))' % (os.path.basename(BANCO), len(saida['consultas'])))
 

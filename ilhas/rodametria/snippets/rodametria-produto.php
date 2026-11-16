@@ -109,8 +109,16 @@
    imprime como {DATA}; a mae serve a MAIS RECENTE das datas das filhas, porque a
    pergunta que `dateModified` responde e "quando esta pagina mudou", e a mae muda
    no dia em que QUALQUER filha e recolhida. */
+/* 1.14.0 (16/11/2026) — A OFERTA QUE A PROPRIA LOJA REPETE SAI DA LISTA, E A
+   PRESTACAO DE CONTAS DIZ ISSO AO LEITOR. Medido em `/veiculos/moto-eletrica/`
+   no dia em que a pagina nasceu: a loja `francyellenoliveira` anunciava o MESMO
+   veiculo nos dois primeiros cartoes (itens 58273014613 e 58273026115, R$
+   1.096,38 e R$ 1.522,76), a mediana publicada contava o mesmo anuncio duas
+   vezes (R$ 5.011,38 contra os R$ 8.500,00 das tres ofertas distintas) e o nome
+   do primeiro cartao comecava por `11.11`. A regra mora no coletor; o que muda
+   aqui e a frase: sem ela a conta do leitor nao fecha com o tamanho da tabela. */
 if ( ! defined( 'RODAMETRIA_PRODUTO_VERSAO' ) ) {
-	define( 'RODAMETRIA_PRODUTO_VERSAO', '1.13.0' );
+	define( 'RODAMETRIA_PRODUTO_VERSAO', '1.14.0' );
 }
 
 /* A VERSAO DESTE SNIPPET VAI AO AR, pelo filtro que a casca 1.6.0 abriu
@@ -715,7 +723,8 @@ if ( ! function_exists( 'rdm_produto_recusas_html' ) ) {
 function rdm_produto_recusas_html( $pagina ) {
 	$n           = $pagina['vitrine']['numeros'];
 	$aposentadas = isset( $n['aposentadas'] ) ? (int) $n['aposentadas'] : 0;
-	if ( empty( $n['recusadas'] ) && ! $aposentadas ) {
+	$repetidas   = isset( $n['repetidas'] ) ? (int) $n['repetidas'] : 0;
+	if ( empty( $n['recusadas'] ) && ! $aposentadas && ! $repetidas ) {
 		return '';
 	}
 	$nomes = array(
@@ -785,6 +794,26 @@ function rdm_produto_recusas_html( $pagina ) {
 			: sprintf( 'Outras %d saíram da lista depois dessa leitura, quando fomos abrir '
 				. 'as páginas delas%s — e oferta que não vende não entra na tabela nem '
 				. 'nas contas de preço desta página.', $aposentadas, $causa_dita ) );
+	}
+
+	/* A OFERTA QUE A PROPRIA LOJA REPETE — 16/11/2026, medido em
+	   `/veiculos/moto-eletrica/` no dia em que a pagina nasceu: a loja
+	   `francyellenoliveira` anunciava o MESMO veiculo nos dois primeiros
+	   cartoes, R$ 426,38 de diferenca, e a mediana publicada contava o mesmo
+	   anuncio duas vezes. Esta frase existe pela MESMA razao da de cima: sem
+	   ela a conta que o leitor faz de cabeca — as lidas menos as recusadas
+	   menos as que sairam — NAO FECHA com o tamanho da tabela, e conta que nao
+	   fecha na tela e pior que conta ausente, porque ela ensina a desconfiar do
+	   numero que esta certo. E ela diz o que a pagina FEZ, nao so o que tirou:
+	   ficou a mais barata. */
+	if ( $repetidas > 0 ) {
+		$frase .= ' ' . ( 1 === $repetidas
+			? 'E uma ficou de fora porque é a mesma oferta que a própria loja '
+				. 'anuncia duas vezes: ficou a mais barata das duas, para o mesmo '
+				. 'veículo não ocupar dois lugares da lista.'
+			: sprintf( 'E %d ficaram de fora porque são ofertas que a própria loja '
+				. 'anuncia mais de uma vez: de cada uma ficou a mais barata, para o '
+				. 'mesmo veículo não ocupar dois lugares da lista.', $repetidas ) );
 	}
 
 	return '<p class="rdm-recusas">' . esc_html( $frase ) . '</p>';

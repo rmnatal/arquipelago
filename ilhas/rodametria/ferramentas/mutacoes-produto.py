@@ -443,6 +443,60 @@ def m_relevancia_sem_o_qualificador(areia):
         f.write(t.replace(alvo, "QUALIFICADOR_ADULTO = ()"))
 
 
+# ---------------------------------------------------------------------------
+# A OFERTA QUE A PROPRIA LOJA REPETE — 16/11/2026. As quatro mutacoes cobrem as
+# quatro maneiras de o conserto se desfazer: a marca apagada do banco, a marca
+# no anuncio ERRADO (a que esconde o defeito deixando o caro e tirando o
+# barato), a regua que deixa de reconhecer a cabeca de campanha, e o nome do
+# cartao voltando a trazer o `11.11`.
+# ---------------------------------------------------------------------------
+def _repetido(banco):
+    for bloco in banco['consultas']:
+        for a in bloco['anuncios']:
+            if a.get('repetido_por'):
+                return bloco, a
+    exigir(False, 'o banco deveria ter um anuncio marcado como repeticao da loja')
+
+
+def m_marca_da_repeticao_apagada(areia):
+    b = ler(areia, ANUNCIOS)
+    bloco, a = _repetido(b)
+    a.pop('repetido_por')
+    # O RESUMO FICA COMO ESTAVA, de proposito: a mutacao e a do banco editado a
+    # mao, que e a unica maneira real de esta marca desaparecer. Se o portao so
+    # olhasse o resumo, este mundo passaria verde.
+    escrever(areia, ANUNCIOS, b)
+
+
+def m_marca_da_repeticao_no_anuncio_errado(areia):
+    b = ler(areia, ANUNCIOS)
+    bloco, a = _repetido(b)
+    irmao = next(x for x in bloco['anuncios']
+                 if x.get('item_id') == a['repetido_por']['mesmo_que'])
+    irmao['repetido_por'] = a.pop('repetido_por')
+    escrever(areia, ANUNCIOS, b)
+
+
+def m_regua_sem_a_cabeca_de_campanha(areia):
+    caminho = os.path.join(areia, 'ferramentas', RELEVANCIA)
+    with open(caminho, encoding='utf-8') as f:
+        t = f.read()
+    alvo = "FORMA_DO_MARCADOR = re.compile(r'^\\d{1,2}(?:[./-]\\d{1,2})+$')"
+    exigir(alvo in t, 'a regua deveria declarar a forma do marcador de campanha')
+    with open(caminho, 'w', encoding='utf-8') as f:
+        f.write(t.replace(alvo, "FORMA_DO_MARCADOR = re.compile(r'^(?!)$')", 1))
+
+
+def m_nome_do_cartao_com_o_marcador(areia):
+    caminho = os.path.join(areia, 'ferramentas', GERADOR)
+    with open(caminho, encoding='utf-8') as f:
+        t = f.read()
+    alvo = "'nome': rel.nome_do_anuncio(a['titulo']),"
+    exigir(alvo in t, 'o gerador deveria tirar o marcador de campanha do nome')
+    with open(caminho, 'w', encoding='utf-8') as f:
+        f.write(t.replace(alvo, "'nome': a['titulo'],", 1))
+
+
 MUTACOES = (
     ('veredito de um anuncio trocado', COLETOR, ('--conferir',), m_veredito_trocado),
     ('numero proprio mexido no resumo', COLETOR, ('--conferir',), m_numero_proprio_mexido),
@@ -495,6 +549,14 @@ MUTACOES = (
      m_relevancia_sem_o_prefixo_da_bicicleta),
     ('regua sem o qualificador de adulto', RELEVANCIA, (),
      m_relevancia_sem_o_qualificador),
+    ('marca da repeticao apagada do banco', COLETOR, ('--conferir',),
+     m_marca_da_repeticao_apagada),
+    ('marca da repeticao no anuncio ERRADO (fica o caro)', COLETOR, ('--conferir',),
+     m_marca_da_repeticao_no_anuncio_errado),
+    ('regua sem a cabeca de campanha do titulo', RELEVANCIA, (),
+     m_regua_sem_a_cabeca_de_campanha),
+    ('nome do cartao de volta com o `11.11`', GERADOR, ('--conferir',),
+     m_nome_do_cartao_com_o_marcador),
 )
 
 

@@ -53,7 +53,9 @@
      "os_dois": 0,
      "declaram_watt": 1,
      "dizem_qual_watt": 0
-    }
+    },
+    "ofertas_aposentadas": 0,
+    "ofertas_repetidas_pela_loja": 0
    },
    "anuncios": [
     {
@@ -766,7 +768,7 @@
    ],
    "resumo": {
     "ofertas_lidas": 20,
-    "ofertas_que_servem": 4,
+    "ofertas_que_servem": 3,
     "ofertas_recusadas": 15,
     "recusas_por_causa": {
      "outra_familia_na_cabeca": 4,
@@ -774,26 +776,27 @@
      "acessorio": 6,
      "brinquedo": 2
     },
-    "ofertas_com_link_de_afiliado": 4,
+    "ofertas_com_link_de_afiliado": 3,
     "abre_o_portao_da_30_2": true,
     "numero_proprio_pedido": "faixa_de_preco",
     "numero_proprio": {
      "de": 1096.38,
      "ate": 13999.0,
-     "mediana": 5011.38,
-     "sobre_quantas_ofertas": 4
+     "mediana": 8500.0,
+     "sobre_quantas_ofertas": 3
     },
     "motivo_sem_numero_proprio": null,
     "contagem_de_rotulo_de_potencia": {
      "sem_watt": 0,
-     "watt_sem_rotulo": 3,
+     "watt_sem_rotulo": 2,
      "nominal": 0,
      "pico": 1,
      "os_dois": 0,
-     "declaram_watt": 4,
+     "declaram_watt": 3,
      "dizem_qual_watt": 1
     },
-    "ofertas_aposentadas": 1
+    "ofertas_aposentadas": 1,
+    "ofertas_repetidas_pela_loja": 1
    },
    "anuncios": [
     {
@@ -834,7 +837,13 @@
       "adulto"
      ],
      "rotulo_de_potencia": "watt_sem_rotulo",
-     "url_afiliado_gerada_em": "2026-11-16"
+     "url_afiliado_gerada_em": "2026-11-16",
+     "repetido_por": {
+      "causa": "mesma_oferta_repetida_pela_loja",
+      "mesmo_que": 58273014613,
+      "mais_caro_em_brl": 426.38,
+      "como_foi_medido": "a loja francyellenoliveira (shop_id 277054573) anuncia os itens 58273014613 e 58273026115 com o MESMO nome depois de tirada a cabeca de campanha do titulo, e quem declarou que a cabeca nao e nome foi ela mesma, publicando as duas formas. Ficou o mais barato (R$ 1096,38 contra R$ 1522,76). A identidade e de UMA loja so: titulo parecido entre lojas NAO e prova, e esta ilha nao a usa (25.9)."
+     }
     },
     {
      "item_id": 58273014613,
@@ -1480,7 +1489,8 @@
      "declaram_watt": 14,
      "dizem_qual_watt": 0
     },
-    "ofertas_aposentadas": 2
+    "ofertas_aposentadas": 2,
+    "ofertas_repetidas_pela_loja": 0
    },
    "anuncios": [
     {
