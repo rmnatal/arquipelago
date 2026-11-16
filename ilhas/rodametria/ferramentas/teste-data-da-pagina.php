@@ -85,7 +85,17 @@ $GLOBALS['BANCO_TROCAS'] = array();
    depois da primeira leitura nao muda nada — e um teste que troca o mundo tarde
    mede o mundo velho e passa. */
 $GLOBALS['DIVERGENTE'] = in_array( '--divergente', $GLOBALS['argv'], true );
-$GLOBALS['DIVERGENTE_DATAS'] = array( '2026-10-20', '2026-11-03' );
+/* AS DATAS DO MUNDO DIVERGENTE SAO DERIVADAS, UMA POR FILHA, E NAO UMA LISTA DE
+   DUAS (16/11/2026). Elas eram `array( '2026-10-20', '2026-11-03' )`, escritas
+   quando a secao tinha DUAS filhas, e a injecao abaixo so trocava a data das
+   PRIMEIRAS tantas quantas a lista tivesse. No dia em que `/veiculos/moto-eletrica/`
+   nasceu, a terceira filha ficou com a data REAL dela — a mais recente de todas —,
+   a mae passou a servir essa, e as duas afirmacoes do mundo divergente
+   reprovaram. O portao estava certo e o MUNDO dele estava velho: regua escrita
+   para um mundo que nao existe mais passa verde ate o dia em que reprova a
+   pagina certa (20.5). Derivada do numero de filhas, a lista nasce completa a
+   cada passada e a quarta pagina nao a quebra. */
+$GLOBALS['DIVERGENTE_DATAS'] = array();
 function rodametria_casca_banco( $id ) {
 	if ( array_key_exists( $id, $GLOBALS['BANCO_TROCAS'] ) ) {
 		return $GLOBALS['BANCO_TROCAS'][ $id ];
@@ -96,11 +106,15 @@ function rodametria_casca_banco( $id ) {
 	if ( ! is_array( $d ) ) { return null; }
 	if ( $GLOBALS['DIVERGENTE'] && defined( 'RODAMETRIA_ID_DADOS_VITRINE' )
 		&& RODAMETRIA_ID_DADOS_VITRINE === $id && ! empty( $d['paginas'] ) ) {
+		$GLOBALS['DIVERGENTE_DATAS'] = array();
 		foreach ( array_keys( $d['paginas'] ) as $i ) {
-			if ( isset( $GLOBALS['DIVERGENTE_DATAS'][ $i ] ) ) {
-				$d['paginas'][ $i ]['colhido_em'] = $GLOBALS['DIVERGENTE_DATAS'][ $i ];
-			}
+			/* Uma semana de distancia entre filhas: datas DISTINTAS, validas e em
+			   ordem crescente de indice, para `max()` ser sempre a ultima. */
+			$data = gmdate( 'Y-m-d', strtotime( '2026-10-01 +' . ( $i * 7 ) . ' days' ) );
+			$d['paginas'][ $i ]['colhido_em']  = $data;
+			$GLOBALS['DIVERGENTE_DATAS'][ $i ] = $data;
 		}
+		sort( $GLOBALS['DIVERGENTE_DATAS'] );
 	}
 	return $d;
 }

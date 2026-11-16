@@ -471,9 +471,58 @@ CHAVES_DE_CITACAO = {
 }
 
 
-def textos_de_tela_do_dado(nome, d):
-    """Toda string de tela de um arquivo de dado, com o caminho dela como `onde`."""
+# A LISTA DE CHAVES ACIMA NAO ALCANCAVA O TITULO COLHIDO DESTA ILHA, E SO NAO
+# TINHA CUSTADO NADA PORQUE NENHUM TITULO DIZIA "SEM CNH" (16/11/2026).
+#
+# Medido as 10h4xZ de 16/11/2026, no bloco que fez nascer `/veiculos/moto-eletrica/`.
+# Dois dos titulos que a loja devolveu para a chave `moto eletrica adulto` dizem,
+# letra por letra, `- SEM CNH` e `Sem Cnh` — e esta regua os reprovou em DOZE
+# lugares: `anuncios[i]/titulo`, `cartoes[i]/nome`, `linhas[i]/nome` e o
+# `imagem/alt` de cada um, que e o proprio titulo. A `CHAVES_DE_CITACAO` nomeia
+# `titulo_colhido`, `titulo_do_anuncio` e `titulo_da_oferta`, e **nenhuma dessas
+# tres chaves existe nos arquivos desta ilha**: ela colhe em `titulo` e serve em
+# `nome`. A regua estava escrita para um esquema que esta ilha nao tem, e passou
+# verde dezoito dias porque nenhum titulo colhido trazia a palavra.
+#
+# EXCLUIR `titulo` E `nome` POR NOME SERIA O CONSERTO ERRADO, e e o pior
+# disponivel: `paginas[i]/titulo` do `paginas-de-produto.json` e o `<title>` da
+# pagina, que e afirmacao DA ILHA, e cegar a regua nele reprovaria o oposto do
+# que ela existe para pegar. Chave com o mesmo nome e naturezas opostas e a
+# cicatriz que esta regua ja pagou com a chave `fonte` (10/11/2026).
+#
+# A REGUA PERGUNTA AO DADO, E NAO A UMA LISTA ESCRITA NELA: citacao e a cadeia
+# que aparece, IDENTICA, como titulo de anuncio COLHIDO em
+# `dados/anuncios-por-consulta.json`. A prova de que o texto e palavra da loja e
+# ele estar na colheita — nao o lugar onde foi servido. Assim o `alt` entra sem
+# ser nomeado, titulo novo entra no dia em que a loja o devolve, e frase NOSSA
+# que repita a promessa do anuncio continua reprovando, porque ela nao esta na
+# colheita.
+def titulos_colhidos():
+    """Os titulos de anuncio COLHIDOS, lidos do banco da colheita."""
+    out = set()
+    caminho = os.path.join(ILHA, "dados", "anuncios-por-consulta.json")
+    try:
+        with open(caminho, encoding="utf-8") as f:
+            d = json.load(f)
+    except (OSError, ValueError):
+        return out
+    for bloco in (d.get("consultas") or []):
+        for a in (bloco.get("anuncios") or []):
+            t = (a.get("titulo") or "").strip()
+            if t:
+                out.add(t)
+
+    return out
+
+
+def textos_de_tela_do_dado(nome, d, citacoes=None):
+    """Toda string de tela de um arquivo de dado, com o caminho dela como `onde`.
+
+    `citacoes` e o conjunto de titulos COLHIDOS; cadeia identica a um deles e
+    palavra da loja e nao afirmacao da ilha (ver o comentario da 16/11/2026).
+    """
     out = []
+    citacoes = titulos_colhidos() if citacoes is None else citacoes
 
     def anda(x, trilha):
         if isinstance(x, dict):
@@ -488,6 +537,8 @@ def textos_de_tela_do_dado(nome, d):
             # SEM ESPACO = IDENTIFICADOR, nunca frase. `siena-1000w-sem-cnh` e a
             # chave de um registro do banco, e reprova-la seria reprovar o nome
             # que o proprio anuncio deu ao produto.
+            if x.strip() in citacoes:
+                return
             out.append(("%s%s" % (nome, trilha), x))
 
     anda(d, "")
@@ -1270,6 +1321,57 @@ def autoteste():
             "x", ["Esse elétrico precisa de CNH?", "Aqui a gente responde com a conta na mesa."]),
         "12-d. pergunta num elemento e promessa noutro NAO reprovam: a unidade e "
         "o elemento")
+
+    # ---------------------------------------------------------------------
+    # MUNDO 13 — A CITACAO SE RECONHECE NA COLHEITA, NAO NO NOME DA CHAVE
+    # (16/11/2026). Os dois titulos sao os que a loja devolveu de verdade na
+    # chave `moto eletrica adulto`, e o terceiro texto e NOSSO, escrito aqui com
+    # a mesma promessa — ele tem de continuar reprovando.
+    # ---------------------------------------------------------------------
+    TITULO_COLHIDO_A = ("Scooter (Bike) Elétrica Foston X15 Max (X13 EX) 1000w 32km/h "
+                        "Moto Elétrica Adulto Bateria Litio Painel Led - SEM CNH")
+    TITULO_COLHIDO_B = "Scooter Moto Elétrica 1000w Adulto Sem Cnh Bluetooth Ré"
+    FRASE_NOSSA = "Esta moto elétrica é sem CNH e pode andar na rua."
+
+    mundo13 = {"paginas": [{"linhas": [{"nome": TITULO_COLHIDO_A,
+                                        "imagem": {"alt": TITULO_COLHIDO_A}},
+                                       {"nome": TITULO_COLHIDO_B}],
+                            "titulo": FRASE_NOSSA}]}
+    colhidos = {TITULO_COLHIDO_A, TITULO_COLHIDO_B}
+
+    # 13-a. A REGUA VELHA (sem colheita) reprova os DOIS titulos da loja.
+    velha13 = [t for _, t in textos_de_tela_do_dado("v.json", mundo13, citacoes=set())
+               if problemas_de_habilitacao("x", [t])]
+    diz(len(velha13) == 4,
+        "13-a. a regua VELHA reprova as TRES ocorrencias de titulo da loja (dois "
+        "`nome` e um `alt`) ao lado da frase nossa, quatro no total: %d" % len(velha13))
+
+    # 13-b. A REGUA NOVA nao os reprova — e as duas DISCORDAM, que e a conta da
+    # 20.8: autoteste em que a velha e a nova concordam nao mede conserto nenhum.
+    nova13 = [t for _, t in textos_de_tela_do_dado("v.json", mundo13, citacoes=colhidos)
+              if problemas_de_habilitacao("x", [t])]
+    diz(len(nova13) == 1 and nova13[0] == FRASE_NOSSA,
+        "13-b. a regua NOVA reprova SO a frase nossa, e discorda da velha: %r"
+        % (nova13,))
+
+    # 13-c. E A EXCLUSAO E DE IGUALDADE, NUNCA DE PEDACO: titulo colhido com uma
+    # oracao NOSSA colada nele continua reprovando. Sem esta afirmacao a licenca
+    # viraria anistia — bastaria emendar a promessa no fim de um titulo.
+    emendado = TITULO_COLHIDO_B + " — e por isso ela dispensa habilitação."
+    mundo13c = {"paginas": [{"linhas": [{"nome": emendado}]}]}
+    p13c = [t for _, t in textos_de_tela_do_dado("v.json", mundo13c, citacoes=colhidos)
+            if problemas_de_habilitacao("x", [t])]
+    diz(len(p13c) == 1,
+        "13-c. titulo colhido com oracao nossa emendada NAO e citacao e reprova")
+
+    # 13-d. E A COLHEITA SAI DO BANCO DE VERDADE, nao de uma lista escrita aqui:
+    # os dois titulos acima tem de estar no `anuncios-por-consulta.json` da ilha.
+    # No dia em que a loja os aposentar, esta afirmacao cai e a licenca cai com
+    # ela — que e exatamente o que se quer.
+    reais = titulos_colhidos()
+    diz(TITULO_COLHIDO_A in reais and TITULO_COLHIDO_B in reais,
+        "13-d. os dois titulos do mundo 13 sao LIDOS da colheita da ilha, nao "
+        "digitados nesta regua")
 
     print("")
     print("  AUTOTESTE — %d mundo(s) medido(s), %d falha(s)" % (len(ok) + len(mal), len(mal)))

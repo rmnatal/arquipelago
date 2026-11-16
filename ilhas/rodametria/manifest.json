@@ -4,8 +4,8 @@
   "nicho": "mobilidade eletrica — acertar os tres numeros antes de comprar um veiculo eletrico: categoria legal (CNH e placa), autonomia real e carga maxima",
   "dominio": "https://rodametria.com.br",
   "versao_manifest": 1,
-  "revisao": 94,
-  "atualizado_em": "2026-11-13",
+  "revisao": 95,
+  "atualizado_em": "2026-11-16",
   "estado": "nascendo",
   "desembarque": {
     "aprovado": true,
@@ -127,7 +127,7 @@
       "arquivo": "dados/paginas-de-produto.json",
       "formato": "json",
       "publicar": true,
-      "sha256": "5a6dfd9eb984dc4d57b7ffe0fa666fdab6e0edb0de62638484fe0ebcdbe8918d",
+      "sha256": "5c1e53382efb9e1de33f856c87473ab988360570828596bd0433ddec0e8358e5",
       "descricao": "A camada DECLARADA das paginas da secao 30: a voz do VOZ.md com MOLDES no lugar de todo numero. `gerar-vitrine-de-produto.py --conferir` REPROVA qualquer digito escrito nesta prosa fora da lista de permitidos."
     },
     {
@@ -135,7 +135,7 @@
       "arquivo": "dados/vitrine-de-produto.json",
       "formato": "json",
       "publicar": true,
-      "sha256": "27432db5b9b64b7f8c98be506e5633b9563708911677ff0e8a8fbb3e8470c25f",
+      "sha256": "03fcfec5c9a78115206042b24173abb31b930335668b2fe59dc2c61e4b4609a7",
       "descricao": "A camada GERADA: cartoes do carrossel (teto de cinco, 32.1), linhas da tabela (todas) e os numeros, RECONTADOS de dados/anuncios-por-consulta.json."
     },
     {
@@ -143,7 +143,7 @@
       "arquivo": "dados/consultas-de-produto.json",
       "formato": "json",
       "publicar": false,
-      "sha256": "3e11f1a380c3591d8f55ffc9ca8eba6e2541bb9080b62e09ab92aadd758921a2",
+      "sha256": "e3c3e4542273d6558965ee4135b885489c02d0db900aeb9891e0d16a0729f8ec",
       "descricao": "A declaracao das consultas de compra: volume, classificacao de SERP com quem viu e quando, escada de chaves da loja, e a decisao de nascer ou nao com a causa. NAO vai para o site: e cheio do vocabulario de bastidor que a 32.4 proibe na pagina publica."
     },
     {
@@ -151,7 +151,7 @@
       "arquivo": "dados/anuncios-por-consulta.json",
       "formato": "json",
       "publicar": false,
-      "sha256": "2e6439a5d2274a2bccef08bb35f41ec23b3f9a75c837bfd28d496c086649c298",
+      "sha256": "5b056b70e68f45b06eb1e08a8f71bf43b912954bcde304df9218a63296e1d9a6",
       "descricao": "Os anuncios lidos na Shopee, com o veredito da regua de relevancia por anuncio, a escada medida e as fotos com largura e altura lidas no cabecalho do arquivo na CDN."
     },
     {

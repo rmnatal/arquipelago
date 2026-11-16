@@ -189,8 +189,20 @@
         "scooter elétrica",
         "motos elétricas para adultos"
       ],
-      "publicar_declarado": false,
-      "motivo_para_nao_publicar_agora": "A SERP autoriza (alvo, vista com os olhos), e o que falta e o PRODUTO. Medido em 29/10/2026 na Open API, 40 ofertas em duas chaves: a chave crua devolve 20 de 20 entre brinquedo infantil e peca de caminhao, e a chave com qualificador devolve TRES veiculos de adulto — VYRON Cross GT600 7500W a R$ 13.999, Foston X15 Max 1000w a R$ 8.500 e Scooter Moto Eletrica 1000w Sem Cnh a R$ 15.000 — os TRES com ZERO vendas e com precos que variam por R$ 6.500 para a mesma classe de produto. O `PROMPT.md` desta ilha ja escrevia a regra antes desta medicao, e ela vale: `na Shopee, scooter e moto eletrica aparecem com 0 vendas e precos incoerentes — nao entram como recomendacao`. Tres anuncios e exatamente o piso da 30.2, e pagina que nasce no piso com os tres sem uma venda sai do ar na primeira coleta que perder um. O caminho desta consulta e o Mercado Livre, onde o dossie mediu 8 de 10 produtos com link rastreavel — e lá a geracao de link exige clique humano (secao 7 e 25.6), o que faz dela despacho, nunca bloco."
+      "publicar_declarado": true,
+      "motivo_para_publicar_agora": "MEDIDO EM 16/11/2026 as 10h2xZ, na mesma chave e com a mesma regua de relevancia da medicao de 29/10: o degrau 1 (`moto eletrica adulto`) devolve 20 ofertas e QUATRO SERVEM, contra as TRES de 29/10 — VYRON Cross GT600 7500W de pico (R$ 13.999,00), Foston X15 Max 1000 W 32 km/h (R$ 8.500,00), Scooter Moto Eletrica 1000 W (R$ 15.000,00) e uma Bike/Scooter dobravel 48 V (R$ 2.257,99). As 16 recusas sao 9 acessorios (capacete, buzina, protetor de ouvido), 2 brinquedos e 5 fora da familia. COM ISSO O PISO DA 30.2 FECHA DAQUI: tres anuncios reais ou mais, colhidos com fonte e data, mais o numero proprio contado (faixa de R$ 2.257,99 a R$ 15.000,00, mediana R$ 11.249,50). O CAMINHO MUDOU DE LOJA, E E ISSO QUE REABRIU A CONSULTA: a decisao de 29/10 mandou esta consulta esperar o Mercado Livre, que exige gesto humano no gerador (25.6). A Shopee, que a nuvem alcanca, passou a servir o produto. O Mercado Livre segue valendo como reforco e segue sendo do Raphael — ele deixa de ser a UNICA porta. O QUE A PAGINA NAO VAI TER, dito antes de nascer: os QUATRO declaram watt no titulo e so UM diz qual watt e (o GT600 diz `Pico`), nenhum declara venda na loja, e a faixa de preco e de quase sete vezes entre o menor e o maior — a prosa declarada diz os tres, com molde e sem digito.",
+      "historico_da_decisao": [
+        {
+          "data": "2026-10-29",
+          "decisao": "nao publicar",
+          "texto": "A SERP autoriza (alvo, vista com os olhos), e o que falta e o PRODUTO. Medido em 29/10/2026 na Open API, 40 ofertas em duas chaves: a chave crua devolve 20 de 20 entre brinquedo infantil e peca de caminhao, e a chave com qualificador devolve TRES veiculos de adulto — VYRON Cross GT600 7500W a R$ 13.999, Foston X15 Max 1000w a R$ 8.500 e Scooter Moto Eletrica 1000w Sem Cnh a R$ 15.000 — os TRES com ZERO vendas e com precos que variam por R$ 6.500 para a mesma classe de produto. O `PROMPT.md` desta ilha ja escrevia a regra antes desta medicao, e ela vale: `na Shopee, scooter e moto eletrica aparecem com 0 vendas e precos incoerentes — nao entram como recomendacao`. Tres anuncios e exatamente o piso da 30.2, e pagina que nasce no piso com os tres sem uma venda sai do ar na primeira coleta que perder um. O caminho desta consulta e o Mercado Livre, onde o dossie mediu 8 de 10 produtos com link rastreavel — e lá a geracao de link exige clique humano (secao 7 e 25.6), o que faz dela despacho, nunca bloco."
+        },
+        {
+          "data": "2026-11-16",
+          "decisao": "publicar",
+          "texto": "A causa de 29/10 envelheceu e foi REMEDIDA em vez de herdada (20.2 aplicada a produto, e nao a dominio). O que mudou nao foi a regua nem a chave: foi o catalogo da loja. A `scooter eletrica` foi remedida na MESMA passada e NAO mudou — o degrau 1 dela continua devolvendo patinete, entao ela continua `publicar_declarado: false`, agora com medicao de 16/11 e nao de 29/10."
+        }
+      ]
     },
     {
       "id": "scooter-eletrica",
@@ -250,7 +262,19 @@
         "scooter elétrico"
       ],
       "publicar_declarado": false,
-      "motivo_para_nao_publicar_agora": "Medido em 29/10/2026, 40 ofertas em duas chaves: a chave crua devolve brinquedo infantil e acessorio, e a chave com qualificador devolve PATINETE — `Patinete Eletrico Adulto 350W`, `Patinete Eletrico Scooter 350W` — mais capa de chuva e capacete. Nesta loja a palavra `scooter` E o patinete, e o produto que a consulta brasileira quer (a moto-scooter de 1.000 W, sem CNH) e o mesmo caso da `moto eletrica`: zero venda e preco incoerente. Publicar esta consulta com os patinetes do degrau 1 seria servir, numa pagina cujo H1 promete scooter, o produto que a pagina do patinete ja serve — canibalizacao da 30.4 construida de proposito. Ela espera o Mercado Livre, junto com a `moto eletrica`."
+      "motivo_para_nao_publicar_agora": "REMEDIDO EM 16/11/2026 as 10h2xZ, na mesma chave e com a mesma regua de 29/10, porque causa de impossibilidade envelhece e esta NAO envelheceu: o degrau 1 (`scooter eletrica adulto`) devolve 20 ofertas, CINCO servem e as cinco sao PATINETE — `Patinete Eletrico Scooter 350W`, `Patinete Eletrico Scooter Adulto 150w`, `Patinete Scooter Eletrico Dobravel 350W`. Nesta loja a palavra `scooter` E o patinete. Publicar esta consulta com eles seria servir, numa pagina cujo H1 promete scooter, o produto que `/veiculos/patinete-eletrico/` ja serve — canibalizacao da 30.4 construida de proposito. A faixa que sairia (R$ 1.369,55 a R$ 2.647,02, mediana R$ 1.581,06) e a do patinete, nao a da scooter. Ela continua esperando o Mercado Livre.",
+      "historico_da_decisao": [
+        {
+          "data": "2026-10-29",
+          "decisao": "nao publicar",
+          "texto": "Medido em 29/10/2026, 40 ofertas em duas chaves: a chave crua devolve brinquedo infantil e acessorio, e a chave com qualificador devolve PATINETE — `Patinete Eletrico Adulto 350W`, `Patinete Eletrico Scooter 350W` — mais capa de chuva e capacete. Mesmo veredito, outro dia."
+        },
+        {
+          "data": "2026-11-16",
+          "decisao": "nao publicar",
+          "texto": "Remedida junto com a `moto eletrica`, que MUDOU. Esta nao mudou, e a diferenca entre as duas e o dado desta passada: nao e a nuvem nem a regua que decide se a consulta nasce, e o catalogo da loja — e ele move cada consulta no seu tempo."
+        }
+      ]
     },
     {
       "id": "bike-eletrica",

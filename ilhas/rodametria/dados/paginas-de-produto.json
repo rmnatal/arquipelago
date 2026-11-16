@@ -48,10 +48,6 @@
     "o_que_falta_dizer": "As famílias sem página são as que a loja ainda não serve: o texto de cada cartão diz qual é a causa, medida, em vez de prometer data.",
     "familias_que_faltam": [
       {
-        "consulta": "moto elétrica",
-        "causa": "a loja que a gente usa tem três anúncios de moto elétrica de adulto, nenhum deles com uma venda, e com preços que variam em milhares de reais para a mesma classe de produto. Página feita com isso envelheceria em uma semana."
-      },
-      {
         "consulta": "scooter elétrica",
         "causa": "nesta loja a palavra scooter devolve patinete, e o scooter de verdade — aquele com assento, de mil watts — cai no mesmo caso da moto elétrica."
       },
@@ -209,6 +205,77 @@
         "Os anúncios saem da busca \"{CHAVE}\" na Shopee, lida em {DATA}. De {LIDAS} ofertas, {N} são bicicleta elétrica de adulto e {RECUSADAS} não são — capacete e capa de chuva dominam o resto da busca.",
         "A ordem dos cartões. {CRITERIO_DE_ORDEM}",
         "Potência, velocidade máxima, acelerador e carga máxima só entram na nossa ficha técnica vindos de ficha de fabricante ou de loja grande. Título de anúncio não basta para esses quatro."
+      ],
+      "aviso_de_afiliado": "Os botões levam para a loja por link de afiliado: a gente recebe comissão se você comprar, e o preço para você é o mesmo."
+    },
+    {
+      "id": "moto-eletrica",
+      "titulo": "Moto elétrica: qual comprar, quanto custa e o que o anúncio não diz",
+      "h1": "Moto elétrica",
+      "description": "As motos e scooters elétricas de adulto à venda hoje, com a faixa de preço medida na loja e o que cada anúncio declara de potência e de bateria — e o que ele não declara.",
+      "resposta": [
+        "A moto elétrica de adulto à venda hoje custa de {DE} a {ATE}, com a mediana em {MEDIANA} sobre os {N} anúncios que a gente conferiu em {DATA}.",
+        "A faixa é larga porque debaixo do mesmo nome a loja vende veículos diferentes: tem a de trilha, com freio hidráulico e bateria grande, e tem a scooter de rua, que é a de andar na cidade. Compare dentro da mesma, nunca entre as duas — preço de uma não é referência para a outra.",
+        "E a pergunta que traz você até aqui: sobre habilitação esta página não responde, e o motivo está no fim, escrito. O que ela responde é o preço, o que cada anúncio declara de bateria e o que falta no título para você decidir. {FRASE_DA_CARGA}"
+      ],
+      "o_que_e": [
+        "Moto elétrica de adulto é a que você senta e anda no acelerador, sem pedalar. Na loja ela aparece como moto, como scooter e como ciclomotor elétrico, e os três nomes caem na mesma busca.",
+        "O que separa uma da outra na regra de trânsito não é o nome nem o preço: é a potência nominal, a velocidade máxima e se ela anda sozinha no acelerador. A Resolução Contran nº 996/2023 decide a categoria por esses três, e com a categoria vêm placa, registro e licenciamento."
+      ],
+      "o_que_nao_e": [
+        "Não é ranking: a gente não andou em nenhuma delas e não vai dizer que andou.",
+        "E não é ficha técnica. {FRASE_DO_ROTULO} O resto da página diz, anúncio por anúncio, o que cada um declarou.",
+        "E não é veredito de trânsito. Quando o título do anúncio disser que a moto é sem CNH, leia como palavra da loja: a gente serve o título como ele está e não o endossa, porque a regra que a gente leu não tem artigo nenhum sobre CNH."
+      ],
+      "qual_escolher": [
+        {
+          "para": "o trajeto de casa para o trabalho, na cidade",
+          "o_que_olhar": "o que decide não é o watt do título, é a bateria: olhe a tensão e a amperagem e passe as duas na calculadora de autonomia, porque o km que o anúncio promete é de terreno plano e sem garupa. {FRASE_DO_PAR_DA_F2} Quando o título se cala, os dois números estão na ficha do anúncio."
+        },
+        {
+          "para": "trilha e terra",
+          "o_que_olhar": "aqui é outro veículo, e o número grande do título é o que mais engana: o watt que a regra de trânsito lê é o nominal, e o do anúncio pode ser o de pico do motor. {FRASE_DO_ROTULO} Olhe também o freio — hidráulico em veículo de trilha não é luxo, é o que para o peso na descida."
+        },
+        {
+          "para": "quem quer andar na rua sem placa",
+          "o_que_olhar": "o que decide isso são três campos — potência nominal, velocidade máxima e acelerador —, e nenhum destes anúncios declara os três. Passe os números que você tiver na ferramenta de categoria, na página inicial, e compare com o que a ficha do anúncio diz. Esta página não diz que nenhuma delas pode andar sem placa: preferimos a pergunta aberta a mandar você para a rua sem habilitação."
+        },
+        {
+          "para": "quem é mais pesado, ou leva garupa e carga",
+          "o_que_olhar": "{FRASE_DA_CARGA} Sem esse número no título, o caminho é abrir o anúncio e procurar a carga máxima na ficha antes de comparar preço — e somar você mais o garupa mais a mochila, não só você. A ferramenta de carga desta casa faz essa soma e diz quais aguentam."
+        }
+      ],
+      "perguntas": [
+        {
+          "pergunta": "Moto elétrica precisa de CNH?",
+          "resposta": "Sobre habilitação esta página não responde, e o motivo é de fonte: a Resolução Contran nº 996/2023 decide a categoria do veículo e não tem artigo nenhum sobre CNH; quem decide habilitação é o Código de Trânsito, e a gente ainda não o leu na fonte oficial. Enquanto não tiver lido, a gente prefere deixar a pergunta aberta a mandar alguém para a rua sem habilitação."
+        },
+        {
+          "pergunta": "Moto elétrica precisa de placa?",
+          "resposta": "Isso a resolução decide, e ela decide pela categoria: o equipamento autopropelido não é sujeito a registro, licenciamento nem emplacamento, e o ciclomotor é. O que coloca o veículo de um lado ou do outro são a potência nominal, a velocidade máxima e o acelerador — e é aí que o anúncio não ajuda. {FRASE_DO_ROTULO} Por isso esta página não afirma a categoria de nenhuma delas: ela mostra o que o título declarou e manda você conferir o nominal na ficha."
+        },
+        {
+          "pergunta": "Quantos quilômetros ela faz de verdade?",
+          "resposta": "Depende da bateria e do relevo, e é menos do que o anúncio diz. A nossa calculadora de autonomia desconta o relevo a partir da tensão e da amperagem e mostra o número do anúncio ao lado, para você ver a diferença. O peso de quem pilota não entra na conta: não existe nenhuma régua de quanto cada quilo custa em watt-hora por km, e a página diz isso em vez de disfarçar."
+        },
+        {
+          "pergunta": "A moto elétrica aguenta eu e um garupa?",
+          "resposta": "{FRASE_DA_CARGA} Então esta página não afirma a carga máxima de nenhuma delas — o que ela faz é dizer, anúncio por anúncio, que o título não declarou, para você procurar na ficha em vez de supor. E a conta é você mais o garupa mais o que vocês levam, nunca só você."
+        },
+        {
+          "pergunta": "Por que a faixa de preço é tão larga?",
+          "resposta": "Porque o mesmo nome cobre veículos que não disputam a mesma compra: a de trilha, feita para terra, com bateria grande e freio hidráulico, e a scooter de rua, feita para o trajeto curto da cidade. A loja chama as duas de moto elétrica. Olhar a faixa inteira de uma ponta à outra não compara nada — compare dentro do tipo que serve para o seu trajeto."
+        },
+        {
+          "pergunta": "Moto elétrica e scooter elétrica são a mesma coisa?",
+          "resposta": "Na loja, quase. O mesmo anúncio usa as duas palavras, e por isso esta página serve as duas. O que separa de verdade não é a palavra: é a potência nominal, a velocidade máxima e o acelerador, que são os campos que decidem a categoria no trânsito — e eles não mudam porque o vendedor trocou o nome."
+        }
+      ],
+      "como_sabemos": [
+        "Os anúncios saem da busca \"{CHAVE}\" na Shopee, lida em {DATA}. De {LIDAS} ofertas, {N} são moto ou scooter elétrica de adulto e {RECUSADAS} não são — capacete, buzina, protetor de ouvido e mini moto de brinquedo aparecem na mesma busca.",
+        "A ordem dos cartões. {CRITERIO_DE_ORDEM}",
+        "Potência, velocidade máxima, acelerador e carga máxima só entram na nossa ficha técnica quando vêm de ficha de fabricante ou de ficha de loja grande. Título de anúncio não basta para esses quatro, e é por isso que esta página diz o que o anúncio declarou em vez de preencher uma tabela técnica.",
+        "A regra de trânsito citada aqui é a Resolução Contran nº 996/2023, lida na fonte oficial. Ela decide categoria, placa, registro, licenciamento e capacete, e não fala de habilitação — quem fala disso é o Código de Trânsito, que a gente ainda não leu."
       ],
       "aviso_de_afiliado": "Os botões levam para a loja por link de afiliado: a gente recebe comissão se você comprar, e o preço para você é o mesmo."
     }
