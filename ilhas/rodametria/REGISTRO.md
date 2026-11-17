@@ -3,6 +3,71 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-11-17 19h17Z–19h5xZ — **A RECOLETA DAS 16h25Z APAGOU O PISO DA 25.2 DAS DUAS PÁGINAS DE COMPRA, E O PORTÃO DE AR APROVOU 425 AFIRMAÇÕES PORQUE A AFIRMAÇÃO DO PISO VIRA DE LADO QUANDO A FONTE ESVAZIA.** Revisão **107** no ar, conferida (18.4). Duas regras novas na seção 8 do contrato.
+
+**A ILHA DESTA EXECUÇÃO:** rodametria, por **foco** (`foco.md` nomeia a rodametria, foco total e absoluto desde 27/10). Pela **1.2** não há escolha a fazer, e **conferi o que fura o foco antes de aceitar isso**: o despacho do molde de conversão (exceção do Raphael de 21/10, seção 32) está fechado nas três ilhas, e **nenhuma ilha no ar está quebrada** — `clubedomosaico.com.br`, `robometria.com.br` e `aquametria.com.br` com a **home e o `/wp-sitemap.xml` em 200** nesta passada, que é a porta da 29.2. Logo nada fura o foco pela 1.2 nem pela 18.1.
+
+**Passo 1 do disparo, medido:** `git fetch origin main` trouxe o `main` em **`8824991`**, e a branch `claude/dreamy-mccarthy-cxexl5` (local e remota) estava **idêntica** a ele — 0 commit à frente, 0 atrás. Nada a mesclar antes, e nenhum PR aberto.
+
+**A RESERVA (passo 5 da seção 1):** `executando_desde` estava **`null`** — que pela **1.1** já é prova de que não havia bloco da Fundação vivo —, e a execução anterior fechou às **16h45Z**, duas horas e meia antes. Reserva às **19h17Z**, ganha no push na **primeira tentativa** (`c8bbee7`).
+
+**A REDE FOI MEDIDA E NÃO HERDADA (20.2):** 6 de 6 em **200** com quebra de cache — `rodametria.com.br` em `/`, `/wp-sitemap.xml` e `/veiculos/`, mais as três irmãs. **A Open API da Shopee NÃO foi usada nesta passada**, e isso é escolha com motivo: o defeito do dia não era preço velho, era campo apagado, e recolher de novo trocaria o conjunto de ofertas para consertar uma conta — a mesma separação que `aplicar-oferta-repetida.py` já tinha escrito em 16/11.
+
+**O PASSO PRÉ-REGISTRADO PELA PASSADA ANTERIOR, CUMPRIDO, E A RESPOSTA SEGUE ZERO:** `/casca → porta → quedas` lido às 19h2xZ e de novo às 19h3xZ devolve `episodios_vistos: 0`, `leituras_no_chao: 0`, `reposicoes_da_cura: 0`, `leituras_nao_sei: 0`, com `tem_bloco_wordpress: true`. **A reposição das 11:15:20Z está de pé há PELO MENOS 8h17min** — o quinto e mais longo intervalo medido na mesma raiz no mesmo dia (~4 min, ≥27 min, ≥2h26min, ≥5h30min, ≥8h17min). Isso **fortalece a frase do chamado** na HostGator, que é a da 29.5(b): evento irregular, com hora, não processo.
+
+---
+
+### A BANCADA ANTES DE CONSTRUIR (18.5) ESTAVA **REPROVADA**, E A PASSADA ANTERIOR FECHOU DIZENDO "51 PORTÕES, 0 FALHA"
+
+Rodei `bancada.py` antes de escolher trabalho, como a 18.5 manda. Ela voltou **REPROVADO: 5 portões, com 21 falhas em `validar-banco.py`** e mais 5 em `mutacoes-banco.py`. A passada das 16h17Z escreveu neste arquivo, com todas as letras, *"A bancada rodou antes de qualquer construção (18.5): 51 portões sem rede, 0 falha"* — e aquilo era verdade **antes** de ela construir. Ela nunca a rodou **depois**. Entre as duas leituras houve uma recoleta, uma vitrine regerada e o desembarque da revisão 106.
+
+**O QUE ESTAVA NO AR, CONTADO E NÃO SUPOSTO (19h2xZ):** `/veiculos/patinete-eletrico/` (246 mil buscas/mês) servia **14** links `s.shopee.com.br`, todos de ficha de anúncio, **nenhum de busca**; `/veiculos/bicicleta-eletrica/` (673 mil) servia **7**, idem. São **21 cartões cuja única saída de compra é a ficha de um anúncio**, sem a busca da loja que a **25.2** exige para o dia em que a ficha morrer. A `/veiculos/moto-eletrica/` tinha o seu piso (`2gClWsHpKL`) e por isso **não** entrou no defeito — foi colhida em 16/11 e não entrou na recoleta. **E as fichas desta ilha morrem:** duas foram aposentadas na última semana (11/11 e 13/11).
+
+**A CAUSA, E ELA É DE DESENHO E NÃO DE DESCUIDO.** `coletar-por-consulta.py` monta o bloco **do zero** em `montar()`, e `piso_da_busca` **não é escrito por ele**: é escrito por `coletar-piso-da-vitrine.py`, que é outra ferramenta e precisa de rede. **Quem apaga o campo não é quem sabe repô-lo.** Comparadas as chaves do bloco antes e depois da recoleta, a perda foi exatamente esta e mais nada: `piso_da_busca` nas duas consultas, e `ofertas_aposentadas` e `ofertas_repetidas_pela_loja` no resumo da bicicleta — estes porque `aplicar_quarentena` **retornava antes** de `recontar_resumo` quando o bloco antigo não tinha quarentena.
+
+### E A METADE QUE VALE MAIS QUE O CONSERTO: O PORTÃO DE AR ESTAVA COBRANDO O CONTRÁRIO
+
+A passada anterior rodou `conferir-produto-no-ar.py` **depois** do desembarque, pela 18.4, e ele disse **425 afirmações, 0 falha**. Ele não estava cego nem omisso. Ele tinha dois ramos:
+
+- `if` a fonte tem **uma** `url_busca` → a página tem de servir a linha do piso **uma** vez;
+- `else` → a página **não pode** servir a linha, porque com duas buscas distintas "a primeira" é arbitrária.
+
+As duas metades estão certas. O que não existia era o terceiro mundo: **zero** buscas na fonte. Ele caiu no `else`, e ali **a afirmação inverteu de sinal** — passou a exigir que a página **não** servisse piso. No dia em que a recoleta apagou o campo, o portão **aprovou a ausência do piso**. A condição do ramo saiu da **mesma fonte** que a afirmação devia cobrar, que é a cicatriz da seção 8 numa forma nova: **regressão que apaga a fonte apaga a pergunta junto.**
+
+### O QUE ESTA PASSADA FEZ, EM QUATRO LUGARES
+
+1. **CAUSA, no coletor.** Nasce `CAMPOS_QUE_ATRAVESSAM_A_COLETA` — uma lista declarada em **um** lugar, com a regra escrita para quem acrescentar campo depois (campo escrito por ferramenta de fora entra; campo que a coleta escreve **não** entra, porque carregá-lo publicaria a leitura de anteontem com a data de hoje). E `aplicar_quarentena` virou `atravessar_a_coleta`, **sem saída antecipada**: a quarentena e o piso atravessam, e `recontar_resumo` roda sempre.
+2. **DECISÃO extraída para função pura.** `veredito_do_piso_da_tabela(quantas_buscas, quantos_na_tela)` recebe a relação **já calculada**, não abre página e não lê arquivo. O mundo de fonte vazia **reprova por dois motivos separados** — a fonte sem piso, e piso na tela sem procedência na fonte — porque os consertos dos dois são diferentes.
+3. **PORTÃO NOVO: `ferramentas/teste-piso-na-tela.py`**, 9 mundos fabricados e 35 afirmações. Ele escreve a régua **velha** dentro de si, obrigada a **discordar** no mundo medido: em `(0 busca, 0 linha)` a velha **aprova** e a nova **reprova** — e nos outros 8 mundos as duas **têm de concordar**, senão o conserto afrouxou algo que não era o defeito. É a disciplina da 20.9, e é o que separa "escrevi código novo" de "tenho um conserto".
+4. **ARITMÉTICA DA QUARENTENA, e aqui o portão estava REPROVANDO um banco CERTO.** A afirmação 3 de `aplicar-aposentadoria-de-anuncio.py` pedia `ofertas_lidas == len(anuncios) + len(anuncios_aposentados)`. A patinete tem **dois** aposentados: o de 11/11 (58212105781), que a loja **não** devolveu na recoleta de 17/11, e o de 13/11 (23898889810), que ela devolveu e a quarentena recusou. A soma velha pedia 19 + 2 = **21** sobre **20** lidas. **Aposentado de coleta velha que a loja não devolveu hoje nunca foi lido hoje**, e a invariante velha só valia na ilha onde recoleta nunca acontece. Nasce `ofertas_aposentadas_nesta_coleta`, mantido pelos dois caminhos de escrita, e a soma passa a ser 19 + 1 = 20. `ofertas_aposentadas` continua cobrado pela afirmação 2, que é a conta da **quarentena inteira**: as duas contas são diferentes de propósito e nenhuma substitui a outra.
+
+**O DADO FOI RESTAURADO E NÃO REINVENTADO.** Os dois `piso_da_busca` voltaram do commit anterior **com as datas reais** (encurtados em 16/11), não com a de hoje — e **medidos, não supostos**: os três encurtados respondem **301** para a busca certa, com `utm_content=rodametria`. `2qWBjBH7i9` → `bicicleta eletrica adulto`, `5VWwu572a8` → `patinete eletrico adulto`, `2gClWsHpKL` → `moto eletrica adulto`. As chaves do piso batem com a `chave_escolhida` de hoje nas três, então o piso restaurado é o piso certo e não o de um conjunto velho.
+
+**O `ofertas_aposentadas_nesta_coleta` foi preenchido por procedência, não para fechar a conta** — e a parte honesta é que ele é cruzado por dois fatos que a coleta escreveu no dia (`ofertas_lidas` e o tamanho de `anuncios`), não por uma terceira medição independente. bicicleta: **0** (não tem aposentado). moto: **1** (o único aposentado saiu em 2026-11-16, que é o próprio `colhido_em` do bloco). patinete: **1** (a loja devolveu o item 23898889810 na coleta de 17/11 e a quarentena o recusou, registrado pela passada das 16h25Z). De agora em diante o campo é escrito pelas duas ferramentas que o sabem de primeira mão.
+
+**O QUE A VITRINE MUDOU, CONTADO CAMPO POR CAMPO:** 87 campos em 29 linhas, e **todos os 87 são os três do piso** (`url_busca`, `url_busca_produto`, `piso_medido_em`). **Zero preço, zero mediana, zero texto.** O conserto é cirúrgico, e isso foi medido achatando os dois JSON e comparando chave por chave — não lido no diff.
+
+### A VERIFICAÇÃO
+
+**Bancada depois de construir: 52 portões (o novo entrou, porque a bancada descobre os portões), 0 falha.** É a contagem que a regra nova do contrato passa a exigir ao lado da de antes. **As duas contagens desta passada: antes 51 portões com 5 REPROVADOS, depois 52 portões com 0 falha.**
+
+**O DESEMBARQUE, e ele confirmou a segunda ressalva da 20.9 outra vez.** Push do manifest às **19h30:25Z**. O `/status` ficou em 106 com `ultimo` de **19:14:51** — e a régua de cinco vereditos da 20.9, chamada como **função pura** com os quatro fatos na mão, disse **`evento-nao-vencido`**: o Sync estava vivo, a rodada dele era **anterior** ao commit, e reacionar não antecipa vencimento. **Esperei visitando, sem reacionar.** O teto calculado era **19:44:51**; a revisão **107 entrou às 19h40:29Z ou antes**, ou seja **mais de quatro minutos ANTES do teto** — porque o WordPress reagenda evento recorrente a partir do horário **agendado** e não do horário em que ele rodou. É a terceira medição desta ilha dizendo que `ultimo` + 30 min é **limite superior** e nunca a hora exata.
+
+**O log lido LINHA POR LINHA (20.4), com a leitura do grupo começando no FECHO que está no TOPO (20.8) e a conta do próprio Sync (20.10):** janela de **15** linhas servidas, fecho declarando **7 aplicado(s)**, **7** linhas de item, e as **7** dizendo `ok` — afirmação **positiva**, não procura de palavra de falha. `7 linhas de item − 7 aplicados = 0` que não disseram `ok`. **O grupo inteiro cabe na janela**, então a conta não ficou aberta.
+
+**O PISO NO AR, CONTADO EM DUAS LEITURAS COM QUEBRA DE CACHE (18.4):** `5VWwu572a8` **1x** em `/veiculos/patinete-eletrico/`, `2qWBjBH7i9` **1x** em `/veiculos/bicicleta-eletrica/` e `2gClWsHpKL` **1x** em `/veiculos/moto-eletrica/`, com **uma** linha `rdm-tabela-piso` em cada — uma, e não uma por cartão, porque o piso é da consulta. As duas leituras deram o mesmo byte: 112.593, 102.909 e 103.801 (a patinete saiu de 111.700 e a bicicleta de 102.314, e a diferença é a linha do piso voltando).
+
+**OS PORTÕES DE AR:** `conferir-produto-no-ar.py` **444 afirmações, 0 falha** — eram **425** antes, e as 19 novas são a afirmação do piso deixando de ser um `else` e passando a cobrar. `conferir-no-ar.py` **803 afirmações, 0 falha**. **11 de 11 URLs do sitemap em 200 em DUAS leituras** com quebra de cache. **As três portas da 29.2 verdes:** `/wp-sitemap.xml` 200, `/robots.txt` 200, e o caminho virgem em **404 com 73.192 bytes**, que é a página 404 da própria ilha e não a de estacionamento de 2.361 bytes do hospedeiro.
+
+**UMA ERRATA DESTA PRÓPRIA PASSADA, E ELA É DE MÉTODO:** a mensagem do commit `a6bd241` foi escrita num heredoc do bash **sem** proteger os acentos graves, e o shell **expandiu** cada identificador entre eles como comando — a mensagem no `main` perdeu todos os nomes de arquivo, de campo e de função, e saiu com frases truncadas (*"Contado no ar: 14 e 7 links , todos de ficha"*). O código e o dado foram empurrados corretos; só a prosa se perdeu. **Não foi consertada com `--amend` e force push de propósito** (a regra do disparo é literal: nunca force push), e é por isso que a história inteira está aqui, que é o lugar append-only dela. **Para a próxima: heredoc com prosa técnica se escreve com `<<'MSG'` entre aspas simples, ou por arquivo — e `git commit -F` lendo arquivo é o caminho que não tem essa pedra.**
+
+### O CONTRATO GANHOU DUAS REGRAS, NA SEÇÃO 8
+
+As duas valem para **toda** ilha, porque toda ilha tem bancada e todas desembarcam pelo mesmo Sync:
+
+1. **A bancada roda duas vezes, e é a de depois que acha a regressão da própria passada.** A 18.5 manda verificar antes de construir; a bancada de antes diz se a ilha estava sã ao começar, e **só a de depois é verificação do que a passada fez**. O relatório diz as **duas** contagens. É a cicatriz que a seção 8 já nomeia — *"conferidor que não roda não é trava, é arquivo"* — num lugar que ninguém tinha olhado: o conferidor **rodou**, e rodou no único momento em que ainda não havia nada a achar.
+2. **Portão que tira a condição do ramo da mesma fonte que ele devia cobrar vira de lado quando a fonte esvazia — e fonte vazia não é um terceiro caso de empate.** O mundo em que a contagem é **zero** se escreve explícito e reprovando, nunca dentro de um `else` escrito para outra pergunta; e a decisão vira **função pura**, para a bancada fabricar aquele mundo em vez de esperar que uma recoleta o produza.
+
 ## 2026-11-17 16h17Z–16h4xZ — **AS DUAS PÁGINAS DE PRODUTO PUBLICAVAM PREÇO DE 04/11, E O PISO DA FAIXA DO PATINETE NÃO TINHA MAIS LASTRO NA COLETA QUE O GERA.** Revisão **106** no ar, conferida (18.4).
 
 **A ILHA DESTA EXECUÇÃO:** rodametria, por **foco** (`foco.md` nomeia a rodametria, foco total e absoluto desde 27/10). Pela **1.2** não há escolha de ilha a fazer, e **conferi o que fura o foco antes de aceitar isso**: o **despacho do molde de conversão** (exceção do Raphael de 21/10, seção 32) está **FECHADO nas três ilhas** — aquametria às 18h2xZ de 21/10, clubedomosaico às 19h1xZ, robometria às 16h1xZ —, e **nenhuma ilha no ar está quebrada**: as quatro homes em **200**, mais `/materiais/qual-cola-usar-no-mosaico/` e `/wp-sitemap.xml` da robometria em 200. Logo nada fura o foco pela 1.2 nem pela 18.1.
