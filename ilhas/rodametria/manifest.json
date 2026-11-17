@@ -4,7 +4,7 @@
   "nicho": "mobilidade eletrica — acertar os tres numeros antes de comprar um veiculo eletrico: categoria legal (CNH e placa), autonomia real e carga maxima",
   "dominio": "https://rodametria.com.br",
   "versao_manifest": 1,
-  "revisao": 106,
+  "revisao": 107,
   "atualizado_em": "2026-11-17",
   "estado": "nascendo",
   "desembarque": {
@@ -135,7 +135,7 @@
       "arquivo": "dados/vitrine-de-produto.json",
       "formato": "json",
       "publicar": true,
-      "sha256": "e96655ba09175794946ef5386397d7897f3deea921b0cf201537c276eef9e268",
+      "sha256": "c9e85f523755cbaa262eeb7bd713cdac1309a9ed954d6b09ad933cfe0b7bbb23",
       "descricao": "A camada GERADA: cartoes do carrossel (teto de cinco, 32.1), linhas da tabela (todas) e os numeros, RECONTADOS de dados/anuncios-por-consulta.json."
     },
     {
@@ -151,7 +151,7 @@
       "arquivo": "dados/anuncios-por-consulta.json",
       "formato": "json",
       "publicar": false,
-      "sha256": "a558edc30f9fff81bc38fe91ec07a6f50c4b01ee7eccff24b9a2a6bfb8615ae2",
+      "sha256": "ae1c9134c40385ddb8d6973bf87c3df7fc43dc40fee59086f823922584f7e123",
       "descricao": "Os anuncios lidos na Shopee, com o veredito da regua de relevancia por anuncio, a escada medida e as fotos com largura e altura lidas no cabecalho do arquivo na CDN."
     },
     {

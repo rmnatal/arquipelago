@@ -283,6 +283,52 @@ ROTULO_DO_PISO = "Veja todos disponíveis aqui"
 CLASSE_DO_PISO_DA_TABELA = 'class="rdm-tabela-piso"'
 
 
+def veredito_do_piso_da_tabela(quantas_buscas, quantos_na_tela):
+    """A DECISAO sobre a linha do piso da 25.2, como FUNCAO PURA: entra a relacao
+    ja calculada (quantas `url_busca` distintas a FONTE tem para esta pagina, e
+    quantas linhas de piso a PAGINA serve) e sai a lista de falhas em palavras.
+    Lista vazia = aprovado. Ela nao abre pagina, nao le arquivo e nao usa rede,
+    para a bancada poder FABRICAR o mundo em vez de esperar que ele aconteca —
+    a regra da secao 8 para toda recusa que depende de ausencia ou de borda.
+
+    O DEFEITO QUE ESTA FUNCAO EXISTE PARA FECHAR, e ele estava NO AR e VERDE.
+    Medido em 17/11/2026 as 19h3xZ. A versao anterior tinha dois ramos — `if
+    len(buscas) == 1` cobrava a linha do piso, e o `else` cobrava a AUSENCIA dela
+    ("duas buscas distintas: 'a primeira' e arbitraria"). O mundo de ZERO buscas
+    caia no `else`, entao quando a recoleta das 16h25Z apagou o `piso_da_busca`
+    das duas consultas, a afirmacao VIROU DE LADO: ela passou a exigir que a
+    pagina NAO servisse piso, e aprovou — 425 afirmacoes, 0 falha — duas paginas
+    servindo 21 cartoes de ficha de anuncio sem nenhuma saida para o dia em que a
+    ficha morrer. O portao nao estava cego: ele estava cobrando o contrario.
+
+    A causa tem nome e e a da seção 8: a condicao do ramo saiu da MESMA FONTE que
+    a afirmacao devia cobrar. Fonte vazia nao e um terceiro caso de empate, e
+    `else` sobre duas perguntas junta o mundo legitimo (duas buscas) com o mundo
+    proibido (nenhuma) — e quem decide passa a ser o dado, nao a regra.
+    """
+    falhas = []
+    if quantas_buscas == 0:
+        # PAGINA DE PRODUTO SEM PISO NA FONTE E A 25.2 QUEBRADA, e esta linha e
+        # POSITIVA de proposito (20.8): ela acusa a ausencia em vez de a tolerar.
+        falhas.append("nao tem NENHUMA `url_busca` na fonte: a pagina serve cartao de ficha de "
+                      "anuncio e nenhuma saida de compra para o dia em que a ficha morrer (25.2). "
+                      "Rode `coletar-piso-da-vitrine.py --gravar`")
+        if quantos_na_tela:
+            # O OUTRO LADO DO MESMO MUNDO, e o conserto dele e outro: aqui a tela
+            # tem piso que a fonte nao tem, que e numero de tela sem procedencia.
+            falhas.append("serve a linha do piso %d vez(es) e a fonte nao tem `url_busca` "
+                          "nenhuma: piso na tela sem procedencia na fonte" % quantos_na_tela)
+    elif quantas_buscas == 1:
+        if quantos_na_tela != 1:
+            falhas.append("serve a linha do piso da TABELA %d vez(es) e devia servir UMA: o piso "
+                          "e da consulta, nao do anuncio" % quantos_na_tela)
+    else:
+        if quantos_na_tela != 0:
+            falhas.append("tem %d buscas distintas na fonte e ainda serve a linha unica do piso "
+                          "da tabela: 'a primeira' e arbitraria" % quantas_buscas)
+    return falhas
+
+
 def main():
     ancoras = ancoras_liberadas()
     cod, urls = urls_do_sitemap()
@@ -324,21 +370,19 @@ def main():
         afirma(vazios == 0,
                "%s serve %d href vazio: botao que recarrega a propria pagina" % (caminho, vazios))
 
-        # (2) A LINHA DISCRETA DO PISO, uma vez.
+        # (2) A LINHA DISCRETA DO PISO, uma vez. A DECISAO E A FUNCAO PURA
+        # `veredito_do_piso_da_tabela`, acima; aqui ficam so os FATOS que ela
+        # recebe. O que se le no corpo (o link estar servido) continua aqui,
+        # porque e fato externo e nao decisao.
         buscas = {str(l.get("url_busca") or "").strip() for l in linhas}
         buscas.discard("")
         quantos = corpo.count(CLASSE_DO_PISO_DA_TABELA)
         nos_cartoes = corpo.count(ROTULO_DO_PISO) - quantos
+        for falha in veredito_do_piso_da_tabela(len(buscas), quantos):
+            afirma(False, "%s %s" % (caminho, falha))
         if len(buscas) == 1:
-            afirma(quantos == 1,
-                   "%s serve a linha do piso da TABELA %d vez(es) e devia servir UMA: o piso e da "
-                   "consulta, nao do anuncio" % (caminho, quantos))
             afirma(list(buscas)[0] in corpo,
                    "%s nao serve o piso da 25.2 (%s)" % (caminho, list(buscas)[0]))
-        else:
-            afirma(quantos == 0,
-                   "%s tem %d buscas distintas na fonte e ainda serve a linha unica do piso da "
-                   "tabela: 'a primeira' e arbitraria" % (caminho, len(buscas)))
 
         # (2-b) A PRESTACAO DE CONTAS DA RECUSA NAO FALA JARGAO DE MAQUINA, e
         # isto foi medido NO AR, nao suposto: a revisao 99 de 16/11/2026 serviu

@@ -53,7 +53,10 @@
      "os_dois": 0,
      "declaram_watt": 1,
      "dizem_qual_watt": 0
-    }
+    },
+    "ofertas_aposentadas_nesta_coleta": 0,
+    "ofertas_aposentadas": 0,
+    "ofertas_repetidas_pela_loja": 0
    },
    "anuncios": [
     {
@@ -735,7 +738,16 @@
      "exigencias_atendidas": [],
      "rotulo_de_potencia": "sem_watt"
     }
-   ]
+   ],
+   "piso_da_busca": {
+    "chave": "bicicleta eletrica adulto",
+    "url_busca_produto": "https://shopee.com.br/search?keyword=bicicleta%20eletrica%20adulto",
+    "url_busca": "https://s.shopee.com.br/2qWBjBH7i9",
+    "sub_id_1": "rodametria",
+    "encurtamento_tentado_em": "2026-11-16",
+    "medido_em": "2026-11-16",
+    "por_que_existe": "PISO DA 25.2 para os cartoes desta pagina: o link de cada cartao e a ficha de um anuncio, e ficha apodrece. Quando ela morrer, esta busca e a saida que a pessoa ja tinha na tela."
+   }
   },
   {
    "id": "moto-eletrica",
@@ -786,7 +798,8 @@
      "dizem_qual_watt": 1
     },
     "ofertas_aposentadas": 1,
-    "ofertas_repetidas_pela_loja": 1
+    "ofertas_repetidas_pela_loja": 1,
+    "ofertas_aposentadas_nesta_coleta": 1
    },
    "anuncios": [
     {
@@ -1481,7 +1494,8 @@
      "dizem_qual_watt": 0
     },
     "ofertas_aposentadas": 2,
-    "ofertas_repetidas_pela_loja": 0
+    "ofertas_repetidas_pela_loja": 0,
+    "ofertas_aposentadas_nesta_coleta": 1
    },
    "anuncios": [
     {
@@ -2204,7 +2218,16 @@
    "anuncios_aposentados": [
     "APOSENTADO EM 2026-11-11 — item 58212105781 da loja 1430771203 — Patinete Elétrico Adulto  650W com 3 Velocidades Bateria Recarregável para Mobilidade Urbana — R$ 1499,00, preco de 2026-11-04, degrau 1 da escada de chaves, encurtado https://s.shopee.com.br/9pfbJrNKOR, loja \"Super mantimentos comprar\" — CAUSA (esgotado): a pagina do produto serve a palavra `Esgotado` colada ao titulo — o anuncio existe, abre em 200 e NAO VENDE, que e o segundo dos dois desfechos que a 25.4 manda ler no corpo e nunca no `<title>`. Nesta leva o `<title>` veio com o nome do produto, o que o torna ainda mais enganoso que o generico que a 25.4 descreve. Oferta que nao vende sai da vitrine inteira — carrossel, tabela, faixa de preco e mediana —, porque numero contado sobre oferta inexistente e numero que ninguem pode comprar || ULTIMA MEDICAO: 11/11/2026, ronda diaria tecnica das 14h5xZ, no navegador do Raphael, abrindo a `url_produto` e NUNCA o link de afiliado (25.4), em DUAS leituras sem CAPTCHA: `Esgotado` nas duas, com o corpo caindo de ~4.400 para 2.789 caracteres na primeira e voltando a 4.353 na segunda. Reescolher ficha nova nao foi tentado nesta passada e nao e omissao: o teste de vida da Shopee nao e exercitavel desta nuvem (25.4, remedido em 11/11 — o Chromium daqui abre a ficha em 200 e ela nao renderiza, com 23 recursos de `deo.shopeemobile.com` recusados pelo egresso), e grampear ficha nova sem poder abri-la e a 25.4-b.1 ao pe da letra. A vaga do cartao vai para o proximo da ordem da secao 7, que a mesma coleta de 04/11 ja trouxe com o par completo",
     "APOSENTADO EM 2026-11-13 — item 23898889810 da loja 1389372092 — Patinete Elétrico Adulto Dobrável 30km/h Original Premium — R$ 1599,99, preco de 2026-11-04, degrau 1 da escada de chaves, encurtado https://s.shopee.com.br/4fxWYUAZJT, loja \"ZeroOne!\" — CAUSA (produto-nao-existe): a ficha do anuncio devolve \"O produto nao existe\", sem `h1` e com 1.640 bytes de corpo. NAO e `Esgotado`, que e o outro desfecho da 25.4: aqui o anuncio sumiu da loja, e a linha 7 da tabela de exemplos da pagina de maior intencao de compra desta ilha levava o leitor a um beco. Oferta que nao existe sai da vitrine inteira — carrossel, tabela, faixa de preco e mediana —, porque numero contado sobre oferta inexistente e numero que ninguem pode comprar || ULTIMA MEDICAO: 13/11/2026, ronda diaria tecnica das 14h4xZ, no navegador do Raphael, abrindo a `url_produto` e NUNCA o link de afiliado (25.4), em DUAS leituras: \"O produto nao existe\" nas duas. E O ACHADO DA FUNDACAO AS 16h3xZ DO MESMO DIA, que vale mais que a baixa: a Open API de afiliados AINDA LISTA este item na busca `patinete eletrico adulto` (50 ofertas lidas), com o MESMO `productLink`, o mesmo titulo e os mesmos R$ 1.599,99 — catalogo de afiliado NAO e teste de vida, e quem perguntar a API em vez de abrir a ficha vai ressuscitar este anuncio. Desta nuvem a ficha segue nao mensuravel: shopee.com.br responde 200 com 155.800 bytes de casca de SPA, sem `<title>`, sem `og:` e sem o proprio `item_id` dentro. Reescolher ficha nova nao foi tentado e nao e omissao: grampear ficha que nao se pode abrir e a 25.4-b.1 ao pe da letra"
-   ]
+   ],
+   "piso_da_busca": {
+    "chave": "patinete eletrico adulto",
+    "url_busca_produto": "https://shopee.com.br/search?keyword=patinete%20eletrico%20adulto",
+    "url_busca": "https://s.shopee.com.br/5VWwu572a8",
+    "sub_id_1": "rodametria",
+    "encurtamento_tentado_em": "2026-11-16",
+    "medido_em": "2026-11-16",
+    "por_que_existe": "PISO DA 25.2 para os cartoes desta pagina: o link de cada cartao e a ficha de um anuncio, e ficha apodrece. Quando ela morrer, esta busca e a saida que a pessoa ja tinha na tela."
+   }
   }
  ]
 }

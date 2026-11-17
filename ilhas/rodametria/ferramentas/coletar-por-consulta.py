@@ -403,17 +403,49 @@ def recontar_resumo(bloco):
     return r
 
 
-def aplicar_quarentena(novo_bloco, bloco_antigo):
-    """Carrega a quarentena do bloco antigo e RECUSA o anuncio que ela nomeia.
+# O QUE ATRAVESSA A COLETA E O QUE NAO ATRAVESSA, declarado em UM lugar porque
+# `montar()` monta o bloco DO ZERO e tudo o que nao estiver nesta lista MORRE na
+# recoleta, em silencio. Medido em 17/11/2026 as 19h3xZ, e o custo foi exatamente
+# este: a recoleta das 16h25Z daquele dia apagou o `piso_da_busca` das duas
+# consultas que viram pagina — 21 cartoes de ficha de anuncio servindo, no ar, sem
+# a saida da 25.2 para o dia em que a ficha morrer. O `piso_da_busca` nao e fato da
+# coleta do dia: ele e medido por `coletar-piso-da-vitrine.py`, que e OUTRA
+# ferramenta e nao roda nesta, e por isso quem o apaga nao tem como o repor.
+#
+# A REGRA DE QUEM ACRESCENTAR CAMPO AQUI DEPOIS: campo escrito por ferramenta de
+# FORA desta entra nesta lista no mesmo commit em que nasce. Campo que esta coleta
+# escreve nao entra — recoleta tem de o refazer, e carregar o velho seria publicar
+# a leitura de anteontem com a data de hoje, que e o defeito que a recoleta das
+# 16h25Z existiu para consertar.
+CAMPOS_QUE_ATRAVESSAM_A_COLETA = (
+    # quem escreve: a ferramenta que aposenta anuncio (a quarentena da 25.11)
+    'anuncios_aposentados',
+    # quem escreve: coletar-piso-da-vitrine.py (o piso da 25.2, com rede)
+    'piso_da_busca',
+)
+
+
+def atravessar_a_coleta(novo_bloco, bloco_antigo):
+    """Carrega do bloco antigo o que a recoleta nao sabe refazer, e aplica a
+    quarentena: RECUSA o anuncio que ela nomeia.
 
     Devolve quantos anuncios foram recusados. Imprime cada recusa (secao 8): o
     que uma coleta deixa de fora em silencio e o que a passada seguinte
     redescobre do zero.
+
+    ESTA FUNCAO NAO TEM MAIS SAIDA ANTECIPADA, e o motivo esta medido: ela
+    retornava `0` antes de qualquer coisa quando o bloco antigo nao tinha
+    quarentena — e com isso `recontar_resumo` nao rodava, entao a
+    `veiculos/bicicleta-eletrica` saiu da recoleta de 17/11 sem
+    `ofertas_aposentadas` e sem `ofertas_repetidas_pela_loja` no resumo. Bloco sem
+    quarentena nao e bloco sem contas derivadas.
     """
-    quarentena = ids_em_quarentena(bloco_antigo or {})
-    if not quarentena:
-        return 0
-    novo_bloco['anuncios_aposentados'] = aposentados_de(bloco_antigo)
+    bloco_antigo = bloco_antigo or {}
+    for campo in CAMPOS_QUE_ATRAVESSAM_A_COLETA:
+        if bloco_antigo.get(campo) and not novo_bloco.get(campo):
+            novo_bloco[campo] = bloco_antigo[campo]
+
+    quarentena = ids_em_quarentena(novo_bloco)
     fora = [a for a in novo_bloco['anuncios'] if int(a.get('item_id') or 0) in quarentena]
     for a in fora:
         print('  QUARENTENA: a loja devolveu de novo o item %s (%s) e ele esta APOSENTADO; '
@@ -421,6 +453,11 @@ def aplicar_quarentena(novo_bloco, bloco_antigo):
     if fora:
         novo_bloco['anuncios'] = [a for a in novo_bloco['anuncios']
                                   if int(a.get('item_id') or 0) not in quarentena]
+    # QUANTOS APOSENTADOS ESTAVAM DENTRO DO `ofertas_lidas` DESTA COLETA. E o
+    # numero que faz a soma da pagina fechar, e ele NAO e `ofertas_aposentadas`:
+    # aposentado de coleta velha que a loja NAO devolveu hoje nunca foi lido hoje.
+    # Ver a afirmacao 3 de `aplicar-aposentadoria-de-anuncio.py`.
+    novo_bloco['resumo']['ofertas_aposentadas_nesta_coleta'] = len(fora)
     recontar_resumo(novo_bloco)
     return len(fora)
 
@@ -807,8 +844,8 @@ def main():
         with open(BANCO, encoding='utf-8') as f:
             antigo = {b['id']: b for b in json.load(f).get('consultas', [])}
     for b in blocos:
-        # A QUARENTENA ATRAVESSA A COLETA. Ver `aplicar_quarentena`.
-        aplicar_quarentena(b, antigo.get(b['id']))
+        # A QUARENTENA E O PISO ATRAVESSAM A COLETA. Ver `atravessar_a_coleta`.
+        atravessar_a_coleta(b, antigo.get(b['id']))
         antigo[b['id']] = b
 
     saida = {

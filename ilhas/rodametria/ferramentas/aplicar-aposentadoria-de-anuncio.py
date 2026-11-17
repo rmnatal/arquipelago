@@ -62,7 +62,10 @@ O QUE ESTA FERRAMENTA NAO FAZ, de proposito:
   fatos da coleta do dia em que ela aconteceu e ficam como estao; o que muda e o
   que serve HOJE (`ofertas_que_servem`, `ofertas_com_link_de_afiliado`, o numero
   proprio) mais o campo novo `ofertas_aposentadas`. O portao exige a soma fechar:
-  `ofertas_lidas == len(anuncios) + len(anuncios_aposentados)`.
+  `ofertas_lidas == len(anuncios) + resumo['ofertas_aposentadas_nesta_coleta']` —
+  e NAO com a quarentena inteira: aposentado de coleta velha que a loja nao
+  devolveu na leitura de hoje nunca entrou no `ofertas_lidas` de hoje (corrigido
+  em 17/11/2026, depois de a invariante velha reprovar um banco certo).
 """
 
 import argparse
@@ -145,13 +148,31 @@ def conferir():
             falhas.append('%s: ofertas_aposentadas gravado %r, contado %d'
                           % (bid, r.get('ofertas_aposentadas'), len(apos)))
 
-        # 3. A SOMA FECHA. `ofertas_lidas` e fato da coleta e nao se mexe;
-        #    entao ele tem de ser o que serve hoje mais o que foi aposentado.
+        # 3. A SOMA FECHA, E ELA NAO FECHA COM `anuncios_aposentados`.
+        #    `ofertas_lidas` e fato da coleta do dia: ele conta o que a LOJA
+        #    DEVOLVEU naquela leitura. Entao ele tem de ser o que sobrou na lista
+        #    mais o que foi aposentado DENTRO daquela leitura — nunca mais a
+        #    quarentena inteira. MEDIDO em 17/11/2026 as 19h3xZ, e esta afirmacao
+        #    estava REPROVANDO um banco certo: a `patinete-eletrico` tem dois
+        #    aposentados, um de 11/11 que a loja NAO devolveu na recoleta de 17/11
+        #    e um de 13/11 que ela devolveu e a quarentena recusou. A soma velha
+        #    pedia 19 + 2 = 21 sobre 20 lidas; a certa pede 19 + 1 = 20. Aposentado
+        #    de coleta velha que a loja nao devolveu hoje NUNCA FOI LIDO hoje, e a
+        #    invariante velha so valia na ilha onde recoleta nunca acontece.
+        #    (`ofertas_aposentadas` continua cobrado pela afirmacao 2, que e a
+        #    conta da QUARENTENA INTEIRA: as duas contas sao diferentes de
+        #    proposito e nenhuma substitui a outra.)
+        nesta = int(r.get('ofertas_aposentadas_nesta_coleta') or 0)
         afirmacoes += 1
-        if int(r['ofertas_lidas']) != len(bloco['anuncios']) + len(apos):
+        if nesta > len(apos):
+            falhas.append('%s: ofertas_aposentadas_nesta_coleta %d e maior que a quarentena '
+                          'inteira (%d aposentado(s)): nao se aposenta nesta coleta mais do '
+                          'que existe' % (bid, nesta, len(apos)))
+        afirmacoes += 1
+        if int(r['ofertas_lidas']) != len(bloco['anuncios']) + nesta:
             falhas.append(
-                '%s: ofertas_lidas %d nao fecha com %d anuncio(s) + %d aposentado(s)'
-                % (bid, r['ofertas_lidas'], len(bloco['anuncios']), len(apos)))
+                '%s: ofertas_lidas %d nao fecha com %d anuncio(s) + %d aposentado(s) desta coleta'
+                % (bid, r['ofertas_lidas'], len(bloco['anuncios']), nesta))
 
         # 4. O ID DO APOSENTADO NAO ESTA EM CAMPO VIVO — e esta e a afirmacao
         #    que o despacho pediu. Ela varre TODOS os campos de todos os
@@ -299,6 +320,11 @@ def aposentar(args):
     bloco['anuncios_aposentados'] = col.aposentados_de(bloco) + [linha]
 
     r = bloco['resumo']
+    # O ITEM QUE SAI AGORA ESTAVA DENTRO DO `ofertas_lidas` DESTA COLETA — ele foi
+    # lido nela, e e por isso que ele estava em `anuncios`. Sem esta conta a soma da
+    # afirmacao 3 nao fecha, e fecha-la com `len(anuncios_aposentados)` e o que
+    # estava errado: ver o comentario dela.
+    r['ofertas_aposentadas_nesta_coleta'] = int(r.get('ofertas_aposentadas_nesta_coleta') or 0) + 1
     antes = {k: r.get(k) for k in ('ofertas_que_servem', 'ofertas_com_link_de_afiliado',
                                    'ofertas_aposentadas', 'numero_proprio',
                                    'motivo_sem_numero_proprio',
