@@ -71,7 +71,7 @@
    Antes disto a ilha cujo produto e "o preco de hoje" tinha ZERO ocorrencia de
    `dateModified` e de `datePublished` em todo o JSON-LD das 9 URLs. */
 if ( ! defined( 'RODAMETRIA_CASCA_VERSAO' ) ) {
-	define( 'RODAMETRIA_CASCA_VERSAO', '1.27.0' );
+	define( 'RODAMETRIA_CASCA_VERSAO', '1.28.0' );
 }
 
 /* ---------------------------------------------------------------------------
@@ -2949,6 +2949,21 @@ add_action( 'rest_api_init', function () {
 				'tem_cura_da_porta'    => function_exists( 'rodametria_casca_cura_da_porta' ),
 				'fonte_do_log_da_cura' => function_exists( 'rodametria_casca_cura_fonte_do_log' )
 					? rodametria_casca_cura_fonte_do_log() : null,
+				/* 14-b. O RETRATO MINIMO DA PORTA, SEM TOKEN (17/11/2026). Os
+				   dois campos acima dizem se a cura esta CARREGADA e por onde
+				   ela FALARIA; nenhum dos dois diz se a porta esta de pe AGORA,
+				   e foi essa a pergunta que esta nuvem nao conseguiu responder
+				   na queda de hoje. A funcao que monta este retrato explica o
+				   acontecimento inteiro e diz o que ele NAO publica. */
+				'porta'                => function_exists( 'rodametria_casca_porta_retrato_publico' )
+					? rodametria_casca_porta_retrato_publico(
+						rodametria_casca_cura_tem_bloco( rodametria_casca_cura_caminho() ),
+						rodametria_casca_cura_espera_s(
+							(int) get_option( RODAMETRIA_CASCA_CURA_OPTION, 0 ),
+							time(),
+							RODAMETRIA_CASCA_CURA_INTERVALO
+						)
+					) : null,
 			);
 		},
 	) );
@@ -3712,6 +3727,88 @@ function rodametria_casca_cura_fonte_do_log() {
 	}
 
 	return null;
+}
+}
+
+if ( ! function_exists( 'rodametria_casca_cura_espera_s' ) ) {
+/**
+ * QUANTOS SEGUNDOS FALTAM PARA A CURA PODER TENTAR DE NOVO (trava 2).
+ *
+ * Funcao PURA, para o portao poder fabricar o mundo que o disco nao encena:
+ * `0` quer dizer "pode tentar agora", e qualquer numero acima de zero e a hora
+ * ainda queimada. O teto e `<`, nao `<=`, igual ao do gancho — exatamente no
+ * intervalo a hora JA venceu, e o MUNDO E-c do portao prende isso.
+ */
+function rodametria_casca_cura_espera_s( $ultima, $agora, $intervalo ) {
+	$ultima    = (int) $ultima;
+	$agora     = (int) $agora;
+	$intervalo = (int) $intervalo;
+	if ( $ultima <= 0 || $intervalo <= 0 ) {
+		return 0;
+	}
+	$passado = $agora - $ultima;
+	if ( $passado >= $intervalo || $passado < 0 ) {
+		return 0;
+	}
+
+	return $intervalo - $passado;
+}
+}
+
+if ( ! function_exists( 'rodametria_casca_porta_retrato_publico' ) ) {
+/**
+ * 14-b. O RETRATO MINIMO DA PORTA, SEM TOKEN — E ELE NASCEU DE UMA QUEDA EM QUE
+ *       TODO INSTRUMENTO PUBLICO DESTA ILHA DIZIA O QUE DIRIA COM A PORTA DE PE.
+ *
+ * MEDIDO EM 17/11/2026 ENTRE 10h19Z E 10h2xZ, com a ilha em foco total no chao:
+ * 10 das 11 URLs e as tres portas da 29.2 em 404 na pagina do hospedeiro, a home
+ * em 200, e a linha `cura da porta: bloco WordPress reposto — 1057 bytes
+ * [NFD EPC] -> 1580 bytes [NFD EPC, WordPress]` escrita as 10:15 — a cura
+ * dizendo que repos o bloco, e o Apache em 404 quatro minutos depois.
+ *
+ * DOIS MUNDOS cabem naquele retrato, e o CONSERTO DOS DOIS NAO E O MESMO:
+ *   (a) o bloco esta no arquivo e o Apache o ignora  => `AllowOverride` do lado
+ *       do hospedeiro, e pela 29.4 isso e CHAMADO e nao codigo desta ilha;
+ *   (b) o bloco foi apagado DE NOVO depois das 10:15 => o apagamento passou a
+ *       ser mais frequente que a trava de uma tentativa por hora, e a ilha fica
+ *       no chao ate a hora vencer.
+ *
+ * E NAO HAVIA COMO SEPARAR OS DOIS DESTA NUVEM. O `/status` nao ganha linha no
+ * mundo (b) de proposito — o MUNDO E do portao cobra que a hora nao vencida
+ * recuse CALADA, e a razao esta certa: motivo de recusa no log enche as 40
+ * linhas e empurra item para fora da janela da 20.4. Mas o lugar onde aquele
+ * silencio e correto e o LOG, nao o unico instrumento que esta nuvem consegue
+ * abrir: o retrato da 29.3, que responde a pergunta, exige o token do Sync, que
+ * nesta ilha nao esta no repositorio. Resultado: no mundo (b) `/casca`
+ * respondia `tem_cura_da_porta: true` e `/status` nao tinha linha nova — byte
+ * por byte o que os dois respondem com a porta DE PE. A ausencia era o sinal
+ * (20.7) e nao havia onde le-la.
+ *
+ * O QUE ISTO PUBLICA, E O QUE NAO PUBLICA DE PROPOSITO. Publica UM booleano
+ * sobre o bloco do WordPress — que e config desta ilha — e um relogio sobre a
+ * option desta ilha. NAO publica bytes, NAO publica os nomes dos outros blocos
+ * e NAO publica uma linha do arquivo: a 29.3 manda o conteudo nunca sair, e
+ * `.htaccess` de hospedeiro compartilhado carrega regra de seguranca de
+ * terceiro. O retrato com nome de bloco e tamanho continua atras do token, onde
+ * sempre esteve; aqui vai o MINIMO que separa (a) de (b), e nada mais.
+ */
+function rodametria_casca_porta_retrato_publico( $tem_bloco, $espera_s ) {
+	return array(
+		/* `true`, `false` ou `null` — e `null` e "nao sei" (arquivo ausente ou
+		   ilegivel), que nunca se le como "esta de pe". */
+		'tem_bloco_wordpress' => ( null === $tem_bloco ) ? null : (bool) $tem_bloco,
+		/* 0 = a cura pode tentar na proxima requisicao. */
+		'cura_liberada_em_s'  => (int) $espera_s,
+		/* A LEITURA JA FEITA, para ninguem precisar refaze-la de cabeca na
+		   pressa de uma queda. As quatro frases sao as unicas quatro possiveis. */
+		'leitura'             => ( true === $tem_bloco )
+			? 'bloco no lugar: se as tres portas da 29.2 estiverem em 404 agora, o Apache esta ignorando o arquivo — AllowOverride do hospedeiro, e pela 29.4 isso e chamado e nao codigo desta ilha'
+			: ( ( null === $tem_bloco )
+				? 'nao sei: o arquivo da porta esta ausente ou ilegivel daqui, e isso nunca se le como porta de pe'
+				: ( ( (int) $espera_s > 0 )
+					? 'bloco AUSENTE e a hora da trava 2 ainda queimada: a cura nao vai tentar por mais ' . (int) $espera_s . ' s, e a ilha fica no chao ate la'
+					: 'bloco AUSENTE e a cura LIBERADA: a proxima requisicao a esta raiz deve repor o bloco e escrever a linha no /status' ) ),
+	);
 }
 }
 

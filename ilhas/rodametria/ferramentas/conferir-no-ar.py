@@ -1368,7 +1368,7 @@ def rotas_do_indice(bruto):
     return sorted((d.get("routes") or {}).keys())
 
 
-def diagnostico_da_porta(cod_home, cods_das_portas, rest_vivo):
+def diagnostico_da_porta(cod_home, cods_das_portas, rest_vivo, porta_publica=None):
     """A ASSINATURA DA 29, NOMEADA — ou None quando ela nao esta na mesa.
 
     Cinco vezes no Arquipelago com a mesma cara: clubedomosaico em 24/09, 05/10
@@ -1389,6 +1389,25 @@ def diagnostico_da_porta(cod_home, cods_das_portas, rest_vivo):
     formas, nao e esta a causa — e esta funcao devolve None em vez de nomear a
     errada. Causa inventada e a proxima execucao consertando a coisa errada
     (29.5).
+
+    A QUINTA GRANDEZA, E ELA NASCEU DE UMA QUEDA EM QUE AS QUATRO NAO BASTARAM
+    (17/11/2026). As quatro acima nomeiam que o bloco saiu do `.htaccess` e
+    mandam rodar o `flush`. Em 17/11, com esta ilha no chao, a cura JA tinha
+    rodado o flush as 10:15 e escrito no `/status` que repos o bloco — e as
+    tres portas da 29.2 seguiam em 404 quatro minutos depois. A assinatura das
+    quatro era a mesma e o conserto NAO era o mesmo, porque dois mundos cabem
+    nela:
+
+      (a) o bloco esta no arquivo e o Apache o ignora => `AllowOverride`
+          desligado do lado do hospedeiro, e pela 29.4 isso e CHAMADO;
+      (b) o bloco foi apagado de novo e a trava de uma tentativa por hora ainda
+          esta queimada => a ilha fica no chao ate a hora vencer, e ninguem
+          precisa abrir chamado nenhum por causa desta leitura.
+
+    `porta_publica` e o retrato minimo que o `/casca` passou a servir SEM TOKEN
+    na casca 1.28.0 (secao 14-b): `tem_bloco_wordpress` e `cura_liberada_em_s`.
+    Com ele a linha da causa separa (a) de (b); sem ele a linha DIZ que nao
+    separou, em vez de escolher uma e soar conferida.
     """
     if cod_home != 200 or not rest_vivo:
         return None
@@ -1408,11 +1427,60 @@ def diagnostico_da_porta(cod_home, cods_das_portas, rest_vivo):
             "a Fundacao reparar a clubedomosaico em 12/11 as 10h18Z. TENTE antes de "
             "escrever que nao da: causa de impossibilidade envelhece. E pela "
             "excecao da 29.4 (a cura da porta) a casca da ilha que a tiver repoe o "
-            "bloco sozinha na primeira requisicao, sem token nenhum — esta ilha "
-            "ainda NAO a tem (nona ocorrencia no Arquipelago: clubedomosaico 24/09, "
-            "05/10, 08/10, 11/11 manha, 11/11 noite e 12/11; robometria 30/10 e "
-            "11/11; rodametria 05/11)"
-            % (len(cods_das_portas), "/".join(str(c) for c in cods_das_portas)))
+            "bloco sozinha na primeira requisicao, sem token nenhum — e desde "
+            "12/11/2026 ESTA ILHA A TEM (casca 1.26.0, secao 14), o que muda o que "
+            "esta linha significa: com a cura carregada, porta no chao e a cura "
+            "LIVRE e um mundo que se conserta na proxima requisicao. (Decima "
+            "ocorrencia no Arquipelago: clubedomosaico 24/09, 05/10, 08/10, 11/11 "
+            "manha, 11/11 noite e 12/11; robometria 30/10 e 11/11; rodametria 05/11 "
+            "e 17/11.) %s"
+            % (len(cods_das_portas), "/".join(str(c) for c in cods_das_portas),
+               leitura_do_retrato_da_porta(porta_publica)))
+
+
+def leitura_do_retrato_da_porta(porta_publica):
+    """A QUINTA GRANDEZA LIDA — e, quando ela nao foi lida, dizer isso.
+
+    Nao escolhe mundo por omissao: retrato ausente devolve a frase que declara
+    a ausencia. "Nao medido" escrito e informacao; "nao medido" lido como um
+    dos dois vereditos e a familia do `alt` que nao viajou e do comentario que
+    declara mecanismo — parece conferido e nao mede nada (32.5-d).
+    """
+    if not isinstance(porta_publica, dict) or "tem_bloco_wordpress" not in porta_publica:
+        return ("E A QUINTA GRANDEZA NAO FOI LIDA, e por isso esta linha NAO separa os "
+                "dois mundos: `/casca` nao serviu o campo `porta` (casca anterior a "
+                "1.28.0, ou o campo caiu). Sem ele nao se sabe se o bloco esta no "
+                "arquivo e o Apache o ignora (AllowOverride => chamado) ou se ele foi "
+                "apagado de novo com a hora da trava 2 queimada (=> esperar).")
+
+    tem = porta_publica.get("tem_bloco_wordpress")
+    espera = porta_publica.get("cura_liberada_em_s")
+    try:
+        espera = int(espera)
+    except (TypeError, ValueError):
+        espera = None
+
+    if tem is None:
+        return ("E A QUINTA GRANDEZA DIZ `nao sei`: o arquivo da porta esta ausente ou "
+                "ilegivel para o PHP desta ilha, e isso NUNCA se le como porta de pe. "
+                "O retrato com token (29.3) e quem fecha este caso.")
+    if tem is True:
+        return ("E A QUINTA GRANDEZA FECHA A CAUSA, E ELA NAO E DESTA FABRICA: o bloco "
+                "`# BEGIN WordPress` ESTA no arquivo e o Apache esta em 404 de todo "
+                "jeito. Rodar o `flush` outra vez nao muda nada — isto e "
+                "`AllowOverride` desligado do lado do hospedeiro, e pela 29.4 o "
+                "desfecho e CHAMADO na HostGator sobre o `.htaccess` da raiz, nao "
+                "codigo de ilha nenhuma.")
+    if espera and espera > 0:
+        return ("E A QUINTA GRANDEZA DIZ QUE NAO HA O QUE CONSERTAR AQUI AGORA: o bloco "
+                "esta AUSENTE e a trava 2 da 29.4 (uma tentativa por hora) ainda tem "
+                "%d s queimados, entao a cura nao vai tentar antes disso e a ilha fica "
+                "no chao ate la. O apagamento passou a ser mais frequente que a trava "
+                "— isso e materia do chamado, nao conserto de codigo." % espera)
+
+    return ("E A QUINTA GRANDEZA DIZ QUE ESTA PASSADA MESMA CONSERTA: bloco AUSENTE com "
+            "a cura LIVRE. Abra a raiz desta ilha com uma quebra de cache, que e o que "
+            "dispara o gancho, e releia o `/status` procurando a linha `cura da porta:`.")
 
 
 def codigo_do_erro(bruto):
@@ -1646,7 +1714,22 @@ def main():
     # afirma o que nao mediu e a familia do comentario que declara um
     # mecanismo: parece conferido e nao mede nada (32.5-d). Quem decide aqui
     # sao as afirmacoes acima.
-    porta_caida = diagnostico_da_porta(cod_home, cods_das_portas, cod_sem in (200, 401))
+    # A QUINTA GRANDEZA E LIDA ANTES DE A CAUSA SER NOMEADA (14-b da casca,
+    # 17/11/2026). O `/casca` e lido de novo mais abaixo, para outras
+    # afirmacoes; aqui o que se quer e so o retrato da porta, e ele tem de
+    # estar na mao no instante em que a linha da causa e montada. Pela porta
+    # que nao cai (`?rest_route=`, 29.7(1)) — ler o retrato da porta pela porta
+    # caida seria a 29.1 de novo.
+    _cod_casca, _, _bruto_casca = buscar(rest("/rodametria/v1/casca"))
+    porta_publica = None
+    if _cod_casca == 200:
+        try:
+            porta_publica = json.loads(_bruto_casca).get("porta")
+        except Exception:
+            porta_publica = None
+
+    porta_caida = diagnostico_da_porta(cod_home, cods_das_portas, cod_sem in (200, 401),
+                                       porta_publica)
     if porta_caida:
         afirma(False, porta_caida)
 
@@ -3212,6 +3295,63 @@ def autoteste():
     diz(diagnostico_da_porta(200, [404, 200, 404], True) is None,
         "13. UMA das portas viva ja nao e esta assinatura — ela cobra as tres juntas, "
         "porque as tres sao rota virtual e caem juntas")
+
+    # MUNDO 13-b — A QUINTA GRANDEZA (17/11/2026). A assinatura das quatro era
+    # a MESMA nos dois mundos de hoje e o CONSERTO nao era: num e chamado na
+    # HostGator, no outro e esperar a hora da trava 2 vencer. Portao que
+    # reprova pelo motivo errado e o caminho mais curto para alguem passar a
+    # ignora-lo (20.5), e aqui o motivo errado manda abrir chamado.
+    quatro = [404, 404, 404]
+    sem_quinta = diagnostico_da_porta(200, quatro, True)
+    com_bloco = diagnostico_da_porta(200, quatro, True,
+                                     {"tem_bloco_wordpress": True, "cura_liberada_em_s": 0})
+    sem_bloco_trancado = diagnostico_da_porta(200, quatro, True,
+                                              {"tem_bloco_wordpress": False, "cura_liberada_em_s": 2700})
+    sem_bloco_livre = diagnostico_da_porta(200, quatro, True,
+                                           {"tem_bloco_wordpress": False, "cura_liberada_em_s": 0})
+    nao_sei = diagnostico_da_porta(200, quatro, True,
+                                   {"tem_bloco_wordpress": None, "cura_liberada_em_s": 0})
+
+    diz("NAO FOI LIDA" in sem_quinta,
+        "13-b. sem o retrato do /casca a linha tem de DIZER que nao separou os dois "
+        "mundos — escolher um por omissao e o `nao medido` lido como veredito (32.5-d)")
+
+    diz("AllowOverride" in com_bloco and "CHAMADO" in com_bloco,
+        "13-b. bloco NO LUGAR com as portas em 404 e o mundo do AllowOverride, e o "
+        "desfecho dele e chamado na HostGator (29.4) e nao mais um flush")
+
+    diz("AllowOverride" not in sem_bloco_trancado and "2700 s" in sem_bloco_trancado,
+        "13-b. bloco AUSENTE com a hora queimada NAO pode mandar abrir chamado: a cura "
+        "conserta sozinha quando a hora vencer, e a linha tem de dizer quanto falta")
+
+    diz("cura LIVRE" in sem_bloco_livre and "AllowOverride" not in sem_bloco_livre,
+        "13-b. bloco ausente com a cura liberada e o mundo em que abrir a raiz conserta "
+        "na hora — e a linha tem de mandar fazer isso")
+
+    diz("nao sei" in nao_sei and "CHAMADO" not in nao_sei,
+        "13-b. arquivo ilegivel e `nao sei`, e `nao sei` nunca vira chamado — isso e "
+        "abrir chamado por um defeito que ninguem mediu")
+
+    diz(len({com_bloco, sem_bloco_trancado, sem_bloco_livre, nao_sei, sem_quinta}) == 5,
+        "13-b. dois retratos com CONSERTOS diferentes sairam com a MESMA linha")
+
+    # E A REGUA VELHA OBRIGADA A DISCORDAR (20.8): sem a quinta grandeza ela
+    # dizia a mesma coisa nos dois mundos de hoje, e e isso que o conserto
+    # conserta. Autoteste em que as duas concordam nao mede conserto nenhum.
+    diz(sem_quinta.split("E A QUINTA")[0] == com_bloco.split("E A QUINTA")[0]
+        and com_bloco != sem_bloco_trancado,
+        "13-b. a regua VELHA (as quatro grandezas) tem de ser IDENTICA nos dois mundos "
+        "e a NOVA tem de separa-los — se as duas ja discordassem, nao havia o que "
+        "consertar hoje")
+
+    # RETRATO MAL FORMADO NAO PODE ESTOURAR NEM INVENTAR VEREDITO.
+    for ruim in (None, {}, [], "porta", {"cura_liberada_em_s": 0},
+                 {"tem_bloco_wordpress": False, "cura_liberada_em_s": "nao sei"}):
+        linha = diagnostico_da_porta(200, quatro, True, ruim)
+        diz(isinstance(linha, str) and "PORTA DE ENTRADA CAIU" in linha
+            and "CHAMADO" not in linha,
+            "13-b. retrato mal formado (%r) estourou ou virou chamado — corpo que nao e "
+            "retrato nao e prova de nada" % (ruim,))
 
     diz(diagnostico_da_porta(200, [], True) is None,
         "13. sem porta medida nenhuma nao se nomeia causa — lista vazia nao e prova de "

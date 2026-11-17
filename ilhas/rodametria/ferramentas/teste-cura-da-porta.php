@@ -229,6 +229,24 @@ $MUTACOES = array(
 		'o_que' => 'o `depois` do reparo sairia com tamanho de porta caida ao lado de conteudo de porta de pe — a regressao de 03/11/2026 desta ilha, que a 29.4 nomeia',
 		'modo'  => 'funcao',
 	),
+	/* AS DUAS DO 14-b. A primeira e a unica confusao que custa um CHAMADO:
+	   "nao sei" lido como "porta caida" manda abrir chamado na HostGator por um
+	   defeito que ninguem mediu. A segunda e a confusao simetrica e mais caras
+	   das duas: bloco AUSENTE lido como bloco PRESENTE diz `AllowOverride` num
+	   mundo em que a proxima requisicao conserta sozinha — e aí ninguem espera,
+	   porque o retrato mandou abrir chamado. */
+	'M6' => array(
+		'de'   => "		'tem_bloco_wordpress' => ( null === \$tem_bloco ) ? null : (bool) \$tem_bloco,",
+		'para' => "		'tem_bloco_wordpress' => (bool) \$tem_bloco,",
+		'o_que' => '"nao sei" (arquivo ausente ou ilegivel) sairia no retrato publico como PORTA CAIDA',
+		'modo'  => 'funcao',
+	),
+	'M7' => array(
+		'de'   => "		'leitura'             => ( true === \$tem_bloco )",
+		'para' => "		'leitura'             => ( false === \$tem_bloco || true === \$tem_bloco )",
+		'o_que' => 'bloco AUSENTE sairia com a leitura do bloco PRESENTE — chamado na HostGator onde a cura conserta sozinha',
+		'modo'  => 'funcao',
+	),
 );
 if ( '' !== $MUTACAO ) {
 	if ( ! isset( $MUTACOES[ $MUTACAO ] ) ) {
@@ -256,6 +274,12 @@ foreach ( array(
 	'rodametria_casca_cura_registrar',
 	'rodametria_casca_cura_e_a_rota_que_mede',
 	'rodametria_casca_cura_da_porta',
+	/* 14-b, as duas de 17/11/2026 — e elas entram nesta lista para o portao
+	   REPROVAR se alguem as remover: o retrato publico da porta e o unico
+	   instrumento desta nuvem que separa "AllowOverride do hospedeiro" de
+	   "a hora da trava 2 ainda queimada", e os dois tem conserto diferente. */
+	'rodametria_casca_cura_espera_s',
+	'rodametria_casca_porta_retrato_publico',
 ) as $f ) {
 	afirma( carregar_funcao( $casca, $f ),
 		sprintf( 'nao achei a funcao %s na casca — a secao 14 (excecao da 29.4) foi desfeita', $f ) );
@@ -561,6 +585,68 @@ file_put_contents( $novo_arq, "# BEGIN WordPress\n# END WordPress\n" );
 afirma( true === rodametria_casca_cura_tem_bloco( $novo_arq ),
 	'o pre-filtro leu o CACHE DE STAT e disse "nao sei" sobre um arquivo que acabou de nascer de pe' );
 @unlink( $novo_arq );
+
+/* ------------- 14-b. O RETRATO MINIMO DA PORTA, SEM TOKEN (17/11/2026) ------
+   Os dois campos que `/casca` ja servia dizem se a cura esta CARREGADA e por
+   onde ela FALARIA. Na queda de 17/11 nenhum dos dois respondia a pergunta do
+   dia — a porta esta de pe AGORA? — e os dois mundos que cabiam no retrato tem
+   consertos DIFERENTES (chamado na HostGator contra esperar a hora vencer).
+   As duas funcoes novas sao PURAS de proposito: o mundo (b) nao se encena no
+   disco deste conteiner sem queimar uma hora de relogio de verdade, e o que
+   nao se fabrica no disco se fabrica no retrato — a mesma licao do MUNDO
+   `mod_rewrite: false`. */
+
+afirma( 0 === rodametria_casca_cura_espera_s( 0, 1000, 3600 ),
+	'14-b: cura que nunca tentou tem de estar LIVRE, e a option vazia e 0' );
+afirma( 3100 === rodametria_casca_cura_espera_s( 1000, 1500, 3600 ),
+	'14-b: a espera tem de ser o que FALTA do intervalo, nao o que passou' );
+afirma( 0 === rodametria_casca_cura_espera_s( 1000, 1000 + 3600, 3600 ),
+	'14-b: exatamente no intervalo a hora JA venceu — o teto e `<` e nao `<=`, igual ao do gancho (MUNDO E-c)' );
+afirma( 0 === rodametria_casca_cura_espera_s( 1000, 500, 3600 ),
+	'14-b: relogio andando para tras nao pode TRANCAR a cura — tempo negativo libera, nunca prende' );
+afirma( 0 === rodametria_casca_cura_espera_s( 1000, 1500, 0 ),
+	'14-b: intervalo zero e "sem trava", e nao uma trava eterna' );
+
+$r_pe        = rodametria_casca_porta_retrato_publico( true, 0 );
+$r_pe_trava  = rodametria_casca_porta_retrato_publico( true, 2100 );
+$r_caido_tr  = rodametria_casca_porta_retrato_publico( false, 2100 );
+$r_caido_liv = rodametria_casca_porta_retrato_publico( false, 0 );
+$r_nao_sei   = rodametria_casca_porta_retrato_publico( null, 0 );
+
+afirma( true === $r_pe['tem_bloco_wordpress'] && false === $r_caido_tr['tem_bloco_wordpress'],
+	'14-b: o booleano do bloco tem de atravessar o retrato sem se perder' );
+afirma( null === $r_nao_sei['tem_bloco_wordpress'],
+	'14-b: "nao sei" virou `false` no retrato publico — arquivo ilegivel lido como PORTA CAIDA manda chamar a HostGator por um defeito que ninguem mediu' );
+afirma( 2100 === $r_caido_tr['cura_liberada_em_s'] && 0 === $r_caido_liv['cura_liberada_em_s'],
+	'14-b: o relogio da trava 2 tem de sair no retrato' );
+
+/* AS DUAS LEITURAS QUE ESTA SECAO EXISTE PARA SEPARAR, E ELAS SAO O
+   ACONTECIMENTO DE 17/11 EM DUAS LINHAS. */
+afirma( false !== strpos( $r_pe['leitura'], 'AllowOverride' ),
+	'14-b: com o bloco NO LUGAR e as portas em 404 a leitura e `AllowOverride` do hospedeiro (29.4), e o retrato tem de dize-lo' );
+afirma( false !== strpos( $r_pe_trava['leitura'], 'AllowOverride' ),
+	'14-b: bloco no lugar DECIDE sozinho — o relogio da trava nao muda a leitura de uma porta cujo arquivo esta correto' );
+afirma( false === strpos( $r_caido_tr['leitura'], 'AllowOverride' )
+	&& false !== strpos( $r_caido_tr['leitura'], '2100' ),
+	'14-b: bloco AUSENTE com a hora queimada nao e AllowOverride, e a leitura tem de trazer quantos segundos faltam' );
+afirma( false !== strpos( $r_caido_liv['leitura'], 'LIBERADA' ),
+	'14-b: bloco ausente com a cura liberada e o mundo em que a proxima requisicao conserta — a leitura tem de dizer isso e nao mandar abrir chamado' );
+afirma( $r_pe['leitura'] !== $r_caido_tr['leitura']
+	&& $r_caido_tr['leitura'] !== $r_caido_liv['leitura']
+	&& $r_nao_sei['leitura'] !== $r_caido_liv['leitura'],
+	'14-b: duas leituras com CONSERTOS diferentes sairam com a MESMA frase, e portao que reprova pelo motivo errado e o caminho mais curto para alguem passar a ignora-lo (20.5)' );
+
+/* O QUE O RETRATO NAO PODE PUBLICAR. A 29.3 manda o conteudo do arquivo nunca
+   sair, e `.htaccess` de hospedeiro compartilhado carrega regra de terceiro. */
+foreach ( array( $r_pe, $r_pe_trava, $r_caido_tr, $r_caido_liv, $r_nao_sei ) as $i => $r ) {
+	afirma( array( 'tem_bloco_wordpress', 'cura_liberada_em_s', 'leitura' ) === array_keys( $r ),
+		"14-b: o retrato publico ganhou ou perdeu campo (retrato $i) — campo novo aqui e campo que ninguem autorizou a sair sem token" );
+	$tudo = wp_json_encode( $r );
+	afirma( false === stripos( $tudo, 'NFD' ) && false === stripos( $tudo, 'EPC' )
+		&& false === stripos( $tudo, 'RewriteRule' ) && false === stripos( $tudo, 'RewriteBase' )
+		&& false === stripos( $tudo, 'bytes' ),
+		"14-b: o retrato SEM TOKEN vazou nome de bloco de terceiro, linha de reescrita ou tamanho de arquivo (retrato $i) — a 29.3 reserva isso para a rota que pede token" );
+}
 
 /* ------------------------------------------- A FORMA DA LINHA NOS DOIS MODOS */
 /* O caminho de reserva nao inventa formato: formato novo no mesmo log seria o
