@@ -3,6 +3,105 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-11-17 16h17Z–16h4xZ — **AS DUAS PÁGINAS DE PRODUTO PUBLICAVAM PREÇO DE 04/11, E O PISO DA FAIXA DO PATINETE NÃO TINHA MAIS LASTRO NA COLETA QUE O GERA.** Revisão **106** no ar, conferida (18.4).
+
+**A ILHA DESTA EXECUÇÃO:** rodametria, por **foco** (`foco.md` nomeia a rodametria, foco total e absoluto desde 27/10). Pela **1.2** não há escolha de ilha a fazer, e **conferi o que fura o foco antes de aceitar isso**: o **despacho do molde de conversão** (exceção do Raphael de 21/10, seção 32) está **FECHADO nas três ilhas** — aquametria às 18h2xZ de 21/10, clubedomosaico às 19h1xZ, robometria às 16h1xZ —, e **nenhuma ilha no ar está quebrada**: as quatro homes em **200**, mais `/materiais/qual-cola-usar-no-mosaico/` e `/wp-sitemap.xml` da robometria em 200. Logo nada fura o foco pela 1.2 nem pela 18.1.
+
+**Passo 1 do disparo, medido:** `git fetch origin main` trouxe o `main` em **`60f3b70`** — e com **atualização forçada** (`+ 68808f3...60f3b70 (forced update)`), que é o clone raso desta nuvem sendo reposicionado, não história reescrita. A branch `claude/dreamy-mccarthy-cml32a` (local e remota) está **idêntica ao `main`**: 0 commit à frente, 0 atrás, logo nada a mesclar antes.
+
+**A RESERVA (passo 5 da seção 1):** `executando_desde` estava **`null`**, que pela **1.1** já é prova de que não havia bloco da Fundação vivo, e a execução anterior fechou às **13h43Z** — quase três horas antes, fora da janela de 40 minutos. Reserva às **16h17Z**, ganha no push na **primeira tentativa** (`cb3aed7`), e **RENOVADA às 16h25Z** pela 1.1, no commit da revisão 106.
+
+**A REDE FOI MEDIDA E NÃO HERDADA (20.2):** `rodametria.com.br` em **200**, com as três irmãs em 200 como controle — 4 de 4. **A Open API da Shopee FOI usada**, e recusou uma vez com `error [10000]: System Error` na bicicleta; passou na repetição, que é a **seção 4** em ação e era o comportamento já registrado em 16/11 (*"a Open API responde desta nuvem com `System Error` intermitente"*).
+
+**A FILA ESTÁ ACABADA E NÃO HAVIA DESPACHO PARA A FUNDAÇÃO** — o despacho de hoje é **da Fundação PARA O RAPHAEL** (chamado na HostGator e a decisão sobre o token), e os três gestos dele são dele. **A bancada rodou antes de qualquer construção (18.5): 51 portões sem rede, 0 falha.**
+
+**E O QUE ESCOLHEU O TRABALHO DESTA PASSADA FOI A 31.1.** As duas execuções anteriores desta ilha (10h17Z e 13h17Z) entregaram **instrumento** — casca 1.28.0 e 1.29.0, o campo `porta` e o contador de quedas —, e nenhuma das duas é byte que um visitante vê. Contadas as dez últimas execuções no `REGISTRO.md`, a proporção estava **em torno de 6 em 10**, abaixo do piso de **7 em 10**. A 31.1 lista o que conta, e *"correção de defeito medido no ar"* é um dos itens: **fui procurar defeito no ar em vez de construir portão.**
+
+---
+
+### O DEFEITO, MEDIDO NO AR ANTES DE QUALQUER CONSERTO
+
+| página | preço colhido em | o que a página publicava | ocorrências de `04/11/2026` |
+|---|---|---|---|
+| `/veiculos/patinete-eletrico/` | **2026-11-04** (13 dias) | faixa `de R$ 1.030,00 a R$ 2.699,00`, mediana R$ 1.697,46 | **11** |
+| `/veiculos/bicicleta-eletrica/` | **2026-11-04** (13 dias) | faixa R$ 2.299,99 a R$ 6.199,90 | **9** |
+| `/veiculos/moto-eletrica/` | 2026-11-16 | — | 0 |
+
+**E O PISO DA FAIXA DO PATINETE NÃO TINHA MAIS LASTRO.** A leitura de hoje da **mesma chave** (`patinete eletrico adulto`, degrau 1, 20 ofertas) **não devolveu** a oferta de R$ 1.030,00 — item **58266601235**, loja **CAZA SHOP**. A página de **246 mil buscas/mês** anunciava, na caixa de resposta, um piso de preço que a coleta que a alimenta já não sustentava.
+
+**O QUE SE AFIRMA, E NÃO MAIS QUE ISSO.** Afirmo que a oferta **não voltou** nas 20 primeiras da mesma chave. **Não** afirmo que o anúncio morreu: o `url_produto` dele responde **200**, e na Shopee 200 **não é prova de vida**, porque a ficha é montada por JavaScript — é a mesma armadilha que o teste de vida desta ilha já conhece. A distinção não é preciosismo: a **quarentena da 25.11 é para anúncio MORTO**, e este **não foi quarentenado**; ele saiu da leitura, que é outra coisa e tem outro conserto.
+
+---
+
+### A QUARENTENA DA 25.11 DISPAROU SOZINHA, E É A PRIMEIRA VEZ EM COLETA NOVA
+
+Na mesma passada, a loja devolveu o item **23898889810** (*"Patinete Elétrico Adulto Dobrável 30km/h Original Premium"*), que está **APOSENTADO** no banco. O coletor o recusou com o motivo escrito na tela: *"a loja devolveu de novo o item 23898889810 e ele está APOSENTADO; não entra."* **Anúncio aposentado que a loja ressuscita na busca é exatamente o que aquela regra existe para barrar** — e até hoje ela só havia sido exercitada por portão e por `--conferir`, nunca por uma coleta de verdade.
+
+---
+
+### OS NÚMEROS NOVOS, E A METADE QUE NÃO MELHOROU
+
+- **patinete:** faixa **R$ 1.297,13 a R$ 2.699,00** (o piso subiu **25,9%**), mediana de **R$ 1.697,46 → R$ 1.632,12**, sobre **14** anúncios que entram (eram 14, com conjunto diferente: 4 saíram, 5 entraram). Recusas 4 → 5.
+- **bicicleta:** **6 → 7** anúncios que entram, e a faixa e a mediana ficaram **IGUAIS** — R$ 2.299,99 a R$ 6.199,90, mediana R$ 2.299,99. **Aqui o que mudou foi a DATA e o CONJUNTO, não o número**, e dizer isso é mais honesto que anunciar melhora onde não houve. Cinco das sete ofertas estão exatamente em R$ 2.299,99, e **a dedupe da 25.9 não morde**: são lojas diferentes com título parecido, e a recusa escrita no código em 04/11 (*"título parecido não é prova"*) continua valendo.
+- **moto:** **não entrou** nesta passada. O dado dela é de 16/11 e é de ontem.
+
+---
+
+### O DESEMBARQUE, E A 20.9 ACERTANDO O DIAGNÓSTICO PELA SEGUNDA VEZ NESTA ILHA
+
+Push da revisão **106** às **16h25Z**. O `/status` respondeu **105** com `ultimo` em **16:17:10Z** — **oito minutos ANTES do push** —, e `raw.githubusercontent.com` já servia 106. Pela **20.9** isso não é cache nem defeito: é **turno de cron**, e o evento tinha sido consumido pelas minhas próprias visitas de medição de rede. **Não reacionei: esperei visitando**, com um laço abrindo a home a cada 25 s. A revisão **106 entrou às 16:39:44Z** — **22 minutos e meio** depois da rodada anterior, não 30: os **1.800 s são o TETO e não o passo**, como 16/11 já havia medido.
+
+**O LOG LIDO LINHA POR LINHA (20.4 e 20.8):** a revisão 106 declarou **`7 aplicado(s)`** e tinha **7** linhas de item, as **7** dizendo `ok` — nenhum `gravado mas NÃO ativado`. **A conta fecha.** `dados/anuncios-por-consulta` ficou entre os **6 aguardando desembarque** e entra numa rodada seguinte; quem alimenta as páginas é `dados/vitrine-de-produto`, e essa **aplicou**.
+
+**CONFERIDO NO AR (18.4), em DUAS leituras com quebra de cache, as duas idênticas byte por byte:**
+
+| | patinete | bicicleta |
+|---|---|---|
+| `04/11/2026` | **0** (eram 11) | **0** (eram 9) |
+| `17/11/2026` | **11** | **9** |
+| `R$ 1.030,00` | **0** | 0 |
+| bytes | 111.058 | 101.788 |
+
+A mãe `/veiculos/` serve a caixa com **24 = 14 + 7 + 3**, a soma das três famílias no ar. `conferir-produto-no-ar.py` **REPROVAVA com 77 falhas** antes do desembarque — agrupadas, as 77 são **do eixo desta correção** (`validFrom`, saída de compra ausente no ar, contagem e ordem do `ItemList`), **nenhuma de outro tipo** — e fechou em **425 afirmações, 0 falha**. `conferir-no-ar.py`: **803 afirmações, 0 falha**.
+
+---
+
+### O PRÓXIMO PASSO QUE A PASSADA ANTERIOR DEIXOU ESCRITO, CUMPRIDO — E A RESPOSTA É ZERO
+
+`/casca → porta → quedas`, lido às **16h26:14Z** e de novo depois do desembarque: `episodios_vistos: 0`, `leituras_no_chao: 0`, `leituras_nao_sei: 0`, `reposicoes_da_cura: 0`, `primeira_no_chao: null`, com `tem_bloco_wordpress: true` e `cura_liberada_em_s: 0`. O contador entrou no ar às **13h40Z**, então o que ele afirma é **nenhuma queda entre 13h40Z e 16h4xZ sem ninguém estar olhando** — e a reposição das **11:15:20Z** está de pé há **pelo menos 5 h 30 min**. **Quarto e mais longo intervalo medido na mesma raiz no mesmo dia: ~4 min, ≥27 min, ≥2 h 26 min, ≥5 h 30 min.** Evento irregular, **29.5(b)**, com quatro pontos. Copiado para `dados/consertos.md`, que é a ordem que a sexta grandeza imprime.
+
+---
+
+### A ERRATA DESTA PASSADA, E ELA FORTALECE O CONTADOR EM VEZ DE ENFRAQUECÊ-LO: A JANELA DO LOG É DE **15** LINHAS, NÃO DE 40
+
+O `bloco_atual` e o `REGISTRO.md` das 13h4xZ afirmam, com todas as letras, *"o log é uma janela de **40** linhas que ROLA — hoje o portão registrou ela CHEIA"*. **40 é o número que a CASCA usa quando ELA escreve**: `array_slice( $estado['log'], 0, 40 )`, em `snippets/rodametria-casca.php`. Medido **no ar** às 16h26Z, o `/status` servia **15 linhas**, com a janela **cheia** — a linha de cabeçalho da revisão 104 já havia rolado para fora. **Quem corta em 15 é o SYNC, que não está no repositório, e o menor dos dois é que manda.** É a **20.7** em traje de constante: o número foi lido no **código** de um dos dois escritores, e o instrumento no ar dizia outra coisa.
+
+**E A PREVISÃO FOI ESCRITA ANTES DO DESEMBARQUE E SE CONFIRMOU.** Com a janela em 15 e a linha `cura da porta:` das 11:15 na **posição 10**, previ que **um** desembarque a empurraria para fora. A revisão 106 escreveu **8 linhas** (1 cabeçalho + 7 itens) e a linha das 11:15 **não está mais no log**. Ela sobreviveu a **UM** desembarque e morreu no segundo — **não a quatro**, como 40 linhas sugeririam.
+
+**O que isso faz com o argumento do chamado:** a frequência contada por log era um **piso**, e o piso é **mais baixo** do que a execução das 13h4xZ calculou. O contador de quedas que ela entregou não era conforto: era necessidade, e agora está medido o quanto.
+
+---
+
+### UM ACHADO SOBRE O INSTRUMENTO, E ELE É SOBRE O PORTÃO E NÃO SOBRE A PÁGINA
+
+A **primeira** rodada de `conferir-32-5-no-navegador.mjs` **REPROVOU 3 páginas**, duas delas com *"1 foto(s) de cartão que NÃO carregaram"* — em `/veiculos/bicicleta-eletrica/` e `/veiculos/moto-eletrica/`, com a mensagem acusando a 32.5-d (medição de pixel sobre imagem que o visitante não viu). **As duas URLs respondem `200 image/jpeg` desta nuvem** (115 KB e 66 KB), e a **segunda** rodada **APROVOU 11 de 11**, com `pior compra: 1340 px` contra o teto de 1.400. **Era corrida de carregamento no portão, não defeito no ar** — a **seção 4** manda repetir antes de chamar de falha, e repetir foi o que separou as duas leituras.
+
+**Fica escrito porque custa dinheiro na próxima passada:** quem rodar aquele portão e levar a primeira reprovação de foto a sério vai consertar o que não está quebrado. **A afirmação de foto é a única daquele portão que depende de tempo de rede**, e ela não distingue "imagem morta" de "imagem que ainda não chegou". Não construí trava nova para isso — pela **31.2** portão só nasce com defeito medido no ar que ele teria pegado, e aqui o defeito foi do portão.
+
+---
+
+### UM DEFEITO DE MÉTODO DESTA PASSADA, E ELE FICA NO HISTÓRICO PORQUE NÃO DÁ PARA DESFAZER
+
+O commit da revisão 106 (`972a741`) foi escrito com `-m` e **texto entre backticks dentro de aspas duplas**: o shell executou os três trechos e a mensagem foi para o `main` com **três buracos** — a faixa `de R$ 1.030,00` desapareceu de uma frase, e dois nomes de portão saíram de outras duas. **Não foi corrigido de propósito:** emendar commit já empurrado no `main` é force push, que esta fábrica proíbe (e com outras execuções no ar seria pior que o buraco). Os três trechos estão inteiros nesta entrada, que é onde a 3 manda o detalhe morar. **Os commits seguintes desta execução usaram `-F` com a mensagem num arquivo.**
+
+---
+
+### O QUE ESTA PASSADA NÃO FEZ, dito para ninguém procurar
+
+**Nenhuma URL nasceu, e nenhuma podia.** `urls_publicadas` segue **11**, o piso da 21.1 pede 40, e o teto da 21.4 não foi tocado — esta passada é correção de defeito no ar, não leva. As duas pontas de página nova seguem travadas: a `scooter eletrica` foi **remedida em 16/11** e a loja segue chamando patinete de scooter; `bike eletrica` e `motos eletricas para adultos` são sinônimos pela **30.4** e não recebem segunda URL. **A memória da ilha não foi atualizada porque não existe diretório de memória alcançável desta sessão** — o `PROMPT.md` desta ilha já previa isso, e o `bloco_atual` **é** a memória.
+
+---
+
 ## 2026-11-17 13h17Z–13h4xZ — **A SERIE QUE O CHAMADO LEVA ESTAVA SENDO CONTADA PELO QUE A CURA CONSEGUIU DIZER, E A TRAVA DE UMA HORA E O QUE A FAZ CALAR.** Nenhum bloco da fila (ela segue acabada). O entregue e o **contador de quedas da porta** — casca **1.29.0**, secao **14-c**, revisao **105** — e a regra **29.4-c** no contrato. A ilha segue de pe.
 
 **A ILHA DESTA EXECUCAO:** rodametria, por **foco** (`foco.md` nomeia a rodametria, foco total e absoluto desde 27/10). Pela **1.2** nao ha escolha a fazer. **Passo 1 do disparo, medido:** `git fetch origin main` trouxe o `main` de `68808f3` para **`7e9aa76`** — e trouxe com **`forced update`**, que e a assinatura do rebase da execucao anterior e nao de perda de trabalho. A branch `claude/dreamy-mccarthy-0zsfho` (local e remota) esta **identica ao `main`**: 0 commit a frente, 0 atras, **nada a mesclar antes**, e **nenhum PR aberto**.
