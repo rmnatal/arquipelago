@@ -108,6 +108,20 @@ O campo novo não serviu só para responder a pergunta de hoje: ele transformou 
 
 **BANCADA: 51 portões sem rede, 0 falha.** Rodada antes da construção (18.5) e de novo no fecho.
 
+### A OUTRA PONTA DO CICLO, E ELA CORRIGE UMA FRASE MINHA DESTA MESMA PASSADA
+
+Fechei a execução às 11h17Z e deixei a medição rodando, porque faltava a metade do número: **quanto o bloco sobrevive no ar.** A resposta mudou o que eu havia escrito.
+
+**95 leituras entre 11h15:55Z e 11h42:40Z — as 95 com o bloco PRESENTE e as 95 com `/wp-sitemap.xml` e `/veiculos/` em 200.** A reposição das 11:15:20Z sobreviveu **27 minutos e 20 segundos** de medição contínua, **sete vezes mais** que os ~4 minutos do ciclo anterior.
+
+**A FRASE QUE ESTÁ ERRADA É MINHA, E ELA ESTAVA EM QUATRO LUGARES:** eu escrevi, às 11h19Z, que o argumento novo do chamado era *"é reescrito poucos minutos depois de cada reposição"*. **Isso generalizava UM intervalo como se fosse uma TAXA**, e a medição seguinte o desmentiu. Corrigida no `ARQUIPELAGO.md` (29.4-b), no despacho do `PROMPT.md`, em `dados/despachos.md` e no arquivo da série. **Número de uma amostra lido como taxa é a família do número de tela digitado da seção 8: parece medição e não mede o que diz** — e aqui custaria o argumento do chamado, porque a HostGator teria um contraexemplo de 27 minutos na mão.
+
+**A LEITURA CERTA É A DA 29.5(b), E ELA JÁ ESTAVA ESCRITA:** *"o que se procura é um evento, com hora, não um processo"*. Quatro apagamentos em cinco dias, com intervalos de **dias** e um de **~4 minutos** — evento irregular. A frase do chamado passa a ser *"o `.htaccess` da raiz é reescrito sem o bloco do WordPress, sem mão nossa, em horários irregulares"*, com a série anexada.
+
+**E UM SYNC RODOU DENTRO DA JANELA NO AR SEM APAGAR NADA — `11:39:49`, bloco presente antes e depois.** Isso **descarta** uma hipótese que eu havia considerado e **não** havia escrito como causa (pela 29.5): a de que o próprio Sync, ou a purga dele, reescreveria o `.htaccess` na mesma requisição em que a cura o repõe — plausível porque em 17/11 a cura das 10:15 e a rodada do Sync das 10:15:14 caíram **no mesmo minuto**. Não é isso, e é a 29.5 confirmada por medição nova: *"o EPC preserva o que encontra"*. **A pergunta do `AllowOverride` que o despacho mandava fazer também cai**: ela era a hipótese (a), e o campo novo fechou em (b) na primeira leitura.
+
+**O QUE A SÉRIE 2 NÃO RESPONDE:** quanto a reposição das 11:15 durou **de fato**. A medição parou às 11h42:40Z com o bloco ainda de pé — o limite inferior é 27min20s e **não há limite superior medido**. As duas séries estão em `dados/serie-da-porta-2026-11-17.md`, no repositório, porque o scratchpad é descartável e elas são a prova do chamado.
+
 ### O QUE ESTA EXECUÇÃO NÃO FEZ, dito para ninguém procurar
 
 - **Nenhum bloco da fila**, pela **18.5**: ilha com defeito no ar não recebe página nova. A fila, de todo modo, segue acabada — só o 5 (artigos-âncora) falta, e ele depende de um `pauta.md` que não existe e que pela 17.1 não é arquivo da Fundação.

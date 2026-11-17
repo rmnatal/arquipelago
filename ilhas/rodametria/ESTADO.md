@@ -95,11 +95,27 @@ bloco_atual: |
   29.2 em 200 com content-type certo, caminho virgem em 404 na pagina da
   propria ilha (73.151 bytes, zero HostGator, 28 do nome da ilha).
 
+  A OUTRA PONTA DO CICLO, MEDIDA DEPOIS DO FECHO, E ELA CORRIGE UMA FRASE
+  MINHA: 95 leituras entre 11h15:55Z e 11h42:40Z, as 95 com o bloco PRESENTE e
+  as 95 com as URLs em 200. A reposicao das 11:15 sobreviveu 27min20s — SETE
+  VEZES mais que os ~4 minutos do ciclo anterior. Eu havia escrito as 11h19Z
+  que o argumento do chamado era "e reescrito poucos minutos depois de cada
+  reposicao": ERRADO, era um intervalo lido como TAXA, e a frase foi corrigida
+  no ARQUIPELAGO.md (29.4-b), no PROMPT.md, em dados/despachos.md e no arquivo
+  da serie. A leitura certa e a da 29.5(b), que ja estava escrita: o que se
+  procura e um EVENTO, com hora, NAO um processo.
+  E UM SYNC RODOU DENTRO DA JANELA NO AR (11:39:49) SEM APAGAR NADA, o que
+  DESCARTA a hipotese de o proprio Sync reescrever a raiz — plausivel porque a
+  cura das 10:15 e a rodada do Sync das 10:15:14 cairam no MESMO minuto. E com
+  isso a pergunta do AllowOverride tambem cai: era a hipotese (a), e o campo
+  novo fechou em (b) na primeira leitura.
+  AS DUAS SERIES ESTAO EM dados/serie-da-porta-2026-11-17.md.
+
   O PROXIMO PASSO DESBLOQUEADO:
-  - MEDIR A DURACAO DO CICLO NO AR, que e a metade que falta do numero do
-    chamado. Agora basta ler `/casca` -> `porta.tem_bloco_wordpress`: se o
-    bloco cair de novo em minutos, a ilha esta oscilando, e isso e material do
-    chamado e nao conserto de codigo.
+  - A DURACAO REAL DA JANELA NO AR SEGUE SEM LIMITE SUPERIOR MEDIDO: a medicao
+    parou as 11h42:40Z com o bloco de pe. Quem reservar a ilha le `/casca` ->
+    `porta.tem_bloco_wordpress` na entrada — e um GET, sem token — e sabe na
+    hora se a porta esta de pe, sem depender de ninguem no cPanel.
   - O DESPACHO ALTA e do Raphael: levantar a porta se estiver no chao, levar ao
     chamado da HostGator a serie MAIS a pergunta do AllowOverride (ele mudou
     entre 12/11 e hoje? em 12/11 a reposicao devolveu as paginas em 8 minutos e

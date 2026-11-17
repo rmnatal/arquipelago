@@ -103,6 +103,18 @@ Medido em 27/10/2026 no Chrome do Raphael (`bussola/dossies/rodametria/DOSSIE.md
 
 **pronto quando:** as 11 URLs do `wp-sitemap.xml` e as três portas da 29.2 em **200** em duas leituras com quebra de cache, com o caminho virgem em 404 na página da própria ilha; e o chamado na HostGator com a pergunta do `AllowOverride` feita e a série de três apagamentos anexada.
 
+> **ACRÉSCIMO DA MESMA EXECUÇÃO, 11h43Z — A ILHA VOLTOU SOZINHA, E UMA FRASE DESTE DESPACHO ESTÁ CORRIGIDA.**
+>
+> **A PORTA LEVANTOU SEM VOCÊ ÀS 11:15:20Z**, no primeiro instante que a trava de uma hora permitiu, e o gesto 1 acima **não é mais necessário** (fica escrito para a próxima queda). A cura escreveu a terceira linha do dia no log e a ilha voltou **na mesma requisição**: 11 de 11 URLs em 200, as três portas da 29.2 em 200 com `content-type` certo, caminho virgem em 404 na página da própria ilha (73.151 bytes, zero HostGator). Conferido pela 18.4.
+>
+> **O CICLO FICOU MEDIDO SEGUNDO POR SEGUNDO** — 92 leituras entre 10h42:14Z e 11h15:20Z, 91 em 404, com a contagem de `cura_liberada_em_s` caindo de 1983 s a 19 s. **Pelo menos 55 min 29 s no chão, e quem decidiu essa duração foi a TRAVA, não o defeito.** Dois Syncs rodaram dentro da queda (10:40:07 e 11:09:54) com a cura calada, como a trava 2 manda.
+>
+> **E A ERRATA, QUE MUDA O QUE VOCÊ DIZ NO CHAMADO.** O gesto 2 acima afirma que o argumento novo é *"é reescrito poucos minutos depois de cada reposição"*. **Isso está errado e era um intervalo lido como taxa.** A medição seguinte: **95 leituras entre 11h15:55Z e 11h42:40Z, as 95 com o bloco PRESENTE e as 95 com as URLs em 200** — a reposição das 11:15 sobreviveu **27 min 20 s**, sete vezes mais que a anterior, **com um Sync rodando dentro da janela (11:39:49) sem apagar nada** (o que também **descarta** a suspeita de o próprio Sync reescrever a raiz, que a coincidência de minuto das 10:15 tornava plausível).
+>
+> **A FRASE CERTA PARA O CHAMADO, e ela é a da 29.5(b):** *"o `.htaccess` da raiz de `rodametria.com.br` é reescrito sem bloco do WordPress, sem mão nossa, em **horários irregulares** — quatro vezes em cinco dias, com intervalos de dias e um de ~4 minutos"*. **É um evento, com hora, não um processo.** A pergunta do `AllowOverride` **cai**: ela era a hipótese (a), e o campo novo fechou em (b) na primeira leitura. A série inteira, com as duas pontas do ciclo, está em `dados/serie-da-porta-2026-11-17.md`.
+>
+> **O QUE SEGUE SENDO SEU:** o chamado com a frase acima e a série anexada, e a **decisão sobre o token** (gesto 3), que é o que faria a próxima queda custar um comando em vez de uma hora.
+
 **FIM DO DESPACHO DE 17/11.**
 
 ## ~~DESPACHO DA SENTINELA — 2026-11-16 (RONDA DIÁRIA TÉCNICA, 15h3xZ–15h5xZ) — TRÊS ITENS, E OS DOIS PRIMEIROS ESTÃO NA PÁGINA QUE NASCEU HOJE~~ — **OS TRÊS FECHADOS EM 16/11/2026 às 17h1xZ, INTEIROS NUMA PASSADA SÓ (18.2), CONFERIDOS NO AR PELA 18.4, NAS REVISÕES 99 E 100**

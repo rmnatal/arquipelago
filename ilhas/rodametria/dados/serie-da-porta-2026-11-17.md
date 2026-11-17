@@ -25,8 +25,9 @@ são **quatro apagamentos em cinco dias**, e o intervalo caiu de dias para **min
 
 **O NÚMERO QUE O CHAMADO PRECISA:** a reposição das **10:15:18Z** foi desfeita em **~4 minutos** — às
 10h19:51Z as três portas da 29.2 já estavam em 404, e o campo `cura_liberada_em_s` lido às 10h41:01Z
-trazia **2057**, que põe a trava exatamente em 10:15:18. **Não é "o arquivo é reescrito de vez em
-quando": é "é reescrito poucos minutos depois de cada reposição".**
+trazia **2057**, que põe a trava exatamente em 10:15:18. **ESTA FRASE FOI CORRIGIDA PELA SÉRIE 2, ABAIXO, NA MESMA EXECUÇÃO — ela generalizava UM intervalo
+como se fosse uma TAXA.** O que está medido é um apagamento ~4 minutos depois de uma reposição, e um
+outro que sobreviveu 27min20s. É **evento irregular**, não período.
 
 **E QUEM DECIDIU A DURAÇÃO DA QUEDA FOI A TRAVA, NÃO O DEFEITO.** A trava 2 da 29.4 admite **uma
 tentativa por hora** e é queimada **antes** de agir, de propósito — ela existe para impedir o laço de
@@ -147,4 +148,132 @@ hora_utc	tem_bloco	cura_liberada_em_s	sitemap	veiculos	sync_ultimo
 11:18:14Z	True	3426	200	200	2026-11-17 11:09:54
 11:18:36Z	True	3405	200	200	2026-11-17 11:09:54
 11:18:57Z	True	3383	200	200	2026-11-17 11:09:54
+```
+
+## SÉRIE 2 — A JANELA NO AR, E ELA CORRIGE A FRASE ACIMA (95 leituras, 11h15:55Z → 11h42:40Z)
+
+**A FRASE *"é reescrito poucos minutos depois de cada reposição"*, escrita na seção acima às 11h19Z
+desta mesma execução, ESTÁ ERRADA, e a errata é da passada que a escreveu.** Ela generalizava **um**
+intervalo — os ~4 minutos entre a reposição das 10:15:18Z e o 404 das 10h19:51Z — para uma **taxa**. A
+medição seguinte a desmentiu: **95 leituras entre 11h15:55Z e 11h42:40Z, as 95 com o bloco PRESENTE e
+as 95 com `/wp-sitemap.xml` e `/veiculos/` em 200.** A reposição das **11:15:20Z** sobreviveu **27
+minutos e 20 segundos** de medição contínua, sete vezes mais que a anterior.
+
+**E UM SYNC RODOU DENTRO DESTA JANELA SEM APAGAR NADA: `11:39:49`, com o bloco presente antes e
+depois.** Isso **descarta** a hipótese que esta execução chegou a considerar — a de que o próprio Sync,
+ou a purga de cache dele, reescreveria o `.htaccess` da raiz na mesma requisição em que a cura o repõe,
+já que em 17/11 a cura das 10:15 e a rodada do Sync das 10:15:14 caíram **no mesmo minuto**. Não é
+isso. É a 29.5 confirmada por medição nova: *"o EPC preserva o que encontra"*.
+
+**A LEITURA CERTA, E É A DA 29.5(b):** o que se procura **é um evento, com hora, não um processo**.
+Quatro apagamentos em cinco dias, com intervalos de **dias** e um de **~4 minutos** — isso é evento
+irregular, não desgaste e não período. **A frase do chamado é "o arquivo é reescrito sem mão nossa, em
+horários irregulares, e em 17/11 um deles veio ~4 minutos depois de uma reposição", e não "é reescrito
+a cada poucos minutos".** Número de uma amostra lido como taxa é a família do número de tela digitado
+da seção 8: parece medição e não mede o que diz.
+
+**E O QUE A SÉRIE 2 NÃO RESPONDE, dito para ninguém procurar aqui:** ela não diz quanto a reposição das
+11:15 durou **de fato** — a medição parou às 11h42:40Z com o bloco ainda de pé, e a execução fechou. O
+limite inferior é 27min20s e não há limite superior medido.
+
+```
+hora_utc	tem_bloco	espera	sitemap	veiculos	sync_ultimo
+11:15:55Z	True	3565	200	200	2026-11-17 11:09:54
+11:16:13Z	True	3548	200	200	2026-11-17 11:09:54
+11:16:29Z	True	3531	200	200	2026-11-17 11:09:54
+11:16:46Z	True	3514	200	200	2026-11-17 11:09:54
+11:17:04Z	True	3497	200	200	2026-11-17 11:09:54
+11:17:21Z	True	3480	200	200	2026-11-17 11:09:54
+11:17:37Z	True	3463	200	200	2026-11-17 11:09:54
+11:17:54Z	True	3446	200	200	2026-11-17 11:09:54
+11:18:11Z	True	3429	200	200	2026-11-17 11:09:54
+11:18:28Z	True	3412	200	200	2026-11-17 11:09:54
+11:18:45Z	True	3395	200	200	2026-11-17 11:09:54
+11:19:02Z	True	3379	200	200	2026-11-17 11:09:54
+11:19:18Z	True	3362	200	200	2026-11-17 11:09:54
+11:19:36Z	True	3345	200	200	2026-11-17 11:09:54
+11:19:53Z	True	3328	200	200	2026-11-17 11:09:54
+11:20:10Z	True	3311	200	200	2026-11-17 11:09:54
+11:20:26Z	True	3294	200	200	2026-11-17 11:09:54
+11:20:43Z	True	3277	200	200	2026-11-17 11:09:54
+11:21:00Z	True	3260	200	200	2026-11-17 11:09:54
+11:21:17Z	True	3244	200	200	2026-11-17 11:09:54
+11:21:33Z	True	3227	200	200	2026-11-17 11:09:54
+11:21:50Z	True	3210	200	200	2026-11-17 11:09:54
+11:22:08Z	True	3193	200	200	2026-11-17 11:09:54
+11:22:25Z	True	3176	200	200	2026-11-17 11:09:54
+11:22:41Z	True	3159	200	200	2026-11-17 11:09:54
+11:22:58Z	True	3143	200	200	2026-11-17 11:09:54
+11:23:15Z	True	3125	200	200	2026-11-17 11:09:54
+11:23:32Z	True	3108	200	200	2026-11-17 11:09:54
+11:23:49Z	True	3092	200	200	2026-11-17 11:09:54
+11:24:05Z	True	3075	200	200	2026-11-17 11:09:54
+11:24:22Z	True	3058	200	200	2026-11-17 11:09:54
+11:24:39Z	True	3041	200	200	2026-11-17 11:09:54
+11:24:56Z	True	3024	200	200	2026-11-17 11:09:54
+11:25:13Z	True	3007	200	200	2026-11-17 11:09:54
+11:25:30Z	True	2991	200	200	2026-11-17 11:09:54
+11:25:47Z	True	2974	200	200	2026-11-17 11:09:54
+11:26:04Z	True	2956	200	200	2026-11-17 11:09:54
+11:26:21Z	True	2940	200	200	2026-11-17 11:09:54
+11:26:37Z	True	2923	200	200	2026-11-17 11:09:54
+11:26:54Z	True	2906	200	200	2026-11-17 11:09:54
+11:27:11Z	True	2889	200	200	2026-11-17 11:09:54
+11:27:28Z	True	2872	200	200	2026-11-17 11:09:54
+11:27:45Z	True	2855	200	200	2026-11-17 11:09:54
+11:28:02Z	True	2839	200	200	2026-11-17 11:09:54
+11:28:19Z	True	2822	200	200	2026-11-17 11:09:54
+11:28:36Z	True	2804	200	200	2026-11-17 11:09:54
+11:28:53Z	True	2788	200	200	2026-11-17 11:09:54
+11:29:09Z	True	2771	200	200	2026-11-17 11:09:54
+11:29:26Z	True	2754	200	200	2026-11-17 11:09:54
+11:29:43Z	True	2737	200	200	2026-11-17 11:09:54
+11:30:01Z	True	2720	200	200	2026-11-17 11:09:54
+11:30:17Z	True	2703	200	200	2026-11-17 11:09:54
+11:30:34Z	True	2686	200	200	2026-11-17 11:09:54
+11:30:51Z	True	2669	200	200	2026-11-17 11:09:54
+11:31:08Z	True	2652	200	200	2026-11-17 11:09:54
+11:31:32Z	True	2628	200	200	2026-11-17 11:09:54
+11:31:49Z	True	2612	200	200	2026-11-17 11:09:54
+11:32:06Z	True	2594	200	200	2026-11-17 11:09:54
+11:32:23Z	True	2577	200	200	2026-11-17 11:09:54
+11:32:40Z	True	2560	200	200	2026-11-17 11:09:54
+11:32:57Z	True	2543	200	200	2026-11-17 11:09:54
+11:33:14Z	True	2526	200	200	2026-11-17 11:09:54
+11:33:31Z	True	2509	200	200	2026-11-17 11:09:54
+11:33:48Z	True	2492	200	200	2026-11-17 11:09:54
+11:34:05Z	True	2475	200	200	2026-11-17 11:09:54
+11:34:22Z	True	2458	200	200	2026-11-17 11:09:54
+11:34:40Z	True	2441	200	200	2026-11-17 11:09:54
+11:34:57Z	True	2423	200	200	2026-11-17 11:09:54
+11:35:14Z	True	2406	200	200	2026-11-17 11:09:54
+11:35:31Z	True	2389	200	200	2026-11-17 11:09:54
+11:35:48Z	True	2372	200	200	2026-11-17 11:09:54
+11:36:05Z	True	2355	200	200	2026-11-17 11:09:54
+11:36:23Z	True	2338	200	200	2026-11-17 11:09:54
+11:36:40Z	True	2321	200	200	2026-11-17 11:09:54
+11:36:57Z	True	2303	200	200	2026-11-17 11:09:54
+11:37:14Z	True	2286	200	200	2026-11-17 11:09:54
+11:37:31Z	True	2269	200	200	2026-11-17 11:09:54
+11:37:48Z	True	2252	200	200	2026-11-17 11:09:54
+11:38:05Z	True	2235	200	200	2026-11-17 11:09:54
+11:38:23Z	True	2218	200	200	2026-11-17 11:09:54
+11:38:40Z	True	2201	200	200	2026-11-17 11:09:54
+11:38:57Z	True	2183	200	200	2026-11-17 11:09:54
+11:39:14Z	True	2166	200	200	2026-11-17 11:09:54
+11:39:31Z	True	2149	200	200	2026-11-17 11:09:54
+11:39:48Z	True	2132	200	200	2026-11-17 11:39:49
+11:40:05Z	True	2115	200	200	2026-11-17 11:39:49
+11:40:22Z	True	2098	200	200	2026-11-17 11:39:49
+11:40:39Z	True	2081	200	200	2026-11-17 11:39:49
+11:40:56Z	True	2064	200	200	2026-11-17 11:39:49
+11:41:13Z	True	2047	200	200	2026-11-17 11:39:49
+11:41:30Z	True	2030	200	200	2026-11-17 11:39:49
+11:41:48Z	True	2012	200	200	2026-11-17 11:39:49
+11:42:05Z	True	1995	200	200	2026-11-17 11:39:49
+11:42:23Z	True	1977	200	200	2026-11-17 11:39:49
+11:42:40Z	True	1960	200	200	2026-11-17 11:39:49
+11:42:57Z	True	1943	200	200	2026-11-17 11:39:49
+11:43:14Z	True	1926	200	200	2026-11-17 11:39:49
+11:43:31Z	True	1909	200	200	2026-11-17 11:39:49
 ```
