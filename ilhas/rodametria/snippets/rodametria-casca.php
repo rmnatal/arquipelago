@@ -71,7 +71,7 @@
    Antes disto a ilha cujo produto e "o preco de hoje" tinha ZERO ocorrencia de
    `dateModified` e de `datePublished` em todo o JSON-LD das 9 URLs. */
 if ( ! defined( 'RODAMETRIA_CASCA_VERSAO' ) ) {
-	define( 'RODAMETRIA_CASCA_VERSAO', '1.28.0' );
+	define( 'RODAMETRIA_CASCA_VERSAO', '1.29.0' );
 }
 
 /* ---------------------------------------------------------------------------
@@ -2962,7 +2962,14 @@ add_action( 'rest_api_init', function () {
 							(int) get_option( RODAMETRIA_CASCA_CURA_OPTION, 0 ),
 							time(),
 							RODAMETRIA_CASCA_CURA_INTERVALO
-						)
+						),
+						/* 14-c (17/11/2026). O contador entra por aqui, e nao
+						   de dentro do retrato, para o retrato continuar PURO
+						   e o portao poder fabricar o estado que o disco deste
+						   conteiner nao encena. */
+						function_exists( 'rodametria_casca_porta_quedas_publico' )
+							? rodametria_casca_porta_quedas_publico( rodametria_casca_porta_estado(), time() )
+							: null
 					) : null,
 			);
 		},
@@ -3578,6 +3585,16 @@ if ( ! defined( 'RODAMETRIA_CASCA_CURA_OPTION' ) ) {
 if ( ! defined( 'RODAMETRIA_CASCA_SYNC_OPTION' ) ) {
 	define( 'RODAMETRIA_CASCA_SYNC_OPTION', 'rodametria_sync_estado' );
 }
+/* 14-c. O CONTADOR DE QUEDAS (17/11/2026). A option e `no` de autoload: ela e
+   lida pelo retrato publico e escrita SO em requisicao em que a porta ja esta
+   no chao. O intervalo de episodio e o MESMO 3600 s da trava 2, e isso nao e
+   coincidencia — esta escrito na funcao por que. */
+if ( ! defined( 'RODAMETRIA_CASCA_PORTA_OPTION' ) ) {
+	define( 'RODAMETRIA_CASCA_PORTA_OPTION', 'rodametria_casca_porta_quedas' );
+}
+if ( ! defined( 'RODAMETRIA_CASCA_PORTA_EPISODIO_S' ) ) {
+	define( 'RODAMETRIA_CASCA_PORTA_EPISODIO_S', 3600 );
+}
 
 if ( ! function_exists( 'rodametria_casca_cura_caminho' ) ) {
 /**
@@ -3755,6 +3772,255 @@ function rodametria_casca_cura_espera_s( $ultima, $agora, $intervalo ) {
 }
 }
 
+/* =========================================================================
+ * 14-c. O CONTADOR DE QUEDAS — A TRAVA DE UMA HORA ESCONDE APAGAMENTO, E A
+ *       SERIE DO CHAMADO ESTAVA SENDO CONTADA PELO QUE A CURA CONSEGUIU DIZER
+ *       (17/11/2026)
+ *
+ * O QUE ESTA SECAO CONSERTA, E NAO E A PORTA: E A CONTAGEM. A serie que o
+ * chamado na HostGator leva — "quatro apagamentos em cinco dias" — e montada
+ * lendo as linhas `cura da porta:` do log do `/status`. Essas linhas sao
+ * escritas pela cura, e a cura tenta NO MAXIMO UMA VEZ POR HORA (trava 2 da
+ * 29.4). Entao:
+ *
+ *   1. APAGAMENTO QUE CAI DENTRO DA HORA QUEIMADA NAO DEIXA RASTRO NENHUM. A
+ *      cura ve o bloco ausente, respeita o relogio e sai CALADA — e a 29.4 quer
+ *      que ela saia calada, porque motivo de recusa no log enche a janela e
+ *      empurra item de desembarque para fora dela (20.4). O silencio esta certo
+ *      no log e estava custando o NUMERO.
+ *   2. E O LOG E UMA JANELA QUE ROLA. Ele e cortado em 40 linhas, e um
+ *      desembarque de oito itens come oito delas. A serie de cinco dias desta
+ *      ilha so existe hoje porque execucoes a copiaram a mao para
+ *      `dados/consertos.md` antes de ela rolar para fora. Contador nao rola.
+ *
+ * ENTAO A FREQUENCIA QUE O CHAMADO USA E UM PISO, e ela estava sendo dita como
+ * se fosse a conta. E a MESMA familia do defeito que esta ilha corrigiu quatro
+ * horas atras, quando um intervalo de ~4 minutos foi escrito como se fosse uma
+ * taxa: numero que parece medicao e mede menos do que diz (secao 8). Com a
+ * diferenca de que ali o numero era grande demais e aqui e pequeno demais — e o
+ * pequeno demais e o que o fornecedor usa para fechar o chamado.
+ *
+ * O QUE ELE CONTA, E A REGRA DO EPISODIO ESTA DITA EM UMA LINHA: uma QUEDA NOVA
+ * e uma leitura do bloco ausente que vem depois de o bloco ter estado no lugar.
+ * E "ter estado no lugar" se prova por dois caminhos, cada um pegando o que o
+ * outro perde:
+ *
+ *   (a) A CURA CONFIRMOU A REPOSICAO desde a ultima leitura no chao. Esse e o
+ *       caminho exato — e e o que mede o apagamento de 17/11 as ~10h19Z, quatro
+ *       minutos depois da cura das 10:15.
+ *   (b) PASSOU MAIS DE UMA HORA SEM NENHUMA LEITURA NO CHAO. Esse e o caminho
+ *       que pega a porta levantada PELA MAO DO RAPHAEL no cPanel — que foi como
+ *       ela levantou em 06/11 —, porque nessa reposicao a cura nao confirma
+ *       nada e o caminho (a) perderia a queda seguinte.
+ *
+ * A HORA DO (b) E A MESMA DA TRAVA 2, DE PROPOSITO, e o argumento e este: numa
+ * ilha com a cura carregada, uma hora inteira sem leitura no chao e uma hora em
+ * que a cura tambem nao foi chamada, logo nada aconteceu naquela janela —
+ * tratar a leitura seguinte como queda nova e a escolha que erra para o lado de
+ * contar demais, e a 29.5 prefere isso a um chamado fechado por falta de numero.
+ * O QUE ELA PODE ERRAR, dito aqui e nao escondido: uma queda unica e longa, com
+ * uma hora inteira sem nenhuma requisicao chegando ao PHP no meio, sai contada
+ * como DUAS. O campo diz `episodios_vistos` e a leitura publica explica a regra,
+ * em vez de chamar isso de "numero de apagamentos".
+ *
+ * O QUE ELE CUSTA, e e por isso que ele cabe: ZERO em requisicao de porta de pe.
+ * O gancho sai no passo 1 com uma leitura de arquivo e nenhuma option — e isso
+ * continua valendo byte por byte, porque o contador e chamado DEPOIS daquele
+ * `return`. A escrita acontece so na requisicao em que a porta JA esta no chao,
+ * que e o mundo em que o site esta quebrado e uma linha de UPDATE e o menor dos
+ * problemas. Nao ha coalescencia de proposito: contador amostrado seria contador
+ * que diz menos do que viu, que e exatamente o defeito que esta secao conserta.
+ *
+ * AS FUNCOES SAO PURAS porque o mundo que elas medem — uma hora de relogio, uma
+ * cura entre duas leituras — nao se encena no disco deste conteiner sem queimar
+ * uma hora de verdade. E a licao do 14-b, repetida: o que nao se fabrica no
+ * disco se fabrica no retrato.
+ * ------------------------------------------------------------------------- */
+
+if ( ! function_exists( 'rodametria_casca_porta_estado_normal' ) ) {
+/**
+ * O estado do contador na forma canonica — funcao PURA e TOTAL.
+ *
+ * Qualquer coisa que venha da option (array meio preenchido de uma versao
+ * anterior, `false` de option que nunca existiu, string de dado corrompido)
+ * sai daqui com as sete chaves e com os tipos certos. Contador que explode em
+ * cima de estado antigo e contador que some no dia do primeiro `deploy`.
+ */
+function rodametria_casca_porta_estado_normal( $bruto ) {
+	$b = is_array( $bruto ) ? $bruto : array();
+	$i = function ( $v ) {
+		return ( is_int( $v ) || ( is_string( $v ) && ctype_digit( $v ) ) ) && (int) $v > 0 ? (int) $v : null;
+	};
+
+	return array(
+		'episodios_vistos'  => isset( $b['episodios_vistos'] ) && (int) $b['episodios_vistos'] > 0 ? (int) $b['episodios_vistos'] : 0,
+		'leituras_no_chao'  => isset( $b['leituras_no_chao'] ) && (int) $b['leituras_no_chao'] > 0 ? (int) $b['leituras_no_chao'] : 0,
+		'leituras_nao_sei'  => isset( $b['leituras_nao_sei'] ) && (int) $b['leituras_nao_sei'] > 0 ? (int) $b['leituras_nao_sei'] : 0,
+		'reposicoes'        => isset( $b['reposicoes'] ) && (int) $b['reposicoes'] > 0 ? (int) $b['reposicoes'] : 0,
+		'primeira_no_chao'  => $i( isset( $b['primeira_no_chao'] ) ? $b['primeira_no_chao'] : null ),
+		'inicio_episodio'   => $i( isset( $b['inicio_episodio'] ) ? $b['inicio_episodio'] : null ),
+		'ultima_no_chao'    => $i( isset( $b['ultima_no_chao'] ) ? $b['ultima_no_chao'] : null ),
+		'ultima_reposicao'  => $i( isset( $b['ultima_reposicao'] ) ? $b['ultima_reposicao'] : null ),
+	);
+}
+}
+
+if ( ! function_exists( 'rodametria_casca_porta_contar' ) ) {
+/**
+ * UMA LEITURA DA PORTA ENTRA, UM ESTADO NOVO SAI — funcao PURA.
+ *
+ * Devolve `array( 'estado' => <novo>, 'gravar' => bool, 'novo_episodio' => bool )`.
+ * `gravar` e `false` no caso de longe mais comum, a porta de pe: ler nao e
+ * escrever, e o contador nao pode cobrar uma linha de banco por visita.
+ *
+ * `null` (nao sei) NUNCA conta como queda. E a mesma regra do M6 do portao, pelo
+ * mesmo motivo: arquivo ilegivel lido como porta caida manda abrir chamado por
+ * um defeito que ninguem mediu. Ele tem contador PROPRIO, porque "nao consegui
+ * ler a porta 300 vezes" tambem e um fato, e e um fato diferente.
+ */
+function rodametria_casca_porta_contar( $estado, $tem_bloco, $agora, $episodio_s ) {
+	$e          = rodametria_casca_porta_estado_normal( $estado );
+	$agora      = (int) $agora;
+	$episodio_s = (int) $episodio_s;
+
+	if ( true === $tem_bloco ) {
+		return array( 'estado' => $e, 'gravar' => false, 'novo_episodio' => false );
+	}
+
+	if ( null === $tem_bloco ) {
+		$e['leituras_nao_sei'] = $e['leituras_nao_sei'] + 1;
+
+		return array( 'estado' => $e, 'gravar' => true, 'novo_episodio' => false );
+	}
+
+	/* Daqui para baixo o bloco esta AUSENTE, e so aqui se escreve. */
+	$ultima = $e['ultima_no_chao'];
+	$repos  = $e['ultima_reposicao'];
+
+	/* OS DOIS CAMINHOS DA REGRA DO EPISODIO, e o `>=` do primeiro nao e
+	   descuido: a cura dispara na MESMA requisicao em que a leitura no chao
+	   acontece, entao a reposicao e a leitura carimbam o mesmo segundo. Com `>`
+	   o apagamento seguinte nao seria visto — e e justamente ele o que esta
+	   secao existe para contar. */
+	$novo = ( null === $ultima )
+		|| ( null !== $repos && $repos >= $ultima )
+		|| ( $episodio_s > 0 && ( $agora - $ultima ) >= $episodio_s )
+		/* Relogio andando para tras nao pode fundir dois episodios num so, pela
+		   mesma razao que ele nao pode TRANCAR a cura (14-b). */
+		|| ( $agora < $ultima );
+
+	if ( $novo ) {
+		$e['episodios_vistos'] = $e['episodios_vistos'] + 1;
+		$e['inicio_episodio']  = $agora;
+	}
+	if ( null === $e['primeira_no_chao'] ) {
+		$e['primeira_no_chao'] = $agora;
+	}
+	$e['leituras_no_chao'] = $e['leituras_no_chao'] + 1;
+	$e['ultima_no_chao']   = $agora;
+
+	return array( 'estado' => $e, 'gravar' => true, 'novo_episodio' => $novo );
+}
+}
+
+if ( ! function_exists( 'rodametria_casca_porta_marcar_reposicao' ) ) {
+/**
+ * A CURA REPOS O BLOCO E A RELEITURA O ACHOU — funcao PURA.
+ *
+ * So e chamada no ramo em que `reparado` e verdadeiro. O ramo do FRACASSO (o
+ * `flush` rodou e o bloco nao voltou) NAO passa por aqui de proposito: ali o
+ * bloco segue fora, o episodio segue aberto, e marcar reposicao faria a leitura
+ * seguinte contar uma queda nova em cima de uma queda que nunca terminou.
+ */
+function rodametria_casca_porta_marcar_reposicao( $estado, $agora ) {
+	$e                     = rodametria_casca_porta_estado_normal( $estado );
+	$e['reposicoes']       = $e['reposicoes'] + 1;
+	$e['ultima_reposicao'] = (int) $agora;
+
+	return $e;
+}
+}
+
+if ( ! function_exists( 'rodametria_casca_porta_quedas_publico' ) ) {
+/**
+ * O QUE DO CONTADOR SAI SEM TOKEN — funcao PURA.
+ *
+ * Sai contagem e sai HORA (em minuto UTC), e nada mais. Nao sai tamanho, nao
+ * sai nome de bloco, nao sai uma linha do arquivo: a 29.3 reserva isso para a
+ * rota que pede token, e `.htaccess` de hospedeiro compartilhado carrega regra
+ * de terceiro. Hora de queda da PROPRIA ilha nao e segredo do servidor — o log
+ * do `/status`, que e publico, ja carimba o minuto de cada cura desde 12/11.
+ *
+ * `duracao_minima_s` e a palavra `minima` em vez de `duracao` porque e o que o
+ * numero e: a distancia entre a primeira e a ultima leitura NO CHAO daquele
+ * episodio. A queda comecou antes da primeira leitura e pode ter terminado
+ * depois da ultima; o que esta medido e o miolo. Foi exatamente esta distincao
+ * que a execucao das 11h17Z de hoje teve de escrever a mao sobre os 27 min 20 s
+ * da segunda serie — "o limite inferior e 27min20s e nao ha limite superior
+ * medido".
+ */
+function rodametria_casca_porta_quedas_publico( $estado, $agora ) {
+	$e     = rodametria_casca_porta_estado_normal( $estado );
+	$agora = (int) $agora;
+	$min   = function ( $ts ) {
+		return null === $ts ? null : gmdate( 'Y-m-d H:i', (int) $ts ) . 'Z';
+	};
+
+	$ep = null;
+	if ( null !== $e['inicio_episodio'] && null !== $e['ultima_no_chao'] ) {
+		$dur = $e['ultima_no_chao'] - $e['inicio_episodio'];
+		$ep  = array(
+			'comecou'          => $min( $e['inicio_episodio'] ),
+			'ultima_no_chao'   => $min( $e['ultima_no_chao'] ),
+			'duracao_minima_s' => $dur > 0 ? $dur : 0,
+			'reposto_depois'   => null !== $e['ultima_reposicao'] && $e['ultima_reposicao'] >= $e['ultima_no_chao'],
+		);
+	}
+
+	return array(
+		/* O nome e `vistos` e nao `apagamentos` porque a regra tem duas pontas e
+		   uma delas pode contar demais. A `leitura` abaixo diz a regra inteira. */
+		'episodios_vistos'   => $e['episodios_vistos'],
+		'leituras_no_chao'   => $e['leituras_no_chao'],
+		'leituras_nao_sei'   => $e['leituras_nao_sei'],
+		'reposicoes_da_cura' => $e['reposicoes'],
+		'primeira_no_chao'   => $min( $e['primeira_no_chao'] ),
+		'episodio'           => $ep,
+		'leitura'            => 0 === $e['episodios_vistos']
+			? 'o contador nasceu e nunca viu esta porta no chao. Zero aqui NAO quer dizer que ela nunca caiu: ele conta desde que a secao 14-c entrou no ar, e as quedas anteriores estao em dados/consertos.md'
+			: 'queda nova e leitura no chao depois de o bloco ter estado no lugar — provado pela cura ter confirmado a reposicao, ou por mais de '
+				. (int) RODAMETRIA_CASCA_PORTA_EPISODIO_S . ' s sem nenhuma leitura no chao. Este numero nao rola com a janela de 40 linhas do log, e conta tambem o apagamento que cai dentro da hora queimada da trava 2 — que no log nao deixa rastro nenhum',
+	);
+}
+}
+
+if ( ! function_exists( 'rodametria_casca_porta_estado' ) ) {
+/**
+ * A leitura da option, ja normalizada. A unica funcao desta secao que toca no
+ * banco para LER, e ela e chamada no retrato publico e na requisicao em que a
+ * porta ja esta no chao — nunca no caminho barato do gancho.
+ */
+function rodametria_casca_porta_estado() {
+	return rodametria_casca_porta_estado_normal( get_option( RODAMETRIA_CASCA_PORTA_OPTION, array() ) );
+}
+}
+
+if ( ! function_exists( 'rodametria_casca_porta_observar' ) ) {
+/**
+ * O lado impuro, e ele e tres linhas: le, conta, grava se houve o que gravar.
+ * Devolve o estado novo, para quem chamou nao precisar reler.
+ */
+function rodametria_casca_porta_observar( $tem_bloco, $agora = null ) {
+	$agora = null === $agora ? time() : (int) $agora;
+	$r     = rodametria_casca_porta_contar( rodametria_casca_porta_estado(), $tem_bloco, $agora, RODAMETRIA_CASCA_PORTA_EPISODIO_S );
+	if ( ! empty( $r['gravar'] ) ) {
+		update_option( RODAMETRIA_CASCA_PORTA_OPTION, $r['estado'], 'no' );
+	}
+
+	return $r['estado'];
+}
+}
+
 if ( ! function_exists( 'rodametria_casca_porta_retrato_publico' ) ) {
 /**
  * 14-b. O RETRATO MINIMO DA PORTA, SEM TOKEN — E ELE NASCEU DE UMA QUEDA EM QUE
@@ -3792,7 +4058,7 @@ if ( ! function_exists( 'rodametria_casca_porta_retrato_publico' ) ) {
  * terceiro. O retrato com nome de bloco e tamanho continua atras do token, onde
  * sempre esteve; aqui vai o MINIMO que separa (a) de (b), e nada mais.
  */
-function rodametria_casca_porta_retrato_publico( $tem_bloco, $espera_s ) {
+function rodametria_casca_porta_retrato_publico( $tem_bloco, $espera_s, $quedas = null ) {
 	return array(
 		/* `true`, `false` ou `null` — e `null` e "nao sei" (arquivo ausente ou
 		   ilegivel), que nunca se le como "esta de pe". */
@@ -3808,6 +4074,14 @@ function rodametria_casca_porta_retrato_publico( $tem_bloco, $espera_s ) {
 				: ( ( (int) $espera_s > 0 )
 					? 'bloco AUSENTE e a hora da trava 2 ainda queimada: a cura nao vai tentar por mais ' . (int) $espera_s . ' s, e a ilha fica no chao ate la'
 					: 'bloco AUSENTE e a cura LIBERADA: a proxima requisicao a esta raiz deve repor o bloco e escrever a linha no /status' ) ),
+		/* 14-c. A CONTAGEM, E ELA RESPONDE A OUTRA PERGUNTA. Os tres campos
+		   acima dizem como a porta esta AGORA; este diz quantas vezes ela
+		   caiu — inclusive as quedas que caem dentro da hora queimada da
+		   trava 2 e que no log nao deixam rastro nenhum. `null` aqui quer
+		   dizer que a 14-c nao esta carregada, nunca que a porta nunca caiu:
+		   a ausencia e o sinal (20.7), e e por isso que ela e `null` e nao um
+		   zero que soaria conferido. */
+		'quedas'              => ( null === $quedas ) ? null : $quedas,
 	);
 }
 }
@@ -3910,11 +4184,27 @@ function rodametria_casca_cura_da_porta() {
 	/* PASSO 1, o barato: o bloco esta la? `true` encerra aqui. `null` (arquivo
 	   ausente, ilegivel, ou raiz em subpasta) NAO encerra — segue para o
 	   diagnostico completo, que sabe achar o caminho de verdade. */
-	if ( true === rodametria_casca_cura_tem_bloco( rodametria_casca_cura_caminho() ) ) {
+	$tem_bloco = rodametria_casca_cura_tem_bloco( rodametria_casca_cura_caminho() );
+	if ( true === $tem_bloco ) {
 		return '';
 	}
 
-	$agora  = time();
+	$agora = time();
+
+	/* PASSO 1-b (14-c, 17/11/2026): A LEITURA E CONTADA AQUI, E AQUI E ANTES DA
+	   TRAVA DE PROPOSITO — e esta ordem e a secao inteira.
+	   Abaixo desta linha vem o relogio da trava 2, e ele faz a cura sair CALADA
+	   quando a hora esta queimada. Esse silencio esta certo (a 29.4 o quer, e o
+	   MUNDO E do portao o cobra), e ele custava o NUMERO: apagamento que cai
+	   dentro da hora queimada nao escrevia linha no log e portanto nao existia
+	   para o chamado na HostGator. Contar ANTES de perguntar a hora e o que
+	   torna essa queda visivel sem encher a janela de 40 linhas da 20.4.
+	   E ELE NAO ENCARECE A PORTA DE PE: este ponto so e alcancado quando o
+	   passo 1 ja disse que o bloco NAO esta no lugar. */
+	if ( function_exists( 'rodametria_casca_porta_observar' ) ) {
+		rodametria_casca_porta_observar( $tem_bloco, $agora );
+	}
+
 	$ultima = (int) get_option( RODAMETRIA_CASCA_CURA_OPTION, 0 );
 	if ( $ultima > 0 && ( $agora - $ultima ) < RODAMETRIA_CASCA_CURA_INTERVALO ) {
 		return '';
@@ -3968,6 +4258,16 @@ function rodametria_casca_cura_da_porta() {
 	if ( ! empty( $r['reparado'] ) ) {
 		$linha = 'cura da porta: bloco WordPress reposto — '
 			. rodametria_casca_cura_retrato_curto( $antes ) . ' -> ' . rodametria_casca_cura_retrato_curto( $depois );
+		/* 14-c: SO O RAMO DO SUCESSO FECHA O EPISODIO. No ramo de baixo o
+		   `flush` rodou e a releitura NAO achou o bloco — ali o episodio segue
+		   aberto, e marcar reposicao faria a leitura seguinte contar uma queda
+		   nova em cima de uma queda que nunca terminou. E a mesma razao por que
+		   as duas palavras do log sao diferentes: o conserto dos dois mundos
+		   nao e o mesmo (20.5). */
+		if ( function_exists( 'rodametria_casca_porta_marcar_reposicao' ) ) {
+			update_option( RODAMETRIA_CASCA_PORTA_OPTION,
+				rodametria_casca_porta_marcar_reposicao( rodametria_casca_porta_estado(), $agora ), 'no' );
+		}
 	} else {
 		$linha = 'cura da porta FALHOU: o flush rodou e o bloco WordPress NAO voltou — '
 			. rodametria_casca_cura_retrato_curto( $antes ) . ' -> ' . rodametria_casca_cura_retrato_curto( $depois )

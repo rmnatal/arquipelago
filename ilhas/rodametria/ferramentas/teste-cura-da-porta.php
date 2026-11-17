@@ -171,7 +171,9 @@ $casca = file_get_contents( $RAIZ . '/snippets/rodametria-casca.php' );
 /* AS CONSTANTES SAIEM DO ARQUIVO, nunca digitadas aqui: constante digitada ao
    lado de constante definida e o mesmo numero em dois lugares, e a 32.4 desta
    fabrica ja paga essa divida em prosa. */
-foreach ( array( 'RODAMETRIA_CASCA_CURA_INTERVALO', 'RODAMETRIA_CASCA_CURA_OPTION', 'RODAMETRIA_CASCA_SYNC_OPTION' ) as $c ) {
+foreach ( array( 'RODAMETRIA_CASCA_CURA_INTERVALO', 'RODAMETRIA_CASCA_CURA_OPTION', 'RODAMETRIA_CASCA_SYNC_OPTION',
+	/* 14-c (17/11/2026). */
+	'RODAMETRIA_CASCA_PORTA_OPTION', 'RODAMETRIA_CASCA_PORTA_EPISODIO_S' ) as $c ) {
 	if ( preg_match( "/define\\(\\s*'" . $c . "',\\s*([^)]+?)\\s*\\)/", $casca, $m ) ) {
 		eval( 'define( \'' . $c . '\', ' . trim( $m[1] ) . ' );' );
 	}
@@ -180,6 +182,14 @@ afirma( defined( 'RODAMETRIA_CASCA_CURA_INTERVALO' ) && 3600 === RODAMETRIA_CASC
 	'a trava 2 da 29.4 e "no maximo UMA tentativa por hora", e o intervalo da casca nao e 3600 s' );
 afirma( defined( 'RODAMETRIA_CASCA_SYNC_OPTION' ) && 'rodametria_sync_estado' === RODAMETRIA_CASCA_SYNC_OPTION,
 	'a option do estado do Sync desta ilha nao e `rodametria_sync_estado` — o `/status` le dali' );
+/* 14-c: O INTERVALO DO EPISODIO TEM DE SER O MESMO DA TRAVA 2, e isto nao e
+   gosto: numa ilha com a cura carregada, uma hora inteira sem leitura no chao e
+   uma hora em que a cura tambem nao foi chamada, logo nada aconteceu naquela
+   janela. Se os dois numeros divergirem, o caminho (b) da regra do episodio
+   passa a contar quedas numa janela em que a cura ainda estava agindo. */
+afirma( defined( 'RODAMETRIA_CASCA_PORTA_EPISODIO_S' )
+	&& RODAMETRIA_CASCA_PORTA_EPISODIO_S === RODAMETRIA_CASCA_CURA_INTERVALO,
+	'14-c: o intervalo do episodio e o da trava 2 divergiram — ' . ( defined( 'RODAMETRIA_CASCA_PORTA_EPISODIO_S' ) ? RODAMETRIA_CASCA_PORTA_EPISODIO_S : '(nao definido)' ) . ' contra ' . RODAMETRIA_CASCA_CURA_INTERVALO );
 
 /* AS MUTACOES SAO FEITAS NA FONTE, antes do `eval`: e a unica forma de a trava
    ser refeita COM o defeito e exigir reprovacao. Trava que nunca falhou nao e
@@ -247,6 +257,26 @@ $MUTACOES = array(
 		'o_que' => 'bloco AUSENTE sairia com a leitura do bloco PRESENTE — chamado na HostGator onde a cura conserta sozinha',
 		'modo'  => 'funcao',
 	),
+	/* AS TRES DO 14-c. A primeira e a ORDEM, que e a secao inteira: contar
+	   depois de perguntar a hora e nao contar. */
+	'M8' => array(
+		'de'   => "	if ( function_exists( 'rodametria_casca_porta_observar' ) ) {\n\t\trodametria_casca_porta_observar( \$tem_bloco, \$agora );\n\t}",
+		'para' => "	/* mutacao: a leitura no chao deixa de ser contada antes da trava */",
+		'o_que' => 'o apagamento que cai DENTRO da hora queimada da trava 2 voltaria a nao existir para ninguem — nem no log (de proposito) nem no contador',
+		'modo'  => 'funcao',
+	),
+	'M9' => array(
+		'de'   => "		|| ( null !== \$repos && \$repos >= \$ultima )",
+		'para' => "		|| ( null !== \$repos && \$repos > \$ultima )",
+		'o_que' => 'a cura dispara na MESMA requisicao da leitura, entao os dois carimbos caem no mesmo segundo: com `>` o apagamento de ~4 minutos depois da cura das 10:15 nao abriria episodio novo',
+		'modo'  => 'funcao',
+	),
+	'M10' => array(
+		'de'   => "	if ( null === \$tem_bloco ) {\n\t\t\$e['leituras_nao_sei'] = \$e['leituras_nao_sei'] + 1;",
+		'para' => "	if ( false ) {\n\t\t\$e['leituras_nao_sei'] = \$e['leituras_nao_sei'] + 1;",
+		'o_que' => '"nao sei" (arquivo ausente ou ilegivel) entraria na contagem como QUEDA — a mesma confusao do M6, e ela manda abrir chamado por um defeito que ninguem mediu',
+		'modo'  => 'funcao',
+	),
 );
 if ( '' !== $MUTACAO ) {
 	if ( ! isset( $MUTACOES[ $MUTACAO ] ) ) {
@@ -280,6 +310,18 @@ foreach ( array(
 	   "a hora da trava 2 ainda queimada", e os dois tem conserto diferente. */
 	'rodametria_casca_cura_espera_s',
 	'rodametria_casca_porta_retrato_publico',
+	/* 14-c, as cinco de 17/11/2026. Elas entram nesta lista pelo motivo das
+	   duas de cima: o contador e o unico instrumento desta nuvem que ve o
+	   apagamento que cai DENTRO da hora queimada da trava 2 — no log ele nao
+	   deixa rastro nenhum, de proposito —, e a frequencia que o chamado na
+	   HostGator usa como argumento sai dele. Remover uma e fazer a serie do
+	   chamado voltar a ser um piso dito como se fosse a conta. */
+	'rodametria_casca_porta_estado_normal',
+	'rodametria_casca_porta_contar',
+	'rodametria_casca_porta_marcar_reposicao',
+	'rodametria_casca_porta_quedas_publico',
+	'rodametria_casca_porta_estado',
+	'rodametria_casca_porta_observar',
 ) as $f ) {
 	afirma( carregar_funcao( $casca, $f ),
 		sprintf( 'nao achei a funcao %s na casca — a secao 14 (excecao da 29.4) foi desfeita', $f ) );
@@ -390,6 +432,13 @@ afirma( $b_bytes === filesize( $ARQ ) && $b_mtime === filemtime( $ARQ ),
 	'MUNDO B: a cura ENCOSTOU no .htaccess de uma porta que estava de pe' );
 afirma( false === get_option( RODAMETRIA_CASCA_CURA_OPTION ),
 	'MUNDO B: a option da hora foi gravada sem haver tentativa nenhuma' );
+/* 14-c: A CONTA DO CUSTO DO CONTADOR, E ELA E ESTA LINHA. Mil requisicoes de
+   porta DE PE nao podem produzir UMA escrita — o gancho sai no passo 1 com uma
+   leitura de arquivo e nenhuma option, e o contador e chamado DEPOIS daquele
+   `return`. Se esta afirmacao cair, o contador passou a cobrar uma linha de
+   UPDATE por visita numa ilha que esta sa. */
+afirma( false === get_option( RODAMETRIA_CASCA_PORTA_OPTION ),
+	'MUNDO B: o contador da 14-c escreveu no banco em 1000 requisicoes de porta DE PE — custo em cima da ilha sadia, que e o caminho mais curto para alguem arrancar o contador' );
 afirma( 0 === $GLOBALS['FLUSHES'],
 	'MUNDO B: o flush rodou com a porta de pe' );
 
@@ -639,7 +688,11 @@ afirma( $r_pe['leitura'] !== $r_caido_tr['leitura']
 /* O QUE O RETRATO NAO PODE PUBLICAR. A 29.3 manda o conteudo do arquivo nunca
    sair, e `.htaccess` de hospedeiro compartilhado carrega regra de terceiro. */
 foreach ( array( $r_pe, $r_pe_trava, $r_caido_tr, $r_caido_liv, $r_nao_sei ) as $i => $r ) {
-	afirma( array( 'tem_bloco_wordpress', 'cura_liberada_em_s', 'leitura' ) === array_keys( $r ),
+	/* A LISTA CRESCEU EM 17/11/2026, E ESTA LINHA E O PEDAGIO. `quedas` entrou
+	   pela 14-c, e esta afirmacao foi a UNICA coisa que reprovou quando ele
+	   entrou — que e exatamente o que ela existe para fazer: campo novo sem
+	   token nao passa calado, ele passa por aqui. */
+	afirma( array( 'tem_bloco_wordpress', 'cura_liberada_em_s', 'leitura', 'quedas' ) === array_keys( $r ),
 		"14-b: o retrato publico ganhou ou perdeu campo (retrato $i) — campo novo aqui e campo que ninguem autorizou a sair sem token" );
 	$tudo = wp_json_encode( $r );
 	afirma( false === stripos( $tudo, 'NFD' ) && false === stripos( $tudo, 'EPC' )
@@ -647,6 +700,208 @@ foreach ( array( $r_pe, $r_pe_trava, $r_caido_tr, $r_caido_liv, $r_nao_sei ) as 
 		&& false === stripos( $tudo, 'bytes' ),
 		"14-b: o retrato SEM TOKEN vazou nome de bloco de terceiro, linha de reescrita ou tamanho de arquivo (retrato $i) — a 29.3 reserva isso para a rota que pede token" );
 }
+
+/* --------- 14-c. O CONTADOR DE QUEDAS, QUE NAO ROLA COM A JANELA DO LOG -----
+   A serie que o chamado na HostGator leva era contada pelas linhas `cura da
+   porta:` do log — e a cura tenta no maximo UMA VEZ POR HORA, entao apagamento
+   que cai dentro da hora queimada NAO deixa rastro nenhum, e o log e cortado em
+   40 linhas e rola. A frequencia do chamado era um PISO dito como se fosse a
+   conta, e e pelo pequeno demais que um fornecedor fecha chamado.
+   AS FUNCOES SAO PURAS, e e isso que deixa o portao fabricar aqui, em
+   milissegundos, os mundos que o disco deste conteiner so encenaria queimando
+   horas de relogio de verdade. */
+
+/* ------------------------------------------------------------------ MUNDO K */
+/* A QUEDA QUE A TRAVA 2 ESCONDE, E ELA SE FABRICA NO DISCO — porque a trava e
+   uma option, nao uma hora de relogio. E o acontecimento de 17/11/2026 as
+   ~10h19Z: o bloco foi apagado DE NOVO quatro minutos depois da cura das 10:15,
+   a hora da trava estava queimada, a cura saiu CALADA (e tinha de sair, pelo
+   MUNDO E e pela trava 4) e aquele apagamento nao existiu para o chamado na
+   HostGator. Este mundo exige as duas coisas ao mesmo tempo: o silencio no log
+   E o numero no contador. */
+
+if ( 'sem-log' !== $MODO ) {
+	zerar( $CAIDO );
+	$GLOBALS['OPT'][ RODAMETRIA_CASCA_CURA_OPTION ] = time();
+	$k_bytes = filesize( $ARQ );
+	$k_linha = rodametria_casca_cura_da_porta();
+	clearstatcache( true, $ARQ );
+	$k_est = rodametria_casca_porta_estado();
+	afirma( '' === $k_linha && 0 === count( log_da_cura() ) && $k_bytes === filesize( $ARQ ) && 0 === $GLOBALS['FLUSHES'],
+		'MUNDO K: a trava 2 tem de seguir valendo INTEIRA — o contador nao pode fazer a cura falar no log, tocar no arquivo nem rodar o flush com a hora queimada' );
+	afirma( 1 === $k_est['episodios_vistos'] && 1 === $k_est['leituras_no_chao'],
+		'MUNDO K: A QUEDA QUE A TRAVA ESCONDE NAO FOI CONTADA, e e a 14-c inteira: com a hora queimada a cura sai calada (e tem de sair), e sem o contador esse apagamento nao existe para o chamado na HostGator' );
+	afirma( null === $k_est['ultima_reposicao'] && 0 === $k_est['reposicoes'],
+		'MUNDO K: nenhuma reposicao aconteceu neste mundo, e o contador carimbou uma' );
+
+	/* K-b: SEIS REQUISICOES DENTRO DA MESMA QUEDA SAO UMA QUEDA. A ilha serviu
+	   404 em 91 das 92 leituras de hoje; se cada leitura abrisse episodio, o
+	   argumento do chamado sairia inflado — e numero inflado perde chamado tao
+	   rapido quanto numero pequeno demais. */
+	for ( $i = 1; $i <= 5; $i++ ) { rodametria_casca_cura_da_porta(); }
+	$k2 = rodametria_casca_porta_estado();
+	afirma( 1 === $k2['episodios_vistos'] && 6 === $k2['leituras_no_chao'],
+		'MUNDO K-b: seis requisicoes dentro da MESMA queda sairam como ' . $k2['episodios_vistos'] . ' episodio(s) e ' . $k2['leituras_no_chao'] . ' leitura(s)' );
+	afirma( 0 === count( log_da_cura() ),
+		'MUNDO K-b: seis leituras contadas puseram ' . count( log_da_cura() ) . ' linha(s) no log — a janela de 40 linhas da 20.4 nao pode pagar pelo contador' );
+
+	/* K-c: A CURA REPOE, O CONTADOR FECHA O EPISODIO, E O APAGAMENTO SEGUINTE E
+	   UMA QUEDA NOVA. O ciclo inteiro de 17/11 num mundo so. */
+	$GLOBALS['OPT'][ RODAMETRIA_CASCA_CURA_OPTION ] = 0;
+	$k_linha2 = rodametria_casca_cura_da_porta();
+	$k3       = rodametria_casca_porta_estado();
+	afirma( false !== strpos( $k_linha2, 'bloco WordPress reposto' ) && 1 === $k3['reposicoes'],
+		'MUNDO K-c: a cura repos o bloco e o contador nao carimbou a reposicao — sem ela o apagamento seguinte se funde com esta queda' );
+	zerar( $CAIDO );
+	$GLOBALS['OPT'] = $k3_opt = array_merge( $GLOBALS['OPT'], array( RODAMETRIA_CASCA_PORTA_OPTION => $k3 ) );
+	$GLOBALS['OPT'][ RODAMETRIA_CASCA_CURA_OPTION ] = time();
+	rodametria_casca_cura_da_porta();
+	$k4 = rodametria_casca_porta_estado();
+	afirma( 2 === $k4['episodios_vistos'],
+		'MUNDO K-c: depois de uma reposicao confirmada, a leitura no chao seguinte tem de ser QUEDA NOVA — e ela e a unica prova de que algo desfez a cura' );
+}
+
+$E0 = rodametria_casca_porta_estado_normal( array() );
+afirma( 0 === $E0['episodios_vistos'] && 0 === $E0['leituras_no_chao']
+	&& 0 === $E0['leituras_nao_sei'] && 0 === $E0['reposicoes']
+	&& null === $E0['primeira_no_chao'] && null === $E0['inicio_episodio']
+	&& null === $E0['ultima_no_chao'] && null === $E0['ultima_reposicao'],
+	'14-c: o estado vazio tem de nascer com as oito chaves zeradas' );
+foreach ( array( false, null, 0, 'lixo', 3.5, array( 'episodios_vistos' => 'x' ) ) as $k => $bruto ) {
+	$n = rodametria_casca_porta_estado_normal( $bruto );
+	afirma( 8 === count( $n ) && 0 === $n['episodios_vistos'] && null === $n['ultima_no_chao'],
+		"14-c: estado corrompido ($k) tem de sair na forma canonica — contador que explode em cima de option velha e contador que some no primeiro desembarque" );
+}
+afirma( null === rodametria_casca_porta_estado_normal( array( 'ultima_no_chao' => -5 ) )['ultima_no_chao']
+	&& null === rodametria_casca_porta_estado_normal( array( 'ultima_no_chao' => 0 ) )['ultima_no_chao'],
+	'14-c: carimbo de hora nao positivo e "nunca aconteceu", e nao a epoca de 1970' );
+
+/* A PORTA DE PE NAO ESCREVE. E a conta do custo do passo 1 do gancho inteira. */
+$t = 1000000;
+$r = rodametria_casca_porta_contar( $E0, true, $t, 3600 );
+afirma( empty( $r['gravar'] ) && empty( $r['novo_episodio'] ) && $r['estado'] === $E0,
+	'14-c: leitura de porta DE PE gravou no banco ou mexeu no contador — ler nao e escrever, e o contador nao pode cobrar uma linha de UPDATE por visita' );
+$r = rodametria_casca_porta_contar( array( 'episodios_vistos' => 3, 'ultima_no_chao' => $t - 10 ), true, $t, 3600 );
+afirma( 3 === $r['estado']['episodios_vistos'] && ( $t - 10 ) === $r['estado']['ultima_no_chao'],
+	'14-c: a porta de pe nao pode APAGAR o que o contador ja viu' );
+
+/* `null` E "NAO SEI", E NAO SEI NAO E QUEDA — a mesma regra do M6. */
+$r = rodametria_casca_porta_contar( $E0, null, $t, 3600 );
+afirma( 0 === $r['estado']['episodios_vistos'] && 1 === $r['estado']['leituras_nao_sei']
+	&& null === $r['estado']['ultima_no_chao'] && ! empty( $r['gravar'] ),
+	'14-c: arquivo ilegivel contado como QUEDA manda abrir chamado na HostGator por um defeito que ninguem mediu (a mesma confusao do M6)' );
+
+/* A PRIMEIRA QUEDA DA VIDA DO CONTADOR. */
+$q1 = rodametria_casca_porta_contar( $E0, false, $t, 3600 );
+afirma( 1 === $q1['estado']['episodios_vistos'] && ! empty( $q1['novo_episodio'] )
+	&& $t === $q1['estado']['primeira_no_chao'] && $t === $q1['estado']['inicio_episodio']
+	&& $t === $q1['estado']['ultima_no_chao'] && 1 === $q1['estado']['leituras_no_chao'],
+	'14-c: a primeira leitura no chao tem de abrir episodio e carimbar as tres horas' );
+
+/* QUEDA CONTINUA: 50 leituras seguidas sao UM episodio, nao 50. */
+$e = $q1['estado'];
+for ( $i = 1; $i <= 50; $i++ ) {
+	$p = rodametria_casca_porta_contar( $e, false, $t + ( $i * 25 ), 3600 );
+	$e = $p['estado'];
+	if ( ! empty( $p['novo_episodio'] ) ) {
+		afirma( false, "14-c: a leitura $i de uma MESMA queda abriu episodio novo — 92 leituras de uma queda sairiam como 92 apagamentos" );
+		break;
+	}
+}
+afirma( 1 === $e['episodios_vistos'] && 51 === $e['leituras_no_chao']
+	&& $t === $e['inicio_episodio'] && ( $t + 1250 ) === $e['ultima_no_chao'],
+	'14-c: queda continua tem de ser UM episodio com as leituras somando — saiu ' . $e['episodios_vistos'] . ' episodio(s) e ' . $e['leituras_no_chao'] . ' leitura(s)' );
+
+/* O ACONTECIMENTO DE 17/11 AS 10:15, QUE E O MOTIVO DESTA SECAO EXISTIR: a cura
+   repoe o bloco NA MESMA REQUISICAO em que a leitura no chao aconteceu, e ~4
+   minutos depois o bloco e apagado DE NOVO. Esse segundo apagamento cai dentro
+   da hora queimada da trava 2, nao escreve linha no log, e e invisivel para
+   qualquer contagem feita por log. Aqui ele tem de aparecer. */
+$depois_da_cura = rodametria_casca_porta_marcar_reposicao( $q1['estado'], $t );
+afirma( 1 === $depois_da_cura['reposicoes'] && $t === $depois_da_cura['ultima_reposicao'],
+	'14-c: a reposicao confirmada pela cura tem de ficar carimbada' );
+$q2 = rodametria_casca_porta_contar( $depois_da_cura, false, $t + 240, 3600 );
+afirma( 2 === $q2['estado']['episodios_vistos'] && ! empty( $q2['novo_episodio'] ),
+	'14-c: O APAGAMENTO DE ~4 MINUTOS DEPOIS DA CURA NAO FOI CONTADO. E o acontecimento de 17/11 as 10:15, ele cai dentro da hora queimada da trava 2 e no log nao deixa rastro NENHUM — contar so por log e o que faz a frequencia do chamado sair menor que a verdade' );
+afirma( ( $t + 240 ) === $q2['estado']['inicio_episodio'] && $t === $q2['estado']['primeira_no_chao'],
+	'14-c: o episodio novo tem de comecar agora, e a PRIMEIRA queda da vida do contador nao se reescreve' );
+
+/* E O `>=` NAO E DESCUIDO: com `>` este episodio nao seria visto. */
+$mesmo_segundo = rodametria_casca_porta_marcar_reposicao(
+	rodametria_casca_porta_contar( $E0, false, $t, 3600 )['estado'], $t );
+afirma( $mesmo_segundo['ultima_reposicao'] === $mesmo_segundo['ultima_no_chao'],
+	'14-c: a cura dispara na MESMA requisicao da leitura, e os dois carimbos tem de cair no mesmo segundo — se deixarem de cair, o `>=` da regra do episodio virou folga e nao trava' );
+
+/* A PORTA LEVANTADA PELA MAO DO RAPHAEL NO cPANEL — foi assim que ela levantou
+   em 06/11 — nao passa pela cura, entao nada confirma a reposicao. O caminho (b)
+   da regra existe para esta queda nao se fundir com a anterior. */
+$q3 = rodametria_casca_porta_contar( $q1['estado'], false, $t + 86400, 3600 );
+afirma( 2 === $q3['estado']['episodios_vistos'] && ! empty( $q3['novo_episodio'] ),
+	'14-c: queda um DIA depois da anterior, sem cura entre as duas, saiu como a MESMA queda — e a porta levantada a mao no cPanel nunca passa pela cura (06/11/2026)' );
+afirma( empty( rodametria_casca_porta_contar( $q1['estado'], false, $t + 3599, 3600 )['novo_episodio'] )
+	&& ! empty( rodametria_casca_porta_contar( $q1['estado'], false, $t + 3600, 3600 )['novo_episodio'] ),
+	'14-c: o teto do caminho (b) e `>=` o intervalo, e ele tem de bater com o relogio da trava 2 — um segundo antes e a mesma queda, no segundo exato e queda nova' );
+afirma( empty( rodametria_casca_porta_contar( $q1['estado'], false, $t + 86400, 0 )['novo_episodio'] ),
+	'14-c: com intervalo zero o caminho (b) tem de estar DESLIGADO, e nao valendo sempre' );
+afirma( ! empty( rodametria_casca_porta_contar( $q1['estado'], false, $t - 500, 3600 )['novo_episodio'] ),
+	'14-c: relogio andando para tras nao pode FUNDIR dois episodios, pela mesma razao que nao pode trancar a cura (14-b)' );
+
+/* O RAMO DO FRACASSO NAO FECHA EPISODIO, e isso e o mundo do `AllowOverride`:
+   o `flush` roda, o bloco nao volta, a queda nunca terminou. */
+$falhou = $q1['estado'];
+for ( $i = 1; $i <= 3; $i++ ) {
+	$falhou = rodametria_casca_porta_contar( $falhou, false, $t + ( $i * 3700 ), 0 )['estado'];
+}
+afirma( 1 === $falhou['episodios_vistos'] && 0 === $falhou['reposicoes'],
+	'14-c: sem reposicao confirmada e com o caminho (b) desligado, uma queda que NUNCA terminou tem de seguir sendo um episodio so' );
+
+/* ------------------------------------- O QUE DO CONTADOR SAI SEM TOKEN ------ */
+
+$pub0 = rodametria_casca_porta_quedas_publico( $E0, $t );
+afirma( 0 === $pub0['episodios_vistos'] && null === $pub0['episodio'] && null === $pub0['primeira_no_chao'],
+	'14-c: contador zerado tem de sair sem episodio em vez de inventar um' );
+afirma( false !== strpos( $pub0['leitura'], 'consertos.md' ),
+	'14-c: ZERO aqui nao quer dizer "nunca caiu" — o contador nasceu hoje e as quedas anteriores estao em dados/consertos.md, e a leitura tem de dizer isso em vez de soar conferida (32.5-d)' );
+
+$pub = rodametria_casca_porta_quedas_publico( $q2['estado'], $t + 300 );
+afirma( 2 === $pub['episodios_vistos'] && 1 === $pub['reposicoes_da_cura'],
+	'14-c: as duas contagens que o chamado usa tem de sair no retrato publico' );
+afirma( is_array( $pub['episodio'] ) && 0 === $pub['episodio']['duracao_minima_s'],
+	'14-c: episodio de uma leitura so tem duracao minima ZERO, e nao uma duracao inventada' );
+$longo = rodametria_casca_porta_quedas_publico( $e, $t + 1300 );
+afirma( 1250 === $longo['episodio']['duracao_minima_s'],
+	'14-c: a duracao minima e a distancia entre a PRIMEIRA e a ULTIMA leitura no chao do episodio — saiu ' . $longo['episodio']['duracao_minima_s'] );
+afirma( false !== strpos( implode( ' ', array_keys( $longo['episodio'] ) ), 'duracao_minima_s' ),
+	'14-c: o campo tem de se chamar `minima`: a queda comecou antes da primeira leitura e pode ter terminado depois da ultima, e foi essa distincao que a execucao das 11h17Z teve de escrever a mao' );
+afirma( false === $longo['episodio']['reposto_depois']
+	&& true === rodametria_casca_porta_quedas_publico( $depois_da_cura, $t )['episodio']['reposto_depois'],
+	'14-c: o retrato tem de dizer se a cura repos o bloco DEPOIS da ultima leitura no chao — e a diferenca entre "a queda acabou" e "a queda esta aberta agora"' );
+afirma( '1970-01-12 13:46Z' === rodametria_casca_porta_quedas_publico(
+		array( 'episodios_vistos' => 1, 'inicio_episodio' => $t, 'ultima_no_chao' => $t ), $t )['episodio']['comecou'],
+	'14-c: a hora sai em minuto UTC com o Z, como o log do /status ja carimba' );
+
+/* O QUE ELE NAO PODE PUBLICAR. A mesma regua do 14-b: contagem e hora da
+   PROPRIA ilha saem; conteudo do arquivo do hospedeiro, nunca. */
+foreach ( array( $pub0, $pub, $longo ) as $i => $pb ) {
+	afirma( array( 'episodios_vistos', 'leituras_no_chao', 'leituras_nao_sei', 'reposicoes_da_cura',
+			'primeira_no_chao', 'episodio', 'leitura' ) === array_keys( $pb ),
+		"14-c: o contador publico ganhou ou perdeu campo (retrato $i) — campo novo aqui e campo que ninguem autorizou a sair sem token" );
+	$tudo = wp_json_encode( $pb );
+	afirma( false === stripos( $tudo, 'NFD' ) && false === stripos( $tudo, 'EPC' )
+		&& false === stripos( $tudo, 'RewriteRule' ) && false === stripos( $tudo, 'RewriteBase' )
+		&& false === stripos( $tudo, 'htaccess' ),
+		"14-c: o contador SEM TOKEN vazou nome de bloco de terceiro, linha de reescrita ou o nome do arquivo (retrato $i) — a 29.3 reserva isso para a rota que pede token" );
+}
+
+/* O CONTADOR DENTRO DO RETRATO DA PORTA, que e por onde `/casca` o serve. */
+$com = rodametria_casca_porta_retrato_publico( false, 2100, $pub );
+afirma( 4 === count( $com ) && isset( $com['quedas']['episodios_vistos'] ),
+	'14-c: o retrato da porta tem de carregar o contador no campo `quedas`' );
+afirma( null === rodametria_casca_porta_retrato_publico( true, 0 )['quedas'],
+	'14-c: sem a 14-c carregada o campo tem de ser `null` — zero aqui soaria "nunca caiu" com cara de conferido, e a ausencia e o sinal (20.7)' );
+afirma( rodametria_casca_porta_retrato_publico( false, 2100, $pub )['leitura']
+		=== rodametria_casca_porta_retrato_publico( false, 2100 )['leitura'],
+	'14-c: o contador nao pode mudar a leitura de COMO A PORTA ESTA AGORA — sao duas perguntas, e a do 14-b nao depende de historico' );
 
 /* ------------------------------------------- A FORMA DA LINHA NOS DOIS MODOS */
 /* O caminho de reserva nao inventa formato: formato novo no mesmo log seria o
