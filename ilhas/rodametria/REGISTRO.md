@@ -3,6 +3,128 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-11-17 10h17Z–11h17Z — **A PORTA CAIU PELA SEXTA VEZ NESTA RAIZ E A CURA DA 29.4 JÁ NÃO ESTÁ BASTANDO: DUAS CURAS EM 11h18m, E A SEGUNDA NÃO DEVOLVEU AS PÁGINAS.** Nenhum bloco da fila (18.5). O que foi entregue é o **instrumento que separa os dois mundos que cabiam naquele retrato**, e que nenhum portão desta nuvem conseguia separar hoje. Casca **1.28.0**, seção **14-b**, revisão **104**.
+
+**A ILHA DESTA EXECUÇÃO:** rodametria, por **foco** (`foco.md` nomeia a rodametria, foco total e absoluto desde 27/10). Pela **1.2** não há escolha a fazer. **Passo 1 do disparo, medido:** `git fetch origin main` trouxe o `main` de `68808f3` para **`2f41627`**; a branch `claude/dreamy-mccarthy-78yxa9` (local e remota) está **idêntica a ele** — 0 commit à frente, 0 atrás —, logo **nada a mesclar antes**, e **nenhum PR aberto**.
+
+**A RESERVA (passo 5 da seção 1):** `executando_desde` estava **`null`**, que pela **1.1** já é prova de que não havia bloco da Fundação vivo — não houve reserva vencida para o git desempatar. Reserva às **10h17Z**, **ganha no push na primeira tentativa**, e **RENOVADA às 10h29Z** pela 1.1, porque o bloco passa de 40 minutos.
+
+**E A REDE FOI MEDIDA ANTES DO TRABALHO, PELA 20.2, E NÃO HERDADA DO CAMPO:** `rodametria.com.br` em **200 nas duas leituras**, com `aquametria.com.br` em **200** nas mesmas duas — 4 de 4 em 200. **A rede está aberta e não é ela que está errada hoje**, e foi essa medição de controle que impediu esta execução de ler a queda como egresso.
+
+---
+
+### O DEFEITO, E ELE ESTAVA NO AR ANTES DE EU CHEGAR
+
+A primeira coisa que esta execução fez depois de reservar foi abrir o sitemap — e recebeu a **página de estacionamento da HostGator**.
+
+| | leitura 1 | leitura 2 | leitura 3 | corpo |
+|---|---|---|---|---|
+| `/` | **200** | — | — | 119.411 b, **zero** HostGator |
+| `/wp-sitemap.xml` | 404 | 404 | 404 | 2.361 b, 3× HostGator |
+| `/robots.txt` | 404 | — | — | 2.361 b, 3× HostGator |
+| `/veiculos/` | 404 | 404 | — | 2.361 b |
+| `/veiculos/moto-eletrica/` | 404 | 404 | 404 | 2.361 b |
+| `/autonomia-patinete-eletrico/` | 404 | — | — | 2.361 b |
+| `/wp-json/rodametria/v1/status` | 404 | — | — | 2.361 b |
+| caminho virgem | 404 | — | — | 2.361 b, **na página do HOSPEDEIRO** |
+
+**Não é rede e não é intermitência:** `aquametria.com.br`, `robometria.com.br` e `clubedomosaico.com.br` com `/wp-sitemap.xml` em **200** nas mesmas passadas — três controles verdes contra seis bloqueios, zero intermitência. É a assinatura da **29.7(3)** inteira: home em 200, as três portas da 29.2 em 404, **REST vivo** por `?rest_route=` e caminho bonito morto. E a **29.7(1)** pagou-se nesta passada: o `/status` por `/wp-json/...` morreu com a porta, e por `?rest_route=` respondeu 200 na mesma passada — foi por ela que o log chegou.
+
+### AS DUAS LINHAS QUE MUDAM O ACONTECIMENTO DE CLASSE
+
+O log do `/status`, lido pela porta que não cai:
+
+```
+2026-11-17 10:15 cura da porta: bloco WordPress reposto — 1057 bytes [NFD EPC] -> 1580 bytes [NFD EPC, WordPress]
+2026-11-16 23:02 cura da porta: bloco WordPress reposto — 1057 bytes [NFD EPC] -> 1580 bytes [NFD EPC, WordPress]
+```
+
+**1. A FREQUÊNCIA ERA UMA PERGUNTA PRÉ-REGISTRADA, E A RESPOSTA É A RUIM.** A reconferência escrita em 12/11 pede, com estas palavras: *"se há linha nova de `cura da porta:` no log do `/status` — duas em 24 horas muda o chamado de 'o arquivo é reescrito' para 'é reescrito com frequência'"*. **São duas em 11 horas e 18 minutos.** E a prova de que entre elas houve um apagamento **de verdade** é a própria trava 1 da 29.4: a cura só dispara com o bloco **ausente**, então as 10:15 só existem porque algo desfez as 23:02. Somando a de **12/11 16:25** — aquela com o arquivo em **0 bytes e nenhum bloco** —, são **três apagamentos em cinco dias**, e o intervalo está encurtando.
+
+**2. E A CURA DAS 10:15 NÃO DEVOLVEU AS PÁGINAS. ISTO É NOVO E É O ACHADO DO DIA.** A linha diz `bloco WordPress reposto`, e a casca só escreve essa frase quando a **releitura do arquivo depois do `flush`** acha o bloco — o ramo do fracasso tem palavra própria, de propósito (`cura da porta FALHOU: o flush rodou e o bloco WordPress NAO voltou`, com o `AllowOverride` nomeado nela, e o MUNDO F do portão prende essa diferença). **Quatro minutos depois** as três portas estavam em 404 em três leituras. Em 12/11 a mesma linha devolveu as 10 URLs em **oito minutos**.
+
+### O QUE EU NÃO CONSEGUI SEPARAR, E É ISSO QUE VIROU O TRABALHO DA PASSADA
+
+Dois mundos cabem naquele retrato, e **os consertos deles não são o mesmo**:
+
+- **(a)** o bloco está no arquivo e o Apache o ignora ⇒ `AllowOverride` desligado do lado do hospedeiro, e pela **29.4** isso é **chamado na HostGator, não código de ilha nenhuma**. Rodar o `flush` outra vez não muda nada.
+- **(b)** o bloco foi apagado **de novo** depois das 10:15 e a **trava 2** (uma tentativa por hora, queimada **antes** de agir) segura a cura até ~11:15Z ⇒ a ilha volta quando a hora vencer, e **não há chamado a abrir por esta leitura**.
+
+**E NÃO HAVIA COMO DECIDIR ENTRE OS DOIS DESTA NUVEM.** No mundo (b) o `/casca` responde `tem_cura_da_porta: true` e `fonte_do_log_da_cura: "funcao:rodametria_sync_log"`, e o `/status` não ganha linha nova — **byte por byte o que os dois respondem com a porta DE PÉ**. O retrato da **29.3**, que responderia, **exige o token do Sync**; e eu o **procurei antes de escrever que não dava**, pela 29.3-a — no `PROMPT.md` (onde o da clubedomosaico estava em claro), nos snippets desta ilha e em `~/.claude`. **Não está nesta nuvem.** A rota confirma isso de fora: `?rest_route=/rodametria/v1/rotas` sem token devolve **401 `rodametria_rotas_token_ausente`**.
+
+**E O SILÊNCIO DO MUNDO (b) NÃO É UM DEFEITO DA CURA — É UM DEFEITO DE ONDE ELE ESTÁ.** O MUNDO E do `teste-cura-da-porta.php` cobra, com razão, que a hora não vencida recuse **calada**: motivo de recusa no log encheria as 40 linhas e empurraria item de desembarque para fora da janela de 15 da **20.4**. **O lugar onde aquele silêncio é correto é o LOG, e ele estava sendo pago no único instrumento que esta nuvem consegue abrir.** A ausência era o sinal (**20.7**) e não havia onde lê-la.
+
+### O QUE FOI ENTREGUE — 14-b, O RETRATO MÍNIMO DA PORTA, SEM TOKEN
+
+**Casca 1.28.0, revisão 104.** O `/casca` passa a servir o campo `porta`:
+
+```
+porta: { tem_bloco_wordpress: true|false|null, cura_liberada_em_s: <int>, leitura: "<em palavras>" }
+```
+
+- **`null` é "não sei"** (arquivo ausente ou ilegível) e **nunca** se lê como porta de pé — é o mesmo regex do diagnóstico da seção 12, de propósito.
+- **`cura_liberada_em_s`** vem de `rodametria_casca_cura_espera_s()`, função **pura**, com o teto `<` e não `<=` igual ao do gancho, e com **tempo negativo liberando e nunca prendendo**: relógio andando para trás não pode trancar a cura.
+- **A `leitura` são quatro frases e só quatro**, cada uma com o desfecho dela: bloco presente ⇒ `AllowOverride`/chamado; `null` ⇒ não sei, e o retrato com token é quem fecha; ausente com a hora queimada ⇒ esperar N s, **sem chamado**; ausente e livre ⇒ **abrir a raiz conserta agora**.
+
+**O QUE ELE NÃO PUBLICA, DE PROPÓSITO:** nem bytes, nem o nome dos **outros** blocos, nem uma linha do arquivo. A **29.3** manda o conteúdo nunca sair, e `.htaccess` de hospedeiro compartilhado carrega regra de segurança de terceiro — o retrato com nome de bloco e tamanho **continua atrás do token**, onde sempre esteve. Aqui vai o **mínimo que separa (a) de (b)**, e nada mais. O precedente é desta própria casca: `tem_purga_de_cache` e `tem_cura_da_porta` já saem sem token pelo mesmo argumento.
+
+**AS DUAS FUNÇÕES SÃO PURAS PORQUE O MUNDO (b) NÃO SE ENCENA NO DISCO DESTE CONTÊINER** sem queimar uma hora de relógio de verdade — a mesma lição do mundo `mod_rewrite: false` do portão: **o que não se fabrica no disco se fabrica no retrato.**
+
+### OS PORTÕES, E AS DUAS CONFUSÕES QUE AS MUTAÇÕES NOVAS COMPRAM
+
+`ferramentas/teste-cura-da-porta.php`: **174 → 249 afirmações** (90 na mãe + 159 nos processos filhos) e **5 → 7 mutações cobradas**, 0 falha. As duas novas são as duas confusões que **custam um chamado**:
+
+- **M6** — `'tem_bloco_wordpress' => (bool) $tem_bloco`: *"não sei"* sairia como **porta caída**, e isso manda abrir chamado na HostGator por um defeito que ninguém mediu.
+- **M7** — a leitura do bloco **presente** saindo para bloco **ausente**: diria `AllowOverride` num mundo em que a próxima requisição consertaria sozinha — **e aí ninguém espera, porque o retrato mandou abrir chamado.**
+
+E as duas funções novas entraram na lista que o portão **percorre e exige** (`carregar_funcao`), para que removê-las **reprove** em vez de passar calado.
+
+`ferramentas/conferir-no-ar.py`: a **quinta grandeza** entra na linha da causa da **29.7(3)**, autoteste **138 → 151 afirmações**, 0 falha. E **a régua velha foi obrigada a discordar** (20.8): o autoteste exige que a linha das **quatro** grandezas seja **idêntica** nos dois mundos de hoje e que a nova os **separe** — se as duas já discordassem, não havia o que consertar. Mais: retrato **mal formado** (`None`, `{}`, `[]`, string, campo faltando, segundos que não são número) tem de sair como porta caída **sem virar chamado** — corpo que não é retrato não é prova de nada. E **retrato ausente DIZ que não separou**, em vez de escolher um mundo e soar conferido (32.5-d).
+
+### E UMA FRASE VENCIDA DENTRO DO PORTÃO QUE EXISTE PARA LER O FATO
+
+O `diagnostico_da_porta` afirmava, na própria linha da causa, que *"esta ilha ainda NAO a tem"* sobre a cura da 29.4 — e **esta ilha a tem desde 12/11/2026**, casca 1.26.0, com a cura tendo disparado de verdade três vezes desde então. É a **seção 4** acontecendo dentro do instrumento: número velho lido como fato, no lugar em que alguém vai procurar o fato no pior minuto possível. Corrigida, com a contagem de ocorrências subindo de nove para **dez** (rodametria 05/11 **e 17/11**).
+
+
+### O CICLO INTEIRO, MEDIDO SEGUNDO POR SEGUNDO — E ELE É A PROVA QUE O CHAMADO NUNCA TEVE
+
+O campo novo não serviu só para responder a pergunta de hoje: ele transformou a queda numa **série com hora**. **92 leituras entre 10h42:14Z e 11h15:20Z**, cada uma lendo `/casca` → `porta`, o `/wp-sitemap.xml`, o `/veiculos/` e o `ultimo` do Sync na mesma passada:
+
+| hora | `tem_bloco_wordpress` | `cura_liberada_em_s` | sitemap | `/veiculos/` | Sync `ultimo` |
+|---|---|---|---|---|---|
+| 10:42:14Z | **false** | 1983 | 404 | 404 | 10:40:07 |
+| … 89 leituras … | **false** | 1983 → 19 | 404 | 404 | 10:40:07 → 11:09:54 |
+| 11:14:58Z | **false** | **19** | 404 | 404 | 11:09:54 |
+| **11:15:20Z** | **true** | **3600** | **200** | **200** | 11:09:54 |
+
+**O QUE A SÉRIE PROVA, E NENHUMA DAS QUATRO COISAS ERA MENSURÁVEL ANTES DESTA PASSADA:**
+
+1. **A CURA DISPAROU NO PRIMEIRO INSTANTE POSSÍVEL, e a ilha voltou na MESMA requisição.** A contagem caiu de 19 s para o fim e o bloco voltou junto com o 200 do sitemap e do `/veiculos/` — na mesma leitura, não na seguinte. A terceira linha de cura do dia está no log: `2026-11-17 11:15 cura da porta: bloco WordPress reposto — 1057 bytes [NFD EPC] -> 1580 bytes [NFD EPC, WordPress]`.
+2. **QUEM DECIDIU A DURAÇÃO DA QUEDA FOI A TRAVA, NÃO O DEFEITO.** A ilha serviu 404 por **pelo menos 55 min 29 s** (de 10h19:51Z, a primeira leitura desta execução, a 11h15:20Z), e **91 das 92 leituras pegaram 404**. O conserto estava disponível desde o primeiro segundo e a trava 2 o reteve por desenho. **A trava não está errada** — ela existe para impedir o laço de reescrita da raiz que a 29.4 recusou com todas as letras —, e afrouxá-la é decisão do Raphael, não de uma execução.
+3. **DOIS SYNCS RODARAM DENTRO DA QUEDA (10:40:07 e 11:09:54) E A CURA FICOU CALADA NOS DOIS**, como a trava 2 manda. É o MUNDO E do portão acontecendo em produção, e é exatamente o estado em que todo instrumento público desta ilha dizia o que diria com a porta de pé — até esta passada.
+4. **E O APAGAMENTO ANTERIOR VEIO ~4 MINUTOS DEPOIS DA REPOSIÇÃO.** A aritmética do campo fecha sozinha: 2.057 s restantes às 10h41:01Z põem a trava em **10:15:18Z**, o minuto da linha da cura — e às 10h19:51Z as portas já estavam em 404. **Não é "o arquivo é reescrito de vez em quando": é "é reescrito poucos minutos depois de cada reposição".** Essa é a frase nova do chamado, e ela tem hora.
+
+**A ILHA ESTÁ ÍNTEGRA NO AR, CONFERIDO PELA 18.4 ÀS 11h16Z:** **11 de 11** URLs do `wp-sitemap-posts-page-1.xml` em **200**; as três portas da 29.2 em **200** com `content-type` certo (`application/xml`, `text/plain`, `application/json`); caminho virgem em **404 na página da própria ilha** — 73.151 bytes, **zero** ocorrência de "HostGator", 28 do nome da ilha. Revisão **104** no `/status` = **104** no `manifest.json`, casca **1.28.0**. Portão da **20.4** nas linhas da revisão 104, lidas uma por uma: **8 declarados, 8 itens lidos, os 8 dizendo `ok`** — e a linha da cura das 10:15 caiu **fora** do grupo da revisão corrente, como a régua da 29.4 manda.
+
+**BANCADA: 51 portões sem rede, 0 falha.** Rodada antes da construção (18.5) e de novo no fecho.
+
+### O QUE ESTA EXECUÇÃO NÃO FEZ, dito para ninguém procurar
+
+- **Nenhum bloco da fila**, pela **18.5**: ilha com defeito no ar não recebe página nova. A fila, de todo modo, segue acabada — só o 5 (artigos-âncora) falta, e ele depende de um `pauta.md` que não existe e que pela 17.1 não é arquivo da Fundação.
+- **Não repari a porta à mão**, e o motivo não é omissão: o reparo da 29.3 exige o token do Sync. **Eu o procurei antes de escrever isto**, pela 29.3-a — no `PROMPT.md` desta ilha (onde o da clubedomosaico estava em claro em 12/11), nos snippets e em `~/.claude`. **Não está nesta nuvem**, e a rota confirma de fora: 401 `rodametria_rotas_token_ausente`.
+- **Não copiei o 14-b para a clubedomosaico**, que é a outra ilha com a cura hoje: a **seção 3** proíbe esta execução de editar arquivo de ilha que ela não reservou. Virou despacho em `dados/despachos.md`.
+- **Não nomeei a causa de origem do apagamento**, pela **29.5**: *causa inventada é a próxima execução consertando a coisa errada*. O que tem nome é o sintoma, a frequência, o portão que a lê e o reparo que a desfaz.
+- **E uma dívida de método desta passada:** a mensagem do primeiro commit (`bd7a69f`) perdeu os trechos entre acentos graves — eu a passei por `-m` numa linha de comando do bash, que os interpretou como substituição. Os dois commits seguintes saíram por `-F` com arquivo. O texto íntegro é este registro.
+
+### O PRÓXIMO PASSO DESBLOQUEADO
+
+1. **A PRÓXIMA PASSADA MEDE A DURAÇÃO DO CICLO NO AR**, que é a metade que falta do número do chamado: o `/casca` → `porta.tem_bloco_wordpress` agora responde isso sem token, e basta lê-lo. Se o bloco cair de novo em minutos, a ilha está oscilando e isso é material do chamado, não conserto de código.
+2. **O DESPACHO ALTA É DO RAPHAEL**, e tem três gestos: levantar a porta se ela estiver no chão, levar ao chamado da HostGator a série de apagamentos **mais a pergunta do `AllowOverride`**, e a decisão sobre o token desta ilha — aberta desde 05/11.
+3. **A LEITURA SEMANAL DE 18/11 HERDA UMA PERGUNTA NOVA E CARA:** esta ilha serviu 404 em tudo menos a home por pelo menos **55 minutos** hoje, e por um trecho desconhecido entre 16/11 20h16Z e 17/11 10:15. **Se o Googlebot passou em qualquer uma das duas janelas, o balde "Não encontrado (404)" ganha página nova** — foi exatamente assim que `/veiculos/bicicleta-eletrica/`, a página de 673 mil buscas/mês, saiu do índice em 05/11. Vale conferir a Inspeção de URL das 11 e a data do último rastreamento de cada uma.
+4. **A FILA SEGUE ACABADA e as duas pontas de página de produto nova seguem travadas:** a 30.8 para a SERP e o Mercado Livre para o produto das duas consultas de maior volume.
+
+---
+
 ## 2026-11-16 19h17Z–20h1xZ — **A MESMA LOJA ANUNCIAVA O MESMO VEÍCULO NOS DOIS CARTÕES MAIS CAROS DE `/veiculos/moto-eletrica/`, E A MEDIANA PUBLICADA CONTAVA O ANÚNCIO DUAS VEZES.** Revisões **102 e 103** no ar, conferidas (18.4).
 
 **A ILHA DESTA EXECUÇÃO:** rodametria, por **foco** (`foco.md` nomeia a rodametria, foco total e absoluto desde 27/10). Pela **1.2** não há escolha a fazer. **Passo 1 do disparo, medido:** `git fetch origin main` trouxe o `main` em **`39e9b98`**; a branch `claude/dreamy-mccarthy-g45jk6` (local e remota) está **idêntica a ele** — 0 commit à frente, 0 atrás —, logo nada a mesclar antes.

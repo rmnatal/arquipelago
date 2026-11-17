@@ -15,121 +15,108 @@ urls_publicadas: 11       # 10 -> 11 em 16/11/2026: nasceu `/veiculos/moto-eletr
                           # a leitura semanal (21.6), nunca a Fundacao de cabeca.
 ultima_ronda: 2026-11-16T15:56Z   # RONDA DIARIA TECNICA de 2026-11-16, 15h3xZ-15h5xZ, medida na revisao 98 (status 98 = manifest 98), casca 1.27.0. TRES defeitos, ZERO consertos e nenhum tentado: nenhum dos tres e da lista 19.1 — link de afiliado MORTO na pagina que NASCEU HOJE (anuncio 23598774355 da GTRBSHOP, 4o cartao de /veiculos/moto-eletrica/, e dele sai o `ate: R$ 15.000,00` que a pagina publica), o 1o cartao daquela mesma pagina sendo uma BICICLETA COM PEDAIS numa pagina que define moto eletrica como 'sem pedalar' (a regua cobra o token `moto` em qualquer lugar do titulo, armadilha 1 da 25.7), e `degrau: 1` em 24 de 24 itens da vitrine sem nenhuma loja oficial de fabricante e sem a frase da 25.10. SETIMA ronda seguida desta ilha com zero conserto, e a causa mudou de lugar: ja nao nasce em snippet, nasce no dado do banco e na regua que o admite. Despacho de 3 itens no PROMPT.md. A ILHA ESTA SA NO ENCANAMENTO: 11 de 11 URLs em 200 em duas leituras com quebra de cache, as tres portas da 29.2 verdes, caminho virgem em 404 na pagina da ilha em TRES leituras (73.192 bytes, zero HostGator), zero pagina orfa na direcao de ENTRADA, zero link de miolo fora do sitemap, meta description maxima de 159, zero noindex, 56 de 56 links de loja com rel=sponsored e zero link cru, console 11 de 11 limpo do lado da ilha. TESTE DE VIDA: 28 leituras, 25 fichas (24 vivas, 1 MORTA) e 3 buscas (3 vivas), intestaveis ZERO, item sem piso ZERO, pela url_produto crua e nunca pelo link de afiliado. As tres ferramentas apertadas com entrada real: 24 de 24 contas certas na mao. Linha de `cura da porta:` nas ultimas 24h: NAO MEDIDA, nao zero (a janela do /status comeca em 16/11 11:40, 20.13). A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
 primeira_indexacao: null  # as duas primeiras URLs foram ao ar hoje; indexacao e trabalho de dias. Quem grava este campo e a leitura semanal, lendo o Search Console.
-ultima_execucao: 2026-11-16T20:16Z   # A MESMA LOJA ANUNCIAVA O MESMO VEICULO NOS DOIS CARTOES MAIS CAROS de /veiculos/moto-eletrica/, e a mediana publicada contava o anuncio duas vezes: R$ 5.011,38 contra os R$ 8.500,00 das tres ofertas DISTINTAS. Era o achado que a execucao das 17h1xZ deixou "para a ronda decidir", e ele era maior do que o achado dizia — tres das quatro metades o leitor VE. Quem clicasse no 2o cartao pagava R$ 426,38 MAIS (38,9%) pelo mesmo produto da mesma loja; a pagina publicava `11.11` como NOME do veiculo no 1o cartao; e toda frase "X dos 4" contava o mesmo anuncio duas vezes. A regua e de FORMA (par de numeros com ponto, barra ou hifen) e a identidade e de UMA LOJA SO — quem a afirma e o VENDEDOR, que publicou as duas formas do mesmo titulo. `serve` NAO foi tocado: nasce `repetido_por`, DERIVADO, refeito em toda passada de `recontar_resumo`. Conta da 25.9: 57 anuncios julgados, 1 veredito mudou, zero afrouxamento. REVISOES 102 E 103 NO AR, CONFERIDAS (18.4). A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
-executando_desde: 2026-11-17T10:43Z   # RESERVA RENOVADA pela 1.1, a 2a vez nesta execucao.
-                         # minutos: esta execucao achou a PORTA DE ENTRADA NO CHAO (29) e,
-                         # pela 18.5, nao abriu bloco da fila. O trabalho e instrumento:
-                         # a casca passa a servir o retrato minimo da porta SEM TOKEN,
-                         # que e o que separa `AllowOverride do hospedeiro` de `a hora da
-                         # trava 2 ainda queimada` — dois mundos com consertos diferentes
-                         # que esta nuvem nao conseguia separar hoje. A HORA SAIU DO
-                         # `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA.
-rede: aberta em 2026-11-16   # 20.2, MEDIDA e nao herdada. `rodametria.com.br` em 200 nas duas leituras
-                             # antes da reserva, com `aquametria.com.br` em 200 como controle — 4 de 4 em
-                             # 200. A Open API da Shopee NAO foi usada nesta passada (nenhuma coleta nova:
-                             # a regra foi aplicada ao banco JA colhido, sem rede, pela 25.9). A parede do
-                             # `.gov.br`/`.leg.br` (20.1) nao foi remedida e segue como a de 16/11 13h2xZ.
+ultima_execucao: 2026-11-17T11:17Z   # A PORTA CAIU PELA SEXTA VEZ NESTA RAIZ E A CURA DA 29.4 RODOU, ESCREVEU QUE REPOS O BLOCO, E A ILHA CONTINUOU NO CHAO. Nenhum bloco da fila (18.5). O entregue e o INSTRUMENTO: casca 1.28.0, secao 14-b, revisao 104 — `/casca` serve `porta` com `tem_bloco_wordpress` e `cura_liberada_em_s`, SEM TOKEN, e foi esse campo que respondeu a pergunta do dia na PRIMEIRA leitura no ar: `false` com 2057 s, ou seja o bloco foi apagado DE NOVO ~4 minutos depois da cura das 10:15, e NAO e AllowOverride. A ilha voltou sozinha as 11:15:20Z, no primeiro instante que a trava permitiu, com o sitemap e /veiculos/ em 200 na MESMA leitura — 92 leituras entre 10h42:14Z e 11h15:20Z, 91 em 404, pelo menos 55min29s no chao, e quem decidiu a duracao foi a TRAVA e nao o defeito. Regra 29.4-b no ARQUIPELAGO.md. Despacho ALTA para o Raphael. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
+executando_desde: null   # LIMPO no fecho desta execucao (passo 7 da secao 1). A reserva foi
+                         # as 10h17Z e foi RENOVADA DUAS vezes pela 1.1 (10h29Z e 10h43Z): o
+                         # bloco passou de 40 minutos por ESPERA e nao por trabalho — uma
+                         # espera de cron para a revisao 104 entrar (~11 min) e uma espera de
+                         # 34 MINUTOS pela trava de uma hora da 29.4 liberar a cura, que e o
+                         # que esta execucao mediu segundo por segundo.
+rede: aberta em 2026-11-17   # 20.2, MEDIDA e nao herdada: `rodametria.com.br` em 200 nas duas
+                             # leituras antes da reserva, com `aquametria.com.br` em 200 nas MESMAS
+                             # duas — 4 de 4 em 200. NAO ERA REDE o que estava errado hoje: o que
+                             # caiu foi a PORTA DE ENTRADA (29), e as tres irmas serviam
+                             # `/wp-sitemap.xml` em 200 nas mesmas passadas em que esta servia 404.
+                             # Foi essa medicao de controle que impediu a queda de ser lida como
+                             # egresso. A Open API da Shopee NAO foi usada nesta passada.
 bloqueada_por: null      # obrigatorio pela secao 2. `null` DE PROPOSITO: o que falta (gov.br para a F1, as prefeituras para a camada municipal, as tres etiquetas do Mercado Livre) trava a FABRICA e nao a ILHA, e isso se escreve no despacho, que e o canal da 12.2. Preenche-lo congelaria tambem os blocos que ja podem andar.
 bloco_atual: |
-  A MESMA LOJA ANUNCIAVA O MESMO VEICULO NOS DOIS CARTOES MAIS CAROS DE
-  /veiculos/moto-eletrica/, E A MEDIANA PUBLICADA CONTAVA O ANUNCIO DUAS VEZES.
-  Revisoes 102 e 103 no ar, conferidas (18.4). Este campo e a memoria desta ilha
-  enquanto `/areas/projeto-rodametria.md` nao existir, e o PROMPT.md manda quem
-  fecha bloco escrever nele o proximo passo desbloqueado.
+  A PORTA CAIU PELA SEXTA VEZ NESTA RAIZ E A CURA DA 29.4 RODOU, ESCREVEU QUE
+  REPOS O BLOCO, E A ILHA CONTINUOU NO CHAO. Nenhum bloco da fila (18.5): ilha
+  com defeito no ar nao recebe pagina nova. Este campo e a memoria desta ilha
+  enquanto `/areas/projeto-rodametria.md` nao existir.
 
-  A FILA ESTAVA ACABADA E NAO HAVIA DESPACHO ABERTO. O que esta passada executou
-  foi o ACHADO que a execucao das 17h1xZ deixou escrito aqui "para a ronda
-  decidir" — e ele era MAIOR do que o achado dizia. Tres das quatro metades sao
-  coisa que o leitor VE:
+  O QUE EU ACHEI AS 10h19Z, logo depois de reservar: 10 das 11 URLs e as TRES
+  portas da 29.2 em 404 na pagina da HostGator (2.361 bytes), com `/` em 200 e
+  o REST VIVO por `?rest_route=`. As tres irmas em 200 nas mesmas passadas —
+  NAO era rede, e foi o controle verde que impediu a leitura errada.
 
-    cartao 1  "11.11 Moto Eletrica Adulto Panda A4 ... 150kg"   R$ 1.096,38
-    cartao 2  "Moto Eletrica Adulto Panda A4 ... 150kg"         R$ 1.522,76
+  O QUE ERA NOVO, e nao e a queda: o log do `/status` tinha DUAS linhas de cura
+  — 16/11 23:02 e 17/11 10:15, as duas dizendo `bloco WordPress reposto —
+  1057 bytes [NFD EPC] -> 1580 bytes [NFD EPC, WordPress]`. Duas coisas saem
+  disso, e as duas eram perguntas PRE-REGISTRADAS em 12/11:
+  1. A FREQUENCIA: duas curas em 11h18m, e como a trava 1 so dispara com o
+     bloco AUSENTE, a das 10:15 prova que algo desfez a das 23:02. A regua de
+     12/11 era literal — duas em 24h muda o chamado de "o arquivo e reescrito"
+     para "e reescrito com frequencia".
+  2. A CURA DAS 10:15 NAO DEVOLVEU AS PAGINAS. Quatro minutos depois as portas
+     estavam em 404. Em 12/11 a mesma linha devolveu as 10 URLs em 8 minutos.
 
-  os dois da loja `francyellenoliveira` (shop_id 277054573), itens 58273014613 e
-  58273026115, com o titulo igual menos a cabeca.
+  E EU NAO CONSEGUIA DIZER QUAL DOS DOIS MUNDOS ERA, que e o trabalho da
+  passada. (a) bloco no arquivo e Apache ignorando => AllowOverride do
+  hospedeiro, e pela 29.4 isso e CHAMADO. (b) bloco apagado de novo com a trava
+  2 queimada => ESPERAR, sem chamado nenhum. CONSERTOS OPOSTOS, e no mundo (b)
+  o `/casca` e o `/status` respondem BYTE POR BYTE o que respondem com a porta
+  DE PE. O retrato da 29.3 responderia e pede o token do Sync — PROCURADO pela
+  29.3-a no PROMPT.md, nos snippets e em ~/.claude, e NAO esta nesta nuvem.
 
-  1. QUEM CLICASSE NO CARTAO 2 PAGAVA R$ 426,38 MAIS (38,9%) pelo mesmo produto
-     da mesma loja. Nao e escolha a oferecer: e a pagina cobrando do leitor por
-     existir.
-  2. A MEDIANA PUBLICADA ESTAVA ERRADA: R$ 5.011,38 sobre 4 "ofertas" contra
-     R$ 8.500,00 sobre as 3 DISTINTAS — R$ 3.488,62, no primeiro paragrafo da
-     pagina. E o item 3 do despacho de 04/11 num traje novo: la a mediana virou
-     o MINIMO por cinco precos iguais, e o conserto alcancou o CARROSSEL e nao a
-     CONTA.
-  3. A PAGINA PUBLICAVA `11.11` COMO NOME DO VEICULO no primeiro cartao — a
-     familia do item 1 de 09/11 (identificador de repositorio como nome de
-     produto), agora com identificador de CAMPANHA da loja.
-  4. toda frase "X dos 4" contava o mesmo anuncio duas vezes: "2 dos 4 declaram
-     a carga maxima, e os 2 dizem o mesmo numero: 150 kg" eram UM.
+  O ENTREGUE: casca 1.28.0, secao 14-b, revisao 104. O `/casca` serve `porta`
+  com `tem_bloco_wordpress` (true/false/NULL) e `cura_liberada_em_s`, SEM
+  TOKEN. NAO serve bytes, nome dos outros blocos nem linha do arquivo — a 29.3
+  reserva isso para a rota com token. Regra no contrato: 29.4-b, e ela vale
+  para TODA ilha com a cura (hoje alcanca a clubedomosaico, por despacho,
+  porque a secao 3 proibe esta execucao de editar ilha que nao reservou).
 
-  POR QUE NENHUM PORTAO VIA, E O `escolher_carrossel` NAO ESTA ERRADO: a regra
-  dele e de PRECO e os dois precos sao distintos. Ela recusa deduplicar por
-  produto com a razao certa, escrita no proprio codigo em 04/11 — "exigiria
-  afirmar que dois anuncios de duas lojas SAO o mesmo produto, e esta ilha nao
-  mede isso". Esta passada nao fura aquela recusa: ela e de UMA LOJA SO, e quem
-  afirma a identidade e o VENDEDOR, que publicou as DUAS formas do mesmo titulo.
+  E ELE RESPONDEU NA PRIMEIRA LEITURA NO AR (10h41:01Z): `tem_bloco_wordpress
+  false`, `cura_liberada_em_s 2057`. MUNDO (b), e a aritmetica fecha sozinha —
+  2.057 s poem a trava em 10:15:18, o minuto da linha da cura.
 
-  A REGUA E DE FORMA E ESTREITA: a cabeca sai so quando e um par de numeros com
-  ponto, barra ou hifen (11.11, 12.12, 9.9, 11/11). `1000W Moto ...`, `48V ...`,
-  `2026 ...` e `2 Unidades de Capacete ...` ficam intactos — e o `2 Unidades` e o
-  caso que mandou a regua ser de FORMA e nao de "cabeca sem letra": ali o numero
-  E o produto.
+  O CICLO MEDIDO SEGUNDO POR SEGUNDO, e e a prova que o chamado nunca teve: 92
+  leituras entre 10h42:14Z e 11h15:20Z, 91 em 404, a contagem caindo de 1983 s
+  para 19 s, e as 11:15:20Z o bloco voltando JUNTO com o 200 do sitemap e do
+  /veiculos/ — na mesma leitura. PELO MENOS 55min29s no chao, e quem decidiu a
+  duracao foi a TRAVA e nao o defeito. Dois Syncs rodaram dentro da queda
+  (10:40:07 e 11:09:54) e a cura ficou CALADA nos dois, como a trava 2 manda.
+  A TRAVA 2 NAO ESTA ERRADA: ela impede o laco de reescrita da raiz que a 29.4
+  recusou. Afrouxa-la e decisao do Raphael.
 
-  `serve` NAO FOI TOCADO, e isso e o item 3 do despacho de hoje sendo obedecido:
-  nasce `repetido_por`, e quem le a pagina usa `entra_na_pagina`, que e as duas
-  perguntas. A marca e DERIVADA, refeita do zero em `recontar_resumo` — no dia em
-  que o mais barato sair do ar, o mais caro volta sozinho. Quarentena da 25.11 e
-  para anuncio MORTO; este esta vivo.
+  PORTOES: teste-cura-da-porta.php 174 -> 249 afirmacoes e 5 -> 7 mutacoes
+  cobradas (M6: `nao sei` saindo como porta caida manda abrir chamado por
+  defeito que ninguem mediu; M7: bloco ausente com a leitura do bloco presente
+  manda abrir chamado onde a proxima requisicao consertaria).
+  conferir-no-ar.py: a QUINTA grandeza na linha da causa da 29.7(3), autoteste
+  138 -> 151, com a regua velha OBRIGADA a discordar (20.8) e retrato mal
+  formado sem virar veredito. E uma frase VENCIDA caiu de dentro do portao: ele
+  dizia "esta ilha ainda NAO a tem" sobre a cura, e ela a tem desde 12/11.
+  Bancada: 51 portoes sem rede, 0 falha. Portao da 20.4 na revisao 104: 8
+  declarados, 8 lidos, 8 `ok`, com a linha da cura FORA do grupo da revisao.
 
-  A CONTA DA 25.9: 57 anuncios julgados no banco inteiro, 1 veredito mudou, no
-  sentido `entra_na_pagina True -> False`. Zero afrouxamento.
+  A ILHA ESTA INTEGRA AS 11h16Z (18.4): 11 de 11 URLs em 200, as tres portas da
+  29.2 em 200 com content-type certo, caminho virgem em 404 na pagina da
+  propria ilha (73.151 bytes, zero HostGator, 28 do nome da ilha).
 
-  E UM SEGUNDO DEFEITO, ACHADO NO AR DEPOIS DE A REVISAO 102 ENTRAR, por um
-  `grep` por `11.11` no HTML servido e nao por portao nenhum: o nome visivel
-  estava limpo e o `alt` da foto do 1o cartao ainda dizia "11.11 Moto Eletrica
-  Adulto Panda A4 ...". A metade que nao viajou (32.5-c). O `alt` passa a DERIVAR
-  do nome da tela, nos dois lados (gerador e coletor).
+  O PROXIMO PASSO DESBLOQUEADO:
+  - MEDIR A DURACAO DO CICLO NO AR, que e a metade que falta do numero do
+    chamado. Agora basta ler `/casca` -> `porta.tem_bloco_wordpress`: se o
+    bloco cair de novo em minutos, a ilha esta oscilando, e isso e material do
+    chamado e nao conserto de codigo.
+  - O DESPACHO ALTA e do Raphael: levantar a porta se estiver no chao, levar ao
+    chamado da HostGator a serie MAIS a pergunta do AllowOverride (ele mudou
+    entre 12/11 e hoje? em 12/11 a reposicao devolveu as paginas em 8 minutos e
+    hoje a das 10:15 nao devolveu nenhuma), e a decisao sobre o TOKEN desta
+    ilha, aberta desde 05/11.
+  - A LEITURA DE 18/11 HERDA UMA PERGUNTA CARA: esta ilha serviu 404 em tudo
+    menos a home por pelo menos 55 minutos hoje, e por um trecho desconhecido
+    entre 16/11 20h16Z e 17/11 10:15. Se o Googlebot passou em qualquer uma das
+    duas janelas, o balde "Nao encontrado (404)" ganha pagina nova — foi assim
+    que /veiculos/bicicleta-eletrica/, a pagina de 673 mil buscas/mes, saiu do
+    indice em 05/11. Vale a Inspecao de URL das 11 e a data do ultimo
+    rastreamento de cada uma.
+  - A FILA SEGUE ACABADA (so o 5, que depende de um `pauta.md` inexistente e
+    que pela 17.1 nao e arquivo da Fundacao) e as duas pontas de pagina de
+    produto nova seguem travadas: a 30.8 para a SERP e o Mercado Livre para o
+    produto das duas consultas de maior volume.
 
-  E ELE FECHA A CAUSA DO PRIMEIRO POR OUTRO LADO: a casca serve `alt=""` desde
-  11/11 quando o `alt` e IGUAL ao nome do cartao (leitor de tela ouviria o titulo
-  duas vezes). O `11.11` chegava ao ar PORQUE a cabeca de campanha fazia o `alt`
-  DIFERIR do nome e desligava aquela trava. Dois defeitos, uma causa — e o
-  `alt=""` que o ar passou a servir NAO e regressao: e a trava de 11/11
-  disparando pela primeira vez nestes cartoes.
-
-  A BORDA QUE ISSO MOSTROU, A UM TITULO DE DISTANCIA: o corte em 120 do coletor
-  produziria `alt` QUASE igual num nome de 121 caracteres, e a trava da casca
-  compara IGUALDADE — ela deixaria de disparar CALADA. O nome mais longo da
-  vitrine de hoje tem EXATAMENTE 120. O corte saiu dos dois lados, e o mundo do
-  nome longo foi FABRICADO no portao, porque o dado de hoje nao o tem.
-
-  PORTOES: regua 95 casos / 254 afirmacoes; `aplicar-oferta-repetida.py
-  --conferir` (nasceu nesta passada) 8 mundos fabricados / 233 afirmacoes, sempre
-  com as DUAS metades (duas lojas de titulo igual NAO deduplicam; A4 e A5 da
-  mesma loja NAO deduplicam); mutacoes-produto 38 de 38 reprovadas, 0
-  sobrevivente, 0 inerte, com 6 novas. Bancada 51 portoes sem rede e 56 com rede,
-  0 falha nas duas.
-
-  O PROXIMO PASSO DESBLOQUEADO, e ele e curto porque a fila esta acabada:
-  - A FILA DE BLOCOS SEGUE ACABADA. So falta o 5 (artigos-ancora), que depende de
-    um `pauta.md` INEXISTENTE e que pela 17.1 NAO e arquivo da Fundacao.
-  - A regua da repeticao ja vale para TODA consulta e para toda coleta nova: a
-    primeira coleta de `scooter-eletrica`, que ainda nao tem pagina, nasce sem o
-    defeito de hoje — como a regua da cabeca do titulo de 16/11 de manha.
-  - O QUE ESTA PASSADA NAO DECIDIU, e fica escrito para ninguem redescobrir: a
-    repeticao entre LOJAS DIFERENTES do mesmo produto nao e medida e nao deve
-    ser, pela 25.9 — titulo parecido entre lojas nao e prova. Se um dia houver
-    identificador de produto na resposta da loja, a pergunta muda de natureza.
-  - As duas pontas de pagina de produto nova seguem travadas: a 30.8 para a SERP
-    e o Mercado Livre para o produto das duas consultas de maior volume. O
-    despacho ALTA do `.gov.br`/`.leg.br` segue aberto e continua pedindo DUAS
-    linhas na lista de permitidos — gesto do Raphael, nao desta nuvem.
-  - E UMA MEDICAO DE CRON PARA QUEM FOR ESPERAR DESEMBARQUE AQUI: as duas esperas
-    desta execucao foram de ~8 e ~26 minutos (Sync as 19:31:32, revisao 102 as
-    19:40:05; depois revisao 103 as 20:10:14). O intervalo de 1.800 s da 20.9 e o
-    TETO e nao o passo: minha previsao de "~20:01Z" para a 102 errou por 20
-    minutos para o lado pessimista. Visitar nao antecipa evento que nao venceu, e
-    tambem nao se sabe quando ele vence — a leitura certa e a do `/status`.
 ---
 
 # Estado da ilha RODAMETRIA
