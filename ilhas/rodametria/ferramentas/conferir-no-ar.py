@@ -1435,7 +1435,8 @@ def diagnostico_da_porta(cod_home, cods_das_portas, rest_vivo, porta_publica=Non
             "manha, 11/11 noite e 12/11; robometria 30/10 e 11/11; rodametria 05/11 "
             "e 17/11.) %s"
             % (len(cods_das_portas), "/".join(str(c) for c in cods_das_portas),
-               leitura_do_retrato_da_porta(porta_publica)))
+               leitura_do_retrato_da_porta(porta_publica))
+            + leitura_do_contador_da_porta(porta_publica))
 
 
 def leitura_do_retrato_da_porta(porta_publica):
@@ -1481,6 +1482,72 @@ def leitura_do_retrato_da_porta(porta_publica):
     return ("E A QUINTA GRANDEZA DIZ QUE ESTA PASSADA MESMA CONSERTA: bloco AUSENTE com "
             "a cura LIVRE. Abra a raiz desta ilha com uma quebra de cache, que e o que "
             "dispara o gancho, e releia o `/status` procurando a linha `cura da porta:`.")
+
+
+def leitura_do_contador_da_porta(porta_publica):
+    """A SEXTA GRANDEZA — A FREQUENCIA, QUE E O ARGUMENTO DO CHAMADO (17/11/2026).
+
+    As cinco grandezas dizem O QUE esta errado agora e QUAL dos dois consertos
+    e o certo. Nenhuma delas diz QUANTAS VEZES — e a frequencia e a unica coisa
+    que o chamado na HostGator ainda nao tinha medida, porque ela era contada
+    pelas linhas `cura da porta:` do log, e a cura tenta no maximo uma vez por
+    hora (trava 2 da 29.4). Apagamento que cai dentro da hora queimada nao
+    escreve linha nenhuma; e o log e uma janela de 40 linhas que ROLA.
+
+    Devolve STRING VAZIA quando nao ha contador, e nao uma frase dizendo zero:
+    casca anterior a 1.29.0 nao tem a 14-c, e zero aqui soaria "nunca caiu" com
+    cara de conferido. A ausencia e o sinal (20.7), e o campo e `null` por isso.
+    """
+    if not isinstance(porta_publica, dict):
+        return ""
+    q = porta_publica.get("quedas")
+    if not isinstance(q, dict):
+        return ""
+
+    try:
+        ep = int(q.get("episodios_vistos"))
+    except (TypeError, ValueError):
+        return ""
+    if ep <= 0:
+        # Contador carregado e com ZERO queda: dizer isso e informacao, e dizer
+        # o que o zero NAO prova e o que impede o numero de soar conferido.
+        return (" E A SEXTA GRANDEZA (a frequencia) DIZ ZERO, e zero aqui NAO quer dizer "
+                "que esta porta nunca caiu: o contador da 14-c conta desde que entrou no "
+                "ar, e as quedas anteriores a ele estao em `dados/consertos.md`.")
+
+    pedacos = [" E A SEXTA GRANDEZA E A FREQUENCIA, QUE E O ARGUMENTO DO CHAMADO: "
+               "o contador da 14-c viu %d queda(s) nesta porta" % ep]
+    try:
+        rep = int(q.get("reposicoes_da_cura"))
+        pedacos.append(", com %d reposicao(oes) da cura" % rep)
+    except (TypeError, ValueError):
+        pass
+    primeira = q.get("primeira_no_chao")
+    if isinstance(primeira, str) and primeira:
+        pedacos.append(", a primeira em %s" % primeira)
+
+    ep_atual = q.get("episodio")
+    if isinstance(ep_atual, dict):
+        try:
+            dur = int(ep_atual.get("duracao_minima_s"))
+        except (TypeError, ValueError):
+            dur = None
+        if dur is not None:
+            pedacos.append(". A queda corrente: pelo menos %d s no chao, medidos entre a "
+                           "primeira e a ultima leitura (%s a %s) — e `pelo menos` porque "
+                           "ela comecou antes da primeira leitura e pode nao ter terminado "
+                           "na ultima"
+                           % (dur, ep_atual.get("comecou"), ep_atual.get("ultima_no_chao")))
+        if ep_atual.get("reposto_depois") is True:
+            pedacos.append(". A cura repos o bloco DEPOIS da ultima leitura no chao, "
+                           "entao esta queda ja terminou do lado do arquivo")
+
+    pedacos.append(". ESTE NUMERO NAO ROLA com a janela de 40 linhas do log e conta "
+                   "tambem o apagamento que cai DENTRO da hora queimada da trava 2, que "
+                   "no log nao deixa rastro nenhum. Copie-o para `dados/consertos.md` "
+                   "antes de ele ser a unica copia.")
+
+    return "".join(pedacos)
 
 
 def codigo_do_erro(bruto):
@@ -3352,6 +3419,55 @@ def autoteste():
             and "CHAMADO" not in linha,
             "13-b. retrato mal formado (%r) estourou ou virou chamado — corpo que nao e "
             "retrato nao e prova de nada" % (ruim,))
+
+    # MUNDO 13-c — A SEXTA GRANDEZA, A FREQUENCIA (17/11/2026, 14-c da casca).
+    # A quinta separa os dois consertos; nenhuma das cinco diz QUANTAS VEZES. E
+    # a frequencia e a unica coisa que o chamado na HostGator ainda nao tinha
+    # medida, porque ela era contada por linha de log — e a cura tenta no
+    # maximo uma vez por hora, entao apagamento dentro da hora queimada nao
+    # escreve linha, e a janela de 40 linhas ROLA.
+    base_caida = {"tem_bloco_wordpress": False, "cura_liberada_em_s": 2700}
+    com_conta = dict(base_caida, quedas={
+        "episodios_vistos": 4, "leituras_no_chao": 91, "leituras_nao_sei": 0,
+        "reposicoes_da_cura": 3, "primeira_no_chao": "2026-11-16 23:02Z",
+        "episodio": {"comecou": "2026-11-17 10:19Z", "ultima_no_chao": "2026-11-17 11:15Z",
+                     "duracao_minima_s": 3329, "reposto_depois": False},
+        "leitura": "qualquer"})
+    sem_conta = diagnostico_da_porta(200, quatro, True, base_caida)
+    linha_conta = diagnostico_da_porta(200, quatro, True, com_conta)
+
+    diz("SEXTA GRANDEZA" not in sem_conta,
+        "13-c. casca sem a 14-c nao pode produzir frase de frequencia — zero inventado "
+        "aqui soaria `nunca caiu` com cara de conferido, e o campo e `null` por isso")
+
+    diz("4 queda" in linha_conta and "3329 s" in linha_conta and "pelo menos" in linha_conta,
+        "13-c. a linha tem de trazer a contagem de quedas e a duracao MINIMA da queda "
+        "corrente — `pelo menos`, porque ela comecou antes da primeira leitura")
+
+    diz("DENTRO da hora queimada" in linha_conta and "consertos.md" in linha_conta,
+        "13-c. a linha tem de dizer POR QUE este numero vale mais que a contagem por "
+        "log, e mandar copia-lo antes de ele ser a unica copia")
+
+    diz(sem_conta != linha_conta and sem_conta == linha_conta.split(" E A SEXTA")[0],
+        "13-c. a sexta grandeza tem de ACRESCENTAR a linha das cinco, nunca reescreve-la "
+        "— e sem ela a linha tem de ser identica a de antes (20.8)")
+
+    zero_conta = diagnostico_da_porta(200, quatro, True, dict(base_caida, quedas={
+        "episodios_vistos": 0, "leituras_no_chao": 0, "leituras_nao_sei": 3,
+        "reposicoes_da_cura": 0, "primeira_no_chao": None, "episodio": None,
+        "leitura": "qualquer"}))
+    diz("DIZ ZERO" in zero_conta and "consertos.md" in zero_conta,
+        "13-c. contador em ZERO tem de dizer o que o zero NAO prova — ele conta desde "
+        "que entrou no ar, e as quedas anteriores estao em dados/consertos.md")
+
+    for ruim in (None, {}, [], "4", {"episodios_vistos": "muitas"},
+                 {"episodios_vistos": 2, "episodio": "ontem"},
+                 {"episodios_vistos": 2, "episodio": {"duracao_minima_s": "longa"}}):
+        linha = diagnostico_da_porta(200, quatro, True, dict(base_caida, quedas=ruim))
+        diz(isinstance(linha, str) and "PORTA DE ENTRADA CAIU" in linha
+            and "AllowOverride" not in linha,
+            "13-c. contador mal formado (%r) estourou ou mudou o veredito das cinco "
+            "grandezas — corpo que nao e contador nao e prova de nada" % (ruim,))
 
     diz(diagnostico_da_porta(200, [], True) is None,
         "13. sem porta medida nenhuma nao se nomeia causa — lista vazia nao e prova de "
