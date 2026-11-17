@@ -3,6 +3,108 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-11-17 13h17Z–13h4xZ — **A SERIE QUE O CHAMADO LEVA ESTAVA SENDO CONTADA PELO QUE A CURA CONSEGUIU DIZER, E A TRAVA DE UMA HORA E O QUE A FAZ CALAR.** Nenhum bloco da fila (ela segue acabada). O entregue e o **contador de quedas da porta** — casca **1.29.0**, secao **14-c**, revisao **105** — e a regra **29.4-c** no contrato. A ilha segue de pe.
+
+**A ILHA DESTA EXECUCAO:** rodametria, por **foco** (`foco.md` nomeia a rodametria, foco total e absoluto desde 27/10). Pela **1.2** nao ha escolha a fazer. **Passo 1 do disparo, medido:** `git fetch origin main` trouxe o `main` de `68808f3` para **`7e9aa76`** — e trouxe com **`forced update`**, que e a assinatura do rebase da execucao anterior e nao de perda de trabalho. A branch `claude/dreamy-mccarthy-0zsfho` (local e remota) esta **identica ao `main`**: 0 commit a frente, 0 atras, **nada a mesclar antes**, e **nenhum PR aberto**.
+
+**A RESERVA (passo 5 da secao 1):** `executando_desde` estava **`null`**, que pela **1.1** ja prova que nao havia bloco da Fundacao vivo. O ultimo commit na pasta da ilha era de **11h45Z**, **1h31m** atras — fora da janela de 40 minutos da 1.1 por qualquer leitura. Reserva as **13h17Z**, **ganha no push na primeira tentativa**, e **nao renovada**, porque o bloco fechou em menos de 40 minutos de trabalho.
+
+**E A REDE FOI MEDIDA ANTES DO TRABALHO, PELA 20.2, E NAO HERDADA DO CAMPO:** `rodametria.com.br` em **200 nas duas leituras**, com `aquametria.com.br` em **200** nas mesmas duas — 4 de 4 em 200, mais `/wp-sitemap.xml` e `/veiculos/` em 200 na mesma passada.
+
+**POR QUE NAO ABRI BLOCO DA FILA, e nao e omissao (18.5):** a fila desta ilha **segue acabada**. Todos os blocos estao entregues menos o **5** (artigos-ancora), que depende de um `pauta.md` que **nao existe** e que pela **17.1** nao e arquivo da Fundacao. As duas pontas de pagina de produto nova seguem travadas: a **30.8** para a SERP e o Mercado Livre para o produto das duas consultas de maior volume — as duas em despacho do Raphael. **E o despacho ALTA aberto no `PROMPT.md` e DA FUNDACAO PARA O RAPHAEL**: os tres gestos dele sao chamado, cPanel e a decisao sobre o token. **Nenhum item dele e acionavel desta nuvem**, e eu procurei o token antes de escrever isto (29.3-a) — ele nao esta aqui, e a rota confirma de fora com 401 `rodametria_rotas_token_ausente`.
+
+---
+
+### PRIMEIRO: A RECONFERENCIA DAS TRES COISAS QUE A PASSADA DAS 11h17Z DEIXOU PEDIDAS — E AS TRES ESTAO BOAS
+
+A linha de `dados/consertos.md` de hoje pedia tres reconferencias, e elas vinham antes de qualquer trabalho novo (18.5):
+
+| pedido | medido |
+|---|---|
+| (a) as 11 URLs e as tres portas da 29.2 de volta em 200, com o caminho virgem em 404 na pagina da propria ilha | **`conferir-no-ar.py` APROVADO: 807 afirmacoes, 0 falha** |
+| (b) o que o `/casca` responde em `porta.tem_bloco_wordpress` — a **primeira leitura dele com a ilha de pe** | **`true`** com `cura_liberada_em_s` **0**, e as portas em **200**: a leitura sa |
+| (c) se ha linha NOVA de `cura da porta:` depois das 11:15 | **nenhuma**, lido as 13h19Z e de novo as 13h40Z |
+
+**E O (c) DEU O NUMERO QUE A SERIE 2 NAO CONSEGUIU FECHAR.** A passada das 11h17Z escreveu, ao lado da propria medicao: *"o limite inferior e 27min20s e **nao ha limite superior medido**"*. Agora ha: **a reposicao das 11:15:20Z sobreviveu pelo menos 2 h 26 min**, por **tres caminhos independentes** — 50 leituras entre 13h18:33Z e 13h41:41Z, as 50 com o bloco presente e as 50 com `/wp-sitemap.xml` e `/veiculos/` em 200; nenhuma linha de cura nova no log (e o log vem do mais novo para o mais velho, entao nada rolou por cima); e a **deducao que fecha o intervalo de 1h35m entre as duas series**, que esta escrita passo a passo no arquivo da serie: a trava 2 venceu as 12h15:20Z, dali em diante qualquer apagamento seria curado na primeira requisicao que chegasse ao PHP e **escreveria linha**, e uma requisicao chegou (o Sync rodou as **13:16:20**).
+
+**TRES INTERVALOS DA MESMA RAIZ NO MESMO DIA: ~4 min, >=27 min, >=2 h 26 min.** Isso nao e um processo com taxa: e um **evento irregular**, que e o que a **29.5(b)** manda procurar. A errata das 11h43Z ja havia corrigido a frase; **esta e a terceira medicao independente a confirma-la**, e e ela que vai no chamado.
+
+---
+
+### O DEFEITO QUE VIROU O TRABALHO DA PASSADA, E ELE E DE CONTAGEM — NAO DE PORTA
+
+As tres medicoes acima custaram **tres execucoes da Fundacao sentadas em cima da ilha**, lendo de 25 em 25 segundos. E nenhuma delas ve a queda que acontece **quando ninguem esta olhando**. Foi ao procurar onde essa queda ficaria registrada que o defeito apareceu — e ele mora na **juncao de duas regras que estao certas**:
+
+1. **A cura tenta no maximo UMA VEZ POR HORA** (trava 2 da 29.4) e, com a hora queimada, **recusa calada** (trava 4, e o MUNDO E do portao cobra esse silencio com razao: motivo de recusa a cada requisicao encheria a janela de 15 linhas e empurraria item de desembarque para fora dela, 20.4). Entao **apagamento que cai dentro da hora queimada nao escreve linha nenhuma e nao existe para o chamado na HostGator.**
+2. **E o log e uma janela de 40 linhas que ROLA.** O portao registrou hoje, com estas palavras: *"a janela do log tem 15 linhas e esta CHEIA — item de revisao ANTERIOR que rolou para fora dela nao foi conferido por ninguem"*. A serie de cinco dias desta ilha **so existe** porque execucoes a copiaram a mao para `dados/consertos.md` antes de ela rolar.
+
+**LOGO A FREQUENCIA QUE O CHAMADO USA E UM PISO DITO COMO SE FOSSE A CONTA.** E e pelo **pequeno demais** que um fornecedor fecha chamado — a HostGator responde "tres vezes em cinco dias" com "evento isolado" muito mais facilmente do que responde a serie de verdade.
+
+**E E A MESMA FAMILIA DO DEFEITO QUE ESTA ILHA CORRIGIU QUATRO HORAS ANTES, COM O SINAL INVERTIDO.** As 11h43Z a errata trocou *"e reescrito poucos minutos depois de cada reposicao"* por *"em horarios irregulares"*, porque um intervalo de ~4 minutos havia sido lido como **taxa** — numero **grande demais**. Aqui a contagem por log sai **menor** que a verdade. **As duas pontas do mesmo erro de metodo, no mesmo dia, na mesma porta:** numero que parece medicao e mede outra coisa (secao 8), a familia do `git log` raso da 1.1 — *o instrumento responde, e a resposta e curta*.
+
+### O QUE FOI ENTREGUE — 14-c, O CONTADOR QUE NAO ROLA E NAO PRECISA DE NINGUEM OLHANDO
+
+**Casca 1.29.0, revisao 105.** O campo `porta` do `/casca` ganha `quedas`, **sem token**:
+
+```
+quedas: { episodios_vistos, leituras_no_chao, leituras_nao_sei, reposicoes_da_cura,
+          primeira_no_chao, episodio: { comecou, ultima_no_chao, duracao_minima_s,
+          reposto_depois }, leitura }
+```
+
+**A REGRA DO EPISODIO TEM DUAS PONTAS, E CADA UMA PEGA O QUE A OUTRA PERDE.** Queda nova e leitura no chao que vem depois de o bloco ter estado no lugar, e "ter estado no lugar" se prova por:
+
+- **(a) a cura confirmou a reposicao** desde a ultima leitura no chao — e a comparacao e **`>=`**, nao `>`, porque a cura dispara na **mesma requisicao** da leitura e os dois carimbos caem no **mesmo segundo**. Com `>`, o apagamento de ~4 minutos depois da cura das 10:15 **nao** seria contado, que e exatamente a queda que esta secao existe para ver. **A mutacao M9 compra esse `>=`.**
+- **(b) passou mais de uma hora sem nenhuma leitura no chao** — e e essa ponta que pega a porta **levantada a mao no cPanel**, que foi como ela levantou em 06/11: ali a cura nao confirma nada, e o caminho (a) perderia a queda seguinte. **O intervalo e o MESMO 3600 s da trava 2, e o portao reprova se os dois divergirem:** numa ilha com a cura carregada, uma hora inteira sem leitura no chao e uma hora em que a cura tambem nao foi chamada, logo nada aconteceu naquela janela.
+
+**E O QUE A REGRA PODE ERRAR ESTA ESCRITO, nao escondido:** queda unica e longa, com uma hora inteira sem nenhuma requisicao chegando ao PHP no meio, sai contada como **duas**. Por isso o campo se chama **`episodios_vistos`** e nao "numero de apagamentos", e por isso a `leitura` publica **diz a regra inteira** em vez de entregar o numero sozinho. **Numero inflado perde chamado tao rapido quanto numero pequeno demais; o que nao perde e numero com a regua ao lado (23.4).**
+
+**CUSTO ZERO NA PORTA DE PE, E ISSO E UMA AFIRMACAO DO PORTAO E NAO UMA PROMESSA DO COMENTARIO (32.5-d).** O gancho sai no passo 1 com **uma leitura de arquivo e nenhuma option**, e o contador e chamado **depois** daquele `return` — a escrita so acontece na requisicao em que a porta **ja** esta no chao. O MUNDO B passou a exigir **mil requisicoes de porta de pe sem UMA escrita**: contador que cobra banco da ilha sadia e contador que alguem arranca no primeiro dia lento. **E nao ha coalescencia de proposito:** contador amostrado seria contador que diz menos do que viu, que e o defeito que esta secao conserta.
+
+**A ORDEM E O MECANISMO: o contador e chamado ANTES da trava.** Contar depois de perguntar a hora e **nao contar**. **A mutacao M8 compra essa linha**, e e ela que impede alguem de "arrumar" a ordem por elegancia.
+
+**O QUE O RETRATO NAO PUBLICA, de proposito e pelo mesmo argumento do 14-b:** nem bytes, nem o nome dos **outros** blocos, nem uma linha do arquivo. Contagem e hora **da propria ilha** saem — e o log do `/status`, que e publico, ja carimba o minuto de cada cura desde 12/11. O retrato com nome de bloco e tamanho **continua atras do token**, onde a 29.3 o pos.
+
+### OS PORTOES, E O ACHADO DE METODO DO MUNDO K
+
+`ferramentas/teste-cura-da-porta.php`: **249 -> 404 afirmacoes** (144 na mae + 260 nos processos filhos) e **7 -> 10 mutacoes cobradas**, 0 falha.
+
+**O MUNDO K SE FABRICA NO DISCO, E ISSO E O ACHADO:** a trava 2 e uma **option**, nao uma hora de relogio. O portao a queima com uma linha e exige, no mesmo mundo, **as duas coisas ao mesmo tempo** — o **silencio no log** (nenhuma linha, arquivo intocado, `flush` nao rodado) **e o numero no contador**. Era isso que parecia impossivel de medir sem esperar uma hora de verdade.
+
+- **K-b:** seis requisicoes dentro da **mesma** queda saem como **uma** queda e seis leituras. A ilha serviu 404 em **91 das 92** leituras de hoje de manha; se cada leitura abrisse episodio, o argumento do chamado sairia **inflado**.
+- **K-c:** o ciclo inteiro de 17/11 num mundo so — a cura repoe, o contador carimba a reposicao, e o apagamento seguinte sai como **queda nova**.
+- **M10:** `nao sei` (arquivo ausente ou ilegivel) entrando na contagem como queda. E a mesma confusao do M6, e ela manda abrir chamado por um defeito que ninguem mediu. `null` tem contador **proprio**, porque "nao consegui ler a porta 300 vezes" tambem e um fato, e e um fato **diferente**.
+
+**E A TRIPWIRE DAS CHAVES DO 14-b REPROVOU QUANDO O CAMPO NOVO ENTROU** — a afirmacao que exige a lista exata de chaves do retrato publico foi **a unica coisa que falhou** ao acrescentar `quedas`. E exatamente o que ela existe para fazer: **campo novo sem token nao passa calado, passa por ela.** Ficou anotada no portao como pedagio, e nao como estorvo.
+
+`ferramentas/conferir-no-ar.py`: a **SEXTA GRANDEZA** entra na linha da causa da 29.7(3) — a **frequencia** —, autoteste **151 -> 163 afirmacoes**, 0 falha. Ela **acrescenta** a linha das cinco e nunca a reescreve, e o autoteste **obriga as duas a serem identicas** quando o contador nao existe (20.8): casca anterior a 1.29.0 nao pode produzir frase de frequencia, e zero inventado ali soaria "nunca caiu" com cara de conferido. **Contador em zero diz o que o zero NAO prova** e manda ler `dados/consertos.md`. E contador **mal formado** — `None`, `{}`, string, `episodios_vistos` que nao e numero, episodio que nao e dicionario — nao estoura nem muda o veredito das cinco: corpo que nao e contador nao e prova de nada.
+
+**BANCADA: 51 portoes sem rede, 0 falha.** Rodada antes da construcao (18.5) e de novo no fecho.
+
+### A VERIFICACAO NO AR (secao 8 e 18.4)
+
+- **`conferir-no-ar.py` APROVADO: 807 afirmacoes, 0 falha**, na revisao **105** = **105** no `manifest.json`, casca **1.29.0**.
+- **Portao da 20.4, lido linha por linha:** a revisao 105 declara **8** itens aplicados e as **8** linhas de item foram lidas uma a uma, **todas dizendo `ok`**. A linha da cura das 11:15 caiu **fora** do grupo da revisao corrente, como a regua da 29.4 manda.
+- **O campo novo lido no ar as 13h4xZ:** `quedas.episodios_vistos: 0`, com a `leitura` dizendo, com todas as letras, que **zero ali nao quer dizer que esta porta nunca caiu** — ele conta desde que entrou no ar, e as quedas anteriores estao em `dados/consertos.md`. **A ausencia e o sinal (20.7), e o campo e `null` quando a 14-c nao esta carregada**, nunca um zero que soaria conferido.
+- **A espera de cron foi UMA, de ~11 minutos**, e o portao da 20.9 nomeou o veredito certo antes dela — `evento-nao-vencido`, nao "commit sem Sync". A revisao entrou as **13:39:48**, **6min32s antes** do teto de 13:46:20, porque o WordPress reagenda do horario **agendado** e nao do que rodou (medido nesta ilha em 05/11 e escrito no proprio portao).
+
+### O QUE ESTA EXECUCAO NAO FEZ, dito para ninguem procurar
+
+- **Nenhum bloco da fila**, e a fila segue acabada — so o 5 falta, e ele depende de um `pauta.md` que nao existe (17.1).
+- **Nao toquei na trava 2.** Ela decidiu os ~55 minutos no chao desta manha, e afrouxa-la **e decisao do Raphael e nao de uma execucao** — ela existe para impedir o laco de reescrita da raiz que a 29.4 recusou com todas as letras. O que esta passada fez foi tornar o custo dela **visivel**, nao menor.
+- **Nao nomeei a causa de origem do apagamento**, pela **29.5**. O que tem nome e o sintoma, a frequencia, o portao que a le e o reparo que a desfaz.
+- **Nao copiei a 14-c para a clubedomosaico**, que e a outra ilha com a cura: a **secao 3** proibe esta execucao de editar arquivo de ilha que ela nao reservou. A regra **29.4-c** no contrato manda toda ilha com a cura copiar, e isso vale para quem reservar aquela ilha.
+- **E saiu do repositorio o arquivo vazio `1580` na raiz**, criado por acidente por um redirecionamento de shell no commit `bd7a69f` desta manha. Nao era entrega de ninguem.
+
+### O PROXIMO PASSO DESBLOQUEADO
+
+1. **A PROXIMA PASSADA LE `porta.quedas` E COPIA O NUMERO PARA `dados/consertos.md`**, que e a ordem que a sexta grandeza imprime na propria linha. `episodios_vistos` maior que zero quer dizer que a porta caiu desde 13h40Z de 17/11, **com hora e duracao minima, inclusive a queda que o log nao registrou**. Se ele seguir em **zero**, a porta nao caiu — e **e a primeira vez que "nao caiu" e uma medicao em vez de uma ausencia de noticia.**
+2. **O DESPACHO ALTA SEGUE SENDO DO RAPHAEL**, e agora com dois gestos em vez de tres: o **chamado** com a frase do evento irregular e a serie anexada (o gesto 1, levantar a porta, caiu — ela voltou sozinha as 11:15 e segue de pe), e a **decisao sobre o token**, aberta desde 05/11, que e o que faria a proxima queda custar um comando em vez de uma hora.
+3. **A LEITURA SEMANAL DE 18/11 HERDA A PERGUNTA CARA QUE A PASSADA DAS 11h17Z DEIXOU:** esta ilha serviu 404 em tudo menos a home por pelo menos **55 minutos** hoje, e por um trecho desconhecido entre 16/11 20h16Z e 17/11 10:15. Se o Googlebot passou em qualquer uma das duas janelas, o balde "Nao encontrado (404)" ganha pagina nova — foi assim que `/veiculos/bicicleta-eletrica/`, a pagina de 673 mil buscas/mes, saiu do indice em 05/11. Vale conferir a Inspecao de URL das 11 e a data do ultimo rastreamento de cada uma.
+4. **A FILA SEGUE ACABADA e as duas pontas de pagina de produto nova seguem travadas:** a 30.8 para a SERP e o Mercado Livre para o produto das duas consultas de maior volume.
+
+---
+
 ## 2026-11-17 10h17Z–11h17Z — **A PORTA CAIU PELA SEXTA VEZ NESTA RAIZ E A CURA DA 29.4 JÁ NÃO ESTÁ BASTANDO: DUAS CURAS EM 11h18m, E A SEGUNDA NÃO DEVOLVEU AS PÁGINAS.** Nenhum bloco da fila (18.5). O que foi entregue é o **instrumento que separa os dois mundos que cabiam naquele retrato**, e que nenhum portão desta nuvem conseguia separar hoje. Casca **1.28.0**, seção **14-b**, revisão **104**.
 
 **A ILHA DESTA EXECUÇÃO:** rodametria, por **foco** (`foco.md` nomeia a rodametria, foco total e absoluto desde 27/10). Pela **1.2** não há escolha a fazer. **Passo 1 do disparo, medido:** `git fetch origin main` trouxe o `main` de `68808f3` para **`2f41627`**; a branch `claude/dreamy-mccarthy-78yxa9` (local e remota) está **idêntica a ele** — 0 commit à frente, 0 atrás —, logo **nada a mesclar antes**, e **nenhum PR aberto**.

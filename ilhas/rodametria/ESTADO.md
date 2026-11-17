@@ -15,16 +15,13 @@ urls_publicadas: 11       # 10 -> 11 em 16/11/2026: nasceu `/veiculos/moto-eletr
                           # a leitura semanal (21.6), nunca a Fundacao de cabeca.
 ultima_ronda: 2026-11-16T15:56Z   # RONDA DIARIA TECNICA de 2026-11-16, 15h3xZ-15h5xZ, medida na revisao 98 (status 98 = manifest 98), casca 1.27.0. TRES defeitos, ZERO consertos e nenhum tentado: nenhum dos tres e da lista 19.1 — link de afiliado MORTO na pagina que NASCEU HOJE (anuncio 23598774355 da GTRBSHOP, 4o cartao de /veiculos/moto-eletrica/, e dele sai o `ate: R$ 15.000,00` que a pagina publica), o 1o cartao daquela mesma pagina sendo uma BICICLETA COM PEDAIS numa pagina que define moto eletrica como 'sem pedalar' (a regua cobra o token `moto` em qualquer lugar do titulo, armadilha 1 da 25.7), e `degrau: 1` em 24 de 24 itens da vitrine sem nenhuma loja oficial de fabricante e sem a frase da 25.10. SETIMA ronda seguida desta ilha com zero conserto, e a causa mudou de lugar: ja nao nasce em snippet, nasce no dado do banco e na regua que o admite. Despacho de 3 itens no PROMPT.md. A ILHA ESTA SA NO ENCANAMENTO: 11 de 11 URLs em 200 em duas leituras com quebra de cache, as tres portas da 29.2 verdes, caminho virgem em 404 na pagina da ilha em TRES leituras (73.192 bytes, zero HostGator), zero pagina orfa na direcao de ENTRADA, zero link de miolo fora do sitemap, meta description maxima de 159, zero noindex, 56 de 56 links de loja com rel=sponsored e zero link cru, console 11 de 11 limpo do lado da ilha. TESTE DE VIDA: 28 leituras, 25 fichas (24 vivas, 1 MORTA) e 3 buscas (3 vivas), intestaveis ZERO, item sem piso ZERO, pela url_produto crua e nunca pelo link de afiliado. As tres ferramentas apertadas com entrada real: 24 de 24 contas certas na mao. Linha de `cura da porta:` nas ultimas 24h: NAO MEDIDA, nao zero (a janela do /status comeca em 16/11 11:40, 20.13). A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
 primeira_indexacao: null  # as duas primeiras URLs foram ao ar hoje; indexacao e trabalho de dias. Quem grava este campo e a leitura semanal, lendo o Search Console.
-ultima_execucao: 2026-11-17T11:17Z   # A PORTA CAIU PELA SEXTA VEZ NESTA RAIZ E A CURA DA 29.4 RODOU, ESCREVEU QUE REPOS O BLOCO, E A ILHA CONTINUOU NO CHAO. Nenhum bloco da fila (18.5). O entregue e o INSTRUMENTO: casca 1.28.0, secao 14-b, revisao 104 — `/casca` serve `porta` com `tem_bloco_wordpress` e `cura_liberada_em_s`, SEM TOKEN, e foi esse campo que respondeu a pergunta do dia na PRIMEIRA leitura no ar: `false` com 2057 s, ou seja o bloco foi apagado DE NOVO ~4 minutos depois da cura das 10:15, e NAO e AllowOverride. A ilha voltou sozinha as 11:15:20Z, no primeiro instante que a trava permitiu, com o sitemap e /veiculos/ em 200 na MESMA leitura — 92 leituras entre 10h42:14Z e 11h15:20Z, 91 em 404, pelo menos 55min29s no chao, e quem decidiu a duracao foi a TRAVA e nao o defeito. Regra 29.4-b no ARQUIPELAGO.md. Despacho ALTA para o Raphael. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
-executando_desde: 2026-11-17T13:17Z   # RESERVA (passo 5 da secao 1) da execucao que entrou por
-                         # FOCO (foco.md nomeia a rodametria). O campo estava `null`, que pela
-                         # 1.1 ja prova que nao havia bloco da Fundacao vivo, e o ultimo commit
-                         # na pasta da ilha era de 11h45Z, mais de 40 minutos atras. A HORA SAIU
-                         # DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
-                         # O comentario anterior, do fecho das 11h17Z: a reserva foi as 10h17Z e
-                         # RENOVADA DUAS vezes pela 1.1 (10h29Z e 10h43Z), por ESPERA e nao por
-                         # trabalho — cron da revisao 104 (~11 min) e 34 MINUTOS pela trava de
-                         # uma hora da 29.4 liberar a cura.
+ultima_execucao: 2026-11-17T13:43Z   # O CONTADOR DE QUEDAS DA PORTA — a trava de uma hora esconde apagamento, e a serie que o chamado na HostGator leva estava sendo contada pelo que a cura conseguiu DIZER. A cura tenta no maximo uma vez por hora (trava 2) e com a hora queimada recusa CALADA (trava 4), entao apagamento que cai dentro daquela hora nao escreve linha e nao existe para o chamado; e o log e uma janela de 40 linhas que ROLA, e hoje ela estava CHEIA. A frequencia do chamado era um PISO dito como se fosse a conta — a mesma familia da errata das 11h43Z de hoje com o sinal invertido (la um intervalo de ~4 min saiu como TAXA, aqui a contagem sai MENOR que a verdade). Casca 1.29.0, secao 14-c, revisao 105, regra 29.4-c no contrato: `/casca -> porta -> quedas` conta sem token, com custo ZERO na porta de pe (afirmacao do portao: mil requisicoes sem uma escrita) e sem encher o log. Portao de 249 para 404 afirmacoes e de 7 para 10 mutacoes, com o MUNDO K fabricado no disco porque a trava e uma OPTION e nao uma hora de relogio. A ILHA SEGUE DE PE: conferir-no-ar APROVADO com 807 afirmacoes e 0 falha, e a reposicao das 11:15 sobreviveu pelo menos 2h26min. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
+executando_desde: null   # LIMPO no fecho desta execucao (passo 7 da secao 1). A reserva
+                         # foi as 13h17Z, ganha no push na PRIMEIRA tentativa, e NAO precisou
+                         # ser renovada pela 1.1: o bloco fechou em menos de 40 minutos de
+                         # trabalho, com UMA espera de cron de ~11 minutos no meio (a revisao
+                         # 105 entrou as 13:39:48, 6min32s ANTES do teto de 13:46:20 — o
+                         # WordPress reagenda do horario AGENDADO e nao do que rodou).
 rede: aberta em 2026-11-17   # 20.2, MEDIDA e nao herdada: `rodametria.com.br` em 200 nas duas
                              # leituras antes da reserva, com `aquametria.com.br` em 200 nas MESMAS
                              # duas — 4 de 4 em 200. NAO ERA REDE o que estava errado hoje: o que
@@ -34,108 +31,71 @@ rede: aberta em 2026-11-17   # 20.2, MEDIDA e nao herdada: `rodametria.com.br` e
                              # egresso. A Open API da Shopee NAO foi usada nesta passada.
 bloqueada_por: null      # obrigatorio pela secao 2. `null` DE PROPOSITO: o que falta (gov.br para a F1, as prefeituras para a camada municipal, as tres etiquetas do Mercado Livre) trava a FABRICA e nao a ILHA, e isso se escreve no despacho, que e o canal da 12.2. Preenche-lo congelaria tambem os blocos que ja podem andar.
 bloco_atual: |
-  A PORTA CAIU PELA SEXTA VEZ NESTA RAIZ E A CURA DA 29.4 RODOU, ESCREVEU QUE
-  REPOS O BLOCO, E A ILHA CONTINUOU NO CHAO. Nenhum bloco da fila (18.5): ilha
-  com defeito no ar nao recebe pagina nova. Este campo e a memoria desta ilha
-  enquanto `/areas/projeto-rodametria.md` nao existir.
-
-  O QUE EU ACHEI AS 10h19Z, logo depois de reservar: 10 das 11 URLs e as TRES
-  portas da 29.2 em 404 na pagina da HostGator (2.361 bytes), com `/` em 200 e
-  o REST VIVO por `?rest_route=`. As tres irmas em 200 nas mesmas passadas —
-  NAO era rede, e foi o controle verde que impediu a leitura errada.
-
-  O QUE ERA NOVO, e nao e a queda: o log do `/status` tinha DUAS linhas de cura
-  — 16/11 23:02 e 17/11 10:15, as duas dizendo `bloco WordPress reposto —
-  1057 bytes [NFD EPC] -> 1580 bytes [NFD EPC, WordPress]`. Duas coisas saem
-  disso, e as duas eram perguntas PRE-REGISTRADAS em 12/11:
-  1. A FREQUENCIA: duas curas em 11h18m, e como a trava 1 so dispara com o
-     bloco AUSENTE, a das 10:15 prova que algo desfez a das 23:02. A regua de
-     12/11 era literal — duas em 24h muda o chamado de "o arquivo e reescrito"
-     para "e reescrito com frequencia".
-  2. A CURA DAS 10:15 NAO DEVOLVEU AS PAGINAS. Quatro minutos depois as portas
-     estavam em 404. Em 12/11 a mesma linha devolveu as 10 URLs em 8 minutos.
-
-  E EU NAO CONSEGUIA DIZER QUAL DOS DOIS MUNDOS ERA, que e o trabalho da
-  passada. (a) bloco no arquivo e Apache ignorando => AllowOverride do
-  hospedeiro, e pela 29.4 isso e CHAMADO. (b) bloco apagado de novo com a trava
-  2 queimada => ESPERAR, sem chamado nenhum. CONSERTOS OPOSTOS, e no mundo (b)
-  o `/casca` e o `/status` respondem BYTE POR BYTE o que respondem com a porta
-  DE PE. O retrato da 29.3 responderia e pede o token do Sync — PROCURADO pela
-  29.3-a no PROMPT.md, nos snippets e em ~/.claude, e NAO esta nesta nuvem.
-
-  O ENTREGUE: casca 1.28.0, secao 14-b, revisao 104. O `/casca` serve `porta`
-  com `tem_bloco_wordpress` (true/false/NULL) e `cura_liberada_em_s`, SEM
-  TOKEN. NAO serve bytes, nome dos outros blocos nem linha do arquivo — a 29.3
-  reserva isso para a rota com token. Regra no contrato: 29.4-b, e ela vale
-  para TODA ilha com a cura (hoje alcanca a clubedomosaico, por despacho,
-  porque a secao 3 proibe esta execucao de editar ilha que nao reservou).
-
-  E ELE RESPONDEU NA PRIMEIRA LEITURA NO AR (10h41:01Z): `tem_bloco_wordpress
-  false`, `cura_liberada_em_s 2057`. MUNDO (b), e a aritmetica fecha sozinha —
-  2.057 s poem a trava em 10:15:18, o minuto da linha da cura.
-
-  O CICLO MEDIDO SEGUNDO POR SEGUNDO, e e a prova que o chamado nunca teve: 92
-  leituras entre 10h42:14Z e 11h15:20Z, 91 em 404, a contagem caindo de 1983 s
-  para 19 s, e as 11:15:20Z o bloco voltando JUNTO com o 200 do sitemap e do
-  /veiculos/ — na mesma leitura. PELO MENOS 55min29s no chao, e quem decidiu a
-  duracao foi a TRAVA e nao o defeito. Dois Syncs rodaram dentro da queda
-  (10:40:07 e 11:09:54) e a cura ficou CALADA nos dois, como a trava 2 manda.
-  A TRAVA 2 NAO ESTA ERRADA: ela impede o laco de reescrita da raiz que a 29.4
-  recusou. Afrouxa-la e decisao do Raphael.
-
-  PORTOES: teste-cura-da-porta.php 174 -> 249 afirmacoes e 5 -> 7 mutacoes
-  cobradas (M6: `nao sei` saindo como porta caida manda abrir chamado por
-  defeito que ninguem mediu; M7: bloco ausente com a leitura do bloco presente
-  manda abrir chamado onde a proxima requisicao consertaria).
-  conferir-no-ar.py: a QUINTA grandeza na linha da causa da 29.7(3), autoteste
-  138 -> 151, com a regua velha OBRIGADA a discordar (20.8) e retrato mal
-  formado sem virar veredito. E uma frase VENCIDA caiu de dentro do portao: ele
-  dizia "esta ilha ainda NAO a tem" sobre a cura, e ela a tem desde 12/11.
-  Bancada: 51 portoes sem rede, 0 falha. Portao da 20.4 na revisao 104: 8
-  declarados, 8 lidos, 8 `ok`, com a linha da cura FORA do grupo da revisao.
-
-  A ILHA ESTA INTEGRA AS 11h16Z (18.4): 11 de 11 URLs em 200, as tres portas da
-  29.2 em 200 com content-type certo, caminho virgem em 404 na pagina da
-  propria ilha (73.151 bytes, zero HostGator, 28 do nome da ilha).
-
-  A OUTRA PONTA DO CICLO, MEDIDA DEPOIS DO FECHO, E ELA CORRIGE UMA FRASE
-  MINHA: 95 leituras entre 11h15:55Z e 11h42:40Z, as 95 com o bloco PRESENTE e
-  as 95 com as URLs em 200. A reposicao das 11:15 sobreviveu 27min20s — SETE
-  VEZES mais que os ~4 minutos do ciclo anterior. Eu havia escrito as 11h19Z
-  que o argumento do chamado era "e reescrito poucos minutos depois de cada
-  reposicao": ERRADO, era um intervalo lido como TAXA, e a frase foi corrigida
-  no ARQUIPELAGO.md (29.4-b), no PROMPT.md, em dados/despachos.md e no arquivo
-  da serie. A leitura certa e a da 29.5(b), que ja estava escrita: o que se
-  procura e um EVENTO, com hora, NAO um processo.
-  E UM SYNC RODOU DENTRO DA JANELA NO AR (11:39:49) SEM APAGAR NADA, o que
-  DESCARTA a hipotese de o proprio Sync reescrever a raiz — plausivel porque a
-  cura das 10:15 e a rodada do Sync das 10:15:14 cairam no MESMO minuto. E com
-  isso a pergunta do AllowOverride tambem cai: era a hipotese (a), e o campo
-  novo fechou em (b) na primeira leitura.
-  AS DUAS SERIES ESTAO EM dados/serie-da-porta-2026-11-17.md.
-
-  O PROXIMO PASSO DESBLOQUEADO:
-  - A DURACAO REAL DA JANELA NO AR SEGUE SEM LIMITE SUPERIOR MEDIDO: a medicao
-    parou as 11h42:40Z com o bloco de pe. Quem reservar a ilha le `/casca` ->
-    `porta.tem_bloco_wordpress` na entrada — e um GET, sem token — e sabe na
-    hora se a porta esta de pe, sem depender de ninguem no cPanel.
-  - O DESPACHO ALTA e do Raphael: levantar a porta se estiver no chao, levar ao
-    chamado da HostGator a serie MAIS a pergunta do AllowOverride (ele mudou
-    entre 12/11 e hoje? em 12/11 a reposicao devolveu as paginas em 8 minutos e
-    hoje a das 10:15 nao devolveu nenhuma), e a decisao sobre o TOKEN desta
-    ilha, aberta desde 05/11.
-  - A LEITURA DE 18/11 HERDA UMA PERGUNTA CARA: esta ilha serviu 404 em tudo
-    menos a home por pelo menos 55 minutos hoje, e por um trecho desconhecido
-    entre 16/11 20h16Z e 17/11 10:15. Se o Googlebot passou em qualquer uma das
-    duas janelas, o balde "Nao encontrado (404)" ganha pagina nova — foi assim
-    que /veiculos/bicicleta-eletrica/, a pagina de 673 mil buscas/mes, saiu do
-    indice em 05/11. Vale a Inspecao de URL das 11 e a data do ultimo
-    rastreamento de cada uma.
-  - A FILA SEGUE ACABADA (so o 5, que depende de um `pauta.md` inexistente e
-    que pela 17.1 nao e arquivo da Fundacao) e as duas pontas de pagina de
-    produto nova seguem travadas: a 30.8 para a SERP e o Mercado Livre para o
-    produto das duas consultas de maior volume.
-
+  O CONTADOR DE QUEDAS DA PORTA ESTA NO AR, E ELE CONSERTA UM DEFEITO DE
+  CONTAGEM QUE MORAVA NA JUNCAO DE DUAS REGRAS CERTAS. A serie de apagamentos
+  que o chamado na HostGator leva e montada lendo as linhas `cura da porta:` do
+  log do /status. Mas a cura tenta NO MAXIMO UMA VEZ POR HORA (trava 2 da 29.4)
+  e, com a hora queimada, recusa CALADA (trava 4, e o MUNDO E do portao cobra
+  esse silencio para nao encher a janela da 20.4). Entao APAGAMENTO QUE CAI
+  DENTRO DA HORA QUEIMADA NAO ESCREVE LINHA NENHUMA E NAO EXISTE PARA O
+  CHAMADO. E o log e uma janela de 40 linhas que ROLA — hoje o portao registrou
+  ela CHEIA, e a serie de cinco dias desta ilha so existe porque execucoes a
+  copiaram a mao antes de rolar.
+  LOGO A FREQUENCIA DO CHAMADO ERA UM PISO DITO COMO SE FOSSE A CONTA, e e pelo
+  pequeno demais que um fornecedor fecha chamado. E a mesma familia da errata
+  das 11h43Z de HOJE, com o sinal invertido: la um intervalo de ~4 minutos foi
+  escrito como se fosse uma TAXA (grande demais), aqui a contagem por log sai
+  MENOR que a verdade. As duas pontas do mesmo erro de metodo, no mesmo dia, na
+  mesma porta.
+  CASCA 1.29.0, SECAO 14-c, REVISAO 105, regra 29.4-c no ARQUIPELAGO.md:
+  `/casca -> porta -> quedas` serve SEM TOKEN `episodios_vistos`,
+  `leituras_no_chao`, `leituras_nao_sei`, `reposicoes_da_cura`,
+  `primeira_no_chao` e o episodio corrente com `duracao_minima_s`. Nao serve
+  bytes, nem o nome dos outros blocos, nem uma linha do arquivo — a 29.3
+  reserva isso para a rota que pede token.
+  A REGRA DO EPISODIO TEM DUAS PONTAS, cada uma pegando o que a outra perde:
+  (a) a cura confirmou a reposicao desde a ultima leitura no chao, com `>=` e
+  nao `>` porque a cura dispara na MESMA requisicao da leitura e os dois
+  carimbos caem no mesmo segundo; (b) passou mais de uma hora sem nenhuma
+  leitura no chao — e e essa que pega a porta levantada A MAO no cPanel, como
+  em 06/11, em que a cura nao confirma nada. O que (b) pode errar esta escrito
+  e nao escondido, e por isso o campo se chama `episodios_vistos`.
+  CUSTO ZERO NA PORTA DE PE, e e afirmacao do portao e nao promessa de
+  comentario (32.5-d): mil requisicoes de porta de pe sem UMA escrita. A ordem
+  e o mecanismo — o contador e chamado ANTES da trava, porque contar depois de
+  perguntar a hora e nao contar, e e isso que a mutacao M8 compra.
+  PORTOES: teste-cura-da-porta.php de 249 para 404 afirmacoes (144 na mae + 260
+  nos filhos) e de 7 para 10 mutacoes cobradas, 0 falha. O MUNDO K SE FABRICA
+  NO DISCO, e esse e o achado de metodo: a trava 2 e uma OPTION e nao uma hora
+  de relogio, entao o portao a queima e exige as duas coisas ao mesmo tempo —
+  o silencio no log E o numero no contador. K-b prende seis requisicoes da
+  mesma queda saindo como UMA. K-c encena o ciclo inteiro de 17/11.
+  conferir-no-ar.py com a SEXTA GRANDEZA na linha da causa da 29.7(3) —
+  a frequencia, com a ordem de copia-la para consertos.md antes de ela ser a
+  unica copia —, autoteste 151 -> 163. BANCADA: 51 portoes sem rede, 0 falha.
+  A ILHA ESTA INTEGRA NO AR, CONFERIDO: conferir-no-ar.py APROVADO com 807
+  afirmacoes e 0 falha na revisao 105 = 105 no manifest, casca 1.29.0, com as
+  11 URLs, as tres portas da 29.2 e o caminho virgem em 404 na pagina da
+  propria ilha. Portao da 20.4 nas linhas da revisao 105: 8 declarados, 8 itens
+  lidos um por um, os 8 dizendo `ok`.
+  E A PORTA NAO CAIU DE NOVO: a reposicao das 11:15:20Z sobreviveu PELO MENOS
+  2h26min, por tres caminhos independentes (50 leituras com o bloco presente
+  entre 13h18:33Z e 13h41:41Z, nenhuma linha nova de cura no log lida duas
+  vezes, e a deducao que fecha o intervalo entre as series). Tres intervalos na
+  MESMA raiz no MESMO dia: ~4 min, >=27 min, >=2h26min — evento irregular,
+  29.5(b). Serie 3 em dados/serie-da-porta-2026-11-17.md.
+  O CONTADOR NASCEU EM ZERO as 13h40Z, e zero ali quer dizer "nenhuma queda
+  desde que ele entrou no ar", nunca "esta porta nunca caiu" — a leitura
+  publica dele diz isso e manda ler dados/consertos.md.
+  PROXIMO PASSO: a proxima passada LE `porta.quedas` e copia o numero para
+  consertos.md, que e a ordem que a sexta grandeza imprime. Se ele seguir em
+  zero, a porta nao caiu — e e a primeira vez que "nao caiu" e uma medicao em
+  vez de uma ausencia de noticia. A FILA DE BLOCOS SEGUE ACABADA (todos
+  entregues menos o 5, que depende de um `pauta.md` que NAO EXISTE e que pela
+  17.1 nao e arquivo da Fundacao) e as duas pontas de pagina de produto seguem
+  travadas: a 30.8 para a SERP e o Mercado Livre para o produto das duas
+  consultas de maior volume. Nenhuma URL podia nascer nesta passada, e o teto
+  da 21.4 segue com folga.
 ---
 
 # Estado da ilha RODAMETRIA

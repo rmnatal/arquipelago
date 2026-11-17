@@ -115,6 +115,42 @@ Medido em 27/10/2026 no Chrome do Raphael (`bussola/dossies/rodametria/DOSSIE.md
 >
 > **O QUE SEGUE SENDO SEU:** o chamado com a frase acima e a série anexada, e a **decisão sobre o token** (gesto 3), que é o que faria a próxima queda custar um comando em vez de uma hora.
 
+> **SEGUNDO ACRÉSCIMO, 13h4xZ, DE OUTRA EXECUÇÃO — A ILHA SEGUE DE PÉ, E O CHAMADO GANHOU O NÚMERO QUE FALTAVA.**
+>
+> **A PORTA NÃO CAIU DE NOVO.** A reposição das 11:15:20Z sobreviveu **pelo menos 2 h 26 min**, medido
+> por três caminhos independentes: 50 leituras seguidas com o bloco presente e as URLs em 200 entre
+> 13h18:33Z e 13h41:41Z; nenhuma linha nova de `cura da porta:` no log depois das 11:15, lida duas
+> vezes; e o `conferir-no-ar.py` **APROVADO com 807 afirmações e 0 falha** na revisão 105. **Nenhum
+> gesto seu foi necessário**, e o gesto 1 segue valendo só para a próxima queda.
+>
+> **A FRASE DO CHAMADO FICA MAIS FORTE, e ela agora tem TRÊS intervalos da mesma raiz no MESMO dia:
+> ~4 minutos, ≥27 minutos e ≥2 h 26 min.** É evento irregular, não processo — exatamente o que a errata
+> das 11h43Z já havia corrigido, agora com uma terceira medição independente dizendo o mesmo.
+>
+> **E O QUE ESTA EXECUÇÃO ENTREGOU É O CONTADOR, porque as três medições acima custaram três execuções
+> sentadas em cima da ilha, e nenhuma delas vê a queda que acontece quando ninguém está olhando.** A
+> série de apagamentos que você leva ao chamado é contada pelas linhas `cura da porta:` do log — e a
+> cura tenta **no máximo uma vez por hora**, e com a hora queimada recusa **calada**, de propósito.
+> Então **apagamento que cai dentro daquela hora não escreve linha nenhuma e não existe para o
+> chamado**; e o log é uma janela de 40 linhas que **rola** (hoje ela estava cheia). **A frequência que
+> o chamado usa era um piso dito como se fosse a conta — e é pelo pequeno demais que um fornecedor
+> fecha chamado.**
+>
+> **Casca 1.29.0, seção 14-c, revisão 105, regra 29.4-c:** `/casca → porta → quedas` passa a contar, sem
+> token, quantas quedas houve, quantas leituras no chão, quantas reposições a cura fez e a **duração
+> mínima** da queda corrente. Custo **zero** com a porta de pé (afirmação do portão: mil requisições sem
+> uma escrita), e o número **não rola** com a janela do log. Portão `teste-cura-da-porta.php` de 249
+> para **404 afirmações** e de 7 para **10 mutações cobradas**; `conferir-no-ar.py` com a **sexta
+> grandeza** na linha da causa, autoteste 151 → **163**. Bancada: 51 portões, 0 falha.
+>
+> **O CONTADOR NASCEU EM ZERO ÀS 13h40Z**, e zero ali quer dizer "nenhuma queda desde que ele entrou no
+> ar" — não "esta porta nunca caiu". Da próxima queda em diante, **a conta que você leva ao chamado sai
+> do site e não da memória de quem estava olhando.**
+>
+> **O QUE SEGUE SENDO SEU, e não mudou:** o chamado com a frase do evento irregular e a série anexada, e
+> a **decisão sobre o token** (gesto 3) — que é o que faria a próxima queda custar um comando em vez de
+> uma hora.
+
 **FIM DO DESPACHO DE 17/11.**
 
 ## ~~DESPACHO DA SENTINELA — 2026-11-16 (RONDA DIÁRIA TÉCNICA, 15h3xZ–15h5xZ) — TRÊS ITENS, E OS DOIS PRIMEIROS ESTÃO NA PÁGINA QUE NASCEU HOJE~~ — **OS TRÊS FECHADOS EM 16/11/2026 às 17h1xZ, INTEIROS NUMA PASSADA SÓ (18.2), CONFERIDOS NO AR PELA 18.4, NAS REVISÕES 99 E 100**

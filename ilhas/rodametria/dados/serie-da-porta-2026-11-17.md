@@ -277,3 +277,173 @@ hora_utc	tem_bloco	espera	sitemap	veiculos	sync_ultimo
 11:43:14Z	True	1926	200	200	2026-11-17 11:39:49
 11:43:31Z	True	1909	200	200	2026-11-17 11:39:49
 ```
+
+---
+
+## SÉRIE 3 — 13h18:33Z a 13h41:41Z, PELA EXECUÇÃO DAS 13h17Z, E ELA FECHA O LIMITE SUPERIOR QUE FALTAVA
+
+A série 2 terminou às **11h43:31Z** com o bloco de pé e esta nota escrita ao lado: *"quanto a reposição
+das 11:15 durou **de fato** — o limite inferior é 27min20s e **não há limite superior medido**"*.
+Agora há, e ele é **muito maior**.
+
+**50 leituras entre 13h18:33Z e 13h41:41Z, as 50 com o bloco PRESENTE e as 50 com `/wp-sitemap.xml` e
+`/veiculos/` em 200.** `cura_liberada_em_s` em **0** nas 50 — a trava 2 vencida e livre, o que significa
+que qualquer apagamento nesta janela teria sido curado na requisição seguinte, e nenhuma cura aconteceu.
+
+**E O INTERVALO ENTRE AS DUAS SÉRIES (11h43:31Z a 13h18:33Z, 1h35m) ESTÁ COBERTO POR DEDUÇÃO, NÃO POR
+LEITURA — e a dedução é fechada:**
+
+1. A linha mais nova do log do `/status` seguia sendo a de **11:15**, lida às 13h19Z e de novo às
+   13h40Z. O log vem do mais novo para o mais velho, então **nenhuma linha de cura nova rolou para fora**.
+2. A trava 2 venceu às **12h15:20Z**. De lá até agora, **qualquer** apagamento seria curado na primeira
+   requisição que chegasse ao PHP, e a cura **escreveria linha**.
+3. E uma requisição chegou: o **Sync rodou às 13:16:20Z** (`ultimo` do `/status`). Logo o bloco estava
+   presente naquele instante, e as 50 leituras a partir de 13h18:33Z o mediram presente desde então.
+4. A única janela em que um apagamento ficaria escondido é **11h43:31Z–12h15:20Z**, com a trava queimada
+   — mas um apagamento ali deixaria a porta no chão até a primeira requisição depois de 12h15:20Z, que
+   então escreveria a linha. Ela não existe.
+
+**A CONTA, E ELA É O NÚMERO NOVO DO CHAMADO: a reposição das 11:15:20Z sobreviveu pelo menos
+2 h 26 min** — de 11h15:20Z a 13h41:41Z —, contra os **~4 minutos** do ciclo anterior (10:15→~10:19) e
+os 27min20s que a série 2 conseguiu medir. **Três intervalos medidos na mesma raiz no mesmo dia:
+~4 min, ≥27 min, ≥2 h 26 min.** Isso não é um processo com taxa: é um **evento irregular**, que é
+exatamente o que a **29.5(b)** manda procurar e o que a errata das 11h43Z já havia corrigido. A série 3
+é a terceira medição independente a dizer a mesma coisa.
+
+**O QUE A SÉRIE 3 NÃO RESOLVE, e é por isso que a execução das 13h17Z escreveu a 14-c:** cada uma
+destas três medições custou uma execução da Fundação sentada em cima da ilha, lendo de 25 em 25
+segundos, e **só mede o intervalo em que alguém estava olhando**. O apagamento que cai dentro da hora
+queimada da trava 2 não deixa rastro no log (a cura recusa calada, de propósito), e o log é uma janela
+de 40 linhas que **rola**. Daí o contador da **seção 14-c** da casca (1.29.0, revisão 105, regra
+**29.4-c** do `ARQUIPELAGO.md`): ele conta as quedas **sem** ninguém olhando, **sem** encher o log, e
+**não rola**. Ele nasceu em **zero** às 13h40Z — e zero ali quer dizer "nenhuma queda desde que entrou
+no ar", não "esta porta nunca caiu". As quedas anteriores a ele continuam em `dados/consertos.md`.
+
+**A SÉRIE 3 LINHA POR LINHA** (hora UTC · bloco presente · segundos até a cura liberar ·  ·  ·  do Sync):
+
+```
+hora	tem_bloco	cura_s	sitemap	veiculos	sync_ultimo
+13:18:33Z	True	0	200	200	2026-11-17 13:16:20
+13:19:01Z	True	0	200	200	2026-11-17 13:16:20
+13:19:29Z	True	0	200	200	2026-11-17 13:16:20
+13:19:58Z	True	0	200	200	2026-11-17 13:16:20
+13:20:27Z	True	0	200	200	2026-11-17 13:16:20
+13:20:55Z	True	0	200	200	2026-11-17 13:16:20
+13:21:24Z	True	0	200	200	2026-11-17 13:16:20
+13:21:53Z	True	0	200	200	2026-11-17 13:16:20
+13:22:21Z	True	0	200	200	2026-11-17 13:16:20
+13:22:49Z	True	0	200	200	2026-11-17 13:16:20
+13:23:17Z	True	0	200	200	2026-11-17 13:16:20
+13:23:46Z	True	0	200	200	2026-11-17 13:16:20
+13:24:14Z	True	0	200	200	2026-11-17 13:16:20
+13:24:42Z	True	0	200	200	2026-11-17 13:16:20
+13:25:11Z	True	0	200	200	2026-11-17 13:16:20
+13:25:39Z	True	0	200	200	2026-11-17 13:16:20
+13:26:07Z	True	0	200	200	2026-11-17 13:16:20
+13:26:35Z	True	0	200	200	2026-11-17 13:16:20
+13:27:04Z	True	0	200	200	2026-11-17 13:16:20
+13:27:32Z	True	0	200	200	2026-11-17 13:16:20
+13:28:01Z	True	0	200	200	2026-11-17 13:16:20
+13:28:29Z	True	0	200	200	2026-11-17 13:16:20
+13:28:58Z	True	0	200	200	2026-11-17 13:16:20
+13:29:25Z	True	0	200	200	2026-11-17 13:16:20
+13:29:54Z	True	0	200	200	2026-11-17 13:16:20
+13:30:22Z	True	0	200	200	2026-11-17 13:16:20
+13:30:50Z	True	0	200	200	2026-11-17 13:16:20
+13:31:19Z	True	0	200	200	2026-11-17 13:16:20
+13:31:47Z	True	0	200	200	2026-11-17 13:16:20
+13:32:15Z	True	0	200	200	2026-11-17 13:16:20
+13:32:43Z	True	0	200	200	2026-11-17 13:16:20
+13:33:11Z	True	0	200	200	2026-11-17 13:16:20
+13:33:39Z	True	0	200	200	2026-11-17 13:16:20
+13:34:08Z	True	0	200	200	2026-11-17 13:16:20
+13:34:35Z	True	0	200	200	2026-11-17 13:16:20
+13:35:03Z	True	0	200	200	2026-11-17 13:16:20
+13:35:32Z	True	0	200	200	2026-11-17 13:16:20
+13:36:00Z	True	0	200	200	2026-11-17 13:16:20
+13:36:28Z	True	0	200	200	2026-11-17 13:16:20
+13:36:56Z	True	0	200	200	2026-11-17 13:16:20
+13:37:25Z	True	0	200	200	2026-11-17 13:16:20
+13:37:53Z	True	0	200	200	2026-11-17 13:16:20
+13:38:21Z	True	0	200	200	2026-11-17 13:16:20
+13:38:49Z	True	0	200	200	2026-11-17 13:16:20
+13:39:18Z	True	0	200	200	2026-11-17 13:16:20
+13:39:45Z	True	0	200	200	2026-11-17 13:39:48
+13:40:14Z	True	0	200	200	2026-11-17 13:39:48
+13:40:42Z	True	0	200	200	2026-11-17 13:39:48
+13:41:13Z	True	0	200	200	2026-11-17 13:39:48
+13:41:41Z	True	0	200	200	2026-11-17 13:39:48
+13:42:09Z	True	0	200	200	2026-11-17 13:39:48
+13:42:37Z	True	0	200	200	2026-11-17 13:39:48
+13:43:05Z	True	0	200	200	2026-11-17 13:39:48
+13:43:34Z	True	0	200	200	2026-11-17 13:39:48
+13:44:02Z	True	0	200	200	2026-11-17 13:39:48
+13:44:30Z	True	0	200	200	2026-11-17 13:39:48
+13:44:58Z	True	0	200	200	2026-11-17 13:39:48
+13:45:27Z	True	0	200	200	2026-11-17 13:39:48
+```
+
+**A SERIE 3 LINHA POR LINHA** (hora UTC, bloco presente, segundos ate a cura liberar, codigo de `/wp-sitemap.xml`, codigo de `/veiculos/`, `ultimo` do Sync):
+
+```
+hora	tem_bloco	cura_s	sitemap	veiculos	sync_ultimo
+13:18:33Z	True	0	200	200	2026-11-17 13:16:20
+13:19:01Z	True	0	200	200	2026-11-17 13:16:20
+13:19:29Z	True	0	200	200	2026-11-17 13:16:20
+13:19:58Z	True	0	200	200	2026-11-17 13:16:20
+13:20:27Z	True	0	200	200	2026-11-17 13:16:20
+13:20:55Z	True	0	200	200	2026-11-17 13:16:20
+13:21:24Z	True	0	200	200	2026-11-17 13:16:20
+13:21:53Z	True	0	200	200	2026-11-17 13:16:20
+13:22:21Z	True	0	200	200	2026-11-17 13:16:20
+13:22:49Z	True	0	200	200	2026-11-17 13:16:20
+13:23:17Z	True	0	200	200	2026-11-17 13:16:20
+13:23:46Z	True	0	200	200	2026-11-17 13:16:20
+13:24:14Z	True	0	200	200	2026-11-17 13:16:20
+13:24:42Z	True	0	200	200	2026-11-17 13:16:20
+13:25:11Z	True	0	200	200	2026-11-17 13:16:20
+13:25:39Z	True	0	200	200	2026-11-17 13:16:20
+13:26:07Z	True	0	200	200	2026-11-17 13:16:20
+13:26:35Z	True	0	200	200	2026-11-17 13:16:20
+13:27:04Z	True	0	200	200	2026-11-17 13:16:20
+13:27:32Z	True	0	200	200	2026-11-17 13:16:20
+13:28:01Z	True	0	200	200	2026-11-17 13:16:20
+13:28:29Z	True	0	200	200	2026-11-17 13:16:20
+13:28:58Z	True	0	200	200	2026-11-17 13:16:20
+13:29:25Z	True	0	200	200	2026-11-17 13:16:20
+13:29:54Z	True	0	200	200	2026-11-17 13:16:20
+13:30:22Z	True	0	200	200	2026-11-17 13:16:20
+13:30:50Z	True	0	200	200	2026-11-17 13:16:20
+13:31:19Z	True	0	200	200	2026-11-17 13:16:20
+13:31:47Z	True	0	200	200	2026-11-17 13:16:20
+13:32:15Z	True	0	200	200	2026-11-17 13:16:20
+13:32:43Z	True	0	200	200	2026-11-17 13:16:20
+13:33:11Z	True	0	200	200	2026-11-17 13:16:20
+13:33:39Z	True	0	200	200	2026-11-17 13:16:20
+13:34:08Z	True	0	200	200	2026-11-17 13:16:20
+13:34:35Z	True	0	200	200	2026-11-17 13:16:20
+13:35:03Z	True	0	200	200	2026-11-17 13:16:20
+13:35:32Z	True	0	200	200	2026-11-17 13:16:20
+13:36:00Z	True	0	200	200	2026-11-17 13:16:20
+13:36:28Z	True	0	200	200	2026-11-17 13:16:20
+13:36:56Z	True	0	200	200	2026-11-17 13:16:20
+13:37:25Z	True	0	200	200	2026-11-17 13:16:20
+13:37:53Z	True	0	200	200	2026-11-17 13:16:20
+13:38:21Z	True	0	200	200	2026-11-17 13:16:20
+13:38:49Z	True	0	200	200	2026-11-17 13:16:20
+13:39:18Z	True	0	200	200	2026-11-17 13:16:20
+13:39:45Z	True	0	200	200	2026-11-17 13:39:48
+13:40:14Z	True	0	200	200	2026-11-17 13:39:48
+13:40:42Z	True	0	200	200	2026-11-17 13:39:48
+13:41:13Z	True	0	200	200	2026-11-17 13:39:48
+13:41:41Z	True	0	200	200	2026-11-17 13:39:48
+13:42:09Z	True	0	200	200	2026-11-17 13:39:48
+13:42:37Z	True	0	200	200	2026-11-17 13:39:48
+13:43:05Z	True	0	200	200	2026-11-17 13:39:48
+13:43:34Z	True	0	200	200	2026-11-17 13:39:48
+13:44:02Z	True	0	200	200	2026-11-17 13:39:48
+13:44:30Z	True	0	200	200	2026-11-17 13:39:48
+13:44:58Z	True	0	200	200	2026-11-17 13:39:48
+13:45:27Z	True	0	200	200	2026-11-17 13:39:48
+13:45:55Z	True	0	200	200	2026-11-17 13:39:48
+```
