@@ -11,6 +11,22 @@ Prioridade: `alta` fura a fila da próxima execução do destinatário.
 
 ## ABERTOS
 
+### prioridade ALTA — A PORTA DA RODAMETRIA CAIU PELA SEXTA VEZ E A CURA AUTOMÁTICA JÁ NÃO ESTÁ BASTANDO: DUAS CURAS EM 11h18m, E A SEGUNDA NÃO DEVOLVEU AS PÁGINAS — medido em 17/11/2026 às 10h19Z–10h2xZ
+
+**Destinatário: o RAPHAEL.** O despacho inteiro, com os três gestos e o "pronto quando", está no topo de `ilhas/rodametria/PROMPT.md`. Resumo do que não é da fábrica:
+
+- **A ilha em foco total está no chão:** 10 das 11 URLs e as três portas da 29.2 em **404 na página da HostGator**, em três leituras com quebra de cache, com `/` em 200 e o REST **vivo** por `?rest_route=`. As três irmãs em 200 nas mesmas passadas — não é rede.
+- **A cura da 29.4 JÁ RODOU E DISSE QUE DEU CERTO:** `2026-11-17 10:15 cura da porta: bloco WordPress reposto — 1057 bytes [NFD EPC] -> 1580 bytes [NFD EPC, WordPress]`, e quatro minutos depois as portas seguiam em 404. Em 12/11 a mesma linha devolveu as 10 URLs em oito minutos.
+- **A FREQUÊNCIA ESTÁ MEDIDA, E ERA A PERGUNTA PRÉ-REGISTRADA EM 12/11:** duas curas em **11 h 18 min** (16/11 23:02 e 17/11 10:15), e como a trava 1 só dispara com o bloco **ausente**, a das 10:15 prova que algo desfez a das 23:02. Com a de 12/11 16:25 são **três apagamentos em cinco dias**, e o intervalo está encurtando. A régua de 12/11 é literal: duas em 24 h muda o chamado de *"o arquivo é reescrito"* para *"é reescrito com frequência"*.
+- **A PERGUNTA NOVA PARA A HOSTGATOR, e é ela que decide:** o `AllowOverride` da raiz de `rodametria.com.br` mudou entre 12/11 e hoje? Porque pela 29.4, bloco gravado e correto **com** as URLs em 404 é `AllowOverride` desligado — e aí é chamado, não código de ilha nenhuma.
+- **E A DECISÃO SOBRE O TOKEN DESTA ILHA SEGUE ABERTA desde 05/11.** Sem ele, toda queda desta ilha espera por um gesto do Raphael no cPanel; com ele, o reparo e o retrato da 29.3 são um comando de execução. Seis quedas, a mais longa em ~16 h (05/11), que custou o 404 no índice da página de 673 mil buscas/mês.
+
+**O QUE A FUNDAÇÃO FEZ NA MESMA PASSADA, e não é o conserto da causa (29.5):** separar *"AllowOverride"* de *"a hora da trava 2 ainda queimada"* **não era possível desta nuvem** — no segundo mundo o `/casca` e o `/status` respondem byte por byte o que respondem com a porta DE PÉ. Casca **1.28.0, seção 14-b, revisão 104**: `/casca` serve `porta` com `tem_bloco_wordpress` e `cura_liberada_em_s`, sem token e sem vazar byte, nome de bloco de terceiro ou linha de reescrita (29.3). Portões: `teste-cura-da-porta.php` 174 → **249 afirmações**, 5 → **7 mutações**; `conferir-no-ar.py` autoteste 138 → **151**, com a régua velha obrigada a discordar (20.8).
+
+**TODA ILHA COM A CURA HERDA O 14-b**, pelo motivo da 20.4 — a casca é o mesmo desenho nas ilhas, e conserto escrito em registro de ilha conserta aquele dia. Hoje isso alcança a **clubedomosaico** (cura no ar desde 1.26.0) e a **robometria** quando ela receber a cura.
+
+---
+
 ### prioridade NORMAL — A RÉGUA DA 20.4 DE TODA ILHA COM A CURA DA PORTA CONTA A LINHA DA CURA COMO ITEM DE DESEMBARQUE, E REPROVA A ILHA SÃ — medido no ar na rodametria em 12/11/2026, quando a cura disparou de verdade pela primeira vez
 
 **Destinatário: Fundação, na próxima execução da clubedomosaico** (a única outra ilha que hoje tem a cura; a robometria herda isto junto com a cura, no despacho de 03/11 que manda copiá-la). A seção 3 proíbe esta execução de editar arquivo de ilha que ela não reservou, e é por isso que isto é despacho e não conserto.

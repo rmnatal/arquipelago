@@ -65,6 +65,46 @@ Medido em 27/10/2026 no Chrome do Raphael (`bussola/dossies/rodametria/DOSSIE.md
 
 ---
 
+## DESPACHO DA FUNDAÇÃO PARA O RAPHAEL — 2026-11-17 — ALTA: A PORTA CAIU PELA SEXTA VEZ NESTA RAIZ, E A CURA AUTOMÁTICA JÁ NÃO ESTÁ BASTANDO — DUAS CURAS EM 11h18m, E A SEGUNDA NÃO DEVOLVEU AS PÁGINAS
+
+**Medido em 17/11/2026 entre 10h19Z e 10h2xZ pela execução da Fundação que reservou a ilha às 10h17Z.** A ilha em foco total está servindo a página de estacionamento da HostGator em tudo menos a home.
+
+- **10 das 11 URLs e as três portas da 29.2 em 404**, servindo a página do hospedeiro (2.361 bytes, 3 ocorrências de "HostGator"): `/wp-sitemap.xml`, `/robots.txt`, `/veiculos/`, `/veiculos/moto-eletrica/`, `/autonomia-patinete-eletrico/`, `/wp-json/rodametria/v1/status` e o caminho virgem — **três leituras cada, com quebra de cache**. Só `/` em **200** (119.411 bytes, zero HostGator).
+- **Não é rede e não é intermitência:** `aquametria.com.br`, `robometria.com.br` e `clubedomosaico.com.br` com `/wp-sitemap.xml` em **200** nas mesmas passadas. É a assinatura da **29.7(3)** inteira — home em 200, as três portas em 404, REST **vivo** por `?rest_route=` (`/status` em 200, revisão 103, casca 1.27.0), caminho bonito morto.
+
+**O QUE É NOVO, E É O MOTIVO DESTE DESPACHO SER ALTA EM VEZ DE UMA LINHA EM `consertos.md`: A CURA DA 29.4 JÁ TINHA RODADO, E DISSE QUE DEU CERTO.** O log do `/status` traz, nesta ordem:
+
+```
+2026-11-17 10:15 cura da porta: bloco WordPress reposto — 1057 bytes [NFD EPC] -> 1580 bytes [NFD EPC, WordPress]
+2026-11-16 23:02 cura da porta: bloco WordPress reposto — 1057 bytes [NFD EPC] -> 1580 bytes [NFD EPC, WordPress]
+```
+
+**DUAS COISAS SAEM DISSO, e as duas eram perguntas pré-registradas.**
+
+1. **A PERGUNTA QUE 12/11 DEIXOU POR ESCRITO ESTÁ RESPONDIDA, E A RESPOSTA É A RUIM.** A reconferência daquele dia pede *"se há linha nova de `cura da porta:` no log do `/status` — duas em 24 horas muda o chamado de 'o arquivo é reescrito' para 'é reescrito com frequência'"*. **São duas em 11 horas e 18 minutos**, e entre elas o bloco foi apagado **mais uma vez** — porque a trava 1 da 29.4 só dispara com o bloco **ausente**, então a cura das 10:15 prova que alguma coisa desfez a das 23:02. Somando a de 12/11 às 16:25, **são três apagamentos em cinco dias nesta raiz**, e o intervalo está encurtando.
+2. **E A CURA DAS 10:15 NÃO DEVOLVEU AS PÁGINAS.** Ela escreveu `bloco WordPress reposto` — que a casca só escreve quando a releitura do arquivo **acha** o bloco depois do `flush` (o ramo `FALHOU` tem palavra própria, de propósito) — e **quatro minutos depois** as três portas da 29.2 estavam em 404 em três leituras. Em 12/11 a mesma linha devolveu as 10 URLs em oito minutos.
+
+**DOIS MUNDOS CABEM NESSE RETRATO, E OS CONSERTOS SÃO DIFERENTES — É ISSO QUE PRECISA DE VOCÊ:**
+
+- **(a) `AllowOverride` desligado do lado do hospedeiro.** O bloco está no arquivo e o Apache o ignora. Pela **29.4** isto é **chamado na HostGator, não código de ilha nenhuma** — e nenhum `flush` a mais muda nada.
+- **(b) O apagamento ficou mais frequente que a trava.** O bloco foi apagado **de novo** depois das 10:15, e a trava 2 da 29.4 (uma tentativa por hora, queimada **antes** de agir, de propósito) segura a cura até ~11:15Z. Aqui não há chamado a abrir por esta leitura: a ilha volta quando a hora vencer, e o que o chamado precisa saber é a **frequência**.
+
+**O QUE ESTA EXECUÇÃO FEZ A RESPEITO, E NÃO É O CONSERTO DA CAUSA (29.5):** separar (a) de (b) **não era possível desta nuvem**, e isso é um defeito do instrumento, não da porta. No mundo (b) o `/casca` respondia `tem_cura_da_porta: true` e o `/status` não ganhava linha nova — **byte por byte o que os dois respondem com a porta DE PÉ.** O silêncio está certo no **log** (o MUNDO E do portão cobra que a hora não vencida recuse calada, para não encher a janela de 15 linhas da 20.4) e estava errado no único instrumento que esta nuvem consegue abrir, porque o retrato da **29.3**, que responderia, **exige o token do Sync, que nesta ilha não está no repositório**. A ausência era o sinal (20.7) e não havia onde lê-la.
+
+**Casca 1.28.0, seção 14-b, revisão 104:** `/casca` passa a servir, **sem token**, o campo `porta` com `tem_bloco_wordpress` (`true`/`false`/`null`) e `cura_liberada_em_s`, mais a leitura em palavras. Ele **não** serve bytes, **não** serve o nome dos outros blocos e **não** serve uma linha do arquivo — a 29.3 reserva isso para a rota que pede token, e `.htaccess` de hospedeiro compartilhado carrega regra de terceiro. Portões: `teste-cura-da-porta.php` de 174 para **249 afirmações** e de 5 para **7 mutações cobradas** (M6: `não sei` saindo como porta caída manda abrir chamado por um defeito que ninguém mediu; M7: bloco ausente saindo com a leitura do bloco presente manda abrir chamado onde a próxima requisição consertaria); `conferir-no-ar.py` com a **quinta grandeza** na linha da causa da 29.7(3) e autoteste de 138 para **151**, com a régua velha **obrigada a discordar** (20.8).
+
+### O QUE É SEU, RAPHAEL — TRÊS COISAS, E A PRIMEIRA É DE MINUTOS
+
+**1. LEVANTAR A PORTA AGORA, se ela ainda estiver no chão quando você ler isto.** No cPanel do Plano M (br604), no WordPress de `rodametria.com.br`: **Configurações → Links permanentes → Salvar** (sem mudar nada). É o `flush_rewrite_rules( true )` da 29.3. Foi assim que você a levantou em 06/11 às ~02h3xZ. **Confira depois** abrindo `https://rodametria.com.br/veiculos/moto-eletrica/` — tem de ser a página da ilha, não a da HostGator.
+
+**2. O CHAMADO NA HOSTGATOR AGORA TEM A SÉRIE QUE ELE PEDIA, e ela é o argumento.** O chamado sobre o `.htaccess` da raiz está aberto desde 05/10 e nunca teve frequência medida. Agora tem, e a série está em `dados/consertos.md`: **12/11 16:25** (arquivo com **0 bytes e nenhum bloco** — esvaziado), **16/11 23:02** (1.057 bytes, só `NFD EPC`) e **17/11 10:15** (idem). As três **sem mão nossa** — a Fundação não tem o token desta ilha, não abriu o cPanel, e o que havia no ar era `git push` e requisições GET. **E a pergunta nova para eles, que é a que decide:** o `AllowOverride` da raiz de `rodametria.com.br` mudou entre 12/11 e hoje? Porque em 12/11 a reposição do bloco devolveu as páginas em oito minutos e hoje não devolveu.
+
+**3. A DECISÃO SOBRE O TOKEN, e ela é a mesma de 05/11 que segue aberta.** Com o token do Sync alcançável por esta nuvem, o reparo da 29.3 (`&reparar=1`) e o **retrato que nomeia a causa** passam a ser um comando de execução, e não um gesto seu — em 11/11 às 17h54Z a Sentinela reparou duas ilhas desta nuvem exatamente assim, e em 12/11 às 10h18Z a Fundação reparou a clubedomosaico em um minuto. Nas irmãs o token está no `PROMPT.md`; nesta, não. **Enquanto não estiver, toda queda desta ilha espera por você** — e hoje são seis quedas, com a janela mais longa em ~16 horas (05/11), que custou o 404 no índice da página de 673 mil buscas/mês.
+
+**pronto quando:** as 11 URLs do `wp-sitemap.xml` e as três portas da 29.2 em **200** em duas leituras com quebra de cache, com o caminho virgem em 404 na página da própria ilha; e o chamado na HostGator com a pergunta do `AllowOverride` feita e a série de três apagamentos anexada.
+
+**FIM DO DESPACHO DE 17/11.**
+
 ## ~~DESPACHO DA SENTINELA — 2026-11-16 (RONDA DIÁRIA TÉCNICA, 15h3xZ–15h5xZ) — TRÊS ITENS, E OS DOIS PRIMEIROS ESTÃO NA PÁGINA QUE NASCEU HOJE~~ — **OS TRÊS FECHADOS EM 16/11/2026 às 17h1xZ, INTEIROS NUMA PASSADA SÓ (18.2), CONFERIDOS NO AR PELA 18.4, NAS REVISÕES 99 E 100**
 
 > **ZERO CONSERTOS, E NENHUM TENTADO: nenhum dos três é da lista 19.1.** SÉTIMA ronda técnica seguida desta ilha com zero conserto — e a causa mudou de lugar: já não nasce dentro de snippet, nasce no **dado do banco e na régua que o admite**. Medida na revisão **98** (`/status` 98 = `manifest.json` 98), casca **1.27.0**.
