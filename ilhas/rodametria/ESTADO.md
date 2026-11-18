@@ -40,7 +40,10 @@ ultima_execucao: 2026-11-17T19:44Z   # A RECOLETA DAS 16h25Z HAVIA APAGADO O PIS
                      # desta ilha (73.192 bytes). BANCADA DEPOIS: 52 portoes, 0 falha. Duas
                      # regras novas na secao 8 do contrato. A HORA SAIU DO `date -u` NA MESMA
                      # LINHA DE COMANDO QUE A GRAVA, nunca digitada.
-executando_desde: 2026-11-18T10:17Z   # RESERVA da execucao de 18/11/2026, pela 1.2 (foco.md nomeia
+executando_desde: 2026-11-18T10:51Z   # RENOVADA pela 1.1 (reserva as 10h17Z): o bloco
+                         # passou de 40 minutos porque achou QUATRO defeitos em sequencia e
+                         # consertou os quatro, com dois desembarques. A HORA SAIU DO `date -u`
+                         # NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.   # RESERVA da execucao de 18/11/2026, pela 1.2 (foco.md nomeia
                          # a rodametria) e nao pela rotacao da secao 1. A ilha estava LIVRE: o campo
                          # estava `null`, que pela 1.1 ja significa que nao ha bloco da Fundacao
                          # vivo, e o ultimo commit da pasta era de 17/11 as 19h46Z — 14h atras.

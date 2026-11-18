@@ -118,7 +118,7 @@
    do primeiro cartao comecava por `11.11`. A regra mora no coletor; o que muda
    aqui e a frase: sem ela a conta do leitor nao fecha com o tamanho da tabela. */
 if ( ! defined( 'RODAMETRIA_PRODUTO_VERSAO' ) ) {
-	define( 'RODAMETRIA_PRODUTO_VERSAO', '1.14.0' );
+	define( 'RODAMETRIA_PRODUTO_VERSAO', '1.15.0' );
 }
 
 /* A VERSAO DESTE SNIPPET VAI AO AR, pelo filtro que a casca 1.6.0 abriu
@@ -147,6 +147,15 @@ if ( ! defined( 'RODAMETRIA_PRODUTO_SECAO' ) ) {
    em lugar nenhum. */
 if ( ! defined( 'RODAMETRIA_ID_DADOS_PRODUTO' ) ) {
 	define( 'RODAMETRIA_ID_DADOS_PRODUTO', 'paginas-de-produto' );
+}
+if ( ! defined( 'RODAMETRIA_ID_DADOS_ANUNCIOS' ) ) {
+	/* A COLETA CRUA. Ela e lida por UM motivo so, e nao para servir numero: a
+	   pagina que perdeu a vitrine precisa de uma DATA para o `dateModified` do
+	   `WebPage`, e a data honesta dela e a da ultima vez que a ilha TENTOU
+	   colher aquela consulta — que mora aqui e nao na vitrine, que nao tem
+	   entrada para ela. Nenhum preco, nenhuma faixa e nenhum cartao sai deste
+	   banco: quem serve a tela e `vitrine-de-produto`, sempre. */
+	define( 'RODAMETRIA_ID_DADOS_ANUNCIOS', 'anuncios-por-consulta' );
 }
 if ( ! defined( 'RODAMETRIA_ID_DADOS_VITRINE' ) ) {
 	define( 'RODAMETRIA_ID_DADOS_VITRINE', 'vitrine-de-produto' );
@@ -381,9 +390,220 @@ add_filter( 'rodametria_paginas', function ( $mapa ) {
 			'description' => (string) $pagina['declarado']['description'],
 		);
 	}
+	/* A CABECA NAO DEPENDE DA VITRINE, E ESSA SEPARACAO FOI PAGA EM 18/11/2026.
+	   Este laco inteiro era alimentado SO por `paginas_prontas()`, e naquele dia
+	   a `moto-eletrica` saiu da lista por perder um anuncio. Com ela saiu o
+	   MAPA — e o mapa e quem da `<title>`, `meta description`, `og:title`, o
+	   `pai` (logo o BreadcrumbList da 16.4) e o JSON-LD. Medido no ar: a pagina
+	   degradada respondeu 200 com 891 caracteres, sem title proprio, sem
+	   description, sem og, sem JSON-LD e sem breadcrumb, e `conferir-no-ar.py`
+	   a reprovou em 6 afirmacoes — uma delas dizendo o custo com as palavras do
+	   portao: *pagina fina gasta orcamento de rastreamento de dominio novo*.
+
+	   O desenho da pagina degradada era so do CORPO
+	   (`rdm_produto_pagina_html()`), e quem o escreveu nao viu que a casca
+	   inteira entrava pela mesma porta. Entao: a vitrine decide o CORPO e o
+	   MENU; a camada DECLARADA decide a cabeca. Pagina que perdeu a vitrine
+	   continua sendo pagina desta ilha, com trilha e com nome. */
+	foreach ( rdm_produto_declaradas_fora_da_vitrine() as $slug => $d ) {
+		$mapa[ $slug ] = array(
+			'nome'        => (string) $d['h1'],
+			'titulo'      => (string) $d['titulo'],
+			'tipo'        => 'produto',
+			'pai'         => RODAMETRIA_PRODUTO_SECAO,
+			/* FORA DO MENU, de proposito: o menu e a arvore da 16.1 anunciam o
+			   que a ilha tem para oferecer, e hoje esta pagina nao tem vitrine.
+			   A cabeca existe para quem JA esta nela ou chega por busca. */
+			'no_menu'     => false,
+			'description' => (string) $d['description'],
+		);
+	}
 
 	return $mapa;
 }, 20 );
+
+if ( ! function_exists( 'rdm_produto_pagina_sem_vitrine_html' ) ) {
+/**
+ * A PAGINA QUE EXISTE E ESTA SEM VITRINE HOJE (18/11/2026).
+ *
+ * Ela nao inventa numero nenhum: nao ha faixa de preco, nao ha cartao e nao ha
+ * tabela, porque a coleta do dia nao alcancou o piso de tres da 30.2. O que ela
+ * tem e o que e verdade sem anuncio: o assunto, a causa da ausencia, e as duas
+ * saidas que funcionam hoje — as irmas com vitrine e as ferramentas da ilha,
+ * que respondem a partir do banco e da regra, nunca da vitrine.
+ *
+ * NENHUM LINK E ESCRITO AS CEGAS: todos saem de `rodametria_casca_link()`, que
+ * devolve vazio quando a pagina nao existe (secao 16, contra link interno para
+ * 404). Se nada existir, a lista nao e servida — lista vazia e pior que lista
+ * ausente.
+ */
+function rdm_produto_pagina_sem_vitrine_html() {
+	$slug = rodametria_casca_slug_atual();
+	$d    = null;
+	$ed   = rdm_produto_editorial();
+	foreach ( (array) ( isset( $ed['paginas'] ) ? $ed['paginas'] : array() ) as $p ) {
+		if ( isset( $p['id'] ) && (string) $p['id'] === $slug ) {
+			$d = $p;
+			break;
+		}
+	}
+
+	$html  = '<div class="rdm-faixa rdm-pagina">';
+	$html .= rodametria_casca_trilha_html();
+	/* O NOME DECLARADO, e o molde cru so se a declaracao nao tiver: molde cru e
+	   barato de ver na tela e o portao de ar o acha; cadeia vazia em silencio e
+	   o que custa caro (20.7). */
+	$html .= '<h1>' . esc_html( $d && ! empty( $d['h1'] ) ? $d['h1'] : '{H1}' ) . '</h1>';
+
+	$html .= '<div class="rdm-caixa rdm-caixa-ausencia" role="note">';
+	$html .= '<p class="rdm-promessa">A comparação de preços desta página está sem '
+		. 'dados hoje.</p>';
+	$html .= '<p>Esta página compara os anúncios de adulto que estão à venda agora, e '
+		. 'ela só publica a faixa de preço quando a leitura do dia alcança pelo menos '
+		. 'três anúncios que sirvam. A leitura de hoje não alcançou: a loja parou de '
+		. 'devolver um dos anúncios que sustentavam a faixa, e os que sobraram não dão '
+		. 'base para um preço de ponta a ponta. Preferimos não publicar faixa nenhuma '
+		. 'a publicar uma que a leitura já não sustenta — o preço que você veria aqui '
+		. 'seria mais velho que a loja.</p>';
+	$html .= '<p>Nenhum número desta página é estimado, e nenhum preço daqui é '
+		. 'calculado por nós: cada um vem do anúncio, com a data em que foi lido. '
+		. 'Quando a leitura voltar a alcançar três anúncios, a comparação volta com a '
+		. 'data do dia.</p>';
+	$html .= '</div>';
+
+	/* O QUE A PAGINA DIZ SEM A VITRINE, e cada frase aqui e verdade sem anuncio
+	   nenhum: o que ela compara quando tem dado, por que o piso existe, e a
+	   licao do watt — que e do nicho e nao da coleta do dia. Isto NAO e enchimento
+	   de corpo: o portao de ar cobra 1.500 caracteres porque pagina fina gasta
+	   orcamento de rastreamento, e a saida honesta para o piso e dizer mais do
+	   que se sabe, nunca repetir a mesma frase em tres trajes (a cicatriz de
+	   29/10/2026 nesta ilha, quando o bloco de compra dizia a mesma coisa tres
+	   vezes). Zero numero e zero preco: as duas coisas que esta pagina nao tem. */
+	$html .= '<h2>O que esta página compara quando tem dados</h2>';
+	$html .= '<p>Quando a leitura do dia alcança o piso, esta página mostra os '
+		. 'anúncios de adulto que estão à venda agora, um ao lado do outro: o título '
+		. 'que a loja escreveu, o preço com a data em que foi lido, a foto do próprio '
+		. 'anúncio e o que o título declara de potência, velocidade e carga máxima — e, '
+		. 'o que importa mais, o que ele <em>não</em> declara. Junto vem a faixa de '
+		. 'preço do dia, do mais barato ao mais caro, com o meio da faixa.</p>';
+	$html .= '<p>O piso existe por uma razão de aritmética: com um anúncio só não há '
+		. 'faixa de preço, há um preço; com dois, há duas pontas e nenhum meio. Abaixo '
+		. 'do piso, qualquer faixa que publicássemos diria mais do que a leitura '
+		. 'sustenta, e o preço de um veículo elétrico varia demais entre anúncios para '
+		. 'esse tipo de atalho.</p>';
+	/* ESTE BLOCO FOI REESCRITO NO MINUTO SEGUINTE AO DE NASCER, em 18/11/2026, e
+	   a correcao e registro de metodo: a primeira versao dele dizia *a coisa que
+	   o anuncio QUASE SEMPRE esconde*, *o numero grande COSTUMA ser a potencia
+	   de pico* e *a ficha que A MAIORIA dos anuncios nao publica* — tres
+	   quantificadores da lista do `conferir-no-ar.py`, e o `costuma` e nomeado
+	   no proprio `VOZ.md` desta ilha como *a classe do quantificador por extenso
+	   que esta ilha paga desde 03/11/2026*. Escrever prosa nova e justamente
+	   quando a classe volta, e por isso este portao passou a rodar a lista de
+	   quantificadores sobre o corpo que ele mesmo gera. A frase certa nao
+	   quantifica: ela diz o que o titulo DECLARA e o que ele NAO declara, que e
+	   verificavel anuncio por anuncio. */
+	$html .= '<h2>O que o título do anúncio não diz sobre os watts</h2>';
+	$html .= '<p>Um motor elétrico tem duas potências: a nominal, que ele sustenta, e '
+		. 'a de pico, que ele alcança por instantes. O número de watts que aparece no '
+		. 'título do anúncio não diz qual dos dois está declarando — e é a nominal que '
+		. 'a Resolução Contran nº 996/2023 lê para decidir em que categoria o veículo '
+		. 'cai. Quem declara qual dos dois é a ficha do fabricante, e é ela que falta '
+		. 'nos anúncios que esta página colhe. É por isso que, com a vitrine no ar, a '
+		. 'tabela escreve ao lado de cada anúncio se ele disse qual watt declarou, em '
+		. 'vez de tratar o número do título como se fosse o nominal.</p>';
+
+	/* AS SAIDAS QUE FUNCIONAM HOJE. As ferramentas nao dependem de vitrine: elas
+	   respondem do banco e da regra, e e por isso que entram aqui. */
+	$itens = array();
+	foreach ( rdm_produto_paginas_prontas() as $irma ) {
+		$link = rodametria_casca_link( $irma['slug'],
+			(string) $irma['vitrine']['consulta'] );
+		if ( '' !== $link ) {
+			$itens[] = $link;
+		}
+	}
+	$ferramentas = array(
+		/* A ANCORA DA F1 FALA DE CATEGORIA, E NAO DE HABILITACAO, e isto nao e
+		   preciosismo de palavra: a primeira versao desta linha dizia
+		   `descobrir se o elétrico precisa de CNH` e o
+		   `teste-afirmacao-de-tela.py` a REPROVOU na mesma passada, com razao.
+		   Esta ilha decidiu por FONTE que nao responde sobre habilitacao — a
+		   Resolucao Contran no 996/2023 nao tem artigo nenhum sobre CNH; ela
+		   decide categoria, placa, registro, licenciamento e capacete —, e
+		   ancora que promete a resposta recusada e a familia do erro que o
+		   `Especifico desta ilha` do PROMPT.md chama de grave. O h1 da home pode
+		   dizer `CNH` porque ele carrega a recusa no MESMO elemento; uma ancora
+		   solta nao carrega nada. */
+		array( 'inicio', 'descobrir se o elétrico precisa de placa e registro' ),
+		array( 'autonomia-patinete-eletrico', 'quantos km o elétrico faz de verdade' ),
+		array( 'peso-maximo-patinete-eletrico', 'o peso máximo que o elétrico suporta' ),
+	);
+	foreach ( $ferramentas as $f ) {
+		$link = rodametria_casca_link( $f[0], $f[1] );
+		if ( '' !== $link ) {
+			$itens[] = $link;
+		}
+	}
+	if ( $itens ) {
+		$html .= '<nav class="rdm-malha" aria-label="Veja também">';
+		$html .= '<h2>O que a Rodametria responde hoje</h2><ul>';
+		foreach ( $itens as $i ) {
+			$html .= '<li>' . $i . '</li>';
+		}
+		$html .= '</ul></nav>';
+	}
+
+	$html .= '</div>';
+
+	return $html;
+}
+}
+
+if ( ! function_exists( 'rdm_produto_declaradas_fora_da_vitrine' ) ) {
+/**
+ * As paginas DECLARADAS que ja estao no ar e perderam a vitrine.
+ *
+ * Devolve `slug => declaracao`. As duas travas, e as duas sao para nao criar
+ * link nem breadcrumb para URL que nao existe (secao 16: *link interno para URL
+ * que da 404 custa mais do que link que falta*):
+ *
+ *   1. a pagina tem de estar FORA de `paginas_prontas()` — quem tem vitrine ja
+ *      entrou no mapa com `no_menu => true`, e entrar duas vezes sobrescreveria
+ *      a entrada boa pela fraca;
+ *   2. a pagina tem de EXISTIR e estar publicada, medido com
+ *      `rodametria_casca_url_do_slug()`, que e a mesma funcao que
+ *      `rodametria_casca_link()` usa. Consulta declarada que nunca nasceu
+ *      (`scooter-eletrica`, com `publicar_declarado: false`) nao entra: ela nao
+ *      tem pagina, e dar-lhe cabeca poria a mae apontando para 404.
+ *
+ * O SLUG DA FILHA E O `id` DA DECLARACAO, e isto e medido e nao suposto: em
+ * `paginas_prontas()` o slug sai da vitrine (`veiculos/<id>`, do qual a casca
+ * usa o ultimo pedaco) e nas tres paginas desta ilha ele e igual ao `id`. O
+ * portao `teste-cabeca-sem-vitrine.php` cobra essa igualdade nas prontas, para
+ * o dia em que alguem declarar um slug diferente do id nao passar calado.
+ */
+function rdm_produto_declaradas_fora_da_vitrine() {
+	$ed      = rdm_produto_editorial();
+	$prontas = rdm_produto_paginas_prontas();
+	$fora    = array();
+
+	if ( empty( $ed['paginas'] ) || ! is_array( $ed['paginas'] ) ) {
+		return $fora;
+	}
+	foreach ( $ed['paginas'] as $p ) {
+		$id = isset( $p['id'] ) ? (string) $p['id'] : '';
+		if ( '' === $id || isset( $prontas[ $id ] ) ) {
+			continue;
+		}
+		if ( '' === rodametria_casca_url_do_slug( $id ) ) {
+			continue;
+		}
+		$fora[ $id ] = $p;
+	}
+
+	return $fora;
+}
+}
 
 if ( ! function_exists( 'rdm_produto_atual' ) ) {
 /** A pagina de produto desta requisicao, ou null. */
@@ -606,14 +826,24 @@ function rdm_produto_pagina_html() {
 	$pagina = rdm_produto_atual();
 
 	if ( ! $pagina ) {
-		/* Pagina DEGRADADA e honesta. Nunca molde cru, nunca numero inventado. */
-		return '<div class="rdm-faixa rdm-pagina">'
-			. rodametria_casca_trilha_html()
-			. '<h1>Esta página está fora do ar neste momento</h1>'
-			. '<p class="rdm-promessa">Os anúncios que ela compara não chegaram nesta '
-			. 'atualização. Nenhum preço desta página é estimado, então ela prefere não '
-			. 'responder a responder errado.</p>'
-			. '</div>';
+		/* Pagina DEGRADADA e honesta. Nunca molde cru, nunca numero inventado.
+
+		   REESCRITA EM 18/11/2026, E O QUE MUDOU E DE FUNDO: ela servia o h1
+		   "Esta pagina esta fora do ar neste momento" e tres frases, 891
+		   caracteres no total. Medida no ar naquele dia, `conferir-no-ar.py` a
+		   reprovou em 6 afirmacoes, e a mais cara delas foi *o corpo tem 891
+		   caracteres e o piso e 1.500 — pagina fina gasta orcamento de
+		   rastreamento de dominio novo*.
+
+		   E O h1 ESTAVA ERRADO ANTES DE SER FINO. Esta URL e sobre moto
+		   eletrica e continua sendo: o que faltou foi a VITRINE de hoje, nao o
+		   assunto. Trocar o h1 pelo aviso entrega ao Google uma pagina cujo
+		   titulo diz que ela nao existe — e ela existe, responde 200 e esta no
+		   indice. Entao o h1 volta a ser o nome declarado, e a indisponibilidade
+		   vira o AVISO que ela e, com a causa escrita e com saida: as irmas que
+		   TEM vitrine hoje e as tres ferramentas da ilha, que respondem sem
+		   depender de anuncio nenhum. */
+		return rdm_produto_pagina_sem_vitrine_html();
 	}
 
 	$d = $pagina['declarado'];
@@ -1236,6 +1466,24 @@ add_filter( 'rodametria_data_da_pagina', function ( $data, $slug ) {
 		if ( $datas ) {
 			sort( $datas );          /* AAAA-MM-DD ordena como texto */
 			return (string) end( $datas );
+		}
+	}
+
+	/* A PAGINA QUE EXISTE E ESTA SEM VITRINE (18/11/2026). Sem este ramo ela
+	   fica sem `dateModified`, e sem ele a casca nao serve o `WebPage` — foi
+	   uma das 6 afirmacoes com que `conferir-no-ar.py` reprovou a moto naquele
+	   dia. A data e a da ULTIMA TENTATIVA de coleta daquela consulta, que e o
+	   que de fato mudou na pagina: ela foi medida hoje e hoje nao alcancou o
+	   piso. Dizer a data da vitrine velha seria afirmar frescor de um conteudo
+	   que saiu do ar. */
+	$fora = rdm_produto_declaradas_fora_da_vitrine();
+	if ( isset( $fora[ $slug ] ) ) {
+		$banco = rodametria_casca_banco( RODAMETRIA_ID_DADOS_ANUNCIOS );
+		foreach ( (array) ( isset( $banco['consultas'] ) ? $banco['consultas'] : array() ) as $b ) {
+			if ( isset( $b['id'] ) && (string) $b['id'] === $slug
+				&& ! empty( $b['colhido_em'] ) ) {
+				return (string) $b['colhido_em'];
+			}
 		}
 	}
 

@@ -65,6 +65,30 @@ Medido em 27/10/2026 no Chrome do Raphael (`bussola/dossies/rodametria/DOSSIE.md
 
 ---
 
+## DESPACHO DA FUNDAÇÃO PARA O RAPHAEL — 2026-11-18 — A MAIOR CABEÇA DO NICHO SAIU DO AR POR FALTA DE **UM** ANÚNCIO, E O QUE A DESTRAVA SÃO TRÊS PASSOS SEUS QUE JÁ ESTÃO ESCRITOS
+
+**Medido em 18/11/2026 entre 10h2xZ e 10h4xZ pela execução que reservou a ilha às 10h17Z.** `/veiculos/moto-eletrica/` — a consulta de **823 mil buscas/mês**, a maior das seis cabeças do nicho, no ar desde 16/11 — passou a servir a **página degradada** ("Esta página está fora do ar neste momento"), porque a coleta de hoje devolveu **2** anúncios que entram contra o piso de **3** da 30.2.
+
+**A CAUSA NÃO É DA FÁBRICA E NÃO É DE CÓDIGO: É O CATÁLOGO DA LOJA.** Os dois que ficaram são o VYRON GT600 (R$ 13.999,00) e o Foston X15 Max (R$ 8.500,00). O terceiro — item `23598774355`, da GTRBSHOP, de onde saía o `ate: R$ 15.000,00` que a página publicava — está **aposentado desde 16/11** pela 25.11, porque a ficha dele serve *"O produto não existe"*. A loja continua devolvendo esse item na busca, e a quarentena continua barrando: isso está certo e vai continuar.
+
+**E O NÚMERO NOVO É O QUE MUDA A CONVERSA, porque ele nunca havia sido medido:** com a escada de chaves consertada nesta passada, o **degrau 2** desta consulta (`moto eletrica`, a consulta crua) foi consultado **pela primeira vez na vida da ilha** e devolveu **20 ofertas, ZERO que servem** — são capacetes, buzinas, mini-motos infantis e bicicletas. Somado ao degrau 1, que entrega 2:
+
+> **A Shopee não tem catálogo de moto elétrica de adulto que sustente esta página.** Não é um anúncio que faltou hoje: é a loja inteira, nos dois degraus da escada. A página pode voltar a cair amanhã, e vai.
+
+### O QUE É SEU, RAPHAEL — E SÃO OS MESMOS TRÊS PASSOS DE 11/11, QUE AGORA DECIDEM UMA PÁGINA NO AR
+
+**1. A ETIQUETA E OS 5 LINKS DO MERCADO LIVRE.** `dados/links-afiliado-pendentes.md` está pronto desde 11/11 com os três passos e as cinco URLs de catálogo colhidas no seu Chrome: criar a etiqueta `rodametriamotoeletrica` em `mercadolivre.com.br/afiliados/adminlabel`, gerar os links em `linkbuilder` e colar na coluna `url`. **O gerador do ML tem reCAPTCHA e não responde a script (25.6), então este passo não tem como ser automatizado — e é ele que devolve a página ao ar.** O que está esperando ali é melhor do que o que a Shopee tem: o primeiro da lista é a mesma GT600 com **+50 vendidos**, contra os **zero vendas** dos três anúncios de Shopee.
+
+**pronto quando:** a coluna `url` das 5 linhas estiver preenchida com a data em `gerado_em`. A execução seguinte reconta o piso da 30.2 e a página volta sozinha.
+
+**2. O CHAMADO NA HOSTGATOR — E A SÉRIE GANHOU UM SEXTO PONTO, O MAIS LONGO DE TODOS.** Lido às 10h3xZ de hoje em `/casca → porta → quedas`: `episodios_vistos: 0`, `leituras_no_chao: 0`, `reposicoes_da_cura: 0`, com `tem_bloco_wordpress: true`. O contador entrou no ar às 13h40Z de 17/11, então o que ele afirma é **nenhuma queda entre 13h40Z de ontem e agora, sem ninguém estar olhando** — e a reposição das **11:15:20Z de 17/11** está de pé há **pelo menos 23 horas**. A série de intervalos da mesma raiz: **~4 min, ≥27 min, ≥2h26min, ≥5h30min, ≥8h17min, ≥23h**. **Isto fortalece a frase do chamado, que é a da 29.5(b): evento irregular, com hora, não processo** — e a pergunta do `AllowOverride` segue caída, como a errata de 17/11 já havia decidido.
+
+**3. A DECISÃO SOBRE O TOKEN**, sem mudança: com o token do Sync alcançável desta nuvem, a próxima queda custa um comando em vez de uma hora de trava.
+
+**pronto quando (o despacho inteiro):** as 11 URLs do `wp-sitemap.xml` e as três portas da 29.2 em **200**, com `/veiculos/moto-eletrica/` servindo a vitrine e não a página degradada.
+
+**FIM DO DESPACHO DE 18/11.**
+
 ## DESPACHO DA FUNDAÇÃO PARA O RAPHAEL — 2026-11-17 — ALTA: A PORTA CAIU PELA SEXTA VEZ NESTA RAIZ, E A CURA AUTOMÁTICA JÁ NÃO ESTÁ BASTANDO — DUAS CURAS EM 11h18m, E A SEGUNDA NÃO DEVOLVEU AS PÁGINAS
 
 **Medido em 17/11/2026 entre 10h19Z e 10h2xZ pela execução da Fundação que reservou a ilha às 10h17Z.** A ilha em foco total está servindo a página de estacionamento da HostGator em tudo menos a home.

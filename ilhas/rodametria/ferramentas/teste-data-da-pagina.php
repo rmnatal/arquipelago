@@ -96,6 +96,19 @@ $GLOBALS['DIVERGENTE'] = in_array( '--divergente', $GLOBALS['argv'], true );
    pagina certa (20.5). Derivada do numero de filhas, a lista nasce completa a
    cada passada e a quarta pagina nao a quebra. */
 $GLOBALS['DIVERGENTE_DATAS'] = array();
+
+/* O WORDPRESS NAO EXISTE AQUI, e `rdm_produto_declaradas_fora_da_vitrine()` —
+   carregada desde 18/11/2026, porque o filtro da data a chama — pergunta a ele
+   se a pagina esta publicada. O stub responde pelo MUNDO REAL desta ilha: toda
+   pagina que a camada declarada nomeia e que ja nasceu esta no ar, e nenhuma foi
+   despublicada. Em `$GLOBALS['NAO_EXISTEM']` entra o slug que um mundo
+   especifico queira derrubar; vazio e o caso corrente. */
+$GLOBALS['NAO_EXISTEM'] = array();
+function rodametria_casca_url_do_slug( $slug ) {
+	if ( in_array( $slug, $GLOBALS['NAO_EXISTEM'], true ) ) { return ''; }
+	return 'https://rodametria.com.br/' . ltrim( (string) $slug, '/' ) . '/';
+}
+
 function rodametria_casca_banco( $id ) {
 	if ( array_key_exists( $id, $GLOBALS['BANCO_TROCAS'] ) ) {
 		return $GLOBALS['BANCO_TROCAS'][ $id ];
@@ -222,6 +235,11 @@ foreach ( array(
 	array( 'rdm_produto_editorial', $produto ),
 	array( 'rdm_produto_vitrine', $produto ),
 	array( 'rdm_produto_paginas_prontas', $produto ),
+	/* ACRESCENTADA EM 18/11/2026: o filtro da data ganhou o ramo da pagina que
+	   existe e esta sem vitrine, e ele CHAMA esta funcao. Sem ela aqui o portao
+	   morria com `Call to undefined function` e a bancada o classificava como
+	   INERTE — que e o veredito certo e nao diz qual era a funcao. */
+	array( 'rdm_produto_declaradas_fora_da_vitrine', $produto ),
 	array( 'rdm_inst_declarado', $inst ),
 	array( 'rdm_inst_paginas', $inst ),
 ) as $par ) {
