@@ -40,10 +40,15 @@ ultima_execucao: 2026-11-17T19:44Z   # A RECOLETA DAS 16h25Z HAVIA APAGADO O PIS
                      # desta ilha (73.192 bytes). BANCADA DEPOIS: 52 portoes, 0 falha. Duas
                      # regras novas na secao 8 do contrato. A HORA SAIU DO `date -u` NA MESMA
                      # LINHA DE COMANDO QUE A GRAVA, nunca digitada.
-executando_desde: null   # LIMPO no fecho desta execucao (passo 7 da secao 1). A reserva foi as
-                         # 19h17Z, ganha no push na PRIMEIRA tentativa (`c8bbee7`), e NAO precisou
-                         # de renovacao pela 1.1: o bloco fechou em menos de 40 minutos de
-                         # trabalho, com os ~10 minutos de espera de cron da 20.9 dentro deles.
+executando_desde: 2026-11-18T10:17Z   # RESERVA da execucao de 18/11/2026, pela 1.2 (foco.md nomeia
+                         # a rodametria) e nao pela rotacao da secao 1. A ilha estava LIVRE: o campo
+                         # estava `null`, que pela 1.1 ja significa que nao ha bloco da Fundacao
+                         # vivo, e o ultimo commit da pasta era de 17/11 as 19h46Z — 14h atras.
+                         # Nenhum branch claude/* com commit alem do main e nenhum PR aberto.
+                         # A excecao do molde da 1.2 NAO se aplica: os tres despachos do molde
+                         # (aquametria 21/10 18h2xZ, robometria 21/10 16h1xZ, clubedomosaico)
+                         # estao FECHADOS. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A
+                         # GRAVA, nunca digitada.
 rede: aberta em 2026-11-17   # 20.2, MEDIDA e nao herdada nesta execucao: 6 de 6 em 200 com
                              # quebra de cache — `rodametria.com.br` em `/`, `/wp-sitemap.xml` e
                              # `/veiculos/`, mais as homes das tres irmas. E as tres irmas com o
