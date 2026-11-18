@@ -65,7 +65,19 @@ Medido em 27/10/2026 no Chrome do Raphael (`bussola/dossies/rodametria/DOSSIE.md
 
 ---
 
-## DESPACHO DA SENTINELA — 2026-11-18 (RONDA DIÁRIA TÉCNICA, 14h4xZ–15h0xZ) — CINCO ITENS, E O PRIMEIRO É UM `alt` QUE O BANCO JÁ TEM E A TELA JOGA FORA
+## DESPACHO DA SENTINELA — 2026-11-18 (RONDA DIÁRIA TÉCNICA, 14h4xZ–15h0xZ) — **REESCRITO PELA 18.3 ÀS 17h0xZ DO MESMO DIA: OS ITENS 1, 2, 3 E 4 ESTÃO FECHADOS E CONFERIDOS NO AR (18.4), E SÓ O ITEM 5, QUE É GESTO DO RAPHAEL, FICA**
+
+> **O QUE FOI FECHADO, com o que a verificação mediu — o texto inteiro dos quatro itens está preservado no fim desta seção, porque o diagnóstico deles é a memória do defeito e não o recado:**
+>
+> - **ITEM 1 (ALTA), o `alt` das fotos de cartão — FECHADO, e a causa era mais funda que o diagnóstico.** Não era "a tela joga fora o dado": o **gerador** gravava `imagem.alt` com o MESMO `nome` que o cartão imprime três linhas abaixo, e a casca esvaziava o atributo justamente quando os dois fossem iguais (decisão de 11/11, para o leitor de tela não ouvir o título duas vezes). As duas estão certas sozinhas e **compostas garantiam `alt=""` em toda foto de produto da ilha, para sempre** — medido: igual ao nome em **20 de 20** registros com foto. Obedecer o "pronto quando" ao pé da letra (servir o `imagem.alt` do banco) teria **reposto o defeito de 11/11**. O `alt` passa a ser **escrito pela ilha** (`alt_da_foto`): a classe do veículo da própria página, mais a procedência da foto, que é da loja. Marca do produto não entra — ela só existe dentro do título. Conferido no ar, nas 11 URLs do sitemap, em duas leituras com quebra de cache: **5 de 5** `<img>` de cartão com `alt` não vazio e **igual** ao `imagem.alt` do registro, zero vazio. *(Eram 7 fotos; duas saíram pelo item 2.)*
+> - **ITEM 2 (ALTA), as fotos quebradas — FECHADO nas DUAS metades.** O instrumento: `conferir-32-5-no-navegador.mjs` passa a ouvir `response` e `requestfailed` por URL e classifica em três desfechos **ditos separados** — a origem respondeu (REPROVA, com o status), o egresso recusou (**NÃO MEDIDO**, não reprova) e a rede não explica (REPROVA, causa em aberto). O **403 não escolhe pai**, de propósito. Autoteste de 11 para **15** afirmações, com a régua velha obrigada a discordar. O dado: as duas fotos saem com `imagem: null` e a medição inteira em `motivo_sem_imagem`, e o cartão passa a servir o espaço reservado neutro da seção 6 — das três saídas que o item pôs na mesa, é a única que o visitante vê hoje. **E o portão novo achou, na primeira passada, DOIS registros dizendo `a CDN nao respondeu (HTTP Error 403)` para fotos que esta nuvem NUNCA alcançou** — o mesmo defeito um andar abaixo, no coletor, consertado na mesma passada.
+> - **ITEM 3 (ALTA), o anúncio esgotado — FECHADO.** `58215666648` fora dos campos vivos, com a prosa `CAUSA || ULTIMA MEDICAO` que o coletor lê como lista de bloqueio, e a contagem recontada: **2 → 1** anúncio que serve naquela consulta. Zero ocorrência do id nas 11 URLs servidas. **E a ferramenta que faz isso estava morta no único caminho que grava** — `%` casa mais apertado que `+` em Python, e a linha montada com `+` no meio morria em `TypeError` antes de tocar o banco, desde 16/11, **com o autoteste aprovando 81 afirmações** porque nenhuma delas MONTAVA uma linha.
+> - **ITEM 4 (NORMAL), a bicicleta com seis preços iguais — FECHADO pela segunda saída do item, e a primeira está medida como inviável.** Agrupados por título idêntico **e** preço idêntico, os 7 anúncios dão **CINCO** chaves (um grupo de 3 em 3 lojas, e quatro sozinhos), não "2 produtos": os outros três são julgamento de quem leu os títulos, e esta ilha já decidiu **duas vezes** que título entre lojas não prova produto (04/11 no carrossel, 16/11 na repetição da loja). A frase da tela passa a contar o que conta, e está no ar: *"sobre os 7 anúncios de 7 lojas que a gente conferiu em 18/11/2026. A mediana é igual ao menor preço porque 6 dos 7 anúncios custam exatamente R$ 2.299,99, e 3 deles servem o mesmo título, em 3 lojas diferentes."* Contada no gerador, nunca digitada, com **mundo próprio para o ramo que CALA**. A conta da 25.9: a régua nova **não tira ninguém da página**, só declara — 57 anúncios julgados, **0 veredito de entrada mudou**, e as páginas publicam as mesmas 7 e 14 linhas.
+>
+> **E O CONSERTO DO ITEM 1 NÃO VIAJOU DE PRIMEIRA, o que vale mais que o item:** com as duas páginas de família já verdes, `/autonomia-patinete-eletrico/` seguia servindo `alt=""` — ela monta cartão de **veículo** por outro caminho, e `veiculos.json` grava `imagem.alt` com o modelo. É a **32.5-c** outra vez. O que viajou foi a **função**, não a frase: `alt_da_foto` mudou de casa para `gerar-f2.py`, onde as frases da voz da tela já moram.
+
+---
+
 
 > **ZERO CONSERTOS, E NENHUM TENTADO: nenhum dos cinco é da lista 19.1.** OITAVA ronda técnica seguida desta ilha com zero conserto. Medida na revisão **111** (`/status` 111 = `manifest.json` 111), casca **1.29.0**, `versao_sync` 1.1.5.
 >
@@ -82,6 +94,29 @@ Medido em 27/10/2026 no Chrome do Raphael (`bussola/dossies/rodametria/DOSSIE.md
 > **RECONFERÊNCIA DO QUE A RONDA DE 17/11 PEDIU POR ESCRITO — AS TRÊS RESPONDIDAS:** (a) as 11 URLs e as três portas da 29.2 voltaram a 200, com o caminho virgem em 404 na página da própria ilha — **sim**; (b) **a primeira leitura no ar de `/casca → porta → tem_bloco_wordpress`: `true`**, com as portas em 200, o que pela errata de 17/11 é o mundo **(b)** e **não pede chamado novo por esta leitura**; (c) linha nova de `cura da porta:` depois das 10:15 — **sim, uma**, e é o item 5.
 
 ---
+
+**ITEM 5 — ALTA, E É PARA O RAPHAEL, NÃO PARA A FUNDAÇÃO: A PORTA CAIU PELA SÉTIMA VEZ NESTA RAIZ, HOJE ÀS 14:34Z — E ESTA É A PRIMEIRA QUEDA QUE O CONTADOR NOVO MEDIU SOZINHO, SEM NINGUÉM SENTADO EM CIMA DA ILHA.**
+
+- **o log do `/status`, lido às 14h4xZ:** `2026-11-18 14:34 cura da porta: bloco WordPress reposto — 1057 bytes [NFD EPC] -> 1580 bytes [NFD EPC, WordPress]`. Mesma assinatura byte por byte das seis anteriores.
+- **`/casca → porta → quedas`, a primeira leitura útil do contador que nasceu em 13h40Z de 17/11:** `episodios_vistos: 1`, `leituras_no_chao: 1`, `leituras_nao_sei: 0`, `reposicoes_da_cura: 1`, `primeira_no_chao: 2026-11-18 14:34Z`, `episodio.reposto_depois: true`, `episodio.duracao_minima_s: 0`, com `tem_bloco_wordpress: true` e `cura_liberada_em_s: 3118`.
+- **A CURA DEVOLVEU AS PÁGINAS NA MESMA REQUISIÇÃO, e isso é novo:** medido minutos depois, 11 de 11 URLs em 200 em duas leituras com quebra de cache, as três portas da 29.2 em 200 e o caminho virgem em 404 na página da ilha. Em 17/11 a linha `bloco WordPress reposto` das 10:15 **não** devolveu as páginas e a ilha ficou **≥55 min 29 s** no chão esperando a trava de uma hora; hoje o tempo no chão foi de **zero minuto medido**. A 29.4 fez o trabalho dela.
+- **E O ARGUMENTO NOVO PARA O CHAMADO É UM INTERVALO FECHADO, o primeiro da série:** a reposição de **17/11 11:15:20Z** sobreviveu até **18/11 14:34Z** — **~27 h 19 min**, e esse número não é mais um "pelo menos", é o intervalo inteiro, porque a próxima queda está datada. A série da mesma raiz passa a ser: ~4 min · ≥27 min · ≥2 h 26 min · ≥5 h 11 min · ≥23 h · **27 h 19 min (fechado)**. **Isto é a 29.5(b) literal — evento irregular, com hora, não processo** — e é o que derruba de vez a leitura de "é reescrito poucos minutos depois de cada reposição", que a errata de 17/11 já havia corrigido uma vez.
+- **nenhum chamado NOVO sai desta leitura**, e o motivo é o campo que 17/11 criou: `tem_bloco_wordpress: true` com as portas em 200 é o mundo **(b)** da errata, não o `AllowOverride` do mundo (a).
+
+**NÃO CONSERTEI, e não havia o que consertar:** a porta já estava de pé quando esta ronda a mediu, e a causa é do hospedeiro (29.4: chamado, não código de ilha nenhuma).
+
+**pronto quando:** o chamado na HostGator tiver a frase do evento irregular com a série de **seis** intervalos acima anexada, incluindo o primeiro fechado; e a decisão sobre o token do Sync desta ilha estiver tomada, porque é ela que faz a próxima queda custar um comando em vez de uma trava de uma hora.
+
+**FIM DO QUE AINDA ESTÁ ABERTO NO DESPACHO DE 18/11 — e o que sobra é o item 5, que é gesto do Raphael.**
+
+---
+
+### O TEXTO ORIGINAL DOS ITENS 1 A 4, PRESERVADO
+
+Eles ficam porque **o diagnóstico de cada um é a memória do defeito**, e três deles
+nomeiam um mecanismo que vale para as ilhas irmãs: o atributo que duas decisões
+certas esvaziam quando compostas, o portão que confunde *não medi* com *está
+quebrado*, e a régua que fica INERTE no dia em que o alvo dela muda.
 
 **ITEM 1 — ALTA. AS 7 FOTOS DE CARTÃO NO AR SERVEM `alt=""`, E O TEXTO ALTERNATIVO ESTÁ PRONTO NO BANCO, COM O TÍTULO DO ANÚNCIO.** Não é `alt` faltando por falta de dado: é dado existente que a tela joga fora.
 
@@ -139,18 +174,6 @@ Medido em 27/10/2026 no Chrome do Raphael (`bussola/dossies/rodametria/DOSSIE.md
 **pronto quando:** `/veiculos/bicicleta-eletrica/` servir, no HTML, uma tabela em que **nenhum preço se repita mais de duas vezes** **ou** em que a regra de deduplicação escolhida esteja escrita **em palavras no registro** (como a 25.10 já exige do degrau) e a frase da tela diga ao leitor o que ela conta — "7 anúncios de 6 lojas para 2 produtos" é honesto; "os 7 anúncios que a gente conferiu" não é. E, pela 25.9, a prova de que a régua nova não afrouxou nem apertou demais: a régua ANTIGA sobre o banco ANTIGO e a NOVA sobre o NOVO, anúncio por anúncio, com quantos vereditos mudaram e quais.
 
 ---
-
-**ITEM 5 — ALTA, E É PARA O RAPHAEL, NÃO PARA A FUNDAÇÃO: A PORTA CAIU PELA SÉTIMA VEZ NESTA RAIZ, HOJE ÀS 14:34Z — E ESTA É A PRIMEIRA QUEDA QUE O CONTADOR NOVO MEDIU SOZINHO, SEM NINGUÉM SENTADO EM CIMA DA ILHA.**
-
-- **o log do `/status`, lido às 14h4xZ:** `2026-11-18 14:34 cura da porta: bloco WordPress reposto — 1057 bytes [NFD EPC] -> 1580 bytes [NFD EPC, WordPress]`. Mesma assinatura byte por byte das seis anteriores.
-- **`/casca → porta → quedas`, a primeira leitura útil do contador que nasceu em 13h40Z de 17/11:** `episodios_vistos: 1`, `leituras_no_chao: 1`, `leituras_nao_sei: 0`, `reposicoes_da_cura: 1`, `primeira_no_chao: 2026-11-18 14:34Z`, `episodio.reposto_depois: true`, `episodio.duracao_minima_s: 0`, com `tem_bloco_wordpress: true` e `cura_liberada_em_s: 3118`.
-- **A CURA DEVOLVEU AS PÁGINAS NA MESMA REQUISIÇÃO, e isso é novo:** medido minutos depois, 11 de 11 URLs em 200 em duas leituras com quebra de cache, as três portas da 29.2 em 200 e o caminho virgem em 404 na página da ilha. Em 17/11 a linha `bloco WordPress reposto` das 10:15 **não** devolveu as páginas e a ilha ficou **≥55 min 29 s** no chão esperando a trava de uma hora; hoje o tempo no chão foi de **zero minuto medido**. A 29.4 fez o trabalho dela.
-- **E O ARGUMENTO NOVO PARA O CHAMADO É UM INTERVALO FECHADO, o primeiro da série:** a reposição de **17/11 11:15:20Z** sobreviveu até **18/11 14:34Z** — **~27 h 19 min**, e esse número não é mais um "pelo menos", é o intervalo inteiro, porque a próxima queda está datada. A série da mesma raiz passa a ser: ~4 min · ≥27 min · ≥2 h 26 min · ≥5 h 11 min · ≥23 h · **27 h 19 min (fechado)**. **Isto é a 29.5(b) literal — evento irregular, com hora, não processo** — e é o que derruba de vez a leitura de "é reescrito poucos minutos depois de cada reposição", que a errata de 17/11 já havia corrigido uma vez.
-- **nenhum chamado NOVO sai desta leitura**, e o motivo é o campo que 17/11 criou: `tem_bloco_wordpress: true` com as portas em 200 é o mundo **(b)** da errata, não o `AllowOverride` do mundo (a).
-
-**NÃO CONSERTEI, e não havia o que consertar:** a porta já estava de pé quando esta ronda a mediu, e a causa é do hospedeiro (29.4: chamado, não código de ilha nenhuma).
-
-**pronto quando:** o chamado na HostGator tiver a frase do evento irregular com a série de **seis** intervalos acima anexada, incluindo o primeiro fechado; e a decisão sobre o token do Sync desta ilha estiver tomada, porque é ela que faz a próxima queda custar um comando em vez de uma trava de uma hora.
 
 **FIM DO DESPACHO DE 18/11.**
 

@@ -3,6 +3,96 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-11-18 16h16Z–17h?xZ — **O `alt` DE TODA FOTO DE PRODUTO DESTA ILHA ERA VAZIO POR CONSTRUÇÃO, E DUAS DECISÕES CERTAS O COMPUNHAM. Despacho de 18/11 FECHADO nos quatro itens da Fundação (18.2).** Revisões **112** e **113**.
+
+**A ILHA DESTA EXECUÇÃO:** rodametria, por **foco** (`foco.md`, foco total desde 27/10). **Conferi o que fura o foco antes de aceitar isso:** o despacho do **molde de conversão** (exceção do Raphael de 21/10, seção 32) está **FECHADO nas três ilhas** que ele nomeia — aquametria em 21/10 às 18h2xZ, clubedomosaico às 19h1xZ, robometria às 16h1xZ —, então o foco manda sozinho; e nenhuma ilha no ar está quebrada com despacho ALTO aberto (o `dados/PAINEL.md` de hoje mede as quatro portas **verdes**). Logo nada fura o foco pela 1.2 nem pela 18.1.
+
+**Passo 1 do disparo, medido:** `git fetch origin main` trouxe o `main` em **`9d0dc7a`**. A branch `claude/dreamy-mccarthy-4ih3tp` (local e remota) estava **na mesma ponta do `main`** — `git log origin/main..origin/claude/...` devolveu **vazio** — e `list_pull_requests` com `state: open` devolveu **lista vazia**: não havia nada a mesclar.
+
+**A RESERVA (passo 5 da seção 1):** `executando_desde` estava **`null`**, que pela **1.1** já prova que não havia bloco da Fundação vivo. Reserva às **16h16Z**, ganha no push na **primeira tentativa** (`ff9d7d9`), e **RENOVADA às 16h36Z** pela 1.1, porque o despacho tem cinco itens e a 18.2 manda sair inteiro. As duas horas saíram do `date -u` na mesma linha de comando que as grava.
+
+**A REDE FOI MEDIDA E NÃO HERDADA (20.2):** `rodametria.com.br` em **200 nas três passadas**, com `aquametria.com.br` em 200 na mesma passada — controle verde. O `/status` respondeu na primeira tentativa, revisão 111, `ultimo` de minutos antes.
+
+---
+
+### O ITEM 1 ERA UM `alt` VAZIO, E O DIAGNÓSTICO DA RONDA ESTAVA CERTO NO SINTOMA E CURTO NA CAUSA
+
+O despacho diz *"não é `alt` faltando por falta de dado: é dado existente que a tela joga fora"*, e o "pronto quando" dele pede que as fotos sirvam `alt` **igual ao `imagem.alt` do registro**. **Medi o banco antes de obedecer, e foi isso que mudou o conserto:** `imagem.alt` é igual ao `nome` do cartão em **20 de 20** registros com foto, **zero diferentes**. Quem grava essa igualdade é o **gerador** (`nova['alt'] = nome_na_tela`), e a casca esvazia o atributo **justamente quando os dois são iguais** — trava de 11/11/2026, escrita para o leitor de tela não ouvir o título duas vezes por cartão.
+
+**As duas decisões estão certas sozinhas. Compostas, elas garantem `alt=""` em TODA foto de produto da ilha, para sempre** — e obedecer o "pronto quando" ao pé da letra teria **reposto o defeito de 11/11**, servindo o título do anúncio no atributo e no `<p>` encostado nele.
+
+**E NENHUM PORTÃO VIA, porque cada um media a própria metade:** o do ar cobra que o `alt` **não repita** a prosa vizinha (`alts_que_repetem_a_prosa_vizinha`, que **ignora atributo vazio de propósito**) e o do chão cobrava que o campo **existisse** no banco. **Entre "não repete" e "existe" cabe o vazio inteiro.**
+
+**O CONSERTO:** o `alt` passa a ser **escrito pela ilha** — `alt_da_foto()`, com a **classe do veículo da própria página** (dado: a `consulta` do bloco, nunca prosa digitada) mais a procedência da foto, que é da loja: *"Foto do anúncio na loja: bicicleta elétrica"*. **Marca do produto NÃO entra**, e isso é escolha medida: ela só existe dentro do título, e adivinhá-la dali seria inventar certeza que o banco não tem (26). A trava do gerador **recusa gravar** `alt` vazio ou igual ao nome, então a guarda de 11/11 na casca virou último recurso — e isso está **dito no comentário dela**, que afirmava um mundo que deixara de existir.
+
+**O PORTÃO QUE ISSO EXIGE TEM TRÊS AFIRMAÇÕES SEPARADAS (20.5):** não vazio, não igual ao nome encostado, e **a classe dentro dele**. A terceira existe para o `alt` **fixo** — cadeia escrita à mão que passa pelas duas primeiras e serve a mesma frase em toda página da ilha, perdendo o único dado que o atributo carrega. Gerador de **555 para 635** afirmações.
+
+> **E O CONSERTO NÃO VIAJOU DE PRIMEIRA, o que vale mais que o item.** Com as duas páginas de família já conferidas no ar, medi as **11 URLs do sitemap** e achei **5 `<img>` de cartão, 4 com a frase da ilha e UM com `alt=""`**: `/autonomia-patinete-eletrico/`, que monta cartão de **veículo** por outro caminho — `veiculos.json` grava `imagem.alt` com `"Honeywhale M2 MAX"`, o nome que o cartão imprime ao lado. **É a 32.5-c outra vez, e aqui a regra nem precisava atravessar para outra ilha: bastou não atravessar a própria ilha.** O que viajou foi a **FUNÇÃO**, não a frase: `alt_da_foto` mudou de casa para `gerar-f2.py`, onde as frases da voz da tela moram desde 10/11, e o gerador da vitrine — que já importava aquele módulo — passa a usá-la de lá. *(A primeira tentativa importou na direção contrária e morreu em `RecursionError`: a vitrine importa a F2, então a seta só pode apontar num sentido.)* A classe do veículo sai do `tipo_comercial`, com **valor novo DENUNCIADO** em vez de cair num padrão — o banco admite `nao_declarado` de propósito, e nesse mundo a ilha **não sabe** a classe: a frase encurta e não inventa uma.
+
+**E O PORTÃO DA ILHA PEGOU A PRIMEIRA VERSÃO DA MINHA PRÓPRIA TRAVA:** ela derivava o nome exibido de `marca`+`modelo` por conta própria, e `teste-nome-do-registro.py` reprovou nomeando o que seria — a **sexta** cópia da mesma pergunta (item 1 do despacho de 09/11, em que a mesma pergunta tinha cinco respostas). O nome exibido sai de `regras/nomes.py` e só de lá.
+
+---
+
+### O ITEM 3 FECHOU, E A FERRAMENTA QUE O FECHA ESTAVA MORTA NO ÚNICO CAMINHO QUE GRAVA
+
+`aplicar-aposentadoria-de-anuncio.py` existe desde 11/11 para aposentar anúncio que não vende. Rodei `--conferir`: **81 afirmações, 0 falha, APROVADO**. Rodei o modo que grava, e ele morreu em `TypeError: not all arguments converted during string formatting` **antes de tocar o banco**.
+
+**A causa é de precedência, e cabe numa linha:** a linha de quarentena era montada com `+` no meio de literais e um `%` no fim — e em Python o `%` casa **mais apertado** que o `+`, então ele recebia só o **último** literal (duas vagas) com as **dez** substituições. Quebrou em **16/11**, quando o rótulo curto da causa foi inserido na cadeia com `+`, e **hoje foi a primeira tentativa de aposentar desde então**: as três linhas de quarentena que o banco já tinha nasceram antes do rótulo e foram **retroajustadas por `--rotular`**, que é outro caminho de código.
+
+**O autoteste aprovava 81 afirmações porque todas elas LEEM as linhas que já estão no banco, e nenhuma MONTAVA uma.** É a família que esta ilha mais paga — *a régua existia e não tinha falhado porque não tinha rodado*. A montagem virou **função**, o portão a **chama**, a linha montada tem de casar com o `PADRAO_APOSENTADO` que o **coletor** lê como lista de bloqueio, o coletor tem de **achar o id** nela, e a **régua ingênua é obrigada a discordar** (20.8). **86 afirmações**, e com o defeito replantado numa cópia o portão **REPROVA nomeando o `TypeError`**.
+
+**O anúncio:** `58215666648` (*"Scooter (Bike) Elétrica Foston X15 Max ... - SEM CNH"*, R$ 8.500,00, loja `RWX BIKES LTDA.`) fora dos campos vivos, com a prosa `CAUSA || ULTIMA MEDICAO`, e a contagem recontada: `ofertas_que_servem` **2 → 1** na moto elétrica, `ofertas_com_link_de_afiliado` 2 → 1, `ofertas_aposentadas` 1 → 2, com `ofertas_lidas` e `ofertas_recusadas` **intactas**, porque são fato do dia da coleta. **Zero ocorrência do id nas 11 URLs servidas.** A página segue degradada pelo piso da 30.2 — 1 anúncio contra os 3 que ele exige.
+
+---
+
+### O ITEM 4: A DEDUP NÃO FOI FEITA, E A RAZÃO ESTÁ MEDIDA
+
+O despacho oferece duas saídas. A primeira — *"nenhum preço se repita mais de duas vezes"* — exigiria tirar da tela oferta de loja de verdade por **semelhança de texto**, e **a semelhança nem alcança o caso**: agrupados por título idêntico **e** preço idêntico ao centavo, os 7 anúncios dão **CINCO** chaves — um grupo de **3** (`3G MAX`, `FLBAZAR`, `3FMAXLTDA`, R$ 2.299,99, título igual letra por letra) e **quatro sozinhos**. Os outros três a que o despacho se refere como *"a mesma dobrável NIUDA/NUDA com texto reescrito"* são **julgamento de quem leu os títulos**, e esta ilha já decidiu **duas vezes** que título entre lojas não prova produto: em **04/11**, no `escolher_carrossel` (*"deduplicar oferta equivalente exigiria afirmar que dois anúncios de duas lojas SÃO o mesmo produto, e esta ilha não mede isso"*), e em **16/11**, no `marcar_repeticao_da_loja` (*"a identidade é de UMA loja só"*).
+
+**Então foi feita a segunda saída, que é a que a 25.10 já exige do degrau: a frase conta o que ela conta.** No ar, conferido: *"custa de R$ 2.299,99 a R$ 6.199,90, com a mediana em R$ 2.299,99 sobre os 7 anúncios **de 7 lojas** que a gente conferiu em 18/11/2026. **A mediana é igual ao menor preço porque 6 dos 7 anúncios custam exatamente R$ 2.299,99, e 3 deles servem o mesmo título, em 3 lojas diferentes.**"*
+
+**A frase é CONTADA no gerador (`frase_do_mesmo_preco`), nunca digitada, e a forma muda com o mundo** — com **mundo próprio para o ramo que CALA**, porque frase que não sabe calar afirma repetição onde não há: a página do patinete (14 anúncios, 13 lojas, **zero** no preço da mediana, porque a mediana de 14 é interpolada) serve **silêncio**. E o ramo da repetição **minoritária** de preço foi **tirado** na mesma passada: dizer todo número que se conta vira ruído na página sã, e ruído é o que faz leitor parar de ler número.
+
+**A CONTA DA 25.9 QUE O ITEM PEDE:** a régua nova **não tira ninguém da página**, só declara — medido anúncio por anúncio, **57 julgados, 0 veredito de entrada mudou**, e as duas páginas publicam as **mesmas 7 e 14 linhas** de antes. O que mudou é a frase. *(A outra metade da prova é de código: `entra_na_pagina` não foi tocada.)*
+
+---
+
+### O ITEM 2: O PORTÃO CONFUNDIA "NÃO MEDI" COM "ESTÁ QUEBRADO", E O BANCO FAZIA O MESMO UM ANDAR ABAIXO
+
+**A metade do INSTRUMENTO.** `conferir-32-5-no-navegador.mjs` reprovava foto que o **egresso desta nuvem** nunca deixou sair, com a mesma frase da foto que a CDN recusou — em 18/11 foram **três páginas reprovadas e uma era falso positivo**. **O DOM não sabe a diferença** (os dois mundos são `naturalWidth: 0` iguais); quem sabe é a **camada de rede**. O portão passa a ouvir `response` e `requestfailed` **por URL** e classifica em três desfechos **ditos separados** (20.5): a origem respondeu → **REPROVA**, com o status; o egresso recusou (`ERR_TUNNEL_*`, proxy) → **NÃO MEDIDO**, não reprova; a rede não explica → **REPROVA**, com a causa em aberto (é aí que cai `data:` corrompido, o mundo 3 do autoteste). **O 403 NÃO escolhe pai**, de propósito: proxy e CDN devolvem o mesmo número, e foi atribuí-lo à CDN que produziu a frase errada da manhã de 18/11 (*"a CDN da loja respondeu 503"* para um caso em que a nuvem não a alcançou). Autoteste de **11 para 15** afirmações, em **4 mundos novos**, sem uma requisição de rede, com a **régua velha obrigada a discordar** no mundo do egresso.
+
+**A metade do DADO.** As duas fotos medidas no Chrome do Raphael (503 em seis leituras, com controle verde na MESMA CDN) saem com `imagem: null` e a medição inteira em `motivo_sem_imagem`, no formato `CAUSA || ULTIMA MEDICAO`. O cartão passa a servir o **espaço reservado neutro da seção 6** — um `<span>`, não um `<img>`. Das três saídas que o item pôs na mesa, é a única que o visitante vê hoje: *recolher na coleta seguinte* deixa a foto rota no ar até lá, e a *segunda fonte da 25.3* é trabalho que esta nuvem não alcança **pelo mesmo egresso que causou o problema**. A foto volta sozinha na coleta em que a CDN responder. **Nota de procedência:** o despacho atribuiu a URL `sg-11134201-825al-...` ao cartão 3 de `3FMAXLTDA` a R$ 2.299,99; ela é do item `58220113046`, **NEGOCIO VELOZ**, R$ 6.199,90 — a URL é que manda.
+
+**O PORTÃO RODADO CONTRA O SITE DE VERDADE, DEPOIS DOS DOIS CONSERTOS: APROVADO em 10 de 10 páginas do molde** — ele havia reprovado **três** nesta mesma quinta-feira, e uma delas era falso positivo. Pior caixa 405 px (teto 700), pior compra 1.333 px (teto 1.400), zero disputa de especificidade. A contagem de foto saiu por página: `/autonomia-patinete-eletrico/` 1 real e 3 reservado, `/veiculos/bicicleta-eletrica/` 2 e 1, `/veiculos/patinete-eletrico/` 2 e 3.
+
+> **E A RESSALVA QUE A HONESTIDADE EXIGE: a classificação nova NÃO foi exercitada no ar nesta passada, porque não sobrou foto quebrada para classificar** — as duas que havia saíram do banco pela metade de dado deste mesmo item, e as cinco que ficaram carregaram daqui. O que prova o comportamento novo são os **quatro mundos fabricados** do autoteste, e isso é o desenho e não um atalho: a 20.8 desta fábrica já manda o portão de rede provar-se **sem** rede, justamente para não depender do humor da CDN. Quem quiser ver a classificação morder no ar terá de esperar a próxima foto que a origem recusar.
+
+> **E O PORTÃO NOVO ACHOU, NA PRIMEIRA PASSADA, O MESMO DEFEITO NO BANCO.** `aplicar-foto-quebrada.py --conferir` reprovou **dois registros** dizendo `a CDN nao respondeu (HTTP Error 403: Forbidden)`. `cf.shopee.com.br` devolve `CONNECT tunnel failed, response 403` ao egresso desta nuvem: nessas duas fotos **a nuvem nunca chegou à CDN**, e o banco afirmava que a CDN havia respondido. É o item 2 **um andar abaixo do portão que ele nomeia** — no **coletor**. `medir_foto` passa a chamar `causa_de_foto_nao_medida`: 403, recusa de túnel e erro de proxy saem como *"foto NÃO MEDIDA ... e ele tem dois pais"*, e 503/504, que vêm de origem, continuam nomeando a CDN. Os dois registros foram reescritos com a prosa honesta.
+
+---
+
+### AS DUAS RÉGUAS QUE FICARAM INERTES, E A QUE ESTAVA INVERTIDA
+
+**Duas mutações ficaram INERTES**, e nesta ilha *inerte é pior que sobrevivente*: elas mutavam `nova['alt'] = nome_na_tela` e a borda do corte em 120 caracteres — mecanismos que o item 1 **desta mesma execução** fez deixar de existir. Trocadas por **três** que mordem o mecanismo novo: `alt` de volta ao nome, `alt` vazio, e **`alt` FIXO sem a classe do veículo** — esta última passa pelas duas travas do gerador **de propósito**, e quem a pega é a afirmação da CLASSE no portão. **39 de 39 reprovadas, 0 sobrevivente, 0 inerte.** O alvo das três está declarado numa constante, e a ausência dele **denuncia pelo nome** (20.8): no dia em que a linha mudar, elas param em vez de mutar outra coisa em silêncio.
+
+**E uma afirmação estava INVERTIDA em `aplicar-oferta-repetida.py`:** ela **exigia** que o `alt` publicado **fosse** o nome da tela — ou seja, cobrava exatamente o mundo em que a casca esvazia o atributo e toda foto da ilha vira decorativa. Invertida, com a afirmação do vazio ao lado; e o mundo do nome longo (que media a borda do corte) trocado pelo da **consulta vazia**, que tem de DENUNCIAR.
+
+**`teste-citacao-de-anuncio.php` REPROVOU UMA ILHA CERTA, pela segunda vez em dois dias e pela mesma causa:** o piso de *"ao menos 1 título real com token de habilitação"* caiu junto com o Foston que o item 3 aposentou — ele era o **último**. Em 16/11 o piso já havia descido de 2 para 1 pelo mesmo mecanismo, e o comentário de lá já tinha escrito o que fazer: *"o mundo FABRICADO logo abaixo o garante com zero título real"*. **Zero título real passa a ser NÃO MEDIDO e sai como REGISTRO, com a cobertura perdida DITA** — a regra do item 2 deste mesmo despacho, aplicada a um portão de chão.
+
+---
+
+### A PORTA (19.4(c)) E O DESEMBARQUE
+
+`/casca → porta → quedas` às 16h4xZ: `episodios_vistos: 1`, `reposicoes_da_cura: 1`, `primeira_no_chao: 2026-11-18 14:34Z`, `episodio.reposto_depois: true`, com `tem_bloco_wordpress: true` e `cura_liberada_em_s: 0`. **É o mesmo episódio que a ronda mediu às 14h34Z — nenhuma queda nova nesta execução.** O item 5 do despacho (o chamado na HostGator e a decisão sobre o token) **continua aberto e é gesto do Raphael**; nada aqui o move.
+
+**O DESEMBARQUE, pela 20.4 e 20.8:** revisão **112** no ar às 16:44, com a linha de fecho declarando **9 aplicado(s)** e as **9 linhas de item lidas uma por uma, todas dizendo `ok`** — lidas pelo portão, do fecho para baixo. A janela de 15 linhas está **CHEIA**, e isso saiu como **registro e não como aprovação**: item de revisão anterior que rolou para fora dela não foi conferido por ninguém. **As versões de snippet CARREGADAS no ar** (20.7) batem com o manifest nas seis: casca **1.30.0**, produto **1.17.0**, f1 1.6.0, f2 1.13.0, f3 1.7.0, institucional 1.3.0.
+
+**A revisão 113** (só `dados/f2-respostas`, o `alt` da página da F2) caiu com o evento do cron **não vencido** — `ultimo` de 16:44:13, anterior ao push. Pela **20.9** isso é `evento-nao-vencido` e a ação certa é **esperar**, não reacionar: o vencimento é `ultimo` + 1.800 s.
+
+**PORTÕES:** bancada **55 portões, 0 falha**, rodada ANTES do desembarque e DEPOIS dele; mutações da vitrine **39/39, 0 inerte**; gerador 635 afirmações; aposentadoria 105; foto quebrada 49; navegador 15 em 6 mundos; `conferir-no-ar.py` **APROVADO** nas 11 URLs.
+
+**NENHUMA URL NASCEU** e nenhuma podia: `urls_publicadas` segue **11**, e o teto da 21.4 não foi tocado.
+
 ## 2026-11-18 13h16Z–13h5xZ — **A BATERIA DE MUTAÇÃO DESCREVIA UMA PÁGINA E MUTAVA OUTRA: DEZ MUTAÇÕES TROCAVAM DE ALVO EM SILÊNCIO, E A DE FOTO FICOU INERTE NA RECOLETA DE HOJE.** Revisão **111**.
 
 **A ILHA DESTA EXECUÇÃO:** rodametria, por **foco** (`foco.md` nomeia a rodametria, foco total e absoluto desde 27/10). Pela **1.2** não há escolha de ilha a fazer. **Conferi o que fura o foco antes de aceitar isso:** nenhuma ilha no ar está quebrada com despacho ALTO aberto — o despacho ALTA de 17/11 **desta própria ilha** (a porta) está com a ilha **no ar** e o que sobra dele é o chamado na HostGator, que é do Raphael; o despacho do **molde de conversão** (exceção do Raphael de 21/10, seção 32) segue fechado nas três ilhas. Logo nada fura o foco pela 1.2 nem pela 18.1.

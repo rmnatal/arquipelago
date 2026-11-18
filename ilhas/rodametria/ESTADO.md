@@ -48,76 +48,73 @@ rede: aberta em 2026-11-18   # 20.2, REMEDIDA e nao herdada na passada das 13h16
                              # secao 4 dentro do cabecalho que ela existe para proteger.)*
 bloqueada_por: null      # obrigatorio pela secao 2. `null` DE PROPOSITO: o que falta (gov.br para a F1, as prefeituras para a camada municipal, as tres etiquetas do Mercado Livre) trava a FABRICA e nao a ILHA, e isso se escreve no despacho, que e o canal da 12.2. Preenche-lo congelaria tambem os blocos que ja podem andar.
 bloco_atual: |
-  A BATERIA DE MUTACAO DESCREVIA UMA PAGINA E MUTAVA OUTRA. Recoleta das duas
-  consultas de 17/11 e, no caminho, DOIS defeitos da mesma classe, os dois
-  consertados. Revisao 111.
-  O PRIMEIRO, pego pela BANCADA RODADA DEPOIS de construir (a regra que o
-  contrato ganhou em 17/11): `foto sem dimensao medida [mundo fabricado]` ficou
-  INERTE. As duas mutacoes de foto carregavam `[mundo fabricado]` NO NOME e nao
-  fabricavam nada — pescavam `primeiro_que_serve` e EXIGIAM foto medida, com a
-  docstring dizendo `o banco de HOJE tem as 21 fotos medidas`, contagem de um
-  dia que passou dentro do codigo que dependia dela. Hoje a CDN da loja
-  respondeu HTTP 503 no primeiro que serve do patinete. Agora a foto medida
-  NASCE na areia (`_fabricar_foto_medida`). A 20.7 em traje de mutacao: o nome
-  declarava um mecanismo que o codigo nao tinha.
-  O SEGUNDO E O ACHADO, e saiu de procurar a CLASSE em vez do caso: DEZ
-  mutacoes mutavam `v['paginas'][0]` — ordem de catalogo, nao alvo declarado. E
-  o alvo JA havia trocado sem ninguem ver: `paginas[0]` hoje e a BICICLETA (7
-  linhas, 3 cartoes) e DUAS docstrings da bateria falam dos numeros do PATINETE
-  (a do piso dizia `cinco e dezesseis linhas`; hoje sao 7 e 14). Pagina que
-  perde a vitrine SAI da lista — a moto saiu hoje de manha —, entao `[0]` era
-  decidido pelo catalogo da loja. Mutacao que troca de alvo em silencio
-  continua REPROVANDO, so que outra coisa.
-  ALVO PASSA A SER DECLARADO (`ALVO_DA_VITRINE`) e a ausencia dele DENUNCIADA
-  PELO NOME (20.8, a afirmacao e positiva).
-  AS DUAS REGUAS OBRIGADAS A DISCORDAR no mundo fabricado (patinete sem
-  vitrine, o que a moto viveu hoje): regua VELHA 37 reprovadas / 1 inerte,
-  mutando a bicicleta calada; regua NOVA 27 reprovadas / 11 INERTES, cada uma
-  nomeando a pagina que falta. A velha PARECIA mais saudavel e era pior.
-  E O MUNDO FOI FABRICADO HONESTAMENTE, depois de os portoes recusarem DUAS
-  tentativas: falsificar `serve: false` a mao foi pego pelo coletor (`veredito
-  gravado discorda do calculado`, 14 falhas) e apagar a pagina da vitrine foi
-  pego pelo gerador (`a lista de paginas gravada discorda da calculada`). So
-  ficou de pe REMOVENDO anuncios da coleta e chamando `recontar_resumo` da
-  propria ferramenta.
-  A RECOLETA: bicicleta 7 servem / 7 entram / piso SIM, faixa R$ 2.299,99 a
-  R$ 6.199,90 inalterada; patinete 15 servem / 14 entram / piso SIM, mediana
-  R$ 1.632,12 -> R$ 1.640,03 (o item 22294726082 subiu para R$ 1.581,06 e o
-  58253809160 declarou a PRIMEIRA venda dele). A MOTO em `--ensaio`, que nao
-  grava (25.3), porque o dado dela era de hoje: 2 que entram no degrau 1 e ZERO
-  que servem no degrau 2. Nada mudou do lado da loja em tres horas.
-  A PORTA (19.4(c)): contador em ZERO as 13h2xZ, `tem_bloco_wordpress: true`. A
-  reposicao das 11:15:20Z de 17/11 esta de pe ha PELO MENOS 26 HORAS — SETIMO e
-  mais longo intervalo da mesma raiz (~4min, >=27min, >=2h26min, >=5h30min,
-  >=8h17min, >=23h, >=26h). O intervalo que vinha ENCURTANDO agora ABRIU nas
-  duas ultimas leituras, e isso segue fortalecendo a frase da 29.5(b).
-  A ESPERA DO CRON FOI LIDA PELA 20.9 E NAO REACIONADA: `/status` com `ultimo`
-  as 13:16:31 e ultima linha de log em 11:39 — o Sync RODOU e nada havia para
-  aplicar; o push caiu 15 minutos depois de uma rodada, entao a acao certa era
-  ESPERAR o vencimento dos 1.800s, nao reacionar.
-  BANCADA 54 portoes 0 falha ANTES e DEPOIS. Mutacoes 38/38 reprovadas, 0
-  sobrevivente, 0 inerte.
-  NENHUMA URL NASCEU e nenhuma podia: `urls_publicadas` segue 11, o teto da
-  21.4 nao foi tocado.
-  PROXIMO PASSO: ler `porta.quedas` de novo (19.4(c)) e rodar `bancada.py`
-  ANTES e DEPOIS (secao 8) — a bancada DEPOIS foi o unico portao que viu o
-  defeito do dia, pela SEGUNDA passada seguida. E AS ONZE MUTACOES QUE AINDA
-  EXIGEM O MUNDO EM VEZ DE FABRICA-LO ja tem nome e numero (as dez da vitrine
-  mais `numero proprio mexido no resumo`): o remedio e o mesmo da foto, e e
-  MAIS CARO aqui porque a vitrine e DERIVADA e o gerador recomputa a lista de
-  paginas — fabricar pagina de vitrine exige fabricar a COLECAO que a
-  justifica. Declarado-e-denunciado e o estado correto do meio do caminho.
+  O `alt` DE TODA FOTO DE PRODUTO ERA VAZIO POR CONSTRUCAO, e duas decisoes
+  certas o compunham. Despacho de 18/11 FECHADO nos QUATRO itens da Fundacao
+  (18.2); o item 5 e gesto do Raphael e fica. Revisoes 112 e 113.
+  O ITEM 1 nao era "a tela joga fora o dado": o GERADOR gravava `imagem.alt`
+  com o MESMO `nome` que o cartao imprime tres linhas abaixo, e a casca
+  esvaziava o atributo justamente quando os dois fossem iguais (trava de
+  11/11). Medido: igual em 20 de 20 registros com foto. Obedecer o "pronto
+  quando" ao pe da letra teria REPOSTO o defeito de 11/11. O `alt` passa a ser
+  ESCRITO PELA ILHA (`alt_da_foto`): a classe do veiculo da propria pagina mais
+  a procedencia da foto. Marca NAO entra — ela so existe dentro do titulo.
+  E NENHUM PORTAO VIA porque cada um media a propria metade: o do ar cobra que
+  o `alt` nao REPITA a prosa vizinha (e ignora atributo vazio de proposito), o
+  do chao cobrava que o campo EXISTISSE. Entre "nao repete" e "existe" cabe o
+  vazio inteiro.
+  E O CONSERTO NAO VIAJOU DE PRIMEIRA: com as duas paginas de familia verdes,
+  `/autonomia-patinete-eletrico/` seguia em `alt=""` — ela monta cartao de
+  VEICULO por outro caminho. A 32.5-c sem sair da propria ilha. O que viajou
+  foi a FUNCAO: `alt_da_foto` mudou de casa para `gerar-f2.py`, onde as frases
+  da voz da tela moram desde 10/11.
+  O ITEM 3 fechou e A FERRAMENTA QUE O FECHA ESTAVA MORTA no unico caminho que
+  grava: `%` casa mais apertado que `+`, e a linha montada com `+` no meio
+  morria em TypeError antes de tocar o banco, desde 16/11 — com o autoteste
+  aprovando 81 afirmacoes, porque todas LEEM linha do banco e nenhuma MONTAVA
+  uma. Agora o portao CHAMA a funcao e a regua ingenua discorda (20.8).
+  O ITEM 4 nao deduplicou, e a razao esta medida: por titulo identico E preco
+  identico os 7 anuncios dao CINCO chaves (um grupo de 3 em 3 lojas), nao "2
+  produtos". A frase passa a contar o que conta, com mundo proprio para o ramo
+  que CALA. A conta da 25.9: 57 julgados, ZERO veredito de entrada mudou.
+  O ITEM 2 tinha duas metades e as duas fecharam: o portao do navegador separa
+  "a origem respondeu" de "o egresso recusou" (NAO MEDIDO) e nao escolhe pai
+  para o 403; e as duas fotos de 503 cairam para o espaco reservado da secao 6.
+  O PORTAO NOVO ACHOU O MESMO DEFEITO NO BANCO: dois registros diziam "a CDN
+  nao respondeu (403)" para fotos que esta nuvem NUNCA alcancou — consertado no
+  COLETOR, que e onde a prosa nasce.
+  DUAS MUTACOES FICARAM INERTES (o alvo delas deixou de existir) e viraram
+  TRES que mordem o mecanismo novo, uma delas passando pelas travas do gerador
+  de proposito. Uma afirmacao estava INVERTIDA em `aplicar-oferta-repetida.py`:
+  exigia que o `alt` FOSSE o nome da tela. E `teste-citacao-de-anuncio.php`
+  reprovou ilha CERTA pela segunda vez em dois dias, pela mesma causa — zero
+  titulo real com token passa a ser NAO MEDIDO, com a cobertura perdida DITA.
+  BANCADA 55 portoes 0 falha ANTES e DEPOIS. Mutacoes 39/39, 0 inerte. Portao
+  do navegador APROVADO em 10 de 10 no ar, onde reprovava TRES hoje de manha.
+  NENHUMA URL NASCEU: `urls_publicadas` segue 11 e o teto da 21.4 nao foi
+  tocado.
+  PROXIMO PASSO: a CLASSE do `alt` vazio nao foi varrida inteira — eu consertei
+  as fotos de CARTAO (duas fontes) e a varredura das 11 URLs mede `alt` de
+  `<img>` de cartao. Falta perguntar o mesmo das OUTRAS imagens que a ilha
+  serve (o simbolo em SVG `data:`, as de guia, se houver) e, principalmente,
+  dos atributos que o portao de ar JA le e nao julga por vazio: ele conta 14 a
+  21 "textos de ATRIBUTO" por pagina (`alt@img`, `aria-label@nav`,
+  `aria-label@svg`, `title@td`) para a regua de VOCABULARIO, e nenhuma
+  afirmacao cobra que eles nao sejam VAZIOS nem que nao repitam o vizinho. E a
+  mesma familia do item 1, uma regua ao lado: o portao ja TEM o dado na mao.
+  E A OUTRA PONTA, que e de desenho e nao de defeito: os `alt` desta ilha
+  passaram a ser IGUAIS entre si dentro de uma pagina (tres cartoes da
+  bicicleta dizem a mesma frase). E honesto e e melhor que vazio; se algum dia
+  o banco trouxer um atributo que DISTINGA a foto (o que a 25.3 chamaria de
+  segunda fonte), e dali que ele entra.
   O QUE DESTRAVA A PAGINA DE 823 MIL BUSCAS/MES CONTINUA SENDO DO RAPHAEL: a
   etiqueta `rodametriamotoeletrica` e os 5 links de
-  `dados/links-afiliado-pendentes.md`, prontos desde 11/11. A Shopee nao tem o
-  catalogo, nos DOIS degraus, remedido hoje.
-  A FILA DE BLOCOS SEGUE ACABADA e o eixo de pagina nova esta bloqueado por
-  gesto humano nas TRES pontas, medido e nao suposto: scooter-eletrica (301
-  mil) por catalogo (na loja a palavra `scooter` E o patinete, remedido em
-  16/11); bike-eletrica e motos-eletricas-para-adultos (201 mil cada) por
-  sinonimo da 30.4; a cauda por territorio de fazenda (achado do 5c); e o eixo
-  parametrico pelo egresso do `.gov.br`. A MEMORIA DA ILHA NAO EXISTE NESTA
-  SESSAO: este campo E a memoria.
+  `dados/links-afiliado-pendentes.md`, prontos desde 11/11 — e hoje a conta
+  piorou de 2 para 1 anuncio que serve, porque o Foston esgotou. A Shopee nao
+  tem o catalogo, nos DOIS degraus.
+  A FILA DE BLOCOS SEGUE ACABADA e o eixo de pagina nova segue bloqueado por
+  gesto humano nas TRES pontas (scooter-eletrica por catalogo; bike-eletrica e
+  motos-eletricas-para-adultos por sinonimo da 30.4; a cauda por territorio de
+  fazenda; e o eixo parametrico pelo egresso do `.gov.br`).
 ---
 
 # Estado da ilha RODAMETRIA
