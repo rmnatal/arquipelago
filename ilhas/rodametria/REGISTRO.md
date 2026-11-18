@@ -3,7 +3,7 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
-## 2026-11-18 10h17Z–11hxxZ — **A ESCADA DE CHAVES DECIDIA O PISO COM UMA RÉGUA MAIS FROUXA DO QUE A QUE PUBLICA, E A PÁGINA DE 823 MIL BUSCAS/MÊS DEGRADOU COM UM DEGRAU INTEIRO POR MEDIR.** Quatro defeitos achados em cadeia, os quatro consertados. Revisões **108** e **109**.
+## 2026-11-18 10h17Z–11h42Z — **A ESCADA DE CHAVES DECIDIA O PISO COM UMA RÉGUA MAIS FROUXA DO QUE A QUE PUBLICA, E A PÁGINA DE 823 MIL BUSCAS/MÊS DEGRADOU COM UM DEGRAU INTEIRO POR MEDIR.** Quatro defeitos achados em cadeia, os quatro consertados. Revisões **108** e **109**.
 
 **A ILHA DESTA EXECUÇÃO:** rodametria, por **foco** (`foco.md` nomeia a rodametria, foco total e absoluto desde 27/10). Pela **1.2** não há escolha de ilha a fazer, e **conferi o que fura o foco antes de aceitar isso**: o **despacho do molde de conversão** (exceção do Raphael de 21/10, seção 32) está **FECHADO nas três ilhas** — aquametria em 21/10 às 18h2xZ, robometria em 21/10 às 16h1xZ, clubedomosaico idem —, e **nenhuma ilha no ar está quebrada**: o despacho ALTA de 11/11 da clubedomosaico tem os itens 1 e 2 fechados e conferidos no ar, e o que sobra dele é o chamado na HostGator, que é do Raphael. Logo nada fura o foco pela 1.2 nem pela 18.1.
 
@@ -125,9 +125,27 @@ O desenho da página degradada era só do **CORPO**, e quem o escreveu cuidou de
 
 ---
 
+### O FECHO, CONFERIDO NO AR NA REVISÃO 110 (18.4)
+
+**Revisão 110 às 11h40:17Z.** Log lido linha por linha: **8 declarados, 8 linhas de item, as 8 dizendo `ok`**, com `snippets/rodametria-produto: ok (snippet #8 atualizado)`. A conta fecha (20.10).
+
+**Os três portões de ar, e a série de reprovações da página degradada fecha em zero:**
+
+| portão | 108 | 109 | **110** |
+|---|---|---|---|
+| `conferir-no-ar.py` | **6 reprovações** | **1** (`dateModified`) | **APROVADO, 0** |
+| `conferir-produto-no-ar.py` | 369 afirmações, 0 falha | — | **369 afirmações, 0 falha** |
+| `conferir-32-5-no-navegador.mjs` | — | — | **APROVADO, 10 de 10** do molde |
+
+**A página, medida em DUAS leituras com quebra de cache, as duas idênticas byte por byte (84.971 bytes):** `<title>Moto elétrica: qual comprar, quanto custa e o que o anúncio não diz</title>`, `<h1>Moto elétrica</h1>`, **`dateModified: 2026-11-18`**, `BreadcrumbList`, `og:title`, `description` e `WebPage` — **um de cada** —, e **ZERO ocorrências de `R$`** seguido de dígito. Ela responde **200**, não 404.
+
+**O portão de pixel a lista FORA DO MOLDE, e esse é o estado certo:** *"sem componente de molde nenhum"*. Página sem vitrine não tem formulário nem bloco de compra para medir, e a 32.5 manda **dizer quais ficaram fora** em vez de aprovar em silêncio — foi o que ele fez. As 10 que servem molde passam: pior caixa **405 px** (teto 700), pior compra **1.333 px** (teto 1.400).
+
+---
+
 ### O QUE FOI AO AR, E O QUE ESTA PASSADA NÃO FEZ
 
-**Revisões 108 e 109.** Bancada **ANTES: 52 portões, 0 falha**; **DEPOIS: 54 portões, 0 falha** (dois portões novos, e as 2 falhas que ela achou no meio do caminho consertadas). Portões novos: `teste-escada-que-desce.py` (**44 afirmações**, 7 mundos, a régua velha obrigada a discordar nos dois mundos do defeito e a concordar nos dois que já estavam certos, mais o autoteste que repõe a régua velha e exige o defeito de volta) e `teste-cabeca-sem-vitrine.php` (**37 afirmações**, 7 metades, o mapa velho obrigado a discordar na moto e a concordar nas irmãs, mais o autoteste da trava do 404).
+**Revisões 108, 109 e 110.** Bancada **ANTES: 52 portões, 0 falha**; **DEPOIS: 54 portões, 0 falha** (dois portões novos, e as 2 falhas que ela achou no meio do caminho consertadas). Portões novos: `teste-escada-que-desce.py` (**44 afirmações**, 7 mundos, a régua velha obrigada a discordar nos dois mundos do defeito e a concordar nos dois que já estavam certos, mais o autoteste que repõe a régua velha e exige o defeito de volta) e `teste-cabeca-sem-vitrine.php` (**37 afirmações**, 7 metades, o mapa velho obrigado a discordar na moto e a concordar nas irmãs, mais o autoteste da trava do 404).
 
 **NENHUMA URL NASCEU, e nenhuma podia.** `urls_publicadas` segue **11**, o piso da 21.1 pede 40, e o teto da 21.4 não foi tocado — esta passada é correção de defeito no ar, não leva. **Uma página PERDEU a vitrine**, o que é o oposto de leva, e a causa é o catálogo da loja. As duas pontas de página nova seguem travadas: a `scooter eletrica` foi remedida em 16/11 e a loja segue chamando patinete de scooter; `bike eletrica` e `motos eletricas para adultos` são sinônimos pela 30.4.
 

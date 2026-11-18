@@ -87,6 +87,12 @@ Medido em 27/10/2026 no Chrome do Raphael (`bussola/dossies/rodametria/DOSSIE.md
 
 **pronto quando (o despacho inteiro):** as 11 URLs do `wp-sitemap.xml` e as três portas da 29.2 em **200**, com `/veiculos/moto-eletrica/` servindo a vitrine e não a página degradada.
 
+> **ACRÉSCIMO DA MESMA EXECUÇÃO, 11h42Z — A PÁGINA DEGRADADA ESTÁ SÃ, E ISSO NÃO FECHA O DESPACHO.**
+>
+> Entre o começo deste despacho e agora, a própria execução achou e consertou o que faltava do lado da fábrica: na revisão **108** a página degradada subiu ao ar **sem cabeça e fina** — `conferir-no-ar.py` a reprovou em **seis** afirmações, uma delas dizendo *"o corpo tem 891 caracteres e o piso e 1.500 — pagina fina gasta orcamento de rastreamento de dominio novo"*. Nas revisões **109** e **110** aquilo fechou: **APROVADO com ZERO reprovações**, `dateModified: 2026-11-18`, `BreadcrumbList`, `og:title` e `description` no lugar, `h1` de volta a **"Moto elétrica"** (ele dizia *"Esta página está fora do ar neste momento"*, o que entregava ao Google um título afirmando que a página não existe), **zero preço** na tela e 84.971 bytes em duas leituras idênticas byte por byte.
+>
+> **O QUE ISSO MUDA PARA VOCÊ:** a URL não está queimando orçamento de rastreamento e não está mentindo preço. **O que NÃO muda:** ela continua sem vitrine, e o gesto 1 segue sendo o único que a devolve — porque o que falta é produto, e a Shopee não o tem nos dois degraus da escada.
+
 **FIM DO DESPACHO DE 18/11.**
 
 ## DESPACHO DA FUNDAÇÃO PARA O RAPHAEL — 2026-11-17 — ALTA: A PORTA CAIU PELA SEXTA VEZ NESTA RAIZ, E A CURA AUTOMÁTICA JÁ NÃO ESTÁ BASTANDO — DUAS CURAS EM 11h18m, E A SEGUNDA NÃO DEVOLVEU AS PÁGINAS

@@ -15,43 +15,31 @@ urls_publicadas: 11       # 10 -> 11 em 16/11/2026: nasceu `/veiculos/moto-eletr
                           # proteger. Quem substituir comentario de varias linhas apaga o rabo.
 ultima_ronda: 2026-11-16T15:56Z   # RONDA DIARIA TECNICA de 2026-11-16, 15h3xZ-15h5xZ, medida na revisao 98 (status 98 = manifest 98), casca 1.27.0. TRES defeitos, ZERO consertos e nenhum tentado: nenhum dos tres e da lista 19.1 — link de afiliado MORTO na pagina que NASCEU HOJE (anuncio 23598774355 da GTRBSHOP, 4o cartao de /veiculos/moto-eletrica/, e dele sai o `ate: R$ 15.000,00` que a pagina publica), o 1o cartao daquela mesma pagina sendo uma BICICLETA COM PEDAIS numa pagina que define moto eletrica como 'sem pedalar' (a regua cobra o token `moto` em qualquer lugar do titulo, armadilha 1 da 25.7), e `degrau: 1` em 24 de 24 itens da vitrine sem nenhuma loja oficial de fabricante e sem a frase da 25.10. SETIMA ronda seguida desta ilha com zero conserto, e a causa mudou de lugar: ja nao nasce em snippet, nasce no dado do banco e na regua que o admite. Despacho de 3 itens no PROMPT.md. A ILHA ESTA SA NO ENCANAMENTO: 11 de 11 URLs em 200 em duas leituras com quebra de cache, as tres portas da 29.2 verdes, caminho virgem em 404 na pagina da ilha em TRES leituras (73.192 bytes, zero HostGator), zero pagina orfa na direcao de ENTRADA, zero link de miolo fora do sitemap, meta description maxima de 159, zero noindex, 56 de 56 links de loja com rel=sponsored e zero link cru, console 11 de 11 limpo do lado da ilha. TESTE DE VIDA: 28 leituras, 25 fichas (24 vivas, 1 MORTA) e 3 buscas (3 vivas), intestaveis ZERO, item sem piso ZERO, pela url_produto crua e nunca pelo link de afiliado. As tres ferramentas apertadas com entrada real: 24 de 24 contas certas na mao. Linha de `cura da porta:` nas ultimas 24h: NAO MEDIDA, nao zero (a janela do /status comeca em 16/11 11:40, 20.13). A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
 primeira_indexacao: null  # as duas primeiras URLs foram ao ar hoje; indexacao e trabalho de dias. Quem grava este campo e a leitura semanal, lendo o Search Console.
-ultima_execucao: 2026-11-17T19:44Z   # A RECOLETA DAS 16h25Z HAVIA APAGADO O PISO DA 25.2 DAS DUAS
-                     # PAGINAS DE COMPRA, e as duas foram ao ar na revisao 106 servindo 21
-                     # cartoes cuja unica saida e a ficha de um anuncio. A BANCADA ANTES DE
-                     # CONSTRUIR (18.5) ESTAVA REPROVADA em 5 portoes, com 21 falhas em
-                     # `validar-banco.py` — e a passada anterior fechou dizendo `51 portoes, 0
-                     # falha`, que era verdade ANTES de ela construir e nunca foi reconferido
-                     # DEPOIS. Causa: `montar()` monta o bloco do zero e `piso_da_busca` e
-                     # escrito por OUTRA ferramenta. E o portao de ar aprovou 425 afirmacoes
-                     # porque a afirmacao do piso morava num `else` que, com a fonte VAZIA,
-                     # inverteu de sinal e passou a exigir que a pagina NAO servisse piso.
-                     # Consertados os quatro lugares: `CAMPOS_QUE_ATRAVESSAM_A_COLETA` no
-                     # coletor, a decisao do piso extraida para funcao pura, o portao novo
-                     # `teste-piso-na-tela.py` (9 mundos, 35 afirmacoes, a regua velha OBRIGADA
-                     # a discordar no mundo medido) e a aritmetica da quarentena, que reprovava
-                     # um banco CERTO. REVISAO 107 no ar as 19h40:29Z ou antes — MAIS DE QUATRO
-                     # MINUTOS ANTES do teto de 19:44:51 que a 20.9 calculou, que e a segunda
-                     # ressalva dela pela terceira vez nesta ilha. Portao da 20.4: 7
-                     # declarados, 7 linhas de item, as 7 dizendo `ok`, grupo inteiro na
-                     # janela. Piso no ar 1x em cada uma das tres paginas, em DUAS leituras com
-                     # quebra de cache. `conferir-produto-no-ar.py` de 425 para 444 afirmacoes,
-                     # 0 falha; `conferir-no-ar.py` 803, 0 falha; 11 de 11 URLs em 200 em duas
-                     # leituras; as tres portas da 29.2 verdes e o 404 virgem em 404 na pagina
-                     # desta ilha (73.192 bytes). BANCADA DEPOIS: 52 portoes, 0 falha. Duas
-                     # regras novas na secao 8 do contrato. A HORA SAIU DO `date -u` NA MESMA
-                     # LINHA DE COMANDO QUE A GRAVA, nunca digitada.
-executando_desde: 2026-11-18T10:51Z   # RENOVADA pela 1.1 (reserva as 10h17Z): o bloco
-                         # passou de 40 minutos porque achou QUATRO defeitos em sequencia e
-                         # consertou os quatro, com dois desembarques. A HORA SAIU DO `date -u`
-                         # NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.   # RESERVA da execucao de 18/11/2026, pela 1.2 (foco.md nomeia
-                         # a rodametria) e nao pela rotacao da secao 1. A ilha estava LIVRE: o campo
-                         # estava `null`, que pela 1.1 ja significa que nao ha bloco da Fundacao
-                         # vivo, e o ultimo commit da pasta era de 17/11 as 19h46Z — 14h atras.
-                         # Nenhum branch claude/* com commit alem do main e nenhum PR aberto.
-                         # A excecao do molde da 1.2 NAO se aplica: os tres despachos do molde
-                         # (aquametria 21/10 18h2xZ, robometria 21/10 16h1xZ, clubedomosaico)
-                         # estao FECHADOS. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A
-                         # GRAVA, nunca digitada.
+ultima_execucao: 2026-11-18T11:42Z   # SEIS DEFEITOS EM CADEIA, OS SEIS CONSERTADOS, e o
+                     # gatilho foi a recoleta da moto. O maior deles: a ESCADA DE CHAVES
+                     # decidia o piso contando `serve` e quem publica conta
+                     # `entra_na_pagina()` MAIS a quarentena — o degrau 1 parou a escada
+                     # com um anuncio APOSENTADO dentro da conta, e o degrau 2 nunca foi
+                     # consultado. Medido pela PRIMEIRA VEZ na vida da ilha depois do
+                     # conserto: `moto eletrica` crua devolve 20 ofertas e ZERO que
+                     # servem. A pagina de 823 mil buscas/mes perdeu a vitrine (2 contra
+                     # o piso de 3) e o piso sem lastro de R$ 1.096,38 SAIU DO AR.
+                     # E a pagina degradada estava sem CABECA e FINA: `conferir-no-ar.py`
+                     # a reprovou em SEIS afirmacoes na revisao 108, porque o mapa de
+                     # paginas tambem saia de `paginas_prontas()`. Revisoes 108, 109 e
+                     # 110. VERIFICADO NO AR na 110: `conferir-no-ar.py` APROVADO com
+                     # ZERO reprovacoes, `conferir-produto-no-ar.py` 369 afirmacoes 0
+                     # falha, portao de pixel APROVADO 10 de 10, e a pagina da moto com
+                     # title declarado, h1 `Moto eletrica`, dateModified 2026-11-18,
+                     # BreadcrumbList, og:title, description e ZERO preco, em DUAS
+                     # leituras identicas byte por byte (84.971 bytes).
+                     # A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA.
+executando_desde: null   # LIMPO no fecho desta execucao (passo 7 da secao 1). A
+                         # reserva foi as 10h17Z, ganha no push na PRIMEIRA tentativa
+                         # (`af65fa5`), e RENOVADA as 10h51Z pela 1.1: o bloco passou de
+                         # 40 minutos porque achou SEIS defeitos em sequencia e consertou
+                         # os seis, com TRES desembarques (108, 109 e 110) e os ~30
+                         # minutos de espera de cron de cada um dentro deles.
 rede: aberta em 2026-11-18   # 20.2, MEDIDA e nao herdada nesta execucao: 3 de 3 em
                              # 200 em `rodametria.com.br/`, com `aquametria.com.br` em 200 nas
                              # MESMAS tres passadas — controle verde, nao e rede. A Open API da
@@ -152,12 +140,17 @@ bloco_atual: |
   O dado passou para `nao_nasceram` da VITRINE, que e publicada e que o gerador
   ja escrevia: ela carrega `colhido_em`. Revisao 110, snippet 1.16.0, portao de
   37 para 41 afirmacoes.
+  CONFERIDO NO AR NA 110 (18.4), e e o fecho: `conferir-no-ar.py` APROVADO com
+  ZERO reprovacoes (eram SEIS na 108 e UMA na 109), `conferir-produto-no-ar.py`
+  369 afirmacoes 0 falha, portao de pixel APROVADO 10 de 10 do molde — a moto
+  listada FORA do molde, que e o estado certo de pagina sem vitrine. A pagina
+  serve `<title>Moto eletrica: qual comprar...`, h1 `Moto eletrica`,
+  `dateModified: 2026-11-18`, BreadcrumbList, og:title e description, com ZERO
+  preco e 84.971 bytes em DUAS leituras identicas byte por byte. Log da 110: 8
+  declarados, 8 linhas, as 8 dizendo `ok`.
   PROXIMO PASSO: a passada seguinte LE `porta.quedas` de novo (19.4(c)) e roda
-  `bancada.py` ANTES e DEPOIS (secao 8). O TRABALHO MAIS DESBLOQUEADO E
-  RECONFERIR A PAGINA DEGRADADA NO AR pela 18.4: `conferir-no-ar.py` tem de
-  APROVAR na revisao 110 — na 109 ele reprovava em 1 afirmacao
-  (`dateModified`), e se ele ainda reprovar o conserto da data nao fechou e isso
-  vem antes de qualquer outra coisa. Depois, a recoleta das OUTRAS DUAS (dado
+  `bancada.py` ANTES e DEPOIS (secao 8). O TRABALHO MAIS DESBLOQUEADO E a
+  recoleta das OUTRAS DUAS (dado
   de 17/11, um dia): se a moto voltar a 3 anuncios por conta da loja, a vitrine
   dela renasce sozinha. O QUE A DESTRAVA DE VERDADE E DO RAPHAEL e esta no
   despacho de hoje: a etiqueta `rodametriamotoeletrica` e os 5 links de
