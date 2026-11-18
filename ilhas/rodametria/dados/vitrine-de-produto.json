@@ -146,16 +146,7 @@
      "degrau_de_compra_como_medido": "degrau 3 da 25.1 (\"anuncio de vendedor comum na Shopee, ultimo recurso\"): o nome da loja \"NEGOCIO VELOZ\" nao carrega nenhuma das 9 marcas de registro do banco desta ilha (dados/veiculos.json), que e a regua do degrau 1 pela 25.10. O link e ficha de produto encurtada, e ficha e o que o degrau 1 e o 3 tem em comum — o que separa os dois e de quem e a loja. `tipo_de_loja` [] NAO foi decisor (25.10) e viaja neste mesmo registro como procedencia. O piso da 25.2 esta neste item em `url_busca`, que e o que a 25.1 exige justamente deste degrau.",
      "degrau_da_escada_de_chaves": 1,
      "tipo_de_loja": [],
-     "imagem": {
-      "url": "https://cf.shopee.com.br/file/sg-11134201-825al-mu3ms9o7xa16e7",
-      "largura": 1024,
-      "altura": 1024,
-      "alt": "Foto do anúncio na loja: bicicleta elétrica",
-      "fonte": "anuncio-shopee",
-      "coletado_em": "2026-11-18",
-      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada",
-      "alt_como_foi_escrito": "escrito por esta ilha a partir da consulta da pagina ('bicicleta elétrica'), que e a classe do veiculo; o titulo do anuncio NAO entra, porque o cartao o imprime no `<p>` encostado na foto e repeti-lo faria o leitor de tela dizer a mesma cadeia duas vezes (11/11/2026)"
-     },
+     "imagem": null,
      "loja": "NEGOCIO VELOZ",
      "url_produto": "https://shopee.com.br/product/1930395926/58220113046",
      "shop_id": 1930395926,
@@ -370,16 +361,7 @@
      "degrau_de_compra_como_medido": "degrau 3 da 25.1 (\"anuncio de vendedor comum na Shopee, ultimo recurso\"): o nome da loja \"NEGOCIO VELOZ\" nao carrega nenhuma das 9 marcas de registro do banco desta ilha (dados/veiculos.json), que e a regua do degrau 1 pela 25.10. O link e ficha de produto encurtada, e ficha e o que o degrau 1 e o 3 tem em comum — o que separa os dois e de quem e a loja. `tipo_de_loja` [] NAO foi decisor (25.10) e viaja neste mesmo registro como procedencia. O piso da 25.2 esta neste item em `url_busca`, que e o que a 25.1 exige justamente deste degrau.",
      "degrau_da_escada_de_chaves": 1,
      "tipo_de_loja": [],
-     "imagem": {
-      "url": "https://cf.shopee.com.br/file/sg-11134201-825al-mu3ms9o7xa16e7",
-      "largura": 1024,
-      "altura": 1024,
-      "alt": "Foto do anúncio na loja: bicicleta elétrica",
-      "fonte": "anuncio-shopee",
-      "coletado_em": "2026-11-18",
-      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada",
-      "alt_como_foi_escrito": "escrito por esta ilha a partir da consulta da pagina ('bicicleta elétrica'), que e a classe do veiculo; o titulo do anuncio NAO entra, porque o cartao o imprime no `<p>` encostado na foto e repeti-lo faria o leitor de tela dizer a mesma cadeia duas vezes (11/11/2026)"
-     },
+     "imagem": null,
      "loja": "NEGOCIO VELOZ",
      "url_produto": "https://shopee.com.br/product/1930395926/58220113046",
      "shop_id": 1930395926,
@@ -464,16 +446,7 @@
      "tipo_de_loja": [
       2
      ],
-     "imagem": {
-      "url": "https://cf.shopee.com.br/file/br-11134207-820lf-mmpf3sxolgqu74",
-      "largura": 1000,
-      "altura": 1000,
-      "alt": "Foto do anúncio na loja: patinete elétrico",
-      "fonte": "anuncio-shopee",
-      "coletado_em": "2026-11-18",
-      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada",
-      "alt_como_foi_escrito": "escrito por esta ilha a partir da consulta da pagina ('patinete elétrico'), que e a classe do veiculo; o titulo do anuncio NAO entra, porque o cartao o imprime no `<p>` encostado na foto e repeti-lo faria o leitor de tela dizer a mesma cadeia duas vezes (11/11/2026)"
-     },
+     "imagem": null,
      "loja": "LOMIXA",
      "url_produto": "https://shopee.com.br/product/1431395498/22899142088",
      "shop_id": 1431395498,
@@ -629,16 +602,7 @@
      "tipo_de_loja": [
       2
      ],
-     "imagem": {
-      "url": "https://cf.shopee.com.br/file/br-11134207-820lf-mmpf3sxolgqu74",
-      "largura": 1000,
-      "altura": 1000,
-      "alt": "Foto do anúncio na loja: patinete elétrico",
-      "fonte": "anuncio-shopee",
-      "coletado_em": "2026-11-18",
-      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada",
-      "alt_como_foi_escrito": "escrito por esta ilha a partir da consulta da pagina ('patinete elétrico'), que e a classe do veiculo; o titulo do anuncio NAO entra, porque o cartao o imprime no `<p>` encostado na foto e repeti-lo faria o leitor de tela dizer a mesma cadeia duas vezes (11/11/2026)"
-     },
+     "imagem": null,
      "loja": "LOMIXA",
      "url_produto": "https://shopee.com.br/product/1431395498/22899142088",
      "shop_id": 1431395498,

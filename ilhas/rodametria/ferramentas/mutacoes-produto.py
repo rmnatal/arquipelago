@@ -649,30 +649,47 @@ def m_regua_sem_a_cabeca_de_campanha(areia):
         f.write(t.replace(alvo, "FORMA_DO_MARCADOR = re.compile(r'^(?!)$')", 1))
 
 
-def m_alt_da_foto_com_o_marcador(areia):
-    # O MUNDO ANTES DO CODIGO: esta mutacao mexe no GERADOR, mas o defeito dela
-    # so aparece se houver, no banco, um titulo com cabeca de campanha. Sem
-    # garantir o par ela SOBREVIVE por falta de caso — medido em 18/11/2026,
-    # quando a recoleta da moto levou o `11.11 ... Panda A4` embora. Ver
-    # `_garantir_repetido`.
-    _garantir_repetido(areia, ler(areia, ANUNCIOS))
+ALVO_DO_ALT = "    nova['alt'] = alt_da_foto(consulta)"
+
+
+def _mutar_o_alt(areia, substituto, por_que):
+    """O ALVO E DECLARADO NUMA CONSTANTE E A AUSENCIA DELE E DENUNCIADA PELO NOME
+    (20.8): no dia em que a linha do `alt` mudar, estas mutacoes param com
+    `exigir` em vez de mutar outra coisa em silencio — foi assim que as duas que
+    moravam aqui ficaram INERTES em 18/11/2026, quando o `alt` deixou de derivar
+    do nome da tela.
+    """
     caminho = os.path.join(areia, 'ferramentas', GERADOR)
     with open(caminho, encoding='utf-8') as f:
         t = f.read()
-    alvo = "    nova['alt'] = nome_na_tela or ''"
-    exigir(alvo in t, 'o gerador deveria derivar o alt do nome da tela')
+    exigir(ALVO_DO_ALT in t, por_que)
     with open(caminho, 'w', encoding='utf-8') as f:
-        f.write(t.replace(alvo, "    nova['alt'] = anuncio['titulo'] or ''", 1))
+        f.write(t.replace(ALVO_DO_ALT, substituto, 1))
 
 
-def m_alt_cortado_em_120(areia):
-    caminho = os.path.join(areia, 'ferramentas', GERADOR)
-    with open(caminho, encoding='utf-8') as f:
-        t = f.read()
-    alvo = "    nova['alt'] = nome_na_tela or ''"
-    exigir(alvo in t, 'o gerador deveria entregar o nome INTEIRO como alt')
-    with open(caminho, 'w', encoding='utf-8') as f:
-        f.write(t.replace(alvo, "    nova['alt'] = (nome_na_tela or '')[:120]", 1))
+def m_alt_da_foto_de_volta_ao_nome(areia):
+    """O MUNDO ATE 18/11/2026: o `alt` volta a ser o nome que o cartao imprime
+    tres linhas abaixo — e a casca, pela guarda de 11/11, esvazia o atributo.
+    Duas decisoes certas compondo `alt=""` em toda foto da ilha."""
+    _mutar_o_alt(areia, "    nova['alt'] = nome_na_tela or ''",
+                 'o gerador deveria escrever o alt com `alt_da_foto`')
+
+
+def m_alt_da_foto_vazio(areia):
+    """`alt=""` declara imagem DECORATIVA, e leitor de tela pula a unica coisa da
+    pagina que mostra o veiculo."""
+    _mutar_o_alt(areia, "    nova['alt'] = ''",
+                 'o gerador deveria escrever o alt com `alt_da_foto`')
+
+
+def m_alt_da_foto_fixo_sem_a_classe(areia):
+    """A MUTACAO QUE PASSA PELAS DUAS PRIMEIRAS TRAVAS, e e por isso que ela
+    existe: cadeia escrita a mao, nao vazia e diferente do nome, servindo a MESMA
+    frase em toda pagina da ilha — o atributo perde o unico dado que carrega, que
+    e a classe do veiculo daquela pagina. A trava do gerador nao a ve; quem a ve
+    e a afirmacao da CLASSE no portao."""
+    _mutar_o_alt(areia, "    nova['alt'] = 'Foto do anúncio na loja'",
+                 'o gerador deveria escrever o alt com `alt_da_foto`')
 
 
 def m_nome_do_cartao_com_o_marcador(areia):
@@ -752,10 +769,12 @@ MUTACOES = (
      m_regua_sem_a_cabeca_de_campanha),
     ('nome do cartao de volta com o `11.11`', GERADOR, ('--conferir',),
      m_nome_do_cartao_com_o_marcador),
-    ('alt da foto de volta com o `11.11`', GERADOR, ('--conferir',),
-     m_alt_da_foto_com_o_marcador),
-    ('alt cortado em 120, que desliga a trava de 11/11 em nome longo',
-     'aplicar-oferta-repetida.py', ('--conferir',), m_alt_cortado_em_120),
+    ('alt da foto de volta a ser o nome encostado nele', GERADOR, ('--conferir',),
+     m_alt_da_foto_de_volta_ao_nome),
+    ('alt da foto VAZIO, que declara imagem decorativa', GERADOR, ('--conferir',),
+     m_alt_da_foto_vazio),
+    ('alt da foto FIXO, sem a classe do veiculo da pagina', GERADOR, ('--conferir',),
+     m_alt_da_foto_fixo_sem_a_classe),
 )
 
 

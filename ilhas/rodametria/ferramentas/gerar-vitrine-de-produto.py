@@ -1379,6 +1379,47 @@ def conferir():
             falhas.append('frase_do_mesmo_preco nao imprime o preco que recebeu '
                           '(%r): %r' % (preco_txt, frase))
 
+    # O `alt` DA FOTO DIZ A CLASSE DO VEICULO DAQUELA PAGINA (item 1 do despacho
+    # de 18/11/2026). Tres afirmacoes, separadas porque o conserto de cada uma e
+    # diferente (20.5): nao vazio, nao igual ao nome encostado nele, e a CLASSE
+    # dentro dele. A terceira e a que pega o `alt` fixo — cadeia escrita a mao,
+    # que passa pelas duas primeiras e serve a mesma frase em toda pagina da
+    # ilha, perdendo justamente o unico dado que o atributo carrega.
+    for g in calculado['paginas']:
+        esperado_alt = alt_da_foto(g['consulta'])
+        for lista in ('cartoes', 'linhas'):
+            for item in g[lista]:
+                img = item.get('imagem') or {}
+                if not img.get('url'):
+                    continue
+                afirmacoes += 1
+                if not (img.get('alt') or '').strip():
+                    falhas.append('%s/%s: foto com `alt` VAZIO — atributo vazio declara '
+                                  'imagem decorativa, e foto de produto em cartao de '
+                                  'compra e conteudo' % (g['id'], lista))
+                afirmacoes += 1
+                if img.get('alt') == item.get('nome'):
+                    falhas.append('%s/%s: o `alt` da foto e IGUAL ao nome que o cartao '
+                                  'imprime ao lado — a casca o esvazia pela guarda de '
+                                  '11/11/2026 e a foto volta a ser decorativa'
+                                  % (g['id'], lista))
+                afirmacoes += 1
+                if img.get('alt') != esperado_alt:
+                    falhas.append('%s/%s: o `alt` da foto %r nao e o que `alt_da_foto` '
+                                  'escreve para a consulta desta pagina (%r)'
+                                  % (g['id'], lista, img.get('alt'), esperado_alt))
+                afirmacoes += 1
+                if (g['consulta'] or '').strip().lower() not in (img.get('alt') or '').lower():
+                    falhas.append('%s/%s: o `alt` da foto nao diz a classe do veiculo '
+                                  'desta pagina (%r): %r'
+                                  % (g['id'], lista, g['consulta'], img.get('alt')))
+                afirmacoes += 1
+                if not (img.get('alt_como_foi_escrito') or '').strip():
+                    falhas.append('%s/%s: foto sem `alt_como_foi_escrito` — texto de '
+                                  'pagina que ninguem consegue reauditar e texto que '
+                                  'ninguem desfaz no dia em que estiver errado (25.10)'
+                                  % (g['id'], lista))
+
     # A CONTAGEM DO MESMO PRECO, REFEITA POR UMA SEGUNDA REGUA ESCRITA DE OUTRO
     # JEITO (20.8). Comparar `gravado` com `calculado` nao prova esta contagem:
     # os dois saem da MESMA funcao, e o laco de campos acima ja faz isso. O que

@@ -448,6 +448,39 @@ def dimensao_dos_bytes(dados):
     return None
 
 
+# O 403 TEM DOIS PAIS, E ATRIBUI-LO A CDN E AFIRMAR O QUE ESTA NUVEM NAO SABE —
+# ITEM 2 DO DESPACHO DA RONDA DE 18/11/2026, um andar abaixo do portao que o
+# despacho nomeia.
+#
+# MEDIDO NO BANCO de 18/11: sete registros com motivo de foto, e DOIS deles
+# diziam `a CDN nao respondeu (HTTP Error 403: Forbidden)`. `cf.shopee.com.br`
+# responde `CONNECT tunnel failed, response 403` ao egresso desta nuvem — ou
+# seja, nessas duas fotos a nuvem NUNCA CHEGOU a CDN, e o banco afirmava que a
+# CDN havia respondido. E a mesma confusao que fez o portao do navegador reprovar
+# tres paginas com uma falso positiva, e a mesma frase errada que uma execucao
+# escreveu de manha: "a CDN da loja respondeu 503" para um caso em que a nuvem
+# nao a alcancou.
+#
+# A REGRA, e ela e de PROCEDENCIA e nao de tom: a CDN so e nomeada quando ELA
+# respondeu. 403, recusa de tunel e erro de proxy saem como NAO MEDIDO, dizendo
+# o que de fato se sabe — que a requisicao nao saiu desta nuvem. 503 e 504 vem
+# de origem e continuam nomeando a CDN.
+_PROXY_NO_ERRO = ('tunnel', 'proxy', 'CONNECT', 'ERR_')
+
+
+def causa_de_foto_nao_medida(erro):
+    """A prosa do `motivo_sem_imagem`. Ela NAO escolhe pai para o 403."""
+    texto = str(erro)[:80]
+    codigo = getattr(erro, 'code', None)
+
+    if codigo == 403 or any(t.lower() in texto.lower() for t in _PROXY_NO_ERRO):
+        return ('foto NAO MEDIDA: %s — e ele tem dois pais, a CDN recusando ou o '
+                'egresso desta nuvem, que recusa este dominio. Nao se afirma qual '
+                'sem medir de fora' % texto)
+
+    return "a CDN nao respondeu (%s)" % texto
+
+
 def medir_foto(url):
     """(dimensao, erro). Le so o comeco: a dimensao mora no cabecalho, e baixar
     300 KB por foto para ler 4 bytes seria gastar rede por nada."""
@@ -458,7 +491,7 @@ def medir_foto(url):
         with urllib.request.urlopen(pedido, timeout=TEMPO_LIMITE) as r:
             dados = r.read(BYTES_DO_CABECALHO)
     except (urllib.error.URLError, urllib.error.HTTPError, OSError) as erro:
-        return None, "a CDN nao respondeu (%s)" % str(erro)[:80]
+        return None, causa_de_foto_nao_medida(erro)
     d = dimensao_dos_bytes(dados)
     if not d:
         return None, "os primeiros %d bytes nao traziam cabecalho de JPEG, PNG nem WebP" % len(dados)

@@ -248,31 +248,51 @@ def conferir():
                         falhas.append('FALHOU alt publicado: %s %s %r comeca por '
                                       'marcador de campanha'
                                       % (pagina['slug'], onde, alt[:50]))
-                    # E O `alt` E O NOME DA TELA, nao outro texto: duas frases
-                    # para a mesma coisa comecam iguais e so uma sobe (20.7).
-                    if alt != nome:
-                        falhas.append('FALHOU alt publicado: %s %s o alt %r nao e o '
-                                      'nome da tela %r'
-                                      % (pagina['slug'], onde, alt[:40], nome[:40]))
+                    # ESTA AFIRMACAO ESTAVA INVERTIDA ATE 18/11/2026, e a
+                    # inversao era a defeito inteiro do item 1 do despacho
+                    # daquele dia: ela EXIGIA que o `alt` fosse o nome da tela,
+                    # que e exatamente a cadeia que a casca esvazia pela guarda
+                    # de 11/11 — ou seja, ela cobrava o mundo em que toda foto
+                    # da ilha sai com `alt=""`. O `alt` agora e escrito pela
+                    # ilha e NAO pode ser o nome encostado nele.
+                    if alt == nome:
+                        falhas.append('FALHOU alt publicado: %s %s o alt e IGUAL ao '
+                                      'nome da tela %r — a casca o esvazia e a foto '
+                                      'volta a ser decorativa'
+                                      % (pagina['slug'], onde, nome[:40]))
+                    afirmacoes += 1
+                    if not alt.strip():
+                        falhas.append('FALHOU alt publicado: %s %s alt VAZIO'
+                                      % (pagina['slug'], onde))
 
-    # O NOME LONGO, FABRICADO, porque a vitrine de hoje NAO TEM ESTE MUNDO: o
-    # nome mais longo dela tem exatamente 120 caracteres. A casca serve `alt=""`
-    # so quando o `alt` e IGUAL ao nome do cartao (trava de 11/11/2026), e `alt`
-    # cortado em 120 fica QUASE igual num titulo de 121 — a trava deixa de
-    # disparar calada e o leitor de tela ouve o nome truncado mais o inteiro.
-    # Sem este mundo, reintroduzir o corte passaria verde com o dado de hoje.
+    # OS MUNDOS FABRICADOS DO `alt`, TROCADOS EM 18/11/2026. O mundo do NOME
+    # LONGO que morava aqui media a borda dos 120 caracteres do corte do `alt` —
+    # e o corte deixou de existir junto com a derivacao do nome, entao aquele
+    # mundo passou a medir nada. Os dois de agora medem a trava que substituiu
+    # a borda: o `alt` nasce da CLASSE da pagina, e consulta vazia DENUNCIA em
+    # vez de produzir atributo vazio.
     ger = _modulo('gerador_da_vitrine',
                   os.path.join(FERRAMENTAS, 'gerar-vitrine-de-produto.py'))
     longo = 'Moto Elétrica Adulto Panda A4 ' + ('X' * 100)
-    afirmacoes += 2
-    if len(longo) <= 120:
-        falhas.append('FALHOU mundo do nome longo: o nome fabricado tem %d '
-                      'caracteres e precisa passar de 120' % len(longo))
-    fabricada = ger.imagem_do_cartao({'imagem': {'url': 'u', 'alt': 'cru'}}, longo)
-    if fabricada.get('alt') != longo:
-        falhas.append('FALHOU mundo do nome longo: o alt saiu com %d caracteres e o '
-                      'nome tem %d — a trava de 11/11 da casca compara IGUALDADE'
-                      % (len(fabricada.get('alt') or ''), len(longo)))
+    afirmacoes += 1
+    fabricada = ger.imagem_do_cartao({'imagem': {'url': 'u', 'alt': 'cru'}},
+                                     longo, 'moto elétrica')
+    if fabricada.get('alt') == longo or not (fabricada.get('alt') or '').strip():
+        falhas.append('FALHOU mundo do nome longo: com nome de %d caracteres o alt '
+                      'saiu %r — ele tem de ser a frase da ilha, nem o nome nem vazio'
+                      % (len(longo), (fabricada.get('alt') or '')[:60]))
+    afirmacoes += 1
+    if 'moto elétrica' not in (fabricada.get('alt') or ''):
+        falhas.append('FALHOU mundo do nome longo: o alt %r nao diz a classe do '
+                      'veiculo da pagina' % (fabricada.get('alt') or '')[:60])
+    afirmacoes += 1
+    try:
+        ger.alt_da_foto('')
+        falhas.append('FALHOU mundo da consulta vazia: `alt_da_foto` devolveu cadeia '
+                      'sem classe de veiculo em vez de DENUNCIAR — atributo vazio '
+                      'declara imagem decorativa')
+    except ValueError:
+        pass
 
     print('A CONTA DA 25.9 SOBRE O BANCO DE VERDADE: %d anuncio(s) julgado(s), '
           '%d veredito(s) mudaram.' % (total, len(mudaram)))

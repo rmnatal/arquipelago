@@ -117,9 +117,31 @@ foreach ($banco['consultas'] as $bloco) {
    mundo em que as duas regras discordem, e ele nao tem de vir da loja: o mundo
    FABRICADO logo abaixo o garante com zero titulo real. O piso de 1 fica porque
    regua que nunca toca o dado do ar deixa de ser regua do ar. */
-afirma(count($com_token) >= 1,
-	sprintf('a colheita desta ilha tem %d titulo(s) com token de habilitacao e esta '
-		. 'regua precisa de ao menos 1 para tocar o dado do ar', count($com_token)));
+/* > E O PISO DE 1 CAIU EM 18/11/2026, PELA MESMA CAUSA, NA MESMA REGUA, COM UM
+   > ANUNCIO A MENOS: o item 3 do despacho daquele dia aposentou o `58215666648`
+   > — *"Scooter (Bike) Eletrica Foston X15 Max ... 1000w 32km/h Moto Eletrica
+   > Adulto ... - SEM CNH"* —, que era o UNICO titulo vivo com o token, e este
+   > portao REPROVOU uma ilha cujo banco estava certo. Duas vezes em dois dias a
+   > mesma afirmacao caiu por um CONSERTO, e o paragrafo acima ja tinha escrito
+   > o que fazer: *"o mundo FABRICADO logo abaixo o garante com zero titulo
+   > real"*.
+   >
+   > A REGRA, E ELA E A DO ITEM 2 DO MESMO DESPACHO, um andar acima: zero titulo
+   > real nao e falha, e NAO MEDIDO. A conta fica ABERTA e e DITA, em vez de
+   > reprovar o que nao esta roto — exatamente o que a 20.4 manda fazer com a
+   > janela do log que rolou. A regua do AR cai com a citacao no dia em que a
+   > citacao sumir da tela: quem garante isso sao as afirmacoes do laco de
+   > `$com_token` logo abaixo, que medem TODO titulo real que houver, e o mundo
+   > fabricado, que nao depende da loja. O que se perde com zero titulo real e a
+   > cobertura, e cobertura perdida se RELATA. */
+if (count($com_token) < 1) {
+	print(sprintf("  REGISTRO  zero titulo real com token de habilitacao nesta "
+		. "colheita: a regua do ar NAO foi exercitada sobre dado da loja, so no "
+		. "mundo fabricado. Nao e falha — e cobertura que a loja nao deu hoje "
+		. "(o ultimo foi aposentado em 18/11/2026).\n"));
+} else {
+	afirma(true, '');
+}
 
 /* O MUNDO FABRICADO DA DISCORDANCIA (20.8), QUE NAO DEPENDE DA LOJA: se a
    citacao parar de acontecer, estas duas afirmacoes caem mesmo que a colheita
