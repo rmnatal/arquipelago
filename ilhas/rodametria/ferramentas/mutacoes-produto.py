@@ -26,6 +26,8 @@ dimensao, pagina abaixo do piso de tres, carrossel acima do teto de cinco. A
 secao 8 e explicita em que regua escrita para um mundo que nunca aconteceu
 "nasce errada sem poder falhar".
 """
+import copy
+import datetime
 import json
 import os
 import shutil
@@ -450,17 +452,109 @@ def m_relevancia_sem_o_qualificador(areia):
 # barato), a regua que deixa de reconhecer a cabeca de campanha, e o nome do
 # cartao voltando a trazer o `11.11`.
 # ---------------------------------------------------------------------------
-def _repetido(banco):
+# A CABECA DE CAMPANHA QUE ESTE MUNDO USA. Ela e a forma que a 25.9 mediu na
+# loja em 16/11/2026 (`11.11 Moto Eletrica Adulto Panda A4 ...`), e vive aqui
+# como CONSTANTE DO MUNDO e nao como leitura do banco — ver `_garantir_repetido`.
+CABECA_DE_CAMPANHA = '11.11'
+HOJE = datetime.date.today().isoformat()
+
+
+def _garantir_repetido(areia, banco):
+    """Garante que o banco da AREIA tem um par de ofertas repetidas pela loja.
+
+    POR QUE ESTA FUNCAO EXISTE, e o custo esta medido em 18/11/2026. As quatro
+    mutacoes desta secao PESCAVAM o caso do banco de producao: `_repetido()`
+    varria `anuncios-por-consulta.json` procurando um `repetido_por`. Funcionou
+    enquanto a loja devolveu o par — e em 18/11 a recoleta da `moto eletrica`
+    devolveu outro conjunto, sem o `11.11 Moto Eletrica Adulto Panda A4` e sem o
+    seu irmao. Resultado na bancada DEPOIS de construir:
+
+      * as duas mutacoes de BANCO ficaram INERTES (`o banco deveria ter um
+        anuncio marcado como repeticao da loja`), e inerte a bancada acusa;
+      * as duas mutacoes de CODIGO SOBREVIVERAM — `nome do cartao de volta com o
+        11.11` e `alt da foto de volta com o 11.11` —, porque sem nenhum titulo
+        com cabeca de campanha no banco a mutacao nao tem o que quebrar e o
+        gerador aprova. **Sobrevivente e lido como "a trava nao morde", e aqui o
+        que faltava era o CASO.** Falso negativo, nao defeito.
+
+    E a regra que a secao 8 do `ARQUIPELAGO.md` ganhou em 17/11/2026, um dia
+    antes, na mesma fabrica e por um defeito irmao: *portao que tira a condicao
+    do ramo da mesma fonte que devia cobrar VIRA DE LADO quando a fonte esvazia.*
+    A fonte aqui e a vitrine da loja, que muda todo dia e nao e nossa.
+
+    O CONSERTO E DA CLASSE: a mutacao FABRICA o mundo de que precisa, na areia,
+    em vez de depender do que a loja devolveu hoje. O par nasce num bloco que
+    NASCE na vitrine (senao o gerador nao o processa), com a mesma loja, o mesmo
+    nome e a cabeca de campanha — as tres condicoes que a 25.9 exige para marcar
+    repeticao. Se o banco de verdade ja tiver um par, ele e usado como estava: o
+    mundo real tem precedencia sobre o fabricado.
+    """
     for bloco in banco['consultas']:
         for a in bloco['anuncios']:
             if a.get('repetido_por'):
                 return bloco, a
-    exigir(False, 'o banco deveria ter um anuncio marcado como repeticao da loja')
+
+    # Nenhum par real hoje: fabrica um. O bloco tem de ser um que abra o portao
+    # da 30.2, senao o gerador o pula e as mutacoes de codigo voltam a nao medir.
+    bloco = None
+    for b in banco['consultas']:
+        if b.get('resumo', {}).get('abre_o_portao_da_30_2'):
+            bloco = b
+            break
+    exigir(bloco is not None,
+           'nenhuma consulta do banco abre o portao da 30.2: sem pagina que nasca '
+           'o gerador nao processa anuncio nenhum e estas mutacoes nao medem nada')
+
+    base = next((a for a in bloco['anuncios']
+                 if a.get('serve') and a.get('preco') is not None
+                 and a.get('url_afiliado')), None)
+    exigir(base is not None,
+           'a consulta %r nao tem anuncio que sirva com preco e link: nao da para '
+           'fabricar o par repetido' % bloco['id'])
+
+    # QUEM CARREGA A CABECA DE CAMPANHA E O QUE FICA, E ISSO NAO E DETALHE: a
+    # marca da 25.9 cai no mais CARO, e quem nao entra na pagina nao chega ao
+    # cartao. Com o `11.11` no caro, o titulo com a cabeca nunca seria
+    # renderizado e as duas mutacoes de codigo (nome do cartao e alt da foto)
+    # sobreviveriam de novo — por falta de caso, pela SEGUNDA vez e pela mesma
+    # razao. Foi o que a primeira versao desta funcao fez, e a bateria a pegou.
+    # No par REAL de 16/11/2026 era assim: `11.11 ... Panda A4` custava
+    # R$ 1.096,38 (ficou) e o irmao sem cabeca R$ 1.522,76 (levou a marca).
+    gemeo = copy.deepcopy(base)
+    gemeo['item_id'] = int(base['item_id']) + 1
+    gemeo['titulo'] = '%s %s' % (CABECA_DE_CAMPANHA, base['titulo'])
+    gemeo['preco'] = round(float(base['preco']) - 426.38, 2)
+    exigir(gemeo['preco'] > 0,
+           'o anuncio base (%s, R$ %s) e barato demais para fabricar um gemeo '
+           'mais barato que ele' % (base['item_id'], base['preco']))
+    gemeo.pop('repetido_por', None)
+    base['repetido_por'] = {
+        'causa': 'mesma_oferta_repetida_pela_loja',
+        'mesmo_que': gemeo['item_id'],
+        'mais_caro_em_brl': round(float(base['preco']) - gemeo['preco'], 2),
+        'como_foi_medido': (
+            'MUNDO FABRICADO por mutacoes-produto.py em %s: a loja %s anuncia os '
+            'itens %s e %s com o MESMO nome depois de tirada a cabeca de campanha '
+            '%r. Ficou o mais barato (%s), que e o que carrega a cabeca - como no '
+            'par real de 16/11/2026. Nasceu porque o banco de producao daquele '
+            'dia nao tinha nenhum par repetido e as quatro mutacoes desta secao '
+            'dependiam de haver um.'
+            % (HOJE, base.get('loja'), gemeo['item_id'], base['item_id'],
+               CABECA_DE_CAMPANHA, gemeo['item_id'])),
+    }
+    bloco['anuncios'].append(gemeo)
+    escrever(areia, ANUNCIOS, banco)
+
+    return bloco, base
+
+
+def _repetido(areia, banco):
+    return _garantir_repetido(areia, banco)
 
 
 def m_marca_da_repeticao_apagada(areia):
     b = ler(areia, ANUNCIOS)
-    bloco, a = _repetido(b)
+    bloco, a = _repetido(areia, b)
     a.pop('repetido_por')
     # O RESUMO FICA COMO ESTAVA, de proposito: a mutacao e a do banco editado a
     # mao, que e a unica maneira real de esta marca desaparecer. Se o portao so
@@ -470,7 +564,7 @@ def m_marca_da_repeticao_apagada(areia):
 
 def m_marca_da_repeticao_no_anuncio_errado(areia):
     b = ler(areia, ANUNCIOS)
-    bloco, a = _repetido(b)
+    bloco, a = _repetido(areia, b)
     irmao = next(x for x in bloco['anuncios']
                  if x.get('item_id') == a['repetido_por']['mesmo_que'])
     irmao['repetido_por'] = a.pop('repetido_por')
@@ -488,6 +582,12 @@ def m_regua_sem_a_cabeca_de_campanha(areia):
 
 
 def m_alt_da_foto_com_o_marcador(areia):
+    # O MUNDO ANTES DO CODIGO: esta mutacao mexe no GERADOR, mas o defeito dela
+    # so aparece se houver, no banco, um titulo com cabeca de campanha. Sem
+    # garantir o par ela SOBREVIVE por falta de caso — medido em 18/11/2026,
+    # quando a recoleta da moto levou o `11.11 ... Panda A4` embora. Ver
+    # `_garantir_repetido`.
+    _garantir_repetido(areia, ler(areia, ANUNCIOS))
     caminho = os.path.join(areia, 'ferramentas', GERADOR)
     with open(caminho, encoding='utf-8') as f:
         t = f.read()
@@ -508,6 +608,8 @@ def m_alt_cortado_em_120(areia):
 
 
 def m_nome_do_cartao_com_o_marcador(areia):
+    # MESMA RAZAO DA MUTACAO DO `alt`: o mundo primeiro, o codigo depois.
+    _garantir_repetido(areia, ler(areia, ANUNCIOS))
     caminho = os.path.join(areia, 'ferramentas', GERADOR)
     with open(caminho, encoding='utf-8') as f:
         t = f.read()

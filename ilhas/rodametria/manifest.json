@@ -4,8 +4,8 @@
   "nicho": "mobilidade eletrica — acertar os tres numeros antes de comprar um veiculo eletrico: categoria legal (CNH e placa), autonomia real e carga maxima",
   "dominio": "https://rodametria.com.br",
   "versao_manifest": 1,
-  "revisao": 107,
-  "atualizado_em": "2026-11-17",
+  "revisao": 108,
+  "atualizado_em": "2026-11-18",
   "estado": "nascendo",
   "desembarque": {
     "aprovado": true,
@@ -135,7 +135,7 @@
       "arquivo": "dados/vitrine-de-produto.json",
       "formato": "json",
       "publicar": true,
-      "sha256": "c9e85f523755cbaa262eeb7bd713cdac1309a9ed954d6b09ad933cfe0b7bbb23",
+      "sha256": "79fd458f1261ef7c75159902dc0339791a89d23385dd313e25a3a5c55d8897b9",
       "descricao": "A camada GERADA: cartoes do carrossel (teto de cinco, 32.1), linhas da tabela (todas) e os numeros, RECONTADOS de dados/anuncios-por-consulta.json."
     },
     {
@@ -151,7 +151,7 @@
       "arquivo": "dados/anuncios-por-consulta.json",
       "formato": "json",
       "publicar": false,
-      "sha256": "ae1c9134c40385ddb8d6973bf87c3df7fc43dc40fee59086f823922584f7e123",
+      "sha256": "622f23997490a9a7cde035643bfc1a0690cb59863dfbe454bedb2d609d2ec88f",
       "descricao": "Os anuncios lidos na Shopee, com o veredito da regua de relevancia por anuncio, a escada medida e as fotos com largura e altura lidas no cabecalho do arquivo na CDN."
     },
     {

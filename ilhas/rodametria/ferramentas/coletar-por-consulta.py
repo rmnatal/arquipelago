@@ -507,31 +507,101 @@ def julgar_oferta(oferta, familia, chave, degrau):
     }
 
 
-def colher_consulta(c, api, com_link):
-    """Sobe a escada de chaves e para no primeiro degrau que alcanca o piso."""
+def quantos_entram_no_degrau(julgadas, quarentena):
+    """Quantos anuncios deste degrau ENTRAM NA PAGINA — a regua que decide.
+
+    E a MESMA pergunta que `recontar_resumo` faz no fim, e ela mora aqui para a
+    escada nao decidir por uma regua mais frouxa do que a que publica. As tres
+    exclusoes, na ordem em que a pagina as aplica:
+
+      1. `serve`      — a regua de relevancia (`julgar_oferta`);
+      2. quarentena    — o aposentado da 25.11, que a loja ressuscita na busca;
+      3. `repetido_por` — a dedupe da 25.9, a mesma loja com o mesmo nome.
+
+    POR QUE ESTA FUNCAO EXISTE, e o custo esta medido em 18/11/2026: a escada
+    contava `a['serve']` e so isso. No dia em que a `moto eletrica` perdeu uma
+    ficha, o degrau 1 contou TRES (um deles o item 23598774355, APOSENTADO em
+    16/11), declarou `alcancou_o_piso` e a escada PAROU — e `atravessar_a_coleta`,
+    que roda depois, derrubou o mesmo bloco para DOIS. A pagina de 823 mil
+    buscas/mes degradou com o degrau 2 (`moto eletrica`, a consulta crua)
+    NUNCA CONSULTADO. E a 20.7 em traje de escada: duas contas do mesmo numero
+    comecando diferentes, e a que decide era a mais frouxa.
+
+    A repeticao da loja se mede sobre um BLOCO, entao o degrau vira um bloco de
+    mentira aqui — de proposito: medir a repeticao com outra conta seria abrir
+    uma terceira regua, que e o defeito que esta funcao fecha.
+    """
+    vivas = [a for a in julgadas if int(a.get('item_id') or 0) not in quarentena]
+    marcar_repeticao_da_loja({'anuncios': vivas})
+    return sum(1 for a in vivas if entra_na_pagina(a))
+
+
+def colher_consulta(c, api, com_link, bloco_antigo=None):
+    """Sobe a escada de chaves e para no primeiro degrau que alcanca o piso.
+
+    `bloco_antigo` entra porque a QUARENTENA mora na prosa do bloco anterior, e
+    sem ela a escada julga o piso contando anuncio que a pagina nao publica.
+    """
     escada_medida = []
     escolhido = None
+    # AS JULGADAS DE CADA DEGRAU FICAM GUARDADAS porque, sem nenhum degrau
+    # alcancar o piso, a escada volta ao MELHOR degrau medido em vez de devolver
+    # vazio (ver o fim desta funcao). Recolher aquele degrau de novo seria uma
+    # segunda chamada de rede para uma resposta que ja esta na mao.
+    julgadas_por_degrau = {}
+    quarentena = ids_em_quarentena(bloco_antigo or {})
 
     for passo in c['escada_de_chaves']:
         chave, degrau = passo['chave'], passo['degrau']
         ofertas = api.buscar(chave, quantos=QUANTOS)
         julgadas = [julgar_oferta(o, c['familia'], chave, degrau) for o in ofertas]
         servem = sum(1 for a in julgadas if a['serve'])
+        entram = quantos_entram_no_degrau(julgadas, quarentena)
+        julgadas_por_degrau[degrau] = julgadas
         escada_medida.append({
             'degrau': degrau,
             'chave': chave,
             'ofertas_lidas': len(ofertas),
             'ofertas_que_servem': servem,
-            'alcancou_o_piso': servem >= PISO_DA_30_2,
+            # O NUMERO QUE DECIDE, e ele e separado do de cima de proposito: os
+            # dois juntos sao a procedencia da descida. Quando eles divergem, a
+            # diferenca E a quarentena mais a dedupe, e ela fica legivel.
+            'ofertas_que_entram': entram,
+            'alcancou_o_piso': entram >= PISO_DA_30_2,
             'medido_em': HOJE,
         })
-        if servem >= PISO_DA_30_2 and escolhido is None:
+        if entram >= PISO_DA_30_2 and escolhido is None:
             escolhido = (chave, degrau, julgadas)
             break
         time.sleep(PAUSA)
 
     if escolhido is None:
-        return {'escada_medida': escada_medida, 'anuncios': [], 'chave_escolhida': None}
+        # NENHUM DEGRAU ALCANCOU O PISO. Antes de 18/11/2026 este caminho
+        # devolvia lista VAZIA, e naquele dia ele foi exercido pela primeira vez
+        # nesta ilha — a moto, com o degrau 1 em 2 que entram e o degrau 2
+        # (`moto eletrica`, a consulta crua) em ZERO, medido pela primeira vez
+        # na vida da ilha porque a escada nunca havia descido ate ele.
+        #
+        # VAZIO ERA PIOR QUE DOIS, E NAO MAIS HONESTO. A pagina degrada igual
+        # nos dois casos (quem a publica exige `>= PISO_DA_30_2` em
+        # `rdm_produto_paginas_prontas()`, e `abre_o_portao_da_30_2` segue
+        # `false`), mas com a lista vazia a ilha perde a LEITURA DO DIA: quantos
+        # anuncios existem hoje, quais sao, e de quanto a consulta esta longe do
+        # piso. Apagar dado colhido nao produz honestidade nenhuma — produz uma
+        # passada que nao sabe dizer se a consulta esta a um anuncio ou a tres.
+        #
+        # Entao a escada guarda o MELHOR degrau medido: o que mais entrega, e
+        # entre empates o mais especifico (o de cima). Isto NAO publica nada —
+        # e o que mede o tamanho do buraco.
+        melhores = sorted(
+            escada_medida,
+            key=lambda e: (-e['ofertas_que_entram'], e['degrau']))
+        melhor = melhores[0] if melhores else None
+        if not melhor or not melhor['ofertas_que_entram']:
+            return {'escada_medida': escada_medida, 'anuncios': [],
+                    'chave_escolhida': None}
+        escolhido = (melhor['chave'], melhor['degrau'],
+                     julgadas_por_degrau[melhor['degrau']])
 
     chave, degrau, julgadas = escolhido
 
@@ -787,8 +857,12 @@ def laudo(bloco):
     r = bloco['resumo']
     print('\n=== %s (%s)' % (bloco['consulta'], bloco['id']))
     for e in bloco['escada_medida']:
-        print('  degrau %d  %-34s lidas=%2d servem=%2d piso=%s'
+        # OS DOIS NUMEROS NA TELA, e `entram` e o que decide. Quando eles
+        # divergem, a diferenca e a quarentena mais a dedupe — e e justamente a
+        # divergencia que o degrau de 18/11/2026 mostrou calada.
+        print('  degrau %d  %-34s lidas=%2d servem=%2d entram=%2d piso=%s'
               % (e['degrau'], e['chave'], e['ofertas_lidas'], e['ofertas_que_servem'],
+                 e.get('ofertas_que_entram', e['ofertas_que_servem']),
                  'SIM' if e['alcancou_o_piso'] else 'nao'))
     print('  chave escolhida: %r (degrau %s)' % (bloco['chave_escolhida'], bloco['degrau_escolhido']))
     print('  servem %d · recusadas %d %s' % (r['ofertas_que_servem'], r['ofertas_recusadas'],
@@ -827,11 +901,34 @@ def main():
             print('nada a colher com --so %r' % a.so)
             return 1
 
+    # O BANCO ANTIGO E LIDO ANTES DA COLETA, e nao depois: a QUARENTENA mora nele
+    # e a escada precisa dela para julgar o piso de cada degrau (18/11/2026).
+    # Lido tambem no `--ensaio`, senao o ensaio promete uma escada que o
+    # `--gravar` nao vai percorrer — e ensaio que mente e pior que ensaio nenhum.
+    antigo = {}
+    if os.path.exists(BANCO):
+        with open(BANCO, encoding='utf-8') as f:
+            antigo = {b['id']: b for b in json.load(f).get('consultas', [])}
+
     api = shopee()
     blocos = []
     for c in alvos:
-        colhido = colher_consulta(c, api, com_link=not a.sem_link)
+        colhido = colher_consulta(c, api, com_link=not a.sem_link,
+                                  bloco_antigo=antigo.get(c['id']))
         bloco = montar(c, colhido)
+        # A QUARENTENA E O PISO ATRAVESSAM A COLETA (ver `atravessar_a_coleta`), E
+        # ELA RODA ANTES DO LAUDO, NAO DEPOIS. Medido em 18/11/2026: o laudo da
+        # moto imprimiu na tela `servem 3 · abre o portao da 30.2: True ·
+        # numero proprio de 8500 ate 15000 sobre 3` e o que FOI GRAVADO no mesmo
+        # segundo era `servem 2 · portao False · numero None`. Os dois estavam
+        # certos sobre momentos diferentes, e o da tela era o momento que nao
+        # existe — antes da quarentena. E a familia da bancada lida antes de
+        # construir e do resumo verde da 20.4: veredito no instante errado e
+        # pior que veredito ausente, porque ele e lido como fato.
+        #
+        # E RODA TAMBEM NO `--ensaio`, que nao grava nada: ensaio que anuncia um
+        # numero diferente do que o `--gravar` vai escrever nao serve de ensaio.
+        atravessar_a_coleta(bloco, antigo.get(c['id']))
         blocos.append(bloco)
         laudo(bloco)
 
@@ -839,13 +936,7 @@ def main():
         print('\n--ensaio: nada foi gravado.')
         return 0
 
-    antigo = {}
-    if os.path.exists(BANCO):
-        with open(BANCO, encoding='utf-8') as f:
-            antigo = {b['id']: b for b in json.load(f).get('consultas', [])}
     for b in blocos:
-        # A QUARENTENA E O PISO ATRAVESSAM A COLETA. Ver `atravessar_a_coleta`.
-        atravessar_a_coleta(b, antigo.get(b['id']))
         antigo[b['id']] = b
 
     saida = {
