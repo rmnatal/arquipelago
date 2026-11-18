@@ -161,3 +161,27 @@ variação vira ruído.
 - `/pecas/filtros/xiaomi/` — Discovered - currently not indexed
 
 **São as MESMAS quatro da leva de 21/09, agora com 51 dias sem uma única página no índice, e as quatro em "Discovered" ao mesmo tempo pela segunda leitura seguida** — em 21/10 e 14/10 elas trocavam de lugar entre "Discovered" e "unknown" sem ninguém tocar no site. **0 sem veredito.** A consulta de superfície generativa sai atribuída: `/qual-peca-serve-no-meu-robo-aspirador/`, posição 9,0.
+
+## Leitura semanal de 2026-11-18 — janela 10→16/11 (7 dias), nuvem e tela bateram exatamente
+
+**15 impressões, 0 clique, CTR 0%, posição média 7,2** — era 8/0 e 8,1 em 11/11. **A impressão quase dobrou**, e a causa tem nome: o sitemap voltou a ser lido pelo Google. Indexação **10 de 14 (71%)** pela OITAVA leitura seguida, 0 sem veredito.
+
+**Consulta: `Nenhum dado` — 100% anonimizada pela sexta janela.** Nenhuma linha nomeada entra na tabela desta semana, e por isso **zero proposta de aceleração sai daqui hoje**: a 12.1 é literal, proposta sem consulta nomeada é opinião.
+
+| página | posição hoje | posição semana passada | impressões | cliques | banda |
+|---|---|---|---|---|---|
+| /quantos-pa-o-robo-aspirador-precisa/ | 6,6 | 9,0 | 7 | 0 | 4-10 |
+| /quantos-m2-o-robo-aspirador-limpa-por-carga/ | 9,0 | 6,0 | 3 | 0 | 4-10 |
+| /divulgacao-de-afiliados/ | 10,0 | — (nova) | 2 | 0 | 4-10 |
+| / | 2,0 | — | 1 | 0 | 1-3 |
+| /filtro-universal-de-robo-aspirador/ | 1,0 | — | 1 | 0 | 1-3 |
+| /qual-peca-serve-no-meu-robo-aspirador/ | 12,0 | 7,0 | 1 | 0 | 11-20 |
+
+### O que esta leitura decide
+
+- **O ITEM ÚNICO DO DESPACHO DE 11/11 ESTÁ FECHADO POR MEDIÇÃO.** O sitemap saiu de "Não foi possível buscar", com última leitura do Google em 20/10, para **Processado, lido em 11/11, 14 páginas encontradas**. Quem reenviou foi a leitura de 11/11; quem aprova é esta, como manda a trava 2 da seção 12.
+- **A SUPERFÍCIE GENERATIVA NÃO APARECEU, DEPOIS DE SEIS JANELAS SEGUIDAS COM UMA CADA.** Isso não reprova nada e não é regressão: a janela inteira tem 15 impressões e a consulta está 100% anonimizada. Fica registrado para a leitura de 25/11 dizer se virou padrão novo ou foi ruído de amostra.
+- `/quantos-pa-o-robo-aspirador-precisa/` tem 7 das 15 impressões e **zero clique pela sétima leitura seguida** — o teste de título de 17/09 acumula bem mais de 50 impressões sem um clique. **A reversão continua CANCELADA** pela decisão de 04/11 (na irmã aquametria as páginas COM promessa numérica somaram os cliques e as SEM somaram zero). Atribuir o zero ao título é opinião, não dado.
+- `/qual-peca-serve-no-meu-robo-aspirador/` em 12,0 é a única linha da banda do dinheiro, e tem **1 impressão e zero consulta nomeada**: vigilância nomeada pela página, nunca proposta.
+- `/divulgacao-de-afiliados/` tomando 2 impressões em 10,0 é novidade e é página institucional: registrado, nada a fazer.
+- Rampa: **MANTÉM** — `piso: abaixo` (14 de 40), 21.8.

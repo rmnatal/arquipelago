@@ -244,3 +244,27 @@ Tabela por página (as 10 de maior impressão das 47 com impressão):
 **A NOVA LINHA DE BANDA 11-20 DESTA ILHA, COM CONSULTA NOMEADA, É `/peixes/acaras/`:** `acará` em **11,0** e `acaras` em 8,0, a mesma mãe de categoria que acabou de entrar no índice. É a única linha 11-20 desta ilha que tem consulta nomeada, e a 12.1 é literal sobre isso valer mais que posição média.
 
 **A INDEXAÇÃO FECHOU EM 52 DE 52 (100%), 0 não indexadas e 0 sem veredito** — primeira vez na história da ilha. As duas que faltavam eram as duas mães, e as duas entraram.
+
+## Leitura semanal de 2026-11-18 — janela 10→16/11 (7 dias), nuvem e tela bateram exatamente
+
+**477 impressões, 3 cliques, CTR 0,6%, posição média 6,3** — era 523/5, CTR 1,0% e 6,5 em 11/11. Impressão −9%, clique 5 → 3. Indexação **51 de 52 (98%)**, 0 sem veredito.
+
+| consulta | página | posição hoje | posição semana passada | impressões | cliques | banda |
+|---|---|---|---|---|---|---|
+| tetra quantidade | /peixes/tetras/ | 9,0 | — (nova) | 2 | 0 | 4-10 |
+| ramirezi peixe | /peixes/ciclideos-anoes/quantos-litros-para-ramirezi/ | 2,0 | — (nova) | 1 | 0 | 1-3 |
+| peixe tetra | /peixes/tetras/ | 12,0 | — (nova) | 1 | 0 | 11-20 |
+| acarás | /peixes/acaras/ | 20,0 | 8,0 (como `acaras`) | 1 | 0 | 11-20 |
+| acará | /peixes/acaras/ | 50,0 | 11,0 | 1 | 0 | 21+ |
+
+As 5 consultas nomeadas somam 6 das 477 impressões — **98,7% anonimizado**. A tabela por PÁGINA completa está em `dados/search-console-2026-11-18.md`, com 39 linhas; as 30 de maior impressão cobrem 469 das 477.
+
+### O que esta leitura decide
+
+- **`/calculadora-de-litragem/` VOLTOU PARA A PRIMEIRA PÁGINA SOZINHA: 13,9 → 5,3**, com 10 impressões. Ela caía há quatro leituras (8,1 → 11,1 → 11,7 → 13,9) e era a única linha 11-20 da ilha. A leitura de 11/11 despachou para **não** trabalhá-la, porque a consulta de cabeça `litragem` estava em 64,0 e isso é lacuna de cobertura, não conserto de detalhe. A decisão de não mexer foi a certa, e agora a 12.1 proíbe tocar: a página subiu.
+- **`/peixes/acaras/` CAIU DE 11-20 PARA 21+ E A PROPOSTA DE 11/11 MORREU COM ELA.** A página está em 21,0 com 5 impressões; `acará` foi de 11,0 para 50,0 e `acarás` de 8,0 para 20,0. Em 11/11 ela era "a nova linha 11-20 com consulta nomeada, a que a 12.1 manda priorizar agora". Pela 12.1, 21+ é **lacuna de cobertura de intenção** e vai para a Fundação como pergunta de conteúdo, com as duas consultas na mão — nunca como conserto de título.
+- **OS TRÊS CLIQUES DA SEMANA VIERAM DE QUATRO IMPRESSÕES, EM DUAS PÁGINAS DE BANDA 1-3:** `/peixes/ciclideos-anoes/quantos-litros-para-papilocromis/` 2 impressões e 2 cliques em 2,0, e `/peixes/barbos/quantos-litros-para-barbo-cereja/` 2 e 1 em 1,5. **Não tocar** (12.1).
+- **A PÁGINA QUE FUNCIONAVA PERDEU POSIÇÃO E PERDEU O CLIQUE:** `/calculadora-de-midia-filtrante/` está em 87 impressões na posição **5,0** e **zero clique**, contra 101 impressões em 3,0 com 2 dos 5 cliques em 11/11. Não é subida, então a 12.1 não proíbe mexer — mas também não há causa medida no site, e a ilha não recebeu execução desde 21/10. **Remedir em 25/11 antes de propor qualquer coisa.**
+- `/peixes/ciclideos-anoes/` está em 11,3 com 3 impressões e **zero consulta nomeada**: banda do dinheiro sem consulta nomeada não vira proposta (12.1 é textual).
+- A home caiu de 19,3 para **22,5**.
+- Rampa: **MANTÉM** — a série autoriza dobrar; o foco total na rodametria impede construção.

@@ -45,6 +45,21 @@ python3 ferramentas/bancada.py --lista    # só imprime o que rodaria
 
 ---
 
+## DESPACHO DA SENTINELA — 2026-11-18 (LEITURA SEMANAL, 19h4xZ–20h1xZ) — O SITEMAP VOLTOU E A IMPRESSÃO QUASE DOBROU; ZERO PROPOSTA, DE PROPÓSITO
+
+Janela 10→16/11: **15 impressões, 0 clique, posição 7,2** (era 8/0 e 8,1); indexação **10 de 14 (71%)** pela oitava leitura seguida.
+
+1. **FECHADO POR MEDIÇÃO — o único item do despacho de 11/11.** O sitemap saiu de "Não foi possível buscar o sitemap" (última leitura do Google em 20/10, 22 dias) para **Processado, enviado e lido em 11/11, 14 páginas encontradas**. A impressão foi de 8 para 15 e a posição de 8,1 para 7,2 na mesma semana. Quem reenviou foi a leitura de 11/11; quem aprova é esta (trava 2 da seção 12). **Nada a fazer.**
+2. **AS QUATRO DA LEVA DE 21/09 COMPLETAM 58 DIAS FORA DO ÍNDICE, as quatro em "Discovered - currently not indexed":** `/pecas/`, `/pecas/filtros/`, `/pecas/filtros/electrolux/`, `/pecas/filtros/xiaomi/`. Com o sitemap de volta ao normal, a alavanca que falta é a solicitação manual pela URL Inspection (14.7) em `/pecas/`, a mãe — e ela foi recusada por **cota de CONTA** em 14/10. **É pedido ao Raphael, não bloco da Fundação. Pronto quando:** `/pecas/` devolver "Detectada" ou melhor, ou qualquer uma das quatro tomar impressão.
+3. **ZERO PROPOSTA DE ACELERAÇÃO, E ISSO É A 12.1 SENDO CUMPRIDA.** A consulta está 100% anonimizada e a única linha de banda 11-20 (`/qual-peca-serve-no-meu-robo-aspirador/`, 12,0) tem **1 impressão e nenhuma consulta nomeada**. Proposta sem consulta nomeada é opinião.
+4. **A REVERSÃO DO TÍTULO CONTINUA CANCELADA** (decisão de 04/11, pela medição da irmã aquametria). `/quantos-pa-o-robo-aspirador-precisa/` tem 7 das 15 impressões, posição 6,6 e **zero clique pela sétima leitura** — e atribuir esse zero ao `<title>` segue sendo opinião. **Não reverter** `– 1 de 5 marcas`, `– de 1.400 a 10.000 Pa` nem `– 0 das 35 peças`.
+5. **A SUPERFÍCIE GENERATIVA NÃO VOLTOU**, depois de seis janelas seguidas com exatamente uma por janela. Com 15 impressões na janela isso é ruído, não padrão novo. Registrado para 25/11.
+6. **CANO DE LINKS RECONTADO HOJE NO `main`, e está limpo:** `dados/pecas.json` 57 registros, **54 publicáveis, 0 sem piso `url_busca`, 0 sem `url_produto`** entre os 14 com ficha (degrau 3), 40 em degrau 4 com o motivo escrito; `dados/modelos-robo.json` 50 registros, **45 publicáveis, 0 sem piso, 0 sem `url_produto`** entre os 14 com ficha (degrau 3), 31 em degrau 4. **71 itens esperando ficha, e nenhum sem saída de compra. É cano, não dívida.**
+
+**Rampa: MANTÉM** — `piso: abaixo` (14 de 40) e pela 21.8 a série não autoriza nem proíbe; o foco na rodametria impede construção de qualquer forma.
+
+---
+
 ## DESPACHO DA SENTINELA — 2026-11-11 (LEITURA SEMANAL, 19h4xZ–20h1xZ) — O SITEMAP DESTA ILHA ESTÁ INALCANÇÁVEL PARA O GOOGLE HÁ 22 DIAS, E É ISSO QUE EXPLICA A QUEDA DE 60% NA IMPRESSÃO
 
 **Medido no painel de Sitemaps da propriedade `sc-domain:robometria.com.br`, em 11/11 por volta das 19h5xZ:** `https://robometria.com.br/wp-sitemap.xml`, enviado em 23/09/2026, **última leitura do Google em 20/10/2026**, status **"Não foi possível buscar o sitemap"**, 14 páginas encontradas. A ilha caiu duas vezes nesse intervalo (30/10 e 11/11) com a assinatura da seção 29, e nas duas a raiz serviu a página de estacionamento da HostGator — que é exatamente o que o Googlebot encontrou quando foi buscar o arquivo.

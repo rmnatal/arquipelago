@@ -47,3 +47,23 @@ Uma linha por leitura semanal, por consulta ou por página. **Nunca sobrescrever
 **As três caem na MESMA página, `/veiculos/`, e as três estão na banda 21+.** A consulta de marca da ilha (`mobilidade elétrica`) é a de pior posição das três, em 68,8. Isso confirma, com a atribuição na mão, o que o bloco acima concluiu sem ela: **a ilha ainda não disputa nada de compra, e pela 12.1 o caminho é a seção 14, não o texto das páginas.**
 
 **DEFEITO DO INSTRUMENTO, e ele é novo: `ferramentas/search-console.py` busca o sitemap em `https://<ilha>.com.br/sitemap.xml`, e as ilhas servem `wp-sitemap.xml`.** Nesta ilha a linha de indexação saiu `| 2026-11-11 | n/d | n/d | n/d | 8 | 0 |` com o erro gravado: `ProxyError … Tunnel connection failed: 403 Forbidden` em `https://rodametria.com.br/sitemap.xml`. **E há uma segunda metade nesse mesmo erro: o egresso do ambiente das MÃOS continua recusando `rodametria.com.br`, enquanto o egresso do ambiente da Sentinela JÁ o alcança** — as três portas da 29.2 desta ilha foram medidas em 200 da nuvem da Sentinela em 11/11 20h0xZ, na mesma hora em que as MÃOS tomavam 403. **São dois ambientes com listas de domínio diferentes, e isso nunca tinha sido separado por escrito.** O número bom desta linha (10 URLs, 9 indexadas, 90%) veio do navegador, não da nuvem.
+
+## Leitura semanal de 2026-11-18 — janela 10→16/11 (7 dias), Chrome do Raphael; a nuvem bateu exatamente
+
+**2 impressões, 0 clique, CTR 0%, posição média 16,0** — era 8/0 e **59,0** em 11/11. **Impressão −75% e posição 43 casas melhor.** A ilha trocou volume por proximidade, e isso é progresso, não regressão: 59,0 é página 6, 16,0 é a borda da página dois.
+
+**Consulta: `Nenhum dado` — 100% anonimizada.** As três consultas de assinatura nomeadas em 11/11 (`mobilidade elétrica`, `electric scooter vehicle price`, `mobilidade elatrica`) não voltaram. Nenhuma linha de consulta entra na tabela desta semana.
+
+| página | posição hoje | posição semana passada | impressões | cliques | banda |
+|---|---|---|---|---|---|
+| /veiculos/bicicleta-eletrica/ | 11,0 | fora do índice (404) | 1 | 0 | 11-20 |
+| /veiculos/ | 21,0 | 59,0 (as 8 impressões eram todas dela) | 1 | 0 | 21+ |
+
+### O que esta leitura decide
+
+- **O ACHADO DE ALTA DE 11/11 ESTÁ FECHADO POR MEDIÇÃO, E A ALAVANCA DA 14.7 PAGOU EM SETE DIAS.** `/veiculos/bicicleta-eletrica/` estava fora do índice como "Não encontrado (404)" sobre uma página que responde 200; a indexação foi solicitada em 11/11; hoje a página **tem impressão e posição 11,0**, e o balde "Não encontrado (404)" da propriedade caiu de 9 para 8. Quem pediu foi a leitura de 11/11, quem aprova é esta (trava 2 da seção 12). **E ela entrou direto na banda do dinheiro, com uma das duas únicas páginas de produto da ilha.**
+- **A MÃE DE CATEGORIA SUBIU 38 CASAS SEM NINGUÉM A TOCAR:** `/veiculos/` de 59,0 para 21,0.
+- **A PROPOSTA 3 DE 11/11 ("não tocar `patinete elétrico` e medir em 18/11") ESTÁ MEDIDA E A RESPOSTA É AUSÊNCIA DE DADO:** `/veiculos/patinete-eletrico/` **não tomou impressão nenhuma** nesta janela. Sem impressão não há banda (12.1), e a proibição de trabalhar texto de página que o Google ainda não viu continua valendo.
+- **A PÁGINA NOVA `/veiculos/moto-eletrica/` (16/11) NÃO TOMOU IMPRESSÃO**, o que é esperado em dois dias. O problema dela não é posição, é **saída de compra**: ver o despacho desta data.
+- Rampa: **MANTÉM O RITMO NORMAL** — `piso: abaixo` (11 de 40) e pela 21.1 impressão baixa não trava, adia nem reduz leva nenhuma. 2 das 3 levas da semana continuam livres (21.4).
+- **Defeito do instrumento, segunda leitura seguida:** `ferramentas/search-console.py` lê `/sitemap.xml` (404/ProxyError) e a ilha serve `/wp-sitemap.xml`; o egresso do ambiente das MÃOS não alcança `rodametria.com.br`. A indexação desta ilha é a única do arquipélago que não foi medida URL a URL.

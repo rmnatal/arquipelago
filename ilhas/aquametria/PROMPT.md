@@ -97,6 +97,20 @@ e os dois são passo do Raphael. **A receita do Arquipélago em 22/10/2026 é de
 — e nenhum desfecho desta seção pode ser lido como medição dela.
 
 
+## DESPACHO DA SENTINELA — 2026-11-18 (LEITURA SEMANAL, 19h4xZ–20h1xZ) — ILHA EM MODO DE MEDIÇÃO (1.2-b.1): DUAS DECISÕES, E AS DUAS SÃO "NÃO MEXER"
+
+Janela 10→16/11: **477 impressões, 3 cliques, CTR 0,6%, posição 6,3**; indexação **51 de 52 (98%)**. Série em `dados/indexacao.md` e `dados/posicoes.md`, leitura crua em `dados/search-console-2026-11-18.md`.
+
+1. **`/calculadora-de-litragem/` VOLTOU DE 13,9 PARA 5,3 SOZINHA — NÃO TOCAR.** Ela caía há quatro leituras e o despacho de 11/11 mandou não trabalhá-la. Agora a 12.1 proíbe: página que subiu fica como está. **Pronto quando:** nada a fazer; a leitura de 25/11 confirma se segurou em 4-10.
+2. **`/peixes/acaras/` CAIU PARA 21,0 E ISSO É LACUNA DE CONTEÚDO, NÃO DE TÍTULO.** `acará` 11,0 → **50,0** e `acarás` 8,0 → **20,0**, 5 impressões na página. A proposta de 11/11 (trabalhar essa mãe como linha 11-20) está **morta pelo dado**. Pela 12.1, banda 21+ é cobertura de intenção: a pergunta para a Fundação é *o que a pessoa que digita `acará` quer e esta mãe de categoria não responde*. **Pronto quando:** `acarás` ≤ 15,0 **ou** a página com média ≤ 15,0 numa das duas leituras seguintes.
+3. **NÃO ESCREVER BLOCO EM CIMA DA ÚNICA NÃO INDEXADA.** `/peixes/tetras/quantos-litros-para-tetra-neon/` deu "Crawled - currently not indexed" na URL Inspection **com 13 impressões medidas na mesma janela, em 6,7**. O veredito contradiz a medição e a página está servindo. **Pronto quando:** a leitura de 25/11 diz se o veredito voltou a `PASS`; nenhum gesto de site até lá.
+4. **`/calculadora-de-midia-filtrante/` PERDEU POSIÇÃO E PERDEU O CLIQUE** (101 em 3,0 com 2 cliques → **87 em 5,0 com zero**). Sem causa medida no site e sem execução nesta ilha desde 21/10. **Pronto quando:** remedida em 25/11; só então se decide se é proposta.
+5. **NÃO TOCAR** em `/peixes/ciclideos-anoes/quantos-litros-para-papilocromis/` (2,0, 2 dos 3 cliques) nem em `/peixes/barbos/quantos-litros-para-barbo-cereja/` (1,5, 1 clique).
+
+**Rampa: MANTÉM.** A série autoriza dobrar (98% indexada, 477 impressões, 3 cliques, `piso: atingido`); o que impede leva nova é o foco total e absoluto na rodametria, nunca a 14.6.
+
+---
+
 ## DESPACHO DA SENTINELA — 2026-11-11 (LEITURA SEMANAL, 19h4xZ–20h1xZ) — ILHA EM MODO DE MEDIÇÃO (1.2-b.1): MEDIDA, SEM CONSTRUÇÃO
 
 **A ilha NÃO recebe bloco enquanto o `foco.md` nomear a rodametria.** Isto aqui é a fila para o dia em que ela sair do modo de medição, na ordem de ROI.

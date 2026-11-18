@@ -315,3 +315,41 @@ e não no título. **Não conclua nada antes dessa linha, em nenhuma direção.*
 - **A LACUNA DE CTR MAIS ANTIGA DO ARQUIPÉLAGO CHEGOU À SEXTA SEMANA:** `/materiais/quantas-pastilhas-para-mosaico/`, **17 impressões na posição 6,8 e ZERO clique**. 14/10, 21/10, 28/10, 04/11 e hoje.
 - Os **6 "Não encontrado (404)"** seguem na propriedade pela **sexta leitura seguida** (desde 07/10), e continuam sem ninguém dizer quais são. Com a ilha caída hoje, esse balde tende a crescer.
 - Não abri a SERP nesta leitura: **não verifiquei**.
+
+## Leitura semanal de 2026-11-18 — janela 10→16/11 (7 dias), nuvem e tela bateram exatamente
+
+**232 impressões, 2 cliques, CTR 0,9%, posição média 8,3** — era 162/1, 0,6% e 7,8 em 11/11. **Impressão +43% e é a maior da história desta ilha** (o recorde anterior era 214, em 04/11). Indexação **44 de 44 (100%)**, 0 não indexadas, 0 sem veredito. **17 linhas de consulta nomeada, 26 das 232 impressões (89% anonimizado) — é de longe a ilha com mais consulta nomeada do arquipélago.**
+
+| consulta | página | posição hoje | posição semana passada | impressões | cliques | banda |
+|---|---|---|---|---|---|---|
+| rejunte para mosaico | /materiais/rejunte-para-mosaico/ | 8,2 | 5,8 | 4 | 0 | 4-10 |
+| cola para mosaico | /materiais/qual-cola-usar-no-mosaico/ | 9,7 | 9,8 | 3 | 0 | 4-10 |
+| picassiete | /como-fazer/o-que-e-mosaico-picassiete/ | 4,0 | — | 3 | 0 | 4-10 |
+| pastilhas mosaico artesanato | /materiais/pastilhas-para-mosaico/ | 14,5 | — (nova) | 2 | 0 | 11-20 |
+| pastilhas para mosaico artesanato | /materiais/pastilhas-para-mosaico/ | 41,0 | — (nova) | 2 | 0 | 21+ |
+| pastilhas para artesanato mosaico | /materiais/pastilhas-para-mosaico/ | 17,0 | — (nova) | 1 | 0 | 11-20 |
+| pastilhas mosaico artesanato | /materiais/pastilha-de-vidro-para-mosaico/ | 36,0 | — (nova) | 1 | 0 | 21+ |
+| pastilhas para mosaico artesanato | /materiais/pastilha-de-vidro-para-mosaico/ | 40,0 | — (nova) | 1 | 0 | 21+ |
+| torques para mosaico | /materiais/torques-para-mosaico/ | 11,0 | — (nova) | 1 | 0 | 11-20 |
+| torques mosaico | /materiais/torques-para-mosaico/ | 6,0 | — (nova) | 1 | 0 | 4-10 |
+| cola para rejunte | /materiais/qual-cola-usar-no-mosaico/ | 12,0 | 10,0 | 1 | 0 | 11-20 |
+| cola para rejunte de banheiro | /materiais/qual-cola-usar-no-mosaico/ | 12,0 | 1,0 | 1 | 0 | 11-20 |
+| alicate para mosaico | /materiais/alicate-para-mosaico/ | 28,0 | — (nova) | 1 | 0 | 21+ |
+| trencadís | /como-fazer/o-que-e-trencadis/ | 10,0 | — (nova) | 1 | 0 | 4-10 |
+| picassiette | /como-fazer/o-que-e-mosaico-picassiete/ | 9,0 | — | 1 | 0 | 4-10 |
+| onde comprar | /loja/nossa-senhora-aparecida/ | 4,0 | — (nova) | 1 | 0 | 4-10 |
+| mosaico de espelhos na parede | /materiais/espelho-para-mosaico/ | 89,0 | — (nova) | 1 | 0 | 21+ |
+
+A tabela por PÁGINA completa, com as 26 páginas que tomaram impressão, está em `dados/search-console-2026-11-18.md`.
+
+### O que esta leitura decide
+
+- **A ILHA FECHOU 100% DE INDEXAÇÃO (44/44) E AS NOVE PRESAS DE 04/11 ENTRARAM TODAS.** "Detectada, mas não indexada" está em **0** na propriedade, contra 7 em 11/11, e oito das nove já tomam impressão. O diagnóstico de 14/10 — "o gargalo é ORÇAMENTO DE RASTREAMENTO, e mais página torna orçamento pior" — está **encerrado pelo dado**, e esta linha existe para nenhuma leitura futura o reabrir sem medir.
+- **O ACHADO QUE VALE DINHEIRO: a consulta de compra desta ilha é `pastilhas … artesanato`, ela está PARTIDA EM TRÊS GRAFIAS E DUAS PÁGINAS, e cinco das 17 linhas nomeadas são dela.** `/materiais/pastilhas-para-mosaico/` responde às três (14,5 · 17,0 · 41,0) e tem média 23,3; `/materiais/pastilha-de-vidro-para-mosaico/` responde a duas delas (36,0 e 40,0) e tem média 25,7. Duas páginas, a mesma consulta, nomeada dos dois lados — é a canibalização de 11/11 na aquametria, aqui com amostra maior. Virou a **Proposta 1**.
+- **`torques para mosaico` (11,0) está CINCO POSIÇÕES ATRÁS de `torques mosaico` (6,0) na MESMA página**, `/materiais/torques-para-mosaico/`, média 8,2. É a lacuna de banda 11-20 mais barata do arquipélago nesta semana. Virou a **Proposta 2**.
+- **`/materiais/quantas-pastilhas-para-mosaico/`: 27 impressões, posição 6,7, ZERO clique pela SÉTIMA semana.** É a lacuna de CTR mais antiga do arquipélago, despachada em 14/10, 21/10, 28/10, 04/11, 11/11 e hoje. **Ela não foi reprovada: ela não foi executada**, porque a ilha está fora do foco desde 14/10. Fica como item de correção, não como proposta nova.
+- **A CARRO-CHEFE RECUPEROU VOLUME E GUARDOU OS DOIS CLIQUES:** `/materiais/qual-cola-usar-no-mosaico/` 71 → **77 impressões**, posição 7,1 → 7,0, 2 cliques (os dois da ilha). **Não tocar.**
+- `/como-fazer/o-que-e-trencadis/` saltou para **30 impressões em 5,3** e é hoje a 2ª maior da ilha — era 16 em 6,1 em 21/10. Não tocar.
+- `/materiais/acabamento/` e `/materiais/acabamento/diluir-o-verniz-do-mosaico/`, as duas linhas 11-20 de 11/11 (16,0 e 16,4), **voltaram para a primeira página: 6,9 e 9,2.** A decisão de 11/11 de NÃO despachar conserto de título nelas — porque a queda coincidiu com a ilha fora do ar servindo 404 inclusive em `/robots.txt` — está **confirmada pelo dado**: era a porta, não o conteúdo.
+- As duas dívidas que CRESCERAM na propriedade: "Rastreada mas não indexada" 5 → **14** e "Não encontrado (404)" 6 → **9**. Os 404 seguem pela SÉTIMA leitura sem ninguém dizer quais são.
+- Rampa: **a série autoriza DOBRAR** (100% indexada, 232 impressões, 2 cliques, `piso: atingido`). Trava o foco, não a 14.6.

@@ -138,7 +138,7 @@ executando_desde: null   # limpo as 10h46Z de 12/11/2026 pela propria execucao q
                          # anterior
                                       # reservou as 10h20Z e limpou as 11h0xZ, e o ultimo commit na pasta da ilha
                                       # e de 10h59Z — mais de 40 minutos atras, entao a 1.1 nao tinha o que desempatar.
-ultima_ronda: 2026-11-13T15:12Z   # RONDA TECNICA CURTA de 2026-11-13 (28/09, ponteiro da 1.2). A ILHA ESTA NO AR, e isso responde a queda registrada aqui em 11/11 as 20h0xZ (5a queda daquela porta, 8a do Arquipelago): 44 de 44 URLs do wp-sitemap.xml em 200, as tres portas da 29.2 em 200, caminho virgem em 404 na pagina da propria ilha (83.498 bytes, 29 ocorrencias do nome da ilha, zero da HostGator), /status em 94 = manifest.json em 94, zero `&#038;` dentro de <script> nas 44 paginas. NAO MEDI quem levantou a porta nem quando — so que ela esta de pe agora. A causa segue no chamado da HostGator, que e do Raphael, e esta ilha NAO tem a cura da porta da 29.4 que a rodametria ganhou em 12/11. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
+ultima_ronda: 2026-11-18T20:01Z   # LEITURA SEMANAL de 18/11/2026 (seção 12.2, item 3). Se havia valor anterior, ele era de ronda tecnica e segue registrado no PROMPT.md e no REGISTRO.md. 232 impressoes, 2 cliques, posicao 8,3, indexacao 44 de 44 (100%) pela primeira vez.
 bloqueada_por: null   # ACRESCENTADO em 30/09/2026: o campo FALTAVA neste cabecalho, e a secao 2 do
                       # ARQUIPELAGO.md o exige desde que ela existe. A secao 1, passo 3, LE este campo
                       # para decidir a ilha da execucao — entao a leitora dele vinha usando o valor

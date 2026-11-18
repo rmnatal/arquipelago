@@ -78,7 +78,7 @@ bloco_atual: |
   mesmo). O proximo passo NAO e um quarto localizador: e decidir se prosa dentro de
   dobra e "abertura" para o VOZ.md ou se ela ganha regua propria, escrita para o
   lugar onde ela esta hoje. Esta escrito tambem dentro do mutacoes-voz.py.
-ultima_ronda: 2026-11-13T15:12Z   # RONDA TECNICA CURTA de 2026-11-13 (28/09, ponteiro da 1.2: a ronda tecnica roda em toda ilha no ar). ILHA SA, medida e nao herdada: 52 de 52 URLs do wp-sitemap.xml em 200, as tres portas da 29.2 em 200, caminho virgem em 404 na pagina da propria ilha (80.641 bytes, 36 ocorrencias do nome da ilha, zero da HostGator), /status em 138 = manifest.json em 138, e zero `&#038;` dentro de <script> nas 52 paginas. Nenhum defeito achado, nenhum despacho novo. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
+ultima_ronda: 2026-11-18T20:01Z   # LEITURA SEMANAL de 18/11/2026 (seção 12.2, item 3). 477 impressoes, 3 cliques, posicao 6,3, indexacao 51 de 52 (98%). Hora dada pela Sentinela, que nao tem repositorio e despacha pelas MAOS.
 bloqueada_por: null
 congelamento: |
   ATUALIZADO EM 14/10/2026: o campo `piso` deste cabecalho passou a `atingido`, entao TODO o paragrafo
