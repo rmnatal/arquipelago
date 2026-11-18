@@ -10393,3 +10393,95 @@ dados/PAINEL.md                     46 linhas, 6176 bytes, reescrito por inteiro
 Este log vai num commit seguinte porque ele precisa do hash do commit de trabalho, que só existe
 depois dele. A hora do título saiu de `TZ=America/Sao_Paulo date` e `date -u` na mesma linha de
 comando que a gravou, nunca digitada.
+
+---
+
+## DISPARO DAS MÃOS — 18/11/2026 16h56 (BRT) / 19h56Z
+
+Instrução do disparo: para cada ilha em `[aquametria robometria clubedomosaico rodametria]`, rodar
+`python3 ferramentas/search-console.py <ilha>` filtrando `^[notice]` e `WARNING: Running pip`, gravar
+a saída inteira em `ilhas/<ilha>/dados/search-console-2026-11-18.md` (criando a pasta se faltasse),
+conferir `grep -c PRIVATE` = 0 em cada arquivo, commitar com a mensagem
+`Leitura Search Console pela nuvem — 2026-11-18` e dar `git push origin HEAD:main`.
+
+Checagem de assunto ANTES do `git fetch`: assunto é do Arquipélago — ilhas e os bancos
+`dados/` delas. As quatro ilhas existem em `ilhas/` neste repositório (`rodametria` inclusive).
+Executado. O valor de `GOOGLE_SA_B64` não foi impresso, gravado nem commitado; os quatro arquivos
+foram varridos por `service_account|BEGIN ... PRIVATE|GOOGLE_SA` e deram 0 ocorrência cada.
+
+Partida: `git fetch origin main && git checkout -B trabalho origin/main`, de `adaf3f4`.
+
+As quatro leituras rodaram, todas com exit 0 (a de `clubedomosaico` passou de 600s e terminou em
+segundo plano; a de `rodametria` rodou depois dela, no mesmo laço):
+
+```
+=== aquametria ===
+exit=0 linhas=69
+=== robometria ===
+exit=0 linhas=30
+=== clubedomosaico ===
+exit=0 linhas=64
+=== rodametria ===
+exit=0 linhas=17
+```
+
+`git status --porcelain` ANTES do `git add` (nenhuma pasta precisou ser criada; as quatro
+`ilhas/<ilha>/dados/` já existiam):
+
+```
+?? ilhas/aquametria/dados/search-console-2026-11-18.md
+?? ilhas/clubedomosaico/dados/search-console-2026-11-18.md
+?? ilhas/robometria/dados/search-console-2026-11-18.md
+?? ilhas/rodametria/dados/search-console-2026-11-18.md
+```
+
+`git diff --cached --stat` do commit de trabalho:
+
+```
+ .../aquametria/dados/search-console-2026-11-18.md  | 69 ++++++++++++++++++++++
+ .../dados/search-console-2026-11-18.md             | 64 ++++++++++++++++++++
+ .../robometria/dados/search-console-2026-11-18.md  | 30 ++++++++++
+ .../rodametria/dados/search-console-2026-11-18.md  | 17 ++++++
+ 4 files changed, 180 insertions(+)
+```
+
+Commit e push. O primeiro `git push origin HEAD:main` foi RECUSADO (non-fast-forward: `origin/main`
+tinha andado para `7d3f2c6`, o fecho da execução da rodametria, entre o `fetch` da partida e o push).
+`git fetch origin main && git rebase origin/main` resolveu na primeira tentativa, sem conflito, e o
+push seguinte passou. Nenhum force push, nenhum PR:
+
+```
+a8d237a2b143bf2d02a014bc9f2b2a98f7b7fb24  (antes do rebase)
+b936b32b88de46fb11b8ff3956de0cfa52853471  (o que foi ao main)
+Leitura Search Console pela nuvem — 2026-11-18
+
+git push origin HEAD:main
+To https://github.com/rmnatal/arquipelago
+   7d3f2c6..b936b32  HEAD -> main
+```
+
+Confirmado em `origin/main` depois de `git fetch` novo — `git log -1 origin/main` mostra
+`b936b32b88de46fb11b8ff3956de0cfa52853471`, `Leitura Search Console pela nuvem — 2026-11-18`.
+
+`git status --porcelain` e `git diff --stat` DEPOIS do commit de trabalho (antes deste log):
+os dois vazios, árvore limpa.
+
+CONTAGEM, conferida relendo os arquivos DEPOIS de gravar (não pelo que eu achei que escrevi):
+
+```
+ilhas/aquametria/dados/search-console-2026-11-18.md     69 linhas, 4437 bytes, PRIVATE=0
+ilhas/robometria/dados/search-console-2026-11-18.md     30 linhas, 1639 bytes, PRIVATE=0
+ilhas/clubedomosaico/dados/search-console-2026-11-18.md 64 linhas, 4125 bytes, PRIVATE=0
+ilhas/rodametria/dados/search-console-2026-11-18.md     17 linhas, 1133 bytes, PRIVATE=0
+```
+
+Um defeito que está DENTRO da saída gravada, e não foi corrigido porque a instrução não mandou
+mexer nele: na `rodametria`, a linha de `indexacao.md` saiu `| 2026-11-18 | n/d | n/d | n/d | 2 | 0 |`
+porque o sitemap não pôde ser lido daqui — `https://rodametria.com.br/sitemap.xml` devolveu
+`ProxyError ... Tunnel connection failed: 403 Forbidden`, a política de rede deste ambiente, não o
+site. Totais de propriedade e dimensão `page` dessa ilha saíram normais (2 impressões, 0 clique).
+As outras três leram o sitemap sem erro.
+
+Este log vai num commit seguinte porque precisa do hash do commit de trabalho, que só existe depois
+dele. A hora do título saiu de `TZ=America/Sao_Paulo date` e `date -u` na mesma chamada que a gravou,
+nunca digitada.
