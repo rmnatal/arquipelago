@@ -10485,3 +10485,59 @@ As outras três leram o sitemap sem erro.
 Este log vai num commit seguinte porque precisa do hash do commit de trabalho, que só existe depois
 dele. A hora do título saiu de `TZ=America/Sao_Paulo date` e `date -u` na mesma chamada que a gravou,
 nunca digitada.
+
+## 18/11/2026 17h10 (20h10Z UTC) — SEGUNDA TENTATIVA do disparo de 19h42Z: as quatro leituras rodaram aqui e o conteúdo é byte a byte o que já estava no `main`
+
+Instrução recebida: rodar `ferramentas/search-console.py` para `aquametria robometria clubedomosaico
+rodametria` e gravar a saída inteira em `ilhas/<ilha>/dados/search-console-2026-11-18.md`, conferindo
+`grep -c PRIVATE` = 0. Rodei as quatro. **O trabalho não entrou num commit meu: quando fui empurrar,
+uma execução CONCORRENTE do mesmo disparo já tinha posto os mesmos quatro arquivos no `main` no commit
+`b936b32b88de46fb11b8ff3956de0cfa52853471`** — o `git push origin HEAD:main` foi recusado por
+não-fast-forward, o `git rebase origin/main` descartou o meu commit
+`d645bed6b7453f3469a7ee2fc1e44b998a691e96` como patch já aplicado (`skipped cherry-picks`), e o push
+seguinte respondeu `Everything up-to-date`. Nenhum force push. Nada foi sobrescrito.
+
+A conferência que importa é que o que eu gerei e o que está no `main` são a MESMA coisa, e isso foi
+medido, não suposto — `git diff origin/main -- ilhas/` saiu vazio:
+
+```
+$ git diff origin/main --stat -- ilhas/
+(saída vazia)
+$ git status --porcelain
+(saída vazia, árvore limpa)
+```
+
+Contagem relida de `origin/main` DEPOIS do fetch, com `git show origin/main:<arquivo>`:
+
+```
+ilhas/aquametria/dados/search-console-2026-11-18.md     69 linhas, PRIVATE=0
+ilhas/robometria/dados/search-console-2026-11-18.md     30 linhas, PRIVATE=0
+ilhas/clubedomosaico/dados/search-console-2026-11-18.md 64 linhas, PRIVATE=0
+ilhas/rodametria/dados/search-console-2026-11-18.md     17 linhas, PRIVATE=0
+```
+
+Commit que está no `main` com o trabalho: `b936b32` (não meu). Commit meu que existiu e foi descartado
+no rebase por ser o mesmo patch: `d645bed`.
+
+UM ERRO QUE ACONTECEU E QUE É PROVÁVEL SE REPETIR, por isso fica escrito: a PRIMEIRA execução da
+`aquametria` morreu no meio e gravou um arquivo que era 100% traceback, zero dado — o script coleta tudo
+e imprime no fim, então quando ele quebra na `urlInspection` não sai nem a parte que já tinha sido lida.
+A mensagem completa:
+
+```
+requests.exceptions.ProxyError: HTTPSConnectionPool(host='searchconsole.googleapis.com', port=443):
+Max retries exceeded with url: /v1/urlInspection/index:inspect
+(Caused by ProxyError('Unable to connect to proxy',
+RemoteDisconnected('Remote end closed connection without response')))
+```
+
+E a causa estava no proxy, não no script nem na credencial —
+`curl -sS "$HTTPS_PROXY/__agentproxy/status"` mostrou em `recentRelayFailures`:
+`ws_closed_mid_exchange — tunnel closed (code 1012, server_draining) after 113s; 32465 B sent,
+22603 B received`, host `searchconsole.googleapis.com:443`. **Bytes trafegando e `server_draining`
+é falha transitória de infraestrutura: a lição é REPETIR a ilha antes de concluir qualquer coisa
+sobre ela.** Repeti e saiu completa de primeira. As outras três rodaram sem erro na primeira vez.
+Nada do valor de `GOOGLE_SA_B64` foi impresso, gravado ou commitado em momento nenhum.
+
+A hora do título saiu de `TZ=America/Sao_Paulo date` e `date -u` na mesma chamada que gravou esta
+seção, nunca digitada. Nenhuma seção anterior deste arquivo foi apagada, reescrita ou resumida.
