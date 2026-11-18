@@ -107,6 +107,24 @@ O desenho da página degradada era só do **CORPO**, e quem o escreveu cuidou de
 
 ---
 
+### O SEXTO DEFEITO, E ELE É UM QUE EU COMETI AO CONSERTAR O QUINTO: O RAMO DA DATA IA LER UM DADO QUE NÃO EXISTE NO AR
+
+**Revisão 109 às 11h09:49Z**, confirmada por dois laços independentes. Log lido linha por linha (20.4) e a conta do próprio Sync (20.10): **8 declarados, 8 linhas de item, as 8 dizendo `ok`**, inclusive `snippets/rodametria-produto: ok (snippet #8 atualizado)` — nenhum `gravado mas NÃO ativado`. A conta fecha.
+
+**E ELA LEVOU A PÁGINA DEGRADADA DE SEIS REPROVAÇÕES PARA UMA:** o corpo subiu de **891 para 3.108** caracteres, a `description` tem **156**, o JSON-LD serve **11 strings**, o `BreadcrumbList` voltou e o `og:title` também. **Ficou o `dateModified`.**
+
+**A CAUSA, e ela é minha:** o ramo que eu escrevi no filtro lia `anuncios-por-consulta`, que tem **`publicar: false`** no manifest e portanto **não é gravado como option no WordPress**. `rodametria_casca_banco()` devolve `null` para ele; o ramo rodava, não achava nada, devolvia cadeia vazia — e **sem data a casca não serve o `WebPage`, por desenho dela**. Eu li a **presença do id** na lista `dados` do manifest como publicação, **sem olhar o campo ao lado**: aquela lista traz os treze dados da ilha, publicados ou não, e só cinco deles chegam ao ar.
+
+**E O PORTÃO NÃO PEGOU, PORQUE O DUBLÊ DELE MENTIA.** O `rodametria_casca_banco()` stubado em `teste-cabeca-sem-vitrine.php` devolvia o mundo pedido para **qualquer** id. Ele nunca mediu a ausência — e por isso aprovou, sem rede, um ramo que no ar leria `null`.
+
+> **STUB QUE SEMPRE RESPONDE NÃO MEDE A AUSÊNCIA.** É a 20.7 em traje de dublê, e é parente direto da 20.8: régua que não pode discordar não mede nada, e dublê que não pode faltar também não.
+
+**OS DOIS CONSERTOS, e o segundo é o que importa:** (1) `nao_nasceram` — que mora na **vitrine**, essa sim publicada, e que o gerador já escrevia com `id` e `causa` — passa a carregar **`colhido_em`**, e o filtro lê de lá; a constante do dado não publicado foi **removida** do snippet. (2) O stub do portão passa a ler a **lista de publicados do manifest de verdade**, do disco, e três afirmações novas cobram a fonte: que `anuncios-por-consulta` devolva `null`, que `vitrine-de-produto` **não** devolva, e que o snippet não declare mais constante de dado não publicado. **Mais uma, da outra ponta:** toda entrada de `nao_nasceram` na vitrine de verdade tem de trazer a data — lida do arquivo, não do mundo de mentira.
+
+`teste-cabeca-sem-vitrine.php` foi de **37 para 41 afirmações**. Snippet de produto em **1.16.0**, revisão **110**.
+
+---
+
 ### O QUE FOI AO AR, E O QUE ESTA PASSADA NÃO FEZ
 
 **Revisões 108 e 109.** Bancada **ANTES: 52 portões, 0 falha**; **DEPOIS: 54 portões, 0 falha** (dois portões novos, e as 2 falhas que ela achou no meio do caminho consertadas). Portões novos: `teste-escada-que-desce.py` (**44 afirmações**, 7 mundos, a régua velha obrigada a discordar nos dois mundos do defeito e a concordar nos dois que já estavam certos, mais o autoteste que repõe a régua velha e exige o defeito de volta) e `teste-cabeca-sem-vitrine.php` (**37 afirmações**, 7 metades, o mapa velho obrigado a discordar na moto e a concordar nas irmãs, mais o autoteste da trava do 404).

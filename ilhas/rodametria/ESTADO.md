@@ -138,10 +138,25 @@ bloco_atual: |
   CORTA COM `head`: redirecione para arquivo. Commits com `git commit -F`.
   NENHUMA URL NASCEU e nenhuma podia: `urls_publicadas` segue 11, o teto da
   21.4 nao foi tocado. Uma pagina PERDEU a vitrine, que e o oposto de leva.
+  O SEXTO DEFEITO FOI MEU, AO CONSERTAR O QUINTO, e a 109 o mostrou: o ramo da
+  data lia `anuncios-por-consulta`, que tem `publicar: false` no manifest e NAO
+  existe como option no ar. Eu li a PRESENCA DO ID na lista `dados` como
+  publicacao sem olhar o campo ao lado — dos 13 dados da ilha, so 5 chegam ao
+  ar. A 109 levou a pagina de SEIS reprovacoes para UMA (corpo de 891 para
+  3.108 caracteres, description com 156, 11 strings de JSON-LD, breadcrumb de
+  volta); ficou o `dateModified`.
+  E O PORTAO NAO PEGOU PORQUE O DUBLE DELE MENTIA: o `rodametria_casca_banco()`
+  stubado devolvia o mundo pedido para QUALQUER id. STUB QUE SEMPRE RESPONDE NAO
+  MEDE A AUSENCIA — a 20.7 em traje de duble, parente da 20.8. Agora a lista de
+  publicados sai do MANIFEST de verdade e tres afirmacoes novas cobram a fonte.
+  O dado passou para `nao_nasceram` da VITRINE, que e publicada e que o gerador
+  ja escrevia: ela carrega `colhido_em`. Revisao 110, snippet 1.16.0, portao de
+  37 para 41 afirmacoes.
   PROXIMO PASSO: a passada seguinte LE `porta.quedas` de novo (19.4(c)) e roda
   `bancada.py` ANTES e DEPOIS (secao 8). O TRABALHO MAIS DESBLOQUEADO E
   RECONFERIR A PAGINA DEGRADADA NO AR pela 18.4: `conferir-no-ar.py` tem de
-  APROVAR na revisao 109 — se reprovar, o conserto da cabeca nao fechou e isso
+  APROVAR na revisao 110 — na 109 ele reprovava em 1 afirmacao
+  (`dateModified`), e se ele ainda reprovar o conserto da data nao fechou e isso
   vem antes de qualquer outra coisa. Depois, a recoleta das OUTRAS DUAS (dado
   de 17/11, um dia): se a moto voltar a 3 anuncios por conta da loja, a vitrine
   dela renasce sozinha. O QUE A DESTRAVA DE VERDADE E DO RAPHAEL e esta no
