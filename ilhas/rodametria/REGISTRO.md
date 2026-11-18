@@ -3,7 +3,7 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
-## 2026-11-18 16h16Z–17h?xZ — **O `alt` DE TODA FOTO DE PRODUTO DESTA ILHA ERA VAZIO POR CONSTRUÇÃO, E DUAS DECISÕES CERTAS O COMPUNHAM. Despacho de 18/11 FECHADO nos quatro itens da Fundação (18.2).** Revisões **112** e **113**.
+## 2026-11-18 16h16Z–17h1xZ — **O `alt` DE TODA FOTO DE PRODUTO DESTA ILHA ERA VAZIO POR CONSTRUÇÃO, E DUAS DECISÕES CERTAS O COMPUNHAM. Despacho de 18/11 FECHADO nos quatro itens da Fundação (18.2).** Revisões **112** e **113**.
 
 **A ILHA DESTA EXECUÇÃO:** rodametria, por **foco** (`foco.md`, foco total desde 27/10). **Conferi o que fura o foco antes de aceitar isso:** o despacho do **molde de conversão** (exceção do Raphael de 21/10, seção 32) está **FECHADO nas três ilhas** que ele nomeia — aquametria em 21/10 às 18h2xZ, clubedomosaico às 19h1xZ, robometria às 16h1xZ —, então o foco manda sozinho; e nenhuma ilha no ar está quebrada com despacho ALTO aberto (o `dados/PAINEL.md` de hoje mede as quatro portas **verdes**). Logo nada fura o foco pela 1.2 nem pela 18.1.
 
@@ -87,7 +87,9 @@ O despacho oferece duas saídas. A primeira — *"nenhum preço se repita mais d
 
 **O DESEMBARQUE, pela 20.4 e 20.8:** revisão **112** no ar às 16:44, com a linha de fecho declarando **9 aplicado(s)** e as **9 linhas de item lidas uma por uma, todas dizendo `ok`** — lidas pelo portão, do fecho para baixo. A janela de 15 linhas está **CHEIA**, e isso saiu como **registro e não como aprovação**: item de revisão anterior que rolou para fora dela não foi conferido por ninguém. **As versões de snippet CARREGADAS no ar** (20.7) batem com o manifest nas seis: casca **1.30.0**, produto **1.17.0**, f1 1.6.0, f2 1.13.0, f3 1.7.0, institucional 1.3.0.
 
-**A revisão 113** (só `dados/f2-respostas`, o `alt` da página da F2) caiu com o evento do cron **não vencido** — `ultimo` de 16:44:13, anterior ao push. Pela **20.9** isso é `evento-nao-vencido` e a ação certa é **esperar**, não reacionar: o vencimento é `ultimo` + 1.800 s.
+**A revisão 113** (só `dados/f2-respostas`, o `alt` da página da F2) caiu com o evento do cron **não vencido** — `ultimo` de 16:44:13, anterior ao push. Pela **20.9** isso é `evento-nao-vencido` e a ação certa é **esperar**, não reacionar: o vencimento é `ultimo` + 1.800 s. **Esperei, e a régua acertou:** a revisão entrou às **17:10:21**, 26 minutos depois do push, com a linha de fecho declarando **7 aplicado(s)** e as **7 linhas de item lidas uma por uma, todas dizendo `ok`** — a conta do fecho fecha com as linhas lidas (20.8, item 3). Reacionar nos 26 minutos não teria antecipado nada; só teria gasto execução, que é o que a 20.9 nasceu para evitar.
+
+**A VERIFICAÇÃO FINAL DO ITEM 1, NO AR, NAS 11 URLs DO SITEMAP, EM DUAS LEITURAS COM QUEBRA DE CACHE:** **10 medições** de `<img class="rdm-molde-cartao-foto">` (5 por leitura), **ZERO com `alt` vazio** e **ZERO divergente do `imagem.alt` do registro correspondente** — `/autonomia-patinete-eletrico/` 1, `/veiculos/patinete-eletrico/` 2 e `/veiculos/bicicleta-eletrica/` 2. É exatamente o "pronto quando" do item, cumprido com um `alt` que a ilha escreveu em vez do título que o despacho pedia. **E a ilha está de pé:** 11 de 11 URLs em **200** nas duas leituras.
 
 **PORTÕES:** bancada **55 portões, 0 falha**, rodada ANTES do desembarque e DEPOIS dele; mutações da vitrine **39/39, 0 inerte**; gerador 635 afirmações; aposentadoria 105; foto quebrada 49; navegador 15 em 6 mundos; `conferir-no-ar.py` **APROVADO** nas 11 URLs.
 

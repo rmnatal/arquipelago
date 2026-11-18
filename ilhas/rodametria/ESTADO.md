@@ -15,28 +15,22 @@ urls_publicadas: 11       # 10 -> 11 em 16/11/2026: nasceu `/veiculos/moto-eletr
                           # proteger. Quem substituir comentario de varias linhas apaga o rabo.
 ultima_ronda: 2026-11-18T15:00Z   # RONDA DIARIA TECNICA de 2026-11-18, 14h4xZ-15h0xZ, medida na revisao 111 (status 111 = manifest.json 111), casca 1.29.0. CINCO defeitos, ZERO consertos e nenhum tentado: nenhum dos cinco e da lista 19.1 — OITAVA ronda seguida desta ilha com zero conserto. (1) alt vazio em 7 de 7 fotos de cartao no ar COM o alt pronto no banco em 29 de 29 registros (defeito no PHP do cartao: 19.2 sem excecao); (2) DUAS fotos de cartao em 503 PARA O VISITANTE, medidas no Chrome do Raphael em tres passadas cada com controle verde na mesma passada, uma delas o 1o cartao de /veiculos/patinete-eletrico/; (3) anuncio 58215666648 (Foston X15 Max) ESGOTADO — a moto eletrica tem UM anuncio que serve, nao dois, e o despacho da Fundacao de hoje de manha afirma dois; (4) /veiculos/bicicleta-eletrica/ publica "7 anuncios" com SEIS ao mesmo preco e tres titulos identicos — um produto revendido seis vezes, mediana colada no piso; (5) a porta caiu pela SETIMA vez as 14:34Z e a cura devolveu as paginas NA MESMA REQUISICAO (zero minuto no chao, contra >=55 min em 17/11). Despacho de 5 itens no PROMPT.md. A ILHA ESTA SA NO ENCANAMENTO: 11 de 11 URLs em 200 em duas leituras com quebra de cache, as tres portas da 29.2 verdes, caminho virgem em 404 na pagina da ilha, zero entidade-amp dentro de script, JSON-LD 11/11, BreadcrumbList 10/10 (home sem, 16.3 correto), zero pagina orfa na direcao de ENTRADA, zero link de miolo fora do sitemap, meta description maxima de 159, zero noindex, favicon proprio, todo script da ilha no rodape, console 11 de 11 limpo do lado da ilha, rolagem horizontal zero, menu abrindo e fechando nas 11 com 5 links (o defeito de 16/11 FECHADO), nenhum details aberto por padrao. TESTE DE VIDA: 26 leituras — 23 fichas (22 vivas, 1 ESGOTADA) e 3 buscas (3 vivas), intestaveis ZERO, item sem piso da 25.2 ZERO, zero link cru, pela url_produto crua e NUNCA pelo link de afiliado. As tres ferramentas apertadas com entrada real: 17 de 17 contas certas na mao. DEGRAU DE COMPRA: o conserto de 16/11 ATRAVESSOU a coleta de hoje (29 de 29 com degrau_de_compra 3 e a frase da 25.10). A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
 primeira_indexacao: null  # as duas primeiras URLs foram ao ar hoje; indexacao e trabalho de dias. Quem grava este campo e a leitura semanal, lendo o Search Console.
-ultima_execucao: 2026-11-18T13:47Z   # A BATERIA DE MUTACAO DESCREVIA UMA PAGINA E
-                     # MUTAVA OUTRA: DEZ mutacoes mutavam `v['paginas'][0]` — ordem de
-                     # catalogo, nao alvo declarado —, e `paginas[0]` hoje e a BICICLETA
-                     # enquanto DUAS docstrings da bateria falam dos numeros do PATINETE.
-                     # O gatilho foi a recoleta: `foto sem dimensao medida [mundo
-                     # fabricado]` ficou INERTE porque carregava `mundo fabricado` no NOME
-                     # e nao fabricava nada (a CDN da loja respondeu 503). As duas reguas
-                     # obrigadas a DISCORDAR no mundo fabricado: velha 37 reprovadas / 1
-                     # inerte mutando a bicicleta CALADA, nova 27 / 11 INERTES cada uma
-                     # NOMEANDO a pagina que falta. Revisao 111. VERIFICADO NO AR (18.4):
-                     # bancada --no-ar 59 portoes 0 falha, conferir-no-ar 793 afirmacoes 0
-                     # falha com o portao da 20.4 lendo as 7 linhas da revisao 111 uma por
-                     # uma (todas `ok`), produto 369, institucional 244, pixel 10 de 10,
-                     # console 11 de 11 limpo. A mediana do patinete subiu de R$ 1.632,12
-                     # para R$ 1.640,03 nas TRES ocorrencias dela, em DUAS leituras
-                     # identicas byte por byte (112.167 bytes).
-                     # A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA.
-executando_desde: 2026-11-18T16:36Z   # RESERVA RENOVADA pela 1.1 (reserva original 16h16Z): o
-                         # bloco passou de 40 minutos porque o despacho de 18/11 tem
-                         # CINCO itens e a 18.2 manda sair inteiro — gerador, dois
-                         # snippets, duas ferramentas e o portao do navegador. A HORA
-                         # SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA.
+ultima_execucao: 2026-11-18T17:13Z   # DESPACHO DE 18/11 FECHADO NOS QUATRO ITENS DA
+                         # FUNDACAO, inteiros numa passada so (18.2), conferidos NO AR
+                         # pela 18.4 nas revisoes 112 e 113. O `alt` de toda foto de
+                         # produto desta ilha era VAZIO POR CONSTRUCAO — gerador e casca,
+                         # cada um certo sozinho, compondo o atributo vazio para sempre.
+                         # 10 medicoes de `alt` em duas leituras das 11 URLs: ZERO vazio,
+                         # ZERO divergente do banco. 11 de 11 em 200 nas duas leituras.
+                         # A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA,
+                         # nunca digitada.
+executando_desde: null   # LIMPO no fecho desta execucao (passo 7 da secao 1). A
+                         # reserva foi as 16h16Z, ganha no push na PRIMEIRA tentativa
+                         # (`ff9d7d9`), e RENOVADA as 16h36Z pela 1.1: o despacho tinha
+                         # cinco itens e a 18.2 manda sair inteiro. O fecho esperou o
+                         # VENCIMENTO do cron pela 20.9 (`evento-nao-vencido`) em vez de
+                         # reacionar — a revisao 113 subiu as 17:10, 26 minutos depois do
+                         # push, e reacionar nao teria antecipado nada.
 rede: aberta em 2026-11-18   # 20.2, REMEDIDA e nao herdada na passada das 13h16Z:
                              # 3 de 3 em 200 em `rodametria.com.br/`, com `aquametria.com.br`
                              # em 200 nas MESMAS tres passadas — controle verde, nao e rede. A
