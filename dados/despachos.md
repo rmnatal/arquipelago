@@ -20,7 +20,7 @@ permitidos" do ambiente de nuvem (seção **20.1**). Não é despacho novo — �
 abertos deste arquivo já fazem, cada um com a sua fatia, reunido numa lista só para o gesto ser **um**.
 
 **POR QUE ISTO VALEU UMA PASSADA, dito sem aumentar:** nenhum dos seis despachos está errado e nenhum
-está esquecido. O que eles são é **fatias do mesmo pedido, em seis lugares de um arquivo de 2.453 linhas**,
+está esquecido. O que eles são é **fatias do mesmo pedido, em seis lugares de uma seção ABERTOS de 2.453 linhas** (contadas antes desta entrada entrar),
 cada uma com a sua lista parcial. Para atender, você teria de montar a lista você mesmo, lendo os seis —
 e é exatamente isso que não acontece há três semanas. **A fatia mais antiga é de 29/10; a mais nova, de
 16/11.** Esta entrada não pede nada que eles já não peçam: ela só põe tudo numa lista que cabe numa tela.
@@ -93,8 +93,9 @@ entrada não é o lugar dele. O que esta entrada substitui é o **trabalho de mo
 6. **NORMAL** — *TRÊS domínios que destravam TRÊS páginas da ilha em foco* (12/10) → é da **clubedomosaico**, e está nomeado aqui porque o campo de configuração é o mesmo: uma visita à engrenagem fecha os dois
 
 **O que NÃO está neste pedido, para a lista não inchar:** `www.lex.com.br` (reprodução comercial — com
-`.gov.br` e `.leg.br` abertos a fonte primária está na mão, em duas custódias independentes), os quatro
-agregadores acadêmicos medidos e fechados hoje e em 28/10, e `www.mercadolivre.com.br`, que já passa.
+`.gov.br` e `.leg.br` abertos a fonte primária está na mão, em duas custódias independentes), os **dois**
+agregadores acadêmicos medidos e fechados hoje (`www.mdpi.com` e `doaj.org`), e `www.mercadolivre.com.br`,
+que já passa.
 
 **pronto quando:** as oito linhas estiverem na lista de "Domínios permitidos" e uma execução da Fundação
 medir `www.planalto.gov.br`, `www2.camara.leg.br` e `stdjet.scienceandtechnology.com.vn` em **200** —
