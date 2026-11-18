@@ -15,103 +15,90 @@ urls_publicadas: 11       # 10 -> 11 em 16/11/2026: nasceu `/veiculos/moto-eletr
                           # proteger. Quem substituir comentario de varias linhas apaga o rabo.
 ultima_ronda: 2026-11-18T15:00Z   # RONDA DIARIA TECNICA de 2026-11-18, 14h4xZ-15h0xZ, medida na revisao 111 (status 111 = manifest.json 111), casca 1.29.0. CINCO defeitos, ZERO consertos e nenhum tentado: nenhum dos cinco e da lista 19.1 — OITAVA ronda seguida desta ilha com zero conserto. (1) alt vazio em 7 de 7 fotos de cartao no ar COM o alt pronto no banco em 29 de 29 registros (defeito no PHP do cartao: 19.2 sem excecao); (2) DUAS fotos de cartao em 503 PARA O VISITANTE, medidas no Chrome do Raphael em tres passadas cada com controle verde na mesma passada, uma delas o 1o cartao de /veiculos/patinete-eletrico/; (3) anuncio 58215666648 (Foston X15 Max) ESGOTADO — a moto eletrica tem UM anuncio que serve, nao dois, e o despacho da Fundacao de hoje de manha afirma dois; (4) /veiculos/bicicleta-eletrica/ publica "7 anuncios" com SEIS ao mesmo preco e tres titulos identicos — um produto revendido seis vezes, mediana colada no piso; (5) a porta caiu pela SETIMA vez as 14:34Z e a cura devolveu as paginas NA MESMA REQUISICAO (zero minuto no chao, contra >=55 min em 17/11). Despacho de 5 itens no PROMPT.md. A ILHA ESTA SA NO ENCANAMENTO: 11 de 11 URLs em 200 em duas leituras com quebra de cache, as tres portas da 29.2 verdes, caminho virgem em 404 na pagina da ilha, zero entidade-amp dentro de script, JSON-LD 11/11, BreadcrumbList 10/10 (home sem, 16.3 correto), zero pagina orfa na direcao de ENTRADA, zero link de miolo fora do sitemap, meta description maxima de 159, zero noindex, favicon proprio, todo script da ilha no rodape, console 11 de 11 limpo do lado da ilha, rolagem horizontal zero, menu abrindo e fechando nas 11 com 5 links (o defeito de 16/11 FECHADO), nenhum details aberto por padrao. TESTE DE VIDA: 26 leituras — 23 fichas (22 vivas, 1 ESGOTADA) e 3 buscas (3 vivas), intestaveis ZERO, item sem piso da 25.2 ZERO, zero link cru, pela url_produto crua e NUNCA pelo link de afiliado. As tres ferramentas apertadas com entrada real: 17 de 17 contas certas na mao. DEGRAU DE COMPRA: o conserto de 16/11 ATRAVESSOU a coleta de hoje (29 de 29 com degrau_de_compra 3 e a frase da 25.10). A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
 primeira_indexacao: null  # as duas primeiras URLs foram ao ar hoje; indexacao e trabalho de dias. Quem grava este campo e a leitura semanal, lendo o Search Console.
-ultima_execucao: 2026-11-18T17:13Z   # DESPACHO DE 18/11 FECHADO NOS QUATRO ITENS DA
-                         # FUNDACAO, inteiros numa passada so (18.2), conferidos NO AR
-                         # pela 18.4 nas revisoes 112 e 113. O `alt` de toda foto de
-                         # produto desta ilha era VAZIO POR CONSTRUCAO — gerador e casca,
-                         # cada um certo sozinho, compondo o atributo vazio para sempre.
-                         # 10 medicoes de `alt` em duas leituras das 11 URLs: ZERO vazio,
-                         # ZERO divergente do banco. 11 de 11 em 200 nas duas leituras.
+ultima_execucao: 2026-11-18T19:42Z   # A FILA ESTA ACABADA, e os tres eixos que
+                         # sobram estao atras do MESMO campo de configuracao — a lista
+                         # de Dominios permitidos (20.1). Reconferi eixo por eixo na
+                         # fonte em vez de herdar a frase da passada anterior. O
+                         # deliverable e o pedido que SEIS despachos faziam em fatias,
+                         # reunido numa lista de oito linhas, medida hoje: 60 recusas,
+                         # 20 controles em 200 na mesma passada. Revisao 114, CONFERIDA
+                         # NO AR pela 18.4 — portao APROVADO, 789 afirmacoes, 0 falha,
+                         # com as 7 linhas de item da revisao dizendo `ok` (20.4/20.8).
                          # A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA,
                          # nunca digitada.
-executando_desde: 2026-11-18T19:29Z   # RESERVA RENOVADA pela 1.1 (a reserva foi as
-                         # 19h17Z, ganha no push na PRIMEIRA tentativa, `ecd4829`).
-                         # Entrei por FOCO (1.2), com os tres despachos do MOLDE (32)
-                         # das irmas conferidos FECHADOS e nenhuma ilha no ar com
-                         # despacho ALTA — nada fura o foco nesta passada. O bloco
-                         # passou de 40 minutos porque a fila da ilha esta ACABADA e
-                         # a passada mediu, eixo por eixo, por que nenhuma URL nasce
-                         # hoje, em vez de supor.
-                         # A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A
-                         # GRAVA, nunca digitada.
-rede: aberta em 2026-11-18   # 20.2, REMEDIDA e nao herdada na passada das 13h16Z:
-                             # 3 de 3 em 200 em `rodametria.com.br/`, com `aquametria.com.br`
-                             # em 200 nas MESMAS tres passadas — controle verde, nao e rede. A
-                             # Open API da Shopee foi usada nas TRES consultas e NAO recusou
-                             # nenhuma vez nesta passada. *(O corpo anterior deste comentario
-                             # era da passada das 10h17Z e dizia "nesta execucao" sobre DUAS
-                             # recusas `error [10000]: System Error` que foram daquela manha,
-                             # nao desta — numero de outra passada lido como o de agora, a
-                             # secao 4 dentro do cabecalho que ela existe para proteger.)*
+executando_desde: null   # LIMPO no fecho desta execucao (passo 7 da secao 1). A
+                         # reserva foi as 19h17Z, ganha no push na PRIMEIRA tentativa
+                         # (`ecd4829`), e RENOVADA as 19h29Z pela 1.1. O fecho esperou o
+                         # VENCIMENTO do cron pela 20.9 (`evento-nao-vencido`) em vez de
+                         # reacionar — a revisao 114 subiu as 19:40:32Z, 7m42s ANTES do
+                         # teto de 19:48:14 que o proprio portao imprimiu como teto.
+rede: aberta em 2026-11-18   # 20.2, REMEDIDA e nao herdada nesta passada das
+                             # 19h17Z: 3 de 3 em 200 em `rodametria.com.br/`, com
+                             # `aquametria.com.br` em 200 nas MESMAS tres passadas —
+                             # controle verde, nao e rede. E a OUTRA metade da rede foi
+                             # medida em cima: 20 portas de FORA do arquipelago, 3
+                             # passadas cada, 19 em `000` com `connect_rejected` (403 no
+                             # CONNECT) e `www.mercadolivre.com.br` em 403 com o CONNECT
+                             # PASSANDO. A parede e a LISTA DE PERMITIDOS (20.1), nao o
+                             # host — e ela e o que trava os tres eixos desta ilha.
 bloqueada_por: null      # obrigatorio pela secao 2. `null` DE PROPOSITO: o que falta (gov.br para a F1, as prefeituras para a camada municipal, as tres etiquetas do Mercado Livre) trava a FABRICA e nao a ILHA, e isso se escreve no despacho, que e o canal da 12.2. Preenche-lo congelaria tambem os blocos que ja podem andar.
 bloco_atual: |
-  O `alt` DE TODA FOTO DE PRODUTO ERA VAZIO POR CONSTRUCAO, e duas decisoes
-  certas o compunham. Despacho de 18/11 FECHADO nos QUATRO itens da Fundacao
-  (18.2); o item 5 e gesto do Raphael e fica. Revisoes 112 e 113.
-  O ITEM 1 nao era "a tela joga fora o dado": o GERADOR gravava `imagem.alt`
-  com o MESMO `nome` que o cartao imprime tres linhas abaixo, e a casca
-  esvaziava o atributo justamente quando os dois fossem iguais (trava de
-  11/11). Medido: igual em 20 de 20 registros com foto. Obedecer o "pronto
-  quando" ao pe da letra teria REPOSTO o defeito de 11/11. O `alt` passa a ser
-  ESCRITO PELA ILHA (`alt_da_foto`): a classe do veiculo da propria pagina mais
-  a procedencia da foto. Marca NAO entra — ela so existe dentro do titulo.
-  E NENHUM PORTAO VIA porque cada um media a propria metade: o do ar cobra que
-  o `alt` nao REPITA a prosa vizinha (e ignora atributo vazio de proposito), o
-  do chao cobrava que o campo EXISTISSE. Entre "nao repete" e "existe" cabe o
-  vazio inteiro.
-  E O CONSERTO NAO VIAJOU DE PRIMEIRA: com as duas paginas de familia verdes,
-  `/autonomia-patinete-eletrico/` seguia em `alt=""` — ela monta cartao de
-  VEICULO por outro caminho. A 32.5-c sem sair da propria ilha. O que viajou
-  foi a FUNCAO: `alt_da_foto` mudou de casa para `gerar-f2.py`, onde as frases
-  da voz da tela moram desde 10/11.
-  O ITEM 3 fechou e A FERRAMENTA QUE O FECHA ESTAVA MORTA no unico caminho que
-  grava: `%` casa mais apertado que `+`, e a linha montada com `+` no meio
-  morria em TypeError antes de tocar o banco, desde 16/11 — com o autoteste
-  aprovando 81 afirmacoes, porque todas LEEM linha do banco e nenhuma MONTAVA
-  uma. Agora o portao CHAMA a funcao e a regua ingenua discorda (20.8).
-  O ITEM 4 nao deduplicou, e a razao esta medida: por titulo identico E preco
-  identico os 7 anuncios dao CINCO chaves (um grupo de 3 em 3 lojas), nao "2
-  produtos". A frase passa a contar o que conta, com mundo proprio para o ramo
-  que CALA. A conta da 25.9: 57 julgados, ZERO veredito de entrada mudou.
-  O ITEM 2 tinha duas metades e as duas fecharam: o portao do navegador separa
-  "a origem respondeu" de "o egresso recusou" (NAO MEDIDO) e nao escolhe pai
-  para o 403; e as duas fotos de 503 cairam para o espaco reservado da secao 6.
-  O PORTAO NOVO ACHOU O MESMO DEFEITO NO BANCO: dois registros diziam "a CDN
-  nao respondeu (403)" para fotos que esta nuvem NUNCA alcancou — consertado no
-  COLETOR, que e onde a prosa nasce.
-  DUAS MUTACOES FICARAM INERTES (o alvo delas deixou de existir) e viraram
-  TRES que mordem o mecanismo novo, uma delas passando pelas travas do gerador
-  de proposito. Uma afirmacao estava INVERTIDA em `aplicar-oferta-repetida.py`:
-  exigia que o `alt` FOSSE o nome da tela. E `teste-citacao-de-anuncio.php`
-  reprovou ilha CERTA pela segunda vez em dois dias, pela mesma causa — zero
-  titulo real com token passa a ser NAO MEDIDO, com a cobertura perdida DITA.
-  BANCADA 55 portoes 0 falha ANTES e DEPOIS. Mutacoes 39/39, 0 inerte. Portao
-  do navegador APROVADO em 10 de 10 no ar, onde reprovava TRES hoje de manha.
-  NENHUMA URL NASCEU: `urls_publicadas` segue 11 e o teto da 21.4 nao foi
-  tocado.
-  PROXIMO PASSO: a CLASSE do `alt` vazio nao foi varrida inteira — eu consertei
-  as fotos de CARTAO (duas fontes) e a varredura das 11 URLs mede `alt` de
-  `<img>` de cartao. Falta perguntar o mesmo das OUTRAS imagens que a ilha
-  serve (o simbolo em SVG `data:`, as de guia, se houver) e, principalmente,
-  dos atributos que o portao de ar JA le e nao julga por vazio: ele conta 14 a
-  21 "textos de ATRIBUTO" por pagina (`alt@img`, `aria-label@nav`,
-  `aria-label@svg`, `title@td`) para a regua de VOCABULARIO, e nenhuma
-  afirmacao cobra que eles nao sejam VAZIOS nem que nao repitam o vizinho. E a
-  mesma familia do item 1, uma regua ao lado: o portao ja TEM o dado na mao.
-  E A OUTRA PONTA, que e de desenho e nao de defeito: os `alt` desta ilha
-  passaram a ser IGUAIS entre si dentro de uma pagina (tres cartoes da
-  bicicleta dizem a mesma frase). E honesto e e melhor que vazio; se algum dia
-  o banco trouxer um atributo que DISTINGA a foto (o que a 25.3 chamaria de
-  segunda fonte), e dali que ele entra.
-  O QUE DESTRAVA A PAGINA DE 823 MIL BUSCAS/MES CONTINUA SENDO DO RAPHAEL: a
-  etiqueta `rodametriamotoeletrica` e os 5 links de
-  `dados/links-afiliado-pendentes.md`, prontos desde 11/11 — e hoje a conta
-  piorou de 2 para 1 anuncio que serve, porque o Foston esgotou. A Shopee nao
-  tem o catalogo, nos DOIS degraus.
-  A FILA DE BLOCOS SEGUE ACABADA e o eixo de pagina nova segue bloqueado por
-  gesto humano nas TRES pontas (scooter-eletrica por catalogo; bike-eletrica e
-  motos-eletricas-para-adultos por sinonimo da 30.4; a cauda por territorio de
-  fazenda; e o eixo parametrico pelo egresso do `.gov.br`).
+  A FILA ESTA ACABADA, E OS TRES EIXOS QUE SOBRAM ESTAO ATRAS DO MESMO CAMPO
+  DE CONFIGURACAO. Revisao 114, e ela nao muda um byte de tela.
+  NAO ERA HERANCA: reconferi eixo por eixo na fonte que decide cada um. Eixo A
+  (CNH/placa) tem as 7 consultas do corpus em `tomada`, e pela 30.8 `tomada`
+  FECHA a consulta. Eixos B e C sao `nao-medida` — a 30.8 e literal, `alvo` nao
+  se afirma desta nuvem. Eixo D: das 6 cabecas com `alvo`, 3 no ar, 2 caem na
+  30.4 por sinonimo, e a `scooter eletrica` foi remedida em 16/11 — a loja nao
+  tem scooter, tem patinete chamado de scooter. `<title>`/description: 8
+  impressoes e posicao 59 com `piso: abaixo`, e pela 21.1 isso NAO e informacao.
+  A CAUSA DE TUDO E A MESMA, e isso nao estava escrito em lugar nenhum: os dois
+  `pendente` das constantes, a camada municipal, o nivel 5 da escada e a
+  releitura da resolucao estao todos atras da lista de Dominios permitidos
+  (20.1). Nao e codigo, nao e portao, nao e dado: e configuracao.
+  O DELIVERABLE: o pedido dela estava em SEIS despachos abertos de um arquivo de
+  2.453 linhas, cada um com a sua fatia — e montar a lista era o trabalho que
+  nao estava sendo feito. Agora e UMA lista de oito linhas no topo dos ABERTOS,
+  com o que cada uma destrava e o nome do que esta parado por ela. Nenhum dos
+  seis foi fechado: o diagnostico de cada um e a memoria do defeito.
+  MEDIDO, nao herdado (secao 4): 20 portas x 3 passadas = 60 recusas e 20
+  controles em 200 na MESMA passada, zero intermitencia. 19 em `000` com
+  `connect_rejected` lido no status; a 20a (`mercadolivre`) em 403 com o CONNECT
+  PASSANDO, e por isso fora do pedido. A janela do status vai DITA: so 7 dos 20
+  hosts ainda estavam nela (familia da 20.4).
+  DUAS PORTAS NOVAS: `www.mdpi.com` e `doaj.org`, como canal alternativo para a
+  medicao de patinete da F2. As duas fechadas pela mesma parede, registradas em
+  `fonte-oficial-f1.md` para ninguem remedir por habito, e FORA do pedido de
+  proposito — pedido curto e pedido que acontece.
+  A ARMADILHA QUE O PORTAO PEGOU ANTES DO AR: `verificado_em` atravessa para a
+  tela e a F2 o imprime como "Lido em <data>", no fim do bloco que diz que a
+  gente NAO publica valor nenhum. Eu o subi para 18/11 por reflexo ao remedir o
+  CANAL, e `gerar-f2.py --conferir` reprovou mostrando esse unico campo. Bater na
+  porta e receber 403 NAO e ter LIDO a fonte. Voltou a 28/10, com um campo ao
+  lado dizendo por que nao se mexe nele; a data da remedicao mora em
+  `canal_de_coleta`, que e registro. Mesma familia do `artigo_e_texto_de_tela`.
+  A PERGUNTA DA PASSADA ANTERIOR ESTA RESPONDIDA E A RESPOSTA E ZERO: a classe
+  do `alt` vazio ja esta varrida inteira. Medido com o instrumento da propria
+  ilha (`textos_de_atributo`, mesmas tuplas, mesmo regex) nas 11 URLs: 76
+  atributos de leitor com texto, ZERO vazio, e ZERO `title` igual ao texto do
+  proprio elemento. A faixa do bilhete sai corrigida: 3 a 21 por pagina, nao
+  14 a 21 (14 e 21 sao as duas paginas de familia). Pela 31.2 NAO nasce portao
+  (zero defeito no ar) e pela 31.3 ampliar regua e proibido com item de conteudo
+  na fila.
+  BANCADA 55 portoes, 0 falha, ANTES e DEPOIS.
+  PROXIMO PASSO: nao ha bloco de construcao desbloqueado nesta ilha, e isso
+  agora esta medido em vez de suposto — a proxima execucao que a reservar NAO
+  precisa remedir os cinco eixos, basta ler a tabela do REGISTRO de hoje. O que
+  destrava e o gesto de oito linhas do despacho ALTA de 18/11 no topo dos
+  ABERTOS. No dia em que ele acontecer, a ordem e: (1) ler o CTB no `.leg.br` e
+  preencher a secao 6 de `dados/fonte-oficial-f1.md`, que ja tem os campos
+  rotulados um por um — a F1 passa a responder CNH sem uma linha de logica
+  mudar; (2) ler os quatro folhetos de prefeitura e dar a terceira saida a
+  camada 2 da F1; (3) ler a medicao de patinete nos dois periodicos e a F2
+  passa a devolver km absoluto de V e Ah. Enquanto nao acontecer, o que anda
+  nesta ilha e gesto do Raphael: a etiqueta do Mercado Livre (devolve a vitrine
+  da pagina de 823 mil buscas/mes, hoje servindo a pagina degradada SA), o
+  chamado na HostGator e a decisao do token.
 ---
 
 # Estado da ilha RODAMETRIA

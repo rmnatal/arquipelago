@@ -3,6 +3,93 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-11-18 19h17Z–19hxxZ — **A FILA ESTÁ ACABADA, E OS TRÊS EIXOS QUE SOBRAM ESTÃO ATRÁS DO MESMO CAMPO DE CONFIGURAÇÃO. O pedido que SEIS despachos faziam em pedaços passou a ser UMA lista, medida hoje.** Revisão **114**.
+
+**A ILHA DESTA EXECUÇÃO:** rodametria, por **foco** (`foco.md`, foco total desde 27/10). **Conferi o que fura o foco antes de aceitar isso:** o despacho do **molde de conversão** (exceção do Raphael de 21/10, seção 32) está **FECHADO nas três ilhas** que ele nomeia — li o `PROMPT.md` das três e os três títulos dizem **FECHADO INTEIRO** com data, hora e a 18.4 citada (aquametria 21/10 às 18h2xZ, clubedomosaico às 19h1xZ, robometria às 16h1xZ). *(Dois deles estão riscados com `~~`; o da aquametria **não está** — diz `FECHADO INTEIRO (…) OS DOIS ITENS CONFERIDOS NO AR PELA 18.4` sem o risco. Anotado porque quem conferir isso por `grep ~~` vai achar dois de três e concluir que um está aberto.)* —, então o foco manda sozinho. E nenhuma ilha no ar tem despacho **ALTA** aberto por estar quebrada: os dois ALTA abertos da robometria são de **sitemap** e de **classe**, não de página servindo erro. Logo nada fura o foco pela 1.2 nem pela 18.1.
+
+**Passo 1 do disparo, medido:** `git fetch origin main` trouxe o `main` de `68c88a4` para **`6d6367f`**. A branch `claude/dreamy-mccarthy-bcv80d` (local e remota) estava **na mesma ponta do `main`** — `git log origin/main..origin/claude/...` devolveu **vazio** nos dois sentidos —, então não havia nada a mesclar. *(E uma lição de método, porque ela custou a primeira reserva: eu já havia escrito o `executando_desde` no arquivo quando rodei `git reset --hard origin/main` para trocar de branch, e o reset **apagou a reserva não commitada**. Refeita e commitada em seguida. `reset --hard` não distingue trabalho de sujeira — é a mesma família do `git stash` com bancada rodando, registrada no `ESTADO.md` da aquametria.)*
+
+**A RESERVA (passo 5 da seção 1):** `executando_desde` estava **`null`**, que pela **1.1** já prova que não havia bloco da Fundação vivo. Reserva às **19h17Z**, ganha no push na **primeira tentativa** (`ecd4829`), e **RENOVADA às 19h29Z** pela 1.1. As duas horas saíram do `date -u` na mesma linha de comando que as grava.
+
+**A REDE FOI MEDIDA E NÃO HERDADA (20.2):** `rodametria.com.br` em **200 nas três passadas**, com `aquametria.com.br` em 200 nas **mesmas três** — controle verde. O `/status` respondeu na primeira tentativa, revisão 111→113, `ultimo` de minutos antes.
+
+**O DESPACHO ABERTO NÃO TINHA ITEM MEU (18.5, verificação antes de construção):** o de 18/11 foi reescrito pela 18.3 às 17h0xZ com os itens 1 a 4 fechados; **sobra o item 5, que é gesto do Raphael** (o chamado na HostGator e a decisão do token). Os dois "DESPACHO DA FUNDAÇÃO PARA O RAPHAEL" de 18/11 e 17/11 também são dele. **Nada a fechar aqui.**
+
+---
+
+### A FILA ESTÁ ACABADA, E ISSO FOI MEDIDO EIXO POR EIXO EM VEZ DE HERDADO
+
+O `bloco_atual` da passada anterior afirma que *"a fila de blocos segue acabada e o eixo de página nova segue bloqueado por gesto humano nas TRÊS pontas"*. **Pela seção 4 eu não li isso como fato: reconferi cada eixo na fonte que o decide.** O resultado confirma a frase e acrescenta o número que ela não tinha.
+
+| eixo | o que o decide | veredito, lido hoje na fonte |
+|---|---|---|
+| **A — CNH e placa** | `dados/corpus-buscas.md`, cluster A1 | as **7** consultas estão com `classe: tomada` — portal de trânsito e notícia com página dedicada. Pela **30.8**, *"veredito `tomada` fecha a consulta: a página não nasce, e isso é decisão final e barata"* |
+| **B — autonomia** | corpus, seção 5 | `nao-medida`. A própria seção 5 escreve que *"os eixos B, C e de peças precisam da SERP aberta no Chrome antes de qualquer página nascer"*, e que o vazamento ali é **quase total** (~40 de ~50 ocupantes fora do Brasil) |
+| **C — carga** | corpus, seção 5 | `nao-medida`, vazamento alto (6 de ~17). Pela 30.8 **não autoriza nada** |
+| **D — produto pelo nome** | `dados/consultas-de-produto.json` | das **6** cabeças com `alvo` (vistas no Chrome em 27/10), **3 estão no ar**; `bike elétrica` e `motos elétricas para adultos` caem na **30.4** (sinônimo de página que existe); `scooter elétrica` foi **remedida em 16/11** e o catálogo da loja não tem scooter — tem **patinete chamado de scooter**, e publicar aquilo seria canibalizar a própria irmã de propósito |
+| **`<title>`/description** | `dados/search-console-2026-11-11.md` | **8 impressões** na janela, posição média **59**, todas em `/veiculos/`. Com `piso: abaixo` no cabeçalho, a **21.1** é literal: isso **não é informação** e não autoriza mexer no texto. Tocá-lo seria trocar um sinal por um palpite |
+
+**E A CAUSA DE TUDO É A MESMA, O QUE NÃO ESTAVA ESCRITO EM LUGAR NENHUM:** os dois `pendente` de `dados/constantes.json` — `exigencia-de-habilitacao-por-categoria-ctb` e `consumo-absoluto-wh-por-km-patinete` —, a camada municipal da F1, o nível 5 da escada de fontes e a releitura da resolução **estão todos atrás de um único campo**: a lista de "Domínios permitidos" do ambiente (**20.1**). Não é código, não é portão, não é dado: é configuração.
+
+### O DELIVERABLE: SEIS DESPACHOS PEDIAM FATIAS DA MESMA LISTA, E MONTAR A LISTA ERA O TRABALHO QUE NÃO ESTAVA SENDO FEITO
+
+`dados/despachos.md` tem **2.453 linhas** na seção ABERTOS, e o pedido da lista de permitidos aparece em **seis** entradas diferentes, cada uma com a sua fatia: a ALTA da categoria legal (`*.gov.br` + `*.leg.br`), a NORMAL da camada municipal (`*.gov.br`), a NORMAL da F2 (os dois periódicos + o repositório da tese), a do nível 5 (os três varejos), a da SERP (que **não é deste gesto** — é do Chrome, 30.8) e a da clubedomosaico (três domínios, **mesmo campo**). A mais antiga é de **29/10**; a mais nova, de **16/11**.
+
+**Nenhuma delas está errada e nenhuma está esquecida.** O que elas são é o mesmo pedido em seis lugares — e para atender, o Raphael teria de montar a lista ele mesmo, lendo os seis. **Escrevi a lista: oito linhas, no topo dos ABERTOS, com o que cada uma destrava e o nome do que está parado por ela.** Nenhum dos seis foi fechado: o diagnóstico de cada um é a memória do defeito, e esta entrada substitui o **trabalho de montar**, não o diagnóstico.
+
+**A linha que vale mais que as outras sete é `*.leg.br`**, e isso não é opinião: o produto desta ilha é a categoria legal, a home é a F1, a pergunta que a pessoa digita é *"precisa de CNH?"* — e a resolução que a fábrica já leu **não tem artigo nenhum sobre habilitação** (medido no texto oficial em 05/11). Quem decide é o CTB, e o CTB está atrás daquela linha. Das três perguntas da ilha, é a única que segue sem resposta no ar.
+
+### A MEDIÇÃO, porque pedido com diagnóstico herdado é o que a seção 4 proíbe
+
+**20 portas, 3 passadas cada, com controle verde na MESMA passada (20.2): 60 medições de recusa e 20 controles em 200**, zero intermitência. **Dezenove em `000`**; a vigésima, `www.mercadolivre.com.br`, em **403 nas três** — anti-robô da loja, com o **CONNECT passando** —, e por isso ela **não entra no pedido**, igual à leitura de 29/10.
+
+A classificação foi **lida** no `__agentproxy/status`: `connect_rejected`, *"gateway answered 403 to CONNECT (policy denial or other refusal)"*. **E a honestidade do instrumento vai dita, porque ele é uma JANELA:** só **7** dos 20 hosts ainda estavam nela quando foi lida. Os outros 13 estão classificados pela assinatura idêntica mais as leituras datadas de 28/10, 29/10, 05/11 e 16/11 que `dados/fonte-oficial-f1.md` já registra — **não por uma leitura de status que não existe.** É a família da 20.4: janela que rolou não aprova com cara de completo.
+
+**DUAS PORTAS NOVAS, tentadas pela PRIMEIRA vez:** `www.mdpi.com` e `doaj.org`, agregadores acadêmicos abertos, como **canal alternativo** para a medição de consumo de patinete que a F2 precisa — a ideia era que um agregador pudesse servir o que os dois periódicos vietnamitas servem. **As duas fechadas pela mesma parede**, e de propósito **fora** do pedido: o alvo são os dois periódicos nomeados, e pedido curto é pedido que acontece. Ficam na tabela da seção 1 do `fonte-oficial-f1.md` **para nenhuma execução as remedir por hábito**, que é a razão de ser daquela seção.
+
+### A ARMADILHA QUE O PORTÃO PEGOU ANTES DO AR, e ela vale mais que a remedição
+
+`verificado_em` da constante **atravessa para a tela**: a página da F2 o imprime como **"Lido em &lt;data&gt;"**, no fim do bloco que diz *"Não publicamos nenhum valor. A medição mais forte que achamos está em periódico que não conseguimos abrir…"*.
+
+**Eu o subi de 28/10 para 18/11 por reflexo**, ao remedir o canal — e `gerar-f2.py --conferir` **reprovou**, com o diff mostrando **esse único campo**. **Bater na porta e receber 403 não é ter LIDO a fonte**, e a tela passaria a afirmar uma leitura que não houve, numa frase que fala justamente de uma fonte que não se abriu.
+
+**O conserto:** `verificado_em` voltou a **28/10** e ganhou ao lado um campo que explica por que não se mexe nele; a data da remedição mora em `canal_de_coleta`, que é registro e não vai à tela. **É a mesma família do `artigo_e_texto_de_tela` da constante das consequências**, escrita em 06/11: todo campo de registro que atravessa para a tela chega com o significado **da tela**, não com o do registro. **E não nasce portão disto** — o portão que o pegou já existe, e a **31.2** é literal.
+
+### A PERGUNTA QUE A PASSADA ANTERIOR DEIXOU ESCRITA ESTÁ RESPONDIDA, E A RESPOSTA É ZERO
+
+O `bloco_atual` de 17h1xZ deixou, como próximo passo, varrer o resto da classe do `alt` vazio: *"falta perguntar o mesmo das OUTRAS imagens que a ilha serve e, principalmente, dos atributos que o portão de ar JÁ lê e não julga por vazio"*.
+
+**Medido com o instrumento da própria ilha** — importei `textos_de_atributo()` de `conferir-no-ar.py` e usei as **mesmas tuplas e o mesmo regex** (`ATRIBUTOS_DE_LEITOR`, `TAGS_SEM_TEXTO_DE_LEITOR`, `_RE_MARCACAO`, `desescapar_entidades`), para o número sair do instrumento e não da minha mão (20.8) —, nas **11 URLs do ar**:
+
+- **76 atributos de leitor com texto** e **ZERO vazios**, em 11 de 11 páginas;
+- **ZERO** `title` idêntico ao texto do próprio elemento;
+- a faixa do bilhete anterior sai **corrigida**: são **3 a 21** atributos por página, não "14 a 21" — 14 e 21 são as **duas páginas de família**, as que têm cartão.
+
+**A classe está varrida, e por isso NÃO nasce portão.** A **31.2** é literal — *"portão (…) só nasce quando existe defeito medido no ar que ela teria pegado (…) 'pode acontecer' não basta"* —, e zero achado é zero defeito. A **31.3** fecha pelo outro lado: ampliar régua que já existe é trabalho de bancada e fica proibido enquanto houver item de conteúdo na fila. **O conserto de 17h1xZ cobriu a classe inteira, e agora isso é medição em vez de esperança.**
+
+### O QUE FOI AO AR, e é pouco de propósito
+
+**Revisão 114, e ela não muda um byte de tela:** o único `sha256` que andou é de `dados/constantes`, e os três campos que eu editei (`canal_de_coleta`, `o_que_falta` e o campo novo da armadilha) são **registro**, não tela — `verificado_em`, que é o único daquela constante que atravessa, ficou onde estava. A revisão existe porque o repositório e o `manifest.json` têm de concordar, e portão de consistência vermelho é dívida silenciosa.
+
+**Bancada: 55 portões, 0 falha, ANTES e DEPOIS.**
+
+**CONFERIDO NO AR (18.4 e 20.4), e a 20.9 acertou o teto na direção que ela mesma avisa:** o `/status`
+ficou em **113** por três minutos depois do push, e o portão deu o veredito com nome — **`evento-nao-vencido`**:
+*"o Sync está VIVO e a última rodada dele (19:18:14) é ANTERIOR ao commit do manifest (19:34:23) (…)
+REACIONAR NÃO ANTECIPA VENCIMENTO (…) o próximo vencimento cai em 19:48:14 NO MAIS TARDE, e PODE CAIR
+ANTES"*. **Esperei, não reacionei. A revisão 114 entrou às 19:40:32Z — 7m42s antes do teto**, que é a
+segunda ressalva da 20.9 acontecendo de novo (o WordPress reagenda evento recorrente a partir do horário
+**agendado**, não do horário em que ele rodou). **Em 05/11 a mesma ressalva foi medida com 6m37s de
+antecipação; hoje, 7m42s.**
+
+**O veredito final, em duas passadas do portão:** **APROVADO, 789 afirmações, 0 falha.** A **20.4** lida do
+fecho para baixo (20.8): a revisão 114 **declara 7 itens aplicados e as 7 linhas de item foram lidas uma a
+uma, todas dizendo `ok`**. E o portão **diz o que não alcançou** em vez de aprovar com cara de completo: a
+janela do log tem 15 linhas e está **cheia**, então item de revisão **anterior** que rolou para fora dela
+não foi conferido por ninguém — *"registro, não aprovação"*.
+
+---
+
 ## 2026-11-18 16h16Z–17h1xZ — **O `alt` DE TODA FOTO DE PRODUTO DESTA ILHA ERA VAZIO POR CONSTRUÇÃO, E DUAS DECISÕES CERTAS O COMPUNHAM. Despacho de 18/11 FECHADO nos quatro itens da Fundação (18.2).** Revisões **112** e **113**.
 
 **A ILHA DESTA EXECUÇÃO:** rodametria, por **foco** (`foco.md`, foco total desde 27/10). **Conferi o que fura o foco antes de aceitar isso:** o despacho do **molde de conversão** (exceção do Raphael de 21/10, seção 32) está **FECHADO nas três ilhas** que ele nomeia — aquametria em 21/10 às 18h2xZ, clubedomosaico às 19h1xZ, robometria às 16h1xZ —, então o foco manda sozinho; e nenhuma ilha no ar está quebrada com despacho ALTO aberto (o `dados/PAINEL.md` de hoje mede as quatro portas **verdes**). Logo nada fura o foco pela 1.2 nem pela 18.1.
