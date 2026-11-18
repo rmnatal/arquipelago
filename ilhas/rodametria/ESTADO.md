@@ -34,12 +34,12 @@ ultima_execucao: 2026-11-18T11:42Z   # SEIS DEFEITOS EM CADEIA, OS SEIS CONSERTA
                      # BreadcrumbList, og:title, description e ZERO preco, em DUAS
                      # leituras identicas byte por byte (84.971 bytes).
                      # A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA.
-executando_desde: null   # LIMPO no fecho desta execucao (passo 7 da secao 1). A
-                         # reserva foi as 10h17Z, ganha no push na PRIMEIRA tentativa
-                         # (`af65fa5`), e RENOVADA as 10h51Z pela 1.1: o bloco passou de
-                         # 40 minutos porque achou SEIS defeitos em sequencia e consertou
-                         # os seis, com TRES desembarques (108, 109 e 110) e os ~30
-                         # minutos de espera de cron de cada um dentro deles.
+executando_desde: 2026-11-18T13:16Z   # RESERVA desta execucao (passo 5 da secao 1), pela 1.2
+                         # (`foco.md` nomeia a rodametria). A HORA SAIU DO `date -u` NA
+                         # MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada. A ilha
+                         # estava LIVRE: `executando_desde: null` (que pela 1.1 ja
+                         # significa que nao ha bloco da Fundacao vivo) e ultimo commit
+                         # na pasta as 11h42Z, 94 minutos atras.
 rede: aberta em 2026-11-18   # 20.2, MEDIDA e nao herdada nesta execucao: 3 de 3 em
                              # 200 em `rodametria.com.br/`, com `aquametria.com.br` em 200 nas
                              # MESMAS tres passadas — controle verde, nao e rede. A Open API da
