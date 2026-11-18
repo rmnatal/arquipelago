@@ -11,6 +11,104 @@ Prioridade: `alta` fura a fila da próxima execução do destinatário.
 
 ## ABERTOS
 
+### prioridade ALTA — precisa do Raphael — A ILHA EM FOCO TOTAL ESTÁ INTEIRA ATRÁS DE **UM CAMPO DE CONFIGURAÇÃO**, E O PEDIDO ESTAVA ESPALHADO POR SEIS DESPACHOS: AQUI ELE É UMA LISTA SÓ, MEDIDA HOJE
+
+18/11/2026 às 19h2xZ — **RAPHAEL** — Escrito pela execução da Fundação que reservou a rodametria às
+19h17Z, encontrou **a fila de blocos acabada** e mediu, eixo por eixo, por que nenhuma URL pode nascer.
+**A resposta é a mesma para os três eixos que sobraram, e ela não é de código:** é a lista de "Domínios
+permitidos" do ambiente de nuvem (seção **20.1**). Não é despacho novo — é o pedido que **seis** despachos
+abertos deste arquivo já fazem, cada um com a sua fatia, reunido numa lista só para o gesto ser **um**.
+
+**POR QUE ISTO VALEU UMA PASSADA, dito sem aumentar:** nenhum dos seis despachos está errado e nenhum
+está esquecido. O que eles são é **fatias do mesmo pedido, em seis lugares de um arquivo de 2.453 linhas**,
+cada uma com a sua lista parcial. Para atender, você teria de montar a lista você mesmo, lendo os seis —
+e é exatamente isso que não acontece há três semanas. **A fatia mais antiga é de 29/10; a mais nova, de
+16/11.** Esta entrada não pede nada que eles já não peçam: ela só põe tudo numa lista que cabe numa tela.
+
+### O GESTO, E ELE É UM
+
+`claude.ai/code` → seletor de ambiente → **Nuvem** → engrenagem → **Domínios permitidos**. Colar:
+
+```
+*.gov.br
+*.leg.br
+stdjet.scienceandtechnology.com.vn
+et.vnuhcmjournal.com.vn
+dspace.ups.edu.ec
+www.casasbahia.com.br
+www.extra.com.br
+www.magazineluiza.com.br
+```
+
+### O QUE CADA LINHA DESTRAVA, com o nome do que está parado
+
+| linha | o que destrava | onde isso está parado hoje |
+|---|---|---|
+| `*.gov.br` | a **camada municipal da F1** (os quatro folhetos de prefeitura) e a releitura da Resolução 996/2023 com conferência de ato posterior | `dados/municipios.json` — 4 municípios `pendente`; a camada 2 da F1 serve **duas saídas iguais em vez de três** |
+| `*.leg.br` | o **CTB (Lei 9.503/1997)** na custódia de quem o promulgou — e com ele **a F1 responde a pergunta do próprio título** | constante `exigencia-de-habilitacao-por-categoria-ctb`, `pendente`; a F1 está no ar **calada sobre CNH** desde 06/11 |
+| os dois periódicos | o **consumo por km de patinete**, degrau 3 da conta da F2 | constante `consumo-absoluto-wh-por-km-patinete`, `pendente`; a F2 **não devolve km absoluto** a partir de V e Ah |
+| `dspace.ups.edu.ec` | datar na fonte a tese que hoje sustenta o fator de relevo por busca | constante `fator-relevo-ladeira-contra-plano` (publicável, mas colhida por busca) |
+| os três varejos | o **nível 5 da escada de fontes**: `potencia_nominal_w`, `velocidade_max_kmh`, `acelerador`, `carga_max_kg` | `veiculos_com_nominal_declarado` = **0** no banco — a F1 não tem candidato na vitrine **nem no dia em que os limiares chegarem**, e a F3 depende da carga declarada |
+
+**A linha que vale mais que as outras sete é a segunda.** O produto desta ilha é a categoria legal, a home
+é a F1, e a pergunta que a pessoa digita é *"precisa de CNH?"*. A resolução que a fábrica já leu **não tem
+artigo nenhum sobre habilitação** — isso está medido no texto oficial, em 05/11, no seu Chrome. Quem decide
+é o CTB, e o CTB está atrás desta linha. **Hoje a ferramenta principal da ilha responde categoria, placa,
+registro, licenciamento e capacete com o artigo ao lado, e cala sobre CNH dizendo o que falta.** Está certa
+em calar — e é a única das três perguntas da ilha que segue sem resposta.
+
+### A MEDIÇÃO DE HOJE, porque pedido com diagnóstico herdado é o que a seção 4 proíbe
+
+**20 portas, 3 passadas cada, com controle verde na MESMA passada (20.2):** 60 medições de recusa e 20
+controles em **200** em `rodametria.com.br`, zero intermitência. **Dezenove das vinte em `000`**; a
+vigésima, `www.mercadolivre.com.br`, em **403 nas três** — que é o anti-robô da própria loja, com o
+CONNECT **passando**, e por isso ela **não entra no pedido** (é a mesma leitura de 29/10).
+
+A classificação foi **lida** no `__agentproxy/status` e não suposta: `connect_rejected`, *"gateway answered
+403 to CONNECT (policy denial or other refusal)"*. **E a honestidade do instrumento vai dita, porque ele é
+uma janela:** o status guarda as últimas entradas, e só **7** dos 20 hosts ainda estavam nela quando foi
+lida — `dspace.ups.edu.ec`, os dois periódicos, os três varejos e `www.lex.com.br`. Os outros 13 saíram da
+janela e estão classificados pela assinatura idêntica (`000` nas três com controle verde) mais as leituras
+de 28/10, 29/10, 05/11 e 16/11 que `ilhas/rodametria/dados/fonte-oficial-f1.md` já registra. **É a família
+da 20.4: a janela do log não aprova com cara de completo — ela diz o que não alcançou.**
+
+**QUATRO PORTAS NOVAS FORAM TENTADAS HOJE, PELA PRIMEIRA VEZ, E AS QUATRO ESTÃO FECHADAS.** Duas são
+agregadores acadêmicos que ninguém havia tentado como canal alternativo para o estudo de patinete —
+`www.mdpi.com` e `doaj.org` — e as outras duas são os próprios periódicos, remedidos porque **causa de
+impossibilidade envelhece**. Todas em `000`, com `connect_rejected` lido no status. **Elas não entram no
+pedido de propósito:** a medição que a F2 precisa está nos dois periódicos nomeados, e pedido curto é
+pedido que acontece. Ficam registradas em `fonte-oficial-f1.md` para **nenhuma execução as remedir por
+hábito**.
+
+### OS SEIS DESPACHOS QUE ISTO REÚNE — e nenhum deles é fechado aqui
+
+Eles continuam abertos e continuam valendo: **o diagnóstico de cada um é a memória do defeito**, e esta
+entrada não é o lugar dele. O que esta entrada substitui é o **trabalho de montar a lista**.
+
+1. **ALTA** — *a ilha EM FOCO tem como produto a CATEGORIA LEGAL, e o único texto que a decide é negado pelo egresso* (28/10, ponteiro de 16/11) → `*.gov.br` e `*.leg.br`
+2. **NORMAL** — *a CAMADA MUNICIPAL da F1 é dado de banco, e os quatro domínios de prefeitura estão recusados* (28/10, ponteiro de 05/11) → `*.gov.br`
+3. **NORMAL** — *a F2 da ilha em foco vai ao ar sem o número que a tornaria completa, e as DUAS fontes que o publicam não resolvem nesta nuvem* (28/10) → os dois periódicos e o repositório da tese
+4. **precisa do Raphael** — *TRÊS domínios de varejo grande na lista de rede, e eles são o nível 5 da rodametria* (29/10) → os três varejos
+5. **NORMAL** — *a SERP de DOIS dos quatro eixos da ilha em foco não é mensurável desta nuvem* (30/10) → **não é deste gesto**, é do seu Chrome (30.8), e fica nomeado aqui para não parecer esquecido
+6. **NORMAL** — *TRÊS domínios que destravam TRÊS páginas da ilha em foco* (12/10) → é da **clubedomosaico**, e está nomeado aqui porque o campo de configuração é o mesmo: uma visita à engrenagem fecha os dois
+
+**O que NÃO está neste pedido, para a lista não inchar:** `www.lex.com.br` (reprodução comercial — com
+`.gov.br` e `.leg.br` abertos a fonte primária está na mão, em duas custódias independentes), os quatro
+agregadores acadêmicos medidos e fechados hoje e em 28/10, e `www.mercadolivre.com.br`, que já passa.
+
+**pronto quando:** as oito linhas estiverem na lista de "Domínios permitidos" e uma execução da Fundação
+medir `www.planalto.gov.br`, `www2.camara.leg.br` e `stdjet.scienceandtechnology.com.vn` em **200** —
+três passadas cada, com controle. A execução seguinte lê o CTB, preenche a **seção 6** de
+`ilhas/rodametria/dados/fonte-oficial-f1.md` (os campos já estão rotulados, um por um), copia para a
+constante e **a F1 passa a responder CNH sem uma linha de lógica mudar** — é o mesmo mecanismo que
+destravou o limiar em 06/11, e ele já foi exercitado uma vez.
+
+**E O QUE ESTE DESPACHO NÃO PEDE:** nada de código, nada de portão, nada em nenhuma ilha. A fábrica não
+tem o que construir aqui, e isso está medido nesta mesma passada, eixo por eixo, no `REGISTRO.md` da
+rodametria.
+
+---
+
 ### prioridade ALTA — A PORTA DA RODAMETRIA CAIU PELA SEXTA VEZ E A CURA AUTOMÁTICA JÁ NÃO ESTÁ BASTANDO: DUAS CURAS EM 11h18m, E A SEGUNDA NÃO DEVOLVEU AS PÁGINAS — medido em 17/11/2026 às 10h19Z–10h2xZ
 
 **Destinatário: o RAPHAEL.** O despacho inteiro, com os três gestos e o "pronto quando", está no topo de `ilhas/rodametria/PROMPT.md`. Resumo do que não é da fábrica:

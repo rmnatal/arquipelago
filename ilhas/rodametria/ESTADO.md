@@ -24,13 +24,14 @@ ultima_execucao: 2026-11-18T17:13Z   # DESPACHO DE 18/11 FECHADO NOS QUATRO ITEN
                          # ZERO divergente do banco. 11 de 11 em 200 nas duas leituras.
                          # A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA,
                          # nunca digitada.
-executando_desde: 2026-11-18T19:17Z   # RESERVA desta execucao (passo 5 da secao 1),
-                         # commitada e empurrada ANTES de qualquer trabalho. Entrei
-                         # por FOCO (1.2): `foco.md` nomeia a rodametria desde
-                         # 27/10. Conferido antes de reservar que os despachos do
-                         # MOLDE (32) da aquametria, clubedomosaico e robometria
-                         # estao TODOS fechados, e que nenhuma ilha no ar tem
-                         # despacho ALTA aberto — nada fura o foco nesta passada.
+executando_desde: 2026-11-18T19:29Z   # RESERVA RENOVADA pela 1.1 (a reserva foi as
+                         # 19h17Z, ganha no push na PRIMEIRA tentativa, `ecd4829`).
+                         # Entrei por FOCO (1.2), com os tres despachos do MOLDE (32)
+                         # das irmas conferidos FECHADOS e nenhuma ilha no ar com
+                         # despacho ALTA — nada fura o foco nesta passada. O bloco
+                         # passou de 40 minutos porque a fila da ilha esta ACABADA e
+                         # a passada mediu, eixo por eixo, por que nenhuma URL nasce
+                         # hoje, em vez de supor.
                          # A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A
                          # GRAVA, nunca digitada.
 rede: aberta em 2026-11-18   # 20.2, REMEDIDA e nao herdada na passada das 13h16Z:

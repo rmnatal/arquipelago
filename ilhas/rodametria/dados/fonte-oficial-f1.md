@@ -37,6 +37,31 @@ Este arquivo existe por dois motivos, e os dois são para baratear a próxima pa
 | **`legis.senado.leg.br`** — o CTB no Senado | **porta NOVA, tentada pela PRIMEIRA vez em 16/11** | **16/11 13h2xZ** | `000`, mesma recusa |
 | **`normas.leg.br`** (LexML/LEG) | **porta NOVA, tentada pela PRIMEIRA vez em 16/11** | **16/11 13h2xZ** | `000`, mesma recusa |
 | **leitor de página (`WebFetch`) no `www2.camara.leg.br`** | a outra porta da nuvem, no `.leg.br` | **16/11 13h2xZ** | `getaddrinfo ENOTFOUND www2.camara.leg.br` — **a mesma assinatura que o `www.gov.br`** |
+| **`www.mdpi.com`** — agregador acadêmico aberto | **porta NOVA, tentada pela PRIMEIRA vez em 18/11**, como canal alternativo para o estudo de patinete da F2 | **18/11 19h2xZ** | `000`, `connect_rejected` lido no status |
+| **`doaj.org`** — diretório de periódicos abertos | **porta NOVA, tentada pela PRIMEIRA vez em 18/11**, mesmo alvo | **18/11 19h2xZ** | `000`, `connect_rejected` lido no status |
+| `stdjet.scienceandtechnology.com.vn`, `et.vnuhcmjournal.com.vn` | os dois periódicos que publicam o consumo por km de PATINETE (constante da F2) | 28/10 · 29/10 · **18/11 19h2xZ** | `000` nas três passadas de hoje, `connect_rejected` lido no status |
+
+> **REMEDIDO EM 18/11/2026 às 19h2xZ, E A PAREDE É A MESMA — com DUAS portas novas e as DUAS fechadas.**
+> A passada que mediu isto encontrou a **fila de blocos da ilha acabada** e foi medir, em vez de supor, por que
+> nenhum eixo anda. **20 portas, 3 passadas cada: 60 medições de recusa e 20 controles em 200** em
+> `rodametria.com.br`, na mesma passada, zero intermitência. Dezenove em `000`; só
+> `www.mercadolivre.com.br` respondeu — **403 nas três**, que é o anti-robô da loja com o CONNECT passando.
+>
+> **O que é NOVO e vale a linha:** `www.mdpi.com` e `doaj.org` foram tentados pela primeira vez como canal
+> alternativo para a medição de patinete da F2 — a ideia era que um agregador acadêmico aberto pudesse
+> servir o que os dois periódicos vietnamitas servem. **Os dois estão fechados pela mesma parede**, e por
+> isso continuam **fora** do pedido: o alvo não é um agregador, são os dois periódicos nomeados, e pedido
+> curto é pedido que acontece. **Estão aqui para nenhuma execução os remedir por hábito**, que é a razão de
+> ser desta seção.
+>
+> **E a honestidade do instrumento vai dita, porque ele é uma JANELA:** o `__agentproxy/status` guarda as
+> últimas entradas, e quando foi lido só **7** dos 20 hosts ainda estavam nela. Os outros 13 estão
+> classificados pela assinatura idêntica mais as leituras datadas desta tabela — **não por uma leitura de
+> status que não existe**. É a família da 20.4: janela que rolou não aprova com cara de completo.
+>
+> **O pedido inteiro passou a existir numa lista só**, em `dados/despachos.md`, no topo dos ABERTOS: as seis
+> fatias que seis despachos pediam separadas, reunidas, porque montar a lista era o trabalho que não estava
+> sendo feito. Nenhum dos seis foi fechado.
 
 **O controle é o que torna isto medição e não palpite.** Nas mesmas passadas de 05/11 às
 19h1xZ, `aquametria.com.br` respondeu **200** três vezes e `rodametria.com.br`,

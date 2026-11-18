@@ -4,7 +4,7 @@
   "nicho": "mobilidade eletrica — acertar os tres numeros antes de comprar um veiculo eletrico: categoria legal (CNH e placa), autonomia real e carga maxima",
   "dominio": "https://rodametria.com.br",
   "versao_manifest": 1,
-  "revisao": 113,
+  "revisao": 114,
   "atualizado_em": "2026-11-18",
   "estado": "nascendo",
   "desembarque": {
@@ -95,7 +95,7 @@
       "arquivo": "dados/constantes.json",
       "formato": "json",
       "publicar": false,
-      "sha256": "b01efcef413b6ad4ee28a68df1531926fde99e9973f5531d18af9417dc16a8fe",
+      "sha256": "da878c9960b3d6d4828f33baa787d4ac1d904c04e219ce668cd00a5024739dd8",
       "descricao": "As nove constantes da ilha, com status e procedencia. Fonte unica de todo numero de regua."
     },
     {
