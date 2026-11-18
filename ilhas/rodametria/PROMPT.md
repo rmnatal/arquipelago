@@ -65,6 +65,97 @@ Medido em 27/10/2026 no Chrome do Raphael (`bussola/dossies/rodametria/DOSSIE.md
 
 ---
 
+## DESPACHO DA SENTINELA — 2026-11-18 (RONDA DIÁRIA TÉCNICA, 14h4xZ–15h0xZ) — CINCO ITENS, E O PRIMEIRO É UM `alt` QUE O BANCO JÁ TEM E A TELA JOGA FORA
+
+> **ZERO CONSERTOS, E NENHUM TENTADO: nenhum dos cinco é da lista 19.1.** OITAVA ronda técnica seguida desta ilha com zero conserto. Medida na revisão **111** (`/status` 111 = `manifest.json` 111), casca **1.29.0**, `versao_sync` 1.1.5.
+>
+> **A ILHA ESTÁ SÃ NO ENCANAMENTO:** 11 de 11 URLs do `wp-sitemap.xml` em **200** em duas leituras com quebra de cache; as três portas da 29.2 em 200 com `content-type` certo; caminho virgem em **404 na página da própria ilha** (73.279 bytes, 28 ocorrências do nome da ilha, **zero** da HostGator); zero `&#038;` dentro de `<script>` nas 11; corpo não começa por metadado YAML em nenhuma; JSON-LD em 11 de 11 e `BreadcrumbList` em 10, ausente só na home (16.3, correto); favicon próprio servido (SVG `data:` com o símbolo da ilha); todo script da ilha no RODAPÉ (o único no `<head>` é o `wp-importmap` do WordPress); tabela de exemplos no HTML servido nas 5 páginas que a têm; meta description máxima de **159** (teto 160); zero `noindex`; **zero página órfã na direção de ENTRADA** (16.9(b): as 11 recebem 10 links de entrada cada, e as três filhas de `/veiculos/` listam as duas irmãs e são listadas pelas duas — a janela rotaciona como a 16.9(a) pede); zero link interno de miolo fora do sitemap (o que sobra é infraestrutura do WordPress: `/feed/`, `/wp-json/…`, `xmlrpc.php`); zero frase da lista "Proibidas" do `VOZ.md` em título ou primeiro parágrafo das 11.
+>
+> **COMPORTAMENTO, NO NAVEGADOR DESTA NUVEM (seção 33), a 390 px:** menu de celular abre e fecha nas **11 de 11** (`aria-expanded` alterna, a lista sai de `display:none` para `flex`, **5 links** no HTML servido — o defeito de 16/11, "a ferramenta principal não estava no menu", está FECHADO e conferido); rolagem horizontal **zero** nas 11; nenhum `<details>` aberto por padrão nas 11; **console 11 de 11 limpo do lado da ilha** (as falhas de rede são `fonts.gstatic.com` e `cf.shopee.com.br`, as duas recusadas pelo egresso desta nuvem — ver o item 2).
+>
+> **AS TRÊS FERRAMENTAS APERTADAS COM ENTRADA REAL, 17 DE 17 CONTAS CERTAS NA MÃO:** F1 em nove entradas — 350 W/25 e 1.000 W/32 com acelerador (autopropelido, o limite **inclusive**), 250 W/25 e 350 W/25 só pedal assistido (bicicleta elétrica), 1.000 W/40, 1.500 W/32 e 1.500 W/40 (ciclomotor, com a frase dizendo QUAL dos dois números passou), 5.000 W/80 (acima do ciclomotor, com a resolução parando no art. 2º §§ 6º e 7º onde para); F2 em duas — 36 V × 10,4 Ah = **374 Wh** e 48 V × 20,0 Ah = **960 Wh**, as duas sem faixa de km e dizendo por que (a conta de km não sai sem os km declarados); F3 em quatro — 100+8 → **119**, 120+0 → **132**, 75+15 → **99**, 180+40 → **242**, a folga de 10% arredondada para cima batendo nas quatro.
+>
+> **TESTE DE VIDA DOS LINKS (25.4), NO CHROME DO RAPHAEL, PELA `url_produto` CRUA E NUNCA PELO LINK DE AFILIADO:** **26 leituras** — 23 fichas (**22 vivas, 1 ESGOTADA**, ver o item 3) e 3 buscas (3 vivas, com resultado e preço na tela). **Intestáveis: ZERO** (58 de 58 registros têm `url_produto`). **Item sem piso da 25.2: ZERO** (as três consultas têm `url_busca` e `url_busca_produto`, e os 23 que servem têm `url_afiliado` encurtado — **zero link cru**). O veredito saiu do CORPO da página e nunca do `<title>`, que a Shopee devolve genérico em toda página (25.4). **E a 25.4 é cumprível no Chrome dele hoje**: a leitura do corpo renderizado funcionou em 26 de 26 sem um CAPTCHA — a API de ficha da 25.4 segue RECUSADA pelo guarda do ambiente, como a 33 já mediu, e não foi usada.
+>
+> **DEGRAU DE COMPRA — O CONSERTO DE 16/11 ATRAVESSOU A COLETA DE HOJE, E ISSO É A 25.11 FUNCIONANDO:** `degrau_de_compra: 3` em **29 de 29** linhas e cartões, com `degrau_de_compra_como_medido` em palavras em **29 de 29** e `degrau_da_escada_de_chaves` com nome próprio ao lado. Nenhum campo chamado só `degrau` na vitrine. O item 3 do despacho de 16/11 está **conferido na coleta seguinte**, que é a metade que a 25.11 diz que se desfaz calada.
+>
+> **RECONFERÊNCIA DO QUE A RONDA DE 17/11 PEDIU POR ESCRITO — AS TRÊS RESPONDIDAS:** (a) as 11 URLs e as três portas da 29.2 voltaram a 200, com o caminho virgem em 404 na página da própria ilha — **sim**; (b) **a primeira leitura no ar de `/casca → porta → tem_bloco_wordpress`: `true`**, com as portas em 200, o que pela errata de 17/11 é o mundo **(b)** e **não pede chamado novo por esta leitura**; (c) linha nova de `cura da porta:` depois das 10:15 — **sim, uma**, e é o item 5.
+
+---
+
+**ITEM 1 — ALTA. AS 7 FOTOS DE CARTÃO NO AR SERVEM `alt=""`, E O TEXTO ALTERNATIVO ESTÁ PRONTO NO BANCO, COM O TÍTULO DO ANÚNCIO.** Não é `alt` faltando por falta de dado: é dado existente que a tela joga fora.
+
+- medido em `dados/vitrine-de-produto.json`: **29 de 29** cartões e linhas têm `imagem.alt` preenchido com o título do anúncio (ex.: `"Bicicleta elétrica dobrável NIUDA para adultos, ideal para viagens e deslocamentos diários."`), e `imagem.fonte`, `imagem.coletado_em` e `como_a_dimensao_foi_medida` ao lado;
+- medido no HTML servido das 11 URLs, com quebra de cache: **7 de 7** `<img class="rdm-molde-cartao-foto">` saem com `alt=""` — `/veiculos/patinete-eletrico/` 3, `/veiculos/bicicleta-eletrica/` 3, `/autonomia-patinete-eletrico/` 1. `width`, `height`, `loading` e `decoding` estão todos lá; só o `alt` chega vazio.
+- **o que `alt=""` afirma, e é o oposto do que estas fotos são:** `alt` vazio declara imagem **decorativa**, e leitor de tela a pula. Foto de produto dentro de cartão de compra é conteúdo, não decoração — e nesta ilha é a única coisa que mostra o veículo.
+
+**NÃO CONSERTEI, e o motivo não é dúvida: é regra sem exceção.** O `alt` da lista 19.1 é `alt` **de imagem**, e aqui o defeito está no **PHP que monta o cartão** (`rodametria-produto`, versão 1.16.0) — a 19.2 proíbe código de snippet "sempre", e a regra 3 das quatro travas da seção 12 é literal: *"se a correção exigir tocar em snippet, ela para e despacha. Sem exceção, mesmo que a mudança pareça de uma linha."*
+
+**pronto quando:** as 7 `<img class="rdm-molde-cartao-foto">` do HTML servido trouxerem `alt` **não vazio**, e o valor de cada uma for **igual** ao `imagem.alt` do registro correspondente em `dados/vitrine-de-produto.json` — conferido URL por URL com quebra de cache, nunca por leitura de código.
+
+---
+
+**ITEM 2 — ALTA. DUAS FOTOS DE CARTÃO ESTÃO QUEBRADAS PARA O VISITANTE, E UMA DELAS É O PRIMEIRO CARTÃO DE `/veiculos/patinete-eletrico/` — O ESPAÇO MAIS CARO DA PÁGINA.** Medido **no Chrome do Raphael**, que é onde o visitante está, e não na nuvem.
+
+- `https://cf.shopee.com.br/file/br-11134207-820lf-mmpf3sxolgqu74` — **1º cartão** de `/veiculos/patinete-eletrico/` (LOMIXA, R$ 1.369,55);
+- `https://cf.shopee.com.br/file/sg-11134201-825al-mu3ms9o7xa16e7` — **3º cartão** de `/veiculos/bicicleta-eletrica/` (3FMAXLTDA, R$ 2.299,99);
+- **a medição:** `fetch` das duas no Chrome dele, **três passadas cada**, `cache: no-store` — **503 nas seis**; na mesma passada uma terceira URL de foto da mesma CDN (`sg-11134201-8257t-mqezlfi5xwjyf4`) devolveu **200 `image/jpeg`**, que é o controle verde. Não é intermitência (20.2) e não é a CDN inteira.
+- **e no DOM, forçando `loading="eager"` e esperando 6 s:** `naturalWidth: 0` com `complete: true` nas duas, contra 800/1024 nas outras cinco. **5 de 7 fotos carregam, 2 não.**
+- **o banco já sabe disto para OUTROS itens e escreveu a frase certa:** há registros com `imagem: null` e `motivo_sem_imagem: "a CDN nao respondeu (HTTP Error 503: Service Unavailable)"`. Estes dois gravaram a URL **antes** de a CDN cair, e ninguém remediu depois.
+
+**NÃO CONSERTEI, e o motivo é a 19.2:** é dado do banco (`imagem.url`), e escolher entre recolher a foto na coleta seguinte, cair para o espaço reservado neutro da seção 6 ou ir à segunda fonte da 25.3 (imagem do fabricante da peça exata) são opções defensáveis.
+
+> **E A METADE QUE É DEFEITO DO INSTRUMENTO, não da página, e ela custa execução:** `ferramentas/conferir-32-5-no-navegador.mjs` **REPROVOU 3 páginas** hoje por "foto de cartão que NÃO carregou" — e **uma das três é falso positivo**, porque `cf.shopee.com.br` responde `CONNECT tunnel failed, response 403` ao egresso desta nuvem (medido duas vezes por URL nesta ronda). O portão não distingue *foto quebrada* de *foto que o egresso recusou*, e por isso o veredito dele sobre foto, rodando na nuvem, não é veredito. A execução de 18/11 de manhã bateu na mesma pedra e escreveu "a CDN da loja respondeu 503" para um caso em que a nuvem nunca chegou à CDN. **pronto quando:** o portão, ao achar foto não carregada, disser em palavras **qual das duas** é — separando `ERR_TUNNEL_CONNECTION_FAILED`/403 de proxy (que ele deve imprimir como NÃO MEDIDO, não como falha) de um status HTTP vindo da própria CDN; **ou** `cf.shopee.com.br` entrar na lista de domínios permitidos da conta, que é gesto do Raphael e está no painel.
+
+---
+
+**ITEM 3 — ALTA. UM DOS DOIS ANÚNCIOS QUE SOBRARAM NA MOTO ELÉTRICA ESTÁ `ESGOTADO`, E COM ISSO A PÁGINA DE 823 MIL BUSCAS/MÊS TEM UM ANÚNCIO QUE SERVE, NÃO DOIS.** Medido no Chrome do Raphael, na `url_produto` crua.
+
+- anúncio `58215666648`, shop_id `1136378529`, `url_produto` `https://shopee.com.br/product/1136378529/58215666648`;
+- título no banco: *"Scooter (Bike) Elétrica Foston X15 Max (X13 EX) 1000w 32km/h Moto Elétrica Adulto Bateria Litio Painel Led - SEM CNH"*, preço no banco **R$ 8.500,00**;
+- **a palavra `Esgotado` aparece UMA vez no corpo, imediatamente depois do título**, que é exatamente o marcador que a 25.4 define (*"`Esgotado` junto ao título → existe e não vende"*). O corpo renderizou inteiro (7.935 caracteres, 751 favoritos, preço na tela, botão de carrinho presente) — não é página meio carregada. O `<title>` voltou o nome do produto e, pela 25.4, **não** serve de teste nos dois sentidos.
+- **o que isso muda no despacho da Fundação de HOJE:** ele afirma, com razão na hora em que foi escrito, que *"os dois que ficaram são o VYRON GT600 (R$ 13.999,00) e o Foston X15 Max (R$ 8.500,00)"*. Sobrou **um**: o GT600, que foi lido **VIVO** nesta mesma passada. A frase *"a Shopee não tem catálogo de moto elétrica de adulto que sustente esta página"* fica mais forte, não mais fraca.
+- **nenhum leitor foi atingido, e isto é portão e não sorte:** `58215666648` tem **zero** ocorrência no HTML servido das 11 URLs e **zero** em `dados/vitrine-de-produto.json` — a página está degradada pelo piso da 30.2, e o piso é o que o impediu de chegar à tela. Confirmado lendo o catálogo da página antes de acusar, como a seção 12 manda.
+- **o degrau 4 da escada continua de pé para essa consulta:** `https://shopee.com.br/search?keyword=moto%20eletrica%20adulto` abriu com resultado e preço na tela nesta ronda (e o que ela devolve é capa de moto, bicicleta ergométrica e afins — a mesma medição que o despacho de hoje já tinha feito pelo degrau 2).
+
+**NÃO CONSERTEI, e o motivo é a 19.2:** é dado do banco, e a 25.11 pede quarentena com a prosa `CAUSA || ULTIMA MEDICAO` — e escolher entre aposentar o anúncio e reescolher ficha do mesmo produto (com os dois campos vindo da MESMA chamada, 25.4-b.1) são duas opções defensáveis.
+
+**pronto quando:** `58215666648` estiver fora dos campos VIVOS de `dados/anuncios-por-consulta.json` com a prosa de quarentena da 25.11 no formato `CAUSA || ULTIMA MEDICAO` lida pela ferramenta de coleta como lista de bloqueio, **e** a contagem de anúncios que servem naquela consulta estiver recontada do que sobrou (hoje: 1).
+
+---
+
+**ITEM 4 — NORMAL. `/veiculos/bicicleta-eletrica/` PUBLICA "7 ANÚNCIOS" E SEIS DELES CUSTAM O MESMO PREÇO, COM TRÊS TÍTULOS LITERALMENTE IDÊNTICOS — É UM PRODUTO REVENDIDO SEIS VEZES, E A MEDIANA DA PÁGINA É O PISO DELA.** É a COERÊNCIA DA RECOMENDAÇÃO da seção 12 e a regra da RECEITA, e é a dedup que o próprio fecho de 16/11 deixou aberta — agora medida pior.
+
+- os 7 preços da tabela, em ordem: **2.299,99 × 6** e 6.199,90 × 1. As seis lojas são `3B LOJA`, `3CMAX16888`, `Boa sorte vem`, `3G MAX`, `FLBAZAR`, `3FMAXLTDA`;
+- três delas servem o título **exatamente igual**: *"Bicicleta Elétrica Dobrável Adulto com Pneus A Vácuo e Bateria de Lítio"* (linhas 4, 5 e 6); as outras três são a mesma dobrável NIUDA/NUDA com texto reescrito;
+- **a aritmética está CERTA e eu a refiz na mão:** `de` 2.299,99, `ate` 6.199,90, mediana 2.299,99 — a mediana de 7 elementos é o 4º, e o 4º é 2.299,99 porque seis são iguais. **Nada a consertar na conta.**
+- **o que está errado é o que a frase afirma ao leitor:** *"A bicicleta elétrica de adulto à venda hoje custa de R$ 2.299,99 a R$ 6.199,90, com a mediana em R$ 2.299,99 sobre os 7 anúncios que a gente conferiu em 18/11/2026."* A página promete, na própria meta description, *"as bicicletas elétricas de adulto à venda hoje… um ao lado do outro"* e *"a faixa de preço medida na loja"*. O que o leitor recebe é **uma** bicicleta a um preço, seis vezes, mais um ponto solto — e a faixa, com mediana colada no piso, não informa a dispersão que ela parece informar.
+- **a comparação com a página irmã prova que o defeito não é da casca:** `/veiculos/patinete-eletrico/` tem 14 preços distintos entre 1.297,13 e 2.699,00 e mediana 1.640,03 no meio da faixa. O molde funciona; o que não funciona é a admissão de seis cópias.
+- **e é a cabeça de 673 mil buscas/mês**, a segunda maior do nicho, a mesma URL que o despacho de 11/11 tirou do 404.
+- **a ordenação não tem culpa:** com os seis empatados em preço e em `vendas`, qualquer ordem entre eles é arbitrária por construção.
+
+**NÃO CONSERTEI, e o motivo é a 19.2 declarada no próprio fecho de 16/11:** *"um por produto", "um por loja" e "os dois, porque são duas ofertas reais com preços diferentes"* foram registradas ali como **três opções defensáveis sem medição por trás**. Com seis cópias em vez de duas, a escolha continua sendo escolha — mas o custo dela deixou de ser teórico.
+
+**pronto quando:** `/veiculos/bicicleta-eletrica/` servir, no HTML, uma tabela em que **nenhum preço se repita mais de duas vezes** **ou** em que a regra de deduplicação escolhida esteja escrita **em palavras no registro** (como a 25.10 já exige do degrau) e a frase da tela diga ao leitor o que ela conta — "7 anúncios de 6 lojas para 2 produtos" é honesto; "os 7 anúncios que a gente conferiu" não é. E, pela 25.9, a prova de que a régua nova não afrouxou nem apertou demais: a régua ANTIGA sobre o banco ANTIGO e a NOVA sobre o NOVO, anúncio por anúncio, com quantos vereditos mudaram e quais.
+
+---
+
+**ITEM 5 — ALTA, E É PARA O RAPHAEL, NÃO PARA A FUNDAÇÃO: A PORTA CAIU PELA SÉTIMA VEZ NESTA RAIZ, HOJE ÀS 14:34Z — E ESTA É A PRIMEIRA QUEDA QUE O CONTADOR NOVO MEDIU SOZINHO, SEM NINGUÉM SENTADO EM CIMA DA ILHA.**
+
+- **o log do `/status`, lido às 14h4xZ:** `2026-11-18 14:34 cura da porta: bloco WordPress reposto — 1057 bytes [NFD EPC] -> 1580 bytes [NFD EPC, WordPress]`. Mesma assinatura byte por byte das seis anteriores.
+- **`/casca → porta → quedas`, a primeira leitura útil do contador que nasceu em 13h40Z de 17/11:** `episodios_vistos: 1`, `leituras_no_chao: 1`, `leituras_nao_sei: 0`, `reposicoes_da_cura: 1`, `primeira_no_chao: 2026-11-18 14:34Z`, `episodio.reposto_depois: true`, `episodio.duracao_minima_s: 0`, com `tem_bloco_wordpress: true` e `cura_liberada_em_s: 3118`.
+- **A CURA DEVOLVEU AS PÁGINAS NA MESMA REQUISIÇÃO, e isso é novo:** medido minutos depois, 11 de 11 URLs em 200 em duas leituras com quebra de cache, as três portas da 29.2 em 200 e o caminho virgem em 404 na página da ilha. Em 17/11 a linha `bloco WordPress reposto` das 10:15 **não** devolveu as páginas e a ilha ficou **≥55 min 29 s** no chão esperando a trava de uma hora; hoje o tempo no chão foi de **zero minuto medido**. A 29.4 fez o trabalho dela.
+- **E O ARGUMENTO NOVO PARA O CHAMADO É UM INTERVALO FECHADO, o primeiro da série:** a reposição de **17/11 11:15:20Z** sobreviveu até **18/11 14:34Z** — **~27 h 19 min**, e esse número não é mais um "pelo menos", é o intervalo inteiro, porque a próxima queda está datada. A série da mesma raiz passa a ser: ~4 min · ≥27 min · ≥2 h 26 min · ≥5 h 11 min · ≥23 h · **27 h 19 min (fechado)**. **Isto é a 29.5(b) literal — evento irregular, com hora, não processo** — e é o que derruba de vez a leitura de "é reescrito poucos minutos depois de cada reposição", que a errata de 17/11 já havia corrigido uma vez.
+- **nenhum chamado NOVO sai desta leitura**, e o motivo é o campo que 17/11 criou: `tem_bloco_wordpress: true` com as portas em 200 é o mundo **(b)** da errata, não o `AllowOverride` do mundo (a).
+
+**NÃO CONSERTEI, e não havia o que consertar:** a porta já estava de pé quando esta ronda a mediu, e a causa é do hospedeiro (29.4: chamado, não código de ilha nenhuma).
+
+**pronto quando:** o chamado na HostGator tiver a frase do evento irregular com a série de **seis** intervalos acima anexada, incluindo o primeiro fechado; e a decisão sobre o token do Sync desta ilha estiver tomada, porque é ela que faz a próxima queda custar um comando em vez de uma trava de uma hora.
+
+**FIM DO DESPACHO DE 18/11.**
+
+---
+
 ## DESPACHO DA FUNDAÇÃO PARA O RAPHAEL — 2026-11-18 — A MAIOR CABEÇA DO NICHO SAIU DO AR POR FALTA DE **UM** ANÚNCIO, E O QUE A DESTRAVA SÃO TRÊS PASSOS SEUS QUE JÁ ESTÃO ESCRITOS
 
 **Medido em 18/11/2026 entre 10h2xZ e 10h4xZ pela execução que reservou a ilha às 10h17Z.** `/veiculos/moto-eletrica/` — a consulta de **823 mil buscas/mês**, a maior das seis cabeças do nicho, no ar desde 16/11 — passou a servir a **página degradada** ("Esta página está fora do ar neste momento"), porque a coleta de hoje devolveu **2** anúncios que entram contra o piso de **3** da 30.2.
