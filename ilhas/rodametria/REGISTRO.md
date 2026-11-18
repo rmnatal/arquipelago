@@ -3,6 +3,123 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-11-18 13h16Z–13h5xZ — **A BATERIA DE MUTAÇÃO DESCREVIA UMA PÁGINA E MUTAVA OUTRA: DEZ MUTAÇÕES TROCAVAM DE ALVO EM SILÊNCIO, E A DE FOTO FICOU INERTE NA RECOLETA DE HOJE.** Revisão **111**.
+
+**A ILHA DESTA EXECUÇÃO:** rodametria, por **foco** (`foco.md` nomeia a rodametria, foco total e absoluto desde 27/10). Pela **1.2** não há escolha de ilha a fazer. **Conferi o que fura o foco antes de aceitar isso:** nenhuma ilha no ar está quebrada com despacho ALTO aberto — o despacho ALTA de 17/11 **desta própria ilha** (a porta) está com a ilha **no ar** e o que sobra dele é o chamado na HostGator, que é do Raphael; o despacho do **molde de conversão** (exceção do Raphael de 21/10, seção 32) segue fechado nas três ilhas. Logo nada fura o foco pela 1.2 nem pela 18.1.
+
+**Passo 1 do disparo, medido:** `git fetch origin main` trouxe o `main` em **`a88f5b6`**. A branch `claude/dreamy-mccarthy-xihjdl` (local e remota) está **idêntica ao `main`** — `git rev-list --count origin/main..origin/claude/...` devolveu **0** — e não havia PR aberto a mesclar.
+
+**A RESERVA (passo 5 da seção 1):** `executando_desde` estava **`null`**, que pela **1.1** já é prova de que não havia bloco da Fundação vivo, e o último commit da pasta era de **11h42Z, 94 minutos antes**. Reserva às **13h16Z**, ganha no push na **primeira tentativa** (`72f2741`). A hora saiu do `date -u` na mesma linha de comando que a grava.
+
+**A REDE FOI MEDIDA E NÃO HERDADA (20.2):** `rodametria.com.br` em **200 nas três passadas**, com `aquametria.com.br` em 200 nas **mesmas** três — controle verde, zero intermitência. A Open API da Shopee respondeu sem recusa nesta passada.
+
+**O PASSO PRÉ-REGISTRADO PELA PASSADA ANTERIOR, CUMPRIDO NA ORDEM EM QUE ELE FOI ESCRITO:** (1) `/casca → porta → quedas` lido às 13h2xZ pela **19.4(c)**; (2) **bancada ANTES de construir: 54 portões, 0 falha, APROVADO** (18.5); (3) e então o trabalho que ela nomeou: **a recoleta das outras duas consultas**, as únicas com dado de outro dia (17/11).
+
+---
+
+### A PORTA (19.4(c)): SÉTIMO INTERVALO, E ELE É O MAIS LONGO DA SÉRIE
+
+`/casca → porta → quedas` às 13h2xZ: `episodios_vistos: 0`, `leituras_no_chao: 0`, `leituras_nao_sei: 0`, `reposicoes_da_cura: 0`, `primeira_no_chao: null`, com `tem_bloco_wordpress: true` e `cura_liberada_em_s: 0`. O contador entrou no ar às **13h40Z de 17/11**, então o que ele afirma é **nenhuma queda entre 13h40Z de ontem e agora**, sem ninguém estar olhando.
+
+A reposição das **11:15:20Z de 17/11** está de pé há **pelo menos 26 horas**. A série de intervalos da mesma raiz: **~4 min, ≥27 min, ≥2h26min, ≥5h30min, ≥8h17min, ≥23h, ≥26h.** **Isto segue fortalecendo a frase do chamado, que é a da 29.5(b): evento irregular, com hora, não processo** — e o intervalo que vinha encurtando até 17/11 agora **abriu** nas duas últimas leituras.
+
+---
+
+### A RECOLETA: AS DUAS CONSULTAS SÃS SEGUEM SÃS, E A MOTO SEGUE SEM CATÁLOGO
+
+**bicicleta elétrica** (673 mil buscas/mês) — degrau 1 (`bicicleta eletrica adulto`): 20 lidas, **7 servem, 7 entram, piso SIM**. Faixa R$ 2.299,99 a R$ 6.199,90, mediana R$ 2.299,99 sobre 7. Os números da faixa não mudaram desde 17/11; o que mudou foi a ordem de dois capacetes recusados e **duas contagens de vendas** (23 → 22 e 32 → 28), que é a loja respirando.
+
+**patinete elétrico** (246 mil buscas/mês) — degrau 1 (`patinete eletrico adulto`): 20 lidas, **15 servem, 14 entram, piso SIM**. Faixa R$ 1.297,13 a R$ 2.699,00, **mediana R$ 1.632,12 → R$ 1.640,03**, porque o item `22294726082` subiu de R$ 1.581,06 e o `58253809160` declarou **a primeira venda** dele (0 → 1).
+
+**moto elétrica** (823 mil buscas/mês) — medida em `--ensaio`, que **não grava** (25.3), porque o dado dela já era de hoje: degrau 1 em **2 que entram**, degrau 2 (`moto eletrica`, a consulta crua) em **20 lidas e ZERO que servem**. **Nada mudou do lado da loja em três horas**, e a página segue sem vitrine. A escada consertada na passada da manhã desceu certo: mediu o degrau 2 em vez de parar no 1.
+
+> **O QUE ISTO DECIDE PARA O DESPACHO DE HOJE:** o "pronto quando" dele continua intocado, e por causa própria — o que falta é **produto**, e o gesto 1 (a etiqueta `rodametriamotoeletrica` e os 5 links do Mercado Livre) segue sendo o único que devolve a vitrine. Nenhuma linha do despacho foi apagada.
+
+---
+
+### O DEFEITO: A BANCADA PEGOU DEPOIS DE CONSTRUIR, E ELE É FALSO NEGATIVO
+
+Bancada rodada **depois** da recoleta — a regra que o contrato ganhou em 17/11: **1 falha em 54 portões.** `mutacoes-produto.py` **REPROVADO**, com `foto sem dimensao medida [mundo fabricado]` **INERTE**: *"o primeiro anuncio que serve deveria ter imagem com largura medida"*.
+
+**A CAUSA, e ela está na própria docstring da mutação:** ela dizia *"MUNDO FABRICADO: o banco de **hoje** tem as 21 fotos medidas"* — uma contagem de um dia que passou, dentro do código que dependia dela. A mutação **pescava** `primeiro_que_serve` e **exigia** que aquele anúncio tivesse foto medida. Na recoleta de hoje o primeiro que serve do patinete voltou com `imagem: null` e a causa escrita — **`a CDN nao respondeu (HTTP Error 503: Service Unavailable)`** —, e a mutação não mediu nada.
+
+**As duas mutações de foto carregavam `[mundo fabricado]` NO NOME e não fabricavam nada.** É a família da **20.7** nesta ilha: o nome e o comentário **declaram** um mecanismo que o código não tem, então a bateria **parece conferida e não mede**. E a foto da loja é dado de **terceiro**, que muda sem avisar — mutação que depende dela mede o humor da CDN, não o portão.
+
+**O CONSERTO:** `_fabricar_foto_medida()` **põe** a foto medida no anúncio da areia, e as duas mutações partem dela, cada uma quebrando a sua metade da regra do portão (largura medida, ou causa escrita na ausência). **Medido no mesmo banco que a deixou inerte: 38 de 38 reprovadas, 0 sobrevivente, 0 inerte.**
+
+> **E ESTA É A TERCEIRA MORDIDA DA MESMA CLASSE EM DUAS SEMANAS, o que é o que a torna regra e não acidente:** a docstring de `m_carrossel_acima_do_teto` registra que em **04/11** ela ficou inerte quando o carrossel da bicicleta caiu para três cartões; em **17-18/11** `mutacoes-produto` pescava o par repetido do banco e **duas** mutações ficaram inertes; hoje, a foto. **Mutação que parte do mundo que a loja devolveu naquela manhã mede a manhã.**
+
+---
+
+### O ACHADO MAIOR, MEDIDO NA MESMA PASSADA: DEZ MUTAÇÕES MUTAVAM `paginas[0]`
+
+Procurando a classe em vez do caso, li a precondição de cada uma das 38 mutações da bateria. **Dez mutações mutavam `v['paginas'][0]`** — a página que o **gerador** por acaso pôs primeiro, que é **ordem de catálogo e não alvo escolhido**.
+
+**E O ALVO JÁ HAVIA TROCADO SEM NINGUÉM VER:** `paginas[0]` hoje é a **bicicleta-eletrica** (7 linhas, 3 cartões), e **duas docstrings da mesma bateria falam dos números do patinete** — a do piso dizia *"as duas páginas de hoje têm cinco e dezesseis linhas"*, quando hoje elas têm **7 e 14**. A bateria **descrevia uma página e mutava outra**, e nenhum veredito acusava: **mutação que troca de alvo em silêncio continua REPROVANDO, só que outra coisa.**
+
+**A ordem muda sozinha** — página que perde a vitrine **sai** da lista, e a moto saiu em 18/11 —, então `[0]` era decidido pelo catálogo da loja daquela manhã.
+
+**O CONSERTO, pela 20.8 ("a afirmação é POSITIVA"):** o alvo passa a ser **DECLARADO** (`ALVO_DA_VITRINE = 'patinete-eletrico'`) e a **ausência dele é DENUNCIADA pelo nome**, em vez de cair na vizinha.
+
+**E AS DUAS RÉGUAS FORAM OBRIGADAS A DISCORDAR NO MESMO MUNDO, porque autoteste em que as duas concordam não mede conserto nenhum.** O mundo fabricado é o que esta ilha **já viveu** numa consulta: o patinete sem vitrine, exatamente o que aconteceu com a moto hoje de manhã. E ele foi fabricado **honestamente** — as duas primeiras tentativas foram **recusadas pelos próprios portões**, e isso vale registrar: falsificar `serve: false` à mão foi pego por `coletar-por-consulta.py --conferir` (*"veredito gravado discorda do calculado"*, 14 falhas), e apagar a página direto da vitrine foi pego por `gerar-vitrine-de-produto.py --conferir` (*"a lista de paginas gravada discorda da calculada"*). O mundo só ficou de pé **removendo os anúncios** da coleta e **recontando o resumo pela função da própria ferramenta** (`recontar_resumo`), nunca digitando número.
+
+| no mundo em que o patinete perde a vitrine | reprovadas | sobreviventes | **INERTES** | o que ela mediu |
+|---|---|---|---|---|
+| régua **velha** (`paginas[0]`) | 37 | 0 | **1** | a **bicicleta**, calada |
+| régua **nova** (alvo declarado) | 27 | 0 | **11** | nada, e **diz o nome** da página que falta |
+
+**E a comparação é exata, item por item:** o único INERTE da régua velha é `numero proprio mexido no resumo` — a mutação que não passa pela vitrine —, e as **dez** da vitrine saíram **"reprovada"**, cada uma mutando a **bicicleta**. Na régua nova as mesmas dez, mais aquela, dizem com todas as letras qual página falta.
+
+**A régua velha parecia mais saudável e era pior:** 37 reprovadas num mundo em que a página mais trabalhada da ilha tinha caído, porque ela havia **mudado de assunto**. A nova não mede nada e **denuncia onze vezes** — e denunciado é a única coisa que o próximo trabalhador consegue consertar. É literalmente a 20.8 ponto 3: *"o portão não acredita na própria contagem"*, aplicada ao alvo em vez de ao número.
+
+---
+
+### O QUE FOI AO AR E COMO FOI CONFERIDO
+
+**Revisão 111**, com `dados/vitrine-de-produto.json` e `dados/anuncios-por-consulta.json` reespelhados pelo `atualizar-manifest.py` (que imprime cada troca de `sha256` que faz).
+
+**A ESPERA DO CRON FOI LIDA PELA 20.9 EM VEZ DE REACIONADA:** o `/status` às 13h3xZ trazia `ultimo: 2026-11-18 13:16:31` com a última linha de log em **11:39 (revisão 110)**. Pela **20.9** isso é o caso **comum** e não defeito — o evento é devido a cada 1.800 s, o Sync **rodou** às 13:16 e nada havia para aplicar ainda, e o push desta passada caiu **15 minutos depois** de uma rodada. **A ação certa ali era esperar o vencimento, não reacionar**, e foi o que esta execução fez: abriu a home para acordar o WP-Cron (20.6) e esperou os ~14 minutos até o evento vencer.
+
+**A REVISÃO 111 SUBIU ÀS 13:39:43**, e vale registrar o número contra a minha própria estimativa: eu escrevi que o evento venceria *"por volta de 13:46"* contando 1.800 s a partir do `ultimo` das 13:16:31, e ele venceu em **~8 minutos** depois do push, não 15. **O relógio do evento não conta do `ultimo`: conta do vencimento anterior** (`wp_next_scheduled`), e `ultimo` só marca a rodada. É a 20.9 inteira — *"`ultimo` diz se o Sync rodou; o log diz quando ele aplicou"* —, com uma ponta que faltava escrita: **estimar o vencimento a partir do `ultimo` erra para CIMA**, e errar para cima faz esperar mais do que o necessário, nunca reacionar à toa. A espera sem reacionar continua sendo a ação certa.
+
+**O LOG LIDO LINHA POR LINHA (20.4 e 20.8), pelo portão de dentro do `conferir-no-ar.py`, não à mão:**
+
+> *"20.4: log lido linha por linha — janela de 15 linha(s); a revisão 111 declara **7** item(ns) aplicado(s) e as **7** linha(s) de item dela foram lidas uma por uma, **todas dizendo `ok`**"*
+
+E o portão registrou, na mesma passada, o que ele **não** promete — a 20.8 ponto 3 em ação: *"a janela do log tem 15 linhas e está CHEIA — item de revisão ANTERIOR que rolou para fora dela não foi conferido por ninguém. **Registro, não aprovação.**"*
+
+**CONFERIDO NO AR (18.4), com rede:** **bancada `--no-ar` com 59 portões e 0 falha, APROVADO.** `conferir-no-ar.py` **793 afirmações, 0 falha**; `conferir-produto-no-ar.py` **369 afirmações, 0 falha**; `conferir-institucional-no-ar.py` **244 afirmações, 0 falha**; portão de pixel **APROVADO, 10 de 10 páginas do molde** (a moto listada **fora** do molde, que é o estado certo de página sem vitrine); console **11 de 11 limpo**.
+
+**O NÚMERO NOVO CHEGOU À TELA, medido em DUAS leituras idênticas byte por byte** (112.167 bytes): a mediana do patinete saiu de **R$ 1.632,12 para R$ 1.640,03** nas **três** ocorrências dela na página — a caixa do molde, a prosa da faixa e a barra fixa de celular —, e o preço do item `22294726082` de **R$ 1.565,25 para R$ 1.581,06**. *(E uma errata de método minha, para quem for conferir número em HTML desta ilha: `grep -c` conta **linhas** e esta página é **uma linha só**, então ele devolveu "1" onde havia três. Quem contar ocorrência usa `grep -o`.)*
+
+### A ÚNICA REPROVAÇÃO DA PASSADA COM REDE FOI DO INSTRUMENTO, E ESTÁ MEDIDA EM VEZ DE VARRIDA
+
+A **primeira** bancada `--no-ar` reprovou **2 de 59**: os dois portões de navegador. O console acusou, **na página que este desembarque acabou de mudar**, uma requisição caída — `https://cf.shopee.com.br/file/sg-11134201-8257t-mqezlfi5xwjyf4` com **`net::ERR_BLOCKED_BY_ORB`** —, que é a foto do item `58213915737` do patinete.
+
+**Pela seção 4 eu repeti antes de chamar de qualquer coisa, e o veredito é do instrumento e não da página:** a URL responde **HTTP 200 com `image/jpeg` e 176.100 bytes em TRÊS leituras**; a dimensão `1024x1024` gravada no banco foi **medida** pelo coletor no cabeçalho do arquivo; e os dois portões de navegador passaram na repetição — console **11 de 11 limpo** e pixel **10 de 10**. `ERR_BLOCKED_BY_ORB` é o Chromium bloqueando resposta de outra origem, e nesta nuvem ele sai do proxy, não do servidor da loja. **Uma falha isolada é o túnel; a página está sã.**
+
+> **E isto fica escrito porque a leitura fácil era a errada nas DUAS direções:** chamar de defeito da página mandaria alguém caçar uma foto que está boa, e varrer sem medir deixaria passar o dia em que a foto de verdade morrer — que é exatamente o que a **25.4** manda a ronda procurar. **O que separa os dois casos é um `curl` na URL**, e ele cabe numa linha.
+
+---
+
+### DOIS COMENTÁRIOS VENCIDOS NO PRÓPRIO CABEÇALHO, ALINHADOS NO FECHO
+
+Achados ao fechar o `ESTADO.md`, e os dois são a **seção 4 dentro do cabeçalho que ela existe para proteger** — a mesma família do rabo órfão que a nota de 17/11 removeu oito linhas acima deles:
+
+1. **`rede`** trazia um corpo que dizia *"MEDIDA e não herdada **nesta execução**"* e descrevia **duas recusas** `error [10000]: System Error` da Open API da Shopee. Aquelas recusas são da passada das **10h17Z**, não desta: nesta passada a API foi usada nas **três** consultas e **não recusou nenhuma vez**. Número de outra passada lido como o de agora.
+2. **`piso`** terminava afirmando *"nesta semana saiu UMA leva, de **3 URLs**"*, e a linha **viva** de `urls_publicadas`, no mesmo cabeçalho, diz *"UMA leva, de **1 URL**"*. **Dois números para o mesmo fato, um deles de uma semana que passou.** A conta da leva saiu do `piso` e ficou onde ela é medida; o campo `piso` continua sendo sobre o piso, e o **valor** dele não é da Fundação de mudar (21.6).
+
+**O cabeçalho parseia em `yaml.safe_load` com os 12 campos**, e `executando_desde` voltou a `null` (passo 7).
+
+### PRÓXIMO PASSO DESBLOQUEADO
+
+1. **A passada seguinte lê `porta.quedas` de novo** (19.4(c)) e roda `bancada.py` **ANTES e DEPOIS** (seção 8). Hoje a bancada **depois** foi o único portão que viu o defeito do dia, pela segunda passada seguida.
+2. **AS ONZE MUTAÇÕES QUE AINDA EXIGEM O MUNDO EM VEZ DE FABRICÁ-LO, e agora elas têm nome e número.** A medição de hoje diz exatamente quais: as dez da vitrine mais `numero proprio mexido no resumo`. **O remédio é o mesmo da foto — fabricar —, e ele é mais caro aqui, e a causa disso está medida:** a vitrine é **derivada**, e `gerar-vitrine-de-produto.py --conferir` **recomputa** a lista de páginas da coleção e reprova página fabricada à mão. Fabricar uma página de vitrine exige fabricar **a coleção que a justifica** (o caminho que esta passada percorreu na areia: remover anúncios e chamar `recontar_resumo`). **Declarado-e-denunciado é o estado correto no meio do caminho**, e não um conserto pela metade: ele troca "mede outra coisa em silêncio" por "não mede e diz qual página falta".
+3. **O que destrava a página de 823 mil buscas/mês continua sendo do Raphael** e está no despacho de hoje, intocado: a etiqueta `rodametriamotoeletrica` e os 5 links de `dados/links-afiliado-pendentes.md`, prontos desde 11/11. **A Shopee não tem o catálogo, nos dois degraus da escada, medido de novo hoje.**
+4. **A fila de blocos segue acabada** (todos entregues menos o 5, que depende de um `pauta.md` que não existe e que pela 17.1 não é arquivo da Fundação). **E o eixo de página nova desta ilha está bloqueado por gesto humano em todas as três pontas, medido e não suposto:** `scooter-eletrica` (301 mil) por catálogo — remedida em 16/11, a palavra `scooter` na loja **é** o patinete, e publicá-la seria canibalização da 30.4 construída de propósito; `bike-eletrica` e `motos-eletricas-para-adultos` (201 mil cada) por serem sinônimos pela 30.4; a cauda por ser território de fazenda (achado do 5c, 102 ocupantes colhidos); e o eixo paramétrico pelo egresso do `.gov.br`. **A memória da ilha não existe nesta sessão: o `bloco_atual` do `ESTADO.md` é a memória.**
+
+---
+
 ## 2026-11-18 10h17Z–11h42Z — **A ESCADA DE CHAVES DECIDIA O PISO COM UMA RÉGUA MAIS FROUXA DO QUE A QUE PUBLICA, E A PÁGINA DE 823 MIL BUSCAS/MÊS DEGRADOU COM UM DEGRAU INTEIRO POR MEDIR.** Quatro defeitos achados em cadeia, os quatro consertados. Revisões **108** e **109**.
 
 **A ILHA DESTA EXECUÇÃO:** rodametria, por **foco** (`foco.md` nomeia a rodametria, foco total e absoluto desde 27/10). Pela **1.2** não há escolha de ilha a fazer, e **conferi o que fura o foco antes de aceitar isso**: o **despacho do molde de conversão** (exceção do Raphael de 21/10, seção 32) está **FECHADO nas três ilhas** — aquametria em 21/10 às 18h2xZ, robometria em 21/10 às 16h1xZ, clubedomosaico idem —, e **nenhuma ilha no ar está quebrada**: o despacho ALTA de 11/11 da clubedomosaico tem os itens 1 e 2 fechados e conferidos no ar, e o que sobra dele é o chamado na HostGator, que é do Raphael. Logo nada fura o foco pela 1.2 nem pela 18.1.
