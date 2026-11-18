@@ -118,7 +118,7 @@
    do primeiro cartao comecava por `11.11`. A regra mora no coletor; o que muda
    aqui e a frase: sem ela a conta do leitor nao fecha com o tamanho da tabela. */
 if ( ! defined( 'RODAMETRIA_PRODUTO_VERSAO' ) ) {
-	define( 'RODAMETRIA_PRODUTO_VERSAO', '1.15.0' );
+	define( 'RODAMETRIA_PRODUTO_VERSAO', '1.16.0' );
 }
 
 /* A VERSAO DESTE SNIPPET VAI AO AR, pelo filtro que a casca 1.6.0 abriu
@@ -147,15 +147,6 @@ if ( ! defined( 'RODAMETRIA_PRODUTO_SECAO' ) ) {
    em lugar nenhum. */
 if ( ! defined( 'RODAMETRIA_ID_DADOS_PRODUTO' ) ) {
 	define( 'RODAMETRIA_ID_DADOS_PRODUTO', 'paginas-de-produto' );
-}
-if ( ! defined( 'RODAMETRIA_ID_DADOS_ANUNCIOS' ) ) {
-	/* A COLETA CRUA. Ela e lida por UM motivo so, e nao para servir numero: a
-	   pagina que perdeu a vitrine precisa de uma DATA para o `dateModified` do
-	   `WebPage`, e a data honesta dela e a da ultima vez que a ilha TENTOU
-	   colher aquela consulta — que mora aqui e nao na vitrine, que nao tem
-	   entrada para ela. Nenhum preco, nenhuma faixa e nenhum cartao sai deste
-	   banco: quem serve a tela e `vitrine-de-produto`, sempre. */
-	define( 'RODAMETRIA_ID_DADOS_ANUNCIOS', 'anuncios-por-consulta' );
 }
 if ( ! defined( 'RODAMETRIA_ID_DADOS_VITRINE' ) ) {
 	define( 'RODAMETRIA_ID_DADOS_VITRINE', 'vitrine-de-produto' );
@@ -1475,14 +1466,25 @@ add_filter( 'rodametria_data_da_pagina', function ( $data, $slug ) {
 	   dia. A data e a da ULTIMA TENTATIVA de coleta daquela consulta, que e o
 	   que de fato mudou na pagina: ela foi medida hoje e hoje nao alcancou o
 	   piso. Dizer a data da vitrine velha seria afirmar frescor de um conteudo
-	   que saiu do ar. */
+	   que saiu do ar.
+
+	   ELA SAI DE `nao_nasceram`, NA VITRINE, E A PRIMEIRA VERSAO DESTE RAMO IA
+	   LER `anuncios-por-consulta` — QUE NAO EXISTE NO AR. Aquele dado tem
+	   `publicar: false` no manifest, logo nao e gravado como option e
+	   `rodametria_casca_banco()` devolve `null` para ele; o ramo rodava, nao
+	   achava nada, devolvia cadeia vazia e a pagina continuou sem
+	   `dateModified` depois do desembarque da revisao 109. O `id` dele aparece
+	   no manifest como o de qualquer outro dado, e quem escreveu isto leu a
+	   PRESENCA DO ID como publicacao sem olhar o campo ao lado. A regra que
+	   sobra: dado lido pelo snippet e dado com `publicar: true`, conferido no
+	   manifest e nao no `ls` da pasta. */
 	$fora = rdm_produto_declaradas_fora_da_vitrine();
 	if ( isset( $fora[ $slug ] ) ) {
-		$banco = rodametria_casca_banco( RODAMETRIA_ID_DADOS_ANUNCIOS );
-		foreach ( (array) ( isset( $banco['consultas'] ) ? $banco['consultas'] : array() ) as $b ) {
-			if ( isset( $b['id'] ) && (string) $b['id'] === $slug
-				&& ! empty( $b['colhido_em'] ) ) {
-				return (string) $b['colhido_em'];
+		$vit = rodametria_casca_banco( RODAMETRIA_ID_DADOS_VITRINE );
+		foreach ( (array) ( isset( $vit['nao_nasceram'] ) ? $vit['nao_nasceram'] : array() ) as $r ) {
+			if ( isset( $r['id'] ) && (string) $r['id'] === $slug
+				&& ! empty( $r['colhido_em'] ) ) {
+				return (string) $r['colhido_em'];
 			}
 		}
 	}

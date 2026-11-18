@@ -1122,7 +1122,8 @@
  "nao_nasceram": [
   {
    "id": "moto-eletrica",
-   "causa": "menos de 3 anuncios que servem COM link e preco: 2"
+   "causa": "menos de 3 anuncios que servem COM link e preco: 2",
+   "colhido_em": "2026-11-18"
   }
  ]
 }

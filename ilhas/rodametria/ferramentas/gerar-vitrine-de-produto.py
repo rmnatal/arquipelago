@@ -968,7 +968,21 @@ def gerar():
             continue
         v, causa = montar(bloco, decl[bloco['id']])
         if v is None:
-            recusadas.append({'id': bloco['id'], 'causa': causa})
+            # `colhido_em` ENTRA AQUI, E ELE NAO E ENFEITE (18/11/2026): a pagina
+            # que existe e esta sem vitrine precisa de uma DATA para o
+            # `dateModified` do `WebPage`, e sem ele a casca nao serve o no —
+            # foi uma das seis afirmacoes com que `conferir-no-ar.py` reprovou
+            # `/veiculos/moto-eletrica/` naquele dia.
+            #
+            # E A PRIMEIRA TENTATIVA DE DAR ESSA DATA FALHOU NO AR, pelo motivo
+            # que esta linha existe para fechar: o snippet foi ler
+            # `anuncios-por-consulta`, que tem `publicar: false` no manifest e
+            # portanto NAO existe como option no WordPress. O `id` dele aparece
+            # no manifest como o de qualquer outro dado, e eu li a presenca do id
+            # como publicacao sem olhar o campo. `nao_nasceram` mora na VITRINE,
+            # que e publicada — entao a data tem de viajar com ela.
+            recusadas.append({'id': bloco['id'], 'causa': causa,
+                              'colhido_em': bloco.get('colhido_em')})
             continue
         paginas.append(v)
 

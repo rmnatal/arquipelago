@@ -109,6 +109,7 @@ $MUNDO = array(
 	'prontas'    => array(),
 	'existem'    => array(),
 	'coleta'     => array(),
+	'nao_nasceram' => array(),
 );
 
 function rdm_produto_editorial() {
@@ -127,8 +128,37 @@ function rodametria_casca_url_do_slug($slug) {
 		? 'https://rodametria.com.br/veiculos/' . $slug . '/' : '';
 }
 
+/* O BANCO DO AR SO TEM O QUE O MANIFEST PUBLICA, e este stub aprendeu isso da
+   pior maneira em 18/11/2026. A primeira versao dele devolvia o mundo pedido
+   para QUALQUER id, e com isso aprovou um ramo que, no ar, leria
+   `anuncios-por-consulta` — que tem `publicar: false` e portanto nao e gravado
+   como option. O portao passou verde, a revisao 109 desembarcou e a pagina
+   continuou sem `dateModified`.
+
+   STUB QUE SEMPRE RESPONDE NAO MEDE A AUSENCIA — e a 20.7 em traje de dublê. A
+   lista de publicados sai do MANIFEST de verdade, lido do disco, e nunca de uma
+   lista escrita aqui: dado que deixar de ser publicado derruba esta afirmacao no
+   dia em que o manifest mudar, que e o que se quer. */
+function ids_publicados() {
+	static $ids = null;
+	if (null !== $ids) { return $ids; }
+	$m = json_decode(file_get_contents(dirname(__DIR__) . '/manifest.json'), true);
+	$ids = array();
+	foreach ((array) (isset($m['dados']) ? $m['dados'] : array()) as $d) {
+		if (!empty($d['publicar']) && !empty($d['id'])) { $ids[] = (string) $d['id']; }
+	}
+	return $ids;
+}
+
 function rodametria_casca_banco($id) {
 	global $MUNDO;
+	if (!in_array((string) $id, ids_publicados(), true)) {
+		/* EXATAMENTE o que o WordPress devolve para dado nao publicado. */
+		return null;
+	}
+	if ('vitrine-de-produto' === (string) $id) {
+		return array('nao_nasceram' => $MUNDO['nao_nasceram']);
+	}
 	return array('consultas' => $MUNDO['coleta']);
 }
 
@@ -279,33 +309,65 @@ $MUNDO['coleta'] = array(
 	array('id' => 'moto-eletrica', 'colhido_em' => '2026-11-18'),
 	array('id' => 'patinete-eletrico', 'colhido_em' => '2026-11-17'),
 );
+$MUNDO['nao_nasceram'] = array(
+	array('id' => 'moto-eletrica', 'colhido_em' => '2026-11-18',
+	      'causa' => 'menos de 3 anuncios que servem COM link e preco: 2'),
+);
+
+/* A PRIMEIRA AFIRMACAO E SOBRE A FONTE, e ela e a que faltava em 18/11: o ramo
+   do filtro NAO pode ler dado que o manifest nao publica. */
+vale(null === rodametria_casca_banco('anuncios-por-consulta'),
+	'`anuncios-por-consulta` NAO existe no ar (publicar: false no manifest)',
+	'se este stub o devolver, ele aprova um ramo que no ar le `null` — foi o '
+	. 'que deixou a revisao 109 sem `dateModified`');
+vale(null !== rodametria_casca_banco('vitrine-de-produto'),
+	'`vitrine-de-produto` existe no ar, e e de la que a data tem de sair');
+vale(false === strpos($src, 'RODAMETRIA_ID_DADOS_ANUNCIOS'),
+	'o snippet NAO declara mais a constante do dado nao publicado',
+	'constante de dado com `publicar: false` e convite a ler `null` em silencio');
+
 /* A REGRA DA DATA E LIDA DO FONTE e aplicada aqui com o mesmo mundo: o ramo do
-   filtro procura o bloco pelo slug e devolve `colhido_em`. */
+   filtro procura o registro de `nao_nasceram` pelo slug. */
 $data = '';
 $foraHoje = rdm_produto_declaradas_fora_da_vitrine();
 if (isset($foraHoje['moto-eletrica'])) {
-	$banco = rodametria_casca_banco('anuncios-por-consulta');
-	foreach ($banco['consultas'] as $b) {
-		if ('moto-eletrica' === $b['id'] && !empty($b['colhido_em'])) {
-			$data = $b['colhido_em'];
+	$vit = rodametria_casca_banco('vitrine-de-produto');
+	foreach ((array) $vit['nao_nasceram'] as $r) {
+		if ('moto-eletrica' === $r['id'] && !empty($r['colhido_em'])) {
+			$data = $r['colhido_em'];
 			break;
 		}
 	}
 }
 vale('2026-11-18' === $data,
-	'a data e a da ultima TENTATIVA de coleta (2026-11-18)',
+	'a data e a da ultima TENTATIVA de coleta (2026-11-18), lida de `nao_nasceram`',
 	'veio ' . var_export($data, true));
 vale('2026-11-17' !== $data,
 	'e NAO e a data da vitrine velha, que seria frescor afirmado de conteudo '
 	. 'que saiu do ar');
 
-/* A LINHA DO FONTE QUE SUSTENTA ISSO, lida e nao suposta: sem ela o ramo nao
-   existe e a afirmacao de cima estaria medindo este portao e nao o snippet. */
-vale(false !== strpos($src, "RODAMETRIA_ID_DADOS_ANUNCIOS"),
-	'o snippet declara a constante do banco da coleta');
+/* AS LINHAS DO FONTE QUE SUSTENTAM ISSO, lidas e nao supostas: sem elas o ramo
+   nao existe e a afirmacao de cima estaria medindo este portao e nao o snippet. */
 vale(false !== strpos($src, 'rdm_produto_declaradas_fora_da_vitrine();')
 	&& false !== strpos($src, "\$fora[ \$slug ]"),
 	'o filtro da data tem o ramo da pagina sem vitrine');
+vale(false !== strpos($src, "\$vit['nao_nasceram']")
+	|| false !== strpos($src, "\$vit['nao_nasceram'] : array()"),
+	'e ele le `nao_nasceram` da VITRINE, que e o dado publicado');
+
+/* E A OUTRA PONTA, que e do gerador: `nao_nasceram` tem de CARREGAR a data, ou
+   o ramo acima nao acha nada. Lida do arquivo de verdade. */
+$vit_real = json_decode(file_get_contents(dirname(__DIR__)
+	. '/dados/vitrine-de-produto.json'), true);
+$com_data = 0;
+$sem_data = array();
+foreach ((array) (isset($vit_real['nao_nasceram']) ? $vit_real['nao_nasceram'] : array()) as $r) {
+	if (!empty($r['colhido_em'])) { $com_data++; } else { $sem_data[] = $r['id']; }
+}
+vale(array() === $sem_data,
+	'toda entrada de `nao_nasceram` na vitrine de verdade traz `colhido_em`',
+	'sem data em: ' . implode(', ', $sem_data) . ' — a pagina delas ficaria sem '
+	. '`dateModified`, e sem ele a casca nao serve o `WebPage`');
 
 echo "\n6. O CORPO: NAO E FINO E NAO INVENTA NUMERO\n";
 
