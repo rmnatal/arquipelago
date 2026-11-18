@@ -757,39 +757,13 @@ def rel_quarentena(bloco):
     return _coletor().causas_em_quarentena(bloco)
 
 
-def alt_da_foto(consulta):
-    """O `alt` da foto do cartao, ESCRITO PELA ILHA a partir da consulta da
-    pagina — nunca copiado do titulo do anuncio.
-
-    POR QUE NAO E O TITULO, e isto esta MEDIDO e nao suposto (18/11/2026). Ate
-    hoje esta funcao gravava `alt = nome_na_tela`, o MESMO nome que o cartao
-    imprime tres linhas abaixo, e a casca servia `alt=""` sempre que os dois
-    fossem iguais (decisao de 11/11/2026, para o leitor de tela nao ouvir o
-    titulo duas vezes por cartao). As duas decisoes estao certas sozinhas e
-    COMPOSTAS garantiam atributo VAZIO EM TODO CARTAO, para sempre: medido no
-    banco de hoje, `imagem.alt` era igual a `nome` em 20 de 20 registros com
-    foto, ZERO diferentes, e no ar as 7 fotos saiam com `alt=""`. Foto de
-    produto dentro de cartao de compra e CONTEUDO, e `alt=""` declara
-    decoracao: leitor de tela pula a unica coisa da pagina que mostra o
-    veiculo.
-
-    E NENHUM PORTAO VIA, porque cada um media a propria metade: o do ar cobra
-    que o `alt` NAO repita a prosa vizinha (`alts_que_repetem_a_prosa_vizinha`,
-    que ignora atributo vazio de proposito) e o do chao cobrava que o campo
-    EXISTISSE no banco. Entre "nao repete" e "existe" cabe o vazio inteiro.
-
-    O QUE A ILHA SABE DIZER DA FOTO SEM COPIAR O ANUNCIO e a CLASSE DO VEICULO,
-    que e a consulta da propria pagina — dado, nunca prosa digitada —, mais a
-    procedencia da imagem, que e da loja e nao desta ilha. Marca do produto NAO
-    entra: ela so existe dentro do titulo, e adivinha-la do titulo seria
-    inventar certeza que o banco nao tem (26).
-    """
-    classe = (consulta or '').strip()
-    if not classe:
-        raise ValueError('consulta vazia: o `alt` da foto sai da classe do '
-                         'veiculo da pagina, e sem ela nao ha o que escrever')
-
-    return 'Foto do anúncio na loja: %s' % classe
+# O `alt` DA FOTO MORA EM `gerar-f2.py`, COM AS OUTRAS FRASES DA VOZ DA TELA
+# (onde elas estao desde 10/11/2026), e nao aqui: a pagina da F2 monta cartao de
+# VEICULO por outro caminho e precisa da MESMA funcao. Medido no ar em 18/11: com
+# o conserto so deste lado, `/autonomia-patinete-eletrico/` seguiu servindo
+# `alt=""` — a 32.5-c outra vez. Este modulo JA importa `gerar-f2.py` (`_VOZ`),
+# entao a seta aponta para la e nao ha ciclo.
+alt_da_foto = _VOZ.alt_da_foto
 
 
 def imagem_do_cartao(anuncio, nome_na_tela, consulta):

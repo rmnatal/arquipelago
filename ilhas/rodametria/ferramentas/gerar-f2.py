@@ -36,6 +36,108 @@ _spec = importlib.util.spec_from_file_location("f2ref", os.path.join(ILHA, "regr
 f2ref = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(f2ref)
 # O NOME EXIBIDO DE UM REGISTRO MORA NUM LUGAR SO (09/11/2026, item 1 do despacho).
+def alt_da_foto(consulta, exigir_classe=True):
+    """O `alt` da foto do cartao, ESCRITO PELA ILHA a partir da consulta da
+    pagina — nunca copiado do titulo do anuncio.
+
+    POR QUE NAO E O TITULO, e isto esta MEDIDO e nao suposto (18/11/2026). Ate
+    hoje esta funcao gravava `alt = nome_na_tela`, o MESMO nome que o cartao
+    imprime tres linhas abaixo, e a casca servia `alt=""` sempre que os dois
+    fossem iguais (decisao de 11/11/2026, para o leitor de tela nao ouvir o
+    titulo duas vezes por cartao). As duas decisoes estao certas sozinhas e
+    COMPOSTAS garantiam atributo VAZIO EM TODO CARTAO, para sempre: medido no
+    banco de hoje, `imagem.alt` era igual a `nome` em 20 de 20 registros com
+    foto, ZERO diferentes, e no ar as 7 fotos saiam com `alt=""`. Foto de
+    produto dentro de cartao de compra e CONTEUDO, e `alt=""` declara
+    decoracao: leitor de tela pula a unica coisa da pagina que mostra o
+    veiculo.
+
+    E NENHUM PORTAO VIA, porque cada um media a propria metade: o do ar cobra
+    que o `alt` NAO repita a prosa vizinha (`alts_que_repetem_a_prosa_vizinha`,
+    que ignora atributo vazio de proposito) e o do chao cobrava que o campo
+    EXISTISSE no banco. Entre "nao repete" e "existe" cabe o vazio inteiro.
+
+    O QUE A ILHA SABE DIZER DA FOTO SEM COPIAR O ANUNCIO e a CLASSE DO VEICULO,
+    que e a consulta da propria pagina — dado, nunca prosa digitada —, mais a
+    procedencia da imagem, que e da loja e nao desta ilha. Marca do produto NAO
+    entra: ela so existe dentro do titulo, e adivinha-la do titulo seria
+    inventar certeza que o banco nao tem (26).
+    """
+    classe = (consulta or '').strip()
+    if not classe:
+        if exigir_classe:
+            raise ValueError('consulta vazia: o `alt` da foto sai da classe do '
+                             'veiculo da pagina, e sem ela nao ha o que escrever')
+        # SEM CLASSE A FRASE ENCURTA, E NAO INVENTA. O banco de veiculos admite
+        # `tipo_comercial: nao_declarado` de proposito — e ali a ilha nao sabe a
+        # classe. Dizer uma seria afirmar o que ela nao mediu (26); o que sobra e
+        # a procedencia, que ela sabe: a foto e do anuncio da loja. Quem chama
+        # assim e `gerar-f2.py`, cujo cartao e um VEICULO e nao uma pagina de
+        # familia — e ele RELATA quantas fotos sairam sem classe.
+        return 'Foto do anúncio na loja'
+
+    return 'Foto do anúncio na loja: %s' % classe
+
+
+# O `alt` DA FOTO VEM DA MESMA FUNCAO QUE A VITRINE USA — ITEM 1 DO DESPACHO DE
+# 18/11/2026, E ESTA LINHA E A 32.5-c SENDO OBEDECIDA EM VEZ DE PAGA.
+#
+# Medido no ar as 16h5xZ de 18/11: o conserto do `alt` foi feito no gerador da
+# vitrine e as duas paginas de familia passaram a servir a frase da ilha — e
+# `/autonomia-patinete-eletrico/`, que monta o cartao DAQUI e nao de la, seguiu
+# servindo `alt=""`. A causa e a mesma de sempre: `veiculos.json` grava
+# `imagem.alt` com `"Honeywhale M2 MAX"`, que e o nome que o cartao imprime ao
+# lado, e a casca esvazia o atributo quando os dois sao iguais (guarda de
+# 11/11). Regra que nao viaja para a irma e a doenca que este molde ja pagou
+# tres vezes — entao o que viaja aqui e a FUNCAO, nao a frase.
+# A CLASSE DO VEICULO SAI DO `tipo_comercial`, E VALOR NOVO DENUNCIA EM VEZ DE
+# CAIR NUM PADRAO (20.8): o banco admite `nao_declarado` de proposito, e nesse
+# mundo a ilha NAO sabe a classe — a frase encurta e nao inventa uma.
+CLASSE_POR_TIPO_COMERCIAL = {
+    "patinete": "patinete elétrico",
+    "bicicleta": "bicicleta elétrica",
+    "nao_declarado": "",
+}
+
+
+def alt_da_foto_do_veiculo(registro):
+    """O `alt` da foto do cartao de VEICULO, pela funcao da vitrine."""
+    tipo = (registro.get("tipo_comercial") or "").strip()
+    if tipo not in CLASSE_POR_TIPO_COMERCIAL:
+        raise ValueError(
+            "`tipo_comercial` %r nao esta em CLASSE_POR_TIPO_COMERCIAL: valor novo no "
+            "banco nao escolhe classe de veiculo no escuro — declare a classe dele "
+            "aqui" % (tipo,))
+    classe = CLASSE_POR_TIPO_COMERCIAL[tipo]
+
+    return alt_da_foto(classe, exigir_classe=False)
+
+
+def imagem_do_cartao_de_veiculo(registro):
+    """A foto do registro com o `alt` escrito pela ilha, nunca o modelo."""
+    imagem = registro.get("imagem")
+    if not imagem or not imagem.get("url"):
+        return imagem
+    nova = dict(imagem)
+    nova["alt"] = alt_da_foto_do_veiculo(registro)
+    nova["alt_como_foi_escrito"] = (
+        "escrito por esta ilha a partir do `tipo_comercial` do registro (%r); o "
+        "modelo NAO entra, porque o cartao o imprime no `<p>` encostado na foto e "
+        "repeti-lo faria o leitor de tela dizer a mesma cadeia duas vezes "
+        "(11/11/2026)" % ((registro.get("tipo_comercial") or "").strip(),))
+    # O NOME EXIBIDO SAI DE `regras/nomes.py` E SO DE LA, e o portao
+    # `teste-nome-do-registro.py` pegou esta funcao derivando `marca`+`modelo`
+    # por conta propria na primeira passada — seria a SEXTA copia da mesma
+    # pergunta (item 1 do despacho de 09/11/2026). A trava precisa comparar com
+    # o nome que a TELA imprime, nao com um que ela monte aqui.
+    if nova["alt"] == nomes.nome_do_registro(registro):
+        raise ValueError("`alt` da foto saiu igual ao nome do veiculo que o cartao "
+                         "imprime ao lado: a casca o esvaziaria e a foto voltaria a "
+                         "ser decorativa")
+
+    return nova
+
+
 _spec_nomes = importlib.util.spec_from_file_location(
     "nomes", os.path.join(ILHA, "regras", "nomes.py"))
 nomes = importlib.util.module_from_spec(_spec_nomes)
@@ -834,7 +936,7 @@ def montar(constantes, veiculos, pecas, escada):
             "url_produto": af.get("url_produto"),
             "programa": af.get("programa"),
             "degrau": af.get("degrau"),
-            "imagem": r.get("imagem"),
+            "imagem": imagem_do_cartao_de_veiculo(r),
         }
 
     grupos_tela = {k: [ficha(r) for r in v] for k, v in grupos.items()}

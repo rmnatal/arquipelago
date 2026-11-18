@@ -3,7 +3,7 @@
   "ilha": "rodametria",
   "ferramenta": "F2",
   "bloco": "3b",
-  "gerado_em": "2026-11-13",
+  "gerado_em": "2026-11-18",
   "gerado_por": "ferramentas/gerar-f2.py",
   "referencia": "ferramentas/f2-referencia.py",
   "especificacao": "dados/especificacao-calculadoras.md, secao 2",
@@ -303,11 +303,12 @@
           "url": "https://cf.shopee.com.br/file/br-11134207-7r98o-matq46pbf1mh94",
           "largura": 1024,
           "altura": 1024,
-          "alt": "Honeywhale M2 MAX",
+          "alt": "Foto do anúncio na loja: patinete elétrico",
           "fonte": "open-api-afiliados",
           "de_qual_oferta": 20299836765,
           "dimensao_medida_em": "2026-11-04",
-          "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, primeiros 32768 bytes"
+          "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, primeiros 32768 bytes",
+          "alt_como_foi_escrito": "escrito por esta ilha a partir do `tipo_comercial` do registro ('patinete'); o modelo NAO entra, porque o cartao o imprime no `<p>` encostado na foto e repeti-lo faria o leitor de tela dizer a mesma cadeia duas vezes (11/11/2026)"
         },
         "rotulo_do_grupo": "a ficha não declara a bateria"
       },
@@ -410,11 +411,12 @@
             "url": "https://cf.shopee.com.br/file/br-11134207-7r98o-matq46pbf1mh94",
             "largura": 1024,
             "altura": 1024,
-            "alt": "Honeywhale M2 MAX",
+            "alt": "Foto do anúncio na loja: patinete elétrico",
             "fonte": "open-api-afiliados",
             "de_qual_oferta": 20299836765,
             "dimensao_medida_em": "2026-11-04",
-            "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, primeiros 32768 bytes"
+            "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, primeiros 32768 bytes",
+            "alt_como_foi_escrito": "escrito por esta ilha a partir do `tipo_comercial` do registro ('patinete'); o modelo NAO entra, porque o cartao o imprime no `<p>` encostado na foto e repeti-lo faria o leitor de tela dizer a mesma cadeia duas vezes (11/11/2026)"
           }
         },
         {
