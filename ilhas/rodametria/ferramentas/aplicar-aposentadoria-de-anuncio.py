@@ -200,6 +200,62 @@ def conferir():
             falhas.append('%s: motivo_sem_numero_proprio gravado %r nao refaz: %r'
                           % (bid, r.get('motivo_sem_numero_proprio'), motivo))
 
+    # ------------------------------------------------------------------
+    # A LINHA E MONTADA AQUI DENTRO, NUM MUNDO FABRICADO (18/11/2026).
+    #
+    # As afirmacoes acima leem o banco; nenhuma delas MONTAVA uma linha, e por
+    # isso o `TypeError` de precedencia descrito em `montar_linha` passou dois
+    # dias com o portao verde. O mundo e fabricado de proposito: anuncio de
+    # verdade muda, e o que esta sob prova e o FORMATO, nao o dado do dia.
+    areia = {
+        'item_id': 58215666648, 'shop_id': 1136378529,
+        'titulo': '  Scooter (Bike) Eletrica Foston X15 Max 1000w 32km/h  ',
+        'preco': 8500.0, 'coletado_em': '2026-11-18', 'degrau_da_escada': '1',
+        'url_afiliado': 'https://s.shopee.com.br/XXXXXXXXXX', 'loja': 'LOJA DA AREIA',
+    }
+    afirmacoes += 1
+    try:
+        montada = montar_linha('2026-11-18', areia, 'esgotado',
+                               'a loja serve a palavra Esgotado colada ao titulo',
+                               'lida em 18/11/2026 no Chrome do Raphael')
+    except Exception as erro:
+        montada = None
+        falhas.append('montar_linha morreu antes de devolver cadeia: %s: %s'
+                      % (type(erro).__name__, erro))
+    if montada is not None:
+        afirmacoes += 1
+        if not col.PADRAO_APOSENTADO.match(montada):
+            falhas.append('a linha MONTADA nao casa com PADRAO_APOSENTADO, que e o '
+                          'mesmo regex que o coletor le como lista de bloqueio: %r'
+                          % (montada[:160],))
+        # O COLETOR TEM DE ACHAR O ID NELA: formato que casa o regex e nao
+        # devolve o id deixaria o anuncio VOLTAR vivo na coleta seguinte.
+        afirmacoes += 1
+        achados = col.ids_em_quarentena({'anuncios_aposentados': [montada]})
+        if 58215666648 not in achados:
+            falhas.append('o coletor nao acha o id na linha montada (leu %r): a '
+                          'quarentena E a lista de bloqueio, e linha que o coletor '
+                          'nao le deixa o anuncio esgotado voltar como oferta viva'
+                          % (achados,))
+        afirmacoes += 1
+        if col.causas_em_quarentena({'anuncios_aposentados': [montada]}).get('esgotado') != 1:
+            falhas.append('o rotulo curto da causa nao e lido de volta da linha montada: '
+                          'sem ele a linha sai da contagem E da lista de bloqueio')
+        # A REGUA VELHA OBRIGADA A DISCORDAR (20.8): autoteste em que a antiga
+        # tambem passa nao mede conserto nenhum. A antiga nao devolve cadeia —
+        # ela levanta TypeError —, e e isso que esta afirmacao cobra.
+        afirmacoes += 1
+        try:
+            _ = ('APOSENTADO EM %s — item %d da loja %d — CAUSA (' + 'esgotado'
+                 + '): %s '
+                 '|| ULTIMA MEDICAO: %s'
+                 % ('2026-11-18', 1, 2, 'causa', 'medicao'))
+            falhas.append('a montagem ANTIGA (com `+` no meio e `%` no fim) devolveu '
+                          'cadeia: se ela passa, este autoteste nao esta medindo o '
+                          'conserto de 18/11/2026')
+        except TypeError:
+            pass
+
     for f in falhas:
         print('FALHA: ' + f)
     print('\n%d afirmacao(oes), %d falha(s).' % (afirmacoes, len(falhas)))
@@ -266,6 +322,40 @@ def rotular(args):
 
 
 # ---------------------------------------------------------------------------
+def montar_linha(em, a, causa, causa_prosa, ultima_medicao):
+    """A LINHA FECHADA DA 25.11, MONTADA NUM LUGAR SO — e e ESTA funcao que o
+    autoteste chama, nunca uma copia dela (18/11/2026).
+
+    O DEFEITO QUE ISTO FECHA, e ele e de PRECEDENCIA e nao de formato: a linha
+    era montada com `+` no meio de literais e um `%` no fim, e em Python o `%`
+    casa mais apertado que o `+` — entao o `%` recebia so o ULTIMO literal
+    (`'): %s || ULTIMA MEDICAO: %s'`, duas vagas) com as DEZ substituicoes, e o
+    modo de gravar morria em `TypeError: not all arguments converted during
+    string formatting` ANTES de tocar o banco. Medido as 16h2xZ de 18/11/2026,
+    na primeira tentativa de aposentar um anuncio desde que o rotulo curto da
+    causa entrou na linha, em 16/11: o rotulo foi inserido com `+` no meio da
+    cadeia e quebrou o unico caminho que GRAVA.
+
+    E O AUTOTESTE APROVAVA 81 AFIRMACOES, porque todas elas leem as linhas que
+    JA ESTAO no banco e nenhuma MONTAVA uma — as tres linhas de quarentena de
+    hoje nasceram antes do rotulo e foram retroajustadas por `--rotular`, que e
+    outro caminho de codigo. E a familia que esta ilha mais paga: a regua existia
+    e nao tinha falhado porque nao tinha rodado. Agora o portao chama esta
+    funcao, e a conta nao e de opiniao: a linha montada tem de casar com
+    `PADRAO_APOSENTADO`, que e o mesmo regex que o COLETOR le para recusar o
+    anuncio na coleta seguinte.
+    """
+    return ('APOSENTADO EM %s — item %d da loja %d — %s — R$ %s, preco de %s, '
+            'degrau %s da escada de chaves, encurtado %s, loja "%s" — '
+            'CAUSA (%s): %s || ULTIMA MEDICAO: %s'
+            % (em, int(a['item_id']), int(a['shop_id']), (a.get('titulo') or '').strip(),
+               (('%.2f' % a['preco']).replace('.', ',')) if a.get('preco') is not None
+               else 'sem preco',
+               a.get('coletado_em'), a.get('degrau_da_escada'),
+               a.get('url_afiliado') or 'sem encurtado', a.get('loja'),
+               causa, (causa_prosa or '').strip(), (ultima_medicao or '').strip()))
+
+
 def aposentar(args):
     banco = carregar()
     col = _coletor()
@@ -293,16 +383,8 @@ def aposentar(args):
               'usada aqui.' % (args.causa, ', '.join(sorted(col.CAUSAS_DE_APOSENTADORIA))))
         return 1
 
-    linha = ('APOSENTADO EM %s — item %d da loja %d — %s — R$ %s, preco de %s, '
-             'degrau %s da escada de chaves, encurtado %s, loja "%s" — CAUSA (' +
-             args.causa + '): %s '
-             '|| ULTIMA MEDICAO: %s'
-             % (args.em, int(a['item_id']), int(a['shop_id']), a['titulo'].strip(),
-                (('%.2f' % a['preco']).replace('.', ',')) if a.get('preco') is not None
-                else 'sem preco',
-                a.get('coletado_em'), a.get('degrau_da_escada'),
-                a.get('url_afiliado') or 'sem encurtado', a.get('loja'),
-                args.causa_prosa.strip(), args.ultima_medicao.strip()))
+    linha = montar_linha(args.em, a, args.causa,
+                         args.causa_prosa, args.ultima_medicao)
 
     if not col.PADRAO_APOSENTADO.match(linha):
         print('REPROVADO: a linha montada nao casa com o formato fechado. '

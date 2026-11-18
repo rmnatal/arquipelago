@@ -237,13 +237,85 @@ function reguaDePixel(m) {
 	return problemas;
 }
 
+/* ----------------------------------------------------------------------
+   QUAL DAS DUAS? — a classificacao de cada foto que o DOM achou quebrada.
+
+   Ela recebe as URLs COMPLETAS (`quebradas_url`, que a medicao passou a
+   devolver ao lado do rabo de 60 caracteres que vai para a tela) e o mapa de
+   rede daquela pagina. Tres desfechos, e eles se dizem SEPARADOS porque o
+   conserto de cada um e diferente (20.5):
+
+     - `pela_cdn`      a origem RESPONDEU, com status proprio (503, 404...).
+                       Isto e defeito que o visitante ve, e REPROVA.
+     - `nao_medidas`   a requisicao nem saiu: `ERR_TUNNEL_CONNECTION_FAILED`,
+                       `ERR_PROXY_*`, ou um 403 vindo do proxy desta nuvem.
+                       Nao se sabe nada da foto, e NAO REPROVA — imprime NAO
+                       MEDIDO, que e a unica frase honesta.
+     - `sem_veredito`  o DOM diz quebrada e a rede nao tem linha dela (pode
+                       nem ter sido pedida). Tambem NAO REPROVA, e e DITA: a
+                       afirmacao e positiva (20.8), nunca "o que sobrou e
+                       falha".
+
+   O 403 TEM DOIS PAIS, E ISTO E A PARTE QUE PRECISA DE CUIDADO: 403 de proxy e
+   403 de CDN sao o mesmo numero. Entao `status` sozinho nao decide — o que
+   decide e o `errorText` quando a requisicao falhou, e, no caso de resposta
+   403, a frase diz os DOIS mundos possiveis em vez de escolher um. Ela nao
+   reprova por 403 nenhum, de proposito: na nuvem em que o egresso recusa este
+   dominio, atribuir 403 a CDN e exatamente o erro de 18/11. */
+const PROXY_NO_TEXTO = /TUNNEL|PROXY|ERR_CONNECTION_REFUSED|ERR_NAME_NOT_RESOLVED|ERR_SOCKS/i;
+
+function classificarFotos(fotos, rede) {
+	const f = fotos || {};
+	const urls = f.quebradas_url || [];
+	const pela_cdn = [];
+	const nao_medidas = [];
+	const sem_veredito = [];
+
+	for (const u of urls) {
+		const curta = String(u).slice(-60);
+		const linha = rede.get(u);
+		if (!linha) {
+			sem_veredito.push(`${curta} — o DOM diz quebrada e a rede nao tem linha dela`);
+			continue;
+		}
+		if (linha.tipo === 'falha') {
+			if (PROXY_NO_TEXTO.test(linha.texto)) {
+				nao_medidas.push(`${curta} — ${linha.texto}: o egresso desta nuvem recusou, a foto NAO foi medida`);
+			} else {
+				pela_cdn.push(`${curta} — a requisicao falhou em ${linha.texto}`);
+			}
+			continue;
+		}
+		if (linha.status === 403) {
+			nao_medidas.push(`${curta} — HTTP 403, e ele tem dois pais: pode ser a CDN recusando ou o proxy desta nuvem. NAO MEDIDO`);
+			continue;
+		}
+		pela_cdn.push(`${curta} — a CDN respondeu HTTP ${linha.status}`);
+	}
+
+	return Object.assign({}, f, { pela_cdn, nao_medidas, sem_veredito });
+}
+
+
 /* A REGUA INTEIRA: pixel, foto de verdade e a disputa de especificidade. */
 function julgar(m) {
 	const problemas = reguaDePixel(m);
 	const f = m.fotos || { quebradas: [] };
-	if (f.quebradas && f.quebradas.length) {
-		problemas.push(`${f.quebradas.length} foto(s) de cartao que NAO carregaram (${f.quebradas.join(', ')})`
+	/* SO REPROVA A FOTO CUJA ORIGEM RESPONDEU (item 2 do despacho de 18/11/2026).
+	   O que o egresso desta nuvem recusou nao e falha da pagina e nao e veredito
+	   nenhum — ele sai no relato, como NAO MEDIDO, e e o Raphael que o destrava
+	   pondo `cf.shopee.com.br` na lista de dominios permitidos da conta. */
+	if (f.pela_cdn && f.pela_cdn.length) {
+		problemas.push(`${f.pela_cdn.length} foto(s) de cartao que a ORIGEM recusou (${f.pela_cdn.join(', ')})`
 			+ ' — a medicao de pixel foi feita sobre imagem que o visitante nao viu (32.5-d)');
+	}
+	/* O TERCEIRO DESFECHO TAMBEM REPROVA, e numa frase SEPARADA: foto que o DOM
+	   diz quebrada e a rede nao explica continua quebrada para quem olha a tela
+	   — `data:` corrompido cai aqui, e e o mundo 3 do autoteste. O que ela NAO
+	   pode e sair com a frase da CDN, porque o conserto nao e o mesmo (20.5). */
+	if (f.sem_veredito && f.sem_veredito.length) {
+		problemas.push(`${f.sem_veredito.length} foto(s) de cartao que NAO carregaram e a rede nao explica (${f.sem_veredito.join(', ')})`
+			+ ' — quebrada para quem olha a tela, e a causa fica em aberto');
 	}
 	for (const d of (m.disputas || []).filter((x) => x.muda)) {
 		problemas.push(`"${d.molde}" [${d.molde_media}] declara ${d.prop}: ${d.declarado} e a pagina serve `
@@ -346,6 +418,11 @@ function medirPagina() {
 		quebradas: imgs
 			.filter((i) => !(i.complete && i.naturalHeight > 0))
 			.map((i) => (i.currentSrc || i.getAttribute('src') || '(sem src)').slice(-60)),
+		/* A URL INTEIRA, porque o rabo de 60 caracteres e para a tela e NAO serve
+		   de chave: o mapa de rede e indexado pela URL completa (18/11/2026). */
+		quebradas_url: imgs
+			.filter((i) => !(i.complete && i.naturalHeight > 0))
+			.map((i) => i.currentSrc || i.getAttribute('src') || ''),
 		reservados: bloco ? bloco.querySelectorAll('.rdm-molde-cartao-sem-foto').length : 0,
 		alturas: imgs.map((i) => Math.round(i.getBoundingClientRect().height)),
 	};
@@ -525,13 +602,18 @@ function paginaFabricada({ prefixo, foto, margemGenerica }) {
 
 if (argv.includes('--autoteste')) {
 	const casos = [];
-	const medirFabricada = async (html) => {
+	const medirFabricada = async (html, rede) => {
 		await pagina.setContent(html, { waitUntil: 'load' });
 		await pagina.waitForTimeout(150);
 		await carregarFotos(pagina);
 		const m = await pagina.evaluate(medirPagina);
 		m.url = '(fabricada)';
 		m.erros = 0;
+		/* A CLASSIFICACAO E PARTE DA MEDICAO, e o autoteste a CHAMA (nunca uma
+		   copia dela): sem isto o mundo da foto quebrada mediria o DOM e
+		   deixaria sem prova exatamente a funcao que nasceu em 18/11/2026. O
+		   mapa vem fabricado porque rede de verdade nao se fabrica. */
+		m.fotos = classificarFotos(m.fotos, rede || new Map());
 		return m;
 	};
 	const afirmar = (nome, ok, detalhe) => {
@@ -561,12 +643,61 @@ if (argv.includes('--autoteste')) {
 		reguaDePixel(mau).length === 0 && julgar(mau).length > 0,
 		`velha=${JSON.stringify(reguaDePixel(mau))} nova=${JSON.stringify(julgar(mau))}`);
 
-	/* MUNDO 3 — a foto que nao carrega: a medicao de pixel foi feita sobre
-	   imagem que o visitante nao viu. */
-	const quebrada = await medirFabricada(paginaFabricada({ prefixo: true, foto: 'quebrada', margemGenerica: '16px' }));
+	/* MUNDO 3 — a foto que nao carrega SEM a rede explicar: `data:` corrompido,
+	   que nao gera evento de rede nenhum. Continua reprovando, e a frase diz que
+	   a causa ficou em aberto em vez de atribui-la a CDN. */
+	const htmlQuebrada = paginaFabricada({ prefixo: true, foto: 'quebrada', margemGenerica: '16px' });
+	const quebrada = await medirFabricada(htmlQuebrada);
 	afirmar('mundo 3: foto que NAO carregou reprova a pagina',
-		quebrada.fotos.quebradas.length === 1 && julgar(quebrada).some((x) => x.includes('NAO carregaram')),
+		quebrada.fotos.quebradas.length === 1 && julgar(quebrada).some((x) => x.includes('a rede nao explica')),
 		`fotos=${JSON.stringify(quebrada.fotos)} problemas=${JSON.stringify(julgar(quebrada))}`);
+
+	/* ------------------------------------------------------------------
+	   MUNDOS 3-b E 3-c — ITEM 2 DO DESPACHO DE 18/11/2026, E ELES SAO A RAZAO
+	   DA CLASSIFICACAO EXISTIR. A mesma foto quebrada, o mesmo DOM, os mesmos
+	   `naturalWidth: 0` — e DOIS vereditos opostos, decididos pela camada de
+	   rede. Em 18/11 este portao reprovou tres paginas e uma era falso
+	   positivo, porque ele nao tinha como distinguir os dois.
+	   ------------------------------------------------------------------ */
+	const urlDaFoto = quebrada.fotos.quebradas_url[0];
+
+	const cdn503 = await medirFabricada(htmlQuebrada,
+		new Map([[urlDaFoto, { tipo: 'resposta', status: 503 }]]));
+	afirmar('mundo 3-b: a ORIGEM respondeu 503 — REPROVA, e a frase diz o status',
+		cdn503.fotos.pela_cdn.length === 1
+			&& cdn503.fotos.pela_cdn[0].includes('HTTP 503')
+			&& cdn503.fotos.nao_medidas.length === 0
+			&& julgar(cdn503).some((x) => x.includes('a ORIGEM recusou')),
+		`fotos=${JSON.stringify(cdn503.fotos)} problemas=${JSON.stringify(julgar(cdn503))}`);
+
+	const egresso = await medirFabricada(htmlQuebrada,
+		new Map([[urlDaFoto, { tipo: 'falha', texto: 'net::ERR_TUNNEL_CONNECTION_FAILED' }]]));
+	afirmar('mundo 3-c: o EGRESSO recusou — NAO reprova e sai como NAO MEDIDO',
+		egresso.fotos.nao_medidas.length === 1
+			&& egresso.fotos.nao_medidas[0].includes('NAO foi medida')
+			&& egresso.fotos.pela_cdn.length === 0
+			&& julgar(egresso).length === 0,
+		`fotos=${JSON.stringify(egresso.fotos)} problemas=${JSON.stringify(julgar(egresso))}`);
+
+	/* A REGUA VELHA OBRIGADA A DISCORDAR (20.8): a de antes de hoje reprovava
+	   QUALQUER foto que o DOM achasse quebrada, e e exatamente o mundo 3-c que
+	   ela errava. Autoteste em que as duas concordam nao mede conserto nenhum. */
+	const reguaVelhaDeFoto = (m) => ((m.fotos.quebradas || []).length ? ['foto quebrada'] : []);
+	afirmar('mundo 3-c: a REGUA VELHA de foto REPROVA o mesmo mundo — as duas discordam',
+		reguaVelhaDeFoto(egresso).length === 1 && julgar(egresso).length === 0,
+		`velha=${JSON.stringify(reguaVelhaDeFoto(egresso))} nova=${JSON.stringify(julgar(egresso))}`);
+
+	/* E O 403 NAO E ATRIBUIDO A NINGUEM, de proposito: proxy e CDN devolvem o
+	   mesmo numero, e foi atribui-lo a CDN que produziu a frase errada de
+	   18/11 de manha ("a CDN da loja respondeu 503" onde a nuvem nao chegou a
+	   CDN). Ele sai como NAO MEDIDO dizendo os dois mundos possiveis. */
+	const tresZeroTres = await medirFabricada(htmlQuebrada,
+		new Map([[urlDaFoto, { tipo: 'resposta', status: 403 }]]));
+	afirmar('mundo 3-d: 403 nao escolhe pai — sai NAO MEDIDO dizendo os dois',
+		tresZeroTres.fotos.nao_medidas.length === 1
+			&& tresZeroTres.fotos.nao_medidas[0].includes('dois pais')
+			&& julgar(tresZeroTres).length === 0,
+		`fotos=${JSON.stringify(tresZeroTres.fotos)} problemas=${JSON.stringify(julgar(tresZeroTres))}`);
 
 	/* MUNDO 4 — a disputa LATENTE: a generica vence com o MESMO valor. Nao e
 	   falha hoje, e nao pode ser silencio. */
@@ -663,6 +794,42 @@ for (const url of lista) {
 	const erros = [];
 	pagina.removeAllListeners('pageerror');
 	pagina.on('pageerror', (e) => erros.push(String(e.message || e)));
+
+	/* ------------------------------------------------------------------
+	   O DESFECHO DE REDE DE CADA FOTO, OUVIDO ANTES DE A PAGINA PEDIR —
+	   ITEM 2 DO DESPACHO DA RONDA DE 18/11/2026.
+
+	   O defeito era deste portao e nao da pagina: ao achar foto que nao
+	   carregou, ele escrevia "foto de cartao que NAO carregou" e REPROVAVA,
+	   sem ter como saber se a CDN respondeu mal ou se o EGRESSO desta nuvem
+	   nunca a deixou sair. Em 18/11 ele reprovou TRES paginas e uma das tres
+	   era falso positivo: `cf.shopee.com.br` devolve `CONNECT tunnel failed,
+	   response 403` ao egresso desta nuvem (medido duas vezes por URL na ronda
+	   daquele dia), e a execucao da manha escreveu "a CDN da loja respondeu
+	   503" para um caso em que a nuvem NUNCA CHEGOU a CDN.
+
+	   Veredito de portao que confunde "nao medi" com "esta quebrado" e pior que
+	   portao nenhum: ele gasta execucao consertando o que nao esta roto e, na
+	   passada seguinte, ensina a ignorar o vermelho dele.
+
+	   A ESCOLHA E DE FONTE: quem sabe a diferenca nao e o DOM — ali os dois
+	   mundos sao `naturalWidth: 0` iguaizinhos — e sim a CAMADA DE REDE.
+	   `response` traz status da origem; `requestfailed` traz o `errorText` do
+	   Chromium, e e nele que mora `ERR_TUNNEL_CONNECTION_FAILED`. Os dois sao
+	   guardados por URL, e a classificacao e feita DEPOIS, sobre o que a
+	   medicao do DOM achou quebrado.
+	   ------------------------------------------------------------------ */
+	const rede = new Map();
+	pagina.removeAllListeners('response');
+	pagina.removeAllListeners('requestfailed');
+	pagina.on('response', (r) => {
+		rede.set(r.url(), { tipo: 'resposta', status: r.status() });
+	});
+	pagina.on('requestfailed', (r) => {
+		const texto = String((r.failure() && r.failure().errorText) || 'falha sem texto');
+		rede.set(r.url(), { tipo: 'falha', texto });
+	});
+
 	await pagina.goto(cacheBreak(url), { waitUntil: 'load', timeout: 60000 });
 	await pagina.evaluate(() => document.fonts && document.fonts.ready);
 	await pagina.waitForTimeout(250);
@@ -671,6 +838,7 @@ for (const url of lista) {
 	const m = await pagina.evaluate(medirPagina);
 	m.url = url.replace(SITE, '');
 	m.erros = erros.length;
+	m.fotos = classificarFotos(m.fotos, rede);
 
 	if (!m.tem_molde) {
 		/* Pagina sem componente de molde nenhum: sem bloco de compra, sem

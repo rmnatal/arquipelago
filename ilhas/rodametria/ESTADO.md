@@ -32,11 +32,11 @@ ultima_execucao: 2026-11-18T13:47Z   # A BATERIA DE MUTACAO DESCREVIA UMA PAGINA
                      # para R$ 1.640,03 nas TRES ocorrencias dela, em DUAS leituras
                      # identicas byte por byte (112.167 bytes).
                      # A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA.
-executando_desde: 2026-11-18T16:16Z   # RESERVA da execucao de 18/11/2026 (passo 5 da secao 1,
-                         # foco da 1.2: `foco.md` nomeia a rodametria, e os tres despachos
-                         # do molde da 32 estao FECHADOS nas tres irmas, entao o foco manda
-                         # sozinho). A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A
-                         # GRAVA, nunca digitada.
+executando_desde: 2026-11-18T16:36Z   # RESERVA RENOVADA pela 1.1 (reserva original 16h16Z): o
+                         # bloco passou de 40 minutos porque o despacho de 18/11 tem
+                         # CINCO itens e a 18.2 manda sair inteiro — gerador, dois
+                         # snippets, duas ferramentas e o portao do navegador. A HORA
+                         # SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA.
 rede: aberta em 2026-11-18   # 20.2, REMEDIDA e nao herdada na passada das 13h16Z:
                              # 3 de 3 em 200 em `rodametria.com.br/`, com `aquametria.com.br`
                              # em 200 nas MESMAS tres passadas — controle verde, nao e rede. A

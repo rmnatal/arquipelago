@@ -118,7 +118,7 @@
    do primeiro cartao comecava por `11.11`. A regra mora no coletor; o que muda
    aqui e a frase: sem ela a conta do leitor nao fecha com o tamanho da tabela. */
 if ( ! defined( 'RODAMETRIA_PRODUTO_VERSAO' ) ) {
-	define( 'RODAMETRIA_PRODUTO_VERSAO', '1.16.0' );
+	define( 'RODAMETRIA_PRODUTO_VERSAO', '1.17.0' );
 }
 
 /* A VERSAO DESTE SNIPPET VAI AO AR, pelo filtro que a casca 1.6.0 abriu
@@ -280,6 +280,12 @@ function rdm_produto_criterio_de_ordem() {
 
 if ( ! function_exists( 'rdm_produto_preencher' ) ) {
 function rdm_produto_preencher( $texto, $pagina ) {
+	/* MOLDE QUE PODE VIR VAZIO EXIGE ESTA LINHA, e ela e de FORMA e nao de
+	   conteudo (18/11/2026): `{FRASE_DO_MESMO_PRECO}` sai vazia no mundo sem
+	   repeticao de preco, e a substituicao crua deixaria um espaco duplo no meio
+	   do paragrafo e um espaco solto no fim dele — servido no HTML, que e a
+	   camada que a visao geral de IA ingere (32.4-c). O colapso vale para todos
+	   os moldes: `{FRASE_DO_DOBRAVEL} {FRASE_DO_PIVO}` ja vivia nesse risco. */
 	$n = $pagina['vitrine']['numeros'];
 	$de = array(
 		'{N}'                => (string) $n['n'],
@@ -292,6 +298,18 @@ function rdm_produto_preencher( $texto, $pagina ) {
 		'{LIDAS}'            => (string) $n['lidas'],
 		'{RECUSADAS}'        => (string) $n['recusadas'],
 		'{FRASE_DO_ROTULO}'  => (string) $n['frase_do_rotulo'],
+		/* ITEM 4 DO DESPACHO DA RONDA DE 18/11/2026 — A FRASE CONTA O QUE ELA
+		   CONTA. `{LOJAS}` entrou porque "7 anuncios" e "7 lojas" sao DOIS fatos
+		   e a frase da faixa afirmava um so; `{FRASE_DO_MESMO_PRECO}` e a
+		   contagem que explica a mediana colada no piso — em
+		   `/veiculos/bicicleta-eletrica/`, SEIS dos sete anuncios custavam
+		   exatamente R$ 2.299,99 e TRES deles serviam o mesmo titulo em tres
+		   lojas diferentes, com a pagina dizendo "os 7 anuncios que a gente
+		   conferiu" como se fossem sete observacoes independentes. A frase e
+		   CONTADA no gerador (`frase_do_mesmo_preco`) e pode vir VAZIA — e o
+		   mundo em que nao ha repeticao, como a pagina do patinete de hoje. */
+		'{LOJAS}'            => (string) $n['lojas'],
+		'{FRASE_DO_MESMO_PRECO}' => (string) $n['frase_do_mesmo_preco'],
 		/* A CARGA MAXIMA DECLARADA NO TITULO — 03/11/2026. A frase e CONTADA no
 		   gerador, nunca digitada na camada declarada, e a forma dela muda com o
 		   mundo (zero declarando, um so, todos no mesmo numero, faixa de
@@ -339,7 +357,9 @@ function rdm_produto_preencher( $texto, $pagina ) {
 		'{CRITERIO_DE_ORDEM}' => rdm_produto_criterio_de_ordem(),
 	);
 
-	return str_replace( array_keys( $de ), array_values( $de ), (string) $texto );
+	$cheio = str_replace( array_keys( $de ), array_values( $de ), (string) $texto );
+
+	return trim( preg_replace( '/[ \t]{2,}/', ' ', $cheio ) );
 }
 }
 

@@ -71,7 +71,7 @@
    Antes disto a ilha cujo produto e "o preco de hoje" tinha ZERO ocorrencia de
    `dateModified` e de `datePublished` em todo o JSON-LD das 9 URLs. */
 if ( ! defined( 'RODAMETRIA_CASCA_VERSAO' ) ) {
-	define( 'RODAMETRIA_CASCA_VERSAO', '1.29.0' );
+	define( 'RODAMETRIA_CASCA_VERSAO', '1.30.0' );
 }
 
 /* ---------------------------------------------------------------------------
@@ -1245,7 +1245,33 @@ function rodametria_casca_cartao_de_compra( $item ) {
 		   ATRIBUTO VAZIO E UMA AFIRMACAO, e ela e verdadeira aqui: a imagem e
 		   redundante porque a pagina imprime o nome ao lado dela. `alt` que
 		   DESCREVA a foto continua sendo servido, porque o que sai e so a COPIA —
-		   e e isso que `alts_que_repetem_a_prosa_vizinha()` mede no ar. */
+		   e e isso que `alts_que_repetem_a_prosa_vizinha()` mede no ar.
+
+		   > SUPERADO EM 18/11/2026 NA METADE QUE IMPORTA, E O PARAGRAFO FICA
+		   > PORQUE A OUTRA METADE SEGUE CERTA. A frase "`alt` que DESCREVA a foto
+		   > continua sendo servido" descrevia um mundo que nao existia: nenhum
+		   > `alt` que descrevesse a foto chegava ao banco, porque o gerador
+		   > gravava o NOME ali. Entao "o que sai e so a COPIA" era, na pratica,
+		   > "o que sai e TODO `alt`". Medido: 20 de 20 registros com foto, 7 de 7
+		   > fotos no ar com `alt=""`. O item 1 do despacho de 18/11 fechou isso
+		   > pela ponta do gerador — ver a guarda logo abaixo. */
+		/* ESTA GUARDA PASSOU A SER ULTIMO RECURSO EM 18/11/2026, E A CAUSA E QUE
+		   ELA ESTAVA DISPARANDO SEMPRE. Ela nasceu em 11/11 para o leitor de tela
+		   nao ouvir o titulo duas vezes por cartao, e isso continua certo. O que
+		   ninguem havia medido e que o GERADOR gravava `imagem.alt` com o MESMO
+		   `nome` que este cartao imprime tres linhas abaixo — entao a igualdade
+		   era verdadeira em TODO cartao, e as duas decisoes, certas sozinhas,
+		   COMPUNHAM `alt=""` em toda foto de produto da ilha, para sempre: medido
+		   no banco de 18/11, igual em 20 de 20 registros com foto, e no ar nas 7
+		   fotos servidas. `alt=""` declara imagem DECORATIVA, e leitor de tela
+		   pula a unica coisa da pagina que mostra o veiculo.
+
+		   AGORA O `alt` VEM ESCRITO PELA ILHA (`alt_da_foto()` do gerador: a
+		   classe do veiculo da propria pagina, mais a procedencia da foto, que e
+		   da loja), e a trava do gerador RECUSA gravar vitrine com `alt` vazio ou
+		   igual ao nome. Logo esta guarda nao tem como disparar — ela fica porque
+		   banco velho pode chegar aqui, e porque a afirmacao que ela faz continua
+		   verdadeira no mundo em que as duas cadeias forem iguais. */
 		$alt_da_foto = isset( $img['alt'] ) ? (string) $img['alt'] : '';
 		if ( $alt_da_foto === (string) $item['nome'] ) {
 			$alt_da_foto = '';

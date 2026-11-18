@@ -44,6 +44,11 @@
     "par_da_f2_so_tensao": 1,
     "par_da_f2_so_amperagem": 0,
     "frase_do_par_da_f2": "Nenhum dos 7 anúncios declara a tensão E a amperagem no mesmo título (1 declara só a tensão) — e a calculadora de autonomia pede os dois.",
+    "lojas": 7,
+    "no_preco_da_mediana": 6,
+    "mesmo_titulo_em_outras_lojas": 3,
+    "lojas_do_mesmo_titulo": 3,
+    "frase_do_mesmo_preco": "A mediana é igual ao menor preço porque 6 dos 7 anúncios custam exatamente R$ 2.299,99, e 3 deles servem o mesmo título, em 3 lojas diferentes.",
     "lidas": 20,
     "recusadas": 13,
     "recusas_por_causa": {
@@ -75,10 +80,11 @@
       "url": "https://cf.shopee.com.br/file/sg-11134201-82582-mrfxhcjpv3eodc",
       "largura": 800,
       "altura": 800,
-      "alt": "Bicicleta elétrica dobrável NIUDA para adultos, ideal para viagens e deslocamentos diários.",
+      "alt": "Foto do anúncio na loja: bicicleta elétrica",
       "fonte": "anuncio-shopee",
       "coletado_em": "2026-11-18",
-      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
+      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada",
+      "alt_como_foi_escrito": "escrito por esta ilha a partir da consulta da pagina ('bicicleta elétrica'), que e a classe do veiculo; o titulo do anuncio NAO entra, porque o cartao o imprime no `<p>` encostado na foto e repeti-lo faria o leitor de tela dizer a mesma cadeia duas vezes (11/11/2026)"
      },
      "loja": "3B LOJA",
      "url_produto": "https://shopee.com.br/product/1373244943/21599581551",
@@ -109,10 +115,11 @@
       "url": "https://cf.shopee.com.br/file/sg-11134201-820nu-mnlf9y7dqolh14",
       "largura": 1024,
       "altura": 1024,
-      "alt": "Bicicleta elétrica dobrável para adultos NUDA, pedal tripulado, compras ao ar livre, viagem",
+      "alt": "Foto do anúncio na loja: bicicleta elétrica",
       "fonte": "anuncio-shopee",
       "coletado_em": "2026-11-18",
-      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
+      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada",
+      "alt_como_foi_escrito": "escrito por esta ilha a partir da consulta da pagina ('bicicleta elétrica'), que e a classe do veiculo; o titulo do anuncio NAO entra, porque o cartao o imprime no `<p>` encostado na foto e repeti-lo faria o leitor de tela dizer a mesma cadeia duas vezes (11/11/2026)"
      },
      "loja": "3CMAX16888",
      "url_produto": "https://shopee.com.br/product/1737092100/58259744161",
@@ -143,10 +150,11 @@
       "url": "https://cf.shopee.com.br/file/sg-11134201-825al-mu3ms9o7xa16e7",
       "largura": 1024,
       "altura": 1024,
-      "alt": "Bicicleta Elétrica Ebike M2 800w Litio 48v 43kmh Scooter eletrica Trabalho adulto bike eletrica  E",
+      "alt": "Foto do anúncio na loja: bicicleta elétrica",
       "fonte": "anuncio-shopee",
       "coletado_em": "2026-11-18",
-      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
+      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada",
+      "alt_como_foi_escrito": "escrito por esta ilha a partir da consulta da pagina ('bicicleta elétrica'), que e a classe do veiculo; o titulo do anuncio NAO entra, porque o cartao o imprime no `<p>` encostado na foto e repeti-lo faria o leitor de tela dizer a mesma cadeia duas vezes (11/11/2026)"
      },
      "loja": "NEGOCIO VELOZ",
      "url_produto": "https://shopee.com.br/product/1930395926/58220113046",
@@ -179,10 +187,11 @@
       "url": "https://cf.shopee.com.br/file/sg-11134201-82582-mrfxhcjpv3eodc",
       "largura": 800,
       "altura": 800,
-      "alt": "Bicicleta elétrica dobrável NIUDA para adultos, ideal para viagens e deslocamentos diários.",
+      "alt": "Foto do anúncio na loja: bicicleta elétrica",
       "fonte": "anuncio-shopee",
       "coletado_em": "2026-11-18",
-      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
+      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada",
+      "alt_como_foi_escrito": "escrito por esta ilha a partir da consulta da pagina ('bicicleta elétrica'), que e a classe do veiculo; o titulo do anuncio NAO entra, porque o cartao o imprime no `<p>` encostado na foto e repeti-lo faria o leitor de tela dizer a mesma cadeia duas vezes (11/11/2026)"
      },
      "loja": "3B LOJA",
      "url_produto": "https://shopee.com.br/product/1373244943/21599581551",
@@ -213,10 +222,11 @@
       "url": "https://cf.shopee.com.br/file/sg-11134201-820nu-mnlf9y7dqolh14",
       "largura": 1024,
       "altura": 1024,
-      "alt": "Bicicleta elétrica dobrável para adultos NUDA, pedal tripulado, compras ao ar livre, viagem",
+      "alt": "Foto do anúncio na loja: bicicleta elétrica",
       "fonte": "anuncio-shopee",
       "coletado_em": "2026-11-18",
-      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
+      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada",
+      "alt_como_foi_escrito": "escrito por esta ilha a partir da consulta da pagina ('bicicleta elétrica'), que e a classe do veiculo; o titulo do anuncio NAO entra, porque o cartao o imprime no `<p>` encostado na foto e repeti-lo faria o leitor de tela dizer a mesma cadeia duas vezes (11/11/2026)"
      },
      "loja": "3CMAX16888",
      "url_produto": "https://shopee.com.br/product/1737092100/58259744161",
@@ -275,10 +285,11 @@
       "url": "https://cf.shopee.com.br/file/br-11134207-820lr-muvpvz3vq7lsde",
       "largura": 1024,
       "altura": 1024,
-      "alt": "Bicicleta Elétrica Dobrável Adulto com Pneus A Vácuo e Bateria de Lítio",
+      "alt": "Foto do anúncio na loja: bicicleta elétrica",
       "fonte": "anuncio-shopee",
       "coletado_em": "2026-11-18",
-      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
+      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada",
+      "alt_como_foi_escrito": "escrito por esta ilha a partir da consulta da pagina ('bicicleta elétrica'), que e a classe do veiculo; o titulo do anuncio NAO entra, porque o cartao o imprime no `<p>` encostado na foto e repeti-lo faria o leitor de tela dizer a mesma cadeia duas vezes (11/11/2026)"
      },
      "loja": "3G MAX",
      "url_produto": "https://shopee.com.br/product/1800811941/22295188137",
@@ -363,10 +374,11 @@
       "url": "https://cf.shopee.com.br/file/sg-11134201-825al-mu3ms9o7xa16e7",
       "largura": 1024,
       "altura": 1024,
-      "alt": "Bicicleta Elétrica Ebike M2 800w Litio 48v 43kmh Scooter eletrica Trabalho adulto bike eletrica  E",
+      "alt": "Foto do anúncio na loja: bicicleta elétrica",
       "fonte": "anuncio-shopee",
       "coletado_em": "2026-11-18",
-      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
+      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada",
+      "alt_como_foi_escrito": "escrito por esta ilha a partir da consulta da pagina ('bicicleta elétrica'), que e a classe do veiculo; o titulo do anuncio NAO entra, porque o cartao o imprime no `<p>` encostado na foto e repeti-lo faria o leitor de tela dizer a mesma cadeia duas vezes (11/11/2026)"
      },
      "loja": "NEGOCIO VELOZ",
      "url_produto": "https://shopee.com.br/product/1930395926/58220113046",
@@ -413,6 +425,11 @@
     "par_da_f2_so_tensao": 1,
     "par_da_f2_so_amperagem": 0,
     "frase_do_par_da_f2": "Nenhum dos 14 anúncios declara a tensão E a amperagem no mesmo título (1 declara só a tensão) — e a calculadora de autonomia pede os dois.",
+    "lojas": 13,
+    "no_preco_da_mediana": 0,
+    "mesmo_titulo_em_outras_lojas": 1,
+    "lojas_do_mesmo_titulo": 1,
+    "frase_do_mesmo_preco": "",
     "lidas": 20,
     "recusadas": 5,
     "recusas_por_causa": {
@@ -451,10 +468,11 @@
       "url": "https://cf.shopee.com.br/file/br-11134207-820lf-mmpf3sxolgqu74",
       "largura": 1000,
       "altura": 1000,
-      "alt": "Patinete Elétrico Scooter 350W Adulto Alta Velocidade Bateria Longa Suporta 150kg",
+      "alt": "Foto do anúncio na loja: patinete elétrico",
       "fonte": "anuncio-shopee",
       "coletado_em": "2026-11-18",
-      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
+      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada",
+      "alt_como_foi_escrito": "escrito por esta ilha a partir da consulta da pagina ('patinete elétrico'), que e a classe do veiculo; o titulo do anuncio NAO entra, porque o cartao o imprime no `<p>` encostado na foto e repeti-lo faria o leitor de tela dizer a mesma cadeia duas vezes (11/11/2026)"
      },
      "loja": "LOMIXA",
      "url_produto": "https://shopee.com.br/product/1431395498/22899142088",
@@ -539,10 +557,11 @@
       "url": "https://cf.shopee.com.br/file/sg-11134201-8257t-mqezlfi5xwjyf4",
       "largura": 1024,
       "altura": 1024,
-      "alt": "Patinete Elétrico Com App 350W Adulto 8.5 Pol Dobrável Para Cidade",
+      "alt": "Foto do anúncio na loja: patinete elétrico",
       "fonte": "anuncio-shopee",
       "coletado_em": "2026-11-18",
-      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
+      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada",
+      "alt_como_foi_escrito": "escrito por esta ilha a partir da consulta da pagina ('patinete elétrico'), que e a classe do veiculo; o titulo do anuncio NAO entra, porque o cartao o imprime no `<p>` encostado na foto e repeti-lo faria o leitor de tela dizer a mesma cadeia duas vezes (11/11/2026)"
      },
      "loja": "ANJGG Brazil",
      "url_produto": "https://shopee.com.br/product/1510737053/58213915737",
@@ -575,10 +594,11 @@
       "url": "https://cf.shopee.com.br/file/sg-11134201-825bc-mrkfsjm69r7k19",
       "largura": 1024,
       "altura": 1024,
-      "alt": "Patinete Elétrico Dobrável 350W Adulto | infantil Até 30km/h Suspensão Reforçada Suporta 100KG",
+      "alt": "Foto do anúncio na loja: patinete elétrico",
       "fonte": "anuncio-shopee",
       "coletado_em": "2026-11-18",
-      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
+      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada",
+      "alt_como_foi_escrito": "escrito por esta ilha a partir da consulta da pagina ('patinete elétrico'), que e a classe do veiculo; o titulo do anuncio NAO entra, porque o cartao o imprime no `<p>` encostado na foto e repeti-lo faria o leitor de tela dizer a mesma cadeia duas vezes (11/11/2026)"
      },
      "loja": "verennacomerce",
      "url_produto": "https://shopee.com.br/product/1898476912/58265708355",
@@ -613,10 +633,11 @@
       "url": "https://cf.shopee.com.br/file/br-11134207-820lf-mmpf3sxolgqu74",
       "largura": 1000,
       "altura": 1000,
-      "alt": "Patinete Elétrico Scooter 350W Adulto Alta Velocidade Bateria Longa Suporta 150kg",
+      "alt": "Foto do anúncio na loja: patinete elétrico",
       "fonte": "anuncio-shopee",
       "coletado_em": "2026-11-18",
-      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
+      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada",
+      "alt_como_foi_escrito": "escrito por esta ilha a partir da consulta da pagina ('patinete elétrico'), que e a classe do veiculo; o titulo do anuncio NAO entra, porque o cartao o imprime no `<p>` encostado na foto e repeti-lo faria o leitor de tela dizer a mesma cadeia duas vezes (11/11/2026)"
      },
      "loja": "LOMIXA",
      "url_produto": "https://shopee.com.br/product/1431395498/22899142088",
@@ -649,10 +670,11 @@
       "url": "https://cf.shopee.com.br/file/br-11134207-820lh-ms3mgtydplvq67",
       "largura": 1024,
       "altura": 1024,
-      "alt": "Patinete Elétrico 550W Scooter de Alumínio Para Adultos,40 KM/H, Dobravel Com Bluetooth Com Bolsa",
+      "alt": "Foto do anúncio na loja: patinete elétrico",
       "fonte": "anuncio-shopee",
       "coletado_em": "2026-11-18",
-      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
+      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada",
+      "alt_como_foi_escrito": "escrito por esta ilha a partir da consulta da pagina ('patinete elétrico'), que e a classe do veiculo; o titulo do anuncio NAO entra, porque o cartao o imprime no `<p>` encostado na foto e repeti-lo faria o leitor de tela dizer a mesma cadeia duas vezes (11/11/2026)"
      },
      "loja": "Super mantimentos comprar",
      "url_produto": "https://shopee.com.br/product/1430771203/58253809160",
@@ -737,10 +759,11 @@
       "url": "https://cf.shopee.com.br/file/sg-11134201-8257t-mqezlfi5xwjyf4",
       "largura": 1024,
       "altura": 1024,
-      "alt": "Patinete Elétrico Com App 350W Adulto 8.5 Pol Dobrável Para Cidade",
+      "alt": "Foto do anúncio na loja: patinete elétrico",
       "fonte": "anuncio-shopee",
       "coletado_em": "2026-11-18",
-      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
+      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada",
+      "alt_como_foi_escrito": "escrito por esta ilha a partir da consulta da pagina ('patinete elétrico'), que e a classe do veiculo; o titulo do anuncio NAO entra, porque o cartao o imprime no `<p>` encostado na foto e repeti-lo faria o leitor de tela dizer a mesma cadeia duas vezes (11/11/2026)"
      },
      "loja": "ANJGG Brazil",
      "url_produto": "https://shopee.com.br/product/1510737053/58213915737",
@@ -773,10 +796,11 @@
       "url": "https://cf.shopee.com.br/file/sg-11134201-825bc-mrkfsjm69r7k19",
       "largura": 1024,
       "altura": 1024,
-      "alt": "Patinete Elétrico Dobrável 350W Adulto | infantil Até 30km/h Suspensão Reforçada Suporta 100KG",
+      "alt": "Foto do anúncio na loja: patinete elétrico",
       "fonte": "anuncio-shopee",
       "coletado_em": "2026-11-18",
-      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
+      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada",
+      "alt_como_foi_escrito": "escrito por esta ilha a partir da consulta da pagina ('patinete elétrico'), que e a classe do veiculo; o titulo do anuncio NAO entra, porque o cartao o imprime no `<p>` encostado na foto e repeti-lo faria o leitor de tela dizer a mesma cadeia duas vezes (11/11/2026)"
      },
      "loja": "verennacomerce",
      "url_produto": "https://shopee.com.br/product/1898476912/58265708355",
@@ -809,10 +833,11 @@
       "url": "https://cf.shopee.com.br/file/sg-11134201-8226g-mht6tgyq29s3ec",
       "largura": 500,
       "altura": 500,
-      "alt": "Patinete Elétrico Scooter Adulto 150w Dobrável Até 60kg",
+      "alt": "Foto do anúncio na loja: patinete elétrico",
       "fonte": "anuncio-shopee",
       "coletado_em": "2026-11-18",
-      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
+      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada",
+      "alt_como_foi_escrito": "escrito por esta ilha a partir da consulta da pagina ('patinete elétrico'), que e a classe do veiculo; o titulo do anuncio NAO entra, porque o cartao o imprime no `<p>` encostado na foto e repeti-lo faria o leitor de tela dizer a mesma cadeia duas vezes (11/11/2026)"
      },
      "loja": "Auto Home Shop",
      "url_produto": "https://shopee.com.br/product/945531325/22294726082",
@@ -843,10 +868,11 @@
       "url": "https://cf.shopee.com.br/file/sg-11134202-8257y-mrfzdzncinm4c3",
       "largura": 800,
       "altura": 800,
-      "alt": "Patinete Elétrico Scooter 350W 10\" com Amortecedor e App GPS Dobrável Super Autonomia para adultos até 150kg",
+      "alt": "Foto do anúncio na loja: patinete elétrico",
       "fonte": "anuncio-shopee",
       "coletado_em": "2026-11-18",
-      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
+      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada",
+      "alt_como_foi_escrito": "escrito por esta ilha a partir da consulta da pagina ('patinete elétrico'), que e a classe do veiculo; o titulo do anuncio NAO entra, porque o cartao o imprime no `<p>` encostado na foto e repeti-lo faria o leitor de tela dizer a mesma cadeia duas vezes (11/11/2026)"
      },
      "loja": "casa.simples",
      "url_produto": "https://shopee.com.br/product/1204146211/58215484215",
@@ -877,10 +903,11 @@
       "url": "https://cf.shopee.com.br/file/br-11134207-820l9-mvdzbxmk3k001d",
       "largura": 1024,
       "altura": 1024,
-      "alt": "Patinete Elétrico Safe Drop Go-x06 250w Dobrável Adulto Preto",
+      "alt": "Foto do anúncio na loja: patinete elétrico",
       "fonte": "anuncio-shopee",
       "coletado_em": "2026-11-18",
-      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
+      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada",
+      "alt_como_foi_escrito": "escrito por esta ilha a partir da consulta da pagina ('patinete elétrico'), que e a classe do veiculo; o titulo do anuncio NAO entra, porque o cartao o imprime no `<p>` encostado na foto e repeti-lo faria o leitor de tela dizer a mesma cadeia duas vezes (11/11/2026)"
      },
      "loja": "Atacadão 2 Rodas ",
      "url_produto": "https://shopee.com.br/product/332611258/58272768414",
@@ -911,10 +938,11 @@
       "url": "https://cf.shopee.com.br/file/sg-11134201-8259s-murw560zitc2de",
       "largura": 1024,
       "altura": 1024,
-      "alt": "HONEYWHALE M1 MAX Patinete Elétrico Adulto 500W 32KM/H 22KM",
+      "alt": "Foto do anúncio na loja: patinete elétrico",
       "fonte": "anuncio-shopee",
       "coletado_em": "2026-11-18",
-      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
+      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada",
+      "alt_como_foi_escrito": "escrito por esta ilha a partir da consulta da pagina ('patinete elétrico'), que e a classe do veiculo; o titulo do anuncio NAO entra, porque o cartao o imprime no `<p>` encostado na foto e repeti-lo faria o leitor de tela dizer a mesma cadeia duas vezes (11/11/2026)"
      },
      "loja": "diane achadinhos",
      "url_produto": "https://shopee.com.br/product/391072114/58271461235",
@@ -947,10 +975,11 @@
       "url": "https://cf.shopee.com.br/file/sg-11134201-81zvc-mmj6kp27nj7p8e",
       "largura": 1024,
       "altura": 1024,
-      "alt": "Patinete Elétrico Importway 150W Dobrável IWPEL150 Até 14km/h Adulto Preto",
+      "alt": "Foto do anúncio na loja: patinete elétrico",
       "fonte": "anuncio-shopee",
       "coletado_em": "2026-11-18",
-      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
+      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada",
+      "alt_como_foi_escrito": "escrito por esta ilha a partir da consulta da pagina ('patinete elétrico'), que e a classe do veiculo; o titulo do anuncio NAO entra, porque o cartao o imprime no `<p>` encostado na foto e repeti-lo faria o leitor de tela dizer a mesma cadeia duas vezes (11/11/2026)"
      },
      "loja": "Koala Parts SC",
      "url_produto": "https://shopee.com.br/product/1355216109/58208141735",
@@ -983,10 +1012,11 @@
       "url": "https://cf.shopee.com.br/file/sg-11134201-824gy-mpzbn5iwa87j4c",
       "largura": 1024,
       "altura": 1024,
-      "alt": "Patinete Elétrico Dobrável Adulto com Assento Controle Bluetooth Suspensão LED 500W",
+      "alt": "Foto do anúncio na loja: patinete elétrico",
       "fonte": "anuncio-shopee",
       "coletado_em": "2026-11-18",
-      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
+      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada",
+      "alt_como_foi_escrito": "escrito por esta ilha a partir da consulta da pagina ('patinete elétrico'), que e a classe do veiculo; o titulo do anuncio NAO entra, porque o cartao o imprime no `<p>` encostado na foto e repeti-lo faria o leitor de tela dizer a mesma cadeia duas vezes (11/11/2026)"
      },
      "loja": "ANJGG Brazil",
      "url_produto": "https://shopee.com.br/product/1510737053/58213326444",
@@ -1058,7 +1088,7 @@
  "nao_nasceram": [
   {
    "id": "moto-eletrica",
-   "causa": "menos de 3 anuncios que servem COM link e preco: 2",
+   "causa": "menos de 3 anuncios que servem COM link e preco: 1",
    "colhido_em": "2026-11-18"
   }
  ]

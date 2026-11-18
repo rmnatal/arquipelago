@@ -84,7 +84,7 @@
       "h1": "Patinete elétrico",
       "description": "Os patinetes elétricos de adulto que estão à venda hoje, com a faixa de preço medida na loja, o que cada anúncio declara de potência — e o que ele não declara.",
       "resposta": [
-        "Para adulto, o patinete elétrico à venda hoje custa de {DE} a {ATE}, com a mediana em {MEDIANA} sobre os {N} anúncios que a gente conferiu em {DATA}.",
+        "Para adulto, o patinete elétrico à venda hoje custa de {DE} a {ATE}, com a mediana em {MEDIANA} sobre os {N} anúncios de {LOJAS} lojas que a gente conferiu em {DATA}. {FRASE_DO_MESMO_PRECO}",
         "Na faixa de baixo você leva um patinete de cidade, dobrável, de trajeto curto; em cima entra pneu maior e bateria que aguenta ladeira — e nenhum deles dispensa a conta de autonomia, porque o km do anúncio é o km de quem pesa menos que você.",
         "E o terceiro número, o que decide se o veículo aguenta você: {FRASE_DA_CARGA}"
       ],
@@ -149,7 +149,7 @@
       "h1": "Bicicleta elétrica",
       "description": "As bicicletas elétricas de adulto à venda hoje, com a faixa de preço medida na loja e o que cada anúncio declara de potência e bateria.",
       "resposta": [
-        "A bicicleta elétrica de adulto à venda hoje custa de {DE} a {ATE}, com a mediana em {MEDIANA} sobre os {N} anúncios que a gente conferiu em {DATA}.",
+        "A bicicleta elétrica de adulto à venda hoje custa de {DE} a {ATE}, com a mediana em {MEDIANA} sobre os {N} anúncios de {LOJAS} lojas que a gente conferiu em {DATA}. {FRASE_DO_MESMO_PRECO}",
         "{FRASE_DO_DOBRAVEL} {FRASE_DO_PIVO}",
         "E o número que falta em todos: {FRASE_DA_CARGA}"
       ],
@@ -214,7 +214,7 @@
       "h1": "Moto elétrica",
       "description": "As motos e scooters elétricas de adulto à venda hoje, com a faixa de preço medida na loja e o que cada anúncio declara de bateria — e o que ele não declara.",
       "resposta": [
-        "A moto elétrica de adulto à venda hoje custa de {DE} a {ATE}, com a mediana em {MEDIANA} sobre os {N} anúncios que a gente conferiu em {DATA}.",
+        "A moto elétrica de adulto à venda hoje custa de {DE} a {ATE}, com a mediana em {MEDIANA} sobre os {N} anúncios de {LOJAS} lojas que a gente conferiu em {DATA}. {FRASE_DO_MESMO_PRECO}",
         "A faixa é larga porque debaixo do mesmo nome a loja vende veículos diferentes: tem a de trilha, com freio hidráulico e bateria grande, e tem a scooter de rua, que é a de andar na cidade. Compare dentro da mesma, nunca entre as duas — preço de uma não é referência para a outra.",
         "E a pergunta que traz você até aqui: sobre habilitação esta página não responde, e o motivo está no fim, escrito. O que ela responde é o preço, o que cada anúncio declara de bateria e o que falta no título para você decidir. {FRASE_DA_CARGA}"
       ],

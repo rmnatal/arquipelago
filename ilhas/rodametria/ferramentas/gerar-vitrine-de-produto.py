@@ -282,6 +282,118 @@ def frase_da_carga(n, declaram, menor, maior):
             % (declaram, n, menor, maior))
 
 
+# ---------------------------------------------------------------------------
+# A FRASE DO MESMO PRECO — ITEM 4 DO DESPACHO DA RONDA DE 18/11/2026, e ela
+# existe porque a pagina publicava uma MEDIANA COLADA NO PISO sem dizer por que.
+#
+# MEDIDO NO AR em `/veiculos/bicicleta-eletrica/` as 15h0xZ de 18/11/2026, na
+# pagina de 673 mil buscas/mes: *"custa de R$ 2.299,99 a R$ 6.199,90, com a
+# mediana em R$ 2.299,99 sobre os 7 anuncios que a gente conferiu"*. A
+# aritmetica esta CERTA e foi refeita a mao — a mediana de 7 e o 4o, e o 4o e
+# 2.299,99 porque SEIS dos sete custam exatamente isso. O que a frase nao diz e
+# que ela nao informa dispersao nenhuma: ela parece uma faixa medida e e um
+# preco repetido seis vezes mais um ponto solto.
+#
+# E TRES DOS SETE SERVEM O MESMO TITULO, LETRA POR LETRA, EM TRES LOJAS
+# DIFERENTES, pelo mesmo preco (`3G MAX`, `FLBAZAR`, `3FMAXLTDA`, R$ 2.299,99).
+#
+# POR QUE A SAIDA NAO E DEDUPLICAR, e isto nao e escolha nova: esta ilha ja
+# decidiu duas vezes que titulo entre lojas NAO prova produto — em 04/11, no
+# `escolher_carrossel` (*"deduplicar oferta equivalente exigiria afirmar que dois
+# anuncios de duas lojas SAO o mesmo produto, e esta ilha nao mede isso"*) e em
+# 16/11, no `marcar_repeticao_da_loja` (*"a identidade e de UMA loja so"*). O
+# despacho de hoje oferece as duas saidas, e a primeira — "nenhum preco se repete
+# mais de duas vezes" — exigiria tirar da tela oferta de loja de verdade por
+# semelhanca de texto. MEDIDO HOJE, a semelhanca nem alcanca o caso: agrupados
+# por titulo identico E preco identico, os 7 anuncios dao CINCO chaves (um grupo
+# de 3 e quatro sozinhos), nao "2 produtos" — a leitura de que os outros tres sao
+# "a mesma dobravel NIUDA/NUDA com texto reescrito" e julgamento de quem leu, e
+# esta ilha nao tem como prova-la.
+#
+# ENTAO O CONSERTO E A FRASE CONTAR O QUE ELA CONTA, que e a segunda saida do
+# despacho e a que o 25.10 ja exige do degrau: o numero fica, a repeticao e DITA,
+# e quem le sabe que a mediana e igual ao piso porque o mercado publica um preco
+# so. Numero que ninguem explica e numero que engana sem mentir.
+def contagem_do_mesmo_preco(servem, mediana):
+    """(lojas, no_preco_da_mediana, maior_grupo_de_titulo, lojas_desse_grupo).
+
+    O grupo de titulo e a chave do COLETOR (`chave_de_oferta_da_loja`, que tira
+    a cabeca de campanha do titulo) MAIS o preco identico ao centavo, e ele so
+    conta quando as lojas sao DIFERENTES — dentro de uma loja so, a repeticao ja
+    e tirada da pagina por `marcar_repeticao_da_loja` desde 16/11/2026, e
+    contar de novo aqui seria a mesma oferta somada duas vezes.
+
+    A REGUA E DE IDENTIDADE E NUNCA DE SEMELHANCA, e e isso que a mantem do lado
+    de ca das duas decisoes desta ilha (04/11 e 16/11): titulo IGUAL letra por
+    letra e preco IGUAL ao centavo e um fato publicado pelas lojas, nao um
+    julgamento nosso sobre qual produto e qual. Ela nao tira ninguem da tela:
+    declara.
+    """
+    lojas = len({(a.get('loja') or '').strip() for a in servem})
+
+    no_preco = sum(1 for a in servem if a.get('preco') == mediana)
+
+    grupos = {}
+    for a in servem:
+        chave = (rel.chave_de_oferta_da_loja(a.get('titulo')), a.get('preco'))
+        if not chave[0] or chave[1] is None:
+            continue
+        grupos.setdefault(chave, []).append(a)
+
+    maior, lojas_do_maior = 1, 1
+    for grupo in grupos.values():
+        lojas_do_grupo = {(a.get('loja') or '').strip() for a in grupo}
+        if len(grupo) > maior and len(lojas_do_grupo) > 1:
+            maior, lojas_do_maior = len(grupo), len(lojas_do_grupo)
+
+    return lojas, no_preco, maior, lojas_do_maior
+
+
+def frase_do_mesmo_preco(n, lojas, no_preco, preco_txt, mesmo_titulo, lojas_do_titulo):
+    """A frase que explica a mediana colada no piso. Forma muda com o mundo.
+
+    `no_preco` e quantos dos `n` anuncios custam exatamente `preco_txt` (o preco
+    da mediana). `mesmo_titulo` e o maior grupo de anuncios que servem o MESMO
+    titulo — depois de tirada a cabeca de campanha, pela mesma chave do coletor —
+    ao MESMO preco, em `lojas_do_titulo` lojas diferentes.
+    """
+    pedacos = []
+    # O RAMO QUE CALA: sem preco repetido a frase nao tem o que explicar, e
+    # inventar uma seria prosa sobre o nada. A pagina do patinete de hoje cai
+    # aqui (14 anuncios, 13 precos distintos).
+    if no_preco >= 2 and no_preco * 2 > n:
+        pedacos.append('A mediana é igual ao menor preço porque %d dos %d anúncios '
+                       'custam exatamente %s' % (no_preco, n, preco_txt))
+
+    if mesmo_titulo >= 2:
+        pedacos.append('%d deles servem o mesmo título, em %d lojas diferentes'
+                       % (mesmo_titulo, lojas_do_titulo))
+
+    if not pedacos:
+        return ''
+
+    return '%s.' % ', e '.join(pedacos) if len(pedacos) == 2 else '%s.' % pedacos[0]
+
+
+MUNDOS_DO_MESMO_PRECO = (
+    # (n, lojas, no_preco, preco_txt, mesmo_titulo, lojas_do_titulo, pedaco exigido)
+    # O MUNDO MEDIDO HOJE na bicicleta, e ele e a razao desta frase existir.
+    (7, 7, 6, 'R$ 2.299,99', 3, 3, 'porque 6 dos 7 anúncios custam exatamente'),
+    (7, 7, 6, 'R$ 2.299,99', 3, 3, '3 deles servem o mesmo título, em 3 lojas'),
+    # O MUNDO DO PATINETE DE HOJE: preco repetido DUAS vezes em 14 nao arrasta a
+    # mediana e nao engana ninguem — a frase CALA. Dizer todo numero que se conta
+    # vira ruido na pagina sa, e ruido e o que faz leitor parar de ler numero.
+    (14, 14, 2, 'R$ 1.369,55', 1, 1, ''),
+    # SO A METADE DO TITULO: preco minoritario, titulo repetido entre lojas. Ela
+    # sai sozinha porque titulo identico em duas lojas e informacao para quem
+    # compara, em qualquer proporcao de preco.
+    (10, 10, 2, 'R$ 1.000,00', 2, 2, 'servem o mesmo título, em 2 lojas'),
+    # O MUNDO LIMPO: nada repetido, frase VAZIA. Ramo que cala e ramo, e sem
+    # mundo para ele a funcao passaria a afirmar repeticao onde nao ha.
+    (5, 5, 1, 'R$ 1.000,00', 1, 1, ''),
+)
+
+
 MUNDOS_DA_CARGA = (
     # (n, declaram, menor, maior, pedaco que a frase tem de conter)
     (6, 0, None, None, 'Nenhum dos 6'),
@@ -645,31 +757,73 @@ def rel_quarentena(bloco):
     return _coletor().causas_em_quarentena(bloco)
 
 
-def imagem_do_cartao(anuncio, nome_na_tela):
-    """A foto do cartao, com o `alt` DERIVADO do nome que a tela publica.
+def alt_da_foto(consulta):
+    """O `alt` da foto do cartao, ESCRITO PELA ILHA a partir da consulta da
+    pagina — nunca copiado do titulo do anuncio.
 
-    O `alt` e texto da pagina: quem o le e leitor de tela e a camada de imagem
-    que o buscador indexa, e nele valem as mesmas regras do nome visivel. O
-    banco segue guardando o `alt` como a loja escreveu o titulo — o que esta
-    funcao faz e escolher o que VAI A TELA, sem tocar na procedencia.
+    POR QUE NAO E O TITULO, e isto esta MEDIDO e nao suposto (18/11/2026). Ate
+    hoje esta funcao gravava `alt = nome_na_tela`, o MESMO nome que o cartao
+    imprime tres linhas abaixo, e a casca servia `alt=""` sempre que os dois
+    fossem iguais (decisao de 11/11/2026, para o leitor de tela nao ouvir o
+    titulo duas vezes por cartao). As duas decisoes estao certas sozinhas e
+    COMPOSTAS garantiam atributo VAZIO EM TODO CARTAO, para sempre: medido no
+    banco de hoje, `imagem.alt` era igual a `nome` em 20 de 20 registros com
+    foto, ZERO diferentes, e no ar as 7 fotos saiam com `alt=""`. Foto de
+    produto dentro de cartao de compra e CONTEUDO, e `alt=""` declara
+    decoracao: leitor de tela pula a unica coisa da pagina que mostra o
+    veiculo.
 
-    E O `alt` E O NOME INTEIRO, SEM CORTE, e isto e uma borda medida e nao
-    descuido. A casca serve `alt=""` quando o `alt` e IGUAL ao nome que o cartao
-    imprime tres linhas abaixo (decisao de 11/11/2026: leitor de tela ouviria o
-    titulo duas vezes por cartao). Com o corte em 120 que o coletor usa, um nome
-    de 121 caracteres produziria um `alt` QUASE igual — e a trava de 11/11
-    deixaria de disparar em silencio, servindo o nome truncado no atributo e o
-    nome inteiro ao lado: o defeito de 11/11 de volta, pior, porque as duas
-    cadeias nao sao nem iguais. O nome mais longo da vitrine de hoje tem
-    exatamente 120 caracteres — a borda esta a um titulo de distancia. Quem
-    decide se o atributo vai vazio e a casca; o trabalho daqui e entregar a ela a
-    unica cadeia que ela sabe comparar.
+    E NENHUM PORTAO VIA, porque cada um media a propria metade: o do ar cobra
+    que o `alt` NAO repita a prosa vizinha (`alts_que_repetem_a_prosa_vizinha`,
+    que ignora atributo vazio de proposito) e o do chao cobrava que o campo
+    EXISTISSE no banco. Entre "nao repete" e "existe" cabe o vazio inteiro.
+
+    O QUE A ILHA SABE DIZER DA FOTO SEM COPIAR O ANUNCIO e a CLASSE DO VEICULO,
+    que e a consulta da propria pagina — dado, nunca prosa digitada —, mais a
+    procedencia da imagem, que e da loja e nao desta ilha. Marca do produto NAO
+    entra: ela so existe dentro do titulo, e adivinha-la do titulo seria
+    inventar certeza que o banco nao tem (26).
+    """
+    classe = (consulta or '').strip()
+    if not classe:
+        raise ValueError('consulta vazia: o `alt` da foto sai da classe do '
+                         'veiculo da pagina, e sem ela nao ha o que escrever')
+
+    return 'Foto do anúncio na loja: %s' % classe
+
+
+def imagem_do_cartao(anuncio, nome_na_tela, consulta):
+    """A foto do cartao, com o `alt` escrito pela ilha (ver `alt_da_foto`).
+
+    O banco de coleta segue guardando em `imagem.alt` o nome do anuncio — o que
+    esta funcao faz e escolher o que VAI A TELA, sem tocar na procedencia. O
+    titulo cru continua em `titulo`, no `anuncios-por-consulta.json`.
+
+    A TRAVA E POSITIVA E DENUNCIA (20.8): atributo vazio, ou igual ao nome que o
+    cartao imprime ao lado, para a geracao aqui em vez de chegar a tela e virar
+    `alt=""` calado na casca. A guarda de 11/11/2026 na casca continua la, e
+    passa a ser ultimo recurso: com esta trava ela nao tem como disparar.
     """
     imagem = anuncio.get('imagem')
     if not imagem:
         return imagem
     nova = dict(imagem)
-    nova['alt'] = nome_na_tela or ''
+    nova['alt'] = alt_da_foto(consulta)
+    nova['alt_como_foi_escrito'] = (
+        'escrito por esta ilha a partir da consulta da pagina (%r), que e a '
+        'classe do veiculo; o titulo do anuncio NAO entra, porque o cartao o '
+        'imprime no `<p>` encostado na foto e repeti-lo faria o leitor de tela '
+        'dizer a mesma cadeia duas vezes (11/11/2026)' % ((consulta or '').strip(),))
+
+    if not nova['alt'].strip():
+        raise ValueError('`alt` da foto saiu vazio: atributo vazio declara '
+                         'imagem decorativa, e foto de produto em cartao de '
+                         'compra e conteudo')
+    if nova['alt'] == (nome_na_tela or ''):
+        raise ValueError('`alt` da foto saiu IGUAL ao nome que o cartao imprime '
+                         'ao lado (%r): a casca o esvaziaria pela guarda de '
+                         '11/11/2026 e a foto voltaria a ser decorativa'
+                         % (nome_na_tela,))
 
     return nova
 
@@ -837,7 +991,7 @@ def montar(bloco, editorial_da_pagina):
             # 32.5-c ao pe da letra — e quem leu o `alt` foi um `grep` por
             # `11.11` no HTML servido, nao um portao. Derivar aqui, do mesmo
             # campo, e o que torna as duas metades incapazes de divergir.
-            'imagem': imagem_do_cartao(a, nome_na_tela),
+            'imagem': imagem_do_cartao(a, nome_na_tela, bloco['consulta']),
             'loja': a['loja'],
             # ITEM 4 DO DESPACHO DE 30/10/2026 — O PAR DA 25.4-b E O PISO DA 25.2.
             # As 21 ofertas desta vitrine iam para a tela com SO `url`, o
@@ -881,6 +1035,10 @@ def montar(bloco, editorial_da_pagina):
         if not a['serve']:
             recusas[a['recusado_por']] = recusas.get(a['recusado_por'], 0) + 1
 
+    # A CONTAGEM DO MESMO PRECO, FEITA UMA VEZ: o dicionario e o portao leem o
+    # mesmo numero, nunca cada um a sua conta (20.7).
+    _mp = contagem_do_mesmo_preco(servem, round(statistics.median(precos), 2))
+
     return {
         'id': bloco['id'],
         'consulta': bloco['consulta'],
@@ -917,6 +1075,17 @@ def montar(bloco, editorial_da_pagina):
             'par_da_f2_so_amperagem': par_so_ah,
             'frase_do_par_da_f2': frase_do_par_da_f2(len(servem), par_dois,
                                                      par_so_v, par_so_ah),
+            # ITEM 4 DO DESPACHO DE 18/11/2026 — A FRASE CONTA O QUE ELA CONTA.
+            # `lojas` vai a tela porque "7 anuncios" e "7 lojas" sao dois fatos
+            # diferentes e a frase afirmava um so; as outras tres sao o que
+            # explica a mediana colada no piso. Ver `frase_do_mesmo_preco`.
+            'lojas': _mp[0],
+            'no_preco_da_mediana': _mp[1],
+            'mesmo_titulo_em_outras_lojas': _mp[2],
+            'lojas_do_mesmo_titulo': _mp[3],
+            'frase_do_mesmo_preco': frase_do_mesmo_preco(
+                len(servem), _mp[0], _mp[1], real(statistics.median(precos)),
+                _mp[2], _mp[3]),
             'lidas': bloco['resumo']['ofertas_lidas'],
             'recusadas': bloco['resumo']['ofertas_recusadas'],
             'recusas_por_causa': recusas,
@@ -1185,6 +1354,90 @@ def conferir():
         if n == 1 and ('dos 1' in frase or 'Os 1 ' in frase or 'os 1 ' in frase):
             falhas.append('frase_do_rotulo(%d,%d,%d) escreve "1" onde o portugues '
                           'pede "o unico": %r' % (n, decl_w, dizem, frase))
+
+    # OS MUNDOS DA FRASE DO MESMO PRECO (item 4 do despacho de 18/11/2026). O
+    # banco de hoje produz DOIS deles: a bicicleta, que e a razao da frase
+    # existir, e o silencio do patinete. Os outros dois sao fabricados — e o
+    # VAZIO e o mais importante, porque frase que nao sabe calar afirma
+    # repeticao onde nao ha.
+    for n, lojas, no_preco, preco_txt, mt, lmt, pedaco in MUNDOS_DO_MESMO_PRECO:
+        afirmacoes += 1
+        frase = frase_do_mesmo_preco(n, lojas, no_preco, preco_txt, mt, lmt)
+        if pedaco not in frase:
+            falhas.append('frase_do_mesmo_preco(%s,%s,%s,%r,%s,%s) nao traz %r: %r'
+                          % (n, lojas, no_preco, preco_txt, mt, lmt, pedaco, frase))
+        afirmacoes += 1
+        # O RAMO QUE CALA TEM DE CALAR: pedaco vazio e mundo que exige frase
+        # vazia, e nao mundo que aceita qualquer frase.
+        if pedaco == '' and frase != '':
+            falhas.append('frase_do_mesmo_preco(%s,%s,%s,%r,%s,%s) deveria CALAR e '
+                          'falou: %r' % (n, lojas, no_preco, preco_txt, mt, lmt, frase))
+        afirmacoes += 1
+        # NUMERO DIGITADO NAO ENTRA NA FRASE: se o preco nao vem do argumento, a
+        # frase esta afirmando um preco que o banco nao mediu.
+        if frase and no_preco >= 2 and no_preco * 2 > n and preco_txt not in frase:
+            falhas.append('frase_do_mesmo_preco nao imprime o preco que recebeu '
+                          '(%r): %r' % (preco_txt, frase))
+
+    # A CONTAGEM DO MESMO PRECO, REFEITA POR UMA SEGUNDA REGUA ESCRITA DE OUTRO
+    # JEITO (20.8). Comparar `gravado` com `calculado` nao prova esta contagem:
+    # os dois saem da MESMA funcao, e o laco de campos acima ja faz isso. O que
+    # prova e uma passada independente sobre o banco — contagem de loja por
+    # dicionario, sem reusar `contagem_do_mesmo_preco` —, e e ela que acusaria a
+    # funcao nova se ela passasse a contar grupo de UMA loja (que a irma de 16/11
+    # ja tira da pagina) ou a somar grupos diferentes.
+    for g in calculado['paginas']:
+        bloco = next((b for b in ler(ANUNCIOS)['consultas'] if b['id'] == g['id']), None)
+        if bloco is None:
+            continue
+        ad = [a for a in bloco['anuncios']
+              if _coletor().entra_na_pagina(a) and a.get('preco') is not None]
+        mediana_num = round(statistics.median(sorted(a['preco'] for a in ad)), 2)
+
+        lojas_vistas, grupos = set(), {}
+        for a in ad:
+            lojas_vistas.add((a.get('loja') or '').strip())
+            ch = (rel.chave_de_oferta_da_loja(a.get('titulo')), a.get('preco'))
+            if ch[0] and ch[1] is not None:
+                grupos.setdefault(ch, set()).add((a.get('loja') or '').strip())
+                grupos[ch].add((a.get('loja') or '').strip())
+        quantos = {}
+        for a in ad:
+            ch = (rel.chave_de_oferta_da_loja(a.get('titulo')), a.get('preco'))
+            if ch[0] and ch[1] is not None:
+                quantos[ch] = quantos.get(ch, 0) + 1
+        maior_mt, maior_lojas = 1, 1
+        for ch, n_ad in quantos.items():
+            if n_ad > maior_mt and len(grupos[ch]) > 1:
+                maior_mt, maior_lojas = n_ad, len(grupos[ch])
+
+        afirmacoes += 1
+        if g['numeros']['lojas'] != len(lojas_vistas):
+            falhas.append('%s: `lojas` gravado %s e a segunda regua conta %s'
+                          % (g['id'], g['numeros']['lojas'], len(lojas_vistas)))
+        afirmacoes += 1
+        no_preco = sum(1 for a in ad if a['preco'] == mediana_num)
+        if g['numeros']['no_preco_da_mediana'] != no_preco:
+            falhas.append('%s: `no_preco_da_mediana` gravado %s e a segunda regua '
+                          'conta %s' % (g['id'], g['numeros']['no_preco_da_mediana'],
+                                        no_preco))
+        afirmacoes += 1
+        if (g['numeros']['mesmo_titulo_em_outras_lojas'],
+                g['numeros']['lojas_do_mesmo_titulo']) != (maior_mt, maior_lojas):
+            falhas.append('%s: o grupo de titulo igual gravado %r e a segunda regua '
+                          'acha %r' % (g['id'],
+                                       (g['numeros']['mesmo_titulo_em_outras_lojas'],
+                                        g['numeros']['lojas_do_mesmo_titulo']),
+                                       (maior_mt, maior_lojas)))
+        # O GRUPO NUNCA E DE UMA LOJA SO: dentro de uma loja a repeticao ja sai
+        # da pagina desde 16/11, e conta-la aqui seria a mesma oferta duas vezes.
+        afirmacoes += 1
+        if g['numeros']['mesmo_titulo_em_outras_lojas'] > 1 and \
+                g['numeros']['lojas_do_mesmo_titulo'] < 2:
+            falhas.append('%s: grupo de titulo igual com %s anuncios e %s loja(s): '
+                          'repeticao de UMA loja nao entra nesta contagem'
+                          % (g['id'], g['numeros']['mesmo_titulo_em_outras_lojas'],
+                             g['numeros']['lojas_do_mesmo_titulo']))
 
     # OS CINCO MUNDOS DA FRASE DA CARGA, e o banco de hoje produz DOIS deles (o
     # vazio na bicicleta e a faixa no patinete). Os outros tres sao fabricados

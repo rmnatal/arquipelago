@@ -757,7 +757,7 @@
    ],
    "resumo": {
     "ofertas_lidas": 20,
-    "ofertas_que_servem": 2,
+    "ofertas_que_servem": 1,
     "ofertas_recusadas": 17,
     "recusas_por_causa": {
      "fora_da_familia": 5,
@@ -765,22 +765,22 @@
      "brinquedo": 2,
      "outra_familia_na_cabeca": 1
     },
-    "ofertas_com_link_de_afiliado": 2,
+    "ofertas_com_link_de_afiliado": 1,
     "abre_o_portao_da_30_2": false,
     "numero_proprio_pedido": "faixa_de_preco",
     "numero_proprio": null,
     "motivo_sem_numero_proprio": "menos de 3 anuncios com preco",
     "contagem_de_rotulo_de_potencia": {
      "sem_watt": 0,
-     "watt_sem_rotulo": 1,
+     "watt_sem_rotulo": 0,
      "nominal": 0,
      "pico": 1,
      "os_dois": 0,
-     "declaram_watt": 2,
+     "declaram_watt": 1,
      "dizem_qual_watt": 1
     },
-    "ofertas_aposentadas_nesta_coleta": 1,
-    "ofertas_aposentadas": 1,
+    "ofertas_aposentadas_nesta_coleta": 2,
+    "ofertas_aposentadas": 2,
     "ofertas_repetidas_pela_loja": 0
    },
    "anuncios": [
@@ -1060,46 +1060,6 @@
       "adulto"
      ],
      "rotulo_de_potencia": "pico",
-     "url_afiliado_gerada_em": "2026-11-18"
-    },
-    {
-     "item_id": 58215666648,
-     "shop_id": 1136378529,
-     "titulo": "Scooter (Bike) Elétrica Foston X15 Max (X13 EX) 1000w 32km/h Moto Elétrica Adulto Bateria Litio Painel Led - SEM CNH",
-     "preco": 8500.0,
-     "moeda": "BRL",
-     "loja": "RWX BIKES LTDA.",
-     "nota": "0",
-     "vendas": 0,
-     "tipo_de_loja": [],
-     "imagem": {
-      "url": "https://cf.shopee.com.br/file/br-11134207-820m4-mrft526utedjf2",
-      "largura": 1024,
-      "altura": 1024,
-      "alt": "Scooter (Bike) Elétrica Foston X15 Max (X13 EX) 1000w 32km/h Moto Elétrica Adulto Bateria Litio Painel Led - SEM CNH",
-      "fonte": "anuncio-shopee",
-      "coletado_em": "2026-11-18",
-      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
-     },
-     "motivo_sem_imagem": null,
-     "url_produto": "https://shopee.com.br/product/1136378529/58215666648",
-     "url_afiliado": "https://s.shopee.com.br/3B91iHuXPR",
-     "motivo_sem_link": null,
-     "sub_id_1": "rodametria",
-     "sub_id_2": "motoeletrica",
-     "fonte": "anuncio-shopee",
-     "coletado_em": "2026-11-18",
-     "chave_que_achou": "moto eletrica adulto",
-     "degrau_da_escada": 1,
-     "serve": true,
-     "recusado_por": null,
-     "exigencia_que_faltou": null,
-     "exigencias_atendidas": [
-      "moto",
-      "eletric",
-      "adulto"
-     ],
-     "rotulo_de_potencia": "watt_sem_rotulo",
      "url_afiliado_gerada_em": "2026-11-18"
     },
     {
@@ -1387,7 +1347,8 @@
     }
    ],
    "anuncios_aposentados": [
-    "APOSENTADO EM 2026-11-16 — item 23598774355 da loja 1329464417 — Scooter Moto Elétrica 1000w Adulto Sem Cnh Bluetooth Ré — R$ 15000,00, preco de 2026-11-16, degrau 1 da escada de chaves, encurtado https://s.shopee.com.br/20x4K92xyI, loja \"GTRBSHOP\" — CAUSA (produto-nao-existe): a ficha abre e a Shopee serve \"O produto nao existe\" no corpo, sem h1, sem botao de compra e com 1.748 bytes de corpo. NAO e `Esgotado`, que e o outro desfecho da 25.4: aqui o anuncio sumiu da loja. O `<title>` voltou o generico \"Shopee Brasil | Ofertas incriveis...\", que pela 25.4 nao serve de teste, e o veredito e do CORPO. Oferta que nao existe sai da vitrine inteira, porque o `ate: R$ 15.000,00` da faixa de preco desta pagina SAIA DESTE ANUNCIO e publicava um preco que ninguem pode pagar || ULTIMA MEDICAO: 2026-11-16, ronda diaria tecnica das 15h3xZ-15h5xZ, no Chrome do Raphael, abrindo a url_produto crua https://shopee.com.br/product/1329464417/23598774355 e NUNCA o link de afiliado (25.4), em duas leituras (iframe no dominio e navegacao direta). Reescolher ficha nova nao foi tentado a mao e nao e omissao: quem repoe a vaga e a coleta pela ordem da secao 7, e ela rodou nesta mesma passada"
+    "APOSENTADO EM 2026-11-16 — item 23598774355 da loja 1329464417 — Scooter Moto Elétrica 1000w Adulto Sem Cnh Bluetooth Ré — R$ 15000,00, preco de 2026-11-16, degrau 1 da escada de chaves, encurtado https://s.shopee.com.br/20x4K92xyI, loja \"GTRBSHOP\" — CAUSA (produto-nao-existe): a ficha abre e a Shopee serve \"O produto nao existe\" no corpo, sem h1, sem botao de compra e com 1.748 bytes de corpo. NAO e `Esgotado`, que e o outro desfecho da 25.4: aqui o anuncio sumiu da loja. O `<title>` voltou o generico \"Shopee Brasil | Ofertas incriveis...\", que pela 25.4 nao serve de teste, e o veredito e do CORPO. Oferta que nao existe sai da vitrine inteira, porque o `ate: R$ 15.000,00` da faixa de preco desta pagina SAIA DESTE ANUNCIO e publicava um preco que ninguem pode pagar || ULTIMA MEDICAO: 2026-11-16, ronda diaria tecnica das 15h3xZ-15h5xZ, no Chrome do Raphael, abrindo a url_produto crua https://shopee.com.br/product/1329464417/23598774355 e NUNCA o link de afiliado (25.4), em duas leituras (iframe no dominio e navegacao direta). Reescolher ficha nova nao foi tentado a mao e nao e omissao: quem repoe a vaga e a coleta pela ordem da secao 7, e ela rodou nesta mesma passada",
+    "APOSENTADO EM 2026-11-18 — item 58215666648 da loja 1136378529 — Scooter (Bike) Elétrica Foston X15 Max (X13 EX) 1000w 32km/h Moto Elétrica Adulto Bateria Litio Painel Led - SEM CNH — R$ 8500,00, preco de 2026-11-18, degrau 1 da escada de chaves, encurtado https://s.shopee.com.br/3B91iHuXPR, loja \"RWX BIKES LTDA.\" — CAUSA (esgotado): a Shopee serve a palavra Esgotado colada ao titulo da ficha: o anuncio existe, abre e responde 200, e nao vende (25.4) || ULTIMA MEDICAO: lida em 18/11/2026 no Chrome do Raphael, na url_produto crua https://shopee.com.br/product/1136378529/58215666648: corpo renderizado inteiro (7.935 caracteres, 751 favoritos, preco na tela, botao de carrinho presente) com UMA ocorrencia de Esgotado logo depois do titulo; o <title> voltou o nome do produto e pela 25.4 nao serve de teste"
    ],
    "piso_da_busca": {
     "chave": "moto eletrica adulto",
