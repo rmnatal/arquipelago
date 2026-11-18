@@ -10318,3 +10318,78 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 O commit do trabalho (`2d17896`) não foi afetado: já estava conferido em `origin/main` antes disso.
 Conferido também que os sha256 dos dois arquivos lidos DE `origin/main` (via `git show`) continuam
 iguais aos esperados pela instrução, depois de todo o vaivém de rebase.
+
+---
+
+## Disparo de 18/11/2026, 12h12 de Brasília (15h12Z) — INSTRUÇÃO DA SENTINELA, RONDA DIÁRIA TÉCNICA DA RODAMETRIA DE 18/11 (14h4xZ–15h0xZ): CINCO GESTOS EM QUATRO ARQUIVOS, UM COMMIT, NO `main`
+
+Assunto conferido ANTES do `git fetch`: rodametria, ilha do Arquipélago — dentro do escopo deste
+repositório. Nenhum dado pessoal de terceiro no texto recebido, nada a deixar de fora.
+
+Parti de `origin/main` (`git fetch origin main && git checkout -B trabalho origin/main`, base
+`fc8867e`) e apliquei os quatro gestos de arquivo byte a byte como vieram, sem reformatar nada:
+
+1. `ilhas/rodametria/PROMPT.md` — despacho da Sentinela de 2026-11-18 inserido IMEDIATAMENTE ANTES
+   da primeira ocorrência de `## DESPACHO` (o despacho da Fundação de 18/11, que estava na linha 68),
+   seguido de linha em branco, `---` e linha em branco. Nada apagado, nada riscado.
+2. `ilhas/rodametria/dados/consertos.md` — a linha de 2026-11-18 acrescentada como ÚLTIMA linha do
+   arquivo, numa única linha física.
+3. `ilhas/rodametria/ESTADO.md` — a linha física `ultima_ronda:` (linha 16, dentro do cabeçalho YAML,
+   cujos `---` estão nas linhas 1 e 122) substituída inteira. `ultima_execucao`, `bloco_atual`,
+   `urls_publicadas` e `piso` não foram tocados — o diff do arquivo é de 1 linha trocada.
+4. `dados/PAINEL.md` (raiz) — arquivo inteiro substituído pelo texto recebido.
+
+`git status --porcelain` ANTES do `git add`:
+
+```
+ M dados/PAINEL.md
+ M ilhas/rodametria/ESTADO.md
+ M ilhas/rodametria/PROMPT.md
+ M ilhas/rodametria/dados/consertos.md
+```
+
+`git diff --stat` do commit que foi ao `main`:
+
+```
+ dados/PAINEL.md                     | 96 +++++++++++--------------------------
+ ilhas/rodametria/ESTADO.md          |  2 +-
+ ilhas/rodametria/PROMPT.md          | 91 +++++++++++++++++++++++++++++++++++
+ ilhas/rodametria/dados/consertos.md |  1 +
+ 4 files changed, 120 insertions(+), 70 deletions(-)
+```
+
+Commit (mensagem exatamente a que a instrução deu) e push direto, sem branch e sem PR:
+
+```
+805a4b7efc55763bd7fe82115face622cff7ff8b
+sentinela: ronda diaria da rodametria 2026-11-18 — despacho de 5 itens, zero consertos, painel reescrito
+
+git push origin HEAD:main
+To https://github.com/rmnatal/arquipelago
+   fc8867e..805a4b7  HEAD -> main
+```
+
+Confirmado em `origin/main` depois de `git fetch` novo — `git log -1 origin/main` mostra
+`805a4b7`, Wed Nov 18 15:11:52 2026 +0000. Nenhum rebase, nenhuma recusa, nenhum force push.
+
+CONTAGEM, conferida relendo os arquivos DEPOIS de gravar (não pelo que eu achei que escrevi):
+
+```
+ilhas/rodametria/PROMPT.md          7 cabeçalhos "^## DESPACHO" (eram 6); o primeiro agora é,
+                                    na linha 68, "## DESPACHO DA SENTINELA — 2026-11-18
+                                    (RONDA DIÁRIA TÉCNICA, 14h4xZ–15h0xZ)"; +91 linhas
+ilhas/rodametria/dados/consertos.md 20 linhas (eram 19); +1 linha física no fim
+ilhas/rodametria/ESTADO.md          1 linha "^ultima_ronda:", valor 2026-11-18T15:00Z
+                                    (era 2026-11-16T15:56Z); 1 linha trocada, 0 acrescentada
+dados/PAINEL.md                     46 linhas, 6176 bytes, reescrito por inteiro
+```
+
+`git status --porcelain` DEPOIS do commit (antes deste próprio log):
+
+```
+
+```
+
+Este log vai num commit seguinte porque ele precisa do hash do commit de trabalho, que só existe
+depois dele. A hora do título saiu de `TZ=America/Sao_Paulo date` e `date -u` na mesma linha de
+comando que a gravou, nunca digitada.
