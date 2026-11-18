@@ -52,119 +52,105 @@ executando_desde: 2026-11-18T10:51Z   # RENOVADA pela 1.1 (reserva as 10h17Z): o
                          # (aquametria 21/10 18h2xZ, robometria 21/10 16h1xZ, clubedomosaico)
                          # estao FECHADOS. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A
                          # GRAVA, nunca digitada.
-rede: aberta em 2026-11-17   # 20.2, MEDIDA e nao herdada nesta execucao: 6 de 6 em 200 com
-                             # quebra de cache — `rodametria.com.br` em `/`, `/wp-sitemap.xml` e
-                             # `/veiculos/`, mais as homes das tres irmas. E as tres irmas com o
-                             # `/wp-sitemap.xml` em 200 tambem, que e a porta da 29.2 e e o que
-                             # prova que nenhuma ilha no ar esta quebrada e que nada fura o foco
-                             # pela 1.2. A Open API da Shopee NAO foi usada: o defeito do dia era
-                             # campo apagado e nao preco velho, e recolher de novo trocaria o
-                             # conjunto de ofertas para consertar uma conta.
+rede: aberta em 2026-11-18   # 20.2, MEDIDA e nao herdada nesta execucao: 3 de 3 em
+                             # 200 em `rodametria.com.br/`, com `aquametria.com.br` em 200 nas
+                             # MESMAS tres passadas — controle verde, nao e rede. A Open API da
+                             # Shopee FOI usada (a recoleta da moto) e recusou DUAS vezes com
+                             # `error [10000]: System Error`, passando na repeticao: e a secao 4
+                             # em acao e era o comportamento ja registrado aqui em 16/11 e 17/11.
 bloqueada_por: null      # obrigatorio pela secao 2. `null` DE PROPOSITO: o que falta (gov.br para a F1, as prefeituras para a camada municipal, as tres etiquetas do Mercado Livre) trava a FABRICA e nao a ILHA, e isso se escreve no despacho, que e o canal da 12.2. Preenche-lo congelaria tambem os blocos que ja podem andar.
 bloco_atual: |
-  A RECOLETA DAS 16h25Z APAGOU O PISO DA 25.2 DAS DUAS PAGINAS DE COMPRA, E O
-  PORTAO DE AR APROVOU 425 AFIRMACOES PORQUE A AFIRMACAO DO PISO VIRA DE LADO
-  QUANDO A FONTE ESVAZIA. Achado rodando `bancada.py` ANTES de escolher trabalho,
-  como a 18.5 manda: ela voltou REPROVADO em 5 portoes, com 21 falhas em
-  `validar-banco.py` — e a passada anterior fechou escrevendo no REGISTRO.md `51
-  portoes sem rede, 0 falha`, que era verdade ANTES de ela construir e nunca foi
-  reconferido DEPOIS.
-  O QUE ESTAVA NO AR, CONTADO: `/veiculos/patinete-eletrico/` (246 mil
-  buscas/mes) servia 14 links `s.shopee.com.br`, TODOS de ficha de anuncio e
-  NENHUM de busca; `/veiculos/bicicleta-eletrica/` (673 mil) servia 7, idem. Sao
-  21 cartoes cuja unica saida de compra e a ficha de um anuncio, sem a busca da
-  loja que a 25.2 exige para o dia em que a ficha morrer — e as fichas desta ilha
-  morrem: DUAS foram aposentadas na ultima semana. A `/veiculos/moto-eletrica/`
-  tinha o seu piso e nao entrou no defeito: ela foi colhida em 16/11 e nao entrou
-  na recoleta.
-  A CAUSA E DE DESENHO: `coletar-por-consulta.py` monta o bloco DO ZERO em
-  `montar()`, e `piso_da_busca` nao e escrito por ele — e escrito por
-  `coletar-piso-da-vitrine.py`, que e outra ferramenta e precisa de rede. QUEM
-  APAGA O CAMPO NAO E QUEM SABE REPO-LO. Comparadas as chaves antes e depois, a
-  perda foi exatamente essa e mais nada, mais `ofertas_aposentadas` e
-  `ofertas_repetidas_pela_loja` no resumo da bicicleta (porque
-  `aplicar_quarentena` retornava ANTES de `recontar_resumo` quando nao havia
-  quarentena).
-  E A METADE QUE VALE MAIS: O PORTAO DE AR ESTAVA COBRANDO O CONTRARIO. Ele tinha
-  dois ramos — `if` a fonte tem UMA busca, a pagina serve a linha UMA vez;
-  `else`, a pagina NAO pode servir a linha (com duas buscas, `a primeira` e
-  arbitraria). O terceiro mundo, ZERO buscas, caiu no `else` e a afirmacao
-  INVERTEU DE SINAL: passou a exigir que a pagina NAO servisse piso, e aprovou a
-  ausencia dele. Nao era cegueira: era o portao cobrando o contrario, porque a
-  condicao do ramo saiu da MESMA FONTE que a afirmacao devia cobrar.
-  O CONSERTO, EM QUATRO LUGARES: (1) `CAMPOS_QUE_ATRAVESSAM_A_COLETA`, lista
-  declarada em UM lugar com a regra para quem acrescentar campo depois, e
-  `atravessar_a_coleta()` sem saida antecipada; (2) a decisao extraida para
-  funcao pura `veredito_do_piso_da_tabela`, com o mundo de fonte vazia
-  reprovando por DOIS motivos separados; (3) portao novo
-  `ferramentas/teste-piso-na-tela.py`, 9 mundos fabricados e 35 afirmacoes, com a
-  regua VELHA escrita dentro dele e OBRIGADA a discordar no mundo medido — em `(0
-  busca, 0 linha)` a velha APROVA e a nova REPROVA, e nos outros 8 as duas TEM de
-  concordar; (4) a aritmetica da quarentena, que REPROVAVA UM BANCO CERTO: nasce
-  `ofertas_aposentadas_nesta_coleta`, porque aposentado de coleta velha que a
-  loja nao devolveu hoje nunca foi lido hoje (19 + 1 = 20, e nao 19 + 2 = 21).
-  O DADO FOI RESTAURADO E NAO REINVENTADO: os dois `piso_da_busca` voltaram com
-  as datas REAIS (encurtados em 16/11) e MEDIDOS — os tres encurtados respondem
-  301 para a busca certa com `utm_content=rodametria`, e as chaves do piso batem
-  com a `chave_escolhida` de hoje nas tres. A vitrine mudou 87 campos em 29
-  linhas, TODOS os 87 dos tres do piso: zero preco, zero mediana, zero texto
-  (medido achatando os dois JSON e comparando chave por chave, nao lido no diff).
-  REVISAO 107 NO AR AS 19h40:29Z ou antes — MAIS DE QUATRO MINUTOS ANTES do teto
-  de 19:44:51 que a regua de cinco vereditos da 20.9 calculou, que e a segunda
-  ressalva dela pela TERCEIRA vez nesta ilha: `ultimo` + 30 min e TETO e nunca a
-  hora exata. O veredito dela foi `evento-nao-vencido` e eu esperei VISITANDO,
-  sem reacionar.
-  A VERIFICACAO: portao da 20.4 com a leitura comecando no FECHO que esta no TOPO
-  (20.8) e a conta do proprio Sync (20.10) — 7 declarados, 7 linhas de item, as 7
-  dizendo `ok`, grupo inteiro dentro da janela de 15. Piso no ar 1x em cada uma
-  das tres paginas, com UMA linha `rdm-tabela-piso` em cada, em DUAS leituras com
-  quebra de cache e o mesmo byte nas duas. `conferir-produto-no-ar.py` de 425
-  para 444 afirmacoes, 0 falha. `conferir-no-ar.py` 803 afirmacoes, 0 falha. 11
-  de 11 URLs do sitemap em 200 em DUAS leituras. As tres portas da 29.2 verdes e
-  o caminho virgem em 404 na pagina da propria ilha (73.192 bytes). BANCADA
-  ANTES: 51 portoes, 5 REPROVADOS. BANCADA DEPOIS: 52 portoes, 0 falha.
-  O CONTRATO GANHOU DUAS REGRAS NA SECAO 8, as duas valendo para toda ilha: a
-  bancada roda DEPOIS de construir tambem (e o relatorio diz as DUAS contagens),
-  e portao que tira a condicao do ramo da mesma fonte que devia cobrar VIRA DE
-  LADO quando a fonte esvazia — fonte vazia nao e um terceiro caso de empate, e o
-  mundo de contagem ZERO se escreve explicito e reprovando.
-  O PASSO PRE-REGISTRADO PELA PASSADA ANTERIOR ESTA CUMPRIDO E A RESPOSTA SEGUE
-  ZERO: `/casca -> porta -> quedas` lido as 19h2xZ e as 19h3xZ devolve
-  `episodios_vistos: 0`, `leituras_no_chao: 0`, `reposicoes_da_cura: 0`,
-  `leituras_nao_sei: 0`, com `tem_bloco_wordpress: true`. A REPOSICAO DAS
-  11:15:20Z ESTA DE PE HA PELO MENOS 8h17min — o quinto e MAIS LONGO intervalo
-  medido na mesma raiz no mesmo dia (~4 min, >=27 min, >=2h26min, >=5h30min,
-  >=8h17min), e isso FORTALECE a frase do chamado na HostGator, que e a da
-  29.5(b): evento irregular, com hora, nao processo.
-  UMA ERRATA DE METODO DESTA PASSADA: a mensagem do commit `a6bd241` foi escrita
-  num heredoc do bash SEM proteger os acentos graves, e o shell EXPANDIU cada
-  identificador entre eles como comando — a mensagem no `main` perdeu todos os
-  nomes de arquivo, de campo e de funcao. O codigo e o dado foram empurrados
-  CORRETOS; so a prosa se perdeu, e ela esta inteira no REGISTRO.md, que e o
-  lugar append-only dela. NAO foi consertada com `--amend` e force push de
-  proposito. Para a proxima: `<<'MSG'` entre aspas simples, ou `git commit -F`
-  lendo arquivo.
-  E UM RABO ORFAO DE 9 LINHAS FOI REMOVIDO DESTE CABECALHO, no comentario de
-  `urls_publicadas`: sobra de uma versao anterior do campo que a passada de 16/11
-  substituiu pela PRIMEIRA linha e deixou de pe, contradizendo a linha viva
-  (`faltam 30` contra `faltam 29`). A secao 4 ao pe da letra, dentro do cabecalho
-  que ela existe para proteger.
-  PROXIMO PASSO: a passada seguinte LE `porta.quedas` de novo (a reconferencia
-  barata da 19.4(c)) e, ANTES de escolher trabalho, roda `bancada.py` — e agora
-  tambem DEPOIS de construir, pela regra nova da secao 8. Se tiver de escolher
-  trabalho, a MOTO e a proxima da fila de recoleta (colhida em 16/11, e o unico
-  bloco com dado de outro dia), e vale olhar que ela serve faixa de preco sobre
-  apenas 3 anuncios que entram, com a faixa de R$ 1.096,38 a R$ 13.999,00 — 12,8
-  vezes de ponta a ponta — e que o piso da 30.2 e 3: uma morte de ficha derruba a
-  pagina abaixo do piso. A FILA DE BLOCOS SEGUE ACABADA (todos entregues menos o
-  5, que depende de um `pauta.md` que NAO EXISTE e que pela 17.1 nao e arquivo da
-  Fundacao) e as duas pontas de pagina nova seguem travadas: a `scooter eletrica`
-  foi remedida em 16/11 e a loja segue chamando patinete de scooter, e `bike
-  eletrica` e `motos eletricas para adultos` sao sinonimos pela 30.4. Nenhuma URL
-  podia nascer nesta passada, `urls_publicadas` segue 11 e o teto da 21.4 nao foi
-  tocado. A MEMORIA DA ILHA NAO EXISTE NESTA SESSAO: nao ha diretorio de memoria
-  alcancavel daqui, entao este campo E a memoria, como o PROMPT.md desta ilha ja
-  previa.
+  A ESCADA DE CHAVES DECIDIA O PISO COM UMA REGUA MAIS FROUXA DO QUE A QUE
+  PUBLICA, e a pagina de 823 mil buscas/mes DEGRADOU com um degrau INTEIRO por
+  medir. Quatro defeitos em cadeia, os quatro consertados. Revisoes 108 e 109.
+  A PREVISAO DA PASSADA ANTERIOR SE CUMPRIU E A CAUSA NAO ERA A QUE ELA SUPOS:
+  a recoleta da moto (unica consulta com dado de outro dia) perdeu o item
+  23598774355, APOSENTADO em 16/11 pela 25.11, e o bloco fechou com 2 contra o
+  piso de 3 da 30.2. Mas `colher_consulta()` contava a marca `serve` para
+  decidir `alcancou_o_piso`, e quem publica conta `entra_na_pagina()` MAIS a
+  quarentena: o degrau 1 contou TRES, a escada PAROU, e `atravessar_a_coleta`
+  derrubou o bloco para DOIS depois. A 20.7 em traje de escada.
+  O CONSERTO E `quantos_entram_no_degrau()`, a regua UNICA. Com ela o DEGRAU 2
+  (`moto eletrica`, a consulta crua) FOI MEDIDO PELA PRIMEIRA VEZ NA VIDA DESTA
+  ILHA: 20 ofertas, ZERO que servem. A SHOPEE NAO TEM CATALOGO DE MOTO ELETRICA
+  DE ADULTO que sustente esta pagina, nos DOIS degraus — nao e um anuncio que
+  faltou hoje, e ela pode cair de novo amanha.
+  O SEGUNDO DEFEITO, que o primeiro escondia: escada esgotada devolvia lista
+  VAZIA e jogava fora os 2 anuncios que a consulta TEM. Vazio nao e mais
+  honesto que dois — a pagina degrada igual e so um dos dois sabe dizer de
+  quanto ela esta longe. Passa a guardar o MELHOR degrau medido, com a trava de
+  seguranca MEDIDA: portao da 30.2 FECHADO e `numero_proprio` null.
+  O TERCEIRO e da TELA: o laudo imprimia `servem 3 / portao True / faixa de
+  8500 a 15000` e o arquivo recebia `2 / False / None` no mesmo segundo, porque
+  `laudo()` rodava antes da quarentena. Agora `atravessar_a_coleta` roda antes,
+  e tambem no `--ensaio`.
+  O QUARTO foi pego pela BANCADA DEPOIS DE CONSTRUIR — a regra que o contrato
+  ganhou ONTEM — e e a mesma classe da secao 8 de 17/11: `mutacoes-produto`
+  pescava o caso DO BANCO, e sem o par repetido na leitura de hoje duas
+  mutacoes ficaram INERTES e duas SOBREVIVERAM por falta de caso. Falso
+  negativo. A bateria passa a FABRICAR o mundo na areia: 38 de 38 reprovadas,
+  0 sobrevivente, 0 inerte.
+  E O DESEMBARQUE DA 108 ACHOU O DEFEITO MAIOR, NO AR: `conferir-no-ar.py`
+  REPROVOU a pagina degradada em SEIS afirmacoes — corpo de 891 caracteres
+  contra o piso de 1.500 (`pagina fina gasta orcamento de rastreamento de
+  dominio novo`), sem og:title, sem meta description, sem JSON-LD, sem
+  dateModified e sem BreadcrumbList. A CAUSA estava no comentario que defendia
+  a funcao: `paginas_prontas()` se dizia `a unica porta`, e o filtro
+  `rodametria_paginas` tambem sai dela — PAGINA QUE PERDIA A VITRINE PERDIA A
+  CABECA JUNTO, e seguia respondendo 200 no indice do Google.
+  A SEPARACAO: a vitrine decide o CORPO e o MENU; a camada DECLARADA decide a
+  CABECA. So entra quem EXISTE no WordPress (a `scooter-eletrica`, declarada e
+  sem pagina, nao entra: daria mae apontando para 404).
+  E O h1 ESTAVA ERRADO ANTES DE SER FINO: dizia `Esta pagina esta fora do ar
+  neste momento`. A URL e sobre moto eletrica e CONTINUA SENDO. Agora o h1 e o
+  nome declarado, a indisponibilidade e o AVISO que ela e, e a pagina serve o
+  que e verdade sem anuncio: o que ela compara quando tem dado, por que o piso
+  existe, a licao do watt nominal contra o de pico, e as saidas que funcionam
+  hoje (as 2 irmas com vitrine e as 3 ferramentas). `dateModified` = a data da
+  ULTIMA TENTATIVA de coleta, nunca a da vitrine velha.
+  DOIS DEFEITOS MEUS, PEGOS PELOS PORTOES DESTA ILHA: (1) a prosa nova trazia
+  `quase sempre`, `costuma` e `a maioria` — o `costuma` e nomeado no VOZ.md
+  como a classe que esta ilha paga desde 03/11. Reescrita sem quantificar, e o
+  portao novo passou a rodar a lista (46 termos, LIDA do fonte do portao de ar,
+  nunca copiada) sobre o corpo que ele gera. (2) a ancora da F1 dizia
+  `descobrir se o eletrico precisa de CNH` e o `teste-afirmacao-de-tela.py` a
+  REPROVOU com razao: esta ilha decidiu POR FONTE que nao responde sobre
+  habilitacao. Agora fala de PLACA E REGISTRO, que e o que a resolucao decide.
+  E UM TERCEIRO, colateral: `teste-data-da-pagina.php` virou INERTE com `Call
+  to undefined function` porque o filtro da data ganhou funcao nova. Consertado
+  (91 afirmacoes, 0 falha).
+  MEDIDO NO AR (18.4), em DUAS leituras identicas byte por byte: `R$ 1.096,38`
+  de 3 para 0 ocorrencias e `Panda A4` de 3 para 0 — o piso sem lastro saiu do
+  ar. A moto responde 200 e nao 404. A mae `/veiculos/` recontou SOZINHA de 24
+  para 21 e serve 2 botoes de familia. `conferir-produto-no-ar.py` 369
+  afirmacoes 0 falha. Log da 108 lido linha por linha: 7 declarados, 7 linhas,
+  as 7 dizendo `ok`.
+  BANCADA ANTES: 52 portoes, 0 falha. DEPOIS: 54 portoes, 0 falha. Portoes
+  novos: `teste-escada-que-desce.py` (44 afirmacoes, 7 mundos, regua velha
+  obrigada a discordar nos 2 mundos do defeito e a CONCORDAR nos 2 que ja
+  estavam certos) e `teste-cabeca-sem-vitrine.php` (37 afirmacoes, 7 metades).
+  A PORTA: contador em ZERO as 10h2xZ e 10h3xZ. A reposicao das 11:15:20Z de
+  17/11 esta de pe ha PELO MENOS 23 HORAS — o SEXTO e mais longo intervalo da
+  mesma raiz (~4min, >=27min, >=2h26min, >=5h30min, >=8h17min, >=23h), e isso
+  FORTALECE a frase do chamado, que e a da 29.5(b).
+  ERRATA DE METODO: `--gravar` cortado por `| head` morre de BrokenPipeError
+  ANTES de gravar, e o banco ficou um estado atras. COMANDO QUE GRAVA NAO SE
+  CORTA COM `head`: redirecione para arquivo. Commits com `git commit -F`.
+  NENHUMA URL NASCEU e nenhuma podia: `urls_publicadas` segue 11, o teto da
+  21.4 nao foi tocado. Uma pagina PERDEU a vitrine, que e o oposto de leva.
+  PROXIMO PASSO: a passada seguinte LE `porta.quedas` de novo (19.4(c)) e roda
+  `bancada.py` ANTES e DEPOIS (secao 8). O TRABALHO MAIS DESBLOQUEADO E
+  RECONFERIR A PAGINA DEGRADADA NO AR pela 18.4: `conferir-no-ar.py` tem de
+  APROVAR na revisao 109 — se reprovar, o conserto da cabeca nao fechou e isso
+  vem antes de qualquer outra coisa. Depois, a recoleta das OUTRAS DUAS (dado
+  de 17/11, um dia): se a moto voltar a 3 anuncios por conta da loja, a vitrine
+  dela renasce sozinha. O QUE A DESTRAVA DE VERDADE E DO RAPHAEL e esta no
+  despacho de hoje: a etiqueta `rodametriamotoeletrica` e os 5 links de
+  `dados/links-afiliado-pendentes.md`, prontos desde 11/11 — o primeiro deles e
+  a MESMA GT600 com +50 vendidos, contra zero vendas dos tres da Shopee.
+  A FILA DE BLOCOS SEGUE ACABADA (todos entregues menos o 5, que depende de um
+  `pauta.md` que NAO EXISTE e que pela 17.1 nao e arquivo da Fundacao). A
+  MEMORIA DA ILHA NAO EXISTE NESTA SESSAO: este campo E a memoria.
 ---
 
 # Estado da ilha RODAMETRIA
