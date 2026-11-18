@@ -10541,3 +10541,101 @@ Nada do valor de `GOOGLE_SA_B64` foi impresso, gravado ou commitado em momento n
 
 A hora do título saiu de `TZ=America/Sao_Paulo date` e `date -u` na mesma chamada que gravou esta
 seção, nunca digitada. Nenhuma seção anterior deste arquivo foi apagada, reescrita ou resumida.
+
+---
+
+## Disparo de 2026-11-18, 17h11 de Brasília (2026-11-18T20:11Z) — LEITURA SEMANAL DA SENTINELA, 16 gestos nas 4 ilhas
+
+Instrução literal da Sentinela, leitura semanal de 2026-11-18 (seção 12.2). Assunto do Arquipélago: as quatro ilhas vivas (aquametria, robometria, clubedomosaico, rodametria), seus `dados/indexacao.md`, `dados/posicoes.md`, `PROMPT.md` e `ESTADO.md`. Checagem de assunto passou — nada de outro projeto nesta instrução. Nenhum dado pessoal de terceiros veio na instrução, logo nada foi deixado de fora.
+
+Partida do `main` real: `git fetch origin main && git checkout -B trabalho origin/main`, a partir de `6186f9f`.
+
+**Os 16 gestos, por arquivo, e o que entrou:**
+
+| gesto | arquivo | o que foi feito |
+|---|---|---|
+| 1 | `ilhas/aquametria/dados/indexacao.md` | +1 linha, inserida após a linha física 14 (última `\| 2026-`, a de `2026-11-11`) |
+| 2 | `ilhas/robometria/dados/indexacao.md` | +1 linha, inserida após a linha física 15 (última `\| 2026-`, a de `2026-11-11`) |
+| 3 | `ilhas/clubedomosaico/dados/indexacao.md` | +1 linha, inserida após a linha física 14 (última `\| 2026-`, a de `2026-11-11`) |
+| 4 | `ilhas/rodametria/dados/indexacao.md` | +1 linha, inserida após a linha física 8 (última `\| 2026-`, a de `2026-11-11`) |
+| 5 | `ilhas/aquametria/dados/posicoes.md` | +24 linhas no fim (1 em branco + 23 de conteúdo); 246 → 270 linhas |
+| 6 | `ilhas/robometria/dados/posicoes.md` | +24 linhas no fim (1 em branco + 23 de conteúdo); 163 → 187 linhas |
+| 7 | `ilhas/clubedomosaico/dados/posicoes.md` | +38 linhas no fim (1 em branco + 37 de conteúdo); 317 → 355 linhas |
+| 8 | `ilhas/rodametria/dados/posicoes.md` | +20 linhas no fim (1 em branco + 19 de conteúdo); 49 → 69 linhas. O arquivo JÁ EXISTIA, então foi acréscimo e não criação |
+| 9 | `ilhas/aquametria/PROMPT.md` | +14 linhas (11 de despacho + linha em branco + `---` + linha em branco), inseridas ANTES da linha física 100, que era `## DESPACHO DA SENTINELA — 2026-11-11 (LEITURA SEMANAL…)` |
+| 10 | `ilhas/robometria/PROMPT.md` | +15 linhas (12 + branco + `---` + branco), inseridas ANTES da linha física 48, que era `## DESPACHO DA SENTINELA — 2026-11-11 (LEITURA SEMANAL…)` |
+| 11 | `ilhas/clubedomosaico/PROMPT.md` | +18 linhas (15 + branco + `---` + branco), inseridas ANTES da linha física 224, que era `## DESPACHO DA SENTINELA — 2026-11-11 (LEITURA SEMANAL, 20h0xZ) — ALTA…` |
+| 12 | `ilhas/rodametria/PROMPT.md` | +15 linhas (12 + branco + `---` + branco), inseridas ANTES da linha física 68, que era `## DESPACHO DA SENTINELA — 2026-11-18 (RONDA DIÁRIA TÉCNICA…)` |
+| 13 | `ilhas/aquametria/ESTADO.md` | linha física **81 SUBSTITUÍDA**. Era `ultima_ronda: 2026-11-13T15:12Z   # RONDA TECNICA CURTA de 2026-11-13 …` |
+| 14 | `ilhas/robometria/ESTADO.md` | linha física **9 SUBSTITUÍDA**. Era `ultima_ronda: 2026-11-13T15:12Z   # RONDA TECNICA CURTA de 2026-11-13 …` |
+| 15 | `ilhas/clubedomosaico/ESTADO.md` | linha física **141 SUBSTITUÍDA**. Era `ultima_ronda: 2026-11-13T15:12Z   # RONDA TECNICA CURTA de 2026-11-13 …` |
+| 16 | `ilhas/rodametria/ESTADO.md` | linha física **16 SUBSTITUÍDA**. Era `ultima_ronda: 2026-11-18T15:00Z   # RONDA DIARIA TECNICA de 2026-11-18 …` |
+
+Nos quatro `ESTADO.md` existia linha `ultima_ronda:` dentro do cabeçalho YAML, logo foi substituição e não inserção — o ramo "inserir depois de `primeira_indexacao:`" não foi usado em nenhuma das quatro. Depois da troca, cada arquivo tem **exatamente 1** linha `ultima_ronda:`, e ela segue dentro do cabeçalho (aquametria linha 81 de YAML que fecha em 107; robometria 9 de 100; clubedomosaico 141 de 270; rodametria 16 de 102).
+
+**Conferência byte a byte, relida do disco DEPOIS de gravar:** cada um dos 16 blocos aparece **1 vez e exatamente 1 vez**, idêntico ao texto da instrução, no arquivo de destino. Nenhum dos 16 foi reformatado, nenhuma linha foi acrescentada além das da instrução.
+
+`git status --porcelain` antes do commit:
+
+```
+ M ilhas/aquametria/ESTADO.md
+ M ilhas/aquametria/PROMPT.md
+ M ilhas/aquametria/dados/indexacao.md
+ M ilhas/aquametria/dados/posicoes.md
+ M ilhas/clubedomosaico/ESTADO.md
+ M ilhas/clubedomosaico/PROMPT.md
+ M ilhas/clubedomosaico/dados/indexacao.md
+ M ilhas/clubedomosaico/dados/posicoes.md
+ M ilhas/robometria/ESTADO.md
+ M ilhas/robometria/PROMPT.md
+ M ilhas/robometria/dados/indexacao.md
+ M ilhas/robometria/dados/posicoes.md
+ M ilhas/rodametria/ESTADO.md
+ M ilhas/rodametria/PROMPT.md
+ M ilhas/rodametria/dados/indexacao.md
+ M ilhas/rodametria/dados/posicoes.md
+```
+
+`git status --porcelain` depois do commit e do push: **vazio**.
+
+`git diff --stat` (o que foi ao `main`):
+
+```
+ ilhas/aquametria/ESTADO.md              |  2 +-
+ ilhas/aquametria/PROMPT.md              | 14 ++++++++++++
+ ilhas/aquametria/dados/indexacao.md     |  1 +
+ ilhas/aquametria/dados/posicoes.md      | 24 +++++++++++++++++++++
+ ilhas/clubedomosaico/ESTADO.md          |  2 +-
+ ilhas/clubedomosaico/PROMPT.md          | 18 ++++++++++++++++
+ ilhas/clubedomosaico/dados/indexacao.md |  1 +
+ ilhas/clubedomosaico/dados/posicoes.md  | 38 +++++++++++++++++++++++++++++++++
+ ilhas/robometria/ESTADO.md              |  2 +-
+ ilhas/robometria/PROMPT.md              | 15 +++++++++++++
+ ilhas/robometria/dados/indexacao.md     |  1 +
+ ilhas/robometria/dados/posicoes.md      | 24 +++++++++++++++++++++
+ ilhas/rodametria/ESTADO.md              |  2 +-
+ ilhas/rodametria/PROMPT.md              | 15 +++++++++++++
+ ilhas/rodametria/dados/indexacao.md     |  1 +
+ ilhas/rodametria/dados/posicoes.md      | 20 +++++++++++++++++
+ 16 files changed, 176 insertions(+), 4 deletions(-)
+```
+
+**Contagem:** 16 arquivos alterados, **176 linhas inseridas e 4 apagadas** — as 4 apagadas são as 4 linhas `ultima_ronda:` substituídas (gestos 13 a 16), e as 176 inseridas são 4 linhas de tabela de indexação + 106 linhas de posições (4 em branco + 102 de conteúdo) + 62 linhas de despacho (50 de conteúdo — 11+12+15+12 — mais 4 em branco, 4 de `---` e 4 em branco, ou seja 14+15+18+15 = 62) + 4 linhas `ultima_ronda:` novas. 4 + 106 + 62 + 4 = 176. **Fecha.** Nenhum arquivo fora dos 12 nomeados pela instrução foi tocado neste commit.
+
+**Hash que foi ao `main`: `6f6cf76a27157ad112a57b420e8803b771469d7b`** (`6f6cf76`).
+
+**O push foi recusado na primeira tentativa** e isso fica registrado por inteiro:
+
+```
+hint: Updates were rejected because the remote contains work that you do not
+hint: have locally. This is usually caused by another repository pushing to
+hint: the same ref. If you want to integrate the remote changes, use
+hint: 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+```
+
+A causa: entre o `git fetch` da partida e o push, o `main` andou de `6186f9f` para `5a4a732` (`MAOS-LOG: segunda tentativa do disparo de 18/11/2026 19h42Z`). Resolvido com `git fetch origin main && git rebase origin/main` — rebase de 1 commit, sem conflito — e o segundo push passou: `5a4a732..6f6cf76  HEAD -> main`. **Nunca houve force push.**
+
+Confirmação exigida pelo procedimento: `git fetch origin main && git log -1 origin/main` devolve `6f6cf76a27157ad112a57b420e8803b771469d7b`, assunto `sentinela: leitura semanal 2026-11-18 — indexacao, posicoes, despachos e ultima_ronda nas 4 ilhas`, e `git diff --stat HEAD origin/main` sai **vazio**. O push está no `main`.
+
+Este log vai num commit seguinte ao do trabalho, porque o trabalho já estava confirmado no `main` quando a contagem acima foi fechada. A hora do título saiu de `TZ=America/Sao_Paulo date` e `date -u` na mesma chamada que preparou esta seção, nunca digitada. Nenhuma seção anterior deste arquivo foi apagada, reescrita ou resumida.
