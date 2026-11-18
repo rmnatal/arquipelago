@@ -110,6 +110,34 @@ def primeiro_que_serve(banco, id_consulta='patinete-eletrico'):
     return bloco, anuncio
 
 
+# O ALVO DA VITRINE E DECLARADO, NUNCA `paginas[0]` (18/11/2026).
+# ---------------------------------------------------------------------------
+# Medido as 13h5xZ de 18/11/2026, na mesma passada que achou a mutacao de foto
+# INERTE. DEZ mutacoes desta bateria mutavam `v['paginas'][0]` — a pagina que o
+# GERADOR por acaso pos primeiro, que e ordem de catalogo e nao alvo escolhido.
+# Hoje `paginas[0]` e a **bicicleta** (7 linhas, 3 cartoes), e DUAS docstrings
+# desta mesma bateria falam dos numeros do PATINETE: a do piso diz *"as duas
+# paginas de hoje tem cinco e dezesseis linhas"*. A bateria descrevia uma pagina
+# e mutava outra, e nenhum veredito acusava — porque mutacao que troca de alvo
+# em silencio continua REPROVANDO, so que outra coisa.
+#
+# E A ORDEM MUDA SOZINHA: pagina que perde a vitrine SAI da lista (a moto saiu em
+# 18/11), entao `[0]` e decidido pelo catalogo da loja daquela manha. E a familia
+# da 20.7 nesta ilha — o nome e o comentario declaram um mecanismo que o codigo
+# nao tem — e da 20.8, que manda a afirmacao ser POSITIVA: alvo escolhido se
+# NOMEIA, e a ausencia dele se DENUNCIA, em vez de cair no vizinho.
+ALVO_DA_VITRINE = 'patinete-eletrico'
+
+
+def pagina_da_vitrine(v, id_pagina=ALVO_DA_VITRINE):
+    """A pagina DECLARADA da vitrine; INERTE denunciada se ela nao estiver la."""
+    p = next((x for x in v['paginas'] if x.get('id') == id_pagina), None)
+    exigir(p is not None,
+           'a vitrine deveria ter a pagina declarada `%s` (tem: %s)'
+           % (id_pagina, ', '.join(x.get('id') or '?' for x in v['paginas']) or 'nenhuma'))
+    return p
+
+
 # ---------------------------------------------------------------------------
 # AS MUTACOES. Cada uma: (nome, ferramenta, argumentos, funcao que muta)
 # ---------------------------------------------------------------------------
@@ -157,12 +185,45 @@ def m_sub_id_apagado(areia):
     escrever(areia, ANUNCIOS, b)
 
 
+def _fabricar_foto_medida(a):
+    """POE a foto medida no anuncio da areia, em vez de PESCAR uma que esteja medida.
+
+    AS DUAS MUTACOES DE FOTO CARREGAVAM `[mundo fabricado]` NO NOME E NAO
+    FABRICAVAM NADA (achado em 18/11/2026 as 13h4xZ, pela bancada rodada DEPOIS
+    de construir). Elas pescavam `primeiro_que_serve` e EXIGIAM que o anuncio
+    daquele dia tivesse foto medida; a docstring de uma delas dizia, com todas as
+    letras, *"o banco de HOJE tem as 21 fotos medidas"* — uma contagem de um dia
+    que passou, dentro do codigo que dependia dela. Na recoleta de 18/11 o
+    primeiro que serve do patinete voltou com `imagem: null` porque a CDN da loja
+    respondeu **HTTP 503**, e a mutacao ficou **INERTE**: falso negativo, que a
+    propria bateria classifica como pior que sobrevivente.
+
+    E A CAUSA E A DA 20.7 NESTA ILHA: o nome e a docstring DECLARAVAM um
+    mecanismo que o codigo nao tinha, entao a bateria parecia conferida e nao
+    media. A foto da loja e dado de TERCEIRO, que muda sem avisar — mutacao que
+    depende dela mede o humor da CDN, nao o portao.
+
+    O mundo que esta funcao fabrica e o unico que a mutacao precisa: foto que
+    EXISTE e esta MEDIDA. Dela as duas partem, cada uma quebrando a sua metade da
+    regra do portao (largura medida, ou causa escrita na ausencia).
+    """
+    a['imagem'] = {
+        'url': 'https://cf.shopee.com.br/file/areia-foto-fabricada',
+        'largura': 1024,
+        'altura': 1024,
+        'alt': a.get('titulo') or 'foto fabricada na areia',
+    }
+    a['motivo_sem_imagem'] = None
+    return a
+
+
 def m_foto_sem_dimensao(areia):
-    """MUNDO FABRICADO: o banco de hoje tem as 21 fotos medidas."""
+    """MUNDO FABRICADO: a foto medida NASCE na areia, nunca e pescada do banco."""
     b = ler(areia, ANUNCIOS)
     _, a = primeiro_que_serve(b)
+    _fabricar_foto_medida(a)
     exigir(isinstance(a.get('imagem'), dict) and a['imagem'].get('largura'),
-           'o primeiro anuncio que serve deveria ter imagem com largura medida')
+           'a areia deveria ter fabricado imagem com largura medida')
     a['imagem']['largura'] = None
     escrever(areia, ANUNCIOS, b)
 
@@ -171,7 +232,9 @@ def m_foto_ausente_sem_causa(areia):
     """MUNDO FABRICADO: foto que nao foi medida e nao diz por que."""
     b = ler(areia, ANUNCIOS)
     _, a = primeiro_que_serve(b)
-    exigir('motivo_sem_imagem' in a, 'o anuncio deveria ter o campo motivo_sem_imagem')
+    _fabricar_foto_medida(a)
+    exigir(isinstance(a.get('imagem'), dict) and (a.get('motivo_sem_imagem') is None),
+           'a areia deveria ter fabricado foto medida e sem causa de ausencia')
     a['imagem'] = None
     a['motivo_sem_imagem'] = ''
     escrever(areia, ANUNCIOS, b)
@@ -216,7 +279,7 @@ def m_consulta_promete_pagina_sem_coleta(areia):
 
 def m_vitrine_contagem_mexida(areia):
     v = ler(areia, VITRINE)
-    p = v['paginas'][0]
+    p = pagina_da_vitrine(v)
     exigir(isinstance(p['numeros']['n'], int), 'a vitrine deveria ter `n` inteiro')
     p['numeros']['n'] += 1
     escrever(areia, VITRINE, v)
@@ -224,7 +287,7 @@ def m_vitrine_contagem_mexida(areia):
 
 def m_vitrine_preco_mexido(areia):
     v = ler(areia, VITRINE)
-    p = v['paginas'][0]
+    p = pagina_da_vitrine(v)
     exigir(p['linhas'][0]['preco'].startswith('R$'), 'a linha deveria ter preco em reais')
     p['linhas'][0]['preco'] = 'R$ 1,00'
     escrever(areia, VITRINE, v)
@@ -232,7 +295,7 @@ def m_vitrine_preco_mexido(areia):
 
 def m_vitrine_preco_sem_data(areia):
     v = ler(areia, VITRINE)
-    p = v['paginas'][0]
+    p = pagina_da_vitrine(v)
     exigir('preço de' in p['linhas'][0]['preco_nota'],
            'a linha deveria trazer a data da coleta ao lado do preco')
     p['linhas'][0]['preco_nota'] = ''
@@ -249,7 +312,7 @@ def m_vitrine_data_do_preco_em_portugues(areia):
     nenhum ve na pagina.
     """
     v = ler(areia, VITRINE)
-    p = v['paginas'][0]
+    p = pagina_da_vitrine(v)
     exigir(p['linhas'][0]['preco_colhido_em'][:2] == '20',
            'a linha deveria trazer a data da coleta em AAAA-MM-DD')
     p['linhas'][0]['preco_colhido_em'] = '04/11/2026'
@@ -262,7 +325,7 @@ def m_vitrine_nota_de_outra_data(areia):
     para o MESMO numero. Enquanto a data existia so em portugues, nao havia
     regua que pudesse comparar as duas."""
     v = ler(areia, VITRINE)
-    p = v['paginas'][0]
+    p = pagina_da_vitrine(v)
     exigir('preço de' in p['linhas'][0]['preco_nota'],
            'a linha deveria trazer a data da coleta ao lado do preco')
     p['linhas'][0]['preco_nota'] = '(preço de 29/10/2026)'
@@ -271,7 +334,7 @@ def m_vitrine_nota_de_outra_data(areia):
 
 def m_vitrine_url_insegura(areia):
     v = ler(areia, VITRINE)
-    p = v['paginas'][0]
+    p = pagina_da_vitrine(v)
     exigir(p['linhas'][0]['url'].startswith('https://'), 'a linha deveria ter url https')
     p['linhas'][0]['url'] = p['linhas'][0]['url'].replace('https://', 'http://', 1)
     escrever(areia, VITRINE, v)
@@ -288,7 +351,7 @@ def m_carrossel_acima_do_teto(areia):
     passar do teto, seja qual for o tamanho de onde comecou.
     """
     v = ler(areia, VITRINE)
-    p = v['paginas'][0]
+    p = pagina_da_vitrine(v)
     exigir(len(p['cartoes']) >= 1, 'o carrossel desta pagina deveria ter ao menos um cartao')
     while len(p['cartoes']) <= v['teto_do_carrossel']:
         p['cartoes'] = p['cartoes'] + [p['cartoes'][0]]
@@ -300,7 +363,7 @@ def m_carrossel_todo_no_mesmo_preco(areia):
     preco com a tabela guardando outro preco la fora. Era isso que ia ao ar sob
     uma frase de faixa que a mediana desmentia."""
     v = ler(areia, VITRINE)
-    p = v['paginas'][0]
+    p = pagina_da_vitrine(v)
     exigir(len({l['preco_numero'] for l in p['linhas']}) > 1,
            'a tabela desta pagina deveria ter mais de um preco')
     p['cartoes'] = [dict(p['cartoes'][0]) for _ in p['cartoes']]
@@ -308,9 +371,14 @@ def m_carrossel_todo_no_mesmo_preco(areia):
 
 
 def m_pagina_abaixo_do_piso(areia):
-    """MUNDO FABRICADO: as duas paginas de hoje tem cinco e dezesseis linhas."""
+    """MUNDO FABRICADO: a pagina declarada tem mais linhas que o piso, e a
+    mutacao corta para duas. *(Esta linha dizia "as duas paginas de hoje tem
+    cinco e dezesseis linhas", numero de um dia que passou dentro do codigo que
+    dependia dele; em 18/11/2026 as paginas tem 7 e 14. A secao 4 do contrato ao
+    pe da letra. O codigo compara contra `piso_da_30_2` e nunca contra o numero
+    da prosa, e e por isso que ele nao ficou INERTE junto.)*"""
     v = ler(areia, VITRINE)
-    p = v['paginas'][0]
+    p = pagina_da_vitrine(v)
     exigir(len(p['linhas']) > v['piso_da_30_2'],
            'a pagina deveria ter mais linhas que o piso')
     p['linhas'] = p['linhas'][:2]
@@ -319,7 +387,7 @@ def m_pagina_abaixo_do_piso(areia):
 
 def m_ordem_do_carrossel_trocada(areia):
     v = ler(areia, VITRINE)
-    p = v['paginas'][0]
+    p = pagina_da_vitrine(v)
     exigir(len(p['cartoes']) >= 2, 'o carrossel deveria ter dois cartoes ou mais')
     p['cartoes'][0], p['cartoes'][1] = p['cartoes'][1], p['cartoes'][0]
     escrever(areia, VITRINE, v)
