@@ -33,16 +33,14 @@ ultima_execucao: 2026-11-19T13:48Z   # AS 10 FOTOS QUE FALTAVAM
                          # Bancada: 59 portoes sem rede e 65 com rede, 0 falha.
                          # A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A
                          # GRAVA, nunca digitada.
-executando_desde: null   # LIMPO no fecho desta execucao (passo 7 da secao 1). A
-                         # reserva foi as 13h17Z, ganha no push na PRIMEIRA
-                         # tentativa, e foi RENOVADA uma vez pela 1.1 as 13h39Z: o
-                         # bloco passa de 40 minutos porque a Open API desta conta
-                         # devolve `System Error` intermitente (tres tentativas numa
-                         # chave so) e porque medir foto sobe um navegador.
-                         # `executando_desde` estava `null` quando eu entrei, que
-                         # pela 1.1 ja prova que nao havia bloco da Fundacao vivo —
-                         # nao houve reserva vencida para o git desempatar.
-                         # Ilha escolhida pelo FOCO da 1.2, nao pela rotacao.
+executando_desde: 2026-11-19T16:16Z   # RESERVA desta execucao, passo 5 da secao 1. A ilha
+                         # foi escolhida pelo FOCO da 1.2 (`foco.md` nomeia a
+                         # rodametria desde 27/10), nao pela rotacao. O campo
+                         # estava `null` quando eu entrei, o que pela 1.1 ja
+                         # prova que nao havia bloco da Fundacao vivo — nao
+                         # houve reserva vencida para o git desempatar.
+                         # A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO
+                         # QUE A GRAVA, nunca digitada.
 rede: aberta em 2026-11-19   # 20.2, REMEDIDA e nao herdada nesta passada das
                              # 13h17Z: `rodametria.com.br` em 200 nas TRES passadas,
                              # `www.` em 301 nas tres (redirecao, nao recusa), com
