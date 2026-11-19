@@ -11,6 +11,68 @@ Prioridade: `alta` fura a fila da próxima execução do destinatário.
 
 ## ABERTOS
 
+### prioridade ALTA — Fundação da rodametria — **A PÁGINA DE 823 MIL BUSCAS/MÊS NÃO SERVE NENHUM LINK DE LOJA, E O DESPACHO DE 18/11 AFIRMA O CONTRÁRIO COM BOA-FÉ**
+
+19/11/2026 às 13h5xZ — **FUNDAÇÃO (rodametria)** — Medido no ar pela execução que remediu as dez fotos,
+lendo o HTML servido de `/veiculos/moto-eletrica/` com quebra de cache.
+
+**O QUE O DESPACHO DE 18/11 DIZ, no item 2 da leitura semanal:** *"O piso da 25.2 está de pé (as três
+páginas têm `piso_da_busca` com `url_busca` encurtada, `url_busca_produto` crua e `sub_id_1`), então a
+página **não** está sem saída de compra."* **A primeira metade é verdadeira e a segunda não:** o
+`piso_da_busca` está no BANCO daquela consulta, com os três campos, e **não chega à TELA**.
+
+**O QUE A PÁGINA SERVE, contado no corpo com `<style>` e `<script>` removidos:** **zero** cartão, **zero**
+bloco de compra, **zero** ocorrência de `shopee.com.br`, **zero** de `s.shopee`, **zero** de `sponsored`.
+Os **dois** únicos links externos da página são `fonts.googleapis.com` e `fonts.gstatic.com`. O que ela
+serve no lugar é `rdm-caixa-ausencia`: *"A comparação de preços desta página está sem dados hoje."*
+
+**A CAUSA, e ela é de mecanismo e não de dado:** `abre_o_portao_da_30_2` é `false` nesta consulta (1
+anúncio com link, piso 3), e `gerar-vitrine-de-produto.py` por isso **não escreve a página na vitrine** —
+`dados/vitrine-de-produto.json` tem **duas** páginas, `veiculos/bicicleta-eletrica` e
+`veiculos/patinete-eletrico`. Sem entrada na vitrine, o PHP cai na caixa de ausência, e o piso da busca
+mora **dentro** do bloco que não nasceu. **O piso da 25.2 é o degrau que "nunca depende de ninguém", e
+é justamente ele que desaparece quando ninguém anuncia.**
+
+**O QUE ISTO NÃO É:** não é o item 2 de 18/11 em outras palavras. Aquele item pede ao Raphael as três
+etiquetas do Mercado Livre para a página ter **5 cartões** — e continua valendo inteiro. Este diz que,
+**até lá**, a página de maior volume do nicho está no ar há três dias sem **nenhuma** saída de compra,
+quando o banco dela já tem a que a 25.2 chama de piso.
+
+**pronto quando:** `/veiculos/moto-eletrica/` servir o `piso_da_busca` da própria consulta — `url_busca`
+encurtada, com `rel="sponsored"` e o `sub_id_1` — mesmo com a vitrine vazia, e o portão
+`conferir-produto-no-ar.py` cobrar isso em afirmação própria para toda consulta declarada que não abre o
+portão da 30.2. **É bloco da Fundação, não gesto do Raphael.**
+
+### prioridade NORMAL — Fundação das ilhas irmãs — **O LEITOR DE CABEÇALHO DE FOTO TEM UMA JANELA DE 32 KB QUE NÃO ALCANÇA O SOF DE TODO JPEG, E A FRASE DELE AFIRMA O QUE O ARQUIVO DESMENTE**
+
+19/11/2026 às 13h4xZ — **FUNDAÇÃO (aquametria, e qualquer ilha que copiar a régua)** — Escrito pela
+execução da rodametria que consertou a régua dela. A seção 3 do contrato proíbe editar arquivo de ilha
+que esta execução não reservou, então vai por aqui.
+
+**O DEFEITO, medido numa foto de verdade.** `medir_foto` lia os primeiros **32.768** bytes e, se a
+dimensão não saísse dali, respondia *"os primeiros 32768 bytes nao traziam cabecalho de JPEG, PNG nem
+WebP"*. Na foto `sg-11134201-825b4-mu4ds42j0q9x25` (anúncio 58270189618, `/veiculos/moto-eletrica/`) essa
+frase é **falsa sobre o arquivo**: é um JPEG 1024×1024 que o navegador pinta, e os primeiros bytes
+**trazem** o cabeçalho de JPEG. Em JPEG a dimensão mora no segmento **SOF**, que vem depois de todo
+metadado, e metadado não tem teto — ali há Exif de 14.033 bytes, um segundo Exif de 4.487 e um bloco
+0xED de 16.114, e o SOF cai no byte **34.780**. **Faltou JANELA, nunca cabeçalho.** O custo foi um cartão
+de produto servindo espaço reservado na página de 823 mil buscas/mês.
+
+**ONDE A MESMA RÉGUA MORA NAS IRMÃS:** `ilhas/aquametria/ferramentas/regua-cdn-shopee.py`, cuja
+`dimensao_dos_bytes` o `coletar-oferta.py` da rodametria cita como *"mesma leitura"*, com o portão
+`ilhas/aquametria/ferramentas/teste-cdn-shopee.py`.
+
+**O CONSERTO, como ele ficou na rodametria:** `ESCADA_DE_JANELAS = (32768, 131072, 524288)`, que sobe
+**só** quando os bytes lidos são de formato conhecido e a dimensão ainda não apareceu; `formato_conhecido`
+separa "não é imagem" de "faltou janela"; o teto é dito na mensagem; e os três ramos têm frase própria.
+PNG e WebP **não** sobem a escada, porque a dimensão deles está nos primeiros 30 bytes. Portão:
+`ilhas/rodametria/ferramentas/teste-janela-da-foto.py` — 22 afirmações, JPEG fabricado com metadado de
+tamanho controlado, servidor de loopback que **conta os pedidos**, e a régua velha obrigada a REPROVAR.
+
+**pronto quando:** a régua da aquametria medir a foto com SOF além de 32 KB, com o portão dela cobrando
+a contagem de pedidos, e nenhum caminho da função voltar a dizer que um JPEG não traz cabeçalho de JPEG.
+
+
 ### prioridade ALTA — precisa do Raphael — **SÃO DOIS CAMPOS DE CONFIGURAÇÃO, NÃO UM: A ENTRADA DE 18/11 DIZ "O GESTO, E ELE É UM" E O GESTO DELA NÃO ALCANÇA A LEITURA DE SEARCH CONSOLE DA ILHA EM FOCO**
 
 19/11/2026 às 10h2xZ — **RAPHAEL** — Escrito pela execução da Fundação que reservou a rodametria às

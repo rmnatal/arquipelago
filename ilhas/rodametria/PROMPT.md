@@ -71,6 +71,26 @@ Janela 10→16/11: **2 impressões, 0 clique, posição média 16,0** — era 8/
 
 1. **FECHADO POR MEDIÇÃO — o achado de ALTA de 11/11.** `/veiculos/bicicleta-eletrica/` estava fora do índice como "Não encontrado (404)" sobre página que responde 200; a indexação foi solicitada em 11/11 pela 14.7; hoje a página **tem impressão e posição 11,0** e o balde 404 da propriedade caiu de 9 para 8. **Entrou direto na banda do dinheiro, e é uma das duas únicas páginas de produto da ilha.** Quem pediu foi 11/11, quem aprova é 18/11. **Nada a fazer; não tocar no texto dela** (12.1: página que subiu).
 2. **PROPOSTA DE RECEITA, E O GESTO É DO RAPHAEL: `/veiculos/moto-eletrica/` nasceu em 16/11 com UM ÚNICO anúncio que serve.** Medido hoje em `dados/anuncios-por-consulta.json`: 18 anúncios lidos para `moto eletrica adulto` e **1 que serve, 1 com link**, contra 14 de 19 no patinete e 7 de 20 na bicicleta. A consulta vale **823 mil buscas/mês** e é a maior cabeça do nicho. O piso da 25.2 está de pé (as três páginas têm `piso_da_busca` com `url_busca` encurtada, `url_busca_produto` crua e `sub_id_1`), então a página **não** está sem saída de compra — mas uma ficha de produto numa página de 823 mil buscas é receita que não existe. **O caminho já está pronto e esperando um clique:** `dados/links-afiliado-pendentes.md` tem as URLs `/p/MLB` do Mercado Livre colhidas e a etiqueta a criar é `rodametriamotoeletrica`; o gerador do ML tem reCAPTCHA e não se automatiza (25.6). **Pronto quando:** 5 ou mais cartões com link rastreável **e** `url_produto` na página, e o banco da consulta `moto eletrica adulto` com `servem` ≥ 5.
+
+> **ERRATA MEDIDA EM 19/11/2026 às 13h5xZ, E ELA NÃO ENFRAQUECE O ITEM: ENDURECE.** A frase acima diz que
+> *"a página **não** está sem saída de compra"* porque as três consultas têm `piso_da_busca`. **A primeira
+> metade é verdadeira e a segunda não.** O piso está no BANCO daquela consulta, com os três campos, e
+> **não chega à TELA**. Medido no HTML servido de `/veiculos/moto-eletrica/`, com `<style>` e `<script>`
+> removidos e quebra de cache: **zero** cartão, **zero** bloco de compra, **zero** ocorrência de
+> `shopee.com.br`, de `s.shopee` e de `sponsored` — os **dois** únicos links externos da página são as
+> fontes do Google. O que ela serve é `rdm-caixa-ausencia`: *"A comparação de preços desta página está sem
+> dados hoje."*
+>
+> **A CAUSA É DE MECANISMO:** `abre_o_portao_da_30_2` é `false` (1 anúncio com link, piso 3), então
+> `gerar-vitrine-de-produto.py` **não escreve esta página na vitrine** — `dados/vitrine-de-produto.json`
+> tem **duas** páginas —, o PHP cai na caixa de ausência, e o piso da busca mora **dentro** do bloco que
+> não nasceu. O degrau que a 25.2 chama de piso, o que *"nunca depende de ninguém"*, é exatamente o que
+> desaparece quando ninguém anuncia.
+>
+> **O item 2 continua inteiro e é do Raphael.** O que esta errata acrescenta é **bloco da Fundação**, e
+> está como entrada ALTA em `dados/despachos.md`: servir o `piso_da_busca` da consulta mesmo com vitrine
+> vazia, com `rel="sponsored"` e `sub_id_1`, e o `conferir-produto-no-ar.py` cobrando isso em afirmação
+> própria para toda consulta declarada que não abre o portão da 30.2.
 3. ~~**DEFEITO DO INSTRUMENTO — SEGUNDA LEITURA SEGUIDA, E AGORA SÓ NESTA ILHA.**~~ — **REESCRITO PELA 18.3 EM 19/11/2026 às 10h2xZ: A METADE DE CÓDIGO ESTÁ FECHADA, E O DIAGNÓSTICO DELA ESTAVA ERRADO — O DEFEITO ERA A MENSAGEM DO INSTRUMENTO, NÃO O CAMINHO. FICA A METADE DO EGRESSO, QUE É GESTO DO RAPHAEL, E ELA ESTÁ NUM CAMPO DIFERENTE DO QUE O DESPACHO DE 18/11 NOMEIA.**
 
 > **O QUE ESTE ITEM PEDIA, e por que a letra dele não podia ser cumprida.** Ele manda a Fundação

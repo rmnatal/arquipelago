@@ -15,124 +15,137 @@ urls_publicadas: 11       # 10 -> 11 em 16/11/2026: nasceu `/veiculos/moto-eletr
                           # proteger. Quem substituir comentario de varias linhas apaga o rabo.
 ultima_ronda: 2026-11-18T20:01Z   # LEITURA SEMANAL de 18/11/2026 (seção 12.2, item 3). SUBSTITUI o valor anterior 2026-11-18T15:00Z, que era da RONDA DIARIA TECNICA do mesmo dia e segue registrado no PROMPT.md e no MAOS-LOG.md. 2 impressoes, 0 clique, posicao 16,0; o 404 no indice de /veiculos/bicicleta-eletrica/ destravou e a pagina esta em 11,0.
 primeira_indexacao: null  # as duas primeiras URLs foram ao ar hoje; indexacao e trabalho de dias. Quem grava este campo e a leitura semanal, lendo o Search Console.
-ultima_execucao: 2026-11-19T10:27Z   # O ITEM DE DESPACHO PEDIA UM
-                         # CONSERTO QUE JA ESTAVA FEITO, e a causa de ele estar
-                         # escrito assim era um defeito de verdade um andar abaixo:
-                         # `urls_do_sitemap` SOBRESCREVIA a variavel de erro a cada
-                         # candidato, entao com os dois falhando a mensagem nomeava
-                         # so o ULTIMO (`/sitemap.xml`) e sumia com o `wp-sitemap.xml`
-                         # que ela JA tentava primeiro. Foi essa linha que a leitura
-                         # de 18/11 leu, e dela concluiu que havia duas causas e que
-                         # metade era codigo da Fundacao. Havia UMA: o egresso.
-                         # NENHUMA REVISAO SE MOVE — isto e instrumento, nao ilha, e
-                         # nenhum byte de tela muda. Portao de 86 para 114 afirmacoes,
-                         # 0 falha, com mutacao obrigando a regua velha a REPROVAR;
-                         # bancada da ilha em 55 portoes, 0 falha, antes e depois.
+ultima_execucao: 2026-11-19T13:48Z   # AS 10 FOTOS QUE FALTAVAM
+                         # VOLTARAM AOS CARTOES, e a vitrine passou de 16 de 29
+                         # itens com foto para 29 de 29. Zero espaco reservado nas
+                         # duas paginas de vitrine, contra quatro cartoes sem foto
+                         # pela manha — entre eles o PRIMEIRO de
+                         # /veiculos/patinete-eletrico/. Revisao 115, as 7 linhas
+                         # da revisao corrente dizendo `ok` (20.4, lidas uma por
+                         # uma do fecho para baixo pela 20.8).
+                         # A FOTO SO VOLTA COM DOIS INSTRUMENTOS CONCORDANDO: o
+                         # cabecalho do arquivo (a funcao do coletor, importada) e
+                         # o `naturalWidth` no DOM de um navegador de verdade, com
+                         # as dimensoes fechando entre os dois.
+                         # E O DEFEITO DE VERDADE ERA DA JANELA DO LEITOR: 32 KB
+                         # nao alcancam o SOF de todo JPEG, e a frase dele afirmava
+                         # que um JPEG perfeito nao trazia cabecalho de JPEG.
+                         # Bancada: 59 portoes sem rede e 65 com rede, 0 falha.
                          # A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A
                          # GRAVA, nunca digitada.
-executando_desde: 2026-11-19T13:39Z   # RESERVA RENOVADA pela 1.1, e nao e a hora da
-                         # reserva: ela foi as 13h17Z, ganha no push na PRIMEIRA
-                         # tentativa, e este bloco passa dos 40 minutos porque a
-                         # Open API desta conta devolve `System Error` intermitente
-                         # (tres tentativas numa chave) e porque a medicao da foto
-                         # sobe um navegador. Ilha escolhida pelo FOCO da 1.2
-                         # (`foco.md` nomeia a rodametria), nao pela rotacao.
+executando_desde: null   # LIMPO no fecho desta execucao (passo 7 da secao 1). A
+                         # reserva foi as 13h17Z, ganha no push na PRIMEIRA
+                         # tentativa, e foi RENOVADA uma vez pela 1.1 as 13h39Z: o
+                         # bloco passa de 40 minutos porque a Open API desta conta
+                         # devolve `System Error` intermitente (tres tentativas numa
+                         # chave so) e porque medir foto sobe um navegador.
                          # `executando_desde` estava `null` quando eu entrei, que
-                         # pela 1.1 ja prova que nao havia bloco da Fundacao vivo;
-                         # o ultimo commit da pasta era de 10h28Z. Nenhum branch
-                         # claude/* a frente do main e nenhum PR aberto.
-                         # A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA.
+                         # pela 1.1 ja prova que nao havia bloco da Fundacao vivo —
+                         # nao houve reserva vencida para o git desempatar.
+                         # Ilha escolhida pelo FOCO da 1.2, nao pela rotacao.
 rede: aberta em 2026-11-19   # 20.2, REMEDIDA e nao herdada nesta passada das
-                             # 10h17Z: `rodametria.com.br` E `www.rodametria.com.br`
-                             # em 200 nas TRES passadas, com `aquametria.com.br` em
-                             # 200 nas MESMAS tres — controle verde, nao e rede.
-                             # E ESTA PASSADA MEDIU A OUTRA METADE E ACHOU QUE A
-                             # PAREDE NAO E UMA, E UMA POR AMBIENTE: `cf.shopee.com.br`
-                             # em 200/200/200 e `fonts.gstatic.com` em 404/404/404
-                             # (404 da ORIGEM em `/`, logo o CONNECT PASSOU) — os dois
-                             # que a ronda de 18/11 registrou como "recusadas pelo
-                             # egresso desta nuvem". O `recentRelayFailures` do
-                             # `__agentproxy/status` acusa `connect_rejected` para UM
-                             # host so, um dominio inexistente usado de proposito como
-                             # prova de que o instrumento acusa recusa quando ha
-                             # recusa. A ronda nao errou — ela mediu o ambiente DELA,
-                             # e daqui nao ha como medir o ambiente dela. Quem
-                             # escrever "o egresso recusa X" diz de QUAL ambiente.
+                             # 13h17Z: `rodametria.com.br` em 200 nas TRES passadas,
+                             # `www.` em 301 nas tres (redirecao, nao recusa), com
+                             # `aquametria.com.br` em 200 nas MESMAS tres.
+                             # E ESTA PASSADA FECHOU A OUTRA METADE QUE A DE 10h17Z
+                             # ABRIU, com numero: `cf.shopee.com.br` serve as fotos
+                             # desta ilha DAQUI — 3 controles em 200 `image/jpeg` e
+                             # as 10 fotos da fila em 206 `image/jpeg` nas 30
+                             # passadas, mais 10 de 10 `viva` no DOM do navegador
+                             # desta nuvem. O cabecalho da `aplicar-foto-quebrada.py`
+                             # afirma que "`cf.shopee.com.br` responde CONNECT tunnel
+                             # failed, response 403 ao egresso desta nuvem", e isso e
+                             # fato do AMBIENTE que mediu e nao do Arquipelago.
+                             # Quem escrever "o egresso recusa X" diz de QUAL ambiente.
 bloqueada_por: null      # obrigatorio pela secao 2. `null` DE PROPOSITO: o que falta (gov.br para a F1, as prefeituras para a camada municipal, as tres etiquetas do Mercado Livre) trava a FABRICA e nao a ILHA, e isso se escreve no despacho, que e o canal da 12.2. Preenche-lo congelaria tambem os blocos que ja podem andar.
 bloco_atual: |
-  O ITEM DE DESPACHO PEDIA UM CONSERTO QUE JA ESTAVA FEITO, E A CAUSA DE ELE
-  ESTAR ESCRITO ASSIM ERA UM DEFEITO DE VERDADE: O INSTRUMENTO SUMIA COM O QUE
-  TENTOU. Nenhuma revisao se move — isto e instrumento, nao ilha.
+  AS 10 FOTOS QUE FALTAVAM VOLTARAM AOS CARTOES, E O DEFEITO DE UMA DELAS ERA A
+  JANELA DO LEITOR DE CABECALHO — 32 KB nao alcancam o SOF de todo JPEG.
 
-  O ITEM 3 da leitura semanal de 18/11 (o unico dos seis endereçado a Fundacao)
-  mandava `ferramentas/search-console.py` ler `wp-sitemap.xml` em vez de
-  `/sitemap.xml` fixo. MEDI ANTES DE TOCAR, pela secao 4, e o
-  `wp-sitemap.xml` JA era o primeiro dos dois candidatos: 11 URLs daqui na
-  rodametria, 44 na clubedomosaico, as duas sem erro e sem aviso. Obedecer a
-  letra seria reescrever para fazer o que ja fazia.
+  O NUMERO, contado na vitrine e conferido no ar: 16 de 29 itens com foto -> 29
+  de 29. ZERO espaco reservado nas duas paginas de vitrine, contra QUATRO
+  cartoes sem foto pela manha — entre eles o PRIMEIRO de
+  /veiculos/patinete-eletrico/, o espaco mais caro da pagina. No ar, com
+  quebra de cache e `<style>` removido: patinete 5 fotos / 0 reservado,
+  bicicleta 3 / 0, autonomia 1 / 3 (essas tres vem de `veiculos.json`, outro
+  banco). Revisao 115, as 7 linhas da revisao corrente dizendo `ok`.
 
-  O DEFEITO REAL ESTAVA UM ANDAR ABAIXO, NA MENSAGEM: a variavel de erro era
-  SOBRESCRITA a cada candidato, entao com os dois falhando ela nomeava so o
-  ULTIMO. Encenado com a recusa de CONNECT de verdade: 2 candidatos tentados,
-  e a mensagem dizia `rodametria.com.br/sitemap.xml -> ProxyError` sem uma
-  letra sobre o `wp-sitemap.xml`. Foi essa linha que a leitura de 18/11 leu, e
-  dela concluiu que havia DUAS causas e que metade era codigo da Fundacao.
-  Havia UMA: o egresso. Instrumento que some com o que tentou produz
-  diagnostico errado com DONO errado — familia da 20.4.
+  A REGRA NOVA, e ela e o coracao do bloco: FOTO SO VOLTA COM DOIS INSTRUMENTOS
+  INDEPENDENTES CONCORDANDO — o cabecalho do arquivo (`medir_foto` do coletor,
+  IMPORTADO e nunca copiado) e o `naturalWidth` no DOM de um navegador de
+  verdade —, e as DIMENSOES tem de fechar entre os dois. O primeiro prova que a
+  origem respondeu e que os bytes comecam como imagem; o segundo prova que o
+  navegador PINTA. Foi essa diferenca que a ronda de 18/11 mediu no Chrome do
+  Raphael: `complete: true` com `naturalWidth: 0`. Um instrumento so devolveria
+  foto quebrada para o lugar mais caro da pagina, que e pior que o reservado.
 
-  O CONSERTO, duas metades: (1) o erro acumula UMA LINHA POR CANDIDATO, diz
-  QUANTOS foram e marca cada um como `declarado pela propriedade` ou `palpite
-  fixo do script` — a mensagem de 18/11 ficou ilegivel como "um caminho so";
-  (2) o CAMINHO PASSOU A SAIR DA PROPRIEDADE, que e a outra saida que o proprio
-  item oferecia: `caminhos_declarados()` le `sitemaps.list` e usa o `path` que o
-  Google buscou, com os palpites atras, filtrando pelo host da ilha. Falha na
-  `sitemaps.list` NAO mata a leitura: degrada e DIZ no relatorio que degradou.
-  E (3) o relatorio imprime o erro inteiro, uma linha por candidato, porque o
-  relatorio e ONDE UMA PESSOA LE e foi ali que o diagnostico errado nasceu.
+  O QUE NASCEU: `ferramentas/aplicar-foto-remedida.py` (a irma simetrica da
+  `aplicar-foto-quebrada.py`, 24 afirmacoes, com a mutacao que obriga a regua de
+  UM instrumento so a discordar) e `ferramentas/medir-foto-no-navegador.mjs`,
+  que e instrumento com URL e PORTAO sem argumento: 23 fotos declaradas nos dois
+  bancos, 46 afirmacoes, 0 falha. O modo portao nasceu de ele ter sido chamado
+  de INERTE pela bancada — a regua dela estava certa, e a resposta nao era calar,
+  era ter assunto proprio.
 
-  PORTAO de 86 para 114 afirmacoes, 0 falha, com o mundo da recusa encenado, o
-  subdominio que tem de ser descartado, o caminho declarado que nenhum palpite
-  adivinharia, o `main()` inteiro perguntando a propriedade, e UMA MUTACAO
-  obrigando a regua velha (erro sobrescrito) a REPROVAR. A 31.2 esta satisfeita
-  por DEFEITO MEDIDO, nao por "pode acontecer". Bancada da ilha: 55 portoes, 0
-  falha, antes e depois.
+  O DEFEITO DE VERDADE, achado porque os dois instrumentos DISCORDARAM em um dos
+  dez: `medir_foto` lia 32.768 bytes e respondia "os primeiros 32768 bytes nao
+  traziam cabecalho de JPEG, PNG nem WebP" sobre um JPEG 1024x1024 que o
+  navegador pinta. Em JPEG a dimensao mora no SOF, depois de TODO metadado, e
+  metadado nao tem teto: naquela foto o Exif tem 14.033 bytes, o segundo 4.487 e
+  o bloco 0xED 16.114, e o SOF cai no byte 34.780 — a 2 KB da janela. Faltou
+  JANELA, nunca cabecalho, e a frase afirmava o que o arquivo desmente. Agora ha
+  `ESCADA_DE_JANELAS = (32768, 131072, 524288)`, que sobe SO quando os bytes sao
+  de formato conhecido, com teto e com frase propria em cada ramo; PNG e WebP
+  nao sobem, porque a dimensao deles esta nos primeiros 30 bytes. Portao:
+  `teste-janela-da-foto.py`, 22 afirmacoes, com JPEG fabricado, servidor de
+  loopback que CONTA os pedidos e a regua velha obrigada a REPROVAR. A licao vai
+  para a aquametria por despacho (a regua dela e "a mesma leitura").
 
-  O QUE NAO FOI VERIFICADO, e esta dito para ninguem ler verde como entrega:
-  NAO HA CREDENCIAL de Search Console neste ambiente (GOOGLE_SA_B64,
-  GOOGLE_SA_JSON e GOOGLE_SA_FILE ausentes, conferidos hoje), entao a chamada
-  REAL da `sitemaps.list` nao foi feita. Medido: a funcao pura, o `main()` com a
-  sessao encenada, e a leitura real do sitemap pela rede desta nuvem.
+  E O RECUO DO BANCO ERA DECLARADO EM CINCO LUGARES, um deles discordando:
+  `aplicar-foto-quebrada.py` gravava com `indent=2` contra o `RECUO_DO_BANCO=1`
+  da constante, e como foi ela que escreveu o banco em 18/11, o arquivo em disco
+  ficou com recuo 2. A primeira gravacao por outro caminho devolveu 2.100 linhas
+  de recuo com as dez fotos escondidas dentro. Os cinco passaram a ler a
+  constante; portao `teste-recuo-do-banco.py` (14 afirmacoes) varre
+  `ferramentas/` e DENUNCIA literal. A COMPARACAO ESTRUTURAL contra o HEAD e o
+  que prova o que mudou: 10 `imagem` que eram null, 10 `historico_da_foto`
+  novos, 10 `motivo_sem_imagem` a null e o `gerado_em`. Zero preco, zero
+  veredito de entrada, zero link.
 
-  A MEDICAO QUE VALE MAIS QUE O ITEM — A PAREDE DO EGRESSO NAO E UMA, E UMA POR
-  AMBIENTE. Tres passadas por host, controle verde na mesma passada, classificado
-  pelo `__agentproxy/status`: `rodametria.com.br` 200/200/200 (o item 3 diz que
-  as MAOS nao o alcançam), `cf.shopee.com.br` 200/200/200 (o PAINEL.md diz
-  `CONNECT tunnel failed, 403`), `fonts.gstatic.com` 404/404/404 — 404 da ORIGEM
-  em `/`, logo o CONNECT PASSOU. O `recentRelayFailures` acusa `connect_rejected`
-  para UM host so, um dominio inexistente que eu usei de proposito como prova de
-  que o instrumento acusa recusa quando ha recusa. AS RONDAS NAO ESTAVAM
-  ERRADAS: elas mediram o ambiente DELAS, e daqui nao ha como medir o ambiente
-  delas. O que esta errado e a FRASE — "o egresso desta nuvem" e fato do
-  ambiente que mediu, nao do Arquipelago, e tres lugares do repositorio hoje o
-  afirmam como se fosse.
+  A PAREDE DO EGRESSO NAO E UMA, E O NUMERO FECHOU A MEDICAO DE 10h17Z:
+  `cf.shopee.com.br` serve as fotos desta ilha DAQUI — 3 controles em 200 e as
+  10 fotos em 206 `image/jpeg` nas 30 passadas, mais 10 de 10 `viva` no DOM. O
+  cabecalho da `aplicar-foto-quebrada.py` afirma o contrario como se fosse fato
+  do Arquipelago, e e fato do AMBIENTE que mediu.
 
-  SAO DOIS CAMPOS DE CONFIGURACAO, NAO UM, e a entrada de 18/11 diz "O GESTO, E
-  ELE E UM". As oito linhas dela sao do campo do AMBIENTE (Nuvem -> engrenagem
-  -> Dominios permitidos, 20.1). O egresso do item 3 mora no campo da CONTA
-  (Configuracoes -> Recursos -> Execucao de codigo -> Dominios adicionais
-  permitidos, 25.6), onde ja estao robometria e aquametria e falta
-  `rodametria.com.br`. QUEM COLAR AS OITO LINHAS E PARAR CONTINUA COM A LINHA DE
-  INDEXACAO DESTA ILHA EM `n/d`. Entrada ALTA nova no topo dos ABERTOS.
+  ERRATA DE NUMERO, porque numero errado em registro e o que esta ilha mais
+  cobra: a mensagem do commit `cb3642e` diz "60 portoes sem rede" e o numero
+  medido e 59 (eram 55). Com rede, 65. A mensagem nao se reescreve; o numero
+  certo esta aqui e no REGISTRO.md.
 
-  PROXIMO PASSO DESBLOQUEADO: NENHUM de construcao, e isso e medicao e nao
-  desanimo. A fila esta acabada, os quatro eixos de pagina nova estao atras da
-  lista do AMBIENTE e a leitura de Search Console atras da lista da CONTA — dois
-  campos, os dois do Raphael. O que uma execucao da Fundacao pode fazer aqui sem
-  gesto dele, pre-registrado para ninguem redescobrir: (a) MEDIR as duas fotos de
-  `cf.shopee.com.br` que a ronda de 18/11 declarou NAO MEDIDO, porque DAQUI elas
-  sao alcançaveis — achado desta passada, e e receita, nao faxina; (b) a primeira
-  passada com credencial de Search Console fecha a ultima afirmacao do conserto
-  de hoje. Nenhuma das duas cria pagina.
+  PROXIMO PASSO DESBLOQUEADO, E AGORA EXISTE UM DE CONSTRUCAO — ele e o despacho
+  ALTA que esta passada abriu em `dados/despachos.md`: A PAGINA DE 823 MIL
+  BUSCAS/MES NAO SERVE NENHUM LINK DE LOJA. Medido no ar em
+  /veiculos/moto-eletrica/: zero cartao, zero bloco de compra, zero ocorrencia
+  de `shopee.com.br`, de `s.shopee` e de `sponsored`; os dois unicos links
+  externos sao as fontes do Google; e o que a pagina serve e
+  `rdm-caixa-ausencia`. A causa e de MECANISMO: `abre_o_portao_da_30_2` e
+  `false` (1 anuncio com link, piso 3), logo `gerar-vitrine-de-produto.py` NAO
+  escreve esta pagina na vitrine, o PHP cai na caixa de ausencia, e o
+  `piso_da_busca` — que existe no banco da consulta, com os tres campos — mora
+  DENTRO do bloco que nao nasceu. O degrau que a 25.2 chama de piso, o que
+  "nunca depende de ninguem", e exatamente o que desaparece quando ninguem
+  anuncia. O item 2 do despacho de 18/11 continua inteiro e e do Raphael; isto e
+  bloco da Fundacao e nao espera gesto nenhum.
+  Depois dele, o que segue esperando o Raphael: as tres etiquetas do Mercado
+  Livre (item 2 de 18/11) e `rodametria.com.br` no campo da CONTA para a leitura
+  de Search Console (item 3-b).
+  E UMA PISTA MEDIDA DE GRACA PARA QUEM PEGAR A PROXIMA: `veiculos.json` tem
+  TRES registros `publicavel` com `imagem: null` e `motivo_sem_imagem` VAZIO —
+  sao os 3 reservados de /autonomia-patinete-eletrico/. O coletor de anuncios
+  PROIBE isso no banco dele ("sem imagem e sem causa escrita"), e aqui ninguem
+  cobra. Causa vazia nao diz se a foto foi medida.
+
 ---
 
 # Estado da ilha RODAMETRIA

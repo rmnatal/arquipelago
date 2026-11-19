@@ -3,6 +3,89 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-11-19 13h17Z–13h5xZ — **AS 10 FOTOS QUE FALTAVAM VOLTARAM AOS CARTÕES, E O DEFEITO DE UMA DELAS ERA A JANELA DO LEITOR DE CABEÇALHO: 32 KB NÃO ALCANÇAM O SOF DE TODO JPEG.** Revisão 115, e a vitrine passou de 16 de 29 itens com foto para **29 de 29**.
+
+**A ILHA DESTA EXECUÇÃO:** rodametria, por **foco** (`foco.md`, foco total e absoluto desde 27/10). **O que fura o foco foi conferido antes de aceitar isso:** nenhum dos seis itens do despacho da leitura semanal de 18/11 está aberto para a Fundação (o 1 e o 4 mandam **não tocar**; o 2 e o 3-b são gesto do Raphael; o 3 teve a metade de código fechada às 10h2xZ; o 5 e o 6 não pedem nada), e o item 5 da ronda técnica de 18/11 é chamado na HostGator. O despacho do **molde de conversão** segue fechado nas três ilhas que a exceção de 21/10 nomeia.
+
+**Passo 1 do disparo, medido:** `git fetch origin main` trouxe o `main` de `68c88a4` para **`bc7488a`**. A branch `claude/dreamy-mccarthy-3jxi6r` (local e remota) estava **na mesma ponta do `main`** — `git log origin/main..origin/claude/...` devolveu vazio — e `git status` veio limpo: nada a mesclar. **Nenhum PR aberto** (`list_pull_requests` state=open devolveu `[]`).
+
+**A RESERVA (passo 5 da seção 1):** `executando_desde` estava **`null`**, que pela **1.1** já prova que não havia bloco da Fundação vivo; o último commit da pasta era de **10h28Z**, quase três horas antes. Reserva às **13h17Z**, ganha no push na **primeira tentativa** (`984b3a8`). **RENOVADA uma vez pela 1.1 às 13h39Z** — o bloco passa dos 40 minutos porque a Open API desta conta devolve `System Error` intermitente (três tentativas numa chave só) e porque medir foto sobe um navegador. A hora saiu do `date -u` na mesma linha de comando que a grava.
+
+**A REDE FOI MEDIDA E NÃO HERDADA (20.2):** `rodametria.com.br` em **200 nas três passadas**, `www.` em **301** nas três (redireção, não recusa), com `aquametria.com.br` em 200 nas **mesmas três**.
+
+**POR QUE ESTE TRABALHO:** a fila de blocos está acabada e os quatro eixos de página nova seguem atrás das duas listas de permitidos. O `bloco_atual` de 10h2xZ **pré-registrou** o que uma execução pode fazer aqui sem gesto do Raphael: *"(a) MEDIR as duas fotos de `cf.shopee.com.br` que a ronda de 18/11 declarou NÃO MEDIDO, porque DAQUI elas são alcançáveis — achado desta passada, e é receita, não faxina"*. Era isso, e a fila era maior do que aquela linha supunha: **dez** anúncios que servem com `imagem: null`, não dois.
+
+**Bancada ANTES de construir (18.5):** 55 portões sem rede, 0 falha.
+
+---
+
+### O NÚMERO, E ELE É DE RECEITA
+
+**Dez anúncios que SERVEM estavam com `imagem: null`** — 4 na bicicleta, 1 na moto, 5 no patinete —, cada um servindo o espaço reservado neutro da seção 6 no lugar da foto do produto. Entre eles, o **primeiro cartão de `/veiculos/patinete-eletrico/`**, que é o espaço mais caro da página, e os **três primeiros** daquele carrossel.
+
+A causa de cada um estava escrita em `motivo_sem_imagem`: `503`, `504`, `403` ou *"os primeiros 32768 bytes não traziam cabeçalho"*. **Oito eram medição vencida**, e a própria `aplicar-foto-quebrada.py` promete no cabeçalho dela que *"a foto volta sozinha no dia em que a CDN voltar"*. Este foi o dia, sem precisar de uma recoleta inteira.
+
+**MEDIDO, de três maneiras:**
+
+- **a CDN, por HTTP daqui:** 3 fotos de controle em **200 `image/jpeg`** (3 passadas cada) e as 10 da fila em **206 `image/jpeg`** nas **30 passadas**;
+- **o DOM, num navegador de verdade:** **10 de 10 `viva`**, com `naturalWidth` batendo com o cabeçalho em todas;
+- **a vitrine, contada no JSON gerado:** **16 de 29 → 29 de 29** itens com foto, **zero** sem;
+- **o ar, com `<style>` removido e quebra de cache:** patinete **5 fotos / 0 reservado**, bicicleta **3 / 0**, autonomia **1 / 3**. Os três reservados que sobram vêm de `veiculos.json`, que é outro banco e não foi tocado.
+
+### A REGRA NOVA: FOTO SÓ VOLTA COM DOIS INSTRUMENTOS INDEPENDENTES CONCORDANDO
+
+`ferramentas/aplicar-foto-remedida.py` é a **irmã simétrica** da `aplicar-foto-quebrada.py`, e ela só devolve uma foto quando o **cabeçalho do arquivo** (`medir_foto` do coletor, **importado** e nunca copiado) e o **`naturalWidth` no DOM** dizem `viva` **e as dimensões fecham entre os dois**. O primeiro prova que a origem respondeu e que os bytes começam como imagem; o segundo prova que o navegador **pinta**. Foi essa diferença que a ronda de 18/11 mediu no Chrome do Raphael: `complete: true` com `naturalWidth: 0` — uma imagem que o navegador aceitou e não conseguiu desenhar. **Um instrumento só devolveria foto quebrada para o lugar mais caro da página**, que é pior que o reservado.
+
+**A URL da foto é pedida à loja, nunca remontada:** o coletor descarta `url_bruto_da_imagem` depois de medir, então o banco não tem a URL dos registros sem foto. A ferramenta a pede à Open API pela `chave_que_achou` do próprio anúncio e casa por `item_id`; anúncio que não estiver na resposta da chave hoje é **dito e saltado**. **A medição velha não é apagada:** desce para `historico_da_foto`, com a data e o **ambiente** que a produziu — se a próxima ronda medir quebrada outra vez no Chrome do Raphael, a irmã a tira em um comando e o histórico mostra as duas.
+
+**Autoteste: 24 afirmações, 0 falha**, com os mundos que o dado de hoje **não tem** (as dez saíram `viva` nos dois instrumentos) e com a **mutação cobrada**: a régua de **um instrumento só** tem de discordar da de hoje na foto quebrada e na dimensão divergente. Mais duas afirmações que cobram que `nome_do_anuncio` **exista** no módulo que o coletor carrega — a primeira versão do arquivo a foi buscar em `regras/nomes.py`, derivado de cabeça pelo padrão dos vizinhos, que é a família exata da chamada inexistente que custou **tela branca** na F3 em 06/11.
+
+### O DEFEITO DE VERDADE, E ELE APARECEU PORQUE OS DOIS INSTRUMENTOS DISCORDARAM EM UM DOS DEZ
+
+A foto do anúncio **58270189618**, a única de `/veiculos/moto-eletrica/`, saiu `viva` 1024×1024 no DOM e **reprovada** no cabeçalho, com a frase *"os primeiros 32768 bytes não traziam cabeçalho de JPEG, PNG nem WebP"*. **Essa frase é falsa sobre o arquivo.** Medido byte a byte: ele começa com `ff d8 ff e1` — SOI seguido de APP1 —, é um JPEG de 343.013 bytes que o navegador pinta, e a dimensão dele mora no segmento **SOF**, que em JPEG vem **depois de todo metadado**. Ali há Exif de **14.033** bytes, um segundo Exif de **4.487** e um bloco **0xED** (recurso de imagem do Photoshop) de **16.114**: o SOF cai no byte **34.780**, a 2 KB da janela. **Faltou JANELA, nunca cabeçalho** — e o instrumento afirmava sobre o arquivo uma coisa que o arquivo desmente, que é a família exata do erro sobrescrito de `urls_do_sitemap`, consertado nesta ilha na manhã do mesmo dia.
+
+**O conserto é mecanismo, não o número 32.768:** `ESCADA_DE_JANELAS = (32768, 131072, 524288)`, que sobe **só** quando os bytes lidos são de formato conhecido e a dimensão ainda não apareceu. `formato_conhecido()` separa *"não é imagem"* de *"faltou janela"*, o teto é dito na mensagem, e os **quatro** ramos têm frase própria. **PNG e WebP não sobem a escada**, porque a dimensão deles está nos primeiros 30 bytes — subir ali seria baixar arquivo atrás de dado que não está mais longe.
+
+**Portão: `ferramentas/teste-janela-da-foto.py` — 22 afirmações, 0 falha**, e ele não mede a leitura do cabeçalho (isso já tem afirmação): mede a **escada**. JPEG fabricado com metadado de tamanho controlado, **servidor de loopback que CONTA os pedidos** — porque quantos pedidos saem só se mede do lado de quem responde —, e a **régua velha obrigada a REPROVAR** o caso medido. O PDF e o PNG provam que ela **não** sobe quando não deve; o JPEG com 600 KB de metadado prova que ela **para no teto e diz que é teto**; e uma afirmação proíbe qualquer caminho da função de voltar a dizer que um JPEG não traz cabeçalho de JPEG.
+
+**A lição vai para a aquametria por despacho** (`dados/despachos.md`, NORMAL): a `regua-cdn-shopee.py` dela é citada pelo próprio `coletar-oferta.py` como *"mesma leitura"*, e a seção 3 proíbe editar arquivo de ilha que esta execução não reservou.
+
+### O PORTÃO NOVO NASCEU INERTE, E A RESPOSTA NÃO ERA CALAR — ERA TER ASSUNTO PRÓPRIO
+
+A bancada classifica `medir-*` como portão de rede, rodou o `medir-foto-no-navegador.mjs` sem argumento e o chamou de **INERTE**: *"não imprime APROVADO, REPROVADO nem 'N falha(s)'. Portão que não diz o veredito em português não é lido por ninguém."* **A régua dela estava certa.** Sem argumento ele passa a ser **portão**, com o assunto que faltava a esta ilha: **toda foto que os bancos DECLARAM tem de estar viva no navegador**, e a dimensão gravada tem de ser a que o navegador pinta — dimensão divergente é salto de layout quando a imagem carrega, que é o que a 25.7 proíbe ao exigir largura e altura **medidas**. É o portão que teria achado as duas fotos quebradas de 18/11 **sem ninguém abrir a página**. **23 fotos declaradas, 46 afirmações, 0 falha.** `nao_medida` **não** reprova e sai impresso: ausência de medição não é defeito, e dizer "quebrou" sobre o que não se mediu é o defeito que o item 2 do despacho de 18/11 consertou no portão de pixel.
+
+**E ele nasceu com um defeito de classificação, consertado antes de ser usado:** o `requestfailed` **sobrescrevia** o `response` que já havia chegado, e o pedido que a origem respondeu **404** saía classificado como `nao_medida`. É a mesma família do erro sobrescrito da manhã. Agora a falha **não apaga o status**, e `ERR_BLOCKED_BY_ORB` cai em `rede_nao_explica` e nunca em `nao_medida` — a resposta chegou e o navegador a recusou por não ser imagem. **Autoteste: 11 afirmações**, com dez mundos fabricados e a conta impressa de que a **régua ingênua discorda em 4 de 10** deles.
+
+### O RECUO DO BANCO ERA DECLARADO EM CINCO LUGARES, UM DELES DISCORDANDO
+
+`RECUO_DO_BANCO` vale **1** e mora em `coletar-por-consulta.py`; `aplicar-foto-quebrada.py` gravava com `indent=2` **digitado na linha dela**. Como foi aquela ferramenta que escreveu o banco em 18/11, o arquivo em disco ficou com recuo 2 — e a primeira gravação por qualquer outro caminho devolveu o recuo para 1, com um diff de **2.258 inserções e 2.098 remoções** para uma mudança de **dez fotos**. **A mudança de verdade ficou invisível dentro do recuo**, e o diff é onde uma pessoa lê o que a passada fez. Os cinco escritores passaram a **ler** a constante. **Portão: `ferramentas/teste-recuo-do-banco.py` — 14 afirmações**, que **varre** `ferramentas/` em vez de listar, DENUNCIA literal, cobra que a varredura ache pelo menos 5 gravações (*portão que não acha nada passa verde sobre tudo*), exige que o arquivo em disco esteja no recuo da constante, e tem as duas metades da mutação: reprova o `indent=2` que estava lá e **aprova** a leitura certa. Essa segunda metade nasceu vermelha — a expressão parava no `(` de `_recuo_do_banco()` e a régua **reprovava o certo**, que é o caminho mais curto para alguém passar a ignorar um portão.
+
+**O QUE PROVA QUE SÓ AS FOTOS MUDARAM NÃO É O DIFF, É A COMPARAÇÃO ESTRUTURAL** contra o `HEAD`, campo por campo: **10** `imagem` que eram `null`, **10** `historico_da_foto` novos, **10** `motivo_sem_imagem` a `null`, e o `gerado_em`. **Zero** preço, **zero** veredito de entrada, **zero** link, **zero** campo do `resumo`. Na vitrine: **13** slots ganharam foto e só o `gerado_em` mudou.
+
+### O DESEMBARQUE (20.4, 20.6 e 20.8)
+
+Push, três visitas à home para acordar o WP-Cron, e a **revisão 115 entrou em um minuto**. O log do `/status` lido **linha por linha, do fecho para baixo** pela 20.8: `revisão 115: 7 aplicado(s), 6 aguardando desembarque` mais as **7 linhas de item**, e as **sete dizem `ok`**. `versao_sync` 1.1.5.
+
+**NO AR (18.4):** `conferir-produto-no-ar.py` **369 afirmações, 0 falha**; `conferir-32-5-no-navegador.mjs` **APROVADO, 10 de 10 páginas do molde dentro da 32.5** — pior caixa 405 px (teto 700), pior botão de compra **1.333 px** (teto 1.400), e ele imprime a contagem de foto por página: `bicicleta 3/3 real, 0 reservado`, `patinete 5/5 real, 0 reservado`, `autonomia 1/4 real, 3 reservado`. Bancada: **59 portões sem rede e 65 com rede, 0 falha** (eram 55).
+
+> **ERRATA DE NÚMERO, e ela é minha:** a mensagem do commit `cb3642e` diz *"60 portões sem rede"*. O número medido é **59**. Mensagem de commit não se reescreve; o número certo é este, e está também no `bloco_atual`.
+
+### O ACHADO QUE VIROU DESPACHO ALTA, E ELE É O PRÓXIMO BLOCO
+
+Ao conferir a página da foto que faltava, medi `/veiculos/moto-eletrica/` inteira — a página da consulta de **823 mil buscas/mês**, no ar desde 16/11. Com `<style>` e `<script>` removidos: **zero** cartão, **zero** bloco de compra, **zero** ocorrência de `shopee.com.br`, de `s.shopee` e de `sponsored`. Os **dois** únicos links externos da página são `fonts.googleapis.com` e `fonts.gstatic.com`. O que ela serve é `rdm-caixa-ausencia`: *"A comparação de preços desta página está sem dados hoje."*
+
+**O item 2 do despacho de 18/11 afirma o contrário, com boa-fé:** *"o piso da 25.2 está de pé (as três páginas têm `piso_da_busca`...), então a página **não** está sem saída de compra"*. A primeira metade é verdadeira — o piso está no **banco** daquela consulta, com os três campos — e **a segunda não**: ele não chega à **tela**. A causa é de mecanismo: `abre_o_portao_da_30_2` é `false` (1 anúncio com link, piso 3), então `gerar-vitrine-de-produto.py` **não escreve esta página na vitrine** (`vitrine-de-produto.json` tem **duas** páginas), o PHP cai na caixa de ausência, e o `piso_da_busca` mora **dentro** do bloco que não nasceu. **O degrau que a 25.2 chama de piso, o que "nunca depende de ninguém", é exatamente o que desaparece quando ninguém anuncia.** Errata escrita dentro do próprio item 2, no `PROMPT.md`, e entrada **ALTA** em `dados/despachos.md`. **É bloco da Fundação e não espera gesto nenhum.**
+
+### PRÓXIMO PASSO DESBLOQUEADO
+
+**Existe um de construção, e é o despacho ALTA acima:** servir o `piso_da_busca` da consulta mesmo com a vitrine vazia, com `rel="sponsored"` e `sub_id_1`, e o `conferir-produto-no-ar.py` cobrando isso em afirmação própria para toda consulta declarada que não abre o portão da 30.2.
+
+**E uma pista medida de graça para quem pegar a próxima:** `dados/veiculos.json` tem **três** registros `publicavel` com `imagem: null` e `motivo_sem_imagem` **vazio** — são os 3 reservados de `/autonomia-patinete-eletrico/`. O `coletar-por-consulta.py` **proíbe** isso no banco dele (*"sem imagem e sem causa escrita"*) e aqui ninguém cobra. Causa vazia não diz se a foto foi medida.
+
+**Segue esperando o Raphael, sem mudança:** as três etiquetas do Mercado Livre (item 2 de 18/11) e `rodametria.com.br` no campo da **conta** para a leitura de Search Console (item 3-b).
+
+---
+
 ## 2026-11-19 10h17Z–10h2xZ — **O ITEM DE DESPACHO PEDIA UM CONSERTO QUE JÁ ESTAVA FEITO, E A CAUSA DE ELE ESTAR ESCRITO ASSIM ERA UM DEFEITO DE VERDADE: O INSTRUMENTO SUMIA COM O QUE TENTOU.** Nenhuma revisão se move — não há tela nisto.
 
 **A ILHA DESTA EXECUÇÃO:** rodametria, por **foco** (`foco.md`, foco total e absoluto desde 27/10). **Conferi o que fura o foco antes de aceitar isso, e medi em vez de herdar:** `clubedomosaico.com.br` e `robometria.com.br` respondem **200** na raiz, logo estão **no ar e não quebradas** — a única exceção que a 1.2 abre é despacho ALTO em ilha no ar **e quebrada**, e os ALTA abertos nelas são **chamado na HostGator**, gesto do Raphael. O despacho do **molde de conversão** (exceção do Raphael de 21/10, seção 32) segue fechado nas três ilhas que ele nomeia, como o registro de 18/11 mediu. Nada fura o foco pela 1.2 nem pela 18.1.
