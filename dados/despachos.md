@@ -11,7 +11,128 @@ Prioridade: `alta` fura a fila da próxima execução do destinatário.
 
 ## ABERTOS
 
-### prioridade NORMAL — O PORTÃO DE PIXEL DAS QUATRO ILHAS DECIDE SE MEDE UMA PÁGINA PELO **COMPONENTE DE MOLDE**, E AGORA EXISTE PÁGINA COM BOTÃO DE COMPRA E SEM COMPONENTE NENHUM — medido na rodametria em 19/11/2026 às 16h4xZ
+### prioridade ALTA — A ROBOMETRIA ESTÁ FORA DO AR: 7 DE 7 PÁGINAS INTERNAS EM 404, SÓ A HOME RESPONDE — E É A ÚNICA ILHA DA FÁBRICA QUE A FÁBRICA NÃO CONSEGUE REPARAR (medido em 19/11/2026 às 19h3xZ)
+
+19/11/2026 — **PARA O RAPHAEL, e é gesto dele: a fábrica tentou e não alcança.** Achado por acidente pela
+execução da rodametria, ao conferir se as ilhas irmãs rodam a mesma régua do portão de pixel: o
+`wp-sitemap.xml` da robometria devolveu **404 com a página da HostGator**, que é a assinatura da porta de
+entrada no chão (**29.2**).
+
+**A MEDIÇÃO, TRÊS PASSADAS, COM CONTROLE VERDE NAS MESMAS (20.2 — remedida e nunca herdada):**
+
+| alvo | passada 1 | 2 | 3 |
+|---|---|---|---|
+| `robometria.com.br/` | 200 | 200 | 200 |
+| `/robots.txt` | **404** | **404** | **404** |
+| `/wp-sitemap.xml` | **404** | **404** | **404** |
+| `/wp-json/` | **404** | **404** | **404** |
+| caminho virgem (`/nao-existe-xyz-N/`) | 404 | 404 | 404 |
+| `aquametria.com.br/wp-sitemap.xml` (controle) | 200 | 200 | 200 |
+
+**AS TRÊS PORTAS DA 29.2 ESTÃO NO CHÃO AO MESMO TEMPO**, e nove medições de controle verdes na mesma janela
+dizem que não é rede e não é intermitência.
+
+**O CUSTO, medido página por página e não deduzido:** `/pecas/`, `/sobre/`, `/metodologia/`,
+`/qual-peca-serve-no-meu-robo-aspirador/`, `/quantos-m2-o-robo-aspirador-limpa-por-carga/`,
+`/filtro-universal-de-robo-aspirador/` e `/divulgacao-de-afiliados/` — **7 de 7 em 404**. Só `/` responde 200,
+porque a home não precisa de regra de reescrita. A ilha tem 14 URLs publicadas e **10 estavam indexadas**
+(leitura semanal de 18/11, 15 impressões, posição 7,2): é a ilha **mais bem posicionada do arquipélago** que
+está servindo 404 ao Google.
+
+**O WORDPRESS ESTÁ VIVO, E É ISSO QUE TORNA O DIAGNÓSTICO CERTO:** `?rest_route=/` responde **200**, e
+`?rest_route=/robometria/v1/status` devolve `versao_sync 1.1.5`, **revisão 96**, com o log de 02/11. Não é
+servidor caído nem banco perdido: é **só o bloco do WordPress fora do `.htaccess` da raiz**, exatamente o que
+custou **nove dias** à clubedomosaico em setembro e o que já caiu **sete vezes** na raiz da rodametria. O
+`/status` verde aqui é a **29.1 literal** — resumo correto e irrelevante.
+
+**E A FÁBRICA TENTOU, pela 29.3-a (*"tente antes de escrever que não dá"*), nos dois caminhos que existem:**
+- **o reparo da 29.3** — `?rest_route=/robometria/v1/rotas` responde **401** sem token, que é o código que
+  prova que a casca achou a fonte do token e rodou o `hash_equals`. **O token do Sync desta ilha não está no
+  repositório e não há variável de ambiente com ele** (conferido). Sem token, não há `&reparar=1`.
+- **a cura da porta da 29.4** — a robometria **não a tem**, e agora isso está medido no ar e não lido em
+  código: `?rest_route=/robometria/v1/casca` devolve **`rest_no_route`**. Ela não serve nem a rota `/casca`,
+  logo não serve `tem_cura_da_porta` nem `fonte_do_log_da_cura`. **É a única ilha no ar sem a cura**, e o
+  despacho NORMAL de 12/11 que pede isso continua aberto mais abaixo neste arquivo — ele acabou de deixar de
+  ser dívida de engenharia e virou o motivo pelo qual esta queda não se curou sozinha.
+
+**O GESTO, e são dois:**
+1. **Repor a porta, agora:** no WordPress da robometria, **Configurações → Links permanentes → Salvar**
+   (isso reescreve o bloco sozinho); ou repor à mão o bloco `# BEGIN WordPress … # END WordPress` no
+   `.htaccess` da raiz, pelo Gerenciador de Arquivos do cPanel.
+2. **Abrir/atualizar o chamado na HostGator** com a série de quedas da mesma conta de cPanel — a entrada ALTA
+   de 17/11 e a de 18/11 (na rodametria) já têm a frase do **evento irregular** da 29.5(b) e os intervalos
+   fechados. Esta queda é a primeira medida em **outro domínio** da conta desde 30/10, e isso é argumento
+   novo: não é uma raiz com defeito, é a **conta**.
+
+**E UMA DECISÃO QUE ESTA QUEDA COBRA, porque sem ela a próxima custa o mesmo:** ou a robometria recebe a cura
+da porta da 29.4 (bloco de Fundação, e pela exceção da **1.2** ilha no ar e quebrada é a única coisa que fura
+o foco total da rodametria), ou o token do Sync dela fica alcançável por esta nuvem — **uma das duas**. Hoje a
+fábrica mede a queda e não pode fazer nada a respeito, que é a pior das combinações.
+
+**pronto quando:** as três portas da 29.2 (`/robots.txt`, `/wp-sitemap.xml`, `/wp-json/`) voltarem a 200 em
+duas leituras com quebra de cache, as 14 URLs do sitemap responderem 200 e o caminho virgem devolver **404 na
+página da própria ilha**, e não na da HostGator.
+
+
+### prioridade NORMAL — Fundação (clubedomosaico e robometria) — **O PORTÃO DE PIXEL DAS IRMÃS DESCARTA 59 DE 97 PÁGINAS QUE SERVEM LINK DE COMPRA, E A CLUBEDOMOSAICO AS DESCARTA EM SILÊNCIO** (medido em 19/11/2026 às 19h3xZ)
+
+19/11/2026 — **FUNDAÇÃO (clubedomosaico, robometria)** — Escrito pela execução da rodametria que fechou o
+despacho do portão de pixel logo abaixo, obedecendo à frase dele: *"as outras ilhas rodam a mesma régua, então
+quem pegar confere se a classificação delas tem a mesma forma antes de fechar"*. A **seção 3** proíbe editar
+arquivo de ilha que esta execução não reservou, então vai por aqui.
+
+**A FORMA É A MESMA NAS DUAS, lida no código:**
+- `ilhas/clubedomosaico/ferramentas/conferir-32-5-no-navegador.mjs:158` —
+  `tem_molde: !!(bloco || document.querySelector('.cdm-molde-resultado'))`
+- `ilhas/robometria/ferramentas/conferir-32-5-no-navegador.mjs:200` —
+  `tem_molde: !!(bloco || document.querySelector('.rbm-caixa'))`
+
+Nas duas o critério é **COMPONENTE**, nunca o que a página serve — e é esse o defeito que a rodametria
+acabou de consertar: página com link de compra e sem componente sai da conta **já vendendo**, e o teto de
+1.400 px da 32.5 nunca é cobrado dela.
+
+**E AQUI ELE NÃO É UMA PÁGINA: É A MAIORIA DA ILHA.** Medido hoje nas **97 URLs** do `wp-sitemap.xml` da
+clubedomosaico, uma por uma, com quebra de cache, usando os **dois seletores do próprio portão dela**
+(`.cdm-molde-compra` e `.cdm-molde-resultado`) no corpo servido com `<style>` e `<script>` removidos:
+
+- **76** páginas servem pelo menos um `rel="…sponsored"`;
+- **59** delas **não têm componente de molde nenhum** — ou seja, 59 páginas que vendem algo e que o portão
+  dela joga fora da conta. Entre elas as 15 fichas de `/materiais/torques-para-mosaico/` e de
+  `/materiais/rejunte-para-mosaico/`, e guias como `/como-fazer/o-que-e-trencadis/` com **13** links.
+
+**O LIMITE DESTA MEDIÇÃO, dito para ninguém ler mais do que ela mede:** ela é por **texto no HTML servido**, e
+o portão lê o **DOM com visibilidade** (`getClientRects`). Link patrocinado dentro de `<details>` fechado —
+que existe nessa ilha, o portão dela diz isso com todas as letras sobre o formulário de recado das peças —
+**não** contaria para ele. Então **59 é o teto**, e o número exato sai quando o portão dela rodar com a
+classificação nova. O que a medição estabelece sem margem é que **não são zero nem uma**.
+
+**E HÁ UMA DIFERENÇA QUE AGRAVA, e é só da clubedomosaico:** o portão da rodametria **imprimia** a linha
+`fora  <url>  sem componente de molde nenhum` — e foi exatamente por essa linha impressa que o defeito foi
+achado em 16h4xZ. O da clubedomosaico faz `fora.push(m); continue;` **sem imprimir nada**, e o veredito final
+dele não diz quantas páginas ficaram fora. **59 páginas que vendem algo saem da conta sem uma palavra**, e é
+a 32.5-b ao contrário: não é portão que mente, é portão que cala.
+
+**A ROBOMETRIA NÃO FOI MEDIDA NO AR, e o motivo é o despacho ALTA acima:** a ilha está servindo 404 em 7 de 7
+páginas internas. A forma do código dela está lida e é a mesma; o número dela sai quando a porta voltar.
+
+**O CONSERTO, como ele ficou na rodametria** (`ilhas/rodametria/ferramentas/conferir-32-5-no-navegador.mjs`,
+para copiar trocando só o prefixo das classes): `componente_de_molde` guarda o fato do componente;
+`vende_algo` é `!!compra` e entra no `tem_molde`; o teto de compra julga o **primeiro link de compra** da
+página; o teto de **caixa** ganha três ramos ditos separados (há caixa → mede; componente sem caixa →
+REPROVA; nem componente → diz que não se aplica); a `pior caixa` do rodapé é contada **só entre as páginas
+que têm caixa**, senão `caixa ?? 1e9` publica 1e9 como número medido (**23.4**); e a linha impressa diz
+**onde** o link de compra mora. A ponta velha que REPROVAVA link patrocinado sem bloco **sai** — ela existia
+contra escape do teto, e medir é mais forte que reprovar —, mas **só sai acompanhada** dos dois mundos de
+autoteste que põem o mesmo link **abaixo** do teto e exigem REPROVADO.
+
+**pronto quando:** nas duas ilhas, página que serve link de compra é medida contra o teto de 1.400 px tenha
+ela componente de molde ou não; a clubedomosaico **imprime** a linha de cada página que fica fora da conta,
+com o motivo; o rodapé das duas conta "páginas que vendem algo" por **o que elas servem**; e o autoteste de
+cada uma tem o mundo da página sem componente **com** o par abaixo do teto que reprova. É bloco da Fundação,
+não gesto do Raphael.
+
+
+### ~~prioridade NORMAL — O PORTÃO DE PIXEL DAS QUATRO ILHAS DECIDE SE MEDE UMA PÁGINA PELO **COMPONENTE DE MOLDE**, E AGORA EXISTE PÁGINA COM BOTÃO DE COMPRA E SEM COMPONENTE NENHUM — medido na rodametria em 19/11/2026 às 16h4xZ~~ — **FECHADO NA RODAMETRIA EM 19/11/2026 às 19h4xZ, CONFERIDO NO AR PELA 18.4. NAS IRMÃS ELE NÃO FECHA AQUI: VIROU DESPACHO PRÓPRIO, COM NÚMERO, LOGO ABAIXO**
 
 19/11/2026 — **FUNDAÇÃO (qualquer ilha com molde)** — Achado pela execução que fechou o despacho ALTA do piso
 da caixa de ausência, ao obedecer à **32.5-d** (*"quem acrescenta a uma ilha o PRIMEIRO dado de uma espécie que
@@ -38,6 +159,42 @@ há link de compra na página, o primeiro deles é medido contra o teto de 1.400
 não —, e a contagem de rodapé dele passa a dizer **quatro** páginas que vendem algo nesta ilha. **As outras três
 ilhas rodam a mesma régua** (a 32.5-b manda copiar este portão), então quem pegar confere se a classificação
 delas tem a mesma forma antes de fechar. É bloco da Fundação, não gesto do Raphael.
+
+> **FECHADO NA RODAMETRIA EM 19/11/2026 às 19h4xZ, E O "PRONTO QUANDO" FOI CUMPRIDO NAS DUAS METADES.**
+> O portão passou a classificar por **o que a página SERVE**: `tem_molde` soma o link de compra ao componente
+> (`componente_de_molde` guarda o fato do componente, que continua tendo trava própria), e o teto de 1.400 px
+> julga **o primeiro link de compra da página**, tenha ela cartão de molde ou não.
+>
+> **MEDIDO NO AR, 11 URLs do sitemap a 390 px, com quebra de cache:** `APROVADO — 11 de 11 páginas medidas
+> dentro da 32.5`, **zero fora da conta** (era 10 medidas + 1 fora). `/veiculos/moto-eletrica/` entrou na conta
+> e mede **358 px** contra o teto de 1.400 — **o mesmo número que a medição à mão de 16h4xZ**, que é o que
+> prova que o portão passou a ver o que uma pessoa via. E o rodapé dele diz **`pior compra: 1333 px (teto
+> 1400) em 4 página(s) que vendem algo`** — quatro, que é o número que o despacho pediu; dizia três.
+>
+> **TRÊS TRAVAS NOVAS NASCERAM COM ELE, porque consertar uma régua afrouxando outra é o que a 32.5-b proíbe:**
+> (1) o teto de **caixa** passou a ter três ramos ditos separados — há caixa, mede; **componente de molde
+> presente e nenhuma caixa nem formulário**, REPROVA (é o defeito que a linha velha `caixa === null` pegava
+> de graça, e sem este ramo ele passaria calado); nem componente, o teto **diz na linha impressa** que não se
+> aplica. (2) A `pior caixa` do rodapé passou a ser contada **entre as páginas que têm caixa** — com
+> `caixa ?? 1e9` ela publicaria **1e9** como se fosse medido, que é a família do número sem procedência que a
+> **23.4** proíbe. (3) O link de compra vai impresso **com o lugar onde mora** (`.rdm-molde-compra`,
+> `.rdm-caixa-ausencia`, ou fora de componente), porque com o componente fora da conta "compra a 358 px" não
+> diz mais sozinho qual dos três consertos é o seu.
+>
+> **A TRAVA ANTIGA NÃO AFROUXOU, E ESTA É A PARTE QUE MAIS IMPORTA.** A régua de ontem tinha uma ponta que
+> dizia *"serve link patrocinado e NÃO tem bloco de compra — o teto de compra não tem o que medir"* e
+> **REPROVAVA**. Ela existia contra **escape** do teto; no dia em que a **25.2-c** pôs o piso da busca dentro
+> da caixa de ausência, ela passou a reprovar a página que **obedece** ao contrato. **Medir é mais forte que
+> reprovar:** nada escapa, e o que está certo passa. Para isso ficar medido e não prometido, o autoteste
+> ganhou **o mesmo link abaixo do teto em DOIS mundos** (6c e 7b) — e ele **tem** de reprovar, com o pixel e
+> o lugar na frase.
+>
+> **PORTÃO:** `conferir-32-5-no-navegador.mjs --autoteste` de **15 para 22 afirmações**, de 6 para **9 mundos
+> fabricados, 0 falha, sem uma requisição de rede** — e o mundo 7 é o do **ar**, o HTML da caixa de ausência
+> de `/veiculos/moto-eletrica/` reduzido ao que o portão lê. A régua **de componente**, a de ontem, ficou no
+> arquivo como função própria (`reguaDeComponente`) e **três afirmações exigem que ela e a nova DISCORDEM**
+> (20.8: autoteste que prova o que o portão velho já provava não mede conserto nenhum). Bancada da ilha:
+> **60 portões sem rede, 0 falha**. **Nenhuma revisão se move** — é ferramenta, e ferramenta não desembarca.
 
 
 ### prioridade NORMAL — Fundação das ilhas irmãs — **O LEITOR DE CABEÇALHO DE FOTO TEM UMA JANELA DE 32 KB QUE NÃO ALCANÇA O SOF DE TODO JPEG, E A FRASE DELE AFIRMA O QUE O ARQUIVO DESMENTE**

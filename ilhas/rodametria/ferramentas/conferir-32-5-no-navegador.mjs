@@ -223,17 +223,55 @@ async function carregarFotos(pagina) {
    nao mede conserto nenhum. */
 function reguaDePixel(m) {
 	const problemas = [];
-	if (m.caixa === null || m.caixa >= TETO_CAIXA) problemas.push(`${m.caixa_que} a ${m.caixa} px (teto ${TETO_CAIXA})`);
-	if (m.tem_compra) {
-		if (m.compra === null || m.compra >= TETO_COMPRA) problemas.push(`compra a ${m.compra} px (teto ${TETO_COMPRA})`);
-	} else if (m.tem_patrocinado) {
-		/* A outra metade da mesma trava: pagina que serve link patrocinado FORA
-		   de um bloco de compra escapa do teto de 1.400 px por nao ter o
-		   componente que o portao mede. Isso e defeito, nao isencao. */
-		problemas.push('serve link patrocinado e NAO tem bloco de compra — o teto de compra nao tem o que medir');
+	/* O TETO DE CAIXA SE JULGA ONDE HA CAIXA, e ate 19/11/2026 isso era o mesmo
+	   que "estar na conta" — por isso a linha era `caixa === null || caixa >=
+	   TETO`. Deixou de ser: desde hoje a pagina entra na conta pelo que SERVE
+	   (`vende_algo`), e existe pagina na conta com link de compra e SEM
+	   formulario e SEM caixa de resposta — `/veiculos/moto-eletrica/` e ela.
+	   Cobrar `caixa === null` dessa pagina seria reprovar o degrau que ela nao
+	   tem. Os tres ramos se dizem SEPARADOS porque o conserto de cada um e
+	   diferente (20.5): ha caixa, mede; nao ha caixa mas ha COMPONENTE de molde,
+	   REPROVA (o componente promete o degrau e ele falta, que e o defeito que a
+	   linha velha pegava); nao ha nem componente, o teto nao tem o que medir e a
+	   linha impressa DIZ isso, em vez de aprovar nem reprovar calado. */
+	if (m.caixa !== null) {
+		if (m.caixa >= TETO_CAIXA) problemas.push(`${m.caixa_que} a ${m.caixa} px (teto ${TETO_CAIXA})`);
+	} else if (m.componente_de_molde) {
+		problemas.push(`componente de molde na pagina e NENHUMA caixa nem formulario para medir (teto ${TETO_CAIXA})`);
+	}
+	/* O TETO DE COMPRA E DO PRIMEIRO LINK DE COMPRA QUE A PAGINA SERVE, tenha ela
+	   cartao de molde ou nao (19/11/2026, despacho NORMAL do mesmo dia).
+	   Ate hoje esta trava era de DUAS pontas e as DUAS liam COMPONENTE:
+	   `tem_compra` (bloco cheio) media o pixel, e `tem_patrocinado` sem bloco
+	   REPROVAVA com "o teto de compra nao tem o que medir". A segunda ponta
+	   existia para que ninguem ESCAPASSE do teto por nao ter o componente — e no
+	   dia em que a 25.2-c pos o piso da busca DENTRO da caixa de ausencia, ela
+	   passou a reprovar a pagina que obedece ao contrato. MEDIR E MAIS FORTE QUE
+	   REPROVAR: nada escapa do teto, e o que esta certo passa. A frase diz ONDE o
+	   link mora, porque com o componente fora da conta o lugar deixa de ser
+	   obvio. */
+	if (m.vende_algo) {
+		if (m.compra === null || m.compra >= TETO_COMPRA) {
+			problemas.push(`compra a ${m.compra} px (teto ${TETO_COMPRA}) — ${m.compra_onde}`);
+		}
 	}
 	if (m.rolagem_h > 0) problemas.push(`rolagem horizontal ${m.rolagem_h} px`);
 	if (m.erros > 0) problemas.push(`${m.erros} erro(s) de JavaScript`);
+	return problemas;
+}
+
+/* A REGUA DE COMPONENTE, a de ate 19/11/2026, e ela existe pelo mesmo motivo da
+   de cima: o autoteste exige que a regua NOVA e ela DISCORDEM na pagina que
+   SERVE compra sem ter componente de molde nenhum (20.8). Sem ela, o mundo novo
+   do autoteste provaria o que o portao velho ja provava. */
+function reguaDeComponente(m) {
+	if (!m.componente_de_molde) return ['fora da conta — sem componente de molde nenhum'];
+	const problemas = [];
+	if (m.tem_compra) {
+		if (m.compra === null || m.compra >= TETO_COMPRA) problemas.push(`compra a ${m.compra} px (teto ${TETO_COMPRA})`);
+	} else if (m.tem_patrocinado) {
+		problemas.push('serve link patrocinado e NAO tem bloco de compra — o teto de compra nao tem o que medir');
+	}
 	return problemas;
 }
 
@@ -361,6 +399,19 @@ function medirPagina() {
 		? [...bloco.querySelectorAll('a[rel~="sponsored"], a.rdm-molde-cartao-botao, a.rdm-molde-barra-botao')].find(visivel) || null
 		: null;
 	const compra = patrocinado || controle;
+	/* ONDE O LINK DE COMPRA MORA — e isto nasceu em 19/11/2026 junto com o teto
+	   que mede a pagina sem componente de molde. Com o componente fora da conta,
+	   "compra a 358 px" nao diz mais sozinho se o link e cartao, barra ou piso da
+	   busca, e sao tres consertos diferentes se o numero estourar. A classificacao
+	   e por ANCESTRAL e nunca por intencao: cada ramo nomeia a classe que o
+	   decidiu. */
+	const onde = !compra
+		? null
+		: (compra.closest('.rdm-molde-compra')
+			? 'dentro do bloco de compra (.rdm-molde-compra)'
+			: (compra.closest('.rdm-caixa-ausencia')
+				? 'dentro da caixa de ausencia (.rdm-caixa-ausencia: o piso da 25.2-c)'
+				: 'fora de componente de molde'));
 
 	const medida = {
 		/* FAMILIA NOVA ENTRA NO MOLDE PELO SELETOR, NUNCA PELA INTENCAO (32.5-c).
@@ -374,7 +425,20 @@ function medirPagina() {
 		   molde. O teto de COMPRA e que passa a ser julgado so onde ha o que
 		   comprar, e onde nao ha o portao DIZ que nao se aplica, em vez de pular
 		   calado. */
-		tem_molde: !!(bloco || formulario || primeiro('.rdm-molde-caixa')),
+		/* E A MESMA FAMILIA DO CONSERTO DE 30/10, UM ANDAR ABAIXO (19/11/2026).
+		   Ali o portao perdia a pagina que tinha CAIXA e nao vendia nada; aqui
+		   perdia a pagina que VENDE e nao tem componente nenhum. Medido no ar:
+		   `/veiculos/moto-eletrica/` — a consulta de 823 mil buscas/mes — saia
+		   como `fora — sem componente de molde nenhum` e, desde a revisao 116,
+		   serve o primeiro link de compra da vida dela, com `rel=sponsored`, dentro
+		   da caixa de ausencia da 25.2-c. A pagina passou a ter exatamente a
+		   grandeza que este portao existe para medir e continuava fora da conta
+		   dele. O criterio deixa de ser o COMPONENTE e passa a ser o que a pagina
+		   SERVE: caixa, formulario, bloco — ou link de compra. */
+		componente_de_molde: !!(bloco || formulario || primeiro('.rdm-molde-caixa')),
+		vende_algo: !!compra,
+		compra_onde: onde,
+		tem_molde: !!(bloco || formulario || primeiro('.rdm-molde-caixa') || compra),
 		/* BLOCO DE COMPRA VAZIO NAO E BLOCO DE COMPRA, E A DIFERENCA E MEDIDA E
 		   NAO SUPOSTA (06/11/2026). `!!bloco` sozinho reprovava a home no dia em
 		   que a F1 chegou: a 1.7 da especificacao manda a F1 servir o bloco de
@@ -770,14 +834,98 @@ if (argv.includes('--autoteste')) {
 		+ '<p class="rdm-molde-compra-vazio">Nenhum anuncio.</p></section>'
 		+ '<p><a rel="sponsored nofollow" href="https://exemplo/x">Comprar</a></p>'
 		+ '</body></html>');
-	afirmar('mundo 6b: bloco VAZIO com link patrocinado na pagina REPROVA — a trava nao afrouxou',
-		julgar(vazioComLink).some((x) => x.includes('patrocinado')),
-		JSON.stringify(julgar(vazioComLink)));
+	/* MUNDO 6b — REESCRITO EM 19/11/2026, E A REESCRITA E O CONSERTO. Ate hoje
+	   esta afirmacao exigia que o link patrocinado fora de um bloco REPROVASSE,
+	   com a frase "o teto de compra nao tem o que medir". A trava existia contra
+	   ESCAPE do teto, e no dia em que a 25.2-c pos o piso da busca dentro da
+	   caixa de ausencia ela passou a reprovar a pagina que obedece ao contrato.
+	   Agora o link e MEDIDO: aqui ele esta no alto, logo PASSA — e a regua de
+	   COMPONENTE, a de ontem, reprova o mesmo mundo. As duas discordam (20.8). */
+	afirmar('mundo 6b: bloco VAZIO com link patrocinado ACIMA do teto PASSA — ele e medido, nao reprovado de saida',
+		vazioComLink.vende_algo === true && vazioComLink.compra !== null
+			&& vazioComLink.compra < TETO_COMPRA && julgar(vazioComLink).length === 0,
+		`vende=${vazioComLink.vende_algo} compra=${vazioComLink.compra} problemas=${JSON.stringify(julgar(vazioComLink))}`);
+	afirmar('mundo 6b: a REGUA DE COMPONENTE, a de ontem, REPROVA o mesmo mundo — as duas discordam',
+		reguaDeComponente(vazioComLink).some((x) => x.includes('patrocinado')) && julgar(vazioComLink).length === 0,
+		`componente=${JSON.stringify(reguaDeComponente(vazioComLink))} nova=${JSON.stringify(julgar(vazioComLink))}`);
+
+	/* MUNDO 6c — A OUTRA METADE, E ELA E QUE PROVA QUE NADA AFROUXOU: o mesmo
+	   link patrocinado fora de bloco, agora ABAIXO do teto de 1.400 px, TEM de
+	   reprovar, e a frase tem de trazer o pixel e o lugar. A regua de ontem
+	   tambem reprovava este mundo — pela razao errada, e sem o numero. */
+	const vazioComLinkFundo = await medirFabricada(
+		'<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">'
+		+ '<meta name="viewport" content="width=device-width,initial-scale=1">'
+		+ '<style>body{margin:0;font:16px sans-serif}</style></head>'
+		+ '<body class="rdm">'
+		+ '<div class="rdm-molde-caixa"><p class="rdm-molde-caixa-numero">x</p></div>'
+		+ '<section class="rdm-molde-compra" id="comprar">'
+		+ '<p class="rdm-molde-compra-vazio">Nenhum anuncio.</p></section>'
+		+ '<div style="height:1600px"></div>'
+		+ '<p><a rel="sponsored nofollow" href="https://exemplo/x">Comprar</a></p>'
+		+ '</body></html>');
+	afirmar('mundo 6c: o MESMO link, abaixo do teto de 1.400 px, REPROVA com o pixel e o lugar',
+		julgar(vazioComLinkFundo).some((x) => x.includes(`teto ${TETO_COMPRA}`) && x.includes('fora de componente de molde')),
+		JSON.stringify(julgar(vazioComLinkFundo)));
+
+	/* MUNDO 7 — O MUNDO DE VERDADE, medido no ar em 19/11/2026 as 16h4xZ em
+	   `/veiculos/moto-eletrica/`, a consulta de 823 mil buscas/mes: ZERO
+	   componente de molde no corpo servido (nem bloco, nem formulario, nem caixa
+	   de resposta) e UM link `rel=sponsored` dentro da caixa de ausencia da
+	   25.2-c. Era o mundo que o portao classificava como `fora — sem componente
+	   de molde nenhum` e nunca media, DEPOIS de a pagina ganhar botao de compra.
+	   O HTML abaixo e o do ar, reduzido ao que o portao le. */
+	const ausencia = (altura) => '<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">'
+		+ '<meta name="viewport" content="width=device-width,initial-scale=1">'
+		+ '<style>body{margin:0;font:16px sans-serif}</style></head>'
+		+ '<body class="rdm">'
+		+ `<div style="height:${altura}px"></div>`
+		+ '<div class="rdm-caixa rdm-caixa-ausencia" role="note">'
+		+ '<p class="rdm-promessa">A comparacao de precos desta pagina esta sem dados hoje.</p>'
+		+ '<p class="rdm-caixa-piso">A loja continua com a busca aberta para esta categoria. '
+		+ '<a href="https://s.shopee.com.br/x" rel="sponsored noopener" target="_blank">Veja todos disponiveis aqui</a></p>'
+		+ '</div></body></html>';
+	const soPiso = await medirFabricada(ausencia(200));
+	afirmar('mundo 7: pagina SEM componente de molde e COM link de compra entra na conta',
+		soPiso.tem_molde === true && soPiso.componente_de_molde === false && soPiso.vende_algo === true,
+		`tem_molde=${soPiso.tem_molde} componente=${soPiso.componente_de_molde} vende=${soPiso.vende_algo}`);
+	afirmar('mundo 7: o teto de caixa NAO se aplica, e o de compra mede o piso da 25.2-c',
+		soPiso.caixa === null && soPiso.compra !== null && julgar(soPiso).length === 0
+			&& soPiso.compra_onde.includes('caixa de ausencia'),
+		`caixa=${soPiso.caixa} compra=${soPiso.compra} onde=${soPiso.compra_onde} problemas=${JSON.stringify(julgar(soPiso))}`);
+	afirmar('mundo 7: a REGUA DE COMPONENTE joga a pagina FORA DA CONTA — as duas discordam',
+		reguaDeComponente(soPiso).some((x) => x.includes('fora da conta')) && julgar(soPiso).length === 0,
+		`componente=${JSON.stringify(reguaDeComponente(soPiso))} nova=${JSON.stringify(julgar(soPiso))}`);
+	/* E A TRAVA TEM DE MORDER NESSA MESMA PAGINA: o piso empurrado para baixo do
+	   teto REPROVA. Sem este mundo, "entrar na conta" poderia ser entrar e passar
+	   sempre, que e aprovar calado com um nome novo. */
+	const soPisoFundo = await medirFabricada(ausencia(1600));
+	afirmar('mundo 7b: o MESMO piso, abaixo de 1.400 px, REPROVA dizendo a caixa de ausencia',
+		julgar(soPisoFundo).some((x) => x.includes(`teto ${TETO_COMPRA}`) && x.includes('caixa de ausencia')),
+		JSON.stringify(julgar(soPisoFundo)));
+
+	/* MUNDO 8 — O RAMO DO MEIO DO TETO DE CAIXA, que a reescrita de hoje criou e
+	   que ninguem pediu: componente de molde PRESENTE e nenhuma caixa nem
+	   formulario para medir. A linha velha o pegava de graca (`caixa === null`
+	   reprovava); se a nova so medisse "onde ha caixa", este defeito passaria
+	   calado — e afrouxar uma trava ao consertar outra e o que a 32.5-b proibe. */
+	const blocoSemCaixa = await medirFabricada(
+		'<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">'
+		+ '<meta name="viewport" content="width=device-width,initial-scale=1">'
+		+ '<style>body{margin:0;font:16px sans-serif}</style></head>'
+		+ '<body class="rdm">'
+		+ '<section class="rdm-molde-compra" id="comprar">'
+		+ '<p class="rdm-molde-compra-vazio">Nenhum anuncio.</p></section>'
+		+ '</body></html>');
+	afirmar('mundo 8: componente de molde SEM caixa nem formulario continua REPROVANDO',
+		blocoSemCaixa.componente_de_molde === true && blocoSemCaixa.caixa === null
+			&& julgar(blocoSemCaixa).some((x) => x.includes('NENHUMA caixa nem formulario')),
+		`componente=${blocoSemCaixa.componente_de_molde} caixa=${blocoSemCaixa.caixa} problemas=${JSON.stringify(julgar(blocoSemCaixa))}`);
 
 	await navegador.close();
 	const ruins = casos.filter((c) => !c.ok).length;
 	console.log('');
-	console.log(`  ${casos.length} afirmacao(oes) em 6 mundo(s) fabricado(s), sem uma requisicao de rede.`);
+	console.log(`  ${casos.length} afirmacao(oes) em 9 mundo(s) fabricado(s), sem uma requisicao de rede.`);
 	console.log(ruins ? `  REPROVADO — ${ruins} afirmacao(oes) do autoteste` : '  APROVADO — autoteste da regua da 32.5 inteiro');
 	process.exit(ruins ? 1 : 0);
 }
@@ -841,12 +989,14 @@ for (const url of lista) {
 	m.fotos = classificarFotos(m.fotos, rede);
 
 	if (!m.tem_molde) {
-		/* Pagina sem componente de molde nenhum: sem bloco de compra, sem
-		   formulario de ferramenta E sem caixa de resposta. Ela sai da conta,
-		   mas NUNCA em silencio — o motivo vai impresso para quem ler saber
-		   que ela foi aberta. */
+		/* Pagina que nao serve NENHUMA das grandezas da 32.5: sem bloco de compra,
+		   sem formulario de ferramenta, sem caixa de resposta E sem link de compra.
+		   Ela sai da conta, mas NUNCA em silencio — o motivo vai impresso para
+		   quem ler saber que ela foi aberta. O `link de compra` entrou nesta frase
+		   em 19/11/2026: ate aqui o criterio era so componente, e com isso a
+		   pagina de 823 mil buscas/mes saia por esta linha JA SERVINDO botao. */
 		fora.push(m);
-		console.log(`  fora  ${m.url.padEnd(56)} sem componente de molde nenhum`);
+		console.log(`  fora  ${m.url.padEnd(56)} nem componente de molde nem link de compra`);
 		continue;
 	}
 	molde.push(m);
@@ -862,11 +1012,21 @@ for (const url of lista) {
 	   DADO — na F1 de hoje, zero registro com potencia nominal declarada. Fundir
 	   as duas numa frase apagaria exatamente a informacao que a secao 7 manda a
 	   pagina publicar. */
-	const compraTexto = m.tem_compra
+	const compraTexto = m.vende_algo
 		? `compra ${String(m.compra).padStart(5)} px`
 		: (m.bloco_vazio
 			? 'compra  nao se aplica (bloco de compra VAZIO: a pagina diz a causa)'
 			: 'compra  nao se aplica (a pagina nao vende nada)');
+	/* O TETO DE CAIXA TAMBEM TEM "NAO SE APLICA", e ele nasceu em 19/11/2026 com a
+	   pagina que entra na conta por VENDER: `caixa` vem `null` e imprimi-lo como
+	   `resposta  null px` leria como falha o degrau que a pagina nao tem. */
+	const caixaTexto = m.caixa === null
+		? 'caixa        nao se aplica (sem formulario e sem caixa de resposta)'
+		: `${m.caixa_que.padEnd(11)} ${String(m.caixa).padStart(5)} px `;
+	/* ONDE O LINK MORA vai impresso em toda pagina que vende algo, pelo mesmo
+	   motivo da conta de foto: e o que diz SOBRE QUE MUNDO o pixel ao lado foi
+	   medido. */
+	const ondeTexto = m.vende_algo ? `  [${m.compra_onde}]` : '';
 	/* A CONTA DA FOTO VAI IMPRESSA em toda pagina que vende algo: e ela que diz
 	   SOBRE QUE MUNDO o numero de pixel ao lado foi medido (32.5-d). */
 	const fotoTexto = m.tem_compra
@@ -874,7 +1034,7 @@ for (const url of lista) {
 		: '';
 	const marca = problemas.length ? 'FALHA' : 'ok   ';
 	console.log(
-		`  ${marca} ${m.url.padEnd(56)} ${m.caixa_que.padEnd(11)} ${String(m.caixa).padStart(5)} px  ${compraTexto}  altura ${String(m.altura).padStart(5)} px${fotoTexto}` +
+		`  ${marca} ${m.url.padEnd(56)} ${caixaTexto} ${compraTexto}  altura ${String(m.altura).padStart(5)} px${fotoTexto}${ondeTexto}` +
 			(problemas.length ? `\n         ${problemas.join('; ')}` : '')
 	);
 }
@@ -882,12 +1042,20 @@ for (const url of lista) {
 await navegador.close();
 
 console.log('');
-console.log(`  paginas com molde: ${molde.length}   fora do molde: ${fora.length}   (sitemap: ${lista.length})`);
-if (fora.length) console.log(`  fora do molde: ${fora.map((f) => f.url).join(' ')}`);
-const piorCaixa = molde.reduce((a, b) => (a === null || (b.caixa ?? 1e9) > a ? b.caixa ?? 1e9 : a), null);
-const comCompra = molde.filter((m) => m.tem_compra);
+console.log(`  paginas medidas: ${molde.length}   fora da conta: ${fora.length}   (sitemap: ${lista.length})`);
+if (fora.length) console.log(`  fora da conta: ${fora.map((f) => f.url).join(' ')}`);
+/* A PIOR CAIXA SE MEDE ENTRE AS PAGINAS QUE TEM CAIXA (19/11/2026). Com a
+   pagina que entra por VENDER, `caixa ?? 1e9` punha 1e9 na conta da pior e
+   imprimia um numero inventado como se fosse medido — a familia do numero sem
+   procedencia que a 23.4 proibe. */
+const comCaixa = molde.filter((m) => m.caixa !== null);
+const piorCaixa = comCaixa.reduce((a, b) => (a === null || (b.caixa ?? 1e9) > a ? b.caixa ?? 1e9 : a), null);
+/* QUEM "VENDE ALGO" E QUEM SERVE LINK DE COMPRA, e nao quem tem o componente:
+   era `tem_compra` (bloco de molde cheio) e por isso o rodape dizia TRES
+   paginas no dia em que as que vendem algo nesta ilha ja eram QUATRO. */
+const comCompra = molde.filter((m) => m.vende_algo);
 const piorCompra = comCompra.reduce((a, b) => (a === null || (b.compra ?? 1e9) > a ? b.compra ?? 1e9 : a), null);
-console.log(`  pior caixa: ${piorCaixa} px (teto ${TETO_CAIXA}) em ${molde.length} pagina(s)   pior compra: ${piorCompra} px (teto ${TETO_COMPRA}) em ${comCompra.length} pagina(s) que vendem algo`);
+console.log(`  pior caixa: ${piorCaixa} px (teto ${TETO_CAIXA}) em ${comCaixa.length} pagina(s) com caixa   pior compra: ${piorCompra} px (teto ${TETO_COMPRA}) em ${comCompra.length} pagina(s) que vendem algo`);
 console.log(`  disputa(s) de especificidade LATENTE(s) (a generica vence com o MESMO valor): ${latentes} — nao custam pixel hoje, e e por isso que vao impressas`);
-console.log(falhas ? `  REPROVADO — ${falhas} pagina(s) do molde fora da 32.5` : `  APROVADO — ${molde.length} de ${molde.length} paginas do molde dentro da 32.5`);
+console.log(falhas ? `  REPROVADO — ${falhas} pagina(s) medida(s) fora da 32.5` : `  APROVADO — ${molde.length} de ${molde.length} paginas medidas dentro da 32.5`);
 process.exit(falhas ? 1 : 0);
