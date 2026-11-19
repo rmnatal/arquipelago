@@ -93,10 +93,32 @@ def ler():
 
 
 def consultas_que_servem(a):
-    """As consultas que viram pagina. Vitrine so nasce de quem abre o portao da
-    30.2, e piso de consulta que nao vira pagina seria link gerado por nada."""
+    """As consultas que viram pagina — e o que decide isso e `publicar_declarado`,
+    NAO o portao da 30.2.
+
+    ATE 19/11/2026 ESTA FUNCAO EXIGIA `abre_o_portao_da_30_2`, e o comentario
+    dela dizia: *"Vitrine so nasce de quem abre o portao da 30.2, e piso de
+    consulta que nao vira pagina seria link gerado por nada"*. A primeira metade
+    era verdadeira e a segunda deixou de ser: desde 18/11/2026 a pagina DECLARADA
+    continua no ar quando a vitrine nao nasce — ela serve a caixa de ausencia, com
+    cabeca, trilha e `dateModified` proprios (ver `teste-cabeca-sem-vitrine.php`).
+    **Pagina que existe nao e "pagina que nao nasceu", e o piso dela nao e link
+    gerado por nada: e a UNICA saida de compra que ela tem.**
+
+    O CUSTO MEDIDO: `/veiculos/moto-eletrica/`, a consulta de 823 mil buscas/mes
+    desta ilha, ficou TRES DIAS no ar sem nenhum link de loja — zero cartao, zero
+    `shopee.com.br`, zero `sponsored` —, e o `piso_da_busca` dela existia no banco
+    com os tres campos desde 16/11, de quando ela ainda abria o portao. Se a
+    consulta tivesse FECHADO o piso antes de o piso ser colhido, nao haveria nem
+    isso: esta funcao nunca teria pedido o link, e a caixa de ausencia nasceria
+    vazia para sempre, sem ninguem poder consertar do banco.
+
+    A 25.2 e literal sobre o que o piso e — o degrau que *"nunca depende de
+    ninguem"*. Degrau que depende de a loja ter tres anuncios no dia depende de
+    alguem.
+    """
     for c in a["consultas"]:
-        if c.get("resumo", {}).get("abre_o_portao_da_30_2") and c.get("publicar_declarado"):
+        if c.get("publicar_declarado"):
             yield c
 
 
@@ -135,7 +157,7 @@ def trabalhar(a, gravar):
 
 
 def conferir(a):
-    """O portao, SEM REDE: todo o que vira pagina tem piso, e o piso se reconfere
+    """O portao, SEM REDE: toda consulta DECLARADA tem piso, e o piso se reconfere
     a partir da chave — URL digitada a mao e o que esta regua existe para
     impedir (a mesma regua do piso do banco, na mesma ilha)."""
     falhas = []
@@ -145,9 +167,11 @@ def conferir(a):
         onde = "consulta %s" % c["id"]
         p = c.get("piso_da_busca")
         if not p:
-            falhas.append("%s: abre o portao da 30.2 e nao tem `piso_da_busca`. A pagina serve "
-                          "cartao com ficha de anuncio e nenhuma saida para o dia em que ela "
-                          "esgotar (25.2)." % onde)
+            falhas.append("%s: e declarada para publicar e nao tem `piso_da_busca`. Com "
+                          "vitrine, a pagina serve cartao com ficha de anuncio e nenhuma saida "
+                          "para o dia em que ela esgotar; SEM vitrine ela serve a caixa de "
+                          "ausencia e o piso e a unica saida de compra que lhe resta (25.2)."
+                          % onde)
             continue
         if p.get("chave") != c["chave_escolhida"]:
             falhas.append("%s: o piso foi medido na chave %r e a consulta escolhe %r hoje. "
@@ -172,7 +196,7 @@ def conferir(a):
             falhas.append("%s: sem `url_busca` e sem o motivo. Lacuna sem causa manda a "
                           "execucao seguinte tentar as cegas (25.4-b.3)." % onde)
     if not vistas:
-        falhas.append("nenhuma consulta abre o portao da 30.2 — este portao ficou cego")
+        falhas.append("nenhuma consulta esta declarada para publicar — este portao ficou cego")
     return falhas, vistas
 
 

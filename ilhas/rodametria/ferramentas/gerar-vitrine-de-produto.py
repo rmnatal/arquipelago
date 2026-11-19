@@ -1137,8 +1137,26 @@ def gerar():
             # no manifest como o de qualquer outro dado, e eu li a presenca do id
             # como publicacao sem olhar o campo. `nao_nasceram` mora na VITRINE,
             # que e publicada — entao a data tem de viajar com ela.
+            #
+            # E O `piso_da_busca` VIAJA COM ELA, pelo MESMO motivo e um degrau
+            # acima (19/11/2026). A pagina que perde a vitrine caia na caixa de
+            # ausencia servindo ZERO link de loja — medido no ar em
+            # `/veiculos/moto-eletrica/`, a pagina de 823 mil buscas/mes, tres
+            # dias assim: zero cartao, zero `shopee.com.br`, zero `sponsored`, e
+            # os dois unicos links externos eram as fontes do Google. O piso da
+            # 25.2 estava no BANCO daquela consulta, com os tres campos, e nao
+            # chegava a TELA, porque ele morava DENTRO do bloco que nao nasceu.
+            #
+            # A 25.2 chama o piso de o degrau que "nunca depende de ninguem", e
+            # era justamente ele que desaparecia quando ninguem anuncia — a hora
+            # em que a pessoa mais precisa de uma saida de compra e exatamente a
+            # hora em que a pagina nao tinha nenhuma. `nao_nasceram` mora na
+            # VITRINE, que e publicada; `anuncios-por-consulta` tem
+            # `publicar: false` e NAO existe como option no ar, entao o piso tem
+            # de viajar por aqui como a data ja viaja.
             recusadas.append({'id': bloco['id'], 'causa': causa,
-                              'colhido_em': bloco.get('colhido_em')})
+                              'colhido_em': bloco.get('colhido_em'),
+                              'piso_da_busca': bloco.get('piso_da_busca') or None})
             continue
         paginas.append(v)
 

@@ -1183,7 +1183,16 @@
   {
    "id": "moto-eletrica",
    "causa": "menos de 3 anuncios que servem COM link e preco: 1",
-   "colhido_em": "2026-11-18"
+   "colhido_em": "2026-11-18",
+   "piso_da_busca": {
+    "chave": "moto eletrica adulto",
+    "url_busca_produto": "https://shopee.com.br/search?keyword=moto%20eletrica%20adulto",
+    "url_busca": "https://s.shopee.com.br/2gClWsHpKL",
+    "sub_id_1": "rodametria",
+    "encurtamento_tentado_em": "2026-11-16",
+    "medido_em": "2026-11-16",
+    "por_que_existe": "PISO DA 25.2 para os cartoes desta pagina: o link de cada cartao e a ficha de um anuncio, e ficha apodrece. Quando ela morrer, esta busca e a saida que a pessoa ja tinha na tela."
+   }
   }
  ]
 }

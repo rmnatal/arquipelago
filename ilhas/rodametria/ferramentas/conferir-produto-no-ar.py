@@ -281,6 +281,33 @@ ROTULO_DO_PISO = "Veja todos disponíveis aqui"
 # diferentes com a mesma regua — a familia das sete reguas desta fabrica que
 # quebraram por procurar o rotulo de UM degrau.
 CLASSE_DO_PISO_DA_TABELA = 'class="rdm-tabela-piso"'
+# A CAIXA DE AUSENCIA E A LINHA DO PISO DELA (19/11/2026). Classes separadas das
+# da tabela de proposito: contar as duas com a mesma regua faria a pagina sem
+# vitrine aprovar com a linha da outra familia, e o portao perderia justamente a
+# distincao que ele nasceu para medir.
+CLASSE_DA_CAIXA_DE_AUSENCIA = 'rdm-caixa-ausencia'
+CLASSE_DO_PISO_DA_CAIXA = 'class="rdm-caixa-piso"'
+# A SECAO MAE, e ela sai de UMA declaracao: o PHP a tem em
+# `RODAMETRIA_PRODUTO_SECAO` e as URLs das filhas sao `/<secao>/<id>/`.
+SECAO = "veiculos"
+# O `sub_id_1` DESTA ILHA (25.8), LIDO DO DONO DO CAMPO e nunca digitado aqui:
+# quem o escreve no banco e `coletar-piso-da-vitrine.py`, e segunda declaracao do
+# mesmo fato e o que a 20.7 proibe — duas copias erram juntas no dia em que o
+# sub_id da ilha mudar. Se o import falhar, o portao DIZ que nao mediu em vez de
+# aprovar com um valor de cabeca.
+SUB_ID_1 = None
+_POR_QUE_SEM_SUB_ID = ""
+try:
+    import importlib.util as _ilu2
+
+    _spec2 = _ilu2.spec_from_file_location(
+        "rodametria_coletar_piso_da_vitrine",
+        os.path.join(AQUI, "coletar-piso-da-vitrine.py"))
+    _COLETOR_DO_PISO = _ilu2.module_from_spec(_spec2)
+    _spec2.loader.exec_module(_COLETOR_DO_PISO)
+    SUB_ID_1 = _COLETOR_DO_PISO.SUB_ID_1
+except Exception as _e2:  # noqa: BLE001 — qualquer falha aqui e "nao medi"
+    _POR_QUE_SEM_SUB_ID = str(_e2)
 
 
 def veredito_do_piso_da_tabela(quantas_buscas, quantos_na_tela):
@@ -327,6 +354,61 @@ def veredito_do_piso_da_tabela(quantas_buscas, quantos_na_tela):
             falhas.append("tem %d buscas distintas na fonte e ainda serve a linha unica do piso "
                           "da tabela: 'a primeira' e arbitraria" % quantas_buscas)
     return falhas
+
+
+def veredito_do_piso_sem_vitrine(tem_url_na_fonte, quantos_na_tela):
+    """A DECISAO sobre o piso da 25.2 na PAGINA QUE EXISTE E ESTA SEM VITRINE,
+    como funcao pura — irma de `veredito_do_piso_da_tabela` e com a mesma
+    disciplina: entra a relacao ja calculada, sai a lista de falhas em palavras,
+    e ela nao abre pagina, nao le arquivo e nao usa rede, para a bancada poder
+    FABRICAR o mundo em vez de esperar que ele aconteca (secao 8).
+
+    O DEFEITO QUE ELA EXISTE PARA FECHAR ESTAVA NO AR TRES DIAS, E ESTE PORTAO
+    NAO O VIA — nao por ter a afirmacao virada de lado, como em 17/11, mas por
+    uma razao um degrau antes: **a pagina nao estava na lista de alvos.** Os
+    alvos saiam do casamento entre o sitemap e `fonte`, e `fonte` e
+    `vitrine['paginas']` — exatamente o lugar de onde a pagina sem vitrine esta
+    ausente por definicao. O portao media 425 afirmacoes em duas paginas e a
+    terceira, a de MAIOR volume do nicho (823 mil buscas/mes), nao era aberta.
+
+    Medido em `/veiculos/moto-eletrica/` em 19/11/2026: zero cartao, zero
+    ocorrencia de `shopee.com.br`, zero de `s.shopee`, zero de `sponsored`; os
+    dois unicos links externos eram as fontes do Google. O `piso_da_busca`
+    existia no banco com os tres campos.
+
+    A REGRA EM UMA LINHA: consulta DECLARADA que nao abre o portao da 30.2
+    continua com pagina no ar, e pagina no ar serve o piso da 25.2 — o degrau que
+    "nunca depende de ninguem" nao pode ser o que desaparece quando ninguem
+    anuncia.
+    """
+    falhas = []
+    if not tem_url_na_fonte:
+        # POSITIVA DE PROPOSITO (20.8): acusa a ausencia em vez de a tolerar.
+        falhas.append("esta no ar SEM vitrine e a fonte nao tem `url_busca` para ela em "
+                      "`nao_nasceram`: a pagina serve a caixa de ausencia e NENHUMA saida de "
+                      "compra, que e o degrau que a 25.2 diz nunca depender de ninguem. Rode "
+                      "`coletar-piso-da-vitrine.py --gravar` e `gerar-vitrine-de-produto.py "
+                      "--gravar`")
+        if quantos_na_tela:
+            falhas.append("serve a linha do piso %d vez(es) e a fonte nao tem `url_busca`: "
+                          "piso na tela sem procedencia na fonte" % quantos_na_tela)
+    elif quantos_na_tela != 1:
+        falhas.append("a fonte tem `url_busca` para ela e a pagina serve a linha do piso %d "
+                      "vez(es), e devia servir UMA: o piso e da consulta, nao do anuncio"
+                      % quantos_na_tela)
+    return falhas
+
+
+def sem_vitrine_do_repositorio():
+    """AS PAGINAS QUE EXISTEM E ESTAO SEM VITRINE, lidas do repositorio.
+
+    Elas moram em `nao_nasceram`, que e o mesmo lugar de onde o snippet le a data
+    e o piso delas — e nao em `anuncios-por-consulta`, que tem `publicar: false`
+    no manifest e NAO existe como option no ar.
+    """
+    with open(os.path.join(ILHA, "dados", "vitrine-de-produto.json"), encoding="utf-8") as f:
+        d = json.load(f)
+    return {r["id"]: r for r in d.get("nao_nasceram", []) if r.get("id")}
 
 
 def main():
@@ -602,11 +684,105 @@ def main():
                  % (caminho, len(linhas), com_ficha, vazios, quantos, nos_cartoes, ofertas,
                     com_disponibilidade, com_data))
 
+    conferir_as_sem_vitrine(urls)
     conferir_a_mae(urls, fonte, ancoras)
 
     registro("NAO MEDIDO AQUI: pixel. A 32.5 e trabalho de "
              "conferir-32-5-no-navegador.mjs, que abre a pagina a 390 px num navegador.")
     return encerrar()
+
+
+def conferir_as_sem_vitrine(urls):
+    """AS PAGINAS QUE EXISTEM E ESTAO SEM VITRINE — e ate 19/11/2026 este portao
+    NAO AS ABRIA.
+
+    Os `alvos` de `main()` saem do casamento entre o sitemap e `vitrine['paginas']`,
+    e e desse lugar que a pagina sem vitrine esta ausente POR DEFINICAO. O portao
+    media 425 afirmacoes em duas paginas e a terceira — a de maior volume do nicho,
+    823 mil buscas/mes — nao era aberta. Nao era afirmacao virada de lado como a de
+    17/11: era pagina fora da lista, que e a cegueira que a 32.5-b nomeia.
+
+    ELA DESCOBRE AS PAGINAS, NUNCA AS LISTA (32.5-b): o cruzamento e entre
+    `nao_nasceram` do repositorio e o `wp-sitemap.xml` no ar, e id que nao aparece
+    no sitemap vira REGISTRO em vez de aprovar em silencio — consulta declarada que
+    nunca nasceu (`scooter-eletrica`) nao tem pagina, e exigir piso dela reprovaria
+    o mundo certo.
+    """
+    sem = sem_vitrine_do_repositorio()
+    if not sem:
+        registro("nenhuma pagina em `nao_nasceram`: todas as consultas declaradas tem vitrine "
+                 "hoje, e as afirmacoes do piso sem vitrine NAO foram exercitadas nesta passada")
+        return
+
+    for pid, reg in sorted(sem.items()):
+        caminho = "/%s/%s/" % (SECAO, pid)
+        if DOMINIO + caminho not in urls:
+            registro("%s esta em `nao_nasceram` e NAO esta no wp-sitemap.xml: consulta sem "
+                     "pagina no ar, nada a conferir (causa gravada: %s)"
+                     % (caminho, reg.get("causa")))
+            continue
+
+        cod, html = buscar(caminho)
+        if not afirma(cod == 200, "%s nao respondeu 200 (deu %s)" % (caminho, cod)):
+            continue
+        corpo = corpo_da_pagina(html)
+
+        # (1) A CAIXA DE AUSENCIA E O QUE ESTA PAGINA SERVE. Se ela nao estiver
+        # ali, a pagina nao esta no estado que este portao julga, e aprovar as
+        # afirmacoes do piso sobre outro estado seria medir a coisa errada.
+        afirma(CLASSE_DA_CAIXA_DE_AUSENCIA in corpo,
+               "%s esta em `nao_nasceram` e NAO serve a caixa de ausencia: a fonte e a tela "
+               "discordam sobre o estado desta pagina" % caminho)
+
+        # (2) ZERO href VAZIO, no HTML INTEIRO — a mesma regua das paginas com
+        # vitrine, e aqui ela e o que impede a linha do piso de nascer como um
+        # botao que recarrega a propria pagina.
+        vazios = len(re.findall(r'href=""', html)) + len(re.findall(r"href=''", html))
+        afirma(vazios == 0,
+               "%s serve %d href vazio: botao que recarrega a propria pagina" % (caminho, vazios))
+
+        # (3) O PISO DA 25.2. A DECISAO E A FUNCAO PURA
+        # `veredito_do_piso_sem_vitrine`; aqui ficam so os FATOS que ela recebe.
+        piso = reg.get("piso_da_busca") or {}
+        url = str(piso.get("url_busca") or "").strip()
+        quantos = corpo.count(CLASSE_DO_PISO_DA_CAIXA)
+        for falha in veredito_do_piso_sem_vitrine(bool(url), quantos):
+            afirma(False, "%s %s" % (caminho, falha))
+
+        if url:
+            # (3-a) O LINK SERVIDO E O DA FONTE, e nao um parecido: `url_busca` e
+            # o link ENCURTADO, que e quem carrega o `sub_id_1` desta ilha (25.8).
+            afirma(url in corpo,
+                   "%s nao serve o piso da 25.2 que a fonte tem (%s)" % (caminho, url))
+            # (3-b) `rel="sponsored"` NO LINK DO PISO, cobrado no pedaco de HTML
+            # do proprio link e nao na pagina inteira — `sponsored` em qualquer
+            # lugar do HTML nao prova nada sobre ESTE link (a cicatriz da 20.7).
+            m = re.search(r'<a[^>]+href="%s"[^>]*>' % re.escape(url), corpo)
+            if afirma(m is not None,
+                      "%s serve a URL do piso e nao como `<a href>`: link de compra tem de "
+                      "ser link" % caminho):
+                tag = m.group(0)
+                afirma("sponsored" in tag,
+                       "%s serve o piso sem `rel=\"sponsored\"`: a 25.8 e literal, e link de "
+                       "afiliado sem rel e o que faz o Google ler a ilha como editorial "
+                       "(tag servida: %s)" % (caminho, tag))
+                afirma("noopener" in tag,
+                       "%s serve o piso sem `noopener` (tag servida: %s)" % (caminho, tag))
+            # (3-c) O `sub_id_1` DA ILHA, conferido na FONTE: ele viaja DENTRO do
+            # link encurtado, entao nao se le no HTML — o que se pode cobrar aqui
+            # e que a fonte do link servido o declare, e nunca outro.
+            if SUB_ID_1 is None:
+                registro("%s: `sub_id_1` NAO MEDIDO — nao consegui ler a constante do dono do "
+                         "campo (coletar-piso-da-vitrine.py): %s" % (caminho, _POR_QUE_SEM_SUB_ID))
+            else:
+                afirma(piso.get("sub_id_1") == SUB_ID_1,
+                       "%s serve um piso cujo `sub_id_1` e %r, e nesta ilha ele e sempre %r "
+                       "(25.8)" % (caminho, piso.get("sub_id_1"), SUB_ID_1))
+            afirma(url.startswith("https://s.shopee.com.br/"),
+                   "%s serve um piso que NAO e link encurtado: %s" % (caminho, url))
+
+        registro("%s: SEM vitrine (causa: %s) · caixa de ausencia servida · linha do piso %dx · "
+                 "piso na fonte: %s" % (caminho, reg.get("causa"), quantos, url or "NENHUM"))
 
 
 def conferir_a_mae(urls, fonte, ancoras):

@@ -118,7 +118,7 @@
    do primeiro cartao comecava por `11.11`. A regra mora no coletor; o que muda
    aqui e a frase: sem ela a conta do leitor nao fecha com o tamanho da tabela. */
 if ( ! defined( 'RODAMETRIA_PRODUTO_VERSAO' ) ) {
-	define( 'RODAMETRIA_PRODUTO_VERSAO', '1.17.0' );
+	define( 'RODAMETRIA_PRODUTO_VERSAO', '1.18.0' );
 }
 
 /* A VERSAO DESTE SNIPPET VAI AO AR, pelo filtro que a casca 1.6.0 abriu
@@ -469,6 +469,37 @@ function rdm_produto_pagina_sem_vitrine_html() {
 	$html .= '<div class="rdm-caixa rdm-caixa-ausencia" role="note">';
 	$html .= '<p class="rdm-promessa">A comparação de preços desta página está sem '
 		. 'dados hoje.</p>';
+
+	/* O PISO DA 25.2, E ELE E O PRIMEIRO BLOCO DA CAIXA POR UMA RAZAO DE PIXEL E
+	   UMA DE HONESTIDADE (19/11/2026).
+	   PIXEL: a 32.5 poe teto de 1.400 px no PRIMEIRO botao de compra a 390 px, e
+	   esta e a unica saida de compra que a pagina sem vitrine tem — embaixo dos
+	   quatro paragrafos e dos dois `<h2>` ela nasceria fora do teto no dia em que
+	   nascesse.
+	   HONESTIDADE: a frase acima acaba de dizer que a comparacao esta sem dados.
+	   Deixar a pessoa nesse ponto sem nenhuma saida e o que estava no ar por tres
+	   dias. O que a busca da loja devolve NAO e a comparacao desta pagina, e a
+	   linha diz isso com todas as letras — ela promete a BUSCA, nunca a faixa de
+	   preco que a pagina nao tem.
+	   A frase nao quantifica e nao tem numero: `conferir-no-ar.py` roda a lista de
+	   quantificadores sobre este corpo, e este bloco nasceu no dia seguinte ao em
+	   que tres quantificadores por extenso entraram nesta mesma caixa. */
+	$piso = rdm_produto_piso_sem_vitrine( $slug );
+	if ( ! empty( $piso['url_busca'] ) ) {
+		$html .= '<p class="rdm-caixa-piso">A loja onde esta página lê os preços '
+			. 'continua com a busca aberta para esta categoria, e ela não é a '
+			. 'comparação desta página: é a lista da loja, do jeito que ela vier. '
+			. '<a href="' . esc_url( (string) $piso['url_busca'] ) . '"'
+			. ' rel="sponsored noopener" target="_blank">'
+			. esc_html( rodametria_casca_rotulo_do_piso() ) . '</a></p>';
+	} else {
+		/* A AUSENCIA E DITA, NUNCA MAQUIADA (20.8): `href` vazio aqui seria um
+		   botao que recarrega a propria pagina com "Veja todos disponíveis aqui"
+		   do lado. Sem piso no dado, a pagina diz que nao tem saida de compra
+		   hoje — e o portao de ar cobra o conserto de quem o le. */
+		$html .= '<p class="rdm-caixa-piso rdm-caixa-piso-sem">Esta página também está '
+			. 'sem link para a loja hoje.</p>';
+	}
 	$html .= '<p>Esta página compara os anúncios de adulto que estão à venda agora, e '
 		. 'ela só publica a faixa de preço quando a leitura do dia alcança pelo menos '
 		. 'três anúncios que sirvam. A leitura de hoje não alcançou: a loja parou de '
@@ -567,6 +598,57 @@ function rdm_produto_pagina_sem_vitrine_html() {
 	$html .= '</div>';
 
 	return $html;
+}
+}
+
+if ( ! function_exists( 'rdm_produto_piso_sem_vitrine' ) ) {
+/**
+ * O PISO DA 25.2 DA PAGINA QUE EXISTE E ESTA SEM VITRINE (19/11/2026).
+ *
+ * O DEFEITO QUE ELA EXISTE PARA FECHAR FOI MEDIDO NO AR, nao suposto:
+ * `/veiculos/moto-eletrica/`, a consulta de 823 mil buscas/mes desta ilha,
+ * passou TRES DIAS servindo a caixa de ausencia com ZERO link de loja — zero
+ * cartao, zero ocorrencia de `shopee.com.br`, zero de `s.shopee`, zero de
+ * `sponsored`, e os dois unicos links externos da pagina eram
+ * `fonts.googleapis.com` e `fonts.gstatic.com`.
+ *
+ * E O PISO DELA EXISTIA, com os tres campos, no banco daquela consulta. Ele nao
+ * chegava a tela por uma razao de MECANISMO e nao de dado: `piso_da_busca`
+ * morava DENTRO do bloco da vitrine, e o bloco da vitrine e exatamente o que nao
+ * nasce quando a coleta do dia nao alcanca o piso da 30.2. **A 25.2 chama o piso
+ * de o degrau que "nunca depende de ninguem", e era justamente ele que
+ * desaparecia quando ninguem anuncia** — a hora em que a pessoa mais precisa de
+ * uma saida de compra era a hora em que a pagina nao tinha nenhuma.
+ *
+ * DE ONDE ELE VEM, e isto nao e detalhe de arrumacao: de `nao_nasceram`, NA
+ * VITRINE, que e o dado PUBLICADO. `anuncios-por-consulta` tem
+ * `publicar: false` no manifest, logo nao e gravado como option e
+ * `rodametria_casca_banco()` devolve `null` para ele — a cicatriz que o ramo da
+ * data ao lado pagou em 18/11/2026, quando a revisao 109 desembarcou e a pagina
+ * continuou sem `dateModified`. O piso viaja pelo mesmo caminho da data.
+ *
+ * DEVOLVE `array()` quando nao houver piso com `url_busca`, e quem chama trata
+ * a ausencia dizendo o que falta — nunca servindo `href` vazio, que nao e botao
+ * morto e sim um botao que RECARREGA A PROPRIA PAGINA.
+ */
+function rdm_produto_piso_sem_vitrine( $slug ) {
+	$fora = rdm_produto_declaradas_fora_da_vitrine();
+	if ( ! isset( $fora[ $slug ] ) ) {
+		return array();
+	}
+	$vit = rodametria_casca_banco( RODAMETRIA_ID_DADOS_VITRINE );
+	foreach ( (array) ( isset( $vit['nao_nasceram'] ) ? $vit['nao_nasceram'] : array() ) as $r ) {
+		if ( ! isset( $r['id'] ) || (string) $r['id'] !== $slug ) {
+			continue;
+		}
+		$p = isset( $r['piso_da_busca'] ) && is_array( $r['piso_da_busca'] )
+			? $r['piso_da_busca'] : array();
+		$u = isset( $p['url_busca'] ) ? trim( (string) $p['url_busca'] ) : '';
+
+		return '' === $u ? array() : $p;
+	}
+
+	return array();
 }
 }
 
@@ -1712,6 +1794,14 @@ body.rdm .rdm-tabela-nota,body.rdm .rdm-recusas{font-size:.9rem;color:var(--rdm-
 body.rdm .rdm-tabela-sem-saida{color:var(--rdm-legenda);font-size:.875rem}
 body.rdm .rdm-tabela-piso{margin:0 0 var(--rdm-e4);font-size:.9rem}
 body.rdm .rdm-tabela-piso a{color:var(--rdm-legenda);text-decoration:underline}
+/* A LINHA DO PISO DA CAIXA DE AUSENCIA (19/11/2026). Ela NAO copia a
+   `.rdm-tabela-piso` acima: aquela e a linha discreta embaixo de uma tabela que
+   ja serve 16 botoes de compra, e esta e a UNICA saida de compra da pagina. Pelo
+   mesmo motivo o link nao vem na cor de legenda — legenda e o traje do que e
+   secundario, e aqui nao ha nada de que ele seja secundario. */
+body.rdm .rdm-caixa-piso{margin:0 0 var(--rdm-e3)}
+body.rdm .rdm-caixa-piso a{font-weight:600}
+body.rdm .rdm-caixa-piso-sem{color:var(--rdm-legenda);font-size:.9rem}
 body.rdm .rdm-escolher{margin:0}
 body.rdm .rdm-escolher dt{font-family:"Barlow Semi Condensed",Barlow,sans-serif;font-weight:700;margin-top:1rem}
 body.rdm .rdm-escolher dd{margin:.25rem 0 0}

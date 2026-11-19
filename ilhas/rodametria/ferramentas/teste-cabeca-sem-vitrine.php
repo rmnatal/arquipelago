@@ -96,6 +96,9 @@ function vale($ok, $nome, $detalhe = '') {
 $src = file_get_contents($RAIZ . '/snippets/rodametria-produto.php');
 
 if (!defined('RODAMETRIA_PRODUTO_SECAO')) { define('RODAMETRIA_PRODUTO_SECAO', 'veiculos'); }
+/* O id da option da vitrine, que `rdm_produto_piso_sem_vitrine()` usa para
+   pedir o banco. Mesmo valor da constante do snippet. */
+if (!defined('RODAMETRIA_ID_DADOS_VITRINE')) { define('RODAMETRIA_ID_DADOS_VITRINE', 'vitrine-de-produto'); }
 
 /* ---------------------------------------------------------------------------
  * O MUNDO. As duas dependencias que falam com o WordPress e com o banco sao
@@ -303,6 +306,16 @@ echo "\n5. A DATA SAI DA ULTIMA TENTATIVA DE COLETA\n";
 
 if (!carregar_funcao($src, 'rdm_produto_pagina_sem_vitrine_html')) {
 	echo "  FALHA  `rdm_produto_pagina_sem_vitrine_html()` nao existe no snippet\n";
+	exit(1);
+}
+/* O PISO DA CAIXA DE AUSENCIA (19/11/2026). A caixa passou a CHAMAR
+   `rdm_produto_piso_sem_vitrine()`, e sem carregar a funcao de verdade este
+   portao morria de erro fatal ANTES da linha do veredito — e erro fatal em PHP
+   sai com codigo 0, entao ele nao apareceu como FALHOU: apareceu como INERTE na
+   bancada, que foi o que o pegou. Quem acrescenta chamada a uma funcao servida
+   por este portao carrega a funcao aqui. */
+if (!carregar_funcao($src, 'rdm_produto_piso_sem_vitrine')) {
+	echo "  FALHA  `rdm_produto_piso_sem_vitrine()` nao existe no snippet\n";
 	exit(1);
 }
 $MUNDO['coleta'] = array(
