@@ -1029,6 +1029,23 @@ A regra acima nasceu em 13/09, quando encurtar link exigia o Raphael abrir o pai
 
 **O que NÃO muda:** o piso continua sendo a busca, e item nenhum fica sem porta de compra. A 25.2 continua inteira. O que 25.2-b acrescenta é que o piso deixou de ser destino e voltou a ser piso.
 
+**25.2-c — O PISO MORA DENTRO DO BLOCO QUE A PÁGINA DEIXA DE SERVIR, E POR ISSO ELE DESAPARECE EXATAMENTE NA HORA EM QUE É A ÚNICA SAÍDA QUE SOBROU (19/11/2026). Vale para TODAS as ilhas.**
+
+Medido na rodametria, na página de **maior volume do nicho** — `/veiculos/moto-eletrica/`, 823 mil buscas/mês —, que passou **três dias no ar sem nenhum link de loja**: zero cartão, zero ocorrência de `shopee.com.br`, zero de `s.shopee`, zero de `sponsored`; os dois únicos links externos do corpo eram `fonts.googleapis.com` e `fonts.gstatic.com`. E o `piso_da_busca` daquela consulta **existia no banco, com os três campos**, desde três dias antes.
+
+**A CAUSA NÃO ERA DE DADO, ERA DE LUGAR.** O piso estava gravado **dentro** do bloco da vitrine, e o bloco da vitrine é precisamente o que **não nasce** quando a coleta do dia não alcança o piso de três anúncios da 30.2. A página caía na caixa de ausência honesta — que dizia, com razão, que a comparação de preços estava sem dados — e **parava ali**, sem oferecer nada a quem tinha acabado de ler isso.
+
+**A 25.2 chama o piso de o degrau que "nunca depende de ninguém", e era justamente ele que desaparecia quando ninguém anunciava.** A frase estava certa e o mecanismo a desmentia: a página só perde a vitrine quando o mercado não serve produto, e é exatamente aí que a pessoa mais precisa de uma saída — e era exatamente aí que a página não tinha nenhuma.
+
+**A REGRA, EM DUAS LINHAS, e ela vale para toda ilha com página de produto, de ficha ou de loja:**
+
+1. **O piso da 25.2 é gravado e servido num lugar que SOBREVIVE ao estado degradado da página.** Em toda ilha com Sync isso significa: ele viaja no dado **publicado** que a página degradada lê — nunca dentro do bloco opcional, e nunca num arquivo com `publicar: false`, que não existe como option no ar. E quem **colhe** o piso colhe para toda consulta **declarada**, não só para a que abre o portão: piso que só é colhido quando o portão abre é piso que nunca existe para a página que mais precisa dele.
+2. **Página que serve estado degradado serve o piso, ou DIZ que está sem link de loja hoje.** Nunca `href` vazio — que não é botão morto, e sim um botão que recarrega a própria página com o rótulo da loja do lado (a cicatriz de 30/10/2026 na mesma ilha).
+
+**E A OUTRA METADE, QUE É DE PORTÃO E É A MAIS CARA: A LISTA DE ALVOS SAIU DA MESMA FONTE QUE A AFIRMAÇÃO DEVIA COBRAR — UM DEGRAU ANTES DO DEFEITO DE 17/11.** O portão de ar daquelas páginas fechou **425 afirmações, zero falha**, e **não abriu** a página defeituosa: os alvos dele nasciam do casamento entre o `wp-sitemap.xml` e a lista de páginas **da vitrine**, que é o lugar de onde a página sem vitrine está ausente **por definição**. Dois dias antes, na mesma ilha, o defeito foi a *afirmação* virada de lado porque *"a condição do ramo saiu da MESMA FONTE que a afirmação devia cobrar"*; aqui foi a **lista de páginas**. É a 32.5-b na sua forma mais afiada — *"régua que não varre todas certifica a página que o autor abriu"* —, com o agravante de que ninguém digitou lista nenhuma: ela foi **derivada** do próprio dado sob julgamento, e por isso parecia descoberta automática.
+
+**A régua: portão que descobre o que vai julgar não deriva a lista de alvos do dado que ele julga.** Ele parte do que está **no ar** (o sitemap) ou da **união** das fontes — incluindo a lista do que *não* nasceu —, e todo alvo que ele decidir não medir sai como **registro escrito**, nunca como silêncio. Fonte vazia, bloco que não nasceu e página degradada não são ausência de trabalho: são o estado em que o portão mais precisa falar.
+
 ### 25.3 Os dois feeds da Shopee, e o que cada um é
 
 Em *Criativo → Feed de produto* do painel de afiliado. Atualizam sozinhos todo dia. O download exige a sessão logada do Raphael — a nuvem recebe 401 e a extensão do navegador bloqueia o redirecionamento, medido em 13/09. **Baixar o feed é passo dele.**
