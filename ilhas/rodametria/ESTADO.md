@@ -26,12 +26,16 @@ ultima_execucao: 2026-11-18T19:42Z   # A FILA ESTA ACABADA, e os tres eixos que
                          # com as 7 linhas de item da revisao dizendo `ok` (20.4/20.8).
                          # A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA,
                          # nunca digitada.
-executando_desde: null   # LIMPO no fecho desta execucao (passo 7 da secao 1). A
-                         # reserva foi as 19h17Z, ganha no push na PRIMEIRA tentativa
-                         # (`ecd4829`), e RENOVADA as 19h29Z pela 1.1. O fecho esperou o
-                         # VENCIMENTO do cron pela 20.9 (`evento-nao-vencido`) em vez de
-                         # reacionar — a revisao 114 subiu as 19:40:32Z, 7m42s ANTES do
-                         # teto de 19:48:14 que o proprio portao imprimiu como teto.
+executando_desde: 2026-11-19T10:17Z   # RESERVA desta execucao, escrita ANTES do trabalho
+                         # (passo 5 da secao 1) e commitada sozinha. A HORA SAIU DO
+                         # `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca
+                         # digitada. Ilha escolhida pelo FOCO da 1.2 (`foco.md` nomeia
+                         # a rodametria desde 27/10, foco total e absoluto), nao pela
+                         # rotacao da secao 1 e nao pela 18.1 — conferi antes que
+                         # nenhuma outra ilha abre a excecao da 1.2: clubedomosaico e
+                         # robometria em 200 na raiz, logo NO AR e nao quebradas, e os
+                         # despachos ALTA abertos nelas sao gesto do Raphael (chamado
+                         # na HostGator), nao da Fundacao.
 rede: aberta em 2026-11-18   # 20.2, REMEDIDA e nao herdada nesta passada das
                              # 19h17Z: 3 de 3 em 200 em `rodametria.com.br/`, com
                              # `aquametria.com.br` em 200 nas MESMAS tres passadas —
