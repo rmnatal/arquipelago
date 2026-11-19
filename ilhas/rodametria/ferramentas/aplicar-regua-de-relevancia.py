@@ -51,6 +51,23 @@ RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FERRAMENTAS = os.path.join(RAIZ, 'ferramentas')
 BANCO = os.path.join(RAIZ, 'dados', 'anuncios-por-consulta.json')
 
+# O RECUO DO BANCO SAI DA CONSTANTE DO COLETOR, NUNCA DE UM NUMERO AQUI
+# (19/11/2026). Medido: `aplicar-foto-quebrada.py` gravava com `indent=2` e o
+# `RECUO_DO_BANCO` do `coletar-por-consulta.py` e **1**. Como foi aquela
+# ferramenta que escreveu o banco em 18/11, o arquivo em disco ficou com recuo
+# 2 — e a passada seguinte que gravasse por qualquer outro caminho reescrevia
+# **2.100 linhas so de recuo**, com a mudanca de verdade escondida dentro
+# delas. Diff que some com o que mudou e a familia do instrumento que some com
+# o que tentou, medido nesta ilha na manha do mesmo dia. Duas declaracoes do
+# mesmo fato comecam iguais e so uma sobe (20.7), e aqui eram CINCO.
+def _recuo_do_banco():
+    caminho = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                           'coletar-por-consulta.py')
+    espec = importlib.util.spec_from_file_location('coletar_por_consulta_recuo', caminho)
+    mod = importlib.util.module_from_spec(espec)
+    espec.loader.exec_module(mod)
+    return mod.RECUO_DO_BANCO
+
 
 def _modulo(nome, caminho):
     spec = importlib.util.spec_from_file_location(nome, caminho)
@@ -184,7 +201,7 @@ def laudo(gravar=False):
                   'mudam — sao fato da coleta de %s.' % (bloco['id'], bloco.get('colhido_em')))
 
     with open(BANCO, 'w', encoding='utf-8') as f:
-        json.dump(banco, f, ensure_ascii=False, indent=1)
+        json.dump(banco, f, ensure_ascii=False, indent=_recuo_do_banco())
         f.write('\n')
     print('\ngravado em %s' % os.path.relpath(BANCO, RAIZ))
     print('AGORA RODE: python3 ferramentas/coletar-por-consulta.py --conferir')

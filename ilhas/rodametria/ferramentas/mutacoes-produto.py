@@ -28,6 +28,7 @@ secao 8 e explicita em que regua escrita para um mundo que nunca aconteceu
 """
 import copy
 import datetime
+import importlib.util
 import json
 import os
 import shutil
@@ -94,6 +95,19 @@ def rodar(areia, ferramenta, *argumentos):
     return r.returncode, (r.stdout or '') + (r.stderr or '')
 
 
+# O RECUO DA AREIA E O DO REPOSITORIO, E ELE SAI DA CONSTANTE (19/11/2026). Nao
+# e so uniformidade: a areia e a copia sobre a qual esta bateria roda, e copia
+# escrita de um jeito que o repositorio nao usa e bancada medindo outro arquivo.
+# Ver `ferramentas/teste-recuo-do-banco.py`, que varre este diretorio e
+# DENUNCIA literal — o numero era declarado em cinco lugares e um discordava.
+def _recuo_do_banco():
+    caminho = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                           'coletar-por-consulta.py')
+    espec = importlib.util.spec_from_file_location('coletar_por_consulta_recuo', caminho)
+    mod = importlib.util.module_from_spec(espec)
+    espec.loader.exec_module(mod)
+    return mod.RECUO_DO_BANCO
+
 def ler(areia, nome):
     with open(os.path.join(areia, 'dados', nome), encoding='utf-8') as f:
         return json.load(f)
@@ -101,7 +115,7 @@ def ler(areia, nome):
 
 def escrever(areia, nome, d):
     with open(os.path.join(areia, 'dados', nome), 'w', encoding='utf-8') as f:
-        json.dump(d, f, ensure_ascii=False, indent=1)
+        json.dump(d, f, ensure_ascii=False, indent=_recuo_do_banco())
 
 
 def primeiro_que_serve(banco, id_consulta='patinete-eletrico'):

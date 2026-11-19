@@ -55,6 +55,19 @@ import unicodedata as _unicodedata
 import statistics
 import sys
 
+# O RECUO DOS ARQUIVOS DE `dados/` SAI DA CONSTANTE DO COLETOR, NUNCA DE UM
+# NUMERO AQUI (19/11/2026) — ver `ferramentas/teste-recuo-do-banco.py`, que
+# varre este diretorio e DENUNCIA literal. O numero era declarado em cinco
+# lugares e um deles discordava; o custo foi um diff de 2.100 linhas de recuo
+# com dez fotos escondidas dentro dele.
+def _recuo_do_banco():
+    caminho = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                           'coletar-por-consulta.py')
+    espec = importlib.util.spec_from_file_location('coletar_por_consulta_recuo', caminho)
+    mod = importlib.util.module_from_spec(espec)
+    espec.loader.exec_module(mod)
+    return mod.RECUO_DO_BANCO
+
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ANUNCIOS = os.path.join(RAIZ, 'dados', 'anuncios-por-consulta.json')
 EDITORIAL = os.path.join(RAIZ, 'dados', 'paginas-de-produto.json')
@@ -1857,7 +1870,7 @@ def main():
         return 0
 
     with open(VITRINE, 'w', encoding='utf-8') as f:
-        json.dump(saida, f, ensure_ascii=False, indent=1)
+        json.dump(saida, f, ensure_ascii=False, indent=_recuo_do_banco())
         f.write('\n')
     print('\ngravado: %s' % os.path.basename(VITRINE))
 

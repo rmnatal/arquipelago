@@ -30,13 +30,17 @@ ultima_execucao: 2026-11-19T10:27Z   # O ITEM DE DESPACHO PEDIA UM
                          # bancada da ilha em 55 portoes, 0 falha, antes e depois.
                          # A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A
                          # GRAVA, nunca digitada.
-executando_desde: 2026-11-19T13:17Z   # RESERVA da execucao de 19/11/2026 (passo 5 da secao 1).
-                         # Ilha escolhida pelo FOCO da 1.2 (`foco.md` nomeia a rodametria),
-                         # nao pela rotacao. `executando_desde` estava `null` quando eu
-                         # entrei, que pela 1.1 ja prova que nao havia bloco da Fundacao
-                         # vivo — nao houve reserva vencida para o git desempatar; o ultimo
-                         # commit da pasta era de 10h28Z, quase tres horas atras. Nenhum
-                         # branch claude/* a frente do main e nenhum PR aberto.
+executando_desde: 2026-11-19T13:39Z   # RESERVA RENOVADA pela 1.1, e nao e a hora da
+                         # reserva: ela foi as 13h17Z, ganha no push na PRIMEIRA
+                         # tentativa, e este bloco passa dos 40 minutos porque a
+                         # Open API desta conta devolve `System Error` intermitente
+                         # (tres tentativas numa chave) e porque a medicao da foto
+                         # sobe um navegador. Ilha escolhida pelo FOCO da 1.2
+                         # (`foco.md` nomeia a rodametria), nao pela rotacao.
+                         # `executando_desde` estava `null` quando eu entrei, que
+                         # pela 1.1 ja prova que nao havia bloco da Fundacao vivo;
+                         # o ultimo commit da pasta era de 10h28Z. Nenhum branch
+                         # claude/* a frente do main e nenhum PR aberto.
                          # A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA.
 rede: aberta em 2026-11-19   # 20.2, REMEDIDA e nao herdada nesta passada das
                              # 10h17Z: `rodametria.com.br` E `www.rodametria.com.br`

@@ -70,7 +70,26 @@ from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parent.parent
 SUB_ID_1 = "rodametria"
-BYTES_DO_CABECALHO = 32768          # o bastante para o cabecalho de JPEG, PNG e WebP
+BYTES_DO_CABECALHO = 32768          # a PRIMEIRA janela; a escada abaixo diz o resto
+# A ESCADA DE JANELAS, E ELA NASCEU DE UMA FOTO MEDIDA (19/11/2026). O `32768`
+# acima era "o bastante para o cabecalho de JPEG, PNG e WebP" e NAO e: em JPEG a
+# dimensao mora no segmento SOF, que vem DEPOIS de todo metadado, e metadado nao
+# tem teto. Medido na foto `sg-11134201-825b4-mu4ds42j0q9x25` desta ilha, um JPEG
+# 1024x1024 perfeito que o navegador pinta: Exif de 14.033 bytes, segundo Exif de
+# 4.487 e um bloco 0xED (recurso de imagem do Photoshop) de 16.114 — o SOF cai no
+# byte 34.780, a 2 KB da janela. A regua respondia `os primeiros 32768 bytes nao
+# traziam cabecalho de JPEG, PNG nem WebP`, que e FALSO sobre o arquivo: eles
+# traziam o cabecalho, e o que faltou foi JANELA. Instrumento que afirma coisa
+# errada sobre o que mediu e a familia do erro sobrescrito de `urls_do_sitemap`,
+# consertado nesta ilha na manha do mesmo dia.
+#
+# A ESCADA E FECHADA DE PROPOSITO: 32 KB, 128 KB, 512 KB. Ela sobe SO quando os
+# bytes lidos SAO de um formato conhecido e a dimensao ainda nao apareceu — nunca
+# porque "talvez em mais bytes de um arquivo que nao e imagem apareca uma". Teto
+# porque baixar o arquivo inteiro para ler 4 bytes e o que esta funcao existe
+# para nao fazer, e porque arquivo em que meio mega de metadado nao chega ao SOF
+# nao e uma foto de produto: e outra coisa, e isso tem de ser DITO.
+ESCADA_DE_JANELAS = (32768, 131072, 524288)
 TEMPO_LIMITE = 45
 
 
@@ -481,21 +500,70 @@ def causa_de_foto_nao_medida(erro):
     return "a CDN nao respondeu (%s)" % texto
 
 
-def medir_foto(url):
+def formato_conhecido(dados):
+    """O nome do formato que estes bytes COMECAM, ou None.
+
+    Ela existe para a regua poder dizer `faltou janela` sem mentir: so arquivo
+    cujo comeco e de formato conhecido merece uma janela maior. Sem esta
+    separacao, "le mais bytes e tenta de novo" viraria baixar qualquer arquivo
+    inteiro na esperanca de achar uma dimensao dentro dele.
+    """
+    if not dados:
+        return None
+    if dados[:2] == b"\xff\xd8":
+        return "JPEG"
+    if dados[:8] == b"\x89PNG\r\n\x1a\n":
+        return "PNG"
+    if dados[:4] == b"RIFF" and dados[8:12] == b"WEBP":
+        return "WebP"
+    return None
+
+
+def janela_bastou(dados):
+    """A dimensao NAO esta nestes bytes e o arquivo ACABOU aqui?
+
+    Em PNG e WebP a dimensao esta nos primeiros 30 bytes: se nao saiu, nao e
+    falta de janela. Em JPEG ela mora no SOF, depois de todo metadado — e ai
+    `faltou janela` e a leitura certa, porque a varredura chegou ao fim dos
+    bytes LIDOS sem achar nem SOF nem fim de arquivo.
+    """
+    return formato_conhecido(dados) != "JPEG"
+
+
+def medir_foto(url, escada=ESCADA_DE_JANELAS):
     """(dimensao, erro). Le so o comeco: a dimensao mora no cabecalho, e baixar
-    300 KB por foto para ler 4 bytes seria gastar rede por nada."""
+    o arquivo inteiro para ler 4 bytes seria gastar rede por nada.
+
+    SOBE A ESCADA DE JANELAS quando — e SO quando — os bytes lidos sao de um
+    formato conhecido e a dimensao ainda nao apareceu. Ver `ESCADA_DE_JANELAS`.
+    """
     if not url:
         return None, "a oferta veio sem endereco de imagem"
-    pedido = urllib.request.Request(url, headers={"Range": "bytes=0-%d" % (BYTES_DO_CABECALHO - 1)})
-    try:
-        with urllib.request.urlopen(pedido, timeout=TEMPO_LIMITE) as r:
-            dados = r.read(BYTES_DO_CABECALHO)
-    except (urllib.error.URLError, urllib.error.HTTPError, OSError) as erro:
-        return None, causa_de_foto_nao_medida(erro)
-    d = dimensao_dos_bytes(dados)
-    if not d:
-        return None, "os primeiros %d bytes nao traziam cabecalho de JPEG, PNG nem WebP" % len(dados)
-    return d, None
+    lidos = 0
+    formato = None
+    for janela in escada:
+        pedido = urllib.request.Request(url, headers={"Range": "bytes=0-%d" % (janela - 1)})
+        try:
+            with urllib.request.urlopen(pedido, timeout=TEMPO_LIMITE) as r:
+                dados = r.read(janela)
+        except (urllib.error.URLError, urllib.error.HTTPError, OSError) as erro:
+            return None, causa_de_foto_nao_medida(erro)
+        lidos = len(dados)
+        formato = formato_conhecido(dados)
+        d = dimensao_dos_bytes(dados)
+        if d:
+            return d, None
+        if formato is None:
+            return None, ("os primeiros %d bytes nao comecam como JPEG, PNG nem WebP" % lidos)
+        if janela_bastou(dados) or lidos < janela:
+            # Formato conhecido, arquivo inteiro lido (ou dimensao que nao
+            # depende de janela), e a dimensao nao esta la: isto e defeito do
+            # ARQUIVO e nao da janela, e a frase diz isso.
+            return None, ("o arquivo e %s e os %d bytes lidos nao traziam a dimensao: "
+                          "nao e falta de janela, o arquivo inteiro cabe aqui" % (formato, lidos))
+    return None, ("o arquivo e %s e a dimensao nao apareceu nos %d bytes lidos, o teto da escada "
+                  "(%d): metadado demais antes do SOF para isto ser foto de produto"
+                  % (formato, lidos, escada[-1]))
 
 
 # --------------------------------------------------------------- o degrau
