@@ -2,12 +2,25 @@
  * MEDE UMA FOTO DE CARTAO COMO O NAVEGADOR DO VISITANTE A MEDE — `naturalWidth`
  * NO DOM, E NUNCA SO O CODIGO HTTP (19/11/2026).
  *
+ *     node ferramentas/medir-foto-no-navegador.mjs              # PORTAO: as fotos do banco
  *     node ferramentas/medir-foto-no-navegador.mjs <url> [<url> ...]
  *     echo '["https://...","https://..."]' | node ferramentas/medir-foto-no-navegador.mjs -
  *     node ferramentas/medir-foto-no-navegador.mjs --autoteste   # sem rede
  *
- * Saida: JSON em stdout, um objeto por URL, com `desfecho`, `largura`,
- * `altura`, `status_http`, `tipo` e `como_foi_medido`.
+ * Com URL na linha de comando ou na entrada padrao ele e INSTRUMENTO: devolve
+ * JSON, um objeto por URL, com `desfecho`, `largura`, `altura`, `status_http`,
+ * `tipo` e `como_foi_medido`.
+ *
+ * SEM ARGUMENTO NENHUM ele e PORTAO, e esta metade nasceu de um defeito do
+ * proprio arquivo: a bancada desta ilha classifica `medir-*` como portao de
+ * rede, rodou este aqui sem argumento e o chamou de **INERTE** — *"nao imprime
+ * APROVADO, REPROVADO nem 'N falha(s)'. Portao que nao diz o veredito em
+ * portugues nao e lido por ninguem."* A regua dela estava certa e a resposta
+ * nao era calar: era ter assunto proprio. O assunto e o que FALTAVA a esta
+ * ilha — **toda foto que o banco DECLARA tem de estar viva no navegador**. E o
+ * portao que teria achado as duas fotos quebradas de 18/11/2026 sem precisar de
+ * ninguem abrir a pagina, e ele le `dados/anuncios-por-consulta.json` e
+ * `dados/veiculos.json`, que sao os dois bancos desta ilha que guardam foto.
  *
  * POR QUE ESTE SEGUNDO INSTRUMENTO EXISTE, e ele nao e zelo. O `medir_foto` do
  * coletor le os primeiros bytes com `Range` e tira a dimensao do CABECALHO do
@@ -226,8 +239,94 @@ async function medir(urls) {
 	});
 }
 
+/* ------------------------------------------------------- o modo PORTAO
+ * AS FOTOS QUE O BANCO DECLARA, uma por uma, no navegador. Ele nao opina sobre
+ * foto AUSENTE: isso e assunto da `aplicar-foto-remedida.py`, que mede e grava.
+ * Aqui a afirmacao e so uma, e ela e forte: foto declarada e foto que o
+ * visitante VE. `nao_medida` nao reprova — e ausencia de medicao, e dizer
+ * "quebrou" sobre o que nao se mediu e o defeito que o item 2 do despacho de
+ * 18/11 consertou no portao de pixel desta ilha. */
+const BANCOS_COM_FOTO = ['anuncios-por-consulta.json', 'veiculos.json'];
+
+function fotosDeclaradas() {
+	const { readFileSync } = exigir('node:fs');
+	const raiz = join(import.meta.dirname ?? new URL('.', import.meta.url).pathname, '..');
+	const achadas = [];
+	const andar = (o, onde) => {
+		if (Array.isArray(o)) { o.forEach((v, i) => andar(v, `${onde}/[${i}]`)); return; }
+		if (o && typeof o === 'object') {
+			if (o.imagem && typeof o.imagem === 'object' && o.imagem.url) {
+				achadas.push({ url: o.imagem.url, onde,
+					largura: o.imagem.largura, altura: o.imagem.altura });
+			}
+			for (const [k, v] of Object.entries(o)) andar(v, `${onde}/${k}`);
+		}
+	};
+	for (const nome of BANCOS_COM_FOTO) {
+		andar(JSON.parse(readFileSync(join(raiz, 'dados', nome), 'utf8')), nome);
+	}
+	/* A MESMA FOTO PODE SER DECLARADA EM DOIS LUGARES (o anuncio e o registro do
+	   veiculo): mede-se UMA vez e o laudo vale para os dois, senao o navegador
+	   sobe carregando a mesma imagem duas vezes e a contagem infla. */
+	const porUrl = new Map();
+	for (const f of achadas) {
+		if (!porUrl.has(f.url)) porUrl.set(f.url, { ...f, onde: [f.onde] });
+		else porUrl.get(f.url).onde.push(f.onde);
+	}
+	return [...porUrl.values()];
+}
+
+async function portao() {
+	const declaradas = fotosDeclaradas();
+	if (!declaradas.length) {
+		process.stdout.write('nenhuma foto declarada nos bancos desta ilha.\n'
+			+ '\n0 afirmacao(oes), 1 falha(s).\nREPROVADO\n');
+		return 1;
+	}
+	const laudo = await medir(declaradas.map((f) => f.url));
+	const porUrl = new Map(laudo.map((x) => [x.url, x]));
+	const falhas = [];
+	let afirmacoes = 0;
+	let naoMedidas = 0;
+	for (const f of declaradas) {
+		const x = porUrl.get(f.url) || {};
+		afirmacoes += 1;
+		if (x.desfecho === 'nao_medida') {
+			naoMedidas += 1;
+			process.stdout.write(`  NAO MEDIDO  ${f.onde[0]} — ${x.falha_de_rede}\n`);
+			continue;
+		}
+		if (x.desfecho !== 'viva') {
+			falhas.push(`${f.onde[0]}: foto DECLARADA e o navegador diz \`${x.desfecho}\``
+				+ `${x.status_http ? ` (HTTP ${x.status_http})` : ''} — ${f.url}`);
+			continue;
+		}
+		/* A DIMENSAO GRAVADA E A QUE O NAVEGADOR PINTA. Dimensao do banco
+		   discordando do DOM e salto de layout quando a imagem carrega, que e o
+		   que a 25.7 proibe ao exigir largura e altura MEDIDAS. */
+		afirmacoes += 1;
+		if (f.largura !== x.largura || f.altura !== x.altura) {
+			falhas.push(`${f.onde[0]}: o banco grava ${f.largura}x${f.altura} e o navegador `
+				+ `pinta ${x.largura}x${x.altura} — salto de layout quando a foto carregar`);
+		}
+	}
+	process.stdout.write(`\n${declaradas.length} foto(s) declarada(s) nos bancos `
+		+ `${BANCOS_COM_FOTO.join(' e ')}; ${naoMedidas} nao medida(s) por recusa de rede `
+		+ '(nao reprova: ausencia de medicao nao e defeito).\n');
+	for (const f of falhas) process.stdout.write(`FALHA: ${f}\n`);
+	process.stdout.write(`\n${afirmacoes} afirmacao(oes), ${falhas.length} falha(s).\n`);
+	process.stdout.write(`${falhas.length ? 'REPROVADO' : 'APROVADO'}\n`);
+	return falhas.length ? 1 : 0;
+}
+
+/* ------------------------------------------------------------- a porta */
 if (process.argv.includes('--autoteste')) {
 	process.exit(autoteste());
+}
+
+const argv = process.argv.slice(2);
+if (!argv.length) {
+	process.exit(await portao());
 }
 
 const urls = daLinhaDeComando() || (await daEntradaPadrao());
