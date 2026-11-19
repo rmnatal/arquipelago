@@ -29,18 +29,18 @@ ultima_execucao: 2026-11-19T16:45Z   # A PAGINA DE 823 MIL BUSCAS/MES PASSOU A S
                          # conferir-no-ar.py APROVADO, portao de pixel 10 de 10.
                          # A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A
                          # GRAVA, nunca digitada.
-executando_desde: null   # LIMPO no fecho desta execucao (passo 7 da secao 1). A
-                         # reserva foi as 16h16Z, ganha no push na PRIMEIRA
-                         # tentativa, e foi RENOVADA uma vez pela 1.1 no commit
-                         # de fecho: o bloco passou de 40 minutos porque o
-                         # desembarque desta ilha espera o cron, e nesta passada
-                         # o veredito da 20.9 foi `evento-nao-vencido` — esperar,
-                         # nao reacionar. `executando_desde` estava `null` quando
-                         # eu entrei, que pela 1.1 ja prova que nao havia bloco da
-                         # Fundacao vivo — nao houve reserva vencida para o git
-                         # desempatar. Ilha escolhida pelo FOCO da 1.2, nao pela
-                         # rotacao, e nada furava o foco: o unico ALTA de Fundacao
-                         # aberto era desta propria ilha.
+executando_desde: 2026-11-19T19:17Z   # RESERVA do passo 5 da secao 1, escrita ANTES do
+                         # trabalho. A HORA SAIU DO `date -u` NA MESMA LINHA DE
+                         # COMANDO QUE A GRAVA, nunca digitada. Ilha escolhida
+                         # pelo FOCO da 1.2 (`foco.md` nomeia a rodametria desde
+                         # 27/10, foco total e absoluto), nao pela rotacao da
+                         # secao 1. `executando_desde` estava `null` quando eu
+                         # entrei, e o ultimo commit da pasta era de 16h47Z — pela
+                         # 1.1 isso ja prova que nao havia bloco da Fundacao vivo,
+                         # e nao houve reserva vencida para o git desempatar.
+                         # Nenhum branch claude/* e nenhum PR aberto: a branch desta
+                         # sessao esta IGUAL ao origin/main (`git log origin/main..`
+                         # vazio), e a arvore limpa.
 rede: aberta em 2026-11-19   # 20.2, REMEDIDA e nao herdada nesta passada das
                              # 13h17Z: `rodametria.com.br` em 200 nas TRES passadas,
                              # `www.` em 301 nas tres (redirecao, nao recusa), com
