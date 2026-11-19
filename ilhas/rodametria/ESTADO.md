@@ -30,16 +30,14 @@ ultima_execucao: 2026-11-19T10:27Z   # O ITEM DE DESPACHO PEDIA UM
                          # bancada da ilha em 55 portoes, 0 falha, antes e depois.
                          # A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A
                          # GRAVA, nunca digitada.
-executando_desde: null   # LIMPO no fecho desta execucao (passo 7 da secao 1). A reserva
-                         # foi as 10h17Z, ganha no push na PRIMEIRA tentativa (`55cccfd`),
-                         # e NAO precisou de renovacao pela 1.1: a execucao fechou em ~10
-                         # minutos, dentro da janela de 40. `executando_desde` estava
-                         # `null` quando eu entrei, que pela 1.1 ja prova que nao havia
-                         # bloco da Fundacao vivo — nao houve reserva vencida para o git
-                         # desempatar. Ilha escolhida pelo FOCO da 1.2 e nao pela rotacao:
-                         # clubedomosaico e robometria em 200 na raiz, logo NO AR e nao
-                         # quebradas, e os despachos ALTA abertos nelas sao gesto do
-                         # Raphael (chamado na HostGator)
+executando_desde: 2026-11-19T13:17Z   # RESERVA da execucao de 19/11/2026 (passo 5 da secao 1).
+                         # Ilha escolhida pelo FOCO da 1.2 (`foco.md` nomeia a rodametria),
+                         # nao pela rotacao. `executando_desde` estava `null` quando eu
+                         # entrei, que pela 1.1 ja prova que nao havia bloco da Fundacao
+                         # vivo — nao houve reserva vencida para o git desempatar; o ultimo
+                         # commit da pasta era de 10h28Z, quase tres horas atras. Nenhum
+                         # branch claude/* a frente do main e nenhum PR aberto.
+                         # A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA.
 rede: aberta em 2026-11-19   # 20.2, REMEDIDA e nao herdada nesta passada das
                              # 10h17Z: `rodametria.com.br` E `www.rodametria.com.br`
                              # em 200 nas TRES passadas, com `aquametria.com.br` em
