@@ -91,6 +91,16 @@ Janela 10→16/11: **2 impressões, 0 clique, posição média 16,0** — era 8/
 > está como entrada ALTA em `dados/despachos.md`: servir o `piso_da_busca` da consulta mesmo com vitrine
 > vazia, com `rel="sponsored"` e `sub_id_1`, e o `conferir-produto-no-ar.py` cobrando isso em afirmação
 > própria para toda consulta declarada que não abre o portão da 30.2.
+>
+> > **ESSA METADE DE FUNDAÇÃO ESTÁ FECHADA E CONFERIDA NO AR (18.4), EM 19/11/2026 às 16h4xZ.** A página
+> > serve `<a href="https://s.shopee.com.br/2gClWsHpKL" rel="sponsored noopener" target="_blank">Veja todos
+> > disponíveis aqui</a>` dentro da caixa de ausência: no corpo servido, `shopee.com.br` foi de **0 para 1**,
+> > `sponsored` de **0 para 1**, `href=""` em **0**, e os links externos passaram de **dois** (as fontes do
+> > Google) para **três**. `conferir-produto-no-ar.py` **abre** a página agora — ela não estava na lista de
+> > alvos — e fechou **378 afirmações, 0 falha**. Revisão **116**, as 8 linhas do log dizendo `ok` (20.4),
+> > snippet 1.17.0 → 1.18.0. A 32.5 foi medida no navegador pela 32.5-d: o link está a **358 px** contra o
+> > teto de 1.400. A linha de fechamento inteira está em `dados/despachos.md`, sob `## FECHADOS`, e a regra
+> > geral virou a **25.2-c** do contrato. **O item 2 segue aberto e segue sendo gesto do Raphael.**
 3. ~~**DEFEITO DO INSTRUMENTO — SEGUNDA LEITURA SEGUIDA, E AGORA SÓ NESTA ILHA.**~~ — **REESCRITO PELA 18.3 EM 19/11/2026 às 10h2xZ: A METADE DE CÓDIGO ESTÁ FECHADA, E O DIAGNÓSTICO DELA ESTAVA ERRADO — O DEFEITO ERA A MENSAGEM DO INSTRUMENTO, NÃO O CAMINHO. FICA A METADE DO EGRESSO, QUE É GESTO DO RAPHAEL, E ELA ESTÁ NUM CAMPO DIFERENTE DO QUE O DESPACHO DE 18/11 NOMEIA.**
 
 > **O QUE ESTE ITEM PEDIA, e por que a letra dele não podia ser cumprida.** Ele manda a Fundação

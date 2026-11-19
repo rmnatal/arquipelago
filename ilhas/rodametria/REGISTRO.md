@@ -3,6 +3,74 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-11-19 16h16Z–16h4xZ — **A PÁGINA DE 823 MIL BUSCAS/MÊS PASSOU A SERVIR O PISO DA 25.2 MESMO COM A VITRINE VAZIA, E O DEGRAU QUE "NUNCA DEPENDE DE NINGUÉM" ERA O QUE DESAPARECIA QUANDO NINGUÉM ANUNCIA.** Revisão **116**, despacho ALTA de 19/11 FECHADO e conferido no ar (18.4), e a regra geral virou a **25.2-c** do contrato.
+
+**A ILHA DESTA EXECUÇÃO:** rodametria, por **foco** (`foco.md`, foco total e absoluto desde 27/10). **O que furaria o foco foi conferido antes de aceitar isso:** o único despacho **ALTA de Fundação** aberto em `dados/despachos.md` era justamente **desta ilha** (o deste fecho), e as três ilhas da exceção do **molde** (seção 32: aquametria, clubedomosaico, robometria) não têm despacho de molde aberto. Os outros ALTA abertos são **gesto do Raphael**, não bloco.
+
+**Passo 1 do disparo, medido:** `git fetch origin main` trouxe o `main` de `68c88a4` para **`ab3fb17`** (33 commits). A branch `claude/dreamy-mccarthy-wz7ga4`, local e remota, estava **na mesma ponta do `main`** — `git log origin/main..origin/claude/...` devolveu vazio nas duas — e `git status` veio limpo: **nada a mesclar**. **Nenhum PR aberto** (`list_pull_requests` state=open devolveu `[]`).
+
+**A RESERVA (passo 5 da seção 1):** `executando_desde` estava **`null`**, que pela **1.1** já prova que não havia bloco da Fundação vivo — não houve reserva vencida para o git desempatar. Reserva às **16h16Z**, ganha no push na **primeira tentativa** (`002cc6e`). **RENOVADA uma vez pela 1.1 no commit de fecho**: o bloco passa dos 40 minutos porque o desembarque desta ilha espera o cron e nesta passada o veredito foi `evento-nao-vencido`. A hora saiu do `date -u` na mesma linha de comando que a grava.
+
+**A REDE (20.2), REMEDIDA e não herdada:** `rodametria.com.br/` em **200 nas três** passadas, e `/veiculos/moto-eletrica/` em **200**.
+
+### O DEFEITO, MEDIDO ANTES DE MEXER EM NADA
+
+O despacho afirmava, e a leitura confirmou byte por byte. No corpo servido de `/veiculos/moto-eletrica/`, com `<style>` e `<script>` removidos: **zero** cartão, **zero** ocorrência de `shopee.com.br`, **zero** de `s.shopee`, **zero** de `sponsored`, **zero** de `piso_da_busca`. Os **dois** únicos links externos eram `fonts.googleapis.com` e `fonts.gstatic.com`. O que a página servia era `rdm-caixa-ausencia`.
+
+**E o `piso_da_busca` daquela consulta existia no banco, com os três campos, desde 16/11** — `chave`, `url_busca_produto` crua, `url_busca` encurtada (`https://s.shopee.com.br/2gClWsHpKL`) e `sub_id_1: rodametria`.
+
+**A causa era de LUGAR, não de dado:** o piso morava **dentro** do bloco da vitrine, e o bloco da vitrine é precisamente o que **não nasce** quando a coleta do dia não alcança o piso de três anúncios da 30.2 (`abre_o_portao_da_30_2: false`, 1 anúncio com link). **A 25.2 chama o piso de o degrau que "nunca depende de ninguém", e era justamente ele que desaparecia quando ninguém anunciava** — a página só perde a vitrine quando o mercado não serve produto, e é exatamente aí que a pessoa mais precisa de uma saída.
+
+### O CONSERTO, EM QUATRO CAMADAS — porque o piso atravessava todas
+
+1. **`coletar-piso-da-vitrine.py`** só colhia piso de consulta que **ABRE** o portão da 30.2, e o comentário dele dizia *"piso de consulta que nao vira pagina seria link gerado por nada"*. A primeira metade era verdadeira e a segunda **deixou de ser em 18/11**, quando a página declarada passou a ficar no ar sem vitrine. Agora colhe de toda consulta `publicar_declarado`. **O que isto evita é pior que o defeito de hoje:** se a moto tivesse **fechado** o piso da 30.2 **antes** de o link ser colhido, a caixa de ausência nasceria vazia **para sempre**, sem ninguém poder consertar do banco.
+2. **`gerar-vitrine-de-produto.py`** leva `piso_da_busca` para dentro de `nao_nasceram`, que é o dado **publicado** que a página degradada lê. Não pode ser `anuncios-por-consulta`: ele tem `publicar: false` no manifest e **não existe como option no ar** — a cicatriz de 18/11, quando a revisão 109 desembarcou e a página continuou sem `dateModified`. O piso viaja pelo mesmo caminho da data.
+3. **`rdm_produto_piso_sem_vitrine()`** no PHP, e o piso é o **PRIMEIRO** bloco da caixa, por duas razões escritas no código: **pixel** (a 32.5 põe teto de 1.400 px no primeiro botão de compra, e este é o **único** da página — embaixo dos quatro parágrafos e dos dois `<h2>` ele nasceria fora do teto) e **honestidade** (a frase acima dele acaba de dizer que a comparação está sem dados; deixar a pessoa ali sem saída era o que estava no ar). Sem piso no dado, a caixa **diz** que está sem link hoje: `href=""` não é botão morto, é um botão que **recarrega a própria página** com o rótulo da loja do lado. Snippet **1.17.0 → 1.18.0**.
+4. **`conferir-produto-no-ar.py` não ABRIA esta página**, e esta é a metade mais cara. Os alvos dele nasciam do casamento entre o `wp-sitemap.xml` e `vitrine['paginas']` — o lugar de onde a página sem vitrine está ausente **por definição**. Ele fechava **425 afirmações, zero falha**, em duas páginas, e **nunca abria a terceira**, a de maior volume do nicho. **É um degrau ANTES do defeito de 17/11:** lá foi a *condição do ramo* que saiu da mesma fonte que a afirmação devia cobrar; aqui foi a **lista de alvos**. É a 32.5-b na forma mais afiada, com o agravante de que ninguém digitou lista nenhuma — ela foi **derivada** do dado sob julgamento, e por isso parecia descoberta automática. Nascem `conferir_as_sem_vitrine()` (descobre por `nao_nasceram` × sitemap, e todo alvo não medido sai como **registro escrito**) e a função pura `veredito_do_piso_sem_vitrine()`. O `sub_id_1` é **lido do dono do campo** e nunca digitado ali (20.7).
+
+### OS PORTÕES
+
+- **`teste-piso-da-caixa.php` nasce** com **18 afirmações**, **chamando** a função do PHP — a decisão é em PHP, e régua em Python sobre o texto conferiria a FORMA e nunca a decisão. Ele cobra a procedência (piso de outra consulta não vaza), a ausência dita e não maquiada, o traje do `<a>` e a **ordem da 32.5**, com a discordância da 20.8 nos dois sentidos.
+- **`teste-piso-na-tela.py` ganhou a segunda metade:** 5 mundos fabricados, e ali a **régua velha é a AUSÊNCIA de régua**, porque era literalmente isso — a página não entrava na lista de alvos. Mais a trava que exige que as **duas famílias de página não sejam medidas pela mesma régua**.
+- **Bancada sem rede: 60 portões, 0 falha** (59 antes, mais o novo).
+- **No ar:** `conferir-produto-no-ar.py` **378 afirmações, 0 falha**; `conferir-no-ar.py` **APROVADO**; portão de pixel **10 de 10 páginas do molde dentro da 32.5**.
+
+### O DESEMBARQUE, E A ESPERA LIDA EM VEZ DE REACIONADA
+
+Revisão **116**. As **8** linhas de item do log da revisão corrente foram lidas **uma por uma** pela 20.4 e **todas dizem `ok`**, inclusive `snippets/rodametria-produto: ok (snippet #8 atualizado)` — e são **8 itens contra uma janela de 15 linhas**, então **a janela não cortou nada** (o que a 20.4 manda dizer quando corta).
+
+**E a espera foi diagnosticada em vez de reacionada, que é o que a 20.9 existe para conseguir.** Logo depois do push o `/status` dizia **115** com `ultimo: 16:17:15` e o log parado em 13:39. Os fatos foram passados à função pura `veredito_da_revisao_atrasada` da própria ilha: `ultimo` **recente** e **anterior** ao commit do manifest (**16:28:34**), com o raw do GitHub **já servindo 116** → veredito **`evento-nao-vencido`**, que manda **esperar**, porque reacionar não antecipa vencimento. A revisão entrou às **16:40:24** — **antes** do teto de 16:47:15, exatamente como a segunda ressalva da 20.9 prevê (`ultimo` + 30 min é **teto**, não a hora exata). **Nenhuma rodada foi reacionada à toa**, que foi o custo de oito minutos que aquela seção registra.
+
+### A VERIFICAÇÃO NO AR (18.4)
+
+`/veiculos/moto-eletrica/` serve, dentro da caixa de ausência:
+
+```
+<p class="rdm-caixa-piso">A loja onde esta página lê os preços continua com a busca aberta
+para esta categoria, e ela não é a comparação desta página: é a lista da loja, do jeito que
+ela vier. <a href="https://s.shopee.com.br/2gClWsHpKL" rel="sponsored noopener"
+target="_blank">Veja todos disponíveis aqui</a></p>
+```
+
+No corpo servido: `shopee.com.br` de **0 → 1**, `s.shopee` de **0 → 1**, `sponsored` de **0 → 1**, `href=""` em **0**, links externos de **dois → três**. A caixa de ausência continua inteira, e a página **não ganhou número nenhum** — ganhou a saída de compra que o banco dela já tinha.
+
+**E a 32.5 foi medida no navegador na mesma passada, pela 32.5-d**, porque este é o **primeiro link de compra que esta página serve na vida**: a 390 px o link está a **358 px** contra o teto de **1.400**, e **antes** do primeiro `<h2>` (927 px). Medição à mão, e o motivo está no despacho novo abaixo.
+
+### O QUE SUBIU PARA O CONTRATO
+
+**25.2-c**, escrita nesta passada e valendo para todas as ilhas: o piso da 25.2 é gravado e servido num lugar que **sobrevive ao estado degradado** da página, quem o colhe colhe para toda consulta **declarada**, página degradada serve o piso **ou diz** que está sem link hoje — e **portão que descobre o que vai julgar não deriva a lista de alvos do dado que ele julga**.
+
+### DUAS COISAS QUE ESTA PASSADA PAGOU, E AS DUAS SÃO DE MÉTODO
+
+1. **A primeira régua de ordem do `teste-piso-da-caixa.php` REPROVOU a ordem certa.** Ela procurava `<h2>` no texto da função e achou o `<h2>` que mora dentro do **comentário** logo acima do bloco do piso. Comentário que fala de markup não é markup — é a doença que a **32.4-b** nomeia nesta mesma fábrica —, e **régua que lê a camada errada reprova a página certa**, que é o caminho mais curto para alguém passar a ignorar o portão (a lição que a 20.5 escreveu quando o "REPROVADO" era cache). Ela agora casa a **emissão** (`$html .= '<h2>`), e **tem trava exigindo que discorde da ingênua** neste arquivo.
+2. **`teste-cabeca-sem-vitrine.php` virou INERTE nesta passada, por minha mão.** A caixa passou a chamar função nova, ele a carrega do snippet por `carregar_funcao()` e morria de **erro fatal antes da linha do veredito**. **Erro fatal em PHP sai com código 0**, então ele **não apareceu como FALHOU** — quem o pegou foi a detecção de **INERTE** da bancada (*"não imprime APROVADO, REPROVADO nem 'N falha(s)'"*). Religado com a função e a constante da option: **41 afirmações, 0 falha**. A regra que sobra: quem acrescenta chamada a uma função servida por um portão desses **carrega a função nele**.
+
+### O PRÓXIMO PASSO DESBLOQUEADO
+
+- **DESPACHO NORMAL NOVO, aberto e medido por esta passada:** o portão de pixel classifica a página por **componente de molde**, e agora existe página **com botão de compra e sem componente nenhum**. `/veiculos/moto-eletrica/` sai como `fora — sem componente de molde nenhum`, e o rodapé dele diz *"3 página(s) que vendem algo"* quando elas já são **quatro**. Hoje o número é bom (358 px); **o que falta é quem o meça na próxima vez**. As outras três ilhas rodam a mesma régua.
+- **O que segue esperando o Raphael, sem bloco possível desta nuvem:** as **três etiquetas do Mercado Livre** (item 2 de 18/11, o que daria 5 cartões a esta página — e este fecho sempre tratou do *"até lá"*) e `rodametria.com.br` no campo da **CONTA** para a leitura de Search Console (item 3-b).
+- **A pista da passada anterior, que continua de pé:** `veiculos.json` tem **três** registros `publicavel` com `imagem: null` e `motivo_sem_imagem` **vazio** — os 3 reservados de `/autonomia-patinete-eletrico/`. O coletor de anúncios **proíbe** isso no banco dele e aqui ninguém cobra. **Causa vazia não diz se a foto foi medida.**
+
 ## 2026-11-19 13h17Z–13h5xZ — **AS 10 FOTOS QUE FALTAVAM VOLTARAM AOS CARTÕES, E O DEFEITO DE UMA DELAS ERA A JANELA DO LEITOR DE CABEÇALHO: 32 KB NÃO ALCANÇAM O SOF DE TODO JPEG.** Revisão 115, e a vitrine passou de 16 de 29 itens com foto para **29 de 29**.
 
 **A ILHA DESTA EXECUÇÃO:** rodametria, por **foco** (`foco.md`, foco total e absoluto desde 27/10). **O que fura o foco foi conferido antes de aceitar isso:** nenhum dos seis itens do despacho da leitura semanal de 18/11 está aberto para a Fundação (o 1 e o 4 mandam **não tocar**; o 2 e o 3-b são gesto do Raphael; o 3 teve a metade de código fechada às 10h2xZ; o 5 e o 6 não pedem nada), e o item 5 da ronda técnica de 18/11 é chamado na HostGator. O despacho do **molde de conversão** segue fechado nas três ilhas que a exceção de 21/10 nomeia.

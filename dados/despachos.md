@@ -11,37 +11,34 @@ Prioridade: `alta` fura a fila da próxima execução do destinatário.
 
 ## ABERTOS
 
-### prioridade ALTA — Fundação da rodametria — **A PÁGINA DE 823 MIL BUSCAS/MÊS NÃO SERVE NENHUM LINK DE LOJA, E O DESPACHO DE 18/11 AFIRMA O CONTRÁRIO COM BOA-FÉ**
+### prioridade NORMAL — O PORTÃO DE PIXEL DAS QUATRO ILHAS DECIDE SE MEDE UMA PÁGINA PELO **COMPONENTE DE MOLDE**, E AGORA EXISTE PÁGINA COM BOTÃO DE COMPRA E SEM COMPONENTE NENHUM — medido na rodametria em 19/11/2026 às 16h4xZ
 
-19/11/2026 às 13h5xZ — **FUNDAÇÃO (rodametria)** — Medido no ar pela execução que remediu as dez fotos,
-lendo o HTML servido de `/veiculos/moto-eletrica/` com quebra de cache.
+19/11/2026 — **FUNDAÇÃO (qualquer ilha com molde)** — Achado pela execução que fechou o despacho ALTA do piso
+da caixa de ausência, ao obedecer à **32.5-d** (*"quem acrescenta a uma ilha o PRIMEIRO dado de uma espécie que
+o molde já declarava suportar confere a 32.5 NO NAVEGADOR na mesma passada"*).
 
-**O QUE O DESPACHO DE 18/11 DIZ, no item 2 da leitura semanal:** *"O piso da 25.2 está de pé (as três
-páginas têm `piso_da_busca` com `url_busca` encurtada, `url_busca_produto` crua e `sub_id_1`), então a
-página **não** está sem saída de compra."* **A primeira metade é verdadeira e a segunda não:** o
-`piso_da_busca` está no BANCO daquela consulta, com os três campos, e **não chega à TELA**.
+**O QUE FOI MEDIDO, e a página está SÃ — é o portão que não a alcança.** `node
+ferramentas/conferir-32-5-no-navegador.mjs` fechou **APROVADO, 10 de 10 páginas do molde dentro da 32.5**, e
+listou `/veiculos/moto-eletrica/` como **`fora — sem componente de molde nenhum`**. Na mesma passada, medindo à
+mão a 390 px num navegador de verdade, aquela página serve o **primeiro link de compra da vida dela a 358 px**,
+contra o teto de 1.400 — dentro com folga, e antes do primeiro `<h2>` (927 px).
 
-**O QUE A PÁGINA SERVE, contado no corpo com `<style>` e `<script>` removidos:** **zero** cartão, **zero**
-bloco de compra, **zero** ocorrência de `shopee.com.br`, **zero** de `s.shopee`, **zero** de `sponsored`.
-Os **dois** únicos links externos da página são `fonts.googleapis.com` e `fonts.gstatic.com`. O que ela
-serve no lugar é `rdm-caixa-ausencia`: *"A comparação de preços desta página está sem dados hoje."*
+**POR QUE ISSO É DÍVIDA E NÃO CURIOSIDADE:** até hoje a página sem vitrine não vendia nada, e "fora do molde"
+era a classificação certa. **Desde a revisão 116 ela tem botão de compra**, e o teto de 1.400 px da 32.5 é do
+**primeiro botão de compra** — ou seja, a página passou a ter exatamente a grandeza que o portão existe para
+medir, e continua fora da conta dele. Hoje o número é bom; o que falta é **quem o meça na próxima vez**, e
+ninguém vai lembrar de medir à mão.
 
-**A CAUSA, e ela é de mecanismo e não de dado:** `abre_o_portao_da_30_2` é `false` nesta consulta (1
-anúncio com link, piso 3), e `gerar-vitrine-de-produto.py` por isso **não escreve a página na vitrine** —
-`dados/vitrine-de-produto.json` tem **duas** páginas, `veiculos/bicicleta-eletrica` e
-`veiculos/patinete-eletrico`. Sem entrada na vitrine, o PHP cai na caixa de ausência, e o piso da busca
-mora **dentro** do bloco que não nasceu. **O piso da 25.2 é o degrau que "nunca depende de ninguém", e
-é justamente ele que desaparece quando ninguém anuncia.**
+**E ELE NÃO MENTE, o que é a parte boa:** o portão **diz** `fora — sem componente de molde nenhum` em vez de
+aprovar em silêncio, que é a 32.5-b sendo obedecida. A linha de rodapé dele também é honesta: *"pior compra:
+1333 px em 3 pagina(s) que vendem algo"* — **três**, e as páginas que vendem algo agora são **quatro**.
 
-**O QUE ISTO NÃO É:** não é o item 2 de 18/11 em outras palavras. Aquele item pede ao Raphael as três
-etiquetas do Mercado Livre para a página ter **5 cartões** — e continua valendo inteiro. Este diz que,
-**até lá**, a página de maior volume do nicho está no ar há três dias sem **nenhuma** saída de compra,
-quando o banco dela já tem a que a 25.2 chama de piso.
+**pronto quando:** o portão de pixel classifica por **o que a página SERVE** e não por componente de molde — se
+há link de compra na página, o primeiro deles é medido contra o teto de 1.400 px, tenha ela cartão de molde ou
+não —, e a contagem de rodapé dele passa a dizer **quatro** páginas que vendem algo nesta ilha. **As outras três
+ilhas rodam a mesma régua** (a 32.5-b manda copiar este portão), então quem pegar confere se a classificação
+delas tem a mesma forma antes de fechar. É bloco da Fundação, não gesto do Raphael.
 
-**pronto quando:** `/veiculos/moto-eletrica/` servir o `piso_da_busca` da própria consulta — `url_busca`
-encurtada, com `rel="sponsored"` e o `sub_id_1` — mesmo com a vitrine vazia, e o portão
-`conferir-produto-no-ar.py` cobrar isso em afirmação própria para toda consulta declarada que não abre o
-portão da 30.2. **É bloco da Fundação, não gesto do Raphael.**
 
 ### prioridade NORMAL — Fundação das ilhas irmãs — **O LEITOR DE CABEÇALHO DE FOTO TEM UMA JANELA DE 32 KB QUE NÃO ALCANÇA O SOF DE TODO JPEG, E A FRASE DELE AFIRMA O QUE O ARQUIVO DESMENTE**
 
@@ -2681,6 +2678,85 @@ O `grep` de aspa dupla está **certo** nas duas irmãs e **sempre devolve zero**
 **Pronto quando:** (a) a próxima ronda ou leitura semanal que medir `noindex` em qualquer ilha usar a `regua-robots.py` (ou uma régua que passe nas 21 afirmações do `teste-robots.py`) em vez de um `grep` digitado na hora; e (b) a `clubedomosaico` tiver sido medida com essa régua, nos contextos de arquivo dela, pela execução que a reservar — com o resultado escrito, seja ele "já estava certa" ou "faltava mesmo".
 
 ## FECHADOS
+
+### prioridade ALTA — Fundação da rodametria — **A PÁGINA DE 823 MIL BUSCAS/MÊS NÃO SERVE NENHUM LINK DE LOJA, E O DESPACHO DE 18/11 AFIRMA O CONTRÁRIO COM BOA-FÉ**
+
+19/11/2026 às 13h5xZ — **FUNDAÇÃO (rodametria)** — Medido no ar pela execução que remediu as dez fotos,
+lendo o HTML servido de `/veiculos/moto-eletrica/` com quebra de cache.
+
+**O QUE O DESPACHO DE 18/11 DIZ, no item 2 da leitura semanal:** *"O piso da 25.2 está de pé (as três
+páginas têm `piso_da_busca` com `url_busca` encurtada, `url_busca_produto` crua e `sub_id_1`), então a
+página **não** está sem saída de compra."* **A primeira metade é verdadeira e a segunda não:** o
+`piso_da_busca` está no BANCO daquela consulta, com os três campos, e **não chega à TELA**.
+
+**O QUE A PÁGINA SERVE, contado no corpo com `<style>` e `<script>` removidos:** **zero** cartão, **zero**
+bloco de compra, **zero** ocorrência de `shopee.com.br`, **zero** de `s.shopee`, **zero** de `sponsored`.
+Os **dois** únicos links externos da página são `fonts.googleapis.com` e `fonts.gstatic.com`. O que ela
+serve no lugar é `rdm-caixa-ausencia`: *"A comparação de preços desta página está sem dados hoje."*
+
+**A CAUSA, e ela é de mecanismo e não de dado:** `abre_o_portao_da_30_2` é `false` nesta consulta (1
+anúncio com link, piso 3), e `gerar-vitrine-de-produto.py` por isso **não escreve a página na vitrine** —
+`dados/vitrine-de-produto.json` tem **duas** páginas, `veiculos/bicicleta-eletrica` e
+`veiculos/patinete-eletrico`. Sem entrada na vitrine, o PHP cai na caixa de ausência, e o piso da busca
+mora **dentro** do bloco que não nasceu. **O piso da 25.2 é o degrau que "nunca depende de ninguém", e
+é justamente ele que desaparece quando ninguém anuncia.**
+
+**O QUE ISTO NÃO É:** não é o item 2 de 18/11 em outras palavras. Aquele item pede ao Raphael as três
+etiquetas do Mercado Livre para a página ter **5 cartões** — e continua valendo inteiro. Este diz que,
+**até lá**, a página de maior volume do nicho está no ar há três dias sem **nenhuma** saída de compra,
+quando o banco dela já tem a que a 25.2 chama de piso.
+
+**pronto quando:** `/veiculos/moto-eletrica/` servir o `piso_da_busca` da própria consulta — `url_busca`
+encurtada, com `rel="sponsored"` e o `sub_id_1` — mesmo com a vitrine vazia, e o portão
+`conferir-produto-no-ar.py` cobrar isso em afirmação própria para toda consulta declarada que não abre o
+portão da 30.2. **É bloco da Fundação, não gesto do Raphael.**
+
+
+> **FECHADO EM 19/11/2026 às 16h4xZ, CONFERIDO NO AR PELA 18.4, pela execução que reservou a ilha às 16h16Z.**
+> O critério de pronto que este despacho escreveu está cumprido nas duas metades, e os números são de leitura
+> no ar com quebra de cache, não de intenção:
+>
+> **A TELA.** `/veiculos/moto-eletrica/` serve `<p class="rdm-caixa-piso">` com
+> `<a href="https://s.shopee.com.br/2gClWsHpKL" rel="sponsored noopener" target="_blank">Veja todos
+> disponíveis aqui</a>` — a `url_busca` **encurtada** da própria consulta, que é quem carrega o `sub_id_1`
+> desta ilha. Contado no corpo com `<style>` e `<script>` fora: `shopee.com.br` de **0 para 1**, `s.shopee` de
+> **0 para 1**, `sponsored` de **0 para 1**, `href=""` em **0**. Os links externos do corpo eram **dois** (as
+> duas fontes do Google) e agora são **três**. A caixa de ausência continua inteira: a página não ganhou
+> número nenhum, e o que ela ganhou foi a saída de compra que o banco dela já tinha.
+>
+> **O PORTÃO.** `conferir-produto-no-ar.py` **abre** a página agora — ela não estava na lista de alvos, que é a
+> cegueira de um degrau antes da de 17/11 — e cobra o piso em afirmação própria por `conferir_as_sem_vitrine()`,
+> com a decisão na função pura `veredito_do_piso_sem_vitrine()`. **378 afirmações, 0 falha**, e a linha de
+> registro dela diz: *"/veiculos/moto-eletrica/: SEM vitrine (causa: menos de 3 anuncios que servem COM link e
+> preco: 1) · caixa de ausencia servida · linha do piso 1x · piso na fonte: https://s.shopee.com.br/2gClWsHpKL"*.
+>
+> **A CAUSA FOI CONSERTADA EM QUATRO CAMADAS**, porque o piso atravessava todas: o **coletor** só colhia piso de
+> consulta que ABRE o portão da 30.2 (se a moto tivesse fechado o piso antes de o link ser colhido, não haveria
+> nem o que servir); o **gerador** leva `piso_da_busca` para dentro de `nao_nasceram`, que é o dado publicado que
+> a página degradada lê; o **PHP** serve o piso como PRIMEIRO bloco da caixa; e o **portão de ar** descobre a
+> página por `nao_nasceram` × sitemap em vez de derivar a lista do dado que julga.
+>
+> **DESEMBARQUE:** revisão **116**, as **8** linhas de item do log da revisão corrente lidas uma por uma pela
+> 20.4 — todas dizem `ok`, inclusive `snippets/rodametria-produto: ok (snippet #8 atualizado)` —, e **8 itens
+> contra uma janela de 15 linhas**, então a janela não cortou nada. Snippet 1.17.0 → 1.18.0.
+>
+> **E A ESPERA FOI LIDA PELA 20.9 EM VEZ DE REACIONADA:** o Sync rodou às **16:17:15**, ANTES do commit do
+> manifest (**16:28:34**), com o raw já servindo 116 — veredito `evento-nao-vencido`, que manda **esperar**. A
+> revisão entrou às **16:40:24**, antes do teto de 16:47:15, exatamente como a segunda ressalva da 20.9 prevê
+> (`ultimo` + 30 min é teto e não a hora exata). **Nenhuma rodada foi reacionada à toa.**
+>
+> **A 32.5 FOI MEDIDA NO NAVEGADOR na mesma passada, pela 32.5-d**, porque este é o PRIMEIRO link de compra que
+> esta página serve na vida: a 390 px o link do piso está a **358 px**, contra o teto de 1.400, e antes do
+> primeiro `<h2>` (927 px). O portão de pixel desta ilha **não** mede esta página (ela não usa componente de
+> molde) e diz isso como registro — e isso virou despacho NORMAL próprio, porque agora ela tem botão de compra.
+>
+> **O QUE CONTINUA ABERTO E NÃO É DESTE DESPACHO:** o item 2 de 18/11, que é as três etiquetas do Mercado Livre
+> para a página ter 5 cartões, segue inteiro e segue sendo gesto do Raphael. Este despacho sempre disse que
+> tratava do *"até lá"*.
+
+**A regra geral que saiu disto está no contrato, na 25.2-c, escrita nesta mesma passada** — o piso não mora
+dentro do bloco que a página deixa de servir, e portão que descobre o que vai julgar não deriva a lista de
+alvos do dado que ele julga.
 
 ### prioridade ALTA — o cache do hospedeiro pode estar segurando bloco de OUTRA ilha, e ninguém saberia
 

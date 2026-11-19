@@ -15,32 +15,32 @@ urls_publicadas: 11       # 10 -> 11 em 16/11/2026: nasceu `/veiculos/moto-eletr
                           # proteger. Quem substituir comentario de varias linhas apaga o rabo.
 ultima_ronda: 2026-11-18T20:01Z   # LEITURA SEMANAL de 18/11/2026 (seção 12.2, item 3). SUBSTITUI o valor anterior 2026-11-18T15:00Z, que era da RONDA DIARIA TECNICA do mesmo dia e segue registrado no PROMPT.md e no MAOS-LOG.md. 2 impressoes, 0 clique, posicao 16,0; o 404 no indice de /veiculos/bicicleta-eletrica/ destravou e a pagina esta em 11,0.
 primeira_indexacao: null  # as duas primeiras URLs foram ao ar hoje; indexacao e trabalho de dias. Quem grava este campo e a leitura semanal, lendo o Search Console.
-ultima_execucao: 2026-11-19T13:48Z   # AS 10 FOTOS QUE FALTAVAM
-                         # VOLTARAM AOS CARTOES, e a vitrine passou de 16 de 29
-                         # itens com foto para 29 de 29. Zero espaco reservado nas
-                         # duas paginas de vitrine, contra quatro cartoes sem foto
-                         # pela manha — entre eles o PRIMEIRO de
-                         # /veiculos/patinete-eletrico/. Revisao 115, as 7 linhas
-                         # da revisao corrente dizendo `ok` (20.4, lidas uma por
-                         # uma do fecho para baixo pela 20.8).
-                         # A FOTO SO VOLTA COM DOIS INSTRUMENTOS CONCORDANDO: o
-                         # cabecalho do arquivo (a funcao do coletor, importada) e
-                         # o `naturalWidth` no DOM de um navegador de verdade, com
-                         # as dimensoes fechando entre os dois.
-                         # E O DEFEITO DE VERDADE ERA DA JANELA DO LEITOR: 32 KB
-                         # nao alcancam o SOF de todo JPEG, e a frase dele afirmava
-                         # que um JPEG perfeito nao trazia cabecalho de JPEG.
-                         # Bancada: 59 portoes sem rede e 65 com rede, 0 falha.
+ultima_execucao: 2026-11-19T16:45Z   # A PAGINA DE 823 MIL BUSCAS/MES PASSOU A SERVIR O
+                         # PISO DA 25.2 — despacho ALTA de 19/11 FECHADO e
+                         # CONFERIDO NO AR pela 18.4. No corpo servido de
+                         # /veiculos/moto-eletrica/: `shopee.com.br` de 0 para 1,
+                         # `sponsored` de 0 para 1, `href=""` em 0, e os links
+                         # externos de DOIS (as fontes do Google) para TRES.
+                         # Revisao 116, as 8 linhas de item do log dizendo `ok`
+                         # (20.4, lidas uma por uma), 8 itens contra uma janela
+                         # de 15 linhas — a janela nao cortou nada.
+                         # Bancada: 60 portoes sem rede, 0 falha. No ar:
+                         # conferir-produto-no-ar.py 378 afirmacoes 0 falha,
+                         # conferir-no-ar.py APROVADO, portao de pixel 10 de 10.
                          # A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A
                          # GRAVA, nunca digitada.
-executando_desde: 2026-11-19T16:16Z   # RESERVA desta execucao, passo 5 da secao 1. A ilha
-                         # foi escolhida pelo FOCO da 1.2 (`foco.md` nomeia a
-                         # rodametria desde 27/10), nao pela rotacao. O campo
-                         # estava `null` quando eu entrei, o que pela 1.1 ja
-                         # prova que nao havia bloco da Fundacao vivo — nao
-                         # houve reserva vencida para o git desempatar.
-                         # A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO
-                         # QUE A GRAVA, nunca digitada.
+executando_desde: null   # LIMPO no fecho desta execucao (passo 7 da secao 1). A
+                         # reserva foi as 16h16Z, ganha no push na PRIMEIRA
+                         # tentativa, e foi RENOVADA uma vez pela 1.1 no commit
+                         # de fecho: o bloco passou de 40 minutos porque o
+                         # desembarque desta ilha espera o cron, e nesta passada
+                         # o veredito da 20.9 foi `evento-nao-vencido` — esperar,
+                         # nao reacionar. `executando_desde` estava `null` quando
+                         # eu entrei, que pela 1.1 ja prova que nao havia bloco da
+                         # Fundacao vivo — nao houve reserva vencida para o git
+                         # desempatar. Ilha escolhida pelo FOCO da 1.2, nao pela
+                         # rotacao, e nada furava o foco: o unico ALTA de Fundacao
+                         # aberto era desta propria ilha.
 rede: aberta em 2026-11-19   # 20.2, REMEDIDA e nao herdada nesta passada das
                              # 13h17Z: `rodametria.com.br` em 200 nas TRES passadas,
                              # `www.` em 301 nas tres (redirecao, nao recusa), com
@@ -57,93 +57,93 @@ rede: aberta em 2026-11-19   # 20.2, REMEDIDA e nao herdada nesta passada das
                              # Quem escrever "o egresso recusa X" diz de QUAL ambiente.
 bloqueada_por: null      # obrigatorio pela secao 2. `null` DE PROPOSITO: o que falta (gov.br para a F1, as prefeituras para a camada municipal, as tres etiquetas do Mercado Livre) trava a FABRICA e nao a ILHA, e isso se escreve no despacho, que e o canal da 12.2. Preenche-lo congelaria tambem os blocos que ja podem andar.
 bloco_atual: |
-  AS 10 FOTOS QUE FALTAVAM VOLTARAM AOS CARTOES, E O DEFEITO DE UMA DELAS ERA A
-  JANELA DO LEITOR DE CABECALHO — 32 KB nao alcancam o SOF de todo JPEG.
+  A PAGINA DE 823 MIL BUSCAS/MES PASSOU A SERVIR O PISO DA 25.2 MESMO COM A
+  VITRINE VAZIA — e a causa era de MECANISMO em quatro camadas, nao de dado.
 
-  O NUMERO, contado na vitrine e conferido no ar: 16 de 29 itens com foto -> 29
-  de 29. ZERO espaco reservado nas duas paginas de vitrine, contra QUATRO
-  cartoes sem foto pela manha — entre eles o PRIMEIRO de
-  /veiculos/patinete-eletrico/, o espaco mais caro da pagina. No ar, com
-  quebra de cache e `<style>` removido: patinete 5 fotos / 0 reservado,
-  bicicleta 3 / 0, autonomia 1 / 3 (essas tres vem de `veiculos.json`, outro
-  banco). Revisao 115, as 7 linhas da revisao corrente dizendo `ok`.
+  O ESTADO DE ANTES, medido no ar por esta execucao antes de mexer em nada:
+  /veiculos/moto-eletrica/ servia ZERO link de loja. Zero cartao, zero ocorrencia
+  de `shopee.com.br`, zero de `s.shopee`, zero de `sponsored`; os dois unicos
+  links externos do corpo eram `fonts.googleapis.com` e `fonts.gstatic.com`. E o
+  `piso_da_busca` daquela consulta existia no banco, com os tres campos, desde
+  16/11. Ele nao chegava a tela porque morava DENTRO do bloco da vitrine, e o
+  bloco da vitrine e exatamente o que nao nasce quando a coleta nao alcanca o
+  piso de tres anuncios da 30.2. O degrau que a 25.2 chama de piso, o que "nunca
+  depende de ninguem", era o que desaparecia quando ninguem anuncia.
 
-  A REGRA NOVA, e ela e o coracao do bloco: FOTO SO VOLTA COM DOIS INSTRUMENTOS
-  INDEPENDENTES CONCORDANDO — o cabecalho do arquivo (`medir_foto` do coletor,
-  IMPORTADO e nunca copiado) e o `naturalWidth` no DOM de um navegador de
-  verdade —, e as DIMENSOES tem de fechar entre os dois. O primeiro prova que a
-  origem respondeu e que os bytes comecam como imagem; o segundo prova que o
-  navegador PINTA. Foi essa diferenca que a ronda de 18/11 mediu no Chrome do
-  Raphael: `complete: true` com `naturalWidth: 0`. Um instrumento so devolveria
-  foto quebrada para o lugar mais caro da pagina, que e pior que o reservado.
+  O ESTADO DE AGORA, conferido no ar com quebra de cache: `shopee.com.br` de 0
+  para 1, `s.shopee` de 0 para 1, `sponsored` de 0 para 1, `href=""` em 0, e os
+  links externos do corpo de DOIS para TRES. A caixa de ausencia continua inteira
+  e a pagina nao ganhou numero nenhum — ganhou a saida de compra que o banco dela
+  ja tinha.
 
-  O QUE NASCEU: `ferramentas/aplicar-foto-remedida.py` (a irma simetrica da
-  `aplicar-foto-quebrada.py`, 24 afirmacoes, com a mutacao que obriga a regua de
-  UM instrumento so a discordar) e `ferramentas/medir-foto-no-navegador.mjs`,
-  que e instrumento com URL e PORTAO sem argumento: 23 fotos declaradas nos dois
-  bancos, 46 afirmacoes, 0 falha. O modo portao nasceu de ele ter sido chamado
-  de INERTE pela bancada — a regua dela estava certa, e a resposta nao era calar,
-  era ter assunto proprio.
+  AS QUATRO CAMADAS, porque o piso atravessava todas:
+   1. `coletar-piso-da-vitrine.py` so colhia piso de consulta que ABRE o portao
+      da 30.2. Agora colhe de toda consulta `publicar_declarado`. Se a moto
+      tivesse FECHADO o piso antes de o link ser colhido, nao haveria nem o que
+      servir — e a caixa nasceria vazia para sempre, sem conserto possivel do
+      banco.
+   2. `gerar-vitrine-de-produto.py` leva `piso_da_busca` para dentro de
+      `nao_nasceram`, que e o dado PUBLICADO que a pagina degradada le.
+      `anuncios-por-consulta` tem `publicar: false` e NAO existe como option no
+      ar — a cicatriz de 18/11 com o `dateModified`.
+   3. `rdm_produto_piso_sem_vitrine()` no PHP, e o piso e o PRIMEIRO bloco da
+      caixa: por pixel (32.5, e este e o unico botao de compra da pagina) e por
+      honestidade (a frase acima dele acaba de dizer que a comparacao esta sem
+      dados). Sem piso no dado, a caixa DIZ que esta sem link hoje — `href` vazio
+      nao e botao morto, e um botao que recarrega a propria pagina.
+   4. `conferir-produto-no-ar.py` nao ABRIA esta pagina. Os alvos dele saiam do
+      casamento entre o sitemap e `vitrine['paginas']`, o lugar de onde a pagina
+      sem vitrine esta ausente POR DEFINICAO — 425 afirmacoes verdes em duas
+      paginas, e a terceira, a de maior volume do nicho, nunca aberta. E um
+      degrau ANTES do defeito de 17/11: la foi a condicao do RAMO que saiu da
+      mesma fonte que a afirmacao devia cobrar; aqui foi a LISTA DE ALVOS.
 
-  O DEFEITO DE VERDADE, achado porque os dois instrumentos DISCORDARAM em um dos
-  dez: `medir_foto` lia 32.768 bytes e respondia "os primeiros 32768 bytes nao
-  traziam cabecalho de JPEG, PNG nem WebP" sobre um JPEG 1024x1024 que o
-  navegador pinta. Em JPEG a dimensao mora no SOF, depois de TODO metadado, e
-  metadado nao tem teto: naquela foto o Exif tem 14.033 bytes, o segundo 4.487 e
-  o bloco 0xED 16.114, e o SOF cai no byte 34.780 — a 2 KB da janela. Faltou
-  JANELA, nunca cabecalho, e a frase afirmava o que o arquivo desmente. Agora ha
-  `ESCADA_DE_JANELAS = (32768, 131072, 524288)`, que sobe SO quando os bytes sao
-  de formato conhecido, com teto e com frase propria em cada ramo; PNG e WebP
-  nao sobem, porque a dimensao deles esta nos primeiros 30 bytes. Portao:
-  `teste-janela-da-foto.py`, 22 afirmacoes, com JPEG fabricado, servidor de
-  loopback que CONTA os pedidos e a regua velha obrigada a REPROVAR. A licao vai
-  para a aquametria por despacho (a regua dela e "a mesma leitura").
+  A REGRA GERAL FOI PARA O CONTRATO, na 25.2-c, e nao ficou so aqui: o piso nao
+  mora dentro do bloco que a pagina deixa de servir, e portao que descobre o que
+  vai julgar nao deriva a lista de alvos do dado que ele julga.
 
-  E O RECUO DO BANCO ERA DECLARADO EM CINCO LUGARES, um deles discordando:
-  `aplicar-foto-quebrada.py` gravava com `indent=2` contra o `RECUO_DO_BANCO=1`
-  da constante, e como foi ela que escreveu o banco em 18/11, o arquivo em disco
-  ficou com recuo 2. A primeira gravacao por outro caminho devolveu 2.100 linhas
-  de recuo com as dez fotos escondidas dentro. Os cinco passaram a ler a
-  constante; portao `teste-recuo-do-banco.py` (14 afirmacoes) varre
-  `ferramentas/` e DENUNCIA literal. A COMPARACAO ESTRUTURAL contra o HEAD e o
-  que prova o que mudou: 10 `imagem` que eram null, 10 `historico_da_foto`
-  novos, 10 `motivo_sem_imagem` a null e o `gerado_em`. Zero preco, zero
-  veredito de entrada, zero link.
+  PORTOES: `teste-piso-da-caixa.php` nasce com 18 afirmacoes CHAMANDO a funcao do
+  PHP, e `teste-piso-na-tela.py` ganhou a segunda metade (5 mundos; a regua velha
+  ali e a AUSENCIA de regua, porque era literalmente isso). Bancada sem rede: 60
+  portoes, 0 falha. No ar: produto 378 afirmacoes 0 falha, casca APROVADO, pixel
+  10 de 10 do molde.
 
-  A PAREDE DO EGRESSO NAO E UMA, E O NUMERO FECHOU A MEDICAO DE 10h17Z:
-  `cf.shopee.com.br` serve as fotos desta ilha DAQUI — 3 controles em 200 e as
-  10 fotos em 206 `image/jpeg` nas 30 passadas, mais 10 de 10 `viva` no DOM. O
-  cabecalho da `aplicar-foto-quebrada.py` afirma o contrario como se fosse fato
-  do Arquipelago, e e fato do AMBIENTE que mediu.
+  DUAS COISAS QUE ESTA PASSADA PAGOU, e as duas sao de METODO:
+   - a primeira regua de ordem do `teste-piso-da-caixa.php` REPROVOU a ordem
+     certa: ela procurava `<h2>` no texto da funcao e achou um dentro de um
+     COMENTARIO. Regua que le a camada errada reprova a pagina certa (32.4-b), e
+     portao que reprova pagina certa e o caminho mais curto para ser ignorado
+     (20.5). Ela agora casa a EMISSAO, e tem trava exigindo discordar da ingenua.
+   - `teste-cabeca-sem-vitrine.php` virou INERTE: a caixa passou a chamar funcao
+     nova e ele morria de erro fatal ANTES da linha do veredito. ERRO FATAL EM
+     PHP SAI COM CODIGO 0, entao ele nao apareceu como FALHOU — quem o pegou foi
+     a deteccao de INERTE da bancada. Quem acrescentar chamada a funcao servida
+     por um portao desses carrega a funcao nele.
 
-  ERRATA DE NUMERO, porque numero errado em registro e o que esta ilha mais
-  cobra: a mensagem do commit `cb3642e` diz "60 portoes sem rede" e o numero
-  medido e 59 (eram 55). Com rede, 65. A mensagem nao se reescreve; o numero
-  certo esta aqui e no REGISTRO.md.
+  E A ESPERA FOI LIDA EM VEZ DE REACIONADA: o Sync rodou as 16:17:15, ANTES do
+  commit do manifest (16:28:34), com o raw ja servindo 116 — veredito
+  `evento-nao-vencido` da 20.9, que manda ESPERAR. A revisao entrou as 16:40:24,
+  antes do teto de 16:47:15, exatamente como a segunda ressalva da 20.9 preve.
+  Nenhuma rodada foi reacionada a toa.
 
-  PROXIMO PASSO DESBLOQUEADO, E AGORA EXISTE UM DE CONSTRUCAO — ele e o despacho
-  ALTA que esta passada abriu em `dados/despachos.md`: A PAGINA DE 823 MIL
-  BUSCAS/MES NAO SERVE NENHUM LINK DE LOJA. Medido no ar em
-  /veiculos/moto-eletrica/: zero cartao, zero bloco de compra, zero ocorrencia
-  de `shopee.com.br`, de `s.shopee` e de `sponsored`; os dois unicos links
-  externos sao as fontes do Google; e o que a pagina serve e
-  `rdm-caixa-ausencia`. A causa e de MECANISMO: `abre_o_portao_da_30_2` e
-  `false` (1 anuncio com link, piso 3), logo `gerar-vitrine-de-produto.py` NAO
-  escreve esta pagina na vitrine, o PHP cai na caixa de ausencia, e o
-  `piso_da_busca` — que existe no banco da consulta, com os tres campos — mora
-  DENTRO do bloco que nao nasceu. O degrau que a 25.2 chama de piso, o que
-  "nunca depende de ninguem", e exatamente o que desaparece quando ninguem
-  anuncia. O item 2 do despacho de 18/11 continua inteiro e e do Raphael; isto e
-  bloco da Fundacao e nao espera gesto nenhum.
-  Depois dele, o que segue esperando o Raphael: as tres etiquetas do Mercado
-  Livre (item 2 de 18/11) e `rodametria.com.br` no campo da CONTA para a leitura
-  de Search Console (item 3-b).
-  E UMA PISTA MEDIDA DE GRACA PARA QUEM PEGAR A PROXIMA: `veiculos.json` tem
-  TRES registros `publicavel` com `imagem: null` e `motivo_sem_imagem` VAZIO —
-  sao os 3 reservados de /autonomia-patinete-eletrico/. O coletor de anuncios
-  PROIBE isso no banco dele ("sem imagem e sem causa escrita"), e aqui ninguem
-  cobra. Causa vazia nao diz se a foto foi medida.
-
+  O PROXIMO PASSO DESBLOQUEADO, para quem pegar esta ilha:
+   - DESPACHO NORMAL NOVO, aberto por esta passada e medido: o portao de pixel
+     classifica a pagina por COMPONENTE DE MOLDE, e agora existe pagina com botao
+     de compra e sem componente nenhum. `/veiculos/moto-eletrica/` sai como
+     `fora — sem componente de molde nenhum`, e o primeiro link de compra dela foi
+     medido A MAO a 390 px: 358 px contra o teto de 1.400 (dentro com folga, e
+     antes do primeiro `<h2>`, a 927 px). Hoje o numero e bom; o que falta e quem
+     o meca na proxima vez. O rodape do portao diz "3 pagina(s) que vendem algo" e
+     elas agora sao QUATRO. As outras tres ilhas rodam a mesma regua.
+   - E O QUE SEGUE ESPERANDO O RAPHAEL, sem bloco possivel desta nuvem: as tres
+     etiquetas do Mercado Livre (item 2 de 18/11, o que daria 5 cartoes a esta
+     pagina) e `rodametria.com.br` no campo da CONTA para a leitura de Search
+     Console (item 3-b).
+   - A PISTA QUE A PASSADA ANTERIOR DEIXOU E QUE CONTINUA DE PE: `veiculos.json`
+     tem TRES registros `publicavel` com `imagem: null` e `motivo_sem_imagem`
+     VAZIO — os 3 reservados de /autonomia-patinete-eletrico/. O coletor de
+     anuncios PROIBE isso no banco dele e aqui ninguem cobra. Causa vazia nao diz
+     se a foto foi medida.
 ---
 
 # Estado da ilha RODAMETRIA
