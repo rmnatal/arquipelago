@@ -11,6 +11,62 @@ Prioridade: `alta` fura a fila da próxima execução do destinatário.
 
 ## ABERTOS
 
+### prioridade ALTA — precisa do Raphael — **SÃO DOIS CAMPOS DE CONFIGURAÇÃO, NÃO UM: A ENTRADA DE 18/11 DIZ "O GESTO, E ELE É UM" E O GESTO DELA NÃO ALCANÇA A LEITURA DE SEARCH CONSOLE DA ILHA EM FOCO**
+
+19/11/2026 às 10h2xZ — **RAPHAEL** — Escrito pela execução da Fundação que reservou a rodametria às
+10h17Z para fechar a metade de código do item 3 do despacho de 18/11. **Não é despacho novo e não pede
+domínio novo:** é a correção de **um** detalhe da entrada ALTA logo abaixo, e o detalhe decide se o gesto
+funciona.
+
+**A entrada de 18/11 é certa no que pede e incompleta no que promete.** Ela dá oito linhas e manda
+colá-las em `claude.ai/code` → seletor de ambiente → **Nuvem** → engrenagem → **Domínios permitidos** —
+o campo do **AMBIENTE** (seção **20.1**) — sob o título *"O GESTO, E ELE É UM"*. **Há um segundo campo, e
+ele é de outro lugar:** **Configurações → Recursos → Execução de código e criação de arquivos → Domínios
+adicionais permitidos** — o campo da **CONTA** (**25.6**), onde já moram `robometria.com.br` e
+`aquametria.com.br`, e que a seção 25 do `ARQUIPELAGO.md` já registra com essas palavras.
+
+**O QUE FALTA NO CAMPO DA CONTA, e cada linha tem dono escrito:**
+
+```
+rodametria.com.br
+```
+
+| linha | o que destrava | onde isso está parado hoje |
+|---|---|---|
+| `rodametria.com.br` | a leitura de Search Console da **ilha em foco** | item 3 do despacho de 18/11 no `PROMPT.md` da rodametria: `ferramentas/search-console.py` não alcança o domínio do ambiente das MÃOS, e a linha de indexação da ilha sai **`n/d`** há **duas** leituras semanais seguidas. Fechar os oito domínios da entrada de 18/11 **não** conserta isto |
+
+**POR QUE ISTO NÃO É UMA NONA LINHA DA LISTA DE 18/11, e a distinção é o recado inteiro:** campo
+diferente, tela diferente. Quem colar as oito linhas no campo do ambiente e parar vai ter feito o gesto
+que a entrada de 18/11 descreve e vai continuar com a ilha em foco sem número de indexação. **Os dois
+gestos são independentes e os dois são seus.**
+
+### E UMA MEDIÇÃO QUE MUDA COMO SE LÊ TODA FRASE "O EGRESSO DESTA NUVEM RECUSA X" — A PAREDE NÃO É UMA, É UMA POR AMBIENTE
+
+Medido hoje às 10h2xZ **nesta** sessão da Fundação, três passadas por host, com controle verde na mesma
+passada (`rodametria.com.br` e `aquametria.com.br` em **200**), e classificado pelo
+`__agentproxy/status` e não de cabeça:
+
+| host | daqui (sessão da Fundação) | o que uma ronda registrou |
+|---|---|---|
+| `rodametria.com.br` | **200, 200, 200** | o item 3 de 18/11: *"o egresso do ambiente das MÃOS não alcança este domínio"* |
+| `cf.shopee.com.br` | **200, 200, 200** | `dados/PAINEL.md` item 4: *"a nuvem recebe `CONNECT tunnel failed, response 403`"* |
+| `fonts.gstatic.com` | **404, 404, 404** — o 404 é da ORIGEM em `/`, logo **o CONNECT passou** | a ronda de 18/11 da rodametria: *"as duas recusadas pelo egresso desta nuvem"* |
+
+**O `recentRelayFailures` do `__agentproxy/status`, lido na mesma janela, traz `connect_rejected` para UM
+host só** — um domínio inexistente que esta execução usou de propósito como prova de que o instrumento
+acusa recusa quando há recusa. **Nenhuma recusa para os três de cima.**
+
+**O que isto NÃO quer dizer, e está escrito para ninguém consertar o que não está errado:** as rondas não
+estavam erradas. Elas mediram o ambiente **delas**, e daqui não há como medir o ambiente delas. **O que
+isto quer dizer é que "o egresso desta nuvem" não é um fato do Arquipélago — é um fato do ambiente que
+mediu**, e três frases do repositório hoje o afirmam como se fosse do Arquipélago. Consequência prática
+imediata, e ela é de receita: os dois `motivo_sem_imagem` de `cf.shopee.com.br` que a ronda de 18/11
+classificou como **NÃO MEDIDO** por recusa de egresso **são mensuráveis de uma sessão da Fundação** —
+quem reservar esta ilha com foto pendente mede ali em vez de declarar não medido. **Quem escrever
+"o egresso recusa X" diz de qual ambiente**, como a 20.2 já manda dizer do controle verde.
+
+---
+
 ### prioridade ALTA — precisa do Raphael — A ILHA EM FOCO TOTAL ESTÁ INTEIRA ATRÁS DE **UM CAMPO DE CONFIGURAÇÃO**, E O PEDIDO ESTAVA ESPALHADO POR SEIS DESPACHOS: AQUI ELE É UMA LISTA SÓ, MEDIDA HOJE
 
 18/11/2026 às 19h2xZ — **RAPHAEL** — Escrito pela execução da Fundação que reservou a rodametria às

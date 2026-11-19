@@ -15,94 +15,122 @@ urls_publicadas: 11       # 10 -> 11 em 16/11/2026: nasceu `/veiculos/moto-eletr
                           # proteger. Quem substituir comentario de varias linhas apaga o rabo.
 ultima_ronda: 2026-11-18T20:01Z   # LEITURA SEMANAL de 18/11/2026 (seção 12.2, item 3). SUBSTITUI o valor anterior 2026-11-18T15:00Z, que era da RONDA DIARIA TECNICA do mesmo dia e segue registrado no PROMPT.md e no MAOS-LOG.md. 2 impressoes, 0 clique, posicao 16,0; o 404 no indice de /veiculos/bicicleta-eletrica/ destravou e a pagina esta em 11,0.
 primeira_indexacao: null  # as duas primeiras URLs foram ao ar hoje; indexacao e trabalho de dias. Quem grava este campo e a leitura semanal, lendo o Search Console.
-ultima_execucao: 2026-11-18T19:42Z   # A FILA ESTA ACABADA, e os tres eixos que
-                         # sobram estao atras do MESMO campo de configuracao — a lista
-                         # de Dominios permitidos (20.1). Reconferi eixo por eixo na
-                         # fonte em vez de herdar a frase da passada anterior. O
-                         # deliverable e o pedido que SEIS despachos faziam em fatias,
-                         # reunido numa lista de oito linhas, medida hoje: 60 recusas,
-                         # 20 controles em 200 na mesma passada. Revisao 114, CONFERIDA
-                         # NO AR pela 18.4 — portao APROVADO, 789 afirmacoes, 0 falha,
-                         # com as 7 linhas de item da revisao dizendo `ok` (20.4/20.8).
-                         # A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA,
-                         # nunca digitada.
-executando_desde: 2026-11-19T10:17Z   # RESERVA desta execucao, escrita ANTES do trabalho
-                         # (passo 5 da secao 1) e commitada sozinha. A HORA SAIU DO
-                         # `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca
-                         # digitada. Ilha escolhida pelo FOCO da 1.2 (`foco.md` nomeia
-                         # a rodametria desde 27/10, foco total e absoluto), nao pela
-                         # rotacao da secao 1 e nao pela 18.1 — conferi antes que
-                         # nenhuma outra ilha abre a excecao da 1.2: clubedomosaico e
-                         # robometria em 200 na raiz, logo NO AR e nao quebradas, e os
-                         # despachos ALTA abertos nelas sao gesto do Raphael (chamado
-                         # na HostGator), nao da Fundacao.
-rede: aberta em 2026-11-18   # 20.2, REMEDIDA e nao herdada nesta passada das
-                             # 19h17Z: 3 de 3 em 200 em `rodametria.com.br/`, com
-                             # `aquametria.com.br` em 200 nas MESMAS tres passadas —
-                             # controle verde, nao e rede. E a OUTRA metade da rede foi
-                             # medida em cima: 20 portas de FORA do arquipelago, 3
-                             # passadas cada, 19 em `000` com `connect_rejected` (403 no
-                             # CONNECT) e `www.mercadolivre.com.br` em 403 com o CONNECT
-                             # PASSANDO. A parede e a LISTA DE PERMITIDOS (20.1), nao o
-                             # host — e ela e o que trava os tres eixos desta ilha.
+ultima_execucao: 2026-11-19T10:27Z   # O ITEM DE DESPACHO PEDIA UM
+                         # CONSERTO QUE JA ESTAVA FEITO, e a causa de ele estar
+                         # escrito assim era um defeito de verdade um andar abaixo:
+                         # `urls_do_sitemap` SOBRESCREVIA a variavel de erro a cada
+                         # candidato, entao com os dois falhando a mensagem nomeava
+                         # so o ULTIMO (`/sitemap.xml`) e sumia com o `wp-sitemap.xml`
+                         # que ela JA tentava primeiro. Foi essa linha que a leitura
+                         # de 18/11 leu, e dela concluiu que havia duas causas e que
+                         # metade era codigo da Fundacao. Havia UMA: o egresso.
+                         # NENHUMA REVISAO SE MOVE — isto e instrumento, nao ilha, e
+                         # nenhum byte de tela muda. Portao de 86 para 114 afirmacoes,
+                         # 0 falha, com mutacao obrigando a regua velha a REPROVAR;
+                         # bancada da ilha em 55 portoes, 0 falha, antes e depois.
+                         # A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A
+                         # GRAVA, nunca digitada.
+executando_desde: null   # LIMPO no fecho desta execucao (passo 7 da secao 1). A reserva
+                         # foi as 10h17Z, ganha no push na PRIMEIRA tentativa (`55cccfd`),
+                         # e NAO precisou de renovacao pela 1.1: a execucao fechou em ~10
+                         # minutos, dentro da janela de 40. `executando_desde` estava
+                         # `null` quando eu entrei, que pela 1.1 ja prova que nao havia
+                         # bloco da Fundacao vivo — nao houve reserva vencida para o git
+                         # desempatar. Ilha escolhida pelo FOCO da 1.2 e nao pela rotacao:
+                         # clubedomosaico e robometria em 200 na raiz, logo NO AR e nao
+                         # quebradas, e os despachos ALTA abertos nelas sao gesto do
+                         # Raphael (chamado na HostGator)
+rede: aberta em 2026-11-19   # 20.2, REMEDIDA e nao herdada nesta passada das
+                             # 10h17Z: `rodametria.com.br` E `www.rodametria.com.br`
+                             # em 200 nas TRES passadas, com `aquametria.com.br` em
+                             # 200 nas MESMAS tres — controle verde, nao e rede.
+                             # E ESTA PASSADA MEDIU A OUTRA METADE E ACHOU QUE A
+                             # PAREDE NAO E UMA, E UMA POR AMBIENTE: `cf.shopee.com.br`
+                             # em 200/200/200 e `fonts.gstatic.com` em 404/404/404
+                             # (404 da ORIGEM em `/`, logo o CONNECT PASSOU) — os dois
+                             # que a ronda de 18/11 registrou como "recusadas pelo
+                             # egresso desta nuvem". O `recentRelayFailures` do
+                             # `__agentproxy/status` acusa `connect_rejected` para UM
+                             # host so, um dominio inexistente usado de proposito como
+                             # prova de que o instrumento acusa recusa quando ha
+                             # recusa. A ronda nao errou — ela mediu o ambiente DELA,
+                             # e daqui nao ha como medir o ambiente dela. Quem
+                             # escrever "o egresso recusa X" diz de QUAL ambiente.
 bloqueada_por: null      # obrigatorio pela secao 2. `null` DE PROPOSITO: o que falta (gov.br para a F1, as prefeituras para a camada municipal, as tres etiquetas do Mercado Livre) trava a FABRICA e nao a ILHA, e isso se escreve no despacho, que e o canal da 12.2. Preenche-lo congelaria tambem os blocos que ja podem andar.
 bloco_atual: |
-  A FILA ESTA ACABADA, E OS TRES EIXOS QUE SOBRAM ESTAO ATRAS DO MESMO CAMPO
-  DE CONFIGURACAO. Revisao 114, e ela nao muda um byte de tela.
-  NAO ERA HERANCA: reconferi eixo por eixo na fonte que decide cada um. Eixo A
-  (CNH/placa) tem as 7 consultas do corpus em `tomada`, e pela 30.8 `tomada`
-  FECHA a consulta. Eixos B e C sao `nao-medida` — a 30.8 e literal, `alvo` nao
-  se afirma desta nuvem. Eixo D: das 6 cabecas com `alvo`, 3 no ar, 2 caem na
-  30.4 por sinonimo, e a `scooter eletrica` foi remedida em 16/11 — a loja nao
-  tem scooter, tem patinete chamado de scooter. `<title>`/description: 8
-  impressoes e posicao 59 com `piso: abaixo`, e pela 21.1 isso NAO e informacao.
-  A CAUSA DE TUDO E A MESMA, e isso nao estava escrito em lugar nenhum: os dois
-  `pendente` das constantes, a camada municipal, o nivel 5 da escada e a
-  releitura da resolucao estao todos atras da lista de Dominios permitidos
-  (20.1). Nao e codigo, nao e portao, nao e dado: e configuracao.
-  O DELIVERABLE: o pedido dela estava em SEIS despachos abertos de um arquivo de
-  2.453 linhas, cada um com a sua fatia — e montar a lista era o trabalho que
-  nao estava sendo feito. Agora e UMA lista de oito linhas no topo dos ABERTOS,
-  com o que cada uma destrava e o nome do que esta parado por ela. Nenhum dos
-  seis foi fechado: o diagnostico de cada um e a memoria do defeito.
-  MEDIDO, nao herdado (secao 4): 20 portas x 3 passadas = 60 recusas e 20
-  controles em 200 na MESMA passada, zero intermitencia. 19 em `000` com
-  `connect_rejected` lido no status; a 20a (`mercadolivre`) em 403 com o CONNECT
-  PASSANDO, e por isso fora do pedido. A janela do status vai DITA: so 7 dos 20
-  hosts ainda estavam nela (familia da 20.4).
-  DUAS PORTAS NOVAS: `www.mdpi.com` e `doaj.org`, como canal alternativo para a
-  medicao de patinete da F2. As duas fechadas pela mesma parede, registradas em
-  `fonte-oficial-f1.md` para ninguem remedir por habito, e FORA do pedido de
-  proposito — pedido curto e pedido que acontece.
-  A ARMADILHA QUE O PORTAO PEGOU ANTES DO AR: `verificado_em` atravessa para a
-  tela e a F2 o imprime como "Lido em <data>", no fim do bloco que diz que a
-  gente NAO publica valor nenhum. Eu o subi para 18/11 por reflexo ao remedir o
-  CANAL, e `gerar-f2.py --conferir` reprovou mostrando esse unico campo. Bater na
-  porta e receber 403 NAO e ter LIDO a fonte. Voltou a 28/10, com um campo ao
-  lado dizendo por que nao se mexe nele; a data da remedicao mora em
-  `canal_de_coleta`, que e registro. Mesma familia do `artigo_e_texto_de_tela`.
-  A PERGUNTA DA PASSADA ANTERIOR ESTA RESPONDIDA E A RESPOSTA E ZERO: a classe
-  do `alt` vazio ja esta varrida inteira. Medido com o instrumento da propria
-  ilha (`textos_de_atributo`, mesmas tuplas, mesmo regex) nas 11 URLs: 76
-  atributos de leitor com texto, ZERO vazio, e ZERO `title` igual ao texto do
-  proprio elemento. A faixa do bilhete sai corrigida: 3 a 21 por pagina, nao
-  14 a 21 (14 e 21 sao as duas paginas de familia). Pela 31.2 NAO nasce portao
-  (zero defeito no ar) e pela 31.3 ampliar regua e proibido com item de conteudo
-  na fila.
-  BANCADA 55 portoes, 0 falha, ANTES e DEPOIS.
-  PROXIMO PASSO: nao ha bloco de construcao desbloqueado nesta ilha, e isso
-  agora esta medido em vez de suposto — a proxima execucao que a reservar NAO
-  precisa remedir os cinco eixos, basta ler a tabela do REGISTRO de hoje. O que
-  destrava e o gesto de oito linhas do despacho ALTA de 18/11 no topo dos
-  ABERTOS. No dia em que ele acontecer, a ordem e: (1) ler o CTB no `.leg.br` e
-  preencher a secao 6 de `dados/fonte-oficial-f1.md`, que ja tem os campos
-  rotulados um por um — a F1 passa a responder CNH sem uma linha de logica
-  mudar; (2) ler os quatro folhetos de prefeitura e dar a terceira saida a
-  camada 2 da F1; (3) ler a medicao de patinete nos dois periodicos e a F2
-  passa a devolver km absoluto de V e Ah. Enquanto nao acontecer, o que anda
-  nesta ilha e gesto do Raphael: a etiqueta do Mercado Livre (devolve a vitrine
-  da pagina de 823 mil buscas/mes, hoje servindo a pagina degradada SA), o
-  chamado na HostGator e a decisao do token.
+  O ITEM DE DESPACHO PEDIA UM CONSERTO QUE JA ESTAVA FEITO, E A CAUSA DE ELE
+  ESTAR ESCRITO ASSIM ERA UM DEFEITO DE VERDADE: O INSTRUMENTO SUMIA COM O QUE
+  TENTOU. Nenhuma revisao se move — isto e instrumento, nao ilha.
+
+  O ITEM 3 da leitura semanal de 18/11 (o unico dos seis endereçado a Fundacao)
+  mandava `ferramentas/search-console.py` ler `wp-sitemap.xml` em vez de
+  `/sitemap.xml` fixo. MEDI ANTES DE TOCAR, pela secao 4, e o
+  `wp-sitemap.xml` JA era o primeiro dos dois candidatos: 11 URLs daqui na
+  rodametria, 44 na clubedomosaico, as duas sem erro e sem aviso. Obedecer a
+  letra seria reescrever para fazer o que ja fazia.
+
+  O DEFEITO REAL ESTAVA UM ANDAR ABAIXO, NA MENSAGEM: a variavel de erro era
+  SOBRESCRITA a cada candidato, entao com os dois falhando ela nomeava so o
+  ULTIMO. Encenado com a recusa de CONNECT de verdade: 2 candidatos tentados,
+  e a mensagem dizia `rodametria.com.br/sitemap.xml -> ProxyError` sem uma
+  letra sobre o `wp-sitemap.xml`. Foi essa linha que a leitura de 18/11 leu, e
+  dela concluiu que havia DUAS causas e que metade era codigo da Fundacao.
+  Havia UMA: o egresso. Instrumento que some com o que tentou produz
+  diagnostico errado com DONO errado — familia da 20.4.
+
+  O CONSERTO, duas metades: (1) o erro acumula UMA LINHA POR CANDIDATO, diz
+  QUANTOS foram e marca cada um como `declarado pela propriedade` ou `palpite
+  fixo do script` — a mensagem de 18/11 ficou ilegivel como "um caminho so";
+  (2) o CAMINHO PASSOU A SAIR DA PROPRIEDADE, que e a outra saida que o proprio
+  item oferecia: `caminhos_declarados()` le `sitemaps.list` e usa o `path` que o
+  Google buscou, com os palpites atras, filtrando pelo host da ilha. Falha na
+  `sitemaps.list` NAO mata a leitura: degrada e DIZ no relatorio que degradou.
+  E (3) o relatorio imprime o erro inteiro, uma linha por candidato, porque o
+  relatorio e ONDE UMA PESSOA LE e foi ali que o diagnostico errado nasceu.
+
+  PORTAO de 86 para 114 afirmacoes, 0 falha, com o mundo da recusa encenado, o
+  subdominio que tem de ser descartado, o caminho declarado que nenhum palpite
+  adivinharia, o `main()` inteiro perguntando a propriedade, e UMA MUTACAO
+  obrigando a regua velha (erro sobrescrito) a REPROVAR. A 31.2 esta satisfeita
+  por DEFEITO MEDIDO, nao por "pode acontecer". Bancada da ilha: 55 portoes, 0
+  falha, antes e depois.
+
+  O QUE NAO FOI VERIFICADO, e esta dito para ninguem ler verde como entrega:
+  NAO HA CREDENCIAL de Search Console neste ambiente (GOOGLE_SA_B64,
+  GOOGLE_SA_JSON e GOOGLE_SA_FILE ausentes, conferidos hoje), entao a chamada
+  REAL da `sitemaps.list` nao foi feita. Medido: a funcao pura, o `main()` com a
+  sessao encenada, e a leitura real do sitemap pela rede desta nuvem.
+
+  A MEDICAO QUE VALE MAIS QUE O ITEM — A PAREDE DO EGRESSO NAO E UMA, E UMA POR
+  AMBIENTE. Tres passadas por host, controle verde na mesma passada, classificado
+  pelo `__agentproxy/status`: `rodametria.com.br` 200/200/200 (o item 3 diz que
+  as MAOS nao o alcançam), `cf.shopee.com.br` 200/200/200 (o PAINEL.md diz
+  `CONNECT tunnel failed, 403`), `fonts.gstatic.com` 404/404/404 — 404 da ORIGEM
+  em `/`, logo o CONNECT PASSOU. O `recentRelayFailures` acusa `connect_rejected`
+  para UM host so, um dominio inexistente que eu usei de proposito como prova de
+  que o instrumento acusa recusa quando ha recusa. AS RONDAS NAO ESTAVAM
+  ERRADAS: elas mediram o ambiente DELAS, e daqui nao ha como medir o ambiente
+  delas. O que esta errado e a FRASE — "o egresso desta nuvem" e fato do
+  ambiente que mediu, nao do Arquipelago, e tres lugares do repositorio hoje o
+  afirmam como se fosse.
+
+  SAO DOIS CAMPOS DE CONFIGURACAO, NAO UM, e a entrada de 18/11 diz "O GESTO, E
+  ELE E UM". As oito linhas dela sao do campo do AMBIENTE (Nuvem -> engrenagem
+  -> Dominios permitidos, 20.1). O egresso do item 3 mora no campo da CONTA
+  (Configuracoes -> Recursos -> Execucao de codigo -> Dominios adicionais
+  permitidos, 25.6), onde ja estao robometria e aquametria e falta
+  `rodametria.com.br`. QUEM COLAR AS OITO LINHAS E PARAR CONTINUA COM A LINHA DE
+  INDEXACAO DESTA ILHA EM `n/d`. Entrada ALTA nova no topo dos ABERTOS.
+
+  PROXIMO PASSO DESBLOQUEADO: NENHUM de construcao, e isso e medicao e nao
+  desanimo. A fila esta acabada, os quatro eixos de pagina nova estao atras da
+  lista do AMBIENTE e a leitura de Search Console atras da lista da CONTA — dois
+  campos, os dois do Raphael. O que uma execucao da Fundacao pode fazer aqui sem
+  gesto dele, pre-registrado para ninguem redescobrir: (a) MEDIR as duas fotos de
+  `cf.shopee.com.br` que a ronda de 18/11 declarou NAO MEDIDO, porque DAQUI elas
+  sao alcançaveis — achado desta passada, e e receita, nao faxina; (b) a primeira
+  passada com credencial de Search Console fecha a ultima afirmacao do conserto
+  de hoje. Nenhuma das duas cria pagina.
 ---
 
 # Estado da ilha RODAMETRIA

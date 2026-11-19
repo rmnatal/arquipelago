@@ -71,7 +71,67 @@ Janela 10→16/11: **2 impressões, 0 clique, posição média 16,0** — era 8/
 
 1. **FECHADO POR MEDIÇÃO — o achado de ALTA de 11/11.** `/veiculos/bicicleta-eletrica/` estava fora do índice como "Não encontrado (404)" sobre página que responde 200; a indexação foi solicitada em 11/11 pela 14.7; hoje a página **tem impressão e posição 11,0** e o balde 404 da propriedade caiu de 9 para 8. **Entrou direto na banda do dinheiro, e é uma das duas únicas páginas de produto da ilha.** Quem pediu foi 11/11, quem aprova é 18/11. **Nada a fazer; não tocar no texto dela** (12.1: página que subiu).
 2. **PROPOSTA DE RECEITA, E O GESTO É DO RAPHAEL: `/veiculos/moto-eletrica/` nasceu em 16/11 com UM ÚNICO anúncio que serve.** Medido hoje em `dados/anuncios-por-consulta.json`: 18 anúncios lidos para `moto eletrica adulto` e **1 que serve, 1 com link**, contra 14 de 19 no patinete e 7 de 20 na bicicleta. A consulta vale **823 mil buscas/mês** e é a maior cabeça do nicho. O piso da 25.2 está de pé (as três páginas têm `piso_da_busca` com `url_busca` encurtada, `url_busca_produto` crua e `sub_id_1`), então a página **não** está sem saída de compra — mas uma ficha de produto numa página de 823 mil buscas é receita que não existe. **O caminho já está pronto e esperando um clique:** `dados/links-afiliado-pendentes.md` tem as URLs `/p/MLB` do Mercado Livre colhidas e a etiqueta a criar é `rodametriamotoeletrica`; o gerador do ML tem reCAPTCHA e não se automatiza (25.6). **Pronto quando:** 5 ou mais cartões com link rastreável **e** `url_produto` na página, e o banco da consulta `moto eletrica adulto` com `servem` ≥ 5.
-3. **DEFEITO DO INSTRUMENTO — SEGUNDA LEITURA SEGUIDA, E AGORA SÓ NESTA ILHA.** `ferramentas/search-console.py` busca `https://rodametria.com.br/sitemap.xml` e toma `ProxyError ... Tunnel connection failed: 403 Forbidden`; a ilha serve `wp-sitemap.xml`, e o egresso do ambiente das MÃOS não alcança este domínio. Na clubedomosaico o MESMO defeito de 11/11 **não** apareceu hoje (o script leu as 44 URLs do `wp-sitemap.xml`), logo metade dele foi consertada e metade não. São DUAS causas somadas e cada uma tem dono: o **caminho do sitemap** é conserto de código da Fundação (ler `wp-sitemap.xml`, ou o sitemap que a própria propriedade declara, em vez de `/sitemap.xml` fixo); o **egresso** é passo do Raphael (acrescentar `rodametria.com.br` aos Domínios adicionais permitidos da conta, onde já moram `robometria.com.br` e `aquametria.com.br`, pela 25.6). **Pronto quando:** `dados/search-console-<data>.md` desta ilha trouxer a linha de indexação com número, e não `n/d`.
+3. ~~**DEFEITO DO INSTRUMENTO — SEGUNDA LEITURA SEGUIDA, E AGORA SÓ NESTA ILHA.**~~ — **REESCRITO PELA 18.3 EM 19/11/2026 às 10h2xZ: A METADE DE CÓDIGO ESTÁ FECHADA, E O DIAGNÓSTICO DELA ESTAVA ERRADO — O DEFEITO ERA A MENSAGEM DO INSTRUMENTO, NÃO O CAMINHO. FICA A METADE DO EGRESSO, QUE É GESTO DO RAPHAEL, E ELA ESTÁ NUM CAMPO DIFERENTE DO QUE O DESPACHO DE 18/11 NOMEIA.**
+
+> **O QUE ESTE ITEM PEDIA, e por que a letra dele não podia ser cumprida.** Ele manda a Fundação
+> consertar o caminho do sitemap — *"ler `wp-sitemap.xml`, ou o sitemap que a própria propriedade
+> declara, em vez de `/sitemap.xml` fixo"*. **O `wp-sitemap.xml` já era o PRIMEIRO candidato do script**,
+> e desde antes desta leitura: medido hoje às 10h2xZ, `urls_do_sitemap('rodametria.com.br')` tenta
+> **dois** caminhos, nesta ordem — `wp-sitemap.xml`, depois `sitemap.xml` —, e desta nuvem devolve as
+> **11 URLs** da ilha (a clubedomosaico devolve 44, as duas sem erro e sem aviso). Obedecer a letra do
+> item seria reescrever para fazer o que já fazia.
+>
+> **E A CAUSA DO ITEM ESTAR ESCRITO ASSIM É UM DEFEITO DE VERDADE, UM ANDAR ABAIXO — É A MENSAGEM DO
+> INSTRUMENTO, E ELA É DA FUNDAÇÃO.** A variável de erro de `urls_do_sitemap` era **sobrescrita** a cada
+> candidato, então quando os dois falhavam a mensagem nomeava **só o último**. Encenado hoje com a recusa
+> de CONNECT de verdade: **dois candidatos tentados, e a mensagem antiga dizia
+> `rodametria.com.br/sitemap.xml -> ProxyError`, sem uma letra sobre o `wp-sitemap.xml`.** Foi essa linha
+> que a leitura de 18/11 leu — e dela concluiu, por escrito e de boa-fé, que *"o script busca
+> `https://rodametria.com.br/sitemap.xml`"*, que havia **duas causas somadas** e que **metade era conserto
+> de código da Fundação**. Havia **uma** causa: o egresso. **Instrumento que some com o que tentou produz
+> diagnóstico errado com dono errado**, e é a família da 20.4 — resumo lido como se fosse a passada
+> inteira.
+>
+> **O QUE FOI AO REPOSITÓRIO (não há tela nisto, e nenhuma revisão se move):**
+> - **`urls_do_sitemap` acumula UMA LINHA POR CANDIDATO** e o erro diz **quantos** foram tentados, com a
+>   causa de cada um e com cada caminho dito **declarado pela propriedade** ou **palpite fixo do
+>   script**. A mensagem de 18/11 agora é ilegível como "um caminho só".
+> - **O CAMINHO PASSOU A SAIR DA PROPRIEDADE, que é a outra saída que este item oferecia:**
+>   `caminhos_declarados()` lê `GET /webmasters/v3/sites/<prop>/sitemaps` e usa o `path` que o Google de
+>   fato buscou; os dois palpites ficam **atrás** dele. Filtra pelo host da ilha, para a leitura não sair
+>   medindo subdomínio. Falha na `sitemaps.list` **não mata a leitura**: degrada para o palpite e **diz no
+>   relatório que degradou**.
+> - **O relatório imprime o erro inteiro, uma linha por candidato** — porque o relatório é onde uma pessoa
+>   lê, e foi lendo ali que o diagnóstico errado nasceu.
+> - **Portão:** `ferramentas/teste-search-console.py` de **86 para 114 afirmações**, 0 falha, com o mundo
+>   da recusa de CONNECT encenado, o `main()` inteiro perguntando o caminho à propriedade, e **uma mutação
+>   que obriga a régua velha (erro sobrescrito) a REPROVAR**. A bancada da ilha segue em **55 portões, 0
+>   falha**.
+>
+> **O QUE NÃO FOI VERIFICADO, dito para ninguém ler verde como entrega:** não há credencial de Search
+> Console neste ambiente (`GOOGLE_SA_B64`, `GOOGLE_SA_JSON` e `GOOGLE_SA_FILE` ausentes, conferidos hoje),
+> então a chamada real da `sitemaps.list` **não foi feita** — o que está medido é a função pura, o
+> `main()` inteiro com a sessão encenada, e a leitura real do sitemap pela rede desta nuvem. A primeira
+> passada das MÃOS com credencial é quem fecha essa última afirmação.
+>
+> **O "PRONTO QUANDO" DO ITEM SEGUE ABERTO, E NÃO É MEU:** `dados/search-console-<data>.md` desta ilha só
+> traz número quando o ambiente **das MÃOS** alcançar `rodametria.com.br`. Daqui ele é alcançável — **200
+> em três passadas** hoje às 10h1xZ, com `aquametria.com.br` em 200 nas mesmas —, e é por isso que esta
+> metade não tem conserto de código possível.
+
+**3-b — PARA O RAPHAEL, E É A PARTE QUE O DESPACHO DE 18/11 DEIXA ESCAPAR: SÃO DOIS CAMPOS DE
+CONFIGURAÇÃO, NÃO UM.** A entrada ALTA de 18/11 no `dados/despachos.md` diz *"O GESTO, E ELE É UM"* e dá
+oito linhas para **Nuvem → engrenagem → Domínios permitidos** (o campo do **ambiente**, seção 20.1). O
+egresso deste item **não mora lá**: mora em **Configurações → Recursos → Execução de código e criação de
+arquivos → Domínios adicionais permitidos** (o campo da **conta**, 25.6), onde já estão
+`robometria.com.br` e `aquametria.com.br` e onde falta **`rodametria.com.br`**. Quem fizer o gesto de
+18/11 inteiro e parar vai continuar com a linha de indexação desta ilha em `n/d`. **Pronto quando:** o
+mesmo da letra original — `dados/search-console-<data>.md` desta ilha com número em vez de `n/d`.
+
+> ### O TEXTO ORIGINAL DO ITEM 3, PRESERVADO — É A MEDIÇÃO DE 18/11 E MEDIÇÃO NÃO SE REESCREVE
+>
+> 3. **DEFEITO DO INSTRUMENTO — SEGUNDA LEITURA SEGUIDA, E AGORA SÓ NESTA ILHA.** `ferramentas/search-console.py` busca `https://rodametria.com.br/sitemap.xml` e toma `ProxyError ... Tunnel connection failed: 403 Forbidden`; a ilha serve `wp-sitemap.xml`, e o egresso do ambiente das MÃOS não alcança este domínio. Na clubedomosaico o MESMO defeito de 11/11 **não** apareceu hoje (o script leu as 44 URLs do `wp-sitemap.xml`), logo metade dele foi consertada e metade não. São DUAS causas somadas e cada uma tem dono: o **caminho do sitemap** é conserto de código da Fundação (ler `wp-sitemap.xml`, ou o sitemap que a própria propriedade declara, em vez de `/sitemap.xml` fixo); o **egresso** é passo do Raphael (acrescentar `rodametria.com.br` aos Domínios adicionais permitidos da conta, onde já moram `robometria.com.br` e `aquametria.com.br`, pela 25.6). **Pronto quando:** `dados/search-console-<data>.md` desta ilha trouxer a linha de indexação com número, e não `n/d`.
+
 4. **A PROPOSTA 3 DE 11/11 ESTÁ MEDIDA E A RESPOSTA É AUSÊNCIA DE DADO:** `/veiculos/patinete-eletrico/` **não tomou impressão** nesta janela. Sem impressão não há banda; a 12.1 proíbe trabalhar texto de página que o Google ainda não viu. **Continua: não tocar, e medir em 25/11.**
 5. **A MÃE DE CATEGORIA SUBIU 38 CASAS SOZINHA**, `/veiculos/` de 59,0 para 21,0 — e 21+ é cobertura de intenção, não conserto de detalhe. Sem proposta: a ilha tem 2 impressões na janela e qualquer gesto de texto aqui seria opinião.
 6. **Cano de links contado hoje no `main`, e está limpo:** `dados/anuncios-por-consulta.json` com 3 páginas, **as três com piso**, 57 anúncios lidos, **22 que servem e os 22 com link E `url_produto` — zero sem `url_produto`**; `dados/veiculos.json` com 17 registros, **4 publicáveis, 0 sem piso**, 1 com ficha em **degrau 1** (o degrau mais durável da escada, e é o único do arquipélago hoje), 3 em degrau 4 com a causa escrita. **Zero página sem saída de compra.**

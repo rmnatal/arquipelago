@@ -47,6 +47,17 @@ esvazia era lida como a medida da ilha. Agora são três estados, o desconhecido
 seção própria, e a dimensão `page` da mesma janela é o que prova indexação quando a
 URL Inspection não dá veredito: impressão em busca é prova de que o Google serve a URL.
 
+O CAMINHO DO SITEMAP É PERGUNTADO À PROPRIEDADE, e a lição é de 19/11/2026. Este
+script adivinhava: dois candidatos fixos, `wp-sitemap.xml` e depois `sitemap.xml`.
+A variável de erro era SOBRESCRITA a cada candidato, então quando os dois falhavam a
+mensagem nomeava só o último — e a leitura semanal de 18/11/2026 leu
+`rodametria.com.br/sitemap.xml -> ProxyError` e concluiu, por escrito, que o script
+"busca /sitemap.xml" e que o conserto do caminho era da Fundação. Não era: o
+`wp-sitemap.xml` já era o primeiro candidato, a causa única era o egresso, e o item
+de despacho saiu endereçado a quem não tinha o que fazer. Agora `sitemaps.list`
+devolve o caminho que o Google de fato lê, os palpites ficam atrás dele declarados
+como palpite, e o erro nomeia TODOS os candidatos tentados com a causa de cada um.
+
 Dependência: google-auth — instalado num venv próprio (~/.venv-search-console) na 1ª execução.
 """
 import json, os, sys, datetime as dt, subprocess, urllib.request, urllib.parse, re
@@ -298,7 +309,13 @@ def relatorio_de_indexacao(hoje, urls, resumo, impressoes_total, cliques_total,
                   f"{resumo['indexadas'] if urls else 'n/d'} | {pct} | "
                   f"{impressoes_total} | {cliques_total} |")
     if not urls:
-        linhas.append(f"(sitemap não lido: {erro_sitemap or 'vazio'})")
+        # Uma linha por candidato, nunca o erro inteiro colado numa so: a mensagem
+        # que some com o que o instrumento tentou e o defeito de 19/11/2026, e o
+        # relatorio e onde ela e LIDA por uma pessoa.
+        partes = (erro_sitemap or "vazio").splitlines() or ["vazio"]
+        linhas.append(f"(sitemap não lido: {partes[0]})")
+        for l in partes[1:]:
+            linhas.append(l)
     else:
         # As três contas somam o total, e dizer isso por extenso é o que impede
         # alguém de ler `indexadas` como "o resto não está no índice".
@@ -356,12 +373,73 @@ def relatorio_de_indexacao(hoje, urls, resumo, impressoes_total, cliques_total,
     return {"serie": serie, "urls": linhas}
 
 
-def urls_do_sitemap(dominio):
+def caminhos_declarados(resposta, dominio):
+    """Os sitemaps que a PRÓPRIA PROPRIEDADE declara, lidos de `sitemaps.list`.
+
+    Função pura e separada de propósito, pela mesma razão de `totais()` e
+    `por_pagina()`: o portão sem rede (`ferramentas/teste-search-console.py`) mede a
+    escolha do caminho sem credencial nenhuma.
+
+    POR QUE ELA EXISTE, e a lição é de 19/11/2026. Até hoje este script ADIVINHAVA o
+    caminho do sitemap: dois candidatos fixos, `wp-sitemap.xml` e `sitemap.xml`, nessa
+    ordem. Adivinhar acerta em WordPress e erra calado em qualquer ilha que declare
+    outro caminho — e "erra calado" aqui é a linha da série de indexação saindo `n/d`
+    com cara de ilha sem dado. O Google sabe o caminho, porque é a ele que o sitemap
+    foi submetido: `GET /webmasters/v3/sites/<prop>/sitemaps` devolve o `path` de cada
+    um. Perguntar à propriedade é mais barato e mais honesto que adivinhar.
+
+    Filtra pelo HOST da ilha de propósito: propriedade de domínio pode ter sitemap
+    submetido em subdomínio que esta leitura não mede, e buscar host de fora faria o
+    instrumento sair da ilha que ele está medindo.
+
+    Devolve lista na ordem da API, sem repetição. Resposta vazia ou sem `sitemap`
+    devolve lista vazia, e isso NÃO é erro: é a propriedade não ter declarado nada, e
+    aí os dois candidatos fixos seguem valendo como palpite — dito como palpite.
+    """
+    saida, vistos = [], set()
+    for s in ((resposta or {}).get("sitemap") or []):
+        caminho = (s.get("path") or "").strip()
+        if not caminho or caminho in vistos:
+            continue
+        try:
+            host = urllib.parse.urlparse(caminho).netloc.lower()
+        except Exception:
+            continue
+        if host not in (dominio.lower(), f"www.{dominio.lower()}"):
+            continue
+        vistos.add(caminho)
+        saida.append(caminho)
+    return saida
+
+
+def urls_do_sitemap(dominio, declarados=()):
     """Lê o sitemap do site com o mesmo cliente HTTP que fala com a API (requests, que respeita
-    o proxy e a CA do ambiente). Devolve (urls, erro) — erro é texto quando nada foi lido."""
+    o proxy e a CA do ambiente). Devolve (urls, erro, avisos) — erro é texto quando nada foi lido.
+
+    `declarados` são os caminhos que a própria propriedade declarou (ver
+    `caminhos_declarados()`); eles vêm PRIMEIRO, e os dois fixos ficam atrás como
+    palpite para a ilha que não declarou nada.
+
+    O `erro` NOMEIA TODOS OS CANDIDATOS TENTADOS, UM POR LINHA, E DIZ QUANTOS FORAM —
+    e isso é o conserto de 19/11/2026, que custou um item de despacho endereçado a
+    quem não tinha o que fazer. Até hoje a variável `erro` era SOBRESCRITA a cada
+    candidato, então a mensagem saía nomeando só o ÚLTIMO: `rodametria.com.br/sitemap.xml
+    -> ProxyError`. A leitura semanal de 18/11/2026 leu aquela linha e concluiu, por
+    escrito, que o script *"busca `https://rodametria.com.br/sitemap.xml`"* e que o
+    conserto do caminho era da Fundação — quando o `wp-sitemap.xml` já era o primeiro
+    candidato desde antes, e a causa única era o egresso. **Mensagem de instrumento que
+    some com o que ele tentou produz diagnóstico errado com dono errado**, e é a família
+    da 20.4: resumo lido como se fosse a passada inteira.
+    """
     import requests
-    urls, erro, avisos = [], "", []
-    for candidato in (f"https://{dominio}/wp-sitemap.xml", f"https://{dominio}/sitemap.xml"):
+    urls, erros, avisos = [], [], []
+    candidatos, vistos = [], set()
+    for c in list(declarados) + [f"https://{dominio}/wp-sitemap.xml", f"https://{dominio}/sitemap.xml"]:
+        if c not in vistos:
+            vistos.add(c)
+            candidatos.append(c)
+    for candidato in candidatos:
+        origem = "declarado pela propriedade" if candidato in tuple(declarados) else "palpite fixo do script"
         try:
             r = requests.get(candidato, timeout=30, headers={"User-Agent": "arquipelago-sentinela"})
             xml = r.text
@@ -370,10 +448,10 @@ def urls_do_sitemap(dominio):
                     # WordPress devolvendo XML válido com status 404: o Google NÃO lê. É defeito da ilha.
                     avisos.append(f"DEFEITO: {candidato} responde HTTP {r.status_code} com XML válido — o Google trata como sitemap inexistente")
                 else:
-                    erro = f"{candidato} -> HTTP {r.status_code}"
+                    erros.append(f"{candidato} ({origem}) -> HTTP {r.status_code}")
                     continue
         except Exception as e:
-            erro = f"{candidato} -> {type(e).__name__}: {e}"
+            erros.append(f"{candidato} ({origem}) -> {type(e).__name__}: {e}")
             continue
         subs = re.findall(r"<loc>([^<]+)</loc>", xml)
         for s in subs:
@@ -384,11 +462,18 @@ def urls_do_sitemap(dominio):
                         avisos.append(f"DEFEITO: {s} responde HTTP {r2.status_code}")
                     urls += re.findall(r"<loc>([^<]+)</loc>", r2.text)
                 except Exception as e:
-                    erro = f"{s} -> {type(e).__name__}: {e}"
+                    erros.append(f"{s} (sub-sitemap de {candidato}) -> {type(e).__name__}: {e}")
             else:
                 urls.append(s)
         if urls:
             break
+    erro = ""
+    if not urls:
+        erro = (f"{len(candidatos)} caminho(s) tentado(s), nenhum devolveu URL"
+                + (f" — {len(declarados)} declarado(s) pela propriedade" if declarados
+                   else " — a propriedade não declarou nenhum, os dois são palpite fixo")
+                + ":\n"
+                + "\n".join(f"    - {e}" for e in erros or ["(nenhuma tentativa registrou causa)"]))
     return sorted(set(urls)), erro, avisos
 
 
@@ -443,7 +528,32 @@ def main():
     #    desconhecido não entra na conta das não indexadas (item 4 da leitura semanal
     #    de 14/10/2026). O mapa de impressões da dimensão `page` entra aqui porque é
     #    ele que prova indexação quando a URL Inspection não dá veredito.
-    urls, erro_sitemap, avisos = urls_do_sitemap(dominio)
+    #    O CAMINHO DO SITEMAP SAI DA PROPRIEDADE, NAO DE PALPITE (19/11/2026): a
+    #    `sitemaps.list` devolve o `path` de cada sitemap submetido, e e esse que o
+    #    Google le. Os dois candidatos fixos ficam atras, como palpite para a ilha
+    #    que nao declarou nada. Falha AQUI nao mata a leitura — degrada para o
+    #    palpite e DIZ que degradou, porque instrumento que cala a propria limitacao
+    #    e o defeito que esta mesma passada consertou um andar abaixo.
+    declarados, aviso_declaracao = [], ""
+    try:
+        rs = sess.get(f"{API}/webmasters/v3/sites/{urllib.parse.quote(prop, safe='')}/sitemaps")
+        if rs.status_code == 200:
+            declarados = caminhos_declarados(rs.json(), dominio)
+            if not declarados:
+                aviso_declaracao = ("a propriedade NAO declara sitemap nenhum no host desta ilha "
+                                    "(`sitemaps.list` respondeu 200 e veio vazio) — os caminhos "
+                                    "abaixo sao palpite do script, nao declaracao do site")
+        else:
+            aviso_declaracao = (f"`sitemaps.list` respondeu HTTP {rs.status_code}: o caminho do sitemap "
+                                f"desta leitura e PALPITE do script, nao o que a propriedade declara")
+    except Exception as e:
+        aviso_declaracao = (f"`sitemaps.list` nao respondeu ({type(e).__name__}): o caminho do sitemap "
+                            f"desta leitura e PALPITE do script, nao o que a propriedade declara")
+    urls, erro_sitemap, avisos = urls_do_sitemap(dominio, declarados=declarados)
+    if aviso_declaracao:
+        avisos = list(avisos) + [aviso_declaracao]
+    elif declarados:
+        avisos = list(avisos) + [f"caminho do sitemap DECLARADO pela propriedade: {', '.join(declarados)}"]
     impressoes_pagina = impressoes_por_caminho(paginas)
     detalhes = []
     for u in urls:

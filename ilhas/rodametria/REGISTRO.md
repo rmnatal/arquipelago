@@ -3,6 +3,93 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-11-19 10h17Z–10h2xZ — **O ITEM DE DESPACHO PEDIA UM CONSERTO QUE JÁ ESTAVA FEITO, E A CAUSA DE ELE ESTAR ESCRITO ASSIM ERA UM DEFEITO DE VERDADE: O INSTRUMENTO SUMIA COM O QUE TENTOU.** Nenhuma revisão se move — não há tela nisto.
+
+**A ILHA DESTA EXECUÇÃO:** rodametria, por **foco** (`foco.md`, foco total e absoluto desde 27/10). **Conferi o que fura o foco antes de aceitar isso, e medi em vez de herdar:** `clubedomosaico.com.br` e `robometria.com.br` respondem **200** na raiz, logo estão **no ar e não quebradas** — a única exceção que a 1.2 abre é despacho ALTO em ilha no ar **e quebrada**, e os ALTA abertos nelas são **chamado na HostGator**, gesto do Raphael. O despacho do **molde de conversão** (exceção do Raphael de 21/10, seção 32) segue fechado nas três ilhas que ele nomeia, como o registro de 18/11 mediu. Nada fura o foco pela 1.2 nem pela 18.1.
+
+**Passo 1 do disparo, medido:** `git fetch origin main` trouxe o `main` de `68c88a4` para **`a8b1ad2`**. A branch `claude/dreamy-mccarthy-vs840z` (local e remota) estava **na mesma ponta do `main`** — `git log origin/main..origin/claude/...` devolveu vazio nos dois sentidos — e `git status` veio limpo, então não havia nada a mesclar. **Nenhum PR aberto** (`list_pull_requests` state=open devolveu `[]`).
+
+**A RESERVA (passo 5 da seção 1):** `executando_desde` estava **`null`**, que pela **1.1** já prova que não havia bloco da Fundação vivo — não houve reserva vencida para o git desempatar. Reserva às **10h17Z**, ganha no push na **primeira tentativa** (`55cccfd`). A hora saiu do `date -u` na mesma linha de comando que a grava. Reserva **não renovada**: a execução fechou em ~10 minutos, dentro da janela de 40 da 1.1.
+
+**A REDE FOI MEDIDA E NÃO HERDADA (20.2):** `rodametria.com.br` e `www.rodametria.com.br` em **200 nas três passadas**, com `aquametria.com.br` em 200 nas **mesmas três** — controle verde.
+
+**O DESPACHO ABERTO TINHA UM ITEM MEU, E ERA O PRIMEIRO TRABALHO (18.5):** a fila de blocos segue acabada (os eixos A a D estão atrás da lista de permitidos, medido eixo por eixo em 18/11), então o que havia a fazer era o **item 3 da leitura semanal de 18/11** — o único dos seis itens dela endereçado à Fundação.
+
+---
+
+### O ITEM PEDIA O QUE O SCRIPT JÁ FAZIA, E EU MEDI ISSO ANTES DE ESCREVER UMA LINHA DE CÓDIGO
+
+O item 3 manda *"ler `wp-sitemap.xml`, ou o sitemap que a própria propriedade declara, em vez de `/sitemap.xml` fixo"*. **Rodei a função antes de a tocar**, pela seção 4 — não li o diagnóstico do despacho como fato:
+
+```
+urls_do_sitemap('rodametria.com.br')     -> 11 URLs, erro='', avisos=[]
+urls_do_sitemap('clubedomosaico.com.br') -> 44 URLs, erro='', avisos=[]
+```
+
+**O `wp-sitemap.xml` já era o PRIMEIRO dos dois candidatos**, e desta nuvem as 11 URLs saem sem erro e sem aviso. **Obedecer a letra do item seria reescrever para fazer o que já fazia** — e a 18.4 me obrigaria a declarar pronto um critério que nada mudou.
+
+### A CAUSA DE O ITEM ESTAR ESCRITO ASSIM É UM DEFEITO, E ELE É DA FUNDAÇÃO: A MENSAGEM DO INSTRUMENTO
+
+`urls_do_sitemap` **sobrescrevia** a variável de erro a cada candidato. Com os dois falhando, a mensagem nomeava **só o último**. Encenei a recusa de CONNECT de verdade, e o número é este:
+
+```
+CANDIDATOS TENTADOS DE FATO: 2
+  -> https://rodametria.com.br/wp-sitemap.xml
+  -> https://rodametria.com.br/sitemap.xml
+O QUE A MENSAGEM DIZIA: "https://rodametria.com.br/sitemap.xml -> ProxyError: ..."
+wp-sitemap aparece na mensagem? False
+```
+
+**Foi essa linha que a leitura de 18/11 leu.** Dela ela concluiu, por escrito e de boa-fé, que *"o script busca `https://rodametria.com.br/sitemap.xml`"*, que havia **DUAS causas somadas** e que **metade era conserto de código da Fundação**. Havia **uma** causa: o egresso. **Instrumento que some com o que tentou produz diagnóstico errado com dono errado** — e o custo não é teórico: um item de despacho de prioridade declarada ficou endereçado a quem não tinha o que fazer, numa ilha em foco total cuja fila de blocos está acabada. É a família da **20.4**: resumo lido como se fosse a passada inteira.
+
+### O CONSERTO, E ELE TEM DUAS METADES — A MENSAGEM E A PERGUNTA
+
+**(1) O erro nomeia TODOS os candidatos, um por linha, e diz quantos foram.** Cada caminho sai dito **`declarado pela propriedade`** ou **`palpite fixo do script`**. Medido com a rede desta nuvem recusando de verdade um host fora da lista:
+
+```
+2 caminho(s) tentado(s), nenhum devolveu URL — a propriedade não declarou nenhum, os dois são palpite fixo:
+    - https://…/wp-sitemap.xml (palpite fixo do script) -> ProxyError: … Tunnel connection failed: 403 Forbidden …
+    - https://…/sitemap.xml    (palpite fixo do script) -> ProxyError: … Tunnel connection failed: 403 Forbidden …
+```
+
+A mensagem de 18/11 ficou **ilegível como "um caminho só"**, e era essa leitura que custava o item.
+
+**(2) O CAMINHO PASSOU A SAIR DA PROPRIEDADE, que é a outra saída que o próprio item oferecia** — e é o que faz o script parar de adivinhar. `caminhos_declarados()` lê `GET /webmasters/v3/sites/<prop>/sitemaps` e usa o `path` que o Google **de fato buscou**; os dois palpites ficam atrás dele, e entram na mensagem **declarados como palpite**. **Filtra pelo host da ilha** de propósito: propriedade de domínio pode ter sitemap submetido em subdomínio que esta leitura não mede, e buscar host de fora faria o instrumento sair da ilha que está medindo. **Falha na `sitemaps.list` não mata a leitura:** degrada para o palpite e **diz no relatório que degradou** — instrumento que cala a própria limitação é exatamente o defeito que esta passada consertou um andar abaixo.
+
+**(3) O relatório imprime o erro inteiro, uma linha por candidato.** Era uma `linhas.append` só, com o erro colado dentro de parênteses. O relatório é **onde uma pessoa lê**, e foi lendo ali que o diagnóstico errado nasceu — conserto que para na função deixa a frase errada no lugar onde ela é lida.
+
+**PORTÃO: `ferramentas/teste-search-console.py` de 86 para 114 afirmações, 0 falha.** A **31.2** está satisfeita e não por "pode acontecer": o defeito foi **medido**, e o que ele produziu está escrito no `PROMPT.md` desta ilha. Entraram o mundo da recusa de CONNECT encenado, o filtro de host com um subdomínio que tem de ser descartado, o caminho declarado que **nenhum palpite adivinharia** sendo tentado primeiro, o `main()` inteiro perguntando à propriedade (com a `sitemaps.list` encenada na sessão), e **uma mutação que obriga a régua velha — o erro sobrescrito — a REPROVAR**. Bancada da ilha: **55 portões, 0 falha**, antes e depois.
+
+### O QUE NÃO FOI VERIFICADO, dito para ninguém ler verde aqui como entrega
+
+**Não há credencial de Search Console neste ambiente** (`GOOGLE_SA_B64`, `GOOGLE_SA_JSON` e `GOOGLE_SA_FILE` ausentes, conferidos hoje), então **a chamada real da `sitemaps.list` não foi feita**. O que está medido é: a função pura, o `main()` inteiro com a sessão encenada, e a leitura **real** do sitemap pela rede desta nuvem (11 e 44 URLs). A primeira passada das MÃOS com credencial fecha essa última afirmação. **Nenhuma revisão se move e nenhum byte de tela muda** — isto é instrumento, não ilha.
+
+### E A MEDIÇÃO QUE VALE MAIS QUE O ITEM: A PAREDE DO EGRESSO NÃO É UMA, É UMA POR AMBIENTE
+
+Fui conferir o campo de configuração que falta e achei uma coisa que muda como se lê **três frases do repositório**. Medido nesta sessão, três passadas por host, controle verde na mesma passada, classificado pelo `__agentproxy/status` e não de cabeça:
+
+| host | daqui (sessão da Fundação) | o que uma ronda registrou |
+|---|---|---|
+| `rodametria.com.br` | **200 · 200 · 200** | item 3 de 18/11: *"o egresso do ambiente das MÃOS não alcança este domínio"* |
+| `cf.shopee.com.br` | **200 · 200 · 200** | `dados/PAINEL.md` item 4: *"a nuvem recebe `CONNECT tunnel failed, response 403`"* |
+| `fonts.gstatic.com` | **404 · 404 · 404** — 404 da ORIGEM em `/`, logo **o CONNECT passou** | ronda de 18/11 desta ilha: *"as duas recusadas pelo egresso desta nuvem"* |
+
+O `recentRelayFailures` do `__agentproxy/status`, lido na mesma janela, traz `connect_rejected` para **um host só** — um domínio inexistente que eu usei de propósito, para provar que o instrumento acusa recusa quando há recusa. **Nenhuma recusa para os três de cima.**
+
+**As rondas não estavam erradas:** elas mediram o ambiente **delas**, e daqui não há como medir o ambiente delas. **O que está errado é a FRASE** — *"o egresso desta nuvem"* não é fato do Arquipélago, é fato do ambiente que mediu, e três lugares do repositório hoje o afirmam como se fosse do Arquipélago. **Consequência prática, e é de receita:** os dois `motivo_sem_imagem` de `cf.shopee.com.br` que a ronda de 18/11 classificou como **NÃO MEDIDO** por recusa de egresso **são mensuráveis de uma sessão da Fundação**. Quem reservar esta ilha com foto pendente **mede** em vez de declarar não medido.
+
+### O SEGUNDO CAMPO DE CONFIGURAÇÃO, E ELE É O QUE SOBRA DO ITEM 3
+
+A entrada ALTA de 18/11 em `dados/despachos.md` diz, com todas as letras, *"O GESTO, E ELE É UM"*, e dá oito linhas para **Nuvem → engrenagem → Domínios permitidos** — o campo do **ambiente** (20.1). **O egresso do item 3 não mora lá:** mora em **Configurações → Recursos → Execução de código e criação de arquivos → Domínios adicionais permitidos** — o campo da **conta** (25.6), onde já estão `robometria.com.br` e `aquametria.com.br` e onde falta **`rodametria.com.br`**. **Quem colar as oito linhas e parar continua com a linha de indexação desta ilha em `n/d`.** Escrito como entrada ALTA nova no topo dos ABERTOS, com a tabela de uma linha e o motivo de não ser a nona linha da lista de 18/11: campo diferente, tela diferente.
+
+### O DESPACHO FOI REESCRITO PELA 18.3, NÃO APAGADO
+
+O item 3 está riscado com o que fechou e o que fica, e **o texto original dele está preservado inteiro** embaixo — é a medição de 18/11, e medição não se reescreve. Nasceu o **3-b**, que é o gesto do Raphael isolado, com o "pronto quando" da letra original intacto. Os itens 1, 4, 5 e 6 daquela leitura seguem como estavam (os quatro são "não tocar" ou "medir em 25/11"), e o **item 2** — os 5 links do Mercado Livre — segue sendo gesto dele, com reCAPTCHA no gerador (25.6).
+
+**PRÓXIMO PASSO DESBLOQUEADO:** **nenhum de construção, e isso é medição e não desânimo.** A fila de blocos está acabada, os quatro eixos de página nova estão atrás da lista de permitidos do **ambiente**, e a leitura de Search Console está atrás da lista da **conta** — dois campos, os dois do Raphael. O que uma execução da Fundação pode fazer aqui sem gesto dele, e está pré-registrado para não ser redescoberto: **(a)** medir as duas fotos de `cf.shopee.com.br` que a ronda declarou NÃO MEDIDO, porque daqui elas são alcançáveis (achado desta passada); **(b)** a primeira passada com credencial de Search Console fecha a última afirmação do conserto de hoje. Nenhuma das duas cria página.
+
+---
+
 ## 2026-11-18 19h17Z–19hxxZ — **A FILA ESTÁ ACABADA, E OS TRÊS EIXOS QUE SOBRAM ESTÃO ATRÁS DO MESMO CAMPO DE CONFIGURAÇÃO. O pedido que SEIS despachos faziam em pedaços passou a ser UMA lista, medida hoje.** Revisão **114**.
 
 **A ILHA DESTA EXECUÇÃO:** rodametria, por **foco** (`foco.md`, foco total desde 27/10). **Conferi o que fura o foco antes de aceitar isso:** o despacho do **molde de conversão** (exceção do Raphael de 21/10, seção 32) está **FECHADO nas três ilhas** que ele nomeia — li o `PROMPT.md` das três e os três títulos dizem **FECHADO INTEIRO** com data, hora e a 18.4 citada (aquametria 21/10 às 18h2xZ, clubedomosaico às 19h1xZ, robometria às 16h1xZ). *(Dois deles estão riscados com `~~`; o da aquametria **não está** — diz `FECHADO INTEIRO (…) OS DOIS ITENS CONFERIDOS NO AR PELA 18.4` sem o risco. Anotado porque quem conferir isso por `grep ~~` vai achar dois de três e concluir que um está aberto.)* —, então o foco manda sozinho. E nenhuma ilha no ar tem despacho **ALTA** aberto por estar quebrada: os dois ALTA abertos da robometria são de **sitemap** e de **classe**, não de página servindo erro. Logo nada fura o foco pela 1.2 nem pela 18.1.

@@ -415,8 +415,9 @@ DISCOVERED = {'inspectionResult': {'indexStatusResult': {
 
 
 class _Resposta(object):
-    def __init__(self, carga):
+    def __init__(self, carga, status_code=200):
         self._carga = carga
+        self.status_code = status_code
 
     def json(self):
         return self._carga
@@ -429,6 +430,15 @@ class _SessaoEncenada(object):
     indexada quando a URL Inspection nao devolve veredito para ela."""
 
     def get(self, rota, **kw):
+        if rota.endswith('/sitemaps'):
+            # O que a propriedade DECLARA (19/11/2026): o caminho sai daqui e nao de
+            # palpite. Dois no host da ilha e UM em subdominio que esta leitura nao
+            # mede — o terceiro tem de ser descartado pelo filtro de host.
+            return _Resposta({'sitemap': [
+                {'path': 'https://%s/wp-sitemap.xml' % DOM, 'type': 'sitemapIndex'},
+                {'path': 'https://%s/sitemap-noticias.xml' % DOM, 'type': 'sitemap'},
+                {'path': 'https://loja.%s/sitemap.xml' % DOM, 'type': 'sitemap'},
+            ]})
         return _Resposta({'siteEntry': [{'siteUrl': 'sc-domain:%s' % DOM}]})
 
     def post(self, rota, json=None, **kw):
@@ -453,12 +463,150 @@ class _SessaoEncenada(object):
         return _Resposta({'rows': []})
 
 
+
+# ------------------------------------------- caminhos_declarados() e urls_do_sitemap()
+# O DEFEITO DE 19/11/2026, e ele nao e de conta: e de MENSAGEM. A variavel `erro` de
+# `urls_do_sitemap` era sobrescrita a cada candidato, entao com os dois falhando a
+# mensagem nomeava so o ULTIMO — `rodametria.com.br/sitemap.xml -> ProxyError`. A
+# leitura semanal de 18/11/2026 leu aquela linha e escreveu, no despacho, que o script
+# "busca https://rodametria.com.br/sitemap.xml" e que o conserto do caminho era da
+# Fundacao. O `wp-sitemap.xml` JA era o primeiro candidato; a causa unica era o
+# egresso. Instrumento que some com o que tentou produz diagnostico errado com dono
+# errado, e o item saiu endereçado a quem nao tinha o que fazer.
+print('\ncaminhos_declarados() — o caminho sai da PROPRIEDADE, nao de palpite')
+
+_resp_sitemaps = {'sitemap': [
+    {'path': 'https://%s/wp-sitemap.xml' % DOM},
+    {'path': 'https://%s/sitemap-noticias.xml' % DOM},
+    {'path': 'https://loja.%s/sitemap.xml' % DOM},
+]}
+_decl = sc.caminhos_declarados(_resp_sitemaps, DOM)
+ok('le os dois declarados no host da ilha, na ordem da API',
+   _decl == ['https://%s/wp-sitemap.xml' % DOM, 'https://%s/sitemap-noticias.xml' % DOM], str(_decl))
+ok('DESCARTA o sitemap de subdominio — a leitura nao sai da ilha que esta medindo',
+   not any('loja.' in c for c in _decl), str(_decl))
+ok('resposta vazia devolve lista vazia, e isso NAO estoura',
+   sc.caminhos_declarados({}, DOM) == [] and sc.caminhos_declarados(None, DOM) == [])
+ok('`path` ausente ou vazio nao entra na lista',
+   sc.caminhos_declarados({'sitemap': [{'path': ''}, {}, {'path': None}]}, DOM) == [])
+ok('declaracao repetida entra uma vez so',
+   sc.caminhos_declarados({'sitemap': [{'path': 'https://%s/s.xml' % DOM}] * 3}, DOM)
+   == ['https://%s/s.xml' % DOM])
+ok('o host `www` da propria ilha CONTA como host da ilha',
+   sc.caminhos_declarados({'sitemap': [{'path': 'https://www.%s/s.xml' % DOM}]}, DOM)
+   == ['https://www.%s/s.xml' % DOM])
+
+print('\nurls_do_sitemap() — o erro NOMEIA TODOS OS CANDIDATOS (defeito de 19/11/2026)')
+
+_requests_real = sys.modules.get('requests')
+
+
+class _ProxyRecusa(Exception):
+    pass
+
+
+def _com_rede_recusada(declarados=(), dominio='rodametria.com.br'):
+    """Encena o egresso desta nuvem recusando o CONNECT, que e o mundo medido na
+    rodametria em 18/11/2026: `ProxyError ... Tunnel connection failed: 403 Forbidden`.
+    Devolve (erro, candidatos_tentados)."""
+    tentados = []
+
+    class _FalsoRequests(object):
+        class exceptions(object):
+            pass
+
+        @staticmethod
+        def get(url, **kw):
+            tentados.append(url)
+            raise _ProxyRecusa("HTTPSConnectionPool(host='%s', port=443): Max retries exceeded "
+                               "(Caused by ProxyError('Unable to connect to proxy', "
+                               "OSError('Tunnel connection failed: 403 Forbidden')))" % dominio)
+
+    sys.modules['requests'] = _FalsoRequests
+    try:
+        urls, erro, avisos = sc.urls_do_sitemap(dominio, declarados=declarados)
+    finally:
+        if _requests_real is not None:
+            sys.modules['requests'] = _requests_real
+        else:
+            sys.modules.pop('requests', None)
+    return urls, erro, avisos, tentados
+
+
+_urls, _erro, _avisos, _tentados = _com_rede_recusada()
+ok('com rede recusada, TENTA os dois palpites fixos — e sempre tentou',
+   _tentados == ['https://rodametria.com.br/wp-sitemap.xml',
+                 'https://rodametria.com.br/sitemap.xml'], str(_tentados))
+ok('nenhuma URL sai, e o erro nao e vazio', _urls == [] and bool(_erro))
+ok('A AFIRMACAO QUE PEGA O DEFEITO: o erro NOMEIA o wp-sitemap.xml tentado — '
+   'a mensagem antiga nomeava so o ultimo candidato',
+   'wp-sitemap.xml' in _erro, _erro.splitlines()[0] if _erro else '(vazio)')
+ok('o erro nomeia TAMBEM o segundo candidato', '/sitemap.xml' in _erro)
+ok('o erro DIZ QUANTOS caminhos foram tentados, para resumo nao virar "um so"',
+   '2 caminho(s) tentado(s)' in _erro, _erro.splitlines()[0] if _erro else '(vazio)')
+ok('o erro diz, com todas as letras, que os dois sao PALPITE do script',
+   'palpite' in _erro.lower(), _erro.splitlines()[0] if _erro else '(vazio)')
+ok('cada candidato sai em LINHA propria, e nao colado num paragrafo',
+   len([l for l in _erro.splitlines() if l.strip().startswith('- ')]) == 2,
+   repr(_erro))
+ok('a causa (ProxyError) aparece ao lado de CADA candidato',
+   _erro.count('_ProxyRecusa') == 2 or _erro.count('Tunnel connection failed') == 2, repr(_erro))
+
+_urls2, _erro2, _avisos2, _tentados2 = _com_rede_recusada(
+    declarados=['https://rodametria.com.br/wp-sitemap.xml'])
+ok('o DECLARADO vem primeiro e nao e tentado duas vezes',
+   _tentados2 == ['https://rodametria.com.br/wp-sitemap.xml',
+                  'https://rodametria.com.br/sitemap.xml'], str(_tentados2))
+ok('o erro distingue o declarado do palpite, candidato por candidato',
+   'declarado pela propriedade' in _erro2 and 'palpite fixo do script' in _erro2, repr(_erro2))
+ok('com declaracao, o erro diz quantos foram declarados',
+   '1 declarado(s) pela propriedade' in _erro2, _erro2.splitlines()[0])
+
+_urls3, _erro3, _avisos3, _tentados3 = _com_rede_recusada(
+    declarados=['https://rodametria.com.br/sitemap-proprio.xml'])
+ok('caminho que NENHUM palpite adivinharia e tentado PRIMEIRO',
+   _tentados3[0] == 'https://rodametria.com.br/sitemap-proprio.xml', str(_tentados3))
+ok('e os dois palpites seguem atras dele, nao no lugar dele', len(_tentados3) == 3, str(_tentados3))
+
+# A MUTACAO, pela secao 8: a regua velha tem de DISCORDAR. Se `erro` voltar a ser
+# sobrescrito, as tres afirmacoes acima sobre o wp-sitemap caem — e e isso que
+# significa "o portao morde".
+_mut_erro = ''
+for _c in ('https://rodametria.com.br/wp-sitemap.xml', 'https://rodametria.com.br/sitemap.xml'):
+    _mut_erro = '%s -> ProxyError' % _c          # <- a linha de ANTES de 19/11/2026
+ok('MUTACAO: a mensagem do script ANTIGO (erro sobrescrito) REPROVA nestas afirmacoes',
+   'wp-sitemap' not in _mut_erro and 'caminho(s) tentado(s)' not in _mut_erro, _mut_erro)
+
+print('\nrelatorio_de_indexacao() — o erro inteiro CHEGA a pessoa que le')
+_rel_erro = sc.relatorio_de_indexacao(
+    _dt.date(2026, 11, 19), [], {'indexadas': 0, 'nao_indexadas': 0, 'sem_veredito': 0,
+                                 'total': 0, 'pct': 0.0, 'pct_teto': 0.0, 'por_impressao': 0,
+                                 'lista_nao_indexadas': [], 'lista_sem_veredito': []},
+    0, 0, _erro, ())
+_texto_erro = '\n'.join(_rel_erro['serie'])
+ok('a linha da serie sai `n/d` quando o sitemap nao foi lido',
+   '| 2026-11-19 | n/d | n/d | n/d | 0 | 0 |' in _texto_erro, _texto_erro)
+ok('O RELATORIO IMPRIME O wp-sitemap TENTADO — a frase que faltava em 18/11/2026',
+   'wp-sitemap.xml' in _texto_erro, _texto_erro)
+ok('o relatorio imprime os DOIS candidatos, um por linha',
+   len([l for l in _rel_erro['serie'] if 'rodametria.com.br' in l]) == 2,
+   str(_rel_erro['serie']))
+ok('o relatorio diz quantos caminhos foram tentados',
+   '2 caminho(s) tentado(s)' in _texto_erro, _texto_erro)
+
+
 _credenciais, _sitemap, _argv = sc.credenciais, sc.urls_do_sitemap, sys.argv
 _sessao_real = getattr(sc, 'AuthorizedSession', None)
 try:
     sc.credenciais = lambda: None
     sc.AuthorizedSession = lambda cred: _SessaoEncenada()
-    sc.urls_do_sitemap = lambda dominio: (sorted(URLS_52), '', [])
+    _visto_declarados = []
+
+    def _sitemap_encenado(dominio, declarados=()):
+        _visto_declarados.append(list(declarados))
+        return (sorted(URLS_52), '', [])
+
+    sc.urls_do_sitemap = _sitemap_encenado
     sys.argv = ['search-console.py', 'aquametria']
     saida = _io.StringIO()
     with contextlib.redirect_stdout(saida):
@@ -487,6 +635,24 @@ ok('a home sai em secao propria de SEM VEREDITO, com as 4 impressoes que a suste
    and '- / — impressão medida (4 na janela)' in texto)
 ok('o caractere `?` nao aparece mais como status de URL nenhuma',
    ' — ?' not in texto, str([l for l in texto.splitlines() if ' — ?' in l]))
+
+# O main() INTEIRO perguntando o caminho a propriedade (19/11/2026). A sessao
+# encenada declara dois sitemaps no host da ilha e um em subdominio; o que tem de
+# chegar a `urls_do_sitemap` sao os DOIS da ilha, na ordem da API, e o subdominio
+# NAO. Isto se mede aqui e nao na funcao pura porque o que o item de 18/11 cobra e o
+# caminho do CANO INTEIRO: a funcao certa chamada sem o dado nao conserta nada.
+ok('main() PERGUNTA o caminho a propriedade e repassa os declarados do host da ilha',
+   _visto_declarados == [['https://%s/wp-sitemap.xml' % DOM,
+                          'https://%s/sitemap-noticias.xml' % DOM]],
+   str(_visto_declarados))
+ok('o relatorio DIZ que o caminho foi declarado pela propriedade, e nomeia os dois',
+   'caminho do sitemap DECLARADO pela propriedade' in texto
+   and 'sitemap-noticias.xml' in texto,
+   str([l for l in texto.splitlines() if 'DECLARADO' in l]) or '(linha ausente)')
+ok('o subdominio nao chega ao relatorio', 'loja.%s' % DOM not in texto)
+ok('o relatorio NAO chama o caminho de palpite quando a propriedade declarou',
+   'sao palpite do script' not in texto and 'e PALPITE do script' not in texto,
+   str([l for l in texto.splitlines() if 'PALPITE' in l or 'palpite' in l]))
 
 print('\n' + '=' * 70)
 print('%d afirmacoes, %d falha(s).' % (contadas[0], len(falhas)))
