@@ -10639,3 +10639,41 @@ A causa: entre o `git fetch` da partida e o push, o `main` andou de `6186f9f` pa
 Confirmação exigida pelo procedimento: `git fetch origin main && git log -1 origin/main` devolve `6f6cf76a27157ad112a57b420e8803b771469d7b`, assunto `sentinela: leitura semanal 2026-11-18 — indexacao, posicoes, despachos e ultima_ronda nas 4 ilhas`, e `git diff --stat HEAD origin/main` sai **vazio**. O push está no `main`.
 
 Este log vai num commit seguinte ao do trabalho, porque o trabalho já estava confirmado no `main` quando a contagem acima foi fechada. A hora do título saiu de `TZ=America/Sao_Paulo date` e `date -u` na mesma chamada que preparou esta seção, nunca digitada. Nenhuma seção anterior deste arquivo foi apagada, reescrita ou resumida.
+
+## Disparo de 19/11/2026, 14h18 de Brasília (17h18 UTC) — BÚSSOLA CAÇADORA DE 19/11/2026: 20 LINHAS EM `cacados.md` + NOVA MEDIÇÃO, UM COMMIT, NO `main`
+
+**Checagem de assunto:** passou. Bússola, `bussola/cacados.md` e `bussola/medicoes/` — assunto do Arquipélago. Nenhum dado pessoal de terceiros na instrução. A menção à "Rodametria" numa das 20 linhas é conteúdo da caçada, não outro projeto.
+
+Partida: `git fetch origin main && git checkout -B trabalho origin/main`, com `origin/main` em `53ed575`. Dois arquivos, como a instrução nomeou, e nenhum outro (fora este log).
+
+**`git status --porcelain` antes do commit:**
+
+```
+ M bussola/cacados.md
+?? bussola/medicoes/volume-cacada-2026-11-19.md
+```
+
+**`git diff --stat` do commit de trabalho:**
+
+```
+ bussola/cacados.md                           | 20 ++++++++++++++++++++
+ bussola/medicoes/volume-cacada-2026-11-19.md | 16 ++++++++++++++++
+ 2 files changed, 36 insertions(+)
+```
+
+**Hash que foi ao `main`: `c78d3c60ac23cca29a9271ae6d74481e2da13110`** (`c78d3c6`), mensagem `Bússola caçadora — 19/11/2026`.
+
+**Contagem, conferida relendo os arquivos DEPOIS de gravar:** `grep -c '^| 19/11/2026 |' bussola/cacados.md` devolve **20** — as 20 linhas pedidas, acrescentadas ao fim da tabela, nada acima tocado; `wc -l` devolve **203** linhas em `bussola/cacados.md` (eram 183) e **16** linhas em `bussola/medicoes/volume-cacada-2026-11-19.md`. 20 + 16 = 36 inserções, 0 apagadas. **Fecha com o `git diff --stat`.**
+
+**Os dois sha256 da instrução foram conferidos no disco e batem exatamente:**
+
+```
+a27f910a73df792985401282ed24a98bfeb580c1a00c2403e92cb48fe1c9a473  bussola/cacados.md
+a84cd97a1fd6f4c4f0d21b0b7640bc5478a37c0caec2bd23baf6c1818b5b1ea3  bussola/medicoes/volume-cacada-2026-11-19.md
+```
+
+**Push aceito na primeira tentativa**, sem recusa, sem rebase e sem force push: `53ed575..c78d3c6  HEAD -> main`.
+
+Confirmação exigida pelo procedimento: `git fetch origin main && git log -1 origin/main` devolve `c78d3c60ac23cca29a9271ae6d74481e2da13110`, assunto `Bússola caçadora — 19/11/2026`. O push está no `main`.
+
+Este log vai num commit seguinte ao do trabalho, porque o trabalho já estava confirmado no `main` quando a contagem acima foi fechada. A hora do título saiu de `TZ=America/Sao_Paulo date` e `date -u` na mesma chamada que preparou esta seção, nunca digitada. Nenhuma seção anterior deste arquivo foi apagada, reescrita ou resumida.
