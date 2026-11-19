@@ -181,3 +181,23 @@ Uma linha por nicho, só para não testar de novo. Não é relatório.
 | 16/11/2026 | mini system | volume | 14,8 mil/mês |
 | 16/11/2026 | câmera de ação | volume | 6,6 mil/mês |
 | 16/11/2026 | kit academia em casa | volume | 5,4 mil/mês |
+| 19/11/2026 | secadora de roupas | SERP tomada (ML, LG, Brastemp, Casas Bahia, Electrolux, Midea, Samsung + carrossel + IA) | 201 mil tomada |
+| 19/11/2026 | freezer | SERP tomada (Consul, Metalfrio, Brastemp, Midea, Frigelar, Ponto, Leroy) | 165 mil tomada |
+| 19/11/2026 | lava e seca | SERP tomada (Electrolux, Casas Bahia, Magalu, Samsung, Brastemp, Leroy, Midea, Fast Shop) | 301 mil tomada |
+| 19/11/2026 | fogão | SERP tomada (Electrolux, Brastemp, Casas Bahia, Compra Certa, Americanas, Fast Shop, Ponto, Samsung) | 301 mil tomada |
+| 19/11/2026 | forno elétrico | SERP tomada (Fischer, Philco, Continental, ML, Casas Bahia, Compra Certa, Electrolux) | 368 mil tomada |
+| 19/11/2026 | micro-ondas | SERP tomada (Magalu, Compra Certa, Casas Bahia, Electrolux, Leroy, Fast Shop, Ponto) | 673 mil tomada |
+| 19/11/2026 | mesa de jantar | SERP tomada (Tok&Stok, MadeiraMadeira, Leroy + fábricas de móveis) | 110 mil tomada |
+| 19/11/2026 | cama box | SERP tomada (King Star, Castor, Casas Bahia, Esplanada, Euro Colchões, Leroy, Ponto) | 90,5 mil tomada |
+| 19/11/2026 | ventilador | SERP tomada (Casas Bahia, ML, Magalu, Ventisol, WAP, Americanas, Midea) | 550 mil tomada |
+| 19/11/2026 | churrasqueira | SERP tomada (ML, Leroy, Americanas + fabricantes) | 301 mil tomada |
+| 19/11/2026 | lavadora de alta pressão | SERP tomada (Kärcher, ML, Stihl, Loja do Mecânico, Amazon) | 165 mil tomada |
+| 19/11/2026 | tablet | SERP tomada (Americanas, Casas Bahia, Magalu, Samsung, ML, Lenovo) | 550 mil tomada |
+| 19/11/2026 | bicicleta (cabeça) | SERP tomada (ML, Decathlon, Trek, Caloi, Ponto, Amazon) | 450 mil tomada |
+| 19/11/2026 | chuveiro elétrico | volume | 110 mil/mês → exigiria ≈ R$ 139 por venda em top-3 |
+| 19/11/2026 | chuteira | volume | 135 mil/mês → exigiria ≈ R$ 113 por venda em top-3 |
+| 19/11/2026 | multímetro | volume | 90,5 mil/mês → exigiria ≈ R$ 169 por venda em top-3 |
+| 19/11/2026 | hd externo e webcam | volume | 90,5 mil/mês cada → exigiria ≈ R$ 169 por venda em top-3 |
+| 19/11/2026 | nível a laser | volume | 74 mil/mês → exigiria ≈ R$ 206 por venda em top-3 |
+| 19/11/2026 | caixa d'água | volume | 74 mil/mês → exigiria ≈ R$ 206 por venda em top-3 |
+| 19/11/2026 | triciclo elétrico | já é nicho da Rodametria (mobilidade elétrica) | 246 mil/mês, +174% no ano |
