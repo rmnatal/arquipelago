@@ -15,32 +15,24 @@ urls_publicadas: 11       # 10 -> 11 em 16/11/2026: nasceu `/veiculos/moto-eletr
                           # proteger. Quem substituir comentario de varias linhas apaga o rabo.
 ultima_ronda: 2026-11-18T20:01Z   # LEITURA SEMANAL de 18/11/2026 (seção 12.2, item 3). SUBSTITUI o valor anterior 2026-11-18T15:00Z, que era da RONDA DIARIA TECNICA do mesmo dia e segue registrado no PROMPT.md e no MAOS-LOG.md. 2 impressoes, 0 clique, posicao 16,0; o 404 no indice de /veiculos/bicicleta-eletrica/ destravou e a pagina esta em 11,0.
 primeira_indexacao: null  # as duas primeiras URLs foram ao ar hoje; indexacao e trabalho de dias. Quem grava este campo e a leitura semanal, lendo o Search Console.
-ultima_execucao: 2026-11-20T13:44Z   # A VOZ DECLARADA DA PAGINA DE 823 MIL BUSCAS/MES
-                         # CHEGOU A TELA. Ela estava inteira no repositorio e a
-                         # pagina servia um toco: corpo de 3.303 -> 5.534
-                         # caracteres, pares de FAQ de 0 -> 3 com FAQPage, prosa
-                         # de 36 -> 50 elementos. Revisao 117, /status em 117, as
-                         # 8 linhas da revisao corrente dizendo `ok` (20.4).
-                         # A MESMA CLASSE DE DEFEITO DA 25.2-c, DOIS DIAS DEPOIS,
-                         # NA MESMA PAGINA: ali era o link que morava dentro do
-                         # bloco que nao nasce, aqui era a voz. Virou a 32.9 do
-                         # contrato, com ponteiro na 25.2-c.
-                         # A 32.5 NAO SE MOVEU UM PIXEL: compra a 358 px, o MESMO
-                         # numero de antes, porque a voz entra em <details>
-                         # FECHADO. 11 de 11 dentro da 32.5, 0 fora da conta.
-                         # Portoes: teste-cabeca-sem-vitrine.php de 39 para 68
-                         # afirmacoes com SEIS mutacoes, as travas do arquivo no
-                         # --conferir do gerador (743), e conferir-produto-no-ar
-                         # que REPROVOU o ar de hoje antes do desembarque.
-                         # A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE
-                         # A GRAVA, nunca digitada.
-executando_desde: 2026-11-20T16:17Z   # RESERVA da execucao de 20/11/2026, 16h17Z (passo 5 da secao 1). Ilha EM FOCO pela 1.2 (foco.md: rodametria desde 27/10). Nada furou o foco nesta passada: o despacho do molde da 32 esta FECHADO nas tres irmas (aquametria 21/10 18h2xZ, clubedomosaico 21/10 19h1xZ, robometria 21/10 16h1xZ), e o despacho novo da robometria de hoje 14h5xZ NAO e ALTO (14 de 14 URLs em 200, casca limpa), logo e NORMAL fora do foco e espera pela 18.1.
-                         # A reserva foi as 13h17Z, ganha no push na PRIMEIRA
-                         # tentativa, e RENOVADA pela 1.1 neste mesmo commit de
-                         # fecho: o bloco passou de 40 minutos porque o cron do
-                         # Sync desta ilha roda por requisicao e a janela dele
-                         # cai de 30 em 30 minutos — o desembarque esperou de
-                         # 13h35Z a 13h40Z.
+ultima_execucao: 2026-11-20T16:5xZ   # A CAMADA DECLARADA FOI CONFERIDA NO
+                         # CAMINHO COMPLETO — a pergunta que a 32.9 abriu em
+                         # 20/11 e esta ilha ainda nao tinha feito — E ELA ESTA
+                         # LIMPA: nos TRES caminhos, todo campo declarado chega
+                         # a tela. ZERO buraco, e por isso ZERO portao novo
+                         # (31.2: regua nova exige defeito medido, e nao houve).
+                         # A ENTREGA DURAVEL FOI OUTRA: a 20.4 do contrato
+                         # afirmava que o Sync `reaplica mesmo sem forcar`, o que
+                         # esta medido como FALSO desde 06/11 — frase falsa de pe
+                         # catorze dias no documento que as quatro ilhas leem.
+                         # Corrigida com as quatro linhas da fonte RELIDAS hoje
+                         # (342, 355, 473, 516 — o despacho dizia 472/515).
+                         # Bancada: 66 portoes, 0 falha, os de ar inclusos.
+executando_desde: null   # LIMPO no fecho desta execucao (passo 7 da secao 1).
+                         # A reserva desta passada foi 2026-11-20T16:17Z, commit
+                         # e695bd9, e nada furou o foco: o despacho do molde da 32
+                         # esta FECHADO nas tres irmas e o despacho novo da
+                         # robometria de hoje NAO e ALTO (14 de 14 URLs em 200).
 rede: aberta em 2026-11-20   # 20.2, REMEDIDA e nao herdada: `rodametria.com.br`
                              # em 200 nas TRES passadas, `www.` em 301 na primeira
                              # e 200 nas outras duas (redirecao, nao recusa), com
@@ -59,86 +51,92 @@ rede: aberta em 2026-11-20   # 20.2, REMEDIDA e nao herdada: `rodametria.com.br`
                              # camada municipal.
 bloqueada_por: null      # obrigatorio pela secao 2. `null` DE PROPOSITO: o que falta (gov.br para a F1, as prefeituras para a camada municipal, as tres etiquetas do Mercado Livre) trava a FABRICA e nao a ILHA, e isso se escreve no despacho, que e o canal da 12.2. Preenche-lo congelaria tambem os blocos que ja podem andar.
 bloco_atual: |
-  A VOZ DECLARADA DA PAGINA DE 823 MIL BUSCAS/MES CHEGOU A TELA, e ela estava
-  inteira no repositorio desde que a pagina nasceu. Medido no ar as 13h3xZ, na
-  revisao 116: /veiculos/moto-eletrica/ servia 3.303 caracteres de corpo, ZERO
-  par de pergunta frequente e ZERO FAQPage — contra CINCO pares em cada irma —
-  enquanto dados/paginas-de-produto.json declarava, para a MESMA URL, o que e e
-  o que nao e, o como sabemos e SEIS perguntas, a da CNH entre elas, que e a
-  razao pela qual esta ilha existe.
+  A CAMADA DECLARADA DAS PAGINAS DE PRODUTO FOI CONFERIDA NO CAMINHO COMPLETO, E
+  ELA ESTA LIMPA. Esta era a pergunta que a 32.9 abriu em 20/11 de manha e que
+  esta ilha ainda nao tinha feito — a execucao anterior a deixou escrita aqui
+  como a saida que "e de uma passada e nao espera ninguem". Foi feita, e o
+  resultado e ZERO buraco.
 
-  A CAUSA E DE LUGAR E NAO DE DADO, E E A SEGUNDA VEZ EM DOIS DIAS NA MESMA
-  PAGINA: a voz era lida no caminho da pagina COMPLETA, e a pagina completa e
-  precisamente a que nao nasce abaixo do piso de tres anuncios da 30.2. Em
-  19/11 o que morava dentro do bloco que nao nasce era o LINK de compra (virou
-  a 25.2-c do contrato); hoje era a VOZ. Em nenhuma das duas o dado faltava —
-  faltava o lugar. Virou a 32.9 do ARQUIPELAGO.md, com ponteiro na 25.2-c.
+  O QUE FOI MEDIDO, e a regua e a da propria ilha (normalizar e texto_do_corpo
+  do conferir-produto-no-ar.py, MOLDE_DECLARADO do gerar-vitrine-de-produto.py),
+  no HTML servido com quebra de cache:
+  - /veiculos/patinete-eletrico/ (COM vitrine): 29 strings declaradas, 10 com
+    molde e 19 sem. FALTANDO: ZERO inteiras, ZERO segmentos fixos.
+  - /veiculos/bicicleta-eletrica/ (COM vitrine): 29 strings, idem. ZERO e ZERO.
+  - /veiculos/moto-eletrica/ (SEM vitrine): 33 strings, e as 11 inteiras que
+    faltam sao EXATAMENTE as que a regua manda faltar — campo fora de
+    campos_sem_vitrine, par cuja resposta tem molde, ou excecao declarada com
+    ancora. Nenhuma sobra e nenhuma falta.
+  - E A MAE, QUE NINGUEM HAVIA MANDADO CONFERIR: /veiculos/ serve as 19 strings
+    declaradas dela, e os dois campos "uma frase por mundo" servem exatamente um
+    mundo cada (caixa: rotulo, unidade, escopo_muitas, data_igual, faltam;
+    carga: faixa).
+  - TITULO, H1 E DESCRIPTION das QUATRO paginas: declarados em
+    paginas-de-produto.json E servidos pela casca, e os dois IGUAIS letra por
+    letra. Duas declaracoes do mesmo fato (20.7) que hoje nao divergem.
+  A conta fecha em 12 de 12 campos declarados por pagina: nenhum campo da camada
+  declarada ficou sem destino.
 
-  E O DEFEITO ERA INVISIVEL PARA TODO PORTAO DESTA ILHA, inclusive os que
-  nasceram desta mesma pagina. O portao de ar julgava a caixa de ausencia e o
-  piso da 25.2-c, e as duas afirmacoes estavam VERDES E CERTAS. O portao sem
-  rede media a cabeca, a data e o piso de 1.500 caracteres do corpo — e o corpo
-  PASSAVA. Nao era afirmacao virada de lado nem lista de alvos derivada do dado
-  julgado: era a PERGUNTA NUNCA FEITA. Pagina que passa do piso de caracteres
-  nao e pagina completa; e pagina que ninguem comparou com o que ela declara.
+  E ZERO PORTAO NOVO SAIU DISSO, E ISSO E DECISAO ESCRITA E NAO ESQUECIMENTO. O
+  caminho completo nao tem afirmacao de voz declarada no portao de ar — a (4) do
+  conferir-produto-no-ar.py so roda em pagina de nao_nasceram —, e a tentacao era
+  simetriza-la. A 31.2 e literal: portao, regua ou mutacao nova so nasce com
+  defeito MEDIDO no ar que ela teria pegado, e a medicao de hoje deu zero.
+  Construi-la seria "pode acontecer". QUEM VOLTAR AQUI NAO PRECISA REMEDIR: o
+  dia em que um defeito desta classe aparecer no caminho completo, a afirmacao
+  tem casa pronta (a (4) existe e a tradutora voz_sem_vitrine ja e importada
+  pelos dois cobradores) e o custo e de linhas, nao de desenho.
 
-  A REGUA E MECANICA, de proposito: string declarada SEM molde e verdadeira sem
-  anuncio nenhum, entao a pagina sem vitrine a serve; string COM molde fica
-  fora por construcao, porque quem preenche molde e o numero da vitrine. A
-  lista de campos mora no ARQUIVO (`campos_sem_vitrine`) e nao no codigo, e a
-  forma do molde e declarada num lugar so. As excecoes se DECLARAM com ancora e
-  motivo: a pergunta sobre a largura da faixa de preco saiu NOMEADA, porque
-  numa pagina que diz na primeira linha que a comparacao esta sem dados ela
-  prometeria na pergunta o que a caixa nega logo acima.
+  A ENTREGA DURAVEL DESTA PASSADA FOI NO CONTRATO, E NAO NESTA ILHA. A 20.4
+  afirmava, sobre o Sync, que "na falha de ativacao o Sync retorna antes de
+  gravar o sha do item, que e por que a passada seguinte o reaplica mesmo sem
+  forcar". A primeira metade e verdadeira; A SEGUNDA ESTA MEDIDA COMO FALSA desde
+  06/11/2026 e reconfirmada em 11/11, e a frase estava de pe havia CATORZE DIAS
+  no documento que as quatro ilhas leem. Reli as quatro linhas na fonte hoje, em
+  vez de as copiar do despacho: 342 (o return "gravado mas NAO ativado"), 355 (o
+  sha, DEPOIS dela — essa metade esta certa), 473 (o return "nada novo" ANTES do
+  laco dos itens) e 516 (a revisao estampada sem condicao). O despacho dizia 472
+  e 515: numero de linha envelhece com o arquivo. A correcao entrou na 20.4 como
+  paragrafo proprio, com a oracao original de pe e marcada, porque medicao nao se
+  reescreve, e a nota de que isso NAO fecha o conserto esta no despacho ALTA de
+  06/11 em dados/despachos.md.
 
-  MEDIDO NO AR DEPOIS DO DESEMBARQUE, revisao 117 = manifest 117, as 8 linhas
-  da revisao corrente dizendo `ok` (20.4): corpo de 3.303 -> 5.534 caracteres,
-  pares de FAQ de 0 -> 3 com UM FAQPage, prosa de 36 -> 50 elementos, JSON-LD
-  de 22 -> 36 strings. conferir-produto-no-ar APROVADO com 387 afirmacoes (era
-  382, e ele REPROVOU o ar de antes nas duas afirmacoes novas). conferir-no-ar
-  APROVADO com 797. Console limpo nas 11. As tres portas da 29.2 em 200 com os
-  content-types certos, caminho virgem em 404, 11 de 11 URLs em 200.
+  REDE E AR, REMEDIDOS E NAO HERDADOS (20.2): home em 200, /status em 117 =
+  manifest 117, as 8 linhas da revisao corrente dizendo ok. Bancada: 60 portoes
+  sem rede e 66 com ar, 0 falha nas duas. Nada a consertar nesta ilha.
 
-  A 32.5 NAO SE MOVEU UM PIXEL, e e esta a prova de que o texto novo e de graca
-  acima da dobra: compra a 358 px, o MESMO numero de ontem, porque a voz entra
-  em <details> FECHADO. 11 de 11 paginas dentro da 32.5, ZERO fora da conta,
-  pior compra 1.333 px contra o teto de 1.400. E as duas leituras SEM quebra de
-  cache sao identicas byte por byte, 89.621 bytes.
+  A CONSULTA DE 823 MIL BUSCAS FOI REMEDIDA HOJE, por ensaio que nao toca o banco
+  (25.3), e o item 2 do despacho de 18/11 CONTINUA SENDO GESTO DO RAPHAEL — agora
+  com numero de hoje e nao de 18/11: degrau 1 (`moto eletrica adulto`) leu 20
+  ofertas, 3 SERVEM e so 1 ENTRA, porque as outras duas estao APOSENTADAS por
+  `produto-nao-existe` (fichas que a Shopee serve como "O produto nao existe",
+  medidas em 16/11). Degrau 2 (`moto eletrica`) leu 20 e serve ZERO. As 17
+  recusas sao 8 capacete, 6 fora_da_familia, 2 brinquedo e 1 bicicleta na cabeca:
+  a loja brasileira, nesta chave, vende ACESSORIO. O piso de 3 da 30.2 nao e
+  alcancavel pela Shopee hoje, e isso NAO e defeito de regua — a aposentadoria
+  esta certa e o reteste de vida de ficha da Shopee nao e tarefa desta nuvem
+  (secao 33, recusa do guarda do ambiente). O caminho segue sendo o Mercado
+  Livre, onde a geracao de link exige clique humano (25.6), com as URLs /p/MLB
+  colhidas em dados/links-afiliado-pendentes.md e a etiqueta
+  `rodametriamotoeletrica` a criar.
 
-  PORTOES, E OS TRES SAO CASA EXISTENTE (31.3 — nenhum arquivo de portao novo):
-  teste-cabeca-sem-vitrine.php de 39 para 68 afirmacoes, com SEIS mutacoes que
-  TEM de reprovar (ancora morta, recusa sem campo, lista de campos vazia, campo
-  inexistente, par incompleto, resposta moldada com pergunta livre); as travas
-  do arquivo no --conferir do gerador (743 afirmacoes), com as duas mutacoes
-  exercidas a mao; e a cobranca no ar. A tradutora em Python mora no DONO da
-  camada declarada e e importada pelos dois cobradores — terceira copia da
-  mesma regua seria a 20.7 pela terceira vez no mesmo mecanismo. Bancada: 60
-  portoes sem rede, 0 falha.
-
-  POR QUE NAO ABRI DESPACHO DE CLASSE PARA AS IRMAS, e isto e decisao escrita e
-  nao esquecimento: as tres tem saida degradada, mas dentro de FERRAMENTA, e
-  nenhuma delas tem o par "camada declarada por pagina + funcao de pagina
-  degradada separada" que produziu este defeito. Abrir despacho ali seria "pode
-  acontecer", que a 31.2 nao aceita. A regra viajou pelo canal certo: a 32.9 do
-  contrato, que vale para toda ilha que construir pagina degradada.
-
-  PROXIMO PASSO DESBLOQUEADO. A fila do PROMPT.md segue sem despacho de FUNDACAO
-  aberto nesta ilha: o que sobra e gesto do Raphael (as etiquetas do Mercado
-  Livre do item 2, os dois campos de configuracao do 3-b, o chamado da porta do
-  item 5). E A LEVA DE PAGINA CONTINUA TRANCADA PELA 30.8, medido hoje e nao
-  herdado: das seis cabecas, tres ja tem pagina, `scooter eletrica` foi remedida
-  em 16/11 e segue recusada por canibalizacao (na loja a palavra `scooter` E o
-  patinete), e `bike eletrica` e `motos eletricas para adultos` nao nascem pela
-  30.4. Na cauda, tres das cinco estao TOMADAS por fazenda e duas sao
-  `nao-medida`, que nao autoriza nada. Nos eixos B e C nenhum veredito diz
-  `alvo`. Quem pegar esta ilha a seguir tem DUAS saidas honestas: (1) trabalhar
-  a pagina da moto para a proxima banda — ela tem ZERO impressao hoje, entao a
-  12.1 proibe mexer no texto por ranqueamento, e a leitura de 25/11 e quem
-  abre isso; ou (2) o que a 32.9 acabou de mandar e esta ilha ainda nao fez:
-  conferir, nas DUAS irmas desta ilha que TEM vitrine, se alguma string
-  declarada delas nunca chega a tela por outro caminho. A primeira e de
-  conteudo e espera medicao; a segunda e de uma passada e nao espera ninguem.
-
+  PROXIMO PASSO DESBLOQUEADO — E A RESPOSTA HONESTA E QUE NAO EXISTE BLOCO DE
+  FUNDACAO NESTA ILHA HOJE, medido e nao herdado. A fila do PROMPT.md esta toda
+  entregue MENOS o bloco 5 (artigos-ancora), e o 5 depende de
+  ilhas/rodametria/pauta.md, que NAO EXISTE e nao e arquivo da Fundacao (17.1: a
+  rotina Pauta das ilhas o escreve pelas Maos, as tercas, no computador do
+  Raphael). A ilha esta em foco total desde 27/10 e nenhuma pauta foi produzida
+  em nenhuma dessas tercas — sao QUATRO tercas. Os dois outros caminhos de pagina
+  nova seguem fechados pela causa de sempre: a 30.8 (SERP nao se le desta nuvem)
+  e a 25.6 (reCAPTCHA do Mercado Livre). As duas ALTAs de Fundacao que existem
+  (itens 2 e 3 do despacho de 06/11) consertam
+  ilhas/robometria/snippets/robometria-sync.php, e a seccao 3 proibe editar ilha
+  nao reservada enquanto a 1.2 so fura o foco por ilha QUEBRADA — a robometria
+  respondeu 14 de 14 em 200 na ronda de hoje. ENTAO: quem pegar esta ilha a
+  seguir e nao tiver pauta nem gesto novo do Raphael tem como unica saida de
+  conteudo a leitura de 25/11 (a 12.1 proibe mexer no texto da moto e do patinete
+  antes dela, por zero impressao), e deve fechar dizendo isso em vez de inventar
+  trabalho de bancada, que a 31.3 proibe.
 ---
 
 # Estado da ilha RODAMETRIA

@@ -3,6 +3,145 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-11-20 16h17Z–16h5xZ — **A CAMADA DECLARADA FOI CONFERIDA NO CAMINHO COMPLETO E ESTÁ LIMPA, ENTÃO NENHUM PORTÃO NASCEU (31.2) — E A ENTREGA DESTA PASSADA FOI UMA FRASE FALSA QUE ESTAVA DE PÉ NA 20.4 DO CONTRATO HAVIA CATORZE DIAS**
+
+**A ILHA DESTA EXECUÇÃO:** rodametria, por **foco** (`foco.md`, foco total e absoluto desde 27/10).
+**Passo 1 do disparo, medido:** `git fetch origin main` trouxe o `main` de `68c88a4` para **`51c097f`**
+(atualização forçada). **Nenhuma branch `claude/*` com commit a mergear** (`origin/main..HEAD` = 0) e
+**zero PR aberto** (`list_pull_requests` com `state: open` devolveu lista vazia).
+
+**O QUE FURARIA O FOCO, CONFERIDO ANTES DE RESERVAR E NÃO HERDADO.** São duas exceções e as duas foram
+medidas: (a) **o despacho do MOLDE DE CONVERSÃO da 32**, que pela nota da 1.2 fura o foco na ordem
+aquametria → clubedomosaico → robometria, está **FECHADO INTEIRO nas três** (aquametria 21/10 18h2xZ, as
+29 fichas; clubedomosaico 21/10 19h1xZ, as 20 páginas; robometria 21/10 16h1xZ, as nove) — e o próprio
+texto da exceção diz que *"quando as três estiverem com o molde no ar e conferido, o foco volta a mandar
+sozinho"*; (b) **o despacho novo da robometria**, de hoje 14h2x–14h5xZ, com 6 itens da 19.2, **não é
+ALTO**: a ronda que o escreveu mediu 14 de 14 URLs do sitemap em 200, `/status` 98 = manifest 98, as três
+portas da 29.2 certas e console silencioso. Ilha no ar e **não quebrada**, logo despacho NORMAL fora do
+foco, que pela **18.1 espera por mais antigo que seja**.
+
+**A RESERVA (passo 5 da seção 1):** `executando_desde` estava **`null`** — o que pela **1.1** já basta,
+porque a reserva é escrita ANTES do trabalho — e o último commit da pasta da ilha era de **13h46Z**, 2h30
+atrás. Reserva escrita às **16h17Z**, commit **`e695bd9`**, empurrada e **aceita no `main`** (`51c097f..e695bd9`).
+
+**REDE E AR MEDIDOS, NÃO HERDADOS (20.2):** home em **200**; `/status` em **revisão 117** = `manifest.json`
+**117**, com as **8 linhas da revisão corrente dizendo `ok`** (20.4/20.8). **Bancada: 60 portões sem rede e
+66 com os de ar, 0 falha nas duas.** Nada a consertar nesta ilha.
+
+---
+
+### 1. O BLOCO: A PERGUNTA QUE A 32.9 ABRIU HOJE DE MANHÃ, E QUE ESTA ILHA AINDA NÃO TINHA FEITO
+
+O `ESTADO.md` de 13h4xZ deixou escritas duas saídas honestas e disse qual não espera ninguém: *"conferir,
+nas DUAS irmãs desta ilha que TEM vitrine, se alguma string declarada delas nunca chega a tela por outro
+caminho"*. **A outra saída, trabalhar o texto da moto, continua proibida pela 12.1** (zero impressão; a
+leitura de 25/11 é quem abre isso). Esta execução fez a primeira.
+
+**A RÉGUA É A DA PRÓPRIA ILHA, importada e não reescrita** (20.7): `normalizar` e `texto_do_corpo` do
+`conferir-produto-no-ar.py`, e `MOLDE_DECLARADO` do `gerar-vitrine-de-produto.py`, que é o dono da camada
+declarada. String **sem molde** se cobra inteira; string **com molde** se cobra pelos segmentos **fixos**
+(≥12 caracteres), que é o que o molde não come. HTML servido com quebra de cache.
+
+**O RESULTADO, E ELE É ZERO BURACO:**
+
+| caminho | strings declaradas | faltando inteiras | faltando segmento |
+|---|---|---|---|
+| `/veiculos/patinete-eletrico/` (COM vitrine) | 29 (10 com molde) | **0** | **0** |
+| `/veiculos/bicicleta-eletrica/` (COM vitrine) | 29 (10 com molde) | **0** | **0** |
+| `/veiculos/moto-eletrica/` (SEM vitrine) | 33 (11 com molde) | 11 | 21 |
+| `/veiculos/` (a MÃE) | 19 + os 2 campos por mundo | **0** | **0** |
+
+**As 11 da moto são EXATAMENTE as que a régua manda faltar**, uma a uma: campo fora de
+`campos_sem_vitrine` (`resposta`, `qual_escolher`, `aviso_de_afiliado`), par cuja **resposta** tem molde —
+e a tradutora julga o par inteiro, por isso a pergunta sem molde também sai —, ou **exceção declarada com
+âncora** (a `"Por que a faixa de preço é tão larga?"`, que é o exemplo que a própria 32.9 item 3 nomeia).
+**Nenhuma sobra e nenhuma falta.**
+
+**E A MÃE, QUE NINGUÉM HAVIA MANDADO CONFERIR.** O `ESTADO.md` pedia as duas irmãs; a mãe tem camada
+declarada igual e nunca foi medida assim. As **19** strings dela chegam à tela, e os dois campos que o
+próprio arquivo declara como **uma frase por mundo** servem **exatamente um mundo cada**: `caixa` traz
+`rotulo`, `unidade`, `escopo_muitas`, `data_igual` e `faltam` (um de cada grupo mutuamente exclusivo) e
+`carga` traz `faixa`, 1 de 5.
+
+**A PARTE DA MEDIÇÃO QUE CORRIGIU A MEDIÇÃO: A PRIMEIRA LISTA DE CAMPOS FOI ESCRITA À MÃO, QUE É O DEFEITO
+QUE A 32.9 ITEM 2 NOMEIA.** A primeira passada varreu sete campos que eu digitei, e a 32.9 item 2 diz com
+todas as letras que *"lista no código envelhece calada no dia em que a camada declarada ganha campo
+novo"*. A segunda passada varreu **todo** campo de cada página e da mãe. Foi ela que cobrou os três que a
+lista à mão deixava fora — **`titulo`, `h1` e `description`** —, e esses três são **duas declarações do
+mesmo fato** (20.7): moram em `paginas-de-produto.json` **e** no mapa de páginas da casca. **Medidos no
+ar nas quatro páginas: os dois IGUAIS, letra por letra.** Hoje não divergem. A conta fecha em **12 de 12
+campos declarados por página**: nenhum campo da camada declarada ficou sem destino.
+
+### 2. E NENHUM PORTÃO NASCEU DISSO, E ISSO É DECISÃO ESCRITA
+
+O caminho **completo** não tem afirmação de voz declarada no portão de ar — a **(4)** do
+`conferir-produto-no-ar.py` só roda em página de `nao_nasceram` —, e a tentação óbvia era simetrizá-la. **A
+31.2 é literal:** portão, régua ou mutação nova só nasce quando existe **defeito medido no ar** que ela
+teria pegado, nomeado com URL e data. **A medição de hoje deu zero**, então construí-la seria *"pode
+acontecer"*, que a 31.2 não aceita — a mesma razão pela qual a execução de 13h4xZ não abriu despacho de
+classe para as irmãs. **E a 31.3 proíbe ampliar portão existente** enquanto houver item de conteúdo na
+fila.
+
+**O QUE FICA ESCRITO PARA NINGUÉM REMEDIR:** o dia em que um defeito desta classe aparecer no caminho
+completo, a afirmação **tem casa pronta** — a (4) existe, e a tradutora `voz_sem_vitrine` já é importada
+pelos dois cobradores — e o custo é de linhas, não de desenho.
+
+### 3. A ENTREGA DURÁVEL FOI NO CONTRATO: A 20.4 AFIRMAVA O QUE A FONTE DESMENTE, HAVIA CATORZE DIAS
+
+A 20.4 dizia, sobre o Sync: *"na falha de ativação o Sync **retorna antes de gravar o `sha` do item**
+(linha 342 contra 355), que é por que **a passada seguinte o reaplica mesmo sem `forcar`**"*. A primeira
+metade é verdadeira; **a segunda está medida como falsa desde 06/11/2026** e foi reconfirmada em 11/11 —
+e a frase seguia de pé no documento que as **quatro** ilhas leem.
+
+**RELI AS QUATRO LINHAS NA FONTE HOJE, em vez de as copiar do despacho** (`ilhas/robometria/snippets/robometria-sync.php`
+— ler arquivo de outra ilha é permitido; **editar** é o que a seção 3 proíbe): a **342** é o
+`return 'gravado (#…) mas NÃO ativado: …'`; a **355** é o `$estado['itens']['snippet:…'] = … sha256`,
+**depois** dela, e portanto essa metade da frase está certa; a **473** é
+`if ( ! $forcar && (int) $m['revisao'] === (int) $estado['revisao'] )`, que grava `ultimo` e **retorna
+`// nada novo` ANTES do laço dos itens**; a **516** é `$estado['revisao'] = (int) $m['revisao'];`, **sem
+condição**. **Juntas, a 473 e a 516 fazem o item que falhou nunca ser retentado, e a janela não é de meia
+hora: é indefinida.** *(O despacho de 06/11 nomeia as duas últimas como **472 e 515**; relidas hoje elas
+são **473 e 516** — número de linha envelhece com o arquivo, e a 23.4 proíbe número sem procedência.)*
+
+**A correção entrou na 20.4 como parágrafo próprio**, com a oração original **de pé e marcada como medida
+falsa**, porque medição não se reescreve. **E a nota de que isto NÃO fecha o conserto está no despacho
+ALTA de 06/11 em `dados/despachos.md`:** os itens 2 e 3 seguem abertos, seguem certos e seguem atrás da
+mesma porta que a tentativa de 09/11 já nomeou — o arquivo mora em `ilhas/robometria/`, a seção 3 proíbe
+editar ilha não reservada, e a 1.2 só fura o foco por ilha **quebrada** (a robometria respondeu 14 de 14
+em 200 na ronda de hoje). **Amarrar a correção do TEXTO ao conserto do CÓDIGO foi o que manteve a frase
+falsa catorze dias.**
+
+### 4. A CONSULTA DE 823 MIL BUSCAS FOI REMEDIDA HOJE, E O ITEM 2 CONTINUA SENDO GESTO DO RAPHAEL — COM NÚMERO DE HOJE
+
+Antes de concluir que nada entrega no ar, fui atrás do único caminho que entregaria: a página de
+`/veiculos/moto-eletrica/` nascer com vitrine de verdade. **Ensaio que não toca o banco (25.3),
+`--ensaio --so moto-eletrica`.** *(A API da Shopee respondeu `error [10000]: System Error` em duas de
+cinco chamadas e **passou nas outras três** — intermitência, não parede, exatamente a lição da 20.2:
+repetir antes de chamar de bloqueio.)*
+
+**O número de hoje, contra os 18 anúncios de 18/11:** degrau 1 (`moto eletrica adulto`) leu **20** ofertas,
+**3 SERVEM** e **só 1 ENTRA** — as outras duas estão **APOSENTADAS** por `produto-nao-existe` (fichas que a
+Shopee serve como *"O produto não existe"*, medidas em 16/11). Degrau 2 (`moto eletrica`) leu 20 e serve
+**zero**. As 17 recusas são **8 capacete, 6 `fora_da_familia`, 2 brinquedo e 1 bicicleta na cabeça**: nesta
+chave, **a loja brasileira vende acessório**. **O piso de 3 da 30.2 não é alcançável pela Shopee hoje, e
+isso não é defeito de régua** — a aposentadoria está certa, e o reteste de vida de ficha da Shopee **não é
+tarefa desta nuvem** (seção 33: 403 do próprio servidor, e conduzir aba contra anti-robô foi recusado pelo
+guarda do ambiente). **O caminho segue sendo o Mercado Livre e segue exigindo clique humano (25.6).**
+
+### 5. O PRÓXIMO PASSO DESBLOQUEADO, E A RESPOSTA HONESTA É QUE NÃO EXISTE BLOCO DE FUNDAÇÃO NESTA ILHA HOJE
+
+Medido, não herdado: **a fila do `PROMPT.md` está toda entregue menos o bloco 5 (artigos-âncora)**, e o 5
+depende de `ilhas/rodametria/pauta.md`, que **não existe** e **não é arquivo da Fundação** (17.1: a rotina
+*Pauta das ilhas* o escreve pelas Mãos, às terças, no computador do Raphael). **A ilha está em foco total
+desde 27/10 e nenhuma pauta foi produzida em nenhuma dessas terças — são quatro.** Os dois outros caminhos
+de página nova seguem fechados pela causa de sempre (**30.8**, a SERP não se lê desta nuvem; **25.6**, o
+reCAPTCHA). As duas ALTAs de Fundação que existem moram em `ilhas/robometria/` e a regra do foco as põe
+atrás de uma porta. **Quem pegar esta ilha a seguir sem pauta e sem gesto novo tem como única saída de
+conteúdo a leitura de 25/11 — e deve fechar dizendo isso, em vez de inventar trabalho de bancada, que a
+31.3 proíbe.**
+
+---
+
 ## 2026-11-20 13h17Z–13h4xZ — **A VOZ DECLARADA DA PÁGINA DE 823 MIL BUSCAS/MÊS CHEGOU À TELA, E ELA ESTAVA INTEIRA NO REPOSITÓRIO DESDE QUE A PÁGINA NASCEU.** Corpo de **3.303 → 5.534** caracteres, pares de pergunta de **0 → 3** com `FAQPage`. É a **segunda vez em dois dias, na mesma página**, que o que ela devia dizer morava dentro do bloco que não nasce — virou a **32.9** do contrato.
 
 **A ILHA DESTA EXECUÇÃO:** rodametria, por **foco** (`foco.md`, foco total e absoluto desde 27/10). **O que furaria o foco foi conferido antes de aceitar isso:** no topo do `PROMPT.md` desta ilha não há despacho de **Fundação** aberto — os três que sobram (item 2 da leitura semanal, 3-b e item 5) dizem, neles mesmos, que são **gesto do Raphael**. Em `dados/despachos.md` os **ALTA** abertos são todos "precisa do Raphael" ou desta própria ilha, e o da **robometria** — a única ilha que estava no ar e quebrada — foi **FECHADO às 10h2xZ de hoje** pela execução anterior. As três ilhas da exceção do **molde** (seção 32: aquametria, clubedomosaico, robometria) têm o despacho do molde **fechado inteiro desde 21/10**. Nada furava o foco.

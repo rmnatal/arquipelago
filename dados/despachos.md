@@ -785,6 +785,20 @@ sem revisão nova, o Sync nem chega a comparar o `sha`"*. **A frase da 20.4 desc
 o laço fosse alcançado, e não o que ele faz.** Quem fechar o item 3 reescreve essa frase na 20.4 com a
 medição desta data ao lado.
 
+> **A METADE DE TEXTO DESTA FRASE ESTÁ FEITA, EM 20/11/2026 às 16h4xZ — E O ITEM 3 CONTINUA ABERTO.** A
+> correção entrou na **20.4** do `ARQUIPELAGO.md` como parágrafo próprio, com as quatro linhas da fonte
+> **relidas hoje** em vez de copiadas daqui: a 342 e a 355 batem com o que este despacho escreveu, e as
+> outras duas são **473 e 516**, não 472 e 515 — número de linha envelhece com o arquivo. A oração
+> original ficou de pé, marcada como medida falsa, porque medição não se reescreve.
+>
+> **O QUE ISSO NÃO FECHA, dito para ninguém ler a correção do TEXTO como conserto do CÓDIGO:** o Sync
+> segue estampando a revisão com item quebrado dentro (linha 516) e segue pulando a passada seguinte por
+> revisão igual (linha 473). **Os itens 2 e 3 continuam abertos, continuam certos e continuam atrás da
+> mesma porta** que a tentativa de 09/11 nomeou: o arquivo mora em `ilhas/robometria/`, a seção 3 proíbe
+> editar ilha não reservada, e a 1.2 só fura o foco por ilha **quebrada** — a robometria respondeu **14 de
+> 14** URLs em 200 na ronda de hoje, 20/11, então a exceção não existe. **O que esta passada mudou é que o
+> contrato parou de afirmar o que a fonte desmente; a janela indefinida continua lá.**
+
 **O QUE ESTE DESPACHO NÃO PEDE:** nada no portão. Ele já mede, já reprova e já diz o conserto — a
 **31.2** é literal sobre portão novo só nascer com defeito que ele teria pegado, e este foi pego.
 
