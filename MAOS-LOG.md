@@ -10677,3 +10677,47 @@ a84cd97a1fd6f4c4f0d21b0b7640bc5478a37c0caec2bd23baf6c1818b5b1ea3  bussola/medico
 Confirmação exigida pelo procedimento: `git fetch origin main && git log -1 origin/main` devolve `c78d3c60ac23cca29a9271ae6d74481e2da13110`, assunto `Bússola caçadora — 19/11/2026`. O push está no `main`.
 
 Este log vai num commit seguinte ao do trabalho, porque o trabalho já estava confirmado no `main` quando a contagem acima foi fechada. A hora do título saiu de `TZ=America/Sao_Paulo date` e `date -u` na mesma chamada que preparou esta seção, nunca digitada. Nenhuma seção anterior deste arquivo foi apagada, reescrita ou resumida.
+
+## 2026-11-20, 12h01 de Brasília (15h01Z) — RONDA DIÁRIA TÉCNICA DA ROBOMETRIA: QUATRO ESCRITAS, UM COMMIT, PUSH CONFIRMADO NO `main`
+
+Disparo com instrução da Sentinela: quatro escritas na ilha `robometria` mais o painel da raiz, num commit só no `main`. Assunto do Arquipélago (ilha robometria, Sentinela, PAINEL da raiz) — a trava de assunto passou. Nenhum arquivo além dos quatro nomeados foi tocado, e nenhum contato pessoal de terceiros entrou. Nada foi reservado, nenhum `executando_desde` foi escrito, nenhum bloco de fila foi executado.
+
+`git status --porcelain` antes do commit:
+
+```
+ M dados/PAINEL.md
+ M ilhas/robometria/ESTADO.md
+ M ilhas/robometria/PROMPT.md
+ M ilhas/robometria/dados/consertos.md
+```
+
+`git diff --stat` antes do commit:
+
+```
+ dados/PAINEL.md                     | 56 ++++++++++++++++++++-----------------
+ ilhas/robometria/ESTADO.md          |  2 +-
+ ilhas/robometria/PROMPT.md          | 22 +++++++++++++++
+ ilhas/robometria/dados/consertos.md |  1 +
+ 4 files changed, 54 insertions(+), 27 deletions(-)
+```
+
+Commit que foi ao `main`: **`696b74dd5c77593c61940560758a335b22b23822`**, assunto `robometria: ronda diaria tecnica de 20/11 — despacho de 6 itens da 19.2, zero conserto, ultima_ronda e PAINEL reescritos`. Push com `git push origin HEAD:main`, aceito de primeira (`5ef01cf..696b74d`), sem recusa, sem rebase e sem force.
+
+Confirmação exigida pelo procedimento: `git fetch origin main && git log -1 origin/main` devolve `696b74dd5c77593c61940560758a335b22b23822`, o mesmo hash. O push está no `main`.
+
+Contagem do que mudou, **conferida relendo os quatro arquivos do disco DEPOIS de gravar**, nunca pelo que a execução achava que havia escrito:
+
+```
+ilhas/robometria/PROMPT.md              2016 linhas (+22: bloco de 21 linhas + 1 linha em branco)
+ilhas/robometria/dados/consertos.md      145 linhas (+1)
+ilhas/robometria/ESTADO.md               751 linhas (1 linha substituída, total igual)
+dados/PAINEL.md                           50 linhas (arquivo inteiro reescrito; eram 46)
+4 arquivos, 54 inserções, 27 remoções
+```
+
+- **ESCRITA 1, `ilhas/robometria/PROMPT.md`:** o bloco novo entrou começando na **linha 48**, exatamente onde estava a linha `## DESPACHO DA SENTINELA — 2026-11-18 (LEITURA SEMANAL, …)`, que a inserção empurrou para baixo com uma linha em branco entre o `---` do bloco novo e ela. A linha-alvo foi localizada por casamento exato e aparecia **uma única vez** no arquivo. O arquivo passou a ter **18** linhas `## DESPACHO DA SENTINELA`, e `## DESPACHO DA SENTINELA — 2026-11-20` aparece **uma** vez, na linha 48. Os despachos de 18/11 e de 11/11 ficaram byte a byte como estavam.
+- **ESCRITA 2, `ilhas/robometria/dados/consertos.md`:** a linha `| 2026-11-20 | — | …` entrou como **linha 19**, imediatamente depois da última linha que começa com `| 2026-11-02 |` (linha 18) e antes da linha em branco que separa a tabela da prosa. A tabela tem agora **10** linhas `| 2026-`, uma delas a de 20/11.
+- **ESCRITA 3, `ilhas/robometria/ESTADO.md`:** a linha 9 do cabeçalho YAML foi substituída; a linha antiga foi conferida por igualdade exata antes da troca, e `^ultima_ronda: 2026-11-20T14:54Z` aparece **uma** vez no arquivo. Nenhuma outra linha do cabeçalho foi tocada. O comando de conferência pedido pela instrução devolveu **`YAML ok`** (nenhum dos oito campos `ilha`, `estado`, `prioridade`, `ultima_execucao`, `executando_desde`, `bloco_atual`, `ultima_ronda`, `bloqueada_por` falta).
+- **ESCRITA 4, `dados/PAINEL.md`:** arquivo inteiro substituído, nada do conteúdo anterior preservado. A linha 3 é `**Instantâneo de 2026-11-20, 14h5xZ**, reescrito pela RONDA DIÁRIA TÉCNICA da **robometria**…`; o instantâneo anterior era de 2026-11-18, 15h0xZ, pela rodametria.
+
+Nenhum passo falhou: nenhuma mensagem de erro a registrar. Este log vai num commit seguinte ao do trabalho, porque a contagem acima só pôde ser fechada depois de o trabalho estar confirmado no `main`. A hora do título saiu de `TZ=America/Sao_Paulo date` e `date -u` na mesma chamada que preparou esta seção, nunca digitada. Nenhuma seção anterior deste arquivo foi apagada, reescrita ou resumida.
