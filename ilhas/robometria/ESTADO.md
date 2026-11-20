@@ -6,7 +6,7 @@ piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 14
 primeira_indexacao: 2026-09-11
 rede: aberta em 2026-11-20   # 20.2, REMEDIDA e nao herdada: TRES passadas as 10h1xZ, robometria.com.br em 200 nas tres, com aquametria.com.br e rodametria.com.br em 200 nas MESMAS tres — seis controles verdes. O que estava em 404 nao era rede e nunca foi: era a porta de entrada da raiz no chao (29.2), pela TERCEIRA vez nesta raiz, e esta consertada. Desde hoje esta ilha tem a cura da 29.4 e a proxima queda volta na primeira requisicao, nao quando alguem rodar um comando.
-ultima_ronda: 2026-11-18T20:01Z   # LEITURA SEMANAL de 18/11/2026 (seção 12.2, item 3). SUBSTITUI o valor anterior 2026-11-13T15:12Z, que era da RONDA TECNICA CURTA de 13/11 e segue registrado no PROMPT.md e no REGISTRO.md. 15 impressoes, 0 clique, posicao 7,2, indexacao 10 de 14 (71%), sitemap de volta em Processado.
+ultima_ronda: 2026-11-20T14:54Z   # RONDA DIARIA TECNICA de 20/11/2026 (secao 12.2, item 3). SUBSTITUI o valor anterior 2026-11-18T20:01Z, que era da LEITURA SEMANAL de 18/11 e segue registrada no PROMPT.md. Casca limpa: 14 de 14 URLs em 200, portas da 29.2 verdes, /status 98 = manifest 98, zero entidade HTML em script, zero orfa, console silencioso. ZERO conserto (nada da 19.1). SEIS defeitos da 19.2 no despacho de hoje: 3 fichas esgotadas em 17 testadas pela 25.4 depois de 65 dias sem reteste, 1 com vendedor de ferias, o piso da 25.2 ausente em 3 das 4 telas que servem ficha, e um superlativo de pascal contradito pela propria pagina.
 bloqueada_por: null
 ultima_execucao: 2026-11-20T11:09Z   # A ILHA VOLTOU AO AR E DEIXOU DE SER A UNICA
                          # SEM A CURA DA PORTA. O despacho ALTA de 19/11 FECHADO
