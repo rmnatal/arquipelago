@@ -1,5 +1,16 @@
 /**
  * Robometria Casca — identidade e estrutura do site
+ * Versão: 1.16.0 (20/11/2026) — A CURA DA PORTA DE ENTRADA (secao 6), que e a
+ * excecao nomeada da 29.4 do ARQUIPELAGO.md, com o retrato publico da 29.4-b e
+ * o contador de quedas da 29.4-c. ESTA ERA A UNICA ILHA NO AR SEM ELA, e isso
+ * deixou de ser divida de engenharia na terceira queda desta raiz: 19/11, 7 de
+ * 7 paginas internas em 404, achada por ACIDENTE por uma execucao que media
+ * outra coisa. Nasce tambem a rota publica `/casca`, que esta ilha nao tinha —
+ * `?rest_route=/robometria/v1/casca` devolvia `rest_no_route`, e por isso a
+ * pergunta "esta ilha tem a cura?" nao tinha instrumento nenhum. E o
+ * `clearstatcache()` entra no topo do diagnostico da 29.3, pagando a divida de
+ * 03/11/2026 que fazia `&reparar=1` devolver, no mesmo retrato, tamanho e data
+ * de porta caida ao lado de conteudo de porta de pe.
  * Versão: 1.15.0 (02/11/2026) — A PORTA DE ENTRADA PASSA A SER MEDIVEL POR
  * DENTRO: nasce `?rest_route=/robometria/v1/rotas&token=<token do Sync>`, com
  * `&reparar=1`, que e o que a secao 29.3 do ARQUIPELAGO.md manda TODA casca
@@ -270,7 +281,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ROBOMETRIA_CASCA_VERSAO' ) ) {
-	define( 'ROBOMETRIA_CASCA_VERSAO', '1.15.0' );
+	define( 'ROBOMETRIA_CASCA_VERSAO', '1.16.0' );
 	/* A DEFINICAO DO PAR MORA AQUI, UMA VEZ, e as quatro paginas que publicam o
 	   numero a leem desta constante. Item 1 do despacho da Sentinela de
 	   02/10/2026: a ilha servia 91 em tres paginas e 92 na quarta, os dois
@@ -3880,6 +3891,27 @@ function robometria_casca_diagnostico_rotas() {
 	$raiz      = function_exists( 'get_home_path' ) ? get_home_path() : ABSPATH;
 	$arquivo   = rtrim( (string) $raiz, '/\\' ) . DIRECTORY_SEPARATOR . '.htaccess';
 
+	/* AS FUNCOES DE `stat` DO PHP SAO CACHEADAS DENTRO DA REQUISICAO, e sem esta
+	   linha o retrato de DEPOIS do reparo e o retrato de ANTES.
+	   `file_exists()`, `filesize()`, `filemtime()`, `is_readable()` e
+	   `is_writable()` leem o cache de stat; `file_get_contents()` nao. Entao
+	   `&reparar=1`, que tira DOIS retratos na MESMA requisicao, devolve um
+	   `depois` com metade dos campos de um mundo e metade do outro — tamanho e
+	   data de porta caida ao lado de conteudo de porta de pe. E `reparado` e
+	   calculado SOBRE `existe`, logo a resposta pode dizer que a porta NAO foi
+	   consertada depois de conserta-la: REPROVACAO FALSA, que e pior que
+	   nenhuma (20.5).
+	   O CAMPO QUE ISSO CORROMPE DE PIOR E O `mtime`, que e a prova que o chamado
+	   na HostGator leva. Medido no ar nesta ilha em 20/11/2026: o diagnostico
+	   devolveu `mtime 10:18:20Z` numa leitura e `10:18:38Z` na seguinte, com o
+	   bloco ausente nas duas — numero que so vale se o instrumento nao estiver
+	   respondendo velho.
+	   DIVIDA DE 03/11/2026 PAGA AQUI EM 20/11/2026. O modelo da 29.3 nasceu sem
+	   esta linha e as tres ilhas que copiaram a rota copiaram o defeito; a
+	   rodametria e a clubedomosaico fecharam em 12/11, e esta era a ultima.
+	   Despacho NORMAL de 12/11 em `dados/despachos.md`. */
+	clearstatcache( true, $arquivo );
+
 	$regras = get_option( 'rewrite_rules' );
 
 	$retrato = array(
@@ -3988,4 +4020,884 @@ add_action( 'rest_api_init', function () {
 	) );
 } );
 
+/* =========================================================================
+ * 6. A CURA DA PORTA DE ENTRADA — a excecao nomeada da secao 29.4 do
+ *    ARQUIPELAGO.md, com as travas da 29.4-b e o contador da 29.4-c
+ *    (porte para esta ilha em 20/11/2026)
+ *
+ * ESTA ILHA ERA A UNICA NO AR SEM A CURA, e isso deixou de ser divida de
+ * engenharia e virou o motivo pelo qual a queda de 19/11 nao se curou sozinha.
+ * O despacho ALTA de 19/11/2026 escreveu a frase inteira: "a robometria NAO a
+ * tem, e agora isso esta medido no ar e nao lido em codigo —
+ * `?rest_route=/robometria/v1/casca` devolve `rest_no_route`. E a unica ilha no
+ * ar sem a cura". O item 1 do despacho de classe da Sentinela de 11/11/2026
+ * pedia isto desde entao, com duas palavras: "COPIE, NAO REINVENTE".
+ *
+ * A CONTA DESTA ILHA, medida e nao deduzida — TRES quedas desta raiz:
+ *
+ *   - 30/10/2026 a 02/11/2026: QUATRO DIAS no chao. Home em 200 e as outras 13
+ *     URLs servindo a pagina de erro da HostGator. A ronda de 30/10 mediu e nao
+ *     podia consertar, porque a rota `/rotas` desta casca ainda nao existia; o
+ *     despacho daquele dia escreveu "nao e consertavel pelo repositorio".
+ *   - 11/11/2026: achada em menos de dois dias e reparada pela propria
+ *     Sentinela as 17h54Z, lendo o token da memoria do projeto.
+ *   - 19/11/2026 a 20/11/2026: 7 de 7 paginas internas em 404, achada por
+ *     ACIDENTE pela execucao da rodametria que conferia o portao de pixel das
+ *     irmas. O despacho dela deduziu que a fabrica nao alcancava o reparo
+ *     porque "o token do Sync desta ilha nao esta no repositorio" — e isso
+ *     estava ERRADO: o token esta em claro no `PROMPT.md` desta ilha, na linha
+ *     `Sync:` da secao Endpoints, que e exatamente o erro que a 29.3-a do
+ *     contrato ja tinha documentado para a clubedomosaico. A execucao de
+ *     20/11 reparou em um minuto por essa rota.
+ *
+ * E O PRECO DELAS NAO E HIPOTETICO: esta e a ilha MELHOR POSICIONADA do
+ * arquipelago — 15 impressoes, posicao 7,2 e 10 das 14 URLs indexadas na
+ * leitura semanal de 18/11 —, e nas tres quedas ela serviu 404 ao Google. O
+ * tempo no chao foi decidido, nas tres, por QUANDO ALGUEM RODOU UM COMANDO. E
+ * essa e a frase que a 29.6 escreveu e que escrever de novo nao conserta.
+ *
+ * AS CINCO TRAVAS, e a ilha que nao as tiver todas NAO tem a excecao:
+ *
+ *   1. Dispara so com as quatro grandezas da 29.7(3) na mesa ao mesmo tempo —
+ *      bloco do WordPress ausente, `mod_rewrite` ligado, raiz e arquivo
+ *      gravaveis, e PHP vivo (que e o que o proprio gancho rodando prova).
+ *      Falta uma, nao dispara, e DIZ qual faltou.
+ *   2. No maximo UMA tentativa por hora, contada em option e gravada ANTES de
+ *      agir. Tentativa que so se registra no sucesso vira laco de reescrita da
+ *      raiz na requisicao seguinte quando o `flush` morre no meio.
+ *   3. Toda tentativa escreve UMA linha no log que o `/status` ja serve, com o
+ *      antes e o depois em BYTES e em BLOCOS — nunca o conteudo do arquivo,
+ *      porque o log do `/status` e publico e a rota de diagnostico pelo menos
+ *      pede token (29.3). E a pergunta "ha onde escrever a linha?" vem ANTES de
+ *      tocar no arquivo, nunca depois de reparar.
+ *   4. Com o bloco no lugar ela nao escreve nada e nao diz nada, nem no log.
+ *      Porta que fala quando esta de pe enche a janela de 40 linhas, e janela
+ *      cheia e item que rolou para fora dela sem ser conferido (20.4).
+ *   5. Ela nao roda na rota que MEDE a porta. Curar no meio da propria medicao
+ *      faria o retrato da 29.3 nunca mostrar a queda — e foi o `mtime` de uma
+ *      porta caida que deu prova ao chamado na HostGator. Nesta ilha isso foi
+ *      medido de novo em 20/11: o `mtime` do `.htaccess` avancou 18 segundos
+ *      entre duas leituras da rota, com o bloco ausente nas duas.
+ *
+ * O QUE ELA NAO E, e a 29.5 proibe o contrario: nao e o conserto da causa. A
+ * causa continua sem nome, o chamado na HostGator continua aberto cobrindo as
+ * raizes desta conta, e cada cura continua escrevendo uma linha na serie de
+ * `dados/consertos.md`. Ela mantem a ilha NO AR entre a queda e a resposta do
+ * fornecedor, e e isso que estava faltando aqui nas tres vezes.
+ *
+ * E ELA NAO ALCANCA `AllowOverride` DESLIGADO: nesse mundo o `flush` roda, o
+ * arquivo e gravado e o Apache continua ignorando. O log diz isso com palavra
+ * DIFERENTE da do sucesso, porque o conserto dos dois mundos nao e o mesmo e
+ * portao que reprova pelo motivo errado e o caminho mais curto para alguem
+ * passar a ignora-lo (20.5).
+ *
+ * DE ONDE ESTE CODIGO VEIO, E A UNICA DIVERGENCIA DESTA ILHA: o modelo e a
+ * SEGUNDA implementacao, a da rodametria (casca 1.29.0, secoes 14, 14-b e
+ * 14-c), que e a que o contrato manda copiar. Nela a cura escreve por DOIS
+ * caminhos porque o snippet do Sync daquela ilha nao esta no repositorio e os
+ * nomes das funcoes de log sao herdados e nao conferidos no chao. AQUI ELES
+ * ESTAO CONFERIDOS: `snippets/robometria-sync.php` mora neste repositorio, e
+ * `robometria_sync_estado()` (linha 65) e `robometria_sync_log()` (linha 75)
+ * estao lidos nele, com o log cortado em 40 linhas e o `/status` servindo as 15
+ * primeiras. O caminho de reserva — escrever a MESMA linha, na MESMA forma,
+ * direto na option — FICA de proposito, e nao por copia preguicosa: ele e o que
+ * mantem a cura viva no dia em que o Code Snippets desativar o snippet do Sync,
+ * que e a cicatriz da 20.4 medida tres vezes em quatro dias nesta fabrica. E
+ * `robometria_casca_cura_fonte_do_log()` DIZ qual dos dois caminhos esta vivo,
+ * num campo publico do `/casca`, para a leitura no ar nao precisar supor. Cura
+ * que nao consegue registrar por caminho NENHUM continua nao acontecendo.
+ *
+ * O portao sem rede e `ferramentas/teste-cura-da-porta.php`.
+ * ------------------------------------------------------------------------- */
 
+if ( ! defined( 'ROBOMETRIA_CASCA_CURA_INTERVALO' ) ) {
+	define( 'ROBOMETRIA_CASCA_CURA_INTERVALO', 3600 );
+}
+if ( ! defined( 'ROBOMETRIA_CASCA_CURA_OPTION' ) ) {
+	define( 'ROBOMETRIA_CASCA_CURA_OPTION', 'robometria_casca_cura_ultima' );
+}
+if ( ! defined( 'ROBOMETRIA_CASCA_SYNC_OPTION' ) ) {
+	define( 'ROBOMETRIA_CASCA_SYNC_OPTION', 'robometria_sync_estado' );
+}
+/* 14-c. O CONTADOR DE QUEDAS (17/11/2026). A option e `no` de autoload: ela e
+   lida pelo retrato publico e escrita SO em requisicao em que a porta ja esta
+   no chao. O intervalo de episodio e o MESMO 3600 s da trava 2, e isso nao e
+   coincidencia — esta escrito na funcao por que. */
+if ( ! defined( 'ROBOMETRIA_CASCA_PORTA_OPTION' ) ) {
+	define( 'ROBOMETRIA_CASCA_PORTA_OPTION', 'robometria_casca_porta_quedas' );
+}
+if ( ! defined( 'ROBOMETRIA_CASCA_PORTA_EPISODIO_S' ) ) {
+	define( 'ROBOMETRIA_CASCA_PORTA_EPISODIO_S', 3600 );
+}
+
+if ( ! function_exists( 'robometria_casca_cura_caminho' ) ) {
+/**
+ * O caminho do `.htaccess` da raiz, SEM carregar nada de `wp-admin/includes`.
+ *
+ * O caminho canonico e o `get_home_path()` que o diagnostico da secao 12 usa, e
+ * ele nao existe numa requisicao de visitante. Aqui vale o `ABSPATH`, e os dois
+ * coincidem em instalacao na raiz do dominio — que e o caso desta ilha
+ * (`home_url` e `site_url` sao o mesmo, medido na rota de diagnostico em
+ * 03/11/2026). Em instalacao em subpasta eles divergem, e o efeito e so perder
+ * o atalho: o pre-filtro devolve `null`, o gancho segue para o diagnostico
+ * completo, e e o caminho de LA que a cura usa. Atalho que erra para o lado de
+ * medir mais.
+ */
+function robometria_casca_cura_caminho() {
+	$raiz = function_exists( 'get_home_path' ) ? get_home_path() : ( defined( 'ABSPATH' ) ? ABSPATH : '' );
+	if ( '' === (string) $raiz ) {
+		return '';
+	}
+
+	return rtrim( (string) $raiz, '/\\' ) . DIRECTORY_SEPARATOR . '.htaccess';
+}
+}
+
+if ( ! function_exists( 'robometria_casca_cura_tem_bloco' ) ) {
+/**
+ * O bloco `# BEGIN WordPress` esta no arquivo? `true`, `false`, ou `null`.
+ *
+ * `null` e "nao sei" — arquivo ausente ou ilegivel — e nunca se le como "esta
+ * de pe". E o MESMO regex do diagnostico da secao 12, de proposito: duas
+ * leituras do mesmo fato com dois padroes diferentes e um jeito conhecido de os
+ * dois lados discordarem no dia que importa.
+ */
+function robometria_casca_cura_tem_bloco( $arquivo ) {
+	if ( '' === (string) $arquivo ) {
+		return null;
+	}
+	clearstatcache( true, $arquivo );
+	if ( ! file_exists( $arquivo ) || ! is_readable( $arquivo ) ) {
+		return null;
+	}
+	$texto = (string) @file_get_contents( $arquivo );
+
+	return (bool) preg_match( '/^#\s*BEGIN\s+WordPress\s*$/mi', $texto );
+}
+}
+
+if ( ! function_exists( 'robometria_casca_cura_decidir' ) ) {
+/**
+ * A REGRA INTEIRA, como funcao PURA: o retrato entra, a decisao sai.
+ *
+ * Nada aqui toca arquivo, option, relogio ou rede — e e isso que permite medir
+ * os mundos que nao se fabricam no disco deste conteiner. `raiz_gravavel:
+ * false` nao se encena rodando como root (o `is_writable()` do PHP responde
+ * `true` para diretorio 0444 quando quem pergunta e root), entao ele se mede
+ * aqui, com retrato fabricado. E por isso esta funcao existe separada do
+ * gancho.
+ *
+ * Devolve `motivo => null` quando nao ha NADA a dizer: porta de pe, ou hora nao
+ * vencida. Motivo preenchido e linha no log.
+ */
+function robometria_casca_cura_decidir( $retrato, $ultima, $agora, $intervalo ) {
+	$nao = function ( $motivo ) {
+		return array( 'curar' => false, 'motivo' => $motivo );
+	};
+
+	if ( ! is_array( $retrato ) || ! isset( $retrato['htaccess'] ) || ! is_array( $retrato['htaccess'] ) ) {
+		return $nao( 'o retrato da porta nao veio; a cura nao age sobre medicao que nao existe' );
+	}
+	$h = $retrato['htaccess'];
+
+	/* PORTA DE PE: o unico desfecho em que a cura nao tem nada a dizer, e e o
+	   desfecho de quase toda requisicao desta ilha. E daqui que sai a promessa
+	   "mil requisicoes nao tocam no arquivo e o log nao ganha linha" (trava 4). */
+	if ( ! empty( $h['tem_wordpress'] ) ) {
+		return $nao( null );
+	}
+
+	if ( empty( $h['existe'] ) || empty( $h['legivel'] ) ) {
+		return $nao( 'o .htaccess da raiz nao existe ou nao e legivel, e a cura nao escreve arquivo que nao consegue ler' );
+	}
+
+	/* UMA POR HORA, e o relogio e checado ANTES dos motivos de recusa. Sem
+	   isto, ilha com `mod_rewrite` desligado encheria as 40 linhas do log com a
+	   mesma frase em um minuto — e a 20.4 ja mede item que saiu da janela como
+	   item NAO conferido. */
+	if ( (int) $ultima > 0 && ( (int) $agora - (int) $ultima ) < (int) $intervalo ) {
+		return $nao( null );
+	}
+
+	if ( true !== $retrato['mod_rewrite'] ) {
+		return $nao( 'mod_rewrite nao esta ligado (' . wp_json_encode( $retrato['mod_rewrite'] ) . '); reescrever o .htaccess nao poria a porta de pe' );
+	}
+	if ( empty( $retrato['raiz_gravavel'] ) ) {
+		return $nao( 'a raiz do site nao e gravavel; o flush nao conseguiria escrever o .htaccess' );
+	}
+	if ( empty( $h['gravavel'] ) ) {
+		return $nao( 'o .htaccess existe e nao e gravavel; o flush nao conseguiria reescreve-lo' );
+	}
+	if ( empty( $retrato['ferramentas_de_admin'] ) ) {
+		return $nao( 'as funcoes de wp-admin/includes nao carregaram; sem elas o flush(true) vira flush(false) e nao encosta no arquivo' );
+	}
+
+	return array( 'curar' => true, 'motivo' => null );
+}
+}
+
+if ( ! function_exists( 'robometria_casca_cura_retrato_curto' ) ) {
+/**
+ * `1057 bytes [NFD EPC]` — o retrato que cabe numa linha de log.
+ *
+ * So bytes e NOMES de bloco. O conteudo do arquivo nao sai daqui pelo motivo da
+ * 29.3, e aqui com mais forca: `.htaccess` de hospedeiro compartilhado carrega
+ * regra de seguranca de terceiro, e o log do `/status` e PUBLICO — mais publico
+ * que a rota de diagnostico, que pelo menos pede token.
+ */
+function robometria_casca_cura_retrato_curto( $retrato ) {
+	if ( ! is_array( $retrato ) || empty( $retrato['htaccess'] ) || ! is_array( $retrato['htaccess'] ) ) {
+		return 'sem retrato';
+	}
+	$h      = $retrato['htaccess'];
+	$blocos = isset( $h['blocos'] ) && is_array( $h['blocos'] ) ? $h['blocos'] : array();
+
+	return (int) ( isset( $h['bytes'] ) ? $h['bytes'] : 0 ) . ' bytes [' . implode( ', ', $blocos ) . ']';
+}
+}
+
+if ( ! function_exists( 'robometria_casca_cura_fonte_do_log' ) ) {
+/**
+ * POR ONDE a linha da cura vai ser escrita — e e um campo publico do `/casca`.
+ *
+ * NESTA ILHA OS DOIS NOMES ESTAO CONFERIDOS NO CHAO, e isto nao e copia: o
+ * `snippets/robometria-sync.php` mora neste repositorio e as duas funcoes estao
+ * lidas nele. O campo FICA de qualquer forma, por um motivo que nao e o da ilha
+ * de origem: snippet CONFERIDO no repositorio nao e snippet CARREGADO na
+ * requisicao. O Code Snippets ja desativou snippet desta fabrica tres vezes em
+ * quatro dias (a cicatriz da 20.4), e no dia em que desativar o do Sync a cura
+ * nao pode morrer calada com ele. Este campo transforma "a cura nunca escreveu
+ * linha nenhuma" em "a cura nao achou onde escrever, e o nome procurado foi
+ * este" — e a ausencia e o sinal (20.7).
+ *
+ * `funcao:` e o caminho preferido — um escritor so, o do Sync, com a forma dele.
+ * `option:` e o de reserva, que monta a MESMA linha na MESMA forma.
+ * `null` e o unico mundo em que a cura NAO acontece por falta de registro.
+ */
+function robometria_casca_cura_fonte_do_log() {
+	if ( function_exists( 'robometria_sync_estado' ) && function_exists( 'robometria_sync_log' ) ) {
+		return 'funcao:robometria_sync_log';
+	}
+	if ( is_array( get_option( ROBOMETRIA_CASCA_SYNC_OPTION ) ) ) {
+		return 'option:' . ROBOMETRIA_CASCA_SYNC_OPTION;
+	}
+
+	return null;
+}
+}
+
+if ( ! function_exists( 'robometria_casca_cura_espera_s' ) ) {
+/**
+ * QUANTOS SEGUNDOS FALTAM PARA A CURA PODER TENTAR DE NOVO (trava 2).
+ *
+ * Funcao PURA, para o portao poder fabricar o mundo que o disco nao encena:
+ * `0` quer dizer "pode tentar agora", e qualquer numero acima de zero e a hora
+ * ainda queimada. O teto e `<`, nao `<=`, igual ao do gancho — exatamente no
+ * intervalo a hora JA venceu, e o MUNDO E-c do portao prende isso.
+ */
+function robometria_casca_cura_espera_s( $ultima, $agora, $intervalo ) {
+	$ultima    = (int) $ultima;
+	$agora     = (int) $agora;
+	$intervalo = (int) $intervalo;
+	if ( $ultima <= 0 || $intervalo <= 0 ) {
+		return 0;
+	}
+	$passado = $agora - $ultima;
+	if ( $passado >= $intervalo || $passado < 0 ) {
+		return 0;
+	}
+
+	return $intervalo - $passado;
+}
+}
+
+/* =========================================================================
+ * 14-c. O CONTADOR DE QUEDAS — A TRAVA DE UMA HORA ESCONDE APAGAMENTO, E A
+ *       SERIE DO CHAMADO ESTAVA SENDO CONTADA PELO QUE A CURA CONSEGUIU DIZER
+ *       (17/11/2026)
+ *
+ * O QUE ESTA SECAO CONSERTA, E NAO E A PORTA: E A CONTAGEM. A serie que o
+ * chamado na HostGator leva — "quatro apagamentos em cinco dias" — e montada
+ * lendo as linhas `cura da porta:` do log do `/status`. Essas linhas sao
+ * escritas pela cura, e a cura tenta NO MAXIMO UMA VEZ POR HORA (trava 2 da
+ * 29.4). Entao:
+ *
+ *   1. APAGAMENTO QUE CAI DENTRO DA HORA QUEIMADA NAO DEIXA RASTRO NENHUM. A
+ *      cura ve o bloco ausente, respeita o relogio e sai CALADA — e a 29.4 quer
+ *      que ela saia calada, porque motivo de recusa no log enche a janela e
+ *      empurra item de desembarque para fora dela (20.4). O silencio esta certo
+ *      no log e estava custando o NUMERO.
+ *   2. E O LOG E UMA JANELA QUE ROLA. Ele e cortado em 40 linhas, e um
+ *      desembarque de oito itens come oito delas. A serie de cinco dias desta
+ *      ilha so existe hoje porque execucoes a copiaram a mao para
+ *      `dados/consertos.md` antes de ela rolar para fora. Contador nao rola.
+ *
+ * ENTAO A FREQUENCIA QUE O CHAMADO USA E UM PISO, e ela estava sendo dita como
+ * se fosse a conta. E a MESMA familia do defeito que esta ilha corrigiu quatro
+ * horas atras, quando um intervalo de ~4 minutos foi escrito como se fosse uma
+ * taxa: numero que parece medicao e mede menos do que diz (secao 8). Com a
+ * diferenca de que ali o numero era grande demais e aqui e pequeno demais — e o
+ * pequeno demais e o que o fornecedor usa para fechar o chamado.
+ *
+ * O QUE ELE CONTA, E A REGRA DO EPISODIO ESTA DITA EM UMA LINHA: uma QUEDA NOVA
+ * e uma leitura do bloco ausente que vem depois de o bloco ter estado no lugar.
+ * E "ter estado no lugar" se prova por dois caminhos, cada um pegando o que o
+ * outro perde:
+ *
+ *   (a) A CURA CONFIRMOU A REPOSICAO desde a ultima leitura no chao. Esse e o
+ *       caminho exato — e e o que mede o apagamento de 17/11 as ~10h19Z, quatro
+ *       minutos depois da cura das 10:15.
+ *   (b) PASSOU MAIS DE UMA HORA SEM NENHUMA LEITURA NO CHAO. Esse e o caminho
+ *       que pega a porta levantada PELA MAO DO RAPHAEL no cPanel — que foi como
+ *       ela levantou em 06/11 —, porque nessa reposicao a cura nao confirma
+ *       nada e o caminho (a) perderia a queda seguinte.
+ *
+ * A HORA DO (b) E A MESMA DA TRAVA 2, DE PROPOSITO, e o argumento e este: numa
+ * ilha com a cura carregada, uma hora inteira sem leitura no chao e uma hora em
+ * que a cura tambem nao foi chamada, logo nada aconteceu naquela janela —
+ * tratar a leitura seguinte como queda nova e a escolha que erra para o lado de
+ * contar demais, e a 29.5 prefere isso a um chamado fechado por falta de numero.
+ * O QUE ELA PODE ERRAR, dito aqui e nao escondido: uma queda unica e longa, com
+ * uma hora inteira sem nenhuma requisicao chegando ao PHP no meio, sai contada
+ * como DUAS. O campo diz `episodios_vistos` e a leitura publica explica a regra,
+ * em vez de chamar isso de "numero de apagamentos".
+ *
+ * O QUE ELE CUSTA, e e por isso que ele cabe: ZERO em requisicao de porta de pe.
+ * O gancho sai no passo 1 com uma leitura de arquivo e nenhuma option — e isso
+ * continua valendo byte por byte, porque o contador e chamado DEPOIS daquele
+ * `return`. A escrita acontece so na requisicao em que a porta JA esta no chao,
+ * que e o mundo em que o site esta quebrado e uma linha de UPDATE e o menor dos
+ * problemas. Nao ha coalescencia de proposito: contador amostrado seria contador
+ * que diz menos do que viu, que e exatamente o defeito que esta secao conserta.
+ *
+ * AS FUNCOES SAO PURAS porque o mundo que elas medem — uma hora de relogio, uma
+ * cura entre duas leituras — nao se encena no disco deste conteiner sem queimar
+ * uma hora de verdade. E a licao do 14-b, repetida: o que nao se fabrica no
+ * disco se fabrica no retrato.
+ * ------------------------------------------------------------------------- */
+
+if ( ! function_exists( 'robometria_casca_porta_estado_normal' ) ) {
+/**
+ * O estado do contador na forma canonica — funcao PURA e TOTAL.
+ *
+ * Qualquer coisa que venha da option (array meio preenchido de uma versao
+ * anterior, `false` de option que nunca existiu, string de dado corrompido)
+ * sai daqui com as sete chaves e com os tipos certos. Contador que explode em
+ * cima de estado antigo e contador que some no dia do primeiro `deploy`.
+ */
+function robometria_casca_porta_estado_normal( $bruto ) {
+	$b = is_array( $bruto ) ? $bruto : array();
+	$i = function ( $v ) {
+		return ( is_int( $v ) || ( is_string( $v ) && ctype_digit( $v ) ) ) && (int) $v > 0 ? (int) $v : null;
+	};
+
+	return array(
+		'episodios_vistos'  => isset( $b['episodios_vistos'] ) && (int) $b['episodios_vistos'] > 0 ? (int) $b['episodios_vistos'] : 0,
+		'leituras_no_chao'  => isset( $b['leituras_no_chao'] ) && (int) $b['leituras_no_chao'] > 0 ? (int) $b['leituras_no_chao'] : 0,
+		'leituras_nao_sei'  => isset( $b['leituras_nao_sei'] ) && (int) $b['leituras_nao_sei'] > 0 ? (int) $b['leituras_nao_sei'] : 0,
+		'reposicoes'        => isset( $b['reposicoes'] ) && (int) $b['reposicoes'] > 0 ? (int) $b['reposicoes'] : 0,
+		'primeira_no_chao'  => $i( isset( $b['primeira_no_chao'] ) ? $b['primeira_no_chao'] : null ),
+		'inicio_episodio'   => $i( isset( $b['inicio_episodio'] ) ? $b['inicio_episodio'] : null ),
+		'ultima_no_chao'    => $i( isset( $b['ultima_no_chao'] ) ? $b['ultima_no_chao'] : null ),
+		'ultima_reposicao'  => $i( isset( $b['ultima_reposicao'] ) ? $b['ultima_reposicao'] : null ),
+	);
+}
+}
+
+if ( ! function_exists( 'robometria_casca_porta_contar' ) ) {
+/**
+ * UMA LEITURA DA PORTA ENTRA, UM ESTADO NOVO SAI — funcao PURA.
+ *
+ * Devolve `array( 'estado' => <novo>, 'gravar' => bool, 'novo_episodio' => bool )`.
+ * `gravar` e `false` no caso de longe mais comum, a porta de pe: ler nao e
+ * escrever, e o contador nao pode cobrar uma linha de banco por visita.
+ *
+ * `null` (nao sei) NUNCA conta como queda. E a mesma regra do M6 do portao, pelo
+ * mesmo motivo: arquivo ilegivel lido como porta caida manda abrir chamado por
+ * um defeito que ninguem mediu. Ele tem contador PROPRIO, porque "nao consegui
+ * ler a porta 300 vezes" tambem e um fato, e e um fato diferente.
+ */
+function robometria_casca_porta_contar( $estado, $tem_bloco, $agora, $episodio_s ) {
+	$e          = robometria_casca_porta_estado_normal( $estado );
+	$agora      = (int) $agora;
+	$episodio_s = (int) $episodio_s;
+
+	if ( true === $tem_bloco ) {
+		return array( 'estado' => $e, 'gravar' => false, 'novo_episodio' => false );
+	}
+
+	if ( null === $tem_bloco ) {
+		$e['leituras_nao_sei'] = $e['leituras_nao_sei'] + 1;
+
+		return array( 'estado' => $e, 'gravar' => true, 'novo_episodio' => false );
+	}
+
+	/* Daqui para baixo o bloco esta AUSENTE, e so aqui se escreve. */
+	$ultima = $e['ultima_no_chao'];
+	$repos  = $e['ultima_reposicao'];
+
+	/* OS DOIS CAMINHOS DA REGRA DO EPISODIO, e o `>=` do primeiro nao e
+	   descuido: a cura dispara na MESMA requisicao em que a leitura no chao
+	   acontece, entao a reposicao e a leitura carimbam o mesmo segundo. Com `>`
+	   o apagamento seguinte nao seria visto — e e justamente ele o que esta
+	   secao existe para contar. */
+	$novo = ( null === $ultima )
+		|| ( null !== $repos && $repos >= $ultima )
+		|| ( $episodio_s > 0 && ( $agora - $ultima ) >= $episodio_s )
+		/* Relogio andando para tras nao pode fundir dois episodios num so, pela
+		   mesma razao que ele nao pode TRANCAR a cura (14-b). */
+		|| ( $agora < $ultima );
+
+	if ( $novo ) {
+		$e['episodios_vistos'] = $e['episodios_vistos'] + 1;
+		$e['inicio_episodio']  = $agora;
+	}
+	if ( null === $e['primeira_no_chao'] ) {
+		$e['primeira_no_chao'] = $agora;
+	}
+	$e['leituras_no_chao'] = $e['leituras_no_chao'] + 1;
+	$e['ultima_no_chao']   = $agora;
+
+	return array( 'estado' => $e, 'gravar' => true, 'novo_episodio' => $novo );
+}
+}
+
+if ( ! function_exists( 'robometria_casca_porta_marcar_reposicao' ) ) {
+/**
+ * A CURA REPOS O BLOCO E A RELEITURA O ACHOU — funcao PURA.
+ *
+ * So e chamada no ramo em que `reparado` e verdadeiro. O ramo do FRACASSO (o
+ * `flush` rodou e o bloco nao voltou) NAO passa por aqui de proposito: ali o
+ * bloco segue fora, o episodio segue aberto, e marcar reposicao faria a leitura
+ * seguinte contar uma queda nova em cima de uma queda que nunca terminou.
+ */
+function robometria_casca_porta_marcar_reposicao( $estado, $agora ) {
+	$e                     = robometria_casca_porta_estado_normal( $estado );
+	$e['reposicoes']       = $e['reposicoes'] + 1;
+	$e['ultima_reposicao'] = (int) $agora;
+
+	return $e;
+}
+}
+
+if ( ! function_exists( 'robometria_casca_porta_quedas_publico' ) ) {
+/**
+ * O QUE DO CONTADOR SAI SEM TOKEN — funcao PURA.
+ *
+ * Sai contagem e sai HORA (em minuto UTC), e nada mais. Nao sai tamanho, nao
+ * sai nome de bloco, nao sai uma linha do arquivo: a 29.3 reserva isso para a
+ * rota que pede token, e `.htaccess` de hospedeiro compartilhado carrega regra
+ * de terceiro. Hora de queda da PROPRIA ilha nao e segredo do servidor — o log
+ * do `/status`, que e publico, ja carimba o minuto de cada cura desde 12/11.
+ *
+ * `duracao_minima_s` e a palavra `minima` em vez de `duracao` porque e o que o
+ * numero e: a distancia entre a primeira e a ultima leitura NO CHAO daquele
+ * episodio. A queda comecou antes da primeira leitura e pode ter terminado
+ * depois da ultima; o que esta medido e o miolo. Foi exatamente esta distincao
+ * que a execucao das 11h17Z de hoje teve de escrever a mao sobre os 27 min 20 s
+ * da segunda serie — "o limite inferior e 27min20s e nao ha limite superior
+ * medido".
+ */
+function robometria_casca_porta_quedas_publico( $estado, $agora ) {
+	$e     = robometria_casca_porta_estado_normal( $estado );
+	$agora = (int) $agora;
+	$min   = function ( $ts ) {
+		return null === $ts ? null : gmdate( 'Y-m-d H:i', (int) $ts ) . 'Z';
+	};
+
+	$ep = null;
+	if ( null !== $e['inicio_episodio'] && null !== $e['ultima_no_chao'] ) {
+		$dur = $e['ultima_no_chao'] - $e['inicio_episodio'];
+		$ep  = array(
+			'comecou'          => $min( $e['inicio_episodio'] ),
+			'ultima_no_chao'   => $min( $e['ultima_no_chao'] ),
+			'duracao_minima_s' => $dur > 0 ? $dur : 0,
+			'reposto_depois'   => null !== $e['ultima_reposicao'] && $e['ultima_reposicao'] >= $e['ultima_no_chao'],
+		);
+	}
+
+	return array(
+		/* O nome e `vistos` e nao `apagamentos` porque a regra tem duas pontas e
+		   uma delas pode contar demais. A `leitura` abaixo diz a regra inteira. */
+		'episodios_vistos'   => $e['episodios_vistos'],
+		'leituras_no_chao'   => $e['leituras_no_chao'],
+		'leituras_nao_sei'   => $e['leituras_nao_sei'],
+		'reposicoes_da_cura' => $e['reposicoes'],
+		'primeira_no_chao'   => $min( $e['primeira_no_chao'] ),
+		'episodio'           => $ep,
+		'leitura'            => 0 === $e['episodios_vistos']
+			? 'o contador nasceu e nunca viu esta porta no chao. Zero aqui NAO quer dizer que ela nunca caiu: ele conta desde que a secao 14-c entrou no ar, e as quedas anteriores estao em dados/consertos.md'
+			: 'queda nova e leitura no chao depois de o bloco ter estado no lugar — provado pela cura ter confirmado a reposicao, ou por mais de '
+				. (int) ROBOMETRIA_CASCA_PORTA_EPISODIO_S . ' s sem nenhuma leitura no chao. Este numero nao rola com a janela de 40 linhas do log, e conta tambem o apagamento que cai dentro da hora queimada da trava 2 — que no log nao deixa rastro nenhum',
+	);
+}
+}
+
+if ( ! function_exists( 'robometria_casca_porta_estado' ) ) {
+/**
+ * A leitura da option, ja normalizada. A unica funcao desta secao que toca no
+ * banco para LER, e ela e chamada no retrato publico e na requisicao em que a
+ * porta ja esta no chao — nunca no caminho barato do gancho.
+ */
+function robometria_casca_porta_estado() {
+	return robometria_casca_porta_estado_normal( get_option( ROBOMETRIA_CASCA_PORTA_OPTION, array() ) );
+}
+}
+
+if ( ! function_exists( 'robometria_casca_porta_observar' ) ) {
+/**
+ * O lado impuro, e ele e tres linhas: le, conta, grava se houve o que gravar.
+ * Devolve o estado novo, para quem chamou nao precisar reler.
+ */
+function robometria_casca_porta_observar( $tem_bloco, $agora = null ) {
+	$agora = null === $agora ? time() : (int) $agora;
+	$r     = robometria_casca_porta_contar( robometria_casca_porta_estado(), $tem_bloco, $agora, ROBOMETRIA_CASCA_PORTA_EPISODIO_S );
+	if ( ! empty( $r['gravar'] ) ) {
+		update_option( ROBOMETRIA_CASCA_PORTA_OPTION, $r['estado'], 'no' );
+	}
+
+	return $r['estado'];
+}
+}
+
+if ( ! function_exists( 'robometria_casca_porta_retrato_publico' ) ) {
+/**
+ * 14-b. O RETRATO MINIMO DA PORTA, SEM TOKEN — E ELE NASCEU DE UMA QUEDA EM QUE
+ *       TODO INSTRUMENTO PUBLICO DESTA ILHA DIZIA O QUE DIRIA COM A PORTA DE PE.
+ *
+ * MEDIDO EM 17/11/2026 ENTRE 10h19Z E 10h2xZ, com a ilha em foco total no chao:
+ * 10 das 11 URLs e as tres portas da 29.2 em 404 na pagina do hospedeiro, a home
+ * em 200, e a linha `cura da porta: bloco WordPress reposto — 1057 bytes
+ * [NFD EPC] -> 1580 bytes [NFD EPC, WordPress]` escrita as 10:15 — a cura
+ * dizendo que repos o bloco, e o Apache em 404 quatro minutos depois.
+ *
+ * DOIS MUNDOS cabem naquele retrato, e o CONSERTO DOS DOIS NAO E O MESMO:
+ *   (a) o bloco esta no arquivo e o Apache o ignora  => `AllowOverride` do lado
+ *       do hospedeiro, e pela 29.4 isso e CHAMADO e nao codigo desta ilha;
+ *   (b) o bloco foi apagado DE NOVO depois das 10:15 => o apagamento passou a
+ *       ser mais frequente que a trava de uma tentativa por hora, e a ilha fica
+ *       no chao ate a hora vencer.
+ *
+ * E NAO HAVIA COMO SEPARAR OS DOIS DESTA NUVEM. O `/status` nao ganha linha no
+ * mundo (b) de proposito — o MUNDO E do portao cobra que a hora nao vencida
+ * recuse CALADA, e a razao esta certa: motivo de recusa no log enche as 40
+ * linhas e empurra item para fora da janela da 20.4. Mas o lugar onde aquele
+ * silencio e correto e o LOG, nao o unico instrumento que esta nuvem consegue
+ * abrir: o retrato da 29.3, que responde a pergunta, exige o token do Sync, que
+ * nesta ilha nao esta no repositorio. Resultado: no mundo (b) `/casca`
+ * respondia `tem_cura_da_porta: true` e `/status` nao tinha linha nova — byte
+ * por byte o que os dois respondem com a porta DE PE. A ausencia era o sinal
+ * (20.7) e nao havia onde le-la.
+ *
+ * O QUE ISTO PUBLICA, E O QUE NAO PUBLICA DE PROPOSITO. Publica UM booleano
+ * sobre o bloco do WordPress — que e config desta ilha — e um relogio sobre a
+ * option desta ilha. NAO publica bytes, NAO publica os nomes dos outros blocos
+ * e NAO publica uma linha do arquivo: a 29.3 manda o conteudo nunca sair, e
+ * `.htaccess` de hospedeiro compartilhado carrega regra de seguranca de
+ * terceiro. O retrato com nome de bloco e tamanho continua atras do token, onde
+ * sempre esteve; aqui vai o MINIMO que separa (a) de (b), e nada mais.
+ */
+function robometria_casca_porta_retrato_publico( $tem_bloco, $espera_s, $quedas = null ) {
+	return array(
+		/* `true`, `false` ou `null` — e `null` e "nao sei" (arquivo ausente ou
+		   ilegivel), que nunca se le como "esta de pe". */
+		'tem_bloco_wordpress' => ( null === $tem_bloco ) ? null : (bool) $tem_bloco,
+		/* 0 = a cura pode tentar na proxima requisicao. */
+		'cura_liberada_em_s'  => (int) $espera_s,
+		/* A LEITURA JA FEITA, para ninguem precisar refaze-la de cabeca na
+		   pressa de uma queda. As quatro frases sao as unicas quatro possiveis. */
+		'leitura'             => ( true === $tem_bloco )
+			? 'bloco no lugar: se as tres portas da 29.2 estiverem em 404 agora, o Apache esta ignorando o arquivo — AllowOverride do hospedeiro, e pela 29.4 isso e chamado e nao codigo desta ilha'
+			: ( ( null === $tem_bloco )
+				? 'nao sei: o arquivo da porta esta ausente ou ilegivel daqui, e isso nunca se le como porta de pe'
+				: ( ( (int) $espera_s > 0 )
+					? 'bloco AUSENTE e a hora da trava 2 ainda queimada: a cura nao vai tentar por mais ' . (int) $espera_s . ' s, e a ilha fica no chao ate la'
+					: 'bloco AUSENTE e a cura LIBERADA: a proxima requisicao a esta raiz deve repor o bloco e escrever a linha no /status' ) ),
+		/* 14-c. A CONTAGEM, E ELA RESPONDE A OUTRA PERGUNTA. Os tres campos
+		   acima dizem como a porta esta AGORA; este diz quantas vezes ela
+		   caiu — inclusive as quedas que caem dentro da hora queimada da
+		   trava 2 e que no log nao deixam rastro nenhum. `null` aqui quer
+		   dizer que a 14-c nao esta carregada, nunca que a porta nunca caiu:
+		   a ausencia e o sinal (20.7), e e por isso que ela e `null` e nao um
+		   zero que soaria conferido. */
+		'quedas'              => ( null === $quedas ) ? null : $quedas,
+	);
+}
+}
+
+if ( ! function_exists( 'robometria_casca_cura_registrar' ) ) {
+/**
+ * Escreve a linha NO LOG QUE O `/status` JA SERVE — nunca num log novo.
+ *
+ * A trava 3 do contrato e literal: "uma linha no log que o `/status` ja serve".
+ * Quem olha esta ilha olha aquele endpoint, e log paralelo e log que ninguem
+ * abre. O estado e relido no instante da escrita, para a linha nao ser montada
+ * sobre uma copia velha.
+ *
+ * A forma da linha — data de minuto na frente, empilhada por cima, lista
+ * cortada em 40 — e a do Sync das irmas, byte por byte. O caminho de reserva
+ * nao inventa formato: formato novo no mesmo log seria o mesmo fato dito de
+ * duas maneiras, que e a divida que esta fabrica mais paga.
+ *
+ * Devolve `false` quando nao ha caminho nenhum. Isso aqui e o cinto de
+ * seguranca, nao a trava: o gancho ja perguntou pela fonte ANTES de tocar em
+ * qualquer coisa (passo 2) e devolveu sem agir, entao este `false` so se alcanca
+ * se a fonte desaparecer entre os dois instantes.
+ */
+function robometria_casca_cura_registrar( $msg ) {
+	$fonte = robometria_casca_cura_fonte_do_log();
+	if ( null === $fonte ) {
+		return false;
+	}
+
+	if ( 0 === strpos( $fonte, 'funcao:' ) ) {
+		$estado = robometria_sync_estado();
+		robometria_sync_log( $estado, (string) $msg );
+		update_option( ROBOMETRIA_CASCA_SYNC_OPTION, $estado, 'no' );
+
+		return true;
+	}
+
+	$estado = get_option( ROBOMETRIA_CASCA_SYNC_OPTION );
+	if ( ! is_array( $estado ) ) {
+		return false;
+	}
+	if ( ! isset( $estado['log'] ) || ! is_array( $estado['log'] ) ) {
+		$estado['log'] = array();
+	}
+	array_unshift( $estado['log'], current_time( 'Y-m-d H:i' ) . ' ' . (string) $msg );
+	$estado['log'] = array_slice( $estado['log'], 0, 40 );
+	update_option( ROBOMETRIA_CASCA_SYNC_OPTION, $estado, 'no' );
+
+	return true;
+}
+}
+
+if ( ! function_exists( 'robometria_casca_cura_e_a_rota_que_mede' ) ) {
+/**
+ * A requisicao atual e a rota de diagnostico da 29.3?
+ *
+ * Se for, a cura se cala (trava 5): o retrato que a Sentinela le tem de mostrar
+ * a porta como ela esta, inclusive caida. Foi o `mtime` de uma porta caida que
+ * deu prova ao chamado na HostGator.
+ *
+ * SO A FORMA `?rest_route=` E CONFERIDA, E ISSO BASTA — nao por economia, por
+ * argumento: a unica requisicao em que esta cura poderia atropelar a medicao e
+ * a que acontece com a porta JA no chao, e com a porta no chao o caminho bonito
+ * `/wp-json/...` morre ANTES do PHP (29.1 e 29.7), entao ele nao chega aqui
+ * para ser conferido. Com a porta de pe a cura sai no primeiro passo do gancho
+ * sem tocar em nada, e o que ela faria na rota e nada de qualquer forma.
+ *
+ * E LER A SUPERGLOBAL DE SERVIDOR AQUI ESTA PROIBIDO, por uma razao que nao e
+ * de estilo: o ModSecurity deste hospedeiro recusa, EM SILENCIO, a gravacao de
+ * snippet cujo corpo a contenha — e o corpo inclui COMENTARIO, entao o nome
+ * dela nao se escreve nem aqui. Medido na clubedomosaico em 12/11/2026, na
+ * primeira versao da cura dela. O caminho bonito seria justamente o que
+ * exigiria aquela leitura, e e ele que o paragrafo acima dispensa.
+ *
+ * `$_GET` direto, e nao `filter_input( INPUT_GET, ... )`, pelo mesmo motivo das
+ * irmas: `filter_input` nao ve o que a bancada escreve em `$_GET`, e afirmacao
+ * que a bancada nao consegue produzir e afirmacao que nao existe.
+ */
+function robometria_casca_cura_e_a_rota_que_mede() {
+	$rota = isset( $_GET['rest_route'] ) ? (string) $_GET['rest_route'] : '';
+
+	return '' !== $rota && false !== stripos( $rota, '/robometria/v1/rotas' );
+}
+}
+
+if ( ! function_exists( 'robometria_casca_cura_da_porta' ) ) {
+/**
+ * O gancho. Devolve a linha que escreveu, ou `''` quando ficou calado.
+ *
+ * A ORDEM DOS PASSOS E A CONTA DO CUSTO, e ela importa: o caso de QUASE TODA
+ * requisicao e "porta de pe", e ele sai no primeiro passo com UMA leitura de
+ * arquivo de ~1,5 kB — sem option, sem `require` de `wp-admin/includes`, sem
+ * escrita. O caro so roda no mundo em que a porta JA esta no chao.
+ */
+function robometria_casca_cura_da_porta() {
+	if ( robometria_casca_cura_e_a_rota_que_mede() ) {
+		return '';
+	}
+
+	/* PASSO 1, o barato: o bloco esta la? `true` encerra aqui. `null` (arquivo
+	   ausente, ilegivel, ou raiz em subpasta) NAO encerra — segue para o
+	   diagnostico completo, que sabe achar o caminho de verdade. */
+	$tem_bloco = robometria_casca_cura_tem_bloco( robometria_casca_cura_caminho() );
+	if ( true === $tem_bloco ) {
+		return '';
+	}
+
+	$agora = time();
+
+	/* PASSO 1-b (14-c, 17/11/2026): A LEITURA E CONTADA AQUI, E AQUI E ANTES DA
+	   TRAVA DE PROPOSITO — e esta ordem e a secao inteira.
+	   Abaixo desta linha vem o relogio da trava 2, e ele faz a cura sair CALADA
+	   quando a hora esta queimada. Esse silencio esta certo (a 29.4 o quer, e o
+	   MUNDO E do portao o cobra), e ele custava o NUMERO: apagamento que cai
+	   dentro da hora queimada nao escrevia linha no log e portanto nao existia
+	   para o chamado na HostGator. Contar ANTES de perguntar a hora e o que
+	   torna essa queda visivel sem encher a janela de 40 linhas da 20.4.
+	   E ELE NAO ENCARECE A PORTA DE PE: este ponto so e alcancado quando o
+	   passo 1 ja disse que o bloco NAO esta no lugar. */
+	if ( function_exists( 'robometria_casca_porta_observar' ) ) {
+		robometria_casca_porta_observar( $tem_bloco, $agora );
+	}
+
+	$ultima = (int) get_option( ROBOMETRIA_CASCA_CURA_OPTION, 0 );
+	if ( $ultima > 0 && ( $agora - $ultima ) < ROBOMETRIA_CASCA_CURA_INTERVALO ) {
+		return '';
+	}
+
+	/* PASSO 2: HA ONDE ESCREVER A LINHA? Se nao houver, a cura NAO acontece, e
+	   o arquivo nao e tocado. A trava 3 da excecao da 29.4 nao e um enfeite do
+	   sucesso: "toda tentativa escreve UMA linha no log", e a ilha que nao tem
+	   as cinco travas nao tem a excecao. Cura sem linha e exatamente a porta
+	   que se conserta CALADA que a 29.4 recusou — a palavra que carrega aquele
+	   argumento inteiro.
+	   E ESTA CHECAGEM VEM ANTES DE QUALQUER ESCRITA, de proposito: na primeira
+	   implementacao (clubedomosaico, secao 6-b) ela mora DEPOIS do reparo, e o
+	   comentario de la promete que "a cura NAO acontece" quando nao ha log —
+	   mas o `reparar_rotas()` ja rodou quando o registro falha. O codigo cura e
+	   a prosa diz que nao, que e a familia do comentario que declara mecanismo
+	   da 32.5-d. Esta ilha nao pode editar aquela (secao 3), entao virou
+	   despacho em `dados/despachos.md`.
+	   A RECUSA NAO E CALADA, e e isso que a faz medivel em vez de silenciosa:
+	   `/casca` serve `fonte_do_log_da_cura: null` no mesmo instante, sem token,
+	   e a ausencia e o sinal (20.7). */
+	if ( null === robometria_casca_cura_fonte_do_log() ) {
+		return 'cura da porta NAO disparou: nao ha onde escrever a linha da tentativa '
+			. '(nem a funcao de log do Sync nem a option ' . ROBOMETRIA_CASCA_SYNC_OPTION
+			. '), e cura que nao conta e o que a 29.4 recusou';
+	}
+
+	$antes   = robometria_casca_diagnostico_rotas();
+	$decisao = robometria_casca_cura_decidir( $antes, $ultima, $agora, ROBOMETRIA_CASCA_CURA_INTERVALO );
+
+	/* A TENTATIVA E GRAVADA ANTES DE AGIR (trava 2). Se o `flush` morrer no
+	   meio — e ele escreve na porta de entrada do site —, a requisicao seguinte
+	   encontra a hora ja queimada e nao tenta de novo. Marcar depois seria um
+	   laco de reescrita da raiz a cada visita, que e a coisa exata que a 29.4
+	   recusou. */
+	update_option( ROBOMETRIA_CASCA_CURA_OPTION, $agora, 'no' );
+
+	if ( empty( $decisao['curar'] ) ) {
+		if ( null === $decisao['motivo'] ) {
+			return '';
+		}
+		$linha = 'cura da porta NAO disparou: ' . $decisao['motivo'] . ' — ' . robometria_casca_cura_retrato_curto( $antes );
+		robometria_casca_cura_registrar( $linha );
+
+		return $linha;
+	}
+
+	$r      = robometria_casca_reparar_rotas();
+	$depois = isset( $r['depois'] ) ? $r['depois'] : $antes;
+
+	if ( ! empty( $r['reparado'] ) ) {
+		$linha = 'cura da porta: bloco WordPress reposto — '
+			. robometria_casca_cura_retrato_curto( $antes ) . ' -> ' . robometria_casca_cura_retrato_curto( $depois );
+		/* 14-c: SO O RAMO DO SUCESSO FECHA O EPISODIO. No ramo de baixo o
+		   `flush` rodou e a releitura NAO achou o bloco — ali o episodio segue
+		   aberto, e marcar reposicao faria a leitura seguinte contar uma queda
+		   nova em cima de uma queda que nunca terminou. E a mesma razao por que
+		   as duas palavras do log sao diferentes: o conserto dos dois mundos
+		   nao e o mesmo (20.5). */
+		if ( function_exists( 'robometria_casca_porta_marcar_reposicao' ) ) {
+			update_option( ROBOMETRIA_CASCA_PORTA_OPTION,
+				robometria_casca_porta_marcar_reposicao( robometria_casca_porta_estado(), $agora ), 'no' );
+		}
+	} else {
+		$linha = 'cura da porta FALHOU: o flush rodou e o bloco WordPress NAO voltou — '
+			. robometria_casca_cura_retrato_curto( $antes ) . ' -> ' . robometria_casca_cura_retrato_curto( $depois )
+			. ( empty( $r['motivo'] ) ? '. AllowOverride desligado do lado do hospedeiro? Pela 29.4 isto e chamado, nao codigo desta ilha' : '. ' . $r['motivo'] );
+	}
+	robometria_casca_cura_registrar( $linha );
+
+	return $linha;
+}
+}
+
+/* O gancho e `wp_loaded`, e nao `init`: ele roda DEPOIS de todo snippet ter
+   carregado, entao a funcao de log do Sync existe e a linha tem onde cair. E
+   roda em requisicao REST tambem, de proposito — quando a porta cai, o caminho
+   bonito morre ANTES do PHP, e o que continua chegando aqui e a home e a query
+   na raiz (29.1). Curar so no caminho bonito seria curar pela porta que esta no
+   chao. */
+add_action( 'wp_loaded', 'robometria_casca_cura_da_porta', 99 );
+
+/* =========================================================================
+ * 6-b. O RETRATO PUBLICO DA CASCA — a rota `/casca`, SEM TOKEN
+ *      (20/11/2026, com a secao 6)
+ *
+ * ESTA ILHA NAO TINHA ESTA ROTA, e a ausencia dela foi medida no ar e nao lida
+ * em codigo: o despacho ALTA de 19/11/2026 registra
+ * `?rest_route=/robometria/v1/casca` devolvendo `rest_no_route`, e foi por isso
+ * que a pergunta "esta ilha tem a cura?" nao teve instrumento nenhum durante a
+ * queda. A ausencia era o sinal (20.7) e nao havia onde le-la.
+ *
+ * POR QUE SEM TOKEN, e o argumento e o da 29.3 lido pelo que ela PROIBE: o que
+ * nao sai sem token e segredo do SERVIDOR — bytes, nome dos outros blocos do
+ * `.htaccess`, uma linha do arquivo. Um booleano sobre a existencia de uma
+ * FUNCAO desta ilha, e um booleano sobre o bloco do WordPress da propria ilha,
+ * nao sao segredo de ninguem; o retrato com nome de bloco e tamanho continua
+ * atras do token, onde a 29.3 o pos.
+ *
+ * O ESCOPO DESTA ROTA E O DO DESPACHO QUE A PEDIU, e isso esta dito para
+ * ninguem a ler como incompleta: ela serve a PORTA. O espelho do manifest das
+ * irmas — `versoes` por `id` de snippet e o mapa de `paginas` — e outra coisa,
+ * com portao proprio, e nao entra aqui de carona.
+ * ------------------------------------------------------------------------- */
+
+add_action( 'rest_api_init', function () {
+	if ( ! function_exists( 'register_rest_route' ) ) {
+		return;
+	}
+	register_rest_route( 'robometria/v1', '/casca', array(
+		'methods'             => 'GET',
+		'permission_callback' => '__return_true',
+		'callback'            => function () {
+			return array(
+				'versao_casca'         => ROBOMETRIA_CASCA_VERSAO,
+				/* A purga de cache, pelo mesmo argumento dos campos abaixo: e
+				   um booleano sobre funcao desta ilha. */
+				'tem_purga_de_cache'   => function_exists( 'robometria_casca_purgar_cache' ),
+				/* A CURA DA PORTA (secao 6). `tem_cura_da_porta` diz se a
+				   excecao da 29.4 esta CARREGADA nesta ilha — nao se o snippet
+				   esta gravado, e sim se a funcao existe na requisicao, que e a
+				   diferenca que a cicatriz da 20.4 cobra. `fonte_do_log_da_cura`
+				   diz POR ONDE a linha dela sairia: `funcao:` pela do Sync,
+				   `option:` pelo caminho de reserva, `null` quando nao ha
+				   caminho nenhum e a cura, por desenho, NAO acontece. Sem este
+				   par, "a cura nunca escreveu linha nenhuma" e indistinguivel de
+				   "a cura nunca precisou escrever" — a primeira e um defeito e a
+				   segunda e o desfecho sadio. */
+				'tem_cura_da_porta'    => function_exists( 'robometria_casca_cura_da_porta' ),
+				'fonte_do_log_da_cura' => function_exists( 'robometria_casca_cura_fonte_do_log' )
+					? robometria_casca_cura_fonte_do_log() : null,
+				/* 29.4-b O RETRATO MINIMO DA PORTA. Os dois campos acima dizem
+				   se a cura esta carregada e por onde ela falaria; nenhum dos
+				   dois diz se a porta esta de pe AGORA — e foi essa a pergunta
+				   que esta nuvem nao conseguia responder sem o token nas tres
+				   quedas desta raiz. `tem_bloco_wordpress: null` e "nao sei"
+				   (arquivo ausente ou ilegivel) e NUNCA se le como porta de pe. */
+				'porta'                => function_exists( 'robometria_casca_porta_retrato_publico' )
+					? robometria_casca_porta_retrato_publico(
+						robometria_casca_cura_tem_bloco( robometria_casca_cura_caminho() ),
+						robometria_casca_cura_espera_s(
+							(int) get_option( ROBOMETRIA_CASCA_CURA_OPTION, 0 ),
+							time(),
+							ROBOMETRIA_CASCA_CURA_INTERVALO
+						),
+						/* 29.4-c O contador entra por AQUI, e nao de dentro do
+						   retrato, para o retrato continuar PURO e o portao
+						   poder fabricar o estado que o disco deste conteiner
+						   nao encena. */
+						function_exists( 'robometria_casca_porta_quedas_publico' )
+							? robometria_casca_porta_quedas_publico( robometria_casca_porta_estado(), time() )
+							: null
+					) : null,
+			);
+		},
+	) );
+} );

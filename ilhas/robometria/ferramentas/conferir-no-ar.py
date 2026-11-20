@@ -466,6 +466,23 @@ def main():
        'a revisao aplicada e a do manifest',
        'ar %s / manifest %s' % (estado.get('revisao'), revisao_esperada))
 
+    # A LINHA DA CURA DENTRO DA JANELA DO DESEMBARQUE — a regua da 20.4
+    # consertada na mesma passada em que esta ilha recebeu a cura (29.4).
+    # Ela SAI da conta de itens e ganha afirmacoes PROPRIAS; nunca e descartada
+    # em silencio. Na maioria dos dias nao havera nenhuma, e isso e a trava 4
+    # funcionando — porta que fala quando esta de pe enche a janela de 40
+    # linhas, e janela cheia e item que rolou para fora dela sem ser conferido.
+    itens_da_revisao, curas_da_revisao = itens_e_curas_da_janela(estado.get('log'))
+    print('\n0-a. A JANELA DO LOG (20.4) — %d item(ns) de desembarque e %d linha(s) de cura'
+          % (len(itens_da_revisao), len(curas_da_revisao)))
+    if not curas_da_revisao:
+        print('  --    nenhuma linha `cura da porta:` na janela — pela trava 4 da 29.4'
+              ' esse e o silencio da porta DE PE, nao ausencia de instrumento')
+    for linha in curas_da_revisao:
+        print('  linha: %s' % linha)
+        for cond, rotulo, medido in afirmacoes_da_linha_da_cura(linha):
+            ok(cond, rotulo, medido)
+
     conferir_porta_de_entrada(carimbo)
 
     for caminho, nome in PAGINAS:
@@ -540,6 +557,293 @@ def buscar_com_tipo(url, tentativas=3):
     return '', '000', ''
 
 
+
+# =============================================================================
+# A PORTA DE ENTRADA NOMEADA PELA CAUSA — as grandezas da 29.7(3), a regua da
+# linha da cura (20.4) e o retrato publico da 29.4-b/29.4-c
+# (20/11/2026, na mesma passada em que esta ilha recebeu a cura da porta)
+#
+# POR QUE ISTO NASCEU AQUI E AGORA. Esta ilha era a UNICA no ar sem a cura da
+# porta da 29.4, e o despacho ALTA de 19/11/2026 mediu a consequencia: 7 de 7
+# paginas internas em 404 e a fabrica sem instrumento para dizer o que fazer. O
+# `conferir_porta_de_entrada()` acima media as tres portas uma a uma e
+# devolvia, na queda, SEIS reprovacoes espalhadas — cada uma verdadeira e
+# nenhuma dizendo o que fazer. A 29.4 manda que a ilha que recebe a cura receba
+# as afirmacoes dela na MESMA passada, e e isso que este bloco e.
+#
+# AS TRES QUEDAS DESTA RAIZ, para o numero nao sair de cabeca: 30/10 a 02/11
+# (quatro dias), 11/11, e 19/11 a 20/11. Nas tres o tempo no chao foi decidido
+# por quando alguem rodou um comando.
+#
+# AS FUNCOES SAO PURAS DE PROPOSITO, e e isso que faz o `--autoteste` fabricar
+# o mundo em vez de esperar que ele aconteca: nenhuma queda se encena no disco
+# deste conteiner, e regua de queda que so roda na queda e regua que estreia no
+# pior dia.
+# =============================================================================
+
+# O FECHO DE REVISAO, que e o que corta a janela da 20.4. O corte e POSICIONAL:
+# o log vem do mais novo para o mais velho, entao a janela da revisao corrente
+# vai do topo ate o fecho ANTERIOR, exclusive.
+REV_RE = re.compile(r'revis\w*\s+(\d+)\s*:')
+
+# A LINHA DA CURA DA PORTA (29.4), que mora no MESMO log do desembarque e NAO e
+# item dele. O nome e escrito pela casca em `robometria_casca_cura_registrar()`;
+# a forma e a que a trava 3 exige — o antes e o depois em bytes E em blocos.
+#
+# O RECONHECIMENTO E PELA FRASE `cura da porta:`, NUNCA PELO NOME DO ARQUIVO, e
+# isso e a 20.4 lida ao pe da letra: um snippet chamado `cura-da-porta` sendo
+# APLICADO **e** item de desembarque, e tira-lo da conta seria o mesmo furo pelo
+# avesso. O MUNDO 4 do autoteste prende essa confusao.
+CURA_RE = re.compile(r'cura da porta\s*:')
+CURA_FORMA_RE = re.compile(
+    r'cura da porta:.*?(\d+)\s*bytes\s*\[([^\]]*)\]\s*->\s*(\d+)\s*bytes\s*\[([^\]]*)\]')
+
+
+def diagnostico_da_porta(cod_home, cods_das_portas, rest_vivo, porta_publica=None):
+    """A ASSINATURA DA 29, NOMEADA — ou None quando ela nao esta na mesa.
+
+    Dez vezes no Arquipelago com a mesma cara, e TRES delas nesta ilha. Sempre
+    as mesmas quatro grandezas juntas: a HOME em 200, as TRES portas da 29.2 em
+    404, o REST VIVO por `?rest_route=` e o caminho bonito morto. O que isso
+    quer dizer tem nome e tem conserto, e os dois estao na 29: o bloco
+    `# BEGIN WordPress` saiu do `.htaccess` da raiz.
+
+    O QUE ELA NAO AFIRMA, e e por isso que cobra as quatro juntas: se a home
+    TAMBEM estiver morta, ou se o REST estiver morto nas duas formas, nao e esta
+    a causa — e esta funcao devolve None em vez de nomear a errada. Causa
+    inventada e a proxima execucao consertando a coisa errada (29.5).
+
+    A QUINTA E A SEXTA GRANDEZA entram pelo `porta_publica`, o retrato minimo
+    que o `/casca` desta ilha passou a servir SEM TOKEN em 20/11/2026. Sem ele a
+    linha DIZ que nao separou os dois mundos, em vez de escolher um e soar
+    conferida.
+    """
+    if cod_home != 200 or not rest_vivo:
+        return None
+    if not cods_das_portas or any(c == 200 for c in cods_das_portas):
+        return None
+
+    return ('29: A PORTA DE ENTRADA CAIU, e a assinatura e a conhecida — home em 200, '
+            'as %d portas da 29.2 em %s, e o REST VIVO por `?rest_route=`. O WordPress '
+            'esta de pe e o Apache parou de lhe mandar caminho bonito: e o bloco '
+            '`# BEGIN WordPress` fora do `.htaccess` da raiz. CONSERTO: o '
+            '`flush_rewrite_rules( true )` da 29.3 — '
+            '`?rest_route=/robometria/v1/rotas&token=<token do Sync>&reparar=1`, ou '
+            'Salvar em Configuracoes > Links permanentes no wp-admin. O TOKEN DESTA '
+            'ILHA ESTA NO REPOSITORIO, na linha `Sync:` do `PROMPT.md` dela: o '
+            'despacho ALTA de 19/11/2026 afirmou o contrario e por isso pediu gesto do '
+            'Raphael para um reparo que saiu desta nuvem em um minuto no dia seguinte. '
+            'Pela 29.3-a, TENTE antes de escrever que nao da — causa de impossibilidade '
+            'envelhece. E desde 20/11/2026 esta ilha tem a cura da porta da 29.4 '
+            '(casca 1.16.0, secao 6), o que muda o que esta linha significa: com a cura '
+            'carregada, porta no chao e a cura LIVRE e um mundo que se conserta na '
+            'proxima requisicao. (Ocorrencias no Arquipelago: clubedomosaico 24/09, '
+            '05/10, 08/10 e tres vezes em 11-12/11; robometria 30/10, 11/11 e 19-20/11; '
+            'rodametria 05/11 e 17/11.) %s'
+            % (len(cods_das_portas), '/'.join(str(c) for c in cods_das_portas),
+               leitura_do_retrato_da_porta(porta_publica))
+            + leitura_do_contador_da_porta(porta_publica))
+
+
+def diagnostico_das_quatro_grandezas(cod_home, cods_das_portas, rest_vivo):
+    """A REGUA VELHA, DE PROPOSITO — as QUATRO grandezas e nada mais.
+
+    Ela existe para o autoteste poder OBRIGAR as duas a discordar (20.8).
+    Autoteste em que a regua velha e a nova concordam nao mede conserto nenhum:
+    mede o mundo. Esta e identica a de cima nas quatro grandezas, e e justamente
+    isso que tem de ser verdade nos dois mundos que a quinta separa.
+    """
+    if cod_home != 200 or not rest_vivo:
+        return None
+    if not cods_das_portas or any(c == 200 for c in cods_das_portas):
+        return None
+
+    return '29: A PORTA DE ENTRADA CAIU (quatro grandezas). CONSERTO: rode o flush.'
+
+
+def leitura_do_retrato_da_porta(porta_publica):
+    """A QUINTA GRANDEZA LIDA — e, quando ela nao foi lida, DIZER ISSO.
+
+    Nao escolhe mundo por omissao: retrato ausente devolve a frase que declara a
+    ausencia. "Nao medido" escrito e informacao; "nao medido" lido como um dos
+    dois vereditos e a familia do comentario que declara mecanismo — parece
+    conferido e nao mede nada (32.5-d).
+
+    OS DOIS MUNDOS, e os consertos sao OPOSTOS: (a) o bloco esta no arquivo e o
+    Apache o ignora => `AllowOverride` desligado, e pela 29.4 isso e CHAMADO;
+    (b) o bloco foi apagado de novo e a trava de uma tentativa por hora ainda
+    esta queimada => a ilha volta quando a hora vencer, e nao ha chamado a abrir
+    por esta leitura. Mandar abrir chamado em (b), ou mandar esperar em (a), sao
+    os dois erros que a 20.5 nomeia.
+    """
+    if not isinstance(porta_publica, dict) or 'tem_bloco_wordpress' not in porta_publica:
+        return ('E A QUINTA GRANDEZA NAO FOI LIDA, e por isso esta linha NAO separa os '
+                'dois mundos: `/casca` nao serviu o campo `porta` (casca anterior a '
+                '1.16.0 nesta ilha, ou o campo caiu). Sem ele nao se sabe se o bloco '
+                'esta no arquivo e o Apache o ignora (AllowOverride => chamado) ou se '
+                'ele foi apagado de novo com a hora da trava 2 queimada (=> esperar).')
+
+    tem = porta_publica.get('tem_bloco_wordpress')
+    espera = porta_publica.get('cura_liberada_em_s')
+    try:
+        espera = int(espera)
+    except (TypeError, ValueError):
+        espera = None
+
+    if tem is None:
+        return ('E A QUINTA GRANDEZA DIZ `nao sei`: o arquivo da porta esta ausente ou '
+                'ilegivel para o PHP desta ilha, e isso NUNCA se le como porta de pe. '
+                'O retrato com token (29.3) e quem fecha este caso.')
+    if tem is True:
+        return ('E A QUINTA GRANDEZA FECHA A CAUSA, E ELA NAO E DESTA FABRICA: o bloco '
+                '`# BEGIN WordPress` ESTA no arquivo e o Apache esta em 404 de todo '
+                'jeito. Rodar o `flush` outra vez nao muda nada — isto e '
+                '`AllowOverride` desligado do lado do hospedeiro, e pela 29.4 o desfecho '
+                'e CHAMADO na HostGator sobre o `.htaccess` da raiz, nao codigo de ilha '
+                'nenhuma.')
+    if espera and espera > 0:
+        return ('E A QUINTA GRANDEZA DIZ QUE NAO HA O QUE CONSERTAR AQUI AGORA: o bloco '
+                'esta AUSENTE e a trava 2 da 29.4 (uma tentativa por hora) ainda tem '
+                '%d s queimados, entao a cura nao vai tentar antes disso e a ilha fica '
+                'no chao ate la. O apagamento passou a ser mais frequente que a trava — '
+                'isso e materia do chamado, nao conserto de codigo.' % espera)
+
+    return ('E A QUINTA GRANDEZA DIZ QUE ESTA PASSADA MESMA CONSERTA: bloco AUSENTE com '
+            'a cura LIVRE. Abra a raiz desta ilha com uma quebra de cache, que e o que '
+            'dispara o gancho, e releia o `/status` procurando a linha `cura da porta:`.')
+
+
+def leitura_do_contador_da_porta(porta_publica):
+    """A SEXTA GRANDEZA — A FREQUENCIA, QUE E O ARGUMENTO DO CHAMADO (29.4-c).
+
+    As cinco grandezas dizem O QUE esta errado e QUAL dos dois consertos e o
+    certo. Nenhuma diz QUANTAS VEZES — e a frequencia e a unica coisa que o
+    chamado na HostGator ainda nao tinha medida, porque ela era contada pelas
+    linhas `cura da porta:` do log, e a cura tenta no maximo uma vez por hora.
+    Apagamento que cai dentro da hora queimada nao escreve linha nenhuma; e o
+    log e uma janela de 40 linhas que ROLA. Contador nao rola.
+
+    Devolve STRING VAZIA quando nao ha contador, e nao uma frase dizendo zero:
+    casca sem a 14-c nao tem o campo, e zero aqui soaria "nunca caiu" com cara
+    de conferido. A ausencia e o sinal (20.7), e o campo e `null` por isso.
+    """
+    if not isinstance(porta_publica, dict):
+        return ''
+    q = porta_publica.get('quedas')
+    if not isinstance(q, dict):
+        return ''
+
+    try:
+        ep = int(q.get('episodios_vistos'))
+    except (TypeError, ValueError):
+        return ''
+    if ep <= 0:
+        return (' E A SEXTA GRANDEZA (a frequencia) DIZ ZERO, e zero aqui NAO quer dizer '
+                'que esta porta nunca caiu: o contador conta desde que entrou no ar em '
+                '20/11/2026, e as TRES quedas anteriores a ele estao em '
+                '`dados/consertos.md`.')
+
+    pedacos = [' E A SEXTA GRANDEZA E A FREQUENCIA, QUE E O ARGUMENTO DO CHAMADO: '
+               'o contador viu %d queda(s) nesta porta' % ep]
+    try:
+        pedacos.append(', com %d reposicao(oes) da cura' % int(q.get('reposicoes_da_cura')))
+    except (TypeError, ValueError):
+        pass
+    primeira = q.get('primeira_no_chao')
+    if isinstance(primeira, str) and primeira:
+        pedacos.append(', a primeira em %s' % primeira)
+
+    ep_atual = q.get('episodio')
+    if isinstance(ep_atual, dict):
+        try:
+            dur = int(ep_atual.get('duracao_minima_s'))
+        except (TypeError, ValueError):
+            dur = None
+        if dur is not None:
+            pedacos.append('. A queda corrente: pelo menos %d s no chao, medidos entre a '
+                           'primeira e a ultima leitura (%s a %s) — e `pelo menos` porque '
+                           'ela comecou antes da primeira leitura e pode nao ter terminado '
+                           'na ultima'
+                           % (dur, ep_atual.get('comecou'), ep_atual.get('ultima_no_chao')))
+        if ep_atual.get('reposto_depois') is True:
+            pedacos.append('. A cura repos o bloco DEPOIS da ultima leitura no chao, '
+                           'entao esta queda ja terminou do lado do arquivo')
+
+    pedacos.append('. ESTE NUMERO NAO ROLA com a janela de 40 linhas do log e conta '
+                   'tambem o apagamento que cai DENTRO da hora queimada da trava 2, que '
+                   'no log nao deixa rastro nenhum. Copie-o para `dados/consertos.md` '
+                   'antes de ele ser a unica copia.')
+
+    return ''.join(pedacos)
+
+
+def itens_e_curas_da_janela(log):
+    """SEPARA A LINHA DA CURA DOS ITENS DO DESEMBARQUE — a regua da 20.4.
+
+    POR QUE ISTO E NECESSARIO, e o custo foi medido na rodametria em 12/11/2026,
+    2h45 depois de a cura dela ir ao ar: o log vem do mais novo para o mais
+    velho, o corte da 20.4 e POSICIONAL, e a linha da cura caiu DENTRO do grupo
+    da revisao corrente. A conta de itens acusou 8 declarados contra 9 lidos, e
+    a afirmacao positiva do `ok` reprovou uma linha que NUNCA vai dizer `ok`,
+    porque nao e um item sendo aplicado. O portao reprovou a ilha sa, e o
+    defeito era da regua.
+
+    A LINHA DA CURA SAI DA CONTA DE ITENS E GANHA AFIRMACOES PROPRIAS. Nunca e
+    descartada em silencio: linha de classe nova descartada e o mesmo que item
+    que rolou para fora da janela — aprovar sobre o que sobrou.
+
+    Devolve (itens, curas) da janela da revisao corrente: do topo ate o fecho
+    anterior, exclusive.
+    """
+    linhas = [l for l in (log or []) if isinstance(l, str)]
+    janela = []
+    for i, l in enumerate(linhas):
+        if REV_RE.search(l) and i > 0:
+            break
+        janela.append(l)
+
+    curas = [l for l in janela if CURA_RE.search(l)]
+    itens = [l for l in janela if not CURA_RE.search(l)]
+
+    return itens, curas
+
+
+def afirmacoes_da_linha_da_cura(linha):
+    """AS AFIRMACOES PROPRIAS DA LINHA DA CURA (trava 3 da 29.4).
+
+    Devolve lista de (condicao, rotulo, medido). Funcao pura: o autoteste
+    fabrica a linha, inclusive as deformadas.
+
+    O que ela cobra, lido DA LINHA e nao do codigo que a escreveu: o antes e o
+    depois em bytes E em blocos; o bloco do WordPress presente no DEPOIS; o
+    arquivo NAO encolhendo (repor bloco nao diminui arquivo — linha que diga
+    isso e sinal de que a cura CORTOU em vez de repor); e NENHUM conteudo do
+    `.htaccess` dentro da linha, porque o log do `/status` e publico e a 29.3
+    poe o conteudo do arquivo atras do token.
+    """
+    m = CURA_FORMA_RE.search(linha or '')
+    if not m:
+        return [(False,
+                 'a linha da cura tem a forma da trava 3 (bytes e blocos, antes -> depois)',
+                 (linha or '(vazia)')[:90])]
+
+    antes_b, antes_bl, depois_b, depois_bl = int(m.group(1)), m.group(2), int(m.group(3)), m.group(4)
+    blocos_depois = [b.strip() for b in depois_bl.split(',') if b.strip()]
+
+    return [
+        (True, 'a linha da cura tem a forma da trava 3 (bytes e blocos, antes -> depois)',
+         '%d [%s] -> %d [%s]' % (antes_b, antes_bl, depois_b, depois_bl)),
+        (any(b.lower() == 'wordpress' for b in blocos_depois),
+         'o bloco WordPress esta no DEPOIS da linha da cura', depois_bl or '(vazio)'),
+        (depois_b >= antes_b,
+         'o arquivo NAO encolheu: repor bloco nao diminui .htaccess',
+         '%d -> %d bytes' % (antes_b, depois_b)),
+        (not re.search(r'Rewrite(Rule|Cond|Engine|Base)|<IfModule', linha, re.I),
+         'a linha da cura NAO carrega conteudo do .htaccess (29.3)',
+         '%d caracteres' % len(linha)),
+    ]
+
+
 def conferir_porta_de_entrada(carimbo):
     """AS TRES URLs QUE O GOOGLE USA E NENHUMA PAGINA LINKA — secao 29.2.
 
@@ -600,6 +904,77 @@ def conferir_porta_de_entrada(carimbo):
            '%d bytes' % len(corpo))
         ok('Robometria' in corpo,
            'o 404 e a pagina da PROPRIA ilha', '%d bytes' % len(corpo))
+
+    # ------------------------------------------------------------------
+    # A CAUSA NOMEADA (29.7(3)) E O RETRATO PUBLICO DA PORTA (29.4-b/c)
+    #
+    # ATE 20/11/2026 ESTA FUNCAO TERMINAVA ACIMA, e na queda ela devolvia seis
+    # reprovacoes espalhadas — cada uma verdadeira e nenhuma dizendo o que
+    # fazer. Foi assim que a queda de 19/11 saiu do relatorio de uma execucao
+    # que estava medindo outra coisa.
+    #
+    # E O PORTAO QUE MEDE A PORTA NAO ENTRA POR ELA (29.7): a leitura do REST
+    # aqui e por `?rest_route=`, nunca pelo caminho bonito `/wp-json/...`.
+    # Com a porta no chao o caminho bonito morre ANTES do PHP, entao ler por
+    # ele mediria a porta duas vezes e nunca o WordPress. A forma bonita
+    # continua cobrada acima, como afirmacao da 29.2 — o que muda e que as
+    # OUTRAS afirmacoes param de depender dela.
+    cods_das_portas = []
+    for caminho, _r, _t, _m in PORTAS:
+        _c, cod, _tp = buscar_com_tipo(DOMINIO + caminho + '?v=' + carimbo + 'b')
+        try:
+            cods_das_portas.append(int(cod))
+        except (TypeError, ValueError):
+            cods_das_portas.append(0)
+
+    _c, cod_home, _tp = buscar_com_tipo(DOMINIO + '/?v=' + carimbo + 'h')
+    try:
+        cod_home = int(cod_home)
+    except (TypeError, ValueError):
+        cod_home = 0
+
+    bruto_rest, cod_rest, _tp = buscar_com_tipo(DOMINIO + '/?rest_route=/&v=' + carimbo)
+    rest_vivo = ('200' == str(cod_rest))
+
+    # O RETRATO PUBLICO, SEM TOKEN. Ele e a quinta e a sexta grandeza, e a
+    # leitura dele NAO reprova nada por si: quem reprova e a porta no chao.
+    porta_publica = None
+    bruto_casca, cod_casca, _tp = buscar_com_tipo(
+        DOMINIO + '/?rest_route=/robometria/v1/casca&v=' + carimbo)
+    if '200' == str(cod_casca):
+        try:
+            d = json.loads(bruto_casca)
+        except Exception:
+            d = {}
+        if isinstance(d, dict):
+            ok(d.get('tem_cura_da_porta') is True,
+               'a cura da porta da 29.4 esta CARREGADA nesta ilha',
+               'tem_cura_da_porta=%s' % d.get('tem_cura_da_porta'))
+            # `fonte_do_log_da_cura` em `null` e o UNICO mundo em que a cura,
+            # por desenho, NAO acontece: ela nao tem onde escrever a linha da
+            # trava 3. Sem este campo, "a cura nunca escreveu linha nenhuma"
+            # seria indistinguivel de "a cura nunca precisou escrever".
+            ok(bool(d.get('fonte_do_log_da_cura')),
+               'a cura tem POR ONDE escrever a linha da trava 3',
+               str(d.get('fonte_do_log_da_cura')))
+            if isinstance(d.get('porta'), dict):
+                porta_publica = d['porta']
+                print('        retrato da porta: %s' % json.dumps(porta_publica,
+                                                                  ensure_ascii=False))
+    else:
+        ok(False, 'o /casca responde 200 (retrato publico da porta, 29.4-b)',
+           str(cod_casca))
+
+    causa = diagnostico_da_porta(cod_home, cods_das_portas, rest_vivo, porta_publica)
+    if causa:
+        # ELA E IMPRESSA E NAO AFIRMADA: a reprovacao ja aconteceu acima, nas
+        # tres portas. Esta linha diz o que FAZER, e transformar a causa numa
+        # afirmacao a mais somaria uma reprovacao em vez de somar informacao.
+        print('\n  >>> CAUSA NOMEADA (29.7(3)):\n      ' + causa.replace('. ', '.\n      '))
+    else:
+        ok(True, 'a assinatura da queda da porta (29) NAO esta na mesa',
+           'home %s | portas %s | REST %s' % (cod_home, cods_das_portas,
+                                              'vivo' if rest_vivo else 'morto'))
 
 def conferir_cache_do_host():
     """O ENDERECO CANONICO SERVE O QUE O SITE ACABOU DE PUBLICAR? — 14/09/2026.
@@ -1058,5 +1433,217 @@ def conferir_busca_com_resultado(carimbo):
     ok(not zeradas, 'nenhum registro publicavel tem palavra-chave medida em zero',
        '%d de %d registros medidos' % (len(zeradas), len(medicao['registros'])))
 
+
+
+def autoteste():
+    """OS MUNDOS DA PORTA, FABRICADOS — porque nenhum deles se encena no disco.
+
+    POR QUE ELE EXISTE. As funcoes acima decidem, na queda, qual dos DOIS
+    consertos opostos e o certo: chamado na HostGator ou esperar a trava vencer.
+    Regua que so roda na queda e regua que estreia no pior dia possivel. Aqui os
+    mundos sao dados a ela, e cada um tem de sair com um desfecho DIFERENTE.
+
+    E A REGUA VELHA E OBRIGADA A DISCORDAR (20.8): as quatro grandezas tem de
+    ser IDENTICAS nos dois mundos que a quinta separa — se elas ja os
+    separassem, a quinta nao estaria consertando nada e este autoteste estaria
+    medindo o mundo em vez da regua.
+    """
+    global falhas, feitos
+    print('AUTOTESTE — as grandezas da porta (29.7(3)), a janela da 20.4 e a linha da cura')
+    print('=' * 78)
+
+    def diz(cond, rotulo, medido=''):
+        ok(cond, rotulo, medido)
+
+    PORTAS_CAIDAS = [404, 404, 404]
+
+    # ---- 1. A ASSINATURA NAO ESTA NA MESA: a funcao DEVOLVE None -------------
+    # Causa inventada e a proxima execucao consertando a coisa errada (29.5),
+    # entao cada um destes mundos tem de recusar o diagnostico.
+    diz(diagnostico_da_porta(200, [200, 200, 200], True) is None,
+        '1. portas em 200: nao ha causa a nomear')
+    diz(diagnostico_da_porta(200, [404, 200, 404], True) is None,
+        '1-b. UMA porta em 200 ja tira a assinatura da mesa')
+    diz(diagnostico_da_porta(500, PORTAS_CAIDAS, True) is None,
+        '1-c. home MORTA e outro mundo: a causa nao e esta')
+    diz(diagnostico_da_porta(200, PORTAS_CAIDAS, False) is None,
+        '1-d. REST morto nas duas formas e outro mundo: a causa nao e esta')
+    diz(diagnostico_da_porta(200, [], True) is None,
+        '1-e. nenhuma porta medida nao e queda medida')
+
+    # ---- 2. A ASSINATURA ESTA NA MESA ---------------------------------------
+    base = diagnostico_da_porta(200, PORTAS_CAIDAS, True)
+    diz(base is not None, '2. assinatura na mesa: a causa e nomeada')
+    diz('BEGIN WordPress' in base,
+        '2-b. a causa NOMEIA o bloco que saiu do .htaccess')
+    diz('flush_rewrite_rules' in base and 'reparar=1' in base,
+        '2-c. a causa carrega o CONSERTO, nao so o sintoma')
+    diz('ESTA NO REPOSITORIO' in base,
+        '2-d. a causa diz que o token DESTA ilha esta no repositorio — '
+        'a deducao errada de 19/11 nao volta por aqui')
+
+    # ---- 3. A QUINTA GRANDEZA SEPARA OS DOIS MUNDOS -------------------------
+    # E A REGUA VELHA TEM DE SER IDENTICA NOS DOIS. Esta e a unica prova de que
+    # a quinta grandeza conserta algo.
+    m_allowoverride = {'tem_bloco_wordpress': True,  'cura_liberada_em_s': 0}
+    m_hora_queimada = {'tem_bloco_wordpress': False, 'cura_liberada_em_s': 2057}
+    m_cura_livre    = {'tem_bloco_wordpress': False, 'cura_liberada_em_s': 0}
+    m_nao_sei       = {'tem_bloco_wordpress': None,  'cura_liberada_em_s': 0}
+
+    velha_a = diagnostico_das_quatro_grandezas(200, PORTAS_CAIDAS, True)
+    velha_b = diagnostico_das_quatro_grandezas(200, PORTAS_CAIDAS, True)
+    diz(velha_a == velha_b and velha_a is not None,
+        '3. a regua VELHA (quatro grandezas) e IDENTICA nos dois mundos (20.8)')
+
+    nova_a = diagnostico_da_porta(200, PORTAS_CAIDAS, True, m_allowoverride)
+    nova_b = diagnostico_da_porta(200, PORTAS_CAIDAS, True, m_hora_queimada)
+    diz(nova_a != nova_b,
+        '3-b. e a NOVA os separa — autoteste em que as duas concordam nao mede conserto')
+    diz('CHAMADO na HostGator' in nova_a and 'AllowOverride' in nova_a,
+        '3-c. bloco PRESENTE com portas em 404 => chamado, nao flush de novo')
+    diz('2057 s queimados' in nova_b and 'nao conserto de codigo' in nova_b,
+        '3-d. bloco AUSENTE com a hora queimada => esperar, e o numero sai do retrato')
+    nova_c = diagnostico_da_porta(200, PORTAS_CAIDAS, True, m_cura_livre)
+    diz('ESTA PASSADA MESMA CONSERTA' in nova_c,
+        '3-e. bloco AUSENTE com a cura LIVRE => abrir a raiz conserta')
+    nova_d = diagnostico_da_porta(200, PORTAS_CAIDAS, True, m_nao_sei)
+    diz('`nao sei`' in nova_d and 'NUNCA se le como porta de pe' in nova_d,
+        '3-f. `null` e "nao sei" e NUNCA porta de pe — a confusao que custa um chamado')
+
+    # ---- 4. O RETRATO QUE NAO VEIO DIZ QUE NAO VEIO -------------------------
+    # "Nao medido" escrito e informacao; "nao medido" lido como veredito e a
+    # familia do comentario que declara mecanismo (32.5-d).
+    for ruim in (None, {}, [], 'sei la', {'cura_liberada_em_s': 0}):
+        linha = diagnostico_da_porta(200, PORTAS_CAIDAS, True, ruim)
+        diz('NAO FOI LIDA' in linha,
+            '4. retrato %r: a linha DIZ que nao separou os mundos' % (ruim,))
+
+    # ---- 5. A SEXTA GRANDEZA ------------------------------------------------
+    # Ela ACRESCENTA a linha das cinco, nunca a reescreve.
+    com_contador = dict(m_hora_queimada)
+    com_contador['quedas'] = {
+        'episodios_vistos': 4, 'leituras_no_chao': 91, 'leituras_nao_sei': 0,
+        'reposicoes_da_cura': 2, 'primeira_no_chao': '2026-11-19 19:30',
+        'episodio': {'comecou': '2026-11-20 09:00',
+                     'ultima_no_chao': '2026-11-20 10:16',
+                     'duracao_minima_s': 4560, 'reposto_depois': False},
+    }
+    linha6 = diagnostico_da_porta(200, PORTAS_CAIDAS, True, com_contador)
+    diz(linha6.startswith(nova_b),
+        '5. a sexta grandeza ACRESCENTA a linha das cinco, nunca a reescreve')
+    diz('viu 4 queda(s)' in linha6 and '2 reposicao(oes)' in linha6,
+        '5-b. a frequencia sai do contador, nao do log')
+    diz('pelo menos 4560 s no chao' in linha6,
+        '5-c. a duracao e dita como PISO, porque a queda comecou antes da 1a leitura')
+    diz('NAO ROLA' in linha6 and 'consertos.md' in linha6,
+        '5-d. a linha manda copiar o numero antes de ele ser a unica copia')
+
+    # ZERO NAO E "NUNCA CAIU", e esta ilha tem TRES quedas anteriores ao contador.
+    zero = dict(m_hora_queimada)
+    zero['quedas'] = {'episodios_vistos': 0, 'leituras_no_chao': 0,
+                      'leituras_nao_sei': 3, 'reposicoes_da_cura': 0}
+    l_zero = diagnostico_da_porta(200, PORTAS_CAIDAS, True, zero)
+    diz('DIZ ZERO' in l_zero and 'TRES quedas anteriores' in l_zero,
+        '5-e. zero no contador diz o que o zero NAO prova')
+
+    # CONTADOR QUE NAO E CONTADOR NAO E PROVA DE NADA: a sexta grandeza se cala.
+    for ruim in (None, {}, [], '4', {'episodios_vistos': 'muitas'}):
+        corpo = dict(m_hora_queimada)
+        corpo['quedas'] = ruim
+        l = diagnostico_da_porta(200, PORTAS_CAIDAS, True, corpo)
+        diz(l == nova_b,
+            '5-f. `quedas` = %r: a sexta grandeza se CALA e as cinco ficam '
+            'inteiras' % (ruim,))
+
+    # ---- 6. A JANELA DA 20.4 E A LINHA DA CURA ------------------------------
+    # O corte e POSICIONAL: do topo ate o fecho ANTERIOR, exclusive.
+    CURA = ('2026-11-20 10:15 cura da porta: bloco WordPress reposto — '
+            '1057 bytes [NFD EPC] -> 1580 bytes [NFD EPC, WordPress]')
+    log = [
+        'revisao 97: 3 aplicado(s), 0 aguardando desembarque',
+        'snippets/robometria-casca: ok',
+        CURA,
+        'snippets/robometria-sync: ok',
+        'revisao 96: 1 aplicado(s), 0 aguardando desembarque',
+        'snippets/robometria-r2: ok',
+    ]
+    itens, curas = itens_e_curas_da_janela(log)
+    diz(len(curas) == 1, '6. a linha da cura e ACHADA dentro da janela corrente',
+        '%d cura(s)' % len(curas))
+    diz(len(itens) == 3,
+        '6-b. e ela SAI da conta de itens: 3 itens, nao 4 — o defeito de 12/11/2026 '
+        'da irma, em que 8 declarados contra 9 lidos reprovou a ilha sa',
+        '%d item(ns)' % len(itens))
+    diz(all(CURA_RE.search(l) is None for l in itens),
+        '6-c. nenhuma linha de cura sobrou entre os itens')
+    diz(not any('revisao 96' in l for l in itens),
+        '6-d. a janela para no fecho ANTERIOR: o corte e posicional')
+
+    # A CONFUSAO PELO AVESSO: um snippet CHAMADO cura-da-porta sendo APLICADO
+    # **e** item de desembarque, e tira-lo da conta seria o mesmo furo.
+    log_avesso = ['revisao 98: 1 aplicado(s), 0 aguardando desembarque',
+                  'snippets/robometria-cura-da-porta: ok']
+    itens2, curas2 = itens_e_curas_da_janela(log_avesso)
+    diz(len(curas2) == 0 and len(itens2) == 2,
+        '6-e. snippet CHAMADO cura-da-porta sendo aplicado CONTINUA sendo item — '
+        'o reconhecimento e pela frase `cura da porta:`, nunca pelo nome do arquivo')
+
+    # LOG VAZIO OU AUSENTE NAO EXPLODE E NAO INVENTA JANELA.
+    for vazio in (None, [], ['linha solta sem fecho de revisao']):
+        i, c = itens_e_curas_da_janela(vazio)
+        diz(isinstance(i, list) and isinstance(c, list) and not c,
+            '6-f. log %r: nenhuma cura e nenhuma excecao' % (vazio,))
+
+    # ---- 7. AS AFIRMACOES PROPRIAS DA LINHA DA CURA -------------------------
+    boas = afirmacoes_da_linha_da_cura(CURA)
+    diz(all(c for c, _r, _m in boas),
+        '7. a linha de cura BEM FORMADA passa nas quatro afirmacoes da trava 3',
+        '%d afirmacao(oes)' % len(boas))
+
+    # E CADA DEFORMACAO TEM DE REPROVAR, senao a afirmacao nao mede nada.
+    SEM_WP = ('2026-11-20 10:15 cura da porta: bloco WordPress reposto — '
+              '1057 bytes [NFD EPC] -> 1057 bytes [NFD EPC]')
+    diz(any(not c for c, _r, _m in afirmacoes_da_linha_da_cura(SEM_WP)),
+        '7-b. depois SEM o bloco WordPress REPROVA')
+
+    ENCOLHEU = ('2026-11-20 10:15 cura da porta: bloco WordPress reposto — '
+                '1580 bytes [NFD EPC, WordPress] -> 900 bytes [WordPress]')
+    rep = afirmacoes_da_linha_da_cura(ENCOLHEU)
+    diz(any(not c for c, r, _m in rep if 'NAO encolheu' in r),
+        '7-c. arquivo que ENCOLHEU reprova: repor bloco nao diminui .htaccess — '
+        'linha que diga isso e sinal de que a cura CORTOU em vez de repor')
+
+    VAZOU = ('2026-11-20 10:15 cura da porta: bloco WordPress reposto — '
+             '1057 bytes [NFD EPC] -> 1580 bytes [NFD EPC, WordPress] '
+             'RewriteRule ^index.php$ - [L]')
+    diz(any(not c for c, r, _m in afirmacoes_da_linha_da_cura(VAZOU)
+            if 'conteudo do .htaccess' in r),
+        '7-d. linha que CARREGA conteudo do .htaccess reprova (29.3): o log do '
+        '/status e publico e a rota de diagnostico pelo menos pede token')
+
+    for disforme in ('', None, 'cura da porta: deu certo',
+                     'cura da porta: 1057 -> 1580'):
+        r = afirmacoes_da_linha_da_cura(disforme)
+        diz(len(r) == 1 and not r[0][0],
+            '7-e. linha %r: a FORMA da trava 3 reprova de uma vez' % (disforme,))
+
+    # A LINHA DE RECUSA DA CURA NAO E A LINHA DE SUCESSO, e a 20.5 cobra palavra
+    # DIFERENTE: o conserto dos dois mundos nao e o mesmo.
+    FALHOU = ('2026-11-20 10:15 cura da porta FALHOU: o flush rodou e o bloco '
+              'WordPress NAO voltou — 1057 bytes [NFD EPC]')
+    diz(CURA_FORMA_RE.search(FALHOU) is None,
+        '7-f. a linha de FALHA nao e lida como sucesso: ela nao tem a forma '
+        'antes -> depois, porque nao houve depois')
+
+    print('=' * 78)
+    print('autoteste: %d afirmacoes, %d falha(s)' % (feitos, falhas))
+    print('APROVADO' if falhas == 0 else 'REPROVADO')
+    return 1 if falhas else 0
+
+
 if __name__ == '__main__':
+    # O AUTOTESTE RODA SEM REDE, de proposito: ele mede a REGUA, nunca a ilha.
+    # E por isso que o `bancada.py` desta ilha o alcanca sem `--no-ar`.
+    if '--autoteste' in sys.argv:
+        sys.exit(autoteste())
     sys.exit(main())

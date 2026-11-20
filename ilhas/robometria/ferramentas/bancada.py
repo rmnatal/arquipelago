@@ -148,6 +148,32 @@ def provar():
     return 0
 
 
+def oferece_autoteste(nome):
+    """O portao sabe se testar a si mesmo? A BANCADA PERGUNTA AO ARQUIVO.
+
+    PORTADO DA RODAMETRIA EM 20/11/2026, na passada em que esta ilha recebeu a
+    cura da porta (29.4) e o `conferir-no-ar.py` dela ganhou as grandezas da
+    29.7(3) e a regua da linha da cura.
+
+    POR QUE ELE E NECESSARIO, e a causa e a mesma que fez esta bancada nascer:
+    o `conferir-no-ar.py` e portao de REDE, entao so roda com `--no-ar` — e o
+    autoteste que mede as grandezas da porta NAO precisa de rede nenhuma.
+    Deixado de fora, ele rodaria so quando alguem se lembrasse dele, e a licao
+    desta fabrica esta escrita com todas as letras: `portao que mora no caminho
+    do trabalho roda, portao que depende de alguem lembrar nao roda`. Esta
+    bancada nasceu de uma regua que estava VERDE porque NAO TINHA RODADO.
+
+    Entao a bancada varre o fonte do portao de rede e, se ele aceitar
+    `--autoteste`, roda essa metade no conjunto SEM REDE. Nada a enumerar: o
+    autoteste entra na bancada no dia em que e escrito, como todo portao aqui.
+    """
+    try:
+        with open(os.path.join(PASTA, nome), encoding='utf-8') as fp:
+            return '--autoteste' in fp.read()
+    except (OSError, UnicodeDecodeError):
+        return False
+
+
 def classificar(nome):
     """Devolve (comando, categoria) ou (None, motivo) para o que nao roda aqui."""
     if nome.endswith('.mjs'):
@@ -184,7 +210,12 @@ def main(argv):
                 sem_convencao.append(nome)
             continue
         if cat == 'no_ar' and not com_ar:
-            fora.append(nome)
+            # O AUTOTESTE DE PORTAO DE REDE NAO PRECISA DE REDE, entao ele roda
+            # SEMPRE — inclusive nesta passada, que e a que o trabalho usa.
+            if oferece_autoteste(nome):
+                fila.append((nome, cmd + ['--autoteste'], 'sem_rede'))
+            else:
+                fora.append(nome)
             continue
         fila.append((nome, cmd, cat))
 
