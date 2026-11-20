@@ -75,6 +75,60 @@ VITRINE = os.path.join(RAIZ, 'dados', 'vitrine-de-produto.json')
 VEICULOS = os.path.join(RAIZ, 'dados', 'veiculos.json')
 
 PISO_DA_30_2 = 3
+
+# A FORMA DO MOLDE DA CAMADA DECLARADA, NUM LUGAR SO. Ela e a mesma que
+# `rdm_produto_preencher()` do snippet substitui — `{` + MAIUSCULA + maiusculas,
+# digitos e sublinhado + `}` — e e a mesma que a trava de digito do `--conferir`
+# usa para tirar os moldes antes de procurar numero. Tres copias da mesma forma
+# em tres arquivos e a 20.7 escrita de novo.
+MOLDE_DECLARADO = _re.compile(r'\{[A-Z][A-Z0-9_]*\}')
+
+
+def voz_sem_vitrine(editorial, pag):
+    """A VOZ DECLARADA QUE A PAGINA SEM VITRINE SERVE (20/11/2026).
+
+    QUEM DECIDE NO AR E O PHP (`rdm_produto_voz_sem_vitrine()`), e esta e a
+    TRADUTORA dela, frase a frase — o mesmo desenho que esta fabrica usa entre
+    `cobertura-r1.py` e o PHP da Robometria. Ela mora aqui, no dono da camada
+    declarada, e e IMPORTADA por quem precisa dela: o `--conferir` deste arquivo,
+    que cobra o arquivo, e `conferir-produto-no-ar.py`, que cobra o ar. Escrita
+    tres vezes, ela comecaria igual e so uma seria corrigida.
+
+    A REGUA: string sem molde e verdadeira sem anuncio nenhum, entao entra; com
+    molde fica fora, porque quem preenche molde e o numero da vitrine. As
+    excecoes sao DECLARADAS em `sem_vitrine.recusadas`, com ancora e motivo.
+    """
+    campos = editorial.get('campos_sem_vitrine') or []
+    recusadas = {}
+    for r in ((pag.get('sem_vitrine') or {}).get('recusadas') or []):
+        campo = (r.get('campo') or '').strip()
+        ancora = (r.get('ancora') or '').strip()
+        if campo and ancora:
+            recusadas.setdefault(campo, []).append(ancora)
+
+    voz = {}
+    for campo in campos:
+        campo = str(campo)
+        itens = pag.get(campo)
+        if not isinstance(itens, list) or not itens:
+            continue
+        fica = []
+        for item in itens:
+            if isinstance(item, dict):
+                if not item.get('pergunta') or not item.get('resposta'):
+                    continue
+                alvo = '%s %s' % (item['pergunta'], item['resposta'])
+            else:
+                alvo = str(item)
+            if MOLDE_DECLARADO.search(alvo):
+                continue
+            if any(a in alvo for a in recusadas.get(campo, [])):
+                continue
+            fica.append(item)
+        if fica:
+            voz[campo] = fica
+
+    return voz
 TETO_DO_CARROSSEL = 5
 
 FERRAMENTAS = os.path.dirname(os.path.abspath(__file__))
@@ -1677,7 +1731,7 @@ def conferir():
     # proposito — `{` + MAIUSCULA/digito/sublinhado + `}` —, porque e a forma que
     # o PHP substitui. Minuscula dentro das chaves NAO e molde e continua
     # reprovando: molde que o PHP nao reconhece vai para a tela como esta.
-    molde = _re.compile(r'\{[A-Z][A-Z0-9_]*\}')
+    molde = MOLDE_DECLARADO
     for pag in editorial['paginas'] + [editorial['mae']]:
         for campo, valor in sorted(pag.items()):
             for texto in _textos(valor):
@@ -1796,6 +1850,103 @@ def conferir():
             if (termo, q['campo']) not in usados:
                 falhas.append('quantificador liberado %r em %r nao existe mais na camada '
                               'declarada: liberacao morta' % (termo, q['campo']))
+
+    # A VOZ SEM VITRINE: A LISTA DE CAMPOS E AS RECUSAS DECLARADAS (20/11/2026).
+    #
+    # O DEFEITO MEDIDO NO AR as 13h3xZ de hoje, na revisao 116:
+    # `/veiculos/moto-eletrica/`, a consulta de maior volume desta ilha, servia
+    # 3.303 caracteres de corpo, ZERO par de pergunta e ZERO `FAQPage`, enquanto
+    # ESTE arquivo declarava para ela o que e e o que nao e, o como sabemos e
+    # seis perguntas. A voz inteira morava dentro do bloco que nao nasce abaixo
+    # do piso da 30.2 — a mesma familia do piso da busca de 19/11, um andar
+    # acima.
+    #
+    # QUEM DECIDE O QUE A PAGINA SEM VITRINE SERVE E O PHP, com a regua do
+    # molde; esta trava cobra o ARQUIVO, que e a outra metade: lista de campos
+    # viva, recusa com motivo escrito, e ancora que casa com EXATAMENTE UMA
+    # string do campo que ela nomeia. Recusa com ancora morta cala nada e mente
+    # sobre ter sido olhada; recusa com ancora ambigua cala a frase errada. E a
+    # mesma familia da `liberacao morta` logo acima, e ela e irma por desenho.
+    campos_sv = editorial.get('campos_sem_vitrine')
+    afirmacoes += 1
+    if not isinstance(campos_sv, list) or not campos_sv:
+        falhas.append('a raiz nao declara `campos_sem_vitrine`, ou declara vazio: sem ela a '
+                      'pagina sem vitrine volta a servir o toco de 18/11')
+        campos_sv = []
+    for campo in campos_sv:
+        afirmacoes += 1
+        if not isinstance(campo, str) or not campo.strip():
+            falhas.append('`campos_sem_vitrine` traz um campo que nao e nome: %r' % (campo,))
+
+    for pag in editorial['paginas']:
+        quem = pag.get('id')
+        sv = pag.get('sem_vitrine')
+        afirmacoes += 1
+        if not isinstance(sv, dict) or not isinstance(sv.get('recusadas'), list):
+            falhas.append('%s: sem `sem_vitrine.recusadas` — a lista pode ser vazia, mas a '
+                          'chave nao: chave ausente nao se distingue de chave esquecida'
+                          % quem)
+            continue
+        for r in sv['recusadas']:
+            campo = (r.get('campo') or '').strip()
+            ancora = (r.get('ancora') or '').strip()
+            porque = (r.get('porque') or '').strip()
+            afirmacoes += 1
+            if campo not in campos_sv:
+                falhas.append('%s: recusa num campo que `campos_sem_vitrine` nao lista (%r): '
+                              'ela nao calaria nada e diria que alguem olhou' % (quem, campo))
+                continue
+            afirmacoes += 1
+            if not ancora:
+                falhas.append('%s: recusa em %r sem ancora' % (quem, campo))
+                continue
+            afirmacoes += 1
+            if not porque:
+                falhas.append('%s: recusa em %r sem motivo escrito — e o motivo e a unica '
+                              'coisa que distingue recusa de esquecimento' % (quem, campo))
+            # A ANCORA CASA COM EXATAMENTE UMA STRING DAQUELE CAMPO. A busca e a
+            # MESMA que o PHP faz (`strpos` sobre o texto cru), para as duas
+            # metades nao discordarem sobre o que e casar.
+            casadas = 0
+            for item in pag.get(campo) or []:
+                if isinstance(item, dict):
+                    alvo = '%s %s' % (item.get('pergunta') or '', item.get('resposta') or '')
+                else:
+                    alvo = str(item)
+                if ancora in alvo:
+                    casadas += 1
+            afirmacoes += 1
+            if casadas != 1:
+                falhas.append('%s: a ancora %r da recusa em %r casa com %d string(s) daquele '
+                              'campo, e tem de casar com UMA: zero e recusa morta, mais de '
+                              'uma cala a frase errada' % (quem, ancora[:50], campo, casadas))
+            # RECUSAR O QUE A REGUA DO MOLDE JA DEIXA FORA e recusa morta de
+            # outra forma: ela nao cala nada e faz a proxima execucao pensar que
+            # alguem pesou uma frase que nunca chegaria a tela.
+            afirmacoes += 1
+            if casadas == 1:
+                for item in pag.get(campo) or []:
+                    if isinstance(item, dict):
+                        alvo = '%s %s' % (item.get('pergunta') or '',
+                                          item.get('resposta') or '')
+                    else:
+                        alvo = str(item)
+                    if ancora in alvo and molde.search(alvo):
+                        falhas.append('%s: a recusa em %r cala uma string que JA tem molde e '
+                                      'por isso nunca chegaria a tela sem vitrine: recusa '
+                                      'morta' % (quem, campo))
+                        break
+
+        # E A METADE QUE PROTEGE A PAGINA, nao o arquivo: pagina declarada que
+        # perca a vitrine e nao tenha UMA pergunta servivel vai ao ar sem
+        # `FAQPage` e sem par nenhum, que e exatamente o estado que esta trava
+        # nasceu para nao deixar voltar calado.
+        servivel = len(voz_sem_vitrine(editorial, pag).get('perguntas') or [])
+        afirmacoes += 1
+        if servivel < 1:
+            falhas.append('%s: nenhuma pergunta sobreviveria a perda da vitrine (molde ou '
+                          'recusa em todas), e a pagina iria ao ar sem FAQPage e sem par '
+                          'nenhum — o estado medido na moto em 20/11/2026' % quem)
 
     # A PROVA DE QUE A TRAVA DO QUANTIFICADOR MORDE — trava que nunca falhou nao
     # e trava, e a `bancada.py` desta ilha cobra as duas metades do veredito.

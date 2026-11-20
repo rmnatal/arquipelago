@@ -6,6 +6,14 @@
   "publicar": true,
   "o_que_este_arquivo_e": "A camada DECLARADA das paginas da secao 30: titulo, description, a resposta em duas frases, o que e e o que nao e, o `qual escolher` por uso e as perguntas. E a voz do VOZ.md, escrita a mao. A camada GERADA — cartao, tabela e numero — e `dados/vitrine-de-produto.json`.",
   "nenhum_numero_e_digitado_aqui": "A prosa traz MOLDES e quem os preenche e o PHP, com o numero que sai da vitrine: {N} anuncios, {DE} e {ATE} a faixa de preco, {MEDIANA}, {DECLARAM_WATT} e {DIZEM_QUAL_WATT} a contagem do rotulo de potencia, {SEM_WATT}, {LIDAS} e {RECUSADAS} a conta da coleta, {CHAVE} a palavra com que a loja foi consultada, {DATA} a data da coleta. A CAIXA DA MAE tem tres moldes que sao dela, porque o numero dela e agregado das filhas e nao de uma consulta: {NO_AR} as familias com pagina, {FALTAM} as que a mae nomeia e ainda nao tem, e {DE}/{ATE} a faixa que vai do menor preco de todas ao maior. Preco escrito a mao na frase e preco que mente na coleta seguinte, calado — e `gerar-vitrine-de-produto.py --conferir` REPROVA numero digitado neste arquivo. ACRESCENTADO EM 04/11/2026: {FRASE_DO_PAR_DA_F2} e a contagem do PAR DE ENTRADA DA F2 — tensao e amperagem — lido do titulo de cada anuncio que a pagina publica, e ela nasceu de uma frase que estava NO AR sem fonte nenhuma: a pagina da bicicleta mandava \"olhar a tensao e a amperagem\" (instrucao certa) e emendava que bateria pequena em cidade de ladeira era \"a RECLAMACAO MAIS COMUM de quem compra sem fazer essa conta\". Esta ilha nunca mediu reclamacao de ninguem, e a lista de quantificadores dos portoes de ar NAO a via, porque \"mais comum\" e um SUPERLATIVO e nao um quantificador — a classe estava uma palavra fora da regua. O numero que a frase devia dizer e o melhor desta pagina: ZERO dos 22 anuncios desta vitrine declara os DOIS no titulo (1 de 6 e 1 de 16 declaram so a tensao, nenhum declara a amperagem). A pagina manda usar uma calculadora cujas duas entradas a propria vitrine nao entrega. No mesmo dia saiu \"quem pesa mais que a MEDIA\" do rotulo de um segmento, pela mesma razao: media de peso de pessoa nao e dado desta ilha. ACRESCENTADO EM 03/11/2026: {FRASE_DA_CARGA} e a contagem da CARGA MAXIMA que o titulo do anuncio declara, com a faixa — e ela nasceu de uma frase DECLARADA que esta pagina servia e que a medicao reprovou. A prosa dizia que a carga maxima \"quase nunca esta no titulo\" e, no mesmo instante, SEIS dos DEZESSEIS anuncios publicados na pagina do patinete a declaravam, de 60 a 150 kg. Frase a mao sobre o estado do catalogo e numero digitado em outro traje, e esta foi a segunda vez que esta ilha pagou por isso.",
+  "a_voz_declarada_tambem_vale_sem_vitrine": "A VOZ DECLARADA TAMBEM VALE SEM VITRINE, E A REGUA E MECANICA (20/11/2026). Medido no ar em /veiculos/moto-eletrica/, a consulta de maior volume desta ilha: a pagina servia um corpo curto, sem uma pergunta frequente e sem FAQPage, enquanto ESTE arquivo declarava, para ela, o que e e o que nao e, o como sabemos e as perguntas. A voz inteira morava dentro do bloco que nao nasce quando a coleta do dia nao alcanca o piso da 30.2 — a MESMA familia do piso da busca de 19/11, que estava no banco e nao chegava a tela, um andar acima. A REGUA: string da camada declarada que NAO tem molde e verdadeira sem anuncio nenhum, entao a pagina sem vitrine a serve. String com molde fica fora por construcao, porque quem preenche molde e o numero da vitrine, que ali nao existe. As excecoes se DECLARAM em `sem_vitrine.recusadas` de cada pagina, com ancora e motivo escrito, e o portao cobra que a ancora exista em exatamente uma string daquele campo — recusa sem ancora viva e a liberacao morta que a trava do quantificador ja cobra aqui. Nada sai em silencio: ou a frase e servida, ou o nome dela esta na lista com o porque.",
+  "campos_sem_vitrine_quais_sao": "Os campos que a pagina sem vitrine pode servir, nesta ordem, e NENHUM outro. Ficam fora `resposta` e `qual_escolher` porque toda string deles carrega molde; fica fora `aviso_de_afiliado` porque a casca ja serve o aviso de afiliado no rodape de toda pagina, e repeti-lo seria a mesma frase em dois trajes; ficam fora `titulo`, `h1` e `description` porque a casca ja os serve.",
+  "campos_sem_vitrine": [
+    "o_que_e",
+    "o_que_nao_e",
+    "como_sabemos",
+    "perguntas"
+  ],
   "a_caixa_da_mae": "A CAIXA DE RESPOSTA da 32.2 nesta pagina, e ela e UMA FRASE POR MUNDO em vez de uma frase costurada: o escopo muda com o numero de familias prontas, a frase da data muda quando as filhas foram lidas em dias diferentes, e a frase do que falta so sai quando falta algo. Quem escolhe e `rdm_produto_caixa_frases()`, que e funcao PURA sobre a relacao ja calculada — a secao 8 manda isso com todas as letras, e `teste-caixa-da-mae.php` FABRICA os mundos que o dado de hoje nao tem. ESTE CAMPO MORA NA RAIZ E NAO DENTRO DE `mae` DE PROPOSITO: `gerar-vitrine-de-produto.py --conferir` varre TODO campo da mae contra digito digitado, e prosa de documentacao cita numero de secao. O portao estava certo e o lugar estava errado — medido em 02/11/2026 pelo `teste-caixa-da-mae.php`, que reprovou o campo no minuto em que ele nasceu.",
   "os_moldes_da_carga_da_mae": "OS MOLDES DA CARGA AGREGADA DA SECAO MAE — uma frase por mundo, escolhida por `rdm_produto_frase_da_carga_agregada()`, que e funcao PURA sobre a relacao ja calculada (secao 8), como a caixa desta mesma pagina. Eles nasceram em 04/11/2026, quando a mae foi medida servindo a frase que a execucao de 03/11 aposentou da pagina do patinete: o conserto de ontem foi feito na pagina onde o defeito foi ACHADO, e esta e outra familia. ESTE CAMPO MORA NA RAIZ E NAO DENTRO DE `mae` PELO MESMO MOTIVO QUE O `a_caixa_da_mae` acima, e o portao o provou no minuto em que ele nasceu: `gerar-vitrine-de-produto.py --conferir` e `teste-caixa-da-mae.php` varrem TODO campo da mae contra digito digitado, e prosa de documentacao cita data. O portao estava certo e o lugar estava errado — a segunda vez que este arquivo paga essa licao, dois dias depois da primeira.",
   "numeros_declarados_permitidos": [
@@ -141,7 +149,16 @@
         "A ordem dos cartões. {CRITERIO_DE_ORDEM}",
         "Potência, velocidade máxima, acelerador e carga máxima só entram na nossa ficha técnica quando vêm de ficha de fabricante ou de ficha de loja grande. Título de anúncio não basta para esses quatro, e é por isso que esta página diz o que o anúncio declarou em vez de preencher uma tabela técnica."
       ],
-      "aviso_de_afiliado": "Os botões levam para a loja por link de afiliado: a gente recebe comissão se você comprar, e o preço para você é o mesmo."
+      "aviso_de_afiliado": "Os botões levam para a loja por link de afiliado: a gente recebe comissão se você comprar, e o preço para você é o mesmo.",
+      "sem_vitrine": {
+        "recusadas": [
+          {
+            "campo": "como_sabemos",
+            "ancora": "Potência, velocidade máxima, acelerador e carga máxima só entram",
+            "porque": "A página sem vitrine já diz, com as palavras dela, o que ela compara quando tem dados e o que o título do anúncio não declara sobre os watts. Servir esta frase ali seria dizer a mesma coisa num traje novo, e esta ilha já pagou por isso em outubro, quando o bloco de compra dizia o mesmo em três lugares. E a oração final dela fala da coluna que escreve anúncio por anúncio, que é justamente o que não existe sem vitrine."
+          }
+        ]
+      }
     },
     {
       "id": "bicicleta-eletrica",
@@ -206,7 +223,16 @@
         "A ordem dos cartões. {CRITERIO_DE_ORDEM}",
         "Potência, velocidade máxima, acelerador e carga máxima só entram na nossa ficha técnica vindos de ficha de fabricante ou de loja grande. Título de anúncio não basta para esses quatro."
       ],
-      "aviso_de_afiliado": "Os botões levam para a loja por link de afiliado: a gente recebe comissão se você comprar, e o preço para você é o mesmo."
+      "aviso_de_afiliado": "Os botões levam para a loja por link de afiliado: a gente recebe comissão se você comprar, e o preço para você é o mesmo.",
+      "sem_vitrine": {
+        "recusadas": [
+          {
+            "campo": "como_sabemos",
+            "ancora": "Potência, velocidade máxima, acelerador e carga máxima só entram",
+            "porque": "A página sem vitrine já diz, com as palavras dela, o que ela compara quando tem dados e o que o título do anúncio não declara sobre os watts. Servir esta frase ali seria dizer a mesma coisa num traje novo, e esta ilha já pagou por isso em outubro, quando o bloco de compra dizia o mesmo em três lugares. E a oração final dela fala da coluna que escreve anúncio por anúncio, que é justamente o que não existe sem vitrine."
+          }
+        ]
+      }
     },
     {
       "id": "moto-eletrica",
@@ -277,7 +303,21 @@
         "Potência, velocidade máxima, acelerador e carga máxima só entram na nossa ficha técnica quando vêm de ficha de fabricante ou de ficha de loja grande. Título de anúncio não basta para esses quatro, e é por isso que esta página diz o que o anúncio declarou em vez de preencher uma tabela técnica.",
         "A regra de trânsito citada aqui é a Resolução Contran nº 996/2023, lida na fonte oficial. Ela decide categoria, placa, registro, licenciamento e capacete, e não fala de habilitação — quem fala disso é o Código de Trânsito, que a gente ainda não leu."
       ],
-      "aviso_de_afiliado": "Os botões levam para a loja por link de afiliado: a gente recebe comissão se você comprar, e o preço para você é o mesmo."
+      "aviso_de_afiliado": "Os botões levam para a loja por link de afiliado: a gente recebe comissão se você comprar, e o preço para você é o mesmo.",
+      "sem_vitrine": {
+        "recusadas": [
+          {
+            "campo": "como_sabemos",
+            "ancora": "Potência, velocidade máxima, acelerador e carga máxima só entram",
+            "porque": "A página sem vitrine já diz, com as palavras dela, o que ela compara quando tem dados e o que o título do anúncio não declara sobre os watts. Servir esta frase ali seria dizer a mesma coisa num traje novo, e esta ilha já pagou por isso em outubro, quando o bloco de compra dizia o mesmo em três lugares. E a oração final dela fala da coluna que escreve anúncio por anúncio, que é justamente o que não existe sem vitrine."
+          },
+          {
+            "campo": "perguntas",
+            "ancora": "Por que a faixa de preço é tão larga?",
+            "porque": "A pergunta pressupõe uma faixa de preço publicada, e a página sem vitrine declara, na primeira linha, que a comparação de preços está sem dados hoje. Responder por que a faixa é larga numa página que não serve faixa nenhuma é prometer o dado na pergunta e negá-lo na caixa logo acima."
+          }
+        ]
+      }
     }
   ],
   "quantificadores_declarados_permitidos": [

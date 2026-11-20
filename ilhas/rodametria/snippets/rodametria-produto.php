@@ -118,7 +118,7 @@
    do primeiro cartao comecava por `11.11`. A regra mora no coletor; o que muda
    aqui e a frase: sem ela a conta do leitor nao fecha com o tamanho da tabela. */
 if ( ! defined( 'RODAMETRIA_PRODUTO_VERSAO' ) ) {
-	define( 'RODAMETRIA_PRODUTO_VERSAO', '1.18.0' );
+	define( 'RODAMETRIA_PRODUTO_VERSAO', '1.19.0' );
 }
 
 /* A VERSAO DESTE SNIPPET VAI AO AR, pelo filtro que a casca 1.6.0 abriu
@@ -375,6 +375,135 @@ function rdm_produto_paragrafos( $lista, $pagina, $classe = '' ) {
 }
 }
 
+if ( ! function_exists( 'rdm_produto_sem_molde' ) ) {
+/**
+ * A STRING DA CAMADA DECLARADA E VERDADEIRA SEM ANUNCIO NENHUM? (20/11/2026)
+ *
+ * A forma do molde e a MESMA que `rdm_produto_preencher()` substitui e a mesma
+ * que a trava de digito de `gerar-vitrine-de-produto.py` reconhece — `{` +
+ * MAIUSCULA + maiusculas, digitos e sublinhado + `}`. Escrever uma terceira
+ * forma aqui seria tres leituras do mesmo fato, e a 20.7 ja diz como isso acaba.
+ *
+ * Quem tem molde depende do numero da vitrine; quem nao tem, nao depende de
+ * nada que a vitrine traga. E por isso que esta funcao decide, sozinha, o que a
+ * pagina sem vitrine pode servir — a regua e MECANICA, nao e lista escrita a mao.
+ */
+function rdm_produto_sem_molde( $texto ) {
+	return 0 === preg_match( '/\{[A-Z][A-Z0-9_]*\}/', (string) $texto );
+}
+}
+
+if ( ! function_exists( 'rdm_produto_voz_sem_vitrine' ) ) {
+/**
+ * A VOZ DECLARADA QUE A PAGINA SEM VITRINE SERVE (20/11/2026).
+ *
+ * O DEFEITO QUE ELA EXISTE PARA FECHAR FOI MEDIDO NO AR, nao deduzido:
+ * `/veiculos/moto-eletrica/`, a consulta de maior volume desta ilha, servia um
+ * corpo curto, ZERO pergunta frequente e ZERO `FAQPage`, enquanto
+ * `dados/paginas-de-produto.json` declarava para ela o que e e o que nao e, o
+ * como sabemos e as perguntas. A voz inteira morava DENTRO do bloco que nao
+ * nasce abaixo do piso da 30.2 — e e a MESMA familia do piso da busca de
+ * 19/11/2026, que estava no banco e nao chegava a tela, um andar acima.
+ *
+ * OS CAMPOS SAIEM DO ARQUIVO (`campos_sem_vitrine`) E NAO DAQUI, pela licao que
+ * esta ilha paga desde que a bancada passou a descobrir os portoes em vez de os
+ * listar: lista escrita no codigo envelhece calada quando a camada declarada
+ * ganha campo novo.
+ *
+ * AS EXCECOES SAO DECLARADAS, com ancora e motivo, em `sem_vitrine.recusadas`
+ * de cada pagina — string sem molde que ainda assim pressupoe a vitrine (a
+ * pergunta sobre a largura da faixa de preco numa pagina que nao publica faixa).
+ * Nada sai em silencio: ou a frase e servida, ou o nome dela esta na lista.
+ *
+ * NAO SE CHAMA `rdm_produto_preencher()` AQUI, de proposito: ele le
+ * `$pagina['vitrine']['numeros']`, que nesta pagina nao existe, e toda string
+ * que sai daqui ja passou pela regua do molde. Chamar o preenchedor com uma
+ * vitrine fabricada seria inventar o zero que a pagina nao tem.
+ */
+function rdm_produto_voz_sem_vitrine( $d ) {
+	$ed     = rdm_produto_editorial();
+	$campos = isset( $ed['campos_sem_vitrine'] ) ? (array) $ed['campos_sem_vitrine'] : array();
+
+	$recusadas = array();
+	if ( isset( $d['sem_vitrine']['recusadas'] ) ) {
+		foreach ( (array) $d['sem_vitrine']['recusadas'] as $r ) {
+			$campo  = isset( $r['campo'] ) ? (string) $r['campo'] : '';
+			$ancora = isset( $r['ancora'] ) ? (string) $r['ancora'] : '';
+			if ( '' !== $campo && '' !== $ancora ) {
+				$recusadas[ $campo ][] = $ancora;
+			}
+		}
+	}
+
+	$voz = array();
+	foreach ( $campos as $campo ) {
+		$campo = (string) $campo;
+		if ( empty( $d[ $campo ] ) || ! is_array( $d[ $campo ] ) ) {
+			continue;
+		}
+		$fica = array();
+		foreach ( $d[ $campo ] as $item ) {
+			/* PERGUNTA E UM PAR, e a regua vale sobre as DUAS metades: pergunta
+			   sem molde com resposta moldada iria ao ar como pergunta sem
+			   resposta util. */
+			if ( is_array( $item ) ) {
+				if ( ! isset( $item['pergunta'] ) || ! isset( $item['resposta'] ) ) {
+					continue;
+				}
+				$alvo = (string) $item['pergunta'] . ' ' . (string) $item['resposta'];
+			} else {
+				$alvo = (string) $item;
+			}
+			if ( ! rdm_produto_sem_molde( $alvo ) ) {
+				continue;
+			}
+			$recusado = false;
+			$lista    = isset( $recusadas[ $campo ] ) ? $recusadas[ $campo ] : array();
+			foreach ( $lista as $ancora ) {
+				if ( false !== strpos( $alvo, $ancora ) ) {
+					$recusado = true;
+					break;
+				}
+			}
+			if ( ! $recusado ) {
+				$fica[] = $item;
+			}
+		}
+		if ( $fica ) {
+			$voz[ $campo ] = $fica;
+		}
+	}
+
+	return $voz;
+}
+}
+
+if ( ! function_exists( 'rdm_produto_faq_mainentity' ) ) {
+/**
+ * O `mainEntity` do `FAQPage`, E ELE E CONSTRUIDO NUM LUGAR SO (32.4).
+ *
+ * A camada da maquina nasce do MESMO par que a tela imprime, ja preenchido por
+ * quem o imprimiu. Duas funcoes montando `FAQPage` a partir de dois caminhos
+ * comecam iguais e so uma e corrigida — e aqui a divergencia seria dado
+ * estruturado afirmando o que a tela nao afirma, que e a 32.4-c ao pe da letra.
+ */
+function rdm_produto_faq_mainentity( $pares ) {
+	$saida = array();
+	foreach ( (array) $pares as $p ) {
+		$saida[] = array(
+			'@type'          => 'Question',
+			'name'           => (string) $p['pergunta'],
+			'acceptedAnswer' => array(
+				'@type' => 'Answer',
+				'text'  => (string) $p['resposta'],
+			),
+		);
+	}
+
+	return $saida;
+}
+}
+
 /* ---------------------------------------------------------------------------
  * 3. O MAPA DAS PAGINAS — a secao e as filhas entram pelo filtro da casca
  * ------------------------------------------------------------------------- */
@@ -593,6 +722,50 @@ function rdm_produto_pagina_sem_vitrine_html() {
 			$html .= '<li>' . $i . '</li>';
 		}
 		$html .= '</ul></nav>';
+	}
+
+	/* A VOZ DECLARADA DESTA PAGINA, NAS MESMAS DOBRAS DA PAGINA COMPLETA
+	   (20/11/2026). Ate hoje esta funcao usava a declaracao para UMA coisa — o
+	   `h1` — e escrevia todo o resto a mao, enquanto o arquivo declarava, para
+	   esta mesma URL, o que e e o que nao e, o como sabemos e as perguntas.
+	   Medido no ar nesta manha: corpo curto, ZERO pergunta e ZERO `FAQPage`,
+	   contra cinco pares em cada irma.
+
+	   A ORDEM E A MESMA DA PAGINA COMPLETA, de proposito: a pessoa que chega
+	   aqui num dia sem vitrine e volta num dia com vitrine encontra os mesmos
+	   titulos nos mesmos lugares. E as dobras sao `<details>` FECHADO (32.5),
+	   entao isto custa ZERO pixel acima da dobra e o texto continua inteiro no
+	   HTML servido, legivel com o JavaScript desligado (22.8 e 32.3).
+
+	   `esc_html` do item cru e NAO `rdm_produto_paragrafos()`: aquele chama o
+	   preenchedor de molde, que le a vitrine que esta pagina nao tem. */
+	$voz = $d ? rdm_produto_voz_sem_vitrine( $d ) : array();
+
+	$oque = '';
+	foreach ( array( 'o_que_e', 'o_que_nao_e' ) as $campo ) {
+		foreach ( (array) ( isset( $voz[ $campo ] ) ? $voz[ $campo ] : array() ) as $t ) {
+			$oque .= '<p>' . esc_html( (string) $t ) . '</p>';
+		}
+	}
+	if ( '' !== $oque ) {
+		$html .= rodametria_casca_dobra( 'O que é, e o que não é', $oque );
+	}
+
+	if ( ! empty( $voz['perguntas'] ) ) {
+		$faq = '';
+		foreach ( $voz['perguntas'] as $q ) {
+			$faq .= '<h3>' . esc_html( (string) $q['pergunta'] ) . '</h3>';
+			$faq .= '<p>' . esc_html( (string) $q['resposta'] ) . '</p>';
+		}
+		$html .= rodametria_casca_dobra( 'Perguntas frequentes', $faq );
+	}
+
+	if ( ! empty( $voz['como_sabemos'] ) ) {
+		$como = '';
+		foreach ( $voz['como_sabemos'] as $t ) {
+			$como .= '<p>' . esc_html( (string) $t ) . '</p>';
+		}
+		$html .= rodametria_casca_dobra( 'Como sabemos', $como );
 	}
 
 	$html .= '</div>';
@@ -1701,8 +1874,37 @@ function rdm_produto_oferta_de_linha( $item ) {
  * ------------------------------------------------------------------------- */
 
 add_action( 'wp_head', function () {
+	$opcoes = JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE;
 	$pagina = rdm_produto_atual();
+
 	if ( ! $pagina ) {
+		/* A PAGINA DECLARADA SEM VITRINE TAMBEM TEM CAMADA DE MAQUINA
+		   (20/11/2026). Ate hoje este laco saia aqui, e com ele saia o
+		   `FAQPage` da URL de maior volume desta ilha — medido no ar nesta
+		   manha, ZERO `FAQPage` nela contra um em cada irma.
+
+		   SEM `ItemList`, E ISSO E DECISAO E NAO ESQUECIMENTO: nao ha produto
+		   nesta pagina hoje, e `numberOfItems` em zero com `itemListElement`
+		   vazio e dado estruturado dizendo "lista de nada" — a mesma razao pela
+		   qual `offers` so entra quando ha oferta, dez linhas abaixo. */
+		$slug = rodametria_casca_slug_atual();
+		$fora = rdm_produto_declaradas_fora_da_vitrine();
+		if ( ! isset( $fora[ $slug ] ) ) {
+			return;
+		}
+		$voz  = rdm_produto_voz_sem_vitrine( $fora[ $slug ] );
+		$pares = isset( $voz['perguntas'] ) ? $voz['perguntas'] : array();
+		$mains = rdm_produto_faq_mainentity( $pares );
+		if ( $mains ) {
+			$faq = array(
+				'@context'   => 'https://schema.org',
+				'@type'      => 'FAQPage',
+				'mainEntity' => $mains,
+			);
+			echo '<script type="application/ld+json">' . wp_json_encode( $faq, $opcoes )
+				. "</script>\n";
+		}
+
 		return;
 	}
 	$d = $pagina['declarado'];
@@ -1745,24 +1947,23 @@ add_action( 'wp_head', function () {
 		'itemListElement' => $itens,
 	);
 
-	$perguntas = array();
+	/* O PAR JA PREENCHIDO VAI PARA O CONSTRUTOR UNICO (32.4): quem preenche o
+	   molde e esta funcao, que tem a vitrine na mao; quem monta o `Question` e
+	   `rdm_produto_faq_mainentity()`, que e o mesmo das paginas sem vitrine. */
+	$pares = array();
 	foreach ( (array) $d['perguntas'] as $q ) {
-		$perguntas[] = array(
-			'@type'          => 'Question',
-			'name'           => rdm_produto_preencher( $q['pergunta'], $pagina ),
-			'acceptedAnswer' => array(
-				'@type' => 'Answer',
-				'text'  => rdm_produto_preencher( $q['resposta'], $pagina ),
-			),
+		$pares[] = array(
+			'pergunta' => rdm_produto_preencher( $q['pergunta'], $pagina ),
+			'resposta' => rdm_produto_preencher( $q['resposta'], $pagina ),
 		);
 	}
+	$perguntas = rdm_produto_faq_mainentity( $pares );
 	$faq = array(
 		'@context'   => 'https://schema.org',
 		'@type'      => 'FAQPage',
 		'mainEntity' => $perguntas,
 	);
 
-	$opcoes = JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE;
 	echo '<script type="application/ld+json">' . wp_json_encode( $lista, $opcoes ) . "</script>\n";
 	if ( $perguntas ) {
 		echo '<script type="application/ld+json">' . wp_json_encode( $faq, $opcoes ) . "</script>\n";

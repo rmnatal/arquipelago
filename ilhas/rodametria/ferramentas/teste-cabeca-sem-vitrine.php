@@ -113,11 +113,17 @@ $MUNDO = array(
 	'existem'    => array(),
 	'coleta'     => array(),
 	'nao_nasceram' => array(),
+	/* OS CAMPOS QUE A PAGINA SEM VITRINE PODE SERVIR (20/11/2026). Eles moram na
+	   RAIZ do arquivo declarado e nao no codigo, e por isso o mundo os fabrica:
+	   a metade 8 deste portao tem um mundo com a lista VAZIA, para provar que e
+	   o arquivo que decide e nao uma lista escondida no PHP. */
+	'campos'     => array('o_que_e', 'o_que_nao_e', 'como_sabemos', 'perguntas'),
 );
 
 function rdm_produto_editorial() {
 	global $MUNDO;
-	return array('paginas' => $MUNDO['declaradas']);
+	return array('paginas' => $MUNDO['declaradas'],
+	             'campos_sem_vitrine' => $MUNDO['campos']);
 }
 
 function rdm_produto_paginas_prontas() {
@@ -168,6 +174,19 @@ function rodametria_casca_banco($id) {
 if (!carregar_funcao($src, 'rdm_produto_declaradas_fora_da_vitrine')) {
 	echo "  FALHA  `rdm_produto_declaradas_fora_da_vitrine()` nao existe no snippet\n";
 	exit(1);
+}
+
+/* AS TRES FUNCOES DA VOZ SEM VITRINE (20/11/2026) CARREGAM AQUI, E NAO NA
+   METADE 8 ONDE SAO MEDIDAS: a metade 6 ja chama
+   `rdm_produto_pagina_sem_vitrine_html()`, que desde hoje as usa. Carregar na
+   hora de medir deixaria a metade 6 morrer de funcao indefinida — e foi o que
+   aconteceu na primeira versao desta metade. */
+foreach (array('rdm_produto_sem_molde', 'rdm_produto_voz_sem_vitrine',
+               'rdm_produto_faq_mainentity') as $f) {
+	if (!carregar_funcao($src, $f)) {
+		echo "  FALHA  `$f()` nao existe no snippet\n";
+		exit(1);
+	}
 }
 
 /** O MAPA NOVO, montado pela MESMA regra do filtro do snippet. A regra e lida
@@ -390,6 +409,17 @@ function rodametria_casca_trilha_html() {
 		. '<a href="/veiculos/">Veículos elétricos</a></nav>';
 }
 function rodametria_casca_paginas() { return mapa_novo(); }
+
+/* A DOBRA E CARREGADA DA CASCA DE VERDADE, nunca reescrita aqui (20/11/2026).
+   Ela e `<details>` FECHADO, e e disso que depende a afirmacao da 32.5 de que a
+   voz declarada da pagina sem vitrine custa ZERO pixel acima da dobra. Stub
+   escrito a mao aqui aprovaria um `<div>` aberto no dia em que a casca mudasse
+   — a familia do dublê que sempre responde, da metade 5 deste mesmo portao. */
+if (!carregar_funcao(file_get_contents($RAIZ . '/snippets/rodametria-casca.php'),
+                     'rodametria_casca_dobra')) {
+	echo "  FALHA  `rodametria_casca_dobra()` nao existe na casca\n";
+	exit(1);
+}
 function rodametria_casca_link($slug, $rotulo = '') {
 	$url = rodametria_casca_url_do_slug($slug);
 	if ('' === $url) { return ''; }
@@ -511,6 +541,203 @@ $sem = rdm_produto_declaradas_fora_da_vitrine();
 vale(!isset($sem['moto-eletrica']),
 	'AUTOTESTE: sem pagina no WordPress a moto nao ganha cabeca',
 	'a trava do 404 nao esta sendo exercida por este portao');
+
+echo "\n8. A VOZ DECLARADA SEM VITRINE (20/11/2026)\n";
+
+/* O DEFEITO MEDIDO NO AR AS 13h3xZ DE 20/11/2026, na revisao 116:
+   `/veiculos/moto-eletrica/` servia 3.303 caracteres de corpo, ZERO par de
+   pergunta frequente e ZERO `FAQPage` — contra CINCO pares em cada irma —
+   enquanto `dados/paginas-de-produto.json` declarava, para a MESMA URL, o que e
+   e o que nao e, o como sabemos e seis perguntas. A funcao da pagina degradada
+   usava a declaracao para UMA coisa, o `h1`, e escrevia o resto a mao.
+
+   E A FAMILIA E A MESMA DO PISO DA BUSCA DE 19/11, um andar acima: o que a
+   pagina devia dizer existia no repositorio e morava DENTRO do bloco que nao
+   nasce abaixo do piso da 30.2. */
+
+vale(function_exists('rdm_produto_sem_molde')
+	&& function_exists('rdm_produto_voz_sem_vitrine')
+	&& function_exists('rdm_produto_faq_mainentity'),
+	'as tres funcoes da voz sem vitrine existem no snippet');
+
+/* A REGUA DO MOLDE, nas duas pontas e nas bordas que o PHP substitui. */
+vale(rdm_produto_sem_molde('Moto elétrica de adulto é a que você senta e anda.'),
+	'frase sem molde passa a regua');
+vale(!rdm_produto_sem_molde('A moto custa de {DE} a {ATE}.'),
+	'frase com molde NAO passa',
+	'molde cru iria para a tela como esta');
+vale(!rdm_produto_sem_molde('{FRASE_DA_CARGA} e o resto da frase.'),
+	'molde no comeco tambem reprova');
+vale(rdm_produto_sem_molde('O texto cita {chave} em minuscula.'),
+	'chave em MINUSCULA nao e molde: o PHP nao a substitui, e ela nao vem da '
+	. 'vitrine',
+	'a forma do molde aqui tem de ser a MESMA que `rdm_produto_preencher()` '
+	. 'substitui');
+vale(rdm_produto_sem_molde('A Resolução Contran nº 996/2023 decide a categoria.'),
+	'numero de documento nao e molde');
+
+/* O MUNDO DA PAGINA SEM VITRINE, com declaracao de verdade em forma: duas
+   frases livres, uma moldada, duas perguntas livres, uma moldada e uma livre
+   RECUSADA por ancora. */
+$moto = declarada('moto-eletrica', 'Moto elétrica', 'Moto: titulo', 'Moto: desc');
+$moto['o_que_e'] = array(
+	'Moto elétrica de adulto é a que você senta e anda no acelerador.',
+	'O que separa uma da outra é a potência nominal e a velocidade máxima.',
+);
+$moto['o_que_nao_e'] = array(
+	'Não é ranking: a gente não andou em nenhuma delas.',
+	'E não é ficha técnica. {FRASE_DO_ROTULO}',
+);
+$moto['como_sabemos'] = array(
+	'Os anúncios saem da busca "{CHAVE}" na Shopee, lida em {DATA}.',
+	'A regra de trânsito citada aqui é a Resolução Contran nº 996/2023.',
+);
+$moto['perguntas'] = array(
+	array('pergunta' => 'Moto elétrica precisa de CNH?',
+	      'resposta' => 'Sobre habilitação esta página não responde, e o motivo é de fonte.'),
+	array('pergunta' => 'A moto aguenta eu e um garupa?',
+	      'resposta' => '{FRASE_DA_CARGA} A conta é você mais o garupa.'),
+	array('pergunta' => 'Por que a faixa de preço é tão larga?',
+	      'resposta' => 'Porque o mesmo nome cobre veículos que não disputam a mesma compra.'),
+	array('pergunta' => 'Moto elétrica e scooter elétrica são a mesma coisa?',
+	      'resposta' => 'Na loja, quase. O mesmo anúncio usa as duas palavras.'),
+);
+$moto['sem_vitrine'] = array('recusadas' => array(
+	array('campo' => 'perguntas', 'ancora' => 'Por que a faixa de preço é tão larga?',
+	      'porque' => 'a pergunta pressupõe uma faixa que esta página não publica hoje'),
+));
+
+$MUNDO['declaradas'] = array(
+	declarada('patinete-eletrico', 'Patinete elétrico', 'Patinete: titulo', 'Patinete: desc'),
+	$moto,
+);
+$MUNDO['prontas'] = array('patinete-eletrico' => pronta('patinete-eletrico'));
+$MUNDO['existem'] = array('patinete-eletrico', 'moto-eletrica', 'inicio');
+
+$voz = rdm_produto_voz_sem_vitrine($moto);
+
+vale(isset($voz['o_que_e']) && 2 === count($voz['o_que_e']),
+	'as DUAS frases livres de `o_que_e` entram');
+vale(isset($voz['o_que_nao_e']) && 1 === count($voz['o_que_nao_e']),
+	'de `o_que_nao_e` entra a livre e fica fora a moldada',
+	'veio: ' . (isset($voz['o_que_nao_e']) ? count($voz['o_que_nao_e']) : 0));
+vale(isset($voz['como_sabemos']) && 1 === count($voz['como_sabemos'])
+	&& false !== strpos($voz['como_sabemos'][0], '996/2023'),
+	'de `como_sabemos` entra a frase da resolução e fica fora a da coleta do dia');
+vale(isset($voz['perguntas']) && 2 === count($voz['perguntas']),
+	'das QUATRO perguntas entram DUAS: uma sai por molde, outra por recusa declarada',
+	'veio: ' . (isset($voz['perguntas']) ? count($voz['perguntas']) : 0));
+
+$textos_da_voz = '';
+foreach ($voz as $itens) {
+	foreach ($itens as $it) {
+		$textos_da_voz .= is_array($it) ? ($it['pergunta'] . ' ' . $it['resposta']) : $it;
+	}
+}
+vale(false === strpos($textos_da_voz, '{'),
+	'NENHUM molde cru atravessa a regua',
+	'molde na tela e a ausencia maquiada que a 20.8 proibe');
+vale(false === strpos($textos_da_voz, 'faixa de preço é tão larga'),
+	'a pergunta RECUSADA por ancora nao entra',
+	'ela prometeria na pergunta o dado que a caixa logo acima nega');
+
+/* A VOZ CHEGA A TELA, e e isto que a medicao de hoje reprovava. */
+$html_voz = rdm_produto_pagina_sem_vitrine_html();
+vale(false !== strpos($html_voz, 'Perguntas frequentes'),
+	'a dobra de perguntas frequentes nasce no corpo da pagina sem vitrine',
+	'era ZERO par no ar as 13h3xZ de 20/11/2026');
+vale(false !== strpos($html_voz, 'Moto elétrica precisa de CNH?')
+	|| false !== strpos($html_voz, esc_html('Moto elétrica precisa de CNH?')),
+	'a pergunta da CNH, que e a razao desta ilha existir, esta na tela');
+vale(false !== strpos($html_voz, 'O que é, e o que não é')
+	|| false !== strpos($html_voz, esc_html('O que é, e o que não é')),
+	'a dobra do que e e do que nao e nasce com o MESMO titulo da pagina completa',
+	'titulo diferente faz a mesma pessoa reaprender a pagina no dia da vitrine');
+vale(false !== strpos($html_voz, 'Como sabemos'),
+	'a dobra de procedencia nasce');
+vale(false === strpos($html_voz, '{FRASE_DA_CARGA}')
+	&& false === strpos($html_voz, '{CHAVE}')
+	&& false === strpos($html_voz, '{DATA}'),
+	'e o corpo servido nao tem molde cru nenhum');
+
+/* O `FAQPage` SAI DO MESMO PAR QUE A TELA (32.4). */
+$mains = rdm_produto_faq_mainentity($voz['perguntas']);
+vale(2 === count($mains), 'o `mainEntity` tem um `Question` por par visivel');
+vale('FAQPage' !== '' && 'Question' === $mains[0]['@type']
+	&& 'Moto elétrica precisa de CNH?' === $mains[0]['name']
+	&& false !== strpos($mains[0]['acceptedAnswer']['text'], 'não responde'),
+	'e o texto da camada da maquina e o MESMO da tela, letra por letra',
+	'camada da maquina afirmando o que a tela nao afirma e a 32.4-c invertida');
+
+echo "\n8-b. AS MUTACOES: A REGUA MORDE?\n";
+
+/* (a) RECUSA SEM ANCORA VIVA e liberacao morta: a frase volta a ser servida, e
+   e por isso que a trava da ancora mora no `--conferir` do gerador, sobre o
+   arquivo de verdade. Aqui se mede o outro lado: ancora que nao casa com nada
+   NAO pode calar uma frase por acidente. */
+$m = $moto;
+$m['sem_vitrine'] = array('recusadas' => array(
+	array('campo' => 'perguntas', 'ancora' => 'uma pergunta que nao existe neste arquivo',
+	      'porque' => 'ancora morta'),
+));
+$voz_m = rdm_produto_voz_sem_vitrine($m);
+vale(3 === count($voz_m['perguntas']),
+	'MUTACAO: ancora que nao casa com nada nao recusa nada — as TRES livres voltam',
+	'recusa por acidente cala voz legitima em silencio');
+
+/* (b) RECUSA SEM CAMPO ou SEM ANCORA e ignorada aqui, e de proposito: quem a
+   denuncia e o `--conferir` do gerador, que ve o arquivo. Esta regua nao pode
+   ADIVINHAR o campo — adivinhar calaria a frase errada. */
+$m = $moto;
+$m['sem_vitrine'] = array('recusadas' => array(
+	array('campo' => '', 'ancora' => 'Por que a faixa de preço é tão larga?'),
+));
+$voz_m = rdm_produto_voz_sem_vitrine($m);
+vale(3 === count($voz_m['perguntas']),
+	'MUTACAO: recusa sem campo nao recusa nada nesta regua (quem a denuncia e o gerador)');
+
+/* (c) A LISTA DE CAMPOS SAI DO ARQUIVO. Com ela vazia, a pagina sem vitrine
+   volta a ser o toco de hoje — e e esta afirmacao que prova que nao ha lista
+   escondida no PHP. */
+$guarda = $MUNDO['campos'];
+$MUNDO['campos'] = array();
+$voz_m = rdm_produto_voz_sem_vitrine($moto);
+vale(array() === $voz_m,
+	'MUTACAO: sem `campos_sem_vitrine` no arquivo, a voz e VAZIA',
+	'se sobrou voz, existe lista escrita a mao no codigo');
+$html_m = rdm_produto_pagina_sem_vitrine_html();
+vale(false === strpos($html_m, 'Perguntas frequentes'),
+	'e a dobra de perguntas desaparece do corpo junto');
+vale(false !== strpos($html_m, 'O que esta página compara quando tem dados')
+	|| false !== strpos($html_m, esc_html('O que esta página compara quando tem dados')),
+	'enquanto o corpo honesto de 18/11 continua de pe',
+	'a voz declarada ACRESCENTA; ela nao substitui o aviso da ausencia');
+$MUNDO['campos'] = $guarda;
+
+/* (d) CAMPO DECLARADO QUE NAO EXISTE NA PAGINA nao pode derrubar nada. */
+$MUNDO['campos'] = array('o_que_e', 'um_campo_que_nao_existe', 'perguntas');
+$voz_m = rdm_produto_voz_sem_vitrine($moto);
+vale(isset($voz_m['o_que_e']) && isset($voz_m['perguntas'])
+	&& !isset($voz_m['um_campo_que_nao_existe']),
+	'MUTACAO: campo declarado e inexistente na pagina e ignorado, sem derrubar os outros');
+$MUNDO['campos'] = $guarda;
+
+/* (e) PERGUNTA SEM RESPOSTA nao vai para a tela. */
+$m = $moto;
+$m['perguntas'] = array(array('pergunta' => 'Uma pergunta sem resposta?'));
+$voz_m = rdm_produto_voz_sem_vitrine($m);
+vale(!isset($voz_m['perguntas']),
+	'MUTACAO: par incompleto nao entra — pergunta na tela sem resposta e pior que ausencia');
+
+/* (f) RESPOSTA MOLDADA COM PERGUNTA LIVRE: a regua le as DUAS metades. */
+$m = $moto;
+$m['perguntas'] = array(
+	array('pergunta' => 'Quanto custa?', 'resposta' => 'De {DE} a {ATE}.'),
+);
+$voz_m = rdm_produto_voz_sem_vitrine($m);
+vale(!isset($voz_m['perguntas']),
+	'MUTACAO: pergunta livre com resposta moldada fica fora',
+	'iria ao ar como pergunta sem resposta util');
 
 echo "\n" . $afirmacoes . " afirmacao(oes), " . $falhas . " falha(s).\n";
 echo $falhas ? "REPROVADO\n" : "APROVADO\n";

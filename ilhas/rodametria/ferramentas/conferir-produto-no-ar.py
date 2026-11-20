@@ -167,6 +167,30 @@ def normalizar(t):
     return re.sub(r"\s+", " ", t).strip()
 
 
+def jsonld_da_pagina(html):
+    """TODO BLOCO `application/ld+json` da pagina, ja parseado (20/11/2026).
+
+    Ele existe porque a cobranca do `FAQPage` da pagina sem vitrine precisava do
+    mesmo laco que a do `ItemList` ja fazia a mao, e duas leituras do mesmo HTML
+    comecam iguais. Bloco que nao parseia e DENUNCIADO aqui, uma vez, em vez de
+    ser engolido por quem procurava outro `@type`.
+    """
+    saida = []
+    for bloco in re.findall(
+            r'<script type="application/ld\+json">(.*?)</script>', html, re.S):
+        try:
+            dado = json.loads(bloco)
+        except Exception:
+            afirma(False, "a pagina serve JSON-LD que nao parseia")
+            continue
+        if isinstance(dado, dict):
+            saida.append(dado)
+        elif isinstance(dado, list):
+            saida.extend(x for x in dado if isinstance(x, dict))
+
+    return saida
+
+
 def texto_do_corpo(html):
     """O texto que a PESSOA le, com as entidades JA DESFEITAS.
 
@@ -308,6 +332,33 @@ try:
     SUB_ID_1 = _COLETOR_DO_PISO.SUB_ID_1
 except Exception as _e2:  # noqa: BLE001 — qualquer falha aqui e "nao medi"
     _POR_QUE_SEM_SUB_ID = str(_e2)
+
+
+# A REGUA DA VOZ SEM VITRINE VEM DO DONO DA CAMADA DECLARADA, nunca reescrita
+# aqui (20/11/2026). Quem decide no ar e o PHP; a tradutora em Python mora em
+# `gerar-vitrine-de-produto.py`, que e o dono de `paginas-de-produto.json`, e e
+# importada pelos DOIS cobradores — o `--conferir` dele e este portao. Terceira
+# copia da mesma regua e a 20.7 pela terceira vez neste mesmo mecanismo.
+# Se o import falhar, o portao DIZ que nao mediu, nunca aprova de cabeca.
+VOZ_SEM_VITRINE = None
+_POR_QUE_SEM_VOZ = ""
+try:
+    import importlib.util as _ilu3
+
+    _spec3 = _ilu3.spec_from_file_location(
+        "rodametria_gerar_vitrine_de_produto",
+        os.path.join(AQUI, "gerar-vitrine-de-produto.py"))
+    _GERADOR = _ilu3.module_from_spec(_spec3)
+    _spec3.loader.exec_module(_GERADOR)
+    VOZ_SEM_VITRINE = _GERADOR.voz_sem_vitrine
+except Exception as _e3:  # noqa: BLE001 — qualquer falha aqui e "nao medi"
+    _POR_QUE_SEM_VOZ = str(_e3)
+
+
+def editorial_do_repositorio():
+    """A CAMADA DECLARADA, lida do repositorio: a voz, nunca o numero."""
+    with open(os.path.join(ILHA, "dados", "paginas-de-produto.json"), encoding="utf-8") as f:
+        return json.load(f)
 
 
 def veredito_do_piso_da_tabela(quantas_buscas, quantos_na_tela):
@@ -709,6 +760,7 @@ def conferir_as_sem_vitrine(urls):
     o mundo certo.
     """
     sem = sem_vitrine_do_repositorio()
+    ed = editorial_do_repositorio()
     if not sem:
         registro("nenhuma pagina em `nao_nasceram`: todas as consultas declaradas tem vitrine "
                  "hoje, e as afirmacoes do piso sem vitrine NAO foram exercitadas nesta passada")
@@ -780,6 +832,87 @@ def conferir_as_sem_vitrine(urls):
                        "(25.8)" % (caminho, piso.get("sub_id_1"), SUB_ID_1))
             afirma(url.startswith("https://s.shopee.com.br/"),
                    "%s serve um piso que NAO e link encurtado: %s" % (caminho, url))
+
+        # (4) A VOZ DECLARADA DESTA PAGINA CHEGA A TELA (20/11/2026).
+        #
+        # O DEFEITO QUE ESTA AFIRMACAO EXISTE PARA IMPEDIR FOI MEDIDO NO AR as
+        # 13h3xZ de 20/11/2026, na revisao 116: esta pagina — 823 mil buscas/mes,
+        # a maior cabeca do nicho — servia 3.303 caracteres de corpo, ZERO par de
+        # pergunta frequente e ZERO `FAQPage`, contra CINCO pares em cada irma,
+        # enquanto `dados/paginas-de-produto.json` declarava para ela o que e e o
+        # que nao e, o como sabemos e seis perguntas. A voz inteira morava DENTRO
+        # do bloco que nao nasce abaixo do piso da 30.2 — a mesma familia do piso
+        # da busca de 19/11, um andar acima.
+        #
+        # E ELE NAO ERA VISIVEL POR NENHUMA REGUA DAQUI: as afirmacoes (1) a (3)
+        # julgam a caixa de ausencia e o piso, e as duas estavam CERTAS. O que
+        # faltava nao era afirmacao virada de lado: era a pergunta nunca feita.
+        if VOZ_SEM_VITRINE is None:
+            registro("%s: a voz declarada NAO FOI MEDIDA — nao consegui importar a regua do "
+                     "dono da camada declarada: %s" % (caminho, _POR_QUE_SEM_VOZ))
+        else:
+            declarada = None
+            for p in ed.get("paginas") or []:
+                if str(p.get("id") or "") == pid:
+                    declarada = p
+                    break
+            if not afirma(declarada is not None,
+                          "%s esta em `nao_nasceram` e NAO tem pagina na camada declarada: "
+                          "sem declaracao ela nao teria nem `h1`" % caminho):
+                continue
+            voz = VOZ_SEM_VITRINE(ed, declarada)
+
+            # (4-a) TODA STRING SERVIVEL ESTA NO CORPO. A conta e por string e
+            # nao por bloco: bloco presente com uma frase faltando passaria uma
+            # afirmacao de presenca e perderia a frase.
+            texto = texto_do_corpo(html)
+            faltando = []
+            total = 0
+            for campo, itens in sorted(voz.items()):
+                for item in itens:
+                    partes = ([item["pergunta"], item["resposta"]]
+                              if isinstance(item, dict) else [item])
+                    for t in partes:
+                        total += 1
+                        if normalizar(t) not in texto:
+                            faltando.append("%s: %s" % (campo, t[:70]))
+            afirma(not faltando,
+                   "%s declara %d string(s) servivel(eis) sem vitrine e NAO serve %d delas: %s"
+                   % (caminho, total, len(faltando), " | ".join(faltando[:4])))
+            afirma(total > 0,
+                   "%s nao tem UMA string servivel sem vitrine: a pagina iria ao ar como o "
+                   "toco de 18/11, e a trava do arquivo tinha de ter pegado antes" % caminho)
+
+            # (4-b) O `FAQPage` TEM UM PAR POR PERGUNTA SERVIDA, e os textos sao
+            # os MESMOS da tela (32.4). Camada da maquina afirmando mais do que a
+            # tela e a 32.4-c com o sinal invertido.
+            pares = voz.get("perguntas") or []
+            faqs = [b for b in jsonld_da_pagina(html) if b.get("@type") == "FAQPage"]
+            if pares:
+                if afirma(len(faqs) == 1,
+                          "%s serve %d FAQPage e devia servir UM: ela serve %d pergunta(s) na "
+                          "tela" % (caminho, len(faqs), len(pares))):
+                    mains = faqs[0].get("mainEntity") or []
+                    afirma(len(mains) == len(pares),
+                           "%s serve %d par(es) no FAQPage e %d pergunta(s) na tela"
+                           % (caminho, len(mains), len(pares)))
+                    nomes_tela = [normalizar(p["pergunta"]) for p in pares]
+                    nomes_ld = [normalizar(m.get("name") or "") for m in mains]
+                    afirma(nomes_ld == nomes_tela,
+                           "%s serve, no FAQPage, perguntas que nao sao as da tela na mesma "
+                           "ordem" % caminho)
+                    for m, p in zip(mains, pares):
+                        texto = ((m.get("acceptedAnswer") or {}).get("text") or "")
+                        afirma(normalizar(texto) == normalizar(p["resposta"]),
+                               "%s: a resposta do FAQPage de %r nao e a da tela, letra por "
+                               "letra" % (caminho, p["pergunta"][:50]))
+            else:
+                afirma(not faqs,
+                       "%s serve FAQPage sem UMA pergunta na tela: dado estruturado afirmando "
+                       "o que a tela nao afirma" % caminho)
+
+            registro("%s: voz declarada sem vitrine — %d string(s) servida(s), %d par(es) de "
+                     "pergunta com FAQPage" % (caminho, total, len(pares)))
 
         registro("%s: SEM vitrine (causa: %s) · caixa de ausencia servida · linha do piso %dx · "
                  "piso na fonte: %s" % (caminho, reg.get("causa"), quantos, url or "NENHUM"))
