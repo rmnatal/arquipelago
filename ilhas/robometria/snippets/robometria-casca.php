@@ -1,5 +1,14 @@
 /**
  * Robometria Casca — identidade e estrutura do site
+ * Versão: 1.16.1 (20/11/2026) — OS ROTULOS COPIADOS DA ILHA DE ORIGEM. A secao
+ * 6 nasceu como copia da secao 14 da rodametria, e trouxe `14-b` e `14-c` em 10
+ * lugares — ali eram subsecoes DAQUELA casca; aqui a secao e a 6 e quem procurar
+ * uma secao 14 neste arquivo nao a acha. Passaram a citar o CONTRATO (29.4-b e
+ * 29.4-c), que e o que de fato diziam. UMA delas nao era comentario e sim BYTE
+ * SERVIDO: o retrato publico do contador dizia "ele conta desde que a secao
+ * 14-c entrou no ar" no endpoint `/casca`, numero de secao de outra ilha na
+ * resposta desta. Agora diz a data e as TRES quedas anteriores. Nenhuma linha
+ * de comportamento muda.
  * Versão: 1.16.0 (20/11/2026) — A CURA DA PORTA DE ENTRADA (secao 6), que e a
  * excecao nomeada da 29.4 do ARQUIPELAGO.md, com o retrato publico da 29.4-b e
  * o contador de quedas da 29.4-c. ESTA ERA A UNICA ILHA NO AR SEM ELA, e isso
@@ -281,7 +290,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ROBOMETRIA_CASCA_VERSAO' ) ) {
-	define( 'ROBOMETRIA_CASCA_VERSAO', '1.16.0' );
+	define( 'ROBOMETRIA_CASCA_VERSAO', '1.16.1' );
 	/* A DEFINICAO DO PAR MORA AQUI, UMA VEZ, e as quatro paginas que publicam o
 	   numero a leem desta constante. Item 1 do despacho da Sentinela de
 	   02/10/2026: a ilha servia 91 em tres paginas e 92 na quarta, os dois
@@ -4119,7 +4128,7 @@ if ( ! defined( 'ROBOMETRIA_CASCA_CURA_OPTION' ) ) {
 if ( ! defined( 'ROBOMETRIA_CASCA_SYNC_OPTION' ) ) {
 	define( 'ROBOMETRIA_CASCA_SYNC_OPTION', 'robometria_sync_estado' );
 }
-/* 14-c. O CONTADOR DE QUEDAS (17/11/2026). A option e `no` de autoload: ela e
+/* 6-c. O CONTADOR DE QUEDAS, que e a 29.4-c do contrato (17/11/2026). A option e `no` de autoload: ela e
    lida pelo retrato publico e escrita SO em requisicao em que a porta ja esta
    no chao. O intervalo de episodio e o MESMO 3600 s da trava 2, e isso nao e
    coincidencia — esta escrito na funcao por que. */
@@ -4312,7 +4321,8 @@ function robometria_casca_cura_espera_s( $ultima, $agora, $intervalo ) {
 }
 
 /* =========================================================================
- * 14-c. O CONTADOR DE QUEDAS — A TRAVA DE UMA HORA ESCONDE APAGAMENTO, E A
+ * 6-c. O CONTADOR DE QUEDAS (a 29.4-c do contrato) — A TRAVA DE UMA HORA
+ *       ESCONDE APAGAMENTO, E A
  *       SERIE DO CHAMADO ESTAVA SENDO CONTADA PELO QUE A CURA CONSEGUIU DIZER
  *       (17/11/2026)
  *
@@ -4372,7 +4382,7 @@ function robometria_casca_cura_espera_s( $ultima, $agora, $intervalo ) {
  *
  * AS FUNCOES SAO PURAS porque o mundo que elas medem — uma hora de relogio, uma
  * cura entre duas leituras — nao se encena no disco deste conteiner sem queimar
- * uma hora de verdade. E a licao do 14-b, repetida: o que nao se fabrica no
+ * uma hora de verdade. E a licao do 29.4-b, repetida: o que nao se fabrica no
  * disco se fabrica no retrato.
  * ------------------------------------------------------------------------- */
 
@@ -4445,7 +4455,7 @@ function robometria_casca_porta_contar( $estado, $tem_bloco, $agora, $episodio_s
 		|| ( null !== $repos && $repos >= $ultima )
 		|| ( $episodio_s > 0 && ( $agora - $ultima ) >= $episodio_s )
 		/* Relogio andando para tras nao pode fundir dois episodios num so, pela
-		   mesma razao que ele nao pode TRANCAR a cura (14-b). */
+		   mesma razao que ele nao pode TRANCAR a cura (29.4-b). */
 		|| ( $agora < $ultima );
 
 	if ( $novo ) {
@@ -4526,7 +4536,7 @@ function robometria_casca_porta_quedas_publico( $estado, $agora ) {
 		'primeira_no_chao'   => $min( $e['primeira_no_chao'] ),
 		'episodio'           => $ep,
 		'leitura'            => 0 === $e['episodios_vistos']
-			? 'o contador nasceu e nunca viu esta porta no chao. Zero aqui NAO quer dizer que ela nunca caiu: ele conta desde que a secao 14-c entrou no ar, e as quedas anteriores estao em dados/consertos.md'
+			? 'o contador nasceu e nunca viu esta porta no chao. Zero aqui NAO quer dizer que ela nunca caiu: ele conta desde 20/11/2026, quando a cura entrou no ar nesta ilha, e as TRES quedas anteriores a ele estao em dados/consertos.md'
 			: 'queda nova e leitura no chao depois de o bloco ter estado no lugar — provado pela cura ter confirmado a reposicao, ou por mais de '
 				. (int) ROBOMETRIA_CASCA_PORTA_EPISODIO_S . ' s sem nenhuma leitura no chao. Este numero nao rola com a janela de 40 linhas do log, e conta tambem o apagamento que cai dentro da hora queimada da trava 2 — que no log nao deixa rastro nenhum',
 	);
@@ -4562,7 +4572,8 @@ function robometria_casca_porta_observar( $tem_bloco, $agora = null ) {
 
 if ( ! function_exists( 'robometria_casca_porta_retrato_publico' ) ) {
 /**
- * 14-b. O RETRATO MINIMO DA PORTA, SEM TOKEN — E ELE NASCEU DE UMA QUEDA EM QUE
+ * 6-b-bis. O RETRATO MINIMO DA PORTA, SEM TOKEN (a 29.4-b do contrato) — E ELE
+ *          NASCEU DE UMA QUEDA EM QUE
  *       TODO INSTRUMENTO PUBLICO DESTA ILHA DIZIA O QUE DIRIA COM A PORTA DE PE.
  *
  * MEDIDO EM 17/11/2026 ENTRE 10h19Z E 10h2xZ, com a ilha em foco total no chao:
@@ -4613,11 +4624,11 @@ function robometria_casca_porta_retrato_publico( $tem_bloco, $espera_s, $quedas 
 				: ( ( (int) $espera_s > 0 )
 					? 'bloco AUSENTE e a hora da trava 2 ainda queimada: a cura nao vai tentar por mais ' . (int) $espera_s . ' s, e a ilha fica no chao ate la'
 					: 'bloco AUSENTE e a cura LIBERADA: a proxima requisicao a esta raiz deve repor o bloco e escrever a linha no /status' ) ),
-		/* 14-c. A CONTAGEM, E ELA RESPONDE A OUTRA PERGUNTA. Os tres campos
+		/* 29.4-c. A CONTAGEM, E ELA RESPONDE A OUTRA PERGUNTA. Os tres campos
 		   acima dizem como a porta esta AGORA; este diz quantas vezes ela
 		   caiu — inclusive as quedas que caem dentro da hora queimada da
 		   trava 2 e que no log nao deixam rastro nenhum. `null` aqui quer
-		   dizer que a 14-c nao esta carregada, nunca que a porta nunca caiu:
+		   dizer que a 29.4-c nao esta carregada, nunca que a porta nunca caiu:
 		   a ausencia e o sinal (20.7), e e por isso que ela e `null` e nao um
 		   zero que soaria conferido. */
 		'quedas'              => ( null === $quedas ) ? null : $quedas,
@@ -4730,7 +4741,7 @@ function robometria_casca_cura_da_porta() {
 
 	$agora = time();
 
-	/* PASSO 1-b (14-c, 17/11/2026): A LEITURA E CONTADA AQUI, E AQUI E ANTES DA
+	/* PASSO 1-b (29.4-c, 17/11/2026): A LEITURA E CONTADA AQUI, E AQUI E ANTES DA
 	   TRAVA DE PROPOSITO — e esta ordem e a secao inteira.
 	   Abaixo desta linha vem o relogio da trava 2, e ele faz a cura sair CALADA
 	   quando a hora esta queimada. Esse silencio esta certo (a 29.4 o quer, e o
@@ -4797,7 +4808,7 @@ function robometria_casca_cura_da_porta() {
 	if ( ! empty( $r['reparado'] ) ) {
 		$linha = 'cura da porta: bloco WordPress reposto — '
 			. robometria_casca_cura_retrato_curto( $antes ) . ' -> ' . robometria_casca_cura_retrato_curto( $depois );
-		/* 14-c: SO O RAMO DO SUCESSO FECHA O EPISODIO. No ramo de baixo o
+		/* 29.4-c: SO O RAMO DO SUCESSO FECHA O EPISODIO. No ramo de baixo o
 		   `flush` rodou e a releitura NAO achou o bloco — ali o episodio segue
 		   aberto, e marcar reposicao faria a leitura seguinte contar uma queda
 		   nova em cima de uma queda que nunca terminou. E a mesma razao por que
