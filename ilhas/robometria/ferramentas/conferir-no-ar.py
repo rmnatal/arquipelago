@@ -55,7 +55,25 @@ import sys
 import time
 
 DOMINIO = 'https://robometria.com.br'
-STATUS = DOMINIO + '/wp-json/robometria/v1/status'
+# O /status LIDO PELA PORTA QUE NAO CAI — 29.7(1), consertado em 20/11/2026.
+#
+# ATE HOJE ESTA LINHA ERA `DOMINIO + '/wp-json/robometria/v1/status'`, caminho
+# BONITO, portanto MORTO junto com a porta de entrada. O despacho NORMAL de
+# 05/11/2026 em `dados/despachos.md` nomeia esta ilha por este `grep`, e o custo
+# dele foi medido na rodametria na quinta queda daquela porta: com a porta no
+# chao, o portao (a) acusou a casca de nao registrar a rota da 29.3 — que estava
+# registrada e respondendo por `?rest_route=` na MESMA passada — e (b) PAROU DE
+# MEDIR O RESTO, encolhendo de 481 afirmacoes para 9.
+#
+# E E A 29.1 LITERAL, uma camada acima: nenhum portao viu a porta cair porque
+# todos entravam pela porta que continuou aberta. Este portao entrava pela porta
+# que CAI, e por isso ele via — e culpava a casca.
+#
+# O QUE A TROCA NAO AFROUXA, porque conserto por conveniencia vira o defeito
+# seguinte: `/wp-json/` em 200 com `application/json` continua sendo afirmacao da
+# 29.2, inteira, na secao 0. A porta segue cobrada pela afirmacao que existe para
+# cobra-la; o que muda e que as OUTRAS afirmacoes param de depender dela.
+STATUS = DOMINIO + '/?rest_route=/robometria/v1/status'
 
 # endereco -> nome canonico da pagina. Literal de proposito: ver o cabecalho.
 PAGINAS = [
@@ -456,7 +474,11 @@ def main():
     manifest = json.load(open('manifest.json', encoding='utf-8'))
     revisao_esperada = manifest['revisao']
 
-    corpo, codigo = buscar(STATUS + '?v=' + carimbo)
+    # `&v=` e nao `?v=`: o STATUS ja carrega a query do `rest_route`. Com `?`
+    # a URL sairia com DUAS interrogacoes e o servidor leria o segundo
+    # parametro como parte do valor do primeiro — a quebra de cache deixaria
+    # de quebrar cache e a rota deixaria de ser achada.
+    corpo, codigo = buscar(STATUS + '&v=' + carimbo)
     ok('200' == codigo, 'o /status responde 200', codigo)
     try:
         estado = json.loads(corpo)
@@ -472,9 +494,28 @@ def main():
     # em silencio. Na maioria dos dias nao havera nenhuma, e isso e a trava 4
     # funcionando — porta que fala quando esta de pe enche a janela de 40
     # linhas, e janela cheia e item que rolou para fora dela sem ser conferido.
-    itens_da_revisao, curas_da_revisao = itens_e_curas_da_janela(estado.get('log'))
+    fecho_da_revisao, itens_da_revisao, curas_da_revisao = itens_e_curas_da_janela(
+        estado.get('log'))
     print('\n0-a. A JANELA DO LOG (20.4) — %d item(ns) de desembarque e %d linha(s) de cura'
           % (len(itens_da_revisao), len(curas_da_revisao)))
+    # A CONTA DA 20.10: o fecho DECLARA um numero e as linhas abaixo dele sao os
+    # LIDOS. Item que rolou para fora da janela de 40 linhas e item aprovado sem
+    # ninguem o ter visto, e a linha da cura NAO entra nesta conta porque nao e
+    # um item sendo aplicado — foi essa confusao que reprovou a ilha sa da irma
+    # em 12/11/2026.
+    declarados = declarados_no_fecho(fecho_da_revisao)
+    if declarados is None:
+        print('  --    o fecho da revisao nao traz o numero de aplicados: a conta da'
+              ' 20.10 nao se faz, e dizer isso e melhor que inventar zero')
+    else:
+        ok(declarados == len(itens_da_revisao),
+           'a conta da 20.10: os itens DECLARADOS no fecho e os LIDOS na janela',
+           '%d declarado(s) / %d lido(s)' % (declarados, len(itens_da_revisao)))
+    # E TODO ITEM LIDO TEM DE DIZER `ok` — afirmacao positiva, porque item que
+    # falhou no desembarque fica no log dizendo o que falhou.
+    sem_ok = [l for l in itens_da_revisao if ': ok' not in l]
+    ok(not sem_ok, 'todo item da revisao corrente diz `ok`',
+       'sem ok: %s' % (sem_ok[:2] if sem_ok else 'nenhum'))
     if not curas_da_revisao:
         print('  --    nenhuma linha `cura da porta:` na janela — pela trava 4 da 29.4'
               ' esse e o silencio da porta DE PE, nao ausencia de instrumento')
@@ -792,8 +833,15 @@ def itens_e_curas_da_janela(log):
     descartada em silencio: linha de classe nova descartada e o mesmo que item
     que rolou para fora da janela — aprovar sobre o que sobrou.
 
-    Devolve (itens, curas) da janela da revisao corrente: do topo ate o fecho
-    anterior, exclusive.
+    Devolve (fecho, itens, curas) da janela da revisao corrente: do topo ate o
+    fecho ANTERIOR, exclusive.
+
+    E O FECHO SAI DA LISTA DE ITENS, que e a outra metade da mesma conta. A
+    primeira versao desta funcao o deixava dentro e o relatorio imprimiu "14
+    itens de desembarque" numa revisao que declarou 13 — o numero certo mais um,
+    com cara de medido. Nao e asseio: a conta da 20.10 compara os DECLARADOS no
+    fecho com os LIDOS abaixo dele, e fecho contado como item faz essa conta
+    fechar errado por um para sempre, nos dois lados ao mesmo tempo.
     """
     linhas = [l for l in (log or []) if isinstance(l, str)]
     janela = []
@@ -802,10 +850,30 @@ def itens_e_curas_da_janela(log):
             break
         janela.append(l)
 
-    curas = [l for l in janela if CURA_RE.search(l)]
-    itens = [l for l in janela if not CURA_RE.search(l)]
+    fecho = janela[0] if janela and REV_RE.search(janela[0]) else None
+    corpo = janela[1:] if fecho is not None else janela
 
-    return itens, curas
+    curas = [l for l in corpo if CURA_RE.search(l)]
+    itens = [l for l in corpo if not CURA_RE.search(l)]
+
+    return fecho, itens, curas
+
+
+# QUANTOS ITENS O FECHO DECLARA — a conta da 20.10, que esta ilha nao tinha.
+DECLARADOS_RE = re.compile(r'(\d+)\s+aplicado\(s\)')
+
+
+def declarados_no_fecho(fecho):
+    """O numero que o fecho da revisao DIZ ter aplicado, ou None.
+
+    None e a resposta certa quando o fecho nao traz o numero: a ausencia e o
+    sinal (20.7), e inventar zero aqui faria a conta reprovar toda ilha sa.
+    """
+    if not isinstance(fecho, str):
+        return None
+    m = DECLARADOS_RE.search(fecho)
+
+    return int(m.group(1)) if m else None
 
 
 def afirmacoes_da_linha_da_cura(linha):
@@ -1559,19 +1627,22 @@ def autoteste():
     # O corte e POSICIONAL: do topo ate o fecho ANTERIOR, exclusive.
     CURA = ('2026-11-20 10:15 cura da porta: bloco WordPress reposto — '
             '1057 bytes [NFD EPC] -> 1580 bytes [NFD EPC, WordPress]')
+    # O MUNDO SADIO DECLARA 2, e nao 3: a linha da cura NAO e um item aplicado,
+    # entao o Sync nunca a conta no fecho. Fixture que declarasse 3 aqui estaria
+    # encenando o mundo FURADO e chamando-o de sadio.
     log = [
-        'revisao 97: 3 aplicado(s), 0 aguardando desembarque',
+        'revisao 97: 2 aplicado(s), 0 aguardando desembarque',
         'snippets/robometria-casca: ok',
         CURA,
         'snippets/robometria-sync: ok',
         'revisao 96: 1 aplicado(s), 0 aguardando desembarque',
         'snippets/robometria-r2: ok',
     ]
-    itens, curas = itens_e_curas_da_janela(log)
+    fecho, itens, curas = itens_e_curas_da_janela(log)
     diz(len(curas) == 1, '6. a linha da cura e ACHADA dentro da janela corrente',
         '%d cura(s)' % len(curas))
-    diz(len(itens) == 3,
-        '6-b. e ela SAI da conta de itens: 3 itens, nao 4 — o defeito de 12/11/2026 '
+    diz(len(itens) == 2,
+        '6-b. e ela SAI da conta de itens: 2 itens, nao 3 — o defeito de 12/11/2026 '
         'da irma, em que 8 declarados contra 9 lidos reprovou a ilha sa',
         '%d item(ns)' % len(itens))
     diz(all(CURA_RE.search(l) is None for l in itens),
@@ -1579,18 +1650,53 @@ def autoteste():
     diz(not any('revisao 96' in l for l in itens),
         '6-d. a janela para no fecho ANTERIOR: o corte e posicional')
 
+    # O FECHO SAI DA LISTA DE ITENS, E ESTA E A CONTA DA 20.10.
+    # A primeira versao desta funcao deixava o fecho dentro e o relatorio no ar
+    # imprimiu "14 itens" numa revisao que declarou 13: o numero certo mais um,
+    # com cara de medido, nos DOIS lados da conta ao mesmo tempo.
+    diz(fecho is not None and 'revisao 97' in fecho,
+        '6-g. o fecho da revisao e devolvido separado dos itens', str(fecho)[:40])
+    diz(all(not REV_RE.search(l) for l in itens),
+        '6-h. nenhum fecho de revisao sobrou entre os itens')
+    diz(declarados_no_fecho(fecho) == 2,
+        '6-i. a conta da 20.10 FECHA: 2 declarados e 2 lidos, com a cura fora dela',
+        '%s declarado(s) / %d lido(s)' % (declarados_no_fecho(fecho), len(itens)))
+
+    # E A CONTA TEM DE ACUSAR QUANDO NAO FECHA, senao ela nao mede nada.
+    log_furado = [
+        'revisao 99: 3 aplicado(s), 0 aguardando desembarque',
+        'snippets/robometria-casca: ok',
+        CURA,
+    ]
+    f2, i2, c2 = itens_e_curas_da_janela(log_furado)
+    diz(declarados_no_fecho(f2) == 3 and len(i2) == 1,
+        '6-j. item que rolou para fora da janela ACUSA: 3 declarados e 1 lido — '
+        'e a cura NAO preenche o buraco',
+        '%s declarado(s) / %d lido(s)' % (declarados_no_fecho(f2), len(i2)))
+
+    # FECHO SEM NUMERO NAO INVENTA ZERO: a ausencia e o sinal (20.7).
+    for sem_num in (None, 'linha que nao e fecho', 'revisao 99: forcado'):
+        diz(declarados_no_fecho(sem_num) is None,
+            '6-k. fecho %r: a conta DIZ que nao se faz, em vez de inventar zero'
+            % (sem_num,))
+
+    # JANELA SEM FECHO NENHUM NO TOPO: o corpo inteiro e item, e `fecho` e None.
+    f3, i3, c3 = itens_e_curas_da_janela(['snippets/x: ok', 'snippets/y: ok'])
+    diz(f3 is None and len(i3) == 2,
+        '6-l. janela que nao comeca por fecho: nada e descartado como se fosse fecho')
+
     # A CONFUSAO PELO AVESSO: um snippet CHAMADO cura-da-porta sendo APLICADO
     # **e** item de desembarque, e tira-lo da conta seria o mesmo furo.
     log_avesso = ['revisao 98: 1 aplicado(s), 0 aguardando desembarque',
                   'snippets/robometria-cura-da-porta: ok']
-    itens2, curas2 = itens_e_curas_da_janela(log_avesso)
-    diz(len(curas2) == 0 and len(itens2) == 2,
+    _f, itens2, curas2 = itens_e_curas_da_janela(log_avesso)
+    diz(len(curas2) == 0 and len(itens2) == 1,
         '6-e. snippet CHAMADO cura-da-porta sendo aplicado CONTINUA sendo item — '
         'o reconhecimento e pela frase `cura da porta:`, nunca pelo nome do arquivo')
 
     # LOG VAZIO OU AUSENTE NAO EXPLODE E NAO INVENTA JANELA.
     for vazio in (None, [], ['linha solta sem fecho de revisao']):
-        i, c = itens_e_curas_da_janela(vazio)
+        _f, i, c = itens_e_curas_da_janela(vazio)
         diz(isinstance(i, list) and isinstance(c, list) and not c,
             '6-f. log %r: nenhuma cura e nenhuma excecao' % (vazio,))
 

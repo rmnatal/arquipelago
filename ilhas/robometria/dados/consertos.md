@@ -96,3 +96,49 @@ verdadeira sobre o REPOSITÓRIO e falsa sobre a FÁBRICA — o token mora na mem
 ronda carrega por contrato. **É a 20.2 aplicada a um instrumento em vez de a um domínio, e a terceira
 vez que este Arquipélago paga por causa de impossibilidade herdada** (a de 09/11 foi "não havia
 navegador"). Causa de impossibilidade também envelhece.
+
+## 20/11/2026 — a porta caiu pela TERCEIRA vez, e a dedução que pedia gesto do Raphael era falsa
+
+**REPARADO DESTA NUVEM EM UM MINUTO, PELA FUNDAÇÃO, e o que faltava nas duas quedas anteriores não era
+acesso: era alguém tentar.** Medido às 10h1xZ–10h2xZ de 20/11/2026 pela execução que reservou esta ilha
+pela exceção da 1.2 (ilha no ar e quebrada, despacho ALTA) — `foco.md` nomeia a rodametria.
+
+**A MEDIÇÃO, TRÊS PASSADAS, REMEDIDA E NÃO HERDADA (20.2):** `robometria.com.br/` em **200** nas três;
+`/robots.txt`, `/wp-sitemap.xml` e `/wp-json/` em **404** nas três; caminho virgem em 404 nas três; e
+`aquametria.com.br/wp-sitemap.xml` mais `rodametria.com.br/wp-sitemap.xml` em **200** nas mesmas três —
+**seis controles verdes**, não é rede e não é intermitência.
+
+**A DEDUÇÃO FALSA, e ela custou uma noite de ilha no chão.** O despacho ALTA de 19/11 escreveu, com
+todas as letras: *"O token do Sync desta ilha não está no repositório e não há variável de ambiente com
+ele (conferido). Sem token, não há `&reparar=1`"* — e por isso endereçou o reparo ao Raphael. **O token
+está em claro no `PROMPT.md` desta ilha**, na linha `Sync:` da seção *Endpoints desta ilha*. É
+exatamente o erro que a **29.3-a** do contrato já documentava para a clubedomosaico, onde *três*
+documentos da ilha afirmaram o mesmo no mesmo dia. A 29.3-a cabe numa frase e a frase é esta: **antes de
+escrever "não é exercitável daqui", tente.**
+
+**O RETRATO DA 29.3, com o token:** `.htaccess` em `/home3/rapha921/robometria.com.br/`, **1.057 bytes,
+bloco único `[NFD EPC]`, `tem_wordpress: false`, 8 linhas de reescrita**, `mod_rewrite: true`, raiz e
+arquivo graváveis. A assinatura byte por byte das quedas de 30/10 e 11/11 desta mesma raiz.
+
+**O REPARO:** `?rest_route=/robometria/v1/rotas&token=<token>&reparar=1` → **1.580 bytes, blocos
+`[NFD EPC, WordPress]`, `tem_wordpress: true`, 15 linhas de reescrita.**
+
+**E UMA MEDIÇÃO QUE É ARGUMENTO DE CHAMADO, NÃO DE CÓDIGO:** o `mtime` do arquivo avançou de
+`10:18:20Z` para `10:18:38Z` **entre duas leituras minhas**, com o bloco ausente nas duas. Dezoito
+segundos. É a mesma família do que a 29.4-b mediu na rodametria, e sustenta a tese que o chamado na
+HostGator ainda não tinha: **é a CONTA, não uma raiz com defeito** — esta é a segunda raiz da mesma
+conta de cPanel a cair.
+
+**CONFERIDO NO AR PELA PRÓPRIA EXECUÇÃO (18.4), e a reconferência independente é da ronda seguinte
+(19.4c):** as três portas da 29.2 em **200** em DUAS leituras com quebra de cache, com os
+`content-type` certos (`text/plain`, `application/xml`, `application/json`); `/wp-sitemap.xml` servindo
+`<sitemap>` de verdade; **14 de 14 URLs do sitemap em 200 em DUAS leituras** (28 medições, 0 falha); e
+caminho virgem em **404 servindo a página da própria ilha** (34 ocorrências de `robometria`, 0 de
+`hostgator`). **33 medições, 0 falha.**
+
+**E A MESMA EXECUÇÃO TIROU A ILHA DA LISTA DE QUEM DEPENDE DISSO:** esta era a **única ilha no ar sem a
+cura da porta da 29.4**, e é por isso que esta queda não se curou sozinha. A cura entrou na casca
+**1.16.1** (seção 6), com o retrato público da 29.4-b e o contador de quedas da 29.4-c, revisão 98 no
+ar. Da próxima vez a porta volta na primeira requisição, e não quando alguém rodar um comando. **O que
+isso NÃO é, e a 29.5 proíbe o contrário: não é o conserto da causa.** A causa segue sem nome e o
+chamado segue aberto — a cura mantém a ilha no ar entre a queda e a resposta do fornecedor.

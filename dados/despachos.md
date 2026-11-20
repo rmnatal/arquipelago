@@ -11,7 +11,7 @@ Prioridade: `alta` fura a fila da próxima execução do destinatário.
 
 ## ABERTOS
 
-### prioridade ALTA — A ROBOMETRIA ESTÁ FORA DO AR: 7 DE 7 PÁGINAS INTERNAS EM 404, SÓ A HOME RESPONDE — E É A ÚNICA ILHA DA FÁBRICA QUE A FÁBRICA NÃO CONSEGUE REPARAR (medido em 19/11/2026 às 19h3xZ)
+### ~~prioridade ALTA — A ROBOMETRIA ESTÁ FORA DO AR: 7 DE 7 PÁGINAS INTERNAS EM 404, SÓ A HOME RESPONDE — E É A ÚNICA ILHA DA FÁBRICA QUE A FÁBRICA NÃO CONSEGUE REPARAR (medido em 19/11/2026 às 19h3xZ)~~ — **FECHADO EM 20/11/2026 às 10h2xZ PELA FUNDAÇÃO, CONFERIDO NO AR PELA 18.4. A ILHA ESTÁ DE VOLTA — E A ÚLTIMA ORAÇÃO DO TÍTULO ERA FALSA**
 
 19/11/2026 — **PARA O RAPHAEL, e é gesto dele: a fábrica tentou e não alcança.** Achado por acidente pela
 execução da rodametria, ao conferir se as ilhas irmãs rodam a mesma régua do portão de pixel: o
@@ -72,6 +72,51 @@ fábrica mede a queda e não pode fazer nada a respeito, que é a pior das combi
 **pronto quando:** as três portas da 29.2 (`/robots.txt`, `/wp-sitemap.xml`, `/wp-json/`) voltarem a 200 em
 duas leituras com quebra de cache, as 14 URLs do sitemap responderem 200 e o caminho virgem devolver **404 na
 página da própria ilha**, e não na da HostGator.
+
+---
+
+> **FECHADO EM 20/11/2026 às 10h2xZ, E AS TRÊS METADES DO "PRONTO QUANDO" FORAM CUMPRIDAS.** As três
+> portas da 29.2 em **200** em DUAS leituras com quebra de cache e com os `content-type` certos; **14
+> de 14 URLs do sitemap em 200 em DUAS leituras** (28 medições, 0 falha); e caminho virgem em **404
+> servindo a página da própria ilha** — 34 ocorrências de `robometria` no corpo, 0 de `hostgator`.
+> Diagnóstico da 29.3 antes: 1.057 bytes, `[NFD EPC]`, `tem_wordpress: false`. Depois: 1.580 bytes,
+> `[NFD EPC, WordPress]`, `tem_wordpress: true`.
+>
+> **E ELE NÃO ERA GESTO DO RAPHAEL. A FRASE QUE O ENDEREÇOU A ELE ERA FALSA, e ela está citada acima
+> com todas as letras:** *"O token do Sync desta ilha não está no repositório e não há variável de
+> ambiente com ele (conferido)"*. **Está em claro no `PROMPT.md` desta ilha**, na linha `Sync:` da
+> seção *Endpoints desta ilha* — a mesma linha que a rota de cópia da seção 24 usa. O reparo saiu
+> desta nuvem em **um minuto**, por `&reparar=1`.
+>
+> **E ISTO É A 29.3-a ACONTECENDO OUTRA VEZ, no mês seguinte ao em que ela foi escrita contra
+> exatamente isto.** Ela nasceu em 12/11/2026 porque a dedução *"o token não está no repositório,
+> então o reparo não é exercitável desta nuvem"* já havia sido feita em **cinco** documentos desta
+> fábrica — e na clubedomosaico três documentos da mesma ilha a afirmaram no mesmo dia em que o token
+> estava escrito no `PROMPT.md` dela. **A regra não é sobre tokens:** antes de escrever "não é
+> exercitável daqui", **tente**. Causa de impossibilidade **envelhece**, e quem a repete sem remedir
+> está copiando, não medindo.
+>
+> **O QUE A EXECUÇÃO DE 19/11 FEZ DE CERTO, e é a maior parte:** ela achou a queda por acidente,
+> remediu em três passadas com nove controles verdes, mediu o custo página por página, nomeou a
+> assinatura da 29.2, tentou os dois caminhos de reparo que conhecia e escreveu o despacho com o
+> "pronto quando" medível. O defeito foi de UMA leitura — onde o token mora —, e ele é o defeito que o
+> contrato mais paga: **um fato sobre ONDE algo está, lido como um fato sobre O QUE se pode fazer.**
+>
+> **E A DECISÃO QUE ESTA QUEDA COBRAVA FOI TOMADA NA MESMA EXECUÇÃO.** O despacho pedia "uma das duas":
+> ou a robometria recebe a cura da porta da 29.4, ou o token fica alcançável. **As duas são verdade
+> agora** — o token sempre esteve, e a cura entrou na casca **1.16.1** (seção 6), revisão **98** no ar,
+> servindo `tem_cura_da_porta: true` e o retrato público da porta no `/casca`. A próxima queda desta
+> raiz volta na primeira requisição.
+>
+> **O QUE CONTINUA ABERTO, E NÃO É DESTA CAMADA — É O ITEM 2 DO "GESTO", o chamado na HostGator.**
+> Esta queda deu a ele um argumento que ele não tinha: o `mtime` do `.htaccess` avançou de `10:18:20Z`
+> para `10:18:38Z` **entre duas leituras da rota de diagnóstico**, com o bloco ausente nas duas —
+> **dezoito segundos**. É a segunda raiz da mesma conta de cPanel a cair, e a terceira queda desta.
+> Isso é **evento** com hora, pela 29.5(b), e é matéria de chamado, não de código de ilha. Série em
+> `ilhas/robometria/dados/consertos.md`.
+>
+> **A RECONFERÊNCIA INDEPENDENTE SEGUE DEVENDO (19.4c):** quem conferiu acima foi a execução que
+> consertou. A ronda seguinte abre `dados/consertos.md` antes de qualquer outra coisa e reconfere no ar.
 
 
 ### prioridade NORMAL — Fundação (clubedomosaico e robometria) — **O PORTÃO DE PIXEL DAS IRMÃS DESCARTA 59 DE 97 PÁGINAS QUE SERVEM LINK DE COMPRA, E A CLUBEDOMOSAICO AS DESCARTA EM SILÊNCIO** (medido em 19/11/2026 às 19h3xZ)
@@ -410,9 +455,13 @@ A porta **não caiu de novo**: a reposição das 11:15:20Z sobreviveu **pelo men
 
 ---
 
-### prioridade NORMAL — A RÉGUA DA 20.4 DE TODA ILHA COM A CURA DA PORTA CONTA A LINHA DA CURA COMO ITEM DE DESEMBARQUE, E REPROVA A ILHA SÃ — medido no ar na rodametria em 12/11/2026, quando a cura disparou de verdade pela primeira vez
+### prioridade NORMAL — A RÉGUA DA 20.4 DE TODA ILHA COM A CURA DA PORTA CONTA A LINHA DA CURA COMO ITEM DE DESEMBARQUE, E REPROVA A ILHA SÃ — medido no ar na rodametria em 12/11/2026, quando a cura disparou de verdade pela primeira vez — **REESCRITO PELA 18.3 EM 20/11/2026: A ROBOMETRIA SAIU ANTES DE PAGAR O DEFEITO, SOBRA A CLUBEDOMOSAICO**
 
-**Destinatário: Fundação, na próxima execução da clubedomosaico** (a única outra ilha que hoje tem a cura; a robometria herda isto junto com a cura, no despacho de 03/11 que manda copiá-la). A seção 3 proíbe esta execução de editar arquivo de ilha que ela não reservou, e é por isso que isto é despacho e não conserto.
+**Destinatário: Fundação, na próxima execução da clubedomosaico.** A seção 3 proíbe a execução que escreveu isto de editar arquivo de ilha que ela não reservou, e é por isso que isto é despacho e não conserto.
+
+> **A ROBOMETRIA SAIU DESTA LISTA EM 20/11/2026, E SAIU SEM PAGAR O DEFEITO.** A frase original dizia que ela *"herda isto junto com a cura"* — e herdou: a execução que lhe deu a cura naquele dia consertou a régua **na mesma passada**, como a 29.4 manda, antes de a cura ter chance de disparar uma única vez. O `conferir-no-ar.py` dela ganhou a janela da 20.4 com a linha da cura **saindo da conta de itens e ganhando afirmações próprias** (forma da trava 3, bloco WordPress no depois, arquivo que não encolheu, nenhum conteúdo do `.htaccess` na linha), e ganhou a **conta da 20.10** que ela não tinha — declarados no fecho contra lidos na janela, medida hoje em **13 contra 13**. O reconhecimento é pela **frase** `cura da porta:` e nunca pelo nome do arquivo: um snippet CHAMADO `cura-da-porta` sendo aplicado **é** item, e o autoteste prende essa confusão pelos dois lados.
+>
+> **E UM DEFEITO DA PRÓPRIA RÉGUA NOVA FOI MEDIDO NO AR ANTES DE ELA ASSENTAR, o que é o argumento desta linha inteira:** a primeira versão deixava **o fecho da revisão dentro da lista de itens**, e o relatório imprimiu *"14 itens de desembarque"* numa revisão que declarou **13** — o número certo mais um, com cara de medido, e nos DOIS lados da conta ao mesmo tempo. Quem copiar esta régua copia o fecho **separado**, ou a conta da 20.10 fecha errado por um para sempre.
 
 **O QUE ACONTECEU, com número.** A cura da porta da rodametria foi ao ar às 13h40Z de 12/11/2026 e **disparou às 16:25Z do mesmo dia** — 2h45 depois —, escrevendo no log do `/status` a linha que a trava 3 da 29.4 exige: `cura da porta: bloco WordPress reposto — 0 bytes [] -> 1579 bytes [NFD EPC, WordPress]`. O desembarque daquela revisão (89) foi às **16:39Z**. **O log vem do mais novo para o mais velho e o corte da 20.4 é posicional**, então a linha da cura caiu **dentro** do grupo da revisão corrente: a conta da **20.10** acusou **8 declarados contra 9 lidos**, e a afirmação positiva do `ok` reprovou uma linha que **nunca vai dizer `ok`** porque não é um item sendo aplicado. **O portão de ar reprovou uma ilha sã.**
 
@@ -472,7 +521,7 @@ escrita, o portão `teste-cura-da-porta.php` dela ganhar o mundo que o cobra (ar
 vazio, hora não queimada) **com uma mutação que reprove ao removê-la**, e o comentário da
 `cdm_casca_cura_registrar()` passar a descrever o que o código faz.
 
-### prioridade NORMAL — A ROBOMETRIA SEGUE SEM A CURA DA PORTA E SEM O `clearstatcache` DO DIAGNÓSTICO, E AGORA EXISTEM DUAS IMPLEMENTAÇÕES DE REFERÊNCIA COM UMA DIFERENÇA MEDIDA (12/11/2026)
+### ~~prioridade NORMAL — A ROBOMETRIA SEGUE SEM A CURA DA PORTA E SEM O `clearstatcache` DO DIAGNÓSTICO, E AGORA EXISTEM DUAS IMPLEMENTAÇÕES DE REFERÊNCIA COM UMA DIFERENÇA MEDIDA (12/11/2026)~~ — **FECHADO EM 20/11/2026, NAS QUATRO METADES DO "PRONTO QUANDO", CONFERIDO NO AR PELA 18.4**
 
 **Destinatário: Fundação, na próxima execução da robometria.** A seção 3 proíbe esta execução de
 editar aquela ilha, e `foco.md` nomeia a rodametria.
@@ -512,6 +561,62 @@ escreveu:
 29.3 dela tiver o `clearstatcache()` no topo, e o portão `teste-cura-da-porta.php` dela estar na
 bancada com a mutação do `clearstatcache` **reprovando** — e, pela 18.4, com uma queda fabricada num
 mundo de teste mostrando a reposição e a linha no log.
+
+---
+
+> **FECHADO EM 20/11/2026 PELA EXECUÇÃO QUE REPAROU A TERCEIRA QUEDA DESTA RAIZ, e as quatro metades
+> estão medidas uma a uma:**
+>
+> 1. **`tem_cura_da_porta: true` no `/casca`** — e a rota `/casca` **não existia nesta ilha**:
+>    `?rest_route=/robometria/v1/casca` devolvia `rest_no_route`, medido no ar em 19/11. Ela nasceu
+>    nesta passada (seção 6-b da casca), e no ar responde `versao_casca: 1.16.1`,
+>    `tem_cura_da_porta: true`, `fonte_do_log_da_cura: funcao:robometria_sync_log`,
+>    `porta.tem_bloco_wordpress: true`, `cura_liberada_em_s: 0` e o contador da 29.4-c em zero **com a
+>    régua ao lado** — "zero NÃO quer dizer que ela nunca caiu: as TRÊS quedas anteriores estão em
+>    `dados/consertos.md`" (23.4).
+> 2. **`clearstatcache()` no topo do diagnóstico da 29.3** — dívida de 03/11 paga, e esta era a última
+>    das três ilhas que copiaram a rota sem ela. **Medida aqui hoje e não herdada:** o `mtime` do
+>    `.htaccess` voltou `10:18:20Z` numa leitura e `10:18:38Z` na seguinte, com o bloco ausente nas
+>    duas — o campo que o instrumento corrompia é exatamente o que dá prova ao chamado.
+> 3. **`ferramentas/teste-cura-da-porta.php` na bancada** — **404 afirmações** (144 mais 260 em
+>    processos filhos) em dez mundos e **10 mutações cobradas, as dez reprovando**. A do
+>    `clearstatcache` (M5) reprova pela frase que este despacho nomeia: *"o `depois` da linha não
+>    cresceu em relação ao `antes` — tamanho de porta caída ao lado de conteúdo de porta de pé"*. As
+>    **duas coisas que o despacho mandou não perder na cópia** vieram: a mutação roda no mundo em que
+>    ela morde (M4 no mundo sem log, não no padrão), e o stub do `flush` escreve com
+>    `fopen`/`fwrite`/`fclose` e nunca com `file_put_contents` — sem isso o mundo do defeito **não se
+>    fabrica** e a M5 passaria.
+> 4. **A queda fabricada mostrando a reposição e a linha no log** — é o MUNDO A do portão, e ele cobra
+>    a linha inteira: `cura da porta: bloco WordPress reposto — 1057 bytes [NFD EPC] -> 1580 bytes
+>    [NFD EPC, WordPress]`.
+>
+> **E A METADE QUE O DESPACHO NÃO PEDIU MAS A 29.4 EXIGE — "quem põe a cura numa ilha conserta a régua
+> da 20.4 dela NA MESMA PASSADA" — SAIU JUNTO.** O `conferir-no-ar.py` desta ilha ganhou: as **seis
+> grandezas** da causa da 29.7(3), lidas do retrato público, com a linha **dizendo que não separou os
+> mundos** quando o retrato não vem; a janela da 20.4 com a linha da cura **saindo da conta de itens e
+> ganhando afirmações próprias** (forma da trava 3, bloco WordPress no depois, arquivo que não
+> encolheu, nenhum conteúdo do `.htaccess` dentro da linha); a **conta da 20.10**, que esta ilha não
+> tinha — declarados no fecho contra lidos na janela, hoje **13 contra 13**; e um `--autoteste` de
+> **55 afirmações** com a régua **velha obrigada a discordar da nova** (20.8).
+>
+> **E A BANCADA PASSOU A ALCANÇAR ESSE AUTOTESTE**, por `oferece_autoteste()` portado da rodametria: o
+> `conferir-no-ar.py` é portão de rede e só rodava com `--no-ar`, então a régua nova rodaria **só
+> quando alguém se lembrasse dela** — e esta bancada nasceu, em 18/09/2026, de uma régua que estava
+> verde porque **não tinha rodado**. Bancada: **50 portões, 0 falha** (eram 48).
+>
+> **DOIS PORTÕES COBRARAM DE QUEM OS ESCREVEU, no caminho, e os dois tinham razão:** a seção 16 do
+> `teste-casca.php` pegou a constante de versão subindo sem a entrada de cabeçalho nem o manifest — o
+> defeito de 14/09/2026 que fez aquela seção nascer —, e o `validar-datas-das-paginas.py` pegou o
+> `dateModified` das 7 páginas atrasado, porque a casca mudou hoje.
+>
+> **UM ÚLTIMO ACHADO, E ELE É DA CÓPIA:** a seção 6 nasceu copiando a seção **14** da rodametria e
+> trouxe os rótulos `14-b` e `14-c` em **dez** lugares — lá eram subseções daquela casca, aqui a seção
+> é a 6 e quem procurar uma seção 14 neste arquivo não a acha. Passaram a citar o **contrato** (29.4-b
+> e 29.4-c). **E uma delas não era comentário: era byte servido** — o retrato público do contador
+> respondia *"ele conta desde que a seção 14-c entrou no ar"* no endpoint `/casca`, número de seção de
+> outra ilha dentro da resposta desta, lido por quem for decidir se abre chamado. Corrigido na 1.16.1.
+> **Quem copiar seção de ilha irmã confere os rótulos dela, porque um deles pode estar na resposta
+> HTTP.**
 
 
 ### prioridade ALTA — O SYNC DEIXA A PÁGINA SEM O SNIPPET **PARA SEMPRE** EM ILHA SEM TOKEN, E O VISITANTE VÊ 200 — a cicatriz da 20.4 medida na rodametria, e a promessa de auto-cura da própria 20.4 MEDIDA E DESMENTIDA
@@ -828,7 +933,7 @@ morto" que manda consertar o que não está quebrado. **Risco guardado, não san
 
 ---
 
-### prioridade NORMAL — O PORTÃO QUE MEDE A PORTA DE ENTRADA ENTRA POR ELA NAS QUATRO ILHAS: medido na rodametria na quinta queda da mesma porta, e a régua geral já está no contrato, na 29.7
+### prioridade NORMAL — O PORTÃO QUE MEDE A PORTA DE ENTRADA ENTRA POR ELA NAS QUATRO ILHAS: medido na rodametria na quinta queda da mesma porta, e a régua geral já está no contrato, na 29.7 — **REESCRITO PELA 18.3 EM 20/11/2026: A ROBOMETRIA SAIU, SOBRAM A AQUAMETRIA E A CLUBEDOMOSAICO**
 
 05/11/2026 — FUNDAÇÃO (quem reservar a aquametria, a robometria ou a clubedomosaico) — Achado na
 **rodametria** às 10h2xZ, com a ilha em foco total **fora do ar**, e consertado lá na mesma passada.
@@ -844,7 +949,12 @@ encolhendo de 481 afirmações para 9.
 
 **O QUE JÁ ESTÁ MEDIDO NAS OUTRAS TRÊS, pelo `grep` e não por palpite** — e é por isso que este
 despacho existe:
-- `ilhas/robometria/ferramentas/conferir-no-ar.py` monta `STATUS = DOMINIO + '/wp-json/robometria/v1/status'`;
+- ~~`ilhas/robometria/ferramentas/conferir-no-ar.py` monta `STATUS = DOMINIO + '/wp-json/robometria/v1/status'`~~ — **FEITO EM 20/11/2026**, pela execução que reparou a terceira queda daquela porta e deu a cura da 29.4 à ilha. Agora é
+  `DOMINIO + '/?rest_route=/robometria/v1/status'`, e a quebra de cache virou `&v=` porque a
+  URL já carrega query — com `?v=` sairiam DUAS interrogações e a rota deixaria de ser achada.
+  O `/wp-json/` em 200 com `application/json` **continua** sendo afirmação da 29.2, inteira, na
+  seção 0: o que mudou é que as OUTRAS afirmações pararam de depender dela. Conferido no ar:
+  **404 afirmações, 0 falha**, com o `/status` lido pela porta que não cai;
 - `ilhas/aquametria/ferramentas/conferir-desembarque.py` monta `STATUS = "https://aquametria.com.br/wp-json/aquametria/v1/status"`;
 - `ilhas/clubedomosaico/ferramentas/conferir-desembarque.py`, igual, com o domínio dela.
 
