@@ -28,7 +28,20 @@ ultima_execucao: 2026-11-20T16:5xZ   # A CAMADA DECLARADA FOI CONFERIDA NO
                          # Corrigida com as quatro linhas da fonte RELIDAS hoje
                          # (342, 355, 473, 516 — o despacho dizia 472/515).
                          # Bancada: 66 portoes, 0 falha, os de ar inclusos.
-executando_desde: null   # LIMPO no fecho desta execucao (passo 7 da secao 1).
+executando_desde: 2026-11-20T19:17Z   # RESERVA desta execucao (passo 5 da secao 1),
+                         # hora saida do `date -u` NA MESMA LINHA DE COMANDO que a
+                         # grava, nunca digitada. Ilha escolhida pela 1.2: `foco.md`
+                         # nomeia a rodametria desde 27/10. Nada furou o foco nesta
+                         # passada — o despacho do molde da 32 segue FECHADO nas tres
+                         # irmas (a nota de 23/10 no ESTADO.md da clubedomosaico diz
+                         # com todas as letras que as tres estao com o molde no ar e o
+                         # foco volta a mandar sozinho), e o despacho novo da
+                         # robometria de hoje 14h2xZ NAO e ALTA e a casca dela esta
+                         # limpa (14 de 14 em 200), logo nao e `ilha no ar e quebrada`
+                         # da 1.2. Esta ilha estava LIVRE: executando_desde null, que
+                         # pela 1.1 ja significa que nao ha bloco da Fundacao vivo, e
+                         # o ultimo commit na pasta foi 16h34Z, fora dos 40 minutos.
+                         # ANTERIOR: LIMPO no fecho da execucao de 16h17Z (passo 7).
                          # A reserva desta passada foi 2026-11-20T16:17Z, commit
                          # e695bd9, e nada furou o foco: o despacho do molde da 32
                          # esta FECHADO nas tres irmas e o despacho novo da
