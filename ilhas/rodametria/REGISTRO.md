@@ -3,6 +3,81 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-11-20 13h17Z–13h4xZ — **A VOZ DECLARADA DA PÁGINA DE 823 MIL BUSCAS/MÊS CHEGOU À TELA, E ELA ESTAVA INTEIRA NO REPOSITÓRIO DESDE QUE A PÁGINA NASCEU.** Corpo de **3.303 → 5.534** caracteres, pares de pergunta de **0 → 3** com `FAQPage`. É a **segunda vez em dois dias, na mesma página**, que o que ela devia dizer morava dentro do bloco que não nasce — virou a **32.9** do contrato.
+
+**A ILHA DESTA EXECUÇÃO:** rodametria, por **foco** (`foco.md`, foco total e absoluto desde 27/10). **O que furaria o foco foi conferido antes de aceitar isso:** no topo do `PROMPT.md` desta ilha não há despacho de **Fundação** aberto — os três que sobram (item 2 da leitura semanal, 3-b e item 5) dizem, neles mesmos, que são **gesto do Raphael**. Em `dados/despachos.md` os **ALTA** abertos são todos "precisa do Raphael" ou desta própria ilha, e o da **robometria** — a única ilha que estava no ar e quebrada — foi **FECHADO às 10h2xZ de hoje** pela execução anterior. As três ilhas da exceção do **molde** (seção 32: aquametria, clubedomosaico, robometria) têm o despacho do molde **fechado inteiro desde 21/10**. Nada furava o foco.
+
+**Passo 1 do disparo, medido:** `git fetch origin main` trouxe o `main` de `68c88a4` para **`e69a5b7`**. A branch desta sessão (`claude/dreamy-mccarthy-qa1trt`) estava **na mesma ponta do `main`** — `git log origin/main..origin/claude/...` devolveu **vazio** nas duas direções — e `git status` veio limpo: **nada a mesclar, nenhum branch de execução anterior e nenhum PR aberto.**
+
+**A RESERVA (passo 5 da seção 1):** `executando_desde` estava **`null`**, o que pela **1.1** já prova que não havia bloco da Fundação vivo — não houve reserva vencida para o git desempatar. Reserva às **13h17Z**, ganha no push na **primeira tentativa** (`bae619e`). **RENOVADA pela 1.1 no commit de fecho**, porque o bloco passou de 40 minutos: o cron do Sync desta ilha roda **por requisição** e a janela dele cai de 30 em 30 minutos, e o desembarque esperou de 13h35Z a 13h40Z. A hora saiu do `date -u` na mesma linha de comando que a grava.
+
+**A REDE (20.2), REMEDIDA e não herdada:** `rodametria.com.br/` em **200 nas três** passadas, `www.` em **301 na primeira e 200 nas outras duas** (redireção, não recusa), com `aquametria.com.br` e `robometria.com.br` em **200 nas mesmas três**.
+
+**E A PAREDE DO `.gov.br` FOI REMEDIDA PELA 20.3, porque causa de impossibilidade envelhece (seção 33) — e ela NÃO envelheceu.** `gov.br`, `in.gov.br`, `planalto.gov.br`, `contran.gov.br`, `lex.com.br`, `campinas.sp.gov.br`, `joinville.sc.gov.br`, `sjc.sp.gov.br` e `www2.camara.leg.br` em **000 nas três** passadas, com três controles verdes em cada uma — **27 medições de bloqueio contra 9 de controle verde, zero intermitência.** O leitor de página desta nuvem devolve `ENOTFOUND` em `www.gov.br`. **A busca atravessa e continua não servindo como fonte de registro**, pela razão que `dados/fonte-oficial-f1.md` já mediu em 05/11 e que esta passada não desfez: ela devolveu o texto da 996/2023 por **cópia de terceiro** (um PDF do DOU hospedado por uma associação, e uma reprodução comercial), nunca pela custódia oficial. **Então o CNH da F1 e a camada municipal seguem parados, e o que os destrava são os dois campos de configuração do item 3-b — gesto do Raphael.**
+
+### A ESCOLHA DO BLOCO, E ELA COMEÇOU POR UMA RECUSA
+
+A fila desta ilha manda **leva de página** (`piso: abaixo`, 11 URLs de 40, duas levas livres na semana pela 21.4), e a leva **não pôde abrir** — medido, não herdado. Das seis cabeças do nicho, três já têm página; `scooter elétrica` foi **remedida em 16/11** e segue recusada por canibalização (*na loja a palavra `scooter` É o patinete*); `bike elétrica` e `motos elétricas para adultos` não nascem pela **30.4**. Na cauda, **três das cinco estão TOMADAS** por fazenda e duas são `nao-medida`, que pela **30.8** não autoriza nada. Nos eixos B e C do corpus **nenhum veredito diz `alvo`**. E `alvo` não se afirma desta nuvem, nunca.
+
+**Então a execução foi procurar o que já estava no ar, e achou no primeiro lugar que olhou** — o que é a **18.5** ao pé da letra: verificação antes de construção, sempre.
+
+### O DEFEITO, MEDIDO ÀS 13h3xZ ANTES DE MEXER EM NADA
+
+No HTML servido de `/veiculos/moto-eletrica/` — **823 mil buscas/mês, a maior cabeça do nicho** —, com quebra de cache: **3.303 caracteres** de corpo, **zero** par de pergunta frequente, **zero** `FAQPage`, **três** `<h2>`. As duas irmãs servem **cinco** pares cada uma.
+
+E `dados/paginas-de-produto.json` declarava, para **aquela mesma URL**: dois parágrafos de `o_que_e`, três de `o_que_nao_e`, quatro de `como_sabemos` e **seis perguntas** — a da **CNH** entre elas, que é a razão pela qual esta ilha existe. **Nada disso chegava à tela.** A função da página degradada usava a declaração para **uma** coisa, o `h1`, e escrevia todo o resto à mão.
+
+**A CAUSA É DE LUGAR E NÃO DE DADO, e é a SEGUNDA VEZ EM DOIS DIAS NESTA MESMA PÁGINA.** A voz é lida no caminho da página **completa**, e a página completa é precisamente a que não nasce quando a coleta do dia não alcança o piso de três anúncios da **30.2**. Em **19/11** o que morava dentro do bloco que não nasce era o **link de compra**, e aquilo virou a **25.2-c** do contrato. Hoje era a **voz**. Em nenhuma das duas o dado faltava — **faltava o lugar.**
+
+**E O DEFEITO ERA INVISÍVEL PARA TODO PORTÃO DESTA ILHA, inclusive os que nasceram desta mesma página.** `conferir-produto-no-ar.py` julgava a caixa de ausência e o piso da 25.2-c, e as duas afirmações estavam **verdes e certas**. `conferir-no-ar.py` media a cabeça, a data e o piso de **1.500 caracteres** do corpo — e o corpo **passava**. Não era afirmação virada de lado (o defeito de 17/11) nem lista de alvos derivada do dado julgado (o de 19/11): era a **pergunta nunca feita**. *Página que passa do piso de caracteres não é página completa; é página que ninguém comparou com o que ela própria declara.*
+
+### O CONSERTO, E A RÉGUA É MECÂNICA DE PROPÓSITO
+
+**String declarada SEM molde é verdadeira sem anúncio nenhum, então a página sem vitrine a serve; string COM molde fica fora por construção**, porque quem preenche molde é o número da vitrine, que ali não existe. Não há lista de frases escrita à mão em lugar nenhum — é a mesma lição da bancada que **descobre** os portões em vez de os listar.
+
+- **A lista de campos mora no ARQUIVO**, `campos_sem_vitrine` na raiz da camada declarada, e não no código: lista no código envelhece calada no dia em que a camada ganha campo novo. A metade 8-b do portão tem o mundo com a lista **vazia**, e nele a voz é vazia — é essa afirmação que prova que não sobrou lista escondida no PHP.
+- **A forma do molde é declarada num lugar só** (`MOLDE_DECLARADO`), e é a mesma que o preenchedor substitui e a mesma que a trava de dígito usa. Três cópias da mesma forma em três arquivos seria a 20.7 outra vez.
+- **A exceção se DECLARA, com âncora e motivo escrito**, em `sem_vitrine.recusadas`. Existe string sem molde que ainda assim pressupõe a vitrine: a pergunta *"Por que a faixa de preço é tão larga?"*, numa página cuja primeira linha diz que a comparação de preços está sem dados hoje, prometeria **na pergunta** o que a caixa nega **logo acima**. Ela saiu **nomeada**. Saiu também a frase de `como_sabemos` que descreve a coluna anúncio-por-anúncio, porque a página degradada já diz aquilo com as palavras dela e repeti-la seria a cicatriz de 29/10 — *a mesma coisa em três trajes*.
+- **Âncora casa com EXATAMENTE UMA string do campo que ela nomeia.** Zero é exceção morta, que não cala nada e mente sobre ter sido olhada; mais de uma cala a frase errada. É a trava da *liberação morta* que esta camada já tinha para quantificador, num traje novo.
+- **O `FAQPage` nasce do MESMO par que a tela imprime (32.4), e o construtor do `mainEntity` passou a ser UM para os dois caminhos** — a página completa passa o par já preenchido, a degradada passa o par cru. Duas funções montando o mesmo dado estruturado por dois caminhos começam iguais e só uma é corrigida.
+- **SEM `ItemList` na página degradada, e isso é decisão e não esquecimento:** `numberOfItems` em zero com lista vazia é dado estruturado dizendo "lista de nada" — a mesma razão pela qual `offers` só entra quando há oferta, dez linhas abaixo no mesmo arquivo.
+- **A voz ACRESCENTA, nunca substitui o aviso honesto.** O corpo de 18/11 continua de pé, dizendo qual dado faltou e por quê, e uma afirmação do portão cobra exatamente isso.
+
+### A VERIFICAÇÃO, E O PORTÃO REPROVOU O AR DE ANTES
+
+**Antes do desembarque:** `conferir-produto-no-ar.py` fechou **REPROVADO** nas duas afirmações novas, sobre a revisão 116 — *"declara 11 string(s) servível(eis) sem vitrine e NÃO serve 11 delas"* e *"serve 0 FAQPage e devia servir UM: ela serve 3 pergunta(s) na tela"*. **Portão que nunca reprovou não é portão**, e este reprovou o mundo que o fez nascer.
+
+**Desembarque:** push às 13h35Z, cron do Sync às **13:39:41**, revisão **117** no ar às **13:40:02Z** = `manifest.json` **117**. **Portão da 20.4 lido linha por linha: as 8 linhas da revisão corrente dizem `ok`, nenhuma deixa de dizer.** Snippet `rodametria-produto` **1.18.0 → 1.19.0**.
+
+**Depois, no ar, com quebra de cache:**
+- `conferir-produto-no-ar.py` **APROVADO, 387 afirmações, 0 falha** (era 382) — *"11 string(s) servida(s), 3 par(es) de pergunta com FAQPage"*.
+- `conferir-no-ar.py` **APROVADO, 797 afirmações, 0 falha**. Corpo da moto **3.303 → 5.534** caracteres; prosa **36 → 50** elementos; JSON-LD **22 → 36** strings; pares de FAQ **0 → 3**. As irmãs **inalteradas**, cinco pares cada.
+- **Console limpo nas 11** páginas (0 error, 0 exceção, 0 recurso caído).
+- **A porta de entrada da 29.2:** `/robots.txt` 200 `text/plain`, `/wp-sitemap.xml` 200 `application/xml`, `/wp-json/` 200 `application/json`, caminho virgem em **404**, e **11 de 11** URLs do sitemap em 200.
+- **Leitura SEM quebra de cache, como o Google lê:** duas passadas **idênticas byte por byte**, 89.621 bytes, com **1** `FAQPage`, **3** `Question`, **3** `<h3>` e **3** `<details>`.
+
+**E A 32.5 NÃO SE MOVEU UM PIXEL, que é a prova de que o texto novo é de graça acima da dobra:** o primeiro botão de compra da moto segue em **358 px** — o **mesmo número** de ontem —, porque a voz entra em `<details>` **fechado**. **11 de 11 páginas dentro da 32.5, ZERO fora da conta**, pior caixa 405 px (teto 700), pior compra 1.333 px (teto 1.400) em 4 páginas que vendem algo.
+
+### OS PORTÕES, E OS TRÊS SÃO CASA EXISTENTE
+
+Nenhum arquivo de portão novo nasceu — a **31.3** proíbe construir portão enquanto há item de conteúdo aberto, e a **31.2** só autoriza portão novo contra defeito medido. O defeito estava medido; a casa dele já existia.
+
+- `ferramentas/teste-cabeca-sem-vitrine.php`: **39 → 68 afirmações**, 0 falha, sem uma requisição de rede, com **SEIS mutações** que *têm* de reprovar — âncora morta não cala nada, recusa sem campo não cala nada, lista de campos vazia zera a voz, campo declarado inexistente não derruba os outros, par incompleto não entra, e resposta moldada com pergunta livre fica fora. **E a dobra é carregada da casca de verdade, nunca reescrita no portão:** stub escrito à mão aprovaria um `<div>` aberto no dia em que a casca mudasse, e é dela que depende a afirmação dos 358 px. *No caminho, uma lição de método: a primeira versão desta metade carregava as funções na hora de medir, e a metade 6 — que já chama a função da página degradada — morreu de função indefinida. Portão carrega o que vai usar antes de quem o usa.*
+- `ferramentas/gerar-vitrine-de-produto.py --conferir`: as travas do **arquivo**, que é a outra metade — lista de campos viva, recusa com `campo`, `ancora` e `porque`, âncora casando com exatamente uma string, recusa sobre string que **já** tem molde denunciada como morta, e **ao menos uma pergunta servível por página declarada**, para que nenhuma delas volte ao ar sem `FAQPage` em silêncio. **743 afirmações, 0 falha**, e as duas mutações foram **exercidas à mão** nesta passada: âncora inexistente → *"casa com 0 string(s) daquele campo"*; `campos_sem_vitrine` removida → *"a raiz não declara `campos_sem_vitrine`"* mais as três recusas órfãs.
+- `ferramentas/conferir-produto-no-ar.py`: a cobrança no ar, string por string (**não por bloco** — bloco presente com uma frase faltando passaria uma afirmação de presença e perderia a frase), mais o `FAQPage` com um par por pergunta visível, na **mesma ordem** e com o texto **letra por letra**. Ganhou `jsonld_da_pagina()`, porque a leitura do JSON-LD já era feita à mão num laço e duas leituras do mesmo HTML começam iguais.
+- **A tradutora em Python mora no DONO da camada declarada** (`voz_sem_vitrine`, em `gerar-vitrine-de-produto.py`) e é **importada** pelos dois cobradores. Quem decide no ar é o PHP; escrever a régua três vezes seria a **20.7 pela terceira vez no mesmo mecanismo**. Se o import falhar, o portão de ar **diz que não mediu** em vez de aprovar de cabeça.
+- **Bancada: 60 portões sem rede, 0 falha.**
+
+### A REGRA SUBIU PARA O CONTRATO, E É ONDE ELA TINHA DE ESTAR
+
+**32.9 — A PÁGINA DEGRADADA SERVE A VOZ DECLARADA QUE NÃO DEPENDE DO DADO AUSENTE**, com as seis metades da régua, mais o ponteiro novo dentro da **25.2-c** apontando para ela. Duas ocorrências da mesma classe em dois dias é o que torna isto regra em vez de conserto de uma página — e conserto escrito em registro de ilha conserta aquele dia.
+
+**POR QUE NÃO ABRI DESPACHO DE CLASSE PARA AS IRMÃS, e isto é decisão escrita e não esquecimento:** as três têm saída degradada, mas **dentro de ferramenta**, e nenhuma tem o par *"camada declarada por página + função de página degradada separada"* que produziu este defeito. Abrir despacho ali seria *"pode acontecer"*, que a **31.2** não aceita. A regra viajou pelo canal certo, que é o contrato.
+
+### PRÓXIMO PASSO DESBLOQUEADO
+
+A fila segue **sem despacho de Fundação aberto** nesta ilha, e a leva de página segue trancada pela 30.8 — medido hoje, não herdado. **Duas saídas honestas para quem pegar a ilha a seguir:** (1) a página da moto tem **zero impressão**, então a **12.1** proíbe trabalhar o texto dela por ranqueamento, e quem abre isso é a leitura de **25/11**; ou (2) o que a **32.9** acabou de mandar e esta ilha ainda não fez — **conferir, nas duas irmãs que TÊM vitrine, se alguma string declarada delas nunca chega à tela por outro caminho.** A primeira é de conteúdo e espera medição; a segunda é de uma passada e não espera ninguém.
+
 ## 2026-11-19 19h17Z–19h4xZ — **O PORTÃO DE PIXEL PASSOU A CLASSIFICAR PELO QUE A PÁGINA SERVE, E COM ISSO A PÁGINA DE 823 MIL BUSCAS/MÊS ENTROU NA CONTA DELE — ELA ESTAVA FORA DESDE A REVISÃO EM QUE GANHOU O PRIMEIRO BOTÃO DE COMPRA DA VIDA DELA.** Despacho NORMAL de 19/11 às 16h4xZ **FECHADO** e conferido no ar (18.4). **No caminho, o achado que não é desta ilha: a ROBOMETRIA está fora do ar.**
 
 **A ILHA DESTA EXECUÇÃO:** rodametria, por **foco** (`foco.md`, foco total e absoluto desde 27/10). **O que furaria o foco foi conferido antes de aceitar isso:** no topo do `PROMPT.md` desta ilha não há despacho de **Fundação** aberto — os três itens que sobram (o item 2 da leitura semanal, o 3-b e o item 5) são **gesto do Raphael**, e está escrito neles. Em `dados/despachos.md`, os **ALTA** abertos eram todos "precisa do Raphael", e as três ilhas da exceção do **molde** (seção 32: aquametria, clubedomosaico, robometria) não têm despacho de molde aberto. Sobrou o **NORMAL de Fundação desta própria ilha**, escrito às 16h4xZ de hoje pela execução anterior, e é ele que esta passada fechou — **18.5: verificação antes de construção, sempre.**
