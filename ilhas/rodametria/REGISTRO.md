@@ -3,6 +3,135 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-11-20 19h17Z–19h3xZ — **A MAIOR CABEÇA SEM PÁGINA DO NICHO (301 MIL BUSCAS) FOI REMEDIDA PELA TERCEIRA VEZ E CONTINUA FECHADA — E O QUE MUDOU NÃO FOI O CATÁLOGO, FOI QUEM DÁ O VEREDITO**
+
+**A ILHA DESTA EXECUÇÃO:** rodametria, por **foco** (`foco.md`, foco total e absoluto desde 27/10).
+**Passo 1 do disparo, medido:** `git fetch origin main` trouxe o `main` de `68c88a4` para **`39f815c`**
+(atualização forçada). **Nenhum commit a mergear** de execução anterior: `origin/main..origin/claude/dreamy-mccarthy-vzo9nx`
+devolveu **0**, e a branch local estava idêntica ao `main`.
+
+**NADA FUROU O FOCO, e as duas exceções foram conferidas uma por uma e não herdadas.** (a) O **despacho
+do molde da 32** segue FECHADO nas três irmãs — a nota de 23/10 no `ESTADO.md` da clubedomosaico diz,
+com todas as letras, que *"com a aquametria e a robometria já fechadas, as três estão com o molde no ar
+e o foco volta a mandar sozinho"*. (b) O **despacho novo da robometria de hoje às 14h2xZ** tem seis
+itens, **e nenhum é ALTA**: a própria ronda escreve que a casca está limpa, com **14 de 14** URLs em
+200. Pela **1.2** só fura o foco despacho ALTO em ilha **no ar e quebrada**, e ela não está quebrada.
+**Reserva:** `executando_desde` às **19h17Z**, commit `ca265a4`, push aceito de primeira — a ilha estava
+livre (`executando_desde: null`, que pela **1.1** já significa que não há bloco da Fundação vivo, e o
+último commit na pasta era de **16h34Z**, fora dos 40 minutos).
+
+**REDE PELA 20.2, REMEDIDA E NÃO HERDADA:** `rodametria.com.br` e `www.` em **200** nas TRÊS passadas,
+com `aquametria.com.br` e `robometria.com.br` em **200** nas MESMAS três — **12 medições verdes, zero
+intermitência**.
+
+### O BLOCO: O DADO COMERCIAL DA 30.2 NA `scooter eletrica`, E ELE NÃO ABRIU
+
+**POR QUE ESTA CONSULTA E POR QUE HOJE, e as duas respostas estavam pré-registradas no repositório.**
+Das **6** cabeças com veredito `alvo` — SERP vista com os olhos no Chrome do Raphael em 27/10 —, **3
+estão no ar**; `bike elétrica` e `motos elétricas para adultos` caem na **30.4** (sinônimos de página
+que existe, sem coleta nenhuma, de propósito); sobra a **`scooter elétrica`**, **301 mil buscas/mês**,
+com slug já reservado (`veiculos/scooter-eletrica`) desde o 5b e `publicar_declarado: false` por falta
+do dado **comercial**. E a data: o `REGISTRO.md` de 16/11 escreveu que *"a próxima remedição útil é de
+**18/11 em diante**, e não vale queimar execução nisto antes"*. Hoje é 20/11 — **causa de
+impossibilidade envelhece (33 e 20.3), e esta foi reaberta na data que a própria ilha marcou.**
+
+**COMO FOI MEDIDO:** ensaio da **25.3** — **nada gravado no banco e nenhum link de afiliado gerado**,
+porque a pergunta do dia era de **catálogo** e catálogo se lê no título. O `--so` do
+`coletar-por-consulta.py` só alcança consulta com `publicar_declarado: true`, então **as funções de
+coleta da própria ilha foram chamadas de um script descartável no scratchpad**, sem tocar uma linha das
+ferramentas dela: a régua que julga é a da ilha, não uma segunda régua escrita para a ocasião.
+
+**OS DOIS DEGRAUS, com as causas contadas uma por uma e não em agregado:**
+
+| degrau | chave | ofertas lidas | servem | entram | causas das recusas |
+|---|---|---|---|---|---|
+| 1 | `scooter eletrica adulto` | 20 | **0** | 0 | 13 `fora_da_familia` · **5 `outra_familia_na_cabeca`** · 2 `outro_veiculo` |
+| 2 | `scooter eletrica` | 20 | **0** | 0 | 19 `fora_da_familia` · 1 `sem_qualificador` |
+
+**O piso de 3 da 30.2 não foi alcançado em nenhum degrau** e a escada não teve chave que escolher.
+**NENHUMA URL NASCEU E NENHUMA PODIA.** `urls_publicadas` segue **11**, o piso da **21.1** pede 40, e o
+teto da **21.4** não foi tocado: esta passada é **medição, não leva**.
+
+**O que a loja vende em cada degrau, porque o número agregado não diz:** no degrau 1 ela vende
+**patinete** — 13 sem a palavra `scooter` no título e 5 com ela —; no degrau 2 ela vende **brinquedo
+infantil**, e as 19 recusas são quadriciclo 6V, moto elétrica infantil, carrinho esportivo infantil e
+triciclo drift. **Nesta loja `scooter` é o patinete no degrau 1 e é brinquedo de criança no degrau 2.**
+Publicar serviria, sob um H1 que promete scooter, o produto que `/veiculos/patinete-eletrico/` já
+serve: **canibalização da 30.4 construída de propósito.**
+
+### O ACHADO É SOBRE O INSTRUMENTO, E ELE NÃO ESTAVA ESCRITO EM LUGAR NENHUM
+
+Em **16/11** o degrau 1 contava **CINCO QUE SERVEM**, e quem viu que as cinco eram patinete chamado de
+scooter foi **um humano lendo os títulos** — está no registro daquele dia. A trava
+`recusa_cabeca_de_outra_familia` (`bicicleta`, `patinete`) foi escrita **depois**, e o próprio registro
+da consulta diz por quê: *"a lista nasce aqui para a primeira coleta dela não repetir o defeito de
+16/11"*. **Hoje ela recusou as cinco sozinha, e são exatamente CINCO em `outra_familia_na_cabeca`** —
+os mesmos `Patinete Elétrico Scooter 350W`, `Patinete Elétrico Scooter Adulto 150w`, `Patinete Scooter
+Elétrico Dobrável 350W`, mais o de amortecedor e o de alumínio 550W.
+
+**Então a trava está CONFERIDA NA COLETA SEGUINTE, sobre catálogo vivo — que é exatamente a metade que
+a 25.11 diz que se desfaz calada, e ela não existia escrita.** O veredito de não publicar não mudou em
+**três** medições (29/10, 16/11, 20/11); o que mudou é a **procedência** dele: de *"um humano leu os
+títulos"* para *"a régua contou"*.
+
+**E UM ERRO MEU NO CAMINHO, registrado porque quase virou acusação ao instrumento:** a primeira leitura
+imprimiu `motivo: None` nas 20 recusas e eu ia escrever que a régua recusa sem dizer por quê. **O campo
+não se chama `motivo`, chama-se `recusado_por`** — o defeito era do meu script de leitura, não da ilha.
+Conferir o nome do campo na fonte antes de acusar custou **um comando**. É a família do número de tela
+digitado: o instrumento responde, e a resposta era minha.
+
+**E UMA FALHA DE REDE QUE NÃO VIROU BLOQUEIO:** a primeira chamada do degrau 2 voltou
+`error [10000]: System Error` da Open API e a **segunda respondeu**. Falha de rede só vira bloqueio
+depois de repetir (**seção 4** e **20.2**), e esta não virou.
+
+### O DESEMBARQUE, E POR QUE UMA EDIÇÃO DE PROSA MOVEU UMA REVISÃO
+
+A declaração foi reescrita com a medição de hoje — `motivo_para_nao_publicar_agora` com os dois degraus
+e as causas, a medição de 16/11 **preservada ao lado** (medição não se reescreve), e a terceira entrada
+em `historico_da_decisao`. **E isso reprovou a bancada:** o `consultas-de-produto.json` **é item do
+`manifest.json`**, então `atualizar-manifest.py --conferir` acusou `sha256 78aad1d080c3 -> c32ba4ee9d54`
+e `revisao 117 -> 118`. Manifest atualizado, bancada de volta ao verde.
+
+**Revisão 117 → 118, conferida pela 20.4 e lida pela 20.8, do fecho para baixo:** o fecho declara
+**7 aplicado(s)** e o log traz **7 linhas de item**, **todas dizendo `ok`** — pela **20.10**,
+`7 − 7 = 0` itens que não disseram ok. **Sem token, o Sync foi acionado abrindo a própria página** mais
+o `wp-cron.php`, porque o cron roda por **visita** e não por relógio: 200 na home nas três, cron em
+**200** na primeira e **409** nas outras duas (já havia cron em andamento), e a revisão entrou em **um
+minuto**. **E o visitante não vê diferença nenhuma, de propósito:** o arquivo é um dos **6 "aguardando
+desembarque"**, não virou página — mudou prosa de procedência, não tela.
+
+**BANCADA: 60 portões sem rede e 66 com ar, 0 falha nas duas.** **ZERO portão novo nasceu (31.2):** não
+houve defeito medido no ar que um portão novo teria pegado, e a tentação de simetrizar régua é
+exatamente o que a 31.3 proíbe.
+
+### AS SETE PONTAS DE PÁGINA NOVA, REMEDIDAS POR MIM E NÃO HERDADAS DA PASSADA ANTERIOR
+
+A execução de 16h17Z fechou escrevendo que *"não existe bloco de Fundação nesta ilha hoje"*. **Não
+herdei a frase — conferi as sete pontas**, e a conclusão é a mesma com uma ponta a mais fechada:
+
+1. **`scooter elétrica`** (301 mil): **fechada por catálogo, medida hoje**. Próxima remedição útil de
+   **23/11** em diante — três medições em 22 dias deram o mesmo veredito.
+2. **`bike elétrica`** e **`motos elétricas para adultos`** (201 mil cada): fechadas pela **30.4**.
+3. **A cauda:** 3 TOMADAS por fazenda, 2 `nao-medida` — e `nao-medida` **não autoriza nada** (30.8).
+4. **Bloco 5 (artigos-âncora):** depende de `ilhas/rodametria/pauta.md`, que **não existe** e que pela
+   **17.1** não é arquivo da Fundação. São **cinco terças** em foco total sem pauta nenhuma.
+5. **As duas ALTAs de Fundação** (itens 2 e 3 do despacho de 06/11): consertam
+   `ilhas/robometria/snippets/robometria-sync.php`; a **seção 3** proíbe editar ilha não reservada e a
+   **1.2** só fura o foco por ilha **quebrada** — 14 de 14 em 200 na ronda de hoje.
+6. **Texto das páginas que existem:** a **12.1** proíbe. A bicicleta **subiu** (não tocar); o patinete e
+   a moto estão com **zero impressão** na janela. A leitura de **25/11** é quem destrava.
+7. **As fotos que a ronda de 18/11 marcou como NÃO MEDIDAS por recusa de egresso:** o despacho oferece
+   essa medição a quem reservar esta ilha, porque `cf.shopee.com.br` responde **200** daqui (conferido
+   hoje, três passadas) — **e ela já estava feita em 19/11**. Medido agora: **zero anúncio que serve
+   está sem foto**. Ponta fechada, não tarefa aberta.
+
+**E O NÚMERO QUE A 31.1 COBRA, dito sem maquiar: esta execução NÃO entregou nada que o visitante veja.**
+Ela entregou medição e procedência — o veredito de uma consulta de 301 mil buscas deixou de depender de
+alguém ler títulos à mão. Quem conta a proporção da 31.1 é a **leitura semanal (31.6)**, nunca a
+Fundação, e o número dela vai precisar desta linha.
+
+---
+
 ## 2026-11-20 16h17Z–16h5xZ — **A CAMADA DECLARADA FOI CONFERIDA NO CAMINHO COMPLETO E ESTÁ LIMPA, ENTÃO NENHUM PORTÃO NASCEU (31.2) — E A ENTREGA DESTA PASSADA FOI UMA FRASE FALSA QUE ESTAVA DE PÉ NA 20.4 DO CONTRATO HAVIA CATORZE DIAS**
 
 **A ILHA DESTA EXECUÇÃO:** rodametria, por **foco** (`foco.md`, foco total e absoluto desde 27/10).
