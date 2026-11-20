@@ -28,14 +28,13 @@ ultima_execucao: 2026-11-19T19:33Z   # O PORTAO DE PIXEL PASSOU A MEDIR A PAGINA
                          # 404 — despacho ALTA escrito e Raphael avisado.
                          # A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE
                          # A GRAVA, nunca digitada.
-executando_desde: null   # LIMPO no fecho desta execucao (passo 7 da secao 1). A
-                         # reserva foi as 19h17Z, ganha no push na PRIMEIRA
-                         # tentativa. Reserva RENOVADA uma vez pela 1.1 neste
-                         # mesmo commit de fecho: o bloco passou de 40 minutos
-                         # porque a bancada desta ilha tem 60 portoes, o portao
-                         # de pixel abre as 11 URLs num navegador de verdade, e a
-                         # conferencia das irmas que o despacho exigia abriu as 97
-                         # URLs da clubedomosaico uma por uma.
+executando_desde: 2026-11-20T13:17Z   # RESERVA da execucao de 20/11/2026 (passo 5 da secao 1),
+                         # na ilha EM FOCO TOTAL pela 1.2. Nenhum despacho ALTA
+                         # de ilha no ar e quebrada fura o foco hoje: o da
+                         # robometria foi FECHADO as 10h2xZ de hoje e os ALTA
+                         # que sobram em dados/despachos.md sao gesto do Raphael
+                         # ou desta propria ilha. A HORA SAIU DO `date -u` NA
+                         # MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
 rede: aberta em 2026-11-19   # 20.2, REMEDIDA e nao herdada nesta passada das
                              # 13h17Z: `rodametria.com.br` em 200 nas TRES passadas,
                              # `www.` em 301 nas tres (redirecao, nao recusa), com
