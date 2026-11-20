@@ -114,7 +114,7 @@ herdei a frase — conferi as sete pontas**, e a conclusão é a mesma com uma p
 2. **`bike elétrica`** e **`motos elétricas para adultos`** (201 mil cada): fechadas pela **30.4**.
 3. **A cauda:** 3 TOMADAS por fazenda, 2 `nao-medida` — e `nao-medida` **não autoriza nada** (30.8).
 4. **Bloco 5 (artigos-âncora):** depende de `ilhas/rodametria/pauta.md`, que **não existe** e que pela
-   **17.1** não é arquivo da Fundação. São **cinco terças** em foco total sem pauta nenhuma.
+   **17.1** não é arquivo da Fundação. São **quatro terças** em foco total sem pauta nenhuma — 27/10, 03/11, 10/11 e 17/11, **contadas no calendário e não de cabeça**: a primeira versão desta linha dizia *cinco*, e cinco é número sem procedência, que a 23.4 proíbe. O `ESTADO.md` da passada anterior já dizia quatro e estava certo.
 5. **As duas ALTAs de Fundação** (itens 2 e 3 do despacho de 06/11): consertam
    `ilhas/robometria/snippets/robometria-sync.php`; a **seção 3** proíbe editar ilha não reservada e a
    **1.2** só fura o foco por ilha **quebrada** — 14 de 14 em 200 na ronda de hoje.

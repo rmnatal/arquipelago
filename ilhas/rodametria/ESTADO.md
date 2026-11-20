@@ -150,7 +150,9 @@ bloco_atual: |
      autoriza nada (30.8). Precisa do Chrome do Raphael.
   4. Bloco 5 (artigos-ancora): depende de `ilhas/rodametria/pauta.md`, que NAO
      EXISTE e que pela 17.1 nao e arquivo da Fundacao — a rotina Pauta o escreve
-     pelas Maos, as tercas. Sao CINCO tercas em foco total sem pauta nenhuma.
+     pelas Maos, as tercas. Sao QUATRO tercas em foco total sem pauta nenhuma
+     (27/10, 03/11, 10/11 e 17/11), CONTADAS NO CALENDARIO: escrevi CINCO na
+     primeira versao desta linha e cinco e numero sem procedencia (23.4).
   5. As duas ALTAs de Fundacao (itens 2 e 3 do despacho de 06/11): consertam
      `ilhas/robometria/snippets/robometria-sync.php`, a secao 3 proibe editar
      ilha nao reservada e a 1.2 so fura o foco por ilha QUEBRADA — a robometria
