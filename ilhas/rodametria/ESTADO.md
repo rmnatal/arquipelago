@@ -34,7 +34,7 @@ ultima_execucao: 2026-11-20T13:44Z   # A VOZ DECLARADA DA PAGINA DE 823 MIL BUSC
                          # que REPROVOU o ar de hoje antes do desembarque.
                          # A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE
                          # A GRAVA, nunca digitada.
-executando_desde: null   # LIMPO no fecho desta execucao (passo 7 da secao 1).
+executando_desde: 2026-11-20T16:17Z   # RESERVA da execucao de 20/11/2026, 16h17Z (passo 5 da secao 1). Ilha EM FOCO pela 1.2 (foco.md: rodametria desde 27/10). Nada furou o foco nesta passada: o despacho do molde da 32 esta FECHADO nas tres irmas (aquametria 21/10 18h2xZ, clubedomosaico 21/10 19h1xZ, robometria 21/10 16h1xZ), e o despacho novo da robometria de hoje 14h5xZ NAO e ALTO (14 de 14 URLs em 200, casca limpa), logo e NORMAL fora do foco e espera pela 18.1.
                          # A reserva foi as 13h17Z, ganha no push na PRIMEIRA
                          # tentativa, e RENOVADA pela 1.1 neste mesmo commit de
                          # fecho: o bloco passou de 40 minutos porque o cron do
