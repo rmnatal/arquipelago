@@ -38,7 +38,8 @@ AS TRES CONVENCOES, e elas ja eram as desta pasta antes deste arquivo
   mutacoes-*.py    -> python3 ferramentas/<x>.py     (sem rede)
   validar-*.py     -> python3 ferramentas/<x>.py     (sem rede)
   conferir-*.py    -> python3 ferramentas/<x>.py     (ABRE O SITE: so com --no-ar)
-  *.mjs            -> navegador, fora desta bancada  (denunciado, nao rodado)
+  *.mjs            -> navegador, fora desta bancada; mas se o fonte aceitar
+                      --autoteste, essa metade roda SEM rede, sempre
 
 O VEREDITO E O CODIGO DE SAIDA, E O TEXTO E CONFERIDO CONTRA ELE
 -----------------------------------------------------------------
@@ -177,6 +178,21 @@ def oferece_autoteste(nome):
 def classificar(nome):
     """Devolve (comando, categoria) ou (None, motivo) para o que nao roda aqui."""
     if nome.endswith('.mjs'):
+        # A METADE SEM REDE DE UM PORTAO DE NAVEGADOR ENTRA AQUI (20/11/2026).
+        #
+        # `.mjs` saia inteiro desta bancada porque abrir Chromium e medir pixel
+        # exige o site no ar. Mas o `conferir-32-5-no-navegador.mjs` passou a ter
+        # um `--autoteste` que NAO abre navegador nenhum: ele fabrica a medicao
+        # como objeto e cobra o JULGAMENTO — qual pagina entra na conta da 32.5 e
+        # o que reprova. Deixado de fora, ele rodaria so quando alguem se
+        # lembrasse dele, que e a unica coisa que esta bancada existe para
+        # impedir.
+        #
+        # O PIXEL CONTINUA SENDO MEDIDO NO AR, com `--no-ar`, na largura do
+        # telefone: isto nao substitui aquilo e nao afrouxa nada. O que roda aqui
+        # e a regua; o que roda la e a ilha.
+        if oferece_autoteste(nome):
+            return ['node', os.path.join('ferramentas', nome), '--autoteste'], 'sem_rede'
         return None, 'navegador'
     if NAO_E_PORTAO.match(nome):
         return None, 'producao'

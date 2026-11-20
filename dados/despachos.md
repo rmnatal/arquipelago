@@ -119,7 +119,7 @@ página da própria ilha**, e não na da HostGator.
 > consertou. A ronda seguinte abre `dados/consertos.md` antes de qualquer outra coisa e reconfere no ar.
 
 
-### prioridade NORMAL — Fundação (clubedomosaico e robometria) — **O PORTÃO DE PIXEL DAS IRMÃS DESCARTA 59 DE 97 PÁGINAS QUE SERVEM LINK DE COMPRA, E A CLUBEDOMOSAICO AS DESCARTA EM SILÊNCIO** (medido em 19/11/2026 às 19h3xZ)
+### prioridade NORMAL — Fundação (clubedomosaico e robometria) — **O PORTÃO DE PIXEL DAS IRMÃS DESCARTA 59 DE 97 PÁGINAS QUE SERVEM LINK DE COMPRA, E A CLUBEDOMOSAICO AS DESCARTA EM SILÊNCIO** (medido em 19/11/2026 às 19h3xZ) — **REESCRITO PELA 18.3 EM 20/11/2026: A ROBOMETRIA SAIU, E O NÚMERO DELA É ZERO PÁGINAS HOJE — SOBRA A CLUBEDOMOSAICO, ONDE SÃO 59**
 
 19/11/2026 — **FUNDAÇÃO (clubedomosaico, robometria)** — Escrito pela execução da rodametria que fechou o
 despacho do portão de pixel logo abaixo, obedecendo à frase dele: *"as outras ilhas rodam a mesma régua, então
@@ -175,6 +175,66 @@ ela componente de molde ou não; a clubedomosaico **imprime** a linha de cada p�
 com o motivo; o rodapé das duas conta "páginas que vendem algo" por **o que elas servem**; e o autoteste de
 cada uma tem o mundo da página sem componente **com** o par abaixo do teto que reprova. É bloco da Fundação,
 não gesto do Raphael.
+
+---
+
+> **A METADE DA ROBOMETRIA FECHOU EM 20/11/2026, CONFERIDA NO AR PELA 18.4 — e o número dela não é o
+> da irmã. É ZERO.**
+>
+> **O QUE ESTE DESPACHO ACERTOU:** a forma do código era a mesma, e está. A linha
+> `ilhas/robometria/.../conferir-32-5-no-navegador.mjs:200` classificava por COMPONENTE
+> (`tem_molde: !!(bloco || document.querySelector('.rbm-caixa'))`), exatamente como ele diz.
+>
+> **E O QUE ELE NÃO PODIA SABER, PORQUE A ILHA ESTAVA EM 404 QUANDO ELE FOI ESCRITO: a consequência
+> aqui era ZERO páginas.** Medido hoje no ar, nas 14 URLs, uma por uma, a 390 px com quebra de cache:
+> **10 páginas na conta, 4 fora, e as 4 de fora servem ZERO link de compra** —
+> `/divulgacao-de-afiliados/`, `/ferramentas/`, `/metodologia/` e `/sobre/`, com `rel=sponsored` em 0 e
+> nenhum botão de loja. **Nenhuma página desta ilha estava fora da conta vendendo**, contra 59 de 97 na
+> clubedomosaico. O número desta ilha é **7 páginas que vendem algo**, pior compra a **1.322 px** contra
+> o teto de 1.400, **10 de 10 na conta dentro da 32.5**.
+>
+> **E AS TRÊS QUE TÊM A FORMA DO DEFEITO JÁ ERAM MEDIDAS — POR ACIDENTE.**
+> `/pecas/filtros/electrolux/`, `/pecas/filtros/wap/` e `/pecas/filtros/xiaomi/` servem link de compra
+> **sem nenhum bloco `.rbm-compra`** (conferido no HTML servido: só `a.rbm-comprar.rbm-comprar-busca`,
+> zero elemento `.rbm-compra`). Elas passavam porque os botões delas carregam `rel=sponsored`, e o
+> `rel=sponsored` **já** era procurado no documento inteiro pela régua velha. **Acidente não é trava.**
+>
+> **O ESCAPE DE VERDADE DESTA ILHA ERA OUTRO, E ELE ESTÁ FECHADO COM MUNDO FABRICADO:** a
+> classificação velha era `navegacao = !tem_bloco_de_compra && sponsored_total === 0`, e a **escada da
+> 25.1 desce até a BUSCA CRUA, que sai SEM `rel=sponsored` por decisão escrita da casca 1.6.0** (ninguém
+> paga por aquele clique). Então página cujos botões fossem todos `a.rbm-comprar-cru`, sem bloco, tinha
+> `sponsored_total === 0` e era declarada **DE NAVEGAÇÃO** — escapava do teto de 1.400 px **inteira,
+> vendendo**. E o mundo que produz essa página não é remoto: o banco desta ilha tem **40 peças e 31
+> modelos no degrau 4**, contados na leitura semanal de 18/11. O autoteste tem esse mundo (2-e a 2-h),
+> com a classificação velha chamando-o de navegação e a régua nova reprovando a 1.750 px.
+>
+> **O CONSERTO, como ficou:** `componente_de_molde` guarda o fato do componente; `vende_algo` é
+> `!!compra` e entra no `tem_molde`; o `controle` de compra passou a ser procurado no **documento** e
+> não dentro do primeiro bloco; o teto de caixa ganhou os três ramos ditos separados (há caixa → mede;
+> componente sem caixa → REPROVA, e esse ramo da linha velha **não se perdeu**; nem componente → o teto
+> não tem o que medir e a linha diz isso); a **pior caixa** é contada só entre as páginas que têm caixa,
+> senão `caixa ?? 1e9` publicava **1e9 como número medido** (23.4); e o rodapé imprime o motivo de cada
+> página fora da conta, linha por linha. A ponta velha que REPROVAVA link patrocinado sem bloco **saiu
+> acompanhada** dos três mundos que põem o mesmo link a 1.399 px (passa), a 1.400 px (reprova) e sem
+> pixel mensurável (reprova).
+>
+> **E O PORTÃO ACHOU UM DEFEITO NO PRÓPRIO CONSERTO, NO AR, ANTES DE ELE ASSENTAR.** A primeira versão
+> da frase "onde mora o link" perguntava `bloco.contains(compra)` com `bloco` sendo o **primeiro**
+> `.rbm-compra` do documento, e imprimiu **"FORA de qualquer bloco"** em páginas certas. O autoteste
+> **não podia tê-lo pego**, e esse é o achado de método: a frase era decidida **dentro do
+> `page.evaluate`**, onde nenhuma afirmação alcança. Agora o navegador devolve **fato**
+> (`compra_em_bloco`, `blocos_de_compra`) e `ondeMoraOLink()` é função **pura**, com seis afirmações
+> próprias. **Quem copiar este portão copia essa separação: trecho de decisão dentro do navegador é
+> trecho sem régua.**
+>
+> **E A BANCADA PASSOU A ALCANÇAR ESTE AUTOTESTE:** `.mjs` saía inteiro da bancada desta ilha
+> (`return None, 'navegador'`), porque medir pixel exige o site no ar — mas a metade que mede o
+> **julgamento** não abre navegador nenhum. Bancada: **51 portões, 0 falha** (eram 48 ao começar o dia).
+>
+> **O QUE SOBRA É A CLUBEDOMOSAICO, e lá o número é 59 de 97**, com o agravante que este despacho
+> nomeia: o portão dela faz `fora.push(m); continue;` **sem imprimir nada**. O conserto está escrito
+> acima e agora tem **duas** implementações para copiar — a da rodametria e esta, que acrescenta a
+> separação fato/frase e a pior caixa contada só onde há caixa.
 
 
 ### ~~prioridade NORMAL — O PORTÃO DE PIXEL DAS QUATRO ILHAS DECIDE SE MEDE UMA PÁGINA PELO **COMPONENTE DE MOLDE**, E AGORA EXISTE PÁGINA COM BOTÃO DE COMPRA E SEM COMPONENTE NENHUM — medido na rodametria em 19/11/2026 às 16h4xZ~~ — **FECHADO NA RODAMETRIA EM 19/11/2026 às 19h4xZ, CONFERIDO NO AR PELA 18.4. NAS IRMÃS ELE NÃO FECHA AQUI: VIROU DESPACHO PRÓPRIO, COM NÚMERO, LOGO ABAIXO**

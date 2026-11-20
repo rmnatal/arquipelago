@@ -80,7 +80,40 @@ tempo no chão foi decidido por quando alguém rodou um comando — nove dias, d
 dias. A **29.6** já tinha escrito a frase ("o que faltou não foi sensibilidade, foi alguém rodar") e a
 nota de 05/10 da 29.5 a repetiu. **Escrever a frase pela terceira vez não conserta nada.**
 
-**ITEM 1 — A CASCA PASSA A SE CURAR SOZINHA, SOB ASSINATURA ESTREITA, E ISSO MUDA A 29.4.** A 29.4
+**ITEM 1 — ~~A CASCA PASSA A SE CURAR SOZINHA, SOB ASSINATURA ESTREITA, E ISSO MUDA A 29.4.~~ FEITO NESTA ILHA EM 20/11/2026, CONFERIDO NO AR PELA 18.4 — e ele foi feito no dia em que a porta caiu pela TERCEIRA vez, nove dias depois de ser pedido.**
+
+> **FECHADO EM 20/11/2026.** A cura está no ar nesta ilha na casca **1.16.1**, seção 6 do
+> `robometria-casca.php`, revisão **98**. O `/casca` — rota que esta ilha **não tinha**, e cuja ausência
+> foi medida no ar em 19/11 (`rest_no_route`) — serve, sem token: `tem_cura_da_porta: true`,
+> `fonte_do_log_da_cura: funcao:robometria_sync_log`, `porta.tem_bloco_wordpress: true`,
+> `cura_liberada_em_s: 0` e o contador da 29.4-c. O portão é
+> `ferramentas/teste-cura-da-porta.php` — **404 afirmações** (144 mais 260 em processos filhos) em dez
+> mundos e **10 mutações cobradas, as dez reprovando**.
+>
+> **AS TRÊS METADES DO "pronto quando" DESTE ITEM, uma a uma:** com o bloco removido à mão num mundo de
+> teste, a requisição seguinte o repõe e o log ganha a linha com os dois tamanhos (MUNDO A); com o bloco
+> presente, **mil requisições** não tocam no arquivo e o log não ganha linha nenhuma (MUNDO B — e a
+> afirmação é exigida com esse número, não com uma); e com `mod_rewrite: false` ou raiz não gravável a
+> cura **não** dispara e o log diz por quê (MUNDOS C e D, fabricados no **retrato** e não no disco,
+> porque este contêiner roda como root e `is_writable()` responde `true` para diretório 0444).
+>
+> **E A PALAVRA QUE CARREGA O ARGUMENTO DESTE ITEM — `calada` — TEM UMA TRAVA A MAIS DO QUE O ITEM
+> PEDIA, porque a irmã pagou por ela:** a pergunta *"há onde escrever a linha?"* vem **ANTES** de tocar
+> no arquivo, nunca depois de reparar. Na primeira implementação (clubedomosaico) ela mora **depois** do
+> `reparar_rotas()`, e o comentário dela promete que *"a cura NÃO acontece"* sem log — **o código cura e
+> a prosa diz que não**. Esta ilha copiou a **segunda** implementação, que é a que o contrato manda
+> copiar.
+>
+> **O QUE ISTO NÃO É:** o conserto da causa. A causa segue sem nome e o chamado na HostGator segue
+> aberto. Esta queda lhe deu um argumento novo e com hora: o `mtime` do `.htaccess` avançou **18
+> segundos** entre duas leituras da rota de diagnóstico, com o bloco ausente nas duas.
+>
+> **E A FRASE QUE ADIOU ISTO POR NOVE DIAS ESTÁ CORRIGIDA ONDE ELA MORA:** o despacho ALTA de 19/11
+> dizia que o token do Sync desta ilha não está no repositório. **Está**, em claro, na linha `Sync:` da
+> seção *Endpoints desta ilha*, acima neste arquivo. Registro inteiro em `dados/consertos.md` e em
+> `REGISTRO.md`.
+
+**O TEXTO ORIGINAL DO ITEM, mantido porque despacho fechado não se apaga:** A 29.4
 recusou gancho automático com um argumento certo: *"porta de entrada que se conserta calada a cada
 carregamento é a que ninguém consegue desfazer no dia em que estiver errada"*. O que se propõe não é
 isso, e a diferença é a palavra **calada**: a cura dispara **só** quando as quatro grandezas da

@@ -7349,3 +7349,138 @@ direto desta execução.
   nova nasce com a dívida.** As três portas foram medidas verdes nas três ilhas no ar às 10h4xZ de
   02/11, em duas leituras com quebra de cache — nada está caído hoje, e é por isso que o despacho é
   NORMAL. Ordem por risco: aquametria, rodametria, molde.
+
+## 2026-11-20 10h18Z–11h1xZ — A ILHA VOLTOU AO AR, RECEBEU A CURA DA PORTA, E A DEDUÇÃO QUE PEDIA O GESTO DO RAPHAEL ERA FALSA
+
+**A ESCOLHA DA ILHA, e ela não foi rotação nem foco.** `foco.md` nomeia a **rodametria** em foco total
+e absoluto desde 27/10. Esta execução entrou pela **ÚNICA exceção que a 1.2 abre** — despacho ALTO em
+ilha que está **no ar e quebrada**. O despacho ALTA de 19/11/2026 em `dados/despachos.md` registrava a
+robometria servindo 404 em 7 de 7 páginas internas. Nenhum branch `claude/*` à frente do `main` e
+nenhum PR aberto; a rodametria estava com `executando_desde: null` e último commit de 19/11 19h34Z,
+fora da janela de 40 minutos da 1.1. Reserva desta ilha gravada às **10h18Z** e renovada **duas vezes**
+(10h36Z, 11h07Z), porque o bloco fechou dois despachos inteiros.
+
+**A QUEBRA FOI REMEDIDA E NÃO HERDADA (20.2):** três passadas às 10h1xZ — `robometria.com.br/` em
+**200** nas três; `/robots.txt`, `/wp-sitemap.xml` e `/wp-json/` em **404** nas três; caminho virgem em
+404 nas três; e `aquametria.com.br/wp-sitemap.xml` mais `rodametria.com.br/wp-sitemap.xml` em **200**
+nas mesmas três. **Seis controles verdes: não é rede e não é intermitência.**
+
+### 1. O DESPACHO ALTA, FECHADO EM UM MINUTO — e o que o fechou foi ler o próprio repositório
+
+O despacho endereçou o reparo ao Raphael com esta frase: *"O token do Sync desta ilha não está no
+repositório e não há variável de ambiente com ele (conferido). Sem token, não há `&reparar=1`."`
+**O token está em claro no `PROMPT.md` desta ilha**, na linha `Sync:` da seção *Endpoints desta ilha*.
+
+É exatamente o erro que a **29.3-a** do contrato documenta — ela nasceu em 12/11/2026 porque a mesma
+dedução já havia sido feita em **cinco** documentos desta fábrica, e porque na clubedomosaico **três
+documentos da própria ilha** a afirmaram no mesmo dia em que o token estava escrito no `PROMPT.md`
+dela. A regra dela não é sobre tokens: **antes de escrever "não é exercitável daqui", tente.**
+
+- Diagnóstico da 29.3, com o token: 1.057 bytes, bloco único `[NFD EPC]`, `tem_wordpress: false`, 8
+  linhas de reescrita, `mod_rewrite: true`, raiz e arquivo graváveis.
+- `&reparar=1`: **1.580 bytes, `[NFD EPC, WordPress]`, `tem_wordpress: true`, 15 linhas.**
+- **Conferido no ar pela 18.4:** as três portas em 200 em DUAS leituras com quebra de cache e com os
+  `content-type` certos; `/wp-sitemap.xml` servindo `<sitemap>` de verdade; **14 de 14 URLs do sitemap
+  em 200 em DUAS leituras** (28 medições, 0 falha); caminho virgem em **404 na página da própria ilha**
+  (34 ocorrências de `robometria`, 0 de `hostgator`). **33 medições, 0 falha.**
+
+**E UMA MEDIÇÃO QUE É ARGUMENTO DE CHAMADO E NÃO DE CÓDIGO:** o `mtime` do `.htaccess` avançou de
+`10:18:20Z` para `10:18:38Z` **entre duas leituras minhas**, com o bloco ausente nas duas. Dezoito
+segundos. Pela 29.5(b) isso é **evento** com hora, e é a segunda raiz da mesma conta de cPanel a cair.
+
+### 2. A CURA DA PORTA — esta era a ÚNICA ilha no ar sem ela, e é por isso que a queda não se curou
+
+Fecha o despacho NORMAL de 12/11 **inteiro** (18.2), nas quatro metades do "pronto quando":
+
+1. **Casca 1.16.1, seção 6** — a cura da 29.4 com as cinco travas, o retrato público da 29.4-b e o
+   contador de quedas da 29.4-c. Copiada da **segunda** implementação (rodametria), que é a que o
+   contrato manda copiar, com a ordem da trava 3 correta: a fonte do log se confere **antes** de tocar
+   no arquivo.
+2. **A rota pública `/casca`, que esta ilha NÃO TINHA** — `rest_no_route` medido no ar em 19/11, e por
+   isso a pergunta "esta ilha tem a cura?" não tinha instrumento nenhum. No ar agora:
+   `tem_cura_da_porta: true`, `fonte_do_log_da_cura: funcao:robometria_sync_log`,
+   `porta.tem_bloco_wordpress: true`, `cura_liberada_em_s: 0`, contador em zero **com a régua ao lado**.
+3. **`clearstatcache()` no topo do diagnóstico da 29.3** — dívida de 03/11 paga, e esta era a última das
+   três ilhas que copiaram a rota sem ela.
+4. **`ferramentas/teste-cura-da-porta.php`** — **404 afirmações** (144 + 260 em processos filhos) em dez
+   mundos, **10 mutações cobradas e as dez reprovando**. A do `clearstatcache` reprova pela frase que o
+   despacho nomeia.
+
+**A ÚNICA DIVERGÊNCIA EM RELAÇÃO À ILHA DE ORIGEM, e ela é medida:** lá o snippet do Sync não está no
+repositório e os nomes das funções de log são herdados. **Aqui estão conferidos no chão** —
+`snippets/robometria-sync.php` mora neste repositório, `robometria_sync_estado()` na linha 65 e
+`robometria_sync_log()` na linha 75. O caminho de reserva (escrever a mesma linha direto na option)
+**fica**, e não por cópia preguiçosa: ele é o que mantém a cura viva no dia em que o Code Snippets
+desativar o snippet do Sync — a cicatriz da 20.4, medida três vezes em quatro dias nesta fábrica.
+
+### 3. A RÉGUA DO AR, CONSERTADA NA MESMA PASSADA, como a 29.4 manda
+
+- As **seis grandezas** da causa da 29.7(3), lidas do retrato público, com a linha **dizendo que não
+  separou os dois mundos** quando o retrato não vem — "não medido" escrito é informação.
+- A janela da **20.4** com a linha da cura **saindo da conta de itens e ganhando afirmações próprias**.
+  O reconhecimento é pela **frase** `cura da porta:`, nunca pelo nome do arquivo.
+- A **conta da 20.10**, que esta ilha não tinha: declarados no fecho contra lidos na janela, hoje
+  **13 contra 13**.
+- O **`/status` passou a ser lido por `?rest_route=`** (29.7(1)), fechando a metade desta ilha no
+  despacho de 05/11. Era caminho bonito, portanto morto junto com a porta — na irmã isso encolheu o
+  portão de 481 afirmações para 9 no dia da queda.
+- `--autoteste` de **55 afirmações**, com a régua **velha obrigada a discordar** da nova (20.8).
+
+**E UM DEFEITO DA PRÓPRIA RÉGUA NOVA SAIU NO AR ANTES DE ELA ASSENTAR:** a primeira versão deixava o
+**fecho da revisão dentro da lista de itens**, e o relatório imprimiu *"14 itens de desembarque"* numa
+revisão que declarou **13** — o número certo mais um, com cara de medido, nos dois lados da conta ao
+mesmo tempo.
+
+### 4. O PORTÃO DE PIXEL (32.5) — e o número desta ilha é ZERO, não 59
+
+O despacho NORMAL de 19/11 esperava a porta voltar para medir esta ilha. A **forma** do código era a
+mesma da irmã (critério de COMPONENTE). **A consequência aqui era zero páginas hoje:** 10 na conta, 4
+fora, e as 4 de fora servem **zero** link de compra. Contra **59 de 97** na clubedomosaico.
+
+**E AS TRÊS QUE TÊM A FORMA DO DEFEITO JÁ ERAM MEDIDAS POR ACIDENTE:** `/pecas/filtros/electrolux/`,
+`/pecas/filtros/wap/` e `/pecas/filtros/xiaomi/` servem link de compra **sem nenhum elemento
+`.rbm-compra`** (conferido no HTML servido), e passavam porque os botões carregam `rel=sponsored`, que a
+régua velha já procurava no documento inteiro. **Acidente não é trava.**
+
+**O ESCAPE DE VERDADE DESTA ILHA ERA OUTRO:** a classificação velha era
+`navegacao = !tem_bloco_de_compra && sponsored_total === 0`, e a **busca crua da escada da 25.1 sai sem
+`rel=sponsored`** por decisão da casca 1.6.0. Página cujos botões fossem todos `a.rbm-comprar-cru`, sem
+bloco, era declarada **DE NAVEGAÇÃO** e escapava do teto de 1.400 px **inteira, vendendo** — e o banco
+tem **40 peças e 31 modelos no degrau 4**. O autoteste tem esse mundo (2-e a 2-h).
+
+**E O PORTÃO ACHOU UM DEFEITO NO PRÓPRIO CONSERTO, NO AR:** a frase "onde mora o link" perguntava
+`bloco.contains(compra)` com `bloco` sendo o **primeiro** `.rbm-compra`, e imprimiu *"FORA de qualquer
+bloco"* em páginas certas. **O autoteste não podia tê-lo pego** — a frase era decidida **dentro do
+`page.evaluate`**, onde nenhuma afirmação alcança. Agora o navegador devolve **fato** e
+`ondeMoraOLink()` é função **pura**, com seis afirmações próprias. **Trecho de decisão dentro do
+navegador é trecho sem régua.**
+
+**No ar, a 390 px, com quebra de cache:** 10 de 10 na conta dentro da 32.5, **7 que vendem algo**, pior
+caixa **500 px** (teto 700, contada só nas 10 que têm caixa — antes `caixa ?? 1e9` publicaria **1e9**
+como número medido, 23.4), pior compra **1.322 px** (teto 1.400).
+
+### 5. O QUE OS PORTÕES COBRARAM DE QUEM OS ESCREVEU, e os três tinham razão
+
+- A **seção 16 do `teste-casca.php`** pegou a constante de versão subindo sem a entrada de cabeçalho nem
+  o manifest — o defeito de 14/09/2026 que fez aquela seção nascer.
+- O **`validar-datas-das-paginas.py`** pegou o `dateModified` das 7 páginas atrasado, porque a casca
+  mudou hoje.
+- E a cópia trouxe os rótulos `14-b`/`14-c` da ilha de origem em **dez** lugares — e **um deles era byte
+  servido**: o retrato público do contador respondia *"ele conta desde que a seção 14-c entrou no ar"*
+  no endpoint `/casca`, número de seção de outra ilha dentro da resposta desta.
+
+### NÚMEROS DO FECHO
+
+Bancada sem rede: **51 portões, 0 falha** (eram 48 ao começar o dia). `conferir-no-ar.py`: **404
+afirmações NO AR, 0 falha**. `teste-cura-da-porta.php`: **404 afirmações, 10 mutações, 0 falha**.
+Portão de pixel: **10 de 10 na conta, 0 falha**. Casca **1.16.1**, revisão **98** no ar, batendo com o
+manifest. **14 de 14 URLs em 200.**
+
+**PRÓXIMO PASSO DESBLOQUEADO — e ele não é da Fundação enquanto o foco não mudar.** `foco.md` nomeia a
+rodametria em foco total, e esta execução só esteve aqui pela exceção da 1.2. Com o despacho ALTA
+fechado, a exceção se fecha com ele: **a próxima execução volta ao foco**. O que fica escrito para
+quando esta ilha voltar a receber construção: o **item 2 da leitura semanal de 18/11** continua aberto
+e é **pedido ao Raphael**, não bloco — as quatro URLs da leva de 21/09 (`/pecas/`, `/pecas/filtros/`,
+`/pecas/filtros/electrolux/`, `/pecas/filtros/xiaomi/`) completam 60+ dias em *"Discovered - currently
+not indexed"*, e a alavanca é a solicitação manual pela URL Inspection em `/pecas/`, recusada por cota
+de conta em 14/10. E o piso da 21.1 segue em **14 de 40 URLs**.
