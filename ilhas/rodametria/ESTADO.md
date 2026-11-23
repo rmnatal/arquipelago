@@ -24,13 +24,19 @@ ultima_execucao: 2026-11-23T13:31Z   # A VERIFICACAO DESTA FABRICA MEDE A
                          # o Mercado Livre recusa 403 TAMBEM no navegador desta nuvem.
                          # A HORA DESTE CAMPO SAIU DO `date -u` NA MESMA LINHA DE
                          # COMANDO QUE A GRAVA, nunca digitada.
-executando_desde: null   # LIMPO no fecho desta execucao (passo 7 da secao 1).
-                         # A reserva desta passada foi 2026-11-23T13:18Z, commit
-                         # eb8edf8, aceito de primeira — a ilha estava livre e NADA
-                         # furou o foco (o molde da 32 segue FECHADO nas tres irmas; o
-                         # unico despacho aberto de irma, o da robometria de 20/11, NAO
-                         # e ALTA, com 14 de 14 URLs em 200). Sem renovacao pela 1.1: a
-                         # execucao durou menos de 40 minutos.
+executando_desde: 2026-11-23T16:17Z   # RESERVA da execucao de 2026-11-23 16h1xZ (passo 5
+                         # da secao 1), hora saida do `date -u` na mesma linha de
+                         # comando que a grava. Ilha EM FOCO pela 1.2 (`foco.md`
+                         # nomeia a rodametria desde 27/10), e ela estava LIVRE:
+                         # o campo estava `null`, que pela 1.1 ja significa que
+                         # nao ha bloco da Fundacao vivo, e a execucao anterior
+                         # fechou as 13h31Z. O commit de 15h06Z na pasta e da
+                         # RONDA da Sentinela, e pela 1.1 commit de ronda NAO
+                         # reserva nada. NADA FUROU O FOCO: o molde da 32 segue
+                         # FECHADO nas tres irmas e o unico despacho aberto de
+                         # irma (robometria, 20/11) NAO e ALTA.
+                         # ESTA PASSADA FECHA O DESPACHO DA RONDA DE 23/11 PELA
+                         # 18.2 — tres itens, o item 1 em ALTA.
 rede: aberta em 2026-11-20   # 20.2, REMEDIDA e nao herdada: `rodametria.com.br`
                              # em 200 nas TRES passadas, `www.` em 301 na primeira
                              # e 200 nas outras duas (redirecao, nao recusa), com
