@@ -10762,3 +10762,60 @@ AUDITORIA-PENTE-FINO-2026-11-23.md   323 linhas, 30.963 bytes (arquivo novo; nã
 - **ESCRITA 1, `AUDITORIA-PENTE-FINO-2026-11-23.md`:** arquivo criado na raiz, não existia no `main` de partida (`ls` antes da escrita devolveu `No such file or directory`). O conteúdo é o que veio entre as duas linhas de marcação, sem as marcações, com a indentação uniforme de 4 espaços do envelope do disparo removida e a indentação relativa do próprio texto preservada — conferido depois de gravar: **zero** linhas começando com quatro espaços, e as continuações de bullet (2 espaços) e de lista numerada (3 espaços) estão nos seus lugares, p.ex. a linha 47 (`Medido antes de graduar o achado:…`, 2 espaços) e a linha 287 (`REGISTROS QUE CONTAM O MUNDO…`, 3 espaços). **Zero** ocorrências das linhas de marcação `<<<<<<<<<<`/`>>>>>>>>>>` no arquivo. Primeira linha: `# AUDITORIA PENTE FINO — 2026-11-23`; última: `neste arquivo nem em commit.*`. Nenhuma palavra foi reformatada, corrigida, melhorada ou acrescentada.
 
 Nenhum passo falhou: nenhuma mensagem de erro a registrar. Este log vai num commit seguinte ao do trabalho, porque a contagem acima só pôde ser fechada depois de o trabalho estar confirmado no `main`. A hora do título saiu de `TZ=America/Sao_Paulo date` e `date -u` na mesma chamada que preparou esta seção, nunca digitada. Nenhuma seção anterior deste arquivo foi apagada, reescrita ou resumida.
+
+---
+
+## 2026-11-23, 05h37 de Brasília (08h37Z) — PENTE FINO DE 23/11, DISPARO 2 DE 3: QUATRO SUBSTITUIÇÕES DE TRECHO EM DOIS ARQUIVOS, UM COMMIT, PUSH ACEITO DE PRIMEIRA NO `main`
+
+Disparo 2 de 3 do Pente Fino de segunda 23/11/2026, mesma passada do disparo 1 (entregue em `f82d6fa`). Chegou pelas Mãos pelo mesmo motivo de antes: o push da nuvem da rotina foi **recusado pelo proxy de git** (`rmnatal/arquipelago is not in this session's authorized repository set`), não por conflito de merge. Checagem de assunto: Arquipélago (`ARQUIPELAGO.md`, que é o corpo de regras deste repositório, e `bussola/fila.md`, que é a Bússola) — passa. Nenhum dado pessoal de terceiro e nenhum contato no conteúdo entregue.
+
+Instrução: 4 substituições de trecho, cada uma achando um TRECHO A e pondo um TRECHO B no lugar, sem tirar nem acrescentar nada, e não tocar em nenhum outro arquivo. Nenhum outro arquivo foi tocado — o `MAOS-LOG.md` é a exceção obrigatória do procedimento e vai no commit seguinte.
+
+Partida: `git fetch origin main && git checkout -B trabalho origin/main`, de `a349cab` (`maos-log: disparo de 23/11 05h34 BRT — arquivo novo da auditoria do pente fino no main (f82d6fa)`).
+
+**Conferência das ocorrências ANTES de aplicar qualquer substituição**, exigida pela instrução (se algum TRECHO A não fosse achado, ou fosse achado mais de uma vez, era para parar e dizer qual número falhou). Contagem literal de cada TRECHO A no arquivo como estava em `a349cab`:
+
+```
+substituicao 1  ARQUIPELAGO.md    1 ocorrencia
+substituicao 2  ARQUIPELAGO.md    1 ocorrencia
+substituicao 3  ARQUIPELAGO.md    1 ocorrencia
+substituicao 4  bussola/fila.md   1 ocorrencia
+```
+
+Nenhuma falhou: as quatro ocorrem exatamente uma vez. Só então as substituições foram aplicadas, uma a uma, cada uma com limite de uma substituição.
+
+`git status --porcelain` antes do commit:
+
+```
+ M ARQUIPELAGO.md
+ M bussola/fila.md
+```
+
+`git diff --stat` antes do commit:
+
+```
+ ARQUIPELAGO.md  |  8 +++++---
+ bussola/fila.md | 30 ++++++++++++++++++++++++++++++
+ 2 files changed, 35 insertions(+), 3 deletions(-)
+```
+
+Commit que foi ao `main`: **`897bde41a0d9b2962f8846cee9a5b9f1fbfb2689`**, assunto `pente fino: auditoria de coerencia do contrato` — a mensagem que a instrução deu, sem crase, sem cifrão e sem exclamação, como a seção 3 dela pedia. Push com `git push origin HEAD:main`, **aceito de primeira** (`a349cab..897bde4`), sem recusa, sem rebase, sem force e sem PR.
+
+Confirmação exigida pelo procedimento: `git fetch origin main && git log -1 origin/main` devolve `897bde41a0d9b2962f8846cee9a5b9f1fbfb2689`, o mesmo hash. O push está no `main`.
+
+Contagem do que mudou, **conferida relendo os arquivos do disco DEPOIS de gravar**, nunca pelo que a execução achava que havia escrito:
+
+```
+ARQUIPELAGO.md    1728 linhas, 362.060 bytes   (3 substituicoes: +5 linhas, -2; liquido +3 no diff: 8 +/- com 3 remocoes)
+bussola/fila.md    640 linhas,  79.208 bytes   (1 substituicao: +30 linhas, -0)
+2 arquivos, 35 insercoes, 3 remocoes
+```
+
+- **SUBSTITUIÇÃO 1, `ARQUIPELAGO.md` linha 25** — a linha do "Sempre, para todo papel" da tabela de papéis. O TRECHO B está no arquivo, uma vez, conferido depois de gravar: a linha agora termina em `**27** (as mãos deixam rastro, e banco de dados só entra por elas) e **28** (separação de projetos).`, seguida da linha em branco e do parágrafo em itálico que justifica a entrada das duas seções. Uma linha virou três (a linha emendada, a em branco e o parágrafo novo).
+- **SUBSTITUIÇÃO 2, `ARQUIPELAGO.md` linha 387** — o bullet do GA4. O TRECHO B está no arquivo, uma vez: o fim da frase agora é `que a seção 5 exige medir.` com `~~e que hoje nenhuma ilha mede.~~` tachado e o parênteses do Pente Fino em seguida. Uma linha virou uma linha.
+- **SUBSTITUIÇÃO 3, `ARQUIPELAGO.md` linha 1697** — o item 5 que citava a 32.4. O TRECHO B está no arquivo, uma vez: a citação agora é `(32.8, e o fecho da 32.4-c)` e o ponteiro em itálico entrou entre a frase em negrito e a frase `Duas funções montando o mesmo dado estruturado…`, que continua lá. Uma linha virou uma linha.
+- **SUBSTITUIÇÃO 4, `bussola/fila.md` linha 488** — o cabeçalho `## Ilhas nascidas`. O TRECHO B está no arquivo, uma vez: entre o cabeçalho e a linha `| Ilha | Nicho | Nota |` entrou o bloco de citação de 28 linhas do ponteiro do Pente Fino sobre a rodametria. O cabeçalho e a linha de cabeçalho da tabela continuam idênticos, nas suas posições.
+
+Em nenhuma das quatro a execução reformatou, corrigiu, melhorou ou acrescentou palavra que não estivesse no TRECHO B. Os trechos foram comparados e aplicados como bytes UTF-8, para não perder acento, travessão nem aspas curvas.
+
+Nenhum passo falhou: nenhuma mensagem de erro a registrar. Este log vai num commit seguinte ao do trabalho, porque a contagem acima só pôde ser fechada depois de o trabalho estar confirmado no `main`. A hora do título saiu de `TZ=America/Sao_Paulo date` e `date -u` na mesma chamada que confirmou o push, nunca digitada. Nenhuma seção anterior deste arquivo foi apagada, reescrita ou resumida.
