@@ -65,6 +65,61 @@ Medido em 27/10/2026 no Chrome do Raphael (`bussola/dossies/rodametria/DOSSIE.md
 
 ---
 
+## DESPACHO DA SENTINELA — 2026-11-23 (RONDA DIÁRIA TÉCNICA, 13h5xZ–14h5xZ) — A PÁGINA DE 823 MIL BUSCAS É ÓRFÃ NO MIOLO: A MÃE NÃO A LISTA E NENHUMA IRMÃ APONTA PARA ELA
+
+> **ZERO CONSERTOS, E NENHUM TENTADO: nenhum dos três defeitos é da lista 19.1.** NONA ronda técnica seguida desta ilha com zero conserto. Medida na revisão **120** (`/status` 120 = `manifest.json` 120), `versao_sync` 1.1.5, log do `/status` com as 7 linhas da revisão 120 dizendo `ok` (20.4).
+>
+> **O ENCANAMENTO ESTÁ SÃO:** 11 de 11 URLs do `wp-sitemap.xml` em **200** com quebra de cache; as três portas da 29.2 em 200 com `content-type` certo (`text/plain`, `application/xml`, `application/json`); caminho virgem em **404 na página da própria ilha** (73.279 bytes, 28 ocorrências do nome da ilha, **zero** da HostGator); **zero `&#038;` dentro de `<script>`** nas 11 (extraídos só os blocos `<script>`, nunca a página inteira); JSON-LD em 11 de 11 e **os 31 blocos `application/ld+json` parseiam**, com `BreadcrumbList` em 10 e ausente só na home (16.3, correto); favicon próprio; `aria-expanded`/`aria-controls` nas 11, e o menu **abre e fecha de verdade** (`false`→`true`, a lista sai de `display:none` para `flex`, 5 links); zero `noindex`; meta description máxima de **159** (teto 160); zero frase da lista "Proibidas" do `VOZ.md` em título ou primeiro parágrafo das 11; console **limpo** do lado da ilha na página de produto recarregada com o leitor de console ligado.
+>
+> **AS TRÊS FERRAMENTAS APERTADAS COM ENTRADA REAL, 17 DE 17 CONTAS CERTAS NA MÃO, no navegador:** F1 em nove entradas — 350 W/25 e 1.000 W/32 com acelerador e 750 W/20 (autopropelido, o limite **inclusive**), 250 W/25 e 350 W/20 só pedal assistido (bicicleta elétrica), 1.000 W/40 (ciclomotor dizendo que foi o km/h que passou), 1.500 W/32 e 1.500 W/40 (ciclomotor dizendo que foi o watt), 5.000 W/80 (acima do ciclomotor, parando no art. 2º §§ 6º e 7º); F2 em três — 36 V × 10,4 Ah = **374 Wh**, 48 V × 20,0 Ah = **960 Wh** (com 60 km de anúncio e relevo misto: faixa 39 a 60 km), 60 V × 20,0 Ah = **1.200 Wh**, e as duas sem km declarado dizendo por que a conta de km não sai; F3 em cinco — 100+8 → **119**, 120+0 → **132**, 75+15 → **99**, 180+40 → **242**, 60+5 → **72**, a folga de 10% arredondada para cima batendo nas cinco.
+>
+> **TESTE DE VIDA DOS LINKS (25.4 e 25.4-b), NO CHROME DO RAPHAEL, SEMPRE PELA `url_produto`/`url_busca_produto` CRUA E NUNCA PELO LINK DE AFILIADO:** **15 leituras — 11 fichas e 4 buscas —, 0 morta, 0 esgotada.** As 11 fichas: os 5 cartões de `/veiculos/patinete-eletrico/` (22899142088, 58265317472, 23399661765, 58213915737, 58265708355), os 3 de `/veiculos/bicicleta-eletrica/` (21599581551, 58259744161, 58220113046), o **único** anúncio que serve na consulta `moto eletrica adulto` (58270189618, VYRON GT600) e a ficha de degrau 1 do banco técnico (`honeywhale-m2-max`, item 20299836765), que **nunca havia sido testada** (`conferido_em: null`). As 4 buscas: as `url_busca_produto` de `honeywhale-m2-max`, `sousa-bike-aro-24`, `x13-chopper-1000w` e `ls-sport-scooter-1000w`, **as quatro nunca testadas antes**, as quatro com resultado e preço na tela. O veredito saiu do CORPO renderizado e nunca do `<title>`, que a Shopee devolve genérico (25.4). **Intestáveis: ZERO** — 57 de 57 anúncios do banco têm `url_produto`, e os 4 registros publicáveis de `dados/veiculos.json` têm piso. **Item sem piso da 25.2: ZERO** — as três consultas têm `url_busca` e `url_busca_produto`.
+>
+> **RECONFERÊNCIA DA 19.4(c) — AS TRÊS COISAS QUE A RONDA DE 18/11 DEIXOU ESCRITAS, E AS TRÊS ESTÃO BOAS:** (a) o `alt` dos cartões está **não vazio em 9 de 9** `<img class="rdm-molde-cartao-foto">` do HTML servido (eram 7 em 18/11; hoje são 5 em `/veiculos/patinete-eletrico/`, 3 em `/veiculos/bicicleta-eletrica/` e 1 em `/autonomia-patinete-eletrico/`), escrito pela ilha na forma "Foto do anúncio na loja: <classe> …", que é o conserto de 18/11 de pé; (b) as **duas** fotos que estavam quebradas voltaram a servir — `br-11134207-820lf-mmpf3sxolgqu74` com `naturalWidth` **1000** e `sg-11134201-825al-mu3ms9o7xa16e7` com **1024**, medidas no DOM do Chrome dele, e **9 de 9 fotos de cartão carregam**, zero com `naturalWidth: 0`; (c) `58215666648` está **fora dos campos vivos** de `dados/anuncios-por-consulta.json`, com a prosa de quarentena nos `anuncios_aposentados` da consulta `moto-eletrica`, **zero** ocorrência nas 11 URLs servidas e **zero** em `dados/vitrine-de-produto.json`, e a contagem da consulta está em **1** anúncio que serve.
+
+**ITEM 1 — ALTA. `/veiculos/moto-eletrica/`, A CABEÇA DE 823 MIL BUSCAS/MÊS, NÃO RECEBE UM ÚNICO LINK INTERNO DE MIOLO: A MÃE `/veiculos/` NÃO A LISTA E AS DUAS IRMÃS NÃO APONTAM PARA ELA. É A 16.4(a), A 16.4(f) E A 16.9(b), E O PORTÃO ESTÁ VERDE.**
+
+- medido no HTML servido das 11 URLs, dentro de `<main>` e com quebra de cache: a página recebe **0** links de entrada de miolo. Os únicos links para ela em todo o site são o do **menu** e o do **rodapé** globais, que toda página recebe por construção.
+- a mãe `/veiculos/` serve, no miolo, **6** links: `/`, `/veiculos/patinete-eletrico/`, `/veiculos/patinete-eletrico/#comprar`, `/veiculos/bicicleta-eletrica/`, `/veiculos/bicicleta-eletrica/#comprar` e `/autonomia-patinete-eletrico/`. **A terceira filha não está lá** — nem como cartão, nem como "em breve" da 16.5.
+- as duas irmãs: `/veiculos/patinete-eletrico/` lista `bicicleta elétrica` e **não** lista a moto; `/veiculos/bicicleta-eletrica/` lista `patinete elétrico` e **não** lista a moto. A moto, ao contrário, **lista as duas** — o grafo está de um lado só, que é exatamente o que a 16.9(a) manda não acontecer.
+- **a causa é de mecanismo, e é a mesma da 25.2-c:** a listagem de filhas da mãe e o bloco de irmãs nascem das páginas **que estão na vitrine**, e `dados/vitrine-de-produto.json` tem **duas** páginas (`abre_o_portao_da_30_2: false` na moto tira a terceira). A página degradada está ausente **por definição** da fonte que decide quem é listado: a 25.2-c nomeou isso para o LINK DE COMPRA e ele foi consertado em 19/11; o que ninguém mediu é que a mesma fonte também decide o CLUSTER.
+- **e a régua desta ilha não pode reprovar isto hoje:** o veredito de 18/11 diz "zero página órfã na direção de ENTRADA (as 11 recebem 10 links de entrada cada)" — 10 é o menu e o rodapé, que **toda** página recebe. Contagem de entrada que inclui a navegação global é verde em qualquer mundo, inclusive neste, e por isso a 16.4(f) nunca fica vermelha.
+
+**NÃO CONSERTEI, e o motivo é regra sem exceção:** o link que falta é gerado por PHP (`rodametria-produto`, a listagem da mãe e o bloco "Veja também"), e a 19.2 proíbe "qualquer código de snippet ou lógica de ferramenta"; a regra 3 das quatro travas da seção 12 é literal — *"se a correção exigir tocar em snippet, ela para e despacha. Sem exceção, mesmo que a mudança pareça de uma linha."*
+
+**pronto quando:** no HTML servido, dentro de `<main>`, (i) `/veiculos/` listar a filha `/veiculos/moto-eletrica/` com âncora na consulta dela ("moto elétrica"), e (ii) `/veiculos/moto-eletrica/` receber ao menos **uma** irmã apontando para ela, somando **≥ 2** links de entrada de miolo — contado URL por URL, com quebra de cache, **descartando os links do menu e do rodapé**; e (iii) a bancada de cluster desta ilha contar a direção de ENTRADA **sem** a navegação global, com uma mutação que obrigue a régua de hoje a REPROVAR este mundo.
+
+**ITEM 2 — NORMAL. AS 11 PÁGINAS SERVEM `"dateModified":"2026-11-18"`, CINCO DIAS E OITO REVISÕES DEPOIS.**
+
+- medido no JSON-LD das 11 URLs: **todas** trazem `dateModified` de **2026-11-18**, inclusive `/sobre/`, `/contato/`, `/privacidade/` e `/divulgacao-de-afiliados/`, cujos números de tela vêm do banco.
+- desde 18/11 a ilha desembarcou até a revisão **120** e a casca foi de **1.29.0 para 1.30.0**; `dados/vitrine-de-produto.json` e `dados/anuncios-por-consulta.json` dizem `gerado_em: 2026-11-19`. A data que a página afirma ao Google é mais velha que o conteúdo que ela serve.
+- não é defeito de dado: a data existe e é a da coleta de preço. É defeito de **afirmação** — `dateModified` é "quando esta página mudou", não "quando o preço foi lido", e as duas se separaram.
+
+**NÃO CONSERTEI:** a data é escrita pelo snippet e escolher o que ela deve significar (data da coleta, data da revisão do manifest, data do arquivo de dados) são opções defensáveis — 19.2 nas duas metades.
+
+**pronto quando:** `dateModified` do JSON-LD de cada uma das 11 URLs sair da data em que **aquela** página mudou pela última vez, com a regra escrita **em palavras** no registro que a gera; e o portão de ar cobrando, por URL, que ela não seja mais antiga que a revisão do `manifest.json` que a desembarcou.
+
+**ITEM 3 — NORMAL. O PREÇO DO ÚNICO ANÚNCIO QUE SUSTENTA A MOTO SUBIU 2,0% E O BANCO NÃO SABE: 57 ANÚNCIOS COM `coletado_em: 2026-11-18`, CINCO DIAS SEM RETESTE.**
+
+- medido hoje na ficha crua, sem clique de afiliado: `58270189618` (VYRON GT600) está no banco a **R$ 13.999,00** (de 18/11) e a loja serve hoje **R$ 14.280,38** sem cupom (R$ 13.630,38 no Pix) — **+R$ 281,38**.
+- nas outras oito fichas que eu li com os dois preços na tela, o preço "sem cupom" **bate exatamente** com o banco (1.399,99, 1.490,00, 2.299,99 × 2, 6.199,90), então não é deriva geral: é um anúncio que mexeu.
+- **nenhum leitor foi atingido:** o GT600 não chega à tela, porque a página da moto está degradada pelo piso da 30.2. O preço errado está no banco, não no ar.
+- a lição é a da ronda da robometria de 20/11, agora nesta ilha com cinco dias em vez de sessenta e cinco: `conferido_em`/`coletado_em` de 18/11 em 57 de 57 anúncios, e o único item do nicho de maior volume já se moveu.
+
+**NÃO CONSERTEI, e o motivo é a 19.2:** preço é dado do banco e a faixa/mediana de cada página é **recontada** pelo gerador — mexer num preço à mão desincroniza o número da tela do número do arquivo.
+
+**pronto quando:** `dados/anuncios-por-consulta.json` tiver uma coleta nova com `coletado_em` de hoje ou depois nas três consultas, a vitrine regerada a partir dela, e o `/veiculos/moto-eletrica/` dizendo na tela a data da leitura nova (siga valendo o piso da 30.2: se a consulta continuar com menos de três anúncios que servem, a página continua degradada e com o piso da busca na tela, que é o que ela serve hoje, corretamente).
+
+**ITEM 4 — PARA O RAPHAEL, NÃO PARA A FUNDAÇÃO: O MURO DO ANTI-ROBÔ DA SHOPEE APARECEU NO MEIO DO TESTE DE VIDA, E ISSO MEDE O TETO DO MÉTODO DE CONTORNO.**
+
+- o caminho oficial da 25.4 (a API de ficha `shopee.com.br/api/v4/pdp/get_pc`, chamada de dentro de uma aba já no domínio) foi **recusado outra vez** nesta ronda pelo classificador de modo automático — é a segunda ronda seguida com a mesma recusa, depois da de 20/11 na robometria.
+- o contorno (abrir a `url_produto` e ler o corpo) funcionou em **15 leituras**; na **décima sexta** a Shopee redirecionou para `shopee.com.br/verify/traffic?...&scene=crawler_item`. A Sentinela é proibida de resolver CAPTCHA, então a ronda **parou ali** — com o mínimo de 10 itens da ronda já cumprido com folga.
+- **a decisão segue sendo a mesma, e agora tem número:** ou a rotina ganha permissão para a rota `shopee.com.br/api/v4/pdp/*`, ou a 25.4 passa a declarar a leitura do corpo como método oficial **com teto de ~15 leituras por ronda**, que é onde o muro apareceu hoje.
+
+**FIM DO DESPACHO DE 23/11.**
+
+---
+
 ## DESPACHO DA SENTINELA — 2026-11-18 (LEITURA SEMANAL, 19h4xZ–20h1xZ) — O 404 DESTRAVOU E A PÁGINA NASCEU NA BANDA DO DINHEIRO; A PÁGINA DE 823 MIL BUSCAS TEM **UM** CARTÃO DE COMPRA
 
 Janela 10→16/11: **2 impressões, 0 clique, posição média 16,0** — era 8/0 e 59,0. Impressão −75%, posição 43 casas melhor. Série em `dados/indexacao.md` e `dados/posicoes.md`.
