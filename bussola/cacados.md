@@ -201,3 +201,23 @@ Uma linha por nicho, só para não testar de novo. Não é relatório.
 | 19/11/2026 | nível a laser | volume | 74 mil/mês → exigiria ≈ R$ 206 por venda em top-3 |
 | 19/11/2026 | caixa d'água | volume | 74 mil/mês → exigiria ≈ R$ 206 por venda em top-3 |
 | 19/11/2026 | triciclo elétrico | já é nicho da Rodametria (mobilidade elétrica) | 246 mil/mês, +174% no ano |
+| 23/11/2026 | ar-condicionado (cabeça) | SERP tomada (Casas Bahia, Frigelar, Climario, ML, Central Ar, Leroy, Gree, LG, Leveros + IA) | 823 mil tomada |
+| 23/11/2026 | máquina de lavar | SERP tomada (Casas Bahia, Electrolux, Brastemp, Compra Certa, Fast Shop, Leroy, ML, Consul + IA) | 368 mil tomada |
+| 23/11/2026 | console de videogame (PlayStation 5, Nintendo Switch) | SERP tomada (PlayStation ×4, Casas Bahia, Vivo, Americanas + IA) | `playstation 5` 823 mil tomada; `nintendo switch` 450 mil |
+| 23/11/2026 | smart TV | SERP tomada (Magalu, Casas Bahia, Americanas, Samsung, LG, TCL, Aiwa, Zoom) | 110 mil tomada |
+| 23/11/2026 | cama de casal | SERP tomada (Casas Bahia, King Star, Amazon, Castor, Esplanada, Leroy + IA) | 165 mil tomada |
+| 23/11/2026 | capacete de moto | SERP tomada (Grid Motors, Sportbay, ASX, ML, LS2, Alpinestars, MotoBR — páginas de categoria dedicadas + carrossel) | `capacete` 368 mil tomada |
+| 23/11/2026 | perfume árabe | seção 2 (decisão não paramétrica) + SERP (Sephora, Beleza na Web, ML + IA) | 450 mil/mês |
+| 23/11/2026 | cama montessoriana e quarto infantil | 3.0-e (lojas pequenas + Leroy, carrossel de produtos) | 110 mil/mês → conservador ≈ 77 visitas/dia, exigiria ≈ R$ 430 por venda (carrossel R$ 330–740) |
+| 23/11/2026 | kart | 3.0-d (SERP de kartódromo e aluguel — lazer, não compra) | 74 mil/mês |
+| 23/11/2026 | árvore de Natal (e pisca-pisca, enfeites) | volume | 246 mil/mês → exigiria ≈ R$ 62 por venda em top-3 |
+| 23/11/2026 | mala de viagem | volume | 135 mil/mês → exigiria ≈ R$ 113 por venda em top-3 |
+| 23/11/2026 | ração para cão e gato | volume | 130,5 mil/mês somados → exigiria ≈ R$ 117 por venda em top-3 |
+| 23/11/2026 | bebê reborn | volume | 110 mil/mês (−70% no ano) → exigiria ≈ R$ 139 por venda em top-3 |
+| 23/11/2026 | carrinho de controle remoto e cozinha infantil | volume | 110 mil + 40,5 mil/mês → exigiria ≈ R$ 139 por venda em top-3 |
+| 23/11/2026 | bateria de carro | volume | 74 mil/mês → exigiria ≈ R$ 206 por venda em top-3 |
+| 23/11/2026 | câmera digital | volume | 49,5 mil/mês → exigiria ≈ R$ 309 por venda em top-3 |
+| 23/11/2026 | skate elétrico | volume | 27,1 mil/mês → exigiria ≈ R$ 564 por venda em top-3 |
+| 23/11/2026 | suspensão a ar automotiva | volume | 22,2 mil/mês |
+| 23/11/2026 | prensa térmica (sublimação) | volume | 12,1 mil/mês |
+| 23/11/2026 | estação de energia portátil (power station) | volume | 1,9 mil/mês |
