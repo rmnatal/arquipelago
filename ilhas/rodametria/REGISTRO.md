@@ -3,6 +3,67 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-11-23 10h17Z–10h3xZ — **A `scooter elétrica` (301 MIL BUSCAS) REMEDIDA PELA QUARTA VEZ: A VITRINE NÃO MOVEU UM TÍTULO EM TRÊS DIAS, E O QUE ESTA PASSADA ENTREGA É A AGENDA DO VEREDITO E NÃO O VEREDITO.** Virou a **30.9** do contrato. **E no caminho, o achado que valia mais que o bloco: a porta caiu pela OITAVA vez em 21/11 e ficou DOIS DIAS invisível.**
+
+**A ILHA DESTA EXECUÇÃO:** rodametria, por **foco** (`foco.md`, foco total e absoluto desde 27/10).
+**Passo 1 do disparo, medido:** `git fetch origin main` trouxe o `main` de `68c88a4` para **`4de80ec`** (atualização forçada). **Nenhum commit a mergear** de execução anterior: `origin/main..origin/claude/dreamy-mccarthy-t1xwfh` devolveu **0**, e `list_pull_requests state=open` devolveu lista **vazia**.
+
+**NADA FUROU O FOCO, conferido e não herdado.** (a) O **despacho do molde da 32** segue FECHADO nas três irmãs que a exceção de 21/10 nomeia, lido linha por linha nos três `PROMPT.md`: aquametria (linha 273, *"FECHADO INTEIRO às 18h2xZ de 21/10"*), clubedomosaico (linha 566, *"as 20 PÁGINAS CONFERIDAS NO AR"*) e robometria (linha 507, *"as NOVE páginas conferidas"*). (b) O **único despacho aberto de irmã** é o da robometria de 20/11 às 14h2xZ, e **não é ALTA**: o próprio texto dele abre com *"a casca está limpa: 14 de 14 URLs do sitemap em 200"*, logo não é *"ilha no ar e quebrada"* da 1.2.
+**Reserva:** `executando_desde` às **10h17Z**, commit `5ab25a9`, push aceito **de primeira** — a ilha estava livre (`executando_desde: null`, que pela **1.1** já significa que não há bloco da Fundação vivo; o último commit na pasta era de **20/11 19h32Z**).
+
+**REDE PELA 20.2, REMEDIDA E NÃO HERDADA:** `rodametria.com.br` em **200** nas TRÊS passadas, com `aquametria.com.br` em **200** nas MESMAS três — **6 medições verdes, zero intermitência**.
+
+### O BLOCO: A QUARTA MEDIÇÃO DO DADO COMERCIAL DA 30.2 NA `scooter elétrica`
+
+**POR QUE ESTA CONSULTA E POR QUE HOJE.** Das 6 cabeças com `alvo` visto no Chrome em 27/10, **3 estão no ar**; `bike elétrica` e `motos elétricas para adultos` caem na **30.4**; sobra a **`scooter elétrica`**, **301 mil buscas/mês**, slug reservado desde o 5b e `publicar_declarado: false` por falta do dado **comercial**. A data estava **pré-registrada**: o `REGISTRO.md` de 20/11 escreveu *"a próxima remedição útil é de **23/11** em diante"*. Hoje é 23/11 — **causa de impossibilidade envelhece (33 e 20.3)**, e esta foi reaberta na data que a própria ilha marcou.
+
+**COMO FOI MEDIDO:** ensaio da **25.3** — **nada gravado em `dados/anuncios-por-consulta.json` e nenhum link de afiliado gerado**, porque a pergunta do dia era de **catálogo** e catálogo se lê no título. O `--so` do `coletar-por-consulta.py` só alcança consulta com `publicar_declarado: true`, então as funções da própria ilha foram chamadas de um **script descartável no scratchpad**, sem tocar uma linha das ferramentas: a régua que julga é a da ilha, não uma segunda régua escrita para a ocasião. **A rede não recusou nenhuma das duas chamadas.**
+
+| degrau | chave | ofertas lidas | servem | entram | causas das recusas |
+|---|---|---|---|---|---|
+| 1 | `scooter eletrica adulto` | 20 | **0** | 0 | 13 `fora_da_familia` · 5 `outra_familia_na_cabeca` · 2 `outro_veiculo` |
+| 2 | `scooter eletrica` | 20 | **0** | 0 | 19 `fora_da_familia` · 1 `sem_qualificador` |
+
+**O piso de 3 da 30.2 não foi alcançado em nenhum degrau**, a escada não teve chave que escolher, **nenhuma URL nasceu e nenhuma podia**. `urls_publicadas` segue **11**, o piso da 21.1 pede 40, e o teto da 21.4 não foi tocado: esta passada é **medição, não leva**.
+
+### O QUE ESTA MEDIÇÃO ACRESCENTA É A IDENTIDADE DO VEREDITO — E ISSO DESMENTE O PALPITE QUE ESCOLHEU A DATA DE HOJE
+
+As causas repetem **uma por uma** as de 20/11, três dias antes: 13/5/2 no degrau 1, 19/1 no degrau 2. E os **cinco** títulos de `outra_familia_na_cabeca` são, um por um, os **mesmos cinco** que o motivo de 20/11 nomeia na declaração. **Em três dias a vitrine não moveu um título.** Não é só o veredito que não mudou: é a vitrine.
+
+**E o palpite que marcou 23/11 está medido e desmentido.** O registro de 20/11 escolheu a data porque *"o catálogo da loja se move em intervalo de dias"*. Os intervalos desta série foram **18 dias** (29/10→16/11), **4 dias** (16/11→20/11) e **3 dias** (20/11→23/11): **o intervalo encurtou a cada passada enquanto a resposta não mudava**, que é o sinal invertido. E o único movimento de catálogo que esta ilha já mediu de verdade foi o da `moto elétrica`, **dentro dos 18 dias** entre 29/10 e 16/11, que virou página no ar. **A escala desta loja é de semanas.**
+
+**REGRA NOVA NO CONTRATO — A 30.9**, e ela está lá e não no registro desta ilha porque `coletar-por-consulta.py` é o mesmo desenho nas quatro e **toda** ilha fecha consulta por catálogo (a clubedomosaico tem 22 consultas sem veredito em despacho aberto): **(1)** o intervalo da próxima remedição sai da **SÉRIE** — pelo menos o maior em que aquela ilha já mediu o catálogo **mudar** — e os **três desfechos** se escrevem **antes** do dado (1.2-b.4); **(2)** remedição que não pode fazer página **não é bloco de execução: pega carona** numa passada que já tenha entrega no ar, pela 31.1.
+
+**O critério desta consulta está PRÉ-REGISTRADO na própria declaração**, no campo novo `criterio_da_proxima_remedicao`: **não antes de 11/12/2026** (hoje + os 18 dias medidos), com os três desfechos escritos — nasce (algum degrau alcança 3 que entram), sai da série (terceira repetição seguida das mesmas causas, e passa a depender só do despacho das etiquetas do Mercado Livre), ou vira decisão de outra camada (a 30.4 por canibalização, que exige impressão e por isso **não** é da Fundação).
+
+### O ACHADO QUE NÃO ERA DO BLOCO, E ELE VALIA MAIS QUE O BLOCO: A OITAVA QUEDA DA PORTA FICOU DOIS DIAS INVISÍVEL
+
+Achei a linha **lendo o log do `/status` por obrigação da 20.4**, para conferir o desembarque da revisão 119: `2026-11-21 05:24 cura da porta: bloco WordPress reposto — 1057 bytes [NFD EPC] -> 1580 bytes [NFD EPC, WordPress]` — **oitava** queda desta raiz, assinatura **byte por byte** das sete anteriores, e a cura **devolveu as páginas na mesma requisição**.
+
+**`grep` em todo o repositório (`.md` e `.json`) por `2026-11-21`, `21/11/2026` e `21/11` devolveu ZERO ocorrência antes de hoje**, e o último número do contador escrito no repositório era `episodios_vistos: 0`, de 17/11. **Contador lido NO AR** em `/casca → porta → quedas`, não deduzido: `episodios_vistos: 2`, `leituras_no_chao: 2`, `reposicoes_da_cura: 2`, `primeira_no_chao: 2026-11-18 14:34Z`, `episodio.comecou: 2026-11-21 05:24Z`, `duracao_minima_s: 0`, `reposto_depois: true`.
+
+**O QUE ISTO DÁ AO CHAMADO DA 29.4, e é de SÉRIE e não de episódio:** são **DOIS intervalos fechados seguidos com ZERO minuto medido no chão** (18/11 14h34Z e 21/11 05h24Z), contra os **≥ 55 min 29 s** de 17/11 — o único episódio em que a mesma linha do log **não** devolveu as páginas. **A cura está funcionando melhor do que o título do despacho ALTA de 17/11 descreve** (*"a cura automática já não está bastando"*), **e isso endurece o chamado em vez de o fechar:** o `.htaccess` da raiz segue sendo apagado a cada dois ou três dias — **28h15m** e depois **62h50m** entre quedas — **sem ninguém tocar no arquivo**. Linha gravada em `dados/consertos.md`; acréscimo medido no despacho ALTA de `dados/despachos.md`.
+
+**A CAUSA DE NINGUÉM TER VISTO TEM NOME, E NÃO É A PORTA:** esta ilha **não recebe ronda desde 18/11 20h01Z** (`ultima_ronda` do cabeçalho), e pela decisão do Raphael de 28/09 a ronda técnica roda em **toda** ilha no ar — e é ela que lê o `/status` pela 12.2. A queda caiu num **sábado de madrugada** e quem a achou foi uma execução que veio fazer outra coisa. **O contador fez o trabalho dele; faltou quem o lesse.** Item para a **Sentinela**, escrito no despacho.
+
+### DESEMBARQUE E VERIFICAÇÃO
+
+**Revisão 118 → 119**, porque `consultas-de-produto.json` **é item do manifest** e editar a declaração reprovou o `atualizar-manifest.py --conferir`. **Sem token**, o Sync foi acionado abrindo a própria página mais o `wp-cron.php` (o cron roda por **visita**): home em **200** nas três, cron em **200** na primeira e **409** nas outras duas, e a revisão entrou em **um minuto**. O fecho da 119 declara **7 aplicados** contra **7 linhas de item**, todas dizendo `ok` — pela **20.10**, 7−7 = **0** itens que falharam. Lidas do fecho para baixo (20.8). **E o visitante não vê diferença nenhuma, de propósito:** o arquivo é um dos 6 *"aguardando desembarque"* e não virou página.
+
+`conferir-no-ar.py` **APROVADO com 801 afirmações e 0 falha**: 11 de 11 URLs do sitemap em 200, as três portas da 29.2 com `content-type` certo, caminho virgem em 404 na página da própria ilha, `/status` **119** = `manifest.json` 119, casca **1.30.0**, 6 de 6 versões de snippet batendo com o manifest. **Bancada: 60 portões sem rede, 0 falha ANTES e DEPOIS da edição** — no meio ela reprovou **de propósito**, pela regra da seção 3 que manda revisão e data subirem no **mesmo commit**. **ZERO portão novo nasceu (31.2):** nenhum defeito medido no ar que um portão novo teria pegado.
+
+**O QUE NÃO FOI MEDIDO, dito para ninguém ler verde como completo:** a leitura **sem** quebra de cache (como o Google lê) não foi feita — toda URL foi pedida com `?v=<agora>`, então as afirmações são sobre a **origem**; o portão de pixel da 32.5 **não** foi rodado; e a pergunta do `AllowOverride` da HostGator continua caída, porque exige o painel do hospedeiro.
+
+### A HONESTIDADE DA 31.1, E ELA TEM UMA METADE NOVA
+
+**Esta passada não entregou nada que o visitante veja.** Entregou medição, procedência, uma regra de contrato e a série de um chamado. Quem conta a proporção da 31.1 é a leitura semanal (31.6), nunca eu. **E a metade nova:** pela **30.9 que esta passada mesma escreveu**, a remedição da scooter **não devia ter sido bloco sozinho** — devia ter pegado carona. Foi bloco sozinho porque esta ilha não tem mais nada, e está dito aqui em vez de apresentado como entrega.
+
+### PRÓXIMO PASSO DESBLOQUEADO
+
+Está inteiro no `bloco_atual` do `ESTADO.md`, com as sete pontas remedidas hoje. O resumo: **não existe bloco de construção nesta ilha.** A `scooter elétrica` agora tem data que sai de medição (não antes de 11/12) e pega carona; `bike elétrica` e `motos elétricas para adultos` estão fechadas pela 30.4; a cauda precisa do Chrome; o bloco 5 depende de `pauta.md`, que **segue não existindo** — são **QUATRO** terças em foco total sem pauta (27/10, 03/11, 10/11, 17/11), contadas no calendário, e hoje é **segunda-feira** 23/11; as duas ALTAs de Fundação do despacho de 06/11 mexem em arquivo da robometria e seguem atrás da regra do foco (a casca dela estava em 14 de 14 URLs em 200); e o texto das páginas que existem está travado pela 12.1 até a **leitura semanal de 25/11**, que é também a única camada que pode abrir o terceiro desfecho da scooter.
+
+---
+
 ## 2026-11-20 19h17Z–19h3xZ — **A MAIOR CABEÇA SEM PÁGINA DO NICHO (301 MIL BUSCAS) FOI REMEDIDA PELA TERCEIRA VEZ E CONTINUA FECHADA — E O QUE MUDOU NÃO FOI O CATÁLOGO, FOI QUEM DÁ O VEREDITO**
 
 **A ILHA DESTA EXECUÇÃO:** rodametria, por **foco** (`foco.md`, foco total e absoluto desde 27/10).
