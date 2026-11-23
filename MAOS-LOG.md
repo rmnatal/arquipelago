@@ -10929,3 +10929,43 @@ YAML ok
 - **UMA COISA QUE EU NÃO CORRIGI DE PROPÓSITO, E ELA É PARA QUEM ESCREVEU O TEXTO VER:** na linha do `wp-sitemap.xml` da clubedomosaico, no `PAINEL.md`, a palavra escrita como `recontа` traz um **`а` cirílico (U+0430)** no lugar do `a` latino — veio assim na instrução e foi gravada assim, byte a byte, porque corrigir texto que a instrução entregou pronto não é das MÃOS. Conferido no arquivo depois de gravar: `[... 0x6e, 0x74, 0x430 ...]`. Se isso for engano de digitação, quem conserta é a ronda seguinte, numa instrução que nomeie a troca.
 
 Nenhum passo falhou: não há mensagem de erro a registrar. O push foi aceito de primeira (`0fd9508..e6a0baf  HEAD -> main`), sem rebase, sem force e sem PR. Nenhum arquivo além dos quatro nomeados e deste `MAOS-LOG.md` foi tocado; nenhum cabeçalho de estado fora da linha `ultima_ronda` que a instrução nomeou, nenhuma reserva de ilha, nenhum `executando_desde`, nenhum `publicar`, nenhum Sync. Nenhum bloco de fila foi executado e o `ARQUIPELAGO.md` não foi aberto para decidir nada. A hora do título saiu de `TZ=America/Sao_Paulo date` e `date -u` na mesma chamada, nunca digitada de cabeça. Este log vai num commit seguinte ao do trabalho, porque a contagem acima só pôde ser fechada depois de o commit estar confirmado em `origin/main`. Nenhuma seção anterior deste arquivo foi apagada, reescrita ou resumida.
+
+---
+
+## 23/11/2026, 14h21 de Brasília (17h21Z UTC) — BÚSSOLA CAÇADORA DE 23/11/2026 (seção 27.1): 20 LINHAS NO FIM DE `bussola/cacados.md`, UM COMMIT, PUSH ACEITO DE PRIMEIRA NO `main`
+
+Assunto conferido ANTES do `git fetch`: a Bússola e o `bussola/cacados.md` são do Arquipélago — instrução executada.
+
+Único arquivo nomeado pela instrução: `bussola/cacados.md`. As 20 linhas entraram **verbatim**, cada uma como uma linha da tabela já existente, **acrescentadas ao fim do arquivo**, sem tocar em nenhuma outra linha. Nada foi reformatado, nenhuma linha foi acrescentada além das 20 da instrução.
+
+`git status --porcelain` depois do commit do trabalho (vazio — árvore limpa):
+
+```
+```
+
+`git diff --stat` do commit que foi ao `main`:
+
+```
+ bussola/cacados.md | 20 ++++++++++++++++++++
+ 1 file changed, 20 insertions(+)
+```
+
+Hash do commit no `main`, conferido com `git fetch origin main && git log -1 origin/main`:
+
+```
+1a9c26e
+Bússola caçadora — 23/11/2026
+```
+
+Contagem do que mudou, **conferida relendo o arquivo DEPOIS de gravar** (não pelo que eu achava que havia escrito):
+
+```
+bussola/cacados.md    203 -> 223 linhas    21.879 -> 24.389 bytes    (+20/-0)
+```
+
+- **Conferência de integridade da instrução, rodada depois de gravar:** o arquivo final tem **24.389 bytes** e sha256 `b285d1aa7a6da5b3c9a55804295c3922345641289197b9c8627667800237405c` — **bate exatamente** com os dois valores que a instrução deu. Antes de escrever, o arquivo terminava de fato na linha `| 19/11/2026 | triciclo elétrico | já é nicho da Rodametria (mobilidade elétrica) | 246 mil/mês, +174% no ano |`, como a instrução previa, e tinha sha256 `a27f910a73df792985401282ed24a98bfeb580c1a00c2403e92cb48fe1c9a473` com 21.879 bytes.
+- **UMA DIFERENÇA QUE NÃO CORRIGI E QUE É PARA QUEM ESCREVEU A INSTRUÇÃO VER:** a instrução dizia "partindo do commit `34075e6`", mas o `origin/main` no momento do disparo estava em **`7919a23`** (`rodametria: FECHO da execucao de 23/11 16h17Z–17h1xZ …`). Parti do `main` real, como a seção 27.1 manda, e **não** do commit citado. Isso não mudou nada no resultado: o conteúdo do `bussola/cacados.md` em `7919a23` era byte a byte o que a instrução descrevia (mesma última linha, e o sha256 final bateu), ou seja, os commits entre `34075e6` e `7919a23` não mexeram neste arquivo. Registro aqui porque a próxima conferência de hash deve citar `1a9c26e`, não `34075e6`.
+- **Checagem de disparo repetido:** antes de escrever, `grep -c '23/11/2026' bussola/cacados.md` devolveu **0** — as linhas não estavam no arquivo, então não houve duplicação. Depois de gravar: `grep -c '^| 23/11/2026 |'` = **20** (as 20 novas, nem uma a mais), `grep -c '^| 19/11/2026 |'` = **20** (a leva anterior intacta) e o arquivo tem **218** linhas de tabela no total, mais o título, a frase de abertura e a linha em branco.
+- **Preservação do que já existia:** diffstat **+20/-0** — nenhuma linha anterior do `cacados.md` foi apagada, reescrita ou reordenada. O arquivo já terminava em `\n`, conferido com `od -c` antes de escrever, então as linhas novas entraram sem colar na última linha antiga.
+
+Nenhum passo falhou: não há mensagem de erro a registrar. O push foi aceito de primeira (`7919a23..1a9c26e  HEAD -> main`), sem rebase, sem force e sem PR. Nenhum arquivo além do `bussola/cacados.md` nomeado pela instrução e deste `MAOS-LOG.md` foi tocado; nenhum cabeçalho de estado, nenhuma reserva de ilha, nenhum `executando_desde`, nenhum `publicar`, nenhum Sync, nenhuma conta criada. Nenhum bloco de fila foi executado e o `ARQUIPELAGO.md` não foi aberto para decidir nada. Nenhum dado pessoal de terceiro entrou: as 20 linhas são nicho, portão e número, sem contato de ninguém. A hora do título saiu de `TZ=America/Sao_Paulo date` e `date -u` na mesma chamada, nunca digitada de cabeça. Este log vai num commit seguinte ao do trabalho, porque a contagem acima só pôde ser fechada depois de o commit estar confirmado em `origin/main`. Nenhuma seção anterior deste arquivo foi apagada, reescrita ou resumida.
