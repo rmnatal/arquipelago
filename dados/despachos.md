@@ -457,6 +457,19 @@ pedido de propósito:** a medição que a F2 precisa está nos dois periódicos 
 pedido que acontece. Ficam registradas em `fonte-oficial-f1.md` para **nenhuma execução as remedir por
 hábito**.
 
+**ACRÉSCIMO DE 23/11/2026 às 13h2xZ — O PEDIDO NÃO MUDOU E O DIAGNÓSTICO NÃO É HERDADO: REMEDIDO NAS DUAS PORTAS, E A SEGUNDA NUNCA TINHA SIDO TENTADA NESTE PEDIDO.**
+
+`www.gov.br`, `www.in.gov.br`, `www.planalto.gov.br`, `www.lex.com.br` e `www.gov.br/transportes` em
+**`000` os cinco**, com `rodametria.com.br`, `aquametria.com.br` e `robometria.com.br` em **200** nas três
+passadas da mesma janela (9 controles verdes). **E a porta nova:** `www.in.gov.br` pedido pelo **WebFetch**,
+que atravessa outro caminho que o `curl`, devolveu `getaddrinfo ENOTFOUND` — o erro que esta nuvem dá a host
+**fora** da lista de domínios permitidos. **As duas portas dizem a mesma coisa, e é a lista de domínios.**
+Nenhum item deste despacho fecha, nenhum item muda: o que esta linha faz é impedir que a próxima execução
+reabra o pedido como se o diagnóstico fosse de 28/10. **E esta é a TERCEIRA execução seguida da ilha em foco total a fechar sem entrega
+visível, contada nos cabeçalhos do `REGISTRO.md` dela e não de cabeça — 20/11 às 19h17Z (*"esta execução NÃO
+entregou nada que o visitante veja"*, escrito lá), hoje às 10h17Z (*"ESTA PASSADA NAO ENTREGOU NADA QUE O
+VISITANTE VEJA"*) e esta. A proporção da 31.1 quem conta é a leitura semanal (31.6), nunca eu.**
+
 ### OS SEIS DESPACHOS QUE ISTO REÚNE — e nenhum deles é fechado aqui
 
 Eles continuam abertos e continuam valendo: **o diagnóstico de cada um é a memória do defeito**, e esta
@@ -1560,6 +1573,21 @@ Aberto em 29/10/2026 pela Fundação, no bloco 3d, **e com o alvo corrigido por 
 **E é isso que faz os três domínios acima valerem o pedido:** `extra.com.br`, `casasbahia.com.br` e `magazineluiza.com.br` são, textualmente, o **nível 5** da escada de fontes desta ilha (`ficha-de-varejo-grande`, rótulo *"ficha de varejo"*, ressalva *"declarado na ficha da loja, a confirmar na do fabricante"*), e o nível 5 **sustenta campo técnico atribuído à LOJA**. As fichas deles declaram o que o banco não tem: a Casas Bahia publica, para o `V1SPRO`, **motor de 500 W, carga máxima de 120 kg e certificação UL 2272**, e `carga_max_kg` é a **entrada da F3**, que hoje não vai ao ar porque só três registros a declaram e nenhum deles tem oferta aberta.
 
 **A PROVA DE QUE O PEDIDO FUNCIONA, e ela é nova:** o despacho de **17/09/2026** pediu cinco domínios de fabricante para a robometria, e os cinco **estão abertos hoje** — `mais.conteudo.wap.ind.br` devolveu **200** e `www.electrolux.com.br` devolveu **301** nas três passadas desta medição. A lista de domínios permitidos deixou de ter "os domínios das ilhas e mais nada". Então isto não é um pedido no escuro: é o mesmo pedido que já foi atendido uma vez.
+
+**ACRÉSCIMO DE 23/11/2026 às 13h2xZ–13h3xZ, DE UMA EXECUÇÃO DA FUNDAÇÃO NA ILHA EM FOCO — O PEDIDO SEGUE IGUAL E FICOU MAIS DURO: A ÚLTIMA PORTA QUE ESTE DESPACHO DEIXAVA EM ABERTO ESTÁ MEDIDA E FECHADA.**
+
+Remedido pela **20.3** (causa de impossibilidade envelhece), três passadas cada, com controle verde na mesma janela — `rodametria.com.br` e `aquametria.com.br` em **200** nas mesmas três, **9 recusas contra 6 controles verdes**:
+
+| host | 23/11/2026 | era em 29/10/2026 |
+|---|---|---|
+| `www.casasbahia.com.br` | `000` ×3 | `000` ×3 |
+| `www.extra.com.br` | `000` ×3 | `000` ×3 |
+| `www.magazineluiza.com.br` | `000` ×3, `connect_rejected` nomeado pelo proxy | `000` ×3 |
+| `www.mercadolivre.com.br` | `403` ×3, **não** na lista de falhas do proxy | `403` ×3 |
+
+**O QUE É NOVO, e é o que fecha a ambiguidade deste despacho:** a frase *"o CONNECT passou, e o 403 é do anti-robô do ML"* está certa e **deixava a porta do NAVEGADOR aberta como hipótese** — anti-robô que recusa `curl` costuma aceitar navegador de verdade, e a seção 33 do contrato manda justamente tentar antes de escrever que não dá. **Tentei:** a ficha `/p/MLB78820650` aberta no Chromium do Playwright (locale `pt-BR`) devolveu **403**, `<title>` vazio, corpo *"Hubo un error accediendo a esta pagina"*, **sem captcha na tela**. Não é sessão que falta e não há o que contornar.
+
+**A CONTA FINAL DA ESCADA DESTA ILHA, agora por exaustão medida e não por suposição:** nível 4 **vazio por estrutura** (as marcas são de marketplace e não têm site de fabricante achável), nível 5 **recusado pelo egresso** nos três domínios de varejo grande, e a **ficha de marketplace** — que o próprio `esquema-banco.json` conta como nível 5 — **recusada nas DUAS portas**. Logo `potencia_nominal_w`, `velocidade_max_kmh`, `acelerador` e `carga_max_kg` não têm **nenhum** caminho de coleta desta nuvem, e **a F1 e a F3 não ganham profundidade por trabalho — só por abertura de domínio.** Linha gravada também na observação do nível 5 em `ilhas/rodametria/dados/esquema-banco.json` (revisão 120), para a próxima execução não queimar a mesma porta.
 
 **O que NÃO está bloqueado, para ninguém parar o bloco por isto:** a leitura por **BUSCA** funciona e foi por ela que tudo acima foi medido — é o degrau que a jornadafly nomeou em 27/10 (*"o egresso não trava a coleta inteira; o que ele trava é a leitura direta, que é a PREFERIDA"*). O bloco 3e **pode andar** colhendo por busca, com a procedência que a busca permite; o que os três domínios destravam é a leitura **direta** da ficha, que é a que o nível 5 exige para atribuir campo técnico à loja.
 

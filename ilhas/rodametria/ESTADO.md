@@ -15,24 +15,22 @@ urls_publicadas: 11       # 10 -> 11 em 16/11/2026: nasceu `/veiculos/moto-eletr
                           # proteger. Quem substituir comentario de varias linhas apaga o rabo.
 ultima_ronda: 2026-11-18T20:01Z   # LEITURA SEMANAL de 18/11/2026 (seção 12.2, item 3). SUBSTITUI o valor anterior 2026-11-18T15:00Z, que era da RONDA DIARIA TECNICA do mesmo dia e segue registrado no PROMPT.md e no MAOS-LOG.md. 2 impressoes, 0 clique, posicao 16,0; o 404 no indice de /veiculos/bicicleta-eletrica/ destravou e a pagina esta em 11,0.
 primeira_indexacao: null  # as duas primeiras URLs foram ao ar hoje; indexacao e trabalho de dias. Quem grava este campo e a leitura semanal, lendo o Search Console.
-ultima_execucao: 2026-11-23T10:29Z   # A SCOOTER ELETRICA (301 MIL BUSCAS/MES) FOI
-                         # REMEDIDA PELA QUARTA VEZ E A VITRINE NAO MOVEU UM
-                         # TITULO EM TRES DIAS — e o que esta passada entrega nao
-                         # e o veredito, e a AGENDA dele: o palpite que escolheu a
-                         # data de hoje esta medido e desmentido, e virou a 30.9 do
-                         # contrato. NO CAMINHO, O ACHADO QUE NAO ERA DO BLOCO: a
-                         # porta caiu pela OITAVA vez em 21/11 as 05h24Z e ficou
-                         # DOIS DIAS sem linha em lugar nenhum do repositorio.
+ultima_execucao: 2026-11-23T13:31Z   # A VERIFICACAO DESTA FABRICA MEDE A
+                         # ORIGEM, E A COPIA QUE O GOOGLE LE NUNCA TINHA SIDO PEDIDA:
+                         # medida hoje pela PRIMEIRA VEZ nesta ilha, 11 de 11 em 200 e
+                         # byte por byte igual a origem salvo 41 bytes de comentario do
+                         # Endurance Page Cache. Virou a 20.14 do contrato. E A ULTIMA
+                         # PORTA DE COLETA DESTA ILHA ESTA FECHADA POR EXAUSTAO MEDIDA:
+                         # o Mercado Livre recusa 403 TAMBEM no navegador desta nuvem.
                          # A HORA DESTE CAMPO SAIU DO `date -u` NA MESMA LINHA DE
                          # COMANDO QUE A GRAVA, nunca digitada.
-executando_desde: 2026-11-23T13:18Z   # RESERVA desta execucao (passo 5 da secao 1),
-                         # escrita ANTES de qualquer trabalho. A hora saiu do `date -u`
-                         # na MESMA linha de comando que a grava, nunca digitada.
-                         # A ilha estava LIVRE: `executando_desde: null`, que pela 1.1
-                         # ja significa que nao havia bloco da Fundacao vivo, e o
-                         # ultimo commit na pasta era de 10h32Z (fora dos 40 minutos).
-                         # A reserva anterior, de 2026-11-23T10:17Z (commit 5ab25a9),
-                         # foi limpa no fecho daquela passada.
+executando_desde: null   # LIMPO no fecho desta execucao (passo 7 da secao 1).
+                         # A reserva desta passada foi 2026-11-23T13:18Z, commit
+                         # eb8edf8, aceito de primeira — a ilha estava livre e NADA
+                         # furou o foco (o molde da 32 segue FECHADO nas tres irmas; o
+                         # unico despacho aberto de irma, o da robometria de 20/11, NAO
+                         # e ALTA, com 14 de 14 URLs em 200). Sem renovacao pela 1.1: a
+                         # execucao durou menos de 40 minutos.
 rede: aberta em 2026-11-20   # 20.2, REMEDIDA e nao herdada: `rodametria.com.br`
                              # em 200 nas TRES passadas, `www.` em 301 na primeira
                              # e 200 nas outras duas (redirecao, nao recusa), com
@@ -51,124 +49,118 @@ rede: aberta em 2026-11-20   # 20.2, REMEDIDA e nao herdada: `rodametria.com.br`
                              # camada municipal.
 bloqueada_por: null      # obrigatorio pela secao 2. `null` DE PROPOSITO: o que falta (gov.br para a F1, as prefeituras para a camada municipal, as tres etiquetas do Mercado Livre) trava a FABRICA e nao a ILHA, e isso se escreve no despacho, que e o canal da 12.2. Preenche-lo congelaria tambem os blocos que ja podem andar.
 bloco_atual: |
-  A QUARTA MEDICAO DA `scooter eletrica` NAO MUDOU O VEREDITO E MUDOU A AGENDA
-  DELE. A consulta vale 301 mil buscas/mes, tem `alvo` visto no Chrome em 27/10 e
-  slug reservado (`veiculos/scooter-eletrica`) desde o 5b; o unico degrau que
-  falta e o COMERCIAL da 30.2, e ele foi medido nas datas 29/10, 16/11, 20/11 e
-  hoje. ZERO ofertas que servem nos dois degraus, 20 + 20 lidas, piso de 3 nao
-  alcancado em degrau nenhum. ENSAIO DA 25.3: nada gravado no banco, nenhum link
-  gerado, e a regua que julgou e a da ILHA (as funcoes de
-  coletar-por-consulta.py chamadas de script descartavel no scratchpad, porque o
-  `--so` dela so alcanca consulta com `publicar_declarado: true`).
+  A VERIFICACAO DESTA FABRICA MEDE A ORIGEM, E A COPIA QUE O GOOGLE LE NUNCA
+  TINHA SIDO PEDIDA. `conferir-no-ar.py` fecha TODA passada imprimindo "NAO
+  MEDIDO AQUI: a leitura SEM quebra de cache (como o Google le)" — a linha que
+  acusa o que falta estava dentro do proprio instrumento, que e a familia exata
+  da 20.4. Medido hoje pela PRIMEIRA VEZ nesta ilha: as 11 URLs pedidas SEM
+  parametro e, na mesma passada, com `?v=<agora>`, com os dois corpos comparados
+  por `cmp`. 11 DE 11 EM 200 na leitura crua, e a diferenca nas 11 sao 41 BYTES
+  — o comentario `<!--Generated by Endurance Page Cache-->` no fim do HTML.
+  Corpo byte por byte identico no resto: a pagina e servida DE CACHE a quem nao
+  quebra o cache, e naquele instante o cache estava em dia.
 
-  O QUE ESTA MEDICAO ACRESCENTA E A IDENTIDADE DO VEREDITO, NAO O VEREDITO. As
-  causas repetem UMA POR UMA as de 20/11, tres dias antes: degrau 1 com 13
-  `fora_da_familia`, 5 `outra_familia_na_cabeca` e 2 `outro_veiculo`; degrau 2
-  com 19 `fora_da_familia` e 1 `sem_qualificador`. E os CINCO titulos de
-  `outra_familia_na_cabeca` sao, um por um, os MESMOS CINCO que o motivo de
-  20/11 nomeia na declaracao. Em tres dias a vitrine nao moveu um titulo.
+  POR QUE ISSO VIROU A 20.14 DO CONTRATO E NAO FICOU AQUI: o cache so estava em
+  dia porque a casca pendura `rodametria_casca_purgar_ao_gravar` em
+  `updated_option` e `added_option` filtrando pelo prefixo `rodametria_` (lido
+  na fonte, rodametria-casca.php linhas 3512-3530) e o Sync grava
+  `rodametria_sync_estado` a cada aplicacao. ESSE GANCHO E UMA LINHA, E NO DIA
+  EM QUE ELA QUEBRAR TODOS OS PORTOES CONTINUAM VERDES: eles pedem com `?v=`,
+  atravessam o cache e aprovam a ORIGEM, enquanto o visitante e o Google leem a
+  copia velha SERVINDO 200. E a secao 29 num andar que ninguem tinha olhado, e
+  sem sintoma. A regua nova cabe num `cmp` de duas leituras, e mora no contrato
+  porque as QUATRO ilhas estao na mesma conta de cPanel, com o mesmo cache.
 
-  E ISSO MEDE E DESMENTE O PALPITE QUE ESCOLHEU A DATA DE HOJE. O REGISTRO.md de
-  20/11 marcou 23/11 porque "o catalogo da loja se move em intervalo de dias".
-  Os intervalos desta serie foram 18 dias (29/10->16/11), 4 dias (16/11->20/11)
-  e 3 dias (20/11->23/11): O INTERVALO ENCURTOU A CADA PASSADA ENQUANTO A
-  RESPOSTA NAO MUDAVA, que e o sinal invertido. E o unico movimento de catalogo
-  que esta ilha ja mediu de verdade foi o da `moto eletrica`, DENTRO dos 18 dias
-  entre 29/10 e 16/11. A escala desta loja e de SEMANAS.
+  A ULTIMA PORTA DE COLETA DESTA ILHA ESTA FECHADA, POR EXAUSTAO MEDIDA. O
+  despacho de 29/10 classificou certo o 403 do Mercado Livre ("o CONNECT passou,
+  e o 403 e do anti-robo do ML") e aquela frase DEIXAVA A PORTA DO NAVEGADOR
+  ABERTA como hipotese — anti-robo que recusa curl costuma aceitar navegador de
+  verdade, e a secao 33 manda tentar antes de escrever que nao da. TENTEI: a
+  ficha /p/MLB78820650 no Chromium do Playwright devolveu 403, title vazio,
+  corpo "Hubo un error accediendo a esta pagina", SEM CAPTCHA na tela. Nao e
+  sessao que falta e nao ha o que contornar. A CONTA DA ESCADA: nivel 4 vazio
+  POR ESTRUTURA, nivel 5 recusado nos tres dominios de varejo (remedidos hoje:
+  casasbahia, extra e magazineluiza em 000 nas tres passadas, 9 recusas contra 6
+  controles verdes) e a FICHA DE MARKETPLACE — que o proprio esquema conta como
+  nivel 5 — recusada nas DUAS portas. Logo potencia_nominal_w,
+  velocidade_max_kmh, acelerador e carga_max_kg NAO TEM CAMINHO DE COLETA desta
+  nuvem, e a F1 e a F3 nao ganham profundidade por trabalho, so por ABERTURA DE
+  DOMINIO. Linha gravada na observacao do nivel 5 do esquema (e o que move a
+  revisao desta passada) e no despacho dos tres dominios.
 
-  REGRA NOVA NO CONTRATO, A 30.9, porque coletar-por-consulta.py e o mesmo
-  desenho nas quatro ilhas e toda ilha fecha consulta por catalogo: (1) o
-  intervalo da proxima remedicao sai da SERIE — pelo menos o maior em que aquela
-  ilha ja mediu o catalogo MUDAR — e os tres desfechos se escrevem ANTES do dado
-  (1.2-b.4); (2) remedicao que nao pode fazer pagina NAO e bloco de execucao:
-  pega CARONA numa passada que ja tenha entrega no ar, pela 31.1. O criterio
-  desta consulta esta pre-registrado em `criterio_da_proxima_remedicao`, na
-  propria declaracao: NAO ANTES DE 11/12/2026 (hoje + os 18 dias medidos), com
-  os tres desfechos escritos.
+  A PAREDE DO .gov.br REMEDIDA PELA 20.3 NAS DUAS PORTAS, e a segunda nunca
+  tinha sido tentada neste pedido: gov.br, in.gov.br, planalto.gov.br,
+  lex.com.br e gov.br/transportes em 000 os CINCO por curl; e in.gov.br pelo
+  WebFetch, que atravessa outro caminho, em `getaddrinfo ENOTFOUND` — o erro que
+  esta nuvem da a host FORA da lista de dominios permitidos. As duas portas
+  dizem a mesma coisa, e e a lista. O limiar legal segue `pendente` e a F1 segue
+  no ar sem veredito de CNH.
 
-  O ACHADO QUE NAO ERA DO BLOCO, E ELE VALIA MAIS QUE O BLOCO: A PORTA CAIU PELA
-  OITAVA VEZ NESTA RAIZ, EM 21/11 AS 05h24Z, E FICOU DOIS DIAS INVISIVEL. Achei
-  a linha lendo o log do /status por obrigacao da 20.4, para conferir o
-  desembarque da revisao 119. A cura disparou sozinha, com a assinatura byte por
-  byte das sete anteriores (1057 -> 1580 bytes), e DEVOLVEU AS PAGINAS NA MESMA
-  REQUISICAO. `grep` em todo o repositorio por `2026-11-21`, `21/11/2026` e
-  `21/11` devolveu ZERO ocorrencia antes de hoje, e o ultimo numero do contador
-  escrito no repositorio era `episodios_vistos: 0`, de 17/11. CONTADOR LIDO NO
-  AR em `/casca -> porta -> quedas`: episodios_vistos 2, leituras_no_chao 2,
-  reposicoes_da_cura 2, primeira_no_chao 2026-11-18 14:34Z, episodio.comecou
-  2026-11-21 05:24Z, duracao_minima_s 0, reposto_depois true. A SERIE DO CHAMADO
-  DA 29.4 GANHOU O SEGUNDO INTERVALO FECHADO COM ZERO MINUTO NO CHAO, contra os
-  >=55min29s de 17/11 — a cura esta funcionando MELHOR do que o despacho ALTA de
-  17/11 descreve, e isso ENDURECE o chamado em vez de o fechar: o .htaccess da
-  raiz segue sendo apagado a cada dois ou tres dias (28h15m e depois 62h50m
-  entre quedas) sem ninguem tocar no arquivo. Linha gravada em
-  `dados/consertos.md` e acrescimo medido no despacho ALTA de `dados/despachos.md`.
-  A CAUSA DE NINGUEM TER VISTO TEM NOME E NAO E A PORTA: esta ilha nao recebe
-  RONDA desde 18/11 20h01Z (`ultima_ronda` deste cabecalho), e pela decisao do
-  Raphael de 28/09 a ronda tecnica roda em TODA ilha no ar — e e ela que le o
-  /status pela 12.2. O contador fez o trabalho dele; faltou quem o lesse. Item
-  para a Sentinela, escrito no despacho.
+  PORTOES DE NAVEGADOR, RODADOS PELA 18.5 (verificacao antes de construcao). A
+  32.5 nao era medida desde 09/11 e /veiculos/moto-eletrica/ NASCEU EM 16/11,
+  DEPOIS DISSO: nunca tinha sido medida a 390 px. APROVADO 11 de 11, pior caixa
+  405 px (teto 700), pior compra 1.333 px (teto 1.400), 0 pagina fora do molde;
+  a moto entra pela caixa de ausencia (.rdm-caixa-ausencia, piso da 25.2-c) com
+  o link a 358 px. Console limpo em 11 de 11. teste-f1-arvore 64 afirmacoes,
+  teste-passagem-de-peso 50, medir-foto 46 com ZERO foto nao medida por recusa
+  de rede — 0 falha nos tres. CONTADOR DA PORTA LIDO NO AR: episodios_vistos 2,
+  reposicoes_da_cura 2, episodio ainda o de 21/11 05h24Z com reposto_depois
+  true. NENHUMA NONA QUEDA.
 
-  DESEMBARQUE: revisao 118 -> 119, porque `consultas-de-produto.json` E ITEM DO
-  MANIFEST e editar a declaracao reprovou o `atualizar-manifest.py --conferir`.
-  SEM TOKEN, o Sync foi acionado abrindo a propria pagina mais o wp-cron.php (o
-  cron roda por VISITA): home em 200 nas tres, cron em 200 na primeira e 409 nas
-  outras duas, e a revisao entrou em um minuto. O fecho da 119 declara 7
-  aplicados contra 7 linhas de item, todas dizendo `ok` — pela 20.10, 7-7=0
-  itens que falharam. Lidas do fecho para baixo (20.8). E O VISITANTE NAO VE
-  DIFERENCA NENHUMA, de proposito: o arquivo e um dos 6 "aguardando
-  desembarque" e nao virou pagina.
+  O QUE PARECIA DEFEITO E NAO E, dito para ninguem gastar execucao nisso: o
+  portao de pixel acusa /autonomia-patinete-eletrico/ com 3 de 4 cartoes em
+  ESPACO RESERVADO em vez de foto. Sao sousa-bike-aro-24, x13-chopper-1000w e
+  ls-sport-scooter-1000w, os tres `publicavel` PELO PISO da 25.2 — eles tem
+  BUSCA, nao oferta especifica. Sem oferta nao existe `imageUrl`, e o
+  `motivo_sem_url_produto` de cada um ja diz a causa: falta `modelo`, e sem
+  modelo a `identidade_minima` do esquema proibe pedir ficha (armadilha 3 da
+  25.7, medida nesta ilha com a chave MAXSHOT). CARTAO SEM FOTO E HONESTO, NAO
+  QUEBRADO — e colher `modelo` e exatamente o que as duas portas acima provam
+  nao ser possivel daqui.
 
-  REDE E AR, REMEDIDOS E NAO HERDADOS (20.2): rodametria.com.br em 200 nas TRES
-  passadas, com aquametria.com.br em 200 nas MESMAS tres — 6 medicoes verdes,
-  zero intermitencia. `conferir-no-ar.py` APROVADO com 801 afirmacoes e 0 falha:
-  11 de 11 URLs do sitemap em 200, as tres portas da 29.2 com content-type
-  certo, caminho virgem em 404 na pagina da propria ilha, /status 119 =
-  manifest.json 119, casca 1.30.0, 6 de 6 versoes de snippet batendo. Bancada:
-  60 portoes sem rede, 0 falha ANTES e DEPOIS da edicao (no meio ela reprovou de
-  proposito, pela regra da secao 3 que manda revisao e data subirem no MESMO
-  commit). ZERO portao novo nasceu (31.2): nenhum defeito medido no ar que um
-  portao novo teria pegado.
+  DESEMBARQUE: revisao 119 -> 120, porque esquema-banco.json E ITEM DO MANIFEST.
+  `versao_esquema` NAO SUBIU, de proposito: subi de 6 para 7 na primeira
+  tentativa e o validar-banco.py reprovou na hora ("FALHA veiculos.json:
+  versao_esquema 6 nao bate com a do esquema (7)"), e ele esta certo — nao houve
+  mudanca de ESTRUTURA, so de PROCEDENCIA dentro de uma observacao, e bumpar
+  forcaria cascata nos tres bancos por nada. Voltou a 6. Bancada: 60 portoes sem
+  rede, 0 falha.
 
-  E A HONESTIDADE DA 31.1: ESTA PASSADA NAO ENTREGOU NADA QUE O VISITANTE VEJA.
-  Ela entregou medicao, procedencia, uma regra de contrato e a serie de um
-  chamado. Quem conta a proporcao da 31.1 e a leitura semanal (31.6), nunca eu,
-  e o numero dela vai precisar desta linha. E pela 30.9 que esta passada mesma
-  escreveu, a remedicao da scooter nao devia ter sido bloco sozinho — foi, e
-  esta dito aqui em vez de apresentado como entrega.
+  A HONESTIDADE DA 31.1: ESTA PASSADA NAO ENTREGOU NADA QUE O VISITANTE VEJA, E
+  E A TERCEIRA SEGUIDA — contadas nos cabecalhos do REGISTRO.md e nao de cabeca
+  (20/11 19h17Z, 23/11 10h17Z e esta). A causa nao e falta de trabalho, e falta
+  de INSUMO, e o insumo tem nome e dono: a lista de dominios permitidos do
+  ambiente. Quem conta a proporcao e a leitura semanal (31.6), nunca eu. ZERO
+  portao novo (31.2) e nenhum portao ampliado (31.3): nada que eu medi no ar
+  reprovou. O RAPHAEL FOI NOTIFICADO.
 
-  PROXIMO PASSO DESBLOQUEADO — E A RESPOSTA SEGUE SENDO QUE NAO EXISTE BLOCO DE
-  CONSTRUCAO NESTA ILHA, com as pontas remedidas por mim hoje e nao herdadas:
-  1. `scooter eletrica` (301 mil): FECHADA, e agora com data que sai de medicao
-     e nao de palpite — NAO ANTES DE 11/12/2026, e pela 30.9 ela pega CARONA
-     numa passada que ja tenha outra entrega no ar. Nao abra a Shopee por ela
-     antes disso.
-  2. `bike eletrica` e `motos eletricas para adultos` (201 mil cada): fechadas
-     pela 30.4, sinonimos de pagina que existe. Nenhuma coleta, de proposito.
-  3. A cauda: 3 TOMADAS por fazenda e 2 `nao-medida`, e `nao-medida` nao
-     autoriza nada (30.8). Precisa do Chrome do Raphael.
-  4. Bloco 5 (artigos-ancora): depende de `ilhas/rodametria/pauta.md`, que
-     SEGUE NAO EXISTINDO e que pela 17.1 nao e arquivo da Fundacao — a rotina
-     Pauta o escreve pelas Maos, as tercas. Sao QUATRO tercas em foco total sem
-     pauta nenhuma (27/10, 03/11, 10/11 e 17/11), CONTADAS NO CALENDARIO e nao
-     de cabeca; hoje e segunda-feira 23/11 e a quinta terca e amanha.
-  5. As duas ALTAs de Fundacao (itens 2 e 3 do despacho de 06/11) consertam
-     `ilhas/robometria/snippets/robometria-sync.php`: a secao 3 proibe editar
-     ilha nao reservada e a 1.2 so fura o foco por ilha QUEBRADA. Conferido hoje
-     pelo texto do despacho dela de 20/11: a casca da robometria estava em 14 de
-     14 URLs em 200. Seguem atras da regra do foco.
-  6. Texto das paginas que existem: a 12.1 proibe. A bicicleta SUBIU (nao
-     tocar); o patinete e a moto fecharam a janela de 10 a 16/11 com ZERO
-     impressao, e sem banda nao ha o que propor. A LEITURA SEMANAL DE 25/11 E
-     QUEM DESTRAVA, e ela e tambem a unica que pode abrir o terceiro desfecho da
-     scooter (fechar por canibalizacao da 30.4, que exige impressao).
-  7. A OITAVA QUEDA DA PORTA esta registrada e a ilha esta de pe — nao e tarefa
-     aberta da Fundacao. O que sobra dali e da SENTINELA: a ronda tecnica desta
-     ilha esta parada desde 18/11 e foi por isso que o episodio de 21/11 ficou
-     dois dias sem ninguem ver.
-  QUEM PEGAR ESTA ILHA A SEGUIR e nao tiver pauta, gesto novo do Raphael nem a
-  leitura de 25/11 na mao, deve fechar dizendo isso. Inventar trabalho de
-  bancada e proibido pela 31.3, e ampliar portao que ja existe tambem.
+  PROXIMO PASSO DESBLOQUEADO — CONTINUA NAO EXISTINDO BLOCO DE CONSTRUCAO NESTA
+  ILHA, e agora com uma porta menos em aberto:
+  1. `pauta.md` SEGUE NAO EXISTINDO (conferido com `ls`, nao suposto) e pela
+     17.1 nao e arquivo da Fundacao — a rotina Pauta o escreve pelas Maos, as
+     tercas. Sao QUATRO tercas em foco total sem pauta (27/10, 03/11, 10/11,
+     17/11) e a quinta e AMANHA, 24/11. O bloco 5 (artigos-ancora) espera ela.
+  2. `scooter eletrica` (301 mil): NAO ANTES DE 11/12/2026, criterio
+     pre-registrado em `criterio_da_proxima_remedicao`, e pela 30.9 ela PEGA
+     CARONA. Nao abra a Shopee por ela antes disso.
+  3. `bike eletrica` e `motos eletricas para adultos`: fechadas pela 30.4.
+  4. A cauda: 3 TOMADAS por fazenda e 2 `nao-medida` — precisa do Chrome.
+  5. As tres consultas no ar foram colhidas em 18/11; pela 30.9 a remedicao de
+     catalogo delas e de 06/12 em diante. NAO recolha antes.
+  6. Texto das paginas: a 12.1 proibe (a bicicleta SUBIU para 11,0; patinete e
+     moto com ZERO impressao na janela de 10 a 16/11). A LEITURA SEMANAL DE
+     25/11 e quem destrava, e e a unica que pode abrir o terceiro desfecho da
+     scooter.
+  7. As duas ALTAs de Fundacao do despacho de 06/11 mexem em arquivo da
+     robometria e seguem atras da regra do foco (secao 3 + 1.2).
+  8. A RONDA TECNICA desta ilha nao roda desde 18/11 20h01Z — e da SENTINELA,
+     nao da Fundacao, e foi por isso que a oitava queda da porta ficou dois dias
+     sem ninguem ver.
+  QUEM PEGAR ESTA ILHA A SEGUIR, sem pauta, sem gesto novo do Raphael e sem a
+  leitura de 25/11 na mao, deve fechar dizendo isso — e NAO deve regastar
+  execucao no navegador do Mercado Livre nem nos cinco hosts de .gov.br, que
+  esta passada mediu nas duas portas. Inventar trabalho de bancada e proibido
+  pela 31.3, e ampliar portao que ja existe tambem.
 
 ---
 

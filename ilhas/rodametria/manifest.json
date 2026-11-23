@@ -4,7 +4,7 @@
   "nicho": "mobilidade eletrica — acertar os tres numeros antes de comprar um veiculo eletrico: categoria legal (CNH e placa), autonomia real e carga maxima",
   "dominio": "https://rodametria.com.br",
   "versao_manifest": 1,
-  "revisao": 119,
+  "revisao": 120,
   "atualizado_em": "2026-11-23",
   "estado": "nascendo",
   "desembarque": {
@@ -119,7 +119,7 @@
       "arquivo": "dados/esquema-banco.json",
       "formato": "json",
       "publicar": false,
-      "sha256": "b467bd45bb23e13c3707d36ccf66f0c5280c3e3d6b56d5bef4e249ba7c344493",
+      "sha256": "b8024c66138f57de3c03f7065fc0afb1e0d8ca1b4f36be87a4a7bf5e9f6a4564",
       "descricao": "O contrato do banco, versao 2."
     },
     {
