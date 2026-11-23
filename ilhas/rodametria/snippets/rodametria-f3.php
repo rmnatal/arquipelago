@@ -45,7 +45,7 @@
  */
 
 if ( ! defined( 'RODAMETRIA_F3_VERSAO' ) ) {
-	define( 'RODAMETRIA_F3_VERSAO', '1.7.0' );
+	define( 'RODAMETRIA_F3_VERSAO', '1.8.0' );
 }
 
 /* A VERSAO DESTE SNIPPET VAI AO AR (20.7). A CHAVE E O `id` DO manifest.json, e
@@ -567,13 +567,19 @@ add_shortcode( 'rodametria_f3', 'rodametria_f3_pagina_html' );
 /* A DATA QUE ESTA PAGINA PUBLICA, pendurada no filtro da casca. Sai de
    `gerado_em` do banco da F3 — o MESMO campo que a dobra "Como sabemos" ja
    usa. Um fato, uma fonte (20.7). */
+/* A GUARDA DO PRIMEIRO-VENCE SAIU EM 23/11/2026: cada snippet CONTRIBUI a data
+   da sua parte e a casca escolhe a MAIS RECENTE, porque e essa a pergunta que o
+   `dateModified` faz. Esta pagina sai de um banco so, entao hoje a resposta e a
+   mesma — o que muda e o dia em que ela passar a servir dado de dois lugares:
+   antes, o segundo se calaria. */
 add_filter( 'rodametria_data_da_pagina', function ( $data, $slug ) {
-	if ( RODAMETRIA_F3_SLUG !== $slug || '' !== $data ) {
+	if ( RODAMETRIA_F3_SLUG !== $slug ) {
 		return $data;
 	}
 	$d = rodametria_casca_banco( RODAMETRIA_ID_DADOS_F3 );
 
-	return ( $d && ! empty( $d['gerado_em'] ) ) ? (string) $d['gerado_em'] : $data;
+	return rodametria_casca_data_mais_recente( $data,
+		( $d && ! empty( $d['gerado_em'] ) ) ? (string) $d['gerado_em'] : '' );
 }, 10, 2 );
 
 /* ---------------------------------------------------------------------------

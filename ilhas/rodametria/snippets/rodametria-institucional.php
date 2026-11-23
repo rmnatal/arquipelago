@@ -65,7 +65,7 @@
    Estas quatro nao tem coleta: a data em que a camada declarada foi escrita E a
    data em que a pagina mudou. */
 if ( ! defined( 'RODAMETRIA_INST_VERSAO' ) ) {
-	define( 'RODAMETRIA_INST_VERSAO', '1.3.0' );
+	define( 'RODAMETRIA_INST_VERSAO', '1.4.0' );
 }
 
 /* A VERSAO DESTE SNIPPET VAI AO AR, pelo filtro que a casca 1.6.0 abriu
@@ -585,17 +585,19 @@ add_shortcode( 'rodametria_institucional', 'rdm_inst_pagina_html' );
    declarada foi escrita E a data em que a pagina mudou. Quem reescrever o JSON
    sobe o `gerado_em` dele, e `dateModified` acompanha sem ninguem digitar data
    em lugar nenhum. */
+/* A GUARDA DO PRIMEIRO-VENCE SAIU EM 23/11/2026 (ver
+   `rodametria_casca_data_mais_recente`): a data de uma pagina e a MAIS RECENTE
+   entre as datas de tudo de que ela e feita, e nao a do primeiro filtro a
+   responder. */
 add_filter( 'rodametria_data_da_pagina', function ( $data, $slug ) {
-	if ( '' !== $data ) {
-		return $data;
-	}
 	$paginas = rdm_inst_paginas();
 	if ( ! isset( $paginas[ $slug ] ) ) {
 		return $data;
 	}
 	$bruto = rodametria_casca_banco( RODAMETRIA_ID_DADOS_INST );
 
-	return ( $bruto && ! empty( $bruto['gerado_em'] ) ) ? (string) $bruto['gerado_em'] : $data;
+	return rodametria_casca_data_mais_recente( $data,
+		( $bruto && ! empty( $bruto['gerado_em'] ) ) ? (string) $bruto['gerado_em'] : '' );
 }, 10, 2 );
 
 /* ---------------------------------------------------------------------------

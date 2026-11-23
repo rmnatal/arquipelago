@@ -71,7 +71,7 @@
    Antes disto a ilha cujo produto e "o preco de hoje" tinha ZERO ocorrencia de
    `dateModified` e de `datePublished` em todo o JSON-LD das 9 URLs. */
 if ( ! defined( 'RODAMETRIA_CASCA_VERSAO' ) ) {
-	define( 'RODAMETRIA_CASCA_VERSAO', '1.30.0' );
+	define( 'RODAMETRIA_CASCA_VERSAO', '1.31.0' );
 }
 
 /* ---------------------------------------------------------------------------
@@ -675,21 +675,81 @@ function rodametria_casca_data_da_pagina( $slug = null ) {
 
 	/* AAAA-MM-DD ou nada. Data mal formada e pior que data ausente: ela entra no
 	   dado estruturado e o buscador a le como quiser. */
-	return preg_match( '/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/', $data ) ? $data : '';
+	return rodametria_casca_data_valida( $data ) ? $data : '';
+}
+}
+
+if ( ! function_exists( 'rodametria_casca_data_valida' ) ) {
+/** AAAA-MM-DD, e so. Mora numa funcao porque tres lugares a perguntam. */
+function rodametria_casca_data_valida( $data ) {
+	return is_string( $data )
+		&& 1 === preg_match( '/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/', trim( $data ) );
+}
+}
+
+if ( ! function_exists( 'rodametria_casca_data_mais_recente' ) ) {
+/**
+ * A COMPOSICAO DO FILTRO DA DATA PASSA A SER O **MAIS RECENTE** E NAO O PRIMEIRO
+ * (23/11/2026, item 2 do despacho da ronda deste dia).
+ *
+ * O QUE ESTAVA ERRADO, e nao era o dado: era a FORMA DE COMPOR. Cada snippet
+ * pendurava a sua data no filtro com a guarda `if ( '' !== $data ) return
+ * $data;` — ou seja, **o primeiro a responder vencia**, e os outros se calavam.
+ * Isso responde "de que dado esta pagina foi feita" e NAO a pergunta que o
+ * `dateModified` faz, que e *"quando esta pagina mudou pela ultima vez"*. Pagina
+ * feita de DOIS bancos muda quando o mais novo dos dois muda, e com o
+ * primeiro-vence ela publica a data do outro.
+ *
+ * MEDIDO NO AR EM 23/11/2026, e a home e o caso: ela servia
+ * `dateModified: 2026-11-11`, que e o `gerado_em` do banco da F1 (prioridade 9,
+ * que roda primeiro **de proposito** — o comentario do filtro da F1 diz isso com
+ * todas as letras). E no MESMO HTML ela imprime numeros contados do banco da F2,
+ * cujo `gerado_em` era **2026-11-18** — sete dias depois. A pagina afirmava ao
+ * Google ser mais velha do que o conteudo que estava servindo.
+ *
+ * A REGRA, EM UMA FRASE: a data de uma pagina e a MAIS RECENTE entre as datas de
+ * tudo de que ela e feita. Nenhum snippet decide sozinho; cada um CONTRIBUI a
+ * data da sua parte e esta funcao escolhe. "Um fato, uma fonte" (20.7) continua
+ * valendo no outro eixo — cada data sai de UM campo, nunca de prosa paralela.
+ *
+ * E ELA VALIDA OS DOIS LADOS ANTES DE COMPARAR, porque AAAA-MM-DD compara como
+ * TEXTO e e exatamente isso que faz a comparacao ser barata — e e tambem o que
+ * faria uma cadeia mal formada VENCER o maximo e depois ser descartada pelo
+ * validador do fim, deixando a pagina SEM data. Data invalida aqui nao vence,
+ * nao contamina e nao apaga a boa: ela e ignorada.
+ */
+function rodametria_casca_data_mais_recente( $data, $minha ) {
+	$data  = rodametria_casca_data_valida( $data ) ? trim( $data ) : '';
+	$minha = rodametria_casca_data_valida( $minha ) ? trim( $minha ) : '';
+	if ( '' === $minha ) {
+		return $data;
+	}
+	if ( '' === $data ) {
+		return $minha;
+	}
+
+	return ( $minha > $data ) ? $minha : $data;
 }
 }
 
 /* A HOME SAI DO MESMO BANCO QUE ELA IMPRIME, e isto esta aqui e nao no snippet
    da F2 porque quem renderiza a home e esta casca: os tres numeros dela — 17
    veiculos colhidos, 5 com oferta aberta, 24 combinacoes de bateria — sao
-   contados de `f2-respostas.json`, entao a data da home E a data daquele banco. */
+   contados de `f2-respostas.json`, entao a data da home E a data daquele banco.
+
+   E ELA NAO MAIS SE CALA QUANDO A F1 RESPONDEU PRIMEIRO (23/11/2026): a home e
+   feita dos DOIS bancos, entao ela muda quando o mais novo dos dois muda. Era
+   este filtro que estava sendo silenciado pela guarda do primeiro-vence, e o
+   custo estava no ar — `dateModified: 2026-11-11` (F1) numa pagina servindo
+   numeros contados de um banco de 2026-11-18 (F2). */
 add_filter( 'rodametria_data_da_pagina', function ( $data, $slug ) {
-	if ( 'inicio' !== $slug || '' !== $data ) {
+	if ( 'inicio' !== $slug ) {
 		return $data;
 	}
 	$banco = rodametria_casca_banco( RODAMETRIA_ID_DADOS_F2 );
 
-	return ( $banco && ! empty( $banco['gerado_em'] ) ) ? (string) $banco['gerado_em'] : $data;
+	return rodametria_casca_data_mais_recente( $data,
+		( $banco && ! empty( $banco['gerado_em'] ) ) ? (string) $banco['gerado_em'] : '' );
 }, 10, 2 );
 
 add_action( 'wp_head', function () {

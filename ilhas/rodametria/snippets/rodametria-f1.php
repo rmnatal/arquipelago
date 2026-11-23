@@ -90,7 +90,7 @@ if ( ! defined( 'RODAMETRIA_F1_VERSAO' ) ) {
 	   SEM o formulario da F1 e SEM a barra fixa, e o `/casca` nao trazia
 	   `rodametria-f1` nenhum — que e exatamente a ausencia que a 20.7 desenhou
 	   para ser o sinal. Tres dos cinco portoes de pagina ficaram verdes. */
-	define( 'RODAMETRIA_F1_VERSAO', '1.6.0' );
+	define( 'RODAMETRIA_F1_VERSAO', '1.7.0' );
 }
 
 if ( ! defined( 'RODAMETRIA_ID_DADOS_F1' ) ) {
@@ -655,9 +655,27 @@ function rodametria_f1_dobras_html( $d ) {
 	   reprovou esta pagina na primeira passada por servir `2026-11-06` na camada
 	   que a maquina le e em lugar nenhum na camada que a pessoa le. Duas
 	   declaracoes do mesmo fato comecam iguais e so uma sobe (20.7) — a saida
-	   nao e tirar o JSON-LD, e a pagina DIZER a data. */
-	$fonte .= '<p>Esta página foi gerada a partir do nosso banco em '
-		. esc_html( rodametria_f1_data( (string) $d['gerado_em'] ) ) . '.</p>';
+	   nao e tirar o JSON-LD, e a pagina DIZER a data.
+
+	   E DESDE 23/11/2026 ELA DIZ A DATA **DA PAGINA**, E NAO A DO BANCO DESTA
+	   FERRAMENTA. A home nao e feita so da F1: os tres numeros do topo dela sao
+	   contados do banco da F2, e esta frase dizia "gerada a partir do nosso
+	   banco em 11/11/2026" numa pagina cuja outra metade saiu de um banco de
+	   18/11. A frase nao estava mentindo sobre o banco da F1 — ela estava
+	   respondendo a pergunta errada, que e a mesma troca que o `dateModified`
+	   fazia. A data vem de `rodametria_casca_data_da_pagina()`, que compoe a
+	   MAIS RECENTE das fontes da pagina, e e por isso que as duas camadas
+	   continuam dizendo a MESMA data — que e o que o portao de ar cobra.
+	   Sem data composta (sem banco nenhum), a frase nao sai: frase que promete
+	   data e serve vazio e pior que frase ausente. */
+	$data_da_pagina = rodametria_casca_data_da_pagina( 'inicio' );
+	if ( '' === $data_da_pagina ) {
+		$data_da_pagina = (string) $d['gerado_em'];
+	}
+	if ( '' !== $data_da_pagina ) {
+		$fonte .= '<p>Esta página foi gerada a partir do nosso banco em '
+			. esc_html( rodametria_f1_data( $data_da_pagina ) ) . '.</p>';
+	}
 
 	/* A DOBRA DOS TRES NUMEROS. Ela e a SEGUNDA de propósito: quem abre "de onde
 	   saíram os limites" e a pessoa que desconfia do número, e a pergunta
@@ -804,17 +822,31 @@ add_filter( 'rodametria_home_cartoes', function ( $cartoes ) {
 	return $cartoes;
 } );
 
-/* A DATA QUE A HOME PUBLICA passa a sair do banco da F1, porque e a F1 que
-   ocupa a primeira tela dela. A prioridade 9 roda ANTES do filtro da casca, que
-   a tira do banco da F2 e que devolve o que achar se `$data` ja estiver
-   preenchido. Um fato, uma fonte (20.7). */
+/* A DATA QUE A HOME PUBLICA — a CONTRIBUICAO da F1, e nao mais a palavra final
+   (23/11/2026).
+
+   O TEXTO QUE ESTAVA AQUI dizia: *"a prioridade 9 roda ANTES do filtro da casca,
+   que a tira do banco da F2 e que devolve o que achar se `$data` ja estiver
+   preenchido"* — ou seja, ele AFIRMAVA a vitoria do primeiro como desenho. E o
+   desenho estava errado sobre a pergunta que o `dateModified` faz: a home nao e
+   feita so da F1; ela imprime, no mesmo HTML, numeros contados do banco da F2.
+   MEDIDO NO AR em 23/11: ela servia `2026-11-11` (F1) com o banco da F2 em
+   `2026-11-18`, sete dias mais novo. A pagina se declarava mais velha que o
+   conteudo que servia.
+
+   AGORA A PRIORIDADE NAO DECIDE NADA — a composicao e o MAIS RECENTE
+   (`rodametria_casca_data_mais_recente`), entao a ordem dos filtros deixou de
+   ser um fato do qual a resposta depende. Isso e o conserto mais barato do que
+   parece: regra cuja resposta depende da ORDEM em que os snippets carregam e
+   regra que muda sozinha no dia em que um snippet nao ativa (20.4). */
 add_filter( 'rodametria_data_da_pagina', function ( $data, $slug ) {
-	if ( 'inicio' !== $slug || '' !== $data ) {
+	if ( 'inicio' !== $slug ) {
 		return $data;
 	}
 	$d = rodametria_f1_banco();
 
-	return ( $d && ! empty( $d['gerado_em'] ) ) ? (string) $d['gerado_em'] : $data;
+	return rodametria_casca_data_mais_recente( $data,
+		( $d && ! empty( $d['gerado_em'] ) ) ? (string) $d['gerado_em'] : '' );
 }, 9, 2 );
 
 /* ---------------------------------------------------------------------------

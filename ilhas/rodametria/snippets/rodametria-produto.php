@@ -118,7 +118,7 @@
    do primeiro cartao comecava por `11.11`. A regra mora no coletor; o que muda
    aqui e a frase: sem ela a conta do leitor nao fecha com o tamanho da tabela. */
 if ( ! defined( 'RODAMETRIA_PRODUTO_VERSAO' ) ) {
-	define( 'RODAMETRIA_PRODUTO_VERSAO', '1.20.0' );
+	define( 'RODAMETRIA_PRODUTO_VERSAO', '1.21.0' );
 }
 
 /* A VERSAO DESTE SNIPPET VAI AO AR, pelo filtro que a casca 1.6.0 abriu
@@ -1915,29 +1915,46 @@ add_shortcode( 'rodametria_veiculos', 'rdm_produto_mae_html' );
  * mae muda no dia em que QUALQUER filha e recolhida. Com datas divergentes, a
  * mais antiga seria falsa.
  * ------------------------------------------------------------------------- */
+/* A GUARDA DO PRIMEIRO-VENCE SAIU EM 23/11/2026, e aqui ela tinha um efeito a
+   mais do que nas irmas: a MAE desta secao ja compunha a data pelo MAIS RECENTE
+   das filhas — a receita certa — e ainda assim se calava inteira se outro
+   snippet tivesse respondido antes. A composicao agora e a mesma nos dois
+   niveis, e mora em UM lugar (`rodametria_casca_data_mais_recente`).
+
+   E A MAE GANHOU A FILHA DEGRADADA NA CONTA (23/11/2026): ate hoje ela somava
+   so `paginas_prontas()`, e a filha que perdeu a vitrine nao movia a data da
+   mae — mesmo sendo a MAE quem passou a lista-la desde esta mesma passada. A
+   mae muda no dia em que QUALQUER filha e recolhida, e recolher sem alcancar o
+   piso tambem e recolher: foi o que mudou na pagina da moto hoje. */
 add_filter( 'rodametria_data_da_pagina', function ( $data, $slug ) {
-	if ( '' !== $data ) {
-		return $data;
-	}
 	$prontas = rdm_produto_paginas_prontas();
 
 	foreach ( $prontas as $pagina ) {
 		if ( $pagina['slug'] === $slug && ! empty( $pagina['vitrine']['colhido_em'] ) ) {
-			return (string) $pagina['vitrine']['colhido_em'];
+			return rodametria_casca_data_mais_recente( $data,
+				(string) $pagina['vitrine']['colhido_em'] );
 		}
 	}
 
 	if ( RODAMETRIA_PRODUTO_SECAO === $slug ) {
-		$datas = array();
 		foreach ( $prontas as $pagina ) {
 			if ( ! empty( $pagina['vitrine']['colhido_em'] ) ) {
-				$datas[] = (string) $pagina['vitrine']['colhido_em'];
+				$data = rodametria_casca_data_mais_recente( $data,
+					(string) $pagina['vitrine']['colhido_em'] );
 			}
 		}
-		if ( $datas ) {
-			sort( $datas );          /* AAAA-MM-DD ordena como texto */
-			return (string) end( $datas );
+		foreach ( rdm_produto_nao_nasceram() as $ident => $linha ) {
+			/* SO A DEGRADADA QUE ESTA NO AR: consulta declarada que nunca nasceu
+			   nao e pagina desta secao, e a data dela nao muda a mae. A trava e
+			   a mesma de `paginas_no_ar()` e nao uma segunda. */
+			if ( isset( rdm_produto_paginas_no_ar()[ $ident ] )
+				&& ! empty( $linha['colhido_em'] ) ) {
+				$data = rodametria_casca_data_mais_recente( $data,
+					(string) $linha['colhido_em'] );
+			}
 		}
+
+		return $data;
 	}
 
 	/* A PAGINA QUE EXISTE E ESTA SEM VITRINE (18/11/2026). Sem este ramo ela
@@ -1960,12 +1977,10 @@ add_filter( 'rodametria_data_da_pagina', function ( $data, $slug ) {
 	   manifest e nao no `ls` da pasta. */
 	$fora = rdm_produto_declaradas_fora_da_vitrine();
 	if ( isset( $fora[ $slug ] ) ) {
-		$vit = rodametria_casca_banco( RODAMETRIA_ID_DADOS_VITRINE );
-		foreach ( (array) ( isset( $vit['nao_nasceram'] ) ? $vit['nao_nasceram'] : array() ) as $r ) {
-			if ( isset( $r['id'] ) && (string) $r['id'] === $slug
-				&& ! empty( $r['colhido_em'] ) ) {
-				return (string) $r['colhido_em'];
-			}
+		$r = rdm_produto_nao_nasceram();
+		if ( ! empty( $r[ $slug ]['colhido_em'] ) ) {
+			return rodametria_casca_data_mais_recente( $data,
+				(string) $r[ $slug ]['colhido_em'] );
 		}
 	}
 

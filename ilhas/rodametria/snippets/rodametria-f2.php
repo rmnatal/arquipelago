@@ -56,7 +56,7 @@
    (item 2 do despacho da ronda de 04/11). E o MESMO campo que o "Como sabemos"
    desta pagina ja imprimia em prosa — um fato, uma fonte (20.7). */
 if ( ! defined( 'RODAMETRIA_F2_VERSAO' ) ) {
-	define( 'RODAMETRIA_F2_VERSAO', '1.13.0' );
+	define( 'RODAMETRIA_F2_VERSAO', '1.14.0' );
 }
 
 /* A VERSAO DESTE SNIPPET VAI AO AR, pelo filtro que a casca 1.6.0 abriu
@@ -998,13 +998,19 @@ add_shortcode( 'rodametria_f2', 'rodametria_f2_pagina_html' );
    despacho de 04/11/2026). Sai de `gerado_em` do banco da F2 — o MESMO campo
    que a secao "Como sabemos" desta pagina ja imprime em prosa ("Esta pagina foi
    gerada a partir do nosso banco em 04/11/2026"). Um fato, uma fonte (20.7). */
+/* A GUARDA DO PRIMEIRO-VENCE SAIU EM 23/11/2026: cada snippet CONTRIBUI a data
+   da sua parte e a casca escolhe a MAIS RECENTE, porque e essa a pergunta que o
+   `dateModified` faz. Esta pagina sai de um banco so, entao hoje a resposta e a
+   mesma — o que muda e o dia em que ela passar a servir dado de dois lugares:
+   antes, o segundo se calaria. */
 add_filter( 'rodametria_data_da_pagina', function ( $data, $slug ) {
-	if ( RODAMETRIA_F2_SLUG !== $slug || '' !== $data ) {
+	if ( RODAMETRIA_F2_SLUG !== $slug ) {
 		return $data;
 	}
 	$d = rodametria_casca_banco( RODAMETRIA_ID_DADOS_F2 );
 
-	return ( $d && ! empty( $d['gerado_em'] ) ) ? (string) $d['gerado_em'] : $data;
+	return rodametria_casca_data_mais_recente( $data,
+		( $d && ! empty( $d['gerado_em'] ) ) ? (string) $d['gerado_em'] : '' );
 }, 10, 2 );
 
 /* ---------------------------------------------------------------------------

@@ -127,6 +127,22 @@ function rodametria_casca_banco( $id ) {
 			$d['paginas'][ $i ]['colhido_em']  = $data;
 			$GLOBALS['DIVERGENTE_DATAS'][ $i ] = $data;
 		}
+		/* A FILHA DEGRADADA ENTRA NO MUNDO DIVERGENTE (23/11/2026), porque desde
+		   hoje ela TAMBEM move a data da mae. Sem esta linha o mundo fabricado
+		   tinha as filhas com vitrine em outubro e a degradada no dia de hoje, e
+		   o que ele mediria seria o calendario em vez da regra — a mae serviria
+		   a data de verdade e a afirmacao reprovaria a pagina certa (20.5). A
+		   degradada fica UMA SEMANA DEPOIS da ultima filha, de proposito: assim
+		   ela e a mais recente e o mundo prova que a mae a ouve. */
+		$i_ultima = count( $d['paginas'] );
+		foreach ( array_keys( (array) ( isset( $d['nao_nasceram'] )
+			? $d['nao_nasceram'] : array() ) ) as $j ) {
+			$data = gmdate( 'Y-m-d',
+				strtotime( '2026-10-01 +' . ( ( $i_ultima + $j ) * 7 ) . ' days' ) );
+			$d['nao_nasceram'][ $j ]['colhido_em']    = $data;
+			$d['nao_nasceram'][ $j ]['colhido_em_br'] = gmdate( 'd/m/Y', strtotime( $data ) );
+			$GLOBALS['DIVERGENTE_DATAS'][]            = $data;
+		}
 		sort( $GLOBALS['DIVERGENTE_DATAS'] );
 	}
 	return $d;
@@ -207,7 +223,9 @@ function carregar_add_filter( $src, $gancho ) {
 }
 
 $casca   = file_get_contents( $RAIZ . '/snippets/rodametria-casca.php' );
+$f1      = file_get_contents( $RAIZ . '/snippets/rodametria-f1.php' );
 $f2      = file_get_contents( $RAIZ . '/snippets/rodametria-f2.php' );
+$f3      = file_get_contents( $RAIZ . '/snippets/rodametria-f3.php' );
 $produto = file_get_contents( $RAIZ . '/snippets/rodametria-produto.php' );
 $inst    = file_get_contents( $RAIZ . '/snippets/rodametria-institucional.php' );
 
@@ -219,6 +237,10 @@ foreach ( array(
 	array( 'RODAMETRIA_ID_DADOS_VITRINE', $produto ),
 	array( 'RODAMETRIA_PRODUTO_SECAO', $produto ),
 	array( 'RODAMETRIA_F2_SLUG', $f2 ),
+	/* A F1 E A F3 ENTRARAM EM 23/11/2026, com os callbacks delas. */
+	array( 'RODAMETRIA_ID_DADOS_F1', $f1 ),
+	array( 'RODAMETRIA_F3_SLUG', $f3 ),
+	array( 'RODAMETRIA_ID_DADOS_F3', $f3 ),
 	array( 'RODAMETRIA_ID_DADOS_INST', $inst ),
 ) as $par ) {
 	list( $nome, $src ) = $par;
@@ -240,6 +262,14 @@ foreach ( array(
 	   morria com `Call to undefined function` e a bancada o classificava como
 	   INERTE — que e o veredito certo e nao diz qual era a funcao. */
 	array( 'rdm_produto_declaradas_fora_da_vitrine', $produto ),
+	/* ACRESCENTADAS EM 23/11/2026, com a composicao pelo MAIS RECENTE: a
+	   decisao de qual data vence saiu dos seis callbacks e virou UMA funcao da
+	   casca, e `paginas_no_ar()` e quem diz quais filhas contam para a mae. */
+	array( 'rodametria_casca_data_valida', $casca ),
+	array( 'rodametria_casca_data_mais_recente', $casca ),
+	array( 'rdm_produto_nao_nasceram', $produto ),
+	array( 'rdm_produto_paginas_no_ar', $produto ),
+	array( 'rodametria_f1_banco', $f1 ),
 	array( 'rdm_inst_declarado', $inst ),
 	array( 'rdm_inst_paginas', $inst ),
 ) as $par ) {
@@ -251,21 +281,33 @@ foreach ( array(
 	}
 }
 
-/* OS QUATRO CALLBACKS, lidos dos quatro snippets. Faltar UM e reprovacao e nao
+/* OS SEIS CALLBACKS, lidos dos SEIS snippets. Faltar UM e reprovacao e nao
    omissao tolerada: a pagina daquele snippet sairia sem `dateModified`, que e o
-   defeito inteiro que este portao existe para pegar. */
+   defeito inteiro que este portao existe para pegar.
+
+   ERAM QUATRO ATE 23/11/2026, E A FALTA DOS OUTROS DOIS ERA O DEFEITO INTEIRO
+   DESTE PORTAO. A F1 e a F3 penduram data no mesmo filtro — a F1 na prioridade
+   **9**, ou seja ANTES de todas — e este arquivo nao as carregava. Com isso ele
+   media uma cadeia de quatro onde o ar roda uma de seis, e a diferenca nao era
+   teorica: ele EXIGIA que a home servisse o `gerado_em` da F2 (2026-11-18) e o
+   ar servia o da F1 (2026-11-11), sete dias mais velho, porque a F1 respondia
+   primeiro e a guarda do primeiro-vence calava as outras. **O portao estava
+   verde sobre a pagina errada**, que e a cegueira que a 32.5-b nomeia: "regua
+   que nao varre todas certifica a pagina que o autor abriu". */
 foreach ( array(
 	array( 'casca', $casca ),
+	array( 'f1', $f1 ),
 	array( 'f2', $f2 ),
+	array( 'f3', $f3 ),
 	array( 'produto', $produto ),
 	array( 'institucional', $inst ),
 ) as $par ) {
 	$ok = carregar_add_filter( $par[1], 'rodametria_data_da_pagina' );
 	afirma( $ok, sprintf( 'o snippet %s nao pendura nada em `rodametria_data_da_pagina`', $par[0] ) );
 }
-afirma( 4 === count( isset( $GLOBALS['FILTROS']['rodametria_data_da_pagina'] )
+afirma( 6 === count( isset( $GLOBALS['FILTROS']['rodametria_data_da_pagina'] )
 	? $GLOBALS['FILTROS']['rodametria_data_da_pagina'] : array() ),
-	sprintf( 'a cadeia do filtro tem %d callback(s) e os snippets desta ilha sao 4',
+	sprintf( 'a cadeia do filtro tem %d callback(s) e os snippets desta ilha sao 6',
 		count( isset( $GLOBALS['FILTROS']['rodametria_data_da_pagina'] )
 			? $GLOBALS['FILTROS']['rodametria_data_da_pagina'] : array() ) ) );
 
@@ -274,9 +316,21 @@ $dados_f2   = rodametria_casca_banco( RODAMETRIA_ID_DADOS_F2 );
 $dados_inst = rodametria_casca_banco( RODAMETRIA_ID_DADOS_INST );
 $dados_vit  = rodametria_casca_banco( RODAMETRIA_ID_DADOS_VITRINE );
 
+$dados_f1   = rodametria_casca_banco( RODAMETRIA_ID_DADOS_F1 );
+$dados_f3   = rodametria_casca_banco( RODAMETRIA_ID_DADOS_F3 );
+
+/* A ESPERADA DE CADA PAGINA E A MAIS RECENTE ENTRE AS FONTES DELA, e nao a de
+   uma fonte escolhida a mao (23/11/2026). A home e feita de DOIS bancos — a F1
+   ocupa a primeira tela e os tres numeros dela sao contados do banco da F2 —,
+   entao ela muda quando o mais novo dos dois muda. Esta linha dizia
+   `$dados_f2['gerado_em']` e o ar servia a data da F1; as duas estavam erradas
+   pela mesma razao, que e tratar "de que dado a pagina e feita" como se fosse
+   "quando a pagina mudou". */
 $esperado = array();
-$esperado['inicio']              = (string) $dados_f2['gerado_em'];
+$esperado['inicio']              = max( (string) $dados_f1['gerado_em'],
+                                        (string) $dados_f2['gerado_em'] );
 $esperado[ RODAMETRIA_F2_SLUG ]  = (string) $dados_f2['gerado_em'];
+$esperado[ RODAMETRIA_F3_SLUG ]  = (string) $dados_f3['gerado_em'];
 foreach ( $dados_inst['paginas'] as $pg ) {
 	$esperado[ (string) $pg['slug'] ] = (string) $dados_inst['gerado_em'];
 }
@@ -285,6 +339,17 @@ foreach ( $dados_vit['paginas'] as $pg ) {
 	$pedacos = explode( '/', (string) $pg['slug'] );
 	$esperado[ (string) end( $pedacos ) ] = (string) $pg['colhido_em'];
 	$datas_das_filhas[] = (string) $pg['colhido_em'];
+}
+/* A FILHA DEGRADADA TAMBEM TEM DATA E TAMBEM MOVE A MAE (23/11/2026): a data
+   dela e a da ULTIMA TENTATIVA de coleta, e recolher sem alcancar o piso tambem
+   e recolher. Ela entra pelo MESMO lugar de onde a casca a le — `nao_nasceram` —
+   e so se estiver no ar, que e a trava de `paginas_no_ar()`. */
+foreach ( (array) ( isset( $dados_vit['nao_nasceram'] ) ? $dados_vit['nao_nasceram'] : array() )
+	as $r ) {
+	if ( empty( $r['id'] ) || empty( $r['colhido_em'] ) ) { continue; }
+	if ( ! isset( rdm_produto_paginas_no_ar()[ (string) $r['id'] ] ) ) { continue; }
+	$esperado[ (string) $r['id'] ] = (string) $r['colhido_em'];
+	$datas_das_filhas[]            = (string) $r['colhido_em'];
 }
 sort( $datas_das_filhas );
 $esperado[ RODAMETRIA_PRODUTO_SECAO ] = (string) end( $datas_das_filhas );
@@ -315,7 +380,7 @@ if ( $GLOBALS['DIVERGENTE'] ) {
 			$mais_velha, $mais_nova,
 			rodametria_casca_data_da_pagina( RODAMETRIA_PRODUTO_SECAO ) ?: '(vazia)', $mais_nova ) );
 	$vistas = array();
-	foreach ( rdm_produto_paginas_prontas() as $pg ) {
+	foreach ( rdm_produto_paginas_no_ar() as $pg ) {
 		$vistas[] = rodametria_casca_data_da_pagina( $pg['slug'] );
 	}
 	sort( $vistas );
@@ -332,29 +397,119 @@ if ( $GLOBALS['DIVERGENTE'] ) {
 /* ------------------------------------------------------------------ 4, 5 e 6 */
 /* Estes tres mundos nao dependem das funcoes `static` da vitrine: a home e a F2
    leem o banco da F2 a cada chamada. */
+/* NADA ESTA GRAMPEADO: trocando `gerado_em` na fonte, a resposta troca. A
+   TROCA E PARA O FUTURO de proposito (23/11/2026): com a composicao pelo MAIS
+   RECENTE, trocar a data de UM banco para 2020 nao muda a resposta da home — e
+   nao muda CERTO, porque o outro banco dela continua em 2026 e a pagina mudou
+   naquele dia. A versao anterior destas duas linhas trocava para `2020-01-02` e
+   exigia 2020 na tela: ela media o primeiro-vence, e passou a reprovar a
+   resposta certa no minuto em que a regra virou o maximo. */
 $f2_trocado = $dados_f2;
-$f2_trocado['gerado_em'] = '2020-01-02';
+$f2_trocado['gerado_em'] = '2030-01-02';
 $GLOBALS['BANCO_TROCAS'][ RODAMETRIA_ID_DADOS_F2 ] = $f2_trocado;
-afirma( '2020-01-02' === rodametria_casca_data_da_pagina( 'inicio' ),
-	'trocando `gerado_em` na fonte, a home continuou servindo a data antiga: ha data grampeada' );
-afirma( '2020-01-02' === rodametria_casca_data_da_pagina( RODAMETRIA_F2_SLUG ),
+afirma( '2030-01-02' === rodametria_casca_data_da_pagina( 'inicio' ),
+	'trocando `gerado_em` da F2 para a data mais recente, a home nao a seguiu: ha data '
+	. 'grampeada, ou o filtro da F2 esta sendo calado' );
+afirma( '2030-01-02' === rodametria_casca_data_da_pagina( RODAMETRIA_F2_SLUG ),
 	'trocando `gerado_em` na fonte, a F2 continuou servindo a data antiga: ha data grampeada' );
 
+/* E O BANCO VELHO NAO PUXA A PAGINA PARA TRAS: a home e feita dos dois, e a
+   mais recente e a que responde "quando esta pagina mudou". */
+$f2_trocado['gerado_em'] = '2020-01-02';
+$GLOBALS['BANCO_TROCAS'][ RODAMETRIA_ID_DADOS_F2 ] = $f2_trocado;
+afirma( (string) $dados_f1['gerado_em'] === rodametria_casca_data_da_pagina( 'inicio' ),
+	'com a F2 em 2020 e a F1 em ' . $dados_f1['gerado_em'] . ', a home serve '
+	. ( rodametria_casca_data_da_pagina( 'inicio' ) ?: '(vazia)' )
+	. ' — a data de uma pagina e a MAIS RECENTE das fontes dela, nunca a mais velha' );
+
+/* DADO MAL FORMADO NAO VENCE, NAO CONTAMINA E NAO APAGA O BOM. AAAA-MM-DD
+   compara como texto, e `04/11/2026` compara MAIOR que qualquer ano — sem a
+   validacao dos dois lados dentro de `data_mais_recente()`, ele venceria o
+   maximo e depois seria descartado pelo validador do fim, deixando a pagina SEM
+   data. A versao anterior desta afirmacao exigia cadeia vazia, porque com o
+   primeiro-vence a cadeia TODA era aquele unico valor. */
 $f2_torto = $dados_f2;
 $f2_torto['gerado_em'] = '04/11/2026';
 $GLOBALS['BANCO_TROCAS'][ RODAMETRIA_ID_DADOS_F2 ] = $f2_torto;
-afirma( '' === rodametria_casca_data_da_pagina( 'inicio' ),
-	'data em formato brasileiro passou pela validacao da casca e iria para o dado estruturado' );
+afirma( (string) $dados_f1['gerado_em'] === rodametria_casca_data_da_pagina( 'inicio' ),
+	'data em formato brasileiro num dos bancos levou a home para '
+	. ( rodametria_casca_data_da_pagina( 'inicio' ) ?: '(vazia)' )
+	. ': ela devia ser ignorada e a data boa da outra fonte devia ficar' );
+afirma( false === strpos( (string) rodametria_casca_data_da_pagina( 'inicio' ), '/' ),
+	'a data em formato brasileiro chegou a saida e iria para o dado estruturado' );
 
 $GLOBALS['BANCO_TROCAS'][ RODAMETRIA_ID_DADOS_F2 ] = null;
+afirma( (string) $dados_f1['gerado_em'] === rodametria_casca_data_da_pagina( 'inicio' ),
+	'faltando UM dos bancos da home, ela perdeu a data: banco ausente e uma fonte que '
+	. 'nao contribui, nao um apagador do que as outras disseram' );
+
+/* E SEM FONTE NENHUMA, A RESPOSTA E VAZIA — e e isso que faz a casca NAO
+   imprimir o no. Cair no relogio do servidor publicaria "modificada hoje" em
+   pagina que nao muda desde 30/10. */
+$GLOBALS['BANCO_TROCAS'][ RODAMETRIA_ID_DADOS_F1 ] = null;
 afirma( '' === rodametria_casca_data_da_pagina( 'inicio' ),
-	'sem banco, a home devolveu uma data: a casca inventou data e o no `WebPage` sairia mentindo' );
+	'sem NENHUM dos bancos, a home devolveu uma data: a casca inventou data e o no '
+	. '`WebPage` sairia mentindo' );
+unset( $GLOBALS['BANCO_TROCAS'][ RODAMETRIA_ID_DADOS_F1 ] );
 unset( $GLOBALS['BANCO_TROCAS'][ RODAMETRIA_ID_DADOS_F2 ] );
 
 afirma( '' === rodametria_casca_data_da_pagina( 'slug-que-nao-existe-nesta-ilha' ),
 	'slug que nao existe recebeu data' );
 afirma( '' === rodametria_casca_data_da_pagina( '' ),
 	'slug vazio recebeu data' );
+
+/* ------------------------------------------------------------------ 7 */
+/* A DISCORDANCIA DA 20.8, NO MUNDO MEDIDO E SO NELE (23/11/2026).
+
+   A COMPOSICAO VELHA era o PRIMEIRO-VENCE: cada callback tinha a guarda
+   `if ( '' !== $data ) return $data;`, e a F1 roda na prioridade 9, antes de
+   todos. Ela esta reescrita aqui, e SO aqui, para uma coisa: provar que a nova
+   DISCORDA dela na home. Portao que nao mostra a discordancia nao prova que o
+   conserto conserta — prova que alguem escreveu codigo novo.
+
+   O MUNDO MEDIDO E O DE HOJE, lido dos bancos e nunca digitado. No ar, em
+   23/11/2026, a home servia o `dateModified` da F1 enquanto imprimia, no MESMO
+   HTML, numeros contados do banco da F2 — mais novo. */
+$velha_primeiro_vence = function ( $datas ) {
+	foreach ( $datas as $d ) {
+		if ( '' !== $d ) { return $d; }
+	}
+	return '';
+};
+/* A ORDEM E A DOS FILTROS: F1 (prioridade 9) antes da casca (10). */
+$velha = $velha_primeiro_vence( array( (string) $dados_f1['gerado_em'],
+                                       (string) $dados_f2['gerado_em'] ) );
+$nova  = rodametria_casca_data_da_pagina( 'inicio' );
+afirma( $dados_f1['gerado_em'] !== $dados_f2['gerado_em'],
+	'os dois bancos da home estao no MESMO dia, e neste mundo as duas composicoes '
+	. 'concordam — a discordancia desta metade so se mede quando eles divergem. Nao e '
+	. 'falha do conserto: e aviso de que esta afirmacao parou de medir' );
+if ( $dados_f1['gerado_em'] !== $dados_f2['gerado_em'] ) {
+	afirma( $velha !== $nova,
+		sprintf( 'a composicao velha e a nova tinham de DISCORDAR na home e as duas dizem %s',
+			$nova ?: '(vazia)' ) );
+	afirma( $nova === max( (string) $dados_f1['gerado_em'], (string) $dados_f2['gerado_em'] ),
+		sprintf( 'a home serve %s e a mais recente das fontes dela e %s',
+			$nova ?: '(vazia)', max( (string) $dados_f1['gerado_em'],
+				(string) $dados_f2['gerado_em'] ) ) );
+	afirma( $velha === (string) $dados_f1['gerado_em'],
+		'a composicao velha nao esta reescrita fielmente: ela tinha de devolver a data da '
+		. 'F1, que roda na prioridade 9' );
+	print( sprintf( "  . a home: composicao VELHA diz %s (F1, primeiro-vence) e a NOVA diz %s "
+		. "(a mais recente das duas fontes) — a discordancia vale o `dateModified` que "
+		. "estava no ar\n", $velha, $nova ) );
+}
+
+/* E ELAS CONCORDAM ONDE TEM DE CONCORDAR: pagina de uma fonte so. Conserto que
+   muda veredito fora do defeito e afrouxamento ou aperto nao pedido. */
+afirma( (string) $dados_f3['gerado_em'] === rodametria_casca_data_da_pagina( RODAMETRIA_F3_SLUG ),
+	'a F3 sai de um banco so e a composicao nova mudou a resposta dela' );
+foreach ( $dados_inst['paginas'] as $pg ) {
+	afirma( (string) $dados_inst['gerado_em']
+		=== rodametria_casca_data_da_pagina( (string) $pg['slug'] ),
+		sprintf( 'a institucional `%s` sai de um banco so e a composicao nova mudou a '
+			. 'resposta dela', $pg['slug'] ) );
+}
 
 /* O MUNDO DIVERGENTE, num processo proprio (ver o comentario do banco). */
 $saida = array();
