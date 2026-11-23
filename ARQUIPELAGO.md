@@ -1491,6 +1491,23 @@ Medido na aquametria em 14/10/2026, montando a lista que o item 1 do despacho do
 
 **O QUE ISTO MUDA NA PRÁTICA, para ninguém ler esta seção como proibição:** a lista e a classificação continuam sendo trabalho da Fundação, e saem inteiras da nuvem — foi o que esta passada entregou. O que sai da nuvem é a lista com os `tomada` **fechados** e os `nao-medida` **nomeados, com as URLs**. Abrir a SERP das que sobraram é um despacho de uma sessão de Chrome, não um bloco: quem abrir escreve quem viu e quando na linha, e a página nasce na execução seguinte sem remedir nada.
 
+### 30.9 CONSULTA FECHADA POR CATÁLOGO SE REMEDE NO INTERVALO QUE A SÉRIE MEDIU, E A REMEDIÇÃO NÃO CONSOME UMA EXECUÇÃO SÓ DELA (23/11/2026)
+
+Medido na rodametria às 10h2xZ de 23/11/2026, na `scooter elétrica` — **301 mil buscas/mês**, a maior cabeça do nicho sem página, veredito de SERP `alvo` visto no Chrome do Raphael em 27/10 e slug reservado (`veiculos/scooter-eletrica`) desde o bloco 5b. O único degrau que falta nela é o **comercial** da 30.2, e ele foi medido **quatro** vezes: **29/10, 16/11, 20/11 e 23/11**.
+
+**O NÚMERO, primeiro, e ele é o mesmo nas quatro:** **zero** ofertas que servem nos dois degraus da escada, 20 + 20 ofertas lidas, piso de 3 da 30.2 não alcançado em degrau nenhum. E as duas últimas medições, **três dias** uma da outra, não repetem só o veredito — repetem as **causas, uma por uma**: degrau 1 (`scooter eletrica adulto`) com 13 `fora_da_familia`, 5 `outra_familia_na_cabeca` e 2 `outro_veiculo`; degrau 2 (`scooter eletrica`, a consulta crua) com 19 `fora_da_familia` e 1 `sem_qualificador`. E os **cinco** títulos de `outra_familia_na_cabeca` de hoje são, um por um, os **mesmos cinco** que o registro de 20/11 nomeia.
+
+**A DATA DE HOJE SAIU DE UM PALPITE, E O PALPITE ESTÁ AGORA MEDIDO E DESMENTIDO.** O `REGISTRO.md` daquela ilha pré-registrou em 20/11 que *"a próxima remedição útil é de **23/11** em diante"*, com a causa escrita ao lado: *"o catálogo da loja se move em intervalo de dias"*. **A série diz o contrário.** Os intervalos desta consulta foram **18 dias** (29/10→16/11), **4 dias** (16/11→20/11) e **3 dias** (20/11→23/11): **o intervalo encurtou a cada passada enquanto a resposta não mudava**, que é o sinal invertido. E o único movimento de catálogo que esta fábrica já mediu de verdade foi o da `moto elétrica`, que mudou **dentro dos 18 dias** entre 29/10 e 16/11 e virou página no ar. **A escala em que esta loja move catálogo é de semanas; a de três dias não existe, e medir nela é pagar uma execução para reler a mesma vitrine.**
+
+**A REGRA, e ela tem duas metades.**
+
+1. **O intervalo da próxima remedição sai da SÉRIE, não do ritmo suposto da loja.** Enquanto duas medições seguidas repetirem o veredito **e** as causas, o intervalo da seguinte é **pelo menos o maior intervalo em que aquela ilha já mediu o catálogo MUDAR** — e nunca menor que o anterior. A data e os **três desfechos possíveis** se escrevem na própria declaração da consulta, **antes** do dado, pela **1.2-b.4**: a consulta nasce, sai da série, ou vira decisão de outra camada. **Critério escrito depois do dado é critério dobrado para caber no dado que veio.**
+2. **Remedição que não pode fazer página não é bloco de execução: ela pega CARONA.** A coleta são duas chamadas de API e custa minutos; o que ela consome é a **vez** de uma execução, e pela **31.1** execução que não entrega nada no ar entra na conta dos 3 em 10. Então a remedição de consulta fechada por catálogo roda **dentro** de uma execução que já tem outra coisa para entregar no ar, e só vira bloco sozinha quando a ilha **não tiver mais nada** — e aí a execução **diz isso**, em vez de apresentar a remedição como entrega.
+
+**O QUE ISTO NÃO AFROUXA:** a **20.3** e a **33** continuam inteiras — **causa de impossibilidade envelhece**, e consulta fechada por catálogo não fica fechada para sempre. O que muda é **quem escolhe a data**: a série medida, e não o palpite sobre a loja. E nada aqui toca o veredito de SERP: `alvo` continua exigindo os olhos (**30.8**), e `tomada` continua fechando a consulta de vez (**30.5**).
+
+**POR QUE ESTA SEÇÃO ESTÁ NO CONTRATO E NÃO NO REGISTRO DA RODAMETRIA:** `coletar-por-consulta.py` é o mesmo desenho nas quatro ilhas e **toda** ilha fecha consulta por catálogo — a clubedomosaico tem 22 consultas de produto sem veredito em despacho aberto. Regra escrita no registro de uma ilha conserta o dia dela; escrita aqui, vale para quem for remedir qualquer uma.
+
 ---
 
 ## 31. A EXECUÇÃO VAI PARA O SITE, NÃO PARA A BANCADA (decisão do Raphael, 21/10/2026)
