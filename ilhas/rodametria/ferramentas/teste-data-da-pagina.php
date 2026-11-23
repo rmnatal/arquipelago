@@ -120,10 +120,31 @@ function rodametria_casca_banco( $id ) {
 	if ( $GLOBALS['DIVERGENTE'] && defined( 'RODAMETRIA_ID_DADOS_VITRINE' )
 		&& RODAMETRIA_ID_DADOS_VITRINE === $id && ! empty( $d['paginas'] ) ) {
 		$GLOBALS['DIVERGENTE_DATAS'] = array();
+		/* A BASE DO MUNDO FABRICADO SAI DA DATA DO CODIGO E NAO DE UM DIA DIGITADO
+		   (23/11/2026). Ela era `2026-10-01`, e no minuto em que a data do codigo
+		   virou a TERCEIRA fonte as filhas fabricadas em outubro perderam para ela:
+		   as tres passaram a servir 2026-11-23 e as duas afirmacoes deste mundo
+		   reprovaram a casca CERTA. E a MESMA pedra que o comentario quatro
+		   paragrafos acima ja descreve ("o que ele mediria seria o calendario em vez
+		   da regra"), de novo e pela terceira vez neste arquivo — porque a base era
+		   um literal e literal nao acompanha fonte nova. Derivada do codigo, ela
+		   nasce sempre a FRENTE dele, e o que o mundo mede volta a ser qual FILHA
+		   vence. */
+		$base = '2026-10-01';
+		$banco_cod = $GLOBALS['BANCO_RAIZ'] . '/dados/datas-de-codigo.json';
+		if ( file_exists( $banco_cod ) ) {
+			$cod = json_decode( file_get_contents( $banco_cod ), true );
+			foreach ( (array) ( isset( $cod['paginas'] ) ? $cod['paginas'] : array() ) as $linha ) {
+				if ( ! empty( $linha['data'] ) && (string) $linha['data'] > $base ) {
+					$base = (string) $linha['data'];
+				}
+			}
+		}
+		$base = gmdate( 'Y-m-d', strtotime( $base . ' +7 days' ) );
 		foreach ( array_keys( $d['paginas'] ) as $i ) {
 			/* Uma semana de distancia entre filhas: datas DISTINTAS, validas e em
 			   ordem crescente de indice, para `max()` ser sempre a ultima. */
-			$data = gmdate( 'Y-m-d', strtotime( '2026-10-01 +' . ( $i * 7 ) . ' days' ) );
+			$data = gmdate( 'Y-m-d', strtotime( $base . ' +' . ( $i * 7 ) . ' days' ) );
 			$d['paginas'][ $i ]['colhido_em']  = $data;
 			$GLOBALS['DIVERGENTE_DATAS'][ $i ] = $data;
 		}
@@ -138,7 +159,7 @@ function rodametria_casca_banco( $id ) {
 		foreach ( array_keys( (array) ( isset( $d['nao_nasceram'] )
 			? $d['nao_nasceram'] : array() ) ) as $j ) {
 			$data = gmdate( 'Y-m-d',
-				strtotime( '2026-10-01 +' . ( ( $i_ultima + $j ) * 7 ) . ' days' ) );
+				strtotime( $base . ' +' . ( ( $i_ultima + $j ) * 7 ) . ' days' ) );
 			$d['nao_nasceram'][ $j ]['colhido_em']    = $data;
 			$d['nao_nasceram'][ $j ]['colhido_em_br'] = gmdate( 'd/m/Y', strtotime( $data ) );
 			$GLOBALS['DIVERGENTE_DATAS'][]            = $data;
@@ -181,7 +202,16 @@ function carregar_funcao( $src, $nome ) {
  *  (fora espaco) sao `(` e `add_filter`. Depois disso os parenteses se
  *  equilibram com o tokenizador, que ja sabe o que e codigo e o que e
  *  comentario — pedir a resposta a quem sabe e mais curto que reimplementar a
- *  pergunta. */
+ *  pergunta.
+ *
+ *  E ELA CARREGA **TODOS** OS `add_filter` DO ARQUIVO, nao o primeiro (23/11/2026).
+ *  Ela devolvia `true` no primeiro achado, e no dia em que a casca passou a
+ *  pendurar DOIS callbacks no mesmo gancho — o do banco da F2 na home e o da data
+ *  do CODIGO, que vale para toda pagina — este portao carregaria o primeiro e
+ *  mediria uma cadeia de SEIS onde o ar roda SETE. E exatamente o defeito que ele
+ *  mesmo pagou em 23/11 de manha, um andar acima: regua que carrega menos
+ *  callbacks do que o ar fica verde sobre a pagina errada. Agora devolve a
+ *  CONTAGEM, e quem chama a soma. */
 function carregar_add_filter( $src, $gancho ) {
 	$ts = token_get_all( $src );
 	$texto = function ( $t ) { return is_array( $t ) ? $t[1] : $t; };
@@ -195,6 +225,7 @@ function carregar_add_filter( $src, $gancho ) {
 		return $saida;
 	};
 
+	$quantos = 0;
 	foreach ( $ts as $i => $t ) {
 		$tx = $texto( $t );
 		if ( "'" . $gancho . "'" !== trim( $tx ) && '"' . $gancho . '"' !== trim( $tx ) ) { continue; }
@@ -205,7 +236,7 @@ function carregar_add_filter( $src, $gancho ) {
 		for ( $k = $i; $k >= 0; $k-- ) {
 			if ( 'add_filter' === trim( $texto( $ts[ $k ] ) ) ) { $ini = $k; break; }
 		}
-		if ( $ini < 0 ) { return false; }
+		if ( $ini < 0 ) { continue; }
 
 		$prof  = 0;
 		$fonte = '';
@@ -216,10 +247,10 @@ function carregar_add_filter( $src, $gancho ) {
 			elseif ( ')' === $tx ) { $prof--; if ( 0 === $prof ) { break; } }
 		}
 		eval( $fonte . ';' );
-		return true;
+		$quantos++;
 	}
 
-	return false;
+	return $quantos;
 }
 
 $casca   = file_get_contents( $RAIZ . '/snippets/rodametria-casca.php' );
@@ -242,6 +273,9 @@ foreach ( array(
 	array( 'RODAMETRIA_F3_SLUG', $f3 ),
 	array( 'RODAMETRIA_ID_DADOS_F3', $f3 ),
 	array( 'RODAMETRIA_ID_DADOS_INST', $inst ),
+	/* ACRESCENTADA EM 23/11/2026 (segunda metade do item 2): o banco da data do
+	   CODIGO, que e a TERCEIRA fonte da data de uma pagina. */
+	array( 'RODAMETRIA_ID_DADOS_CODIGO', $casca ),
 ) as $par ) {
 	list( $nome, $src ) = $par;
 	if ( ! preg_match( "/define\(\s*'" . $nome . "'\s*,\s*'([^']+)'\s*\)/", $src, $m ) ) {
@@ -294,22 +328,32 @@ foreach ( array(
    primeiro e a guarda do primeiro-vence calava as outras. **O portao estava
    verde sobre a pagina errada**, que e a cegueira que a 32.5-b nomeia: "regua
    que nao varre todas certifica a pagina que o autor abriu". */
-foreach ( array(
-	array( 'casca', $casca ),
-	array( 'f1', $f1 ),
-	array( 'f2', $f2 ),
-	array( 'f3', $f3 ),
-	array( 'produto', $produto ),
-	array( 'institucional', $inst ),
-) as $par ) {
-	$ok = carregar_add_filter( $par[1], 'rodametria_data_da_pagina' );
-	afirma( $ok, sprintf( 'o snippet %s nao pendura nada em `rodametria_data_da_pagina`', $par[0] ) );
+$POR_SNIPPET = array(
+	/* A CASCA PENDURA DOIS: o banco da F2 na home, e a data do CODIGO, que vale
+	   para TODA pagina (23/11/2026, a segunda metade do item 2). O numero esperado
+	   e por ARQUIVO e nao um total escrito a mao: snippet que deixar de pendurar
+	   um dos seus reprova nomeando qual arquivo emudeceu. */
+	array( 'casca', $casca, 2 ),
+	array( 'f1', $f1, 1 ),
+	array( 'f2', $f2, 1 ),
+	array( 'f3', $f3, 1 ),
+	array( 'produto', $produto, 1 ),
+	array( 'institucional', $inst, 1 ),
+);
+$esperados_na_cadeia = 0;
+foreach ( $POR_SNIPPET as $par ) {
+	$quantos = carregar_add_filter( $par[1], 'rodametria_data_da_pagina' );
+	afirma( $quantos === $par[2],
+		sprintf( 'o snippet %s pendura %d callback(s) em `rodametria_data_da_pagina` e '
+			. 'esperava-se %d', $par[0], $quantos, $par[2] ) );
+	$esperados_na_cadeia += $par[2];
 }
-afirma( 6 === count( isset( $GLOBALS['FILTROS']['rodametria_data_da_pagina'] )
+afirma( $esperados_na_cadeia === count( isset( $GLOBALS['FILTROS']['rodametria_data_da_pagina'] )
 	? $GLOBALS['FILTROS']['rodametria_data_da_pagina'] : array() ),
-	sprintf( 'a cadeia do filtro tem %d callback(s) e os snippets desta ilha sao 6',
+	sprintf( 'a cadeia do filtro tem %d callback(s) e os snippets desta ilha penduram %d',
 		count( isset( $GLOBALS['FILTROS']['rodametria_data_da_pagina'] )
-			? $GLOBALS['FILTROS']['rodametria_data_da_pagina'] : array() ) ) );
+			? $GLOBALS['FILTROS']['rodametria_data_da_pagina'] : array() ),
+		$esperados_na_cadeia ) );
 
 /* ------------------------------------------------------------------ 1 e 2 */
 $dados_f2   = rodametria_casca_banco( RODAMETRIA_ID_DADOS_F2 );
@@ -318,6 +362,34 @@ $dados_vit  = rodametria_casca_banco( RODAMETRIA_ID_DADOS_VITRINE );
 
 $dados_f1   = rodametria_casca_banco( RODAMETRIA_ID_DADOS_F1 );
 $dados_f3   = rodametria_casca_banco( RODAMETRIA_ID_DADOS_F3 );
+
+/* A TERCEIRA FONTE: A DATA DO CODIGO (23/11/2026, a segunda metade do item 2 do
+   despacho da ronda deste dia).
+
+   AS DUAS FONTES QUE ESTA REGUA JA LIA respondem "de que DADO esta pagina e
+   feita", e nenhuma delas se move quando o que muda e o CODIGO — e a pagina
+   muda. A data do codigo sai do `mudou_em` por item do `manifest.json`,
+   compilada por `ferramentas/gerar-datas-de-codigo.py` com o `renderiza` de cada
+   snippet, e viaja ao ar como banco publicavel porque a casca nao le o manifest.
+
+   `$codigo_de()` NUNCA e digitado aqui: ele LE o mesmo arquivo que o Sync leva a
+   option, pela mesma porta (`rodametria_casca_banco`). */
+$dados_cod = rodametria_casca_banco( RODAMETRIA_ID_DADOS_CODIGO );
+afirma( is_array( $dados_cod ) && ! empty( $dados_cod['paginas'] ),
+	'o banco da data do codigo nao existe ou nao tem `paginas`: rode '
+	. 'ferramentas/gerar-datas-de-codigo.py' );
+function codigo_de( $slug ) {
+	$b = rodametria_casca_banco( RODAMETRIA_ID_DADOS_CODIGO );
+	return ( $b && ! empty( $b['paginas'][ $slug ]['data'] ) )
+		? (string) $b['paginas'][ $slug ]['data'] : '';
+}
+/** A MAIS RECENTE entre uma data de banco e a do codigo daquele slug. */
+function com_codigo( $slug, $data ) {
+	$c = codigo_de( $slug );
+	if ( '' === $c ) { return (string) $data; }
+	if ( '' === (string) $data ) { return $c; }
+	return ( $c > (string) $data ) ? $c : (string) $data;
+}
 
 /* A ESPERADA DE CADA PAGINA E A MAIS RECENTE ENTRE AS FONTES DELA, e nao a de
    uma fonte escolhida a mao (23/11/2026). A home e feita de DOIS bancos — a F1
@@ -357,6 +429,28 @@ $esperado[ RODAMETRIA_PRODUTO_SECAO ] = (string) end( $datas_das_filhas );
 afirma( count( $esperado ) >= 9,
 	sprintf( 'a ilha serve 9 URLs e esta regua achou %d slug(s) nos arquivos de dado',
 		count( $esperado ) ) );
+
+/* E A DATA DO CODIGO ENTRA EM TODAS, pelo MAIS RECENTE. Esta passada e DEPOIS do
+   laco acima de proposito: o esperado de cada pagina continua saindo do campo do
+   banco dela, e o codigo so compoe — assim, no dia em que o codigo parar, estas
+   afirmacoes voltam a medir exatamente o que mediam antes.
+
+   E O BANCO DO CODIGO TEM DE COBRIR AS MESMAS PAGINAS QUE OS BANCOS DE DADO: se
+   ele cobrisse menos, a pagina de fora ficaria sem a terceira fonte e ninguem
+   veria — e a familia da pagina degradada que sumia de `paginas_prontas()`. */
+foreach ( $esperado as $slug => $data ) {
+	afirma( '' !== codigo_de( $slug ),
+		sprintf( 'o banco da data do codigo nao cobre `%s`, e a ilha serve essa pagina: '
+			. 'rode ferramentas/gerar-datas-de-codigo.py', $slug ) );
+	$esperado[ $slug ] = com_codigo( $slug, $data );
+}
+if ( is_array( $dados_cod ) && ! empty( $dados_cod['paginas'] ) ) {
+	foreach ( array_keys( $dados_cod['paginas'] ) as $slug ) {
+		afirma( isset( $esperado[ $slug ] ),
+			sprintf( 'o banco da data do codigo cobre `%s` e esta regua nao acha essa pagina '
+				. 'nos arquivos de dado: uma das duas listas esta velha', $slug ) );
+	}
+}
 
 foreach ( $esperado as $slug => $data ) {
 	$servido = rodametria_casca_data_da_pagina( $slug );
@@ -412,12 +506,18 @@ afirma( '2030-01-02' === rodametria_casca_data_da_pagina( 'inicio' ),
 	. 'grampeada, ou o filtro da F2 esta sendo calado' );
 afirma( '2030-01-02' === rodametria_casca_data_da_pagina( RODAMETRIA_F2_SLUG ),
 	'trocando `gerado_em` na fonte, a F2 continuou servindo a data antiga: ha data grampeada' );
+/* 2030 vence a data do codigo de hoje, e isso e o que esta afirmacao precisa: ela
+   mede que o banco AINDA move a pagina depois de o codigo ter entrado na conta. */
+afirma( '2030-01-02' > codigo_de( 'inicio' ),
+	'a data fabricada do banco nao e mais recente que a do codigo, entao este mundo '
+	. 'mediria o codigo e nao o banco (20.5)' );
 
 /* E O BANCO VELHO NAO PUXA A PAGINA PARA TRAS: a home e feita dos dois, e a
    mais recente e a que responde "quando esta pagina mudou". */
 $f2_trocado['gerado_em'] = '2020-01-02';
 $GLOBALS['BANCO_TROCAS'][ RODAMETRIA_ID_DADOS_F2 ] = $f2_trocado;
-afirma( (string) $dados_f1['gerado_em'] === rodametria_casca_data_da_pagina( 'inicio' ),
+afirma( com_codigo( 'inicio', (string) $dados_f1['gerado_em'] )
+	=== rodametria_casca_data_da_pagina( 'inicio' ),
 	'com a F2 em 2020 e a F1 em ' . $dados_f1['gerado_em'] . ', a home serve '
 	. ( rodametria_casca_data_da_pagina( 'inicio' ) ?: '(vazia)' )
 	. ' — a data de uma pagina e a MAIS RECENTE das fontes dela, nunca a mais velha' );
@@ -431,7 +531,8 @@ afirma( (string) $dados_f1['gerado_em'] === rodametria_casca_data_da_pagina( 'in
 $f2_torto = $dados_f2;
 $f2_torto['gerado_em'] = '04/11/2026';
 $GLOBALS['BANCO_TROCAS'][ RODAMETRIA_ID_DADOS_F2 ] = $f2_torto;
-afirma( (string) $dados_f1['gerado_em'] === rodametria_casca_data_da_pagina( 'inicio' ),
+afirma( com_codigo( 'inicio', (string) $dados_f1['gerado_em'] )
+	=== rodametria_casca_data_da_pagina( 'inicio' ),
 	'data em formato brasileiro num dos bancos levou a home para '
 	. ( rodametria_casca_data_da_pagina( 'inicio' ) ?: '(vazia)' )
 	. ': ela devia ser ignorada e a data boa da outra fonte devia ficar' );
@@ -439,7 +540,8 @@ afirma( false === strpos( (string) rodametria_casca_data_da_pagina( 'inicio' ), 
 	'a data em formato brasileiro chegou a saida e iria para o dado estruturado' );
 
 $GLOBALS['BANCO_TROCAS'][ RODAMETRIA_ID_DADOS_F2 ] = null;
-afirma( (string) $dados_f1['gerado_em'] === rodametria_casca_data_da_pagina( 'inicio' ),
+afirma( com_codigo( 'inicio', (string) $dados_f1['gerado_em'] )
+	=== rodametria_casca_data_da_pagina( 'inicio' ),
 	'faltando UM dos bancos da home, ela perdeu a data: banco ausente e uma fonte que '
 	. 'nao contribui, nao um apagador do que as outras disseram' );
 
@@ -447,9 +549,22 @@ afirma( (string) $dados_f1['gerado_em'] === rodametria_casca_data_da_pagina( 'in
    imprimir o no. Cair no relogio do servidor publicaria "modificada hoje" em
    pagina que nao muda desde 30/10. */
 $GLOBALS['BANCO_TROCAS'][ RODAMETRIA_ID_DADOS_F1 ] = null;
+/* E O BANCO DO CODIGO TAMBEM CAI AQUI, senao este mundo deixou de ser "sem fonte
+   nenhuma" no dia em que nasceu a terceira fonte — e a afirmacao reprovaria a
+   casca certa. Com os tres fora, o que se mede e o que importa: a casca NAO cai
+   no relogio do servidor. */
+$GLOBALS['BANCO_TROCAS'][ RODAMETRIA_ID_DADOS_CODIGO ] = null;
 afirma( '' === rodametria_casca_data_da_pagina( 'inicio' ),
 	'sem NENHUM dos bancos, a home devolveu uma data: a casca inventou data e o no '
 	. '`WebPage` sairia mentindo' );
+/* E COM SO O BANCO DO CODIGO DE PE, A PAGINA TEM DATA: e o caminho novo medido
+   sozinho, e e ele que faz as 11 paginas deixarem de afirmar que nao mudaram no
+   dia em que o codigo que as desenha mudou. */
+unset( $GLOBALS['BANCO_TROCAS'][ RODAMETRIA_ID_DADOS_CODIGO ] );
+afirma( codigo_de( 'inicio' ) === rodametria_casca_data_da_pagina( 'inicio' ),
+	'com os dois bancos de dado fora e so o do CODIGO de pe, a home serve '
+	. ( rodametria_casca_data_da_pagina( 'inicio' ) ?: '(vazia)' ) . ' e o codigo diz '
+	. ( codigo_de( 'inicio' ) ?: '(vazia)' ) );
 unset( $GLOBALS['BANCO_TROCAS'][ RODAMETRIA_ID_DADOS_F1 ] );
 unset( $GLOBALS['BANCO_TROCAS'][ RODAMETRIA_ID_DADOS_F2 ] );
 
@@ -488,10 +603,12 @@ if ( $dados_f1['gerado_em'] !== $dados_f2['gerado_em'] ) {
 	afirma( $velha !== $nova,
 		sprintf( 'a composicao velha e a nova tinham de DISCORDAR na home e as duas dizem %s',
 			$nova ?: '(vazia)' ) );
-	afirma( $nova === max( (string) $dados_f1['gerado_em'], (string) $dados_f2['gerado_em'] ),
-		sprintf( 'a home serve %s e a mais recente das fontes dela e %s',
-			$nova ?: '(vazia)', max( (string) $dados_f1['gerado_em'],
-				(string) $dados_f2['gerado_em'] ) ) );
+	afirma( $nova === com_codigo( 'inicio', max( (string) $dados_f1['gerado_em'],
+			(string) $dados_f2['gerado_em'] ) ),
+		sprintf( 'a home serve %s e a mais recente das TRES fontes dela e %s',
+			$nova ?: '(vazia)',
+			com_codigo( 'inicio', max( (string) $dados_f1['gerado_em'],
+				(string) $dados_f2['gerado_em'] ) ) ) );
 	afirma( $velha === (string) $dados_f1['gerado_em'],
 		'a composicao velha nao esta reescrita fielmente: ela tinha de devolver a data da '
 		. 'F1, que roda na prioridade 9' );
@@ -502,13 +619,44 @@ if ( $dados_f1['gerado_em'] !== $dados_f2['gerado_em'] ) {
 
 /* E ELAS CONCORDAM ONDE TEM DE CONCORDAR: pagina de uma fonte so. Conserto que
    muda veredito fora do defeito e afrouxamento ou aperto nao pedido. */
-afirma( (string) $dados_f3['gerado_em'] === rodametria_casca_data_da_pagina( RODAMETRIA_F3_SLUG ),
-	'a F3 sai de um banco so e a composicao nova mudou a resposta dela' );
+afirma( com_codigo( RODAMETRIA_F3_SLUG, (string) $dados_f3['gerado_em'] )
+	=== rodametria_casca_data_da_pagina( RODAMETRIA_F3_SLUG ),
+	'a F3 sai de um banco de dado so, e a resposta dela tinha de ser a mais recente '
+	. 'entre esse banco e a data do codigo que a desenha' );
 foreach ( $dados_inst['paginas'] as $pg ) {
-	afirma( (string) $dados_inst['gerado_em']
+	afirma( com_codigo( (string) $pg['slug'], (string) $dados_inst['gerado_em'] )
 		=== rodametria_casca_data_da_pagina( (string) $pg['slug'] ),
-		sprintf( 'a institucional `%s` sai de um banco so e a composicao nova mudou a '
-			. 'resposta dela', $pg['slug'] ) );
+		sprintf( 'a institucional `%s` sai de um banco de dado so, e a resposta dela tinha '
+			. 'de ser a mais recente entre esse banco e a data do codigo', $pg['slug'] ) );
+}
+
+/* ------------------------------------------------------------------ 8 */
+/* A DISCORDANCIA DA 20.8 DESTA METADE, E ELA SE MEDE NAS QUATRO INSTITUCIONAIS.
+
+   A COMPOSICAO DE ONTEM lia SO os bancos de dado. A de hoje acrescenta a data do
+   CODIGO. Onde as duas discordam e exatamente onde o defeito morava: pagina cujo
+   dado e velho e cujo codigo e novo. Medido nesta passada, sem numero digitado:
+   `paginas-institucionais.json` tem `gerado_em` de 2026-10-30 e os seis snippets
+   desta ilha foram reescritos em 2026-11-23. A regua VELHA aprova 2026-10-30 — e
+   a pagina servida naquele dia nao era a de 30/10 em um unico byte. */
+$velha_so_bancos = (string) $dados_inst['gerado_em'];
+$nova_inst       = rodametria_casca_data_da_pagina(
+	(string) $dados_inst['paginas'][0]['slug'] );
+if ( codigo_de( (string) $dados_inst['paginas'][0]['slug'] ) > $velha_so_bancos ) {
+	afirma( $nova_inst !== $velha_so_bancos,
+		sprintf( 'a composicao velha (so bancos de dado) e a nova (com o codigo) tinham de '
+			. 'DISCORDAR na institucional e as duas dizem %s', $nova_inst ?: '(vazia)' ) );
+	afirma( $nova_inst === codigo_de( (string) $dados_inst['paginas'][0]['slug'] ),
+		sprintf( 'com o dado em %s e o codigo em %s, a pagina serve %s', $velha_so_bancos,
+			codigo_de( (string) $dados_inst['paginas'][0]['slug'] ), $nova_inst ?: '(vazia)' ) );
+	print( sprintf( "  . a institucional `%s`: regua VELHA (so bancos) diz %s e a NOVA diz %s "
+		. "— a diferenca e o codigo que a desenha\n",
+		$dados_inst['paginas'][0]['slug'], $velha_so_bancos, $nova_inst ) );
+} else {
+	afirma( true, 'o codigo nao esta mais novo que o dado institucional: nesta data as '
+		. 'duas composicoes concordam, e esta metade nao mede' );
+	print( "  . o codigo nao esta mais novo que o dado institucional nesta data: as duas "
+		. "composicoes concordam e esta afirmacao parou de medir\n" );
 }
 
 /* O MUNDO DIVERGENTE, num processo proprio (ver o comentario do banco). */

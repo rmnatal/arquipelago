@@ -49,12 +49,15 @@ O QUE ESTE PORTAO MEDE, e nenhuma data e digitada aqui:
      hoje entra num manifest que nao tem data de hoje. Se ele estampasse a data
      da geracao, o `sha256` do arquivo trocaria todo dia e a revisao subiria por
      nada.
-  6. O ESPELHO `sha256` DO MANIFEST ESTA EM DIA com os arquivos do repositorio.
-     Isto nao e assunto deste arquivo por capricho: `atualizar-manifest.py` tem
-     `--conferir` proprio e **nao e descoberto pela bancada**, que roda
-     `teste-*`, `validar-*`, `mutacoes-*` e `testar-*`. Espelho sem portao na
-     bancada envelhece calado, que e a cicatriz de 11/09/2026 que aquela
-     ferramenta cita na primeira linha dela.
+  6. O ESPELHO `sha256` DO MANIFEST ESTA EM DIA com os arquivos do repositorio,
+     e TODO item tem o campo `mudou_em`. *(A primeira versao desta linha dizia
+     que `atualizar-manifest.py` "nao e descoberto pela bancada" e isso e FALSO:
+     medido na passada que escreveu este arquivo, `bancada.py` roda
+     `atualizar-manifest.py --conferir` e `gerar-datas-de-codigo.py --conferir`
+     entre os 64 portoes sem rede — ela descobre `--conferir` de ferramenta que
+     escreve, nao so os prefixos `teste-`/`validar-`/`mutacoes-`. A afirmacao
+     daqui nao e redundante por isso: ela e a que NOMEIA o item fora do espelho
+     dentro deste assunto, e a do `mudou_em` presente nao existe la.)*
 
 O QUE ELE NAO MEDE, e a linha esta aqui para ninguem ler verde a mais: ele nao
 abre o ar. Se a option nao viajar, ou se o snippet carregado for velho, quem

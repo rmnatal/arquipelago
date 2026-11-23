@@ -630,22 +630,37 @@ def main():
     manifest = json.load(open(os.path.join(ILHA, "manifest.json"), encoding="utf-8"))
     ids_de_dados = {i["id"] for i in manifest.get("dados", [])}
     casca_bruta = open(SNIPPET_CASCA, encoding="utf-8").read()
-    m = re.search(r"define\(\s*'RODAMETRIA_ID_DADOS_F2'\s*,\s*'([^']+)'", casca_bruta)
-    afirma(bool(m), "a casca nao declara RODAMETRIA_ID_DADOS_F2")
-    if m:
-        afirma(m.group(1) in ids_de_dados,
-               "a casca le a option de %r e o manifest nao tem item de dados com esse id "
-               "(tem %s) — o site ia cair no estado degradado em silencio"
-               % (m.group(1), sorted(ids_de_dados)))
+    # A AFIRMACAO PASSOU A VALER PARA **TODA** CONSTANTE `RODAMETRIA_ID_DADOS_*`
+    # DA CASCA, e nao so para a da F2 (23/11/2026). Ela era escrita no singular
+    # porque a casca tinha UMA — e no dia em que ela ganhou a segunda
+    # (`RODAMETRIA_ID_DADOS_CODIGO`, o banco da data do codigo) a lista de nomes
+    # aceitos nao a continha, e este portao REPROVOU uma chamada que usa
+    # constante, acusando-a de "nome digitado". Regua escrita no singular reprova
+    # a pagina certa no dia em que o plural nasce — e a familia do mecanismo de
+    # pergunta da clubedomosaico, que deixou de ser singular pelo mesmo motivo.
+    # No plural ela tambem APERTA: agora as DUAS constantes sao casadas com o
+    # manifest, nao so uma.
+    constantes = re.findall(r"define\(\s*'(RODAMETRIA_ID_DADOS_\w+)'\s*,\s*'([^']+)'",
+                            casca_bruta)
+    afirma(bool(constantes), "a casca nao declara nenhuma constante RODAMETRIA_ID_DADOS_*")
+    afirma(any(n == "RODAMETRIA_ID_DADOS_F2" for n, _ in constantes),
+           "a casca nao declara RODAMETRIA_ID_DADOS_F2")
+    for nome_const, valor in constantes:
+        afirma(valor in ids_de_dados,
+               "a casca le a option de %r (%s) e o manifest nao tem item de dados com esse "
+               "id (tem %s) — o site ia cair no estado degradado em silencio"
+               % (valor, nome_const, sorted(ids_de_dados)))
+    nomes_aceitos = tuple(n for n, _ in constantes)
     # E ninguem pode voltar a digitar o nome: a chamada tem de usar a constante.
     for nome, fonte in (("casca", casca_bruta), ("f2", php_f2)):
         for chamada in re.findall(r"rodametria_casca_banco\(\s*([^)]*)\)", fonte):
             chamada = chamada.strip()
             if chamada.startswith("$"):
                 continue
-            afirma("RODAMETRIA_ID_DADOS_F2" in chamada or chamada == "$id",
+            afirma(any(c in chamada for c in nomes_aceitos) or chamada == "$id",
                    "%s: rodametria_casca_banco(%s) com nome digitado — o id do item de dados "
-                   "e fato externo e mora no manifest" % (nome, chamada))
+                   "e fato externo e mora no manifest (as constantes que a casca declara sao "
+                   "%s)" % (nome, chamada, ", ".join(nomes_aceitos)))
 
     # ---------------------------------------------------------------
     # 7. AS TRAVAS DE MECANISMO DA SECAO 8 QUE SE MEDEM NO FONTE.

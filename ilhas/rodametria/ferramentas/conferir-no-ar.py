@@ -200,6 +200,40 @@ CHAVES_DE_CITACAO_NO_DADO = (
 )
 
 
+def datas_de_codigo_do_repositorio():
+    """(por_slug, erro). A data do CODIGO de cada pagina, computada do manifest.
+
+    POR QUE ELA E IMPORTADA E NAO REESCRITA AQUI: a regra — "a data do codigo de
+    uma pagina e o MAXIMO dos `mudou_em` dos itens que a renderizam" — mora em
+    `gerar-datas-de-codigo.py`. Reescreve-la aqui seria a segunda declaracao do
+    mesmo fato que a 20.7 proibe, e as duas comecariam iguais. O que este portao
+    acrescenta e o outro lado da comparacao, que o gerador nao tem: **o ar**.
+
+    E O QUE ELE LE E O MANIFEST, nunca `dados/datas-de-codigo.json`: o arquivo
+    gerado e a COPIA que viaja, e portao que compara a copia com a copia nao
+    mede o caminho. Quem cobra copia contra manifest e
+    `teste-datas-de-codigo.py`, na bancada.
+    """
+    try:
+        import importlib.util
+        caminho = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                               "gerar-datas-de-codigo.py")
+        spec = importlib.util.spec_from_file_location("gerar_datas_de_codigo", caminho)
+        mod = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(mod)
+        manifest = mod.carregar(os.path.join(ILHA, "manifest.json"))
+        slugs, probs_slug = mod.slugs_que_a_ilha_serve()
+        dado, probs = mod.compilar(manifest, slugs)
+    except Exception as e:                                    # noqa: BLE001
+        return {}, "nao pude computar a data do codigo: %s" % e
+    if dado is None:
+        return {}, "; ".join(probs_slug + probs)
+    return ({slug: (linha.get("data"),
+                    [(i["id"], i.get("mudou_em")) for i in linha["itens"]])
+             for slug, linha in dado["paginas"].items()},
+            "; ".join(probs_slug) if probs_slug else "")
+
+
 def citacoes_do_dado(pasta=None):
     """Toda cadeia que esta ilha CITA, colhida dos arquivos de `dados/`.
 
@@ -2120,6 +2154,30 @@ def main():
             if p.get("url"):
                 urls[slug] = p["url"]
 
+    # O CAMINHO DE VOLTA DO MAPA DO /casca: URL -> slug. O mapa dele e slug -> URL,
+    # e o laco das paginas anda por URL do sitemap; sem este inverso a cobranca da
+    # data do codigo nao saberia de QUE pagina esta falando. Ele guarda as duas
+    # formas de cada URL (com e sem barra no fim) porque o sitemap e o mapa da
+    # casca nao prometem a mesma.
+    slug_por_url = {}
+    for _slug, _u in urls.items():
+        slug_por_url[_u] = _slug
+        slug_por_url[_u.rstrip("/")] = _slug
+        slug_por_url[_u.rstrip("/") + "/"] = _slug
+
+    # A DATA DO CODIGO DE CADA PAGINA, DO LADO DO REPOSITORIO (23/11/2026, a
+    # segunda metade do item 2 do despacho da ronda deste dia). Computada UMA vez
+    # aqui e cobrada por URL no laco de baixo.
+    codigo_por_slug, erro_codigo = datas_de_codigo_do_repositorio()
+    afirma(not erro_codigo and bool(codigo_por_slug),
+           "nao pude computar a data do codigo de cada pagina a partir do manifest: %s. "
+           "Sem ela este portao nao sabe o que cobrar por URL, e `nao medido` lido como "
+           "aprovado e o defeito que a 20.4 nomeia" % (erro_codigo or "veio vazia"))
+    if codigo_por_slug:
+        registro("data do codigo (do manifest): %s"
+                 % ", ".join("%s %s" % (s2, d or "null")
+                             for s2, (d, _) in sorted(codigo_por_slug.items())))
+
     # -------------------------------------------------------------------
     # 4. O SITEMAP, E TODA URL DELE EM 200
     # -------------------------------------------------------------------
@@ -2435,20 +2493,77 @@ def main():
         afirma(len(datas_ld) >= 1,
                "%s: nenhum JSON-LD declara `dateModified`. A ilha que recoleta preco e a que mais "
                "precisa do sinal de frescor, e chave ausente nao declara nada (25.9)" % caminho)
-        for d in set(datas_ld):
+        # A DATA DA PAGINA CONTRA A DATA DO CODIGO QUE A DESENHA (23/11/2026) —
+        # a segunda metade do item 2 do despacho da ronda deste dia, e a frase
+        # dele e literal: "o portao de ar cobrando, por URL, que ela nao seja
+        # mais antiga que a revisao do manifest.json que a desembarcou".
+        #
+        # O QUE MUDOU NA ASSERCAO DA PROSA, E POR QUE ELA NAO PODIA FICAR COMO
+        # ESTAVA. Ate hoje este portao exigia que todo `dateModified` servido
+        # APARECESSE em prosa na propria pagina, e a razao escrita era boa: sem
+        # isso o campo poderia dizer "hoje" em pagina que nao muda desde 30/10.
+        # So que a partir de hoje existe uma TERCEIRA fonte legitima para a data
+        # de uma pagina — o CODIGO que a renderiza —, e essa fonte nao tem prosa
+        # onde se declarar: a pagina diz em texto de que DADO ela e feita, nao em
+        # que dia o PHP dela mudou. Mantida a letra antiga, o portao reprovaria as
+        # 11 paginas certas no primeiro desembarque de codigo.
+        #
+        # A REGRA NOVA E MAIS APERTADA E NAO MAIS FROUXA, porque ela deixou de
+        # perguntar a prosa e passou a perguntar ao REPOSITORIO:
+        #
+        #   (a) a data servida NUNCA e mais antiga que a data do codigo daquela
+        #       pagina — se for, o desembarque nao chegou aquela URL, ou a option
+        #       nao viajou, ou o snippet carregado e velho;
+        #   (b) a data servida que NAO aparece na prosa tem de ser EXATAMENTE a do
+        #       codigo. Qualquer outra data sem lastro em prosa nem no manifest
+        #       segue proibida, que e o buraco da fabricacao que a regra velha
+        #       fechava;
+        #   (c) nenhuma data da prosa e mais recente que a data servida — pagina
+        #       nao pode exibir dado mais novo do que a sua propria modificacao.
+        slug_desta = slug_por_url.get(u) or slug_por_url.get(u.rstrip("/") + "/")
+        data_codigo, itens_codigo = codigo_por_slug.get(slug_desta, (None, []))
+        datas_na_prosa = set(re.findall(r"\d{2}/\d{2}/\d{4}", texto))
+        if slug_desta is None:
+            registro("%s: nao achei o slug desta URL no mapa do /casca, entao a data do "
+                     "codigo dela nao foi cobrada" % caminho)
+        elif data_codigo is None:
+            registro("%s: o slug %s esta com `mudou_em` nao sabido em todos os itens que o "
+                     "renderizam (clone raso, 1.1), entao a data do codigo nao foi cobrada"
+                     % (caminho, slug_desta))
+        for d in sorted(set(datas_ld)):
             br = "%s/%s/%s" % (d[8:10], d[5:7], d[:4])
-            datas_na_prosa = set(re.findall(r"\d{2}/\d{2}/\d{4}", texto))
+            if data_codigo:
+                afirma(d >= data_codigo,
+                       "%s: o JSON-LD diz dateModified %s e o CODIGO que renderiza esta "
+                       "pagina mudou em %s (%s). Pagina nao pode afirmar ao Google que nao "
+                       "mudou no dia em que o HTML dela mudou — ou o desembarque nao chegou "
+                       "aqui, ou a option `datas-de-codigo` nao viajou, ou o snippet "
+                       "carregado e velho (20.7)"
+                       % (caminho, d, data_codigo,
+                          ", ".join("%s %s" % (i, m or "null") for i, m in itens_codigo)))
+            if br in datas_na_prosa:
+                continue
             if datas_na_prosa:
-                afirma(br in datas_na_prosa,
-                       "%s: o JSON-LD diz dateModified %s (%s) e a prosa da pagina nao traz essa data "
-                       "em lugar nenhum (traz %s). Duas declaracoes do mesmo fato comecam iguais e so "
-                       "uma sobe (20.7)"
-                       % (caminho, d, br, ", ".join(sorted(datas_na_prosa)) or "nenhuma"))
+                afirma(data_codigo is not None and d == data_codigo,
+                       "%s: o JSON-LD diz dateModified %s (%s), a prosa da pagina nao traz "
+                       "essa data (traz %s) e ela TAMBEM nao e a data do codigo (%s). Data "
+                       "sem lastro em prosa nem no manifest e frescor fabricado"
+                       % (caminho, d, br, ", ".join(sorted(datas_na_prosa)) or "nenhuma",
+                          data_codigo or "nao sabida"))
             else:
                 registro("%s: dateModified %s, e a pagina nao publica data em prosa para cruzar"
                          % (caminho, d))
         if datas_ld:
-            registro("%s: dateModified %s" % (caminho, ", ".join(sorted(set(datas_ld)))))
+            mais_nova = max(datas_ld)
+            for br in sorted(datas_na_prosa):
+                iso = "%s-%s-%s" % (br[6:], br[3:5], br[:2])
+                afirma(iso <= mais_nova,
+                       "%s: a prosa publica %s e o `dateModified` mais recente da pagina e "
+                       "%s — a pagina exibe dado mais novo do que a propria modificacao"
+                       % (caminho, br, mais_nova))
+            registro("%s: dateModified %s (codigo %s)"
+                     % (caminho, ", ".join(sorted(set(datas_ld))),
+                        data_codigo or "nao cobrado"))
 
         # O ENVELOPE DE TODO `ItemList` SERVIDO (12/11/2026), e a razao de ele
         # ser medido AQUI e nao so no portao de vitrine: `conferir-produto-no-ar`
