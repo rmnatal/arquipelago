@@ -25,17 +25,14 @@ ultima_execucao: 2026-11-23T10:29Z   # A SCOOTER ELETRICA (301 MIL BUSCAS/MES) F
                          # DOIS DIAS sem linha em lugar nenhum do repositorio.
                          # A HORA DESTE CAMPO SAIU DO `date -u` NA MESMA LINHA DE
                          # COMANDO QUE A GRAVA, nunca digitada.
-executando_desde: null   # LIMPO no fecho desta execucao (passo 7 da secao 1).
-                         # A reserva desta passada foi 2026-11-23T10:17Z, commit
-                         # 5ab25a9, aceito de primeira — a ilha estava livre
-                         # (`executando_desde: null`, que pela 1.1 ja significa que
-                         # nao havia bloco da Fundacao vivo) e NADA furou o foco: o
-                         # despacho do molde da 32 segue FECHADO nas tres irmas e o
-                         # unico despacho aberto de irma, o da robometria de 20/11
-                         # 14h2xZ, NAO e ALTA (a casca dela estava em 14 de 14 URLs
-                         # em 200), logo nao e `ilha no ar e quebrada` da 1.2.
-                         # Nao houve renovacao pela 1.1: a execucao durou menos de 40
-                         # minutos.
+executando_desde: 2026-11-23T13:18Z   # RESERVA desta execucao (passo 5 da secao 1),
+                         # escrita ANTES de qualquer trabalho. A hora saiu do `date -u`
+                         # na MESMA linha de comando que a grava, nunca digitada.
+                         # A ilha estava LIVRE: `executando_desde: null`, que pela 1.1
+                         # ja significa que nao havia bloco da Fundacao vivo, e o
+                         # ultimo commit na pasta era de 10h32Z (fora dos 40 minutos).
+                         # A reserva anterior, de 2026-11-23T10:17Z (commit 5ab25a9),
+                         # foi limpa no fecho daquela passada.
 rede: aberta em 2026-11-20   # 20.2, REMEDIDA e nao herdada: `rodametria.com.br`
                              # em 200 nas TRES passadas, `www.` em 301 na primeira
                              # e 200 nas outras duas (redirecao, nao recusa), com
