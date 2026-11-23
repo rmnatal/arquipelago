@@ -10721,3 +10721,44 @@ dados/PAINEL.md                           50 linhas (arquivo inteiro reescrito; 
 - **ESCRITA 4, `dados/PAINEL.md`:** arquivo inteiro substituído, nada do conteúdo anterior preservado. A linha 3 é `**Instantâneo de 2026-11-20, 14h5xZ**, reescrito pela RONDA DIÁRIA TÉCNICA da **robometria**…`; o instantâneo anterior era de 2026-11-18, 15h0xZ, pela rodametria.
 
 Nenhum passo falhou: nenhuma mensagem de erro a registrar. Este log vai num commit seguinte ao do trabalho, porque a contagem acima só pôde ser fechada depois de o trabalho estar confirmado no `main`. A hora do título saiu de `TZ=America/Sao_Paulo date` e `date -u` na mesma chamada que preparou esta seção, nunca digitada. Nenhuma seção anterior deste arquivo foi apagada, reescrita ou resumida.
+
+---
+
+## 2026-11-23, 05h34 de Brasília (08h34Z) — PENTE FINO DE 23/11: UM ARQUIVO NOVO NA RAIZ, UM COMMIT, PUSH ACEITO DE PRIMEIRA NO `main`
+
+Disparo 1 de 3 do Pente Fino de segunda 23/11/2026. Chegou pelas Mãos porque o push da nuvem da rotina foi **recusado pelo proxy de git** (`rmnatal/arquipelago is not in this session's authorized repository set`), não por conflito de merge. Checagem de assunto: Arquipélago (auditoria de coerência do corpo de regras deste repositório) — passa. Nenhum dado pessoal de terceiro e nenhum valor de segredo no conteúdo entregue: o achado herdado 46 cita a existência do e-mail da artesã em arquivos versionados, sem escrever o endereço, e o 45 diz "nenhum valor escrito aqui nem em commit".
+
+Instrução: criar `AUDITORIA-PENTE-FINO-2026-11-23.md` na raiz, com o conteúdo literal entre as marcações, e não tocar em nenhum outro arquivo. Nenhum outro arquivo foi tocado — o `MAOS-LOG.md` é a exceção obrigatória do procedimento e vai no commit seguinte.
+
+Partida: `git fetch origin main && git checkout -B trabalho origin/main`, de `a56ca24` (`rodametria: a conta das tercas sem pauta era QUATRO e eu escrevi CINCO…`).
+
+`git status --porcelain` antes do commit:
+
+```
+?? AUDITORIA-PENTE-FINO-2026-11-23.md
+```
+
+`git diff --stat` antes do commit (o arquivo é novo, então `git diff --stat` sem `--cached` sai **vazio** — o número abaixo é de `git diff --stat --cached`, depois do `git add`):
+
+```
+ AUDITORIA-PENTE-FINO-2026-11-23.md | 323 +++++++++++++++++++++++++++++++++++++
+ 1 file changed, 323 insertions(+)
+```
+
+Commit que foi ao `main`: **`f82d6fa40fe0527a27c4dc0cd8bb07d7cab9bd56`**, assunto `pente fino: auditoria de coerencia do contrato` — a mensagem que a instrução deu, sem crase, sem cifrão e sem exclamação, como a seção 3 dela pedia. Push com `git push origin HEAD:main`, **aceito de primeira** (`a56ca24..f82d6fa`), sem recusa, sem rebase, sem force e sem PR.
+
+Confirmação exigida pelo procedimento: `git fetch origin main && git log -1 origin/main` devolve `f82d6fa40fe0527a27c4dc0cd8bb07d7cab9bd56`, o mesmo hash. O push está no `main`.
+
+Contagem do que mudou, **conferida relendo o arquivo do disco DEPOIS de gravar**, nunca pelo que a execução achava que havia escrito:
+
+```
+AUDITORIA-PENTE-FINO-2026-11-23.md   323 linhas, 30.963 bytes (arquivo novo; não existia em a56ca24)
+                                       8 cabeçalhos de nível ##
+                                       9 cabeçalhos de nível ###
+                                      19 linhas de tabela (cabeçalho + separador + 17 herdados)
+1 arquivo, 323 inserções, 0 remoções
+```
+
+- **ESCRITA 1, `AUDITORIA-PENTE-FINO-2026-11-23.md`:** arquivo criado na raiz, não existia no `main` de partida (`ls` antes da escrita devolveu `No such file or directory`). O conteúdo é o que veio entre as duas linhas de marcação, sem as marcações, com a indentação uniforme de 4 espaços do envelope do disparo removida e a indentação relativa do próprio texto preservada — conferido depois de gravar: **zero** linhas começando com quatro espaços, e as continuações de bullet (2 espaços) e de lista numerada (3 espaços) estão nos seus lugares, p.ex. a linha 47 (`Medido antes de graduar o achado:…`, 2 espaços) e a linha 287 (`REGISTROS QUE CONTAM O MUNDO…`, 3 espaços). **Zero** ocorrências das linhas de marcação `<<<<<<<<<<`/`>>>>>>>>>>` no arquivo. Primeira linha: `# AUDITORIA PENTE FINO — 2026-11-23`; última: `neste arquivo nem em commit.*`. Nenhuma palavra foi reformatada, corrigida, melhorada ou acrescentada.
+
+Nenhum passo falhou: nenhuma mensagem de erro a registrar. Este log vai num commit seguinte ao do trabalho, porque a contagem acima só pôde ser fechada depois de o trabalho estar confirmado no `main`. A hora do título saiu de `TZ=America/Sao_Paulo date` e `date -u` na mesma chamada que preparou esta seção, nunca digitada. Nenhuma seção anterior deste arquivo foi apagada, reescrita ou resumida.
