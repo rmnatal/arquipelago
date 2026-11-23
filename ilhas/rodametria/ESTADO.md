@@ -24,19 +24,16 @@ ultima_execucao: 2026-11-23T13:31Z   # A VERIFICACAO DESTA FABRICA MEDE A
                          # o Mercado Livre recusa 403 TAMBEM no navegador desta nuvem.
                          # A HORA DESTE CAMPO SAIU DO `date -u` NA MESMA LINHA DE
                          # COMANDO QUE A GRAVA, nunca digitada.
-executando_desde: 2026-11-23T16:17Z   # RESERVA da execucao de 2026-11-23 16h1xZ (passo 5
-                         # da secao 1), hora saida do `date -u` na mesma linha de
-                         # comando que a grava. Ilha EM FOCO pela 1.2 (`foco.md`
-                         # nomeia a rodametria desde 27/10), e ela estava LIVRE:
-                         # o campo estava `null`, que pela 1.1 ja significa que
-                         # nao ha bloco da Fundacao vivo, e a execucao anterior
-                         # fechou as 13h31Z. O commit de 15h06Z na pasta e da
-                         # RONDA da Sentinela, e pela 1.1 commit de ronda NAO
-                         # reserva nada. NADA FUROU O FOCO: o molde da 32 segue
-                         # FECHADO nas tres irmas e o unico despacho aberto de
-                         # irma (robometria, 20/11) NAO e ALTA.
-                         # ESTA PASSADA FECHA O DESPACHO DA RONDA DE 23/11 PELA
-                         # 18.2 — tres itens, o item 1 em ALTA.
+executando_desde: 2026-11-23T16:53Z   # RESERVA RENOVADA pela 1.1 (reservada as
+                         # 16h17Z): a execucao passou de 40 minutos porque o
+                         # despacho de HOJE tem tres itens e a 18.2 manda fechar
+                         # o despacho INTEIRO numa passada. Hora do `date -u` na
+                         # mesma linha de comando que a grava.
+                         # Fechados e no ar ate aqui: item 1 (ALTA, revisao 123,
+                         # CONFERIDO no ar — a moto passou de 0 para 3 links de
+                         # entrada de miolo) e item 3 (coleta de 23/11 nas tres
+                         # consultas, 81 anuncios). O item 2 esta empurrado na
+                         # revisao 124, esperando o cron.
 rede: aberta em 2026-11-20   # 20.2, REMEDIDA e nao herdada: `rodametria.com.br`
                              # em 200 nas TRES passadas, `www.` em 301 na primeira
                              # e 200 nas outras duas (redirecao, nao recusa), com
