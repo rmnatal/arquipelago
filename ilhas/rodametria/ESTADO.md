@@ -40,15 +40,28 @@ ultima_execucao: 2026-11-20T19:29Z   # A SCOOTER ELETRICA (301 MIL BUSCAS/MES, A
                          # conferida no caminho COMPLETO, zero buraco e zero
                          # portao novo (31.2), mais a correcao da 20.4 do
                          # contrato com as quatro linhas da fonte relidas.
-executando_desde: null   # LIMPO no fecho desta execucao (passo 7 da secao 1).
-                         # A reserva desta passada foi 2026-11-20T19:17Z, commit
-                         # ca265a4, e nada furou o foco: o despacho do molde da
-                         # 32 segue FECHADO nas tres irmas (a nota de 23/10 no
-                         # ESTADO.md da clubedomosaico diz que as tres estao com
-                         # o molde no ar e o foco volta a mandar sozinho) e o
-                         # despacho da robometria de hoje 14h2xZ NAO e ALTA, com
-                         # a casca dela limpa em 14 de 14 URLs em 200 — logo nao
-                         # e `ilha no ar e quebrada` da 1.2.
+executando_desde: 2026-11-23T10:17Z   # RESERVA da execucao de 2026-11-23T10:17Z (passo 5
+                         # da secao 1). A HORA SAIU DO `date -u` NA MESMA LINHA DE
+                         # COMANDO QUE A GRAVA, nunca digitada.
+                         # ILHA EM FOCO pela 1.2: `foco.md` nomeia a rodametria
+                         # desde 27/10/2026, foco TOTAL e ABSOLUTO, e por isso nao
+                         # houve escolha de ilha a fazer. NADA FUROU O FOCO nesta
+                         # passada, medido e nao herdado: (a) o despacho do MOLDE
+                         # da 32 esta FECHADO nas tres irmas que a excecao de
+                         # 21/10 nomeia — aquametria (PROMPT.md linha 273,
+                         # `FECHADO INTEIRO as 18h2xZ de 21/10`), clubedomosaico
+                         # (linha 566, `FECHADO INTEIRO ... as 20 PAGINAS
+                         # CONFERIDAS`) e robometria (linha 507, `FECHADO INTEIRO
+                         # ... as NOVE paginas conferidas`); (b) o unico despacho
+                         # aberto de irma e o da robometria de 20/11 14h2xZ, e ele
+                         # NAO e ALTA — o proprio texto dele abre com `a casca esta
+                         # limpa: 14 de 14 URLs do sitemap em 200`, logo nao e
+                         # `ilha no ar e quebrada` da 1.2. Despacho NORMAL de ilha
+                         # fora do foco ESPERA, por mais antigo que seja.
+                         # Nenhum branch `claude/*` a mergear e nenhum PR aberto:
+                         # `origin/claude/dreamy-mccarthy-t1xwfh` esta a ZERO commit
+                         # de `origin/main` (rev-list --count = 0) e
+                         # `list_pull_requests state=open` devolveu lista vazia.
 rede: aberta em 2026-11-20   # 20.2, REMEDIDA e nao herdada: `rodametria.com.br`
                              # em 200 nas TRES passadas, `www.` em 301 na primeira
                              # e 200 nas outras duas (redirecao, nao recusa), com
