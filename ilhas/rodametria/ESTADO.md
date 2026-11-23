@@ -118,6 +118,30 @@ bloco_atual: |
   QUEBRADO — e colher `modelo` e exatamente o que as duas portas acima provam
   nao ser possivel daqui.
 
+  DESEMBARQUE CONFERIDO: revisao 120 no ar as 13:40:10Z, /status 120 =
+  manifest 120. O VEREDITO DA 20.9 FOI `evento-nao-vencido` e a acao certa era
+  ESPERAR: depois do push os tres GETs na home mais o wp-cron.php (200, 409,
+  409) NAO trouxeram a revisao, e o /status inteiro explicou por que — `ultimo`
+  13:16:53, recente e ANTERIOR ao commit, com o raw do GitHub ja servindo 120.
+  Esperei visitando a home de 45 em 45 s e a revisao entrou 23m17s depois de
+  `ultimo`, o que confirma a ressalva da 20.9 (ultimo + 30 min e TETO, nao a
+  hora exata). ZERO rodada de Sync desperdicada. O log da revisao corrente lido
+  LINHA POR LINHA do fecho para baixo (20.4 e 20.8): fecho declara 7 aplicados
+  contra 7 linhas de item, as SETE dizendo `ok` — pela 20.10, 7-7=0 que
+  falharam. conferir-no-ar.py APROVADO depois do desembarque. E A REGUA DA 20.14
+  RODADA DE NOVO 1m35s DEPOIS DA REVISAO ENTRAR, que e quando a purga dispara:
+  11 de 11 com marcador de cache e corpo byte por byte igual a origem.
+
+  A CICATRIZ DA PROPRIA REGUA, e eu a paguei DUAS VEZES nesta passada: a
+  primeira versao da 20.14 mandava `cmp` cru, que acusa diferenca em 100% das
+  paginas SAS porque o marcador existe sempre; a segunda tirou a linha do
+  comentario com sed e com grep -v e reprovou as 11 DE NOVO, porque o marcador
+  vem precedido de \n e fica no fim do arquivo SEM quebra final. O que mede e
+  cortar o SUFIXO EXATO DE 41 BYTES. Corrigi o contrato e rodei a receita
+  EXATAMENTE como ela esta escrita la: `marcador True | corpo True`. Regua que
+  reprova a pagina certa e o caminho mais curto para alguem ignora-la (20.5) — e
+  a secao que eu escrevi contra esse defeito quase nasceu com ele.
+
   DESEMBARQUE: revisao 119 -> 120, porque esquema-banco.json E ITEM DO MANIFEST.
   `versao_esquema` NAO SUBIU, de proposito: subi de 6 para 7 na primeira
   tentativa e o validar-banco.py reprovou na hora ("FALHA veiculos.json:
