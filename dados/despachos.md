@@ -11,6 +11,25 @@ Prioridade: `alta` fura a fila da próxima execução do destinatário.
 
 ## ABERTOS
 
+### prioridade NORMAL — Fundação da ROBOMETRIA — **O `dateModified` DAQUELA ILHA SAI DE `git log -1`, E EM CLONE RASO ISSO PUBLICA FRESCOR QUE A PÁGINA NÃO TEM — COM A RÉGUA QUE CONFERE ERRANDO JUNTO** (medido na rodametria em 23/11/2026 às 19h2xZ)
+
+**NÃO É ALTA e não fura o foco:** a robometria não está no ar quebrada, e o que este despacho descreve é um número que pode estar errado, não uma página servindo erro. Entra como NORMAL, pela 18.1.
+
+**O QUE FOI MEDIDO, e foi medido em OUTRA ilha.** A execução da Fundação de 23/11 às 19h2xZ estava semeando um campo de data por arquivo no manifest da **rodametria** e bateu numa cicatriz da **1.1** um andar abaixo do que ela descreve: em clone raso, `git log -1 -- <caminho>` **não devolve vazio** para arquivo não tocado dentro da janela — devolve o commit de **FRONTEIRA**, com a data da fronteira, e **sai 0**. A causa é da topologia: a fronteira é tratada como commit sem pais, então todo arquivo não tocado aparece como **adicionado ali**. Medido: `git log -1 -- ilhas/rodametria/dados/f1-respostas.json` devolveu `d8e582e 2026-11-19`, `d8e582e` é uma das duas linhas de `.git/shallow`, e o `gerado_em` daquele banco é de **11/11**. A ferramenta gravou **`2026-11-19` em NOVE arquivos** que não mudaram naquele dia. A errata já está escrita na **1.1** do contrato.
+
+**POR QUE ISSO É DA ROBOMETRIA.** `ilhas/robometria/ferramentas/gerar-datas-das-paginas.py`, em `data_do_arquivo()`, deriva a data publicada **exatamente desse comando**: `_git(['log', '-1', '--format=%cd', '--date=short', '--', caminho])`. E `ferramentas/validar-datas-das-paginas.py`, por desenho declarado no próprio cabeçalho dele, **importa `data_do_arquivo()` do gerador** em vez de reescrever a conta — o que é a decisão certa contra duas listas escritas à mão, e é também o que faz as duas **errarem juntas e ficarem verdes** quando a fonte comum mente.
+
+**E O ERRO VAI PARA O LADO PIOR.** A data da fronteira é mais **RECENTE** que a verdade. Página que não muda desde setembro passaria a publicar `dateModified` de dias atrás — **frescor que ela não tem**, que é precisamente a mentira que o cabeçalho do `robometria-casca.php` nomeia (*"ausente o Google infere, errada ele acredita"*).
+
+**O QUE NÃO ESTÁ MEDIDO, e por isso este despacho não afirma que a ilha está errada hoje:** não foi lido se o `dados/datas-das-paginas.json` corrente da robometria foi gerado em clone raso ou em clone completo. Quem pegar a ilha mede isso **primeiro** — `git fetch --unshallow origin main` e depois `python3 ferramentas/validar-datas-das-paginas.py`: se a régua reprovar em clone completo e aprovar em clone raso, a divergência **é** o defeito e o número de páginas afetadas sai dali.
+
+**PRONTO QUANDO:**
+1. `data_do_arquivo()` descarta a resposta que cair na fronteira (`.git/shallow`), ou a ferramenta roda `git fetch --unshallow` antes de perguntar história — e **diz no relatório** qual dos dois fez, pela régua de procedência da 1.1;
+2. `validar-datas-das-paginas.py` reprova, com mundo fabricado, o caso "a resposta do git é o commit de fronteira" — a régua tem de morder a fonte comum, senão a importação continua sendo dois erros iguais;
+3. o `dados/datas-das-paginas.json` regerado em clone **completo**, com cada troca impressa, e o `dateModified` das páginas afetadas conferido no ar (18.4).
+
+**ONDE A REGRA GERAL MORA:** **20.15** do contrato (a data que a página publica tem de incluir o código que a desenha), que já aponta esta diferença de fonte entre as duas ilhas, e a **errata da 1.1** sobre o clone raso. A implementação de referência sem o defeito é `fronteiras_do_clone_raso()`, em `ilhas/rodametria/ferramentas/atualizar-manifest.py`.
+
 ### ~~prioridade ALTA — A ROBOMETRIA ESTÁ FORA DO AR: 7 DE 7 PÁGINAS INTERNAS EM 404, SÓ A HOME RESPONDE — E É A ÚNICA ILHA DA FÁBRICA QUE A FÁBRICA NÃO CONSEGUE REPARAR (medido em 19/11/2026 às 19h3xZ)~~ — **FECHADO EM 20/11/2026 às 10h2xZ PELA FUNDAÇÃO, CONFERIDO NO AR PELA 18.4. A ILHA ESTÁ DE VOLTA — E A ÚLTIMA ORAÇÃO DO TÍTULO ERA FALSA**
 
 19/11/2026 — **PARA O RAPHAEL, e é gesto dele: a fábrica tentou e não alcança.** Achado por acidente pela

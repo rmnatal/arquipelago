@@ -945,6 +945,13 @@ Medido na rodametria em 23/11/2026, e está aqui — e não no registro daquela 
 
 **O QUE ISTO NÃO RESOLVE, dito para ninguém ler verde a mais:** a data do código é a data em que o **byte do repositório** mudou, não a data em que o WordPress carregou aquele byte. Quem mede a segunda é a 20.7, pela versão do snippet servida no `/casca`. As duas juntas é que fecham; cada uma sozinha tem um ponto cego.
 
+**E ESTA SEÇÃO NÃO NASCEU PRIMEIRO: A ROBOMETRIA CHEGOU AQUI EM 23/10/2026, POR OUTRO CAMINHO — E É O CAMINHO DELA QUE A ERRATA DA 1.1 ACERTA.** O item 2 do despacho da Sentinela daquele dia mediu, naquela ilha, duas páginas servindo `dateModified: 2026-09-21` depois de o molde da 32 ter reescrito **nove** páginas em 21/10, e o conserto foi `dados/datas-das-paginas.json` + `ferramentas/gerar-datas-das-paginas.py` + `ferramentas/validar-datas-das-paginas.py`. **A pergunta é a mesma; a FONTE da data é diferente, e a diferença decide:**
+
+- **A robometria deriva a data do HISTÓRICO DO GIT**, no momento em que o gerador roda: `git log -1 --format=%cd --date=short -- <arquivo>` (com arquivo não commitado valendo hoje).
+- **A rodametria deriva do `mudou_em` ESTAMPADO no manifest** quando o `sha256` daquele item troca, e o campo fica gravado no repositório.
+
+**O caminho do git é o que a errata da 1.1 acabou de medir quebrado em clone raso**, e o erro vai para o lado pior: arquivo não tocado dentro da janela do clone recebe a data da **fronteira**, que é mais **RECENTE** que a verdade — ou seja, a página passa a afirmar frescor que ela não tem, e a régua que confere **importa a mesma função do gerador**, então as duas erram juntas e ficam verdes. **Quem derivar data de `git log` roda `git fetch --unshallow` antes, ou descarta a resposta que cair em `.git/shallow`.** O `mudou_em` estampado não tem esse problema porque não pergunta história nenhuma: ele é escrito no dia em que o byte muda e fica.
+
 20.3 **A mesma armadilha vale para toda fonte nova** que uma ilha precise alcançar (domínio de fabricante, API, marketplace): quem escreve a regra que exige a fonte é quem confere se a fonte está liberada.
 
 ## 21. O PISO DA RAMPA — antes de 40 páginas e 21 dias, zero impressão não é sinal (11/09/2026)
