@@ -10819,3 +10819,61 @@ bussola/fila.md    640 linhas,  79.208 bytes   (1 substituicao: +30 linhas, -0)
 Em nenhuma das quatro a execução reformatou, corrigiu, melhorou ou acrescentou palavra que não estivesse no TRECHO B. Os trechos foram comparados e aplicados como bytes UTF-8, para não perder acento, travessão nem aspas curvas.
 
 Nenhum passo falhou: nenhuma mensagem de erro a registrar. Este log vai num commit seguinte ao do trabalho, porque a contagem acima só pôde ser fechada depois de o trabalho estar confirmado no `main`. A hora do título saiu de `TZ=America/Sao_Paulo date` e `date -u` na mesma chamada que confirmou o push, nunca digitada. Nenhuma seção anterior deste arquivo foi apagada, reescrita ou resumida.
+
+---
+
+## 23/11/2026, 05h43 de Brasília (08h43Z) — DISPARO 3 DE 3 da passada do Pente Fino de segunda 23/11: cinco arquivos pequenos substituídos por inteiro
+
+Disparo recebido pelas Mãos porque o push da nuvem que rodou o Pente Fino foi recusado pelo proxy de git (`rmnatal/arquipelago is not in this session's authorized repository set`), não por conflito de merge. Mesma passada dos DISPAROS 1 e 2 já entregues (`f82d6fa` e `897bde4`). Assunto conferido antes do `git fetch`: é do Arquipélago (README do repositório, molde de ilha, dossiê e ficha da Bússola da ilha Rodametria) — executado.
+
+A instrução mandou gravar o **conteúdo inteiro** de cinco arquivos que já existiam, substituindo cada um por completo. Nenhum arquivo novo foi criado. Nada foi reformatado, corrigido, melhorado nem acrescentado além do que veio no disparo; os cinco foram gravados como bytes UTF-8 (acento, travessão, aspas e os sinais `×`, `≈`, `⚠`, `✅`, `⏸`, `🎨` preservados) e os cinco passaram por `iconv -f UTF-8 -t UTF-8` sem erro.
+
+`git status --porcelain` antes do commit:
+
+```
+ M README.md
+ M bussola/dossies/rodametria/VOZ.md
+ M bussola/oportunidades/rodametria.md
+ M ilhas/_modelo/ESTADO.md
+ M ilhas/_modelo/PROMPT.md
+```
+
+`git diff --stat` (o mesmo que `git show --stat` do commit no `main`):
+
+```
+ README.md                           | 21 +++++++++++++++------
+ bussola/dossies/rodametria/VOZ.md   | 31 +++++++++++++++++++++++++++++++
+ bussola/oportunidades/rodametria.md | 12 ++++++++++++
+ ilhas/_modelo/ESTADO.md             |  2 +-
+ ilhas/_modelo/PROMPT.md             |  2 +-
+ 5 files changed, 60 insertions(+), 8 deletions(-)
+```
+
+Hash do commit que foi ao `main`:
+
+```
+a8f944dca5c4fcb3a5ba645ba68198934659c4dd  pente fino: auditoria de coerencia do contrato
+```
+
+Push direto em `git push origin HEAD:main`, aceito de primeira (`6b3e22f..a8f944d`), sem rebase e sem force. Confirmado depois com `git fetch origin main && git log -1 origin/main`, que mostra `a8f944d` — o commit está no `main` real, não só na branch de trabalho.
+
+**Contagem do que mudou, conferida relendo os arquivos DEPOIS de gravar (`wc -l` e `grep -c`, nunca pela memória do que foi escrito):**
+
+```
+   37 README.md
+   28 ilhas/_modelo/ESTADO.md
+   55 ilhas/_modelo/PROMPT.md
+   66 bussola/dossies/rodametria/VOZ.md
+   94 bussola/oportunidades/rodametria.md
+  280 total
+```
+
+- **`README.md`** — 37 linhas, 2.413 bytes (eram 1.757). A lista de ilhas passou de CINCO para **SEIS pastas**, com a `ilhas/rodametria/` acrescentada como "no ar e EM FOCO desde 27/10/2026", e entrou no fim o bloco de citação de 3 linhas que separa "pasta de ilha" (seis) de "ilha viva" (três: aquametria, robometria, rodametria). `grep -c 'SEIS pastas'` = 1.
+- **`ilhas/_modelo/ESTADO.md`** — 28 linhas, 1.860 bytes (eram 1.564). Uma linha virou uma linha: o comentário do campo `primeira_indexacao` ganhou o trecho `RECONTADO pelo Pente Fino em 23/11/2026: sao SEIS pastas desde 27/10/2026…`. `grep -c 'RECONTADO pelo Pente Fino em 23/11/2026'` = 1. Os campos `piso`, `primeira_indexacao` e `ultima_ronda` continuam no cabeçalho, nas suas posições.
+- **`ilhas/_modelo/PROMPT.md`** — 55 linhas, 4.865 bytes (eram 4.589). Uma linha virou uma linha: o fim do ponteiro da seção Identidade passou de "as cinco ilhas vivas" para **`sao seis pastas em ilhas/ fora deste molde, contadas em 23/11/2026`**, com a ressalva de que "viva" é valor do campo `estado` e hoje vale para três. `grep -c 'sao seis pastas'` = 1.
+- **`bussola/dossies/rodametria/VOZ.md`** — 66 linhas, 6.998 bytes (eram 4.330). Entrou no topo o ponteiro `PARE — PONTEIRO DO PENTE FINO, 23/11/2026`, bloco de citação de **30 linhas** (`grep -c '^>'` = 30), dizendo que este é a cópia de nascimento de 27/10 e que o arquivo vivo é `ilhas/rodametria/VOZ.md`. Nenhuma linha do texto original de 27/10 foi apagada ou reescrita: as seções "Quem entra aqui" até "Molde de casca: FERRAMENTA" continuam idênticas, e o `+31/-0` do diffstat confirma que só houve inserção.
+- **`bussola/oportunidades/rodametria.md`** — 94 linhas, 8.103 bytes (eram 7.052). Entrou, depois do parágrafo do nicho, o ponteiro de **12 linhas** sobre a expressão `dispensa CNH e placa` proibida na tela desde 06/11/2026 (`grep -c 'PONTEIRO DO PENTE FINO, 23/11/2026'` = 1; `grep -c '^>'` = 13, as 12 do ponteiro novo mais a linha da ressalva ⚠ que já existia). Diffstat `+12/-0`: nada do texto de 27/10 foi retirado.
+
+Nas cinco linhas em branco que o disparo marcou como críticas — a que fecha cada bloco de citação antes do parágrafo seguinte — a separação foi conferida na leitura posterior: em `README.md` a citação é o fim do arquivo; em `_modelo/PROMPT.md`, `dossies/rodametria/VOZ.md` e `oportunidades/rodametria.md` há linha em branco entre o `>` final e o texto seguinte, então nenhum parágrafo entrou na citação por engano.
+
+Nenhum passo falhou: nenhuma mensagem de erro a registrar. Nenhum arquivo além dos cinco nomeados e deste `MAOS-LOG.md` foi tocado; nenhum cabeçalho de estado, reserva de ilha, `executando_desde` ou `publicar` foi mexido. A hora do título saiu de `TZ=America/Sao_Paulo date` e `date -u` na mesma chamada que fechou a contagem, nunca digitada. Este log vai num commit seguinte ao do trabalho, porque a contagem acima só pôde ser fechada depois de o trabalho estar confirmado no `main`. Nenhuma seção anterior deste arquivo foi apagada, reescrita ou resumida.
