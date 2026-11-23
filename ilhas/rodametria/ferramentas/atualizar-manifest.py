@@ -14,12 +14,49 @@ digitada e a familia do numero de tela digitado. E DESDE 04/11/2026 O
 `atualizado_em` SOBE COM ELA, no mesmo gesto — ver a secao do `atualizado_em`
 mais abaixo.
 
-DOIS CAMPOS SAO ESPELHADOS, E O SEGUNDO NASCEU EM 02/11/2026
-===========================================================
+TRES CAMPOS SAO ESPELHADOS, E O TERCEIRO NASCEU EM 23/11/2026
+============================================================
 
   `sha256` — o conteudo do arquivo. Diz se o BYTE mudou.
   `versao` — a constante `*_VERSAO` que o proprio snippet define. Diz QUAL
              VERSAO aquele byte se declara ser.
+  `mudou_em` — O DIA EM QUE AQUELE `sha256` MUDOU. Diz QUANDO aquele byte
+             passou a ser este. Os dois primeiros respondem "o que e"; este
+             responde "desde quando", e e a unica pergunta das tres que o
+             manifest nao sabia responder.
+
+O `mudou_em` — A TERCEIRA FONTE DA DATA DE UMA PAGINA (23/11/2026)
+=================================================================
+
+O pedido vem da segunda metade do item 2 do despacho da ronda de 23/11/2026, e
+a frase dele e literal: *"o portao de ar cobrando, por URL, que ela nao seja
+mais antiga que a revisao do `manifest.json` que a desembarcou"*. A execucao da
+tarde daquele dia fechou a primeira metade — a data de uma pagina e a MAIS
+RECENTE entre as datas de tudo de que ela e feita — e escreveu, pela 18.3, por
+que a segunda nao cabia: **a data em que uma pagina muda quando o CODIGO dela
+muda nao existia em lugar nenhum.** O manifest tinha UM `atualizado_em` para a
+revisao INTEIRA, e revisao inteira nao distingue a pagina que mudou da que nao
+mudou: com ela, ou todas as 11 paginas se dizem modificadas a cada desembarque,
+ou nenhuma.
+
+Este campo e essa data, e ela e DERIVADA e nunca digitada: `mudou_em` recebe a
+data de HOJE no mesmo gesto em que o `sha256` daquele item troca. Byte igual,
+data parada; byte novo, data de hoje. Nao ha caminho para ela subir sozinha.
+
+**A SEMEADURA DO PRIMEIRO DIA SAI DO GIT, E O QUE O GIT NAO SOUBER FICA `null`.**
+Item sem o campo (todos, no dia em que ele nasceu) e semeado com a data do
+ULTIMO COMMIT QUE TOCOU AQUELE ARQUIVO. Em clone RASO — e a 1.1 do contrato
+avisa que esta nuvem clona raso — o git pode nao ter esse commit, e nesse caso o
+campo nasce `null` e esta ferramenta DIZ que nao pudo semear. **E a resposta que
+cai no commit de FRONTEIRA do clone tambem e `null`**, por um motivo medido na
+propria passada que escreveu este campo: no clone raso a fronteira e tratada
+como commit sem pais, entao TODO arquivo nao tocado na janela aparece como
+adicionado ali. A primeira rodada desta ferramenta gravou `2026-11-19` em NOVE
+arquivos de dado que nao mudaram naquele dia — era o commit de fronteira
+respondendo no lugar da historia. Ver `fronteiras_do_clone_raso()`. `null` nao e "nao
+mudou nunca": e "nao sabido", e quem le trata os dois diferente. Inventar a data
+de hoje para um arquivo que nao mudou hoje seria publicar frescor falso, que e
+exatamente a mentira que o `dateModified` pode contar.
 
 O `versao` existe porque em 30/10/2026 esta ilha mediu o seguinte, e esta
 escrito no REGISTRO.md daquele dia: o comentario da vitrine afirmava que
@@ -76,7 +113,18 @@ conferir, em vez de aprovar com cara de completo (a licao do `git log` raso da
 1.1).
 
 Somente `snippets` tem versao: `conteudo` e `dados` sao arquivo de dado, nao
-tem codigo e nao se declaram versao nenhuma.
+tem codigo e nao se declaram versao nenhuma. O `mudou_em`, ao contrario, e de
+TODO item: a pergunta "desde quando este byte e este" cabe em dado tanto quanto
+em codigo.
+
+O `renderiza` — QUAL ITEM RENDERIZA QUAL PAGINA (23/11/2026)
+============================================================
+
+Esta ferramenta NAO escreve o `renderiza` dos snippets: ele e declaracao humana,
+e quem a confere e `ferramentas/teste-datas-de-codigo.py`, que casa a uniao das
+declaracoes com os slugs que a ilha serve de verdade. O que esta ferramenta faz
+e DENUNCIAR snippet sem o campo — porque sem ele o portao de ar nao sabe o que
+comparar, que e a alinea (b) do pedido do despacho.
 
     python3 ferramentas/atualizar-manifest.py            # escreve
     python3 ferramentas/atualizar-manifest.py --conferir  # nao escreve; falha se divergir
@@ -104,6 +152,68 @@ VERSAO_RE = re.compile(
 def hoje():
     """A data de HOJE, do relogio, nunca digitada."""
     return datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d")
+
+
+def fronteiras_do_clone_raso():
+    """Os commits de FRONTEIRA deste clone, lidos de `.git/shallow`.
+
+    POR QUE ISTO EXISTE, E FOI MEDIDO NA PASSADA QUE ESCREVEU ESTE CAMPO
+    (23/11/2026). A 1.1 do contrato avisa que esta nuvem clona raso e que
+    `git log` "responde curto SEM DAR ERRO". Aqui o defeito e pior que responder
+    curto: num clone raso o commit de fronteira e tratado como se NAO TIVESSE
+    PAIS, entao todo arquivo que nao foi tocado dentro da janela aparece como
+    ADICIONADO ali. Medido: `git log -1 -- dados/f1-respostas.json` devolveu
+    `d8e582e 2026-11-19`, que e exatamente o commit de fronteira — e o
+    `gerado_em` daquele banco e de 11/11. A semeadura teria gravado 19/11 em
+    NOVE arquivos que nao mudaram naquele dia, com cara de medicao.
+
+    Entao a regra: resposta que cai na fronteira do clone NAO e resposta.
+    """
+    try:
+        r = subprocess.run(["git", "rev-parse", "--git-dir"],
+                           cwd=ILHA, capture_output=True, text=True, timeout=20)
+    except (OSError, subprocess.SubprocessError):
+        return set()
+    if r.returncode != 0:
+        return set()
+    git_dir = (r.stdout or "").strip()
+    if not git_dir:
+        return set()
+    if not os.path.isabs(git_dir):
+        git_dir = os.path.join(ILHA, git_dir)
+    arq = os.path.join(git_dir, "shallow")
+    if not os.path.exists(arq):
+        return set()
+    with open(arq, encoding="utf-8") as f:
+        return set(l.strip() for l in f if l.strip())
+
+
+def data_do_ultimo_commit_de(rel, fronteiras=frozenset()):
+    """A data do ultimo commit que tocou UM arquivo da ilha, ou None.
+
+    None nao e "nao mudou nunca": e "o git deste clone nao sabe". A 1.1 do
+    contrato mede que esta nuvem clona RASO e que `git log` responde curto SEM
+    DAR ERRO, entao a unica leitura honesta de vazio aqui e "nao sabido" — e o
+    mesmo vale para a resposta que cai no commit de FRONTEIRA do clone, que e
+    uma resposta inventada pela topologia e nao pela historia do arquivo.
+    """
+    try:
+        r = subprocess.run(
+            ["git", "log", "-1", "--format=%H %cd", "--date=format:%Y-%m-%d", "--",
+             os.path.join(ILHA, rel)],
+            cwd=ILHA, capture_output=True, text=True, timeout=20)
+    except (OSError, subprocess.SubprocessError):
+        return None
+    if r.returncode != 0:
+        return None
+    saida = (r.stdout or "").strip().split()
+    if len(saida) != 2:
+        return None
+    commit, data = saida
+    if commit in fronteiras:
+        return None
+
+    return data if re.match(r"^\d{4}-\d{2}-\d{2}$", data) else None
 
 
 def data_do_ultimo_commit():
@@ -144,22 +254,28 @@ def versao_do_arquivo(rel):
     return achados[0], None
 
 
-def com_versao_depois_do_sha(item, valor):
-    """Grava `versao` LOGO DEPOIS de `sha256`, preservando a ordem do resto.
+def com_campo_depois_de(item, campo, valor, depois_de):
+    """Grava `campo` LOGO DEPOIS de `depois_de`, preservando a ordem do resto.
 
     A ordem importa de verdade aqui: o `--conferir` compara o JSON reserializado
     com os BYTES do arquivo, entao chave que cai em lugar instavel faz o portao
     reprovar um manifest em dia.
+
+    `depois_de` e uma LISTA em ordem de preferencia: o `mudou_em` quer cair
+    depois do `versao` nos snippets e depois do `sha256` no dado, que nao tem
+    versao. Chave ausente nao e erro aqui — a seguinte da lista responde.
     """
+    alvos = [depois_de] if isinstance(depois_de, str) else list(depois_de)
+    ancora = next((a for a in alvos if a in item and a != campo), None)
     novo = {}
     for chave, v in item.items():
-        if chave == "versao":
+        if chave == campo:
             continue
         novo[chave] = v
-        if chave == "sha256":
-            novo["versao"] = valor
-    if "versao" not in novo:          # item sem sha256: a versao vai no fim
-        novo["versao"] = valor
+        if chave == ancora:
+            novo[campo] = valor
+    if campo not in novo:             # nenhuma ancora existe: vai no fim
+        novo[campo] = valor
     return novo
 
 
@@ -170,6 +286,10 @@ def main():
     denuncias = []
     constantes_lidas = []
     revisao_antiga = int(m.get("revisao", 0))
+    fronteiras = fronteiras_do_clone_raso()
+    if fronteiras:
+        print("clone RASO: %d commit(s) de fronteira; semeadura que cair neles sai "
+              "`null` (1.1)" % len(fronteiras))
 
     for grupo in ("snippets", "conteudo", "dados"):
         itens = m.get(grupo, [])
@@ -181,26 +301,65 @@ def main():
                                  % (grupo, item["id"], rel))
                 continue
             novo = sha(rel)
-            if item.get("sha256") != novo:
+            sha_mudou = item.get("sha256") != novo
+            if sha_mudou:
                 trocas.append("sha256   %s:%s  %s -> %s"
                               % (grupo, item["id"],
                                  (item.get("sha256") or "(vazio)")[:12], novo[:12]))
                 item["sha256"] = novo
 
-            if grupo != "snippets":
-                continue
+            if grupo == "snippets":
+                lido, motivo = versao_do_arquivo(rel)
+                if lido is None:
+                    denuncias.append("SEM VERSAO  %s:%s -> %s" % (grupo, item["id"], motivo))
+                else:
+                    nome, valor = lido
+                    constantes_lidas.append("%s:%s  %s = %s" % (grupo, item["id"], nome, valor))
+                    if item.get("versao") != valor:
+                        trocas.append("versao   %s:%s  %s -> %s  (de %s)"
+                                      % (grupo, item["id"],
+                                         item.get("versao") or "(nao tinha o campo)",
+                                         valor, nome))
+                        itens[i] = com_campo_depois_de(item, "versao", valor, "sha256")
+                        item = itens[i]
 
-            lido, motivo = versao_do_arquivo(rel)
-            if lido is None:
-                denuncias.append("SEM VERSAO  %s:%s -> %s" % (grupo, item["id"], motivo))
-                continue
-            nome, valor = lido
-            constantes_lidas.append("%s:%s  %s = %s" % (grupo, item["id"], nome, valor))
-            if item.get("versao") != valor:
-                trocas.append("versao   %s:%s  %s -> %s  (de %s)"
-                              % (grupo, item["id"],
-                                 item.get("versao") or "(nao tinha o campo)", valor, nome))
-                itens[i] = com_versao_depois_do_sha(item, valor)
+                # O `renderiza` E DECLARACAO HUMANA e esta ferramenta nao a
+                # inventa: sem ela o portao de ar nao sabe QUAL pagina cobrar de
+                # qual item, que e a alinea (b) do pedido do despacho de 23/11.
+                if "renderiza" not in item:
+                    denuncias.append(
+                        "SEM RENDERIZA  %s:%s -> o item nao declara quais paginas "
+                        "renderiza, e sem isso o `mudou_em` dele nao alcanca URL "
+                        "nenhuma (quem confere a declaracao e "
+                        "ferramentas/teste-datas-de-codigo.py)" % (grupo, item["id"]))
+
+            # ---------------------------------------------------------------
+            # O `mudou_em`: HOJE no dia em que o `sha256` troca, e so nesse dia.
+            # Em `--conferir` nada e datado — o `sha256` divergente ja reprovou,
+            # e portao que depende de "hoje" reprova manifest em dia amanha
+            # (a licao da 20.5, escrita no bloco do `atualizado_em`).
+            # ---------------------------------------------------------------
+            if sha_mudou:
+                if not conferir:
+                    agora = hoje()
+                    if item.get("mudou_em") != agora:
+                        trocas.append("mudou_em %s:%s  %s -> %s  (o sha256 trocou hoje)"
+                                      % (grupo, item["id"],
+                                         item.get("mudou_em") or "(nao tinha o campo)", agora))
+                        itens[i] = com_campo_depois_de(item, "mudou_em", agora,
+                                                       ("versao", "sha256"))
+            elif "mudou_em" not in item:
+                semeada = data_do_ultimo_commit_de(rel, fronteiras)
+                trocas.append(
+                    "mudou_em %s:%s  (nao tinha o campo) -> %s"
+                    % (grupo, item["id"],
+                       ("%s  (semeado do ultimo commit deste arquivo)" % semeada)
+                       if semeada else
+                       "null  (NAO SEMEADO: o git deste clone nao tem commit deste "
+                       "arquivo; a 1.1 avisa que esta nuvem clona raso. `null` e "
+                       "`nao sabido`, nunca `nao mudou nunca`)"))
+                itens[i] = com_campo_depois_de(item, "mudou_em", semeada,
+                                               ("versao", "sha256"))
 
     if trocas:
         m["revisao"] = revisao_antiga + 1

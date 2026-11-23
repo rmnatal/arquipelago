@@ -71,7 +71,7 @@
    Antes disto a ilha cujo produto e "o preco de hoje" tinha ZERO ocorrencia de
    `dateModified` e de `datePublished` em todo o JSON-LD das 9 URLs. */
 if ( ! defined( 'RODAMETRIA_CASCA_VERSAO' ) ) {
-	define( 'RODAMETRIA_CASCA_VERSAO', '1.31.0' );
+	define( 'RODAMETRIA_CASCA_VERSAO', '1.32.0' );
 }
 
 /* ---------------------------------------------------------------------------
@@ -174,6 +174,17 @@ function rodametria_casca_nome_de_anuncio( $nome ) {
  */
 if ( ! defined( 'RODAMETRIA_ID_DADOS_F2' ) ) {
 	define( 'RODAMETRIA_ID_DADOS_F2', 'f2-respostas' );
+}
+
+/* O BANCO DA DATA DO CODIGO (23/11/2026, segunda metade do item 2 do despacho da
+   ronda deste dia). Ele e compilado do `mudou_em` por item do `manifest.json`
+   por `ferramentas/gerar-datas-de-codigo.py`, e esta aqui como BANCO e nao como
+   leitura do manifest por um motivo que o proprio despacho nomeou: **a casca nao
+   le o manifest** — ela le as options que o Sync grava, e o Sync so grava item de
+   dado com `publicar: true`. Dado que o snippet le e dado publicavel; logo, para
+   a data do codigo alcancar a tela, ela tinha de virar dado. */
+if ( ! defined( 'RODAMETRIA_ID_DADOS_CODIGO' ) ) {
+	define( 'RODAMETRIA_ID_DADOS_CODIGO', 'datas-de-codigo' );
 }
 
 /* ===========================================================================
@@ -750,6 +761,43 @@ add_filter( 'rodametria_data_da_pagina', function ( $data, $slug ) {
 
 	return rodametria_casca_data_mais_recente( $data,
 		( $banco && ! empty( $banco['gerado_em'] ) ) ? (string) $banco['gerado_em'] : '' );
+}, 10, 2 );
+
+/* A TERCEIRA FONTE DA DATA DE UMA PAGINA: O CODIGO QUE A DESENHA (23/11/2026)
+ *
+ * O QUE FALTAVA, em uma frase: as duas fontes que esta ilha ja tinha respondem
+ * "de que DADO esta pagina e feita". Nenhuma das duas se move quando o que muda
+ * e o CODIGO — e a pagina muda. Em 23/11/2026, de manha, as 11 paginas desta
+ * ilha serviam quatro datas diferentes, todas de banco, enquanto os SEIS
+ * snippets que as renderizam haviam sido reescritos naquela mesma tarde. A
+ * pagina afirmava ao Google nao ter mudado no dia em que o HTML dela mudou.
+ *
+ * DE ONDE SAI A DATA, e nao ha uma segunda declaracao do mesmo fato (20.7):
+ * `mudou_em` nasce no `manifest.json`, no mesmo gesto em que o `sha256` daquele
+ * item troca — byte igual, data parada. `gerar-datas-de-codigo.py` compila o
+ * `mudou_em` com o `renderiza` de cada item e escreve `dados/datas-de-codigo.json`,
+ * que o Sync leva a option. Aqui a casca so LE e compoe. Nenhuma data e digitada
+ * em nenhum dos tres degraus.
+ *
+ * `null` NAO VIRA DATA. O campo `data` do banco pode ser `null` com
+ * `codigo_nao_sabido: true` — e o caso do clone raso que nao soube semear. Ali a
+ * casca nao contribui nada, e a pagina segue publicando a data dos bancos dela.
+ * `null` e "nao sabido", nunca "nao mudou nunca", e inventar a data de hoje para
+ * um arquivo que nao mudou hoje seria publicar frescor falso, que e a mentira
+ * que um `dateModified` pode contar.
+ *
+ * E A PRIORIDADE DESTE FILTRO NAO IMPORTA, de proposito: desde a composicao pelo
+ * MAIS RECENTE a ordem dos callbacks deixou de ser um fato do qual a resposta
+ * depende. Ele entra em 10, como os outros, e entraria em 9 ou em 99 com o mesmo
+ * resultado. */
+add_filter( 'rodametria_data_da_pagina', function ( $data, $slug ) {
+	$banco = rodametria_casca_banco( RODAMETRIA_ID_DADOS_CODIGO );
+	if ( ! $banco || empty( $banco['paginas'][ $slug ]['data'] ) ) {
+		return $data;
+	}
+
+	return rodametria_casca_data_mais_recente( $data,
+		(string) $banco['paginas'][ $slug ]['data'] );
 }, 10, 2 );
 
 add_action( 'wp_head', function () {

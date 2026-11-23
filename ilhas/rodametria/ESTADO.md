@@ -27,7 +27,7 @@ ultima_execucao: 2026-11-23T17:14Z   # O DESPACHO DE TRES ITENS DA RONDA DE
                          # mais os 41 bytes do Endurance Page Cache, 11 de 11
                          # (20.14). A HORA DESTE CAMPO SAIU DO `date -u` NA
                          # MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
-executando_desde: 2026-11-23T19:17Z   # RESERVA desta execucao (passo 5 da secao 1), pelo foco da 1.2 em rodametria. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
+executando_desde: 2026-11-23T19:29Z   # RESERVA RENOVADA pela 1.1: a execucao passou de 40 minutos. O bloco e a segunda metade do item 2 do despacho de 23/11 (o `mudou_em` por item do manifest, o `renderiza`, o arquivo publicavel que leva a data do codigo ao ar e o portao de ar por URL) e ele mexe em manifest, casca, gerador e dois portoes. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA.
                          # A reserva foi 2026-11-23T16:17Z, commit 98f3da5,
                          # aceita de PRIMEIRA: a ilha estava livre
                          # (`executando_desde: null`, que pela 1.1 ja significa

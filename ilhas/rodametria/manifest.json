@@ -4,7 +4,7 @@
   "nicho": "mobilidade eletrica — acertar os tres numeros antes de comprar um veiculo eletrico: categoria legal (CNH e placa), autonomia real e carga maxima",
   "dominio": "https://rodametria.com.br",
   "versao_manifest": 1,
-  "revisao": 124,
+  "revisao": 128,
   "atualizado_em": "2026-11-23",
   "estado": "nascendo",
   "desembarque": {
@@ -20,8 +20,12 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "95194f541b7984c2a1c170c53eb3ade0d3af0e5923f79fd27e54afc269c45c98",
-      "versao": "1.31.0",
+      "sha256": "e5193635205a0bf9822f328a216cff034be3f455a5dd8a6cb6ee3810ffb6d50b",
+      "versao": "1.32.0",
+      "mudou_em": "2026-11-23",
+      "renderiza": [
+        "*"
+      ],
       "descricao": "A CASCA desta ilha (a versao corrente esta no campo `versao` deste item, espelhado da constante do arquivo). Tokens do DESIGN.md (tinta #13212B, verde #0A6B4C, Alfa Slab One so na marca, Barlow Semi Condensed nos titulos, JetBrains Mono em todo numero), simbolo V9 completo no cabecalho e em negativo no rodape, favicon proprio (secao 6: icone padrao do WordPress na aba e bloco reprovado), menu hamburguer com aria-expanded/aria-controls e links <a href> de verdade no HTML servido, trilha + BreadcrumbList, WebSite JSON-LD na home, <title> e description saindo de UM mapa de paginas. E os COMPONENTES DO MOLDE da secao 32, aqui e nao em cada snippet, como a 32.6-b manda: caixa de resultado, dobra <details>, cartao de compra com espaco reservado para quem nao tem foto, carrossel com scroll-snap em CSS puro, barra fixa do telefone e o rotulo do botao de loja por degrau da escada da 25.1. Pagina nova entra pelos filtros `rodametria_paginas` e `rodametria_instalar`, de dentro do proprio snippet dela — a casca nao e editada quando a ilha cresce. 1.3.0 (29/10/2026): `garantir_pagina()` aceita PAI, pela 16.2, e `url_do_slug()` acha a pagina pela meta `_rodametria_id` em vez de por caminho — `get_page_by_path()` casa o caminho INTEIRO e devolveria nulo para filha de arvore de dois niveis, com `casca_link()` transformando link vazio em texto sem reclamar. 1.4.0 (29/10/2026, no mesmo dia e por defeito MEDIDO no ar): a instalacao passou a rodar tambem quando a ASSINATURA DO MAPA muda, e nao so quando a versao da casca muda. A revisao 13 subiu casca nova e snippet de pagina nova na MESMA passada do Sync; quando o `init` chamou a instalacao, o snippet novo ainda nao estava carregado naquela requisicao, as tres paginas nao foram criadas, e a casca gravou `instalado: 1.3.0` — com a versao marcada, a instalacao nunca mais rodaria. O sintoma era o da secao 4: /status em 13, cinco linhas `ok`, o mapa de paginas ja com as tres novas, e o wp-sitemap.xml com duas URLs. A VERSAO SAIU DESTA PROSA EM 02/11/2026, e ela estava VELHA nos QUATRO snippets (a casca dizia 1.4.0 servindo 1.6.0; os outros tres diziam 1.0.0) — e isso e a prova de que o campo `versao` faltava. Quem declara a versao agora e o campo, espelhado da constante do arquivo por `ferramentas/atualizar-manifest.py` e cobrado por `ferramentas/teste-versao-dos-snippets.php`; prosa que repete o mesmo fato e a segunda declaracao que sobe sozinha de um lado so."
     },
     {
@@ -33,6 +37,10 @@
       "publicar": true,
       "sha256": "a55b059d9807c41278fba710ab59456c365b1c9ad4f92ea60904147def2d823b",
       "versao": "1.7.0",
+      "mudou_em": "2026-11-23",
+      "renderiza": [
+        "inicio"
+      ],
       "descricao": "A F1 — a ferramenta que esta ilha existe para ter, e ela ocupa a PRIMEIRA TELA DA HOME, nao uma URL nova: a casca prometia isso desde 29/10/2026 com todas as letras (\"no dia em que a resolucao for lida, a F1 toma a primeira tela da home e os cartoes descem, e NENHUMA URL muda, que e o que a 32.3 protege\"), e o dia foi 05/11/2026, ~23h3x de Brasilia, quando o Raphael abriu o PDF oficial da Resolucao Contran 996/2023 no Chrome dele. Ela se pendura em DOIS filtros novos da casca 1.11.0 (`rodametria_home_ferramenta` e `rodametria_home_cartoes`), pela 32.6-b: a casca nao cresce quando a ilha cresce, e a ferramenta nao edita a casca para aparecer. Filtro vazio devolve a home HUB de 29/10 byte por byte, e e isso que acontece se o banco nao chegar ou se o limiar voltar a `pendente` — o snippet LE O STATUS em vez de ter uma lista de pendencias escrita a mao. Ordem da 32.1 de cima para baixo: a pergunta como H2, o formulario com o PIVO do acelerador em radio no mesmo nivel dos dois numeros (1.1), a caixa de resposta JA PRE-RENDERIZADA, a camada 2 (a rua e municipal) em bloco SEPARADO com titulo proprio porque fundi-la com a categoria e o defeito que a secao 7 nomeia, o bloco de compra, as ressalvas da 1.4, a prestacao de contas da secao 7 com os cinco grupos por causa, DUAS tabelas pre-renderizadas visiveis (a da REGRA, uma linha por categoria com o artigo ao lado, que e a metade que a IA le sem preencher formulario; e a do BANCO, com a coluna `categoria` que a 1.6 deixou vazia em 28/10 e que nasceu aqui), e tres dobras. O QUE ELA NAO RESPONDE, e diz na primeira tela: CNH. A 996/2023 nao tem artigo sobre habilitacao — decide a categoria e decide placa, registro, licenciamento (arts. 12 e 13) e capacete (art. 19 V). A habilitacao e do CTB, que esta ilha nao leu, e a constante `exigencia-de-habilitacao-por-categoria-ctb` nasceu `pendente` para esse silencio ter nome; o portao cobra a AUSENCIA das frases `dispensa CNH` e `exige habilitacao` em todo texto de tela. NENHUM numero e NENHUMA frase de resposta e digitado neste arquivo: tudo vem da option que o Sync grava de dados/f1-respostas.json, escrito por ferramentas/gerar-f1.py a partir de regras/f1.py e de dados/constantes.json. A arvore esta escrita DUAS vezes de proposito (secao 8) — no cerebro e no JS do rodape — e a divergencia e MEDIDA por ferramentas/teste-f1-arvore.mjs, que escreve uma TERCEIRA em JavaScript e compara as duas sobre a grade dos limiares ficticios."
     },
     {
@@ -44,6 +52,10 @@
       "publicar": true,
       "sha256": "fb23aae5cbbd59d9ea0d340102c3055cb0cf7c6c8059f5a2d283591d75ffea81",
       "versao": "1.14.0",
+      "mudou_em": "2026-11-23",
+      "renderiza": [
+        "autonomia-patinete-eletrico"
+      ],
       "descricao": "A F2 (versao corrente no campo `versao` deste item), a PRIMEIRA pagina desta ilha no ar, em /autonomia-patinete-eletrico/. Ordem da 32.1 de cima para baixo, conferida por afirmacao no fonte: trilha e H1, promessa, formulario ja preenchido com o caso de exemplo, caixa de resultado JA PRE-RENDERIZADA no HTML (a metade que a IA le sem preencher formulario, e o que a 22.8 exige de quem desliga o JavaScript), bloco de compra, prestacao de contas da secao 7 com os cinco grupos por causa e a soma fechando o banco contado, tabela pre-renderizada visivel, e o resto em <details>. NENHUM numero e NENHUMA frase de resposta e digitado neste arquivo: tudo vem da option que o Sync grava de dados/f2-respostas.json, escrito por ferramentas/gerar-f2.py a partir de ferramentas/f2-referencia.py e de dados/constantes.json. O JS do rodape preenche MOLDE, nunca escreve frase — a bateria de mutacoes de 29/10 reprovou as duas versoes em que ele escrevia. A VERSAO SAIU DESTA PROSA EM 02/11/2026, e ela estava VELHA nos QUATRO snippets (a casca dizia 1.4.0 servindo 1.6.0; os outros tres diziam 1.0.0) — e isso e a prova de que o campo `versao` faltava. Quem declara a versao agora e o campo, espelhado da constante do arquivo por `ferramentas/atualizar-manifest.py` e cobrado por `ferramentas/teste-versao-dos-snippets.php`; prosa que repete o mesmo fato e a segunda declaracao que sobe sozinha de um lado so."
     },
     {
@@ -55,6 +67,10 @@
       "publicar": true,
       "sha256": "9d32a4f16699e69ecffbf9dacd875ea1d4a43024bbd15ca35d02f568ae802d96",
       "versao": "1.8.0",
+      "mudou_em": "2026-11-23",
+      "renderiza": [
+        "peso-maximo-patinete-eletrico"
+      ],
       "descricao": "A F3 — a TERCEIRA e ultima das tres ferramentas que esta ilha existe para ter, em /peso-maximo-patinete-eletrico/ (a URL carrega a consulta MEDIDA do eixo C do corpus, `patinete eletrico peso maximo suportado`, e nao a pergunta do H1). O QUE A SEPARA DAS DUAS IRMAS, e e por isso que ela pode ir ao ar hoje: A RESPOSTA PRINCIPAL NAO DEPENDE DO BANCO. Dado o peso de quem pilota e o que ele carrega, a carga maxima a procurar sai de `total x (1 + margem)` — aritmetica sobre a entrada da pessoa mais UMA constante desta ilha, que e `decisao_da_ilha` em 10% e que a pagina NUNCA atribui a terceiro (a constante carrega a busca limpa que NEGOU a fonte que o bloco 1 supunha). A vitrine e a segunda camada e hoje esta VAZIA, com a causa NOMEADA e os numeros contados: os tres registros do banco que declaram carga maxima declaram 120 kg, os tres lidos em ficha de varejo grande (nivel 5, o piso que a 3.5 da especificacao exige neste campo), e NENHUM tem oferta aberta — pela 25.2 item sem piso de compra nao entra em vitrine. A LISTA VAZIA TEM TRES CAUSAS E TRES FRASES, e isso nasceu de um defeito medido nesta propria passada: a primeira versao tinha UM molde e dizia que 'nenhum dos 3 aguenta os seus 108 kg com folga' quando os tres declaram 120 kg e cobrem com folga os 119 que a regra pede — o eixo que esvaziava a vitrine era a falta de LINK e nao a carga. A TABELA PRE-RENDERIZADA PUBLICA A TESE DA ILHA: com a folga de 10%, 109 kg e o ultimo peso total que os 120 kg do teto de varejo acolhem e 110 kg ja nao, e a virada esta visivel na tabela e no FAQPage, que e montado dela campo por campo. Ordem da 32.1: promessa, formulario ja preenchido com o caso que da 'no limite' e nao um folgado, o <noscript> da 32.1-b, a caixa pre-renderizada, o bloco de compra com a causa da falta, os tres grupos da 3.2 na ordem em que a 3.2 manda (o do meio NUNCA primeiro), a ressalva SOURCED da 3.4 logo depois do grupo do meio e so quando ele existe, o convite para a F2 com o peso na URL, a prestacao de contas da secao 7, a tabela VISIVEL e tres dobras. E ELA E A PRIMEIRA FERRAMENTA DESTA ILHA A NASCER DENTRO DO CONSERTO DA 32.1-b: os campos nascem com o prefixo (`rdm_peso`, `rdm_carga`) e o aviso vem do componente da casca, que e exatamente o que a regra pede ao mandar o componente morar num lugar so."
     },
     {
@@ -66,6 +82,13 @@
       "publicar": true,
       "sha256": "870c19f1db1db9c9283751a99eb7286b5a170c075d19e106fd38caa5005e8e3d",
       "versao": "1.21.0",
+      "mudou_em": "2026-11-23",
+      "renderiza": [
+        "veiculos",
+        "patinete-eletrico",
+        "bicicleta-eletrica",
+        "moto-eletrica"
+      ],
       "descricao": "O MOTOR DA SECAO 30 nesta ilha (versao corrente no campo `versao` deste item): a secao de nivel 1 `/veiculos/` e as paginas de consulta de produto que nascem filhas diretas dela, com o slug igual a consulta. Ordem da 32.2 de cima para baixo: trilha e H1, caixa de resposta com o preco mediano em Mono, bloco de compra com id=comprar logo abaixo, tabela-resumo VISIVEL com TODOS os anuncios (a secao 7 manda nomear todo item uma vez), a prestacao de contas de quem nao entrou com a causa contada, a malha da 16.4 tambem visivel porque e alvo de link, e o resto nas dobras da casca. NENHUM numero e digitado neste arquivo: a prosa vem de dados/paginas-de-produto.json com moldes e o numero vem de dados/vitrine-de-produto.json, recontado por ferramentas/gerar-vitrine-de-produto.py. A tabela NAO tem coluna de potencia nominal, velocidade maxima, acelerador nem carga maxima: o esquema desta ilha exige nivel 5 ou melhor nesses quatro e titulo de anuncio e nivel 6, entao a coluna diz o que o anuncio DECLARA em vez de preencher coluna tecnica com palavra tirada do titulo. JSON-LD de ItemList e FAQPage no wp_head; folha no wp_footer; nada dentro do retorno do shortcode. A VERSAO SAIU DESTA PROSA EM 02/11/2026, e ela estava VELHA nos QUATRO snippets (a casca dizia 1.4.0 servindo 1.6.0; os outros tres diziam 1.0.0) — e isso e a prova de que o campo `versao` faltava. Quem declara a versao agora e o campo, espelhado da constante do arquivo por `ferramentas/atualizar-manifest.py` e cobrado por `ferramentas/teste-versao-dos-snippets.php`; prosa que repete o mesmo fato e a segunda declaracao que sobe sozinha de um lado so."
     },
     {
@@ -77,6 +100,13 @@
       "publicar": true,
       "sha256": "63bd6e6977e5b83c02edf449f62261167ae714c8c69c2cacfd9f9990a35aeb93",
       "versao": "1.4.0",
+      "mudou_em": "2026-11-23",
+      "renderiza": [
+        "sobre",
+        "contato",
+        "divulgacao-de-afiliados",
+        "privacidade"
+      ],
       "descricao": "AS QUATRO PAGINAS DA 16.1 (versao corrente no campo `versao` deste item), em `/sobre/`, `/contato/`, `/divulgacao-de-afiliados/` e `/privacidade/`. Pai NULO nas quatro, porque a 16.1 as nomeia como as unicas paginas soltas na raiz fora da home; `no_menu` TRUE, porque o VOZ.md manda um menu curto de assunto e pagina institucional no menu de cima rouba o lugar do que a pessoa veio procurar — elas aparecem no RODAPE, que a casca monta do mapa inteiro e serve em toda pagina, o que tambem fecha a 16.4(f) para as quatro de uma vez. Ordem da 32.2: trilha e H1, caixa de resposta, linha mestra, secoes visiveis, bloco de recusa, dobras, malha. SEM bloco de compra, porque nao ha o que comprar nelas. NENHUM numero e digitado: a prosa mora em dados/paginas-institucionais.json com 16 moldes, e `rdm_inst_numeros()` os CONTA na hora de servir, lendo as options que o Sync grava e o mapa de paginas da casca — a 'pagina que fala de si' e justamente o caso em que numero digitado passa a mentir calado (secao 8). O BLOCO DE RECUSA e marcado no markup (`rdm-inst-recusa`) e todo item dele ABRE negando: a cicatriz da clubedomosaico de 11/09/2026 e que perdoar por presenca de palavra e adivinhar. A folha sai no wp_footer e nao redecora nada da casca (32.5-c); o portao mede isso por SELETOR, nunca por palavra solta. A VERSAO SAIU DESTA PROSA EM 02/11/2026, e ela estava VELHA nos QUATRO snippets (a casca dizia 1.4.0 servindo 1.6.0; os outros tres diziam 1.0.0) — e isso e a prova de que o campo `versao` faltava. Quem declara a versao agora e o campo, espelhado da constante do arquivo por `ferramentas/atualizar-manifest.py` e cobrado por `ferramentas/teste-versao-dos-snippets.php`; prosa que repete o mesmo fato e a segunda declaracao que sobe sozinha de um lado so."
     }
   ],
@@ -88,6 +118,7 @@
       "formato": "json",
       "publicar": true,
       "sha256": "c341a1527a5164d2f6c6a2256be7fb6d2214ba1af3d83131d2f8d310c4be7725",
+      "mudou_em": null,
       "descricao": "O que a F2 serve: campos, moldes de frase, fatores de relevo, resposta de exemplo pre-renderizada, tabela e prestacao de contas."
     },
     {
@@ -96,6 +127,7 @@
       "formato": "json",
       "publicar": false,
       "sha256": "da878c9960b3d6d4828f33baa787d4ac1d904c04e219ce668cd00a5024739dd8",
+      "mudou_em": null,
       "descricao": "As nove constantes da ilha, com status e procedencia. Fonte unica de todo numero de regua."
     },
     {
@@ -104,6 +136,7 @@
       "formato": "json",
       "publicar": false,
       "sha256": "54df0c383b9b73d9ff9e5bee3a0b08803c8324b4b3c89fc6670935644ff6d7ee",
+      "mudou_em": null,
       "descricao": "Banco de veiculos. A F2 conta a prestacao de contas dele."
     },
     {
@@ -112,6 +145,7 @@
       "formato": "json",
       "publicar": false,
       "sha256": "08919f1dea1c8202f73e4cb61d47fa6738b60e257a3f12086e6790df5baa1f9b",
+      "mudou_em": null,
       "descricao": "Banco de pecas."
     },
     {
@@ -120,6 +154,7 @@
       "formato": "json",
       "publicar": false,
       "sha256": "b8024c66138f57de3c03f7065fc0afb1e0d8ca1b4f36be87a4a7bf5e9f6a4564",
+      "mudou_em": "2026-11-23",
       "descricao": "O contrato do banco, versao 2."
     },
     {
@@ -128,6 +163,7 @@
       "formato": "json",
       "publicar": true,
       "sha256": "20e224e2ce5c77f8d79c9310cd56f568f5d179c249557342af366b18e89e911c",
+      "mudou_em": "2026-11-20",
       "descricao": "A camada DECLARADA das paginas da secao 30: a voz do VOZ.md com MOLDES no lugar de todo numero. `gerar-vitrine-de-produto.py --conferir` REPROVA qualquer digito escrito nesta prosa fora da lista de permitidos."
     },
     {
@@ -136,6 +172,7 @@
       "formato": "json",
       "publicar": true,
       "sha256": "a1c88557f0b7850d8588f1f718318526849344be790fc79a962a00951817daca",
+      "mudou_em": "2026-11-23",
       "descricao": "A camada GERADA: cartoes do carrossel (teto de cinco, 32.1), linhas da tabela (todas) e os numeros, RECONTADOS de dados/anuncios-por-consulta.json."
     },
     {
@@ -144,6 +181,7 @@
       "formato": "json",
       "publicar": false,
       "sha256": "4ccace1b7b0d7ca2bb68770d010631c7ba26b865e144ebaf3c23aa10fdc6d1be",
+      "mudou_em": "2026-11-23",
       "descricao": "A declaracao das consultas de compra: volume, classificacao de SERP com quem viu e quando, escada de chaves da loja, e a decisao de nascer ou nao com a causa. NAO vai para o site: e cheio do vocabulario de bastidor que a 32.4 proibe na pagina publica."
     },
     {
@@ -152,6 +190,7 @@
       "formato": "json",
       "publicar": false,
       "sha256": "f8ef34814cb604844d02c4fa29b98348a5066706b06252d61047d14d35f41992",
+      "mudou_em": "2026-11-23",
       "descricao": "Os anuncios lidos na Shopee, com o veredito da regua de relevancia por anuncio, a escada medida e as fotos com largura e altura lidas no cabecalho do arquivo na CDN."
     },
     {
@@ -160,6 +199,7 @@
       "formato": "json",
       "publicar": true,
       "sha256": "4c20090c44f077f89fb4f0a1b4660faf99b880f56b60d4f13ffce37d6fe34a0b",
+      "mudou_em": null,
       "descricao": "A camada DECLARADA das quatro paginas do bloco 5d: a voz do VOZ.md com MOLDES no lugar de todo numero. `teste-institucional.py` REPROVA digito solto na prosa fora de `digitos_permitidos`, molde que o preenchedor do PHP nao conhece, e item de bloco de recusa que nao ABRE negando. Traz tambem `terceiros_que_carregam`: os enderecos de fora que a pagina de privacidade NOMEIA, medidos em 30/10/2026 e conferidos contra o HTML servido de TODAS as URLs do sitemap por `conferir-institucional-no-ar.py` — endereco novo torna a pagina falsa e faz o portao falhar."
     },
     {
@@ -168,6 +208,7 @@
       "formato": "json",
       "publicar": true,
       "sha256": "f1ced9581997d048e09a5dfc490d2a4f3a60e0af67a452b918fdb900585f0851",
+      "mudou_em": null,
       "descricao": "Tudo o que a F1 serve na tela, escrito por ferramentas/gerar-f1.py a partir de regras/f1.py e de dados/constantes.json. Inclui os moldes de frase INTEIROS (o PHP e o JS leem os mesmos, para as duas metades nao poderem dizer coisas diferentes para a mesma entrada), os limiares lidos da resolucao, as duas tabelas pre-renderizadas e a prestacao de contas com a soma fechando o banco."
     },
     {
@@ -176,6 +217,7 @@
       "formato": "json",
       "publicar": true,
       "sha256": "80a23ad6ab527c5da70a2a86a0904cd6b63039f57226c2961b2ac59699d01cc7",
+      "mudou_em": null,
       "descricao": "Tudo o que a F3 serve na tela, escrito por ferramentas/gerar-f3.py a partir de regras/f3.py e de dados/constantes.json. Inclui os moldes de frase INTEIROS (o PHP e o JS leem os mesmos, para as duas metades nao poderem dizer coisas diferentes para a mesma entrada), a tabela pre-renderizada de 9 pesos com a carga minima de cada um recomputada pela referencia, as DUAS contagens por linha (quantos do banco aguentariam aquele peso e quantos poderiam ser oferecidos — fatos diferentes, e hoje a segunda e zero em toda linha), e a prestacao de contas com a soma fechando os 17 registros do banco."
     },
     {
@@ -184,7 +226,17 @@
       "formato": "json",
       "publicar": true,
       "sha256": "93ac54c8bd1659c1a8517c323be793115318b868d88710856e206dc168f80ecf",
+      "mudou_em": null,
       "descricao": "A camada 2 da F1 como DADO e nao como prosa de rodape: o limite de velocidade por municipio, com o status de cada um. ENTROU NO MANIFEST EM 06/11/2026 porque a F1 foi ao ar e o JS dela precisa do STATUS e nunca so do numero — municipio com ato NAO LIDO tem frase propria, e mandar o numero dele faria o navegador publicar um limite que a pagina se recusa a publicar. Os quatro registros sao `pendente`."
+    },
+    {
+      "id": "datas-de-codigo",
+      "arquivo": "dados/datas-de-codigo.json",
+      "formato": "json",
+      "publicar": true,
+      "sha256": "235773ce8fe0088cd317cf8401631f4da3df41e321eb2ca9c5e2d3cd65d3b0a4",
+      "mudou_em": "2026-11-23",
+      "descricao": "A DATA EM QUE O CODIGO DE CADA PAGINA MUDOU, e ela e a TERCEIRA fonte da data de uma pagina (23/11/2026, segunda metade do item 2 do despacho da ronda deste dia). As duas primeiras sao os bancos de que a pagina e feita; esta e o codigo que a desenha. `publicar: true` NAO e opcional aqui e e o motivo de este arquivo existir: a alinea (c) do pedido era \"o `mudou_em` viajar ate o ar\", e a casca NAO le o manifest.json — ela le as options que o Sync grava, e o Sync so grava item de dado publicavel. Entao a data do codigo tinha de VIRAR DADO para alcancar a tela. Escrito por `ferramentas/gerar-datas-de-codigo.py`, que o compila do `mudou_em` por item do manifest pelo campo `renderiza` de cada snippet, e cobrado por `ferramentas/teste-datas-de-codigo.py`. NENHUMA data e digitada no caminho: `mudou_em` recebe a data de hoje no mesmo gesto em que o `sha256` do item troca, e este arquivo e funcao PURA do manifest — sem data de geracao dentro, para o `sha256` dele nao trocar todo dia e a revisao nao subir por nada."
     }
   ]
 }

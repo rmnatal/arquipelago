@@ -1,0 +1,175 @@
+{
+  "id": "datas-de-codigo",
+  "ilha": "rodametria",
+  "o_que_este_arquivo_e": "A DATA EM QUE O CODIGO DE CADA PAGINA MUDOU, compilada do `mudou_em` por item do manifest.json pelo campo `renderiza` de cada snippet. E a TERCEIRA fonte da data de uma pagina: as duas primeiras sao os bancos de que ela e feita, e esta e o codigo que a desenha. A casca a compoe com as outras por `rodametria_casca_data_mais_recente()`, entao a pagina publica a MAIS RECENTE das tres e nunca uma data mais velha do que o seu proprio HTML.",
+  "por_que_sem_data_de_geracao": "Este arquivo e funcao PURA do manifest: mesmos `mudou_em`, mesmo byte. Estampar a data da geracao faria o `sha256` dele trocar todo dia e a revisao subir por nada, e o `mudou_em` do proprio arquivo passaria a dizer que mudou o que nao mudou.",
+  "o_que_null_quer_dizer": "`data: null` com `codigo_nao_sabido: true` e `o git deste clone nao soube semear o `mudou_em`', nunca `nao mudou nunca'. A casca nao publica data nenhuma a partir disso, e o portao de ar DIZ que nao mediu em vez de aprovar com cara de completo.",
+  "gerado_por": "ferramentas/gerar-datas-de-codigo.py",
+  "paginas": {
+    "autonomia-patinete-eletrico": {
+      "data": "2026-11-23",
+      "itens": [
+        {
+          "id": "rodametria-casca",
+          "versao": "1.32.0",
+          "mudou_em": "2026-11-23"
+        },
+        {
+          "id": "rodametria-f2",
+          "versao": "1.14.0",
+          "mudou_em": "2026-11-23"
+        }
+      ]
+    },
+    "bicicleta-eletrica": {
+      "data": "2026-11-23",
+      "itens": [
+        {
+          "id": "rodametria-casca",
+          "versao": "1.32.0",
+          "mudou_em": "2026-11-23"
+        },
+        {
+          "id": "rodametria-produto",
+          "versao": "1.21.0",
+          "mudou_em": "2026-11-23"
+        }
+      ]
+    },
+    "contato": {
+      "data": "2026-11-23",
+      "itens": [
+        {
+          "id": "rodametria-casca",
+          "versao": "1.32.0",
+          "mudou_em": "2026-11-23"
+        },
+        {
+          "id": "rodametria-institucional",
+          "versao": "1.4.0",
+          "mudou_em": "2026-11-23"
+        }
+      ]
+    },
+    "divulgacao-de-afiliados": {
+      "data": "2026-11-23",
+      "itens": [
+        {
+          "id": "rodametria-casca",
+          "versao": "1.32.0",
+          "mudou_em": "2026-11-23"
+        },
+        {
+          "id": "rodametria-institucional",
+          "versao": "1.4.0",
+          "mudou_em": "2026-11-23"
+        }
+      ]
+    },
+    "inicio": {
+      "data": "2026-11-23",
+      "itens": [
+        {
+          "id": "rodametria-casca",
+          "versao": "1.32.0",
+          "mudou_em": "2026-11-23"
+        },
+        {
+          "id": "rodametria-f1",
+          "versao": "1.7.0",
+          "mudou_em": "2026-11-23"
+        }
+      ]
+    },
+    "moto-eletrica": {
+      "data": "2026-11-23",
+      "itens": [
+        {
+          "id": "rodametria-casca",
+          "versao": "1.32.0",
+          "mudou_em": "2026-11-23"
+        },
+        {
+          "id": "rodametria-produto",
+          "versao": "1.21.0",
+          "mudou_em": "2026-11-23"
+        }
+      ]
+    },
+    "patinete-eletrico": {
+      "data": "2026-11-23",
+      "itens": [
+        {
+          "id": "rodametria-casca",
+          "versao": "1.32.0",
+          "mudou_em": "2026-11-23"
+        },
+        {
+          "id": "rodametria-produto",
+          "versao": "1.21.0",
+          "mudou_em": "2026-11-23"
+        }
+      ]
+    },
+    "peso-maximo-patinete-eletrico": {
+      "data": "2026-11-23",
+      "itens": [
+        {
+          "id": "rodametria-casca",
+          "versao": "1.32.0",
+          "mudou_em": "2026-11-23"
+        },
+        {
+          "id": "rodametria-f3",
+          "versao": "1.8.0",
+          "mudou_em": "2026-11-23"
+        }
+      ]
+    },
+    "privacidade": {
+      "data": "2026-11-23",
+      "itens": [
+        {
+          "id": "rodametria-casca",
+          "versao": "1.32.0",
+          "mudou_em": "2026-11-23"
+        },
+        {
+          "id": "rodametria-institucional",
+          "versao": "1.4.0",
+          "mudou_em": "2026-11-23"
+        }
+      ]
+    },
+    "sobre": {
+      "data": "2026-11-23",
+      "itens": [
+        {
+          "id": "rodametria-casca",
+          "versao": "1.32.0",
+          "mudou_em": "2026-11-23"
+        },
+        {
+          "id": "rodametria-institucional",
+          "versao": "1.4.0",
+          "mudou_em": "2026-11-23"
+        }
+      ]
+    },
+    "veiculos": {
+      "data": "2026-11-23",
+      "itens": [
+        {
+          "id": "rodametria-casca",
+          "versao": "1.32.0",
+          "mudou_em": "2026-11-23"
+        },
+        {
+          "id": "rodametria-produto",
+          "versao": "1.21.0",
+          "mudou_em": "2026-11-23"
+        }
+      ]
+    }
+  }
+}
