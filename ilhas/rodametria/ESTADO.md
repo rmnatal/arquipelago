@@ -27,7 +27,7 @@ ultima_execucao: 2026-11-23T17:14Z   # O DESPACHO DE TRES ITENS DA RONDA DE
                          # mais os 41 bytes do Endurance Page Cache, 11 de 11
                          # (20.14). A HORA DESTE CAMPO SAIU DO `date -u` NA
                          # MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
-executando_desde: null   # LIMPO no fecho desta execucao (passo 7 da secao 1).
+executando_desde: 2026-11-23T19:17Z   # RESERVA desta execucao (passo 5 da secao 1), pelo foco da 1.2 em rodametria. A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
                          # A reserva foi 2026-11-23T16:17Z, commit 98f3da5,
                          # aceita de PRIMEIRA: a ilha estava livre
                          # (`executando_desde: null`, que pela 1.1 ja significa
