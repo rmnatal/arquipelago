@@ -2,7 +2,7 @@
  "id": "anuncios-por-consulta",
  "ilha": "rodametria",
  "bloco": "5b",
- "gerado_em": "2026-11-19",
+ "gerado_em": "2026-11-23",
  "gerado_por": "ferramentas/coletar-por-consulta.py",
  "o_que_este_arquivo_e": "O dado COMERCIAL das consultas de produto da secao 30: os anuncios lidos na Open API de afiliados da Shopee, com o veredito da regua de relevancia por anuncio, a escada de chaves medida, o numero proprio contado e a contagem do rotulo de potencia. Dado TECNICO nao entra aqui: titulo de anuncio e nivel 6 e o `niveis_minimos_por_campo` do esquema exige nivel 5 ou melhor em watt, velocidade, acelerador e carga maxima.",
  "abre_o_portao_NAO_e_o_mesmo_que_publica": "`abre_o_portao_da_30_2` diz que a consulta tem tres anuncios que servem COM link de afiliado e um numero proprio contado. Quem decide se a pagina nasce e a declaracao (`publicar_declarado`) mais este portao, os dois.",
@@ -13,7 +13,7 @@
    "consulta": "bicicleta elétrica",
    "slug": "veiculos/bicicleta-eletrica",
    "publicar_declarado": true,
-   "colhido_em": "2026-11-18",
+   "colhido_em": "2026-11-23",
    "canal": "API de afiliado da Shopee (productOfferV2), credencial no ambiente",
    "chave_escolhida": "bicicleta eletrica adulto",
    "degrau_escolhido": 1,
@@ -22,32 +22,32 @@
      "degrau": 1,
      "chave": "bicicleta eletrica adulto",
      "ofertas_lidas": 20,
-     "ofertas_que_servem": 7,
-     "ofertas_que_entram": 7,
+     "ofertas_que_servem": 8,
+     "ofertas_que_entram": 8,
      "alcancou_o_piso": true,
-     "medido_em": "2026-11-18"
+     "medido_em": "2026-11-23"
     }
    ],
    "resumo": {
     "ofertas_lidas": 20,
-    "ofertas_que_servem": 7,
-    "ofertas_recusadas": 13,
+    "ofertas_que_servem": 8,
+    "ofertas_recusadas": 12,
     "recusas_por_causa": {
      "fora_da_familia": 4,
-     "acessorio": 9
+     "acessorio": 8
     },
-    "ofertas_com_link_de_afiliado": 7,
+    "ofertas_com_link_de_afiliado": 8,
     "abre_o_portao_da_30_2": true,
     "numero_proprio_pedido": "faixa_de_preco",
     "numero_proprio": {
-     "de": 2299.99,
+     "de": 2259.99,
      "ate": 6199.9,
      "mediana": 2299.99,
-     "sobre_quantas_ofertas": 7
+     "sobre_quantas_ofertas": 8
     },
     "motivo_sem_numero_proprio": null,
     "contagem_de_rotulo_de_potencia": {
-     "sem_watt": 6,
+     "sem_watt": 7,
      "watt_sem_rotulo": 1,
      "nominal": 0,
      "pico": 0,
@@ -78,7 +78,7 @@
      "sub_id_1": "rodametria",
      "sub_id_2": null,
      "fonte": "anuncio-shopee",
-     "coletado_em": "2026-11-18",
+     "coletado_em": "2026-11-23",
      "chave_que_achou": "bicicleta eletrica adulto",
      "degrau_da_escada": 1,
      "serve": false,
@@ -103,18 +103,17 @@
       "altura": 1024,
       "alt": "Bicicleta Elétrica Dobrável Adulto com Pneus A Vácuo e Bateria de Lítio",
       "fonte": "anuncio-shopee",
-      "coletado_em": "2026-11-19",
-      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada",
-      "medida_por": "cabecalho do arquivo (medir_foto) E naturalWidth no DOM do Chromium desta nuvem, 390 px, loading eager, 6 s de espera; ambiente: nuvem da Fundacao (claude.ai/code), egresso por proxy de agente"
+      "coletado_em": "2026-11-23",
+      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
      },
      "motivo_sem_imagem": null,
      "url_produto": "https://shopee.com.br/product/1684498287/58215248310",
-     "url_afiliado": "https://s.shopee.com.br/3qOkUtHCqS",
+     "url_afiliado": "https://s.shopee.com.br/1W0zJ6hAEH",
      "motivo_sem_link": null,
      "sub_id_1": "rodametria",
      "sub_id_2": "bicicletaeletrica",
      "fonte": "anuncio-shopee",
-     "coletado_em": "2026-11-18",
+     "coletado_em": "2026-11-23",
      "chave_que_achou": "bicicleta eletrica adulto",
      "degrau_da_escada": 1,
      "serve": true,
@@ -126,14 +125,7 @@
       "adulto"
      ],
      "rotulo_de_potencia": "sem_watt",
-     "url_afiliado_gerada_em": "2026-11-18",
-     "historico_da_foto": [
-      {
-       "saiu_do_ar_por": "a CDN nao respondeu (HTTP Error 503: Service Unavailable)",
-       "arquivada_em": "2026-11-19",
-       "arquivada_por": "aplicar-foto-remedida.py, com dois instrumentos medindo a foto viva"
-      }
-     ]
+     "url_afiliado_gerada_em": "2026-11-23"
     },
     {
      "item_id": 58259744161,
@@ -143,25 +135,25 @@
      "moeda": "BRL",
      "loja": "3CMAX16888",
      "nota": "4.7",
-     "vendas": 22,
+     "vendas": 19,
      "tipo_de_loja": [],
      "imagem": {
-      "url": "https://cf.shopee.com.br/file/sg-11134201-820nu-mnlf9y7dqolh14",
-      "largura": 1024,
-      "altura": 1024,
+      "url": "https://cf.shopee.com.br/file/br-11134207-820lh-mvoyhhcy3p4x55",
+      "largura": 800,
+      "altura": 800,
       "alt": "Bicicleta elétrica dobrável para adultos NUDA, pedal tripulado, compras ao ar livre, viagem",
       "fonte": "anuncio-shopee",
-      "coletado_em": "2026-11-18",
+      "coletado_em": "2026-11-23",
       "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
      },
      "motivo_sem_imagem": null,
      "url_produto": "https://shopee.com.br/product/1737092100/58259744161",
-     "url_afiliado": "https://s.shopee.com.br/4qHHgjHO2E",
+     "url_afiliado": "https://s.shopee.com.br/50arTXYJ9d",
      "motivo_sem_link": null,
      "sub_id_1": "rodametria",
      "sub_id_2": "bicicletaeletrica",
      "fonte": "anuncio-shopee",
-     "coletado_em": "2026-11-18",
+     "coletado_em": "2026-11-23",
      "chave_que_achou": "bicicleta eletrica adulto",
      "degrau_da_escada": 1,
      "serve": true,
@@ -173,7 +165,7 @@
       "adulto"
      ],
      "rotulo_de_potencia": "sem_watt",
-     "url_afiliado_gerada_em": "2026-11-18"
+     "url_afiliado_gerada_em": "2026-11-23"
     },
     {
      "item_id": 51969986515,
@@ -193,7 +185,7 @@
      "sub_id_1": "rodametria",
      "sub_id_2": null,
      "fonte": "anuncio-shopee",
-     "coletado_em": "2026-11-18",
+     "coletado_em": "2026-11-23",
      "chave_que_achou": "bicicleta eletrica adulto",
      "degrau_da_escada": 1,
      "serve": false,
@@ -215,7 +207,9 @@
      "loja": "Snorthvotescastsuper.br",
      "nota": "0",
      "vendas": 0,
-     "tipo_de_loja": [],
+     "tipo_de_loja": [
+      2
+     ],
      "imagem": null,
      "motivo_sem_imagem": "anuncio recusado: foto nao e medida para quem nao serve",
      "url_produto": "https://shopee.com.br/product/1846098619/49819696711",
@@ -224,7 +218,7 @@
      "sub_id_1": "rodametria",
      "sub_id_2": null,
      "fonte": "anuncio-shopee",
-     "coletado_em": "2026-11-18",
+     "coletado_em": "2026-11-23",
      "chave_que_achou": "bicicleta eletrica adulto",
      "degrau_da_escada": 1,
      "serve": false,
@@ -257,7 +251,7 @@
      "sub_id_1": "rodametria",
      "sub_id_2": null,
      "fonte": "anuncio-shopee",
-     "coletado_em": "2026-11-18",
+     "coletado_em": "2026-11-23",
      "chave_que_achou": "bicicleta eletrica adulto",
      "degrau_da_escada": 1,
      "serve": false,
@@ -286,7 +280,7 @@
      "sub_id_1": "rodametria",
      "sub_id_2": null,
      "fonte": "anuncio-shopee",
-     "coletado_em": "2026-11-18",
+     "coletado_em": "2026-11-23",
      "chave_que_achou": "bicicleta eletrica adulto",
      "degrau_da_escada": 1,
      "serve": false,
@@ -317,7 +311,7 @@
      "sub_id_1": "rodametria",
      "sub_id_2": null,
      "fonte": "anuncio-shopee",
-     "coletado_em": "2026-11-18",
+     "coletado_em": "2026-11-23",
      "chave_que_achou": "bicicleta eletrica adulto",
      "degrau_da_escada": 1,
      "serve": false,
@@ -344,7 +338,7 @@
      "sub_id_1": "rodametria",
      "sub_id_2": null,
      "fonte": "anuncio-shopee",
-     "coletado_em": "2026-11-18",
+     "coletado_em": "2026-11-23",
      "chave_que_achou": "bicicleta eletrica adulto",
      "degrau_da_escada": 1,
      "serve": false,
@@ -361,7 +355,7 @@
      "item_id": 24893502433,
      "shop_id": 1346312028,
      "titulo": "Capacete De Bicicleta Seguro E Confortável Adulto Leve Com Óculos Para Motocicleta Veículo Elétrico Mountain Bike",
-     "preco": 124.87,
+     "preco": 124.86,
      "moeda": "BRL",
      "loja": "Wanhe Outdoor Center",
      "nota": "4.2",
@@ -377,7 +371,7 @@
      "sub_id_1": "rodametria",
      "sub_id_2": null,
      "fonte": "anuncio-shopee",
-     "coletado_em": "2026-11-18",
+     "coletado_em": "2026-11-23",
      "chave_que_achou": "bicicleta eletrica adulto",
      "degrau_da_escada": 1,
      "serve": false,
@@ -398,25 +392,27 @@
      "moeda": "BRL",
      "loja": "3B LOJA",
      "nota": "4.7",
-     "vendas": 28,
-     "tipo_de_loja": [],
+     "vendas": 15,
+     "tipo_de_loja": [
+      2
+     ],
      "imagem": {
       "url": "https://cf.shopee.com.br/file/sg-11134201-82582-mrfxhcjpv3eodc",
       "largura": 800,
       "altura": 800,
       "alt": "Bicicleta elétrica dobrável NIUDA para adultos, ideal para viagens e deslocamentos diários.",
       "fonte": "anuncio-shopee",
-      "coletado_em": "2026-11-18",
+      "coletado_em": "2026-11-23",
       "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
      },
      "motivo_sem_imagem": null,
      "url_produto": "https://shopee.com.br/product/1373244943/21599581551",
-     "url_afiliado": "https://s.shopee.com.br/8pnQS572Uy",
+     "url_afiliado": "https://s.shopee.com.br/4LLAgJfJXI",
      "motivo_sem_link": null,
      "sub_id_1": "rodametria",
      "sub_id_2": "bicicletaeletrica",
      "fonte": "anuncio-shopee",
-     "coletado_em": "2026-11-18",
+     "coletado_em": "2026-11-23",
      "chave_que_achou": "bicicleta eletrica adulto",
      "degrau_da_escada": 1,
      "serve": true,
@@ -428,7 +424,7 @@
       "adulto"
      ],
      "rotulo_de_potencia": "sem_watt",
-     "url_afiliado_gerada_em": "2026-11-18"
+     "url_afiliado_gerada_em": "2026-11-23"
     },
     {
      "item_id": 20998008328,
@@ -438,7 +434,7 @@
      "moeda": "BRL",
      "loja": "Boa sorte vem",
      "nota": "4.7",
-     "vendas": 8,
+     "vendas": 7,
      "tipo_de_loja": [
       2
      ],
@@ -448,18 +444,17 @@
       "altura": 727,
       "alt": "Bicicleta elétrica dobrável para adultos, pedal tripulado, compras ao ar livre, viagem",
       "fonte": "anuncio-shopee",
-      "coletado_em": "2026-11-19",
-      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada",
-      "medida_por": "cabecalho do arquivo (medir_foto) E naturalWidth no DOM do Chromium desta nuvem, 390 px, loading eager, 6 s de espera; ambiente: nuvem da Fundacao (claude.ai/code), egresso por proxy de agente"
+      "coletado_em": "2026-11-23",
+      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
      },
      "motivo_sem_imagem": null,
      "url_produto": "https://shopee.com.br/product/1392831928/20998008328",
-     "url_afiliado": "https://s.shopee.com.br/6L65TUG4mS",
+     "url_afiliado": "https://s.shopee.com.br/Lp1uxuXfx",
      "motivo_sem_link": null,
      "sub_id_1": "rodametria",
      "sub_id_2": "bicicletaeletrica",
      "fonte": "anuncio-shopee",
-     "coletado_em": "2026-11-18",
+     "coletado_em": "2026-11-23",
      "chave_que_achou": "bicicleta eletrica adulto",
      "degrau_da_escada": 1,
      "serve": true,
@@ -471,14 +466,7 @@
       "adulto"
      ],
      "rotulo_de_potencia": "sem_watt",
-     "url_afiliado_gerada_em": "2026-11-18",
-     "historico_da_foto": [
-      {
-       "saiu_do_ar_por": "a CDN nao respondeu (HTTP Error 503: Service Unavailable)",
-       "arquivada_em": "2026-11-19",
-       "arquivada_por": "aplicar-foto-remedida.py, com dois instrumentos medindo a foto viva"
-      }
-     ]
+     "url_afiliado_gerada_em": "2026-11-23"
     },
     {
      "item_id": 28691724801,
@@ -500,7 +488,7 @@
      "sub_id_1": "rodametria",
      "sub_id_2": null,
      "fonte": "anuncio-shopee",
-     "coletado_em": "2026-11-18",
+     "coletado_em": "2026-11-23",
      "chave_que_achou": "bicicleta eletrica adulto",
      "degrau_da_escada": 1,
      "serve": false,
@@ -529,18 +517,17 @@
       "altura": 1024,
       "alt": "Bicicleta Elétrica Ebike M2 800w Litio 48v 43kmh Scooter eletrica Trabalho adulto bike eletrica  E",
       "fonte": "anuncio-shopee",
-      "coletado_em": "2026-11-19",
-      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada",
-      "medida_por": "cabecalho do arquivo (medir_foto) E naturalWidth no DOM do Chromium desta nuvem, 390 px, loading eager, 6 s de espera; ambiente: nuvem da Fundacao (claude.ai/code), egresso por proxy de agente"
+      "coletado_em": "2026-11-23",
+      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
      },
      "motivo_sem_imagem": null,
      "url_produto": "https://shopee.com.br/product/1930395926/58220113046",
-     "url_afiliado": "https://s.shopee.com.br/7fbT3wFsfq",
+     "url_afiliado": "https://s.shopee.com.br/1qdphitA8T",
      "motivo_sem_link": null,
      "sub_id_1": "rodametria",
      "sub_id_2": "bicicletaeletrica",
      "fonte": "anuncio-shopee",
-     "coletado_em": "2026-11-18",
+     "coletado_em": "2026-11-23",
      "chave_que_achou": "bicicleta eletrica adulto",
      "degrau_da_escada": 1,
      "serve": true,
@@ -552,14 +539,7 @@
       "adulto"
      ],
      "rotulo_de_potencia": "watt_sem_rotulo",
-     "url_afiliado_gerada_em": "2026-11-18",
-     "historico_da_foto": [
-      {
-       "saiu_do_ar_por": "a CDN nao respondeu (HTTP 503: Service Unavailable), medido em 2026-11-18 FORA desta nuvem — a foto cai para o espaco reservado da secao 6 e volta sozinha na coleta em que a CDN responder || ULTIMA MEDICAO: lida no Chrome do Raphael em 18/11/2026, TRES passadas de fetch com cache no-store: HTTP 503 nas tres; na mesma passada a foto sg-11134201-8257t-mqezlfi5xwjyf4 da MESMA CDN devolveu 200 image/jpeg, que e o controle verde — nao e intermitencia e nao e a CDN inteira. No DOM, com loading eager e 6 s de espera: naturalWidth 0 com complete true",
-       "arquivada_em": "2026-11-19",
-       "arquivada_por": "aplicar-foto-remedida.py, com dois instrumentos medindo a foto viva"
-      }
-     ]
+     "url_afiliado_gerada_em": "2026-11-23"
     },
     {
      "item_id": 22295188137,
@@ -577,17 +557,17 @@
       "altura": 1024,
       "alt": "Bicicleta Elétrica Dobrável Adulto com Pneus A Vácuo e Bateria de Lítio",
       "fonte": "anuncio-shopee",
-      "coletado_em": "2026-11-18",
+      "coletado_em": "2026-11-23",
       "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
      },
      "motivo_sem_imagem": null,
      "url_produto": "https://shopee.com.br/product/1800811941/22295188137",
-     "url_afiliado": "https://s.shopee.com.br/8pnQS5Flph",
+     "url_afiliado": "https://s.shopee.com.br/Lp1uy3GxU",
      "motivo_sem_link": null,
      "sub_id_1": "rodametria",
      "sub_id_2": "bicicletaeletrica",
      "fonte": "anuncio-shopee",
-     "coletado_em": "2026-11-18",
+     "coletado_em": "2026-11-23",
      "chave_que_achou": "bicicleta eletrica adulto",
      "degrau_da_escada": 1,
      "serve": true,
@@ -599,13 +579,13 @@
       "adulto"
      ],
      "rotulo_de_potencia": "sem_watt",
-     "url_afiliado_gerada_em": "2026-11-18"
+     "url_afiliado_gerada_em": "2026-11-23"
     },
     {
      "item_id": 57769731299,
      "shop_id": 1822565672,
      "titulo": "Buzina De Bicicleta Elétrica Anti-Roubo Anel Ciclismo Scooter Chifre Para Crianças Adultos Mulheres Meninos Meninas Moto",
-     "preco": 63.92,
+     "preco": 62.85,
      "moeda": "BRL",
      "loja": "dyrfksi.br",
      "nota": "0",
@@ -619,12 +599,43 @@
      "sub_id_1": "rodametria",
      "sub_id_2": null,
      "fonte": "anuncio-shopee",
-     "coletado_em": "2026-11-18",
+     "coletado_em": "2026-11-23",
      "chave_que_achou": "bicicleta eletrica adulto",
      "degrau_da_escada": 1,
      "serve": false,
      "recusado_por": "acessorio",
      "exigencia_que_faltou": "buzina",
+     "exigencias_atendidas": [
+      "bicicleta",
+      "eletric",
+      "adulto"
+     ],
+     "rotulo_de_potencia": "sem_watt"
+    },
+    {
+     "item_id": 53721591490,
+     "shop_id": 236699128,
+     "titulo": "Beautyus Capacete De Segurança Para Bicicleta , Masculino E Feminino , Adulto , Crianças , Desenho Animado , Elétrica , ",
+     "preco": 79.61,
+     "moeda": "BRL",
+     "loja": "beautymakeup2.br",
+     "nota": "0",
+     "vendas": 0,
+     "tipo_de_loja": [],
+     "imagem": null,
+     "motivo_sem_imagem": "anuncio recusado: foto nao e medida para quem nao serve",
+     "url_produto": "https://shopee.com.br/product/236699128/53721591490",
+     "url_afiliado": null,
+     "motivo_sem_link": "anuncio recusado: link nao e gerado para quem nao serve",
+     "sub_id_1": "rodametria",
+     "sub_id_2": null,
+     "fonte": "anuncio-shopee",
+     "coletado_em": "2026-11-23",
+     "chave_que_achou": "bicicleta eletrica adulto",
+     "degrau_da_escada": 1,
+     "serve": false,
+     "recusado_por": "acessorio",
+     "exigencia_que_faltou": "capacete",
      "exigencias_atendidas": [
       "bicicleta",
       "eletric",
@@ -650,18 +661,17 @@
       "altura": 1024,
       "alt": "Bicicleta Elétrica Dobrável Adulto com Pneus A Vácuo e Bateria de Lítio",
       "fonte": "anuncio-shopee",
-      "coletado_em": "2026-11-19",
-      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada",
-      "medida_por": "cabecalho do arquivo (medir_foto) E naturalWidth no DOM do Chromium desta nuvem, 390 px, loading eager, 6 s de espera; ambiente: nuvem da Fundacao (claude.ai/code), egresso por proxy de agente"
+      "coletado_em": "2026-11-23",
+      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
      },
      "motivo_sem_imagem": null,
      "url_produto": "https://shopee.com.br/product/1801835273/58215248915",
-     "url_afiliado": "https://s.shopee.com.br/AUveR9Dkx6",
+     "url_afiliado": "https://s.shopee.com.br/2gCwhFuJzg",
      "motivo_sem_link": null,
      "sub_id_1": "rodametria",
      "sub_id_2": "bicicletaeletrica",
      "fonte": "anuncio-shopee",
-     "coletado_em": "2026-11-18",
+     "coletado_em": "2026-11-23",
      "chave_que_achou": "bicicleta eletrica adulto",
      "degrau_da_escada": 1,
      "serve": true,
@@ -673,76 +683,7 @@
       "adulto"
      ],
      "rotulo_de_potencia": "sem_watt",
-     "url_afiliado_gerada_em": "2026-11-18",
-     "historico_da_foto": [
-      {
-       "saiu_do_ar_por": "a CDN nao respondeu (HTTP Error 504: Gateway Time-out)",
-       "arquivada_em": "2026-11-19",
-       "arquivada_por": "aplicar-foto-remedida.py, com dois instrumentos medindo a foto viva"
-      }
-     ]
-    },
-    {
-     "item_id": 53721591490,
-     "shop_id": 236699128,
-     "titulo": "Beautyus Capacete De Segurança Para Bicicleta , Masculino E Feminino , Adulto , Crianças , Desenho Animado , Elétrica , ",
-     "preco": 79.61,
-     "moeda": "BRL",
-     "loja": "beautymakeup2.br",
-     "nota": "0",
-     "vendas": 0,
-     "tipo_de_loja": [],
-     "imagem": null,
-     "motivo_sem_imagem": "anuncio recusado: foto nao e medida para quem nao serve",
-     "url_produto": "https://shopee.com.br/product/236699128/53721591490",
-     "url_afiliado": null,
-     "motivo_sem_link": "anuncio recusado: link nao e gerado para quem nao serve",
-     "sub_id_1": "rodametria",
-     "sub_id_2": null,
-     "fonte": "anuncio-shopee",
-     "coletado_em": "2026-11-18",
-     "chave_que_achou": "bicicleta eletrica adulto",
-     "degrau_da_escada": 1,
-     "serve": false,
-     "recusado_por": "acessorio",
-     "exigencia_que_faltou": "capacete",
-     "exigencias_atendidas": [
-      "bicicleta",
-      "eletric",
-      "adulto"
-     ],
-     "rotulo_de_potencia": "sem_watt"
-    },
-    {
-     "item_id": 42182676538,
-     "shop_id": 1877210498,
-     "titulo": "1 Peça Certificado 3C Masculino E Feminino Adulto Desenho Animado Bicicleta Elétrica Motocicleta Meio Capacete1",
-     "preco": 113.34,
-     "moeda": "BRL",
-     "loja": "GearRide BR | Auto & Moto",
-     "nota": "3",
-     "vendas": 0,
-     "tipo_de_loja": [],
-     "imagem": null,
-     "motivo_sem_imagem": "anuncio recusado: foto nao e medida para quem nao serve",
-     "url_produto": "https://shopee.com.br/product/1877210498/42182676538",
-     "url_afiliado": null,
-     "motivo_sem_link": "anuncio recusado: link nao e gerado para quem nao serve",
-     "sub_id_1": "rodametria",
-     "sub_id_2": null,
-     "fonte": "anuncio-shopee",
-     "coletado_em": "2026-11-18",
-     "chave_que_achou": "bicicleta eletrica adulto",
-     "degrau_da_escada": 1,
-     "serve": false,
-     "recusado_por": "acessorio",
-     "exigencia_que_faltou": "1 peca",
-     "exigencias_atendidas": [
-      "bicicleta",
-      "eletric",
-      "adulto"
-     ],
-     "rotulo_de_potencia": "sem_watt"
+     "url_afiliado_gerada_em": "2026-11-23"
     },
     {
      "item_id": 23994646904,
@@ -762,7 +703,7 @@
      "sub_id_1": "rodametria",
      "sub_id_2": null,
      "fonte": "anuncio-shopee",
-     "coletado_em": "2026-11-18",
+     "coletado_em": "2026-11-23",
      "chave_que_achou": "bicicleta eletrica adulto",
      "degrau_da_escada": 1,
      "serve": false,
@@ -770,6 +711,48 @@
      "exigencia_que_faltou": "bicicleta",
      "exigencias_atendidas": [],
      "rotulo_de_potencia": "sem_watt"
+    },
+    {
+     "item_id": 58200647160,
+     "shop_id": 1120912863,
+     "titulo": "Bicicleta Elétrica Dobrável para Adultos com Pedalada Assistida e Suporte de Celular com Carregamento  Pepe_Shop",
+     "preco": 2259.99,
+     "moeda": "BRL",
+     "loja": "Pepe_Shop",
+     "nota": "4.7",
+     "vendas": 4,
+     "tipo_de_loja": [
+      2
+     ],
+     "imagem": {
+      "url": "https://cf.shopee.com.br/file/sg-11134201-82594-mvnzcr8nxd6sc0",
+      "largura": 1024,
+      "altura": 1024,
+      "alt": "Bicicleta Elétrica Dobrável para Adultos com Pedalada Assistida e Suporte de Celular com Carregamento  Pepe_Shop",
+      "fonte": "anuncio-shopee",
+      "coletado_em": "2026-11-23",
+      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
+     },
+     "motivo_sem_imagem": null,
+     "url_produto": "https://shopee.com.br/product/1120912863/58200647160",
+     "url_afiliado": "https://s.shopee.com.br/AKcNpLVbRw",
+     "motivo_sem_link": null,
+     "sub_id_1": "rodametria",
+     "sub_id_2": "bicicletaeletrica",
+     "fonte": "anuncio-shopee",
+     "coletado_em": "2026-11-23",
+     "chave_que_achou": "bicicleta eletrica adulto",
+     "degrau_da_escada": 1,
+     "serve": true,
+     "recusado_por": null,
+     "exigencia_que_faltou": null,
+     "exigencias_atendidas": [
+      "bicicleta",
+      "eletric",
+      "adulto"
+     ],
+     "rotulo_de_potencia": "sem_watt",
+     "url_afiliado_gerada_em": "2026-11-23"
     }
    ],
    "piso_da_busca": {
@@ -787,7 +770,7 @@
    "consulta": "moto elétrica",
    "slug": "veiculos/moto-eletrica",
    "publicar_declarado": true,
-   "colhido_em": "2026-11-18",
+   "colhido_em": "2026-11-23",
    "canal": "API de afiliado da Shopee (productOfferV2), credencial no ambiente",
    "chave_escolhida": "moto eletrica adulto",
    "degrau_escolhido": 1,
@@ -796,10 +779,10 @@
      "degrau": 1,
      "chave": "moto eletrica adulto",
      "ofertas_lidas": 20,
-     "ofertas_que_servem": 3,
-     "ofertas_que_entram": 2,
+     "ofertas_que_servem": 2,
+     "ofertas_que_entram": 1,
      "alcancou_o_piso": false,
-     "medido_em": "2026-11-18"
+     "medido_em": "2026-11-23"
     },
     {
      "degrau": 2,
@@ -808,18 +791,19 @@
      "ofertas_que_servem": 0,
      "ofertas_que_entram": 0,
      "alcancou_o_piso": false,
-     "medido_em": "2026-11-18"
+     "medido_em": "2026-11-23"
     }
    ],
    "resumo": {
     "ofertas_lidas": 20,
     "ofertas_que_servem": 1,
-    "ofertas_recusadas": 17,
+    "ofertas_recusadas": 18,
     "recusas_por_causa": {
-     "fora_da_familia": 5,
-     "acessorio": 9,
-     "brinquedo": 2,
-     "outra_familia_na_cabeca": 1
+     "fora_da_familia": 4,
+     "acessorio": 6,
+     "brinquedo": 3,
+     "outra_familia_na_cabeca": 3,
+     "outro_veiculo": 2
     },
     "ofertas_com_link_de_afiliado": 1,
     "abre_o_portao_da_30_2": false,
@@ -835,7 +819,7 @@
      "declaram_watt": 1,
      "dizem_qual_watt": 1
     },
-    "ofertas_aposentadas_nesta_coleta": 2,
+    "ofertas_aposentadas_nesta_coleta": 1,
     "ofertas_aposentadas": 2,
     "ofertas_repetidas_pela_loja": 0
    },
@@ -860,7 +844,7 @@
      "sub_id_1": "rodametria",
      "sub_id_2": null,
      "fonte": "anuncio-shopee",
-     "coletado_em": "2026-11-18",
+     "coletado_em": "2026-11-23",
      "chave_que_achou": "moto eletrica adulto",
      "degrau_da_escada": 1,
      "serve": false,
@@ -887,7 +871,7 @@
      "sub_id_1": "rodametria",
      "sub_id_2": null,
      "fonte": "anuncio-shopee",
-     "coletado_em": "2026-11-18",
+     "coletado_em": "2026-11-23",
      "chave_que_achou": "moto eletrica adulto",
      "degrau_da_escada": 1,
      "serve": false,
@@ -904,7 +888,7 @@
      "item_id": 58272423034,
      "shop_id": 1637173094,
      "titulo": "Mini Moto Esportiva Eletrica Vermelha Alta Performance Infantil Adulto Portatil",
-     "preco": 546.41,
+     "preco": 464.45,
      "moeda": "BRL",
      "loja": "RCCONVENIÊNCIAS",
      "nota": "0",
@@ -918,7 +902,7 @@
      "sub_id_1": "rodametria",
      "sub_id_2": null,
      "fonte": "anuncio-shopee",
-     "coletado_em": "2026-11-18",
+     "coletado_em": "2026-11-23",
      "chave_que_achou": "moto eletrica adulto",
      "degrau_da_escada": 1,
      "serve": false,
@@ -935,7 +919,7 @@
      "item_id": 24893502433,
      "shop_id": 1346312028,
      "titulo": "Capacete De Bicicleta Seguro E Confortável Adulto Leve Com Óculos Para Motocicleta Veículo Elétrico Mountain Bike",
-     "preco": 124.87,
+     "preco": 124.86,
      "moeda": "BRL",
      "loja": "Wanhe Outdoor Center",
      "nota": "4.2",
@@ -951,7 +935,7 @@
      "sub_id_1": "rodametria",
      "sub_id_2": null,
      "fonte": "anuncio-shopee",
-     "coletado_em": "2026-11-18",
+     "coletado_em": "2026-11-23",
      "chave_que_achou": "moto eletrica adulto",
      "degrau_da_escada": 1,
      "serve": false,
@@ -980,7 +964,7 @@
      "sub_id_1": "rodametria",
      "sub_id_2": null,
      "fonte": "anuncio-shopee",
-     "coletado_em": "2026-11-18",
+     "coletado_em": "2026-11-23",
      "chave_que_achou": "moto eletrica adulto",
      "degrau_da_escada": 1,
      "serve": false,
@@ -993,7 +977,7 @@
      "item_id": 57769731299,
      "shop_id": 1822565672,
      "titulo": "Buzina De Bicicleta Elétrica Anti-Roubo Anel Ciclismo Scooter Chifre Para Crianças Adultos Mulheres Meninos Meninas Moto",
-     "preco": 63.92,
+     "preco": 62.85,
      "moeda": "BRL",
      "loja": "dyrfksi.br",
      "nota": "0",
@@ -1007,7 +991,7 @@
      "sub_id_1": "rodametria",
      "sub_id_2": null,
      "fonte": "anuncio-shopee",
-     "coletado_em": "2026-11-18",
+     "coletado_em": "2026-11-23",
      "chave_que_achou": "moto eletrica adulto",
      "degrau_da_escada": 1,
      "serve": false,
@@ -1038,7 +1022,7 @@
      "sub_id_1": "rodametria",
      "sub_id_2": null,
      "fonte": "anuncio-shopee",
-     "coletado_em": "2026-11-18",
+     "coletado_em": "2026-11-23",
      "chave_que_achou": "moto eletrica adulto",
      "degrau_da_escada": 1,
      "serve": false,
@@ -1052,68 +1036,32 @@
      "rotulo_de_potencia": "sem_watt"
     },
     {
-     "item_id": 51071356674,
-     "shop_id": 230709939,
-     "titulo": "Capacete de moto elétrico de desenho animado para adultos e crianças com viseira",
-     "preco": 30.0,
-     "moeda": "BRL",
-     "loja": "Value Choice",
-     "nota": "0",
-     "vendas": 0,
-     "tipo_de_loja": [
-      2
-     ],
-     "imagem": null,
-     "motivo_sem_imagem": "anuncio recusado: foto nao e medida para quem nao serve",
-     "url_produto": "https://shopee.com.br/product/230709939/51071356674",
-     "url_afiliado": null,
-     "motivo_sem_link": "anuncio recusado: link nao e gerado para quem nao serve",
-     "sub_id_1": "rodametria",
-     "sub_id_2": null,
-     "fonte": "anuncio-shopee",
-     "coletado_em": "2026-11-18",
-     "chave_que_achou": "moto eletrica adulto",
-     "degrau_da_escada": 1,
-     "serve": false,
-     "recusado_por": "acessorio",
-     "exigencia_que_faltou": "capacete",
-     "exigencias_atendidas": [
-      "moto",
-      "eletric",
-      "adulto"
-     ],
-     "rotulo_de_potencia": "sem_watt"
-    },
-    {
      "item_id": 58270189618,
      "shop_id": 1223506816,
      "titulo": "VYRON Moto Elétrica Cross GT600 7500W Pico 72V 30Ah Off Road Trilha Adulto 4000W Freio Hidráulico",
-     "preco": 13999.0,
+     "preco": 14280.38,
      "moeda": "BRL",
      "loja": "AUMOX",
      "nota": "0",
      "vendas": 0,
-     "tipo_de_loja": [
-      2
-     ],
+     "tipo_de_loja": [],
      "imagem": {
       "url": "https://cf.shopee.com.br/file/sg-11134201-825b4-mu4ds42j0q9x25",
       "largura": 1024,
       "altura": 1024,
       "alt": "VYRON Moto Elétrica Cross GT600 7500W Pico 72V 30Ah Off Road Trilha Adulto 4000W Freio Hidráulico",
       "fonte": "anuncio-shopee",
-      "coletado_em": "2026-11-19",
-      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada",
-      "medida_por": "cabecalho do arquivo (medir_foto) E naturalWidth no DOM do Chromium desta nuvem, 390 px, loading eager, 6 s de espera; ambiente: nuvem da Fundacao (claude.ai/code), egresso por proxy de agente"
+      "coletado_em": "2026-11-23",
+      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
      },
      "motivo_sem_imagem": null,
      "url_produto": "https://shopee.com.br/product/1223506816/58270189618",
-     "url_afiliado": "https://s.shopee.com.br/7KyafwaLQ2",
+     "url_afiliado": "https://s.shopee.com.br/8VAjdzKa0I",
      "motivo_sem_link": null,
      "sub_id_1": "rodametria",
      "sub_id_2": "motoeletrica",
      "fonte": "anuncio-shopee",
-     "coletado_em": "2026-11-18",
+     "coletado_em": "2026-11-23",
      "chave_que_achou": "moto eletrica adulto",
      "degrau_da_escada": 1,
      "serve": true,
@@ -1125,14 +1073,7 @@
       "adulto"
      ],
      "rotulo_de_potencia": "pico",
-     "url_afiliado_gerada_em": "2026-11-18",
-     "historico_da_foto": [
-      {
-       "saiu_do_ar_por": "os primeiros 32768 bytes nao traziam cabecalho de JPEG, PNG nem WebP",
-       "arquivada_em": "2026-11-19",
-       "arquivada_por": "aplicar-foto-remedida.py, com dois instrumentos medindo a foto viva"
-      }
-     ]
+     "url_afiliado_gerada_em": "2026-11-23"
     },
     {
      "item_id": 58271745327,
@@ -1154,7 +1095,7 @@
      "sub_id_1": "rodametria",
      "sub_id_2": null,
      "fonte": "anuncio-shopee",
-     "coletado_em": "2026-11-18",
+     "coletado_em": "2026-11-23",
      "chave_que_achou": "moto eletrica adulto",
      "degrau_da_escada": 1,
      "serve": false,
@@ -1171,7 +1112,7 @@
      "item_id": 44385269785,
      "shop_id": 348912373,
      "titulo": "JNBR Capacete De Segurança Para Bicicleta , Masculino E Feminino , Adulto , Crianças , Desenho Animado , Elétrica , Moto",
-     "preco": 77.2,
+     "preco": 82.21,
      "moeda": "BRL",
      "loja": "jinkeqnew.br",
      "nota": "0",
@@ -1187,7 +1128,7 @@
      "sub_id_1": "rodametria",
      "sub_id_2": null,
      "fonte": "anuncio-shopee",
-     "coletado_em": "2026-11-18",
+     "coletado_em": "2026-11-23",
      "chave_que_achou": "moto eletrica adulto",
      "degrau_da_escada": 1,
      "serve": false,
@@ -1201,10 +1142,105 @@
      "rotulo_de_potencia": "sem_watt"
     },
     {
+     "item_id": 47654857652,
+     "shop_id": 1483638220,
+     "titulo": "Bicicleta Bike Moto Scooter Elétrica Dobrável Adulto Bateria de Lítio 48v 12Ah 32km/h 350W",
+     "preco": 2959.97,
+     "moeda": "BRL",
+     "loja": "BONOW METAIS",
+     "nota": "5",
+     "vendas": 2,
+     "tipo_de_loja": [
+      2
+     ],
+     "imagem": null,
+     "motivo_sem_imagem": "anuncio recusado: foto nao e medida para quem nao serve",
+     "url_produto": "https://shopee.com.br/product/1483638220/47654857652",
+     "url_afiliado": null,
+     "motivo_sem_link": "anuncio recusado: link nao e gerado para quem nao serve",
+     "sub_id_1": "rodametria",
+     "sub_id_2": null,
+     "fonte": "anuncio-shopee",
+     "coletado_em": "2026-11-23",
+     "chave_que_achou": "moto eletrica adulto",
+     "degrau_da_escada": 1,
+     "serve": false,
+     "recusado_por": "outra_familia_na_cabeca",
+     "exigencia_que_faltou": "bicicleta",
+     "exigencias_atendidas": [
+      "moto",
+      "eletric",
+      "adulto"
+     ],
+     "rotulo_de_potencia": "watt_sem_rotulo"
+    },
+    {
+     "item_id": 58213390444,
+     "shop_id": 1435357507,
+     "titulo": "Mini Moto Esportiva Elétrica Vermelha Potente Design Moderno Infantil Adulto",
+     "preco": 751.14,
+     "moeda": "BRL",
+     "loja": "Lolek Select & Utilidades Inteligen",
+     "nota": "0",
+     "vendas": 0,
+     "tipo_de_loja": [],
+     "imagem": null,
+     "motivo_sem_imagem": "anuncio recusado: foto nao e medida para quem nao serve",
+     "url_produto": "https://shopee.com.br/product/1435357507/58213390444",
+     "url_afiliado": null,
+     "motivo_sem_link": "anuncio recusado: link nao e gerado para quem nao serve",
+     "sub_id_1": "rodametria",
+     "sub_id_2": null,
+     "fonte": "anuncio-shopee",
+     "coletado_em": "2026-11-23",
+     "chave_que_achou": "moto eletrica adulto",
+     "degrau_da_escada": 1,
+     "serve": false,
+     "recusado_por": "brinquedo",
+     "exigencia_que_faltou": "mini moto",
+     "exigencias_atendidas": [
+      "moto",
+      "eletric",
+      "adulto"
+     ],
+     "rotulo_de_potencia": "sem_watt"
+    },
+    {
+     "item_id": 57419195676,
+     "shop_id": 300356983,
+     "titulo": "Bicicleta Moto Elétrica 350w 48v 12ah Bateria Lítio Removível Compacta Adulto com Garupa 120kg LED Freio a Disco",
+     "preco": 3590.8,
+     "moeda": "BRL",
+     "loja": "Galera Da Bike.",
+     "nota": "4.3",
+     "vendas": 7,
+     "tipo_de_loja": [],
+     "imagem": null,
+     "motivo_sem_imagem": "anuncio recusado: foto nao e medida para quem nao serve",
+     "url_produto": "https://shopee.com.br/product/300356983/57419195676",
+     "url_afiliado": null,
+     "motivo_sem_link": "anuncio recusado: link nao e gerado para quem nao serve",
+     "sub_id_1": "rodametria",
+     "sub_id_2": null,
+     "fonte": "anuncio-shopee",
+     "coletado_em": "2026-11-23",
+     "chave_que_achou": "moto eletrica adulto",
+     "degrau_da_escada": 1,
+     "serve": false,
+     "recusado_por": "outra_familia_na_cabeca",
+     "exigencia_que_faltou": "bicicleta",
+     "exigencias_atendidas": [
+      "moto",
+      "eletric",
+      "adulto"
+     ],
+     "rotulo_de_potencia": "watt_sem_rotulo"
+    },
+    {
      "item_id": 58266990314,
      "shop_id": 1344260289,
      "titulo": "Kit 2 Unidades de Capacete Coquinho Moto Elétrica Scooter Patinete Vintage Tamanho Único Adulto Couro Preto Pro Tork",
-     "preco": 158.69,
+     "preco": 229.98,
      "moeda": "BRL",
      "loja": "FLY COMMERCE",
      "nota": "0",
@@ -1220,7 +1256,7 @@
      "sub_id_1": "rodametria",
      "sub_id_2": null,
      "fonte": "anuncio-shopee",
-     "coletado_em": "2026-11-18",
+     "coletado_em": "2026-11-23",
      "chave_que_achou": "moto eletrica adulto",
      "degrau_da_escada": 1,
      "serve": false,
@@ -1237,7 +1273,7 @@
      "item_id": 58260293387,
      "shop_id": 1344260289,
      "titulo": "Capacete Coquinho Couro Moto Elétrica Scooter Patinete Elétrico Chopper Custom Adulto Infantil Pro Tork",
-     "preco": 85.04,
+     "preco": 104.98,
      "moeda": "BRL",
      "loja": "FLY COMMERCE",
      "nota": "4.7",
@@ -1253,7 +1289,7 @@
      "sub_id_1": "rodametria",
      "sub_id_2": null,
      "fonte": "anuncio-shopee",
-     "coletado_em": "2026-11-18",
+     "coletado_em": "2026-11-23",
      "chave_que_achou": "moto eletrica adulto",
      "degrau_da_escada": 1,
      "serve": false,
@@ -1267,26 +1303,55 @@
      "rotulo_de_potencia": "sem_watt"
     },
     {
-     "item_id": 21656356947,
-     "shop_id": 413758977,
-     "titulo": "Capacete Coquinho Couro Moto Elétrica Bike Scooter Patinete Elétrico Chopper Custom Tam. Único Adulto Infantil Pro Tork",
-     "preco": 89.24,
+     "item_id": 58254547587,
+     "shop_id": 730254596,
+     "titulo": "Triciclo Elétrico Drift Hoverboard 350W 3 Velocidades Infantil e Adulto até 95kg",
+     "preco": 1158.9,
      "moeda": "BRL",
-     "loja": "CROSS COMPANY",
+     "loja": "CyeleSons",
      "nota": "4.9",
-     "vendas": 2,
+     "vendas": 6,
      "tipo_de_loja": [
       2
      ],
      "imagem": null,
      "motivo_sem_imagem": "anuncio recusado: foto nao e medida para quem nao serve",
-     "url_produto": "https://shopee.com.br/product/413758977/21656356947",
+     "url_produto": "https://shopee.com.br/product/730254596/58254547587",
      "url_afiliado": null,
      "motivo_sem_link": "anuncio recusado: link nao e gerado para quem nao serve",
      "sub_id_1": "rodametria",
      "sub_id_2": null,
      "fonte": "anuncio-shopee",
-     "coletado_em": "2026-11-18",
+     "coletado_em": "2026-11-23",
+     "chave_que_achou": "moto eletrica adulto",
+     "degrau_da_escada": 1,
+     "serve": false,
+     "recusado_por": "fora_da_familia",
+     "exigencia_que_faltou": "moto",
+     "exigencias_atendidas": [],
+     "rotulo_de_potencia": "watt_sem_rotulo"
+    },
+    {
+     "item_id": 27497070377,
+     "shop_id": 348733599,
+     "titulo": "flym Capacete De Segurança Para Bicicleta , Masculino E Feminino , Adulto , Crianças , Desenho Animado , Elétrica , Moto",
+     "preco": 77.25,
+     "moeda": "BRL",
+     "loja": "FlyMesitbghy.br",
+     "nota": "0",
+     "vendas": 0,
+     "tipo_de_loja": [
+      2
+     ],
+     "imagem": null,
+     "motivo_sem_imagem": "anuncio recusado: foto nao e medida para quem nao serve",
+     "url_produto": "https://shopee.com.br/product/348733599/27497070377",
+     "url_afiliado": null,
+     "motivo_sem_link": "anuncio recusado: link nao e gerado para quem nao serve",
+     "sub_id_1": "rodametria",
+     "sub_id_2": null,
+     "fonte": "anuncio-shopee",
+     "coletado_em": "2026-11-23",
      "chave_que_achou": "moto eletrica adulto",
      "degrau_da_escada": 1,
      "serve": false,
@@ -1300,29 +1365,29 @@
      "rotulo_de_potencia": "sem_watt"
     },
     {
-     "item_id": 56468917039,
-     "shop_id": 1936184568,
-     "titulo": "Capacete de moto elétrica para adultos RGN, modelo cartoon, certificado 3C, com óculos de proteção AVGC.   UVIW",
-     "preco": 102.09,
+     "item_id": 58265520200,
+     "shop_id": 1905512350,
+     "titulo": "Capacete Bicicleta Unissex Patins Moto Eletrica Skate Infantil Adulto",
+     "preco": 62.9,
      "moeda": "BRL",
-     "loja": "CasaDoComprador.br",
-     "nota": "0",
-     "vendas": 0,
+     "loja": "MALFOY PREMIUM",
+     "nota": "4.9",
+     "vendas": 93,
      "tipo_de_loja": [],
      "imagem": null,
      "motivo_sem_imagem": "anuncio recusado: foto nao e medida para quem nao serve",
-     "url_produto": "https://shopee.com.br/product/1936184568/56468917039",
+     "url_produto": "https://shopee.com.br/product/1905512350/58265520200",
      "url_afiliado": null,
      "motivo_sem_link": "anuncio recusado: link nao e gerado para quem nao serve",
      "sub_id_1": "rodametria",
      "sub_id_2": null,
      "fonte": "anuncio-shopee",
-     "coletado_em": "2026-11-18",
+     "coletado_em": "2026-11-23",
      "chave_que_achou": "moto eletrica adulto",
      "degrau_da_escada": 1,
      "serve": false,
-     "recusado_por": "acessorio",
-     "exigencia_que_faltou": "capacete",
+     "recusado_por": "outro_veiculo",
+     "exigencia_que_faltou": "skate",
      "exigencias_atendidas": [
       "moto",
       "eletric",
@@ -1331,85 +1396,29 @@
      "rotulo_de_potencia": "sem_watt"
     },
     {
-     "item_id": 54753048327,
-     "shop_id": 476677275,
-     "titulo": "Capacete De Meia Folha Para Scooter De Motocicleta-Clássico Unissex Adulto Bicicleta Elétrica Ciclismo",
-     "preco": 72.8,
+     "item_id": 2965744264,
+     "shop_id": 389183213,
+     "titulo": "Capacete Coquinho Rava Adulto com Viseira E-Bike Scooter Moto Elétrica Bike Urbana Skate ABS EPS",
+     "preco": 129.9,
      "moeda": "BRL",
-     "loja": "beautyartisan01.br",
-     "nota": "4.4",
-     "vendas": 3,
+     "loja": "Vendas Mundial Ltda",
+     "nota": "4.9",
+     "vendas": 27,
      "tipo_de_loja": [],
      "imagem": null,
      "motivo_sem_imagem": "anuncio recusado: foto nao e medida para quem nao serve",
-     "url_produto": "https://shopee.com.br/product/476677275/54753048327",
+     "url_produto": "https://shopee.com.br/product/389183213/2965744264",
      "url_afiliado": null,
      "motivo_sem_link": "anuncio recusado: link nao e gerado para quem nao serve",
      "sub_id_1": "rodametria",
      "sub_id_2": null,
      "fonte": "anuncio-shopee",
-     "coletado_em": "2026-11-18",
+     "coletado_em": "2026-11-23",
      "chave_que_achou": "moto eletrica adulto",
      "degrau_da_escada": 1,
      "serve": false,
-     "recusado_por": "fora_da_familia",
-     "exigencia_que_faltou": "moto",
-     "exigencias_atendidas": [],
-     "rotulo_de_potencia": "sem_watt"
-    },
-    {
-     "item_id": 42628531879,
-     "shop_id": 303312315,
-     "titulo": "1 Peça 3C Certificado Masculino E Feminino Adulto Dos Desenhos Animados Bicicleta Elétrica Motocicleta Meio Capacete Com",
-     "preco": 114.85,
-     "moeda": "BRL",
-     "loja": "Baby panda.br",
-     "nota": "4.3",
-     "vendas": 0,
-     "tipo_de_loja": [
-      2
-     ],
-     "imagem": null,
-     "motivo_sem_imagem": "anuncio recusado: foto nao e medida para quem nao serve",
-     "url_produto": "https://shopee.com.br/product/303312315/42628531879",
-     "url_afiliado": null,
-     "motivo_sem_link": "anuncio recusado: link nao e gerado para quem nao serve",
-     "sub_id_1": "rodametria",
-     "sub_id_2": null,
-     "fonte": "anuncio-shopee",
-     "coletado_em": "2026-11-18",
-     "chave_que_achou": "moto eletrica adulto",
-     "degrau_da_escada": 1,
-     "serve": false,
-     "recusado_por": "fora_da_familia",
-     "exigencia_que_faltou": "moto",
-     "exigencias_atendidas": [],
-     "rotulo_de_potencia": "sem_watt"
-    },
-    {
-     "item_id": 48118935899,
-     "shop_id": 1936199904,
-     "titulo": "Capacete de moto elétrica para adultos RGN, modelo cartoon, certificado 3C, com óculos de proteção AVGC.   PCR7",
-     "preco": 102.09,
-     "moeda": "BRL",
-     "loja": "BomGostoShop.br",
-     "nota": "0",
-     "vendas": 0,
-     "tipo_de_loja": [],
-     "imagem": null,
-     "motivo_sem_imagem": "anuncio recusado: foto nao e medida para quem nao serve",
-     "url_produto": "https://shopee.com.br/product/1936199904/48118935899",
-     "url_afiliado": null,
-     "motivo_sem_link": "anuncio recusado: link nao e gerado para quem nao serve",
-     "sub_id_1": "rodametria",
-     "sub_id_2": null,
-     "fonte": "anuncio-shopee",
-     "coletado_em": "2026-11-18",
-     "chave_que_achou": "moto eletrica adulto",
-     "degrau_da_escada": 1,
-     "serve": false,
-     "recusado_por": "acessorio",
-     "exigencia_que_faltou": "capacete",
+     "recusado_por": "outro_veiculo",
+     "exigencia_que_faltou": "skate",
      "exigencias_atendidas": [
       "moto",
       "eletric",
@@ -1437,7 +1446,7 @@
    "consulta": "patinete elétrico",
    "slug": "veiculos/patinete-eletrico",
    "publicar_declarado": true,
-   "colhido_em": "2026-11-18",
+   "colhido_em": "2026-11-23",
    "canal": "API de afiliado da Shopee (productOfferV2), credencial no ambiente",
    "chave_escolhida": "patinete eletrico adulto",
    "degrau_escolhido": 1,
@@ -1449,7 +1458,7 @@
      "ofertas_que_servem": 15,
      "ofertas_que_entram": 14,
      "alcancou_o_piso": true,
-     "medido_em": "2026-11-18"
+     "medido_em": "2026-11-23"
     }
    ],
    "resumo": {
@@ -1468,7 +1477,7 @@
     "numero_proprio": {
      "de": 1297.13,
      "ate": 2699.0,
-     "mediana": 1640.03,
+     "mediana": 1644.35,
      "sobre_quantas_ofertas": 14
     },
     "motivo_sem_numero_proprio": null,
@@ -1502,18 +1511,17 @@
       "altura": 1024,
       "alt": "Patinete Elétrico Adulto 350W 36V | Dobrável 30km/h com Bluetooth, LED Alta Potência",
       "fonte": "anuncio-shopee",
-      "coletado_em": "2026-11-19",
-      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada",
-      "medida_por": "cabecalho do arquivo (medir_foto) E naturalWidth no DOM do Chromium desta nuvem, 390 px, loading eager, 6 s de espera; ambiente: nuvem da Fundacao (claude.ai/code), egresso por proxy de agente"
+      "coletado_em": "2026-11-23",
+      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
      },
      "motivo_sem_imagem": null,
      "url_produto": "https://shopee.com.br/product/1464110083/23399661765",
-     "url_afiliado": "https://s.shopee.com.br/50ahsyvxsy",
+     "url_afiliado": "https://s.shopee.com.br/AAIxd0xVqY",
      "motivo_sem_link": null,
      "sub_id_1": "rodametria",
      "sub_id_2": "patineteeletrico",
      "fonte": "anuncio-shopee",
-     "coletado_em": "2026-11-18",
+     "coletado_em": "2026-11-23",
      "chave_que_achou": "patinete eletrico adulto",
      "degrau_da_escada": 1,
      "serve": true,
@@ -1525,14 +1533,7 @@
       "adulto"
      ],
      "rotulo_de_potencia": "watt_sem_rotulo",
-     "url_afiliado_gerada_em": "2026-11-18",
-     "historico_da_foto": [
-      {
-       "saiu_do_ar_por": "a CDN nao respondeu (HTTP Error 503: Service Unavailable)",
-       "arquivada_em": "2026-11-19",
-       "arquivada_por": "aplicar-foto-remedida.py, com dois instrumentos medindo a foto viva"
-      }
-     ]
+     "url_afiliado_gerada_em": "2026-11-23"
     },
     {
      "item_id": 58215484215,
@@ -1550,17 +1551,17 @@
       "altura": 800,
       "alt": "Patinete Elétrico Scooter 350W 10\" com Amortecedor e App GPS Dobrável Super Autonomia para adultos até 150kg",
       "fonte": "anuncio-shopee",
-      "coletado_em": "2026-11-18",
+      "coletado_em": "2026-11-23",
       "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
      },
      "motivo_sem_imagem": null,
      "url_produto": "https://shopee.com.br/product/1204146211/58215484215",
-     "url_afiliado": "https://s.shopee.com.br/6VPVfjv8U2",
+     "url_afiliado": "https://s.shopee.com.br/20xFu0X0Cg",
      "motivo_sem_link": null,
      "sub_id_1": "rodametria",
      "sub_id_2": "patineteeletrico",
      "fonte": "anuncio-shopee",
-     "coletado_em": "2026-11-18",
+     "coletado_em": "2026-11-23",
      "chave_que_achou": "patinete eletrico adulto",
      "degrau_da_escada": 1,
      "serve": true,
@@ -1572,7 +1573,7 @@
       "adulto"
      ],
      "rotulo_de_potencia": "watt_sem_rotulo",
-     "url_afiliado_gerada_em": "2026-11-18"
+     "url_afiliado_gerada_em": "2026-11-23"
     },
     {
      "item_id": 22294726082,
@@ -1592,17 +1593,17 @@
       "altura": 500,
       "alt": "Patinete Elétrico Scooter Adulto 150w Dobrável Até 60kg",
       "fonte": "anuncio-shopee",
-      "coletado_em": "2026-11-18",
+      "coletado_em": "2026-11-23",
       "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
      },
      "motivo_sem_imagem": null,
      "url_produto": "https://shopee.com.br/product/945531325/22294726082",
-     "url_afiliado": "https://s.shopee.com.br/7KycfGvsje",
+     "url_afiliado": "https://s.shopee.com.br/9KjqdU90G7",
      "motivo_sem_link": null,
      "sub_id_1": "rodametria",
      "sub_id_2": "patineteeletrico",
      "fonte": "anuncio-shopee",
-     "coletado_em": "2026-11-18",
+     "coletado_em": "2026-11-23",
      "chave_que_achou": "patinete eletrico adulto",
      "degrau_da_escada": 1,
      "serve": true,
@@ -1614,7 +1615,7 @@
       "adulto"
      ],
      "rotulo_de_potencia": "watt_sem_rotulo",
-     "url_afiliado_gerada_em": "2026-11-18"
+     "url_afiliado_gerada_em": "2026-11-23"
     },
     {
      "item_id": 20499088152,
@@ -1634,7 +1635,7 @@
      "sub_id_1": "rodametria",
      "sub_id_2": null,
      "fonte": "anuncio-shopee",
-     "coletado_em": "2026-11-18",
+     "coletado_em": "2026-11-23",
      "chave_que_achou": "patinete eletrico adulto",
      "degrau_da_escada": 1,
      "serve": false,
@@ -1661,17 +1662,17 @@
       "altura": 1024,
       "alt": "HONEYWHALE M1 MAX Patinete Elétrico Adulto 500W 32KM/H 22KM",
       "fonte": "anuncio-shopee",
-      "coletado_em": "2026-11-18",
+      "coletado_em": "2026-11-23",
       "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
      },
      "motivo_sem_imagem": null,
      "url_produto": "https://shopee.com.br/product/391072114/58271461235",
-     "url_afiliado": "https://s.shopee.com.br/9pfxdrrFFo",
+     "url_afiliado": "https://s.shopee.com.br/5AuHfpTbpq",
      "motivo_sem_link": null,
      "sub_id_1": "rodametria",
      "sub_id_2": "patineteeletrico",
      "fonte": "anuncio-shopee",
-     "coletado_em": "2026-11-18",
+     "coletado_em": "2026-11-23",
      "chave_que_achou": "patinete eletrico adulto",
      "degrau_da_escada": 1,
      "serve": true,
@@ -1683,7 +1684,7 @@
       "adulto"
      ],
      "rotulo_de_potencia": "watt_sem_rotulo",
-     "url_afiliado_gerada_em": "2026-11-18"
+     "url_afiliado_gerada_em": "2026-11-23"
     },
     {
      "item_id": 58265708355,
@@ -1703,17 +1704,17 @@
       "altura": 1024,
       "alt": "Patinete Elétrico Dobrável 350W Adulto | infantil Até 30km/h Suspensão Reforçada Suporta 100KG",
       "fonte": "anuncio-shopee",
-      "coletado_em": "2026-11-18",
+      "coletado_em": "2026-11-23",
       "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
      },
      "motivo_sem_imagem": null,
      "url_produto": "https://shopee.com.br/product/1898476912/58265708355",
-     "url_afiliado": "https://s.shopee.com.br/9AQGqdy79y",
+     "url_afiliado": "https://s.shopee.com.br/3Vm3gleQE6",
      "motivo_sem_link": null,
      "sub_id_1": "rodametria",
      "sub_id_2": "patineteeletrico",
      "fonte": "anuncio-shopee",
-     "coletado_em": "2026-11-18",
+     "coletado_em": "2026-11-23",
      "chave_que_achou": "patinete eletrico adulto",
      "degrau_da_escada": 1,
      "serve": true,
@@ -1725,7 +1726,7 @@
       "adulto"
      ],
      "rotulo_de_potencia": "watt_sem_rotulo",
-     "url_afiliado_gerada_em": "2026-11-18"
+     "url_afiliado_gerada_em": "2026-11-23"
     },
     {
      "item_id": 58268853999,
@@ -1745,7 +1746,7 @@
      "sub_id_1": "rodametria",
      "sub_id_2": null,
      "fonte": "anuncio-shopee",
-     "coletado_em": "2026-11-18",
+     "coletado_em": "2026-11-23",
      "chave_que_achou": "patinete eletrico adulto",
      "degrau_da_escada": 1,
      "serve": false,
@@ -1776,18 +1777,17 @@
       "altura": 1024,
       "alt": "Patinete Elétrico Adulto,potência 500w Até 140kg Dobrável E Patinete Eletrico Dobrável Controle Via Aplicativo Bluetooth",
       "fonte": "anuncio-shopee",
-      "coletado_em": "2026-11-19",
-      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada",
-      "medida_por": "cabecalho do arquivo (medir_foto) E naturalWidth no DOM do Chromium desta nuvem, 390 px, loading eager, 6 s de espera; ambiente: nuvem da Fundacao (claude.ai/code), egresso por proxy de agente"
+      "coletado_em": "2026-11-23",
+      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
      },
      "motivo_sem_imagem": null,
      "url_produto": "https://shopee.com.br/product/1542939780/42628605214",
-     "url_afiliado": "https://s.shopee.com.br/8pnQS23qqU",
+     "url_afiliado": "https://s.shopee.com.br/1gKPVOlOzH",
      "motivo_sem_link": null,
      "sub_id_1": "rodametria",
      "sub_id_2": "patineteeletrico",
      "fonte": "anuncio-shopee",
-     "coletado_em": "2026-11-18",
+     "coletado_em": "2026-11-23",
      "chave_que_achou": "patinete eletrico adulto",
      "degrau_da_escada": 1,
      "serve": true,
@@ -1799,24 +1799,17 @@
       "adulto"
      ],
      "rotulo_de_potencia": "watt_sem_rotulo",
-     "url_afiliado_gerada_em": "2026-11-18",
-     "historico_da_foto": [
-      {
-       "saiu_do_ar_por": "a CDN nao respondeu (HTTP Error 504: Gateway Time-out)",
-       "arquivada_em": "2026-11-19",
-       "arquivada_por": "aplicar-foto-remedida.py, com dois instrumentos medindo a foto viva"
-      }
-     ]
+     "url_afiliado_gerada_em": "2026-11-23"
     },
     {
      "item_id": 22899142088,
      "shop_id": 1431395498,
      "titulo": "Patinete Elétrico Scooter 350W Adulto Alta Velocidade Bateria Longa Suporta 150kg",
-     "preco": 1369.55,
+     "preco": 1573.95,
      "moeda": "BRL",
      "loja": "LOMIXA",
      "nota": "4.7",
-     "vendas": 4,
+     "vendas": 3,
      "tipo_de_loja": [
       2
      ],
@@ -1826,18 +1819,17 @@
       "altura": 1000,
       "alt": "Patinete Elétrico Scooter 350W Adulto Alta Velocidade Bateria Longa Suporta 150kg",
       "fonte": "anuncio-shopee",
-      "coletado_em": "2026-11-19",
-      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada",
-      "medida_por": "cabecalho do arquivo (medir_foto) E naturalWidth no DOM do Chromium desta nuvem, 390 px, loading eager, 6 s de espera; ambiente: nuvem da Fundacao (claude.ai/code), egresso por proxy de agente"
+      "coletado_em": "2026-11-23",
+      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
      },
      "motivo_sem_imagem": null,
      "url_produto": "https://shopee.com.br/product/1431395498/22899142088",
-     "url_afiliado": "https://s.shopee.com.br/114Z7dbagX",
+     "url_afiliado": "https://s.shopee.com.br/2qWMtXlI6Q",
      "motivo_sem_link": null,
      "sub_id_1": "rodametria",
      "sub_id_2": "patineteeletrico",
      "fonte": "anuncio-shopee",
-     "coletado_em": "2026-11-18",
+     "coletado_em": "2026-11-23",
      "chave_que_achou": "patinete eletrico adulto",
      "degrau_da_escada": 1,
      "serve": true,
@@ -1849,14 +1841,7 @@
       "adulto"
      ],
      "rotulo_de_potencia": "watt_sem_rotulo",
-     "url_afiliado_gerada_em": "2026-11-18",
-     "historico_da_foto": [
-      {
-       "saiu_do_ar_por": "a CDN nao respondeu (HTTP 503: Service Unavailable), medido em 2026-11-18 FORA desta nuvem — a foto cai para o espaco reservado da secao 6 e volta sozinha na coleta em que a CDN responder || ULTIMA MEDICAO: lida no Chrome do Raphael em 18/11/2026, TRES passadas de fetch com cache no-store: HTTP 503 nas tres; na mesma passada a foto sg-11134201-8257t-mqezlfi5xwjyf4 da MESMA CDN devolveu 200 image/jpeg, que e o controle verde — nao e intermitencia e nao e a CDN inteira. No DOM, com loading eager e 6 s de espera: naturalWidth 0 com complete true",
-       "arquivada_em": "2026-11-19",
-       "arquivada_por": "aplicar-foto-remedida.py, com dois instrumentos medindo a foto viva"
-      }
-     ]
+     "url_afiliado_gerada_em": "2026-11-23"
     },
     {
      "item_id": 23099370902,
@@ -1876,7 +1861,7 @@
      "sub_id_1": "rodametria",
      "sub_id_2": null,
      "fonte": "anuncio-shopee",
-     "coletado_em": "2026-11-18",
+     "coletado_em": "2026-11-23",
      "chave_que_achou": "patinete eletrico adulto",
      "degrau_da_escada": 1,
      "serve": false,
@@ -1901,18 +1886,17 @@
       "altura": 1024,
       "alt": "Patinete Scooter Elétrico Dobrável 350W Portátil 30km/h Leve Portátil Adulto",
       "fonte": "anuncio-shopee",
-      "coletado_em": "2026-11-19",
-      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada",
-      "medida_por": "cabecalho do arquivo (medir_foto) E naturalWidth no DOM do Chromium desta nuvem, 390 px, loading eager, 6 s de espera; ambiente: nuvem da Fundacao (claude.ai/code), egresso por proxy de agente"
+      "coletado_em": "2026-11-23",
+      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
      },
      "motivo_sem_imagem": null,
      "url_produto": "https://shopee.com.br/product/805467616/58258339520",
-     "url_afiliado": "https://s.shopee.com.br/2VtMuOaHQG",
+     "url_afiliado": "https://s.shopee.com.br/3LSdUSnRYZ",
      "motivo_sem_link": null,
      "sub_id_1": "rodametria",
      "sub_id_2": "patineteeletrico",
      "fonte": "anuncio-shopee",
-     "coletado_em": "2026-11-18",
+     "coletado_em": "2026-11-23",
      "chave_que_achou": "patinete eletrico adulto",
      "degrau_da_escada": 1,
      "serve": true,
@@ -1924,14 +1908,7 @@
       "adulto"
      ],
      "rotulo_de_potencia": "watt_sem_rotulo",
-     "url_afiliado_gerada_em": "2026-11-18",
-     "historico_da_foto": [
-      {
-       "saiu_do_ar_por": "foto NAO MEDIDA: HTTP Error 403: Forbidden — e ele tem dois pais, a CDN recusando ou o egresso desta nuvem, que recusa este dominio. Nao se afirma qual sem medir de fora",
-       "arquivada_em": "2026-11-19",
-       "arquivada_por": "aplicar-foto-remedida.py, com dois instrumentos medindo a foto viva"
-      }
-     ]
+     "url_afiliado_gerada_em": "2026-11-23"
     },
     {
      "item_id": 58213915737,
@@ -1951,17 +1928,17 @@
       "altura": 1024,
       "alt": "Patinete Elétrico Com App 350W Adulto 8.5 Pol Dobrável Para Cidade",
       "fonte": "anuncio-shopee",
-      "coletado_em": "2026-11-18",
+      "coletado_em": "2026-11-23",
       "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
      },
      "motivo_sem_imagem": null,
      "url_produto": "https://shopee.com.br/product/1510737053/58213915737",
-     "url_afiliado": "https://s.shopee.com.br/1BNzJwfpye",
+     "url_afiliado": "https://s.shopee.com.br/9pg7EPPBEw",
      "motivo_sem_link": null,
      "sub_id_1": "rodametria",
      "sub_id_2": "patineteeletrico",
      "fonte": "anuncio-shopee",
-     "coletado_em": "2026-11-18",
+     "coletado_em": "2026-11-23",
      "chave_que_achou": "patinete eletrico adulto",
      "degrau_da_escada": 1,
      "serve": true,
@@ -1973,12 +1950,12 @@
       "adulto"
      ],
      "rotulo_de_potencia": "watt_sem_rotulo",
-     "url_afiliado_gerada_em": "2026-11-18"
+     "url_afiliado_gerada_em": "2026-11-23"
     },
     {
      "item_id": 58213326444,
      "shop_id": 1510737053,
-     "titulo": "Patinete Elétrico Dobrável Adulto com Assento Controle Bluetooth Suspensão LED 500W",
+     "titulo": "Patinete Elétrico Dobrável Adulto 48V 500W 10Ah Pneu 10\" Freio a Disco Duplo até 35 km/h Suporta 100kg",
      "preco": 2399.99,
      "moeda": "BRL",
      "loja": "ANJGG Brazil",
@@ -1991,19 +1968,19 @@
       "url": "https://cf.shopee.com.br/file/sg-11134201-824gy-mpzbn5iwa87j4c",
       "largura": 1024,
       "altura": 1024,
-      "alt": "Patinete Elétrico Dobrável Adulto com Assento Controle Bluetooth Suspensão LED 500W",
+      "alt": "Patinete Elétrico Dobrável Adulto 48V 500W 10Ah Pneu 10\" Freio a Disco Duplo até 35 km/h Suporta 100kg",
       "fonte": "anuncio-shopee",
-      "coletado_em": "2026-11-18",
+      "coletado_em": "2026-11-23",
       "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
      },
      "motivo_sem_imagem": null,
      "url_produto": "https://shopee.com.br/product/1510737053/58213326444",
-     "url_afiliado": "https://s.shopee.com.br/3LSTtvbzMJ",
+     "url_afiliado": "https://s.shopee.com.br/9070EsWGrk",
      "motivo_sem_link": null,
      "sub_id_1": "rodametria",
      "sub_id_2": "patineteeletrico",
      "fonte": "anuncio-shopee",
-     "coletado_em": "2026-11-18",
+     "coletado_em": "2026-11-23",
      "chave_que_achou": "patinete eletrico adulto",
      "degrau_da_escada": 1,
      "serve": true,
@@ -2015,7 +1992,7 @@
       "adulto"
      ],
      "rotulo_de_potencia": "watt_sem_rotulo",
-     "url_afiliado_gerada_em": "2026-11-18"
+     "url_afiliado_gerada_em": "2026-11-23"
     },
     {
      "item_id": 58208141735,
@@ -2035,17 +2012,17 @@
       "altura": 1024,
       "alt": "Patinete Elétrico Importway 150W Dobrável IWPEL150 Até 14km/h Adulto Preto",
       "fonte": "anuncio-shopee",
-      "coletado_em": "2026-11-18",
+      "coletado_em": "2026-11-23",
       "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
      },
      "motivo_sem_imagem": null,
      "url_produto": "https://shopee.com.br/product/1355216109/58208141735",
-     "url_afiliado": "https://s.shopee.com.br/9zzNqBGs63",
+     "url_afiliado": "https://s.shopee.com.br/gRsJZ6OYU",
      "motivo_sem_link": null,
      "sub_id_1": "rodametria",
      "sub_id_2": "patineteeletrico",
      "fonte": "anuncio-shopee",
-     "coletado_em": "2026-11-18",
+     "coletado_em": "2026-11-23",
      "chave_que_achou": "patinete eletrico adulto",
      "degrau_da_escada": 1,
      "serve": true,
@@ -2057,7 +2034,7 @@
       "adulto"
      ],
      "rotulo_de_potencia": "watt_sem_rotulo",
-     "url_afiliado_gerada_em": "2026-11-18"
+     "url_afiliado_gerada_em": "2026-11-23"
     },
     {
      "item_id": 58270489911,
@@ -2065,7 +2042,7 @@
      "titulo": "Patinete Elétrico Dobrável Bateria Carregador Bivolt 24v Dobrável Preto Crianças, adolescentes e adultos até 70kg",
      "preco": 949.9,
      "moeda": "BRL",
-     "loja": "Shopix Oficial",
+     "loja": "Shopix Brasil ",
      "nota": "0",
      "vendas": 0,
      "tipo_de_loja": [],
@@ -2077,7 +2054,7 @@
      "sub_id_1": "rodametria",
      "sub_id_2": null,
      "fonte": "anuncio-shopee",
-     "coletado_em": "2026-11-18",
+     "coletado_em": "2026-11-23",
      "chave_que_achou": "patinete eletrico adulto",
      "degrau_da_escada": 1,
      "serve": false,
@@ -2106,18 +2083,17 @@
       "altura": 1024,
       "alt": "Patinete Elétrico Dobrável Para Adultos Portátil Bluethooth 350W Motorizado Até 30Km/h Até 100Kl Nakassaki",
       "fonte": "anuncio-shopee",
-      "coletado_em": "2026-11-19",
-      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada",
-      "medida_por": "cabecalho do arquivo (medir_foto) E naturalWidth no DOM do Chromium desta nuvem, 390 px, loading eager, 6 s de espera; ambiente: nuvem da Fundacao (claude.ai/code), egresso por proxy de agente"
+      "coletado_em": "2026-11-23",
+      "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
      },
      "motivo_sem_imagem": null,
      "url_produto": "https://shopee.com.br/product/1143387482/58265317472",
-     "url_afiliado": "https://s.shopee.com.br/6AmfH8V7ZL",
+     "url_afiliado": "https://s.shopee.com.br/9070EsafgQ",
      "motivo_sem_link": null,
      "sub_id_1": "rodametria",
      "sub_id_2": "patineteeletrico",
      "fonte": "anuncio-shopee",
-     "coletado_em": "2026-11-18",
+     "coletado_em": "2026-11-23",
      "chave_que_achou": "patinete eletrico adulto",
      "degrau_da_escada": 1,
      "serve": true,
@@ -2129,14 +2105,7 @@
       "adulto"
      ],
      "rotulo_de_potencia": "watt_sem_rotulo",
-     "url_afiliado_gerada_em": "2026-11-18",
-     "historico_da_foto": [
-      {
-       "saiu_do_ar_por": "foto NAO MEDIDA: HTTP Error 403: Forbidden — e ele tem dois pais, a CDN recusando ou o egresso desta nuvem, que recusa este dominio. Nao se afirma qual sem medir de fora",
-       "arquivada_em": "2026-11-19",
-       "arquivada_por": "aplicar-foto-remedida.py, com dois instrumentos medindo a foto viva"
-      }
-     ]
+     "url_afiliado_gerada_em": "2026-11-23"
     },
     {
      "item_id": 21797970759,
@@ -2156,7 +2125,7 @@
      "sub_id_1": "rodametria",
      "sub_id_2": null,
      "fonte": "anuncio-shopee",
-     "coletado_em": "2026-11-18",
+     "coletado_em": "2026-11-23",
      "chave_que_achou": "patinete eletrico adulto",
      "degrau_da_escada": 1,
      "serve": false,
@@ -2172,7 +2141,7 @@
      "item_id": 58253809160,
      "shop_id": 1430771203,
      "titulo": "Patinete Elétrico 550W Scooter de Alumínio Para Adultos,40 KM/H, Dobravel Com Bluetooth Com Bolsa",
-     "preco": 1369.55,
+     "preco": 1589.69,
      "moeda": "BRL",
      "loja": "Super mantimentos comprar",
      "nota": "4.3",
@@ -2186,17 +2155,17 @@
       "altura": 1024,
       "alt": "Patinete Elétrico 550W Scooter de Alumínio Para Adultos,40 KM/H, Dobravel Com Bluetooth Com Bolsa",
       "fonte": "anuncio-shopee",
-      "coletado_em": "2026-11-18",
+      "coletado_em": "2026-11-23",
       "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
      },
      "motivo_sem_imagem": null,
      "url_produto": "https://shopee.com.br/product/1430771203/58253809160",
-     "url_afiliado": "https://s.shopee.com.br/7fbT3tToLO",
+     "url_afiliado": "https://s.shopee.com.br/AAIxd1ayN1",
      "motivo_sem_link": null,
      "sub_id_1": "rodametria",
      "sub_id_2": "patineteeletrico",
      "fonte": "anuncio-shopee",
-     "coletado_em": "2026-11-18",
+     "coletado_em": "2026-11-23",
      "chave_que_achou": "patinete eletrico adulto",
      "degrau_da_escada": 1,
      "serve": true,
@@ -2208,7 +2177,7 @@
       "adulto"
      ],
      "rotulo_de_potencia": "watt_sem_rotulo",
-     "url_afiliado_gerada_em": "2026-11-18"
+     "url_afiliado_gerada_em": "2026-11-23"
     },
     {
      "item_id": 58272768414,
@@ -2226,17 +2195,17 @@
       "altura": 1024,
       "alt": "Patinete Elétrico Safe Drop Go-x06 250w Dobrável Adulto Preto",
       "fonte": "anuncio-shopee",
-      "coletado_em": "2026-11-18",
+      "coletado_em": "2026-11-23",
       "como_a_dimensao_foi_medida": "cabecalho do arquivo na CDN, nunca digitada"
      },
      "motivo_sem_imagem": null,
      "url_produto": "https://shopee.com.br/product/332611258/58272768414",
-     "url_afiliado": "https://s.shopee.com.br/1LhPWFwnm6",
+     "url_afiliado": "https://s.shopee.com.br/8VAjdxlmmK",
      "motivo_sem_link": null,
      "sub_id_1": "rodametria",
      "sub_id_2": "patineteeletrico",
      "fonte": "anuncio-shopee",
-     "coletado_em": "2026-11-18",
+     "coletado_em": "2026-11-23",
      "chave_que_achou": "patinete eletrico adulto",
      "degrau_da_escada": 1,
      "serve": true,
@@ -2248,7 +2217,7 @@
       "adulto"
      ],
      "rotulo_de_potencia": "watt_sem_rotulo",
-     "url_afiliado_gerada_em": "2026-11-18"
+     "url_afiliado_gerada_em": "2026-11-23"
     }
    ],
    "anuncios_aposentados": [

@@ -175,13 +175,81 @@ def _credenciais():
     return app_id, segredo
 
 
+# O ERRO QUE É DA SHOPEE E NÃO DA CHAMADA — e ele foi MEDIDO em 23/11/2026, não
+# suposto: `error [10000]: System Error`, com HTTP 200, em **2 de 10** chamadas
+# idênticas e seguidas (`busca "moto eletrica adulto"`, a mesma credencial e o
+# mesmo corpo). As outras 8 voltaram com a lista de ofertas. Não é credencial,
+# não é assinatura, não é egresso: é o servidor da Shopee recusando uma chamada
+# que ele aceita no segundo seguinte.
+#
+# POR QUE ISSO IMPORTA MAIS DO QUE UM EM CINCO: a coleta de uma ilha faz DEZENAS
+# de chamadas numa passada (a escada de chaves de cada consulta, mais o
+# encurtador por anúncio). Com 20% de recusa por chamada e nenhuma repetição, a
+# coleta inteira morre quase sempre, e morre no MEIO — e o que a execução lê é um
+# traceback, que parece defeito do código ou da credencial. A primeira tentativa
+# do item 3 do despacho de 23/11 morreu exatamente assim, na primeira consulta.
+#
+# A RÉGUA É A DA SEÇÃO 4 E DA 20.2, aplicada a esta porta: *"falha de rede só
+# vira bloqueio depois de repetir"*. Uma falha isolada é o túnel; três seguidas é
+# bloqueio. O que NÃO se repete é recusa de CREDENCIAL ou de ASSINATURA — ali
+# repetir é bater na porta com a chave errada, e o conserto é do Raphael (25.6).
+# E a repetição é DITA no stderr, nunca engolida: repetição silenciosa esconde
+# justamente a medição que fez esta trava nascer.
+ERROS_QUE_SE_REPETEM = ('10000',)
+TENTATIVAS = 4
+ESPERA_ENTRE_TENTATIVAS = 3
+
+
 def _chamar(corpo_dict):
     """Uma chamada GraphQL assinada. Devolve o `data` já desembrulhado.
 
     O CORPO É SERIALIZADO UMA VEZ SÓ, de propósito: a assinatura vale sobre o
     texto exato do POST. Serializar duas vezes produz assinatura de um corpo
     que não foi enviado — e a Shopee recusa sem dizer por quê.
+
+    E ELA REPETE o erro transitório da Shopee (ver `ERROS_QUE_SE_REPETEM` acima),
+    reassinando a cada tentativa — a assinatura leva o `Timestamp`, então
+    repetir o MESMO cabeçalho seria repetir uma assinatura envelhecida.
     """
+    ultimo = None
+    for tentativa in range(1, TENTATIVAS + 1):
+        try:
+            return _chamar_uma_vez(corpo_dict)
+        except ErroDaShopee as erro:
+            ultimo = erro
+            if not _vale_repetir(erro):
+                raise
+            if tentativa == TENTATIVAS:
+                break
+            sys.stderr.write(
+                'shopee-api: %s — tentativa %d de %d, repetindo em %ds '
+                '(erro transitorio medido em 2 de 10 chamadas em 23/11/2026)\n'
+                % (erro, tentativa, TENTATIVAS, ESPERA_ENTRE_TENTATIVAS))
+            time.sleep(ESPERA_ENTRE_TENTATIVAS)
+    raise ErroDaShopee(
+        '%s — e ele voltou nas %d tentativas. Agora SIM e para tratar como a '
+        'API fora do ar, nao como intermitencia (secao 4 do ARQUIPELAGO.md).'
+        % (ultimo, TENTATIVAS))
+
+
+def _vale_repetir(erro):
+    """A DECISÃO como função pura, para a bancada poder fabricar o mundo (seção 8).
+
+    Entra o erro, sai `True` só para a classe transitória. Credencial e
+    assinatura devolvem `False` de propósito: repetir ali é bater na porta com a
+    chave errada, e a frase de erro é o que diz ao Raphael o que fazer (25.6).
+    """
+    texto = str(erro)
+    if 'HTTP 5' in texto:
+        return True
+    for codigo in ERROS_QUE_SE_REPETEM:
+        if '[%s]' % codigo in texto:
+            return True
+    return False
+
+
+def _chamar_uma_vez(corpo_dict):
+    """UMA tentativa, assinada na hora. Quem repete é `_chamar`."""
     app_id, segredo = _credenciais()
 
     corpo = json.dumps(corpo_dict, ensure_ascii=False, separators=(',', ':'))

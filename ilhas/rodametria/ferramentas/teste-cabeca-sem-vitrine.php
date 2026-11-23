@@ -367,6 +367,7 @@ $MUNDO['nao_nasceram'] = array(
 	   6 deste portao mediu a falta no minuto em que ela nasceu: as duas irmas
 	   deixaram de ser linkadas na pagina sem vitrine. */
 	array('id' => 'moto-eletrica', 'colhido_em' => '2026-11-18',
+	      'colhido_em_br' => '18/11/2026',
 	      'consulta' => 'consulta moto-eletrica',
 	      'causa' => 'menos de 3 anuncios que servem COM link e preco: 2'),
 );
@@ -478,6 +479,31 @@ vale(0 === preg_match('/R\$\s*[0-9]/u', $html),
 	. 'erro que esta pagina nao pode cometer');
 vale(0 === preg_match('/\b\d+[.,]\d{2}\b/u', $corpo),
 	'nenhum numero com casa decimal no corpo (faixa, mediana ou preco)');
+
+/* A DATA DA LEITURA NA TELA (item 3 do despacho de 23/11/2026), e os DOIS mundos.
+   Ate hoje esta pagina dizia "a leitura de hoje", e "hoje" e a palavra que
+   envelhece sozinha — ela se le igual no dia da coleta e cinco dias depois, que e
+   a secao 4 dentro de uma frase. A data sai do MESMO campo que o `dateModified`
+   desta pagina, em formato de leitor. */
+vale(false !== strpos($corpo, 'A leitura de 18/11/2026 não alcançou'),
+	'a pagina diz a DATA da leitura que nao alcancou o piso, lida de `colhido_em_br`',
+	'e a data e a mesma do `dateModified` do JSON-LD desta pagina, em outro formato');
+vale(false === strpos($corpo, 'A leitura de hoje'),
+	'a palavra "hoje" saiu da frase: ela se le igual no dia da coleta e cinco dias depois');
+$guardado_br = $MUNDO['nao_nasceram'];
+$MUNDO['nao_nasceram'] = array(
+	array('id' => 'moto-eletrica', 'colhido_em' => '2026-11-18',
+	      'consulta' => 'consulta moto-eletrica',
+	      'causa' => 'menos de 3 anuncios que servem COM link e preco: 2'),
+);
+$corpo_sem_data = trim(preg_replace('/\s+/u', ' ',
+	strip_tags(rdm_produto_pagina_sem_vitrine_html())));
+vale(false !== strpos($corpo_sem_data, 'A leitura mais recente não alcançou'),
+	'SEM a data no dado, a frase nao promete data nenhuma em vez de inventar uma',
+	'numero de tela sem procedencia na fonte e o que o `conferir-no-ar.py` reprova');
+vale(0 === preg_match('#\b\d{2}/\d{2}/\d{4}\b#u', $corpo_sem_data),
+	'e nenhuma data aparece no corpo nesse mundo');
+$MUNDO['nao_nasceram'] = $guardado_br;
 
 /* A CLASSE DO QUANTIFICADOR POR EXTENSO, E ELA ESTA AQUI PORQUE ESTE PORTAO A
    PEGOU EM MIM. A primeira versao do corpo, escrita minutos antes nesta mesma

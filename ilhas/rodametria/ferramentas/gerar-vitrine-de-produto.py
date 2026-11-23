@@ -1228,9 +1228,18 @@ def gerar():
             # `nao_nasceram` mora na VITRINE, que e publicada;
             # `anuncios-por-consulta` tem `publicar: false` e NAO existe como
             # option no ar, entao a consulta tem de viajar por aqui.
+            # `colhido_em_br` VIAJA JUNTO porque a pagina degradada passou a
+            # DIZER A DATA DA LEITURA NA TELA (item 3 do despacho de 23/11), e a
+            # data da tela sai do MESMO campo que o `dateModified` do JSON-LD,
+            # em outro formato — um fato, uma fonte (20.7). Sem este campo o PHP
+            # teria de formatar a data, que e a segunda declaracao do mesmo
+            # fato: a filha com vitrine ja recebe `colhido_em_br` daqui, e duas
+            # formatacoes da mesma data comecam iguais e so uma sobe.
             recusadas.append({'id': bloco['id'], 'causa': causa,
                               'consulta': bloco.get('consulta'),
                               'colhido_em': bloco.get('colhido_em'),
+                              'colhido_em_br': data_br(bloco['colhido_em'])
+                              if bloco.get('colhido_em') else None,
                               'piso_da_busca': bloco.get('piso_da_busca') or None})
             continue
         paginas.append(v)

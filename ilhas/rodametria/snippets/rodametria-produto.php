@@ -629,9 +629,25 @@ function rdm_produto_pagina_sem_vitrine_html() {
 		$html .= '<p class="rdm-caixa-piso rdm-caixa-piso-sem">Esta página também está '
 			. 'sem link para a loja hoje.</p>';
 	}
+	/* A DATA DA LEITURA NA TELA (item 3 do despacho de 23/11/2026), e ela sai do
+	   MESMO campo que o `dateModified` desta pagina — `colhido_em` em
+	   `nao_nasceram`, aqui no formato de leitor. Ate hoje esta pagina dizia "a
+	   leitura de hoje", e "hoje" e a palavra que envelhece sozinha: ela se lia
+	   igual no dia da coleta e cinco dias depois, que e a familia da secao 4
+	   dentro de uma frase. SEM A DATA NO DADO, a frase volta a nao prometer data
+	   nenhuma, em vez de inventar uma — e o `conferir-no-ar.py` nao aceita
+	   numero de tela sem procedencia. */
+	$recusada = rdm_produto_nao_nasceram();
+	$recusada = isset( $recusada[ $slug ] ) ? $recusada[ $slug ] : array();
+	$data_br  = isset( $recusada['colhido_em_br'] )
+		? trim( (string) $recusada['colhido_em_br'] ) : '';
 	$html .= '<p>Esta página compara os anúncios de adulto que estão à venda agora, e '
 		. 'ela só publica a faixa de preço quando a leitura do dia alcança pelo menos '
-		. 'três anúncios que sirvam. A leitura de hoje não alcançou: a loja parou de '
+		. 'três anúncios que sirvam. '
+		. ( '' === $data_br
+			? 'A leitura mais recente não alcançou'
+			: 'A leitura de ' . esc_html( $data_br ) . ' não alcançou' )
+		. ': a loja parou de '
 		. 'devolver um dos anúncios que sustentavam a faixa, e os que sobraram não dão '
 		. 'base para um preço de ponta a ponta. Preferimos não publicar faixa nenhuma '
 		. 'a publicar uma que a leitura já não sustenta — o preço que você veria aqui '
