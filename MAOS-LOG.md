@@ -10877,3 +10877,55 @@ Push direto em `git push origin HEAD:main`, aceito de primeira (`6b3e22f..a8f944
 Nas cinco linhas em branco que o disparo marcou como críticas — a que fecha cada bloco de citação antes do parágrafo seguinte — a separação foi conferida na leitura posterior: em `README.md` a citação é o fim do arquivo; em `_modelo/PROMPT.md`, `dossies/rodametria/VOZ.md` e `oportunidades/rodametria.md` há linha em branco entre o `>` final e o texto seguinte, então nenhum parágrafo entrou na citação por engano.
 
 Nenhum passo falhou: nenhuma mensagem de erro a registrar. Nenhum arquivo além dos cinco nomeados e deste `MAOS-LOG.md` foi tocado; nenhum cabeçalho de estado, reserva de ilha, `executando_desde` ou `publicar` foi mexido. A hora do título saiu de `TZ=America/Sao_Paulo date` e `date -u` na mesma chamada que fechou a contagem, nunca digitada. Este log vai num commit seguinte ao do trabalho, porque a contagem acima só pôde ser fechada depois de o trabalho estar confirmado no `main`. Nenhuma seção anterior deste arquivo foi apagada, reescrita ou resumida.
+
+---
+
+## DISPARO DE 2026-11-23, 12h07 de Brasília (15h07Z) — QUATRO OPERAÇÕES DA SENTINELA DA RODAMETRIA (ronda diária técnica de 23/11), AS QUATRO NO MESMO COMMIT, CONFIRMADO NO `main`
+
+Assunto conferido antes do `git fetch`: ilha **rodametria** (`ilhas/rodametria/`, que existe no repositório), Sentinela e `dados/PAINEL.md` — Arquipélago. Nada de outro projeto chegou neste disparo. Nenhum contato pessoal de terceiros havia no texto, então nada foi deixado de fora por causa da regra do repositório público.
+
+Parti do `main` real (`git fetch origin main && git checkout -B trabalho origin/main`, a partir de `0fd9508`), apliquei as quatro operações letra por letra e empurrei direto para o `main`. **As quatro casaram no primeiro passe: nenhum trecho a substituir ficou sem casar.**
+
+`git status --porcelain` depois do commit (limpo):
+
+```
+```
+
+`git diff --stat` do commit que foi ao `main`:
+
+```
+ dados/PAINEL.md                     | 54 ++++++++++++++++++++----------------
+ ilhas/rodametria/ESTADO.md          |  2 +-
+ ilhas/rodametria/PROMPT.md          | 55 +++++++++++++++++++++++++++++++++++++
+ ilhas/rodametria/dados/consertos.md |  1 +
+ 4 files changed, 87 insertions(+), 25 deletions(-)
+```
+
+Hash do commit no `main`, conferido com `git fetch origin main && git log -1 origin/main`:
+
+```
+e6a0baf08ed8be625587e83dcac4b1d26279678b
+sentinela: ronda tecnica da rodametria de 23/11 — despacho de 3 itens (ALTA: moto-eletrica orfa no miolo), reconferencia da 19.4(c), ultima_ronda e PAINEL reescrito
+```
+
+Contagem do que mudou, **conferida relendo cada arquivo DEPOIS de gravar** (não pelo que eu achava que havia escrito):
+
+```
+ilhas/rodametria/PROMPT.md            1865 -> 1920 linhas   263.738 -> 275.435 bytes   (+55/-0)
+ilhas/rodametria/dados/consertos.md     21 ->   22 linhas    47.323 ->  50.417 bytes   (+1/-0)
+ilhas/rodametria/ESTADO.md             250 ->  250 linhas    19.019 ->  19.490 bytes   (+1/-1)
+dados/PAINEL.md                         50 ->   56 linhas     7.624 ->   9.614 bytes   (+37/-24, arquivo inteiro substituido)
+```
+
+- **OPERAÇÃO 1 — `ilhas/rodametria/PROMPT.md`:** o bloco novo entrou **imediatamente acima** da linha `## DESPACHO DA SENTINELA — 2026-11-18 (LEITURA SEMANAL, …)`, que era a primeira ocorrência de `## DESPACHO DA SENTINELA` e estava na linha **68** — o alvo foi casado como texto único no arquivo (`count == 1`) antes de escrever. Depois de gravar: o despacho de 23/11 ocupa as linhas **68 a 122**, o de 18/11 (leitura semanal) desceu intacto para a linha **123**, `grep -c '^## DESPACHO DA SENTINELA'` = **5** (eram 4, mais o novo), `FIM DO DESPACHO DE 23/11` = **1** ocorrência, e o bloco fecha com `---` e linha em branco antes do despacho de 18/11. Diffstat **+55/-0**: nada do que já estava no arquivo foi apagado, reescrito ou reordenado.
+- **OPERAÇÃO 2 — `ilhas/rodametria/dados/consertos.md`:** a linha nova foi acrescentada **no fim**, depois da linha que começa com `| 2026-11-23 | todas (a porta) — **NADA REPARADO`, que era de fato a última. Depois de gravar: 22 linhas, `grep -c '^| 2026-11-23 |'` = **2** (a da porta, que já existia, e a desta ronda), e a linha nova é **uma linha só**, sem quebra no meio.
+- **OPERAÇÃO 3 — `ilhas/rodametria/ESTADO.md`:** a linha `ultima_ronda:` foi substituída inteira, de `2026-11-18T20:01Z` para `2026-11-23T14:59Z`, casada como texto único no arquivo. **Nenhum outro campo do cabeçalho foi tocado** (diffstat +1/-1, uma linha e só ela). A checagem pedida na instrução rodou depois de gravar e devolveu:
+
+```
+YAML ok
+```
+
+- **OPERAÇÃO 4 — `dados/PAINEL.md` (raiz):** o arquivo foi **substituído inteiro**, como a seção 23 manda (instantâneo só). Depois de gravar: 56 linhas, `Instantâneo de 2026-11-23` = **1** ocorrência (zero sobra do instantâneo de 20/11), **21** linhas de tabela — as 6 ilhas mais 11 despachos abertos mais os cabeçalhos e separadores das duas tabelas.
+- **UMA COISA QUE EU NÃO CORRIGI DE PROPÓSITO, E ELA É PARA QUEM ESCREVEU O TEXTO VER:** na linha do `wp-sitemap.xml` da clubedomosaico, no `PAINEL.md`, a palavra escrita como `recontа` traz um **`а` cirílico (U+0430)** no lugar do `a` latino — veio assim na instrução e foi gravada assim, byte a byte, porque corrigir texto que a instrução entregou pronto não é das MÃOS. Conferido no arquivo depois de gravar: `[... 0x6e, 0x74, 0x430 ...]`. Se isso for engano de digitação, quem conserta é a ronda seguinte, numa instrução que nomeie a troca.
+
+Nenhum passo falhou: não há mensagem de erro a registrar. O push foi aceito de primeira (`0fd9508..e6a0baf  HEAD -> main`), sem rebase, sem force e sem PR. Nenhum arquivo além dos quatro nomeados e deste `MAOS-LOG.md` foi tocado; nenhum cabeçalho de estado fora da linha `ultima_ronda` que a instrução nomeou, nenhuma reserva de ilha, nenhum `executando_desde`, nenhum `publicar`, nenhum Sync. Nenhum bloco de fila foi executado e o `ARQUIPELAGO.md` não foi aberto para decidir nada. A hora do título saiu de `TZ=America/Sao_Paulo date` e `date -u` na mesma chamada, nunca digitada de cabeça. Este log vai num commit seguinte ao do trabalho, porque a contagem acima só pôde ser fechada depois de o commit estar confirmado em `origin/main`. Nenhuma seção anterior deste arquivo foi apagada, reescrita ou resumida.
