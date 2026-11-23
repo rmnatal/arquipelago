@@ -487,6 +487,36 @@ anúncio. Espelho prova que o anúncio existiu; não prova preço, nem que exist
 
 ## Ilhas nascidas
 
+> **PONTEIRO DO PENTE FINO, 23/11/2026 — ESTA TABELA TEM CINCO LINHAS E O ARQUIPÉLAGO TEM SEIS ILHAS. FALTA A
+> RODAMETRIA, QUE É A ILHA EM FOCO TOTAL E A ÚNICA QUE ESTA BÚSSOLA PARIU EM MODO CAÇADOR.**
+>
+> **O que está medido.** `ilhas/` tem **seis** pastas de ilha (contadas em 23/11/2026). A **rodametria**
+> (mobilidade elétrica: patinete, bicicleta, scooter e moto elétrica) foi aprovada por ele em **27/10/2026 às
+> 14h29** — está escrito nesta mesma página, quatro parágrafos antes do fim —, tem dossiê em
+> `bussola/dossies/rodametria/`, ficha em `bussola/oportunidades/rodametria.md`, domínio pago, site no ar e
+> `foco.md` a nomeia desde 27/10/2026. **Ela não está nesta tabela.** E a nota de 12/10 logo abaixo fecha
+> dizendo *"agora a página conta cinco nos dois lugares"* — é essa frase que ficou velha: a página registra a
+> sexta ilha na prosa do fim e conta cinco aqui.
+>
+> **Por que isto é operacional e não arrumação:** a **seção 4** desta lei manda *"refazer a busca paramétrica dos
+> 5 primeiros da fila SEM ILHA NASCIDA"*, e é esta tabela que diz quais nichos já têm ilha. Tabela incompleta
+> manda caçar nicho que já é de uma ilha.
+>
+> **E a segunda metade, que é da ohmetria:** esta tabela a lista como ilha nascida em som automotivo e **não diz
+> que o `bussola/cacados.md` desta mesma pasta fechou aquele nicho em 22/10/2026** (linha 11: *"SERP de compra
+> tomada por carrossel · 230 buscas/mês nas consultas de compra exatas"*). O ponteiro que a auditoria de 16/11
+> escreveu sobre isso foi para `ilhas/ohmetria/`, não para cá — e quem lê a Bússola lê daqui.
+>
+> **O que este ponteiro NÃO faz, de propósito:** não acrescenta linha nem nota a esta tabela. A **0.3** diz que
+> esta página é registro de medição e a coluna `Nota` carrega índice e régua, que são medição da Bússola — e
+> preencher medição que eu não fiz seria a 3.1 ao contrário. **A linha é da próxima rodada; o buraco fica
+> nomeado aqui para ela não repetir a caça.**
+>
+> **O que já prova que nenhuma decisão foi contaminada por isto, e foi medido antes de eu graduar o achado:**
+> `bussola/cacados.md` traz, em **19/11/2026**, a linha *"triciclo elétrico · já é nicho da Rodametria
+> (mobilidade elétrica) · 246 mil/mês"* — a caça reconheceu o nicho como tomado sem precisar desta tabela, do
+> mesmo jeito que já havia feito com *"aquário (cabeça de produto) · já é ilha (Aquametria)"* em 27/10.
+
 | Ilha | Nicho | Nota |
 |---|---|---|
 | robometria.com.br | Robô aspirador (peças e compatibilidade) | nasceu 09–10/09. Índice 4,30 na régua antiga (Amazon) — **não comparável** |
