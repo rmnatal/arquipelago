@@ -3,6 +3,84 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-11-23 19h17Z–19h5xZ — **A TERCEIRA FONTE DA DATA DE UMA PÁGINA EXISTE: O CÓDIGO QUE A DESENHA. A SEGUNDA METADE DO ITEM 2 DO DESPACHO DE HOJE, FECHADA — E O PORTÃO DE AR COBRA, POR URL, QUE A PÁGINA NÃO SE DIGA MAIS VELHA QUE O SEU PRÓPRIO HTML**
+
+**A ILHA DESTA EXECUÇÃO:** rodametria, por **foco** (`foco.md`, foco total e absoluto desde 27/10). Não houve escolha a fazer: pela **1.2** a rotação da seção 1 está suspensa enquanto aquela linha nomear esta ilha.
+**Passo 1 do disparo, medido:** `git fetch origin main` trouxe `origin/main` de `68c88a4` para **`807fb6c`**, em **atualização forçada** — e o `main` **local** deste clone está em história **NÃO RELACIONADA** com o `origin/main` (`git merge --ff-only` responde *"refusing to merge unrelated histories"*, 51 commits contra 50). O trabalho saiu do **estado real do `origin/main`**, como o passo 1 manda, e nada foi forçado. **Nenhum branch `claude/*` com commit a mais e NENHUM PR aberto** (`list_pull_requests` devolveu lista vazia).
+**NADA FUROU O FOCO, conferido e não herdado:** não há despacho ALTA de irmã **no ar e quebrada**, e o despacho do molde da 32 segue fechado nas três.
+**Reserva:** `executando_desde` às **19h17Z**, commit `fcb7081`, push aceito **de primeira** — o campo estava `null`, que pela **1.1** já significa que não há bloco da Fundação vivo, e o último commit na pasta era das 17h17Z (o fecho da execução anterior), fora da janela de 40 minutos. **RENOVADA às 19h29Z** pela 1.1, porque o bloco mexe em manifest, casca, gerador e três portões.
+**REDE PELA 20.2, REMEDIDA E NÃO HERDADA:** `rodametria.com.br` em **200** nas TRÊS passadas, com `aquametria.com.br` e `robometria.com.br` em **200** nas MESMAS três — nove leituras verdes.
+
+### O QUE FALTAVA, E POR QUE ELE NÃO ERA ITEM DE DESPACHO
+
+O "pronto quando" do item 2 do despacho da ronda de hoje tinha duas metades. A primeira — *"a data de cada URL sair da data em que AQUELA página mudou"* — foi fechada às 17h0xZ pela execução anterior, que trocou a composição do filtro de **primeiro-vence** para **mais recente**. A segunda estava escrita assim: *"o portão de ar cobrando, por URL, que ela não seja mais antiga que a revisão do `manifest.json` que a desembarcou"* — e aquela execução a reescreveu pela **18.3** com o motivo na cara: **a data em que uma página muda quando o CÓDIGO dela muda não existia em lugar nenhum.** O `manifest.json` tinha UM `atualizado_em` para a revisão inteira, e revisão inteira não distingue a página que mudou da que não mudou. Era bloco, não item.
+
+**E O CUSTO ESTAVA NO AR, MEDIDO HOJE SEM UM NÚMERO DIGITADO:** `paginas-institucionais.json` tem `gerado_em: 2026-10-30`, e as quatro institucionais serviam `dateModified: 2026-10-30`. Os **seis** snippets desta ilha foram reescritos **hoje**. A página servida hoje não era a de 30/10 em **um único byte** — e dizia ao Google que não mudava desde outubro.
+
+### AS TRÊS ALÍNEAS, FECHADAS
+
+**(a) `mudou_em` POR ITEM DO MANIFEST.** `atualizar-manifest.py` passou a espelhar um **terceiro** campo, ao lado de `sha256` (o que é) e `versao` (qual versão se declara): `mudou_em` responde **desde quando**. Ele recebe a data de hoje **no mesmo gesto** em que o `sha256` daquele item troca — byte igual, data parada —, e não há caminho para ele subir sozinho. Em `--conferir` nada é datado, pela mesma razão escrita no bloco do `atualizado_em`: portão que depende de "hoje" reprova manifest em dia amanhã (20.5).
+
+> **E A SEMEADURA DO PRIMEIRO DIA ACHOU UMA CICATRIZ DA 1.1 UM ANDAR ABAIXO DO QUE ELA DESCREVE.** A 1.1 avisa que esta nuvem clona raso e que *"`git log` responde curto SEM DAR ERRO"*. Aqui o defeito é pior que responder curto: num clone raso o commit de **fronteira** é tratado como se não tivesse pais, então **todo arquivo não tocado dentro da janela aparece como ADICIONADO ali**. A primeira rodada desta ferramenta gravou **`2026-11-19` em NOVE arquivos de dado que não mudaram naquele dia** — e 19/11 é exatamente o commit mais antigo deste clone. Medido: `git log -1 -- dados/f1-respostas.json` devolveu `d8e582e 2026-11-19`, e `d8e582e` está listado em `.git/shallow`; o `gerado_em` daquele banco é de **11/11**. **Nove números com cara de medição, todos errados, e nenhum dava erro.** O conserto é `fronteiras_do_clone_raso()`: resposta que cai na fronteira **não é resposta** e o campo nasce `null`, com a ferramenta dizendo que não pôde semear. Os **seis snippets** — que são os que o portão de ar usa — mudaram de verdade hoje, dentro da janela, e os seis foram semeados com data real.
+
+**(b) QUAL ITEM RENDERIZA QUAL PÁGINA.** Campo `renderiza` em cada item de `snippets`. A casca é `["*"]`, e isso **não é atalho: é o fato** — ela é `escopo: global` e desenha as 11 páginas (cabeçalho, trilha, menu, rodapé, o `WebPage` do JSON-LD e os componentes do molde da 32). **O custo está dito na cara no comentário do gerador: quando a casca muda, as 11 páginas mudam**, e as 11 passam a publicar a data de hoje. Isso é verdade e não maquiagem — o HTML servido mudou mesmo. O que seria mentira é o contrário.
+
+**(c) O CAMPO VIAJANDO ATÉ O AR — a alínea sem caminho óbvio.** O despacho já tinha nomeado a trava: *"dado que o snippet lê é dado com `publicar: true`"*, e **a casca não lê o manifest**, ela lê as options que o Sync grava. Então a data do código **tinha de virar dado**. `ferramentas/gerar-datas-de-codigo.py` compila o `mudou_em` com o `renderiza` e escreve `dados/datas-de-codigo.json`, item novo do manifest com `publicar: true`, que o Sync leva à option `rodametria_dados_datas-de-codigo`. A casca ganhou `RODAMETRIA_ID_DADOS_CODIGO` e um terceiro callback em `rodametria_data_da_pagina`, compondo pelo **mais recente**.
+
+> **E O ARQUIVO NASCEU SEM DATA DE GERAÇÃO, de propósito e com a razão escrita dentro dele:** ele é **função pura** do manifest — mesmos `mudou_em`, mesmo byte. Se estampasse a data da geração, o `sha256` dele trocaria todo dia, a revisão subiria por nada, e o `mudou_em` do próprio arquivo passaria a dizer que mudou o que não mudou. A ordem de uso é `atualizar-manifest` → `gerar-datas-de-codigo` → `atualizar-manifest`, e ela **converge em duas passadas** porque o arquivo gerado não é renderizador de página nenhuma: ele não entra na própria conta.
+
+### O PORTÃO DE AR, E A REGRA NOVA É MAIS APERTADA QUE A QUE ELA SUBSTITUI
+
+`conferir-no-ar.py` cobrava, por URL, que todo `dateModified` servido **aparecesse em prosa** na própria página, e a razão era boa: sem isso o campo poderia dizer "hoje" em página que não muda desde 30/10. **Mas a partir de hoje existe uma terceira fonte legítima que não tem prosa onde se declarar** — a página diz em texto de que DADO ela é feita, não em que dia o PHP dela mudou. Mantida a letra antiga, o portão reprovaria as **11 páginas certas** no primeiro desembarque de código. A regra nova deixou de perguntar à prosa e passou a perguntar ao **repositório**:
+
+1. a data servida **nunca** é mais antiga que a data do código daquela página — se for, o desembarque não chegou àquela URL, ou a option não viajou, ou o snippet carregado é velho;
+2. data servida que **não** aparece na prosa tem de ser **exatamente** a do código — qualquer outra segue proibida, que é o buraco de fabricação que a regra velha fechava;
+3. **nenhuma data da prosa é mais recente que a data servida** — página não pode exibir dado mais novo do que a própria modificação. Esta terceira é afirmação que não existia.
+
+**E A REGRA DA DATA DO CÓDIGO É IMPORTADA, NÃO REESCRITA:** o portão carrega `compilar()` do próprio gerador. Reescrevê-la ali seria a segunda declaração do mesmo fato que a **20.7** proíbe, e as duas começariam iguais. O que o portão acrescenta é o lado que o gerador não tem: **o ar**. E ele lê o **manifest**, nunca `dados/datas-de-codigo.json` — portão que compara a cópia com a cópia não mede o caminho; quem cobra cópia contra manifest é a bancada.
+
+### OS PORTÕES, E TRÊS DELES REPROVARAM A COISA CERTA ANTES DE EU TERMINAR
+
+**`teste-datas-de-codigo.py` (novo, 36 afirmações, 6 mutações).** A **MUTAÇÃO 1 não mordia** na primeira versão, e o motivo vale escrito: o mundo tinha a casca com `*` e um slug novo, e `*` expande para **todas** — ou seja, **enquanto existir um item global, página órfã de renderizador não existe por construção.** O mundo em que ela morde é o **sem** item global, e é ele que ficou. A afirmação continua valendo a pena: ela pega o dia em que a casca deixar de ser global, ou em que um segundo grupo de páginas nascer de um snippet que ninguém declarou.
+
+**`teste-data-da-pagina.php` (179 afirmações, 0 falha), e ele pagou DUAS pedras da mesma família num dia só.**
+- `carregar_add_filter()` devolvia `true` no **primeiro** `add_filter` do arquivo. A casca passou a pendurar **dois** no mesmo gancho, então ele mediria uma cadeia de **seis** onde o ar roda **sete** — que é, letra por letra, o defeito que este mesmo portão pagou **hoje de manhã** (ele carregava quatro callbacks onde o ar rodava seis). Passou a carregar **todos** e a devolver a contagem, e o esperado é **por arquivo**: snippet que emudecer reprova nomeando qual.
+- o mundo `--divergente` tinha a base **`2026-10-01` DIGITADA**. Com a terceira fonte, as filhas fabricadas em outubro perderam para o código e as três passaram a servir 2026-11-23: **as duas afirmações reprovaram a casca CERTA.** A base passou a sair da data do código, +7 dias. É a **terceira** vez que este arquivo paga a pedra do literal que não acompanha fonte nova — e o comentário dele já descrevia a pedra, quatro parágrafos acima da linha que a cometeu.
+- **mundo novo:** com os dois bancos de dado fora e só o do **código** de pé, a página **tem** data; com os **três** fora, ela não tem. A segunda metade é a que impede a casca de cair no relógio do servidor.
+
+**`teste-f2.py` (940 afirmações, 0 falha).** A trava que proíbe digitar o id de uma option valia só para `RODAMETRIA_ID_DADOS_F2`, e **reprovou uma chamada que usa constante** no minuto em que nasceu a segunda. Passou a valer para toda `RODAMETRIA_ID_DADOS_*` — e no plural ela **aperta**: agora as duas constantes são casadas com o manifest, não só uma. Régua escrita no singular reprova a página certa no dia em que o plural nasce.
+
+**BANCADA SEM REDE: 64 portões, 0 falha** (eram 62; entraram `teste-datas-de-codigo.py` e o `--conferir` do gerador).
+
+> **E UMA AFIRMAÇÃO FALSA MINHA FOI CORRIGIDA ANTES DE SUBIR:** o docstring do portão novo dizia que `atualizar-manifest.py --conferir` *"não é descoberto pela bancada"*. **Ela descobre** — a saída de `bancada.py` traz a linha `ok  atualizar-manifest.py --conferir` entre os 64. Eu havia deduzido isso dos prefixos declarados no cabeçalho do `bancada.py` em vez de rodá-lo, que é a família do comentário que declara um mecanismo e não mede nada (32.5-d).
+
+### A PORTA CAIU PELA SÉTIMA VEZ NESTA RAIZ, ÀS 19:20Z, E A CURA A REPÔS SOZINHA
+
+Esta execução não estava procurando isso: a linha estava no **topo** do `/status` quando fui ler a revisão. `2026-11-23 19:20 cura da porta: bloco WordPress reposto — 1057 bytes [NFD EPC] -> 1580 bytes [NFD EPC, WordPress]` — os **mesmos dois números** das reposições anteriores. **Copiada para `dados/consertos.md` na mesma passada**, pela **20.13**: a janela do log tem **15 linhas** e **9 linhas por desembarque**, então a revisão que eu estava desembarcando a empurraria para fora. O contador durável confirma e é ele que sustenta o chamado: `episodios_vistos: 3`, `reposicoes_da_cura: 3`, `leituras_nao_sei: 0`, `primeira_no_chao: 2026-11-18 14:34Z`, episódio corrente `comecou: 19:20Z`, `reposto_depois: true`, `tem_bloco_wordpress: true`. **Nada a fazer no repositório: pela 29.4 a causa é do hospedeiro e o próximo passo é o chamado.**
+
+### O DESEMBARQUE E A VERIFICAÇÃO NO AR (18.4)
+
+**Revisão 128, aplicada às 19:39:55Z.** O push foi às 19h3xZ e `ultimo` dizia **19:17:27** — pela **20.9** a próxima rodada do cron era devida ~19:47, então a leitura certa era **esperar, não reacionar**: três GETs na home e o `wp-cron.php` em **409** (já havia cron em andamento), e a revisão entrou às 19:39:55, **zero rodada de Sync desperdiçada**.
+
+**O LOG LIDO LINHA POR LINHA, do mais novo para o mais velho (20.4 e 20.8):** `revisão 128: 9 aplicado(s)` e **9 linhas de item**, as nove dizendo `ok` — pela **20.10**, 9 − 9 = **0 item que não disse ok**. `/status` em 128 = manifest em 128. As **seis** versões do `/casca` batendo com o manifest (20.7), com a casca em **1.32.0** instalada às 19:39:56.
+
+**AS 11 URLs, MEDIDAS UMA POR UMA com quebra de cache:** as 11 servem `dateModified: 2026-11-23` e as 11 foram **cobradas** contra a data do código computada do manifest — o portão imprime `dateModified 2026-11-23 (codigo 2026-11-23)` em cada uma. O antes está na errata de 16h2xZ desta mesma data, no `PROMPT.md`: quatro institucionais em **2026-10-30**, a F3 em **2026-11-10**, a home em 2026-11-18 e as de vitrine em 2026-11-18.
+
+**PORTÕES DE AR:** `conferir-no-ar.py` **826 afirmações, 0 falha**; `conferir-produto-no-ar.py` **406, 0**; `conferir-institucional-no-ar.py` **244, 0**.
+
+**BANCADA:** **64** portões sem rede e **70** com rede, **0 falha** nas duas — e os **cinco** portões de navegador rodaram e passaram (`conferir-32-5-no-navegador.mjs`, `medir-console-no-navegador.mjs`, `medir-foto-no-navegador.mjs`, `teste-f1-arvore.mjs`, `teste-passagem-de-peso.mjs`), o que importa porque o que mudou foi a **casca**.
+
+**20.14, A CÓPIA QUE O GOOGLE LÊ:** `/sobre/` pedida **sem** quebra de cache tem o marcador do Endurance Page Cache, **88.119 bytes** contra **88.078** da origem — os 41 bytes do comentário — e o corpo é **idêntico**; e a cópia com cache serve `dateModified 2026-11-23`, igual à origem. A purga do hospedeiro disparou com o desembarque. A `/sobre/` foi escolhida de propósito: é uma das quatro que estavam em 2026-10-30.
+
+### AS DUAS REGRAS QUE FORAM PARA O CONTRATO, porque regra nova se escreve lá uma vez
+
+1. **20.15 — A DATA QUE A PÁGINA PUBLICA TEM DE INCLUIR O CÓDIGO QUE A DESENHA.** As quatro ilhas servem `dateModified` pelo mesmo desenho (um filtro em que cada snippet pendura a data do banco de que a página dele sai), então as quatro têm o mesmo ponto cego. A seção traz as três coisas que a terceira fonte precisa, as três cobranças do portão por URL, e o que ela **não** resolve: a data do código é a do byte do repositório, não a do byte que o WordPress carregou — essa é a **20.7**, e cada uma sozinha tem um ponto cego.
+2. **ERRATA NA 1.1 — o clone raso não devolve vazio: devolve a FRONTEIRA.** A 1.1 afirmava que *"clone raso pode devolver vazio para ilha tocada há semanas"*. Não devolve: devolve o commit de fronteira, com a data da fronteira, e sai 0, porque a fronteira é tratada como commit sem pais e todo arquivo não tocado na janela aparece como adicionado ali. **O veredito dos 40 minutos continua certo por sorte aritmética** — a data da fronteira é de dias atrás, logo fora da janela —, e a sorte foi escrita. A régua nova pede o **hash** junto com a data e descarta o que cair em `.git/shallow`.
+
+### E UMA COISA QUE ERREI NESTA PASSADA, dita porque o registro é o lugar dela
+
+O primeiro commit do desembarque teve **duas palavras comidas pela expansão de backtick do shell** (`true` e `2026-10-01` estavam entre acentos graves dentro de um `-m` com aspas duplas, e o bash as executou). O commit já estava no `main` quando eu vi, e **não force-push** para consertar mensagem — a 3 do contrato e o disparo são claros. O conteúdo íntegro das duas frases está acima, nesta entrada. A lição operacional: mensagem de commit desta fábrica não leva acento grave.
+
 ## 2026-11-23 16h17Z–17h1xZ — **O DESPACHO DE TRÊS ITENS DA RONDA DE HOJE FECHADO NUMA PASSADA (18.2), OS TRÊS CONFERIDOS NO AR (18.4) — E A PÁGINA DE 823 MIL BUSCAS/MÊS DEIXOU DE SER ÓRFÃ NO MIOLO: DE **0** PARA **3** LINKS DE ENTRADA.** No caminho, uma **errata de medição** no item 2 e uma trava nova na porta da Shopee, sem a qual o item 3 não teria saído.
 
 **A ILHA DESTA EXECUÇÃO:** rodametria, por **foco** (`foco.md`, foco total e absoluto desde 27/10).

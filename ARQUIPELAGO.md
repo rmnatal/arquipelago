@@ -129,6 +129,19 @@ git log -1 --format=%cd --date=format-local:%H:%MZ -- ilhas/<ilha>
 
 **O que isto NÃO quebra, e está medido para ninguém consertar o que não está errado:** a régua da 1.1 acima (`git log -1 ... -- ilhas/<ilha>`) continua certa em clone raso. Ela só é consultada quando há reserva **vencida**, e o que ela procura é commit nos últimos **40 minutos** — que cabe em qualquer janela rasa. Clone raso pode devolver vazio para ilha tocada há semanas, e vazio lá significa "reserva abandonada", que é a leitura certa.
 
+> **ERRATA MEDIDA EM 23/11/2026 ÀS 19h2xZ, E ELA NÃO MUDA O VEREDITO DA RÉGUA: MUDA O MECANISMO, E O MECANISMO ESCRITO AQUI ESTÁ ERRADO.** A frase acima diz que em clone raso `git log -1 -- <caminho>` *"pode devolver vazio"* para arquivo tocado há semanas. **Ele não devolve vazio: ele devolve o commit de FRONTEIRA do clone, com a data da fronteira, e sai 0.** A causa é da topologia: num clone raso o commit de fronteira é tratado como se **não tivesse pais**, então todo arquivo que não foi tocado dentro da janela aparece como **ADICIONADO ali**. Medido na rodametria em 23/11/2026, numa execução que foi semear um campo de data por arquivo: `git log -1 -- ilhas/rodametria/dados/f1-respostas.json` devolveu **`d8e582e 2026-11-19`**, e `d8e582e` é uma das duas linhas de `.git/shallow`; o `gerado_em` daquele banco é de **11/11**. A ferramenta gravou **`2026-11-19` em NOVE arquivos** que não mudaram naquele dia, **com cara de medição e sem um erro**.
+>
+> **O veredito dos 40 minutos continua de pé por sorte aritmética, e a sorte vale dita:** a data da fronteira é a do commit mais antigo que o clone tem, que nesta nuvem é de dias atrás — logo, fora da janela de 40 minutos, e a leitura "reserva abandonada" sai certa. **Mas quem usar `git log -1 -- <caminho>` para qualquer coisa que não seja essa janela está lendo a fronteira como se fosse a história.**
+>
+> **A RÉGUA, e ela cabe em duas linhas:** quem perguntar ao git a data de um arquivo pede **o hash junto com a data** e descarta a resposta que cair na fronteira.
+>
+> ```
+> git log -1 --format='%H %cd' --date=format:%Y-%m-%d -- <caminho>   # o hash vem com a data
+> grep -qx "<hash>" "$(git rev-parse --git-dir)/shallow" && echo "FRONTEIRA: nao sabido"
+> ```
+>
+> É a mesma família do `git log` raso que esta seção já registra: **o instrumento responde, e a resposta não é sobre o que se perguntou.** A implementação de referência está em `fronteiras_do_clone_raso()`, em `ilhas/rodametria/ferramentas/atualizar-manifest.py`.
+
 **O que isto quebra é toda CONTAGEM de história**, e a conta da proporção da **31.1** é a primeira — ela se faz contando execuções no `main`. Com o clone raso desta passada, as execuções de 22/10 às 10h20Z, 13h29Z e 16h20Z **não existiam no log**.
 
 **A régua, e ela cabe em duas linhas:** quem for contar qualquer coisa na história do `main` roda `git fetch --unshallow origin main` antes (ou `git rev-list --count` contra o número que espera), e **diz no relatório sobre quantos commits contou**. Contagem de história sem essa linha é número sem procedência, e a **23.4** já proíbe número sem procedência no painel.
@@ -907,6 +920,30 @@ Marcador **ausente** = a página não veio do cache. Marcador presente e corpo *
 **E A MEDIÇÃO QUE PROVA O GANCHO, porque cache em dia parado não prova nada:** a régua foi rodada **duas vezes** na rodametria, uma antes e uma **1 minuto e 35 segundos depois** de a revisão **120** entrar (13:40:10Z) — que é quando o Sync reescreve as sete `option` da ilha e portanto quando a purga dispara. **Nas duas, 11 de 11 com marcador presente e corpo byte por byte idêntico à origem.** É esse segundo par de leituras que faz da régua uma prova do gancho, e não um retrato de um cache que ninguém tinha mexido.
 
 **E O QUE ELA NÃO PROMETE:** cache de borda e CDN na frente do hospedeiro não se medem daqui, e a 20.12 já diz que purga do hospedeiro não é promessa de cache de borda. Esta régua mede **o cache de página do hospedeiro**, que é o que existe hoje nas quatro.
+
+20.15 **A DATA QUE A PÁGINA PUBLICA TEM DE INCLUIR O CÓDIGO QUE A DESENHA, E NÃO SÓ O DADO DE QUE ELA É FEITA (23/11/2026).**
+
+Medido na rodametria em 23/11/2026, e está aqui — e não no registro daquela ilha — porque **as quatro ilhas servem `dateModified` pelo mesmo desenho**: um filtro em que cada snippet pendura a data do banco de que a página dele sai.
+
+**O DEFEITO, em uma frase:** as fontes que esse desenho conhece respondem *"de que **dado** esta página é feita"*, e **nenhuma delas se move quando o que muda é o código** — e a página muda. Na manhã de 23/11 as quatro páginas institucionais da rodametria serviam `dateModified: 2026-10-30`, que é o `gerado_em` do banco delas, enquanto os **seis** snippets que as renderizam foram reescritos naquela mesma tarde. **A página servida não era a de 30/10 em um único byte, e afirmava ao Google não mudar desde outubro.**
+
+**E O SINAL É PIOR DO QUE PARECE NO CASO DA PÁGINA SEM DATA EM PROSA.** A régua que existia cobrava que todo `dateModified` servido aparecesse **em prosa** na própria página. Página que não publica data em prosa — as institucionais são o caso — caía no ramo "nada a cruzar", e ali a mentira era **invisível por construção**: não havia com o que comparar.
+
+**A REGRA.** Toda ilha que serve `dateModified` publica a data que é a **MAIS RECENTE** entre (a) as datas dos bancos de que a página é feita e (b) **a data em que o código que a renderiza mudou**. A (b) é a terceira fonte, e ela precisa de três coisas, nesta ordem:
+
+1. **`mudou_em` por item no `manifest.json`**, datado no mesmo gesto em que o `sha256` daquele item troca — nunca digitado, nunca derivado do `atualizado_em` da revisão. Revisão inteira **não distingue** a página que mudou da que não mudou: com ela, ou todas as páginas se dizem modificadas a cada desembarque, ou nenhuma.
+2. **`renderiza` por item**, declarando quais páginas aquele item desenha. A casca é `escopo: global` e desenha **todas**, então `["*"]` nela é o fato e não um atalho — **e o custo vai dito: quando a casca muda, todas as páginas mudam.** Isso é verdade, não maquiagem; o que seria mentira é o contrário.
+3. **O campo viajando até o ar como DADO PUBLICÁVEL.** A casca de nenhuma ilha lê o `manifest.json` — ela lê as options que o Sync grava, e o Sync só grava item de dado com `publicar: true`. Então o `mudou_em` é compilado num arquivo de dado próprio (`dados/datas-de-codigo.json` na rodametria), gerado por ferramenta, e esse arquivo é **função pura do manifest**: sem data de geração dentro dele, senão o `sha256` troca todo dia e a revisão sobe por nada.
+
+**E O PORTÃO DE AR COBRA TRÊS COISAS POR URL, no lugar da régua da prosa:**
+
+- (a) a data servida **nunca** é mais antiga que a data do código daquela página — se for, o desembarque não chegou àquela URL, a option não viajou, ou o snippet carregado é velho;
+- (b) data servida que **não** aparece na prosa tem de ser **exatamente** a do código. Qualquer outra data sem lastro em prosa nem no manifest segue proibida — é esse ramo que fecha o buraco da fabricação que a régua da prosa fechava;
+- (c) **nenhuma data da prosa é mais recente que a data servida**: página não exibe dado mais novo do que a própria modificação.
+
+**A regra nova é mais apertada e não mais frouxa:** ela deixou de perguntar à prosa e passou a perguntar ao **repositório**. E quem a implementar **importa** a conta da data do código do gerador, nunca a reescreve no portão — duas declarações do mesmo fato começam iguais e só uma sobe (20.7). O que o portão acrescenta é o lado que o gerador não tem: **o ar**. E ele lê o **manifest**, nunca o arquivo gerado: portão que compara a cópia com a cópia não mede o caminho.
+
+**O QUE ISTO NÃO RESOLVE, dito para ninguém ler verde a mais:** a data do código é a data em que o **byte do repositório** mudou, não a data em que o WordPress carregou aquele byte. Quem mede a segunda é a 20.7, pela versão do snippet servida no `/casca`. As duas juntas é que fecham; cada uma sozinha tem um ponto cego.
 
 20.3 **A mesma armadilha vale para toda fonte nova** que uma ilha precise alcançar (domínio de fabricante, API, marketplace): quem escreve a regra que exige a fonte é quem confere se a fonte está liberada.
 
