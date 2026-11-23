@@ -118,7 +118,7 @@
    do primeiro cartao comecava por `11.11`. A regra mora no coletor; o que muda
    aqui e a frase: sem ela a conta do leitor nao fecha com o tamanho da tabela. */
 if ( ! defined( 'RODAMETRIA_PRODUTO_VERSAO' ) ) {
-	define( 'RODAMETRIA_PRODUTO_VERSAO', '1.19.0' );
+	define( 'RODAMETRIA_PRODUTO_VERSAO', '1.20.0' );
 }
 
 /* A VERSAO DESTE SNIPPET VAI AO AR, pelo filtro que a casca 1.6.0 abriu
@@ -683,12 +683,29 @@ function rdm_produto_pagina_sem_vitrine_html() {
 		. 'tabela escreve ao lado de cada anúncio se ele disse qual watt declarou, em '
 		. 'vez de tratar o número do título como se fosse o nominal.</p>';
 
-	/* AS SAIDAS QUE FUNCIONAM HOJE. As ferramentas nao dependem de vitrine: elas
-	   respondem do banco e da regra, e e por isso que entram aqui. */
+	/* A MALHA DESTA PAGINA, E ELA PASSOU A SAIR DA MESMA ROTACAO DA PAGINA
+	   COMPLETA EM 23/11/2026. Antes deste dia este laco varria
+	   `paginas_prontas()` — a lista de quem TEM vitrine —, e a consequencia nao
+	   estava aqui: estava na PONTA DE ENTRADA. Com as duas pontas lendo listas
+	   diferentes, o grafo de irmas deixa de ser circulante e a conta da 16.9(a)
+	   (`entrada == saida == min(4, irmas)`) para de fechar; medido no ar em
+	   23/11, a pagina degradada listava as duas irmas e NENHUMA das duas a
+	   listava de volta. Uma rotacao, uma lista, as duas pontas.
+
+	   AS FERRAMENTAS CONTINUAM AQUI e nao dependem de vitrine: elas respondem do
+	   banco e da regra. E e por isso que o titulo deste bloco e o MESMO da
+	   pagina completa — "Veja tambem", que e como a 16.4(c) chama o bloco de
+	   irmas. O titulo anterior, "O que a Rodametria responde hoje", prometia
+	   RESPOSTA, e desde hoje a lista pode trazer uma irma degradada, que e uma
+	   pagina honesta sem comparacao de preco: a promessa nao caberia nas duas. */
 	$itens = array();
-	foreach ( rdm_produto_paginas_prontas() as $irma ) {
-		$link = rodametria_casca_link( $irma['slug'],
-			(string) $irma['vitrine']['consulta'] );
+	$no_ar = rdm_produto_paginas_no_ar();
+	foreach ( rdm_produto_irmas( $slug ) as $id ) {
+		if ( ! isset( $no_ar[ $id ] ) ) {
+			continue;
+		}
+		$link = rodametria_casca_link( $no_ar[ $id ]['slug'],
+			(string) $no_ar[ $id ]['consulta'] );
 		if ( '' !== $link ) {
 			$itens[] = $link;
 		}
@@ -717,7 +734,7 @@ function rdm_produto_pagina_sem_vitrine_html() {
 	}
 	if ( $itens ) {
 		$html .= '<nav class="rdm-malha" aria-label="Veja também">';
-		$html .= '<h2>O que a Rodametria responde hoje</h2><ul>';
+		$html .= '<h2>Veja também</h2><ul>';
 		foreach ( $itens as $i ) {
 			$html .= '<li>' . $i . '</li>';
 		}
@@ -809,19 +826,46 @@ function rdm_produto_piso_sem_vitrine( $slug ) {
 	if ( ! isset( $fora[ $slug ] ) ) {
 		return array();
 	}
-	$vit = rodametria_casca_banco( RODAMETRIA_ID_DADOS_VITRINE );
-	foreach ( (array) ( isset( $vit['nao_nasceram'] ) ? $vit['nao_nasceram'] : array() ) as $r ) {
-		if ( ! isset( $r['id'] ) || (string) $r['id'] !== $slug ) {
-			continue;
-		}
-		$p = isset( $r['piso_da_busca'] ) && is_array( $r['piso_da_busca'] )
-			? $r['piso_da_busca'] : array();
-		$u = isset( $p['url_busca'] ) ? trim( (string) $p['url_busca'] ) : '';
+	$r = rdm_produto_nao_nasceram();
+	if ( ! isset( $r[ $slug ] ) ) {
+		return array();
+	}
+	$p = isset( $r[ $slug ]['piso_da_busca'] ) && is_array( $r[ $slug ]['piso_da_busca'] )
+		? $r[ $slug ]['piso_da_busca'] : array();
+	$u = isset( $p['url_busca'] ) ? trim( (string) $p['url_busca'] ) : '';
 
-		return '' === $u ? array() : $p;
+	return '' === $u ? array() : $p;
+}
+}
+
+if ( ! function_exists( 'rdm_produto_nao_nasceram' ) ) {
+/**
+ * AS CONSULTAS QUE NAO ABRIRAM O PORTAO DA 30.2 NA COLETA DE HOJE, por `id`.
+ *
+ * Elas moram em `nao_nasceram`, DENTRO da vitrine, que e o dado publicado — e
+ * nao em `anuncios-por-consulta`, que tem `publicar: false` no manifest e
+ * portanto nao existe como option no ar. Tres coisas viajam por aqui hoje: a
+ * DATA da ultima tentativa de coleta (18/11/2026), o PISO da busca da 25.2
+ * (19/11/2026) e a CONSULTA, que e a ancora do link de cluster (23/11/2026).
+ *
+ * UMA LEITURA, UM LUGAR: o piso e a malha pediam esta mesma lista, e duas
+ * leituras do mesmo campo em dois lacos sao as duas metades que um dia
+ * discordam (20.7).
+ */
+function rdm_produto_nao_nasceram() {
+	/* SEM `static`, pelo mesmo motivo escrito em `paginas_no_ar()`: cache aqui
+	   impediria a bancada de fabricar mundo, e `rodametria_casca_banco()` e um
+	   `get_option()`, que o WordPress ja serve do cache de objeto. */
+	$vit = rodametria_casca_banco( RODAMETRIA_ID_DADOS_VITRINE );
+	$r   = array();
+	foreach ( (array) ( is_array( $vit ) && isset( $vit['nao_nasceram'] )
+		? $vit['nao_nasceram'] : array() ) as $linha ) {
+		if ( ! empty( $linha['id'] ) ) {
+			$r[ (string) $linha['id'] ] = $linha;
+		}
 	}
 
-	return array();
+	return $r;
 }
 }
 
@@ -868,6 +912,106 @@ function rdm_produto_declaradas_fora_da_vitrine() {
 	}
 
 	return $fora;
+}
+}
+
+if ( ! function_exists( 'rdm_produto_paginas_no_ar' ) ) {
+/**
+ * TODA PAGINA DE FAMILIA QUE ESTA NO AR — a de vitrine E a degradada —, na
+ * ORDEM da camada declarada, e ela e a UNICA porta do cluster da 16.4 (23/11/2026).
+ *
+ * O DEFEITO QUE ELA EXISTE PARA FECHAR FOI MEDIDO NO AR, nao deduzido. Em
+ * 23/11/2026, no HTML servido das 11 URLs e dentro do `<main>`,
+ * `/veiculos/moto-eletrica/` — a consulta de 823 mil buscas/mes, a de MAIOR
+ * volume do nicho — recebia **ZERO** link de entrada de miolo, contra os 2 que a
+ * 16.4(f) exige: a mae `/veiculos/` servia 6 links de miolo e nenhum era o dela,
+ * e as duas irmas listavam uma a outra e nunca a moto. A moto, ao contrario,
+ * listava as duas — o grafo estava de UM LADO SO, que e exatamente o que a
+ * 16.9(a) manda nao acontecer. As outras dez recebiam de 3 a 10.
+ *
+ * A CAUSA E DE MECANISMO E E A MESMA DA 25.2-c: a listagem de filhas da mae e o
+ * bloco "Veja tambem" nasciam de `rdm_produto_paginas_prontas()`, que e a lista
+ * de quem TEM VITRINE — e a pagina degradada esta ausente dela POR DEFINICAO.
+ * A 25.2-c nomeou esta mesma fonte para o LINK DE COMPRA, e aquilo foi
+ * consertado em 19/11; o que ninguem havia medido e que ela tambem decidia o
+ * CLUSTER. Pagina que perde a vitrine perdia a cabeca (consertado em 18/11), a
+ * saida de compra (19/11) e os links de entrada (hoje) — a mesma fonte, tres vezes.
+ *
+ * E POR QUE NAO BASTAVA ALARGAR `paginas_prontas()`: ela e, pelo proprio
+ * comentario dela, *"a unica porta — menu, arvore, mae, JSON-LD e instalacao
+ * saem todos dela"*, e TER VITRINE e justamente o que decide o CORPO e o MENU.
+ * Pagina degradada entrar no menu seria prometer comparacao de preco onde nao
+ * ha. O cluster e uma pergunta diferente: *quem esta no ar*. Duas perguntas,
+ * duas funcoes, e a de hoje CHAMA a de ontem em vez de a copiar.
+ *
+ * A ORDEM SAI DA CAMADA DECLARADA (`$ed['paginas']`) e nao da vitrine, porque a
+ * rotacao de irmas da 16.9(a) precisa de uma ordem ESTAVEL: ordem que muda com a
+ * coleta do dia faz o grafo circulante girar sozinho, e pagina que entra e sai
+ * da ordem muda o link de entrada de todas as outras sem ninguem ter mexido nelas.
+ *
+ * CADA ENTRADA TRAZ `degradada`, porque quem desenha a tela precisa saber: a
+ * mae serve CARTAO COM NUMERO para quem tem vitrine e cartao sem numero nenhum
+ * para quem nao tem, e inventar o zero seria pior que nao listar.
+ */
+function rdm_produto_paginas_no_ar() {
+	/* SEM `static` DE PROPOSITO, e a razao e de MEDICAO e nao de desempenho: as
+	   tres fontes desta funcao — `editorial()`, `paginas_prontas()` e
+	   `nao_nasceram()` — ja sao memoizadas, entao o laco custa quase nada; e
+	   cache aqui impediria a bancada de FABRICAR mundo, porque a primeira
+	   resposta ficaria grudada em todos os mundos seguintes. A secao 8 e
+	   literal sobre regua que nunca rodou contra o mundo que nao aconteceu. */
+	$no_ar   = array();
+	$ed      = rdm_produto_editorial();
+	$prontas = rdm_produto_paginas_prontas();
+	$fora    = rdm_produto_declaradas_fora_da_vitrine();
+	$recusadas = rdm_produto_nao_nasceram();
+
+	foreach ( (array) ( isset( $ed['paginas'] ) ? $ed['paginas'] : array() ) as $p ) {
+		$id = isset( $p['id'] ) ? (string) $p['id'] : '';
+		if ( '' === $id ) {
+			continue;
+		}
+		if ( isset( $prontas[ $id ] ) ) {
+			$no_ar[ $id ] = array(
+				'id'        => $id,
+				'slug'      => (string) $prontas[ $id ]['slug'],
+				'consulta'  => (string) $prontas[ $id ]['vitrine']['consulta'],
+				'degradada' => false,
+				'pronta'    => $prontas[ $id ],
+			);
+			continue;
+		}
+		/* A DEGRADADA ENTRA SO COM AS DUAS TRAVAS JA MEDIDAS: ela esta em
+		   `declaradas_fora_da_vitrine()`, que ja cobra que a pagina EXISTA e
+		   esteja publicada no WordPress (secao 16, contra link interno para
+		   404), e ela tem `consulta` na fonte. SEM A CONSULTA ELA NAO ENTRA, e
+		   isto e deliberado: a ancora e a consulta (16.4c), e ancora inventada
+		   aqui seria a segunda declaracao do mesmo fato que a 20.7 proibe.
+		   Ausencia da consulta na fonte vira pagina FORA do cluster, que o
+		   portao de ar acusa como orfa — barato de ver, e o conserto e no
+		   gerador. */
+		if ( ! isset( $fora[ $id ] ) ) {
+			continue;
+		}
+		$consulta = isset( $recusadas[ $id ]['consulta'] )
+			? trim( (string) $recusadas[ $id ]['consulta'] ) : '';
+		if ( '' === $consulta ) {
+			continue;
+		}
+		$no_ar[ $id ] = array(
+			'id'        => $id,
+			/* O SLUG DA DEGRADADA E O `id`, e isto e MEDIDO e nao suposto: e a
+			   mesma igualdade que `declaradas_fora_da_vitrine()` usa para
+			   perguntar ao WordPress se a pagina existe, e que
+			   `teste-cabeca-sem-vitrine.php` cobra nas prontas. */
+			'slug'      => $id,
+			'consulta'  => $consulta,
+			'degradada' => true,
+			'pronta'    => null,
+		);
+	}
+
+	return $no_ar;
 }
 }
 
@@ -1015,7 +1159,13 @@ function rdm_produto_tabela_html( $pagina ) {
 
 if ( ! function_exists( 'rdm_produto_irmas' ) ) {
 function rdm_produto_irmas( $id_atual ) {
-	$ordem = array_keys( rdm_produto_paginas_prontas() );
+	/* A ORDEM E A DE QUEM ESTA NO AR, e nao a de quem tem vitrine (23/11/2026).
+	   Com `paginas_prontas()` aqui, a pagina degradada nao era candidata a irma
+	   de ninguem — ela recebia ZERO link de entrada de miolo, medido no ar em
+	   `/veiculos/moto-eletrica/`, e nenhuma regua ficava vermelha. O grafo
+	   circulante da 16.9(a) so fecha `entrada == saida` se as DUAS pontas
+	   enxergarem a MESMA lista. */
+	$ordem = array_keys( rdm_produto_paginas_no_ar() );
 	$onde  = array_search( $id_atual, $ordem, true );
 	if ( false === $onde ) {
 		return array();
@@ -1032,14 +1182,20 @@ function rdm_produto_irmas( $id_atual ) {
 
 if ( ! function_exists( 'rdm_produto_malha_html' ) ) {
 function rdm_produto_malha_html( $pagina ) {
-	$prontas = rdm_produto_paginas_prontas();
-	$html    = '<nav class="rdm-malha" aria-label="Veja também">';
-	$html   .= '<h2>Veja também</h2><ul>';
+	$no_ar = rdm_produto_paginas_no_ar();
+	$html  = '<nav class="rdm-malha" aria-label="Veja também">';
+	$html .= '<h2>Veja também</h2><ul>';
 
 	foreach ( rdm_produto_irmas( $pagina['id'] ) as $id ) {
-		/* A ancora e a CONSULTA da irma, nunca "saiba mais" (16.4c). */
-		$link = rodametria_casca_link( $prontas[ $id ]['slug'],
-			(string) $prontas[ $id ]['vitrine']['consulta'] );
+		if ( ! isset( $no_ar[ $id ] ) ) {
+			continue;
+		}
+		/* A ancora e a CONSULTA da irma, nunca "saiba mais" (16.4c) — e ela sai
+		   da MESMA chave nas duas familias de irma: da vitrine na pronta, de
+		   `nao_nasceram` na degradada. Quem monta a lista nao precisa saber qual
+		   das duas e, e e por isso que `paginas_no_ar()` normaliza o campo. */
+		$link = rodametria_casca_link( $no_ar[ $id ]['slug'],
+			(string) $no_ar[ $id ]['consulta'] );
 		if ( '' !== $link ) {
 			$html .= '<li>' . $link . '</li>';
 		}
@@ -1575,7 +1731,40 @@ function rdm_produto_mae_html() {
 	}
 
 	$html .= '<ul class="rdm-cartoes">';
-	foreach ( $prontas as $pagina ) {
+	/* A MAE LISTA TODA FILHA QUE ESTA NO AR, E ATE 23/11/2026 ELA LISTAVA SO AS
+	   QUE TEM VITRINE. O que a 16.4(a) manda e literal — *"a pagina-mae lista
+	   TODAS as filhas com o texto-ancora igual a consulta-alvo da filha"* — e o
+	   laco varria `$prontas`, de onde a filha degradada esta ausente por
+	   definicao. Medido no ar em 23/11: a mae servia 6 links de miolo e nenhum
+	   deles era `/veiculos/moto-eletrica/`, a consulta de 823 mil buscas/mes.
+	   Nao era nem cartao, nem o "em breve" da 16.5 — a filha simplesmente nao
+	   aparecia, e o cartao mudo da 16.5 e para familia que NAO TEM pagina, nao
+	   para pagina que esta no ar respondendo 200 no indice do Google. */
+	foreach ( rdm_produto_paginas_no_ar() as $no_ar_id => $no_ar_p ) {
+		if ( $no_ar_p['degradada'] ) {
+			/* O CARTAO DA FILHA DEGRADADA: LINK SIM, NUMERO NENHUM. A ancora e a
+			   consulta (16.4a e 16.4c), e a frase NAO TEM UM DIGITO de proposito
+			   — a pagina nao alcancou o piso de tres da 30.2, entao nao ha faixa,
+			   nao ha mediana e nao ha contagem, e servir zero aqui seria inventar
+			   o numero que a leitura do dia nao deu. O cartao tambem NAO leva o
+			   botao do `#comprar`: aquele ancora no bloco de compra, que e
+			   exatamente o bloco que a pagina degradada nao tem — botao para
+			   ancora que nao existe cai no topo da pagina com o rotulo de compra
+			   do lado. E a frase e sem quantificador: `conferir-produto-no-ar.py`
+			   roda a lista deles sobre o corpo desta pagina. */
+			$link_degradada = rodametria_casca_link( $no_ar_p['slug'],
+				(string) $no_ar_p['consulta'] );
+			if ( '' === $link_degradada ) {
+				continue;
+			}
+			$html .= '<li class="rdm-cartao rdm-cartao-degradado"><h2>'
+				. $link_degradada . '</h2>'
+				. '<p>A comparação de preços desta família está sem dados na leitura '
+				. 'de hoje. A página segue no ar, com a busca da loja e a causa da '
+				. 'ausência escrita nela.</p></li>';
+			continue;
+		}
+		$pagina = $no_ar_p['pronta'];
 		$n    = $pagina['vitrine']['numeros'];
 		$link = rodametria_casca_link( $pagina['slug'],
 			(string) $pagina['vitrine']['consulta'] );

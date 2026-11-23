@@ -129,6 +129,17 @@ function rodametria_casca_banco($id) {
 	return null;
 }
 
+/* O LEITOR DE `nao_nasceram` TAMBEM VEM DO SNIPPET (23/11/2026): o piso deixou
+   de varrer a lista de dentro dele e passou a pedir o mapa por `id` a esta
+   funcao — uma leitura, um lugar (20.7). Ele entra aqui, e nao como copia, pelo
+   mesmo motivo de todo o resto: a regua CHAMA a funcao de verdade. E foi o
+   `bancada.py` quem achou a falta, chamando os dois portoes de INERTE no minuto
+   em que a dependencia nasceu — portao que estoura e sai 0 nao e verde, e a
+   bancada nao o le como verde. */
+if (!carregar_funcao($src, 'rdm_produto_nao_nasceram')) {
+	echo "FALHA: nao achei `rdm_produto_nao_nasceram()` no snippet\n";
+	exit(1);
+}
 if (!carregar_funcao($src, 'rdm_produto_piso_sem_vitrine')) {
 	echo "  FALHA  `rdm_produto_piso_sem_vitrine()` nao existe no snippet\n";
 	exit(1);

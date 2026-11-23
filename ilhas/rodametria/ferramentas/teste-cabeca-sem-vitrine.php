@@ -181,8 +181,14 @@ if (!carregar_funcao($src, 'rdm_produto_declaradas_fora_da_vitrine')) {
    `rdm_produto_pagina_sem_vitrine_html()`, que desde hoje as usa. Carregar na
    hora de medir deixaria a metade 6 morrer de funcao indefinida — e foi o que
    aconteceu na primeira versao desta metade. */
+/* `paginas_no_ar` E `irmas` ENTRAM AQUI EM 23/11/2026: desde hoje a pagina
+   degradada monta a malha dela pela MESMA rotacao da pagina completa, para o
+   grafo de irmas fechar nas duas direcoes (16.9). A metade 6, que chama
+   `pagina_sem_vitrine_html()`, morria de funcao indefinida sem elas — e quem
+   acusou foi o `bancada.py`, chamando este portao de INERTE. */
 foreach (array('rdm_produto_sem_molde', 'rdm_produto_voz_sem_vitrine',
-               'rdm_produto_faq_mainentity') as $f) {
+               'rdm_produto_faq_mainentity', 'rdm_produto_paginas_no_ar',
+               'rdm_produto_irmas') as $f) {
 	if (!carregar_funcao($src, $f)) {
 		echo "  FALHA  `$f()` nao existe no snippet\n";
 		exit(1);
@@ -333,6 +339,17 @@ if (!carregar_funcao($src, 'rdm_produto_pagina_sem_vitrine_html')) {
    sai com codigo 0, entao ele nao apareceu como FALHOU: apareceu como INERTE na
    bancada, que foi o que o pegou. Quem acrescenta chamada a uma funcao servida
    por este portao carrega a funcao aqui. */
+/* O LEITOR DE `nao_nasceram` TAMBEM VEM DO SNIPPET (23/11/2026): o piso deixou
+   de varrer a lista de dentro dele e passou a pedir o mapa por `id` a esta
+   funcao — uma leitura, um lugar (20.7). Ele entra aqui, e nao como copia, pelo
+   mesmo motivo de todo o resto: a regua CHAMA a funcao de verdade. E foi o
+   `bancada.py` quem achou a falta, chamando os dois portoes de INERTE no minuto
+   em que a dependencia nasceu — portao que estoura e sai 0 nao e verde, e a
+   bancada nao o le como verde. */
+if (!carregar_funcao($src, 'rdm_produto_nao_nasceram')) {
+	echo "FALHA: nao achei `rdm_produto_nao_nasceram()` no snippet\n";
+	exit(1);
+}
 if (!carregar_funcao($src, 'rdm_produto_piso_sem_vitrine')) {
 	echo "  FALHA  `rdm_produto_piso_sem_vitrine()` nao existe no snippet\n";
 	exit(1);
@@ -342,7 +359,15 @@ $MUNDO['coleta'] = array(
 	array('id' => 'patinete-eletrico', 'colhido_em' => '2026-11-17'),
 );
 $MUNDO['nao_nasceram'] = array(
+	/* A `consulta` ENTROU NESTA ENTRADA EM 23/11/2026, e nao e enfeite: desde
+	   hoje ela e a ANCORA do link de cluster da pagina degradada, e sem ela a
+	   pagina fica FORA da ordem de `paginas_no_ar()` — que e a trava deliberada
+	   ("ancora inventada no PHP e a segunda declaracao que a 20.7 proibe").
+	   O gerador passou a grava-la em `nao_nasceram` na mesma passada, e a metade
+	   6 deste portao mediu a falta no minuto em que ela nasceu: as duas irmas
+	   deixaram de ser linkadas na pagina sem vitrine. */
 	array('id' => 'moto-eletrica', 'colhido_em' => '2026-11-18',
+	      'consulta' => 'consulta moto-eletrica',
 	      'causa' => 'menos de 3 anuncios que servem COM link e preco: 2'),
 );
 
@@ -515,6 +540,30 @@ vale(false === strpos($html_sem, 'quantos km o elétrico faz de verdade'),
 	'link interno para 404 custa mais do que link que falta (secao 16)');
 vale(false !== strpos($html_sem, 'consulta patinete-eletrico'),
 	'e as irmas que existem continuam linkadas');
+
+/* A TRAVA DA ANCORA, MEDIDA NA PROPRIA PAGINA (23/11/2026): sem `consulta` em
+   `nao_nasceram`, esta pagina sai da ordem do cluster — e o sintoma e que ela
+   para de listar irma nenhuma, porque a rotacao nao acha o lugar dela na ordem.
+   E o estado em que ela esteve no ar ate hoje, visto de dentro: lista de um lado
+   so. O conserto e no GERADOR, e a falha aqui o aponta. */
+$MUNDO['existem'] = array('patinete-eletrico', 'bicicleta-eletrica', 'moto-eletrica',
+                          'inicio', 'autonomia-patinete-eletrico',
+                          'peso-maximo-patinete-eletrico');
+$guardado = $MUNDO['nao_nasceram'];
+$MUNDO['nao_nasceram'] = array(
+	array('id' => 'moto-eletrica', 'colhido_em' => '2026-11-18',
+	      'causa' => 'menos de 3 anuncios que servem COM link e preco: 2'),
+);
+$html_sem_ancora = rdm_produto_pagina_sem_vitrine_html();
+vale(false === strpos($html_sem_ancora, 'consulta patinete-eletrico')
+	&& false === strpos($html_sem_ancora, 'consulta bicicleta-eletrica'),
+	'sem `consulta` na fonte, a pagina degradada sai da ordem do cluster e NAO lista irma',
+	'se ela listasse, a ancora teria vindo de prosa escrita no PHP — e a 20.7 '
+	. 'proibe a segunda declaracao do mesmo fato');
+vale(false !== strpos($html_sem_ancora, 'quantos km o elétrico faz de verdade'),
+	'e as FERRAMENTAS continuam linkadas: elas nao dependem de vitrine nem de consulta',
+	'pagina sem saida nenhuma e 200 honesto e inutil');
+$MUNDO['nao_nasceram'] = $guardado;
 
 echo "\n7. O MUNDO DA DISCORDANCIA (20.8)\n";
 

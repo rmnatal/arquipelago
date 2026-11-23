@@ -450,6 +450,114 @@ def veredito_do_piso_sem_vitrine(tem_url_na_fonte, quantos_na_tela):
     return falhas
 
 
+def miolo_da_pagina(html):
+    """SO O MIOLO: o que esta DENTRO de `<main>`, e e por isso que esta funcao
+    existe separada de `corpo_da_pagina()`.
+
+    A NAVEGACAO GLOBAL NAO E CLUSTER, e essa frase e a licao de 23/11/2026. A
+    casca desta ilha serve `<header class="rdm-cabecalho">` e
+    `<footer class="rdm-rodape">` em TODA pagina, com 5 links cada — entao toda
+    pagina recebe 10 links de entrada por construcao. Contagem de entrada que os
+    inclui fica VERDE em qualquer mundo: o veredito de 18/11 dizia *"zero pagina
+    orfa na direcao de ENTRADA (as 11 recebem 10 links de entrada cada)"* no mesmo
+    site em que `/veiculos/moto-eletrica/` recebia ZERO link de miolo. A 16.9(b) e
+    uma afirmacao sobre quem APONTA no corpo, nao sobre quantos `href` existem no
+    documento.
+
+    O `<main>` DESTA CASCA E EXATAMENTE O MIOLO, medido em 23/11/2026 no HTML
+    servido: no `<body>` vem o `<header>` da casca, depois `<main>` com o retorno
+    do shortcode, depois o `<footer>`. Sem `<main>` a funcao devolve cadeia vazia
+    em vez de cair no `<body>` inteiro, e quem chama ACUSA a falta — cair no corpo
+    inteiro seria voltar a contar o menu, que e o defeito que ela existe para
+    fechar (20.8: a ausencia se diz, nunca se maquia).
+    """
+    m = re.search(r"<main\b[^>]*>(.*?)</main>", html, re.S | re.I)
+    if not m:
+        return ""
+    miolo = m.group(1)
+    miolo = re.sub(r"<script.*?</script>", " ", miolo, flags=re.S | re.I)
+    miolo = re.sub(r"<style.*?</style>", " ", miolo, flags=re.S | re.I)
+    return miolo
+
+
+def caminhos_internos(miolo):
+    """Os caminhos internos que este pedaco de HTML APONTA, sem ancora e sem query.
+
+    Link externo fora, `#` fora (ancora na propria pagina nao e link de entrada),
+    e o caminho normalizado com barra no fim, que e como o sitemap desta ilha os
+    escreve.
+    """
+    fora = set()
+    for href in re.findall(r'href="([^"]+)"', miolo):
+        href = html_lib.unescape(href.strip())
+        if href.startswith(DOMINIO):
+            href = href[len(DOMINIO):]
+        elif not href.startswith("/"):
+            continue
+        caminho = href.split("#")[0].split("?")[0]
+        if not caminho:
+            continue
+        if not caminho.endswith("/"):
+            caminho += "/"
+        fora.add(caminho)
+    return fora
+
+
+def veredito_do_cluster_de_entrada(mae, filhas_no_ar, quem_aponta):
+    """A 16.4(f) MEDIDA NA DIRECAO DE QUEM APONTA, como FUNCAO PURA — irma de
+    `veredito_do_piso_da_tabela` e com a mesma disciplina: entram as relacoes ja
+    calculadas, sai a lista de falhas em palavras, e ela nao abre pagina, nao le
+    arquivo e nao usa rede, para a bancada poder FABRICAR o mundo (secao 8).
+
+    O QUE ENTRA: `mae` e o caminho da mae; `filhas_no_ar` sao os caminhos das
+    filhas que estao no ar; `quem_aponta` e `{caminho: conjunto de caminhos que
+    apontam para ele NO MIOLO}`, com o menu e o rodape JA FORA.
+
+    O DEFEITO QUE ELA EXISTE PARA FECHAR ESTAVA NO AR E NENHUMA REGUA FICAVA
+    VERMELHA. Medido em 23/11/2026, no `<main>` das 11 URLs: `/veiculos/moto-eletrica/`
+    — a consulta de 823 mil buscas/mes, a de MAIOR volume do nicho — recebia **0**
+    link de entrada de miolo contra os 2 da 16.4(f); as outras dez recebiam de 3 a
+    10. A mae servia 6 links de miolo e nenhum era o dela, e as duas irmas
+    listavam uma a outra e nunca a moto — o grafo de UM LADO SO que a 16.9(a)
+    proibe. A causa era a fonte: a listagem da mae e o bloco de irmas nasciam de
+    `paginas_prontas()`, de onde a pagina degradada pelo piso da 30.2 esta ausente
+    por definicao; a 25.2-c nomeou essa mesma fonte para o LINK DE COMPRA em
+    19/11, e o CLUSTER era o andar que ninguem havia medido.
+
+    E A REGUA DE ANTES NAO PODIA REPROVAR AQUILO: ela contava `href` no documento
+    INTEIRO, menu e rodape incluidos, e por isso dizia 10 entradas para a pagina
+    com zero. Regua que inclui a navegacao global e verde em todo mundo possivel.
+    """
+    falhas = []
+    if not filhas_no_ar:
+        # POSITIVA DE PROPOSITO (20.8): zero filha no ar e secao sem filha, e a
+        # 16.5 diz que categoria so nasce com filhas. Silencio aqui aprovaria.
+        falhas.append("nenhuma filha da secao foi achada no ar: ou a secao esta sem filha "
+                      "nenhuma (e a 16.5 diz que categoria so nasce com filhas), ou este "
+                      "portao nao achou as filhas e esta cego")
+        return falhas
+
+    for filha in sorted(filhas_no_ar):
+        aponta = set(quem_aponta.get(filha, set()))
+        aponta.discard(filha)
+        irmas = sorted(aponta & set(filhas_no_ar))
+        da_mae = mae in aponta
+        if not da_mae:
+            falhas.append("%s nao recebe link de miolo da mae %s: a 16.4(a) manda a mae listar "
+                          "TODAS as filhas com a ancora na consulta-alvo de cada uma, e cartao "
+                          "mudo da 16.5 e para familia que NAO TEM pagina" % (filha, mae))
+        if len(filhas_no_ar) > 1 and not irmas:
+            falhas.append("%s e ORFA NA DIRECAO DE ENTRADA: nenhuma irma no ar aponta para ela "
+                          "no miolo, e a 16.9(b) manda refazer a conta na direcao de QUEM "
+                          "APONTA (menu e rodape fora: eles sao navegacao global, nao cluster)"
+                          % filha)
+        if len(aponta) < 2:
+            falhas.append("%s recebe %d link(s) de entrada de miolo e a 16.4(f) exige ao menos "
+                          "2, um deles da mae — quem aponta hoje: %s"
+                          % (filha, len(aponta), ", ".join(sorted(aponta)) or "ninguem"))
+    return falhas
+
+
 def sem_vitrine_do_repositorio():
     """AS PAGINAS QUE EXISTEM E ESTAO SEM VITRINE, lidas do repositorio.
 
@@ -737,10 +845,75 @@ def main():
 
     conferir_as_sem_vitrine(urls)
     conferir_a_mae(urls, fonte, ancoras)
+    conferir_o_cluster_de_entrada(urls, fonte)
 
     registro("NAO MEDIDO AQUI: pixel. A 32.5 e trabalho de "
              "conferir-32-5-no-navegador.mjs, que abre a pagina a 390 px num navegador.")
     return encerrar()
+
+
+def conferir_o_cluster_de_entrada(urls, fonte):
+    """A 16.4(f) E A 16.9(b) NO HTML SERVIDO — a conta na direcao de QUEM APONTA,
+    com o menu e o rodape FORA (23/11/2026).
+
+    ELE ABRE TODA URL DO SITEMAP, e nao so as da secao: link de entrada pode vir
+    de qualquer pagina da ilha, e varrer so as filhas mediria o grafo pela metade
+    — a mesma cegueira da 32.5-b ("regua que nao varre todas certifica a pagina
+    que o autor abriu").
+
+    A DECISAO E A FUNCAO PURA `veredito_do_cluster_de_entrada`, acima; aqui ficam
+    so os FATOS que ela recebe: quem aponta para quem no `<main>`.
+    """
+    mae = "/" + SECAO + "/"
+    if not afirma(DOMINIO + mae in urls,
+                  "a secao mae %s nao esta no wp-sitemap.xml: sem ela nao ha cluster" % mae):
+        return
+
+    # AS FILHAS SE DESCOBREM, NUNCA SE LISTAM: as com vitrine saem de `fonte` e as
+    # degradadas de `nao_nasceram`, e as duas listas sao cruzadas com o sitemap no
+    # ar. Consulta declarada que nunca nasceu nao tem pagina e nao entra.
+    filhas = set()
+    for slug in fonte:
+        if DOMINIO + "/" + slug + "/" in urls:
+            filhas.add("/" + slug + "/")
+    for ident in sem_vitrine_do_repositorio():
+        caminho = "/" + SECAO + "/" + ident + "/"
+        if DOMINIO + caminho in urls:
+            filhas.add(caminho)
+
+    aponta_de = {}
+    sem_main = []
+    for u in sorted(urls):
+        caminho = u.replace(DOMINIO, "") or "/"
+        cod, html = buscar(caminho)
+        if cod != 200:
+            afirma(False, "%s nao respondeu 200 na leitura do cluster (deu %s)" % (caminho, cod))
+            continue
+        miolo = miolo_da_pagina(html)
+        if not miolo:
+            # A AUSENCIA SE DIZ (20.8): sem `<main>` este portao NAO cai no corpo
+            # inteiro, porque ali o menu volta a contar e a regua fica verde em
+            # qualquer mundo. Pagina sem miolo e pagina nao medida.
+            sem_main.append(caminho)
+            continue
+        aponta_de[caminho] = caminhos_internos(miolo)
+
+    afirma(not sem_main,
+           "sem `<main>` no HTML servido, logo sem miolo para medir o cluster: %s"
+           % ", ".join(sem_main))
+
+    quem_aponta = {}
+    for origem, destinos in aponta_de.items():
+        for d in destinos:
+            quem_aponta.setdefault(d, set()).add(origem)
+
+    for falha in veredito_do_cluster_de_entrada(mae, sorted(filhas), quem_aponta):
+        afirma(False, "cluster: %s" % falha)
+
+    registro("cluster de entrada medido no `<main>` de %d URL(s) (menu e rodape FORA): "
+             "%s" % (len(aponta_de),
+                     " · ".join("%s recebe %d" % (f, len(quem_aponta.get(f, set()) - {f}))
+                                for f in sorted(filhas))))
 
 
 def conferir_as_sem_vitrine(urls):

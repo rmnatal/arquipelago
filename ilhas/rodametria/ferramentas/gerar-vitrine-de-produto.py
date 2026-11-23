@@ -1208,7 +1208,28 @@ def gerar():
             # VITRINE, que e publicada; `anuncios-por-consulta` tem
             # `publicar: false` e NAO existe como option no ar, entao o piso tem
             # de viajar por aqui como a data ja viaja.
+            #
+            # E A `consulta` VIAJA COM ELA PELO MESMO MOTIVO, UM DEGRAU ACIMA
+            # DOS OUTROS DOIS (23/11/2026). A pagina que perde a vitrine caia
+            # ORFA NO MIOLO: a mae nao a listava e nenhuma irma apontava para
+            # ela, porque a listagem de filhas e o bloco "Veja tambem" nascem de
+            # `paginas_prontas()` — a MESMA fonte de que a pagina degradada esta
+            # ausente por definicao. Medido no ar em 23/11 em
+            # `/veiculos/moto-eletrica/`, a consulta de 823 mil buscas/mes:
+            # ZERO link de entrada de miolo contra os 2 que a 16.4(f) exige, com
+            # as outras dez recebendo de 3 a 10. E a 25.2-c nomeou esta mesma
+            # fonte para o LINK DE COMPRA e ela foi consertada em 19/11; o que
+            # ninguem mediu e que ela tambem decide o CLUSTER.
+            #
+            # A ANCORA DO LINK E A CONSULTA (16.4a e 16.4c, "nunca 'clique aqui'
+            # nem 'saiba mais'"), e ela tem de sair da MESMA fonte de onde sai a
+            # ancora das prontas — `consulta` — e nunca de prosa escrita no PHP:
+            # duas declaracoes do mesmo fato comecam iguais e so uma sobe (20.7).
+            # `nao_nasceram` mora na VITRINE, que e publicada;
+            # `anuncios-por-consulta` tem `publicar: false` e NAO existe como
+            # option no ar, entao a consulta tem de viajar por aqui.
             recusadas.append({'id': bloco['id'], 'causa': causa,
+                              'consulta': bloco.get('consulta'),
                               'colhido_em': bloco.get('colhido_em'),
                               'piso_da_busca': bloco.get('piso_da_busca') or None})
             continue
