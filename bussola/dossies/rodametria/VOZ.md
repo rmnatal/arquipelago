@@ -1,5 +1,36 @@
 # VOZ — Rodametria
 
+> **PARE — PONTEIRO DO PENTE FINO, 23/11/2026. ESTE ARQUIVO É A CÓPIA DE NASCIMENTO, DE 27/10/2026, E ELE DIVERGE
+> DO ARQUIVO VIVO EM TRINTA LINHAS. O VIVO É `ilhas/rodametria/VOZ.md`. NÃO ESCREVA TOM DESTA ILHA DAQUI.**
+>
+> **A divergência que importa não é de estilo: são duas frases sobre HABILITAÇÃO que a ilha proibiu por FONTE.**
+> Este arquivo ainda serve, como vocabulário de veredito e como exemplo aprovado, `"dispensa CNH"`,
+> `"dispensa CNH e placa"` e `"aí precisa de habilitação"`. Em **05/11/2026** a Resolução Contran nº 996/2023 foi
+> lida no texto oficial, no Chrome do Raphael, e **ela não tem artigo nenhum sobre CNH**: decide categoria, placa,
+> registro, licenciamento e capacete. Quem decide habilitação é o Código de Trânsito, que esta fábrica ainda não
+> leu na fonte. Em **06/11/2026 às 19h3xZ** o `ilhas/rodametria/VOZ.md` riscou as duas frases, preservando as
+> originais no fim da seção "Com a nossa cara".
+>
+> **E a proibição não é só de tom — ela está em três lugares executáveis**, medidos em 23/11/2026:
+> `ilhas/rodametria/dados/constantes.json` declara, na camada do banco, *"a frase `dispensa CNH` e a frase
+> `precisa de habilitacao` ficam PROIBIDAS na tela"*; `ferramentas/teste-afirmacao-de-tela.py` e
+> `ferramentas/teste-f1.py` **reprovam** as duas em texto de tela; e o cabeçalho de `snippets/rodametria-f1.php`
+> as nomeia. **As páginas no ar não as servem. Este arquivo serve.**
+>
+> **Por que isto é grave em potencial e não cosmético:** o `PROMPT.md` desta ilha escreve, com todas as letras,
+> que *"errar 'dispensa CNH' num veículo que é ciclomotor manda a pessoa para a rua sem habilitação"*. E a
+> **15.1** do `ARQUIPELAGO.md` manda a Fundação ler o `VOZ.md` **antes de escrever qualquer título, parágrafo,
+> rótulo de botão ou texto de menu**, enquanto a linha 4 do `PROMPT.md` da ilha manda a primeira execução ler
+> este dossiê. Duas portas, e uma delas levava à frase proibida.
+>
+> **A frase do arquivo vivo que este ponteiro desmente:** ele diz, sobre as duas expressões, *"só este arquivo
+> ainda as servia"*. **Era falso quando foi escrito, em 06/11** — esta cópia existia desde 27/10 e ninguém a
+> releu. É a 20.7 ao pé da letra: *"duas declarações do mesmo fato começam iguais e só uma sobe"*.
+>
+> **O que este ponteiro NÃO faz:** não apaga nem reescreve uma linha deste arquivo. Ele é a cópia de nascimento
+> que a **5(g)** da `BUSSOLA.md` manda o dossiê entregar, e o texto de 27/10 é o registro de onde a voz veio —
+> jogá-lo fora seria apagar a causa (28.4). O que muda é que ele deixa de se apresentar como a voz de hoje.
+
 Este arquivo manda no tom de toda página desta ilha. Número, fonte e data continuam obrigatórios, mas moram na camada de prova, nunca na voz (seção 15 do `ARQUIPELAGO.md`).
 
 ## Quem entra aqui

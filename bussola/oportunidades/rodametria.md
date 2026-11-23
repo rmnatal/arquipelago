@@ -2,6 +2,18 @@
 
 **Nicho:** quem vai comprar patinete, bicicleta, scooter ou moto elétrica e precisa acertar três números antes:
 a potência que dispensa CNH e placa, a autonomia real em km e o peso que o veículo aguenta.
+
+> **PONTEIRO DO PENTE FINO, 23/11/2026 — A EXPRESSÃO `dispensa CNH e placa` DA LINHA ACIMA ESTÁ PROIBIDA NA TELA
+> DESTA ILHA DESDE 06/11/2026, E ESTA FICHA "MANDA SOBRE O DOSSIÊ" PELO `PROMPT.md` DELA.** A Resolução Contran
+> nº 996/2023, lida no texto oficial em 05/11/2026, **não tem artigo nenhum sobre CNH** — decide categoria,
+> placa, registro, licenciamento e capacete; quem decide habilitação é o Código de Trânsito, ainda não lido na
+> fonte. Por isso `ilhas/rodametria/dados/constantes.json` declara as frases `dispensa CNH` e
+> `precisa de habilitacao` **PROIBIDAS na tela**, e `ferramentas/teste-afirmacao-de-tela.py`,
+> `ferramentas/teste-f1.py` e o `snippets/rodametria-f1.php` as reprovam. **A linha acima fica como registro do
+> que foi aprovado em 27/10/2026 e não é redação de tela**: quem escrever página desta ilha lê o
+> `ilhas/rodametria/VOZ.md` (o vivo) e não esta frase. O mesmo ponteiro está em
+> `bussola/dossies/rodametria/VOZ.md`, que divergiu do arquivo vivo em trinta linhas pela mesma causa.
+
 **Ilha:** Rodametria — `rodametria.com.br` **livre** (registro.br, status 0, conferido em 27/10/2026, 13h–14h de Brasília).
 
 **Volume medido de intenção de compra:** **2.445.000 buscas/mês** em 6 consultas de compra com SERP vista no

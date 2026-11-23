@@ -20,9 +20,18 @@ uma rotina por ilha. A estrutura que sustenta isso:
 - **Ilha nova se cria copiando `ilhas/_modelo/`** e preenchendo o que estiver
   entre `< >`. Nenhuma rotina muda quando uma ilha nasce.
 
-Ilhas atuais (contadas em `ilhas/` pelo Pente Fino em 16/09/2026 — eram duas ate 09/09
-e o texto anterior listava so essas duas): `ilhas/aquametria/` (aquarismo, no ar),
-`ilhas/robometria/` (robo aspirador, no ar), `ilhas/clubedomosaico/` (mosaico artesanal,
-no ar), `ilhas/ohmetria/` (som automotivo, nascida em 14/09/2026) e `ilhas/jornadafly/`
-(custo de experiencia iconica, nascida em 14/09/2026). A ilha em foco de cada momento
-esta em `foco.md` na raiz (secao 1.2 do `ARQUIPELAGO.md`).
+Ilhas atuais — **SEIS pastas, contadas em `ilhas/` pelo Pente Fino em 23/11/2026**
+(eram duas ate 09/09 e esta lista dizia CINCO, contadas em 16/09/2026): `ilhas/aquametria/`
+(aquarismo, no ar), `ilhas/robometria/` (robo aspirador, no ar), `ilhas/clubedomosaico/`
+(mosaico artesanal, no ar), `ilhas/ohmetria/` (som automotivo, nascida em 14/09/2026,
+sem site), `ilhas/jornadafly/` (custo de experiencia iconica, nascida em 14/09/2026,
+sem site) e **`ilhas/rodametria/` (mobilidade eletrica, nascida em 27/10/2026, no ar e
+EM FOCO desde 27/10/2026)**. A rodametria faltava nesta lista desde que nasceu, e e a
+unica ilha que a Bussola pariu em modo cacador — quem lia este README nao sabia que ela
+existia. A ilha em foco de cada momento esta em `foco.md` na raiz (secao 1.2 do
+`ARQUIPELAGO.md`), e e ele, nunca esta linha, que diz qual e.
+
+> Pelo campo `estado` do cabecalho de cada `ESTADO.md` (secao 2), medido no mesmo dia:
+> **tres** estao `viva` (aquametria, robometria, rodametria) e **tres** estao `nascendo`
+> (clubedomosaico, ohmetria, jornadafly). "Pasta de ilha" e "ilha viva" sao contagens
+> diferentes e nao se trocam uma pela outra.
