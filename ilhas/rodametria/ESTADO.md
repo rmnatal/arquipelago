@@ -15,7 +15,7 @@ urls_publicadas: 11       # 10 -> 11 em 16/11/2026: nasceu `/veiculos/moto-eletr
                           # proteger. Quem substituir comentario de varias linhas apaga o rabo.
 ultima_ronda: 2026-11-23T14:59Z   # RONDA DIARIA TECNICA de 23/11/2026 (secao 12.2, item 3). SUBSTITUI o valor anterior 2026-11-18T20:01Z, que era da LEITURA SEMANAL de 18/11 e segue registrada no PROMPT.md. Medida na revisao 120 (/status 120 = manifest 120): 11 de 11 URLs em 200, tres portas da 29.2 verdes, 404 virgem na pagina da propria ilha, 31 blocos de JSON-LD que parseiam, console limpo, 17 de 17 contas das tres ferramentas certas na mao, e 15 leituras de teste de vida da 25.4 (11 fichas e 4 buscas) com 0 morta, 0 esgotada, 0 intestavel e 0 sem piso da 25.2. ZERO consertos: nenhum dos tres defeitos e da lista 19.1. ACHADO DE ALTA: /veiculos/moto-eletrica/ recebe ZERO link interno de miolo, porque a listagem da mae e o bloco de irmas nascem da lista de paginas da vitrine e a pagina degradada nao esta nela.
 primeira_indexacao: null  # as duas primeiras URLs foram ao ar hoje; indexacao e trabalho de dias. Quem grava este campo e a leitura semanal, lendo o Search Console.
-ultima_execucao: 2026-11-24T19:5xZ   # A FILA NAO ESTAVA VAZIA: esta execucao
+ultima_execucao: 2026-11-24T20:1xZ   # A FILA NAO ESTAVA VAZIA: esta execucao
                          # pegou o DESPACHO NORMAL DA ANCORA, aberto as 16h3xZ
                          # de hoje, e o fechou INTEIRO (18.2) no desfecho (a),
                          # CONFERIDO NO AR pela 18.4 — revisao 134, 12 leituras
@@ -32,17 +32,14 @@ ultima_execucao: 2026-11-24T19:5xZ   # A FILA NAO ESTAVA VAZIA: esta execucao
                          # A entrada de miolo de cada filha subiu de 3 para 5 e
                          # nenhuma ancora de consulta se perdeu. O detalhe esta
                          # no `bloco_atual` e no REGISTRO.md.
-executando_desde: 2026-11-24T19:36Z   # RENOVADA as 19h36Z pela 1.1 (bloco que passa
-                         # de 40 minutos reescreve o campo), porque o desembarque
-                         # da revisao 134 espera o vencimento do evento do cron:
-                         # `ultimo` 19:17:35 e teto 19:47:35, veredito
-                         # `evento-nao-vencido` da 20.9 — ESPERAR, nao reacionar.
-                         # Reservada as 19h17Z (passo 5 da secao 1,
-                         # foco da 1.2: foco.md nomeia a rodametria). ACEITA de
-                         # PRIMEIRA: o campo estava `null`, que pela 1.1 ja significa
-                         # que nao ha bloco da Fundacao vivo, e o ultimo commit na
-                         # pasta da ilha era de hoje as 16h46Z — 2h31m atras, fora da
-                         # janela de 40 minutos. Quem renovar reescreve ESTE campo.
+executando_desde: null   # LIMPO no fecho desta execucao (passo 7 da secao 1).
+                         # Reservada as 19h17Z (commit a59a7cf, aceita de
+                         # PRIMEIRA: o campo estava `null`, que pela 1.1 ja
+                         # significa que nao ha bloco da Fundacao vivo, e o
+                         # ultimo commit na pasta era de hoje as 16h46Z) e
+                         # RENOVADA as 19h36Z (commit c40ef01), porque o
+                         # desembarque esperava o vencimento do evento do cron —
+                         # veredito `evento-nao-vencido` da 20.9, duas vezes.
 rede: aberta em 2026-11-24   # 20.2, REMEDIDA e nao herdada nesta execucao:
                              # `rodametria.com.br/` e `/veiculos/` em 200, com
                              # example.com em 000 no MESMO comando — o controle
@@ -130,14 +127,27 @@ bloco_atual: |
   de `motos eletricas para adultos` — o plural da propria familia — e a unica
   ancora elegivel da maior cabeca do nicho sumiria calada.
 
-  A 20.9 ECONOMIZOU AS RODADAS: push as 19:33Z, `ultimo` 19:17:35, teto
-  19:47:35 — veredito `evento-nao-vencido`, ESPERAR e nao reacionar. A revisao
-  entrou as 19:47:45, na PRIMEIRA visita, com ZERO rodada de Sync desperdicada.
+  A 20.9 ECONOMIZOU AS RODADAS DUAS VEZES NESTA EXECUCAO, e na segunda a
+  PREVISAO DO PORTAO SE CUMPRIU COM HORA MARCADA:
+  (a) revisao 134: push as 19:33Z, `ultimo` 19:17:35, teto 19:47:35 — veredito
+      `evento-nao-vencido`, ESPERAR e nao reacionar. Entrou as 19:47:45, na
+      PRIMEIRA visita, com ZERO rodada desperdicada.
+  (b) revisao 135: `ultimo` 19:47:45, teto 20:17:45 — e ela entrou as 20:10:18,
+      7m27s ANTES do teto. O `conferir-no-ar.py` desta ilha escreve, no proprio
+      texto do veredito, que o teto `PODE CAIR ANTES` porque o WordPress
+      reagenda evento recorrente a partir do horario AGENDADO e nao do horario em
+      que ele rodou. E A SEGUNDA MEDICAO DESSA PREVISAO: a primeira foi em
+      05/11/2026, com 6m37s de antecipacao. O QUE ISSO MUDA NA PRATICA, dito para
+      a proxima passada nao gastar a janela: quem espera o teto para SO ENTAO
+      comecar a visitar deixa passar em branco os minutos em que o evento venceu
+      — esta execucao corrigiu isso no meio do caminho e passou a visitar a home
+      a cada 80 segundos desde o push.
 
-  BANCADA: 65 portoes sem rede e 71 com rede. Sem rede, 0 falha. Com rede, a
-  UNICA falha e a revisao 135 pendente de desembarque (ver abaixo), e o portao
-  da ilha ja da o veredito certo para ela. ZERO conserto da lista 19.1 e nenhum
-  tentado: nada dela apareceu.
+  BANCADA: 65 portoes sem rede e 71 com rede, 0 falha nas DUAS, com os cinco de
+  navegador rodados — e a de rede foi rodada DEPOIS de a revisao 135 entrar, as
+  20:1xZ. Nas rodadas intermediarias a unica falha era a propria 135 pendente, e
+  o portao da ilha dava o veredito certo para ela. ZERO conserto da lista 19.1 e
+  nenhum tentado: nada dela apareceu.
   E UMA INTERMITENCIA MEDIDA E NOMEADA, para a proxima nao a herdar como defeito:
   na PRIMEIRA rodada da bancada com rede, `medir-foto-no-navegador.mjs` saiu
   INERTE (sem imprimir veredito). Rodado sozinho em seguida: APROVADO, 48
@@ -150,7 +160,8 @@ bloco_atual: |
   consultas-de-produto.json, arquivo com `publicar: false` que NAO vira option no
   ar. Nenhum byte de tela muda com ela. Ela foi desembarcada de todo jeito porque
   repositorio em 135 com ar em 134 faz a proxima execucao ler `commit sem Sync`
-  pela 20.4 — e esse portao nao sabe distinguir os dois casos.
+  pela 20.4 — e esse portao nao sabe distinguir os dois casos. ESTA NO AR:
+  /status 135 = manifest 135, as 8 linhas de item do log dizendo `ok` (8 - 8 = 0).
 
   PROXIMO PASSO DESBLOQUEADO — a fila de construcao da Fundacao voltou a estar
   VAZIA, e o criterio segue pre-registrado (1.2-b.4):
