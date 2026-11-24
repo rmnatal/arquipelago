@@ -32,11 +32,11 @@ ultima_execucao: 2026-11-24T10:29Z   # A FILA DE CONSTRUCAO ESTA VAZIA, E ISSO F
                          # portas de dados/fonte-oficial-f1.md.
                          # A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A
                          # GRAVA, nunca digitada.
-executando_desde: null   # LIMPO no fecho desta execucao (passo 7 da secao 1). Reservada as 10h17Z,
-                         # commit 6d34ed1, aceita de PRIMEIRA: o campo estava `null`, que pela 1.1 ja
-                         # significa que nao ha bloco da Fundacao vivo, e o ultimo commit na pasta era
-                         # de 23/11 as 19h51Z — quinze horas atras, fora de qualquer janela. NAO HOUVE
-                         # RENOVACAO pela 1.1 porque a execucao nao passou de 40 minutos.
+executando_desde: 2026-11-24T13:16Z   # RESERVA desta execucao (passo 5 da secao 1, pela 1.2: o foco.md
+                         # nomeia a rodametria). Aceita de PRIMEIRA: o campo estava `null`, que
+                         # pela 1.1 ja significa que nao ha bloco da Fundacao vivo, e o ultimo
+                         # commit na pasta era de hoje as 10h30Z — fora da janela de 40 minutos.
+                         # A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA.
 rede: aberta em 2026-11-20   # 20.2, REMEDIDA e nao herdada: `rodametria.com.br`
                              # em 200 nas TRES passadas, `www.` em 301 na primeira
                              # e 200 nas outras duas (redirecao, nao recusa), com
