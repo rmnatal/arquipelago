@@ -11,6 +11,38 @@ Prioridade: `alta` fura a fila da próxima execução do destinatário.
 
 ## ABERTOS
 
+### precisa do Raphael — **A ROTINA *PAUTA DAS ILHAS* NUNCA RODOU, EM 74 DIAS — E É DELA QUE DEPENDE O ÚNICO BLOCO DE CONSTRUÇÃO QUE SOBROU NA ILHA EM FOCO TOTAL** (medido em 24/11/2026 às 13h2xZ)
+
+Aberto em 24/11/2026 pela Fundação, na **terceira execução seguida** a fechar a rodametria com a fila de construção vazia. **Não é um pedido de trabalho novo: é o nome da causa de três execuções sem entregar página**, e ninguém o havia escrito.
+
+**O QUE A SEÇÃO 17 DECIDIU, em 11/09/2026, e é decisão dele:** as ilhas passam a ter artigos escritos pela fábrica, no nível `/guias/` da árvore. A **17.1** reparte: a rotina **Pauta das ilhas** (*"terças, no computador do Raphael, como as Sentinelas"*) descobre e ranqueia temas e grava `ilhas/<ilha>/pauta.md` **pelas mãos**; a **Fundação escreve os artigos na nuvem**. A Fundação não pode fazer as duas pontas, e a 17.1 é explícita sobre de quem é cada uma.
+
+**O QUE FOI MEDIDO HOJE, nas três provas independentes que o contrato oferece:**
+
+| prova | resultado |
+|---|---|
+| `find . -iname "*pauta*"` no repositório inteiro | **zero arquivo**, em nenhuma das seis ilhas nem no `ilhas/_modelo/` |
+| `grep -c "Pauta das ilhas" MAOS-LOG.md` | **0** — e a **27.1** manda *todo* disparo das mãos terminar escrevendo ali, append-only |
+| `grep -i pauta dados/despachos.md` | **zero** — em 74 dias ninguém abriu despacho pedindo |
+
+O `MAOS-LOG.md` tem **592 KB** e registra fielmente as outras rotinas pelas mãos — ronda da Sentinela, leitura semanal, Bússola caçadora, Pente Fino, cada uma com hash de commit. **A Pauta não aparece uma vez.** Pela 27.1 e pela 27.3 (*"relatório de rotina não é prova"*, e a prova é contar no `main`), isso não é "pode ter rodado sem registrar": é **não rodou**.
+
+**POR QUE ISSO CUSTA AGORA, e é a conta que torna este despacho útil em vez de burocrático.** A rodametria está em **foco total e absoluto** desde 27/10 — nenhuma outra ilha recebe bloco de construção. A fila dela tem os blocos **1 a 7 entregues**, e o que sobra é:
+
+- **bloco 5 (artigos-âncora)** → depende de `pauta.md`, que não existe;
+- **página nova pelo nome do produto (seção 30)** → travada pela **30.8**, porque `alvo` não se afirma desta nuvem (SERP no Chrome dele);
+- **profundidade da F1 e da F3** → travada por **abertura de domínio**, medida hoje como fechada nas **duas** portas (o acréscimo de 24/11 ao despacho dos três domínios de varejo, mais a parede do `gov.br` remedida às 10h2xZ).
+
+**Logo o bloco 5 é o único caminho de construção que não depende de abertura de egresso** — e ele é o que está esperando a rotina de terça. **Hoje, 24/11/2026, é terça.**
+
+**O QUE É SEU, RAPHAEL — e é um disparo, não uma decisão:** rodar a rotina **Pauta das ilhas** pelas mãos, na **rodametria**, e deixá-la gravar `ilhas/rodametria/pauta.md` no formato da **17.3** (cabeçalho com `data`, `ilha` e fontes consultadas; tabela de até 10 temas com consulta-alvo, variações, mãe, destino, top 10 de hoje, nota e ângulo; e a lista de `recusados` com o motivo). A descoberta **não precisa partir do zero**: a 17.3 registra que na Aquametria *"a rotina confirma SERP e destino, não redescobre"*, e esta ilha tem o corpus do bloco 1 em `ilhas/rodametria/dados/corpus-buscas.md` mais as cinco caudas já classificadas em `dados/consultas-de-produto.json`.
+
+**E HÁ UMA ARMADILHA JÁ MEDIDA QUE A PAUTA TEM DE RESPEITAR, dita aqui para a rotina não gastar o disparo:** o bloco **5c** desta ilha mediu que **a cauda deste nicho é território de fazenda de conteúdo** — três das cinco consultas de cauda estão `tomada`, com **26 páginas dedicadas de fazenda entre 102 ocupantes colhidos**, no formato "melhor X" e "Top 10" que o `VOZ.md` desta ilha **proíbe nominalmente**. O portão de tema da **17.2(b)** recusa exatamente isso. **O eixo que o corpus mediu como aberto é o paramétrico** — *"todos falam, ninguém calcula"* —, e é de lá que o tema com nota alta deve sair, com destino comercial numa das três ferramentas que já estão no ar (17.2(c)).
+
+**PRONTO QUANDO:** `ilhas/rodametria/pauta.md` existir no `main`, no formato da 17.3, com **ao menos um** tema que passe nos quatro portões da 17.2 — e com o disparo registrado em `MAOS-LOG.md` pela 27.1. **A Fundação escreve a primeira leva de guias na execução seguinte**, dentro da rampa da seção 9 (leva de 5 a 10, medir, só dobrar se indexou E apareceu) e da ordem por cluster da 16.6.
+
+**E O QUE ESTE DESPACHO NÃO PEDE, dito para ninguém o alargar:** não pede revisão da seção 17, não pede que a Fundação escreva a pauta (a 17.1 e a 17.6 proíbem, e a 17.6 é literal — *"não escreve o artigo (é da Fundação)"* é a metade dela; a outra é que a Fundação não pauta), e não pede pauta para as outras cinco ilhas — enquanto o `foco.md` nomear a rodametria, só ela recebe construção.
+
 ### prioridade NORMAL — Fundação da ROBOMETRIA — **O `dateModified` DAQUELA ILHA SAI DE `git log -1`, E EM CLONE RASO ISSO PUBLICA FRESCOR QUE A PÁGINA NÃO TEM — COM A RÉGUA QUE CONFERE ERRANDO JUNTO** (medido na rodametria em 23/11/2026 às 19h2xZ)
 
 **NÃO É ALTA e não fura o foco:** a robometria não está no ar quebrada, e o que este despacho descreve é um número que pode estar errado, não uma página servindo erro. Entra como NORMAL, pela 18.1.

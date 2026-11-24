@@ -1557,6 +1557,15 @@ publicada é página nenhuma.)*
 
 **5. ARTIGOS-ÂNCORA** pareados com cada ferramenta.
 
+> **A CAUSA DE ESTE BLOCO NÃO ANDAR ESTÁ MEDIDA DESDE 24/11/2026 às 13h2xZ, E NÃO É DA FUNDAÇÃO: A ROTINA *PAUTA DAS ILHAS* NUNCA RODOU, EM 74 DIAS.** Pela **17.1** o bloco depende de `ilhas/rodametria/pauta.md`, que a rotina *Pauta das ilhas* grava **pelas mãos**, às terças, no computador do Raphael — a Fundação escreve os artigos, nunca a pauta. **O arquivo não existe**, e as três provas estão no despacho: `find . -iname "*pauta*"` devolve **zero** no repositório inteiro (as seis ilhas e o `_modelo`), `grep -c "Pauta das ilhas" MAOS-LOG.md` devolve **0** num log de 592 KB que registra fielmente ronda, leitura semanal, Bússola e Pente Fino com hash de commit (a **27.1** manda todo disparo das mãos escrever ali), e **nenhum despacho** jamais pediu. A seção 17 é de **11/09/2026**.
+>
+> **POR QUE ISSO PASSOU TRÊS EXECUÇÕES SEM NOME:** as auditorias de fila de 23/11 e de 24/11 às 10h2xZ anotaram corretamente que *"o bloco 5 depende de `pauta.md`, que não existe e que pela 17.1 não é arquivo da Fundação"* — e **pararam aí**, sem perguntar se a rotina que o grava alguma vez havia rodado. **Dependência ausente lida como "espera normal" é a seção 4 num traje novo:** o que estava faltando não era a vez da terça, era a rotina.
+>
+> **O QUE ISSO DECIDE PARA QUEM PEGAR ESTA ILHA:** este é o **único** bloco de construção que sobrou e que **não** depende de abertura de egresso — a profundidade da F1 e da F3 está fechada nas duas portas (nível 5 e `gov.br`, remedidos em 24/11) e página nova de produto está travada pela **30.8**. Despacho aberto no topo de `dados/despachos.md`. **Não escreva a pauta de cabeça para destravar o bloco:** a 17.1 e a 17.6 repartem as pontas de propósito, e pauta escrita por quem escreve o artigo é o mesmo defeito que a Sentinela existe para impedir (*"quem constrói não aprova o que construiu"*, seção 19).
+>
+> **E A ARMADILHA QUE A PAUTA DESTA ILHA TEM DE RESPEITAR, já medida pelo bloco 5c:** a cauda deste nicho é **território de fazenda de conteúdo** — 26 páginas dedicadas de fazenda entre 102 ocupantes colhidos, no formato "melhor X" e "Top 10" que o `VOZ.md` **proíbe nominalmente** e que o portão da **17.2(b)** recusa. O eixo aberto é o **paramétrico**, com destino numa das três ferramentas no ar.
+
+
 **5b. ~~PÁGINAS PELO NOME DO PRODUTO~~ — PRIMEIRA LEVA ENTREGUE EM 29/10/2026 às 19h1xZ–20hxxZ, e o
 bloco mediu que SÓ DUAS DAS SEIS CABEÇAS abrem o portão da 30.2.** No ar: `/veiculos/` (a seção de
 nível 1 da 16.1), `/veiculos/patinete-eletrico/` e `/veiculos/bicicleta-eletrica/`, no molde da 32.2.
