@@ -28,16 +28,11 @@ ultima_execucao: 2026-11-23T19:49Z   # A SEGUNDA METADE DO ITEM 2 DO
                          # codigo computada do manifest, e as 11 servem
                          # 2026-11-23. A HORA DESTE CAMPO SAIU DO `date -u` NA
                          # MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
-executando_desde: null   # LIMPO no fecho desta execucao (passo 7 da secao 1). Reservada as 19h17Z e RENOVADA as 19h29Z pela 1.1.
-                         # A reserva foi 2026-11-23T16:17Z, commit 98f3da5,
-                         # aceita de PRIMEIRA: a ilha estava livre
-                         # (`executando_desde: null`, que pela 1.1 ja significa
-                         # que nao ha bloco da Fundacao vivo) e o commit de
-                         # 15h06Z na pasta era da RONDA da Sentinela, que pela
-                         # 1.1 nao reserva nada. RENOVADA uma vez as 16h53Z,
-                         # tambem pela 1.1: a execucao passou de 40 minutos
-                         # porque o despacho de hoje tinha tres itens e a 18.2
-                         # manda fechar o despacho INTEIRO numa passada.
+executando_desde: 2026-11-24T10:17Z   # RESERVA da execucao de 2026-11-24T10:17Z (passo 5 da secao 1), na ilha que o foco.md nomeia (1.2).
+                         # A ilha estava livre: `executando_desde: null`, que pela 1.1 ja
+                         # significa que nao ha bloco da Fundacao vivo, e o commit de 19h51Z
+                         # de 23/11 na pasta e de 15 horas atras. A HORA SAIU DO `date -u` NA
+                         # MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
 rede: aberta em 2026-11-20   # 20.2, REMEDIDA e nao herdada: `rodametria.com.br`
                              # em 200 nas TRES passadas, `www.` em 301 na primeira
                              # e 200 nas outras duas (redirecao, nao recusa), com
