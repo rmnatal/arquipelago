@@ -3,6 +3,52 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-11-24 19h17Z–19h5xZ — **A ÂNCORA DO SINÔNIMO DA 30.4 NASCE NA FERRAMENTA, E A PREMISSA COM QUE O DESPACHO FOI ESCRITO ESTAVA ERRADA: A CASA RECEBIA 14 LINKS E OS 14 COM A MESMA PALAVRA**
+
+**A ILHA DESTA EXECUÇÃO:** rodametria, por **foco** (`foco.md`, foco total e absoluto desde 27/10). Pela **1.2** não houve escolha a fazer.
+**Passo 1 do disparo, medido:** `git fetch origin main` trouxe `origin/main` de `ebcd2e2` para **`b844f30`**. **Nenhum branch `claude/*` com trabalho pendente** — `origin/main..origin/claude/dreamy-mccarthy-e1dlk7` veio **vazio** — e **nenhum PR aberto**. Nada a mergear antes.
+**Reserva:** `executando_desde` às **19h17Z**, commit **`a59a7cf`**, push aceito **de primeira**. O campo estava `null`, que pela **1.1** já significa que não há bloco da Fundação vivo, e o último commit na pasta era de **hoje às 16h46Z** — 2h31m atrás, fora da janela de 40 minutos. **RENOVADA às 19h36Z** pela 1.1 (commit `c40ef01`), porque o desembarque esperava o vencimento do evento do cron.
+**REDE PELA 20.2, REMEDIDA E NÃO HERDADA:** `rodametria.com.br/` e `/veiculos/` em **200**, com `example.com` em **000** no mesmo comando — o controle da **33** que diz que `000` nesta nuvem é política da lista de permissões, nunca queda de site.
+**O BLOCO:** o **DESPACHO NORMAL DA ÂNCORA**, aberto às 16h3xZ de hoje pela execução anterior e **fechado inteiro aqui** (18.2). Era o único bloco de construção da fila que não depende de abrir egresso, de SERP num Chrome nem de gesto do Raphael.
+
+### O DESPACHO ESCOLHEU O DESFECHO (a), E O QUE DECIDIU FOI UM NÚMERO QUE DERRUBA A PRÓPRIA PREMISSA DELE
+
+O despacho pedia três perguntas respondidas **antes de qualquer código**, e a primeira dizia que o candidato natural era o bloco de irmãs, *"mas âncora de irmã hoje é a consulta da irmã, e trocá-la pelo sinônimo **perderia** a consulta principal"*.
+
+**A PREMISSA FOI MEDIDA E NÃO SE SUSTENTA.** Lido no `<a>` de cada uma das **11 URLs** do sitemap, com quebra de cache: a casa da `bike elétrica` — `/veiculos/bicicleta-eletrica/` — recebia **14 links de dentro da ilha**, e **TODOS OS 14 com a mesma âncora exata**, `bicicleta elétrica` (3 de miolo: a mãe e as duas irmãs; 11 do rodapé, uma por página). **Diversificação de texto de âncora: ZERO.** O que faltava era **UMA palavra, não mais um link** — e isso muda o conserto: não há o que *trocar*, porque a consulta principal está servida 14 vezes e sobrevive de sobra.
+
+**E A 16.4(c) FECHA A PORTA QUE O DESPACHO SUPÔS ABERTA, o que torna a troca não só desnecessária como proibida:** ela manda que toda filha linke de 2 a 4 irmãs em bloco "Veja também" **"com âncora na consulta delas"**, e a **16.4(a)** manda o mesmo para a listagem da mãe. As duas são regra do contrato. **Logo a âncora de sinônimo não é a troca de um dos dois lugares: é um TERCEIRO lugar.**
+
+### AS TRÊS PERGUNTAS, RESPONDIDAS COM O NÚMERO DE CADA UMA
+
+**(1) DE ONDE SAI O LINK — das duas páginas de FERRAMENTA, e elas foram escolhidas por medição e não por gosto.** Contado no HTML servido das 11 URLs: `/autonomia-patinete-eletrico/` (F2) e `/peso-maximo-patinete-eletrico/` (F3) servem **ZERO** link de miolo para as páginas de produto — as duas trazem **0 ocorrência** de `rdm-malha`, contra **1** em cada filha e na mãe — e alcançam as três filhas **somente pelo rodapé**, que é navegação global e está fora da conta da **16.9(b)**. **Então o link daqui é o PRIMEIRO link de miolo daquela página para aquela casa:** nada é trocado e nada é repetido na mesma página, e a conta de entrada de miolo de cada filha sobe de **3 para 5**. Em qualquer outra página do silo ele seria o **SEGUNDO** link para o mesmo destino, e o que um segundo link faz com o texto de âncora depende de **como o buscador atribui âncora quando há dois** — hipótese que esta nuvem não mede, e a **30.8** desta ilha proíbe construir mecanismo sobre afirmação que não se mede.
+
+**(2) SE A ÂNCORA APONTA PARA A PRÓPRIA PÁGINA — não, e nunca.** Link de uma página para ela mesma não é link de entrada e não distribui nada; `veredito_do_cluster_de_entrada()` já descarta o auto-aponte desde 23/11, e a régua nova faz o mesmo descarte **na direção de quem aponta**, não só na de quem recebe.
+
+**(3) SE ISTO É ÂNCORA OU É SÓ TEXTO — é ÂNCORA, e o desfecho (b) foi recusado com motivo escrito.** A palavra no corpo serve a busca e a visão geral de IA, e está no ar desde a revisão 130; o que ela **não** faz é dizer qual URL é a **casa** daquela consulta, que é exatamente o que a 30.4 pede quando fecha uma consulta em favor de outra página. Com **201 mil buscas/mês** em `bike elétrica` e outras **201 mil** em `motos elétricas para adultos`, as duas com veredito `alvo` visto no Chrome do Raphael em 27/10/2026, apagar a promessa seria **baratear a ilha para baratear o conserto**.
+
+### O VALOR DA ÂNCORA NÃO É ESCOLHIDO À MÃO, E A FUNÇÃO QUE O ESCOLHE EVITOU UM ERRO QUE NENHUM PORTÃO VERIA
+
+`sinonimo_elegivel_para_ancora()` é função pura e serve **o primeiro sinônimo declarado que não carregue o substantivo de família de OUTRA consulta com URL própria**, com casamento por **raiz de palavra**. O resultado sobre o banco de hoje:
+
+| casa | sinônimos declarados | âncora elegível |
+|---|---|---|
+| `/veiculos/patinete-eletrico/` | `scooter elétrico`, `patinete elétrico dobrável` | **`patinete elétrico dobrável`** |
+| `/veiculos/bicicleta-eletrica/` | `bike elétrica`, `e-bike` | **`bike elétrica`** |
+| `/veiculos/moto-eletrica/` | `scooter elétrica`, `motos elétricas para adultos` | **`motos elétricas para adultos`** |
+
+**E O CASO QUE ELA EXISTE PARA PEGAR ESTÁ NO BANCO HOJE:** o **primeiro** sinônimo da moto é `scooter elétrica`, e `scooter elétrica` é uma consulta de **301 mil buscas/mês** com `slug: veiculos/scooter-eletrica` e **remedição pré-registrada para 11/12/2026** pela 30.9 — ela não nasceu por falta de produto na loja, não por falta de vaga. Ancorar a moto nela seria **construir hoje o link que amanhã aponta para a casa errada**, e o erro não apareceria em portão nenhum: apareceria no dia da página nova, com a âncora já distribuída. A mesma raiz tira `scooter elétrico` do patinete. **Sem o casamento por raiz, `moto` casaria dentro de `motos elétricas para adultos` — o plural da própria família — e a única âncora elegível da maior cabeça do nicho sumiria calada.**
+
+### O PORTÃO, PELA 31.2, E A DISCORDÂNCIA DA 20.8 MEDIDA ANTES DO CONSERTO CHEGAR AO AR
+
+`veredito_da_ancora_de_sinonimo()` e `ancoras_internas()` são irmãs das três funções puras desta ilha, com a mesma disciplina: entram relações já calculadas, sai lista de falhas em palavras, sem rede e sem arquivo. **A régua velha não era uma régua errada: era a AUSÊNCIA de régua** — `caminhos_internos()` joga fora exatamente o que a 30.4 pede, porque conta **link** e a 30.4 fala de **âncora**.
+
+**A DISCORDÂNCIA, RODADA CONTRA O AR AINDA NA REVISÃO 130 (o mundo de antes, medido e não deduzido):** a conta de entrada do cluster **APROVOU** as três filhas (3 entradas de miolo cada, contra as 2 que a 16.4(f) exige) e a régua nova **REPROVOU NAS TRÊS**, com a frase `servida no miolo de: NENHUMA pagina` para cada uma das três âncoras — 415 afirmações, 3 falhas. **Sem essa discordância este portão não provaria conserto nenhum, e sim que alguém escreveu código novo.**
+
+**ONDE CADA PONTA É COBRADA:** `teste-sinonimo-na-tela.py` (sem rede) ganhou a **terceira metade** e cobra o campo derivado nas **TRÊS direções** — cálculo → campo, campo → cálculo e campo órfão — mais 5 mundos fabricados da função de elegibilidade, e **nomeia a família `scooter` numa afirmação própria**; `teste-cluster-de-entrada.py` ganhou **6 mundos fabricados**, entre eles o de 24/11 (5 entradas por filha, todas com a consulta) que a conta de entrada aprova e a régua da âncora reprova. `conferir-produto-no-ar.py` cobra a ponta do AR **na mesma leitura** das 11 URLs, para não dobrar a leitura de rede (20.2).
+
+**O CAMPO É DERIVADO E NÃO UMA SEGUNDA DECLARAÇÃO, e é por isso que a cobrança é nas duas direções:** `sinonimos_no_corpo` em `consultas-de-produto.json` segue sendo a **única** declaração do sinônimo; `ancora_de_sinonimo` em `paginas-de-produto.json` existe porque aquele arquivo tem `publicar: false` e **não vira option no ar**, então o snippet não pode lê-lo. Quem mudar o sinônimo e não mudar a âncora tem o portão vermelho na mão — que é o único jeito de um campo derivado escrito no arquivo não virar a **20.7** de novo.
+
 ## 2026-11-24 16h16Z–16h4xZ — **O SINÔNIMO DA 30.4 ESTAVA DECLARADO NO REPOSITÓRIO E NÃO CHEGAVA À TELA — E NA PÁGINA DO PATINETE QUEM DIZIA A PALAVRA ERA A LOJA. TERCEIRO CASO DA MESMA FAMÍLIA NA MESMA PÁGINA EM CINCO DIAS**
 
 **A ILHA DESTA EXECUÇÃO:** rodametria, por **foco** (`foco.md`, foco total e absoluto desde 27/10). Pela **1.2** não houve escolha a fazer.
