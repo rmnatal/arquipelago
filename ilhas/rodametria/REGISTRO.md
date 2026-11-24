@@ -47,6 +47,28 @@ O despacho pedia três perguntas respondidas **antes de qualquer código**, e a 
 
 **ONDE CADA PONTA É COBRADA:** `teste-sinonimo-na-tela.py` (sem rede) ganhou a **terceira metade** e cobra o campo derivado nas **TRÊS direções** — cálculo → campo, campo → cálculo e campo órfão — mais 5 mundos fabricados da função de elegibilidade, e **nomeia a família `scooter` numa afirmação própria**; `teste-cluster-de-entrada.py` ganhou **6 mundos fabricados**, entre eles o de 24/11 (5 entradas por filha, todas com a consulta) que a conta de entrada aprova e a régua da âncora reprova. `conferir-produto-no-ar.py` cobra a ponta do AR **na mesma leitura** das 11 URLs, para não dobrar a leitura de rede (20.2).
 
+### O QUE FOI MEDIDO NO AR, DEPOIS DO DESEMBARQUE — E O QUE **NÃO** SE PERDEU
+
+**Revisão 134 no ar, `/status` 134 = manifest 134, as 12 linhas de item do log dizendo `ok` (20.4 e 20.8, lidas do fecho para baixo: 12 − 12 = 0).** A **20.9** economizou as rodadas: push às 19:33Z, `ultimo` 19:17:35, teto 19:47:35 — veredito **`evento-nao-vencido`**, esperar e não reacionar. A revisão entrou às **19:47:45**, na **primeira** visita, com **ZERO rodada de Sync desperdiçada**.
+
+**AS TRÊS ÂNCORAS, EM DUAS PASSADAS POR URL COM QUEBRA DE CACHE — 12 leituras e 0 AUSENTE:** `patinete elétrico dobrável`, `bike elétrica` e `motos elétricas para adultos`, cada uma servida no miolo das **duas** páginas de ferramenta, sob o título `Os mesmos veículos, pelos outros nomes`. A conta de entrada de miolo de cada filha subiu de **3 para 5**.
+
+**E A MALHA INTEIRA REMEDIDA, porque conserto que diz "não perdeu nada" sem contar é promessa:**
+
+| casa | âncora da consulta (doc / miolo) | âncora de sinônimo (doc / miolo) | textos distintos |
+|---|---|---|---|
+| `/veiculos/bicicleta-eletrica/` | `bicicleta elétrica` **14 / 3** | `bike elétrica` **2 / 2** | 1 → **3** |
+| `/veiculos/moto-eletrica/` | `moto elétrica` **25 / 3** | `motos elétricas para adultos` **2 / 2** | 1 → **2** |
+| `/veiculos/patinete-eletrico/` | `patinete elétrico` **14 / 3** | `patinete elétrico dobrável` **2 / 2** | 1 → **3** |
+
+**Nenhuma âncora de consulta a menos**, no documento e no miolo. O que mudou é que cada casa saiu de **um** texto de âncora para **dois ou três**.
+
+**BANCADA:** **65** portões sem rede e **71** com rede. Sem rede, **0 falha**. Com rede, a **única** falha é a revisão **135** pendente de desembarque — ela carrega só a procedência da âncora em `consultas-de-produto.json`, arquivo com `publicar: false` que **não vira option no ar**, então **nenhum byte de tela muda com ela**; foi desembarcada de todo jeito porque repositório em 135 com ar em 134 faz a próxima execução ler *"commit sem Sync"* pela 20.4, e aquele portão não distingue os dois casos. **ZERO conserto da lista 19.1 e nenhum tentado.**
+
+**E UMA INTERMITÊNCIA MEDIDA E NOMEADA, para a próxima passada não a herdar como defeito:** na **primeira** rodada da bancada com rede, `medir-foto-no-navegador.mjs` saiu **INERTE** (sem imprimir veredito). Rodado sozinho em seguida: **APROVADO**, 48 afirmações, 0 falha; e na re-rodada da bancada inteira: **`ok`**. É o navegador desta nuvem falhando uma vez, **não régua quebrada** — a seção 4 manda repetir antes de chamar de bloqueio, e repetir resolveu.
+
+**A LIÇÃO DE MÉTODO, E ELA VALE MAIS QUE O CONSERTO:** **o despacho que descreve bem o defeito pode errar na premissa do conserto.** Este dizia, em prosa, que trocar a âncora de irmã *"perderia a consulta principal"* — e **uma conta de âncoras por destino, que é um comando sobre o HTML servido**, mostrou que a consulta estava em 14 lugares e que a troca era **proibida pela 16.4(c)** de todo jeito. As duas coisas juntas mudaram o desenho inteiro: de "trocar uma âncora" para "um terceiro lugar, na página que não tinha link de miolo nenhum". **Quem pegar despacho com premissa escrita em prosa mede a premissa primeiro.**
+
 **O CAMPO É DERIVADO E NÃO UMA SEGUNDA DECLARAÇÃO, e é por isso que a cobrança é nas duas direções:** `sinonimos_no_corpo` em `consultas-de-produto.json` segue sendo a **única** declaração do sinônimo; `ancora_de_sinonimo` em `paginas-de-produto.json` existe porque aquele arquivo tem `publicar: false` e **não vira option no ar**, então o snippet não pode lê-lo. Quem mudar o sinônimo e não mudar a âncora tem o portão vermelho na mão — que é o único jeito de um campo derivado escrito no arquivo não virar a **20.7** de novo.
 
 ## 2026-11-24 16h16Z–16h4xZ — **O SINÔNIMO DA 30.4 ESTAVA DECLARADO NO REPOSITÓRIO E NÃO CHEGAVA À TELA — E NA PÁGINA DO PATINETE QUEM DIZIA A PALAVRA ERA A LOJA. TERCEIRO CASO DA MESMA FAMÍLIA NA MESMA PÁGINA EM CINCO DIAS**
