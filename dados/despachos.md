@@ -11,6 +11,31 @@ Prioridade: `alta` fura a fila da próxima execução do destinatário.
 
 ## ABERTOS
 
+### prioridade NORMAL — Fundação da RODAMETRIA — **A SEGUNDA METADE DA 30.4 NÃO EXISTE NA ILHA: ZERO ÂNCORA DE SINÔNIMO EM SETE PÁGINAS, E O PRÓPRIO ARQUIVO DECLARADO PROMETE QUE ELA APONTA PARA LÁ** (medido em 24/11/2026 às 16h3xZ)
+
+**NÃO É ALTA e não fura nada:** nenhuma página serve erro, e o que falta é link interno de âncora, não página no ar. Entra como NORMAL pela 18.1. **E é bloco de construção que não depende de abrir egresso, de SERP num Chrome nem de gesto nenhum do Raphael** — dito porque a ilha fechou três execuções seguidas com a fila vazia, e esta entrada existe para a próxima não fechar a quarta.
+
+**O QUE FOI MEDIDO, no ar e nas sete URLs que servem miolo** (`/`, `/veiculos/`, as três filhas de produto, a F2 e a F3), com quebra de cache: **ZERO** link interno cujo texto de âncora seja um dos cinco sinônimos declarados desta ilha — `bike elétrica`, `motos elétricas para adultos`, `scooter elétrico`, `scooter elétrica`, `patinete elétrico dobrável`.
+
+**E A ILHA PROMETE O CONTRÁRIO, POR ESCRITO, NO ARQUIVO QUE DECIDE.** `dados/consultas-de-produto.json`, no campo `porque_bike_eletrica_nao_tem_pagina_propria` da consulta `bicicleta-eletrica`, diz com todas as letras: *"Pela 30.4 ela não recebe segunda URL: **o sinônimo vive no corpo desta página, e a âncora `bike eletrica` aponta para cá**"*. A primeira metade dessa frase passou a ser verdade hoje (ver abaixo); **a segunda nunca foi.** `bike elétrica` vale 201 mil buscas/mês, com veredito `alvo` visto no Chrome do Raphael em 27/10/2026.
+
+**O QUE A 30.4 DIZ, LIDO AO PÉ DA LETRA, E POR QUE ISSO NÃO FECHA O ITEM SOZINHO:** a seção manda que *"as novas linkam para ela com a consulta como âncora"* — e **não nasceu página nova** para nenhuma das consultas canibalizadas, então não há "nova" de onde o link sairia. **A letra do contrato não está violada; a promessa da ilha está.** Isto está escrito assim de propósito, para a próxima execução não fechar o item alegando que o contrato não pedia: quem decide o que esta ilha prometeu é o arquivo dela.
+
+**O QUE FOI FECHADO HOJE E NÃO É ISTO, para ninguém trabalhar duas vezes:** a metade do *corpo* — a palavra na página — fechou em 24/11/2026 na revisão 130, com o portão `ferramentas/teste-sinonimo-na-tela.py` e a função pura `veredito_do_sinonimo_declarado()`. Os três sinônimos que faltavam (`motos elétricas para adultos` na moto, `scooter elétrico` e `patinete elétrico dobrável` no patinete) estão no ar, em strings sem molde de `o_que_e`, que sobrevivem à degradação da vitrine. **O que sobra é a ÂNCORA, e ela é a outra metade.**
+
+**POR QUE ISTO NÃO FOI FEITO NA MESMA PASSADA, dito sem maquiar:** âncora não é prosa, é **malha**. A 16.4 define o cluster desta ilha como mãe mais três irmãs, e a 30.6 manda a mãe listar cada filha *"com âncora igual à consulta"* — que é exatamente o que ela faz hoje (medido: `patinete elétrico`, `bicicleta elétrica`, `moto elétrica`). Acrescentar âncora de sinônimo **muda a distribuição de texto de âncora do silo inteiro**, e essa é uma decisão de malha que não se toma no fim de uma execução que já mexeu na voz de duas páginas. Trocar duas variáveis do mesmo silo no mesmo desembarque é o que a 32.5 proíbe no número de pixel, pela mesma razão.
+
+**AS TRÊS PERGUNTAS QUE QUEM PEGAR ISTO TEM DE DECIDIR ANTES DE ESCREVER CÓDIGO, e nenhuma delas tem resposta óbvia:**
+1. **De onde sai o link.** O candidato natural é o bloco de irmãs, que já nasce de `rdm_produto_paginas_no_ar()` (a única porta do cluster desde 23/11). Mas âncora de irmã hoje é a consulta da irmã, e trocá-la pelo sinônimo **perderia** a consulta principal.
+2. **Se o sinônimo vira âncora de link que aponta para a PRÓPRIA página.** Link de uma página para ela mesma não é link interno e não distribui nada; se a âncora tem de apontar de **outra** página, então o que falta é decidir **qual**.
+3. **Se isto é âncora ou é só texto.** A frase nova no corpo já serve a palavra para a visão geral de IA e para a busca. **Pode ser que a resposta certa seja NÃO criar âncora nenhuma e corrigir a promessa do arquivo declarado** — e nesse caso o trabalho é apagar a oração de `porque_bike_eletrica_nao_tem_pagina_propria`, não escrever link. **Este despacho não decide isso: ele mede que as duas pontas se contradizem hoje.**
+
+**PRONTO QUANDO** uma das duas, e a execução diz qual escolheu e por quê:
+- **(a)** existe pelo menos uma âncora de sinônimo medida no ar, com a decisão das três perguntas acima escrita, e o portão de cluster (`teste-cluster-de-entrada.py`) cobrando-a; **ou**
+- **(b)** a promessa da âncora sai do arquivo declarado, com a causa escrita, e o portão do sinônimo passa a cobrar **só** o corpo — que é o que ele já faz.
+
+**ONDE A RÉGUA GERAL MORA:** a 30.4 e a 30.6 do contrato, e a família do defeito é a de 20.7 (campo declarado que ninguém lê) com a 32.9 (o que a página devia dizer estava no repositório e não chegava à tela).
+
 ### precisa do Raphael — **A ROTINA *PAUTA DAS ILHAS* NUNCA RODOU, EM 74 DIAS — E É DELA QUE DEPENDE O ÚNICO BLOCO DE CONSTRUÇÃO QUE SOBROU NA ILHA EM FOCO TOTAL** (medido em 24/11/2026 às 13h2xZ)
 
 Aberto em 24/11/2026 pela Fundação, na **terceira execução seguida** a fechar a rodametria com a fila de construção vazia. **Não é um pedido de trabalho novo: é o nome da causa de três execuções sem entregar página**, e ninguém o havia escrito.

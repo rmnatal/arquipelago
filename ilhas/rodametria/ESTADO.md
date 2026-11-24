@@ -36,12 +36,12 @@ ultima_execucao: 2026-11-24T13:45Z   # TERCEIRA EXECUCAO SEGUIDA A MEDIR A FILA 
                          # bloco 5 e o UNICO caminho de construcao que nao depende de
                          # abrir egresso. Despacho novo aberto; hoje e terca.
                          # A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA.
-executando_desde: 2026-11-24T16:16Z   # RESERVA da execucao de 24/11 as 2026-11-24T16:16Z (passo 5 da secao 1, pelo
-                         # foco da 1.2). O campo estava `null`, que pela 1.1 ja significa que
-                         # nao ha bloco da Fundacao vivo, e o ultimo commit na pasta era de
-                         # hoje as 13h46Z — fora da janela de 40 minutos. Nenhum branch
-                         # claude/* e nenhum PR aberto com trabalho pendente: origin/main..
-                         # claude/dreamy-mccarthy-d1s4cr veio VAZIO nas duas direcoes.
+executando_desde: 2026-11-24T16:31Z   # RESERVA RENOVADA pela 1.1 as 2026-11-24T16:31Z: o bloco desta execucao
+                         # passa de 40 minutos (reservada as 16h16Z) porque o desembarque
+                         # espera o vencimento do evento do cron — veredito `evento-nao-vencido`
+                         # da 20.9, teto 16:46:58, e a 20.9 manda ESPERAR e nao reacionar.
+                         # Renovar e uma linha, e e o que faz a proxima execucao nao precisar
+                         # do git para saber que esta ilha esta VIVA.
                          # A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA.
 rede: aberta em 2026-11-24   # 20.2, REMEDIDA e nao herdada: `rodametria.com.br`,
                              # `www.rodametria.com.br`, `aquametria.com.br` e
