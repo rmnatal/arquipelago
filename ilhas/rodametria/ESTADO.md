@@ -36,11 +36,13 @@ ultima_execucao: 2026-11-24T13:45Z   # TERCEIRA EXECUCAO SEGUIDA A MEDIR A FILA 
                          # bloco 5 e o UNICO caminho de construcao que nao depende de
                          # abrir egresso. Despacho novo aberto; hoje e terca.
                          # A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA.
-executando_desde: null   # LIMPO no fecho desta execucao (passo 7 da secao 1). Reservada as
-                         # 13h16Z, commit ec761f3, aceita de PRIMEIRA: o campo estava `null`, que
-                         # pela 1.1 ja significa que nao ha bloco da Fundacao vivo, e o ultimo
-                         # commit na pasta era de hoje as 10h30Z — fora da janela de 40 minutos.
-                         # NAO HOUVE RENOVACAO pela 1.1 porque a execucao nao passou de 40 minutos.
+executando_desde: 2026-11-24T16:16Z   # RESERVA da execucao de 24/11 as 2026-11-24T16:16Z (passo 5 da secao 1, pelo
+                         # foco da 1.2). O campo estava `null`, que pela 1.1 ja significa que
+                         # nao ha bloco da Fundacao vivo, e o ultimo commit na pasta era de
+                         # hoje as 13h46Z — fora da janela de 40 minutos. Nenhum branch
+                         # claude/* e nenhum PR aberto com trabalho pendente: origin/main..
+                         # claude/dreamy-mccarthy-d1s4cr veio VAZIO nas duas direcoes.
+                         # A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA.
 rede: aberta em 2026-11-24   # 20.2, REMEDIDA e nao herdada: `rodametria.com.br`,
                              # `www.rodametria.com.br`, `aquametria.com.br` e
                              # `robometria.com.br` em 200 nas TRES passadas — 12
