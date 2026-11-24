@@ -15,34 +15,48 @@ urls_publicadas: 11       # 10 -> 11 em 16/11/2026: nasceu `/veiculos/moto-eletr
                           # proteger. Quem substituir comentario de varias linhas apaga o rabo.
 ultima_ronda: 2026-11-23T14:59Z   # RONDA DIARIA TECNICA de 23/11/2026 (secao 12.2, item 3). SUBSTITUI o valor anterior 2026-11-18T20:01Z, que era da LEITURA SEMANAL de 18/11 e segue registrada no PROMPT.md. Medida na revisao 120 (/status 120 = manifest 120): 11 de 11 URLs em 200, tres portas da 29.2 verdes, 404 virgem na pagina da propria ilha, 31 blocos de JSON-LD que parseiam, console limpo, 17 de 17 contas das tres ferramentas certas na mao, e 15 leituras de teste de vida da 25.4 (11 fichas e 4 buscas) com 0 morta, 0 esgotada, 0 intestavel e 0 sem piso da 25.2. ZERO consertos: nenhum dos tres defeitos e da lista 19.1. ACHADO DE ALTA: /veiculos/moto-eletrica/ recebe ZERO link interno de miolo, porque a listagem da mae e o bloco de irmas nascem da lista de paginas da vitrine e a pagina degradada nao esta nela.
 primeira_indexacao: null  # as duas primeiras URLs foram ao ar hoje; indexacao e trabalho de dias. Quem grava este campo e a leitura semanal, lendo o Search Console.
-ultima_execucao: 2026-11-24T13:45Z   # TERCEIRA EXECUCAO SEGUIDA A MEDIR A FILA DE
-                         # CONSTRUCAO VAZIA NESTA ILHA, e a medicao foi RECONFERIDA
-                         # contra o estado real: nada mudou desde o fecho das 10h30Z
-                         # (nenhuma ronda, nenhuma leitura semanal, nenhum despacho
-                         # novo). ESTA EXECUCAO NAO ENTREGA PAGINA NO AR, e isso conta
-                         # contra a proporcao da 31.1 — dito sem maquiar.
-                         # O QUE ELA ENTREGA SAO DOIS ACHADOS, e o segundo vale mais:
-                         # (1) O NIVEL 5 DA ESCADA REMEDIDO NO NAVEGADOR — os tres
-                         # dominios de varejo grande (casasbahia, extra, magazineluiza)
-                         # nunca haviam sido tentados por essa porta em 26 dias; dao
-                         # ERR_TUNNEL_CONNECTION_FAILED, com a ilha em HTTP 200 no MESMO
-                         # navegador, logo e EGRESSO e nao site. E o controle que decide
-                         # o que `000` quer dizer: example.com TAMBEM da 000, entao 000
-                         # nesta nuvem e POLITICA da lista de permissoes e nunca queda.
-                         # (2) A ROTINA *PAUTA DAS ILHAS* NUNCA RODOU, EM 74 DIAS —
-                         # zero arquivo de pauta no repositorio, ZERO mencao no
-                         # MAOS-LOG.md de 592 KB (que a 27.1 torna obrigatorio) e zero
-                         # despacho. E a causa COM NOME de o bloco 5 nao andar, e o
-                         # bloco 5 e o UNICO caminho de construcao que nao depende de
-                         # abrir egresso. Despacho novo aberto; hoje e terca.
-                         # A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA.
-executando_desde: 2026-11-24T16:31Z   # RESERVA RENOVADA pela 1.1 as 2026-11-24T16:31Z: o bloco desta execucao
-                         # passa de 40 minutos (reservada as 16h16Z) porque o desembarque
-                         # espera o vencimento do evento do cron — veredito `evento-nao-vencido`
-                         # da 20.9, teto 16:46:58, e a 20.9 manda ESPERAR e nao reacionar.
-                         # Renovar e uma linha, e e o que faz a proxima execucao nao precisar
-                         # do git para saber que esta ilha esta VIVA.
-                         # A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA.
+ultima_execucao: 2026-11-24T16:45Z   # A FILA ESTAVA VAZIA PELA QUARTA VEZ E ESTA
+                         # EXECUCAO NAO FECHOU NELA: ela ENTREGA NO AR, e isso
+                         # conta A FAVOR da proporcao da 31.1.
+                         # O QUE MUDOU FOI A PERGUNTA. O criterio pre-registrado
+                         # manda REMEDIR o que a ilha declara impossivel; a
+                         # passada das 13h16Z o aplicou a escada de fontes, e esta
+                         # aplicou a MALHA: das tres cabecas com veredito `alvo`
+                         # SEM pagina, por que cada uma nao tem? As tres respostas
+                         # sao legitimas — `scooter eletrica` tem remedicao
+                         # pre-registrada para 11/12 pela 30.9, e `bike eletrica` e
+                         # `motos eletricas para adultos` estao fechadas pela 30.4,
+                         # por canibalizacao. E A 30.4 TEM UMA OBRIGACAO QUE
+                         # NINGUEM COBRAVA: consulta sem URL propria tem de ter
+                         # CASA, e a declaracao da casa e `sinonimos_no_corpo`.
+                         # O DEFEITO, MEDIDO NO AR as 16h3xZ com a bancada INTEIRA
+                         # VERDE (64 sem rede e 70 com rede, 0 falha):
+                         # (1) /veiculos/moto-eletrica/ declarava `motos eletricas
+                         # para adultos` — 201 MIL buscas/mes, veredito `alvo` visto
+                         # no Chrome do Raphael em 27/10 — e servia a expressao ZERO
+                         # vez, no visivel e no HTML inteiro. A consulta nao tinha
+                         # URL e tambem nao tinha casa.
+                         # (2) /veiculos/patinete-eletrico/ declarava `scooter
+                         # eletrico` e `patinete eletrico dobravel` e as duas
+                         # estavam na tela POR ACIDENTE: vinham dos TITULOS DOS
+                         # ANUNCIOS que a LOJA escreveu — 1 e 4 em
+                         # vitrine-de-produto.json, exatamente os 1 e 4 do HTML
+                         # servido, e ZERO na prosa desta ilha. No primeiro dia em
+                         # que a coleta nao alcancar o piso da 30.2 — que e o que
+                         # aconteceu com a moto — as duas somem com a vitrine.
+                         # A CAUSA DE NINGUEM VER: `grep -rn 'sinonimos_no_corpo'`
+                         # em ferramentas/ e snippets/ devolvia ZERO. Campo
+                         # declarado que ninguem le e RASTRO e nao mecanismo — a
+                         # 20.7 com outro campo. E E O TERCEIRO CASO DA MESMA
+                         # FAMILIA NA MESMA PAGINA EM CINCO DIAS: a 25.2-c (19/11,
+                         # o LINK) e a 32.9 (20/11, a VOZ). Aqui e a PALAVRA.
+                         # A HORA SAIU DO `date -u` NA MESMA LINHA QUE A GRAVA.
+executando_desde: null   # LIMPO no fecho desta execucao (passo 7 da secao 1). Reservada as
+                         # 16h16Z (commit 4d02028, aceita de PRIMEIRA: o campo estava `null`,
+                         # que pela 1.1 ja significa que nao ha bloco da Fundacao vivo, e o
+                         # ultimo commit na pasta era de hoje as 13h46Z) e RENOVADA as 16h31Z
+                         # (commit 594a30c), porque o desembarque esperava o vencimento do
+                         # evento do cron — veredito `evento-nao-vencido` da 20.9.
 rede: aberta em 2026-11-24   # 20.2, REMEDIDA e nao herdada: `rodametria.com.br`,
                              # `www.rodametria.com.br`, `aquametria.com.br` e
                              # `robometria.com.br` em 200 nas TRES passadas — 12
@@ -65,6 +79,82 @@ rede: aberta em 2026-11-24   # 20.2, REMEDIDA e nao herdada: `rodametria.com.br`
                              # camada municipal.
 bloqueada_por: null      # obrigatorio pela secao 2. `null` DE PROPOSITO: o que falta (gov.br para a F1, as prefeituras para a camada municipal, as tres etiquetas do Mercado Livre) trava a FABRICA e nao a ILHA, e isso se escreve no despacho, que e o canal da 12.2. Preenche-lo congelaria tambem os blocos que ja podem andar.
 bloco_atual: |
+  O SINONIMO DA 30.4 ESTA NO AR NAS TRES PAGINAS DE PRODUTO, e com ele fecha uma
+  divida que nao era de dado nem de calendario: era de PERGUNTA. Revisao 130,
+  /status 130 = manifest 130, as 8 linhas de item do log dizendo `ok` (20.4 e
+  20.8, lidas do FECHO para baixo: 8 - 8 = 0).
+
+  MEDIDO NO AR, DUAS LEITURAS POR URL COM QUEBRA DE CACHE: 12 leituras de
+  sinonimo e 0 AUSENTE. `motos eletricas para adultos` foi de 0 PARA 1 na pagina
+  de 201 mil buscas/mes; no patinete, `scooter eletrico` de 1 para 2 e `patinete
+  eletrico dobravel` de 4 para 5 — E A DIFERENCA E A ORACAO DA ILHA, que e a
+  metade que NAO vai embora com a vitrine.
+
+  AS TRES PALAVRAS MORAM EM STRING SEM MOLDE DE `o_que_e`, que e um dos
+  `campos_sem_vitrine`: e esse o ponto inteiro, porque a palavra pela qual a
+  pessoa chega nao pode depender da coleta do dia. Nenhuma oracao nova traz
+  numero nem quantificador, e as duas dizem coisa MEDIDA: a da moto, o que a
+  busca da loja devolve SEM o qualificador `adulto` (29/10, Open API, 20 de 20
+  entre brinquedo infantil e peca de caminhao); a do patinete, que o anuncio que
+  chama o patinete de scooter traz o MESMO veiculo (20/11 e 23/11, nos cinco
+  titulos de `outra_familia_na_cabeca` da consulta `scooter eletrica`).
+
+  O PORTAO, PELA 31.2 (defeito medido no ar, com URL e data no commit):
+  `veredito_do_sinonimo_declarado()` e funcao pura em conferir-produto-no-ar.py,
+  irma das duas do piso, e AS DUAS CAUSAS SAEM EM FRASES SEPARADAS porque os
+  consertos sao dois (20.5). `conferir_os_sinonimos()` cobra a ponta do AR e
+  alcanca os DOIS estados de pagina NUM LUGAR SO — o defeito estava um de cada
+  lado, e as outras reguas desta ilha se partem em duas. Ela DESCOBRE as paginas
+  do arquivo declarado cruzado com o sitemap (32.5-b) e REGISTRA em vez de
+  aprovar calada a consulta que nao nasceu. `teste-sinonimo-na-tela.py` cobra a
+  ponta da VOZ sem rede: 4 mundos, 30 afirmacoes, com a discordancia da 20.8
+  escrita — a regua velha era a AUSENCIA de regua. RODADO ANTES DO CONSERTO, ELE
+  REPROVAVA EM 3 SINONIMOS DE 2 PAGINAS. A regua da voz vem do DONO da camada
+  declarada (`voz_sem_vitrine`), nunca reescrita. E NAO HA LISTA DE EXCECAO, de
+  proposito: sinonimo e uma PALAVRA, e nao existe palavra que a pagina nao possa
+  dizer sem o dado que faltou — ao contrario da frase da 32.9, que podia
+  pressupor a faixa de preco.
+
+  A 20.9 ECONOMIZOU AS RODADAS: push as 16:28:22Z, /status em 129 com `ultimo`
+  de 16:16:58 e o raw ja servindo 130 — veredito `evento-nao-vencido`, ESPERAR e
+  nao reacionar, teto 16:46:58. A revisao entrou as 16:40:35Z, 6m23s ANTES do
+  teto, com ZERO rodada de Sync desperdicada.
+
+  BANCADA: 65 portoes sem rede e 71 com rede, 0 falha nas duas, com os cinco de
+  navegador rodados. conferir-produto-no-ar.py em 412 afirmacoes, 0 falha.
+  ZERO conserto da lista 19.1 e nenhum tentado: nada dela apareceu.
+
+  O QUE ESTA PASSADA ACHOU E NAO FEZ, e esta como DESPACHO NORMAL com o numero:
+  A SEGUNDA METADE DA 30.4 NAO EXISTE NA ILHA — ZERO ancora de sinonimo em SETE
+  paginas, medido no ar sobre os cinco sinonimos declarados. E A ILHA PROMETE O
+  CONTRARIO POR ESCRITO: o campo `porque_bike_eletrica_nao_tem_pagina_propria`
+  de consultas-de-produto.json diz "o sinonimo vive no corpo desta pagina, e a
+  ancora `bike eletrica` aponta para ca". A primeira metade passou a ser verdade
+  hoje; a segunda NUNCA foi. Nao foi feito aqui porque ancora nao e prosa, e
+  MALHA: ela muda a distribuicao de texto de ancora do silo inteiro, e isso nao
+  se decide no fim de uma passada que ja mexeu na voz de duas paginas. O
+  despacho admite o desfecho (b) — apagar a promessa em vez de escrever link.
+
+  PROXIMO PASSO DESBLOQUEADO:
+  1. O DESPACHO NORMAL DA ANCORA (24/11), no topo de dados/despachos.md. E o
+     UNICO bloco de construcao da fila que nao depende de abrir egresso, de SERP
+     num Chrome nem de gesto do Raphael, e vem com as TRES perguntas de malha ja
+     escritas para serem decididas antes de qualquer codigo.
+  2. A PAUTA segue sendo o gesto mais barato do arquipelago (despacho de 24/11
+     13h2xZ, para o Raphael): rodar *Pauta das ilhas* pelas maos nesta ilha e
+     deixar nascer ilhas/rodametria/pauta.md no formato da 17.3. Destrava o bloco 5.
+  3. OS OUTROS GESTOS DO RAPHAEL, inalterados: os dois campos de configuracao do
+     ambiente, as tres etiquetas do Mercado Livre, a SERP das duas consultas
+     `nao-medida`, o chamado na HostGator e o token do Sync.
+  4. DATAS JA MARCADAS: a leitura semanal e 25/11 (amanha) e e ela quem decide o
+     campo `piso` (21.6). A remedicao da `scooter eletrica` e 11/12 EM DIANTE,
+     pela 30.9, e pega carona em execucao que ja tenha o que entregar no ar.
+  5. A LICAO DE METODO, MAIOR QUE O CONSERTO: a fila estava vazia pela QUARTA vez
+     e o que achou trabalho foi PERGUNTAR POR QUE CADA CONSULTA FECHADA ESTA
+     FECHADA, em vez de reler a lista de blocos. Consulta fechada pela 30.4
+     CONTINUA TENDO OBRIGACAO — e a obrigacao dela morava num campo que ninguem
+     lia. QUEM PEGAR ESTA ILHA COM A FILA VAZIA PROCURA CAMPO DECLARADO QUE
+     NENHUM PORTAO LE: `grep -rn` no nome do campo e a medicao, e custa UM comando.
   NADA FOI CONSTRUIDO E NENHUMA PAGINA MUDOU NO AR. A fila de construcao esta
   vazia pela TERCEIRA execucao seguida, e esta passada nao herdou a medicao das
   10h2xZ: conferiu que NADA mudou entre as duas (o ultimo commit na pasta era o

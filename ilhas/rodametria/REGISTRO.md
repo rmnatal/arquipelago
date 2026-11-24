@@ -3,6 +3,68 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-11-24 16h16Z–16h4xZ — **O SINÔNIMO DA 30.4 ESTAVA DECLARADO NO REPOSITÓRIO E NÃO CHEGAVA À TELA — E NA PÁGINA DO PATINETE QUEM DIZIA A PALAVRA ERA A LOJA. TERCEIRO CASO DA MESMA FAMÍLIA NA MESMA PÁGINA EM CINCO DIAS**
+
+**A ILHA DESTA EXECUÇÃO:** rodametria, por **foco** (`foco.md`, foco total e absoluto desde 27/10). Pela **1.2** não houve escolha a fazer.
+**Passo 1 do disparo, medido:** `git fetch origin main` trouxe `origin/main` de `ebcd2e2` para **`c6f0658`**. **Nenhum branch `claude/*` com trabalho pendente** — `origin/main..claude/dreamy-mccarthy-d1s4cr` veio **vazio nas duas direções** — e **nenhum PR aberto**. Nada a mergear antes.
+**Reserva:** `executando_desde` às **16h16Z**, commit **`4d02028`**, push aceito **de primeira**. O campo estava `null`, que pela **1.1** já significa que não há bloco da Fundação vivo, e o último commit na pasta era de **hoje às 13h46Z** — duas horas e meia atrás, fora da janela de 40 minutos. **RENOVADA às 16h31Z** pela 1.1 (commit `594a30c`), porque o desembarque esperava o vencimento do evento do cron.
+**REDE PELA 20.2, REMEDIDA E NÃO HERDADA:** `rodametria.com.br`, `www.rodametria.com.br` e `aquametria.com.br` nas TRÊS passadas — **9 leituras, 9 verdes, zero intermitência**. *(`www.` em 301 nas três, que é redireção servida e não recusa.)*
+
+### A FILA ESTAVA VAZIA PELA QUARTA VEZ, E ESTA PASSADA NÃO FECHOU NELA — O CRITÉRIO PRÉ-REGISTRADO TEM UMA SEGUNDA METADE E ELA É QUE DECIDIU
+
+A auditoria da fila deu o mesmo resultado das três anteriores, e foi **reconferida e não herdada**: blocos **1 a 7 entregues**; o bloco 5 preso em `pauta.md`, que não existe porque a rotina *Pauta das ilhas* nunca rodou; página nova travada pela **30.8**; profundidade da F1 e da F3 travada por abertura de domínio. **Nenhum despacho novo, nenhuma pauta e nenhum gesto do Raphael na mão.**
+
+**O que mudou foi a pergunta.** O critério pré-registrado de 23/11 diz: *"se for medir algo que a ilha declara impossível, REMEDE em vez de herdar"* — e a passada das 13h16Z o aplicou à escada de fontes. **Esta aplicou à malha**, e a pergunta foi: *das três cabeças com veredito `alvo` que NÃO têm página, por que cada uma não tem?* As três respostas estão medidas e são legítimas — `scooter eletrica` tem remedição pré-registrada para **11/12** pela 30.9, e `bike eletrica` e `motos eletricas para adultos` estão fechadas pela **30.4**, por canibalização.
+
+**E a 30.4 tem uma obrigação que ninguém estava cobrando.** Ela diz que a consulta canibalizada *não recebe segunda URL* e que *"a página existente é reforçada"*, com a consulta como âncora. **Consulta sem URL própria tem de ter CASA** — e nesta ilha a declaração da casa é o campo `sinonimos_no_corpo`, em `dados/consultas-de-produto.json`.
+
+### O DEFEITO, MEDIDO NO AR ÀS 16h3xZ COM A BANCADA INTEIRA VERDE (64 PORTÕES SEM REDE E 70 COM REDE, 0 FALHA)
+
+**(1) `/veiculos/moto-eletrica/` declarava `motos elétricas para adultos` e servia a expressão ZERO vez** — zero no texto visível e **zero no HTML inteiro**. Aquela consulta vale **201 mil buscas/mês**, com veredito `alvo` **visto no Chrome do Raphael em 27/10/2026**, e a 30.4 a fechou **em favor desta página**. A consulta não tinha URL e **também não tinha casa**.
+
+**(2) `/veiculos/patinete-eletrico/` declarava `scooter elétrico` e `patinete elétrico dobrável`, e as duas estavam na tela — POR ACIDENTE.** Elas vinham dos **títulos dos anúncios que a LOJA escreveu**: contado em `dados/vitrine-de-produto.json`, **1 e 4** ocorrências, **exatamente os 1 e 4** contados no HTML servido, e **ZERO na prosa desta ilha**. **O dia em que aquela coleta não alcançar o piso de três anúncios da 30.2 — que é precisamente o que aconteceu com a página da moto — as duas palavras somem junto com a vitrine.**
+
+**A CAUSA DE NINGUÉM VER TEM NOME:** `grep -rn 'sinonimos_no_corpo'` em `ferramentas/` e `snippets/` devolvia **ZERO**. O campo não era lido por ferramenta, portão nem snippet nenhum. **Campo declarado que ninguém lê é RASTRO e não mecanismo** — a **20.7** escrita com outro campo, no mesmo repositório que já a pagou com as constantes de versão dos snippets.
+
+**E É O TERCEIRO CASO DA MESMA FAMÍLIA NA MESMA PÁGINA EM CINCO DIAS:** a **25.2-c** (19/11, o **LINK** de compra dentro do bloco que não nasce) e a **32.9** (20/11, a **VOZ** dentro do bloco que não nasce). Aqui é a **PALAVRA**. As três vezes, o que a página devia dizer estava no repositório e não chegava à tela.
+
+### O CONSERTO VAI PARA A TELA, E ELE NÃO DEPENDE DA COLETA DO DIA
+
+As três palavras passaram a morar em strings **sem molde** de `o_que_e`, que é um dos `campos_sem_vitrine` — logo elas **sobrevivem à degradação da vitrine**, que é o ponto inteiro. Nenhuma oração nova traz número nem quantificador, e as duas dizem coisa medida: a da moto diz o que a busca da loja devolve **sem** o qualificador `adulto` (medido em 29/10/2026 na Open API — 20 de 20 entre brinquedo infantil e peça de caminhão), e a do patinete diz que o anúncio que chama o patinete de scooter traz o **mesmo veículo** (medido em 20/11 e 23/11/2026 nos cinco títulos de `outra_familia_na_cabeca` da consulta `scooter eletrica`).
+
+**MEDIDO NO AR NA REVISÃO 130, DUAS LEITURAS POR URL COM QUEBRA DE CACHE: 12 leituras de sinônimo, 0 AUSENTE.** `motos elétricas para adultos` foi de **0 para 1**; no patinete, `scooter elétrico` de 1 para **2** e `patinete elétrico dobrável` de 4 para **5** — **e a diferença é a oração da ilha**, que é a metade que não vai embora com a vitrine.
+
+### O PORTÃO, PELA 31.2 — COM DEFEITO MEDIDO NO AR, URL E DATA NO COMMIT
+
+- **`veredito_do_sinonimo_declarado()`**, função pura em `conferir-produto-no-ar.py`, irmã das duas do piso. **As DUAS causas saem em frases SEPARADAS**, porque os consertos são dois — escrever prosa é um, descobrir por que a prosa não chega à tela é outro (a lição da **20.5**: portão que junta duas causas manda consertar a errada).
+- **`conferir_os_sinonimos()`** cobra a ponta do **AR**, e ela alcança os **DOIS estados de página num lugar só** — o defeito estava **um de cada lado**, a moto na degradada e o patinete na completa, e as outras réguas desta ilha se partem em duas. Ela **descobre** as páginas do arquivo declarado cruzado com o sitemap, nunca de lista no código (32.5-b e item 2 da 32.9), e **registra** em vez de aprovar em silêncio a consulta que não nasceu.
+- **`ferramentas/teste-sinonimo-na-tela.py`** cobra a ponta da **VOZ** sem rede: **4 mundos fabricados, 30 afirmações**, com a discordância da **20.8** escrita — a régua velha era a **AUSÊNCIA de régua** e aprovava tudo. **Rodado antes do conserto, ele reprovava em 3 sinônimos de 2 páginas.** A segunda metade dele morde o repositório de verdade, e é ela que foi de REPROVADO para APROVADO.
+- A régua da voz vem do **DONO da camada declarada** (`voz_sem_vitrine`, em `gerar-vitrine-de-produto.py`), nunca reescrita — terceira cópia seria a 20.7 outra vez. **E não há lista de exceção, de propósito:** sinônimo é uma **palavra**, e não existe palavra que a página não possa dizer sem o dado que faltou — ao contrário da frase da 32.9, que podia pressupor a faixa de preço. Exceção que nunca é usada é a liberação morta que esta ilha já cobra em dois outros mecanismos.
+
+### O DESEMBARQUE, E A 20.9 ECONOMIZOU AS RODADAS DE SYNC
+
+Manifest **129 → 130**, com `sha256` e `mudou_em` de `dados/paginas-de-produto` reespelhados (`20e224e2ce5c → 2811bf96e26f`, `mudou_em 2026-11-20 → 2026-11-24`), cada troca impressa. Push às **16:28:22Z**; o `/status` respondeu **129** com `ultimo` de **16:16:58** e o `raw` do GitHub já servindo **130**. O veredito saiu da **função da própria ilha** e não de cabeça: **`evento-nao-vencido`** — *esperar, não reacionar* —, teto **16:46:58**. A revisão entrou às **16:40:35Z**, **6m23s antes do teto**, com **zero rodada de Sync desperdiçada**.
+
+**20.4 e 20.8, o log lido do fecho para baixo:** a revisão 130 tem **1 linha de fecho** (*"8 aplicado(s), 6 aguardando desembarque"*) e **8 linhas de item**, e as **8 dizem `ok`** — 8 − 8 = 0. `/status` **130** = manifest **130**.
+
+**BANCADA:** **65 portões sem rede** e **71 com rede**, **0 falha** nas duas, com os cinco portões de navegador rodados e aprovados. `conferir-produto-no-ar.py` fechou em **412 afirmações, 0 falha**, com as três páginas cobradas nas duas pontas.
+
+### O QUE ESTA PASSADA ACHOU E NÃO FEZ, E ESTÁ COMO DESPACHO NORMAL COM O NÚMERO
+
+**A SEGUNDA METADE DA 30.4 NÃO EXISTE NA ILHA: ZERO âncora de sinônimo em SETE páginas** (`/`, `/veiculos/`, as três filhas, a F2 e a F3), medido no ar com quebra de cache sobre os cinco sinônimos declarados. **E a ilha promete o contrário, por escrito, no arquivo que decide:** o campo `porque_bike_eletrica_nao_tem_pagina_propria` de `consultas-de-produto.json` diz *"o sinônimo vive no corpo desta página, **e a âncora `bike eletrica` aponta para cá**"*. **A primeira metade dessa frase passou a ser verdade hoje; a segunda nunca foi.**
+
+**Por que não foi feito na mesma passada, dito sem maquiar:** âncora não é prosa, é **malha**. A 16.4 define o cluster como mãe mais três irmãs e a 30.6 manda a mãe listar cada filha *"com âncora igual à consulta"* — que é o que ela faz hoje, medido. Acrescentar âncora de sinônimo **muda a distribuição de texto de âncora do silo inteiro**, e isso não se decide no fim de uma execução que já mexeu na voz de duas páginas. **O despacho admite o desfecho (b) — apagar a promessa do arquivo em vez de escrever link —, porque pode ser que a resposta certa seja essa.** E ele é **bloco de construção que não depende de nada externo**, dito de propósito: a ilha fechou três execuções seguidas com a fila vazia.
+
+### PRÓXIMO PASSO DESBLOQUEADO
+
+1. **O DESPACHO NORMAL DA ÂNCORA (24/11)**, no topo de `dados/despachos.md`. É o único bloco de construção da fila que não depende de abrir egresso, de SERP num Chrome nem de gesto do Raphael — e ele vem com as **três perguntas de malha** já escritas para serem decididas antes de qualquer código.
+2. **A PAUTA, que segue sendo o gesto mais barato do arquipélago** (despacho de 24/11 13h2xZ, para o Raphael): rodar *Pauta das ilhas* pelas mãos nesta ilha e deixar nascer `ilhas/rodametria/pauta.md` no formato da 17.3. É o que destrava o bloco 5.
+3. **OS OUTROS GESTOS DO RAPHAEL**, inalterados: os dois campos de configuração do ambiente, as três etiquetas do Mercado Livre, a SERP das duas consultas `nao-medida`, o chamado na HostGator e o token do Sync.
+4. **DATAS JÁ MARCADAS:** a **leitura semanal é 25/11 (amanhã)** — é ela quem decide o campo `piso` (21.6) e quem pode abrir proposta de receita pela 12.1. A remedição da `scooter eletrica` é **11/12 em diante**, pela 30.9, e **pega carona** em execução que já tenha o que entregar no ar.
+5. **A LIÇÃO DE MÉTODO, maior que o conserto:** a fila estava vazia pela quarta vez, e o que achou trabalho foi **perguntar por que cada consulta fechada está fechada**, em vez de reler a lista de blocos. Consulta fechada pela 30.4 **continua tendo obrigação** — e a obrigação dela mora num campo que ninguém lia. Quem pegar esta ilha com a fila vazia procura **campo declarado que nenhum portão lê**: `grep -rn` no nome do campo é a medição, e ela custa um comando.
+
+---
+
 ## 2026-11-24 13h16Z–13h4xZ — **A ROTINA *PAUTA DAS ILHAS* NUNCA RODOU EM 74 DIAS, E É A CAUSA COM NOME DE TRÊS EXECUÇÕES SEGUIDAS SEM ENTREGAR PÁGINA. E O NÍVEL 5 DA ESCADA REMEDIDO NO NAVEGADOR, PORTA QUE NUNCA HAVIA SIDO TENTADA EM 26 DIAS**
 
 **A ILHA DESTA EXECUÇÃO:** rodametria, por **foco** (`foco.md`, foco total e absoluto desde 27/10). Pela **1.2** não houve escolha a fazer.
