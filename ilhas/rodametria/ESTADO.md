@@ -51,12 +51,12 @@ ultima_execucao: 2026-11-24T16:45Z   # A FILA ESTAVA VAZIA PELA QUARTA VEZ E EST
                          # FAMILIA NA MESMA PAGINA EM CINCO DIAS: a 25.2-c (19/11,
                          # o LINK) e a 32.9 (20/11, a VOZ). Aqui e a PALAVRA.
                          # A HORA SAIU DO `date -u` NA MESMA LINHA QUE A GRAVA.
-executando_desde: null   # LIMPO no fecho desta execucao (passo 7 da secao 1). Reservada as
-                         # 16h16Z (commit 4d02028, aceita de PRIMEIRA: o campo estava `null`,
-                         # que pela 1.1 ja significa que nao ha bloco da Fundacao vivo, e o
-                         # ultimo commit na pasta era de hoje as 13h46Z) e RENOVADA as 16h31Z
-                         # (commit 594a30c), porque o desembarque esperava o vencimento do
-                         # evento do cron — veredito `evento-nao-vencido` da 20.9.
+executando_desde: 2026-11-24T19:17Z   # RESERVA desta execucao (passo 5 da secao 1,
+                         # foco da 1.2: foco.md nomeia a rodametria). ACEITA de
+                         # PRIMEIRA: o campo estava `null`, que pela 1.1 ja significa
+                         # que nao ha bloco da Fundacao vivo, e o ultimo commit na
+                         # pasta da ilha era de hoje as 16h46Z — 2h31m atras, fora da
+                         # janela de 40 minutos. Quem renovar reescreve ESTE campo.
 rede: aberta em 2026-11-24   # 20.2, REMEDIDA e nao herdada: `rodametria.com.br`,
                              # `www.rodametria.com.br`, `aquametria.com.br` e
                              # `robometria.com.br` em 200 nas TRES passadas — 12
