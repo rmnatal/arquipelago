@@ -45,7 +45,7 @@
  */
 
 if ( ! defined( 'RODAMETRIA_F3_VERSAO' ) ) {
-	define( 'RODAMETRIA_F3_VERSAO', '1.8.0' );
+	define( 'RODAMETRIA_F3_VERSAO', '1.9.0' );
 }
 
 /* A VERSAO DESTE SNIPPET VAI AO AR (20.7). A CHAVE E O `id` DO manifest.json, e
@@ -555,6 +555,14 @@ function rodametria_f3_pagina_html() {
 
 	$html .= '<h2>O resto da conta</h2>';
 	$html .= rodametria_f3_dobras_html( $d );
+
+	/* A MALHA DE SINONIMO DA 30.4 (24/11/2026), igual a da F2 e pela mesma
+	   medicao: esta pagina tambem servia ZERO link de miolo para as filhas. A
+	   decisao de malha inteira esta em `de_onde_sai_a_ancora_de_sinonimo`, em
+	   dados/paginas-de-produto.json. */
+	if ( function_exists( 'rodametria_casca_malha_de_sinonimo' ) ) {
+		$html .= rodametria_casca_malha_de_sinonimo();
+	}
 
 	$html .= '</div>';
 

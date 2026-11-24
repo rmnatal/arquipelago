@@ -4,7 +4,7 @@
   "nicho": "mobilidade eletrica — acertar os tres numeros antes de comprar um veiculo eletrico: categoria legal (CNH e placa), autonomia real e carga maxima",
   "dominio": "https://rodametria.com.br",
   "versao_manifest": 1,
-  "revisao": 130,
+  "revisao": 134,
   "atualizado_em": "2026-11-24",
   "estado": "nascendo",
   "desembarque": {
@@ -20,9 +20,9 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "e5193635205a0bf9822f328a216cff034be3f455a5dd8a6cb6ee3810ffb6d50b",
-      "versao": "1.32.0",
-      "mudou_em": "2026-11-23",
+      "sha256": "8cee4df39fb81b03e1f1b659b106be42b4810de9d421f02423d34f2f6c56ff05",
+      "versao": "1.33.0",
+      "mudou_em": "2026-11-24",
       "renderiza": [
         "*"
       ],
@@ -50,9 +50,9 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "fb23aae5cbbd59d9ea0d340102c3055cb0cf7c6c8059f5a2d283591d75ffea81",
-      "versao": "1.14.0",
-      "mudou_em": "2026-11-23",
+      "sha256": "2781f04773727c66514a09dcbea3f929bbf3011a7978d02a7d9e94ef09b48134",
+      "versao": "1.15.0",
+      "mudou_em": "2026-11-24",
       "renderiza": [
         "autonomia-patinete-eletrico"
       ],
@@ -65,9 +65,9 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "9d32a4f16699e69ecffbf9dacd875ea1d4a43024bbd15ca35d02f568ae802d96",
-      "versao": "1.8.0",
-      "mudou_em": "2026-11-23",
+      "sha256": "e410b8cd98d9176082221cc55dad99f42618d82b2c89d1b1278233efe0cebee4",
+      "versao": "1.9.0",
+      "mudou_em": "2026-11-24",
       "renderiza": [
         "peso-maximo-patinete-eletrico"
       ],
@@ -80,9 +80,9 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "870c19f1db1db9c9283751a99eb7286b5a170c075d19e106fd38caa5005e8e3d",
-      "versao": "1.21.0",
-      "mudou_em": "2026-11-23",
+      "sha256": "0b300b3c5c2e1c4ab9bac0c048c282b34aa3731f0a5cba9c544a9fb782431ba3",
+      "versao": "1.22.0",
+      "mudou_em": "2026-11-24",
       "renderiza": [
         "veiculos",
         "patinete-eletrico",
@@ -162,7 +162,7 @@
       "arquivo": "dados/paginas-de-produto.json",
       "formato": "json",
       "publicar": true,
-      "sha256": "2811bf96e26f4bfa8c364e04efbf6495049049942996df7538ae89e336e8aa91",
+      "sha256": "f633894033b72e6fb382db8a33e52301b5e128e779d381ec1edcf004c206e1b2",
       "mudou_em": "2026-11-24",
       "descricao": "A camada DECLARADA das paginas da secao 30: a voz do VOZ.md com MOLDES no lugar de todo numero. `gerar-vitrine-de-produto.py --conferir` REPROVA qualquer digito escrito nesta prosa fora da lista de permitidos."
     },
@@ -234,8 +234,8 @@
       "arquivo": "dados/datas-de-codigo.json",
       "formato": "json",
       "publicar": true,
-      "sha256": "235773ce8fe0088cd317cf8401631f4da3df41e321eb2ca9c5e2d3cd65d3b0a4",
-      "mudou_em": "2026-11-23",
+      "sha256": "1f45bd8279c209d3a3035119d6391f1050c9decd84c056af3558e075b11a1e40",
+      "mudou_em": "2026-11-24",
       "descricao": "A DATA EM QUE O CODIGO DE CADA PAGINA MUDOU, e ela e a TERCEIRA fonte da data de uma pagina (23/11/2026, segunda metade do item 2 do despacho da ronda deste dia). As duas primeiras sao os bancos de que a pagina e feita; esta e o codigo que a desenha. `publicar: true` NAO e opcional aqui e e o motivo de este arquivo existir: a alinea (c) do pedido era \"o `mudou_em` viajar ate o ar\", e a casca NAO le o manifest.json — ela le as options que o Sync grava, e o Sync so grava item de dado publicavel. Entao a data do codigo tinha de VIRAR DADO para alcancar a tela. Escrito por `ferramentas/gerar-datas-de-codigo.py`, que o compila do `mudou_em` por item do manifest pelo campo `renderiza` de cada snippet, e cobrado por `ferramentas/teste-datas-de-codigo.py`. NENHUMA data e digitada no caminho: `mudou_em` recebe a data de hoje no mesmo gesto em que o `sha256` do item troca, e este arquivo e funcao PURA do manifest — sem data de geracao dentro, para o `sha256` dele nao trocar todo dia e a revisao nao subir por nada."
     }
   ]

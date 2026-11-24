@@ -56,7 +56,7 @@
    (item 2 do despacho da ronda de 04/11). E o MESMO campo que o "Como sabemos"
    desta pagina ja imprimia em prosa — um fato, uma fonte (20.7). */
 if ( ! defined( 'RODAMETRIA_F2_VERSAO' ) ) {
-	define( 'RODAMETRIA_F2_VERSAO', '1.14.0' );
+	define( 'RODAMETRIA_F2_VERSAO', '1.15.0' );
 }
 
 /* A VERSAO DESTE SNIPPET VAI AO AR, pelo filtro que a casca 1.6.0 abriu
@@ -985,6 +985,18 @@ function rodametria_f2_pagina_html() {
 
 	$html .= '<h2>O resto da conta</h2>';
 	$html .= rodametria_f2_dobras_html( $d );
+
+	/* A MALHA DE SINONIMO DA 30.4 (24/11/2026). Esta pagina servia ZERO link de
+	   miolo para as paginas de produto — medido no ar no mesmo dia — e alcancava
+	   as tres filhas somente pelo rodape, que e navegacao global e esta fora da
+	   conta da 16.9(b). O bloco entra DEPOIS das dobras, no fim do miolo, pela
+	   mesma razao que o "Veja tambem" das filhas: ele custa ZERO pixel acima da
+	   dobra e nao disputa a primeira tela com a ferramenta (32.1 e 32.5). A
+	   funcao mora na casca e degrada calada se o snippet de produto nao estiver
+	   carregado. */
+	if ( function_exists( 'rodametria_casca_malha_de_sinonimo' ) ) {
+		$html .= rodametria_casca_malha_de_sinonimo();
+	}
 
 	$html .= '</div>';
 

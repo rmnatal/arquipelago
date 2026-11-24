@@ -219,6 +219,78 @@ def main():
     notas.append('repositorio: %d sinonimo(s) declarado(s) de pagina publicada cobrados contra '
                  'a voz que sobrevive sem vitrine' % cobrados)
 
+    # =====================================================================
+    # TERCEIRA METADE: A ANCORA, QUE E A OUTRA PONTA DA MESMA 30.4 (24/11/2026,
+    # 19h3xZ)
+    # =====================================================================
+    # O CAMPO `ancora_de_sinonimo` da camada declarada e DERIVADO de
+    # `sinonimos_no_corpo`, e nao uma segunda declaracao: quem decide o valor e
+    # `sinonimo_elegivel_para_ancora()`, no dono da regra. Esta metade cobra a
+    # igualdade NAS DUAS DIRECOES, que e o unico jeito de um campo derivado
+    # escrito no arquivo nao virar a 20.7 de novo — as duas declaracoes comecam
+    # iguais e so uma sobe.
+    elegivel = portao.sinonimo_elegivel_para_ancora
+    reservados = portao.substantivos_com_url_propria(decl.get('consultas') or [])
+    diz('scooter' in reservados,
+        'a familia `scooter` tem `slug: veiculos/scooter-eletrica` na declaracao e nao entrou nos '
+        'substantivos reservados: sem ela a ancora da moto sairia `scooter eletrica`, que e uma '
+        'consulta de 301 mil buscas/mes com pagina PLANEJADA e remedicao marcada para 11/12 pela '
+        '30.9 — o link apontaria para a casa errada no dia em que a URL nascesse')
+
+    com_ancora = 0
+    for c in (decl.get('consultas') or []):
+        if not c.get('publicar_declarado'):
+            continue
+        pag = paginas.get(c.get('id'))
+        if pag is None:
+            continue
+        esperada = elegivel(c.get('sinonimos_no_corpo') or [],
+                            (c.get('familia') or {}).get('substantivo'), reservados)
+        declarada = (pag.get('ancora_de_sinonimo') or '').strip()
+        # DIRECAO 1: todo o que o calculo acha tem de estar declarado.
+        diz(_normalizar(declarada) == _normalizar(esperada),
+            'a pagina %s declara `ancora_de_sinonimo: %r` e o calculo sobre `sinonimos_no_corpo` '
+            'da %r — campo derivado que discorda da declaracao unica e a 20.7 com outro nome'
+            % (c.get('id'), declarada, esperada))
+        # DIRECAO 2: toda pagina publicada tem o campo, e ele nao e vazio.
+        diz(declarada != '',
+            'a pagina %s esta publicada e nao tem `ancora_de_sinonimo`: a 30.4 fecha consulta em '
+            'favor dela e a casa fica sem a palavra na ancora' % c.get('id'))
+        if declarada:
+            com_ancora += 1
+    diz(com_ancora >= 3,
+        'esta metade tem de cobrar a ancora das 3 paginas publicadas e cobrou %d — regua que nao '
+        'varre todas certifica a pagina que o autor abriu (32.5-b)' % com_ancora)
+
+    # DIRECAO 3: nenhum campo orfao. Pagina declarada com `ancora_de_sinonimo`
+    # que NAO e consulta publicada seria ancora sem casa, e o laco acima nao a
+    # alcanca — ele varre as consultas, nao as paginas.
+    publicadas = set(c.get('id') for c in (decl.get('consultas') or [])
+                     if c.get('publicar_declarado'))
+    for ident, pag in sorted(paginas.items()):
+        if (pag.get('ancora_de_sinonimo') or '').strip() and ident not in publicadas:
+            diz(False,
+                'a pagina %s declara `ancora_de_sinonimo` e nao e consulta com '
+                '`publicar_declarado: true`: ancora derivada de declaracao que nao existe' % ident)
+
+    # E A FUNCAO PURA MORDIDA EM MUNDO FABRICADO, porque o repositorio de hoje
+    # nao tem o caso que mais importa: o do sinonimo que colide.
+    diz(elegivel(['scooter elétrica', 'motos elétricas para adultos'], 'moto',
+                 {'moto', 'scooter'}) == 'motos elétricas para adultos',
+        'o sinonimo que carrega o substantivo de OUTRA familia com URL propria nao foi descartado')
+    diz(elegivel(['patinete elétrico dobrável'], 'patinete', {'patinete', 'moto'})
+        == 'patinete elétrico dobrável',
+        'o substantivo da PROPRIA pagina foi tratado como reservado e matou a ancora dela')
+    diz(elegivel(['scooter elétrico'], 'patinete', {'patinete', 'scooter'}) == '',
+        'nenhum sinonimo sobrou e a funcao nao devolveu cadeia vazia')
+    diz(elegivel(['motoqueiro elétrico'], 'bicicleta', {'moto'}) == '',
+        'o casamento por raiz de palavra nao pegou `moto` dentro de `motoqueiro`')
+    diz(elegivel(['bike elétrica'], 'bicicleta', {'moto', 'patinete'}) == 'bike elétrica',
+        'a palavra livre foi descartada sem motivo')
+    notas.append('ancora de sinonimo: %d pagina(s) publicada(s) com o campo, cobradas nas TRES '
+                 'direcoes (calculo -> campo, campo -> calculo, campo orfao) mais 5 mundos '
+                 'fabricados da funcao de elegibilidade' % com_ancora)
+
     print('PORTAO DO SINONIMO DA 30.4 NA TELA — RODAMETRIA (sem rede)')
     for n in notas:
         print('  . ' + n)

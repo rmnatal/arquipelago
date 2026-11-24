@@ -592,6 +592,46 @@ def caminhos_internos(miolo):
     return fora
 
 
+def ancoras_internas(miolo):
+    """`{caminho interno: conjunto de TEXTOS de ancora que apontam para ele}` —
+    irma de `caminhos_internos()`, e ela existe porque aquela joga fora
+    exatamente o que a 30.4 pede.
+
+    A 30.4 nao fala de LINK, fala de ANCORA: *"as novas linkam para ela com a
+    consulta como ancora"*. Medido no ar em 24/11/2026, a casa da `bike eletrica`
+    recebia 14 links de dentro da ilha e **os 14 com o mesmo texto**; uma conta de
+    links aprova esse mundo sem ver nada. Quem mede ancora precisa do TEXTO.
+
+    O TEXTO SAI SEM TAG E COM ESPACO COLAPSADO, porque o `<a>` desta casca pode
+    trazer `<span>` dentro — a marca no rodape e assim —, e `bike  elétrica` com
+    dois espacos no HTML e a mesma palavra na tela.
+
+    A NORMALIZACAO DO CAMINHO E A MESMA de `caminhos_internos()`, de proposito:
+    duas normalizacoes do mesmo caminho fariam os dois mapas discordarem no
+    caso com query, que e o do bloco de compra (`?v=1#comprar`).
+    """
+    mapa = {}
+    for m in re.finditer(r"(?is)<a\b([^>]*)>(.*?)</a>", miolo):
+        hm = re.search(r'href="([^"]+)"', m.group(1))
+        if not hm:
+            continue
+        href = html_lib.unescape(hm.group(1).strip())
+        if href.startswith(DOMINIO):
+            href = href[len(DOMINIO):]
+        elif not href.startswith("/"):
+            continue
+        caminho = href.split("#")[0].split("?")[0]
+        if not caminho:
+            continue
+        if not caminho.endswith("/"):
+            caminho += "/"
+        texto = html_lib.unescape(re.sub(r"(?is)<[^>]+>", " ", m.group(2)))
+        texto = " ".join(texto.split())
+        if texto:
+            mapa.setdefault(caminho, set()).add(texto)
+    return mapa
+
+
 def veredito_do_cluster_de_entrada(mae, filhas_no_ar, quem_aponta):
     """A 16.4(f) MEDIDA NA DIRECAO DE QUEM APONTA, como FUNCAO PURA — irma de
     `veredito_do_piso_da_tabela` e com a mesma disciplina: entram as relacoes ja
@@ -644,6 +684,136 @@ def veredito_do_cluster_de_entrada(mae, filhas_no_ar, quem_aponta):
             falhas.append("%s recebe %d link(s) de entrada de miolo e a 16.4(f) exige ao menos "
                           "2, um deles da mae — quem aponta hoje: %s"
                           % (filha, len(aponta), ", ".join(sorted(aponta)) or "ninguem"))
+    return falhas
+
+
+def substantivos_com_url_propria(consultas):
+    """OS SUBSTANTIVOS DE FAMILIA QUE JA TEM, OU VAO TER, URL PROPRIA — funcao
+    pura, e e ela que torna a escolha da ancora de sinonimo DECIDIVEL em vez de
+    opinada.
+
+    O QUE ENTRA e a lista de consultas da declaracao (`consultas-de-produto.json`);
+    o que sai e o conjunto dos `familia.substantivo` das que trazem `slug`.
+    Consulta com `slug` e consulta que TEM pagina ou que tem pagina PLANEJADA, e
+    nos dois casos o substantivo dela esta reservado: ancora que o use mandaria
+    peso para a pagina errada no dia em que a URL nascer.
+
+    O CASO QUE ELA EXISTE PARA PEGAR E REAL E ESTA NO BANCO HOJE. A camada
+    declarada de `/veiculos/moto-eletrica/` lista `scooter elétrica` como
+    sinonimo, e `scooter elétrica` e uma consulta de 301 mil buscas/mes com
+    `slug: veiculos/scooter-eletrica` e remedicao PRE-REGISTRADA para 11/12/2026
+    pela 30.9 — ela nao nasceu por falta de produto na loja, nao por falta de
+    vaga. Usa-la como ancora da moto seria construir hoje o link que amanha
+    aponta para a casa errada, e o erro nao apareceria em portao nenhum: ele
+    apareceria no dia da pagina nova, com a ancora ja distribuida.
+    """
+    reservados = set()
+    for c in consultas:
+        if not (c.get("slug") or ""):
+            continue
+        fam = c.get("familia") or {}
+        subst = (fam.get("substantivo") or "").strip().lower()
+        if subst:
+            reservados.add(subst)
+    return reservados
+
+
+def sinonimo_elegivel_para_ancora(sinonimos, substantivo_proprio, substantivos_reservados):
+    """QUAL DOS SINONIMOS DECLARADOS PODE SER TEXTO DE ANCORA — funcao pura, sem
+    rede, sem arquivo, para a bancada FABRICAR o mundo (secao 8).
+
+    A REGRA, e ela cabe numa frase: serve o PRIMEIRO sinonimo declarado que nao
+    carregue o substantivo de familia de OUTRA consulta com URL propria. O
+    `substantivo_proprio` sai da conta de proposito — `patinete elétrico
+    dobrável` e sinonimo da pagina do patinete e a palavra `patinete` ali e a
+    dela mesma, nao emprestada.
+
+    POR QUE A ORDEM DA DECLARACAO DECIDE O EMPATE: porque a lista
+    `sinonimos_no_corpo` e escrita por quem mediu a consulta, e o primeiro item
+    dela e o de maior volume nos tres casos desta ilha. Ordenar aqui por volume
+    exigiria trazer o volume para dentro desta funcao, e volume e numero que
+    muda; a ordem declarada nao muda sozinha.
+
+    O CASAMENTO E POR RAIZ DE PALAVRA, e nao por substring solta: `scooter` casa
+    `scooter elétrica` e `scooter elétrico`, e NAO casaria dentro de uma palavra
+    maior. Sem a raiz, `moto` casaria `motos elétricas para adultos` — que e o
+    plural da propria familia da moto — e a unica ancora elegivel da maior cabeca
+    do nicho sumiria calada.
+
+    DEVOLVE CADEIA VAZIA quando nenhum sinonimo sobra, e isso NAO e falha: e a
+    resposta honesta de que aquela pagina nao tem palavra livre para ancorar.
+    Quem chama decide o que fazer com o vazio — e nesta ilha o snippet OMITE o
+    item, pela mesma disciplina da ausencia da 20.7.
+    """
+    proprio = (substantivo_proprio or "").strip().lower()
+    reservados = set(s for s in substantivos_reservados if s != proprio)
+    for sin in sinonimos or []:
+        texto = (sin or "").strip()
+        if not texto:
+            continue
+        palavras = re.findall(r"[0-9a-záàâãéêíóôõúüç]+", texto.lower())
+        if any(p.startswith(r) for p in palavras for r in reservados):
+            continue
+        return texto
+    return ""
+
+
+def veredito_da_ancora_de_sinonimo(ancoras_declaradas, ancoras_no_ar):
+    """A SEGUNDA METADE DA 30.4 MEDIDA NA TELA, como funcao pura — irma de
+    `veredito_do_sinonimo_declarado` (que mede a PALAVRA no corpo) e de
+    `veredito_do_cluster_de_entrada` (que mede o LINK de entrada). Esta mede o
+    LINK CUJO TEXTO E A PALAVRA, que e o que nenhuma das duas alcanca.
+
+    O QUE ENTRA: `ancoras_declaradas` e `{caminho da casa: texto da ancora}`, com
+    o texto ja escolhido por `sinonimo_elegivel_para_ancora`; `ancoras_no_ar` e
+    `{caminho da casa: conjunto de textos de ancora que apontam para ela no
+    MIOLO de qualquer pagina da ilha}`, com o menu e o rodape JA FORA, pela mesma
+    razao da 16.9(b) — navegacao global e verde em todo mundo possivel.
+
+    O DEFEITO QUE ELA EXISTE PARA FECHAR, MEDIDO NO AR EM 24/11/2026 as 16h3xZ e
+    19h2xZ, nas SETE URLs que servem miolo: **ZERO** link interno cujo texto de
+    ancora seja um dos cinco sinonimos declarados desta ilha. E a ilha prometia o
+    contrario POR ESCRITO, em duas oracoes de
+    `dados/consultas-de-produto.json`: *"o sinonimo vive no corpo desta pagina, e
+    a ancora `bike eletrica` aponta para ca"* e *"carrega `bike eletrica` no corpo
+    e na ancora"*. A metade do CORPO passou a ser verdade na revisao 130, no
+    mesmo dia; a da ANCORA nunca foi.
+
+    POR QUE A CONTA E POR TEXTO DE ANCORA E NAO POR NUMERO DE LINKS: porque a
+    ilha nao tinha falta de link de entrada — a casa da `bike elétrica` recebia
+    14 links, medidos no ar, e **todos os 14** com a mesma ancora exata,
+    `bicicleta elétrica`. O que faltava era UMA palavra, nao mais um link, e
+    portao que conta links aprova esse mundo.
+
+    E O QUE ELA NAO COBRA, dito para ninguem o acrescentar: ela nao cobra DE
+    QUAL pagina a ancora sai. A escolha do lugar e decisao de malha e esta
+    escrita no REGISTRO.md e no campo `de_onde_sai_a_ancora_de_sinonimo` da
+    camada declarada; cobrar o lugar aqui transformaria uma decisao revisavel em
+    regua, e a 16.4(c) ja reserva o bloco de irmas para a consulta.
+    """
+    falhas = []
+    if not ancoras_declaradas:
+        # POSITIVA DE PROPOSITO (20.8): silencio aqui aprovaria a ilha sem
+        # nenhuma ancora declarada, que e exatamente o mundo de 24/11.
+        falhas.append("nenhuma ancora de sinonimo declarada: ou a camada declarada perdeu o "
+                      "campo, ou este portao nao achou as paginas e esta cego")
+        return falhas
+    def _mesma(t):
+        # ESPACO COLAPSADO E CAIXA FORA, nas DUAS pontas: o rodape desta casca
+        # escreve `Bicicleta elétrica` e o miolo `bicicleta elétrica`, e sao a
+        # mesma palavra. Portao que exigisse a grafia do HTML cobraria o
+        # maiusculo de quem desenhou a tela, nao a palavra da 30.4.
+        return " ".join(str(t or "").split()).lower()
+
+    for casa in sorted(ancoras_declaradas):
+        esperada = " ".join(str(ancoras_declaradas[casa] or "").split())
+        vistas = set(_mesma(v) for v in ancoras_no_ar.get(casa, set()))
+        if not esperada:
+            continue
+        if _mesma(esperada) not in vistas:
+            falhas.append("%s declara a ancora de sinonimo %r da 30.4 e NENHUM link de miolo da "
+                          "ilha aponta para ela com esse texto — as ancoras vistas sao: %s"
+                          % (casa, esperada, ", ".join(sorted(vistas)) or "nenhuma"))
     return falhas
 
 
@@ -972,6 +1142,7 @@ def conferir_o_cluster_de_entrada(urls, fonte):
             filhas.add(caminho)
 
     aponta_de = {}
+    ancoras_de = {}
     sem_main = []
     for u in sorted(urls):
         caminho = u.replace(DOMINIO, "") or "/"
@@ -987,6 +1158,10 @@ def conferir_o_cluster_de_entrada(urls, fonte):
             sem_main.append(caminho)
             continue
         aponta_de[caminho] = caminhos_internos(miolo)
+        # A ANCORA SAI DA MESMA LEITURA, de proposito: abrir as 11 URLs duas
+        # vezes para medir duas coisas do mesmo miolo dobraria a leitura de rede
+        # sem medir nada a mais, e a 20.2 manda a conferencia ser barata.
+        ancoras_de[caminho] = ancoras_internas(miolo)
 
     afirma(not sem_main,
            "sem `<main>` no HTML servido, logo sem miolo para medir o cluster: %s"
@@ -1004,6 +1179,48 @@ def conferir_o_cluster_de_entrada(urls, fonte):
              "%s" % (len(aponta_de),
                      " · ".join("%s recebe %d" % (f, len(quem_aponta.get(f, set()) - {f}))
                                 for f in sorted(filhas))))
+
+    # =====================================================================
+    # A SEGUNDA METADE DA 30.4: A ANCORA, NA MESMA LEITURA (24/11/2026)
+    # =====================================================================
+    # A conta acima aprova, com nota cheia, a ilha em que as tres filhas recebem
+    # cinco links cada e TODOS com o mesmo texto — que era o mundo no ar hoje de
+    # manha: 14 links na casa da `bike eletrica`, 14 vezes `bicicleta eletrica`,
+    # zero sinonimo. A decisao e a funcao pura `veredito_da_ancora_de_sinonimo`.
+    declaradas = {}
+    for pagina in (editorial_do_repositorio().get("paginas") or []):
+        ident = (pagina.get("id") or "").strip()
+        ancora = (pagina.get("ancora_de_sinonimo") or "").strip()
+        if not ident or not ancora:
+            continue
+        caminho = "/" + SECAO + "/" + ident + "/"
+        if caminho in filhas:
+            declaradas[caminho] = ancora
+
+    # QUEM APONTA COM QUE TEXTO, da pagina de ORIGEM para a casa — e o auto-aponte
+    # sai fora pela mesma razao da conta de entrada: ancora de uma pagina para
+    # ela mesma nao distribui nada.
+    ancoras_no_ar = {}
+    for origem, mapa in ancoras_de.items():
+        for destino, textos in mapa.items():
+            if destino == origem:
+                continue
+            ancoras_no_ar.setdefault(destino, set()).update(textos)
+
+    for falha in veredito_da_ancora_de_sinonimo(declaradas, ancoras_no_ar):
+        afirma(False, "ancora de sinonimo: %s" % falha)
+
+    # E DE ONDE ELA SAI, DITO NO REGISTRO E NAO COBRADO COMO REGUA (a funcao pura
+    # diz por que): quem le o relatorio precisa saber se o link veio da ferramenta
+    # ou se alguem o pos na mae por engano.
+    for casa in sorted(declaradas):
+        quem = sorted(o for o, mapa in ancoras_de.items()
+                      if o != casa
+                      and any(" ".join(t.split()).lower()
+                              == " ".join(declaradas[casa].split()).lower()
+                              for t in mapa.get(casa, set())))
+        registro("ancora de sinonimo %r -> %s, servida no miolo de: %s"
+                 % (declaradas[casa], casa, ", ".join(quem) or "NENHUMA pagina"))
 
 
 def conferir_as_sem_vitrine(urls):

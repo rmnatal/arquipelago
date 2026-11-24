@@ -118,7 +118,7 @@
    do primeiro cartao comecava por `11.11`. A regra mora no coletor; o que muda
    aqui e a frase: sem ela a conta do leitor nao fecha com o tamanho da tabela. */
 if ( ! defined( 'RODAMETRIA_PRODUTO_VERSAO' ) ) {
-	define( 'RODAMETRIA_PRODUTO_VERSAO', '1.21.0' );
+	define( 'RODAMETRIA_PRODUTO_VERSAO', '1.22.0' );
 }
 
 /* A VERSAO DESTE SNIPPET VAI AO AR, pelo filtro que a casca 1.6.0 abriu
@@ -992,6 +992,14 @@ function rdm_produto_paginas_no_ar() {
 				'id'        => $id,
 				'slug'      => (string) $prontas[ $id ]['slug'],
 				'consulta'  => (string) $prontas[ $id ]['vitrine']['consulta'],
+				/* A ANCORA DE SINONIMO DA 30.4 (24/11/2026). Ela vem da CAMADA
+				   DECLARADA e nao da vitrine, pelo mesmo motivo que a palavra no
+				   corpo mora num `campo_sem_vitrine`: a palavra pela qual a
+				   pessoa chega nao pode depender da coleta do dia. E ela viaja
+				   NESTA funcao porque a 23/11 decidiu que `paginas_no_ar()` e a
+				   UNICA porta do cluster, e ancora e cluster. */
+				'ancora_de_sinonimo' => isset( $p['ancora_de_sinonimo'] )
+					? trim( (string) $p['ancora_de_sinonimo'] ) : '',
 				'degradada' => false,
 				'pronta'    => $prontas[ $id ],
 			);
@@ -1022,6 +1030,11 @@ function rdm_produto_paginas_no_ar() {
 			   `teste-cabeca-sem-vitrine.php` cobra nas prontas. */
 			'slug'      => $id,
 			'consulta'  => $consulta,
+			/* A DEGRADADA TAMBEM TRAZ A ANCORA, e isso e deliberado: a pagina
+			   que perdeu a vitrine e justamente a que mais precisa de link de
+			   entrada, e a de 23/11 mediu a moto degradada com ZERO. */
+			'ancora_de_sinonimo' => isset( $p['ancora_de_sinonimo'] )
+				? trim( (string) $p['ancora_de_sinonimo'] ) : '',
 			'degradada' => true,
 			'pronta'    => null,
 		);

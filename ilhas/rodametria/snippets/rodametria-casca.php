@@ -71,7 +71,7 @@
    Antes disto a ilha cujo produto e "o preco de hoje" tinha ZERO ocorrencia de
    `dateModified` e de `datePublished` em todo o JSON-LD das 9 URLs. */
 if ( ! defined( 'RODAMETRIA_CASCA_VERSAO' ) ) {
-	define( 'RODAMETRIA_CASCA_VERSAO', '1.32.0' );
+	define( 'RODAMETRIA_CASCA_VERSAO', '1.33.0' );
 }
 
 /* ---------------------------------------------------------------------------
@@ -1120,6 +1120,74 @@ function rodametria_casca_dobra( $titulo, $corpo, $aberta = false ) {
 	return '<details class="rdm-molde-dobra"' . ( $aberta ? ' open' : '' ) . '>'
 		. '<summary><span>' . esc_html( $titulo ) . '</span></summary>'
 		. '<div class="rdm-molde-dobra-corpo">' . $corpo . '</div></details>';
+}
+}
+
+/**
+ * A MALHA DE SINONIMO — A SEGUNDA METADE DA 30.4, E ELA SO SAI NA FERRAMENTA
+ * (24/11/2026)
+ *
+ * A 30.4 do ARQUIPELAGO.md fecha consulta canibalizada em favor da pagina que
+ * existe "com a consulta como ancora", e tem DUAS metades. A do CORPO fechou na
+ * revisao 130: as tres paginas de produto dizem a palavra em prosa que sobrevive
+ * a degradacao da vitrine. ESTA E A DA ANCORA, e ela nunca havia sido verdade —
+ * medido no ar em 24/11/2026 nas SETE URLs que servem miolo, ZERO link interno
+ * tinha um dos cinco sinonimos declarados como texto de ancora.
+ *
+ * E O NUMERO QUE ESCOLHEU O LUGAR, porque a premissa com que o despacho foi
+ * escrito estava errada e isso se mediu: a casa da `bike eletrica` NAO tinha
+ * falta de link de entrada. Ela recebia 14 links de dentro da ilha — a mae, as
+ * duas irmas e o rodape de 11 paginas — e TODOS OS 14 com a mesma ancora exata,
+ * `bicicleta eletrica`. Faltava UMA palavra, nao mais um link.
+ *
+ * POR QUE A FERRAMENTA E NAO A MAE NEM A IRMA, e e a parte que custa um numero:
+ * medido no mesmo dia, `/autonomia-patinete-eletrico/` e
+ * `/peso-maximo-patinete-eletrico/` servem ZERO link de miolo para as paginas de
+ * produto — nenhuma das duas tem `rdm-malha`, contra uma em cada filha e na mae
+ * —, e alcancam as filhas somente pelo RODAPE, que e navegacao global e esta
+ * fora da conta da 16.9(b). Logo o link daqui e o PRIMEIRO link de miolo daquela
+ * pagina para aquela casa: nada e trocado e nada e repetido na mesma pagina. Em
+ * qualquer outra pagina do silo ele seria o SEGUNDO link para o mesmo destino, e
+ * o que um segundo link faz com o texto de ancora depende de como o buscador
+ * atribui — hipotese que esta nuvem nao mede, e a 30.8 proibe mecanismo
+ * construido sobre afirmacao que nao se mede.
+ *
+ * O QUE ESTA FUNCAO NAO TOCA, de proposito: a listagem da mae (16.4a, ancora na
+ * consulta-alvo de cada filha) e o bloco "Veja tambem" entre irmas (16.4c,
+ * ancora na consulta delas). As duas sao regra do contrato e seguem com a
+ * consulta exata. Isto e um TERCEIRO lugar.
+ *
+ * E ELA DEGRADA CALADA EM DUAS SITUACOES, as duas pela mesma disciplina da 20.7
+ * (ausencia e sinal, nunca molde cru): sem o snippet de produto carregado nao ha
+ * porta do cluster e o bloco nao sai; sem `ancora_de_sinonimo` na camada
+ * declarada daquela pagina, o ITEM dela nao sai e os outros saem. O que nao pode
+ * acontecer e sair o bloco com a consulta no lugar do sinonimo — isso faria a
+ * ferramenta repetir a ancora que a mae e as irmas ja dao, com cara de conserto.
+ */
+if ( ! function_exists( 'rodametria_casca_malha_de_sinonimo' ) ) {
+function rodametria_casca_malha_de_sinonimo() {
+	if ( ! function_exists( 'rdm_produto_paginas_no_ar' ) ) {
+		return '';
+	}
+	$itens = '';
+	foreach ( rdm_produto_paginas_no_ar() as $p ) {
+		$ancora = isset( $p['ancora_de_sinonimo'] ) ? trim( (string) $p['ancora_de_sinonimo'] ) : '';
+		$slug   = isset( $p['slug'] ) ? (string) $p['slug'] : '';
+		if ( '' === $ancora || '' === $slug ) {
+			continue;
+		}
+		$link = rodametria_casca_link( $slug, $ancora );
+		if ( '' !== $link ) {
+			$itens .= '<li>' . $link . '</li>';
+		}
+	}
+	if ( '' === $itens ) {
+		return '';
+	}
+
+	return '<nav class="rdm-malha rdm-malha-sinonimo" aria-label="Os veículos, pelos outros nomes">'
+		. '<h2>Os mesmos veículos, pelos outros nomes</h2>'
+		. '<ul>' . $itens . '</ul></nav>';
 }
 }
 
@@ -2290,6 +2358,15 @@ body.rdm .rdm-molde-cartao-preco{font-size:1rem;margin:0}
 .rdm-cartoes h3{margin:0 0 var(--rdm-e2);font-size:1.125rem}
 body.rdm .rdm-cartoes p{font-size:.9375rem;margin:0 0 var(--rdm-e3)}
 .rdm-cartao-estado{font-size:.8125rem;color:var(--rdm-legenda);margin:0}
+
+/* A MALHA DE SINONIMO DA 30.4, e o CSS mora AQUI e nao no snippet de produto
+   (24/11/2026). O bloco e servido em pagina de FERRAMENTA, e `rdm-malha{}` do
+   rodametria-produto.php nao chega la: medido no HTML servido em 24/11, as duas
+   paginas de ferramenta trazem ZERO ocorrencia de `rdm-malha{`. Classe com
+   estilo que nao viaja com ela e lista sem borda nenhuma na tela. */
+.rdm-malha-sinonimo{margin:var(--rdm-e6) 0 0}
+.rdm-malha-sinonimo ul{list-style:none;padding:0;margin:0}
+.rdm-malha-sinonimo li{padding:var(--rdm-e2) 0;border-top:1px solid var(--rdm-traco)}
 
 /* rodape */
 .rdm-rodape{background:var(--rdm-tinta);color:#FFF;margin-top:var(--rdm-e8);

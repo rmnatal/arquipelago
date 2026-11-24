@@ -255,13 +255,98 @@ def main():
         'pagina SEM `<main>` devolveu miolo: cair no `<body>` inteiro poria o menu de volta '
         'na conta, e pagina sem miolo e pagina NAO MEDIDA (20.8)')
 
+    # =====================================================================
+    # A ANCORA DE SINONIMO: A OUTRA METADE DA 30.4, E ELA NAO SE MEDE CONTANDO
+    # LINK (24/11/2026, 19h3xZ)
+    # =====================================================================
+    # A conta de entrada acima aprova, com nota cheia, o mundo em que as tres
+    # filhas recebem 5 links cada e TODOS com o mesmo texto de ancora — que e
+    # exatamente o mundo medido no ar em 24/11: 14 links na casa da `bike
+    # eletrica`, 14 vezes a palavra `bicicleta eletrica`, ZERO sinonimo. Esta
+    # metade e a regua que falta, e a discordancia entre as duas e o que prova
+    # que ela nao e codigo novo por codigo novo.
+    ancora = mod.veredito_da_ancora_de_sinonimo
+    ancoras_de = mod.ancoras_internas
+
+    DECL = {PATINETE: 'patinete elétrico dobrável',
+            BICICLETA: 'bike elétrica',
+            MOTO: 'motos elétricas para adultos'}
+
+    # O MUNDO MEDIDO EM 24/11: so a consulta como ancora, em toda entrada.
+    so_consulta = {PATINETE: {'patinete elétrico'},
+                   BICICLETA: {'bicicleta elétrica'},
+                   MOTO: {'moto elétrica'}}
+    falhou_medido = ancora(DECL, so_consulta)
+    diz(len(falhou_medido) == 3,
+        'o mundo medido em 24/11 (5 entradas por filha, todas com a consulta como ancora e zero '
+        'sinonimo) tinha de reprovar nas TRES filhas e reprovou em %d' % len(falhou_medido))
+    # E A CONTA DE ENTRADA APROVA ESSE MESMO MUNDO: a discordancia da 20.8.
+    aponta_cheio = {PATINETE: {MAE, BICICLETA, MOTO}, BICICLETA: {MAE, PATINETE, MOTO},
+                    MOTO: {MAE, PATINETE, BICICLETA}}
+    diz(not veredito(MAE, [PATINETE, BICICLETA, MOTO], aponta_cheio) and bool(falhou_medido),
+        'A CONTA DE ENTRADA TINHA DE APROVAR O MUNDO DE 24/11 E A REGUA DA ANCORA DE REPROVAR: '
+        'sem essa discordancia a ancora nao e uma regua nova, e sim a mesma de novo')
+
+    # O MUNDO CONSERTADO: as duas ferramentas apontando com o sinonimo.
+    com_sinonimo = {PATINETE: {'patinete elétrico', 'patinete elétrico dobrável'},
+                    BICICLETA: {'bicicleta elétrica', 'bike elétrica'},
+                    MOTO: {'moto elétrica', 'motos elétricas para adultos'}}
+    diz(not ancora(DECL, com_sinonimo),
+        'no mundo CONSERTADO a regua da ancora tem de aprovar, e ela disse %r'
+        % ancora(DECL, com_sinonimo))
+
+    # A METADE SOZINHA NAO BASTA: uma filha com o sinonimo e duas sem.
+    meio = dict(so_consulta)
+    meio[BICICLETA] = {'bicicleta elétrica', 'bike elétrica'}
+    diz(len(ancora(DECL, meio)) == 2,
+        'com UMA filha ancorada e duas sem, a regua tinha de reprovar nas duas que faltam e '
+        'disse %r' % ancora(DECL, meio))
+
+    # DECLARACAO VAZIA E CEGUEIRA, NAO APROVACAO (20.8).
+    diz(len(ancora({}, com_sinonimo)) == 1,
+        'sem nenhuma ancora declarada a regua ficou CALADA, e silencio ali aprova a ilha de '
+        '24/11 inteira')
+
+    # CAIXA E ESPACO NAO DECIDEM: `Bike Elétrica` no rodape e a mesma palavra.
+    diz(not ancora({BICICLETA: 'bike elétrica'}, {BICICLETA: {'Bike   Elétrica'}}),
+        'a comparacao de ancora quebrou por caixa ou por espaco repetido, e isso faria o portao '
+        'exigir a grafia do HTML em vez da palavra')
+
+    # PURA E SEM EFEITO COLATERAL, como as irmas.
+    diz(ancora(DECL, so_consulta) == ancora(DECL, so_consulta),
+        'o veredito da ancora nao e deterministico')
+    copia_anc = {k: set(v) for k, v in so_consulta.items()}
+    ancora(DECL, so_consulta)
+    diz(copia_anc == {k: set(v) for k, v in so_consulta.items()},
+        'o veredito da ancora MEXEU no mapa de ancoras que recebeu')
+
+    # E A EXTRACAO DO TEXTO, sobre o mesmo HTML fabricado de cima: ela tem de
+    # achar a ancora do miolo e NAO a do rodape nem a de dentro do `<script>`.
+    mapa_anc = ancoras_de(miolo)
+    diz(mapa_anc.get(BICICLETA) == {'bicicleta'},
+        'o texto de ancora do miolo nao foi extraido como a tela o mostra, e veio %r'
+        % mapa_anc.get(BICICLETA))
+    diz(MOTO not in mapa_anc,
+        'a ancora da moto entrou: ela so existe no rodape e dentro de um `<script>` da pagina '
+        'fabricada')
+    diz(set(mapa_anc) == caminhos_de(miolo),
+        'o mapa de ancoras e a lista de caminhos discordaram sobre o MESMO miolo: duas '
+        'normalizacoes do mesmo caminho e a 20.7 em duas funcoes irmas')
+    COM_SPAN = ('<main><a href="/veiculos/bicicleta-eletrica/">bike '
+                '<span>elétrica</span></a></main>')
+    diz(ancoras_de(miolo_de(COM_SPAN)).get(BICICLETA) == {'bike elétrica'},
+        'ancora com `<span>` dentro nao virou a palavra da tela, e a marca desta casca e assim')
+    notas.append('ancora de sinonimo: 6 mundos fabricados, e a CONTA DE ENTRADA aprova o mundo '
+                 'de 24/11 (5 entradas por filha) que a regua da ancora reprova nas tres — a '
+                 'discordancia da 20.8 entre duas reguas da mesma 30.4')
+
     print('PORTAO DA CONTA DE ENTRADA DO CLUSTER — RODAMETRIA (sem rede)')
     for n in notas:
         print('  . ' + n)
     for f in falhas:
         print('FALHA: ' + f)
     print('\n%d mundo(s) fabricado(s) e %d afirmacao(oes), %d falha(s).'
-          % (len(MUNDOS) + 2, afirmacoes, len(falhas)))
+          % (len(MUNDOS) + 2 + 6, afirmacoes, len(falhas)))
     print('APROVADO' if not falhas else 'REPROVADO')
     return 1 if falhas else 0
 
