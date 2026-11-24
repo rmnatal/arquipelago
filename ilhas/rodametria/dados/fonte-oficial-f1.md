@@ -25,11 +25,11 @@ Este arquivo existe por dois motivos, e os dois são para baratear a próxima pa
 
 | porta | o que é | medido em | resposta |
 |---|---|---|---|
-| `www.gov.br`, `gov.br` | o texto oficial, fonte primária | 28/10 10h4xZ · 28/10 13h2xZ · 29/10 11hxxZ · **05/11 19h1xZ** | `000`, `connect_rejected` (403 de política no CONNECT) |
-| `in.gov.br` (Imprensa Nacional / DOU) | a publicação de 22/06/2023 | 28/10 · 29/10 · **05/11 19h1xZ** | `000`, mesma recusa |
-| `www.planalto.gov.br` | compilação de atos | 28/10 · 29/10 · **05/11 19h1xZ** | `000`, mesma recusa |
-| `www.contran.gov.br` | o órgão que editou | 28/10 · 29/10 | `000`, mesma recusa |
-| `www.lex.com.br` | reprodução comercial do ato | 28/10 · 29/10 · **05/11 19h1xZ** | `000`, mesma recusa |
+| `www.gov.br`, `gov.br` | o texto oficial, fonte primária | 28/10 10h4xZ · 28/10 13h2xZ · 29/10 11hxxZ · 05/11 19h1xZ · 13/11 13h3xZ · **24/11 10h2xZ** | `000`, `connect_rejected` (403 de política no CONNECT) |
+| `in.gov.br` (Imprensa Nacional / DOU) | a publicação de 22/06/2023 | 28/10 · 29/10 · 05/11 19h1xZ · 13/11 · **24/11 10h2xZ** | `000`, mesma recusa |
+| `www.planalto.gov.br` | compilação de atos | 28/10 · 29/10 · 05/11 19h1xZ · 13/11 · **24/11 10h2xZ** | `000`, mesma recusa |
+| `www.contran.gov.br` | o órgão que editou | 28/10 · 29/10 · 13/11 · **24/11 10h2xZ** | `000`, mesma recusa |
+| `www.lex.com.br` | reprodução comercial do ato | 28/10 · 29/10 · 05/11 19h1xZ · 13/11 · **24/11 10h2xZ** | `000`, mesma recusa |
 | **busca de página (`WebFetch`)** no `gov.br` | a outra porta da nuvem | 28/10 · **05/11 19h1xZ** | `getaddrinfo ENOTFOUND www.gov.br` — falha na resolução de nome, não no HTTP |
 | **`araras.sp.gov.br`** — PDF da resolução | **porta NOVA, achada em 05/11** | **05/11 19h1xZ** | `000`, mesma recusa — é `.gov.br`, cai na mesma parede |
 | **busca da nuvem (`WebSearch`)** | a única porta que ATRAVESSA | **05/11 19h1xZ** | **responde, e NÃO serve** — ver a seção 2 |
@@ -37,6 +37,7 @@ Este arquivo existe por dois motivos, e os dois são para baratear a próxima pa
 | **`legis.senado.leg.br`** — o CTB no Senado | **porta NOVA, tentada pela PRIMEIRA vez em 16/11** | **16/11 13h2xZ** | `000`, mesma recusa |
 | **`normas.leg.br`** (LexML/LEG) | **porta NOVA, tentada pela PRIMEIRA vez em 16/11** | **16/11 13h2xZ** | `000`, mesma recusa |
 | **leitor de página (`WebFetch`) no `www2.camara.leg.br`** | a outra porta da nuvem, no `.leg.br` | **16/11 13h2xZ** | `getaddrinfo ENOTFOUND www2.camara.leg.br` — **a mesma assinatura que o `www.gov.br`** |
+| **o NAVEGADOR desta nuvem (Chromium do Playwright)** no `planalto.gov.br`, `gov.br/transportes` e `lex.com.br` | **porta NOVA, tentada pela PRIMEIRA vez em 24/11** — em 27 dias de despacho aberto a parede só havia sido medida por `curl` e por `WebFetch` | **24/11 10h2xZ** | **`net::ERR_TUNNEL_CONNECTION_FAILED`** nos três, com `rodametria.com.br` em **HTTP 200** e `<title>` de verdade na MESMA passada e no MESMO navegador — é o egresso e não o site, logo **não falta sessão nem há anti-robô a contornar** (a regra geral está na **33**) |
 | **`www.mdpi.com`** — agregador acadêmico aberto | **porta NOVA, tentada pela PRIMEIRA vez em 18/11**, como canal alternativo para o estudo de patinete da F2 | **18/11 19h2xZ** | `000`, `connect_rejected` lido no status |
 | **`doaj.org`** — diretório de periódicos abertos | **porta NOVA, tentada pela PRIMEIRA vez em 18/11**, mesmo alvo | **18/11 19h2xZ** | `000`, `connect_rejected` lido no status |
 | `stdjet.scienceandtechnology.com.vn`, `et.vnuhcmjournal.com.vn` | os dois periódicos que publicam o consumo por km de PATINETE (constante da F2) | 28/10 · 29/10 · **18/11 19h2xZ** | `000` nas três passadas de hoje, `connect_rejected` lido no status |

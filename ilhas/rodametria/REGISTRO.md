@@ -3,6 +3,50 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-11-24 10h17Z–10h4xZ — **A FILA DE CONSTRUÇÃO ESTÁ VAZIA, E ISSO FOI RECONFERIDO E NÃO HERDADO. O QUE ESTA PASSADA ENTREGA É A PAREDE DO `gov.br` REMEDIDA NAS DUAS PORTAS — E A SEGUNDA, O NAVEGADOR, NUNCA HAVIA SIDO TENTADA NESTES DOMÍNIOS EM 27 DIAS DE DESPACHO ABERTO**
+
+**A ILHA DESTA EXECUÇÃO:** rodametria, por **foco** (`foco.md`, foco total e absoluto desde 27/10). Pela **1.2** não houve escolha a fazer: a rotação da seção 1 está suspensa enquanto aquela linha nomear esta ilha.
+**Passo 1 do disparo, medido:** `git fetch origin main` trouxe `origin/main` em **`ebcd2e2`**, sem atualização forçada. **Nenhum branch `claude/*` com commit a mais** — o `claude/dreamy-mccarthy-7hb3iv` deste clone está **idêntico** ao `main` (`git log origin/main..origin/claude/...` vazio) — e **nenhum PR aberto** (`list_pull_requests` devolveu lista vazia). Nada a mergear antes.
+**NADA FUROU O FOCO, conferido e não herdado:** o despacho do molde da **32** está **FECHADO nas três** irmãs (aquametria 21/10 18h2xZ, clubedomosaico 21/10 19h1xZ, robometria 21/10 16h1xZ), e não há despacho **ALTA** de irmã **no ar e quebrada** — a única exceção que a 1.2 abre.
+**Reserva:** `executando_desde` às **10h17Z**, commit **`6d34ed1`**, push aceito **de primeira**. O campo estava `null`, que pela **1.1** já significa que não há bloco da Fundação vivo, e o último commit na pasta era de **23/11 às 19h51Z** — quinze horas atrás, fora de qualquer janela. Não houve reserva vencida para o git desempatar.
+**REDE PELA 20.2, REMEDIDA E NÃO HERDADA:** `rodametria.com.br` e `www.rodametria.com.br` em **200** nas TRÊS passadas, com `aquametria.com.br` e `robometria.com.br` em **200** nas MESMAS três — **12 leituras, 12 verdes, zero intermitência**.
+
+### A AUDITORIA DA FILA, ITEM POR ITEM, PORQUE "NÃO HÁ BLOCO" HERDADO É A COISA QUE A SEÇÃO 4 PROÍBE
+
+O `bloco_atual` de 23/11 pré-registrou, pela **1.2-b.4**, que a fila estava vazia e que *"quem pegar esta ilha e não tiver despacho novo, pauta nem gesto do Raphael na mão deve fechar dizendo isso, e NÃO inventar bloco"*. **Pré-registro é critério, não medição**, e esta passada o remediu:
+
+- **Despacho da ronda de 23/11:** **fechado inteiro** (18.2/18.4) na revisão 128. Sobra o **item 4**, que é o muro do anti-robô da Shopee no teste de vida — e ele é **do Raphael**.
+- **Leitura semanal de 18/11:** item 2 (as três etiquetas do Mercado Livre da consulta de 823 mil buscas/mês) e a metade do egresso do item 3 são **do Raphael**; a metade de Fundação do item 3 e a errata de 19/11 estão **fechadas e conferidas no ar**. Itens 4, 5 e 6 são *"não tocar"* e *"medir em 25/11"*.
+- **Ronda técnica de 18/11:** itens 1 a 4 fechados; sobra o **item 5**, gesto do Raphael.
+- **`dados/despachos.md`, os ABERTOS lidos um por um:** **nenhum** é da Fundação **nesta** ilha. Os de Fundação endereçam **irmãs** (`clubedomosaico`, `robometria`, `aquametria`) e a **seção 3** proíbe editar arquivo de ilha não reservada — entre eles os itens 2 e 3 do ALTA do Sync, que moram em `ilhas/robometria/snippets/robometria-sync.php` e que a 1.2 só liberaria com a robometria **quebrada** (ela respondeu 200 nas três passadas de hoje). O do `clearstatcache` (03/11) **já nasceu feito nesta ilha**; o do quantificador no JSON-LD (06/11) e o do dígito colado (03/11) estão **fechados na rodametria** por construção e abertos só nas irmãs.
+- **Bloco 5 (artigos-âncora):** depende de `ilhas/rodametria/pauta.md`, que **não existe** — e pela **17.1** quem o grava é a rotina *Pauta das ilhas*, pelas mãos, nunca a Fundação.
+- **Página nova pelo nome do produto (seção 30):** a cauda deste nicho está **fechada por medição** (bloco 5c: três consultas `tomada` por fazenda de conteúdo, 26 páginas dedicadas entre 102 ocupantes), as duas que sobraram são `nao-medida` e pela **30.8** `alvo` **não se afirma desta nuvem**; e a `scooter elétrica` tem data **pré-registrada pela 30.9**, que a série põe em **11/12** e não hoje.
+
+**CONCLUSÃO, dita sem maquiar: esta execução NÃO entrega nada no ar, e isso conta contra a proporção da 31.1.** O que ela entrega é medição e procedência — e a alternativa seria inventar bloco, que é exatamente o que o pré-registro de 23/11 e a seção 1 (*"não invente trabalho"*) proíbem.
+
+### O QUE ELA FOI MEDIR, E É A PENDÊNCIA MAIS CARA DA ILHA: A PAREDE DO `gov.br`, NAS DUAS PORTAS
+
+O produto desta ilha é a **categoria legal** — a F1 está no ar **sem veredito de CNH** porque os dois limiares da Resolução Contran 996/2023 seguem `pendente` em `dados/constantes.json`. O despacho ALTA de **28/10** é do Raphael e a parede estava medida pela última vez em **13/11**, onze dias atrás, **sendo lida como fato** no `ESTADO.md`. A **20.2** manda retestar bloqueio herdado antes de respeitá-lo, a **20.3** diz que **causa de impossibilidade envelhece**, e a **33** registra a cicatriz de método que isto evita.
+
+**PORTA 1 — `curl`, três passadas:** `www.gov.br`, `in.gov.br`, `www.planalto.gov.br`, `www.contran.gov.br` e `www.lex.com.br` em **`000` nas três** — **15 medições de recusa** — com `rodametria.com.br` em **200 nas mesmas três**. `000` e não `403` quer dizer que os cinco **não estão na lista de domínios permitidos do ambiente**, que é literalmente o que o despacho pede.
+
+**PORTA 2 — O NAVEGADOR DESTA NUVEM, E ESTA É A MEDIÇÃO NOVA.** Em **27 dias** de despacho aberto a parede só havia sido medida por `curl` e por `WebFetch`; o ponteiro de 16/11 do próprio despacho registra que a via do Legislativo *"era a candidata natural a furar a parede, e nunca havia sido tentada"* — **e o navegador também não havia sido.** Tentado hoje, com `createRequire` (nunca `import from 'playwright'`, pela 33), `locale pt-BR`, `domcontentloaded`, 45 s: `www.planalto.gov.br`, `www.gov.br/transportes/pt-br` e `www.lex.com.br` devolveram **`net::ERR_TUNNEL_CONNECTION_FAILED`**, com `rodametria.com.br` abrindo em **HTTP 200** e com `<title>` de verdade **na mesma passada e no mesmo navegador**.
+
+**O QUE ISSO DECIDE, e é o valor da passada:** `ERR_TUNNEL_CONNECTION_FAILED` é **o egresso e não o site** — então, ao contrário do Mercado Livre e da Shopee, **não falta sessão, não há captcha e não há anti-robô a contornar**. A hipótese "talvez o navegador passe" está **fechada por medição**, nas duas portas, e **quem for tentar de novo tenta outra coisa**. É a mesma forma do que a 33 fez com o Mercado Livre em 23/11.
+
+**ONDE ISSO FOI ESCRITO, em três lugares e cada um pelo seu motivo:** (a) **seção 33 do `ARQUIPELAGO.md`**, porque o egresso é da **nuvem** e vale para as quatro ilhas — regra nova se escreve lá uma vez; (b) o **despacho ALTA** em `dados/despachos.md`, para o pedido ao Raphael chegar com diagnóstico de **hoje** e não de onze dias atrás (a seção 4 proíbe o contrário); (c) a **tabela de portas** de `ilhas/rodametria/dados/fonte-oficial-f1.md`, que é a memória da ilha sobre o assunto, com a linha do navegador e as cinco datas de hoje nas linhas de `curl`.
+
+### A ILHA ESTÁ SÃ, E O NÚMERO É DE HOJE
+
+- **Bancada:** `bancada.py` **64 portões sem rede** e **70 com rede**, **0 falha** nas duas, APROVADO nas duas.
+- **Portão de ar:** `conferir-no-ar.py` **826 afirmações, 0 falha**, APROVADO, com `dateModified 2026-11-23 (codigo 2026-11-23)` por URL nas 11 — a regra da **20.15**, que nasceu ontem, **segue verde no ar**. E ele registra a janela do log **CHEIA** (15 linhas): item de revisão anterior que rolou para fora dela não foi conferido por ninguém, o que é registro e não aprovação.
+- **Desembarque:** `/status` na revisão **128** = `manifest.json` **128**, as **9** linhas de item da revisão corrente dizendo `ok` (20.4; 20.10: 9 − 9 = 0), `ultimo` de **hoje 10:22:23**, ou seja o cron está vivo.
+- **Zero conserto, e nenhum tentado:** nada da lista 19.1 apareceu.
+
+### PRÓXIMO PASSO DESBLOQUEADO
+
+**Nenhum, do lado da Fundação, e o critério continua pré-registrado (1.2-b.4).** Esta é a **segunda** execução seguida a medir a fila vazia nesta ilha. O que destrava, por ordem de valor, é tudo gesto do Raphael e está escrito: (1) **os dois campos de configuração do ambiente** — a lista de domínios permitidos (`*.gov.br`, `*.leg.br`, as prefeituras) e o egresso do Search Console desta ilha, despachos ALTA de 18/11 e 19/11; (2) **as três etiquetas do Mercado Livre** da consulta de 823 mil buscas/mês, em `dados/links-afiliado-pendentes.md`; (3) **a SERP das duas consultas `nao-medida`** numa sessão de Chrome, que é o que autoriza página nova pela 30.8; (4) **o chamado na HostGater pela porta** — sete quedas na série, três episódios no contador durável; (5) **o token do Sync desta ilha** no `PROMPT.md`, que é o que permite acionar o Sync duas vezes como a 20.4 manda. A leitura semanal é **25/11**, amanhã, e a remedição da `scooter elétrica` é **11/12 em diante**, pela 30.9, pegando carona em execução que já tenha o que entregar no ar.
+
 ## 2026-11-23 19h17Z–19h5xZ — **A TERCEIRA FONTE DA DATA DE UMA PÁGINA EXISTE: O CÓDIGO QUE A DESENHA. A SEGUNDA METADE DO ITEM 2 DO DESPACHO DE HOJE, FECHADA — E O PORTÃO DE AR COBRA, POR URL, QUE A PÁGINA NÃO SE DIGA MAIS VELHA QUE O SEU PRÓPRIO HTML**
 
 **A ILHA DESTA EXECUÇÃO:** rodametria, por **foco** (`foco.md`, foco total e absoluto desde 27/10). Não houve escolha a fazer: pela **1.2** a rotação da seção 1 está suspensa enquanto aquela linha nomear esta ilha.

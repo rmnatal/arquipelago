@@ -1985,6 +1985,33 @@ Com `rodametria.com.br` em **200** na mesma janela, o que separa recusa de host 
 
 ### prioridade ALTA — a ilha EM FOCO tem como produto a CATEGORIA LEGAL, e o único texto que a decide é negado pelo egresso: o bloco 2 pode ser especificado inteiro, mas não pode ser FECHADO desta nuvem
 
+> **PONTEIRO ACRESCENTADO EM 24/11/2026 às 10h2xZ — A PAREDE FOI REMEDIDA NAS **DUAS** PORTAS DESTA
+> NUVEM, E A SEGUNDA NUNCA HAVIA SIDO TENTADA NESTES DOMÍNIOS. NADA AQUI FECHA: o despacho continua
+> ALTA, continua sendo do Raphael, e o pedido continua sendo as duas linhas do ponteiro de 16/11.**
+>
+> **POR QUE REMEDIR, e não é zelo:** a **20.2** manda retestar bloqueio herdado antes de respeitá-lo, a
+> **20.3** diz que **causa de impossibilidade envelhece**, e a **33** registra a cicatriz de método que
+> isto evita — *"a frase 'não havia navegador' foi escrita três vezes, por três rondas, e nenhuma delas
+> perguntou ao ambiente"*. A última medição desta parede era de **13/11**, onze dias atrás, e estava
+> sendo **lida como fato** no `ESTADO.md` da ilha.
+>
+> **PORTA 1 — `curl`, três passadas (20.2):** `www.gov.br`, `in.gov.br`, `www.planalto.gov.br`,
+> `www.contran.gov.br` e `www.lex.com.br` em **`000` nas três** — **15 medições de recusa** —, com
+> `rodametria.com.br` em **200 nas mesmas três** (3 controles verdes, zero intermitência). **`000` e não
+> `403` quer dizer que os cinco não estão na lista de domínios permitidos do ambiente**, que é
+> exatamente o que este despacho pede.
+>
+> **PORTA 2 — O NAVEGADOR DESTA NUVEM, E ESTA É A MEDIÇÃO NOVA.** Em 19 dias de despacho aberto a
+> parede do `gov.br` só havia sido medida por `curl` e por `WebFetch`. O Chromium do Playwright
+> (`createRequire`, `locale pt-BR`, `domcontentloaded`, 45 s) devolveu
+> **`net::ERR_TUNNEL_CONNECTION_FAILED`** em `www.planalto.gov.br`, `www.gov.br/transportes/pt-br` e
+> `www.lex.com.br`, com `rodametria.com.br` abrindo em **HTTP 200** e com `<title>` de verdade na mesma
+> passada, no mesmo navegador. **A hipótese de que o navegador fosse outra porta está fechada por
+> medição** — é a mesma forma do que a **33** fez com o Mercado Livre em 23/11, e a regra geral já está
+> escrita lá: *"o navegador atravessa o MESMO egresso que o `curl`"*. **Quem for tentar de novo tenta
+> outra coisa**, e o que falta continua sendo o campo de configuração que só o Raphael abre (20.1).
+
+
 > **PONTEIRO ACRESCENTADO EM 16/11/2026 às 13h2xZ — O PEDIDO PASSA A TER DUAS LINHAS, E A SEGUNDA
 > NASCEU DE UMA PORTA QUE NINGUÉM HAVIA TENTADO. NADA AQUI FECHA: o despacho continua ALTA e continua
 > sendo do Raphael.**
