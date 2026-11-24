@@ -51,7 +51,12 @@ ultima_execucao: 2026-11-24T16:45Z   # A FILA ESTAVA VAZIA PELA QUARTA VEZ E EST
                          # FAMILIA NA MESMA PAGINA EM CINCO DIAS: a 25.2-c (19/11,
                          # o LINK) e a 32.9 (20/11, a VOZ). Aqui e a PALAVRA.
                          # A HORA SAIU DO `date -u` NA MESMA LINHA QUE A GRAVA.
-executando_desde: 2026-11-24T19:17Z   # RESERVA desta execucao (passo 5 da secao 1,
+executando_desde: 2026-11-24T19:36Z   # RENOVADA as 19h36Z pela 1.1 (bloco que passa
+                         # de 40 minutos reescreve o campo), porque o desembarque
+                         # da revisao 134 espera o vencimento do evento do cron:
+                         # `ultimo` 19:17:35 e teto 19:47:35, veredito
+                         # `evento-nao-vencido` da 20.9 — ESPERAR, nao reacionar.
+                         # Reservada as 19h17Z (passo 5 da secao 1,
                          # foco da 1.2: foco.md nomeia a rodametria). ACEITA de
                          # PRIMEIRA: o campo estava `null`, que pela 1.1 ja significa
                          # que nao ha bloco da Fundacao vivo, e o ultimo commit na
