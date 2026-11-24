@@ -98,7 +98,8 @@
       ],
       "o_que_e": [
         "Patinete elétrico de adulto é o que você sobe de pé, com acelerador no guidão, dobrável, para trajeto curto de cidade.",
-        "Se o que você procura é o de criança, não é esta página: eles vivem na mesma busca da loja e a gente os deixou de fora de propósito, porque o que decide a compra de um e de outro não é a mesma coisa."
+        "Se o que você procura é o de criança, não é esta página: eles vivem na mesma busca da loja e a gente os deixou de fora de propósito, porque o que decide a compra de um e de outro não é a mesma coisa.",
+        "Na loja ele também aparece como scooter elétrico, e aqui é a mesma coisa: o anúncio que chama o patinete de scooter traz o mesmo veículo, o de subir de pé e acelerar no guidão. E quem digita patinete elétrico dobrável chega a esta mesma página — o quadro que dobra é o que faz ele caber no ônibus e debaixo da mesa do trabalho, e não um tipo separado de patinete."
       ],
       "o_que_nao_e": [
         "Não é lista de \"melhor patinete\": a gente não testou nenhum deles e não vai dizer que testou.",
@@ -246,7 +247,8 @@
       ],
       "o_que_e": [
         "Moto elétrica de adulto é a que você senta e anda no acelerador, sem pedalar. Na loja ela aparece como moto, como scooter e como ciclomotor elétrico, e os três nomes caem na mesma busca.",
-        "O que separa uma da outra na regra de trânsito não é o nome nem o preço: é a potência nominal, a velocidade máxima e se ela anda sozinha no acelerador. A Resolução Contran nº 996/2023 decide a categoria por esses três, e com a categoria vêm placa, registro e licenciamento."
+        "O que separa uma da outra na regra de trânsito não é o nome nem o preço: é a potência nominal, a velocidade máxima e se ela anda sozinha no acelerador. A Resolução Contran nº 996/2023 decide a categoria por esses três, e com a categoria vêm placa, registro e licenciamento.",
+        "E quem digita motos elétricas para adultos chega a esta mesma página: é a mesma compra, com a palavra que a busca da loja exige já dentro da consulta. Sem o adulto ali, a busca da loja devolve moto de brinquedo de criança no lugar do veículo que você quer comprar."
       ],
       "o_que_nao_e": [
         "Não é ranking: a gente não andou em nenhuma delas e não vai dizer que andou.",
@@ -337,5 +339,6 @@
       "ancora_no_ar": "costuma ser o pico do motor",
       "por_que_ancora": "O portao de ar varre a CLASSE e nao a frase de ontem, entao ele precisa saber exatamente dentro de qual texto este quantificador esta liberado. A ancora e o pedaco LITERAL que o portao retira da pagina servida antes de procurar; o que sobrar e defeito. Ancora que nao existe no proprio texto declarado REPROVA no `gerar-vitrine-de-produto.py --conferir`, para liberacao nao virar anistia geral."
     }
-  ]
+  ],
+  "o_sinonimo_da_30_4_mora_na_voz_e_nao_no_titulo_do_anuncio": "ACRESCENTADO EM 24/11/2026 as 16h4xZ, e nasceu de defeito MEDIDO NO AR com a bancada inteira verde (64 portoes sem rede e 70 com rede, 0 falha). A 30.4 do ARQUIPELAGO.md decide que consulta canibalizada nao recebe URL propria e e carregada pela pagina que existe, `com a consulta como ancora`; nesta ilha a declaracao disso e `sinonimos_no_corpo`, em dados/consultas-de-produto.json. AS DUAS MEDICOES: (1) /veiculos/moto-eletrica/ declarava `motos elétricas para adultos` — 201 mil buscas/mes, veredito `alvo` visto no Chrome do Raphael em 27/10/2026 — e servia a expressao ZERO vez, no texto visivel e no HTML inteiro: a consulta nao tinha URL e tambem nao tinha casa; (2) /veiculos/patinete-eletrico/ declarava `scooter elétrico` e `patinete elétrico dobrável` e as duas estavam na tela POR ACIDENTE, vindas dos TITULOS DOS ANUNCIOS que a LOJA escreveu — contado em vitrine-de-produto.json, 1 e 4 ocorrencias, exatamente os 1 e 4 do HTML servido, e ZERO na prosa desta ilha. A CAUSA DE NINGUEM VER: `sinonimos_no_corpo` nao era lido por ferramenta, portao nem snippet NENHUM — campo declarado que ninguem le e RASTRO e nao mecanismo, a 20.7 com outro campo. E E O TERCEIRO CASO DA MESMA FAMILIA NA MESMA PAGINA EM CINCO DIAS: a 25.2-c (o LINK dentro do bloco que nao nasce) e a 32.9 (a VOZ dentro do bloco que nao nasce); aqui e a PALAVRA. A REGUA: sinonimo declarado de pagina publicada mora numa string SEM MOLDE de um dos `campos_sem_vitrine`, porque a palavra pela qual a pessoa chega nao pode depender da coleta do dia. Quem cobra sao `ferramentas/teste-sinonimo-na-tela.py` (a voz, sem rede) e `conferir_os_sinonimos()` em conferir-produto-no-ar.py (o ar), e a decisao e a funcao pura `veredito_do_sinonimo_declarado`. NAO HA LISTA DE EXCECAO de proposito: sinonimo e uma PALAVRA, e nao existe palavra que a pagina nao possa dizer sem o dado que faltou — ao contrario da frase da 32.9, que podia pressupor a faixa de preco. As oracoes novas nao trazem numero nem quantificador: a da moto diz o que a busca da loja devolve sem o qualificador `adulto`, medido em 29/10/2026 na Open API (20 de 20 entre brinquedo infantil e peca de caminhao), e a do patinete diz que o anuncio que chama o patinete de scooter traz o mesmo veiculo, medido em 20/11 e 23/11/2026 nos cinco titulos de `outra_familia_na_cabeca` da consulta `scooter eletrica`."
 }

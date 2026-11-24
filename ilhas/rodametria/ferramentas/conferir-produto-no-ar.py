@@ -361,6 +361,95 @@ def editorial_do_repositorio():
         return json.load(f)
 
 
+def consultas_do_repositorio():
+    """A DECLARACAO das consultas da secao 30, lida do repositorio.
+
+    Ela tem `publicar: false` no manifest de proposito — e um arquivo de DECISAO,
+    nao de tela —, e e por isso que este portao a le do disco e nao de uma option
+    no ar. E dela que sai `sinonimos_no_corpo`, o campo da 30.4.
+    """
+    with open(os.path.join(ILHA, "dados", "consultas-de-produto.json"), encoding="utf-8") as f:
+        return json.load(f)
+
+
+def veredito_do_sinonimo_declarado(sinonimo, na_voz_declarada, no_html_servido):
+    """A DECISAO sobre o SINONIMO da 30.4, como funcao pura — irma de
+    `veredito_do_piso_da_tabela` e `veredito_do_piso_sem_vitrine`, com a mesma
+    disciplina: entram as relacoes ja calculadas, sai a lista de falhas em
+    palavras, e ela nao abre pagina, nao le arquivo e nao usa rede, para a
+    bancada poder FABRICAR o mundo (secao 8).
+
+    O QUE A 30.4 DECIDE, e e a metade dela que ninguem estava cobrando. A secao
+    diz que consulta que NAO recebe URL propria por canibalizacao e carregada
+    pela pagina que existe, *"com a consulta como ancora"*. Nesta ilha o campo
+    que declara isso e `sinonimos_no_corpo`, em `dados/consultas-de-produto.json`
+    — e ele e a palavra pela qual a pessoa chega, nunca um numero: ele nao
+    depende da coleta do dia, nao tem molde e e verdadeiro sem anuncio nenhum.
+
+    OS DOIS DEFEITOS QUE ESTA FUNCAO EXISTE PARA FECHAR, MEDIDOS NO AR EM
+    24/11/2026 as 16h3xZ, e eles sao DUAS causas com DOIS consertos — por isso
+    as falhas saem separadas (a licao da 20.5: portao que junta duas causas numa
+    frase manda consertar a errada).
+
+    (1) `/veiculos/moto-eletrica/` — a maior cabeca do nicho — declara
+        `motos elétricas para adultos` como sinonimo, que e uma consulta de 201
+        mil buscas/mes com veredito `alvo` visto no Chrome do Raphael em
+        27/10/2026, e a pagina servia a expressao ZERO vez: zero no texto
+        visivel e zero no HTML inteiro. A 30.4 fechou aquela consulta em favor
+        desta pagina, e a pagina nao diz a palavra. **A consulta nao tem URL e
+        tambem nao tem casa.**
+
+    (2) `/veiculos/patinete-eletrico/` declara `scooter elétrico` e
+        `patinete elétrico dobrável`, e as duas estavam na tela — por ACIDENTE.
+        Elas vinham dos TITULOS DOS ANUNCIOS que a loja escreveu: medido em
+        `dados/vitrine-de-produto.json`, 1 e 4 ocorrencias, exatamente os 1 e 4
+        contados no HTML servido. Na prosa declarada da ilha, ZERO das duas. **O
+        dia em que aquela coleta nao alcancar o piso da 30.2 — que e o que
+        aconteceu com a moto — as duas somem com a vitrine.**
+
+    E ESSE E O TERCEIRO CASO DA MESMA FAMILIA NESTA MESMA PAGINA EM CINCO DIAS:
+    a 25.2-c (19/11, o LINK de compra dentro do bloco que nao nasce) e a 32.9
+    (20/11, a VOZ dentro do bloco que nao nasce). Aqui e a PALAVRA. As tres vezes
+    o que a pagina devia dizer estava no repositorio e nao chegava a tela.
+
+    E A CAUSA DE NINGUEM VER: `sinonimos_no_corpo` nao era lido por ferramenta,
+    portao nem snippet NENHUM — `grep -rn` em `ferramentas/` e `snippets/`
+    devolvia zero em 24/11/2026, com os 64 portoes sem rede e os 70 com rede em 0
+    falha. Campo declarado que ninguem le e RASTRO, nao mecanismo, que e a 20.7
+    escrita com outro campo.
+
+    POR QUE AS DUAS AFIRMACOES, E NAO SO A DO AR: a do ar pega o caso (1) e
+    APROVA o caso (2), porque no ar a palavra esta la — a tela nao sabe dizer
+    quem a escreveu. Quem separa a palavra da ilha da palavra da loja e a voz
+    declarada, e e por isso que a regua tem duas pontas.
+
+    POR QUE A PONTA DA VOZ E COBRADA NA `voz_sem_vitrine` E NAO NA PROSA INTEIRA:
+    porque e justamente a prosa de fora dela que desaparece quando a coleta cai.
+    Sinonimo que mora so em `resposta` ou em `qual_escolher` esta na pagina
+    completa e fora da degradada, e a 30.4 nao e sobre o dia bom.
+
+    E O QUE ESTA FUNCAO NAO TEM, dito para ninguem o acrescentar: lista de
+    excecao. Sinonimo e uma PALAVRA, e nao existe palavra que a pagina nao possa
+    dizer sem o dado que faltou — ao contrario da frase da 32.9, que podia
+    pressupor a faixa de preco. Excecao que nunca e usada e a liberacao morta que
+    esta ilha ja cobra em dois outros mecanismos.
+    """
+    falhas = []
+    if not na_voz_declarada:
+        # POSITIVA DE PROPOSITO (20.8): acusa a ausencia em vez de a tolerar.
+        falhas.append("declara o sinonimo %r da 30.4 e a VOZ da ilha nao o diz em NENHUMA "
+                      "string que sobreviva sem vitrine: enquanto a palavra na tela vier so do "
+                      "titulo do anuncio, quem a escreveu foi a LOJA, e ela vai embora junto "
+                      "com a vitrine no primeiro dia em que a coleta nao alcancar o piso da "
+                      "30.2. Escreva-a numa string sem molde de um dos `campos_sem_vitrine` em "
+                      "`dados/paginas-de-produto.json`" % sinonimo)
+    if not no_html_servido:
+        falhas.append("declara o sinonimo %r da 30.4 e NAO o serve: a consulta foi fechada em "
+                      "favor desta pagina por canibalizacao, entao ela nao tem URL propria — e "
+                      "sem a palavra aqui ela tambem nao tem casa" % sinonimo)
+    return falhas
+
+
 def veredito_do_piso_da_tabela(quantas_buscas, quantos_na_tela):
     """A DECISAO sobre a linha do piso da 25.2, como FUNCAO PURA: entra a relacao
     ja calculada (quantas `url_busca` distintas a FONTE tem para esta pagina, e
@@ -844,6 +933,7 @@ def main():
                     com_disponibilidade, com_data))
 
     conferir_as_sem_vitrine(urls)
+    conferir_os_sinonimos(urls)
     conferir_a_mae(urls, fonte, ancoras)
     conferir_o_cluster_de_entrada(urls, fonte)
 
@@ -1207,6 +1297,92 @@ def conferir_a_mae(urls, fonte, ancoras):
              "%d link patrocinado"
              % (caminho, caixas, m.group(1) if m else "?", len(no_ar),
                 len(botoes), len(crus), patrocinados))
+
+
+def conferir_os_sinonimos(urls):
+    """O SINONIMO DA 30.4 NA TELA — nasceu em 24/11/2026 as 16h3xZ.
+
+    ELA DESCOBRE AS PAGINAS, NUNCA AS LISTA (32.5-b, e o item 2 da 32.9): os
+    alvos saem de `dados/consultas-de-produto.json`, que e o arquivo DECLARADO
+    onde o campo mora, cruzado com o `wp-sitemap.xml` no ar. Lista no codigo
+    envelhece calada no dia em que a camada declarada ganha consulta nova.
+
+    E ELA ALCANCA OS DOIS ESTADOS DE PAGINA. As outras reguas desta ilha se
+    partem em duas — `main()` cobra a pagina com vitrine e
+    `conferir_as_sem_vitrine()` cobra a degradada —, e o defeito de 24/11 estava
+    um de cada lado: o sinonimo ausente na degradada (moto) e o sinonimo servido
+    pelo titulo do anuncio na completa (patinete). Cobrar isto em UM lugar e o
+    que impede a regua de aprovar a pagina que trocou de estado.
+    """
+    if VOZ_SEM_VITRINE is None:
+        registro("SINONIMOS NAO MEDIDOS: nao consegui importar `voz_sem_vitrine` do dono da "
+                 "camada declarada: %s" % _POR_QUE_SEM_VOZ)
+        return
+
+    try:
+        decl = consultas_do_repositorio()
+    except Exception as e:  # noqa: BLE001
+        registro("SINONIMOS NAO MEDIDOS: nao consegui ler `dados/consultas-de-produto.json` "
+                 "(%s)" % e)
+        return
+
+    ed = editorial_do_repositorio()
+    paginas_declaradas = {p.get("id"): p for p in (ed.get("paginas") or []) if p.get("id")}
+
+    medidas = 0
+    for c in (decl.get("consultas") or []):
+        sins = c.get("sinonimos_no_corpo") or []
+        cid = c.get("id")
+        if not sins:
+            continue
+        if not c.get("publicar_declarado"):
+            # CONSULTA DECLARADA QUE NAO NASCEU nao tem pagina para servir
+            # palavra nenhuma, e exigir dela reprovaria o mundo certo.
+            registro("sinonimos de %s: a consulta tem `publicar_declarado: false` e nao tem "
+                     "pagina — os %d sinonimo(s) dela nao foram exercitados"
+                     % (cid, len(sins)))
+            continue
+
+        slug = str(c.get("slug") or "").strip("/")
+        caminho = "/%s/" % slug if slug else ""
+        if not slug or DOMINIO + caminho not in urls:
+            registro("sinonimos de %s: a consulta diz `publicar_declarado: true` e o slug %r "
+                     "NAO esta no wp-sitemap.xml — nada a conferir no ar" % (cid, slug))
+            continue
+
+        pag = paginas_declaradas.get(cid)
+        if not afirma(pag is not None,
+                      "%s esta no ar e NAO tem entrada em `dados/paginas-de-produto.json`: a "
+                      "voz dela nao existe para ser conferida" % caminho):
+            continue
+
+        cod, html = buscar(caminho)
+        if not afirma(cod == 200, "%s nao respondeu 200 (deu %s)" % (caminho, cod)):
+            continue
+
+        # A VOZ QUE SOBREVIVE SEM VITRINE, pela regua do DONO da camada
+        # declarada — nunca reescrita aqui (20.7).
+        voz = VOZ_SEM_VITRINE(ed, pag)
+        texto_da_voz = normalizar(json.dumps(voz, ensure_ascii=False))
+        # O HTML INTEIRO, e nao so o corpo: a 30.4 e sobre o que a pagina SERVE,
+        # e `<title>`, description e JSON-LD tambem carregam a palavra. E a mesma
+        # leitura que a 32.4 usa no `<style>`.
+        texto_servido = normalizar(html)
+
+        for s_ in sins:
+            alvo = normalizar(s_)
+            na_voz = alvo in texto_da_voz
+            no_ar = alvo in texto_servido
+            for falha in veredito_do_sinonimo_declarado(s_, na_voz, no_ar):
+                afirma(False, "%s %s" % (caminho, falha))
+            medidas += 1
+
+        registro("%s: %d sinonimo(s) da 30.4 cobrados nas DUAS pontas (voz declarada que "
+                 "sobrevive sem vitrine, e HTML servido)" % (caminho, len(sins)))
+
+    if not medidas:
+        registro("NENHUM sinonimo da 30.4 foi exercitado nesta passada: nenhuma consulta "
+                 "declarada com `sinonimos_no_corpo` tem pagina no sitemap")
 
 
 def encerrar():

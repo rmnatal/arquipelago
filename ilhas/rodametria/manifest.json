@@ -4,7 +4,7 @@
   "nicho": "mobilidade eletrica — acertar os tres numeros antes de comprar um veiculo eletrico: categoria legal (CNH e placa), autonomia real e carga maxima",
   "dominio": "https://rodametria.com.br",
   "versao_manifest": 1,
-  "revisao": 129,
+  "revisao": 130,
   "atualizado_em": "2026-11-24",
   "estado": "nascendo",
   "desembarque": {
@@ -162,8 +162,8 @@
       "arquivo": "dados/paginas-de-produto.json",
       "formato": "json",
       "publicar": true,
-      "sha256": "20e224e2ce5c77f8d79c9310cd56f568f5d179c249557342af366b18e89e911c",
-      "mudou_em": "2026-11-20",
+      "sha256": "2811bf96e26f4bfa8c364e04efbf6495049049942996df7538ae89e336e8aa91",
+      "mudou_em": "2026-11-24",
       "descricao": "A camada DECLARADA das paginas da secao 30: a voz do VOZ.md com MOLDES no lugar de todo numero. `gerar-vitrine-de-produto.py --conferir` REPROVA qualquer digito escrito nesta prosa fora da lista de permitidos."
     },
     {
