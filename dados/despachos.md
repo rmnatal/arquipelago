@@ -1608,6 +1608,37 @@ Remedido pela **20.3** (causa de impossibilidade envelhece), três passadas cada
 
 **A CONTA FINAL DA ESCADA DESTA ILHA, agora por exaustão medida e não por suposição:** nível 4 **vazio por estrutura** (as marcas são de marketplace e não têm site de fabricante achável), nível 5 **recusado pelo egresso** nos três domínios de varejo grande, e a **ficha de marketplace** — que o próprio `esquema-banco.json` conta como nível 5 — **recusada nas DUAS portas**. Logo `potencia_nominal_w`, `velocidade_max_kmh`, `acelerador` e `carga_max_kg` não têm **nenhum** caminho de coleta desta nuvem, e **a F1 e a F3 não ganham profundidade por trabalho — só por abertura de domínio.** Linha gravada também na observação do nível 5 em `ilhas/rodametria/dados/esquema-banco.json` (revisão 120), para a próxima execução não queimar a mesma porta.
 
+**ACRÉSCIMO DE 24/11/2026 às 13h1xZ–13h2xZ, DA EXECUÇÃO SEGUINTE À QUE REMEDIU O `gov.br` — O PEDIDO SEGUE IGUAL, E AGORA OS TRÊS DOMÍNIOS ESTÃO FECHADOS NAS **DUAS** PORTAS, COMO O MERCADO LIVRE JÁ ESTAVA.**
+
+O acréscimo de 23/11 acima fechou a porta do navegador **no Mercado Livre** e deixou, sem dizer, uma assimetria de pé: os **três domínios de varejo** deste pedido só tinham sido medidos por `curl`, em 29/10 e em 23/11. **O navegador nunca havia sido tentado neles.** É a mesma lacuna que a execução das 10h2xZ de hoje achou no `gov.br` — parede de 27 dias medida por uma porta só — e ela é remedida aqui pelo mesmo motivo: a **20.3** diz que causa de impossibilidade envelhece, e a **20.2** manda retestar bloqueio herdado antes de respeitá-lo.
+
+**PORTA 1 — `curl`, três passadas (13h17:59Z, 13h18:08Z, 13h18:15Z):**
+
+| host | 24/11/2026 | era em 23/11/2026 |
+|---|---|---|
+| `www.casasbahia.com.br` | `000` ×3 | `000` ×3 |
+| `www.extra.com.br` | `000` ×3 | `000` ×3 |
+| `www.magazineluiza.com.br` | `000` ×3 | `000` ×3 |
+| `www.mercadolivre.com.br` | `403` ×3 | `403` ×3 |
+| *controle* `rodametria.com.br` | **200** ×3 | 200 ×3 |
+| *controle* `aquametria.com.br` · `robometria.com.br` | **200** ×3 cada | 200 ×3 |
+
+**9 recusas contra 12 controles verdes.** E um controle NOVO que vale a linha, porque ele responde a objeção que este despacho nunca pôde responder: **`example.com` também devolve `000` nas três passadas.** O domínio mais neutro da internet é recusado igual aos três do varejo — logo `000` aqui é **política da lista de domínios permitidos**, e não queda do site nem instabilidade do túnel. A lista é uma lista de permissões estreita, e é por isso que o gesto pedido no topo deste despacho é o único caminho.
+
+**PORTA 2 — O NAVEGADOR, E ESTA É A MEDIÇÃO NOVA** (Chromium do Playwright por `createRequire`, locale `pt-BR`, `domcontentloaded`, 45 s, 13h18:53Z):
+
+| host | veredito do navegador |
+|---|---|
+| `www.casasbahia.com.br` | `net::ERR_TUNNEL_CONNECTION_FAILED` |
+| `www.extra.com.br` | `net::ERR_TUNNEL_CONNECTION_FAILED` |
+| `www.magazineluiza.com.br` | `net::ERR_TUNNEL_CONNECTION_FAILED` |
+| `www.mercadolivre.com.br` | **HTTP 403**, `<title>` vazio — repete 23/11 |
+| *controle* `rodametria.com.br` | **HTTP 200**, `<title>Rodametria — os três números antes de comprar um elétrico</title>` |
+
+**O que isso DECIDE, e é a mesma frase que o `gov.br` ganhou hoje de manhã:** `ERR_TUNNEL_CONNECTION_FAILED` é o **egresso**, não o site. Então nos três domínios de varejo **não falta sessão, não há captcha e não há anti-robô a contornar** — o que separa esta nuvem da ficha da Casas Bahia é um campo de configuração, e nada mais. O controle abriu com `<title>` de verdade **na mesma passada e no mesmo navegador**, que é o que impede ler isto como navegador quebrado.
+
+**A CONTA DA ESCADA, agora sem nenhuma porta por medir:** nível 4 **vazio por estrutura**; nível 5 **recusado nas duas portas** nos três domínios de varejo grande; ficha de marketplace **recusada nas duas portas** (23/11). Os quatro campos — `potencia_nominal_w`, `velocidade_max_kmh`, `acelerador` e `carga_max_kg` — não têm caminho de coleta desta nuvem, e **a F1 e a F3 não ganham profundidade por trabalho, só por abertura.** Isto não é pessimismo novo: é a frase de 23/11 com a última hipótese dela fechada. **Quem for tentar de novo tenta outra coisa, não o navegador no varejo.**
+
 **O que NÃO está bloqueado, para ninguém parar o bloco por isto:** a leitura por **BUSCA** funciona e foi por ela que tudo acima foi medido — é o degrau que a jornadafly nomeou em 27/10 (*"o egresso não trava a coleta inteira; o que ele trava é a leitura direta, que é a PREFERIDA"*). O bloco 3e **pode andar** colhendo por busca, com a procedência que a busca permite; o que os três domínios destravam é a leitura **direta** da ficha, que é a que o nível 5 exige para atribuir campo técnico à loja.
 
 
