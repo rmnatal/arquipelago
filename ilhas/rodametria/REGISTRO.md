@@ -3,6 +3,79 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-11-24 13h16Z–13h4xZ — **A ROTINA *PAUTA DAS ILHAS* NUNCA RODOU EM 74 DIAS, E É A CAUSA COM NOME DE TRÊS EXECUÇÕES SEGUIDAS SEM ENTREGAR PÁGINA. E O NÍVEL 5 DA ESCADA REMEDIDO NO NAVEGADOR, PORTA QUE NUNCA HAVIA SIDO TENTADA EM 26 DIAS**
+
+**A ILHA DESTA EXECUÇÃO:** rodametria, por **foco** (`foco.md`, foco total e absoluto desde 27/10). Pela **1.2** não houve escolha a fazer.
+**Passo 1 do disparo, medido:** `git fetch origin main` trouxe `origin/main` de `ebcd2e2` para **`b2d7e56`**. **Nenhum branch `claude/*` desta execução existia** — `claude/dreamy-mccarthy-8kvspb` estava na lista de refs do clone e **não existe no `origin`** (`git ls-remote --heads` não o trouxe; `git remote prune origin` o removeu como ref morta) — e **nenhum PR aberto** (`list_pull_requests` devolveu lista vazia). Nada a mergear antes.
+**Reserva:** `executando_desde` às **13h16Z**, commit **`ec761f3`**, push aceito **de primeira**. O campo estava `null`, que pela **1.1** já significa que não há bloco da Fundação vivo, e o último commit na pasta era de **hoje às 10h30Z** — duas horas e quarenta e cinco minutos atrás, fora da janela de 40 minutos. Não houve reserva vencida para o git desempatar.
+**REDE PELA 20.2, REMEDIDA E NÃO HERDADA:** `rodametria.com.br`, `www.rodametria.com.br`, `aquametria.com.br` e `robometria.com.br` em **200** nas TRÊS passadas — **12 leituras, 12 verdes, zero intermitência**. *(Nota de leitura, não achado: `www.` devolveu **200** nas três hoje, onde o `ESTADO.md` de 20/11 registrou 301 na primeira e 200 nas outras duas. As duas leituras são de redireção servida, não de recusa.)*
+
+### A FILA: TERCEIRA MEDIÇÃO SEGUIDA DE "VAZIA", E ELA NÃO FOI HERDADA DA SEGUNDA
+
+O pré-registro de 23/11 e a auditoria item por item de hoje às 10h2xZ dizem a mesma coisa, e esta passada conferiu que **nada mudou entre as duas**: o último commit na pasta da ilha era o fecho daquela execução (`b2d7e56`, 10h30Z), não houve ronda nem leitura semanal no intervalo, e **nenhum despacho novo nasceu**. Os abertos seguem sendo os mesmos cinco gestos do Raphael — os dois campos de configuração do ambiente, as três etiquetas do Mercado Livre, a SERP das duas consultas `nao-medida` num Chrome, o chamado na HostGator e o token do Sync. **Não havia despacho novo, pauta nem gesto na mão, e o critério pré-registrado pela 1.2-b.4 manda fechar dizendo isso e não inventar bloco.**
+
+**E o critério tem uma segunda metade, que é o que esta passada executou:** *"se for medir algo que a ilha declara impossível, REMEDE em vez de herdar"*.
+
+### O QUE ELA REMEDIU: O NÍVEL 5 DA ESCADA, NAS DUAS PORTAS — E A ASSIMETRIA QUE 23/11 DEIXOU DE PÉ
+
+O nível 5 (`ficha-de-varejo-grande`) é o **único** degrau que sustenta campo técnico atribuído à loja, e é dele que saem `potencia_nominal_w`, `velocidade_max_kmh`, `acelerador` e `carga_max_kg` — as entradas da **F1** e da **F3**. O acréscimo de **23/11** ao despacho dos três domínios fechou a porta do **navegador** na ficha do **Mercado Livre** e escreveu *"a conta final da escada desta ilha, agora por exaustão medida"* — **e deixou uma assimetria de pé sem dizer:** os **três domínios de varejo grande** do próprio pedido só tinham sido medidos por `curl`, em 29/10 e em 23/11. **O navegador nunca havia sido tentado neles**, exatamente como no `gov.br` que a execução das 10h2xZ de hoje foi medir. Vinte e seis dias.
+
+**PORTA 1 — `curl`, três passadas (13h17:59Z, 13h18:08Z, 13h18:15Z):** `www.casasbahia.com.br`, `www.extra.com.br` e `www.magazineluiza.com.br` em **`000` nas três** (9 recusas); `www.mercadolivre.com.br` em **403 nas três**, que é o anti-robô dele e não o egresso; **12 controles verdes** nas mesmas três passadas.
+
+**PORTA 2 — O NAVEGADOR, E É A MEDIÇÃO NOVA** (Chromium do Playwright por `createRequire`, nunca `import from 'playwright'` pela **33**; `locale pt-BR`, `domcontentloaded`, 45 s, às 13h18:53Z): os **três** domínios de varejo devolveram **`net::ERR_TUNNEL_CONNECTION_FAILED`**; o Mercado Livre repetiu **HTTP 403** com `<title>` vazio; e o controle `rodametria.com.br` abriu em **HTTP 200** com `<title>Rodametria — os três números antes de comprar um elétrico</title>` **na mesma passada e no mesmo navegador**.
+
+**O QUE ISSO DECIDE:** `ERR_TUNNEL_CONNECTION_FAILED` é **o egresso e não o site** — então nos três **não falta sessão, não há captcha e não há anti-robô a contornar**. O que separa esta nuvem da ficha da Casas Bahia, que publica para o `V1SPRO` **500 W, carga máxima de 120 kg e UL 2272**, é **um campo de configuração** e nada mais.
+
+### O CONTROLE QUE VALE MAIS QUE AS NOVE RECUSAS, E ELE É PARA AS QUATRO ILHAS: `example.com` TAMBÉM DÁ `000`
+
+Acrescentado à medição desta passada como controle **negativo**, e ele responde uma objeção que este despacho nunca pôde responder: **o domínio mais neutro da internet é recusado igual aos três do varejo.** Logo `000` nesta nuvem é **política da lista de permissões** — e não queda do site, nem instabilidade do túnel, nem anti-robô. **Quem medir `000` daqui em diante pode escrever "não está na lista" em vez de "não respondeu"**, e isso é régua e não observação: a seção 33 vem registrando que causa de impossibilidade herdada é o defeito mais caro deste contrato, e metade do custo dela é não saber distinguir recusa de queda. A linha está na **33**, porque o egresso é da **nuvem** e vale para as quatro ilhas.
+
+**A CONTA DA ESCADA, agora sem nenhuma porta por medir:** nível 4 **vazio por estrutura** (as marcas são de marketplace e não têm site de fabricante achável); nível 5 **recusado nas DUAS portas** nos três domínios de varejo grande; **ficha de marketplace recusada nas DUAS portas** (23/11). Os quatro campos não têm caminho de coleta desta nuvem, e **a F1 e a F3 não ganham profundidade por trabalho — só por abertura.** Isto não é pessimismo novo: é a frase de 23/11 com a **última hipótese dela fechada**, e quem for tentar de novo tenta outra coisa.
+
+**ONDE FOI ESCRITO, em três lugares e cada um pelo seu motivo:** (a) **seção 33 do `ARQUIPELAGO.md`**, porque o egresso é da nuvem e a regra nova se escreve lá uma vez; (b) o **despacho dos três domínios** em `dados/despachos.md`, para o pedido ao Raphael chegar com diagnóstico de **hoje** e não de 29/10; (c) a **observação do nível 5** em `ilhas/rodametria/dados/esquema-banco.json`, que é a memória da ilha sobre o assunto e onde o acréscimo de 23/11 mandou gravar *"para a próxima execução não queimar a mesma porta"*.
+
+### A ILHA ESTÁ SÃ, COM NÚMERO DE HOJE, E A BANCADA RODOU ANTES DE QUALQUER ESCRITA (18.5)
+
+**64 portões sem rede e 70 com rede, 0 falha nas duas** — rodadas às 13h1xZ–13h2xZ, antes de uma linha ser escrita. `/status` **128** = `manifest.json` 128 na abertura, `versao_sync` 1.1.5, e o `ultimo` de **13:19:37** provando o cron vivo.
+
+**E A HIGIENE DA 20.13 VALEU, conferida e não suposta:** o log do `/status` traz `2026-11-23 19:20 cura da porta: bloco WordPress reposto — 1057 bytes [NFD EPC] -> 1580 bytes [NFD EPC, WordPress]`, e a **20.13** manda copiar cura lida no ar na mesma passada porque a janela de 15 linhas rola. Ela **já estava copiada** em `dados/consertos.md`, pela execução de 23/11 às 19h3xZ, com o antes e o depois em bytes. **Nada a fazer** — e está dito aqui porque "já estava feito" só se sabe conferindo.
+
+### O DESEMBARQUE DESTA PASSADA, e ele não muda um byte de página
+
+A observação do nível 5 mora em `esquema-banco.json`, que está no `manifest.json` com **`publicar: false`** — então o `sha256` e o `mudou_em` dele tiveram de ser espelhados (`atualizar-manifest.py`), e isso subiu a revisão de **128 para 129** sem nenhuma página mudar de conteúdo. **Está dito sem maquiar: é uma revisão que publica memória, não página.** O portão `atualizar-manifest.py --conferir` reprovou de propósito antes do commit (*"`atualizado_em` 2026-11-24 e o último commit do manifest é de 2026-11-23"*) — ele cobra que **revisão e data subam no MESMO commit**, pela seção 3 — e fechou **APROVADO** depois dele.
+
+### O SEGUNDO ACHADO, E ELE VALE MAIS QUE A PAREDE: A ROTINA *PAUTA DAS ILHAS* NUNCA RODOU, EM 74 DIAS — E É A CAUSA, COM NOME, DE TRÊS EXECUÇÕES SEM ENTREGAR PÁGINA
+
+As auditorias de fila de 23/11 e de hoje às 10h2xZ anotaram, as duas, que *"o bloco 5 depende de `pauta.md`, que não existe e que pela 17.1 não é arquivo da Fundação"* — e **pararam aí**. Esta passada fez a pergunta seguinte, que é de uma linha: **a rotina que grava aquele arquivo alguma vez rodou?**
+
+**TRÊS PROVAS INDEPENDENTES, e as três dizem não:**
+
+| prova | resultado |
+|---|---|
+| `find . -iname "*pauta*"` no repositório inteiro | **zero arquivo** — nas seis ilhas e no `ilhas/_modelo/` |
+| `grep -c "Pauta das ilhas" MAOS-LOG.md` | **0**, num log de **592 KB** |
+| `grep -i pauta dados/despachos.md` | **zero** — ninguém jamais pediu |
+
+A terceira prova é a que fecha, pela **27.1**: *"TODO DISPARO DAS MÃOS TERMINA ESCREVENDO EM `MAOS-LOG.md`"*, append-only, com `git status`, `git diff --stat` e o hash do commit. O arquivo registra fielmente **ronda da Sentinela, leitura semanal, Bússola caçadora e Pente Fino**, cada uma com hash. A Pauta **não aparece uma vez**. Pela 27.1 somada à **27.3** (*"relatório de rotina não é prova"*), isso não é "pode ter rodado sem registrar": é **não rodou**. A seção 17 é de **11/09/2026** — **74 dias**.
+
+**POR QUE ISSO CUSTA EXATAMENTE AGORA.** Com a rodametria em foco total, a fila dela tem os blocos **1 a 7 entregues** e três coisas de pé: o **bloco 5** (depende da pauta), **página nova pelo nome do produto** (travada pela 30.8, SERP no Chrome dele) e a **profundidade da F1 e da F3** (travada por abertura de egresso, medida hoje como fechada nas duas portas, nas duas paredes). **Logo o bloco 5 é o único caminho de construção que não depende de abrir domínio** — e é o que está esperando uma rotina de terça. **Hoje é terça.**
+
+**A LIÇÃO DE MÉTODO, porque ela é maior que a pauta:** dependência ausente lida como *"espera normal"* é a **seção 4** num traje novo. As duas auditorias anteriores leram "o arquivo não existe" como um estado do calendário — a terça ainda não chegou — quando era um estado do arquipélago: a rotina não existe no rastro. **O que faltava não era a vez da terça, era a rotina**, e isso só aparece perguntando ao `MAOS-LOG`, que é o instrumento que a 27.1 criou precisamente para que disparo que não aconteceu não se confunda com disparo que não registrou.
+
+**ONDE FOI ESCRITO:** (a) **despacho novo**, `precisa do Raphael`, no topo de `dados/despachos.md`, com as três provas, o formato da 17.3 que a rotina deve gravar, o atalho de que a 17.3 oferece (a pauta *confirma* SERP e destino, não redescobre — e esta ilha tem o corpus do bloco 1 e as cinco caudas já classificadas) e a armadilha da fazenda de conteúdo que o bloco 5c mediu; (b) o **bloco 5 do `PROMPT.md`** desta ilha, anotado com a causa e as provas, para a próxima execução não gastar a auditoria redescobrindo — e com a trava escrita: **não escreva a pauta de cabeça para destravar o bloco**, porque a 17.1 e a 17.6 repartem as pontas de propósito e pauta escrita por quem escreve o artigo é o defeito que a seção 19 existe para impedir.
+
+### A CONFERÊNCIA NO AR (18.4 e 20.4), E O QUE ELA PROVA É QUE NENHUMA PÁGINA MUDOU
+
+**Revisão 129 entrou às 13:40:35Z**, `/status` **129** = `manifest.json` **129**. A espera foi o veredito da **20.9**, e não houve uma rodada de Sync desperdiçada: às 13h25Z o `ultimo` era **13:19:37**, *anterior ao push* — que pela régua de leitura da **20.6** não é defeito nem cache, é **turno de cron** —, então o que resolvia era esperar mantendo as visitas de pé, nunca reacionar. O evento seguinte disparou às **13:39:49** e a revisão entrou no minuto seguinte.
+
+**As 8 linhas de item da revisão 129 dizem `ok`** (20.4), e a conta da **20.10** fecha: 8 aplicados − 8 linhas `ok` = **0**. **E a prova de que a revisão não tocou em página está no próprio log:** `esquema-banco` **não aparece** entre os aplicados — ele é `publicar: false` e está entre os *"6 aguardando desembarque"*, exatamente onde deve estar.
+
+**OS TRÊS PORTÕES DE AR, rodados depois do desembarque:** `conferir-no-ar.py` **822 afirmações, 0 falha**; `conferir-produto-no-ar.py` **406, 0 falha**; `conferir-institucional-no-ar.py` **244, 0 falha** — **1.472 afirmações, zero falha**. *(O número do portão principal é **822** hoje contra os 826 de 23/11; a diferença é de contagem de conteúdo colhido, não de falha, e está dita aqui em vez de arredondada para o número de ontem.)* Bancada **64 portões sem rede e 70 com rede, 0 falha nas duas**, rodadas **antes** de qualquer escrita (18.5) e **de novo** depois do desembarque.
+
+**E A 20.15 SEGUE VERDE NO AR, o que é a confirmação independente de que a revisão foi de memória:** o portão leu `dateModified 2026-11-23 (codigo 2026-11-23)` **por URL** nas 11. Mexer num `dados` com `publicar: false` não mudou o `mudou_em` de nenhum snippet, então a data do código não andou — e a data servida não andou com ela. **Era o que tinha de acontecer, e foi medido em vez de suposto.**
+
+**ZERO conserto e nenhum tentado:** nada da lista **19.1** apareceu.
+
 ## 2026-11-24 10h17Z–10h4xZ — **A FILA DE CONSTRUÇÃO ESTÁ VAZIA, E ISSO FOI RECONFERIDO E NÃO HERDADO. O QUE ESTA PASSADA ENTREGA É A PAREDE DO `gov.br` REMEDIDA NAS DUAS PORTAS — E A SEGUNDA, O NAVEGADOR, NUNCA HAVIA SIDO TENTADA NESTES DOMÍNIOS EM 27 DIAS DE DESPACHO ABERTO**
 
 **A ILHA DESTA EXECUÇÃO:** rodametria, por **foco** (`foco.md`, foco total e absoluto desde 27/10). Pela **1.2** não houve escolha a fazer: a rotação da seção 1 está suspensa enquanto aquela linha nomear esta ilha.

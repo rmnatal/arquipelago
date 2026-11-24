@@ -15,124 +15,149 @@ urls_publicadas: 11       # 10 -> 11 em 16/11/2026: nasceu `/veiculos/moto-eletr
                           # proteger. Quem substituir comentario de varias linhas apaga o rabo.
 ultima_ronda: 2026-11-23T14:59Z   # RONDA DIARIA TECNICA de 23/11/2026 (secao 12.2, item 3). SUBSTITUI o valor anterior 2026-11-18T20:01Z, que era da LEITURA SEMANAL de 18/11 e segue registrada no PROMPT.md. Medida na revisao 120 (/status 120 = manifest 120): 11 de 11 URLs em 200, tres portas da 29.2 verdes, 404 virgem na pagina da propria ilha, 31 blocos de JSON-LD que parseiam, console limpo, 17 de 17 contas das tres ferramentas certas na mao, e 15 leituras de teste de vida da 25.4 (11 fichas e 4 buscas) com 0 morta, 0 esgotada, 0 intestavel e 0 sem piso da 25.2. ZERO consertos: nenhum dos tres defeitos e da lista 19.1. ACHADO DE ALTA: /veiculos/moto-eletrica/ recebe ZERO link interno de miolo, porque a listagem da mae e o bloco de irmas nascem da lista de paginas da vitrine e a pagina degradada nao esta nela.
 primeira_indexacao: null  # as duas primeiras URLs foram ao ar hoje; indexacao e trabalho de dias. Quem grava este campo e a leitura semanal, lendo o Search Console.
-ultima_execucao: 2026-11-24T10:29Z   # A FILA DE CONSTRUCAO ESTA VAZIA, E ISSO FOI
-                         # RECONFERIDO ITEM POR ITEM E NAO HERDADO do pre-registro
-                         # de 23/11. ESTA EXECUCAO NAO ENTREGA NADA NO AR, e isso
-                         # conta contra a proporcao da 31.1 — dito sem maquiar,
-                         # porque a alternativa era inventar bloco, que a secao 1 e
-                         # o proprio pre-registro proibem.
-                         # O QUE ELA ENTREGA: a parede do `gov.br` REMEDIDA NAS
-                         # DUAS PORTAS, e a segunda nunca havia sido tentada nestes
-                         # dominios em 27 dias de despacho ALTA aberto. O navegador
-                         # desta nuvem devolve ERR_TUNNEL_CONNECTION_FAILED nos tres
-                         # (planalto, gov.br/transportes, lex), com a propria ilha em
-                         # HTTP 200 no MESMO navegador — logo e o EGRESSO e nao o
-                         # site, e nao falta sessao nem ha anti-robo a contornar.
-                         # Escrito na 33 do contrato, no despacho ALTA e na tabela de
-                         # portas de dados/fonte-oficial-f1.md.
-                         # A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A
-                         # GRAVA, nunca digitada.
-executando_desde: 2026-11-24T13:16Z   # RESERVA desta execucao (passo 5 da secao 1, pela 1.2: o foco.md
-                         # nomeia a rodametria). Aceita de PRIMEIRA: o campo estava `null`, que
+ultima_execucao: 2026-11-24T13:45Z   # TERCEIRA EXECUCAO SEGUIDA A MEDIR A FILA DE
+                         # CONSTRUCAO VAZIA NESTA ILHA, e a medicao foi RECONFERIDA
+                         # contra o estado real: nada mudou desde o fecho das 10h30Z
+                         # (nenhuma ronda, nenhuma leitura semanal, nenhum despacho
+                         # novo). ESTA EXECUCAO NAO ENTREGA PAGINA NO AR, e isso conta
+                         # contra a proporcao da 31.1 — dito sem maquiar.
+                         # O QUE ELA ENTREGA SAO DOIS ACHADOS, e o segundo vale mais:
+                         # (1) O NIVEL 5 DA ESCADA REMEDIDO NO NAVEGADOR — os tres
+                         # dominios de varejo grande (casasbahia, extra, magazineluiza)
+                         # nunca haviam sido tentados por essa porta em 26 dias; dao
+                         # ERR_TUNNEL_CONNECTION_FAILED, com a ilha em HTTP 200 no MESMO
+                         # navegador, logo e EGRESSO e nao site. E o controle que decide
+                         # o que `000` quer dizer: example.com TAMBEM da 000, entao 000
+                         # nesta nuvem e POLITICA da lista de permissoes e nunca queda.
+                         # (2) A ROTINA *PAUTA DAS ILHAS* NUNCA RODOU, EM 74 DIAS —
+                         # zero arquivo de pauta no repositorio, ZERO mencao no
+                         # MAOS-LOG.md de 592 KB (que a 27.1 torna obrigatorio) e zero
+                         # despacho. E a causa COM NOME de o bloco 5 nao andar, e o
+                         # bloco 5 e o UNICO caminho de construcao que nao depende de
+                         # abrir egresso. Despacho novo aberto; hoje e terca.
+                         # A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA.
+executando_desde: null   # LIMPO no fecho desta execucao (passo 7 da secao 1). Reservada as
+                         # 13h16Z, commit ec761f3, aceita de PRIMEIRA: o campo estava `null`, que
                          # pela 1.1 ja significa que nao ha bloco da Fundacao vivo, e o ultimo
                          # commit na pasta era de hoje as 10h30Z — fora da janela de 40 minutos.
-                         # A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA.
-rede: aberta em 2026-11-20   # 20.2, REMEDIDA e nao herdada: `rodametria.com.br`
-                             # em 200 nas TRES passadas, `www.` em 301 na primeira
-                             # e 200 nas outras duas (redirecao, nao recusa), com
-                             # `aquametria.com.br` e `robometria.com.br` em 200 nas
-                             # MESMAS tres.
-                             # E A PAREDE DO `.gov.br` FOI REMEDIDA PELA 20.3, porque
-                             # causa de impossibilidade envelhece (secao 33): `gov.br`,
-                             # `in.gov.br`, `planalto.gov.br`, `contran.gov.br`,
-                             # `lex.com.br`, `campinas.sp.gov.br`, `joinville.sc.gov.br`,
-                             # `sjc.sp.gov.br` e `www2.camara.leg.br` em 000 nas tres
-                             # passadas, com tres controles verdes em cada uma — 27
-                             # medicoes de bloqueio contra 9 de controle. O leitor de
-                             # pagina desta nuvem devolve `ENOTFOUND` em `www.gov.br`.
+                         # NAO HOUVE RENOVACAO pela 1.1 porque a execucao nao passou de 40 minutos.
+rede: aberta em 2026-11-24   # 20.2, REMEDIDA e nao herdada: `rodametria.com.br`,
+                             # `www.rodametria.com.br`, `aquametria.com.br` e
+                             # `robometria.com.br` em 200 nas TRES passadas — 12
+                             # leituras, 12 verdes, zero intermitencia.
+                             # E AS DUAS PAREDES SEGUEM DE PE, as duas agora medidas
+                             # nas DUAS portas (curl e navegador):
+                             # (a) o `.gov.br` da F1, remedido as 10h2xZ de hoje;
+                             # (b) o NIVEL 5 da escada — `www.casasbahia.com.br`,
+                             # `www.extra.com.br`, `www.magazineluiza.com.br` em 000
+                             # ×3 por curl e ERR_TUNNEL_CONNECTION_FAILED no
+                             # navegador, com o ML em 403 nas duas portas. A porta do
+                             # navegador nestes tres era hipotese aberta havia 26
+                             # dias e esta FECHADA.
+                             # O CONTROLE QUE VALE PARA AS QUATRO ILHAS: example.com
+                             # TAMBEM devolve 000 nas tres passadas — logo `000`
+                             # nesta nuvem e POLITICA da lista de permissoes, nunca
+                             # queda de site nem tunel instavel. Escrito na 33.
                              # SEGUE FECHADA: o gesto dos dois campos de configuracao
                              # nao foi feito, e com ele seguem parados o CNH da F1 e a
                              # camada municipal.
 bloqueada_por: null      # obrigatorio pela secao 2. `null` DE PROPOSITO: o que falta (gov.br para a F1, as prefeituras para a camada municipal, as tres etiquetas do Mercado Livre) trava a FABRICA e nao a ILHA, e isso se escreve no despacho, que e o canal da 12.2. Preenche-lo congelaria tambem os blocos que ja podem andar.
 bloco_atual: |
-  NADA FOI CONSTRUIDO, E A FILA ESTA VAZIA — RECONFERIDA ITEM POR ITEM NESTA
-  PASSADA, NAO HERDADA DO PRE-REGISTRO DE 23/11. A auditoria, em uma linha cada:
-  o despacho da ronda de 23/11 esta FECHADO INTEIRO (sobra o item 4, do Raphael);
-  da leitura semanal de 18/11 sobram os itens 2 e a metade do egresso do 3, os
-  dois do Raphael; da ronda tecnica de 18/11 sobra o item 5, do Raphael; em
-  `dados/despachos.md` NENHUM aberto e da Fundacao NESTA ilha — os de Fundacao
-  endereçam as irmas e a secao 3 proibe editar ilha nao reservada (os itens 2 e 3
-  do ALTA do Sync moram em ilhas/robometria/, e a 1.2 so os liberaria com a
-  robometria QUEBRADA: ela respondeu 200 nas tres passadas de hoje); o bloco 5
-  depende de `pauta.md`, que nao existe e que pela 17.1 nao e arquivo da Fundacao;
-  e pagina nova pelo nome do produto esta travada pela 30.8 (`alvo` nao se afirma
-  desta nuvem) com a `scooter eletrica` em 11/12 pela 30.9.
-  ESTA EXECUCAO NAO ENTREGA NADA NO AR. Esta dito aqui porque a 31.1 se conta
-  pelo REGISTRO.md e numero que se esconde no fecho e numero que ninguem conta.
-  O QUE ELA FOI MEDIR, e e a pendencia mais cara da ilha: A PAREDE DO `gov.br`,
-  que e o que mantem a F1 no ar SEM VEREDITO DE CNH — o produto desta ilha e a
-  categoria legal. A parede estava medida pela ultima vez em 13/11, ONZE DIAS
-  atras, e estava sendo lida como FATO neste cabecalho. A 20.2 manda retestar
-  bloqueio herdado antes de respeita-lo e a 20.3 diz que causa de impossibilidade
-  ENVELHECE.
-  PORTA 1 — curl, tres passadas: os CINCO dominios da F1 em `000` nas tres, 15
-  medicoes de recusa, com a propria ilha em 200 nas MESMAS tres. `000` e nao
-  `403` quer dizer que os cinco nao estao na lista de dominios permitidos do
-  ambiente, que e literalmente o que o despacho ALTA de 28/10 pede.
-  PORTA 2 — O NAVEGADOR DESTA NUVEM, E ESTA E A MEDICAO NOVA: em 27 dias de
-  despacho aberto a parede so havia sido medida por curl e por WebFetch. O
-  ponteiro de 16/11 do proprio despacho registra que a via do Legislativo "era a
-  candidata natural a furar a parede, e nunca havia sido tentada" — e o navegador
-  tambem nao havia sido. Chromium do Playwright (createRequire, locale pt-BR,
-  domcontentloaded, 45 s): planalto.gov.br, gov.br/transportes e lex.com.br em
-  `net::ERR_TUNNEL_CONNECTION_FAILED`, com rodametria.com.br abrindo em HTTP 200
-  e com <title> de verdade NA MESMA PASSADA E NO MESMO NAVEGADOR.
-  O QUE ISSO DECIDE: ERR_TUNNEL_CONNECTION_FAILED e o EGRESSO e nao o site —
-  entao, ao contrario do Mercado Livre e da Shopee, NAO falta sessao, NAO ha
-  captcha e NAO ha anti-robo a contornar. A hipotese "talvez o navegador passe"
-  esta FECHADA POR MEDICAO nas duas portas, e quem for tentar de novo tenta outra
-  coisa. E a mesma forma do que a 33 fez com o Mercado Livre em 23/11.
-  ESCRITO EM TRES LUGARES, cada um pelo seu motivo: (a) secao 33 do
-  ARQUIPELAGO.md, porque o egresso e da NUVEM e vale para as quatro ilhas; (b) o
-  despacho ALTA em dados/despachos.md, para o pedido ao Raphael chegar com
-  diagnostico de HOJE e nao de onze dias atras; (c) a tabela de portas de
-  dados/fonte-oficial-f1.md, que e a memoria da ilha sobre o assunto.
-  A ILHA ESTA SA, COM NUMERO DE HOJE: bancada 64 portoes sem rede e 70 com rede,
-  0 falha nas duas; conferir-no-ar.py 826 afirmacoes e 0 falha, com
-  `dateModified 2026-11-23 (codigo 2026-11-23)` por URL nas 11 — a 20.15, que
-  nasceu ontem, SEGUE VERDE NO AR; /status 128 = manifest 128, as 9 linhas de
-  item da revisao dizendo `ok` (20.4; 20.10: 9 - 9 = 0) e `ultimo` de hoje
-  10:22:23, ou seja o cron esta vivo. ZERO conserto e nenhum tentado: nada da
-  lista 19.1 apareceu.
-  E UM REGISTRO QUE O PORTAO FAZ E QUE NAO E APROVACAO: a janela do log do
-  /status tem 15 linhas e esta CHEIA, entao item de revisao ANTERIOR que rolou
-  para fora dela nao foi conferido por ninguem.
+  NADA FOI CONSTRUIDO E NENHUMA PAGINA MUDOU NO AR. A fila de construcao esta
+  vazia pela TERCEIRA execucao seguida, e esta passada nao herdou a medicao das
+  10h2xZ: conferiu que NADA mudou entre as duas (o ultimo commit na pasta era o
+  fecho daquela, b2d7e56 as 10h30Z; nenhuma ronda, nenhuma leitura semanal e
+  nenhum despacho novo no intervalo). Os abertos seguem sendo os mesmos cinco
+  gestos do Raphael. Esta dito aqui porque a 31.1 se conta pelo REGISTRO.md e
+  numero que se esconde no fecho e numero que ninguem conta.
+
+  O QUE ELA ENTREGOU, e sao duas medicoes, nao uma pagina:
+
+  1. O NIVEL 5 DA ESCADA REMEDIDO NAS DUAS PORTAS (criterio pre-registrado:
+     "se for medir algo que a ilha declara impossivel, REMEDE em vez de herdar").
+     O acrescimo de 23/11 fechou a porta do NAVEGADOR na ficha do Mercado Livre
+     e NAO a tentou nos tres dominios de varejo grande — eles seguiam medidos por
+     UMA porta so desde 29/10, 26 dias. Eles sao o nivel 5, o unico degrau que
+     sustenta campo tecnico atribuido a loja, e e dele que saem
+     potencia_nominal_w, velocidade_max_kmh, acelerador e carga_max_kg: as
+     entradas da F1 e da F3.
+     PORTA 1 (curl, tres passadas): os tres em 000 nas tres (9 recusas), ML em
+     403 nas tres, com 12 controles verdes.
+     PORTA 2 (navegador, e e a medicao nova): os tres em
+     ERR_TUNNEL_CONNECTION_FAILED no Chromium do Playwright, com
+     rodametria.com.br em HTTP 200 e <title> de verdade NA MESMA passada e no
+     MESMO navegador; o ML repetiu 403 com <title> vazio.
+     O QUE DECIDE: ERR_TUNNEL e o EGRESSO e nao o site — nao falta sessao, nao ha
+     captcha e nao ha anti-robo a contornar. O que separa esta nuvem da ficha da
+     Casas Bahia (500 W, 120 kg e UL 2272 para o V1SPRO) e UM campo de
+     configuracao. A escada nao tem mais NENHUMA porta por medir, e a F1 e a F3
+     nao ganham profundidade por trabalho — so por ABERTURA.
+     E O CONTROLE QUE VALE MAIS QUE AS 9 RECUSAS: example.com TAMBEM devolve 000
+     nas tres passadas. O dominio mais neutro da internet e recusado igual, logo
+     `000` nesta nuvem e POLITICA da lista de permissoes — nunca queda de site,
+     nunca tunel instavel. Quem medir 000 daqui em diante escreve "nao esta na
+     lista" em vez de "nao respondeu". Isso e regua, e foi para a secao 33.
+
+  2. A ROTINA *PAUTA DAS ILHAS* NUNCA RODOU, EM 74 DIAS — e e a causa COM NOME de
+     tres execucoes sem entregar pagina. As auditorias de 23/11 e das 10h2xZ
+     anotaram que "o bloco 5 depende de pauta.md, que nao existe" e PARARAM AI.
+     A pergunta seguinte cabe numa linha: a rotina que grava aquele arquivo
+     alguma vez rodou? TRES PROVAS, as tres dizem nao: `find . -iname "*pauta*"`
+     devolve ZERO no repositorio inteiro (as seis ilhas e o _modelo);
+     `grep -c "Pauta das ilhas" MAOS-LOG.md` devolve 0 num log de 592 KB que
+     registra fielmente ronda, leitura semanal, Bussola e Pente Fino com hash de
+     commit — e a 27.1 manda TODO disparo das maos escrever ali; e nenhum
+     despacho jamais pediu. A secao 17 e de 11/09/2026.
+     POR QUE CUSTA AGORA: o bloco 5 e o UNICO caminho de construcao que nao
+     depende de abrir egresso (pagina nova esta travada pela 30.8 e a profundidade
+     da F1/F3 pelas duas paredes medidas hoje). Hoje e terca, o dia da rotina.
+     A LICAO DE METODO, maior que a pauta: dependencia ausente lida como "espera
+     normal" e a secao 4 num traje novo. As duas auditorias leram "o arquivo nao
+     existe" como estado do CALENDARIO quando era estado do ARQUIPELAGO.
+
+  A ILHA ESTA SA, COM NUMERO DE HOJE, E A BANCADA RODOU ANTES DE QUALQUER ESCRITA
+  (18.5): 64 portoes sem rede e 70 com rede, 0 falha nas duas. /status 129 =
+  manifest 129, versao_sync 1.1.5, cron vivo. ZERO conserto e nenhum tentado:
+  nada da lista 19.1 apareceu.
+  E A HIGIENE DA 20.13 VALEU, conferida e nao suposta: o log do /status traz a
+  cura da porta de 23/11 as 19:20 (1057 -> 1580 bytes) e ela JA ESTAVA copiada em
+  dados/consertos.md pela execucao daquela noite. Nada a fazer — e esta dito
+  porque "ja estava feito" so se sabe conferindo.
+  O DESEMBARQUE DESTA PASSADA NAO MUDA UM BYTE DE PAGINA: a observacao do nivel 5
+  mora em esquema-banco.json, que esta no manifest com `publicar: false`, entao o
+  sha256 e o mudou_em tiveram de ser espelhados e a revisao subiu 128 -> 129.
+  E uma revisao que publica MEMORIA, nao pagina, e esta dito sem maquiar.
 
   PROXIMO PASSO DESBLOQUEADO — nenhum do lado da Fundacao, e o criterio segue
-  pre-registrado (1.2-b.4). Esta e a SEGUNDA execucao seguida a medir a fila
-  vazia nesta ilha.
+  pre-registrado (1.2-b.4). Mas a LISTA MUDOU DE ORDEM com o achado 2:
 
-  1. O QUE DESTRAVA E TUDO GESTO DO RAPHAEL, por ordem de valor: (a) os DOIS
-     campos de configuracao do ambiente — a lista de dominios permitidos
-     (`*.gov.br`, `*.leg.br`, as prefeituras) e o egresso do Search Console desta
-     ilha (despachos ALTA de 18/11 e 19/11); (b) as TRES etiquetas do Mercado
-     Livre da consulta de 823 mil buscas/mes, em
-     `dados/links-afiliado-pendentes.md`; (c) a SERP das duas consultas
-     `nao-medida` numa sessao de Chrome, que e o que autoriza pagina nova pela
-     30.8; (d) o chamado na HostGator pela porta — sete quedas na serie, tres
-     episodios no contador duravel; (e) o token do Sync desta ilha no PROMPT.md,
-     que e o que permite acionar o Sync duas vezes como a 20.4 manda.
-  2. DATAS JA MARCADAS: a leitura semanal e 25/11 (amanha) e e ela quem decide o
+  1. O GESTO MAIS BARATO DO ARQUIPELAGO HOJE E A PAUTA, e e novo nesta lista:
+     rodar *Pauta das ilhas* pelas maos na rodametria e deixar nascer
+     ilhas/rodametria/pauta.md no formato da 17.3. Ele e o unico que destrava
+     CONSTRUCAO sem depender de abrir dominio nenhum — todos os outros abaixo
+     dependem de configuracao de ambiente ou de uma sessao de Chrome. Despacho
+     novo no topo de dados/despachos.md, com a armadilha da fazenda de conteudo
+     que o bloco 5c mediu ja escrita dentro dele.
+  2. OS OUTROS GESTOS DO RAPHAEL, por ordem de valor: (a) os DOIS campos de
+     configuracao do ambiente — a lista de dominios permitidos (`*.gov.br`,
+     `*.leg.br`, as prefeituras E AGORA TAMBEM os tres de varejo grande, que a
+     medicao de hoje provou serem recusa de politica e nao queda) e o egresso do
+     Search Console desta ilha; (b) as TRES etiquetas do Mercado Livre da consulta
+     de 823 mil buscas/mes, em dados/links-afiliado-pendentes.md; (c) a SERP das
+     duas consultas `nao-medida` numa sessao de Chrome, que e o que autoriza
+     pagina nova pela 30.8; (d) o chamado na HostGator pela porta; (e) o token do
+     Sync desta ilha no PROMPT.md.
+  3. DATAS JA MARCADAS: a leitura semanal e 25/11 (amanha) e e ela quem decide o
      campo `piso` (21.6) e quem pode abrir proposta de receita pela 12.1. A
      remedicao da `scooter eletrica` e 11/12 EM DIANTE, pela 30.9, e pega carona
      em execucao que ja tenha o que entregar no ar — nunca como bloco sozinho.
-  3. QUEM PEGAR ESTA ILHA E NAO TIVER DESPACHO NOVO, PAUTA NEM GESTO DO RAPHAEL
-     NA MAO deve fechar dizendo isso, e NAO inventar bloco. O criterio esta
-     pre-registrado aqui de proposito (1.2-b.4): criterio escrito depois do dado
-     e criterio dobrado para caber no dado que veio. E se for medir algo que a
-     ilha declara impossivel, REMEDE em vez de herdar — foi o que esta passada
-     fez, e a parede do navegador era hipotese aberta havia 27 dias.
-
+  4. QUEM PEGAR ESTA ILHA E NAO TIVER DESPACHO NOVO, PAUTA NEM GESTO DO RAPHAEL
+     NA MAO deve fechar dizendo isso, e NAO inventar bloco. E se for medir algo
+     que a ilha declara impossivel, REMEDE em vez de herdar — foi o que esta
+     passada fez com o nivel 5, e a porta do navegador nele era hipotese aberta
+     havia 26 dias. E SE A FILA PARECER TRAVADA POR UM ARQUIVO QUE NAO EXISTE,
+     PERGUNTE SE A ROTINA QUE O GRAVA JA RODOU: foi assim que o achado 2 nasceu,
+     e a resposta estava no MAOS-LOG.md, a um grep de distancia, havia 74 dias.
 ---
 
 # Estado da ilha RODAMETRIA
