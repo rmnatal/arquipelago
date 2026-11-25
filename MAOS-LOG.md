@@ -11175,3 +11175,108 @@ ilhas/rodametria/dados/search-console-2026-11-25.md      19 linhas   1718 bytes 
 2. **A primeira checagem de ambiente deste disparo foi RECUSADA pelo classificador do ambiente** (`[Sensitive Information Leakage]`), e com razão: o comando usava `${GOOGLE_SA_B64:-no}`, que IMPRIME o valor da variável quando ela está definida — era o contrário do que eu queria checar. Nenhum byte da credencial foi impresso, gravado ou commitado. A checagem foi refeita sem tocar na variável, e o script lê a credencial do ambiente por conta própria.
 3. **`exit=0` num `python3 ... | grep -v ... > arquivo` não diz que o script deu certo** — o status é do fim do cano, não do python. O clubedomosaico saiu com `exit=0` e 60 linhas de traceback dentro do arquivo. O que pegou o defeito foi `grep -c '^### '` no arquivo gravado, não o código de saída.
 4. **`rodametria.com.br` não é alcançável pela nuvem:** `Tunnel connection failed: 403 Forbidden (agent proxy: no rule or network setting allows this host)` nos dois caminhos de sitemap tentados. É negativa de política, não erro de rede, e por isso a linha de indexação da rodametria saiu `n/d` nas duas leituras — o total da propriedade (1 impressão, 0 clique) veio da API, que é alcançável. Liberar o host é o que fecha essa lacuna.
+
+---
+
+## Disparo de 25/11/2026 — 17h22 BRT (20h22Z) — DESPACHO DA LEITURA SEMANAL DA SENTINELA, 4 ILHAS: 14 operações em 13 arquivos, UM commit, no `main`
+
+**Checagem de assunto, antes do `git fetch`:** é do Arquipélago. As quatro ilhas (`aquametria`, `robometria`, `clubedomosaico`, `rodametria`), seus `PROMPT.md`, `ESTADO.md` e `dados/`. Nada de outro projeto chegou neste disparo. Executado.
+
+**Nenhum dado pessoal de terceiro entrou:** a instrução não trazia e-mail, telefone nem endereço de ninguém, e o diff foi varrido por padrão de e-mail e de telefone antes do commit, com zero acerto. Nada foi deixado de fora por esse motivo.
+
+`git status --porcelain` (depois do commit, antes de gravar este log):
+
+```
+(vazio — árvore limpa)
+```
+
+`git diff --stat` do commit que foi ao `main`:
+
+```
+ ilhas/aquametria/ESTADO.md              |  2 +-
+ ilhas/aquametria/PROMPT.md              | 18 ++++++++-
+ ilhas/aquametria/dados/indexacao.md     |  1 +
+ ilhas/aquametria/dados/posicoes.md      | 46 +++++++++++++++++++++++
+ ilhas/clubedomosaico/ESTADO.md          |  2 +-
+ ilhas/clubedomosaico/PROMPT.md          | 26 +++++++++++++
+ ilhas/clubedomosaico/dados/indexacao.md |  1 +
+ ilhas/clubedomosaico/dados/posicoes.md  | 65 +++++++++++++++++++++++++++++++++
+ ilhas/robometria/ESTADO.md              |  2 +-
+ ilhas/robometria/PROMPT.md              | 12 ++++++
+ ilhas/robometria/dados/indexacao.md     |  1 +
+ ilhas/robometria/dados/posicoes.md      | 23 ++++++++++++
+ ilhas/rodametria/ESTADO.md              |  2 +-
+ ilhas/rodametria/PROMPT.md              | 16 ++++++++
+ ilhas/rodametria/dados/indexacao.md     |  1 +
+ ilhas/rodametria/dados/posicoes.md      | 19 ++++++++++
+ 16 files changed, 232 insertions(+), 5 deletions(-)
+```
+
+**O HASH DO COMMIT QUE FOI AO `main`, conferido com `git fetch origin main && git log -1 origin/main` DEPOIS do push:**
+
+```
+af5ff0dadc41cbb483024e7f32fffc7276aeb3b6  Despacho da leitura semanal da Sentinela — 2026-11-25 (4 ilhas)
+d12e28b..af5ff0d  HEAD -> main
+```
+
+**O push foi aceito de primeira.** Nenhuma recusa, nenhum rebase, nenhum force push, nenhum PR. Partiu de `git checkout -B trabalho origin/main` em cima do `main` real (`d12e28b`), nunca da branch da sessão.
+
+**CONTAGEM DO QUE MUDOU, conferida RELENDO cada arquivo DEPOIS de gravar e DEPOIS do push — não pelo que eu achava que havia escrito.** As 14 operações foram aplicadas por script com asserção de âncora: cada âncora tinha que casar EXATAMENTE UMA vez no arquivo, ou o script morria sem gravar nada. As 17 asserções (as 14 operações, com a 14 valendo por quatro arquivos) passaram.
+
+```
+OP1  insert-after  ilhas/aquametria/dados/indexacao.md           linha 16     (+1 linha)
+OP2  append        ilhas/aquametria/dados/posicoes.md            fim          (+46 linhas, 1 em branco + 45)
+OP3  replace-line  ilhas/aquametria/PROMPT.md                    linha 100 -> 116 depois da OP4
+OP4  insert-before ilhas/aquametria/PROMPT.md                    linha 100    (+16 linhas, 15 + 1 em branco)
+OP5  insert-after  ilhas/robometria/dados/indexacao.md           linha 17     (+1 linha)
+OP6  append        ilhas/robometria/dados/posicoes.md            fim          (+23 linhas)
+OP7  insert-before ilhas/robometria/PROMPT.md                    linha 48     (+12 linhas)
+OP8  insert-after  ilhas/clubedomosaico/dados/indexacao.md       linha 16     (+1 linha)
+OP9  append        ilhas/clubedomosaico/dados/posicoes.md        fim          (+65 linhas)
+OP10 insert-before ilhas/clubedomosaico/PROMPT.md                linha 224    (+26 linhas)
+OP11 insert-after  ilhas/rodametria/dados/indexacao.md           linha 10     (+1 linha)
+OP12 append        ilhas/rodametria/dados/posicoes.md            fim          (+19 linhas)
+OP13 insert-before ilhas/rodametria/PROMPT.md                    linha 68     (+16 linhas)
+OP14 replace-line  ilhas/aquametria/ESTADO.md                    linha 81
+OP14 replace-line  ilhas/robometria/ESTADO.md                    linha 9
+OP14 replace-line  ilhas/clubedomosaico/ESTADO.md                linha 141
+OP14 replace-line  ilhas/rodametria/ESTADO.md                    linha 17
+```
+
+Conferência de conteúdo, relendo os arquivos gravados (contagem = 1 em cada, nunca 0 nem 2):
+
+```
+linha `| 2026-11-25 |` em dados/indexacao.md      aquametria 1 · robometria 1 · clubedomosaico 1 · rodametria 1
+secao `## Leitura semanal de 2026-11-25` em posicoes.md   aquametria 1 · robometria 1 · clubedomosaico 1 · rodametria 1
+cabecalho `## DESPACHO DA SENTINELA — 2026-11-25 (LEITURA SEMANAL` em PROMPT.md   as quatro ilhas: 1
+linha `ultima_ronda: 2026-11-25T20:15Z` nos quatro ESTADO.md                       4
+sufixo `FECHADO PELA LEITURA DE 25/11/2026` no PROMPT.md da aquametria             1, na linha 116
+ordem no indexacao.md: a linha de 25/11 ficou logo DEPOIS da de 18/11 nas quatro ilhas
+```
+
+Tamanho dos 16 arquivos depois de gravados e empurrados:
+
+```
+ilhas/aquametria/dados/indexacao.md          270 linhas    39375 bytes
+ilhas/aquametria/dados/posicoes.md           316 linhas    45254 bytes
+ilhas/aquametria/PROMPT.md                   828 linhas   195198 bytes
+ilhas/aquametria/ESTADO.md                   601 linhas   115679 bytes
+ilhas/robometria/dados/indexacao.md           17 linhas    14147 bytes
+ilhas/robometria/dados/posicoes.md           210 linhas    26723 bytes
+ilhas/robometria/PROMPT.md                  2028 linhas   317789 bytes
+ilhas/robometria/ESTADO.md                   751 linhas    55483 bytes
+ilhas/clubedomosaico/dados/indexacao.md      137 linhas    43359 bytes
+ilhas/clubedomosaico/dados/posicoes.md       420 linhas    48522 bytes
+ilhas/clubedomosaico/PROMPT.md              3589 linhas   379164 bytes
+ilhas/clubedomosaico/ESTADO.md               855 linhas    84961 bytes
+ilhas/rodametria/dados/indexacao.md           10 linhas     6636 bytes
+ilhas/rodametria/dados/posicoes.md            88 linhas    10108 bytes
+ilhas/rodametria/PROMPT.md                  1959 linhas   287093 bytes
+ilhas/rodametria/ESTADO.md                   214 linhas    17300 bytes
+```
+
+**A ORDEM DA OP3 E DA OP4 NO MESMO ARQUIVO, que era o único ponto de ordem da instrução:** a OP3 rodou primeiro e trocou o cabeçalho de 18/11 pelo mesmo cabeçalho com o acréscimo `— **FECHADO PELA LEITURA DE 25/11/2026...**`; a OP4 rodou depois e usou essa linha NOVA como âncora, inserindo o despacho de 25/11 imediatamente antes dela. Resultado no arquivo: o despacho de 25/11 abre na linha 100, fecha com `---`, e o cabeçalho de 18/11 já marcado como FECHADO vem na linha 116. A instrução da OP3 tinha uma frase contraditória no meio ("estas DUAS linhas ... não, a segunda linha é o próprio cabeçalho antigo"), e ela mesma se corrigia na sentença seguinte: "substitua a linha acima pela linha abaixo, exatamente". Foi isso que se fez — UMA linha no lugar de UMA linha, sem linha extra.
+
+**Nada foi reformatado, nenhuma acentuação foi corrigida e nenhuma linha fora da instrução foi acrescentada.** Os `ESTADO.md` receberam só a linha `ultima_ronda:`, pedida nominalmente; nenhum outro campo de cabeçalho de estado foi tocado, nenhuma ilha foi reservada, nenhum `executando_desde` foi escrito, nenhum bloco de fila foi executado, nada foi publicado e nenhum link de afiliado foi gravado (a instrução dizia que a Sentinela gerou ZERO links nesta rodada).
+
+**Nenhum passo falhou.** Zero erro a registrar neste disparo: nenhuma recusa de ferramenta, nenhuma recusa de push, nenhum arquivo que não casasse a âncora. Este log vai num commit seguinte, por depender do hash do commit de trabalho.
