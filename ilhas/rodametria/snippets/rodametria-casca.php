@@ -71,7 +71,7 @@
    Antes disto a ilha cujo produto e "o preco de hoje" tinha ZERO ocorrencia de
    `dateModified` e de `datePublished` em todo o JSON-LD das 9 URLs. */
 if ( ! defined( 'RODAMETRIA_CASCA_VERSAO' ) ) {
-	define( 'RODAMETRIA_CASCA_VERSAO', '1.33.0' );
+	define( 'RODAMETRIA_CASCA_VERSAO', '1.34.0' );
 }
 
 /* ---------------------------------------------------------------------------
@@ -1526,8 +1526,76 @@ function rodametria_casca_cartao_de_compra( $item ) {
  * vazia este componente NAO imprime silencio — imprime a causa que a pagina
  * mediu, que e a outra metade da mesma secao 7.
  */
+/**
+ * O PISO DA 25.2 DENTRO DO BLOCO DE COMPRA QUE NASCEU SEM CARTAO (25/11/2026).
+ *
+ * O DEFEITO QUE ELA EXISTE PARA FECHAR FOI MEDIDO NO AR, nas QUATRO categorias
+ * que a F1 devolve, executando o formulario e contando `a[href*="shopee"]` no
+ * documento depois de cada resposta: quatro medicoes, quatro ZEROS. A home — a
+ * ferramenta principal desta ilha — servia o bloco "À venda agora nesta
+ * categoria" com a frase certa sobre a ausencia e com NENHUMA porta de compra, e
+ * o piso daquelas prateleiras estava publicado no banco desde 16/11.
+ *
+ * E ELE E A 25.2-c UM ANDAR ACIMA DA PAGINA DE PRODUTO, que pagou a MESMA classe
+ * seis dias antes em `/veiculos/moto-eletrica/`: naquele dia o piso morava dentro
+ * do bloco da vitrine, e o bloco da vitrine e o que nao nasce quando o mercado
+ * nao serve produto. Aqui o bloco nasce, e estava nascendo mudo.
+ *
+ * POR QUE O CONSERTO MORA NA CASCA E NAO NA F1 (32.6-b): o bloco de compra e o
+ * mesmo componente nas quatro familias de pagina desta ilha. Com a decisao aqui,
+ * ferramenta nova nasce sem poder servir bloco vazio sem piso, e a que nao tem
+ * piso para passar recebe a frase da ausencia em vez de silencio.
+ *
+ * AS DUAS SAIDAS, E A 25.2-c REGRA 2 SO CONHECE ESTAS DUAS: com `url_busca` no
+ * dado, a pagina SERVE o piso com `rel="sponsored noopener"`; sem ela, a pagina
+ * DIZ que esta sem link de loja hoje. Nunca `href` vazio — que nao e botao morto
+ * e sim um botao que RECARREGA A PROPRIA PAGINA com o rotulo da loja do lado, a
+ * cicatriz de 30/10/2026 nesta mesma ilha.
+ *
+ * A FRASE VEM DO CHAMADOR quando ele a tiver, porque nas ferramentas desta ilha
+ * texto de tela nao se escreve dentro do snippet (secao 8 e 32.4): o molde mora
+ * no arquivo de dado, para a mesma frase servir o HTML pre-renderizado e a
+ * recomputacao no navegador. Quem nao passar frase recebe a desta casca, que
+ * promete a BUSCA e nunca a lista conferida.
+ *
+ * OS GANCHOS `data-rdm-piso-*` SAO PARA O NAVEGADOR TROCAR O DESTINO sem
+ * remontar componente: a categoria da F1 muda a cada troca de campo, e a
+ * prateleira muda com ela.
+ */
+if ( ! function_exists( 'rodametria_casca_piso_do_bloco' ) ) {
+function rodametria_casca_piso_do_bloco( $piso ) {
+	$piso = (array) $piso;
+	$url  = isset( $piso['url_busca'] ) ? trim( (string) $piso['url_busca'] ) : '';
+	$frase = isset( $piso['frase'] ) ? trim( (string) $piso['frase'] ) : '';
+
+	if ( '' === $url ) {
+		/* A AUSENCIA E DITA, NUNCA MAQUIADA (20.8). */
+		return '<p class="rdm-molde-compra-piso rdm-molde-compra-piso-sem"'
+			. ' data-rdm-piso-frase>'
+			. esc_html( '' !== $frase ? $frase
+				: 'Esta tela também está sem link para a loja hoje.' )
+			. '</p>';
+	}
+
+	if ( '' === $frase ) {
+		$frase = 'A busca da loja onde a gente colhe os preços continua aberta, e '
+			. 'ela é a lista da loja, do jeito que ela vier — não uma lista '
+			. 'conferida por nós.';
+	}
+
+	return '<p class="rdm-molde-compra-piso" data-rdm-piso-frase>'
+		. esc_html( $frase ) . '</p>'
+		. '<p class="rdm-molde-compra-piso-link" data-rdm-piso>'
+		. '<a href="' . esc_url( $url ) . '" rel="sponsored noopener"'
+		. ' target="_blank" data-rdm-piso-link>'
+		. esc_html( rodametria_casca_rotulo_do_piso() ) . '</a></p>'
+		. '<p class="rdm-molde-compra-comissao">Link de afiliado: a gente recebe '
+		. 'comissão da loja se você comprar, e o preço para você é o mesmo.</p>';
+}
+}
+
 if ( ! function_exists( 'rodametria_casca_bloco_de_compra' ) ) {
-function rodametria_casca_bloco_de_compra( $titulo, $itens, $frase_de_escopo, $causa_se_vazio = '' ) {
+function rodametria_casca_bloco_de_compra( $titulo, $itens, $frase_de_escopo, $causa_se_vazio = '', $piso = array() ) {
 	$cartoes = '';
 	foreach ( (array) $itens as $item ) {
 		$cartoes .= rodametria_casca_cartao_de_compra( $item );
@@ -1564,6 +1632,14 @@ function rodametria_casca_bloco_de_compra( $titulo, $itens, $frase_de_escopo, $c
 
 	if ( '' === $cartoes ) {
 		$html .= '<p class="rdm-molde-compra-vazio">' . esc_html( $causa_se_vazio ) . '</p>';
+		/* O PISO DA 25.2 NO BLOCO QUE NASCEU VAZIO (25/11/2026, item 1 do
+		   despacho da ronda de hoje). Ele vem DEPOIS da causa e ANTES de
+		   qualquer outra coisa da pagina, pelos dois motivos que a caixa de
+		   ausencia da pagina de produto ja escreveu em 19/11: o teto de 1.400 px
+		   da 32.5 e do PRIMEIRO botao de compra, e a frase de cima acabou de
+		   dizer que nao ha o que recomendar — e e exatamente ali que a pessoa
+		   fica sem saida. */
+		$html .= rodametria_casca_piso_do_bloco( $piso );
 	} else {
 		$html .= '<ul class="rdm-molde-carrossel">' . $cartoes . '</ul>';
 		$html .= '<p class="rdm-molde-compra-comissao">Link de afiliado: a gente recebe '
@@ -2283,6 +2359,17 @@ body.rdm .rdm-molde-compra-escopo{color:var(--rdm-legenda);font-size:.9375rem;ma
 body.rdm .rdm-molde-compra-vazio{color:var(--rdm-legenda);font-size:.9375rem;border-left:3px solid var(--rdm-traco);
   padding-left:var(--rdm-e3);margin:0}
 body.rdm .rdm-molde-compra-comissao{font-size:.8125rem;color:var(--rdm-legenda);margin:var(--rdm-e3) 0 0}
+/* O PISO DA 25.2 NO BLOCO VAZIO (25/11/2026). A frase e legenda; o LINK e botao,
+   e ele e a unica saida de compra da tela quando nao ha cartao — por isso ele
+   nao e uma linha discreta aqui, ao contrario da linha do piso dentro do cartao,
+   onde a ficha e quem manda. O verde nao entra: pelo `DESIGN.md` ele aparece uma
+   vez por tela e nesta tela ele e do veredito. */
+body.rdm .rdm-molde-compra-piso{color:var(--rdm-legenda);font-size:.9375rem;margin:var(--rdm-e3) 0 var(--rdm-e2)}
+body.rdm .rdm-molde-compra-piso-link{margin:0}
+body.rdm .rdm-molde-compra-piso-link a{display:inline-block;font-weight:600;
+  border:1px solid var(--rdm-traco);border-radius:var(--rdm-e2);
+  padding:var(--rdm-e2) var(--rdm-e3);background:var(--rdm-superficie);color:var(--rdm-tinta)}
+body.rdm .rdm-molde-compra-piso-sem{font-size:.9rem;margin:var(--rdm-e3) 0 0}
 .rdm-molde-carrossel{display:flex;gap:var(--rdm-e3);list-style:none;margin:0;padding:0 0 var(--rdm-e2);
   overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
 .rdm-molde-cartao{flex:0 0 232px;scroll-snap-align:start;background:var(--rdm-superficie);

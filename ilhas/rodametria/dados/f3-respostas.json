@@ -3,7 +3,7 @@
   "ilha": "rodametria",
   "ferramenta": "F3",
   "bloco": "4c",
-  "gerado_em": "2026-11-10",
+  "gerado_em": "2026-11-25",
   "gerado_por": "ferramentas/gerar-f3.py",
   "referencia": "regras/f3.py",
   "especificacao": "dados/especificacao-calculadoras.md (secao 3)",
@@ -70,6 +70,7 @@
     "vazio_nome_autocontido_unico": "É ele, com a carga que declara: {lista}.",
     "vazio_sem_nenhum": "Nenhum veículo do nosso banco declara carga máxima hoje, então não há o que comparar com os seus {total} kg. O campo exige ficha de varejo grande para entrar aqui, e estimar carga por tamanho de roda ou por potência seria inventar o número que esta página existe para dar.",
     "convite_f2": "A conta de autonomia trabalha com a bateria e com o relevo, e é aberta sobre o que ela não faz: o peso de quem pilota não entra no cálculo, porque não existe régua publicada de quanto cada quilo custa em watt-hora por km.",
+    "piso_de_compra": "Mesmo sem vitrine você tem para onde ir: esta busca abre os anúncios de {prateleira} na loja onde a gente colhe os preços. É a busca da loja, do jeito que ela vier — a carga máxima você confere na ficha de cada anúncio, com o número que a conta acima deu.",
     "teto_de_mercado": "Para calibrar a expectativa: na faixa que vimos no varejo brasileiro em outubro de 2026, a carga máxima declarada ia de 115 a 140 kg, com {teto} kg sendo o valor que mais se repetia. É o que observamos numa data, não um limite do mercado — e por isso a conta acima compara o seu peso com a ficha de cada veículo, nunca com esse número."
   },
   "margem_pct": 10,
@@ -291,6 +292,18 @@
         "carga_max_kg": 120.0
       }
     ],
+    "piso_da_busca": {
+      "tem_piso": true,
+      "prateleira": "patinete elétrico",
+      "consulta_slug": "veiculos/patinete-eletrico",
+      "chave": "patinete eletrico adulto",
+      "url_busca": "https://s.shopee.com.br/5VWwu572a8",
+      "url_busca_produto": "https://shopee.com.br/search?keyword=patinete%20eletrico%20adulto",
+      "sub_id_1": "rodametria",
+      "medido_em": "2026-11-16",
+      "encurtamento_tentado_em": "2026-11-16",
+      "por_que_nao": null
+    },
     "com_oferta": []
   }
 }

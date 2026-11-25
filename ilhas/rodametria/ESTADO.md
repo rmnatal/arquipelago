@@ -35,13 +35,10 @@ ultima_execucao: 2026-11-25T13:4xZ   # A FILA ESTAVA VAZIA OUTRA VEZ, e
                          # faz 84, com 3 reprovadas. Revisao 138 no ar e
                          # CONFERIDA. O detalhe esta no `bloco_atual` e no
                          # REGISTRO.md.
-executando_desde: 2026-11-25T16:16Z   # RESERVA da execucao de 2026-11-25T16:16Z (passo 5 da
-                         # secao 1 / passo 2 da 1.2). O campo estava `null`, que
-                         # pela 1.1 ja significa que nao ha bloco da Fundacao
-                         # vivo; o ultimo commit na pasta era das 15h47Z e e da
-                         # RONDA (Sentinela), que pela 1.1 nao reserva nada. Rabo
-                         # de comentario da reserva anterior REMOVIDO junto, pela
-                         # licao de 17/11 deste mesmo cabecalho.
+executando_desde: 2026-11-25T16:33Z   # RESERVA RENOVADA pela 1.1 no commit do
+                         # desembarque: a reserva das 16h16Z ia vencer e o bloco
+                         # segue vivo. Renovar e uma linha, e e o que faz a
+                         # proxima execucao nao precisar do git para saber.
 rede: aberta em 2026-11-25   # 20.2, REMEDIDA e nao herdada nesta
                              # execucao das 13h17Z: `rodametria.com.br/` e
                              # `/veiculos/` em 200, com example.com em 000 no

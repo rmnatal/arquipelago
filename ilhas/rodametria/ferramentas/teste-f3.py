@@ -607,6 +607,55 @@ def main():
     nota("a resposta do `FAQPage` le a camada autocontida, e ela carrega os %d "
          "nome(s) que a tela serve logo abaixo" % len(_nomes))
 
+    # ------------------------------------------------------------------
+    # O PISO DA 25.2 DESTA FERRAMENTA (25/11/2026, item 2 do despacho da ronda).
+    #
+    # O DEFEITO MEDIDO NO AR: com 100 kg + 8 kg a pagina responde que tres de
+    # tres veiculos aguentariam o peso e que nenhum deles tem oferta aberta, os
+    # NOMEIA — e serve ZERO link de loja na pagina inteira. A frase satisfaz o
+    # "ou" da 25.2-c regra 2 (ela DIZ a ausencia), e o piso de
+    # `patinete eletrico adulto` estava publicado no banco desde 16/11: quem
+    # acabou de ler "tres aguentam o seu peso" era mandado para lugar nenhum.
+    #
+    # ESTA PONTA MEDE O QUE O PHP NAO MEDE: que o campo SERVIDO e refabricavel
+    # do banco de ofertas. O portao em PHP (`teste-piso-do-bloco.php`) confere a
+    # decisao e o traje; sem esta linha ele poderia estar verde com o JSON no ar
+    # trazendo outra coisa.
+    piso = (d.get("compra") or {}).get("piso_da_busca")
+    afirma(isinstance(piso, dict),
+           "`compra.piso_da_busca` nao existe no dado servido — sem ele a pagina "
+           "sem vitrine nao tem de onde ler o piso da 25.2")
+    if isinstance(piso, dict):
+        with open(os.path.join(ILHA, "dados", "anuncios-por-consulta.json"),
+                  encoding="utf-8") as fh:
+            consultas = json.loads(fh.read())["consultas"]
+        afirma(piso == f3ref.piso_da_busca(consultas),
+               "o piso SERVIDO nao e refabricavel do banco de ofertas. Rode "
+               "`python3 ferramentas/gerar-f3.py`")
+        afirma(piso.get("tem_piso"),
+               "a F3 esta sem piso da 25.2 no banco de hoje (%s), e a pagina ja "
+               "serve vitrine vazia: ela ficaria sem porta de compra nenhuma"
+               % piso.get("por_que_nao"))
+        afirma(str(piso.get("url_busca") or "").startswith("https://s.shopee.com.br/"),
+               "o piso da F3 nao e a busca ENCURTADA da loja: %r — link cru nao "
+               "rende comissao (25.2-b)" % piso.get("url_busca"))
+        afirma(piso.get("encurtamento_tentado_em"),
+               "o piso da F3 nao registra `encurtamento_tentado_em` (25.2-b: "
+               "ausente e diferente de tentado-e-falhou)")
+        afirma(str(piso.get("prateleira") or "") != str(piso.get("chave") or ""),
+               "a prateleira visivel da F3 e a propria chave ASCII do banco (%r), "
+               "e ela iria acentuada para a tela" % piso.get("chave"))
+        afirma("{prateleira}" in (d["frases_molde"].get("piso_de_compra") or ""),
+               "o molde `piso_de_compra` da F3 nao tem a chave `{prateleira}`")
+        # E A CHAMADA DO BLOCO PASSA O PISO: funcao certa que ninguem chama e o
+        # defeito que esta ilha paga desde 09/11 (`array()` literal na F1).
+        afirma("rodametria_f3_piso_da_busca( $d )" in php,
+               "o snippet da F3 nao passa o piso para o bloco de compra — a "
+               "funcao existir e nao ser chamada e a cicatriz do `array()` "
+               "literal da F1, de 09/11/2026")
+        nota("piso da 25.2 da F3: `%s`, refeito do banco de ofertas e passado ao "
+             "bloco de compra" % piso.get("prateleira"))
+
     for n in notas:
         print("  . %s" % n)
     print("")

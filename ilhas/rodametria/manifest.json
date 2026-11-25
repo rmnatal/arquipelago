@@ -4,7 +4,7 @@
   "nicho": "mobilidade eletrica — acertar os tres numeros antes de comprar um veiculo eletrico: categoria legal (CNH e placa), autonomia real e carga maxima",
   "dominio": "https://rodametria.com.br",
   "versao_manifest": 1,
-  "revisao": 138,
+  "revisao": 140,
   "atualizado_em": "2026-11-25",
   "estado": "nascendo",
   "desembarque": {
@@ -20,9 +20,9 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "8cee4df39fb81b03e1f1b659b106be42b4810de9d421f02423d34f2f6c56ff05",
-      "versao": "1.33.0",
-      "mudou_em": "2026-11-24",
+      "sha256": "ea4f6fc81c1e17aa84f15e1002964dc06295f79f6e7a2312606f5c715210ee45",
+      "versao": "1.34.0",
+      "mudou_em": "2026-11-25",
       "renderiza": [
         "*"
       ],
@@ -35,8 +35,8 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "bf9227b2bde0e9c350f3d2e612e0644ab78dc0c13df2f72c37d2c560bb01bee9",
-      "versao": "1.7.1",
+      "sha256": "53aacef6c8d6bd22cecedd6eb684154bb126ef79335bb22c9a9a892051383519",
+      "versao": "1.8.0",
       "mudou_em": "2026-11-25",
       "renderiza": [
         "inicio"
@@ -65,9 +65,9 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "e410b8cd98d9176082221cc55dad99f42618d82b2c89d1b1278233efe0cebee4",
-      "versao": "1.9.0",
-      "mudou_em": "2026-11-24",
+      "sha256": "07afc8f58d562c19b9eaec653b985adb71e8c4a52c6a32e1166b9133a1113c57",
+      "versao": "1.10.0",
+      "mudou_em": "2026-11-25",
       "renderiza": [
         "peso-maximo-patinete-eletrico"
       ],
@@ -207,8 +207,8 @@
       "arquivo": "dados/f1-respostas.json",
       "formato": "json",
       "publicar": true,
-      "sha256": "f1ced9581997d048e09a5dfc490d2a4f3a60e0af67a452b918fdb900585f0851",
-      "mudou_em": null,
+      "sha256": "8f9c5dcb7f8f846dfd9dcd3e990c4f4342564a9e2bfc05b2d5ddc59afb478239",
+      "mudou_em": "2026-11-25",
       "descricao": "Tudo o que a F1 serve na tela, escrito por ferramentas/gerar-f1.py a partir de regras/f1.py e de dados/constantes.json. Inclui os moldes de frase INTEIROS (o PHP e o JS leem os mesmos, para as duas metades nao poderem dizer coisas diferentes para a mesma entrada), os limiares lidos da resolucao, as duas tabelas pre-renderizadas e a prestacao de contas com a soma fechando o banco."
     },
     {
@@ -216,8 +216,8 @@
       "arquivo": "dados/f3-respostas.json",
       "formato": "json",
       "publicar": true,
-      "sha256": "80a23ad6ab527c5da70a2a86a0904cd6b63039f57226c2961b2ac59699d01cc7",
-      "mudou_em": null,
+      "sha256": "88564ec27e6e247e40077ebb9bb5bbe628c4f60aed6fd95cb91458a82165d7c4",
+      "mudou_em": "2026-11-25",
       "descricao": "Tudo o que a F3 serve na tela, escrito por ferramentas/gerar-f3.py a partir de regras/f3.py e de dados/constantes.json. Inclui os moldes de frase INTEIROS (o PHP e o JS leem os mesmos, para as duas metades nao poderem dizer coisas diferentes para a mesma entrada), a tabela pre-renderizada de 9 pesos com a carga minima de cada um recomputada pela referencia, as DUAS contagens por linha (quantos do banco aguentariam aquele peso e quantos poderiam ser oferecidos — fatos diferentes, e hoje a segunda e zero em toda linha), e a prestacao de contas com a soma fechando os 17 registros do banco."
     },
     {
@@ -234,7 +234,7 @@
       "arquivo": "dados/datas-de-codigo.json",
       "formato": "json",
       "publicar": true,
-      "sha256": "4752e0d4734de349e96555015ef6e703a9513b3d9020ab41996454eaf4e40459",
+      "sha256": "a4448b7ecd704ef59a5a4c7d52be8f4e031b631937483900c38d4c733f1b9999",
       "mudou_em": "2026-11-25",
       "descricao": "A DATA EM QUE O CODIGO DE CADA PAGINA MUDOU, e ela e a TERCEIRA fonte da data de uma pagina (23/11/2026, segunda metade do item 2 do despacho da ronda deste dia). As duas primeiras sao os bancos de que a pagina e feita; esta e o codigo que a desenha. `publicar: true` NAO e opcional aqui e e o motivo de este arquivo existir: a alinea (c) do pedido era \"o `mudou_em` viajar ate o ar\", e a casca NAO le o manifest.json — ela le as options que o Sync grava, e o Sync so grava item de dado publicavel. Entao a data do codigo tinha de VIRAR DADO para alcancar a tela. Escrito por `ferramentas/gerar-datas-de-codigo.py`, que o compila do `mudou_em` por item do manifest pelo campo `renderiza` de cada snippet, e cobrado por `ferramentas/teste-datas-de-codigo.py`. NENHUMA data e digitada no caminho: `mudou_em` recebe a data de hoje no mesmo gesto em que o `sha256` do item troca, e este arquivo e funcao PURA do manifest — sem data de geracao dentro, para o `sha256` dele nao trocar todo dia e a revisao nao subir por nada."
     }

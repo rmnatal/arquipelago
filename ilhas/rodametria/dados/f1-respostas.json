@@ -3,7 +3,7 @@
   "ilha": "rodametria",
   "ferramenta": "F1",
   "bloco": "4",
-  "gerado_em": "2026-11-11",
+  "gerado_em": "2026-11-25",
   "gerado_por": "ferramentas/gerar-f1.py",
   "referencia": "regras/f1.py",
   "especificacao": "dados/especificacao-calculadoras.md, secao 1",
@@ -235,7 +235,10 @@
     "prestacao_nominal_varios": "{com_nominal} declaram a potência nominal",
     "prestacao_classifica_nenhum": "nenhum dá para classificar",
     "prestacao_classifica_um": "{classificaveis} dá para classificar",
-    "prestacao_classifica_varios": "{classificaveis} dão para classificar"
+    "prestacao_classifica_varios": "{classificaveis} dão para classificar",
+    "piso_de_compra": "Você não sai desta tela sem porta de loja: esta busca abre os anúncios de {prateleira} na loja onde a gente colhe os preços. É a busca da loja, do jeito que ela vier, e não uma lista conferida contra a regra — ela pode trazer veículo de outra categoria.",
+    "piso_sem_prateleira": "Esta tela está sem link de loja agora: a gente não tem no banco de hoje a busca da prateleira desta categoria.",
+    "piso_sem_categoria": "Sem a categoria a gente não sabe qual é a sua prateleira, e por isso esta tela está sem link de loja agora. Informe o acelerador e a resposta volta, com a busca da loja embaixo dela."
   },
   "frases_numeros_que_circulam": [
     "Procurando a resposta desta pergunta a gente achou três pares de números diferentes, em páginas que todas se apresentam como quem sabe. Depois de ler a resolução, dois deles estão lá — e são de categorias diferentes, por isso não competem.",
@@ -600,6 +603,56 @@
         "o modelo 'melhor de 2026' de uma lista comercial (2 x 1.000 W, 72 km/h)"
       ]
     },
-    "total_registros_veiculos": 17
+    "total_registros_veiculos": 17,
+    "piso_por_categoria": {
+      "bicicleta_eletrica": {
+        "tem_piso": true,
+        "prateleira": "bicicleta elétrica",
+        "consulta_slug": "veiculos/bicicleta-eletrica",
+        "chave": "bicicleta eletrica adulto",
+        "url_busca": "https://s.shopee.com.br/2qWBjBH7i9",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=bicicleta%20eletrica%20adulto",
+        "sub_id_1": "rodametria",
+        "medido_em": "2026-11-16",
+        "encurtamento_tentado_em": "2026-11-16",
+        "por_que_nao": null
+      },
+      "autopropelido": {
+        "tem_piso": true,
+        "prateleira": "patinete elétrico",
+        "consulta_slug": "veiculos/patinete-eletrico",
+        "chave": "patinete eletrico adulto",
+        "url_busca": "https://s.shopee.com.br/5VWwu572a8",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=patinete%20eletrico%20adulto",
+        "sub_id_1": "rodametria",
+        "medido_em": "2026-11-16",
+        "encurtamento_tentado_em": "2026-11-16",
+        "por_que_nao": null
+      },
+      "ciclomotor": {
+        "tem_piso": true,
+        "prateleira": "moto elétrica",
+        "consulta_slug": "veiculos/moto-eletrica",
+        "chave": "moto eletrica adulto",
+        "url_busca": "https://s.shopee.com.br/2gClWsHpKL",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=moto%20eletrica%20adulto",
+        "sub_id_1": "rodametria",
+        "medido_em": "2026-11-16",
+        "encurtamento_tentado_em": "2026-11-16",
+        "por_que_nao": null
+      },
+      "acima_do_ciclomotor": {
+        "tem_piso": true,
+        "prateleira": "moto elétrica",
+        "consulta_slug": "veiculos/moto-eletrica",
+        "chave": "moto eletrica adulto",
+        "url_busca": "https://s.shopee.com.br/2gClWsHpKL",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=moto%20eletrica%20adulto",
+        "sub_id_1": "rodametria",
+        "medido_em": "2026-11-16",
+        "encurtamento_tentado_em": "2026-11-16",
+        "por_que_nao": null
+      }
+    }
   }
 }

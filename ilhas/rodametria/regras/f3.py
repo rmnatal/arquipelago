@@ -85,6 +85,19 @@ CONSTANTE_DO_TETO_DE_MERCADO = "teto-de-carga-do-mercado-brasileiro"
 # duas vezes de proposito e a DECISAO — qual molde vale em cada mundo.
 # --------------------------------------------------------------------------
 
+# A PRATELEIRA COMERCIAL DESTA FERRAMENTA (25/11/2026).
+#
+# A F3 responde sobre PESO de patinete eletrico — o `h1` dela e "Peso maximo
+# suportado por patinete eletrico" —, e a prateleira que responde por ela no
+# banco de ofertas e a consulta `veiculos/patinete-eletrico`, de onde sai o piso
+# `patinete eletrico adulto`. Uma ferramenta, uma prateleira: ao contrario da F1,
+# que responde por quatro categorias legais, esta nao troca de assunto quando a
+# pessoa troca o peso.
+#
+# O NOME QUE VAI PARA A TELA SAI DA `consulta` DO BANCO, acentuada, e nunca da
+# `chave`, que e ASCII.
+PRATELEIRA = "veiculos/patinete-eletrico"
+
 MOLDES = {
     # A RESPOSTA PRINCIPAL, e ela nao depende do banco.
     "precisa": (
@@ -232,6 +245,29 @@ MOLDES = {
         "porque não existe régua publicada de quanto cada quilo custa em "
         "watt-hora por km."
     ),
+    # O PISO DA 25.2 NA TELA DESTA FERRAMENTA (25/11/2026, item 2 do despacho da
+    # ronda de hoje).
+    #
+    # O DEFEITO MEDIDO NO AR: com 100 kg + 8 kg a pagina responde que "3 dos 3
+    # veiculos que declaram carga maxima no nosso banco aguentariam os seus 102
+    # kg com folga — e nenhum deles tem oferta aberta hoje", nomeia os tres, e
+    # serve ZERO link de loja na pagina inteira. A frase satisfaz o "ou" da
+    # 25.2-c regra 2 (ela DIZ que esta sem oferta), e por isso o despacho a pos
+    # como NORMAL e nao ALTA — mas o piso de `patinete eletrico adulto` esta
+    # publicado no banco desde 16/11, e a pagina mandava para lugar nenhum quem
+    # acabou de ler que tres aguentam o peso dele.
+    #
+    # A FRASE NAO PROMETE A CARGA, E ESSA E A LINHA FINA DELA: o que a busca
+    # devolve e a prateleira da loja, e carga maxima e justamente o campo que
+    # 14 dos 17 registros deste banco NAO declaram. Prometer "os que aguentam
+    # voce" dentro de uma busca crua seria vender a conferencia que esta pagina
+    # existe para fazer e que a loja nao faz.
+    "piso_de_compra": (
+        "Mesmo sem vitrine você tem para onde ir: esta busca abre os anúncios de "
+        "{prateleira} na loja onde a gente colhe os preços. É a busca da loja, do "
+        "jeito que ela vier — a carga máxima você confere na ficha de cada anúncio, "
+        "com o número que a conta acima deu."
+    ),
     # A frase do teto de mercado, dita como observacao datada e nunca como limite.
     "teto_de_mercado": (
         "Para calibrar a expectativa: na faixa que vimos no varejo brasileiro em "
@@ -241,6 +277,52 @@ MOLDES = {
         "ficha de cada veículo, nunca com esse número."
     ),
 }
+
+
+def piso_da_busca(consultas):
+    """O PISO DA 25.2 DESTA FERRAMENTA, juntado do banco de ofertas (25/11/2026).
+
+    ENTRA a lista `consultas` de `dados/anuncios-por-consulta.json`; SAI o piso
+    da prateleira desta ferramenta, SEMPRE como dicionario, com `tem_piso` e a
+    causa escrita quando falso. A irma desta funcao e `piso_por_categoria()` em
+    regras/f1.py, e as duas tem o mesmo desenho de proposito: a decisao de qual
+    prateleira responde pela ferramenta mora na referencia, que e o lugar que o
+    portao consegue refabricar.
+
+    Piso sem `url_busca` nao e piso, e piso sem o nome visivel da prateleira
+    tambem nao: sem ele a frase sairia com um buraco onde devia estar o nome.
+    """
+    c = None
+    for linha in (consultas or []):
+        if str(linha.get("slug") or "") == PRATELEIRA:
+            c = linha
+            break
+
+    piso = (c or {}).get("piso_da_busca") or {}
+    url = str(piso.get("url_busca") or "").strip()
+    prateleira = str((c or {}).get("consulta") or "").strip()
+
+    if c is None:
+        causa = "a consulta %r nao existe no banco de ofertas" % PRATELEIRA
+    elif not url:
+        causa = "a consulta %r esta no banco e nao tem `piso_da_busca.url_busca`" % PRATELEIRA
+    elif not prateleira:
+        causa = "a consulta %r nao declara o nome visivel em `consulta`" % PRATELEIRA
+    else:
+        causa = ""
+
+    return {
+        "tem_piso": "" == causa,
+        "prateleira": prateleira,
+        "consulta_slug": PRATELEIRA,
+        "chave": str(piso.get("chave") or "") or None,
+        "url_busca": url or None,
+        "url_busca_produto": str(piso.get("url_busca_produto") or "") or None,
+        "sub_id_1": str(piso.get("sub_id_1") or "") or None,
+        "medido_em": str(piso.get("medido_em") or "") or None,
+        "encurtamento_tentado_em": str(piso.get("encurtamento_tentado_em") or "") or None,
+        "por_que_nao": causa or None,
+    }
 
 
 def carregar_constantes(caminho=None):

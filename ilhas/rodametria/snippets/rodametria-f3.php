@@ -45,7 +45,7 @@
  */
 
 if ( ! defined( 'RODAMETRIA_F3_VERSAO' ) ) {
-	define( 'RODAMETRIA_F3_VERSAO', '1.9.0' );
+	define( 'RODAMETRIA_F3_VERSAO', '1.10.0' );
 }
 
 /* A VERSAO DESTE SNIPPET VAI AO AR (20.7). A CHAVE E O `id` DO manifest.json, e
@@ -462,6 +462,38 @@ function rodametria_f3_dobras_html( $d ) {
 /* ---------------------------------------------------------------------------
  * A PAGINA, na ordem da 32.1.
  * ------------------------------------------------------------------------- */
+/**
+ * O PISO DA 25.2 DESTA FERRAMENTA, LIDO DO DADO PUBLICADO (25/11/2026).
+ *
+ * A FRASE SAI DO MOLDE E NUNCA DAQUI, pela secao 8 e pela 32.4: nenhum numero e
+ * nenhuma frase de resposta desta ferramenta e digitada dentro do snippet. O
+ * molde `piso_de_compra` viaja em `frases_molde`, e o nome da prateleira vem do
+ * banco de ofertas por dentro de `compra.piso_da_busca` — que e o campo que a
+ * 25.2-c regra 1 manda viver FORA do bloco da vitrine.
+ *
+ * DEVOLVE `url_busca` VAZIA quando o piso nao existe, e a casca, recebendo isso,
+ * DIZ que a tela esta sem link de loja em vez de servir `href` vazio.
+ */
+if ( ! function_exists( 'rodametria_f3_piso_da_busca' ) ) {
+function rodametria_f3_piso_da_busca( $d ) {
+	$p = isset( $d['compra']['piso_da_busca'] )
+		? (array) $d['compra']['piso_da_busca'] : array();
+	$u = isset( $p['url_busca'] ) ? trim( (string) $p['url_busca'] ) : '';
+	$prateleira = isset( $p['prateleira'] ) ? trim( (string) $p['prateleira'] ) : '';
+	$molde = isset( $d['frases_molde']['piso_de_compra'] )
+		? (string) $d['frases_molde']['piso_de_compra'] : '';
+
+	if ( '' === $u || '' === $prateleira || '' === $molde ) {
+		return array( 'url_busca' => '', 'frase' => '' );
+	}
+
+	return array(
+		'url_busca' => $u,
+		'frase'     => str_replace( '{prateleira}', $prateleira, $molde ),
+	);
+}
+}
+
 if ( ! function_exists( 'rodametria_f3_pagina_html' ) ) {
 function rodametria_f3_pagina_html() {
 	$d = rodametria_casca_banco( RODAMETRIA_ID_DADOS_F3 );
@@ -510,7 +542,15 @@ function rodametria_f3_pagina_html() {
 		'Entram aqui os veículos que declaram a carga máxima na ficha e têm link de '
 			. 'loja aberto. Quem declara a carga e não tem link aparece logo abaixo, '
 			. 'nomeado.',
-		$causa );
+		$causa,
+		/* O PISO DA 25.2 (25/11/2026, item 2 do despacho da ronda de hoje). A
+		   `$causa` acima acaba de dizer que os veiculos que aguentam o peso nao
+		   tem oferta aberta — e e exatamente ali que a pessoa ficava sem saida
+		   de compra, com o piso de `patinete eletrico adulto` publicado no banco
+		   desde 16/11. Esta ferramenta tem UMA prateleira e nao troca de assunto
+		   quando a pessoa troca o peso, entao o piso dela nao precisa do
+		   navegador: o HTML servido ja o traz resolvido. */
+		rodametria_f3_piso_da_busca( $d ) );
 
 	$html .= '<h2>O que o nosso banco tem para o seu peso</h2>';
 	$html .= rodametria_f3_grupos_html( $d );

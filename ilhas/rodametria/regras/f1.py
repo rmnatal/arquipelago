@@ -126,6 +126,49 @@ ARTIGO_DA_CATEGORIA = {
 }
 
 
+# A PRATELEIRA COMERCIAL DE CADA CATEGORIA LEGAL (25/11/2026).
+#
+# POR QUE ESTE MAPA EXISTE, e e a escolha que o despacho da ronda de hoje
+# devolveu para a Fundacao nomeando a causa: a F1 responde por CATEGORIA LEGAL
+# (a Resolucao Contran 996/2023 so conhece bicicleta eletrica, autopropelido,
+# ciclomotor e o que passa do ciclomotor) e o banco de ofertas guarda o piso da
+# 25.2 por CONSULTA COMERCIAL (o nome que a pessoa digita na loja). As duas
+# listas NAO se correspondem uma para uma: sao quatro categorias contra tres
+# prateleiras, e a prateleira da moto responde por duas categorias.
+#
+# AS QUATRO ESCOLHAS, com o motivo de cada uma escrito do lado — porque mapa sem
+# motivo e mapa que a proxima passada reescreve ao contrario sem saber:
+#
+#   bicicleta_eletrica  -> a prateleira tem o MESMO nome da categoria, e os
+#                          limites dela (350 W e 25 km/h, so com pedal
+#                          assistido) sao os que o varejo anuncia como
+#                          bicicleta eletrica.
+#   autopropelido       -> a prateleira e `patinete eletrico`: autopropelido e o
+#                          nome que a resolucao da ao que a loja vende como
+#                          patinete, e a ficha desta ilha (bussola) poe o
+#                          patinete no centro do nicho.
+#   ciclomotor          -> a prateleira e `moto eletrica`: acima dos limites do
+#                          autopropelido o varejo nomeia scooter e moto, e os
+#                          1.000 a 4.000 W do ciclomotor sao justamente a faixa
+#                          dos anuncios de moto eletrica que a ilha colheu.
+#   acima_do_ciclomotor -> a MESMA prateleira da moto. Acima do ciclomotor a
+#                          resolucao ja fala de motocicleta, e no corpus medido
+#                          desta ilha o varejo nao tem prateleira separada para
+#                          ela: `moto eletrica` e a mais proxima que existe de
+#                          verdade, e inventar uma terceira seria publicar uma
+#                          prateleira que ninguem mediu.
+#
+# O NOME QUE VAI PARA A TELA NAO E A `chave` DO PISO: a chave do banco e ASCII
+# (`patinete eletrico adulto`) e texto de tela desta ilha e acentuado. O nome
+# visivel sai da `consulta` do proprio banco, que ja nasce acentuada.
+PRATELEIRA_DA_CATEGORIA = {
+    "bicicleta_eletrica": "veiculos/bicicleta-eletrica",
+    "autopropelido": "veiculos/patinete-eletrico",
+    "ciclomotor": "veiculos/moto-eletrica",
+    "acima_do_ciclomotor": "veiculos/moto-eletrica",
+}
+
+
 # --------------------------------------------------------------------------
 # OS MOLDES DE FRASE, NUM LUGAR SO.
 #
@@ -394,6 +437,47 @@ MOLDES = {
     "prestacao_classifica_nenhum": "nenhum dá para classificar",
     "prestacao_classifica_um": "{classificaveis} dá para classificar",
     "prestacao_classifica_varios": "{classificaveis} dão para classificar",
+    # ---- O PISO DA 25.2 NA TELA DA FERRAMENTA (25/11/2026, item 1 do despacho
+    # da ronda de hoje).
+    #
+    # O DEFEITO QUE ELES EXISTEM PARA FECHAR FOI MEDIDO NO AR, nas QUATRO
+    # categorias, executando o formulario: a home servia o bloco "À venda agora
+    # nesta categoria" com ZERO link de loja, e o piso daquelas prateleiras
+    # estava publicado no banco desde 16/11. A causa nao era de dado, era de
+    # LUGAR — a 25.2-c um andar acima da pagina de produto, que pagou a MESMA
+    # classe em 19/11.
+    #
+    # POR QUE A FRASE PROMETE A BUSCA E NUNCA A CATEGORIA: a tese desta ilha e
+    # que o varejo NAO declara o watt que a regra le — nenhum dos anuncios
+    # colhidos declara a potencia nominal —, logo a ilha nao tem como afirmar que
+    # o que a busca devolve cai na categoria que a ferramenta acabou de dizer.
+    # Prometer "os modelos desta categoria" seria vender a classificacao que a
+    # propria pagina diz, duas telas acima, que nao consegue fazer.
+    "piso_de_compra": (
+        "Você não sai desta tela sem porta de loja: esta busca abre os anúncios "
+        "de {prateleira} na loja onde a gente colhe os preços. É a busca da "
+        "loja, do jeito que ela vier, e não uma lista conferida contra a regra "
+        "— ela pode trazer veículo de outra categoria."
+    ),
+    # SEM CATEGORIA NAO HA PRATELEIRA, E A TELA DIZ ISSO (25.2-c, regra 2: serve
+    # o piso OU diz que esta sem link de loja). Mandar quem nao tem resposta para
+    # uma prateleira escolhida por nos seria escolher por ela o veiculo que ela
+    # ainda nao sabe se pode ter.
+    # A CATEGORIA EXISTE E A PRATELEIRA NAO: mundo diferente do de cima, e por
+    # isso frase diferente. Quem le "sem a categoria a gente nao sabe" com a
+    # categoria na tela recebe uma causa que nao e a dele. Hoje as quatro
+    # categorias tem prateleira viva, e este molde e a trava para o dia em que
+    # uma coleta apagar o piso de uma delas — como a de 17/11/2026 apagou o das
+    # duas consultas desta ilha.
+    "piso_sem_prateleira": (
+        "Esta tela está sem link de loja agora: a gente não tem no banco de hoje "
+        "a busca da prateleira desta categoria."
+    ),
+    "piso_sem_categoria": (
+        "Sem a categoria a gente não sabe qual é a sua prateleira, e por isso "
+        "esta tela está sem link de loja agora. Informe o acelerador e a "
+        "resposta volta, com a busca da loja embaixo dela."
+    ),
 }
 
 
@@ -939,6 +1023,68 @@ def grupos_de_compra(registros, categoria_pedida, limiares):
     assert soma == len(registros), (
         "prestacao de contas furada: %d agrupados de %d recebidos" % (soma, len(registros)))
     return g
+
+
+def piso_por_categoria(consultas):
+    """O PISO DA 25.2 DE CADA CATEGORIA DA F1, juntado do banco de ofertas.
+
+    ENTRA a lista `consultas` de `dados/anuncios-por-consulta.json`; SAI um mapa
+    `categoria -> piso`, com as quatro categorias da F1 SEMPRE presentes. A
+    categoria sem prateleira viva sai com `tem_piso: False` e a causa escrita —
+    nunca ausente do mapa, porque chave que falta e lida pelo navegador como
+    `undefined` e `undefined` nao tem causa.
+
+    POR QUE AQUI E NAO NO GERADOR: esta e a decisao (qual prateleira responde por
+    qual categoria), e a decisao desta ferramenta mora na referencia, que e o
+    lugar que o portao da F1 consegue refabricar. Gerador que decide e decisao
+    que nenhuma regua reproduz.
+
+    O QUE ELA NAO FAZ, de proposito: nao inventa `url_busca`, nao monta link de
+    afiliado a mao (25.8) e nao aceita piso sem a busca encurtada ausente como se
+    fosse piso. Piso sem `url_busca` nao e piso.
+    """
+    por_slug = {}
+    for c in (consultas or []):
+        slug = str(c.get("slug") or "")
+        if slug:
+            por_slug[slug] = c
+
+    saida = {}
+    for cat in CATEGORIAS:
+        slug = PRATELEIRA_DA_CATEGORIA.get(cat)
+        c = por_slug.get(slug)
+        piso = (c or {}).get("piso_da_busca") or {}
+        url = str(piso.get("url_busca") or "").strip()
+        # O NOME VISIVEL SAI DA `consulta`, acentuada, e nunca da `chave` ASCII.
+        prateleira = str((c or {}).get("consulta") or "").strip()
+
+        if not slug:
+            causa = "esta categoria nao tem prateleira declarada em PRATELEIRA_DA_CATEGORIA"
+        elif c is None:
+            causa = "a consulta %r nao existe no banco de ofertas" % slug
+        elif not url:
+            causa = "a consulta %r esta no banco e nao tem `piso_da_busca.url_busca`" % slug
+        elif not prateleira:
+            causa = "a consulta %r nao declara o nome visivel em `consulta`" % slug
+        else:
+            causa = ""
+
+        saida[cat] = {
+            "tem_piso": "" == causa,
+            "prateleira": prateleira,
+            "consulta_slug": slug or None,
+            # A PROCEDENCIA VIAJA COM O PISO: a chave do banco, a busca crua e a
+            # data da medicao. Eles nao vao para a tela; eles existem para a
+            # proxima passada saber de onde o link saiu sem reabrir o banco.
+            "chave": str(piso.get("chave") or "") or None,
+            "url_busca": url or None,
+            "url_busca_produto": str(piso.get("url_busca_produto") or "") or None,
+            "sub_id_1": str(piso.get("sub_id_1") or "") or None,
+            "medido_em": str(piso.get("medido_em") or "") or None,
+            "encurtamento_tentado_em": str(piso.get("encurtamento_tentado_em") or "") or None,
+            "por_que_nao": causa or None,
+        }
+    return saida
 
 
 if __name__ == "__main__":

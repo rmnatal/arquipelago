@@ -591,31 +591,59 @@ $velha_primeiro_vence = function ( $datas ) {
 	}
 	return '';
 };
+
+/* O MUNDO E FABRICADO DESDE 25/11/2026, E A TROCA E DE METODO E NAO DE VEREDITO.
+   ESTA METADE DEPENDIA DE UM ACIDENTE DO CALENDARIO: ela lia os dois bancos do
+   disco e so conseguia medir a discordancia enquanto o da F1 fosse mais VELHO
+   que o da F2. As 16h2xZ de 25/11/2026 a F1 foi regerada (o piso da 25.2 entrou
+   no `compra`) e o banco dela virou o MAIS NOVO dos dois — com isso o
+   primeiro-vence e o mais-recente passaram a devolver a MESMA data, e esta
+   afirmacao ficou VERMELHA sem nenhum conserto ter sido desfeito. A regra que
+   esta ilha escreve em todo portao desde 06/11 vale aqui tambem: *"os mundos sao
+   FABRICADOS porque o banco de hoje produz um deles, e regua que nunca viu o
+   mundo dela nasce errada sem poder falhar"*. O mundo que importa e o MEDIDO NO
+   AR em 23/11/2026 — F1 mais velha, F2 mais nova —, e ele passa a ser construido
+   aqui com `BANCO_TROCAS`, que este mesmo arquivo ja usa em cinco lugares. */
+$F1_VELHA = '2026-11-11';   /* o `gerado_em` que estava no ar em 23/11/2026 */
+$F2_NOVA  = '2026-11-18';   /* o da F2 naquele mesmo dia, sete dias mais novo */
+$f1_antigo = $dados_f1;
+$f1_antigo['gerado_em'] = $F1_VELHA;
+$f2_recente = $dados_f2;
+$f2_recente['gerado_em'] = $F2_NOVA;
+$GLOBALS['BANCO_TROCAS'][ RODAMETRIA_ID_DADOS_F1 ] = $f1_antigo;
+$GLOBALS['BANCO_TROCAS'][ RODAMETRIA_ID_DADOS_F2 ] = $f2_recente;
+
 /* A ORDEM E A DOS FILTROS: F1 (prioridade 9) antes da casca (10). */
-$velha = $velha_primeiro_vence( array( (string) $dados_f1['gerado_em'],
-                                       (string) $dados_f2['gerado_em'] ) );
+$velha = $velha_primeiro_vence( array( $F1_VELHA, $F2_NOVA ) );
 $nova  = rodametria_casca_data_da_pagina( 'inicio' );
-afirma( $dados_f1['gerado_em'] !== $dados_f2['gerado_em'],
-	'os dois bancos da home estao no MESMO dia, e neste mundo as duas composicoes '
-	. 'concordam — a discordancia desta metade so se mede quando eles divergem. Nao e '
-	. 'falha do conserto: e aviso de que esta afirmacao parou de medir' );
-if ( $dados_f1['gerado_em'] !== $dados_f2['gerado_em'] ) {
-	afirma( $velha !== $nova,
-		sprintf( 'a composicao velha e a nova tinham de DISCORDAR na home e as duas dizem %s',
-			$nova ?: '(vazia)' ) );
-	afirma( $nova === com_codigo( 'inicio', max( (string) $dados_f1['gerado_em'],
-			(string) $dados_f2['gerado_em'] ) ),
-		sprintf( 'a home serve %s e a mais recente das TRES fontes dela e %s',
-			$nova ?: '(vazia)',
-			com_codigo( 'inicio', max( (string) $dados_f1['gerado_em'],
-				(string) $dados_f2['gerado_em'] ) ) ) );
-	afirma( $velha === (string) $dados_f1['gerado_em'],
-		'a composicao velha nao esta reescrita fielmente: ela tinha de devolver a data da '
-		. 'F1, que roda na prioridade 9' );
-	print( sprintf( "  . a home: composicao VELHA diz %s (F1, primeiro-vence) e a NOVA diz %s "
-		. "(a mais recente das duas fontes) — a discordancia vale o `dateModified` que "
-		. "estava no ar\n", $velha, $nova ) );
-}
+
+afirma( $velha !== $nova,
+	sprintf( 'no mundo MEDIDO em 23/11/2026 (F1 em %s, F2 em %s) a composicao velha e '
+		. 'a nova tinham de DISCORDAR na home, e as duas dizem %s',
+		$F1_VELHA, $F2_NOVA, $nova ?: '(vazia)' ) );
+afirma( $nova === com_codigo( 'inicio', max( $F1_VELHA, $F2_NOVA ) ),
+	sprintf( 'a home serve %s e a mais recente das TRES fontes dela e %s',
+		$nova ?: '(vazia)',
+		com_codigo( 'inicio', max( $F1_VELHA, $F2_NOVA ) ) ) );
+afirma( $velha === $F1_VELHA,
+	'a composicao velha nao esta reescrita fielmente: ela tinha de devolver a data da '
+	. 'F1, que roda na prioridade 9' );
+print( sprintf( "  . a home, no mundo fabricado de 23/11: composicao VELHA diz %s (F1, "
+	. "primeiro-vence) e a NOVA diz %s (a mais recente das fontes) — a discordancia vale "
+	. "o `dateModified` que estava no ar\n", $velha, $nova ) );
+
+unset( $GLOBALS['BANCO_TROCAS'][ RODAMETRIA_ID_DADOS_F1 ] );
+unset( $GLOBALS['BANCO_TROCAS'][ RODAMETRIA_ID_DADOS_F2 ] );
+
+/* E O MUNDO DE HOJE FICA REGISTRADO, nunca cobrado: qual dos dois bancos e o
+   mais novo e fato do calendario, e cobrar um fato do calendario e o jeito de um
+   portao ficar vermelho sem nenhum defeito do lado. */
+print( sprintf( "  . o mundo de HOJE: F1 em %s e F2 em %s, e as duas composicoes %s "
+	. "(fato do calendario, registrado e nao cobrado)\n",
+	$dados_f1['gerado_em'], $dados_f2['gerado_em'],
+	$velha_primeiro_vence( array( (string) $dados_f1['gerado_em'],
+		(string) $dados_f2['gerado_em'] ) )
+		=== rodametria_casca_data_da_pagina( 'inicio' ) ? 'CONCORDAM' : 'DISCORDAM' ) );
 
 /* E ELAS CONCORDAM ONDE TEM DE CONCORDAR: pagina de uma fonte so. Conserto que
    muda veredito fora do defeito e afrouxamento ou aperto nao pedido. */

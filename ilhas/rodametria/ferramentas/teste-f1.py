@@ -1149,6 +1149,91 @@ def metade_i():
           "barrado(s) por mundo, e a frase servida refeita do banco" % len(proibidos))
 
 
+def metade_j():
+    """O PISO DA 25.2 POR CATEGORIA — refabricavel do banco de ofertas (25/11/2026).
+
+    O DEFEITO QUE ESTA METADE EXISTE PARA FECHAR foi medido no ar pela ronda de
+    25/11/2026, executando o formulario nas QUATRO categorias e contando
+    `a[href*="shopee"]`: quatro medicoes, quatro ZEROS, com o piso das tres
+    prateleiras publicado no banco desde 16/11. A causa nao era de dado, era de
+    LUGAR — a 25.2-c um andar acima da pagina de produto.
+
+    O QUE AQUI SE MEDE E O QUE O PHP NAO PODE MEDIR: que o campo SERVIDO em
+    `dados/f1-respostas.json` e refabricavel do banco de ofertas. Sem esta
+    ponta, o portao em PHP (`ferramentas/teste-piso-do-bloco.php`) poderia estar
+    verde com o JSON no ar trazendo outra coisa — que e exatamente o que
+    aconteceu nesta ilha em 06/11 e 09/11 com a frase de abertura.
+
+    E A TRAVA DA COLETA, que e o motivo pelo qual este campo existe: em
+    17/11/2026 uma recoleta reescreveu as duas consultas que viram pagina e
+    APAGOU o `piso_da_busca` das duas — o campo nao e escrito por
+    `coletar-por-consulta.py`. No dia em que isso acontecer de novo, esta
+    afirmacao reprova ANTES do desembarque, em vez de a home ir ao ar muda.
+    """
+    servido = json.load(io.open(RESPOSTAS, encoding="utf-8"))
+    pc = (servido.get("compra") or {}).get("piso_por_categoria")
+    ok(isinstance(pc, dict),
+       "`compra.piso_por_categoria` nao existe no dado servido — sem ele a home "
+       "degradada nao tem de onde ler o piso da 25.2")
+    if not isinstance(pc, dict):
+        return
+
+    ok(sorted(pc.keys()) == sorted(f1ref.CATEGORIAS),
+       "o mapa do piso nao traz as QUATRO categorias da F1: %r" % sorted(pc.keys()))
+
+    with io.open(os.path.join(ILHA, "dados", "anuncios-por-consulta.json"),
+                 encoding="utf-8") as fh:
+        consultas = json.load(fh)["consultas"]
+    refeito = f1ref.piso_por_categoria(consultas)
+    ok(pc == refeito,
+       "o piso SERVIDO nao e refabricavel do banco de ofertas. Rode "
+       "`python3 ferramentas/gerar-f1.py`")
+
+    # AS QUATRO TEM PISO HOJE, E ISSO E AFIRMACAO SOBRE O MUNDO E NAO SOBRE O
+    # CODIGO: com uma categoria sem piso a home serve uma tela sem porta de
+    # compra, e a 25.2 nao admite item publicavel sem piso.
+    sem = [k for k, v in sorted(pc.items()) if not v.get("tem_piso")]
+    ok(not sem,
+       "categoria(s) sem piso da 25.2 no banco de hoje: %s"
+       % ", ".join("%s (%s)" % (k, pc[k].get("por_que_nao")) for k in sem))
+
+    # A BUSCA E ENCURTADA E E DA LOJA. Link cru nao rende comissao (25.2-b), e
+    # destino que nao e da loja nao e piso de compra nenhum.
+    for cat, v in sorted(pc.items()):
+        if not v.get("tem_piso"):
+            continue
+        u = str(v.get("url_busca") or "")
+        ok(u.startswith("https://s.shopee.com.br/"),
+           "o piso de %s nao e a busca ENCURTADA da loja: %r" % (cat, u))
+        ok(v.get("encurtamento_tentado_em"),
+           "o piso de %s nao registra `encurtamento_tentado_em` (25.2-b: ausente "
+           "e diferente de tentado-e-falhou)" % cat)
+        # O NOME VISIVEL E ACENTUADO, e a chave do banco NAO pode ser ele: o dado
+        # desta ilha e ASCII de proposito e texto de tela e acentuado.
+        ok(str(v.get("prateleira") or "") != str(v.get("chave") or ""),
+           "a prateleira visivel de %s e a propria chave ASCII do banco (%r), e "
+           "ela iria acentuada para a tela" % (cat, v.get("chave")))
+
+    # E OS TRES MOLDES DO PISO EXISTEM E SAO DISTINTOS: um para cada mundo da
+    # 25.2-c regra 2, e causa trocada e causa errada na cara de quem le.
+    moldes = servido.get("frases_molde") or {}
+    for k in ("piso_de_compra", "piso_sem_categoria", "piso_sem_prateleira"):
+        ok(k in moldes and moldes[k].strip(), "o molde %r nao esta no dado servido" % k)
+    ok(len({moldes.get("piso_de_compra"), moldes.get("piso_sem_categoria"),
+            moldes.get("piso_sem_prateleira")}) == 3,
+       "os tres moldes do piso nao sao distintos entre si")
+    ok("{prateleira}" in (moldes.get("piso_de_compra") or ""),
+       "o molde `piso_de_compra` nao tem a chave `{prateleira}` — sem ela o nome "
+       "da prateleira teria de ser digitado em algum lugar")
+    for k in ("piso_sem_categoria", "piso_sem_prateleira"):
+        ok("{" not in (moldes.get(k) or ""),
+           "o molde %r tem chave aberta e ninguem a preenche: ela iria crua para "
+           "a tela" % k)
+
+    print("  piso da 25.2: %d categoria(s), refeitas do banco de ofertas, com os "
+          "tres moldes distintos" % len(pc))
+
+
 def main():
     print("PORTAO DA F1 — RODAMETRIA (limiares FICTICIOS na arvore, pela 1.6)")
     metade_a()
@@ -1160,6 +1245,7 @@ def main():
     metade_g()
     metade_h()
     metade_i()
+    metade_j()
 
     print()
     print("teste-f1: %d afirmacoes, %d falha(s)" % (AFIRMACOES[0], len(FALHAS)))

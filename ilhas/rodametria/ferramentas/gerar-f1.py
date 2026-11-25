@@ -343,7 +343,7 @@ def contagem_de_fichas(linhas_banco):
     }
 
 
-def montar(constantes, veiculos, municipios):
+def montar(constantes, veiculos, municipios, consultas):
     lim = f1ref.limiares_publicaveis(constantes)
     linhas_banco = tabela_do_banco(veiculos, constantes)
     fichas = contagem_de_fichas(linhas_banco)
@@ -355,6 +355,11 @@ def montar(constantes, veiculos, municipios):
 
     grupos = f1ref.grupos_de_compra(
         veiculos["registros"], exemplo["categoria"], lim)
+
+    # O PISO DA 25.2 DE CADA CATEGORIA (25/11/2026). A decisao de qual prateleira
+    # responde por qual categoria esta na REFERENCIA, nunca aqui: este gerador so
+    # junta. Ver `PRATELEIRA_DA_CATEGORIA` em regras/f1.py.
+    piso_cat = f1ref.piso_por_categoria(consultas)
 
     linhas_regra = tabela_da_regra(constantes)
 
@@ -372,6 +377,17 @@ def montar(constantes, veiculos, municipios):
                + exemplo["frases_ressalva"]]
     textos += [("frase de abertura da compra",
                 frase_do_bloco_de_compra(grupos, exemplo["categoria"]))]
+    # AS FRASES DO PISO PASSAM PELAS GUARDAS JA PREENCHIDAS, e nao so como molde:
+    # o que vai para a tela e o molde COM o nome da prateleira dentro, e o nome
+    # vem do banco de ofertas — que e ASCII em `chave` e acentuado em `consulta`.
+    # Conferir so o molde deixaria o buraco por onde o ASCII entraria no dia em
+    # que alguem trocasse a fonte do nome.
+    for _cat, _p in sorted(piso_cat.items()):
+        if _p["tem_piso"]:
+            textos.append(("frase do piso de %s" % _cat,
+                           f1ref.MOLDES["piso_de_compra"].replace(
+                               "{prateleira}", _p["prateleira"])))
+    textos.append(("frase do piso sem categoria", f1ref.MOLDES["piso_sem_categoria"]))
     textos += [("frase dos numeros que circulam %d" % i, f)
                for i, f in enumerate(frases_circulam, 1)]
     for linha in (linhas_regra or []):
@@ -496,6 +512,21 @@ def montar(constantes, veiculos, municipios):
                 for k, v in grupos.items()
             },
             "total_registros_veiculos": len(veiculos["registros"]),
+            # O PISO DA 25.2, POR CATEGORIA, DENTRO DO DADO PUBLICADO
+            # (25/11/2026, item 1 do despacho da ronda de hoje).
+            #
+            # ELE MORA AQUI E NAO NO BLOCO DA VITRINE, e isso e a 25.2-c regra 1
+            # ao pe da letra: `vitrine` e exatamente o que NAO nasce quando
+            # nenhum anuncio classifica, e e nessa hora que a pessoa mais precisa
+            # de uma saida. `f1-respostas` tem `publicar: true` no manifest, logo
+            # existe como option no ar; `anuncios-por-consulta`, de onde o piso
+            # vem, tem `publicar: false` e NAO existe — ler de la no PHP seria a
+            # cicatriz de 18/11/2026 outra vez.
+            #
+            # AS QUATRO CATEGORIAS ESTAO SEMPRE AQUI, com `tem_piso` e a causa
+            # escrita quando falso: chave ausente viraria `undefined` no
+            # navegador, e `undefined` nao tem causa para a tela dizer.
+            "piso_por_categoria": piso_cat,
         },
     }
 
@@ -507,8 +538,14 @@ def main():
         veiculos = json.load(f)
     with open(os.path.join(ILHA, "dados", "municipios.json"), encoding="utf-8") as f:
         municipios = json.load(f)["registros"]
+    # O BANCO DE OFERTAS, de onde sai o piso da 25.2 de cada prateleira. Ele tem
+    # `publicar: false` e por isso NAO e lido no ar: o piso viaja daqui para
+    # dentro de `f1-respostas.json`, que e publicado.
+    with open(os.path.join(ILHA, "dados", "anuncios-por-consulta.json"),
+              encoding="utf-8") as f:
+        consultas = json.load(f)["consultas"]
 
-    novo = montar(constantes, veiculos, municipios)
+    novo = montar(constantes, veiculos, municipios, consultas)
     texto = json.dumps(novo, ensure_ascii=False, indent=2) + "\n"
 
     if conferir:
@@ -556,6 +593,14 @@ def main():
     print("  tabela do banco: %d linha(s), %d com watt NOMINAL, %d classificavel(eis)"
           % (t["total"], t["com_nominal"], t["classificaveis"]))
     print("  vitrine: %d cartao(oes)" % len(novo["compra"]["vitrine"]))
+    pc = novo["compra"]["piso_por_categoria"]
+    com = [k for k, v in pc.items() if v["tem_piso"]]
+    print("  piso da 25.2: %d de %d categoria(s) com busca encurtada%s"
+          % (len(com), len(pc),
+             "" if len(com) == len(pc) else
+             " — SEM piso: " + ", ".join(
+                 "%s (%s)" % (k, v["por_que_nao"])
+                 for k, v in sorted(pc.items()) if not v["tem_piso"])))
     print("  prestacao de contas (soma fecha %d registros): %s"
           % (novo["compra"]["total_registros_veiculos"], c))
     return 0

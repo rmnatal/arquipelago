@@ -97,7 +97,7 @@ if ( ! defined( 'RODAMETRIA_F1_VERSAO' ) ) {
 	   SEM o formulario da F1 e SEM a barra fixa, e o `/casca` nao trazia
 	   `rodametria-f1` nenhum — que e exatamente a ausencia que a 20.7 desenhou
 	   para ser o sinal. Tres dos cinco portoes de pagina ficaram verdes. */
-	define( 'RODAMETRIA_F1_VERSAO', '1.7.1' );
+	define( 'RODAMETRIA_F1_VERSAO', '1.8.0' );
 }
 
 if ( ! defined( 'RODAMETRIA_ID_DADOS_F1' ) ) {
@@ -760,6 +760,85 @@ function rodametria_f1_data( $iso ) {
  * A FERRAMENTA INTEIRA, pendurada na PRIMEIRA TELA DA HOME
  * ------------------------------------------------------------------------- */
 
+/**
+ * O PISO DA 25.2 DA CATEGORIA, LIDO DO DADO PUBLICADO (25/11/2026).
+ *
+ * UMA LEITURA, UM LUGAR (20.7): o HTML pre-renderizado pede por aqui e o pacote
+ * do JS pede por aqui. Duas metades escolhendo o piso em dois lacos sao as duas
+ * que um dia discordam — e esta ilha ja pagou isso na frase de abertura deste
+ * mesmo bloco, que era string no PHP e nasceu derivada do banco em 29/10.
+ *
+ * A FRASE SAI DO MOLDE E NUNCA DAQUI, pela secao 8 e pela 32.4: nenhum texto de
+ * tela da F1 e digitado dentro deste snippet. O molde `piso_de_compra` viaja em
+ * `frases_molde` e e o MESMO que o navegador preenche.
+ *
+ * DEVOLVE `array()` quando a categoria nao tem piso — e a casca, que recebe
+ * `array()`, DIZ que a tela esta sem link de loja em vez de servir `href` vazio.
+ * Categoria desconhecida (ou vazia, que e o mundo da RECUSA) tambem cai aqui: o
+ * molde `piso_sem_categoria` e quem fala nesse mundo, e a casca o recebe como
+ * frase da ausencia.
+ */
+if ( ! function_exists( 'rodametria_f1_piso_da_categoria' ) ) {
+function rodametria_f1_piso_da_categoria( $d, $categoria ) {
+	$moldes = isset( $d['frases_molde'] ) ? (array) $d['frases_molde'] : array();
+	$mapa   = isset( $d['compra']['piso_por_categoria'] )
+		? (array) $d['compra']['piso_por_categoria'] : array();
+	$cat    = trim( (string) $categoria );
+
+	if ( '' === $cat || ! isset( $mapa[ $cat ] ) ) {
+		return array(
+			'url_busca' => '',
+			'frase'     => isset( $moldes['piso_sem_categoria'] )
+				? (string) $moldes['piso_sem_categoria'] : '',
+		);
+	}
+
+	$p = (array) $mapa[ $cat ];
+	$u = isset( $p['url_busca'] ) ? trim( (string) $p['url_busca'] ) : '';
+	$prateleira = isset( $p['prateleira'] ) ? trim( (string) $p['prateleira'] ) : '';
+	if ( '' === $u || '' === $prateleira || empty( $moldes['piso_de_compra'] ) ) {
+		/* Piso sem busca encurtada, sem nome de prateleira ou sem molde nao e
+		   piso. A tela diz a ausencia — com a causa DESTE mundo, que nao e a do
+		   mundo sem categoria — e o portao cobra o conserto de quem a le. */
+		return array(
+			'url_busca' => '',
+			'frase'     => isset( $moldes['piso_sem_prateleira'] )
+				? (string) $moldes['piso_sem_prateleira'] : '',
+		);
+	}
+
+	return array(
+		'url_busca' => $u,
+		'frase'     => str_replace( '{prateleira}', $prateleira,
+			(string) $moldes['piso_de_compra'] ),
+	);
+}
+}
+
+/**
+ * O PISO DAS QUATRO CATEGORIAS, PARA O NAVEGADOR — pela MESMA funcao que o PHP.
+ *
+ * As CATEGORIAS saem do mapa do dado publicado e nunca de uma lista escrita
+ * aqui: lista digitada em PHP envelhece sozinha no dia em que a resolucao ganhar
+ * uma categoria, e o portao da F1 cobra que as quatro estejam no dado.
+ */
+if ( ! function_exists( 'rodametria_f1_piso_para_o_js' ) ) {
+function rodametria_f1_piso_para_o_js( $d ) {
+	$saida = array();
+	$mapa  = isset( $d['compra']['piso_por_categoria'] )
+		? (array) $d['compra']['piso_por_categoria'] : array();
+	foreach ( array_keys( $mapa ) as $cat ) {
+		$p = rodametria_f1_piso_da_categoria( $d, (string) $cat );
+		$saida[ (string) $cat ] = array(
+			'url'   => (string) $p['url_busca'],
+			'frase' => (string) $p['frase'],
+		);
+	}
+
+	return $saida;
+}
+}
+
 if ( ! function_exists( 'rodametria_f1_html' ) ) {
 function rodametria_f1_html() {
 	$d = rodametria_f1_banco();
@@ -786,7 +865,15 @@ function rodametria_f1_html() {
 		'À venda agora nesta categoria',
 		(array) $d['compra']['vitrine'],
 		(string) $d['compra']['frase_de_abertura'],
-		(string) $d['compra']['frase_de_abertura'] );
+		(string) $d['compra']['frase_de_abertura'],
+		/* O PISO DA 25.2 DA CATEGORIA QUE ESTA NA TELA (25/11/2026, item 1 do
+		   despacho da ronda de hoje). A categoria pre-renderizada e a da
+		   `resposta_exemplo`; quando a pessoa troca um campo, o JS do rodape
+		   troca o destino e a frase pela prateleira da categoria nova. Sem isto
+		   o HTML servido — que e o que a visao geral de IA le sem preencher
+		   formulario — ficaria sem porta de compra nenhuma. */
+		rodametria_f1_piso_da_categoria( $d,
+			(string) $d['resposta_exemplo']['categoria'] ) );
 
 	$html .= rodametria_f1_ressalva_html( $d );
 
@@ -1042,6 +1129,19 @@ add_action( 'wp_footer', function () {
 			? $d['constantes_usadas']['watt-sem-rotulo-no-titulo-caso-medido']['valor'] : null,
 		'contagem'    => isset( $d['contagem_de_fichas'] ) ? $d['contagem_de_fichas'] : null,
 		'municipios'  => rodametria_f1_municipios_para_o_js(),
+		/* O PISO DA 25.2 DAS QUATRO CATEGORIAS, JA RESOLVIDO PELA MESMA FUNCAO
+		   QUE O PHP USA (25/11/2026). O navegador nao reimplementa a escolha: ele
+		   recebe, por categoria, o destino e a frase prontos. Mandar o mapa cru e
+		   deixar o JS montar a frase seria a segunda metade escrevendo texto de
+		   tela — a cicatriz que a frase de abertura deste mesmo bloco pagou. */
+		'piso'        => rodametria_f1_piso_para_o_js( $d ),
+		/* O MUNDO DA RECUSA tem frase propria e nenhum destino: sem categoria nao
+		   ha prateleira, e escolher uma por quem nao tem resposta seria escolher o
+		   veiculo por ela. */
+		'pisoSemCategoria' => isset( $d['frases_molde']['piso_sem_categoria'] )
+			? (string) $d['frases_molde']['piso_sem_categoria'] : '',
+		'pisoSemPrateleira' => isset( $d['frases_molde']['piso_sem_prateleira'] )
+			? (string) $d['frases_molde']['piso_sem_prateleira'] : '',
 	);
 	?>
 <?php rodametria_casca_abrir_roteiro(); ?>
@@ -1051,6 +1151,12 @@ add_action( 'wp_footer', function () {
   var caixa = document.querySelector('[data-rdm-f1-caixa]');
   var blocoMun = document.querySelector('[data-rdm-f1-municipal]');
   var blocoRes = document.querySelector('[data-rdm-f1-ressalva]');
+  /* O PISO DA 25.2 (25/11/2026): a frase e o paragrafo do link, os dois impressos
+     pela casca. O JS NAO remonta o componente — ele troca o no de texto e o
+     `href`, que e a mesma disciplina da caixa do veredito logo abaixo. */
+  var pisoFrase = document.querySelector('[data-rdm-piso-frase]');
+  var pisoBloco = document.querySelector('[data-rdm-piso]');
+  var pisoLink = document.querySelector('[data-rdm-piso-link]');
   if (!form || !caixa) { return; }
 
   function num(x){
@@ -1225,6 +1331,30 @@ add_action( 'wp_footer', function () {
     }
     var barra = document.querySelector('[data-rdm-barra-numero]');
     if (barra) { barra.textContent = numeroCaixa; }
+
+    /* A PRATELEIRA ACOMPANHA A CATEGORIA (25/11/2026, item 1 do despacho da
+       ronda de hoje). As duas saidas da 25.2-c, e a 25.2-c so conhece estas
+       duas: com destino no dado, o link aparece; sem destino — e o mundo da
+       RECUSA e um deles —, o link SAI DA ARVORE e a frase diz que a tela esta sem
+       link de loja. `href` vazio aqui seria um botao que recarrega a home com o
+       rotulo da loja do lado, a cicatriz de 30/10/2026 nesta ilha. */
+    var piso = (cat !== null && D.piso) ? D.piso[cat] : null;
+    if (pisoFrase) {
+      pisoFrase.textContent = (piso && piso.url)
+        ? piso.frase
+        : (cat === null ? D.pisoSemCategoria : D.pisoSemPrateleira);
+      pisoFrase.className = (piso && piso.url)
+        ? 'rdm-molde-compra-piso' : 'rdm-molde-compra-piso rdm-molde-compra-piso-sem';
+    }
+    if (pisoBloco) {
+      if (piso && piso.url) {
+        pisoBloco.hidden = false;
+        if (pisoLink) { pisoLink.setAttribute('href', piso.url); }
+      } else {
+        pisoBloco.hidden = true;
+        if (pisoLink) { pisoLink.removeAttribute('href'); }
+      }
+    }
 
     if (blocoMun) {
       var ps = blocoMun.querySelectorAll('p');

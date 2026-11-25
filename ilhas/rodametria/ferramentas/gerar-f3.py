@@ -133,7 +133,7 @@ GRADE_DE_PESOS = [
 ]
 
 
-def montar(constantes, veiculos):
+def montar(constantes, veiculos, consultas):
     registros = veiculos["registros"]
 
     # A RESPOSTA DO EXEMPLO, pela referencia. Nenhuma frase e escrita aqui.
@@ -192,6 +192,18 @@ def montar(constantes, veiculos):
         + [("frases_molde/%s" % k, v) for k, v in f3ref.MOLDES.items()]
         + [("tabela/%s/por_que" % b["peso_total_kg"], b["por_que"])
            for b in GRADE_DE_PESOS])
+
+    # O PISO DA 25.2 DESTA FERRAMENTA (25/11/2026, item 2 do despacho da ronda de
+    # hoje). A prateleira e a decisao, e ela mora na referencia.
+    piso = f3ref.piso_da_busca(consultas)
+    # A FRASE DO PISO PASSA PELA REGUA DE ACENTO JA PREENCHIDA, pelo mesmo motivo
+    # escrito na irma: o nome da prateleira vem do banco, que e ASCII em `chave` e
+    # acentuado em `consulta`, e conferir so o molde deixaria o buraco por onde o
+    # ASCII entraria no dia em que alguem trocasse a fonte do nome.
+    if piso["tem_piso"]:
+        conferir_acento_na_tela([("frase do piso da 25.2",
+                                  f3ref.MOLDES["piso_de_compra"].replace(
+                                      "{prateleira}", piso["prateleira"]))])
 
     teto_banco, quantos_declaram = f3ref.maior_teto_do_banco(registros)
     quantos_serviriam, serviriam = f3ref.quantos_serviriam_sem_a_oferta(
@@ -277,6 +289,14 @@ def montar(constantes, veiculos):
             # do que o servidor serviu. E a familia da 32.5-d — a metade do
             # servidor e a do navegador discordando sobre o mesmo dado — e aqui
             # ela esta FECHADA em vez de pre-registrada.
+            # O PISO DA 25.2 DENTRO DO DADO PUBLICADO (25/11/2026, item 2 do
+            # despacho da ronda de hoje). Ele mora FORA de `vitrine` pela 25.2-c
+            # regra 1: `vitrine` e o que nao nasce quando nenhum registro tem
+            # oferta aberta — que e o estado desta ferramenta desde que ela
+            # nasceu — e e nessa hora que a pessoa fica sem saida. `f3-respostas`
+            # tem `publicar: true`; `anuncios-por-consulta`, de onde o piso vem,
+            # tem `publicar: false` e nao existe como option no ar.
+            "piso_da_busca": piso,
             "com_oferta": [
                 {"id": r.get("id"), "nome": f3ref.nome_do_registro(r),
                  "carga_max_kg": float(f3ref._valor(r.get("carga_max_kg")))}
@@ -294,8 +314,14 @@ def main():
     constantes = f3ref.carregar_constantes()
     with open(os.path.join(ILHA, "dados", "veiculos.json"), encoding="utf-8") as f:
         veiculos = json.load(f)
+    # O BANCO DE OFERTAS, de onde sai o piso da 25.2 da prateleira desta
+    # ferramenta. Ele tem `publicar: false` e nao e lido no ar: o piso viaja daqui
+    # para dentro de `f3-respostas.json`, que e publicado.
+    with open(os.path.join(ILHA, "dados", "anuncios-por-consulta.json"),
+              encoding="utf-8") as f:
+        consultas = json.load(f)["consultas"]
 
-    novo = montar(constantes, veiculos)
+    novo = montar(constantes, veiculos, consultas)
     texto = json.dumps(novo, ensure_ascii=False, indent=2) + "\n"
 
     if conferir:
