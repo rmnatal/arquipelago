@@ -97,7 +97,23 @@ e os dois são passo do Raphael. **A receita do Arquipélago em 22/10/2026 é de
 — e nenhum desfecho desta seção pode ser lido como medição dela.
 
 
-## DESPACHO DA SENTINELA — 2026-11-18 (LEITURA SEMANAL, 19h4xZ–20h1xZ) — ILHA EM MODO DE MEDIÇÃO (1.2-b.1): DUAS DECISÕES, E AS DUAS SÃO "NÃO MEXER"
+## DESPACHO DA SENTINELA — 2026-11-25 (LEITURA SEMANAL, 19h4xZ–20h1xZ) — ILHA EM MODO DE MEDIÇÃO (1.2-b.1): ZERO PROPOSTA DE ACELERAÇÃO, UM BLOCO PEQUENO, E UM PEDIDO AO RAPHAEL
+
+Janela 17→23/11: 427 impressões, 4 cliques, CTR 0,9%, posição média **5,1** (a melhor da história da ilha). Indexação **51 de 52 (98%)**, 0 sem veredito. Nuvem e tela bateram exatamente.
+
+1. **ÚNICO BLOCO PEQUENO: o campo `marca` do registro `rs-50-50w` em `dados/produtos-aquecedor.json`.** É o único dos 11 itens sem `url_produto` que é defeito NOSSO e não mercado (medido em 28/10 e reconfirmado hoje): o registro tem título " RS-50" e nenhum campo `marca`, e por isso a trava da 25.3 barrou doze candidatos, dois dos quais eram o produto certo ("Termostato Aquecedor para Aquário RS-50 50W 220V" e o 110V). Um campo conserta, e o conserto é do DADO, nunca da trava (25.9, item 1). Ao reescolher, obedeça a 25.4-b.1: os DOIS campos (`url` e `url_produto`) vêm da mesma oferta, na mesma chamada, ou nenhum dos dois entra. **Pronto quando:** `dados/produtos-aquecedor.json` tiver `marca` declarado em `rs-50-50w` e a contagem de itens sem `url_produto` nos quatro bancos cair de 11 para 10, com o número escrito no commit.
+
+2. **NÃO MEXER, e a lista é nominal:** nenhuma das 35 páginas com impressão está na banda 11-20 — todas entre 1,0 e 7,5 —, então não existe nesta ilha a única banda em que trabalho pequeno vira página um (12.1). `/calculadora-de-midia-filtrante/` está SUBINDO e paga clique: proibido tocar. `/peixes/ciclideos-anoes/quantos-litros-para-ramirezi/` está em 4,3 na banda 1-3 em quatro consultas nomeadas: proibido tocar. `/calculadora-de-litragem/` foi de 5,3 para 7,2 e segue sem consulta nomeada própria: não trabalhar título em cima de `litragem`, pela errata de 11/11 (a consulta de cabeça está a 64 posições e isso é lacuna de cobertura, não conserto de detalhe). **A reversão da promessa numérica no `<title>` continua CANCELADA** pela decisão de 04/11.
+
+3. **A CANIBALIZAÇÃO TETRA ACABOU PELO PIOR CAMINHO, E ISSO NÃO É BLOCO DE CONTEÚDO.** `/peixes/tetras/quantos-litros-para-tetra-neon/` deu "Crawled - currently not indexed" pela segunda leitura seguida e tomou ZERO impressão nesta janela (13 em 6,7 na anterior; 211 em 28 dias em outubro). As cinco consultas `tetra` nomeadas migraram para a mãe `/peixes/tetras/`, que está em 5,7. **A alavanca é a 14.7 (solicitar indexação pela URL Inspection), e ela NÃO pôde ser puxada nesta execução:** o deep link `search-console/inspect?resource_id=…&id=…` devolve 404 do próprio Google, a caixa de inspeção fica `hidden`/`disabled` e, depois de aberta pelo botão, não aceita digitação nem `value` por script, com os screenshots da extensão estourando por timeout — quatro tentativas, zero sucesso, e **nenhuma recusa por cota** (diferente de 14/10). **Pedido ao Raphael, não bloco:** abrir a Inspeção de URL desta propriedade, colar `https://aquametria.com.br/peixes/tetras/quantos-litros-para-tetra-neon/` e clicar SOLICITAR INDEXAÇÃO. **Pronto quando:** a leitura de 02/12 medir essa URL como indexada, ou com impressão.
+
+4. **ZERO PROPOSTA DE ACELERAÇÃO, de propósito, e o motivo é regra e não falta de trabalho:** as duas únicas linhas de banda 11-20 são consultas com UMA impressão (`acará` 11,0 e `tetra peixe` 13,0), e a lição escrita em 18/11 nesta mesma ilha diz que proposta montada em linha de uma impressão dura uma semana — `acará` fez 11,0 → 50,0 → 11,0 em três leituras. Proposta sem amostra é opinião com número.
+
+5. **NÃO É DEFEITO, e está escrito pela terceira vez para ninguém reabrir:** `/peixes-2__trashed/vivaparos/quantos-litros-para-peixe-espada/` tomou 1 impressão em 3,0 e responde **301** para a página viva. Medido em 21/10 e em 28/10.
+
+---
+
+## DESPACHO DA SENTINELA — 2026-11-18 (LEITURA SEMANAL, 19h4xZ–20h1xZ) — ILHA EM MODO DE MEDIÇÃO (1.2-b.1): DUAS DECISÕES, E AS DUAS SÃO "NÃO MEXER" — **FECHADO PELA LEITURA DE 25/11/2026: a remedição da `/calculadora-de-midia-filtrante/` foi feita e deu 90 impressões em 4,7 com 2 cliques (CTR 2,2%) — não era regressão, era janela. Nada deste despacho continua aberto.**
 
 Janela 10→16/11: **477 impressões, 3 cliques, CTR 0,6%, posição 6,3**; indexação **51 de 52 (98%)**. Série em `dados/indexacao.md` e `dados/posicoes.md`, leitura crua em `dados/search-console-2026-11-18.md`.
 

@@ -45,6 +45,18 @@ python3 ferramentas/bancada.py --lista    # só imprime o que rodaria
 
 ---
 
+## DESPACHO DA SENTINELA — 2026-11-25 (LEITURA SEMANAL, 19h4xZ–20h1xZ) — ILHA EM MODO DE MEDIÇÃO (1.2-b.1): ZERO PROPOSTA, ZERO CONSERTO, UM PEDIDO AO RAPHAEL COM 65 DIAS
+
+Janela 17→23/11: 12 impressões, 0 clique, posição média 7,1. Indexação **10 de 14 (71%) pela NONA leitura seguida**, 0 sem veredito. Nuvem e tela bateram exatamente.
+
+1. **NADA PARA A FUNDAÇÃO CONSTRUIR NESTA ILHA, e isso é decisão e não omissão.** Zero proposta de aceleração (a única linha 11-20 tem 1 impressão e nenhuma consulta nomeada — 12.1), zero defeito de cano (os dois bancos estão em 0 sem piso e 0 sem `url_produto`, recontados hoje), e o foco total na rodametria impede construção. O despacho da ronda diária técnica de 20/11, logo abaixo, continua sendo o único trabalho aberto desta ilha.
+
+2. **O PEDIDO AO RAPHAEL COMPLETOU 65 DIAS, E ELE É DE UMA ÚNICA SOLICITAÇÃO MANUAL.** `/pecas/`, `/pecas/filtros/`, `/pecas/filtros/electrolux/` e `/pecas/filtros/xiaomi/` estão em "Discovered - currently not indexed" pela quarta leitura seguida no MESMO estado — o padrão de ir-e-voltar sozinho parou, o que torna isso estável e não ruído. Gastar **uma** solicitação de indexação (14.7) em `/pecas/`, a mãe, destrava a família: nesta ilha e na rodametria a 14.7 já pagou em sete dias, duas vezes cada. **A alavanca NÃO pôde ser puxada nesta execução, e a causa é instrumento e não cota:** a caixa de Inspeção de URL não aceitou texto no navegador (deep link do Google em 404, campo `hidden`/`disabled`, digitação e `value` por script sem efeito, screenshots da extensão estourando por timeout), quatro tentativas. **Pronto quando:** a leitura de 02/12 medir `/pecas/` em "Detectada" ou melhor, ou medir indexação acima de 10 de 14 — o alvo é um DELTA e não o número de hoje, pela lição de 21/10 na clubedomosaico.
+
+3. **REGISTRADO, SEM AÇÃO:** a consulta de superfície generativa não voltou pela segunda leitura seguida. O critério da proposta 3 de 16/09 ("duas ou mais numa janela") segue errado e sem ser reescrito; agora há duas janelas de silêncio para quem o reabrir medir antes de escrever.
+
+---
+
 ## DESPACHO DA SENTINELA — 2026-11-20 (RONDA DIÁRIA TÉCNICA, 14h2x–14h5xZ) — TRÊS FICHAS MORTAS NO AR EM 17 TESTADAS, E O PISO DA 25.2 NÃO EXISTE EM TRÊS DAS QUATRO TELAS QUE SERVEM FICHA
 
 A casca está limpa: 14 de 14 URLs do sitemap em 200, as três portas da 29.2 com `content-type` certo e caminho virgem em 404 na página da própria ilha, `/status` 98 = `manifest.json` 98, zero `&#038;` dentro de `<script>` nas 14, JSON-LD e favicon próprio nas 14, breadcrumb em 13 (a home não tem, e está certo), `aria-expanded`/`aria-controls` nas 14, zero `noindex`, zero `<img>` sem `alt` e zero `alt` vazio, zero página órfã (a menos linkada recebe 4 links internos de entrada), console silencioso em três páginas. **Nenhum defeito da lista fechada 19.1 apareceu, então esta ronda não consertou nada.** Os seis itens abaixo são todos da 19.2 — dado do banco e código de snippet — e por isso são despacho, não conserto.

@@ -67,3 +67,22 @@ Uma linha por leitura semanal, por consulta ou por página. **Nunca sobrescrever
 - **A PÁGINA NOVA `/veiculos/moto-eletrica/` (16/11) NÃO TOMOU IMPRESSÃO**, o que é esperado em dois dias. O problema dela não é posição, é **saída de compra**: ver o despacho desta data.
 - Rampa: **MANTÉM O RITMO NORMAL** — `piso: abaixo` (11 de 40) e pela 21.1 impressão baixa não trava, adia nem reduz leva nenhuma. 2 das 3 levas da semana continuam livres (21.4).
 - **Defeito do instrumento, segunda leitura seguida:** `ferramentas/search-console.py` lê `/sitemap.xml` (404/ProxyError) e a ilha serve `/wp-sitemap.xml`; o egresso do ambiente das MÃOS não alcança `rodametria.com.br`. A indexação desta ilha é a única do arquipélago que não foi medida URL a URL.
+
+## Leitura semanal de 2026-11-25 — janela 17→23/11 (7 dias), nuvem e tela bateram exatamente
+
+**1 impressão, 0 clique, posição média 11,0** — era 2/0 em 16,0 em 18/11 e 8/0 em 59,0 em 11/11. Consulta 100% anonimizada pela terceira leitura.
+
+| página | posição hoje | posição semana passada | impressões | cliques | banda |
+|---|---|---|---|---|---|
+| /veiculos/bicicleta-eletrica/ | 11,0 | 11,0 | 1 | 0 | 11-20 |
+| /veiculos/ | sem impressão | 21,0 | 0 | 0 | sem impressão |
+| /veiculos/patinete-eletrico/ | sem impressão | sem impressão | 0 | 0 | sem impressão |
+| /veiculos/moto-eletrica/ | sem impressão | sem impressão | 0 | 0 | sem impressão |
+
+### O que esta leitura decide
+
+- **O NÚMERO QUE DECIDE A SEMANA NÃO É A POSIÇÃO, É O TAMANHO DA DISPUTA: a ilha em foco TOTAL e ABSOLUTO desde 27/10 soma 11 impressões em quatro semanas** (8 → 2 → 1), enquanto a clubedomosaico, **fora do foco desde 14/10**, fez 285 numa só e dobrou de tamanho. Isso não é veredito sobre o nicho e não é bloco para a Fundação — é dado para a decisão de foco do Raphael, e a leitura só o registra.
+- **E A CAUSA MEDIDA NÃO É RANQUEAMENTO: a ilha não publicou uma URL desde 16/11.** O sitemap está Processado com 11 páginas e a última leitura do Google é de 16/11 (nove dias); o `REGISTRO.md` conta ZERO URL nascida em 23, 24 e 25/11, com as três levas do teto da 21.4 inteiras.
+- **ZERO PROPOSTA DE ACELERAÇÃO, de propósito:** a única linha é banda 11-20 com **1 impressão e nenhuma consulta nomeada**, e proposta sem consulta nomeada é opinião (12.1). `/veiculos/moto-eletrica/` (823 mil buscas/mês) e `/veiculos/patinete-eletrico/` seguem **sem impressão nenhuma**, e pela 12.1 é proibido trabalhar texto de página que o Google ainda não viu.
+- `/veiculos/bicicleta-eletrica/` ficou **parada em 11,0** por sete dias. Não subiu e não caiu: não há o que aprovar nem o que consertar.
+- Rampa: **MANTÉM O RITMO NORMAL** — `piso: abaixo` (11 de 40) e pela 21.1 impressão baixa não trava leva nenhuma.

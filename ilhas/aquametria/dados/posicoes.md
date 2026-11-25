@@ -268,3 +268,49 @@ As 5 consultas nomeadas somam 6 das 477 impressões — **98,7% anonimizado**. A
 - `/peixes/ciclideos-anoes/` está em 11,3 com 3 impressões e **zero consulta nomeada**: banda do dinheiro sem consulta nomeada não vira proposta (12.1 é textual).
 - A home caiu de 19,3 para **22,5**.
 - Rampa: **MANTÉM** — a série autoriza dobrar; o foco total na rodametria impede construção.
+
+## Leitura semanal de 2026-11-25 — janela 17→23/11 (7 dias), nuvem e tela bateram exatamente
+
+**427 impressões, 4 cliques, CTR 0,9%, posição média 5,1** — era 477/3, 0,6% e 6,3 em 18/11. Impressão −10%, clique 3 → 4, e **5,1 é a melhor posição média da história desta ilha**. Indexação 51 de 52 (98%), 0 sem veredito.
+
+**12 consultas nomeadas, 14 das 427 impressões — 96,7% anonimizado.**
+
+| consulta | página | posição hoje | posição semana passada | impressões | cliques | banda |
+|---|---|---|---|---|---|---|
+| ramirezi | /peixes/ciclideos-anoes/quantos-litros-para-ramirezi/ | 2,0 | não nomeada | 2 | 0 | 1-3 |
+| ramirezi german | /peixes/ciclideos-anoes/quantos-litros-para-ramirezi/ | 2,0 | não nomeada | 1 | 0 | 1-3 |
+| ramirezi peixe | /peixes/ciclideos-anoes/quantos-litros-para-ramirezi/ | 2,0 | não nomeada | 1 | 0 | 1-3 |
+| ramirezi eletric blue | /peixes/ciclideos-anoes/quantos-litros-para-ramirezi/ | 3,0 | não nomeada | 1 | 0 | 1-3 |
+| ember tetra | /peixes/tetras/ | 2,0 | não nomeada | 1 | 0 | 1-3 |
+| peixe tetra | /peixes/tetras/ | 2,0 | 12,0 | 1 | 0 | 1-3 |
+| tetra foguinho | /peixes/tetras/ | 2,0 | não nomeada | 1 | 0 | 1-3 |
+| tetra quantidade | /peixes/tetras/ | 2,0 | 9,0 | 1 | 0 | 1-3 |
+| tetra rosa | /peixes/tetras/ | 2,0 | não nomeada | 1 | 0 | 1-3 |
+| tetra peixe | /peixes/tetras/ | 13,0 | não nomeada | 1 | 0 | 11-20 |
+| quanto de mídia biológica por litro | /calculadora-de-midia-filtrante/ | 6,0 | não nomeada | 1 | 0 | 4-10 |
+| acará | /peixes/acaras/ | 11,0 | 50,0 | 1 | 0 | 11-20 |
+
+| página | posição hoje | posição semana passada | impressões | cliques | banda |
+|---|---|---|---|---|---|
+| /calculadora-de-midia-filtrante/ | 4,7 | 5,0 | 90 | 2 | 4-10 |
+| /peixes/bettas/quantos-litros-para-betta/ | 6,8 | — | 55 | 0 | 4-10 |
+| /peixes/acaras/quantos-litros-para-acara-bandeira/ | 4,0 | — | 47 | 0 | 4-10 |
+| /peixes/ciclideos-anoes/quantos-litros-para-ramirezi/ | 4,3 | — | 31 | 0 | 4-10 |
+| /calculadora-de-vazao-do-filtro/ | 6,5 | — | 29 | 0 | 4-10 |
+| /peixes/acaras/quantos-litros-para-oscar/ | 4,7 | — | 21 | 0 | 4-10 |
+| /calculadora-de-iluminacao/ | 6,6 | — | 15 | 1 | 4-10 |
+| /peixes/tetras/ | 5,7 | 6,0 | 15 | 0 | 4-10 |
+| /peixes/tetras/quantos-litros-para-tetra-cardinal/ | 6,2 | — | 14 | 0 | 4-10 |
+| /peixes/bettas/quantos-litros-para-colisa-anao/ | 5,4 | — | 5 | 1 | 4-10 |
+| /calculadora-de-litragem/ | 7,2 | 5,3 | 6 | 0 | 4-10 |
+| /peixes/acaras/ | 5,5 | 21,0 | 4 | 0 | 4-10 |
+| /peixes/tetras/quantos-litros-para-tetra-neon/ | sem impressão | 6,7 | 0 | 0 | sem impressão |
+
+### O que esta leitura decide
+
+- **ZERO PÁGINA NA BANDA 11-20, E O NÚMERO É FORTE:** as **35** páginas com impressão estão TODAS entre 1,0 e 7,5. A banda do dinheiro só existe aqui no nível da consulta, com 1 impressão cada (`acará` 11,0 e `tetra peixe` 13,0). Pela lição escrita em 18/11 — linha 11-20 com uma impressão vira e desvira entre janelas e proposta montada nela dura uma semana —, **zero proposta de aceleração sai desta ilha, e isso é a 12.1 sendo cumprida.** `acará` é a prova: 11,0 em 11/11, 50,0 em 18/11, 11,0 hoje, sempre com 1 impressão.
+- **O ITEM DESPACHADO EM 18/11 ("remedir `/calculadora-de-midia-filtrante/` em 25/11 antes de virar proposta") ESTÁ FECHADO, E A RESPOSTA É: NÃO ERA REGRESSÃO, ERA JANELA.** 87 impressões/5,0/zero clique → **90/4,7/2 cliques, CTR 2,2%**, metade dos cliques da ilha, com a consulta nomeada `quanto de mídia biológica por litro` em 6,0. Quem pediu a remedição foi 18/11; quem aprova é esta leitura (trava 2 da seção 12). **Esperar uma janela custou zero pela segunda vez nesta série.**
+- **A CANIBALIZAÇÃO TETRA DE 21/10 E 04/11 ACABOU PELO PIOR CAMINHO: a filha saiu do índice e a mãe herdou as consultas.** Cinco consultas `tetra` nomeadas caem hoje em `/peixes/tetras/` (15 impressões em 5,7), enquanto `/peixes/tetras/quantos-litros-para-tetra-neon/` — que em outubro era a página de maior volume da ilha — está fora do índice e com zero impressão. **Não se escreve bloco de conteúdo em cima disso: o que falta é a URL voltar ao índice.**
+- **A FAMÍLIA `ramirezi` É A DEMANDA NOVA DA SEMANA:** 4 das 12 consultas nomeadas, todas em 2,0–3,0, todas servidas por `/peixes/ciclideos-anoes/quantos-litros-para-ramirezi/`, que tem 31 impressões em 4,3 e **zero clique**. Banda 1-3: não tocar (12.1). Fica vigiada como candidata a conserto de CTR quando tiver amostra de clique.
+- As três páginas de maior volume seguem sem clique: betta 55 em 6,8, acará-bandeira 47 em 4,0, ramirezi 31 em 4,3.
+- Rampa: **MANTÉM** — a série autoriza dobrar; o foco total na rodametria impede construção.

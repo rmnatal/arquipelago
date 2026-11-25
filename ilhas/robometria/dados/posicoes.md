@@ -185,3 +185,26 @@ variação vira ruído.
 - `/qual-peca-serve-no-meu-robo-aspirador/` em 12,0 é a única linha da banda do dinheiro, e tem **1 impressão e zero consulta nomeada**: vigilância nomeada pela página, nunca proposta.
 - `/divulgacao-de-afiliados/` tomando 2 impressões em 10,0 é novidade e é página institucional: registrado, nada a fazer.
 - Rampa: **MANTÉM** — `piso: abaixo` (14 de 40), 21.8.
+
+## Leitura semanal de 2026-11-25 — janela 17→23/11 (7 dias), nuvem e tela bateram exatamente
+
+**12 impressões, 0 clique, CTR 0%, posição média 7,1** — era 15/0 em 7,2. Indexação 10 de 14 (71%) pela nona leitura seguida.
+
+**Consulta: a dimensão `query` devolve ZERO — 100% anonimizada.** A consulta de superfície generativa **não voltou pela SEGUNDA leitura seguida**, depois de seis janelas com exatamente uma por janela.
+
+| página | posição hoje | posição semana passada | impressões | cliques | banda |
+|---|---|---|---|---|---|
+| /quantos-pa-o-robo-aspirador-precisa/ | 7,2 | 6,6 | 9 | 0 | 4-10 |
+| /quantos-m2-o-robo-aspirador-limpa-por-carga/ | 4,5 | 9,0 | 2 | 0 | 4-10 |
+| /pecas/filtros/wap/ | 11,0 | sem impressão | 1 | 0 | 11-20 |
+| /qual-peca-serve-no-meu-robo-aspirador/ | sem impressão | 12,0 | 0 | 0 | sem impressão |
+| /divulgacao-de-afiliados/ | sem impressão | 10,0 | 0 | 0 | sem impressão |
+| /filtro-universal-de-robo-aspirador/ | sem impressão | 1,0 | 0 | 0 | sem impressão |
+
+### O que esta leitura decide
+
+- **ZERO PROPOSTA DE ACELERAÇÃO pela terceira leitura seguida, e é a 12.1 sendo cumprida:** a única linha da banda 11-20 é `/pecas/filtros/wap/`, com **1 impressão e nenhuma consulta nomeada**. Proposta sem consulta nomeada é opinião.
+- **A ILHA ENCOLHEU PARA TRÊS PÁGINAS COM IMPRESSÃO**, o menor número desde 23/09 — eram seis em 18/11. A R1 (`/qual-peca-serve-no-meu-robo-aspirador/`), que é a página de maior intenção de compra, não tomou impressão nenhuma.
+- `/quantos-pa-o-robo-aspirador-precisa/` acumula **zero clique pela OITAVA leitura seguida**, agora com 9 impressões em 7,2. A reversão do título continua **CANCELADA** pela decisão de 04/11, e o zero segue sem causa medida.
+- **A leva de 21/09 completa 65 dias sem uma única página no índice**, as quatro em "Discovered" pela quarta leitura seguida no mesmo estado. O padrão de ir-e-voltar entre "Discovered" e "unknown" sem ninguém tocar no site **parou**: hoje elas estão estáveis no estado ruim, o que é diferente de ruído e é motivo para a alavanca da 14.7, não para bloco de código.
+- Rampa: **MANTÉM** — `piso: abaixo` (14 de 40), 21.8.

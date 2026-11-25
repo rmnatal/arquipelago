@@ -138,7 +138,7 @@ executando_desde: null   # limpo as 10h46Z de 12/11/2026 pela propria execucao q
                          # anterior
                                       # reservou as 10h20Z e limpou as 11h0xZ, e o ultimo commit na pasta da ilha
                                       # e de 10h59Z — mais de 40 minutos atras, entao a 1.1 nao tinha o que desempatar.
-ultima_ronda: 2026-11-18T20:01Z   # LEITURA SEMANAL de 18/11/2026 (seção 12.2, item 3). Se havia valor anterior, ele era de ronda tecnica e segue registrado no PROMPT.md e no REGISTRO.md. 232 impressoes, 2 cliques, posicao 8,3, indexacao 44 de 44 (100%) pela primeira vez.
+ultima_ronda: 2026-11-25T20:15Z   # LEITURA SEMANAL de 25/11/2026 (secao 12.2, item 3). SUBSTITUI o valor anterior 2026-11-18T20:01Z, que segue registrado no PROMPT.md. 285 impressoes (recorde da ilha) e 5 cliques, CTR 1,8%, posicao 8,0. O SITEMAP FOI DE 44 PARA 102 URLs em 20/11 e a URL Inspection mede 97 indexadas (95%), 5 nao indexadas, 0 sem veredito: 58 URLs novas numa semana e 53 indexaram. ATENCAO: o campo `urls_publicadas` deste cabecalho diz 44 e esta VENCIDO — quem reservar a ilha conta no wp-sitemap no ar e acerta, que e a secao 4 em acao. Hora dada pela Sentinela, que nao tem repositorio.
 bloqueada_por: null   # ACRESCENTADO em 30/09/2026: o campo FALTAVA neste cabecalho, e a secao 2 do
                       # ARQUIPELAGO.md o exige desde que ela existe. A secao 1, passo 3, LE este campo
                       # para decidir a ilha da execucao — entao a leitora dele vinha usando o valor

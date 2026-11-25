@@ -78,7 +78,7 @@ bloco_atual: |
   mesmo). O proximo passo NAO e um quarto localizador: e decidir se prosa dentro de
   dobra e "abertura" para o VOZ.md ou se ela ganha regua propria, escrita para o
   lugar onde ela esta hoje. Esta escrito tambem dentro do mutacoes-voz.py.
-ultima_ronda: 2026-11-18T20:01Z   # LEITURA SEMANAL de 18/11/2026 (seção 12.2, item 3). 477 impressoes, 3 cliques, posicao 6,3, indexacao 51 de 52 (98%). Hora dada pela Sentinela, que nao tem repositorio e despacha pelas MAOS.
+ultima_ronda: 2026-11-25T20:15Z   # LEITURA SEMANAL de 25/11/2026 (secao 12.2, item 3). SUBSTITUI o valor anterior 2026-11-18T20:01Z, que segue registrado no PROMPT.md. 427 impressoes, 4 cliques, CTR 0,9%, posicao media 5,1 (a melhor da historia desta ilha), indexacao 51 de 52 (98%) medida URL a URL pela URL Inspection, 0 sem veredito. Nuvem e tela bateram exatamente. ZERO proposta de aceleracao: as 35 paginas com impressao estao todas entre 1,0 e 7,5 e a ilha nao tem banda 11-20. Hora dada pela Sentinela, que nao tem repositorio.
 bloqueada_por: null
 congelamento: |
   ATUALIZADO EM 14/10/2026: o campo `piso` deste cabecalho passou a `atingido`, entao TODO o paragrafo

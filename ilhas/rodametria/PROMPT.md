@@ -65,6 +65,22 @@ Medido em 27/10/2026 no Chrome do Raphael (`bussola/dossies/rodametria/DOSSIE.md
 
 ---
 
+## DESPACHO DA SENTINELA — 2026-11-25 (LEITURA SEMANAL, 19h4xZ–20h1xZ) — A ILHA EM FOCO TOTAL TEVE **UMA** IMPRESSÃO EM SETE DIAS, E A CAUSA MEDIDA É QUE NENHUMA URL NASCEU
+
+Janela 17→23/11: **1 impressão, 0 clique, posição 11,0**. Era 2/0 em 16,0. Consulta 100% anonimizada. Nuvem e tela bateram exatamente.
+
+1. **O ÚNICO TRABALHO DESTA ILHA É PÁGINA NOVA, E A MEDIÇÃO DIZ ISSO COM NÚMERO.** A ilha não publicou uma URL desde 16/11: o `REGISTRO.md` conta ZERO em 23, 24 e 25/11, as três levas do teto da 21.4 estão inteiras, e o sitemap — Processado, 11 páginas — não é relido pelo Google desde 16/11, nove dias. Em quatro semanas de foco total e absoluto a ilha somou 11 impressões (8 → 2 → 1). **Não há conserto de título, de meta nem de malha a fazer aqui: pela 12.1 é proibido trabalhar texto de página que o Google ainda não viu, e `/veiculos/moto-eletrica/` e `/veiculos/patinete-eletrico/` seguem sem uma única impressão.** **Pronto quando:** a leitura de 02/12 medir mais de 11 URLs no sitemap e o sitemap tiver sido relido pelo Google depois de 25/11.
+
+2. **PEDIDO AO RAPHAEL, ABERTO DESDE 04/11, E AGORA COM A CAUSA ISOLADA NUMA SÓ.** A indexação desta ilha é a única do arquipélago que não se mede URL a URL, terceira leitura seguida. O `ferramentas/search-console.py` nomeou os dois caminhos tentados e o DECLARADO pela propriedade (`wp-sitemap.xml`) foi um deles — **logo o conserto de caminho da Fundação está FEITO e o que sobra é o egresso**: `ProxyError ... Tunnel connection failed: 403 Forbidden (agent proxy: no rule or network setting allows this host)` nos dois. **Acrescentar `rodametria.com.br` aos Domínios adicionais permitidos da conta (Configurações → Recursos → Execução de código e criação de arquivos) é passo dele, e nenhuma rotina consegue mexer nessa lista.** **Pronto quando:** o `dados/search-console-<data>.md` desta ilha trouxer a linha de indexação com número em vez de `n/d`.
+
+3. **O GESTO DO RAPHAEL DE 11/11 CONTINUA ABERTO E É A MAIOR RECEITA PARADA DESTA ILHA:** `/veiculos/moto-eletrica/`, a página de 823 mil buscas/mês, tem **UM** cartão de compra (1 anúncio serve de 19 lidos, contra 14 de 19 no patinete e 8 de 20 na bicicleta). Falta criar a etiqueta `rodametriamotoeletrica` e apertar "Gerar" nas URLs `/p/MLB` já colhidas em `dados/links-afiliado-pendentes.md` — reCAPTCHA, não automatizável (25.6). O piso da 25.2 está de pé nas três páginas de consulta, então a página **não** está sem saída de compra; o que falta é ficha.
+
+4. **CANO CONTADO HOJE NO `main` E ESTÁ LIMPO, sem nada a cobrar:** `dados/anuncios-por-consulta.json` 3 páginas, as três com `piso_da_busca`, 58 anúncios lidos, **23 que servem e os 23 com link E `url_produto`**; `dados/veiculos.json` 17 registros, **4 publicáveis, 0 sem piso**, 1 ficha em degrau 1 (o único degrau 1 do arquipélago), 3 em degrau 4 com a causa escrita. **Zero página sem saída de compra.**
+
+5. **ZERO PROPOSTA DE ACELERAÇÃO, e é a 12.1 sendo cumprida:** a única linha de banda 11-20 é `/veiculos/bicicleta-eletrica/` com 1 impressão e nenhuma consulta nomeada, e ela ficou **parada em 11,0** por sete dias — não subiu e não caiu, então não há o que aprovar nem o que consertar.
+
+---
+
 ## DESPACHO DA SENTINELA — 2026-11-25 (RONDA DIÁRIA TÉCNICA, 14h4xZ–15h4xZ) — **OS ITENS 1 E 2 ESTÃO FECHADOS E CONFERIDOS NO AR (18.4), NA REVISÃO 145. SÓ O ITEM 3 FICA, E ELE É DO RAPHAEL**
 
 > **O DESPACHO FOI TRABALHADO INTEIRO NUMA EXECUÇÃO SÓ (18.2)**, a de 25/11 às 16h16Z–17h1xZ. O que fica aqui é o **item 3**, pela **18.3** — teto de honestidade: ele não é da Fundação, é uma decisão de permissão de plataforma que só o Raphael pode tomar. O detalhe de cada conserto está no `REGISTRO.md` de 2026-11-25 16h16Z.

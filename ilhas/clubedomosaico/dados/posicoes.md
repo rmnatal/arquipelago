@@ -353,3 +353,68 @@ A tabela por PÁGINA completa, com as 26 páginas que tomaram impressão, está 
 - `/materiais/acabamento/` e `/materiais/acabamento/diluir-o-verniz-do-mosaico/`, as duas linhas 11-20 de 11/11 (16,0 e 16,4), **voltaram para a primeira página: 6,9 e 9,2.** A decisão de 11/11 de NÃO despachar conserto de título nelas — porque a queda coincidiu com a ilha fora do ar servindo 404 inclusive em `/robots.txt` — está **confirmada pelo dado**: era a porta, não o conteúdo.
 - As duas dívidas que CRESCERAM na propriedade: "Rastreada mas não indexada" 5 → **14** e "Não encontrado (404)" 6 → **9**. Os 404 seguem pela SÉTIMA leitura sem ninguém dizer quais são.
 - Rampa: **a série autoriza DOBRAR** (100% indexada, 232 impressões, 2 cliques, `piso: atingido`). Trava o foco, não a 14.6.
+
+## Leitura semanal de 2026-11-25 — janela 17→23/11 (7 dias), nuvem e tela bateram exatamente
+
+**285 impressões, 5 cliques, CTR 1,8%, posição média 8,0** — era 232/2, 0,9% e 8,3. **285 é o novo recorde da ilha** e os 5 cliques empatam o recorde de 04/11. Esta ilha fez **5 dos 9 cliques do arquipélago inteiro** nesta semana.
+
+**16 consultas nomeadas em 20 linhas (consulta × página), 27 das 285 impressões — 90,5% anonimizado.** É de longe a ilha com mais consulta nomeada do arquipélago.
+
+| consulta | página | posição hoje | posição semana passada | impressões | cliques | banda |
+|---|---|---|---|---|---|---|
+| cola para mosaico | /materiais/qual-cola-usar-no-mosaico/ | 9,2 | 9,8 | 5 | 0 | 4-10 |
+| cola para mosaico de azulejo | /materiais/qual-cola-usar-no-mosaico/ | 9,0 | não nomeada | 1 | 0 | 4-10 |
+| cola para rejunte de banheiro | /materiais/qual-cola-usar-no-mosaico/ | 9,0 | 1,0 | 1 | 0 | 4-10 |
+| cerâmica | /materiais/qual-cola-usar-no-mosaico/ | 2,0 | não nomeada | 1 | 0 | 1-3 |
+| rejunte para mosaico | /materiais/rejunte-para-mosaico/ | 9,0 | 5,8 | 1 | 0 | 4-10 |
+| picassiete | /como-fazer/o-que-e-mosaico-picassiete/ | 1,0 | 4,7 | 1 | 0 | 1-3 |
+| trencadís | /como-fazer/o-que-e-trencadis/ | 10,0 | 10,0 | 1 | 0 | 4-10 |
+| borracha para passar rejunte | /materiais/rejunte-para-mosaico/espatula-de-borracha-eva-para-rejunte/ | 11,0 | não nomeada | 1 | 0 | 11-20 |
+| selante para mdf cru | /materiais/acabamento/seladora-para-madeira-artfix-base-agua-3-6-litros/ | 12,0 | não nomeada | 1 | 0 | 11-20 |
+| loja mosaico | /loja/ | 19,0 | não nomeada | 1 | 0 | 11-20 |
+| pastilhas para mosaico | /materiais/pastilhas-para-mosaico/ | 14,5 | 17,0 | 2 | 0 | 11-20 |
+| pastilhas para mosaico | /materiais/pastilha-de-vidro-para-mosaico/pastilhas-de-vidro-para-mosaico-pacote-100-pecas/ | 10,0 | não existia | 1 | 0 | 4-10 |
+| pastilhas para mosaico | /materiais/pastilha-de-vidro-para-mosaico/ | 45,0 | 40,0 | 1 | 0 | 21+ |
+| pastilhas mosaico | /materiais/pastilha-de-vidro-para-mosaico/pastilhas-de-vidro-para-mosaico-pacote-100-pecas/ | 7,0 | não existia | 1 | 0 | 4-10 |
+| pastilhas mosaico | /materiais/pastilhas-para-mosaico/ | 28,0 | 14,5 | 1 | 0 | 21+ |
+| pastilhas mosaico | /materiais/pastilha-de-vidro-para-mosaico/ | 49,0 | 36,0 | 1 | 0 | 21+ |
+| pastilha para mosaico | /materiais/pastilhas-para-mosaico/ | 30,0 | não nomeada | 1 | 0 | 21+ |
+| pastilha para mosaico | /materiais/pastilha-de-vidro-para-mosaico/ | 40,0 | não nomeada | 1 | 0 | 21+ |
+| pastilha mosaico | /materiais/pastilhas-para-mosaico/ | 34,0 | não nomeada | 1 | 0 | 21+ |
+| pastilha mosaico | /materiais/pastilha-de-vidro-para-mosaico/ | 44,0 | não nomeada | 1 | 0 | 21+ |
+| pastilha espelho | /materiais/espelho-para-mosaico/pastilhas-de-espelho-coloridas-1x1-cm-250-pecas/ | 29,0 | não existia | 1 | 0 | 21+ |
+| alicate para mosaico corta fácil | /materiais/alicate-para-mosaico/ | 21,0 | 28,0 | 1 | 0 | 21+ |
+
+| página | posição hoje | posição semana passada | impressões | cliques | banda |
+|---|---|---|---|---|---|
+| /materiais/qual-cola-usar-no-mosaico/ | 6,6 | 7,0 | 84 | 0 | 4-10 |
+| /materiais/quantas-pastilhas-para-mosaico/ | 7,3 | 6,7 | 26 | 0 | 4-10 |
+| /como-fazer/o-que-e-trencadis/ | 7,2 | 5,3 | 23 | 0 | 4-10 |
+| /como-fazer/o-que-e-mosaico-picassiete/ | 4,7 | — | 15 | 1 | 4-10 |
+| /materiais/alicate-para-mosaico/ | 10,7 | 10,7 | 14 | 0 | 4-10 |
+| /materiais/pastilhas-para-mosaico/ | 16,0 | 23,3 | 14 | 0 | 11-20 |
+| /materiais/base-de-mdf-para-mosaico/ | 8,1 | — | 13 | 2 | 4-10 |
+| /materiais/rejunte-para-mosaico/ | 7,7 | — | 12 | 0 | 4-10 |
+| /materiais/acabamento/ | 5,5 | 6,9 | 11 | 0 | 4-10 |
+| /materiais/acabamento/diluir-o-verniz-do-mosaico/ | 8,9 | 9,2 | 10 | 0 | 4-10 |
+| /materiais/pastilha-de-vidro-para-mosaico/ | 29,4 | 25,7 | 7 | 0 | 21+ |
+| /materiais/rejunte-para-mosaico/espatula-de-borracha-eva-para-rejunte/ | 10,8 | não existia | 5 | 0 | 4-10 |
+| /como-fazer/ | 8,6 | — | 5 | 0 | 4-10 |
+| /materiais/base-de-mdf-para-mosaico/kit-10-bandejas-cachepo-de-mdf-cru-15x15x5-cm/ | 7,0 | não existia | 4 | 0 | 4-10 |
+| /materiais/pastilha-de-vidro-para-mosaico/pastilha-de-vidro-preta-para-mosaico/ | 10,0 | não existia | 4 | 0 | 4-10 |
+| /materiais/rejunte-para-mosaico/esponja-para-limpar-rejunte-kit-3-ou-5-unidades/ | 9,2 | não existia | 4 | 0 | 4-10 |
+| /materiais/acabamento/selar-a-base-antes-de-fazer-mosaico/ | 3,7 | não existia | 3 | 1 | 1-3 |
+| / | 6,7 | — | 3 | 0 | 4-10 |
+| /materiais/espelho-para-mosaico/pastilhas-de-espelho-coloridas-1x1-cm-250-pecas/ | 14,7 | não existia | 3 | 0 | 11-20 |
+| /loja/ | 10,0 | não existia | 2 | 1 | 4-10 |
+| /loja/arvore-da-vida/ | 4,0 | — | 2 | 0 | 4-10 |
+| /materiais/acabamento/impermeabilizar-peca-de-mosaico/ | 5,0 | 7,2 | 2 | 0 | 4-10 |
+
+### O que esta leitura decide
+
+- **O ACHADO QUE MAIS VALE DINHEIRO NO ARQUIPÉLAGO HOJE, E ELE CONFIRMA A SEÇÃO 30 POR MEDIÇÃO: na consulta de compra desta ilha, a PÁGINA DE PRODUTO ganha das duas páginas de CATEGORIA por 20 a 40 posições.** `pastilhas mosaico` é servida por TRÊS URLs nossas ao mesmo tempo — a página de produto `/materiais/pastilha-de-vidro-para-mosaico/pastilhas-de-vidro-para-mosaico-pacote-100-pecas/` em **7,0**, a categoria `/materiais/pastilhas-para-mosaico/` em 28,0 e a categoria `/materiais/pastilha-de-vidro-para-mosaico/` em 49,0. E em `pastilhas para mosaico`: o mesmo produto em **10,0** contra 45,0 da categoria. A consulta está partida em QUATRO grafias (`pastilha mosaico`, `pastilha para mosaico`, `pastilhas mosaico`, `pastilhas para mosaico`) e cada uma cai em duas ou três páginas nossas. É a canibalização nomeada em 18/11 com o dobro de amostra e **com o vencedor identificado**.
+- **AS TRÊS LINHAS DA BANDA 11-20 COM CONSULTA NOMEADA DO ARQUIPÉLAGO INTEIRO ESTÃO NESTA ILHA, e as três são páginas de produto nascidas em 20/11:** `borracha para passar rejunte` 11,0, `selante para mdf cru` 12,0 e `loja mosaico` 19,0. Nenhuma outra ilha tem uma linha de banda 11-20 com consulta nomeada nesta semana.
+- **A TESE DE 04/11 SEGUE DE PÉ E FICOU MAIS FORTE: a consulta que NOMEIA o material converte; a que FAZ A PERGUNTA não.** Os 5 cliques vieram de 33 impressões em quatro páginas (`/materiais/base-de-mdf-para-mosaico/` 2 em 13 — 15,4% —, picassiete 1 em 15, `selar-a-base-antes-de-fazer-mosaico` 1 em 3 — 33,3% — e `/loja/` 1 em 2 — 50%), enquanto a carro-chefe `/materiais/qual-cola-usar-no-mosaico/` fez **84 impressões em 6,6 e ZERO clique**, 29% da impressão da ilha.
+- `/materiais/quantas-pastilhas-para-mosaico/`: 26 impressões, 7,3, **zero clique pela OITAVA semana**. É a lacuna de CTR mais antiga do arquipélago, e **não foi reprovada: não foi executada**, porque a ilha está fora do foco desde 14/10.
+- **NÃO TOCAR:** `/materiais/acabamento/` (6,9 → 5,5) e `/materiais/acabamento/diluir-o-verniz-do-mosaico/` (9,2 → 8,9) seguem subindo — é a terceira leitura confirmando que a decisão de 11/11 de não consertar título nelas estava certa; `/materiais/pastilhas-para-mosaico/` subiu de 23,3 para 16,0 como página, e o que se mexe nela é a atribuição de consulta, não a posição.
+- Rampa: **a série autoriza DOBRAR.** Trava o foco na rodametria, não a 14.6.
