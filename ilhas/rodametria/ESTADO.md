@@ -34,7 +34,7 @@ ultima_execucao: 2026-11-25T17:13Z   # O DESPACHO DA RONDA DE HOJE SAIU
                          # 32.5, pior botao em 1.366 px.
                          # A HORA DESTE CAMPO SAI DO `date -u` NA MESMA LINHA DE
                          # COMANDO QUE A GRAVA, nunca digitada.
-executando_desde: null   # LIMPO no fecho desta execucao (passo 7 da secao 1).
+executando_desde: 2026-11-25T19:16Z   # RESERVA da execucao de 2026-11-25T19:16Z (passo 5 da secao 1, foco da 1.2 em rodametria). Hora do `date -u` na mesma linha de comando que grava, nunca digitada.
                          # Reservada as 16h16Z (commit d2a0975), aceita de
                          # PRIMEIRA, e RENOVADA as 16h33Z pela 1.1 porque o bloco
                          # passou de 40 minutos — a espera do cron da 20.9 e parte
