@@ -11100,3 +11100,78 @@ ilhas/rodametria/dados/search-console-2026-11-25.md       19 linhas   1718 bytes
 ```
 
 **Nenhum passo do trabalho falhou.** Os dois erros registrados acima — a recusa do classificador e a recusa do primeiro push — foram contornados pelos caminhos que o próprio prompt manda usar, e nenhum dos dois custou conteúdo. Este log vai num commit seguinte, por depender dos hashes dos commits de trabalho.
+
+---
+
+## Disparo de 25/11/2026 — 17h08 BRT (20h08Z) — MESMA leitura Search Console, DISPARO DUPLICADO: nada meu foi ao `main`, e de propósito
+
+**A instrução que chegou foi a MESMA do disparo anterior deste arquivo**, palavra por palavra: para cada ilha em `[aquametria robometria clubedomosaico rodametria]`, rodar `python3 ferramentas/search-console.py <ilha>`, gravar a saída inteira em `ilhas/<ilha>/dados/search-console-2026-11-25.md`, conferir `grep -c PRIVATE` = 0, commitar com `Leitura Search Console pela nuvem — 2026-11-25` e `git push origin HEAD:main`. Dois disparos rodaram a mesma instrução dentro da mesma janela, sem saber um do outro.
+
+**Checagem de assunto, antes do `git fetch`:** é do Arquipélago. Quatro ilhas, ferramenta do repositório, pasta `dados/` das ilhas. A `rodametria` não está na lista de ilhas escrita no prompt do disparo (Aquametria, Robometria, Clube do Mosaico, Ohmetria, Jornada Fly), e isso foi conferido no repositório, não no prompt: `ilhas/rodametria/` existe, com `ESTADO.md`, `REGISTRO.md`, `manifest.json` e commits recentes no `main`. Ilha do Arquipélago, mais nova que a lista. Executado.
+
+`git status --porcelain` no fim do disparo, já de volta em cima do `origin/main`:
+
+```
+(vazio — árvore limpa)
+```
+
+`git diff --stat` do commit que eu havia preparado e que **NÃO** foi ao `main`:
+
+```
+ffaf90dfbaf86ee0b8bdcf9a042a760f5b3a32d5  Leitura Search Console pela nuvem — 2026-11-25
+ .../aquametria/dados/search-console-2026-11-25.md  | 70 ++++++++++++++++++++++
+ .../dados/search-console-2026-11-25.md             | 60 +++++++++++++++++++
+ .../robometria/dados/search-console-2026-11-25.md  | 28 +++++++++
+ .../rodametria/dados/search-console-2026-11-25.md  | 19 ++++++
+ 4 files changed, 177 insertions(+)
+```
+
+**O HASH DO COMMIT DE LEITURA QUE FOI AO `main` NESTE DISPARO: NENHUM.** O `ffaf90d` existe só no reflog desta sessão e foi abandonado. Ao `main` foi apenas o commit deste log.
+
+**POR QUE NÃO EMPURREI, que é o ponto deste registro.** O push foi recusado — o `main` tinha avançado de `8937d28` para `aeb00a6` enquanto as leituras rodavam:
+
+```
+hint: have locally. This is usually caused by another repository pushing to
+hint: the same ref. If you want to integrate the remote changes, use
+hint: 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+```
+
+O prompt manda, nesse caso, `git fetch origin main && git rebase origin/main` e tentar de novo. Antes disso eu olhei o que havia entrado: `cd46006` e `654616e`, as DUAS metades da mesma leitura, mais o `aeb00a6` com o log delas. As quatro leituras já estavam no `main`, postas pelo outro disparo. Comparando arquivo por arquivo com `git diff origin/main`:
+
+```
+aquametria       — idêntico byte a byte ao que está no main
+robometria       — idêntico byte a byte ao que está no main
+rodametria       — idêntico byte a byte ao que está no main
+clubedomosaico   — DIFERENTE: 1 file changed, 54 insertions(+), 86 deletions(-)
+```
+
+E a diferença do clubedomosaico era na direção errada: **o que está no `main` é a leitura de verdade (92 linhas, com totais, páginas, indexação e as duas seções de veredito); o meu era 60 linhas de `Traceback`**, porque o script morreu na chamada de URL Inspection. Erro completo:
+
+```
+requests.exceptions.ProxyError: HTTPSConnectionPool(host='searchconsole.googleapis.com', port=443):
+Max retries exceeded with url: /v1/urlInspection/index:inspect
+(Caused by ProxyError('Unable to connect to proxy',
+RemoteDisconnected('Remote end closed connection without response')))
+```
+
+Não é negativa de política (403/407): é conexão perdida no meio, e a `aquametria` tinha acabado de ler no mesmo host. Rebase + push teria, portanto, **substituído uma leitura boa por um despejo de erro** — perda de conteúdo no `main` cumprindo a instrução ao pé da letra. Parei o push. O retry do clubedomosaico que eu havia posto em segundo plano foi cancelado pelo mesmo motivo: o dado já estava no `main`, melhor do que o meu seria.
+
+**Nenhum force push, em nenhum momento, e nenhum arquivo do `main` foi tocado por mim.**
+
+**CONTAGEM DO QUE MUDOU, conferida RELENDO os arquivos DEPOIS do `git fetch` e do `checkout` em cima do `origin/main` — não pelo que eu achava que havia escrito.** São os arquivos do outro disparo, que é o que está publicado:
+
+```
+ilhas/aquametria/dados/search-console-2026-11-25.md      70 linhas   4391 bytes   PRIVATE=0
+ilhas/robometria/dados/search-console-2026-11-25.md      28 linhas   1570 bytes   PRIVATE=0
+ilhas/clubedomosaico/dados/search-console-2026-11-25.md  92 linhas   7606 bytes   PRIVATE=0
+ilhas/rodametria/dados/search-console-2026-11-25.md      19 linhas   1718 bytes   PRIVATE=0
+   mudança deste disparo no conteúdo das ilhas: ZERO linha
+```
+
+**O que mais ficou registrado deste disparo, para quem vier depois:**
+
+1. **Dois gatilhos dispararam a mesma instrução na mesma janela.** Nenhum dos dois errou nada; o segundo só gastou duas leituras completas da API e quase sujou o `main`. Quem mantém os gatilhos é que decide se isso vira um ou continua dois.
+2. **A primeira checagem de ambiente deste disparo foi RECUSADA pelo classificador do ambiente** (`[Sensitive Information Leakage]`), e com razão: o comando usava `${GOOGLE_SA_B64:-no}`, que IMPRIME o valor da variável quando ela está definida — era o contrário do que eu queria checar. Nenhum byte da credencial foi impresso, gravado ou commitado. A checagem foi refeita sem tocar na variável, e o script lê a credencial do ambiente por conta própria.
+3. **`exit=0` num `python3 ... | grep -v ... > arquivo` não diz que o script deu certo** — o status é do fim do cano, não do python. O clubedomosaico saiu com `exit=0` e 60 linhas de traceback dentro do arquivo. O que pegou o defeito foi `grep -c '^### '` no arquivo gravado, não o código de saída.
+4. **`rodametria.com.br` não é alcançável pela nuvem:** `Tunnel connection failed: 403 Forbidden (agent proxy: no rule or network setting allows this host)` nos dois caminhos de sitemap tentados. É negativa de política, não erro de rede, e por isso a linha de indexação da rodametria saiu `n/d` nas duas leituras — o total da propriedade (1 impressão, 0 clique) veio da API, que é alcançável. Liberar o host é o que fecha essa lacuna.
