@@ -3,7 +3,8 @@ ilha: rodametria
 estado: viva              # `nascendo` -> `viva` em 29/10/2026 as 12h1xZ: a ilha SERVE PAGINA. Duas URLs no wp-sitemap.xml, as duas em 200, com a casca e a F2 desembarcadas na revisao 9 e os dois portoes de ar APROVADOS. Antes deste dia a ilha tinha banco e nenhum byte que um visitante visse.
 prioridade: 1
 piso: abaixo              # 10 URLs publicadas contra as 40 da 21.1, e primeira_indexacao null. O NUMERO DESTE COMENTARIO ESTAVA VENCIDO: dizia 5, de 30/10, e a ilha passou por 9 e chegou a 10 em 06/11 — numero velho lido como fato e o defeito que a secao 4 nomeia. O VALOR do campo nao mudou e nao e meu de mudar. Quem decide este campo e a leitura semanal (21.6), nunca a Fundacao de cabeca. A CONTA DA LEVA SAIU DAQUI em 18/11/2026 as 13h4xZ: esta oracao dizia "nesta semana saiu UMA leva, de 3 URLs" e a linha VIVA de `urls_publicadas`, no mesmo cabecalho, diz "UMA leva, de 1 URL" — dois numeros para o mesmo fato, um deles de uma semana que passou. Quem conta leva le `urls_publicadas`, que e o campo que a mede; este campo e sobre o PISO. E a mesma familia do rabo orfao que a nota de 17/11 removeu oito linhas abaixo.
-urls_publicadas: 11       # 10 -> 11 em 16/11/2026: nasceu `/veiculos/moto-eletrica/`. CONTADO no wp-sitemap-posts-page-1.xml e conferido no ar as 11h4xZ — 11 de 11 em 200 em DUAS leituras com quebra de cache. Piso da 21.1 pede 40 — faltam 29. TETO DA 21.4: esta semana saiu UMA leva, de 1 URL, contra o teto de 3 levas. Quem decide o campo `piso` e a leitura semanal (21.6), nunca a Fundacao de cabeca.
+urls_publicadas: 11       # ZERO URL nasceu nesta passada (25/11), e A ORACAO SOBRE "ESTA SEMANA", LOGO ABAIXO, E DE 16/11 E NAO E MAIS SOBRE ESTA SEMANA: 16/11 foi uma SEGUNDA e a semana corrente comecou em 23/11, tambem segunda. Contado no REGISTRO.md, nasceram ZERO URLs em 23, 24 e 25/11 — as TRES levas do teto da 21.4 estao INTEIRAS nesta semana. A frase nao estava errada quando foi escrita; ela ficou errada ao virar a semana, que e a mesma doenca do bloco desta passada num campo diferente.
+                          # 10 -> 11 em 16/11/2026: nasceu `/veiculos/moto-eletrica/`. CONTADO no wp-sitemap-posts-page-1.xml e conferido no ar as 11h4xZ — 11 de 11 em 200 em DUAS leituras com quebra de cache. Piso da 21.1 pede 40 — faltam 29. TETO DA 21.4: esta semana saiu UMA leva, de 1 URL, contra o teto de 3 levas. Quem decide o campo `piso` e a leitura semanal (21.6), nunca a Fundacao de cabeca.
                           # RABO ORFAO REMOVIDO em 17/11/2026 as 19h4xZ: havia 9 linhas de
                           # comentario aqui, sobra de uma versao anterior deste campo (escrita
                           # as 13h4xZ, `esta passada foi de JS de rodape e de portao`), que a
@@ -15,186 +16,202 @@ urls_publicadas: 11       # 10 -> 11 em 16/11/2026: nasceu `/veiculos/moto-eletr
                           # proteger. Quem substituir comentario de varias linhas apaga o rabo.
 ultima_ronda: 2026-11-23T14:59Z   # RONDA DIARIA TECNICA de 23/11/2026 (secao 12.2, item 3). SUBSTITUI o valor anterior 2026-11-18T20:01Z, que era da LEITURA SEMANAL de 18/11 e segue registrada no PROMPT.md. Medida na revisao 120 (/status 120 = manifest 120): 11 de 11 URLs em 200, tres portas da 29.2 verdes, 404 virgem na pagina da propria ilha, 31 blocos de JSON-LD que parseiam, console limpo, 17 de 17 contas das tres ferramentas certas na mao, e 15 leituras de teste de vida da 25.4 (11 fichas e 4 buscas) com 0 morta, 0 esgotada, 0 intestavel e 0 sem piso da 25.2. ZERO consertos: nenhum dos tres defeitos e da lista 19.1. ACHADO DE ALTA: /veiculos/moto-eletrica/ recebe ZERO link interno de miolo, porque a listagem da mae e o bloco de irmas nascem da lista de paginas da vitrine e a pagina degradada nao esta nela.
 primeira_indexacao: null  # as duas primeiras URLs foram ao ar hoje; indexacao e trabalho de dias. Quem grava este campo e a leitura semanal, lendo o Search Console.
-ultima_execucao: 2026-11-24T20:1xZ   # A FILA NAO ESTAVA VAZIA: esta execucao
-                         # pegou o DESPACHO NORMAL DA ANCORA, aberto as 16h3xZ
-                         # de hoje, e o fechou INTEIRO (18.2) no desfecho (a),
-                         # CONFERIDO NO AR pela 18.4 — revisao 134, 12 leituras
-                         # de ancora com quebra de cache e 0 ausente.
-                         # COM ELA A 30.4 FECHA INTEIRA NESTA ILHA: a metade do
-                         # CORPO foi a revisao 130, de hoje as 16h4xZ, e a da
-                         # ANCORA e esta.
-                         # E O ACHADO DE METODO: A PREMISSA DO DESPACHO ESTAVA
-                         # ERRADA. Ele supunha que criar a ancora custaria a
-                         # consulta principal; medido no `<a>` das 11 URLs antes
-                         # de qualquer codigo, a casa da `bike eletrica` recebia
-                         # 14 links de dentro da ilha e TODOS OS 14 com a mesma
-                         # ancora exata. Faltava uma PALAVRA, nao mais um link.
-                         # A entrada de miolo de cada filha subiu de 3 para 5 e
-                         # nenhuma ancora de consulta se perdeu. O detalhe esta
-                         # no `bloco_atual` e no REGISTRO.md.
-executando_desde: 2026-11-25T10:32Z   # RESERVA RENOVADA as 10h32Z pela 1.1
-                         # (bloco passou de 40 minutos). A primeira foi as 10h19Z,
-                         # commit 3e50a06. Passo 5 da
-                         # secao 1), foco da 1.2 (`foco.md` nomeia a rodametria).
-                         # Aceita de PRIMEIRA: o campo estava `null`, que pela
-                         # 1.1 ja significa que nao ha bloco da Fundacao vivo, e
-                         # o ultimo commit na pasta era de 24/11 as 20h13Z — 14
-                         # horas atras, muito fora da janela de 40 minutos.
-                         # CONFERIDO ANTES DE RESERVAR que o foco nao esta
-                         # furado: o despacho do molde da 32 esta FECHADO na
-                         # aquametria (21/10, 18h2xZ) e nao existe nas outras
-                         # duas da ordem; e nenhuma ilha fora do foco tem
-                         # despacho ALTO aberto de ilha no ar e quebrada — o da
-                         # clubedomosaico de 11/11 foi reescrito pela 18.3 e o
-                         # que sobrou (itens 3, 4 e 5) e chamado do Raphael,
-                         # falta de credencial e ordem de NAO FAZER.
-rede: aberta em 2026-11-24   # 20.2, REMEDIDA e nao herdada nesta execucao:
+ultima_execucao: 2026-11-25T10:4xZ   # A FILA ESTAVA VAZIA e o bloco veio da
+                         # REGUA que a passada anterior deixou escrita: `grep
+                         # -rn` no nome de um campo declarado para ver quem o le.
+                         # ELA ACHOU A MESMA FRASE MORTA EM CINCO
+                         # LUGARES: o `motivo_categoria_null` dos 17
+                         # registros de veiculos.json, o
+                         # `pendencias_do_bloco.bloqueiam_a_f1` de
+                         # esquema-banco.json (que nao tinha LEITOR nenhum), o
+                         # paragrafo de abertura de dados/fonte-oficial-f1.md (que
+                         # contradizia a secao 5 do PROPRIO arquivo), a secao 1.3
+                         # de dados/especificacao-calculadoras.md e a secao "O que
+                         # esta travando" DESTE arquivo, que errava duas vezes na
+                         # mesma oracao. Todas diziam que
+                         # `limiares-categoria-contran-996-2023` esta `pendente`;
+                         # ela esta `publicavel` desde 06/11/2026. 19 DIAS.
+                         # E O PORTAO QUE COBRAVA A PRIMEIRA DESLIGOU NO MESMO
+                         # GESTO QUE TORNOU A FRASE FALSA: ele era
+                         # `if categoria_travada and ...`, isto e, cobrava o campo
+                         # so enquanto a afirmacao do campo fosse VERDADEIRA.
+                         # O detalhe esta no `bloco_atual` e no REGISTRO.md.
+executando_desde: null   # LIMPO no fecho desta execucao (passo 7 da secao 1).
+                         # Reservada as 10h19Z (commit 3e50a06, aceita de
+                         # PRIMEIRA: o campo estava `null`, que pela 1.1 ja
+                         # significa que nao ha bloco da Fundacao vivo, e o
+                         # ultimo commit na pasta era de 24/11 as 20h13Z) e
+                         # RENOVADA as 10h32Z, porque o bloco passou de 40
+                         # minutos.
+rede: aberta em 2026-11-25   # 20.2, REMEDIDA e nao herdada nesta execucao:
                              # `rodametria.com.br/` e `/veiculos/` em 200, com
                              # example.com em 000 no MESMO comando — o controle
                              # da 33 que diz que `000` nesta nuvem e POLITICA da
                              # lista de permissoes, nunca queda de site nem tunel
                              # instavel. As 11 URLs do sitemap foram abertas
-                             # tres vezes nesta passada (uma por medicao de
-                             # malha, duas por conferencia de ancora) e TODAS
-                             # responderam 200.
+                             # pelos portoes de ar DUAS vezes nesta passada (uma
+                             # na bancada de partida, uma depois do desembarque
+                             # da 136) e TODAS responderam 200.
                              # AS DUAS PAREDES SEGUEM DE PE, e esta execucao NAO
                              # as remediu: o `.gov.br` da F1 e o nivel 5 da
-                             # escada foram medidos nas duas portas hoje as
-                             # 10h2xZ e 13h4xZ, e a 20.2 nao pede terceira
-                             # medicao no mesmo dia. SEGUE FECHADA: o gesto dos
-                             # dois campos de configuracao nao foi feito, e com
-                             # ele seguem parados o CNH da F1 e a camada
-                             # municipal.
+                             # escada foram medidos nas duas portas em 24/11 as
+                             # 10h2xZ e 13h4xZ, e a 20.2 nao pede remedicao de
+                             # parede que esta passada nao usou. SEGUE FECHADA: o
+                             # gesto dos dois campos de configuracao nao foi
+                             # feito, e com ele seguem parados o CNH da F1 e a
+                             # camada municipal.
+                             # E O QUE ESTA PASSADA MEDIU SOBRE A PAREDE DO
+                             # LIMIAR: ela NAO EXISTE MAIS, e nao existia ha 19
+                             # dias. A constante dos limiares esta `publicavel`
+                             # desde 06/11 e o que segue atras do egresso e
+                             # OUTRA coisa — o CTB da habilitacao e os quatro
+                             # atos de prefeitura. Quatro arquivos da ilha diziam
+                             # o contrario e os quatro foram corrigidos aqui.
 bloqueada_por: null      # obrigatorio pela secao 2. `null` DE PROPOSITO: o que falta (gov.br para a F1, as prefeituras para a camada municipal, as tres etiquetas do Mercado Livre) trava a FABRICA e nao a ILHA, e isso se escreve no despacho, que e o canal da 12.2. Preenche-lo congelaria tambem os blocos que ja podem andar.
 bloco_atual: |
-  A ANCORA DO SINONIMO DA 30.4 ESTA NO AR, e com ela a 30.4 fecha INTEIRA nesta
-  ilha: a metade do CORPO foi a revisao 130, hoje as 16h4xZ, e a metade da
-  ANCORA e esta, revisao 134, /status 134 = manifest 134, as 12 linhas de item
-  do log dizendo `ok` (20.4 e 20.8, lidas do FECHO para baixo: 12 - 12 = 0).
+  O PORTAO DO CAMPO MAIS PERIGOSO DO BANCO DESLIGAVA SOZINHO NO MESMO GESTO QUE
+  TORNAVA A AFIRMACAO FALSA, e o conserto esta no main na revisao 136.
 
-  O BLOCO FOI O DESPACHO NORMAL DA ANCORA, aberto as 16h3xZ de hoje e fechado
-  INTEIRO aqui (18.2), no desfecho (a). E A PREMISSA COM QUE O DESPACHO FOI
-  ESCRITO ESTAVA ERRADA, o que e o achado de metodo desta passada: a pergunta 1
-  dele supunha que criar a ancora custaria a consulta principal. Medido no `<a>`
-  das 11 URLs ANTES de qualquer codigo, a casa da `bike eletrica` recebia 14
-  links de dentro da ilha e TODOS OS 14 com a mesma ancora exata, `bicicleta
-  eletrica` — 3 de miolo e 11 do rodape. Diversificacao de texto de ancora:
-  ZERO. Faltava UMA PALAVRA, nao mais um link, e nao havia o que perder.
+  O BLOCO NAO VEIO DA FILA: A FILA ESTAVA VAZIA, e ela estava vazia de verdade —
+  o bloco 5 espera a pauta das maos (17.1), pagina nova de produto esta travada
+  pela 30.8, a profundidade da F1 e da F3 esta fechada nas duas paredes de
+  egresso, e os itens dos despachos abertos sao todos do Raphael. Valeu a regua
+  que o `bloco_atual` da passada anterior deixou escrita: `grep -rn` no nome de
+  um campo declarado para ver quem o le. Ela achou trabalho em um comando.
 
-  MEDIDO NO AR, DUAS PASSADAS POR URL COM QUEBRA DE CACHE: 12 leituras de ancora
-  e 0 AUSENTE. As tres ancoras — `patinete eletrico dobravel`, `bike eletrica` e
-  `motos eletricas para adultos` — servidas no miolo das DUAS ferramentas. A
-  entrada de miolo de cada filha subiu de 3 PARA 5, e NENHUMA ancora de consulta
-  se perdeu: `bicicleta eletrica` segue com 14 links e 3 de miolo, `moto
-  eletrica` com 25 e 3, `patinete eletrico` com 14 e 3. Cada casa passou de UM
-  texto de ancora para DOIS ou TRES.
+  O QUE ESTAVA ESCRITO: os 17 registros de dados/veiculos.json declaravam, no
+  `motivo_categoria_null`, que a constante `limiares-categoria-contran-996-2023`
+  estava `pendente`. Ela esta `publicavel` desde 06/11/2026, e quem o diz e o
+  arquivo vizinho — constantes.json, em `pendencias_resumidas`, escreve
+  "DESTRAVADA em 06/11/2026 ... Era a UNICA que bloqueava desembarque". A frase
+  morreu no dia em que a F1 foi ao ar e ficou de pe 19 DIAS.
 
-  AS TRES PERGUNTAS DO DESPACHO, RESPONDIDAS COM O NUMERO DE CADA UMA, e as
-  respostas moram em `de_onde_sai_a_ancora_de_sinonimo`, em
-  dados/paginas-de-produto.json — nao neste cabecalho, porque decisao de malha
-  tem de viajar com o dado que ela governa:
-  (1) O LINK SAI DAS DUAS PAGINAS DE FERRAMENTA, e elas foram escolhidas por
-      MEDICAO: as duas serviam ZERO link de miolo para as filhas (0 ocorrencia
-      de `rdm-malha` nas duas, contra 1 em cada filha e na mae) e alcancavam as
-      filhas so pelo RODAPE, que esta fora da conta da 16.9(b). Logo o link daqui
-      e o PRIMEIRO de miolo daquela pagina para aquela casa. Em qualquer outra
-      pagina do silo ele seria o SEGUNDO para o mesmo destino, e o que um segundo
-      link faz com o texto de ancora depende de como o buscador atribui — e a
-      30.8 desta ilha proibe mecanismo construido sobre o que ela nao mede.
-  (2) NAO aponta para a propria pagina, e o auto-aponte sai fora NAS DUAS
-      direcoes.
-  (3) E ANCORA, e o desfecho (b) foi RECUSADO com motivo: a palavra no corpo
-      serve a busca e a visao geral de IA mas nao diz QUAL URL e a casa daquela
-      consulta, que e o que a 30.4 pede ao fechar uma consulta em favor de outra
-      pagina. Sao 201 mil buscas/mes em cada uma das duas consultas fechadas.
-  E O QUE NAO FOI TOCADO: a listagem da mae (16.4a) e o bloco de irmas (16.4c)
-  seguem com a consulta exata. A 16.4(c) manda ancora na consulta ali COM TODAS
-  AS LETRAS — a troca que o despacho imaginou nao era so desnecessaria, era
-  PROIBIDA. A ancora de sinonimo e um TERCEIRO lugar.
+  E O PORTAO QUE A COBRAVA DESLIGOU NO MESMO MINUTO. A linha era
+  `if categoria_travada and categoria is None and not motivo`: ela cobrava o
+  campo SO ENQUANTO a constante estivesse `pendente`, isto e, so enquanto a
+  afirmacao do campo fosse VERDADEIRA. A ironia esta a quatro linhas de
+  distancia, no comentario que a propria passada de 06/11 escreveu logo acima —
+  "Com o limiar `publicavel` a trava antiga desliga SOZINHA, e o campo mais
+  perigoso do banco ficaria sem portao". Ela viu o risco numa linha e o deixou
+  de pe na seguinte.
 
-  O PORTAO, PELA 31.2: `veredito_da_ancora_de_sinonimo()` e `ancoras_internas()`
-  sao irmas das tres funcoes puras da ilha. A REGUA VELHA ERA A AUSENCIA DE
-  REGUA — `caminhos_internos()` joga fora exatamente o que a 30.4 pede, porque
-  conta LINK e a 30.4 fala de ANCORA. A DISCORDANCIA DA 20.8 FOI MEDIDA CONTRA O
-  AR AINDA NA REVISAO 130, antes do conserto chegar: a conta de entrada APROVOU
-  as tres filhas (3 entradas, contra as 2 da 16.4f) e a regua nova REPROVOU nas
-  TRES — 415 afirmacoes, 3 falhas, com `servida no miolo de: NENHUMA pagina` em
-  cada uma. `teste-sinonimo-na-tela.py` ganhou a TERCEIRA metade e cobra o campo
-  derivado nas TRES direcoes; `teste-cluster-de-entrada.py` ganhou 6 mundos
-  fabricados. A ponta do ar sai da MESMA leitura das 11 URLs, para nao dobrar a
-  leitura de rede (20.2).
+  E FORAM CINCO LUGARES, nao tres. Os outros dois sao prosa de bancada e
+  estao no fecho desta entrada: o paragrafo de abertura de
+  dados/fonte-oficial-f1.md, que contradizia a SECAO 5 DO PROPRIO ARQUIVO, e a
+  secao "O que esta travando" deste ESTADO.md, que dizia "os dois limiares
+  legais seguem `pendente`" — errado DUAS vezes, porque nenhum limiar legal esta
+  pendente e as duas constantes que estao nao sao limiares legais.
 
-  A PECA QUE EVITOU UM ERRO QUE NENHUM PORTAO VERIA:
-  `sinonimo_elegivel_para_ancora()` descarta o sinonimo que carrega o substantivo
-  de familia de OUTRA consulta com URL propria. O PRIMEIRO sinonimo declarado da
-  moto e `scooter eletrica` — consulta de 301 mil buscas/mes com `slug:
-  veiculos/scooter-eletrica` e remedicao pre-registrada para 11/12 pela 30.9.
-  Ancorar a moto nela seria construir HOJE o link que AMANHA aponta para a casa
-  errada, e o erro so apareceria no dia da pagina nova, com a ancora ja
-  distribuida. O casamento e por RAIZ DE PALAVRA: sem ele, `moto` casaria dentro
-  de `motos eletricas para adultos` — o plural da propria familia — e a unica
-  ancora elegivel da maior cabeca do nicho sumiria calada.
+  O TERCEIRO LUGAR, achado primeiro: `pendencias_do_bloco.bloqueiam_a_f1`, em
+  esquema-banco.json, dizia a MESMA coisa morta, e `grep -rn` nas ferramentas,
+  nos snippets e nas regras devolvia ZERO leitor. O arquivo foi reescrito em
+  23/11 com a frase intacta dentro. Tres declaracoes do mesmo fato e so uma
+  subia (20.7).
 
-  A 20.9 ECONOMIZOU AS RODADAS DUAS VEZES NESTA EXECUCAO, e na segunda a
-  PREVISAO DO PORTAO SE CUMPRIU COM HORA MARCADA:
-  (a) revisao 134: push as 19:33Z, `ultimo` 19:17:35, teto 19:47:35 — veredito
-      `evento-nao-vencido`, ESPERAR e nao reacionar. Entrou as 19:47:45, na
-      PRIMEIRA visita, com ZERO rodada desperdicada.
-  (b) revisao 135: `ultimo` 19:47:45, teto 20:17:45 — e ela entrou as 20:10:18,
-      7m27s ANTES do teto. O `conferir-no-ar.py` desta ilha escreve, no proprio
-      texto do veredito, que o teto `PODE CAIR ANTES` porque o WordPress
-      reagenda evento recorrente a partir do horario AGENDADO e nao do horario em
-      que ele rodou. E A SEGUNDA MEDICAO DESSA PREVISAO: a primeira foi em
-      05/11/2026, com 6m37s de antecipacao. O QUE ISSO MUDA NA PRATICA, dito para
-      a proxima passada nao gastar a janela: quem espera o teto para SO ENTAO
-      comecar a visitar deixa passar em branco os minutos em que o evento venceu
-      — esta execucao corrigiu isso no meio do caminho e passou a visitar a home
-      a cada 80 segundos desde o push.
+  A CAUSA DE VERDADE TEM DOIS VALORES, e nenhum deles e a constante: rodada a
+  arvore da F1 com os limiares que estao publicaveis hoje, 14 registros param em
+  `acelerador_nao_declarado` e 3 em `potencia_nominal_ausente`. Contado no mesmo
+  gesto: 14 de 17 nao declaram `acelerador`, 17 de 17 nao declaram
+  `potencia_nominal_w` e 17 de 17 nao declaram `velocidade_max_kmh`. O QUE TRAVA
+  A F1 E COLETA EM FICHA, NAO NORMA — e a diferenca decide onde a proxima
+  execucao gasta a passada.
 
-  BANCADA: 65 portoes sem rede e 71 com rede, 0 falha nas DUAS, com os cinco de
-  navegador rodados — e a de rede foi rodada DEPOIS de a revisao 135 entrar, as
-  20:1xZ. Nas rodadas intermediarias a unica falha era a propria 135 pendente, e
-  o portao da ilha dava o veredito certo para ela. ZERO conserto da lista 19.1 e
-  nenhum tentado: nada dela apareceu.
-  E UMA INTERMITENCIA MEDIDA E NOMEADA, para a proxima nao a herdar como defeito:
-  na PRIMEIRA rodada da bancada com rede, `medir-foto-no-navegador.mjs` saiu
-  INERTE (sem imprimir veredito). Rodado sozinho em seguida: APROVADO, 48
-  afirmacoes, 0 falha; e na re-rodada da bancada inteira: `ok`. E o navegador
-  desta nuvem falhando uma vez, nao regua quebrada — a seccao 4 manda repetir
-  antes de chamar de bloqueio, e repetir resolveu.
+  E A TELA ESTAVA CERTA: medido no HTML servido da home nesta passada, a
+  prestacao de contas da F1 diz "Nao da para classificar: a ficha nao declara o
+  que a regra le: 14", com os nomes um por um. E o INVERSO do defeito de 06/11 —
+  la a pagina estava certa na camada da pessoa e errada na da maquina; aqui o
+  REPOSITORIO estava errado e a TELA certa. Nenhum byte de tela mentia, e e por
+  isso que nada acusou.
 
-  A REVISAO 135 E DE MEMORIA E NAO DE PAGINA, e esta dito sem maquiar: ela
-  carrega so a procedencia da ancora nas duas oracoes de
-  consultas-de-produto.json, arquivo com `publicar: false` que NAO vira option no
-  ar. Nenhum byte de tela muda com ela. Ela foi desembarcada de todo jeito porque
-  repositorio em 135 com ar em 134 faz a proxima execucao ler `commit sem Sync`
-  pela 20.4 — e esse portao nao sabe distinguir os dois casos. ESTA NO AR:
-  /status 135 = manifest 135, as 8 linhas de item do log dizendo `ok` (8 - 8 = 0).
+  O CONSERTO, e nenhum portao NOVO nasceu (31.2 — os tres arquivos ja existiam):
+  (1) derivar-banco.py ganhou o QUARTO derivado. O `motivo_categoria_null` passa
+      a ser escrito da arvore, com a causa em crase e com o status da constante
+      LIDO naquela passada, nunca digitado. Ele tambem REMOVE o motivo de
+      registro cuja `categoria` esteja preenchida, e NAO escreve `categoria`: o
+      produto da ilha nao sai de uma ferramenta de derivacao.
+  (2) validar-banco.py cobra TRES coisas onde cobrava uma, com mensagem separada
+      para cada (20.5): (a) motivo obrigatorio SEMPRE que `categoria` e null,
+      travada ou destravada; (b) registro que a arvore CLASSIFICA e esta null e
+      AUSENCIA SILENCIOSA da recomendacao da F1 — defeito que NENHUMA regua
+      desta ilha via, porque a de 06/11 so recalculava com o campo PREENCHIDO;
+      (c) prosa que afirma status de constante e conferida contra
+      constantes.json, e a MESMA regua le o `pendencias_do_bloco` do esquema
+      (secao 2-b nova), que passou a ter leitor, mais a morte de esquema da
+      chave pela 26.2. Mais a contradicao `categoria` preenchida COM motivo de
+      null de pe.
+  (3) mutacoes-banco.py de 79 para 85 casos, e os novos medem o mundo de HOJE: o
+      caso antigo POE a constante em `pendente` antes de apagar o campo, e por
+      isso ele nao media nada sobre o mundo de hoje.
+  (4) A DISCORDANCIA DA 20.8 ESCRITA COMO FUNCAO: `discordancia_da_20_8()` refaz
+      a regua VELHA ao lado da nova em dois mundos estragados e exige que as
+      duas DISCORDEM — a velha aprova os dois, a nova reprova os dois.
 
-  PROXIMO PASSO DESBLOQUEADO — a fila de construcao da Fundacao voltou a estar
-  VAZIA, e o criterio segue pre-registrado (1.2-b.4):
+  O LIMITE DA REGUA (c), DITO PARA NINGUEM A LER COMO MAIS FORTE DO QUE E: ela
+  le a palavra de status que esta AO LADO do id da constante, ate o fim daquela
+  sentenca. Prosa que NEGUE ali ("nao esta mais `pendente`") a engana. A regra
+  que sai disso esta escrita nos dois geradores e no proprio esquema: ao lado do
+  id vai o STATUS, nunca a negacao dele.
+
+  OS NUMEROS, NESTA ORDEM: a metade POR REGISTRO do portao novo, sobre o banco
+  VELHO, deu 34 FALHAS (duas por registro, nos 17); a metade do ESQUEMA, escrita
+  depois, deu 1 FALHA no `pendencias_do_bloco`; `derivar-banco.py --conferir`
+  acusou 17 motivos a reescrever; sobre o banco reescrito, 0 falha e APROVADO;
+  mutacoes 85 casos + 1 autoteste + 2 mundos da 20.8, 0 falha; bancada 65
+  portoes sem rede e 71 COM REDE depois do desembarque, 0 falha nas duas;
+  `conferir-no-ar.py` sozinho, 826 afirmacoes e 0 falha.
+
+  O DESEMBARQUE, E A 20.9 ECONOMIZOU AS RODADAS OUTRA VEZ: push as 10h33Z,
+  `ultimo` 10:18:55, teto 10:48:55, raw ja servindo 136 — veredito
+  `evento-nao-vencido`, ESPERAR e nao reacionar. A revisao entrou as 10:39:58Z,
+  8m57s ANTES do teto, com ZERO rodada desperdicada. E A TERCEIRA MEDICAO da
+  previsao que o `conferir-no-ar.py` escreve no proprio veredito — o teto PODE
+  CAIR ANTES, porque o WordPress reagenda evento recorrente a partir do horario
+  AGENDADO e nao do horario em que ele rodou. As tres: 6m37s (05/11), 7m27s
+  (24/11) e 8m57s (hoje). O log foi lido do FECHO para baixo (20.8): o fecho
+  declara 8 aplicado(s) e as 8 linhas de item dizem `ok` — 8 - 8 = 0. A janela
+  de 15 esta CHEIA, e isso e DITO: item de revisao anterior que rolou para fora
+  dela nao foi conferido por ninguem.
+
+  O QUE ESTA PASSADA NAO ENTREGOU, DITO ANTES DE A LEITURA SEMANAL CONTAR: ZERO
+  byte de tela. Nenhuma pagina, nenhum `<title>`, nenhum texto, nenhum bloco de
+  compra, nenhum link de afiliado. ISSO TEM DE ENTRAR NA CONTA DA 31.1, que a
+  leitura semanal de hoje faz pela 31.6. A causa esta medida e nao e escolha: os
+  quatro caminhos de construcao estao atras de gesto do Raphael, de egresso, de
+  SERP no Chrome dele ou da pauta das maos. O que esta passada fez e o que a 31.3
+  PERMITE quando nao ha item de conteudo aberto na fila nem em despacho.
+
+  A REVISAO 136 E DE BANCO DE BANCADA E NAO DE PAGINA, dito sem maquiar: os dois
+  arquivos tocados sao `publicar: false` e nao viram option no ar, entao NENHUM
+  byte de tela muda com ela. Foi desembarcada de todo jeito porque repositorio
+  em 136 com ar em 135 faz a proxima execucao ler `commit sem Sync` pela 20.4, e
+  esse portao nao sabe distinguir os dois casos — a mesma decisao, com o mesmo
+  motivo, que a revisao 135 de 24/11 registrou.
+
+  PROXIMO PASSO DESBLOQUEADO — a fila de construcao segue VAZIA, e o criterio
+  segue pre-registrado (1.2-b.4):
   1. A PAUTA segue sendo o gesto mais barato do arquipelago (despacho de 24/11
      13h2xZ, para o Raphael): rodar *Pauta das ilhas* pelas maos nesta ilha e
-     deixar nascer ilhas/rodametria/pauta.md no formato da 17.3. Destrava o bloco
-     5, que e o UNICO caminho de construcao que nao depende de abrir egresso.
-  2. OS GESTOS DO RAPHAEL, inalterados: os dois campos de configuracao do
+     deixar nascer ilhas/rodametria/pauta.md no formato da 17.3. Destrava o
+     bloco 5, que e o UNICO caminho de construcao que nao depende de egresso.
+  2. E O PASSO QUE ESTA PASSADA ACRESCENTA, e ele tem numero: A F1 NAO ESPERA
+     NORMA, ESPERA FICHA. Faltam `acelerador` em 14, `potencia_nominal_w` em 17
+     e `velocidade_max_kmh` em 17 dos 17 registros, e o `motivo_categoria_null`
+     de cada um nomeia o que falta NAQUELE registro. Quem conseguir uma unica
+     ficha com os tres campos faz nascer o PRIMEIRO `categoria` da historia da
+     ilha — e o portao novo (b) acusa se ele nascer e nao aparecer.
+  3. OS GESTOS DO RAPHAEL, inalterados: os dois campos de configuracao do
      ambiente, as tres etiquetas do Mercado Livre, a SERP das duas consultas
      `nao-medida`, o chamado na HostGator e o token do Sync.
-  3. DATAS JA MARCADAS: a leitura semanal e 25/11 (amanha) e e ela quem decide o
-     campo `piso` (21.6). A remedicao da `scooter eletrica` e 11/12 EM DIANTE,
-     pela 30.9, e pega carona em execucao que ja tenha o que entregar no ar.
-  4. A LICAO DE METODO DESTA PASSADA, e ela vale mais que o conserto: O DESPACHO
-     QUE DESCREVE O DEFEITO PODE ERRAR NA PREMISSA DO CONSERTO. Este dizia que
-     trocar a ancora de irma perderia a consulta principal, e a conta de ancoras
-     por destino — UM comando sobre o HTML servido — mostrou que a consulta
-     estava em 14 lugares e que a troca era PROIBIDA pela 16.4(c) de todo jeito.
-     QUEM PEGAR DESPACHO COM PREMISSA ESCRITA EM PROSA MEDE A PREMISSA PRIMEIRO:
-     custa um comando, e foi o que mudou o desenho inteiro desta passada.
-  5. E A REGUA DE ONDE PROCURAR TRABALHO, herdada da passada das 16h16Z e
-     confirmada aqui: consulta fechada pela 30.4 CONTINUA TENDO OBRIGACAO, e a
-     obrigacao dela mora num campo declarado. Esta passada fechou a SEGUNDA
-     metade daquela obrigacao. A primeira pergunta de quem achar a fila vazia
-     segue sendo `grep -rn` no nome de um campo declarado para ver quem o le.
+  4. DATAS JA MARCADAS: a leitura semanal e HOJE, 25/11, e e ela quem decide o
+     campo `piso` (21.6) e quem conta a proporcao da 31.1 (31.6) — esta passada
+     NAO entregou byte de tela, e isso tem de entrar na conta dela com todas as
+     letras. A remedicao da `scooter eletrica` e 11/12 EM DIANTE, pela 30.9.
+  5. A LICAO DE METODO, e ela e irma da de 24/11: TRAVA CONDICIONADA A UMA
+     AFIRMACAO DESLIGA JUNTO COM ELA. A linha de 06/11 cobrava o motivo so
+     enquanto o motivo fosse verdadeiro — no instante em que ele ficou falso, o
+     portao parou de olhar. Quem escrever portao com `if <condicao_do_mundo> and
+     ...` pergunta o que acontece com ele no dia em que a condicao virar, porque
+     e justamente esse o dia em que ele precisa morder.
 
 ---
 
@@ -244,11 +261,20 @@ a **fábrica**, e isso se escreve no despacho, que é o canal da 12.2:
 - **A fonte oficial da F1 não passa pelo egresso desta nuvem**, remedido em
   13/11/2026 às 13h3xZ pela 20.3: `gov.br`, `in.gov.br`, `planalto.gov.br`,
   `gov.br/transportes` e `lex.com.br` respondem **000** os cinco — nem 403, o
-  que quer dizer que não estão na lista de domínios permitidos do ambiente. Os
-  dois limiares legais seguem `pendente` em `dados/constantes.json` e a F1
-  segue no ar sem veredito de CNH, dizendo com frase própria o que falta.
+  que quer dizer que não estão na lista de domínios permitidos do ambiente. A F1
+  segue no ar sem veredito de **CNH**, dizendo com frase própria o que falta.
   Despacho ALTA de 28/10 em `dados/despachos.md`, e ele é do Raphael: quem
   acrescenta domínio à lista é quem abre o ambiente (20.1).
+  *(ESTA ORAÇÃO ESTAVA ERRADA DUAS VEZES E FOI CORRIGIDA EM 25/11/2026: ela
+  dizia "os dois limiares legais seguem `pendente` em `dados/constantes.json`".
+  Nenhum limiar legal da resolução está `pendente` — a constante
+  `limiares-categoria-contran-996-2023` está `publicavel` desde 06/11/2026 —, e
+  as duas constantes que de fato seguem `pendente` **não são limiares legais**:
+  `exigencia-de-habilitacao-por-categoria-ctb` é do Código de Trânsito, não da
+  996/2023, e `consumo-absoluto-wh-por-km-patinete` é da F2 e não tem nada de
+  legal. O que a parede do `gov.br` ainda trava, de verdade, é a habilitação e
+  a camada municipal — nunca mais o limiar. Achada na mesma varredura que achou
+  a frase morta em quatro arquivos desta ilha.)*
 
 ## A série da cura da porta só existe aqui, e isso foi medido
 A linha `cura da porta:` que o `/status` serve vive numa janela de **15

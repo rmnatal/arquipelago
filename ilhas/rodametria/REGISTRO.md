@@ -3,6 +3,130 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-11-25 10h19Z–10h5xZ — **O PORTÃO DO CAMPO MAIS PERIGOSO DO BANCO DESLIGAVA SOZINHO NO MESMO GESTO QUE TORNAVA A AFIRMAÇÃO FALSA — E 17 DE 17 REGISTROS DECLARAVAM UMA CAUSA MORTA HÁ 19 DIAS**
+
+**A ILHA DESTA EXECUÇÃO:** rodametria, por **foco** (`foco.md`, foco total e absoluto desde 27/10). Pela **1.2** não houve escolha a fazer.
+**Passo 1 do disparo, medido:** `git fetch origin main` trouxe `origin/main` de `ebcd2e2` para **`3a7c7df`**. **Nenhum branch `claude/*` com trabalho pendente** — `origin/main..claude/dreamy-mccarthy-5s12gn` veio **vazio**, e o local estava no mesmo commit do `main` — e **nenhum PR aberto**. Nada a mergear antes.
+**ANTES DE RESERVAR, A CONFERÊNCIA DE QUE O FOCO NÃO ESTÁ FURADO** (as duas exceções da 1.2, lidas e não supostas): o **despacho do molde de conversão da seção 32** está **FECHADO** na aquametria desde 21/10 às 18h2xZ e **não existe** nas outras duas da ordem (`32.2` não aparece como despacho aberto em clubedomosaico nem em robometria); e **nenhuma ilha fora do foco tem despacho ALTO aberto de ilha no ar e quebrada** — o ALTA de 11/11 da clubedomosaico foi **reescrito pela 18.3** em 12/11 e o que sobrou (itens 3, 4 e 5) é chamado na HostGator, falta de credencial de Search Console e uma ordem de **NÃO FAZER**. Logo o foco manda sozinho.
+**Reserva:** `executando_desde` às **10h19Z**, commit **`3e50a06`**, push aceito **de primeira**. O campo estava `null`, que pela **1.1** já significa que não há bloco da Fundação vivo, e o último commit na pasta era de **24/11 às 20h13Z** — 14h06 atrás, muito fora da janela de 40 minutos. **RENOVADA às 10h32Z** pela 1.1, porque o bloco passou de 40 minutos.
+**REDE PELA 20.2, REMEDIDA E NÃO HERDADA:** `rodametria.com.br/` e `/veiculos/` em **200**, com `example.com` em **000** no mesmo comando — o controle da **33** que diz que `000` nesta nuvem é política da lista de permissões, nunca queda de site nem túnel instável.
+**O AR ESTAVA EM DIA ANTES DE QUALQUER COISA:** `/status` **135** = `manifest.json` **135**, `ultimo` de hoje às 10:18:55.
+**A BANCADA DE PARTIDA, rodada antes de escolher trabalho:** **65 portões sem rede** e **71 com rede**, **0 falha nas duas**. Os **cinco** portões de navegador desta ilha rodaram: `teste-f1-arvore.mjs` e `teste-passagem-de-peso.mjs` na bancada sem rede, e `conferir-32-5-no-navegador.mjs`, `medir-console-no-navegador.mjs` e `medir-foto-no-navegador.mjs` contra o site. A ilha estava sã no ar.
+
+### A FILA ESTAVA VAZIA, E ELA ESTAVA VAZIA DE VERDADE — A LISTA DO QUE FOI CONFERIDO ANTES DE PROCURAR TRABALHO
+
+Nenhum dos blocos de construção da fila é exercitável hoje, e isto foi relido um por um e não herdado do cabeçalho:
+
+- **bloco 5 (artigos-âncora)** depende de `ilhas/rodametria/pauta.md`, que pela **17.1** quem grava são as **mãos**, nunca a Fundação. O arquivo não existe e a rotina *Pauta das ilhas* nunca rodou — despacho de 24/11 às 13h2xZ, para o Raphael.
+- **página nova pelo nome do produto** está travada pela **30.8**: o veredito que autoriza gastar rastreamento é do Chrome do Raphael. A `scooter elétrica` tem remedição **pré-registrada para 11/12** pela 30.9, e a quarta medição da série (23/11) achou a causa **idêntica** à de 20/11.
+- **profundidade da F1 e da F3** está fechada nas duas paredes de egresso (`gov.br` e o nível 5), remedidas em 24/11.
+- **os itens dos despachos abertos** no `PROMPT.md` são todos **do Raphael** hoje: os dois campos de configuração do ambiente, as três etiquetas do Mercado Livre e o muro do anti-robô da Shopee no teste de vida.
+
+**Então valeu a régua que o `bloco_atual` da passada anterior deixou escrita, no item 5 do "próximo passo":** *"a primeira pergunta de quem achar a fila vazia segue sendo `grep -rn` no nome de um campo declarado para ver quem o lê"*. Ela achou trabalho em um comando.
+
+### O QUE A RÉGUA ACHOU: TRÊS LUGARES DECLARAVAM O MESMO FATO E SÓ UM SUBIA
+
+A varredura foi feita sobre **todos os `.json` de `dados/`**, com os campos de prosa descartados (campo cuja única forma de valor é texto longo é memória da ilha, e memória não precisa de leitor) e as chaves de mecanismo — booleano, número, lista — cruzadas contra todo `.py`, `.php` e `.mjs` da pasta. O que sobrou tinha um nome com dono.
+
+**O DEFEITO, medido no arquivo.** Os **17** registros de `dados/veiculos.json` diziam, palavra por palavra, no campo `motivo_categoria_null`:
+
+> *"DERIVADA da F1 e obrigatoriamente null: a constante `limiares-categoria-contran-996-2023` está `pendente` em dados/constantes.json, e a 1.3 da especificação proíbe a F1 de ir ao ar com número de portal. O validador lê o STATUS DA CONSTANTE, não uma lista escrita dentro dele."*
+
+Aquela constante está **`publicavel` desde 06/11/2026**, e quem o diz é o arquivo vizinho: `dados/constantes.json`, em `pendencias_resumidas.destravadas_nesta_versao`, escreve *"DESTRAVADA em 06/11/2026 com a leitura oficial de 05/11 (PDF do Ministério dos Transportes, no Chrome do Raphael). **Era a ÚNICA que bloqueava desembarque**"*. **A frase do banco morreu no dia em que a F1 foi ao ar e ficou de pé por 19 dias.**
+
+**E O PORTÃO QUE A COBRAVA DESLIGOU NO MESMO MINUTO EM QUE ELA FICOU FALSA.** A linha de `ferramentas/validar-banco.py` era:
+
+```
+if categoria_travada and v.get("categoria") is None and not v.get("motivo_categoria_null"):
+```
+
+Ela cobrava o campo **só enquanto a constante estivesse `pendente`** — isto é, **só enquanto a afirmação do campo fosse verdadeira**. No instante em que a constante destravou, a frase ficou falsa **e** o portão parou de olhar: as duas coisas pelo mesmo gesto. **A ironia está a quatro linhas de distância, no comentário que a própria passada de 06/11 escreveu logo acima:** *"Com o limiar `publicavel` a trava antiga ('categoria tem de ser null') desliga SOZINHA, e o campo mais perigoso do banco ficaria sem portão."* Ela viu o risco numa linha e o deixou de pé na seguinte.
+
+**O TERCEIRO LUGAR, e é o que a régua do campo sem leitor achou primeiro:** `pendencias_do_bloco.bloqueiam_a_f1`, em `dados/esquema-banco.json`, dizia *"limiares-categoria-contran-996-2023 (`pendente`) — trava `categoria` em TODO registro, e `categoria` é o produto da ilha"*. **`grep -rn pendencias_do_bloco` nas ferramentas, nos snippets e nas regras desta ilha devolvia ZERO leitor**, e o arquivo foi **reescrito em 23/11** com a frase intacta dentro. É a **20.7** desta ilha outra vez: *"duas declarações do mesmo fato começam iguais e só uma sobe"* — aqui foram três.
+
+### A CAUSA DE VERDADE É OUTRA, E ELA TEM DOIS VALORES
+
+Rodada a árvore da F1 sobre os 17 registros com os limiares **que estão publicáveis hoje** (`LIMIAR_BIKE_W` 1.000, `LIMIAR_BIKE_KMH` 32, `LIMIAR_AUTOPROP_W` 1.000, `LIMIAR_AUTOPROP_KMH` 32, `LIMIAR_CICLOMOTOR_W` 4.000, `LIMIAR_CICLOMOTOR_KMH` 50):
+
+| causa que a árvore devolve | registros |
+|---|---|
+| `acelerador_nao_declarado` | **14** |
+| `potencia_nominal_ausente` | **3** (maxshot-v1, maxshot-v1spro, sousa-bike-aro-24) |
+| a constante | **0** |
+
+**Nenhum dos 17 é travado pela constante, e os 17 diziam que eram.** Contado no mesmo gesto: **14 de 17** não declaram `acelerador`, **17 de 17** não declaram `potencia_nominal_w` e **17 de 17** não declaram `velocidade_max_kmh`. O que trava a F1 é **COLETA em ficha**, não norma — e a diferença decide onde a próxima execução gasta a passada.
+
+**E A TELA ESTAVA CERTA.** Medido no HTML servido da home nesta passada, o bloco de prestação de contas da F1 diz *"Cabem nesta categoria: 0 · São de outra categoria: 0 · Não dá para classificar: a ficha não declara o que a regra lê: 14 · Classificam, mas ainda não têm saída de compra: 0 · Fora do banco, e cada um diz por quê: 3"*, com os nomes um por um. **É o inverso do defeito de 06/11, que esta ilha já pagou:** lá a página estava certa na camada que a pessoa lê e errada na que a máquina lê; aqui o **repositório** estava errado e a **tela** certa. Nenhum byte de tela mentia, e é por isso que nada acusou.
+
+### O CONSERTO É DE MECANISMO, NÃO DE PROSA — E NENHUM PORTÃO NOVO NASCEU (31.2)
+
+**1. `ferramentas/derivar-banco.py` ganhou o QUARTO derivado.** `motivo_categoria_null` passa a ser **escrito** da árvore da F1, com a causa em crase e com o **status da constante LIDO naquela passada** — nunca digitado. Reescrever à mão consertava hoje e não impedia o próximo; derivado, o campo não pode mais envelhecer, e quando o status da constante mudar os 17 motivos ficam vencidos de uma vez e **um comando** os reescreve. A ferramenta também **remove** o motivo de registro cuja `categoria` esteja preenchida, e **não escreve `categoria`**: o produto da ilha não sai de uma ferramenta de derivação, e quem acusa a ausência é o portão.
+
+**2. `ferramentas/validar-banco.py` cobra TRÊS coisas onde cobrava uma**, com mensagem separada para cada, porque os consertos são diferentes (a **20.5** desta fábrica já ensinou que portão que reprova a coisa certa pelo motivo errado é o caminho mais curto para alguém ignorá-lo):
+
+- **(a)** `motivo_categoria_null` é obrigatório **sempre** que `categoria` é null — com a constante travada **ou destravada**. É a linha de 06/11 sem o `categoria_travada and`.
+- **(b)** registro que a árvore **CLASSIFICA** e está com o campo null é **ausência silenciosa da recomendação da F1**: o veículo cabe numa categoria e não aparece nela. **Nenhuma régua desta ilha via isso** — a de 06/11 só recalculava quando o campo estava **preenchido**, então um registro classificável podia ficar null para sempre em silêncio. Hoje a resposta é 0 em 17, e a diferença é que agora ela é **provada** e não suposta.
+- **(c)** prosa que afirma status de constante é conferida contra `dados/constantes.json`, que é onde o status mora — e **a mesma régua lê o `pendencias_do_bloco` do esquema** (seção 2-b nova do portão), que passou a ter leitor, mais a morte de esquema da chave pela **26.2**. Mais a contradição `categoria` preenchida **com** motivo de null de pé ao lado.
+
+**O QUE A RÉGUA (c) NÃO ALCANÇA, dito para ninguém a ler como mais forte do que é:** ela lê a palavra de status que está **ao lado** do id da constante, até o fim daquela sentença. Prosa que **negue** ali (*"não está mais `pendente`"*) a engana. A regra que sai disso está escrita nos dois geradores e no próprio esquema: **ao lado do id vai o status, nunca a negação dele.**
+
+**3. `ferramentas/mutacoes-banco.py`: de 79 para 85 casos**, e os novos medem o mundo de **hoje**. O caso antigo (*"categoria null sem `motivo_categoria_null`"*) **põe a constante em `pendente`** antes de apagar o campo — por isso ele passava com a régua velha e por isso **ele não media nada sobre o mundo de hoje**. Entraram: o motivo apagado com o limiar **já publicável**; o motivo com a **causa vencida** (a frase literal que ficou 19 dias no banco); o registro que **classifica** com o campo null; a `categoria` preenchida com o motivo de pé; o `pendencias_do_bloco` afirmando status que a constante desmente; e a **morte do esquema** daquela chave.
+
+**4. A DISCORDÂNCIA DA 20.8, ESCRITA COMO FUNÇÃO E NÃO COMO PROMESSA.** `discordancia_da_20_8()` refaz a régua **velha** (`categoria_travada and ...`) ao lado da nova em **dois** mundos estragados e exige que as duas **DISCORDEM**: a velha **aprova** os dois e a nova **reprova** os dois. Autoteste em que as duas concordam não mede conserto nenhum.
+
+### OS NÚMEROS DA VERIFICAÇÃO, NESTA ORDEM
+
+| medição | número |
+|---|---|
+| a metade **por registro** do portão novo, sobre o banco velho e antes de qualquer reescrita | **34 falhas** — duas por registro, nos 17 (a causa vencida e o status desmentido) |
+| a metade do **esquema** (seção 2-b), na ordem em que foi escrita: ela nasceu depois do banco já reescrito | **1 falha**, no `pendencias_do_bloco.bloqueiam_a_f1`, antes de a prosa dele ser corrigida |
+| `derivar-banco.py --conferir` sobre o banco velho | **17 `motivo_categoria_null` a reescrever** |
+| o portão novo sobre o banco **reescrito** | **0 falha, APROVADO** |
+| `mutacoes-banco.py` | **85 casos + 1 autoteste + 2 mundos da 20.8, 0 falha** |
+| bancada sem rede, depois do conserto | **65 portões, 0 falha** |
+| bancada **com rede**, depois de a revisão 136 entrar no ar | **71 portões, 0 falha** |
+| `conferir-no-ar.py` sozinho, para o número ficar registrado | **826 afirmações, 0 falha** |
+
+### O DESEMBARQUE: A 20.9 ECONOMIZOU AS RODADAS, E A PREVISÃO DO PORTÃO SE CUMPRIU PELA TERCEIRA VEZ
+
+**O veredito da 20.9 foi `evento-nao-vencido`, e ele estava certo.** Push do manifest às **10:33Z**; `ultimo` em **10:18:55**, logo o teto era **10:48:55**; `raw.githubusercontent.com` já servia **136**. A régua manda **esperar e não reacionar** — e a execução esperou, visitando a home a cada 80 segundos **desde o push** e não a partir do teto, que é a correção que a passada de 24/11 deixou escrita.
+
+**A revisão entrou às 10:39:58Z, 8m57s ANTES do teto, com ZERO rodada de Sync desperdiçada.** É a **terceira** medição seguida da previsão que o `conferir-no-ar.py` desta ilha escreve no próprio texto do veredito — *o teto PODE CAIR ANTES*, porque o WordPress reagenda evento recorrente a partir do horário **agendado** e não do horário em que ele rodou. As três: **6m37s** (05/11), **7m27s** (24/11) e **8m57s** (hoje).
+
+**O LOG LIDO LINHA POR LINHA, DO FECHO PARA BAIXO (20.4 e 20.8), com a afirmação POSITIVA:** o fecho declara `revisão 136: 8 aplicado(s), 6 aguardando desembarque`; foram lidas **8 linhas de item** e **as 8 dizem `ok`**. **8 − 8 = 0**, a conta da 20.8 fecha. Os 6 "aguardando desembarque" são os `publicar: false` — entre eles os dois que esta passada tocou.
+
+**E O PORTÃO DA ILHA LEU O MESMO LOG COM A RÉGUA DELE E CHEGOU AO MESMO NÚMERO**, que é a conferência que vale mais que a minha: *"20.4: log lido linha por linha — janela de 15 linha(s); a revisão 136 declara 8 item(ns) aplicado(s) e as 8 linha(s) de item dela foram lidas uma por uma, todas dizendo `ok`"*. **E ele registra o que não promete:** a janela de 15 está **cheia**, então item de revisão **anterior** que rolou para fora dela não foi conferido por ninguém — *"registro, não aprovação"*, com os itens desta entrega conferidos pela conta do fecho. `/status` **136** = `manifest.json` **136**.
+
+### O DESEMBARQUE É DE BANCO DE BANCADA E NÃO DE PÁGINA
+
+`dados/veiculos.json` e `dados/esquema-banco.json` são os dois **`publicar: false`**: não viram option no ar e **nenhum byte de tela muda** com esta revisão. Ela foi desembarcada de todo jeito porque repositório em **136** com ar em **135** faz a próxima execução ler `commit sem Sync` pela **20.4**, e esse portão não sabe distinguir os dois casos — é a mesma decisão, com o mesmo motivo, que a revisão 135 de 24/11 registrou.
+
+### E A MESMA CONSTANTE MORTA ESTAVA EM TRÊS LUGARES MAIS, UM DELES CONTRADIZENDO A PRÓPRIA SEÇÃO 5 DELE
+
+Fechado o banco, a varredura seguiu nos `.md` da ilha, com um `grep -rn` no id da constante. **Três** achados **vivos** — dois em `dados/` e um no próprio cabeçalho de estado:
+
+**`dados/fonte-oficial-f1.md`, parágrafo de abertura.** Dizia *"Ela está travada desde 28/10/2026 por uma coisa: os quatro limiares legais ... Enquanto isso, a constante ... fica `pendente` e a ferramenta não desembarca."* **A seção 5 do mesmo arquivo** escreve, com todas as letras, que a leitura foi feita pelo Raphael em **05/11** e que **a F1 foi ao ar na revisão 46 em 06/11**. **O custo de método é maior aqui do que no banco:** este arquivo existe exatamente para a próxima passada **não remedir porta já medida**, e lido ao pé da letra ele mandava tratar como travado o que está no ar. Reescrito com as duas metades que de fato seguem atrás do egresso, cada uma com o nome certo: a habilitação (`exigencia-de-habilitacao-por-categoria-ctb`, porque a resolução **não fala de CNH**) e a camada municipal (os quatro atos de prefeitura em `000`). **A tabela de portas tentadas não se apaga** — ela continua valendo para essas duas.
+
+**`dados/especificacao-calculadoras.md`, seção 1.3.** Dizia *"hoje com `valor: null` e `status: pendente`"*. Os dois são falsos desde 06/11. **O parágrafo seguinte, que declara a consequência de um status `pendente`, ficou INTEIRO de propósito:** consequência declarada não se apaga quando a pendência sai, porque ela volta a valer no dia em que outra constante entrar.
+
+**E O QUINTO LUGAR É O PRÓPRIO `ESTADO.md`, na seção "O que está travando", e ele errava DUAS vezes numa oração.** Dizia *"os dois limiares legais seguem `pendente` em `dados/constantes.json`"*. **Nenhum limiar legal da resolução está `pendente`**, e **as duas constantes que de fato seguem `pendente` não são limiares legais**: `exigencia-de-habilitacao-por-categoria-ctb` é do **Código de Trânsito**, não da 996/2023, e `consumo-absoluto-wh-por-km-patinete` é da **F2** e não tem nada de legal. O que a parede do `gov.br` ainda trava é a **habilitação** e a **camada municipal** — nunca mais o limiar. Corrigido com a errata datada ao lado, porque o cabeçalho é o resumo e resumo velho lido como fato é o defeito que a seção 4 nomeia.
+
+**Nenhum dos dois `.md` de `dados/` está no `manifest.json` e nenhum é `publicar: true`:** a revisão não se move com eles.
+
+**A CONTA DO ACHADO, fechada: CINCO lugares declaravam o mesmo fato morto** — `dados/veiculos.json` (nos 17 registros), `dados/esquema-banco.json`, `dados/fonte-oficial-f1.md`, `dados/especificacao-calculadoras.md` e o `ESTADO.md`. **Um** deles tinha portão, e o portão desligava sozinho; **um** não tinha leitor nenhum; **três** eram prosa que a próxima passada lê como fato. Hoje o primeiro é derivado e conferido, o segundo tem leitor, e os três estão corrigidos com a frase velha nomeada ao lado.
+
+### O QUE ESTA PASSADA NÃO ENTREGOU, DITO ANTES DE A LEITURA SEMANAL CONTAR
+
+**ZERO byte de tela.** Esta execução não entregou página, `<title>`, texto, bloco de compra nem link de afiliado — e **isso tem de entrar na conta da 31.1**, que a leitura semanal de hoje faz pela **31.6**. A causa está medida acima e não é escolha: os quatro caminhos de construção estão atrás de gesto do Raphael, de egresso, de SERP no Chrome dele ou da pauta das mãos. O que esta passada fez foi o que a **31.3** permite quando não há item de conteúdo aberto na fila nem em despacho — e **nenhum portão novo nasceu** (31.2): os três arquivos tocados já existiam, e o que mudou foi o que eles alcançam.
+
+**ZERO leva nesta semana, e o cabeçalho dizia outra coisa.** O comentário de `urls_publicadas` afirma *"TETO DA 21.4: esta semana saiu UMA leva, de 1 URL"* — frase escrita em **16/11**, que foi uma **segunda-feira**. A semana corrente começou em **23/11**, também segunda, e nela nasceram **ZERO** URLs: as três levas do teto da 21.4 estão **inteiras**. A frase não estava errada quando foi escrita; ela ficou errada ao virar a semana, que é a mesma doença desta passada inteira num campo diferente.
+
+### A LIÇÃO DE MÉTODO, E ELA É IRMÃ DA DE 24/11
+
+**TRAVA CONDICIONADA A UMA AFIRMAÇÃO DESLIGA JUNTO COM ELA.** A linha de 06/11 cobrava o motivo **só enquanto o motivo fosse verdadeiro** — e no instante em que ele ficou falso, o portão parou de olhar. Não é um descuido de digitação: é a forma `if <condição_do_mundo> and <a_afirmação_sobre_o_mundo>`, que é natural de escrever e que **falha exatamente no dia em que precisa morder**. A régua que sai daqui cabe numa pergunta, e ela é barata: **quem escrever portão com uma condição de mundo no `if` pergunta o que acontece com ele no dia em que a condição virar.** Em 24/11 a lição foi *"o despacho que descreve o defeito pode errar na premissa do conserto"*; hoje é a mesma família um andar abaixo — **o portão que descreve o defeito pode depender do defeito para existir.**
+
+---
+
 ## 2026-11-24 19h17Z–19h5xZ — **A ÂNCORA DO SINÔNIMO DA 30.4 NASCE NA FERRAMENTA, E A PREMISSA COM QUE O DESPACHO FOI ESCRITO ESTAVA ERRADA: A CASA RECEBIA 14 LINKS E OS 14 COM A MESMA PALAVRA**
 
 **A ILHA DESTA EXECUÇÃO:** rodametria, por **foco** (`foco.md`, foco total e absoluto desde 27/10). Pela **1.2** não houve escolha a fazer.
