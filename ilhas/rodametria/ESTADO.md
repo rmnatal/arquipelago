@@ -36,13 +36,14 @@ ultima_execucao: 2026-11-25T10:4xZ   # A FILA ESTAVA VAZIA e o bloco veio da
                          # `if categoria_travada and ...`, isto e, cobrava o campo
                          # so enquanto a afirmacao do campo fosse VERDADEIRA.
                          # O detalhe esta no `bloco_atual` e no REGISTRO.md.
-executando_desde: null   # LIMPO no fecho desta execucao (passo 7 da secao 1).
-                         # Reservada as 10h19Z (commit 3e50a06, aceita de
-                         # PRIMEIRA: o campo estava `null`, que pela 1.1 ja
-                         # significa que nao ha bloco da Fundacao vivo, e o
-                         # ultimo commit na pasta era de 24/11 as 20h13Z) e
-                         # RENOVADA as 10h32Z, porque o bloco passou de 40
-                         # minutos.
+executando_desde: 2026-11-25T13:17Z   # RESERVA desta execucao (passo 5 da
+                         # secao 1), aceita de PRIMEIRA: o campo estava `null`,
+                         # que pela 1.1 ja significa que nao ha bloco da
+                         # Fundacao vivo, e o ultimo commit na pasta era de hoje
+                         # as 10h44Z — o FECHO da passada anterior, nao bloco em
+                         # andamento. Foco em rodametria pela 1.2 (foco.md,
+                         # desde 27/10), entao nao houve escolha de ilha a
+                         # fazer.
 rede: aberta em 2026-11-25   # 20.2, REMEDIDA e nao herdada nesta execucao:
                              # `rodametria.com.br/` e `/veiculos/` em 200, com
                              # example.com em 000 no MESMO comando — o controle
