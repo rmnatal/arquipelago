@@ -362,6 +362,10 @@ def _(d):
 def _(d):
     r = _declara_os_tres(d, 500, 25, "manual")
     r["categoria"] = "autopropelido"
+    # O `motivo_categoria_null` SAI com a categoria preenchida (25/11/2026):
+    # motivo de null ao lado de categoria derivada e a mesma frase valendo para
+    # dois mundos, e e quem escreve o campo (derivar-banco.py) que o remove.
+    r.pop("motivo_categoria_null", None)
     return d
 
 
@@ -372,6 +376,104 @@ def _(d):
             c["status"] = "publicavel"
     primeiro(d)["categoria"] = "scooter"
     return d
+
+
+# ---- OS CINCO CASOS DA SEGUNDA PONTA DA TRAVA, de 25/11/2026.
+#
+# A linha que cobrava `motivo_categoria_null` era `if categoria_travada and ...`:
+# ela so olhava o campo ENQUANTO a constante estivesse `pendente`, ou seja, so
+# enquanto a frase do campo fosse verdadeira. O caso antigo desta bateria
+# ("categoria null sem `motivo_categoria_null`") PoE a constante em `pendente`
+# antes de apagar o campo — por isso ele passava com a regua velha e por isso
+# ele nao media nada sobre o mundo de hoje. Estes cinco medem o mundo de hoje.
+@caso("`motivo_categoria_null` apagado com o limiar JA PUBLICAVEL — o mundo de hoje",
+      "sem `motivo_categoria_null`")
+def _(d):
+    primeiro(d).pop("motivo_categoria_null")
+    return d
+
+
+@caso("`motivo_categoria_null` com a CAUSA VENCIDA, a frase que ficou 19 dias no banco",
+      "nao nomeia a causa que a arvore devolve hoje")
+def _(d):
+    primeiro(d)["motivo_categoria_null"] = (
+        "DERIVADA da F1 e obrigatoriamente null: a constante "
+        "`limiares-categoria-contran-996-2023` esta `pendente` em dados/constantes.json, e a "
+        "1.3 da especificacao proibe a F1 de ir ao ar com numero de portal.")
+    return d
+
+
+@caso("registro que CLASSIFICA com `categoria` null — ausencia silenciosa da F1",
+      "ausencia silenciosa")
+def _(d):
+    r = _declara_os_tres(d, 500, 25, "manual")
+    r["categoria"] = None
+    # O motivo esta escrito e e o de antes: a trava nao pode depender de o campo
+    # estar vazio. O defeito aqui e que a arvore CLASSIFICA e o campo nao diz.
+    return d
+
+
+@caso("`categoria` preenchida com o `motivo_categoria_null` de pe ao lado",
+      "COM `motivo_categoria_null` de pe")
+def _(d):
+    r = _declara_os_tres(d, 500, 25, "manual")
+    r["categoria"] = "autopropelido"
+    return d
+
+
+@caso("`pendencias_do_bloco` do esquema afirmando status que a constante desmente",
+      "e o status dela em dados/constantes.json")
+def _(d):
+    d["esquema"]["pendencias_do_bloco"]["bloqueiam_a_f1"] = [
+        "limiares-categoria-contran-996-2023 (`pendente`) — trava `categoria` em TODO registro."]
+    return d
+
+
+# ---- A MORTE DO ESQUEMA DESTE CAMPO (26.2): a chave que a secao 2-b LE tem de
+#      matar o portao, nunca faze-lo aprovar em silencio. Ela nasce aqui porque
+#      o campo passou 19 dias com a frase morta JUSTAMENTE por nao ser lido.
+@caso("`pendencias_do_bloco` apagado do esquema", "`pendencias_do_bloco` desapareceu")
+def _(d):
+    d["esquema"].pop("pendencias_do_bloco")
+    return d
+
+
+# ---- E A DISCORDANCIA DA 20.8, QUE E O QUE PROVA QUE O CONSERTO CONSERTOU:
+#      autoteste em que a regua velha e a nova CONCORDAM nao mede conserto nenhum.
+#      A velha e literalmente a linha de 06/11: `categoria_travada and ...`.
+def _regua_velha_aprovaria(d):
+    """A regua VELHA sobre o mundo estragado: ela so cobrava o motivo com a
+    constante `pendente`, entao sobre o mundo de hoje ela nao cobra nada."""
+    travada = any(c["id"] == "limiares-categoria-contran-996-2023"
+                  and c.get("status") != "publicavel"
+                  for c in d["constantes"]["constantes"])
+    for r in d["veiculos"]["registros"]:
+        if travada and r.get("categoria") is None and not r.get("motivo_categoria_null"):
+            return False      # a velha reprovaria
+    return True               # a velha APROVA
+
+
+def discordancia_da_20_8():
+    """Os dois mundos em que a regua velha APROVA e a nova REPROVA."""
+    problemas = []
+    mundos = [
+        ("motivo apagado com o limiar publicavel",
+         lambda d: d["veiculos"]["registros"][0].pop("motivo_categoria_null")),
+        ("motivo com a causa vencida",
+         lambda d: d["veiculos"]["registros"][0].__setitem__(
+             "motivo_categoria_null",
+             "a constante `limiares-categoria-contran-996-2023` esta `pendente`.")),
+    ]
+    for nome, estraga in mundos:
+        d = base()
+        estraga(d)
+        if not _regua_velha_aprovaria(d):
+            problemas.append("20.8 %s: a regua VELHA tambem reprova — este mundo nao mede "
+                             "conserto nenhum" % nome)
+        falhas, _, _ = VB.validar(d)
+        if not falhas:
+            problemas.append("20.8 %s: a regua NOVA aprovou o mundo estragado" % nome)
+    return problemas
 
 
 # -------------------------------------------------------------- a escada de fontes
@@ -787,11 +889,12 @@ def main():
         print("")
         print("%d caso(s) + 1 autoteste." % len(CASOS))
         return 0
-    falhas = autoteste() + rodar()
+    falhas = autoteste() + discordancia_da_20_8() + rodar()
     for f in falhas:
         print("FALHA %s" % f)
     print("")
-    print("%d caso(s) rodado(s) (%d mundos que passam, %d quebras) + 1 autoteste da bateria."
+    print("%d caso(s) rodado(s) (%d mundos que passam, %d quebras) + 1 autoteste da bateria "
+          "+ 2 mundos da discordancia da 20.8."
           % (len(CASOS), sum(1 for c in CASOS if c[2]), sum(1 for c in CASOS if not c[2])))
     print("%d falha(s)." % len(falhas))
     print("APROVADO" if not falhas else "REPROVADO")

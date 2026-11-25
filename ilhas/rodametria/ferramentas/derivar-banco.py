@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Preenche os campos DERIVADOS do banco da Rodametria: `energia_wh` e `afiliado.intestavel`.
+"""Preenche os campos DERIVADOS do banco da Rodametria: `energia_wh`, `afiliado.intestavel`,
+a frase de `nota` e o `motivo_categoria_null`.
 
     python3 ferramentas/derivar-banco.py            # escreve
     python3 ferramentas/derivar-banco.py --conferir # nao escreve; sai 1 se houver o que escrever
@@ -191,6 +192,121 @@ def nota_com_a_frase(nota, registros):
     return (base + " " + frase_da_saida_de_compra(registros)).strip()
 
 
+# ---------------------------------------------------------------------------
+# O QUARTO DERIVADO NASCEU EM 25/11/2026, E A CAUSA DELE E UMA FRASE QUE FICOU
+# FALSA EM 17 DE 17 REGISTROS POR 19 DIAS — DITA PELO PROPRIO BANCO.
+#
+# Ate hoje o `motivo_categoria_null` dos 17 registros dizia, palavra por palavra:
+# *"DERIVADA da F1 e obrigatoriamente null: a constante
+# `limiares-categoria-contran-996-2023` esta `pendente` em dados/constantes.json"*.
+# Aquela constante esta `publicavel` desde 06/11/2026 — o proprio
+# `dados/constantes.json` escreve, em `pendencias_resumidas.destravadas_nesta_versao`,
+# *"DESTRAVADA em 06/11/2026 ... Era a UNICA que bloqueava desembarque"*. A frase
+# morreu no dia em que a F1 foi ao ar e ficou de pe por 19 dias.
+#
+# E O PORTAO QUE A COBRAVA DESLIGOU SOZINHO NO MESMO MINUTO. A linha do
+# `validar-banco.py` era `if categoria_travada and categoria is None and not
+# motivo`: ela so olhava o campo ENQUANTO a constante estivesse `pendente`. No
+# instante em que a constante destravou, a afirmacao ficou falsa E o portao parou
+# de olhar — as duas coisas pelo mesmo gesto. A ironia esta a quatro linhas de
+# distancia, no comentario que a mesma passada de 06/11 escreveu logo acima:
+# *"Com o limiar `publicavel` a trava antiga desliga SOZINHA, e o campo mais
+# perigoso do banco ficaria sem portao"*. Ela viu o risco numa linha e o deixou
+# de pe na seguinte.
+#
+# POR QUE DERIVAR EM VEZ DE REESCREVER A MAO: reescrever conserta hoje e nao
+# impede o proximo. Derivado, o motivo passa a dizer a causa que a arvore da F1
+# DEVOLVE HOJE, e o `validar-banco.py` recalcula com a arvore dele e reprova
+# divergencia — o mesmo par espelho+portao do `energia_wh` e do `intestavel`.
+# Quando o status da constante mudar, os 17 motivos ficam vencidos de uma vez e
+# UM comando os reescreve: e o que se quer de um campo que fala de causa.
+#
+# O MOTIVO NUNCA DIZ O STATUS DE CABECA. Ele imprime o status LIDO de
+# `dados/constantes.json` naquela passada. Afirmacao sobre status escrita a mao e
+# exatamente a doenca que este derivado veio curar.
+# ---------------------------------------------------------------------------
+ID_LIMIARES = "limiares-categoria-contran-996-2023"
+
+MARCA_DO_MOTIVO = ("DERIVADO por ferramentas/derivar-banco.py e conferido por "
+                   "ferramentas/validar-banco.py")
+
+# A ORDEM DESTA ARVORE E A DA F1, e o acelerador vem PRIMEIRO de proposito: ele e
+# o pivo da 1.1 da especificacao — sem ele nenhuma potencia classifica. Esta e a
+# metade que PRODUZ; a que CONFERE e `_categoria_a_mao()` do validar-banco.py, e
+# as duas nao se falam por desenho (secao 8: quem confere escreve a propria regua).
+def causa_de_nao_classificar(r, status_limiar):
+    """A causa, hoje, de `categoria` ser null neste registro. None = classifica."""
+    if status_limiar != "publicavel":
+        return "limiar_legal_pendente"
+    acel = (r.get("acelerador") or {}).get("valor")
+    w = (r.get("potencia_nominal_w") or {}).get("valor")
+    kmh = (r.get("velocidade_max_kmh") or {}).get("valor")
+    if acel is None or acel == "nao_declarado":
+        return "acelerador_nao_declarado"
+    if w is None:
+        return "potencia_nominal_ausente"
+    if kmh is None:
+        return "velocidade_max_ausente"
+    if w <= 0 or kmh <= 0:
+        return "entrada_nao_positiva"
+    return None
+
+
+EXPLICACAO_DA_CAUSA = {
+    "limiar_legal_pendente":
+        "a arvore da F1 nao tem limite com que comparar, e a 1.3 da especificacao proibe "
+        "esta ilha de classificar com numero de portal",
+    "acelerador_nao_declarado":
+        "a ficha nao declara se o veiculo tem acelerador, e o acelerador e o PIVO da arvore "
+        "(1.1 da especificacao): sem ele nenhuma potencia classifica",
+    "potencia_nominal_ausente":
+        "a ficha nao declara a potencia NOMINAL, e watt sem rotulo nao classifica — ele fica "
+        "em `potencia_declarada_sem_rotulo_w`, que e campo de prestacao de contas e nao de regra",
+    "velocidade_max_ausente":
+        "a ficha nao declara a velocidade maxima DE FABRICA em km/h, e a resolucao usa potencia "
+        "E velocidade juntas",
+    "entrada_nao_positiva":
+        "a ficha declara potencia ou velocidade que nao e maior que zero",
+}
+
+
+def falta_declarado(r):
+    """Os tres campos de entrada da F1 que este registro NAO declara, em ordem.
+
+    O motivo nomeia os TRES e nao so o primeiro tropeco: quem for colher sabe o
+    que falta inteiro, e nao descobre o segundo campo depois de colher o primeiro.
+    """
+    falta = []
+    acel = (r.get("acelerador") or {}).get("valor")
+    if acel is None or acel == "nao_declarado":
+        falta.append("acelerador")
+    if (r.get("potencia_nominal_w") or {}).get("valor") is None:
+        falta.append("potencia_nominal_w")
+    if (r.get("velocidade_max_kmh") or {}).get("valor") is None:
+        falta.append("velocidade_max_kmh")
+    return falta
+
+
+def motivo_derivado(r, status_limiar):
+    """A frase do `motivo_categoria_null`, ou None se o registro CLASSIFICA.
+
+    A causa entra em crase para o validador poder cobra-la como TOKEN e nao como
+    prosa: cobrar prosa igual nas duas metades seria a 20.7 ao contrario — duas
+    declaracoes do mesmo fato, que comecam iguais e so uma sobe.
+    """
+    causa = causa_de_nao_classificar(r, status_limiar)
+    if causa is None:
+        return None
+    falta = falta_declarado(r)
+    quefalta = (" Falta declarado neste registro: %s." % ", ".join("`%s`" % c for c in falta)
+                if falta else "")
+    return ("%s — causa `%s`: %s.%s O status de `%s`, lido em dados/constantes.json nesta "
+            "passada, e `%s`."
+            % (MARCA_DO_MOTIVO, causa, EXPLICACAO_DA_CAUSA[causa], quefalta,
+               ID_LIMIARES, status_limiar))
+
+
+
 def main():
     conferir = "--conferir" in sys.argv
     c = constante_publicavel()
@@ -244,6 +360,33 @@ def main():
     if nota_mudou:
         d["nota"] = nota_nova
 
+    # `motivo_categoria_null` — o quarto derivado. Ver o bloco de comentario acima.
+    const_todas = json.loads((RAIZ / "dados/constantes.json").read_text(encoding="utf-8"))
+    status_limiar = None
+    for c in const_todas.get("constantes", []):
+        if c.get("id") == ID_LIMIARES:
+            status_limiar = c.get("status")
+    motivos = []
+    for r in d.get("registros", []):
+        if r.get("categoria") is not None:
+            # Registro que CLASSIFICA nao tem motivo de null, e motivo de pe ao
+            # lado de categoria preenchida e a contradicao que o validador reprova.
+            if "motivo_categoria_null" in r:
+                r.pop("motivo_categoria_null")
+                motivos.append("%s -> removido (a `categoria` esta preenchida)" % r.get("id"))
+            continue
+        novo_motivo = motivo_derivado(r, status_limiar)
+        if novo_motivo is None:
+            # A arvore CLASSIFICA e o campo esta null: isto nao se conserta aqui.
+            # Escrever `categoria` por conta propria seria o produto da ilha saindo
+            # de uma ferramenta de derivacao; quem acusa e o validador, com a frase
+            # da ausencia silenciosa, e quem decide e a execucao que ler a acusacao.
+            continue
+        if r.get("motivo_categoria_null") != novo_motivo:
+            r["motivo_categoria_null"] = novo_motivo
+            motivos.append("%s -> causa `%s`"
+                           % (r.get("id"), causa_de_nao_classificar(r, status_limiar)))
+
     # `afiliado.intestavel` — nos DOIS bancos que tem a chave `afiliado`.
     bancos = [(alvo, d)]
     pecas_caminho = RAIZ / "dados/pecas.json"
@@ -263,10 +406,10 @@ def main():
                 af["intestavel"] = novo
 
     if conferir:
-        if mudou or zerados or intestaveis or nota_mudou:
+        if mudou or zerados or intestaveis or nota_mudou or motivos:
             print("REPROVADO: %d derivado(s) a escrever, %d a zerar, %d `intestavel` a "
-                  "espelhar e o `nota` %s."
-                  % (len(mudou), len(zerados), len(intestaveis),
+                  "espelhar, %d `motivo_categoria_null` a reescrever e o `nota` %s."
+                  % (len(mudou), len(zerados), len(intestaveis), len(motivos),
                      "A RECONTAR" if nota_mudou else "em dia"))
             if nota_mudou:
                 print("  nota:       %s" % frase_da_saida_de_compra(d.get("registros", [])))
@@ -276,13 +419,16 @@ def main():
                 print("  a zerar:    %s" % z)
             for i in intestaveis:
                 print("  intestavel: %s" % i)
+            for mo in motivos:
+                print("  motivo:     %s" % mo)
             return 1
         print("0 falha(s).")
-        print("APROVADO: todo `energia_wh` bate com V x Ah e todo `afiliado.intestavel` bate "
-              "com a regra da 25.4-b.")
+        print("APROVADO: todo `energia_wh` bate com V x Ah, todo `afiliado.intestavel` bate "
+              "com a regra da 25.4-b e todo `motivo_categoria_null` nomeia a causa que a "
+              "arvore devolve hoje.")
         return 0
 
-    if mudou or zerados or intestaveis or nota_mudou:
+    if mudou or zerados or intestaveis or nota_mudou or motivos:
         # A NOVA-LINHA FINAL E PARTE DO ARQUIVO: sem ela, todo commit desta
         # ferramenta carrega um "\ No newline at end of file" que nao e dela.
         alvo.write_text(json.dumps(d, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
@@ -304,10 +450,13 @@ def main():
         print("zerado:  %s" % z)
     for i in intestaveis:
         print("espelhado: %s" % i)
+    for mo in motivos:
+        print("motivo:    %s" % mo)
     if nota_mudou:
         print("recontado: o `nota` de veiculos.json")
-    print("%d derivado(s) escrito(s), %d zerado(s), %d `intestavel` espelhado(s), `nota` %s."
-          % (len(mudou), len(zerados), len(intestaveis),
+    print("%d derivado(s) escrito(s), %d zerado(s), %d `intestavel` espelhado(s), %d "
+          "`motivo_categoria_null` reescrito(s), `nota` %s."
+          % (len(mudou), len(zerados), len(intestaveis), len(motivos),
              "recontado" if nota_mudou else "em dia"))
     return 0
 

@@ -103,6 +103,70 @@ def _categoria_a_mao(w, kmh, acel, lim):
     return {"classifica": True, "categoria": cat, "causa": None}
 
 
+# ---------------------------------------------------------------------------
+# A REGUA DE 25/11/2026: PROSA QUE AFIRMA O STATUS DE UMA CONSTANTE E CONFERIDA
+# CONTRA O STATUS VIVO, ONDE QUER QUE ELA ESTEJA ESCRITA.
+#
+# A causa esta medida e e dupla. (1) Os 17 registros de `veiculos.json`
+# declaravam, no `motivo_categoria_null`, que `limiares-categoria-contran-996-2023`
+# estava `pendente`; ela esta `publicavel` desde 06/11/2026, e o proprio
+# `constantes.json` escreve a destravada em `pendencias_resumidas`. (2) O
+# `pendencias_do_bloco.bloqueiam_a_f1` de `esquema-banco.json` dizia a MESMA coisa
+# morta, e o arquivo foi reescrito em 23/11 com a frase intacta dentro.
+#
+# TRES LUGARES DECLARAVAM O MESMO FATO E SO UM SUBIA — a 20.7 desta ilha, de novo.
+# A regua nao proibe falar de status: proibe falar de status DIFERENTE do que o
+# arquivo que o guarda diz hoje.
+#
+# O QUE ELA NAO ALCANCA, dito para ninguem a ler como mais forte do que e: ela le
+# a palavra que esta AO LADO do id da constante, ate o fim daquela sentenca. Prosa
+# que NEGUE ali ("nao esta mais `pendente`") a engana. A regra que sai disso e de
+# escrita e esta nos dois geradores: ao lado do id vai o status, nunca a negacao
+# dele.
+PALAVRAS_DE_STATUS = ("publicavel", "pendente")
+
+
+def _status_vencidos_no_texto(texto, constantes):
+    """Toda afirmacao de status, no texto, que o `constantes.json` desmente.
+
+    Devolve (id_da_constante, status_afirmado, status_vivo). Procura o id com e
+    sem crase, porque as duas grafias existem nos arquivos desta ilha.
+    """
+    vencidos = []
+    if not isinstance(texto, str):
+        return vencidos
+    for c in constantes.get("constantes", []):
+        cid, vivo = c.get("id"), c.get("status")
+        if not cid:
+            continue
+        for marca in ("`%s`" % cid, cid):
+            i = 0
+            while True:
+                j = texto.find(marca, i)
+                if j < 0:
+                    break
+                trecho = texto[j + len(marca): j + len(marca) + 160]
+                # A sentenca acaba no ponto que NAO e de nome de arquivo.
+                for k, ch in enumerate(trecho):
+                    if ch == "." and not trecho[k + 1: k + 2].isalnum():
+                        trecho = trecho[:k]
+                        break
+                for palavra in PALAVRAS_DE_STATUS:
+                    if palavra in trecho and vivo != palavra:
+                        vencidos.append((cid, palavra, vivo))
+                i = j + len(marca)
+            if ("`%s`" % cid) in texto:
+                break   # com crase basta; sem crase repetiria o mesmo achado
+    # Sem repetir o mesmo par duas vezes no relatorio.
+    unicos, vistos = [], set()
+    for t in vencidos:
+        if t not in vistos:
+            vistos.add(t)
+            unicos.append(t)
+    return unicos
+
+
+
 def _campos_tecnicos_do_esquema(esquema):
     tec = esquema["entidades"]["VEICULO"]["campos_tecnicos"]
     # `forma_do_campo` e prosa (string) e cai fora sozinho; `acelerador` NAO tem unidade e
@@ -211,6 +275,28 @@ def validar(dados):
                             "dados/constantes.json. Este portao le o STATUS dela para decidir se "
                             "`categoria` pode ser nao-null")
     categoria_travada = (st_limiar != "publicavel")
+
+    # ---- 2-b. `pendencias_do_bloco` DO ESQUEMA: prosa que afirma status de
+    #           constante, conferida contra o status vivo (25/11/2026).
+    #
+    # Este campo era LIDO POR NINGUEM — `grep -rn pendencias_do_bloco` nas
+    # ferramentas, nos snippets e nas regras desta ilha devolvia zero. E ele
+    # afirmava, em `bloqueiam_a_f1`, que `limiares-categoria-contran-996-2023`
+    # estava `(pendente)` e *"trava `categoria` em TODO registro"* — frase que
+    # morreu em 06/11/2026 e que atravessou intacta a reescrita do arquivo em
+    # 23/11. Campo declarado que ninguem le e a regua desta ilha para achar
+    # trabalho com a fila vazia, e foi ela que achou este.
+    pend = esq.get("pendencias_do_bloco")
+    if not isinstance(pend, dict):
+        falha("esquema", "a chave `pendencias_do_bloco` desapareceu do esquema. Este portao LE "
+                         "essa chave para conferir o status que ela afirma (26.2)")
+    else:
+        for lista, linhas in pend.items():
+            for linha in (linhas if isinstance(linhas, list) else []):
+                for cid, afirmado, vivo in _status_vencidos_no_texto(linha, const):
+                    falha("esquema", "`pendencias_do_bloco.%s` afirma que a constante `%s` esta "
+                                     "`%s`, e o status dela em dados/constantes.json e `%s`"
+                          % (lista, cid, afirmado, vivo))
 
     # ---- 3. VEICULO, registro por registro
     vistos = set()
@@ -477,8 +563,57 @@ def validar(dados):
                             "km/h=%r e acelerador=%r. O campo e DERIVADO: ele nao escolhe, ele "
                             "e recalculado"
                       % (v.get("categoria"), esperado["categoria"], w, kmh, acel))
-        if categoria_travada and v.get("categoria") is None and not v.get("motivo_categoria_null"):
-            falha(onde, "`categoria` null sem `motivo_categoria_null`")
+        # ---------------------------------------------------------------
+        # A SEGUNDA PONTA DA MESMA TRAVA, REAPONTADA EM 25/11/2026 — E ELA
+        # DESLIGOU SOZINHA NO DIA 06/11, QUATRO LINHAS ABAIXO DO COMENTARIO QUE
+        # NOMEIA EXATAMENTE ESSE RISCO.
+        #
+        # A linha era `if categoria_travada and categoria is None and not
+        # motivo`. Ela cobrava o motivo SO ENQUANTO a constante estivesse
+        # `pendente` — isto e, so enquanto a frase *"a constante esta pendente"*
+        # fosse VERDADE. No instante em que a constante destravou, a frase ficou
+        # falsa e o portao parou de olhar: o mesmo gesto fez as duas coisas.
+        # Custou 19 dias com 17 de 17 registros declarando uma causa morta.
+        #
+        # O QUE ELA COBRA AGORA, e sao tres afirmacoes com consertos diferentes
+        # (a 20.5 desta fabrica ja ensinou que portao que reprova a coisa certa
+        # pelo motivo errado e o caminho mais curto para alguem ignora-lo):
+        #   (a) `categoria` null SEMPRE tem motivo escrito, com constante
+        #       travada ou destravada;
+        #   (b) se a arvore CLASSIFICA o registro e o campo esta null, isso e
+        #       AUSENCIA SILENCIOSA da recomendacao da F1 — o veiculo cabe numa
+        #       categoria e nao aparece nela;
+        #   (c) o motivo tem de nomear a causa que ESTE portao calcula, e nao
+        #       pode afirmar status de constante que `dados/constantes.json`
+        #       desmente.
+        if "categoria" in v and v.get("categoria") is None:
+            motivo = v.get("motivo_categoria_null")
+            if not motivo:
+                falha(onde, "`categoria` null sem `motivo_categoria_null`")
+            w = (v.get("potencia_nominal_w") or {}).get("valor")
+            kmh = (v.get("velocidade_max_kmh") or {}).get("valor")
+            acel = (v.get("acelerador") or {}).get("valor")
+            esperado = _categoria_a_mao(w, kmh, acel, _limiares_lidos(const))
+            if esperado["classifica"]:
+                falha(onde, "`categoria` esta null e a arvore da F1 CLASSIFICA este registro "
+                            "como %r (nominal=%r, km/h=%r, acelerador=%r). Isto e ausencia "
+                            "silenciosa: o veiculo cabe numa categoria e nao aparece nela. O "
+                            "campo e DERIVADO — quem o escreve e ferramentas/derivar-banco.py"
+                      % (esperado["categoria"], w, kmh, acel))
+            elif motivo and ("`%s`" % esperado["causa"]) not in motivo:
+                falha(onde, "`motivo_categoria_null` nao nomeia a causa que a arvore devolve "
+                            "hoje (`%s`). Motivo que fala de outra causa e causa vencida lida "
+                            "como fato — reescreva com ferramentas/derivar-banco.py"
+                      % esperado["causa"])
+            if motivo:
+                for cid, afirmado, vivo in _status_vencidos_no_texto(motivo, const):
+                    falha(onde, "`motivo_categoria_null` afirma que a constante `%s` esta "
+                                "`%s`, e o status dela em dados/constantes.json e `%s`"
+                          % (cid, afirmado, vivo))
+        elif v.get("categoria") is not None and v.get("motivo_categoria_null"):
+            falha(onde, "`categoria` = %r COM `motivo_categoria_null` de pe. Motivo de null ao "
+                        "lado de categoria preenchida e a mesma frase valendo para dois mundos: "
+                        "um deles esta vencido e nao se sabe qual" % v.get("categoria"))
 
         # estado
         if v.get("status") not in enum_status:

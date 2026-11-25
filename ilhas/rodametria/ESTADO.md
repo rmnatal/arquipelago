@@ -32,7 +32,9 @@ ultima_execucao: 2026-11-24T20:1xZ   # A FILA NAO ESTAVA VAZIA: esta execucao
                          # A entrada de miolo de cada filha subiu de 3 para 5 e
                          # nenhuma ancora de consulta se perdeu. O detalhe esta
                          # no `bloco_atual` e no REGISTRO.md.
-executando_desde: 2026-11-25T10:19Z   # RESERVA desta execucao (passo 5 da
+executando_desde: 2026-11-25T10:32Z   # RESERVA RENOVADA as 10h32Z pela 1.1
+                         # (bloco passou de 40 minutos). A primeira foi as 10h19Z,
+                         # commit 3e50a06. Passo 5 da
                          # secao 1), foco da 1.2 (`foco.md` nomeia a rodametria).
                          # Aceita de PRIMEIRA: o campo estava `null`, que pela
                          # 1.1 ja significa que nao ha bloco da Fundacao vivo, e

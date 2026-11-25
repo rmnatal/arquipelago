@@ -3,7 +3,7 @@
  "ilha": "rodametria",
  "bloco": "3e",
  "versao_esquema": 6,
- "gerado_em": "2026-11-23",
+ "gerado_em": "2026-11-25",
  "publicar": false,
  "descricao": "Modelo do banco da Rodametria: entidades VEICULO, PECA e MUNICIPIO. Define campo a campo o tipo, a unidade, a obrigatoriedade, o vocabulario controlado, o que e DERIVADO e a ORIGEM esperada do dado. E o contrato que dados/veiculos.json, dados/pecas.json e dados/municipios.json cumprem e que ferramentas/validar-banco.py verifica. Nasce da secao 5 de dados/especificacao-calculadoras.md, que e a lista de campos que as tres ferramentas LEEM.",
  "depende_de": [
@@ -920,13 +920,17 @@
  },
  "pendencias_do_bloco": {
   "bloqueiam_a_f1": [
-   "limiares-categoria-contran-996-2023 (`pendente`) — trava `categoria` em TODO registro, e `categoria` e o produto da ilha. Despacho ALTA de 28/10/2026 em dados/despachos.md, aberto pelo bloco 1 e remedido pelo bloco 2.",
-   "NOVO NESTE BLOCO: nenhum dos quatro municipios de dados/municipios.json e `publicavel`, porque os quatro foram colhidos por materia e por busca, e o nivel 3 da escada exige o ato lido no dominio .gov.br do municipio. Enquanto isso a camada 2 da F1 tem DUAS saidas iguais em vez de tres (1.1). OS QUATRO DOMINIOS FORAM TENTADOS NESTA EXECUCAO, pela 20.3, e os quatro estao RECUSADOS: campinas.sp.gov.br, rio.rj.gov.br, joinville.sc.gov.br e sjc.sp.gov.br em 000 nas tres passadas, com dois controles em 200 nas mesmas tres. Nao e 'falta coletar': e a mesma parede do gov.br. Despacho novo de 28/10/2026."
+   "O DADO, e nao mais a constante (REESCRITO EM 25/11/2026): a F1 nao tem candidato nenhum no banco porque a ficha nao declara o que a arvore le. Contado nos 17 registros nesta data: 14 nao declaram `acelerador` (o PIVO da 1.1 — sem ele nenhuma potencia classifica), 17 nao declaram `potencia_nominal_w` e 17 nao declaram `velocidade_max_kmh`. Resultado: `categoria` e null em 17 de 17, e a causa de cada um esta no `motivo_categoria_null` daquele registro, DERIVADA por ferramentas/derivar-banco.py. Isto e trabalho de COLETA em ficha de varejo ou de fabricante, nunca de trava mais frouxa: watt sem rotulo classificado seria o anuncio escrevendo a regra, e o erro e para o lado permissivo.",
+   "Nenhum dos quatro municipios de dados/municipios.json e publicavel, porque os quatro foram colhidos por materia e por busca, e o nivel 3 da escada exige o ato lido no dominio .gov.br do municipio. Enquanto isso a camada 2 da F1 tem DUAS saidas iguais em vez de tres (1.1). OS QUATRO DOMINIOS FORAM TENTADOS, pela 20.3, e os quatro estao RECUSADOS: campinas.sp.gov.br, rio.rj.gov.br, joinville.sc.gov.br e sjc.sp.gov.br em 000 nas tres passadas, com dois controles em 200 nas mesmas tres. Nao e 'falta coletar': e a mesma parede do gov.br. Despacho de 28/10/2026."
   ],
   "nao_bloqueiam_nada": [
-   "consumo-absoluto-wh-por-km-patinete (`pendente`) — a F2 vai ao ar sem ele, pela conta reduzida da 2.2.",
+   "consumo-absoluto-wh-por-km-patinete — status `pendente`, e a F2 vai ao ar sem ele, pela conta reduzida da 2.2.",
+   "exigencia-de-habilitacao-por-categoria-ctb — status `pendente`, e a F1 vai ao ar sem ele: a resolucao decide categoria e placa, e habilitacao e do CTB, atras da mesma parede de egresso. A F1 CALA sobre CNH e nomeia a causa, em vez de nao existir.",
    "Nenhum dominio de FABRICANTE foi tentado: o nivel 4 da escada esta vazio e o banco inteiro vive do nivel 5 para baixo. Nao e defeito, e o estado da coleta, e e o que a frase 'declarado na ficha da loja, a confirmar na do fabricante' diz na tela.",
    "A frase da tela que le `declarada_por` e escolhe a atribuicao (26.3) — divida nomeada, e ela e da casca (bloco 3b)."
+  ],
+  "destravadas_e_por_isso_FORA_desta_lista": [
+   "limiares-categoria-contran-996-2023 — saiu de `bloqueiam_a_f1` em 25/11/2026, e a destravada e de 06/11/2026, com a leitura oficial de 05/11 (PDF do Ministerio dos Transportes). A linha que a declarava pendente ficou aqui 19 dias, atravessou a reescrita deste arquivo em 23/11 e nao foi vista por portao nenhum, porque este campo era lido por NINGUEM. Desde 25/11/2026 o ferramentas/validar-banco.py (secao 2-b) confere toda afirmacao de status deste campo contra dados/constantes.json, que e onde o status mora. QUEM ESCREVER AQUI PoE O STATUS AO LADO DO ID, NUNCA A NEGACAO DELE: a regua le a palavra vizinha ao id, e negacao a engana."
   ]
  }
 }

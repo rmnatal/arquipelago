@@ -70,7 +70,7 @@
     "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
    },
    "categoria": null,
-   "motivo_categoria_null": "DERIVADA da F1 e obrigatoriamente null: a constante `limiares-categoria-contran-996-2023` esta `pendente` em dados/constantes.json, e a 1.3 da especificacao proibe a F1 de ir ao ar com numero de portal. O validador le o STATUS DA CONSTANTE, nao uma lista escrita dentro dele.",
+   "motivo_categoria_null": "DERIVADO por ferramentas/derivar-banco.py e conferido por ferramentas/validar-banco.py — causa `acelerador_nao_declarado`: a ficha nao declara se o veiculo tem acelerador, e o acelerador e o PIVO da arvore (1.1 da especificacao): sem ele nenhuma potencia classifica. Falta declarado neste registro: `acelerador`, `potencia_nominal_w`, `velocidade_max_kmh`. O status de `limiares-categoria-contran-996-2023`, lido em dados/constantes.json nesta passada, e `publicavel`.",
    "status": "publicavel",
    "motivo_do_status": "`publicavel` pelo PISO da 25.2: a busca `Honeywhale M2 MAX patinete eletrico` foi medida na Open API em 2026-10-28 e devolveu 10 oferta(s) no degrau `marca_modelo_termo`, e o encurtamento com `sub_id_1` foi feito na mesma passada (25.2-b). O que este registro ainda NAO tem e ficha de produto (degrau 4), e o que ele publica e o que o banco declara dele — nada alem.",
    "divergencias": [],
@@ -268,7 +268,7 @@
     "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
    },
    "categoria": null,
-   "motivo_categoria_null": "DERIVADA da F1 e obrigatoriamente null: a constante `limiares-categoria-contran-996-2023` esta `pendente` em dados/constantes.json, e a 1.3 da especificacao proibe a F1 de ir ao ar com numero de portal. O validador le o STATUS DA CONSTANTE, nao uma lista escrita dentro dele.",
+   "motivo_categoria_null": "DERIVADO por ferramentas/derivar-banco.py e conferido por ferramentas/validar-banco.py — causa `acelerador_nao_declarado`: a ficha nao declara se o veiculo tem acelerador, e o acelerador e o PIVO da arvore (1.1 da especificacao): sem ele nenhuma potencia classifica. Falta declarado neste registro: `acelerador`, `potencia_nominal_w`, `velocidade_max_kmh`. O status de `limiares-categoria-contran-996-2023`, lido em dados/constantes.json nesta passada, e `publicavel`.",
    "status": "excluido_do_banco",
    "motivo_do_status": "`excluido_do_banco`: sem marca E sem modelo nao existe veiculo a identificar, so um titulo de anuncio.",
    "excluido_do_banco_por_que": "Nao e registro de veiculo: e um titulo. Sem marca e sem modelo, nenhuma ferramenta pode casa-lo com peca, com ficha de fabricante nem com outra oferta do mesmo produto, e a 25.9 do ARQUIPELAGO.md ja ensinou o que acontece com campo que empacota dois identificadores. FICA GRAVADO de proposito, com a cotacao, para a proxima coleta nao o recolher de novo — e a licao do `excluido_do_banco` da Robometria. Se uma ficha de varejo o identificar um dia, ele volta como registro novo, nao como remendo deste.",
@@ -378,7 +378,7 @@
     "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
    },
    "categoria": null,
-   "motivo_categoria_null": "DERIVADA da F1 e obrigatoriamente null: a constante `limiares-categoria-contran-996-2023` esta `pendente` em dados/constantes.json, e a 1.3 da especificacao proibe a F1 de ir ao ar com numero de portal. O validador le o STATUS DA CONSTANTE, nao uma lista escrita dentro dele.",
+   "motivo_categoria_null": "DERIVADO por ferramentas/derivar-banco.py e conferido por ferramentas/validar-banco.py — causa `potencia_nominal_ausente`: a ficha nao declara a potencia NOMINAL, e watt sem rotulo nao classifica — ele fica em `potencia_declarada_sem_rotulo_w`, que e campo de prestacao de contas e nao de regra. Falta declarado neste registro: `potencia_nominal_w`, `velocidade_max_kmh`. O status de `limiares-categoria-contran-996-2023`, lido em dados/constantes.json nesta passada, e `publicavel`.",
    "status": "rascunho",
    "motivo_do_status": "`rascunho` por falta de PISO (25.2), e a causa esta em `afiliado.motivo_sem_url_busca`, medida em 2026-10-28 e nao suposta.",
    "divergencias": [],
@@ -476,7 +476,7 @@
     "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
    },
    "categoria": null,
-   "motivo_categoria_null": "DERIVADA da F1 e obrigatoriamente null: a constante `limiares-categoria-contran-996-2023` esta `pendente` em dados/constantes.json, e a 1.3 da especificacao proibe a F1 de ir ao ar com numero de portal. O validador le o STATUS DA CONSTANTE, nao uma lista escrita dentro dele.",
+   "motivo_categoria_null": "DERIVADO por ferramentas/derivar-banco.py e conferido por ferramentas/validar-banco.py — causa `potencia_nominal_ausente`: a ficha nao declara a potencia NOMINAL, e watt sem rotulo nao classifica — ele fica em `potencia_declarada_sem_rotulo_w`, que e campo de prestacao de contas e nao de regra. Falta declarado neste registro: `potencia_nominal_w`, `velocidade_max_kmh`. O status de `limiares-categoria-contran-996-2023`, lido em dados/constantes.json nesta passada, e `publicavel`.",
    "status": "rascunho",
    "motivo_do_status": "`rascunho` por falta de PISO (25.2), e a causa esta em `afiliado.motivo_sem_url_busca`, medida em 2026-10-28 e nao suposta.",
    "divergencias": [],
@@ -575,7 +575,7 @@
     "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
    },
    "categoria": null,
-   "motivo_categoria_null": "DERIVADA da F1 e obrigatoriamente null: a constante `limiares-categoria-contran-996-2023` esta `pendente` em dados/constantes.json, e a 1.3 da especificacao proibe a F1 de ir ao ar com numero de portal. O validador le o STATUS DA CONSTANTE, nao uma lista escrita dentro dele.",
+   "motivo_categoria_null": "DERIVADO por ferramentas/derivar-banco.py e conferido por ferramentas/validar-banco.py — causa `potencia_nominal_ausente`: a ficha nao declara a potencia NOMINAL, e watt sem rotulo nao classifica — ele fica em `potencia_declarada_sem_rotulo_w`, que e campo de prestacao de contas e nao de regra. Falta declarado neste registro: `potencia_nominal_w`, `velocidade_max_kmh`. O status de `limiares-categoria-contran-996-2023`, lido em dados/constantes.json nesta passada, e `publicavel`.",
    "status": "publicavel",
    "motivo_do_status": "`publicavel` pelo PISO da 25.2: a busca `Sousa Bike bicicleta eletrica` foi medida na Open API em 2026-10-28 e devolveu 10 oferta(s) no degrau `marca_termo`, e o encurtamento com `sub_id_1` foi feito na mesma passada (25.2-b). O que este registro ainda NAO tem e ficha de produto (degrau 4), e o que ele publica e o que o banco declara dele — nada alem.",
    "divergencias": [],
@@ -677,7 +677,7 @@
     "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
    },
    "categoria": null,
-   "motivo_categoria_null": "DERIVADA da F1 e obrigatoriamente null: a constante `limiares-categoria-contran-996-2023` esta `pendente` em dados/constantes.json, e a 1.3 da especificacao proibe a F1 de ir ao ar com numero de portal. O validador le o STATUS DA CONSTANTE, nao uma lista escrita dentro dele.",
+   "motivo_categoria_null": "DERIVADO por ferramentas/derivar-banco.py e conferido por ferramentas/validar-banco.py — causa `acelerador_nao_declarado`: a ficha nao declara se o veiculo tem acelerador, e o acelerador e o PIVO da arvore (1.1 da especificacao): sem ele nenhuma potencia classifica. Falta declarado neste registro: `acelerador`, `potencia_nominal_w`, `velocidade_max_kmh`. O status de `limiares-categoria-contran-996-2023`, lido em dados/constantes.json nesta passada, e `publicavel`.",
    "status": "rascunho",
    "motivo_do_status": "`rascunho` por falta de PISO (25.2), e a causa esta em `afiliado.motivo_sem_url_busca`, medida em 2026-10-28 e nao suposta.",
    "divergencias": [],
@@ -782,7 +782,7 @@
     "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
    },
    "categoria": null,
-   "motivo_categoria_null": "DERIVADA da F1 e obrigatoriamente null: a constante `limiares-categoria-contran-996-2023` esta `pendente` em dados/constantes.json, e a 1.3 da especificacao proibe a F1 de ir ao ar com numero de portal. O validador le o STATUS DA CONSTANTE, nao uma lista escrita dentro dele.",
+   "motivo_categoria_null": "DERIVADO por ferramentas/derivar-banco.py e conferido por ferramentas/validar-banco.py — causa `acelerador_nao_declarado`: a ficha nao declara se o veiculo tem acelerador, e o acelerador e o PIVO da arvore (1.1 da especificacao): sem ele nenhuma potencia classifica. Falta declarado neste registro: `acelerador`, `potencia_nominal_w`, `velocidade_max_kmh`. O status de `limiares-categoria-contran-996-2023`, lido em dados/constantes.json nesta passada, e `publicavel`.",
    "status": "rascunho",
    "motivo_do_status": "`rascunho` por falta de PISO (25.2), e a causa esta em `afiliado.motivo_sem_url_busca`, medida em 2026-10-28 e nao suposta.",
    "divergencias": [],
@@ -879,7 +879,7 @@
     "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
    },
    "categoria": null,
-   "motivo_categoria_null": "DERIVADA da F1 e obrigatoriamente null: a constante `limiares-categoria-contran-996-2023` esta `pendente` em dados/constantes.json, e a 1.3 da especificacao proibe a F1 de ir ao ar com numero de portal. O validador le o STATUS DA CONSTANTE, nao uma lista escrita dentro dele.",
+   "motivo_categoria_null": "DERIVADO por ferramentas/derivar-banco.py e conferido por ferramentas/validar-banco.py — causa `acelerador_nao_declarado`: a ficha nao declara se o veiculo tem acelerador, e o acelerador e o PIVO da arvore (1.1 da especificacao): sem ele nenhuma potencia classifica. Falta declarado neste registro: `acelerador`, `potencia_nominal_w`, `velocidade_max_kmh`. O status de `limiares-categoria-contran-996-2023`, lido em dados/constantes.json nesta passada, e `publicavel`.",
    "status": "rascunho",
    "motivo_do_status": "`rascunho` por falta de PISO (25.2), e a causa esta em `afiliado.motivo_sem_url_busca`, medida em 2026-10-28 e nao suposta.",
    "divergencias": [],
@@ -987,7 +987,7 @@
     "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
    },
    "categoria": null,
-   "motivo_categoria_null": "DERIVADA da F1 e obrigatoriamente null: a constante `limiares-categoria-contran-996-2023` esta `pendente` em dados/constantes.json, e a 1.3 da especificacao proibe a F1 de ir ao ar com numero de portal. O validador le o STATUS DA CONSTANTE, nao uma lista escrita dentro dele.",
+   "motivo_categoria_null": "DERIVADO por ferramentas/derivar-banco.py e conferido por ferramentas/validar-banco.py — causa `acelerador_nao_declarado`: a ficha nao declara se o veiculo tem acelerador, e o acelerador e o PIVO da arvore (1.1 da especificacao): sem ele nenhuma potencia classifica. Falta declarado neste registro: `acelerador`, `potencia_nominal_w`, `velocidade_max_kmh`. O status de `limiares-categoria-contran-996-2023`, lido em dados/constantes.json nesta passada, e `publicavel`.",
    "status": "rascunho",
    "motivo_do_status": "`rascunho` por falta de PISO (25.2), e a causa esta em `afiliado.motivo_sem_url_busca`, medida em 2026-10-28 e nao suposta.",
    "divergencias": [],
@@ -1096,7 +1096,7 @@
     "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
    },
    "categoria": null,
-   "motivo_categoria_null": "DERIVADA da F1 e obrigatoriamente null: a constante `limiares-categoria-contran-996-2023` esta `pendente` em dados/constantes.json, e a 1.3 da especificacao proibe a F1 de ir ao ar com numero de portal. O validador le o STATUS DA CONSTANTE, nao uma lista escrita dentro dele.",
+   "motivo_categoria_null": "DERIVADO por ferramentas/derivar-banco.py e conferido por ferramentas/validar-banco.py — causa `acelerador_nao_declarado`: a ficha nao declara se o veiculo tem acelerador, e o acelerador e o PIVO da arvore (1.1 da especificacao): sem ele nenhuma potencia classifica. Falta declarado neste registro: `acelerador`, `potencia_nominal_w`, `velocidade_max_kmh`. O status de `limiares-categoria-contran-996-2023`, lido em dados/constantes.json nesta passada, e `publicavel`.",
    "status": "excluido_do_banco",
    "motivo_do_status": "`excluido_do_banco`: sem marca e sem modelo, igual ao patinete com banco da Shopee.",
    "excluido_do_banco_por_que": "Mesma causa do `patinete-adulto-com-banco-shopee`: titulo sem marca e sem modelo nao identifica veiculo. Fica gravado com a cotacao para a proxima coleta nao o recolher de novo.",
@@ -1207,7 +1207,7 @@
     "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
    },
    "categoria": null,
-   "motivo_categoria_null": "DERIVADA da F1 e obrigatoriamente null: a constante `limiares-categoria-contran-996-2023` esta `pendente` em dados/constantes.json, e a 1.3 da especificacao proibe a F1 de ir ao ar com numero de portal. O validador le o STATUS DA CONSTANTE, nao uma lista escrita dentro dele.",
+   "motivo_categoria_null": "DERIVADO por ferramentas/derivar-banco.py e conferido por ferramentas/validar-banco.py — causa `acelerador_nao_declarado`: a ficha nao declara se o veiculo tem acelerador, e o acelerador e o PIVO da arvore (1.1 da especificacao): sem ele nenhuma potencia classifica. Falta declarado neste registro: `acelerador`, `potencia_nominal_w`, `velocidade_max_kmh`. O status de `limiares-categoria-contran-996-2023`, lido em dados/constantes.json nesta passada, e `publicavel`.",
    "status": "rascunho",
    "motivo_do_status": "`rascunho` por falta de PISO (25.2), e a causa esta em `afiliado.motivo_sem_url_busca`, medida em 2026-10-28 e nao suposta.",
    "divergencias": [],
@@ -1315,7 +1315,7 @@
     "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
    },
    "categoria": null,
-   "motivo_categoria_null": "DERIVADA da F1 e obrigatoriamente null: a constante `limiares-categoria-contran-996-2023` esta `pendente` em dados/constantes.json, e a 1.3 da especificacao proibe a F1 de ir ao ar com numero de portal. O validador le o STATUS DA CONSTANTE, nao uma lista escrita dentro dele.",
+   "motivo_categoria_null": "DERIVADO por ferramentas/derivar-banco.py e conferido por ferramentas/validar-banco.py — causa `acelerador_nao_declarado`: a ficha nao declara se o veiculo tem acelerador, e o acelerador e o PIVO da arvore (1.1 da especificacao): sem ele nenhuma potencia classifica. Falta declarado neste registro: `acelerador`, `potencia_nominal_w`, `velocidade_max_kmh`. O status de `limiares-categoria-contran-996-2023`, lido em dados/constantes.json nesta passada, e `publicavel`.",
    "status": "rascunho",
    "motivo_do_status": "`rascunho` por falta de PISO (25.2), e a causa esta em `afiliado.motivo_sem_url_busca`, medida em 2026-10-28 e nao suposta.",
    "divergencias": [],
@@ -1442,7 +1442,7 @@
     "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
    },
    "categoria": null,
-   "motivo_categoria_null": "DERIVADA da F1 e obrigatoriamente null: a constante `limiares-categoria-contran-996-2023` esta `pendente` em dados/constantes.json, e a 1.3 da especificacao proibe a F1 de ir ao ar com numero de portal. O validador le o STATUS DA CONSTANTE, nao uma lista escrita dentro dele.",
+   "motivo_categoria_null": "DERIVADO por ferramentas/derivar-banco.py e conferido por ferramentas/validar-banco.py — causa `acelerador_nao_declarado`: a ficha nao declara se o veiculo tem acelerador, e o acelerador e o PIVO da arvore (1.1 da especificacao): sem ele nenhuma potencia classifica. Falta declarado neste registro: `acelerador`, `potencia_nominal_w`, `velocidade_max_kmh`. O status de `limiares-categoria-contran-996-2023`, lido em dados/constantes.json nesta passada, e `publicavel`.",
    "status": "rascunho",
    "motivo_do_status": "`rascunho` por falta de PISO (25.2), e a causa esta em `afiliado.motivo_sem_url_busca`, medida em 2026-10-28 e nao suposta.",
    "divergencias": [],
@@ -1552,7 +1552,7 @@
     "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
    },
    "categoria": null,
-   "motivo_categoria_null": "DERIVADA da F1 e obrigatoriamente null: a constante `limiares-categoria-contran-996-2023` esta `pendente` em dados/constantes.json, e a 1.3 da especificacao proibe a F1 de ir ao ar com numero de portal. O validador le o STATUS DA CONSTANTE, nao uma lista escrita dentro dele.",
+   "motivo_categoria_null": "DERIVADO por ferramentas/derivar-banco.py e conferido por ferramentas/validar-banco.py — causa `acelerador_nao_declarado`: a ficha nao declara se o veiculo tem acelerador, e o acelerador e o PIVO da arvore (1.1 da especificacao): sem ele nenhuma potencia classifica. Falta declarado neste registro: `acelerador`, `potencia_nominal_w`, `velocidade_max_kmh`. O status de `limiares-categoria-contran-996-2023`, lido em dados/constantes.json nesta passada, e `publicavel`.",
    "status": "rascunho",
    "motivo_do_status": "`rascunho` por falta de PISO (25.2), e a causa esta em `afiliado.motivo_sem_url_busca`, medida em 2026-10-28 e nao suposta.",
    "divergencias": [],
@@ -1659,7 +1659,7 @@
     "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
    },
    "categoria": null,
-   "motivo_categoria_null": "DERIVADA da F1 e obrigatoriamente null: a constante `limiares-categoria-contran-996-2023` esta `pendente` em dados/constantes.json, e a 1.3 da especificacao proibe a F1 de ir ao ar com numero de portal. O validador le o STATUS DA CONSTANTE, nao uma lista escrita dentro dele.",
+   "motivo_categoria_null": "DERIVADO por ferramentas/derivar-banco.py e conferido por ferramentas/validar-banco.py — causa `acelerador_nao_declarado`: a ficha nao declara se o veiculo tem acelerador, e o acelerador e o PIVO da arvore (1.1 da especificacao): sem ele nenhuma potencia classifica. Falta declarado neste registro: `acelerador`, `potencia_nominal_w`, `velocidade_max_kmh`. O status de `limiares-categoria-contran-996-2023`, lido em dados/constantes.json nesta passada, e `publicavel`.",
    "status": "publicavel",
    "motivo_do_status": "`publicavel` pelo PISO da 25.2: a busca `X13 scooter eletrica` foi medida na Open API em 2026-10-28 e devolveu 10 oferta(s) no degrau `modelo_termo`, e o encurtamento com `sub_id_1` foi feito na mesma passada (25.2-b). O que este registro ainda NAO tem e ficha de produto (degrau 4), e o que ele publica e o que o banco declara dele — nada alem.",
    "divergencias": [],
@@ -1778,7 +1778,7 @@
     "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
    },
    "categoria": null,
-   "motivo_categoria_null": "DERIVADA da F1 e obrigatoriamente null: a constante `limiares-categoria-contran-996-2023` esta `pendente` em dados/constantes.json, e a 1.3 da especificacao proibe a F1 de ir ao ar com numero de portal. O validador le o STATUS DA CONSTANTE, nao uma lista escrita dentro dele.",
+   "motivo_categoria_null": "DERIVADO por ferramentas/derivar-banco.py e conferido por ferramentas/validar-banco.py — causa `acelerador_nao_declarado`: a ficha nao declara se o veiculo tem acelerador, e o acelerador e o PIVO da arvore (1.1 da especificacao): sem ele nenhuma potencia classifica. Falta declarado neste registro: `acelerador`, `potencia_nominal_w`, `velocidade_max_kmh`. O status de `limiares-categoria-contran-996-2023`, lido em dados/constantes.json nesta passada, e `publicavel`.",
    "status": "publicavel",
    "motivo_do_status": "`publicavel` pelo PISO da 25.2: a busca `LS Sport scooter eletrica` foi medida na Open API em 2026-10-28 e devolveu 2 oferta(s) no degrau `marca_termo`, e o encurtamento com `sub_id_1` foi feito na mesma passada (25.2-b). O que este registro ainda NAO tem e ficha de produto (degrau 4), e o que ele publica e o que o banco declara dele — nada alem.",
    "divergencias": [],
@@ -1888,7 +1888,7 @@
     "motivo": "nao colhido: nenhuma das fontes deste registro declara este campo"
    },
    "categoria": null,
-   "motivo_categoria_null": "DERIVADA da F1 e obrigatoriamente null: a constante `limiares-categoria-contran-996-2023` esta `pendente` em dados/constantes.json, e a 1.3 da especificacao proibe a F1 de ir ao ar com numero de portal. O validador le o STATUS DA CONSTANTE, nao uma lista escrita dentro dele.",
+   "motivo_categoria_null": "DERIVADO por ferramentas/derivar-banco.py e conferido por ferramentas/validar-banco.py — causa `acelerador_nao_declarado`: a ficha nao declara se o veiculo tem acelerador, e o acelerador e o PIVO da arvore (1.1 da especificacao): sem ele nenhuma potencia classifica. Falta declarado neste registro: `acelerador`, `potencia_nominal_w`, `velocidade_max_kmh`. O status de `limiares-categoria-contran-996-2023`, lido em dados/constantes.json nesta passada, e `publicavel`.",
    "status": "excluido_do_banco",
    "motivo_do_status": "`excluido_do_banco`: a unica fonte e de nivel 8.",
    "excluido_do_banco_por_que": "Nivel 8 (fazenda ou catalogo comercial) nao sustenta campo nenhum, em nenhum nivel de custo — e este dominio e um dos que o bloco 1 mediu ocupando a familia 'melhor patinete', que o VOZ.md desta ilha proibe por nome. O registro FICA GRAVADO com a causa para a proxima coleta nao o recolher de novo, e porque ele e util como prova: a tabela pre-renderizada da F1 cita este item como exemplo do que o mercado publica, sem nunca o recomendar.",
