@@ -3,6 +3,107 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-11-25 19h16Z–19h5xZ — **A BARRA FIXA DO TELEFONE NEGAVA O BLOCO DE COMPRA NAS DUAS PÁGINAS QUE GANHARAM O PISO NA VÉSPERA — E QUEM A ACHOU FOI A LIÇÃO DE MÉTODO QUE A PASSADA ANTERIOR PRÉ-REGISTROU**
+
+**A ILHA DESTA EXECUÇÃO:** rodametria, por **foco** (`foco.md`, foco total e absoluto desde 27/10). Pela **1.2** não houve escolha de ilha a fazer.
+**Passo 1 do disparo, medido:** `git fetch origin main` trouxe `origin/main` de `ebcd2e2` para **`14d5897`**. **Nenhum branch `claude/*` com trabalho pendente** — `origin/main..origin/claude/dreamy-mccarthy-e2doj2` veio **vazio** e o local estava no mesmo commit. Nada a mergear antes.
+**Reserva:** `executando_desde` às **19h16Z**, commit **`725fa14`**, push aceito **de primeira**. O campo estava `null`, que pela **1.1** já significa que não há bloco da Fundação vivo — não houve reserva vencida para o git desempatar. **Renovada às 19h31Z** no commit do conserto, pela 1.1: o bloco mexeu na casca, nas quatro ferramentas, em dois portões e no manifest, e a bancada sem rede desta ilha leva minutos.
+**REDE PELA 20.2, REMEDIDA E NÃO HERDADA:** **três** passadas, `rodametria.com.br` em **200** nas três, com `robometria.com.br` em **200** nas mesmas três — seis medições verdes.
+**DESPACHO:** o de 25/11 tem **só o item 3** aberto, e ele é **do Raphael** (permissão da rota `shopee.com.br/api/v4/pdp/*` na rotina agendada, ou a decisão de que o teste de vida da 25.4 sai de rotina agendada). Não é da Fundação, e por isso não havia despacho a fechar.
+
+### A FILA DE CONSTRUÇÃO ESTÁ VAZIA, E ISSO FOI RECONTADO E NÃO HERDADO
+
+**Quarta execução seguida** com a fila vazia, e as três travas foram relidas nos arquivos: o **bloco 5** depende de `pauta.md`, que pela **17.1** é das **mãos** e cuja rotina nunca rodou em 74 dias (despacho aberto de 24/11); **página nova de produto** está travada pela **30.8** — das 11 consultas de `dados/consultas-de-produto.json`, **3** já são página no ar, **3** estão fechadas por SERP `tomada`, **2** esperam o Chrome (`nao-medida`), as duas de 201 mil buscas (`bike elétrica` e `motos elétricas para adultos`) estão fechadas pela **30.4** em favor das irmãs, e a `scooter elétrica` tem remedição **pré-registrada para 11/12** pela **30.9**; e a profundidade da F1 e da F3 segue nas duas paredes de egresso. **Nenhuma leva de página era possível hoje** — e o teto da 21.4 segue com as três levas inteiras nesta semana, não por falta de vez, mas por falta de consulta elegível.
+
+### ENTÃO A RÉGUA DESTA PASSADA FOI A LIÇÃO QUE A ANTERIOR DEIXOU ESCRITA, E ELA ACERTOU O ALVO NA PRIMEIRA
+
+O `bloco_atual` de ontem fechou com isto pré-registrado: *"PORTÃO QUE DIZ 'NÃO SE APLICA' NÃO É PORTÃO VERDE — é um portão que não mediu. Quem acrescentar a uma página a PRIMEIRA coisa de uma família — o primeiro botão de compra, a primeira foto, o primeiro formulário — roda os portões que diziam 'não se aplica' naquela página ANTES de desembarcar."*
+
+A home ganhou **o primeiro botão de compra da vida dela** às 17h13Z de ontem. O portão de **pixel** foi o que a passada de ontem achou. Esta passada foi procurar os outros, e achou **um**, no ar.
+
+### O DEFEITO, MEDIDO NO AR A 390 px NO NAVEGADOR, NA REVISÃO 145
+
+`/` e `/peso-maximo-patinete-eletrico/` serviam a **barra fixa do rodapé do celular** — visível (`display: flex`, sem `hidden`) — com o botão **`Por que não indicamos`** apontando para `#comprar`. E dentro de `#comprar`, nas duas, havia **1 link de compra VISÍVEL** (`offsetParent !== null`), com `rel="sponsored noopener"`, que é o **piso da 25.2 desembarcado na véspera**. **A barra negava, letra por letra, o que o bloco servia um rolar abaixo.**
+
+O número das seis páginas medidas, para não ficar impressão:
+
+| URL | rótulo da barra | links de compra em `#comprar` |
+|---|---|---|
+| `/` | **Por que não indicamos** | **1** |
+| `/peso-maximo-patinete-eletrico/` | **Por que não indicamos** | **1** |
+| `/autonomia-patinete-eletrico/` | Ver produtos | 5 |
+| `/veiculos/patinete-eletrico/` | Ver produtos | 10 |
+| `/veiculos/bicicleta-eletrica/` | Ver produtos | 8 |
+| `/veiculos/moto-eletrica/` | *(não serve barra)* | *(não serve `#comprar`)* |
+
+**A ÚLTIMA LINHA ESTÁ CERTA E FOI CONFERIDA PARA NÃO VIRAR ITEM FALSO:** a página degradada da moto não serve bloco de compra nenhum — o piso dela mora na **caixa da resposta**, por `rdm_produto_piso_sem_vitrine()`, e por isso ela não tem `#comprar` para onde um atalho pudesse levar. Barra que aponta para âncora que não existe seria pior que a ausência dela.
+
+### É O ITEM 3 DE 09/11/2026 COM O SINAL TROCADO — E A CAUSA É DE ARIDADE, NÃO DE DESCUIDO
+
+Em **09/11** a barra trazia `Ver produtos` escrito à mão e prometia produto onde o bloco dizia que não havia. O conserto daquele dia foi derivar o rótulo da **mesma lista** que monta o bloco: `count($itens) ? 'Ver produtos' : 'Por que não indicamos'`. **Aquele conserto estava certo e ficou velho em 16 dias.**
+
+`rodametria_casca_rotulo_do_atalho()` nasceu conhecendo **dois** mundos. O bloco de compra passou a ter **três** em 25/11, quando o piso entrou no ramo sem cartão: **cartões**, **piso** (sem cartão, COM saída de compra) e **sem-saída**. O terceiro mundo não existia quando aquela função foi escrita, e ela o lê como se fosse o segundo. **Portão de duas pontas sobre mundo de três estados aprova o estado do meio seja ele qual for** — é a mesma família da régua de duas pontas que a **20.9** do contrato substituiu por cinco vereditos, e da régua da 20.5 que mandava reacionar onde a ação certa era esperar.
+
+### O CONSERTO MORA NA CASCA (32.6-b), E É UMA PORTA SÓ
+
+`rodametria_casca_estado_do_bloco( $itens, $piso )` — função **pura**, exercitada sobre mundos fabricados sem WordPress e sem rede — devolve `cartoes`, `piso` ou `sem-saida`. **Três lugares do snippet passaram a sair dela:** o ramo de `rodametria_casca_bloco_de_compra()` (era `'' === $cartoes`), o `if` de `rodametria_casca_piso_do_bloco()` (era um segundo `trim` do mesmo `url_busca`) e o rótulo do atalho. **Com isso o bloco e a barra não podem mais discordar por construção** — e era exatamente a discordância delas que foi ao ar. A **20.7** já escreve a regra: *"duas declarações do mesmo fato começam iguais e só uma sobe"*; aqui eram **três** leituras do mesmo campo.
+
+**O ROTULO DO MUNDO DO MEIO É `Ver na loja`**, e ele promete a **loja** e nunca a lista conferida — a mesma disciplina da frase do piso logo acima (*"é a lista da loja, não uma lista conferida contra a regra"*). `Ver produtos` ali diria que há vitrine, e não há; `Por que não indicamos` diria que não há saída, e há. Curto de propósito: ele mora num botão de barra fixa a 390 px, ao lado do número da resposta.
+
+**A BARRA GANHOU UM QUINTO ARGUMENTO, OBRIGATÓRIO E SEM PADRÃO**, pelo mesmo motivo que o quarto não tem — escrito na própria função em 09/11: *"padrão que mente calado é exatamente o defeito que esta função acabou de pagar"*. Padrão `array()` no piso daria o rótulo de "não há saída" a uma página COM o piso no bloco, que é o defeito de hoje.
+
+### E A CAMADA QUE NENHUM PORTÃO DE AR ENXERGA: A CATEGORIA DA F1 MUDA NO NAVEGADOR
+
+O servidor manda **uma** categoria — a da `resposta_exemplo`. As outras três nascem no navegador, e a prateleira muda com elas. **Consertar só o PHP deixaria a barra certa no carregamento e mentindo na primeira troca de campo.** A barra ganhou o gancho `data-rdm-barra-atalho`, e `rodametria_f1_piso_para_o_js()` passou a levar, **por categoria**, o rótulo já resolvido **pela mesma função da casca que serviu o HTML** — mais um rótulo solto para o mundo da recusa, que não tem entrada no mapa de prateleiras. **O JS não escolhe rótulo: ele lê.** Escolher no JS seria a quarta declaração do mesmo fato, e a terceira acabou de custar duas páginas no ar.
+
+### O PORTÃO QUE VIGIA ISTO ACHOU UM DEFEITO **DELE**, E ACUSOU A F1 E A F3 POR FALSO
+
+`ferramentas/teste-barra-de-compra.php` reprovou na primeira passada depois do conserto, com **duas** acusações, e as duas eram **falsas**:
+
+- na **F1**, o recorte do bloco de compra devolveu `$classifica ? rodametria_f1_nome_curto(...) : 'sem resposta'` como se fosse a lista de itens. Causa: o nome `rodametria_casca_bloco_de_compra` aparece **dentro de um comentário** antes da chamada de verdade, e o recorte por `preg_match` com `.*?` achava a **menção** e não a **chamada**;
+- na **F3**, o quinto argumento devolvido foi um **pedaço de prosa** do comentário que explica o piso. Causa: `argumentos_de_topo()` é ciente de **aspas** e não de **comentário**, e comentário em português tem vírgula.
+
+**É A MESMA FAMÍLIA DO CORTE QUE ESTE MESMO PORTÃO JÁ PAGOU EM 09/11** — *"o separador que parece óbvio atravessa o literal"* — com uma superfície a mais: ele atravessa o **comentário**. A lacuna ficou invisível 16 dias porque nenhuma chamada tinha comentário com vírgula dentro; apareceu no minuto em que o piso ganhou um. `sem_comentarios()` raspa comentário **preservando as posições** (comentário vira espaço, nunca desaparece), porque `funcao_que_contem()` e `chamadas_de()` trocam deslocamento entre si e raspador que encurta a fonte faz as duas apontarem para outro lugar **sem dar erro**. E ele é ciente de aspas, porque toda chamada de piso desta ilha carrega um `https://` — e `//` dentro de literal mataria o resto da linha.
+
+**AS DUAS ACUSAÇÕES FALSAS VIRARAM AFIRMAÇÃO** (seção 3-b do portão), com a discordância da **20.8** nos dois sentidos: a régua velha reprova o mundo com comentário e a nova aprova; na fonte **sem** comentário as duas concordam, porque onde não havia defeito o conserto não pode mexer.
+
+### E UM PORTÃO NASCIDO ONTEM ESTAVA **INERTE**, COM ERRO FATAL E CÓDIGO DE SAÍDA **ZERO**
+
+`ferramentas/teste-piso-do-bloco.php`, criado ontem, morria em `Call to undefined function` e **saía 0**. Nenhum código de saída o acusaria. **Quem o pegou foi a regra INERTE da bancada** — *"não imprime APROVADO, REPROVADO nem 'N falha(s)'. Portão que não diz o veredito em português não é lido por ninguém"*. A causa é a cicatriz de carregar função a função: quem acrescenta dependência a uma função do snippet acrescenta o nome na lista daquele portão. **A regra que parecia de etiqueta pegou um erro fatal que o código de saída esconde**, e isso vale dito.
+
+Ele voltou a falar e passou a **cobrar o rótulo do atalho categoria por categoria** contra a casca, mais a afirmação que mata a classe: o rótulo do mundo **sem saída** e o do mundo **com piso** têm de ser **diferentes** — se fossem iguais, a barra diria a mesma coisa servindo link e não servindo.
+
+### BANCADA E MUTAÇÕES
+
+**67 portões sem rede, 0 falha.** `teste-barra-de-compra` passou de **95 afirmações em dois estados** para **100 em três**; `teste-piso-do-bloco` de 58 para **68**. **Quatro mutações cobradas, uma por metade do conserto:** (1) o rótulo volta a ignorar o piso — a regra de 09/11 — e **4** afirmações reprovam, entre elas a discordância da 20.8; (2) o ramo do piso morre no bloco e a régua acusa a **direção contrária** (*"o bloco não serve link e a barra diz `Ver na loja`"*), que é a prova de que ela mede concordância e não um dos lados; (3) o gancho do navegador sai da barra e **4** mundos reprovam; (4) a F1 passa piso diferente do que o bloco recebe e a comparação de expressões o pega.
+
+**Constantes e espelho (20.7):** casca 1.35.0 → **1.36.0**, F1 1.9.0 → **1.10.0**, F2 1.15.0 → **1.15.1**, F3 1.10.0 → **1.10.1**, produto 1.22.0 → **1.22.1** — as cinco reespelhadas por `atualizar-manifest.py`, que imprimiu cada troca. Revisão **145 → 147** (a 146 foi o espelho dos snippets, a 147 o de `datas-de-codigo.json`, que é gerado a partir do manifest e por isso pede a segunda passada).
+
+### O DESEMBARQUE, E A 20.9 ECONOMIZOU AS RODADAS DE NOVO
+
+Esta ilha **não tem o token do Sync**, então o desembarque é empurrar e **abrir a própria página** (20.6). Veredito da **20.9** na hora do push: `evento-nao-vencido` — `ultimo` de **19:16:57** e o `raw.githubusercontent.com` já servindo a **147**, logo **esperar e não reacionar**, com teto previsto em 19:46:57. A revisão entrou às **19:40:42**, na décima visita — **6m15s antes do teto**, exatamente pelo motivo que a própria 20.9 escreve: o WordPress reagenda evento recorrente a partir do horário **agendado** e não do horário em que ele rodou. **Zero rodada de Sync desperdiçada.**
+
+**20.4 e 20.8, lidas do fecho para baixo:** o fecho declara *"revisão 147: 13 aplicado(s)"* e abaixo dele há **13** linhas de item, **todas dizendo `ok`** — 13 − 13 = 0. **20.7:** `/casca → versoes` traz as **6 de 6** versões batendo com o manifest.
+
+### CONFERIDO NO AR (18.4), E A CAMADA DO NAVEGADOR MEDIDA SEPARADO
+
+**O critério de pronto deste conserto é que a barra nunca diga o contrário do bloco**, e ele foi medido nas duas superfícies.
+
+**(a) AS 11 PÁGINAS, a 390 px no Chromium, com quebra de cache.** `/` e `/peso-maximo-patinete-eletrico/` passaram de `Por que não indicamos` para **`Ver na loja`**, cada uma com **1** link de compra visível em `#comprar`. As que tinham cartão não mudaram uma letra — `/autonomia-patinete-eletrico/` **5**, `/veiculos/bicicleta-eletrica/` **8**, `/veiculos/patinete-eletrico/` **10**, as três com `Ver produtos`. **Zero `href` vazio e zero link de compra sem `rel="sponsored"` nas 11.** A moto degradada segue sem barra e sem `#comprar`, que é a leitura certa.
+
+**(b) A F1 EXECUTADA NO NAVEGADOR, categoria por categoria** — a camada que nenhum portão de ar enxerga, porque o servidor manda uma só. **4 de 4** com o rótulo certo e com o destino da prateleira de cada: `bicicleta elétrica` → `2qWBjBH7i9`, `autopropelido` → `5VWwu572a8`, `ciclomotor` e `acima do ciclomotor` → `2gClWsHpKL`.
+
+**OS PORTÕES DA ILHA, TODOS APROVADOS depois do desembarque:** `conferir-no-ar.py` **825 afirmações, 0 falha**; `conferir-produto-no-ar.py` **412, 0**; `conferir-institucional-no-ar.py` **244, 0**; pixel **11 de 11 dentro da 32.5**, pior botão de compra em **1.366 px** (teto 1.400) — o conserto não gastou um pixel, porque ele troca texto de botão e não move bloco; `conferir-piso-no-navegador.mjs` **4 de 4 categorias com piso visível**; console **limpo nas 11**.
+
+### PRÓXIMO PASSO DESBLOQUEADO
+
+**A fila de construção segue vazia**, pelas três travas recontadas no topo desta entrada, e **nenhuma delas é da Fundação**: `pauta.md` (rotina das mãos que nunca rodou, despacho aberto), a **30.8** (o veredito de SERP é do Chrome do Raphael) e as duas paredes de egresso. A `scooter elétrica` remede em **11/12** pela 30.9. Com a fila vazia, a régua desta passada foi **procurar no ar o que a lição de ontem mandava procurar**, e havia.
+
+**E A LIÇÃO DE MÉTODO DESTA PASSADA, pré-registrada para a próxima, porque ela é mais geral que a de ontem:** **a aridade de uma decisão envelhece junto com a página.** O conserto de 09/11 estava certo e durou 16 dias: ele derivou o rótulo da lista, e a lista era a única coisa que decidia o bloco **naquele dia**. Quem acrescentar um **estado novo** a um componente — um terceiro mundo onde havia dois — vai atrás de **toda função que decide pelo estado antigo**, porque elas não dão erro: elas leem o estado novo como se fosse um dos velhos e **acertam em dois de três**. E o portão que as vigia envelhece no mesmo gesto, porque os mundos fabricados dele são pares.
+
+**E A SEGUNDA, DE INSTRUMENTO:** **código de saída zero não é veredito.** `teste-piso-do-bloco.php` morreu em erro fatal e saiu **0**; quem o pegou foi a regra **INERTE** da bancada — a que exige veredito em português. A regra que parecia etiqueta é a que achou o portão morto.
+
+
 ## 2026-11-25 16h16Z–16h5xZ — **A FERRAMENTA PRINCIPAL DA ILHA SERVIA O RESULTADO NAS QUATRO CATEGORIAS COM ZERO LINK DE LOJA, E O PISO ESTAVA PUBLICADO NO BANCO HÁ NOVE DIAS: ERA A 25.2-c UM ANDAR ACIMA**
 
 **A ILHA DESTA EXECUÇÃO:** rodametria, por **foco** (`foco.md`, foco total e absoluto desde 27/10). Pela **1.2** não houve escolha de ilha a fazer.
