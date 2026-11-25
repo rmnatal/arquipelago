@@ -16,204 +16,214 @@ urls_publicadas: 11       # ZERO URL nasceu nesta passada (25/11), e A ORACAO SO
                           # proteger. Quem substituir comentario de varias linhas apaga o rabo.
 ultima_ronda: 2026-11-23T14:59Z   # RONDA DIARIA TECNICA de 23/11/2026 (secao 12.2, item 3). SUBSTITUI o valor anterior 2026-11-18T20:01Z, que era da LEITURA SEMANAL de 18/11 e segue registrada no PROMPT.md. Medida na revisao 120 (/status 120 = manifest 120): 11 de 11 URLs em 200, tres portas da 29.2 verdes, 404 virgem na pagina da propria ilha, 31 blocos de JSON-LD que parseiam, console limpo, 17 de 17 contas das tres ferramentas certas na mao, e 15 leituras de teste de vida da 25.4 (11 fichas e 4 buscas) com 0 morta, 0 esgotada, 0 intestavel e 0 sem piso da 25.2. ZERO consertos: nenhum dos tres defeitos e da lista 19.1. ACHADO DE ALTA: /veiculos/moto-eletrica/ recebe ZERO link interno de miolo, porque a listagem da mae e o bloco de irmas nascem da lista de paginas da vitrine e a pagina degradada nao esta nela.
 primeira_indexacao: null  # as duas primeiras URLs foram ao ar hoje; indexacao e trabalho de dias. Quem grava este campo e a leitura semanal, lendo o Search Console.
-ultima_execucao: 2026-11-25T10:4xZ   # A FILA ESTAVA VAZIA e o bloco veio da
-                         # REGUA que a passada anterior deixou escrita: `grep
-                         # -rn` no nome de um campo declarado para ver quem o le.
-                         # ELA ACHOU A MESMA FRASE MORTA EM CINCO
-                         # LUGARES: o `motivo_categoria_null` dos 17
-                         # registros de veiculos.json, o
-                         # `pendencias_do_bloco.bloqueiam_a_f1` de
-                         # esquema-banco.json (que nao tinha LEITOR nenhum), o
-                         # paragrafo de abertura de dados/fonte-oficial-f1.md (que
-                         # contradizia a secao 5 do PROPRIO arquivo), a secao 1.3
-                         # de dados/especificacao-calculadoras.md e a secao "O que
-                         # esta travando" DESTE arquivo, que errava duas vezes na
-                         # mesma oracao. Todas diziam que
-                         # `limiares-categoria-contran-996-2023` esta `pendente`;
-                         # ela esta `publicavel` desde 06/11/2026. 19 DIAS.
-                         # E O PORTAO QUE COBRAVA A PRIMEIRA DESLIGOU NO MESMO
-                         # GESTO QUE TORNOU A FRASE FALSA: ele era
-                         # `if categoria_travada and ...`, isto e, cobrava o campo
-                         # so enquanto a afirmacao do campo fosse VERDADEIRA.
-                         # O detalhe esta no `bloco_atual` e no REGISTRO.md.
-executando_desde: 2026-11-25T13:27Z   # RESERVA desta execucao, reescrita no
-                         # commit do desembarque. O bloco NAO passou de 40
-                         # minutos: reservei as 13h17Z (commit 1eba447) e isto e
-                         # 13h27Z, dez minutos. Reescrevo porque a 1.1 diz que
-                         # renovar e uma linha e e o que faz a proxima execucao
-                         # nao precisar do git — nao porque a janela venceu.
-                         # A reserva foi aceita de PRIMEIRA: o campo estava
-                         # `null`, e o ultimo commit na pasta era o FECHO das
-                         # 10h44Z, nao bloco em andamento.
-rede: aberta em 2026-11-25   # 20.2, REMEDIDA e nao herdada nesta execucao:
-                             # `rodametria.com.br/` e `/veiculos/` em 200, com
-                             # example.com em 000 no MESMO comando — o controle
-                             # da 33 que diz que `000` nesta nuvem e POLITICA da
-                             # lista de permissoes, nunca queda de site nem tunel
+ultima_execucao: 2026-11-25T13:4xZ   # A FILA ESTAVA VAZIA OUTRA VEZ, e
+                         # o bloco veio da LICAO que a passada das 10h4xZ de
+                         # HOJE pre-registrou: trava condicionada a uma
+                         # afirmacao do mundo desliga junto com ela. A regua
+                         # achou UM lugar, e e o campo mais perigoso desta
+                         # ilha: em ferramentas/teste-f1.py as TRES cobrancas
+                         # sobre as frases de HABILITACAO moravam dentro de
+                         # `if hab.get("status") != "publicavel"`. A constante
+                         # do CTB esta `pendente` e e destravada pelo MESMO
+                         # pedido de uma linha (`*.gov.br`) que os limiares
+                         # esperaram 19 dias — entao o dia em que o portao
+                         # parava de olhar e o dia em que o Raphael atender o
+                         # pedido, que e quando a pagina comeca a FALAR de
+                         # habilitacao.
+                         # MEDIDO NO ARQUIVO REAL com a constante posta em
+                         # `publicavel`: a regua VELHA faz 0 cobranca e a NOVA
+                         # faz 84, com 3 reprovadas. Revisao 138 no ar e
+                         # CONFERIDA. O detalhe esta no `bloco_atual` e no
+                         # REGISTRO.md.
+executando_desde: null   # LIMPO no fecho desta execucao (passo 7 da
+                         # secao 1). Reservada as 13h17Z (commit 1eba447),
+                         # aceita de PRIMEIRA — o campo estava `null`, que pela
+                         # 1.1 ja significa que nao ha bloco da Fundacao vivo, e
+                         # o ultimo commit na pasta era o FECHO das 10h44Z — e
+                         # reescrita as 13h27Z no commit do desembarque, SEM a
+                         # janela de 40 minutos ter vencido (dez minutos), o que
+                         # ficou dito no proprio campo para ninguem ler a
+                         # reescrita como vencimento.
+rede: aberta em 2026-11-25   # 20.2, REMEDIDA e nao herdada nesta
+                             # execucao das 13h17Z: `rodametria.com.br/` e
+                             # `/veiculos/` em 200, com example.com em 000 no
+                             # MESMO comando — o controle da 33 que diz que
+                             # `000` nesta nuvem e POLITICA da lista de
+                             # permissoes, nunca queda de site nem tunel
                              # instavel. As 11 URLs do sitemap foram abertas
-                             # pelos portoes de ar DUAS vezes nesta passada (uma
-                             # na bancada de partida, uma depois do desembarque
-                             # da 136) e TODAS responderam 200.
-                             # AS DUAS PAREDES SEGUEM DE PE, e esta execucao NAO
-                             # as remediu: o `.gov.br` da F1 e o nivel 5 da
-                             # escada foram medidos nas duas portas em 24/11 as
-                             # 10h2xZ e 13h4xZ, e a 20.2 nao pede remedicao de
-                             # parede que esta passada nao usou. SEGUE FECHADA: o
-                             # gesto dos dois campos de configuracao nao foi
-                             # feito, e com ele seguem parados o CNH da F1 e a
-                             # camada municipal.
-                             # E O QUE ESTA PASSADA MEDIU SOBRE A PAREDE DO
-                             # LIMIAR: ela NAO EXISTE MAIS, e nao existia ha 19
-                             # dias. A constante dos limiares esta `publicavel`
-                             # desde 06/11 e o que segue atras do egresso e
-                             # OUTRA coisa — o CTB da habilitacao e os quatro
-                             # atos de prefeitura. Quatro arquivos da ilha diziam
-                             # o contrario e os quatro foram corrigidos aqui.
+                             # com quebra de cache depois do desembarque da 138
+                             # e TODAS responderam 200.
+                             # AS DUAS PAREDES SEGUEM DE PE, e esta execucao
+                             # NAO as remediu: o `.gov.br` da F1 e o nivel 5 da
+                             # escada foram medidos nas duas portas em 24/11, e
+                             # a 20.2 nao pede remedicao de parede que esta
+                             # passada nao usou. SEGUE FECHADA: o gesto dos dois
+                             # campos de configuracao nao foi feito, e com ele
+                             # seguem parados o CNH da F1 e a camada municipal.
+                             # E O QUE ESTA PASSADA FEZ COM A PAREDE DO CNH:
+                             # nao a derrubou — encareceu o dia em que ela cair.
+                             # O portao da F1 deixou de PARAR DE OLHAR quando a
+                             # constante do CTB destravar e passou a cobrar
+                             # procedencia dela nesse dia.
 bloqueada_por: null      # obrigatorio pela secao 2. `null` DE PROPOSITO: o que falta (gov.br para a F1, as prefeituras para a camada municipal, as tres etiquetas do Mercado Livre) trava a FABRICA e nao a ILHA, e isso se escreve no despacho, que e o canal da 12.2. Preenche-lo congelaria tambem os blocos que ja podem andar.
 bloco_atual: |
-  O PORTAO DO CAMPO MAIS PERIGOSO DO BANCO DESLIGAVA SOZINHO NO MESMO GESTO QUE
-  TORNAVA A AFIRMACAO FALSA, e o conserto esta no main na revisao 136.
+  A TRAVA DAS DUAS FRASES QUE MANDAM ALGUEM PARA A RUA SEM HABILITACAO
+  DESLIGAVA SOZINHA NO DIA DA DESTRAVADA — 84 COBRANCAS CONTRA ZERO, MEDIDO NO
+  ARQUIVO REAL. Revisao 138 no ar e CONFERIDA (18.4).
 
-  O BLOCO NAO VEIO DA FILA: A FILA ESTAVA VAZIA, e ela estava vazia de verdade —
-  o bloco 5 espera a pauta das maos (17.1), pagina nova de produto esta travada
+  O BLOCO NAO VEIO DA FILA: a fila de construcao segue VAZIA, e de verdade — o
+  bloco 5 espera a pauta das maos (17.1), pagina nova de produto esta travada
   pela 30.8, a profundidade da F1 e da F3 esta fechada nas duas paredes de
-  egresso, e os itens dos despachos abertos sao todos do Raphael. Valeu a regua
-  que o `bloco_atual` da passada anterior deixou escrita: `grep -rn` no nome de
-  um campo declarado para ver quem o le. Ela achou trabalho em um comando.
+  egresso, e nenhum despacho aberto e para a Fundacao desta ilha. Valeu a LICAO
+  DE METODO que a passada das 10h4xZ de HOJE deixou escrita: `grep` por
+  cobranca condicionada ao estado do mundo. Segunda passada seguida em que uma
+  regua escrita pela anterior acha trabalho em um comando.
 
-  O QUE ESTAVA ESCRITO: os 17 registros de dados/veiculos.json declaravam, no
-  `motivo_categoria_null`, que a constante `limiares-categoria-contran-996-2023`
-  estava `pendente`. Ela esta `publicavel` desde 06/11/2026, e quem o diz e o
-  arquivo vizinho — constantes.json, em `pendencias_resumidas`, escreve
-  "DESTRAVADA em 06/11/2026 ... Era a UNICA que bloqueava desembarque". A frase
-  morreu no dia em que a F1 foi ao ar e ficou de pe 19 DIAS.
+  O QUE ESTAVA ESCRITO: em ferramentas/teste-f1.py a linha era
+  `if hab is not None and hab.get("status") != "publicavel":`, e dentro dela
+  moravam AS TRES cobrancas sobre habilitacao — a proibicao de `dispensa CNH`,
+  a de `exige/precisa de habilitacao`, e `habilitacao_respondida is False`. A
+  constante `exigencia-de-habilitacao-por-categoria-ctb` esta `pendente`.
 
-  E O PORTAO QUE A COBRAVA DESLIGOU NO MESMO MINUTO. A linha era
-  `if categoria_travada and categoria is None and not motivo`: ela cobrava o
-  campo SO ENQUANTO a constante estivesse `pendente`, isto e, so enquanto a
-  afirmacao do campo fosse VERDADEIRA. A ironia esta a quatro linhas de
-  distancia, no comentario que a propria passada de 06/11 escreveu logo acima —
-  "Com o limiar `publicavel` a trava antiga desliga SOZINHA, e o campo mais
-  perigoso do banco ficaria sem portao". Ela viu o risco numa linha e o deixou
-  de pe na seguinte.
+  POR QUE O DIA DA VIRADA NAO E HIPOTETICO: essa constante e destravada pelo
+  MESMO pedido de uma linha (`*.gov.br` na lista de dominios permitidos) que os
+  limiares da categoria esperaram 19 dias — esta escrito em `canal_de_coleta`,
+  na propria constante, e e despacho ALTA aberto. No minuto em que o Raphael
+  atender, o status vira `publicavel`, a pagina comeca a FALAR de habilitacao e
+  as tres cobrancas param de olhar. E o contrario do que o momento pede.
 
-  E FORAM CINCO LUGARES, nao tres. Os outros dois sao prosa de bancada e
-  estao no fecho desta entrada: o paragrafo de abertura de
-  dados/fonte-oficial-f1.md, que contradizia a SECAO 5 DO PROPRIO ARQUIVO, e a
-  secao "O que esta travando" deste ESTADO.md, que dizia "os dois limiares
-  legais seguem `pendente`" — errado DUAS vezes, porque nenhum limiar legal esta
-  pendente e as duas constantes que estao nao sao limiares legais.
+  POR QUE ESTA TRAVA E NAO OUTRA: de manha o que ficou sem portao foi um campo
+  de banco; aqui era a frase que esta ilha nomeia como o seu erro caro. O
+  PROMPT.md e literal — "Errar 'dispensa CNH' num veiculo que e ciclomotor manda
+  a pessoa para a rua sem habilitacao" — e a propria home diz, na dobra da
+  procedencia, que "errar para o lado permissivo aqui manda alguem para a rua
+  sem habilitacao".
 
-  O TERCEIRO LUGAR, achado primeiro: `pendencias_do_bloco.bloqueiam_a_f1`, em
-  esquema-banco.json, dizia a MESMA coisa morta, e `grep -rn` nas ferramentas,
-  nos snippets e nas regras devolvia ZERO leitor. O arquivo foi reescrito em
-  23/11 com a frase intacta dentro. Tres declaracoes do mesmo fato e so uma
-  subia (20.7).
+  MEDIDO NO ARQUIVO REAL e nao so em mundo fabricado (constante posta em
+  `publicavel`, portao rodado, arquivo revertido por `git checkout`): a regua
+  VELHA faz 0 cobranca e a NOVA faz 84, com 3 reprovadas — constante
+  `publicavel` SEM `url`, com `tipo: pendente`, e `habilitacao_respondida:
+  false` contra status publicavel.
 
-  A CAUSA DE VERDADE TEM DOIS VALORES, e nenhum deles e a constante: rodada a
-  arvore da F1 com os limiares que estao publicaveis hoje, 14 registros param em
-  `acelerador_nao_declarado` e 3 em `potencia_nominal_ausente`. Contado no mesmo
-  gesto: 14 de 17 nao declaram `acelerador`, 17 de 17 nao declaram
-  `potencia_nominal_w` e 17 de 17 nao declaram `velocidade_max_kmh`. O QUE TRAVA
-  A F1 E COLETA EM FICHA, NAO NORMA — e a diferenca decide onde a proxima
-  execucao gasta a passada.
+  O CONSERTO separa o que estava no mesmo `if`, e NENHUM PORTAO NOVO NASCEU
+  (31.2 — o mesmo portao trocou de pergunta, como o de manha trocou "tem de ser
+  null" por "tem de ser DERIVAVEL"):
+  (a) ABSOLUTA, nos dois mundos: `dispensa CNH` e `dispensa habilitacao`
+      proibidas SEMPRE. Nao e tom: sao afirmacoes CATEGORICAS e PERMISSIVAS
+      sobre o veiculo, e o CTB NAO EXIME POR VEICULO — condiciona por categoria
+      e por quem conduz, entao a frase segue falsa para parte de quem a le mesmo
+      com o texto oficial na mao. A forma `dispensa habilitacao` entrou na lista
+      porque foi ESSA a que a ronda de 06/11 achou no ar em `/veiculos/`, e nao
+      a que o portao procurava.
+  (b) CONDICIONAL com as DUAS pontas: `exige/precisa de habilitacao` segue
+      proibida enquanto pendente, e no mundo invertido o portao TROCA DE
+      COBRANCA — exige `url`, `verificado_em` e `tipo: oficial` da constante, a
+      MESMA regua que o limiar da categoria ja aplica a si na mesma metade (B)
+      do mesmo arquivo. Essa assimetria entre duas constantes do mesmo tipo no
+      mesmo portao e o que de fato estava sem ninguem olhando.
+  (c) A EQUIVALENCIA: `habilitacao_respondida == (constante publicavel)`, UMA
+      afirmacao nos dois mundos, no desenho que teste-f2.py ja usa certo no
+      `degrau_3_disponivel` (linha 148). O arquivo vizinho estar certo e o que
+      torna o defeito nitido: a ilha ja sabia escrever a regua.
 
-  E A TELA ESTAVA CERTA: medido no HTML servido da home nesta passada, a
-  prestacao de contas da F1 diz "Nao da para classificar: a ficha nao declara o
-  que a regra le: 14", com os nomes um por um. E o INVERSO do defeito de 06/11 —
-  la a pagina estava certa na camada da pessoa e errada na da maquina; aqui o
-  REPOSITORIO estava errado e a TELA certa. Nenhum byte de tela mentia, e e por
-  isso que nada acusou.
+  A DISCORDANCIA DA 20.8 ESCRITA COMO FUNCAO:
+  `discordancia_da_20_8_na_habilitacao()` refaz a regua VELHA ao lado da nova em
+  3 mundos e exige que a velha APROVE e a nova REPROVE, mais 2 mundos SAOS que
+  as duas aprovam (20.5 — regua que so fica mais severa e regua que vai ser
+  ignorada). A regua e PURA e nao le arquivo: devolve `(passou, frase)` por
+  cobranca, e O NUMERO DE COBRANCAS NAO DEPENDE DO STATUS. E isso,
+  mecanicamente, que faz a trava nao desligar.
 
-  O CONSERTO, e nenhum portao NOVO nasceu (31.2 — os tres arquivos ja existiam):
-  (1) derivar-banco.py ganhou o QUARTO derivado. O `motivo_categoria_null` passa
-      a ser escrito da arvore, com a causa em crase e com o status da constante
-      LIDO naquela passada, nunca digitado. Ele tambem REMOVE o motivo de
-      registro cuja `categoria` esteja preenchida, e NAO escreve `categoria`: o
-      produto da ilha nao sai de uma ferramenta de derivacao.
-  (2) validar-banco.py cobra TRES coisas onde cobrava uma, com mensagem separada
-      para cada (20.5): (a) motivo obrigatorio SEMPRE que `categoria` e null,
-      travada ou destravada; (b) registro que a arvore CLASSIFICA e esta null e
-      AUSENCIA SILENCIOSA da recomendacao da F1 — defeito que NENHUMA regua
-      desta ilha via, porque a de 06/11 so recalculava com o campo PREENCHIDO;
-      (c) prosa que afirma status de constante e conferida contra
-      constantes.json, e a MESMA regua le o `pendencias_do_bloco` do esquema
-      (secao 2-b nova), que passou a ter leitor, mais a morte de esquema da
-      chave pela 26.2. Mais a contradicao `categoria` preenchida COM motivo de
-      null de pe.
-  (3) mutacoes-banco.py de 79 para 85 casos, e os novos medem o mundo de HOJE: o
-      caso antigo POE a constante em `pendente` antes de apagar o campo, e por
-      isso ele nao media nada sobre o mundo de hoje.
-  (4) A DISCORDANCIA DA 20.8 ESCRITA COMO FUNCAO: `discordancia_da_20_8()` refaz
-      a regua VELHA ao lado da nova em dois mundos estragados e exige que as
-      duas DISCORDEM — a velha aprova os dois, a nova reprova os dois.
+  E A MESMA FRASE VENCIDA ESTAVA EM QUATRO LUGARES MAIS, os quatro corrigidos
+  aqui — a licao da manha aplicada a propria correcao: a
+  `proibicao_explicita` DA PROPRIA CONSTANTE (era o DADO declarando a
+  condicionalidade), o cabecalho do snippet da F1 (versao 1.7.0 -> 1.7.1),
+  dados/fonte-oficial-f1.md (e ali vale extra: e o arquivo que o RAPHAEL
+  preenche, e agora ele avisa que o portao vai reprovar por procedencia) e
+  dados/especificacao-calculadoras.md, mais a oracao do manifest.json.
 
-  O LIMITE DA REGUA (c), DITO PARA NINGUEM A LER COMO MAIS FORTE DO QUE E: ela
-  le a palavra de status que esta AO LADO do id da constante, ate o fim daquela
-  sentenca. Prosa que NEGUE ali ("nao esta mais `pendente`") a engana. A regra
-  que sai disso esta escrita nos dois geradores e no proprio esquema: ao lado do
-  id vai o STATUS, nunca a negacao dele.
+  HONESTIDADE SOBRE O TAMANHO, DITA PARA NINGUEM LER ISTO COMO "A TELA ESTAVA
+  ABERTA": a TELA NAO estava desprotegida, e isso foi medido ANTES de escrever o
+  conserto. teste-afirmacao-de-tela.py cobra afirmacao de habilitacao em TODAS
+  as URLs e no JSON-LD, SEM depender do status, e por lista de PERMISSAO, com o
+  pedagio escrito no proprio comentario. Isso e desenho, nao defeito, e nao foi
+  tocado. E `habilitacao_respondida` e DERIVADO pelo gerador, nunca digitado —
+  logo a cobranca (c) e cinto de seguranca, nao buraco aberto. O que de fato
+  ficava sem portao algum era a PROCEDENCIA da constante do CTB no mundo
+  publicavel, e duas das tres falhas medidas sao dela.
 
-  OS NUMEROS, NESTA ORDEM: a metade POR REGISTRO do portao novo, sobre o banco
-  VELHO, deu 34 FALHAS (duas por registro, nos 17); a metade do ESQUEMA, escrita
-  depois, deu 1 FALHA no `pendencias_do_bloco`; `derivar-banco.py --conferir`
-  acusou 17 motivos a reescrever; sobre o banco reescrito, 0 falha e APROVADO;
-  mutacoes 85 casos + 1 autoteste + 2 mundos da 20.8, 0 falha; bancada 65
-  portoes sem rede e 71 COM REDE depois do desembarque, 0 falha nas duas;
-  `conferir-no-ar.py` sozinho, 826 afirmacoes e 0 falha.
+  OS NUMEROS: teste-f1 1479 afirmacoes e 0 falha (eram 1234 em 06/11);
+  validar-banco 0 falha — e ele importa aqui porque a regua (c) dele cobra prosa
+  que afirma status de constante CONTRA constantes.json, e o texto novo passou
+  por ela; teste-afirmacao-de-tela 2482 afirmacoes e 0 falha; bancada 65
+  portoes sem rede e 71 COM REDE, 0 falha nas duas, antes e depois.
 
-  O DESEMBARQUE, E A 20.9 ECONOMIZOU AS RODADAS OUTRA VEZ: push as 10h33Z,
-  `ultimo` 10:18:55, teto 10:48:55, raw ja servindo 136 — veredito
-  `evento-nao-vencido`, ESPERAR e nao reacionar. A revisao entrou as 10:39:58Z,
-  8m57s ANTES do teto, com ZERO rodada desperdicada. E A TERCEIRA MEDICAO da
-  previsao que o `conferir-no-ar.py` escreve no proprio veredito — o teto PODE
-  CAIR ANTES, porque o WordPress reagenda evento recorrente a partir do horario
-  AGENDADO e nao do horario em que ele rodou. As tres: 6m37s (05/11), 7m27s
-  (24/11) e 8m57s (hoje). O log foi lido do FECHO para baixo (20.8): o fecho
-  declara 8 aplicado(s) e as 8 linhas de item dizem `ok` — 8 - 8 = 0. A janela
-  de 15 esta CHEIA, e isso e DITO: item de revisao anterior que rolou para fora
-  dela nao foi conferido por ninguem.
+  O DESEMBARQUE, E A 20.9 ACERTOU PELA QUARTA VEZ: push as 13h28Z, `ultimo`
+  13:17:03, teto 13:47:03, raw ja servindo 138 — veredito `evento-nao-vencido`,
+  ESPERAR e nao reacionar. A revisao entrou as 13:39:52Z, 7m11s ANTES do teto,
+  com ZERO rodada desperdicada. As quatro medicoes: 6m37s (05/11), 7m27s
+  (24/11), 8m57s (25/11 manha) e 7m11s agora. O cron roda por VISITA e nao por
+  relogio, e as visitas foram mantidas de pe ate o evento vencer. O log foi lido
+  do FECHO para baixo (20.8): declara 9 aplicado(s) e as 9 linhas de item dizem
+  `ok` — 9 - 9 = 0, entre elas `snippets/rodametria-f1: ok (snippet #10
+  atualizado)`, que prova que o snippet trocou no AR e nao so no repositorio.
 
-  O QUE ESTA PASSADA NAO ENTREGOU, DITO ANTES DE A LEITURA SEMANAL CONTAR: ZERO
-  byte de tela. Nenhuma pagina, nenhum `<title>`, nenhum texto, nenhum bloco de
-  compra, nenhum link de afiliado. ISSO TEM DE ENTRAR NA CONTA DA 31.1, que a
-  leitura semanal de hoje faz pela 31.6. A causa esta medida e nao e escolha: os
-  quatro caminhos de construcao estao atras de gesto do Raphael, de egresso, de
-  SERP no Chrome dele ou da pauta das maos. O que esta passada fez e o que a 31.3
-  PERMITE quando nao ha item de conteudo aberto na fila nem em despacho.
+  MEDIDO NO AR DEPOIS (18.4): /status 138 = manifest 138; /casca serve
+  `rodametria-f1 1.7.1`, a versao CARREGADA pelo WordPress (20.7); 11 de 11 URLs
+  em 200 com quebra de cache; `dateModified` da home em `2026-11-25`, uma data
+  so no HTML; e as quatro frases contadas na home: `dispensa cnh` 0, `dispensa
+  habilita` 0, `precisa de habilita` 0, `exige habilita` 0.
 
-  A REVISAO 136 E DE BANCO DE BANCADA E NAO DE PAGINA, dito sem maquiar: os dois
-  arquivos tocados sao `publicar: false` e nao viram option no ar, entao NENHUM
-  byte de tela muda com ela. Foi desembarcada de todo jeito porque repositorio
-  em 136 com ar em 135 faz a proxima execucao ler `commit sem Sync` pela 20.4, e
-  esse portao nao sabe distinguir os dois casos — a mesma decisao, com o mesmo
-  motivo, que a revisao 135 de 24/11 registrou.
+  A DATA DE CODIGO MUDOU EM UMA PAGINA SO, e e a home: gerar-datas-de-codigo.py
+  levou `inicio` de 24/11 para 25/11 e deixou as outras DEZ onde estavam, que e
+  o que tinha de acontecer — so o snippet da F1 foi tocado. E O CUSTO ESTA DITO:
+  o que mudou nele foi COMENTARIO PHP, que nao e servido, entao a home anuncia
+  25/11 sem um byte de tela diferente. Isso e o desenho que a revisao 128
+  declarou com todas as letras ("quando a casca muda, as 11 mudam, e isso e
+  verdade e nao maquiagem") — a data mede O CODIGO QUE DESENHA, nao a tela. Nao
+  foi mexido aqui: trocar duas variaveis do mesmo mecanismo no mesmo
+  desembarque e o que esta ilha proibe a si mesma.
+
+  A REVISAO 138 NAO MUDA BYTE DE TEXTO DE TELA, dito sem maquiar: dos arquivos
+  do manifest, constantes.json e `publicar: false`, teste-f1.py e ferramenta, e
+  o que sobe e o snippet (comentario e versao) e datas-de-codigo.json. Foi
+  desembarcada de todo jeito porque repositorio em 138 com ar em 136 faz a
+  proxima execucao ler `commit sem Sync` pela 20.4, e esse portao nao distingue
+  os dois casos — a mesma decisao, com o mesmo motivo, das revisoes 135 e 136.
 
   PROXIMO PASSO DESBLOQUEADO — a fila de construcao segue VAZIA, e o criterio
   segue pre-registrado (1.2-b.4):
   1. A PAUTA segue sendo o gesto mais barato do arquipelago (despacho de 24/11
-     13h2xZ, para o Raphael): rodar *Pauta das ilhas* pelas maos nesta ilha e
-     deixar nascer ilhas/rodametria/pauta.md no formato da 17.3. Destrava o
-     bloco 5, que e o UNICO caminho de construcao que nao depende de egresso.
-  2. E O PASSO QUE ESTA PASSADA ACRESCENTA, e ele tem numero: A F1 NAO ESPERA
-     NORMA, ESPERA FICHA. Faltam `acelerador` em 14, `potencia_nominal_w` em 17
-     e `velocidade_max_kmh` em 17 dos 17 registros, e o `motivo_categoria_null`
-     de cada um nomeia o que falta NAQUELE registro. Quem conseguir uma unica
-     ficha com os tres campos faz nascer o PRIMEIRO `categoria` da historia da
-     ilha — e o portao novo (b) acusa se ele nascer e nao aparecer.
-  3. OS GESTOS DO RAPHAEL, inalterados: os dois campos de configuracao do
+     13h2xZ, para o Raphael): rodar *Pauta das ilhas* pelas maos e deixar nascer
+     ilhas/rodametria/pauta.md no formato da 17.3. Destrava o bloco 5, o UNICO
+     caminho de construcao que nao depende de egresso. Inalterado por esta
+     passada.
+  2. A F1 NAO ESPERA NORMA, ESPERA FICHA (da passada das 10h4xZ, segue de pe):
+     faltam `acelerador` em 14, `potencia_nominal_w` em 17 e
+     `velocidade_max_kmh` em 17 dos 17 registros. Uma unica ficha com os tres
+     campos faz nascer o PRIMEIRO `categoria` da historia da ilha.
+  3. E O QUE ESTA PASSADA ACRESCENTA, para quem atender o pedido do `*.gov.br`:
+     o dia da destravada do CTB ficou MAIS CARO DE PROPOSITO, e isso e o
+     conserto funcionando. Quem preencher dados/fonte-oficial-f1.md e trocar o
+     status vai ver teste-f1.py REPROVAR ate a constante trazer `url`,
+     `verificado_em` e `tipo: oficial`, e ate `habilitacao_respondida` virar
+     true; e vai ver teste-afirmacao-de-tela.py reprovar a primeira frase nova
+     sobre habilitacao ate ela entrar na lista de permissao DE PROPRIA MAO.
+     Nada disso e defeito: sao os dois pedagios, e eles existem para que ninguem
+     publique exigencia legal sem fonte.
+  4. OS GESTOS DO RAPHAEL, inalterados: os dois campos de configuracao do
      ambiente, as tres etiquetas do Mercado Livre, a SERP das duas consultas
      `nao-medida`, o chamado na HostGator e o token do Sync.
-  4. DATAS JA MARCADAS: a leitura semanal e HOJE, 25/11, e e ela quem decide o
-     campo `piso` (21.6) e quem conta a proporcao da 31.1 (31.6) — esta passada
-     NAO entregou byte de tela, e isso tem de entrar na conta dela com todas as
-     letras. A remedicao da `scooter eletrica` e 11/12 EM DIANTE, pela 30.9.
-  5. A LICAO DE METODO, e ela e irma da de 24/11: TRAVA CONDICIONADA A UMA
-     AFIRMACAO DESLIGA JUNTO COM ELA. A linha de 06/11 cobrava o motivo so
-     enquanto o motivo fosse verdadeiro — no instante em que ele ficou falso, o
-     portao parou de olhar. Quem escrever portao com `if <condicao_do_mundo> and
-     ...` pergunta o que acontece com ele no dia em que a condicao virar, porque
-     e justamente esse o dia em que ele precisa morder.
+  5. A LICAO DE METODO, e ela e a da manha PROVADA DUAS VEZES NO MESMO DIA: a
+     regua "`grep` por cobranca condicionada ao estado do mundo" achou trabalho
+     em um comando, numa fila vazia, pela segunda passada seguida. O que ela
+     procura tem FORMA FIXA e pode ser procurado de novo: `if <status/condicao
+     do mundo>` com uma cobranca DENTRO, sem ramo para o mundo invertido. E A
+     FORMA CERTA TAMBEM TEM NOME NESTA ILHA, para quem for escrever a proxima:
+     cobrar a EQUIVALENCIA (`campo == (mundo)`), como teste-f2.py faz no
+     `degrau_3_disponivel`, em vez de por a cobranca dentro do `if`. Quem varrer
+     de novo comeca por teste-f2.py:147 para ver o desenho certo e por este
+     conserto para ver o errado.
 
 ---
 

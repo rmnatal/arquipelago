@@ -3,6 +3,102 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-11-25 13h17Z–13h4xZ — **A TRAVA DAS DUAS FRASES QUE MANDAM ALGUÉM PARA A RUA SEM HABILITAÇÃO DESLIGAVA SOZINHA NO DIA DA DESTRAVADA — 84 COBRANÇAS CONTRA ZERO, MEDIDO NO ARQUIVO REAL**
+
+**A ILHA DESTA EXECUÇÃO:** rodametria, por **foco** (`foco.md`, foco total e absoluto desde 27/10). Pela **1.2** não houve escolha de ilha a fazer.
+**Passo 1 do disparo, medido:** `git fetch origin main` trouxe `origin/main` de `ebcd2e2` para **`3678891`** (22 commits, fast-forward). **Nenhum branch `claude/*` com trabalho pendente** — `origin/main..origin/claude/dreamy-mccarthy-ha6ql7` veio **vazio** e o local estava no mesmo commit — e **nenhum PR aberto** (`list_pull_requests` devolveu `[]`). Nada a mergear antes.
+**ANTES DE RESERVAR, A CONFERÊNCIA DE QUE O FOCO NÃO ESTÁ FURADO** (as duas exceções da 1.2): nenhum despacho aberto para a **Fundação da rodametria**, e nenhuma ilha fora do foco com despacho **ALTO** de ilha no ar e quebrada — os ALTA abertos em `dados/despachos.md` são todos *precisa do Raphael* (os dois campos de configuração, o chamado na HostGator, o `*.gov.br`) ou de outra ilha. Logo o foco manda sozinho.
+**Reserva:** `executando_desde` às **13h17Z**, commit **`1eba447`**, push aceito **de primeira**. O campo estava `null`, que pela **1.1** já significa que não há bloco da Fundação vivo, e o último commit na pasta era de hoje às **10h44Z** — o **FECHO** da passada anterior, não bloco em andamento. **Reescrita às 13h27Z** no commit do desembarque; o bloco **não** passou de 40 minutos, e isso está dito no próprio campo para a linha não ser lida como vencimento de janela.
+**REDE PELA 20.2, REMEDIDA E NÃO HERDADA:** `rodametria.com.br/` e `/veiculos/` em **200**, com `example.com` em **000** no mesmo comando — o controle da **33** que diz que `000` nesta nuvem é política da lista de permissões, nunca queda de site nem túnel instável.
+**O AR ESTAVA EM DIA ANTES DE QUALQUER COISA:** `/status` **136** = `manifest.json` **136**, `ultimo` de hoje às 13:17:03.
+**A BANCADA DE PARTIDA, rodada antes de escolher trabalho (18.5):** **65 portões sem rede, 0 falha, APROVADO.**
+
+### A FILA ESTAVA VAZIA OUTRA VEZ, E O BLOCO VEIO DA LIÇÃO QUE A PASSADA DE HOJE ÀS 10h4xZ PRÉ-REGISTROU
+
+Os quatro caminhos de construção seguem onde estavam, relidos e não herdados: o **bloco 5** espera `pauta.md`, que é das **mãos** (17.1) e cuja rotina nunca rodou; **página nova de produto** está travada pela **30.8**; a **profundidade da F1 e da F3** está fechada nas duas paredes de egresso; e os itens dos despachos abertos são **todos do Raphael**. Nenhum despacho aberto para a Fundação desta ilha.
+
+**Então a régua desta passada foi a lição de método que o `bloco_atual` da anterior deixou escrita, com estas palavras:** *"TRAVA CONDICIONADA A UMA AFIRMAÇÃO DESLIGA JUNTO COM ELA. (...) Quem escrever portão com `if <condicao_do_mundo> and ...` pergunta o que acontece com ele no dia em que a condição virar, porque é justamente esse o dia em que ele precisa morder."* A varredura foi `grep` por cobrança condicionada a status de constante em todo `.py` e `.php` da ilha, e ela **achou um lugar** — não cinco, como a de manhã, e o único que achou é o campo mais perigoso que esta ilha tem.
+
+### O ACHADO: AS TRÊS COBRANÇAS DO CAMPO MAIS PERIGOSO DESTA ILHA MORAVAM DENTRO DE UM `if` QUE AS DESLIGAVA JUNTAS
+
+A linha era, em `ferramentas/teste-f1.py`:
+
+```
+if hab is not None and hab.get("status") != "publicavel":
+```
+
+e dentro dela moravam **as três**: a proibição de `dispensa CNH`, a proibição de `exige/precisa de habilitação`, e `habilitacao_respondida is False`. A constante `exigencia-de-habilitacao-por-categoria-ctb` está **`pendente`**, e ela é destravada pelo **MESMO pedido de uma linha** (`*.gov.br` na lista de domínios permitidos) que os limiares da categoria esperaram 19 dias — está em `canal_de_coleta`, na própria constante, e é despacho **ALTA** aberto. **O dia da virada não é hipotético: é o dia em que o Raphael atender o pedido.** E é nele que a página começa a *falar* de habilitação — exatamente quando as cobranças paravam de olhar.
+
+**POR QUE ESTA TRAVA E NÃO OUTRA:** o `PROMPT.md` desta ilha é literal na seção *Específico desta ilha* — *"Errar 'dispensa CNH' num veículo que é ciclomotor manda a pessoa para a rua sem habilitação"* —, o `esquema-banco.json` repete a frase em dois campos, e a própria home diz, na dobra da procedência, que *"errar para o lado permissivo aqui manda alguém para a rua sem habilitação"*. **No caso de manhã o que ficou sem portão foi um campo de banco; aqui era a frase que a ilha nomeia como o seu erro caro.**
+
+**MEDIDO NO ARQUIVO REAL, e não só em mundo fabricado** (a constante posta em `publicavel` em `dados/constantes.json`, o portão rodado, o arquivo revertido por `git checkout`):
+
+| | cobranças | reprovadas |
+|---|---|---|
+| régua **VELHA** (o `if`) | **0** | 0 |
+| régua **NOVA** | **84** | **3** |
+
+As três reprovadas, uma por uma: constante `publicavel` **sem `url`**; constante `publicavel` com **`tipo: pendente`**; e **`habilitacao_respondida: false`** com o status em `publicavel`. A régua velha devolve lista **vazia** nesse mundo, seja o que for que o arquivo de respostas diga.
+
+### O CONSERTO: O MUNDO DECIDE QUAIS COBRANÇAS, NUNCA **SE** HÁ COBRANÇA — E NENHUM PORTÃO NOVO NASCEU (31.2)
+
+Os três arquivos já existiam; o mesmo portão trocou de pergunta, como o de manhã trocou *"tem de ser null"* por *"tem de ser DERIVÁVEL"*. A separação é o conserto, porque das três cobranças **uma é absoluta e duas são condicionais**, e antes as três estavam no mesmo `if`:
+
+- **(a) ABSOLUTA, nos dois mundos.** `dispensa CNH` e `dispensa habilitação` ficam proibidas **sempre**. O motivo não é tom: são afirmações **categóricas e permissivas sobre o veículo**, e o CTB **não exime por veículo** — ele condiciona por categoria e também por quem conduz, então a frase segue falsa para parte de quem a lê **mesmo com o texto oficial na mão**, e falsa para o lado que manda alguém para a rua sem habilitação. A forma `dispensa habilitação` entrou na lista porque foi **essa** a que a ronda de 06/11/2026 achou no ar em `/veiculos/`, e não a que o portão procurava.
+- **(b) CONDICIONAL, com as DUAS pontas escritas.** `exige/precisa de habilitação` segue proibida enquanto a constante for `pendente` (e essa metade não mudou). No mundo invertido ela **deixa de ser proibida** e o portão **troca de cobrança**: passa a exigir `url`, `verificado_em` e `tipo: oficial` da constante — **a mesma régua que o limiar da categoria já aplica a si mesmo, na mesma metade (B) do mesmo arquivo**. Essa assimetria entre duas constantes do mesmo tipo no mesmo portão é o que de fato estava sem ninguém olhando.
+- **(c) A EQUIVALÊNCIA, na forma que esta ilha já usa certo.** `habilitacao_respondida == (constante publicável)` é **uma** afirmação cobrada nos dois mundos, no mesmo desenho que `teste-f2.py` usa no `degrau_3_disponivel` (linha 148) — e esse arquivo vizinho estar certo é o que torna o defeito nítido: a ilha já sabia escrever a régua, num arquivo ao lado.
+
+**A DISCORDÂNCIA DA 20.8, ESCRITA COMO FUNÇÃO.** `discordancia_da_20_8_na_habilitacao()` refaz a régua **velha** ao lado da nova em **3 mundos** e exige que a velha **aprove** e a nova **reprove**: a tela servindo `dispensa CNH` com a constante já publicável; `habilitacao_respondida: false` com ela já publicável (a página calando **tendo** a fonte na mão); e a constante virando `publicavel` sem `url`, sem data e com `tipo: pendente`. **E os 2 mundos sãos em que as duas aprovam**, pela **20.5** — o mundo de hoje (constante pendente, página calada) e o do dia seguinte feito certo (constante com procedência, página afirmando com o artigo ao lado). Régua que só fica mais severa é régua que vai ser ignorada.
+
+**A RÉGUA É PURA E NÃO LÊ ARQUIVO:** `veredito_da_habilitacao(hab, resp)` devolve uma lista de `(passou, frase)`, uma entrada por cobrança, e **o número de cobranças não depende do status** — é isso, mecanicamente, que faz a trava não desligar.
+
+### E A MESMA FRASE VENCIDA ESTAVA EM QUATRO LUGARES MAIS — A LIÇÃO DA MANHÃ APLICADA À PRÓPRIA CORREÇÃO
+
+A varredura por `enquanto ela for pendente` achou a condicional declarada, por escrito, fora do código. **Os quatro foram corrigidos na mesma passada**, porque deixar um deles é reconstruir a dívida de 19 dias em outro arquivo:
+
+1. **`proibicao_explicita`, na própria constante** — dizia *"A frase `dispensa CNH` e a frase `precisa de habilitacao` ficam PROIBIDAS na tela da F1 enquanto esta constante for `pendente`"*. **Era o DADO declarando a condicionalidade**, inclusive para a frase que agora é absoluta: o campo passou a escrever os três regimes com o motivo de cada um.
+2. **o cabeçalho de `snippets/rodametria-f1.php`** (versão **1.7.0 → 1.7.1**).
+3. **`dados/fonte-oficial-f1.md`**, seção 5 — e ali a correção tem valor extra: é o arquivo que **o Raphael preenche** no dia da leitura oficial, e agora ele avisa que o portão vai reprovar por procedência até os três campos estarem escritos.
+4. **`dados/especificacao-calculadoras.md`**, seção 1, mais a oração do **`manifest.json`**.
+
+### HONESTIDADE SOBRE O TAMANHO DO ACHADO, DITA PARA NINGUÉM LER ISTO COMO "A TELA ESTAVA ABERTA"
+
+**A TELA NÃO ESTAVA DESPROTEGIDA, e isto foi medido antes de escrever o conserto.** `ferramentas/teste-afirmacao-de-tela.py` cobra afirmação de habilitação em **todas** as URLs do `wp-sitemap.xml` e nos blocos de JSON-LD, **sem depender do status da constante**, e por **lista de permissão** — ele nasceu do item 5 do despacho de 09/11 justamente porque a régua do `teste-f1.py` *"cobra sem alcançar esta página"*. Ele é deliberadamente absoluto, com o pedágio escrito no próprio comentário: *"Quem escrever redação nova sobre habilitação reprova aqui e tem de vir acrescentar a oração nova A ESTA LISTA, de própria mão"*. **Isso não é defeito, é desenho**, e não foi tocado.
+
+**E `habilitacao_respondida` é DERIVADO, não digitado:** `regras/f1.py` e `gerar-f1.py` o computam de `habilitacao_publicavel(constantes)`, então a cobrança (c) é cinto de segurança para quem editar o JSON à mão, não um buraco que estava aberto. **Dito assim para o número 84 não ser lido como 84 defeitos.**
+
+**O que de fato ficava sem portão algum, e é por isso que o conserto vale:** a **procedência** da constante do CTB no mundo `publicavel`. Duas das três falhas medidas são dela, e a constante gêmea — o limiar da categoria — tem essa régua há semanas, no mesmo arquivo.
+
+### OS NÚMEROS, NESTA ORDEM
+
+`teste-f1.py` **1479 afirmações, 0 falha** (eram 1234 na entrega de 06/11). `validar-banco.py` **0 falha, APROVADO**, com os três avisos de sempre — e ele importa aqui porque a régua (c) dele cobra prosa que afirma status de constante **contra** `constantes.json`, e o texto novo passou por ela. `teste-afirmacao-de-tela.py` **2482 afirmações, 0 falha**. **Bancada 65 portões sem rede, 0 falha, APROVADO**, antes e depois. `manifest.json` **136 → 138** (duas passadas de `atualizar-manifest.py`, a segunda porque `datas-de-codigo.json` mudou depois da primeira).
+
+**A DATA DE CÓDIGO MUDOU EM UMA PÁGINA SÓ, e é a home:** `gerar-datas-de-codigo.py` levou `inicio` de `2026-11-24` para `2026-11-25` e **deixou as outras dez onde estavam**, que é o que tinha de acontecer — só o snippet da F1 foi tocado. **E o custo está dito, não maquiado:** o que mudou no snippet foi **comentário PHP**, que não é servido, então a home vai anunciar `dateModified: 2026-11-25` sem um byte de tela diferente. Isso é o desenho que a revisão **128** declarou com todas as letras (*"quando a casca muda, as 11 mudam, e isso é verdade e não maquiagem"*) — a data mede **o código que desenha a página**, não a tela. Não foi mexido aqui: trocar duas variáveis do mesmo mecanismo no mesmo desembarque é o que esta ilha proíbe a si mesma.
+
+**A REVISÃO 138 É DE BANCADA E DE COMENTÁRIO, DITO SEM MAQUIAR:** dos cinco arquivos que entram no manifest, `constantes.json` é `publicar: false`, `teste-f1.py` é ferramenta, e o que vai ao ar é o **snippet** (comentário e versão) e `datas-de-codigo.json`. **Nenhum byte de texto de tela muda com ela.** Foi desembarcada de todo jeito porque repositório em 138 com ar em 136 faz a próxima execução ler `commit sem Sync` pela 20.4, e esse portão não distingue os dois casos — a mesma decisão, com o mesmo motivo, que as revisões 135 e 136 registraram.
+
+### CONFERIDO NO AR (18.4), E A PREVISÃO DA 20.9 ACERTOU PELA QUARTA VEZ
+
+**O DESEMBARQUE.** Push às **13h28Z**. Veredito da **20.9** lido antes de qualquer reação: `ultimo` de **13:17:03**, teto previsto **13:47:03**, e o `raw` do GitHub **já servindo 138** — logo `evento-nao-vencido`, **esperar e não reacionar**. A revisão entrou às **13:39:52Z**, **7m11s antes do teto**, com **ZERO rodada de Sync desperdiçada**. É a **quarta** medição desta previsão nesta ilha: 6m37s (05/11), 7m27s (24/11), 8m57s (25/11 de manhã) e 7m11s agora — o teto **pode cair antes**, porque o WordPress reagenda evento recorrente a partir do horário **agendado** e não do horário em que ele rodou. O cron não roda por relógio, roda por **visita**: as visitas à home e à `/veiculos/` foram mantidas de pé até o evento vencer.
+
+**O LOG LIDO DO FECHO PARA BAIXO (20.4 e 20.8):** o fecho declara **9 aplicado(s)** e as **9** linhas de item dizem `ok` — 9 − 9 = **0**. Entre elas, `snippets/rodametria-f1: ok (snippet #10 atualizado)`, que é a prova de que o snippet trocou de verdade e não só no repositório.
+
+**AS MEDIÇÕES, uma por uma:**
+- `/status` **138** = `manifest.json` **138**.
+- **`/casca` serve `rodametria-f1 1.7.1`** — a versão **carregada pelo WordPress**, batendo com o manifest (**20.7**). As outras cinco inalteradas.
+- **11 de 11 URLs do `wp-sitemap-posts-page-1.xml` em 200**, com quebra de cache.
+- **`dateModified` da home: `2026-11-25`**, uma única data servida no HTML (118.796 bytes) — a data do código, como a **20.15** manda.
+- **As quatro frases contadas no HTML servido da home: `dispensa cnh` 0, `dispensa habilita` 0, `precisa de habilita` 0, `exige habilita` 0.**
+- **Bancada com rede: 71 portões, 0 falha, APROVADO** (e 65 sem rede, 0 falha, antes e depois).
+
+### PRÓXIMO PASSO DESBLOQUEADO — a fila de construção segue VAZIA, e o critério segue pré-registrado (1.2-b.4)
+
+1. **A PAUTA segue sendo o gesto mais barato do arquipélago** (despacho de 24/11 13h2xZ, para o Raphael): rodar *Pauta das ilhas* pelas mãos nesta ilha e deixar nascer `ilhas/rodametria/pauta.md` no formato da 17.3. Destrava o bloco 5, que é o **único** caminho de construção que não depende de egresso. **Inalterado por esta passada.**
+2. **A F1 NÃO ESPERA NORMA, ESPERA FICHA** (acrescentado pela passada das 10h4xZ, e segue de pé): faltam `acelerador` em 14, `potencia_nominal_w` em 17 e `velocidade_max_kmh` em 17 dos 17 registros. Uma única ficha com os três campos faz nascer o **primeiro** `categoria` da história da ilha.
+3. **E O QUE ESTA PASSADA ACRESCENTA, para quem atender o pedido do `*.gov.br`:** o dia da destravada da constante do CTB **ficou mais caro de propósito**, e isso é o conserto funcionando. Quem preencher `dados/fonte-oficial-f1.md` e trocar o status para `publicavel` vai ver `teste-f1.py` **reprovar** até a constante trazer `url`, `verificado_em` e `tipo: oficial`, e até `habilitacao_respondida` virar `true` — e vai ver `teste-afirmacao-de-tela.py` reprovar a primeira frase nova sobre habilitação até ela ser acrescentada à lista de permissão **de própria mão**. **Nada disso é defeito: são os dois pedágios, e eles existem para que ninguém publique exigência legal sem fonte.**
+4. **OS GESTOS DO RAPHAEL, inalterados:** os dois campos de configuração do ambiente, as três etiquetas do Mercado Livre, a SERP das duas consultas `nao-medida`, o chamado na HostGator e o token do Sync.
+5. **A LIÇÃO DE MÉTODO, e ela é a da manhã provada DUAS vezes no mesmo dia:** a régua *"`grep` por cobrança condicionada ao estado do mundo"* achou trabalho em um comando, numa fila vazia, pela segunda passada seguida. **O que ela procura tem forma fixa e pode ser procurado de novo:** `if <status/condição do mundo>` com uma cobrança **dentro**, sem ramo para o mundo invertido. **E a forma CERTA também tem nome nesta ilha, para quem for escrever a próxima:** cobrar a **equivalência** (`campo == (mundo)`), como `teste-f2.py` faz no `degrau_3_disponivel`, em vez de pôr a cobrança dentro do `if`. Quem varrer de novo começa por `teste-f2.py:147` para ver o desenho certo e por este conserto para ver o errado.
+
 ## 2026-11-25 10h19Z–10h5xZ — **O PORTÃO DO CAMPO MAIS PERIGOSO DO BANCO DESLIGAVA SOZINHO NO MESMO GESTO QUE TORNAVA A AFIRMAÇÃO FALSA — E 17 DE 17 REGISTROS DECLARAVAM UMA CAUSA MORTA HÁ 19 DIAS**
 
 **A ILHA DESTA EXECUÇÃO:** rodametria, por **foco** (`foco.md`, foco total e absoluto desde 27/10). Pela **1.2** não houve escolha a fazer.
