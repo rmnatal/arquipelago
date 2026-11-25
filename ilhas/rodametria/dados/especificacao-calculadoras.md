@@ -125,7 +125,13 @@ direção que importa: a faixa agregada era otimista.
 > havia categoria e portanto não havia ferramenta; sem ela, a ferramenta responde a categoria,
 > responde a placa com o artigo, e **cala** sobre habilitação nomeando a causa. **O portão
 > `ferramentas/teste-f1.py` cobra a AUSÊNCIA das frases "dispensa CNH" e "exige habilitação" em todo
-> texto de tela enquanto a constante for pendente.** O `VOZ.md` traz as duas nos exemplos aprovados,
+> texto de tela, em DOIS REGIMES — e eles foram separados em 25/11/2026, porque até aquela data esta
+> frase terminava em "enquanto a constante for pendente" e era essa condição que desligava as três
+> cobranças sozinhas no dia da destravada.** "dispensa CNH" e "dispensa habilitação" são proibidas
+> **sempre**; "exige/precisa de habilitação" é proibida **só** enquanto a constante for `pendente`, e
+> quando ela virar `publicavel` o portão passa a cobrar **procedência** (`url`, `verificado_em`,
+> `tipo: oficial`) em vez de parar de olhar. O regime inteiro está em `proibicao_explicita`, na
+> própria constante. O `VOZ.md` traz as duas nos exemplos aprovados,
 > escritos em 27/10 — **antes** de alguém ter lido a resolução — e o mesmo `VOZ.md` proíbe
 > nominalmente *"qualquer frase que afirme o que a resolução não diz"*. Onde os dois lados dele
 > divergem, **manda a proibição**: ela é sobre fonte, e o exemplo era sobre tom.

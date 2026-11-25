@@ -67,7 +67,7 @@
       ]
     },
     "inicio": {
-      "data": "2026-11-24",
+      "data": "2026-11-25",
       "itens": [
         {
           "id": "rodametria-casca",
@@ -76,8 +76,8 @@
         },
         {
           "id": "rodametria-f1",
-          "versao": "1.7.0",
-          "mudou_em": "2026-11-23"
+          "versao": "1.7.1",
+          "mudou_em": "2026-11-25"
         }
       ]
     },

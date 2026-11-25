@@ -4,7 +4,7 @@
   "nicho": "mobilidade eletrica — acertar os tres numeros antes de comprar um veiculo eletrico: categoria legal (CNH e placa), autonomia real e carga maxima",
   "dominio": "https://rodametria.com.br",
   "versao_manifest": 1,
-  "revisao": 136,
+  "revisao": 138,
   "atualizado_em": "2026-11-25",
   "estado": "nascendo",
   "desembarque": {
@@ -35,13 +35,13 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "a55b059d9807c41278fba710ab59456c365b1c9ad4f92ea60904147def2d823b",
-      "versao": "1.7.0",
-      "mudou_em": "2026-11-23",
+      "sha256": "bf9227b2bde0e9c350f3d2e612e0644ab78dc0c13df2f72c37d2c560bb01bee9",
+      "versao": "1.7.1",
+      "mudou_em": "2026-11-25",
       "renderiza": [
         "inicio"
       ],
-      "descricao": "A F1 — a ferramenta que esta ilha existe para ter, e ela ocupa a PRIMEIRA TELA DA HOME, nao uma URL nova: a casca prometia isso desde 29/10/2026 com todas as letras (\"no dia em que a resolucao for lida, a F1 toma a primeira tela da home e os cartoes descem, e NENHUMA URL muda, que e o que a 32.3 protege\"), e o dia foi 05/11/2026, ~23h3x de Brasilia, quando o Raphael abriu o PDF oficial da Resolucao Contran 996/2023 no Chrome dele. Ela se pendura em DOIS filtros novos da casca 1.11.0 (`rodametria_home_ferramenta` e `rodametria_home_cartoes`), pela 32.6-b: a casca nao cresce quando a ilha cresce, e a ferramenta nao edita a casca para aparecer. Filtro vazio devolve a home HUB de 29/10 byte por byte, e e isso que acontece se o banco nao chegar ou se o limiar voltar a `pendente` — o snippet LE O STATUS em vez de ter uma lista de pendencias escrita a mao. Ordem da 32.1 de cima para baixo: a pergunta como H2, o formulario com o PIVO do acelerador em radio no mesmo nivel dos dois numeros (1.1), a caixa de resposta JA PRE-RENDERIZADA, a camada 2 (a rua e municipal) em bloco SEPARADO com titulo proprio porque fundi-la com a categoria e o defeito que a secao 7 nomeia, o bloco de compra, as ressalvas da 1.4, a prestacao de contas da secao 7 com os cinco grupos por causa, DUAS tabelas pre-renderizadas visiveis (a da REGRA, uma linha por categoria com o artigo ao lado, que e a metade que a IA le sem preencher formulario; e a do BANCO, com a coluna `categoria` que a 1.6 deixou vazia em 28/10 e que nasceu aqui), e tres dobras. O QUE ELA NAO RESPONDE, e diz na primeira tela: CNH. A 996/2023 nao tem artigo sobre habilitacao — decide a categoria e decide placa, registro, licenciamento (arts. 12 e 13) e capacete (art. 19 V). A habilitacao e do CTB, que esta ilha nao leu, e a constante `exigencia-de-habilitacao-por-categoria-ctb` nasceu `pendente` para esse silencio ter nome; o portao cobra a AUSENCIA das frases `dispensa CNH` e `exige habilitacao` em todo texto de tela. NENHUM numero e NENHUMA frase de resposta e digitado neste arquivo: tudo vem da option que o Sync grava de dados/f1-respostas.json, escrito por ferramentas/gerar-f1.py a partir de regras/f1.py e de dados/constantes.json. A arvore esta escrita DUAS vezes de proposito (secao 8) — no cerebro e no JS do rodape — e a divergencia e MEDIDA por ferramentas/teste-f1-arvore.mjs, que escreve uma TERCEIRA em JavaScript e compara as duas sobre a grade dos limiares ficticios."
+      "descricao": "A F1 — a ferramenta que esta ilha existe para ter, e ela ocupa a PRIMEIRA TELA DA HOME, nao uma URL nova: a casca prometia isso desde 29/10/2026 com todas as letras (\"no dia em que a resolucao for lida, a F1 toma a primeira tela da home e os cartoes descem, e NENHUMA URL muda, que e o que a 32.3 protege\"), e o dia foi 05/11/2026, ~23h3x de Brasilia, quando o Raphael abriu o PDF oficial da Resolucao Contran 996/2023 no Chrome dele. Ela se pendura em DOIS filtros novos da casca 1.11.0 (`rodametria_home_ferramenta` e `rodametria_home_cartoes`), pela 32.6-b: a casca nao cresce quando a ilha cresce, e a ferramenta nao edita a casca para aparecer. Filtro vazio devolve a home HUB de 29/10 byte por byte, e e isso que acontece se o banco nao chegar ou se o limiar voltar a `pendente` — o snippet LE O STATUS em vez de ter uma lista de pendencias escrita a mao. Ordem da 32.1 de cima para baixo: a pergunta como H2, o formulario com o PIVO do acelerador em radio no mesmo nivel dos dois numeros (1.1), a caixa de resposta JA PRE-RENDERIZADA, a camada 2 (a rua e municipal) em bloco SEPARADO com titulo proprio porque fundi-la com a categoria e o defeito que a secao 7 nomeia, o bloco de compra, as ressalvas da 1.4, a prestacao de contas da secao 7 com os cinco grupos por causa, DUAS tabelas pre-renderizadas visiveis (a da REGRA, uma linha por categoria com o artigo ao lado, que e a metade que a IA le sem preencher formulario; e a do BANCO, com a coluna `categoria` que a 1.6 deixou vazia em 28/10 e que nasceu aqui), e tres dobras. O QUE ELA NAO RESPONDE, e diz na primeira tela: CNH. A 996/2023 nao tem artigo sobre habilitacao — decide a categoria e decide placa, registro, licenciamento (arts. 12 e 13) e capacete (art. 19 V). A habilitacao e do CTB, que esta ilha nao leu, e a constante `exigencia-de-habilitacao-por-categoria-ctb` nasceu `pendente` para esse silencio ter nome; o portao cobra a AUSENCIA das frases `dispensa CNH` e `exige habilitacao` em todo texto de tela, e desde 25/11/2026 em DOIS REGIMES, porque antes as duas estavam sob a mesma condicao (`enquanto a constante for pendente`) e era ela que desligava a trava sozinha no dia da destravada: `dispensa CNH` e `dispensa habilitacao` sao proibidas SEMPRE, e `exige/precisa de habilitacao` so enquanto a constante for `pendente` — quando ela virar `publicavel` o portao TROCA DE COBRANCA e passa a exigir procedencia (`url`, `verificado_em`, `tipo: oficial`), em vez de parar de olhar. NENHUM numero e NENHUMA frase de resposta e digitado neste arquivo: tudo vem da option que o Sync grava de dados/f1-respostas.json, escrito por ferramentas/gerar-f1.py a partir de regras/f1.py e de dados/constantes.json. A arvore esta escrita DUAS vezes de proposito (secao 8) — no cerebro e no JS do rodape — e a divergencia e MEDIDA por ferramentas/teste-f1-arvore.mjs, que escreve uma TERCEIRA em JavaScript e compara as duas sobre a grade dos limiares ficticios."
     },
     {
       "id": "rodametria-f2",
@@ -126,8 +126,8 @@
       "arquivo": "dados/constantes.json",
       "formato": "json",
       "publicar": false,
-      "sha256": "da878c9960b3d6d4828f33baa787d4ac1d904c04e219ce668cd00a5024739dd8",
-      "mudou_em": null,
+      "sha256": "b52b4fb78cd945878ab9c9ef5ba466f6bd134c95f6186674b7ef48174f0434dd",
+      "mudou_em": "2026-11-25",
       "descricao": "As nove constantes da ilha, com status e procedencia. Fonte unica de todo numero de regua."
     },
     {
@@ -234,8 +234,8 @@
       "arquivo": "dados/datas-de-codigo.json",
       "formato": "json",
       "publicar": true,
-      "sha256": "1f45bd8279c209d3a3035119d6391f1050c9decd84c056af3558e075b11a1e40",
-      "mudou_em": "2026-11-24",
+      "sha256": "4752e0d4734de349e96555015ef6e703a9513b3d9020ab41996454eaf4e40459",
+      "mudou_em": "2026-11-25",
       "descricao": "A DATA EM QUE O CODIGO DE CADA PAGINA MUDOU, e ela e a TERCEIRA fonte da data de uma pagina (23/11/2026, segunda metade do item 2 do despacho da ronda deste dia). As duas primeiras sao os bancos de que a pagina e feita; esta e o codigo que a desenha. `publicar: true` NAO e opcional aqui e e o motivo de este arquivo existir: a alinea (c) do pedido era \"o `mudou_em` viajar ate o ar\", e a casca NAO le o manifest.json — ela le as options que o Sync grava, e o Sync so grava item de dado publicavel. Entao a data do codigo tinha de VIRAR DADO para alcancar a tela. Escrito por `ferramentas/gerar-datas-de-codigo.py`, que o compila do `mudou_em` por item do manifest pelo campo `renderiza` de cada snippet, e cobrado por `ferramentas/teste-datas-de-codigo.py`. NENHUMA data e digitada no caminho: `mudou_em` recebe a data de hoje no mesmo gesto em que o `sha256` do item troca, e este arquivo e funcao PURA do manifest — sem data de geracao dentro, para o `sha256` dele nao trocar todo dia e a revisao nao subir por nada."
     }
   ]

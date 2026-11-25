@@ -353,7 +353,15 @@ afirma 1.000 W antes de o texto oficial chegar é o número de tela digitado com
 > **cala sobre CNH**, com uma frase própria dizendo que a resolução não decide isso e que a gente não
 > leu o Código de Trânsito na fonte. A constante `exigencia-de-habilitacao-por-categoria-ctb` nasceu
 > `pendente` para esse silêncio ter nome, e o portão `ferramentas/teste-f1.py` **proíbe** as frases
-> "dispensa CNH" e "exige habilitação" em todo texto de tela enquanto ela for pendente.
+> "dispensa CNH" e "exige habilitação" em todo texto de tela. **AS DUAS NÃO TÊM O MESMO REGIME, e
+> isso foi separado em 25/11/2026 — até aquela data esta linha terminava em "enquanto ela for
+> pendente", e era essa condição que desligava a trava sozinha no dia em que esta seção fosse
+> preenchida:** "dispensa CNH" (e "dispensa habilitação") é proibida **sempre**, porque é afirmação
+> permissiva e categórica e o CTB não exime por veículo; "exige habilitação" é proibida **só**
+> enquanto a constante for `pendente`, e no dia em que ela virar `publicavel` o portão **troca de
+> cobrança** — passa a exigir `url`, `verificado_em` e `tipo: oficial` da constante — em vez de
+> parar de olhar. Quem preencher esta seção vai ver o portão reprovar por procedência até os três
+> campos estarem escritos, e isso é o desenho.
 >
 > **Quem preencher esta seção faz a F1 responder a pergunta do título dela.** Depois de preenchida, a
 > execução seguinte copia os valores para a constante, troca `status` e `tipo` para `publicavel`, e a

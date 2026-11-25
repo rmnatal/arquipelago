@@ -26,9 +26,16 @@
  * a CATEGORIA e decide PLACA, REGISTRO, LICENCIAMENTO (arts. 12 e 13) e
  * CAPACETE (art. 19 V). Habilitacao vem do CTB, que esta ilha ainda nao leu em
  * fonte oficial. A constante `exigencia-de-habilitacao-por-categoria-ctb` nasceu
- * `pendente` para esse silencio ter NOME, e o portao da ferramenta cobra que as
- * frases "dispensa CNH" e "exige habilitacao" NAO apareçam em texto de tela
- * enquanto ela for pendente. O `VOZ.md` traz as duas nos exemplos aprovados,
+ * `pendente` para esse silencio ter NOME, e o portao da ferramenta cobra isso em
+ * DOIS regimes, separados em 25/11/2026 — ate aquela data esta frase dizia que as
+ * duas eram proibidas "enquanto ela for pendente", e era essa condicao que
+ * desligava a trava sozinha no dia da destravada: "dispensa CNH" e "dispensa
+ * habilitacao" sao proibidas SEMPRE (afirmacao permissiva e categorica, e o CTB
+ * nao exime por veiculo), e "exige/precisa de habilitacao" e proibida so enquanto
+ * a constante for `pendente` — no dia em que ela for `publicavel` o portao troca
+ * de cobranca e passa a exigir PROCEDENCIA da constante, em vez de parar de
+ * olhar. O regime inteiro esta em `proibicao_explicita`, na propria constante.
+ * O `VOZ.md` traz as duas nos exemplos aprovados,
  * escritos em 27/10 — antes de alguem ter lido a resolucao — e o mesmo `VOZ.md`
  * proibe nominalmente *"qualquer frase que afirme o que a resolucao nao diz"*.
  * Onde os dois lados dele divergem, manda a proibicao.
@@ -90,7 +97,7 @@ if ( ! defined( 'RODAMETRIA_F1_VERSAO' ) ) {
 	   SEM o formulario da F1 e SEM a barra fixa, e o `/casca` nao trazia
 	   `rodametria-f1` nenhum — que e exatamente a ausencia que a 20.7 desenhou
 	   para ser o sinal. Tres dos cinco portoes de pagina ficaram verdes. */
-	define( 'RODAMETRIA_F1_VERSAO', '1.7.0' );
+	define( 'RODAMETRIA_F1_VERSAO', '1.7.1' );
 }
 
 if ( ! defined( 'RODAMETRIA_ID_DADOS_F1' ) ) {

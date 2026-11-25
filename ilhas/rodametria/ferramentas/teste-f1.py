@@ -316,34 +316,245 @@ def metade_b():
            "o teto da bicicleta (%s) passou do do autopropelido (%s)"
            % (lim["LIMIAR_BIKE_W"], lim["LIMIAR_AUTOPROP_W"]))
 
-    # A HABILITACAO: enquanto a constante for pendente, a pagina CALA — e as
-    # duas frases proibidas nao aparecem em texto gerado nenhum.
+    # ---------------------------------------------------------------
+    # A HABILITACAO — A TRAVA REAPONTADA EM 25/11/2026, E ELA ESTAVA
+    # CONDICIONADA A UMA AFIRMACAO DO MUNDO, LOGO DESLIGARIA SOZINHA NO DIA EM
+    # QUE A AFIRMACAO VIRASSE.
+    #
+    # A linha era `if hab is not None and hab.get("status") != "publicavel":`, e
+    # as TRES cobrancas do campo mais perigoso desta ilha moravam dentro dela.
+    # Isto e a MESMA familia que a passada das 10h4xZ de hoje pagou com 19 dias
+    # no `motivo_categoria_null`, e a licao que ela pre-registrou esta escrita
+    # no `ESTADO.md` com estas palavras: *"TRAVA CONDICIONADA A UMA AFIRMACAO
+    # DESLIGA JUNTO COM ELA (...) quem escrever portao com `if
+    # <condicao_do_mundo> and ...` pergunta o que acontece com ele no dia em que
+    # a condicao virar, porque e justamente esse o dia em que ele precisa
+    # morder."*
+    #
+    # AQUI O CUSTO SERIA MAIOR QUE LA, e e por isso que esta e a trava que valia
+    # procurar: la o que ficou sem portao foi um campo de banco; aqui o que
+    # ficaria sem portao sao as DUAS FRASES que mandam alguem para a rua sem
+    # habilitacao. O `PROMPT.md` desta ilha e literal na secao *Especifico desta
+    # ilha*: *"Errar 'dispensa CNH' num veiculo que e ciclomotor manda a pessoa
+    # para a rua sem habilitacao."* E a propria pagina diz, na dobra da
+    # procedencia, que *"errar para o lado permissivo aqui manda alguem para a
+    # rua sem habilitacao"*.
+    #
+    # E O DIA DA VIRADA NAO E HIPOTETICO: a constante do CTB e destravada pelo
+    # MESMO pedido de uma linha (`*.gov.br`) que os limiares esperaram, e que o
+    # Raphael pode atender a qualquer momento — despacho ALTA aberto em
+    # `dados/despachos.md`. No minuto em que ele atender, o status vira
+    # `publicavel`, a pagina comeca a FALAR de habilitacao e as tres cobrancas
+    # param de olhar — exatamente ao contrario do que o momento pede.
+    #
+    # A SEPARACAO QUE O CONSERTO FAZ, e ela e o conserto: das tres cobrancas,
+    # UMA e absoluta e DUAS sao condicionais, e antes as tres estavam no mesmo
+    # `if`.
+    #   (a) ABSOLUTA, nos dois mundos: `dispensa CNH` e `dispensa habilitacao`
+    #       sao proibidas SEMPRE. Nenhuma destravada de constante as torna
+    #       dizíveis: com o CTB lido, esta ilha publica a exigencia POR
+    #       CATEGORIA com o artigo ao lado, nunca um slogan permissivo. E o
+    #       `VOZ.md` as alcanca por outro caminho que nao depende de status
+    #       nenhum — *"qualquer frase que afirme o que a resolucao nao diz"* —,
+    #       e a frase `DISPENSA HABILITACAO` ja foi achada NO AR em `/veiculos/`
+    #       pela ronda de 06/11/2026, que a chamou de *"a frase exata que esta
+    #       ilha proibe a si mesma"*. Trava que ja mordeu uma vez nao pode
+    #       depender de um status para morder a segunda.
+    #   (b) CONDICIONAL com as DUAS pontas escritas: `exige/precisa de
+    #       habilitacao` segue proibida enquanto a constante for `pendente` (e
+    #       essa metade nao muda), e no mundo invertido ela deixa de ser
+    #       proibida e passa a ser COBRADA DE PROCEDENCIA — a constante tem de
+    #       trazer `url`, `verificado_em` e `tipo: oficial`, que e a mesma regua
+    #       que os limiares desta mesma metade (B) ja aplicam a si. Exigencia
+    #       legal publicada sem procedencia e numero de portal com outro rotulo.
+    #   (c) A EQUIVALENCIA, na forma que o `teste-f2.py` desta ilha ja usa certo
+    #       no `degrau_3_disponivel` (linha 148): `habilitacao_respondida ==
+    #       (constante publicavel)` e UMA afirmacao cobrada nos DOIS mundos, em
+    #       vez de `is False` dentro de um `if`. Antes, o arquivo de respostas
+    #       podia declarar `true` sem ninguem olhar; e calar TENDO a fonte na
+    #       mao e lacuna com outro nome, que e o defeito simetrico e que
+    #       tambem nao tinha portao.
+    # ---------------------------------------------------------------
     hab = cs.get(f1ref.ID_HABILITACAO)
     ok(hab is not None,
        "a constante %r nao existe. Ela e o nome do silencio da F1 sobre CNH; sem ela "
        "o silencio volta a ser lacuna" % f1ref.ID_HABILITACAO)
-    if hab is not None and hab.get("status") != "publicavel":
-        textos = []
-        for k in ("frases_molde",):
-            textos += list(json.load(io.open(RESPOSTAS, encoding="utf-8"))[k].values())
+    if hab is not None:
         resp = json.load(io.open(RESPOSTAS, encoding="utf-8"))
-        ex = resp["resposta_exemplo"]
-        textos += ex["frases_categoria"] + ex["frases_municipal"] + ex["frases_ressalva"]
-        for linha in (resp.get("tabela_regra") or []):
-            textos += [v for v in linha.values() if isinstance(v, str)]
-        for t in textos:
-            baixo = t.lower()
-            ok("dispensa cnh" not in baixo,
-               "a frase `dispensa CNH` esta em texto de tela com a constante de "
-               "habilitacao em %r: %r" % (hab.get("status"), t[:120]))
-            ok("precisa de habilita" not in baixo and "exige habilita" not in baixo,
-               "uma frase que AFIRMA habilitacao esta em texto de tela com a constante "
-               "em %r: %r" % (hab.get("status"), t[:120]))
-        ok(resp["habilitacao_respondida"] is False,
-           "o arquivo de respostas declara `habilitacao_respondida: true` com a "
-           "constante em %r" % hab.get("status"))
-        print("  habilitacao em %r: as frases `dispensa CNH` e `exige habilitacao` "
-              "estao PROIBIDAS e ausentes de todo texto de tela" % hab.get("status"))
+        cobrancas = veredito_da_habilitacao(hab, resp)
+        for passou, frase in cobrancas:
+            ok(passou, frase)
+        print("  habilitacao em %r: %d cobranca(s), %d reprovada(s) — a proibicao de "
+              "`dispensa CNH` vale nos DOIS mundos, e `habilitacao_respondida` (%r) e "
+              "cobrada por EQUIVALENCIA"
+              % (hab.get("status"), len(cobrancas),
+                 sum(1 for p, _ in cobrancas if not p),
+                 resp.get("habilitacao_respondida")))
+        # A DISCORDANCIA DA 20.8: a regua VELHA e a NOVA tem de DISCORDAR no
+        # mundo que o conserto existe para pegar. Autoteste em que as duas
+        # concordam nao mede conserto nenhum.
+        discordancia_da_20_8_na_habilitacao()
+
+
+# ---------------------------------------------------------------------------
+# A REGUA DA HABILITACAO, PURA — ela nao le arquivo e nao chama `ok()`, para
+# poder ser rodada sobre MUNDOS FABRICADOS pela discordancia da 20.8. Devolve
+# uma lista de `(passou, frase_de_falha)`, uma entrada por cobranca, e o numero
+# de cobrancas NAO depende do status: e isso que faz a trava nao desligar.
+# ---------------------------------------------------------------------------
+# As duas frases ABSOLUTAS, e elas sao proibidas com a constante pendente ou
+# publicavel. `dispensa habilitacao` esta aqui porque foi essa a forma achada no
+# ar em `/veiculos/` pela ronda de 06/11/2026, e nao a que o portao procurava.
+FRASES_PERMISSIVAS_SEMPRE_PROIBIDAS = ("dispensa cnh", "dispensa habilitacao",
+                                       "dispensa habilitação")
+# As frases que AFIRMAM exigencia: proibidas enquanto a constante for pendente,
+# liberadas (com procedencia cobrada) quando ela for publicavel.
+FRASES_QUE_AFIRMAM_EXIGENCIA = ("precisa de habilita", "exige habilita")
+
+
+def _textos_de_tela(resp):
+    """Todo texto que a F1 serve, de onde a frase proibida poderia sair."""
+    textos = list((resp.get("frases_molde") or {}).values())
+    ex = resp.get("resposta_exemplo") or {}
+    for k in ("frases_categoria", "frases_municipal", "frases_ressalva"):
+        textos += list(ex.get(k) or [])
+    for linha in (resp.get("tabela_regra") or []):
+        textos += [v for v in linha.values() if isinstance(v, str)]
+    return textos
+
+
+def veredito_da_habilitacao(hab, resp):
+    """As cobrancas do campo mais perigoso desta ilha, nos DOIS mundos.
+
+    Antes de 25/11/2026 este corpo vivia dentro de
+    `if hab.get("status") != "publicavel":` e devolvia ZERO cobranca no mundo
+    `publicavel`. Agora o mundo decide QUAIS cobrancas, nunca SE ha cobranca.
+    """
+    status = hab.get("status")
+    publicavel = (status == "publicavel")
+    saida = []
+
+    for t in _textos_de_tela(resp):
+        baixo = t.lower()
+        # (a) ABSOLUTA — nos dois mundos.
+        achada = [f for f in FRASES_PERMISSIVAS_SEMPRE_PROIBIDAS if f in baixo]
+        saida.append((
+            not achada,
+            "a frase permissiva %r esta em texto de tela (constante de habilitacao "
+            "em %r). Esta proibicao NAO depende do status: com o CTB lido esta ilha "
+            "publica a exigencia POR CATEGORIA com o artigo ao lado, nunca um "
+            "slogan permissivo. Texto: %r"
+            % (achada[0] if achada else "", status, t[:120])))
+        # (b) CONDICIONAL — so enquanto a constante for pendente.
+        if not publicavel:
+            afirma = [f for f in FRASES_QUE_AFIRMAM_EXIGENCIA if f in baixo]
+            saida.append((
+                not afirma,
+                "a frase %r AFIRMA exigencia de habilitacao e a constante do CTB esta "
+                "em %r: a F1 nao pode afirmar o que nao leu em fonte oficial. "
+                "Texto: %r" % (afirma[0] if afirma else "", status, t[:120])))
+
+    # (b) a OUTRA ponta da condicional: no mundo publicavel a frase deixa de ser
+    # proibida e a PROCEDENCIA passa a ser cobrada — a mesma regua que os
+    # limiares desta metade (B) ja aplicam a si mesmos.
+    if publicavel:
+        saida.append((bool(hab.get("url")),
+                      "a constante da habilitacao esta `publicavel` SEM `url`. "
+                      "Exigencia legal publicada sem procedencia e numero de portal "
+                      "com outro rotulo"))
+        saida.append((bool(hab.get("verificado_em")),
+                      "a constante da habilitacao esta `publicavel` SEM "
+                      "`verificado_em`"))
+        saida.append((hab.get("tipo") == "oficial",
+                      "a constante da habilitacao esta `publicavel` com tipo %r. "
+                      "Exigencia legal publicavel so pode ser `oficial`"
+                      % hab.get("tipo")))
+
+    # (c) A EQUIVALENCIA, nos dois mundos — a forma que o `teste-f2.py` desta
+    # ilha ja usa certo no `degrau_3_disponivel`.
+    saida.append((
+        resp.get("habilitacao_respondida") is publicavel,
+        "`habilitacao_respondida` e %r e a constante do CTB esta em %r: os dois tem "
+        "de dizer a MESMA coisa. Declarar `true` com a constante pendente e afirmar "
+        "o que nao se leu; declarar `false` com ela publicavel e calar TENDO a fonte "
+        "na mao, que e lacuna com outro nome"
+        % (resp.get("habilitacao_respondida"), status)))
+
+    return saida
+
+
+def _regua_VELHA_da_habilitacao(hab, resp):
+    """A regua de ANTES de 25/11/2026, refeita aqui para a 20.8.
+
+    Ela e o `if` que desligava: com a constante `publicavel` devolve ZERO
+    cobranca, seja o que for que o arquivo de respostas diga.
+    """
+    if hab.get("status") == "publicavel":
+        return []
+    saida = []
+    for t in _textos_de_tela(resp):
+        baixo = t.lower()
+        saida.append(("dispensa cnh" not in baixo, "dispensa CNH"))
+        saida.append((not any(f in baixo for f in FRASES_QUE_AFIRMAM_EXIGENCIA),
+                      "afirma habilitacao"))
+    saida.append((resp.get("habilitacao_respondida") is False,
+                  "habilitacao_respondida"))
+    return saida
+
+
+def discordancia_da_20_8_na_habilitacao():
+    """Os mundos em que a regua VELHA aprova e a NOVA reprova.
+
+    A 20.8 pede que o conserto seja medido por DISCORDANCIA, e nao por um verde
+    que a regua velha tambem daria. Os tres mundos abaixo sao o dia seguinte ao
+    pedido de uma linha do `*.gov.br` ser atendido — o unico dia que importa.
+    """
+    hab_pub = {"status": "publicavel", "url": "https://www.gov.br/x",
+               "verificado_em": "2026-12-01", "tipo": "oficial"}
+
+    mundos = [
+        ("a tela serve `dispensa CNH` com a constante JA publicavel",
+         hab_pub,
+         {"frases_molde": {"a": "Esse modelo dispensa CNH."},
+          "habilitacao_respondida": True}),
+        ("`habilitacao_respondida: false` com a constante JA publicavel — a "
+         "pagina cala TENDO a fonte na mao",
+         hab_pub,
+         {"frases_molde": {"a": "A habilitacao esta em outra lei."},
+          "habilitacao_respondida": False}),
+        ("a constante virou `publicavel` SEM url, sem data e com tipo `pendente`",
+         {"status": "publicavel", "url": "", "verificado_em": "", "tipo": "pendente"},
+         {"frases_molde": {"a": "Precisa de habilitacao nesta categoria."},
+          "habilitacao_respondida": True}),
+    ]
+
+    for nome, hab, resp in mundos:
+        velha = [c for c in _regua_VELHA_da_habilitacao(hab, resp) if not c[0]]
+        nova = [c for c in veredito_da_habilitacao(hab, resp) if not c[0]]
+        ok(not velha and nova,
+           "MUNDO DA 20.8 sem discordancia (%s): a regua velha reprovou %d e a nova "
+           "%d. O conserto existe para este mundo; se as duas concordam, ele nao "
+           "esta medido" % (nome, len(velha), len(nova)))
+
+    # E a outra ponta, para a regua nova nao ser so mais severa: no mundo SAO de
+    # hoje as duas tem de APROVAR. Regua que reprova a coisa certa e o caminho
+    # mais curto para alguem ignora-la (20.5).
+    hab_hoje = {"status": "pendente", "tipo": "pendente"}
+    resp_hoje = {"frases_molde": {"a": "A habilitacao esta em outra lei, e a gente "
+                                       "so publica depois de ler nela."},
+                 "habilitacao_respondida": False}
+    ok(not [c for c in veredito_da_habilitacao(hab_hoje, resp_hoje) if not c[0]],
+       "a regua NOVA reprovou o mundo SAO de hoje (constante pendente, pagina "
+       "calada): ela ficou severa onde nao devia")
+    ok(not [c for c in veredito_da_habilitacao(hab_pub, {
+        "frases_molde": {"a": "Nesta categoria a lei exige habilitacao (art. X)."},
+        "habilitacao_respondida": True}) if not c[0]],
+       "a regua NOVA reprovou o mundo SAO do dia seguinte (constante publicavel com "
+       "procedencia, pagina afirmando com o artigo ao lado): a liberacao da metade "
+       "(b) nao esta funcionando")
+
+    print("  habilitacao/20.8: 3 mundos em que a regua VELHA aprova e a NOVA "
+          "reprova, mais os 2 mundos sãos que as duas aprovam")
 
 
 # ---------------------------------------------------------------------------
