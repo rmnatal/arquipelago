@@ -453,11 +453,16 @@ MOLDES = {
     # o que a busca devolve cai na categoria que a ferramenta acabou de dizer.
     # Prometer "os modelos desta categoria" seria vender a classificacao que a
     # propria pagina diz, duas telas acima, que nao consegue fazer.
+    # E ELA E CURTA DE PROPOSITO (25/11/2026, 16h4xZ): esta frase fica ACIMA do
+    # botao, e cada linha dela empurra o botao na direcao do teto de 1.400 px da
+    # 32.5. A primeira versao tinha CINCO linhas a 390 px (120 px medidos) e o
+    # botao da home caiu em 1.792. O que a frase nao pode perder e a ressalva — que
+    # isto e a lista da loja e nao uma lista conferida —, porque e ela que impede o
+    # titulo do bloco de prometer a classificacao que esta ilha diz, duas telas
+    # acima, que o varejo nao deixa fazer.
     "piso_de_compra": (
-        "Você não sai desta tela sem porta de loja: esta busca abre os anúncios "
-        "de {prateleira} na loja onde a gente colhe os preços. É a busca da "
-        "loja, do jeito que ela vier, e não uma lista conferida contra a regra "
-        "— ela pode trazer veículo de outra categoria."
+        "Esta busca abre os anúncios de {prateleira} na loja onde a gente colhe "
+        "os preços. É a lista da loja, não uma lista conferida contra a regra."
     ),
     # SEM CATEGORIA NAO HA PRATELEIRA, E A TELA DIZ ISSO (25.2-c, regra 2: serve
     # o piso OU diz que esta sem link de loja). Mandar quem nao tem resposta para

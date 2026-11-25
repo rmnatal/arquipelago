@@ -236,7 +236,7 @@
     "prestacao_classifica_nenhum": "nenhum dá para classificar",
     "prestacao_classifica_um": "{classificaveis} dá para classificar",
     "prestacao_classifica_varios": "{classificaveis} dão para classificar",
-    "piso_de_compra": "Você não sai desta tela sem porta de loja: esta busca abre os anúncios de {prateleira} na loja onde a gente colhe os preços. É a busca da loja, do jeito que ela vier, e não uma lista conferida contra a regra — ela pode trazer veículo de outra categoria.",
+    "piso_de_compra": "Esta busca abre os anúncios de {prateleira} na loja onde a gente colhe os preços. É a lista da loja, não uma lista conferida contra a regra.",
     "piso_sem_prateleira": "Esta tela está sem link de loja agora: a gente não tem no banco de hoje a busca da prateleira desta categoria.",
     "piso_sem_categoria": "Sem a categoria a gente não sabe qual é a sua prateleira, e por isso esta tela está sem link de loja agora. Informe o acelerador e a resposta volta, com a busca da loja embaixo dela."
   },

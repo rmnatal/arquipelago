@@ -71,7 +71,7 @@
    Antes disto a ilha cujo produto e "o preco de hoje" tinha ZERO ocorrencia de
    `dateModified` e de `datePublished` em todo o JSON-LD das 9 URLs. */
 if ( ! defined( 'RODAMETRIA_CASCA_VERSAO' ) ) {
-	define( 'RODAMETRIA_CASCA_VERSAO', '1.34.1' );
+	define( 'RODAMETRIA_CASCA_VERSAO', '1.35.0' );
 }
 
 /* ---------------------------------------------------------------------------
@@ -1638,15 +1638,20 @@ function rodametria_casca_bloco_de_compra( $titulo, $itens, $frase_de_escopo, $c
 	}
 
 	if ( '' === $cartoes ) {
-		$html .= '<p class="rdm-molde-compra-vazio">' . esc_html( $causa_se_vazio ) . '</p>';
-		/* O PISO DA 25.2 NO BLOCO QUE NASCEU VAZIO (25/11/2026, item 1 do
-		   despacho da ronda de hoje). Ele vem DEPOIS da causa e ANTES de
-		   qualquer outra coisa da pagina, pelos dois motivos que a caixa de
-		   ausencia da pagina de produto ja escreveu em 19/11: o teto de 1.400 px
-		   da 32.5 e do PRIMEIRO botao de compra, e a frase de cima acabou de
-		   dizer que nao ha o que recomendar — e e exatamente ali que a pessoa
-		   fica sem saida. */
+		/* O PISO DA 25.2 NO BLOCO QUE NASCEU VAZIO (25/11/2026, item 1 do despacho
+		   da ronda de hoje), E ELE VEM ANTES DA CAUSA — pela MESMA razao de PIXEL
+		   que a caixa de ausencia da pagina de produto escreveu em 19/11: a 32.5
+		   poe teto de 1.400 px no PRIMEIRO botao de compra a 390 px, e este e a
+		   UNICA saida de compra que o bloco sem cartao tem.
+		   MEDIDO NO AR a 390 px as 16h4xZ de 25/11/2026, e nao deduzido: com o piso
+		   DEPOIS da causa o botao da home caiu em 1.792 px e o portao de pixel desta
+		   ilha REPROVOU. A causa ocupa 144 px naquela pagina.
+		   E A LEITURA NAO PERDE NADA: o titulo do bloco promete produto, a frase do
+		   piso diz na hora o que ha — a busca da loja, e nao uma lista conferida —, o
+		   botao vem, e a causa de nao haver lista conferida vem embaixo, inteira.
+		   Quem quer sair tem para onde; quem quer entender le. */
 		$html .= rodametria_casca_piso_do_bloco( $piso );
+		$html .= '<p class="rdm-molde-compra-vazio">' . esc_html( $causa_se_vazio ) . '</p>';
 	} else {
 		$html .= '<ul class="rdm-molde-carrossel">' . $cartoes . '</ul>';
 		$html .= '<p class="rdm-molde-compra-comissao">Link de afiliado: a gente recebe '

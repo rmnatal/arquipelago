@@ -263,10 +263,9 @@ MOLDES = {
     # voce" dentro de uma busca crua seria vender a conferencia que esta pagina
     # existe para fazer e que a loja nao faz.
     "piso_de_compra": (
-        "Mesmo sem vitrine você tem para onde ir: esta busca abre os anúncios de "
-        "{prateleira} na loja onde a gente colhe os preços. É a busca da loja, do "
-        "jeito que ela vier — a carga máxima você confere na ficha de cada anúncio, "
-        "com o número que a conta acima deu."
+        "Esta busca abre os anúncios de {prateleira} na loja onde a gente colhe "
+        "os preços. É a lista da loja, e a carga máxima você confere na ficha de "
+        "cada anúncio, com o número que a conta acima deu."
     ),
     # A frase do teto de mercado, dita como observacao datada e nunca como limite.
     "teto_de_mercado": (

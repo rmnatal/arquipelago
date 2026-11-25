@@ -97,7 +97,7 @@ if ( ! defined( 'RODAMETRIA_F1_VERSAO' ) ) {
 	   SEM o formulario da F1 e SEM a barra fixa, e o `/casca` nao trazia
 	   `rodametria-f1` nenhum — que e exatamente a ausencia que a 20.7 desenhou
 	   para ser o sinal. Tres dos cinco portoes de pagina ficaram verdes. */
-	define( 'RODAMETRIA_F1_VERSAO', '1.8.1' );
+	define( 'RODAMETRIA_F1_VERSAO', '1.9.0' );
 }
 
 if ( ! defined( 'RODAMETRIA_ID_DADOS_F1' ) ) {
@@ -321,25 +321,50 @@ function rodametria_f1_resultado_html( $d ) {
 	$html  = rodametria_casca_caixa( $rotulo, $numero, '', $frases, $tom,
 		' data-rdm-f1-caixa' );
 
-	/* A CAMADA 2 EM BLOCO SEPARADO, COM TITULO PROPRIO (1.2). A especificacao e
-	   literal: *"as duas camadas saem em blocos separados com titulo proprio.
-	   Fundi-las numa frase e o defeito que a secao 7 nomeia como inventar uma
-	   das causas."* O conteiner existe no HTML mesmo para o navegador reescrever
-	   a camada 2 quando a pessoa troca a cidade. */
-	$html .= '<div class="rdm-f1-municipal" data-rdm-f1-municipal>';
-	$html .= '<h2 class="rdm-f1-municipal-titulo">'
-		. esc_html( $d['rotulos']['titulo_municipal'] ) . '</h2>';
-	foreach ( (array) $r['frases_municipal'] as $f ) {
-		$html .= '<p>' . esc_html( $f ) . '</p>';
-	}
-	$html .= '</div>';
-
 	/* A LISTA DA VITRINE VIAJA PARA A BARRA (09/11/2026, item 3): o rotulo do
 	   atalho sai da MESMA lista que monta o bloco de compra, nunca de um literal. */
 	$html .= rodametria_casca_barra_fixa( $rotulo, $numero, '',
 		(array) $d['compra']['vitrine'] );
 
 	return $html;
+}
+}
+
+/**
+ * A CAMADA 2 — O LIMITE MUNICIPAL —, EM FUNCAO PROPRIA DESDE 25/11/2026.
+ *
+ * ELA ERA O SEGUNDO PEDACO DE `rodametria_f1_resultado_html()`, e saiu de la por
+ * uma razao de PIXEL que so apareceu quando a home ganhou o primeiro botao de
+ * compra da vida dela. Medido no ar a 390 px as 16h4xZ de 25/11/2026, com o piso
+ * da 25.2 recem-desembarcado: a caixa do veredito termina em 1.241 px, esta
+ * camada ocupava de 1.253 a 1.466, e o bloco de compra comecava em 1.482 — o
+ * primeiro botao de compra caiu em **1.792 px**, contra o teto de **1.400** da
+ * 32.5. O portao de pixel desta ilha REPROVOU a home, e ele estava certo.
+ *
+ * E O CONSERTO NAO E UM TRUQUE DE PIXEL: a **32.1 item 5** diz, com todas as
+ * letras, *"o BLOCO DE COMPRA imediatamente abaixo do resultado"*, e havia um
+ * bloco de 213 px com `<h2>` proprio no meio. A regra de layout e a regra de
+ * pixel apontavam para o mesmo lado, e ninguem tinha medido — porque enquanto a
+ * home nao servia botao de compra nenhum, o portao de pixel dizia "nao se aplica
+ * (a pagina nao vende nada)" e nao media.
+ *
+ * O QUE **NAO** MUDA, e isto e a 1.2 da especificacao desta ferramenta: *"as duas
+ * camadas saem em blocos separados com titulo proprio. Fundi-las numa frase e o
+ * defeito que a secao 7 nomeia como inventar uma das causas."* Ela continua
+ * bloco separado, com titulo proprio e com o conteiner que o navegador reescreve
+ * quando a pessoa troca a cidade — o que mudou foi so a ORDEM, e a camada 2 passa
+ * a ficar ao lado das ressalvas, que e onde moram as nuances da resposta.
+ */
+if ( ! function_exists( 'rodametria_f1_municipal_html' ) ) {
+function rodametria_f1_municipal_html( $d ) {
+	$html  = '<div class="rdm-f1-municipal" data-rdm-f1-municipal>';
+	$html .= '<h2 class="rdm-f1-municipal-titulo">'
+		. esc_html( $d['rotulos']['titulo_municipal'] ) . '</h2>';
+	foreach ( (array) $d['resposta_exemplo']['frases_municipal'] as $f ) {
+		$html .= '<p>' . esc_html( $f ) . '</p>';
+	}
+
+	return $html . '</div>';
 }
 }
 
@@ -874,6 +899,12 @@ function rodametria_f1_html() {
 		   formulario — ficaria sem porta de compra nenhuma. */
 		rodametria_f1_piso_da_categoria( $d,
 			(string) $d['resposta_exemplo']['categoria'] ) );
+
+	/* A CAMADA 2 DESCEU PARA DEPOIS DO BLOCO DE COMPRA (25/11/2026). O motivo
+	   inteiro — a 32.1 item 5 e os 1.792 px medidos no ar — esta em
+	   `rodametria_f1_municipal_html()`. Ela fica ao lado das ressalvas, que e
+	   onde moram as nuances da resposta. */
+	$html .= rodametria_f1_municipal_html( $d );
 
 	$html .= rodametria_f1_ressalva_html( $d );
 
