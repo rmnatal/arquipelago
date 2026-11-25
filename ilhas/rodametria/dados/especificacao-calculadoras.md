@@ -214,7 +214,13 @@ senao                                             -> ciclomotor
 ```
 
 Os quatro `LIMIAR_*` são **uma constante só** em `constantes.json`
-(`limiares-categoria-contran-996-2023`), hoje com `valor: null` e `status: pendente`.
+(`limiares-categoria-contran-996-2023`), hoje **`publicavel`**, com os valores lidos no PDF
+oficial do Ministério dos Transportes em 05/11/2026 e copiados para a constante em 06/11/2026.
+*(Esta oração dizia "hoje com `valor: null` e `status: pendente`", e isso ficou de pé **19
+dias** depois de a constante destravar — corrigido em 25/11/2026, na mesma varredura que achou a
+mesma frase morta em três outros lugares. O parágrafo seguinte fala do mundo em que o status é
+`pendente` e continua inteiro: ele é a consequência declarada, e consequência declarada não se
+apaga quando a pendência sai — ela volta a valer no dia em que outra constante entrar.)*
 **Consequência declarada, e ela é dura: enquanto o status for `pendente`, a F1 não vai ao
 ar.** Não vai ao ar com número de portal, não vai ao ar com o número que mais apareceu, e
 não vai ao ar "com ressalva". A seção 10 do `ARQUIPELAGO.md` proíbe constante `pendente`

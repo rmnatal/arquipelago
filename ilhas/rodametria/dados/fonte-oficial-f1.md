@@ -3,10 +3,33 @@
 `publicar: false`. Arquivo de bancada: nenhuma linha daqui vai para a tela.
 
 **Para que serve.** A F1 (*"esse elétrico precisa de CNH?"*) é a home desta ilha e a razão
-pela qual ela nasceu. Ela está travada desde **28/10/2026** por **uma** coisa: os quatro
-limiares legais da Resolução Contran nº 996/2023 não podem ser lidos no texto oficial desta
-nuvem. Enquanto isso, a constante `limiares-categoria-contran-996-2023` de
-`dados/constantes.json` fica `pendente` e a ferramenta não desembarca.
+pela qual ela nasceu.
+
+> **ESTE PARÁGRAFO ESTAVA VENCIDO E FOI REESCRITO EM 25/11/2026, E ELE CONTRADIZIA A PRÓPRIA
+> SEÇÃO 5 DESTE ARQUIVO.** Ele dizia: *"Ela está travada desde 28/10/2026 por uma coisa: os quatro
+> limiares legais da Resolução Contran nº 996/2023 não podem ser lidos no texto oficial desta
+> nuvem. Enquanto isso, a constante `limiares-categoria-contran-996-2023` de
+> `dados/constantes.json` fica `pendente` e a ferramenta não desembarca."* A **seção 5** abaixo, no
+> mesmo arquivo, escreve com todas as letras que a leitura foi feita pelo Raphael em **05/11/2026**
+> e que **a F1 foi ao ar na revisão 46 em 06/11/2026** — e é a seção 5 que está certa. **A frase
+> ficou de pé 19 dias**, no arquivo cuja razão de existir é ser lido pela próxima passada **para ela
+> não remedir porta já medida**: lida ao pé da letra, ela mandava a próxima execução tratar como
+> travado o que está no ar. Achada em 25/11/2026 pela mesma varredura que achou os três
+> `limiares-categoria-contran-996-2023` mortos em `veiculos.json` e em `esquema-banco.json`.
+
+**O ESTADO DE HOJE, 25/11/2026, e cada metade com o seu dono.** Dos limiares para baixo a F1 está
+**no ar e completa**: a constante dos limiares (`limiares-categoria-contran-996-2023`, hoje
+`publicavel`) classifica as três categorias da resolução, com os artigos lidos no PDF oficial.
+O que **segue atrás da parede de egresso** são outras duas coisas, e nenhuma delas é o limiar:
+
+- **a habilitação (CNH)**, porque a resolução **não fala de CNH** — quem decide é o Código de
+  Trânsito, e a constante `exigencia-de-habilitacao-por-categoria-ctb` (seção 6 deste arquivo)
+  nasceu `pendente` por isso. A F1 **cala** sobre CNH e nomeia a causa na tela, em vez de não
+  existir;
+- **a camada municipal**, porque os quatro atos de prefeitura exigem leitura no `.gov.br` do
+  município e os quatro domínios respondem `000` do egresso.
+
+A tabela de portas abaixo continua valendo para essas duas, e é por isso que ela não se apaga.
 
 Este arquivo existe por dois motivos, e os dois são para baratear a próxima passada:
 
