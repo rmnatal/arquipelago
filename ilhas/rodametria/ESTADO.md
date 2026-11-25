@@ -32,14 +32,20 @@ ultima_execucao: 2026-11-24T20:1xZ   # A FILA NAO ESTAVA VAZIA: esta execucao
                          # A entrada de miolo de cada filha subiu de 3 para 5 e
                          # nenhuma ancora de consulta se perdeu. O detalhe esta
                          # no `bloco_atual` e no REGISTRO.md.
-executando_desde: null   # LIMPO no fecho desta execucao (passo 7 da secao 1).
-                         # Reservada as 19h17Z (commit a59a7cf, aceita de
-                         # PRIMEIRA: o campo estava `null`, que pela 1.1 ja
-                         # significa que nao ha bloco da Fundacao vivo, e o
-                         # ultimo commit na pasta era de hoje as 16h46Z) e
-                         # RENOVADA as 19h36Z (commit c40ef01), porque o
-                         # desembarque esperava o vencimento do evento do cron —
-                         # veredito `evento-nao-vencido` da 20.9, duas vezes.
+executando_desde: 2026-11-25T10:19Z   # RESERVA desta execucao (passo 5 da
+                         # secao 1), foco da 1.2 (`foco.md` nomeia a rodametria).
+                         # Aceita de PRIMEIRA: o campo estava `null`, que pela
+                         # 1.1 ja significa que nao ha bloco da Fundacao vivo, e
+                         # o ultimo commit na pasta era de 24/11 as 20h13Z — 14
+                         # horas atras, muito fora da janela de 40 minutos.
+                         # CONFERIDO ANTES DE RESERVAR que o foco nao esta
+                         # furado: o despacho do molde da 32 esta FECHADO na
+                         # aquametria (21/10, 18h2xZ) e nao existe nas outras
+                         # duas da ordem; e nenhuma ilha fora do foco tem
+                         # despacho ALTO aberto de ilha no ar e quebrada — o da
+                         # clubedomosaico de 11/11 foi reescrito pela 18.3 e o
+                         # que sobrou (itens 3, 4 e 5) e chamado do Raphael,
+                         # falta de credencial e ordem de NAO FAZER.
 rede: aberta em 2026-11-24   # 20.2, REMEDIDA e nao herdada nesta execucao:
                              # `rodametria.com.br/` e `/veiculos/` em 200, com
                              # example.com em 000 no MESMO comando — o controle
