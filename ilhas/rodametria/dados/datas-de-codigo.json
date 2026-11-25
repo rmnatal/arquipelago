@@ -11,13 +11,13 @@
       "itens": [
         {
           "id": "rodametria-casca",
-          "versao": "1.35.0",
+          "versao": "1.36.0",
           "mudou_em": "2026-11-25"
         },
         {
           "id": "rodametria-f2",
-          "versao": "1.15.0",
-          "mudou_em": "2026-11-24"
+          "versao": "1.15.1",
+          "mudou_em": "2026-11-25"
         }
       ]
     },
@@ -26,13 +26,13 @@
       "itens": [
         {
           "id": "rodametria-casca",
-          "versao": "1.35.0",
+          "versao": "1.36.0",
           "mudou_em": "2026-11-25"
         },
         {
           "id": "rodametria-produto",
-          "versao": "1.22.0",
-          "mudou_em": "2026-11-24"
+          "versao": "1.22.1",
+          "mudou_em": "2026-11-25"
         }
       ]
     },
@@ -41,7 +41,7 @@
       "itens": [
         {
           "id": "rodametria-casca",
-          "versao": "1.35.0",
+          "versao": "1.36.0",
           "mudou_em": "2026-11-25"
         },
         {
@@ -56,7 +56,7 @@
       "itens": [
         {
           "id": "rodametria-casca",
-          "versao": "1.35.0",
+          "versao": "1.36.0",
           "mudou_em": "2026-11-25"
         },
         {
@@ -71,12 +71,12 @@
       "itens": [
         {
           "id": "rodametria-casca",
-          "versao": "1.35.0",
+          "versao": "1.36.0",
           "mudou_em": "2026-11-25"
         },
         {
           "id": "rodametria-f1",
-          "versao": "1.9.0",
+          "versao": "1.10.0",
           "mudou_em": "2026-11-25"
         }
       ]
@@ -86,13 +86,13 @@
       "itens": [
         {
           "id": "rodametria-casca",
-          "versao": "1.35.0",
+          "versao": "1.36.0",
           "mudou_em": "2026-11-25"
         },
         {
           "id": "rodametria-produto",
-          "versao": "1.22.0",
-          "mudou_em": "2026-11-24"
+          "versao": "1.22.1",
+          "mudou_em": "2026-11-25"
         }
       ]
     },
@@ -101,13 +101,13 @@
       "itens": [
         {
           "id": "rodametria-casca",
-          "versao": "1.35.0",
+          "versao": "1.36.0",
           "mudou_em": "2026-11-25"
         },
         {
           "id": "rodametria-produto",
-          "versao": "1.22.0",
-          "mudou_em": "2026-11-24"
+          "versao": "1.22.1",
+          "mudou_em": "2026-11-25"
         }
       ]
     },
@@ -116,12 +116,12 @@
       "itens": [
         {
           "id": "rodametria-casca",
-          "versao": "1.35.0",
+          "versao": "1.36.0",
           "mudou_em": "2026-11-25"
         },
         {
           "id": "rodametria-f3",
-          "versao": "1.10.0",
+          "versao": "1.10.1",
           "mudou_em": "2026-11-25"
         }
       ]
@@ -131,7 +131,7 @@
       "itens": [
         {
           "id": "rodametria-casca",
-          "versao": "1.35.0",
+          "versao": "1.36.0",
           "mudou_em": "2026-11-25"
         },
         {
@@ -146,7 +146,7 @@
       "itens": [
         {
           "id": "rodametria-casca",
-          "versao": "1.35.0",
+          "versao": "1.36.0",
           "mudou_em": "2026-11-25"
         },
         {
@@ -161,13 +161,13 @@
       "itens": [
         {
           "id": "rodametria-casca",
-          "versao": "1.35.0",
+          "versao": "1.36.0",
           "mudou_em": "2026-11-25"
         },
         {
           "id": "rodametria-produto",
-          "versao": "1.22.0",
-          "mudou_em": "2026-11-24"
+          "versao": "1.22.1",
+          "mudou_em": "2026-11-25"
         }
       ]
     }

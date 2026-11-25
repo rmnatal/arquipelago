@@ -71,7 +71,7 @@
    Antes disto a ilha cujo produto e "o preco de hoje" tinha ZERO ocorrencia de
    `dateModified` e de `datePublished` em todo o JSON-LD das 9 URLs. */
 if ( ! defined( 'RODAMETRIA_CASCA_VERSAO' ) ) {
-	define( 'RODAMETRIA_CASCA_VERSAO', '1.35.0' );
+	define( 'RODAMETRIA_CASCA_VERSAO', '1.36.0' );
 }
 
 /* ---------------------------------------------------------------------------
@@ -1562,13 +1562,66 @@ function rodametria_casca_cartao_de_compra( $item ) {
  * remontar componente: a categoria da F1 muda a cada troca de campo, e a
  * prateleira muda com ela.
  */
+/**
+ * OS TRES MUNDOS DO BLOCO DE COMPRA, NUMA PORTA SO (25/11/2026, 19h2xZ).
+ *
+ * O DEFEITO MEDIDO NO AR, na revisao 145, a 390 px, no navegador: `/` e
+ * `/peso-maximo-patinete-eletrico/` serviam a barra fixa do telefone com o botao
+ * `Por que nao indicamos` apontando para `#comprar` — e dentro de `#comprar`
+ * havia 1 link de compra VISIVEL, com `rel="sponsored noopener"`, que e o piso
+ * da 25.2 desembarcado na vespera. A barra NEGAVA o que o bloco servia, nas
+ * DUAS paginas que ganharam o piso no dia anterior.
+ *
+ * E ELE E O ITEM 3 DE 09/11/2026 COM O SINAL TROCADO. Naquele dia o rotulo
+ * prometia produto onde o bloco dizia que nao havia; hoje ele promete
+ * EXPLICACAO onde o bloco serve link de loja. A causa nao e o rotulo: e a
+ * CONTAGEM que o decide. `rodametria_casca_rotulo_do_atalho()` nasceu em 09/11
+ * conhecendo DOIS mundos — tem cartao, nao tem —, e o bloco de compra passou a
+ * ter TRES em 25/11, quando o piso entrou no ramo sem cartao. O terceiro mundo
+ * — sem cartao, COM saida de compra — nao existia quando aquela funcao foi
+ * escrita, e ela o le como se fosse o segundo.
+ *
+ * E A LICAO QUE A PASSADA ANTERIOR PRE-REGISTROU NO `ESTADO.md` ACERTOU O ALVO:
+ * *"quem acrescentar a uma pagina a PRIMEIRA coisa de uma familia roda os
+ * portoes que diziam `nao se aplica` naquela pagina ANTES de desembarcar"*. O
+ * portao de pixel foi um; este rotulo e outro, e o portao que o vigia
+ * (`ferramentas/teste-barra-de-compra.php`) estava VERDE sobre um mundo de dois
+ * estados que o ar nao tem mais.
+ *
+ * POR QUE UMA FUNCAO E NAO UM `if` EM CADA LADO (20.7): o ramo do bloco e o
+ * rotulo da barra sao DUAS declaracoes do mesmo fato, e duas declaracoes do
+ * mesmo fato comecam iguais e so uma sobe — foi exatamente isto que aconteceu
+ * ontem. Com a decisao aqui, o bloco e a barra nao podem discordar por
+ * construcao, e ferramenta nova herda os tres mundos sem ninguem se lembrar
+ * deste paragrafo.
+ *
+ * E ELA E PURA DE PROPOSITO: a bancada a exercita sobre mundos fabricados, sem
+ * WordPress e sem rede.
+ */
+if ( ! function_exists( 'rodametria_casca_estado_do_bloco' ) ) {
+function rodametria_casca_estado_do_bloco( $itens, $piso ) {
+	if ( count( (array) $itens ) ) {
+		return 'cartoes';
+	}
+
+	$piso = (array) $piso;
+	$url  = isset( $piso['url_busca'] ) ? trim( (string) $piso['url_busca'] ) : '';
+
+	return '' === $url ? 'sem-saida' : 'piso';
+}
+}
+
 if ( ! function_exists( 'rodametria_casca_piso_do_bloco' ) ) {
 function rodametria_casca_piso_do_bloco( $piso ) {
 	$piso = (array) $piso;
 	$url  = isset( $piso['url_busca'] ) ? trim( (string) $piso['url_busca'] ) : '';
 	$frase = isset( $piso['frase'] ) ? trim( (string) $piso['frase'] ) : '';
 
-	if ( '' === $url ) {
+	/* A MESMA PORTA QUE O ROTULO DA BARRA (25/11/2026): este `if` era o segundo
+	   lugar do snippet a decidir se existe saida de compra, e o rotulo do atalho
+	   era o terceiro. Tres leituras do mesmo campo sao duas que um dia
+	   discordam, e foi assim que a barra passou a negar o bloco. */
+	if ( 'piso' !== rodametria_casca_estado_do_bloco( array(), $piso ) ) {
 		/* A AUSENCIA E DITA, NUNCA MAQUIADA (20.8). */
 		return '<p class="rdm-molde-compra-piso rdm-molde-compra-piso-sem"'
 			. ' data-rdm-piso-frase>'
@@ -1627,7 +1680,12 @@ function rodametria_casca_bloco_de_compra( $titulo, $itens, $frase_de_escopo, $c
 	 * O CONSERTO MORA AQUI E NAO NO CHAMADOR, pela 32.6-b: com ele na casca,
 	 * ferramenta nova nasce sem poder cometer isto, e a que passa um texto so
 	 * continua passando um texto so. */
-	$duplicada = ( '' === $cartoes
+	/* O RAMO SAI DE `rodametria_casca_estado_do_bloco()` E NAO DE `'' === $cartoes`
+	   (25/11/2026): e a MESMA expressao que decide o rotulo da barra fixa, e e por
+	   isso que as duas nao podem mais discordar. */
+	$estado = rodametria_casca_estado_do_bloco( $itens, $piso );
+
+	$duplicada = ( 'cartoes' !== $estado
 		&& '' !== trim( (string) $causa_se_vazio )
 		&& trim( (string) $frase_de_escopo ) === trim( (string) $causa_se_vazio ) );
 
@@ -1637,7 +1695,7 @@ function rodametria_casca_bloco_de_compra( $titulo, $itens, $frase_de_escopo, $c
 		$html .= '<p class="rdm-molde-compra-escopo">' . esc_html( $frase_de_escopo ) . '</p>';
 	}
 
-	if ( '' === $cartoes ) {
+	if ( 'cartoes' !== $estado ) {
 		/* O PISO DA 25.2 NO BLOCO QUE NASCEU VAZIO (25/11/2026, item 1 do despacho
 		   da ronda de hoje), E ELE VEM ANTES DA CAUSA — pela MESMA razao de PIXEL
 		   que a caixa de ausencia da pagina de produto escreveu em 19/11: a 32.5
@@ -1699,10 +1757,21 @@ function rodametria_casca_bloco_de_compra( $titulo, $itens, $frase_de_escopo, $c
  * passasse a filtrar item. Lista igual, decisao igual, por construcao.
  */
 if ( ! function_exists( 'rodametria_casca_rotulo_do_atalho' ) ) {
-function rodametria_casca_rotulo_do_atalho( $itens ) {
-	return count( (array) $itens )
-		? 'Ver produtos'
-		: 'Por que não indicamos';
+function rodametria_casca_rotulo_do_atalho( $itens, $piso ) {
+	switch ( rodametria_casca_estado_do_bloco( $itens, $piso ) ) {
+		case 'cartoes':
+			return 'Ver produtos';
+		case 'piso':
+			/* A BARRA PROMETE A LOJA E NUNCA A LISTA CONFERIDA, que e a mesma
+			   disciplina da frase do piso logo acima — *"e a lista da loja, nao
+			   uma lista conferida contra a regra"*. `Ver produtos` aqui diria que
+			   ha vitrine, e nao ha; `Por que nao indicamos` diria que nao ha
+			   saida, e ha. O rotulo curto e de proposito: ele mora num botao de
+			   barra fixa a 390 px, ao lado do numero da resposta. */
+			return 'Ver na loja';
+	}
+
+	return 'Por que não indicamos';
 }
 }
 
@@ -1719,15 +1788,27 @@ function rodametria_casca_rotulo_do_atalho( $itens ) {
  * ANTES do ar, por `ferramentas/teste-barra-de-compra.php`, que conta os
  * argumentos de toda chamada no repositorio. A guarda e o portao, nunca um
  * padrao complacente.
+ *
+ * `$piso` E O QUINTO E TAMBEM NAO TEM PADRAO (25/11/2026), PELO MESMO MOTIVO E
+ * PELA MEDICAO QUE O COBROU. Padrao `array()` aqui daria o rotulo de "nao ha
+ * saida" a uma pagina COM o piso da 25.2 no bloco — que e, letra por letra, o
+ * defeito medido no ar na revisao 145 em `/` e `/peso-maximo-patinete-eletrico/`.
+ * O argumento e o MESMO que vai para `rodametria_casca_bloco_de_compra()`, e o
+ * portao compara as duas expressoes.
  */
 if ( ! function_exists( 'rodametria_casca_barra_fixa' ) ) {
-function rodametria_casca_barra_fixa( $rotulo, $numero, $unidade, $itens ) {
+function rodametria_casca_barra_fixa( $rotulo, $numero, $unidade, $itens, $piso ) {
 	return '<div class="rdm-molde-barra" data-rdm-barra hidden>'
 		. '<span class="rdm-molde-barra-num"><span class="rdm-molde-barra-rotulo">'
 		. esc_html( $rotulo ) . '</span> <span class="rdm-num" data-rdm-barra-numero>'
 		. esc_html( $numero ) . '</span> <span>' . esc_html( $unidade ) . '</span></span>'
-		. '<a class="rdm-molde-barra-botao" href="#comprar">'
-		. esc_html( rodametria_casca_rotulo_do_atalho( $itens ) ) . '</a></div>';
+		/* O GANCHO `data-rdm-barra-atalho` EXISTE PARA A F1 (25/11/2026): a
+		   categoria dela muda no NAVEGADOR, a prateleira muda com ela, e com a
+		   prateleira muda o estado do bloco. Sem o gancho o rotulo ficaria certo
+		   no carregamento e mentiria na primeira troca de campo — e a camada do
+		   navegador e justamente a que nenhum portao de ar enxerga. */
+		. '<a class="rdm-molde-barra-botao" href="#comprar" data-rdm-barra-atalho>'
+		. esc_html( rodametria_casca_rotulo_do_atalho( $itens, $piso ) ) . '</a></div>';
 }
 }
 

@@ -100,7 +100,15 @@ function rodametria_casca_cartao_de_compra($item) {
 }
 
 $casca = file_get_contents($RAIZ . '/snippets/rodametria-casca.php');
-foreach (array('rodametria_casca_rotulo_do_piso', 'rodametria_casca_piso_do_bloco',
+/* `rodametria_casca_estado_do_bloco` entrou nesta lista em 25/11/2026 as 19h4xZ:
+   e dela que o bloco e o piso passaram a tirar o ramo, e sem ela as duas funcoes
+   carregadas aqui morrem em erro FATAL. E a cicatriz de carregar funcao a funcao:
+   quem acrescenta uma dependencia a uma funcao do snippet acrescenta o nome aqui,
+   e quem esquecer e pego pela regra INERTE da bancada — foi ela que pegou isto,
+   porque este portao devolve codigo de saida ZERO no erro fatal e so a ausencia
+   do veredito em portugues o acusou. */
+foreach (array('rodametria_casca_rotulo_do_piso', 'rodametria_casca_estado_do_bloco',
+               'rodametria_casca_rotulo_do_atalho', 'rodametria_casca_piso_do_bloco',
                'rodametria_casca_bloco_de_compra') as $fn) {
 	if (!carregar_funcao($casca, $fn)) {
 		echo "FALHA: nao achei `$fn()` na casca\n";
@@ -313,7 +321,30 @@ foreach ($js as $cat => $p) {
 	vale($p['url'] === (string) $php['url_busca'] && $p['frase'] === (string) $php['frase'],
 		"o pacote e o HTML concordam em `$cat` (32.5-d: as duas metades lendo o "
 		. "mesmo dado nao podem dizer coisas diferentes)");
+	/* O ROTULO DO ATALHO VIAJA NO PACOTE DESDE 25/11/2026 as 19h2xZ, e ele e a
+	   camada que nenhum portao de AR enxerga: o servidor manda UMA categoria e as
+	   outras tres nascem no navegador, entao o rotulo errado so apareceria depois
+	   de a pessoa trocar um campo. */
+	vale($p['atalho'] === rodametria_casca_rotulo_do_atalho(
+			(array) $F1['compra']['vitrine'], $php),
+		"o rotulo do atalho de `$cat` sai da casca, pela MESMA funcao que serviu o "
+		. "HTML — o JS nao escolhe rotulo", (string) $p['atalho']);
+	vale('' !== trim((string) $p['atalho']),
+		"o rotulo do atalho de `$cat` veio VAZIO, e o botao da barra ficaria mudo");
 }
+
+/* E O MUNDO DA RECUSA — categoria nenhuma na tela — TEM ROTULO PROPRIO, porque
+   ele nao tem entrada no mapa de prateleiras e o JS cai nele por `else`. */
+$atalho_sem_cat = rodametria_casca_rotulo_do_atalho((array) $F1['compra']['vitrine'], array());
+vale('' !== trim($atalho_sem_cat), 'o mundo sem categoria tem rotulo de atalho',
+	$atalho_sem_cat);
+$com_piso = rodametria_casca_rotulo_do_atalho(array(),
+	array('url_busca' => 'https://s.shopee.com.br/2qWBjBH7i9'));
+vale($atalho_sem_cat !== $com_piso,
+	'o rotulo do mundo SEM saida e o do mundo COM piso sao DIFERENTES. Se fossem iguais, '
+	. 'a barra diria a mesma coisa servindo link e nao servindo — que e o defeito medido '
+	. 'no ar na revisao 145',
+	$atalho_sem_cat . ' / ' . $com_piso);
 
 /* ---------------------------------------------------------------------------
  * 6-d. A F3.

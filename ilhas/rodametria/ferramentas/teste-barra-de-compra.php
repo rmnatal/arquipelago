@@ -21,6 +21,21 @@
  * do codigo e nunca a decisao — o mesmo motivo escrito no `teste-caixa-da-mae.php`,
  * no `teste-nota-de-preco.php` e no `teste-escada-de-compra.php`.
  *
+ * O MESMO DEFEITO VOLTOU EM 25/11/2026 COM O SINAL TROCADO, E ESTE PORTAO ESTAVA
+ * VERDE SOBRE UM MUNDO QUE O AR NAO TEM MAIS. Medido no navegador a 390 px na
+ * revisao 145: `/` e `/peso-maximo-patinete-eletrico/` serviam a barra fixa com
+ * `Por que nao indicamos` apontando para `#comprar`, e dentro de `#comprar`
+ * havia 1 link de compra VISIVEL — o piso da 25.2, desembarcado na vespera. O
+ * rotulo prometia EXPLICACAO onde o bloco servia loja.
+ *
+ * E A CAUSA E DE ARIDADE DA REGUA, NAO DE DESCUIDO DE QUEM ESCREVEU: os mundos
+ * fabricados deste portao eram pares `(lista, deve_prometer)` — DOIS estados —, e
+ * o bloco de compra passou a ter TRES em 25/11, quando o piso entrou no ramo sem
+ * cartao. Um portao que nao sabe do terceiro estado nao o reprova: ele nao o ve.
+ * **Portao de duas pontas sobre mundo de tres estados aprova o estado do meio
+ * seja ele qual for** — e e a mesma familia da regua de duas pontas que a 20.9 do
+ * contrato substituiu por cinco vereditos.
+ *
  * AS TRES METADES:
  *
  *   1. A DECISAO. Mundos fabricados: lista vazia, um item, muitos, e os tipos
@@ -95,6 +110,68 @@ function argumentos_de_topo($args) {
 	return $pedacos;
 }
 
+/** A FONTE SEM OS COMENTARIOS DELA, PRESERVANDO AS POSICOES (25/11/2026).
+ *
+ *  ELE E CIENTE DE ASPAS, e isso NAO e zelo preventivo: `esc_url('https://...')`
+ *  tem `//` dentro de literal, e um raspador ingenuo comeria o resto da linha.
+ *
+ *  O DEFEITO QUE ELE EXISTE PARA FECHAR FOI MEDIDO POR ESTE PORTAO REPROVANDO,
+ *  as 19h3xZ de 25/11/2026, DUAS vezes e nos dois sentidos — e as duas acusacoes
+ *  eram falsas:
+ *
+ *    - na `rodametria-f1.php`, o recorte do bloco de compra devolveu
+ *      `$classifica ? rodametria_f1_nome_curto(...) : 'sem resposta'` como se
+ *      fosse a lista de itens. Causa: o nome `rodametria_casca_bloco_de_compra`
+ *      aparece DENTRO DE UM COMENTARIO antes da chamada de verdade, e o recorte
+ *      por `preg_match` achava a MENCAO e nao a CHAMADA;
+ *    - na `rodametria-f3.php`, o 5o argumento devolvido foi um pedaco de PROSA
+ *      do comentario que explica o piso. Causa: `argumentos_de_topo()` e ciente
+ *      de aspas e NAO de comentario, e comentario em portugues tem virgula.
+ *
+ *  E E A MESMA FAMILIA DO CORTE DE ASPAS QUE ESTE MESMO PORTAO JA PAGOU EM
+ *  09/11 — *"o separador que parece obvio atravessa o literal"* — com uma
+ *  superficie a mais: o separador tambem atravessa o COMENTARIO. A lacuna ficou
+ *  invisivel por 16 dias porque nenhuma das chamadas tinha comentario com
+ *  virgula dentro; ela apareceu no minuto em que o piso ganhou um.
+ *
+ *  AS POSICOES SAO PRESERVADAS de proposito — comentario vira espaco, nunca
+ *  desaparece —, porque `funcao_que_contem()` e `chamadas_de()` trocam deslocamento
+ *  entre si, e raspador que encurta a fonte faz as duas apontarem para outro
+ *  lugar sem dar erro. */
+function sem_comentarios($src) {
+	$fora = ''; $n = strlen($src); $k = 0;
+	while ($k < $n) {
+		$c = $src[$k];
+		if ($c === '"' || $c === "'") {
+			$aspa = $c; $fora .= $c; $k++;
+			while ($k < $n) {
+				$fora .= $src[$k];
+				if ($src[$k] === '\\') { $k++; if ($k < $n) { $fora .= $src[$k]; $k++; } continue; }
+				if ($src[$k] === $aspa) { $k++; break; }
+				$k++;
+			}
+			continue;
+		}
+		if ($c === '/' && $k + 1 < $n && $src[$k + 1] === '*') {
+			$fim = strpos($src, '*/', $k + 2);
+			$fim = ($fim === false) ? $n : $fim + 2;
+			$fora .= str_repeat(' ', $fim - $k);
+			$k = $fim;
+			continue;
+		}
+		if (($c === '/' && $k + 1 < $n && $src[$k + 1] === '/') || $c === '#') {
+			$fim = strpos($src, "\n", $k);
+			$fim = ($fim === false) ? $n : $fim;
+			$fora .= str_repeat(' ', $fim - $k);
+			$k = $fim;
+			continue;
+		}
+		$fora .= $c;
+		$k++;
+	}
+	return $fora;
+}
+
 $casca = file_get_contents($RAIZ . '/snippets/rodametria-casca.php');
 
 $falhas = array();
@@ -105,7 +182,8 @@ function afirma($cond, $msg) {
 	if (!$cond) { $falhas[] = $msg; }
 }
 
-foreach (array('rodametria_casca_rotulo_do_atalho', 'rodametria_casca_barra_fixa') as $fn) {
+foreach (array('rodametria_casca_estado_do_bloco', 'rodametria_casca_rotulo_do_atalho',
+		'rodametria_casca_barra_fixa') as $fn) {
 	if (!carregar_funcao($casca, $fn)) {
 		print("REPROVADO: `$fn` nao existe em snippets/rodametria-casca.php\n");
 		exit(1);
@@ -116,36 +194,102 @@ foreach (array('rodametria_casca_rotulo_do_atalho', 'rodametria_casca_barra_fixa
  * 1. A DECISAO, EM MUNDOS FABRICADOS.
  * ------------------------------------------------------------------------ */
 $PROMESSA = 'Ver produtos';
+$SEM_SAIDA = 'Por que não indicamos';
 
+/* O PISO COMO O DADO O ENTREGA, e o campo que decide e UM: `url_busca`. */
+$PISO_VIVO = array('url_busca' => 'https://s.shopee.com.br/2qWBjBH7i9',
+	'frase' => 'A busca da loja continua aberta.');
+$PISO_SEM  = array('url_busca' => '', 'frase' => 'Esta tela está sem link de loja hoje.');
+
+/* OS MUNDOS, E AGORA ELES SAO TRES ESTADOS E NAO DOIS. O estado esperado e
+   escrito por extenso de proposito: booleano `deve_prometer` foi exatamente o
+   que cegou este portao para o mundo do meio. */
 $mundos = array(
-	'lista vazia (a home e a F3 de hoje)'      => array(array(),            false),
-	'um cartao'                                 => array(array('a'),         true),
-	'quatro cartoes (a F2 de hoje)'             => array(array(1, 2, 3, 4),  true),
-	'null, que e o que um campo ausente entrega' => array(null,              false),
-	'array associativo de cartoes'               => array(array('x' => 1),   true),
+	'lista vazia e piso VIVO — O AR DA REVISAO 145, a home e a F3 de 25/11'
+		=> array(array(), $PISO_VIVO, 'piso'),
+	'lista vazia e piso SEM url — a home e a F3 antes de 25/11'
+		=> array(array(), $PISO_SEM, 'sem-saida'),
+	'lista vazia e piso AUSENTE (array vazio) — a F2 de hoje com a vitrine vazia'
+		=> array(array(), array(), 'sem-saida'),
+	'um cartao, piso vivo: o cartao manda, porque a escada dele ja serve a busca'
+		=> array(array('a'), $PISO_VIVO, 'cartoes'),
+	'quatro cartoes (a F2 de hoje)' => array(array(1, 2, 3, 4), array(), 'cartoes'),
+	'null nos DOIS, que e o que campo ausente entrega'
+		=> array(null, null, 'sem-saida'),
+	'array associativo de cartoes' => array(array('x' => 1), array(), 'cartoes'),
+	'piso com url de ESPACOS: `trim` nao deixa isso virar botao'
+		=> array(array(), array('url_busca' => '   '), 'sem-saida'),
 );
 
-foreach ($mundos as $nome => $par) {
-	list($itens, $deve_prometer) = $par;
-	$rotulo = rodametria_casca_rotulo_do_atalho($itens);
+$ROTULO_DO_ESTADO = array(
+	'cartoes'   => $PROMESSA,
+	'piso'      => 'Ver na loja',
+	'sem-saida' => $SEM_SAIDA,
+);
+
+foreach ($mundos as $nome => $t) {
+	list($itens, $piso, $estado) = $t;
+
+	afirma(rodametria_casca_estado_do_bloco($itens, $piso) === $estado,
+		sprintf('mundo %s: o estado do bloco e `%s` e devia ser `%s`', $nome,
+			rodametria_casca_estado_do_bloco($itens, $piso), $estado));
+
+	$rotulo = rodametria_casca_rotulo_do_atalho($itens, $piso);
 	afirma($rotulo !== '', sprintf('mundo %s: o rotulo veio VAZIO. A barra sempre leva ao '
 		. 'bloco, e o bloco sempre tem o que dizer', $nome));
-	afirma(($rotulo === $PROMESSA) === $deve_prometer,
-		sprintf('mundo %s: o rotulo e %s e %s deveria prometer produto',
-			$nome, var_export($rotulo, true), $deve_prometer ? 'ELE' : 'NAO'));
+	afirma($rotulo === $ROTULO_DO_ESTADO[$estado],
+		sprintf('mundo %s: o rotulo e %s e o estado `%s` pede %s', $nome,
+			var_export($rotulo, true), $estado, var_export($ROTULO_DO_ESTADO[$estado], true)));
 
 	/* E A BARRA SERVIDA TEM DE CARREGAR ESSE ROTULO, nao outro: a funcao do
 	   rotulo pode estar certa e a barra ignora-la, que e exatamente o que ela
-	   fazia ate hoje. */
-	$html = rodametria_casca_barra_fixa('Precisa de', '119', 'kg', $itens);
+	   fazia ate 09/11. */
+	$html = rodametria_casca_barra_fixa('Precisa de', '119', 'kg', $itens, $piso);
 	afirma(strpos($html, '>' . esc_html($rotulo) . '</a>') !== false,
 		sprintf('mundo %s: a barra servida nao traz o rotulo decidido (%s)', $nome, $rotulo));
 	afirma(strpos($html, 'href="#comprar"') !== false,
 		sprintf('mundo %s: a barra perdeu o atalho para #comprar', $nome));
-	if (!$deve_prometer) {
+	/* O GANCHO DO NAVEGADOR: sem ele a F1 nao tem como trocar o rotulo quando a
+	   categoria muda, e a barra fica certa no carregamento e mente na 1a troca. */
+	afirma(strpos($html, 'data-rdm-barra-atalho') !== false,
+		sprintf('mundo %s: a barra perdeu o gancho `data-rdm-barra-atalho`, e com ele a F1 '
+			. 'perde a camada do navegador', $nome));
+
+	if ($estado !== 'cartoes') {
 		afirma(strpos($html, $PROMESSA) === false,
-			sprintf('mundo %s: a barra servida PROMETE PRODUTO com a lista vazia. E o item 3 '
+			sprintf('mundo %s: a barra servida PROMETE PRODUTO sem cartao nenhum. E o item 3 '
 				. 'do despacho de 09/11/2026 de volta', $nome));
+	}
+	if ($estado === 'piso') {
+		afirma(strpos($html, $SEM_SAIDA) === false,
+			sprintf('mundo %s: a barra servida NEGA A SAIDA que o bloco serve. E o defeito '
+				. 'medido no ar na revisao 145, em `/` e `/peso-maximo-patinete-eletrico/`',
+				$nome));
+	}
+}
+
+/* E O BLOCO DE COMPRA TEM DE CONCORDAR COM A BARRA NOS TRES ESTADOS, porque e
+   essa concordancia que o conserto de hoje compra. A regua pergunta ao HTML do
+   bloco, nao ao ramo do codigo: se o bloco servir link de loja, a barra nao pode
+   dizer que nao ha. */
+if (carregar_funcao($casca, 'rodametria_casca_rotulo_do_piso')
+		&& carregar_funcao($casca, 'rodametria_casca_cartao_de_compra')
+		&& carregar_funcao($casca, 'rodametria_casca_piso_do_bloco')
+		&& carregar_funcao($casca, 'rodametria_casca_bloco_de_compra')) {
+	foreach ($mundos as $nome => $t) {
+		list($itens, $piso, $estado) = $t;
+		if ($estado === 'cartoes') { continue; }  /* cartao fabricado nao e cartao */
+		$bloco = rodametria_casca_bloco_de_compra('À venda agora', $itens,
+			'escopo', 'a causa', $piso);
+		$tem_link = (bool) preg_match('/<a\s[^>]*href="https?:/', $bloco);
+		$rotulo   = rodametria_casca_rotulo_do_atalho($itens, $piso);
+		afirma($tem_link === ($rotulo !== $SEM_SAIDA),
+			sprintf('mundo %s: o bloco de compra %s link de loja e a barra diz `%s`. As duas '
+				. 'declaracoes do mesmo fato discordaram — e foi assim, letra por letra, que '
+				. 'a revisao 145 foi ao ar', $nome,
+				$tem_link ? 'SERVE' : 'nao serve', $rotulo));
+		afirma(strpos($bloco, 'href=""') === false,
+			sprintf('mundo %s: o bloco serviu `href` VAZIO, que a 25.2-c proibe', $nome));
 	}
 }
 
@@ -155,22 +299,44 @@ foreach ($mundos as $nome => $par) {
  * A regra VELHA, refeita: o literal, sempre. Ela TEM de discordar da nova na
  * lista vazia — se concordarem, este portao nao mede conserto nenhum.
  * ------------------------------------------------------------------------ */
+/* A REGRA DE ANTES DE 09/11/2026: o literal, sempre. */
 function velha_rotulo_literal($itens) { return 'Ver produtos'; }
+
+/* A REGRA DE 09/11/2026 A 25/11/2026: a CONTAGEM, e so ela. Refeita aqui letra
+   por letra, porque e dela que o defeito de hoje nasceu — e portao que nao
+   reproduz a regra que substituiu nao prova que substituiu nada (20.8). */
+function regra_de_09_11($itens) {
+	return count((array) $itens) ? 'Ver produtos' : 'Por que não indicamos';
+}
 
 $discordou = false;
 foreach (array(array(), null) as $vazio) {
-	if (rodametria_casca_rotulo_do_atalho($vazio) !== velha_rotulo_literal($vazio)) {
+	if (rodametria_casca_rotulo_do_atalho($vazio, array()) !== velha_rotulo_literal($vazio)) {
 		$discordou = true;
 	}
 }
-afirma($discordou, 'a regra NOVA e a VELHA (o literal `Ver produtos`) CONCORDAM na lista '
-	. 'vazia. Concordancia aqui significa que o conserto do item 3 nao mudou nada');
+afirma($discordou, 'a regra NOVA e a de ANTES de 09/11 (o literal `Ver produtos`) CONCORDAM '
+	. 'na lista vazia. Concordancia aqui significa que o conserto do item 3 nao mudou nada');
 
-/* E na lista CHEIA as duas tem de concordar: a F2 estava certa, e consertar o
-   que nao estava quebrado seria regressao de texto na unica pagina sa. */
-afirma(rodametria_casca_rotulo_do_atalho(array(1, 2, 3, 4)) === velha_rotulo_literal(array()),
+/* A DISCORDANCIA QUE ESTA PASSADA COMPRA, E ELA E O AR DA REVISAO 145: lista
+   vazia COM piso vivo. A regra de 09/11 — a que estava no ar ate hoje — diz
+   `Por que nao indicamos` e a nova diz `Ver na loja`. Se as duas concordarem
+   aqui, o conserto de hoje nao mudou o byte que o visitante le. */
+afirma(regra_de_09_11(array()) !== rodametria_casca_rotulo_do_atalho(array(),
+		array('url_busca' => 'https://s.shopee.com.br/2qWBjBH7i9')),
+	'NO MUNDO MEDIDO NO AR (lista vazia, piso VIVO) a regra de 09/11 e a nova CONCORDAM. '
+	. 'Era exatamente ali que `/` e `/peso-maximo-patinete-eletrico/` negavam o proprio '
+	. 'bloco de compra na revisao 145');
+
+/* E NOS DOIS MUNDOS QUE NAO ESTAVAM QUEBRADOS AS DUAS TEM DE CONCORDAR: apertar
+   o que nao e defeito e o avesso do que a 20.8 manda. */
+afirma(regra_de_09_11(array(1, 2, 3, 4))
+		=== rodametria_casca_rotulo_do_atalho(array(1, 2, 3, 4), array()),
 	'na lista CHEIA a regra nova mudou o rotulo. A F2 servia `Ver produtos` com quatro '
 	. 'cartoes e estava CERTA — o conserto nao pode afrouxar nem mexer nela');
+afirma(regra_de_09_11(array()) === rodametria_casca_rotulo_do_atalho(array(), array()),
+	'na lista vazia SEM piso a regra nova mudou o rotulo. Ali a de 09/11 estava CERTA: o '
+	. 'bloco diz a ausencia e a barra tem de dizer o mesmo');
 
 /* ---------------------------------------------------------------------------
  * 3. NENHUM LITERAL DE PROMESSA SOBROU DENTRO DA BARRA, e TODA chamada passa a
@@ -191,7 +357,11 @@ afirma($j !== false && strpos($corpo_barra, 'rodametria_casca_rotulo_do_atalho')
    as quatro chamadas de verdade quebram a linha no quarto argumento. */
 $chamadas = 0;
 foreach (glob($RAIZ . '/snippets/*.php') as $arquivo) {
-	$src  = file_get_contents($arquivo);
+	/* SEM COMENTARIO TAMBEM AQUI: a contagem corta por virgula de topo, e
+	   comentario em portugues tem virgula. Hoje nenhuma chamada da barra tem
+	   comentario DENTRO dos argumentos — as do bloco de compra tem —, e deixar a
+	   diferenca de pe seria guardar a mesma armadilha para a proxima. */
+	$src  = sem_comentarios(file_get_contents($arquivo));
 	$base = basename($arquivo);
 	$pos  = 0;
 	while (($p = strpos($src, 'rodametria_casca_barra_fixa(', $pos)) !== false) {
@@ -208,9 +378,9 @@ foreach (glob($RAIZ . '/snippets/*.php') as $arquivo) {
 		$args = substr($src, $abre + 1, $fim - $abre - 1);
 		$quantos = count(argumentos_de_topo($args));
 		$chamadas++;
-		afirma($quantos === 4, sprintf('%s: uma chamada a rodametria_casca_barra_fixa passa '
-			. '%d argumento(s) e nao 4. O quarto e a MESMA lista que vai para o bloco de '
-			. 'compra, e sem ele a chamada e erro fatal em PHP: `%s`',
+		afirma($quantos === 5, sprintf('%s: uma chamada a rodametria_casca_barra_fixa passa '
+			. '%d argumento(s) e nao 5. O quarto e a MESMA lista e o quinto o MESMO piso que '
+			. 'vao para o bloco de compra, e sem eles a chamada e erro fatal em PHP: `%s`',
 			$base, $quantos, trim(preg_replace('/\s+/', ' ', $args))));
 	}
 }
@@ -269,17 +439,21 @@ function resolver_variavel($expr, $src) {
 
 foreach (array('rodametria-f1.php', 'rodametria-f2.php', 'rodametria-f3.php',
 		'rodametria-produto.php') as $base) {
-	$src = file_get_contents($RAIZ . '/snippets/' . $base);
-	if (!preg_match('/rodametria_casca_barra_fixa\((.*?)\);/s', $src, $mb)) { continue; }
-	if (!preg_match('/rodametria_casca_bloco_de_compra\(\s*(.*?)\);/s', $src, $mc)) { continue; }
+	/* SEM OS COMENTARIOS, E PELO CORTADOR EQUILIBRADO — nunca por `preg_match`
+	   com `.*?`, que para no primeiro `);` e acha MENCAO em comentario como se
+	   fosse chamada. As duas causas estao escritas em `sem_comentarios()`. */
+	$src = sem_comentarios(file_get_contents($RAIZ . '/snippets/' . $base));
+	$cb = chamadas_de($src, 'rodametria_casca_barra_fixa');
+	$cc = chamadas_de($src, 'rodametria_casca_bloco_de_compra');
+	if (!$cb || !$cc) { continue; }
 
 	/* O QUARTO argumento da barra e a lista; o SEGUNDO do bloco tambem o e
 	   (titulo, itens, escopo, causa). Os dois cortes pelo MESMO cortador. */
-	$arg_barra = argumentos_de_topo($mb[1]);
+	$arg_barra = $cb[0]['args'];
 	$lista_barra = isset($arg_barra[3]) ? normalizar_lista($arg_barra[3]) : '';
 	$lista_barra = resolver_variavel($lista_barra, $src);
 
-	$arg_bloco = argumentos_de_topo($mc[1]);
+	$arg_bloco = $cc[0]['args'];
 	$lista_bloco = isset($arg_bloco[1]) ? normalizar_lista($arg_bloco[1]) : '';
 	$lista_bloco = resolver_variavel($lista_bloco, $src);
 
@@ -288,6 +462,26 @@ foreach (array('rodametria-f1.php', 'rodametria-f2.php', 'rodametria-f3.php',
 			. 'o cast e resolver UMA atribuicao, as duas tem de ser a MESMA expressao — '
 			. 'rotulo derivado de uma lista PARECIDA e a mesma mentira com mais passos',
 			$base, $lista_barra, $lista_bloco));
+
+	/* E O PISO TAMBEM, PELA MESMA RAZAO E PELA MESMA MEDICAO (25/11/2026). A
+	   lista sozinha nao basta mais: desde que o piso entrou no ramo sem cartao, a
+	   barra e o bloco podem concordar na lista e discordar no piso — e o rotulo
+	   sai dos DOIS.
+	   O QUINTO ARGUMENTO DO BLOCO E OPCIONAL NA FONTE e tem padrao `array()`, e
+	   por isso a ausencia dele e NORMALIZADA para `array()` em vez de reprovar:
+	   `array()` escrito e `array()` omitido sao o mesmo valor, e exigir a escrita
+	   seria a regua cobrando forma onde ela tem de cobrar DECISAO. O que ela nao
+	   tolera e a barra passar piso onde o bloco nao passa — ou o contrario. */
+	$piso_barra = isset($arg_barra[4]) ? normalizar_lista($arg_barra[4]) : '';
+	$piso_barra = resolver_variavel($piso_barra, $src);
+	$piso_bloco = isset($arg_bloco[4]) ? normalizar_lista($arg_bloco[4]) : 'array()';
+	$piso_bloco = resolver_variavel($piso_bloco, $src);
+
+	afirma($piso_barra !== '' && $piso_barra === $piso_bloco,
+		sprintf('%s: a barra recebe o piso `%s` e o bloco de compra recebe `%s`. O rotulo do '
+			. 'atalho sai da lista E do piso, entao os dois argumentos tem de ser a MESMA '
+			. 'expressao — foi a discordancia deles que pos `Por que nao indicamos` acima de '
+			. 'um link de compra visivel na revisao 145', $base, $piso_barra, $piso_bloco));
 }
 
 /* ---------------------------------------------------------------------------
@@ -428,7 +622,7 @@ afirma($com_barra === 4, sprintf('achei barra fixa em %d arquivo(s) e esperava 4
    autoteste em que a regua velha e a nova concordam nao mede conserto nenhum. */
 $MOLDE = 'function rdm_x() { $rotulo = %s; $numero = $n[\'mediana\']; '
 	. '$html = rodametria_casca_caixa( %s, %s, \'\', $f, \'verde\' ); '
-	. '$html .= rodametria_casca_barra_fixa( %s, %s, \'\', $c ); return $html; }';
+	. '$html .= rodametria_casca_barra_fixa( %s, %s, \'\', $c, $p ); return $html; }';
 
 $mundos_de_rotulo = array(
 	/* nome => array(rotulo da caixa, numero da caixa, rotulo da barra, numero da barra, deve_reprovar) */
@@ -454,16 +648,71 @@ foreach ($mundos_de_rotulo as $nome => $m) {
 		count($ps) ? ' (' . implode(' | ', $ps) . ')' : ''));
 }
 
+/* ---------------------------------------------------------------------------
+ * 3-b. O CORTADOR SOBREVIVE A COMENTARIO DENTRO DOS ARGUMENTOS (25/11/2026)
+ *
+ * ESTES DOIS MUNDOS SAO AS DUAS ACUSACOES FALSAS QUE ESTE PORTAO FEZ as 19h3xZ,
+ * reproduzidas letra por letra. A regua VELHA — `preg_match` com `.*?` sobre a
+ * fonte crua — tem de REPROVAR os dois, e a nova tem de APROVAR: discordancia
+ * nos dois sentidos, que e o que a 20.8 pede.
+ * ------------------------------------------------------------------------ */
+$FONTE_COM_COMENTARIO =
+	'function rdm_z() { '
+	. '/* a expressao e identica a do 5o argumento de '
+	. 'rodametria_casca_bloco_de_compra(), e o portao compara as duas. */ '
+	. '$h = rodametria_casca_barra_fixa( $rotulo, $numero, \'\', $c, $p ); '
+	. '$h .= rodametria_casca_bloco_de_compra( \'Titulo\', $c, $escopo, $causa, '
+	. '/* o piso da 25.2: quando a pessoa troca um campo, o JS troca o destino */ '
+	. '$p ); return $h; }';
+
+/* A VELHA: o recorte por `preg_match`, refeito aqui. */
+function velho_recorte($src, $nome, $indice) {
+	if (!preg_match('/' . $nome . '\(\s*(.*?)\);/s', $src, $m)) { return '(nao achou)'; }
+	$a = argumentos_de_topo($m[1]);
+	return isset($a[$indice]) ? normalizar_lista($a[$indice]) : '(sem argumento)';
+}
+
+$velho_lista = velho_recorte($FONTE_COM_COMENTARIO, 'rodametria_casca_bloco_de_compra', 1);
+$novo_cc     = chamadas_de(sem_comentarios($FONTE_COM_COMENTARIO),
+	'rodametria_casca_bloco_de_compra');
+$novo_lista  = normalizar_lista($novo_cc[0]['args'][1]);
+$novo_piso   = normalizar_lista($novo_cc[0]['args'][4]);
+
+afirma($novo_lista === '$c', sprintf('mundo COMENTARIO NOS ARGUMENTOS: a lista do bloco saiu '
+	. '`%s` e devia ser `$c`', $novo_lista));
+afirma($novo_piso === '$p', sprintf('mundo COMENTARIO NOS ARGUMENTOS: o piso do bloco saiu '
+	. '`%s` e devia ser `$p` — comentario com virgula dentro dos argumentos era o que partia '
+	. 'o corte e devolvia PROSA como expressao', $novo_piso));
+afirma($velho_lista !== $novo_lista, sprintf('a regua VELHA (preg_match sobre a fonte crua) e '
+	. 'a NOVA CONCORDAM no mundo com comentario — ela devolveu `%s`. Concordancia aqui '
+	. 'significa que raspar comentario nao consertou nada', $velho_lista));
+
+/* E NA FONTE SEM COMENTARIO AS DUAS TEM DE CONCORDAR: raspar comentario nao pode
+   mudar a leitura de uma chamada que nunca teve comentario. */
+$FONTE_LIMPA = 'function rdm_w() { '
+	. '$h = rodametria_casca_bloco_de_compra( \'Titulo\', $c, $escopo, $causa, $p ); return $h; }';
+afirma(velho_recorte($FONTE_LIMPA, 'rodametria_casca_bloco_de_compra', 1)
+		=== normalizar_lista(chamadas_de(sem_comentarios($FONTE_LIMPA),
+			'rodametria_casca_bloco_de_compra')[0]['args'][1]),
+	'na fonte SEM comentario a regua nova leu a lista diferente da velha. Onde nao havia '
+	. 'defeito o conserto nao pode mexer (20.8)');
+
+/* E O RASPADOR NAO COME LITERAL: `https://` dentro de aspas tem `//`. */
+afirma(strpos(sem_comentarios('$u = \'https://s.shopee.com.br/2qWBjBH7i9\'; $v = 1;'),
+		'2qWBjBH7i9') !== false,
+	'`sem_comentarios()` comeu o `//` de dentro de um literal de URL — e toda chamada de '
+	. 'piso desta ilha carrega uma');
+
 /* A BARRA SEM CAIXA NENHUMA TEM DE REPROVAR: numero na barra que a pagina nao
    declara em lugar nenhum e resposta sem fonte na tela. */
 $ps = problemas_de_rotulo_da_barra('(mundo fabricado)',
-	'function rdm_y() { return rodametria_casca_barra_fixa( $rotulo, $numero, \'\', $c ); }');
+	'function rdm_y() { return rodametria_casca_barra_fixa( $rotulo, $numero, \'\', $c, $p ); }');
 afirma(count($ps) === 1, 'mundo barra SEM caixa: esperava REPROVADO e a regua aprovou');
 
 /* E A FUNCAO IMPORTA: caixa certa em OUTRA funcao nao vale pela barra desta. */
 $ps = problemas_de_rotulo_da_barra('(mundo fabricado)',
 	'function rdm_a() { return rodametria_casca_caixa( $rotulo, $numero, \'\', $f, \'verde\' ); } '
-	. 'function rdm_b() { return rodametria_casca_barra_fixa( $rotulo, $numero, \'\', $c ); }');
+	. 'function rdm_b() { return rodametria_casca_barra_fixa( $rotulo, $numero, \'\', $c, $p ); }');
 afirma(count($ps) === 1,
 	'mundo caixa em OUTRA funcao: esperava REPROVADO e a regua aprovou (a variavel tem o '
 	. 'mesmo nome e nao e o mesmo local)');

@@ -97,7 +97,7 @@ if ( ! defined( 'RODAMETRIA_F1_VERSAO' ) ) {
 	   SEM o formulario da F1 e SEM a barra fixa, e o `/casca` nao trazia
 	   `rodametria-f1` nenhum — que e exatamente a ausencia que a 20.7 desenhou
 	   para ser o sinal. Tres dos cinco portoes de pagina ficaram verdes. */
-	define( 'RODAMETRIA_F1_VERSAO', '1.9.0' );
+	define( 'RODAMETRIA_F1_VERSAO', '1.10.0' );
 }
 
 if ( ! defined( 'RODAMETRIA_ID_DADOS_F1' ) ) {
@@ -322,9 +322,15 @@ function rodametria_f1_resultado_html( $d ) {
 		' data-rdm-f1-caixa' );
 
 	/* A LISTA DA VITRINE VIAJA PARA A BARRA (09/11/2026, item 3): o rotulo do
-	   atalho sai da MESMA lista que monta o bloco de compra, nunca de um literal. */
+	   atalho sai da MESMA lista que monta o bloco de compra, nunca de um literal.
+	   E O PISO VIAJA COM ELA DESDE 25/11/2026, pela mesma razao e por uma medicao:
+	   com a lista vazia e o piso NO AR, a barra dizia `Por que nao indicamos`
+	   acima de um link de compra visivel. A expressao e identica a do 5o argumento
+	   de `rodametria_casca_bloco_de_compra()`, e o portao compara as duas. */
 	$html .= rodametria_casca_barra_fixa( $rotulo, $numero, '',
-		(array) $d['compra']['vitrine'] );
+		(array) $d['compra']['vitrine'],
+		rodametria_f1_piso_da_categoria( $d,
+			(string) $d['resposta_exemplo']['categoria'] ) );
 
 	return $html;
 }
@@ -852,11 +858,18 @@ function rodametria_f1_piso_para_o_js( $d ) {
 	$saida = array();
 	$mapa  = isset( $d['compra']['piso_por_categoria'] )
 		? (array) $d['compra']['piso_por_categoria'] : array();
+	$itens = isset( $d['compra']['vitrine'] ) ? (array) $d['compra']['vitrine'] : array();
 	foreach ( array_keys( $mapa ) as $cat ) {
 		$p = rodametria_f1_piso_da_categoria( $d, (string) $cat );
 		$saida[ (string) $cat ] = array(
 			'url'   => (string) $p['url_busca'],
 			'frase' => (string) $p['frase'],
+			/* O ROTULO DO ATALHO DA BARRA FIXA, DECIDIDO PELA CASCA E NUNCA PELO JS
+			   (25/11/2026). O navegador nao escolhe rotulo: ele le o que a mesma
+			   funcao que serviu o HTML ja decidiu para aquela categoria. Escolher no
+			   JS seria a quarta declaracao do mesmo fato, e a terceira acabou de
+			   custar duas paginas no ar. */
+			'atalho' => rodametria_casca_rotulo_do_atalho( $itens, $p ),
 		);
 	}
 
@@ -1173,6 +1186,11 @@ add_action( 'wp_footer', function () {
 			? (string) $d['frases_molde']['piso_sem_categoria'] : '',
 		'pisoSemPrateleira' => isset( $d['frases_molde']['piso_sem_prateleira'] )
 			? (string) $d['frases_molde']['piso_sem_prateleira'] : '',
+		/* O MUNDO DA RECUSA — categoria nenhuma na tela — nao tem entrada no mapa
+		   de prateleiras, entao o rotulo dele vem solto, e tambem da casca. */
+		'atalhoSemCategoria' => rodametria_casca_rotulo_do_atalho(
+			isset( $d['compra']['vitrine'] ) ? (array) $d['compra']['vitrine'] : array(),
+			array() ),
 	);
 	?>
 <?php rodametria_casca_abrir_roteiro(); ?>
@@ -1189,6 +1207,9 @@ add_action( 'wp_footer', function () {
   var pisoBloco = document.querySelector('[data-rdm-piso]');
   var pisoLink = document.querySelector('[data-rdm-piso-link]');
   var pisoComissao = document.querySelector('[data-rdm-piso-comissao]');
+  /* O BOTAO DA BARRA FIXA (25/11/2026): ele promete o que o bloco de compra
+     SERVE, e o que o bloco serve muda com a prateleira da categoria. */
+  var barraAtalho = document.querySelector('[data-rdm-barra-atalho]');
   if (!form || !caixa) { return; }
 
   function num(x){
@@ -1390,6 +1411,14 @@ add_action( 'wp_footer', function () {
     /* A FRASE DA COMISSAO SAI COM O LINK: ela e a divulgacao DELE, e nao um aviso
        geral da pagina. De pe sem link na tela ela promete comissao que nao existe. */
     if (pisoComissao) { pisoComissao.hidden = !(piso && piso.url); }
+    /* O ROTULO DO ATALHO ACOMPANHA O MESMO PISO. Ele nao e calculado aqui: vem
+       resolvido no pacote, categoria por categoria, pela casca — e o mundo sem
+       categoria tem o seu. */
+    if (barraAtalho) {
+      barraAtalho.textContent = (piso && piso.atalho)
+        ? piso.atalho
+        : D.atalhoSemCategoria;
+    }
 
     if (blocoMun) {
       var ps = blocoMun.querySelectorAll('p');

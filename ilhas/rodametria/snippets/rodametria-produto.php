@@ -118,7 +118,7 @@
    do primeiro cartao comecava por `11.11`. A regra mora no coletor; o que muda
    aqui e a frase: sem ela a conta do leitor nao fecha com o tamanho da tabela. */
 if ( ! defined( 'RODAMETRIA_PRODUTO_VERSAO' ) ) {
-	define( 'RODAMETRIA_PRODUTO_VERSAO', '1.22.0' );
+	define( 'RODAMETRIA_PRODUTO_VERSAO', '1.22.1' );
 }
 
 /* A VERSAO DESTE SNIPPET VAI AO AR, pelo filtro que a casca 1.6.0 abriu
@@ -1386,8 +1386,15 @@ function rdm_produto_pagina_html() {
 	/* (32.1, ultima linha) A barra fixa do telefone com o numero e o botao.
 	   O rotulo, o numero e a unidade sao os DA CAIXA, pela MESMA expressao
 	   (20.7): a barra repete o numero da resposta, entao repete o rotulo dela. */
+	/* O 5o ARGUMENTO E `array()` PORQUE NESTA FAMILIA O PISO NAO MORA NO BLOCO
+	   (25/11/2026): a pagina de produto com vitrine serve cartoes, e a pagina
+	   DEGRADADA — a que esta abaixo do piso da 30.2 — nao serve bloco de compra
+	   nenhum e leva o piso na caixa da resposta, por `rdm_produto_piso_sem_vitrine()`.
+	   MEDIDO no ar em `/veiculos/moto-eletrica/` as 19h2xZ: zero `#comprar` e zero
+	   barra fixa naquela pagina, com o piso servido na caixa. A chamada ao bloco de
+	   compra tambem nao passa piso, e as duas expressoes batem. */
 	$html .= rodametria_casca_barra_fixa( $rotulo, $numero, $unidade,
-		(array) $pagina['vitrine']['cartoes'] );
+		(array) $pagina['vitrine']['cartoes'], array() );
 
 	return $html;
 }

@@ -56,7 +56,7 @@
    (item 2 do despacho da ronda de 04/11). E o MESMO campo que o "Como sabemos"
    desta pagina ja imprimia em prosa — um fato, uma fonte (20.7). */
 if ( ! defined( 'RODAMETRIA_F2_VERSAO' ) ) {
-	define( 'RODAMETRIA_F2_VERSAO', '1.15.0' );
+	define( 'RODAMETRIA_F2_VERSAO', '1.15.1' );
 }
 
 /* A VERSAO DESTE SNIPPET VAI AO AR, pelo filtro que a casca 1.6.0 abriu
@@ -348,8 +348,14 @@ function rodametria_f2_resultado_html( $d ) {
 		   coincidencia, nao por construcao. Passar a FONTE aqui seria a segunda
 		   declaracao do mesmo fato (20.7), e ela mentiria no dia em que aquela
 		   funcao passasse a filtrar um cartao. */
+		/* O 5o ARGUMENTO E `array()` E ISSO E A VERDADE DESTA PAGINA, NAO UM
+		   PADRAO (25/11/2026): a chamada ao bloco de compra desta ferramenta
+		   tambem nao passa piso, porque esta ilha ainda nao publicou piso para a
+		   consulta da F2. Escrito aqui em vez de omitido para o portao poder
+		   comparar as duas expressoes — e no dia em que o piso nascer, as duas
+		   mudam juntas ou o portao reprova. */
 		. rodametria_casca_barra_fixa( $rotulo, $numero, $unidade,
-			rodametria_f2_itens_da_vitrine( $d ) );
+			rodametria_f2_itens_da_vitrine( $d ), array() );
 }
 }
 

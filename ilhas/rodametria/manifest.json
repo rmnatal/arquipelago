@@ -4,7 +4,7 @@
   "nicho": "mobilidade eletrica — acertar os tres numeros antes de comprar um veiculo eletrico: categoria legal (CNH e placa), autonomia real e carga maxima",
   "dominio": "https://rodametria.com.br",
   "versao_manifest": 1,
-  "revisao": 145,
+  "revisao": 147,
   "atualizado_em": "2026-11-25",
   "estado": "nascendo",
   "desembarque": {
@@ -20,8 +20,8 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "641066df5ddc9ffbdee116c75143d92b62e0b96bf80dc641afdecc3aeea4cfeb",
-      "versao": "1.35.0",
+      "sha256": "9bc9690d8027fd36f62909f7e24ebe047d8c15c6ab0b97b3cdd5824d150ab928",
+      "versao": "1.36.0",
       "mudou_em": "2026-11-25",
       "renderiza": [
         "*"
@@ -35,8 +35,8 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "31b9e16f78d50561f683fb110fbf1bb93407f2cbba16c7f147862e52e34c0908",
-      "versao": "1.9.0",
+      "sha256": "20c1c3e06c46ef5326b3efa1ebf0ce904484791ecfa10cd7fec2e54e5373f858",
+      "versao": "1.10.0",
       "mudou_em": "2026-11-25",
       "renderiza": [
         "inicio"
@@ -50,9 +50,9 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "2781f04773727c66514a09dcbea3f929bbf3011a7978d02a7d9e94ef09b48134",
-      "versao": "1.15.0",
-      "mudou_em": "2026-11-24",
+      "sha256": "1b93c37e91f457032d13ba62505809fc775763652e9ca761a919adaddd32ebda",
+      "versao": "1.15.1",
+      "mudou_em": "2026-11-25",
       "renderiza": [
         "autonomia-patinete-eletrico"
       ],
@@ -65,8 +65,8 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "07afc8f58d562c19b9eaec653b985adb71e8c4a52c6a32e1166b9133a1113c57",
-      "versao": "1.10.0",
+      "sha256": "c066d85fb9bb4c0ffe2c8c2854833d02dab304abb0e211de3fe22642786afa97",
+      "versao": "1.10.1",
       "mudou_em": "2026-11-25",
       "renderiza": [
         "peso-maximo-patinete-eletrico"
@@ -80,9 +80,9 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "0b300b3c5c2e1c4ab9bac0c048c282b34aa3731f0a5cba9c544a9fb782431ba3",
-      "versao": "1.22.0",
-      "mudou_em": "2026-11-24",
+      "sha256": "8d0be4ca68b3f4203905cd7a249ad94c32f8765af50573f54965f2020ed53020",
+      "versao": "1.22.1",
+      "mudou_em": "2026-11-25",
       "renderiza": [
         "veiculos",
         "patinete-eletrico",
@@ -234,7 +234,7 @@
       "arquivo": "dados/datas-de-codigo.json",
       "formato": "json",
       "publicar": true,
-      "sha256": "84d849c638bf7bbc275cf0ab593ebbc795f7ebaeaa0569d45273a8ad81976705",
+      "sha256": "5facb8a24d06953f6c19493da881b306bafd676f183a52517e52a4ff65c9b6a2",
       "mudou_em": "2026-11-25",
       "descricao": "A DATA EM QUE O CODIGO DE CADA PAGINA MUDOU, e ela e a TERCEIRA fonte da data de uma pagina (23/11/2026, segunda metade do item 2 do despacho da ronda deste dia). As duas primeiras sao os bancos de que a pagina e feita; esta e o codigo que a desenha. `publicar: true` NAO e opcional aqui e e o motivo de este arquivo existir: a alinea (c) do pedido era \"o `mudou_em` viajar ate o ar\", e a casca NAO le o manifest.json — ela le as options que o Sync grava, e o Sync so grava item de dado publicavel. Entao a data do codigo tinha de VIRAR DADO para alcancar a tela. Escrito por `ferramentas/gerar-datas-de-codigo.py`, que o compila do `mudou_em` por item do manifest pelo campo `renderiza` de cada snippet, e cobrado por `ferramentas/teste-datas-de-codigo.py`. NENHUMA data e digitada no caminho: `mudou_em` recebe a data de hoje no mesmo gesto em que o `sha256` do item troca, e este arquivo e funcao PURA do manifest — sem data de geracao dentro, para o `sha256` dele nao trocar todo dia e a revisao nao subir por nada."
     }
