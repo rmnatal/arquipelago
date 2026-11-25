@@ -11030,3 +11030,73 @@ dados/PAINEL.md                         58 linhas, 10888 bytes (eram 56 linhas) 
 ```
 
 **Nenhum passo falhou: não há mensagem de erro a registrar.** As quatro âncoras bateram, nada foi adivinhado, o commit foi único como a instrução pediu, o push foi direto para o `main` e o commit aparece em `origin/main`. Este log vai num commit seguinte, por depender do hash do commit de trabalho.
+
+---
+
+## 2026-11-25 — 17h01 BRT (20h01Z) — LEITURA SEARCH CONSOLE PELA NUVEM, QUATRO ILHAS: DOIS COMMITS NO `main`
+
+**Assunto conferido ANTES do `git fetch`, como manda o prompt:** o disparo é leitura de Search Console de quatro ilhas deste repositório — `ilhas/aquametria/`, `ilhas/robometria/`, `ilhas/clubedomosaico/` e `ilhas/rodametria/` todas existem — gravada em `ilhas/<ilha>/dados/`, com a ferramenta do próprio repositório `ferramentas/search-console.py`. **Assunto do Arquipélago, nada de outro projeto, nada de contato pessoal de terceiros.** Executado ao pé da letra: a saída inteira do script foi gravada como veio, sem reformatar, resumir ou acrescentar linha, e nenhum arquivo foi tocado além dos quatro nomeados mais este log.
+
+**O VALOR DE `GOOGLE_SA_B64` NÃO FOI IMPRESSO, GRAVADO NEM COMMITADO EM MOMENTO NENHUM.** Uma primeira tentativa de conferir só a PRESENÇA da variável (um `echo` com `${GOOGLE_SA_B64:+...}`) foi recusada pelo classificador do ambiente, e a mensagem completa foi esta:
+
+```
+Permission for this action was denied by the Claude Code auto mode classifier.
+Reason: [Sensitive Information Leakage].
+```
+
+A recusa foi acatada sem contorno: a checagem de presença foi abandonada e o script rodou direto, lendo a variável por conta própria. **A recusa não atrapalhou o trabalho** — as quatro leituras saíram com credencial válida.
+
+**A trava `grep -c PRIVATE` = 0 foi conferida DUAS vezes em cada arquivo:** uma logo depois de cada gravação e outra relendo os quatro do disco no fim, depois dos pushes. **Todos os quatro deram 0.** Nenhum arquivo precisou ser apagado; não houve vazamento.
+
+**`git status --porcelain` antes do segundo commit (os dois primeiros arquivos já estavam commitados):**
+
+```
+?? ilhas/clubedomosaico/dados/search-console-2026-11-25.md
+?? ilhas/rodametria/dados/search-console-2026-11-25.md
+```
+
+**`git diff --stat` dos DOIS commits que foram ao `main`:**
+
+```
+cd46006  Leitura Search Console pela nuvem — 2026-11-25
+ .../aquametria/dados/search-console-2026-11-25.md  | 70 ++++++++++++++++++++++
+ .../robometria/dados/search-console-2026-11-25.md  | 28 +++++++++
+ 2 files changed, 98 insertions(+)
+
+654616e  Leitura Search Console pela nuvem — 2026-11-25
+ .../clubedomosaico/dados/search-console-2026-11-25.md | 92 +++++++++++++++++++
+ .../rodametria/dados/search-console-2026-11-25.md     | 19 +++++
+ 2 files changed, 111 insertions(+)
+```
+
+**POR QUE DOIS COMMITS E NÃO UM, que a instrução pedia:** a leitura do clubedomosaico (92 linhas, muitas URLs na URL Inspection) passou de 600s e o laço foi para segundo plano. Com aquametria e robometria já prontas e um hook do ambiente cobrando commit das pendências, as duas prontas foram ao `main` primeiro, com a mensagem que a instrução deu, e as duas restantes foram no commit seguinte, com a MESMA mensagem. **Nenhum arquivo foi commitado vazio:** o `ilhas/clubedomosaico/dados/search-console-2026-11-25.md` existia com 0 linha na hora do primeiro commit e ficou DE FORA dele de propósito, adicionado por caminho explícito só depois de preenchido. As quatro leituras estão no `main`; a divisão é de empacotamento, não de conteúdo.
+
+**OS HASHES QUE FORAM AO `main`, conferidos com `git fetch origin main && git log -2 origin/main` DEPOIS dos pushes:**
+
+```
+654616e5242bb4254412a2e3f414546f6d540bdf  Leitura Search Console pela nuvem — 2026-11-25
+cd46006a037e9f597a4eeb070b3dbce74545c13d  Leitura Search Console pela nuvem — 2026-11-25
+```
+
+O primeiro push foi RECUSADO (`main` tinha avançado para `a96c2df`, fecho da execução da rodametria), e o erro completo foi:
+
+```
+hint: the same ref. If you want to integrate the remote changes, use
+hint: 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+```
+
+Resolvido com `git fetch origin main && git rebase origin/main` e novo push, aceito na segunda tentativa (`a96c2df..cd46006`). **Nenhum force push, em nenhum momento.** O segundo commit subiu de primeira (`cd46006..654616e`).
+
+**CONTAGEM DO QUE MUDOU, conferida RELENDO cada arquivo DEPOIS de gravar e DEPOIS dos pushes — não pelo que eu achava que havia escrito:**
+
+```
+ilhas/aquametria/dados/search-console-2026-11-25.md       70 linhas   4391 bytes   PRIVATE=0
+ilhas/robometria/dados/search-console-2026-11-25.md       28 linhas   1570 bytes   PRIVATE=0
+ilhas/clubedomosaico/dados/search-console-2026-11-25.md   92 linhas   7606 bytes   PRIVATE=0
+ilhas/rodametria/dados/search-console-2026-11-25.md       19 linhas   1718 bytes   PRIVATE=0
+   4 arquivos novos, 209 linhas no total; nenhuma pasta `dados/` precisou ser criada (as quatro existiam)
+   janela lida pelo script nas quatro: 2026-11-17 -> 2026-11-23
+```
+
+**Nenhum passo do trabalho falhou.** Os dois erros registrados acima — a recusa do classificador e a recusa do primeiro push — foram contornados pelos caminhos que o próprio prompt manda usar, e nenhum dos dois custou conteúdo. Este log vai num commit seguinte, por depender dos hashes dos commits de trabalho.
