@@ -35,15 +35,13 @@ ultima_execucao: 2026-11-25T13:4xZ   # A FILA ESTAVA VAZIA OUTRA VEZ, e
                          # faz 84, com 3 reprovadas. Revisao 138 no ar e
                          # CONFERIDA. O detalhe esta no `bloco_atual` e no
                          # REGISTRO.md.
-executando_desde: null   # LIMPO no fecho desta execucao (passo 7 da
-                         # secao 1). Reservada as 13h17Z (commit 1eba447),
-                         # aceita de PRIMEIRA — o campo estava `null`, que pela
-                         # 1.1 ja significa que nao ha bloco da Fundacao vivo, e
-                         # o ultimo commit na pasta era o FECHO das 10h44Z — e
-                         # reescrita as 13h27Z no commit do desembarque, SEM a
-                         # janela de 40 minutos ter vencido (dez minutos), o que
-                         # ficou dito no proprio campo para ninguem ler a
-                         # reescrita como vencimento.
+executando_desde: 2026-11-25T16:16Z   # RESERVA da execucao de 2026-11-25T16:16Z (passo 5 da
+                         # secao 1 / passo 2 da 1.2). O campo estava `null`, que
+                         # pela 1.1 ja significa que nao ha bloco da Fundacao
+                         # vivo; o ultimo commit na pasta era das 15h47Z e e da
+                         # RONDA (Sentinela), que pela 1.1 nao reserva nada. Rabo
+                         # de comentario da reserva anterior REMOVIDO junto, pela
+                         # licao de 17/11 deste mesmo cabecalho.
 rede: aberta em 2026-11-25   # 20.2, REMEDIDA e nao herdada nesta
                              # execucao das 13h17Z: `rodametria.com.br/` e
                              # `/veiculos/` em 200, com example.com em 000 no
