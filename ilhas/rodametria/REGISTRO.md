@@ -3,6 +3,62 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-11-25 16h16Z–16h5xZ — **A FERRAMENTA PRINCIPAL DA ILHA SERVIA O RESULTADO NAS QUATRO CATEGORIAS COM ZERO LINK DE LOJA, E O PISO ESTAVA PUBLICADO NO BANCO HÁ NOVE DIAS: ERA A 25.2-c UM ANDAR ACIMA**
+
+**A ILHA DESTA EXECUÇÃO:** rodametria, por **foco** (`foco.md`, foco total e absoluto desde 27/10). Pela **1.2** não houve escolha de ilha a fazer.
+**Passo 1 do disparo, medido:** `git fetch origin main` trouxe `origin/main` de `ebcd2e2` para **`787732b`**. **Nenhum branch `claude/*` com trabalho pendente** — `origin/main..origin/claude/dreamy-mccarthy-e3lnbe` veio **vazio** e o local estava no mesmo commit. Nada a mergear antes.
+**Reserva:** `executando_desde` às **16h16Z**, commit **`d2a0975`**, push aceito **de primeira**. O campo estava `null`, que pela **1.1** já significa que não há bloco da Fundação vivo; o último commit na pasta era das **15h47Z** e é da **RONDA** (Sentinela), que pela 1.1 **não reserva nada**. **Renovada às 16h33Z** no commit do desembarque. *(E o rabo de comentário da reserva anterior — 8 linhas — saiu junto, pela lição de 17/11 deste mesmo cabeçalho.)*
+**REDE PELA 20.2, REMEDIDA E NÃO HERDADA:** **três** passadas, `rodametria.com.br` em **200** nas três, com `robometria.com.br` e `aquametria.com.br` em **200** nas mesmas três — nove medições verdes.
+
+### O TRABALHO: O DESPACHO DA RONDA DE HOJE, INTEIRO NUMA EXECUÇÃO (18.2)
+
+A ronda de 25/11 fechou às 15h4xZ com **três itens**. O **item 3 é do Raphael** e não é da Fundação — ele pede permissão de rota (`shopee.com.br/api/v4/pdp/*`) na rotina agendada, ou a decisão de que o teste de vida da 25.4 sai de rotina agendada e passa a ser gesto de sessão dele. Esse fica aberto, reescrito pela **18.3**. Os **itens 1 e 2 são de projeto**, e os dois saíram nesta passada.
+
+**A CAUSA DOS DOIS É A MESMA, E ELA NÃO É DE DADO: É DE LUGAR.** O `piso_da_busca` das **3 de 3** consultas está publicado em `dados/anuncios-por-consulta.json` desde **16/11**, com `url_busca`, `url_busca_produto` e `sub_id_1`. E `anuncios-por-consulta` tem **`publicar: false`** no manifest, logo **não existe como option no ar** — a cicatriz que o ramo da data pagou em 18/11, quando a revisão 109 desembarcou e a página continuou sem `dateModified`. O piso precisava **viajar** para dentro de um arquivo publicado, e era isso que faltava.
+
+**ITEM 1 (ALTA) — A HOME.** O bloco "À venda agora nesta categoria" nascia com a frase certa sobre a ausência (*"nenhum dos 14 anúncios que a gente colheu declara a potência NOMINAL"*) e com **nenhuma porta de compra**. Pela **25.2-c regra 2** a página que serve estado degradado **serve o piso, ou DIZ que está sem link de loja hoje** — e ela não fazia nem uma nem outra.
+
+**ITEM 2 (NORMAL) — A F3.** `/peso-maximo-patinete-eletrico/` responde que três de três veículos aguentariam o peso, **nomeia os três**, e serve zero link. Ela **diz** a ausência, e por isso não era ALTA; o que ficava aberto era a outra metade — o piso de `patinete eletrico adulto` publicado e a página mandando para lugar nenhum quem acabou de ler "três aguentam o seu peso".
+
+### O CONSERTO MORA NA CASCA, E É POR ISSO QUE UM GESTO FECHOU OS DOIS (32.6-b)
+
+`rodametria_casca_piso_do_bloco()` nasceu na casca (1.33.0 → **1.34.0**) e o `rodametria_casca_bloco_de_compra()` ganhou um quinto argumento. Com a vitrine vazia e `url_busca` no dado, o bloco serve o piso com **`rel="sponsored noopener"`** e a frase da comissão ao lado; **sem** `url_busca`, ele **diz** que a tela está sem link de loja. **Nunca `href` vazio** — que não é botão morto e sim um botão que recarrega a própria página com o rótulo da loja do lado, a cicatriz de 30/10/2026 nesta ilha. **Com cartão o piso do bloco não entra**, porque a escada da 25.2 já decide dentro do cartão quem sobe.
+
+Com a decisão na casca, **ferramenta nova nasce sem poder servir bloco vazio sem piso**. A F2 não mudou um byte de comportamento: ela tem 4 cartões.
+
+### A ESCOLHA QUE O DESPACHO DEVOLVEU PARA A FUNDAÇÃO, E ELA ESTÁ ESCRITA COM O MOTIVO DE CADA LINHA
+
+A F1 responde por **categoria legal** (a Resolução Contran 996/2023 conhece bicicleta elétrica, autopropelido, ciclomotor e o que passa do ciclomotor) e o banco guarda o piso por **consulta comercial** (o nome que a pessoa digita na loja). **Quatro categorias contra três prateleiras**, e nenhuma correspondência um para um. `PRATELEIRA_DA_CATEGORIA`, em `regras/f1.py`, declara as quatro com o motivo ao lado: a bicicleta tem o mesmo nome nos dois lados; o **autopropelido** é o nome que a resolução dá ao que a loja vende como **patinete**; o **ciclomotor** cai na prateleira da **moto elétrica**, que é a faixa de 1.000 a 4.000 W dos anúncios que a ilha colheu; e **acima do ciclomotor** usa a **mesma** prateleira da moto, porque no corpus medido desta ilha o varejo **não tem** prateleira separada para motocicleta — e inventar uma terceira seria publicar uma prateleira que ninguém mediu.
+
+**A DECISÃO MORA NA REFERÊNCIA E NÃO NO GERADOR**, porque decisão que o gerador toma é decisão que nenhum portão reproduz: `f1ref.piso_por_categoria()` junta o mapa com o banco, e `gerar-f1.py` só grava.
+
+### A FRASE PROMETE A BUSCA E NUNCA A CATEGORIA, E ISSO É A TESE DA ILHA APLICADA AO BOTÃO
+
+Esta ilha existe para dizer que o varejo **não declara** o watt que a regra lê — **0 de 14** anúncios colhidos declaram a potência nominal. Então ela **não tem como afirmar** que o que uma busca crua devolve cai na categoria que a ferramenta acabou de dizer. O molde servido é literal: *"É a busca da loja, do jeito que ela vier, e não uma lista conferida contra a regra — ela pode trazer veículo de outra categoria."* Prometer "os modelos desta categoria" seria vender a classificação que a própria página diz, duas telas acima, que não consegue fazer.
+
+**E SÃO TRÊS MOLDES, UM POR MUNDO**, porque causa trocada é causa errada na cara de quem lê: `piso_de_compra` (tem prateleira), `piso_sem_categoria` (a pessoa não informou o acelerador — e escolher uma prateleira por quem não tem resposta seria escolher o veículo por ela) e `piso_sem_prateleira` (a categoria existe e o banco perdeu a busca — mundo **hoje vazio**, e a coleta de **17/11** apagou o piso de duas consultas desta ilha, então ele não é hipotético). **Nenhuma das três frases é digitada no snippet**: as duas metades — o HTML pré-renderizado e a recomputação no navegador — leem o **mesmo** molde, e o navegador recebe destino e frase **já resolvidos pela mesma função que o PHP usa**.
+
+### POR QUE NENHUM PORTÃO DESTA ILHA VIA, E ISSO É O ACHADO DE MÉTODO DA PASSADA
+
+Não foi esquecimento. **Os portões de ar desta ilha leem o HTML SERVIDO**, e o servidor manda **uma** categoria — a da `resposta_exemplo`. As outras três nascem no **navegador**. Qualquer régua sobre o HTML servido aprovava a home de hoje às 15h1xZ, e **aprovou**: o despacho de 25/11 nasceu de uma medição **feita à mão** pela ronda, não de um portão.
+
+Então a régua do "pronto quando" **virou portão**: `ferramentas/conferir-piso-no-navegador.mjs` abre a home a 390 px, **executa** o formulário nas quatro entradas e conta `a[href*="shopee"]` **visível** (`offsetParent`, porque link escondido conta no `querySelectorAll` e não é saída de compra para ninguém). **11 mundos no `--autoteste`**, com a discordância da **20.8** escrita: a régua velha (só a categoria servida) **aprova** o mundo medido e a nova **reprova**.
+
+**E UMA TRAVA DE MECANISMO QUE O PRÓPRIO CONSERTO PEDIU:** o `<a>` é impresso pelo **PHP**, para a categoria pré-renderizada, e o navegador só troca o `href` dele. Exemplo sem piso deixaria o HTML servido **sem âncora** — e trocar o destino de um link que não existe não mostra link: as outras três ficariam mudas **com o piso no dado**, que é o defeito de hoje voltando pela outra ponta. `teste-f1.py` passa a cobrar: enquanto **alguma** categoria tiver piso, a do exemplo tem de ter.
+
+### O PORTÃO QUE FICOU VERMELHO SEM NENHUM CONSERTO SER DESFEITO — E ELE MEDIA UM ACIDENTE DO CALENDÁRIO
+
+`teste-data-da-pagina.php` reprovou nesta passada com *"a composição velha e a nova tinham de DISCORDAR na home e as duas dizem 2026-11-25"*. A causa: a discordância da **20.8** daquela metade lia os **dois bancos do disco** e só conseguia se medir **enquanto o banco da F1 fosse mais velho que o da F2**. Ao regerar a F1 com o piso dentro, o banco dela virou o **mais novo** — e o primeiro-vence e o mais-recente passaram a devolver a mesma data.
+
+A regra que esta ilha escreve em todo portão desde 06/11 vale aqui também: **os mundos são FABRICADOS, porque régua que nunca viu o mundo dela nasce errada sem poder falhar.** O mundo medido no ar em 23/11 (F1 em 11/11, F2 em 18/11) passa a ser construído com `BANCO_TROCAS`, que aquele mesmo arquivo já usava em cinco lugares, e o mundo de hoje fica **registrado em vez de cobrado** — qual dos dois bancos é o mais novo é fato do calendário, e cobrar fato do calendário é o jeito de um portão ficar vermelho sem nenhum defeito do lado.
+
+### A BANCADA E O DESEMBARQUE
+
+**Bancada de partida (18.5), antes de escolher trabalho:** não houve escolha a fazer — o despacho fura a fila pela 18.1 e a 18.5 manda fechar despacho antes de construir.
+**Bancada de fecho: 67 portões sem rede, 0 falha, APROVADO** — 66 antes do portão novo.
+**Revisão 138 → 140** (a 139 foi o manifest com os três snippets e os dois bancos; a 140 entrou com `datas-de-codigo.json`, que mudou nas **11** páginas porque a casca é `*` e foi reescrita hoje).
+**O desembarque e o veredito da 20.9, lido e não adivinhado:** `ultimo` de **16:16:44**, recente e **anterior** ao commit do manifest, com o `raw` já servindo **140** — veredito **`evento-nao-vencido`**, e a ação certa é **esperar**: reacionar não antecipa vencimento. Teto previsto **16:46:44**, e a ressalva da 20.9 diz que pode cair antes. Os GETs na home são da **20.6** (o WP-Cron dispara por requisição **e quando devido**), e esta ilha não tem o token do Sync.
+
 ## 2026-11-25 13h17Z–13h4xZ — **A TRAVA DAS DUAS FRASES QUE MANDAM ALGUÉM PARA A RUA SEM HABILITAÇÃO DESLIGAVA SOZINHA NO DIA DA DESTRAVADA — 84 COBRANÇAS CONTRA ZERO, MEDIDO NO ARQUIVO REAL**
 
 **A ILHA DESTA EXECUÇÃO:** rodametria, por **foco** (`foco.md`, foco total e absoluto desde 27/10). Pela **1.2** não houve escolha de ilha a fazer.

@@ -209,6 +209,17 @@ vale(false === strpos($sem, 'Link de afiliado'),
 	'sem link de afiliado na tela, a frase da comissao nao sai — frase de comissao '
 	. 'sem link e promessa de comissao que nao existe');
 
+/* 3-b. O GANCHO DA COMISSAO EXISTE PARA O NAVEGADOR (25/11/2026). A F1 troca de
+   categoria sem recarregar, e categoria sem prateleira esconde o link — a frase
+   da comissao tem de sair com ele. Sem o gancho, o PHP sai certo e a tela fica
+   com a promessa sozinha no unico mundo que o servidor nunca serve. */
+vale(false !== strpos($novo, 'data-rdm-piso-comissao'),
+	'a frase da comissao do piso traz o gancho que o navegador usa para a esconder '
+	. 'junto com o link');
+$f1bruto = file_get_contents($RAIZ . '/snippets/rodametria-f1.php');
+vale(false !== strpos($f1bruto, 'pisoComissao.hidden = !(piso && piso.url)'),
+	'o JS da F1 nao esconde a frase da comissao junto com o link');
+
 /* ---------------------------------------------------------------------------
  * 5. BLOCO COM CARTAO NAO SERVE PISO.
  * ------------------------------------------------------------------------- */

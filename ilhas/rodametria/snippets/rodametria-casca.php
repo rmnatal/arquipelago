@@ -71,7 +71,7 @@
    Antes disto a ilha cujo produto e "o preco de hoje" tinha ZERO ocorrencia de
    `dateModified` e de `datePublished` em todo o JSON-LD das 9 URLs. */
 if ( ! defined( 'RODAMETRIA_CASCA_VERSAO' ) ) {
-	define( 'RODAMETRIA_CASCA_VERSAO', '1.34.0' );
+	define( 'RODAMETRIA_CASCA_VERSAO', '1.34.1' );
 }
 
 /* ---------------------------------------------------------------------------
@@ -1589,8 +1589,15 @@ function rodametria_casca_piso_do_bloco( $piso ) {
 		. '<a href="' . esc_url( $url ) . '" rel="sponsored noopener"'
 		. ' target="_blank" data-rdm-piso-link>'
 		. esc_html( rodametria_casca_rotulo_do_piso() ) . '</a></p>'
-		. '<p class="rdm-molde-compra-comissao">Link de afiliado: a gente recebe '
-		. 'comissão da loja se você comprar, e o preço para você é o mesmo.</p>';
+		/* A DIVULGACAO ANDA COM O LINK, E O GANCHO EXISTE PARA ELA ANDAR TAMBEM
+		   QUANDO O LINK SAI PELO NAVEGADOR: a F1 troca de categoria sem recarregar
+		   a pagina, e categoria sem prateleira esconde o link. Frase de comissao de
+		   pe sem link na tela e promessa de comissao que nao existe — o avesso do
+		   que a secao 7 cobra, e o tipo de sobra que so aparece no mundo que o
+		   servidor nunca serve. */
+		. '<p class="rdm-molde-compra-comissao" data-rdm-piso-comissao>Link de afiliado: '
+		. 'a gente recebe comissão da loja se você comprar, e o preço para você é o '
+		. 'mesmo.</p>';
 }
 }
 

@@ -4,7 +4,7 @@
   "nicho": "mobilidade eletrica — acertar os tres numeros antes de comprar um veiculo eletrico: categoria legal (CNH e placa), autonomia real e carga maxima",
   "dominio": "https://rodametria.com.br",
   "versao_manifest": 1,
-  "revisao": 140,
+  "revisao": 142,
   "atualizado_em": "2026-11-25",
   "estado": "nascendo",
   "desembarque": {
@@ -20,8 +20,8 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "ea4f6fc81c1e17aa84f15e1002964dc06295f79f6e7a2312606f5c715210ee45",
-      "versao": "1.34.0",
+      "sha256": "d0a5f169a0c182f2a004963c175faa6196f5a47f939ea1fcac48e83bce9f23be",
+      "versao": "1.34.1",
       "mudou_em": "2026-11-25",
       "renderiza": [
         "*"
@@ -35,8 +35,8 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "53aacef6c8d6bd22cecedd6eb684154bb126ef79335bb22c9a9a892051383519",
-      "versao": "1.8.0",
+      "sha256": "1a3f5fe540fc72bf77645d17ebdc87c2b48a822c5bd25c7b1b989d33457313c1",
+      "versao": "1.8.1",
       "mudou_em": "2026-11-25",
       "renderiza": [
         "inicio"
@@ -234,7 +234,7 @@
       "arquivo": "dados/datas-de-codigo.json",
       "formato": "json",
       "publicar": true,
-      "sha256": "a4448b7ecd704ef59a5a4c7d52be8f4e031b631937483900c38d4c733f1b9999",
+      "sha256": "2177e7a7f1176acdfa06d10c97a6d13fc57677f0253c4c4cd45038ad5072c51a",
       "mudou_em": "2026-11-25",
       "descricao": "A DATA EM QUE O CODIGO DE CADA PAGINA MUDOU, e ela e a TERCEIRA fonte da data de uma pagina (23/11/2026, segunda metade do item 2 do despacho da ronda deste dia). As duas primeiras sao os bancos de que a pagina e feita; esta e o codigo que a desenha. `publicar: true` NAO e opcional aqui e e o motivo de este arquivo existir: a alinea (c) do pedido era \"o `mudou_em` viajar ate o ar\", e a casca NAO le o manifest.json — ela le as options que o Sync grava, e o Sync so grava item de dado publicavel. Entao a data do codigo tinha de VIRAR DADO para alcancar a tela. Escrito por `ferramentas/gerar-datas-de-codigo.py`, que o compila do `mudou_em` por item do manifest pelo campo `renderiza` de cada snippet, e cobrado por `ferramentas/teste-datas-de-codigo.py`. NENHUMA data e digitada no caminho: `mudou_em` recebe a data de hoje no mesmo gesto em que o `sha256` do item troca, e este arquivo e funcao PURA do manifest — sem data de geracao dentro, para o `sha256` dele nao trocar todo dia e a revisao nao subir por nada."
     }

@@ -97,7 +97,7 @@ if ( ! defined( 'RODAMETRIA_F1_VERSAO' ) ) {
 	   SEM o formulario da F1 e SEM a barra fixa, e o `/casca` nao trazia
 	   `rodametria-f1` nenhum — que e exatamente a ausencia que a 20.7 desenhou
 	   para ser o sinal. Tres dos cinco portoes de pagina ficaram verdes. */
-	define( 'RODAMETRIA_F1_VERSAO', '1.8.0' );
+	define( 'RODAMETRIA_F1_VERSAO', '1.8.1' );
 }
 
 if ( ! defined( 'RODAMETRIA_ID_DADOS_F1' ) ) {
@@ -1157,6 +1157,7 @@ add_action( 'wp_footer', function () {
   var pisoFrase = document.querySelector('[data-rdm-piso-frase]');
   var pisoBloco = document.querySelector('[data-rdm-piso]');
   var pisoLink = document.querySelector('[data-rdm-piso-link]');
+  var pisoComissao = document.querySelector('[data-rdm-piso-comissao]');
   if (!form || !caixa) { return; }
 
   function num(x){
@@ -1355,6 +1356,9 @@ add_action( 'wp_footer', function () {
         if (pisoLink) { pisoLink.removeAttribute('href'); }
       }
     }
+    /* A FRASE DA COMISSAO SAI COM O LINK: ela e a divulgacao DELE, e nao um aviso
+       geral da pagina. De pe sem link na tela ela promete comissao que nao existe. */
+    if (pisoComissao) { pisoComissao.hidden = !(piso && piso.url); }
 
     if (blocoMun) {
       var ps = blocoMun.querySelectorAll('p');
