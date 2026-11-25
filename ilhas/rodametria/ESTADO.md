@@ -16,29 +16,29 @@ urls_publicadas: 11       # ZERO URL nasceu nesta passada (25/11), e A ORACAO SO
                           # proteger. Quem substituir comentario de varias linhas apaga o rabo.
 ultima_ronda: 2026-11-25T15:40Z   # RONDA DIARIA TECNICA de 25/11/2026 (secao 12.2, item 3). SUBSTITUI o valor anterior 2026-11-23T14:59Z, que segue registrado no PROMPT.md. Medida na revisao 138 (/status 138 = manifest 138, versao_sync 1.1.5): 11 de 11 URLs em 200 em DUAS leituras com quebra de cache, tres portas da 29.2 verdes com os content-types certos, 404 virgem na pagina da propria ilha, 31 blocos de JSON-LD que parseiam, breadcrumb nas 10 internas, console silencioso nas 5 paginas abertas no navegador, zero entidade HTML dentro de script, zero pagina orfa, e 37 de 37 contas das tres ferramentas certas na mao (F1 em 17 entradas, F2 em 13, F3 em 7). ZERO consertos: nenhum dos tres defeitos e da lista 19.1 — DECIMA ronda seguida desta ilha com zero conserto. FECHADO E CONFERIDO NO AR: o achado de ALTA de 23/11 — /veiculos/moto-eletrica/ passou de ZERO a 5 links internos de miolo e serve o piso da 25.2-c com rel sponsored. ACHADO DE ALTA DE HOJE: a HOME serve o resultado da F1 nas QUATRO categorias com ZERO link de loja, e o piso da 25.2 esta publicado no banco desde 16/11 nas 3 de 3 consultas — e a mesma 25.2-c foi consertada na moto eletrica seis dias antes. E O TETO DO ANTI-ROBO DA SHOPEE CAIU DE ~15 LEITURAS PARA UMA: a rota da 25.4 foi recusada pelo classificador pela TERCEIRA ronda seguida, e o contorno de ler o corpo passou na 1a leitura (item vivo) e levou CAPTCHA na 2a navegacao — 1 de 10 itens testado, 9 nao testados, e os 58 anuncios seguem sem reteste desde 23/11.
 primeira_indexacao: null  # as duas primeiras URLs foram ao ar hoje; indexacao e trabalho de dias. Quem grava este campo e a leitura semanal, lendo o Search Console.
-ultima_execucao: 2026-11-25T13:4xZ   # A FILA ESTAVA VAZIA OUTRA VEZ, e
-                         # o bloco veio da LICAO que a passada das 10h4xZ de
-                         # HOJE pre-registrou: trava condicionada a uma
-                         # afirmacao do mundo desliga junto com ela. A regua
-                         # achou UM lugar, e e o campo mais perigoso desta
-                         # ilha: em ferramentas/teste-f1.py as TRES cobrancas
-                         # sobre as frases de HABILITACAO moravam dentro de
-                         # `if hab.get("status") != "publicavel"`. A constante
-                         # do CTB esta `pendente` e e destravada pelo MESMO
-                         # pedido de uma linha (`*.gov.br`) que os limiares
-                         # esperaram 19 dias — entao o dia em que o portao
-                         # parava de olhar e o dia em que o Raphael atender o
-                         # pedido, que e quando a pagina comeca a FALAR de
-                         # habilitacao.
-                         # MEDIDO NO ARQUIVO REAL com a constante posta em
-                         # `publicavel`: a regua VELHA faz 0 cobranca e a NOVA
-                         # faz 84, com 3 reprovadas. Revisao 138 no ar e
-                         # CONFERIDA. O detalhe esta no `bloco_atual` e no
-                         # REGISTRO.md.
-executando_desde: 2026-11-25T16:33Z   # RESERVA RENOVADA pela 1.1 no commit do
-                         # desembarque: a reserva das 16h16Z ia vencer e o bloco
-                         # segue vivo. Renovar e uma linha, e e o que faz a
-                         # proxima execucao nao precisar do git para saber.
+ultima_execucao: 2026-11-25T17:13Z   # O DESPACHO DA RONDA DE HOJE SAIU
+                         # INTEIRO NUMA EXECUCAO (18.2): os itens 1 (ALTA) e 2
+                         # (NORMAL) fechados e CONFERIDOS NO AR na revisao 145, e o
+                         # item 3 reescrito pela 18.3 porque e decisao do Raphael.
+                         # A home servia o resultado da F1 nas QUATRO categorias com
+                         # ZERO link de loja, com o piso das tres prateleiras
+                         # publicado no banco desde 16/11 — a 25.2-c um andar acima
+                         # da pagina de produto, que pagou a mesma classe em 19/11.
+                         # MEDIDO NO AR com o formulario executado a 390 px: 1 link
+                         # visivel em 4 de 4, cada um na prateleira da categoria.
+                         # E O ACHADO QUE NAO ESTAVA NO DESPACHO: o portao de pixel
+                         # REPROVOU a home no minuto em que ela ganhou o primeiro
+                         # botao de compra da vida dela (1.792 px contra o teto de
+                         # 1.400 da 32.5) — ele dizia `nao se aplica (a pagina nao
+                         # vende nada)` e nao media. Remedido: 11 de 11 dentro da
+                         # 32.5, pior botao em 1.366 px.
+                         # A HORA DESTE CAMPO SAI DO `date -u` NA MESMA LINHA DE
+                         # COMANDO QUE A GRAVA, nunca digitada.
+executando_desde: null   # LIMPO no fecho desta execucao (passo 7 da secao 1).
+                         # Reservada as 16h16Z (commit d2a0975), aceita de
+                         # PRIMEIRA, e RENOVADA as 16h33Z pela 1.1 porque o bloco
+                         # passou de 40 minutos — a espera do cron da 20.9 e parte
+                         # do bloco, nao tempo morto.
 rede: aberta em 2026-11-25   # 20.2, REMEDIDA e nao herdada nesta
                              # execucao das 13h17Z: `rodametria.com.br/` e
                              # `/veiculos/` em 200, com example.com em 000 no
@@ -62,163 +62,97 @@ rede: aberta em 2026-11-25   # 20.2, REMEDIDA e nao herdada nesta
                              # procedencia dela nesse dia.
 bloqueada_por: null      # obrigatorio pela secao 2. `null` DE PROPOSITO: o que falta (gov.br para a F1, as prefeituras para a camada municipal, as tres etiquetas do Mercado Livre) trava a FABRICA e nao a ILHA, e isso se escreve no despacho, que e o canal da 12.2. Preenche-lo congelaria tambem os blocos que ja podem andar.
 bloco_atual: |
-  A TRAVA DAS DUAS FRASES QUE MANDAM ALGUEM PARA A RUA SEM HABILITACAO
-  DESLIGAVA SOZINHA NO DIA DA DESTRAVADA — 84 COBRANCAS CONTRA ZERO, MEDIDO NO
-  ARQUIVO REAL. Revisao 138 no ar e CONFERIDA (18.4).
+  A FERRAMENTA PRINCIPAL DA ILHA SERVIA O RESULTADO NAS QUATRO CATEGORIAS COM
+  ZERO LINK DE LOJA, E O PISO DAS TRES PRATELEIRAS ESTAVA PUBLICADO NO BANCO
+  DESDE 16/11 — a 25.2-c um andar acima da pagina de produto, que pagou a MESMA
+  classe em 19/11. Revisao 145 no ar e CONFERIDA (18.4).
 
-  O BLOCO NAO VEIO DA FILA: a fila de construcao segue VAZIA, e de verdade — o
-  bloco 5 espera a pauta das maos (17.1), pagina nova de produto esta travada
-  pela 30.8, a profundidade da F1 e da F3 esta fechada nas duas paredes de
-  egresso, e nenhum despacho aberto e para a Fundacao desta ilha. Valeu a LICAO
-  DE METODO que a passada das 10h4xZ de HOJE deixou escrita: `grep` por
-  cobranca condicionada ao estado do mundo. Segunda passada seguida em que uma
-  regua escrita pela anterior acha trabalho em um comando.
+  O DESPACHO DA RONDA DE HOJE SAIU INTEIRO NUMA EXECUCAO (18.2): item 1 (ALTA,
+  a home), item 2 (NORMAL, a F3) e o item 3 reescrito pela 18.3 — ele e decisao
+  do Raphael sobre permissao de rota da Shopee na rotina agendada.
 
-  O QUE ESTAVA ESCRITO: em ferramentas/teste-f1.py a linha era
-  `if hab is not None and hab.get("status") != "publicavel":`, e dentro dela
-  moravam AS TRES cobrancas sobre habilitacao — a proibicao de `dispensa CNH`,
-  a de `exige/precisa de habilitacao`, e `habilitacao_respondida is False`. A
-  constante `exigencia-de-habilitacao-por-categoria-ctb` esta `pendente`.
+  A CAUSA NAO ERA DE DADO, ERA DE LUGAR, e isso e a 25.2-c regra 1 ao pe da
+  letra: o piso morava em `anuncios-por-consulta.json`, que tem `publicar:
+  false` e NAO existe como option no ar. Ele passou a viajar em
+  `compra.piso_por_categoria` (F1) e `compra.piso_da_busca` (F3), dentro dos
+  arquivos publicados.
 
-  POR QUE O DIA DA VIRADA NAO E HIPOTETICO: essa constante e destravada pelo
-  MESMO pedido de uma linha (`*.gov.br` na lista de dominios permitidos) que os
-  limiares da categoria esperaram 19 dias — esta escrito em `canal_de_coleta`,
-  na propria constante, e e despacho ALTA aberto. No minuto em que o Raphael
-  atender, o status vira `publicavel`, a pagina comeca a FALAR de habilitacao e
-  as tres cobrancas param de olhar. E o contrario do que o momento pede.
+  O CONSERTO MORA NA CASCA (32.6-b) e por isso UM gesto fechou os dois itens:
+  `rodametria_casca_piso_do_bloco()` serve o piso com `rel="sponsored noopener"`
+  quando nao ha cartao, ou DIZ que a tela esta sem link de loja — as duas saidas
+  que a 25.2-c regra 2 conhece, e nunca `href` vazio. Com cartao o piso do bloco
+  nao entra, porque a escada do cartao ja o serve. Ferramenta nova nasce sem
+  poder servir bloco vazio sem piso.
 
-  POR QUE ESTA TRAVA E NAO OUTRA: de manha o que ficou sem portao foi um campo
-  de banco; aqui era a frase que esta ilha nomeia como o seu erro caro. O
-  PROMPT.md e literal — "Errar 'dispensa CNH' num veiculo que e ciclomotor manda
-  a pessoa para a rua sem habilitacao" — e a propria home diz, na dobra da
-  procedencia, que "errar para o lado permissivo aqui manda alguem para a rua
-  sem habilitacao".
+  A ESCOLHA QUE O DESPACHO DEVOLVEU PARA A FUNDACAO ESTA ESCRITA COM O MOTIVO DE
+  CADA LINHA, em `PRATELEIRA_DA_CATEGORIA` (regras/f1.py): quatro categorias
+  LEGAIS contra tres prateleiras COMERCIAIS, e a da moto responde por duas
+  (ciclomotor e acima do ciclomotor), porque no corpus medido desta ilha o varejo
+  nao tem prateleira separada para motocicleta — inventar uma terceira seria
+  publicar uma prateleira que ninguem mediu. A decisao mora na REFERENCIA e nao
+  no gerador: decisao que o gerador toma e decisao que nenhum portao reproduz.
 
-  MEDIDO NO ARQUIVO REAL e nao so em mundo fabricado (constante posta em
-  `publicavel`, portao rodado, arquivo revertido por `git checkout`): a regua
-  VELHA faz 0 cobranca e a NOVA faz 84, com 3 reprovadas — constante
-  `publicavel` SEM `url`, com `tipo: pendente`, e `habilitacao_respondida:
-  false` contra status publicavel.
+  E A FRASE PROMETE A BUSCA E NUNCA A CATEGORIA, que e a tese da ilha aplicada ao
+  botao: 0 de 14 anuncios colhidos declaram a potencia NOMINAL, logo a ilha nao
+  tem como afirmar que o que a busca devolve cai na categoria que a ferramenta
+  acabou de dizer. Tres moldes, um por mundo — tem prateleira, sem categoria
+  (a pessoa nao informou o acelerador) e sem prateleira (o banco perdeu a busca,
+  mundo hoje vazio e NAO hipotetico: a coleta de 17/11 apagou o piso de duas
+  consultas desta ilha). Causa trocada e causa errada na cara de quem le.
 
-  O CONSERTO separa o que estava no mesmo `if`, e NENHUM PORTAO NOVO NASCEU
-  (31.2 — o mesmo portao trocou de pergunta, como o de manha trocou "tem de ser
-  null" por "tem de ser DERIVAVEL"):
-  (a) ABSOLUTA, nos dois mundos: `dispensa CNH` e `dispensa habilitacao`
-      proibidas SEMPRE. Nao e tom: sao afirmacoes CATEGORICAS e PERMISSIVAS
-      sobre o veiculo, e o CTB NAO EXIME POR VEICULO — condiciona por categoria
-      e por quem conduz, entao a frase segue falsa para parte de quem a le mesmo
-      com o texto oficial na mao. A forma `dispensa habilitacao` entrou na lista
-      porque foi ESSA a que a ronda de 06/11 achou no ar em `/veiculos/`, e nao
-      a que o portao procurava.
-  (b) CONDICIONAL com as DUAS pontas: `exige/precisa de habilitacao` segue
-      proibida enquanto pendente, e no mundo invertido o portao TROCA DE
-      COBRANCA — exige `url`, `verificado_em` e `tipo: oficial` da constante, a
-      MESMA regua que o limiar da categoria ja aplica a si na mesma metade (B)
-      do mesmo arquivo. Essa assimetria entre duas constantes do mesmo tipo no
-      mesmo portao e o que de fato estava sem ninguem olhando.
-  (c) A EQUIVALENCIA: `habilitacao_respondida == (constante publicavel)`, UMA
-      afirmacao nos dois mundos, no desenho que teste-f2.py ja usa certo no
-      `degrau_3_disponivel` (linha 148). O arquivo vizinho estar certo e o que
-      torna o defeito nitido: a ilha ja sabia escrever a regua.
+  MEDIDO NO AR, as 17h1xZ, do jeito que o despacho mandou medir: formulario
+  EXECUTADO no Chromium a 390 px, `a[href*="shopee"]` contado no documento depois
+  de cada resposta — 1 link VISIVEL em 4 de 4 categorias, cada um na prateleira
+  da sua: bicicleta -> 2qWBjBH7i9, autopropelido -> 5VWwu572a8 (a do patinete),
+  ciclomotor e acima do ciclomotor -> 2gClWsHpKL (a da moto). A F3 com 1 ancora,
+  `rel="sponsored noopener"`, zero `href` vazio.
 
-  A DISCORDANCIA DA 20.8 ESCRITA COMO FUNCAO:
-  `discordancia_da_20_8_na_habilitacao()` refaz a regua VELHA ao lado da nova em
-  3 mundos e exige que a velha APROVE e a nova REPROVE, mais 2 mundos SAOS que
-  as duas aprovam (20.5 — regua que so fica mais severa e regua que vai ser
-  ignorada). A regua e PURA e nao le arquivo: devolve `(passou, frase)` por
-  cobranca, e O NUMERO DE COBRANCAS NAO DEPENDE DO STATUS. E isso,
-  mecanicamente, que faz a trava nao desligar.
+  O ACHADO QUE NAO ESTAVA NO DESPACHO, E ELE E O DE METODO: O PORTAO DE PIXEL
+  REPROVOU A HOME NO MINUTO EM QUE ELA GANHOU O PRIMEIRO BOTAO DE COMPRA DA VIDA
+  DELA — 1.792 px contra o teto de 1.400 da 32.5. Enquanto a home nao servia link
+  de loja nenhum, aquele portao dizia "nao se aplica (a pagina nao vende nada)" e
+  NAO MEDIA: o teto nunca havia sido exercido ali. E a familia da 32.5-c — a
+  regra alcancava a pagina e nunca havia rodado contra o dado que a acionaria.
+  Consertado por onde o contrato ja apontava: a camada 2 (o limite municipal, 213
+  px com <h2> proprio) saiu de ENTRE o resultado e o bloco de compra, porque a
+  32.1 item 5 diz "o BLOCO DE COMPRA imediatamente abaixo do resultado"; e o piso
+  subiu para ANTES da causa, com os dois moldes encurtados. Remedido: 11 de 11
+  dentro da 32.5, pior botao em 1.366 px.
 
-  E A MESMA FRASE VENCIDA ESTAVA EM QUATRO LUGARES MAIS, os quatro corrigidos
-  aqui — a licao da manha aplicada a propria correcao: a
-  `proibicao_explicita` DA PROPRIA CONSTANTE (era o DADO declarando a
-  condicionalidade), o cabecalho do snippet da F1 (versao 1.7.0 -> 1.7.1),
-  dados/fonte-oficial-f1.md (e ali vale extra: e o arquivo que o RAPHAEL
-  preenche, e agora ele avisa que o portao vai reprovar por procedencia) e
-  dados/especificacao-calculadoras.md, mais a oracao do manifest.json.
+  POR QUE NENHUM PORTAO DESTA ILHA VIA O DEFEITO, e nao foi esquecimento: os
+  portoes de ar leem o HTML SERVIDO, e o servidor manda UMA categoria — a da
+  `resposta_exemplo`. As outras tres nascem no NAVEGADOR. O despacho de hoje
+  nasceu de uma medicao FEITA A MAO pela ronda, nao de um portao. A regua do
+  "pronto quando" virou portao: `conferir-piso-no-navegador.mjs`, 11 mundos, com
+  a discordancia da 20.8 escrita (a regua velha aprova o mundo medido, a nova
+  reprova). Mais `teste-piso-do-bloco.php`, 58 afirmacoes sem rede.
 
-  HONESTIDADE SOBRE O TAMANHO, DITA PARA NINGUEM LER ISTO COMO "A TELA ESTAVA
-  ABERTA": a TELA NAO estava desprotegida, e isso foi medido ANTES de escrever o
-  conserto. teste-afirmacao-de-tela.py cobra afirmacao de habilitacao em TODAS
-  as URLs e no JSON-LD, SEM depender do status, e por lista de PERMISSAO, com o
-  pedagio escrito no proprio comentario. Isso e desenho, nao defeito, e nao foi
-  tocado. E `habilitacao_respondida` e DERIVADO pelo gerador, nunca digitado —
-  logo a cobranca (c) e cinto de seguranca, nao buraco aberto. O que de fato
-  ficava sem portao algum era a PROCEDENCIA da constante do CTB no mundo
-  publicavel, e duas das tres falhas medidas sao dela.
+  E UMA TRAVA DE MECANISMO QUE O PROPRIO CONSERTO PEDIU: o <a> e impresso pelo
+  PHP, para a categoria pre-renderizada, e o navegador so troca o `href` dele.
+  Exemplo sem piso deixaria o HTML servido SEM ANCORA, e trocar o destino de um
+  link que nao existe nao mostra link — as outras tres ficariam mudas COM o piso
+  no dado. `teste-f1.py` cobra: enquanto ALGUMA categoria tiver piso, a do
+  exemplo tem de ter.
 
-  OS NUMEROS: teste-f1 1479 afirmacoes e 0 falha (eram 1234 em 06/11);
-  validar-banco 0 falha — e ele importa aqui porque a regua (c) dele cobra prosa
-  que afirma status de constante CONTRA constantes.json, e o texto novo passou
-  por ela; teste-afirmacao-de-tela 2482 afirmacoes e 0 falha; bancada 65
-  portoes sem rede e 71 COM REDE, 0 falha nas duas, antes e depois.
+  BANCADA DE FECHO: 67 portoes sem rede, 0 falha. Portao de ar APROVADO, console
+  limpo nas 11, pixel dentro da 32.5 nas 11. Revisao 138 -> 145 em tres
+  desembarques (140, 142, 145), as 11, 10 e 10 linhas de log todas dizendo `ok`.
 
-  O DESEMBARQUE, E A 20.9 ACERTOU PELA QUARTA VEZ: push as 13h28Z, `ultimo`
-  13:17:03, teto 13:47:03, raw ja servindo 138 — veredito `evento-nao-vencido`,
-  ESPERAR e nao reacionar. A revisao entrou as 13:39:52Z, 7m11s ANTES do teto,
-  com ZERO rodada desperdicada. As quatro medicoes: 6m37s (05/11), 7m27s
-  (24/11), 8m57s (25/11 manha) e 7m11s agora. O cron roda por VISITA e nao por
-  relogio, e as visitas foram mantidas de pe ate o evento vencer. O log foi lido
-  do FECHO para baixo (20.8): declara 9 aplicado(s) e as 9 linhas de item dizem
-  `ok` — 9 - 9 = 0, entre elas `snippets/rodametria-f1: ok (snippet #10
-  atualizado)`, que prova que o snippet trocou no AR e nao so no repositorio.
+  PROXIMO PASSO DESBLOQUEADO, e ele e o mesmo de ontem porque a fila de
+  construcao segue VAZIA de verdade: o bloco 5 espera `pauta.md`, que e das MAOS
+  (17.1) e cuja rotina nunca rodou; pagina nova de produto segue travada pela
+  30.8; a profundidade da F1 e da F3 segue nas duas paredes de egresso (`*.gov.br`
+  para a constante de habilitacao, e a rota da Shopee para o teste de vida). Com
+  a fila vazia, a regua desta passada foi o DESPACHO, e ele fechou.
 
-  MEDIDO NO AR DEPOIS (18.4): /status 138 = manifest 138; /casca serve
-  `rodametria-f1 1.7.1`, a versao CARREGADA pelo WordPress (20.7); 11 de 11 URLs
-  em 200 com quebra de cache; `dateModified` da home em `2026-11-25`, uma data
-  so no HTML; e as quatro frases contadas na home: `dispensa cnh` 0, `dispensa
-  habilita` 0, `precisa de habilita` 0, `exige habilita` 0.
-
-  A DATA DE CODIGO MUDOU EM UMA PAGINA SO, e e a home: gerar-datas-de-codigo.py
-  levou `inicio` de 24/11 para 25/11 e deixou as outras DEZ onde estavam, que e
-  o que tinha de acontecer — so o snippet da F1 foi tocado. E O CUSTO ESTA DITO:
-  o que mudou nele foi COMENTARIO PHP, que nao e servido, entao a home anuncia
-  25/11 sem um byte de tela diferente. Isso e o desenho que a revisao 128
-  declarou com todas as letras ("quando a casca muda, as 11 mudam, e isso e
-  verdade e nao maquiagem") — a data mede O CODIGO QUE DESENHA, nao a tela. Nao
-  foi mexido aqui: trocar duas variaveis do mesmo mecanismo no mesmo
-  desembarque e o que esta ilha proibe a si mesma.
-
-  A REVISAO 138 NAO MUDA BYTE DE TEXTO DE TELA, dito sem maquiar: dos arquivos
-  do manifest, constantes.json e `publicar: false`, teste-f1.py e ferramenta, e
-  o que sobe e o snippet (comentario e versao) e datas-de-codigo.json. Foi
-  desembarcada de todo jeito porque repositorio em 138 com ar em 136 faz a
-  proxima execucao ler `commit sem Sync` pela 20.4, e esse portao nao distingue
-  os dois casos — a mesma decisao, com o mesmo motivo, das revisoes 135 e 136.
-
-  PROXIMO PASSO DESBLOQUEADO — a fila de construcao segue VAZIA, e o criterio
-  segue pre-registrado (1.2-b.4):
-  1. A PAUTA segue sendo o gesto mais barato do arquipelago (despacho de 24/11
-     13h2xZ, para o Raphael): rodar *Pauta das ilhas* pelas maos e deixar nascer
-     ilhas/rodametria/pauta.md no formato da 17.3. Destrava o bloco 5, o UNICO
-     caminho de construcao que nao depende de egresso. Inalterado por esta
-     passada.
-  2. A F1 NAO ESPERA NORMA, ESPERA FICHA (da passada das 10h4xZ, segue de pe):
-     faltam `acelerador` em 14, `potencia_nominal_w` em 17 e
-     `velocidade_max_kmh` em 17 dos 17 registros. Uma unica ficha com os tres
-     campos faz nascer o PRIMEIRO `categoria` da historia da ilha.
-  3. E O QUE ESTA PASSADA ACRESCENTA, para quem atender o pedido do `*.gov.br`:
-     o dia da destravada do CTB ficou MAIS CARO DE PROPOSITO, e isso e o
-     conserto funcionando. Quem preencher dados/fonte-oficial-f1.md e trocar o
-     status vai ver teste-f1.py REPROVAR ate a constante trazer `url`,
-     `verificado_em` e `tipo: oficial`, e ate `habilitacao_respondida` virar
-     true; e vai ver teste-afirmacao-de-tela.py reprovar a primeira frase nova
-     sobre habilitacao ate ela entrar na lista de permissao DE PROPRIA MAO.
-     Nada disso e defeito: sao os dois pedagios, e eles existem para que ninguem
-     publique exigencia legal sem fonte.
-  4. OS GESTOS DO RAPHAEL, inalterados: os dois campos de configuracao do
-     ambiente, as tres etiquetas do Mercado Livre, a SERP das duas consultas
-     `nao-medida`, o chamado na HostGator e o token do Sync.
-  5. A LICAO DE METODO, e ela e a da manha PROVADA DUAS VEZES NO MESMO DIA: a
-     regua "`grep` por cobranca condicionada ao estado do mundo" achou trabalho
-     em um comando, numa fila vazia, pela segunda passada seguida. O que ela
-     procura tem FORMA FIXA e pode ser procurado de novo: `if <status/condicao
-     do mundo>` com uma cobranca DENTRO, sem ramo para o mundo invertido. E A
-     FORMA CERTA TAMBEM TEM NOME NESTA ILHA, para quem for escrever a proxima:
-     cobrar a EQUIVALENCIA (`campo == (mundo)`), como teste-f2.py faz no
-     `degrau_3_disponivel`, em vez de por a cobranca dentro do `if`. Quem varrer
-     de novo comeca por teste-f2.py:147 para ver o desenho certo e por este
-     conserto para ver o errado.
+  E A LICAO DE METODO PARA A PROXIMA PASSADA, pre-registrada: PORTAO QUE DIZ
+  "NAO SE APLICA" NAO E PORTAO VERDE — e um portao que nao mediu. O de pixel
+  dizia isso da home desde que ela existe, e a frase era verdadeira (a pagina nao
+  vendia nada) e escondia que o teto nunca havia sido exercido. Quem acrescentar
+  a uma pagina a PRIMEIRA coisa de uma familia — o primeiro botao de compra, a
+  primeira foto, o primeiro formulario — roda os portoes que diziam "nao se
+  aplica" naquela pagina ANTES de desembarcar, porque e nessa passada que eles
+  passam a medir e e nessa passada que eles reprovam.
 
 ---
 

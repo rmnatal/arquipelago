@@ -65,38 +65,20 @@ Medido em 27/10/2026 no Chrome do Raphael (`bussola/dossies/rodametria/DOSSIE.md
 
 ---
 
-## DESPACHO DA SENTINELA — 2026-11-25 (RONDA DIÁRIA TÉCNICA, 14h4xZ–15h4xZ) — TRÊS ITENS, E O PRIMEIRO É A 25.2-c NA HOME: A FERRAMENTA PRINCIPAL DA ILHA SERVE RESULTADO NAS QUATRO CATEGORIAS COM ZERO SAÍDA DE COMPRA
+## DESPACHO DA SENTINELA — 2026-11-25 (RONDA DIÁRIA TÉCNICA, 14h4xZ–15h4xZ) — **OS ITENS 1 E 2 ESTÃO FECHADOS E CONFERIDOS NO AR (18.4), NA REVISÃO 145. SÓ O ITEM 3 FICA, E ELE É DO RAPHAEL**
 
-> **ANTES DOS ITENS, O QUE ESTA RONDA FECHOU E CONFERIU NO AR.** O **ACHADO DE ALTA de 23/11** — `/veiculos/moto-eletrica/` recebendo **ZERO** link interno de miolo, porque a listagem da mãe e o bloco de irmãs nasciam da lista de páginas da vitrine e a página degradada não estava nela — **está CONSERTADO e foi MEDIDO NO AR nesta ronda**: a página recebe hoje **5** links de miolo (de `/veiculos/`, de `/veiculos/patinete-eletrico/`, de `/veiculos/bicicleta-eletrica/`, de `/autonomia-patinete-eletrico/` e de `/peso-maximo-patinete-eletrico/`), contados dentro de `<main>` e não no menu nem no rodapé. **Zero página órfã nas 11.** E o piso da **25.2-c** está servido naquela página, visível, com `rel="sponsored noopener"` e o rótulo "Veja todos disponíveis aqui", logo abaixo da frase "A comparação de preços desta página está sem dados hoje". **É essa página consertada que torna o item 1 abaixo nítido: a ilha já sabe fazer, e o lugar onde ela não fez é a home.**
+> **O DESPACHO FOI TRABALHADO INTEIRO NUMA EXECUÇÃO SÓ (18.2)**, a de 25/11 às 16h16Z–17h1xZ. O que fica aqui é o **item 3**, pela **18.3** — teto de honestidade: ele não é da Fundação, é uma decisão de permissão de plataforma que só o Raphael pode tomar. O detalhe de cada conserto está no `REGISTRO.md` de 2026-11-25 16h16Z.
+>
+> **ITEM 1 (ALTA) — FECHADO E CONFERIDO NO AR NA REVISÃO 145.** A home servia o resultado da F1 nas **quatro** categorias com **ZERO** link de loja, e o piso das três prateleiras estava publicado no banco desde 16/11. **MEDIDO NO AR como o despacho mandou medir** — formulário executado no Chromium a 390 px, `a[href*="shopee"]` contado no documento depois de cada resposta —, agora com **1 link visível em 4 de 4**, cada um na prateleira da categoria: `bicicleta elétrica` → `2qWBjBH7i9`, `autopropelido` → `5VWwu572a8` (a prateleira do patinete), `ciclomotor` e `acima do ciclomotor` → `2gClWsHpKL` (a da moto). Todos com `rel="sponsored noopener"`, zero `href` vazio na página. **A causa era de LUGAR e não de dado:** o piso passou a viajar em `compra.piso_por_categoria`, dentro de `f1-respostas.json`, que tem `publicar: true` — e não dentro do bloco da vitrine, que é o que não nasce quando nenhum anúncio classifica. O conserto mora na **casca** (32.6-b), então ferramenta nova nasce sem poder servir bloco vazio sem piso.
+>
+> **A ESCOLHA QUE O DESPACHO DEVOLVEU PARA A FUNDAÇÃO ESTÁ ESCRITA, com o motivo de cada linha, em `PRATELEIRA_DA_CATEGORIA` (`regras/f1.py`):** quatro categorias legais contra três prateleiras comerciais, e a prateleira da moto responde por duas. E **a frase promete a BUSCA e nunca a categoria** — *"É a lista da loja, não uma lista conferida contra a regra"* —, porque esta ilha mede que **0 de 14** anúncios declaram a potência nominal e portanto não pode afirmar que o que a busca devolve cai na categoria que a ferramenta acabou de dizer.
+>
+> **ITEM 2 (NORMAL) — FECHADO E CONFERIDO NO AR NA MESMA REVISÃO.** `/peso-maximo-patinete-eletrico/` serve hoje **1** âncora de loja, com `rel="sponsored noopener"`, logo abaixo da frase que diz que os três veículos que aguentam o peso não têm oferta aberta. Zero `href` vazio. O piso é o da consulta `patinete eletrico adulto`, lido de `compra.piso_da_busca` em `f3-respostas.json`.
+>
+> **E UM ACHADO QUE NÃO ESTAVA NESTE DESPACHO, consertado na mesma passada:** o portão de pixel **reprovou a home** no minuto em que ela ganhou o primeiro botão de compra da vida dela — **1.792 px** contra o teto de **1.400** da 32.5. Enquanto a home não servia link de loja nenhum, aquele portão dizia *"não se aplica (a página não vende nada)"* e **não media**. Consertado por onde o contrato já apontava: a camada 2 (o limite municipal, 213 px com `<h2>` próprio) saiu de entre o resultado e o bloco de compra, porque a **32.1 item 5** pede o bloco de compra *imediatamente* abaixo do resultado; e o piso subiu para antes da causa, com os moldes encurtados. **Remedido: 11 de 11 páginas dentro da 32.5, pior botão de compra em 1.366 px.**
+>
+> **E OS PORTÕES QUE NASCERAM PARA ISTO NÃO VOLTAR:** `ferramentas/conferir-piso-no-navegador.mjs` (a régua do "pronto quando" deste despacho virou portão: 11 mundos no `--autoteste`, com a discordância da 20.8 — a régua velha, que lê o HTML servido, **aprova** a home de hoje às 15h1xZ e a nova **reprova**) e `ferramentas/teste-piso-do-bloco.php` (58 afirmações, sem rede). **Era por isso que nenhum portão desta ilha via o defeito:** os portões de ar leem o HTML **servido**, e a categoria da F1 é decidida no **navegador**.
 
-**ITEM 1 — ALTA. A HOME SERVE O RESULTADO DA F1 NAS QUATRO CATEGORIAS COM ZERO LINK DE LOJA, E O PISO DA 25.2 EXISTE NO BANCO, PUBLICADO, DESDE 16/11. É A 25.2-c COM O MESMO MECANISMO DA MOTO ELÉTRICA, UM ANDAR ACIMA.**
-
-**MEDIDO NO AR em 25/11 às 15h1xZ, na revisão 138, no Chrome do Raphael, executando o formulário de verdade e contando `a[href*="shopee"]` no documento depois de cada resposta — quatro medições, quatro zeros:**
-
-| entrada | categoria que a F1 devolveu | links de loja na página |
-|---|---|---|
-| 350 W · 25 km/h · só pedal assistido | bicicleta elétrica | **0** |
-| 500 W · 25 km/h · com acelerador | autopropelido | **0** |
-| 1.500 W · 40 km/h · com acelerador | ciclomotor | **0** |
-| 5.000 W · 80 km/h · com acelerador | acima do ciclomotor | **0** |
-
-O bloco existe e tem título — **"À venda agora nesta categoria"** — e o que ele serve, nas quatro, é a mesma frase: *"Não temos o que recomendar aqui, e a causa é de ficha e não de estoque: nenhum dos 14 anúncios que a gente colheu declara a potência NOMINAL. 13 declaram um watt sem dizer se é nominal ou de pico — e esse número a regra não lê; o outro não declara watt nenhum."*
-
-**A FRASE ESTÁ CERTA E NÃO É O PISO.** Ela explica, com honestidade e com o número na mão, **por que não há recomendação** — e é exatamente o tipo de ausência honesta que a **25.2-c** nomeia como o momento em que a pessoa **mais** precisa de uma saída. Pela 25.2-c, regra 2, a página que serve estado degradado **serve o piso, ou DIZ que está sem link de loja hoje**. Esta não faz nem uma nem outra: não há `url_busca` nenhuma na página, e a frase não diz em lugar nenhum que a página está sem link de loja. Quem acaba de descobrir que o patinete dele é ciclomotor sai da home sem porta de compra alguma.
-
-**E O DADO NÃO FALTA — ISSO É O CARO.** Medido em `ilhas/rodametria/dados/anuncios-por-consulta.json` nesta ronda, contado registro por registro e não estimado: as **3 de 3** consultas (`bicicleta elétrica`, `moto elétrica`, `patinete elétrico`) têm `piso_da_busca` **completo**, com `url_busca`, `url_busca_produto` e `sub_id_1`, `encurtamento_tentado_em: 2026-11-16` e `medido_em: 2026-11-16`. **A causa não é de dado, é de lugar** — a mesma sentença que a 25.2-c escreveu em 19/11 sobre `/veiculos/moto-eletrica/`, e agora sobre o bloco da F1.
-
-**POR QUE É DESPACHO E NÃO CONSERTO (19.2):** o bloco é gerado em PHP pelo snippet da F1, e **escolher qual piso a categoria da F1 serve é escolha entre duas opções defensáveis** — a F1 responde por *categoria legal* (bicicleta elétrica, autopropelido, ciclomotor) e o banco guarda piso por *consulta comercial* (bicicleta elétrica, patinete elétrico, moto elétrica), e as duas listas não se correspondem uma para uma. Isso é da Fundação, não da ronda.
-
-**PRONTO QUANDO:** nas **quatro** categorias que a F1 devolve, a home servir **pelo menos um** link de loja visível com `rel="sponsored"` saindo de `piso_da_busca` do banco, **ou** o bloco "À venda agora nesta categoria" dizer, com essas palavras ou equivalentes, que a página está **sem link de loja hoje**. Medido como esta ronda mediu: executar o formulário no ar e contar `a[href*="shopee"]` no documento depois de cada uma das quatro respostas. Zero em qualquer uma das quatro reprova. E, pela 25.2-c regra 1, o piso tem de viajar no dado **publicado** que a home degradada lê — nunca dentro do bloco opcional que não nasce.
-
-**ITEM 2 — NORMAL, MESMA FAMÍLIA DO ITEM 1, UM GRAU ABAIXO. `/peso-maximo-patinete-eletrico/` (a F3) TAMBÉM SERVE RESULTADO COM ZERO LINK DE LOJA — MAS, AO CONTRÁRIO DA HOME, ELA DIZ.**
-
-Medido no ar em 25/11 às 15h0xZ, executando a F3 com entradas reais: com 100 kg + 8 kg (108 kg, exige 119 kg) a página responde *"3 dos 3 veículos que declaram carga máxima no nosso banco aguentariam os seus 102 kg com folga — e nenhum deles tem oferta aberta hoje. Não montamos vitrine com item sem link de loja, porque o botão que não leva a lugar nenhum é pior que a ausência dele"*, nomeia os três (MAXSHOT V1, MAXSHOT V1SPRO, PLAYBIK) e serve **0** links de loja na página inteira.
-
-**ISSO SATISFAZ O "OU" DA 25.2-c REGRA 2 e por isso não é ALTA**: a página **diz** que está sem oferta aberta. O que fica aberto é a outra metade: o piso de `patinete eletrico adulto` está publicado no banco e a página manda quem acabou de ler "3 de 3 aguentam o seu peso" para lugar nenhum. Os três registros são `status: rascunho` em `dados/veiculos.json` e por isso o piso da 25.2 não os obriga — **a escolha de servir ali o piso da consulta em vez do piso do item é de projeto, e é da Fundação.**
-
-**PRONTO QUANDO:** ou a página servir o piso da consulta `patinete eletrico adulto` logo abaixo da lista nomeada, com `rel="sponsored"`, ou ficar registrado no `REGISTRO.md` da ilha, com data, que a decisão é deixá-la sem piso e por quê — decisão escrita vale; silêncio não.
 
 **ITEM 3 — PARA O RAPHAEL, E AGORA COM O NÚMERO. O TESTE DE VIDA DA 25.4 NÃO RODOU: O TETO CAIU DE ~15 LEITURAS PARA UMA. TERCEIRA RONDA SEGUIDA.**
 

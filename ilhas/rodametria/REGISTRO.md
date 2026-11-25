@@ -71,6 +71,27 @@ A regra que esta ilha escreve em todo portão desde 06/11 vale aqui também: **o
 1. **A CAMADA 2 SAIU DO MEIO.** A **32.1 item 5** diz, com todas as letras, *"o BLOCO DE COMPRA imediatamente abaixo do resultado"* — e havia **213 px de bloco com título próprio** entre os dois. Ela virou `rodametria_f1_municipal_html()` e desceu para junto das ressalvas, que é onde moram as nuances da resposta. **A 1.2 da especificação não é tocada:** continua bloco separado, com título próprio, e com o contêiner que o navegador reescreve quando a pessoa troca a cidade — o que mudou foi só a **ordem**.
 2. **O PISO VEM ANTES DA CAUSA** no bloco sem cartão, pela mesma razão de pixel que a caixa de ausência da página de produto escreveu em 19/11, e **os dois moldes ficaram curtos**: cada linha acima do botão o empurra na direção do teto. O que a frase não podia perder ficou — *"É a lista da loja, não uma lista conferida contra a regra"* —, porque é ela que impede o título do bloco de prometer a classificação que esta ilha diz, duas telas acima, que o varejo não deixa fazer. **A leitura não perde nada:** o título promete produto, a frase diz na hora o que há, o botão vem, e a causa inteira vem embaixo.
 
+### O FECHO NO AR, NA REVISÃO 145 (18.4)
+
+**O desembarque final:** `ultimo` de **17:09:45**, revisão **145** no `/status` às **17:10:48Z**, `versao_sync` 1.1.5, e as **10 linhas** da revisão corrente no log **todas dizendo `ok`** — nenhuma deixa de dizer (20.4, lida linha por linha e não pelo resumo). Nos três desembarques desta passada (140, 142 e 145) foram **31 linhas de log**, todas `ok`.
+
+**AS QUATRO MEDIÇÕES, feitas como o despacho mandou medir e não como eu quis medir:**
+
+| medição | instrumento | resultado |
+|---|---|---|
+| o piso nas 4 categorias da F1 | formulário **executado** a 390 px no Chromium, `a[href*="shopee"]` contado no documento depois de cada resposta | **4 de 4 com 1 link visível**, cada um na prateleira da sua categoria, `rel="sponsored noopener"`, zero `href` vazio |
+| o teto de pixel da 32.5 | `conferir-32-5-no-navegador.mjs` | **11 de 11 dentro**, pior botão de compra em **1.366 px** (teto 1.400) |
+| a F3 | HTML servido de `/peso-maximo-patinete-eletrico/` | **1 âncora** de loja, `rel="sponsored noopener"`, zero `href` vazio, logo abaixo da frase da ausência |
+| o portão de ar e o console | `conferir-no-ar.py` e `medir-console-no-navegador.mjs` | **APROVADO**; **11 de 11** com console limpo (0 error, 0 exceção, 0 recurso caído) |
+
+Os destinos, por prateleira e não por acaso: `bicicleta elétrica` → `s.shopee.com.br/2qWBjBH7i9`; `autopropelido` → `5VWwu572a8`, que é a prateleira do **patinete**; `ciclomotor` e `acima do ciclomotor` → `2gClWsHpKL`, a da **moto**. **O despacho foi reescrito pela 18.3** deixando só o item 3, que é decisão do Raphael.
+
+### A LIÇÃO DE MÉTODO, PRÉ-REGISTRADA PARA A PRÓXIMA PASSADA
+
+**PORTÃO QUE DIZ "NÃO SE APLICA" NÃO É PORTÃO VERDE — É UM PORTÃO QUE NÃO MEDIU.** O de pixel dizia isso da home desde que ela existe, e a frase era **verdadeira** (a página não vendia nada) e escondia que o teto de 1.400 px **nunca havia sido exercido ali**. É a 32.5-c na forma mais barata de pagar: a regra alcançava a página e nunca havia rodado contra o dado que a acionaria.
+
+**A régua:** quem acrescentar a uma página a **primeira** coisa de uma família — o primeiro botão de compra, a primeira foto, o primeiro formulário — roda os portões que diziam *"não se aplica"* **naquela** página **antes** de desembarcar. É nessa passada que eles passam a medir, e é nessa passada que eles reprovam. Nesta, o portão reprovou **depois** do desembarque, e o conserto custou uma segunda revisão e trinta minutos de espera de cron.
+
 ## 2026-11-25 13h17Z–13h4xZ — **A TRAVA DAS DUAS FRASES QUE MANDAM ALGUÉM PARA A RUA SEM HABILITAÇÃO DESLIGAVA SOZINHA NO DIA DA DESTRAVADA — 84 COBRANÇAS CONTRA ZERO, MEDIDO NO ARQUIVO REAL**
 
 **A ILHA DESTA EXECUÇÃO:** rodametria, por **foco** (`foco.md`, foco total e absoluto desde 27/10). Pela **1.2** não houve escolha de ilha a fazer.
