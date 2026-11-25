@@ -1214,6 +1214,23 @@ def metade_j():
            "a prateleira visivel de %s e a propria chave ASCII do banco (%r), e "
            "ela iria acentuada para a tela" % (cat, v.get("chave")))
 
+    # A CATEGORIA DO EXEMPLO TEM DE TER PISO ENQUANTO ALGUMA TIVER, e esta e uma
+    # trava de MECANISMO e nao de dado: o `<a>` do piso e impresso pelo PHP, para
+    # a categoria PRE-RENDERIZADA, e o navegador apenas troca o `href` dele. Se a
+    # categoria do exemplo nascesse sem piso, o HTML servido sairia sem ancora
+    # nenhuma — e trocar o destino de um link que nao existe nao mostra link: as
+    # outras tres categorias ficariam mudas na tela com o piso no dado, que e o
+    # defeito de 25/11 voltando pela outra ponta. O JS nao remonta componente de
+    # molde nesta ilha, de proposito, e por isso a trava e aqui.
+    cat_exemplo = (servido.get("resposta_exemplo") or {}).get("categoria")
+    algum = [k for k, v in pc.items() if v.get("tem_piso")]
+    if algum:
+        ok(cat_exemplo in pc and pc[cat_exemplo].get("tem_piso"),
+           "a categoria do exemplo (%r) nasceu SEM piso enquanto %d categoria(s) "
+           "tem — o HTML servido sairia sem a ancora que o navegador troca, e as "
+           "outras ficariam mudas na tela com o piso no dado"
+           % (cat_exemplo, len(algum)))
+
     # E OS TRES MOLDES DO PISO EXISTEM E SAO DISTINTOS: um para cada mundo da
     # 25.2-c regra 2, e causa trocada e causa errada na cara de quem le.
     moldes = servido.get("frases_molde") or {}
