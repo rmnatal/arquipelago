@@ -10969,3 +10969,64 @@ bussola/cacados.md    203 -> 223 linhas    21.879 -> 24.389 bytes    (+20/-0)
 - **Preservação do que já existia:** diffstat **+20/-0** — nenhuma linha anterior do `cacados.md` foi apagada, reescrita ou reordenada. O arquivo já terminava em `\n`, conferido com `od -c` antes de escrever, então as linhas novas entraram sem colar na última linha antiga.
 
 Nenhum passo falhou: não há mensagem de erro a registrar. O push foi aceito de primeira (`7919a23..1a9c26e  HEAD -> main`), sem rebase, sem force e sem PR. Nenhum arquivo além do `bussola/cacados.md` nomeado pela instrução e deste `MAOS-LOG.md` foi tocado; nenhum cabeçalho de estado, nenhuma reserva de ilha, nenhum `executando_desde`, nenhum `publicar`, nenhum Sync, nenhuma conta criada. Nenhum bloco de fila foi executado e o `ARQUIPELAGO.md` não foi aberto para decidir nada. Nenhum dado pessoal de terceiro entrou: as 20 linhas são nicho, portão e número, sem contato de ninguém. A hora do título saiu de `TZ=America/Sao_Paulo date` e `date -u` na mesma chamada, nunca digitada de cabeça. Este log vai num commit seguinte ao do trabalho, porque a contagem acima só pôde ser fechada depois de o commit estar confirmado em `origin/main`. Nenhuma seção anterior deste arquivo foi apagada, reescrita ou resumida.
+
+---
+
+## 2026-11-25 — 12h47 BRT (15h47Z) — RONDA DIÁRIA TÉCNICA DA RODAMETRIA: QUATRO ESCRITAS EM UM COMMIT, TUDO NO `main`
+
+**Assunto conferido ANTES do `git fetch`, como manda o prompt:** o disparo é da **rodametria**, ilha deste repositório (`ilhas/rodametria/` existe, com `ESTADO.md`, `PROMPT.md`, `REGISTRO.md`, `VOZ.md` e 36 arquivos em `dados/`), e as quatro escritas são todas de arquivo do Arquipélago — `ilhas/rodametria/PROMPT.md`, `ilhas/rodametria/dados/consertos.md`, `ilhas/rodametria/ESTADO.md` e `dados/PAINEL.md` na raiz. **Nada de outro projeto, nada de contato pessoal de terceiros.** Executado ao pé da letra: nenhuma linha acrescentada, reformatada ou "melhorada" fora do que a instrução deu, e nenhum arquivo tocado além dos quatro nomeados mais este log.
+
+**As quatro âncoras foram encontradas EXATAMENTE como escritas, cada uma com UMA ocorrência, e isso foi verificado por contagem antes de qualquer edição:**
+
+```
+ANCORA 1  ilhas/rodametria/PROMPT.md            linha 68, 1 ocorrencia  (## ~~DESPACHO ... 2026-11-23 (RONDA DIÁRIA TÉCNICA)~~ ...)
+ANCORA 2  ilhas/rodametria/dados/consertos.md   linha  6, 1 ocorrencia  (|---|---|---|---|)
+ANCORA 3  ilhas/rodametria/ESTADO.md            linha 17, 1 ocorrencia  (ultima_ronda: 2026-11-23T14:59Z ...)
+ANCORA 4  dados/PAINEL.md                       reescrita integral, 56 linhas apagadas
+```
+
+**`git status --porcelain` depois das quatro escritas e antes do commit:**
+
+```
+ M dados/PAINEL.md
+ M ilhas/rodametria/ESTADO.md
+ M ilhas/rodametria/PROMPT.md
+ M ilhas/rodametria/dados/consertos.md
+```
+
+**`git diff --stat` (o mesmo que `git show --stat` do commit que foi ao `main`):**
+
+```
+ dados/PAINEL.md                     | 50 +++++++++++++++++++------------------
+ ilhas/rodametria/ESTADO.md          |  2 +-
+ ilhas/rodametria/PROMPT.md          | 48 +++++++++++++++++++++++++++++++++++
+ ilhas/rodametria/dados/consertos.md |  1 +
+ 4 files changed, 76 insertions(+), 25 deletions(-)
+```
+
+**O HASH QUE FOI AO `main`, conferido com `git fetch origin main && git log -1 origin/main` DEPOIS do push:**
+
+```
+7d0df670437489b4260e5afe576f80b8e0a234a6
+ronda diária técnica 25/11 (rodametria): despacho de 3 itens, ultima_ronda, consertos.md e PAINEL.md
+26911a5..7d0df67  HEAD -> main   (push aceito de primeira, sem rebase e sem force)
+```
+
+**CONTAGEM DO QUE MUDOU, conferida RELENDO cada arquivo DEPOIS de gravar — não pelo que eu achava que havia escrito:**
+
+```
+ilhas/rodametria/PROMPT.md            1961 linhas (+47 do bloco + 1 em branco)
+   despacho novo "## DESPACHO DA SENTINELA — 2026-11-25 (RONDA DIARIA TECNICA, 14h4xZ-15h4xZ)": 1 ocorrencia, linha 68
+   ancora de 23/11 PRESERVADA intacta e empurrada para a linha 116: 1 ocorrencia
+   linha em branco entre o fim do bloco e a ancora: presente, como a instrucao pediu
+ilhas/rodametria/dados/consertos.md     24 linhas (+1)
+   linha "| 2026-11-25 |" inserida IMEDIATAMENTE depois do separador: 1 ocorrencia, linha 7
+   linha unica de tabela, sem quebra no meio; 18 linhas de data no total (eram 17)
+ilhas/rodametria/ESTADO.md             298 linhas (sem variacao: 1 linha substituida, 1 por 1)
+   "ultima_ronda: 2026-11-25T15:40Z": 1 ocorrencia, linha 17
+   "ultima_ronda: 2026-11-23T14:59Z": 0 ocorrencias (valor antigo e todo o comentario dele substituidos)
+   nenhuma outra linha do cabecalho YAML tocada
+dados/PAINEL.md                         58 linhas, 10888 bytes (eram 56 linhas) — reescrita integral
+```
+
+**Nenhum passo falhou: não há mensagem de erro a registrar.** As quatro âncoras bateram, nada foi adivinhado, o commit foi único como a instrução pediu, o push foi direto para o `main` e o commit aparece em `origin/main`. Este log vai num commit seguinte, por depender do hash do commit de trabalho.
