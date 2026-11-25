@@ -191,6 +191,14 @@ vale(false === strpos($novo, 'href=""'),
    depois de nenhum `<h2>` novo, porque e a unica saida de compra da tela. */
 vale(strpos($novo, '<a ') < strpos($novo, '</section>'),
 	'o piso esta DENTRO do bloco de compra, e nao depois dele');
+/* E ELE VEM ANTES DA CAUSA, E ISSO E PIXEL MEDIDO E NAO GOSTO (25/11/2026
+   16h4xZ): com a causa em cima — 144 px na home — o botao caiu em 1.792 px e o
+   portao de pixel desta ilha REPROVOU contra o teto de 1.400 da 32.5. Quem
+   reordenar isto sem medir a 390 px reabre aquela reprovacao. */
+vale(strpos($novo, '<a ') < strpos($novo, 'rdm-molde-compra-vazio'),
+	'o piso vem ANTES do paragrafo da causa: cada linha acima do botao o empurra '
+	. 'na direcao do teto de 1.400 px da 32.5, e este e o UNICO botao de compra '
+	. 'que o bloco sem cartao tem');
 
 /* ---------------------------------------------------------------------------
  * 3. O MUNDO SEM PISO: a ausencia e dita.
