@@ -221,3 +221,23 @@ Uma linha por nicho, só para não testar de novo. Não é relatório.
 | 23/11/2026 | suspensão a ar automotiva | volume | 22,2 mil/mês |
 | 23/11/2026 | prensa térmica (sublimação) | volume | 12,1 mil/mês |
 | 23/11/2026 | estação de energia portátil (power station) | volume | 1,9 mil/mês |
+| 26/11/2026 | rack e painel para TV | SERP tomada (MadeiraMadeira, Tok&Stok, Casas Bahia, Mobly, Leroy + IA) | `rack para sala` 201 mil tomada |
+| 26/11/2026 | sapateira | SERP tomada (Tok&Stok, ML, Casas Bahia, Leroy, Madesa + IA) | 246 mil tomada |
+| 26/11/2026 | escrivaninha | SERP tomada (MadeiraMadeira, Tok&Stok, ML, Leroy + IA) | 201 mil tomada |
+| 26/11/2026 | sofá-cama | SERP tomada (Mobly, Casas Bahia, Cama inBox, Abra Casa + IA) | 246 mil tomada |
+| 26/11/2026 | cadeira de praia | SERP tomada (ML, Mor, Americanas, Leroy, Ponto, Casas Bahia + IA) | 165 mil tomada |
+| 26/11/2026 | secador de cabelo | SERP tomada (Taiff, Gama, Casas Bahia, ML, Philips, Americanas) | 201 mil tomada |
+| 26/11/2026 | TV por polegadas | SERP tomada (Casas Bahia, Magalu, Americanas, ML, LG, Samsung + IA) | `tv 50 polegadas` 450 mil tomada |
+| 26/11/2026 | piscina inflável e estrutural | SERP tomada (Bestway, ML, Leroy, Mor, Americanas, Amazon + IA) | — |
+| 26/11/2026 | celular | SERP tomada (Casas Bahia, Motorola, ML, Ponto, Samsung, Magalu + IA) | 673 mil tomada |
+| 26/11/2026 | notebook | SERP tomada (Magalu, Casas Bahia, Americanas, ML, Carrefour, Positivo, Kabum + IA) | 1,22 mi tomada |
+| 26/11/2026 | relógio masculino | SERP tomada (Technos, Vivara, Monte Carlo, Seculus, Mondaine) + seção 2 (não paramétrico) | — |
+| 26/11/2026 | bicicleta não elétrica (speed, MTB, aro 26, feminina, dobrável) | portão 4 (Shopee só vende acessório, não a bicicleta) + volume | 173,5 mil/mês somados |
+| 26/11/2026 | fogão a lenha | 0.9 (SERP mista: lojas + Magalu + Leroy) | 74 mil/mês → conservador ≈ 72 visitas/dia, exigiria ≈ R$ 460 por venda |
+| 26/11/2026 | piano digital | 3.0-d (SERP de `piano` é de piano online: musicca, onlinepianist) | 135 mil/mês informacional |
+| 26/11/2026 | reboque e carretinha | 3.0-d (busca de serviço de guincho) | 90,5 mil + 18,1 mil/mês |
+| 26/11/2026 | ofurô, sauna, banheira e lareira | volume | 49,5 / 40,5 / 49,5 / 33,1 mil/mês → exigiria ≥ R$ 309 por venda em top-3 |
+| 26/11/2026 | pulverizador | volume | 49,5 mil/mês → exigiria ≈ R$ 309 por venda em top-3 |
+| 26/11/2026 | prancha de surf | volume | 40,5 mil/mês → exigiria ≈ R$ 377 por venda em top-3 |
+| 26/11/2026 | casinha de cachorro e galinheiro | volume | 49,5 mil + 18,1 mil/mês |
+| 26/11/2026 | mini moto | volume | 22,2 mil/mês |
