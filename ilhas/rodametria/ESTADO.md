@@ -29,17 +29,13 @@ ultima_execucao: 2026-11-26T10:28Z   # NADA FOI AO AR, E NADA PODIA: a fila de
                          # quatro entram na conta dos 3 em 10.
                          # A hora saiu do `date -u` na MESMA linha de comando que
                          # a grava, nunca digitada.
-executando_desde: null   # LIMPO no fecho desta execucao (passo 7 da secao 1). Reservada as
-                         # 10h16Z (commit 0dca7db), aceita de PRIMEIRA, e NAO renovada:
-                         # o fecho saiu dentro dos 40 minutos da 1.1.
-                         # RABO ORFAO REMOVIDO AQUI em 26/11/2026: havia quatro linhas
-                         # falando de uma reserva das 16h16Z (commit d2a0975), sobra da
-                         # execucao de 25/11 que a passada seguinte substituiu PELA
-                         # PRIMEIRA LINHA e deixou de pe — o mesmo defeito que este
-                         # cabecalho ja registra em `urls_publicadas` e cuja licao esta
-                         # escrita la: quem substituir comentario de varias linhas apaga
-                         # o rabo. Lidas ao pe da letra, elas afirmavam a hora e o commit
-                         # ERRADOS da reserva desta passada.
+executando_desde: 2026-11-26T13:16Z   # RESERVA desta execucao da Fundacao (passo 5 da secao 1),
+                         # ilha em FOCO pela 1.2 (`foco.md` nomeia a rodametria desde 27/10).
+                         # O comentario ANTERIOR, de onze linhas, falava da reserva das 10h16Z
+                         # (commit 0dca7db) desta mesma data e foi apagado INTEIRO aqui — rabo
+                         # de comentario substituido pela primeira linha e o defeito que este
+                         # cabecalho ja registrou duas vezes. A hora saiu do `date -u` na MESMA
+                         # linha de comando que a grava, nunca digitada.
 rede: aberta em 2026-11-26   # 20.2, REMEDIDA e nao herdada na execucao
                              # das 10h16Z: `rodametria.com.br/` em 200 nas TRES
                              # passadas, com `aquametria.com.br` em 200 nas
