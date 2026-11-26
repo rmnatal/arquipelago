@@ -3,6 +3,84 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-11-26 19h16Z–19h3xZ — **TRAVADA POR GESTO HUMANO, PELA 34.2, E ESTA PASSADA NÃO ESCREVEU REGRA NENHUMA — A 34 PROÍBE, E ELA É DE ONTEM. O QUE ELA ENTREGA É A CONTA CORRIGIDA E UM FATO NOVO: O CHROME QUE DESTRAVARIA ESTA ILHA RODOU HOJE, 20 VEZES, EM OUTROS NICHOS. NADA FOI AO AR, E NADA PODIA**
+
+Ilha reservada às **19h16Z** (commit `b6ed535`), aceita de primeira, pela **1.2** — `foco.md` nomeia a rodametria em foco total e absoluto desde 27/10. `executando_desde` estava `null`, que pela **1.1** já significa que não há bloco da Fundação vivo; não houve reserva vencida para o git desempatar. **O foco não estava furado:** nenhum despacho do molde da **32** aberto nas três ilhas da ordem, e nenhum ALTA de ilha **no ar e quebrada** para a **18** furar o foco — os ALTA de `dados/despachos.md` são *precisa do Raphael* ou de ilha sem quebra de página. **Nenhum branch `claude/*` e nenhum PR aberto:** `origin/main..origin/claude/dreamy-mccarthy-a30zgn` vazio nas duas direções.
+
+**ESTA É A QUARTA EXECUÇÃO SEGUIDA SEM UM BYTE DE TELA, TODAS AS QUATRO DE HOJE, E PELA 34.2 ELA NÃO PROCUROU TRABALHO DENTRO DA ILHA.** Fez os cinco passos da 34.2 e nada além.
+
+### 1. A SONDA E A REDE (34.2 item 1) — nona medição da parede em 21 dias, e o ambiente tem nome
+
+Ambiente: **nuvem da Fundação** (Claude Code remoto, egresso por agent proxy). A **20.16** obriga a nomeá-lo, porque a parede é uma por ambiente.
+
+| linha | classe | passada 1 | passada 2 |
+|---|---|---|---|
+| `rodametria.com.br` | controle (20.2) | **200** | **200** |
+| `www.rodametria.com.br` | controle (20.2) | **200** | **200** |
+| `www.gov.br` | parede `.gov.br` (F1/CNH e municipal) | **000** | **000** |
+| `www.casasbahia.com.br` | parede varejo grande (nível 5) | **000** | **000** |
+
+**8 medições, 4 de controle verdes, zero intermitência. Nenhuma mudou.** `000` e nunca `403` — o código de *fora da lista de permitidos*, não de *recusado pelo host*. Pela **regra 1 da 20.16** as outras oito linhas da mesma classe **não foram reabertas**: causa única medida numa linha está medida em todas, e reabrir as dez seria pagar uma execução para reler a mesma recusa. **Os três gatilhos da 20.16 foram lidos antes do `curl`:** a sonda não mudou; **nenhuma notícia de gesto** (o único commit novo no `main` desde o fecho anterior é o da Bússola, e o `MAOS-LOG.md` dele diz com todas as letras *"nenhuma ilha foi reservada, nenhum cabeçalho de estado foi tocado"*); e **nenhum host novo** era necessário. A sonda rodou mesmo assim pelo motivo que a passada anterior já escreveu: **o gesto que abre a lista de permitidos não deixa rastro no repositório**, então a sonda é o único detector do gatilho (a).
+
+**E a ilha está sã, medido no barato (18.5 e 20.2):** `/status` em **147** = `manifest.json` em **147**, `versao_sync` 1.1.5. Nenhum defeito para a 18 furar fila. **Não há o que consertar e não há o que publicar — as duas metades medidas na mesma passada.**
+
+### 2. A FILA RELIDA CONTRA O DADO (34.2 item 2), e as três páginas conferidas no AR e não no cabeçalho
+
+As 11 consultas de `dados/consultas-de-produto.json`, uma por uma. **O veredito não mudou em nenhuma:**
+
+| destino | quantas | quais |
+|---|---|---|
+| já são página no ar | **3** | `patinete elétrico`, `bicicleta elétrica`, `moto elétrica` |
+| fechadas por SERP `tomada` (30.5) | **3** | `patinete elétrico adulto`, `melhor patinete elétrico`, `moto elétrica 1000w` |
+| fechadas pela **30.4** em favor da irmã | **2** | `bike elétrica` e `motos elétricas para adultos` — as duas de 201 mil, sinônimos de página que já existe |
+| `nao-medida`, esperando o Chrome do Raphael | **2** | `patinete elétrico 1000w`, `scooter elétrica 1000w` |
+| remedição **pré-registrada** para 11/12 (30.9) | **1** | `scooter elétrica`, 301 mil buscas — e mesmo em 11/12 é **carona**, não bloco |
+
+**11 de 11 explicadas, zero elegível.** As três do primeiro grupo foram **conferidas no `wp-sitemap-posts-page-1.xml` servido agora, com quebra de cache** — `/veiculos/patinete-eletrico/`, `/veiculos/bicicleta-eletrica/` e `/veiculos/moto-eletrica/` estão entre as **11** URLs listadas —, porque a 34.2 item 2 pede a fila do **dado** desta passada e não do cabeçalho. Os outros eixos seguem onde estavam: **bloco 5** (`/guias/`) espera `pauta.md`, que é das **mãos** pela 17.1 e que a **17.6** proíbe a Fundação escrever; **F1 e F3** atrás da parede da tabela acima; **texto das páginas existentes** proibido pela **12.1**, porque `/veiculos/moto-eletrica/` e `/veiculos/patinete-eletrico/` seguem sem uma única impressão.
+
+### 3. O QUE ESTA PASSADA ACHOU E NÃO ESTAVA EM LUGAR NENHUM: O INSTRUMENTO RODOU HOJE
+
+Não é medição de ilha — é do `main`, e por isso cabia numa passada que não podia tocar a ilha. **Às 14h20 BRT (17h20Z) de hoje**, pouco depois de a passada das 16h19Z fechar esta ilha por falta de gesto, a **Bússola caçadora** rodou e gravou **20 linhas** em `bussola/cacados.md` (commit `3552691`). **Dez delas trazem veredito de SERP classificado a olho** — rack para TV, sapateira, escrivaninha, sofá-cama, cadeira de praia, secador, TV por polegadas, piscina, celular, notebook. E pela **0.6 da `BUSSOLA.md`** esse veredito só existe porque *"a Bússola roda presa ao computador do Raphael, no Claude in Chrome"*, cuja SERP *"satisfaz a 30.8 do `ARQUIPELAGO.md` para `alvo`"*.
+
+**O que isso muda não é a fila: é a leitura do segundo gesto do despacho.** A linha *"abrir no Chrome a SERP das duas consultas `nao-medida`"* está aberta há **27 dias** e é o **único** eixo de página nova que sobra na ilha em foco total. Até hoje ela podia ser lida como *falta um instrumento que não está à mão*. **Não pode mais:** o instrumento rodou **hoje**, **dez vezes**, em nichos que **ainda não são ilha**, enquanto a ilha em **foco total e absoluto** espera **duas** aberturas dele desde 30/10. Nada aqui é acusação e as duas rotinas são do Raphael — o que a medição faz é **tirar do pedido a única interpretação que o tornava caro**.
+
+### 4. A CONTA DA 31.1, E ELA COMEÇA CORRIGINDO A CONTA DA PASSADA ANTERIOR (34.1, 34.3 e 23.4)
+
+O despacho de 16h2xZ afirma *"as **seis** últimas execuções que a reservaram fecharam sem um byte que um visitante veja"*, e a **34** do contrato nasceu com a palavra **"sexta vez seguida"**. **Nenhuma das duas descrições sobrevive ao `REGISTRO.md`**, e a 34.1 manda ler dele:
+
+- as seis nomeadas **não são as últimas seis e não são seguidas**: entre 24/11 13h16Z e 26/11 10h16Z houve **seis** execuções desta ilha e **quatro entregaram no ar** (24/11 16h16Z e 19h17Z, 25/11 16h16Z e 19h16Z);
+- **a série SEGUIDA é de QUATRO, e são as quatro de hoje** — 10h16Z, 13h16Z, 16h19Z e esta. A anterior, 25/11 19h16Z, entregou a barra fixa do telefone. **Quatro passa dos três da 34.2**, então o fecho está autorizado com folga **e com um número que o registro sustenta**;
+- a conta larga que a entrada queria dar — *execuções sem byte de tela desde 18/11* — é de **sete** e não de seis: falta nela a de **23/11 13h18Z**, que também fechou entregando método (a 20.14).
+
+**A proporção, nas dez últimas, da mais nova para a mais velha:**
+
+| execução | no ar? | o que foi |
+|---|---|---|
+| 26/11 19h16Z (esta) | **não** | trava humana — conta corrigida, sonda e escalada |
+| 26/11 16h19Z | **não** | trava humana — a 34 do contrato |
+| 26/11 13h16Z | **não** | trava humana — a 20.16 do contrato |
+| 26/11 10h16Z | **não** | trava humana — as três paredes remedidas |
+| 25/11 19h16Z | **sim** | a barra fixa do telefone nas duas páginas com piso novo |
+| 25/11 16h16Z | **sim** | o link de loja nas quatro categorias da F1, revisão 145 |
+| 25/11 13h17Z | **dúbio** | a trava das duas frases de habilitação — régua, sem byte de tela declarado |
+| 25/11 10h19Z | **não** | o portão do campo de banco — **escolha de trabalho, não trava** |
+| 24/11 19h17Z | **sim** | a âncora do sinônimo da 30.4 na ferramenta |
+| 24/11 16h16Z | **sim** | o sinônimo da 30.4 chegando à tela do patinete |
+
+**4 em 10** (5 com a dúbia), contra o piso de **7 em 10** da 31.1. **Ela não piorou com esta passada:** a janela andou um para cada lado — entrou esta (`não`) e saiu a de 24/11 13h16Z (`não`). **E pela 34.3 ela vai com a causa: das cinco `não`, QUATRO são trava humana** e **uma** é escolha de trabalho. É leitura sobre a **fábrica** — o gesto ou o foco —, nunca sobre a escolha de quem executa, e é isso que impede a **31.6** de abrir item de prioridade alta contra quem não podia fazer nada.
+
+### 5. O QUE ESTA PASSADA DELIBERADAMENTE NÃO FEZ — e é a metade nova, porque a 34.2 é de ontem
+
+**Não nasceu portão, régua, mutação, bancada nem seção de contrato.** A 34.2 proíbe, e o parágrafo final dela diz na cara que a própria 34 *"é a última entrega de método que esta trava autoriza"*. As três passadas anteriores entregaram método (as três paredes, a 20.16, a 34); **esta não entregou nenhum**, e é a primeira em que a regra foi aplicada contra a própria tentação que a criou. **Também não pegou outra ilha (34.4)**, com a robometria tendo seis itens abertos desde 20/11 e três deles link de compra morto no ar: sair do foco é decisão escrita do Raphael, e a Fundação a pede como **pergunta com número**, nunca como ação tomada.
+
+**A escalada foi UM despacho atualizado e não um novo (34.5):** a entrada ALTA de `dados/despachos.md` recebeu a errata do número, a sonda desta passada, a recontagem da fila e o achado do instrumento. **Nenhum despacho novo foi aberto.**
+
+### PRÓXIMO PASSO DESBLOQUEADO — e ele não é da Fundação
+
+**Nenhum.** Enquanto nenhum dos cinco gestos for feito e a linha `ilha:` de `foco.md` nomear a rodametria, a execução seguinte que reservar esta ilha faz **exatamente** os cinco passos da 34.2 e fecha em *travada por gesto humano* — **sem** procurar bloco e **sem** escrever regra. Isso é o resultado certo, não fracasso. **O mais curto dos cinco gestos segue sendo o disparo da *Pauta das ilhas* nesta ilha: é um disparo, não uma decisão, e destrava o bloco 5, o único eixo que não depende de rede nem de SERP.** O segundo mais curto são as **duas SERPs no Chrome** que hoje abriu dez.
+
+---
+
 ## 2026-11-26 16h19Z–16h3xZ — **TRAVADA POR GESTO HUMANO: A SEXTA EXECUÇÃO SEGUIDA DESTA ILHA SEM UM BYTE DE TELA, E A ENTREGA É A REGRA QUE MANDA PARAR DE PROCURAR TRABALHO E ESCALAR — A `34` DO CONTRATO. NADA FOI AO AR, E NADA PODIA**
 
 Ilha reservada às **16h19Z** (commit `9376c53`), aceita de primeira, pela **1.2** — `foco.md` nomeia a rodametria em foco total e absoluto desde 27/10. O campo `executando_desde` estava `null`, que pela **1.1** já significa que não há bloco da Fundação vivo; o último commit na pasta era de hoje às **13h24Z**, o FECHO da passada anterior. **O foco não estava furado:** nenhum despacho do molde da **32** aberto nas três ilhas da ordem, e nenhum despacho **ALTO** de ilha no ar e quebrada para a **18** furar o foco — os ALTA de `dados/despachos.md` são *precisa do Raphael* ou de outra ilha sem quebra. Logo o foco mandou sozinho.

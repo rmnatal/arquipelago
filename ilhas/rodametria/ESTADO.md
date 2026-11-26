@@ -16,122 +16,103 @@ urls_publicadas: 11       # ZERO URL nasceu TAMBEM na passada de 26/11 as 10h16Z
                           # proteger. Quem substituir comentario de varias linhas apaga o rabo.
 ultima_ronda: 2026-11-25T20:15Z   # LEITURA SEMANAL de 25/11/2026 (secao 12.2, item 3). SUBSTITUI o valor anterior 2026-11-25T15:40Z, que era da RONDA DIARIA TECNICA do mesmo dia e segue registrada no PROMPT.md. 1 impressao, 0 clique, posicao 11,0 — a ilha em foco total somou 11 impressoes em quatro semanas (8, 2, 1). Indexacao n/d pela TERCEIRA leitura seguida: o egresso do ambiente das MAOS recusa rodametria.com.br nos DOIS caminhos, e o caminho declarado pela propriedade foi um deles, logo o conserto de caminho esta feito e sobra o egresso, que e passo do Raphael. Nenhuma URL nasceu desde 16/11. Hora dada pela Sentinela, que nao tem repositorio.
 primeira_indexacao: null  # as duas primeiras URLs foram ao ar hoje; indexacao e trabalho de dias. Quem grava este campo e a leitura semanal, lendo o Search Console.
-ultima_execucao: 2026-11-26T16:24Z   # NADA FOI AO AR, E NADA PODIA, e esta e a
-                         # SEXTA execucao seguida desta ilha a fechar assim pela
-                         # MESMA causa nao tecnica (18/11 19h17Z, 24/11 10h17Z,
-                         # 24/11 13h16Z, 26/11 10h16Z, 26/11 13h16Z e esta).
-                         # O que esta passada entrega e a REGRA que manda PARAR de
-                         # procurar trabalho dentro de ilha travada e escalar a
-                         # decisao: a 34 do ARQUIPELAGO.md. A conta da 31.1 esta
-                         # feita no REGISTRO.md e e 4 em 10 (5 se a duvidosa de
-                         # 25/11 13h17Z contar como ar), contra o piso de 7 em 10 —
-                         # e pela 34.3 ela vai com a CAUSA ao lado: cinco das seis
-                         # sem ar sao trava humana, nenhuma e escolha de trabalho.
-                         # A escalada e UM despacho ALTA em dados/despachos.md,
-                         # de hoje as 16h2xZ, com os CINCO gestos e a idade de cada.
-                         # A hora saiu do `date -u` na MESMA linha de comando que
-                         # a grava, nunca digitada.
-executando_desde: 2026-11-26T19:16Z   # RESERVA da execucao da Fundacao de 26/11 as 2026-11-26T19:16Z, pelo passo 5 da secao 1
-                         # (a 1.2 manda reservar igual, foco nao dispensa reserva). A hora saiu do
-                         # `date -u` na MESMA linha de comando que a grava, nunca digitada. O campo
-                         # estava null, logo nao havia bloco da Fundacao vivo pela 1.1 e nao houve
-                         # reserva vencida para o git desempatar.
-                         # Reservada as 16h19Z (commit 9376c53), aceita de PRIMEIRA,
-                         # e NAO renovada: o fecho saiu dentro dos 40 minutos da 1.1.
-                         # Comentario substituido INTEIRO, rabo incluido — o
-                         # cabecalho ja registra duas vezes o defeito de trocar so a
-                         # primeira linha e deixar o rabo afirmando hora e commit
-                         # errados.
-rede: aberta em 2026-11-26   # 20.2, e a conferencia do DOMINIO DA PROPRIA ILHA se
-                             # faz em toda execucao e NAO e herdada:
-                             # `rodametria.com.br/` em 200 e o /status em 200, as
-                             # 16h1xZ desta passada.
-                             # E A PAREDE FOI SONDADA PELA 20.16, NAO REMEDIDA —
-                             # duas linhas (uma por classe) mais um controle, no
-                             # ambiente da NUVEM DA FUNDACAO: www.gov.br 000,
-                             # www.casasbahia.com.br 000, rodametria.com.br 200.
-                             # NENHUMA mudou; OITAVA medicao com o mesmo veredito em
-                             # 21 dias. As outras oito linhas NAO foram abertas de
-                             # proposito, e os tres gatilhos da 20.16 foram lidos
-                             # ANTES do curl: sonda inalterada, nenhuma noticia de
-                             # gesto (nenhum commit novo no main alem do fecho das
-                             # 13h24Z, nenhuma linha nova no MAOS-LOG.md, nenhum
-                             # despacho fechado) e nenhum host novo necessario. A
-                             # sonda rodou mesmo assim por um motivo que vale dito:
-                             # o gesto que abre a lista de permitidos NAO deixa
-                             # rastro no repositorio, logo a sonda e o unico
-                             # detector do gatilho (a).
-                             # AS TRES PAREDES SEGUEM DE PE e o que as derruba e um
-                             # gesto do Raphael: com elas seguem parados o CNH da F1,
-                             # a camada municipal e o nivel 5 da escada.
+ultima_execucao: 2026-11-26T19:24Z   # NADA FOI AO AR, E NADA PODIA, e esta e a
+                         # QUARTA execucao SEGUIDA desta ilha a fechar assim pela MESMA
+                         # causa nao tecnica — e as QUATRO sao de HOJE: 10h16Z, 13h16Z,
+                         # 16h19Z e esta. ESTE NUMERO E UMA ERRATA: o comentario anterior
+                         # dizia SEXTA execucao seguida e nomeava 18/11 19h17Z, 24/11
+                         # 10h17Z e 24/11 13h16Z entre elas — e essas seis NAO sao
+                         # seguidas, porque entre 24/11 13h16Z e 26/11 10h16Z houve seis
+                         # execucoes e QUATRO entregaram no ar (24/11 16h16Z e 19h17Z,
+                         # 25/11 16h16Z e 19h16Z). Contado no REGISTRO.md como a 34.1
+                         # manda: a serie SEGUIDA e 4, e a conta larga (sem byte de tela
+                         # desde 18/11) e 7 e nao 6, porque falta nela a de 23/11 13h18Z.
+                         # Quatro passa dos TRES da 34.2, logo o fecho esta autorizado com
+                         # folga e com numero que o registro sustenta.
+                         # A 31.1 nas dez ultimas segue 4 em 10 (5 com a dubia de 25/11
+                         # 13h17Z), contra o piso de 7 em 10, e NAO piorou nesta passada: a
+                         # janela andou um para cada lado. Pela 34.3 ela vai com a CAUSA:
+                         # das cinco `nao`, QUATRO sao trava humana e UMA e escolha de
+                         # trabalho (25/11 10h19Z, o portao do campo de banco) — o
+                         # comentario anterior dizia `cinco das seis, nenhuma e escolha`, e
+                         # isso tambem era a janela velha. Leitura sobre a FABRICA, nunca
+                         # sobre a escolha de quem executa.
+                         # ESTA PASSADA NAO ESCREVEU REGRA NENHUMA, e e a primeira: a 34.2
+                         # proibe portao, regua, bancada E secao de contrato so para a
+                         # passada ter o que mostrar, e as tres anteriores entregaram
+                         # metodo. A escalada foi UM despacho ALTA ATUALIZADO (34.5), o de
+                         # 16h2xZ em dados/despachos.md — nenhum novo foi aberto.
+                         # A hora saiu do `date -u` na MESMA linha de comando que a grava.
+executando_desde: null   # LIMPO no fecho desta execucao (passo 7 da secao 1).
+                         # Reservada as 19h16Z (commit b6ed535), aceita de PRIMEIRA, e NAO
+                         # renovada: o fecho saiu dentro dos 40 minutos da 1.1.
+                         # Comentario substituido INTEIRO, RABO INCLUIDO — e o rabo era MEU:
+                         # a reserva desta passada trocou so a primeira linha e deixou de pe
+                         # as linhas de 16h19Z e do commit 9376c53, que este cabecalho ja
+                         # registra duas vezes como defeito. Terceiro caso, apagado na mesma
+                         # execucao que o cometeu.
+rede: aberta em 2026-11-26   # 20.2, e a conferencia do DOMINIO DA PROPRIA
+                             # ILHA se faz em toda execucao e NAO e herdada: rodametria.com.br/ e
+                             # www.rodametria.com.br em 200 em DUAS passadas, mais o /status em
+                             # 200 (revisao 147 = manifest 147), as 19h1xZ desta passada.
+                             # A PAREDE foi SONDADA e nao remedida (20.16), no ambiente da NUVEM
+                             # DA FUNDACAO: www.gov.br 000 e www.casasbahia.com.br 000 nas duas
+                             # passadas, contra os 4 controles verdes acima — 8 medicoes, zero
+                             # intermitencia, NONA medicao da serie em 21 dias com o mesmo
+                             # veredito. 000 e nunca 403: fora da lista de permitidos, nao recusa
+                             # do host. As outras oito linhas da classe NAO foram reabertas, pela
+                             # regra 1 da 20.16, e isso e economia deliberada e nao lacuna.
 bloqueada_por: null      # obrigatorio pela secao 2. `null` DE PROPOSITO: o que falta (gov.br para a F1, as prefeituras para a camada municipal, as tres etiquetas do Mercado Livre) trava a FABRICA e nao a ILHA, e isso se escreve no despacho, que e o canal da 12.2. Preenche-lo congelaria tambem os blocos que ja podem andar.
 bloco_atual: |
-  TRAVADA POR GESTO HUMANO, E ISSO AGORA TEM NOME NO CONTRATO. Esta e a SEXTA
-  execucao seguida desta ilha a fechar sem um byte de tela pela MESMA causa nao
-  tecnica (18/11 19h17Z, 24/11 10h17Z, 24/11 13h16Z, 26/11 10h16Z, 26/11 13h16Z
-  e esta). NADA FOI AO AR, e nada podia.
-
-  A ENTREGA E A 34 DO ARQUIPELAGO.md, EM UMA FRASE: ilha em foco travada por
-  gesto humano — a terceira execucao seguida sem nada no ar pela mesma causa nao
-  tecnica NAO procura trabalho: ela escala a decisao e fecha. Cinco partes:
-  34.1 como se conta (pelo REGISTRO.md da ilha); 34.2 os cinco passos do fecho e
-  o que ele NAO faz; 34.3 a conta da 31.1 carregando a causa, para a 31.6 nao
-  abrir item de prioridade alta contra quem nao podia fazer nada; 34.4 a Fundacao
-  nunca pega outra ilha por conta propria (1.2 e 1.2-b.4 sao decisao do Raphael);
-  34.5 a escalada e UM despacho atualizado, nunca um novo por execucao. Entrou
-  nas linhas da Fundacao e da leitura semanal da secao 0 no mesmo commit.
-
-  A FRESTA QUE ELA FECHA, E ESTA ILHA A ABRIU TRES VEZES: a 31.3 proibe bancada
-  com item de conteudo aberto, e a passada das 13h16Z observou, com razao, que
-  REGRA DE CONTRATO NAO E PORTAO — logo nada proibia escrever contrato quando nao
-  havia o que entregar. Foi por ali que tres das seis passadas (30.9 em 23/11,
-  20.16 em 26/11 13h16Z e a 34 agora) entregaram METODO em vez de tela. A 34.2
-  agora diz, com todas as letras, que nao nasce portao, regua, bancada NEM secao
-  de contrato so para a passada ter o que mostrar — e o proprio texto dela diz, na
-  cara, que ESTA E A ULTIMA QUE A TRAVA AUTORIZA.
-
-  A CONTA DA 31.1, feita no REGISTRO.md e nao estimada: 4 em 10 (5 se a passada
-  de 25/11 13h17Z, que consertou uma trava e nao declara byte de tela, contar
-  como ar), contra o piso de 7 em 10. Pela 34.3 o numero vai com a causa: CINCO
-  das seis sem ar sao trava humana, nenhuma e escolha de trabalho de quem
-  executou. A tabela execucao por execucao esta no REGISTRO.md desta passada.
-
-  A ESCALADA, QUE E UM DESPACHO SO (34.5): dados/despachos.md ganhou UMA entrada
-  ALTA, de 26/11 as 16h2xZ, com a conta acima, a tabela dos CINCO gestos e a
-  idade de cada um (*.gov.br 29 dias; SERP das duas `nao-medida` no Chrome 27;
-  rodametria.com.br nos dominios permitidos 22; os 5 links do Mercado Livre 15;
-  a rotina PAUTA DAS ILHAS nunca rodou em 76 dias), a sonda de hoje, e a decisao
-  em DUAS opcoes — fazer os gestos, ou trocar a linha `ilha:` de foco.md por
-  decisao escrita (1.2-b.4). A Fundacao nao toma nenhuma das duas (34.4). Quem
-  reencontrar a trava ATUALIZA aquela entrada, nunca abre outra.
-
-  E O CUSTO QUE NAO E DESTA ILHA, medido no PROMPT.md da robometria e nao
-  suposto: a robometria esta VIVA com 14 URLs no ar e tem SEIS itens abertos
-  desde 20/11 (6 dias), todos da Fundacao pela 19.2, e TRES sao link de compra
-  MORTO servido no ar — um deles o UNICO botao do resultado de
-  `?modelo=electrolux-erb30&peca=filtro`. Pela 25.4 link morto e defeito. Esta de
-  pe ha seis dias porque a 1.2 manda, com razao, que ninguem construa fora do
-  foco — e esta execucao NAO a desobedeceu.
-
-  A ILHA ESTA SA, medido antes de qualquer coisa (18.5) e no barato:
-  rodametria.com.br em 200 e /status em 200 as 16h1xZ. A bancada de 74 portoes
-  rodou as 10h2xZ de hoje com 0 falha e NAO foi repetida de proposito — nada
-  tocou codigo de ilha desde entao. POR QUE NASCEU ZERO PORTAO: a 31.2 pede
-  defeito medido no ar, e nao houve defeito.
-
-  PROXIMO PASSO DESBLOQUEADO: NENHUM de construcao, reconferido nesta passada
-  contra o dado e nao herdado. Das 11 consultas de dados/consultas-de-produto.json
-  nenhuma esta elegivel (3 no ar, 3 `tomada`, 2 fechadas pela 30.4, 2 `nao-medida`
-  esperando o Chrome, 1 com remedicao em 11/12 pela 30.9). O mais curto dos cinco
-  gestos e um DISPARO, nao uma decisao: rodar a rotina PAUTA DAS ILHAS nesta ilha
-  destrava o bloco 5, o unico eixo que nao depende de rede nem de SERP.
-
-  O QUE A PROXIMA PASSADA FAZ, e agora esta em CONTRATO em vez de neste campo: se
-  foco.md continuar nomeando esta ilha e nenhum gesto tiver chegado, ela roda os
-  cinco passos da 34.2 — rede (20.2), sonda (20.16), releitura da fila contra o
-  dado, ATUALIZACAO do despacho ALTA de 26/11, fecho em "travada por gesto
-  humano" — e NAO escreve portao, regua, bancada nem secao de contrato para ter o
-  que mostrar. Custa minutos em vez de uma execucao, e e a resposta certa.
+  TRAVADA POR GESTO HUMANO pela 34.2, pela QUARTA vez seguida, e o que esta
+  passada entrega NAO e metodo: e a CONTA CORRIGIDA e um FATO NOVO sobre o
+  instrumento. A 34.2 e de ONTEM e esta e a primeira passada a cumpri-la contra
+  a propria tentacao que a criou — nenhum portao, nenhuma regua, nenhuma
+  bancada e nenhuma secao de contrato nasceu aqui. NADA FOI AO AR, e nada podia.
+  
+  OS CINCO PASSOS DA 34.2, e nada alem. (1) Sonda e rede: 8 medicoes, 4
+  controles verdes, www.gov.br e casasbahia em 000 nas duas passadas, nenhuma
+  mudou, e os tres gatilhos lidos ANTES do curl — o unico commit novo no main e
+  o da Bussola, e o MAOS-LOG dele diz que nenhuma ilha foi reservada e nenhum
+  cabecalho tocado. (2) Fila relida CONTRA O DADO: 11 de 11 consultas
+  explicadas, ZERO elegivel — 3 ja sao pagina no ar (CONFERIDAS no sitemap
+  servido agora, com quebra de cache, entre as 11 URLs), 3 fechadas por SERP
+  tomada, 2 fechadas pela 30.4 em favor da irma, 2 em nao-medida esperando o
+  Chrome, 1 com remedicao PRE-REGISTRADA para 11/12 pela 30.9 e que mesmo
+  entao e CARONA e nao bloco. (3) UM despacho ALTA ATUALIZADO, nunca um novo
+  (34.5). (4) Este fecho. (5) O sinal ao Raphael.
+  
+  O ACHADO, e ele nao e da ilha — e do main, que e por isso que cabia numa
+  passada proibida de tocar a ilha: as 14h20 BRT de HOJE, pouco depois de a
+  passada das 16h19Z fechar esta ilha por falta de gesto, a BUSSOLA CACADORA
+  rodou e gravou 20 linhas em bussola/cacados.md (commit 3552691). DEZ delas
+  trazem veredito de SERP classificado A OLHO, e pela 0.6 da BUSSOLA.md esse
+  veredito so existe porque a Bussola roda no Claude in Chrome do computador do
+  Raphael — o instrumento que satisfaz a 30.8 para `alvo`.
+  
+  O QUE ISSO MUDA NAO E A FILA: E A LEITURA DO SEGUNDO GESTO. A linha `abrir no
+  Chrome a SERP das duas nao-medida` esta aberta ha 27 DIAS e e o UNICO eixo de
+  pagina nova que sobra na ilha em foco total. Ate hoje ela podia ser lida como
+  `falta um instrumento que nao esta a mao`. NAO PODE MAIS: o instrumento rodou
+  HOJE, DEZ vezes, em nichos que ainda NAO SAO ILHA, enquanto a ilha em foco
+  TOTAL E ABSOLUTO espera DUAS aberturas dele desde 30/10. Nenhuma acusacao: as
+  duas rotinas sao dele. O que a medicao faz e tirar do pedido a unica
+  interpretacao que o tornava caro.
+  
+  A ILHA ESTA SA e e por isso que nao ha o que entregar: /status 147 = manifest
+  147, versao_sync 1.1.5, 11 URLs servidas, nenhuma queda de porta nova. As
+  duas metades — nada para consertar, nada para publicar — medidas na MESMA
+  passada. NAO PEGOU OUTRA ILHA (34.4), com a robometria em seis itens abertos
+  desde 20/11 e TRES deles link de compra morto no ar: sair do foco e decisao
+  ESCRITA do Raphael, e a Fundacao a pede como PERGUNTA COM NUMERO.
+  
+  PROXIMO PASSO DESBLOQUEADO: NENHUM, e isso e o resultado certo e nao
+  fracasso. Enquanto nenhum dos cinco gestos for feito e foco.md nomear esta
+  ilha, a execucao seguinte faz EXATAMENTE os cinco passos da 34.2 e fecha em
+  travada por gesto humano — sem procurar bloco e SEM ESCREVER REGRA. O gesto
+  mais curto segue sendo o disparo da Pauta das ilhas (um disparo, nao uma
+  decisao, destrava o bloco 5); o segundo, as DUAS SERPs no Chrome que hoje
+  abriu dez.
 ---
 
 # Estado da ilha RODAMETRIA
