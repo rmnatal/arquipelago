@@ -11280,3 +11280,52 @@ ilhas/rodametria/ESTADO.md                   214 linhas    17300 bytes
 **Nada foi reformatado, nenhuma acentuação foi corrigida e nenhuma linha fora da instrução foi acrescentada.** Os `ESTADO.md` receberam só a linha `ultima_ronda:`, pedida nominalmente; nenhum outro campo de cabeçalho de estado foi tocado, nenhuma ilha foi reservada, nenhum `executando_desde` foi escrito, nenhum bloco de fila foi executado, nada foi publicado e nenhum link de afiliado foi gravado (a instrução dizia que a Sentinela gerou ZERO links nesta rodada).
 
 **Nenhum passo falhou.** Zero erro a registrar neste disparo: nenhuma recusa de ferramenta, nenhuma recusa de push, nenhum arquivo que não casasse a âncora. Este log vai num commit seguinte, por depender do hash do commit de trabalho.
+
+---
+
+## 26/11/2026 14:20 BRT (17:20Z) — Bússola caçadora, acréscimo de 20 linhas em `bussola/cacados.md`
+
+**Checagem de assunto:** APROVADO. A Bússola é do Arquipélago e `bussola/cacados.md` é o registro de caçadas dela. As 20 linhas são verdicts de nicho (SERP tomada, portão, volume) — trabalho de caça da Bússola, nada de outro projeto. Nenhum dado pessoal de terceiros na instrução.
+
+**Base:** commit `3386ea0` do `main`, conforme a instrução. `git checkout -B trabalho origin/main` partiu do `main` real.
+
+**Operação:** APPEND puro ao fim do arquivo. Nada do conteúdo anterior foi tocado, reformatado ou reordenado. Nenhuma linha fora das 20 da instrução foi acrescentada.
+
+`git status --porcelain` (antes do add):
+
+```
+ M bussola/cacados.md
+```
+
+`git diff --stat` (antes do add):
+
+```
+ bussola/cacados.md | 20 ++++++++++++++++++++
+ 1 file changed, 20 insertions(+)
+```
+
+**Hash do commit que foi ao `main`:** `3552691671d6c677faa06e9fa2661a6424384d4f`
+
+```
+3386ea0..3552691  HEAD -> main
+```
+
+Push direto em `origin/main` aceito na primeira tentativa, sem rebase, sem force, sem PR. Confirmado por `git fetch origin main && git log -1 origin/main`:
+
+```
+3552691671d6c677faa06e9fa2661a6424384d4f Bússola caçadora — 26/11/2026
+```
+
+**Contagem conferida relendo o arquivo DEPOIS de gravar** (não pelo que se acha que se escreveu):
+
+```
+$ wc -c bussola/cacados.md
+26770 bussola/cacados.md
+
+$ sha256sum bussola/cacados.md
+ce0b4d49703942867825b809371cf377b94cc017baff639e182882c9cf2d7b3d  bussola/cacados.md
+```
+
+Os dois conferem byte a byte com o alvo da instrução (26770 bytes, sha256 `ce0b4d49...2d7b3d`). O arquivo passou de 24389 para 26770 bytes (+2381) e termina com quebra de linha depois de `| 26/11/2026 | mini moto | volume | 22,2 mil/mês |`.
+
+**Nenhum passo falhou.** Zero erro a registrar: nenhuma recusa de ferramenta, nenhuma recusa de push, nenhum desvio de hash. Nenhuma ilha foi reservada, nenhum `executando_desde` foi escrito, nenhum cabeçalho de estado foi tocado, nenhum bloco de fila foi executado, nada foi publicado. Este log vai num commit seguinte, por depender do hash do commit de trabalho.
