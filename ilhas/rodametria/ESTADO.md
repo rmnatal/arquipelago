@@ -31,7 +31,11 @@ ultima_execucao: 2026-11-26T16:24Z   # NADA FOI AO AR, E NADA PODIA, e esta e a
                          # de hoje as 16h2xZ, com os CINCO gestos e a idade de cada.
                          # A hora saiu do `date -u` na MESMA linha de comando que
                          # a grava, nunca digitada.
-executando_desde: null   # LIMPO no fecho desta execucao (passo 7 da secao 1).
+executando_desde: 2026-11-26T19:16Z   # RESERVA da execucao da Fundacao de 26/11 as 2026-11-26T19:16Z, pelo passo 5 da secao 1
+                         # (a 1.2 manda reservar igual, foco nao dispensa reserva). A hora saiu do
+                         # `date -u` na MESMA linha de comando que a grava, nunca digitada. O campo
+                         # estava null, logo nao havia bloco da Fundacao vivo pela 1.1 e nao houve
+                         # reserva vencida para o git desempatar.
                          # Reservada as 16h19Z (commit 9376c53), aceita de PRIMEIRA,
                          # e NAO renovada: o fecho saiu dentro dos 40 minutos da 1.1.
                          # Comentario substituido INTEIRO, rabo incluido — o
