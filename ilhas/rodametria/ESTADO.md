@@ -24,7 +24,7 @@ ultima_execucao: 2026-11-25T19:49Z   # A BARRA FIXA DO TELEFONE NEGAVA O
                          # nao por portao: `portao que diz "nao se aplica" nao e
                          # portao verde`. O de pixel foi o de ontem; este foi o
                          # rotulo do atalho.
-executando_desde: null   # LIMPO no fecho desta execucao (passo 7 da secao 1).
+executando_desde: 2026-11-26T10:16Z   # RESERVA desta execucao (passo 5 da secao 1), hora do `date -u` na mesma linha de comando que grava. Foco em rodametria pela 1.2.
                          # Reservada as 16h16Z (commit d2a0975), aceita de
                          # PRIMEIRA, e RENOVADA as 16h33Z pela 1.1 porque o bloco
                          # passou de 40 minutos — a espera do cron da 20.9 e parte
