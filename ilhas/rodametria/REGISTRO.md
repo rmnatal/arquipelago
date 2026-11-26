@@ -3,6 +3,68 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-11-26 10h16Z–10h3xZ — **A FILA DE CONSTRUÇÃO SEGUE VAZIA, E O QUE ESTA PASSADA ENTREGA É A PROVA DE QUE AS TRÊS PAREDES CONTINUAM DE PÉ — REMEDIDAS HOJE, NÃO HERDADAS. NADA FOI AO AR, E NADA PODIA**
+
+**A ILHA DESTA EXECUÇÃO:** rodametria, por **foco** (`foco.md`, foco total e absoluto desde 27/10). Pela **1.2** não houve escolha de ilha a fazer. Reserva às **10h16Z** (commit `0dca7db`), passo 5 da seção 1. Nenhum branch `claude/*` com commit além do `main` e nenhum PR aberto: `git log origin/main..origin/claude/dreamy-mccarthy-a80pfx` veio vazio nas duas pontas.
+
+**A EXCEÇÃO DO MOLDE DA 32 FOI CONFERIDA ANTES DO FOCO, e ela não fura nada hoje:** a 1.2 manda o despacho do molde de conversão passar à frente da ilha em foco nas três irmãs, nesta ordem — aquametria, clubedomosaico, robometria. Lido no `PROMPT.md` das três: o da **aquametria** está `FECHADO EM 21/10/2026 ÀS 18h2xZ, as 29 no ar e conferidas uma a uma pela 18.4`; a **clubedomosaico** serve 20 páginas do molde; a **robometria**, 9 de 9 dentro da 32.5. **As três com o molde no ar e conferido, logo o foco manda sozinho.**
+
+### O QUE ESTA PASSADA MEDIU, E É TUDO O QUE ELA PODIA ENTREGAR
+
+**1. A ILHA ESTÁ SÃ NO AR — 74 PORTÕES, 0 FALHA, ANTES DE QUALQUER CONSTRUÇÃO (18.5).** `python3 ferramentas/bancada.py` fechou **67 portões sem rede, 0 falha**, e `--no-ar` fechou **74 portões, 0 falha** — `conferir-no-ar.py`, `conferir-produto-no-ar.py`, `conferir-institucional-no-ar.py` e os cinco portões de navegador (pixel da 32.5, piso no navegador, console, foto) todos verdes. `/status` em **147** = `manifest.json` em **147**, `versao_sync` 1.1.5. **11 URLs no `wp-sitemap-posts-page-1.xml`**, contadas no ar e não herdadas. O contador durável da porta em `/casca → porta → quedas`: `tem_bloco_wordpress: true`, `episodios_vistos: 3`, `reposicoes_da_cura: 3`, `leituras_nao_sei: 0`, último episódio em **23/11 19h20Z** — **nenhuma queda nova em três dias**. **Zero defeito no ar, logo zero correção a fazer, e a 18.5 não tinha o que segurar.**
+
+**2. AS TRÊS PAREDES DE EGRESSO REMEDIDAS PELA 20.2, EM TRÊS PASSADAS CADA, COM CONTROLE — 30 MEDIÇÕES DE BLOQUEIO CONTRA 6 DE CONTROLE VERDE, ZERO INTERMITÊNCIA.** Pela **20.3** (quem depende da fonte confere se a fonte está liberada) e pela **20.2** (*"bloqueio herdado do `ESTADO.md` é retestado antes de ser respeitado, nunca lido como fato"*):
+
+```
+www.gov.br                      000 000 000
+in.gov.br                       000 000 000
+www.planalto.gov.br             000 000 000
+www.contran.gov.br              000 000 000
+www.campinas.sp.gov.br          000 000 000
+www.rio.rj.gov.br               000 000 000
+www.joinville.sc.gov.br         000 000 000
+www.sjc.sp.gov.br               000 000 000
+www.casasbahia.com.br           000 000 000
+www.magazineluiza.com.br        000 000 000
+rodametria.com.br               200 200 200   (controle)
+aquametria.com.br               200 200 200   (controle)
+```
+
+**As três paredes são as três que travam os três eixos da fila:** o `.gov.br` federal (limiar legal da F1, despacho ALTA de 28/10), os quatro domínios de prefeitura (camada municipal da F1, despacho NORMAL de 28/10) e o varejo grande (nível 5 da escada — `potencia_nominal_w`, `velocidade_max_kmh`, `acelerador`, `carga_max_kg`, que são as entradas da F1 e da F3). **Nenhuma abriu.**
+
+**3. A FILA FOI RECONTADA NO DADO, UMA CONSULTA POR VEZ, E NÃO HERDADA DO CABEÇALHO.** Lido em `dados/consultas-de-produto.json`, as **11** consultas declaradas:
+
+| situação | quantas | quais |
+|---|---|---|
+| já é página servida no ar | 3 | `patinete-eletrico`, `bicicleta-eletrica`, `moto-eletrica` |
+| fechadas por SERP `tomada` (30.5) | 3 | `patinete-eletrico-adulto`, `melhor-patinete-eletrico`, `moto-eletrica-1000w` |
+| `nao-medida` — esperam o Chrome dele (30.8) | 2 | `patinete-eletrico-1000w`, `scooter-eletrica-1000w` |
+| fechadas pela 30.4 em favor da irmã | 2 | `bike-eletrica` (de `bicicleta-eletrica`), `motos-eletricas-para-adultos` (de `moto-eletrica`) |
+| slug reservado, remede em **11/12** pela 30.9 | 1 | `scooter-eletrica` — 301 mil buscas, a maior cabeça sem página |
+
+**E O CANO RECONTADO NO `main`, com número e não com impressão:** `dados/anuncios-por-consulta.json` com **3 páginas, 58 anúncios lidos e 23 que servem** (patinete 14 de 19, bicicleta 8 de 20, moto **1 de 19**); `dados/veiculos.json` com **17 registros e 4 publicáveis**; `dados/vitrine-de-produto.json` com **2 páginas** — a moto segue degradada pelo piso da 30.2 e servindo o piso da busca na tela. **Bate exatamente com o item 4 da leitura semanal de 25/11, que o deu por limpo: nada a cobrar aqui.**
+
+### POR QUE NADA FOI AO AR, E A CAUSA TEM NOME E DESPACHO ABERTO DESDE 24/11
+
+O item 1 do despacho da leitura semanal de 25/11 diz, com todas as letras, que **o único trabalho desta ilha é página nova**. Ele está certo no diagnóstico e o *"pronto quando"* dele — *"a leitura de 02/12 medir mais de 11 URLs no sitemap"* — **não é alcançável pela Fundação sozinha**, e isto não é opinião desta passada: é a soma de três medições, duas delas feitas hoje.
+
+- **página nova pelo nome do produto** → a **30.8** é uma assimetria, não um atraso: `alvo` **não se afirma desta nuvem, nunca**, e as duas consultas que sobram estão `nao-medida`. As que têm `alvo` já são página, estão fechadas pela 30.4 ou esperam 11/12 pela 30.9. **A 30.9 regra 1 proíbe antecipar a `scooter elétrica`**: o intervalo da próxima remedição é *"pelo menos o maior intervalo em que aquela ilha já mediu o catálogo MUDAR"* — 18 dias, contados de 23/11.
+- **bloco 5 (artigos-âncora, nível `/guias/`)** → espera `ilhas/rodametria/pauta.md`, e a **17.1** reparte: a pauta é **das mãos**, a escrita é da Fundação. A **17.6** é literal sobre a Fundação não pautar. O arquivo não existe, e a causa está medida no despacho aberto de 24/11: a rotina *Pauta das ilhas* **nunca rodou, em 74 dias** (`find` zero, `MAOS-LOG.md` zero, `despachos.md` zero).
+- **profundidade da F1 e da F3** → as três paredes do item 2 acima, remedidas hoje.
+- **e trabalhar o TEXTO das páginas que existem está proibido pela 12.1**, e é o próprio despacho de 25/11 que o diz: *"é proibido trabalhar texto de página que o Google ainda não viu"* — `/veiculos/moto-eletrica/` e `/veiculos/patinete-eletrico/` seguem sem uma única impressão.
+
+**E O QUE ESTA PASSADA NÃO FEZ DE PROPÓSITO, porque o contrato o proíbe exatamente aqui:** não nasceu portão, régua nem mutação nenhuma. A **31.2** pede defeito medido no ar para portão novo nascer, e a bancada deu **0 falha em 74**; a **31.3** proíbe ampliar portão que já existe enquanto houver item de conteúdo aberto em despacho, e há. **Fila vazia não é licença para trabalho de bancada — é a 31 inteira dizendo o contrário.**
+
+### A CONTA QUE ESTA PASSADA PAGA, DITA SEM MAQUIAR
+
+Pela **31.1**, execução que não entrega nada no ar entra na conta dos 3 em 10. **Esta é uma delas, e é a QUARTA da ilha pela mesma causa** — as outras três, contadas neste arquivo e nomeadas uma por uma, são **18/11 às 19h17Z** (que escreveu de si mesma *"Revisão 114, e ela não muda um byte de tela"*), **24/11 às 10h17Z** e **24/11 às 13h16Z**. *(As de 17/11 às 10h17Z e 13h17Z também acharam a fila acabada e NÃO entram nesta conta: entregaram instrumento no ar, casca 1.28.0 e 1.29.0, revisões 104 e 105.)* **Zero URL nasceu nesta ilha desde 16/11: são dez dias.** As **três levas** do teto da 21.4 seguem inteiras na semana que começou em 23/11, e não por falta de vez: por falta de consulta elegível. O que a ilha em foco total somou em quatro semanas de Search Console foi **11 impressões** (8 → 2 → 1).
+
+**O que isto NÃO é:** não é fracasso de medição nem fila mal lida. A fila foi recontada hoje no dado, consulta por consulta, e as paredes foram remedidas hoje com controle. **É uma ilha cuja construção inteira está atrás de dois gestos do Raphael**, e os dois já estão escritos em despacho: **(a)** rodar a rotina *Pauta das ilhas* na rodametria, que destrava o único bloco que não depende de rede; **(b)** o campo de configuração que abre `*.gov.br` e os três domínios de varejo, que destrava a F1 e a F3. Um terceiro gesto — abrir a SERP das duas `nao-medida` no Chrome dele — destrava página nova pela 30.8.
+
+**PRÓXIMO PASSO DESBLOQUEADO:** nenhum de construção, e isto foi reconferido e não herdado. A remedição da `scooter elétrica` (301 mil buscas) é **11/12** pela 30.9, e ela pega **carona** numa execução que já tenha outra coisa para entregar — só vira bloco sozinha se a ilha não tiver mais nada, e aí a execução diz isso em vez de apresentar a remedição como entrega. **Enquanto nenhum dos três gestos acontecer, a execução seguinte vai medir o que esta mediu: ilha sã, 11 URLs, três paredes de pé.**
+
+**LIÇÃO DE MÉTODO PRÉ-REGISTRADA PARA A PRÓXIMA PASSADA:** *parede remedida é entrega, e parede remedida DEMAIS é desperdício.* As três paredes desta ilha foram remedidas em 16/11, 24/11 e hoje — e as três vezes deram o mesmo número com as mesmas causas. A **30.9** resolveu esse problema para consulta fechada por catálogo (o intervalo sai da série, não do palpite) e **ninguém escreveu a regra equivalente para parede de egresso**. A próxima execução que achar a fila vazia nesta ilha não remede as dez linhas de novo: ela remede **duas** (um `.gov.br` e um varejo) como sonda, e só abre as dez se uma das duas mudar. Trinta `curl` que repetem o número de ontem são a mesma doença que a 30.9 nomeia, num instrumento diferente.
+
 ## 2026-11-25 19h16Z–19h5xZ — **A BARRA FIXA DO TELEFONE NEGAVA O BLOCO DE COMPRA NAS DUAS PÁGINAS QUE GANHARAM O PISO NA VÉSPERA — E QUEM A ACHOU FOI A LIÇÃO DE MÉTODO QUE A PASSADA ANTERIOR PRÉ-REGISTROU**
 
 **A ILHA DESTA EXECUÇÃO:** rodametria, por **foco** (`foco.md`, foco total e absoluto desde 27/10). Pela **1.2** não houve escolha de ilha a fazer.

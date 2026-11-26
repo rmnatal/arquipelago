@@ -84,6 +84,9 @@ O `MAOS-LOG.md` tem **592 KB** e registra fielmente as outras rotinas pelas mão
 
 **E O QUE ESTE DESPACHO NÃO PEDE, dito para ninguém o alargar:** não pede revisão da seção 17, não pede que a Fundação escreva a pauta (a 17.1 e a 17.6 proíbem, e a 17.6 é literal — *"não escreve o artigo (é da Fundação)"* é a metade dela; a outra é que a Fundação não pauta), e não pede pauta para as outras cinco ilhas — enquanto o `foco.md` nomear a rodametria, só ela recebe construção.
 
+> **CONTADO EM 26/11/2026 às 10h3xZ, E O NÚMERO DESTE DESPACHO ENVELHECEU PARA PIOR: SÃO 76 DIAS E A CONTA DE EXECUÇÕES SUBIU DE TRÊS PARA QUATRO.** `find . -iname "*pauta*"` segue devolvendo **zero arquivo** no repositório inteiro, e `grep -c "Pauta das ilhas" MAOS-LOG.md` segue em **0** — as duas provas que este despacho usou em 24/11, refeitas e não herdadas. O que mudou é o custo: contadas no `REGISTRO.md` desta ilha, as execuções que fecharam a rodametria **sem nada no ar pela fila vazia** são **quatro**, nomeadas uma por uma: **18/11 19h17Z** (*"Revisão 114, e ela não muda um byte de tela"*, escrito por ela mesma), **24/11 10h17Z**, **24/11 13h16Z** e **26/11 10h16Z**. *(As de 17/11 às 10h17Z e 13h17Z também registram a fila acabada, mas entregaram instrumento no ar — casca 1.28.0 e 1.29.0, revisões 104 e 105 — e por isso não entram nesta conta; a de 19/11 10h17Z declara que nenhuma revisão se move e tem outra causa. Contei só as que fecharam pela fila vazia.)* **Este é o único dos três gestos que não depende de lista de rede nem de SERP: é um disparo de rotina, e é o que tem o caminho mais curto até uma URL nova no ar.**
+
+
 ### prioridade NORMAL — Fundação da ROBOMETRIA — **O `dateModified` DAQUELA ILHA SAI DE `git log -1`, E EM CLONE RASO ISSO PUBLICA FRESCOR QUE A PÁGINA NÃO TEM — COM A RÉGUA QUE CONFERE ERRANDO JUNTO** (medido na rodametria em 23/11/2026 às 19h2xZ)
 
 **NÃO É ALTA e não fura o foco:** a robometria não está no ar quebrada, e o que este despacho descreve é um número que pode estar errado, não uma página servindo erro. Entra como NORMAL, pela 18.1.
@@ -481,6 +484,12 @@ quem reservar esta ilha com foto pendente mede ali em vez de declarar não medid
 ---
 
 ### prioridade ALTA — precisa do Raphael — A ILHA EM FOCO TOTAL ESTÁ INTEIRA ATRÁS DE **UM CAMPO DE CONFIGURAÇÃO**, E O PEDIDO ESTAVA ESPALHADO POR SEIS DESPACHOS: AQUI ELE É UMA LISTA SÓ, MEDIDA HOJE
+
+> **REMEDIDO EM 26/11/2026 às 10h2xZ PELA FUNDAÇÃO, PELA 20.2 E PELA 20.3 — NADA MUDOU, E O NÚMERO ESTÁ AQUI PARA A SÉRIE EXISTIR.** Três passadas em cada domínio, com controle na mesma passada: `www.gov.br`, `in.gov.br`, `www.planalto.gov.br`, `www.contran.gov.br`, `www.campinas.sp.gov.br`, `www.rio.rj.gov.br`, `www.joinville.sc.gov.br`, `www.sjc.sp.gov.br`, `www.casasbahia.com.br` e `www.magazineluiza.com.br` **os dez em `000` nas três**; `rodametria.com.br` e `aquametria.com.br` **em `200` nas mesmas três**. **30 medições de bloqueio contra 6 de controle verde, zero intermitência.** O pedido segue inteiro e com a mesma forma.
+>
+> **O QUE ISTO CUSTOU ATÉ AGORA, contado e não estimado:** **zero URL nasceu na rodametria desde 16/11** — dez dias —, as **três** levas do teto da 21.4 estão inteiras na semana que começou em 23/11, e a leitura semanal de 25/11 mediu **1 impressão em sete dias** na ilha em foco total e absoluto. Esta é a **terceira** execução da Fundação em três dias úteis a fechar a ilha sem entregar nada no ar pela mesma causa (24/11 às 10h17Z, 24/11 às 13h16Z e esta), e pela **31.1** as três entram na conta dos 3 em 10.
+>
+> **E UMA REGRA QUE FALTA, dita aqui porque é esta entrada que a paga:** as dez linhas acima foram remedidas em 16/11, 24/11 e 26/11, e as três vezes deram o mesmo número com as mesmas causas. A **30.9** já resolveu isto para consulta fechada por catálogo — *"o intervalo da próxima remedição sai da SÉRIE, não do ritmo suposto"* — e **não existe a regra equivalente para parede de egresso**. A próxima execução que achar a fila vazia nesta ilha **sonda duas** linhas (um `.gov.br` e um varejo) e só abre as dez se uma das duas mudar.
 
 18/11/2026 às 19h2xZ — **RAPHAEL** — Escrito pela execução da Fundação que reservou a rodametria às
 19h17Z, encontrou **a fila de blocos acabada** e mediu, eixo por eixo, por que nenhuma URL pode nascer.

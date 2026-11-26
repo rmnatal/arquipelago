@@ -3,7 +3,7 @@ ilha: rodametria
 estado: viva              # `nascendo` -> `viva` em 29/10/2026 as 12h1xZ: a ilha SERVE PAGINA. Duas URLs no wp-sitemap.xml, as duas em 200, com a casca e a F2 desembarcadas na revisao 9 e os dois portoes de ar APROVADOS. Antes deste dia a ilha tinha banco e nenhum byte que um visitante visse.
 prioridade: 1
 piso: abaixo              # 10 URLs publicadas contra as 40 da 21.1, e primeira_indexacao null. O NUMERO DESTE COMENTARIO ESTAVA VENCIDO: dizia 5, de 30/10, e a ilha passou por 9 e chegou a 10 em 06/11 — numero velho lido como fato e o defeito que a secao 4 nomeia. O VALOR do campo nao mudou e nao e meu de mudar. Quem decide este campo e a leitura semanal (21.6), nunca a Fundacao de cabeca. A CONTA DA LEVA SAIU DAQUI em 18/11/2026 as 13h4xZ: esta oracao dizia "nesta semana saiu UMA leva, de 3 URLs" e a linha VIVA de `urls_publicadas`, no mesmo cabecalho, diz "UMA leva, de 1 URL" — dois numeros para o mesmo fato, um deles de uma semana que passou. Quem conta leva le `urls_publicadas`, que e o campo que a mede; este campo e sobre o PISO. E a mesma familia do rabo orfao que a nota de 17/11 removeu oito linhas abaixo.
-urls_publicadas: 11       # ZERO URL nasceu em NENHUMA das DUAS passadas de 25/11, e nao por falta de vez: as TRES levas do teto da 21.4 seguem INTEIRAS nesta semana (que comecou em 23/11) porque NAO HA CONSULTA ELEGIVEL. Recontado nesta passada em `dados/consultas-de-produto.json`: das 11 consultas, 3 ja sao pagina no ar, 3 estao fechadas por SERP `tomada`, 2 esperam o Chrome (`nao-medida`), as DUAS de 201 mil buscas estao fechadas pela 30.4 em favor das irmas, e a `scooter eletrica` remede em 11/12 pela 30.9. E A ORACAO SOBRE "ESTA SEMANA", LOGO ABAIXO, E DE 16/11 E NAO E MAIS SOBRE ESTA SEMANA: 16/11 foi uma SEGUNDA e a semana corrente comecou em 23/11, tambem segunda. Contado no REGISTRO.md, nasceram ZERO URLs em 23, 24 e 25/11 — as TRES levas do teto da 21.4 estao INTEIRAS nesta semana. A frase nao estava errada quando foi escrita; ela ficou errada ao virar a semana, que e a mesma doenca do bloco desta passada num campo diferente.
+urls_publicadas: 11       # ZERO URL nasceu TAMBEM na passada de 26/11 as 10h16Z, e a recontagem das 11 consultas abaixo foi REFEITA nela, no dado e nao neste campo: o veredito nao mudou em nenhuma das 11. Contado no REGISTRO.md, nasceram ZERO URLs em 23, 24, 25 e 26/11 — as TRES levas do teto da 21.4 seguem INTEIRAS na semana que comecou em 23/11. O comentario anterior, de 25/11: ZERO URL nasceu em NENHUMA das DUAS passadas de 25/11, e nao por falta de vez: as TRES levas do teto da 21.4 seguem INTEIRAS nesta semana (que comecou em 23/11) porque NAO HA CONSULTA ELEGIVEL. Recontado nesta passada em `dados/consultas-de-produto.json`: das 11 consultas, 3 ja sao pagina no ar, 3 estao fechadas por SERP `tomada`, 2 esperam o Chrome (`nao-medida`), as DUAS de 201 mil buscas estao fechadas pela 30.4 em favor das irmas, e a `scooter eletrica` remede em 11/12 pela 30.9. E A ORACAO SOBRE "ESTA SEMANA", LOGO ABAIXO, E DE 16/11 E NAO E MAIS SOBRE ESTA SEMANA: 16/11 foi uma SEGUNDA e a semana corrente comecou em 23/11, tambem segunda. Contado no REGISTRO.md, nasceram ZERO URLs em 23, 24 e 25/11 — as TRES levas do teto da 21.4 estao INTEIRAS nesta semana. A frase nao estava errada quando foi escrita; ela ficou errada ao virar a semana, que e a mesma doenca do bloco desta passada num campo diferente.
                           # 10 -> 11 em 16/11/2026: nasceu `/veiculos/moto-eletrica/`. CONTADO no wp-sitemap-posts-page-1.xml e conferido no ar as 11h4xZ — 11 de 11 em 200 em DUAS leituras com quebra de cache. Piso da 21.1 pede 40 — faltam 29. TETO DA 21.4: esta semana saiu UMA leva, de 1 URL, contra o teto de 3 levas. Quem decide o campo `piso` e a leitura semanal (21.6), nunca a Fundacao de cabeca.
                           # RABO ORFAO REMOVIDO em 17/11/2026 as 19h4xZ: havia 9 linhas de
                           # comentario aqui, sobra de uma versao anterior deste campo (escrita
@@ -16,20 +16,41 @@ urls_publicadas: 11       # ZERO URL nasceu em NENHUMA das DUAS passadas de 25/1
                           # proteger. Quem substituir comentario de varias linhas apaga o rabo.
 ultima_ronda: 2026-11-25T20:15Z   # LEITURA SEMANAL de 25/11/2026 (secao 12.2, item 3). SUBSTITUI o valor anterior 2026-11-25T15:40Z, que era da RONDA DIARIA TECNICA do mesmo dia e segue registrada no PROMPT.md. 1 impressao, 0 clique, posicao 11,0 — a ilha em foco total somou 11 impressoes em quatro semanas (8, 2, 1). Indexacao n/d pela TERCEIRA leitura seguida: o egresso do ambiente das MAOS recusa rodametria.com.br nos DOIS caminhos, e o caminho declarado pela propriedade foi um deles, logo o conserto de caminho esta feito e sobra o egresso, que e passo do Raphael. Nenhuma URL nasceu desde 16/11. Hora dada pela Sentinela, que nao tem repositorio.
 primeira_indexacao: null  # as duas primeiras URLs foram ao ar hoje; indexacao e trabalho de dias. Quem grava este campo e a leitura semanal, lendo o Search Console.
-ultima_execucao: 2026-11-25T19:49Z   # A BARRA FIXA DO TELEFONE NEGAVA O
-                         # BLOCO DE COMPRA nas DUAS paginas que ganharam o piso
-                         # na vespera. Revisao 147 no ar e CONFERIDA (18.4).
-                         # O defeito foi achado pela LICAO DE METODO que a
-                         # passada anterior pre-registrou neste mesmo campo, e
-                         # nao por portao: `portao que diz "nao se aplica" nao e
-                         # portao verde`. O de pixel foi o de ontem; este foi o
-                         # rotulo do atalho.
-executando_desde: 2026-11-26T10:16Z   # RESERVA desta execucao (passo 5 da secao 1), hora do `date -u` na mesma linha de comando que grava. Foco em rodametria pela 1.2.
-                         # Reservada as 16h16Z (commit d2a0975), aceita de
-                         # PRIMEIRA, e RENOVADA as 16h33Z pela 1.1 porque o bloco
-                         # passou de 40 minutos — a espera do cron da 20.9 e parte
-                         # do bloco, nao tempo morto.
-rede: aberta em 2026-11-25   # 20.2, REMEDIDA e nao herdada nesta
+ultima_execucao: 2026-11-26T10:28Z   # NADA FOI AO AR, E NADA PODIA: a fila de
+                         # construcao segue VAZIA e as TRES paredes de egresso
+                         # foram REMEDIDAS hoje pela 20.2, nao herdadas — 30
+                         # medicoes em 000 contra 6 de controle em 200, zero
+                         # intermitencia. Ilha SA antes de tudo (18.5): bancada
+                         # em 74 portoes, 0 falha; /status 147 = manifest 147;
+                         # 11 de 11 URLs servidas; nenhuma queda nova da porta
+                         # desde 23/11. QUARTA execucao desta ilha a fechar sem
+                         # nada visivel no ar pela mesma causa (18/11 19h17Z,
+                         # 24/11 10h17Z, 24/11 13h16Z e esta), e pela 31.1 as
+                         # quatro entram na conta dos 3 em 10.
+                         # A hora saiu do `date -u` na MESMA linha de comando que
+                         # a grava, nunca digitada.
+executando_desde: null   # LIMPO no fecho desta execucao (passo 7 da secao 1). Reservada as
+                         # 10h16Z (commit 0dca7db), aceita de PRIMEIRA, e NAO renovada:
+                         # o fecho saiu dentro dos 40 minutos da 1.1.
+                         # RABO ORFAO REMOVIDO AQUI em 26/11/2026: havia quatro linhas
+                         # falando de uma reserva das 16h16Z (commit d2a0975), sobra da
+                         # execucao de 25/11 que a passada seguinte substituiu PELA
+                         # PRIMEIRA LINHA e deixou de pe — o mesmo defeito que este
+                         # cabecalho ja registra em `urls_publicadas` e cuja licao esta
+                         # escrita la: quem substituir comentario de varias linhas apaga
+                         # o rabo. Lidas ao pe da letra, elas afirmavam a hora e o commit
+                         # ERRADOS da reserva desta passada.
+rede: aberta em 2026-11-26   # 20.2, REMEDIDA e nao herdada na execucao
+                             # das 10h16Z: `rodametria.com.br/` em 200 nas TRES
+                             # passadas, com `aquametria.com.br` em 200 nas
+                             # MESMAS tres — controle verde. E AS TRES PAREDES
+                             # FORAM REMEDIDAS NA MESMA PASSADA e tambem nao
+                             # herdadas: os quatro `.gov.br` federais, os quatro
+                             # de prefeitura e os dois de varejo grande, OS DEZ
+                             # em 000 nas tres. 30 medicoes de bloqueio contra 6
+                             # de controle verde, zero intermitencia. NENHUMA
+                             # abriu.
+                             # O comentario anterior, de 25/11: 20.2, REMEDIDA e nao herdada naquela
                              # execucao das 13h17Z: `rodametria.com.br/` e
                              # `/veiculos/` em 200, com example.com em 000 no
                              # MESMO comando — o controle da 33 que diz que
@@ -52,95 +73,64 @@ rede: aberta em 2026-11-25   # 20.2, REMEDIDA e nao herdada nesta
                              # procedencia dela nesse dia.
 bloqueada_por: null      # obrigatorio pela secao 2. `null` DE PROPOSITO: o que falta (gov.br para a F1, as prefeituras para a camada municipal, as tres etiquetas do Mercado Livre) trava a FABRICA e nao a ILHA, e isso se escreve no despacho, que e o canal da 12.2. Preenche-lo congelaria tambem os blocos que ja podem andar.
 bloco_atual: |
-  A BARRA FIXA DO TELEFONE NEGAVA O BLOCO DE COMPRA NAS DUAS PAGINAS QUE
-  GANHARAM O PISO NA VESPERA. Medido no ar a 390 px no navegador, na revisao
-  145: `/` e `/peso-maximo-patinete-eletrico/` serviam o botao `Por que nao
-  indicamos` apontando para `#comprar`, e dentro de `#comprar` havia 1 link de
-  compra VISIVEL com `rel="sponsored noopener"` — o piso da 25.2 desembarcado
-  ontem. Revisao 147 no ar e CONFERIDA (18.4).
+  A FILA DE CONSTRUCAO SEGUE VAZIA, E O QUE ESTA PASSADA ENTREGA E A PROVA DE
+  QUE AS TRES PAREDES CONTINUAM DE PE — REMEDIDAS HOJE, NAO HERDADAS. NADA FOI
+  AO AR, e nada podia. E a QUARTA execucao desta ilha a fechar assim pela mesma
+  causa (18/11 19h17Z, 24/11 10h17Z, 24/11 13h16Z e esta).
 
-  E O DEFEITO FOI ACHADO PELA LICAO QUE ESTE MESMO CAMPO PRE-REGISTROU ONTEM,
-  nao por portao: "portao que diz NAO SE APLICA nao e portao verde — e um
-  portao que nao mediu. Quem acrescentar a uma pagina a PRIMEIRA coisa de uma
-  familia roda os portoes que diziam nao se aplica ANTES de desembarcar." O de
-  pixel foi o que ontem achou; este foi o ROTULO DO ATALHO.
+  A ILHA ESTA SA, E ISSO FOI MEDIDO ANTES DE QUALQUER COISA (18.5): bancada em
+  67 portoes sem rede e 74 com rede, 0 falha nas duas; 11 de 11 URLs no
+  wp-sitemap servidas; /status em 147 = manifest em 147, versao_sync 1.1.5; o
+  contador duravel da porta com tem_bloco_wordpress true, episodios_vistos 3,
+  reposicoes_da_cura 3, leituras_nao_sei 0 e o ultimo episodio em 23/11 19h20Z
+  — NENHUMA queda nova em tres dias. Zero defeito no ar, logo zero correcao
+  para a 18 furar fila com.
 
-  E O ITEM 3 DE 09/11 COM O SINAL TROCADO. Naquele dia o rotulo prometia
-  produto onde o bloco negava; hoje prometia EXPLICACAO onde o bloco servia
-  loja. E A CAUSA E DE ARIDADE: `rodametria_casca_rotulo_do_atalho()` nasceu
-  conhecendo DOIS mundos (`count($itens)`) e o bloco de compra passou a ter
-  TRES em 25/11, quando o piso entrou no ramo sem cartao — cartoes, piso
-  (sem cartao, COM saida) e sem-saida. Portao de duas pontas sobre mundo de
-  tres estados APROVA o estado do meio seja ele qual for, que e a familia da
-  regua de duas pontas que a 20.9 substituiu por cinco vereditos.
+  AS TRES PAREDES, REMEDIDAS AS 10h2xZ PELA 20.2 E PELA 20.3, tres passadas
+  cada e com controle na mesma passada: gov.br, in.gov.br, planalto.gov.br e
+  contran.gov.br (limiar legal da F1); campinas, rio, joinville e sjc (camada
+  municipal da F1); casasbahia e magazineluiza (nivel 5 da escada, que e onde
+  moram potencia_nominal_w, velocidade_max_kmh, acelerador e carga_max_kg). AS
+  DEZ EM 000 NAS TRES, com rodametria.com.br e aquametria.com.br em 200 nas
+  MESMAS tres. 30 medicoes de bloqueio contra 6 de controle verde, zero
+  intermitencia. NENHUMA abriu.
 
-  O CONSERTO MORA NA CASCA (32.6-b) E E UMA PORTA SO:
-  `rodametria_casca_estado_do_bloco( $itens, $piso )`, pura, devolve `cartoes`
-  | `piso` | `sem-saida`. TRES lugares passaram a sair dela — o ramo do bloco
-  de compra, o `if` do piso e o rotulo da barra —, entao o bloco e a barra nao
-  podem mais discordar por construcao (20.7). O rotulo do mundo do meio e
-  `Ver na loja`, e ele promete a LOJA e nunca a lista conferida, que e a mesma
-  disciplina da frase do piso. A barra ganhou um 5o argumento OBRIGATORIO e
-  sem padrao, pelo mesmo motivo que o 4o nao tem.
+  A FILA FOI RECONTADA NO DADO, CONSULTA POR CONSULTA, e nao herdada deste
+  cabecalho: das 11 consultas de dados/consultas-de-produto.json, 3 ja sao
+  pagina no ar, 3 estao fechadas por SERP `tomada` (30.5), 2 estao fechadas
+  pela 30.4 em favor da irma, 2 esperam o Chrome dele em `nao-medida` (e a 30.8
+  e ASSIMETRIA e nao atraso: `alvo` nao se afirma desta nuvem, nunca), e a
+  `scooter eletrica` — 301 mil buscas, a maior cabeca sem pagina — remede em
+  11/12 pela 30.9 regra 1, que PROIBE antecipar. O cano tambem recontado:
+  58 anuncios lidos e 23 que servem em 3 paginas, 17 veiculos com 4
+  publicaveis, vitrine com 2 paginas (a moto segue degradada, servindo o piso
+  da busca na tela). Bate com o item 4 da leitura semanal de 25/11.
 
-  E A CAMADA QUE NENHUM PORTAO DE AR ENXERGA: a categoria da F1 muda no
-  NAVEGADOR e a prateleira muda com ela. Consertar so o PHP deixaria a barra
-  certa no carregamento e MENTINDO na primeira troca de campo. Gancho
-  `data-rdm-barra-atalho`, e o pacote do JS leva o rotulo ja resolvido pela
-  MESMA funcao da casca, categoria por categoria, mais o do mundo da recusa.
-  O JS nao escolhe rotulo: ele le.
+  POR QUE NASCEU ZERO PORTAO, e e de proposito: a 31.2 pede defeito medido no
+  ar para portao novo nascer, e a bancada deu 0 falha em 74; a 31.3 proibe
+  ampliar portao que ja existe enquanto houver item de conteudo aberto em
+  despacho, e ha. FILA VAZIA NAO E LICENCA PARA TRABALHO DE BANCADA — e a
+  secao 31 inteira dizendo o contrario.
 
-  O PORTAO QUE VIGIA ISTO ACHOU UM DEFEITO DELE, e acusou a F1 e a F3 por
-  FALSO: o cortador de argumentos era ciente de ASPAS e nao de COMENTARIO —
-  uma mencao em comentario lida como chamada (`preg_match` com `.*?` para no
-  primeiro `);`) e prosa em portugues cortada por virgula. `sem_comentarios()`
-  raspa comentario PRESERVANDO as posicoes, porque `chamadas_de()` e
-  `funcao_que_contem()` trocam deslocamento entre si. As duas acusacoes falsas
-  viraram afirmacao, com a discordancia da 20.8 nos dois sentidos.
+  PROXIMO PASSO DESBLOQUEADO: NENHUM de construcao, e isto foi reconferido e
+  nao herdado. A construcao inteira desta ilha esta atras de TRES gestos do
+  Raphael, os tres ja escritos em despacho, e o mais curto deles e o primeiro:
+  (a) rodar a rotina PAUTA DAS ILHAS nesta ilha — e um disparo, nao uma
+  decisao, e destrava o bloco 5, o UNICO que nao depende de rede nem de SERP;
+  (b) o campo de configuracao que abre `*.gov.br` e os tres dominios de varejo
+  — destrava a F1 e a F3; (c) abrir no Chrome a SERP das duas `nao-medida` —
+  destrava pagina nova pela 30.8. Enquanto nenhum acontecer, a execucao
+  seguinte vai medir o que esta mediu.
 
-  E UM PORTAO NASCIDO ONTEM ESTAVA INERTE, COM ERRO FATAL E CODIGO DE SAIDA
-  ZERO: `teste-piso-do-bloco.php` morria em `Call to undefined function` e
-  saia 0. Quem o pegou foi a regra INERTE da bancada — a que exige veredito em
-  portugues. A regra que parecia etiqueta achou o portao morto.
-
-  MEDIDO NO AR as 19h4xZ, nas DUAS superficies: as 11 paginas a 390 px com
-  quebra de cache (as duas passaram a `Ver na loja` com 1 link cada; as tres
-  com cartao seguem em `Ver produtos` com 5, 8 e 10; zero `href` vazio e zero
-  link de compra sem `rel sponsored` nas 11) e a F1 EXECUTADA no navegador,
-  4 de 4 categorias com o rotulo certo e o destino da prateleira de cada.
-
-  PORTOES: conferir-no-ar 825 afirmacoes 0 falha, produto 412 e institucional
-  244 em 0; pixel 11 de 11 dentro da 32.5 com o pior botao em 1.366 px (o
-  conserto nao gastou um pixel: troca texto de botao e nao move bloco); piso
-  no navegador 4 de 4; console limpo nas 11. BANCADA: 67 portoes sem rede, 0
-  falha. teste-barra-de-compra passou de 95 afirmacoes em DOIS estados para
-  100 em TRES; teste-piso-do-bloco de 58 para 68. 4 mutacoes cobradas.
-  Revisao 145 -> 147, as 13 linhas do log dizendo `ok` (20.8: 13 - 13 = 0).
-  Desembarque pela 20.6 (ilha sem token) com o veredito `evento-nao-vencido`
-  da 20.9: esperar e nao reacionar. A revisao entrou 6m15s ANTES do teto, na
-  decima visita, com ZERO rodada de Sync desperdicada.
-
-  PROXIMO PASSO DESBLOQUEADO, e a fila de construcao segue VAZIA de verdade —
-  recontada nesta passada e nao herdada: o bloco 5 espera `pauta.md`, que e
-  das MAOS (17.1) e cuja rotina nunca rodou (despacho aberto de 24/11);
-  pagina nova de produto segue travada pela 30.8, e a recontagem das 11
-  consultas esta no comentario de `urls_publicadas` acima; a profundidade da
-  F1 e da F3 segue nas duas paredes de egresso. A `scooter eletrica` remede em
-  11/12 pela 30.9.
-
-  E A LICAO DE METODO PARA A PROXIMA PASSADA, pre-registrada, e ela e mais
-  geral que a de ontem: A ARIDADE DE UMA DECISAO ENVELHECE JUNTO COM A PAGINA.
-  O conserto de 09/11 estava certo e durou 16 dias — ele derivou o rotulo da
-  LISTA, e a lista era a unica coisa que decidia o bloco NAQUELE DIA. Quem
-  acrescentar um ESTADO NOVO a um componente — um terceiro mundo onde havia
-  dois — vai atras de TODA funcao que decide pelo estado antigo, porque elas
-  nao dao erro: elas leem o estado novo como se fosse um dos velhos e ACERTAM
-  EM DOIS DE TRES. E o portao que as vigia envelhece no mesmo gesto, porque os
-  mundos fabricados dele sao PARES.
-
-  E A SEGUNDA, DE INSTRUMENTO: CODIGO DE SAIDA ZERO NAO E VEREDITO. Portao que
-  morre em erro fatal pode sair 0, e o que o acusa e exigir que ele DIGA o
-  veredito em portugues.
+  LICAO DE METODO PRE-REGISTRADA, e ela e sobre o instrumento desta passada:
+  PAREDE REMEDIDA E ENTREGA, E PAREDE REMEDIDA DEMAIS E DESPERDICIO. As dez
+  linhas foram remedidas em 16/11, 24/11 e hoje, e as tres vezes deram o MESMO
+  numero com as MESMAS causas. A 30.9 ja resolveu isso para consulta fechada
+  por catalogo — o intervalo sai da SERIE, nao do palpite — e ninguem escreveu
+  a regra equivalente para parede de egresso. QUEM ACHAR A FILA VAZIA NESTA
+  ILHA NA PROXIMA PASSADA SONDA DUAS linhas (um .gov.br e um varejo) e so abre
+  as dez se uma das duas mudar. Trinta curl que repetem o numero de ontem sao a
+  mesma doenca da 30.9 num instrumento diferente.
 ---
 
 # Estado da ilha RODAMETRIA
