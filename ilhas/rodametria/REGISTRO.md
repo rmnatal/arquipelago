@@ -3,6 +3,49 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-11-26 13h16Z–13h2xZ — **A FILA SEGUE VAZIA, E O QUE ESTA PASSADA ENTREGA É A REGRA QUE A PASSADA DE TRÊS HORAS ANTES MEDIU FALTANDO: A `20.16` DO CONTRATO — PAREDE DE EGRESSO NÃO SE REMEDE POR CALENDÁRIO, PORQUE LISTA DE DOMÍNIO PERMITIDO NÃO ENVELHECE SOZINHA. NADA FOI AO AR, E NADA PODIA**
+
+Ilha reservada às **13h16Z** (commit `a6e1373`), aceita de primeira, pela **1.2** — `foco.md` nomeia a rodametria em foco total desde 27/10. Nenhuma das três ilhas com o molde da **32** tinha despacho de molde aberto, então a exceção da 1.2 não se aplicou; e nenhum despacho **ALTO** de ilha quebrada existia para a **18** furar o foco.
+
+### O QUE ESTA PASSADA ENCONTROU, E É A QUINTA VEZ SEGUIDA
+
+**A fila de construção está vazia, e isto foi reconferido contra o dado e não herdado do cabeçalho.** Nenhum despacho aberto desta ilha é acionável pela Fundação: o item 1 da leitura semanal de 25/11 (página nova) tem o *"pronto quando"* atrás de três gestos do Raphael; o item 3 da ronda de 25/11 é decisão de permissão de plataforma; o bloco 5 (`/guias/`) espera o `pauta.md` que a **17.1** proíbe a Fundação escrever e cuja rotina nunca rodou em 76 dias; a `scooter elétrica` remede em **11/12** pela **30.9 regra 1**, que proíbe antecipar; e trabalhar texto das páginas que já existem é proibido pela **12.1** — a única linha em banda 11-20 (`/veiculos/bicicleta-eletrica/`, 11,0) tem **1 impressão e nenhuma consulta nomeada**, e a leitura de 25/11 já decidiu, com a régua da própria 12.1, que proposta sem consulta nomeada é opinião. **Esta execução não a refez: camada dona que já decidiu não se sobrescreve por vontade de entregar.**
+
+**A ILHA ESTÁ SÃ, medido antes de qualquer coisa (18.5) e no barato:** `/status` em **147** = `manifest.json` em **147**, `versao_sync` **1.1.5**, as linhas de item da revisão 147 dizendo `ok` no log, `rodametria.com.br/` em **200**. **A bancada de 74 portões NÃO foi repetida, de propósito:** ela rodou às 10h2xZ de hoje com 0 falha, nada tocou o código entre as duas passadas, e a **31.3** proíbe trabalho de bancada enquanto houver item de conteúdo aberto em despacho — e há.
+
+### A ENTREGA: A LIÇÃO PRÉ-REGISTRADA VIROU CONTRATO, EM VEZ DE MORRER NO CABEÇALHO DE UMA ILHA
+
+A passada das **10h16Z–10h3xZ de hoje** fechou pré-registrando a lição com a própria conta na mão — *"parede remedida é entrega, e parede remedida DEMAIS é desperdício"* — e escreveu, com todas as letras, que **a 30.9 já havia resolvido isso para consulta fechada por catálogo e ninguém havia escrito a regra equivalente para parede de egresso.** Ela também deixou a instrução: quem achasse a fila vazia na passada seguinte sondaria **duas** linhas e só abriria as dez se uma mudasse.
+
+**AS DUAS METADES FORAM CUMPRIDAS, nesta ordem.**
+
+**(1) A SONDA, às 13h16Z, no ambiente da nuvem da Fundação:** `www.gov.br` **`000`**, `www.casasbahia.com.br` **`000`** — uma linha por classe de parede —, com `rodametria.com.br` em **`200`** na mesma passada como controle. **Nenhuma mudou, então as outras oito linhas não foram abertas.** Três medições no lugar de trinta.
+
+**(2) A REGRA, escrita onde vale para as seis ilhas: a `20.16` do `ARQUIPELAGO.md`.** Ela está no contrato e não neste arquivo pelo motivo que a **20.4** já escreveu com todas as letras — *conserto escrito em registro de ilha conserta aquele dia* — e porque **toda** ilha desta fábrica depende de pelo menos uma fonte fora do próprio domínio (o nível 5 da **25**, um fabricante, uma API, um marketplace).
+
+**O ARGUMENTO DELA, e ele não é economia de `curl`:** a **30.9** tira o intervalo da próxima medição do **maior intervalo em que aquela ilha já mediu o catálogo MUDAR**. Para parede de egresso **esse número não existe** — **nenhuma parede desta fábrica jamais foi medida abrindo por conta própria.** Lista de domínios permitidos não se move com o tempo; ela se move quando alguém digita um host numa tela de configuração. **Logo a cadência não é um intervalo: é um gatilho**, e a parede inteira só se reabre quando (a) a sonda muda, (b) chega notícia de que o gesto foi feito, ou (c) a ilha precisa de um host que **nunca foi sondado** — porque a lista é **por host**, e o `000` de `www.gov.br` não afirma nada sobre um domínio que ninguém pediu. Sondar é **carona** e nunca bloco, igual à regra 2 da 30.9, e a passada que só sonda **diz isso** em vez de apresentar a sonda como entrega.
+
+**E A ARMADILHA QUE A REGRA OBRIGA A NOMEAR: a parede é uma POR AMBIENTE.** Em **11/11/2026** o egresso da Sentinela alcançava `rodametria.com.br` na mesma hora em que o das MÃOS tomava **403** no mesmo host (está na errata da leitura de 11/11, em `dados/posicoes.md`). Veredito de parede sem o nome do ambiente que o mediu é número sem procedência, e a **23.4** já o proíbe.
+
+**A SÉRIE QUE SUSTENTA A REGRA, contada no `REGISTRO.md` e no `ESTADO.md` desta ilha e não estimada:** a mesma parede foi remedida **pelo menos sete vezes em 21 dias** — 05/11, 13/11 13h3xZ, 16/11 13h16Z, 20/11 13h17Z, 24/11 10h17Z, 26/11 10h2xZ e 26/11 13h16Z —, **sempre com o mesmo veredito e as mesmas causas**, sempre `000` e nunca `403` (o código que diz *fora da lista*, não *recusado pelo host*). **E o custo da medição subiu enquanto a resposta não mudava:** 15 medições de recusa em 24/11, 27 contra 9 controles em 20/11, **30 contra 6** na passada desta manhã. O bloco de **26/11** foi escrito na seção 1 de `dados/fonte-oficial-f1.md`, que é onde a série da ilha mora.
+
+### O QUE NÃO FOI FEITO, E POR QUE CADA COISA NÃO FOI
+
+- **Nada ao ar.** Nenhum arquivo tocado é item do `manifest.json` — conferido no próprio manifest, não suposto —, então não havia desembarque a acionar e nenhuma revisão se move. **Pela 31.1 esta é a quinta execução desta ilha a entrar na conta dos 3 em 10 pela mesma causa** (18/11 19h17Z, 24/11 10h17Z, 24/11 13h16Z, 26/11 10h16Z e esta).
+- **Zero portão novo**, pela **31.2**: não houve defeito medido no ar. **E regra de contrato não é portão** — a 31.2 e a 31.3 falam de portão, régua, mutação e bancada, e nenhuma delas alcança escrever regra no `ARQUIPELAGO.md`, que é o que o prompt da Fundação manda fazer com regra nova.
+- **A bancada não rodou de novo**, por 31.3 e porque repetir medição de três horas antes que nada tocou é a doença que a 20.16 acabou de nomear, num instrumento diferente.
+- **As oito linhas de parede não foram abertas**, pela regra que esta mesma passada escreveu. Se isto estiver errado, está errado por escrito e com a série ao lado.
+
+### PRÓXIMO PASSO DESBLOQUEADO
+
+**Nenhum de construção, e o critério segue pré-registrado (1.2-b.4).** Os três gestos do Raphael, por ordem de valor e todos já em despacho: **(a)** rodar a rotina *Pauta das ilhas* nesta ilha — um disparo, não uma decisão, e destrava o bloco 5, o único que não depende de rede nem de SERP; **(b)** o campo de configuração que abre `*.gov.br` e os três domínios de varejo — destrava a F1 e a F3; **(c)** a SERP das duas consultas `nao-medida` no Chrome dele — destrava página nova pela **30.8**.
+
+**E O GANHO DESTA PASSADA PARA A SEGUINTE, dito como instrução:** quem achar a fila vazia nesta ilha **lê o gatilho da 20.16 antes de rodar um `curl`**. Se nenhum dos três gatilhos aconteceu, a resposta certa é fechar em "nada elegível" com uma linha — e isso agora custa minutos em vez de uma execução.
+
+**LIÇÃO DE MÉTODO PRÉ-REGISTRADA, e ela não é sobre parede: é sobre onde a próxima execução procura trabalho.** Quatro das cinco últimas passadas desta ilha fecharam sem nada no ar, e a **31.1** está sendo paga por uma causa que **não é técnica** — não falta bloco, portão nem dado: faltam três gestos de uma pessoa, pedidos por escrito desde 28/10, 11/11 e 18/11. **A próxima execução que achar esta ilha travada não deve procurar trabalho dentro dela**: procurar trabalho em ilha travada é o que produz bancada disfarçada de entrega, e é exatamente o que a seção 31 existe para impedir. Se o foco continuar aqui e nenhum gesto tiver chegado, o que vale mais que qualquer bloco é **uma linha no painel** dizendo há quantas execuções a ilha em foco total não publica — porque essa linha é para o Raphael, e é ele quem tem a chave.
+
+---
+
 ## 2026-11-26 10h16Z–10h3xZ — **A FILA DE CONSTRUÇÃO SEGUE VAZIA, E O QUE ESTA PASSADA ENTREGA É A PROVA DE QUE AS TRÊS PAREDES CONTINUAM DE PÉ — REMEDIDAS HOJE, NÃO HERDADAS. NADA FOI AO AR, E NADA PODIA**
 
 **A ILHA DESTA EXECUÇÃO:** rodametria, por **foco** (`foco.md`, foco total e absoluto desde 27/10). Pela **1.2** não houve escolha de ilha a fazer. Reserva às **10h16Z** (commit `0dca7db`), passo 5 da seção 1. Nenhum branch `claude/*` com commit além do `main` e nenhum PR aberto: `git log origin/main..origin/claude/dreamy-mccarthy-a80pfx` veio vazio nas duas pontas.

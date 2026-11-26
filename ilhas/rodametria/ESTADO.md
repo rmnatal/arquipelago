@@ -16,117 +16,120 @@ urls_publicadas: 11       # ZERO URL nasceu TAMBEM na passada de 26/11 as 10h16Z
                           # proteger. Quem substituir comentario de varias linhas apaga o rabo.
 ultima_ronda: 2026-11-25T20:15Z   # LEITURA SEMANAL de 25/11/2026 (secao 12.2, item 3). SUBSTITUI o valor anterior 2026-11-25T15:40Z, que era da RONDA DIARIA TECNICA do mesmo dia e segue registrada no PROMPT.md. 1 impressao, 0 clique, posicao 11,0 — a ilha em foco total somou 11 impressoes em quatro semanas (8, 2, 1). Indexacao n/d pela TERCEIRA leitura seguida: o egresso do ambiente das MAOS recusa rodametria.com.br nos DOIS caminhos, e o caminho declarado pela propriedade foi um deles, logo o conserto de caminho esta feito e sobra o egresso, que e passo do Raphael. Nenhuma URL nasceu desde 16/11. Hora dada pela Sentinela, que nao tem repositorio.
 primeira_indexacao: null  # as duas primeiras URLs foram ao ar hoje; indexacao e trabalho de dias. Quem grava este campo e a leitura semanal, lendo o Search Console.
-ultima_execucao: 2026-11-26T10:28Z   # NADA FOI AO AR, E NADA PODIA: a fila de
-                         # construcao segue VAZIA e as TRES paredes de egresso
-                         # foram REMEDIDAS hoje pela 20.2, nao herdadas — 30
-                         # medicoes em 000 contra 6 de controle em 200, zero
-                         # intermitencia. Ilha SA antes de tudo (18.5): bancada
-                         # em 74 portoes, 0 falha; /status 147 = manifest 147;
-                         # 11 de 11 URLs servidas; nenhuma queda nova da porta
-                         # desde 23/11. QUARTA execucao desta ilha a fechar sem
-                         # nada visivel no ar pela mesma causa (18/11 19h17Z,
-                         # 24/11 10h17Z, 24/11 13h16Z e esta), e pela 31.1 as
-                         # quatro entram na conta dos 3 em 10.
+ultima_execucao: 2026-11-26T13:22Z   # NADA FOI AO AR, E NADA PODIA: a fila de construcao
+                         # segue vazia e isto foi reconferido contra o dado, nao
+                         # herdado deste cabecalho. O que esta passada entrega e a
+                         # REGRA que faltava: a 20.16 do ARQUIPELAGO.md — parede de
+                         # egresso nao se remede por calendario, se SONDA em duas
+                         # linhas, porque lista de dominio permitido nao envelhece
+                         # sozinha: ela espera um gesto. A licao de metodo que a
+                         # passada das 10h3xZ pre-registrou foi OBEDECIDA e virou
+                         # contrato, em vez de morrer neste campo. QUINTA execucao
+                         # desta ilha a fechar sem nada visivel no ar pela mesma
+                         # causa (18/11 19h17Z, 24/11 10h17Z, 24/11 13h16Z,
+                         # 26/11 10h16Z e esta), e pela 31.1 as cinco entram na
+                         # conta dos 3 em 10.
                          # A hora saiu do `date -u` na MESMA linha de comando que
                          # a grava, nunca digitada.
-executando_desde: 2026-11-26T13:16Z   # RESERVA desta execucao da Fundacao (passo 5 da secao 1),
-                         # ilha em FOCO pela 1.2 (`foco.md` nomeia a rodametria desde 27/10).
-                         # O comentario ANTERIOR, de onze linhas, falava da reserva das 10h16Z
-                         # (commit 0dca7db) desta mesma data e foi apagado INTEIRO aqui — rabo
-                         # de comentario substituido pela primeira linha e o defeito que este
-                         # cabecalho ja registrou duas vezes. A hora saiu do `date -u` na MESMA
-                         # linha de comando que a grava, nunca digitada.
-rede: aberta em 2026-11-26   # 20.2, REMEDIDA e nao herdada na execucao
-                             # das 10h16Z: `rodametria.com.br/` em 200 nas TRES
-                             # passadas, com `aquametria.com.br` em 200 nas
-                             # MESMAS tres — controle verde. E AS TRES PAREDES
-                             # FORAM REMEDIDAS NA MESMA PASSADA e tambem nao
-                             # herdadas: os quatro `.gov.br` federais, os quatro
-                             # de prefeitura e os dois de varejo grande, OS DEZ
-                             # em 000 nas tres. 30 medicoes de bloqueio contra 6
-                             # de controle verde, zero intermitencia. NENHUMA
-                             # abriu.
-                             # O comentario anterior, de 25/11: 20.2, REMEDIDA e nao herdada naquela
-                             # execucao das 13h17Z: `rodametria.com.br/` e
-                             # `/veiculos/` em 200, com example.com em 000 no
-                             # MESMO comando — o controle da 33 que diz que
-                             # `000` nesta nuvem e POLITICA da lista de
-                             # permissoes, nunca queda de site nem tunel
-                             # instavel. As 11 URLs do sitemap foram abertas
-                             # com quebra de cache depois do desembarque da 138
-                             # e TODAS responderam 200.
-                             # AS DUAS PAREDES SEGUEM DE PE, e esta execucao
-                             # NAO as remediu: o `.gov.br` da F1 e o nivel 5 da
-                             # escada foram medidos nas duas portas em 24/11, e
-                             # a 20.2 nao pede remedicao de parede que esta
-                             # passada nao usou. SEGUE FECHADA: o gesto dos dois
-                             # campos de configuracao nao foi feito, e com ele
-                             # seguem parados o CNH da F1 e a camada municipal.
-                             # E O QUE ESTA PASSADA FEZ COM A PAREDE DO CNH:
-                             # nao a derrubou — encareceu o dia em que ela cair.
-                             # O portao da F1 deixou de PARAR DE OLHAR quando a
-                             # constante do CTB destravar e passou a cobrar
-                             # procedencia dela nesse dia.
+executando_desde: null   # LIMPO no fecho desta execucao (passo 7 da secao 1).
+                         # Reservada as 13h16Z (commit a6e1373), aceita de PRIMEIRA,
+                         # e NAO renovada: o fecho saiu dentro dos 40 minutos da 1.1.
+                         # O comentario desta linha foi substituido INTEIRO, rabo
+                         # incluido — e o cabecalho ja registra duas vezes o defeito
+                         # de trocar so a primeira linha e deixar o rabo afirmando a
+                         # hora e o commit errados.
+rede: aberta em 2026-11-26   # 20.2, e a conferencia do DOMINIO DA PROPRIA ILHA se
+                             # faz em toda execucao: `rodametria.com.br/` em 200 as
+                             # 13h16Z, e o /status em 200 as 13h1xZ. NAO herdada.
+                             # E A PAREDE DE EGRESSO FOI SONDADA, NAO REMEDIDA, e e
+                             # a 20.16 nascendo: duas linhas (uma por classe) mais um
+                             # controle, no ambiente da NUVEM DA FUNDACAO —
+                             # www.gov.br 000, www.casasbahia.com.br 000,
+                             # rodametria.com.br 200. NENHUMA mudou, logo as outras
+                             # oito NAO foram abertas de proposito. A passada das
+                             # 10h2xZ de hoje abriu as dez (30 medicoes contra 6 de
+                             # controle) e deu o MESMO numero com as MESMAS causas;
+                             # foi a setima vez em 21 dias, e a serie esta na secao 1
+                             # de dados/fonte-oficial-f1.md.
+                             # AS TRES PAREDES SEGUEM DE PE e o que as derruba e um
+                             # gesto do Raphael: com elas seguem parados o CNH da F1,
+                             # a camada municipal e o nivel 5 da escada.
 bloqueada_por: null      # obrigatorio pela secao 2. `null` DE PROPOSITO: o que falta (gov.br para a F1, as prefeituras para a camada municipal, as tres etiquetas do Mercado Livre) trava a FABRICA e nao a ILHA, e isso se escreve no despacho, que e o canal da 12.2. Preenche-lo congelaria tambem os blocos que ja podem andar.
 bloco_atual: |
-  A FILA DE CONSTRUCAO SEGUE VAZIA, E O QUE ESTA PASSADA ENTREGA E A PROVA DE
-  QUE AS TRES PAREDES CONTINUAM DE PE — REMEDIDAS HOJE, NAO HERDADAS. NADA FOI
-  AO AR, e nada podia. E a QUARTA execucao desta ilha a fechar assim pela mesma
-  causa (18/11 19h17Z, 24/11 10h17Z, 24/11 13h16Z e esta).
+  A FILA DE CONSTRUCAO SEGUE VAZIA, E O QUE ESTA PASSADA ENTREGA E A REGRA QUE
+  FALTAVA: a 20.16 do ARQUIPELAGO.md. NADA FOI AO AR, e nada podia. E a QUINTA
+  execucao desta ilha a fechar assim pela mesma causa (18/11 19h17Z, 24/11
+  10h17Z, 24/11 13h16Z, 26/11 10h16Z e esta).
 
-  A ILHA ESTA SA, E ISSO FOI MEDIDO ANTES DE QUALQUER COISA (18.5): bancada em
-  67 portoes sem rede e 74 com rede, 0 falha nas duas; 11 de 11 URLs no
-  wp-sitemap servidas; /status em 147 = manifest em 147, versao_sync 1.1.5; o
-  contador duravel da porta com tem_bloco_wordpress true, episodios_vistos 3,
-  reposicoes_da_cura 3, leituras_nao_sei 0 e o ultimo episodio em 23/11 19h20Z
-  — NENHUMA queda nova em tres dias. Zero defeito no ar, logo zero correcao
-  para a 18 furar fila com.
+  A 20.16, EM UMA FRASE: parede de egresso nao se remede por calendario — ela se
+  SONDA em duas linhas (uma por classe, mais um controle verde na mesma passada)
+  e so se reabre inteira quando a sonda muda, quando chega noticia de que o gesto
+  foi feito, ou quando a ilha precisa de um host que NUNCA foi sondado. A razao
+  nao e economia: a 30.9 tira o intervalo do maior intervalo em que a ilha mediu
+  o catalogo MUDAR, e para parede esse numero NAO EXISTE — nenhuma parede desta
+  fabrica foi medida abrindo por conta propria. Lista de dominio permitido nao
+  envelhece sozinha: ela espera alguem digitar um host numa tela. Logo a cadencia
+  nao e intervalo, e GATILHO. E todo veredito nomeia o AMBIENTE que mediu, porque
+  a parede e uma por ambiente — medido nesta ilha em 11/11, quando a Sentinela
+  alcancava rodametria.com.br na mesma hora em que as MAOS tomavam 403.
 
-  AS TRES PAREDES, REMEDIDAS AS 10h2xZ PELA 20.2 E PELA 20.3, tres passadas
-  cada e com controle na mesma passada: gov.br, in.gov.br, planalto.gov.br e
-  contran.gov.br (limiar legal da F1); campinas, rio, joinville e sjc (camada
-  municipal da F1); casasbahia e magazineluiza (nivel 5 da escada, que e onde
-  moram potencia_nominal_w, velocidade_max_kmh, acelerador e carga_max_kg). AS
-  DEZ EM 000 NAS TRES, com rodametria.com.br e aquametria.com.br em 200 nas
-  MESMAS tres. 30 medicoes de bloqueio contra 6 de controle verde, zero
-  intermitencia. NENHUMA abriu.
+  DE ONDE ELA SAIU, e isto importa para ninguem a ler como ideia: a passada das
+  10h16Z-10h3xZ de HOJE pre-registrou a licao de metodo com a propria conta na
+  mao ("parede remedida e entrega, e parede remedida DEMAIS e desperdicio") e
+  escreveu, com todas as letras, que ninguem havia escrito a regra equivalente a
+  30.9 para parede de egresso. Esta passada OBEDECEU a primeira metade (sondou
+  duas linhas, nao abriu as dez) e escreveu a segunda ONDE ELA VALE PARA AS SEIS
+  ILHAS, em vez de a deixar neste campo — que e exatamente o defeito que a 20.4
+  nomeia: conserto escrito em registro de ilha conserta aquele dia.
 
-  A FILA FOI RECONTADA NO DADO, CONSULTA POR CONSULTA, e nao herdada deste
-  cabecalho: das 11 consultas de dados/consultas-de-produto.json, 3 ja sao
-  pagina no ar, 3 estao fechadas por SERP `tomada` (30.5), 2 estao fechadas
-  pela 30.4 em favor da irma, 2 esperam o Chrome dele em `nao-medida` (e a 30.8
-  e ASSIMETRIA e nao atraso: `alvo` nao se afirma desta nuvem, nunca), e a
-  `scooter eletrica` — 301 mil buscas, a maior cabeca sem pagina — remede em
-  11/12 pela 30.9 regra 1, que PROIBE antecipar. O cano tambem recontado:
-  58 anuncios lidos e 23 que servem em 3 paginas, 17 veiculos com 4
-  publicaveis, vitrine com 2 paginas (a moto segue degradada, servindo o piso
-  da busca na tela). Bate com o item 4 da leitura semanal de 25/11.
+  A SONDA DE HOJE, as 13h16Z, no ambiente da nuvem da Fundacao: www.gov.br 000,
+  www.casasbahia.com.br 000, rodametria.com.br 200. Nenhuma mudou. A serie da
+  mesma parede tem PELO MENOS SETE medicoes em 21 dias (05/11, 13/11, 16/11,
+  20/11, 24/11, 26/11 10h2xZ e esta), sempre com o mesmo veredito e as mesmas
+  causas, e com o custo SUBINDO: 30 medicoes contra 6 controles na passada da
+  manha. A serie inteira esta na secao 1 de dados/fonte-oficial-f1.md, que ganhou
+  o bloco de 26/11.
 
-  POR QUE NASCEU ZERO PORTAO, e e de proposito: a 31.2 pede defeito medido no
-  ar para portao novo nascer, e a bancada deu 0 falha em 74; a 31.3 proibe
-  ampliar portao que ja existe enquanto houver item de conteudo aberto em
-  despacho, e ha. FILA VAZIA NAO E LICENCA PARA TRABALHO DE BANCADA — e a
-  secao 31 inteira dizendo o contrario.
+  A ILHA ESTA SA, E ISSO FOI MEDIDO ANTES DE QUALQUER COISA (18.5), no barato:
+  /status em 147 = manifest em 147, versao_sync 1.1.5, as linhas da revisao 147
+  dizendo ok no log, e rodametria.com.br em 200. A bancada de 74 portoes rodou as
+  10h2xZ de hoje com 0 falha e NAO foi repetida de proposito: repetir medicao de
+  tres horas atras que nada tocou e a mesma doenca que a 20.16 acabou de nomear,
+  e a 31.3 proibe trabalho de bancada com item de conteudo aberto em despacho.
 
-  PROXIMO PASSO DESBLOQUEADO: NENHUM de construcao, e isto foi reconferido e
-  nao herdado. A construcao inteira desta ilha esta atras de TRES gestos do
-  Raphael, os tres ja escritos em despacho, e o mais curto deles e o primeiro:
-  (a) rodar a rotina PAUTA DAS ILHAS nesta ilha — e um disparo, nao uma
-  decisao, e destrava o bloco 5, o UNICO que nao depende de rede nem de SERP;
-  (b) o campo de configuracao que abre `*.gov.br` e os tres dominios de varejo
-  — destrava a F1 e a F3; (c) abrir no Chrome a SERP das duas `nao-medida` —
-  destrava pagina nova pela 30.8. Enquanto nenhum acontecer, a execucao
-  seguinte vai medir o que esta mediu.
+  POR QUE NASCEU ZERO PORTAO, e e de proposito: a 31.2 pede defeito medido no ar
+  para portao novo nascer, e nao houve defeito. REGRA DE CONTRATO NAO E PORTAO:
+  a 31.2 e a 31.3 falam de portao, regua, mutacao e bancada, e nenhuma delas
+  alcanca escrever regra no ARQUIPELAGO.md — que e justamente o que o prompt da
+  Fundacao manda fazer com regra nova.
 
-  LICAO DE METODO PRE-REGISTRADA, e ela e sobre o instrumento desta passada:
-  PAREDE REMEDIDA E ENTREGA, E PAREDE REMEDIDA DEMAIS E DESPERDICIO. As dez
-  linhas foram remedidas em 16/11, 24/11 e hoje, e as tres vezes deram o MESMO
-  numero com as MESMAS causas. A 30.9 ja resolveu isso para consulta fechada
-  por catalogo — o intervalo sai da SERIE, nao do palpite — e ninguem escreveu
-  a regra equivalente para parede de egresso. QUEM ACHAR A FILA VAZIA NESTA
-  ILHA NA PROXIMA PASSADA SONDA DUAS linhas (um .gov.br e um varejo) e so abre
-  as dez se uma das duas mudar. Trinta curl que repetem o numero de ontem sao a
-  mesma doenca da 30.9 num instrumento diferente.
+  PROXIMO PASSO DESBLOQUEADO: NENHUM de construcao, reconferido e nao herdado. A
+  construcao inteira desta ilha esta atras de TRES gestos do Raphael, os tres ja
+  escritos em despacho, e o mais curto deles e o primeiro: (a) rodar a rotina
+  PAUTA DAS ILHAS nesta ilha — e um disparo, nao uma decisao, e destrava o bloco
+  5, o UNICO que nao depende de rede nem de SERP; (b) o campo de configuracao que
+  abre *.gov.br e os tres dominios de varejo — destrava a F1 e a F3; (c) abrir no
+  Chrome a SERP das duas consultas `nao-medida` — destrava pagina nova pela 30.8.
+
+  E O QUE A PROXIMA PASSADA NAO PRECISA MAIS FAZER, que e o ganho desta: nao
+  precisa sondar parede de novo. A 20.16 diz que a sonda espera um GATILHO, e
+  nenhum dos tres aconteceu entre as 13h16Z de hoje e a passada seguinte, a menos
+  que alguem diga que disse. Quem achar a fila vazia nesta ilha le o gatilho da
+  20.16 antes de rodar um curl, e se nenhum tiver acontecido fecha em "nada
+  elegivel" com uma linha — que e a resposta certa, nao fracasso, e custa minutos
+  em vez de uma execucao.
+
+  LICAO DE METODO PRE-REGISTRADA PARA A PROXIMA PASSADA, e ela e sobre o lugar da
+  escrita e nao sobre parede: QUATRO DAS CINCO ULTIMAS PASSADAS DESTA ILHA
+  FECHARAM SEM NADA NO AR, E A 31.1 ESTA SENDO PAGA POR UMA CAUSA QUE NAO E
+  TECNICA. O que falta nao e bloco, nem portao, nem dado: sao tres gestos de uma
+  pessoa, pedidos por escrito desde 28/10, 11/11 e 18/11. A proxima execucao que
+  achar esta ilha com a fila vazia NAO deve procurar trabalho dentro dela —
+  procurar trabalho em ilha travada e o que produz bancada disfarcada de entrega.
+  Se o foco continuar aqui e nenhum gesto tiver chegado, o que vale mais que
+  qualquer bloco e UMA LINHA no painel dizendo ha quantas execucoes a ilha em
+  foco total nao publica, porque essa linha e para o Raphael, e e ele quem tem a
+  chave.
 ---
 
 # Estado da ilha RODAMETRIA

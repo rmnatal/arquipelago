@@ -954,6 +954,30 @@ Medido na rodametria em 23/11/2026, e está aqui — e não no registro daquela 
 
 20.3 **A mesma armadilha vale para toda fonte nova** que uma ilha precise alcançar (domínio de fabricante, API, marketplace): quem escreve a regra que exige a fonte é quem confere se a fonte está liberada.
 
+20.16 **PAREDE DE EGRESSO NÃO SE REMEDE POR CALENDÁRIO: ELA SE SONDA EM DUAS LINHAS, E SÓ SE REABRE INTEIRA QUANDO A SONDA MUDA — PORQUE LISTA DE DOMÍNIO PERMITIDO NÃO ENVELHECE SOZINHA, ELA ESPERA UM GESTO (26/11/2026).**
+
+Esta seção é a irmã da **30.9** num instrumento diferente, e nasceu de uma lição de método **pré-registrada** pela execução anterior da mesma ilha, que mediu a própria conta: *"parede remedida é entrega, e parede remedida DEMAIS é desperdício"* (`ilhas/rodametria/REGISTRO.md`, 26/11/2026 10h16Z–10h3xZ). Ela está **aqui** e não lá pelo motivo que a **20.4** já escreveu com todas as letras: conserto escrito em registro de ilha conserta aquele dia, e **toda** ilha desta fábrica depende de pelo menos uma fonte fora do próprio domínio — o nível 5 da escada da **25**, um domínio de fabricante, uma API, um marketplace.
+
+**A SÉRIE QUE DECIDE, contada no `REGISTRO.md` e no `ESTADO.md` da rodametria e não estimada.** A mesma parede — o `.gov.br` da F1, os quatro domínios de prefeitura da camada municipal e o varejo grande do nível 5 — foi remedida **pelo menos sete vezes em 21 dias**: 05/11, 13/11 13h3xZ, 16/11 13h16Z, 20/11 13h17Z, 24/11 10h17Z, 26/11 10h2xZ e 26/11 13h16Z. **O veredito foi o mesmo nas sete, com as mesmas causas, e sempre `000` e nunca `403`** — o código que diz *fora da lista de permitidos*, não *recusado pelo host*. **E o custo da medição SUBIU enquanto a resposta não mudava:** 15 medições de recusa em 24/11, 27 contra 9 de controle em 20/11, **30 contra 6 de controle** em 26/11 às 10h2xZ. A passada das 13h16Z de 26/11 sondou **duas** linhas com **um** controle e chegou ao mesmo veredito: `www.gov.br` `000`, `www.casasbahia.com.br` `000`, `rodametria.com.br` `200`.
+
+**POR QUE A RÉGUA DA 30.9 NÃO SERVE AQUI, e é por uma ausência e não por uma discordância.** A 30.9 manda tirar o intervalo da próxima medição do **maior intervalo em que aquela ilha já mediu o catálogo MUDAR**. Para parede de egresso **esse número não existe**: nenhuma parede desta fábrica jamais foi medida **abrindo por conta própria**. Lista de domínios permitidos não se move com o tempo — ela se move quando **alguém digita um host numa tela de configuração**. Logo a cadência certa não é um intervalo: é um **gatilho**. Medir parede por calendário é esperar que uma porta trancada enferruje até abrir.
+
+**A REGRA, e ela tem três partes.**
+
+1. **Entre dois gestos, a parede se SONDA, não se remede.** A sonda é **uma linha por classe de parede** — classe é o conjunto de hosts que trava o mesmo eixo da fila —, mais **um controle verde na mesma passada** (o domínio da própria ilha). Duas ou três medições, nunca trinta. Enquanto a sonda repetir o veredito, **as outras linhas da mesma classe não se abrem**: elas compartilham a causa única, e causa única medida numa linha está medida em todas. Quem abrir as dez de novo sem a sonda ter mudado está pagando uma execução para reler a mesma recusa.
+2. **A parede inteira se reabre quando um destes três acontece, e só então:** **(a)** a sonda muda de veredito; **(b)** chega notícia de que o gesto foi feito — despacho fechado, linha no `MAOS-LOG.md`, palavra do Raphael; **(c)** a ilha precisa de um host que **nunca foi sondado**. O (c) não é exceção, é o fato da lista: ela é **por host**, então **parede nova não herda o veredito da antiga**, e o `000` de `www.gov.br` não afirma nada sobre `www2.camara.leg.br` até alguém pedir os dois.
+3. **Sondar é CARONA, nunca bloco** — igual à regra 2 da 30.9. Custa três `curl` e não entrega nada no ar, então pela **31.1** a passada que sondar e nada mais **diz isso**, em vez de apresentar a sonda como entrega. E escreve o resultado na série da ilha **com data, com o número de medições e com o ambiente** — para a próxima não precisar supor.
+
+**A ARMADILHA QUE OBRIGA A NOMEAR O AMBIENTE, e ela está medida: A PAREDE É UMA POR AMBIENTE.** Em 11/11/2026 o egresso da **Sentinela** alcançava `rodametria.com.br` na mesma hora em que o das **MÃOS** tomava `403 Forbidden` no **mesmo host** (`ilhas/rodametria/dados/posicoes.md`, errata da leitura de 11/11). Então **sonda verde num ambiente não libera a fonte para outro, e sonda vermelha num ambiente não prova parede no outro.** Veredito de parede sem o nome do ambiente que o mediu é número sem procedência, e a **23.4** já o proíbe no painel.
+
+**O QUE ISTO NÃO AFROUXA, dito para ninguém ler verde a mais:**
+
+- A **20.3** e a **33** continuam inteiras: **causa de impossibilidade envelhece**, e parede de egresso não fica fechada para sempre. O que muda é **quem escolhe o momento** — o gatilho, e não o calendário.
+- A **20.2** continua inteira no que é dela: a conferência do **domínio da própria ilha** se faz no começo de **toda** execução, com repetição se der `000`, porque ali o que se mede é o **site** e não a lista. Sonda de parede e conferência de rede são dois instrumentos com o mesmo comando e perguntas diferentes.
+- E a sonda **não substitui porta nova**: a **20.3** manda tentar as portas que ainda não foram tentadas naquele host (navegador, leitor de página, busca), e cada porta nova é medição legítima **uma vez** — depois dela, vale esta seção.
+
+---
+
 ## 21. O PISO DA RAMPA — antes de 40 páginas e 21 dias, zero impressão não é sinal (11/09/2026)
 
 Decisão do Raphael em 11/09/2026, depois de eu apontar o risco: a Aquametria tinha 8 dias de vida, 13 URLs, 7 indexadas e **zero impressões**. A regra da rampa (seção 9) diz para só dobrar a leva se a anterior **indexou E apareceu**. Lida ao pé da letra num site de uma semana, essa regra congela a ilha em 13 páginas esperando um sinal que só existiria com mais páginas e mais tempo. É uma regra boa para site maduro e ruim para site recém-nascido.

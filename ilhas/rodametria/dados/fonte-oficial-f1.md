@@ -86,6 +86,23 @@ Este arquivo existe por dois motivos, e os dois são para baratear a próxima pa
 > **O pedido inteiro passou a existir numa lista só**, em `dados/despachos.md`, no topo dos ABERTOS: as seis
 > fatias que seis despachos pediam separadas, reunidas, porque montar a lista era o trabalho que não estava
 > sendo feito. Nenhum dos seis foi fechado.
+>
+> **26/11/2026 — A PAREDE DEIXOU DE SER REMEDIDA INTEIRA, E A REGRA DISSO AGORA É A 20.16 DO CONTRATO.** Esta
+> tabela tem a série que decidiu: a mesma parede foi remedida **pelo menos sete vezes em 21 dias** (05/11,
+> 13/11, 16/11, 20/11, 24/11, 26/11 às 10h2xZ e 26/11 às 13h16Z), **sempre com o mesmo veredito e as mesmas
+> causas**, e o custo da medição subiu em vez de cair — **30 medições contra 6 controles** na passada das
+> 10h2xZ. A passada das **13h16Z** obedeceu à lição de método que a das 10h3xZ havia pré-registrado e sondou
+> **duas** linhas com **um** controle, no ambiente da **nuvem da Fundação**: `www.gov.br` **`000`**,
+> `www.casasbahia.com.br` **`000`**, `rodametria.com.br` **`200`**. Nenhuma mudou, então as outras oito
+> **não foram abertas de propósito** — e isso é a 20.16 em ação, não medição que faltou.
+>
+> **O que a 20.16 decide para quem abrir este arquivo:** entre dois gestos do Raphael a parede se **sonda**
+> (uma linha por classe, mais um controle), e só se reabre inteira quando a sonda muda, quando chega notícia
+> de que o gesto foi feito, ou quando a ilha precisa de um **host que nunca foi sondado** — porque a lista é
+> **por host**, e o `000` de `www.gov.br` não afirma nada sobre um domínio que ninguém pediu. E todo veredito
+> daqui para a frente **nomeia o ambiente que mediu**: a parede é uma por ambiente, e isto já foi medido nesta
+> ilha em 11/11, quando a Sentinela alcançava `rodametria.com.br` na mesma hora em que as MÃOS tomavam 403.
+
 
 **O controle é o que torna isto medição e não palpite.** Nas mesmas passadas de 05/11 às
 19h1xZ, `aquametria.com.br` respondeu **200** três vezes e `rodametria.com.br`,
