@@ -31,13 +31,12 @@ ultima_execucao: 2026-11-26T13:22Z   # NADA FOI AO AR, E NADA PODIA: a fila de c
                          # conta dos 3 em 10.
                          # A hora saiu do `date -u` na MESMA linha de comando que
                          # a grava, nunca digitada.
-executando_desde: null   # LIMPO no fecho desta execucao (passo 7 da secao 1).
-                         # Reservada as 13h16Z (commit a6e1373), aceita de PRIMEIRA,
-                         # e NAO renovada: o fecho saiu dentro dos 40 minutos da 1.1.
-                         # O comentario desta linha foi substituido INTEIRO, rabo
-                         # incluido — e o cabecalho ja registra duas vezes o defeito
-                         # de trocar so a primeira linha e deixar o rabo afirmando a
-                         # hora e o commit errados.
+executando_desde: 2026-11-26T16:19Z   # RESERVA desta execucao (passo 5 da secao 1),
+                         # escrita ANTES de qualquer trabalho. O campo estava
+                         # `null`, que pela 1.1 ja significa que nao ha bloco da
+                         # Fundacao vivo; o ultimo commit na pasta era de hoje as
+                         # 13h24Z — o FECHO da passada anterior, nao bloco em
+                         # andamento. Comentario substituido INTEIRO, rabo incluido.
 rede: aberta em 2026-11-26   # 20.2, e a conferencia do DOMINIO DA PROPRIA ILHA se
                              # faz em toda execucao: `rodametria.com.br/` em 200 as
                              # 13h16Z, e o /status em 200 as 13h1xZ. NAO herdada.
