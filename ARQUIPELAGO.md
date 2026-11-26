@@ -6,10 +6,10 @@ Este contrato tem mais de 500 linhas e continua crescendo. **Ninguém lê tudo.*
 
 | Papel | Seções |
 |---|---|
-| **Fundação** | 1 a 11, 13 a 18, 20, 21, 22, 24, **25**, 26, 29, **30**, **31**, **32**, **33** |
+| **Fundação** | 1 a 11, 13 a 18, 20, 21, 22, 24, **25**, 26, 29, **30**, **31**, **32**, **33**, **34** |
 | **Sentinela — ronda diária** | **1.2**, **1.2-b**, 2, 3, 4, 10, 12, 15, 16, 18, 19, 21, 22, 23, 24, **25**, 29, **32**, **33** |
 | **Painel** | quem escreve é a ronda diária, pela seção 23. Quem quiser saber o estado do Arquipélago lê `dados/PAINEL.md` e não precisa de seção nenhuma |
-| **Sentinela — leitura semanal** | **1.2**, **1.2-b**, 2, 3, 4, 10, 12, 12.1, 14, 18, 21, 29, **31**, **33** |
+| **Sentinela — leitura semanal** | **1.2**, **1.2-b**, 2, 3, 4, 10, 12, 12.1, 14, 18, 21, 29, **31**, **33**, **34** |
 | **Bússola** | **7**, 10, 11, **12.2**, 14, **15**, 20, 21, **30** — e `bussola/BUSSOLA.md`, que é a lei dela |
 | **Pauta das ilhas** | 10, 14, 15, 16, 17, 21 |
 | **Mãos no repositório** | nenhuma. A decisão já vem no disparo; ler o contrato é sinal de que virou Fundação |
@@ -19,6 +19,8 @@ Este contrato tem mais de 500 linhas e continua crescendo. **Ninguém lê tudo.*
 *(A **25** e a **30** entraram pelo Pente Fino em 12/10/2026, pelo mesmo motivo que a 1.2 entrou em 16/09, a 1.2-b em 21/09 e as três seções da Bússola em 05/10 — **a seção que decide não estava na linha de quem decide.** A **25** não estava na linha de papel NENHUM, e a **7**, que está na linha da Fundação e da Bússola, termina dizendo com todas as letras: *"Onde esta seção e a 25 divergirem, **manda a 25**"*. É a 25 que põe o piso de `url_busca` em todo item publicável (25.2), que proíbe registro publicável sem encurtamento tentado (25.2-b), que exige `url_produto` para o teste de vida existir (25.4-b) e que proíbe gerar link de afiliado à mão (25.8) — tudo trabalho da Fundação no banco —, e é a 25.4 que manda a **ronda diária** conferir os links dos itens publicados e tratar link morto como defeito da 19.1. A **30** é de 09/10/2026, nasceu dizendo "vale para toda ilha" por decisão do Raphael no mesmo dia, e também não entrou em linha nenhuma: a Fundação é quem cria as páginas que ela manda criar. O desempate continua sendo o desta própria seção: "errar por ler a mais é barato; errar por não saber a regra custa uma leva inteira".)*
 
 *(A **30** entrou na linha da **Bússola** pelo Pente Fino em 16/11/2026, pelo mesmo motivo que pôs a 1.2 ali em 16/09, a 1.2-b em 21/09, as três seções da Bússola em 05/10 e a 25 e a 30 na linha da Fundação em 12/10 — **a seção que decide não estava na linha de quem decide.** A nota de 12/10 acima escreveu que a 30 "não entrou em linha nenhuma" e a pôs só na da Fundação, porque ali quem cria a página é a Fundação. Isso mudou em 27/10, quando a seção 0 da `BUSSOLA.md` passou a mandar a Bússola decidir **por** ela: o portão 1 do ciclo de caça (0.2) manda classificar a SERP *"(seção 3 e **seção 30.5** do `ARQUIPELAGO.md`)"*, e a 0.6 afirma que o Chrome dela *"satisfaz a **30.8** do `ARQUIPELAGO.md` para `alvo`"* — duas seções que a linha dela mandava, ao pé da letra, não ler. O desempate é o desta própria seção: "errar por ler a mais é barato".)*
+
+*(A **34** entrou nas duas linhas em 26/11/2026, no dia em que foi escrita, e as duas são as que ela governa: a **Fundação** porque é ela que fecha a execução quando a ilha em foco está travada por gesto humano, e a **leitura semanal** porque é ela que conta a proporção da 31.1 pela **31.6** — e a **34.3** diz que essa conta tem de carregar a causa, senão abre item de prioridade alta contra quem não podia fazer nada. Posta nas duas de uma vez para não repetir, pela sétima vez, o defeito que esta seção já registra seis: a seção que decide não estava na linha de quem decide.)*
 
 *(A **33** entrou nas TRÊS linhas em 09/11/2026, na passada que a escreveu, e o motivo é o da própria seção: as três rondas que declararam "não medido por falta de navegador" eram rondas — a seção que diz que o navegador existe tem de estar na linha de quem escreve "não medido". A **20.10** não precisou de linha nova: a 20 já está na da Fundação e a 12 manda a ronda ler o `/status`.)*
 
@@ -1843,3 +1845,33 @@ node -e "require('playwright')"          # o pacote resolve? então há navegado
 E quem escrever portão de navegador novo copia a linha de `createRequire` de um dos que **iniciam** (`rodametria` ou `robometria`), nunca o `import { chromium } from 'playwright'` — o despacho de 26/10 em `dados/despachos.md` conta por que, e esta passada foi a **quarta** confirmação da mesma causa.
 
 **E A CICATRIZ DE MÉTODO QUE SOBRA, porque ela é maior que o navegador:** a frase *"não havia navegador"* foi escrita **três vezes**, em três documentos, por três rondas, e nenhuma delas perguntou ao ambiente — **a causa foi herdada, não medida**. É a 20.2 ao pé da letra (*"bloqueio herdado do `ESTADO.md` é retestado antes de ser respeitado, nunca lido como fato"*), aplicada a um instrumento em vez de a um domínio, e a 25.4-b.3 pela segunda vez (*"motivo velho manda não tentar"*). **Causa de impossibilidade também envelhece, e quem a repete sem remedir está copiando, não medindo.**
+
+---
+
+## 34. ILHA EM FOCO TRAVADA POR GESTO HUMANO — A TERCEIRA EXECUÇÃO SEGUIDA SEM NADA NO AR PELA MESMA CAUSA NÃO TÉCNICA NÃO PROCURA TRABALHO: ELA ESCALA A DECISÃO E FECHA (26/11/2026)
+
+**Por que existe, medido e não suposto.** Em 26/11/2026 às 16h2xZ a Fundação reservou a ilha em **foco total** (rodametria, desde 27/10) pela **sexta** vez seguida sem ter um byte de tela para entregar. Contado no `REGISTRO.md` dela, as cinco anteriores estão nomeadas — 18/11 19h17Z, 24/11 10h17Z, 24/11 13h16Z, 26/11 10h16Z e 26/11 13h16Z — e a proporção da **31.1** nas dez últimas execuções da ilha é de **4 em 10** (5 se a passada de 25/11 13h17Z, que consertou uma trava e não declara byte de tela, for contada como ar), contra o piso de **7 em 10**.
+
+**E a causa não é técnica, não é escolha da Fundação e não está dentro da ilha.** São **gestos de uma pessoa**, cada um já pedido por escrito, com a idade medida em 26/11: `*.gov.br` na lista de domínios permitidos da conta (**29 dias**, despacho ALTA de 28/10) · abrir no Chrome a SERP das duas consultas `nao-medida` (**27 dias**, 30/10) · `rodametria.com.br` nos domínios adicionais permitidos (**22 dias**, 04/11) · os 5 links do Mercado Livre da moto elétrica (**15 dias**, 11/11) · rodar a rotina *Pauta das ilhas* nesta ilha, que nunca rodou em **76 dias**. A ilha está **sã** nas sete medidas da ronda e **não publica uma URL desde 16/11**: 11 páginas contra as 40 da 21.1, 11 impressões em quatro semanas.
+
+**O custo que faz esta seção valer mais que um bloco, e ele é de outra ilha.** Na mesma janela, a **robometria** — viva, 14 URLs no ar — tem **seis** itens de despacho abertos desde 20/11 (**6 dias**), todos da Fundação pela 19.2, e **três deles são link de compra morto servido no ar**: um é o **único** botão da resposta mais direta daquela ilha (`?modelo=electrolux-erb30&peca=filtro` entrega um anúncio "Esgotado"), e outro é o **primeiro** cartão da página de marca. Pela **25.4** link morto é defeito, e ele está de pé há seis dias porque a **1.2** manda — com razão e por decisão do Raphael — que ninguém construa fora do foco. **Esta seção não afrouxa a 1.2 em um milímetro. Ela só impede que a pergunta fique sem chegar a quem tem a chave.**
+
+**34.1 COMO SE CONTA, e a fonte é a mesma da 31.1: o `REGISTRO.md` da ilha.** Lê-se do mais novo para o mais velho e conta-se a execução que fechou **sem nada que um visitante veja** — a própria entrada diz isso, porque a 31.1 obriga. **"Mesma causa"** quer dizer que o bloqueio nomeado na entrada anterior **continua nomeado** na seguinte, sem gesto novo no meio. Causa diferente a cada passada não é trava: é fila difícil, e aí valem a 18 e a fila de sempre.
+
+**34.2 DA TERCEIRA EM DIANTE, A EXECUÇÃO NÃO PROCURA TRABALHO DENTRO DA ILHA.** Ela faz, nesta ordem, e nada além:
+
+1. a conferência de rede do **domínio da própria ilha** (20.2) e a **sonda** de parede (20.16) — duas ou três medições, com o ambiente nomeado;
+2. a releitura da fila **contra o dado**, nunca herdada do cabeçalho, para que o "vazia" seja desta passada;
+3. **UM** despacho de prioridade **ALTA** em `dados/despachos.md`, aberto se não existir e **atualizado** se existir, com a contagem da 34.1, a idade de cada gesto e o que está parado em outras ilhas por causa do foco;
+4. o fecho em **"travada por gesto humano"**, com uma linha no `REGISTRO.md` e o cabeçalho do `ESTADO.md` atualizado;
+5. o sinal ao Raphael pelo canal que a execução tiver.
+
+**O que ela NÃO faz, e é a metade que custou as cinco passadas anteriores:** não nasce portão, régua, mutação, bancada **nem seção de contrato** para a passada ter o que mostrar. A **31.3** já proíbe bancada com item de conteúdo aberto; esta linha fecha o buraco que sobrava — **regra de contrato não é portão, e foi por essa fresta que três das cinco passadas entregaram método em vez de tela.** Escrever regra continua sendo trabalho legítimo da Fundação **quando a medição a pede**; o que esta seção proíbe é escrevê-la **porque não havia outra coisa para entregar**.
+
+*(E esta própria seção é o caso-limite, dito na cara para ninguém a citar como licença: ela é a **terceira** entrega de método seguida desta ilha, depois da 30.9 e da 20.16, e nasce exatamente para que não haja uma quarta. Pela própria 34.2 ela é a última que esta trava autoriza.)*
+
+**34.3 A CONTA DA 31.1 CARREGA A CAUSA, SENÃO ELA ACUSA O INOCENTE.** Execução fechada por trava humana **entra** na conta — a 31.1 mede o que chegou ao ar, não a intenção —, mas a entrada do `REGISTRO.md` e o despacho da **31.6** dizem a causa com nome. Proporção abaixo de 7 em 10 com a maioria das entradas marcadas *trava humana* é leitura sobre a **fábrica**, não sobre a Fundação: o que tem de mudar é o gesto ou o foco, nunca a escolha de trabalho de quem executa. Número sem a causa ao lado faz a 31.6 abrir item de prioridade alta contra quem não podia fazer nada.
+
+**34.4 A FUNDAÇÃO NUNCA PEGA OUTRA ILHA POR CONTA PRÓPRIA.** A **1.2** e a **1.2-b.4** são decisão escrita do Raphael, e sair do foco também é dele. As duas saídas possíveis se escrevem no despacho como **pergunta com número**, nunca como ação tomada: **(a)** fazer os gestos que destravam a ilha em foco; **(b)** mudar o foco por decisão escrita, com o custo de cada lado na mesa. Execução que pegasse outra ilha "porque esta estava travada" quebraria a 1.2 e tornaria inútil a reserva por commit da seção 1.
+
+**34.5 A ESCALADA É UM DESPACHO SÓ, ATUALIZADO — NUNCA UM NOVO POR EXECUÇÃO.** Seis despachos pedindo pedaços do mesmo gesto é o que esta ilha já teve antes de 18/11, e o próprio `REGISTRO.md` daquele dia registra que a entrega foi **transformar os seis em uma lista**. Despacho que se multiplica a cada passada deixa de ser pedido e vira ruído, e ruído é como um pedido de 29 dias fica sem resposta.

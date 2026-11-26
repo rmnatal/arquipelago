@@ -3213,6 +3213,46 @@ O `grep` de aspa dupla está **certo** nas duas irmãs e **sempre devolve zero**
 
 **Pronto quando:** (a) a próxima ronda ou leitura semanal que medir `noindex` em qualquer ilha usar a `regua-robots.py` (ou uma régua que passe nas 21 afirmações do `teste-robots.py`) em vez de um `grep` digitado na hora; e (b) a `clubedomosaico` tiver sido medida com essa régua, nos contextos de arquivo dela, pela execução que a reservar — com o resultado escrito, seja ele "já estava certa" ou "faltava mesmo".
 
+### prioridade ALTA — RAPHAEL, UMA DECISÃO — A ILHA EM FOCO TOTAL NÃO TEM TRABALHO HÁ SEIS EXECUÇÕES, A CHAVE DAS SEIS É SUA, E ENQUANTO ISSO UMA OUTRA ILHA SERVE TRÊS BOTÕES DE COMPRA MORTOS NO AR
+
+26/11/2026 às 16h2xZ — **FUNDAÇÃO (rodametria)** — Este despacho é o canal da **34.2** item 3, e ele é **um só**: quem o reencontrar com a trava de pé **atualiza esta entrada** em vez de abrir outra (34.5). Nada aqui é novo como pedido — **os cinco gestos já estão escritos** —; o que é novo é a **conta**, e ela é o motivo de isto subir para ALTA.
+
+**A CONTA, pelo `REGISTRO.md` da ilha e não por impressão (34.1).** A rodametria está em **foco total e absoluto** desde 27/10 por decisão sua. Desde então, as **seis** últimas execuções que a reservaram fecharam **sem um byte que um visitante veja**: 18/11 19h17Z, 24/11 10h17Z, 24/11 13h16Z, 26/11 10h16Z, 26/11 13h16Z e esta. A proporção da **31.1** nas dez últimas é **4 em 10** (5 se a de 25/11 13h17Z contar como ar — ela consertou uma trava e não declara byte de tela), contra o piso de **7 em 10**. A ilha **não publica uma URL desde 16/11**: **11** páginas contra as 40 da 21.1, e **11 impressões em quatro semanas** (8 → 2 → 1).
+
+**A ILHA ESTÁ SÃ — o problema não é defeito.** Medido nesta passada, no barato: `rodametria.com.br` em **200**, `/status` em **200**. Medido na passada das 10h2xZ de hoje: bancada de **74 portões, 0 falha**, 11 de 11 URLs em 200, `/status` **147** = manifest **147**. Não há conserto a fazer, e é justamente por isso que não há o que entregar.
+
+**OS CINCO GESTOS, COM A IDADE DE CADA UM EM 26/11.** Nenhum é automatizável e nenhum é de máquina:
+
+| gesto | o que destrava | aberto desde | idade |
+|---|---|---|---|
+| `*.gov.br` na lista de domínios permitidos da conta | a camada de **CNH** da F1 e a camada municipal | 28/10 (ALTA) | **29 dias** |
+| abrir no Chrome a SERP das duas consultas `nao-medida` | **página nova** pela 30.8 — o único eixo de URL que sobra | 30/10 | **27 dias** |
+| `rodametria.com.br` nos domínios adicionais permitidos | a linha de **indexação**, hoje `n/d` pela terceira leitura seguida | 04/11 | **22 dias** |
+| os 5 links do Mercado Livre da moto elétrica | a página de **823 mil buscas/mês**, hoje com **UM** cartão de compra | 11/11 | **15 dias** |
+| rodar a rotina *Pauta das ilhas* nesta ilha | o **bloco 5** (`/guias/`), o único que não depende de rede nem de SERP | nunca rodou | **76 dias** |
+
+**A PAREDE FOI SONDADA HOJE, NÃO REMEDIDA (20.16), e o ambiente é a nuvem da Fundação:** `www.gov.br` **000**, `www.casasbahia.com.br` **000**, `rodametria.com.br` **200** — **nenhuma mudou**. `000` e nunca `403` é o código de *fora da lista de permitidos*, não de *recusado pelo host*: a parede espera um gesto, não o calendário. É a **oitava** medição com o mesmo veredito em 21 dias.
+
+**E O CUSTO QUE NÃO É DESTA ILHA, que é o que faz a pergunta valer agora.** A **robometria** está **viva**, com 14 URLs no ar, e tem **seis** itens de despacho abertos desde **20/11** (**6 dias**), todos da Fundação pela 19.2. **Três são link de compra morto servido no ar**, e pela **25.4** link morto é defeito:
+
+- `electrolux-kit-performance-erb30` serve **"Esgotado" / "OUT OF STOCK"** e é o **único** botão do resultado de `/qual-peca-serve-no-meu-robo-aspirador/?modelo=electrolux-erb30&peca=filtro`;
+- `xiaomi-b112-ch` serve **"OUT OF STOCK"** e **"Esse vendedor está de férias"** no **primeiro** cartão de `/pecas/filtros/xiaomi/` — o espaço mais caro da página;
+- `xiaomi-s40` serve **"OUT OF STOCK"** no cartão de 10.000 Pa de `/quantos-pa-o-robo-aspirador-precisa/`.
+
+Mais o piso da 25.2 ausente em **três das quatro** telas que servem ficha, e um superlativo de pascal que a própria página desmente. **Isso está de pé há seis dias porque a 1.2 manda, com razão, que ninguém construa fora do foco — e a Fundação não vai desobedecer a 1.2 por conta própria (34.4).**
+
+**A DECISÃO É SUA E É UMA DE DUAS. A Fundação não toma nenhuma das duas, e não há terceira que ela possa tomar sozinha:**
+
+1. **FAZER OS GESTOS** — e o mais curto é o da última linha da tabela: rodar a *Pauta das ilhas* nesta ilha é **um disparo, não uma decisão**, e destrava o bloco 5, o único que não depende de rede nem de SERP. O segundo mais curto é o campo de configuração: uma linha que abre `*.gov.br` e os três domínios de varejo destrava F1 e F3 de uma vez.
+2. **MUDAR O FOCO POR DECISÃO ESCRITA** (1.2-b.4), trocando a linha `ilha:` de `foco.md`. O custo está na mesa dos dois lados: a rodametria **para de receber construção** e volta ao modo de medição da 1.2-b.1 (continua no ar, continua ganhando idade de domínio, continua sendo medida); em troca, as execuções da Fundação voltam a ter o que entregar — e a primeira fila que abre é a da robometria, com seis itens medidos e três deles custando receita hoje.
+
+**Dá para fazer as duas, e a ordem barata é essa:** o disparo da *Pauta das ilhas* custa minutos e não exige escolher nada.
+
+**Pronto quando:** (a) ao menos um dos cinco gestos tiver sido feito **e** a execução seguinte da rodametria tiver entregado algo no ar; **ou** (b) a linha `ilha:` de `foco.md` tiver sido trocada por decisão escrita sua. Enquanto nenhum dos dois acontecer, cada execução que reservar a ilha em foco **atualiza a conta desta entrada e fecha em "travada por gesto humano"**, pela 34.2 — e isso é o resultado certo, não fracasso.
+
+**O QUE JÁ FOI FEITO DO LADO DA MÁQUINA, para esta entrada não parecer um pedido sem contrapartida:** a **34** do `ARQUIPELAGO.md` nasceu nesta passada e fecha a fresta que fez três das seis execuções entregarem **método** em vez de tela — ela proíbe, com todas as letras, que a Fundação escreva portão, régua, bancada **ou seção de contrato** só para a passada ter o que mostrar, e manda a conta da 31.1 carregar a causa (34.3) para a **31.6** não abrir item de prioridade alta contra quem não podia fazer nada. Pela própria 34.2, **esta é a última entrega de método que esta trava autoriza.**
+
+
 ## FECHADOS
 
 ### prioridade ALTA — Fundação da rodametria — **A PÁGINA DE 823 MIL BUSCAS/MÊS NÃO SERVE NENHUM LINK DE LOJA, E O DESPACHO DE 18/11 AFIRMA O CONTRÁRIO COM BOA-FÉ**

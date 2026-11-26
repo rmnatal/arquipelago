@@ -3,6 +3,61 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-11-26 16h19Z–16h3xZ — **TRAVADA POR GESTO HUMANO: A SEXTA EXECUÇÃO SEGUIDA DESTA ILHA SEM UM BYTE DE TELA, E A ENTREGA É A REGRA QUE MANDA PARAR DE PROCURAR TRABALHO E ESCALAR — A `34` DO CONTRATO. NADA FOI AO AR, E NADA PODIA**
+
+Ilha reservada às **16h19Z** (commit `9376c53`), aceita de primeira, pela **1.2** — `foco.md` nomeia a rodametria em foco total e absoluto desde 27/10. O campo `executando_desde` estava `null`, que pela **1.1** já significa que não há bloco da Fundação vivo; o último commit na pasta era de hoje às **13h24Z**, o FECHO da passada anterior. **O foco não estava furado:** nenhum despacho do molde da **32** aberto nas três ilhas da ordem, e nenhum despacho **ALTO** de ilha no ar e quebrada para a **18** furar o foco — os ALTA de `dados/despachos.md` são *precisa do Raphael* ou de outra ilha sem quebra. Logo o foco mandou sozinho.
+
+### O QUE FOI CONFERIDO ANTES DE DECIDIR QUE NÃO HAVIA TRABALHO, e nada aqui é herdado de cabeçalho
+
+- **Rede do próprio domínio (20.2), medida e não lida:** `rodametria.com.br/` em **200** e `/wp-json/rodametria/v1/status` em **200**, às 16h1xZ.
+- **Parede de egresso SONDADA pela 20.16, não remedida.** Uma linha por classe mais um controle verde, no ambiente da **nuvem da Fundação**: `www.gov.br` **000**, `www.casasbahia.com.br` **000**, `rodametria.com.br` **200**. **Nenhuma mudou.** É a **oitava** medição da mesma parede em 21 dias com o mesmo veredito e as mesmas causas. Antes de rodar o `curl`, os três gatilhos da 20.16 foram lidos: a sonda não havia mudado, **nenhuma notícia de gesto chegou** entre as 13h16Z e agora (nenhum commit novo no `main` além do fecho da passada anterior, nenhuma linha nova no `MAOS-LOG.md`, nenhum despacho fechado) e **nenhum host novo** era necessário. A sonda rodou mesmo assim, em duas linhas, por um motivo que vale escrito: **o gesto que abre a lista de permitidos não deixa rastro no repositório**, então a sonda é o único detector do gatilho (a) — e três medições são o preço de não ficar dias atrás de uma parede já aberta.
+- **Fila recontada contra o dado.** Das 11 consultas de `dados/consultas-de-produto.json`: **3** já são página no ar, **3** fechadas por SERP `tomada` (30.5), **2** fechadas pela **30.4** em favor da irmã, **2** em `nao-medida` esperando o Chrome dele (e a **30.8** é assimetria, não atraso), **1** — a `scooter elétrica`, 301 mil buscas — com remedição agendada para **11/12** pela **30.9 regra 1**, que proíbe antecipar. Bloco 5 (`/guias/`) espera `pauta.md`, que é das **mãos** pela 17.1 e que a **17.6** proíbe a Fundação escrever. F1 e F3 atrás da parede acima. Texto das páginas que já existem **proibido** pela 12.1, porque `/veiculos/moto-eletrica/` e `/veiculos/patinete-eletrico/` seguem sem uma única impressão. **Zero caminho aberto.**
+
+### O QUE ESTA PASSADA ENTREGA, E POR QUE NÃO É MAIS UM BLOCO DE MÉTODO SOLTO
+
+A passada das 13h16Z pré-registrou, no `bloco_atual`, que a execução seguinte que achasse a fila vazia **não deveria procurar trabalho dentro da ilha**, e que o que valeria mais que qualquer bloco seria **a conta chegando ao Raphael**, porque a chave é dele. Esta passada obedeceu, e fez a conta virar **regra para as seis ilhas** em vez de ficar num campo de cabeçalho — que é o defeito que a **20.4** nomeia.
+
+**A `34` do `ARQUIPELAGO.md`: ilha em foco travada por gesto humano — a terceira execução seguida sem nada no ar pela mesma causa não técnica não procura trabalho: ela escala a decisão e fecha.** Em cinco partes: como se conta (34.1, pelo `REGISTRO.md`), os cinco passos do fecho e o que ele **não** faz (34.2), a conta da 31.1 carregando a causa para a 31.6 não acusar o inocente (34.3), a proibição de a Fundação pegar outra ilha por conta própria (34.4), e a escalada como **um** despacho atualizado (34.5). Entrou nas linhas da **Fundação** e da **leitura semanal** da seção 0 no mesmo commit, para não repetir pela sétima vez o defeito que a seção 0 já registra seis — a seção que decide não estar na linha de quem decide.
+
+**E A 34.2 FECHA UMA FRESTA QUE ESTA PRÓPRIA ILHA ABRIU TRÊS VEZES.** A **31.3** proíbe bancada com item de conteúdo aberto, e a passada das 13h16Z observou, corretamente, que **regra de contrato não é portão** — logo nada proibia escrever contrato quando não havia o que entregar. Foi por essa fresta que três das seis passadas (23/11 10h17Z com a 30.9, 26/11 13h16Z com a 20.16 e esta com a 34) entregaram **método** em vez de tela. A 34.2 agora diz, com todas as letras, que não nasce portão, régua, bancada **nem seção de contrato** só para a passada ter o que mostrar — e o parágrafo dela diz, na cara, que **esta é a última que a trava autoriza**.
+
+### A CONTA DA 31.1, FEITA NO `REGISTRO.md` E NÃO ESTIMADA (34.1)
+
+Dez últimas execuções desta ilha, da mais nova para a mais velha, contando quem entregou algo que um visitante vê:
+
+| execução | no ar? | o que foi |
+|---|---|---|
+| 26/11 16h19Z (esta) | **não** | trava humana — a 34 do contrato |
+| 26/11 13h16Z | **não** | trava humana — a 20.16 do contrato |
+| 26/11 10h16Z | **não** | trava humana — as três paredes remedidas |
+| 25/11 19h16Z | **sim** | a barra fixa do telefone nas duas páginas com piso novo |
+| 25/11 16h16Z | **sim** | o link de loja nas quatro categorias da F1, revisão 145 |
+| 25/11 13h17Z | **dúbio** | a trava das duas frases de habilitação — régua, e a entrada não declara byte de tela |
+| 25/11 10h19Z | **não** | declarado na própria entrada: *"ZERO byte de tela"* |
+| 24/11 19h17Z | **sim** | a âncora do sinônimo da 30.4 na ferramenta |
+| 24/11 16h16Z | **sim** | o sinônimo da 30.4 chegando à tela do patinete |
+| 24/11 13h16Z | **não** | declarado: *"o desembarque não muda um byte de página"* |
+
+**4 em 10, ou 5 em 10 se a dúbia contar como ar. O piso da 31.1 é 7 em 10.** Pela **34.3** o número vai com a causa: **cinco das seis** execuções sem ar são de **trava humana**, nenhuma é escolha de trabalho de quem executou — e a leitura semanal que fizer a conta da 31.6 tem de escrever isso ao lado do número.
+
+### A ESCALADA, QUE É UM DESPACHO SÓ (34.5)
+
+`dados/despachos.md` ganhou **uma** entrada de prioridade **ALTA**, de 26/11 às 16h2xZ, com: a conta acima, a tabela dos **cinco gestos com a idade de cada um** (`*.gov.br` **29 dias**, SERP no Chrome **27**, `rodametria.com.br` nos domínios permitidos **22**, os 5 links do Mercado Livre **15**, a rotina *Pauta das ilhas* **nunca rodou em 76 dias**), a sonda de hoje, e a decisão em **duas** opções — fazer os gestos, ou trocar a linha `ilha:` de `foco.md` por decisão escrita (1.2-b.4). **A Fundação não toma nenhuma das duas (34.4).** Quem reencontrar a trava **atualiza aquela entrada**, nunca abre outra.
+
+**E O CUSTO QUE NÃO É DESTA ILHA, que é o que fez a pergunta valer agora, medido no `PROMPT.md` da robometria e não suposto:** a **robometria** está viva com 14 URLs no ar e tem **seis** itens abertos desde **20/11** (6 dias), todos da Fundação pela 19.2, e **três são link de compra morto servido no ar** — `electrolux-kit-performance-erb30` ("Esgotado"/"OUT OF STOCK") como o **único** botão do resultado de `?modelo=electrolux-erb30&peca=filtro`, `xiaomi-b112-ch` ("OUT OF STOCK", vendedor de férias) no **primeiro** cartão de `/pecas/filtros/xiaomi/`, e `xiaomi-s40` ("OUT OF STOCK") no cartão de 10.000 Pa de `/quantos-pa-o-robo-aspirador-precisa/`. Pela **25.4** link morto é defeito. **Está de pé há seis dias porque a 1.2 manda, com razão, que ninguém construa fora do foco — e esta execução não a desobedeceu.**
+
+### POR QUE NASCEU ZERO PORTÃO, E NENHUMA MEDIÇÃO FOI REPETIDA
+
+A **31.2** pede defeito medido no ar para portão novo nascer, e não houve defeito. A bancada de **74 portões** rodou às 10h2xZ de hoje com **0 falha** e **não foi repetida de propósito**: nada tocou código de ilha desde então, e repetir medição de seis horas atrás é a doença que a 20.16 nomeou nesta mesma ilha hoje. As trinta medições de parede das 10h2xZ também não foram repetidas — foram **três**, pela 20.16.
+
+### PRÓXIMO PASSO DESBLOQUEADO
+
+**NENHUM de construção, reconferido nesta passada contra o dado e não herdado.** A construção inteira desta ilha está atrás dos cinco gestos da tabela do despacho, e o mais curto é um **disparo, não uma decisão**: rodar a rotina *Pauta das ilhas* nesta ilha destrava o bloco 5, o único eixo que não depende de rede nem de SERP.
+
+**O QUE A PRÓXIMA PASSADA FAZ, e agora está em contrato em vez de neste campo:** se `foco.md` continuar nomeando esta ilha e nenhum gesto tiver chegado, ela roda os cinco passos da **34.2** — conferência de rede (20.2), sonda de parede (20.16), releitura da fila contra o dado, **atualização** do despacho ALTA de 26/11 em `dados/despachos.md`, fecho em *"travada por gesto humano"* — e **não** escreve portão, régua, bancada nem seção de contrato para ter o que mostrar. Isso custa minutos em vez de uma execução, e é a resposta certa, não fracasso.
+
+---
+
 ## 2026-11-26 13h16Z–13h2xZ — **A FILA SEGUE VAZIA, E O QUE ESTA PASSADA ENTREGA É A REGRA QUE A PASSADA DE TRÊS HORAS ANTES MEDIU FALTANDO: A `20.16` DO CONTRATO — PAREDE DE EGRESSO NÃO SE REMEDE POR CALENDÁRIO, PORQUE LISTA DE DOMÍNIO PERMITIDO NÃO ENVELHECE SOZINHA. NADA FOI AO AR, E NADA PODIA**
 
 Ilha reservada às **13h16Z** (commit `a6e1373`), aceita de primeira, pela **1.2** — `foco.md` nomeia a rodametria em foco total desde 27/10. Nenhuma das três ilhas com o molde da **32** tinha despacho de molde aberto, então a exceção da 1.2 não se aplicou; e nenhum despacho **ALTO** de ilha quebrada existia para a **18** furar o foco.
