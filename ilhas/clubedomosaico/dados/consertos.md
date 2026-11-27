@@ -395,3 +395,21 @@ com `tem_wordpress: true` e `bytes` acima de 1.500; (2) as 44 URLs do sitemap em
 (3) **se houver linha `cura da porta:` no log do `/status`, a porta caiu de novo e a casca a repôs
 sozinha** — e essa linha é a primeira vez que uma queda desta porta vai estar registrada **no ar**,
 com antes e depois em bytes e em blocos, sem depender de alguém passar por perto.
+
+---
+
+## A SÉRIE DA PORTA CHEGOU À NONA, E AS TRÊS ÚLTIMAS A CASCA REPÔS SOZINHA — lido no log do `/status` pela RONDA DA SENTINELA de 27/11/2026 às 14h5xZ
+
+| ocorrência | quando | antes → depois | blocos | `tem_wordpress` | quem repôs |
+|---|---|---|---|---|---|
+| **7ª** | **20/11/2026 01:50Z** | **1.057 → 1.579 B** | **`NFD EPC` → `NFD EPC, WordPress`** | **false → true** | **a cura automática da casca 1.26.0, sozinha** |
+| **8ª** | **24/11/2026 15:09Z** | **1.057 → 1.580 B** | **`NFD EPC` → `NFD EPC, WordPress`** | **false → true** | **a cura automática da casca 1.26.0, sozinha** |
+| **9ª** | **27/11/2026 02:02Z** | **1.057 → 1.580 B** | **`NFD EPC` → `NFD EPC, WordPress`** | **false → true** | **a cura automática da casca 1.26.0, sozinha** |
+
+Arquivo, caminho absoluto, nas três: **`/home3/rapha921/clubedomosaico.com.br/.htaccess`**. Nenhuma das três foi reparada por execução nossa — as três linhas são do próprio log que o `/status` serve, que é exatamente o que a casca 1.26.0 foi escrita para deixar registrado **no ar** sem depender de alguém passar por perto. **Intervalos da série inteira, da 6ª em diante:** 12/11 10h18Z → 20/11 01h50Z (**~7 d 15 h**) → 24/11 15h09Z (**~4 d 13 h**) → 27/11 02h02Z (**~2 d 11 h**). O intervalo está **encurtando outra vez**, pela terceira medição seguida, e isso é série para anexar ao chamado — evento irregular, não processo, e a 29.5 continua proibindo tratar reparo como solução.
+
+**ESTADO DA PORTA NESTA RONDA, medido e não suposto, às 14h5xZ de 27/11:** `?rest_route=/clubedomosaico/v1/rotas` devolve `bytes: 1579`, `blocos: ["NFD EPC","WordPress"]`, `tem_wordpress: true`, `linhas_rewrite: 15`, `mtime: 2026-11-27 14:53:21Z`, `raiz_gravavel: true`, casca **1.26.0**. As **105** URLs do sitemap em **200** em duas leituras (uma com `?v=` e uma sem), e a porta da 29.2 verde nas quatro grandezas. **A reconferência da 19.4(c) do conserto de 12/11 está CUMPRIDA nos três itens que aquele registro pediu**, e o terceiro item — "se houver linha `cura da porta:`, a porta caiu de novo" — é o que trouxe esta tabela.
+
+**NENHUM CONSERTO FOI FEITO NESTA RONDA, E A CAUSA É DE CANAL, NÃO DE DEFEITO.** O log do `/status` serve `2026-11-19 14:01 SYNC DESLIGADO em 19/11/2026 por decisão do Raphael: ilha fora da fábrica, nada mais é aplicado do repositório`, e a 19.3 exige que o conserto chegue ao ar pelo repositório e seja reconferido lá. Com o Sync desligado nenhuma escrita de repositório alcança esta ilha, então a trava (a) da 19.4 falharia sempre — e falha de conferência vira despacho. Os seis defeitos achados hoje, dois deles da lista 19.1, estão no `DESPACHO DA SENTINELA — 2026-11-27` do `PROMPT.md`, com o motivo escrito item por item.
+
+**RECONFERÊNCIA DA 19.4(c) — o que a passada seguinte reabre aqui:** (1) a linha `cura da porta:` do log do `/status`, para ver se houve 10ª ocorrência e qual o intervalo; (2) as **105** URLs do sitemap em 200 em duas leituras, e o número de hoje contra `urls_publicadas: 44` do cabeçalho; (3) **se o log ainda serve a linha `SYNC DESLIGADO`** — é ela que decide se esta ilha volta a ter conserto de Sentinela ou continua só com despacho.
