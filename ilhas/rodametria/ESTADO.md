@@ -16,126 +16,140 @@ urls_publicadas: 11       # ZERO URL nasceu TAMBEM na passada de 26/11 as 10h16Z
                           # proteger. Quem substituir comentario de varias linhas apaga o rabo.
 ultima_ronda: 2026-11-25T20:15Z   # LEITURA SEMANAL de 25/11/2026 (secao 12.2, item 3). SUBSTITUI o valor anterior 2026-11-25T15:40Z, que era da RONDA DIARIA TECNICA do mesmo dia e segue registrada no PROMPT.md. 1 impressao, 0 clique, posicao 11,0 — a ilha em foco total somou 11 impressoes em quatro semanas (8, 2, 1). Indexacao n/d pela TERCEIRA leitura seguida: o egresso do ambiente das MAOS recusa rodametria.com.br nos DOIS caminhos, e o caminho declarado pela propriedade foi um deles, logo o conserto de caminho esta feito e sobra o egresso, que e passo do Raphael. Nenhuma URL nasceu desde 16/11. Hora dada pela Sentinela, que nao tem repositorio.
 primeira_indexacao: null  # as duas primeiras URLs foram ao ar hoje; indexacao e trabalho de dias. Quem grava este campo e a leitura semanal, lendo o Search Console.
-ultima_execucao: 2026-11-27T13:22Z   # NADA FOI AO AR, E NADA PODIA, pela
-                         # SEXTA execucao SEGUIDA desta ilha, pela MESMA causa nao tecnica.
+ultima_execucao: 2026-11-27T16:23Z   # NADA FOI AO AR, E NADA PODIA, pela
+                         # SETIMA execucao SEGUIDA desta ilha, pela MESMA causa nao tecnica.
                          # Contado no REGISTRO.md como a 34.1 manda, do mais novo para o mais
                          # velho, parando na primeira que entregou (25/11 19h16Z, a barra fixa
-                         # do telefone): 26/11 10h16Z, 13h16Z, 16h19Z, 19h16Z, 27/11 10h17Z e
-                         # esta. SEIS e o DOBRO do tres da 34.2, e o que a serie mede agora nao
-                         # e mais o tamanho dela: e que UM DIA UTIL INTEIRO de execucoes caiu
-                         # dentro da mesma trava.
-                         # A PROPORCAO DA 31.1 CAIU DE 3 PARA 2 EM 10 — o PIOR numero da
-                         # historia desta ilha — e pela 34.3 ela vai com a causa: a janela andou
-                         # um para cada lado e saiu uma que era `sim` (24/11 19h17Z, a ancora do
-                         # sinonimo da 30.4 na ferramenta). Das SETE `nao` da janela, SEIS sao
-                         # trava humana e UMA e escolha de trabalho (25/11 10h19Z). Leitura
-                         # sobre a FABRICA — o gesto ou o foco —, nunca sobre a escolha de quem
-                         # executa. E AGORA A PIORA TEM DATA: as DUAS `sim` que sobraram sao as
-                         # duas de 25/11 e saem da janela nas PROXIMAS DUAS passadas, logo sem
-                         # gesto a proporcao vai a ZERO EM 10 por decurso de prazo, com a
+                         # do telefone): 26/11 10h16Z, 13h16Z, 16h19Z, 19h16Z, 27/11 10h17Z,
+                         # 13h16Z e esta. SETE e mais que o DOBRO do tres da 34.2.
+                         # O FATO NOVO NAO E O TAMANHO DA SERIE: E QUE A CAUSA DELA FICOU
+                         # INTEIRA. A proporcao da 31.1 NAO piorou — segue 2 EM 10 (3 com a
+                         # dubia de 25/11 13h17Z) contra o piso de 7 em 10, porque a janela
+                         # andou um para cada lado: entrou esta (`nao`) e saiu a de 25/11
+                         # 10h19Z, que tambem era `nao`. O QUE MUDOU E DE QUEM E A CULPA DAS
+                         # `NAO`: a de 25/11 10h19Z era a UNICA `nao` da janela que era escolha
+                         # de trabalho da Fundacao (o portao do campo de banco), e com a saida
+                         # dela as SETE `nao` da janela sao, TODAS AS SETE, TRAVA HUMANA. Ate
+                         # ontem a conta dizia `seis de sete sao trava humana e uma e escolha`;
+                         # hoje ela diz que NAO SOBROU UMA UNICA execucao da janela em que esta
+                         # fabrica pudesse ter feito diferente. Pela 34.3 o numero vai com a
+                         # causa, para a 31.6 nao abrir item de prioridade alta contra quem nao
+                         # podia fazer nada. E A ARITMETICA DO QUE VEM SEGUE PRE-ESCRITA: as
+                         # duas `sim` sao as de 25/11 (16h16Z e 19h16Z) e saem nas PROXIMAS
+                         # DUAS passadas — 1 EM 10 na proxima e ZERO EM 10 na seguinte, com a
                          # fabrica fazendo tudo certo.
-                         # ESTA PASSADA NAO ESCREVEU REGRA NENHUMA, pela TERCEIRA vez seguida:
+                         # ESTA PASSADA NAO ESCREVEU REGRA NENHUMA, pela QUARTA vez seguida:
                          # nenhum portao, regua, mutacao, bancada ou secao de contrato nasceu.
-                         # Tres seguidas a cumprir a 34.2 e a prova de que a trava pega.
                          # A escalada foi UM despacho ALTA ATUALIZADO (34.5), o de 26/11
-                         # 16h2xZ em dados/despachos.md, cujo TITULO passou a dizer SEIS
-                         # SEGUIDAS, UM DIA UTIL INTEIRO, com a queda a 2 em 10 e o zero por
-                         # decurso de prazo dentro dele. Nenhum despacho novo foi aberto.
+                         # 16h2xZ em dados/despachos.md, cujo TITULO passou a dizer SETE
+                         # SEGUIDAS e cuja tabela de gestos passou de CINCO para SEIS — entrou
+                         # `cf.shopee.com.br`, que era o portao de foto desta ilha e que a
+                         # ronda de hoje mediu valendo o teste de vida da 25.4 do ARQUIPELAGO
+                         # INTEIRO (12 de 12 fichas em 200 com corpo renderizado em ZERO byte,
+                         # com example.com tambem em 000 como controle da 33). Nenhum despacho
+                         # novo foi aberto.
                          # A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA.
-executando_desde: 2026-11-27T16:16Z   # RESERVA da execucao da Fundacao de 27/11/2026 as 2026-11-27T16:16Z (passo 5 da secao 1, pela 1.2: ilha em foco total desde 27/10). A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
-                         # Reservada as 13h16Z (commit d85d094), aceita de PRIMEIRA, e NAO
-                         # renovada: o fecho saiu dentro dos 40 minutos da 1.1.
-                         # Comentario da reserva substituido INTEIRO, RABO INCLUIDO.
+executando_desde: null   # LIMPO no fecho desta execucao (passo 7 da secao 1).
+                         # Reservada as 16h16Z (commit 78bd7bd), aceita de PRIMEIRA — pela 1.1
+                         # `executando_desde: null` ja prova que nenhum bloco da Fundacao
+                         # estava em andamento, sem precisar consultar o git. NAO renovada: o
+                         # fecho saiu dentro dos 40 minutos.
+                         # Comentario da reserva substituido INTEIRO, RABO INCLUIDO — e a
+                         # passada das 16h16Z chegou a deixar um rabo orfao aqui (as tres
+                         # linhas da reserva das 13h16Z), achado e removido no proprio fecho.
 rede: aberta em 2026-11-27   # 20.2, e a conferencia do DOMINIO DA PROPRIA
                              # ILHA se faz em toda execucao e NAO e herdada: rodametria.com.br
                              # em 200 nas TRES passadas desta sonda, mais as 11 de 11 URLs do
                              # wp-sitemap-posts-page-1.xml em 200 com quebra de cache, o 404
-                             # que tem de ser 404 em 404, e o /status em 200 (revisao 147 =
-                             # manifest 147, versao_sync 1.1.5) as 13h1xZ desta passada.
+                             # que tem de ser 404 em 404, e o /status em 200 nas TRES passadas
+                             # (revisao 147 = manifest 147, versao_sync 1.1.5) as 16h1xZ.
                              # A PAREDE foi SONDADA e nao remedida (20.16), no ambiente da NUVEM
                              # DA FUNDACAO (conteiner remoto do Claude Code, com proxy de
                              # agente — a 20.16 obriga nomear o ambiente, porque a parede e UMA
                              # POR AMBIENTE): www.gov.br 000 nas tres e www.casasbahia.com.br
-                             # 000 nas tres, contra os 3 controles verdes acima. NOVE medicoes,
-                             # zero intermitencia, DECIMA PRIMEIRA medicao da serie em 22 dias
-                             # com o mesmo veredito. 000 e nunca 403: fora da lista de
+                             # 000 nas tres, contra os SEIS controles verdes acima. DOZE
+                             # medicoes, zero intermitencia, DECIMA SEGUNDA medicao da serie em
+                             # 22 dias com o mesmo veredito. 000 e nunca 403: fora da lista de
                              # permitidos, nao recusa do host. As outras oito linhas da classe
                              # NAO foram reabertas, pela regra 1 da 20.16, e isso e economia
                              # deliberada.
-                             # OS TRES GATILHOS DA 20.16 FORAM LIDOS, nao supostos: ZERO commit
-                             # no main entre o fecho das 10h22Z (e122481) e a reserva desta
-                             # passada (d85d094), alem da propria reserva; o MAOS-LOG.md termina
-                             # em 26/11 14h20 BRT, na Bussola cacadora, sem nenhum dos cinco
-                             # gestos; `grep -c "Pauta das ilhas" MAOS-LOG.md` devolve 0; nenhum
-                             # despacho fechou. NAO CHEGOU NOTICIA.
+                             # OS TRES GATILHOS DA 20.16 FORAM LIDOS, nao supostos: o main
+                             # recebeu DOIS commits entre o fecho das 13h2xZ (110b289) e a
+                             # reserva desta passada (78bd7bd), e os dois sao da RONDA DA
+                             # SENTINELA de 27/11 na clubedomosaico (f9e4af2 e 2962e48) — nenhum
+                             # toca gesto desta ilha; o MAOS-LOG.md ganhou uma entrada nova hoje
+                             # (27/11 12h01 BRT, aquela ronda) e nela nao ha disparo da Pauta;
+                             # `grep -c "Pauta das ilhas" MAOS-LOG.md` devolve 0 e
+                             # `find . -iname "*pauta*"` devolve zero no repositorio inteiro;
+                             # nenhum despacho desta ilha fechou. NAO CHEGOU NOTICIA.
 bloqueada_por: null      # obrigatorio pela secao 2. `null` DE PROPOSITO: o que falta (gov.br para a F1, as prefeituras para a camada municipal, as tres etiquetas do Mercado Livre) trava a FABRICA e nao a ILHA, e isso se escreve no despacho, que e o canal da 12.2. Preenche-lo congelaria tambem os blocos que ja podem andar.
 bloco_atual: |
-  TRAVADA POR GESTO HUMANO pela 34.2, pela SEXTA vez seguida, e a TERCEIRA
+  TRAVADA POR GESTO HUMANO pela 34.2, pela SETIMA vez seguida, e a QUARTA
   passada seguida a cumpri-la sem escrever regra nenhuma — nenhum portao,
   nenhuma regua, nenhuma mutacao, nenhuma bancada e nenhuma secao de contrato
   nasceu aqui. NADA FOI AO AR, e nada podia.
 
-  O FATO NOVO DESTA PASSADA E UM NUMERO COM DATA, e ele e a unica coisa que
-  mudou desde a passada das 10h17Z: A PROPORCAO DA 31.1 CAIU A 2 EM 10, o PIOR
-  numero da historia desta ilha — e a aritmetica do que vem ja esta escrita. As
-  DUAS `sim` que sobraram na janela sao as duas de 25/11 e saem dela nas
-  PROXIMAS DUAS passadas. Sem gesto, a proporcao vai a ZERO EM 10 por DECURSO
-  DE PRAZO, com a fabrica fazendo tudo certo e sem nenhuma execucao errar. A
-  34.3 existe exatamente para esse numero nao ser lido como escolha de quem
-  executa: das SETE `nao` da janela, SEIS sao trava humana e UMA e escolha de
-  trabalho (25/11 10h19Z).
+  O FATO NOVO DESTA PASSADA NAO E O TAMANHO DA SERIE: e que a ULTIMA execucao
+  da janela da 31.1 em que esta fabrica podia ter escolhido diferente ACABOU
+  DE SAIR DELA. A proporcao NAO piorou e segue 2 EM 10 (3 com a dubia de 25/11
+  13h17Z), porque a janela andou um para cada lado: entrou esta (`nao`) e saiu
+  a de 25/11 10h19Z, que tambem era `nao` — e era a UNICA `nao` da janela que
+  era escolha de trabalho da Fundacao. Logo as SETE `nao` de hoje sao, todas as
+  sete, TRAVA HUMANA. Pela 34.3 isso e leitura sobre a FABRICA — o gesto ou o
+  foco —, nunca sobre a escolha de quem executa. As duas `sim` restantes sao de
+  25/11 e saem nas proximas duas passadas: 1 EM 10 na proxima, ZERO EM 10 na
+  seguinte, por decurso de prazo.
 
-  OS CINCO PASSOS DA 34.2, e nada alem. (1) Sonda e rede: 9 medicoes em tres
-  passadas, 3 controles verdes (rodametria.com.br 200), www.gov.br e
-  www.casasbahia.com.br em 000 nas tres — nenhuma mudou, DECIMA PRIMEIRA
-  medicao da serie em 22 dias com o mesmo veredito. E os tres gatilhos da 20.16
-  foram LIDOS antes do curl: zero commit no main entre o fecho das 10h22Z
-  (e122481) e a reserva desta (d85d094), MAOS-LOG parado em 26/11 14h20 BRT,
-  grep de `Pauta das ilhas` em 0, nenhum despacho fechado. (2) Fila relida
-  CONTRA O DADO em dados/consultas-de-produto.json: 11 de 11 explicadas, ZERO
-  elegivel — 3 ja sao pagina no ar (conferidas no sitemap desta passada), 3
-  fechadas por SERP tomada, 2 fechadas pela 30.4 em favor da irma (201 mil
-  buscas cada), 2 em nao-medida esperando o Chrome, 1 com remedicao
-  PRE-REGISTRADA para 11/12 pela 30.9 — faltam 14 dias, e mesmo entao e CARONA
-  e nao bloco. E os BLOCOS relidos no PROMPT.md: 15 entregues ou encerrados, o
-  4b e pergunta da leitura semanal e nao bloco da Fundacao, e o 5 depende de
-  pauta.md, que pela 17.1 nao e arquivo da Fundacao e que `find -iname
-  "*pauta*"` segue nao achando no repositorio inteiro. (3) UM despacho ALTA
-  ATUALIZADO, nunca um novo (34.5), com o titulo trocado para SEIS SEGUIDAS.
-  (4) Este fecho. (5) O sinal ao Raphael.
+  A ILHA ESTA SA, medido nesta passada e nao herdado deste cabecalho: 11 de 11
+  URLs do sitemap em 200 com quebra de cache, 404 que tem de ser 404 em 404,
+  /status revisao 147 = manifest 147, versao_sync 1.1.5. Nao havia defeito para
+  a 18 furar fila nem conserto para a 18.5 segurar — e nao havia pagina para
+  publicar. As duas metades na mesma passada.
 
-  A ILHA ESTA SA e e por isso que nao ha o que entregar: 11 de 11 URLs do
-  sitemap em 200 com quebra de cache, o 404 que tem de ser 404 em 404, /status
-  147 = manifest 147, versao_sync 1.1.5. As duas metades — nada para consertar,
-  nada para publicar — medidas na MESMA passada. A bancada de 74 portoes NAO foi
-  rodada, de proposito: nada tocou codigo de ilha desde 26/11 10h2xZ, e repetir
-  medicao sobre codigo intocado e a doenca que a 20.16 nomeou nesta ilha.
+  A FILA FOI RELIDA CONTRA O DADO (34.2 item 2) em dados/consultas-de-produto
+  .json, consulta por consulta, e o veredito nao mudou em nenhuma das 11: 3 sao
+  pagina no ar (as tres conferidas no sitemap servido agora), 3 fechadas por
+  SERP `tomada`, 2 fechadas pela 30.4 em favor da irma (as duas de 201 mil
+  buscas), 2 em `nao-medida` esperando o Chrome do Raphael (`patinete eletrico
+  1000w` e `scooter eletrica 1000w`, e pela 30.8 `alvo` nao se afirma desta
+  nuvem), e 1 — a `scooter eletrica`, 301 mil buscas — com `nao_antes_de:
+  2026-12-11` lido no campo criterio_da_proxima_remedicao do proprio registro,
+  que a 30.9 proibe antecipar: faltam 14 dias, e mesmo entao e CARONA e nao
+  bloco. 11 de 11 explicadas, ZERO elegivel.
 
-  NAO PEGOU OUTRA ILHA (34.4). A robometria segue em SETE dias com seis itens
-  abertos de 20/11 e TRES deles link de compra morto servido no ar, que pela
-  25.4 e defeito — e sair do foco e decisao ESCRITA do Raphael, pedida no
-  despacho como PERGUNTA COM NUMERO e nunca tomada por conta propria.
+  SAO SEIS GESTOS AGORA, nao cinco, e o sexto entrou por medicao de outra
+  camada. IDADES EM 27/11: gov.br 30 dias, as duas SERPs 28, rodametria.com.br
+  nos dominios adicionais permitidos 23, os 5 links do Mercado Livre 16, a
+  Pauta das ilhas NUNCA RODOU em 77 dias — e `cf.shopee.com.br`, que era o
+  portao de foto desta ilha e que a ronda de hoje mediu valendo o TESTE DE VIDA
+  DA 25.4 DO ARQUIPELAGO INTEIRO: 12 de 12 fichas da Shopee em HTTP 200, sem
+  CAPTCHA, com o corpo renderizado em ZERO byte de texto, porque os servidores
+  dos ativos do aplicativo sao recusados pelo egresso, com example.com tambem
+  em 000 como controle da 33. Nao e CAPTCHA e nao e 403: e um terceiro motivo.
 
-  E UMA NOTA DE AMBIENTE QUE A PASSADA ANTERIOR DEIXOU E QUE ESTA CONFIRMA
-  RESOLVIDA: o clone desta sessao veio com a branch claude/* IDENTICA ao
-  origin/main (git diff vazio, as duas em e122481), e list_pull_requests com
-  state open devolveu lista VAZIA — logo nao havia branch nem PR de execucao
-  anterior para mergear, conferido e nao suposto. O main LOCAL segue divergente
-  (50 a frente, 50 atras) e NAO foi usado: o trabalho saiu do origin/main. O
-  clone e RASO, e por isso NENHUMA contagem de historia foi feita aqui — a
-  conta da 34.1 se faz no REGISTRO.md, que e arquivo e nao log, pela errata de
-  23/11 na 1.1.
+  O CUSTO FORA DO FOCO DOBROU HOJE. A robometria segue viva com 14 URLs no ar e
+  os seis itens abertos de 20/11 (OITO dias), tres deles link de compra morto
+  servido no ar. E a ronda de hoje achou o segundo: o /status da clubedomosaico
+  serve `SYNC DESLIGADO em 19/11/2026 por decisao do Raphael: ilha fora da
+  fabrica`, e essa decisao NAO existe em lugar nenhum do repositorio — aquela
+  ilha e a de maior trafego da fabrica, tem tres despachos abertos pedindo
+  trabalho a Fundacao e nenhum pode chegar ao ar. DAS SEIS ILHAS: a em foco nao
+  pode publicar por falta de gesto, a robometria nao pode ser tocada pela 1.2,
+  e a clubedomosaico nao poderia ser consertada nem se fosse reservada. Esta
+  execucao nao pegou nenhuma das duas (34.4): sair do foco e decisao escrita do
+  Raphael, pedida no despacho como pergunta com numero.
 
-  PROXIMO PASSO DESBLOQUEADO: NENHUM, e isso e o resultado certo e nao
-  fracasso. Enquanto nenhum dos cinco gestos for feito e foco.md nomear esta
-  ilha, a execucao seguinte faz EXATAMENTE os cinco passos da 34.2 e fecha em
-  travada por gesto humano — sem procurar bloco e SEM ESCREVER REGRA. Custa
-  minutos. O gesto mais curto segue sendo o disparo da Pauta das ilhas (um
-  disparo, nao uma decisao, e destrava o bloco 5, o unico eixo que nao depende
-  de rede nem de SERP); o segundo, as DUAS SERPs brasileiras no Chrome —
-  `patinete eletrico 1000w` e `scooter eletrica 1000w`. IDADES EM 27/11: gov.br
-  30 dias, as duas SERPs 28, rodametria.com.br nos dominios permitidos 23, os 5
-  links do Mercado Livre 16, a Pauta das ilhas NUNCA RODOU em 77 dias.
+  PROXIMO PASSO DESBLOQUEADO — e ele continua nao sendo desta nuvem. Enquanto
+  nenhum dos seis gestos for feito e foco.md nomear esta ilha, a execucao
+  seguinte repete a lista fechada da 34.2 e nada mais: noticia de gesto, rede
+  do proprio dominio, sonda de parede, fila relida contra o dado, atualizacao
+  da MESMA entrada ALTA (34.5) e fecho. SE UM GESTO CHEGAR, a ordem de trabalho
+  esta pronta: (1) Pauta das ilhas rodada -> bloco 5 (/guias/), o unico que nao
+  depende de rede nem de SERP; (2) *.gov.br aberto -> camada de CNH da F1 e
+  camada municipal; (3) as duas SERPs `nao-medida` vistas no Chrome -> pagina
+  nova pela 30.8; (4) os 5 links do Mercado Livre -> a pagina de 823 mil buscas
+  /mes sai de UM cartao de compra; (5) cf.shopee.com.br aberto -> o teste de
+  vida da 25.4 volta a existir nas quatro ilhas.
 ---
 
 # Estado da ilha RODAMETRIA

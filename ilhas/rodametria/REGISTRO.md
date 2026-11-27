@@ -3,6 +3,122 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-11-27 16h16Z–16h2xZ — **TRAVADA POR GESTO HUMANO, PELA 34.2, PELA QUARTA PASSADA SEGUIDA SEM ESCREVER REGRA NENHUMA. SÃO SETE SEGUIDAS, E O FATO NOVO NÃO É O TAMANHO DA SÉRIE: É QUE A ÚLTIMA EXECUÇÃO DA JANELA DA 31.1 EM QUE A FÁBRICA PODIA TER ESCOLHIDO DIFERENTE ACABOU DE SAIR DELA. NADA FOI AO AR, E NADA PODIA**
+
+Reservada às 16h16Z (commit `78bd7bd`), aceita de **primeira** — `executando_desde` estava `null` e,
+pela 1.1, `null` já prova que nenhum bloco da Fundação estava em andamento, sem precisar do git.
+Fecho dentro dos 40 minutos, sem renovação de reserva.
+
+**O QUE ESTA PASSADA FEZ, e é exatamente a lista fechada da 34.2 e nada além.** Sétima execução
+seguida desta ilha sem um byte que um visitante veja, pela mesma causa não técnica: a fila de
+construção está vazia porque as chaves dela são gestos de uma pessoa, e nenhum foi feito.
+
+**1. NOTÍCIA DE GESTO, PROCURADA ANTES DE DIZER "NADA MUDOU" (20.16 item 2(b)).** Entre o fecho das
+13h2xZ (`110b289`) e a reserva desta passada (`78bd7bd`) o `main` recebeu **dois** commits, e os dois
+são da **ronda da Sentinela de 27/11 na clubedomosaico** (`f9e4af2` e `2962e48`) — nenhum deles toca
+gesto desta ilha. O `MAOS-LOG.md` ganhou uma entrada nova hoje (27/11, 12h01 BRT) e nela não há
+disparo da *Pauta das ilhas*: `grep -c "Pauta das ilhas" MAOS-LOG.md` segue **0** e
+`find . -iname "*pauta*"` segue **zero** no repositório inteiro. Nenhum despacho desta ilha fechou.
+**Não chegou notícia, e isso foi medido.**
+
+**2. REDE DO PRÓPRIO DOMÍNIO (20.2) E SONDA DE PAREDE (20.16), três passadas, doze medições.**
+Ambiente nomeado, como a 20.16 exige: **nuvem da Fundação**, contêiner remoto do Claude Code com
+proxy de agente.
+
+| alvo | passada 1 | passada 2 | passada 3 |
+|---|---|---|---|
+| `rodametria.com.br` (controle) | 200 | 200 | 200 |
+| `/wp-json/rodametria/v1/status` (controle) | 200 | 200 | 200 |
+| `www.gov.br` (sonda da classe do gov.br) | 000 | 000 | 000 |
+| `www.casasbahia.com.br` (sonda da classe do varejo) | 000 | 000 | 000 |
+
+**Seis controles verdes, seis recusas, zero intermitência.** `000` e nunca `403` — o código de *fora
+da lista de permitidos*, não de *recusado pelo host*. É a **décima segunda** medição da série em 22
+dias, com o mesmo veredito e as mesmas causas. Pela regra 1 da 20.16 as outras oito linhas da mesma
+classe **não foram reabertas**, e isso é economia deliberada e não descuido.
+
+**3. A ILHA ESTÁ SÃ, medido nesta passada e não herdado do cabeçalho (18.5 e 20.2).** 11 de 11 URLs
+do `wp-sitemap-posts-page-1.xml` em **200**, cada uma com `?v=<agora>`; caminho virgem em **404**;
+`/status` com `revisao` **147** = `manifest.json` em **147**, `versao_sync` 1.1.5. **Não havia defeito
+para a 18 furar fila nem conserto para a 18.5 segurar** — e não havia página para publicar. As duas
+metades na mesma passada.
+
+**4. A FILA RELIDA CONTRA O DADO (34.2 item 2), consulta por consulta em
+`dados/consultas-de-produto.json`, nunca herdada do cabeçalho — o veredito não mudou em nenhuma das
+11:** **3** são página no ar (`patinete elétrico`, `bicicleta elétrica`, `moto elétrica`, as três
+conferidas no sitemap servido nesta passada); **3** fechadas por SERP `tomada` (`patinete elétrico
+adulto`, `melhor patinete elétrico`, `moto elétrica 1000w`); **2** fechadas pela **30.4** em favor da
+irmã (`bike elétrica` e `motos elétricas para adultos`, 201 mil buscas cada); **2** em `nao-medida`
+esperando o Chrome do Raphael (`patinete elétrico 1000w` e `scooter elétrica 1000w`, e pela **30.8**
+`alvo` não se afirma desta nuvem, nunca); e **1** — a `scooter elétrica`, 301 mil buscas — com
+`nao_antes_de: 2026-12-11` lido no campo `criterio_da_proxima_remedicao` do próprio registro, que a
+**30.9** proíbe antecipar e que mesmo então é **carona** e não bloco: **faltam 14 dias**.
+**11 de 11 explicadas, zero elegível.**
+
+**5. A ESCALADA FOI UM DESPACHO SÓ, ATUALIZADO (34.5).** A entrada ALTA de `dados/despachos.md`
+aberta em 26/11 às 16h2xZ recebeu a atualização das 16h2xZ de hoje — a quarta —, e **nenhum despacho
+novo nasceu**. O título dela passou de "seis execuções seguidas" para **sete**, e a tabela de gestos
+passou de cinco para **seis**.
+
+**O NÚMERO NOVO DESTA PASSADA, E ELE NÃO É O TAMANHO DA SÉRIE: É A CAUSA DELA TER FICADO INTEIRA.**
+A proporção da **31.1** nas dez últimas **não piorou** — segue **2 em 10** (3 com a dúbia de 25/11
+13h17Z), contra o piso de 7 em 10, porque a janela andou um para cada lado: entrou esta (`não`) e
+saiu a de **25/11 10h19Z**, que também era `não`. **O que mudou é de quem é a culpa das `não`.** A de
+25/11 10h19Z era a **única** `não` da janela que era escolha de trabalho da Fundação (o portão do
+campo de banco); com a saída dela, **as sete `não` da janela são, todas as sete, trava humana**.
+Até ontem a conta dizia "seis de sete são trava humana e uma é escolha"; hoje ela diz que **não sobrou
+uma única execução da janela em que esta fábrica pudesse ter feito diferente**. Pela **34.3** o número
+vai com a causa escrita justamente para a **31.6** não abrir item de prioridade alta contra quem não
+podia fazer nada. **E a aritmética da próxima janela segue pré-escrita:** as duas `sim` são de 25/11
+(16h16Z e 19h16Z) e saem nas duas próximas passadas — **1 em 10** na próxima e **0 em 10** na
+seguinte, com a fábrica fazendo tudo certo.
+
+**A CONTA DA 34.1, do mais novo para o mais velho, parando na primeira que entregou:** 26/11 10h16Z,
+13h16Z, 16h19Z, 19h16Z, 27/11 10h17Z, 13h16Z e **esta, 16h16Z** — **SETE**. A anterior a elas, 25/11
+19h16Z, entregou (a barra fixa do telefone). O bloqueio nomeado na entrada anterior continua nomeado
+nesta, sem gesto novo no meio, que é o que a 34.1 chama de "mesma causa".
+
+**O FATO NOVO DE FORA, E ELE ENCARECE UM DOS GESTOS DESTA ILHA SEM QUE NINGUÉM O TENHA PEDIDO DE
+NOVO.** A ronda de hoje na clubedomosaico mediu, no navegador desta nuvem e pelo contorno autorizado,
+**12 de 12 fichas da Shopee em HTTP 200, sem CAPTCHA, com o corpo renderizado em ZERO byte de texto**
+— 0 veredito em 12 —, porque `cf.shopee.com.br` e `down-zl-br.img.susercontent.com` devolvem
+`ERR_TUNNEL_CONNECTION_FAILED` no navegador e `000` por `curl`, com `example.com` **também** em `000`
+como controle da **33**: é a lista de permissões desta nuvem, não queda da Shopee. **`cf.shopee.com.br`
+era o portão de foto DESTA ilha e passou a ser o teste de vida da 25.4 do Arquipélago inteiro.**
+Entrou como sexta linha da tabela de gestos do despacho ALTA. **Isto não é trabalho desta passada e
+não é acusação** — é a medição de outra camada mudando o preço de um pedido que já estava escrito.
+
+**E O CUSTO FORA DO FOCO DOBROU HOJE.** A **robometria** segue viva, 14 URLs no ar, com os seis itens
+abertos de 20/11 — **oito dias** —, três deles link de compra morto servido no ar
+(`electrolux-kit-performance-erb30`, `xiaomi-b112-ch`, `xiaomi-s40`), e pela **25.4** link morto é
+defeito. E a ronda de hoje achou o segundo: o `/status` da **clubedomosaico** serve
+`2026-11-19 14:01 SYNC DESLIGADO em 19/11/2026 por decisão do Raphael: ilha fora da fábrica`, e essa
+decisão **não existe em lugar nenhum do repositório**. Aquela ilha é a de **maior tráfego da fábrica**,
+tem três despachos abertos pedindo trabalho à Fundação, e nenhum deles pode chegar ao ar — a ronda
+fechou com **zero conserto**, e a causa escrita não é falta de defeito. **Das seis ilhas: a em foco não
+pode publicar por falta de gesto, a robometria não pode ser tocada pela 1.2, e a clubedomosaico não
+poderia ser consertada nem se fosse reservada.** **Esta execução não pegou nenhuma das duas (34.4):**
+sair do foco é decisão escrita do Raphael, pedida no despacho como pergunta com número.
+
+**O QUE ESTA PASSADA NÃO FEZ, e é a metade que a 34.2 existe para proibir.** Nenhum portão, régua,
+mutação, bancada, ferramenta **nem seção de contrato** nasceu — **quarta passada seguida**. Nenhum
+arquivo de outra ilha foi tocado (seção 3). Nenhum Sync foi acionado, porque não houve o que
+desembarcar. Nenhuma outra ilha foi reservada.
+
+**PRÓXIMO PASSO DESBLOQUEADO — e ele continua não sendo desta nuvem.** Enquanto nenhum dos seis
+gestos for feito e `foco.md` nomear a rodametria, a execução seguinte que reservar esta ilha repete
+a lista fechada da 34.2: notícia de gesto, rede do próprio domínio, sonda de parede, fila relida
+contra o dado, atualização da **mesma** entrada ALTA e fecho. **Se um gesto chegar, a ordem de
+trabalho está pronta e é esta:** (1) *Pauta das ilhas* rodada → bloco 5 (`/guias/`), o único que não
+depende de rede nem de SERP; (2) `*.gov.br` aberto → camada de CNH da F1 e camada municipal;
+(3) as duas SERPs `nao-medida` vistas no Chrome → página nova pela 30.8; (4) os 5 links do Mercado
+Livre → a página de 823 mil buscas/mês sai de **um** cartão de compra; (5) `cf.shopee.com.br` aberto
+→ o teste de vida da 25.4 volta a existir nas quatro ilhas. **A remedição da `scooter elétrica` entra
+em 11/12 por critério pré-registrado, e nem ela é bloco: é carona.**
+
+**Fecho às 2026-11-27T16:23Z.** `executando_desde` de volta a `null`, `ultima_execucao` gravada com a hora saída do
+`date -u` na mesma linha de comando que a grava.
+
 ## 2026-11-27 13h16Z–13h2xZ — **TRAVADA POR GESTO HUMANO, PELA 34.2, PELA TERCEIRA PASSADA SEGUIDA SEM ESCREVER REGRA NENHUMA. SÃO SEIS SEGUIDAS — UM DIA ÚTIL INTEIRO — E A PROPORÇÃO DA 31.1 CAIU A 2 EM 10, O PIOR NÚMERO DA HISTÓRIA DESTA ILHA, SEM NENHUMA EXECUÇÃO ERRAR. NADA FOI AO AR, E NADA PODIA**
 
 Reservada às 13h16Z (commit `d85d094`), aceita de **primeira**. Fecho dentro dos 40 minutos
