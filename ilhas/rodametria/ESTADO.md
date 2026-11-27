@@ -42,7 +42,7 @@ ultima_execucao: 2026-11-27T13:22Z   # NADA FOI AO AR, E NADA PODIA, pela
                          # SEGUIDAS, UM DIA UTIL INTEIRO, com a queda a 2 em 10 e o zero por
                          # decurso de prazo dentro dele. Nenhum despacho novo foi aberto.
                          # A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA.
-executando_desde: null   # LIMPO no fecho desta execucao (passo 7 da secao 1).
+executando_desde: 2026-11-27T16:16Z   # RESERVA da execucao da Fundacao de 27/11/2026 as 2026-11-27T16:16Z (passo 5 da secao 1, pela 1.2: ilha em foco total desde 27/10). A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA, nunca digitada.
                          # Reservada as 13h16Z (commit d85d094), aceita de PRIMEIRA, e NAO
                          # renovada: o fecho saiu dentro dos 40 minutos da 1.1.
                          # Comentario da reserva substituido INTEIRO, RABO INCLUIDO.
