@@ -16,105 +16,115 @@ urls_publicadas: 11       # ZERO URL nasceu TAMBEM na passada de 26/11 as 10h16Z
                           # proteger. Quem substituir comentario de varias linhas apaga o rabo.
 ultima_ronda: 2026-11-25T20:15Z   # LEITURA SEMANAL de 25/11/2026 (secao 12.2, item 3). SUBSTITUI o valor anterior 2026-11-25T15:40Z, que era da RONDA DIARIA TECNICA do mesmo dia e segue registrada no PROMPT.md. 1 impressao, 0 clique, posicao 11,0 — a ilha em foco total somou 11 impressoes em quatro semanas (8, 2, 1). Indexacao n/d pela TERCEIRA leitura seguida: o egresso do ambiente das MAOS recusa rodametria.com.br nos DOIS caminhos, e o caminho declarado pela propriedade foi um deles, logo o conserto de caminho esta feito e sobra o egresso, que e passo do Raphael. Nenhuma URL nasceu desde 16/11. Hora dada pela Sentinela, que nao tem repositorio.
 primeira_indexacao: null  # as duas primeiras URLs foram ao ar hoje; indexacao e trabalho de dias. Quem grava este campo e a leitura semanal, lendo o Search Console.
-ultima_execucao: 2026-11-27T10:22Z   # NADA FOI AO AR, E NADA PODIA, pela QUINTA
-                         # execucao SEGUIDA desta ilha, pela MESMA causa nao tecnica — e o
-                         # fato novo desta e o CALENDARIO: as quatro anteriores eram TODAS de
-                         # 26/11 e podiam ser lidas como um dia ruim. Esta e de 27/11, logo a
-                         # serie ATRAVESSOU A NOITE. Contado no REGISTRO.md como a 34.1 manda,
-                         # do mais novo para o mais velho, parando na primeira que entregou
-                         # (25/11 19h16Z, a barra fixa do telefone): 26/11 10h16Z, 13h16Z,
-                         # 16h19Z, 19h16Z e esta. CINCO passa dos TRES da 34.2 com folga.
-                         # A PROPORCAO DA 31.1 CAIU DE 4 PARA 3 EM 10 SEM NINGUEM ERRAR, e
-                         # pela 34.3 ela vai com a causa: a janela andou um para cada lado e
-                         # saiu uma que era `sim` (24/11 16h16Z). Das SEIS `nao` da janela,
-                         # CINCO sao trava humana e UMA e escolha de trabalho (25/11 10h19Z).
-                         # Leitura sobre a FABRICA — o gesto ou o foco —, nunca sobre a escolha
-                         # de quem executa. E ela piora de novo sozinha: as tres `sim` que
-                         # sobraram sao de 24 e 25/11 e saem da janela nas proximas passadas.
-                         # ESTA PASSADA NAO ESCREVEU REGRA NENHUMA, pela SEGUNDA vez seguida:
+ultima_execucao: 2026-11-27T13:22Z   # NADA FOI AO AR, E NADA PODIA, pela
+                         # SEXTA execucao SEGUIDA desta ilha, pela MESMA causa nao tecnica.
+                         # Contado no REGISTRO.md como a 34.1 manda, do mais novo para o mais
+                         # velho, parando na primeira que entregou (25/11 19h16Z, a barra fixa
+                         # do telefone): 26/11 10h16Z, 13h16Z, 16h19Z, 19h16Z, 27/11 10h17Z e
+                         # esta. SEIS e o DOBRO do tres da 34.2, e o que a serie mede agora nao
+                         # e mais o tamanho dela: e que UM DIA UTIL INTEIRO de execucoes caiu
+                         # dentro da mesma trava.
+                         # A PROPORCAO DA 31.1 CAIU DE 3 PARA 2 EM 10 — o PIOR numero da
+                         # historia desta ilha — e pela 34.3 ela vai com a causa: a janela andou
+                         # um para cada lado e saiu uma que era `sim` (24/11 19h17Z, a ancora do
+                         # sinonimo da 30.4 na ferramenta). Das SETE `nao` da janela, SEIS sao
+                         # trava humana e UMA e escolha de trabalho (25/11 10h19Z). Leitura
+                         # sobre a FABRICA — o gesto ou o foco —, nunca sobre a escolha de quem
+                         # executa. E AGORA A PIORA TEM DATA: as DUAS `sim` que sobraram sao as
+                         # duas de 25/11 e saem da janela nas PROXIMAS DUAS passadas, logo sem
+                         # gesto a proporcao vai a ZERO EM 10 por decurso de prazo, com a
+                         # fabrica fazendo tudo certo.
+                         # ESTA PASSADA NAO ESCREVEU REGRA NENHUMA, pela TERCEIRA vez seguida:
                          # nenhum portao, regua, mutacao, bancada ou secao de contrato nasceu.
+                         # Tres seguidas a cumprir a 34.2 e a prova de que a trava pega.
                          # A escalada foi UM despacho ALTA ATUALIZADO (34.5), o de 26/11
-                         # 16h2xZ em dados/despachos.md, cujo titulo deixou de dizer `as quatro
-                         # execucoes de hoje` e passa a dizer CINCO SEGUIDAS, EM DOIS DIAS.
-                         # Nenhum despacho novo foi aberto.
+                         # 16h2xZ em dados/despachos.md, cujo TITULO passou a dizer SEIS
+                         # SEGUIDAS, UM DIA UTIL INTEIRO, com a queda a 2 em 10 e o zero por
+                         # decurso de prazo dentro dele. Nenhum despacho novo foi aberto.
                          # A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA.
-executando_desde: 2026-11-27T13:16Z   # RESERVA desta execucao (passo 5 da
-                         # secao 1), com a hora saida do `date -u` na mesma linha de comando
-                         # que a grava. Comentario da reserva anterior substituido INTEIRO,
-                         # RABO INCLUIDO, pela regra deste proprio cabecalho.
+executando_desde: null   # LIMPO no fecho desta execucao (passo 7 da secao 1).
+                         # Reservada as 13h16Z (commit d85d094), aceita de PRIMEIRA, e NAO
+                         # renovada: o fecho saiu dentro dos 40 minutos da 1.1.
+                         # Comentario da reserva substituido INTEIRO, RABO INCLUIDO.
 rede: aberta em 2026-11-27   # 20.2, e a conferencia do DOMINIO DA PROPRIA
                              # ILHA se faz em toda execucao e NAO e herdada: rodametria.com.br
-                             # em 200 nas TRES passadas desta sonda, mais o /status em 200
-                             # (revisao 147 = manifest 147, versao_sync 1.1.5, ultimo
-                             # 2026-11-27 10:18:07) as 10h1xZ desta passada.
+                             # em 200 nas TRES passadas desta sonda, mais as 11 de 11 URLs do
+                             # wp-sitemap-posts-page-1.xml em 200 com quebra de cache, o 404
+                             # que tem de ser 404 em 404, e o /status em 200 (revisao 147 =
+                             # manifest 147, versao_sync 1.1.5) as 13h1xZ desta passada.
                              # A PAREDE foi SONDADA e nao remedida (20.16), no ambiente da NUVEM
                              # DA FUNDACAO (conteiner remoto do Claude Code, com proxy de
                              # agente — a 20.16 obriga nomear o ambiente, porque a parede e UMA
                              # POR AMBIENTE): www.gov.br 000 nas tres e www.casasbahia.com.br
                              # 000 nas tres, contra os 3 controles verdes acima. NOVE medicoes,
-                             # zero intermitencia, DECIMA medicao da serie em 22 dias com o
-                             # mesmo veredito. 000 e nunca 403: fora da lista de permitidos, nao
-                             # recusa do host. As outras oito linhas da classe NAO foram
-                             # reabertas, pela regra 1 da 20.16, e isso e economia deliberada.
+                             # zero intermitencia, DECIMA PRIMEIRA medicao da serie em 22 dias
+                             # com o mesmo veredito. 000 e nunca 403: fora da lista de
+                             # permitidos, nao recusa do host. As outras oito linhas da classe
+                             # NAO foram reabertas, pela regra 1 da 20.16, e isso e economia
+                             # deliberada.
                              # OS TRES GATILHOS DA 20.16 FORAM LIDOS, nao supostos: ZERO commit
-                             # no main entre o fecho de ontem (5a5d1f5) e a reserva desta
-                             # passada (691f1b0); o MAOS-LOG.md termina em 26/11 14h20 BRT, na
-                             # Bussola cacadora, sem nenhum dos cinco gestos; nenhum despacho
-                             # fechou. NAO CHEGOU NOTICIA.
+                             # no main entre o fecho das 10h22Z (e122481) e a reserva desta
+                             # passada (d85d094), alem da propria reserva; o MAOS-LOG.md termina
+                             # em 26/11 14h20 BRT, na Bussola cacadora, sem nenhum dos cinco
+                             # gestos; `grep -c "Pauta das ilhas" MAOS-LOG.md` devolve 0; nenhum
+                             # despacho fechou. NAO CHEGOU NOTICIA.
 bloqueada_por: null      # obrigatorio pela secao 2. `null` DE PROPOSITO: o que falta (gov.br para a F1, as prefeituras para a camada municipal, as tres etiquetas do Mercado Livre) trava a FABRICA e nao a ILHA, e isso se escreve no despacho, que e o canal da 12.2. Preenche-lo congelaria tambem os blocos que ja podem andar.
 bloco_atual: |
-  TRAVADA POR GESTO HUMANO pela 34.2, pela QUINTA vez seguida, e a SEGUNDA
+  TRAVADA POR GESTO HUMANO pela 34.2, pela SEXTA vez seguida, e a TERCEIRA
   passada seguida a cumpri-la sem escrever regra nenhuma — nenhum portao,
   nenhuma regua, nenhuma mutacao, nenhuma bancada e nenhuma secao de contrato
   nasceu aqui. NADA FOI AO AR, e nada podia.
 
-  O FATO NOVO DESTA PASSADA E O CALENDARIO, e ele vale mais que qualquer
-  medicao que ela pudesse fazer: as QUATRO anteriores eram TODAS de 26/11 e
-  podiam ser lidas como um dia ruim. Esta e de 27/11. A serie ATRAVESSOU A
-  NOITE, e cinco em dois dias nao e um dia ruim: e a fila da ilha em foco total
-  e absoluto parada por falta de gesto, e nada mais.
+  O FATO NOVO DESTA PASSADA E UM NUMERO COM DATA, e ele e a unica coisa que
+  mudou desde a passada das 10h17Z: A PROPORCAO DA 31.1 CAIU A 2 EM 10, o PIOR
+  numero da historia desta ilha — e a aritmetica do que vem ja esta escrita. As
+  DUAS `sim` que sobraram na janela sao as duas de 25/11 e saem dela nas
+  PROXIMAS DUAS passadas. Sem gesto, a proporcao vai a ZERO EM 10 por DECURSO
+  DE PRAZO, com a fabrica fazendo tudo certo e sem nenhuma execucao errar. A
+  34.3 existe exatamente para esse numero nao ser lido como escolha de quem
+  executa: das SETE `nao` da janela, SEIS sao trava humana e UMA e escolha de
+  trabalho (25/11 10h19Z).
 
   OS CINCO PASSOS DA 34.2, e nada alem. (1) Sonda e rede: 9 medicoes em tres
   passadas, 3 controles verdes (rodametria.com.br 200), www.gov.br e
-  www.casasbahia.com.br em 000 nas tres — nenhuma mudou, DECIMA medicao da
-  serie em 22 dias com o mesmo veredito. E os tres gatilhos da 20.16 foram
-  LIDOS antes do curl: zero commit no main desde o fecho de ontem, MAOS-LOG
-  parado em 26/11 14h20 BRT, nenhum despacho fechado. (2) Fila relida CONTRA O
-  DADO em dados/consultas-de-produto.json: 11 de 11 explicadas, ZERO elegivel —
-  3 ja sao pagina no ar, 3 fechadas por SERP tomada (uma delas com SEGUNDA
-  trava independente, sem produto na Shopee e o ML atras de clique humano pela
-  25.6), 2 fechadas pela 30.4 em favor da irma (201 mil buscas cada), 2 em
-  nao-medida esperando o Chrome, 1 com remedicao PRE-REGISTRADA para 11/12 pela
-  30.9 — faltam 14 dias, e mesmo entao e CARONA e nao bloco. (3) UM despacho
-  ALTA ATUALIZADO, nunca um novo (34.5). (4) Este fecho. (5) O sinal ao Raphael.
+  www.casasbahia.com.br em 000 nas tres — nenhuma mudou, DECIMA PRIMEIRA
+  medicao da serie em 22 dias com o mesmo veredito. E os tres gatilhos da 20.16
+  foram LIDOS antes do curl: zero commit no main entre o fecho das 10h22Z
+  (e122481) e a reserva desta (d85d094), MAOS-LOG parado em 26/11 14h20 BRT,
+  grep de `Pauta das ilhas` em 0, nenhum despacho fechado. (2) Fila relida
+  CONTRA O DADO em dados/consultas-de-produto.json: 11 de 11 explicadas, ZERO
+  elegivel — 3 ja sao pagina no ar (conferidas no sitemap desta passada), 3
+  fechadas por SERP tomada, 2 fechadas pela 30.4 em favor da irma (201 mil
+  buscas cada), 2 em nao-medida esperando o Chrome, 1 com remedicao
+  PRE-REGISTRADA para 11/12 pela 30.9 — faltam 14 dias, e mesmo entao e CARONA
+  e nao bloco. E os BLOCOS relidos no PROMPT.md: 15 entregues ou encerrados, o
+  4b e pergunta da leitura semanal e nao bloco da Fundacao, e o 5 depende de
+  pauta.md, que pela 17.1 nao e arquivo da Fundacao e que `find -iname
+  "*pauta*"` segue nao achando no repositorio inteiro. (3) UM despacho ALTA
+  ATUALIZADO, nunca um novo (34.5), com o titulo trocado para SEIS SEGUIDAS.
+  (4) Este fecho. (5) O sinal ao Raphael.
 
-  A CONTA DA 31.1 PIOROU DE 4 PARA 3 EM 10 SEM NINGUEM ERRAR, e esta e a parte
-  que a 34.3 obriga a escrever com a causa ao lado: a janela andou um para cada
-  lado e SAIU UMA QUE ERA `sim` (24/11 16h16Z, o sinonimo da 30.4 chegando a
-  tela do patinete). Das SEIS `nao`, CINCO sao trava humana e UMA e escolha de
-  trabalho. Numero sem a causa faria a 31.6 abrir item de prioridade alta contra
-  quem nao podia fazer nada. E A PROXIMA JANELA PIORA SOZINHA: as tres `sim` que
-  sobraram sao de 24 e 25/11.
+  A ILHA ESTA SA e e por isso que nao ha o que entregar: 11 de 11 URLs do
+  sitemap em 200 com quebra de cache, o 404 que tem de ser 404 em 404, /status
+  147 = manifest 147, versao_sync 1.1.5. As duas metades — nada para consertar,
+  nada para publicar — medidas na MESMA passada. A bancada de 74 portoes NAO foi
+  rodada, de proposito: nada tocou codigo de ilha desde 26/11 10h2xZ, e repetir
+  medicao sobre codigo intocado e a doenca que a 20.16 nomeou nesta ilha.
 
-  A ILHA ESTA SA e e por isso que nao ha o que entregar: /status 147 = manifest
-  147, versao_sync 1.1.5, zero item aguardando desembarque, nenhuma queda de
-  porta. As duas metades — nada para consertar, nada para publicar — medidas na
-  MESMA passada. A bancada de 74 portoes NAO foi rodada, de proposito: nada
-  tocou codigo de ilha desde 26/11 10h2xZ, e repetir medicao sobre codigo
-  intocado e a doenca que a 20.16 nomeou nesta ilha.
-
-  NAO PEGOU OUTRA ILHA (34.4). A robometria completa SETE dias com seis itens
+  NAO PEGOU OUTRA ILHA (34.4). A robometria segue em SETE dias com seis itens
   abertos de 20/11 e TRES deles link de compra morto servido no ar, que pela
   25.4 e defeito — e sair do foco e decisao ESCRITA do Raphael, pedida no
   despacho como PERGUNTA COM NUMERO e nunca tomada por conta propria.
 
-  E UMA NOTA DE AMBIENTE, porque ela quase custou trabalho: o clone desta
-  sessao trouxe o main em ebcd2e2 (23/11) e o origin veio com HISTORIA
-  REESCRITA — forced update, e o merge recusou com `unrelated histories`, 50
-  commits de cada lado. Nada se perdeu e nada foi forcado: o origin e tres dias
-  mais novo, o branch claude/* esta CONTIDO nele (logo nao havia branch nem PR
-  de execucao anterior para mergear) e o diff mostra o origin ACRESCENTANDO
-  7.056 linhas. O local foi reapontado com checkout -B, sem force push.
+  E UMA NOTA DE AMBIENTE QUE A PASSADA ANTERIOR DEIXOU E QUE ESTA CONFIRMA
+  RESOLVIDA: o clone desta sessao veio com a branch claude/* IDENTICA ao
+  origin/main (git diff vazio, as duas em e122481), e list_pull_requests com
+  state open devolveu lista VAZIA — logo nao havia branch nem PR de execucao
+  anterior para mergear, conferido e nao suposto. O main LOCAL segue divergente
+  (50 a frente, 50 atras) e NAO foi usado: o trabalho saiu do origin/main. O
+  clone e RASO, e por isso NENHUMA contagem de historia foi feita aqui — a
+  conta da 34.1 se faz no REGISTRO.md, que e arquivo e nao log, pela errata de
+  23/11 na 1.1.
 
   PROXIMO PASSO DESBLOQUEADO: NENHUM, e isso e o resultado certo e nao
   fracasso. Enquanto nenhum dos cinco gestos for feito e foco.md nomear esta

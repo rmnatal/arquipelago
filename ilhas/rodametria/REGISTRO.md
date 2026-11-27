@@ -3,6 +3,144 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-11-27 13h16Z–13h2xZ — **TRAVADA POR GESTO HUMANO, PELA 34.2, PELA TERCEIRA PASSADA SEGUIDA SEM ESCREVER REGRA NENHUMA. SÃO SEIS SEGUIDAS — UM DIA ÚTIL INTEIRO — E A PROPORÇÃO DA 31.1 CAIU A 2 EM 10, O PIOR NÚMERO DA HISTÓRIA DESTA ILHA, SEM NENHUMA EXECUÇÃO ERRAR. NADA FOI AO AR, E NADA PODIA**
+
+Reservada às 13h16Z (commit `d85d094`), aceita de **primeira**. Fecho dentro dos 40 minutos
+da 1.1, sem renovação de reserva.
+
+### 0. O ESTADO REAL DO `main`, porque esta sessão não começou num clone limpo
+
+A branch `claude/dreamy-mccarthy-grrrl7` desta nuvem veio **idêntica** ao `origin/main`
+(`git diff origin/main` vazio, as duas em `e122481`), então **não havia branch nem PR de
+execução anterior para mergear** — conferido antes de qualquer coisa, pelo passo 1 da seção 1.
+`list_pull_requests` com `state: open` devolveu **lista vazia**. O `main` local estava
+divergente (50 à frente, 50 atrás) e **não foi usado**: o trabalho saiu do `origin/main`, que
+é o que a seção 1 manda. O clone é **raso** (`.git/shallow` com duas linhas), e por isso
+**nenhuma contagem de história foi feita nesta passada** — a conta da 34.1 se faz no
+`REGISTRO.md`, que é arquivo e não log, pela errata de 23/11 na 1.1.
+
+### 1. A SONDA E A REDE (34.2 item 1) — décima primeira medição da parede em 22 dias
+
+**Ambiente nomeado, porque a parede é UMA POR AMBIENTE (20.16):** nuvem da Fundação, contêiner
+remoto do Claude Code com proxy de agente.
+
+| host | o que é | medição 1 | 2 | 3 |
+|---|---|---|---|---|
+| `rodametria.com.br` | controle verde (20.2) | **200** | **200** | **200** |
+| `www.gov.br` | sonda da classe `.gov.br` | **000** | **000** | **000** |
+| `www.casasbahia.com.br` | sonda da classe varejo grande | **000** | **000** | **000** |
+
+**Nove medições, três controles verdes, seis recusas, zero intermitência.** `000` e nunca
+`403`: o código de *fora da lista de permitidos*, não de *recusado pelo host* — a parede espera
+um gesto, não o calendário. **As outras oito linhas da classe NÃO foram reabertas**, pela regra
+1 da 20.16, e isso é economia deliberada: causa única medida numa linha está medida em todas.
+
+**E os três gatilhos da 20.16 item 2 foram conferidos um por um, não supostos:** (a) a sonda
+**não** mudou de veredito; (b) **não chegou notícia de gesto** — entre o fecho das 10h22Z
+(`e122481`) e a reserva desta passada (`d85d094`) o `main` recebeu **zero** commit além da
+própria reserva, o `MAOS-LOG.md` segue terminando em **26/11 14h20 BRT** na Bússola caçadora,
+`grep -c "Pauta das ilhas" MAOS-LOG.md` devolve **0** e nenhum despacho fechou; (c) a fila
+**não** pediu host novo, porque ela não pediu nada — está vazia.
+
+### 2. A ILHA ESTÁ SÃ, e isso é a outra metade do veredito (18.5 e 20.2)
+
+Medido nesta passada e não herdado: **11 de 11 URLs do `wp-sitemap-posts-page-1.xml` em 200**,
+cada uma com quebra de cache; **o 404 que tem de ser 404 é 404**; `/status` com `revisao`
+**147** = `manifest.json` em **147**, `versao_sync` 1.1.5. **Nenhum defeito para a 18 furar a
+fila, nenhuma porta no chão.** As duas metades do veredito na mesma passada: **não há o que
+consertar e não há o que publicar.**
+
+### 3. A FILA RELIDA CONTRA O DADO (34.2 item 2), consulta por consulta e não herdada
+
+Relida em `dados/consultas-de-produto.json`, não no cabeçalho do `ESTADO.md`. **O veredito não
+mudou em nenhuma das 11:** **3** são página no ar (`patinete elétrico`, `bicicleta elétrica`,
+`moto elétrica`, as três conferidas no sitemap desta passada); **3** fechadas por SERP `tomada`
+(`patinete elétrico adulto`, `melhor patinete elétrico`, `moto elétrica 1000w`); **2** fechadas
+pela **30.4** em favor da irmã (`bike elétrica` e `motos elétricas para adultos`, 201 mil
+buscas cada, sinônimos de página que já existe); **2** em `nao-medida` esperando o Chrome
+(`patinete elétrico 1000w` e `scooter elétrica 1000w` — esta com segunda trava independente da
+SERP, porque scooter não tem produto na Shopee e o Mercado Livre exige clique humano pela
+25.6); e **1** — a `scooter elétrica`, 301 mil buscas — com remedição **pré-registrada para
+11/12** no campo `criterio_da_proxima_remedicao` do próprio registro, pela **30.9**, que proíbe
+antecipar: **faltam 14 dias**, e mesmo então é **carona** e não bloco. **11 de 11 explicadas,
+zero elegível.**
+
+**E os blocos de construção, relidos no `PROMPT.md`:** 1, 2, 3, 3b, 3c, 3d, 3e, 4a, 4c, 5b, 5c,
+5d, 5e, 6 e 7 **entregues ou encerrados**; **4b** é pergunta para a leitura semanal e não bloco
+da Fundação, por escrito; **5** (artigos-âncora) depende de `ilhas/rodametria/pauta.md`, que
+pela **17.1** não é arquivo da Fundação — e `find . -iname "*pauta*"` continua devolvendo
+**zero** no repositório inteiro. **É o único eixo de construção que não depende de rede nem de
+SERP, e ele está atrás de um disparo.**
+
+### 4. A CONTA DA 31.1 (34.1 e 34.3), E ELA CHEGOU AO PIOR NÚMERO DA HISTÓRIA DESTA ILHA
+
+| execução | no ar? | o que foi |
+|---|---|---|
+| 27/11 13h16Z (esta) | **não** | trava humana — sonda, fila relida, despacho atualizado |
+| 27/11 10h17Z | **não** | trava humana — a série atravessando a noite |
+| 26/11 19h16Z | **não** | trava humana — a conta corrigida e o achado do instrumento |
+| 26/11 16h19Z | **não** | trava humana — a 34 do contrato |
+| 26/11 13h16Z | **não** | trava humana — a 20.16 do contrato |
+| 26/11 10h16Z | **não** | trava humana — as três paredes remedidas |
+| 25/11 19h16Z | **sim** | a barra fixa do telefone nas duas páginas com piso novo |
+| 25/11 16h16Z | **sim** | o link de loja nas quatro categorias da F1, revisão 145 |
+| 25/11 13h17Z | **dúbio** | a trava das duas frases de habilitação — régua, sem byte de tela |
+| 25/11 10h19Z | **não** | o portão do campo de banco — **escolha de trabalho, não trava** |
+
+**2 em 10** (3 com a dúbia), contra o piso de **7 em 10** — **caiu de 3 para 2**, e a causa da
+queda não é esta passada ter sido pior que a anterior: a janela andou um para cada lado e
+**saiu uma que era `sim`** (24/11 19h17Z, a âncora do sinônimo da 30.4 na ferramenta). **Das
+sete `não`, SEIS são trava humana e UMA é escolha de trabalho** (25/11 10h19Z). Pela **34.3** o
+número vai com a causa, porque proporção sem causa faz a **31.6** abrir item de prioridade alta
+contra quem não podia fazer nada.
+
+**E O QUE ESTA PASSADA ACRESCENTA À SÉRIE NÃO É O TAMANHO DELA, É A ARITMÉTICA DO QUE VEM:** as
+duas `sim` que sobraram são as **duas** de 25/11 e saem da janela nas **próximas duas**
+passadas. Sem gesto, **a proporção da 31.1 vai a 0 em 10 por decurso de prazo**, com a fábrica
+fazendo tudo certo e sem nenhuma execução errar. É a leitura sobre a **fábrica** que a 34.3
+manda fazer, e ela agora tem data.
+
+### 5. A ESCALADA, QUE É UM DESPACHO SÓ E ATUALIZADO (34.2 item 3 e 34.5)
+
+A entrada **ALTA** de `dados/despachos.md` de 26/11 16h2xZ recebeu a atualização desta passada,
+e o **título** dela deixou de dizer *"cinco execuções seguidas, em dois dias"* para dizer **seis
+seguidas, um dia útil inteiro**, com a queda a **2 em 10** e o **0 em 10 por decurso de prazo**
+no próprio título — porque é o número que decide, e número enterrado no corpo de uma entrada de
+2.500 linhas é o defeito que a própria 34.5 nomeia. Dentro: a conta com a causa ao lado, as
+idades dos cinco gestos em 27/11 (`*.gov.br` **30 dias** · as duas SERPs no Chrome **28** ·
+`rodametria.com.br` nos domínios adicionais permitidos **23** · os 5 links do Mercado Livre
+**16** · *Pauta das ilhas* **nunca rodou em 77**), a sonda, a fila relida, a ilha sã e a
+robometria em **sete** dias com os seis itens abertos e três botões de compra mortos no ar.
+**Nenhum despacho novo foi aberto** — a 34.5 proíbe.
+
+### 6. O QUE ESTA PASSADA DELIBERADAMENTE NÃO FEZ
+
+**Não nasceu portão, régua, mutação, bancada nem seção de contrato** — **terceira** passada
+seguida a cumprir a 34.2, que é a prova de que a trava pega. **Não pegou outra ilha (34.4)**,
+com a robometria tendo seis itens abertos há sete dias e três deles link de compra morto no ar:
+pela **25.4** link morto é defeito, e sair do foco é decisão escrita do Raphael, pedida no
+despacho como **pergunta com número** e nunca tomada por conta própria. **Não remediu as dez
+linhas da parede** (20.16 regra 1). **Não repetiu a bancada** sobre código intocado. **Não
+antecipou a remedição da `scooter elétrica`**, que a 30.9 marca para 11/12.
+
+### PRÓXIMO PASSO DESBLOQUEADO — e ele não é da Fundação
+
+**Nenhum.** Enquanto nenhum dos cinco gestos for feito e a linha `ilha:` de `foco.md` nomear a
+rodametria, a execução seguinte que reservar esta ilha faz **exatamente** os cinco passos da
+**34.2** e fecha em *travada por gesto humano*, **sem** procurar bloco e **sem** escrever regra.
+Custa minutos, e é o resultado certo.
+
+**O mais curto dos cinco segue sendo o disparo da *Pauta das ilhas* nesta ilha: é um disparo e
+não uma decisão, e destrava o bloco 5 — o único eixo que não depende de rede nem de SERP.** O
+segundo mais curto são as **duas SERPs brasileiras no Chrome** (`patinete elétrico 1000w` e
+`scooter elétrica 1000w`).
+
+**E A DATA QUE CHEGA SOZINHA, pré-registrada e não palpite:** em **11/12/2026** a `scooter
+elétrica` (301 mil buscas) remede pela 30.9. **Faltam 14 dias**, e mesmo ela é carona e não
+bloco — não resolve a fila.
+
+---
+
 ## 2026-11-27 10h17Z–10h2xZ — **TRAVADA POR GESTO HUMANO, PELA 34.2, PELA SEGUNDA PASSADA SEGUIDA SEM ESCREVER REGRA NENHUMA. E O FATO NOVO É O CALENDÁRIO: A SÉRIE ATRAVESSOU A NOITE — SÃO CINCO SEGUIDAS, EM DOIS DIAS, E A PROPORÇÃO DA 31.1 CAIU DE 4 PARA 3 EM 10 SEM NENHUMA EXECUÇÃO ERRAR. NADA FOI AO AR, E NADA PODIA**
 
 Execução da Fundação de 27/11/2026, reservada às 10h17Z (commit `691f1b0`) pela 1.2 passo 2
