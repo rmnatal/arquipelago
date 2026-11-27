@@ -11329,3 +11329,87 @@ ce0b4d49703942867825b809371cf377b94cc017baff639e182882c9cf2d7b3d  bussola/cacado
 Os dois conferem byte a byte com o alvo da instrução (26770 bytes, sha256 `ce0b4d49...2d7b3d`). O arquivo passou de 24389 para 26770 bytes (+2381) e termina com quebra de linha depois de `| 26/11/2026 | mini moto | volume | 22,2 mil/mês |`.
 
 **Nenhum passo falhou.** Zero erro a registrar: nenhuma recusa de ferramenta, nenhuma recusa de push, nenhum desvio de hash. Nenhuma ilha foi reservada, nenhum `executando_desde` foi escrito, nenhum cabeçalho de estado foi tocado, nenhum bloco de fila foi executado, nada foi publicado. Este log vai num commit seguinte, por depender do hash do commit de trabalho.
+
+---
+
+## 2026-11-27, 12h01 (horário de Brasília) — 15h01Z — RONDA DIÁRIA DA SENTINELA, ilha clubedomosaico: QUATRO ESCRITAS NUM COMMIT SÓ
+
+Disparo manual, instrução literal recebida no payload da ronda (27/11/2026 às 14h54Z). Assunto conferido ANTES do `git fetch`: ilhas do Arquipélago (clubedomosaico), Sentinela, `dados/PAINEL.md` da raiz — **é assunto do Arquipélago, logo executado**. Nenhum dado pessoal de terceiro no texto recebido: nada foi deixado de fora.
+
+Partida do `main` real: `git fetch origin main && git checkout -B trabalho origin/main`, a partir de `110b289`.
+
+As quatro âncoras pedidas foram encontradas EXATAMENTE, nenhuma adivinhada:
+
+- `ilhas/clubedomosaico/ESTADO.md` — uma única linha começando com `ultima_ronda: 2026-11-25T20:15Z   # LEITURA SEMANAL de 25/11/2026`, na linha 141; trocada pela linha única nova.
+- `ilhas/clubedomosaico/PROMPT.md` — uma única linha igual ao título `## DESPACHO DA SENTINELA — 2026-11-25 (LEITURA SEMANAL, 19h4xZ–20h1xZ) …`, na linha 224; bloco novo inserido imediatamente antes dela, seguido de uma linha em branco, sem apagar nada.
+- `ilhas/clubedomosaico/dados/consertos.md` — append no fim, precedido de uma linha em branco.
+- `dados/PAINEL.md` — reescrito inteiro, do começo ao fim.
+
+`git status --porcelain` antes do commit:
+
+```
+ M dados/PAINEL.md
+ M ilhas/clubedomosaico/ESTADO.md
+ M ilhas/clubedomosaico/PROMPT.md
+ M ilhas/clubedomosaico/dados/consertos.md
+```
+
+`git diff --stat` antes do commit:
+
+```
+ dados/PAINEL.md                         | 65 ++++++++++++++++++---------------
+ ilhas/clubedomosaico/ESTADO.md          |  2 +-
+ ilhas/clubedomosaico/PROMPT.md          | 22 +++++++++++
+ ilhas/clubedomosaico/dados/consertos.md | 18 +++++++++
+ 4 files changed, 77 insertions(+), 30 deletions(-)
+```
+
+`git diff --numstat`: `36 29 dados/PAINEL.md`, `1 1 ilhas/clubedomosaico/ESTADO.md`, `22 0 ilhas/clubedomosaico/PROMPT.md`, `18 0 ilhas/clubedomosaico/dados/consertos.md`.
+
+**Hash do commit que foi ao `main`:** `f9e4af2442d37882d877d3a80ad7ad8e4bbaab05`
+
+```
+110b289..f9e4af2  HEAD -> main
+```
+
+Push direto em `origin/main` aceito na primeira tentativa, sem rebase, sem force, sem PR. Confirmado por `git fetch origin main && git log -1 origin/main`:
+
+```
+f9e4af2442d37882d877d3a80ad7ad8e4bbaab05 ronda da Sentinela 27/11: despacho da clubedomosaico, serie da porta, ultima_ronda e PAINEL
+```
+
+`git diff --stat origin/main HEAD` depois do fetch: **vazio** — o que está no `main` é exatamente o que foi gravado aqui.
+
+**Contagem conferida relendo os arquivos DEPOIS de gravar** (não pelo que se acha que se escreveu):
+
+```
+$ wc -l -c ilhas/clubedomosaico/ESTADO.md ilhas/clubedomosaico/PROMPT.md ilhas/clubedomosaico/dados/consertos.md dados/PAINEL.md
+   855  85299 ilhas/clubedomosaico/ESTADO.md
+  3611 389927 ilhas/clubedomosaico/PROMPT.md
+   415  63994 ilhas/clubedomosaico/dados/consertos.md
+    65  12529 dados/PAINEL.md
+```
+
+```
+$ grep -c '^ultima_ronda:' ilhas/clubedomosaico/ESTADO.md                 -> 1
+$ grep -c '^ultima_ronda: 2026-11-27T14:54Z' ilhas/clubedomosaico/ESTADO.md -> 1
+$ grep -c '^ultima_ronda: 2026-11-25T20:15Z' ilhas/clubedomosaico/ESTADO.md -> 0   (valor antigo não sobrou)
+$ grep -c '^## DESPACHO DA SENTINELA' ilhas/clubedomosaico/PROMPT.md      -> 15  (era 14)
+   novo título na linha 224; o de 2026-11-25 desceu intacto para a linha 246
+$ itens numerados do bloco novo (linhas 224-245)                          -> 8
+$ grep -c '^| \*\*[789]ª\*\*' ilhas/clubedomosaico/dados/consertos.md     -> 3   (7ª, 8ª, 9ª)
+$ linhas de ilha na tabela de dados/PAINEL.md                             -> 6
+$ itens de "Precisa do Raphael" em dados/PAINEL.md                        -> 10
+$ linhas de despacho aberto em dados/PAINEL.md                            -> 15
+```
+
+Os quatro arquivos terminam com quebra de linha (`tail -c1 | od -c` = `\n` nos quatro). `sha256sum` depois de gravar:
+
+```
+60c2f022dc97d86e9db6d03a3cacf04ac3547fcd533a42a55ce2c832843afd65  ilhas/clubedomosaico/ESTADO.md
+7da2bf9b282f70eb274e54c50c9bc79b5a67eeac290a4a80d789bcba69a972f8  ilhas/clubedomosaico/PROMPT.md
+ff6523953187b23b4fd87ca136e464440fb40f9723d0176bb2b97210b40ba104  ilhas/clubedomosaico/dados/consertos.md
+4a56bb1068312604be4156ae8817cc6988ec976aa7fe3643f6e38b4308386f6f  dados/PAINEL.md
+```
+
+**Nenhum passo falhou.** Zero erro a registrar: nenhuma âncora faltou, nenhuma recusa de ferramenta, nenhuma recusa de push, nenhum rebase, nenhum force. Nada foi reformatado, nada foi "melhorado", nenhuma linha foi acrescentada além do texto da instrução. Nenhuma ilha foi reservada, nenhum `executando_desde` foi escrito, nenhum cabeçalho de estado foi tocado fora da linha `ultima_ronda` que a instrução nomeou, nenhum bloco de fila foi executado, nada foi publicado, nenhum Sync foi acionado. Este log vai num commit seguinte, por depender do hash do commit de trabalho.
