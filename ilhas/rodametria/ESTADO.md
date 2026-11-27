@@ -49,14 +49,12 @@ ultima_execucao: 2026-11-27T16:23Z   # NADA FOI AO AR, E NADA PODIA, pela
                          # com example.com tambem em 000 como controle da 33). Nenhum despacho
                          # novo foi aberto.
                          # A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA.
-executando_desde: null   # LIMPO no fecho desta execucao (passo 7 da secao 1).
-                         # Reservada as 16h16Z (commit 78bd7bd), aceita de PRIMEIRA — pela 1.1
-                         # `executando_desde: null` ja prova que nenhum bloco da Fundacao
-                         # estava em andamento, sem precisar consultar o git. NAO renovada: o
-                         # fecho saiu dentro dos 40 minutos.
-                         # Comentario da reserva substituido INTEIRO, RABO INCLUIDO — e a
-                         # passada das 16h16Z chegou a deixar um rabo orfao aqui (as tres
-                         # linhas da reserva das 13h16Z), achado e removido no proprio fecho.
+executando_desde: 2026-11-27T19:16Z   # RESERVA da execucao da Fundacao de 27/11 as 19h16Z, aceita de
+                         # PRIMEIRA: `executando_desde` estava `null` e pela 1.1 `null` ja prova
+                         # que nenhum bloco da Fundacao estava em andamento, sem precisar do git.
+                         # OITAVA passada seguida desta ilha entrando pela 34.2. Comentario da
+                         # reserva anterior substituido INTEIRO, RABO INCLUIDO.
+                         # A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA.
 rede: aberta em 2026-11-27   # 20.2, e a conferencia do DOMINIO DA PROPRIA
                              # ILHA se faz em toda execucao e NAO e herdada: rodametria.com.br
                              # em 200 nas TRES passadas desta sonda, mais as 11 de 11 URLs do
