@@ -43,7 +43,7 @@ ultima_execucao: 2026-11-26T19:24Z   # NADA FOI AO AR, E NADA PODIA, e esta e a
                          # metodo. A escalada foi UM despacho ALTA ATUALIZADO (34.5), o de
                          # 16h2xZ em dados/despachos.md — nenhum novo foi aberto.
                          # A hora saiu do `date -u` na MESMA linha de comando que a grava.
-executando_desde: null   # LIMPO no fecho desta execucao (passo 7 da secao 1).
+executando_desde: 2026-11-27T10:17Z   # RESERVA da execucao da Fundacao de 27/11/2026, pela 1.2 passo 2 (foco.md nomeia esta ilha) e pelo passo 5 da secao 1. Hora dada pelo `date -u` na mesma linha de comando que a grava, nunca digitada.
                          # Reservada as 19h16Z (commit b6ed535), aceita de PRIMEIRA, e NAO
                          # renovada: o fecho saiu dentro dos 40 minutos da 1.1.
                          # Comentario substituido INTEIRO, RABO INCLUIDO — e o rabo era MEU:
