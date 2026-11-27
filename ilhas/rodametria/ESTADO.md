@@ -38,12 +38,10 @@ ultima_execucao: 2026-11-27T10:22Z   # NADA FOI AO AR, E NADA PODIA, pela QUINTA
                          # execucoes de hoje` e passa a dizer CINCO SEGUIDAS, EM DOIS DIAS.
                          # Nenhum despacho novo foi aberto.
                          # A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA.
-executando_desde: null   # LIMPO no fecho desta execucao (passo 7 da secao 1).
-                         # Reservada as 10h17Z (commit 691f1b0), aceita de PRIMEIRA, e NAO
-                         # renovada: o fecho saiu dentro dos 40 minutos da 1.1.
-                         # Comentario substituido INTEIRO, RABO INCLUIDO, pela regra que este
-                         # proprio cabecalho escreveu em 17/11 e que ja foi quebrada tres
-                         # vezes aqui: quem substituir comentario de varias linhas apaga o rabo.
+executando_desde: 2026-11-27T13:16Z   # RESERVA desta execucao (passo 5 da
+                         # secao 1), com a hora saida do `date -u` na mesma linha de comando
+                         # que a grava. Comentario da reserva anterior substituido INTEIRO,
+                         # RABO INCLUIDO, pela regra deste proprio cabecalho.
 rede: aberta em 2026-11-27   # 20.2, e a conferencia do DOMINIO DA PROPRIA
                              # ILHA se faz em toda execucao e NAO e herdada: rodametria.com.br
                              # em 200 nas TRES passadas desta sonda, mais o /status em 200
