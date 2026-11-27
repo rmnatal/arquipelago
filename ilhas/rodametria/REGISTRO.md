@@ -3,6 +3,133 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-11-27 19h16Z–19h2xZ — **TRAVADA POR GESTO HUMANO, PELA 34.2, PELA QUINTA PASSADA SEGUIDA SEM ESCREVER REGRA NENHUMA. SÃO OITO SEGUIDAS E A PROPORÇÃO DA 31.1 CAIU PARA 1 EM 10, EXATAMENTE COMO A PASSADA ANTERIOR PREVIU POR ESCRITO. E O FATO NOVO É UM CONSERTO DO PRÓPRIO PEDIDO AO RAPHAEL: O SEXTO GESTO NOMEAVA O HOST ERRADO, E ESTA PASSADA MEDIU QUAL É**
+
+Reservada às 19h16Z (commit `df0249d`), aceita de **primeira** — `executando_desde` estava `null` e,
+pela 1.1, `null` já prova que nenhum bloco da Fundação estava em andamento, sem precisar do git.
+Fecho dentro dos 40 minutos, sem renovação de reserva. Nenhum branch `claude/*` com trabalho pendente e
+nenhum PR aberto: o `main` do `origin` está uma história **sem ancestral comum** com a do clone desta
+sessão (50 commits de cada lado, `git merge` recusando *unrelated histories*), e a leitura certa disso é
+a da 1.1 sobre clone raso — **o `origin/main` é a verdade e foi dele que esta passada trabalhou**, sem
+force push e sem rebase de história alheia.
+
+**O QUE ESTA PASSADA FEZ, e é a lista fechada da 34.2 e nada além.** Oitava execução seguida desta ilha
+sem um byte que um visitante veja, pela mesma causa não técnica. **Mas uma das seis chaves que estavam
+sendo pedidas ao Raphael não existe, e isto foi medido aqui.**
+
+**1. NOTÍCIA DE GESTO, PROCURADA ANTES DE DIZER "NADA MUDOU" (20.16 item 2(b)).** Entre o fecho das
+16h2xZ (`63e8513`) e a reserva desta passada (`df0249d`) o `main` recebeu **zero** commits de terceiros —
+o único da janela é a própria reserva desta execução. `grep -c "Pauta das ilhas" MAOS-LOG.md` segue **0**
+e `find . -iname "*pauta*"` segue **zero** no repositório inteiro. Nenhum despacho desta ilha fechou.
+**Não chegou notícia, e isso foi medido.**
+
+**2. REDE DO PRÓPRIO DOMÍNIO (20.2) E SONDA DE PAREDE (20.16), três passadas, doze medições.** Ambiente
+nomeado, como a 20.16 exige: **nuvem da Fundação**, contêiner remoto do Claude Code com proxy de agente.
+
+| alvo | passada 1 | passada 2 | passada 3 |
+|---|---|---|---|
+| `rodametria.com.br` (controle) | 200 | 200 | 200 |
+| `www.gov.br` (sonda da classe do gov.br) | 000 | 000 | 000 |
+| `www.casasbahia.com.br` (sonda da classe do varejo) | 000 | 000 | 000 |
+| `cf.shopee.com.br` (sonda da classe da Shopee) | **200** | **200** | **200** |
+
+**Seis controles verdes, seis recusas, zero intermitência**, com `000` e nunca `403` — o código de *fora
+da lista de permitidos*, não de *recusado pelo host*. É a **décima terceira** medição da série em 22 dias
+para as duas primeiras classes, com o mesmo veredito e as mesmas causas, e pela regra 1 da 20.16 as
+outras oito linhas delas **não foram reabertas**. **A terceira classe mudou de veredito, e pelo gatilho
+2(a) da própria 20.16 ela foi reaberta inteira.** Foi essa reabertura que achou o defeito abaixo.
+
+**3. O ACHADO, E ELE ENCURTA O PEDIDO AO RAPHAEL EM VEZ DE AUMENTÁ-LO: O SEXTO GESTO NOMEAVA UM HOST QUE
+NÃO PRECISA DE GESTO.** A atualização de ontem às 16h2xZ do despacho ALTA acrescentou à tabela de gestos
+a linha *"`cf.shopee.com.br` na lista de domínios permitidos da conta"*, lida da ronda da clubedomosaico
+de 27/11. **Medido aqui, no ambiente da Fundação: `cf.shopee.com.br` já responde.** 200 na raiz nas três
+passadas; e pedida uma URL `/file/<id>` colhida do banco **desta própria ilha**
+(`019ac121ffeafe4df9aeb01a03306188`), ela devolveu **um JPEG de verdade — 83.231 bytes,
+`content-type: image/jpeg` — nas duas passadas.** O repositório já afirmava isto **duas vezes**, e as
+duas foram atropeladas por uma medição de outro ambiente: o despacho de **26/11 às 10h2xZ** tem a linha
+`cf.shopee.com.br | 200, 200, 200` na tabela *"a parede não é uma, é uma por ambiente"*, e o de
+**24/09/2026** registra `cf.shopee.com.br/file/<identificador>` como **o contorno autorizado** para o CDN
+de foto barrado. **A ronda não errou — ela mediu o ambiente dela, e daqui não há como medir o dela.** O
+que errou foi a linha virar pedido ao Raphael **sem ser remedida no ambiente que a usaria**. É a 20.16 na
+armadilha que ela própria nomeia, e pela **34.5** pedido que incha com linha que não precisa ser feita é
+como um pedido de 30 dias fica sem resposta.
+
+**4. E O HOST QUE DE FATO MATA A FICHA DA SHOPEE FOI MEDIDO, COM NOME: `deo.shopeemobile.com`.** Uma
+ficha real (`shopee.com.br/product/1024782317/58271745327`) foi aberta **no navegador desta nuvem**, pela
+**33**: **HTTP 200**, corpo de **210.180 bytes** por `curl` nas duas passadas, e **ZERO byte de texto
+renderizado** — o mesmo 0 em que a ronda chegou, pela causa que ela não tinha como ver. O contador de
+requisições falhadas acusa **23 falhas, todas para `deo.shopeemobile.com`, e NENHUMA para
+`cf.shopee.com.br`.** Por `curl`, três passadas: `deo.shopeemobile.com` **000** nas três,
+`down-br.img.susercontent.com` **000** nas três, contra `cf.shopee.com.br` **200** e `rodametria.com.br`
+**200** nas mesmas três. `deo.shopeemobile.com` serve o JavaScript do aplicativo da Shopee — **sem ele a
+página existe e não se desenha.** E a honestidade do achado vai dita: liberar esse host **não** promete
+veredito de ficha, porque restam o CAPTCHA de 23 e 25/11 e o 403 de 17/09, duas causas já medidas.
+**O que está provado é o negativo, e ele basta para encurtar o pedido: a linha pedida não era a que falta.**
+
+**5. A ILHA ESTÁ SÃ, medido nesta passada e não herdado do cabeçalho (18.5 e 20.2).** 11 de 11 URLs do
+`wp-sitemap-posts-page-1.xml` em **200**, cada uma com `?v=<agora>`; caminho virgem em **404**; `/status`
+com `revisao` **147** = `manifest.json` em **147**, `versao_sync` 1.1.5. **Não havia defeito para a 18
+furar fila nem conserto para a 18.5 segurar** — e não havia página para publicar.
+
+**6. A FILA RELIDA CONTRA O DADO (34.2 item 2), consulta por consulta em
+`dados/consultas-de-produto.json`, nunca herdada do cabeçalho — o veredito não mudou em nenhuma das 11:**
+**3** são página no ar (`patinete elétrico`, `bicicleta elétrica`, `moto elétrica`, as três conferidas no
+sitemap servido nesta passada); **3** fechadas por SERP `tomada` (`patinete elétrico adulto`, `melhor
+patinete elétrico`, `moto elétrica 1000w`); **2** fechadas pela **30.4** em favor da irmã (`bike elétrica`
+e `motos elétricas para adultos`, 201 mil buscas cada); **2** em `nao-medida` esperando o Chrome do
+Raphael (`patinete elétrico 1000w` e `scooter elétrica 1000w`, e pela **30.8** `alvo` não se afirma desta
+nuvem, nunca); e **1** — a `scooter elétrica`, 301 mil buscas — com `nao_antes_de: 2026-12-11` lido no
+campo `criterio_da_proxima_remedicao` do próprio registro, que a **30.9** proíbe antecipar e que mesmo
+então é **carona** e não bloco: **faltam 14 dias**. **11 de 11 explicadas, zero elegível** — e o achado da
+Shopee não muda uma linha desta contagem, porque o que trava página nova aqui é SERP e prazo, nunca foto.
+
+**7. A ESCALADA FOI UM DESPACHO SÓ, ATUALIZADO (34.5).** A entrada ALTA de `dados/despachos.md` aberta em
+26/11 às 16h2xZ recebeu a atualização das 19h2xZ de hoje — a **quinta** —, e **nenhum despacho novo
+nasceu**. O título passou de "sete execuções seguidas" para **oito** e ganhou a oração do host errado; a
+tabela de gestos **continua com seis linhas**, e a sexta passou de `cf.shopee.com.br` para
+`deo.shopeemobile.com`.
+
+**O NÚMERO DA 31.1, E A QUEDA ESTAVA PRÉ-ESCRITA ONTEM.** Nas dez últimas: **8 `não`**, **1 `sim`**
+(25/11 19h16Z) e **1 dúbia** (25/11 13h17Z) — **1 em 10**, 2 com a dúbia, contra o piso de **7 em 10**.
+Entrou esta (`não`) e saiu a de 25/11 16h16Z, que era `sim`. A entrada de ontem escreveu, com todas as
+letras, *"1 em 10 na próxima e 0 em 10 na seguinte, com a fábrica fazendo tudo certo"* — **a próxima era
+esta, e o número chegou onde ela disse.** **As oito `não` da janela são, todas as oito, trava humana**, e
+pela **34.3** o número vai com a causa escrita para a **31.6** não abrir item de prioridade alta contra
+quem não podia fazer nada. **Na próxima passada a última `sim` sai e a proporção vai a 0 em 10.**
+
+**A CONTA DA 34.1, do mais novo para o mais velho, parando na primeira que entregou:** 26/11 10h16Z,
+13h16Z, 16h19Z, 19h16Z, 27/11 10h17Z, 13h16Z, 16h16Z e **esta, 19h16Z** — **OITO**. A anterior a elas,
+25/11 19h16Z, entregou (a barra fixa do telefone). O bloqueio nomeado na entrada anterior continua
+nomeado nesta, sem gesto novo no meio, que é o que a 34.1 chama de "mesma causa".
+
+**O CUSTO FORA DO FOCO SEGUE O MESMO DE HOJE ÀS 16h2xZ, e nada dele foi tocado (34.4).** A **robometria**
+viva com os seis itens de 20/11 abertos há **oito dias**, três deles link de compra morto no ar; a
+**clubedomosaico** com o Sync desligado desde 19/11 por uma decisão que o repositório não carrega.
+**Esta execução não reservou nenhuma das duas**: sair do foco é decisão escrita do Raphael, pedida no
+despacho como pergunta com número.
+
+**O QUE ESTA PASSADA NÃO FEZ, e é a metade que a 34.2 existe para proibir.** Nenhum portão, régua,
+mutação, bancada, ferramenta **nem seção de contrato** nasceu — **quinta passada seguida**. Nenhum
+arquivo de outra ilha foi tocado (seção 3). Nenhum Sync foi acionado, porque não houve o que desembarcar.
+Nenhuma outra ilha foi reservada. **E a medição da Shopee não foi trabalho de ilha: foi a sonda do item 1
+da 34.2 sendo lida até o fim, e ela devolveu um conserto do pedido em vez de uma entrega de método.**
+
+**PRÓXIMO PASSO DESBLOQUEADO — e ele continua não sendo desta nuvem.** Enquanto nenhum dos gestos for
+feito e `foco.md` nomear a rodametria, a execução seguinte que reservar esta ilha repete a lista fechada
+da 34.2: notícia de gesto, rede do próprio domínio, sonda de parede, fila relida contra o dado,
+atualização da **mesma** entrada ALTA e fecho. **Se um gesto chegar, a ordem de trabalho está pronta e é
+esta:** (1) *Pauta das ilhas* rodada → bloco 5 (`/guias/`), o único que não depende de rede nem de SERP;
+(2) `*.gov.br` e `*.leg.br` abertos → camada de CNH da F1 e camada municipal; (3) as duas SERPs
+`nao-medida` vistas no Chrome → página nova pela 30.8; (4) os 5 links do Mercado Livre → a página de 823
+mil buscas/mês sai de **um** cartão de compra. **E o item (5) da ordem de ontem SAIU DELA, por medição
+desta passada:** o portão de foto desta ilha **já funciona** de uma sessão da Fundação, e quem reservar
+esta ilha com foto pendente **mede ali em vez de declarar não medido** — é `deo.shopeemobile.com`, não
+`cf.shopee.com.br`, que falta para a leitura de ficha. **A remedição da `scooter elétrica` entra em 11/12
+por critério pré-registrado, e nem ela é bloco: é carona.**
+
+**Fecho às 2026-11-27T19:2xZ.** `executando_desde` de volta a `null`, `ultima_execucao` gravada com a
+hora saída do `date -u` na mesma linha de comando que a grava.
+
 ## 2026-11-27 16h16Z–16h2xZ — **TRAVADA POR GESTO HUMANO, PELA 34.2, PELA QUARTA PASSADA SEGUIDA SEM ESCREVER REGRA NENHUMA. SÃO SETE SEGUIDAS, E O FATO NOVO NÃO É O TAMANHO DA SÉRIE: É QUE A ÚLTIMA EXECUÇÃO DA JANELA DA 31.1 EM QUE A FÁBRICA PODIA TER ESCOLHIDO DIFERENTE ACABOU DE SAIR DELA. NADA FOI AO AR, E NADA PODIA**
 
 Reservada às 16h16Z (commit `78bd7bd`), aceita de **primeira** — `executando_desde` estava `null` e,

@@ -16,45 +16,60 @@ urls_publicadas: 11       # ZERO URL nasceu TAMBEM na passada de 26/11 as 10h16Z
                           # proteger. Quem substituir comentario de varias linhas apaga o rabo.
 ultima_ronda: 2026-11-25T20:15Z   # LEITURA SEMANAL de 25/11/2026 (secao 12.2, item 3). SUBSTITUI o valor anterior 2026-11-25T15:40Z, que era da RONDA DIARIA TECNICA do mesmo dia e segue registrada no PROMPT.md. 1 impressao, 0 clique, posicao 11,0 — a ilha em foco total somou 11 impressoes em quatro semanas (8, 2, 1). Indexacao n/d pela TERCEIRA leitura seguida: o egresso do ambiente das MAOS recusa rodametria.com.br nos DOIS caminhos, e o caminho declarado pela propriedade foi um deles, logo o conserto de caminho esta feito e sobra o egresso, que e passo do Raphael. Nenhuma URL nasceu desde 16/11. Hora dada pela Sentinela, que nao tem repositorio.
 primeira_indexacao: null  # as duas primeiras URLs foram ao ar hoje; indexacao e trabalho de dias. Quem grava este campo e a leitura semanal, lendo o Search Console.
-ultima_execucao: 2026-11-27T16:23Z   # NADA FOI AO AR, E NADA PODIA, pela
-                         # SETIMA execucao SEGUIDA desta ilha, pela MESMA causa nao tecnica.
-                         # Contado no REGISTRO.md como a 34.1 manda, do mais novo para o mais
-                         # velho, parando na primeira que entregou (25/11 19h16Z, a barra fixa
-                         # do telefone): 26/11 10h16Z, 13h16Z, 16h19Z, 19h16Z, 27/11 10h17Z,
-                         # 13h16Z e esta. SETE e mais que o DOBRO do tres da 34.2.
-                         # O FATO NOVO NAO E O TAMANHO DA SERIE: E QUE A CAUSA DELA FICOU
-                         # INTEIRA. A proporcao da 31.1 NAO piorou — segue 2 EM 10 (3 com a
-                         # dubia de 25/11 13h17Z) contra o piso de 7 em 10, porque a janela
-                         # andou um para cada lado: entrou esta (`nao`) e saiu a de 25/11
-                         # 10h19Z, que tambem era `nao`. O QUE MUDOU E DE QUEM E A CULPA DAS
-                         # `NAO`: a de 25/11 10h19Z era a UNICA `nao` da janela que era escolha
-                         # de trabalho da Fundacao (o portao do campo de banco), e com a saida
-                         # dela as SETE `nao` da janela sao, TODAS AS SETE, TRAVA HUMANA. Ate
-                         # ontem a conta dizia `seis de sete sao trava humana e uma e escolha`;
-                         # hoje ela diz que NAO SOBROU UMA UNICA execucao da janela em que esta
-                         # fabrica pudesse ter feito diferente. Pela 34.3 o numero vai com a
-                         # causa, para a 31.6 nao abrir item de prioridade alta contra quem nao
-                         # podia fazer nada. E A ARITMETICA DO QUE VEM SEGUE PRE-ESCRITA: as
-                         # duas `sim` sao as de 25/11 (16h16Z e 19h16Z) e saem nas PROXIMAS
-                         # DUAS passadas — 1 EM 10 na proxima e ZERO EM 10 na seguinte, com a
-                         # fabrica fazendo tudo certo.
-                         # ESTA PASSADA NAO ESCREVEU REGRA NENHUMA, pela QUARTA vez seguida:
-                         # nenhum portao, regua, mutacao, bancada ou secao de contrato nasceu.
-                         # A escalada foi UM despacho ALTA ATUALIZADO (34.5), o de 26/11
-                         # 16h2xZ em dados/despachos.md, cujo TITULO passou a dizer SETE
-                         # SEGUIDAS e cuja tabela de gestos passou de CINCO para SEIS — entrou
-                         # `cf.shopee.com.br`, que era o portao de foto desta ilha e que a
-                         # ronda de hoje mediu valendo o teste de vida da 25.4 do ARQUIPELAGO
-                         # INTEIRO (12 de 12 fichas em 200 com corpo renderizado em ZERO byte,
-                         # com example.com tambem em 000 como controle da 33). Nenhum despacho
-                         # novo foi aberto.
+ultima_execucao: 2026-11-27T19:25Z   # NADA FOI AO AR, E NADA PODIA, pela
+                         # OITAVA execucao SEGUIDA desta ilha, pela MESMA causa nao tecnica, e
+                         # pela QUINTA passada seguida a cumprir a 34.2 sem escrever regra
+                         # nenhuma. Contado no REGISTRO.md como a 34.1 manda, do mais novo para
+                         # o mais velho, parando na primeira que entregou (25/11 19h16Z, a barra
+                         # fixa do telefone): 26/11 10h16Z, 13h16Z, 16h19Z, 19h16Z, 27/11 10h17Z,
+                         # 13h16Z, 16h16Z e esta. OITO e quase o TRIPLO do tres da 34.2.
+                         # A PROPORCAO DA 31.1 CAIU PARA 1 EM 10 (2 com a dubia de 25/11 13h17Z),
+                         # contra o piso de 7 em 10 — e a queda estava PRE-ESCRITA na entrada de
+                         # ontem, que disse `1 em 10 na proxima e 0 em 10 na seguinte, com a
+                         # fabrica fazendo tudo certo`. A proxima era esta. Entrou esta (`nao`) e
+                         # saiu a de 25/11 16h16Z, que era `sim`. AS OITO `nao` DA JANELA SAO,
+                         # TODAS AS OITO, TRAVA HUMANA — nenhuma e escolha de trabalho desta
+                         # fabrica —, e pela 34.3 o numero vai com a causa escrita para a 31.6
+                         # nao abrir item de prioridade alta contra quem nao podia fazer nada.
+                         # NA PROXIMA PASSADA A ULTIMA `sim` SAI E A PROPORCAO VAI A ZERO EM 10.
+                         # O FATO NOVO DESTA PASSADA E UM CONSERTO DO PROPRIO PEDIDO AO RAPHAEL:
+                         # o SEXTO gesto da tabela do despacho ALTA nomeava `cf.shopee.com.br`, e
+                         # ESSE HOST NAO PRECISA DE GESTO NENHUM no ambiente da Fundacao. Medido
+                         # aqui: 200 na raiz nas TRES passadas, e uma URL /file/<id> colhida do
+                         # banco DESTA ilha (019ac121ffeafe4df9aeb01a03306188) devolveu um JPEG de
+                         # verdade, 83.231 bytes, content-type image/jpeg, nas DUAS passadas. O
+                         # repositorio ja dizia isto DUAS vezes — o despacho de 26/11 10h2xZ, na
+                         # tabela `a parede nao e uma, e uma por ambiente`, e o de 24/09/2026, que
+                         # registra cf.shopee.com.br/file/<id> como o CONTORNO AUTORIZADO para o
+                         # CDN de foto barrado. A ronda nao errou: ela mediu o ambiente DELA. O que
+                         # errou foi a linha virar pedido humano sem ser remedida no ambiente que a
+                         # usaria, e pela 34.5 pedido que incha com linha que nao precisa ser feita
+                         # e como um pedido de 30 dias fica sem resposta.
+                         # E O HOST QUE DE FATO MATA A FICHA DA SHOPEE FOI MEDIDO, COM NOME:
+                         # `deo.shopeemobile.com`, que serve o JavaScript do aplicativo. Uma ficha
+                         # real aberta NO NAVEGADOR DESTA NUVEM (pela 33) deu HTTP 200, 210.180
+                         # bytes de corpo por curl e ZERO byte de texto renderizado — o mesmo 0 da
+                         # ronda, por causa diferente —, com 23 requisicoes falhadas, TODAS para
+                         # deo.shopeemobile.com e NENHUMA para cf.shopee.com.br. Por curl, tres
+                         # passadas: deo.shopeemobile.com 000 nas tres, down-br.img.susercontent
+                         # .com 000 nas tres, contra cf.shopee.com.br 200 e rodametria.com.br 200
+                         # nas mesmas tres. E A HONESTIDADE DO ACHADO VAI DITA: liberar esse host
+                         # NAO promete veredito de ficha, porque restam o CAPTCHA de 23 e 25/11 e
+                         # o 403 de 17/09. O que esta provado e o negativo, e ele basta para
+                         # encurtar o pedido: a linha pedida nao era a que falta.
+                         # A tabela do despacho ALTA continua com SEIS linhas e a sexta passou de
+                         # cf.shopee.com.br para deo.shopeemobile.com. IDADES DOS GESTOS EM 27/11:
+                         # gov.br e leg.br 30 dias, as duas SERPs do Chrome 28, rodametria.com.br
+                         # nos dominios adicionais permitidos 23, os 5 links do Mercado Livre 16,
+                         # a Pauta das ilhas NUNCA RODOU em 77 dias, e deo.shopeemobile.com medido
+                         # hoje pela primeira vez.
                          # A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA.
-executando_desde: 2026-11-27T19:16Z   # RESERVA da execucao da Fundacao de 27/11 as 19h16Z, aceita de
-                         # PRIMEIRA: `executando_desde` estava `null` e pela 1.1 `null` ja prova
-                         # que nenhum bloco da Fundacao estava em andamento, sem precisar do git.
-                         # OITAVA passada seguida desta ilha entrando pela 34.2. Comentario da
-                         # reserva anterior substituido INTEIRO, RABO INCLUIDO.
-                         # A HORA SAIU DO `date -u` NA MESMA LINHA DE COMANDO QUE A GRAVA.
+executando_desde: null   # LIMPO no fecho desta execucao (passo 7 da secao 1). Reservada as
+                         # 19h16Z (commit df0249d), aceita de PRIMEIRA — pela 1.1
+                         # `executando_desde: null` ja prova que nenhum bloco da Fundacao
+                         # estava em andamento, sem precisar consultar o git. NAO renovada: o
+                         # fecho saiu dentro dos 40 minutos. Comentario da reserva substituido
+                         # INTEIRO, RABO INCLUIDO.
 rede: aberta em 2026-11-27   # 20.2, e a conferencia do DOMINIO DA PROPRIA
                              # ILHA se faz em toda execucao e NAO e herdada: rodametria.com.br
                              # em 200 nas TRES passadas desta sonda, mais as 11 de 11 URLs do
@@ -82,21 +97,49 @@ rede: aberta em 2026-11-27   # 20.2, e a conferencia do DOMINIO DA PROPRIA
                              # nenhum despacho desta ilha fechou. NAO CHEGOU NOTICIA.
 bloqueada_por: null      # obrigatorio pela secao 2. `null` DE PROPOSITO: o que falta (gov.br para a F1, as prefeituras para a camada municipal, as tres etiquetas do Mercado Livre) trava a FABRICA e nao a ILHA, e isso se escreve no despacho, que e o canal da 12.2. Preenche-lo congelaria tambem os blocos que ja podem andar.
 bloco_atual: |
-  TRAVADA POR GESTO HUMANO pela 34.2, pela SETIMA vez seguida, e a QUARTA
-  passada seguida a cumpri-la sem escrever regra nenhuma — nenhum portao,
-  nenhuma regua, nenhuma mutacao, nenhuma bancada e nenhuma secao de contrato
-  nasceu aqui. NADA FOI AO AR, e nada podia.
+  TRAVADA POR GESTO HUMANO, pela 34.2, na OITAVA execucao SEGUIDA desta ilha
+  sem um byte de tela e na QUINTA passada seguida a cumprir a 34.2 sem escrever
+  regra nenhuma — nenhum portao, nenhuma regua, nenhuma mutacao, nenhuma
+  bancada e nenhuma secao de contrato nasceu aqui. NADA FOI AO AR, e nada podia.
 
-  O FATO NOVO DESTA PASSADA NAO E O TAMANHO DA SERIE: e que a ULTIMA execucao
-  da janela da 31.1 em que esta fabrica podia ter escolhido diferente ACABOU
-  DE SAIR DELA. A proporcao NAO piorou e segue 2 EM 10 (3 com a dubia de 25/11
-  13h17Z), porque a janela andou um para cada lado: entrou esta (`nao`) e saiu
-  a de 25/11 10h19Z, que tambem era `nao` — e era a UNICA `nao` da janela que
-  era escolha de trabalho da Fundacao. Logo as SETE `nao` de hoje sao, todas as
-  sete, TRAVA HUMANA. Pela 34.3 isso e leitura sobre a FABRICA — o gesto ou o
-  foco —, nunca sobre a escolha de quem executa. As duas `sim` restantes sao de
-  25/11 e saem nas proximas duas passadas: 1 EM 10 na proxima, ZERO EM 10 na
-  seguinte, por decurso de prazo.
+  O FATO NOVO DESTA PASSADA E UM CONSERTO DO PROPRIO PEDIDO AO RAPHAEL, E ELE
+  ENCURTA O PEDIDO EM VEZ DE AUMENTA-LO. A atualizacao de ontem as 16h2xZ
+  acrescentou um SEXTO gesto a tabela do despacho ALTA — `cf.shopee.com.br` na
+  lista de dominios permitidos da conta —, lido da ronda da clubedomosaico.
+  MEDIDO AQUI, NO AMBIENTE DA FUNDACAO, ESSE HOST NAO PRECISA DE GESTO NENHUM:
+  200 na raiz nas TRES passadas, e uma URL /file/<id> colhida do banco DESTA
+  ilha (019ac121ffeafe4df9aeb01a03306188) devolveu um JPEG de verdade, 83.231
+  bytes, content-type image/jpeg, nas DUAS passadas. O repositorio ja dizia isto
+  DUAS vezes e as duas foram atropeladas: o despacho de 26/11 10h2xZ tem a linha
+  `cf.shopee.com.br | 200, 200, 200` na tabela "a parede nao e uma, e uma por
+  ambiente", e o de 24/09/2026 registra cf.shopee.com.br/file/<identificador>
+  como o CONTORNO AUTORIZADO para o CDN de foto barrado. A RONDA NAO ERROU: ela
+  mediu o ambiente DELA, e daqui nao ha como medir o dela. O que errou foi a
+  linha virar pedido humano sem ser remedida no ambiente que a usaria — a 20.16
+  na armadilha que ela propria nomeia —, e pela 34.5 pedido que incha com linha
+  que nao precisa ser feita e como um pedido de 30 dias fica sem resposta.
+
+  E O HOST QUE DE FATO MATA A FICHA DA SHOPEE FOI MEDIDO, COM NOME:
+  `deo.shopeemobile.com`, que serve o JavaScript do aplicativo. Uma ficha real
+  (shopee.com.br/product/1024782317/58271745327) foi aberta NO NAVEGADOR DESTA
+  NUVEM, pela 33: HTTP 200, corpo de 210.180 bytes por curl nas duas passadas, e
+  ZERO byte de texto renderizado — o mesmo 0 em que a ronda chegou, pela causa
+  que ela nao tinha como ver. 23 requisicoes falhadas, TODAS para
+  deo.shopeemobile.com e NENHUMA para cf.shopee.com.br. Por curl, tres passadas:
+  deo.shopeemobile.com 000 nas tres, down-br.img.susercontent.com 000 nas tres,
+  contra cf.shopee.com.br 200 e rodametria.com.br 200 nas mesmas tres.
+  A HONESTIDADE DO ACHADO VAI DITA: liberar esse host NAO promete veredito de
+  ficha, porque restam o CAPTCHA de 23 e 25/11 e o 403 de 17/09, duas causas ja
+  medidas. O que esta provado e o NEGATIVO, e ele basta para encurtar o pedido —
+  a linha pedida nao era a que falta.
+
+  A PROPORCAO DA 31.1 CAIU PARA 1 EM 10 (2 com a dubia de 25/11 13h17Z), contra
+  o piso de 7 em 10, e a queda estava PRE-ESCRITA na entrada de ontem, que disse
+  "1 em 10 na proxima e 0 em 10 na seguinte, com a fabrica fazendo tudo certo".
+  A proxima era esta. Entrou esta (`nao`) e saiu a de 25/11 16h16Z, que era
+  `sim`. AS OITO `nao` DA JANELA SAO, TODAS AS OITO, TRAVA HUMANA. Pela 34.3
+  isso e leitura sobre a FABRICA — o gesto ou o foco —, nunca sobre a escolha de
+  quem executa. NA PROXIMA PASSADA A ULTIMA `sim` SAI E A PROPORCAO VAI A ZERO.
 
   A ILHA ESTA SA, medido nesta passada e nao herdado deste cabecalho: 11 de 11
   URLs do sitemap em 200 com quebra de cache, 404 que tem de ser 404 em 404,
@@ -113,41 +156,50 @@ bloco_atual: |
   nuvem), e 1 — a `scooter eletrica`, 301 mil buscas — com `nao_antes_de:
   2026-12-11` lido no campo criterio_da_proxima_remedicao do proprio registro,
   que a 30.9 proibe antecipar: faltam 14 dias, e mesmo entao e CARONA e nao
-  bloco. 11 de 11 explicadas, ZERO elegivel.
+  bloco. 11 de 11 explicadas, ZERO elegivel. E O ACHADO DA SHOPEE NAO MUDA UMA
+  LINHA DESTA CONTAGEM: o que trava pagina nova aqui e SERP e prazo, nunca foto.
 
-  SAO SEIS GESTOS AGORA, nao cinco, e o sexto entrou por medicao de outra
-  camada. IDADES EM 27/11: gov.br 30 dias, as duas SERPs 28, rodametria.com.br
-  nos dominios adicionais permitidos 23, os 5 links do Mercado Livre 16, a
-  Pauta das ilhas NUNCA RODOU em 77 dias — e `cf.shopee.com.br`, que era o
-  portao de foto desta ilha e que a ronda de hoje mediu valendo o TESTE DE VIDA
-  DA 25.4 DO ARQUIPELAGO INTEIRO: 12 de 12 fichas da Shopee em HTTP 200, sem
-  CAPTCHA, com o corpo renderizado em ZERO byte de texto, porque os servidores
-  dos ativos do aplicativo sao recusados pelo egresso, com example.com tambem
-  em 000 como controle da 33. Nao e CAPTCHA e nao e 403: e um terceiro motivo.
+  SONDA DE PAREDE (20.16), ambiente NOMEADO — nuvem da Fundacao, conteiner
+  remoto do Claude Code com proxy de agente —, tres passadas e doze medicoes:
+  www.gov.br 000 nas tres, www.casasbahia.com.br 000 nas tres, contra
+  rodametria.com.br 200 nas tres e cf.shopee.com.br 200 nas tres. Seis verdes,
+  seis recusas, zero intermitencia, sempre 000 e nunca 403 — o codigo de FORA DA
+  LISTA DE PERMITIDOS. Decima terceira medicao da serie em 22 dias para as duas
+  primeiras classes, e pela regra 1 da 20.16 as outras oito linhas delas NAO
+  foram reabertas. A CLASSE DA SHOPEE MUDOU DE VEREDITO e foi reaberta inteira,
+  pelo gatilho 2(a) da propria 20.16 — e foi essa reabertura que achou o host
+  errado na tabela de gestos.
 
-  O CUSTO FORA DO FOCO DOBROU HOJE. A robometria segue viva com 14 URLs no ar e
-  os seis itens abertos de 20/11 (OITO dias), tres deles link de compra morto
-  servido no ar. E a ronda de hoje achou o segundo: o /status da clubedomosaico
-  serve `SYNC DESLIGADO em 19/11/2026 por decisao do Raphael: ilha fora da
-  fabrica`, e essa decisao NAO existe em lugar nenhum do repositorio — aquela
-  ilha e a de maior trafego da fabrica, tem tres despachos abertos pedindo
-  trabalho a Fundacao e nenhum pode chegar ao ar. DAS SEIS ILHAS: a em foco nao
-  pode publicar por falta de gesto, a robometria nao pode ser tocada pela 1.2,
-  e a clubedomosaico nao poderia ser consertada nem se fosse reservada. Esta
-  execucao nao pegou nenhuma das duas (34.4): sair do foco e decisao escrita do
-  Raphael, pedida no despacho como pergunta com numero.
+  IDADES DOS GESTOS EM 27/11: gov.br e leg.br 30 dias (28/10), as duas SERPs
+  `nao-medida` no Chrome 28 (30/10), rodametria.com.br nos dominios adicionais
+  permitidos 23 (04/11), os 5 links do Mercado Livre 16 (11/11), a Pauta das
+  ilhas NUNCA RODOU em 77 dias, e deo.shopeemobile.com medido hoje pela primeira
+  vez. NOTICIA DE GESTO PROCURADA ANTES DE DIZER QUE NADA MUDOU (20.16 item
+  2(b)): zero commit de terceiros no main entre 63e8513 e a reserva df0249d,
+  `grep -c "Pauta das ilhas" MAOS-LOG.md` em 0 e `find . -iname "*pauta*"` em
+  zero no repositorio inteiro. Nenhum despacho desta ilha fechou.
 
-  PROXIMO PASSO DESBLOQUEADO — e ele continua nao sendo desta nuvem. Enquanto
-  nenhum dos seis gestos for feito e foco.md nomear esta ilha, a execucao
-  seguinte repete a lista fechada da 34.2 e nada mais: noticia de gesto, rede
-  do proprio dominio, sonda de parede, fila relida contra o dado, atualizacao
-  da MESMA entrada ALTA (34.5) e fecho. SE UM GESTO CHEGAR, a ordem de trabalho
-  esta pronta: (1) Pauta das ilhas rodada -> bloco 5 (/guias/), o unico que nao
-  depende de rede nem de SERP; (2) *.gov.br aberto -> camada de CNH da F1 e
-  camada municipal; (3) as duas SERPs `nao-medida` vistas no Chrome -> pagina
-  nova pela 30.8; (4) os 5 links do Mercado Livre -> a pagina de 823 mil buscas
-  /mes sai de UM cartao de compra; (5) cf.shopee.com.br aberto -> o teste de
-  vida da 25.4 volta a existir nas quatro ilhas.
+  O CUSTO FORA DO FOCO SEGUE O MESMO DE HOJE AS 16h2xZ, e nada dele foi tocado
+  (34.4): a robometria viva com os seis itens de 20/11 abertos ha OITO dias,
+  tres deles link de compra morto no ar, e a clubedomosaico com o Sync desligado
+  desde 19/11 por uma decisao que o repositorio nao carrega. Esta execucao nao
+  reservou nenhuma das duas — sair do foco e decisao escrita do Raphael, pedida
+  no despacho como pergunta com numero e nunca tomada por conta propria.
+
+  PROXIMO PASSO DESBLOQUEADO, e ele continua nao sendo desta nuvem: enquanto
+  nenhum gesto for feito e foco.md nomear a rodametria, a execucao seguinte
+  repete a lista fechada da 34.2 — noticia de gesto, rede do proprio dominio,
+  sonda de parede, fila relida contra o dado, atualizacao da MESMA entrada ALTA
+  e fecho. SE UM GESTO CHEGAR, a ordem esta pronta: (1) Pauta das ilhas rodada
+  -> bloco 5 (/guias/), o unico que nao depende de rede nem de SERP; (2) gov.br
+  e leg.br abertos -> camada de CNH da F1 e camada municipal; (3) as duas SERPs
+  vistas no Chrome -> pagina nova pela 30.8; (4) os 5 links do Mercado Livre ->
+  a pagina de 823 mil buscas/mes sai de UM cartao de compra. O ITEM (5) DA ORDEM
+  DE ONTEM SAIU DELA POR MEDICAO DESTA PASSADA: o portao de foto desta ilha JA
+  FUNCIONA de uma sessao da Fundacao, e quem reservar esta ilha com foto
+  pendente MEDE ALI em vez de declarar nao medido. A remedicao da `scooter
+  eletrica` entra em 11/12 por criterio pre-registrado, e nem ela e bloco: e
+  carona.
 ---
 
 # Estado da ilha RODAMETRIA
